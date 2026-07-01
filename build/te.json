@@ -1,0 +1,2273 @@
+[
+  {
+    "test_id": "TE-ADMIN-001",
+    "title": "Administrator: cannot be edited to lose Administration-pages access",
+    "jira": "SV-7501",
+    "permission": "Access Administration pages",
+    "dependency_mode": "None",
+    "priority": "Critical",
+    "type": "Negative",
+    "preconditions": "Logged in as an Administrator. Administration > Roles and Permissions is reachable. A test staff user exists with no custom role assigned.",
+    "role_setup": "Start from Administrator template (records template). Change: Access Administration pages from ON to OFF (attempted). Leave all else as template default.",
+    "test_data": "Template: Administrator. Target toggle: Access Administration pages.",
+    "steps": [
+      {
+        "n": 1,
+        "action": "Go to Administration > Roles and Permissions > Create Custom Role.",
+        "expected": "Create Custom Role screen opens with a template selector."
+      },
+      {
+        "n": 2,
+        "action": "Select the 'Administrator' system template.",
+        "expected": "All permission settings pre-fill from the 'Administrator' template; the source template is recorded on the role."
+      },
+      {
+        "n": 3,
+        "action": "Change: attempt to disable 'Access Administration pages' (Roles & Permissions / Staff / Settings).",
+        "expected": "The changed toggle(s) reflect the new state; all other settings remain at template default."
+      },
+      {
+        "n": 4,
+        "action": "Attempt to turn OFF the Administration-pages access toggle and Save.",
+        "expected": "The Admin-pages access toggle is locked/cannot be disabled for a role sourced from Administrator; Save is blocked or the toggle reverts with a validation message."
+      }
+    ],
+    "expected_final": "The custom role cannot be saved with Admin-pages access removed; Administrator always retains admin access.",
+    "source_viu": "Spec: SV-7501 Edit Custom Role - Administrator admin-access guard. UNVERIFIED \u2014 VIU pending."
+  },
+  {
+    "test_id": "TE-ADMIN-002",
+    "title": "Administrator: remove Work Orders Delete only (delta), rest of full access intact",
+    "jira": "SV-7501",
+    "permission": "Work Orders > Delete",
+    "dependency_mode": "None",
+    "priority": "High",
+    "type": "Positive",
+    "preconditions": "Logged in as an Administrator. Administration > Roles and Permissions is reachable. A test staff user exists with no custom role assigned.",
+    "role_setup": "Start from Administrator template (records template). Change: Work Orders > Delete from ON to OFF. Leave all else as template default.",
+    "test_data": "Template: Administrator. Toggle: Work Orders Delete OFF.",
+    "steps": [
+      {
+        "n": 1,
+        "action": "Go to Administration > Roles and Permissions > Create Custom Role.",
+        "expected": "Create Custom Role screen opens with a template selector."
+      },
+      {
+        "n": 2,
+        "action": "Select the 'Administrator' system template.",
+        "expected": "All permission settings pre-fill from the 'Administrator' template; the source template is recorded on the role."
+      },
+      {
+        "n": 3,
+        "action": "Change: disable Work Orders > Delete.",
+        "expected": "The changed toggle(s) reflect the new state; all other settings remain at template default."
+      },
+      {
+        "n": 4,
+        "action": "Click Save to create the custom role.",
+        "expected": "Role saves successfully; only the intended delta differs from the template."
+      },
+      {
+        "n": 5,
+        "action": "Go to Administration > Staff and assign the new custom role to the test user.",
+        "expected": "Role is assigned; the user is forced to log out (role change forces logout)."
+      },
+      {
+        "n": 6,
+        "action": "In a separate browser, log in as the test user.",
+        "expected": "Login succeeds with the new custom role applied."
+      },
+      {
+        "n": 7,
+        "action": "Verify the delta: attempt to delete a Work Order as the user.",
+        "expected": "The Delete action on Work Orders is unavailable/blocked for the user."
+      },
+      {
+        "n": 8,
+        "action": "Verify the rest of the template is intact: user still has full access everywhere else (create/edit WOs, all other modules, Admin pages).",
+        "expected": "All other capabilities match the source template exactly; no unintended access was gained or lost."
+      }
+    ],
+    "expected_final": "Only Work Orders Delete is removed; every other Administrator capability remains available to the user.",
+    "source_viu": "Spec: SV-7501 Edit Custom Role delta - Administrator. UNVERIFIED \u2014 VIU pending."
+  },
+  {
+    "test_id": "TE-ADMIN-003",
+    "title": "Administrator: remove History only (delta), all other access intact",
+    "jira": "SV-7501",
+    "permission": "History",
+    "dependency_mode": "None",
+    "priority": "Medium",
+    "type": "Positive",
+    "preconditions": "Logged in as an Administrator. Administration > Roles and Permissions is reachable. A test staff user exists with no custom role assigned.",
+    "role_setup": "Start from Administrator template (records template). Change: History from ON to OFF. Leave all else as template default.",
+    "test_data": "Template: Administrator. Toggle: History OFF.",
+    "steps": [
+      {
+        "n": 1,
+        "action": "Go to Administration > Roles and Permissions > Create Custom Role.",
+        "expected": "Create Custom Role screen opens with a template selector."
+      },
+      {
+        "n": 2,
+        "action": "Select the 'Administrator' system template.",
+        "expected": "All permission settings pre-fill from the 'Administrator' template; the source template is recorded on the role."
+      },
+      {
+        "n": 3,
+        "action": "Change: disable History access.",
+        "expected": "The changed toggle(s) reflect the new state; all other settings remain at template default."
+      },
+      {
+        "n": 4,
+        "action": "Click Save to create the custom role.",
+        "expected": "Role saves successfully; only the intended delta differs from the template."
+      },
+      {
+        "n": 5,
+        "action": "Go to Administration > Staff and assign the new custom role to the test user.",
+        "expected": "Role is assigned; the user is forced to log out (role change forces logout)."
+      },
+      {
+        "n": 6,
+        "action": "In a separate browser, log in as the test user.",
+        "expected": "Login succeeds with the new custom role applied."
+      },
+      {
+        "n": 7,
+        "action": "Verify the delta: open a record and look for the History tab/panel.",
+        "expected": "History is not shown/available for the user."
+      },
+      {
+        "n": 8,
+        "action": "Verify the rest of the template is intact: all other Administrator access (all CRUD, Admin pages, Financial, AP/AR) is unchanged.",
+        "expected": "All other capabilities match the source template exactly; no unintended access was gained or lost."
+      }
+    ],
+    "expected_final": "Only History is removed; the rest of the Administrator template is preserved.",
+    "source_viu": "Spec: SV-7501 Edit Custom Role delta - Administrator History. UNVERIFIED \u2014 VIU pending."
+  },
+  {
+    "test_id": "TE-ADMIN-004",
+    "title": "Administrator-based role: assignment forces logout, edited role applies on next login",
+    "jira": "SV-7505",
+    "permission": "Vendor > Delete",
+    "dependency_mode": "None",
+    "priority": "High",
+    "type": "Positive",
+    "preconditions": "Logged in as an Administrator. Administration > Roles and Permissions is reachable. A test staff user exists with no custom role assigned.",
+    "role_setup": "Start from Administrator template (records template). Change: Vendor > Delete from ON to OFF. Leave all else as template default.",
+    "test_data": "Template: Administrator. Toggle: Vendor Delete OFF. Focus: staff assignment + forced logout.",
+    "steps": [
+      {
+        "n": 1,
+        "action": "Go to Administration > Roles and Permissions > Create Custom Role.",
+        "expected": "Create Custom Role screen opens with a template selector."
+      },
+      {
+        "n": 2,
+        "action": "Select the 'Administrator' system template.",
+        "expected": "All permission settings pre-fill from the 'Administrator' template; the source template is recorded on the role."
+      },
+      {
+        "n": 3,
+        "action": "Change: disable Vendor > Delete.",
+        "expected": "The changed toggle(s) reflect the new state; all other settings remain at template default."
+      },
+      {
+        "n": 4,
+        "action": "Click Save to create the custom role.",
+        "expected": "Role saves successfully; only the intended delta differs from the template."
+      },
+      {
+        "n": 5,
+        "action": "Go to Administration > Staff and assign the new custom role to the test user.",
+        "expected": "Role is assigned; the user is forced to log out (role change forces logout)."
+      },
+      {
+        "n": 6,
+        "action": "In a separate browser, log in as the test user.",
+        "expected": "Login succeeds with the new custom role applied."
+      },
+      {
+        "n": 7,
+        "action": "Verify the delta: attempt to delete a Vendor as the user.",
+        "expected": "The Delete action on Vendors is unavailable/blocked for the user."
+      },
+      {
+        "n": 8,
+        "action": "Verify the rest of the template is intact: user still has full access everywhere else including Admin pages.",
+        "expected": "All other capabilities match the source template exactly; no unintended access was gained or lost."
+      }
+    ],
+    "expected_final": "On assignment the user is logged out and the edited role (minus Vendor Delete) applies on next login.",
+    "source_viu": "Spec: SV-7505 Staff assignment forces logout. UNVERIFIED \u2014 VIU pending."
+  },
+  {
+    "test_id": "TE-ADMIN-005",
+    "title": "Owner is not offered as a system template (merged into Administrator)",
+    "jira": "SV-7527",
+    "permission": "N/A (template list)",
+    "dependency_mode": "None",
+    "priority": "High",
+    "type": "Negative",
+    "preconditions": "Logged in as an Administrator. Administration > Roles and Permissions is reachable. A test staff user exists with no custom role assigned.",
+    "role_setup": "Start from template selector (no change). Change: none. Leave all else as template default.",
+    "test_data": "Template selector list. Expected: 11 selectable templates + 2 read-only, no 'Owner'.",
+    "steps": [
+      {
+        "n": 1,
+        "action": "Go to Administration > Roles and Permissions > Create Custom Role.",
+        "expected": "Template selector opens."
+      },
+      {
+        "n": 2,
+        "action": "Review the full list of available system templates.",
+        "expected": "No 'Owner' template is present; legacy Owner has been merged into Administrator."
+      },
+      {
+        "n": 3,
+        "action": "Confirm Administrator is present and represents full access.",
+        "expected": "Administrator template exists and covers the former Owner capabilities."
+      }
+    ],
+    "expected_final": "Owner does not appear in the template list; Administrator is the only full-access template.",
+    "source_viu": "Spec: SV-7526/SV-7527 Owner merged into Administrator. UNVERIFIED \u2014 VIU pending."
+  },
+  {
+    "test_id": "TE-SM-001",
+    "title": "Service Manager: ADD Invoicing Delete (template lacked it), rest intact",
+    "jira": "SV-7501",
+    "permission": "Invoicing > Delete",
+    "dependency_mode": "Cascade: auto-enable lower",
+    "priority": "High",
+    "type": "Dependency",
+    "preconditions": "Logged in as an Administrator. Administration > Roles and Permissions is reachable. A test staff user exists with no custom role assigned.",
+    "role_setup": "Start from Service Manager template (records template). Change: Invoicing > Delete from OFF to ON. Leave all else as template default.",
+    "test_data": "Template: Service Manager. Toggle: Invoicing Delete ON (View/Edit already ON).",
+    "steps": [
+      {
+        "n": 1,
+        "action": "Go to Administration > Roles and Permissions > Create Custom Role.",
+        "expected": "Create Custom Role screen opens with a template selector."
+      },
+      {
+        "n": 2,
+        "action": "Select the 'Service Manager' system template.",
+        "expected": "All permission settings pre-fill from the 'Service Manager' template; the source template is recorded on the role."
+      },
+      {
+        "n": 3,
+        "action": "Change: enable Invoicing > Delete.",
+        "expected": "The changed toggle(s) reflect the new state; all other settings remain at template default."
+      },
+      {
+        "n": 4,
+        "action": "Click Save to create the custom role.",
+        "expected": "Role saves successfully; only the intended delta differs from the template."
+      },
+      {
+        "n": 5,
+        "action": "Go to Administration > Staff and assign the new custom role to the test user.",
+        "expected": "Role is assigned; the user is forced to log out (role change forces logout)."
+      },
+      {
+        "n": 6,
+        "action": "In a separate browser, log in as the test user.",
+        "expected": "Login succeeds with the new custom role applied."
+      },
+      {
+        "n": 7,
+        "action": "Verify the delta: attempt to delete an Invoice as the user.",
+        "expected": "The user can delete an Invoice (Delete action available and works)."
+      },
+      {
+        "n": 8,
+        "action": "Verify the rest of the template is intact: all other Service Manager access (WO/WOL/Schedule/Customers/Parts CRUD, Reports, portals, Financial, AP/AR) unchanged.",
+        "expected": "All other capabilities match the source template exactly; no unintended access was gained or lost."
+      }
+    ],
+    "expected_final": "User gains Invoicing Delete only; all other Service Manager capabilities remain.",
+    "source_viu": "Spec: SV-7501 Edit Custom Role - SM add Invoicing Delete. UNVERIFIED \u2014 VIU pending."
+  },
+  {
+    "test_id": "TE-SM-002",
+    "title": "Service Manager: REMOVE Financial access (financial confirm modal), rest intact",
+    "jira": "SV-7501",
+    "permission": "Financial",
+    "dependency_mode": "Financial gate: confirm modal",
+    "priority": "Critical",
+    "type": "Dependency",
+    "preconditions": "Logged in as an Administrator. Administration > Roles and Permissions is reachable. A test staff user exists with no custom role assigned.",
+    "role_setup": "Start from Service Manager template (records template). Change: Financial from ON to OFF. Leave all else as template default.",
+    "test_data": "Template: Service Manager. Toggle: Financial OFF (confirm modal expected).",
+    "steps": [
+      {
+        "n": 1,
+        "action": "Go to Administration > Roles and Permissions > Create Custom Role.",
+        "expected": "Create Custom Role screen opens with a template selector."
+      },
+      {
+        "n": 2,
+        "action": "Select the 'Service Manager' system template.",
+        "expected": "All permission settings pre-fill from the 'Service Manager' template; the source template is recorded on the role."
+      },
+      {
+        "n": 3,
+        "action": "Change: disable Financial access (expect financial confirm modal).",
+        "expected": "The changed toggle(s) reflect the new state; all other settings remain at template default."
+      },
+      {
+        "n": 5,
+        "action": "Turn OFF the Financial access toggle.",
+        "expected": "A Financial gate confirmation modal appears warning that financial data access will be removed; confirm to proceed."
+      },
+      {
+        "n": 6,
+        "action": "Click Save to create the custom role.",
+        "expected": "Role saves successfully; only the intended delta differs from the template."
+      },
+      {
+        "n": 7,
+        "action": "Go to Administration > Staff and assign the new custom role to the test user.",
+        "expected": "Role is assigned; the user is forced to log out (role change forces logout)."
+      },
+      {
+        "n": 8,
+        "action": "In a separate browser, log in as the test user.",
+        "expected": "Login succeeds with the new custom role applied."
+      },
+      {
+        "n": 9,
+        "action": "Verify the delta: open a Work Order / Invoice and look for financial figures (costs, margins, totals).",
+        "expected": "Financial data is hidden/blocked for the user."
+      },
+      {
+        "n": 10,
+        "action": "Verify the rest of the template is intact: non-financial Service Manager access (CRUD, schedule, portals, history) is unchanged.",
+        "expected": "All other capabilities match the source template exactly; no unintended access was gained or lost."
+      }
+    ],
+    "expected_final": "Financial access removed after confirming the modal; all non-financial access preserved.",
+    "source_viu": "Spec: SV-7501 Edit Custom Role - SM Financial gate. UNVERIFIED \u2014 VIU pending."
+  },
+  {
+    "test_id": "TE-SM-003",
+    "title": "Service Manager: REMOVE AP/AR access (AP/AR confirm modal), rest intact",
+    "jira": "SV-7501",
+    "permission": "AP/AR",
+    "dependency_mode": "AP/AR gate: confirm modal",
+    "priority": "High",
+    "type": "Dependency",
+    "preconditions": "Logged in as an Administrator. Administration > Roles and Permissions is reachable. A test staff user exists with no custom role assigned.",
+    "role_setup": "Start from Service Manager template (records template). Change: AP/AR from ON to OFF. Leave all else as template default.",
+    "test_data": "Template: Service Manager. Toggle: AP/AR OFF (confirm modal expected).",
+    "steps": [
+      {
+        "n": 1,
+        "action": "Go to Administration > Roles and Permissions > Create Custom Role.",
+        "expected": "Create Custom Role screen opens with a template selector."
+      },
+      {
+        "n": 2,
+        "action": "Select the 'Service Manager' system template.",
+        "expected": "All permission settings pre-fill from the 'Service Manager' template; the source template is recorded on the role."
+      },
+      {
+        "n": 3,
+        "action": "Change: disable AP/AR access (expect AP/AR confirm modal).",
+        "expected": "The changed toggle(s) reflect the new state; all other settings remain at template default."
+      },
+      {
+        "n": 5,
+        "action": "Turn OFF the AP/AR access toggle.",
+        "expected": "An AP/AR gate confirmation modal appears warning payables/receivables access will be removed; confirm to proceed."
+      },
+      {
+        "n": 6,
+        "action": "Click Save to create the custom role.",
+        "expected": "Role saves successfully; only the intended delta differs from the template."
+      },
+      {
+        "n": 7,
+        "action": "Go to Administration > Staff and assign the new custom role to the test user.",
+        "expected": "Role is assigned; the user is forced to log out (role change forces logout)."
+      },
+      {
+        "n": 8,
+        "action": "In a separate browser, log in as the test user.",
+        "expected": "Login succeeds with the new custom role applied."
+      },
+      {
+        "n": 9,
+        "action": "Verify the delta: attempt to reach AP/AR (payables/receivables) screens.",
+        "expected": "AP/AR screens are unavailable to the user."
+      },
+      {
+        "n": 10,
+        "action": "Verify the rest of the template is intact: all other Service Manager access, including Financial, is unchanged.",
+        "expected": "All other capabilities match the source template exactly; no unintended access was gained or lost."
+      }
+    ],
+    "expected_final": "AP/AR access removed after confirming the modal; the rest of the template is intact.",
+    "source_viu": "Spec: SV-7501 Edit Custom Role - SM AP/AR gate. UNVERIFIED \u2014 VIU pending."
+  },
+  {
+    "test_id": "TE-SM-004",
+    "title": "Service Manager: MULTI-toggle remove Reports + Settings, rest intact",
+    "jira": "SV-7501",
+    "permission": "Reports; Settings (App Settings + Wages)",
+    "dependency_mode": "None",
+    "priority": "Medium",
+    "type": "Positive",
+    "preconditions": "Logged in as an Administrator. Administration > Roles and Permissions is reachable. A test staff user exists with no custom role assigned.",
+    "role_setup": "Start from Service Manager template (records template). Change: Reports and Settings from ON/ON to OFF/OFF. Leave all else as template default.",
+    "test_data": "Template: Service Manager. Toggles: Reports OFF, Settings OFF.",
+    "steps": [
+      {
+        "n": 1,
+        "action": "Go to Administration > Roles and Permissions > Create Custom Role.",
+        "expected": "Create Custom Role screen opens with a template selector."
+      },
+      {
+        "n": 2,
+        "action": "Select the 'Service Manager' system template.",
+        "expected": "All permission settings pre-fill from the 'Service Manager' template; the source template is recorded on the role."
+      },
+      {
+        "n": 3,
+        "action": "Change: disable Reports AND disable Settings (App Settings + Wages) together.",
+        "expected": "The changed toggle(s) reflect the new state; all other settings remain at template default."
+      },
+      {
+        "n": 4,
+        "action": "Click Save to create the custom role.",
+        "expected": "Role saves successfully; only the intended delta differs from the template."
+      },
+      {
+        "n": 5,
+        "action": "Go to Administration > Staff and assign the new custom role to the test user.",
+        "expected": "Role is assigned; the user is forced to log out (role change forces logout)."
+      },
+      {
+        "n": 6,
+        "action": "In a separate browser, log in as the test user.",
+        "expected": "Login succeeds with the new custom role applied."
+      },
+      {
+        "n": 7,
+        "action": "Verify the delta: attempt to open Reports and open Settings (App Settings / Wages) as the user.",
+        "expected": "Both Reports and Settings are unavailable to the user."
+      },
+      {
+        "n": 8,
+        "action": "Verify the rest of the template is intact: all other Service Manager CRUD/portals/Financial/AP/AR access is unchanged.",
+        "expected": "All other capabilities match the source template exactly; no unintended access was gained or lost."
+      }
+    ],
+    "expected_final": "Exactly two capabilities (Reports, Settings) removed; everything else preserved.",
+    "source_viu": "Spec: SV-7501 Edit Custom Role - SM multi-toggle. UNVERIFIED \u2014 VIU pending."
+  },
+  {
+    "test_id": "TE-SSA-001",
+    "title": "Senior Service Advisor: ADD Customers Delete, rest intact",
+    "jira": "SV-7501",
+    "permission": "Customers > Delete",
+    "dependency_mode": "Cascade: auto-enable lower",
+    "priority": "High",
+    "type": "Dependency",
+    "preconditions": "Logged in as an Administrator. Administration > Roles and Permissions is reachable. A test staff user exists with no custom role assigned.",
+    "role_setup": "Start from Senior Service Advisor template (records template). Change: Customers > Delete from OFF to ON. Leave all else as template default.",
+    "test_data": "Template: Senior Service Advisor. Toggle: Customers Delete ON.",
+    "steps": [
+      {
+        "n": 1,
+        "action": "Go to Administration > Roles and Permissions > Create Custom Role.",
+        "expected": "Create Custom Role screen opens with a template selector."
+      },
+      {
+        "n": 2,
+        "action": "Select the 'Senior Service Advisor' system template.",
+        "expected": "All permission settings pre-fill from the 'Senior Service Advisor' template; the source template is recorded on the role."
+      },
+      {
+        "n": 3,
+        "action": "Change: enable Customers > Delete.",
+        "expected": "The changed toggle(s) reflect the new state; all other settings remain at template default."
+      },
+      {
+        "n": 4,
+        "action": "Click Save to create the custom role.",
+        "expected": "Role saves successfully; only the intended delta differs from the template."
+      },
+      {
+        "n": 5,
+        "action": "Go to Administration > Staff and assign the new custom role to the test user.",
+        "expected": "Role is assigned; the user is forced to log out (role change forces logout)."
+      },
+      {
+        "n": 6,
+        "action": "In a separate browser, log in as the test user.",
+        "expected": "Login succeeds with the new custom role applied."
+      },
+      {
+        "n": 7,
+        "action": "Verify the delta: attempt to delete a Customer record as the user.",
+        "expected": "The user can delete a Customer."
+      },
+      {
+        "n": 8,
+        "action": "Verify the rest of the template is intact: all other SSA access unchanged (WO/WOL/Schedule/Parts CRUD, Invoicing, Reports, portals, Financial, AP/AR, History).",
+        "expected": "All other capabilities match the source template exactly; no unintended access was gained or lost."
+      }
+    ],
+    "expected_final": "User gains Customers Delete only; rest of SSA template preserved.",
+    "source_viu": "Spec: SV-7501 Edit Custom Role - SSA add Customers Delete. UNVERIFIED \u2014 VIU pending."
+  },
+  {
+    "test_id": "TE-SSA-002",
+    "title": "Senior Service Advisor: REMOVE Work Orders Edit (reverse cascade removes Delete), rest intact",
+    "jira": "SV-7501",
+    "permission": "Work Orders > Edit",
+    "dependency_mode": "Cascade: auto-disable higher (reverse)",
+    "priority": "Critical",
+    "type": "Dependency",
+    "preconditions": "Logged in as an Administrator. Administration > Roles and Permissions is reachable. A test staff user exists with no custom role assigned.",
+    "role_setup": "Start from Senior Service Advisor template (records template). Change: Work Orders > Edit from ON to OFF. Leave all else as template default.",
+    "test_data": "Template: Senior Service Advisor. Toggle: WO Edit OFF; expect WO Delete auto-off.",
+    "steps": [
+      {
+        "n": 1,
+        "action": "Go to Administration > Roles and Permissions > Create Custom Role.",
+        "expected": "Create Custom Role screen opens with a template selector."
+      },
+      {
+        "n": 2,
+        "action": "Select the 'Senior Service Advisor' system template.",
+        "expected": "All permission settings pre-fill from the 'Senior Service Advisor' template; the source template is recorded on the role."
+      },
+      {
+        "n": 3,
+        "action": "Change: disable Work Orders > Edit (expect reverse cascade disabling Delete).",
+        "expected": "The changed toggle(s) reflect the new state; all other settings remain at template default."
+      },
+      {
+        "n": 5,
+        "action": "Turn OFF Work Orders > Edit.",
+        "expected": "Reverse cascade: Work Orders > Delete auto-disables (cannot delete without edit); View remains ON."
+      },
+      {
+        "n": 6,
+        "action": "Click Save to create the custom role.",
+        "expected": "Role saves successfully; only the intended delta differs from the template."
+      },
+      {
+        "n": 7,
+        "action": "Go to Administration > Staff and assign the new custom role to the test user.",
+        "expected": "Role is assigned; the user is forced to log out (role change forces logout)."
+      },
+      {
+        "n": 8,
+        "action": "In a separate browser, log in as the test user.",
+        "expected": "Login succeeds with the new custom role applied."
+      },
+      {
+        "n": 9,
+        "action": "Verify the delta: open a Work Order and attempt to edit and to delete it.",
+        "expected": "User can View WOs but cannot Edit or Delete them."
+      },
+      {
+        "n": 10,
+        "action": "Verify the rest of the template is intact: all other SSA access (WOL, Schedule, Customers, Parts, Invoicing, portals, Financial, AP/AR) is unchanged.",
+        "expected": "All other capabilities match the source template exactly; no unintended access was gained or lost."
+      }
+    ],
+    "expected_final": "WO Edit and (cascaded) Delete removed; View retained; rest of template intact.",
+    "source_viu": "Spec: SV-7501 Edit Custom Role - SSA reverse cascade. UNVERIFIED \u2014 VIU pending."
+  },
+  {
+    "test_id": "TE-SSA-003",
+    "title": "Senior Service Advisor: REMOVE Customer Portal, rest intact",
+    "jira": "SV-7501",
+    "permission": "Customer Portal",
+    "dependency_mode": "None",
+    "priority": "Medium",
+    "type": "Positive",
+    "preconditions": "Logged in as an Administrator. Administration > Roles and Permissions is reachable. A test staff user exists with no custom role assigned.",
+    "role_setup": "Start from Senior Service Advisor template (records template). Change: Customer Portal from ON to OFF. Leave all else as template default.",
+    "test_data": "Template: Senior Service Advisor. Toggle: Customer Portal OFF.",
+    "steps": [
+      {
+        "n": 1,
+        "action": "Go to Administration > Roles and Permissions > Create Custom Role.",
+        "expected": "Create Custom Role screen opens with a template selector."
+      },
+      {
+        "n": 2,
+        "action": "Select the 'Senior Service Advisor' system template.",
+        "expected": "All permission settings pre-fill from the 'Senior Service Advisor' template; the source template is recorded on the role."
+      },
+      {
+        "n": 3,
+        "action": "Change: disable Customer Portal access.",
+        "expected": "The changed toggle(s) reflect the new state; all other settings remain at template default."
+      },
+      {
+        "n": 4,
+        "action": "Click Save to create the custom role.",
+        "expected": "Role saves successfully; only the intended delta differs from the template."
+      },
+      {
+        "n": 5,
+        "action": "Go to Administration > Staff and assign the new custom role to the test user.",
+        "expected": "Role is assigned; the user is forced to log out (role change forces logout)."
+      },
+      {
+        "n": 6,
+        "action": "In a separate browser, log in as the test user.",
+        "expected": "Login succeeds with the new custom role applied."
+      },
+      {
+        "n": 7,
+        "action": "Verify the delta: attempt to reach Customer Portal features as the user.",
+        "expected": "Customer Portal is unavailable to the user."
+      },
+      {
+        "n": 8,
+        "action": "Verify the rest of the template is intact: all other SSA access is unchanged.",
+        "expected": "All other capabilities match the source template exactly; no unintended access was gained or lost."
+      }
+    ],
+    "expected_final": "Only Customer Portal removed; rest of SSA template preserved.",
+    "source_viu": "Spec: SV-7501 Edit Custom Role - SSA remove Customer Portal. UNVERIFIED \u2014 VIU pending."
+  },
+  {
+    "test_id": "TE-SSA-004",
+    "title": "Senior Service Advisor: MULTI-toggle remove Catalog Edit + Reports, rest intact",
+    "jira": "SV-7501",
+    "permission": "Catalog > Edit; Reports",
+    "dependency_mode": "None",
+    "priority": "Medium",
+    "type": "Positive",
+    "preconditions": "Logged in as an Administrator. Administration > Roles and Permissions is reachable. A test staff user exists with no custom role assigned.",
+    "role_setup": "Start from Senior Service Advisor template (records template). Change: Catalog Edit and Reports from ON/ON to OFF/OFF. Leave all else as template default.",
+    "test_data": "Template: Senior Service Advisor. Toggles: Catalog Edit OFF, Reports OFF.",
+    "steps": [
+      {
+        "n": 1,
+        "action": "Go to Administration > Roles and Permissions > Create Custom Role.",
+        "expected": "Create Custom Role screen opens with a template selector."
+      },
+      {
+        "n": 2,
+        "action": "Select the 'Senior Service Advisor' system template.",
+        "expected": "All permission settings pre-fill from the 'Senior Service Advisor' template; the source template is recorded on the role."
+      },
+      {
+        "n": 3,
+        "action": "Change: disable Catalog > Edit AND disable Reports together.",
+        "expected": "The changed toggle(s) reflect the new state; all other settings remain at template default."
+      },
+      {
+        "n": 4,
+        "action": "Click Save to create the custom role.",
+        "expected": "Role saves successfully; only the intended delta differs from the template."
+      },
+      {
+        "n": 5,
+        "action": "Go to Administration > Staff and assign the new custom role to the test user.",
+        "expected": "Role is assigned; the user is forced to log out (role change forces logout)."
+      },
+      {
+        "n": 6,
+        "action": "In a separate browser, log in as the test user.",
+        "expected": "Login succeeds with the new custom role applied."
+      },
+      {
+        "n": 7,
+        "action": "Verify the delta: attempt to edit a Catalog item and to open Reports as the user.",
+        "expected": "User can view Catalog but not edit it; Reports is unavailable."
+      },
+      {
+        "n": 8,
+        "action": "Verify the rest of the template is intact: all other SSA access is unchanged.",
+        "expected": "All other capabilities match the source template exactly; no unintended access was gained or lost."
+      }
+    ],
+    "expected_final": "Exactly Catalog Edit and Reports removed; everything else preserved.",
+    "source_viu": "Spec: SV-7501 Edit Custom Role - SSA multi-toggle. UNVERIFIED \u2014 VIU pending."
+  },
+  {
+    "test_id": "TE-SADV-001",
+    "title": "Service Advisor: ADD Work Orders Delete (cascade), rest intact",
+    "jira": "SV-7501",
+    "permission": "Work Orders > Delete",
+    "dependency_mode": "Cascade: auto-enable lower",
+    "priority": "High",
+    "type": "Dependency",
+    "preconditions": "Logged in as an Administrator. Administration > Roles and Permissions is reachable. A test staff user exists with no custom role assigned.",
+    "role_setup": "Start from Service Advisor template (records template). Change: Work Orders > Delete from OFF to ON. Leave all else as template default.",
+    "test_data": "Template: Service Advisor. Toggle: WO Delete ON.",
+    "steps": [
+      {
+        "n": 1,
+        "action": "Go to Administration > Roles and Permissions > Create Custom Role.",
+        "expected": "Create Custom Role screen opens with a template selector."
+      },
+      {
+        "n": 2,
+        "action": "Select the 'Service Advisor' system template.",
+        "expected": "All permission settings pre-fill from the 'Service Advisor' template; the source template is recorded on the role."
+      },
+      {
+        "n": 3,
+        "action": "Change: enable Work Orders > Delete (template had V/E only).",
+        "expected": "The changed toggle(s) reflect the new state; all other settings remain at template default."
+      },
+      {
+        "n": 5,
+        "action": "Turn ON Work Orders > Delete.",
+        "expected": "Cascade auto-enable lower: View and Edit remain ON (already set); Delete enabled with its prerequisites satisfied."
+      },
+      {
+        "n": 6,
+        "action": "Click Save to create the custom role.",
+        "expected": "Role saves successfully; only the intended delta differs from the template."
+      },
+      {
+        "n": 7,
+        "action": "Go to Administration > Staff and assign the new custom role to the test user.",
+        "expected": "Role is assigned; the user is forced to log out (role change forces logout)."
+      },
+      {
+        "n": 8,
+        "action": "In a separate browser, log in as the test user.",
+        "expected": "Login succeeds with the new custom role applied."
+      },
+      {
+        "n": 9,
+        "action": "Verify the delta: attempt to delete a Work Order as the user.",
+        "expected": "The user can delete a Work Order."
+      },
+      {
+        "n": 10,
+        "action": "Verify the rest of the template is intact: all other Service Advisor access unchanged.",
+        "expected": "All other capabilities match the source template exactly; no unintended access was gained or lost."
+      }
+    ],
+    "expected_final": "User gains WO Delete only; rest of Service Advisor template preserved.",
+    "source_viu": "Spec: SV-7501 Edit Custom Role - SADV add WO Delete. UNVERIFIED \u2014 VIU pending."
+  },
+  {
+    "test_id": "TE-SADV-002",
+    "title": "Service Advisor: ADD AP/AR access, rest intact",
+    "jira": "SV-7501",
+    "permission": "AP/AR",
+    "dependency_mode": "None",
+    "priority": "Medium",
+    "type": "Positive",
+    "preconditions": "Logged in as an Administrator. Administration > Roles and Permissions is reachable. A test staff user exists with no custom role assigned.",
+    "role_setup": "Start from Service Advisor template (records template). Change: AP/AR from OFF to ON. Leave all else as template default.",
+    "test_data": "Template: Service Advisor. Toggle: AP/AR ON.",
+    "steps": [
+      {
+        "n": 1,
+        "action": "Go to Administration > Roles and Permissions > Create Custom Role.",
+        "expected": "Create Custom Role screen opens with a template selector."
+      },
+      {
+        "n": 2,
+        "action": "Select the 'Service Advisor' system template.",
+        "expected": "All permission settings pre-fill from the 'Service Advisor' template; the source template is recorded on the role."
+      },
+      {
+        "n": 3,
+        "action": "Change: enable AP/AR access (template had it OFF).",
+        "expected": "The changed toggle(s) reflect the new state; all other settings remain at template default."
+      },
+      {
+        "n": 4,
+        "action": "Click Save to create the custom role.",
+        "expected": "Role saves successfully; only the intended delta differs from the template."
+      },
+      {
+        "n": 5,
+        "action": "Go to Administration > Staff and assign the new custom role to the test user.",
+        "expected": "Role is assigned; the user is forced to log out (role change forces logout)."
+      },
+      {
+        "n": 6,
+        "action": "In a separate browser, log in as the test user.",
+        "expected": "Login succeeds with the new custom role applied."
+      },
+      {
+        "n": 7,
+        "action": "Verify the delta: navigate to AP/AR (payables/receivables) screens as the user.",
+        "expected": "AP/AR screens are now available to the user."
+      },
+      {
+        "n": 8,
+        "action": "Verify the rest of the template is intact: all other Service Advisor access unchanged (Financial already ON, CRUD, portals, History).",
+        "expected": "All other capabilities match the source template exactly; no unintended access was gained or lost."
+      }
+    ],
+    "expected_final": "User gains AP/AR access only; rest of the template preserved.",
+    "source_viu": "Spec: SV-7501 Edit Custom Role - SADV add AP/AR. UNVERIFIED \u2014 VIU pending."
+  },
+  {
+    "test_id": "TE-SADV-003",
+    "title": "Service Advisor: REMOVE Part Sales Edit (view-only), rest intact",
+    "jira": "SV-7501",
+    "permission": "Part Sales > Edit",
+    "dependency_mode": "None",
+    "priority": "Medium",
+    "type": "Positive",
+    "preconditions": "Logged in as an Administrator. Administration > Roles and Permissions is reachable. A test staff user exists with no custom role assigned.",
+    "role_setup": "Start from Service Advisor template (records template). Change: Part Sales > Edit from ON to OFF. Leave all else as template default.",
+    "test_data": "Template: Service Advisor. Toggle: Part Sales Edit OFF (View stays ON).",
+    "steps": [
+      {
+        "n": 1,
+        "action": "Go to Administration > Roles and Permissions > Create Custom Role.",
+        "expected": "Create Custom Role screen opens with a template selector."
+      },
+      {
+        "n": 2,
+        "action": "Select the 'Service Advisor' system template.",
+        "expected": "All permission settings pre-fill from the 'Service Advisor' template; the source template is recorded on the role."
+      },
+      {
+        "n": 3,
+        "action": "Change: disable Part Sales > Edit.",
+        "expected": "The changed toggle(s) reflect the new state; all other settings remain at template default."
+      },
+      {
+        "n": 4,
+        "action": "Click Save to create the custom role.",
+        "expected": "Role saves successfully; only the intended delta differs from the template."
+      },
+      {
+        "n": 5,
+        "action": "Go to Administration > Staff and assign the new custom role to the test user.",
+        "expected": "Role is assigned; the user is forced to log out (role change forces logout)."
+      },
+      {
+        "n": 6,
+        "action": "In a separate browser, log in as the test user.",
+        "expected": "Login succeeds with the new custom role applied."
+      },
+      {
+        "n": 7,
+        "action": "Verify the delta: open Part Sales and attempt to create/edit a part sale as the user.",
+        "expected": "User can view Part Sales but cannot create/edit."
+      },
+      {
+        "n": 8,
+        "action": "Verify the rest of the template is intact: all other Service Advisor access is unchanged.",
+        "expected": "All other capabilities match the source template exactly; no unintended access was gained or lost."
+      }
+    ],
+    "expected_final": "Only Part Sales Edit removed; the rest of the template is intact.",
+    "source_viu": "Spec: SV-7501 Edit Custom Role - SADV remove Part Sales Edit. UNVERIFIED \u2014 VIU pending."
+  },
+  {
+    "test_id": "TE-SADV-004",
+    "title": "Service Advisor: MULTI-toggle add Timesheets Edit + AP/AR, rest intact",
+    "jira": "SV-7501",
+    "permission": "Timesheets > Edit; AP/AR",
+    "dependency_mode": "Cascade: auto-enable lower",
+    "priority": "Medium",
+    "type": "Dependency",
+    "preconditions": "Logged in as an Administrator. Administration > Roles and Permissions is reachable. A test staff user exists with no custom role assigned.",
+    "role_setup": "Start from Service Advisor template (records template). Change: Timesheets Edit and AP/AR from OFF/OFF to ON/ON. Leave all else as template default.",
+    "test_data": "Template: Service Advisor. Toggles: Timesheets Edit ON, AP/AR ON.",
+    "steps": [
+      {
+        "n": 1,
+        "action": "Go to Administration > Roles and Permissions > Create Custom Role.",
+        "expected": "Create Custom Role screen opens with a template selector."
+      },
+      {
+        "n": 2,
+        "action": "Select the 'Service Advisor' system template.",
+        "expected": "All permission settings pre-fill from the 'Service Advisor' template; the source template is recorded on the role."
+      },
+      {
+        "n": 3,
+        "action": "Change: enable Timesheets > Edit AND enable AP/AR together.",
+        "expected": "The changed toggle(s) reflect the new state; all other settings remain at template default."
+      },
+      {
+        "n": 4,
+        "action": "Click Save to create the custom role.",
+        "expected": "Role saves successfully; only the intended delta differs from the template."
+      },
+      {
+        "n": 5,
+        "action": "Go to Administration > Staff and assign the new custom role to the test user.",
+        "expected": "Role is assigned; the user is forced to log out (role change forces logout)."
+      },
+      {
+        "n": 6,
+        "action": "In a separate browser, log in as the test user.",
+        "expected": "Login succeeds with the new custom role applied."
+      },
+      {
+        "n": 7,
+        "action": "Verify the delta: attempt to edit a timesheet and open AP/AR screens as the user.",
+        "expected": "User can edit timesheets and access AP/AR."
+      },
+      {
+        "n": 8,
+        "action": "Verify the rest of the template is intact: all other Service Advisor access is unchanged.",
+        "expected": "All other capabilities match the source template exactly; no unintended access was gained or lost."
+      }
+    ],
+    "expected_final": "Exactly Timesheets Edit and AP/AR added; everything else preserved.",
+    "source_viu": "Spec: SV-7501 Edit Custom Role - SADV multi-toggle. UNVERIFIED \u2014 VIU pending."
+  },
+  {
+    "test_id": "TE-FORE-001",
+    "title": "Foreman: ADD Part Sales Edit (template had View only), rest intact",
+    "jira": "SV-7501",
+    "permission": "Part Sales > Edit",
+    "dependency_mode": "Cascade: auto-enable lower",
+    "priority": "High",
+    "type": "Dependency",
+    "preconditions": "Logged in as an Administrator. Administration > Roles and Permissions is reachable. A test staff user exists with no custom role assigned.",
+    "role_setup": "Start from Foreman template (records template). Change: Part Sales > Edit from OFF to ON. Leave all else as template default.",
+    "test_data": "Template: Foreman. Toggle: Part Sales Edit ON.",
+    "steps": [
+      {
+        "n": 1,
+        "action": "Go to Administration > Roles and Permissions > Create Custom Role.",
+        "expected": "Create Custom Role screen opens with a template selector."
+      },
+      {
+        "n": 2,
+        "action": "Select the 'Foreman' system template.",
+        "expected": "All permission settings pre-fill from the 'Foreman' template; the source template is recorded on the role."
+      },
+      {
+        "n": 3,
+        "action": "Change: enable Part Sales > Edit (template had View only).",
+        "expected": "The changed toggle(s) reflect the new state; all other settings remain at template default."
+      },
+      {
+        "n": 4,
+        "action": "Click Save to create the custom role.",
+        "expected": "Role saves successfully; only the intended delta differs from the template."
+      },
+      {
+        "n": 5,
+        "action": "Go to Administration > Staff and assign the new custom role to the test user.",
+        "expected": "Role is assigned; the user is forced to log out (role change forces logout)."
+      },
+      {
+        "n": 6,
+        "action": "In a separate browser, log in as the test user.",
+        "expected": "Login succeeds with the new custom role applied."
+      },
+      {
+        "n": 7,
+        "action": "Verify the delta: attempt to create/edit a part sale as the user.",
+        "expected": "User can create/edit Part Sales."
+      },
+      {
+        "n": 8,
+        "action": "Verify the rest of the template is intact: all other Foreman access unchanged (WO/WOL/Schedule/Customers/Catalog/Vendor, Invoicing, Financial, History).",
+        "expected": "All other capabilities match the source template exactly; no unintended access was gained or lost."
+      }
+    ],
+    "expected_final": "User gains Part Sales Edit only; rest of Foreman template preserved.",
+    "source_viu": "Spec: SV-7501 Edit Custom Role - FORE add Part Sales Edit. UNVERIFIED \u2014 VIU pending."
+  },
+  {
+    "test_id": "TE-FORE-002",
+    "title": "Foreman: REMOVE Financial access (financial confirm modal), rest intact",
+    "jira": "SV-7501",
+    "permission": "Financial",
+    "dependency_mode": "Financial gate: confirm modal",
+    "priority": "High",
+    "type": "Dependency",
+    "preconditions": "Logged in as an Administrator. Administration > Roles and Permissions is reachable. A test staff user exists with no custom role assigned.",
+    "role_setup": "Start from Foreman template (records template). Change: Financial from ON to OFF. Leave all else as template default.",
+    "test_data": "Template: Foreman. Toggle: Financial OFF (confirm modal expected).",
+    "steps": [
+      {
+        "n": 1,
+        "action": "Go to Administration > Roles and Permissions > Create Custom Role.",
+        "expected": "Create Custom Role screen opens with a template selector."
+      },
+      {
+        "n": 2,
+        "action": "Select the 'Foreman' system template.",
+        "expected": "All permission settings pre-fill from the 'Foreman' template; the source template is recorded on the role."
+      },
+      {
+        "n": 3,
+        "action": "Change: disable Financial access (expect financial confirm modal).",
+        "expected": "The changed toggle(s) reflect the new state; all other settings remain at template default."
+      },
+      {
+        "n": 5,
+        "action": "Turn OFF the Financial access toggle.",
+        "expected": "Financial gate confirmation modal appears; confirm to proceed."
+      },
+      {
+        "n": 6,
+        "action": "Click Save to create the custom role.",
+        "expected": "Role saves successfully; only the intended delta differs from the template."
+      },
+      {
+        "n": 7,
+        "action": "Go to Administration > Staff and assign the new custom role to the test user.",
+        "expected": "Role is assigned; the user is forced to log out (role change forces logout)."
+      },
+      {
+        "n": 8,
+        "action": "In a separate browser, log in as the test user.",
+        "expected": "Login succeeds with the new custom role applied."
+      },
+      {
+        "n": 9,
+        "action": "Verify the delta: open a Work Order and look for financial figures.",
+        "expected": "Financial data is hidden for the user."
+      },
+      {
+        "n": 10,
+        "action": "Verify the rest of the template is intact: non-financial Foreman access is unchanged.",
+        "expected": "All other capabilities match the source template exactly; no unintended access was gained or lost."
+      }
+    ],
+    "expected_final": "Financial removed after confirming; rest of template intact.",
+    "source_viu": "Spec: SV-7501 Edit Custom Role - FORE Financial gate. UNVERIFIED \u2014 VIU pending."
+  },
+  {
+    "test_id": "TE-FORE-003",
+    "title": "Foreman: MULTI-toggle add WO Delete + Invoicing Delete, rest intact",
+    "jira": "SV-7501",
+    "permission": "Work Orders > Delete; Invoicing > Delete",
+    "dependency_mode": "Cascade: auto-enable lower",
+    "priority": "Medium",
+    "type": "Dependency",
+    "preconditions": "Logged in as an Administrator. Administration > Roles and Permissions is reachable. A test staff user exists with no custom role assigned.",
+    "role_setup": "Start from Foreman template (records template). Change: WO Delete and Invoicing Delete from OFF/OFF to ON/ON. Leave all else as template default.",
+    "test_data": "Template: Foreman. Toggles: WO Delete ON, Invoicing Delete ON.",
+    "steps": [
+      {
+        "n": 1,
+        "action": "Go to Administration > Roles and Permissions > Create Custom Role.",
+        "expected": "Create Custom Role screen opens with a template selector."
+      },
+      {
+        "n": 2,
+        "action": "Select the 'Foreman' system template.",
+        "expected": "All permission settings pre-fill from the 'Foreman' template; the source template is recorded on the role."
+      },
+      {
+        "n": 3,
+        "action": "Change: enable Work Orders > Delete AND enable Invoicing > Delete together.",
+        "expected": "The changed toggle(s) reflect the new state; all other settings remain at template default."
+      },
+      {
+        "n": 4,
+        "action": "Click Save to create the custom role.",
+        "expected": "Role saves successfully; only the intended delta differs from the template."
+      },
+      {
+        "n": 5,
+        "action": "Go to Administration > Staff and assign the new custom role to the test user.",
+        "expected": "Role is assigned; the user is forced to log out (role change forces logout)."
+      },
+      {
+        "n": 6,
+        "action": "In a separate browser, log in as the test user.",
+        "expected": "Login succeeds with the new custom role applied."
+      },
+      {
+        "n": 7,
+        "action": "Verify the delta: attempt to delete a Work Order and to delete an Invoice as the user.",
+        "expected": "User can delete both Work Orders and Invoices."
+      },
+      {
+        "n": 8,
+        "action": "Verify the rest of the template is intact: all other Foreman access is unchanged.",
+        "expected": "All other capabilities match the source template exactly; no unintended access was gained or lost."
+      }
+    ],
+    "expected_final": "Exactly WO Delete and Invoicing Delete added; everything else preserved.",
+    "source_viu": "Spec: SV-7501 Edit Custom Role - FORE multi-toggle. UNVERIFIED \u2014 VIU pending."
+  },
+  {
+    "test_id": "TE-FORE-004",
+    "title": "Foreman: ADD Catalog Delete, rest intact",
+    "jira": "SV-7501",
+    "permission": "Catalog > Delete",
+    "dependency_mode": "Cascade: auto-enable lower",
+    "priority": "Low",
+    "type": "Dependency",
+    "preconditions": "Logged in as an Administrator. Administration > Roles and Permissions is reachable. A test staff user exists with no custom role assigned.",
+    "role_setup": "Start from Foreman template (records template). Change: Catalog > Delete from OFF to ON. Leave all else as template default.",
+    "test_data": "Template: Foreman. Toggle: Catalog Delete ON.",
+    "steps": [
+      {
+        "n": 1,
+        "action": "Go to Administration > Roles and Permissions > Create Custom Role.",
+        "expected": "Create Custom Role screen opens with a template selector."
+      },
+      {
+        "n": 2,
+        "action": "Select the 'Foreman' system template.",
+        "expected": "All permission settings pre-fill from the 'Foreman' template; the source template is recorded on the role."
+      },
+      {
+        "n": 3,
+        "action": "Change: enable Catalog > Delete (template had V/E).",
+        "expected": "The changed toggle(s) reflect the new state; all other settings remain at template default."
+      },
+      {
+        "n": 4,
+        "action": "Click Save to create the custom role.",
+        "expected": "Role saves successfully; only the intended delta differs from the template."
+      },
+      {
+        "n": 5,
+        "action": "Go to Administration > Staff and assign the new custom role to the test user.",
+        "expected": "Role is assigned; the user is forced to log out (role change forces logout)."
+      },
+      {
+        "n": 6,
+        "action": "In a separate browser, log in as the test user.",
+        "expected": "Login succeeds with the new custom role applied."
+      },
+      {
+        "n": 7,
+        "action": "Verify the delta: attempt to delete a Catalog item as the user.",
+        "expected": "User can delete Catalog items."
+      },
+      {
+        "n": 8,
+        "action": "Verify the rest of the template is intact: all other Foreman access is unchanged.",
+        "expected": "All other capabilities match the source template exactly; no unintended access was gained or lost."
+      }
+    ],
+    "expected_final": "User gains Catalog Delete only; rest of Foreman template preserved.",
+    "source_viu": "Spec: SV-7501 Edit Custom Role - FORE add Catalog Delete. UNVERIFIED \u2014 VIU pending."
+  },
+  {
+    "test_id": "TE-TECH-001",
+    "title": "Technician: switch TECH VIEW to FULL VIEW (delta), rest intact",
+    "jira": "SV-7501",
+    "permission": "View mode (Tech vs Full)",
+    "dependency_mode": "None",
+    "priority": "High",
+    "type": "Positive",
+    "preconditions": "Logged in as an Administrator. Administration > Roles and Permissions is reachable. A test staff user exists with no custom role assigned.",
+    "role_setup": "Start from Technician template (records template). Change: View mode from Tech view to Full view. Leave all else as template default.",
+    "test_data": "Template: Technician. Toggle: view mode Tech -> Full.",
+    "steps": [
+      {
+        "n": 1,
+        "action": "Go to Administration > Roles and Permissions > Create Custom Role.",
+        "expected": "Create Custom Role screen opens with a template selector."
+      },
+      {
+        "n": 2,
+        "action": "Select the 'Technician' system template.",
+        "expected": "All permission settings pre-fill from the 'Technician' template; the source template is recorded on the role."
+      },
+      {
+        "n": 3,
+        "action": "Change: switch the view mode from TECH VIEW to FULL VIEW.",
+        "expected": "The changed toggle(s) reflect the new state; all other settings remain at template default."
+      },
+      {
+        "n": 4,
+        "action": "Click Save to create the custom role.",
+        "expected": "Role saves successfully; only the intended delta differs from the template."
+      },
+      {
+        "n": 5,
+        "action": "Go to Administration > Staff and assign the new custom role to the test user.",
+        "expected": "Role is assigned; the user is forced to log out (role change forces logout)."
+      },
+      {
+        "n": 6,
+        "action": "In a separate browser, log in as the test user.",
+        "expected": "Login succeeds with the new custom role applied."
+      },
+      {
+        "n": 7,
+        "action": "Verify the delta: open a Work Order and confirm the Full-view layout/fields are shown.",
+        "expected": "User sees the Full view instead of the restricted Tech view."
+      },
+      {
+        "n": 8,
+        "action": "Verify the rest of the template is intact: all other Technician access (WO View, WOL V/E, Schedule View, Customers View, Pick Parts) is unchanged.",
+        "expected": "All other capabilities match the source template exactly; no unintended access was gained or lost."
+      }
+    ],
+    "expected_final": "Only the view mode changed to Full; other Technician access unchanged.",
+    "source_viu": "Spec: SV-7501 Edit Custom Role - TECH view switch. UNVERIFIED \u2014 VIU pending."
+  },
+  {
+    "test_id": "TE-TECH-002",
+    "title": "Technician: ADD Work Orders Edit (cascade from View), rest intact",
+    "jira": "SV-7501",
+    "permission": "Work Orders > Edit",
+    "dependency_mode": "Cascade: auto-enable lower",
+    "priority": "High",
+    "type": "Dependency",
+    "preconditions": "Logged in as an Administrator. Administration > Roles and Permissions is reachable. A test staff user exists with no custom role assigned.",
+    "role_setup": "Start from Technician template (records template). Change: Work Orders > Edit from OFF to ON. Leave all else as template default.",
+    "test_data": "Template: Technician. Toggle: WO Edit ON (View already ON).",
+    "steps": [
+      {
+        "n": 1,
+        "action": "Go to Administration > Roles and Permissions > Create Custom Role.",
+        "expected": "Create Custom Role screen opens with a template selector."
+      },
+      {
+        "n": 2,
+        "action": "Select the 'Technician' system template.",
+        "expected": "All permission settings pre-fill from the 'Technician' template; the source template is recorded on the role."
+      },
+      {
+        "n": 3,
+        "action": "Change: enable Work Orders > Edit (template had View only).",
+        "expected": "The changed toggle(s) reflect the new state; all other settings remain at template default."
+      },
+      {
+        "n": 5,
+        "action": "Turn ON Work Orders > Edit.",
+        "expected": "Cascade auto-enable lower: View stays ON; Edit enabled with prerequisite View satisfied."
+      },
+      {
+        "n": 6,
+        "action": "Click Save to create the custom role.",
+        "expected": "Role saves successfully; only the intended delta differs from the template."
+      },
+      {
+        "n": 7,
+        "action": "Go to Administration > Staff and assign the new custom role to the test user.",
+        "expected": "Role is assigned; the user is forced to log out (role change forces logout)."
+      },
+      {
+        "n": 8,
+        "action": "In a separate browser, log in as the test user.",
+        "expected": "Login succeeds with the new custom role applied."
+      },
+      {
+        "n": 9,
+        "action": "Verify the delta: open a Work Order and attempt to edit it as the user.",
+        "expected": "User can now edit Work Orders."
+      },
+      {
+        "n": 10,
+        "action": "Verify the rest of the template is intact: all other Technician access is unchanged (still no Delete, no Timesheets, Tech view).",
+        "expected": "All other capabilities match the source template exactly; no unintended access was gained or lost."
+      }
+    ],
+    "expected_final": "User gains WO Edit only; rest of restrictive Technician template preserved.",
+    "source_viu": "Spec: SV-7501 Edit Custom Role - TECH add WO Edit. UNVERIFIED \u2014 VIU pending."
+  },
+  {
+    "test_id": "TE-TECH-003",
+    "title": "Technician: parent-gate - Order Parts hidden until Parts Dept enabled",
+    "jira": "SV-7501",
+    "permission": "Order Parts (child of Parts Dept)",
+    "dependency_mode": "Parent gate: hide children",
+    "priority": "Medium",
+    "type": "Dependency",
+    "preconditions": "Logged in as an Administrator. Administration > Roles and Permissions is reachable. A test staff user exists with no custom role assigned.",
+    "role_setup": "Start from Technician template (records template). Change: Parts Dept + Order Parts from OFF/OFF to ON/ON. Leave all else as template default.",
+    "test_data": "Template: Technician. Parent Parts Dept then child Order Parts.",
+    "steps": [
+      {
+        "n": 1,
+        "action": "Go to Administration > Roles and Permissions > Create Custom Role.",
+        "expected": "Create Custom Role screen opens with a template selector."
+      },
+      {
+        "n": 2,
+        "action": "Select the 'Technician' system template.",
+        "expected": "All permission settings pre-fill from the 'Technician' template; the source template is recorded on the role."
+      },
+      {
+        "n": 3,
+        "action": "Change: attempt to enable Order Parts with Parts Dept parent OFF (parent gate).",
+        "expected": "The changed toggle(s) reflect the new state; all other settings remain at template default."
+      },
+      {
+        "n": 4,
+        "action": "Enable the Parts Dept parent toggle, then enable Order Parts.",
+        "expected": "With the parent enabled, the Order Parts child becomes available and can be turned ON."
+      },
+      {
+        "n": 5,
+        "action": "Click Save to create the custom role.",
+        "expected": "Role saves successfully; only the intended delta differs from the template."
+      },
+      {
+        "n": 6,
+        "action": "Go to Administration > Staff and assign the new custom role to the test user.",
+        "expected": "Role is assigned; the user is forced to log out (role change forces logout)."
+      },
+      {
+        "n": 7,
+        "action": "In a separate browser, log in as the test user.",
+        "expected": "Login succeeds with the new custom role applied."
+      },
+      {
+        "n": 8,
+        "action": "Verify the delta: attempt to order parts as the user.",
+        "expected": "User can order parts (parent Parts Dept + child Order Parts both active)."
+      },
+      {
+        "n": 9,
+        "action": "Verify the rest of the template is intact: all other Technician access is unchanged.",
+        "expected": "All other capabilities match the source template exactly; no unintended access was gained or lost."
+      }
+    ],
+    "expected_final": "Order Parts only becomes settable after the Parts Dept parent is enabled; rest of template intact.",
+    "source_viu": "Spec: SV-7501 Edit Custom Role - TECH parent gate. UNVERIFIED \u2014 VIU pending."
+  },
+  {
+    "test_id": "TE-TECH-004",
+    "title": "Technician: MULTI-toggle add Financial + History, rest intact",
+    "jira": "SV-7501",
+    "permission": "Financial; History",
+    "dependency_mode": "None",
+    "priority": "Medium",
+    "type": "Positive",
+    "preconditions": "Logged in as an Administrator. Administration > Roles and Permissions is reachable. A test staff user exists with no custom role assigned.",
+    "role_setup": "Start from Technician template (records template). Change: Financial and History from OFF/OFF to ON/ON. Leave all else as template default.",
+    "test_data": "Template: Technician. Toggles: Financial ON, History ON.",
+    "steps": [
+      {
+        "n": 1,
+        "action": "Go to Administration > Roles and Permissions > Create Custom Role.",
+        "expected": "Create Custom Role screen opens with a template selector."
+      },
+      {
+        "n": 2,
+        "action": "Select the 'Technician' system template.",
+        "expected": "All permission settings pre-fill from the 'Technician' template; the source template is recorded on the role."
+      },
+      {
+        "n": 3,
+        "action": "Change: enable Financial AND enable History together.",
+        "expected": "The changed toggle(s) reflect the new state; all other settings remain at template default."
+      },
+      {
+        "n": 4,
+        "action": "Click Save to create the custom role.",
+        "expected": "Role saves successfully; only the intended delta differs from the template."
+      },
+      {
+        "n": 5,
+        "action": "Go to Administration > Staff and assign the new custom role to the test user.",
+        "expected": "Role is assigned; the user is forced to log out (role change forces logout)."
+      },
+      {
+        "n": 6,
+        "action": "In a separate browser, log in as the test user.",
+        "expected": "Login succeeds with the new custom role applied."
+      },
+      {
+        "n": 7,
+        "action": "Verify the delta: open a Work Order and check for financial figures and the History panel as the user.",
+        "expected": "User can now see financial data and History."
+      },
+      {
+        "n": 8,
+        "action": "Verify the rest of the template is intact: all other Technician access is unchanged (WO View, WOL V/E, etc.).",
+        "expected": "All other capabilities match the source template exactly; no unintended access was gained or lost."
+      }
+    ],
+    "expected_final": "Exactly Financial and History added; everything else preserved.",
+    "source_viu": "Spec: SV-7501 Edit Custom Role - TECH multi-toggle. UNVERIFIED \u2014 VIU pending."
+  },
+  {
+    "test_id": "TE-PM-001",
+    "title": "Parts Manager: REMOVE Part Sales Edit (reverse cascade removes Delete), rest intact",
+    "jira": "SV-7501",
+    "permission": "Part Sales > Edit",
+    "dependency_mode": "Cascade: auto-disable higher (reverse)",
+    "priority": "Critical",
+    "type": "Dependency",
+    "preconditions": "Logged in as an Administrator. Administration > Roles and Permissions is reachable. A test staff user exists with no custom role assigned.",
+    "role_setup": "Start from Parts Manager template (records template). Change: Part Sales > Edit from ON to OFF. Leave all else as template default.",
+    "test_data": "Template: Parts Manager. Toggle: Part Sales Edit OFF; expect Delete auto-off.",
+    "steps": [
+      {
+        "n": 1,
+        "action": "Go to Administration > Roles and Permissions > Create Custom Role.",
+        "expected": "Create Custom Role screen opens with a template selector."
+      },
+      {
+        "n": 2,
+        "action": "Select the 'Parts Manager' system template.",
+        "expected": "All permission settings pre-fill from the 'Parts Manager' template; the source template is recorded on the role."
+      },
+      {
+        "n": 3,
+        "action": "Change: disable Part Sales > Edit (expect reverse cascade removing Delete).",
+        "expected": "The changed toggle(s) reflect the new state; all other settings remain at template default."
+      },
+      {
+        "n": 5,
+        "action": "Turn OFF Part Sales > Edit.",
+        "expected": "Reverse cascade: Part Sales > Delete auto-disables; View remains ON."
+      },
+      {
+        "n": 6,
+        "action": "Click Save to create the custom role.",
+        "expected": "Role saves successfully; only the intended delta differs from the template."
+      },
+      {
+        "n": 7,
+        "action": "Go to Administration > Staff and assign the new custom role to the test user.",
+        "expected": "Role is assigned; the user is forced to log out (role change forces logout)."
+      },
+      {
+        "n": 8,
+        "action": "In a separate browser, log in as the test user.",
+        "expected": "Login succeeds with the new custom role applied."
+      },
+      {
+        "n": 9,
+        "action": "Verify the delta: open Part Sales and attempt to edit and delete a part sale as the user.",
+        "expected": "User can view Part Sales but cannot edit or delete."
+      },
+      {
+        "n": 10,
+        "action": "Verify the rest of the template is intact: all other Parts Manager access unchanged (WO/WOL, Customers, Catalog, Vendor, Invoicing, Reports, Settings, Financial, AP/AR).",
+        "expected": "All other capabilities match the source template exactly; no unintended access was gained or lost."
+      }
+    ],
+    "expected_final": "Part Sales Edit and cascaded Delete removed; View retained; rest of template intact.",
+    "source_viu": "Spec: SV-7501 Edit Custom Role - PM reverse cascade. UNVERIFIED \u2014 VIU pending."
+  },
+  {
+    "test_id": "TE-PM-002",
+    "title": "Parts Manager: REMOVE Settings, rest intact",
+    "jira": "SV-7501",
+    "permission": "Settings (Parts, Finance, Data Import)",
+    "dependency_mode": "None",
+    "priority": "Medium",
+    "type": "Positive",
+    "preconditions": "Logged in as an Administrator. Administration > Roles and Permissions is reachable. A test staff user exists with no custom role assigned.",
+    "role_setup": "Start from Parts Manager template (records template). Change: Settings from ON to OFF. Leave all else as template default.",
+    "test_data": "Template: Parts Manager. Toggle: Settings OFF.",
+    "steps": [
+      {
+        "n": 1,
+        "action": "Go to Administration > Roles and Permissions > Create Custom Role.",
+        "expected": "Create Custom Role screen opens with a template selector."
+      },
+      {
+        "n": 2,
+        "action": "Select the 'Parts Manager' system template.",
+        "expected": "All permission settings pre-fill from the 'Parts Manager' template; the source template is recorded on the role."
+      },
+      {
+        "n": 3,
+        "action": "Change: disable Settings (Parts, Finance, Data Import).",
+        "expected": "The changed toggle(s) reflect the new state; all other settings remain at template default."
+      },
+      {
+        "n": 4,
+        "action": "Click Save to create the custom role.",
+        "expected": "Role saves successfully; only the intended delta differs from the template."
+      },
+      {
+        "n": 5,
+        "action": "Go to Administration > Staff and assign the new custom role to the test user.",
+        "expected": "Role is assigned; the user is forced to log out (role change forces logout)."
+      },
+      {
+        "n": 6,
+        "action": "In a separate browser, log in as the test user.",
+        "expected": "Login succeeds with the new custom role applied."
+      },
+      {
+        "n": 7,
+        "action": "Verify the delta: attempt to open Settings (Parts / Finance / Data Import) as the user.",
+        "expected": "Settings sections are unavailable to the user."
+      },
+      {
+        "n": 8,
+        "action": "Verify the rest of the template is intact: all other Parts Manager access is unchanged.",
+        "expected": "All other capabilities match the source template exactly; no unintended access was gained or lost."
+      }
+    ],
+    "expected_final": "Only Settings removed; rest of Parts Manager template preserved.",
+    "source_viu": "Spec: SV-7501 Edit Custom Role - PM remove Settings. UNVERIFIED \u2014 VIU pending."
+  },
+  {
+    "test_id": "TE-PM-003",
+    "title": "Parts Manager: ADD Timesheets View, rest intact",
+    "jira": "SV-7501",
+    "permission": "Timesheets > View",
+    "dependency_mode": "None",
+    "priority": "Low",
+    "type": "Positive",
+    "preconditions": "Logged in as an Administrator. Administration > Roles and Permissions is reachable. A test staff user exists with no custom role assigned.",
+    "role_setup": "Start from Parts Manager template (records template). Change: Timesheets > View from OFF to ON. Leave all else as template default.",
+    "test_data": "Template: Parts Manager. Toggle: Timesheets View ON.",
+    "steps": [
+      {
+        "n": 1,
+        "action": "Go to Administration > Roles and Permissions > Create Custom Role.",
+        "expected": "Create Custom Role screen opens with a template selector."
+      },
+      {
+        "n": 2,
+        "action": "Select the 'Parts Manager' system template.",
+        "expected": "All permission settings pre-fill from the 'Parts Manager' template; the source template is recorded on the role."
+      },
+      {
+        "n": 3,
+        "action": "Change: enable Timesheets > View (template had none).",
+        "expected": "The changed toggle(s) reflect the new state; all other settings remain at template default."
+      },
+      {
+        "n": 4,
+        "action": "Click Save to create the custom role.",
+        "expected": "Role saves successfully; only the intended delta differs from the template."
+      },
+      {
+        "n": 5,
+        "action": "Go to Administration > Staff and assign the new custom role to the test user.",
+        "expected": "Role is assigned; the user is forced to log out (role change forces logout)."
+      },
+      {
+        "n": 6,
+        "action": "In a separate browser, log in as the test user.",
+        "expected": "Login succeeds with the new custom role applied."
+      },
+      {
+        "n": 7,
+        "action": "Verify the delta: open Timesheets as the user.",
+        "expected": "User can view Timesheets."
+      },
+      {
+        "n": 8,
+        "action": "Verify the rest of the template is intact: all other Parts Manager access is unchanged.",
+        "expected": "All other capabilities match the source template exactly; no unintended access was gained or lost."
+      }
+    ],
+    "expected_final": "User gains Timesheets View only; rest of template preserved.",
+    "source_viu": "Spec: SV-7501 Edit Custom Role - PM add Timesheets View. UNVERIFIED \u2014 VIU pending."
+  },
+  {
+    "test_id": "TE-PM-004",
+    "title": "Parts Manager: MULTI-toggle remove Financial + AP/AR (both gates), rest intact",
+    "jira": "SV-7501",
+    "permission": "Financial; AP/AR",
+    "dependency_mode": "Financial gate: confirm modal",
+    "priority": "High",
+    "type": "Dependency",
+    "preconditions": "Logged in as an Administrator. Administration > Roles and Permissions is reachable. A test staff user exists with no custom role assigned.",
+    "role_setup": "Start from Parts Manager template (records template). Change: Financial and AP/AR from ON/ON to OFF/OFF. Leave all else as template default.",
+    "test_data": "Template: Parts Manager. Toggles: Financial OFF, AP/AR OFF (two gates).",
+    "steps": [
+      {
+        "n": 1,
+        "action": "Go to Administration > Roles and Permissions > Create Custom Role.",
+        "expected": "Create Custom Role screen opens with a template selector."
+      },
+      {
+        "n": 2,
+        "action": "Select the 'Parts Manager' system template.",
+        "expected": "All permission settings pre-fill from the 'Parts Manager' template; the source template is recorded on the role."
+      },
+      {
+        "n": 3,
+        "action": "Change: disable Financial AND disable AP/AR (expect both confirm modals).",
+        "expected": "The changed toggle(s) reflect the new state; all other settings remain at template default."
+      },
+      {
+        "n": 5,
+        "action": "Turn OFF Financial and turn OFF AP/AR.",
+        "expected": "A Financial gate confirm modal and an AP/AR gate confirm modal appear for the respective toggles; confirm both."
+      },
+      {
+        "n": 6,
+        "action": "Click Save to create the custom role.",
+        "expected": "Role saves successfully; only the intended delta differs from the template."
+      },
+      {
+        "n": 7,
+        "action": "Go to Administration > Staff and assign the new custom role to the test user.",
+        "expected": "Role is assigned; the user is forced to log out (role change forces logout)."
+      },
+      {
+        "n": 8,
+        "action": "In a separate browser, log in as the test user.",
+        "expected": "Login succeeds with the new custom role applied."
+      },
+      {
+        "n": 9,
+        "action": "Verify the delta: check for financial figures and attempt to reach AP/AR screens as the user.",
+        "expected": "Both financial data and AP/AR are unavailable to the user."
+      },
+      {
+        "n": 10,
+        "action": "Verify the rest of the template is intact: all non-financial Parts Manager access is unchanged.",
+        "expected": "All other capabilities match the source template exactly; no unintended access was gained or lost."
+      }
+    ],
+    "expected_final": "Financial and AP/AR removed after confirming both modals; rest intact.",
+    "source_viu": "Spec: SV-7501 Edit Custom Role - PM multi-toggle gates. UNVERIFIED \u2014 VIU pending."
+  },
+  {
+    "test_id": "TE-PT-001",
+    "title": "Parts Technician: ADD Part Sales Delete, rest intact",
+    "jira": "SV-7501",
+    "permission": "Part Sales > Delete",
+    "dependency_mode": "Cascade: auto-enable lower",
+    "priority": "Medium",
+    "type": "Dependency",
+    "preconditions": "Logged in as an Administrator. Administration > Roles and Permissions is reachable. A test staff user exists with no custom role assigned.",
+    "role_setup": "Start from Parts Technician template (records template). Change: Part Sales > Delete from OFF to ON. Leave all else as template default.",
+    "test_data": "Template: Parts Technician. Toggle: Part Sales Delete ON.",
+    "steps": [
+      {
+        "n": 1,
+        "action": "Go to Administration > Roles and Permissions > Create Custom Role.",
+        "expected": "Create Custom Role screen opens with a template selector."
+      },
+      {
+        "n": 2,
+        "action": "Select the 'Parts Technician' system template.",
+        "expected": "All permission settings pre-fill from the 'Parts Technician' template; the source template is recorded on the role."
+      },
+      {
+        "n": 3,
+        "action": "Change: enable Part Sales > Delete.",
+        "expected": "The changed toggle(s) reflect the new state; all other settings remain at template default."
+      },
+      {
+        "n": 4,
+        "action": "Click Save to create the custom role.",
+        "expected": "Role saves successfully; only the intended delta differs from the template."
+      },
+      {
+        "n": 5,
+        "action": "Go to Administration > Staff and assign the new custom role to the test user.",
+        "expected": "Role is assigned; the user is forced to log out (role change forces logout)."
+      },
+      {
+        "n": 6,
+        "action": "In a separate browser, log in as the test user.",
+        "expected": "Login succeeds with the new custom role applied."
+      },
+      {
+        "n": 7,
+        "action": "Verify the delta: attempt to delete a part sale as the user.",
+        "expected": "User can delete Part Sales."
+      },
+      {
+        "n": 8,
+        "action": "Verify the rest of the template is intact: all other Parts Technician access unchanged (WO View, Schedule View, Customers V/E, Catalog V/E, Vendor V/E/D, Invoicing V/E, Timesheets V, Financial, History).",
+        "expected": "All other capabilities match the source template exactly; no unintended access was gained or lost."
+      }
+    ],
+    "expected_final": "User gains Part Sales Delete only; rest of template preserved.",
+    "source_viu": "Spec: SV-7501 Edit Custom Role - PT add Part Sales Delete. UNVERIFIED \u2014 VIU pending."
+  },
+  {
+    "test_id": "TE-PT-002",
+    "title": "Parts Technician: REMOVE Financial access (financial confirm modal), rest intact",
+    "jira": "SV-7501",
+    "permission": "Financial",
+    "dependency_mode": "Financial gate: confirm modal",
+    "priority": "High",
+    "type": "Dependency",
+    "preconditions": "Logged in as an Administrator. Administration > Roles and Permissions is reachable. A test staff user exists with no custom role assigned.",
+    "role_setup": "Start from Parts Technician template (records template). Change: Financial from ON to OFF. Leave all else as template default.",
+    "test_data": "Template: Parts Technician. Toggle: Financial OFF (confirm modal expected).",
+    "steps": [
+      {
+        "n": 1,
+        "action": "Go to Administration > Roles and Permissions > Create Custom Role.",
+        "expected": "Create Custom Role screen opens with a template selector."
+      },
+      {
+        "n": 2,
+        "action": "Select the 'Parts Technician' system template.",
+        "expected": "All permission settings pre-fill from the 'Parts Technician' template; the source template is recorded on the role."
+      },
+      {
+        "n": 3,
+        "action": "Change: disable Financial access (expect financial confirm modal).",
+        "expected": "The changed toggle(s) reflect the new state; all other settings remain at template default."
+      },
+      {
+        "n": 5,
+        "action": "Turn OFF the Financial access toggle.",
+        "expected": "Financial gate confirmation modal appears; confirm to proceed."
+      },
+      {
+        "n": 6,
+        "action": "Click Save to create the custom role.",
+        "expected": "Role saves successfully; only the intended delta differs from the template."
+      },
+      {
+        "n": 7,
+        "action": "Go to Administration > Staff and assign the new custom role to the test user.",
+        "expected": "Role is assigned; the user is forced to log out (role change forces logout)."
+      },
+      {
+        "n": 8,
+        "action": "In a separate browser, log in as the test user.",
+        "expected": "Login succeeds with the new custom role applied."
+      },
+      {
+        "n": 9,
+        "action": "Verify the delta: look for financial figures on parts/invoices as the user.",
+        "expected": "Financial data is hidden for the user."
+      },
+      {
+        "n": 10,
+        "action": "Verify the rest of the template is intact: non-financial Parts Technician access is unchanged.",
+        "expected": "All other capabilities match the source template exactly; no unintended access was gained or lost."
+      }
+    ],
+    "expected_final": "Financial removed after confirming; rest of template intact.",
+    "source_viu": "Spec: SV-7501 Edit Custom Role - PT Financial gate. UNVERIFIED \u2014 VIU pending."
+  },
+  {
+    "test_id": "TE-PT-003",
+    "title": "Parts Technician: MULTI-toggle add Review Parts + Customers Delete, rest intact",
+    "jira": "SV-7501",
+    "permission": "Review Parts; Customers > Delete",
+    "dependency_mode": "Cascade: auto-enable lower",
+    "priority": "Medium",
+    "type": "Dependency",
+    "preconditions": "Logged in as an Administrator. Administration > Roles and Permissions is reachable. A test staff user exists with no custom role assigned.",
+    "role_setup": "Start from Parts Technician template (records template). Change: Review Parts and Customers Delete from OFF/OFF to ON/ON. Leave all else as template default.",
+    "test_data": "Template: Parts Technician. Toggles: Review Parts ON, Customers Delete ON.",
+    "steps": [
+      {
+        "n": 1,
+        "action": "Go to Administration > Roles and Permissions > Create Custom Role.",
+        "expected": "Create Custom Role screen opens with a template selector."
+      },
+      {
+        "n": 2,
+        "action": "Select the 'Parts Technician' system template.",
+        "expected": "All permission settings pre-fill from the 'Parts Technician' template; the source template is recorded on the role."
+      },
+      {
+        "n": 3,
+        "action": "Change: enable Review Parts AND enable Customers > Delete together.",
+        "expected": "The changed toggle(s) reflect the new state; all other settings remain at template default."
+      },
+      {
+        "n": 4,
+        "action": "Click Save to create the custom role.",
+        "expected": "Role saves successfully; only the intended delta differs from the template."
+      },
+      {
+        "n": 5,
+        "action": "Go to Administration > Staff and assign the new custom role to the test user.",
+        "expected": "Role is assigned; the user is forced to log out (role change forces logout)."
+      },
+      {
+        "n": 6,
+        "action": "In a separate browser, log in as the test user.",
+        "expected": "Login succeeds with the new custom role applied."
+      },
+      {
+        "n": 7,
+        "action": "Verify the delta: attempt to review parts and to delete a customer as the user.",
+        "expected": "User can review parts and delete customers."
+      },
+      {
+        "n": 8,
+        "action": "Verify the rest of the template is intact: all other Parts Technician access is unchanged (Pick/Order still ON).",
+        "expected": "All other capabilities match the source template exactly; no unintended access was gained or lost."
+      }
+    ],
+    "expected_final": "Exactly Review Parts and Customers Delete added; everything else preserved.",
+    "source_viu": "Spec: SV-7501 Edit Custom Role - PT multi-toggle. UNVERIFIED \u2014 VIU pending."
+  },
+  {
+    "test_id": "TE-PT-004",
+    "title": "Parts Technician: REMOVE Vendor Edit (reverse cascade removes Delete), rest intact",
+    "jira": "SV-7501",
+    "permission": "Vendor > Edit",
+    "dependency_mode": "Cascade: auto-disable higher (reverse)",
+    "priority": "Medium",
+    "type": "Dependency",
+    "preconditions": "Logged in as an Administrator. Administration > Roles and Permissions is reachable. A test staff user exists with no custom role assigned.",
+    "role_setup": "Start from Parts Technician template (records template). Change: Vendor > Edit from ON to OFF. Leave all else as template default.",
+    "test_data": "Template: Parts Technician. Toggle: Vendor Edit OFF; expect Delete auto-off.",
+    "steps": [
+      {
+        "n": 1,
+        "action": "Go to Administration > Roles and Permissions > Create Custom Role.",
+        "expected": "Create Custom Role screen opens with a template selector."
+      },
+      {
+        "n": 2,
+        "action": "Select the 'Parts Technician' system template.",
+        "expected": "All permission settings pre-fill from the 'Parts Technician' template; the source template is recorded on the role."
+      },
+      {
+        "n": 3,
+        "action": "Change: disable Vendor > Edit (expect reverse cascade removing Delete).",
+        "expected": "The changed toggle(s) reflect the new state; all other settings remain at template default."
+      },
+      {
+        "n": 5,
+        "action": "Turn OFF Vendor > Edit.",
+        "expected": "Reverse cascade: Vendor > Delete auto-disables; View remains ON."
+      },
+      {
+        "n": 6,
+        "action": "Click Save to create the custom role.",
+        "expected": "Role saves successfully; only the intended delta differs from the template."
+      },
+      {
+        "n": 7,
+        "action": "Go to Administration > Staff and assign the new custom role to the test user.",
+        "expected": "Role is assigned; the user is forced to log out (role change forces logout)."
+      },
+      {
+        "n": 8,
+        "action": "In a separate browser, log in as the test user.",
+        "expected": "Login succeeds with the new custom role applied."
+      },
+      {
+        "n": 9,
+        "action": "Verify the delta: open a Vendor and attempt to edit and delete it as the user.",
+        "expected": "User can view Vendors but cannot edit or delete."
+      },
+      {
+        "n": 10,
+        "action": "Verify the rest of the template is intact: all other Parts Technician access is unchanged.",
+        "expected": "All other capabilities match the source template exactly; no unintended access was gained or lost."
+      }
+    ],
+    "expected_final": "Vendor Edit and cascaded Delete removed; View retained; rest of template intact.",
+    "source_viu": "Spec: SV-7501 Edit Custom Role - PT reverse cascade. UNVERIFIED \u2014 VIU pending."
+  },
+  {
+    "test_id": "TE-OFFICE-001",
+    "title": "Office template is not editable - opens read-only summary",
+    "jira": "SV-7526",
+    "permission": "N/A (read-only template)",
+    "dependency_mode": "None",
+    "priority": "High",
+    "type": "Negative",
+    "preconditions": "Logged in as an Administrator. Administration > Roles and Permissions is reachable. A test staff user exists with no custom role assigned.",
+    "role_setup": "Start from Office template (records template). Change: none (edit blocked). Leave all else as template default.",
+    "test_data": "Template: Office (read-only).",
+    "steps": [
+      {
+        "n": 1,
+        "action": "Go to Administration > Roles and Permissions > Create Custom Role.",
+        "expected": "Template selector opens with Office listed."
+      },
+      {
+        "n": 2,
+        "action": "Select the Office system template and attempt to edit its toggles.",
+        "expected": "Office opens as a read-only summary; toggles are disabled and cannot be changed."
+      },
+      {
+        "n": 3,
+        "action": "Attempt to Save an edited Office-based role.",
+        "expected": "Editing/Save is not permitted for Office; no editable custom role can be derived by toggling."
+      }
+    ],
+    "expected_final": "Office is a non-editable system template and opens read-only.",
+    "source_viu": "Spec: SV-7526 Office read-only template. UNVERIFIED \u2014 VIU pending."
+  },
+  {
+    "test_id": "TE-SALES-001",
+    "title": "Sales Representative: ADD Customers View/Edit (cascade), rest intact",
+    "jira": "SV-7501",
+    "permission": "Customers > View/Edit",
+    "dependency_mode": "Cascade: auto-enable lower",
+    "priority": "High",
+    "type": "Dependency",
+    "preconditions": "Logged in as an Administrator. Administration > Roles and Permissions is reachable. A test staff user exists with no custom role assigned.",
+    "role_setup": "Start from Sales Representative template (records template). Change: Customers > View/Edit from OFF to ON. Leave all else as template default.",
+    "test_data": "Template: Sales Representative. Toggle: Customers View+Edit ON.",
+    "steps": [
+      {
+        "n": 1,
+        "action": "Go to Administration > Roles and Permissions > Create Custom Role.",
+        "expected": "Create Custom Role screen opens with a template selector."
+      },
+      {
+        "n": 2,
+        "action": "Select the 'Sales Representative' system template.",
+        "expected": "All permission settings pre-fill from the 'Sales Representative' template; the source template is recorded on the role."
+      },
+      {
+        "n": 3,
+        "action": "Change: enable Customers > View and Edit (template had CRUD OFF).",
+        "expected": "The changed toggle(s) reflect the new state; all other settings remain at template default."
+      },
+      {
+        "n": 5,
+        "action": "Turn ON Customers > View then Customers > Edit.",
+        "expected": "Cascade auto-enable lower: enabling Edit auto-enables View; the Customers CRUD area becomes active."
+      },
+      {
+        "n": 6,
+        "action": "Click Save to create the custom role.",
+        "expected": "Role saves successfully; only the intended delta differs from the template."
+      },
+      {
+        "n": 7,
+        "action": "Go to Administration > Staff and assign the new custom role to the test user.",
+        "expected": "Role is assigned; the user is forced to log out (role change forces logout)."
+      },
+      {
+        "n": 8,
+        "action": "In a separate browser, log in as the test user.",
+        "expected": "Login succeeds with the new custom role applied."
+      },
+      {
+        "n": 9,
+        "action": "Verify the delta: open Customers and attempt to view and edit a customer as the user.",
+        "expected": "User can view and edit Customers."
+      },
+      {
+        "n": 10,
+        "action": "Verify the rest of the template is intact: all other Sales Representative access unchanged (Reports, Full view, Financial, AP/AR, History; other CRUD still OFF).",
+        "expected": "All other capabilities match the source template exactly; no unintended access was gained or lost."
+      }
+    ],
+    "expected_final": "User gains Customers View/Edit only; rest of Sales template preserved.",
+    "source_viu": "Spec: SV-7501 Edit Custom Role - SALES add Customers CRUD. UNVERIFIED \u2014 VIU pending."
+  },
+  {
+    "test_id": "TE-SALES-002",
+    "title": "Sales Representative: REMOVE Reports, rest intact",
+    "jira": "SV-7501",
+    "permission": "Reports",
+    "dependency_mode": "None",
+    "priority": "Medium",
+    "type": "Positive",
+    "preconditions": "Logged in as an Administrator. Administration > Roles and Permissions is reachable. A test staff user exists with no custom role assigned.",
+    "role_setup": "Start from Sales Representative template (records template). Change: Reports from ON to OFF. Leave all else as template default.",
+    "test_data": "Template: Sales Representative. Toggle: Reports OFF.",
+    "steps": [
+      {
+        "n": 1,
+        "action": "Go to Administration > Roles and Permissions > Create Custom Role.",
+        "expected": "Create Custom Role screen opens with a template selector."
+      },
+      {
+        "n": 2,
+        "action": "Select the 'Sales Representative' system template.",
+        "expected": "All permission settings pre-fill from the 'Sales Representative' template; the source template is recorded on the role."
+      },
+      {
+        "n": 3,
+        "action": "Change: disable Reports.",
+        "expected": "The changed toggle(s) reflect the new state; all other settings remain at template default."
+      },
+      {
+        "n": 4,
+        "action": "Click Save to create the custom role.",
+        "expected": "Role saves successfully; only the intended delta differs from the template."
+      },
+      {
+        "n": 5,
+        "action": "Go to Administration > Staff and assign the new custom role to the test user.",
+        "expected": "Role is assigned; the user is forced to log out (role change forces logout)."
+      },
+      {
+        "n": 6,
+        "action": "In a separate browser, log in as the test user.",
+        "expected": "Login succeeds with the new custom role applied."
+      },
+      {
+        "n": 7,
+        "action": "Verify the delta: attempt to open Reports as the user.",
+        "expected": "Reports is unavailable to the user."
+      },
+      {
+        "n": 8,
+        "action": "Verify the rest of the template is intact: all other Sales Representative access is unchanged.",
+        "expected": "All other capabilities match the source template exactly; no unintended access was gained or lost."
+      }
+    ],
+    "expected_final": "Only Reports removed; rest of Sales template preserved.",
+    "source_viu": "Spec: SV-7501 Edit Custom Role - SALES remove Reports. UNVERIFIED \u2014 VIU pending."
+  },
+  {
+    "test_id": "TE-SALES-003",
+    "title": "Sales Representative: REMOVE Financial (financial confirm modal), rest intact",
+    "jira": "SV-7501",
+    "permission": "Financial",
+    "dependency_mode": "Financial gate: confirm modal",
+    "priority": "High",
+    "type": "Dependency",
+    "preconditions": "Logged in as an Administrator. Administration > Roles and Permissions is reachable. A test staff user exists with no custom role assigned.",
+    "role_setup": "Start from Sales Representative template (records template). Change: Financial from ON to OFF. Leave all else as template default.",
+    "test_data": "Template: Sales Representative. Toggle: Financial OFF (confirm modal expected).",
+    "steps": [
+      {
+        "n": 1,
+        "action": "Go to Administration > Roles and Permissions > Create Custom Role.",
+        "expected": "Create Custom Role screen opens with a template selector."
+      },
+      {
+        "n": 2,
+        "action": "Select the 'Sales Representative' system template.",
+        "expected": "All permission settings pre-fill from the 'Sales Representative' template; the source template is recorded on the role."
+      },
+      {
+        "n": 3,
+        "action": "Change: disable Financial access (expect financial confirm modal).",
+        "expected": "The changed toggle(s) reflect the new state; all other settings remain at template default."
+      },
+      {
+        "n": 5,
+        "action": "Turn OFF the Financial access toggle.",
+        "expected": "Financial gate confirm modal appears; confirm to proceed."
+      },
+      {
+        "n": 6,
+        "action": "Click Save to create the custom role.",
+        "expected": "Role saves successfully; only the intended delta differs from the template."
+      },
+      {
+        "n": 7,
+        "action": "Go to Administration > Staff and assign the new custom role to the test user.",
+        "expected": "Role is assigned; the user is forced to log out (role change forces logout)."
+      },
+      {
+        "n": 8,
+        "action": "In a separate browser, log in as the test user.",
+        "expected": "Login succeeds with the new custom role applied."
+      },
+      {
+        "n": 9,
+        "action": "Verify the delta: look for financial figures as the user.",
+        "expected": "Financial data is hidden for the user."
+      },
+      {
+        "n": 10,
+        "action": "Verify the rest of the template is intact: non-financial Sales Representative access is unchanged.",
+        "expected": "All other capabilities match the source template exactly; no unintended access was gained or lost."
+      }
+    ],
+    "expected_final": "Financial removed after confirming; rest of template intact.",
+    "source_viu": "Spec: SV-7501 Edit Custom Role - SALES Financial gate. UNVERIFIED \u2014 VIU pending."
+  },
+  {
+    "test_id": "TE-SALES-004",
+    "title": "Sales Representative: MULTI-toggle add Part Sales V/E + Catalog View, rest intact",
+    "jira": "SV-7501",
+    "permission": "Part Sales > View/Edit; Catalog > View",
+    "dependency_mode": "Cascade: auto-enable lower",
+    "priority": "Medium",
+    "type": "Dependency",
+    "preconditions": "Logged in as an Administrator. Administration > Roles and Permissions is reachable. A test staff user exists with no custom role assigned.",
+    "role_setup": "Start from Sales Representative template (records template). Change: Part Sales V/E and Catalog View from OFF/OFF to ON/ON. Leave all else as template default.",
+    "test_data": "Template: Sales Representative. Toggles: Part Sales V/E ON, Catalog View ON.",
+    "steps": [
+      {
+        "n": 1,
+        "action": "Go to Administration > Roles and Permissions > Create Custom Role.",
+        "expected": "Create Custom Role screen opens with a template selector."
+      },
+      {
+        "n": 2,
+        "action": "Select the 'Sales Representative' system template.",
+        "expected": "All permission settings pre-fill from the 'Sales Representative' template; the source template is recorded on the role."
+      },
+      {
+        "n": 3,
+        "action": "Change: enable Part Sales > View/Edit AND enable Catalog > View together.",
+        "expected": "The changed toggle(s) reflect the new state; all other settings remain at template default."
+      },
+      {
+        "n": 4,
+        "action": "Click Save to create the custom role.",
+        "expected": "Role saves successfully; only the intended delta differs from the template."
+      },
+      {
+        "n": 5,
+        "action": "Go to Administration > Staff and assign the new custom role to the test user.",
+        "expected": "Role is assigned; the user is forced to log out (role change forces logout)."
+      },
+      {
+        "n": 6,
+        "action": "In a separate browser, log in as the test user.",
+        "expected": "Login succeeds with the new custom role applied."
+      },
+      {
+        "n": 7,
+        "action": "Verify the delta: attempt to view/create a part sale and to view the Catalog as the user.",
+        "expected": "User can view/edit Part Sales and view the Catalog."
+      },
+      {
+        "n": 8,
+        "action": "Verify the rest of the template is intact: all other Sales Representative access is unchanged.",
+        "expected": "All other capabilities match the source template exactly; no unintended access was gained or lost."
+      }
+    ],
+    "expected_final": "Exactly Part Sales V/E and Catalog View added; everything else preserved.",
+    "source_viu": "Spec: SV-7501 Edit Custom Role - SALES multi-toggle. UNVERIFIED \u2014 VIU pending."
+  },
+  {
+    "test_id": "TE-SM-005",
+    "title": "Service Manager: ADD Timesheets Delete, rest intact",
+    "jira": "SV-7501",
+    "permission": "Timesheets > Delete",
+    "dependency_mode": "Cascade: auto-enable lower",
+    "priority": "Low",
+    "type": "Dependency",
+    "preconditions": "Logged in as an Administrator. Administration > Roles and Permissions is reachable. A test staff user exists with no custom role assigned.",
+    "role_setup": "Start from Service Manager template (records template). Change: Timesheets > Delete from OFF to ON. Leave all else as template default.",
+    "test_data": "Template: Service Manager. Toggle: Timesheets Delete ON.",
+    "steps": [
+      {
+        "n": 1,
+        "action": "Go to Administration > Roles and Permissions > Create Custom Role.",
+        "expected": "Create Custom Role screen opens with a template selector."
+      },
+      {
+        "n": 2,
+        "action": "Select the 'Service Manager' system template.",
+        "expected": "All permission settings pre-fill from the 'Service Manager' template; the source template is recorded on the role."
+      },
+      {
+        "n": 3,
+        "action": "Change: enable Timesheets > Delete (template had V/E).",
+        "expected": "The changed toggle(s) reflect the new state; all other settings remain at template default."
+      },
+      {
+        "n": 4,
+        "action": "Click Save to create the custom role.",
+        "expected": "Role saves successfully; only the intended delta differs from the template."
+      },
+      {
+        "n": 5,
+        "action": "Go to Administration > Staff and assign the new custom role to the test user.",
+        "expected": "Role is assigned; the user is forced to log out (role change forces logout)."
+      },
+      {
+        "n": 6,
+        "action": "In a separate browser, log in as the test user.",
+        "expected": "Login succeeds with the new custom role applied."
+      },
+      {
+        "n": 7,
+        "action": "Verify the delta: attempt to delete a timesheet as the user.",
+        "expected": "User can delete Timesheets."
+      },
+      {
+        "n": 8,
+        "action": "Verify the rest of the template is intact: all other Service Manager access is unchanged.",
+        "expected": "All other capabilities match the source template exactly; no unintended access was gained or lost."
+      }
+    ],
+    "expected_final": "User gains Timesheets Delete only; rest of template preserved.",
+    "source_viu": "Spec: SV-7501 Edit Custom Role - SM add Timesheets Delete. UNVERIFIED \u2014 VIU pending."
+  },
+  {
+    "test_id": "TE-SADV-005",
+    "title": "Service Advisor: REMOVE WOL Edit (reverse cascade removes Delete), rest intact",
+    "jira": "SV-7501",
+    "permission": "Work Order Lines > Edit",
+    "dependency_mode": "Cascade: auto-disable higher (reverse)",
+    "priority": "High",
+    "type": "Dependency",
+    "preconditions": "Logged in as an Administrator. Administration > Roles and Permissions is reachable. A test staff user exists with no custom role assigned.",
+    "role_setup": "Start from Service Advisor template (records template). Change: WOL > Edit from ON to OFF. Leave all else as template default.",
+    "test_data": "Template: Service Advisor. Toggle: WOL Edit OFF; expect Delete auto-off.",
+    "steps": [
+      {
+        "n": 1,
+        "action": "Go to Administration > Roles and Permissions > Create Custom Role.",
+        "expected": "Create Custom Role screen opens with a template selector."
+      },
+      {
+        "n": 2,
+        "action": "Select the 'Service Advisor' system template.",
+        "expected": "All permission settings pre-fill from the 'Service Advisor' template; the source template is recorded on the role."
+      },
+      {
+        "n": 3,
+        "action": "Change: disable WOL > Edit (expect reverse cascade removing Delete).",
+        "expected": "The changed toggle(s) reflect the new state; all other settings remain at template default."
+      },
+      {
+        "n": 5,
+        "action": "Turn OFF Work Order Lines (WOL) > Edit.",
+        "expected": "Reverse cascade: WOL > Delete auto-disables; View remains ON."
+      },
+      {
+        "n": 6,
+        "action": "Click Save to create the custom role.",
+        "expected": "Role saves successfully; only the intended delta differs from the template."
+      },
+      {
+        "n": 7,
+        "action": "Go to Administration > Staff and assign the new custom role to the test user.",
+        "expected": "Role is assigned; the user is forced to log out (role change forces logout)."
+      },
+      {
+        "n": 8,
+        "action": "In a separate browser, log in as the test user.",
+        "expected": "Login succeeds with the new custom role applied."
+      },
+      {
+        "n": 9,
+        "action": "Verify the delta: open a Work Order line and attempt to edit and delete it as the user.",
+        "expected": "User can view WO lines but cannot edit or delete."
+      },
+      {
+        "n": 10,
+        "action": "Verify the rest of the template is intact: all other Service Advisor access is unchanged.",
+        "expected": "All other capabilities match the source template exactly; no unintended access was gained or lost."
+      }
+    ],
+    "expected_final": "WOL Edit and cascaded Delete removed; View retained; rest of template intact.",
+    "source_viu": "Spec: SV-7501 Edit Custom Role - SADV reverse cascade. UNVERIFIED \u2014 VIU pending."
+  },
+  {
+    "test_id": "TE-TIMECLK-001",
+    "title": "Time Clock template is not editable - opens read-only summary",
+    "jira": "SV-7526",
+    "permission": "N/A (read-only template)",
+    "dependency_mode": "None",
+    "priority": "High",
+    "type": "Negative",
+    "preconditions": "Logged in as an Administrator. Administration > Roles and Permissions is reachable. A test staff user exists with no custom role assigned.",
+    "role_setup": "Start from Time Clock template (records template). Change: none (edit blocked). Leave all else as template default.",
+    "test_data": "Template: Time Clock (read-only).",
+    "steps": [
+      {
+        "n": 1,
+        "action": "Go to Administration > Roles and Permissions > Create Custom Role.",
+        "expected": "Template selector opens with Time Clock listed."
+      },
+      {
+        "n": 2,
+        "action": "Select the Time Clock system template and attempt to edit its toggles.",
+        "expected": "Time Clock opens as a read-only summary; toggles are disabled and cannot be changed."
+      },
+      {
+        "n": 3,
+        "action": "Attempt to Save an edited Time Clock-based role.",
+        "expected": "Editing/Save is not permitted for Time Clock."
+      }
+    ],
+    "expected_final": "Time Clock is a non-editable system template and opens read-only.",
+    "source_viu": "Spec: SV-7526 Time Clock read-only template. UNVERIFIED \u2014 VIU pending."
+  }
+]
