@@ -75,3 +75,11 @@ The following inconsistencies were found between the stories, the spec intro, an
 4. **SV-7514 wording.** SV-7514 still refers to "vendor transaction history" while the final feature calls it "part history." Confirm which term the UI uses.
 5. **SV-7521 stale references.** SV-7521 references QuickBooks placed under Finance and mentions "bays," both of which were changed or removed. Confirm the final Settings sub-toggle structure.
 6. **Reset to Template.** The "Reset to Template" requirements are flagged as an open question in the spec, yet SV-7750 has tests for it. Confirm expected reset behavior before executing those tests.
+
+## Build-vs-spec discrepancies confirmed in staging (VIU pass 2, live admin session, 2026-07-01)
+
+VIU pass 2 (live staging admin session, read-only) confirmed the exact Custom Roles labels, the silent CRUD cascade, the "Enable See Financial Data?" confirmation popup, and the kebab-menu variants (see the **VIU Findings Log** sheet, entries VIU-16..VIU-25). It also logged three build-vs-spec discrepancies:
+
+- **Doubled `/api` prefix on SSO auth-check (functional bug, high severity — VIU-23).** The staging auto-auth-check requests `/api/api/sso/check` (the axios baseURL already includes `/api`) and gets a 404, so a valid cookie session does not hydrate the SPA and authenticated users are bounced to `/login`. The correct path should be `/api/sso/check`.
+- **No unsaved-changes guard on Create Role X-close (UX — VIU-24).** Closing the Create Role dialog via the X with unsaved permission toggles shows no discard/unsaved-changes confirmation; the changes are silently dropped.
+- **Dependency-UX inconsistency (UX — VIU-25).** Intra-section CRUD dependencies auto-cascade silently (no popup), but the Invoicing → See Financial Data dependency uses an explicit confirmation popup — the same underlying "requires" pattern rendered with two different UX treatments.

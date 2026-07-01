@@ -133,5 +133,95 @@
     "verdict": "DISCREPANCY (AP/AR label)",
     "evidence": "create-editor.png",
     "notes": ""
+  },
+  {
+    "id": "VIU-16",
+    "topic": "Create-role entry point & template picker",
+    "spec_expectation": "Template selection → Role details → Permission editor → Save",
+    "actual_staging": "Button labelled exactly 'Create Custom Role' opens a template picker titled 'Choose a template' (subtext 'Start from a template to pre-fill settings, or skip to start from scratch') listing 11 system templates with 'Skip' and 'Apply' buttons. After Skip/Apply → 'Create Role' form with two sections: 'Basic Details' (Role Name [required], Description) and 'Permissions'.",
+    "verdict": "VERIFIED (staging, live admin session, 2026-07-01) — MATCH (exact labels confirmed)",
+    "evidence": "VIU pass 2 live admin session 2026-07-01",
+    "notes": "Confirms/extends VIU-04 and VIU-08 with the exact picker title, subtext, 11-template count, and Skip/Apply button labels."
+  },
+  {
+    "id": "VIU-17",
+    "topic": "Permission-tree section headings & controls",
+    "spec_expectation": "Areas: Work Orders, WO Lines, Schedule, Customers, Invoicing, Timesheets, Page Access, cross-cutting toggles",
+    "actual_staging": "Exact headings: 'Work orders' (View / Create & Edit / Delete; 'View mode' segmented control Full View / Tech view; toggles 'Review work orders', 'Pick parts', 'Order parts'); 'Work order lines' (Create & Edit / Delete — NO View); 'Schedule' (View / Create & Edit / Delete); 'Customers' (View / Create & Edit / Delete); 'Invoicing & payments' (View / Create & Edit / 'Delete / Reverse'); 'Timesheets' (View / Create & Edit — NO Delete); 'Page Access' toggles: 'Parts Department', 'Reports', 'Customer portal', 'Settings', 'Billing Portal'; 'Cross-Cutting Toggles': 'See Financial Data', 'View and Manage AP/AR Data', 'View History Logs'. Permission search box present; footer buttons 'Cancel' / 'Create'.",
+    "verdict": "VERIFIED (staging, live admin session, 2026-07-01) — MATCH (exact section labels captured)",
+    "evidence": "VIU pass 2 live admin session 2026-07-01",
+    "notes": "The edit tier is labelled 'Create & Edit' (not 'Edit'); WO Lines has no independent View; Timesheets has no Delete; there is a permission search box."
+  },
+  {
+    "id": "VIU-18",
+    "topic": "Invoicing third control label ('Delete / Reverse')",
+    "spec_expectation": "Invoicing & Payments: View / Edit / Delete",
+    "actual_staging": "The Invoicing & payments third (delete-tier) control is labelled exactly 'Delete / Reverse', not just 'Delete'. Other CRUD sections use plain 'Delete'.",
+    "verdict": "VERIFIED (staging, live admin session, 2026-07-01) — DISCREPANCY (label 'Delete / Reverse')",
+    "evidence": "VIU pass 2 live admin session 2026-07-01",
+    "notes": "Test cases that reference 'Invoicing Delete' should read the control as 'Delete / Reverse' in the editor."
+  },
+  {
+    "id": "VIU-19",
+    "topic": "View mode control (Full View / Tech view)",
+    "spec_expectation": "Tech vs Full; UX only, not access control",
+    "actual_staging": "Segmented 'View mode' control under Work orders with options 'Full View' and 'Tech view'.",
+    "verdict": "VERIFIED (staging, live admin session, 2026-07-01) — MATCH",
+    "evidence": "VIU pass 2 live admin session 2026-07-01",
+    "notes": "Confirms VIU-14 (option labels 'Full View' / 'Tech view')."
+  },
+  {
+    "id": "VIU-20",
+    "topic": "CRUD tier cascade is SILENT (no popup)",
+    "spec_expectation": "CRUD cascade both directions",
+    "actual_staging": "Intra-section CRUD tiers cascade silently with no confirmation popup: enabling 'Create & Edit' auto-enables 'View'; enabling 'Delete' auto-enables View + Create & Edit; turning 'View' OFF force-disables Create & Edit + Delete (View is master). Confirmed on Customers: Delete with all off auto-enables View + Create & Edit + Delete silently.",
+    "verdict": "VERIFIED (staging, live admin session, 2026-07-01) — MATCH",
+    "evidence": "VIU pass 2 live admin session 2026-07-01",
+    "notes": "Confirms VIU-09/VIU-10; adds that the cascade is silent (no modal) and that View acts as master for its section."
+  },
+  {
+    "id": "VIU-21",
+    "topic": "Invoicing → See Financial Data confirmation popup (exact text)",
+    "spec_expectation": "Trigger on enabling Invoicing CRUD while See Financial Data OFF",
+    "actual_staging": "Enabling Invoicing 'Create & Edit' or 'Delete / Reverse' while 'See Financial Data' is OFF shows a confirmation popup — title 'Enable See Financial Data?', body 'Invoicing & Payments requires See Financial Data. Enable it to grant this permission?', buttons [Cancel] [Enable]. Enable auto-enables Invoicing View+Create&Edit AND See Financial Data. Cancel changes nothing (permission blocked until dependency accepted).",
+    "verdict": "VERIFIED (staging, live admin session, 2026-07-01) — MATCH (exact popup text captured)",
+    "evidence": "VIU pass 2 live admin session 2026-07-01",
+    "notes": "Confirms VIU-11 with exact title/body/button text. Cross-Cutting toggles (See Financial Data / View and Manage AP/AR Data / View History Logs) toggle independently — no popup, no mutual auto-enable."
+  },
+  {
+    "id": "VIU-22",
+    "topic": "Kebab (⋮) menu variants",
+    "spec_expectation": "Row actions: Edit / Delete / View Permissions",
+    "actual_staging": "Custom role with 0 users (deletable): kebab has 'View Permissions' and 'Delete' (Delete shown in red). Custom role WITH users (not deletable): kebab has only 'View Permissions' (Delete hidden). System roles: kebab has only 'View Permissions'. Locked system roles (Time Clock, Office): NO kebab at all — view-only eye icon + lock icon.",
+    "verdict": "VERIFIED (staging, live admin session, 2026-07-01) — MATCH",
+    "evidence": "VIU pass 2 live admin session 2026-07-01",
+    "notes": "Confirms/supersedes VIU-05: Delete IS available for deletable Custom roles, but is hidden for Custom roles that have users assigned. Also confirms VIU-06 (locked roles have no kebab)."
+  },
+  {
+    "id": "VIU-23",
+    "topic": "Doubled '/api' prefix on SSO auth-check (session hydration bug)",
+    "spec_expectation": "Valid cookie session should hydrate the SPA without bouncing an authenticated user to /login",
+    "actual_staging": "Staging auto-auth-check requests '/api/api/sso/check' (doubled '/api' prefix, because the axios baseURL already includes /api) → 404, so a valid cookie session does NOT hydrate the SPA and authenticated users are bounced to /login. Correct path should be '/api/sso/check'.",
+    "verdict": "DISCREPANCY (functional bug; severity high — blocks session hydration on staging)",
+    "evidence": "VIU pass 2 live admin session 2026-07-01",
+    "notes": "Functional build bug, not a spec-wording issue. UI observation only; no secrets/session data recorded."
+  },
+  {
+    "id": "VIU-24",
+    "topic": "No unsaved-changes confirmation on Create Role dialog X-close",
+    "spec_expectation": "Unsaved edits should be protected by a discard/unsaved-changes confirmation",
+    "actual_staging": "Closing the Create Role dialog via the X with unsaved permission toggles shows NO unsaved-changes / discard confirmation — the changes are silently dropped.",
+    "verdict": "DISCREPANCY (UX; unsaved changes silently discarded)",
+    "evidence": "VIU pass 2 live admin session 2026-07-01",
+    "notes": "Contrast with the Cancel/X footer; no guard against accidental data loss."
+  },
+  {
+    "id": "VIU-25",
+    "topic": "Dependency-UX inconsistency (silent cascade vs confirmation popup)",
+    "spec_expectation": "Consistent UX for permission 'requires' dependencies",
+    "actual_staging": "Two different UX treatments for the same underlying 'requires' pattern: intra-section CRUD dependencies auto-cascade SILENTLY (see VIU-20), but the Invoicing → See Financial Data dependency uses an explicit confirmation popup (see VIU-21).",
+    "verdict": "DISCREPANCY (UX inconsistency)",
+    "evidence": "VIU pass 2 live admin session 2026-07-01",
+    "notes": "Same 'requires' relationship, two divergent UX patterns."
   }
 ]

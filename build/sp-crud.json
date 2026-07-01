@@ -1829,8 +1829,8 @@
       },
       {
         "n": 2,
-        "action": "With See Financial Data OFF, enable Invoicing & Payments View (or any Invoicing CRUD).",
-        "expected": "Financial confirm modal appears: Modal title: \"Enable See Financial Data?\" Body: \"[Area] requires See Financial Data. Enable it to grant this permission?\" Buttons: \"Cancel\" / \"Enable\" Confirm auto-enables & applies; Cancel reverts. [Build-vs-spec: spec wording differed — see VIU-11.]"
+        "action": "With See Financial Data OFF, enable Invoicing & Payments 'Create & Edit' or 'Delete / Reverse' (View alone does NOT trigger the modal).",
+        "expected": "Financial confirm modal appears: Modal title: \"Enable See Financial Data?\" Body: \"Invoicing & Payments requires See Financial Data. Enable it to grant this permission?\" Buttons: \"Cancel\" / \"Enable\". Enable auto-enables See Financial Data and applies Invoicing View+Create&Edit; Cancel changes nothing. [Build-vs-spec: exact wording confirmed live — see VIU-11 and VIU-21.]"
       },
       {
         "n": 3,
@@ -1843,7 +1843,7 @@
         "expected": "The change reverts; See Financial Data stays OFF and the Invoicing checkbox is not applied."
       }
     ],
-    "expected_final": "Enabling any Invoicing CRUD while See Financial Data is OFF triggers the financial confirm modal; Confirm auto-enables Financial, Cancel reverts.",
+    "expected_final": "Enabling Invoicing 'Create & Edit' or 'Delete / Reverse' while See Financial Data is OFF triggers the financial confirm modal ('Enable See Financial Data?'); Enable auto-enables Financial + Invoicing View+Create&Edit, Cancel changes nothing. (View alone does not trigger it.)",
     "source_viu": "Spec: Invoicing financial gate — any CRUD triggers confirm modal if See Financial Data OFF. VERIFIED (staging 2026-07-01) — DISCREPANCY; see VIU-11"
   },
   {
@@ -1921,8 +1921,8 @@
       },
       {
         "n": 3,
-        "action": "Enable Invoicing & Payments Delete.",
-        "expected": "The AP/AR gate is enforced: Invoicing Delete additionally requires View and Manage AP/AR Data (a confirm modal / requirement is shown to enable View and Manage AP/AR Data)."
+        "action": "Enable Invoicing & Payments 'Delete / Reverse' (the delete-tier control in this section is labelled 'Delete / Reverse', not plain 'Delete').",
+        "expected": "The AP/AR gate is enforced: Invoicing Delete / Reverse additionally requires View and Manage AP/AR Data (a confirm modal / requirement is shown to enable View and Manage AP/AR Data)."
       },
       {
         "n": 4,

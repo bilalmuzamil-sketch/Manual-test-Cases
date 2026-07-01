@@ -670,14 +670,14 @@ SP-INV-003 — Invoicing financial gate: enabling CRUD while Financial OFF trigg
 Role setup: Start from blank/no-access role. See Financial Data OFF. Then enable an Invoicing CRUD checkbox.
 Test data: Admin editing the role in the Roles editor.
 Permission under test: Invoicing & Payments → View/Edit/Delete (invoicingPayments) | Original type: Dependency | Dependency mode: Financial gate: confirm modal","1. As admin, follow the admin flow to create the custom role. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)
-2. With See Financial Data OFF, enable Invoicing & Payments View (or any Invoicing CRUD).
+2. With See Financial Data OFF, enable Invoicing & Payments 'Create & Edit' or 'Delete / Reverse' (View alone does NOT trigger the modal).
 3. Click Confirm.
 4. Repeat and click Cancel instead.","Step 1: Create Custom Role dialog opens from a blank/no-access template with all permissions OFF.
-Step 2: Financial confirm modal appears: Modal title: ""Enable See Financial Data?"" Body: ""[Area] requires See Financial Data. Enable it to grant this permission?"" Buttons: ""Cancel"" / ""Enable"" Confirm auto-enables & applies; Cancel reverts. [Build-vs-spec: spec wording differed — see VIU-11.]
+Step 2: Financial confirm modal appears: Modal title: ""Enable See Financial Data?"" Body: ""Invoicing & Payments requires See Financial Data. Enable it to grant this permission?"" Buttons: ""Cancel"" / ""Enable"". Enable auto-enables See Financial Data and applies Invoicing View+Create&Edit; Cancel changes nothing. [Build-vs-spec: exact wording confirmed live — see VIU-11 and VIU-21.]
 Step 3: See Financial Data auto-enables and the Invoicing checkbox is applied.
 Step 4: The change reverts; See Financial Data stays OFF and the Invoicing checkbox is not applied.
 
-Overall: Enabling any Invoicing CRUD while See Financial Data is OFF triggers the financial confirm modal; Confirm auto-enables Financial, Cancel reverts.
+Overall: Enabling Invoicing 'Create & Edit' or 'Delete / Reverse' while See Financial Data is OFF triggers the financial confirm modal ('Enable See Financial Data?'); Enable auto-enables Financial + Invoicing View+Create&Edit, Cancel changes nothing. (View alone does not trigger it.)
 VIU status: Spec: Invoicing financial gate — any CRUD triggers confirm modal if See Financial Data OFF. VERIFIED (staging 2026-07-01) — DISCREPANCY; see VIU-11",SV-7388
 "SP-INV-004 — Invoicing Edit grants create invoices, payments, deposits, Send to Terminal",Custom Roles and Permissions > Single Permission > Invoicing & Payments,Functional,High,"Admin account with access to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) and Administration > Staff. A test staff user exists to receive the custom role. Sample records exist in the environment as described in test_data.
 Role setup: Start from blank/no-access role. See Financial Data ON. Work Orders View ON. Invoicing & Payments: Edit ON (View auto), Delete OFF. All other permissions OFF.
@@ -703,10 +703,10 @@ Role setup: Start from blank/no-access role. See Financial Data ON. View and Man
 Test data: Admin editing the role in the Roles editor.
 Permission under test: Invoicing & Payments → Delete (invoicingPayments) | Original type: Dependency | Dependency mode: AP/AR gate: confirm modal","1. As admin, follow the admin flow to create the custom role. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)
 2. Enable See Financial Data; keep View and Manage AP/AR Data OFF.
-3. Enable Invoicing & Payments Delete.
+3. Enable Invoicing & Payments 'Delete / Reverse' (the delete-tier control in this section is labelled 'Delete / Reverse', not plain 'Delete').
 4. Confirm/enable View and Manage AP/AR Data.","Step 1: Create Custom Role dialog opens from a blank/no-access template with all permissions OFF.
 Step 2: Financial ON; View and Manage AP/AR Data OFF.
-Step 3: The AP/AR gate is enforced: Invoicing Delete additionally requires View and Manage AP/AR Data (a confirm modal / requirement is shown to enable View and Manage AP/AR Data).
+Step 3: The AP/AR gate is enforced: Invoicing Delete / Reverse additionally requires View and Manage AP/AR Data (a confirm modal / requirement is shown to enable View and Manage AP/AR Data).
 Step 4: View and Manage AP/AR Data enables and Invoicing Delete (with Edit+View cascade) is applied.
 
 Overall: Invoicing Delete cannot be applied without View and Manage AP/AR Data; the AP/AR gate enforces enabling View and Manage AP/AR Data (in addition to the financial gate).
@@ -2874,7 +2874,7 @@ Permission under test: Broad View+Edit across areas, NO Delete anywhere, See Fin
 9. NEGATIVE (aggregate): In every area, attempt Delete; check nav for Timesheets, History Logs, Administration.","Step 1: Create Custom Role form opens with every permission toggle OFF by default. Role name accepted.
 Step 2: Parts Dept ON (children enabled). WO Edit cascades WO View ON; WO sub-settings available.
 Step 3: Each Edit cascades its View ON. No Delete enabled anywhere.
-Step 4: Both cascade View ON. Financial confirm modal(s): Modal title: ""Enable See Financial Data?"" Body: ""Invoicing/Part Sales requires See Financial Data. Enable it to grant this permission?"" Buttons: ""Cancel"" / ""Enable"" — click Enable; See Financial Data ON. [Build-vs-spec: spec wording differed — see VIU-11.]
+Step 4: Both cascade View ON. Financial confirm modal(s): Modal title: ""Enable See Financial Data?"" Body for Invoicing (confirmed exact): ""Invoicing & Payments requires See Financial Data. Enable it to grant this permission?"" (the Part Sales modal substitutes its own area name). Buttons: ""Cancel"" / ""Enable"" — click Enable; See Financial Data ON. [Build-vs-spec: exact Invoicing wording confirmed live — see VIU-11 and VIU-21.]
 Step 5: Sub-settings, AP/AR, Reports ON. All Delete toggles confirmed OFF.
 Step 6: Role saved with exactly the configured toggles. Staff assignment saved. A role change forces the affected user to be logged out.
 Step 7: Login succeeds; the user sees only navigation permitted by the assigned role.
