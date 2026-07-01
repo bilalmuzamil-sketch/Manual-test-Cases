@@ -1,0 +1,1481 @@
+Test ID,Section,Title,Related Jira,Priority,Type,Preconditions,Test Data,Steps,Expected Results,Expected Final Result
+CR-SETUP-001,Test Environment & Setup,Verify a test shop with representative sample data exists,SV-7388,Critical,Positive,Access to the QA environment with the feature enabled.,Target test shop identifier (from PM/QA lead).,"1. Log in as an Administrator and open the target test shop.
+2. Navigate to Work Orders.
+3. Navigate to Customers.
+4. Navigate to the Parts department (Part Sales, Catalog & Inventory, Vendor & Order Management).
+5. Navigate to Invoicing.
+6. Navigate to Schedule.","1. Shop loads without error.
+2. At least a few sample work orders exist, including at least one with work-order lines.
+3. At least a few sample customers exist.
+4. Sample parts, at least one catalog/inventory record, and at least one vendor with an order exist.
+5. At least one sample invoice exists.
+6. At least one sample appointment exists.","The test shop contains observable sample data across work orders, WO lines, customers, parts, vendors, invoices, and schedule appointments, so permission effects (hidden/disabled/blocked actions) are observable during testing. If any area is empty, seed it or request seeding before proceeding."
+CR-SETUP-002,Test Environment & Setup,Verify an Administrator test account can reach role and staff administration,SV-7388,Critical,Positive,CR-SETUP-001 passed. Administrator credentials available.,Administrator account email/password.,"1. Log in as the Administrator test account.
+2. Open Administration > Roles and Permissions.
+3. Open Administration > Staff.","1. Login succeeds.
+2. The Roles and Permissions list page loads and is accessible to this account.
+3. The Staff page loads and is accessible to this account.",The Administrator test account can reach both Administration > Roles and Permissions and Administration > Staff. This account is the driver for all role configuration and staff-assignment test cases.
+CR-SETUP-003,Test Environment & Setup,Provision one dedicated test user per system role,SV-7388,High,Positive,CR-SETUP-002 passed. CR-SETUP-004 confirms the templates are seeded.,"Naming convention for test users, e.g. `qa-<role>@shopview-test.com` (one per role).","1. As Administrator, open Administration > Staff.
+2. For each of the 12 system roles, create (or confirm there exists) a dedicated test user whose role is set to that system role: Administrator, Service Manager, Senior Service Advisor, Service Advisor, Foreman, Technician, Parts Manager, Parts Technician, Office, Sales Representative, Time Clock. (Note: the matrix names 11 roles; see the Owner discrepancy in the README.)
+3. Record each test user's credentials in the shared QA credential store.","1. Staff list loads.
+2. A distinct, loginable test user exists for each system role.
+3. Credentials are recorded and retrievable.","There is exactly one dedicated, loginable test user per system role. These users let each role's permissions be verified by logging in as that user. If creation is not possible in this environment, note which users must be provisioned by an admin before role-specific files can run."
+CR-SETUP-004,Test Environment & Setup,Verify the 12 system role templates are seeded and visible,SV-7526,Critical,Positive,CR-SETUP-002 passed.,Expected role names (see spec / file 12).,"1. As Administrator, open Administration > Roles and Permissions.
+2. Review the list of roles marked as system/template roles.
+3. Confirm the following are listed: Administrator, Service Manager, Senior Service Advisor, Service Advisor, Foreman, Technician, Parts Manager, Parts Technician, Office, Sales Representative, Time Clock.
+4. Count the system roles.","1. The roles list page loads.
+2. The system role templates are present and labeled as system roles.
+3. All listed roles are present.
+4. Count matches the PM-confirmed number. Spec says 12 but the matrix names 11 (Owner merged into Admin) — flag any mismatch per the README discrepancy list.",All expected system role templates are seeded and visible on the Roles and Permissions list page. Any deviation in the set or count is logged against the README discrepancy note (item 1).
+CR-SETUP-005,Test Environment & Setup,"Verify ""role change forces logout"" behavior and set up efficient two-session testing",SV-7388,High,Positive,CR-SETUP-003 provided at least one non-admin test user. Two browsers or one browser + incognito available.,One non-admin test user (e.g. the Technician test user) and the Administrator account.,"1. In Browser A, log in as the non-admin test user and remain on any page.
+2. In Browser B (or incognito), log in as Administrator, open Administration > Staff, and change the test user's role to a different role. Save.
+3. In Browser A, perform an action or navigate.
+4. In Browser A, log the test user back in.","1. User is logged in.
+2. Role change saves successfully.
+3. The test user is logged out (session invalidated) as a result of the role change.
+4. The newly assigned role's permissions are now in effect.","Changing a user's role forces that user to log out; the new role applies on next login. QA must expect this between test runs. Use two browsers/incognito (admin in one, test user in the other) to reconfigure roles and re-log-in efficiently."
+CR-SETUP-006,Test Environment & Setup,Establish reset guidance between test cases,SV-7388,Medium,Positive,CR-SETUP-003 and CR-SETUP-004 passed.,None.,"1. Before a case that modifies a system role's permissions, note the role's current settings (or plan to Reset to Template if that feature is confirmed available — see README item 6).
+2. After a case that modified a role or created a custom role, restore the modified system role to its documented defaults and delete any custom roles created solely for the test.
+3. After a case that reassigned a test user's role, reassign that user back to its dedicated system role and re-log-in per CR-SETUP-005.","1. Baseline captured.
+2. Environment returns to a known clean baseline.
+3. Test users are back on their dedicated roles.","Between test cases, roles, custom roles, and test-user assignments are reset to the known baseline so cases do not interfere with each other. Prefer editing/deleting via the admin UI; use Reset to Template only once its behavior is PM-confirmed."
+CR-ROLEMGMT-001,Role Management Admin UI,Roles & Permissions list page renders all columns,SV-7499,High,UI,Logged in as Administrator. At least one Custom Role exists (created from a template) plus the 12 system roles.,"Existing custom role e.g. ""Front Desk Lite"" created from template ""Office"".","1. Navigate to Administration > Roles and Permissions.
+2. Inspect the table header row.
+3. Inspect a system role row (e.g., Administrator).
+4. Inspect a custom role row (e.g., ""Front Desk Lite"").
+5. Locate the page-level action control.","1. The Roles & Permissions list page loads without error.
+2. Columns are present in order: Role Name, Type, Template, Description, Users Assigned, Actions.
+3. Type shows ""System""; Template shows ""—""; Users Assigned shows a numeric count; Description is shown.
+4. Type shows ""Custom""; Template shows the source template name (""Office""); Users Assigned shows a numeric count.
+5. A ""Create Custom Role"" button is visible and enabled.","The list page displays every role with all six columns correctly populated, distinguishing System vs Custom rows, and exposes the Create Custom Role button."
+CR-ROLEMGMT-002,Role Management Admin UI,System badge shown on system roles only,SV-7499,Medium,UI,Logged in as Administrator with the Roles & Permissions list page (Administration > Roles and Permissions) open.,"System role ""Administrator""; at least one custom role (e.g., ""Front Desk Lite"").","1. Locate the ""Administrator"" (system) role row and inspect its Role Name cell.
+2. Locate a custom role row (e.g., ""Front Desk Lite"") and inspect its Role Name cell.
+3. Cross-check every visible row's badge against its Type column value.","1. A ""System"" badge/label is displayed inline next to the role name.
+2. No ""System"" badge is displayed next to the custom role name.
+3. Each row with a System badge shows Type = System, and each custom row shows Type = Custom with no badge.",The System badge appears exclusively on system roles and is consistent with the Type column.
+CR-ROLEMGMT-003,Role Management Admin UI,Action availability by role type (Edit / Delete / View Permissions),SV-7499,High,UI,Logged in as Administrator; list page open with system roles (including Office and Time Clock) and at least one custom role.,"Editable system role (e.g., Parts Manager); Office; Time Clock; a custom role.","1. Inspect the Actions column for an editable system role (not Office/Time Clock).
+2. Inspect the Actions for the Office role.
+3. Inspect the Actions for the Time Clock role.
+4. Inspect the Actions for a custom role.
+5. Attempt to trigger Delete on any system role.","1. Edit and View Permissions are available; Delete is absent or disabled.
+2. View Permissions is available; the Edit action opens a read-only summary rather than the editor; Delete is absent or disabled.
+3. Same as Office: read-only summary on Edit; no active Delete.
+4. Edit, Delete, and View Permissions are all available (Delete subject to assignment rules).
+5. Delete is not actionable (disabled or not present) for every system role.","Edit/Delete/View Permissions actions are correctly enabled or disabled per role type: system roles are non-deletable, Office/Time Clock are read-only, custom roles are fully editable and deletable."
+CR-ROLEMGMT-004,Role Management Admin UI,View Permissions opens read-only summary from the list page,"SV-7499, SV-7503",Medium,UI,Logged in as Administrator; list page open.,Any role (system or custom).,"1. Click ""View Permissions"" in the Actions column for a role.
+2. Attempt to modify any value in the dialog.
+3. Close the dialog.","1. A read-only Permission Summary dialog opens for that role.
+2. No control is editable; the dialog is view-only.
+3. The dialog closes and the list page is unchanged.",View Permissions on the list page opens a read-only Permission Summary for the selected role.
+CR-ROLEMGMT-005,Role Management Admin UI,Create Custom Role: happy path end-to-end,SV-7500,Critical,Positive,Logged in as Administrator; list page open.,"Template: ""Technician""; Name: ""Senior Tech QA""; Description: ""Test-created custom role"".","1. Click ""Create Custom Role"".
+2. Select one of the 12 system templates (""Technician"") and continue.
+3. Enter Name ""Senior Tech QA"" and Description ""Test-created custom role""; continue.
+4. Review the Permission Editor (CRUD grid, WO sub-settings, Parts Department, Invoicing, Timesheets, Page Access toggles, Settings, View Mode, Cross-Cutting toggles) and adjust one permission.
+5. Click Save.
+6. Locate the new role in the list.","1. The create flow opens on the Template Selection step.
+2. Template is selected; flow advances to Role Details with settings pre-filled from the template.
+3. Flow advances to the Permission Editor.
+4. The editor shows all sections; the adjusted permission updates.
+5. Validation passes; the role is saved and the user returns to the list page.
+6. ""Senior Tech QA"" appears with Type = Custom and Template = Technician.",A new custom role is created via the four-step flow and appears in the list with the correct Type and source Template.
+CR-ROLEMGMT-006,Role Management Admin UI,Template selection pre-fills all settings,SV-7500,High,Positive,Logged in as Administrator; Create Custom Role flow open.,"Template with a known permission profile (e.g., ""Parts Manager"").","1. On Template Selection, choose a template with a distinctive profile (""Parts Manager"").
+2. Advance to the Permission Editor.
+3. Complete Name and save; then open View Permissions for the new role.","1. Template is highlighted/selected; 12 templates are available to choose from.
+2. All permissions (CRUD grid, toggles, view mode, etc.) are pre-populated to match the chosen template's defaults, not blank.
+3. The saved role retains the template reference and the pre-filled values as adjusted.",Choosing a template pre-fills every setting from that template and records it as the role's source template.
+CR-ROLEMGMT-007,Role Management Admin UI,Create Custom Role blocked when name is blank,SV-7500,High,Negative,Logged in as Administrator; Create Custom Role flow open; a template selected.,Name: (blank).,"1. On Role Details, leave the Name field empty.
+2. Attempt to advance/save.
+3. Confirm no role is created.","1. Name is required (indicated as such).
+2. Save/advance is blocked; a validation message indicates the name is required.
+3. Returning to the list shows no new blank-named role.",A role with a blank name cannot be created; validation blocks the save.
+CR-ROLEMGMT-008,Role Management Admin UI,Create Custom Role blocked on duplicate name,SV-7500,High,Negative,"Logged in as Administrator; an existing role named ""Senior Tech QA"" exists (e.g., from CR-ROLEMGMT-005).","Name: ""Senior Tech QA"" (duplicate).","1. Start Create Custom Role, select a template, and enter Name ""Senior Tech QA"".
+2. Attempt to save.
+3. Change the name to a unique value and save.","1. The name matches an existing role.
+2. Save is blocked with a validation message indicating the name must be unique.
+3. The role saves successfully.",Duplicate role names are rejected with a uniqueness validation error; a unique name succeeds.
+CR-ROLEMGMT-009,Role Management Admin UI,CRUD cascade enabling (View ← Edit ← Delete),SV-7500,Critical,Dependency,Logged in as Administrator; Permission Editor open (create or edit); a permission area with all CRUD off.,"Any CRUD area (e.g., Work Orders) starting with View/Edit/Delete all OFF.","1. In an area with all CRUD OFF, enable **Edit**.
+2. Reset the area to all OFF, then enable **Delete**.
+3. Confirm the auto-enabled checkboxes reflect in the grid immediately.","1. Edit turns ON and View auto-enables.
+2. Delete turns ON and both Edit and View auto-enable.
+3. The dependent checkboxes visibly become checked without a page reload.",Enabling Edit cascades to View; enabling Delete cascades to Edit and View.
+CR-ROLEMGMT-010,Role Management Admin UI,CRUD cascade disabling (Delete → Edit → View),SV-7500,Critical,Dependency,Logged in as Administrator; Permission Editor open; a CRUD area with View/Edit/Delete all ON.,"Any CRUD area (e.g., Work Orders) starting with all CRUD ON.","1. In an area with all CRUD ON, disable **Edit**.
+2. Reset to all ON, then disable **View**.
+3. Confirm the state after each action.","1. Edit turns OFF and Delete auto-disables; View remains ON.
+2. View turns OFF and both Edit and Delete auto-disable.
+3. Downstream checkboxes update immediately and consistently.",Disabling View disables Edit and Delete; disabling Edit disables Delete — cascade works in the downward direction.
+CR-ROLEMGMT-011,Role Management Admin UI,Parts Department OFF hides its three children (slide),SV-7500,High,Dependency,Logged in as Administrator; Permission Editor open with Parts Department ON and its 3 children visible.,Parts Department parent toggle.,"1. With Parts Department ON, confirm its 3 child settings are visible.
+2. Toggle Parts Department OFF.
+3. Toggle Parts Department back ON.","1. The 3 child controls are shown.
+2. The 3 child settings hide with a slide transition.
+3. The 3 child settings reappear (slide) and are editable again.",Turning Parts Department off hides its three children with a slide transition; turning it back on restores them.
+CR-ROLEMGMT-012,Role Management Admin UI,Settings OFF hides its six sub-settings (slide),SV-7500,High,Dependency,Logged in as Administrator; Permission Editor open with Settings parent ON and its 6 sub-toggles visible.,Settings parent toggle.,"1. With Settings ON, confirm its 6 sub-settings are visible.
+2. Toggle Settings OFF.
+3. Toggle Settings back ON.","1. All 6 sub-toggles are shown.
+2. The 6 sub-settings hide with a slide transition.
+3. The 6 sub-settings reappear and are editable.",Turning Settings off hides its six sub-settings with a slide transition; turning it on restores them.
+CR-ROLEMGMT-013,Role Management Admin UI,See Financial Data OFF disables Part Sales & Invoicing with explanatory note,SV-7500,High,Dependency,"Logged in as Administrator; Permission Editor open; ""See Financial Data"" currently ON.",See Financial Data cross-cutting toggle.,"1. Confirm See Financial Data is ON and Part Sales & Invoicing controls are enabled.
+2. Turn See Financial Data OFF.
+3. Turn See Financial Data back ON.","1. Both areas are enabled/interactive.
+2. Part Sales and Invoicing become disabled, accompanied by an explanatory note tying them to See Financial Data.
+3. Part Sales and Invoicing become enabled again.",Disabling See Financial Data disables Part Sales and Invoicing and shows an explanatory note; re-enabling restores them.
+CR-ROLEMGMT-014,Role Management Admin UI,WO sub-settings visible but greyed when WO View OFF,SV-7500,Medium,UI,"Logged in as Administrator. Open Administration > Roles and Permissions, click Edit (or Create Custom Role) to open the Permission Editor, and scroll to the Work Orders section.","A custom role open in the editor; the Work Orders ""View"" toggle and its sub-settings (Review Work Orders, Pick Parts, Order Parts).","1. In the Work Orders section, set the ""View"" toggle ON.
+2. Set the Work Orders ""View"" toggle OFF.
+3. Set the Work Orders ""View"" toggle back ON.","1. The WO sub-settings (Review Work Orders, Pick Parts, Order Parts) are displayed in full colour and each toggle can be clicked and changed.
+2. The same WO sub-settings remain on screen (not hidden) but render greyed/dimmed, and clicking their toggles has no effect (disabled).
+3. The WO sub-settings return to full colour and become clickable again, retaining their previous ON/OFF selections.","The WO sub-settings stay visible at all times; they appear greyed out and disabled (not removed) while WO View is OFF, and become interactive again when WO View is ON."
+CR-ROLEMGMT-015,Role Management Admin UI,"Financial Data Confirmation Modal — Part Sales, Confirm",SV-7504,Critical,Dependency,Logged in as Administrator; Permission Editor open; See Financial Data is OFF.,"Part Sales CRUD checkbox (e.g., Part Sales View).","1. With See Financial Data OFF, enable a Part Sales CRUD checkbox.
+2. Click Confirm.
+3. Inspect See Financial Data and the Part Sales checkbox.","1. A confirmation modal appears reading ""Part Sales requires 'See Financial Data' to be enabled. Enable it?""
+2. See Financial Data auto-enables and the Part Sales checkbox is applied (stays checked).
+3. See Financial Data is ON; the Part Sales checkbox is ON.",Confirming the modal auto-enables See Financial Data and applies the Part Sales checkbox.
+CR-ROLEMGMT-016,Role Management Admin UI,"Financial Data Confirmation Modal — Part Sales, Cancel",SV-7504,High,Dependency,Logged in as Administrator; Permission Editor open; See Financial Data is OFF.,Part Sales CRUD checkbox.,"1. With See Financial Data OFF, enable a Part Sales CRUD checkbox.
+2. Click Cancel.
+3. Inspect See Financial Data.","1. The confirmation modal appears with the Part Sales message.
+2. The modal closes; the Part Sales checkbox reverts to OFF.
+3. See Financial Data remains OFF.",Cancelling the modal reverts the Part Sales checkbox and leaves See Financial Data OFF.
+CR-ROLEMGMT-017,Role Management Admin UI,"Financial Data Confirmation Modal — Invoicing, Confirm",SV-7504,Critical,Dependency,Logged in as Administrator; Permission Editor open; See Financial Data is OFF.,Invoicing CRUD checkbox.,"1. With See Financial Data OFF, enable an Invoicing CRUD checkbox.
+2. Click Confirm.
+3. Inspect both controls.","1. A confirmation modal appears reading ""Invoicing requires 'See Financial Data' to be enabled. Enable it?""
+2. See Financial Data auto-enables and the Invoicing checkbox is applied.
+3. See Financial Data is ON; the Invoicing checkbox is ON.",Confirming the modal for Invoicing auto-enables See Financial Data and applies the Invoicing checkbox.
+CR-ROLEMGMT-018,Role Management Admin UI,"Financial Data Confirmation Modal — Invoicing, Cancel",SV-7504,High,Dependency,Logged in as Administrator; Permission Editor open; See Financial Data is OFF.,Invoicing CRUD checkbox.,"1. With See Financial Data OFF, enable an Invoicing CRUD checkbox.
+2. Click Cancel.
+3. Inspect See Financial Data.","1. The confirmation modal appears with the Invoicing message.
+2. The modal closes; the Invoicing checkbox reverts to OFF.
+3. See Financial Data remains OFF.",Cancelling the modal reverts the Invoicing checkbox and leaves See Financial Data OFF.
+CR-ROLEMGMT-019,Role Management Admin UI,Edit an existing custom role and save changes,SV-7501,Critical,Positive,Logged in as Administrator; at least one custom role exists.,"Custom role ""Senior Tech QA""; change Description and one permission.","1. On the list page, click Edit for the custom role.
+2. Change the Description and toggle one permission (observe cascade if applicable).
+3. Click Save.
+4. Reopen the role via Edit or View Permissions.","1. The Permission Editor opens pre-loaded with the role's current settings (no Template Selection step on edit).
+2. Changes register; cascade/dependency rules apply the same as in create.
+3. Changes are validated and saved; user returns to the list.
+4. The changed Description and permission persist.","An existing custom role loads into the editor, edits are saved with the same enforcement rules, and changes persist."
+CR-ROLEMGMT-020,Role Management Admin UI,Edit an editable system role,SV-7501,High,Positive,Logged in as Administrator; an editable system role exists (any system role except Office and Time Clock).,"System role e.g. ""Parts Manager""; toggle one non-critical permission.","1. Click Edit for an editable system role (not Office/Time Clock).
+2. Change one permission and observe cascade behavior.
+3. Save.
+4. Confirm the role still shows Type = System and its System badge.","1. The Permission Editor opens with the role's settings.
+2. The same cascade/dependency enforcement applies as for custom roles.
+3. Changes save successfully.
+4. The role remains a system role after editing.","Editable system roles (all except Office and Time Clock) can be edited via the same editor with the same enforcement, and remain system roles."
+CR-ROLEMGMT-021,Role Management Admin UI,Office and Time Clock open read-only summary (not editable),"SV-7501, SV-7503",High,Negative,Logged in as Administrator; list page open.,Office role; Time Clock role.,"1. Click Edit (or the equivalent) for the Office role.
+2. Attempt to change any value in the Office summary.
+3. Repeat for the Time Clock role.","1. A read-only Permission Summary opens; no editable controls are presented.
+2. Nothing is editable.
+3. Time Clock also opens read-only with no editable controls.",Office and Time Clock cannot be edited; both open a read-only summary instead of the editor.
+CR-ROLEMGMT-022,Role Management Admin UI,Administrator cannot be edited to lose Admin page access,SV-7501,Critical,Negative,Logged in as Administrator; Administrator role opened in the editor.,Administrator role; attempt to disable access to Admin pages.,"1. Open the Administrator role in the Permission Editor.
+2. Attempt to disable/remove the Admin pages access permission.
+3. Change a different (non-admin-access) permission and save.","1. The editor loads; the Administrator is editable for non-admin-access settings.
+2. The action is blocked or prevented — Administrator cannot be edited to lose access to the Admin pages.
+3. Other edits are allowed and save successfully.","The Administrator role cannot be modified to lose Admin page access, while all other settings remain editable."
+CR-ROLEMGMT-023,Role Management Admin UI,Delete a custom role with 0 users assigned,SV-7502,High,Positive,Logged in as Administrator; a custom role with 0 users assigned exists.,Custom role with Users Assigned = 0.,"1. Confirm the target custom role shows Users Assigned = 0.
+2. Click Delete in the Actions column.
+3. Confirm the deletion.
+4. Refresh/re-check the list.","1. Users Assigned count is 0.
+2. A confirmation dialog appears.
+3. The role is deleted and disappears from the list.
+4. The role is no longer present.",A custom role with no assigned users is deleted after confirmation and removed from the list.
+CR-ROLEMGMT-024,Role Management Admin UI,Delete blocked for a custom role with users assigned,SV-7502,Critical,Negative,Logged in as Administrator; a custom role with 1+ users assigned exists.,Custom role with Users Assigned = N (N ≥ 1).,"1. Confirm the target custom role shows Users Assigned ≥ 1.
+2. Click Delete in the Actions column.
+3. Observe the Delete button state in the modal.
+4. Reassign all users off the role (via Staff page), then retry Delete.","1. Users Assigned count is 1 or more.
+2. A ""Cannot Delete"" modal appears reading ""This role is assigned to N user(s). Reassign them to another role before deleting."" with the actual count for N.
+3. The Delete button is disabled.
+4. Once Users Assigned = 0, Delete proceeds via the standard confirmation and succeeds.","Deletion is blocked with the ""Cannot Delete"" modal while users are assigned; after reassignment the role becomes deletable."
+CR-ROLEMGMT-025,Role Management Admin UI,System roles are never deletable,"SV-7502, SV-7499",High,Negative,Logged in as Administrator; list page open with system roles.,"Any system role (e.g., Administrator, Office, Technician).","1. Inspect the Actions column for several system roles.
+2. Attempt to delete a system role by any available means.","1. No enabled Delete action is present for any system role.
+2. Deletion cannot be initiated; the system role remains in the list.","No system role can be deleted, regardless of assigned user count."
+CR-ROLEMGMT-026,Role Management Admin UI,Permission Summary read-only view content and format,SV-7503,Medium,UI,Logged in as Administrator with the Roles & Permissions list page (Administration > Roles and Permissions) open.,"A role known to have a mix of ON and OFF permissions (e.g., a custom role with Work Orders View ON and Parts Department OFF).","1. Click ""View Permissions"" in the Actions column for the mixed-permission role.
+2. Locate one permission known to be ON and one known to be OFF.
+3. Attempt to change any indicator, then close the dialog.","1. A read-only Permission Summary dialog opens listing the role's full permission set with each entry showing an ON or OFF indicator.
+2. The ON permission shows an ON/enabled indicator and the OFF permission shows an OFF/disabled indicator, each matching the role's configuration.
+3. No indicator or control responds to clicks (view-only); closing the dialog returns to the unchanged list page.",The Permission Summary presents a role's complete permission set in a compact read-only ON/OFF layout.
+CR-ROLEMGMT-027,Role Management Admin UI,Staff page role selector grouping (System vs Custom),SV-7505,High,UI,Logged in as Administrator; at least one custom role exists in addition to the 12 system roles.,"Any staff user; the 12 system roles plus one or more custom roles (e.g., ""Front Desk Lite"").","1. Navigate to Administration > Staff, select a user, and open that user's role selector dropdown.
+2. Inspect how the options are grouped within the dropdown.
+3. Verify each existing custom role appears under the Custom Roles heading and each system role under System Roles.","1. The role selector dropdown opens and displays the list of assignable roles.
+2. Options appear under two labelled group headings: ""System Roles"" (containing the 12 system roles) and ""Custom Roles"".
+3. Every custom role (e.g., ""Front Desk Lite"") is listed under Custom Roles and every system role under System Roles, with no role in the wrong group.",The Staff-page role selector groups roles into System Roles (12) and Custom Roles.
+CR-ROLEMGMT-028,Role Management Admin UI,View Permissions from the Staff page,"SV-7505, SV-7503",Medium,UI,Logged in as Administrator with Administration > Staff open and a user selected.,"A specific role to select in the user's role selector (e.g., ""Front Desk Lite"").","1. In the selected user's role selector, choose a role (e.g., ""Front Desk Lite"").
+2. Click the ""View Permissions"" button next to the role selector.
+3. Compare the summary contents to the same role's summary opened from the Roles & Permissions list page, then close the dialog.","1. The chosen role appears as the selected/highlighted value in the role selector.
+2. A read-only Permission Summary dialog opens showing the ON/OFF permission set for the selected role.
+3. The permission entries and ON/OFF states match the list-page summary exactly, no control is editable, and closing returns to the Staff page unchanged.",The Staff page exposes a View Permissions button that opens the read-only summary for the selected role.
+CR-ROLEMGMT-029,Role Management Admin UI,Changing a user's role forces logout; new role applies on next login,SV-7505,Critical,Dependency,Logged in as Administrator; a second test user logged in on a separate session/browser.,Test user with an initial role; a different target role to assign.,"1. Confirm the test user is actively logged in on their own session.
+2. As Administrator, change that user's role on the Staff page and save.
+3. Observe the test user's session.
+4. Have the test user log back in and check their access.","1. The test user has an active session.
+2. The role change is saved.
+3. The test user is forcibly logged out.
+4. On next login the new role's permissions take effect.","Changing a user's role forces that user to log out, and the new role's permissions apply on their next login."
+CR-WO-001,Work Orders & Lines,"Work Orders View ON: user can see nav, list, and detail",SV-7506,Critical,Positive,A custom role with Work Orders → **View** ON (Edit/Delete OFF). Role assigned to test user.,"Custom role ""WO Viewer""; at least one existing Work Order.","1. Create/pick custom role ""WO Viewer"" with Work Orders → View ON, Edit OFF, Delete OFF.
+2. Assign the role to the test user and have them log out and log back in.
+3. As the test user, look at the top-level navigation.
+4. Open the Work Orders list.
+5. Click a Work Order to open its detail page.","1. Role saves. Edit and Delete remain OFF (View does not cascade upward).
+2. User session refreshes with the new role.
+3. The **Work Orders** nav item is visible.
+4. The list of Work Orders is visible.
+5. The WO detail page opens and is viewable.","A View-only user can reach the Work Orders nav, list, and detail pages."
+CR-WO-002,Work Orders & Lines,Work Orders View OFF: nav item hidden,SV-7506,Critical,Negative,A custom role with Work Orders → View OFF (and therefore Edit/Delete OFF). Role assigned to test user.,"Custom role ""No WO Access"".","1. Create/pick custom role ""No WO Access"" with Work Orders → View OFF.
+2. Assign to test user; user logs out and back in.
+3. As the test user, inspect the top-level navigation.
+4. Attempt to open a Work Order detail URL directly (if known).","1. Role saves; Edit and Delete are also OFF/greyed.
+2. New role active.
+3. The **Work Orders** nav item is **hidden** — no entry point to WO list or detail.
+4. Access is denied / page not reachable (no WO view).","With WO View OFF, the user has no visible access to Work Orders anywhere in the nav."
+CR-WO-003,Work Orders & Lines,View-only user cannot see Create/Edit/Delete actions,SV-7506,High,Negative,"Custom role ""WO Viewer"" (View ON, Edit OFF, Delete OFF) assigned to test user.",Existing Work Order with an invoice (no payments).,"1. Log in as the WO Viewer test user.
+2. Look for a ""Create Work Order"" / ""New WO"" action.
+3. Open a Work Order detail page.
+4. Look for Delete and Reverse Invoice actions.","1. User is on the Work Orders list.
+2. No create action is available.
+3. Fields (customer details, asset, service advisor, lead technician, status) are read-only; no edit controls.
+4. Neither the Delete WO action nor the Reverse Invoice action is available.","A View-only user sees no create, edit, delete, or invoice-reversal controls."
+CR-WO-004,Work Orders & Lines,Edit permission: create and edit Work Orders,SV-7506,Critical,Positive,"Custom role with Work Orders → **Edit** (""Create and Edit"") ON (which auto-enables View). Delete OFF. Assigned to test user.","Custom role ""WO Editor""; a customer, an asset, a service advisor, and a technician available to assign.","1. Create custom role ""WO Editor"" and turn Work Orders → **Edit** ON.
+2. Assign to test user; user logs out and back in.
+3. As the test user, create a new Work Order.
+4. Edit the WO: change customer details, change the asset, change service advisor, change lead technician, change status.
+5. Look for Delete and Reverse Invoice actions.","1. Turning Edit ON **auto-enables View** (cascade up). Delete stays OFF.
+2. New role active.
+3. WO is created successfully.
+4. All edits save successfully.
+5. Neither is available (Delete OFF).",An Edit-level user can create and fully edit WOs but cannot delete or reverse invoices.
+CR-WO-005,Work Orders & Lines,Edit-but-not-Delete user cannot delete a WO or reverse an invoice,SV-7506,Critical,Negative,"Custom role ""WO Editor"" (Edit ON, Delete OFF) assigned to test user.",A Work Order with an invoice that has **no payments made** (reversal would otherwise be allowed by validation).,"1. Log in as the WO Editor test user.
+2. Open a Work Order and look for a Delete action.
+3. Open the WO that has an invoice with no payments and look for a **Reverse Invoice** action.","1. User is on the Work Orders app.
+2. No Delete action is available.
+3. The Reverse Invoice action is **not available** — reversing an invoice requires Work Orders → **Delete** (per latest spec, NOT Invoicing Delete).","Without Work Orders → Delete, the user cannot delete WOs or reverse invoices even when invoice validation (no payments) would otherwise permit reversal."
+CR-WO-006,Work Orders & Lines,Delete permission: delete a Work Order,SV-7506,High,Positive,Custom role with Work Orders → **Delete** ON (auto-enables Edit + View). Assigned to test user.,"Custom role ""WO Manager""; a disposable Work Order that can be deleted.","1. Create custom role ""WO Manager""; turn Work Orders → **Delete** ON.
+2. Assign to test user; user logs out and back in.
+3. As the test user, open a disposable Work Order and delete it.","1. Turning Delete ON **auto-enables Edit and View** (cascade up).
+2. New role active.
+3. The WO is deleted successfully.",A Delete-level user can delete Work Orders (and has Edit + View by cascade).
+CR-WO-007,Work Orders & Lines,Delete permission: reverse an invoice when validation is met,SV-7506,Critical,Positive,"Custom role ""WO Manager"" (Work Orders → Delete ON) assigned to test user.",A Work Order with an invoice that has **no payments made** (validation for reversal is met).,"1. Log in as the WO Manager test user.
+2. Open the WO whose invoice has no payments.
+3. Reverse the invoice.
+4. (Optional) Open a WO whose invoice has payments made and attempt reversal.","1. User is on the Work Orders app.
+2. WO detail with invoice is shown; a **Reverse Invoice** action is available (gated by WO Delete).
+3. The invoice is reversed successfully.
+4. Reversal is blocked by **validation** (payments exist), independent of permission.","A user with WO Delete can reverse invoices when validation (e.g., no payments) is satisfied; validation still blocks reversal when payments exist."
+CR-WO-008,Work Orders & Lines,Cascade up: enabling Edit auto-enables View,SV-7506,High,Dependency,A custom role being edited with all Work Orders CRUD toggles OFF.,"Custom role ""Cascade Test"".","1. In the role editor, with WO View/Edit/Delete all OFF, turn **Edit** ON.
+2. Save and reopen the role.","1. **View** is automatically enabled. Delete stays OFF.
+2. View and Edit remain ON.",Enabling Edit forces View ON (upward cascade).
+CR-WO-009,Work Orders & Lines,Cascade up: enabling Delete auto-enables Edit and View,SV-7506,High,Dependency,A custom role being edited with all Work Orders CRUD toggles OFF.,"Custom role ""Cascade Test"".","1. With WO View/Edit/Delete all OFF, turn **Delete** ON.
+2. Save and reopen the role.","1. **Edit and View** are both automatically enabled.
+2. View, Edit, and Delete all remain ON.",Enabling Delete forces Edit and View ON (upward cascade).
+CR-WO-010,Work Orders & Lines,Cascade down: disabling View disables Edit and Delete,SV-7506,High,Dependency,"A custom role with Work Orders View, Edit, and Delete all ON.","Custom role ""Cascade Test"".","1. Open the role with WO View + Edit + Delete all ON.
+2. Turn **View** OFF.
+3. Save and reopen the role.","1. All three are ON.
+2. **Edit and Delete are automatically disabled** (downward cascade).
+3. View, Edit, Delete all OFF.",Disabling View forces Edit and Delete OFF.
+CR-WO-011,Work Orders & Lines,Cascade down: disabling Edit disables Delete,SV-7506,High,Dependency,"A custom role with Work Orders View, Edit, and Delete all ON.","Custom role ""Cascade Test"".","1. Open the role with WO View + Edit + Delete all ON.
+2. Turn **Edit** OFF.
+3. Save and reopen the role.","1. All three ON.
+2. **Delete is automatically disabled**; View stays ON.
+3. View ON; Edit and Delete OFF.",Disabling Edit forces Delete OFF while leaving View intact.
+CR-WO-012,Work Orders & Lines,"WO sub-settings require only WO View, not Edit",SV-7507,High,Dependency,"A custom role with Work Orders → View ON, Edit OFF, Delete OFF.","Custom role ""WO Viewer + Subs"".","1. In the role editor with WO View ON and Edit OFF, locate the three sub-settings: Review Work Orders, Pick Parts, Order Parts.
+2. Turn all three sub-settings ON and save.
+3. Assign to test user; log out/in; open a WO.","1. All three sub-settings are **enabled/interactable** (they require only WO View, not Edit).
+2. Saves successfully with View ON and Edit still OFF.
+3. Sub-setting capabilities are available even though the user has no Edit permission.",The three WO sub-settings are governed by WO View only and can be enabled without Edit.
+CR-WO-013,Work Orders & Lines,WO sub-settings greyed when WO View is OFF,SV-7507,Medium,UI,"Logged in as Administrator. Open Administration > Roles and Permissions, edit the custom role ""No WO Access"", and scroll to the Work Orders section.","Custom role ""No WO Access"" with Work Orders → View currently OFF.","1. In the Work Orders section of the role editor, set the ""View"" toggle OFF.
+2. Locate the Review Work Orders, Pick Parts, and Order Parts sub-settings.
+3. Set the Work Orders ""View"" toggle ON.","1. The Work Orders ""View"" toggle displays the OFF state.
+2. All three sub-settings remain **visible** on screen (not hidden) but render **greyed out / dimmed**, and clicking their toggles produces no change (disabled) because WO View is OFF.
+3. The three sub-settings return to full colour and each toggle becomes clickable/editable again.","Review Work Orders, Pick Parts, and Order Parts are always shown but appear greyed and disabled while WO View is OFF, and become editable once WO View is ON."
+CR-WO-014,Work Orders & Lines,Review Work Orders sub-setting ON: Review option available,SV-7507,High,Positive,Custom role with WO View ON and **Review Work Orders** sub-setting ON; other two subs OFF. Assigned to test user.,"Custom role ""WO Reviewer""; a Work Order eligible for review.","1. Configure role: WO View ON, Review Work Orders ON, Pick Parts OFF, Order Parts OFF.
+2. Assign to test user; log out/in; open a WO.","1. Role saves.
+2. The **Review** option is visible and usable on the WO.","With Review Work Orders ON, the user can see and use the Review option on WOs."
+CR-WO-015,Work Orders & Lines,Review Work Orders sub-setting OFF: Review option hidden,SV-7507,Medium,Negative,Custom role with WO View ON and **Review Work Orders** sub-setting OFF. Assigned to test user.,"Custom role ""WO Viewer No Review"".","1. Configure role: WO View ON, Review Work Orders OFF.
+2. Assign to test user; log out/in; open a WO.","1. Role saves.
+2. The Review option is **not available**.","With Review Work Orders OFF, the user cannot see/use the Review option."
+CR-WO-016,Work Orders & Lines,"Foreman-like config: Pick Parts ON, Order Parts OFF",SV-7507,High,Positive,"Custom role with WO View ON, **Pick Parts ON**, **Order Parts OFF** (Review off or on, independent). Assigned to test user.","Custom role ""Foreman""; a WO with a line; parts available in inventory.","1. Configure role: WO View ON, Pick Parts ON, Order Parts OFF.
+2. Assign to test user; log out/in; open a WO line.
+3. Attempt to place a PO / order parts on the WO.
+4. Attempt to receive a parts delivery onto the WO.","1. Role saves with these independent toggles as set.
+2. User can **pick parts from inventory** onto the WO line.
+3. Order Parts action is **not available** (Order Parts OFF).
+4. Receiving is **not available** (also controlled by Order Parts).",Pick Parts and Order Parts are independent; a Foreman-like user can pick parts but cannot order or receive parts.
+CR-WO-017,Work Orders & Lines,Order Parts ON: place PO and receive parts on a WO,SV-7507,High,Positive,Custom role with WO View ON and **Order Parts ON**. Assigned to test user.,"Custom role ""Parts Orderer""; a WO with a line; a part to order.","1. Configure role: WO View ON, Order Parts ON.
+2. Assign to test user; log out/in; open a WO.
+3. Place a PO for parts on the WO.
+4. Receive a parts delivery onto the WO.","1. Role saves.
+2. Order Parts capability is available.
+3. A PO is created and **linked to the WO**.
+4. Receiving parts delivery onto the WO succeeds (controlled by Order Parts).",Order Parts ON lets the user create WO-linked POs and receive parts deliveries onto the WO.
+CR-WO-018,Work Orders & Lines,Returning a part from a WO line requires no permission (only WO View),SV-7507,Medium,Positive,"Custom role with WO View ON, **Pick Parts OFF, Order Parts OFF, Review OFF**. Assigned to test user.","Custom role ""WO Viewer Only""; a WO line that already has a part on it that can be returned.","1. Configure role: WO View ON, all three sub-settings OFF.
+2. Assign to test user; log out/in; open the WO line with a part on it.
+3. Return the part from the WO line.","1. Role saves.
+2. The line and its part are visible (WO View).
+3. The return succeeds — **returning a part requires no permission** beyond WO View.",A user with only WO View (no sub-settings) can still return a part from a WO line.
+CR-WO-019,Work Orders & Lines,WO Lines has no independent View; visible when WO View is ON,SV-7509,High,Dependency,A custom role with WO View ON.,"Custom role ""WO Viewer""; a WO with lines.","1. Inspect the role editor for a Work Order Lines **View** toggle.
+2. With WO View ON, assign to test user; log out/in; open a WO.","1. There is **no independent View** for WO Lines.
+2. The WO **lines are visible** because WO View is ON.",WO Lines have no separate View; they appear whenever WO View is ON.
+CR-WO-020,Work Orders & Lines,WO Lines Edit: add/edit lines and line management actions,SV-7509,Critical,Positive,"Custom role with WO View ON and Work Order Lines → **Edit** ON, Delete OFF. Assigned to test user.","Custom role ""Line Editor""; a WO with at least two lines and parts to move; a part request; an inspection to add.","1. Configure role: WO View ON, WO Lines Edit ON, WO Lines Delete OFF.
+2. Assign to test user; log out/in; open a WO.
+3. Add a new line and edit an existing line.
+4. Move parts between lines.
+5. Authorize a line; manage a part request; add an inspection to a WO line.
+6. Edit mileage, engine hours, license plate, and VIN.","1. Role saves.
+2. Lines are visible and editable.
+3. Add/edit succeed.
+4. Parts move successfully.
+5. Each action succeeds.
+6. All edits save.","A WO Lines Edit user can add/edit lines, move parts, authorize lines, manage part requests, add inspections, and edit mileage/engine hours/license plate/VIN."
+CR-WO-021,Work Orders & Lines,WO Lines Delete: remove lines,SV-7509,High,Positive,Custom role with WO View ON and Work Order Lines → **Delete** ON (auto-enables WO Lines Edit). Assigned to test user.,"Custom role ""Line Manager""; a WO with a disposable line.","1. Configure role: WO View ON, WO Lines Delete ON (Edit auto-enabled).
+2. Assign to test user; log out/in; open a WO.
+3. Remove a WO line.","1. Role saves.
+2. Lines are visible/editable/removable.
+3. The line is removed successfully.",A WO Lines Delete user can remove lines.
+CR-WO-022,Work Orders & Lines,WO Lines Delete required to remove not-yet-complete inspections and reopen completed inspections (SV-7985),SV-7509,Critical,Security,Two custom roles: (A) WO View ON + WO Lines **Edit only** (Delete OFF); (B) WO View ON + WO Lines **Delete** ON. Each assigned to a test user.,A WO line with a **not-yet-complete** Digital Inspection and a **completed** Digital Inspection.,"1. Log in as user with role A (WO Lines Edit only, Delete OFF); open the WO line with inspections.
+2. Attempt to **remove the not-yet-complete inspection**.
+3. Attempt to **reopen the completed inspection**.
+4. Log out; log in as user with role B (WO Lines Delete ON); open the same WO line.
+5. Remove the not-yet-complete inspection.
+6. Reopen the completed inspection.","1. Lines and inspections are visible.
+2. Action is **not available / blocked** — removing an inspection requires WO Lines **Delete**, not Edit.
+3. Action is **not available / blocked** — reopening requires WO Lines **Delete**.
+4. Delete-level actions available.
+5. Removal succeeds.
+6. Reopen succeeds.",Removing not-yet-complete inspections and reopening completed inspections are gated on WO Lines **Delete** (correct gating for regression SV-7985; Create&Edit alone must NOT allow these).
+CR-WO-023,Work Orders & Lines,WO Lines not shown/usable when WO View is OFF (SV-7981),SV-7509,High,Dependency,A custom role with WO View OFF.,"Custom role ""No WO Access"".","1. In the role editor set WO View OFF.
+2. Inspect the WO Lines toggles.
+3. If somehow set, assign to test user; log out/in.","1. View OFF.
+2. Editor should **not allow** enabling WO Lines Create&Edit while WO View is OFF (regression SV-7981: the WO Lines options should be disabled/greyed when WO View is OFF).
+3. The user cannot see or use WO Lines because there is no WO View entry point.","With WO View OFF, WO Lines are neither shown nor usable, and the role editor prevents enabling WO Lines Create&Edit (SV-7981 correct behavior)."
+CR-WO-024,Work Orders & Lines,Edit-only WO Lines user cannot delete lines,SV-7509,Medium,Negative,"Custom role ""Line Editor"" (WO View ON, WO Lines Edit ON, Delete OFF) assigned to test user.",A WO with a line.,"1. Log in as the Line Editor test user; open a WO.
+2. Look for a delete/remove line action.","1. Lines are visible and editable.
+2. No line-delete action is available (WO Lines Delete OFF).",A WO Lines Edit-only user can edit but not delete lines.
+CR-VIEWMODE-001,View Mode,"Full View: all fields, forms, and workflow actions present",SV-7508,Critical,Positive,"Custom role with **View Mode = Full**, WO View + Edit ON, Review Work Orders ON, See Financial Data ON. Assigned to test user.","Custom role ""Full View Advisor""; a WO with lines and a parts request.","1. Configure role ""Full View Advisor"" with View Mode = Full.
+2. Assign to test user; log out/in; open a WO.
+3. Inspect WO line fields.
+4. Open the parts request form.
+5. Check workflow actions (approve, review, split) and the Estimate column.","1. Role saves with Full View.
+2. WO opens in Full View.
+3. All fields are visible/editable (subject to CRUD).
+4. The **full** parts request form is shown.
+5. Approve, split available; Review available (Review permission ON). Estimate column shows the **actual estimate**. The **Send to Portal** button is present.","A Full View user has full fields, the full parts request form, all workflow actions, the actual-estimate column, and the Send to Portal button."
+CR-VIEWMODE-002,View Mode,"Tech View: Estimate column shows Tech Time, not actual estimate",SV-7508,High,Positive,"Custom role with **View Mode = Tech**, WO View + Edit ON. Assigned to test user.","Custom role ""Tech View Role""; a WO with lines that have estimates and tech time.","1. Configure role ""Tech View Role"" with View Mode = Tech.
+2. Assign to test user; log out/in; open a WO.
+3. Look at the Estimate column on the lines.
+4. (Compare) As a Full View user on the same WO, view the Estimate column.","1. Role saves with Tech View.
+2. WO opens in Tech View.
+3. The Estimate column shows **Tech Time** (not the actual estimate).
+4. Full View shows the **actual estimate** — confirming the difference.",In Tech View the Estimate column shows Tech Time; in Full View it shows the actual estimate.
+CR-VIEWMODE-003,View Mode,Tech View: no tech time field,SV-7508,Medium,Negative,"Custom role ""Tech View Role"" (View Mode = Tech) assigned to test user.",A WO with lines.,"1. Log in as the Tech View user; open a WO line.
+2. Look for a **tech time field** to enter/edit tech time.","1. Line opens in Tech View.
+2. No tech time field is present in Tech View.",Tech View hides the tech time field.
+CR-VIEWMODE-004,View Mode,Tech View: no approve action / cannot approve lines,SV-7508,High,Negative,"Custom role ""Tech View Role"" (View Mode = Tech) assigned to test user. Compare against a Full View role.",A WO with a line awaiting approval.,"1. Log in as the Tech View user; open a WO with a line awaiting approval.
+2. Look for the **approve** action and try to approve a line.
+3. (Compare) As a Full View user on the same WO, look for approve.","1. WO opens in Tech View.
+2. No approve action is available; the user **cannot approve lines**.
+3. The approve action is available in Full View.",Tech View hides workflow-approve actions; Full View shows them.
+CR-VIEWMODE-005,View Mode,Tech View: cannot Send to Portal (button hidden),SV-7508,High,Negative,"Custom role ""Tech View Role"" (View Mode = Tech) assigned to test user. Compare against Full View role.",A WO eligible for Send to Portal.,"1. Log in as the Tech View user; open a WO.
+2. Look for the **Send to Portal** button.
+3. (Compare) As a Full View user on the same WO, look for the button.","1. WO opens in Tech View.
+2. The Send to Portal button is **not present** in Tech View.
+3. Send to Portal button is present in Full View.",The Send to Portal button appears only in Full View.
+CR-VIEWMODE-006,View Mode,Tech View: cannot view labor rates,SV-7508,Medium,Negative,"Custom role ""Tech View Role"" (View Mode = Tech) assigned to test user.",A WO whose lines carry labor rates.,"1. Log in as the Tech View user; open a WO.
+2. Look for labor rate values on the lines.","1. WO opens in Tech View.
+2. Labor rates are **not viewable** in Tech View.",Tech View hides labor rates.
+CR-VIEWMODE-007,View Mode,Tech View: limited parts request form,SV-7508,Medium,Positive,"Custom role ""Tech View Role"" (View Mode = Tech) assigned to test user. Compare against Full View role.",A WO where a parts request can be made.,"1. Log in as the Tech View user; open the parts request form on a WO.
+2. (Compare) As a Full View user, open the parts request form.","1. A **limited** parts request form is shown (fewer fields/options than Full View).
+2. The **full** parts request form is shown.",Tech View presents a limited parts request form; Full View presents the full form.
+CR-VIEWMODE-008,View Mode,Tech View: create-only line editing (cannot edit existing lines),SV-7508,High,Positive,"Custom role ""Tech View Role"" (View Mode = Tech, WO View + Edit + WO Lines Edit ON) assigned to test user.",A WO with an **existing** line (authorization pending) and the ability to create a new line.,"1. Log in as the Tech View user; open a WO.
+2. Create a **new** WO line.
+3. Attempt to **edit an existing** WO line whose authorization is still pending.
+4. (Compare) As a Full View user, edit an existing line.","1. WO opens in Tech View.
+2. Creating a new line is allowed (create-only).
+3. Editing existing lines is restricted in Tech View (create-only); confirm the behavior per spec — Tech View is create-only for lines.
+4. Full View allows editing existing lines (subject to CRUD).","In Tech View, line editing is effectively create-only; existing-line editing is limited compared to Full View."
+CR-VIEWMODE-009,View Mode,"Tech View: WO lines read-only after approval, editable while pending",SV-7508,High,Positive,"Custom role ""Tech View Role"" (View Mode = Tech, WO Lines Edit ON) assigned to test user.",A WO with one line whose **authorization is pending** and one line that has been **approved**.,"1. Log in as the Tech View user; open the WO.
+2. Open the line whose **authorization is pending**.
+3. Open the **approved** line.","1. WO opens in Tech View.
+2. The line is **editable** while authorization is pending.
+3. The line is **read-only** (editable only while authorization was pending).","In Tech View, WO lines are editable only while authorization is pending and become read-only after approval."
+CR-VIEWMODE-010,View Mode,View Mode is independent from See Financial Data,SV-7508,Critical,Dependency,Custom role with **View Mode = Tech** and **See Financial Data = ON**. Assigned to test user. Also prepare a variant with See Financial Data OFF.,"Custom role ""Tech+Financial""; a WO whose lines have financial columns.","1. Configure ""Tech+Financial"": View Mode = Tech, See Financial Data ON.
+2. Assign to test user; log out/in; open a WO.
+3. Check financial column visibility.
+4. Change the role's See Financial Data to OFF (keep Tech View); log out/in; reopen the WO.","1. Role saves; the two settings are independent controls.
+2. WO opens in Tech View.
+3. Financial columns are governed by **See Financial Data** (ON) — not by View Mode — so they are visible even in Tech View.
+4. Financial columns are now hidden, driven solely by the See Financial Data toggle while View Mode stays Tech.",View Mode controls UI complexity only; financial column visibility is controlled independently by See Financial Data (not a security boundary in View Mode).
+CR-VIEWMODE-011,View Mode,Review permission wins over Tech View for review capability,SV-7508,Medium,Dependency,Custom role with **View Mode = Tech** and **Review Work Orders** sub-setting ON. Assigned to test user.,"Custom role ""Tech Reviewer""; a WO eligible for review.","1. Configure ""Tech Reviewer"": View Mode = Tech, Review Work Orders ON, WO View ON.
+2. Assign to test user; log out/in; open a WO.
+3. Look for the Review capability on the WO.
+4. Check general workflow-approve actions (approve/split).","1. Role saves.
+2. WO opens in Tech View.
+3. Per clarification ""Review Work Order always wins over Tech View"" — with the Review permission ON, the **review capability applies** even in Tech View.
+4. General workflow-approve actions remain **hidden** in Tech View (only Review is granted via the Review permission).","With Review Work Orders ON, the review capability applies even in Tech View, while other workflow-approve actions stay hidden."
+CR-VIEWMODE-012,View Mode,Tech View review hidden when Review permission is OFF,SV-7508,Medium,Negative,Custom role with **View Mode = Tech** and **Review Work Orders** sub-setting OFF. Assigned to test user.,"Custom role ""Tech No Review""; a WO.","1. Configure ""Tech No Review"": View Mode = Tech, Review Work Orders OFF.
+2. Assign to test user; log out/in; open a WO.
+3. Look for the Review capability.","1. Role saves.
+2. WO opens in Tech View.
+3. Review is **not available** (Review permission OFF and Tech View also hides review).","In Tech View with Review permission OFF, the user cannot review WOs."
+CR-VIEWMODE-013,View Mode,Full View role can Send to Portal (positive counterpart),SV-7508,Medium,Positive,"Custom role ""Full View Advisor"" (View Mode = Full) assigned to test user.",A WO eligible for Send to Portal.,"1. Log in as the Full View user; open a WO.
+2. Click **Send to Portal**.","1. WO opens in Full View.
+2. The button is present and the send action works.",Full View exposes and allows the Send to Portal action.
+CR-VIEWMODE-014,View Mode,Technician system role defaults to Tech View; custom roles default to Full,SV-7508,Low,Regression,"Ability to inspect system roles (Technician, Time Clock) and create a new custom role.",System roles Technician and Time Clock; a new custom role.,"1. Open the **Technician** system role and inspect its View Mode.
+2. Open a non-technician system role and inspect its View Mode.
+3. Open the **Time Clock** role and inspect its View Mode.
+4. Create a new custom role and inspect the default View Mode.","1. View Mode is **Tech** by default.
+2. View Mode is **Full**.
+3. View Mode is **empty**.
+4. Custom/other roles default to **Full** View (selectable to Tech).","Technician defaults to Tech View, other roles default to Full, and Time Clock has an empty view mode."
+CR-SCHED-001,Schedule,Schedule View enabled shows Schedule nav and all technicians' appointments,SV-7510,Critical,Positive,"Custom role with Schedule: View = ON, Edit = OFF, Delete = OFF exists. At least two technicians have appointments on the calendar.","Role ""SCHED View Only""; test user schedview@test; two techs (Tech A, Tech B) each with ≥1 appointment","1. Create/pick custom role with Schedule: View = ON only.
+2. Assign the role to test user and log in as that user.
+3. Locate the Schedule/Calendar item in the main navigation.
+4. Open the Schedule page.
+5. Inspect the appointments shown for Tech A and Tech B.","1. Role saved; Edit and Delete remain OFF.
+2. Login succeeds.
+3. Schedule nav item is visible.
+4. Calendar/schedule loads with appointments and technician assignments.
+5. Appointments for ALL technicians are visible (shared resource); there is no ""own only"" filter limiting the view to a single technician.",A Schedule View-only user can open the Schedule and see all technicians' appointments read-only.
+CR-SCHED-002,Schedule,Schedule View OFF hides the Schedule nav item,SV-7510,High,Negative,Custom role with Schedule: View = OFF (Edit/Delete therefore OFF via cascade).,"Role ""SCHED No Access""; test user noschted@test","1. Create/pick custom role with Schedule: View = OFF.
+2. Assign role to test user and log in as that user.
+3. Inspect the main navigation.
+4. Attempt to reach the schedule via a direct URL (if known).","1. Edit and Delete are also OFF (cascade).
+2. Login succeeds.
+3. No Schedule/Calendar nav item is present.
+4. User cannot access the schedule page (blocked/redirected).","With Schedule View OFF, the Schedule nav is hidden and the schedule is inaccessible."
+CR-SCHED-003,Schedule,Cascade: enabling Schedule Edit auto-enables View,SV-7510,High,Dependency,New/edited custom role with all Schedule CRUD OFF.,"Role ""SCHED Edit Cascade""","1. Open the role's Schedule permissions with View/Edit/Delete all OFF.
+2. Toggle Schedule: Edit = ON.
+3. Save the role.","1. All three OFF.
+2. View automatically turns ON as well.
+3. Role saves with View = ON, Edit = ON, Delete = OFF.",Enabling Schedule Edit auto-enables Schedule View.
+CR-SCHED-004,Schedule,Cascade: enabling Schedule Delete auto-enables Edit + View,SV-7510,High,Dependency,New/edited custom role with all Schedule CRUD OFF.,"Role ""SCHED Delete Cascade""","1. Open the role's Schedule permissions with View/Edit/Delete all OFF.
+2. Toggle Schedule: Delete = ON.
+3. Save the role.","1. All three OFF.
+2. Edit and View both automatically turn ON.
+3. Role saves with View = ON, Edit = ON, Delete = ON.",Enabling Schedule Delete auto-enables both Edit and View.
+CR-SCHED-005,Schedule,Cascade: disabling Schedule View disables Edit + Delete,SV-7510,High,Dependency,"Custom role with Schedule: View = ON, Edit = ON, Delete = ON.","Role ""SCHED Full""","1. Open the role with Schedule View/Edit/Delete all ON.
+2. Toggle Schedule: View = OFF.
+3. Save the role.","1. All three ON.
+2. Edit and Delete automatically turn OFF.
+3. Role saves with View = OFF, Edit = OFF, Delete = OFF.",Disabling Schedule View cascades OFF to Edit and Delete.
+CR-SCHED-006,Schedule,Cascade: disabling Schedule Edit disables Delete,SV-7510,Medium,Dependency,"Custom role with Schedule: View = ON, Edit = ON, Delete = ON.","Role ""SCHED Full""","1. Open the role with Schedule View/Edit/Delete all ON.
+2. Toggle Schedule: Edit = OFF.
+3. Save the role.","1. All three ON.
+2. Delete automatically turns OFF; View stays ON.
+3. Role saves with View = ON, Edit = OFF, Delete = OFF.",Disabling Schedule Edit cascades OFF to Delete while View remains.
+CR-SCHED-007,Schedule,"Schedule View-only user cannot create, drag, or delete appointments",SV-7510,Critical,Negative,"Custom role with Schedule: View = ON, Edit = OFF, Delete = OFF assigned to a test user.","Role ""SCHED View Only""; test user schedview@test; existing appointment ""Appt-1""","1. Log in as the Schedule View-only user and open the Schedule.
+2. Attempt to create a new appointment (new event / add button).
+3. Attempt to drag-and-drop an existing appointment to a new slot.
+4. Attempt to reassign a technician to a slot.
+5. Attempt to delete ""Appt-1"".","1. Calendar loads read-only.
+2. No create control is available, or the action is blocked/disabled.
+3. Drag-and-drop is disabled; the appointment cannot be moved.
+4. Assignment controls are unavailable/disabled.
+5. No delete control is available; deletion is not possible.","A Schedule View-only user can view but cannot create, modify (drag/assign), or delete appointments."
+CR-SCHED-008,Schedule,"Schedule Edit user can create appointments, assign techs, and drag-and-drop",SV-7510,Critical,Positive,"Custom role with Schedule: View = ON, Edit = ON, Delete = OFF assigned to a test user.","Role ""SCHED Edit""; test user schededit@test; Tech A; WO-100","1. Log in as the Schedule Edit user and open the Schedule.
+2. Create a new appointment in an open slot.
+3. Assign Tech A to the new appointment slot.
+4. Drag-and-drop the appointment to a different time slot.","1. Calendar loads with create/edit controls available.
+2. Appointment is created and persists on the calendar.
+3. Tech A is assigned and shown on the appointment.
+4. Appointment moves and the new time is saved.","A Schedule Edit user can create appointments, assign technicians, and reschedule via drag-and-drop."
+CR-SCHED-009,Schedule,Schedule Edit-not-Delete user cannot delete appointments,SV-7510,High,Negative,"Custom role with Schedule: View = ON, Edit = ON, Delete = OFF assigned to a test user.","Role ""SCHED Edit""; test user schededit@test; existing appointment ""Appt-2""","1. Log in as the Schedule Edit (no Delete) user and open the Schedule.
+2. Open ""Appt-2"" and modify its details (e.g., time or notes).
+3. Look for a delete option on ""Appt-2"".","1. Calendar loads with edit controls.
+2. Edit succeeds and is saved.
+3. No delete control is available; the appointment cannot be removed.",A Schedule Edit-without-Delete user can modify but not delete appointments.
+CR-SCHED-010,Schedule,Schedule Delete user can remove appointments,SV-7510,High,Positive,"Custom role with Schedule: View = ON, Edit = ON, Delete = ON assigned to a test user.","Role ""SCHED Full""; test user schedfull@test; existing appointment ""Appt-3""","1. Log in as the Schedule Delete user and open the Schedule.
+2. Open ""Appt-3"" and select Delete.
+3. Confirm deletion.","1. Calendar loads with full controls.
+2. A delete/confirm control is available.
+3. ""Appt-3"" is removed from the schedule and no longer appears after refresh.",A Schedule Delete user can permanently remove appointments.
+CR-SCHED-011,Schedule,Regression (SV-8047): Schedule View-only user can log in and reach the schedule,SV-8047,Critical,Regression,"Custom role with Schedule: View = ON only, assigned to a test user. (Bug: this role previously showed ""Access Restricted"" on login.)","Role ""SCHED View Only""; test user schedview@test","1. Assign the Schedule View-only role to the test user.
+2. Log in as the Schedule View-only user.
+3. Confirm the landing/home loads normally.
+4. Open the Schedule from the nav.","1. Role assigned; user forced to log out.
+2. Login succeeds; NO ""Access Restricted"" page appears.
+3. User reaches the application without an access error.
+4. Schedule page loads and displays appointments read-only.","A Schedule View-only user logs in without an ""Access Restricted"" error and can reach the schedule (SV-8047 fixed)."
+CR-SCHED-012,Schedule,"Regression (SV-8048): Schedule View + Create&Edit — new events persist and ""Assign to existing WO"" works",SV-8048,Critical,Regression,"Custom role with Schedule: View = ON, Edit (Create&Edit) = ON, assigned to a test user. (Bug: new events disappeared and ""Assign to existing WO"" failed.)","Role ""SCHED Edit""; test user schededit@test; existing WO-200","1. Log in as the Schedule Create&Edit user and open the Schedule.
+2. Create a new event/appointment and save it.
+3. Refresh the Schedule page.
+4. On a new or existing event, choose ""Assign to existing WO"" and select WO-200.
+5. Reopen the event to confirm the WO link.","1. Calendar loads with create controls.
+2. Event is created and remains visible after save.
+3. The new event still appears (it does NOT disappear).
+4. Assignment succeeds; the event is linked to WO-200 without error.
+5. WO-200 is shown as the assigned work order.","New schedule events persist after refresh and ""Assign to existing WO"" completes successfully (SV-8048 fixed)."
+CR-CUST-001,Customer Management,Customer View enabled shows Customers nav and customer records,SV-7511,Critical,Positive,"Custom role with Customers: View = ON, Edit = OFF, Delete = OFF.","Role ""CUST View Only""; test user custview@test; customer ""Acme Fleet"" with 1 contact and 1 vehicle","1. Create/pick custom role with Customers: View = ON only.
+2. Assign the role to test user and log in as that user.
+3. Locate the Customers item in the main navigation.
+4. Open ""Acme Fleet"".","1. Role saved; Edit and Delete remain OFF.
+2. Login succeeds.
+3. Customers nav item is visible.
+4. Customer record loads showing contacts, vehicles/assets, and vehicle history.","A Customers View-only user can open the Customers area and read customer records, contacts, vehicles, and history."
+CR-CUST-002,Customer Management,Customer View OFF hides the Customers nav item,SV-7511,High,Negative,Custom role with Customers: View = OFF (Edit/Delete therefore OFF via cascade).,"Role ""CUST No Access""; test user nocust@test","1. Create/pick custom role with Customers: View = OFF.
+2. Assign role to test user and log in as that user.
+3. Inspect the main navigation.
+4. Attempt to reach the Customers list via a direct URL (if known).","1. Edit and Delete are also OFF (cascade).
+2. Login succeeds.
+3. No Customers nav item is present.
+4. User cannot access the Customers area (blocked/redirected).","With Customers View OFF, the Customers nav is hidden and the area is inaccessible."
+CR-CUST-003,Customer Management,Cascade: enabling Customer Edit auto-enables View,SV-7511,High,Dependency,New/edited custom role with all Customers CRUD OFF.,"Role ""CUST Edit Cascade""","1. Open the role's Customers permissions with View/Edit/Delete all OFF.
+2. Toggle Customers: Edit = ON.
+3. Save the role.","1. All three OFF.
+2. View automatically turns ON.
+3. Role saves with View = ON, Edit = ON, Delete = OFF.",Enabling Customer Edit auto-enables Customer View.
+CR-CUST-004,Customer Management,Cascade: enabling Customer Delete auto-enables Edit + View,SV-7511,High,Dependency,New/edited custom role with all Customers CRUD OFF.,"Role ""CUST Delete Cascade""","1. Open the role's Customers permissions with View/Edit/Delete all OFF.
+2. Toggle Customers: Delete = ON.
+3. Save the role.","1. All three OFF.
+2. Edit and View both automatically turn ON.
+3. Role saves with View = ON, Edit = ON, Delete = ON.",Enabling Customer Delete auto-enables both Edit and View.
+CR-CUST-005,Customer Management,Cascade: disabling Customer View disables Edit + Delete,SV-7511,High,Dependency,"Custom role with Customers: View = ON, Edit = ON, Delete = ON.","Role ""CUST Full""","1. Open the role with Customers View/Edit/Delete all ON.
+2. Toggle Customers: View = OFF.
+3. Save the role.","1. All three ON.
+2. Edit and Delete automatically turn OFF.
+3. Role saves with View = OFF, Edit = OFF, Delete = OFF.",Disabling Customer View cascades OFF to Edit and Delete.
+CR-CUST-006,Customer Management,Cascade: disabling Customer Edit disables Delete,SV-7511,Medium,Dependency,"Custom role with Customers: View = ON, Edit = ON, Delete = ON.","Role ""CUST Full""","1. Open the role with Customers View/Edit/Delete all ON.
+2. Toggle Customers: Edit = OFF.
+3. Save the role.","1. All three ON.
+2. Delete automatically turns OFF; View stays ON.
+3. Role saves with View = ON, Edit = OFF, Delete = OFF.",Disabling Customer Edit cascades OFF to Delete while View remains.
+CR-CUST-007,Customer Management,"Customer Edit user can create/edit customers, contacts, and vehicles",SV-7511,Critical,Positive,"Custom role with Customers: View = ON, Edit = ON, Delete = OFF assigned to a test user.","Role ""CUST Edit""; test user custedit@test","1. Log in as the Customers Edit user and open Customers.
+2. Create a new customer record and save.
+3. Open the customer and add a new contact.
+4. Add a new vehicle/asset to the customer.
+5. Edit an existing field on the customer and save.","1. Customers list loads with create controls (e.g., ""Add Customer"").
+2. Customer is created and appears in the list.
+3. Contact is added and saved.
+4. Vehicle/asset is added and saved.
+5. Change is persisted.","A Customers Edit user can create and edit customers, contacts, and vehicles/assets."
+CR-CUST-008,Customer Management,Customer View-only user cannot create or edit; Add buttons hidden (SV-8002),SV-8002,High,Negative,"Custom role with Customers: View = ON, Edit = OFF, Delete = OFF assigned to a test user.","Role ""CUST View Only""; test user custview@test; existing customer ""Acme Fleet""","1. Log in as the Customers View-only user and open Customers.
+2. Look for an ""Add Customer"" control on the list.
+3. Open ""Acme Fleet"" and look for the ""Add {Asset}"" control.
+4. Attempt to edit a customer field.","1. Customers list loads read-only.
+2. The ""Add {Customer}"" button is hidden (SV-8002).
+3. The ""Add {Asset}"" button is hidden.
+4. No edit controls available; the record is read-only.",A Customers View-only user sees records read-only with the Add Customer / Add Asset buttons hidden.
+CR-CUST-009,Customer Management,Customer Delete user can delete customer records,SV-7511,High,Positive,"Custom role with Customers: View = ON, Edit = ON, Delete = ON assigned to a test user.","Role ""CUST Full""; test user custfull@test; disposable customer ""Temp Cust""","1. Log in as the Customers Delete user and open ""Temp Cust"".
+2. Select Delete and confirm.","1. Record loads with a delete control available.
+2. ""Temp Cust"" is deleted and no longer appears in the list.",A Customers Delete user can delete customer records.
+CR-CUST-010,Customer Management,Customer Delete does NOT control deleting customer payments,SV-7511,Medium,Negative,"Custom role with Customers: View/Edit/Delete = ON but Invoicing: Delete = OFF, assigned to a test user.","Role ""CUST Full / No Invoicing Delete""; test user custnopay@test; a customer with a recorded payment","1. Log in as the user (Customers Delete ON, Invoicing Delete OFF).
+2. Open a customer that has a recorded payment.
+3. Attempt to delete the customer payment.","1. Login succeeds; Customers area accessible.
+2. Customer and payment are visible.
+3. Deleting the payment is NOT permitted (it requires Invoicing: Delete, which is OFF).",Customers Delete permission does not grant the ability to delete customer payments; that requires Invoicing: Delete.
+CR-CUST-011,Customer Management,Sensitive customer fields hidden when Manage AP/AR is OFF,SV-7511,Critical,Security,"Custom role with Customers: View = ON, Edit = ON, and Manage AP/AR (`seeApArData`) = OFF, assigned to a test user.","Role ""CUST Edit / No AP-AR""; test user custnoapar@test; existing customer ""Acme Fleet""","1. Log in as the user (Customers Edit ON, Manage AP/AR OFF).
+2. Open ""Acme Fleet"" and view the Customer Overview panel.
+3. Open the Edit Customer modal.","1. Login succeeds; Customers accessible.
+2. Sensitive fields are hidden: Credit Terms, Credit Limit, Default Labor Rate, Default Shop Supplies, Min and Max, Taxes, and ""PO is Required"" are NOT shown.
+3. The same sensitive fields (Credit Terms, Credit Limit, Default Labor Rate, Default Shop Supplies, Min and Max, Taxes, ""PO is Required"") are hidden on the modal.","With Manage AP/AR OFF, all AP/AR-gated sensitive customer fields are hidden on both the Customer Overview panel and the Edit Customer modal."
+CR-CUST-012,Customer Management,Sensitive customer fields visible when Manage AP/AR is ON,SV-7511,High,Positive,"Custom role with Customers: View = ON, Edit = ON, and Manage AP/AR (`seeApArData`) = ON, assigned to a test user.","Role ""CUST Edit / AP-AR""; test user custapar@test; existing customer ""Acme Fleet""","1. Log in as the user (Customers Edit ON, Manage AP/AR ON).
+2. Open ""Acme Fleet"" → Customer Overview panel.
+3. Open the Edit Customer modal and edit a sensitive field (e.g., Credit Limit) and save.","1. Login succeeds; Customers accessible.
+2. Sensitive fields are visible: Credit Terms, Credit Limit, Default Labor Rate, Default Shop Supplies, Min and Max, Taxes, ""PO is Required"".
+3. Field is editable and the change persists.","With Manage AP/AR ON, the AP/AR-gated sensitive customer fields are visible and editable on both the Overview panel and the Edit Customer modal."
+CR-CUST-013,Customer Management,Edit user can create a customer within the New Work Order flow,SV-7511,High,Positive,"Custom role with Customers: Edit = ON (View auto-ON) plus permission to create a New Work Order, assigned to a test user.","Role ""CUST Edit + WO Create""; test user custwoedit@test","1. Log in as the user and start the New Work Order flow.
+2. In the customer step, use the ""Add {Customer}"" control.
+3. Create a new customer inline and continue.
+4. (Optional) Use ""Add {Asset}"" to add a vehicle inline.","1. New WO flow opens.
+2. The Add Customer button is available (Edit is ON).
+3. New customer is created and selected on the WO.
+4. Asset add button is available and the asset is created.",A user with Customers Edit can create a customer (and asset) inside the New Work Order flow.
+CR-CUST-014,Customer Management,Reference-only picker: WO creator without Customers access can pick but not navigate,SV-7511,High,Dependency,"Custom role with Customers: View = OFF (no Customers access) but permission to create a New Work Order, assigned to a test user. At least one existing customer to pick.","Role ""WO Create / No Customers""; test user wonocust@test; existing customer ""Acme Fleet""","1. Log in as the user (Customers View OFF, WO create ON).
+2. Inspect the main navigation.
+3. Start the New Work Order flow and open the customer picker.
+4. Attempt to navigate into the Customers area/tab from anywhere.","1. Login succeeds.
+2. No Customers nav/tab is present (hidden).
+3. Existing customers (e.g., ""Acme Fleet"") can be selected as reference in the WO flow.
+4. No Customers nav/tab is available; picking is reference-only and does not grant Customers navigation.","A WO-create user with no Customers access can pick an existing customer in the New WO flow, but the Customers nav/tab stays hidden (reference-only)."
+CR-CUST-015,Customer Management,SV-8050: Customers View-only user does not see Part Sales / WO tabs when those areas are OFF,SV-8050,High,Regression,"Custom role with Customers: View = ON, but Part Sales access = OFF and Work Orders access = OFF, assigned to a test user. (Bug: these tabs appeared on the customer profile even though the areas were off.)","Role ""CUST View / No PartSales / No WO""; test user custtabs@test; customer ""Acme Fleet""","1. Log in as the user (Customers View ON, Part Sales OFF, Work Orders OFF).
+2. Open the ""Acme Fleet"" customer profile.
+3. Inspect the profile tabs.
+4. Continue inspecting the profile tabs.","1. Login succeeds; Customers accessible.
+2. Profile loads.
+3. The Part Sales tab is NOT shown (Part Sales area is OFF).
+4. The Work Orders (WO) tab is NOT shown (Work Orders area is OFF).",A Customers View-only user does not see the Part Sales or WO tabs on the customer profile when those areas are off (SV-8050 fixed).
+CR-PARTS-001,Parts Department,Parent gate OFF hides all three child areas for the end user,SV-7520,Critical,Dependency,Admin access to role editor. A test user available for assignment.,"Custom role ""PARTS-ParentOff"": Parts Department = OFF, but each child (Part Sales, Catalog & Inventory, Vendor & Order Management) configured with View = ON.","1. As Administrator, create custom role ""PARTS-ParentOff"" with Parts Department OFF and, if reachable, each child's View ON. Save.
+2. Assign ""PARTS-ParentOff"" to the test user and save.
+3. Log in as the test user in Browser A.
+4. Inspect the main navigation.","1. Role saves.
+2. Assignment saves; the user is forced to log out if currently logged in.
+3. Login succeeds.
+4. No Part Sales, Catalog & Inventory, or Vendor & Order Management nav entries appear. The Parts department is inaccessible.","With Parts Department OFF, none of the three child areas are accessible to the user regardless of the children's own CRUD settings."
+CR-PARTS-002,Parts Department,Parent gate OFF preserves child settings; toggling ON restores them,SV-7520,High,Dependency,Admin access to role editor.,"Custom role ""PARTS-Preserve"" with Parts Department ON and distinct child settings: Part Sales = View+Edit, Catalog & Inventory = View only, Vendor & Order Management = View+Edit+Delete.","1. Create ""PARTS-Preserve"" with Parts Department ON and the child settings above. Save.
+2. Reopen the role, turn Parts Department OFF, and save.
+3. Reopen the role, turn Parts Department back ON.
+4. Save and reassign to the test user; log in as the test user.","1. Role saves with the three children configured as specified.
+2. Role saves; the three child areas are gated off.
+3. The three children reappear with their PREVIOUSLY saved settings intact (Part Sales View+Edit, Catalog View only, Vendor View+Edit+Delete) — not reset or blanked.
+4. User sees exactly the previously configured access for each child.",Turning Parts Department OFF preserves each child's CRUD configuration; turning it back ON restores those exact settings.
+CR-PARTS-003,Parts Department,Role editor slide-hides the three children when Parts Department is turned OFF,SV-7520,Medium,UI,"Logged in as Administrator with permission to edit roles. Open Administration > Roles and Permissions and edit the custom role ""PARTS-Editor-UI"".","Custom role ""PARTS-Editor-UI"" with the Parts Department parent toggle currently ON and its child sections configured.","1. In the role editor, scroll to the Parts Department section with its parent toggle ON.
+2. Set the Parts Department parent toggle OFF.
+3. Set the Parts Department parent toggle back ON.","1. The three child sections — Part Sales, Catalog & Inventory, and Vendor & Order Management — are displayed beneath the Parts Department parent.
+2. The three child sections collapse out of view with an animated slide transition (not an instant disappearance), leaving only the Parts Department parent toggle visible.
+3. The three child sections slide back into view and show the same ON/OFF selections they had before the collapse.","In the role editor, the Parts Department parent toggle drives an animated slide collapse/expand of the three child sections, and their prior settings are preserved across the OFF→ON cycle."
+CR-PARTS-004,Parts Department,"Part Sales View: positive (records, returns, transactions visible)",SV-7512,High,Positive,"Sample part sales, returns, and part transactions exist. See Financial Data ON (Part Sales is financially gated).","Custom role ""PS-View"": Parts Department ON, See Financial Data ON, Part Sales = View only.","1. Create ""PS-View"" and assign to the test user.
+2. Log in as the test user and open Part Sales.
+3. View part sales records, returns, and part transactions.
+4. Look for create/process and delete controls.","1. Role saves and assigns.
+2. Part Sales nav is visible; the area opens.
+3. The user can view part sales records, returns, and part transactions.
+4. Create/process and delete actions are absent or disabled (View only).","With Part Sales View only, the user can view part sales records, returns, and transactions but cannot create, process, or delete."
+CR-PARTS-005,Parts Department,"Part Sales View OFF: negative (nav hidden, area inaccessible)",SV-7512,High,Negative,Parts Department ON.,"Custom role ""PS-NoView"": Parts Department ON, Part Sales = all OFF (View OFF).","1. Create ""PS-NoView"" and assign to the test user.
+2. Log in as the test user and inspect navigation.","1. Role saves and assigns.
+2. No Part Sales nav entry appears (View OFF hides the area nav).","With Part Sales View OFF, the Part Sales navigation is hidden and the area is inaccessible."
+CR-PARTS-006,Parts Department,"Part Sales Edit: positive (create sales/returns, process transactions)",SV-7512,High,Positive,See Financial Data ON.,"Custom role ""PS-Edit"": Parts Department ON, See Financial Data ON, Part Sales = View+Edit.","1. Create ""PS-Edit"" (enabling Edit auto-enables View) and assign to the test user.
+2. Log in as the test user and open Part Sales.
+3. Create a new part sale.
+4. Create a part return.
+5. Process a part transaction.
+6. Attempt to delete a part sale or reverse an invoice.","1. Role saves with View + Edit ON.
+2. Area is accessible.
+3. The part sale is created successfully.
+4. The part return is created successfully.
+5. The transaction is processed successfully.
+6. Delete/reverse actions are absent or disabled (Delete OFF).","With Part Sales Edit, the user can create part sales/returns and process transactions but cannot delete or reverse."
+CR-PARTS-007,Parts Department,"Part Sales Delete: positive (delete sales, reverse invoices)",SV-7512,High,Positive,See Financial Data ON. At least one part sale and one part-sale invoice exist.,"Custom role ""PS-Delete"": Parts Department ON, See Financial Data ON, Part Sales = View+Edit+Delete.","1. Create ""PS-Delete"" (Delete auto-enables Edit + View) and assign to the test user.
+2. Log in as the test user and open Part Sales.
+3. Delete an existing part sale.
+4. Reverse a part sales invoice.","1. Role saves with View + Edit + Delete ON.
+2. Area is accessible.
+3. The part sale is deleted successfully.
+4. The part sales invoice is reversed successfully.","With Part Sales Delete, the user can delete part sales and reverse part sales invoices."
+CR-PARTS-008,Parts Department,Part Sales Delete OFF: negative (cannot delete/reverse),SV-7512,Medium,Negative,See Financial Data ON.,"Custom role ""PS-EditNoDelete"": Parts Department ON, See Financial Data ON, Part Sales = View+Edit (Delete OFF).","1. Create ""PS-EditNoDelete"" and assign to the test user.
+2. Log in as the test user, open Part Sales, and attempt to delete a part sale.
+3. Attempt to reverse a part sales invoice.","1. Role saves.
+2. No delete control is available, or the attempt is blocked.
+3. No reverse control is available, or the attempt is blocked.","Without Part Sales Delete, the user cannot delete part sales or reverse part sales invoices."
+CR-PARTS-009,Parts Department,"Part Sales financial dependency: confirmation modal appears when enabling a CRUD checkbox with See Financial Data OFF, and CONFIRMING proceeds",SV-7512,Critical,Dependency,Admin access to role editor.,"Custom role ""PS-FinGate"": Parts Department ON, See Financial Data OFF initially.","1. Create/open ""PS-FinGate"" with Parts Department ON and See Financial Data OFF.
+2. Enable any Part Sales CRUD checkbox (e.g. View).
+3. Click Confirm (the affirmative action) in the modal.
+4. Save and log in as an assigned test user.","1. Role editor open.
+2. A ""Financial Data"" confirmation modal appears, explaining that enabling this requires/turns on See Financial Data.
+3. The modal closes; the Part Sales checkbox is enabled and See Financial Data is turned ON.
+4. The user has Part Sales access and can see financial data.",Enabling a Part Sales CRUD checkbox while See Financial Data is OFF triggers the Financial Data confirmation modal; confirming enables both the checkbox and See Financial Data.
+CR-PARTS-010,Parts Department,Part Sales financial dependency: CANCELLING the confirmation modal leaves the checkbox unchanged,SV-7512,High,Dependency,Admin access to role editor.,"Custom role ""PS-FinGate-Cancel"": Parts Department ON, See Financial Data OFF.","1. Open ""PS-FinGate-Cancel"" with See Financial Data OFF.
+2. Enable any Part Sales CRUD checkbox.
+3. Click Cancel (the negative action) in the modal.","1. Role editor open.
+2. The Financial Data confirmation modal appears.
+3. The modal closes; the Part Sales checkbox reverts to OFF and See Financial Data remains OFF.",Cancelling the Financial Data modal leaves the Part Sales checkbox and See Financial Data unchanged (both OFF).
+CR-PARTS-011,Parts Department,SECURITY (SV-7965): user without Part Sales access cannot reach Part Sales via direct URL,SV-7965,Critical,Security,A known Part Sales URL/route (e.g. a part sale detail or the part sales list). A user who lacks Part Sales access.,"Custom role ""PS-NoAccess"": Part Sales access denied (either Part Sales View OFF, or See Financial Data OFF such that Part Sales is not granted). Capture a valid Part Sales URL while logged in as an authorized user first.","1. While logged in as an authorized user, copy a valid Part Sales URL (list and a specific record).
+2. Assign ""PS-NoAccess"" to the test user and log in as that user.
+3. Paste the captured Part Sales list URL directly into the address bar and navigate.
+4. Paste the captured Part Sales record URL directly and navigate.","1. URLs captured.
+2. No Part Sales nav is visible.
+3. Access is denied — user is blocked/redirected (e.g. to a not-authorized page or dashboard); part sales data is NOT rendered.
+4. Access is denied; the specific part sale is NOT rendered.",A user without Part Sales access cannot reach Part Sales through direct URL manipulation; the previous bypass (SV-7965) is closed. Any successful access is a security failure.
+CR-PARTS-012,Parts Department,"Catalog & Inventory View: positive (browse catalog, inventory levels, parts history)",SV-7513,High,Positive,"Parts Department ON. Sample catalog entries, inventory levels, and parts history exist.","Custom role ""CI-View"": Parts Department ON, Catalog & Inventory = View only.","1. Create ""CI-View"" and assign to the test user.
+2. Log in as the test user and open Catalog & Inventory.
+3. Browse the catalog, view inventory levels/stock, and view parts history.
+4. Look for create/edit/adjust and delete controls.","1. Role saves and assigns.
+2. Area is accessible.
+3. All three are viewable.
+4. Edit and Delete actions are absent or disabled (View only).","With Catalog & Inventory View only, the user can browse the catalog, inventory levels/stock, and parts history but cannot edit or delete."
+CR-PARTS-013,Parts Department,Catalog & Inventory View OFF: negative (nav hidden),SV-7513,Medium,Negative,Parts Department ON.,"Custom role ""CI-NoView"": Parts Department ON, Catalog & Inventory = all OFF.","1. Create ""CI-NoView"" and assign to the test user.
+2. Log in as the test user and inspect navigation.","1. Role saves and assigns.
+2. No Catalog & Inventory nav entry appears (View OFF hides the area nav).","With Catalog & Inventory View OFF, the area navigation is hidden and the area is inaccessible."
+CR-PARTS-014,Parts Department,"Catalog & Inventory Edit: positive (catalog entries, inventory adjustments incl. return-to-inventory, cycle counts)",SV-7513,High,Positive,Parts Department ON. An item eligible to be returned to inventory exists; a stock location supports cycle counts.,"Custom role ""CI-Edit"": Parts Department ON, Catalog & Inventory = View+Edit.","1. Create ""CI-Edit"" (Edit auto-enables View) and assign to the test user.
+2. Log in as the test user and open Catalog & Inventory.
+3. Create or edit a catalog entry.
+4. Perform an inventory adjustment, including RETURNING an item to inventory.
+5. Manage stock levels via a cycle count.
+6. Attempt to delete a part from the catalog.","1. Role saves with View + Edit ON.
+2. Area is accessible.
+3. The catalog entry is created/edited successfully.
+4. The adjustment succeeds; the item is returned to inventory.
+5. The cycle count can be performed and stock levels updated.
+6. Delete is absent or disabled (Delete OFF).","With Catalog & Inventory Edit, the user can create/edit catalog entries, perform inventory adjustments including return-to-inventory, and run cycle counts, but cannot delete catalog parts."
+CR-PARTS-015,Parts Department,Catalog & Inventory Delete: positive and negative (delete parts from catalog),SV-7513,Medium,Positive,Parts Department ON. A deletable catalog part exists.,"Role ""CI-Delete"" (Parts Department ON, Catalog & Inventory View+Edit+Delete) and role ""CI-EditOnly"" (View+Edit, Delete OFF).","1. Assign ""CI-Delete"" to the test user and log in.
+2. Delete a part from the catalog.
+3. Reassign ""CI-EditOnly"" to the test user, log out/in, and attempt to delete a catalog part.","1. Catalog & Inventory accessible with full CRUD.
+2. The part is deleted successfully.
+3. No delete control is available, or the attempt is blocked (Delete OFF).",Catalog & Inventory Delete allows deleting catalog parts; without Delete the user cannot delete catalog parts.
+CR-PARTS-016,Parts Department,"Vendor & Order Management View: positive (vendors, POs, deliveries, part history, part return requests)",SV-7514,High,Positive,"Parts Department ON. Sample vendors, POs, deliveries, part history, and part return requests exist.","Custom role ""VOM-View"": Parts Department ON, Vendor & Order Management = View only.","1. Create ""VOM-View"" and assign to the test user.
+2. Log in as the test user and open Vendor & Order Management.
+3. View vendor records, purchase orders (POs), deliveries, part history, and part return requests.
+4. Look for create/edit and delete controls.","1. Role saves and assigns.
+2. Area is accessible.
+3. All are viewable. (Use ""part history"" per final spec, not ""vendor transaction history"".)
+4. Edit and Delete actions are absent or disabled (View only).","With Vendor & Order Management View only, the user can view vendors, POs, deliveries, part history, and part return requests but cannot edit or delete."
+CR-PARTS-017,Parts Department,Vendor & Order Management View OFF: negative (nav hidden),SV-7514,Medium,Negative,Parts Department ON.,"Custom role ""VOM-NoView"": Parts Department ON, Vendor & Order Management = all OFF.","1. Create ""VOM-NoView"" and assign to the test user.
+2. Log in as the test user and inspect navigation.","1. Role saves and assigns.
+2. No Vendor & Order Management nav entry appears (View OFF hides the area nav).","With Vendor & Order Management View OFF, the area navigation is hidden and the area is inaccessible."
+CR-PARTS-018,Parts Department,"Vendor & Order Management Edit: positive (create/edit vendors, create/manage POs, deliveries, vendor invoices, return parts)",SV-7514,High,Positive,Parts Department ON. A part eligible to be returned to a vendor/inventory exists.,"Custom role ""VOM-Edit"": Parts Department ON, Vendor & Order Management = View+Edit.","1. Create ""VOM-Edit"" (Edit auto-enables View) and assign to the test user.
+2. Log in as the test user and open Vendor & Order Management.
+3. Create or edit a vendor.
+4. Create and manage a purchase order (PO).
+5. Manage a delivery.
+6. Create a vendor invoice.
+7. Return a part to the vendor/inventory.
+8. Attempt to delete a vendor or a PO.","1. Role saves with View + Edit ON.
+2. Area is accessible.
+3. The vendor is created/edited successfully.
+4. The PO is created and can be managed.
+5. The delivery is managed successfully.
+6. The vendor invoice is created successfully.
+7. The part return to vendor/inventory succeeds.
+8. Delete is absent or disabled (Delete OFF).","With Vendor & Order Management Edit, the user can create/edit vendors, create/manage POs, manage deliveries, create vendor invoices, and return parts to vendors/inventory, but cannot delete vendors or POs."
+CR-PARTS-019,Parts Department,"Vendor & Order Management Delete: positive and negative (delete vendors, delete POs)",SV-7514,Medium,Positive,Parts Department ON. A deletable vendor and a deletable PO exist.,"Role ""VOM-Delete"" (Parts Department ON, Vendor & Order Management View+Edit+Delete) and role ""VOM-EditOnly"" (View+Edit, Delete OFF).","1. Assign ""VOM-Delete"" to the test user and log in.
+2. Delete a vendor.
+3. Delete a PO.
+4. Reassign ""VOM-EditOnly"", log out/in, and attempt to delete a vendor and a PO.","1. Vendor & Order Management accessible with full CRUD.
+2. The vendor is deleted successfully.
+3. The PO is deleted successfully.
+4. No delete controls are available, or the attempts are blocked (Delete OFF).",Vendor & Order Management Delete allows deleting vendors and POs; without Delete the user cannot delete them.
+CR-PARTS-020,Parts Department,CRUD cascade within a Parts child area,SV-7513,Medium,Dependency,Admin access to role editor. Parts Department ON.,"Custom role ""CI-Cascade"".","1. Open ""CI-Cascade"" with Parts Department ON and all Catalog & Inventory levels OFF.
+2. Enable Catalog & Inventory Delete.
+3. Disable Catalog & Inventory View.
+4. Enable Catalog & Inventory Edit, then disable Edit.","1. Editor open.
+2. Edit and View auto-enable (Delete → Edit + View).
+3. Edit and Delete auto-disable (View OFF → Edit + Delete OFF).
+4. Enabling Edit enables View; disabling Edit disables Delete.","The standard CRUD cascade (Edit→View, Delete→Edit+View, View OFF→Edit+Delete OFF, Edit OFF→Delete OFF) applies within each Parts child area."
+CR-INV-001,Invoicing & Payments,"Invoicing View: positive (view WO & part-sale invoices, access Finance tab on WOs)",SV-7515,High,Positive,Sample invoices from WOs and from part sales exist. A WO with a Finance tab exists. See Financial Data ON.,"Custom role ""INV-View"": See Financial Data ON, Invoicing = View only.","1. Create ""INV-View"" and assign to the test user.
+2. Log in as the test user and open Invoicing.
+3. View an invoice created from a work order.
+4. View an invoice created from a part sale.
+5. Open a work order and access its Finance tab.
+6. Look for create/process and delete controls.","1. Role saves and assigns.
+2. Invoicing nav is visible; the area opens.
+3. The WO invoice is viewable.
+4. The part-sale invoice is viewable.
+5. The Finance tab on the WO is accessible.
+6. Edit and Delete actions are absent or disabled (View only).","With Invoicing View, the user can view WO and part-sale invoices and access the Finance tab on WOs, but cannot create, process, or delete."
+CR-INV-002,Invoicing & Payments,"Invoicing View OFF but See Financial Data ON: pricing shows on WOs, no direct invoice access",SV-7515,High,Dependency,A WO with pricing and an associated invoice exist.,"Custom role ""INV-NoView-FinOn"": See Financial Data ON, Invoicing = all OFF (View OFF). Work Orders View ON so WOs remain accessible.","1. Create ""INV-NoView-FinOn"" and assign to the test user.
+2. Log in as the test user and open a work order.
+3. Inspect the navigation for an Invoicing entry.
+4. Attempt to open an invoice directly (e.g. from the WO or a captured invoice URL).","1. Role saves and assigns.
+2. The WO opens; pricing/monetary values are visible (See Financial Data ON).
+3. No Invoicing nav entry appears (Invoicing View OFF hides the area nav).
+4. The user cannot access invoices directly.","With Invoicing View OFF but See Financial Data ON, the user still sees pricing on WOs but cannot access invoices directly."
+CR-INV-003,Invoicing & Payments,"Invoicing View OFF and See Financial Data OFF: negative (no invoices, no pricing)",SV-7515,Medium,Negative,A WO with pricing exists.,"Custom role ""INV-NoView-FinOff"": See Financial Data OFF, Invoicing = all OFF. Work Orders View ON.","1. Create ""INV-NoView-FinOff"" and assign to the test user.
+2. Log in as the test user and inspect navigation.
+3. Open a work order.","1. Role saves and assigns.
+2. No Invoicing nav entry appears.
+3. The WO opens but monetary values/pricing are hidden (See Financial Data OFF).","With both Invoicing View and See Financial Data OFF, the user sees neither invoices nor pricing."
+CR-INV-004,Invoicing & Payments,"Invoicing Edit: positive (create invoices, process payments, manage invoice fields)",SV-7515,High,Positive,See Financial Data ON. A WO and a part sale eligible for invoicing/payment exist.,"Custom role ""INV-Edit"": See Financial Data ON, Invoicing = View+Edit (Create&Edit).","1. Create ""INV-Edit"" (Edit auto-enables View) and assign to the test user.
+2. Log in as the test user and open Invoicing.
+3. Create an invoice from a work order.
+4. Process a payment from a WO and from a part sale.
+5. Manage/edit invoice fields.
+6. Look for delete/void controls.","1. Role saves with View + Edit ON.
+2. Area is accessible.
+3. The invoice is created successfully.
+4. Payments are processed successfully.
+5. Invoice fields can be edited and saved.
+6. Delete and void actions are absent or disabled (Delete OFF).","With Invoicing Edit (Create&Edit), the user can create invoices, process payments from WOs/part sales, and manage invoice fields, but cannot delete or void."
+CR-INV-005,Invoicing & Payments,Invoicing Edit: positive (collect deposits and Send to Terminal require Create&Edit),SV-7515,High,Positive,"See Financial Data ON. A payment terminal is configured (or the ""Send to Terminal"" action is present in the test environment).","Role ""INV-Edit"" (See Financial Data ON, Invoicing View+Edit) and role ""INV-ViewOnly"" (See Financial Data ON, Invoicing View only).","1. Assign ""INV-Edit"" and log in as the test user.
+2. Collect a deposit on a WO or part sale.
+3. Use ""Send to Terminal"" / ""Send payments to terminal"".
+4. Reassign ""INV-ViewOnly"", log out/in, and look for the deposit and Send to Terminal actions.","1. Invoicing accessible with Create&Edit.
+2. The deposit is collected successfully.
+3. The payment is sent to the terminal successfully.
+4. Both actions are absent or disabled — they require Invoicing Create&Edit.",Collecting deposits and Send to Terminal require Invoicing Create&Edit; a View-only user cannot perform them.
+CR-INV-006,Invoicing & Payments,"Invoicing Delete: positive (delete payments incl. customer payments, void transactions)",SV-7515,High,Positive,"See Financial Data ON, Manage AP/AR ON (Delete requires both — see CR-INV-008). A payment, a customer payment, and a voidable transaction exist.","Custom role ""INV-Delete"": See Financial Data ON, Manage AP/AR ON, Invoicing = View+Edit+Delete.","1. Create ""INV-Delete"" (Delete auto-enables Edit + View) and assign to the test user.
+2. Log in as the test user and open Invoicing.
+3. Delete a payment.
+4. Delete a CUSTOMER payment.
+5. Void a transaction.","1. Role saves with full Invoicing CRUD, See Financial Data ON, Manage AP/AR ON.
+2. Area is accessible.
+3. The payment is deleted successfully.
+4. The customer payment is deleted successfully (Invoicing Delete governs this — see CR-INV-010).
+5. The transaction is voided successfully.","With Invoicing Delete (plus See Financial Data and Manage AP/AR), the user can delete payments including customer payments and void transactions."
+CR-INV-007,Invoicing & Payments,FINANCIAL GATE 1: See Financial Data modal appears when enabling ANY Invoicing CRUD checkbox,SV-7515,Critical,Dependency,Admin access to role editor.,"Custom role ""INV-FinGate"": See Financial Data OFF initially, Invoicing all OFF.","1. Open ""INV-FinGate"" with See Financial Data OFF.
+2. Enable any Invoicing CRUD checkbox (e.g. View).
+3. Click Confirm.
+4. Reopen the modal flow on another checkbox and click Cancel instead.","1. Role editor open.
+2. A ""Financial Data"" confirmation modal appears.
+3. The modal closes; the Invoicing checkbox is enabled and See Financial Data turns ON.
+4. The checkbox reverts to OFF and See Financial Data stays OFF.","Enabling any Invoicing CRUD checkbox while See Financial Data is OFF triggers the Financial Data confirmation modal; confirming enables both, cancelling leaves both unchanged."
+CR-INV-008,Invoicing & Payments,FINANCIAL GATE 2: Invoicing Delete additionally requires Manage AP/AR (modal on enabling Delete),SV-7515,Critical,Dependency,Admin access to role editor.,"Custom role ""INV-DeleteGate"": See Financial Data ON, Manage AP/AR OFF, Invoicing = View+Edit (Delete OFF).","1. Open ""INV-DeleteGate"" with See Financial Data ON, Manage AP/AR OFF, Invoicing View+Edit.
+2. Enable Invoicing Delete.
+3. Click Confirm.
+4. Repeat the enable-Delete step in a fresh role and click Cancel.","1. Role editor open.
+2. A modal appears indicating Delete requires ""Manage AP/AR"".
+3. The modal closes; Invoicing Delete is enabled and Manage AP/AR turns ON.
+4. Invoicing Delete reverts to OFF and Manage AP/AR stays OFF.","Enabling Invoicing Delete while Manage AP/AR is OFF triggers a Manage AP/AR requirement modal; confirming enables both, cancelling leaves Delete OFF."
+CR-INV-009,Invoicing & Payments,CROSS-DEPENDENCY: reversing an invoice (WO & Part Sales) requires Work Orders → Delete (NOT Invoicing Delete),SV-7515,Critical,Dependency,See Financial Data ON. A WO invoice and a part-sale invoice eligible for reversal exist.,"Role A ""REV-WithWODelete"": See Financial Data ON, Invoicing View+Edit (Invoicing Delete OFF), Work Orders = View+Edit+Delete. Role B ""REV-NoWODelete"": See Financial Data ON, Invoicing View+Edit+Delete (with Manage AP/AR ON), Work Orders = View+Edit (WO Delete OFF).","1. Assign Role A (""REV-WithWODelete"") and log in as the test user.
+2. Reverse a WO invoice.
+3. Reverse a part-sale invoice.
+4. Reassign Role B (""REV-NoWODelete""), log out/in. Note: this role has Invoicing Delete but NOT WO Delete.
+5. Attempt to reverse a WO invoice and a part-sale invoice.","1. The user has WO Delete but NOT Invoicing Delete.
+2. The reversal succeeds (governed by Work Orders Delete).
+3. The reversal succeeds (also governed by Work Orders Delete).
+4. The user has Invoicing Delete but NOT WO Delete.
+5. Both reversals are blocked/unavailable — Invoicing Delete does NOT grant reversal; WO Delete is required.","Reversing an invoice (WO and part sales) is controlled by Work Orders → Delete, not Invoicing → Delete. A user with Invoicing Delete but no WO Delete cannot reverse invoices."
+CR-INV-010,Invoicing & Payments,CROSS-DEPENDENCY: deleting a CUSTOMER payment requires Invoicing → Delete (NOT Customer Management Delete),SV-7515,High,Dependency,"See Financial Data ON, Manage AP/AR ON. A customer payment exists.","Role A ""CUSTPAY-InvDelete"": See Financial Data ON, Manage AP/AR ON, Invoicing View+Edit+Delete, Customers = View+Edit (Customers Delete OFF). Role B ""CUSTPAY-CustDeleteOnly"": See Financial Data ON, Invoicing View+Edit (Invoicing Delete OFF), Customers = View+Edit+Delete.","1. Assign Role A (""CUSTPAY-InvDelete"") and log in as the test user.
+2. Delete a customer payment.
+3. Reassign Role B (""CUSTPAY-CustDeleteOnly""), log out/in.
+4. Attempt to delete a customer payment.","1. The user has Invoicing Delete but NOT Customers Delete.
+2. The customer payment is deleted successfully (governed by Invoicing Delete).
+3. The user has Customers Delete but NOT Invoicing Delete.
+4. The deletion is blocked/unavailable — Customer Management Delete does NOT grant it; Invoicing Delete is required.","Deleting a customer payment is controlled by Invoicing → Delete, not Customer Management Delete. A user with Customers Delete but no Invoicing Delete cannot delete customer payments."
+CR-INV-011,Invoicing & Payments,CROSS-DEPENDENCY: deleting a part-sale return requires Invoicing → Delete,SV-7515,High,Dependency,"See Financial Data ON, Manage AP/AR ON. A part-sale return exists.","Role A ""PSR-InvDelete"": See Financial Data ON, Manage AP/AR ON, Invoicing View+Edit+Delete, Part Sales = View+Edit (Part Sales Delete OFF). Role B ""PSR-NoInvDelete"": See Financial Data ON, Invoicing View+Edit (Invoicing Delete OFF), Part Sales = View+Edit+Delete.","1. Assign Role A (""PSR-InvDelete"") and log in as the test user.
+2. Delete a part-sale return.
+3. Reassign Role B (""PSR-NoInvDelete""), log out/in.
+4. Attempt to delete a part-sale return.","1. The user has Invoicing Delete but NOT Part Sales Delete.
+2. The part-sale return is deleted successfully (governed by Invoicing Delete).
+3. The user has Part Sales Delete but NOT Invoicing Delete.
+4. The deletion is blocked/unavailable — Invoicing Delete is required, not Part Sales Delete.",Deleting a part-sale return is controlled by Invoicing → Delete. A user without Invoicing Delete cannot delete a part-sale return even with Part Sales Delete.
+CR-INV-012,Invoicing & Payments,Invoicing Delete OFF: negative (cannot delete/void payments),SV-7515,Medium,Negative,See Financial Data ON. A payment and a voidable transaction exist.,"Custom role ""INV-EditNoDelete"": See Financial Data ON, Invoicing = View+Edit (Delete OFF).","1. Create ""INV-EditNoDelete"" and assign to the test user.
+2. Log in as the test user, open Invoicing, and attempt to delete a payment.
+3. Attempt to void a transaction.","1. Role saves.
+2. No delete control is available, or the attempt is blocked.
+3. No void control is available, or the attempt is blocked.","Without Invoicing Delete, the user cannot delete payments or void transactions."
+CR-INV-013,Invoicing & Payments,CRUD cascade within Invoicing (respecting financial gates),SV-7515,Medium,Dependency,Admin access to role editor.,"Custom role ""INV-Cascade"": See Financial Data ON, Manage AP/AR ON (to avoid gate modals interfering with cascade checks).","1. Open ""INV-Cascade"" with See Financial Data ON, Manage AP/AR ON, Invoicing all OFF.
+2. Enable Invoicing Delete.
+3. Disable Invoicing View.
+4. Enable Invoicing Edit, then disable Edit.","1. Editor open; no gate modal expected since financial toggles are already ON.
+2. Edit and View auto-enable (Delete → Edit + View).
+3. Edit and Delete auto-disable (View OFF → Edit + Delete OFF).
+4. Enabling Edit enables View; disabling Edit disables Delete.","The standard CRUD cascade (Edit→View, Delete→Edit+View, View OFF→Edit+Delete OFF, Edit OFF→Delete OFF) applies within Invoicing, on top of the financial gates."
+CR-TIME-001,Timesheets,Timesheets View enabled shows Timesheets nav and read-only timesheets,SV-7516,Critical,Positive,"Custom role with Timesheets: View = ON, Edit = OFF.","Role ""TIME View Only""; test user timeview@test; WO-300 with existing time entries","1. Create/pick custom role with Timesheets: View = ON only.
+2. Assign the role to test user and log in as that user.
+3. Locate the Timesheets item in the main navigation.
+4. Open WO-300 and view its timesheets.
+5. Attempt to change an entry's hours.","1. Role saved; Edit remains OFF.
+2. Login succeeds.
+3. Timesheets nav item is visible.
+4. Time entries are visible in read-only form.
+5. No edit controls are available; entries cannot be modified.",A Timesheets View-only user can view timesheets from WOs read-only and cannot edit them.
+CR-TIME-002,Timesheets,Timesheets Edit user can adjust hours and manage attendance,SV-7516,Critical,Positive,"Custom role with Timesheets: View = ON, Edit = ON assigned to a test user.","Role ""TIME Edit""; test user timeedit@test; WO-300 with time entries; staff member ""Tech A"" with an attendance record","1. Log in as the Timesheets Edit user.
+2. Open WO-300 timesheets and adjust an entry's hours; save.
+3. Open the timesheet activities report and edit an entry there.
+4. Adjust attendance for ""Tech A"" (another staff member).","1. Login succeeds; Timesheets nav visible.
+2. Hours are updated and persisted.
+3. The entry can be edited from the report and saved.
+4. Attendance edit succeeds; the Edit permission covers managing attendance for all staff.","A Timesheets Edit user can adjust hours and manage attendance for all staff, from both WOs and the timesheet activities report."
+CR-TIME-003,Timesheets,Cascade: enabling Timesheets Edit auto-enables View,SV-7516,High,Dependency,New/edited custom role with Timesheets View and Edit both OFF.,"Role ""TIME Edit Cascade""","1. Open the role's Timesheets permissions with View and Edit both OFF.
+2. Toggle Timesheets: Edit = ON.
+3. Save the role.","1. Both OFF.
+2. View automatically turns ON.
+3. Role saves with View = ON, Edit = ON.",Enabling Timesheets Edit auto-enables Timesheets View.
+CR-TIME-004,Timesheets,Cascade: disabling Timesheets View disables Edit,SV-7516,High,Dependency,"Custom role with Timesheets: View = ON, Edit = ON.","Role ""TIME Full""","1. Open the role with Timesheets View = ON, Edit = ON.
+2. Toggle Timesheets: View = OFF.
+3. Save the role.","1. Both ON.
+2. Edit automatically turns OFF.
+3. Role saves with View = OFF, Edit = OFF.",Disabling Timesheets View cascades OFF to Edit.
+CR-TIME-005,Timesheets,Timesheets View OFF hides the Timesheets nav,SV-7516,High,Negative,"Custom role with Timesheets: View = OFF and Reports = OFF, assigned to a test user.","Role ""TIME No Access / No Reports""; test user notime@test","1. Create/pick role with Timesheets View = OFF and Reports = OFF.
+2. Assign role to test user and log in as that user.
+3. Inspect the main navigation.
+4. Attempt to reach timesheets via a direct URL (if known).","1. Edit is OFF (cascade).
+2. Login succeeds.
+3. No Timesheets nav item is present.
+4. User cannot access the Timesheets area.","With Timesheets View OFF (and Reports OFF), the Timesheets nav is hidden and the area is inaccessible."
+CR-TIME-006,Timesheets,Timesheets View OFF but Reports ON still shows the timesheet activities report,SV-7516,High,Dependency,"Custom role with Timesheets: View = OFF but Reports = ON, assigned to a test user.","Role ""TIME OFF / Reports ON""; test user timereports@test","1. Assign the role (Timesheets View OFF, Reports ON) and log in as the user.
+2. Inspect the main navigation.
+3. Open the Reports area.
+4. Locate and open the timesheet activities report.","1. Login succeeds.
+2. No dedicated Timesheets nav item (Timesheets View is OFF).
+3. Reports area is accessible.
+4. The timesheet activities report is available and displays timesheet activity data.","With Timesheets View OFF but Reports ON, the user still sees the timesheet activities report under Reports even though the Timesheets nav is hidden."
+CR-TIME-007,Timesheets,Clock in/out always works even with Timesheets OFF,SV-7516,Critical,Positive,"Custom role with Timesheets: View = OFF, Edit = OFF (and Reports OFF), assigned to a test user whose staff record permits clocking.","Role ""TIME No Access""; test user notime@test","1. Log in as the user with Timesheets fully OFF.
+2. Locate the clock in control.
+3. Clock in.
+4. Clock out.","1. Login succeeds; no Timesheets nav.
+2. Clock in control is available regardless of Timesheets permission.
+3. Clock-in succeeds and is recorded.
+4. Clock-out succeeds and is recorded.",All users can always clock in/out regardless of the Timesheets permission (even fully OFF).
+CR-TIME-008,Timesheets,Confirm no Delete action exists for Timesheets,SV-7516,Medium,Negative,Admin editing a custom role; a Timesheets Edit user for the UI check.,"Role ""TIME Full""; test user timeedit@test; WO-300 with time entries","1. In Settings → Roles, open the Timesheets permission group for any role.
+2. Log in as a Timesheets Edit user and open WO-300 timesheets.
+3. Look for a delete action on a time entry.","1. Only View and Edit toggles exist; there is NO Delete toggle for Timesheets.
+2. Entries are visible and editable.
+3. No Delete action is offered for timesheet entries.",Timesheets exposes only View and Edit; no Delete permission or delete action exists.
+CR-TIME-009,Timesheets,Out-of-scope: staff-record settings are not governed by the Timesheets role,SV-7516,Low,Negative,A staff record accessible for inspection; a custom role with any Timesheets setting.,"Staff record ""Tech A""","1. Open ""Tech A"" staff record and locate ""Appears on technician schedule"".
+2. Locate ""Can clock into WO line tasks"" on the staff record.
+3. Change the Timesheets permission on the user's role and re-check both settings.","1. This setting is controlled by the staff member's department assignment — NOT by the Timesheets role.
+2. This is controlled by the Time Clock setting on the staff record — NOT by the Timesheets role.
+3. Neither setting changes as a result of the Timesheets permission; they remain independent of the role.","""Appears on technician schedule"" (department-driven) and ""Can clock into WO line tasks"" (Time Clock setting) are independent of the Timesheets permission model."
+CR-TIME-010,Timesheets,Regression (SV-8051): Timesheets View-only user can log in and reach timesheets,SV-8051,Critical,Regression,"Custom role with Timesheets: View = ON only, assigned to a test user. (Bug: this role previously showed ""Access Restricted"".)","Role ""TIME View Only""; test user timeview@test; WO-300 with time entries","1. Assign the Timesheets View-only role to the test user.
+2. Log in as the Timesheets View-only user.
+3. Confirm the landing/home loads normally.
+4. Open Timesheets (via nav or from WO-300).","1. Role assigned; user forced to log out.
+2. Login succeeds; NO ""Access Restricted"" page appears.
+3. User reaches the application without an access error.
+4. Timesheets load and display entries read-only.","A Timesheets View-only user logs in without an ""Access Restricted"" error and can reach timesheets (SV-8051 fixed)."
+CR-PAGES-001,Page Access Toggles,Reports toggle ON shows and enables the Reports nav,SV-7517,High,Positive,Admin can edit roles; a spare test user is available.,"Custom role ""QA Reports ON"" with the Reports page toggle ON (all other page toggles may be default); test user assigned this role.","1. As Administrator, create a custom role ""QA Reports ON"" with the Reports toggle ON. Save.
+2. Assign the role to the test user via Administration > Staff. Save.
+3. Log in as the test user.
+4. Look at the main navigation.
+5. Open Reports and review the available report list.
+6. Open at least two different reports.","1. Role saves with Reports ON.
+2. Assignment saved; the test user is forced to log out.
+3. Login succeeds.
+4. The Reports nav item is visible.
+5. The Reports area opens and lists reports (e.g. technician efficiency, service advisor analysis, requested parts, vendor expenses, WO statuses, inventory, WIP).
+6. Each report opens and renders without an access error.",With the Reports toggle ON the Reports nav item is visible and every report is reachable and usable. Reports access is all-or-nothing — there is no per-report granularity.
+CR-PAGES-002,Page Access Toggles,Reports toggle OFF hides the Reports nav and blocks direct URL access,SV-7517,High,Negative,Admin can edit roles; a spare test user is available.,"Custom role ""QA Reports OFF"" with the Reports page toggle OFF but enough other permissions to log in and use the app (e.g. Work Orders View ON); test user assigned this role.","1. As Administrator, create/edit a custom role ""QA Reports OFF"" with the Reports toggle OFF and Work Orders View ON. Save.
+2. Assign the role to the test user; save.
+3. Log in as the test user.
+4. Look at the main navigation.
+5. While logged in as the test user, navigate directly to the Reports URL (e.g. paste the Reports page path into the address bar).
+6. From any page that previously linked to a report, look for report links.","1. Role saves with Reports OFF.
+2. Assignment saved; the test user is forced to log out.
+3. Login succeeds (see CR-PAGES-006 regression).
+4. The Reports nav item is NOT visible.
+5. Access is denied/blocked — the reports page and report content do not load.
+6. No report links are present or clickable (see CR-PAGES-004 regression).",With the Reports toggle OFF the Reports nav item is hidden and the page is unreachable by direct URL. No report content or report links are exposed.
+CR-PAGES-003,Page Access Toggles,Regression: report links must not be clickable when Reports/View is OFF (SV-7855),SV-7855,High,Regression,CR-PAGES-002 role available (Reports OFF).,"Test user on the ""QA Reports OFF"" role.","1. Log in as the test user whose role has Reports OFF.
+2. Visit each page that historically embedded report links (dashboards, list-page action menus, work order and part sales pages, entity detail pages).
+3. If any residual report link is displayed, attempt to click it.","1. Login succeeds; Reports nav hidden.
+2. No report hyperlinks/buttons are shown for a user without Reports access.
+3. The link must be non-functional / not navigate to a report. Any link that opens a report is a regression of SV-7855.","No report links are clickable for a user without Reports access, confirming SV-7855 remains fixed. Log any clickable report link as a reopened defect."
+CR-PAGES-004,Page Access Toggles,Regression: unavailable reports must not be visible in the report list (SV-7949),SV-7949,Medium,Regression,"A role with Reports ON but a permission that makes some report unavailable (e.g. Timesheets View OFF or See Financial Data OFF, depending on which reports those gate).","Custom role ""QA Reports ON, Limited"" with Reports ON plus at least one data permission OFF; test user assigned this role.","1. As Administrator, create the ""QA Reports ON, Limited"" role (Reports ON, one underlying data permission OFF). Assign to the test user; save.
+2. Log in as the test user and open Reports.
+3. Review the full list of reports offered.
+4. Attempt to open any such report by direct URL if its path is known.","1. Role saved; user forced to log out.
+2. Reports area opens.
+3. Reports whose underlying data the user cannot access are NOT listed (they are hidden, not merely disabled).
+4. Access is blocked.","Reports the user cannot use are not shown in the report list, confirming SV-7949 remains fixed. A visible-but-unavailable report is a reopened defect."
+CR-PAGES-005,Page Access Toggles,Regression: Timesheets View OFF but Reports ON must hide the timesheet activities report,SV-7949,Medium,Regression,Admin can edit roles.,"Custom role ""QA Reports ON, Timesheets OFF"" with Reports ON and Timesheets View OFF; test user assigned this role.","1. As Administrator, create the role with Reports ON and Timesheets View OFF. Assign to the test user; save.
+2. Log in as the test user and open Reports.
+3. Look for the timesheet activities report in the report list.
+4. Attempt to reach the timesheet activities report by direct URL if known.","1. Role saved; user forced to log out.
+2. Reports area opens (Reports nav visible).
+3. The timesheet activities report is NOT listed.
+4. Access is blocked.",A user with Timesheets View OFF cannot see or open the timesheet activities report even though Reports is ON. A visible timesheet activities report here is a defect (extends SV-7949).
+CR-PAGES-006,Page Access Toggles,Regression: a role WITHOUT Reports must still be able to log in and use the app (SV-7977),SV-7977,Critical,Regression,Admin can edit roles.,"Custom role ""QA No Reports"" with the Reports toggle OFF and a normal set of other permissions ON (e.g. Work Orders View/Edit ON, Customers View ON); test user assigned this role.","1. As Administrator, create ""QA No Reports"" (Reports OFF, other permissions ON). Assign to the test user; save.
+2. Log in as the test user.
+3. Land on the default landing page and navigate to an area the role permits (e.g. Work Orders).
+4. Confirm the Reports nav is hidden but nothing else is blocked.","1. Role saved; user forced to log out.
+2. Login SUCCEEDS. No ""Access Restricted"" / lockout screen appears (the SV-7977 symptom).
+3. The app is usable; permitted areas load normally.
+4. Reports nav hidden; all other permitted functionality works.","A role without Reports can log in and use the rest of the application normally. An ""Access Restricted"" screen at login for a no-Reports role is a reopened SV-7977 defect."
+CR-PAGES-007,Page Access Toggles,Customer Portal toggle ON shows and enables its nav,SV-7518,High,Positive,Admin can edit roles; a spare test user is available.,"Custom role ""QA Customer Portal ON"" with the Customer Portal toggle ON; test user assigned this role.","1. As Administrator, create the role with Customer Portal ON. Assign to the test user; save.
+2. Log in as the test user.
+3. Look at the navigation.
+4. Open the Customer Portal area.","1. Role saved; user forced to log out.
+2. Login succeeds.
+3. The Customer Portal nav item is visible.
+4. The customer-facing portal configuration loads and its management options are usable.","With Customer Portal ON, its nav item is visible and the portal configuration is accessible and manageable. (Note: system roles Service Advisor, Sr Service Advisor, Service Manager, and Parts Manager receive this by default — spot-check one of them if convenient.)"
+CR-PAGES-008,Page Access Toggles,Customer Portal toggle OFF hides its nav and blocks direct URL access,SV-7518,High,Negative,Admin can edit roles; a spare test user is available.,"Custom role ""QA Customer Portal OFF"" with the Customer Portal toggle OFF but able to log in (Work Orders View ON); test user assigned this role.","1. As Administrator, create the role with Customer Portal OFF. Assign to the test user; save.
+2. Log in as the test user.
+3. Look at the navigation.
+4. Navigate directly to the Customer Portal URL/path.","1. Role saved; user forced to log out.
+2. Login succeeds.
+3. The Customer Portal nav item is NOT visible.
+4. Access is denied/blocked — the portal configuration does not load.","With Customer Portal OFF, its nav item is hidden and the page is unreachable by direct URL."
+CR-PAGES-009,Page Access Toggles,Billing Portal toggle ON shows and enables its nav,SV-7519,High,Positive,Admin can edit roles; a spare test user is available.,"Custom role ""QA Billing Portal ON"" with the Billing Portal toggle ON; test user assigned this role.","1. As Administrator, create the role with Billing Portal ON. Assign to the test user; save.
+2. Log in as the test user.
+3. Look at the navigation.
+4. Open the Billing Portal area.","1. Role saved; user forced to log out.
+2. Login succeeds.
+3. The Billing Portal nav item is visible.
+4. The billing portal loads and its management options are usable.","With Billing Portal ON, its nav item is visible and the billing portal is accessible and manageable."
+CR-PAGES-010,Page Access Toggles,Billing Portal toggle OFF hides its nav and blocks direct URL access,SV-7519,High,Negative,Admin can edit roles; a spare test user is available.,"Custom role ""QA Billing Portal OFF"" with the Billing Portal toggle OFF but able to log in (Work Orders View ON); test user assigned this role.","1. As Administrator, create the role with Billing Portal OFF. Assign to the test user; save.
+2. Log in as the test user.
+3. Look at the navigation.
+4. Navigate directly to the Billing Portal URL/path.","1. Role saved; user forced to log out.
+2. Login succeeds.
+3. The Billing Portal nav item is NOT visible.
+4. Access is denied/blocked — the billing portal does not load.","With Billing Portal OFF, its nav item is hidden and the page is unreachable by direct URL."
+CR-PAGES-011,Page Access Toggles,"Security: page toggles enforce access server-side, not just by hiding nav",SV-7517,High,Security,"Roles ""QA Reports OFF"", ""QA Customer Portal OFF"", and ""QA Billing Portal OFF"" available.",One test user cycled through each OFF role.,"1. Log in as a user whose role has Reports OFF and attempt to reach a report by direct URL and, if feasible, by observing whether report data is returned to the browser.
+2. Repeat with Customer Portal OFF: direct-URL the Customer Portal page.
+3. Repeat with Billing Portal OFF: direct-URL the Billing Portal page.","1. No report page loads and no report data is returned.
+2. Access blocked; no portal config data returned.
+3. Access blocked; no billing portal data returned.","Each page toggle blocks access at the page/data level, not merely by hiding the nav link. Any case where direct navigation exposes a hidden page or its data is a security defect."
+CR-SETTINGS-001,Settings Access,Settings parent OFF hides the entire Administration area,SV-7521,Critical,Negative,Admin can edit roles; a spare test user is available.,"Custom role ""QA Settings OFF"" with the Settings parent toggle OFF (all sub-settings therefore inactive) but able to log in (Work Orders View ON); test user assigned this role.","1. As Administrator, create ""QA Settings OFF"" with Settings OFF and Work Orders View ON. Save.
+2. Assign the role to the test user; save.
+3. Log in as the test user.
+4. Look at the navigation.
+5. Navigate directly to any Administration URL (e.g. App Settings, Roles and Permissions, Staff, Finance).","1. Role saved; sub-settings are unavailable/inactive because the parent is OFF.
+2. Assignment saved; test user forced to log out.
+3. Login succeeds.
+4. The Administration nav item is NOT visible.
+5. Access is denied/blocked — no Administration page loads.","With the Settings parent OFF, the Administration nav is hidden and no Administration sub-page is reachable, even by direct URL. The parent toggle gates the whole area."
+CR-SETTINGS-002,Settings Access,Settings parent ON with all sub-settings OFF shows Administration but no sub-sections,SV-7521,High,Dependency,Admin can edit roles.,"Custom role ""QA Settings ON, subs OFF"" with Settings parent ON and every sub-setting OFF; test user assigned this role.","1. As Administrator, create the role with Settings ON and all sub-settings OFF. Save.
+2. Assign to the test user; save.
+3. Log in as the test user and look at the navigation.
+4. Open Administration and review the available sub-sections.
+5. Direct-URL each Administration sub-page.","1. Role saved.
+2. User forced to log out.
+3. The Administration nav item is visible (parent ON).
+4. No sub-sections are accessible — App Settings, Service, Parts, Integrations, Finance, Data Import, and View/Manage Wages are all absent/blocked.
+5. Each is blocked.","The parent ON exposes the Administration area itself, but each sub-section requires its own sub-setting ON. With all subs OFF, no sub-section is reachable."
+CR-SETTINGS-003,Settings Access,App Settings sub-setting ON grants exactly the App Settings section,SV-7521,High,Positive,Admin can edit roles.,"Custom role ""QA App Settings ON"" with Settings parent ON and only the App Settings sub-setting ON; test user assigned this role.","1. As Administrator, create the role (Settings ON, App Settings ON, all other subs OFF). Assign to test user; save.
+2. Log in as the test user and open Administration.
+3. Open App Settings and confirm org name, business info, locale, and branding are manageable.
+4. Confirm the other sub-sections (Service, Parts, Integrations, Finance, Data Import, View/Manage Wages) are NOT accessible, including by direct URL.","1. Role saved; user forced to log out.
+2. Administration nav visible; App Settings section is accessible.
+3. App Settings content loads and is editable.
+4. Only App Settings is reachable; the others are hidden/blocked.",App Settings ON grants only the App Settings section; other sub-sections remain gated by their own toggles.
+CR-SETTINGS-004,Settings Access,App Settings gates Roles and Permissions and Staff management,SV-7521,Critical,Dependency,Admin can edit roles.,"Two roles: (A) ""QA App Settings ON"" = Settings ON + App Settings ON; (B) ""QA App Settings OFF"" = Settings ON + App Settings OFF (another sub such as Service ON). One test user cycled through both.","1. Assign role B (Settings ON, App Settings OFF) to the test user; save; log in as the user.
+2. Attempt to open Administration > Roles and Permissions.
+3. Attempt to open Administration > Staff (and Workplaces).
+4. As Administrator, switch the test user to role A (App Settings ON); save; re-log-in as the user.
+5. Open Administration > Roles and Permissions.
+6. Open Administration > Staff.","1. Administration nav visible (parent ON).
+2. NOT accessible — hidden and blocked by direct URL.
+3. NOT accessible — hidden and blocked by direct URL.
+4. User forced to log out on change; new login applies role A.
+5. Accessible — the roles list loads.
+6. Accessible — the staff list loads.","Only users with the App Settings sub-setting ON can reach Roles and Permissions management and Staff/Workplaces management. Without App Settings, those areas are hidden and unreachable even though the Administration area is visible."
+CR-SETTINGS-005,Settings Access,Service sub-setting ON/OFF grants/hides only the Service section,SV-7521,Medium,Positive,Admin can edit roles.,"Custom role ""QA Service ON"" (Settings ON, Service ON, others OFF) and a variant with Service OFF; test user cycled through both.","1. Assign ""QA Service ON"" to the test user; save; log in as the user; open Administration.
+2. Confirm all other sub-sections are hidden/blocked (including by direct URL).
+3. As Administrator, set Service OFF for the role; save; re-log-in as the user.
+4. Open Administration and look for the Service section; also try its direct URL.","1. Service section is accessible; labor types, canned lines, asset types, departments, and Digital Inspections are manageable.
+2. Only Service is reachable.
+3. User forced to log out on change.
+4. Service section is hidden and blocked.","The Service sub-setting grants exactly the Service section when ON and hides it when OFF, independent of other sub-settings."
+CR-SETTINGS-006,Settings Access,Parts sub-setting ON/OFF grants/hides only the Parts settings section,SV-7521,Medium,Positive,Admin can edit roles.,"Custom role ""QA Parts Settings ON"" (Settings ON, Parts ON, others OFF) and a Parts OFF variant; test user cycled through both.","1. Assign ""QA Parts Settings ON"" to the test user; save; log in as the user; open Administration.
+2. Confirm other sub-sections are hidden/blocked.
+3. As Administrator, set Parts OFF; save; re-log-in as the user.
+4. Open Administration and look for Parts settings; try its direct URL.","1. Parts settings section is accessible; pricing matrices, categories, and parts config are manageable.
+2. Only Parts settings is reachable.
+3. User forced to log out.
+4. Parts settings section is hidden and blocked.",The Parts sub-setting grants exactly the Parts settings section when ON and hides it when OFF.
+CR-SETTINGS-007,Settings Access,Integrations sub-setting ON/OFF grants/hides only the Integrations section,SV-7521,Medium,Positive,Admin can edit roles.,"Custom role ""QA Integrations ON"" (Settings ON, Integrations ON, others OFF) and an Integrations OFF variant; test user cycled through both.","1. Assign ""QA Integrations ON"" to the test user; save; log in; open Administration.
+2. Confirm other sub-sections are hidden/blocked.
+3. As Administrator, set Integrations OFF; save; re-log-in.
+4. Open Administration and look for Integrations; try its direct URL.","1. Integrations section is accessible; QuickBooks, IBS, and Open API config are manageable.
+2. Only Integrations is reachable.
+3. User forced to log out.
+4. Integrations section is hidden and blocked.",The Integrations sub-setting grants exactly the Integrations section when ON and hides it when OFF. (Integrations is one of the two sub-settings in the spec-count discrepancy — confirm it is intended.)
+CR-SETTINGS-008,Settings Access,Finance sub-setting ON/OFF grants/hides only the Finance section,SV-7521,Medium,Positive,Admin can edit roles.,"Custom role ""QA Finance Settings ON"" (Settings ON, Finance ON, others OFF) and a Finance OFF variant; test user cycled through both.","1. Assign ""QA Finance Settings ON"" to the test user; save; log in; open Administration.
+2. Confirm other sub-sections are hidden/blocked.
+3. As Administrator, set Finance OFF; save; re-log-in.
+4. Open Administration and look for Finance; try its direct URL.","1. Finance section is accessible; tax config, payment settings, and payment methods are manageable.
+2. Only Finance is reachable.
+3. User forced to log out.
+4. Finance section is hidden and blocked.",The Finance sub-setting grants exactly the Finance settings section when ON and hides it when OFF.
+CR-SETTINGS-009,Settings Access,Data Import sub-setting ON/OFF grants/hides only the Data Import section,SV-7521,Medium,Positive,Admin can edit roles.,"Custom role ""QA Data Import ON"" (Settings ON, Data Import ON, others OFF) and a Data Import OFF variant; test user cycled through both.","1. Assign ""QA Data Import ON"" to the test user; save; log in; open Administration.
+2. Confirm other sub-sections are hidden/blocked.
+3. As Administrator, set Data Import OFF; save; re-log-in.
+4. Open Administration and look for Data Import; try its direct URL.","1. Data Import section is accessible; bulk import of customers/vehicles/parts/records is available.
+2. Only Data Import is reachable.
+3. User forced to log out.
+4. Data Import section is hidden and blocked.",The Data Import sub-setting grants exactly the Data Import section when ON and hides it when OFF.
+CR-SETTINGS-010,Settings Access,View/Manage Wages ON shows and enables employee wage rates,SV-7522,High,Positive,"Admin can edit roles. The Staff area is reachable (requires App Settings — see CR-SETTINGS-004), since wage rates appear on staff/employee records.","Custom role ""QA Wages ON"" with Settings ON, App Settings ON, and View/Manage Wages ON; test user assigned this role.","1. As Administrator, create the role (Settings ON, App Settings ON, View/Manage Wages ON). Assign to test user; save.
+2. Log in as the test user and open the staff/employee area where wage rates are shown.
+3. Edit an employee's wage rate and save.","1. Role saved; user forced to log out.
+2. Wage rate fields are VISIBLE for employees.
+3. The wage rate is editable and saves successfully.","With View/Manage Wages ON, employee wage rates are visible and manageable. (View/Manage Wages is the second sub-setting in the spec-count discrepancy — confirm intended.)"
+CR-SETTINGS-011,Settings Access,View/Manage Wages OFF hides employee wage rates (sensitive data),SV-7522,High,Security,Admin can edit roles.,"Custom role ""QA Wages OFF"" with Settings ON, App Settings ON, and View/Manage Wages OFF; test user assigned this role.","1. As Administrator, create the role (Settings ON, App Settings ON, View/Manage Wages OFF). Assign to test user; save.
+2. Log in as the test user and open the staff/employee area.
+3. Open an individual employee record.
+4. If the wage endpoint/URL is known, attempt to reach wage data directly.","1. Role saved; user forced to log out.
+2. Employee records load, but wage rate fields are NOT visible.
+3. No wage rate value is shown or editable.
+4. Wage data is not returned.","With View/Manage Wages OFF, employee wage rates are hidden everywhere they would otherwise appear and are not retrievable, protecting this sensitive data."
+CR-SETTINGS-012,Settings Access,Editor slide-hides sub-settings when the Settings parent is toggled OFF,SV-7521,Medium,UI,"Logged in as Administrator with permission to edit roles. Open Administration > Roles and Permissions and edit a custom role, then scroll to the Settings section.",A custom role open in the Roles and Permissions editor with the Settings parent toggle ON and at least one sub-setting ON.,"1. In the Settings section, confirm the Settings parent toggle is ON.
+2. Set the Settings parent toggle OFF.
+3. Set the Settings parent toggle back ON.","1. The sub-settings (App Settings, Service, Parts, Integrations, Finance, Data Import, View/Manage Wages) are displayed beneath the Settings parent.
+2. The Settings sub-settings collapse out of view with an animated slide transition (not an instant removal), leaving only the Settings parent toggle visible.
+3. The sub-settings slide back into view and show the same ON/OFF selections they had before collapsing.","The editor animates a slide collapse of the Settings sub-settings when the parent is OFF and reveals them when the parent is ON, with prior selections preserved, matching the parent-child gating."
+CR-SETTINGS-013,Settings Access,Regression: sub-setting selections persist across an off→on parent toggle in the editor (SV-7999),SV-7999,High,Regression,Admin can edit roles.,"A custom role open in the editor with the Settings parent ON and a known subset of sub-settings ON (e.g. App Settings ON, Finance ON, others OFF).","1. As Administrator, open a custom role and set Settings ON with App Settings ON and Finance ON (Service, Parts, Integrations, Data Import, View/Manage Wages OFF). Note the exact selections.
+2. Toggle the Settings parent OFF (sub-settings collapse/slide away).
+3. Toggle the Settings parent back ON.
+4. Inspect the sub-setting toggles.
+5. Save the role and reopen it.","1. Selections set as noted.
+2. Parent now OFF; sub-settings hidden.
+3. Sub-settings reappear.
+4. App Settings and Finance are still ON; the others are still OFF — the prior selections were NOT wiped.
+5. The persisted selections match (App Settings ON, Finance ON, rest OFF).","Toggling the Settings parent off and back on preserves the previously chosen sub-setting selections, confirming SV-7999 remains fixed. Any wiped/reset sub-selections after an off→on toggle is a reopened defect."
+CR-XCUT-001,Cross-Cutting Toggles,See Financial Data ON shows financial data app-wide,SV-7523,Critical,Positive,Admin can edit roles; sample data with pricing/costs exists.,"Custom role ""QA Financial ON"" with See Financial Data ON plus View access to Work Orders, Part Sales, Invoicing, and Reports; test user assigned this role.","1. As Administrator, create ""QA Financial ON"" (See Financial Data ON; Work Orders View, Part Sales View, Invoicing View, Reports ON). Assign to test user; save.
+2. Log in as the test user; open a work order with lines.
+3. Open Part Sales.
+4. Open Invoicing and an invoice.
+5. Open Reports and a financial report.","1. Role saved; user forced to log out.
+2. Labor rates, parts pricing, and total/labor/parts columns and summaries are visible.
+3. Pricing/cost/margin columns and totals are visible.
+4. Financial totals are visible.
+5. Cost/margin/financial figures are visible.","With See Financial Data ON, all pricing, costs, margins, totals, and financial columns/summaries are visible across work orders, part sales, invoicing, and reports."
+CR-XCUT-002,Cross-Cutting Toggles,See Financial Data OFF hides all financial data app-wide,SV-7523,Critical,Negative,Admin can edit roles.,"Custom role ""QA Financial OFF"" with See Financial Data OFF plus View access to Work Orders, Part Sales, Invoicing, and Reports; test user assigned this role.","1. As Administrator, create ""QA Financial OFF"" (See Financial Data OFF; Work Orders View, Part Sales View, Invoicing View, Reports ON). Assign to test user; save.
+2. Log in as the test user; open a work order with lines.
+3. Open Part Sales.
+4. Open Invoicing and an invoice.
+5. Open Reports.","1. Role saved; user forced to log out.
+2. No labor rates, no parts pricing, no total/labor/parts columns, no cost/margin, no financial summaries are shown.
+3. Pricing/cost/margin columns and totals are hidden.
+4. Financial totals are hidden.
+5. Financial figures are hidden; financial-only reports are unavailable per report gating.","With See Financial Data OFF, all financial data is hidden everywhere in the app. It is a single app-wide toggle with no per-area granularity."
+CR-XCUT-003,Cross-Cutting Toggles,See Financial Data OFF still allows CRUD actions,SV-7523,High,Positive,"CR-XCUT-002 role available, extended with Edit permissions where noted.","Custom role ""QA Financial OFF + Edit"" with See Financial Data OFF but Work Orders View/Edit ON and Customers View/Edit ON; test user assigned this role.","1. As Administrator, create the role (See Financial Data OFF; Work Orders View/Edit ON; Customers View/Edit ON). Assign to test user; save.
+2. Log in as the test user; create or edit a work order.
+3. Create or edit a customer.","1. Role saved; user forced to log out.
+2. Create/edit succeeds even though financial values are hidden.
+3. Create/edit succeeds.",See Financial Data OFF hides monetary values but does not block CRUD — records can still be created and edited normally. (Note: Part Sales and Invoicing CRUD have a separate dependency on this toggle — see CR-XCUT-004.)
+CR-XCUT-004,Cross-Cutting Toggles,Dependency: enabling Part Sales / Invoicing CRUD while Financial is OFF triggers the Financial Data confirmation modal,SV-7523,High,Dependency,Admin can edit roles; editing a role in the Roles and Permissions editor.,A custom role open in the editor with See Financial Data OFF.,"1. As Administrator, open a custom role with See Financial Data OFF.
+2. Enable Part Sales Edit (create & edit) while See Financial Data is still OFF.
+3. Confirm/accept in the modal.
+4. Repeat with Invoicing Edit while See Financial Data is OFF (reset the role first).","1. Role opens; financial toggle is OFF.
+2. A Financial Data confirmation modal appears, indicating Part Sales requires See Financial Data.
+3. See Financial Data is enabled together with the Part Sales CRUD (dependency satisfied), OR the change is blocked until confirmed, per the modal's design.
+4. The same Financial Data confirmation modal appears for Invoicing.",Enabling Part Sales or Invoicing CRUD while See Financial Data is OFF triggers the Financial Data confirmation modal; those CRUD areas cannot function without See Financial Data ON. Confirming resolves the dependency.
+CR-XCUT-005,Cross-Cutting Toggles,Security regression: Receive Part modal must not expose financial info when financial perms are disabled (SV-7973),SV-7973,Critical,Regression,Admin can edit roles; a vendor order that can be received exists.,"Custom role ""QA Financial OFF + Receive"" with See Financial Data OFF plus the permissions needed to open the Receive Part flow (Vendor & Order Management View/Edit as required); test user assigned this role.","1. As Administrator, create the role (See Financial Data OFF; permissions to reach Receive Part). Assign to test user; save.
+2. Log in as the test user and open a vendor order, then open the Receive Part modal.
+3. Inspect every field in the Receive Part modal.","1. Role saved; user forced to log out.
+2. The modal opens.
+3. NO financial information (unit cost, extended cost, pricing, totals, margins) is shown.","The Receive Part modal exposes no financial information when See Financial Data is OFF, confirming SV-7973 remains fixed. Any financial value visible here is a reopened security defect."
+CR-XCUT-006,Cross-Cutting Toggles,Regression: Invoiced/Paid status filters unavailable without See Financial Data (SV-7943),SV-7943,Medium,Regression,Admin can edit roles.,"Custom role ""QA Financial OFF"" (See Financial Data OFF) with access to a list view that offers Invoiced/Paid status filters; test user assigned this role.","1. Log in as the test user whose role has See Financial Data OFF.
+2. Open the list/view that offers status filters (e.g. work orders or invoicing list).
+3. Open the status filter options.","1. Login succeeds.
+2. The list loads.
+3. The Invoiced and Paid status filters are NOT available (they are financial-status filters gated by See Financial Data).","Without See Financial Data, the Invoiced/Paid status filters are unavailable, per SV-7943. Their presence for a no-financial user is a defect."
+CR-XCUT-007,Cross-Cutting Toggles,"Manage AP/AR ON shows AP/AR tabs, aging reports, bulk payments, and sensitive customer fields",SV-7524,High,Positive,Admin can edit roles; sample customers and vendors with unpaid invoices exist.,"Custom role ""QA AP/AR ON"" with Manage AP/AR ON plus Customers View and Vendor & Order Management View and Reports ON; test user assigned this role.","1. As Administrator, create ""QA AP/AR ON"" (Manage AP/AR ON; Customers View; Vendor & Order Management View; Reports ON). Assign to test user; save.
+2. Log in as the test user; open a Customer detail page and a Vendor detail page.
+3. Open the Unpaid Invoices tab and initiate a bulk payment.
+4. Open Reports and look for AP/AR aging reports.
+5. Open the Edit Customer modal and the Customer Overview panel.","1. Role saved; user forced to log out.
+2. The Unpaid Invoices, Payments, and Credits tabs are visible on both.
+3. Bulk payment from the Unpaid Invoices tab is available.
+4. AR Aging Summary, AR Aging Detail, AR Aging Collection, AP Aging Summary, AP Aging Detail, and AP Unpaid Invoices reports are available.
+5. The sensitive customer fields (AP/AR-gated) are visible.","With Manage AP/AR ON, the AP/AR tabs, the six aging reports, bulk payments from Unpaid Invoices, and the sensitive customer fields on the Edit Customer modal and Customer Overview panel are all available."
+CR-XCUT-008,Cross-Cutting Toggles,"Manage AP/AR OFF hides AP/AR tabs, aging reports, bulk payments, and sensitive customer fields",SV-7524,High,Negative,Admin can edit roles.,"Custom role ""QA AP/AR OFF"" with Manage AP/AR OFF plus Customers View, Vendor & Order Management View, and Reports ON; test user assigned this role.","1. As Administrator, create ""QA AP/AR OFF"" (Manage AP/AR OFF; Customers View; Vendor & Order Management View; Reports ON). Assign to test user; save.
+2. Log in as the test user; open a Customer detail page and a Vendor detail page.
+3. Open Reports and look for AP/AR aging reports.
+4. Look for any bulk-payment action.
+5. Open the Edit Customer modal and the Customer Overview panel.
+6. Attempt to reach an AP/AR aging report or the Unpaid Invoices tab by direct URL if known.","1. Role saved; user forced to log out.
+2. The Unpaid Invoices, Payments, and Credits tabs are NOT visible on either.
+3. None of the six AP/AR aging reports are available.
+4. Bulk payments from the Unpaid Invoices tab are unavailable (the tab itself is hidden).
+5. The sensitive AP/AR-gated customer fields are NOT visible.
+6. Access is blocked.","With Manage AP/AR OFF, the AP/AR tabs, aging reports, bulk payments, and sensitive customer fields are all hidden and unreachable."
+CR-XCUT-009,Cross-Cutting Toggles,Manage AP/AR is independent from See Financial Data (Financial ON + AP/AR OFF),SV-7524,High,Dependency,Admin can edit roles. This mirrors the real Service Advisor configuration.,"Custom role ""QA Financial ON, AP/AR OFF"" with See Financial Data ON and Manage AP/AR OFF plus Customers View, Part Sales View, Invoicing View, Reports ON; test user assigned this role.","1. As Administrator, create the role (See Financial Data ON; Manage AP/AR OFF; Customers View; Part Sales View; Invoicing View; Reports ON). Assign to test user; save.
+2. Log in as the test user; open a work order and part sales.
+3. Open a Customer detail page.
+4. Open Reports.
+5. Open the Edit Customer modal / Customer Overview panel.","1. Role saved; user forced to log out.
+2. Financial data (pricing/costs/totals) IS visible (Financial ON).
+3. The Unpaid Invoices/Payments/Credits tabs are NOT visible (AP/AR OFF).
+4. AP/AR aging reports are NOT available (AP/AR OFF), even though other financial reports are.
+5. The sensitive AP/AR-gated customer fields are NOT visible.","A role can have See Financial Data ON while Manage AP/AR is OFF: financial values show everywhere, but AP/AR tabs, aging reports, and sensitive customer fields remain hidden. The two toggles are independent."
+CR-XCUT-010,Cross-Cutting Toggles,Manage AP/AR does not gate any CRUD area,SV-7524,Medium,Positive,Admin can edit roles.,"Custom role ""QA AP/AR OFF + CRUD"" with Manage AP/AR OFF but Work Orders View/Edit ON, Customers View/Edit ON, and Invoicing View/Edit ON (with See Financial Data ON so Invoicing works); test user assigned this role.","1. As Administrator, create the role (Manage AP/AR OFF; Work Orders View/Edit; Customers View/Edit; Invoicing View/Edit; See Financial Data ON). Assign to test user; save.
+2. Log in as the test user; create/edit a work order, a customer, and an invoice.","1. Role saved; user forced to log out.
+2. All CRUD actions succeed despite Manage AP/AR being OFF.",Manage AP/AR does not gate any CRUD area — records can be created/edited/deleted per their own CRUD permissions regardless of the AP/AR toggle. (Exception: Invoicing DELETE additionally requires Manage AP/AR ON — see CR-XCUT-011.)
+CR-XCUT-011,Cross-Cutting Toggles,Cross-dependency: Invoicing DELETE additionally requires Manage AP/AR ON,SV-7524,High,Dependency,Admin can edit roles; a deletable sample invoice exists.,"Two roles: (A) ""QA Invoice Delete, AP/AR OFF"" = Invoicing View/Edit/Delete ON, See Financial Data ON, Manage AP/AR OFF; (B) same but Manage AP/AR ON. One test user cycled through both.","1. Assign role A (Invoicing Delete ON but AP/AR OFF) to the test user; save; log in as the user; open an invoice.
+2. Attempt to delete the invoice.
+3. As Administrator, switch the test user to role B (Manage AP/AR ON); save; re-log-in as the user.
+4. Open an invoice and attempt to delete it.","1. Invoice opens.
+2. Delete is NOT permitted — the delete action is unavailable/blocked because Manage AP/AR is OFF.
+3. User forced to log out; new login applies role B.
+4. Delete succeeds (Invoicing Delete ON and Manage AP/AR ON).","Deleting an invoice requires both Invoicing Delete and Manage AP/AR ON. With Manage AP/AR OFF, invoice deletion is blocked even when Invoicing Delete is granted."
+CR-XCUT-012,Cross-Cutting Toggles,View History Logs ON shows history/audit logs,SV-7525,Medium,Positive,"Admin can edit roles; sample records with history exist (a work order that has been edited, a part sale, a parts order).","Custom role ""QA History ON"" with View History Logs ON plus View access to Work Orders, Part Sales, and Vendor & Order Management; test user assigned this role.","1. As Administrator, create ""QA History ON"" (View History Logs ON; Work Orders View; Part Sales View; Vendor & Order Management View). Assign to test user; save.
+2. Log in as the test user; open a work order and view its history log.
+3. Open a part sale and view its history.
+4. Open a parts order and view its history.","1. Role saved; user forced to log out.
+2. The WO history/audit log is visible.
+3. The part sales history is visible.
+4. The parts order history is visible.","With View History Logs ON, history/audit logs (WO history, part sales history, parts order history, etc.) are visible throughout the app."
+CR-XCUT-013,Cross-Cutting Toggles,View History Logs OFF hides history/audit logs,SV-7525,Medium,Negative,Admin can edit roles.,"Custom role ""QA History OFF"" with View History Logs OFF plus View access to Work Orders, Part Sales, and Vendor & Order Management; test user assigned this role.","1. As Administrator, create ""QA History OFF"" (View History Logs OFF; Work Orders View; Part Sales View; Vendor & Order Management View). Assign to test user; save.
+2. Log in as the test user; open a work order and look for its history log.
+3. Open a part sale and a parts order and look for their history.
+4. Attempt to reach a history log by direct URL if known.","1. Role saved; user forced to log out.
+2. The WO history/audit log is NOT visible.
+3. Part sales history and parts order history are NOT visible.
+4. Access is blocked.","With View History Logs OFF, history/audit logs are hidden throughout the app and unreachable by direct URL."
+CR-SYSROLE-001,System Role Templates & Migration,Verify system role set and count (Owner merged into Admin),SV-7526,Critical,Positive,Logged in as Administrator; on Administration > Roles and Permissions.,Expected role list from the reference table above.,"1. Open the Roles and Permissions list and filter to system/template roles.
+2. Confirm each expected role is present: Administrator, Service Manager, Senior Service Advisor, Service Advisor, Foreman, Technician, Parts Manager, Parts Technician, Office, Sales Representative, Time Clock.
+3. Search the list for a separate ""Owner"" role.
+4. Compare the total system-role count and internal ids against the PM-confirmed list.","1. System roles are listed and labeled as system roles.
+2. All 11 named roles are present.
+3. No standalone Owner role exists; Owner is merged into Administrator.
+4. Count and roles match the confirmed list. If `system-owner` still exists or count = 12, log against README discrepancy item 1.",The seeded system roles match the confirmed list of 11 (Owner merged into Administrator); no separate Owner role exists. Any reference to `system-owner` or a 12-role count is flagged for PM confirmation.
+CR-SYSROLE-002,System Role Templates & Migration,Spot-check full default matrix: Administrator (full access),SV-7526,Critical,Positive,On Administration > Roles and Permissions; Administrator system role opened for viewing.,Administrator column of the reference matrix (all areas V/E/D except Timesheets V/E; all page toggles/settings/cross-cutting ON; Full View).,"1. Open the Administrator system role and view its permission configuration.
+2. Verify CRUD levels: Work Orders, WO Lines, Schedule, Customers, Part Sales, Catalog & Inventory, Vendor & Order Mgmt, Invoicing all = V/E/D.
+3. Verify Timesheets = V/E.
+4. Verify page toggles: Reports, Customer Portal, Parts Dept, Billing Portal, Settings all ON.
+5. Verify Settings sub-toggles: all ON.
+6. Verify WO sub-settings (Review WOs, Pick Parts, Order Parts) ON; See Financial ON; Manage AP/AR ON; View History Logs ON; View Mode = Full.","1. Role detail displays all setting groups.
+2. All these areas show View, Edit, and Delete enabled.
+3. Timesheets shows View and Edit; Delete matches the matrix (V/E).
+4. All page toggles ON.
+5. Every Settings sub-toggle is ON.
+6. All ON; View Mode Full.",The Administrator system role defaults exactly match the full-access configuration in the matrix.
+CR-SYSROLE-003,System Role Templates & Migration,"Spot-check full default matrix: Technician (Tech View, restricted)",SV-7526,Critical,Positive,On Administration > Roles and Permissions; Technician system role opened.,"Technician column: WO=V, WO Lines=V/E, Schedule=V, Customers=V; Part Sales/Catalog/Vendor/Invoicing/Timesheets=—; Tech View; See Financial OFF; History Logs OFF.","1. Open the Technician system role.
+2. Verify CRUD: Work Orders = V, WO Lines = V/E, Schedule = V, Customers = V.
+3. Verify Part Sales, Catalog & Inventory, Vendor & Order Mgmt, Invoicing, Timesheets all = — (off).
+4. Verify page toggles: Reports OFF, Customer Portal OFF, Billing Portal OFF, Settings OFF; Parts Dept OFF.
+5. Verify WO sub-settings: Pick Parts ON; Review WOs OFF; Order Parts OFF.
+6. Verify View Mode = Tech View; See Financial Data OFF; Manage AP/AR OFF; View History Logs OFF.","1. Role detail displays.
+2. These match exactly (WO Lines has Edit; others View only).
+3. All five parts/invoicing/timesheets areas are off.
+4. These are OFF for Technician.
+5. Pick Parts ON only.
+6. View Mode is Tech; financial and history logs OFF.","The Technician system role defaults exactly match the restricted, Tech-View configuration in the matrix, with financial data and history logs hidden."
+CR-SYSROLE-004,System Role Templates & Migration,Spot-check full default matrix: Time Clock (minimal),SV-7526,High,Positive,On Administration > Roles and Permissions; Time Clock system role opened.,"Time Clock column: WO=V, Schedule=V, Timesheets=V; WO Lines/Customers/Parts/Invoicing=—; all page toggles OFF; See Financial OFF; History Logs OFF; View Mode empty.","1. Open the Time Clock system role.
+2. Verify CRUD: Work Orders = V, Schedule = V, Timesheets = V.
+3. Verify WO Lines, Customers, Part Sales, Catalog & Inventory, Vendor & Order Mgmt, Invoicing all = —.
+4. Verify all page toggles (Reports, Customer Portal, Parts Dept, Billing Portal, Settings) OFF.
+5. Verify WO sub-settings all OFF; See Financial Data OFF; Manage AP/AR OFF; View History Logs OFF.
+6. Verify View Mode is empty/unset for Time Clock.","1. Role detail displays (read-only — see CR-SYSROLE-006).
+2. These three are View only.
+3. All off.
+4. All OFF.
+5. All OFF.
+6. View Mode shows no selection.","The Time Clock system role defaults exactly match the minimal configuration in the matrix (WO/Schedule/Timesheets View only, everything else off, View Mode empty)."
+CR-SYSROLE-005,System Role Templates & Migration,"Spot-check full default matrix: Office (non-edit-heavy, read-focused)",SV-7526,High,Positive,On Administration > Roles and Permissions; Office system role opened.,"Office column: Customers=V/E/D; Timesheets=V/E; WO=V; Schedule=V; Part Sales/Catalog/Vendor/Invoicing=V; WO Lines=V; Reports OFF; Customer Portal OFF; Parts Dept ON; Billing Portal ON; Settings ON; Settings subs = App Settings, Service, Finance, Data Import, Wages; See Financial ON; Manage AP/AR ON; History Logs ON; Full View.","1. Open the Office system role.
+2. Verify Customers = V/E/D and Timesheets = V/E.
+3. Verify Work Orders=V, WO Lines=V, Schedule=V, Part Sales=V, Catalog & Inventory=V, Vendor & Order Mgmt=V, Invoicing=V.
+4. Verify page toggles: Reports OFF, Customer Portal OFF, Parts Dept ON, Billing Portal ON, Settings ON.
+5. Verify Settings sub-toggles ON = App Settings, Service, Finance, Data Import, Wages (Parts and Integrations OFF).
+6. Verify See Financial Data ON, Manage AP/AR ON, View History Logs ON, View Mode = Full.","1. Role detail displays (read-only — see CR-SYSROLE-006).
+2. Office can delete customers and edit timesheets.
+3. All these are View only (no Edit/Delete).
+4. Matches.
+5. Matches exactly.
+6. Matches.","The Office system role defaults exactly match the matrix, including Customers V/E/D, Timesheets V/E, mostly View-only elsewhere, and its specific Settings sub-toggle set."
+CR-SYSROLE-006,System Role Templates & Migration,Verify Office and Time Clock are open read-only; other system roles editable,SV-7526,Critical,Security,Logged in as Administrator; on Administration > Roles and Permissions.,"Office, Time Clock, and one editable system role (e.g. Service Manager).","1. Open the Office system role.
+2. Attempt to change any Office permission.
+3. Open the Time Clock system role and attempt to change any permission.
+4. Open the Service Manager system role and change a non-critical setting, then Save.
+5. Revert the Service Manager change.","1. Role opens and its settings are visible (open) but all controls are read-only — no toggle/level can be changed and there is no Save affordance for edits.
+2. The change is not possible / not persisted; role remains at defaults.
+3. Time Clock is open but read-only; no permission can be changed.
+4. Service Manager (an editable system role) allows the edit and saves it.
+5. Reverted successfully.",Office and Time Clock system roles are viewable but read-only (cannot be edited); all other system roles are editable. Reset any edited role to defaults afterward.
+CR-SYSROLE-007,System Role Templates & Migration,Verify system roles cannot be deleted,SV-7526,Critical,Negative,Logged in as Administrator; on Administration > Roles and Permissions.,"Any two system roles (e.g. Administrator, Technician).","1. Locate a system role (e.g. Administrator) in the list.
+2. Look for a Delete action on the system role.
+3. If a delete affordance exists, attempt to delete the system role.
+4. Repeat for a second system role (e.g. Technician).","1. Row is shown as a system role.
+2. No Delete action is available, or it is disabled.
+3. Deletion is blocked with a clear message that system roles cannot be deleted.
+4. Same result — cannot be deleted.",No system role can be deleted through the UI; the system prevents deletion of template roles.
+CR-SYSROLE-008,System Role Templates & Migration,Verify a custom role records its source template,SV-7526,High,Positive,Logged in as Administrator; on Administration > Roles and Permissions.,Source template = Service Advisor; new custom role name = `QA Custom From SvcAdv`.,"1. Start creating a new custom role and choose Service Advisor as the starting template.
+2. Name it `QA Custom From SvcAdv` and save.
+3. Reopen the custom role and inspect its details/metadata.
+4. Confirm the recorded template does not change even if permissions are later edited.
+5. Delete the custom role (cleanup).","1. The new role is pre-populated with Service Advisor's default permissions.
+2. Custom role is created.
+3. The role records/displays that its source template was Service Advisor (template recorded for reference).
+4. Edit a permission, save, reopen — source template still shows Service Advisor.
+5. Deleted successfully (custom roles are deletable, unlike system roles).","A custom role starts from the chosen template and persistently records that template for reference, independent of subsequent edits."
+CR-SYSROLE-009,System Role Templates & Migration,Matrix-verification template (repeat per role),SV-7526,High,Positive,Logged in as Administrator; on Administration > Roles and Permissions. Have the reference matrix at hand.,The role under test = **__________** (fill in). Use that role's column across all reference tables above.,"1. Open the role under test.
+2. For each CRUD area (Work Orders, WO Lines, Schedule, Customers, Part Sales, Catalog & Inventory, Vendor & Order Mgmt, Invoicing, Timesheets), read the configured V/E/D and compare to the role's column in the CRUD matrix.
+3. Compare each page toggle (Reports, Customer Portal, Parts Dept, Billing Portal, Settings) to the page-toggles table.
+4. If Settings is ON, compare the Settings sub-toggles to the sub-toggle table.
+5. Compare WO sub-settings (Review WOs, Pick Parts, Order Parts), View Mode, See Financial Data, Manage AP/AR, and View History Logs to the reference table.
+6. Record any cell that does not match, citing area + expected vs actual.","1. Role detail displays.
+2. Every area's level matches the matrix exactly.
+3. Each matches.
+4. Sub-toggle set matches.
+5. Each matches.
+6. Deviations logged with role name and cell.","Every configured setting for the role under test matches its column in the reference matrix. Run this template once per system role not already covered in detail by CR-SYSROLE-002 through 005 (Service Manager, Senior Service Advisor, Service Advisor, Foreman, Parts Manager, Parts Technician, Sales Representative)."
+CR-SYSROLE-010,System Role Templates & Migration,Behavior spot-check by logging in as sampled roles,SV-7526,High,Security,Per-role test users exist (CR-SETUP-003). Two browsers/incognito available.,"Technician, Sales Representative, and Office test users.","1. Log in as the Technician test user.
+2. As Technician, open a work order.
+3. Log in as the Sales Representative test user.
+4. Log in as the Office test user.","1. Technician sees Work Orders and can edit WO Lines, but sees no pricing/financial values (See Financial OFF) and no History Logs; no Reports/Settings/Parts Dept.
+2. Monetary values are hidden; Pick Parts is available; Review WOs and Order Parts are not.
+3. Sales Rep has no CRUD areas enabled (all —) but can access Reports and Manage AP/AR per the matrix; See Financial is ON.
+4. Office can view most areas, delete customers, edit timesheets, access Billing Portal and Settings (its sub-set), but cannot access Reports or Customer Portal.","The effective behavior seen by sampled roles matches their matrix defaults, confirming the templates drive real access (not just the config UI)."
+CR-SYSROLE-011,System Role Templates & Migration,Migration: each legacy role mapped to the correct new role,SV-7527,Critical,Regression,A migrated shop (or migration records) with at least one user per legacy role. Access as Administrator.,Legacy-to-new mapping table above.,"1. For each legacy user, open Administration > Staff and read their post-migration role.
+2. Verify Owner → Administrator, Administrator → Administrator.
+3. Verify Service Manager → Service Manager; Service Advisor, SA Technician, SA No Reports → Senior Service Advisor; SA Limited View → Service Advisor.
+4. Verify Foreman → Foreman; Technician → Technician; Parts Manager → Parts Manager; Parts Technician → Parts Technician.
+5. Verify Sales Representative → Sales Representative; Reporting → Sales Representative; Office → Office; Time Clock → Time Clock.
+6. Confirm no legacy role produced an unexpected target.","1. Role is populated (no user left role-less).
+2. Both former-Owner and former-Administrator users are now Administrator.
+3. Each maps as specified.
+4. Each maps as specified.
+5. Each maps as specified.
+6. All mappings match the reference table.","Every legacy role migrated to its mapped new role exactly as in the mapping table, with each user assigned a valid new role."
+CR-SYSROLE-012,System Role Templates & Migration,Migration: legacy Owner users land on Administrator,SV-7527,Critical,Regression,A migrated shop containing at least one user who was formerly Owner. Access as Administrator.,At least one former-Owner user.,"1. Identify a user who held the legacy Owner role before migration.
+2. Open that user in Administration > Staff and read their role.
+3. Log in as that user (or verify effective permissions).
+4. Confirm the Owner role is not present anywhere as a selectable role.","1. User identified.
+2. Role = Administrator.
+3. User has full Administrator access.
+4. Owner is absent; only Administrator exists.","Former Owner users are on the Administrator role with full access, and Owner no longer exists as a separate selectable role."
+CR-SYSROLE-013,System Role Templates & Migration,Migration: SA Limited View preserves AP/AR restriction,SV-7527,High,Regression,A migrated shop with a former SA Limited View user. Access as Administrator.,A former SA Limited View user (now Service Advisor / system-jsa).,"1. Open the former SA Limited View user in Staff.
+2. Inspect the user's effective Manage AP/AR setting.
+3. Log in as the user and attempt an AP/AR action.","1. Role = Service Advisor (system-jsa).
+2. Manage AP/AR is OFF, preserving the legacy restriction.
+3. AP/AR management is not available.","SA Limited View migrated to Service Advisor with Manage AP/AR left OFF, preserving the original limited-view restriction."
+CR-SYSROLE-014,System Role Templates & Migration,Migration: SA No Reports gains Reports access,SV-7527,Medium,Regression,A migrated shop with a former SA No Reports user. Access as Administrator.,A former SA No Reports user (now Senior Service Advisor / system-ssa).,"1. Open the former SA No Reports user in Staff.
+2. Inspect the user's Reports page toggle.
+3. Log in as the user and open Reports.","1. Role = Senior Service Advisor.
+2. Reports is ON (Senior Service Advisor has Reports; this is a behavior change vs legacy).
+3. Reports page is accessible.","SA No Reports migrated to Senior Service Advisor and now has Reports access, consistent with the notified behavior change."
+CR-SYSROLE-015,System Role Templates & Migration,Migration: verify notified behavior changes per role,SV-7527,High,Regression,A migrated shop with users across the affected roles. Access as Administrator. Reference matrix at hand.,"Users on Senior Service Advisor, Service Manager, Foreman, Technician, Parts Manager, Parts Technician, Office.","1. Senior Service Advisor: verify the broad expansion (elevated CRUD across areas per matrix, e.g. WO/WO Lines/Schedule V/E/D, Invoicing V/E/D, Reports ON, AP/AR ON).
+2. Service Manager: verify it lost Invoicing Delete (now V/E), lost several Settings sub-toggles (now only App Settings + Wages), and gained portals (Customer Portal, Billing Portal ON).
+3. Foreman: verify expansion — WO Lines Delete, Schedule Delete, Parts Dept ON, Invoicing V/E, Order Parts ON.
+4. Technician: verify it gained Pick Parts and lost ""Send to Portal.""
+5. Parts Manager: verify it lost WO Delete and WO Lines Delete (now WO V/E, WO Lines V/E), and gained Schedule View + Customer Portal.
+6. Parts Technician: verify the expansion per matrix (e.g. Part Sales V/E, Catalog V/E, Vendor & Order Mgmt V/E/D, Pick/Order Parts ON, Timesheets V).
+7. Office: verify Catalog & Inventory reduced to View and Customer Management gained Delete (Customers V/E/D).","1. Senior SA has the expanded permission set.
+2. Matches the reduced-Invoicing / reduced-Settings / added-portals change.
+3. Foreman has these added capabilities.
+4. Pick Parts ON; Send to Portal no longer available.
+5. Matches the reduced-delete / added-schedule-view / added-portal change.
+6. Parts Tech has the expanded set.
+7. Office Catalog = V; Customers = V/E/D.","Each affected role reflects the notified post-migration behavior changes exactly as listed, matching the reference matrix. Any deviation is a migration defect logged against SV-7527."
+CR-REG-001,Regression & Edge Cases,Work Orders View-only role can log in,SV-7975,Critical,Regression,"Custom role with Work Orders → View ON only (Create/Edit and Delete OFF), no other areas enabled. Assigned to test user.","Role ""WO View-only"".","1. Create role ""WO View-only"" with Work Orders → View ON, all else OFF. Assign to test user.
+2. Log in as the test user.
+3. Observe the landing page and top navigation.","1. Role saves.
+2. Login succeeds.
+3. User lands on an appropriate page (e.g., Work Orders list). **No ""Access Restricted"" wall.** Nav tabs are present.",A Work Orders View-only user logs in successfully and is not blocked by an Access Restricted page.
+CR-REG-002,Regression & Edge Cases,WO View-only user opening a WO loads WO Lines,SV-7976,Critical,Regression,Custom role with Work Orders → View ON only. Assigned to test user. At least one WO with lines.,"Role ""WO View-only""; a WO with at least one line.","1. Log in as the WO View-only test user.
+2. Open the Work Orders list and click a Work Order that has lines.
+3. Observe the Work Order Lines section.","1. Login succeeds.
+2. WO detail page opens.
+3. WO Lines **load and display**. **No ""Failed to Load Work Order Lines"" error.**",A WO View-only user can open a WO and see its lines load without error.
+CR-REG-003,Regression & Edge Cases,Role without Reports can log in and use the app,SV-7977,Critical,Regression,"Custom role with **Reports OFF** but other reasonable permissions ON (e.g., Work Orders View). Assigned to test user.","Role ""No Reports"".","1. Create role ""No Reports"" with Reports OFF and Work Orders → View ON. Assign to test user.
+2. Log in as the test user.
+3. Navigate around the areas the role does have access to.","1. Role saves.
+2. Login succeeds — **no ""Access Restricted"".**
+3. App is usable normally; the absence of Reports does not block anything else.",A role without Reports logs in and uses the app normally; missing Reports does not cause an Access Restricted wall.
+CR-REG-004,Regression & Edge Cases,Top nav tabs remain visible on Access-Restricted situations,SV-7983,High,Regression,A minimal custom role that previously triggered Access-Restricted behavior on some pages. Assigned to test user.,"Role ""Minimal Access"".","1. Log in as the test user with the minimal role.
+2. Navigate to a page the role can access, then to one it partially cannot; repeat a few times.","1. Login succeeds.
+2. On every page transition the **top navigation tabs remain visible** and do not sporadically disappear.",The top nav tabs stay consistently visible even in access-restricted scenarios.
+CR-REG-005,Regression & Edge Cases,Role without Reports: Start/Stop on a WO line does not trigger Access Restricted,SV-7995,High,Regression,Custom role with Reports OFF and Work Orders View + WO Lines Create&Edit ON (enough to start/stop). Assigned to test user.,"Role ""No Reports Tech""; a WO with a startable line.","1. Log in as the test user and open a WO with a line.
+2. Click **Start** on a WO line, then **Stop**.","1. Login succeeds; WO opens.
+2. Timer starts and stops. **No ""Access Restricted"" page appears** at any point.",Starting/stopping a WO line for a role without Reports does not surface an Access Restricted error.
+CR-REG-006,Regression & Edge Cases,"WO Lines Create&Edit removes ""Failed to Load WO Lines"" without needing Customers",SV-7997,High,Regression,"Custom role with Work Orders View + WO Lines Create&Edit ON, **Customers OFF**. Assigned to test user.","Role ""WO Lines Editor (no Customers)""; a WO with lines.","1. Create the role with WO Lines Create&Edit ON and Customers OFF. Assign to test user.
+2. Log in as the test user and open a WO with lines.
+3. Observe the WO Lines section.","1. Role saves.
+2. WO opens.
+3. WO Lines **load successfully**. **No ""Failed to Load WO Lines"" error, even though Customers is OFF.**",Enabling WO Lines Create&Edit resolves the load error without requiring the Customers permission.
+CR-REG-007,Regression & Edge Cases,Schedule View-only lands on Schedule with no Access Restricted,SV-8047,High,Regression,"Custom role with Schedule → View ON only, Customers OFF. Assigned to test user.","Role ""Schedule View-only"".","1. Create role ""Schedule View-only"" (Schedule View ON, Customers OFF). Assign to test user.
+2. Log in as the test user.
+3. Log out and log in again a couple of times to check for intermittency.","1. Role saves.
+2. Login succeeds and lands on the **Schedule** page.
+3. Every login lands on Schedule. **No ""Access Restricted"" appears; enabling Customers is not required.**",A Schedule View-only user reliably lands on the Schedule without an Access Restricted wall and without needing Customers.
+CR-REG-008,Regression & Edge Cases,"Schedule View+Create&Edit: new events persist and ""Assign to existing WO"" works",SV-8048,High,Regression,Custom role with Schedule → View + Create&Edit ON. Assigned to test user. At least one existing WO.,"Role ""Schedule Editor""; an existing WO to assign to.","1. Log in as the Schedule Editor user and open the Schedule.
+2. Create a new schedule event and save.
+3. Refresh / reopen the Schedule.
+4. On an event, use **Assign to existing WO** and pick a WO.","1. Schedule opens.
+2. Event saves.
+3. The new event **persists** and is still shown.
+4. Assignment succeeds and links the event to the WO.","New schedule events persist and ""Assign to existing WO"" works for a Schedule View+Create&Edit role."
+CR-REG-009,Regression & Edge Cases,Timesheets View-only reaches Timesheets with tab present,SV-8051,High,Regression,Custom role with Timesheets → View ON only. Assigned to test user.,"Role ""Timesheets View-only"".","1. Create role ""Timesheets View-only"" (Timesheets View ON). Assign to test user.
+2. Log in as the test user.
+3. Look for the Timesheets navigation tab and open it.","1. Role saves.
+2. Login succeeds; **no ""Access Restricted"".**
+3. The **Timesheets tab is present** and opens the Timesheets page.",A Timesheets View-only user reaches Timesheets and the tab is visible.
+CR-REG-010,Regression & Edge Cases,Part Sales View role can log in with and without See Financial Data,SV-8052,High,Regression,Two custom roles: (A) Part Sales → View ON with **See Financial Data OFF**; (B) Part Sales → View ON with **See Financial Data ON**. Assigned to test user(s).,"Roles ""Part Sales View (no fin)"" and ""Part Sales View (fin)"".","1. Log in as the user with role (A) — Part Sales View, See Financial Data OFF.
+2. Assign role (B) to the user, have them log back in.","1. Login succeeds; **no ""Access Restricted"".**
+2. Login succeeds; **no ""Access Restricted"".**",A Part Sales View role logs in successfully regardless of the See Financial Data setting.
+CR-REG-011,Regression & Edge Cases,Role create/update API rejects invalid permission combinations,SV-7885,Critical,Security,"Ability to submit a role create/update request directly (e.g., via browser devtools or an API client) with the same session used in the role admin UI.","A payload that violates parent-gate/cascade rules (e.g., WO Lines Create&Edit ON while Work Orders View OFF).","1. Open the role admin UI and confirm the invalid combo is blocked in the UI.
+2. Capture the role save request and re-send it modified to contain the invalid combo (bypassing the UI).
+3. Reload the roles list.","1. UI prevents the invalid combination.
+2. The **server rejects** the request (validation error / 4xx). The invalid role is **not** created/updated.
+3. No role with the invalid combination exists.",Parent-gate/cascade rules are enforced server-side; the API rejects invalid permission combinations even when the UI is bypassed.
+CR-REG-012,Regression & Edge Cases,Editor blocks WO Lines Create&Edit while WO View is OFF,SV-7981,High,Negative,Role admin UI access.,Role edit with Work Orders → View OFF.,"1. In the role editor, set Work Orders → View OFF.
+2. Attempt to enable WO Lines → Create&Edit.
+3. If such a combo somehow existed on a user, log in as them and open a WO.","1. View turns OFF.
+2. The editor **does not allow** WO Lines Create&Edit while WO View is OFF (option disabled/blocked).
+3. No broken/blank state results — the app behaves consistently, not a half-broken screen.","The role editor prevents WO Lines Create&Edit without WO View, and no broken/blank state can arise from that combination."
+CR-REG-013,Regression & Edge Cases,Part Sales (See Financial Data OFF) not reachable via direct URL,SV-7965,Critical,Security,"Custom role with Part Sales financial access OFF (See Financial Data OFF, or Part Sales area OFF as applicable). Assigned to test user. Know the direct URL to the restricted Part Sales/financial view.","Role ""No Part Financials""; direct URL to the Part Sales financial page.","1. Log in as the test user with financial access OFF.
+2. Paste the direct URL to the restricted Part Sales financial view into the address bar.","1. Login succeeds.
+2. Access is **denied**; the restricted page/data is **not** shown.",URL manipulation cannot reach Part Sales financial data when the permission is disabled.
+CR-REG-014,Regression & Edge Cases,Time Clock role permissions are enforced (no restricted-area access),SV-7958,Critical,Security,Custom Time Clock role (limited scope). Assigned to test user. Know direct URLs to areas the role should not reach.,"Role ""Time Clock only"".","1. Log in as the Time Clock role user.
+2. Attempt to reach restricted areas via nav and via direct URL.","1. Login succeeds into the allowed Time Clock scope.
+2. Restricted areas are **not reachable**; access is denied.",Time Clock role permissions are enforced and the user cannot reach restricted areas.
+CR-REG-015,Regression & Edge Cases,Receive Part modal hides financial info when financial perms are off,SV-7973,High,Security,Custom role able to receive parts but with financial permissions (See Financial Data) OFF. Assigned to test user. A part available to receive.,"Role ""Receive no financials""; a receivable part.","1. Log in as the test user and open the Receive Part flow for a part.
+2. Inspect all fields in the modal.","1. Receive Part modal opens.
+2. **No financial info** (cost/price/totals) is exposed.",The Receive Part modal does not expose financial information when financial permissions are disabled.
+CR-REG-016,Regression & Edge Cases,AP/AR and WO-history controllers are guarded,SV-7475,Critical,Security,Custom role with **AP/AR OFF**. Assigned to test user. Know the AP/AR and WO-history endpoints/URLs.,"Role ""No AP/AR""; endpoint/URL for AP/AR data and WO history.","1. Log in as the No AP/AR test user.
+2. Attempt to hit the AP/AR controller/endpoint directly (URL or API request).
+3. Attempt to hit the WO-history controller/endpoint directly.","1. Login succeeds.
+2. Request is **rejected / access denied**; no AP/AR data returned.
+3. Request is **rejected / access denied**; no data returned.",AP/AR and WO-history controllers are guarded server-side; a role without AP/AR cannot access those endpoints or data.
+CR-REG-017,Regression & Edge Cases,Deleting/reopening inspections requires WO Lines Delete,SV-7985,High,Negative,Custom role with WO View + WO Lines Create&Edit ON but **WO Lines Delete OFF**. Assigned to test user. An in-progress inspection and a completed inspection.,"Role ""WO Lines Editor (no Delete)""; one in-progress and one completed inspection.","1. Log in as the test user and open the WO with the in-progress inspection.
+2. Attempt to delete the in-progress inspection.
+3. Attempt to delete the completed inspection.
+4. Attempt to reopen the completed inspection.","1. WO opens.
+2. **Not allowed** (no delete action / blocked) — Create&Edit alone does not permit delete.
+3. **Not allowed.**
+4. **Not allowed** — reopen requires WO Lines Delete.",Deleting in-progress/completed inspections and reopening completed inspections all require WO Lines Delete; Create&Edit alone does not permit them.
+CR-REG-018,Regression & Edge Cases,Inspection filler is read-only without WO Lines Create&Edit,SV-8044,High,Negative,Custom role with WO View ON but **WO Lines Create&Edit OFF**. Assigned to test user. An inspection to view.,"Role ""WO View-only""; an inspection.","1. Log in as the test user and open a WO with an inspection.
+2. Open the inspection filler.
+3. Attempt to edit fields and to submit.","1. WO opens.
+2. Inspection filler opens in **read-only** mode.
+3. Fields are **not editable**; there is **no working submit** action.","For roles without WO Lines Create&Edit, the inspection filler is read-only and cannot be edited or submitted."
+CR-REG-019,Regression & Edge Cases,Role with WO View + WO Lines Create&Edit + Delete can reopen completed inspections,SV-8045,High,Regression,Custom role with WO View + WO Lines Create&Edit + WO Lines Delete ON. Assigned to test user. A completed inspection.,"Role ""WO Lines Full""; a completed inspection.","1. Log in as the test user and open the WO with the completed inspection.
+2. Locate and click the **Reopen** action on the completed inspection.","1. WO opens.
+2. Reopen action is available and **succeeds**; the inspection returns to an open state.",A role with WO View + WO Lines Create&Edit + Delete can reopen completed inspections.
+CR-REG-020,Regression & Edge Cases,Service Advisor can reopen completed inspections,SV-8020,High,Regression,Service Advisor role (per spec) assigned to test user. A completed inspection.,"Role ""Service Advisor""; a completed inspection.","1. Log in as the Service Advisor user and open the WO with the completed inspection.
+2. Locate the **Reopen** button on the completed inspection.
+3. Click Reopen.","1. WO opens.
+2. The **Reopen button is present**.
+3. Reopen succeeds.",The Service Advisor role can reopen completed inspections and the Reopen button is available.
+CR-REG-021,Regression & Edge Cases,"Technician with Order Parts OFF does not see ""Receive"" for special-order parts",SV-7972,High,Negative,Technician-style custom role with **Order Parts OFF**. Assigned to test user. A WO line with a special-order part.,"Role ""Technician (no Order Parts)""; a special-order part on a line.","1. Log in as the test user and open the WO line with the special-order part.
+2. Inspect the actions available for the special-order part.","1. Line opens.
+2. **No ""Receive"" action** is shown for the special-order part.",A technician with Order Parts OFF does not see the Receive option for special-order parts.
+CR-REG-022,Regression & Edge Cases,Returning a special-order part does not 403 for an authorized role,SV-7988,High,Regression,Custom role authorized to return parts (parts management permissions ON). Assigned to test user. A special-order part that can be returned.,"Role ""Parts Manager""; a returnable special-order part.","1. Log in as the authorized test user and open the special-order part.
+2. Perform the **Return** action on the special-order part.","1. Part opens.
+2. Return **succeeds**. **No 403 error.**",An authorized role can return a special-order part without a 403.
+CR-REG-023,Regression & Edge Cases,Catalog & Inventory role with Edit/Delete can create/edit/delete a catalog part,SV-8004,High,Regression,Custom role with Catalog & Inventory → Create&Edit + Delete ON. Assigned to test user.,"Role ""Catalog Editor"".","1. Log in as the test user and open the parts catalog.
+2. Create a new catalog part.
+3. Edit the catalog part.
+4. Delete the catalog part.","1. Catalog opens.
+2. Creation **succeeds** — no 403.
+3. Edit **succeeds** — no 403.
+4. Delete **succeeds** — no 403.","A Catalog & Inventory role with Edit/Delete can create, edit, and delete a catalog part without 403."
+CR-REG-024,Regression & Edge Cases,Creating an inventory part succeeds for an authorized role,SV-8010,High,Regression,Custom role authorized to create inventory parts (Catalog & Inventory Create&Edit ON). Assigned to test user.,"Role ""Inventory Editor"".","1. Log in as the test user and open the inventory area.
+2. Create a new inventory part and save.","1. Inventory opens.
+2. Creation **succeeds** — no 403 / no error.",An authorized role can create an inventory part successfully.
+CR-REG-025,Regression & Edge Cases,Editing a catalog category succeeds for an authorized role,SV-8015,Medium,Regression,Custom role authorized to edit catalog categories (Catalog & Inventory Create&Edit ON). Assigned to test user. An existing catalog category.,"Role ""Catalog Editor""; an existing category.","1. Log in as the test user and open catalog categories.
+2. Edit an existing catalog category and save.","1. Categories open.
+2. Edit **succeeds** — no 403 / no error.",An authorized role can edit a catalog category successfully.
+CR-REG-026,Regression & Edge Cases,"Technician filtering WOs by ""Imported"" status does not 403",SV-7939,High,Regression,Technician role assigned to test user. At least one WO list accessible.,"Role ""Technician""; WO list with an ""Imported"" status filter.","1. Log in as the Technician user and open the Work Orders list.
+2. Apply the WO status filter **Imported**.","1. List opens.
+2. The list filters to Imported WOs. **No 403 error.**",A Technician can filter Work Orders by Imported status without a 403.
+CR-REG-027,Regression & Edge Cases,"""My Work Orders"" toggle behaves correctly for Technician",SV-7942,Medium,Regression,Technician role assigned to test user.,"Role ""Technician"".","1. Log in as the Technician user and open the Work Orders list.
+2. Observe the **My Work Orders** toggle and its behavior.","1. List opens.
+2. The toggle behaves correctly per spec (shown/hidden and filtering as intended) — **not shown inappropriately or misbehaving.**","The ""My Work Orders"" toggle behaves correctly for the Technician role."
+CR-REG-028,Regression & Edge Cases,Technician does not get a 403 on login,SV-7970,Critical,Regression,Technician role assigned to test user.,"Role ""Technician"".","1. Log in as the Technician user.
+2. Confirm the landing page loads with nav present.","1. Login **succeeds**. **No 403 error** and no Access Restricted wall.
+2. Appropriate page loads with nav tabs present.",A Technician logs in without a 403.
+CR-REG-029,Regression & Edge Cases,Technician can view the WO Line Log,SV-7989,Medium,Regression,Technician role assigned to test user. A WO line with log history.,"Role ""Technician""; a WO line with a log.","1. Log in as the Technician user and open a WO line.
+2. Open the **WO Line Log**.","1. Line opens.
+2. The log **displays** its history — no error / no denial.",A Technician can view the WO Line Log.
+CR-REG-030,Regression & Edge Cases,"Technician completing a WO line via ""Set Line Status"" does not 403",SV-8042,High,Regression,Technician role assigned to test user. A WO line that can be completed.,"Role ""Technician""; a completable WO line.","1. Log in as the Technician user and open a WO line.
+2. Use **Set Line Status** to mark the line complete.","1. Line opens.
+2. Status change **succeeds**. **No 403 error.**",A Technician can complete a WO line via Set Line Status without a 403.
+CR-REG-031,Regression & Edge Cases,Unavailable reports are not visible for a role without those reports,SV-7949,High,Negative,Custom role with only a subset of reports enabled. Assigned to test user.,"Role ""Limited Reports"".","1. Log in as the test user and open the Reports area.
+2. Inspect the list of reports shown.","1. Reports area opens.
+2. Only the enabled reports appear. **Reports the role does not have are not visible.**",Reports the role lacks are hidden; only permitted reports are visible.
+CR-REG-032,Regression & Edge Cases,Report highlighting / active state is correct,SV-7950,Low,Regression,Custom role with access to multiple reports. Assigned to test user.,"Role ""Reports Viewer"".","1. Log in as the test user and open the Reports area.
+2. Select a report, then select a different report.","1. Reports area opens.
+2. The **currently open report is highlighted / shown as active**, and the active-state updates correctly when switching.",Report highlighting/active-state reflects the currently selected report correctly.
+CR-REG-033,Regression & Edge Cases,AR Aging Collection report does not 403 for an authorized (AP/AR) role,SV-7996,High,Regression,Custom role with AP/AR ON and access to the AR Aging Collection report. Assigned to test user.,"Role ""AP/AR Reports""; AR Aging Collection report.","1. Log in as the test user and open the Reports area.
+2. Open the **AR Aging Collection** report.","1. Reports area opens.
+2. The report **loads**. **No 403 error.**",An authorized AP/AR role can open the AR Aging Collection report without a 403.
+CR-REG-034,Regression & Edge Cases,"Admin can enable the ""Time Clock"" staff-record setting on a custom role",SV-7748,High,Regression,Admin access. A user assigned a custom role.,A test user on a custom role.,"1. As admin, open the Edit Staff modal for a user who has a custom role.
+2. Enable the **Time Clock** staff-record setting and save.
+3. Reopen the modal.","1. Modal opens.
+2. The setting **enables and saves successfully** for a user on a custom role.
+3. Time Clock remains enabled (persisted).",Admin can enable the Time Clock staff-record setting for a user on a custom role.
+CR-REG-035,Regression & Edge Cases,Time Clock toggle UI renders correctly in Edit Staff modal,SV-7759,Medium,Regression,Admin access. A user to edit.,A test user.,"1. As admin, open the Edit Staff modal.
+2. Locate the **Time Clock** toggle.","1. Modal opens.
+2. The toggle **renders correctly** (label, on/off control, alignment) — not missing/broken/misaligned.",The Time Clock toggle renders correctly in the Edit Staff modal.
+CR-REG-036,Regression & Edge Cases,Changing a user's role logs them out cleanly when accessing Time Clock,SV-7800,High,Regression,Test user logged in and using Time Clock. Admin able to change the user's role.,A test user actively in the Time Clock area; a second role to switch them to.,"1. Have the test user log in and open the Time Clock area.
+2. As admin, change the user's role.
+3. Observe the test user's session as they interact with / access Time Clock.","1. Time Clock loads.
+2. Role change saves.
+3. The user is **logged out cleanly** (redirected to login) — **not shown an error.**",Changing a user's role logs them out cleanly rather than erroring when they access Time Clock.
+CR-REG-037,Regression & Edge Cases,"Service Manager Invoicing & Payments access matches spec (V/E, no Delete)",SV-7807,High,Regression,Service Manager role (per spec) assigned to test user. An invoice with a payment.,"Role ""Service Manager""; an invoice with a payment.","1. Log in as the Service Manager and open an invoice.
+2. Edit invoice/payment details.
+3. Look for a delete action for invoices/payments.","1. Invoice opens; **View** works.
+2. **Edit** is allowed per spec.
+3. **Delete is not available** — matches spec (View/Edit, no Delete).","Service Manager's Invoicing & Payments access is View/Edit with no Delete, matching the spec."
+CR-REG-038,Regression & Edge Cases,Service Advisor invoice reversal / payment deletion follows AP/AR + reverse-requires-WO-Delete rule,SV-7812,High,Regression,"Service Advisor role (per spec) assigned to test user, with and without WO Delete variants as needed. An invoice with a payment eligible for reversal.","Role ""Service Advisor""; an invoice with a payment.","1. Log in as a Service Advisor **without WO Delete** and open an invoice with a payment.
+2. Attempt to reverse the invoice / delete the payment.
+3. Repeat with a Service Advisor variant that **has WO Delete** and the required AP/AR permission.","1. Invoice opens.
+2. Reversal/payment-deletion is **gated per AP/AR permission and the reverse-requires-WO-Delete rule** — blocked when WO Delete is absent.
+3. Reversal/payment-deletion is **allowed** per the rule.",Service Advisor invoice reversal and payment deletion follow the AP/AR permission plus the reverse-requires-WO-Delete rule.
+CR-REG-039,Regression & Edge Cases,Vendor reverse / payment-delete gated when AP/AR is OFF,SV-7871,High,Negative,Custom role with **AP/AR OFF**. Assigned to test user. A vendor payment eligible for reversal/deletion.,"Role ""No AP/AR""; a vendor payment.","1. Log in as the No AP/AR test user and open the vendor payment.
+2. Attempt to reverse / delete the vendor payment.","1. Payment opens (if viewable) or the action area is reached.
+2. The action is **gated / blocked** because AP/AR is OFF.",Vendor reverse and payment-delete are correctly gated when AP/AR is OFF.
+CR-REG-040,Regression & Edge Cases,"""Send to Portal"" works for all eligible roles",SV-7799,High,Regression,An eligible custom role (per spec) assigned to test user. A WO/document eligible for Send to Portal.,"Role ""Send to Portal eligible""; an eligible WO/document.","1. Log in as the eligible test user and open the WO/document.
+2. Use **Send to Portal**.","1. It opens.
+2. The action **completes successfully — no error.**","""Send to Portal"" works (does not error) for eligible roles."
+CR-REG-041,Regression & Edge Cases,Service Manager accesses Send to Portal per spec (no unexpected Customer Portal requirement),SV-7801,High,Regression,"Service Manager role (per spec, without Customer Portal explicitly enabled). Assigned to test user. An eligible WO/document.","Role ""Service Manager (no Customer Portal)""; an eligible WO/document.","1. Log in as the Service Manager user and open an eligible WO/document.
+2. Use **Send to Portal**.","1. It opens.
+2. Access works **per spec**; the action does **not** require the Customer Portal permission unexpectedly.",Service Manager can access Send to Portal per spec without an unexpected Customer Portal requirement.
+CR-REG-042,Regression & Edge Cases,"""Send to Terminal"" visibility for Parts Technician matches spec",SV-7902,Medium,Regression,Parts Technician role (per spec) assigned to test user.,"Role ""Parts Technician"".","1. Log in as the Parts Technician user and navigate to where Send to Terminal would appear.
+2. Check the visibility of **Send to Terminal**.","1. Page opens.
+2. Visibility **matches spec** for Parts Technician (shown/hidden exactly as specified).","""Send to Terminal"" visibility for the Parts Technician role matches the spec."
+CR-REG-043,Regression & Edge Cases,WO Create/Edit action requiring Full View gives a clear validation prompt,SV-7832,Medium,Negative,Custom role that can attempt a WO Create/Edit action but lacks Full View. Assigned to test user.,"Role ""WO Editor (no Full View)"".",1. Log in as the test user and attempt a WO Create/Edit action that requires Full View.,1. The app **shows a clear validation prompt** explaining Full View is required. **No silent failure.**,A WO Create/Edit action requiring Full View produces a clear validation prompt rather than failing silently.
+CR-REG-044,Regression & Edge Cases,Customers View-only user does not see Part Sales / WO tabs on customer profile when off,SV-8050,High,Negative,Custom role with Customers → View ON but Part Sales and Work Orders areas OFF. Assigned to test user. An existing customer.,"Role ""Customers View-only""; a customer profile.","1. Log in as the test user and open a customer profile.
+2. Inspect the tabs on the customer profile.","1. Profile opens.
+2. **Part Sales and Work Orders tabs are NOT shown** because those areas are off.",A Customers View-only user does not see Part Sales or WO tabs on the customer profile when those areas are off.
+CR-REG-045,Regression & Edge Cases,"""Add Customer"" in New WO flow is gated by Customer Create&Edit",SV-8002,High,Negative,Two roles: (A) can create a WO but has **Customers Create&Edit OFF**; (B) same but Customers Create&Edit ON. Assigned to test user(s).,"Roles ""WO Create (no Cust Edit)"" and ""WO Create (Cust Edit)"".","1. Log in as role (A) and start the New WO flow.
+2. Look for the **Add Customer** action.
+3. Switch to role (B) and start the New WO flow.","1. New WO flow opens.
+2. Add Customer is **not available** (gated off) — Customer Create&Edit is required.
+3. **Add Customer is available** and works.","The ""Add Customer"" action in the New WO flow is gated by the Customer Create&Edit permission."
+CR-REG-046,Regression & Edge Cases,Service Advisor field on a WO consistently enforces edit permission,SV-7930,Medium,Negative,Custom role lacking permission to edit the Service Advisor field on a WO. Assigned to test user. A WO.,"Role ""WO limited edit""; a WO with a Service Advisor field.","1. Log in as the test user and open a WO.
+2. Observe the **Service Advisor** field's state.
+3. Attempt to change the Service Advisor field.","1. WO opens.
+2. If a blocked/locked icon is shown, the field is **genuinely non-editable** — consistent behavior.
+3. The change is **prevented** — there is no ""blocked icon but still editable"" inconsistency.",The Service Advisor field consistently enforces edit permission (no blocked-icon-but-still-editable state).
+CR-REG-047,Regression & Edge Cases,Clicking the logo loads the Dashboard reliably,SV-7819,Medium,Regression,Any custom role with Dashboard access. Assigned to test user.,"Role ""Standard User"".","1. Log in as the test user and navigate to any page.
+2. Click the **logo** in the header.
+3. Repeat from a couple of different pages.","1. Page opens.
+2. The **Dashboard loads reliably.**
+3. Each click of the logo consistently loads the Dashboard.",Clicking the logo reliably loads the Dashboard.
