@@ -7,7 +7,7 @@
     "dependency_mode": "None",
     "priority": "High",
     "type": "Combination",
-    "preconditions": "Logged in as an Administrator with full access. Application is on the Custom Roles & Permissions build (Epic SV-7388, SV-7500 enabled). At least one test staff member exists to receive the role. A second browser/session is available to log in as the test staff user.",
+    "preconditions": "Logged in as an Administrator with full access. Application is on the Custom Roles & Permissions build (Epic SV-7388, SV-7500 enabled). At least one test staff member exists to receive the role. A second browser/session is available to log in as the test staff user. NOTE (permission propagation): after assigning the role, log out and log back in as the user (fresh login) so the new permissions load; allow a brief settle before verifying.",
     "role_setup": "ON: Work Orders > View; Customers > View; Schedule > View. OFF: everything else — no WO Edit/Delete, no WO Lines, no Customers Edit/Delete, no Schedule Edit/Delete, See Financial Data OFF, Invoicing OFF, Parts Department OFF, Part Sales OFF, Catalog OFF, Vendor OFF, Reports OFF, Timesheets OFF, History Logs OFF, Settings OFF, App Settings OFF, View and Manage AP/AR Data OFF. View Mode = Full (UX only).",
     "test_data": "Test staff user 'frontdesk_qa'. One existing work order, one customer, one schedule entry.",
     "steps": [
@@ -58,7 +58,7 @@
     "dependency_mode": "Cascade: auto-enable lower",
     "priority": "High",
     "type": "Combination",
-    "preconditions": "Logged in as an Administrator with full access. Application is on the Custom Roles & Permissions build (Epic SV-7388, SV-7500 enabled). At least one test staff member exists to receive the role. A second browser/session is available to log in as the test staff user.",
+    "preconditions": "Logged in as an Administrator with full access. Application is on the Custom Roles & Permissions build (Epic SV-7388, SV-7500 enabled). At least one test staff member exists to receive the role. A second browser/session is available to log in as the test staff user. NOTE (permission propagation): after assigning the role, log out and log back in as the user (fresh login) so the new permissions load; allow a brief settle before verifying.",
     "role_setup": "ON: Schedule > View, Edit, Delete; Work Orders > View; Customers > View. OFF: everything else — WO Edit/Delete, WO Lines, Customers Edit/Delete, See Financial Data, Invoicing, Parts Department, Part Sales, Catalog, Vendor, Reports, Timesheets, History Logs, Settings, App Settings, View and Manage AP/AR Data.",
     "test_data": "Test staff user 'scheduler_qa'. Existing schedule entries, work orders, customers.",
     "steps": [
@@ -114,7 +114,7 @@
     "dependency_mode": "Cascade: auto-enable lower",
     "priority": "High",
     "type": "Combination",
-    "preconditions": "Logged in as an Administrator with full access. Application is on the Custom Roles & Permissions build (Epic SV-7388, SV-7500 enabled). At least one test staff member exists to receive the role. A second browser/session is available to log in as the test staff user.",
+    "preconditions": "Logged in as an Administrator with full access. Application is on the Custom Roles & Permissions build (Epic SV-7388, SV-7500 enabled). At least one test staff member exists to receive the role. A second browser/session is available to log in as the test staff user. NOTE (permission propagation): after assigning the role, log out and log back in as the user (fresh login) so the new permissions load; allow a brief settle before verifying.",
     "role_setup": "ON: Work Orders > View; Work Order Lines > View, Edit; WO sub-setting Pick Parts; View Mode = Tech View. OFF: everything else — WO Edit/Delete, WO Lines Delete, Review and Order sub-settings, See Financial Data, Invoicing, Parts Department, Part Sales, Catalog, Vendor, Customers, Schedule, Reports, Timesheets, History Logs, Settings, App Settings, View and Manage AP/AR Data.",
     "test_data": "Test staff user 'jrtech_qa'. Work order with lines to pick parts on.",
     "steps": [
@@ -150,8 +150,8 @@
       },
       {
         "n": 7,
-        "action": "POSITIVE: Confirm the UI presents in Tech View. Open a work order, view lines, edit a line, and pick parts.",
-        "expected": "Tech View layout shown. WO viewable, lines editable, Pick Parts action available and works."
+        "action": "POSITIVE: Open a work order and confirm the Tech View presentation INSIDE the WO detail page (the WO list looks the same in Tech vs Full view — the difference is on the WO detail). View lines, edit a line, and use Pick Parts (Pick Parts lives inside the WO detail).",
+        "expected": "Tech View layout shown inside the WO detail page. WO viewable, lines editable, Pick Parts action available inside the WO detail and works. [Verification location per VIU-29: view-mode and pick/order-parts effects manifest in the WO detail, not the WO list.]"
       },
       {
         "n": 8,
@@ -170,7 +170,7 @@
     "dependency_mode": "Multiple",
     "priority": "High",
     "type": "Combination",
-    "preconditions": "Logged in as an Administrator with full access. Application is on the Custom Roles & Permissions build (Epic SV-7388, SV-7500 enabled). At least one test staff member exists to receive the role. A second browser/session is available to log in as the test staff user.",
+    "preconditions": "Logged in as an Administrator with full access. Application is on the Custom Roles & Permissions build (Epic SV-7388, SV-7500 enabled). At least one test staff member exists to receive the role. A second browser/session is available to log in as the test staff user. NOTE (permission propagation): after assigning the role, log out and log back in as the user (fresh login) so the new permissions load; allow a brief settle before verifying.",
     "role_setup": "ON: Parts Department (parent); Catalog > View, Edit; Vendor > View; Part Sales > View; See Financial Data. OFF: everything else — Catalog Delete, Vendor Edit/Delete, Part Sales Edit/Delete, Work Orders, WO Lines, Customers, Schedule, Invoicing, Reports, Timesheets, History Logs, Settings, App Settings, View and Manage AP/AR Data.",
     "test_data": "Test staff user 'partsclerk_qa'. Existing catalog items, vendors, part-sale records.",
     "steps": [
@@ -236,7 +236,7 @@
     "dependency_mode": "Financial gate: confirm modal",
     "priority": "Critical",
     "type": "Combination",
-    "preconditions": "Logged in as an Administrator with full access. Application is on the Custom Roles & Permissions build (Epic SV-7388, SV-7500 enabled). At least one test staff member exists to receive the role. A second browser/session is available to log in as the test staff user.",
+    "preconditions": "Logged in as an Administrator with full access. Application is on the Custom Roles & Permissions build (Epic SV-7388, SV-7500 enabled). At least one test staff member exists to receive the role. A second browser/session is available to log in as the test staff user. NOTE (permission propagation): after assigning the role, log out and log back in as the user (fresh login) so the new permissions load; allow a brief settle before verifying.",
     "role_setup": "ON: Work Orders > View; Invoicing > View, Edit; See Financial Data. OFF: everything else — WO Edit/Delete, WO Lines, Invoicing Delete, View and Manage AP/AR Data, Customers, Schedule, Parts Department, Part Sales, Catalog, Vendor, Reports, Timesheets, History Logs, Settings, App Settings.",
     "test_data": "Test staff user 'cashier_qa'. Work order ready to invoice; open invoice.",
     "steps": [
@@ -272,8 +272,8 @@
       },
       {
         "n": 7,
-        "action": "POSITIVE: Open a work order (view), open Invoicing, create/edit an invoice, view financial totals.",
-        "expected": "WO viewable; invoice can be viewed and edited; financial totals displayed."
+        "action": "POSITIVE: Open a work order (view), open Invoicing, create/edit an invoice, view financial totals INSIDE the WO detail / invoicing screen (financial figures are not on the WO list).",
+        "expected": "WO viewable; invoice can be viewed and edited; financial totals displayed inside the WO detail / invoicing screen. [Verification location per VIU-29: See-Financial-Data effects manifest in WO detail / invoicing, not the WO list.]"
       },
       {
         "n": 8,
@@ -292,7 +292,7 @@
     "dependency_mode": "None",
     "priority": "Medium",
     "type": "Combination",
-    "preconditions": "Logged in as an Administrator with full access. Application is on the Custom Roles & Permissions build (Epic SV-7388, SV-7500 enabled). At least one test staff member exists to receive the role. A second browser/session is available to log in as the test staff user.",
+    "preconditions": "Logged in as an Administrator with full access. Application is on the Custom Roles & Permissions build (Epic SV-7388, SV-7500 enabled). At least one test staff member exists to receive the role. A second browser/session is available to log in as the test staff user. NOTE (permission propagation): after assigning the role, log out and log back in as the user (fresh login) so the new permissions load; allow a brief settle before verifying.",
     "role_setup": "ON: Reports (all-or-nothing); See Financial Data; View and Manage AP/AR Data. OFF: everything else — all Work Orders/WO Lines/Customers/Schedule/Invoicing/Parts Department/Part Sales/Catalog/Vendor CRUD, Timesheets, History Logs, Settings, App Settings.",
     "test_data": "Test staff user 'analyst_qa'. Reports with financial figures exist.",
     "steps": [
@@ -343,7 +343,7 @@
     "dependency_mode": "Multiple",
     "priority": "Critical",
     "type": "Combination",
-    "preconditions": "Logged in as an Administrator with full access. Application is on the Custom Roles & Permissions build (Epic SV-7388, SV-7500 enabled). At least one test staff member exists to receive the role. A second browser/session is available to log in as the test staff user.",
+    "preconditions": "Logged in as an Administrator with full access. Application is on the Custom Roles & Permissions build (Epic SV-7388, SV-7500 enabled). At least one test staff member exists to receive the role. A second browser/session is available to log in as the test staff user. NOTE (permission propagation): after assigning the role, log out and log back in as the user (fresh login) so the new permissions load; allow a brief settle before verifying.",
     "role_setup": "ON: Work Orders > View, Edit; Work Order Lines > View, Edit, Delete; Customers > View, Edit; Schedule > View, Edit; Invoicing > View, Edit; WO sub-settings Review, Pick Parts, Order; See Financial Data. OFF: everything else — WO Delete, Customers Delete, Schedule Delete, Invoicing Delete, View and Manage AP/AR Data, Parts Department, Part Sales, Catalog, Vendor, Reports, Timesheets, History Logs, Settings, App Settings.",
     "test_data": "Test staff user 'svcwriter_qa'. Work order with lines, customer, schedule entry, invoice.",
     "steps": [
@@ -409,7 +409,7 @@
     "dependency_mode": "Multiple",
     "priority": "Critical",
     "type": "Combination",
-    "preconditions": "Logged in as an Administrator with full access. Application is on the Custom Roles & Permissions build (Epic SV-7388, SV-7500 enabled). At least one test staff member exists to receive the role. A second browser/session is available to log in as the test staff user.",
+    "preconditions": "Logged in as an Administrator with full access. Application is on the Custom Roles & Permissions build (Epic SV-7388, SV-7500 enabled). At least one test staff member exists to receive the role. A second browser/session is available to log in as the test staff user. NOTE (permission propagation): after assigning the role, log out and log back in as the user (fresh login) so the new permissions load; allow a brief settle before verifying.",
     "role_setup": "ON: Work Orders > View, Edit; Work Order Lines > View, Edit; Customers > View, Edit; Schedule > View, Edit; Invoicing > View, Edit; Parts Department (parent); Catalog > View, Edit; Vendor > View, Edit; Part Sales > View, Edit; WO sub-settings Review, Pick Parts, Order; See Financial Data; View and Manage AP/AR Data; Reports. OFF: every Delete (WO, WO Lines, Customers, Schedule, Invoicing, Catalog, Vendor, Part Sales); Timesheets; History Logs; Settings; App Settings.",
     "test_data": "Test staff user 'shopmgr_qa'. Records across all covered areas.",
     "steps": [
@@ -470,7 +470,7 @@
     "dependency_mode": "Cascade: auto-enable lower",
     "priority": "Medium",
     "type": "Combination",
-    "preconditions": "Logged in as an Administrator with full access. Application is on the Custom Roles & Permissions build (Epic SV-7388, SV-7500 enabled). At least one test staff member exists to receive the role. A second browser/session is available to log in as the test staff user.",
+    "preconditions": "Logged in as an Administrator with full access. Application is on the Custom Roles & Permissions build (Epic SV-7388, SV-7500 enabled). At least one test staff member exists to receive the role. A second browser/session is available to log in as the test staff user. NOTE (permission propagation): after assigning the role, log out and log back in as the user (fresh login) so the new permissions load; allow a brief settle before verifying.",
     "role_setup": "ON: Timesheets > View, Edit; Work Orders > View. OFF: everything else — Timesheets Delete, WO Edit/Delete, WO Lines, Customers, Schedule, Invoicing, See Financial Data, Parts Department, Part Sales, Catalog, Vendor, Reports, History Logs, Settings, App Settings, View and Manage AP/AR Data.",
     "test_data": "Test staff user 'timekeeper_qa'. Timesheet entries and a work order.",
     "steps": [
@@ -521,7 +521,7 @@
     "dependency_mode": "Financial gate: confirm modal",
     "priority": "Medium",
     "type": "Combination",
-    "preconditions": "Logged in as an Administrator with full access. Application is on the Custom Roles & Permissions build (Epic SV-7388, SV-7500 enabled). At least one test staff member exists to receive the role. A second browser/session is available to log in as the test staff user.",
+    "preconditions": "Logged in as an Administrator with full access. Application is on the Custom Roles & Permissions build (Epic SV-7388, SV-7500 enabled). At least one test staff member exists to receive the role. A second browser/session is available to log in as the test staff user. NOTE (permission propagation): after assigning the role, log out and log back in as the user (fresh login) so the new permissions load; allow a brief settle before verifying.",
     "role_setup": "ON: Work Orders > View; Invoicing > View; History Logs; Reports; See Financial Data; View and Manage AP/AR Data. OFF: everything else — all Edit/Delete toggles, WO Lines, Customers, Schedule, Parts Department, Part Sales, Catalog, Vendor, Timesheets, Settings, App Settings.",
     "test_data": "Test staff user 'auditor_qa'. Work orders, invoices, history log entries, reports.",
     "steps": [
@@ -572,7 +572,7 @@
     "dependency_mode": "Financial gate: confirm modal",
     "priority": "Critical",
     "type": "Dependency",
-    "preconditions": "Logged in as an Administrator with full access. Application is on the Custom Roles & Permissions build (Epic SV-7388, SV-7500 enabled). At least one test staff member exists to receive the role. A second browser/session is available to log in as the test staff user.",
+    "preconditions": "Logged in as an Administrator with full access. Application is on the Custom Roles & Permissions build (Epic SV-7388, SV-7500 enabled). At least one test staff member exists to receive the role. A second browser/session is available to log in as the test staff user. NOTE (permission propagation): after assigning the role, log out and log back in as the user (fresh login) so the new permissions load; allow a brief settle before verifying.",
     "role_setup": "Intended: Invoicing > View, Edit only. After resolving the financial gate: See Financial Data ON. OFF: everything else — Invoicing Delete, View and Manage AP/AR Data, Work Orders, WO Lines, Customers, Schedule, Parts Department, Part Sales, Catalog, Vendor, Reports, Timesheets, History Logs, Settings, App Settings.",
     "test_data": "Test staff user 'rnd1_qa'. One open invoice.",
     "steps": [
@@ -623,7 +623,7 @@
     "dependency_mode": "Parent gate: hide children",
     "priority": "High",
     "type": "Negative",
-    "preconditions": "Logged in as an Administrator with full access. Application is on the Custom Roles & Permissions build (Epic SV-7388, SV-7500 enabled). At least one test staff member exists to receive the role. A second browser/session is available to log in as the test staff user.",
+    "preconditions": "Logged in as an Administrator with full access. Application is on the Custom Roles & Permissions build (Epic SV-7388, SV-7500 enabled). At least one test staff member exists to receive the role. A second browser/session is available to log in as the test staff user. NOTE (permission propagation): after assigning the role, log out and log back in as the user (fresh login) so the new permissions load; allow a brief settle before verifying.",
     "role_setup": "Intended (invalid): Part Sales > View with Parts Department OFF. Expected resolvable state: Part Sales child is hidden/unsavable while parent OFF. If any usable role saved, it is with Parts Department OFF and NO parts child accessible. OFF: everything else.",
     "test_data": "Test staff user 'rnd2_qa'.",
     "steps": [
@@ -664,7 +664,7 @@
     "dependency_mode": "Cascade: auto-enable lower",
     "priority": "High",
     "type": "Dependency",
-    "preconditions": "Logged in as an Administrator with full access. Application is on the Custom Roles & Permissions build (Epic SV-7388, SV-7500 enabled). At least one test staff member exists to receive the role. A second browser/session is available to log in as the test staff user.",
+    "preconditions": "Logged in as an Administrator with full access. Application is on the Custom Roles & Permissions build (Epic SV-7388, SV-7500 enabled). At least one test staff member exists to receive the role. A second browser/session is available to log in as the test staff user. NOTE (permission propagation): after assigning the role, log out and log back in as the user (fresh login) so the new permissions load; allow a brief settle before verifying.",
     "role_setup": "Intended: Work Orders > Delete only. After cascade: Work Orders > View, Edit, Delete all ON. OFF: everything else — WO Lines, Customers, Schedule, Invoicing, See Financial Data, Parts Department, Part Sales, Catalog, Vendor, Reports, Timesheets, History Logs, Settings, App Settings, View and Manage AP/AR Data.",
     "test_data": "Test staff user 'rnd3_qa'. A deletable work order.",
     "steps": [
@@ -695,8 +695,8 @@
       },
       {
         "n": 6,
-        "action": "POSITIVE: Open Work Orders; view, edit, and delete a work order.",
-        "expected": "All three WO operations succeed (cascade granted View+Edit alongside Delete)."
+        "action": "POSITIVE: Open Work Orders; view, edit, and delete a work order. Confirm the delete control (per-row delete on the list and/or inside the WO detail) is present and works.",
+        "expected": "All three WO operations succeed (cascade granted View+Edit alongside Delete); the per-row delete action is available. [Verification location per VIU-29: delete/edit effects are confirmed via the per-row delete and inside the WO detail.]"
       },
       {
         "n": 7,
@@ -715,7 +715,7 @@
     "dependency_mode": "Multiple",
     "priority": "High",
     "type": "Combination",
-    "preconditions": "Logged in as an Administrator with full access. Application is on the Custom Roles & Permissions build (Epic SV-7388, SV-7500 enabled). At least one test staff member exists to receive the role. A second browser/session is available to log in as the test staff user.",
+    "preconditions": "Logged in as an Administrator with full access. Application is on the Custom Roles & Permissions build (Epic SV-7388, SV-7500 enabled). At least one test staff member exists to receive the role. A second browser/session is available to log in as the test staff user. NOTE (permission propagation): after assigning the role, log out and log back in as the user (fresh login) so the new permissions load; allow a brief settle before verifying.",
     "role_setup": "ON: Parts Department (parent); Catalog > View, Edit, Delete; Vendor > View, Edit. OFF: everything else — Vendor Delete, Part Sales (all), See Financial Data, Work Orders, WO Lines, Customers, Schedule, Invoicing, Reports, Timesheets, History Logs, Settings, App Settings, View and Manage AP/AR Data.",
     "test_data": "Test staff user 'rnd4_qa'. Catalog items and vendors.",
     "steps": [
@@ -771,7 +771,7 @@
     "dependency_mode": "Cascade: auto-enable lower",
     "priority": "Medium",
     "type": "Combination",
-    "preconditions": "Logged in as an Administrator with full access. Application is on the Custom Roles & Permissions build (Epic SV-7388, SV-7500 enabled). At least one test staff member exists to receive the role. A second browser/session is available to log in as the test staff user.",
+    "preconditions": "Logged in as an Administrator with full access. Application is on the Custom Roles & Permissions build (Epic SV-7388, SV-7500 enabled). At least one test staff member exists to receive the role. A second browser/session is available to log in as the test staff user. NOTE (permission propagation): after assigning the role, log out and log back in as the user (fresh login) so the new permissions load; allow a brief settle before verifying.",
     "role_setup": "ON: Work Orders > View; Schedule > View, Edit; Timesheets > View; Reports; History Logs. OFF: everything else — WO Edit/Delete, WO Lines, Schedule Delete, Timesheets Edit/Delete, Customers, Invoicing, See Financial Data, Parts Department, Part Sales, Catalog, Vendor, Settings, App Settings, View and Manage AP/AR Data.",
     "test_data": "Test staff user 'rnd5_qa'. WOs, schedule entries, timesheets, reports, history entries.",
     "steps": [
@@ -822,7 +822,7 @@
     "dependency_mode": "Multiple",
     "priority": "Critical",
     "type": "Dependency",
-    "preconditions": "Logged in as an Administrator with full access. Application is on the Custom Roles & Permissions build (Epic SV-7388, SV-7500 enabled). At least one test staff member exists to receive the role. A second browser/session is available to log in as the test staff user.",
+    "preconditions": "Logged in as an Administrator with full access. Application is on the Custom Roles & Permissions build (Epic SV-7388, SV-7500 enabled). At least one test staff member exists to receive the role. A second browser/session is available to log in as the test staff user. NOTE (permission propagation): after assigning the role, log out and log back in as the user (fresh login) so the new permissions load; allow a brief settle before verifying.",
     "role_setup": "Intended: Invoicing > Delete. After gates resolved: Invoicing View+Edit+Delete ON, See Financial Data ON, View and Manage AP/AR Data ON. OFF: everything else — Work Orders, WO Lines, Customers, Schedule, Parts Department, Part Sales, Catalog, Vendor, Reports, Timesheets, History Logs, Settings, App Settings.",
     "test_data": "Test staff user 'rnd6_qa'. A deletable invoice.",
     "steps": [
@@ -878,7 +878,7 @@
     "dependency_mode": "Multiple",
     "priority": "High",
     "type": "Combination",
-    "preconditions": "Logged in as an Administrator with full access. Application is on the Custom Roles & Permissions build (Epic SV-7388, SV-7500 enabled). At least one test staff member exists to receive the role. A second browser/session is available to log in as the test staff user.",
+    "preconditions": "Logged in as an Administrator with full access. Application is on the Custom Roles & Permissions build (Epic SV-7388, SV-7500 enabled). At least one test staff member exists to receive the role. A second browser/session is available to log in as the test staff user. NOTE (permission propagation): after assigning the role, log out and log back in as the user (fresh login) so the new permissions load; allow a brief settle before verifying.",
     "role_setup": "ON: Settings; App Settings; Work Orders > View. OFF: everything else — WO Edit/Delete, WO Lines, Customers, Schedule, Invoicing, See Financial Data, Parts Department, Part Sales, Catalog, Vendor, Reports, Timesheets, History Logs, View and Manage AP/AR Data.",
     "test_data": "Test staff user 'rnd7_qa'.",
     "steps": [
@@ -929,7 +929,7 @@
     "dependency_mode": "Multiple",
     "priority": "Medium",
     "type": "Combination",
-    "preconditions": "Logged in as an Administrator with full access. Application is on the Custom Roles & Permissions build (Epic SV-7388, SV-7500 enabled). At least one test staff member exists to receive the role. A second browser/session is available to log in as the test staff user.",
+    "preconditions": "Logged in as an Administrator with full access. Application is on the Custom Roles & Permissions build (Epic SV-7388, SV-7500 enabled). At least one test staff member exists to receive the role. A second browser/session is available to log in as the test staff user. NOTE (permission propagation): after assigning the role, log out and log back in as the user (fresh login) so the new permissions load; allow a brief settle before verifying.",
     "role_setup": "ON: Customers > View, Edit, Delete; Work Order Lines > View, Edit; Parts Department (parent); Vendor > View; View Mode = Full (UX only). OFF: everything else — Work Orders View/Edit/Delete, WO Lines Delete, Catalog (all), Part Sales (all), Vendor Edit/Delete, Schedule, Invoicing, See Financial Data, Reports, Timesheets, History Logs, Settings, App Settings, View and Manage AP/AR Data.",
     "test_data": "Test staff user 'rnd8_qa'. Customers, a work order with lines, vendors.",
     "steps": [

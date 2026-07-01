@@ -186,14 +186,23 @@ def build_index_sheet(wb, counts, viu_stats, verified_counts):
     ws["A1"].font = Font(bold=True, size=14)
     ws["A3"] = "Epic: SV-7388 (Custom Roles and Permissions)"
     ws["A4"] = (
-        f"Verification status: VIU (Verify-in-UI) pass 2 complete (staging, live "
-        f"admin session, 2026-07-01). {total_viu} findings logged "
+        f"Verification status: VIU (Verify-in-UI) pass 3 complete — per-role verified "
+        f"as the restricted Tech user (tech@shopview.com) on staging, 2026-07-01. "
+        f"{total_viu} findings logged "
         f"({match_viu} MATCH / {disc_viu} DISCREPANCY) — see the 'VIU Findings Log' "
-        f"tab. Pass 2 confirmed exact Custom Roles labels, the silent CRUD cascade, "
-        f"the 'Enable See Financial Data?' popup, and the kebab-menu variants, and "
-        f"logged 3 build-vs-spec discrepancies (doubled '/api/api/sso/check' path, "
-        f"no unsaved-changes guard on Create Role X-close, and the silent-cascade vs "
-        f"confirmation-popup dependency-UX inconsistency). "
+        f"tab. Pass 2 (live admin session) confirmed exact Custom Roles labels, the "
+        f"silent CRUD cascade, the 'Enable See Financial Data?' popup, and the "
+        f"kebab-menu variants. Pass 3 logged in AS Tech and verified all 11 per-role "
+        f"gate configs behave PER SPEC: CRUD gating (View-only read-only/no New; "
+        f"+Create&Edit shows New; +Delete per-row delete), page-access nav gating "
+        f"(Reports/Customers/combination exact), Settings routes under '/administration', "
+        f"and view-mode/parts/financial effects carried in the permission wrapper "
+        f"(effects inside the WO detail / invoicing). Discrepancies/limits logged: "
+        f"'/settings' 404s (admin lives at '/administration'), a zero-permission role is "
+        f"not creatable (min 1 permission enforced), and permission changes require the "
+        f"user to re-login + settle. Earlier build-vs-spec discrepancies still stand "
+        f"(doubled '/api/api/sso/check' path, no unsaved-changes guard on Create Role "
+        f"X-close, silent-cascade vs confirmation-popup dependency-UX inconsistency). "
         f"{ver_match + ver_disc} test cases now VERIFIED "
         f"({ver_match} MATCH / {ver_disc} DISCREPANCY); remaining cases are "
         f"UNVERIFIED — VIU pending.")
@@ -335,8 +344,8 @@ def main():
 
     viu_ws = wb2["VIU Findings Log"]
     viu_data_rows = viu_ws.max_row - 1
-    print(f"\n-- VIU Findings Log rows = {viu_data_rows} (expected 25) --")
-    assert viu_data_rows == 25, viu_data_rows
+    print(f"\n-- VIU Findings Log rows = {viu_data_rows} (expected 31) --")
+    assert viu_data_rows == 31, viu_data_rows
 
     print("\n-- XLSX per-sheet data-row counts --")
     for name in ["Single Permission", "Template Edit",

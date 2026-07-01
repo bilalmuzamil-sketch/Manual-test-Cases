@@ -223,5 +223,59 @@
     "verdict": "DISCREPANCY (UX inconsistency)",
     "evidence": "VIU pass 2 live admin session 2026-07-01",
     "notes": "Same 'requires' relationship, two divergent UX patterns."
+  },
+  {
+    "id": "VIU-26",
+    "topic": "Per-role CRUD gating on the restricted Tech user (live login)",
+    "spec_expectation": "A role granting WO View only should let the user read Work Orders but not create/edit/delete; adding Create & Edit should expose New/edit; adding Delete should expose per-row delete.",
+    "actual_staging": "Logged in AS the restricted 'Tech' user (tech@shopview.com) after assigning each config as admin and re-logging-in as Tech. WO View only: Tech sees ONLY the Work Orders nav; WO list is read-only with NO 'New' button and other modules hidden. WO View + Create & Edit: the 'New' button appears (create/edit enabled), no delete. WO View + Create & Edit + Delete: full WO management including per-row delete. All three behaved PER SPEC.",
+    "verdict": "VERIFIED (staging, live per-role Tech session, 2026-07-01) — MATCH",
+    "evidence": "staging, live per-role (Tech) session, 2026-07-01",
+    "notes": "Confirms the runtime effect of the CRUD tiers on a real restricted user, complementing the editor-side cascade findings (VIU-09/10/20)."
+  },
+  {
+    "id": "VIU-27",
+    "topic": "Per-role page-access nav gating (Reports / Customers / combination) on Tech",
+    "spec_expectation": "Page-access toggles and area View permissions should gate the exact nav set the user sees.",
+    "actual_staging": "As Tech: Customers View only → ONLY Customers nav, read-only list, other modules hidden. Page Access Reports ON → Reports nav + report suite visible; OFF → Reports nav hidden (gate is exact). Combination WO View + Customers View + Reports ON → nav = EXACTLY Work Orders, Customers, Reports and nothing else. All behaved PER SPEC.",
+    "verdict": "VERIFIED (staging, live per-role Tech session, 2026-07-01) — MATCH",
+    "evidence": "staging, live per-role (Tech) session, 2026-07-01",
+    "notes": "Nav is the exact union of granted areas + enabled page-access toggles; no leakage of ungranted modules."
+  },
+  {
+    "id": "VIU-28",
+    "topic": "Settings/admin routes live under /administration (not /settings)",
+    "spec_expectation": "Page Access Settings ON should expose the Settings/admin routes (Settings, Staff, Roles & Permissions, Locations, Departments).",
+    "actual_staging": "As Tech with Page Access Settings ON: the settings routes are visible under the Administration area — they are CHILDREN of '/administration' (Settings, Staff, Roles & Permissions, Locations, Departments). Navigating to '/settings' returns a 404 'coffee break' page; the working path is '/administration'.",
+    "verdict": "VERIFIED (staging, live per-role Tech session, 2026-07-01) — DISCREPANCY (path drift: spec/docs may say /settings; actual is /administration, and /settings 404s)",
+    "evidence": "staging, live per-role (Tech) session, 2026-07-01",
+    "notes": "D1: correct any admin/role-config navigation that says '/settings' to '/administration'. In this suite the test-case JSON already navigates to '/administration/roles-permissions', so no literal '/settings' URL required correcting."
+  },
+  {
+    "id": "VIU-29",
+    "topic": "View-mode / parts / financial effects carried in wrapper; verified inside WO detail",
+    "spec_expectation": "WO View Mode (Tech/Full), WO sub-toggles (Pick parts / Order parts), and See Financial Data should take effect for the assigned user.",
+    "actual_staging": "As Tech: the permission wrapper carries view_mode (tech / woTechViewMode), woPickParts/woOrderParts, and seeFinancialData (true/false) correctly. The visible effects manifest INSIDE the WO detail page (and invoicing for financial), NOT on the WO list: the WO list looks the same in Tech vs Full view; Pick/Order parts actions live inside the WO detail; financial figures/prices are not on the WO list and appear in WO detail / invoicing. All behaved PER SPEC.",
+    "verdict": "VERIFIED (staging, live per-role Tech session, 2026-07-01) — MATCH (with verification-location note)",
+    "evidence": "staging, live per-role (Tech) session, 2026-07-01",
+    "notes": "D3: verification steps for view-mode, delete, pick/order-parts, and see-financial-data must inspect the WO detail (invoicing for financial), not the WO list."
+  },
+  {
+    "id": "VIU-30",
+    "topic": "Empty (zero-permission) role is not creatable",
+    "spec_expectation": "A no-access baseline role could be created with zero permissions to represent a true no-access user.",
+    "actual_staging": "Attempting to create a role with zero permissions is rejected — the API enforces 'At least one permission is required.' A true no-access role is therefore not configurable; the minimal case is a single-permission role (e.g. timesheetsView → Tech lands on own Timesheets with an empty top nav).",
+    "verdict": "VERIFIED (staging, live per-role Tech session, 2026-07-01) — DISCREPANCY (design limit: min 1 permission enforced)",
+    "evidence": "staging, live per-role (Tech) session, 2026-07-01",
+    "notes": "D2: document as a known constraint; any 'empty role' baseline should use a single-permission minimal role instead. No such empty-role baseline login case exists in this suite, so none required conversion."
+  },
+  {
+    "id": "VIU-31",
+    "topic": "Permission propagation requires re-login + brief settle",
+    "spec_expectation": "After reassigning a role to a user, the new permissions should apply to that user.",
+    "actual_staging": "After reassigning a role to the Tech user, the new permissions take effect only after the user logs out and logs back in (fresh login) AND a brief settle. Without a fresh login the prior permission set persists. Behaved as observed on every per-role reassignment.",
+    "verdict": "VERIFIED (staging, live per-role Tech session, 2026-07-01) — behavior note",
+    "evidence": "staging, live per-role (Tech) session, 2026-07-01",
+    "notes": "D4: added as a precondition/note to per-role (assign-and-login-as-user) cases: 'After assigning the role, log out and log back in as the user (fresh login) so the new permissions load.'"
   }
 ]

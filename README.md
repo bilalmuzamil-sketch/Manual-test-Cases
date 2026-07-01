@@ -83,3 +83,26 @@ VIU pass 2 (live staging admin session, read-only) confirmed the exact Custom Ro
 - **Doubled `/api` prefix on SSO auth-check (functional bug, high severity — VIU-23).** The staging auto-auth-check requests `/api/api/sso/check` (the axios baseURL already includes `/api`) and gets a 404, so a valid cookie session does not hydrate the SPA and authenticated users are bounced to `/login`. The correct path should be `/api/sso/check`.
 - **No unsaved-changes guard on Create Role X-close (UX — VIU-24).** Closing the Create Role dialog via the X with unsaved permission toggles shows no discard/unsaved-changes confirmation; the changes are silently dropped.
 - **Dependency-UX inconsistency (UX — VIU-25).** Intra-section CRUD dependencies auto-cascade silently (no popup), but the Invoicing → See Financial Data dependency uses an explicit confirmation popup — the same underlying "requires" pattern rendered with two different UX treatments.
+
+## Per-role runtime verification confirmed in staging (VIU pass 3, live per-role session as Tech, 2026-07-01)
+
+VIU pass 3 logged in AS the restricted **Tech** user (`tech@shopview.com`) on staging (each config assigned via admin, then Tech re-logged-in). **All 11 per-role gate configurations behaved PER SPEC (PASS)** — see the **VIU Findings Log** sheet, entries VIU-26..VIU-31:
+
+1. **WO View only** → Tech sees ONLY the Work Orders nav; WO list is read-only; NO "New" button; other modules hidden.
+2. **WO View + Create & Edit** → the "New" button appears (create/edit enabled); no delete.
+3. **WO View + Create & Edit + Delete** → full WO management including per-row delete.
+4. **WO View Mode (Tech view vs Full View)** → carried correctly (`view_mode=tech` / `woTechViewMode`); the visible difference is INSIDE the WO detail page, not the WO list (the list looks the same).
+5. **WO sub-toggles Pick parts / Order parts** → carried correctly (`woPickParts` / `woOrderParts`); the actions live INSIDE the WO detail page.
+6. **Customers View only** → ONLY the Customers nav; read-only list; other modules hidden.
+7. **Page Access Reports ON/OFF** → Reports nav + report suite visible when ON; nav hidden when OFF (gate is exact).
+8. **Page Access Settings ON** → visible under the Administration area; the settings routes are CHILDREN of `/administration` (Settings, Staff, Roles & Permissions, Locations, Departments).
+9. **See Financial Data ON vs OFF** → carried correctly (`seeFinancialData` true/false); financial figures/prices are not on the WO list — the effect manifests in WO detail / invoicing.
+10. **Combination WO View + Customers View + Reports ON** → nav = EXACTLY Work Orders, Customers, Reports; nothing else.
+11. **Baseline** → a zero-permission role CANNOT be created (the API enforces "At least one permission is required."); the minimal case is a single-permission role (e.g. `timesheetsView` → Tech lands on own Timesheets with an empty top nav).
+
+**Discrepancies / corrections applied (D1–D4):**
+
+- **D1 — admin routes live at `/administration`, not `/settings` (VIU-28).** Navigating to `/settings` returns a 404 "coffee break" page. Any admin/role-config navigation should use `/administration`. (This suite's test-case JSON already navigates to `/administration/roles-permissions`, so no literal `/settings` URL needed correcting.)
+- **D2 — zero-permission role not creatable (VIU-30).** Minimum one permission is enforced; documented as a known design constraint. Any "empty role" baseline should use a single-permission minimal role instead.
+- **D3 — verification location (VIU-29).** View-mode, delete, pick/order-parts, and see-financial-data effects are verified INSIDE the WO detail page (and invoicing for financial), not on the WO list. Affected per-role verification steps now state this explicitly.
+- **D4 — permission propagation (VIU-31).** After reassigning a role, the user must log out and log back in (fresh login) AND allow a brief settle before the new permissions take effect. This is now a precondition/note on the per-role (assign-and-login-as-user) cases.
