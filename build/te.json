@@ -7,13 +7,13 @@
     "dependency_mode": "None",
     "priority": "Critical",
     "type": "Negative",
-    "preconditions": "Logged in as an Administrator. Administration > Roles and Permissions is reachable. A test staff user exists with no custom role assigned.",
+    "preconditions": "Logged in as an Administrator. Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) is reachable. A test staff user exists with no custom role assigned.",
     "role_setup": "Start from Administrator template (records template). Change: Access Administration pages from ON to OFF (attempted). Leave all else as template default.",
     "test_data": "Template: Administrator. Target toggle: Access Administration pages.",
     "steps": [
       {
         "n": 1,
-        "action": "Go to Administration > Roles and Permissions > Create Custom Role.",
+        "action": "Go to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) > Create Custom Role. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role screen opens with a template selector."
       },
       {
@@ -33,7 +33,7 @@
       }
     ],
     "expected_final": "The custom role cannot be saved with Admin-pages access removed; Administrator always retains admin access.",
-    "source_viu": "Spec: SV-7501 Edit Custom Role - Administrator admin-access guard. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: SV-7501 Edit Custom Role - Administrator admin-access guard. UNVERIFIED — VIU pending."
   },
   {
     "test_id": "TE-ADMIN-002",
@@ -43,13 +43,13 @@
     "dependency_mode": "None",
     "priority": "High",
     "type": "Positive",
-    "preconditions": "Logged in as an Administrator. Administration > Roles and Permissions is reachable. A test staff user exists with no custom role assigned.",
+    "preconditions": "Logged in as an Administrator. Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) is reachable. A test staff user exists with no custom role assigned.",
     "role_setup": "Start from Administrator template (records template). Change: Work Orders > Delete from ON to OFF. Leave all else as template default.",
     "test_data": "Template: Administrator. Toggle: Work Orders Delete OFF.",
     "steps": [
       {
         "n": 1,
-        "action": "Go to Administration > Roles and Permissions > Create Custom Role.",
+        "action": "Go to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) > Create Custom Role. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role screen opens with a template selector."
       },
       {
@@ -64,7 +64,7 @@
       },
       {
         "n": 4,
-        "action": "Click Save to create the custom role.",
+        "action": "Click Create to create the custom role.",
         "expected": "Role saves successfully; only the intended delta differs from the template."
       },
       {
@@ -89,7 +89,7 @@
       }
     ],
     "expected_final": "Only Work Orders Delete is removed; every other Administrator capability remains available to the user.",
-    "source_viu": "Spec: SV-7501 Edit Custom Role delta - Administrator. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: SV-7501 Edit Custom Role delta - Administrator. UNVERIFIED — VIU pending."
   },
   {
     "test_id": "TE-ADMIN-003",
@@ -99,13 +99,13 @@
     "dependency_mode": "None",
     "priority": "Medium",
     "type": "Positive",
-    "preconditions": "Logged in as an Administrator. Administration > Roles and Permissions is reachable. A test staff user exists with no custom role assigned.",
+    "preconditions": "Logged in as an Administrator. Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) is reachable. A test staff user exists with no custom role assigned.",
     "role_setup": "Start from Administrator template (records template). Change: History from ON to OFF. Leave all else as template default.",
     "test_data": "Template: Administrator. Toggle: History OFF.",
     "steps": [
       {
         "n": 1,
-        "action": "Go to Administration > Roles and Permissions > Create Custom Role.",
+        "action": "Go to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) > Create Custom Role. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role screen opens with a template selector."
       },
       {
@@ -120,7 +120,7 @@
       },
       {
         "n": 4,
-        "action": "Click Save to create the custom role.",
+        "action": "Click Create to create the custom role.",
         "expected": "Role saves successfully; only the intended delta differs from the template."
       },
       {
@@ -145,7 +145,7 @@
       }
     ],
     "expected_final": "Only History is removed; the rest of the Administrator template is preserved.",
-    "source_viu": "Spec: SV-7501 Edit Custom Role delta - Administrator History. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: SV-7501 Edit Custom Role delta - Administrator History. UNVERIFIED — VIU pending."
   },
   {
     "test_id": "TE-ADMIN-004",
@@ -155,13 +155,13 @@
     "dependency_mode": "None",
     "priority": "High",
     "type": "Positive",
-    "preconditions": "Logged in as an Administrator. Administration > Roles and Permissions is reachable. A test staff user exists with no custom role assigned.",
+    "preconditions": "Logged in as an Administrator. Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) is reachable. A test staff user exists with no custom role assigned.",
     "role_setup": "Start from Administrator template (records template). Change: Vendor > Delete from ON to OFF. Leave all else as template default.",
     "test_data": "Template: Administrator. Toggle: Vendor Delete OFF. Focus: staff assignment + forced logout.",
     "steps": [
       {
         "n": 1,
-        "action": "Go to Administration > Roles and Permissions > Create Custom Role.",
+        "action": "Go to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) > Create Custom Role. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role screen opens with a template selector."
       },
       {
@@ -176,7 +176,7 @@
       },
       {
         "n": 4,
-        "action": "Click Save to create the custom role.",
+        "action": "Click Create to create the custom role.",
         "expected": "Role saves successfully; only the intended delta differs from the template."
       },
       {
@@ -201,7 +201,7 @@
       }
     ],
     "expected_final": "On assignment the user is logged out and the edited role (minus Vendor Delete) applies on next login.",
-    "source_viu": "Spec: SV-7505 Staff assignment forces logout. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: SV-7505 Staff assignment forces logout. UNVERIFIED — VIU pending."
   },
   {
     "test_id": "TE-ADMIN-005",
@@ -211,13 +211,13 @@
     "dependency_mode": "None",
     "priority": "High",
     "type": "Negative",
-    "preconditions": "Logged in as an Administrator. Administration > Roles and Permissions is reachable. A test staff user exists with no custom role assigned.",
+    "preconditions": "Logged in as an Administrator. Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) is reachable. A test staff user exists with no custom role assigned.",
     "role_setup": "Start from template selector (no change). Change: none. Leave all else as template default.",
     "test_data": "Template selector list. Expected: 11 selectable templates + 2 read-only, no 'Owner'.",
     "steps": [
       {
         "n": 1,
-        "action": "Go to Administration > Roles and Permissions > Create Custom Role.",
+        "action": "Go to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) > Create Custom Role. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Template selector opens."
       },
       {
@@ -232,7 +232,7 @@
       }
     ],
     "expected_final": "Owner does not appear in the template list; Administrator is the only full-access template.",
-    "source_viu": "Spec: SV-7526/SV-7527 Owner merged into Administrator. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: SV-7526/SV-7527 Owner merged into Administrator. UNVERIFIED — VIU pending."
   },
   {
     "test_id": "TE-SM-001",
@@ -242,13 +242,13 @@
     "dependency_mode": "Cascade: auto-enable lower",
     "priority": "High",
     "type": "Dependency",
-    "preconditions": "Logged in as an Administrator. Administration > Roles and Permissions is reachable. A test staff user exists with no custom role assigned.",
+    "preconditions": "Logged in as an Administrator. Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) is reachable. A test staff user exists with no custom role assigned.",
     "role_setup": "Start from Service Manager template (records template). Change: Invoicing > Delete from OFF to ON. Leave all else as template default.",
     "test_data": "Template: Service Manager. Toggle: Invoicing Delete ON (View/Edit already ON).",
     "steps": [
       {
         "n": 1,
-        "action": "Go to Administration > Roles and Permissions > Create Custom Role.",
+        "action": "Go to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) > Create Custom Role. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role screen opens with a template selector."
       },
       {
@@ -263,7 +263,7 @@
       },
       {
         "n": 4,
-        "action": "Click Save to create the custom role.",
+        "action": "Click Create to create the custom role.",
         "expected": "Role saves successfully; only the intended delta differs from the template."
       },
       {
@@ -288,7 +288,7 @@
       }
     ],
     "expected_final": "User gains Invoicing Delete only; all other Service Manager capabilities remain.",
-    "source_viu": "Spec: SV-7501 Edit Custom Role - SM add Invoicing Delete. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: SV-7501 Edit Custom Role - SM add Invoicing Delete. VERIFIED (staging 2026-07-01) — MATCH; see VIU Findings Log"
   },
   {
     "test_id": "TE-SM-002",
@@ -298,13 +298,13 @@
     "dependency_mode": "Financial gate: confirm modal",
     "priority": "Critical",
     "type": "Dependency",
-    "preconditions": "Logged in as an Administrator. Administration > Roles and Permissions is reachable. A test staff user exists with no custom role assigned.",
+    "preconditions": "Logged in as an Administrator. Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) is reachable. A test staff user exists with no custom role assigned.",
     "role_setup": "Start from Service Manager template (records template). Change: Financial from ON to OFF. Leave all else as template default.",
     "test_data": "Template: Service Manager. Toggle: Financial OFF (confirm modal expected).",
     "steps": [
       {
         "n": 1,
-        "action": "Go to Administration > Roles and Permissions > Create Custom Role.",
+        "action": "Go to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) > Create Custom Role. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role screen opens with a template selector."
       },
       {
@@ -324,7 +324,7 @@
       },
       {
         "n": 6,
-        "action": "Click Save to create the custom role.",
+        "action": "Click Create to create the custom role.",
         "expected": "Role saves successfully; only the intended delta differs from the template."
       },
       {
@@ -349,7 +349,7 @@
       }
     ],
     "expected_final": "Financial access removed after confirming the modal; all non-financial access preserved.",
-    "source_viu": "Spec: SV-7501 Edit Custom Role - SM Financial gate. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: SV-7501 Edit Custom Role - SM Financial gate. VERIFIED (staging 2026-07-01) — DISCREPANCY; see VIU-11"
   },
   {
     "test_id": "TE-SM-003",
@@ -359,13 +359,13 @@
     "dependency_mode": "AP/AR gate: confirm modal",
     "priority": "High",
     "type": "Dependency",
-    "preconditions": "Logged in as an Administrator. Administration > Roles and Permissions is reachable. A test staff user exists with no custom role assigned.",
+    "preconditions": "Logged in as an Administrator. Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) is reachable. A test staff user exists with no custom role assigned.",
     "role_setup": "Start from Service Manager template (records template). Change: AP/AR from ON to OFF. Leave all else as template default.",
     "test_data": "Template: Service Manager. Toggle: AP/AR OFF (confirm modal expected).",
     "steps": [
       {
         "n": 1,
-        "action": "Go to Administration > Roles and Permissions > Create Custom Role.",
+        "action": "Go to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) > Create Custom Role. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role screen opens with a template selector."
       },
       {
@@ -385,7 +385,7 @@
       },
       {
         "n": 6,
-        "action": "Click Save to create the custom role.",
+        "action": "Click Create to create the custom role.",
         "expected": "Role saves successfully; only the intended delta differs from the template."
       },
       {
@@ -410,7 +410,7 @@
       }
     ],
     "expected_final": "AP/AR access removed after confirming the modal; the rest of the template is intact.",
-    "source_viu": "Spec: SV-7501 Edit Custom Role - SM AP/AR gate. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: SV-7501 Edit Custom Role - SM AP/AR gate. UNVERIFIED — VIU pending."
   },
   {
     "test_id": "TE-SM-004",
@@ -420,13 +420,13 @@
     "dependency_mode": "None",
     "priority": "Medium",
     "type": "Positive",
-    "preconditions": "Logged in as an Administrator. Administration > Roles and Permissions is reachable. A test staff user exists with no custom role assigned.",
+    "preconditions": "Logged in as an Administrator. Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) is reachable. A test staff user exists with no custom role assigned.",
     "role_setup": "Start from Service Manager template (records template). Change: Reports and Settings from ON/ON to OFF/OFF. Leave all else as template default.",
     "test_data": "Template: Service Manager. Toggles: Reports OFF, Settings OFF.",
     "steps": [
       {
         "n": 1,
-        "action": "Go to Administration > Roles and Permissions > Create Custom Role.",
+        "action": "Go to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) > Create Custom Role. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role screen opens with a template selector."
       },
       {
@@ -441,7 +441,7 @@
       },
       {
         "n": 4,
-        "action": "Click Save to create the custom role.",
+        "action": "Click Create to create the custom role.",
         "expected": "Role saves successfully; only the intended delta differs from the template."
       },
       {
@@ -466,7 +466,7 @@
       }
     ],
     "expected_final": "Exactly two capabilities (Reports, Settings) removed; everything else preserved.",
-    "source_viu": "Spec: SV-7501 Edit Custom Role - SM multi-toggle. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: SV-7501 Edit Custom Role - SM multi-toggle. VERIFIED (staging 2026-07-01) — MATCH; see VIU Findings Log"
   },
   {
     "test_id": "TE-SSA-001",
@@ -476,13 +476,13 @@
     "dependency_mode": "Cascade: auto-enable lower",
     "priority": "High",
     "type": "Dependency",
-    "preconditions": "Logged in as an Administrator. Administration > Roles and Permissions is reachable. A test staff user exists with no custom role assigned.",
+    "preconditions": "Logged in as an Administrator. Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) is reachable. A test staff user exists with no custom role assigned.",
     "role_setup": "Start from Senior Service Advisor template (records template). Change: Customers > Delete from OFF to ON. Leave all else as template default.",
     "test_data": "Template: Senior Service Advisor. Toggle: Customers Delete ON.",
     "steps": [
       {
         "n": 1,
-        "action": "Go to Administration > Roles and Permissions > Create Custom Role.",
+        "action": "Go to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) > Create Custom Role. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role screen opens with a template selector."
       },
       {
@@ -497,7 +497,7 @@
       },
       {
         "n": 4,
-        "action": "Click Save to create the custom role.",
+        "action": "Click Create to create the custom role.",
         "expected": "Role saves successfully; only the intended delta differs from the template."
       },
       {
@@ -522,7 +522,7 @@
       }
     ],
     "expected_final": "User gains Customers Delete only; rest of SSA template preserved.",
-    "source_viu": "Spec: SV-7501 Edit Custom Role - SSA add Customers Delete. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: SV-7501 Edit Custom Role - SSA add Customers Delete. VERIFIED (staging 2026-07-01) — MATCH; see VIU Findings Log"
   },
   {
     "test_id": "TE-SSA-002",
@@ -532,13 +532,13 @@
     "dependency_mode": "Cascade: auto-disable higher (reverse)",
     "priority": "Critical",
     "type": "Dependency",
-    "preconditions": "Logged in as an Administrator. Administration > Roles and Permissions is reachable. A test staff user exists with no custom role assigned.",
+    "preconditions": "Logged in as an Administrator. Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) is reachable. A test staff user exists with no custom role assigned.",
     "role_setup": "Start from Senior Service Advisor template (records template). Change: Work Orders > Edit from ON to OFF. Leave all else as template default.",
     "test_data": "Template: Senior Service Advisor. Toggle: WO Edit OFF; expect WO Delete auto-off.",
     "steps": [
       {
         "n": 1,
-        "action": "Go to Administration > Roles and Permissions > Create Custom Role.",
+        "action": "Go to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) > Create Custom Role. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role screen opens with a template selector."
       },
       {
@@ -558,7 +558,7 @@
       },
       {
         "n": 6,
-        "action": "Click Save to create the custom role.",
+        "action": "Click Create to create the custom role.",
         "expected": "Role saves successfully; only the intended delta differs from the template."
       },
       {
@@ -583,7 +583,7 @@
       }
     ],
     "expected_final": "WO Edit and (cascaded) Delete removed; View retained; rest of template intact.",
-    "source_viu": "Spec: SV-7501 Edit Custom Role - SSA reverse cascade. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: SV-7501 Edit Custom Role - SSA reverse cascade. VERIFIED (staging 2026-07-01) — MATCH; see VIU Findings Log"
   },
   {
     "test_id": "TE-SSA-003",
@@ -593,13 +593,13 @@
     "dependency_mode": "None",
     "priority": "Medium",
     "type": "Positive",
-    "preconditions": "Logged in as an Administrator. Administration > Roles and Permissions is reachable. A test staff user exists with no custom role assigned.",
+    "preconditions": "Logged in as an Administrator. Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) is reachable. A test staff user exists with no custom role assigned.",
     "role_setup": "Start from Senior Service Advisor template (records template). Change: Customer Portal from ON to OFF. Leave all else as template default.",
     "test_data": "Template: Senior Service Advisor. Toggle: Customer Portal OFF.",
     "steps": [
       {
         "n": 1,
-        "action": "Go to Administration > Roles and Permissions > Create Custom Role.",
+        "action": "Go to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) > Create Custom Role. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role screen opens with a template selector."
       },
       {
@@ -614,7 +614,7 @@
       },
       {
         "n": 4,
-        "action": "Click Save to create the custom role.",
+        "action": "Click Create to create the custom role.",
         "expected": "Role saves successfully; only the intended delta differs from the template."
       },
       {
@@ -639,7 +639,7 @@
       }
     ],
     "expected_final": "Only Customer Portal removed; rest of SSA template preserved.",
-    "source_viu": "Spec: SV-7501 Edit Custom Role - SSA remove Customer Portal. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: SV-7501 Edit Custom Role - SSA remove Customer Portal. UNVERIFIED — VIU pending."
   },
   {
     "test_id": "TE-SSA-004",
@@ -649,13 +649,13 @@
     "dependency_mode": "None",
     "priority": "Medium",
     "type": "Positive",
-    "preconditions": "Logged in as an Administrator. Administration > Roles and Permissions is reachable. A test staff user exists with no custom role assigned.",
+    "preconditions": "Logged in as an Administrator. Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) is reachable. A test staff user exists with no custom role assigned.",
     "role_setup": "Start from Senior Service Advisor template (records template). Change: Catalog Edit and Reports from ON/ON to OFF/OFF. Leave all else as template default.",
     "test_data": "Template: Senior Service Advisor. Toggles: Catalog Edit OFF, Reports OFF.",
     "steps": [
       {
         "n": 1,
-        "action": "Go to Administration > Roles and Permissions > Create Custom Role.",
+        "action": "Go to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) > Create Custom Role. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role screen opens with a template selector."
       },
       {
@@ -670,7 +670,7 @@
       },
       {
         "n": 4,
-        "action": "Click Save to create the custom role.",
+        "action": "Click Create to create the custom role.",
         "expected": "Role saves successfully; only the intended delta differs from the template."
       },
       {
@@ -695,7 +695,7 @@
       }
     ],
     "expected_final": "Exactly Catalog Edit and Reports removed; everything else preserved.",
-    "source_viu": "Spec: SV-7501 Edit Custom Role - SSA multi-toggle. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: SV-7501 Edit Custom Role - SSA multi-toggle. UNVERIFIED — VIU pending."
   },
   {
     "test_id": "TE-SADV-001",
@@ -705,13 +705,13 @@
     "dependency_mode": "Cascade: auto-enable lower",
     "priority": "High",
     "type": "Dependency",
-    "preconditions": "Logged in as an Administrator. Administration > Roles and Permissions is reachable. A test staff user exists with no custom role assigned.",
+    "preconditions": "Logged in as an Administrator. Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) is reachable. A test staff user exists with no custom role assigned.",
     "role_setup": "Start from Service Advisor template (records template). Change: Work Orders > Delete from OFF to ON. Leave all else as template default.",
     "test_data": "Template: Service Advisor. Toggle: WO Delete ON.",
     "steps": [
       {
         "n": 1,
-        "action": "Go to Administration > Roles and Permissions > Create Custom Role.",
+        "action": "Go to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) > Create Custom Role. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role screen opens with a template selector."
       },
       {
@@ -731,7 +731,7 @@
       },
       {
         "n": 6,
-        "action": "Click Save to create the custom role.",
+        "action": "Click Create to create the custom role.",
         "expected": "Role saves successfully; only the intended delta differs from the template."
       },
       {
@@ -756,7 +756,7 @@
       }
     ],
     "expected_final": "User gains WO Delete only; rest of Service Advisor template preserved.",
-    "source_viu": "Spec: SV-7501 Edit Custom Role - SADV add WO Delete. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: SV-7501 Edit Custom Role - SADV add WO Delete. VERIFIED (staging 2026-07-01) — MATCH; see VIU Findings Log"
   },
   {
     "test_id": "TE-SADV-002",
@@ -766,13 +766,13 @@
     "dependency_mode": "None",
     "priority": "Medium",
     "type": "Positive",
-    "preconditions": "Logged in as an Administrator. Administration > Roles and Permissions is reachable. A test staff user exists with no custom role assigned.",
+    "preconditions": "Logged in as an Administrator. Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) is reachable. A test staff user exists with no custom role assigned.",
     "role_setup": "Start from Service Advisor template (records template). Change: AP/AR from OFF to ON. Leave all else as template default.",
     "test_data": "Template: Service Advisor. Toggle: AP/AR ON.",
     "steps": [
       {
         "n": 1,
-        "action": "Go to Administration > Roles and Permissions > Create Custom Role.",
+        "action": "Go to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) > Create Custom Role. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role screen opens with a template selector."
       },
       {
@@ -787,7 +787,7 @@
       },
       {
         "n": 4,
-        "action": "Click Save to create the custom role.",
+        "action": "Click Create to create the custom role.",
         "expected": "Role saves successfully; only the intended delta differs from the template."
       },
       {
@@ -812,7 +812,7 @@
       }
     ],
     "expected_final": "User gains AP/AR access only; rest of the template preserved.",
-    "source_viu": "Spec: SV-7501 Edit Custom Role - SADV add AP/AR. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: SV-7501 Edit Custom Role - SADV add AP/AR. UNVERIFIED — VIU pending."
   },
   {
     "test_id": "TE-SADV-003",
@@ -822,13 +822,13 @@
     "dependency_mode": "None",
     "priority": "Medium",
     "type": "Positive",
-    "preconditions": "Logged in as an Administrator. Administration > Roles and Permissions is reachable. A test staff user exists with no custom role assigned.",
+    "preconditions": "Logged in as an Administrator. Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) is reachable. A test staff user exists with no custom role assigned.",
     "role_setup": "Start from Service Advisor template (records template). Change: Part Sales > Edit from ON to OFF. Leave all else as template default.",
     "test_data": "Template: Service Advisor. Toggle: Part Sales Edit OFF (View stays ON).",
     "steps": [
       {
         "n": 1,
-        "action": "Go to Administration > Roles and Permissions > Create Custom Role.",
+        "action": "Go to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) > Create Custom Role. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role screen opens with a template selector."
       },
       {
@@ -843,7 +843,7 @@
       },
       {
         "n": 4,
-        "action": "Click Save to create the custom role.",
+        "action": "Click Create to create the custom role.",
         "expected": "Role saves successfully; only the intended delta differs from the template."
       },
       {
@@ -868,7 +868,7 @@
       }
     ],
     "expected_final": "Only Part Sales Edit removed; the rest of the template is intact.",
-    "source_viu": "Spec: SV-7501 Edit Custom Role - SADV remove Part Sales Edit. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: SV-7501 Edit Custom Role - SADV remove Part Sales Edit. UNVERIFIED — VIU pending."
   },
   {
     "test_id": "TE-SADV-004",
@@ -878,13 +878,13 @@
     "dependency_mode": "Cascade: auto-enable lower",
     "priority": "Medium",
     "type": "Dependency",
-    "preconditions": "Logged in as an Administrator. Administration > Roles and Permissions is reachable. A test staff user exists with no custom role assigned.",
+    "preconditions": "Logged in as an Administrator. Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) is reachable. A test staff user exists with no custom role assigned.",
     "role_setup": "Start from Service Advisor template (records template). Change: Timesheets Edit and AP/AR from OFF/OFF to ON/ON. Leave all else as template default.",
     "test_data": "Template: Service Advisor. Toggles: Timesheets Edit ON, AP/AR ON.",
     "steps": [
       {
         "n": 1,
-        "action": "Go to Administration > Roles and Permissions > Create Custom Role.",
+        "action": "Go to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) > Create Custom Role. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role screen opens with a template selector."
       },
       {
@@ -899,7 +899,7 @@
       },
       {
         "n": 4,
-        "action": "Click Save to create the custom role.",
+        "action": "Click Create to create the custom role.",
         "expected": "Role saves successfully; only the intended delta differs from the template."
       },
       {
@@ -924,7 +924,7 @@
       }
     ],
     "expected_final": "Exactly Timesheets Edit and AP/AR added; everything else preserved.",
-    "source_viu": "Spec: SV-7501 Edit Custom Role - SADV multi-toggle. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: SV-7501 Edit Custom Role - SADV multi-toggle. VERIFIED (staging 2026-07-01) — MATCH; see VIU Findings Log"
   },
   {
     "test_id": "TE-FORE-001",
@@ -934,13 +934,13 @@
     "dependency_mode": "Cascade: auto-enable lower",
     "priority": "High",
     "type": "Dependency",
-    "preconditions": "Logged in as an Administrator. Administration > Roles and Permissions is reachable. A test staff user exists with no custom role assigned.",
+    "preconditions": "Logged in as an Administrator. Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) is reachable. A test staff user exists with no custom role assigned.",
     "role_setup": "Start from Foreman template (records template). Change: Part Sales > Edit from OFF to ON. Leave all else as template default.",
     "test_data": "Template: Foreman. Toggle: Part Sales Edit ON.",
     "steps": [
       {
         "n": 1,
-        "action": "Go to Administration > Roles and Permissions > Create Custom Role.",
+        "action": "Go to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) > Create Custom Role. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role screen opens with a template selector."
       },
       {
@@ -955,7 +955,7 @@
       },
       {
         "n": 4,
-        "action": "Click Save to create the custom role.",
+        "action": "Click Create to create the custom role.",
         "expected": "Role saves successfully; only the intended delta differs from the template."
       },
       {
@@ -980,7 +980,7 @@
       }
     ],
     "expected_final": "User gains Part Sales Edit only; rest of Foreman template preserved.",
-    "source_viu": "Spec: SV-7501 Edit Custom Role - FORE add Part Sales Edit. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: SV-7501 Edit Custom Role - FORE add Part Sales Edit. VERIFIED (staging 2026-07-01) — MATCH; see VIU Findings Log"
   },
   {
     "test_id": "TE-FORE-002",
@@ -990,13 +990,13 @@
     "dependency_mode": "Financial gate: confirm modal",
     "priority": "High",
     "type": "Dependency",
-    "preconditions": "Logged in as an Administrator. Administration > Roles and Permissions is reachable. A test staff user exists with no custom role assigned.",
+    "preconditions": "Logged in as an Administrator. Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) is reachable. A test staff user exists with no custom role assigned.",
     "role_setup": "Start from Foreman template (records template). Change: Financial from ON to OFF. Leave all else as template default.",
     "test_data": "Template: Foreman. Toggle: Financial OFF (confirm modal expected).",
     "steps": [
       {
         "n": 1,
-        "action": "Go to Administration > Roles and Permissions > Create Custom Role.",
+        "action": "Go to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) > Create Custom Role. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role screen opens with a template selector."
       },
       {
@@ -1016,7 +1016,7 @@
       },
       {
         "n": 6,
-        "action": "Click Save to create the custom role.",
+        "action": "Click Create to create the custom role.",
         "expected": "Role saves successfully; only the intended delta differs from the template."
       },
       {
@@ -1041,7 +1041,7 @@
       }
     ],
     "expected_final": "Financial removed after confirming; rest of template intact.",
-    "source_viu": "Spec: SV-7501 Edit Custom Role - FORE Financial gate. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: SV-7501 Edit Custom Role - FORE Financial gate. VERIFIED (staging 2026-07-01) — DISCREPANCY; see VIU-11"
   },
   {
     "test_id": "TE-FORE-003",
@@ -1051,13 +1051,13 @@
     "dependency_mode": "Cascade: auto-enable lower",
     "priority": "Medium",
     "type": "Dependency",
-    "preconditions": "Logged in as an Administrator. Administration > Roles and Permissions is reachable. A test staff user exists with no custom role assigned.",
+    "preconditions": "Logged in as an Administrator. Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) is reachable. A test staff user exists with no custom role assigned.",
     "role_setup": "Start from Foreman template (records template). Change: WO Delete and Invoicing Delete from OFF/OFF to ON/ON. Leave all else as template default.",
     "test_data": "Template: Foreman. Toggles: WO Delete ON, Invoicing Delete ON.",
     "steps": [
       {
         "n": 1,
-        "action": "Go to Administration > Roles and Permissions > Create Custom Role.",
+        "action": "Go to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) > Create Custom Role. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role screen opens with a template selector."
       },
       {
@@ -1072,7 +1072,7 @@
       },
       {
         "n": 4,
-        "action": "Click Save to create the custom role.",
+        "action": "Click Create to create the custom role.",
         "expected": "Role saves successfully; only the intended delta differs from the template."
       },
       {
@@ -1097,7 +1097,7 @@
       }
     ],
     "expected_final": "Exactly WO Delete and Invoicing Delete added; everything else preserved.",
-    "source_viu": "Spec: SV-7501 Edit Custom Role - FORE multi-toggle. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: SV-7501 Edit Custom Role - FORE multi-toggle. VERIFIED (staging 2026-07-01) — MATCH; see VIU Findings Log"
   },
   {
     "test_id": "TE-FORE-004",
@@ -1107,13 +1107,13 @@
     "dependency_mode": "Cascade: auto-enable lower",
     "priority": "Low",
     "type": "Dependency",
-    "preconditions": "Logged in as an Administrator. Administration > Roles and Permissions is reachable. A test staff user exists with no custom role assigned.",
+    "preconditions": "Logged in as an Administrator. Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) is reachable. A test staff user exists with no custom role assigned.",
     "role_setup": "Start from Foreman template (records template). Change: Catalog > Delete from OFF to ON. Leave all else as template default.",
     "test_data": "Template: Foreman. Toggle: Catalog Delete ON.",
     "steps": [
       {
         "n": 1,
-        "action": "Go to Administration > Roles and Permissions > Create Custom Role.",
+        "action": "Go to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) > Create Custom Role. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role screen opens with a template selector."
       },
       {
@@ -1128,7 +1128,7 @@
       },
       {
         "n": 4,
-        "action": "Click Save to create the custom role.",
+        "action": "Click Create to create the custom role.",
         "expected": "Role saves successfully; only the intended delta differs from the template."
       },
       {
@@ -1153,7 +1153,7 @@
       }
     ],
     "expected_final": "User gains Catalog Delete only; rest of Foreman template preserved.",
-    "source_viu": "Spec: SV-7501 Edit Custom Role - FORE add Catalog Delete. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: SV-7501 Edit Custom Role - FORE add Catalog Delete. VERIFIED (staging 2026-07-01) — MATCH; see VIU Findings Log"
   },
   {
     "test_id": "TE-TECH-001",
@@ -1163,13 +1163,13 @@
     "dependency_mode": "None",
     "priority": "High",
     "type": "Positive",
-    "preconditions": "Logged in as an Administrator. Administration > Roles and Permissions is reachable. A test staff user exists with no custom role assigned.",
+    "preconditions": "Logged in as an Administrator. Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) is reachable. A test staff user exists with no custom role assigned.",
     "role_setup": "Start from Technician template (records template). Change: View mode from Tech view to Full view. Leave all else as template default.",
     "test_data": "Template: Technician. Toggle: view mode Tech -> Full.",
     "steps": [
       {
         "n": 1,
-        "action": "Go to Administration > Roles and Permissions > Create Custom Role.",
+        "action": "Go to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) > Create Custom Role. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role screen opens with a template selector."
       },
       {
@@ -1184,7 +1184,7 @@
       },
       {
         "n": 4,
-        "action": "Click Save to create the custom role.",
+        "action": "Click Create to create the custom role.",
         "expected": "Role saves successfully; only the intended delta differs from the template."
       },
       {
@@ -1209,7 +1209,7 @@
       }
     ],
     "expected_final": "Only the view mode changed to Full; other Technician access unchanged.",
-    "source_viu": "Spec: SV-7501 Edit Custom Role - TECH view switch. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: SV-7501 Edit Custom Role - TECH view switch. VERIFIED (staging 2026-07-01) — MATCH; see VIU Findings Log"
   },
   {
     "test_id": "TE-TECH-002",
@@ -1219,13 +1219,13 @@
     "dependency_mode": "Cascade: auto-enable lower",
     "priority": "High",
     "type": "Dependency",
-    "preconditions": "Logged in as an Administrator. Administration > Roles and Permissions is reachable. A test staff user exists with no custom role assigned.",
+    "preconditions": "Logged in as an Administrator. Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) is reachable. A test staff user exists with no custom role assigned.",
     "role_setup": "Start from Technician template (records template). Change: Work Orders > Edit from OFF to ON. Leave all else as template default.",
     "test_data": "Template: Technician. Toggle: WO Edit ON (View already ON).",
     "steps": [
       {
         "n": 1,
-        "action": "Go to Administration > Roles and Permissions > Create Custom Role.",
+        "action": "Go to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) > Create Custom Role. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role screen opens with a template selector."
       },
       {
@@ -1245,7 +1245,7 @@
       },
       {
         "n": 6,
-        "action": "Click Save to create the custom role.",
+        "action": "Click Create to create the custom role.",
         "expected": "Role saves successfully; only the intended delta differs from the template."
       },
       {
@@ -1270,7 +1270,7 @@
       }
     ],
     "expected_final": "User gains WO Edit only; rest of restrictive Technician template preserved.",
-    "source_viu": "Spec: SV-7501 Edit Custom Role - TECH add WO Edit. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: SV-7501 Edit Custom Role - TECH add WO Edit. VERIFIED (staging 2026-07-01) — MATCH; see VIU Findings Log"
   },
   {
     "test_id": "TE-TECH-003",
@@ -1280,13 +1280,13 @@
     "dependency_mode": "Parent gate: hide children",
     "priority": "Medium",
     "type": "Dependency",
-    "preconditions": "Logged in as an Administrator. Administration > Roles and Permissions is reachable. A test staff user exists with no custom role assigned.",
+    "preconditions": "Logged in as an Administrator. Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) is reachable. A test staff user exists with no custom role assigned.",
     "role_setup": "Start from Technician template (records template). Change: Parts Dept + Order Parts from OFF/OFF to ON/ON. Leave all else as template default.",
     "test_data": "Template: Technician. Parent Parts Dept then child Order Parts.",
     "steps": [
       {
         "n": 1,
-        "action": "Go to Administration > Roles and Permissions > Create Custom Role.",
+        "action": "Go to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) > Create Custom Role. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role screen opens with a template selector."
       },
       {
@@ -1306,7 +1306,7 @@
       },
       {
         "n": 5,
-        "action": "Click Save to create the custom role.",
+        "action": "Click Create to create the custom role.",
         "expected": "Role saves successfully; only the intended delta differs from the template."
       },
       {
@@ -1331,7 +1331,7 @@
       }
     ],
     "expected_final": "Order Parts only becomes settable after the Parts Dept parent is enabled; rest of template intact.",
-    "source_viu": "Spec: SV-7501 Edit Custom Role - TECH parent gate. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: SV-7501 Edit Custom Role - TECH parent gate. VERIFIED (staging 2026-07-01) — MATCH; see VIU Findings Log"
   },
   {
     "test_id": "TE-TECH-004",
@@ -1341,13 +1341,13 @@
     "dependency_mode": "None",
     "priority": "Medium",
     "type": "Positive",
-    "preconditions": "Logged in as an Administrator. Administration > Roles and Permissions is reachable. A test staff user exists with no custom role assigned.",
+    "preconditions": "Logged in as an Administrator. Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) is reachable. A test staff user exists with no custom role assigned.",
     "role_setup": "Start from Technician template (records template). Change: Financial and History from OFF/OFF to ON/ON. Leave all else as template default.",
     "test_data": "Template: Technician. Toggles: Financial ON, History ON.",
     "steps": [
       {
         "n": 1,
-        "action": "Go to Administration > Roles and Permissions > Create Custom Role.",
+        "action": "Go to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) > Create Custom Role. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role screen opens with a template selector."
       },
       {
@@ -1362,7 +1362,7 @@
       },
       {
         "n": 4,
-        "action": "Click Save to create the custom role.",
+        "action": "Click Create to create the custom role.",
         "expected": "Role saves successfully; only the intended delta differs from the template."
       },
       {
@@ -1387,7 +1387,7 @@
       }
     ],
     "expected_final": "Exactly Financial and History added; everything else preserved.",
-    "source_viu": "Spec: SV-7501 Edit Custom Role - TECH multi-toggle. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: SV-7501 Edit Custom Role - TECH multi-toggle. UNVERIFIED — VIU pending."
   },
   {
     "test_id": "TE-PM-001",
@@ -1397,13 +1397,13 @@
     "dependency_mode": "Cascade: auto-disable higher (reverse)",
     "priority": "Critical",
     "type": "Dependency",
-    "preconditions": "Logged in as an Administrator. Administration > Roles and Permissions is reachable. A test staff user exists with no custom role assigned.",
+    "preconditions": "Logged in as an Administrator. Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) is reachable. A test staff user exists with no custom role assigned.",
     "role_setup": "Start from Parts Manager template (records template). Change: Part Sales > Edit from ON to OFF. Leave all else as template default.",
     "test_data": "Template: Parts Manager. Toggle: Part Sales Edit OFF; expect Delete auto-off.",
     "steps": [
       {
         "n": 1,
-        "action": "Go to Administration > Roles and Permissions > Create Custom Role.",
+        "action": "Go to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) > Create Custom Role. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role screen opens with a template selector."
       },
       {
@@ -1423,7 +1423,7 @@
       },
       {
         "n": 6,
-        "action": "Click Save to create the custom role.",
+        "action": "Click Create to create the custom role.",
         "expected": "Role saves successfully; only the intended delta differs from the template."
       },
       {
@@ -1448,7 +1448,7 @@
       }
     ],
     "expected_final": "Part Sales Edit and cascaded Delete removed; View retained; rest of template intact.",
-    "source_viu": "Spec: SV-7501 Edit Custom Role - PM reverse cascade. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: SV-7501 Edit Custom Role - PM reverse cascade. VERIFIED (staging 2026-07-01) — MATCH; see VIU Findings Log"
   },
   {
     "test_id": "TE-PM-002",
@@ -1458,13 +1458,13 @@
     "dependency_mode": "None",
     "priority": "Medium",
     "type": "Positive",
-    "preconditions": "Logged in as an Administrator. Administration > Roles and Permissions is reachable. A test staff user exists with no custom role assigned.",
+    "preconditions": "Logged in as an Administrator. Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) is reachable. A test staff user exists with no custom role assigned.",
     "role_setup": "Start from Parts Manager template (records template). Change: Settings from ON to OFF. Leave all else as template default.",
     "test_data": "Template: Parts Manager. Toggle: Settings OFF.",
     "steps": [
       {
         "n": 1,
-        "action": "Go to Administration > Roles and Permissions > Create Custom Role.",
+        "action": "Go to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) > Create Custom Role. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role screen opens with a template selector."
       },
       {
@@ -1479,7 +1479,7 @@
       },
       {
         "n": 4,
-        "action": "Click Save to create the custom role.",
+        "action": "Click Create to create the custom role.",
         "expected": "Role saves successfully; only the intended delta differs from the template."
       },
       {
@@ -1504,7 +1504,7 @@
       }
     ],
     "expected_final": "Only Settings removed; rest of Parts Manager template preserved.",
-    "source_viu": "Spec: SV-7501 Edit Custom Role - PM remove Settings. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: SV-7501 Edit Custom Role - PM remove Settings. VERIFIED (staging 2026-07-01) — MATCH; see VIU Findings Log"
   },
   {
     "test_id": "TE-PM-003",
@@ -1514,13 +1514,13 @@
     "dependency_mode": "None",
     "priority": "Low",
     "type": "Positive",
-    "preconditions": "Logged in as an Administrator. Administration > Roles and Permissions is reachable. A test staff user exists with no custom role assigned.",
+    "preconditions": "Logged in as an Administrator. Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) is reachable. A test staff user exists with no custom role assigned.",
     "role_setup": "Start from Parts Manager template (records template). Change: Timesheets > View from OFF to ON. Leave all else as template default.",
     "test_data": "Template: Parts Manager. Toggle: Timesheets View ON.",
     "steps": [
       {
         "n": 1,
-        "action": "Go to Administration > Roles and Permissions > Create Custom Role.",
+        "action": "Go to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) > Create Custom Role. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role screen opens with a template selector."
       },
       {
@@ -1535,7 +1535,7 @@
       },
       {
         "n": 4,
-        "action": "Click Save to create the custom role.",
+        "action": "Click Create to create the custom role.",
         "expected": "Role saves successfully; only the intended delta differs from the template."
       },
       {
@@ -1560,7 +1560,7 @@
       }
     ],
     "expected_final": "User gains Timesheets View only; rest of template preserved.",
-    "source_viu": "Spec: SV-7501 Edit Custom Role - PM add Timesheets View. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: SV-7501 Edit Custom Role - PM add Timesheets View. UNVERIFIED — VIU pending."
   },
   {
     "test_id": "TE-PM-004",
@@ -1570,13 +1570,13 @@
     "dependency_mode": "Financial gate: confirm modal",
     "priority": "High",
     "type": "Dependency",
-    "preconditions": "Logged in as an Administrator. Administration > Roles and Permissions is reachable. A test staff user exists with no custom role assigned.",
+    "preconditions": "Logged in as an Administrator. Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) is reachable. A test staff user exists with no custom role assigned.",
     "role_setup": "Start from Parts Manager template (records template). Change: Financial and AP/AR from ON/ON to OFF/OFF. Leave all else as template default.",
     "test_data": "Template: Parts Manager. Toggles: Financial OFF, AP/AR OFF (two gates).",
     "steps": [
       {
         "n": 1,
-        "action": "Go to Administration > Roles and Permissions > Create Custom Role.",
+        "action": "Go to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) > Create Custom Role. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role screen opens with a template selector."
       },
       {
@@ -1596,7 +1596,7 @@
       },
       {
         "n": 6,
-        "action": "Click Save to create the custom role.",
+        "action": "Click Create to create the custom role.",
         "expected": "Role saves successfully; only the intended delta differs from the template."
       },
       {
@@ -1621,7 +1621,7 @@
       }
     ],
     "expected_final": "Financial and AP/AR removed after confirming both modals; rest intact.",
-    "source_viu": "Spec: SV-7501 Edit Custom Role - PM multi-toggle gates. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: SV-7501 Edit Custom Role - PM multi-toggle gates. VERIFIED (staging 2026-07-01) — DISCREPANCY; see VIU-11"
   },
   {
     "test_id": "TE-PT-001",
@@ -1631,13 +1631,13 @@
     "dependency_mode": "Cascade: auto-enable lower",
     "priority": "Medium",
     "type": "Dependency",
-    "preconditions": "Logged in as an Administrator. Administration > Roles and Permissions is reachable. A test staff user exists with no custom role assigned.",
+    "preconditions": "Logged in as an Administrator. Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) is reachable. A test staff user exists with no custom role assigned.",
     "role_setup": "Start from Parts Technician template (records template). Change: Part Sales > Delete from OFF to ON. Leave all else as template default.",
     "test_data": "Template: Parts Technician. Toggle: Part Sales Delete ON.",
     "steps": [
       {
         "n": 1,
-        "action": "Go to Administration > Roles and Permissions > Create Custom Role.",
+        "action": "Go to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) > Create Custom Role. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role screen opens with a template selector."
       },
       {
@@ -1652,7 +1652,7 @@
       },
       {
         "n": 4,
-        "action": "Click Save to create the custom role.",
+        "action": "Click Create to create the custom role.",
         "expected": "Role saves successfully; only the intended delta differs from the template."
       },
       {
@@ -1677,7 +1677,7 @@
       }
     ],
     "expected_final": "User gains Part Sales Delete only; rest of template preserved.",
-    "source_viu": "Spec: SV-7501 Edit Custom Role - PT add Part Sales Delete. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: SV-7501 Edit Custom Role - PT add Part Sales Delete. VERIFIED (staging 2026-07-01) — MATCH; see VIU Findings Log"
   },
   {
     "test_id": "TE-PT-002",
@@ -1687,13 +1687,13 @@
     "dependency_mode": "Financial gate: confirm modal",
     "priority": "High",
     "type": "Dependency",
-    "preconditions": "Logged in as an Administrator. Administration > Roles and Permissions is reachable. A test staff user exists with no custom role assigned.",
+    "preconditions": "Logged in as an Administrator. Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) is reachable. A test staff user exists with no custom role assigned.",
     "role_setup": "Start from Parts Technician template (records template). Change: Financial from ON to OFF. Leave all else as template default.",
     "test_data": "Template: Parts Technician. Toggle: Financial OFF (confirm modal expected).",
     "steps": [
       {
         "n": 1,
-        "action": "Go to Administration > Roles and Permissions > Create Custom Role.",
+        "action": "Go to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) > Create Custom Role. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role screen opens with a template selector."
       },
       {
@@ -1713,7 +1713,7 @@
       },
       {
         "n": 6,
-        "action": "Click Save to create the custom role.",
+        "action": "Click Create to create the custom role.",
         "expected": "Role saves successfully; only the intended delta differs from the template."
       },
       {
@@ -1738,7 +1738,7 @@
       }
     ],
     "expected_final": "Financial removed after confirming; rest of template intact.",
-    "source_viu": "Spec: SV-7501 Edit Custom Role - PT Financial gate. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: SV-7501 Edit Custom Role - PT Financial gate. VERIFIED (staging 2026-07-01) — DISCREPANCY; see VIU-11"
   },
   {
     "test_id": "TE-PT-003",
@@ -1748,13 +1748,13 @@
     "dependency_mode": "Cascade: auto-enable lower",
     "priority": "Medium",
     "type": "Dependency",
-    "preconditions": "Logged in as an Administrator. Administration > Roles and Permissions is reachable. A test staff user exists with no custom role assigned.",
+    "preconditions": "Logged in as an Administrator. Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) is reachable. A test staff user exists with no custom role assigned.",
     "role_setup": "Start from Parts Technician template (records template). Change: Review Parts and Customers Delete from OFF/OFF to ON/ON. Leave all else as template default.",
     "test_data": "Template: Parts Technician. Toggles: Review Parts ON, Customers Delete ON.",
     "steps": [
       {
         "n": 1,
-        "action": "Go to Administration > Roles and Permissions > Create Custom Role.",
+        "action": "Go to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) > Create Custom Role. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role screen opens with a template selector."
       },
       {
@@ -1769,7 +1769,7 @@
       },
       {
         "n": 4,
-        "action": "Click Save to create the custom role.",
+        "action": "Click Create to create the custom role.",
         "expected": "Role saves successfully; only the intended delta differs from the template."
       },
       {
@@ -1794,7 +1794,7 @@
       }
     ],
     "expected_final": "Exactly Review Parts and Customers Delete added; everything else preserved.",
-    "source_viu": "Spec: SV-7501 Edit Custom Role - PT multi-toggle. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: SV-7501 Edit Custom Role - PT multi-toggle. VERIFIED (staging 2026-07-01) — MATCH; see VIU Findings Log"
   },
   {
     "test_id": "TE-PT-004",
@@ -1804,13 +1804,13 @@
     "dependency_mode": "Cascade: auto-disable higher (reverse)",
     "priority": "Medium",
     "type": "Dependency",
-    "preconditions": "Logged in as an Administrator. Administration > Roles and Permissions is reachable. A test staff user exists with no custom role assigned.",
+    "preconditions": "Logged in as an Administrator. Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) is reachable. A test staff user exists with no custom role assigned.",
     "role_setup": "Start from Parts Technician template (records template). Change: Vendor > Edit from ON to OFF. Leave all else as template default.",
     "test_data": "Template: Parts Technician. Toggle: Vendor Edit OFF; expect Delete auto-off.",
     "steps": [
       {
         "n": 1,
-        "action": "Go to Administration > Roles and Permissions > Create Custom Role.",
+        "action": "Go to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) > Create Custom Role. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role screen opens with a template selector."
       },
       {
@@ -1830,7 +1830,7 @@
       },
       {
         "n": 6,
-        "action": "Click Save to create the custom role.",
+        "action": "Click Create to create the custom role.",
         "expected": "Role saves successfully; only the intended delta differs from the template."
       },
       {
@@ -1855,7 +1855,7 @@
       }
     ],
     "expected_final": "Vendor Edit and cascaded Delete removed; View retained; rest of template intact.",
-    "source_viu": "Spec: SV-7501 Edit Custom Role - PT reverse cascade. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: SV-7501 Edit Custom Role - PT reverse cascade. VERIFIED (staging 2026-07-01) — MATCH; see VIU Findings Log"
   },
   {
     "test_id": "TE-OFFICE-001",
@@ -1865,13 +1865,13 @@
     "dependency_mode": "None",
     "priority": "High",
     "type": "Negative",
-    "preconditions": "Logged in as an Administrator. Administration > Roles and Permissions is reachable. A test staff user exists with no custom role assigned.",
+    "preconditions": "Logged in as an Administrator. Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) is reachable. A test staff user exists with no custom role assigned.",
     "role_setup": "Start from Office template (records template). Change: none (edit blocked). Leave all else as template default.",
     "test_data": "Template: Office (read-only).",
     "steps": [
       {
         "n": 1,
-        "action": "Go to Administration > Roles and Permissions > Create Custom Role.",
+        "action": "Go to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) > Create Custom Role. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Template selector opens with Office listed."
       },
       {
@@ -1886,7 +1886,7 @@
       }
     ],
     "expected_final": "Office is a non-editable system template and opens read-only.",
-    "source_viu": "Spec: SV-7526 Office read-only template. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: SV-7526 Office read-only template. UNVERIFIED — VIU pending."
   },
   {
     "test_id": "TE-SALES-001",
@@ -1896,13 +1896,13 @@
     "dependency_mode": "Cascade: auto-enable lower",
     "priority": "High",
     "type": "Dependency",
-    "preconditions": "Logged in as an Administrator. Administration > Roles and Permissions is reachable. A test staff user exists with no custom role assigned.",
+    "preconditions": "Logged in as an Administrator. Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) is reachable. A test staff user exists with no custom role assigned.",
     "role_setup": "Start from Sales Representative template (records template). Change: Customers > View/Edit from OFF to ON. Leave all else as template default.",
     "test_data": "Template: Sales Representative. Toggle: Customers View+Edit ON.",
     "steps": [
       {
         "n": 1,
-        "action": "Go to Administration > Roles and Permissions > Create Custom Role.",
+        "action": "Go to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) > Create Custom Role. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role screen opens with a template selector."
       },
       {
@@ -1922,7 +1922,7 @@
       },
       {
         "n": 6,
-        "action": "Click Save to create the custom role.",
+        "action": "Click Create to create the custom role.",
         "expected": "Role saves successfully; only the intended delta differs from the template."
       },
       {
@@ -1947,7 +1947,7 @@
       }
     ],
     "expected_final": "User gains Customers View/Edit only; rest of Sales template preserved.",
-    "source_viu": "Spec: SV-7501 Edit Custom Role - SALES add Customers CRUD. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: SV-7501 Edit Custom Role - SALES add Customers CRUD. VERIFIED (staging 2026-07-01) — MATCH; see VIU Findings Log"
   },
   {
     "test_id": "TE-SALES-002",
@@ -1957,13 +1957,13 @@
     "dependency_mode": "None",
     "priority": "Medium",
     "type": "Positive",
-    "preconditions": "Logged in as an Administrator. Administration > Roles and Permissions is reachable. A test staff user exists with no custom role assigned.",
+    "preconditions": "Logged in as an Administrator. Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) is reachable. A test staff user exists with no custom role assigned.",
     "role_setup": "Start from Sales Representative template (records template). Change: Reports from ON to OFF. Leave all else as template default.",
     "test_data": "Template: Sales Representative. Toggle: Reports OFF.",
     "steps": [
       {
         "n": 1,
-        "action": "Go to Administration > Roles and Permissions > Create Custom Role.",
+        "action": "Go to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) > Create Custom Role. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role screen opens with a template selector."
       },
       {
@@ -1978,7 +1978,7 @@
       },
       {
         "n": 4,
-        "action": "Click Save to create the custom role.",
+        "action": "Click Create to create the custom role.",
         "expected": "Role saves successfully; only the intended delta differs from the template."
       },
       {
@@ -2003,7 +2003,7 @@
       }
     ],
     "expected_final": "Only Reports removed; rest of Sales template preserved.",
-    "source_viu": "Spec: SV-7501 Edit Custom Role - SALES remove Reports. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: SV-7501 Edit Custom Role - SALES remove Reports. UNVERIFIED — VIU pending."
   },
   {
     "test_id": "TE-SALES-003",
@@ -2013,13 +2013,13 @@
     "dependency_mode": "Financial gate: confirm modal",
     "priority": "High",
     "type": "Dependency",
-    "preconditions": "Logged in as an Administrator. Administration > Roles and Permissions is reachable. A test staff user exists with no custom role assigned.",
+    "preconditions": "Logged in as an Administrator. Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) is reachable. A test staff user exists with no custom role assigned.",
     "role_setup": "Start from Sales Representative template (records template). Change: Financial from ON to OFF. Leave all else as template default.",
     "test_data": "Template: Sales Representative. Toggle: Financial OFF (confirm modal expected).",
     "steps": [
       {
         "n": 1,
-        "action": "Go to Administration > Roles and Permissions > Create Custom Role.",
+        "action": "Go to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) > Create Custom Role. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role screen opens with a template selector."
       },
       {
@@ -2039,7 +2039,7 @@
       },
       {
         "n": 6,
-        "action": "Click Save to create the custom role.",
+        "action": "Click Create to create the custom role.",
         "expected": "Role saves successfully; only the intended delta differs from the template."
       },
       {
@@ -2064,7 +2064,7 @@
       }
     ],
     "expected_final": "Financial removed after confirming; rest of template intact.",
-    "source_viu": "Spec: SV-7501 Edit Custom Role - SALES Financial gate. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: SV-7501 Edit Custom Role - SALES Financial gate. VERIFIED (staging 2026-07-01) — DISCREPANCY; see VIU-11"
   },
   {
     "test_id": "TE-SALES-004",
@@ -2074,13 +2074,13 @@
     "dependency_mode": "Cascade: auto-enable lower",
     "priority": "Medium",
     "type": "Dependency",
-    "preconditions": "Logged in as an Administrator. Administration > Roles and Permissions is reachable. A test staff user exists with no custom role assigned.",
+    "preconditions": "Logged in as an Administrator. Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) is reachable. A test staff user exists with no custom role assigned.",
     "role_setup": "Start from Sales Representative template (records template). Change: Part Sales V/E and Catalog View from OFF/OFF to ON/ON. Leave all else as template default.",
     "test_data": "Template: Sales Representative. Toggles: Part Sales V/E ON, Catalog View ON.",
     "steps": [
       {
         "n": 1,
-        "action": "Go to Administration > Roles and Permissions > Create Custom Role.",
+        "action": "Go to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) > Create Custom Role. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role screen opens with a template selector."
       },
       {
@@ -2095,7 +2095,7 @@
       },
       {
         "n": 4,
-        "action": "Click Save to create the custom role.",
+        "action": "Click Create to create the custom role.",
         "expected": "Role saves successfully; only the intended delta differs from the template."
       },
       {
@@ -2120,7 +2120,7 @@
       }
     ],
     "expected_final": "Exactly Part Sales V/E and Catalog View added; everything else preserved.",
-    "source_viu": "Spec: SV-7501 Edit Custom Role - SALES multi-toggle. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: SV-7501 Edit Custom Role - SALES multi-toggle. VERIFIED (staging 2026-07-01) — MATCH; see VIU Findings Log"
   },
   {
     "test_id": "TE-SM-005",
@@ -2130,13 +2130,13 @@
     "dependency_mode": "Cascade: auto-enable lower",
     "priority": "Low",
     "type": "Dependency",
-    "preconditions": "Logged in as an Administrator. Administration > Roles and Permissions is reachable. A test staff user exists with no custom role assigned.",
+    "preconditions": "Logged in as an Administrator. Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) is reachable. A test staff user exists with no custom role assigned.",
     "role_setup": "Start from Service Manager template (records template). Change: Timesheets > Delete from OFF to ON. Leave all else as template default.",
     "test_data": "Template: Service Manager. Toggle: Timesheets Delete ON.",
     "steps": [
       {
         "n": 1,
-        "action": "Go to Administration > Roles and Permissions > Create Custom Role.",
+        "action": "Go to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) > Create Custom Role. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role screen opens with a template selector."
       },
       {
@@ -2151,7 +2151,7 @@
       },
       {
         "n": 4,
-        "action": "Click Save to create the custom role.",
+        "action": "Click Create to create the custom role.",
         "expected": "Role saves successfully; only the intended delta differs from the template."
       },
       {
@@ -2176,7 +2176,7 @@
       }
     ],
     "expected_final": "User gains Timesheets Delete only; rest of template preserved.",
-    "source_viu": "Spec: SV-7501 Edit Custom Role - SM add Timesheets Delete. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: SV-7501 Edit Custom Role - SM add Timesheets Delete. VERIFIED (staging 2026-07-01) — MATCH; see VIU Findings Log"
   },
   {
     "test_id": "TE-SADV-005",
@@ -2186,13 +2186,13 @@
     "dependency_mode": "Cascade: auto-disable higher (reverse)",
     "priority": "High",
     "type": "Dependency",
-    "preconditions": "Logged in as an Administrator. Administration > Roles and Permissions is reachable. A test staff user exists with no custom role assigned.",
+    "preconditions": "Logged in as an Administrator. Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) is reachable. A test staff user exists with no custom role assigned.",
     "role_setup": "Start from Service Advisor template (records template). Change: WOL > Edit from ON to OFF. Leave all else as template default.",
     "test_data": "Template: Service Advisor. Toggle: WOL Edit OFF; expect Delete auto-off.",
     "steps": [
       {
         "n": 1,
-        "action": "Go to Administration > Roles and Permissions > Create Custom Role.",
+        "action": "Go to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) > Create Custom Role. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role screen opens with a template selector."
       },
       {
@@ -2212,7 +2212,7 @@
       },
       {
         "n": 6,
-        "action": "Click Save to create the custom role.",
+        "action": "Click Create to create the custom role.",
         "expected": "Role saves successfully; only the intended delta differs from the template."
       },
       {
@@ -2237,7 +2237,7 @@
       }
     ],
     "expected_final": "WOL Edit and cascaded Delete removed; View retained; rest of template intact.",
-    "source_viu": "Spec: SV-7501 Edit Custom Role - SADV reverse cascade. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: SV-7501 Edit Custom Role - SADV reverse cascade. VERIFIED (staging 2026-07-01) — MATCH; see VIU Findings Log"
   },
   {
     "test_id": "TE-TIMECLK-001",
@@ -2247,13 +2247,13 @@
     "dependency_mode": "None",
     "priority": "High",
     "type": "Negative",
-    "preconditions": "Logged in as an Administrator. Administration > Roles and Permissions is reachable. A test staff user exists with no custom role assigned.",
+    "preconditions": "Logged in as an Administrator. Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) is reachable. A test staff user exists with no custom role assigned.",
     "role_setup": "Start from Time Clock template (records template). Change: none (edit blocked). Leave all else as template default.",
     "test_data": "Template: Time Clock (read-only).",
     "steps": [
       {
         "n": 1,
-        "action": "Go to Administration > Roles and Permissions > Create Custom Role.",
+        "action": "Go to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) > Create Custom Role. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Template selector opens with Time Clock listed."
       },
       {
@@ -2268,6 +2268,6 @@
       }
     ],
     "expected_final": "Time Clock is a non-editable system template and opens read-only.",
-    "source_viu": "Spec: SV-7526 Time Clock read-only template. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: SV-7526 Time Clock read-only template. UNVERIFIED — VIU pending."
   }
 ]

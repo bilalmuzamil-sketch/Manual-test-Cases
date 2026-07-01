@@ -3,22 +3,22 @@
     "test_id": "SP-WO-001",
     "title": "WO View grants Work Orders nav and read-only WO access",
     "jira": "SV-7388",
-    "permission": "Work Orders \u2192 View (workOrders)",
+    "permission": "Work Orders → View (workOrders)",
     "dependency_mode": "None",
     "priority": "Critical",
     "type": "Positive",
-    "preconditions": "Admin account with access to Administration > Roles and Permissions and Administration > Staff. A test staff user exists to receive the custom role. Sample records exist in the environment as described in test_data.",
+    "preconditions": "Admin account with access to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) and Administration > Staff. A test staff user exists to receive the custom role. Sample records exist in the environment as described in test_data.",
     "role_setup": "Start from blank/no-access role. Work Orders: View ON, Edit OFF, Delete OFF. All other permissions OFF.",
     "test_data": "Test user 'wo_view_user'. Sample WO #WO-1001 exists.",
     "steps": [
       {
         "n": 1,
-        "action": "As admin, follow the admin flow to create the custom role.",
+        "action": "As admin, follow the admin flow to create the custom role. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role dialog opens from a blank/no-access template with all permissions OFF."
       },
       {
         "n": 2,
-        "action": "Set the toggles exactly as specified in role_setup, then Save.",
+        "action": "Set the toggles exactly as specified in role_setup, then Create.",
         "expected": "Role saves successfully with only the intended toggles: Work Orders View ON; Edit OFF; Delete OFF; all else OFF."
       },
       {
@@ -43,28 +43,28 @@
       }
     ],
     "expected_final": "User can see the WO list and open WO detail read-only; no create/edit/delete affordances appear.",
-    "source_viu": "Spec: Work Orders View grants WO list + open WO detail; OFF hides Work Orders nav. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: Work Orders View grants WO list + open WO detail; OFF hides Work Orders nav. UNVERIFIED — VIU pending."
   },
   {
     "test_id": "SP-WO-002",
     "title": "WO View OFF hides Work Orders nav and blocks direct URL",
     "jira": "SV-7388",
-    "permission": "Work Orders \u2192 View (workOrders)",
+    "permission": "Work Orders → View (workOrders)",
     "dependency_mode": "None",
     "priority": "Critical",
     "type": "Negative",
-    "preconditions": "Admin account with access to Administration > Roles and Permissions and Administration > Staff. A test staff user exists to receive the custom role. Sample records exist in the environment as described in test_data.",
+    "preconditions": "Admin account with access to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) and Administration > Staff. A test staff user exists to receive the custom role. Sample records exist in the environment as described in test_data.",
     "role_setup": "Start from blank/no-access role. Work Orders: View OFF, Edit OFF, Delete OFF. All other permissions OFF.",
     "test_data": "Test user 'wo_none_user'. Sample WO #WO-1001 exists with a known detail URL.",
     "steps": [
       {
         "n": 1,
-        "action": "As admin, follow the admin flow to create the custom role.",
+        "action": "As admin, follow the admin flow to create the custom role. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role dialog opens from a blank/no-access template with all permissions OFF."
       },
       {
         "n": 2,
-        "action": "Set the toggles exactly as specified in role_setup, then Save.",
+        "action": "Set the toggles exactly as specified in role_setup, then Create.",
         "expected": "Role saves successfully with only the intended toggles: Work Orders View OFF; Edit OFF; Delete OFF; all else OFF."
       },
       {
@@ -89,23 +89,23 @@
       }
     ],
     "expected_final": "With WO View OFF the Work Orders nav is hidden and direct-URL access to a WO is blocked.",
-    "source_viu": "Spec: WO View OFF hides Work Orders top nav. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: WO View OFF hides Work Orders top nav. UNVERIFIED — VIU pending."
   },
   {
     "test_id": "SP-WO-003",
     "title": "WO Edit grants create/edit of WO fields (asset, advisor, tech, status)",
     "jira": "SV-7388",
-    "permission": "Work Orders \u2192 Edit / Create and Edit (workOrders)",
+    "permission": "Work Orders → Edit / Create and Edit (workOrders)",
     "dependency_mode": "Cascade: auto-enable lower",
     "priority": "Critical",
     "type": "Positive",
-    "preconditions": "Admin account with access to Administration > Roles and Permissions and Administration > Staff. A test staff user exists to receive the custom role. Sample records exist in the environment as described in test_data.",
+    "preconditions": "Admin account with access to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) and Administration > Staff. A test staff user exists to receive the custom role. Sample records exist in the environment as described in test_data.",
     "role_setup": "Start from blank/no-access role. Work Orders: Edit ON (View auto-enabled), Delete OFF. All other permissions OFF.",
     "test_data": "Test user 'wo_edit_user'. Sample WO #WO-1001, an alternate asset, service advisor and technician records exist.",
     "steps": [
       {
         "n": 1,
-        "action": "As admin, follow the admin flow to create the custom role.",
+        "action": "As admin, follow the admin flow to create the custom role. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role dialog opens from a blank/no-access template with all permissions OFF."
       },
       {
@@ -115,7 +115,7 @@
       },
       {
         "n": 3,
-        "action": "Set the toggles exactly as specified in role_setup, then Save.",
+        "action": "Set the toggles exactly as specified in role_setup, then Create.",
         "expected": "Role saves successfully with only the intended toggles: Work Orders Edit ON with View auto-enabled; Delete OFF; all else OFF."
       },
       {
@@ -140,28 +140,28 @@
       }
     ],
     "expected_final": "User can create WOs and edit customer details, asset, service advisor, lead technician and status; cannot delete WOs.",
-    "source_viu": "Spec: WO Edit (Create and Edit) grants create + edit of customer details, asset, service advisor, lead technician, status. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: WO Edit (Create and Edit) grants create + edit of customer details, asset, service advisor, lead technician, status. VERIFIED (staging 2026-07-01) — MATCH; see VIU Findings Log"
   },
   {
     "test_id": "SP-WO-004",
     "title": "WO Edit OFF blocks create/edit while View remains read-only",
     "jira": "SV-7388",
-    "permission": "Work Orders \u2192 Edit / Create and Edit (workOrders)",
+    "permission": "Work Orders → Edit / Create and Edit (workOrders)",
     "dependency_mode": "None",
     "priority": "High",
     "type": "Negative",
-    "preconditions": "Admin account with access to Administration > Roles and Permissions and Administration > Staff. A test staff user exists to receive the custom role. Sample records exist in the environment as described in test_data.",
+    "preconditions": "Admin account with access to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) and Administration > Staff. A test staff user exists to receive the custom role. Sample records exist in the environment as described in test_data.",
     "role_setup": "Start from blank/no-access role. Work Orders: View ON, Edit OFF, Delete OFF. All other permissions OFF.",
     "test_data": "Test user 'wo_view_user'. Sample WO #WO-1001 exists.",
     "steps": [
       {
         "n": 1,
-        "action": "As admin, follow the admin flow to create the custom role.",
+        "action": "As admin, follow the admin flow to create the custom role. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role dialog opens from a blank/no-access template with all permissions OFF."
       },
       {
         "n": 2,
-        "action": "Set the toggles exactly as specified in role_setup, then Save.",
+        "action": "Set the toggles exactly as specified in role_setup, then Create.",
         "expected": "Role saves successfully with only the intended toggles: Work Orders View ON; Edit OFF; Delete OFF; all else OFF."
       },
       {
@@ -186,23 +186,23 @@
       }
     ],
     "expected_final": "With Edit OFF the user cannot create WOs or edit WO fields; WO detail stays read-only.",
-    "source_viu": "Spec: WO Edit grants create/edit; without it access is view-only. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: WO Edit grants create/edit; without it access is view-only. UNVERIFIED — VIU pending."
   },
   {
     "test_id": "SP-WO-005",
     "title": "WO Delete grants delete WO and invoice reversal (no payments)",
     "jira": "SV-7388",
-    "permission": "Work Orders \u2192 Delete (workOrders)",
+    "permission": "Work Orders → Delete (workOrders)",
     "dependency_mode": "Cascade: auto-enable lower",
     "priority": "High",
     "type": "Positive",
-    "preconditions": "Admin account with access to Administration > Roles and Permissions and Administration > Staff. A test staff user exists to receive the custom role. Sample records exist in the environment as described in test_data.",
+    "preconditions": "Admin account with access to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) and Administration > Staff. A test staff user exists to receive the custom role. Sample records exist in the environment as described in test_data.",
     "role_setup": "Start from blank/no-access role. Work Orders: Delete ON (Edit+View auto-enabled), all other permissions OFF.",
     "test_data": "Test user 'wo_delete_user'. Deletable WO #WO-2001 and a WO #WO-2002 with an invoice that has no payments.",
     "steps": [
       {
         "n": 1,
-        "action": "As admin, follow the admin flow to create the custom role.",
+        "action": "As admin, follow the admin flow to create the custom role. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role dialog opens from a blank/no-access template with all permissions OFF."
       },
       {
@@ -212,7 +212,7 @@
       },
       {
         "n": 3,
-        "action": "Set the toggles exactly as specified in role_setup, then Save.",
+        "action": "Set the toggles exactly as specified in role_setup, then Create.",
         "expected": "Role saves successfully with only the intended toggles: Work Orders Delete ON with Edit+View auto-enabled; all else OFF."
       },
       {
@@ -237,23 +237,23 @@
       }
     ],
     "expected_final": "User can delete WOs and reverse invoices when no payments have been made.",
-    "source_viu": "Spec: WO Delete grants delete WOs and reverse invoices when no payments made (invoice reversal requires WO Delete). UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: WO Delete grants delete WOs and reverse invoices when no payments made (invoice reversal requires WO Delete). VERIFIED (staging 2026-07-01) — MATCH; see VIU Findings Log"
   },
   {
     "test_id": "SP-WO-006",
     "title": "WO Delete OFF hides delete and blocks invoice reversal",
     "jira": "SV-7388",
-    "permission": "Work Orders \u2192 Delete (workOrders)",
+    "permission": "Work Orders → Delete (workOrders)",
     "dependency_mode": "None",
     "priority": "High",
     "type": "Negative",
-    "preconditions": "Admin account with access to Administration > Roles and Permissions and Administration > Staff. A test staff user exists to receive the custom role. Sample records exist in the environment as described in test_data.",
+    "preconditions": "Admin account with access to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) and Administration > Staff. A test staff user exists to receive the custom role. Sample records exist in the environment as described in test_data.",
     "role_setup": "Start from blank/no-access role. Work Orders: Edit ON (View auto-enabled), Delete OFF. All other permissions OFF.",
     "test_data": "Test user 'wo_edit_user'. WO #WO-2002 with an invoice that has no payments.",
     "steps": [
       {
         "n": 1,
-        "action": "As admin, follow the admin flow to create the custom role.",
+        "action": "As admin, follow the admin flow to create the custom role. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role dialog opens from a blank/no-access template with all permissions OFF."
       },
       {
@@ -263,7 +263,7 @@
       },
       {
         "n": 3,
-        "action": "Set the toggles exactly as specified in role_setup, then Save.",
+        "action": "Set the toggles exactly as specified in role_setup, then Create.",
         "expected": "Role saves successfully with only the intended toggles: Work Orders Edit ON with View auto-enabled; Delete OFF; all else OFF."
       },
       {
@@ -288,23 +288,23 @@
       }
     ],
     "expected_final": "With WO Delete OFF the user cannot delete WOs nor reverse invoices.",
-    "source_viu": "Spec: reversing an invoice requires WO Delete. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: reversing an invoice requires WO Delete. UNVERIFIED — VIU pending."
   },
   {
     "test_id": "SP-WO-007",
     "title": "WO cascade: enabling Edit auto-enables View",
     "jira": "SV-7388",
-    "permission": "Work Orders \u2192 Edit (workOrders)",
+    "permission": "Work Orders → Edit (workOrders)",
     "dependency_mode": "Cascade: auto-enable lower",
     "priority": "High",
     "type": "Dependency",
-    "preconditions": "Admin account with access to Administration > Roles and Permissions and Administration > Staff. A test staff user exists to receive the custom role. Sample records exist in the environment as described in test_data.",
+    "preconditions": "Admin account with access to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) and Administration > Staff. A test staff user exists to receive the custom role. Sample records exist in the environment as described in test_data.",
     "role_setup": "Start from blank/no-access role. Work Orders all OFF, then toggle Edit ON during editing.",
     "test_data": "Admin editing the role in the Roles editor.",
     "steps": [
       {
         "n": 1,
-        "action": "As admin, follow the admin flow to create the custom role.",
+        "action": "As admin, follow the admin flow to create the custom role. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role dialog opens from a blank/no-access template with all permissions OFF."
       },
       {
@@ -314,23 +314,23 @@
       }
     ],
     "expected_final": "Enabling Edit auto-enables View in the role editor.",
-    "source_viu": "Spec: CRUD cascade \u2014 enabling Edit auto-enables View. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: CRUD cascade — enabling Edit auto-enables View. VERIFIED (staging 2026-07-01) — MATCH; see VIU Findings Log"
   },
   {
     "test_id": "SP-WO-008",
     "title": "WO cascade: enabling Delete auto-enables Edit and View",
     "jira": "SV-7388",
-    "permission": "Work Orders \u2192 Delete (workOrders)",
+    "permission": "Work Orders → Delete (workOrders)",
     "dependency_mode": "Cascade: auto-enable lower",
     "priority": "High",
     "type": "Dependency",
-    "preconditions": "Admin account with access to Administration > Roles and Permissions and Administration > Staff. A test staff user exists to receive the custom role. Sample records exist in the environment as described in test_data.",
+    "preconditions": "Admin account with access to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) and Administration > Staff. A test staff user exists to receive the custom role. Sample records exist in the environment as described in test_data.",
     "role_setup": "Start from blank/no-access role. Work Orders all OFF, then toggle Delete ON during editing.",
     "test_data": "Admin editing the role in the Roles editor.",
     "steps": [
       {
         "n": 1,
-        "action": "As admin, follow the admin flow to create the custom role.",
+        "action": "As admin, follow the admin flow to create the custom role. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role dialog opens from a blank/no-access template with all permissions OFF."
       },
       {
@@ -340,23 +340,23 @@
       }
     ],
     "expected_final": "Enabling Delete auto-enables Edit and View.",
-    "source_viu": "Spec: CRUD cascade \u2014 enabling Delete auto-enables Edit+View. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: CRUD cascade — enabling Delete auto-enables Edit+View. VERIFIED (staging 2026-07-01) — MATCH; see VIU Findings Log"
   },
   {
     "test_id": "SP-WO-009",
     "title": "WO reverse-cascade: disabling View auto-disables Edit and Delete",
     "jira": "SV-7388",
-    "permission": "Work Orders \u2192 View (workOrders)",
+    "permission": "Work Orders → View (workOrders)",
     "dependency_mode": "Cascade: auto-disable higher (reverse)",
     "priority": "High",
     "type": "Dependency",
-    "preconditions": "Admin account with access to Administration > Roles and Permissions and Administration > Staff. A test staff user exists to receive the custom role. Sample records exist in the environment as described in test_data.",
+    "preconditions": "Admin account with access to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) and Administration > Staff. A test staff user exists to receive the custom role. Sample records exist in the environment as described in test_data.",
     "role_setup": "Start from blank/no-access role. Work Orders: Delete ON (Edit+View on), then disable View.",
     "test_data": "Admin editing the role in the Roles editor.",
     "steps": [
       {
         "n": 1,
-        "action": "As admin, follow the admin flow to create the custom role.",
+        "action": "As admin, follow the admin flow to create the custom role. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role dialog opens from a blank/no-access template with all permissions OFF."
       },
       {
@@ -371,23 +371,23 @@
       }
     ],
     "expected_final": "Disabling View auto-disables Edit and Delete.",
-    "source_viu": "Spec: CRUD cascade \u2014 disabling View auto-disables Edit+Delete. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: CRUD cascade — disabling View auto-disables Edit+Delete. VERIFIED (staging 2026-07-01) — MATCH; see VIU Findings Log"
   },
   {
     "test_id": "SP-WO-010",
     "title": "WO reverse-cascade: disabling Edit auto-disables Delete",
     "jira": "SV-7388",
-    "permission": "Work Orders \u2192 Edit (workOrders)",
+    "permission": "Work Orders → Edit (workOrders)",
     "dependency_mode": "Cascade: auto-disable higher (reverse)",
     "priority": "Medium",
     "type": "Dependency",
-    "preconditions": "Admin account with access to Administration > Roles and Permissions and Administration > Staff. A test staff user exists to receive the custom role. Sample records exist in the environment as described in test_data.",
+    "preconditions": "Admin account with access to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) and Administration > Staff. A test staff user exists to receive the custom role. Sample records exist in the environment as described in test_data.",
     "role_setup": "Start from blank/no-access role. Work Orders: Delete ON (Edit+View on), then disable Edit.",
     "test_data": "Admin editing the role in the Roles editor.",
     "steps": [
       {
         "n": 1,
-        "action": "As admin, follow the admin flow to create the custom role.",
+        "action": "As admin, follow the admin flow to create the custom role. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role dialog opens from a blank/no-access template with all permissions OFF."
       },
       {
@@ -402,23 +402,23 @@
       }
     ],
     "expected_final": "Disabling Edit auto-disables Delete while View stays ON.",
-    "source_viu": "Spec: CRUD cascade \u2014 disabling Edit auto-disables Delete. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: CRUD cascade — disabling Edit auto-disables Delete. VERIFIED (staging 2026-07-01) — MATCH; see VIU Findings Log"
   },
   {
     "test_id": "SP-WOL-001",
     "title": "WOL Edit grants line/part/inspection editing on WOs",
     "jira": "SV-7388",
-    "permission": "WO Lines \u2192 Edit (workOrderLines)",
+    "permission": "WO Lines → Edit (workOrderLines)",
     "dependency_mode": "None",
     "priority": "Critical",
     "type": "Positive",
-    "preconditions": "Admin account with access to Administration > Roles and Permissions and Administration > Staff. A test staff user exists to receive the custom role. Sample records exist in the environment as described in test_data.",
+    "preconditions": "Admin account with access to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) and Administration > Staff. A test staff user exists to receive the custom role. Sample records exist in the environment as described in test_data.",
     "role_setup": "Start from blank/no-access role. Work Orders: View ON. WO Lines: Edit ON, Delete OFF. All other permissions OFF.",
     "test_data": "Test user 'wol_edit_user'. WO #WO-1001 with multiple lines and parts; an inspection template exists.",
     "steps": [
       {
         "n": 1,
-        "action": "As admin, follow the admin flow to create the custom role.",
+        "action": "As admin, follow the admin flow to create the custom role. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role dialog opens from a blank/no-access template with all permissions OFF."
       },
       {
@@ -428,7 +428,7 @@
       },
       {
         "n": 3,
-        "action": "Set the toggles exactly as specified in role_setup, then Save.",
+        "action": "Set the toggles exactly as specified in role_setup, then Create.",
         "expected": "Role saves successfully with only the intended toggles: Work Orders View ON; WO Lines Edit ON; Delete OFF; all else OFF."
       },
       {
@@ -453,28 +453,28 @@
       }
     ],
     "expected_final": "User can add/edit lines, move parts, authorize lines, manage part requests, add inspections and edit mileage/engine hours/plate/VIN; cannot delete lines.",
-    "source_viu": "Spec: WOL Edit grants line edits, part moves, line authorization, part requests, inspections, mileage/engine hours/plate/VIN. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: WOL Edit grants line edits, part moves, line authorization, part requests, inspections, mileage/engine hours/plate/VIN. UNVERIFIED — VIU pending."
   },
   {
     "test_id": "SP-WOL-002",
     "title": "WOL Edit OFF blocks line editing (view-only WO lines)",
     "jira": "SV-7388",
-    "permission": "WO Lines \u2192 Edit (workOrderLines)",
+    "permission": "WO Lines → Edit (workOrderLines)",
     "dependency_mode": "None",
     "priority": "High",
     "type": "Negative",
-    "preconditions": "Admin account with access to Administration > Roles and Permissions and Administration > Staff. A test staff user exists to receive the custom role. Sample records exist in the environment as described in test_data.",
+    "preconditions": "Admin account with access to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) and Administration > Staff. A test staff user exists to receive the custom role. Sample records exist in the environment as described in test_data.",
     "role_setup": "Start from blank/no-access role. Work Orders: View ON. WO Lines: Edit OFF, Delete OFF. All other permissions OFF.",
     "test_data": "Test user 'wo_view_only'. WO #WO-1001 with lines and parts.",
     "steps": [
       {
         "n": 1,
-        "action": "As admin, follow the admin flow to create the custom role.",
+        "action": "As admin, follow the admin flow to create the custom role. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role dialog opens from a blank/no-access template with all permissions OFF."
       },
       {
         "n": 2,
-        "action": "Set the toggles exactly as specified in role_setup, then Save.",
+        "action": "Set the toggles exactly as specified in role_setup, then Create.",
         "expected": "Role saves successfully with only the intended toggles: Work Orders View ON; WO Lines Edit OFF; Delete OFF; all else OFF."
       },
       {
@@ -499,23 +499,23 @@
       }
     ],
     "expected_final": "With WOL Edit OFF lines are visible (via WO View) but not editable.",
-    "source_viu": "Spec: WO Lines have no independent View; visible when WO View ON; Edit gates line editing. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: WO Lines have no independent View; visible when WO View ON; Edit gates line editing. UNVERIFIED — VIU pending."
   },
   {
     "test_id": "SP-WOL-003",
     "title": "WOL Delete grants line removal and inspection reopen/remove",
     "jira": "SV-7388",
-    "permission": "WO Lines \u2192 Delete (workOrderLines)",
+    "permission": "WO Lines → Delete (workOrderLines)",
     "dependency_mode": "Cascade: auto-enable lower",
     "priority": "High",
     "type": "Positive",
-    "preconditions": "Admin account with access to Administration > Roles and Permissions and Administration > Staff. A test staff user exists to receive the custom role. Sample records exist in the environment as described in test_data.",
+    "preconditions": "Admin account with access to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) and Administration > Staff. A test staff user exists to receive the custom role. Sample records exist in the environment as described in test_data.",
     "role_setup": "Start from blank/no-access role. Work Orders: View ON. WO Lines: Delete ON (Edit auto-enabled). All other permissions OFF.",
     "test_data": "Test user 'wol_delete_user'. WO #WO-1001 with removable lines, a not-yet-complete inspection and a completed inspection.",
     "steps": [
       {
         "n": 1,
-        "action": "As admin, follow the admin flow to create the custom role.",
+        "action": "As admin, follow the admin flow to create the custom role. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role dialog opens from a blank/no-access template with all permissions OFF."
       },
       {
@@ -525,7 +525,7 @@
       },
       {
         "n": 3,
-        "action": "Set the toggles exactly as specified in role_setup, then Save.",
+        "action": "Set the toggles exactly as specified in role_setup, then Create.",
         "expected": "Role saves successfully with only the intended toggles: Work Orders View ON; WO Lines Delete ON with Edit auto-enabled; all else OFF."
       },
       {
@@ -550,23 +550,23 @@
       }
     ],
     "expected_final": "User can remove lines, remove not-yet-complete inspections and reopen completed inspections.",
-    "source_viu": "Spec: WOL Delete grants remove lines, remove not-yet-complete inspections, reopen completed inspections. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: WOL Delete grants remove lines, remove not-yet-complete inspections, reopen completed inspections. VERIFIED (staging 2026-07-01) — MATCH; see VIU Findings Log"
   },
   {
     "test_id": "SP-WOL-004",
     "title": "WOL editor blocks WOL Edit while WO View is OFF (SV-7981)",
     "jira": "SV-7981",
-    "permission": "WO Lines \u2192 Edit (workOrderLines)",
+    "permission": "WO Lines → Edit (workOrderLines)",
     "dependency_mode": "Parent gate: hide children",
     "priority": "High",
     "type": "Dependency",
-    "preconditions": "Admin account with access to Administration > Roles and Permissions and Administration > Staff. A test staff user exists to receive the custom role. Sample records exist in the environment as described in test_data.",
+    "preconditions": "Admin account with access to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) and Administration > Staff. A test staff user exists to receive the custom role. Sample records exist in the environment as described in test_data.",
     "role_setup": "Start from blank/no-access role. Work Orders: View OFF. Attempt to enable WO Lines Edit in editor.",
     "test_data": "Admin editing the role in the Roles editor.",
     "steps": [
       {
         "n": 1,
-        "action": "As admin, follow the admin flow to create the custom role.",
+        "action": "As admin, follow the admin flow to create the custom role. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role dialog opens from a blank/no-access template with all permissions OFF."
       },
       {
@@ -576,28 +576,28 @@
       }
     ],
     "expected_final": "WOL Edit cannot be enabled while WO View is OFF; WOL requires WO View to be usable.",
-    "source_viu": "Spec/SV-7981: WOL requires WO View; editor should not allow WOL Edit while WO View OFF. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec/SV-7981: WOL requires WO View; editor should not allow WOL Edit while WO View OFF. VERIFIED (staging 2026-07-01) — MATCH; see VIU Findings Log"
   },
   {
     "test_id": "SP-SCH-001",
     "title": "Schedule View grants calendar/appointments/tech assignments (all techs)",
     "jira": "SV-7388",
-    "permission": "Schedule \u2192 View (schedule)",
+    "permission": "Schedule → View (schedule)",
     "dependency_mode": "None",
     "priority": "High",
     "type": "Positive",
-    "preconditions": "Admin account with access to Administration > Roles and Permissions and Administration > Staff. A test staff user exists to receive the custom role. Sample records exist in the environment as described in test_data.",
+    "preconditions": "Admin account with access to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) and Administration > Staff. A test staff user exists to receive the custom role. Sample records exist in the environment as described in test_data.",
     "role_setup": "Start from blank/no-access role. Schedule: View ON, Edit OFF, Delete OFF. All other permissions OFF.",
     "test_data": "Test user 'sch_view_user'. Multiple technicians and appointments exist.",
     "steps": [
       {
         "n": 1,
-        "action": "As admin, follow the admin flow to create the custom role.",
+        "action": "As admin, follow the admin flow to create the custom role. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role dialog opens from a blank/no-access template with all permissions OFF."
       },
       {
         "n": 2,
-        "action": "Set the toggles exactly as specified in role_setup, then Save.",
+        "action": "Set the toggles exactly as specified in role_setup, then Create.",
         "expected": "Role saves successfully with only the intended toggles: Schedule View ON; Edit OFF; Delete OFF; all else OFF."
       },
       {
@@ -622,28 +622,28 @@
       }
     ],
     "expected_final": "User can view the calendar, appointments and tech assignments for all technicians, read-only.",
-    "source_viu": "Spec: Schedule View grants calendar/appointments/tech assignments (all techs, no own-only filter); OFF hides Schedule nav. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: Schedule View grants calendar/appointments/tech assignments (all techs, no own-only filter); OFF hides Schedule nav. UNVERIFIED — VIU pending."
   },
   {
     "test_id": "SP-SCH-002",
     "title": "Schedule View OFF hides Schedule nav and blocks direct URL",
     "jira": "SV-7388",
-    "permission": "Schedule \u2192 View (schedule)",
+    "permission": "Schedule → View (schedule)",
     "dependency_mode": "None",
     "priority": "High",
     "type": "Negative",
-    "preconditions": "Admin account with access to Administration > Roles and Permissions and Administration > Staff. A test staff user exists to receive the custom role. Sample records exist in the environment as described in test_data.",
+    "preconditions": "Admin account with access to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) and Administration > Staff. A test staff user exists to receive the custom role. Sample records exist in the environment as described in test_data.",
     "role_setup": "Start from blank/no-access role. Schedule: View OFF, Edit OFF, Delete OFF. All other permissions OFF.",
     "test_data": "Test user 'sch_none_user'. Schedule page URL is known.",
     "steps": [
       {
         "n": 1,
-        "action": "As admin, follow the admin flow to create the custom role.",
+        "action": "As admin, follow the admin flow to create the custom role. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role dialog opens from a blank/no-access template with all permissions OFF."
       },
       {
         "n": 2,
-        "action": "Set the toggles exactly as specified in role_setup, then Save.",
+        "action": "Set the toggles exactly as specified in role_setup, then Create.",
         "expected": "Role saves successfully with only the intended toggles: Schedule View OFF; Edit OFF; Delete OFF; all else OFF."
       },
       {
@@ -668,23 +668,23 @@
       }
     ],
     "expected_final": "With Schedule View OFF the Schedule nav is hidden and direct-URL access is blocked.",
-    "source_viu": "Spec: Schedule View OFF hides Schedule nav. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: Schedule View OFF hides Schedule nav. UNVERIFIED — VIU pending."
   },
   {
     "test_id": "SP-SCH-003",
     "title": "Schedule Edit grants create/modify appointments, tech assign, drag-and-drop",
     "jira": "SV-7388",
-    "permission": "Schedule \u2192 Edit (schedule)",
+    "permission": "Schedule → Edit (schedule)",
     "dependency_mode": "Cascade: auto-enable lower",
     "priority": "High",
     "type": "Positive",
-    "preconditions": "Admin account with access to Administration > Roles and Permissions and Administration > Staff. A test staff user exists to receive the custom role. Sample records exist in the environment as described in test_data.",
+    "preconditions": "Admin account with access to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) and Administration > Staff. A test staff user exists to receive the custom role. Sample records exist in the environment as described in test_data.",
     "role_setup": "Start from blank/no-access role. Schedule: Edit ON (View auto-enabled), Delete OFF. All other permissions OFF.",
     "test_data": "Test user 'sch_edit_user'. Technicians and an existing appointment exist.",
     "steps": [
       {
         "n": 1,
-        "action": "As admin, follow the admin flow to create the custom role.",
+        "action": "As admin, follow the admin flow to create the custom role. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role dialog opens from a blank/no-access template with all permissions OFF."
       },
       {
@@ -694,7 +694,7 @@
       },
       {
         "n": 3,
-        "action": "Set the toggles exactly as specified in role_setup, then Save.",
+        "action": "Set the toggles exactly as specified in role_setup, then Create.",
         "expected": "Role saves successfully with only the intended toggles: Schedule Edit ON with View auto-enabled; Delete OFF; all else OFF."
       },
       {
@@ -719,23 +719,23 @@
       }
     ],
     "expected_final": "User can create/modify appointments, assign techs and drag-and-drop; cannot delete appointments.",
-    "source_viu": "Spec: Schedule Edit grants create/modify appointments, assign techs, drag-and-drop. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: Schedule Edit grants create/modify appointments, assign techs, drag-and-drop. VERIFIED (staging 2026-07-01) — MATCH; see VIU Findings Log"
   },
   {
     "test_id": "SP-SCH-004",
     "title": "Schedule Delete grants remove appointments; reverse-cascade check",
     "jira": "SV-7388",
-    "permission": "Schedule \u2192 Delete (schedule)",
+    "permission": "Schedule → Delete (schedule)",
     "dependency_mode": "Cascade: auto-disable higher (reverse)",
     "priority": "Medium",
     "type": "Dependency",
-    "preconditions": "Admin account with access to Administration > Roles and Permissions and Administration > Staff. A test staff user exists to receive the custom role. Sample records exist in the environment as described in test_data.",
+    "preconditions": "Admin account with access to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) and Administration > Staff. A test staff user exists to receive the custom role. Sample records exist in the environment as described in test_data.",
     "role_setup": "Start from blank/no-access role. Schedule: Delete ON (Edit+View auto-enabled), then disable View to check reverse cascade.",
     "test_data": "Test user 'sch_delete_user'. A removable appointment exists.",
     "steps": [
       {
         "n": 1,
-        "action": "As admin, follow the admin flow to create the custom role.",
+        "action": "As admin, follow the admin flow to create the custom role. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role dialog opens from a blank/no-access template with all permissions OFF."
       },
       {
@@ -755,7 +755,7 @@
       },
       {
         "n": 5,
-        "action": "Set the toggles exactly as specified in role_setup, then Save.",
+        "action": "Set the toggles exactly as specified in role_setup, then Create.",
         "expected": "Role saves successfully with only the intended toggles: Schedule Delete ON with Edit+View auto-enabled; all else OFF."
       },
       {
@@ -775,28 +775,28 @@
       }
     ],
     "expected_final": "Schedule Delete allows removing appointments; cascade auto-enables Edit+View and reverse-cascade disables them when View is turned OFF.",
-    "source_viu": "Spec: Schedule Delete grants remove appointments; CRUD cascade both directions. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: Schedule Delete grants remove appointments; CRUD cascade both directions. VERIFIED (staging 2026-07-01) — MATCH; see VIU Findings Log"
   },
   {
     "test_id": "SP-CUST-001",
     "title": "Customer View grants customer records/contacts/vehicles/history",
     "jira": "SV-7388",
-    "permission": "Customer Management \u2192 View (customers)",
+    "permission": "Customer Management → View (customers)",
     "dependency_mode": "None",
     "priority": "High",
     "type": "Positive",
-    "preconditions": "Admin account with access to Administration > Roles and Permissions and Administration > Staff. A test staff user exists to receive the custom role. Sample records exist in the environment as described in test_data.",
+    "preconditions": "Admin account with access to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) and Administration > Staff. A test staff user exists to receive the custom role. Sample records exist in the environment as described in test_data.",
     "role_setup": "Start from blank/no-access role. Customer Management: View ON, Edit OFF, Delete OFF. All other permissions OFF.",
     "test_data": "Test user 'cust_view_user'. Customer 'Acme Fleet' with contacts, vehicles and service history exists.",
     "steps": [
       {
         "n": 1,
-        "action": "As admin, follow the admin flow to create the custom role.",
+        "action": "As admin, follow the admin flow to create the custom role. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role dialog opens from a blank/no-access template with all permissions OFF."
       },
       {
         "n": 2,
-        "action": "Set the toggles exactly as specified in role_setup, then Save.",
+        "action": "Set the toggles exactly as specified in role_setup, then Create.",
         "expected": "Role saves successfully with only the intended toggles: Customer Management View ON; Edit OFF; Delete OFF; all else OFF."
       },
       {
@@ -821,28 +821,28 @@
       }
     ],
     "expected_final": "User can view customer records, contacts, vehicles and history, read-only.",
-    "source_viu": "Spec: Customer View grants customer records/contacts/vehicles/history; OFF hides Customers nav. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: Customer View grants customer records/contacts/vehicles/history; OFF hides Customers nav. UNVERIFIED — VIU pending."
   },
   {
     "test_id": "SP-CUST-002",
     "title": "Customer View OFF hides Customers nav and blocks direct URL",
     "jira": "SV-7388",
-    "permission": "Customer Management \u2192 View (customers)",
+    "permission": "Customer Management → View (customers)",
     "dependency_mode": "None",
     "priority": "High",
     "type": "Negative",
-    "preconditions": "Admin account with access to Administration > Roles and Permissions and Administration > Staff. A test staff user exists to receive the custom role. Sample records exist in the environment as described in test_data.",
+    "preconditions": "Admin account with access to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) and Administration > Staff. A test staff user exists to receive the custom role. Sample records exist in the environment as described in test_data.",
     "role_setup": "Start from blank/no-access role. Customer Management: View OFF, Edit OFF, Delete OFF. All other permissions OFF.",
     "test_data": "Test user 'cust_none_user'. Customer detail URL for 'Acme Fleet' is known.",
     "steps": [
       {
         "n": 1,
-        "action": "As admin, follow the admin flow to create the custom role.",
+        "action": "As admin, follow the admin flow to create the custom role. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role dialog opens from a blank/no-access template with all permissions OFF."
       },
       {
         "n": 2,
-        "action": "Set the toggles exactly as specified in role_setup, then Save.",
+        "action": "Set the toggles exactly as specified in role_setup, then Create.",
         "expected": "Role saves successfully with only the intended toggles: Customer Management View OFF; Edit OFF; Delete OFF; all else OFF."
       },
       {
@@ -867,23 +867,23 @@
       }
     ],
     "expected_final": "With Customer View OFF the Customers nav is hidden and direct-URL access is blocked.",
-    "source_viu": "Spec: Customer View OFF hides Customers nav. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: Customer View OFF hides Customers nav. UNVERIFIED — VIU pending."
   },
   {
     "test_id": "SP-CUST-003",
     "title": "Customer Edit grants create/edit customers, contacts, vehicles and New-WO Add buttons",
     "jira": "SV-7388",
-    "permission": "Customer Management \u2192 Edit (customers)",
+    "permission": "Customer Management → Edit (customers)",
     "dependency_mode": "Cascade: auto-enable lower",
     "priority": "High",
     "type": "Positive",
-    "preconditions": "Admin account with access to Administration > Roles and Permissions and Administration > Staff. A test staff user exists to receive the custom role. Sample records exist in the environment as described in test_data.",
+    "preconditions": "Admin account with access to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) and Administration > Staff. A test staff user exists to receive the custom role. Sample records exist in the environment as described in test_data.",
     "role_setup": "Start from blank/no-access role. Customer Management: Edit ON (View auto-enabled), Delete OFF. Work Orders: Edit ON (View auto) so New WO flow is reachable. All other permissions OFF.",
     "test_data": "Test user 'cust_edit_user'. Existing customer 'Acme Fleet'.",
     "steps": [
       {
         "n": 1,
-        "action": "As admin, follow the admin flow to create the custom role.",
+        "action": "As admin, follow the admin flow to create the custom role. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role dialog opens from a blank/no-access template with all permissions OFF."
       },
       {
@@ -893,7 +893,7 @@
       },
       {
         "n": 3,
-        "action": "Set the toggles exactly as specified in role_setup, then Save.",
+        "action": "Set the toggles exactly as specified in role_setup, then Create.",
         "expected": "Role saves successfully with only the intended toggles: Customer Management Edit ON (View auto); Work Orders Edit ON (View auto); Delete OFF; all else OFF."
       },
       {
@@ -918,23 +918,23 @@
       }
     ],
     "expected_final": "User can create/edit customers, manage contacts/vehicles, and create customers/assets in the New WO flow.",
-    "source_viu": "Spec: Customer Edit grants create/edit customers, contacts, vehicles, and Add Customer/Add Asset in New WO. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: Customer Edit grants create/edit customers, contacts, vehicles, and Add Customer/Add Asset in New WO. VERIFIED (staging 2026-07-01) — MATCH; see VIU Findings Log"
   },
   {
     "test_id": "SP-CUST-004",
     "title": "Customer Edit OFF hides Add Customer/Add Asset in New WO flow",
     "jira": "SV-7388",
-    "permission": "Customer Management \u2192 Edit (customers)",
+    "permission": "Customer Management → Edit (customers)",
     "dependency_mode": "None",
     "priority": "Medium",
     "type": "Negative",
-    "preconditions": "Admin account with access to Administration > Roles and Permissions and Administration > Staff. A test staff user exists to receive the custom role. Sample records exist in the environment as described in test_data.",
+    "preconditions": "Admin account with access to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) and Administration > Staff. A test staff user exists to receive the custom role. Sample records exist in the environment as described in test_data.",
     "role_setup": "Start from blank/no-access role. Customer Management: View ON, Edit OFF. Work Orders: Edit ON (View auto). All other permissions OFF.",
     "test_data": "Test user 'cust_view_wo_edit'. New WO flow reachable.",
     "steps": [
       {
         "n": 1,
-        "action": "As admin, follow the admin flow to create the custom role.",
+        "action": "As admin, follow the admin flow to create the custom role. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role dialog opens from a blank/no-access template with all permissions OFF."
       },
       {
@@ -944,7 +944,7 @@
       },
       {
         "n": 3,
-        "action": "Set the toggles exactly as specified in role_setup, then Save.",
+        "action": "Set the toggles exactly as specified in role_setup, then Create.",
         "expected": "Role saves successfully with only the intended toggles: Customer Management View ON; Edit OFF; Work Orders Edit ON (View auto); all else OFF."
       },
       {
@@ -964,23 +964,23 @@
       }
     ],
     "expected_final": "With Customer Edit OFF the Add Customer/Add Asset buttons are hidden in the New WO flow.",
-    "source_viu": "Spec: Add Customer/Add Asset buttons hidden without Customer Edit. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: Add Customer/Add Asset buttons hidden without Customer Edit. UNVERIFIED — VIU pending."
   },
   {
     "test_id": "SP-CUST-005",
     "title": "Customer Delete grants delete of customer records only (not payments)",
     "jira": "SV-7388",
-    "permission": "Customer Management \u2192 Delete (customers)",
+    "permission": "Customer Management → Delete (customers)",
     "dependency_mode": "Cascade: auto-enable lower",
     "priority": "Medium",
     "type": "Positive",
-    "preconditions": "Admin account with access to Administration > Roles and Permissions and Administration > Staff. A test staff user exists to receive the custom role. Sample records exist in the environment as described in test_data.",
+    "preconditions": "Admin account with access to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) and Administration > Staff. A test staff user exists to receive the custom role. Sample records exist in the environment as described in test_data.",
     "role_setup": "Start from blank/no-access role. Customer Management: Delete ON (Edit+View auto). All other permissions OFF (Invoicing Delete OFF).",
     "test_data": "Test user 'cust_delete_user'. Deletable customer 'Temp Corp'; a customer with a recorded customer payment.",
     "steps": [
       {
         "n": 1,
-        "action": "As admin, follow the admin flow to create the custom role.",
+        "action": "As admin, follow the admin flow to create the custom role. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role dialog opens from a blank/no-access template with all permissions OFF."
       },
       {
@@ -990,7 +990,7 @@
       },
       {
         "n": 3,
-        "action": "Set the toggles exactly as specified in role_setup, then Save.",
+        "action": "Set the toggles exactly as specified in role_setup, then Create.",
         "expected": "Role saves successfully with only the intended toggles: Customer Management Delete ON (Edit+View auto); all else OFF."
       },
       {
@@ -1015,29 +1015,29 @@
       }
     ],
     "expected_final": "User can delete customer records but not customer payments (payments require Invoicing Delete).",
-    "source_viu": "Spec: Customer Delete deletes customer records, NOT customer payments (needs Invoicing Delete). UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: Customer Delete deletes customer records, NOT customer payments (needs Invoicing Delete). VERIFIED (staging 2026-07-01) — MATCH; see VIU Findings Log"
   },
   {
     "test_id": "SP-CUST-006",
     "title": "Sensitive customer fields gated by Manage AP/AR, not Customer permission",
     "jira": "SV-7388",
-    "permission": "Customer Management \u2192 View (customers) vs Manage AP/AR",
+    "permission": "Customer Management → View (customers) vs View and Manage AP/AR Data",
     "dependency_mode": "AP/AR gate: confirm modal",
     "priority": "Medium",
     "type": "Security",
-    "preconditions": "Admin account with access to Administration > Roles and Permissions and Administration > Staff. A test staff user exists to receive the custom role. Sample records exist in the environment as described in test_data.",
-    "role_setup": "Start from blank/no-access role. Customer Management: View ON. Manage AP/AR OFF. All other permissions OFF.",
+    "preconditions": "Admin account with access to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) and Administration > Staff. A test staff user exists to receive the custom role. Sample records exist in the environment as described in test_data.",
+    "role_setup": "Start from blank/no-access role. Customer Management: View ON. View and Manage AP/AR Data OFF. All other permissions OFF.",
     "test_data": "Test user 'cust_view_no_apar'. Customer 'Acme Fleet' with sensitive AP/AR fields.",
     "steps": [
       {
         "n": 1,
-        "action": "As admin, follow the admin flow to create the custom role.",
+        "action": "As admin, follow the admin flow to create the custom role. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role dialog opens from a blank/no-access template with all permissions OFF."
       },
       {
         "n": 2,
-        "action": "Set the toggles exactly as specified in role_setup, then Save.",
-        "expected": "Role saves successfully with only the intended toggles: Customer Management View ON; Manage AP/AR OFF; all else OFF."
+        "action": "Set the toggles exactly as specified in role_setup, then Create.",
+        "expected": "Role saves successfully with only the intended toggles: Customer Management View ON; View and Manage AP/AR Data OFF; all else OFF."
       },
       {
         "n": 3,
@@ -1052,27 +1052,27 @@
       {
         "n": 5,
         "action": "Open 'Acme Fleet' and inspect sensitive customer fields.",
-        "expected": "Sensitive customer fields are hidden/gated because Manage AP/AR is OFF, even though Customer View is ON."
+        "expected": "Sensitive customer fields are hidden/gated because View and Manage AP/AR Data is OFF, even though Customer View is ON."
       }
     ],
-    "expected_final": "Sensitive customer fields remain gated by Manage AP/AR regardless of Customer View.",
-    "source_viu": "Spec: sensitive customer fields gated by Manage AP/AR, not by Customer permission. UNVERIFIED \u2014 VIU pending."
+    "expected_final": "Sensitive customer fields remain gated by View and Manage AP/AR Data regardless of Customer View.",
+    "source_viu": "Spec: sensitive customer fields gated by Manage AP/AR, not by Customer permission. UNVERIFIED — VIU pending."
   },
   {
     "test_id": "SP-PS-001",
     "title": "Part Sales View grants part sales records/returns/transactions (parent+financial on)",
     "jira": "SV-7388",
-    "permission": "Part Sales \u2192 View (partSales)",
+    "permission": "Part Sales → View (partSales)",
     "dependency_mode": "Financial gate: confirm modal",
     "priority": "High",
     "type": "Positive",
-    "preconditions": "Admin account with access to Administration > Roles and Permissions and Administration > Staff. A test staff user exists to receive the custom role. Sample records exist in the environment as described in test_data.",
+    "preconditions": "Admin account with access to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) and Administration > Staff. A test staff user exists to receive the custom role. Sample records exist in the environment as described in test_data.",
     "role_setup": "Start from blank/no-access role. Parts Department: ON. See Financial Data: ON. Part Sales: View ON, Edit OFF, Delete OFF. All other permissions OFF.",
     "test_data": "Test user 'ps_view_user'. Sample part sale and part-sale return exist.",
     "steps": [
       {
         "n": 1,
-        "action": "As admin, follow the admin flow to create the custom role.",
+        "action": "As admin, follow the admin flow to create the custom role. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role dialog opens from a blank/no-access template with all permissions OFF."
       },
       {
@@ -1082,7 +1082,7 @@
       },
       {
         "n": 3,
-        "action": "Set the toggles exactly as specified in role_setup, then Save.",
+        "action": "Set the toggles exactly as specified in role_setup, then Create.",
         "expected": "Role saves successfully with only the intended toggles: Parts Department ON; See Financial Data ON; Part Sales View ON; Edit OFF; Delete OFF; all else OFF."
       },
       {
@@ -1107,23 +1107,23 @@
       }
     ],
     "expected_final": "User can view part sales records, returns and transactions, read-only.",
-    "source_viu": "Spec: Part Sales View grants records/returns/transactions; requires Parts Department parent + See Financial Data. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: Part Sales View grants records/returns/transactions; requires Parts Department parent + See Financial Data. VERIFIED (staging 2026-07-01) — DISCREPANCY; see VIU-11"
   },
   {
     "test_id": "SP-PS-002",
     "title": "Part Sales financial gate: enabling CRUD while Financial OFF triggers confirm modal",
     "jira": "SV-7388",
-    "permission": "Part Sales \u2192 View/Edit/Delete (partSales)",
+    "permission": "Part Sales → View/Edit/Delete (partSales)",
     "dependency_mode": "Financial gate: confirm modal",
     "priority": "Critical",
     "type": "Dependency",
-    "preconditions": "Admin account with access to Administration > Roles and Permissions and Administration > Staff. A test staff user exists to receive the custom role. Sample records exist in the environment as described in test_data.",
+    "preconditions": "Admin account with access to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) and Administration > Staff. A test staff user exists to receive the custom role. Sample records exist in the environment as described in test_data.",
     "role_setup": "Start from blank/no-access role. Parts Department ON. See Financial Data OFF. Then enable a Part Sales CRUD checkbox.",
     "test_data": "Admin editing the role in the Roles editor.",
     "steps": [
       {
         "n": 1,
-        "action": "As admin, follow the admin flow to create the custom role.",
+        "action": "As admin, follow the admin flow to create the custom role. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role dialog opens from a blank/no-access template with all permissions OFF."
       },
       {
@@ -1134,7 +1134,7 @@
       {
         "n": 3,
         "action": "Enable Part Sales View (or any Part Sales CRUD).",
-        "expected": "Financial confirm modal appears: \"[Area] requires 'See Financial Data' to be enabled. Enable it?\" Confirm auto-enables & applies; Cancel reverts."
+        "expected": "Financial confirm modal appears: Modal title: \"Enable See Financial Data?\" Body: \"[Area] requires See Financial Data. Enable it to grant this permission?\" Buttons: \"Cancel\" / \"Enable\" Confirm auto-enables & applies; Cancel reverts. [Build-vs-spec: spec wording differed — see VIU-11.]"
       },
       {
         "n": 4,
@@ -1148,7 +1148,7 @@
       }
     ],
     "expected_final": "Enabling any Part Sales CRUD while See Financial Data is OFF triggers the financial confirm modal; Confirm auto-enables Financial, Cancel reverts.",
-    "source_viu": "Spec: Part Sales financial gate \u2014 enabling any Part Sales CRUD while See Financial Data OFF triggers confirm modal. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: Part Sales financial gate — enabling any Part Sales CRUD while See Financial Data OFF triggers confirm modal. VERIFIED (staging 2026-07-01) — DISCREPANCY; see VIU-11"
   },
   {
     "test_id": "SP-PS-003",
@@ -1158,13 +1158,13 @@
     "dependency_mode": "Parent gate: hide children",
     "priority": "High",
     "type": "Dependency",
-    "preconditions": "Admin account with access to Administration > Roles and Permissions and Administration > Staff. A test staff user exists to receive the custom role. Sample records exist in the environment as described in test_data.",
+    "preconditions": "Admin account with access to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) and Administration > Staff. A test staff user exists to receive the custom role. Sample records exist in the environment as described in test_data.",
     "role_setup": "Start from blank/no-access role. Parts Department OFF. Observe Part Sales checkboxes.",
     "test_data": "Admin editing the role in the Roles editor.",
     "steps": [
       {
         "n": 1,
-        "action": "As admin, follow the admin flow to create the custom role.",
+        "action": "As admin, follow the admin flow to create the custom role. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role dialog opens from a blank/no-access template with all permissions OFF."
       },
       {
@@ -1174,23 +1174,23 @@
       }
     ],
     "expected_final": "Part Sales permissions are gated behind the Parts Department parent and unavailable when it is OFF.",
-    "source_viu": "Spec: Part Sales parent gate requires Parts Department ON. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: Part Sales parent gate requires Parts Department ON. VERIFIED (staging 2026-07-01) — MATCH; see VIU Findings Log"
   },
   {
     "test_id": "SP-PS-004",
     "title": "Part Sales Edit grants create sales/returns and process transactions",
     "jira": "SV-7388",
-    "permission": "Part Sales \u2192 Edit (partSales)",
+    "permission": "Part Sales → Edit (partSales)",
     "dependency_mode": "Cascade: auto-enable lower",
     "priority": "High",
     "type": "Positive",
-    "preconditions": "Admin account with access to Administration > Roles and Permissions and Administration > Staff. A test staff user exists to receive the custom role. Sample records exist in the environment as described in test_data.",
+    "preconditions": "Admin account with access to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) and Administration > Staff. A test staff user exists to receive the custom role. Sample records exist in the environment as described in test_data.",
     "role_setup": "Start from blank/no-access role. Parts Department ON. See Financial Data ON. Part Sales: Edit ON (View auto), Delete OFF. All other permissions OFF.",
     "test_data": "Test user 'ps_edit_user'. Catalog parts available to sell.",
     "steps": [
       {
         "n": 1,
-        "action": "As admin, follow the admin flow to create the custom role.",
+        "action": "As admin, follow the admin flow to create the custom role. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role dialog opens from a blank/no-access template with all permissions OFF."
       },
       {
@@ -1200,7 +1200,7 @@
       },
       {
         "n": 3,
-        "action": "Set the toggles exactly as specified in role_setup, then Save.",
+        "action": "Set the toggles exactly as specified in role_setup, then Create.",
         "expected": "Role saves successfully with only the intended toggles: Parts Department ON; See Financial Data ON; Part Sales Edit ON (View auto); Delete OFF; all else OFF."
       },
       {
@@ -1225,23 +1225,23 @@
       }
     ],
     "expected_final": "User can create part sales/returns and process transactions; cannot delete or reverse.",
-    "source_viu": "Spec: Part Sales Edit grants create sales/returns, process transactions. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: Part Sales Edit grants create sales/returns, process transactions. VERIFIED (staging 2026-07-01) — MATCH; see VIU Findings Log"
   },
   {
     "test_id": "SP-PS-005",
     "title": "Part Sales Delete grants delete sales and reverse part-sale invoices",
     "jira": "SV-7388",
-    "permission": "Part Sales \u2192 Delete (partSales)",
+    "permission": "Part Sales → Delete (partSales)",
     "dependency_mode": "Cascade: auto-enable lower",
     "priority": "Medium",
     "type": "Positive",
-    "preconditions": "Admin account with access to Administration > Roles and Permissions and Administration > Staff. A test staff user exists to receive the custom role. Sample records exist in the environment as described in test_data.",
+    "preconditions": "Admin account with access to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) and Administration > Staff. A test staff user exists to receive the custom role. Sample records exist in the environment as described in test_data.",
     "role_setup": "Start from blank/no-access role. Parts Department ON. See Financial Data ON. Part Sales: Delete ON (Edit+View auto). All other permissions OFF.",
     "test_data": "Test user 'ps_delete_user'. A deletable part sale and a part-sale invoice exist.",
     "steps": [
       {
         "n": 1,
-        "action": "As admin, follow the admin flow to create the custom role.",
+        "action": "As admin, follow the admin flow to create the custom role. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role dialog opens from a blank/no-access template with all permissions OFF."
       },
       {
@@ -1251,7 +1251,7 @@
       },
       {
         "n": 3,
-        "action": "Set the toggles exactly as specified in role_setup, then Save.",
+        "action": "Set the toggles exactly as specified in role_setup, then Create.",
         "expected": "Role saves successfully with only the intended toggles: Parts Department ON; See Financial Data ON; Part Sales Delete ON (Edit+View auto); all else OFF."
       },
       {
@@ -1271,28 +1271,28 @@
       }
     ],
     "expected_final": "User can delete part sales and reverse part-sale invoices.",
-    "source_viu": "Spec: Part Sales Delete grants delete part sales, reverse part sales invoices. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: Part Sales Delete grants delete part sales, reverse part sales invoices. VERIFIED (staging 2026-07-01) — MATCH; see VIU Findings Log"
   },
   {
     "test_id": "SP-PS-006",
     "title": "Part Sales not reachable via direct URL without access (SV-7965)",
     "jira": "SV-7965",
-    "permission": "Part Sales \u2192 View (partSales)",
+    "permission": "Part Sales → View (partSales)",
     "dependency_mode": "Parent gate: hide children",
     "priority": "Critical",
     "type": "Security",
-    "preconditions": "Admin account with access to Administration > Roles and Permissions and Administration > Staff. A test staff user exists to receive the custom role. Sample records exist in the environment as described in test_data.",
+    "preconditions": "Admin account with access to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) and Administration > Staff. A test staff user exists to receive the custom role. Sample records exist in the environment as described in test_data.",
     "role_setup": "Start from blank/no-access role. Parts Department OFF; Part Sales all OFF. All other permissions OFF.",
     "test_data": "Test user 'ps_none_user'. Direct Part Sales URL(s) known (list and a specific part sale detail).",
     "steps": [
       {
         "n": 1,
-        "action": "As admin, follow the admin flow to create the custom role.",
+        "action": "As admin, follow the admin flow to create the custom role. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role dialog opens from a blank/no-access template with all permissions OFF."
       },
       {
         "n": 2,
-        "action": "Set the toggles exactly as specified in role_setup, then Save.",
+        "action": "Set the toggles exactly as specified in role_setup, then Create.",
         "expected": "Role saves successfully with only the intended toggles: Parts Department OFF; Part Sales View/Edit/Delete OFF; all else OFF."
       },
       {
@@ -1317,23 +1317,23 @@
       }
     ],
     "expected_final": "Without Part Sales access, part sales cannot be reached via direct URL.",
-    "source_viu": "Spec/SV-7965: without access, part sales must not be reachable via direct URL. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec/SV-7965: without access, part sales must not be reachable via direct URL. VERIFIED (staging 2026-07-01) — MATCH; see VIU Findings Log"
   },
   {
     "test_id": "SP-CAT-001",
     "title": "Catalog & Inventory View grants catalog/inventory/stock/history browsing",
     "jira": "SV-7388",
-    "permission": "Catalog & Inventory \u2192 View (catalogInventory)",
+    "permission": "Catalog & Inventory → View (catalogInventory)",
     "dependency_mode": "Parent gate: hide children",
     "priority": "High",
     "type": "Positive",
-    "preconditions": "Admin account with access to Administration > Roles and Permissions and Administration > Staff. A test staff user exists to receive the custom role. Sample records exist in the environment as described in test_data.",
+    "preconditions": "Admin account with access to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) and Administration > Staff. A test staff user exists to receive the custom role. Sample records exist in the environment as described in test_data.",
     "role_setup": "Start from blank/no-access role. Parts Department ON. Catalog & Inventory: View ON, Edit OFF, Delete OFF. All other permissions OFF.",
     "test_data": "Test user 'cat_view_user'. Catalog entries with inventory levels and parts history exist.",
     "steps": [
       {
         "n": 1,
-        "action": "As admin, follow the admin flow to create the custom role.",
+        "action": "As admin, follow the admin flow to create the custom role. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role dialog opens from a blank/no-access template with all permissions OFF."
       },
       {
@@ -1343,7 +1343,7 @@
       },
       {
         "n": 3,
-        "action": "Set the toggles exactly as specified in role_setup, then Save.",
+        "action": "Set the toggles exactly as specified in role_setup, then Create.",
         "expected": "Role saves successfully with only the intended toggles: Parts Department ON; Catalog & Inventory View ON; Edit OFF; Delete OFF; all else OFF."
       },
       {
@@ -1368,7 +1368,7 @@
       }
     ],
     "expected_final": "User can browse catalog, inventory levels/stock and parts history, read-only.",
-    "source_viu": "Spec: Catalog & Inventory View grants browse catalog, inventory levels/stock, parts history; requires Parts Department. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: Catalog & Inventory View grants browse catalog, inventory levels/stock, parts history; requires Parts Department. VERIFIED (staging 2026-07-01) — MATCH; see VIU Findings Log"
   },
   {
     "test_id": "SP-CAT-002",
@@ -1378,13 +1378,13 @@
     "dependency_mode": "Parent gate: hide children",
     "priority": "High",
     "type": "Dependency",
-    "preconditions": "Admin account with access to Administration > Roles and Permissions and Administration > Staff. A test staff user exists to receive the custom role. Sample records exist in the environment as described in test_data.",
+    "preconditions": "Admin account with access to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) and Administration > Staff. A test staff user exists to receive the custom role. Sample records exist in the environment as described in test_data.",
     "role_setup": "Start from blank/no-access role. Parts Department OFF. Observe Catalog & Inventory checkboxes.",
     "test_data": "Admin editing the role in the Roles editor.",
     "steps": [
       {
         "n": 1,
-        "action": "As admin, follow the admin flow to create the custom role.",
+        "action": "As admin, follow the admin flow to create the custom role. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role dialog opens from a blank/no-access template with all permissions OFF."
       },
       {
@@ -1394,23 +1394,23 @@
       }
     ],
     "expected_final": "Catalog & Inventory permissions are gated behind the Parts Department parent.",
-    "source_viu": "Spec: Catalog & Inventory parent gate requires Parts Department ON. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: Catalog & Inventory parent gate requires Parts Department ON. VERIFIED (staging 2026-07-01) — MATCH; see VIU Findings Log"
   },
   {
     "test_id": "SP-CAT-003",
     "title": "Catalog & Inventory Edit grants catalog edits, adjustments and cycle counts",
     "jira": "SV-7388",
-    "permission": "Catalog & Inventory \u2192 Edit (catalogInventory)",
+    "permission": "Catalog & Inventory → Edit (catalogInventory)",
     "dependency_mode": "Cascade: auto-enable lower",
     "priority": "High",
     "type": "Positive",
-    "preconditions": "Admin account with access to Administration > Roles and Permissions and Administration > Staff. A test staff user exists to receive the custom role. Sample records exist in the environment as described in test_data.",
+    "preconditions": "Admin account with access to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) and Administration > Staff. A test staff user exists to receive the custom role. Sample records exist in the environment as described in test_data.",
     "role_setup": "Start from blank/no-access role. Parts Department ON. Catalog & Inventory: Edit ON (View auto), Delete OFF. All other permissions OFF.",
     "test_data": "Test user 'cat_edit_user'. An existing catalog part and inventory to adjust.",
     "steps": [
       {
         "n": 1,
-        "action": "As admin, follow the admin flow to create the custom role.",
+        "action": "As admin, follow the admin flow to create the custom role. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role dialog opens from a blank/no-access template with all permissions OFF."
       },
       {
@@ -1420,7 +1420,7 @@
       },
       {
         "n": 3,
-        "action": "Set the toggles exactly as specified in role_setup, then Save.",
+        "action": "Set the toggles exactly as specified in role_setup, then Create.",
         "expected": "Role saves successfully with only the intended toggles: Parts Department ON; Catalog & Inventory Edit ON (View auto); Delete OFF; all else OFF."
       },
       {
@@ -1445,23 +1445,23 @@
       }
     ],
     "expected_final": "User can create/edit catalog entries, make inventory adjustments incl. return-to-inventory, and run cycle counts; cannot delete catalog parts.",
-    "source_viu": "Spec: Catalog & Inventory Edit grants catalog edits, inventory adjustments incl. return-to-inventory, cycle counts. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: Catalog & Inventory Edit grants catalog edits, inventory adjustments incl. return-to-inventory, cycle counts. VERIFIED (staging 2026-07-01) — MATCH; see VIU Findings Log"
   },
   {
     "test_id": "SP-CAT-004",
     "title": "Catalog & Inventory Delete grants delete parts from catalog",
     "jira": "SV-7388",
-    "permission": "Catalog & Inventory \u2192 Delete (catalogInventory)",
+    "permission": "Catalog & Inventory → Delete (catalogInventory)",
     "dependency_mode": "Cascade: auto-enable lower",
     "priority": "Medium",
     "type": "Positive",
-    "preconditions": "Admin account with access to Administration > Roles and Permissions and Administration > Staff. A test staff user exists to receive the custom role. Sample records exist in the environment as described in test_data.",
+    "preconditions": "Admin account with access to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) and Administration > Staff. A test staff user exists to receive the custom role. Sample records exist in the environment as described in test_data.",
     "role_setup": "Start from blank/no-access role. Parts Department ON. Catalog & Inventory: Delete ON (Edit+View auto). All other permissions OFF.",
     "test_data": "Test user 'cat_delete_user'. A deletable catalog part exists.",
     "steps": [
       {
         "n": 1,
-        "action": "As admin, follow the admin flow to create the custom role.",
+        "action": "As admin, follow the admin flow to create the custom role. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role dialog opens from a blank/no-access template with all permissions OFF."
       },
       {
@@ -1471,7 +1471,7 @@
       },
       {
         "n": 3,
-        "action": "Set the toggles exactly as specified in role_setup, then Save.",
+        "action": "Set the toggles exactly as specified in role_setup, then Create.",
         "expected": "Role saves successfully with only the intended toggles: Parts Department ON; Catalog & Inventory Delete ON (Edit+View auto); all else OFF."
       },
       {
@@ -1491,28 +1491,28 @@
       }
     ],
     "expected_final": "User can delete parts from the catalog.",
-    "source_viu": "Spec: Catalog & Inventory Delete grants delete parts from catalog. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: Catalog & Inventory Delete grants delete parts from catalog. VERIFIED (staging 2026-07-01) — MATCH; see VIU Findings Log"
   },
   {
     "test_id": "SP-CAT-005",
     "title": "Catalog & Inventory View OFF blocks catalog browsing (with parent on)",
     "jira": "SV-7388",
-    "permission": "Catalog & Inventory \u2192 View (catalogInventory)",
+    "permission": "Catalog & Inventory → View (catalogInventory)",
     "dependency_mode": "None",
     "priority": "Medium",
     "type": "Negative",
-    "preconditions": "Admin account with access to Administration > Roles and Permissions and Administration > Staff. A test staff user exists to receive the custom role. Sample records exist in the environment as described in test_data.",
+    "preconditions": "Admin account with access to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) and Administration > Staff. A test staff user exists to receive the custom role. Sample records exist in the environment as described in test_data.",
     "role_setup": "Start from blank/no-access role. Parts Department ON. Catalog & Inventory: View OFF, Edit OFF, Delete OFF. All other permissions OFF.",
     "test_data": "Test user 'cat_none_user'. Catalog URL known.",
     "steps": [
       {
         "n": 1,
-        "action": "As admin, follow the admin flow to create the custom role.",
+        "action": "As admin, follow the admin flow to create the custom role. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role dialog opens from a blank/no-access template with all permissions OFF."
       },
       {
         "n": 2,
-        "action": "Set the toggles exactly as specified in role_setup, then Save.",
+        "action": "Set the toggles exactly as specified in role_setup, then Create.",
         "expected": "Role saves successfully with only the intended toggles: Parts Department ON; Catalog & Inventory View OFF; Edit OFF; Delete OFF; all else OFF."
       },
       {
@@ -1537,23 +1537,23 @@
       }
     ],
     "expected_final": "With Catalog View OFF the catalog is not browsable and direct-URL access is blocked, even with Parts Department ON.",
-    "source_viu": "Spec: Catalog & Inventory View gates browsing. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: Catalog & Inventory View gates browsing. UNVERIFIED — VIU pending."
   },
   {
     "test_id": "SP-VEND-001",
     "title": "Vendor & Order Mgmt View grants vendors/POs/deliveries/part history/return requests",
     "jira": "SV-7388",
-    "permission": "Vendor & Order Management \u2192 View (vendorOrderManagement)",
+    "permission": "Vendor & Order Management → View (vendorOrderManagement)",
     "dependency_mode": "Parent gate: hide children",
     "priority": "High",
     "type": "Positive",
-    "preconditions": "Admin account with access to Administration > Roles and Permissions and Administration > Staff. A test staff user exists to receive the custom role. Sample records exist in the environment as described in test_data.",
+    "preconditions": "Admin account with access to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) and Administration > Staff. A test staff user exists to receive the custom role. Sample records exist in the environment as described in test_data.",
     "role_setup": "Start from blank/no-access role. Parts Department ON. Vendor & Order Management: View ON, Edit OFF, Delete OFF. All other permissions OFF.",
     "test_data": "Test user 'vend_view_user'. Vendor record, PO, delivery and part return request exist.",
     "steps": [
       {
         "n": 1,
-        "action": "As admin, follow the admin flow to create the custom role.",
+        "action": "As admin, follow the admin flow to create the custom role. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role dialog opens from a blank/no-access template with all permissions OFF."
       },
       {
@@ -1563,7 +1563,7 @@
       },
       {
         "n": 3,
-        "action": "Set the toggles exactly as specified in role_setup, then Save.",
+        "action": "Set the toggles exactly as specified in role_setup, then Create.",
         "expected": "Role saves successfully with only the intended toggles: Parts Department ON; Vendor & Order Management View ON; Edit OFF; Delete OFF; all else OFF."
       },
       {
@@ -1588,7 +1588,7 @@
       }
     ],
     "expected_final": "User can view vendor records, POs, deliveries, part history and part return requests, read-only.",
-    "source_viu": "Spec: Vendor & Order Mgmt View grants vendor records, POs, deliveries, part history, return requests; requires Parts Department. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: Vendor & Order Mgmt View grants vendor records, POs, deliveries, part history, return requests; requires Parts Department. VERIFIED (staging 2026-07-01) — MATCH; see VIU Findings Log"
   },
   {
     "test_id": "SP-VEND-002",
@@ -1598,13 +1598,13 @@
     "dependency_mode": "Parent gate: hide children",
     "priority": "High",
     "type": "Dependency",
-    "preconditions": "Admin account with access to Administration > Roles and Permissions and Administration > Staff. A test staff user exists to receive the custom role. Sample records exist in the environment as described in test_data.",
+    "preconditions": "Admin account with access to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) and Administration > Staff. A test staff user exists to receive the custom role. Sample records exist in the environment as described in test_data.",
     "role_setup": "Start from blank/no-access role. Parts Department OFF. Observe Vendor & Order Management checkboxes.",
     "test_data": "Admin editing the role in the Roles editor.",
     "steps": [
       {
         "n": 1,
-        "action": "As admin, follow the admin flow to create the custom role.",
+        "action": "As admin, follow the admin flow to create the custom role. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role dialog opens from a blank/no-access template with all permissions OFF."
       },
       {
@@ -1614,23 +1614,23 @@
       }
     ],
     "expected_final": "Vendor & Order Management permissions are gated behind the Parts Department parent.",
-    "source_viu": "Spec: Vendor & Order Mgmt parent gate requires Parts Department ON. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: Vendor & Order Mgmt parent gate requires Parts Department ON. VERIFIED (staging 2026-07-01) — MATCH; see VIU Findings Log"
   },
   {
     "test_id": "SP-VEND-003",
     "title": "Vendor & Order Mgmt Edit grants vendor/PO/delivery/invoice/return operations",
     "jira": "SV-7388",
-    "permission": "Vendor & Order Management \u2192 Edit (vendorOrderManagement)",
+    "permission": "Vendor & Order Management → Edit (vendorOrderManagement)",
     "dependency_mode": "Cascade: auto-enable lower",
     "priority": "High",
     "type": "Positive",
-    "preconditions": "Admin account with access to Administration > Roles and Permissions and Administration > Staff. A test staff user exists to receive the custom role. Sample records exist in the environment as described in test_data.",
+    "preconditions": "Admin account with access to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) and Administration > Staff. A test staff user exists to receive the custom role. Sample records exist in the environment as described in test_data.",
     "role_setup": "Start from blank/no-access role. Parts Department ON. Vendor & Order Management: Edit ON (View auto), Delete OFF. All other permissions OFF.",
     "test_data": "Test user 'vend_edit_user'. A vendor and an open PO/delivery exist.",
     "steps": [
       {
         "n": 1,
-        "action": "As admin, follow the admin flow to create the custom role.",
+        "action": "As admin, follow the admin flow to create the custom role. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role dialog opens from a blank/no-access template with all permissions OFF."
       },
       {
@@ -1640,7 +1640,7 @@
       },
       {
         "n": 3,
-        "action": "Set the toggles exactly as specified in role_setup, then Save.",
+        "action": "Set the toggles exactly as specified in role_setup, then Create.",
         "expected": "Role saves successfully with only the intended toggles: Parts Department ON; Vendor & Order Management Edit ON (View auto); Delete OFF; all else OFF."
       },
       {
@@ -1665,23 +1665,23 @@
       }
     ],
     "expected_final": "User can create/edit vendors, create/manage POs, manage deliveries, create vendor invoices and return parts to vendors/inventory; cannot delete.",
-    "source_viu": "Spec: Vendor & Order Mgmt Edit grants vendor edits, PO create/manage, deliveries, vendor invoices, part returns. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: Vendor & Order Mgmt Edit grants vendor edits, PO create/manage, deliveries, vendor invoices, part returns. VERIFIED (staging 2026-07-01) — MATCH; see VIU Findings Log"
   },
   {
     "test_id": "SP-VEND-004",
     "title": "Vendor & Order Mgmt Delete grants delete vendors and POs",
     "jira": "SV-7388",
-    "permission": "Vendor & Order Management \u2192 Delete (vendorOrderManagement)",
+    "permission": "Vendor & Order Management → Delete (vendorOrderManagement)",
     "dependency_mode": "Cascade: auto-enable lower",
     "priority": "Medium",
     "type": "Positive",
-    "preconditions": "Admin account with access to Administration > Roles and Permissions and Administration > Staff. A test staff user exists to receive the custom role. Sample records exist in the environment as described in test_data.",
+    "preconditions": "Admin account with access to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) and Administration > Staff. A test staff user exists to receive the custom role. Sample records exist in the environment as described in test_data.",
     "role_setup": "Start from blank/no-access role. Parts Department ON. Vendor & Order Management: Delete ON (Edit+View auto). All other permissions OFF.",
     "test_data": "Test user 'vend_delete_user'. A deletable vendor and a deletable PO exist.",
     "steps": [
       {
         "n": 1,
-        "action": "As admin, follow the admin flow to create the custom role.",
+        "action": "As admin, follow the admin flow to create the custom role. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role dialog opens from a blank/no-access template with all permissions OFF."
       },
       {
@@ -1691,7 +1691,7 @@
       },
       {
         "n": 3,
-        "action": "Set the toggles exactly as specified in role_setup, then Save.",
+        "action": "Set the toggles exactly as specified in role_setup, then Create.",
         "expected": "Role saves successfully with only the intended toggles: Parts Department ON; Vendor & Order Management Delete ON (Edit+View auto); all else OFF."
       },
       {
@@ -1711,23 +1711,23 @@
       }
     ],
     "expected_final": "User can delete vendors and delete POs.",
-    "source_viu": "Spec: Vendor & Order Mgmt Delete grants delete vendors, delete POs. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: Vendor & Order Mgmt Delete grants delete vendors, delete POs. VERIFIED (staging 2026-07-01) — MATCH; see VIU Findings Log"
   },
   {
     "test_id": "SP-INV-001",
     "title": "Invoicing View grants invoice view and Finance tab access",
     "jira": "SV-7388",
-    "permission": "Invoicing & Payments \u2192 View (invoicingPayments)",
+    "permission": "Invoicing & Payments → View (invoicingPayments)",
     "dependency_mode": "Financial gate: confirm modal",
     "priority": "High",
     "type": "Positive",
-    "preconditions": "Admin account with access to Administration > Roles and Permissions and Administration > Staff. A test staff user exists to receive the custom role. Sample records exist in the environment as described in test_data.",
+    "preconditions": "Admin account with access to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) and Administration > Staff. A test staff user exists to receive the custom role. Sample records exist in the environment as described in test_data.",
     "role_setup": "Start from blank/no-access role. See Financial Data ON. Work Orders View ON. Invoicing & Payments: View ON, Edit OFF, Delete OFF. All other permissions OFF.",
     "test_data": "Test user 'inv_view_user'. WO #WO-1001 with an invoice; a part-sale invoice exists.",
     "steps": [
       {
         "n": 1,
-        "action": "As admin, follow the admin flow to create the custom role.",
+        "action": "As admin, follow the admin flow to create the custom role. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role dialog opens from a blank/no-access template with all permissions OFF."
       },
       {
@@ -1737,7 +1737,7 @@
       },
       {
         "n": 3,
-        "action": "Set the toggles exactly as specified in role_setup, then Save.",
+        "action": "Set the toggles exactly as specified in role_setup, then Create.",
         "expected": "Role saves successfully with only the intended toggles: See Financial Data ON; Work Orders View ON; Invoicing & Payments View ON; Edit OFF; Delete OFF; all else OFF."
       },
       {
@@ -1762,28 +1762,28 @@
       }
     ],
     "expected_final": "User can view invoices from WOs and part sales and access the Finance tab, read-only.",
-    "source_viu": "Spec: Invoicing View grants view invoices from WOs & part sales and Finance tab access; financial gate applies. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: Invoicing View grants view invoices from WOs & part sales and Finance tab access; financial gate applies. VERIFIED (staging 2026-07-01) — DISCREPANCY; see VIU-11"
   },
   {
     "test_id": "SP-INV-002",
     "title": "Invoicing View OFF but Financial ON: pricing visible, no direct invoice access",
     "jira": "SV-7388",
-    "permission": "Invoicing & Payments \u2192 View (invoicingPayments)",
+    "permission": "Invoicing & Payments → View (invoicingPayments)",
     "dependency_mode": "Financial gate: confirm modal",
     "priority": "Medium",
     "type": "Negative",
-    "preconditions": "Admin account with access to Administration > Roles and Permissions and Administration > Staff. A test staff user exists to receive the custom role. Sample records exist in the environment as described in test_data.",
+    "preconditions": "Admin account with access to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) and Administration > Staff. A test staff user exists to receive the custom role. Sample records exist in the environment as described in test_data.",
     "role_setup": "Start from blank/no-access role. See Financial Data ON. Work Orders View ON. Invoicing & Payments: View OFF, Edit OFF, Delete OFF. All other permissions OFF.",
     "test_data": "Test user 'inv_fin_only'. WO #WO-1001 with pricing and an invoice.",
     "steps": [
       {
         "n": 1,
-        "action": "As admin, follow the admin flow to create the custom role.",
+        "action": "As admin, follow the admin flow to create the custom role. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role dialog opens from a blank/no-access template with all permissions OFF."
       },
       {
         "n": 2,
-        "action": "Set the toggles exactly as specified in role_setup, then Save.",
+        "action": "Set the toggles exactly as specified in role_setup, then Create.",
         "expected": "Role saves successfully with only the intended toggles: See Financial Data ON; Work Orders View ON; Invoicing & Payments View OFF; Edit OFF; Delete OFF; all else OFF."
       },
       {
@@ -1808,29 +1808,29 @@
       }
     ],
     "expected_final": "With Invoicing View OFF but Financial ON, user sees pricing but has no direct invoice access.",
-    "source_viu": "Spec: if Invoicing View OFF but Financial ON, user sees pricing but no direct invoice access. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: if Invoicing View OFF but Financial ON, user sees pricing but no direct invoice access. VERIFIED (staging 2026-07-01) — DISCREPANCY; see VIU-11"
   },
   {
     "test_id": "SP-INV-003",
     "title": "Invoicing financial gate: enabling CRUD while Financial OFF triggers confirm modal",
     "jira": "SV-7388",
-    "permission": "Invoicing & Payments \u2192 View/Edit/Delete (invoicingPayments)",
+    "permission": "Invoicing & Payments → View/Edit/Delete (invoicingPayments)",
     "dependency_mode": "Financial gate: confirm modal",
     "priority": "Critical",
     "type": "Dependency",
-    "preconditions": "Admin account with access to Administration > Roles and Permissions and Administration > Staff. A test staff user exists to receive the custom role. Sample records exist in the environment as described in test_data.",
+    "preconditions": "Admin account with access to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) and Administration > Staff. A test staff user exists to receive the custom role. Sample records exist in the environment as described in test_data.",
     "role_setup": "Start from blank/no-access role. See Financial Data OFF. Then enable an Invoicing CRUD checkbox.",
     "test_data": "Admin editing the role in the Roles editor.",
     "steps": [
       {
         "n": 1,
-        "action": "As admin, follow the admin flow to create the custom role.",
+        "action": "As admin, follow the admin flow to create the custom role. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role dialog opens from a blank/no-access template with all permissions OFF."
       },
       {
         "n": 2,
         "action": "With See Financial Data OFF, enable Invoicing & Payments View (or any Invoicing CRUD).",
-        "expected": "Financial confirm modal appears: \"[Area] requires 'See Financial Data' to be enabled. Enable it?\" Confirm auto-enables & applies; Cancel reverts."
+        "expected": "Financial confirm modal appears: Modal title: \"Enable See Financial Data?\" Body: \"[Area] requires See Financial Data. Enable it to grant this permission?\" Buttons: \"Cancel\" / \"Enable\" Confirm auto-enables & applies; Cancel reverts. [Build-vs-spec: spec wording differed — see VIU-11.]"
       },
       {
         "n": 3,
@@ -1844,23 +1844,23 @@
       }
     ],
     "expected_final": "Enabling any Invoicing CRUD while See Financial Data is OFF triggers the financial confirm modal; Confirm auto-enables Financial, Cancel reverts.",
-    "source_viu": "Spec: Invoicing financial gate \u2014 any CRUD triggers confirm modal if See Financial Data OFF. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: Invoicing financial gate — any CRUD triggers confirm modal if See Financial Data OFF. VERIFIED (staging 2026-07-01) — DISCREPANCY; see VIU-11"
   },
   {
     "test_id": "SP-INV-004",
     "title": "Invoicing Edit grants create invoices, payments, deposits, Send to Terminal",
     "jira": "SV-7388",
-    "permission": "Invoicing & Payments \u2192 Edit (invoicingPayments)",
+    "permission": "Invoicing & Payments → Edit (invoicingPayments)",
     "dependency_mode": "Cascade: auto-enable lower",
     "priority": "High",
     "type": "Positive",
-    "preconditions": "Admin account with access to Administration > Roles and Permissions and Administration > Staff. A test staff user exists to receive the custom role. Sample records exist in the environment as described in test_data.",
+    "preconditions": "Admin account with access to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) and Administration > Staff. A test staff user exists to receive the custom role. Sample records exist in the environment as described in test_data.",
     "role_setup": "Start from blank/no-access role. See Financial Data ON. Work Orders View ON. Invoicing & Payments: Edit ON (View auto), Delete OFF. All other permissions OFF.",
     "test_data": "Test user 'inv_edit_user'. WO #WO-1001 ready to invoice; a payment terminal is configured.",
     "steps": [
       {
         "n": 1,
-        "action": "As admin, follow the admin flow to create the custom role.",
+        "action": "As admin, follow the admin flow to create the custom role. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role dialog opens from a blank/no-access template with all permissions OFF."
       },
       {
@@ -1870,7 +1870,7 @@
       },
       {
         "n": 3,
-        "action": "Set the toggles exactly as specified in role_setup, then Save.",
+        "action": "Set the toggles exactly as specified in role_setup, then Create.",
         "expected": "Role saves successfully with only the intended toggles: See Financial Data ON; Work Orders View ON; Invoicing & Payments Edit ON (View auto); Delete OFF; all else OFF."
       },
       {
@@ -1895,70 +1895,70 @@
       }
     ],
     "expected_final": "User can create invoices, process payments, manage invoice fields, collect deposits and Send to Terminal; cannot delete payments or void.",
-    "source_viu": "Spec: Invoicing Edit grants create invoices, process payments, manage fields, collect deposits, Send to Terminal. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: Invoicing Edit grants create invoices, process payments, manage fields, collect deposits, Send to Terminal. VERIFIED (staging 2026-07-01) — MATCH; see VIU Findings Log"
   },
   {
     "test_id": "SP-INV-005",
     "title": "Invoicing Delete requires Manage AP/AR (AP/AR gate)",
     "jira": "SV-7388",
-    "permission": "Invoicing & Payments \u2192 Delete (invoicingPayments)",
+    "permission": "Invoicing & Payments → Delete (invoicingPayments)",
     "dependency_mode": "AP/AR gate: confirm modal",
     "priority": "Critical",
     "type": "Dependency",
-    "preconditions": "Admin account with access to Administration > Roles and Permissions and Administration > Staff. A test staff user exists to receive the custom role. Sample records exist in the environment as described in test_data.",
-    "role_setup": "Start from blank/no-access role. See Financial Data ON. Manage AP/AR OFF. Then enable Invoicing Delete.",
+    "preconditions": "Admin account with access to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) and Administration > Staff. A test staff user exists to receive the custom role. Sample records exist in the environment as described in test_data.",
+    "role_setup": "Start from blank/no-access role. See Financial Data ON. View and Manage AP/AR Data OFF. Then enable Invoicing Delete.",
     "test_data": "Admin editing the role in the Roles editor.",
     "steps": [
       {
         "n": 1,
-        "action": "As admin, follow the admin flow to create the custom role.",
+        "action": "As admin, follow the admin flow to create the custom role. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role dialog opens from a blank/no-access template with all permissions OFF."
       },
       {
         "n": 2,
-        "action": "Enable See Financial Data; keep Manage AP/AR OFF.",
-        "expected": "Financial ON; Manage AP/AR OFF."
+        "action": "Enable See Financial Data; keep View and Manage AP/AR Data OFF.",
+        "expected": "Financial ON; View and Manage AP/AR Data OFF."
       },
       {
         "n": 3,
         "action": "Enable Invoicing & Payments Delete.",
-        "expected": "The AP/AR gate is enforced: Invoicing Delete additionally requires Manage AP/AR (a confirm modal / requirement is shown to enable Manage AP/AR)."
+        "expected": "The AP/AR gate is enforced: Invoicing Delete additionally requires View and Manage AP/AR Data (a confirm modal / requirement is shown to enable View and Manage AP/AR Data)."
       },
       {
         "n": 4,
-        "action": "Confirm/enable Manage AP/AR.",
-        "expected": "Manage AP/AR enables and Invoicing Delete (with Edit+View cascade) is applied."
+        "action": "Confirm/enable View and Manage AP/AR Data.",
+        "expected": "View and Manage AP/AR Data enables and Invoicing Delete (with Edit+View cascade) is applied."
       }
     ],
-    "expected_final": "Invoicing Delete cannot be applied without Manage AP/AR; the AP/AR gate enforces enabling Manage AP/AR (in addition to the financial gate).",
-    "source_viu": "Spec: Invoicing Delete additionally requires Manage AP/AR (AP/AR gate). UNVERIFIED \u2014 VIU pending."
+    "expected_final": "Invoicing Delete cannot be applied without View and Manage AP/AR Data; the AP/AR gate enforces enabling View and Manage AP/AR Data (in addition to the financial gate).",
+    "source_viu": "Spec: Invoicing Delete additionally requires Manage AP/AR (AP/AR gate). UNVERIFIED — VIU pending."
   },
   {
     "test_id": "SP-INV-006",
     "title": "Invoicing Delete grants delete payments, void transactions, delete part-sale return",
     "jira": "SV-7388",
-    "permission": "Invoicing & Payments \u2192 Delete (invoicingPayments)",
+    "permission": "Invoicing & Payments → Delete (invoicingPayments)",
     "dependency_mode": "AP/AR gate: confirm modal",
     "priority": "High",
     "type": "Positive",
-    "preconditions": "Admin account with access to Administration > Roles and Permissions and Administration > Staff. A test staff user exists to receive the custom role. Sample records exist in the environment as described in test_data.",
-    "role_setup": "Start from blank/no-access role. See Financial Data ON. Manage AP/AR ON. Work Orders View ON. Invoicing & Payments: Delete ON (Edit+View auto). All other permissions OFF.",
+    "preconditions": "Admin account with access to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) and Administration > Staff. A test staff user exists to receive the custom role. Sample records exist in the environment as described in test_data.",
+    "role_setup": "Start from blank/no-access role. See Financial Data ON. View and Manage AP/AR Data ON. Work Orders View ON. Invoicing & Payments: Delete ON (Edit+View auto). All other permissions OFF.",
     "test_data": "Test user 'inv_delete_user'. A recorded payment (incl. a customer payment), a transaction to void and a part-sale return exist.",
     "steps": [
       {
         "n": 1,
-        "action": "As admin, follow the admin flow to create the custom role.",
+        "action": "As admin, follow the admin flow to create the custom role. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role dialog opens from a blank/no-access template with all permissions OFF."
       },
       {
         "n": 2,
-        "action": "Enable See Financial Data, Manage AP/AR, Work Orders View, then Invoicing Delete.",
-        "expected": "Invoicing Delete auto-enables Edit and View; no gate blocks since Financial + Manage AP/AR are ON."
+        "action": "Enable See Financial Data, View and Manage AP/AR Data, Work Orders View, then Invoicing Delete.",
+        "expected": "Invoicing Delete auto-enables Edit and View; no gate blocks since Financial + View and Manage AP/AR Data are ON."
       },
       {
         "n": 3,
-        "action": "Set the toggles exactly as specified in role_setup, then Save.",
-        "expected": "Role saves successfully with only the intended toggles: See Financial Data ON; Manage AP/AR ON; Work Orders View ON; Invoicing & Payments Delete ON (Edit+View auto); all else OFF."
+        "action": "Set the toggles exactly as specified in role_setup, then Create.",
+        "expected": "Role saves successfully with only the intended toggles: See Financial Data ON; View and Manage AP/AR Data ON; Work Orders View ON; Invoicing & Payments Delete ON (Edit+View auto); all else OFF."
       },
       {
         "n": 4,
@@ -1982,23 +1982,23 @@
       }
     ],
     "expected_final": "User can delete payments (incl. customer payments), void transactions and delete a part-sale return.",
-    "source_viu": "Spec: Invoicing Delete grants delete payments incl customer payments, void transactions, delete a part-sale return. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: Invoicing Delete grants delete payments incl customer payments, void transactions, delete a part-sale return. UNVERIFIED — VIU pending."
   },
   {
     "test_id": "SP-INV-007",
     "title": "Cross-dep: deleting a customer payment needs Invoicing Delete (Customer Delete alone insufficient)",
     "jira": "SV-7388",
-    "permission": "Invoicing & Payments \u2192 Delete (invoicingPayments) vs Customer Delete",
+    "permission": "Invoicing & Payments → Delete (invoicingPayments) vs Customer Delete",
     "dependency_mode": "None",
     "priority": "High",
     "type": "Security",
-    "preconditions": "Admin account with access to Administration > Roles and Permissions and Administration > Staff. A test staff user exists to receive the custom role. Sample records exist in the environment as described in test_data.",
+    "preconditions": "Admin account with access to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) and Administration > Staff. A test staff user exists to receive the custom role. Sample records exist in the environment as described in test_data.",
     "role_setup": "Start from blank/no-access role. Customer Management: Delete ON (Edit+View auto). Invoicing & Payments: all OFF. All other permissions OFF.",
     "test_data": "Test user 'cust_del_no_inv'. A customer with a recorded customer payment.",
     "steps": [
       {
         "n": 1,
-        "action": "As admin, follow the admin flow to create the custom role.",
+        "action": "As admin, follow the admin flow to create the custom role. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role dialog opens from a blank/no-access template with all permissions OFF."
       },
       {
@@ -2008,7 +2008,7 @@
       },
       {
         "n": 3,
-        "action": "Set the toggles exactly as specified in role_setup, then Save.",
+        "action": "Set the toggles exactly as specified in role_setup, then Create.",
         "expected": "Role saves successfully with only the intended toggles: Customer Management Delete ON (Edit+View auto); Invoicing & Payments all OFF; all else OFF."
       },
       {
@@ -2028,23 +2028,23 @@
       }
     ],
     "expected_final": "Customer Delete alone cannot delete a customer payment; Invoicing Delete is required.",
-    "source_viu": "Spec: deleting a customer payment needs Invoicing Delete (cross-dep). UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: deleting a customer payment needs Invoicing Delete (cross-dep). UNVERIFIED — VIU pending."
   },
   {
     "test_id": "SP-INV-008",
     "title": "Cross-dep: reversing an invoice needs WO Delete even with Invoicing Edit",
     "jira": "SV-7388",
-    "permission": "Invoicing & Payments \u2192 Edit (invoicingPayments) vs Work Orders Delete",
+    "permission": "Invoicing & Payments → Edit (invoicingPayments) vs Work Orders Delete",
     "dependency_mode": "None",
     "priority": "High",
     "type": "Security",
-    "preconditions": "Admin account with access to Administration > Roles and Permissions and Administration > Staff. A test staff user exists to receive the custom role. Sample records exist in the environment as described in test_data.",
+    "preconditions": "Admin account with access to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) and Administration > Staff. A test staff user exists to receive the custom role. Sample records exist in the environment as described in test_data.",
     "role_setup": "Start from blank/no-access role. See Financial Data ON. Work Orders: View ON, Delete OFF. Invoicing & Payments: Edit ON (View auto). All other permissions OFF.",
     "test_data": "Test user 'inv_edit_no_wodel'. WO #WO-2002 with an invoice (no payments).",
     "steps": [
       {
         "n": 1,
-        "action": "As admin, follow the admin flow to create the custom role.",
+        "action": "As admin, follow the admin flow to create the custom role. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role dialog opens from a blank/no-access template with all permissions OFF."
       },
       {
@@ -2054,7 +2054,7 @@
       },
       {
         "n": 3,
-        "action": "Set the toggles exactly as specified in role_setup, then Save.",
+        "action": "Set the toggles exactly as specified in role_setup, then Create.",
         "expected": "Role saves successfully with only the intended toggles: See Financial Data ON; Work Orders View ON, Delete OFF; Invoicing & Payments Edit ON (View auto); all else OFF."
       },
       {
@@ -2074,23 +2074,23 @@
       }
     ],
     "expected_final": "Invoice reversal requires WO Delete; Invoicing Edit alone is insufficient.",
-    "source_viu": "Spec: reversing an invoice needs WO Delete (cross-dep). UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: reversing an invoice needs WO Delete (cross-dep). UNVERIFIED — VIU pending."
   },
   {
     "test_id": "SP-TS-001",
     "title": "Timesheets View grants viewing timesheets from WOs; Timesheets nav visible",
     "jira": "SV-7388",
-    "permission": "Timesheets \u2192 View (timesheets)",
+    "permission": "Timesheets → View (timesheets)",
     "dependency_mode": "None",
     "priority": "Medium",
     "type": "Positive",
-    "preconditions": "Admin account with access to Administration > Roles and Permissions and Administration > Staff. A test staff user exists to receive the custom role. Sample records exist in the environment as described in test_data.",
+    "preconditions": "Admin account with access to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) and Administration > Staff. A test staff user exists to receive the custom role. Sample records exist in the environment as described in test_data.",
     "role_setup": "Start from blank/no-access role. Work Orders View ON. Timesheets: View ON, Edit OFF. All other permissions OFF.",
     "test_data": "Test user 'ts_view_user'. WO #WO-1001 with timesheet entries.",
     "steps": [
       {
         "n": 1,
-        "action": "As admin, follow the admin flow to create the custom role.",
+        "action": "As admin, follow the admin flow to create the custom role. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role dialog opens from a blank/no-access template with all permissions OFF."
       },
       {
@@ -2100,7 +2100,7 @@
       },
       {
         "n": 3,
-        "action": "Set the toggles exactly as specified in role_setup, then Save.",
+        "action": "Set the toggles exactly as specified in role_setup, then Create.",
         "expected": "Role saves successfully with only the intended toggles: Work Orders View ON; Timesheets View ON; Edit OFF; all else OFF."
       },
       {
@@ -2125,23 +2125,23 @@
       }
     ],
     "expected_final": "User can view timesheets from WOs; no edit or delete actions available.",
-    "source_viu": "Spec: Timesheets View grants view timesheets from WOs; OFF hides Timesheets nav; no Delete action exists. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: Timesheets View grants view timesheets from WOs; OFF hides Timesheets nav; no Delete action exists. UNVERIFIED — VIU pending."
   },
   {
     "test_id": "SP-TS-002",
     "title": "Timesheets View OFF hides nav, but Reports ON still shows timesheet activities report",
     "jira": "SV-7388",
-    "permission": "Timesheets \u2192 View (timesheets)",
+    "permission": "Timesheets → View (timesheets)",
     "dependency_mode": "None",
     "priority": "Medium",
     "type": "Negative",
-    "preconditions": "Admin account with access to Administration > Roles and Permissions and Administration > Staff. A test staff user exists to receive the custom role. Sample records exist in the environment as described in test_data.",
+    "preconditions": "Admin account with access to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) and Administration > Staff. A test staff user exists to receive the custom role. Sample records exist in the environment as described in test_data.",
     "role_setup": "Start from blank/no-access role. Timesheets: View OFF, Edit OFF. Reports ON. All other permissions OFF.",
     "test_data": "Test user 'ts_reports_user'. Timesheet activities report exists.",
     "steps": [
       {
         "n": 1,
-        "action": "As admin, follow the admin flow to create the custom role.",
+        "action": "As admin, follow the admin flow to create the custom role. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role dialog opens from a blank/no-access template with all permissions OFF."
       },
       {
@@ -2151,7 +2151,7 @@
       },
       {
         "n": 3,
-        "action": "Set the toggles exactly as specified in role_setup, then Save.",
+        "action": "Set the toggles exactly as specified in role_setup, then Create.",
         "expected": "Role saves successfully with only the intended toggles: Timesheets View OFF; Edit OFF; Reports ON; all else OFF."
       },
       {
@@ -2176,28 +2176,28 @@
       }
     ],
     "expected_final": "With Timesheets View OFF the Timesheets nav is hidden, but the timesheet activities report remains available when Reports is ON.",
-    "source_viu": "Spec: Timesheets View OFF hides Timesheets nav but Reports ON still shows the timesheet activities report. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: Timesheets View OFF hides Timesheets nav but Reports ON still shows the timesheet activities report. UNVERIFIED — VIU pending."
   },
   {
     "test_id": "SP-TS-003",
     "title": "Clock in/out always available regardless of Timesheets permission",
     "jira": "SV-7388",
-    "permission": "Timesheets \u2192 View (timesheets)",
+    "permission": "Timesheets → View (timesheets)",
     "dependency_mode": "None",
     "priority": "Medium",
     "type": "Security",
-    "preconditions": "Admin account with access to Administration > Roles and Permissions and Administration > Staff. A test staff user exists to receive the custom role. Sample records exist in the environment as described in test_data.",
+    "preconditions": "Admin account with access to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) and Administration > Staff. A test staff user exists to receive the custom role. Sample records exist in the environment as described in test_data.",
     "role_setup": "Start from blank/no-access role. Timesheets: View OFF, Edit OFF. All other permissions OFF.",
     "test_data": "Test user 'ts_none_user'.",
     "steps": [
       {
         "n": 1,
-        "action": "As admin, follow the admin flow to create the custom role.",
+        "action": "As admin, follow the admin flow to create the custom role. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role dialog opens from a blank/no-access template with all permissions OFF."
       },
       {
         "n": 2,
-        "action": "Set the toggles exactly as specified in role_setup, then Save.",
+        "action": "Set the toggles exactly as specified in role_setup, then Create.",
         "expected": "Role saves successfully with only the intended toggles: Timesheets View OFF; Edit OFF; all else OFF."
       },
       {
@@ -2217,23 +2217,23 @@
       }
     ],
     "expected_final": "All users can always clock in/out regardless of Timesheets permission.",
-    "source_viu": "Spec: all users can always clock in/out. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: all users can always clock in/out. UNVERIFIED — VIU pending."
   },
   {
     "test_id": "SP-TS-004",
     "title": "Timesheets Edit grants entry edits, hour adjustments, attendance for all staff",
     "jira": "SV-7388",
-    "permission": "Timesheets \u2192 Edit (timesheets)",
+    "permission": "Timesheets → Edit (timesheets)",
     "dependency_mode": "Cascade: auto-enable lower",
     "priority": "Medium",
     "type": "Positive",
-    "preconditions": "Admin account with access to Administration > Roles and Permissions and Administration > Staff. A test staff user exists to receive the custom role. Sample records exist in the environment as described in test_data.",
+    "preconditions": "Admin account with access to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) and Administration > Staff. A test staff user exists to receive the custom role. Sample records exist in the environment as described in test_data.",
     "role_setup": "Start from blank/no-access role. Work Orders View ON. Timesheets: Edit ON (View auto). All other permissions OFF.",
     "test_data": "Test user 'ts_edit_user'. Timesheet entries for multiple staff exist.",
     "steps": [
       {
         "n": 1,
-        "action": "As admin, follow the admin flow to create the custom role.",
+        "action": "As admin, follow the admin flow to create the custom role. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role dialog opens from a blank/no-access template with all permissions OFF."
       },
       {
@@ -2243,7 +2243,7 @@
       },
       {
         "n": 3,
-        "action": "Set the toggles exactly as specified in role_setup, then Save.",
+        "action": "Set the toggles exactly as specified in role_setup, then Create.",
         "expected": "Role saves successfully with only the intended toggles: Work Orders View ON; Timesheets Edit ON (View auto); all else OFF."
       },
       {
@@ -2268,33 +2268,33 @@
       }
     ],
     "expected_final": "User can edit entries, adjust hours and manage attendance for all staff; confirms no Delete action exists.",
-    "source_viu": "Spec: Timesheets Edit grants edit entries, adjust hours, manage attendance for all staff; no Delete action exists. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: Timesheets Edit grants edit entries, adjust hours, manage attendance for all staff; no Delete action exists. VERIFIED (staging 2026-07-01) — MATCH; see VIU Findings Log"
   },
   {
     "test_id": "SP-TS-005",
     "title": "Timesheets has no Delete checkbox/action (verify absence)",
     "jira": "SV-7388",
-    "permission": "Timesheets \u2192 Delete (timesheets) \u2014 should not exist",
+    "permission": "Timesheets → Delete (timesheets) — should not exist",
     "dependency_mode": "None",
     "priority": "Low",
     "type": "Negative",
-    "preconditions": "Admin account with access to Administration > Roles and Permissions and Administration > Staff. A test staff user exists to receive the custom role. Sample records exist in the environment as described in test_data.",
+    "preconditions": "Admin account with access to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) and Administration > Staff. A test staff user exists to receive the custom role. Sample records exist in the environment as described in test_data.",
     "role_setup": "Start from blank/no-access role. Timesheets: Edit ON (View auto). All other permissions OFF.",
     "test_data": "Admin editing the role; test user 'ts_edit_user' assigned.",
     "steps": [
       {
         "n": 1,
-        "action": "As admin, follow the admin flow to create the custom role.",
+        "action": "As admin, follow the admin flow to create the custom role. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role dialog opens from a blank/no-access template with all permissions OFF."
       },
       {
         "n": 2,
         "action": "In the role editor inspect the Timesheets permission group.",
-        "expected": "Timesheets exposes only View and Edit \u2014 there is no Delete checkbox."
+        "expected": "Timesheets exposes only View and Edit — there is no Delete checkbox."
       },
       {
         "n": 3,
-        "action": "Set the toggles exactly as specified in role_setup, then Save.",
+        "action": "Set the toggles exactly as specified in role_setup, then Create.",
         "expected": "Role saves successfully with only the intended toggles: Timesheets Edit ON (View auto); all else OFF."
       },
       {
@@ -2314,6 +2314,6 @@
       }
     ],
     "expected_final": "Timesheets has no Delete checkbox in the role editor and no Delete action in the app.",
-    "source_viu": "Spec: Timesheets has NO Delete action (verify no Delete option). UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: Timesheets has NO Delete action (verify no Delete option). UNVERIFIED — VIU pending."
   }
 ]

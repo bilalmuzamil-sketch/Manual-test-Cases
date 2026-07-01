@@ -1,19 +1,19 @@
 [
   {
     "test_id": "CB-REP-001",
-    "title": "Representative: Read-only Front Desk role \u2014 view WO/Customers/Schedule, no edits, no financials",
+    "title": "Representative: Read-only Front Desk role — view WO/Customers/Schedule, no edits, no financials",
     "jira": "SV-7500, SV-7388 (Work Orders, Customers, Schedule)",
     "permission": "WO View + Customers View + Schedule View, no create/edit/delete, financials OFF",
     "dependency_mode": "None",
     "priority": "High",
     "type": "Combination",
     "preconditions": "Logged in as an Administrator with full access. Application is on the Custom Roles & Permissions build (Epic SV-7388, SV-7500 enabled). At least one test staff member exists to receive the role. A second browser/session is available to log in as the test staff user.",
-    "role_setup": "ON: Work Orders > View; Customers > View; Schedule > View. OFF: everything else \u2014 no WO Edit/Delete, no WO Lines, no Customers Edit/Delete, no Schedule Edit/Delete, See Financial Data OFF, Invoicing OFF, Parts Department OFF, Part Sales OFF, Catalog OFF, Vendor OFF, Reports OFF, Timesheets OFF, History Logs OFF, Settings OFF, App Settings OFF, Manage AP/AR OFF. View Mode = Full (UX only).",
+    "role_setup": "ON: Work Orders > View; Customers > View; Schedule > View. OFF: everything else — no WO Edit/Delete, no WO Lines, no Customers Edit/Delete, no Schedule Edit/Delete, See Financial Data OFF, Invoicing OFF, Parts Department OFF, Part Sales OFF, Catalog OFF, Vendor OFF, Reports OFF, Timesheets OFF, History Logs OFF, Settings OFF, App Settings OFF, View and Manage AP/AR Data OFF. View Mode = Full (UX only).",
     "test_data": "Test staff user 'frontdesk_qa'. One existing work order, one customer, one schedule entry.",
     "steps": [
       {
         "n": 1,
-        "action": "Navigate Administration > Roles and Permissions > Create Custom Role. Start from a blank/minimal baseline (all toggles OFF). Name the role 'Read-only Front Desk'.",
+        "action": "Navigate Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) > Create Custom Role. Start from a blank/minimal baseline (all toggles OFF). Name the role 'Read-only Front Desk'. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role form opens with every permission toggle OFF by default. Role name accepted."
       },
       {
@@ -23,7 +23,7 @@
       },
       {
         "n": 3,
-        "action": "Save the role, then go Administration > Staff > open the test user > assign role 'Read-only Front Desk' > Save.",
+        "action": "Save the role, then go Administration > Staff > open the test user > assign role 'Read-only Front Desk' > Create.",
         "expected": "Role saved with exactly the configured toggles. Staff assignment saved. A role change forces the affected user to be logged out."
       },
       {
@@ -48,23 +48,23 @@
       }
     ],
     "expected_final": "User can only view Work Orders, Customers, and Schedule. All other areas hidden, no edit capability, no financial data visible. Access equals exactly the granted union.",
-    "source_viu": "Spec: SV-7388 role matrix; CRUD cascade & financial-gate rules. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: SV-7388 role matrix; CRUD cascade & financial-gate rules. UNVERIFIED — VIU pending."
   },
   {
     "test_id": "CB-REP-002",
-    "title": "Representative: Scheduler role \u2014 full Schedule CRUD + WO/Customers view, no financials",
+    "title": "Representative: Scheduler role — full Schedule CRUD + WO/Customers view, no financials",
     "jira": "SV-7500, SV-7388 (Schedule, Work Orders, Customers)",
     "permission": "Schedule V/E/D + WO View + Customers View, nothing financial",
     "dependency_mode": "Cascade: auto-enable lower",
     "priority": "High",
     "type": "Combination",
     "preconditions": "Logged in as an Administrator with full access. Application is on the Custom Roles & Permissions build (Epic SV-7388, SV-7500 enabled). At least one test staff member exists to receive the role. A second browser/session is available to log in as the test staff user.",
-    "role_setup": "ON: Schedule > View, Edit, Delete; Work Orders > View; Customers > View. OFF: everything else \u2014 WO Edit/Delete, WO Lines, Customers Edit/Delete, See Financial Data, Invoicing, Parts Department, Part Sales, Catalog, Vendor, Reports, Timesheets, History Logs, Settings, App Settings, Manage AP/AR.",
+    "role_setup": "ON: Schedule > View, Edit, Delete; Work Orders > View; Customers > View. OFF: everything else — WO Edit/Delete, WO Lines, Customers Edit/Delete, See Financial Data, Invoicing, Parts Department, Part Sales, Catalog, Vendor, Reports, Timesheets, History Logs, Settings, App Settings, View and Manage AP/AR Data.",
     "test_data": "Test staff user 'scheduler_qa'. Existing schedule entries, work orders, customers.",
     "steps": [
       {
         "n": 1,
-        "action": "Navigate Administration > Roles and Permissions > Create Custom Role. Start from a blank/minimal baseline (all toggles OFF). Name the role 'Scheduler'.",
+        "action": "Navigate Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) > Create Custom Role. Start from a blank/minimal baseline (all toggles OFF). Name the role 'Scheduler'. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role form opens with every permission toggle OFF by default. Role name accepted."
       },
       {
@@ -79,7 +79,7 @@
       },
       {
         "n": 4,
-        "action": "Save the role, then go Administration > Staff > open the test user > assign role 'Scheduler' > Save.",
+        "action": "Save the role, then go Administration > Staff > open the test user > assign role 'Scheduler' > Create.",
         "expected": "Role saved with exactly the configured toggles. Staff assignment saved. A role change forces the affected user to be logged out."
       },
       {
@@ -104,23 +104,23 @@
       }
     ],
     "expected_final": "Scheduler can fully manage Schedule and view WO/Customers only. Delete-triggered cascade left Schedule Edit+View ON. No financial or other areas accessible.",
-    "source_viu": "Spec: SV-7388 CRUD cascade (Delete\u2192Edit\u2192View). UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: SV-7388 CRUD cascade (Delete→Edit→View). VERIFIED (staging 2026-07-01) — MATCH; see VIU Findings Log"
   },
   {
     "test_id": "CB-REP-003",
-    "title": "Representative: Junior Tech (Tech View) \u2014 WO view, WO Lines edit, Pick Parts, no financials",
+    "title": "Representative: Junior Tech (Tech View) — WO view, WO Lines edit, Pick Parts, no financials",
     "jira": "SV-7500, SV-7388 (Work Orders, WO Lines, WO sub-settings, View Mode)",
     "permission": "WO View + WO Lines Edit + Pick Parts + Tech View, financials OFF",
     "dependency_mode": "Cascade: auto-enable lower",
     "priority": "High",
     "type": "Combination",
     "preconditions": "Logged in as an Administrator with full access. Application is on the Custom Roles & Permissions build (Epic SV-7388, SV-7500 enabled). At least one test staff member exists to receive the role. A second browser/session is available to log in as the test staff user.",
-    "role_setup": "ON: Work Orders > View; Work Order Lines > View, Edit; WO sub-setting Pick Parts; View Mode = Tech View. OFF: everything else \u2014 WO Edit/Delete, WO Lines Delete, Review and Order sub-settings, See Financial Data, Invoicing, Parts Department, Part Sales, Catalog, Vendor, Customers, Schedule, Reports, Timesheets, History Logs, Settings, App Settings, Manage AP/AR.",
+    "role_setup": "ON: Work Orders > View; Work Order Lines > View, Edit; WO sub-setting Pick Parts; View Mode = Tech View. OFF: everything else — WO Edit/Delete, WO Lines Delete, Review and Order sub-settings, See Financial Data, Invoicing, Parts Department, Part Sales, Catalog, Vendor, Customers, Schedule, Reports, Timesheets, History Logs, Settings, App Settings, View and Manage AP/AR Data.",
     "test_data": "Test staff user 'jrtech_qa'. Work order with lines to pick parts on.",
     "steps": [
       {
         "n": 1,
-        "action": "Navigate Administration > Roles and Permissions > Create Custom Role. Start from a blank/minimal baseline (all toggles OFF). Name the role 'Junior Tech'.",
+        "action": "Navigate Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) > Create Custom Role. Start from a blank/minimal baseline (all toggles OFF). Name the role 'Junior Tech'. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role form opens with every permission toggle OFF by default. Role name accepted."
       },
       {
@@ -140,7 +140,7 @@
       },
       {
         "n": 5,
-        "action": "Save the role, then go Administration > Staff > open the test user > assign role 'Junior Tech' > Save.",
+        "action": "Save the role, then go Administration > Staff > open the test user > assign role 'Junior Tech' > Create.",
         "expected": "Role saved with exactly the configured toggles. Staff assignment saved. A role change forces the affected user to be logged out."
       },
       {
@@ -160,23 +160,23 @@
       }
     ],
     "expected_final": "Junior Tech in Tech View can view WOs, edit lines, and pick parts only. WO Lines Edit cascaded View ON. No header edit, no delete, no financials/other areas.",
-    "source_viu": "Spec: SV-7388 WO sub-settings require WO View; CRUD cascade; View Mode UX-only. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: SV-7388 WO sub-settings require WO View; CRUD cascade; View Mode UX-only. VERIFIED (staging 2026-07-01) — MATCH; see VIU Findings Log"
   },
   {
     "test_id": "CB-REP-004",
-    "title": "Representative: Parts-only clerk \u2014 Parts Dept + Catalog V/E + Vendor V + Part Sales V, financials ON",
+    "title": "Representative: Parts-only clerk — Parts Dept + Catalog V/E + Vendor V + Part Sales V, financials ON",
     "jira": "SV-7500, SV-7388 (Parts Department, Catalog, Vendor, Part Sales, Financial gate, Parent gate)",
     "permission": "Parts Department ON + Catalog V/E + Vendor V + Part Sales V, See Financial Data ON, no WO/Schedule",
     "dependency_mode": "Multiple",
     "priority": "High",
     "type": "Combination",
     "preconditions": "Logged in as an Administrator with full access. Application is on the Custom Roles & Permissions build (Epic SV-7388, SV-7500 enabled). At least one test staff member exists to receive the role. A second browser/session is available to log in as the test staff user.",
-    "role_setup": "ON: Parts Department (parent); Catalog > View, Edit; Vendor > View; Part Sales > View; See Financial Data. OFF: everything else \u2014 Catalog Delete, Vendor Edit/Delete, Part Sales Edit/Delete, Work Orders, WO Lines, Customers, Schedule, Invoicing, Reports, Timesheets, History Logs, Settings, App Settings, Manage AP/AR.",
+    "role_setup": "ON: Parts Department (parent); Catalog > View, Edit; Vendor > View; Part Sales > View; See Financial Data. OFF: everything else — Catalog Delete, Vendor Edit/Delete, Part Sales Edit/Delete, Work Orders, WO Lines, Customers, Schedule, Invoicing, Reports, Timesheets, History Logs, Settings, App Settings, View and Manage AP/AR Data.",
     "test_data": "Test staff user 'partsclerk_qa'. Existing catalog items, vendors, part-sale records.",
     "steps": [
       {
         "n": 1,
-        "action": "Navigate Administration > Roles and Permissions > Create Custom Role. Start from a blank/minimal baseline (all toggles OFF). Name the role 'Parts-only clerk'.",
+        "action": "Navigate Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) > Create Custom Role. Start from a blank/minimal baseline (all toggles OFF). Name the role 'Parts-only clerk'. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role form opens with every permission toggle OFF by default. Role name accepted."
       },
       {
@@ -197,7 +197,7 @@
       {
         "n": 5,
         "action": "Enable Part Sales > View.",
-        "expected": "Financial confirm modal appears: 'Part Sales requires See Financial Data to be enabled. Enable it?' \u2014 click Enable. See Financial Data turns ON; Part Sales View ON."
+        "expected": "Financial confirm modal appears: Modal title: \"Enable See Financial Data?\" Body: \"Part Sales requires See Financial Data. Enable it to grant this permission?\" Buttons: \"Cancel\" / \"Enable\" — click Enable. See Financial Data turns ON; Part Sales View ON. [Build-vs-spec: spec wording differed — see VIU-11.]"
       },
       {
         "n": 6,
@@ -206,7 +206,7 @@
       },
       {
         "n": 7,
-        "action": "Save the role, then go Administration > Staff > open the test user > assign role 'Parts-only clerk' > Save.",
+        "action": "Save the role, then go Administration > Staff > open the test user > assign role 'Parts-only clerk' > Create.",
         "expected": "Role saved with exactly the configured toggles. Staff assignment saved. A role change forces the affected user to be logged out."
       },
       {
@@ -226,23 +226,23 @@
       }
     ],
     "expected_final": "Clerk can manage Catalog (V/E), view Vendor and Part Sales with financials. Parent gate (Parts Dept) enabled children; financial modal enabled See Financial Data. No WO/Schedule/Invoicing/other.",
-    "source_viu": "Spec: SV-7388 Parts parent gate; Part Sales financial gate; CRUD cascade. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: SV-7388 Parts parent gate; Part Sales financial gate; CRUD cascade. VERIFIED (staging 2026-07-01) — MATCH; see VIU Findings Log"
   },
   {
     "test_id": "CB-REP-005",
-    "title": "Representative: Cashier/Invoicing \u2014 WO View + Invoicing V/E + Financial ON, no AP/AR, no delete",
+    "title": "Representative: Cashier/Invoicing — WO View + Invoicing V/E + Financial ON, no AP/AR, no delete",
     "jira": "SV-7500, SV-7388 (Work Orders, Invoicing, Financial gate)",
     "permission": "WO View + Invoicing View/Edit + See Financial Data ON, AP/AR OFF, no delete",
     "dependency_mode": "Financial gate: confirm modal",
     "priority": "Critical",
     "type": "Combination",
     "preconditions": "Logged in as an Administrator with full access. Application is on the Custom Roles & Permissions build (Epic SV-7388, SV-7500 enabled). At least one test staff member exists to receive the role. A second browser/session is available to log in as the test staff user.",
-    "role_setup": "ON: Work Orders > View; Invoicing > View, Edit; See Financial Data. OFF: everything else \u2014 WO Edit/Delete, WO Lines, Invoicing Delete, Manage AP/AR, Customers, Schedule, Parts Department, Part Sales, Catalog, Vendor, Reports, Timesheets, History Logs, Settings, App Settings.",
+    "role_setup": "ON: Work Orders > View; Invoicing > View, Edit; See Financial Data. OFF: everything else — WO Edit/Delete, WO Lines, Invoicing Delete, View and Manage AP/AR Data, Customers, Schedule, Parts Department, Part Sales, Catalog, Vendor, Reports, Timesheets, History Logs, Settings, App Settings.",
     "test_data": "Test staff user 'cashier_qa'. Work order ready to invoice; open invoice.",
     "steps": [
       {
         "n": 1,
-        "action": "Navigate Administration > Roles and Permissions > Create Custom Role. Start from a blank/minimal baseline (all toggles OFF). Name the role 'Cashier'.",
+        "action": "Navigate Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) > Create Custom Role. Start from a blank/minimal baseline (all toggles OFF). Name the role 'Cashier'. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role form opens with every permission toggle OFF by default. Role name accepted."
       },
       {
@@ -253,16 +253,16 @@
       {
         "n": 3,
         "action": "Enable Invoicing > Edit.",
-        "expected": "Cascade auto-enables Invoicing > View. Financial confirm modal appears: 'Invoicing requires See Financial Data to be enabled. Enable it?' \u2014 click Enable. See Financial Data turns ON."
+        "expected": "Cascade auto-enables Invoicing > View. Financial confirm modal appears: Modal title: \"Enable See Financial Data?\" Body: \"Invoicing requires See Financial Data. Enable it to grant this permission?\" Buttons: \"Cancel\" / \"Enable\" — click Enable. See Financial Data turns ON. [Build-vs-spec: spec wording differed — see VIU-11.]"
       },
       {
         "n": 4,
-        "action": "Confirm Invoicing Delete and Manage AP/AR remain OFF.",
-        "expected": "Invoicing View+Edit ON, Delete OFF, Manage AP/AR OFF, See Financial Data ON."
+        "action": "Confirm Invoicing Delete and View and Manage AP/AR Data remain OFF.",
+        "expected": "Invoicing View+Edit ON, Delete OFF, View and Manage AP/AR Data OFF, See Financial Data ON."
       },
       {
         "n": 5,
-        "action": "Save the role, then go Administration > Staff > open the test user > assign role 'Cashier' > Save.",
+        "action": "Save the role, then go Administration > Staff > open the test user > assign role 'Cashier' > Create.",
         "expected": "Role saved with exactly the configured toggles. Staff assignment saved. A role change forces the affected user to be logged out."
       },
       {
@@ -282,23 +282,23 @@
       }
     ],
     "expected_final": "Cashier can view WOs and view/edit invoices with financial data. Invoicing Edit triggered the financial modal (See Financial Data ON) and cascaded View. No delete, no AP/AR, no other areas.",
-    "source_viu": "Spec: SV-7388 Invoicing financial gate; CRUD cascade; Invoicing Delete requires AP/AR. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: SV-7388 Invoicing financial gate; CRUD cascade; Invoicing Delete requires AP/AR. VERIFIED (staging 2026-07-01) — DISCREPANCY; see VIU-11"
   },
   {
     "test_id": "CB-REP-006",
-    "title": "Representative: Reports-only analyst \u2014 Reports ON + Financial ON + AP/AR ON, all CRUD OFF",
+    "title": "Representative: Reports-only analyst — Reports ON + Financial ON + AP/AR ON, all CRUD OFF",
     "jira": "SV-7500, SV-7388 (Reports, Financial, AP/AR)",
-    "permission": "Reports ON + See Financial Data ON + Manage AP/AR ON, all operational CRUD OFF",
+    "permission": "Reports ON + See Financial Data ON + View and Manage AP/AR Data ON, all operational CRUD OFF",
     "dependency_mode": "None",
     "priority": "Medium",
     "type": "Combination",
     "preconditions": "Logged in as an Administrator with full access. Application is on the Custom Roles & Permissions build (Epic SV-7388, SV-7500 enabled). At least one test staff member exists to receive the role. A second browser/session is available to log in as the test staff user.",
-    "role_setup": "ON: Reports (all-or-nothing); See Financial Data; Manage AP/AR. OFF: everything else \u2014 all Work Orders/WO Lines/Customers/Schedule/Invoicing/Parts Department/Part Sales/Catalog/Vendor CRUD, Timesheets, History Logs, Settings, App Settings.",
+    "role_setup": "ON: Reports (all-or-nothing); See Financial Data; View and Manage AP/AR Data. OFF: everything else — all Work Orders/WO Lines/Customers/Schedule/Invoicing/Parts Department/Part Sales/Catalog/Vendor CRUD, Timesheets, History Logs, Settings, App Settings.",
     "test_data": "Test staff user 'analyst_qa'. Reports with financial figures exist.",
     "steps": [
       {
         "n": 1,
-        "action": "Navigate Administration > Roles and Permissions > Create Custom Role. Start from a blank/minimal baseline (all toggles OFF). Name the role 'Reports-only analyst'.",
+        "action": "Navigate Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) > Create Custom Role. Start from a blank/minimal baseline (all toggles OFF). Name the role 'Reports-only analyst'. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role form opens with every permission toggle OFF by default. Role name accepted."
       },
       {
@@ -308,12 +308,12 @@
       },
       {
         "n": 3,
-        "action": "Enable See Financial Data and Manage AP/AR.",
+        "action": "Enable See Financial Data and View and Manage AP/AR Data.",
         "expected": "Both toggles ON. No financial modal (enabling See Financial Data directly, not via a gated area)."
       },
       {
         "n": 4,
-        "action": "Save the role, then go Administration > Staff > open the test user > assign role 'Reports-only analyst' > Save.",
+        "action": "Save the role, then go Administration > Staff > open the test user > assign role 'Reports-only analyst' > Create.",
         "expected": "Role saved with exactly the configured toggles. Staff assignment saved. A role change forces the affected user to be logged out."
       },
       {
@@ -333,23 +333,23 @@
       }
     ],
     "expected_final": "Analyst can only open Reports (with financial + AP/AR data). No operational CRUD, no other nav. Reports is all-or-nothing so the whole reporting area is available.",
-    "source_viu": "Spec: SV-7388 Reports all-or-nothing; See Financial Data & AP/AR flags. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: SV-7388 Reports all-or-nothing; See Financial Data & AP/AR flags. UNVERIFIED — VIU pending."
   },
   {
     "test_id": "CB-REP-007",
-    "title": "Representative: Service writer (no AP/AR) \u2014 broad V/E across WO/Lines/Customers/Schedule/Invoicing, Financial ON",
+    "title": "Representative: Service writer (no AP/AR) — broad V/E across WO/Lines/Customers/Schedule/Invoicing, Financial ON",
     "jira": "SV-7500, SV-7388 (Work Orders, WO Lines, Customers, Schedule, Invoicing, WO sub-settings, Financial gate)",
     "permission": "WO V/E, WO Lines V/E/D, Customers V/E, Schedule V/E, Invoicing V/E, Review/Pick/Order ON, Financial ON, AP/AR OFF",
     "dependency_mode": "Multiple",
     "priority": "Critical",
     "type": "Combination",
     "preconditions": "Logged in as an Administrator with full access. Application is on the Custom Roles & Permissions build (Epic SV-7388, SV-7500 enabled). At least one test staff member exists to receive the role. A second browser/session is available to log in as the test staff user.",
-    "role_setup": "ON: Work Orders > View, Edit; Work Order Lines > View, Edit, Delete; Customers > View, Edit; Schedule > View, Edit; Invoicing > View, Edit; WO sub-settings Review, Pick Parts, Order; See Financial Data. OFF: everything else \u2014 WO Delete, Customers Delete, Schedule Delete, Invoicing Delete, Manage AP/AR, Parts Department, Part Sales, Catalog, Vendor, Reports, Timesheets, History Logs, Settings, App Settings.",
+    "role_setup": "ON: Work Orders > View, Edit; Work Order Lines > View, Edit, Delete; Customers > View, Edit; Schedule > View, Edit; Invoicing > View, Edit; WO sub-settings Review, Pick Parts, Order; See Financial Data. OFF: everything else — WO Delete, Customers Delete, Schedule Delete, Invoicing Delete, View and Manage AP/AR Data, Parts Department, Part Sales, Catalog, Vendor, Reports, Timesheets, History Logs, Settings, App Settings.",
     "test_data": "Test staff user 'svcwriter_qa'. Work order with lines, customer, schedule entry, invoice.",
     "steps": [
       {
         "n": 1,
-        "action": "Navigate Administration > Roles and Permissions > Create Custom Role. Start from a blank/minimal baseline (all toggles OFF). Name the role 'Service writer'.",
+        "action": "Navigate Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) > Create Custom Role. Start from a blank/minimal baseline (all toggles OFF). Name the role 'Service writer'. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role form opens with every permission toggle OFF by default. Role name accepted."
       },
       {
@@ -360,7 +360,7 @@
       {
         "n": 3,
         "action": "Enable Work Order Lines > Delete.",
-        "expected": "Cascade auto-enables WO Lines > Edit and View (Delete\u2192Edit\u2192View)."
+        "expected": "Cascade auto-enables WO Lines > Edit and View (Delete→Edit→View)."
       },
       {
         "n": 4,
@@ -370,16 +370,16 @@
       {
         "n": 5,
         "action": "Enable Invoicing > Edit.",
-        "expected": "Cascade auto-enables Invoicing > View. Financial confirm modal: 'Invoicing requires See Financial Data to be enabled. Enable it?' \u2014 click Enable; See Financial Data ON."
+        "expected": "Cascade auto-enables Invoicing > View. Financial confirm modal: Modal title: \"Enable See Financial Data?\" Body: \"Invoicing requires See Financial Data. Enable it to grant this permission?\" Buttons: \"Cancel\" / \"Enable\" — click Enable; See Financial Data ON. [Build-vs-spec: spec wording differed — see VIU-11.]"
       },
       {
         "n": 6,
-        "action": "Enable WO sub-settings Review, Pick Parts, Order. Confirm all Delete toggles except WO Lines are OFF and Manage AP/AR OFF.",
-        "expected": "Review/Pick Parts/Order ON. WO Delete, Customers Delete, Schedule Delete, Invoicing Delete OFF; Manage AP/AR OFF."
+        "action": "Enable WO sub-settings Review, Pick Parts, Order. Confirm all Delete toggles except WO Lines are OFF and View and Manage AP/AR Data OFF.",
+        "expected": "Review/Pick Parts/Order ON. WO Delete, Customers Delete, Schedule Delete, Invoicing Delete OFF; View and Manage AP/AR Data OFF."
       },
       {
         "n": 7,
-        "action": "Save the role, then go Administration > Staff > open the test user > assign role 'Service writer' > Save.",
+        "action": "Save the role, then go Administration > Staff > open the test user > assign role 'Service writer' > Create.",
         "expected": "Role saved with exactly the configured toggles. Staff assignment saved. A role change forces the affected user to be logged out."
       },
       {
@@ -399,23 +399,23 @@
       }
     ],
     "expected_final": "Service writer has broad V/E plus WO Lines delete, all WO sub-settings, and financial invoicing without AP/AR. Deletes elsewhere blocked. Financial modal enabled See Financial Data during setup.",
-    "source_viu": "Spec: SV-7388 CRUD cascade; WO sub-settings; Invoicing financial gate; AP/AR gate on Invoicing Delete. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: SV-7388 CRUD cascade; WO sub-settings; Invoicing financial gate; AP/AR gate on Invoicing Delete. UNVERIFIED — VIU pending."
   },
   {
     "test_id": "CB-REP-008",
-    "title": "Representative: Shop manager minus deletes \u2014 broad V/E, no Delete anywhere, Financial + AP/AR ON",
+    "title": "Representative: Shop manager minus deletes — broad V/E, no Delete anywhere, Financial + AP/AR ON",
     "jira": "SV-7500, SV-7388 (WO, WO Lines, Customers, Schedule, Invoicing, Parts, Catalog, Vendor, Part Sales, Reports)",
-    "permission": "Broad View+Edit across areas, NO Delete anywhere, See Financial Data ON, Manage AP/AR ON",
+    "permission": "Broad View+Edit across areas, NO Delete anywhere, See Financial Data ON, View and Manage AP/AR Data ON",
     "dependency_mode": "Multiple",
     "priority": "Critical",
     "type": "Combination",
     "preconditions": "Logged in as an Administrator with full access. Application is on the Custom Roles & Permissions build (Epic SV-7388, SV-7500 enabled). At least one test staff member exists to receive the role. A second browser/session is available to log in as the test staff user.",
-    "role_setup": "ON: Work Orders > View, Edit; Work Order Lines > View, Edit; Customers > View, Edit; Schedule > View, Edit; Invoicing > View, Edit; Parts Department (parent); Catalog > View, Edit; Vendor > View, Edit; Part Sales > View, Edit; WO sub-settings Review, Pick Parts, Order; See Financial Data; Manage AP/AR; Reports. OFF: every Delete (WO, WO Lines, Customers, Schedule, Invoicing, Catalog, Vendor, Part Sales); Timesheets; History Logs; Settings; App Settings.",
+    "role_setup": "ON: Work Orders > View, Edit; Work Order Lines > View, Edit; Customers > View, Edit; Schedule > View, Edit; Invoicing > View, Edit; Parts Department (parent); Catalog > View, Edit; Vendor > View, Edit; Part Sales > View, Edit; WO sub-settings Review, Pick Parts, Order; See Financial Data; View and Manage AP/AR Data; Reports. OFF: every Delete (WO, WO Lines, Customers, Schedule, Invoicing, Catalog, Vendor, Part Sales); Timesheets; History Logs; Settings; App Settings.",
     "test_data": "Test staff user 'shopmgr_qa'. Records across all covered areas.",
     "steps": [
       {
         "n": 1,
-        "action": "Navigate Administration > Roles and Permissions > Create Custom Role. Start from a blank/minimal baseline (all toggles OFF). Name the role 'Shop manager (no deletes)'.",
+        "action": "Navigate Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) > Create Custom Role. Start from a blank/minimal baseline (all toggles OFF). Name the role 'Shop manager (no deletes)'. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role form opens with every permission toggle OFF by default. Role name accepted."
       },
       {
@@ -431,16 +431,16 @@
       {
         "n": 4,
         "action": "Enable Invoicing > Edit and Part Sales > Edit.",
-        "expected": "Both cascade View ON. Financial confirm modal(s): 'Invoicing/Part Sales requires See Financial Data to be enabled. Enable it?' \u2014 click Enable; See Financial Data ON."
+        "expected": "Both cascade View ON. Financial confirm modal(s): Modal title: \"Enable See Financial Data?\" Body: \"Invoicing/Part Sales requires See Financial Data. Enable it to grant this permission?\" Buttons: \"Cancel\" / \"Enable\" — click Enable; See Financial Data ON. [Build-vs-spec: spec wording differed — see VIU-11.]"
       },
       {
         "n": 5,
-        "action": "Enable WO sub-settings Review/Pick Parts/Order, Manage AP/AR, and Reports. Verify NO Delete toggle is ON anywhere.",
+        "action": "Enable WO sub-settings Review/Pick Parts/Order, View and Manage AP/AR Data, and Reports. Verify NO Delete toggle is ON anywhere.",
         "expected": "Sub-settings, AP/AR, Reports ON. All Delete toggles confirmed OFF."
       },
       {
         "n": 6,
-        "action": "Save the role, then go Administration > Staff > open the test user > assign role 'Shop manager (no deletes)' > Save.",
+        "action": "Save the role, then go Administration > Staff > open the test user > assign role 'Shop manager (no deletes)' > Create.",
         "expected": "Role saved with exactly the configured toggles. Staff assignment saved. A role change forces the affected user to be logged out."
       },
       {
@@ -460,23 +460,23 @@
       }
     ],
     "expected_final": "Manager has broad view/edit plus Reports/financial/AP/AR, but Delete is unavailable everywhere. Parent gate + financial modals + cascades applied during setup. Timesheets/History/Admin hidden.",
-    "source_viu": "Spec: SV-7388 CRUD cascade; parent gate; financial gate; delete exclusion. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: SV-7388 CRUD cascade; parent gate; financial gate; delete exclusion. UNVERIFIED — VIU pending."
   },
   {
     "test_id": "CB-REP-009",
-    "title": "Representative: Timekeeper \u2014 Timesheets V/E + WO View, no financials",
+    "title": "Representative: Timekeeper — Timesheets V/E + WO View, no financials",
     "jira": "SV-7500, SV-7388 (Timesheets, Work Orders)",
     "permission": "Timesheets View/Edit + WO View, financials OFF",
     "dependency_mode": "Cascade: auto-enable lower",
     "priority": "Medium",
     "type": "Combination",
     "preconditions": "Logged in as an Administrator with full access. Application is on the Custom Roles & Permissions build (Epic SV-7388, SV-7500 enabled). At least one test staff member exists to receive the role. A second browser/session is available to log in as the test staff user.",
-    "role_setup": "ON: Timesheets > View, Edit; Work Orders > View. OFF: everything else \u2014 Timesheets Delete, WO Edit/Delete, WO Lines, Customers, Schedule, Invoicing, See Financial Data, Parts Department, Part Sales, Catalog, Vendor, Reports, History Logs, Settings, App Settings, Manage AP/AR.",
+    "role_setup": "ON: Timesheets > View, Edit; Work Orders > View. OFF: everything else — Timesheets Delete, WO Edit/Delete, WO Lines, Customers, Schedule, Invoicing, See Financial Data, Parts Department, Part Sales, Catalog, Vendor, Reports, History Logs, Settings, App Settings, View and Manage AP/AR Data.",
     "test_data": "Test staff user 'timekeeper_qa'. Timesheet entries and a work order.",
     "steps": [
       {
         "n": 1,
-        "action": "Navigate Administration > Roles and Permissions > Create Custom Role. Start from a blank/minimal baseline (all toggles OFF). Name the role 'Timekeeper'.",
+        "action": "Navigate Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) > Create Custom Role. Start from a blank/minimal baseline (all toggles OFF). Name the role 'Timekeeper'. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role form opens with every permission toggle OFF by default. Role name accepted."
       },
       {
@@ -491,7 +491,7 @@
       },
       {
         "n": 4,
-        "action": "Save the role, then go Administration > Staff > open the test user > assign role 'Timekeeper' > Save.",
+        "action": "Save the role, then go Administration > Staff > open the test user > assign role 'Timekeeper' > Create.",
         "expected": "Role saved with exactly the configured toggles. Staff assignment saved. A role change forces the affected user to be logged out."
       },
       {
@@ -511,38 +511,38 @@
       }
     ],
     "expected_final": "Timekeeper can view/edit timesheets and view WOs only. Timesheets Edit cascaded View. No delete, no financials, no other areas.",
-    "source_viu": "Spec: SV-7388 CRUD cascade; Timesheets area. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: SV-7388 CRUD cascade; Timesheets area. VERIFIED (staging 2026-07-01) — MATCH; see VIU Findings Log"
   },
   {
     "test_id": "CB-REP-010",
-    "title": "Representative: Auditor \u2014 read-only across WO/Invoicing/History + Reports + Financial, no edits",
+    "title": "Representative: Auditor — read-only across WO/Invoicing/History + Reports + Financial, no edits",
     "jira": "SV-7500, SV-7388 (Work Orders, Invoicing, History Logs, Reports, Financial gate)",
     "permission": "WO View + Invoicing View + History Logs ON + Reports ON + See Financial Data ON, no edits/deletes, AP/AR ON",
     "dependency_mode": "Financial gate: confirm modal",
     "priority": "Medium",
     "type": "Combination",
     "preconditions": "Logged in as an Administrator with full access. Application is on the Custom Roles & Permissions build (Epic SV-7388, SV-7500 enabled). At least one test staff member exists to receive the role. A second browser/session is available to log in as the test staff user.",
-    "role_setup": "ON: Work Orders > View; Invoicing > View; History Logs; Reports; See Financial Data; Manage AP/AR. OFF: everything else \u2014 all Edit/Delete toggles, WO Lines, Customers, Schedule, Parts Department, Part Sales, Catalog, Vendor, Timesheets, Settings, App Settings.",
+    "role_setup": "ON: Work Orders > View; Invoicing > View; History Logs; Reports; See Financial Data; View and Manage AP/AR Data. OFF: everything else — all Edit/Delete toggles, WO Lines, Customers, Schedule, Parts Department, Part Sales, Catalog, Vendor, Timesheets, Settings, App Settings.",
     "test_data": "Test staff user 'auditor_qa'. Work orders, invoices, history log entries, reports.",
     "steps": [
       {
         "n": 1,
-        "action": "Navigate Administration > Roles and Permissions > Create Custom Role. Start from a blank/minimal baseline (all toggles OFF). Name the role 'Auditor'.",
+        "action": "Navigate Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) > Create Custom Role. Start from a blank/minimal baseline (all toggles OFF). Name the role 'Auditor'. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role form opens with every permission toggle OFF by default. Role name accepted."
       },
       {
         "n": 2,
         "action": "Enable Invoicing > View.",
-        "expected": "Financial confirm modal: 'Invoicing requires See Financial Data to be enabled. Enable it?' \u2014 click Enable; See Financial Data ON. (Invoicing View is financial-gated.)"
+        "expected": "Financial confirm modal: Modal title: \"Enable See Financial Data?\" Body: \"Invoicing requires See Financial Data. Enable it to grant this permission?\" Buttons: \"Cancel\" / \"Enable\" — click Enable; See Financial Data ON. (Invoicing View is financial-gated.) [Build-vs-spec: spec wording differed — see VIU-11.]"
       },
       {
         "n": 3,
-        "action": "Enable Work Orders > View, History Logs, Reports, Manage AP/AR.",
+        "action": "Enable Work Orders > View, History Logs, Reports, View and Manage AP/AR Data.",
         "expected": "All ON. No Edit/Delete enabled anywhere."
       },
       {
         "n": 4,
-        "action": "Save the role, then go Administration > Staff > open the test user > assign role 'Auditor' > Save.",
+        "action": "Save the role, then go Administration > Staff > open the test user > assign role 'Auditor' > Create.",
         "expected": "Role saved with exactly the configured toggles. Staff assignment saved. A role change forces the affected user to be logged out."
       },
       {
@@ -562,29 +562,29 @@
       }
     ],
     "expected_final": "Auditor has read-only WO/Invoicing plus History Logs and Reports with financial+AP/AR data. Invoicing View triggered the financial modal. No edits/deletes, no other areas.",
-    "source_viu": "Spec: SV-7388 Invoicing financial gate; Reports/History all-or-nothing. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: SV-7388 Invoicing financial gate; Reports/History all-or-nothing. VERIFIED (staging 2026-07-01) — DISCREPANCY; see VIU-11"
   },
   {
     "test_id": "CB-RND-001",
-    "title": "Random: Invoicing Edit while See Financial Data OFF \u2014 financial confirm modal fires, resolve, verify",
+    "title": "Random: Invoicing Edit while See Financial Data OFF — financial confirm modal fires, resolve, verify",
     "jira": "SV-7500, SV-7388 (Invoicing, Financial gate)",
     "permission": "Invoicing View/Edit; See Financial Data enabled via modal; nothing else",
     "dependency_mode": "Financial gate: confirm modal",
     "priority": "Critical",
     "type": "Dependency",
     "preconditions": "Logged in as an Administrator with full access. Application is on the Custom Roles & Permissions build (Epic SV-7388, SV-7500 enabled). At least one test staff member exists to receive the role. A second browser/session is available to log in as the test staff user.",
-    "role_setup": "Intended: Invoicing > View, Edit only. After resolving the financial gate: See Financial Data ON. OFF: everything else \u2014 Invoicing Delete, Manage AP/AR, Work Orders, WO Lines, Customers, Schedule, Parts Department, Part Sales, Catalog, Vendor, Reports, Timesheets, History Logs, Settings, App Settings.",
+    "role_setup": "Intended: Invoicing > View, Edit only. After resolving the financial gate: See Financial Data ON. OFF: everything else — Invoicing Delete, View and Manage AP/AR Data, Work Orders, WO Lines, Customers, Schedule, Parts Department, Part Sales, Catalog, Vendor, Reports, Timesheets, History Logs, Settings, App Settings.",
     "test_data": "Test staff user 'rnd1_qa'. One open invoice.",
     "steps": [
       {
         "n": 1,
-        "action": "Navigate Administration > Roles and Permissions > Create Custom Role. Start from a blank/minimal baseline (all toggles OFF). Name the role 'RND Invoicing-gate'.",
+        "action": "Navigate Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) > Create Custom Role. Start from a blank/minimal baseline (all toggles OFF). Name the role 'RND Invoicing-gate'. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role form opens with every permission toggle OFF by default. Role name accepted."
       },
       {
         "n": 2,
         "action": "With See Financial Data OFF, enable Invoicing > Edit.",
-        "expected": "Cascade auto-enables Invoicing > View. Financial confirm modal appears: 'Invoicing requires See Financial Data to be enabled. Enable it?'"
+        "expected": "Cascade auto-enables Invoicing > View. Financial confirm modal appears: Modal title: \"Enable See Financial Data?\" Body: \"Invoicing requires See Financial Data. Enable it to grant this permission?\" Buttons: \"Cancel\" / \"Enable\" [Build-vs-spec: spec wording differed — see VIU-11.]"
       },
       {
         "n": 3,
@@ -593,7 +593,7 @@
       },
       {
         "n": 4,
-        "action": "Save the role, then go Administration > Staff > open the test user > assign role 'RND Invoicing-gate' > Save.",
+        "action": "Save the role, then go Administration > Staff > open the test user > assign role 'RND Invoicing-gate' > Create.",
         "expected": "Role saved with exactly the configured toggles. Staff assignment saved. A role change forces the affected user to be logged out."
       },
       {
@@ -613,11 +613,11 @@
       }
     ],
     "expected_final": "Enabling Invoicing Edit with financials OFF forced the financial confirm modal; resolving it set See Financial Data ON. Final access = Invoicing V/E with financials only.",
-    "source_viu": "Spec: SV-7388 Invoicing financial confirm modal. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: SV-7388 Invoicing financial confirm modal. VERIFIED (staging 2026-07-01) — DISCREPANCY; see VIU-11"
   },
   {
     "test_id": "CB-RND-002",
-    "title": "Random: Part Sales View with Parts Department OFF \u2014 parent gate hides/blocks child (negative)",
+    "title": "Random: Part Sales View with Parts Department OFF — parent gate hides/blocks child (negative)",
     "jira": "SV-7500, SV-7388 (Part Sales, Parts Department parent gate)",
     "permission": "Attempt Part Sales View with Parts Department OFF (unusable combo)",
     "dependency_mode": "Parent gate: hide children",
@@ -629,7 +629,7 @@
     "steps": [
       {
         "n": 1,
-        "action": "Navigate Administration > Roles and Permissions > Create Custom Role. Start from a blank/minimal baseline (all toggles OFF). Name the role 'RND ParentGate'.",
+        "action": "Navigate Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) > Create Custom Role. Start from a blank/minimal baseline (all toggles OFF). Name the role 'RND ParentGate'. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role form opens with every permission toggle OFF by default. Role name accepted."
       },
       {
@@ -654,29 +654,29 @@
       }
     ],
     "expected_final": "Parent gate prevents enabling Part Sales when Parts Department is OFF; the child is hidden/unsavable. Resulting user has no parts access. App blocks the unusable combination.",
-    "source_viu": "Spec: SV-7388 Parts Department parent gate for Part Sales/Catalog/Vendor. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: SV-7388 Parts Department parent gate for Part Sales/Catalog/Vendor. VERIFIED (staging 2026-07-01) — MATCH; see VIU Findings Log"
   },
   {
     "test_id": "CB-RND-003",
-    "title": "Random: WO Delete-only intent \u2014 cascade auto-enables Edit+View, verify saved state",
+    "title": "Random: WO Delete-only intent — cascade auto-enables Edit+View, verify saved state",
     "jira": "SV-7500, SV-7388 (Work Orders, CRUD cascade)",
-    "permission": "WO Delete requested \u2192 WO View+Edit+Delete saved; nothing else",
+    "permission": "WO Delete requested → WO View+Edit+Delete saved; nothing else",
     "dependency_mode": "Cascade: auto-enable lower",
     "priority": "High",
     "type": "Dependency",
     "preconditions": "Logged in as an Administrator with full access. Application is on the Custom Roles & Permissions build (Epic SV-7388, SV-7500 enabled). At least one test staff member exists to receive the role. A second browser/session is available to log in as the test staff user.",
-    "role_setup": "Intended: Work Orders > Delete only. After cascade: Work Orders > View, Edit, Delete all ON. OFF: everything else \u2014 WO Lines, Customers, Schedule, Invoicing, See Financial Data, Parts Department, Part Sales, Catalog, Vendor, Reports, Timesheets, History Logs, Settings, App Settings, Manage AP/AR.",
+    "role_setup": "Intended: Work Orders > Delete only. After cascade: Work Orders > View, Edit, Delete all ON. OFF: everything else — WO Lines, Customers, Schedule, Invoicing, See Financial Data, Parts Department, Part Sales, Catalog, Vendor, Reports, Timesheets, History Logs, Settings, App Settings, View and Manage AP/AR Data.",
     "test_data": "Test staff user 'rnd3_qa'. A deletable work order.",
     "steps": [
       {
         "n": 1,
-        "action": "Navigate Administration > Roles and Permissions > Create Custom Role. Start from a blank/minimal baseline (all toggles OFF). Name the role 'RND WO-Cascade'.",
+        "action": "Navigate Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) > Create Custom Role. Start from a blank/minimal baseline (all toggles OFF). Name the role 'RND WO-Cascade'. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role form opens with every permission toggle OFF by default. Role name accepted."
       },
       {
         "n": 2,
         "action": "Enable ONLY Work Orders > Delete.",
-        "expected": "Cascade auto-enables Work Orders > Edit and Work Orders > View (Delete\u2192Edit\u2192View). All three WO CRUDs show ON."
+        "expected": "Cascade auto-enables Work Orders > Edit and Work Orders > View (Delete→Edit→View). All three WO CRUDs show ON."
       },
       {
         "n": 3,
@@ -685,7 +685,7 @@
       },
       {
         "n": 4,
-        "action": "Save the role, then go Administration > Staff > open the test user > assign role 'RND WO-Cascade' > Save.",
+        "action": "Save the role, then go Administration > Staff > open the test user > assign role 'RND WO-Cascade' > Create.",
         "expected": "Role saved with exactly the configured toggles. Staff assignment saved. A role change forces the affected user to be logged out."
       },
       {
@@ -705,23 +705,23 @@
       }
     ],
     "expected_final": "Requesting only WO Delete produced a saved role with WO View+Edit+Delete via cascade. User can fully manage WOs; nothing else is accessible.",
-    "source_viu": "Spec: SV-7388 CRUD cascade Delete\u2192Edit\u2192View. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: SV-7388 CRUD cascade Delete→Edit→View. VERIFIED (staging 2026-07-01) — MATCH; see VIU Findings Log"
   },
   {
     "test_id": "CB-RND-004",
-    "title": "Random: Catalog Delete + Vendor Edit + Parts Department ON \u2014 only parts-dept areas accessible",
+    "title": "Random: Catalog Delete + Vendor Edit + Parts Department ON — only parts-dept areas accessible",
     "jira": "SV-7500, SV-7388 (Parts Department, Catalog, Vendor, CRUD cascade, parent gate)",
     "permission": "Parts Dept ON + Catalog V/E/D + Vendor V/E; everything else OFF",
     "dependency_mode": "Multiple",
     "priority": "High",
     "type": "Combination",
     "preconditions": "Logged in as an Administrator with full access. Application is on the Custom Roles & Permissions build (Epic SV-7388, SV-7500 enabled). At least one test staff member exists to receive the role. A second browser/session is available to log in as the test staff user.",
-    "role_setup": "ON: Parts Department (parent); Catalog > View, Edit, Delete; Vendor > View, Edit. OFF: everything else \u2014 Vendor Delete, Part Sales (all), See Financial Data, Work Orders, WO Lines, Customers, Schedule, Invoicing, Reports, Timesheets, History Logs, Settings, App Settings, Manage AP/AR.",
+    "role_setup": "ON: Parts Department (parent); Catalog > View, Edit, Delete; Vendor > View, Edit. OFF: everything else — Vendor Delete, Part Sales (all), See Financial Data, Work Orders, WO Lines, Customers, Schedule, Invoicing, Reports, Timesheets, History Logs, Settings, App Settings, View and Manage AP/AR Data.",
     "test_data": "Test staff user 'rnd4_qa'. Catalog items and vendors.",
     "steps": [
       {
         "n": 1,
-        "action": "Navigate Administration > Roles and Permissions > Create Custom Role. Start from a blank/minimal baseline (all toggles OFF). Name the role 'RND PartsMix'.",
+        "action": "Navigate Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) > Create Custom Role. Start from a blank/minimal baseline (all toggles OFF). Name the role 'RND PartsMix'. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role form opens with every permission toggle OFF by default. Role name accepted."
       },
       {
@@ -732,7 +732,7 @@
       {
         "n": 3,
         "action": "Enable Catalog > Delete.",
-        "expected": "Cascade auto-enables Catalog > Edit and View (Delete\u2192Edit\u2192View). No financial modal (Catalog not financial-gated)."
+        "expected": "Cascade auto-enables Catalog > Edit and View (Delete→Edit→View). No financial modal (Catalog not financial-gated)."
       },
       {
         "n": 4,
@@ -741,7 +741,7 @@
       },
       {
         "n": 5,
-        "action": "Save the role, then go Administration > Staff > open the test user > assign role 'RND PartsMix' > Save.",
+        "action": "Save the role, then go Administration > Staff > open the test user > assign role 'RND PartsMix' > Create.",
         "expected": "Role saved with exactly the configured toggles. Staff assignment saved. A role change forces the affected user to be logged out."
       },
       {
@@ -761,23 +761,23 @@
       }
     ],
     "expected_final": "Only Parts-Department areas are accessible: Catalog full CRUD (delete cascade) and Vendor V/E. Part Sales excluded, no financials, no other areas. Parent gate + cascade applied.",
-    "source_viu": "Spec: SV-7388 parent gate; CRUD cascade; Part Sales financial gate not triggered. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: SV-7388 parent gate; CRUD cascade; Part Sales financial gate not triggered. UNVERIFIED — VIU pending."
   },
   {
     "test_id": "CB-RND-005",
-    "title": "Random: wide spread \u2014 WO View + Schedule Edit + Timesheets View + Reports + History Logs, Financial OFF",
+    "title": "Random: wide spread — WO View + Schedule Edit + Timesheets View + Reports + History Logs, Financial OFF",
     "jira": "SV-7500, SV-7388 (Work Orders, Schedule, Timesheets, Reports, History Logs)",
     "permission": "WO View + Schedule V/E + Timesheets View + Reports ON + History Logs ON, financials OFF",
     "dependency_mode": "Cascade: auto-enable lower",
     "priority": "Medium",
     "type": "Combination",
     "preconditions": "Logged in as an Administrator with full access. Application is on the Custom Roles & Permissions build (Epic SV-7388, SV-7500 enabled). At least one test staff member exists to receive the role. A second browser/session is available to log in as the test staff user.",
-    "role_setup": "ON: Work Orders > View; Schedule > View, Edit; Timesheets > View; Reports; History Logs. OFF: everything else \u2014 WO Edit/Delete, WO Lines, Schedule Delete, Timesheets Edit/Delete, Customers, Invoicing, See Financial Data, Parts Department, Part Sales, Catalog, Vendor, Settings, App Settings, Manage AP/AR.",
+    "role_setup": "ON: Work Orders > View; Schedule > View, Edit; Timesheets > View; Reports; History Logs. OFF: everything else — WO Edit/Delete, WO Lines, Schedule Delete, Timesheets Edit/Delete, Customers, Invoicing, See Financial Data, Parts Department, Part Sales, Catalog, Vendor, Settings, App Settings, View and Manage AP/AR Data.",
     "test_data": "Test staff user 'rnd5_qa'. WOs, schedule entries, timesheets, reports, history entries.",
     "steps": [
       {
         "n": 1,
-        "action": "Navigate Administration > Roles and Permissions > Create Custom Role. Start from a blank/minimal baseline (all toggles OFF). Name the role 'RND WideSpread'.",
+        "action": "Navigate Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) > Create Custom Role. Start from a blank/minimal baseline (all toggles OFF). Name the role 'RND WideSpread'. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role form opens with every permission toggle OFF by default. Role name accepted."
       },
       {
@@ -792,7 +792,7 @@
       },
       {
         "n": 4,
-        "action": "Save the role, then go Administration > Staff > open the test user > assign role 'RND WideSpread' > Save.",
+        "action": "Save the role, then go Administration > Staff > open the test user > assign role 'RND WideSpread' > Create.",
         "expected": "Role saved with exactly the configured toggles. Staff assignment saved. A role change forces the affected user to be logged out."
       },
       {
@@ -811,44 +811,44 @@
         "expected": "WO/Timesheets not editable, schedule delete unavailable; Customers, Invoicing, Parts, Administration hidden; Reports/History show no financial figures (See Financial Data OFF)."
       }
     ],
-    "expected_final": "User has exactly: WO view, Schedule V/E, Timesheets view, Reports, History Logs \u2014 no financials, no edits beyond Schedule, nothing else. Aggregate access matches the granted union.",
-    "source_viu": "Spec: SV-7388 CRUD cascade; Reports/History all-or-nothing; financial data hidden without flag. UNVERIFIED \u2014 VIU pending."
+    "expected_final": "User has exactly: WO view, Schedule V/E, Timesheets view, Reports, History Logs — no financials, no edits beyond Schedule, nothing else. Aggregate access matches the granted union.",
+    "source_viu": "Spec: SV-7388 CRUD cascade; Reports/History all-or-nothing; financial data hidden without flag. VERIFIED (staging 2026-07-01) — MATCH; see VIU Findings Log"
   },
   {
     "test_id": "CB-RND-006",
-    "title": "Random: Invoicing Delete requested with Manage AP/AR OFF \u2014 AP/AR gate fires, resolve, verify",
+    "title": "Random: Invoicing Delete requested with Manage AP/AR OFF — AP/AR gate fires, resolve, verify",
     "jira": "SV-7500, SV-7388 (Invoicing, Financial gate, AP/AR gate)",
-    "permission": "Invoicing V/E/D requiring See Financial Data + Manage AP/AR; nothing else",
+    "permission": "Invoicing V/E/D requiring See Financial Data + View and Manage AP/AR Data; nothing else",
     "dependency_mode": "Multiple",
     "priority": "Critical",
     "type": "Dependency",
     "preconditions": "Logged in as an Administrator with full access. Application is on the Custom Roles & Permissions build (Epic SV-7388, SV-7500 enabled). At least one test staff member exists to receive the role. A second browser/session is available to log in as the test staff user.",
-    "role_setup": "Intended: Invoicing > Delete. After gates resolved: Invoicing View+Edit+Delete ON, See Financial Data ON, Manage AP/AR ON. OFF: everything else \u2014 Work Orders, WO Lines, Customers, Schedule, Parts Department, Part Sales, Catalog, Vendor, Reports, Timesheets, History Logs, Settings, App Settings.",
+    "role_setup": "Intended: Invoicing > Delete. After gates resolved: Invoicing View+Edit+Delete ON, See Financial Data ON, View and Manage AP/AR Data ON. OFF: everything else — Work Orders, WO Lines, Customers, Schedule, Parts Department, Part Sales, Catalog, Vendor, Reports, Timesheets, History Logs, Settings, App Settings.",
     "test_data": "Test staff user 'rnd6_qa'. A deletable invoice.",
     "steps": [
       {
         "n": 1,
-        "action": "Navigate Administration > Roles and Permissions > Create Custom Role. Start from a blank/minimal baseline (all toggles OFF). Name the role 'RND Invoicing-APAR'.",
+        "action": "Navigate Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) > Create Custom Role. Start from a blank/minimal baseline (all toggles OFF). Name the role 'RND Invoicing-APAR'. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role form opens with every permission toggle OFF by default. Role name accepted."
       },
       {
         "n": 2,
-        "action": "With See Financial Data OFF and Manage AP/AR OFF, enable Invoicing > Delete.",
-        "expected": "Cascade auto-enables Invoicing > Edit and View. Financial confirm modal: 'Invoicing requires See Financial Data to be enabled. Enable it?' \u2014 click Enable."
+        "action": "With See Financial Data OFF and View and Manage AP/AR Data OFF, enable Invoicing > Delete.",
+        "expected": "Cascade auto-enables Invoicing > Edit and View. Financial confirm modal: Modal title: \"Enable See Financial Data?\" Body: \"Invoicing requires See Financial Data. Enable it to grant this permission?\" Buttons: \"Cancel\" / \"Enable\" — click Enable. [Build-vs-spec: spec wording differed — see VIU-11.]"
       },
       {
         "n": 3,
         "action": "Observe the AP/AR gate for Invoicing Delete.",
-        "expected": "AP/AR gate confirm modal appears (Invoicing Delete additionally requires Manage AP/AR). Confirm/Enable \u2014 Manage AP/AR turns ON."
+        "expected": "AP/AR gate confirm modal appears (Invoicing Delete additionally requires View and Manage AP/AR Data). Confirm/Enable — View and Manage AP/AR Data turns ON."
       },
       {
         "n": 4,
         "action": "Verify final role state.",
-        "expected": "Invoicing View+Edit+Delete ON; See Financial Data ON; Manage AP/AR ON; nothing else ON."
+        "expected": "Invoicing View+Edit+Delete ON; See Financial Data ON; View and Manage AP/AR Data ON; nothing else ON."
       },
       {
         "n": 5,
-        "action": "Save the role, then go Administration > Staff > open the test user > assign role 'RND Invoicing-APAR' > Save.",
+        "action": "Save the role, then go Administration > Staff > open the test user > assign role 'RND Invoicing-APAR' > Create.",
         "expected": "Role saved with exactly the configured toggles. Staff assignment saved. A role change forces the affected user to be logged out."
       },
       {
@@ -867,24 +867,24 @@
         "expected": "All other areas hidden; only Invoicing accessible."
       }
     ],
-    "expected_final": "Requesting Invoicing Delete triggered both the financial confirm modal (See Financial Data ON) and the AP/AR gate (Manage AP/AR ON), plus cascaded Edit+View. Final access = full Invoicing CRUD only.",
-    "source_viu": "Spec: SV-7388 Invoicing financial gate + Invoicing Delete requires Manage AP/AR. UNVERIFIED \u2014 VIU pending."
+    "expected_final": "Requesting Invoicing Delete triggered both the financial confirm modal (See Financial Data ON) and the AP/AR gate (View and Manage AP/AR Data ON), plus cascaded Edit+View. Final access = full Invoicing CRUD only.",
+    "source_viu": "Spec: SV-7388 Invoicing financial gate + Invoicing Delete requires Manage AP/AR. UNVERIFIED — VIU pending."
   },
   {
     "test_id": "CB-RND-007",
-    "title": "Random: Settings + App Settings ON (role/staff management) + WO View \u2014 verify admin subset only",
+    "title": "Random: Settings + App Settings ON (role/staff management) + WO View — verify admin subset only",
     "jira": "SV-7500, SV-7388 (Settings, App Settings, Roles/Staff management, Work Orders)",
     "permission": "Settings ON + App Settings ON (enables managing Roles/Staff) + WO View; everything else OFF",
     "dependency_mode": "Multiple",
     "priority": "High",
     "type": "Combination",
     "preconditions": "Logged in as an Administrator with full access. Application is on the Custom Roles & Permissions build (Epic SV-7388, SV-7500 enabled). At least one test staff member exists to receive the role. A second browser/session is available to log in as the test staff user.",
-    "role_setup": "ON: Settings; App Settings; Work Orders > View. OFF: everything else \u2014 WO Edit/Delete, WO Lines, Customers, Schedule, Invoicing, See Financial Data, Parts Department, Part Sales, Catalog, Vendor, Reports, Timesheets, History Logs, Manage AP/AR.",
+    "role_setup": "ON: Settings; App Settings; Work Orders > View. OFF: everything else — WO Edit/Delete, WO Lines, Customers, Schedule, Invoicing, See Financial Data, Parts Department, Part Sales, Catalog, Vendor, Reports, Timesheets, History Logs, View and Manage AP/AR Data.",
     "test_data": "Test staff user 'rnd7_qa'.",
     "steps": [
       {
         "n": 1,
-        "action": "Navigate Administration > Roles and Permissions > Create Custom Role. Start from a blank/minimal baseline (all toggles OFF). Name the role 'RND SettingsAdmin'.",
+        "action": "Navigate Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) > Create Custom Role. Start from a blank/minimal baseline (all toggles OFF). Name the role 'RND SettingsAdmin'. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role form opens with every permission toggle OFF by default. Role name accepted."
       },
       {
@@ -899,7 +899,7 @@
       },
       {
         "n": 4,
-        "action": "Save the role, then go Administration > Staff > open the test user > assign role 'RND SettingsAdmin' > Save.",
+        "action": "Save the role, then go Administration > Staff > open the test user > assign role 'RND SettingsAdmin' > Create.",
         "expected": "Role saved with exactly the configured toggles. Staff assignment saved. A role change forces the affected user to be logged out."
       },
       {
@@ -909,7 +909,7 @@
       },
       {
         "n": 6,
-        "action": "POSITIVE: Open Administration > Roles and Permissions and Administration > Staff; view/manage them. View a Work Order.",
+        "action": "POSITIVE: Open Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) and Administration > Staff; view/manage them. View a Work Order.",
         "expected": "Roles/Staff management accessible (Settings+App Settings satisfied); WO viewable."
       },
       {
@@ -919,29 +919,29 @@
       }
     ],
     "expected_final": "With Settings + App Settings ON the user can manage Roles/Staff; plus WO view only. No operational edits, no financials, no other areas. Dependency (Settings+App Settings for role/staff mgmt) confirmed.",
-    "source_viu": "Spec: SV-7388 Managing Roles/Staff requires Settings ON + App Settings ON. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: SV-7388 Managing Roles/Staff requires Settings ON + App Settings ON. VERIFIED (staging 2026-07-01) — MATCH; see VIU Findings Log"
   },
   {
     "test_id": "CB-RND-008",
-    "title": "Random: arbitrary mix \u2014 Customers Delete + WO Lines Edit + Vendor View(Parts Dept ON) + Full View, Financial OFF",
+    "title": "Random: arbitrary mix — Customers Delete + WO Lines Edit + Vendor View(Parts Dept ON) + Full View, Financial OFF",
     "jira": "SV-7500, SV-7388 (Customers, WO Lines, Vendor, Parts Department, CRUD cascade, parent gate)",
     "permission": "Customers V/E/D + WO Lines V/E + Parts Dept ON + Vendor V; Full View mode; financials OFF",
     "dependency_mode": "Multiple",
     "priority": "Medium",
     "type": "Combination",
     "preconditions": "Logged in as an Administrator with full access. Application is on the Custom Roles & Permissions build (Epic SV-7388, SV-7500 enabled). At least one test staff member exists to receive the role. A second browser/session is available to log in as the test staff user.",
-    "role_setup": "ON: Customers > View, Edit, Delete; Work Order Lines > View, Edit; Parts Department (parent); Vendor > View; View Mode = Full (UX only). OFF: everything else \u2014 Work Orders View/Edit/Delete, WO Lines Delete, Catalog (all), Part Sales (all), Vendor Edit/Delete, Schedule, Invoicing, See Financial Data, Reports, Timesheets, History Logs, Settings, App Settings, Manage AP/AR.",
+    "role_setup": "ON: Customers > View, Edit, Delete; Work Order Lines > View, Edit; Parts Department (parent); Vendor > View; View Mode = Full (UX only). OFF: everything else — Work Orders View/Edit/Delete, WO Lines Delete, Catalog (all), Part Sales (all), Vendor Edit/Delete, Schedule, Invoicing, See Financial Data, Reports, Timesheets, History Logs, Settings, App Settings, View and Manage AP/AR Data.",
     "test_data": "Test staff user 'rnd8_qa'. Customers, a work order with lines, vendors.",
     "steps": [
       {
         "n": 1,
-        "action": "Navigate Administration > Roles and Permissions > Create Custom Role. Start from a blank/minimal baseline (all toggles OFF). Name the role 'RND ArbitraryMix'.",
+        "action": "Navigate Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) > Create Custom Role. Start from a blank/minimal baseline (all toggles OFF). Name the role 'RND ArbitraryMix'. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role form opens with every permission toggle OFF by default. Role name accepted."
       },
       {
         "n": 2,
         "action": "Enable Customers > Delete.",
-        "expected": "Cascade auto-enables Customers > Edit and View (Delete\u2192Edit\u2192View)."
+        "expected": "Cascade auto-enables Customers > Edit and View (Delete→Edit→View)."
       },
       {
         "n": 3,
@@ -955,7 +955,7 @@
       },
       {
         "n": 5,
-        "action": "Save the role, then go Administration > Staff > open the test user > assign role 'RND ArbitraryMix' > Save.",
+        "action": "Save the role, then go Administration > Staff > open the test user > assign role 'RND ArbitraryMix' > Create.",
         "expected": "Role saved with exactly the configured toggles. Staff assignment saved. A role change forces the affected user to be logged out."
       },
       {
@@ -975,6 +975,6 @@
       }
     ],
     "expected_final": "Arbitrary mix grants Customers full CRUD (delete cascade), WO Lines V/E, and Vendor view under Parts Dept. No financials, no other areas. Cascades + parent gate applied; Full View is cosmetic only.",
-    "source_viu": "Spec: SV-7388 CRUD cascade; parent gate; View Mode UX-only. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: SV-7388 CRUD cascade; parent gate; View Mode UX-only. VERIFIED (staging 2026-07-01) — MATCH; see VIU Findings Log"
   }
 ]

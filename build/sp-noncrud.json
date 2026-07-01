@@ -1,7 +1,7 @@
 [
   {
     "test_id": "SP-WOSUB-001",
-    "title": "Review Work Orders GRANT \u2014 Review option available with WO View + Review",
+    "title": "Review Work Orders GRANT — Review option available with WO View + Review",
     "jira": "SV-7388",
     "permission": "Review Work Orders (woReviewWorkOrders)",
     "dependency_mode": "None",
@@ -13,7 +13,7 @@
     "steps": [
       {
         "n": 1,
-        "action": "Go to Administration > Roles and Permissions > Create Custom Role > start from minimal/blank baseline.",
+        "action": "Go to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) > Create Custom Role > start from minimal/blank baseline. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role editor opens with all toggles OFF (blank baseline)."
       },
       {
@@ -43,11 +43,11 @@
       }
     ],
     "expected_final": "With WO View + Review Work Orders ON (Edit OFF), the user can see and use the Review option on work orders.",
-    "source_viu": "Spec: SV-7388 WO sub-settings \u2014 woReviewWorkOrders. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: SV-7388 WO sub-settings — woReviewWorkOrders. UNVERIFIED — VIU pending."
   },
   {
     "test_id": "SP-WOSUB-002",
-    "title": "Review Work Orders WITHHOLD \u2014 Review option absent when toggle OFF",
+    "title": "Review Work Orders WITHHOLD — Review option absent when toggle OFF",
     "jira": "SV-7388",
     "permission": "Review Work Orders (woReviewWorkOrders)",
     "dependency_mode": "None",
@@ -59,7 +59,7 @@
     "steps": [
       {
         "n": 1,
-        "action": "Go to Administration > Roles and Permissions > Create Custom Role > start from minimal/blank baseline.",
+        "action": "Go to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) > Create Custom Role > start from minimal/blank baseline. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role editor opens with all toggles OFF (blank baseline)."
       },
       {
@@ -84,11 +84,11 @@
       }
     ],
     "expected_final": "With Review Work Orders OFF, the Review option is not available even though WO View is ON.",
-    "source_viu": "Spec: SV-7388 WO sub-settings \u2014 woReviewWorkOrders. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: SV-7388 WO sub-settings — woReviewWorkOrders. UNVERIFIED — VIU pending."
   },
   {
     "test_id": "SP-WOSUB-003",
-    "title": "Review Work Orders DEPENDENCY \u2014 greyed in editor when WO View OFF",
+    "title": "Review Work Orders DEPENDENCY — greyed in editor when WO View OFF",
     "jira": "SV-7388",
     "permission": "Review Work Orders (woReviewWorkOrders)",
     "dependency_mode": "Cascade: auto-enable lower",
@@ -96,11 +96,11 @@
     "type": "Dependency",
     "preconditions": "Admin can access the Create Custom Role editor.",
     "role_setup": "In the role editor: Work Orders View = OFF. Observe Review Work Orders (woReviewWorkOrders) toggle state.",
-    "test_data": "N/A \u2014 editor-only verification.",
+    "test_data": "N/A — editor-only verification.",
     "steps": [
       {
         "n": 1,
-        "action": "Go to Administration > Roles and Permissions > Create Custom Role > start from minimal/blank baseline.",
+        "action": "Go to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) > Create Custom Role > start from minimal/blank baseline. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role editor opens with all toggles OFF."
       },
       {
@@ -115,11 +115,11 @@
       }
     ],
     "expected_final": "Review Work Orders is greyed/disabled in the editor while WO View is OFF, and becomes available when WO View is turned ON.",
-    "source_viu": "Spec: SV-7388 WO sub-settings require WO View; greyed when View OFF. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: SV-7388 WO sub-settings require WO View; greyed when View OFF. VERIFIED (staging 2026-07-01) — MATCH; see VIU Findings Log"
   },
   {
     "test_id": "SP-WOSUB-004",
-    "title": "Pick Parts GRANT \u2014 can pick parts from inventory onto WO line",
+    "title": "Pick Parts GRANT — can pick parts from inventory onto WO line",
     "jira": "SV-7388",
     "permission": "Pick Parts (woPickParts)",
     "dependency_mode": "None",
@@ -131,7 +131,7 @@
     "steps": [
       {
         "n": 1,
-        "action": "Go to Administration > Roles and Permissions > Create Custom Role > start from minimal/blank baseline.",
+        "action": "Go to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) > Create Custom Role > start from minimal/blank baseline. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role editor opens with all toggles OFF (blank baseline)."
       },
       {
@@ -156,11 +156,11 @@
       }
     ],
     "expected_final": "With WO View + Pick Parts ON (Edit OFF), the user can pick parts from inventory onto a WO line.",
-    "source_viu": "Spec: SV-7388 WO sub-settings \u2014 woPickParts. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: SV-7388 WO sub-settings — woPickParts. UNVERIFIED — VIU pending."
   },
   {
     "test_id": "SP-WOSUB-005",
-    "title": "Pick Parts WITHHOLD \u2014 pick action blocked/absent when toggle OFF",
+    "title": "Pick Parts WITHHOLD — pick action blocked/absent when toggle OFF",
     "jira": "SV-7388",
     "permission": "Pick Parts (woPickParts)",
     "dependency_mode": "None",
@@ -172,7 +172,7 @@
     "steps": [
       {
         "n": 1,
-        "action": "Go to Administration > Roles and Permissions > Create Custom Role > start from minimal/blank baseline.",
+        "action": "Go to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) > Create Custom Role > start from minimal/blank baseline. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role editor opens with all toggles OFF (blank baseline)."
       },
       {
@@ -197,11 +197,11 @@
       }
     ],
     "expected_final": "With Pick Parts OFF, the user cannot pick parts from inventory onto a WO line.",
-    "source_viu": "Spec: SV-7388 WO sub-settings \u2014 woPickParts. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: SV-7388 WO sub-settings — woPickParts. UNVERIFIED — VIU pending."
   },
   {
     "test_id": "SP-WOSUB-006",
-    "title": "Pick Parts DEPENDENCY \u2014 greyed in editor when WO View OFF",
+    "title": "Pick Parts DEPENDENCY — greyed in editor when WO View OFF",
     "jira": "SV-7388",
     "permission": "Pick Parts (woPickParts)",
     "dependency_mode": "Cascade: auto-enable lower",
@@ -209,11 +209,11 @@
     "type": "Dependency",
     "preconditions": "Admin can access the Create Custom Role editor.",
     "role_setup": "In the role editor: Work Orders View = OFF. Observe Pick Parts (woPickParts) toggle state.",
-    "test_data": "N/A \u2014 editor-only verification.",
+    "test_data": "N/A — editor-only verification.",
     "steps": [
       {
         "n": 1,
-        "action": "Go to Administration > Roles and Permissions > Create Custom Role > start from minimal/blank baseline.",
+        "action": "Go to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) > Create Custom Role > start from minimal/blank baseline. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role editor opens with all toggles OFF."
       },
       {
@@ -228,11 +228,11 @@
       }
     ],
     "expected_final": "Pick Parts is greyed/disabled while WO View is OFF and becomes available when WO View is ON.",
-    "source_viu": "Spec: SV-7388 WO sub-settings require WO View; greyed when View OFF. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: SV-7388 WO sub-settings require WO View; greyed when View OFF. VERIFIED (staging 2026-07-01) — MATCH; see VIU Findings Log"
   },
   {
     "test_id": "SP-WOSUB-007",
-    "title": "Order Parts GRANT \u2014 place PO for parts on WO and receive deliveries",
+    "title": "Order Parts GRANT — place PO for parts on WO and receive deliveries",
     "jira": "SV-7388",
     "permission": "Order Parts (woOrderParts)",
     "dependency_mode": "None",
@@ -244,7 +244,7 @@
     "steps": [
       {
         "n": 1,
-        "action": "Go to Administration > Roles and Permissions > Create Custom Role > start from minimal/blank baseline.",
+        "action": "Go to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) > Create Custom Role > start from minimal/blank baseline. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role editor opens with all toggles OFF (blank baseline)."
       },
       {
@@ -274,11 +274,11 @@
       }
     ],
     "expected_final": "With WO View + Order Parts ON (Edit OFF), the user can place a PO linked to the WO and receive parts deliveries onto the WO.",
-    "source_viu": "Spec: SV-7388 WO sub-settings \u2014 woOrderParts. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: SV-7388 WO sub-settings — woOrderParts. UNVERIFIED — VIU pending."
   },
   {
     "test_id": "SP-WOSUB-008",
-    "title": "Order Parts WITHHOLD \u2014 cannot place PO or receive parts when OFF",
+    "title": "Order Parts WITHHOLD — cannot place PO or receive parts when OFF",
     "jira": "SV-7388",
     "permission": "Order Parts (woOrderParts)",
     "dependency_mode": "None",
@@ -290,7 +290,7 @@
     "steps": [
       {
         "n": 1,
-        "action": "Go to Administration > Roles and Permissions > Create Custom Role > start from minimal/blank baseline.",
+        "action": "Go to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) > Create Custom Role > start from minimal/blank baseline. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role editor opens with all toggles OFF (blank baseline)."
       },
       {
@@ -320,11 +320,11 @@
       }
     ],
     "expected_final": "With Order Parts OFF, the user cannot place a PO for parts on the WO nor receive parts deliveries onto the WO.",
-    "source_viu": "Spec: SV-7388 WO sub-settings \u2014 woOrderParts. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: SV-7388 WO sub-settings — woOrderParts. UNVERIFIED — VIU pending."
   },
   {
     "test_id": "SP-WOSUB-009",
-    "title": "Order Parts DEPENDENCY \u2014 greyed in editor when WO View OFF",
+    "title": "Order Parts DEPENDENCY — greyed in editor when WO View OFF",
     "jira": "SV-7388",
     "permission": "Order Parts (woOrderParts)",
     "dependency_mode": "Cascade: auto-enable lower",
@@ -332,11 +332,11 @@
     "type": "Dependency",
     "preconditions": "Admin can access the Create Custom Role editor.",
     "role_setup": "In the role editor: Work Orders View = OFF. Observe Order Parts (woOrderParts) toggle state.",
-    "test_data": "N/A \u2014 editor-only verification.",
+    "test_data": "N/A — editor-only verification.",
     "steps": [
       {
         "n": 1,
-        "action": "Go to Administration > Roles and Permissions > Create Custom Role > start from minimal/blank baseline.",
+        "action": "Go to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) > Create Custom Role > start from minimal/blank baseline. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role editor opens with all toggles OFF."
       },
       {
@@ -351,11 +351,11 @@
       }
     ],
     "expected_final": "Order Parts is greyed/disabled while WO View is OFF and becomes available when WO View is ON.",
-    "source_viu": "Spec: SV-7388 WO sub-settings require WO View; greyed when View OFF. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: SV-7388 WO sub-settings require WO View; greyed when View OFF. VERIFIED (staging 2026-07-01) — MATCH; see VIU Findings Log"
   },
   {
     "test_id": "SP-WOSUB-010",
-    "title": "WO sub-settings are INDEPENDENT \u2014 enabling one does not enable others",
+    "title": "WO sub-settings are INDEPENDENT — enabling one does not enable others",
     "jira": "SV-7388",
     "permission": "Review Work Orders / Pick Parts / Order Parts (woReviewWorkOrders, woPickParts, woOrderParts)",
     "dependency_mode": "None",
@@ -367,7 +367,7 @@
     "steps": [
       {
         "n": 1,
-        "action": "Go to Administration > Roles and Permissions > Create Custom Role > start from minimal/blank baseline.",
+        "action": "Go to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) > Create Custom Role > start from minimal/blank baseline. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role editor opens with all toggles OFF (blank baseline)."
       },
       {
@@ -397,13 +397,13 @@
       }
     ],
     "expected_final": "The three WO sub-settings are independent: enabling Pick Parts grants only pick-parts, not Review or Order Parts.",
-    "source_viu": "Spec: SV-7388 WO sub-settings are three independent toggles. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: SV-7388 WO sub-settings are three independent toggles. UNVERIFIED — VIU pending."
   },
   {
     "test_id": "SP-WOSUB-011",
     "title": "Return part from WO line requires NO permission (note case)",
     "jira": "SV-7388",
-    "permission": "(none) \u2014 returning a part from a WO line is not permission-gated",
+    "permission": "(none) — returning a part from a WO line is not permission-gated",
     "dependency_mode": "None",
     "priority": "Medium",
     "type": "Positive",
@@ -413,7 +413,7 @@
     "steps": [
       {
         "n": 1,
-        "action": "Go to Administration > Roles and Permissions > Create Custom Role > start from minimal/blank baseline.",
+        "action": "Go to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) > Create Custom Role > start from minimal/blank baseline. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role editor opens with all toggles OFF (blank baseline)."
       },
       {
@@ -438,11 +438,11 @@
       }
     ],
     "expected_final": "Returning a part from a WO line requires no specific WO sub-setting permission; it works with only WO View.",
-    "source_viu": "Spec: SV-7388 \u2014 returning a part from a WO line needs no permission. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: SV-7388 — returning a part from a WO line needs no permission. UNVERIFIED — VIU pending."
   },
   {
     "test_id": "SP-RPT-001",
-    "title": "Reports GRANT \u2014 Reports nav visible and all reports accessible",
+    "title": "Reports GRANT — Reports nav visible and all reports accessible",
     "jira": "SV-7388",
     "permission": "Reports (reports)",
     "dependency_mode": "None",
@@ -454,7 +454,7 @@
     "steps": [
       {
         "n": 1,
-        "action": "Go to Administration > Roles and Permissions > Create Custom Role > start from minimal/blank baseline.",
+        "action": "Go to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) > Create Custom Role > start from minimal/blank baseline. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role editor opens with all toggles OFF (blank baseline)."
       },
       {
@@ -484,11 +484,11 @@
       }
     ],
     "expected_final": "With Reports ON, the Reports nav is shown and every report is accessible.",
-    "source_viu": "Spec: SV-7388 Reports \u2014 all-or-nothing, no per-report granularity. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: SV-7388 Reports — all-or-nothing, no per-report granularity. UNVERIFIED — VIU pending."
   },
   {
     "test_id": "SP-RPT-002",
-    "title": "Reports WITHHOLD \u2014 nav hidden and direct URL blocked when OFF",
+    "title": "Reports WITHHOLD — nav hidden and direct URL blocked when OFF",
     "jira": "SV-7388",
     "permission": "Reports (reports)",
     "dependency_mode": "None",
@@ -500,7 +500,7 @@
     "steps": [
       {
         "n": 1,
-        "action": "Go to Administration > Roles and Permissions > Create Custom Role > start from minimal/blank baseline.",
+        "action": "Go to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) > Create Custom Role > start from minimal/blank baseline. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role editor opens with all toggles OFF (blank baseline)."
       },
       {
@@ -530,7 +530,7 @@
       }
     ],
     "expected_final": "With Reports OFF, the Reports nav is hidden and direct URL access is blocked.",
-    "source_viu": "Spec: SV-7388 Reports OFF hides Reports nav. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: SV-7388 Reports OFF hides Reports nav. UNVERIFIED — VIU pending."
   },
   {
     "test_id": "SP-RPT-003",
@@ -546,7 +546,7 @@
     "steps": [
       {
         "n": 1,
-        "action": "Go to Administration > Roles and Permissions > Create Custom Role > start from minimal/blank baseline.",
+        "action": "Go to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) > Create Custom Role > start from minimal/blank baseline. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role editor opens with all toggles OFF (blank baseline)."
       },
       {
@@ -571,11 +571,11 @@
       }
     ],
     "expected_final": "Reports ON exposes the timesheet activities report even when Timesheets View is OFF.",
-    "source_viu": "Spec: SV-7388 note \u2014 Timesheets View OFF + Reports ON still shows timesheet activities report. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: SV-7388 note — Timesheets View OFF + Reports ON still shows timesheet activities report. UNVERIFIED — VIU pending."
   },
   {
     "test_id": "SP-CPORT-001",
-    "title": "Customer Portal GRANT \u2014 access and manage customer portal config",
+    "title": "Customer Portal GRANT — access and manage customer portal config",
     "jira": "SV-7388",
     "permission": "Customer Portal (customerPortal)",
     "dependency_mode": "None",
@@ -587,7 +587,7 @@
     "steps": [
       {
         "n": 1,
-        "action": "Go to Administration > Roles and Permissions > Create Custom Role > start from minimal/blank baseline.",
+        "action": "Go to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) > Create Custom Role > start from minimal/blank baseline. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role editor opens with all toggles OFF (blank baseline)."
       },
       {
@@ -617,11 +617,11 @@
       }
     ],
     "expected_final": "With Customer Portal ON, the user can access and manage the customer portal configuration.",
-    "source_viu": "Spec: SV-7388 Customer Portal \u2014 customerPortal. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: SV-7388 Customer Portal — customerPortal. UNVERIFIED — VIU pending."
   },
   {
     "test_id": "SP-CPORT-002",
-    "title": "Customer Portal WITHHOLD \u2014 nav hidden and direct URL blocked when OFF",
+    "title": "Customer Portal WITHHOLD — nav hidden and direct URL blocked when OFF",
     "jira": "SV-7388",
     "permission": "Customer Portal (customerPortal)",
     "dependency_mode": "None",
@@ -633,7 +633,7 @@
     "steps": [
       {
         "n": 1,
-        "action": "Go to Administration > Roles and Permissions > Create Custom Role > start from minimal/blank baseline.",
+        "action": "Go to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) > Create Custom Role > start from minimal/blank baseline. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role editor opens with all toggles OFF (blank baseline)."
       },
       {
@@ -663,11 +663,11 @@
       }
     ],
     "expected_final": "With Customer Portal OFF, the nav is hidden and direct URL access is blocked.",
-    "source_viu": "Spec: SV-7388 Customer Portal OFF hides nav. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: SV-7388 Customer Portal OFF hides nav. UNVERIFIED — VIU pending."
   },
   {
     "test_id": "SP-BPORT-001",
-    "title": "Billing Portal GRANT \u2014 access and manage billing portal",
+    "title": "Billing Portal GRANT — access and manage billing portal",
     "jira": "SV-7388",
     "permission": "Billing Portal (billingPortal)",
     "dependency_mode": "None",
@@ -679,7 +679,7 @@
     "steps": [
       {
         "n": 1,
-        "action": "Go to Administration > Roles and Permissions > Create Custom Role > start from minimal/blank baseline.",
+        "action": "Go to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) > Create Custom Role > start from minimal/blank baseline. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role editor opens with all toggles OFF (blank baseline)."
       },
       {
@@ -709,11 +709,11 @@
       }
     ],
     "expected_final": "With Billing Portal ON, the user can access and manage the billing portal.",
-    "source_viu": "Spec: SV-7388 Billing Portal \u2014 billingPortal. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: SV-7388 Billing Portal — billingPortal. UNVERIFIED — VIU pending."
   },
   {
     "test_id": "SP-BPORT-002",
-    "title": "Billing Portal WITHHOLD \u2014 nav hidden and direct URL blocked when OFF",
+    "title": "Billing Portal WITHHOLD — nav hidden and direct URL blocked when OFF",
     "jira": "SV-7388",
     "permission": "Billing Portal (billingPortal)",
     "dependency_mode": "None",
@@ -725,7 +725,7 @@
     "steps": [
       {
         "n": 1,
-        "action": "Go to Administration > Roles and Permissions > Create Custom Role > start from minimal/blank baseline.",
+        "action": "Go to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) > Create Custom Role > start from minimal/blank baseline. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role editor opens with all toggles OFF (blank baseline)."
       },
       {
@@ -755,11 +755,11 @@
       }
     ],
     "expected_final": "With Billing Portal OFF, the nav is hidden and direct URL access is blocked.",
-    "source_viu": "Spec: SV-7388 Billing Portal OFF hides nav. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: SV-7388 Billing Portal OFF hides nav. UNVERIFIED — VIU pending."
   },
   {
     "test_id": "SP-PDEPT-001",
-    "title": "Parts Department GRANT \u2014 parent ON reveals children per their CRUD",
+    "title": "Parts Department GRANT — parent ON reveals children per their CRUD",
     "jira": "SV-7388",
     "permission": "Parts Department (partsDepartment)",
     "dependency_mode": "Parent gate: hide children",
@@ -771,7 +771,7 @@
     "steps": [
       {
         "n": 1,
-        "action": "Go to Administration > Roles and Permissions > Create Custom Role > start from minimal/blank baseline.",
+        "action": "Go to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) > Create Custom Role > start from minimal/blank baseline. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role editor opens with all toggles OFF (blank baseline)."
       },
       {
@@ -796,11 +796,11 @@
       }
     ],
     "expected_final": "With Parts Department ON and children's CRUD granted, all three child areas are accessible.",
-    "source_viu": "Spec: SV-7388 Parts Department parent gate \u2014 partsDepartment. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: SV-7388 Parts Department parent gate — partsDepartment. VERIFIED (staging 2026-07-01) — MATCH; see VIU Findings Log"
   },
   {
     "test_id": "SP-PDEPT-002",
-    "title": "Parts Department PARENT-GATE \u2014 OFF makes all children inaccessible regardless of their CRUD",
+    "title": "Parts Department PARENT-GATE — OFF makes all children inaccessible regardless of their CRUD",
     "jira": "SV-7388",
     "permission": "Parts Department (partsDepartment)",
     "dependency_mode": "Parent gate: hide children",
@@ -812,7 +812,7 @@
     "steps": [
       {
         "n": 1,
-        "action": "Go to Administration > Roles and Permissions > Create Custom Role > start from minimal/blank baseline.",
+        "action": "Go to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) > Create Custom Role > start from minimal/blank baseline. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role editor opens with all toggles OFF (blank baseline)."
       },
       {
@@ -842,11 +842,11 @@
       }
     ],
     "expected_final": "With Parts Department OFF, all three children are inaccessible regardless of their own CRUD, and direct URLs are blocked.",
-    "source_viu": "Spec: SV-7388 Parts Department OFF gates all three children. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: SV-7388 Parts Department OFF gates all three children. VERIFIED (staging 2026-07-01) — MATCH; see VIU Findings Log"
   },
   {
     "test_id": "SP-PDEPT-003",
-    "title": "Parts Department DEPENDENCY \u2014 children HIDDEN via slide in editor when parent OFF",
+    "title": "Parts Department DEPENDENCY — children HIDDEN via slide in editor when parent OFF",
     "jira": "SV-7388",
     "permission": "Parts Department (partsDepartment)",
     "dependency_mode": "Parent gate: hide children",
@@ -854,11 +854,11 @@
     "type": "Dependency",
     "preconditions": "Admin can access the Create Custom Role editor.",
     "role_setup": "In the role editor: toggle Parts Department (partsDepartment) OFF then ON and observe the three child rows.",
-    "test_data": "N/A \u2014 editor-only verification.",
+    "test_data": "N/A — editor-only verification.",
     "steps": [
       {
         "n": 1,
-        "action": "Go to Administration > Roles and Permissions > Create Custom Role > start from minimal/blank baseline.",
+        "action": "Go to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) > Create Custom Role > start from minimal/blank baseline. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role editor opens with all toggles OFF."
       },
       {
@@ -873,11 +873,11 @@
       }
     ],
     "expected_final": "In the editor the three child rows are hidden via slide when Parts Department is OFF and re-revealed when it is ON.",
-    "source_viu": "Spec: SV-7388 Parts Department editor slide-hides children when OFF. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: SV-7388 Parts Department editor slide-hides children when OFF. VERIFIED (staging 2026-07-01) — MATCH; see VIU Findings Log"
   },
   {
     "test_id": "SP-PDEPT-004",
-    "title": "Parts Department PRESERVES child settings \u2014 OFF then back ON restores prior CRUD",
+    "title": "Parts Department PRESERVES child settings — OFF then back ON restores prior CRUD",
     "jira": "SV-7388",
     "permission": "Parts Department (partsDepartment)",
     "dependency_mode": "Parent gate: hide children",
@@ -889,7 +889,7 @@
     "steps": [
       {
         "n": 1,
-        "action": "Go to Administration > Roles and Permissions > Create Custom Role > start from minimal/blank baseline. Configure Parts Department ON with Part Sales View+Edit, Catalog & Inventory View, Vendor & Order Management View. Save.",
+        "action": "Go to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) > Create Custom Role > start from minimal/blank baseline. Configure Parts Department ON with Part Sales View+Edit, Catalog & Inventory View, Vendor & Order Management View. Save. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Role saved with the specified child CRUD."
       },
       {
@@ -904,11 +904,11 @@
       }
     ],
     "expected_final": "Turning Parts Department OFF preserves child settings, which are restored intact when it is turned back ON.",
-    "source_viu": "Spec: SV-7388 Parts Department preserves child settings across OFF/ON. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: SV-7388 Parts Department preserves child settings across OFF/ON. VERIFIED (staging 2026-07-01) — MATCH; see VIU Findings Log"
   },
   {
     "test_id": "SP-SET-001",
-    "title": "Settings parent GRANT \u2014 Administration area accessible with a sub ON",
+    "title": "Settings parent GRANT — Administration area accessible with a sub ON",
     "jira": "SV-7388",
     "permission": "Settings (settings) [parent]",
     "dependency_mode": "None",
@@ -920,7 +920,7 @@
     "steps": [
       {
         "n": 1,
-        "action": "Go to Administration > Roles and Permissions > Create Custom Role > start from minimal/blank baseline.",
+        "action": "Go to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) > Create Custom Role > start from minimal/blank baseline. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role editor opens with all toggles OFF (blank baseline)."
       },
       {
@@ -945,11 +945,11 @@
       }
     ],
     "expected_final": "With Settings parent ON and App Settings ON, the Administration area is accessible.",
-    "source_viu": "Spec: SV-7388 Settings parent \u2014 settings. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: SV-7388 Settings parent — settings. VERIFIED (staging 2026-07-01) — MATCH; see VIU Findings Log"
   },
   {
     "test_id": "SP-SET-002",
-    "title": "Settings parent WITHHOLD \u2014 parent OFF hides entire Administration area and all subs",
+    "title": "Settings parent WITHHOLD — parent OFF hides entire Administration area and all subs",
     "jira": "SV-7388",
     "permission": "Settings (settings) [parent]",
     "dependency_mode": "Parent gate: hide children",
@@ -961,7 +961,7 @@
     "steps": [
       {
         "n": 1,
-        "action": "Go to Administration > Roles and Permissions > Create Custom Role > start from minimal/blank baseline.",
+        "action": "Go to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) > Create Custom Role > start from minimal/blank baseline. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role editor opens with all toggles OFF (blank baseline)."
       },
       {
@@ -991,11 +991,11 @@
       }
     ],
     "expected_final": "With Settings parent OFF, the whole Administration area and all sub-settings are hidden/blocked regardless of sub state.",
-    "source_viu": "Spec: SV-7388 Settings parent OFF hides Administration and all subs. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: SV-7388 Settings parent OFF hides Administration and all subs. VERIFIED (staging 2026-07-01) — MATCH; see VIU Findings Log"
   },
   {
     "test_id": "SP-SET-003",
-    "title": "Settings parent DEPENDENCY \u2014 subs hidden via slide in editor when parent OFF",
+    "title": "Settings parent DEPENDENCY — subs hidden via slide in editor when parent OFF",
     "jira": "SV-7388",
     "permission": "Settings (settings) [parent]",
     "dependency_mode": "Parent gate: hide children",
@@ -1003,11 +1003,11 @@
     "type": "Dependency",
     "preconditions": "Admin can access the Create Custom Role editor.",
     "role_setup": "In the role editor: toggle Settings (settings) OFF then ON and observe the sub-setting rows.",
-    "test_data": "N/A \u2014 editor-only verification.",
+    "test_data": "N/A — editor-only verification.",
     "steps": [
       {
         "n": 1,
-        "action": "Go to Administration > Roles and Permissions > Create Custom Role > start from minimal/blank baseline.",
+        "action": "Go to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) > Create Custom Role > start from minimal/blank baseline. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role editor opens with all toggles OFF."
       },
       {
@@ -1022,11 +1022,11 @@
       }
     ],
     "expected_final": "Sub-settings are slide-hidden in the editor when the Settings parent is OFF and revealed when it is ON.",
-    "source_viu": "Spec: SV-7388 Settings editor slide-hides subs when parent OFF. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: SV-7388 Settings editor slide-hides subs when parent OFF. VERIFIED (staging 2026-07-01) — MATCH; see VIU Findings Log"
   },
   {
     "test_id": "SP-SET-004",
-    "title": "App Settings sub GRANT \u2014 manage org info/branding, Roles & Permissions management, and Staff/Workplaces management",
+    "title": "App Settings sub GRANT — manage org info/branding, Roles & Permissions management, and Staff/Workplaces management",
     "jira": "SV-7388",
     "permission": "App Settings (settingsApp)",
     "dependency_mode": "None",
@@ -1038,7 +1038,7 @@
     "steps": [
       {
         "n": 1,
-        "action": "Go to Administration > Roles and Permissions > Create Custom Role > start from minimal/blank baseline.",
+        "action": "Go to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) > Create Custom Role > start from minimal/blank baseline. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role editor opens with all toggles OFF (blank baseline)."
       },
       {
@@ -1068,11 +1068,11 @@
       }
     ],
     "expected_final": "With App Settings ON (parent ON), the user can manage org info/branding, Roles & Permissions management, and Staff/Workplaces management; other subs remain inaccessible.",
-    "source_viu": "Spec: SV-7388 Settings sub \u2014 settingsApp. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: SV-7388 Settings sub — settingsApp. VERIFIED (staging 2026-07-01) — MATCH; see VIU Findings Log"
   },
   {
     "test_id": "SP-SET-005",
-    "title": "App Settings sub WITHHOLD \u2014 area hidden/blocked when settingsApp OFF (parent ON)",
+    "title": "App Settings sub WITHHOLD — area hidden/blocked when settingsApp OFF (parent ON)",
     "jira": "SV-7388",
     "permission": "App Settings (settingsApp)",
     "dependency_mode": "None",
@@ -1084,7 +1084,7 @@
     "steps": [
       {
         "n": 1,
-        "action": "Go to Administration > Roles and Permissions > Create Custom Role > start from minimal/blank baseline.",
+        "action": "Go to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) > Create Custom Role > start from minimal/blank baseline. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role editor opens with all toggles OFF (blank baseline)."
       },
       {
@@ -1114,11 +1114,11 @@
       }
     ],
     "expected_final": "With App Settings OFF (parent ON), the App Settings settings area is hidden and direct URL access is blocked.",
-    "source_viu": "Spec: SV-7388 Settings sub \u2014 settingsApp. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: SV-7388 Settings sub — settingsApp. VERIFIED (staging 2026-07-01) — MATCH; see VIU Findings Log"
   },
   {
     "test_id": "SP-SET-006",
-    "title": "Service sub GRANT \u2014 manage labor types, canned lines, asset types, departments, and Digital Inspections",
+    "title": "Service sub GRANT — manage labor types, canned lines, asset types, departments, and Digital Inspections",
     "jira": "SV-7388",
     "permission": "Service (settingsService)",
     "dependency_mode": "None",
@@ -1130,7 +1130,7 @@
     "steps": [
       {
         "n": 1,
-        "action": "Go to Administration > Roles and Permissions > Create Custom Role > start from minimal/blank baseline.",
+        "action": "Go to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) > Create Custom Role > start from minimal/blank baseline. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role editor opens with all toggles OFF (blank baseline)."
       },
       {
@@ -1160,11 +1160,11 @@
       }
     ],
     "expected_final": "With Service ON (parent ON), the user can manage labor types, canned lines, asset types, departments, and Digital Inspections; other subs remain inaccessible.",
-    "source_viu": "Spec: SV-7388 Settings sub \u2014 settingsService. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: SV-7388 Settings sub — settingsService. VERIFIED (staging 2026-07-01) — MATCH; see VIU Findings Log"
   },
   {
     "test_id": "SP-SET-007",
-    "title": "Service sub WITHHOLD \u2014 area hidden/blocked when settingsService OFF (parent ON)",
+    "title": "Service sub WITHHOLD — area hidden/blocked when settingsService OFF (parent ON)",
     "jira": "SV-7388",
     "permission": "Service (settingsService)",
     "dependency_mode": "None",
@@ -1176,7 +1176,7 @@
     "steps": [
       {
         "n": 1,
-        "action": "Go to Administration > Roles and Permissions > Create Custom Role > start from minimal/blank baseline.",
+        "action": "Go to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) > Create Custom Role > start from minimal/blank baseline. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role editor opens with all toggles OFF (blank baseline)."
       },
       {
@@ -1206,11 +1206,11 @@
       }
     ],
     "expected_final": "With Service OFF (parent ON), the Service settings area is hidden and direct URL access is blocked.",
-    "source_viu": "Spec: SV-7388 Settings sub \u2014 settingsService. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: SV-7388 Settings sub — settingsService. VERIFIED (staging 2026-07-01) — MATCH; see VIU Findings Log"
   },
   {
     "test_id": "SP-SET-008",
-    "title": "Parts sub GRANT \u2014 manage pricing matrices, categories, and parts config",
+    "title": "Parts sub GRANT — manage pricing matrices, categories, and parts config",
     "jira": "SV-7388",
     "permission": "Parts (settingsParts)",
     "dependency_mode": "None",
@@ -1222,7 +1222,7 @@
     "steps": [
       {
         "n": 1,
-        "action": "Go to Administration > Roles and Permissions > Create Custom Role > start from minimal/blank baseline.",
+        "action": "Go to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) > Create Custom Role > start from minimal/blank baseline. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role editor opens with all toggles OFF (blank baseline)."
       },
       {
@@ -1252,11 +1252,11 @@
       }
     ],
     "expected_final": "With Parts ON (parent ON), the user can manage pricing matrices, categories, and parts config; other subs remain inaccessible.",
-    "source_viu": "Spec: SV-7388 Settings sub \u2014 settingsParts. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: SV-7388 Settings sub — settingsParts. VERIFIED (staging 2026-07-01) — MATCH; see VIU Findings Log"
   },
   {
     "test_id": "SP-SET-009",
-    "title": "Parts sub WITHHOLD \u2014 area hidden/blocked when settingsParts OFF (parent ON)",
+    "title": "Parts sub WITHHOLD — area hidden/blocked when settingsParts OFF (parent ON)",
     "jira": "SV-7388",
     "permission": "Parts (settingsParts)",
     "dependency_mode": "None",
@@ -1268,7 +1268,7 @@
     "steps": [
       {
         "n": 1,
-        "action": "Go to Administration > Roles and Permissions > Create Custom Role > start from minimal/blank baseline.",
+        "action": "Go to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) > Create Custom Role > start from minimal/blank baseline. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role editor opens with all toggles OFF (blank baseline)."
       },
       {
@@ -1298,11 +1298,11 @@
       }
     ],
     "expected_final": "With Parts OFF (parent ON), the Parts settings area is hidden and direct URL access is blocked.",
-    "source_viu": "Spec: SV-7388 Settings sub \u2014 settingsParts. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: SV-7388 Settings sub — settingsParts. VERIFIED (staging 2026-07-01) — MATCH; see VIU Findings Log"
   },
   {
     "test_id": "SP-SET-010",
-    "title": "Integrations sub GRANT \u2014 manage QuickBooks, IBS, and Open API",
+    "title": "Integrations sub GRANT — manage QuickBooks, IBS, and Open API",
     "jira": "SV-7388",
     "permission": "Integrations (settingsIntegrations)",
     "dependency_mode": "None",
@@ -1314,7 +1314,7 @@
     "steps": [
       {
         "n": 1,
-        "action": "Go to Administration > Roles and Permissions > Create Custom Role > start from minimal/blank baseline.",
+        "action": "Go to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) > Create Custom Role > start from minimal/blank baseline. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role editor opens with all toggles OFF (blank baseline)."
       },
       {
@@ -1343,12 +1343,12 @@
         "expected": "Only the enabled sub-setting is available; other subs remain hidden/blocked."
       }
     ],
-    "expected_final": "With Integrations ON (parent ON), the user can manage QuickBooks, IBS, and Open API; other subs remain inaccessible.",
-    "source_viu": "Spec: SV-7388 Settings sub \u2014 settingsIntegrations. UNVERIFIED \u2014 VIU pending."
+    "expected_final": "With Integrations ON (parent ON), the user can manage QuickBooks, IBS, and Open API; other subs remain inaccessible. No 'Integrations' sub-setting exists in the role editor (build); Integrations (QuickBooks, IBS) is a top-level Administration area only. [Build-vs-spec: see VIU-12.]",
+    "source_viu": "Spec: SV-7388 Settings sub — settingsIntegrations. VERIFIED (staging 2026-07-01) — DISCREPANCY; see VIU-12"
   },
   {
     "test_id": "SP-SET-011",
-    "title": "Integrations sub WITHHOLD \u2014 area hidden/blocked when settingsIntegrations OFF (parent ON)",
+    "title": "Integrations sub WITHHOLD — area hidden/blocked when settingsIntegrations OFF (parent ON)",
     "jira": "SV-7388",
     "permission": "Integrations (settingsIntegrations)",
     "dependency_mode": "None",
@@ -1360,7 +1360,7 @@
     "steps": [
       {
         "n": 1,
-        "action": "Go to Administration > Roles and Permissions > Create Custom Role > start from minimal/blank baseline.",
+        "action": "Go to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) > Create Custom Role > start from minimal/blank baseline. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role editor opens with all toggles OFF (blank baseline)."
       },
       {
@@ -1389,12 +1389,12 @@
         "expected": "Access is blocked."
       }
     ],
-    "expected_final": "With Integrations OFF (parent ON), the Integrations settings area is hidden and direct URL access is blocked.",
-    "source_viu": "Spec: SV-7388 Settings sub \u2014 settingsIntegrations. UNVERIFIED \u2014 VIU pending."
+    "expected_final": "With Integrations OFF (parent ON), the Integrations settings area is hidden and direct URL access is blocked. No 'Integrations' sub-setting exists in the role editor (build); Integrations (QuickBooks, IBS) is a top-level Administration area only. [Build-vs-spec: see VIU-12.]",
+    "source_viu": "Spec: SV-7388 Settings sub — settingsIntegrations. VERIFIED (staging 2026-07-01) — DISCREPANCY; see VIU-12"
   },
   {
     "test_id": "SP-SET-012",
-    "title": "Finance sub GRANT \u2014 manage tax config and payment settings/methods",
+    "title": "Finance sub GRANT — manage tax config and payment settings/methods",
     "jira": "SV-7388",
     "permission": "Finance (settingsFinance)",
     "dependency_mode": "None",
@@ -1406,7 +1406,7 @@
     "steps": [
       {
         "n": 1,
-        "action": "Go to Administration > Roles and Permissions > Create Custom Role > start from minimal/blank baseline.",
+        "action": "Go to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) > Create Custom Role > start from minimal/blank baseline. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role editor opens with all toggles OFF (blank baseline)."
       },
       {
@@ -1436,11 +1436,11 @@
       }
     ],
     "expected_final": "With Finance ON (parent ON), the user can manage tax config and payment settings/methods; other subs remain inaccessible.",
-    "source_viu": "Spec: SV-7388 Settings sub \u2014 settingsFinance. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: SV-7388 Settings sub — settingsFinance. VERIFIED (staging 2026-07-01) — MATCH; see VIU Findings Log"
   },
   {
     "test_id": "SP-SET-013",
-    "title": "Finance sub WITHHOLD \u2014 area hidden/blocked when settingsFinance OFF (parent ON)",
+    "title": "Finance sub WITHHOLD — area hidden/blocked when settingsFinance OFF (parent ON)",
     "jira": "SV-7388",
     "permission": "Finance (settingsFinance)",
     "dependency_mode": "None",
@@ -1452,7 +1452,7 @@
     "steps": [
       {
         "n": 1,
-        "action": "Go to Administration > Roles and Permissions > Create Custom Role > start from minimal/blank baseline.",
+        "action": "Go to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) > Create Custom Role > start from minimal/blank baseline. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role editor opens with all toggles OFF (blank baseline)."
       },
       {
@@ -1482,11 +1482,11 @@
       }
     ],
     "expected_final": "With Finance OFF (parent ON), the Finance settings area is hidden and direct URL access is blocked.",
-    "source_viu": "Spec: SV-7388 Settings sub \u2014 settingsFinance. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: SV-7388 Settings sub — settingsFinance. VERIFIED (staging 2026-07-01) — MATCH; see VIU Findings Log"
   },
   {
     "test_id": "SP-SET-014",
-    "title": "Data Import sub GRANT \u2014 manage bulk import",
+    "title": "Data Import sub GRANT — manage bulk import",
     "jira": "SV-7388",
     "permission": "Data Import (settingsDataImport)",
     "dependency_mode": "None",
@@ -1498,7 +1498,7 @@
     "steps": [
       {
         "n": 1,
-        "action": "Go to Administration > Roles and Permissions > Create Custom Role > start from minimal/blank baseline.",
+        "action": "Go to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) > Create Custom Role > start from minimal/blank baseline. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role editor opens with all toggles OFF (blank baseline)."
       },
       {
@@ -1528,11 +1528,11 @@
       }
     ],
     "expected_final": "With Data Import ON (parent ON), the user can manage bulk import; other subs remain inaccessible.",
-    "source_viu": "Spec: SV-7388 Settings sub \u2014 settingsDataImport. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: SV-7388 Settings sub — settingsDataImport. VERIFIED (staging 2026-07-01) — MATCH; see VIU Findings Log"
   },
   {
     "test_id": "SP-SET-015",
-    "title": "Data Import sub WITHHOLD \u2014 area hidden/blocked when settingsDataImport OFF (parent ON)",
+    "title": "Data Import sub WITHHOLD — area hidden/blocked when settingsDataImport OFF (parent ON)",
     "jira": "SV-7388",
     "permission": "Data Import (settingsDataImport)",
     "dependency_mode": "None",
@@ -1544,7 +1544,7 @@
     "steps": [
       {
         "n": 1,
-        "action": "Go to Administration > Roles and Permissions > Create Custom Role > start from minimal/blank baseline.",
+        "action": "Go to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) > Create Custom Role > start from minimal/blank baseline. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role editor opens with all toggles OFF (blank baseline)."
       },
       {
@@ -1574,11 +1574,11 @@
       }
     ],
     "expected_final": "With Data Import OFF (parent ON), the Data Import settings area is hidden and direct URL access is blocked.",
-    "source_viu": "Spec: SV-7388 Settings sub \u2014 settingsDataImport. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: SV-7388 Settings sub — settingsDataImport. VERIFIED (staging 2026-07-01) — MATCH; see VIU Findings Log"
   },
   {
     "test_id": "SP-SET-016",
-    "title": "View/Manage Wages sub GRANT \u2014 manage view/manage employee wage rates (sensitive)",
+    "title": "View/Manage Wages sub GRANT — manage view/manage employee wage rates (sensitive)",
     "jira": "SV-7388",
     "permission": "View/Manage Wages (settingsWages)",
     "dependency_mode": "None",
@@ -1590,7 +1590,7 @@
     "steps": [
       {
         "n": 1,
-        "action": "Go to Administration > Roles and Permissions > Create Custom Role > start from minimal/blank baseline.",
+        "action": "Go to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) > Create Custom Role > start from minimal/blank baseline. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role editor opens with all toggles OFF (blank baseline)."
       },
       {
@@ -1620,11 +1620,11 @@
       }
     ],
     "expected_final": "With View/Manage Wages ON (parent ON), the user can manage view/manage employee wage rates (sensitive); other subs remain inaccessible.",
-    "source_viu": "Spec: SV-7388 Settings sub \u2014 settingsWages. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: SV-7388 Settings sub — settingsWages. VERIFIED (staging 2026-07-01) — MATCH; see VIU Findings Log"
   },
   {
     "test_id": "SP-SET-017",
-    "title": "View/Manage Wages sub WITHHOLD \u2014 area hidden/blocked when settingsWages OFF (parent ON)",
+    "title": "View/Manage Wages sub WITHHOLD — area hidden/blocked when settingsWages OFF (parent ON)",
     "jira": "SV-7388",
     "permission": "View/Manage Wages (settingsWages)",
     "dependency_mode": "None",
@@ -1636,7 +1636,7 @@
     "steps": [
       {
         "n": 1,
-        "action": "Go to Administration > Roles and Permissions > Create Custom Role > start from minimal/blank baseline.",
+        "action": "Go to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) > Create Custom Role > start from minimal/blank baseline. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role editor opens with all toggles OFF (blank baseline)."
       },
       {
@@ -1666,7 +1666,7 @@
       }
     ],
     "expected_final": "With View/Manage Wages OFF (parent ON), the View/Manage Wages settings area is hidden and direct URL access is blocked.",
-    "source_viu": "Spec: SV-7388 Settings sub \u2014 settingsWages. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: SV-7388 Settings sub — settingsWages. VERIFIED (staging 2026-07-01) — MATCH; see VIU Findings Log"
   },
   {
     "test_id": "SP-SET-018",
@@ -1682,7 +1682,7 @@
     "steps": [
       {
         "n": 1,
-        "action": "Go to Administration > Roles and Permissions > Create Custom Role > start from minimal/blank baseline.",
+        "action": "Go to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) > Create Custom Role > start from minimal/blank baseline. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role editor opens with all toggles OFF (blank baseline)."
       },
       {
@@ -1712,7 +1712,7 @@
       }
     ],
     "expected_final": "Managing Roles & Permissions and Staff/Workplaces requires App Settings ON; with it OFF, both are blocked.",
-    "source_viu": "Spec: SV-7388 App Settings gates Roles & Permissions and Staff management. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: SV-7388 App Settings gates Roles & Permissions and Staff management. VERIFIED (staging 2026-07-01) — MATCH; see VIU Findings Log"
   },
   {
     "test_id": "SP-SET-019",
@@ -1728,7 +1728,7 @@
     "steps": [
       {
         "n": 1,
-        "action": "Go to Administration > Roles and Permissions > Create Custom Role > start from minimal/blank baseline.",
+        "action": "Go to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) > Create Custom Role > start from minimal/blank baseline. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role editor opens with all toggles OFF (blank baseline)."
       },
       {
@@ -1753,11 +1753,11 @@
       }
     ],
     "expected_final": "View/Manage Wages independently gates sensitive wage data; App Settings ON does not expose wage rates.",
-    "source_viu": "Spec: SV-7388 View/Manage Wages \u2014 settingsWages sensitive and independent. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: SV-7388 View/Manage Wages — settingsWages sensitive and independent. VERIFIED (staging 2026-07-01) — MATCH; see VIU Findings Log"
   },
   {
     "test_id": "SP-VM-001",
-    "title": "Full View GRANT \u2014 all fields, approve/review/split, Send to Portal, actual Estimate",
+    "title": "Full View GRANT — all fields, approve/review/split, Send to Portal, actual Estimate",
     "jira": "SV-7388",
     "permission": "View Mode (viewMode) = full",
     "dependency_mode": "None",
@@ -1769,7 +1769,7 @@
     "steps": [
       {
         "n": 1,
-        "action": "Go to Administration > Roles and Permissions > Create Custom Role > start from minimal/blank baseline.",
+        "action": "Go to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) > Create Custom Role > start from minimal/blank baseline. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role editor opens with all toggles OFF (blank baseline)."
       },
       {
@@ -1799,11 +1799,11 @@
       }
     ],
     "expected_final": "Full View exposes all fields, approve/review/split actions, Send to Portal, and the actual Estimate column.",
-    "source_viu": "Spec: SV-7388 View Mode Full \u2014 viewMode=full. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: SV-7388 View Mode Full — viewMode=full. VERIFIED (staging 2026-07-01) — MATCH; see VIU Findings Log"
   },
   {
     "test_id": "SP-VM-002",
-    "title": "Tech View restriction \u2014 Estimate column shows Tech Time (not actual estimate)",
+    "title": "Tech View restriction — Estimate column shows Tech Time (not actual estimate)",
     "jira": "SV-7388",
     "permission": "View Mode (viewMode) = tech",
     "dependency_mode": "None",
@@ -1815,7 +1815,7 @@
     "steps": [
       {
         "n": 1,
-        "action": "Go to Administration > Roles and Permissions > Create Custom Role > start from minimal/blank baseline.",
+        "action": "Go to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) > Create Custom Role > start from minimal/blank baseline. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role editor opens with all toggles OFF (blank baseline)."
       },
       {
@@ -1840,11 +1840,11 @@
       }
     ],
     "expected_final": "Tech View enforces the restriction: estimate column shows tech time (not actual estimate).",
-    "source_viu": "Spec: SV-7388 View Mode Tech restrictions vs Full \u2014 viewMode=tech. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: SV-7388 View Mode Tech restrictions vs Full — viewMode=tech. VERIFIED (staging 2026-07-01) — MATCH; see VIU Findings Log"
   },
   {
     "test_id": "SP-VM-003",
-    "title": "Tech View restriction \u2014 No tech time field is shown",
+    "title": "Tech View restriction — No tech time field is shown",
     "jira": "SV-7388",
     "permission": "View Mode (viewMode) = tech",
     "dependency_mode": "None",
@@ -1856,7 +1856,7 @@
     "steps": [
       {
         "n": 1,
-        "action": "Go to Administration > Roles and Permissions > Create Custom Role > start from minimal/blank baseline.",
+        "action": "Go to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) > Create Custom Role > start from minimal/blank baseline. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role editor opens with all toggles OFF (blank baseline)."
       },
       {
@@ -1881,11 +1881,11 @@
       }
     ],
     "expected_final": "Tech View enforces the restriction: no tech time field is shown.",
-    "source_viu": "Spec: SV-7388 View Mode Tech restrictions vs Full \u2014 viewMode=tech. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: SV-7388 View Mode Tech restrictions vs Full — viewMode=tech. VERIFIED (staging 2026-07-01) — MATCH; see VIU Findings Log"
   },
   {
     "test_id": "SP-VM-004",
-    "title": "Tech View restriction \u2014 No approve action / cannot approve lines",
+    "title": "Tech View restriction — No approve action / cannot approve lines",
     "jira": "SV-7388",
     "permission": "View Mode (viewMode) = tech",
     "dependency_mode": "None",
@@ -1897,7 +1897,7 @@
     "steps": [
       {
         "n": 1,
-        "action": "Go to Administration > Roles and Permissions > Create Custom Role > start from minimal/blank baseline.",
+        "action": "Go to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) > Create Custom Role > start from minimal/blank baseline. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role editor opens with all toggles OFF (blank baseline)."
       },
       {
@@ -1922,11 +1922,11 @@
       }
     ],
     "expected_final": "Tech View enforces the restriction: no approve action / cannot approve lines.",
-    "source_viu": "Spec: SV-7388 View Mode Tech restrictions vs Full \u2014 viewMode=tech. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: SV-7388 View Mode Tech restrictions vs Full — viewMode=tech. VERIFIED (staging 2026-07-01) — MATCH; see VIU Findings Log"
   },
   {
     "test_id": "SP-VM-005",
-    "title": "Tech View restriction \u2014 Cannot Send to Portal",
+    "title": "Tech View restriction — Cannot Send to Portal",
     "jira": "SV-7388",
     "permission": "View Mode (viewMode) = tech",
     "dependency_mode": "None",
@@ -1938,7 +1938,7 @@
     "steps": [
       {
         "n": 1,
-        "action": "Go to Administration > Roles and Permissions > Create Custom Role > start from minimal/blank baseline.",
+        "action": "Go to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) > Create Custom Role > start from minimal/blank baseline. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role editor opens with all toggles OFF (blank baseline)."
       },
       {
@@ -1963,11 +1963,11 @@
       }
     ],
     "expected_final": "Tech View enforces the restriction: cannot send to portal.",
-    "source_viu": "Spec: SV-7388 View Mode Tech restrictions vs Full \u2014 viewMode=tech. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: SV-7388 View Mode Tech restrictions vs Full — viewMode=tech. VERIFIED (staging 2026-07-01) — MATCH; see VIU Findings Log"
   },
   {
     "test_id": "SP-VM-006",
-    "title": "Tech View restriction \u2014 Cannot view labor rates",
+    "title": "Tech View restriction — Cannot view labor rates",
     "jira": "SV-7388",
     "permission": "View Mode (viewMode) = tech",
     "dependency_mode": "None",
@@ -1979,7 +1979,7 @@
     "steps": [
       {
         "n": 1,
-        "action": "Go to Administration > Roles and Permissions > Create Custom Role > start from minimal/blank baseline.",
+        "action": "Go to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) > Create Custom Role > start from minimal/blank baseline. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role editor opens with all toggles OFF (blank baseline)."
       },
       {
@@ -2004,11 +2004,11 @@
       }
     ],
     "expected_final": "Tech View enforces the restriction: cannot view labor rates.",
-    "source_viu": "Spec: SV-7388 View Mode Tech restrictions vs Full \u2014 viewMode=tech. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: SV-7388 View Mode Tech restrictions vs Full — viewMode=tech. VERIFIED (staging 2026-07-01) — MATCH; see VIU Findings Log"
   },
   {
     "test_id": "SP-VM-007",
-    "title": "Tech View restriction \u2014 Limited parts request form",
+    "title": "Tech View restriction — Limited parts request form",
     "jira": "SV-7388",
     "permission": "View Mode (viewMode) = tech",
     "dependency_mode": "None",
@@ -2020,7 +2020,7 @@
     "steps": [
       {
         "n": 1,
-        "action": "Go to Administration > Roles and Permissions > Create Custom Role > start from minimal/blank baseline.",
+        "action": "Go to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) > Create Custom Role > start from minimal/blank baseline. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role editor opens with all toggles OFF (blank baseline)."
       },
       {
@@ -2045,11 +2045,11 @@
       }
     ],
     "expected_final": "Tech View enforces the restriction: limited parts request form.",
-    "source_viu": "Spec: SV-7388 View Mode Tech restrictions vs Full \u2014 viewMode=tech. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: SV-7388 View Mode Tech restrictions vs Full — viewMode=tech. VERIFIED (staging 2026-07-01) — MATCH; see VIU Findings Log"
   },
   {
     "test_id": "SP-VM-008",
-    "title": "Tech View restriction \u2014 Cannot edit existing WO lines (create-only)",
+    "title": "Tech View restriction — Cannot edit existing WO lines (create-only)",
     "jira": "SV-7388",
     "permission": "View Mode (viewMode) = tech",
     "dependency_mode": "None",
@@ -2061,7 +2061,7 @@
     "steps": [
       {
         "n": 1,
-        "action": "Go to Administration > Roles and Permissions > Create Custom Role > start from minimal/blank baseline.",
+        "action": "Go to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) > Create Custom Role > start from minimal/blank baseline. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role editor opens with all toggles OFF (blank baseline)."
       },
       {
@@ -2086,11 +2086,11 @@
       }
     ],
     "expected_final": "Tech View enforces the restriction: cannot edit existing wo lines (create-only).",
-    "source_viu": "Spec: SV-7388 View Mode Tech restrictions vs Full \u2014 viewMode=tech. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: SV-7388 View Mode Tech restrictions vs Full — viewMode=tech. VERIFIED (staging 2026-07-01) — MATCH; see VIU Findings Log"
   },
   {
     "test_id": "SP-VM-009",
-    "title": "Tech View restriction \u2014 WO lines read-only after approval",
+    "title": "Tech View restriction — WO lines read-only after approval",
     "jira": "SV-7388",
     "permission": "View Mode (viewMode) = tech",
     "dependency_mode": "None",
@@ -2102,7 +2102,7 @@
     "steps": [
       {
         "n": 1,
-        "action": "Go to Administration > Roles and Permissions > Create Custom Role > start from minimal/blank baseline.",
+        "action": "Go to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) > Create Custom Role > start from minimal/blank baseline. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role editor opens with all toggles OFF (blank baseline)."
       },
       {
@@ -2127,11 +2127,11 @@
       }
     ],
     "expected_final": "Tech View enforces the restriction: wo lines read-only after approval.",
-    "source_viu": "Spec: SV-7388 View Mode Tech restrictions vs Full \u2014 viewMode=tech. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: SV-7388 View Mode Tech restrictions vs Full — viewMode=tech. VERIFIED (staging 2026-07-01) — MATCH; see VIU Findings Log"
   },
   {
     "test_id": "SP-VM-010",
-    "title": "Send to Portal appears only in Full View (not Tech) \u2014 comparison",
+    "title": "Send to Portal appears only in Full View (not Tech) — comparison",
     "jira": "SV-7388",
     "permission": "View Mode (viewMode)",
     "dependency_mode": "None",
@@ -2143,7 +2143,7 @@
     "steps": [
       {
         "n": 1,
-        "action": "Go to Administration > Roles and Permissions > Create Custom Role > start from minimal/blank baseline. Create role A: View Mode = full, WO View+Edit ON. Save.",
+        "action": "Go to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) > Create Custom Role > start from minimal/blank baseline. Create role A: View Mode = full, WO View+Edit ON. Save. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Role A saved."
       },
       {
@@ -2168,11 +2168,11 @@
       }
     ],
     "expected_final": "Send to Portal is available only in Full View; it is not shown in Tech View.",
-    "source_viu": "Spec: SV-7388 View Mode \u2014 Send to Portal only in Full View. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: SV-7388 View Mode — Send to Portal only in Full View. VERIFIED (staging 2026-07-01) — MATCH; see VIU Findings Log"
   },
   {
     "test_id": "SP-VM-011",
-    "title": "View Mode is NOT a security boundary \u2014 financial columns governed by See Financial Data",
+    "title": "View Mode is NOT a security boundary — financial columns governed by See Financial Data",
     "jira": "SV-7388",
     "permission": "View Mode (viewMode) vs See Financial Data (seeFinancialData)",
     "dependency_mode": "None",
@@ -2184,7 +2184,7 @@
     "steps": [
       {
         "n": 1,
-        "action": "Go to Administration > Roles and Permissions > Create Custom Role > start from minimal/blank baseline.",
+        "action": "Go to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) > Create Custom Role > start from minimal/blank baseline. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role editor opens with all toggles OFF (blank baseline)."
       },
       {
@@ -2205,15 +2205,15 @@
       {
         "n": 5,
         "action": "Open WO-VM-SEC-001 and inspect for financial columns/pricing.",
-        "expected": "Financial columns are hidden because See Financial Data is OFF, even though View Mode is Full \u2014 View Mode controls UI complexity, not financial data visibility."
+        "expected": "Financial columns are hidden because See Financial Data is OFF, even though View Mode is Full — View Mode controls UI complexity, not financial data visibility."
       }
     ],
     "expected_final": "Full View does not expose financial data; financial column visibility is governed by See Financial Data, confirming View Mode is not a security boundary.",
-    "source_viu": "Spec: SV-7388 View Mode controls UI complexity not data access; financial via See Financial Data. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: SV-7388 View Mode controls UI complexity not data access; financial via See Financial Data. VERIFIED (staging 2026-07-01) — MATCH; see VIU Findings Log"
   },
   {
     "test_id": "SP-FIN-001",
-    "title": "See Financial Data GRANT \u2014 pricing/costs/margins/financial columns shown app-wide",
+    "title": "See Financial Data GRANT — pricing/costs/margins/financial columns shown app-wide",
     "jira": "SV-7388",
     "permission": "See Financial Data (seeFinancialData)",
     "dependency_mode": "None",
@@ -2225,7 +2225,7 @@
     "steps": [
       {
         "n": 1,
-        "action": "Go to Administration > Roles and Permissions > Create Custom Role > start from minimal/blank baseline.",
+        "action": "Go to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) > Create Custom Role > start from minimal/blank baseline. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role editor opens with all toggles OFF (blank baseline)."
       },
       {
@@ -2250,11 +2250,11 @@
       }
     ],
     "expected_final": "With See Financial Data ON, financial data (pricing/costs/margins/columns) is visible app-wide.",
-    "source_viu": "Spec: SV-7388 See Financial Data \u2014 seeFinancialData. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: SV-7388 See Financial Data — seeFinancialData. UNVERIFIED — VIU pending."
   },
   {
     "test_id": "SP-FIN-002",
-    "title": "See Financial Data WITHHOLD \u2014 ALL financial data hidden everywhere when OFF",
+    "title": "See Financial Data WITHHOLD — ALL financial data hidden everywhere when OFF",
     "jira": "SV-7388",
     "permission": "See Financial Data (seeFinancialData)",
     "dependency_mode": "None",
@@ -2266,7 +2266,7 @@
     "steps": [
       {
         "n": 1,
-        "action": "Go to Administration > Roles and Permissions > Create Custom Role > start from minimal/blank baseline.",
+        "action": "Go to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) > Create Custom Role > start from minimal/blank baseline. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role editor opens with all toggles OFF (blank baseline)."
       },
       {
@@ -2291,7 +2291,7 @@
       }
     ],
     "expected_final": "With See Financial Data OFF, all financial data is hidden app-wide.",
-    "source_viu": "Spec: SV-7388 See Financial Data OFF hides all financial data everywhere. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: SV-7388 See Financial Data OFF hides all financial data everywhere. UNVERIFIED — VIU pending."
   },
   {
     "test_id": "SP-FIN-003",
@@ -2307,7 +2307,7 @@
     "steps": [
       {
         "n": 1,
-        "action": "Go to Administration > Roles and Permissions > Create Custom Role > start from minimal/blank baseline.",
+        "action": "Go to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) > Create Custom Role > start from minimal/blank baseline. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role editor opens with all toggles OFF (blank baseline)."
       },
       {
@@ -2332,29 +2332,29 @@
       }
     ],
     "expected_final": "See Financial Data OFF hides financial data but still allows CRUD operations to proceed.",
-    "source_viu": "Spec: SV-7388 See Financial Data OFF still allows CRUD. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: SV-7388 See Financial Data OFF still allows CRUD. UNVERIFIED — VIU pending."
   },
   {
     "test_id": "SP-FIN-004",
-    "title": "Financial gate \u2014 enabling Part Sales CRUD while Financial OFF triggers confirm modal",
+    "title": "Financial gate — enabling Part Sales CRUD while Financial OFF triggers confirm modal",
     "jira": "SV-7388",
-    "permission": "See Financial Data (seeFinancialData) \u2014 gates Part Sales",
+    "permission": "See Financial Data (seeFinancialData) — gates Part Sales",
     "dependency_mode": "Financial gate: confirm modal",
     "priority": "Critical",
     "type": "Dependency",
     "preconditions": "Admin is in the Create Custom Role editor.",
     "role_setup": "In the editor with See Financial Data = OFF, enable Part Sales CRUD; observe the financial confirm modal.",
-    "test_data": "N/A \u2014 editor-only verification.",
+    "test_data": "N/A — editor-only verification.",
     "steps": [
       {
         "n": 1,
-        "action": "Go to Administration > Roles and Permissions > Create Custom Role > start from minimal/blank baseline. Confirm See Financial Data is OFF.",
+        "action": "Go to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) > Create Custom Role > start from minimal/blank baseline. Confirm See Financial Data is OFF. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Editor open; See Financial Data OFF."
       },
       {
         "n": 2,
         "action": "Enable Part Sales CRUD (e.g. Part Sales create/edit).",
-        "expected": "A financial confirm modal appears prompting to enable See Financial Data (spec: modal states the area requires See Financial Data to be enabled and asks to enable it \u2014 verify exact modal text against build; do not assume wording)."
+        "expected": "A financial confirm modal appears. Actual (VIU-11): title \"Enable See Financial Data?\"; body \"Part Sales requires See Financial Data. Enable it to grant this permission?\"; buttons \"Cancel\" / \"Enable\". Cancel reverts the checkbox. [Build-vs-spec: spec wording differed — see VIU-11.]"
       },
       {
         "n": 3,
@@ -2363,29 +2363,29 @@
       }
     ],
     "expected_final": "Enabling Part Sales CRUD while See Financial Data is OFF triggers the financial confirm modal; confirming enables See Financial Data.",
-    "source_viu": "Spec: SV-7388 Part Sales requires See Financial Data \u2014 financial confirm modal. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: SV-7388 Part Sales requires See Financial Data — financial confirm modal. VERIFIED (staging 2026-07-01) — DISCREPANCY; see VIU-11"
   },
   {
     "test_id": "SP-FIN-005",
-    "title": "Financial gate \u2014 enabling Invoicing CRUD while Financial OFF triggers confirm modal",
+    "title": "Financial gate — enabling Invoicing CRUD while Financial OFF triggers confirm modal",
     "jira": "SV-7388",
-    "permission": "See Financial Data (seeFinancialData) \u2014 gates Invoicing",
+    "permission": "See Financial Data (seeFinancialData) — gates Invoicing",
     "dependency_mode": "Financial gate: confirm modal",
     "priority": "Critical",
     "type": "Dependency",
     "preconditions": "Admin is in the Create Custom Role editor.",
     "role_setup": "In the editor with See Financial Data = OFF, enable Invoicing CRUD; observe the financial confirm modal.",
-    "test_data": "N/A \u2014 editor-only verification.",
+    "test_data": "N/A — editor-only verification.",
     "steps": [
       {
         "n": 1,
-        "action": "Go to Administration > Roles and Permissions > Create Custom Role > start from minimal/blank baseline. Confirm See Financial Data is OFF.",
+        "action": "Go to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) > Create Custom Role > start from minimal/blank baseline. Confirm See Financial Data is OFF. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Editor open; See Financial Data OFF."
       },
       {
         "n": 2,
         "action": "Enable Invoicing CRUD.",
-        "expected": "A financial confirm modal appears prompting to enable See Financial Data (verify exact modal text against build; do not assume wording)."
+        "expected": "A financial confirm modal appears. Actual (VIU-11): title \"Enable See Financial Data?\"; body \"Invoicing & Payments requires See Financial Data. Enable it to grant this permission?\"; buttons \"Cancel\" / \"Enable\". Cancel reverts the checkbox. [Build-vs-spec: spec wording differed — see VIU-11.]"
       },
       {
         "n": 3,
@@ -2394,11 +2394,11 @@
       }
     ],
     "expected_final": "Invoicing requires See Financial Data; enabling its CRUD while Financial OFF triggers the financial confirm modal.",
-    "source_viu": "Spec: SV-7388 Invoicing requires See Financial Data \u2014 financial confirm modal. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: SV-7388 Invoicing requires See Financial Data — financial confirm modal. VERIFIED (staging 2026-07-01) — DISCREPANCY; see VIU-11"
   },
   {
     "test_id": "SP-FIN-006",
-    "title": "Security \u2014 no financial leak in Receive Part modal when Financial OFF (SV-7973)",
+    "title": "Security — no financial leak in Receive Part modal when Financial OFF (SV-7973)",
     "jira": "SV-7973",
     "permission": "See Financial Data (seeFinancialData)",
     "dependency_mode": "None",
@@ -2410,7 +2410,7 @@
     "steps": [
       {
         "n": 1,
-        "action": "Go to Administration > Roles and Permissions > Create Custom Role > start from minimal/blank baseline.",
+        "action": "Go to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) > Create Custom Role > start from minimal/blank baseline. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role editor opens with all toggles OFF (blank baseline)."
       },
       {
@@ -2431,32 +2431,32 @@
       {
         "n": 5,
         "action": "Open the Receive Part modal for the WO part delivery.",
-        "expected": "The Receive Part modal shows no financial data (no cost/price/margin fields) because See Financial Data is OFF \u2014 no financial leak."
+        "expected": "The Receive Part modal shows no financial data (no cost/price/margin fields) because See Financial Data is OFF — no financial leak."
       }
     ],
     "expected_final": "With See Financial Data OFF, the Receive Part modal exposes no financial data (regression guard for SV-7973).",
-    "source_viu": "Spec: SV-7973 Receive Part modal \u2014 no financial leak when See Financial Data OFF. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: SV-7973 Receive Part modal — no financial leak when See Financial Data OFF. UNVERIFIED — VIU pending."
   },
   {
     "test_id": "SP-APAR-001",
-    "title": "Manage AP/AR GRANT \u2014 Unpaid/Payments/Credits tabs, aging reports, bulk payments",
+    "title": "Manage AP/AR GRANT — Unpaid/Payments/Credits tabs, aging reports, bulk payments",
     "jira": "SV-7388",
-    "permission": "Manage Accounts Payable and Receivable (seeApArData)",
+    "permission": "View and Manage AP/AR Data (seeApArData)",
     "dependency_mode": "None",
     "priority": "High",
     "type": "Positive",
     "preconditions": "Customers/vendors with unpaid invoices, payments, and credits exist; aging data exists.",
-    "role_setup": "Manage Accounts Payable and Receivable (seeApArData) = ON; Reports = ON; Customer/Vendor View as needed. All other toggles OFF.",
+    "role_setup": "View and Manage AP/AR Data (seeApArData) = ON; Reports = ON; Customer/Vendor View as needed. All other toggles OFF.",
     "test_data": "Customer CUST-APAR-001 and Vendor VEND-APAR-001 with unpaid invoices/payments/credits.",
     "steps": [
       {
         "n": 1,
-        "action": "Go to Administration > Roles and Permissions > Create Custom Role > start from minimal/blank baseline.",
+        "action": "Go to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) > Create Custom Role > start from minimal/blank baseline. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role editor opens with all toggles OFF (blank baseline)."
       },
       {
         "n": 2,
-        "action": "Set exactly these toggles: Manage AP/AR ON; Reports ON; Customer/Vendor View ON. Click Save.",
+        "action": "Set exactly these toggles: View and Manage AP/AR Data ON; Reports ON; Customer/Vendor View ON. Click Save.",
         "expected": "Role saves successfully and appears in the Roles and Permissions list."
       },
       {
@@ -2485,29 +2485,29 @@
         "expected": "Bulk payments from the Unpaid Invoices tab are available."
       }
     ],
-    "expected_final": "With Manage AP/AR ON, the Unpaid/Payments/Credits tabs, AP/AR aging reports, and bulk payments are all available.",
-    "source_viu": "Spec: SV-7388 Manage AP/AR \u2014 seeApArData. UNVERIFIED \u2014 VIU pending."
+    "expected_final": "With View and Manage AP/AR Data ON, the Unpaid/Payments/Credits tabs, AP/AR aging reports, and bulk payments are all available.",
+    "source_viu": "Spec: SV-7388 Manage AP/AR — seeApArData. UNVERIFIED — VIU pending."
   },
   {
     "test_id": "SP-APAR-002",
-    "title": "Manage AP/AR WITHHOLD \u2014 tabs, aging reports, and bulk payments hidden when OFF",
+    "title": "Manage AP/AR WITHHOLD — tabs, aging reports, and bulk payments hidden when OFF",
     "jira": "SV-7388",
-    "permission": "Manage Accounts Payable and Receivable (seeApArData)",
+    "permission": "View and Manage AP/AR Data (seeApArData)",
     "dependency_mode": "None",
     "priority": "High",
     "type": "Negative",
     "preconditions": "Customers/vendors with unpaid invoices/payments/credits exist.",
-    "role_setup": "Manage Accounts Payable and Receivable (seeApArData) = OFF; Reports = ON; Customer/Vendor View ON. All other toggles OFF.",
+    "role_setup": "View and Manage AP/AR Data (seeApArData) = OFF; Reports = ON; Customer/Vendor View ON. All other toggles OFF.",
     "test_data": "Customer CUST-APAR-002 and Vendor VEND-APAR-002.",
     "steps": [
       {
         "n": 1,
-        "action": "Go to Administration > Roles and Permissions > Create Custom Role > start from minimal/blank baseline.",
+        "action": "Go to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) > Create Custom Role > start from minimal/blank baseline. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role editor opens with all toggles OFF (blank baseline)."
       },
       {
         "n": 2,
-        "action": "Set exactly these toggles: Manage AP/AR OFF; Reports ON; Customer/Vendor View ON. Click Save.",
+        "action": "Set exactly these toggles: View and Manage AP/AR Data OFF; Reports ON; Customer/Vendor View ON. Click Save.",
         "expected": "Role saves successfully and appears in the Roles and Permissions list."
       },
       {
@@ -2531,29 +2531,29 @@
         "expected": "AR and AP aging reports are not available."
       }
     ],
-    "expected_final": "With Manage AP/AR OFF, the AP/AR tabs, aging reports, and bulk payments are all hidden.",
-    "source_viu": "Spec: SV-7388 Manage AP/AR OFF hides all AP/AR features. UNVERIFIED \u2014 VIU pending."
+    "expected_final": "With View and Manage AP/AR Data OFF, the AP/AR tabs, aging reports, and bulk payments are all hidden.",
+    "source_viu": "Spec: SV-7388 Manage AP/AR OFF hides all AP/AR features. UNVERIFIED — VIU pending."
   },
   {
     "test_id": "SP-APAR-003",
-    "title": "Manage AP/AR sensitive customer fields \u2014 Edit Customer modal + Customer Overview panel",
+    "title": "Manage AP/AR sensitive customer fields — Edit Customer modal + Customer Overview panel",
     "jira": "SV-7388",
-    "permission": "Manage Accounts Payable and Receivable (seeApArData)",
+    "permission": "View and Manage AP/AR Data (seeApArData)",
     "dependency_mode": "None",
     "priority": "High",
     "type": "Security",
     "preconditions": "A customer with credit terms/limit and rate defaults exists.",
-    "role_setup": "Compare two roles: (A) Manage AP/AR ON, Customer View+Edit ON; (B) Manage AP/AR OFF, Customer View+Edit ON.",
+    "role_setup": "Compare two roles: (A) View and Manage AP/AR Data ON, Customer View+Edit ON; (B) View and Manage AP/AR Data OFF, Customer View+Edit ON.",
     "test_data": "Customer CUST-APAR-SENS with Credit Terms, Credit Limit, Default Labor Rate, Default Shop Supplies, Min/Max, Taxes, PO is Required set.",
     "steps": [
       {
         "n": 1,
-        "action": "Go to Administration > Roles and Permissions > Create Custom Role > start from minimal/blank baseline. Create role A: Manage AP/AR ON, Customer View+Edit ON. Save.",
+        "action": "Go to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) > Create Custom Role > start from minimal/blank baseline. Create role A: View and Manage AP/AR Data ON, Customer View+Edit ON. Save. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Role A saved."
       },
       {
         "n": 2,
-        "action": "Create role B: Manage AP/AR OFF, Customer View+Edit ON. Save. Assign roles to users A and B.",
+        "action": "Create role B: View and Manage AP/AR Data OFF, Customer View+Edit ON. Save. Assign roles to users A and B.",
         "expected": "Roles assigned; role changes force logout."
       },
       {
@@ -2567,29 +2567,29 @@
         "expected": "The sensitive fields (Credit Terms, Credit Limit, Default Labor Rate, Default Shop Supplies, Min/Max, Taxes, PO is Required) are hidden."
       }
     ],
-    "expected_final": "Manage AP/AR gates the sensitive customer fields on the Edit Customer modal and Customer Overview panel; hidden when OFF, shown when ON.",
-    "source_viu": "Spec: SV-7388 Manage AP/AR gates sensitive customer fields. UNVERIFIED \u2014 VIU pending."
+    "expected_final": "View and Manage AP/AR Data gates the sensitive customer fields on the Edit Customer modal and Customer Overview panel; hidden when OFF, shown when ON.",
+    "source_viu": "Spec: SV-7388 Manage AP/AR gates sensitive customer fields. UNVERIFIED — VIU pending."
   },
   {
     "test_id": "SP-APAR-004",
     "title": "Manage AP/AR is INDEPENDENT from See Financial Data (Financial ON + AP/AR OFF)",
     "jira": "SV-7388",
-    "permission": "Manage Accounts Payable and Receivable (seeApArData) vs See Financial Data (seeFinancialData)",
+    "permission": "View and Manage AP/AR Data (seeApArData) vs See Financial Data (seeFinancialData)",
     "dependency_mode": "None",
     "priority": "High",
     "type": "Dependency",
     "preconditions": "Customer/vendor records with financial and AP/AR data exist.",
-    "role_setup": "See Financial Data (seeFinancialData) = ON; Manage Accounts Payable and Receivable (seeApArData) = OFF; Customer/Vendor View ON. All other toggles OFF.",
+    "role_setup": "See Financial Data (seeFinancialData) = ON; View and Manage AP/AR Data (seeApArData) = OFF; Customer/Vendor View ON. All other toggles OFF.",
     "test_data": "Customer CUST-IND-001 with financial data and unpaid invoices.",
     "steps": [
       {
         "n": 1,
-        "action": "Go to Administration > Roles and Permissions > Create Custom Role > start from minimal/blank baseline.",
+        "action": "Go to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) > Create Custom Role > start from minimal/blank baseline. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role editor opens with all toggles OFF (blank baseline)."
       },
       {
         "n": 2,
-        "action": "Set exactly these toggles: See Financial Data ON; Manage AP/AR OFF; Customer/Vendor View ON. Click Save.",
+        "action": "Set exactly these toggles: See Financial Data ON; View and Manage AP/AR Data OFF; Customer/Vendor View ON. Click Save.",
         "expected": "Role saves successfully and appears in the Roles and Permissions list."
       },
       {
@@ -2605,32 +2605,32 @@
       {
         "n": 5,
         "action": "Open the customer detail page and inspect financial data vs AP/AR tabs.",
-        "expected": "Financial data (pricing/costs/margins) is visible (Financial ON) but the Unpaid Invoices/Payments/Credits tabs are hidden (AP/AR OFF) \u2014 the two toggles are independent."
+        "expected": "Financial data (pricing/costs/margins) is visible (Financial ON) but the Unpaid Invoices/Payments/Credits tabs are hidden (AP/AR OFF) — the two toggles are independent."
       }
     ],
     "expected_final": "Financial ON with AP/AR OFF shows financial data but hides AP/AR features, confirming the two are independent.",
-    "source_viu": "Spec: SV-7388 Manage AP/AR independent from See Financial Data. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: SV-7388 Manage AP/AR independent from See Financial Data. UNVERIFIED — VIU pending."
   },
   {
     "test_id": "SP-APAR-005",
     "title": "Manage AP/AR does NOT gate CRUD, but Invoicing Delete additionally requires it",
     "jira": "SV-7388",
-    "permission": "Manage Accounts Payable and Receivable (seeApArData) \u2014 gates Invoicing Delete",
+    "permission": "View and Manage AP/AR Data (seeApArData) — gates Invoicing Delete",
     "dependency_mode": "AP/AR gate: confirm modal",
     "priority": "High",
     "type": "Dependency",
     "preconditions": "An invoice exists that could be deleted; Invoicing CRUD (incl Delete) is granted.",
-    "role_setup": "See Financial Data = ON (required for Invoicing); Invoicing View+Edit+Delete = ON; Manage Accounts Payable and Receivable (seeApArData) = OFF. All other toggles OFF.",
+    "role_setup": "See Financial Data = ON (required for Invoicing); Invoicing View+Edit+Delete = ON; View and Manage AP/AR Data (seeApArData) = OFF. All other toggles OFF.",
     "test_data": "Invoice INV-APAR-DEL-001.",
     "steps": [
       {
         "n": 1,
-        "action": "Go to Administration > Roles and Permissions > Create Custom Role > start from minimal/blank baseline.",
+        "action": "Go to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) > Create Custom Role > start from minimal/blank baseline. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role editor opens with all toggles OFF (blank baseline)."
       },
       {
         "n": 2,
-        "action": "Set exactly these toggles: See Financial Data ON; Invoicing View+Edit+Delete ON; Manage AP/AR OFF. Click Save.",
+        "action": "Set exactly these toggles: See Financial Data ON; Invoicing View+Edit+Delete ON; View and Manage AP/AR Data OFF. Click Save.",
         "expected": "Role saves successfully and appears in the Roles and Permissions list."
       },
       {
@@ -2651,15 +2651,15 @@
       {
         "n": 6,
         "action": "Attempt to delete the invoice.",
-        "expected": "Invoicing Delete is blocked/gated because it additionally requires Manage AP/AR, which is OFF (verify any gate/confirm modal wording against the build; do not assume text)."
+        "expected": "Invoicing Delete is blocked/gated because it additionally requires View and Manage AP/AR Data, which is OFF (verify any gate/confirm modal wording against the build; do not assume text)."
       }
     ],
-    "expected_final": "Manage AP/AR does not gate general CRUD, but Invoicing Delete additionally requires it and is blocked when AP/AR is OFF.",
-    "source_viu": "Spec: SV-7388 Invoicing Delete additionally requires Manage AP/AR. UNVERIFIED \u2014 VIU pending."
+    "expected_final": "View and Manage AP/AR Data does not gate general CRUD, but Invoicing Delete additionally requires it and is blocked when AP/AR is OFF.",
+    "source_viu": "Spec: SV-7388 Invoicing Delete additionally requires Manage AP/AR. UNVERIFIED — VIU pending."
   },
   {
     "test_id": "SP-HIST-001",
-    "title": "View History Logs GRANT \u2014 history/audit logs shown app-wide",
+    "title": "View History Logs GRANT — history/audit logs shown app-wide",
     "jira": "SV-7388",
     "permission": "View History Logs (viewHistoryLogs)",
     "dependency_mode": "None",
@@ -2671,7 +2671,7 @@
     "steps": [
       {
         "n": 1,
-        "action": "Go to Administration > Roles and Permissions > Create Custom Role > start from minimal/blank baseline.",
+        "action": "Go to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) > Create Custom Role > start from minimal/blank baseline. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role editor opens with all toggles OFF (blank baseline)."
       },
       {
@@ -2696,11 +2696,11 @@
       }
     ],
     "expected_final": "With View History Logs ON, history/audit logs are visible across the app.",
-    "source_viu": "Spec: SV-7388 View History Logs \u2014 viewHistoryLogs. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: SV-7388 View History Logs — viewHistoryLogs. UNVERIFIED — VIU pending."
   },
   {
     "test_id": "SP-HIST-002",
-    "title": "View History Logs WITHHOLD \u2014 history/audit logs hidden app-wide when OFF",
+    "title": "View History Logs WITHHOLD — history/audit logs hidden app-wide when OFF",
     "jira": "SV-7388",
     "permission": "View History Logs (viewHistoryLogs)",
     "dependency_mode": "None",
@@ -2712,7 +2712,7 @@
     "steps": [
       {
         "n": 1,
-        "action": "Go to Administration > Roles and Permissions > Create Custom Role > start from minimal/blank baseline.",
+        "action": "Go to Settings > Roles & Permissions (avatar menu → Settings → Roles & Permissions; URL /administration/roles-permissions) > Create Custom Role > start from minimal/blank baseline. (Step 1 is a 'Choose a template' dialog with Skip / Apply; the footer save button on the Create Role page is labelled 'Create'.)",
         "expected": "Create Custom Role editor opens with all toggles OFF (blank baseline)."
       },
       {
@@ -2737,6 +2737,6 @@
       }
     ],
     "expected_final": "With View History Logs OFF, history/audit logs are hidden app-wide.",
-    "source_viu": "Spec: SV-7388 View History Logs OFF hides logs app-wide. UNVERIFIED \u2014 VIU pending."
+    "source_viu": "Spec: SV-7388 View History Logs OFF hides logs app-wide. UNVERIFIED — VIU pending."
   }
 ]

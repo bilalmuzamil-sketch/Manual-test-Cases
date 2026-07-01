@@ -1,0 +1,137 @@
+[
+  {
+    "id": "VIU-01",
+    "topic": "Roles & Permissions location",
+    "spec_expectation": "Administration > Roles and Permissions",
+    "actual_staging": "Reached via avatar → Settings → 'Roles & Permissions'; URL /administration/roles-permissions",
+    "verdict": "MATCH (nav path clarified)",
+    "evidence": "02-roles-list.png",
+    "notes": "No top-level Administration menu; it's under the avatar > Settings."
+  },
+  {
+    "id": "VIU-02",
+    "topic": "List column headers",
+    "spec_expectation": "Role Name, Type, Template, Description, Users Assigned, Actions",
+    "actual_staging": "Role Name | Description | Template | Role Type | Users | Action",
+    "verdict": "DISCREPANCY (order & labels)",
+    "evidence": "02-roles-list.png",
+    "notes": "Description is 2nd; 'Role Type' not 'Type'; 'Users' not 'Users Assigned'; 'Action' singular."
+  },
+  {
+    "id": "VIU-03",
+    "topic": "System badge",
+    "spec_expectation": "System badge on system roles",
+    "actual_staging": "'System'/'Custom' chip in Role Type column",
+    "verdict": "MATCH",
+    "evidence": "02-roles-list.png",
+    "notes": ""
+  },
+  {
+    "id": "VIU-04",
+    "topic": "Create button label",
+    "spec_expectation": "Create Custom Role",
+    "actual_staging": "Create Custom Role",
+    "verdict": "MATCH",
+    "evidence": "02-roles-list.png",
+    "notes": ""
+  },
+  {
+    "id": "VIU-05",
+    "topic": "Row actions",
+    "spec_expectation": "Edit / Delete / View Permissions",
+    "actual_staging": "Edit = inline pencil icon; kebab menu has ONLY 'View Permissions'; NO Delete action for any role (system or custom)",
+    "verdict": "DISCREPANCY (Delete absent; Edit is an icon not a menu item)",
+    "evidence": "actions-menu-system.png, actions-menu-custom.png",
+    "notes": "Entire SV-7502 Delete-Role flow appears unimplemented in the UI."
+  },
+  {
+    "id": "VIU-06",
+    "topic": "Office & Time Clock (locked)",
+    "spec_expectation": "Open read-only",
+    "actual_staging": "Show lock icon; only View Permissions; no edit",
+    "verdict": "MATCH",
+    "evidence": "02-roles-list.png",
+    "notes": ""
+  },
+  {
+    "id": "VIU-07",
+    "topic": "View Permissions presentation",
+    "spec_expectation": "Read-only summary dialog with scannable ON/OFF",
+    "actual_staging": "Full-page read-only view (not a dialog) listing areas + CRUD labels + toggle state; disabled parents collapse children",
+    "verdict": "DISCREPANCY (full page, not dialog)",
+    "evidence": "03-permission-summary.png",
+    "notes": ""
+  },
+  {
+    "id": "VIU-08",
+    "topic": "Create Custom Role flow",
+    "spec_expectation": "Template selection → Role details → Permission editor → Save",
+    "actual_staging": "Step 1 'Choose a template' dialog (Skip / Apply); Step 2 'Create Role' single page: Basic Details (Role Name*, Description) + Permissions; footer Cancel / Create",
+    "verdict": "MATCH (exact labels captured)",
+    "evidence": "create-step1.png, create-editor.png",
+    "notes": "'Create' is the save button label (not 'Save')."
+  },
+  {
+    "id": "VIU-09",
+    "topic": "CRUD cascade (forward)",
+    "spec_expectation": "Enabling Edit auto-enables View; Delete auto-enables Edit+View",
+    "actual_staging": "Confirmed on Work Orders: Create & Edit auto-checked View; Delete kept all three on",
+    "verdict": "MATCH",
+    "evidence": "04-cascade.png",
+    "notes": ""
+  },
+  {
+    "id": "VIU-10",
+    "topic": "CRUD cascade (reverse)",
+    "spec_expectation": "Disabling View disables Edit+Delete",
+    "actual_staging": "Confirmed: turning View OFF cleared Create & Edit and Delete",
+    "verdict": "MATCH",
+    "evidence": "04-cascade.png",
+    "notes": ""
+  },
+  {
+    "id": "VIU-11",
+    "topic": "Financial confirm modal",
+    "spec_expectation": "Trigger on enabling Part Sales/Invoicing CRUD while See Financial Data OFF; text '[Area] requires \"See Financial Data\" to be enabled. Enable it?'; Confirm/Cancel",
+    "actual_staging": "Triggered by 'Create & Edit' (NOT View). Title: 'Enable See Financial Data?' Body: 'Invoicing & Payments requires See Financial Data. Enable it to grant this permission?' Buttons: Cancel / Enable. Cancel reverts the checkbox.",
+    "verdict": "DISCREPANCY (wording differs; trigger is Create&Edit)",
+    "evidence": "05-financial-modal.png",
+    "notes": ""
+  },
+  {
+    "id": "VIU-12",
+    "topic": "Settings sub-toggles",
+    "spec_expectation": "Spec ambiguous (6 vs 7; possible Integrations)",
+    "actual_staging": "Exactly 6: App Settings, Service, Parts, Finance, Data Import, View/Manage Wages. NO 'Integrations' sub-setting exists in the role editor.",
+    "verdict": "RESOLVED — MATCH (6 subs, no Integrations)",
+    "evidence": "06-settings-subs.png",
+    "notes": "Integrations (QuickBooks, IBS) exists only as a top-level Administration area, not a role permission."
+  },
+  {
+    "id": "VIU-13",
+    "topic": "Parts Department parent gate",
+    "spec_expectation": "OFF hides 3 children; ON reveals; settings preserved",
+    "actual_staging": "Confirmed: OFF hides Part sales / Catalog and Inventory / Vendor and order management; ON reveals them",
+    "verdict": "MATCH",
+    "evidence": "06-settings-subs.png, 07-parts-on.png",
+    "notes": ""
+  },
+  {
+    "id": "VIU-14",
+    "topic": "View Mode control",
+    "spec_expectation": "Tech vs Full; UX only, not access control",
+    "actual_staging": "Segmented control with options 'Full View' and 'Tech view'; info text 'View mode — Controls interface complexity, not access controls.'",
+    "verdict": "MATCH",
+    "evidence": "create-editor.png",
+    "notes": ""
+  },
+  {
+    "id": "VIU-15",
+    "topic": "Cross-cutting toggle labels",
+    "spec_expectation": "See Financial Data; Manage Accounts Payable and Receivable; View History Logs",
+    "actual_staging": "'See Financial Data', 'View and Manage AP/AR Data', 'View History Logs'",
+    "verdict": "DISCREPANCY (AP/AR label)",
+    "evidence": "create-editor.png",
+    "notes": ""
+  }
+]

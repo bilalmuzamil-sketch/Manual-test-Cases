@@ -26,6 +26,10 @@ DI_COPY = os.path.join(BUILD, "di-perrole.csv")
 HEADERS = ["Title", "Section", "Type", "Priority", "Preconditions",
            "Steps", "Expected Result", "References"]
 
+VIU_FINDINGS = os.path.join(BUILD, "viu-findings.json")
+VIU_HEADERS = ["ID", "Topic", "Spec Expectation", "Actual (Staging)",
+               "Verdict", "Evidence", "Notes"]
+
 SP_MAP = {
     "WO": "Work Orders", "WOL": "Work Order Lines", "SCH": "Schedule",
     "CUST": "Customer Management", "PS": "Part Sales",
@@ -163,14 +167,32 @@ def write_data_sheet(wb, title, rows):
     return ws
 
 
-def build_index_sheet(wb, counts):
+def load_viu_findings():
+    with open(VIU_FINDINGS) as f:
+        return json.load(f)
+
+
+def viu_tallies(findings):
+    disc = sum(1 for x in findings if "DISCREPANCY" in x["verdict"].upper())
+    match = len(findings) - disc
+    return len(findings), match, disc
+
+
+def build_index_sheet(wb, counts, viu_stats, verified_counts):
+    total_viu, match_viu, disc_viu = viu_stats
+    ver_match, ver_disc = verified_counts
     ws = wb.create_sheet("Index")
     ws["A1"] = "ShopView Custom Roles & Permissions — Test Suite Index"
     ws["A1"].font = Font(bold=True, size=14)
     ws["A3"] = "Epic: SV-7388 (Custom Roles and Permissions)"
-    ws["A4"] = ("Verification status: All non-Digital-Inspections cases are "
-                "UNVERIFIED — VIU pending.")
-    ws["A5"] = ("Standard column format (all tabs): Title | Section | Type | "
+    ws["A4"] = (
+        f"Verification status: VIU (Verify-in-UI) has BEGUN (pass 1, staging, "
+        f"2026-07-01). {total_viu} findings logged "
+        f"({match_viu} MATCH / {disc_viu} DISCREPANCY) — see the 'VIU Findings Log' tab. "
+        f"{ver_match + ver_disc} test cases now VERIFIED "
+        f"({ver_match} MATCH / {ver_disc} DISCREPANCY); remaining cases are "
+        f"UNVERIFIED — VIU pending.")
+    ws["A5"] = ("Standard column format (test-case tabs): Title | Section | Type | "
                 "Priority | Preconditions | Steps | Expected Result | References")
 
     ws["A7"] = "Tab"
@@ -194,6 +216,35 @@ def build_index_sheet(wb, counts):
         for cell in row:
             if cell.alignment.wrap_text is not True:
                 cell.alignment = Alignment(vertical="top", horizontal="left")
+    for a in ("A4",):
+        ws[a].alignment = Alignment(vertical="top", horizontal="left", wrap_text=True)
+    return ws
+
+
+def build_viu_sheet(wb, findings):
+    ws = wb.create_sheet("VIU Findings Log")
+    ws.append(VIU_HEADERS)
+    for fnd in findings:
+        ws.append([
+            fnd["id"], fnd["topic"], fnd["spec_expectation"],
+            fnd["actual_staging"], fnd["verdict"], fnd["evidence"], fnd["notes"],
+        ])
+    widths = {"ID": 10, "Topic": 24, "Spec Expectation": 40,
+              "Actual (Staging)": 50, "Verdict": 26, "Evidence": 24, "Notes": 40}
+    wrap = {"Spec Expectation", "Actual (Staging)", "Verdict", "Notes", "Evidence"}
+    for ci, h in enumerate(VIU_HEADERS, start=1):
+        c = ws.cell(row=1, column=ci)
+        c.fill = HEADER_FILL
+        c.font = HEADER_FONT
+        c.alignment = Alignment(vertical="top", horizontal="left", wrap_text=True)
+        ws.column_dimensions[get_column_letter(ci)].width = widths[h]
+    for rr in range(2, len(findings) + 2):
+        for ci, h in enumerate(VIU_HEADERS, start=1):
+            cell = ws.cell(row=rr, column=ci)
+            cell.alignment = TOP_WRAP if h in wrap else TOP_LEFT
+    ws.freeze_panes = "A2"
+    last_col = get_column_letter(len(VIU_HEADERS))
+    ws.auto_filter.ref = f"A1:{last_col}{len(findings) + 1}"
     return ws
 
 
@@ -221,6 +272,17 @@ def main():
     di_rows = copy_di_csv()
     di_count = len(di_rows)
 
+    # ---- VIU findings + verified-case tallies ----
+    findings = load_viu_findings()
+    viu_stats = viu_tallies(findings)
+    all_cases = sp_crud + sp_noncrud + te + combo
+    ver_match = sum(1 for c in all_cases
+                    if "VERIFIED (staging" in c["source_viu"]
+                    and "MATCH" in c["source_viu"].split("VERIFIED", 1)[1])
+    ver_disc = sum(1 for c in all_cases
+                   if "VERIFIED (staging" in c["source_viu"]
+                   and "DISCREPANCY" in c["source_viu"].split("VERIFIED", 1)[1])
+
     # ---- XLSX ----
     wb = Workbook()
     wb.remove(wb.active)  # drop default sheet
@@ -231,7 +293,8 @@ def main():
         ("Combination - Random", len(rnd_rows)),
         ("Digital Inspections", di_count),
     ]
-    build_index_sheet(wb, counts)
+    build_index_sheet(wb, counts, viu_stats, (ver_match, ver_disc))
+    build_viu_sheet(wb, findings)
     write_data_sheet(wb, "Single Permission", single_rows)
     write_data_sheet(wb, "Template Edit", te_rows)
     write_data_sheet(wb, "Combination - Representative", rep_rows)
@@ -257,6 +320,19 @@ def main():
     print(f"DI rows parsed from CSV = {di_count}")
 
     wb2 = load_workbook(xlsx_path)
+    print("\n-- Sheet order --")
+    expected_order = ["Index", "VIU Findings Log", "Single Permission",
+                      "Template Edit", "Combination - Representative",
+                      "Combination - Random", "Digital Inspections"]
+    print("  " + " | ".join(wb2.sheetnames))
+    assert wb2.sheetnames == expected_order, wb2.sheetnames
+    print("  Sheet order OK.")
+
+    viu_ws = wb2["VIU Findings Log"]
+    viu_data_rows = viu_ws.max_row - 1
+    print(f"\n-- VIU Findings Log rows = {viu_data_rows} (expected 15) --")
+    assert viu_data_rows == 15, viu_data_rows
+
     print("\n-- XLSX per-sheet data-row counts --")
     for name in ["Single Permission", "Template Edit",
                  "Combination - Representative", "Combination - Random",
@@ -291,6 +367,14 @@ def main():
     te_row = te_rows[0]
     for h, v in zip(HEADERS, te_row):
         print(f"[{h}]\n{v}\n")
+
+    verified_total = sum(1 for c in all_cases
+                         if c["source_viu"].startswith("VERIFIED")
+                         or "VERIFIED (staging" in c["source_viu"])
+    print("-- VIU VERIFICATION SUMMARY --")
+    print(f"Case rows with source_viu containing VERIFIED = {verified_total} "
+          f"({ver_match} MATCH / {ver_disc} DISCREPANCY); "
+          f"remaining UNVERIFIED = {len(all_cases) - verified_total}")
 
 
 if __name__ == "__main__":
