@@ -188,7 +188,8 @@ def build_index_sheet(wb, counts, viu_stats, verified_counts):
     ws["A4"] = (
         f"Verification status: VIU (Verify-in-UI) has BEGUN (pass 1, staging, "
         f"2026-07-01). {total_viu} findings logged "
-        f"({match_viu} MATCH / {disc_viu} DISCREPANCY) — see the 'VIU Findings Log' tab. "
+        f"({match_viu} MATCH / {disc_viu} DISCREPANCY (VIU-05 corrected to MATCH "
+        f"2026-07-01)) — see the 'VIU Findings Log' tab. "
         f"{ver_match + ver_disc} test cases now VERIFIED "
         f"({ver_match} MATCH / {ver_disc} DISCREPANCY); remaining cases are "
         f"UNVERIFIED — VIU pending.")

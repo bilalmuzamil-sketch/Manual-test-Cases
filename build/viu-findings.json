@@ -39,10 +39,10 @@
     "id": "VIU-05",
     "topic": "Row actions",
     "spec_expectation": "Edit / Delete / View Permissions",
-    "actual_staging": "Edit = inline pencil icon; kebab menu has ONLY 'View Permissions'; NO Delete action for any role (system or custom)",
-    "verdict": "DISCREPANCY (Delete absent; Edit is an icon not a menu item)",
-    "evidence": "actions-menu-system.png, actions-menu-custom.png",
-    "notes": "Entire SV-7502 Delete-Role flow appears unimplemented in the UI."
+    "actual_staging": "Custom roles: kebab (three-dot) menu contains 'View Permissions' + 'Delete'. System roles: kebab has 'View Permissions' only (no Delete). Locked roles (Office, Time Clock): view-only (eye icon). Edit is an inline pencil icon on editable roles.",
+    "verdict": "MATCH",
+    "evidence": "02-roles-list.png; user screenshot 2026-07-01",
+    "notes": "Corrected 2026-07-01 per user screenshot — earlier probe had only inspected a System role's kebab and wrongly concluded Delete was absent. Delete IS available for Custom roles, matching spec (SV-7502)."
   },
   {
     "id": "VIU-06",
