@@ -67,18 +67,18 @@
 | **Related Jira** | SV-7520 |
 | **Priority** | Medium |
 | **Type** | UI |
-| **Preconditions** | Admin access to role editor. |
-| **Test Data** | Any custom role, e.g. "PARTS-Editor-UI". |
+| **Preconditions** | Logged in as Administrator with permission to edit roles. Open Administration > Roles and Permissions and edit the custom role "PARTS-Editor-UI". |
+| **Test Data** | Custom role "PARTS-Editor-UI" with the Parts Department parent toggle currently ON and its child sections configured. |
 
 **Steps**
 
 | # | Action | Expected Result |
 |---|--------|-----------------|
-| 1 | Open "PARTS-Editor-UI" in the role editor with Parts Department ON. | The three child sections (Part Sales, Catalog & Inventory, Vendor & Order Management) are visible. |
-| 2 | Toggle Parts Department OFF. | The three child sections are hidden via a slide transition (animated collapse), not an abrupt removal. |
-| 3 | Toggle Parts Department back ON. | The three child sections slide back into view with their prior settings shown. |
+| 1 | In the role editor, scroll to the Parts Department section with its parent toggle ON. | The three child sections — Part Sales, Catalog & Inventory, and Vendor & Order Management — are displayed beneath the Parts Department parent. |
+| 2 | Set the Parts Department parent toggle OFF. | The three child sections collapse out of view with an animated slide transition (not an instant disappearance), leaving only the Parts Department parent toggle visible. |
+| 3 | Set the Parts Department parent toggle back ON. | The three child sections slide back into view and show the same ON/OFF selections they had before the collapse. |
 
-**Expected Final Result:** In the role editor, the three children are shown/hidden with a slide transition driven by the Parts Department toggle.
+**Expected Final Result:** In the role editor, the Parts Department parent toggle drives an animated slide collapse/expand of the three child sections, and their prior settings are preserved across the OFF→ON cycle.
 
 ---
 

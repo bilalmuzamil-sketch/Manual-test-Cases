@@ -46,16 +46,16 @@
 | **Related Jira** | SV-7499 |
 | **Priority** | Medium |
 | **Type** | UI |
-| **Preconditions** | Logged in as Administrator; list page open. |
-| **Test Data** | System role "Administrator"; a custom role. |
+| **Preconditions** | Logged in as Administrator with the Roles & Permissions list page (Administration > Roles and Permissions) open. |
+| **Test Data** | System role "Administrator"; at least one custom role (e.g., "Front Desk Lite"). |
 
 **Steps**
 
 | # | Action | Expected Result |
 |---|--------|-----------------|
-| 1 | Locate a system role row's Role Name cell. | A "System" badge is displayed next to the role name. |
-| 2 | Locate a custom role row's Role Name cell. | No "System" badge is displayed. |
-| 3 | Cross-check the badge against the Type column. | Every row showing the System badge also shows Type = System; every custom row shows Type = Custom with no badge. |
+| 1 | Locate the "Administrator" (system) role row and inspect its Role Name cell. | A "System" badge/label is displayed inline next to the role name. |
+| 2 | Locate a custom role row (e.g., "Front Desk Lite") and inspect its Role Name cell. | No "System" badge is displayed next to the custom role name. |
+| 3 | Cross-check every visible row's badge against its Type column value. | Each row with a System badge shows Type = System, and each custom row shows Type = Custom with no badge. |
 
 **Expected Final Result:** The System badge appears exclusively on system roles and is consistent with the Type column.
 
@@ -315,18 +315,18 @@
 | **Related Jira** | SV-7500 |
 | **Priority** | Medium |
 | **Type** | UI |
-| **Preconditions** | Logged in as Administrator; Permission Editor open. |
-| **Test Data** | Work Orders View toggle and WO sub-settings. |
+| **Preconditions** | Logged in as Administrator. Open Administration > Roles and Permissions, click Edit (or Create Custom Role) to open the Permission Editor, and scroll to the Work Orders section. |
+| **Test Data** | A custom role open in the editor; the Work Orders "View" toggle and its sub-settings (Review Work Orders, Pick Parts, Order Parts). |
 
 **Steps**
 
 | # | Action | Expected Result |
 |---|--------|-----------------|
-| 1 | With WO View ON, confirm WO sub-settings are visible and interactive. | WO sub-settings are shown and editable. |
-| 2 | Turn WO View OFF. | WO sub-settings remain visible but appear greyed/disabled (not hidden). |
-| 3 | Turn WO View back ON. | WO sub-settings become interactive again. |
+| 1 | In the Work Orders section, set the "View" toggle ON. | The WO sub-settings (Review Work Orders, Pick Parts, Order Parts) are displayed in full colour and each toggle can be clicked and changed. |
+| 2 | Set the Work Orders "View" toggle OFF. | The same WO sub-settings remain on screen (not hidden) but render greyed/dimmed, and clicking their toggles has no effect (disabled). |
+| 3 | Set the Work Orders "View" toggle back ON. | The WO sub-settings return to full colour and become clickable again, retaining their previous ON/OFF selections. |
 
-**Expected Final Result:** WO sub-settings are always visible; they are greyed out (disabled) rather than hidden when WO View is OFF.
+**Expected Final Result:** The WO sub-settings stay visible at all times; they appear greyed out and disabled (not removed) while WO View is OFF, and become interactive again when WO View is ON.
 
 ---
 
@@ -582,16 +582,16 @@
 | **Related Jira** | SV-7503 |
 | **Priority** | Medium |
 | **Type** | UI |
-| **Preconditions** | Logged in as Administrator; list page open. |
-| **Test Data** | Any role with a mix of ON and OFF permissions. |
+| **Preconditions** | Logged in as Administrator with the Roles & Permissions list page (Administration > Roles and Permissions) open. |
+| **Test Data** | A role known to have a mix of ON and OFF permissions (e.g., a custom role with Work Orders View ON and Parts Department OFF). |
 
 **Steps**
 
 | # | Action | Expected Result |
 |---|--------|-----------------|
-| 1 | Open View Permissions for a role with mixed permissions. | A read-only dialog shows the full permission set in a compact, scannable ON/OFF format. |
-| 2 | Scan for a permission known to be ON and one known to be OFF. | Both states are clearly and correctly indicated. |
-| 3 | Confirm no control is editable and close the dialog. | The dialog is view-only and closes cleanly. |
+| 1 | Click "View Permissions" in the Actions column for the mixed-permission role. | A read-only Permission Summary dialog opens listing the role's full permission set with each entry showing an ON or OFF indicator. |
+| 2 | Locate one permission known to be ON and one known to be OFF. | The ON permission shows an ON/enabled indicator and the OFF permission shows an OFF/disabled indicator, each matching the role's configuration. |
+| 3 | Attempt to change any indicator, then close the dialog. | No indicator or control responds to clicks (view-only); closing the dialog returns to the unchanged list page. |
 
 **Expected Final Result:** The Permission Summary presents a role's complete permission set in a compact read-only ON/OFF layout.
 
@@ -604,16 +604,16 @@
 | **Related Jira** | SV-7505 |
 | **Priority** | High |
 | **Type** | UI |
-| **Preconditions** | Logged in as Administrator; at least one custom role exists. |
-| **Test Data** | Any staff user; 12 system roles + custom roles. |
+| **Preconditions** | Logged in as Administrator; at least one custom role exists in addition to the 12 system roles. |
+| **Test Data** | Any staff user; the 12 system roles plus one or more custom roles (e.g., "Front Desk Lite"). |
 
 **Steps**
 
 | # | Action | Expected Result |
 |---|--------|-----------------|
-| 1 | Navigate to Administration > Staff and open a user's role selector. | The role selector opens. |
-| 2 | Inspect the grouping of options. | Options are grouped into "System Roles" (12 entries) and "Custom Roles". |
-| 3 | Verify each existing custom role appears under Custom Roles. | All custom roles are listed under the Custom Roles group; system roles under System Roles. |
+| 1 | Navigate to Administration > Staff, select a user, and open that user's role selector dropdown. | The role selector dropdown opens and displays the list of assignable roles. |
+| 2 | Inspect how the options are grouped within the dropdown. | Options appear under two labelled group headings: "System Roles" (containing the 12 system roles) and "Custom Roles". |
+| 3 | Verify each existing custom role appears under the Custom Roles heading and each system role under System Roles. | Every custom role (e.g., "Front Desk Lite") is listed under Custom Roles and every system role under System Roles, with no role in the wrong group. |
 
 **Expected Final Result:** The Staff-page role selector groups roles into System Roles (12) and Custom Roles.
 
@@ -626,16 +626,16 @@
 | **Related Jira** | SV-7505, SV-7503 |
 | **Priority** | Medium |
 | **Type** | UI |
-| **Preconditions** | Logged in as Administrator; Staff page open with a user selected. |
-| **Test Data** | Any role selected in the user's role selector. |
+| **Preconditions** | Logged in as Administrator with Administration > Staff open and a user selected. |
+| **Test Data** | A specific role to select in the user's role selector (e.g., "Front Desk Lite"). |
 
 **Steps**
 
 | # | Action | Expected Result |
 |---|--------|-----------------|
-| 1 | Select a role in the user's role selector. | The role is selected/highlighted. |
-| 2 | Click the "View Permissions" button next to the role selector. | The read-only Permission Summary opens for the selected role. |
-| 3 | Confirm it matches the same summary shown from the list page and close it. | The summary is read-only and consistent with the list-page summary. |
+| 1 | In the selected user's role selector, choose a role (e.g., "Front Desk Lite"). | The chosen role appears as the selected/highlighted value in the role selector. |
+| 2 | Click the "View Permissions" button next to the role selector. | A read-only Permission Summary dialog opens showing the ON/OFF permission set for the selected role. |
+| 3 | Compare the summary contents to the same role's summary opened from the Roles & Permissions list page, then close the dialog. | The permission entries and ON/OFF states match the list-page summary exactly, no control is editable, and closing returns to the Staff page unchanged. |
 
 **Expected Final Result:** The Staff page exposes a View Permissions button that opens the read-only summary for the selected role.
 

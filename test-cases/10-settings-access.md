@@ -279,18 +279,18 @@
 | **Related Jira** | SV-7521 |
 | **Priority** | Medium |
 | **Type** | UI |
-| **Preconditions** | Admin can edit roles. |
-| **Test Data** | Any custom role open in the Roles and Permissions editor with the Settings parent ON and some sub-settings ON. |
+| **Preconditions** | Logged in as Administrator with permission to edit roles. Open Administration > Roles and Permissions and edit a custom role, then scroll to the Settings section. |
+| **Test Data** | A custom role open in the Roles and Permissions editor with the Settings parent toggle ON and at least one sub-setting ON. |
 
 **Steps**
 
 | # | Action | Expected Result |
 |---|--------|-----------------|
-| 1 | As Administrator, open a custom role in the editor and set the Settings parent ON. | The sub-settings (App Settings, Service, Parts, Integrations, Finance, Data Import, View/Manage Wages) are displayed under the parent. |
-| 2 | Toggle the Settings parent OFF. | The sub-settings slide/collapse out of view (slide transition), reflecting that they are inactive while the parent is OFF. |
-| 3 | Toggle the Settings parent back ON. | The sub-settings slide back into view. |
+| 1 | In the Settings section, confirm the Settings parent toggle is ON. | The sub-settings (App Settings, Service, Parts, Integrations, Finance, Data Import, View/Manage Wages) are displayed beneath the Settings parent. |
+| 2 | Set the Settings parent toggle OFF. | The Settings sub-settings collapse out of view with an animated slide transition (not an instant removal), leaving only the Settings parent toggle visible. |
+| 3 | Set the Settings parent toggle back ON. | The sub-settings slide back into view and show the same ON/OFF selections they had before collapsing. |
 
-**Expected Final Result:** The editor visually collapses the sub-settings when the Settings parent is OFF and reveals them when ON, matching the parent-child gating.
+**Expected Final Result:** The editor animates a slide collapse of the Settings sub-settings when the parent is OFF and reveals them when the parent is ON, with prior selections preserved, matching the parent-child gating.
 
 ---
 

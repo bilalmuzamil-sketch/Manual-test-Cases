@@ -292,18 +292,18 @@
 | **Related Jira** | SV-7507 |
 | **Priority** | Medium |
 | **Type** | UI |
-| **Preconditions** | A custom role with Work Orders → View OFF. |
-| **Test Data** | Custom role "No WO Access". |
+| **Preconditions** | Logged in as Administrator. Open Administration > Roles and Permissions, edit the custom role "No WO Access", and scroll to the Work Orders section. |
+| **Test Data** | Custom role "No WO Access" with Work Orders → View currently OFF. |
 
 **Steps**
 
 | # | Action | Expected Result |
 |---|--------|-----------------|
-| 1 | In the role editor set WO View OFF. | View is OFF. |
-| 2 | Locate Review Work Orders, Pick Parts, Order Parts. | All three sub-settings are **always visible** but **greyed out / disabled** because WO View is OFF. |
-| 3 | Turn WO View ON. | The three sub-settings become interactable. |
+| 1 | In the Work Orders section of the role editor, set the "View" toggle OFF. | The Work Orders "View" toggle displays the OFF state. |
+| 2 | Locate the Review Work Orders, Pick Parts, and Order Parts sub-settings. | All three sub-settings remain **visible** on screen (not hidden) but render **greyed out / dimmed**, and clicking their toggles produces no change (disabled) because WO View is OFF. |
+| 3 | Set the Work Orders "View" toggle ON. | The three sub-settings return to full colour and each toggle becomes clickable/editable again. |
 
-**Expected Final Result:** The three sub-settings are always shown but greyed while WO View is OFF, and become editable once View is ON.
+**Expected Final Result:** Review Work Orders, Pick Parts, and Order Parts are always shown but appear greyed and disabled while WO View is OFF, and become editable once WO View is ON.
 
 ---
 
