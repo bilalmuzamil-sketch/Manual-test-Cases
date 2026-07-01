@@ -1,0 +1,511 @@
+Title,Section,Type,Priority,Preconditions,Steps,Expected Result,References
+Administrator - A. View inspections on a work order line,Custom Roles and Permissions > Digital Inspections > Administrator,Functional,Medium,Logged in as Administrator. A work order line has at least one inspection.,"1. Log in.
+2. Open a work order that has an inspection on a line.
+3. Locate the inspection on the line.","Step 1: Login succeeds.
+Step 2: Work order opens.
+Step 3: Existing inspections on the line are visible. Edit controls (Add/bin/Open) appear only if the role has the relevant Work Order Lines rights; otherwise the inspection is read-only.",SV-7509
+Administrator - B. Add inspection to a work order line,Custom Roles and Permissions > Digital Inspections > Administrator,Functional,High,Logged in as Administrator. A work order with at least one line exists.,"1. Log in.
+2. Open a work order and locate a line.
+3. Open the three-dot menu on the line.
+4. Select Add Inspection and choose a template.","Step 3: The three-dot menu shows Add Inspection.
+Step 4: The inspection template is added and ""Inspection added to line."" is shown.",SV-7509
+Administrator - C. Add multiple inspection templates to one line,Custom Roles and Permissions > Digital Inspections > Administrator,Functional,Medium,Logged in as Administrator. A work order line exists.,"1. Log in.
+2. Add an inspection template to a line.
+3. Add a second and third template to the same line.
+4. Attempt to add a fourth.","Step 2: First inspection added (""Inspection added to line."").
+Step 3: Second and third inspections added to the same line.
+Step 4: VIU - spec does not state a maximum; build observed up to 3 per line. Confirm whether a 4th is prevented.",SV-7509
+Administrator - D. Open and fill an in-progress inspection,Custom Roles and Permissions > Digital Inspections > Administrator,Functional,High,Logged in as Administrator. A line has an in-progress inspection.,"1. Log in.
+2. Open an in-progress inspection on a line (click Open).
+3. Attempt to fill/edit the inspection items.","Step 2: The inspection opens.
+Step 3: Inspection items can be filled/edited (provided the line is not marked complete).",SV-7509
+Administrator - E. Complete an inspection (Submit and Generate Report),Custom Roles and Permissions > Digital Inspections > Administrator,Functional,Medium,Logged in as Administrator. An inspection is in progress with required fields fillable.,"1. Log in.
+2. Open an in-progress inspection.
+3. Fill all required fields.
+4. Click Submit and Generate Report.","Step 3: With no required field outstanding, the Submit and Generate Report button is visible and clickable.
+Step 4: The inspection is submitted, a report is generated, and status becomes ""Completed"".",SV-7509
+Administrator - F. Inspection at 100 percent but not submitted shows Open,Custom Roles and Permissions > Digital Inspections > Administrator,UI,Medium,Logged in as Administrator. An inspection can be filled to 100 percent without submitting.,"1. Log in.
+2. Fill all inspection items to 100 percent but do NOT click Submit and Generate Report.
+3. Observe the inspection status on the line.","Step 2: All items show filled (100 percent).
+Step 3: The inspection still shows ""Open"" (not ""Completed"") because Submit and Generate Report has not been clicked.",SV-7509
+Administrator - G. Inspection status labels display correctly,Custom Roles and Permissions > Digital Inspections > Administrator,UI,Medium,Logged in as Administrator. A line has inspections in different states.,"1. Open a work order line with inspections in different states.
+2. Observe the status labels.","Step 2: A completed inspection shows ""Completed""; an in-progress inspection shows ""In Progress"" with a percentage of completion.",SV-7509
+Administrator - H. Remove an in-progress inspection,Custom Roles and Permissions > Digital Inspections > Administrator,Functional,High,Logged in as Administrator. A line has an in-progress / not-started inspection.,"1. Log in.
+2. Open the line with an in-progress inspection.
+3. Look for / click the bin (remove) icon.
+4. Confirm removal if prompted.","Step 3: A confirmation dialog appears: ""Remove inspection - Are you sure you want to remove this inspection?"" (Cancel / Remove).
+Step 4: On Remove, the inspection is removed from the line.",SV-7509
+Administrator - I. Remove a completed inspection,Custom Roles and Permissions > Digital Inspections > Administrator,Functional,High,Logged in as Administrator. A line has a completed inspection with a generated PDF report.,"1. Log in.
+2. Open the line with a completed inspection.
+3. Look for / click the bin (remove) icon.
+4. Confirm removal if prompted.","Step 3: A confirmation dialog appears: ""Remove inspection - This inspection has a generated PDF report. Are you sure you want to remove it?"" (Cancel / Remove).
+Step 4: On Remove, the completed inspection is removed.
+Build note: removal may require the work order line to NOT be marked complete (mark line Uncomplete first).",SV-7509
+Administrator - J. Reopen a completed inspection,Custom Roles and Permissions > Digital Inspections > Administrator,Functional,High,Logged in as Administrator. A line has a completed inspection.,"1. Log in.
+2. Open the line with a completed inspection.
+3. Click Open against the inspection.","Step 3: The completed inspection reopens for editing via the Open control.
+Step 4: VIU - confirm reopen behavior for an inspection already submitted with a generated PDF report (open question from build testing).",SV-7509
+Administrator - K. Configure Inspection Templates (Settings > Service),Custom Roles and Permissions > Digital Inspections > Administrator,Functional,Medium,Logged in as Administrator.,"1. Log in.
+2. Go to Settings > Service.
+3. Open Inspection Templates.
+4. Create a new template with fields.","Step 2: Settings > Service is accessible.
+Step 3: The Inspection Templates section is available.
+Step 4: A new template can be created with fields: Checklist, Short Text, Long Text, Measurements, Photo, Instructions.",SV-7521
+Service Manager - A. View inspections on a work order line,Custom Roles and Permissions > Digital Inspections > Service Manager,Functional,Medium,"Logged in as Service Manager. Settings ON but Service sub-setting OFF, so cannot configure templates. A work order line has at least one inspection.","1. Log in.
+2. Open a work order that has an inspection on a line.
+3. Locate the inspection on the line.","Step 1: Login succeeds.
+Step 2: Work order opens.
+Step 3: Existing inspections on the line are visible. Edit controls (Add/bin/Open) appear only if the role has the relevant Work Order Lines rights; otherwise the inspection is read-only.",SV-7509
+Service Manager - B. Add inspection to a work order line,Custom Roles and Permissions > Digital Inspections > Service Manager,Functional,High,"Logged in as Service Manager. Settings ON but Service sub-setting OFF, so cannot configure templates. A work order with at least one line exists.","1. Log in.
+2. Open a work order and locate a line.
+3. Open the three-dot menu on the line.
+4. Select Add Inspection and choose a template.","Step 3: The three-dot menu shows Add Inspection.
+Step 4: The inspection template is added and ""Inspection added to line."" is shown.",SV-7509
+Service Manager - C. Add multiple inspection templates to one line,Custom Roles and Permissions > Digital Inspections > Service Manager,Functional,Medium,"Logged in as Service Manager. Settings ON but Service sub-setting OFF, so cannot configure templates. A work order line exists.","1. Log in.
+2. Add an inspection template to a line.
+3. Add a second and third template to the same line.
+4. Attempt to add a fourth.","Step 2: First inspection added (""Inspection added to line."").
+Step 3: Second and third inspections added to the same line.
+Step 4: VIU - spec does not state a maximum; build observed up to 3 per line. Confirm whether a 4th is prevented.",SV-7509
+Service Manager - D. Open and fill an in-progress inspection,Custom Roles and Permissions > Digital Inspections > Service Manager,Functional,High,"Logged in as Service Manager. Settings ON but Service sub-setting OFF, so cannot configure templates. A line has an in-progress inspection.","1. Log in.
+2. Open an in-progress inspection on a line (click Open).
+3. Attempt to fill/edit the inspection items.","Step 2: The inspection opens.
+Step 3: Inspection items can be filled/edited (provided the line is not marked complete).",SV-7509
+Service Manager - E. Complete an inspection (Submit and Generate Report),Custom Roles and Permissions > Digital Inspections > Service Manager,Functional,Medium,"Logged in as Service Manager. Settings ON but Service sub-setting OFF, so cannot configure templates. An inspection is in progress with required fields fillable.","1. Log in.
+2. Open an in-progress inspection.
+3. Fill all required fields.
+4. Click Submit and Generate Report.","Step 3: With no required field outstanding, the Submit and Generate Report button is visible and clickable.
+Step 4: The inspection is submitted, a report is generated, and status becomes ""Completed"".",SV-7509
+Service Manager - F. Inspection at 100 percent but not submitted shows Open,Custom Roles and Permissions > Digital Inspections > Service Manager,UI,Medium,"Logged in as Service Manager. Settings ON but Service sub-setting OFF, so cannot configure templates. An inspection can be filled to 100 percent without submitting.","1. Log in.
+2. Fill all inspection items to 100 percent but do NOT click Submit and Generate Report.
+3. Observe the inspection status on the line.","Step 2: All items show filled (100 percent).
+Step 3: The inspection still shows ""Open"" (not ""Completed"") because Submit and Generate Report has not been clicked.",SV-7509
+Service Manager - G. Inspection status labels display correctly,Custom Roles and Permissions > Digital Inspections > Service Manager,UI,Medium,"Logged in as Service Manager. Settings ON but Service sub-setting OFF, so cannot configure templates. A line has inspections in different states.","1. Open a work order line with inspections in different states.
+2. Observe the status labels.","Step 2: A completed inspection shows ""Completed""; an in-progress inspection shows ""In Progress"" with a percentage of completion.",SV-7509
+Service Manager - H. Remove an in-progress inspection,Custom Roles and Permissions > Digital Inspections > Service Manager,Functional,High,"Logged in as Service Manager. Settings ON but Service sub-setting OFF, so cannot configure templates. A line has an in-progress / not-started inspection.","1. Log in.
+2. Open the line with an in-progress inspection.
+3. Look for / click the bin (remove) icon.
+4. Confirm removal if prompted.","Step 3: A confirmation dialog appears: ""Remove inspection - Are you sure you want to remove this inspection?"" (Cancel / Remove).
+Step 4: On Remove, the inspection is removed from the line.",SV-7509
+Service Manager - I. Remove a completed inspection,Custom Roles and Permissions > Digital Inspections > Service Manager,Functional,High,"Logged in as Service Manager. Settings ON but Service sub-setting OFF, so cannot configure templates. A line has a completed inspection with a generated PDF report.","1. Log in.
+2. Open the line with a completed inspection.
+3. Look for / click the bin (remove) icon.
+4. Confirm removal if prompted.","Step 3: A confirmation dialog appears: ""Remove inspection - This inspection has a generated PDF report. Are you sure you want to remove it?"" (Cancel / Remove).
+Step 4: On Remove, the completed inspection is removed.
+Build note: removal may require the work order line to NOT be marked complete (mark line Uncomplete first).",SV-7509
+Service Manager - J. Reopen a completed inspection,Custom Roles and Permissions > Digital Inspections > Service Manager,Functional,High,"Logged in as Service Manager. Settings ON but Service sub-setting OFF, so cannot configure templates. A line has a completed inspection.","1. Log in.
+2. Open the line with a completed inspection.
+3. Click Open against the inspection.","Step 3: The completed inspection reopens for editing via the Open control.
+Step 4: VIU - confirm reopen behavior for an inspection already submitted with a generated PDF report (open question from build testing).",SV-7509
+Service Manager - K. Configure Inspection Templates (Settings > Service),Custom Roles and Permissions > Digital Inspections > Service Manager,Functional,Medium,"Logged in as Service Manager. Settings ON but Service sub-setting OFF, so cannot configure templates.","1. Log in.
+2. Go to Settings > Service.
+3. Open Inspection Templates.
+4. Create a new template with fields.",Step 2: Inspection Templates configuration is NOT accessible - it requires Settings plus the Service sub-setting.,SV-7521
+Senior Service Advisor - A. View inspections on a work order line,Custom Roles and Permissions > Digital Inspections > Senior Service Advisor,Functional,Medium,Logged in as Senior Service Advisor. A work order line has at least one inspection.,"1. Log in.
+2. Open a work order that has an inspection on a line.
+3. Locate the inspection on the line.","Step 1: Login succeeds.
+Step 2: Work order opens.
+Step 3: Existing inspections on the line are visible. Edit controls (Add/bin/Open) appear only if the role has the relevant Work Order Lines rights; otherwise the inspection is read-only.",SV-7509
+Senior Service Advisor - B. Add inspection to a work order line,Custom Roles and Permissions > Digital Inspections > Senior Service Advisor,Functional,High,Logged in as Senior Service Advisor. A work order with at least one line exists.,"1. Log in.
+2. Open a work order and locate a line.
+3. Open the three-dot menu on the line.
+4. Select Add Inspection and choose a template.","Step 3: The three-dot menu shows Add Inspection.
+Step 4: The inspection template is added and ""Inspection added to line."" is shown.",SV-7509
+Senior Service Advisor - C. Add multiple inspection templates to one line,Custom Roles and Permissions > Digital Inspections > Senior Service Advisor,Functional,Medium,Logged in as Senior Service Advisor. A work order line exists.,"1. Log in.
+2. Add an inspection template to a line.
+3. Add a second and third template to the same line.
+4. Attempt to add a fourth.","Step 2: First inspection added (""Inspection added to line."").
+Step 3: Second and third inspections added to the same line.
+Step 4: VIU - spec does not state a maximum; build observed up to 3 per line. Confirm whether a 4th is prevented.",SV-7509
+Senior Service Advisor - D. Open and fill an in-progress inspection,Custom Roles and Permissions > Digital Inspections > Senior Service Advisor,Functional,High,Logged in as Senior Service Advisor. A line has an in-progress inspection.,"1. Log in.
+2. Open an in-progress inspection on a line (click Open).
+3. Attempt to fill/edit the inspection items.","Step 2: The inspection opens.
+Step 3: Inspection items can be filled/edited (provided the line is not marked complete).",SV-7509
+Senior Service Advisor - E. Complete an inspection (Submit and Generate Report),Custom Roles and Permissions > Digital Inspections > Senior Service Advisor,Functional,Medium,Logged in as Senior Service Advisor. An inspection is in progress with required fields fillable.,"1. Log in.
+2. Open an in-progress inspection.
+3. Fill all required fields.
+4. Click Submit and Generate Report.","Step 3: With no required field outstanding, the Submit and Generate Report button is visible and clickable.
+Step 4: The inspection is submitted, a report is generated, and status becomes ""Completed"".",SV-7509
+Senior Service Advisor - F. Inspection at 100 percent but not submitted shows Open,Custom Roles and Permissions > Digital Inspections > Senior Service Advisor,UI,Medium,Logged in as Senior Service Advisor. An inspection can be filled to 100 percent without submitting.,"1. Log in.
+2. Fill all inspection items to 100 percent but do NOT click Submit and Generate Report.
+3. Observe the inspection status on the line.","Step 2: All items show filled (100 percent).
+Step 3: The inspection still shows ""Open"" (not ""Completed"") because Submit and Generate Report has not been clicked.",SV-7509
+Senior Service Advisor - G. Inspection status labels display correctly,Custom Roles and Permissions > Digital Inspections > Senior Service Advisor,UI,Medium,Logged in as Senior Service Advisor. A line has inspections in different states.,"1. Open a work order line with inspections in different states.
+2. Observe the status labels.","Step 2: A completed inspection shows ""Completed""; an in-progress inspection shows ""In Progress"" with a percentage of completion.",SV-7509
+Senior Service Advisor - H. Remove an in-progress inspection,Custom Roles and Permissions > Digital Inspections > Senior Service Advisor,Functional,High,Logged in as Senior Service Advisor. A line has an in-progress / not-started inspection.,"1. Log in.
+2. Open the line with an in-progress inspection.
+3. Look for / click the bin (remove) icon.
+4. Confirm removal if prompted.","Step 3: A confirmation dialog appears: ""Remove inspection - Are you sure you want to remove this inspection?"" (Cancel / Remove).
+Step 4: On Remove, the inspection is removed from the line.",SV-7509
+Senior Service Advisor - I. Remove a completed inspection,Custom Roles and Permissions > Digital Inspections > Senior Service Advisor,Functional,High,Logged in as Senior Service Advisor. A line has a completed inspection with a generated PDF report.,"1. Log in.
+2. Open the line with a completed inspection.
+3. Look for / click the bin (remove) icon.
+4. Confirm removal if prompted.","Step 3: A confirmation dialog appears: ""Remove inspection - This inspection has a generated PDF report. Are you sure you want to remove it?"" (Cancel / Remove).
+Step 4: On Remove, the completed inspection is removed.
+Build note: removal may require the work order line to NOT be marked complete (mark line Uncomplete first).",SV-7509
+Senior Service Advisor - J. Reopen a completed inspection,Custom Roles and Permissions > Digital Inspections > Senior Service Advisor,Functional,High,Logged in as Senior Service Advisor. A line has a completed inspection.,"1. Log in.
+2. Open the line with a completed inspection.
+3. Click Open against the inspection.","Step 3: The completed inspection reopens for editing via the Open control.
+Step 4: VIU - confirm reopen behavior for an inspection already submitted with a generated PDF report (open question from build testing).",SV-7509
+Senior Service Advisor - K. Configure Inspection Templates (Settings > Service),Custom Roles and Permissions > Digital Inspections > Senior Service Advisor,Functional,Medium,Logged in as Senior Service Advisor.,"1. Log in.
+2. Go to Settings > Service.
+3. Open Inspection Templates.
+4. Create a new template with fields.",Step 2: Inspection Templates configuration is NOT accessible - it requires Settings plus the Service sub-setting.,SV-7521
+Service Advisor - A. View inspections on a work order line,Custom Roles and Permissions > Digital Inspections > Service Advisor,Functional,Medium,Logged in as Service Advisor. A work order line has at least one inspection.,"1. Log in.
+2. Open a work order that has an inspection on a line.
+3. Locate the inspection on the line.","Step 1: Login succeeds.
+Step 2: Work order opens.
+Step 3: Existing inspections on the line are visible. Edit controls (Add/bin/Open) appear only if the role has the relevant Work Order Lines rights; otherwise the inspection is read-only.",SV-7509
+Service Advisor - B. Add inspection to a work order line,Custom Roles and Permissions > Digital Inspections > Service Advisor,Functional,High,Logged in as Service Advisor. A work order with at least one line exists.,"1. Log in.
+2. Open a work order and locate a line.
+3. Open the three-dot menu on the line.
+4. Select Add Inspection and choose a template.","Step 3: The three-dot menu shows Add Inspection.
+Step 4: The inspection template is added and ""Inspection added to line."" is shown.",SV-7509
+Service Advisor - C. Add multiple inspection templates to one line,Custom Roles and Permissions > Digital Inspections > Service Advisor,Functional,Medium,Logged in as Service Advisor. A work order line exists.,"1. Log in.
+2. Add an inspection template to a line.
+3. Add a second and third template to the same line.
+4. Attempt to add a fourth.","Step 2: First inspection added (""Inspection added to line."").
+Step 3: Second and third inspections added to the same line.
+Step 4: VIU - spec does not state a maximum; build observed up to 3 per line. Confirm whether a 4th is prevented.",SV-7509
+Service Advisor - D. Open and fill an in-progress inspection,Custom Roles and Permissions > Digital Inspections > Service Advisor,Functional,High,Logged in as Service Advisor. A line has an in-progress inspection.,"1. Log in.
+2. Open an in-progress inspection on a line (click Open).
+3. Attempt to fill/edit the inspection items.","Step 2: The inspection opens.
+Step 3: Inspection items can be filled/edited (provided the line is not marked complete).",SV-7509
+Service Advisor - E. Complete an inspection (Submit and Generate Report),Custom Roles and Permissions > Digital Inspections > Service Advisor,Functional,Medium,Logged in as Service Advisor. An inspection is in progress with required fields fillable.,"1. Log in.
+2. Open an in-progress inspection.
+3. Fill all required fields.
+4. Click Submit and Generate Report.","Step 3: With no required field outstanding, the Submit and Generate Report button is visible and clickable.
+Step 4: The inspection is submitted, a report is generated, and status becomes ""Completed"".",SV-7509
+Service Advisor - F. Inspection at 100 percent but not submitted shows Open,Custom Roles and Permissions > Digital Inspections > Service Advisor,UI,Medium,Logged in as Service Advisor. An inspection can be filled to 100 percent without submitting.,"1. Log in.
+2. Fill all inspection items to 100 percent but do NOT click Submit and Generate Report.
+3. Observe the inspection status on the line.","Step 2: All items show filled (100 percent).
+Step 3: The inspection still shows ""Open"" (not ""Completed"") because Submit and Generate Report has not been clicked.",SV-7509
+Service Advisor - G. Inspection status labels display correctly,Custom Roles and Permissions > Digital Inspections > Service Advisor,UI,Medium,Logged in as Service Advisor. A line has inspections in different states.,"1. Open a work order line with inspections in different states.
+2. Observe the status labels.","Step 2: A completed inspection shows ""Completed""; an in-progress inspection shows ""In Progress"" with a percentage of completion.",SV-7509
+Service Advisor - H. Remove an in-progress inspection,Custom Roles and Permissions > Digital Inspections > Service Advisor,Functional,High,Logged in as Service Advisor. A line has an in-progress / not-started inspection.,"1. Log in.
+2. Open the line with an in-progress inspection.
+3. Look for / click the bin (remove) icon.
+4. Confirm removal if prompted.","Step 3: A confirmation dialog appears: ""Remove inspection - Are you sure you want to remove this inspection?"" (Cancel / Remove).
+Step 4: On Remove, the inspection is removed from the line.",SV-7509
+Service Advisor - I. Remove a completed inspection,Custom Roles and Permissions > Digital Inspections > Service Advisor,Functional,High,Logged in as Service Advisor. A line has a completed inspection with a generated PDF report.,"1. Log in.
+2. Open the line with a completed inspection.
+3. Look for / click the bin (remove) icon.
+4. Confirm removal if prompted.","Step 3: A confirmation dialog appears: ""Remove inspection - This inspection has a generated PDF report. Are you sure you want to remove it?"" (Cancel / Remove).
+Step 4: On Remove, the completed inspection is removed.
+Build note: removal may require the work order line to NOT be marked complete (mark line Uncomplete first).",SV-7509
+Service Advisor - J. Reopen a completed inspection,Custom Roles and Permissions > Digital Inspections > Service Advisor,Functional,High,Logged in as Service Advisor. A line has a completed inspection.,"1. Log in.
+2. Open the line with a completed inspection.
+3. Click Open against the inspection.","Step 3: The completed inspection reopens for editing via the Open control.
+Step 4: VIU - confirm reopen behavior for an inspection already submitted with a generated PDF report (open question from build testing).",SV-7509
+Service Advisor - K. Configure Inspection Templates (Settings > Service),Custom Roles and Permissions > Digital Inspections > Service Advisor,Functional,Medium,Logged in as Service Advisor.,"1. Log in.
+2. Go to Settings > Service.
+3. Open Inspection Templates.
+4. Create a new template with fields.",Step 2: Inspection Templates configuration is NOT accessible - it requires Settings plus the Service sub-setting.,SV-7521
+Foreman - A. View inspections on a work order line,Custom Roles and Permissions > Digital Inspections > Foreman,Functional,Medium,Logged in as Foreman. A work order line has at least one inspection.,"1. Log in.
+2. Open a work order that has an inspection on a line.
+3. Locate the inspection on the line.","Step 1: Login succeeds.
+Step 2: Work order opens.
+Step 3: Existing inspections on the line are visible. Edit controls (Add/bin/Open) appear only if the role has the relevant Work Order Lines rights; otherwise the inspection is read-only.",SV-7509
+Foreman - B. Add inspection to a work order line,Custom Roles and Permissions > Digital Inspections > Foreman,Functional,High,Logged in as Foreman. A work order with at least one line exists.,"1. Log in.
+2. Open a work order and locate a line.
+3. Open the three-dot menu on the line.
+4. Select Add Inspection and choose a template.","Step 3: The three-dot menu shows Add Inspection.
+Step 4: The inspection template is added and ""Inspection added to line."" is shown.",SV-7509
+Foreman - C. Add multiple inspection templates to one line,Custom Roles and Permissions > Digital Inspections > Foreman,Functional,Medium,Logged in as Foreman. A work order line exists.,"1. Log in.
+2. Add an inspection template to a line.
+3. Add a second and third template to the same line.
+4. Attempt to add a fourth.","Step 2: First inspection added (""Inspection added to line."").
+Step 3: Second and third inspections added to the same line.
+Step 4: VIU - spec does not state a maximum; build observed up to 3 per line. Confirm whether a 4th is prevented.",SV-7509
+Foreman - D. Open and fill an in-progress inspection,Custom Roles and Permissions > Digital Inspections > Foreman,Functional,High,Logged in as Foreman. A line has an in-progress inspection.,"1. Log in.
+2. Open an in-progress inspection on a line (click Open).
+3. Attempt to fill/edit the inspection items.","Step 2: The inspection opens.
+Step 3: Inspection items can be filled/edited (provided the line is not marked complete).",SV-7509
+Foreman - E. Complete an inspection (Submit and Generate Report),Custom Roles and Permissions > Digital Inspections > Foreman,Functional,Medium,Logged in as Foreman. An inspection is in progress with required fields fillable.,"1. Log in.
+2. Open an in-progress inspection.
+3. Fill all required fields.
+4. Click Submit and Generate Report.","Step 3: With no required field outstanding, the Submit and Generate Report button is visible and clickable.
+Step 4: The inspection is submitted, a report is generated, and status becomes ""Completed"".",SV-7509
+Foreman - F. Inspection at 100 percent but not submitted shows Open,Custom Roles and Permissions > Digital Inspections > Foreman,UI,Medium,Logged in as Foreman. An inspection can be filled to 100 percent without submitting.,"1. Log in.
+2. Fill all inspection items to 100 percent but do NOT click Submit and Generate Report.
+3. Observe the inspection status on the line.","Step 2: All items show filled (100 percent).
+Step 3: The inspection still shows ""Open"" (not ""Completed"") because Submit and Generate Report has not been clicked.",SV-7509
+Foreman - G. Inspection status labels display correctly,Custom Roles and Permissions > Digital Inspections > Foreman,UI,Medium,Logged in as Foreman. A line has inspections in different states.,"1. Open a work order line with inspections in different states.
+2. Observe the status labels.","Step 2: A completed inspection shows ""Completed""; an in-progress inspection shows ""In Progress"" with a percentage of completion.",SV-7509
+Foreman - H. Remove an in-progress inspection,Custom Roles and Permissions > Digital Inspections > Foreman,Functional,High,Logged in as Foreman. A line has an in-progress / not-started inspection.,"1. Log in.
+2. Open the line with an in-progress inspection.
+3. Look for / click the bin (remove) icon.
+4. Confirm removal if prompted.","Step 3: A confirmation dialog appears: ""Remove inspection - Are you sure you want to remove this inspection?"" (Cancel / Remove).
+Step 4: On Remove, the inspection is removed from the line.",SV-7509
+Foreman - I. Remove a completed inspection,Custom Roles and Permissions > Digital Inspections > Foreman,Functional,High,Logged in as Foreman. A line has a completed inspection with a generated PDF report.,"1. Log in.
+2. Open the line with a completed inspection.
+3. Look for / click the bin (remove) icon.
+4. Confirm removal if prompted.","Step 3: A confirmation dialog appears: ""Remove inspection - This inspection has a generated PDF report. Are you sure you want to remove it?"" (Cancel / Remove).
+Step 4: On Remove, the completed inspection is removed.
+Build note: removal may require the work order line to NOT be marked complete (mark line Uncomplete first).",SV-7509
+Foreman - J. Reopen a completed inspection,Custom Roles and Permissions > Digital Inspections > Foreman,Functional,High,Logged in as Foreman. A line has a completed inspection.,"1. Log in.
+2. Open the line with a completed inspection.
+3. Click Open against the inspection.","Step 3: The completed inspection reopens for editing via the Open control.
+Step 4: VIU - confirm reopen behavior for an inspection already submitted with a generated PDF report (open question from build testing).",SV-7509
+Foreman - K. Configure Inspection Templates (Settings > Service),Custom Roles and Permissions > Digital Inspections > Foreman,Functional,Medium,Logged in as Foreman.,"1. Log in.
+2. Go to Settings > Service.
+3. Open Inspection Templates.
+4. Create a new template with fields.",Step 2: Inspection Templates configuration is NOT accessible - it requires Settings plus the Service sub-setting.,SV-7521
+Technician - A. View inspections on a work order line,Custom Roles and Permissions > Digital Inspections > Technician,Functional,Medium,Logged in as Technician. Tech View: existing/approved lines are read-only; work on a NEW line the tech is creating is allowed. A work order line has at least one inspection.,"1. Log in.
+2. Open a work order that has an inspection on a line.
+3. Locate the inspection on the line.","Step 1: Login succeeds.
+Step 2: Work order opens.
+Step 3: Existing inspections on the line are visible. Edit controls (Add/bin/Open) appear only if the role has the relevant Work Order Lines rights; otherwise the inspection is read-only.",SV-7509
+Technician - B. Add inspection to a work order line,Custom Roles and Permissions > Digital Inspections > Technician,Functional,High,Logged in as Technician. Tech View: existing/approved lines are read-only; work on a NEW line the tech is creating is allowed. A work order with at least one line exists.,"1. Log in.
+2. Open a work order and locate a line.
+3. Open the three-dot menu on the line.
+4. Select Add Inspection and choose a template.
+5. Repeat on an existing/approved line.","Step 3: The three-dot menu shows Add Inspection.
+Step 4: On a NEW line the technician is creating, the inspection is added and ""Inspection added to line."" is shown.
+Step 5: VIU - on an existing/approved line (read-only under Tech View) adding may be blocked; confirm intended behavior.",SV-7509
+Technician - C. Add multiple inspection templates to one line,Custom Roles and Permissions > Digital Inspections > Technician,Functional,Medium,Logged in as Technician. Tech View: existing/approved lines are read-only; work on a NEW line the tech is creating is allowed. A work order line exists.,"1. Log in.
+2. Add an inspection template to a line.
+3. Add a second and third template to the same line.
+4. Attempt to add a fourth.","Step 2: First inspection added (""Inspection added to line."").
+Step 3: Second and third inspections added to the same line.
+Step 4: VIU - spec does not state a maximum; build observed up to 3 per line. Confirm whether a 4th is prevented.",SV-7509
+Technician - D. Open and fill an in-progress inspection,Custom Roles and Permissions > Digital Inspections > Technician,Functional,High,Logged in as Technician. Tech View: existing/approved lines are read-only; work on a NEW line the tech is creating is allowed. A line has an in-progress inspection.,"1. Log in.
+2. Open an in-progress inspection on a line (click Open).
+3. Attempt to fill/edit the inspection items.","Step 2: The inspection opens.
+Step 3: The technician can fill/edit inspection items on a NEW line, or on an existing line only if that line is NOT marked complete (read-only once the line is completed).",SV-7509
+Technician - E. Complete an inspection (Submit and Generate Report),Custom Roles and Permissions > Digital Inspections > Technician,Functional,Medium,Logged in as Technician. Tech View: existing/approved lines are read-only; work on a NEW line the tech is creating is allowed. An inspection is in progress with required fields fillable.,"1. Log in.
+2. Open an in-progress inspection.
+3. Fill all required fields.
+4. Click Submit and Generate Report.","Step 3: With no required field outstanding, the Submit and Generate Report button is visible and clickable.
+Step 4: The inspection is submitted, a report is generated, and status becomes ""Completed"".",SV-7509
+Technician - F. Inspection at 100 percent but not submitted shows Open,Custom Roles and Permissions > Digital Inspections > Technician,UI,Medium,Logged in as Technician. Tech View: existing/approved lines are read-only; work on a NEW line the tech is creating is allowed. An inspection can be filled to 100 percent without submitting.,"1. Log in.
+2. Fill all inspection items to 100 percent but do NOT click Submit and Generate Report.
+3. Observe the inspection status on the line.","Step 2: All items show filled (100 percent).
+Step 3: The inspection still shows ""Open"" (not ""Completed"") because Submit and Generate Report has not been clicked.",SV-7509
+Technician - G. Inspection status labels display correctly,Custom Roles and Permissions > Digital Inspections > Technician,UI,Medium,Logged in as Technician. Tech View: existing/approved lines are read-only; work on a NEW line the tech is creating is allowed. A line has inspections in different states.,"1. Open a work order line with inspections in different states.
+2. Observe the status labels.","Step 2: A completed inspection shows ""Completed""; an in-progress inspection shows ""In Progress"" with a percentage of completion.",SV-7509
+Technician - H. Remove an in-progress inspection,Custom Roles and Permissions > Digital Inspections > Technician,Functional,High,Logged in as Technician. Tech View: existing/approved lines are read-only; work on a NEW line the tech is creating is allowed. A line has an in-progress / not-started inspection.,"1. Log in.
+2. Open the line with an in-progress inspection.
+3. Look for / click the bin (remove) icon.
+4. Confirm removal if prompted.",Step 3: The remove (bin) control is NOT available - removing an inspection requires Work Order Lines: Delete.,SV-7509
+Technician - I. Remove a completed inspection,Custom Roles and Permissions > Digital Inspections > Technician,Functional,High,Logged in as Technician. Tech View: existing/approved lines are read-only; work on a NEW line the tech is creating is allowed. A line has a completed inspection with a generated PDF report.,"1. Log in.
+2. Open the line with a completed inspection.
+3. Look for / click the bin (remove) icon.
+4. Confirm removal if prompted.",Step 3: The remove (bin) control is NOT available - removing a completed inspection requires Work Order Lines: Delete.,SV-7509
+Technician - J. Reopen a completed inspection,Custom Roles and Permissions > Digital Inspections > Technician,Functional,High,Logged in as Technician. Tech View: existing/approved lines are read-only; work on a NEW line the tech is creating is allowed. A line has a completed inspection.,"1. Log in.
+2. Open the line with a completed inspection.
+3. Click Open against the inspection.",Step 3: Reopen is NOT available - reopening a completed inspection requires Work Order Lines: Delete.,SV-7509
+Technician - K. Configure Inspection Templates (Settings > Service),Custom Roles and Permissions > Digital Inspections > Technician,Functional,Medium,Logged in as Technician. Tech View: existing/approved lines are read-only; work on a NEW line the tech is creating is allowed.,"1. Log in.
+2. Go to Settings > Service.
+3. Open Inspection Templates.
+4. Create a new template with fields.",Step 2: Inspection Templates configuration is NOT accessible - it requires Settings plus the Service sub-setting.,SV-7521
+Parts Manager - A. View inspections on a work order line,Custom Roles and Permissions > Digital Inspections > Parts Manager,Functional,Medium,Logged in as Parts Manager. A work order line has at least one inspection.,"1. Log in.
+2. Open a work order that has an inspection on a line.
+3. Locate the inspection on the line.","Step 1: Login succeeds.
+Step 2: Work order opens.
+Step 3: Existing inspections on the line are visible. Edit controls (Add/bin/Open) appear only if the role has the relevant Work Order Lines rights; otherwise the inspection is read-only.",SV-7509
+Parts Manager - B. Add inspection to a work order line,Custom Roles and Permissions > Digital Inspections > Parts Manager,Functional,High,Logged in as Parts Manager. A work order with at least one line exists.,"1. Log in.
+2. Open a work order and locate a line.
+3. Open the three-dot menu on the line.
+4. Select Add Inspection and choose a template.","Step 3: The three-dot menu shows Add Inspection.
+Step 4: The inspection template is added and ""Inspection added to line."" is shown.",SV-7509
+Parts Manager - C. Add multiple inspection templates to one line,Custom Roles and Permissions > Digital Inspections > Parts Manager,Functional,Medium,Logged in as Parts Manager. A work order line exists.,"1. Log in.
+2. Add an inspection template to a line.
+3. Add a second and third template to the same line.
+4. Attempt to add a fourth.","Step 2: First inspection added (""Inspection added to line."").
+Step 3: Second and third inspections added to the same line.
+Step 4: VIU - spec does not state a maximum; build observed up to 3 per line. Confirm whether a 4th is prevented.",SV-7509
+Parts Manager - D. Open and fill an in-progress inspection,Custom Roles and Permissions > Digital Inspections > Parts Manager,Functional,High,Logged in as Parts Manager. A line has an in-progress inspection.,"1. Log in.
+2. Open an in-progress inspection on a line (click Open).
+3. Attempt to fill/edit the inspection items.","Step 2: The inspection opens.
+Step 3: Inspection items can be filled/edited (provided the line is not marked complete).",SV-7509
+Parts Manager - E. Complete an inspection (Submit and Generate Report),Custom Roles and Permissions > Digital Inspections > Parts Manager,Functional,Medium,Logged in as Parts Manager. An inspection is in progress with required fields fillable.,"1. Log in.
+2. Open an in-progress inspection.
+3. Fill all required fields.
+4. Click Submit and Generate Report.","Step 3: With no required field outstanding, the Submit and Generate Report button is visible and clickable.
+Step 4: The inspection is submitted, a report is generated, and status becomes ""Completed"".",SV-7509
+Parts Manager - F. Inspection at 100 percent but not submitted shows Open,Custom Roles and Permissions > Digital Inspections > Parts Manager,UI,Medium,Logged in as Parts Manager. An inspection can be filled to 100 percent without submitting.,"1. Log in.
+2. Fill all inspection items to 100 percent but do NOT click Submit and Generate Report.
+3. Observe the inspection status on the line.","Step 2: All items show filled (100 percent).
+Step 3: The inspection still shows ""Open"" (not ""Completed"") because Submit and Generate Report has not been clicked.",SV-7509
+Parts Manager - G. Inspection status labels display correctly,Custom Roles and Permissions > Digital Inspections > Parts Manager,UI,Medium,Logged in as Parts Manager. A line has inspections in different states.,"1. Open a work order line with inspections in different states.
+2. Observe the status labels.","Step 2: A completed inspection shows ""Completed""; an in-progress inspection shows ""In Progress"" with a percentage of completion.",SV-7509
+Parts Manager - H. Remove an in-progress inspection,Custom Roles and Permissions > Digital Inspections > Parts Manager,Functional,High,Logged in as Parts Manager. A line has an in-progress / not-started inspection.,"1. Log in.
+2. Open the line with an in-progress inspection.
+3. Look for / click the bin (remove) icon.
+4. Confirm removal if prompted.",Step 3: The remove (bin) control is NOT available - removing an inspection requires Work Order Lines: Delete.,SV-7509
+Parts Manager - I. Remove a completed inspection,Custom Roles and Permissions > Digital Inspections > Parts Manager,Functional,High,Logged in as Parts Manager. A line has a completed inspection with a generated PDF report.,"1. Log in.
+2. Open the line with a completed inspection.
+3. Look for / click the bin (remove) icon.
+4. Confirm removal if prompted.",Step 3: The remove (bin) control is NOT available - removing a completed inspection requires Work Order Lines: Delete.,SV-7509
+Parts Manager - J. Reopen a completed inspection,Custom Roles and Permissions > Digital Inspections > Parts Manager,Functional,High,Logged in as Parts Manager. A line has a completed inspection.,"1. Log in.
+2. Open the line with a completed inspection.
+3. Click Open against the inspection.",Step 3: Reopen is NOT available - reopening a completed inspection requires Work Order Lines: Delete.,SV-7509
+Parts Manager - K. Configure Inspection Templates (Settings > Service),Custom Roles and Permissions > Digital Inspections > Parts Manager,Functional,Medium,Logged in as Parts Manager.,"1. Log in.
+2. Go to Settings > Service.
+3. Open Inspection Templates.
+4. Create a new template with fields.",Step 2: Inspection Templates configuration is NOT accessible - it requires Settings plus the Service sub-setting.,SV-7521
+Parts Technician - A. View inspections on a work order line,Custom Roles and Permissions > Digital Inspections > Parts Technician,Functional,Medium,Logged in as Parts Technician. Work Order Lines = View only. A work order line has at least one inspection.,"1. Log in.
+2. Open a work order that has an inspection on a line.
+3. Locate the inspection on the line.","Step 1: Login succeeds.
+Step 2: Work order opens.
+Step 3: Existing inspections on the line are visible. Edit controls (Add/bin/Open) appear only if the role has the relevant Work Order Lines rights; otherwise the inspection is read-only.",SV-7509
+Parts Technician - B. Add inspection to a work order line,Custom Roles and Permissions > Digital Inspections > Parts Technician,Functional,High,Logged in as Parts Technician. Work Order Lines = View only. A work order with at least one line exists.,"1. Log in.
+2. Open a work order and locate a line.
+3. Open the three-dot menu on the line.
+4. Select Add Inspection and choose a template.",Step 3: Add Inspection is NOT available - role lacks Work Order Lines: Create and Edit.,SV-7509
+Parts Technician - C. Add multiple inspection templates to one line,Custom Roles and Permissions > Digital Inspections > Parts Technician,Functional,Medium,Logged in as Parts Technician. Work Order Lines = View only. A work order line exists.,"1. Log in.
+2. Add an inspection template to a line.
+3. Add a second and third template to the same line.
+4. Attempt to add a fourth.",Step 2: Not applicable - role cannot add inspections (no Work Order Lines: Create and Edit).,SV-7509
+Parts Technician - D. Open and fill an in-progress inspection,Custom Roles and Permissions > Digital Inspections > Parts Technician,Functional,High,Logged in as Parts Technician. Work Order Lines = View only. A line has an in-progress inspection.,"1. Log in.
+2. Open an in-progress inspection on a line (click Open).
+3. Attempt to fill/edit the inspection items.","Step 2: The inspection can be opened to VIEW only.
+Step 3: Items cannot be filled or edited - role lacks Work Order Lines: Create and Edit (read-only).",SV-7509
+Parts Technician - E. Complete an inspection (Submit and Generate Report),Custom Roles and Permissions > Digital Inspections > Parts Technician,Functional,Medium,Logged in as Parts Technician. Work Order Lines = View only. An inspection is in progress with required fields fillable.,"1. Log in.
+2. Open an in-progress inspection.
+3. Fill all required fields.
+4. Click Submit and Generate Report.",Step 2: Not applicable - role cannot fill/submit an inspection (no Work Order Lines: Create and Edit).,SV-7509
+Parts Technician - F. Inspection at 100 percent but not submitted shows Open,Custom Roles and Permissions > Digital Inspections > Parts Technician,UI,Medium,Logged in as Parts Technician. Work Order Lines = View only. An inspection can be filled to 100 percent without submitting.,"1. Log in.
+2. Fill all inspection items to 100 percent but do NOT click Submit and Generate Report.
+3. Observe the inspection status on the line.","Step 2: Not applicable - role cannot fill an inspection. If such a state exists (set by another role), this role would only observe it as ""Open"".",SV-7509
+Parts Technician - G. Inspection status labels display correctly,Custom Roles and Permissions > Digital Inspections > Parts Technician,UI,Medium,Logged in as Parts Technician. Work Order Lines = View only. A line has inspections in different states.,"1. Open a work order line with inspections in different states.
+2. Observe the status labels.","Step 2: A completed inspection shows ""Completed""; an in-progress inspection shows ""In Progress"" with a percentage of completion.",SV-7509
+Parts Technician - H. Remove an in-progress inspection,Custom Roles and Permissions > Digital Inspections > Parts Technician,Functional,High,Logged in as Parts Technician. Work Order Lines = View only. A line has an in-progress / not-started inspection.,"1. Log in.
+2. Open the line with an in-progress inspection.
+3. Look for / click the bin (remove) icon.
+4. Confirm removal if prompted.",Step 3: The remove (bin) control is NOT available - removing an inspection requires Work Order Lines: Delete.,SV-7509
+Parts Technician - I. Remove a completed inspection,Custom Roles and Permissions > Digital Inspections > Parts Technician,Functional,High,Logged in as Parts Technician. Work Order Lines = View only. A line has a completed inspection with a generated PDF report.,"1. Log in.
+2. Open the line with a completed inspection.
+3. Look for / click the bin (remove) icon.
+4. Confirm removal if prompted.",Step 3: The remove (bin) control is NOT available - removing a completed inspection requires Work Order Lines: Delete.,SV-7509
+Parts Technician - J. Reopen a completed inspection,Custom Roles and Permissions > Digital Inspections > Parts Technician,Functional,High,Logged in as Parts Technician. Work Order Lines = View only. A line has a completed inspection.,"1. Log in.
+2. Open the line with a completed inspection.
+3. Click Open against the inspection.",Step 3: Reopen is NOT available - reopening a completed inspection requires Work Order Lines: Delete.,SV-7509
+Parts Technician - K. Configure Inspection Templates (Settings > Service),Custom Roles and Permissions > Digital Inspections > Parts Technician,Functional,Medium,Logged in as Parts Technician. Work Order Lines = View only.,"1. Log in.
+2. Go to Settings > Service.
+3. Open Inspection Templates.
+4. Create a new template with fields.",Step 2: Inspection Templates configuration is NOT accessible - it requires Settings plus the Service sub-setting.,SV-7521
+Office - A. View inspections on a work order line,Custom Roles and Permissions > Digital Inspections > Office,Functional,Medium,"Logged in as Office. Work Order Lines = View only, but Settings + Service ON. A work order line has at least one inspection.","1. Log in.
+2. Open a work order that has an inspection on a line.
+3. Locate the inspection on the line.","Step 1: Login succeeds.
+Step 2: Work order opens.
+Step 3: Existing inspections on the line are visible. Edit controls (Add/bin/Open) appear only if the role has the relevant Work Order Lines rights; otherwise the inspection is read-only.",SV-7509
+Office - B. Add inspection to a work order line,Custom Roles and Permissions > Digital Inspections > Office,Functional,High,"Logged in as Office. Work Order Lines = View only, but Settings + Service ON. A work order with at least one line exists.","1. Log in.
+2. Open a work order and locate a line.
+3. Open the three-dot menu on the line.
+4. Select Add Inspection and choose a template.",Step 3: Add Inspection is NOT available - role lacks Work Order Lines: Create and Edit.,SV-7509
+Office - C. Add multiple inspection templates to one line,Custom Roles and Permissions > Digital Inspections > Office,Functional,Medium,"Logged in as Office. Work Order Lines = View only, but Settings + Service ON. A work order line exists.","1. Log in.
+2. Add an inspection template to a line.
+3. Add a second and third template to the same line.
+4. Attempt to add a fourth.",Step 2: Not applicable - role cannot add inspections (no Work Order Lines: Create and Edit).,SV-7509
+Office - D. Open and fill an in-progress inspection,Custom Roles and Permissions > Digital Inspections > Office,Functional,High,"Logged in as Office. Work Order Lines = View only, but Settings + Service ON. A line has an in-progress inspection.","1. Log in.
+2. Open an in-progress inspection on a line (click Open).
+3. Attempt to fill/edit the inspection items.","Step 2: The inspection can be opened to VIEW only.
+Step 3: Items cannot be filled or edited - role lacks Work Order Lines: Create and Edit (read-only).",SV-7509
+Office - E. Complete an inspection (Submit and Generate Report),Custom Roles and Permissions > Digital Inspections > Office,Functional,Medium,"Logged in as Office. Work Order Lines = View only, but Settings + Service ON. An inspection is in progress with required fields fillable.","1. Log in.
+2. Open an in-progress inspection.
+3. Fill all required fields.
+4. Click Submit and Generate Report.",Step 2: Not applicable - role cannot fill/submit an inspection (no Work Order Lines: Create and Edit).,SV-7509
+Office - F. Inspection at 100 percent but not submitted shows Open,Custom Roles and Permissions > Digital Inspections > Office,UI,Medium,"Logged in as Office. Work Order Lines = View only, but Settings + Service ON. An inspection can be filled to 100 percent without submitting.","1. Log in.
+2. Fill all inspection items to 100 percent but do NOT click Submit and Generate Report.
+3. Observe the inspection status on the line.","Step 2: Not applicable - role cannot fill an inspection. If such a state exists (set by another role), this role would only observe it as ""Open"".",SV-7509
+Office - G. Inspection status labels display correctly,Custom Roles and Permissions > Digital Inspections > Office,UI,Medium,"Logged in as Office. Work Order Lines = View only, but Settings + Service ON. A line has inspections in different states.","1. Open a work order line with inspections in different states.
+2. Observe the status labels.","Step 2: A completed inspection shows ""Completed""; an in-progress inspection shows ""In Progress"" with a percentage of completion.",SV-7509
+Office - H. Remove an in-progress inspection,Custom Roles and Permissions > Digital Inspections > Office,Functional,High,"Logged in as Office. Work Order Lines = View only, but Settings + Service ON. A line has an in-progress / not-started inspection.","1. Log in.
+2. Open the line with an in-progress inspection.
+3. Look for / click the bin (remove) icon.
+4. Confirm removal if prompted.",Step 3: The remove (bin) control is NOT available - removing an inspection requires Work Order Lines: Delete.,SV-7509
+Office - I. Remove a completed inspection,Custom Roles and Permissions > Digital Inspections > Office,Functional,High,"Logged in as Office. Work Order Lines = View only, but Settings + Service ON. A line has a completed inspection with a generated PDF report.","1. Log in.
+2. Open the line with a completed inspection.
+3. Look for / click the bin (remove) icon.
+4. Confirm removal if prompted.",Step 3: The remove (bin) control is NOT available - removing a completed inspection requires Work Order Lines: Delete.,SV-7509
+Office - J. Reopen a completed inspection,Custom Roles and Permissions > Digital Inspections > Office,Functional,High,"Logged in as Office. Work Order Lines = View only, but Settings + Service ON. A line has a completed inspection.","1. Log in.
+2. Open the line with a completed inspection.
+3. Click Open against the inspection.",Step 3: Reopen is NOT available - reopening a completed inspection requires Work Order Lines: Delete.,SV-7509
+Office - K. Configure Inspection Templates (Settings > Service),Custom Roles and Permissions > Digital Inspections > Office,Functional,Medium,"Logged in as Office. Work Order Lines = View only, but Settings + Service ON.","1. Log in.
+2. Go to Settings > Service.
+3. Open Inspection Templates.
+4. Create a new template with fields.","Step 2: Settings > Service is accessible.
+Step 3: The Inspection Templates section is available.
+Step 4: A new template can be created with fields: Checklist, Short Text, Long Text, Measurements, Photo, Instructions.",SV-7521
+Sales Representative - A. View inspections on a work order line,Custom Roles and Permissions > Digital Inspections > Sales Representative,Functional,Medium,Logged in as Sales Representative. No Work Orders access. A work order line has at least one inspection.,"1. Log in.
+2. Open a work order that has an inspection on a line.
+3. Locate the inspection on the line.","Step 1: Login succeeds.
+Step 2: Work Orders are not accessible to this role.
+Step 3: Inspections cannot be reached - no Work Orders access.",SV-7506
+Sales Representative - B. Add inspection to a work order line,Custom Roles and Permissions > Digital Inspections > Sales Representative,Functional,High,Logged in as Sales Representative. No Work Orders access. A work order with at least one line exists.,"1. Log in.
+2. Open a work order and locate a line.
+3. Open the three-dot menu on the line.
+4. Select Add Inspection and choose a template.","Step 3: Not applicable - no Work Orders access, the line cannot be reached.",SV-7509
+Sales Representative - C. Add multiple inspection templates to one line,Custom Roles and Permissions > Digital Inspections > Sales Representative,Functional,Medium,Logged in as Sales Representative. No Work Orders access. A work order line exists.,"1. Log in.
+2. Add an inspection template to a line.
+3. Add a second and third template to the same line.
+4. Attempt to add a fourth.",Step 2: Not applicable - no Work Orders access.,SV-7509
+Sales Representative - D. Open and fill an in-progress inspection,Custom Roles and Permissions > Digital Inspections > Sales Representative,Functional,High,Logged in as Sales Representative. No Work Orders access. A line has an in-progress inspection.,"1. Log in.
+2. Open an in-progress inspection on a line (click Open).
+3. Attempt to fill/edit the inspection items.",Step 2: Not applicable - no Work Orders access.,SV-7509
+Sales Representative - E. Complete an inspection (Submit and Generate Report),Custom Roles and Permissions > Digital Inspections > Sales Representative,Functional,Medium,Logged in as Sales Representative. No Work Orders access. An inspection is in progress with required fields fillable.,"1. Log in.
+2. Open an in-progress inspection.
+3. Fill all required fields.
+4. Click Submit and Generate Report.",Step 2: Not applicable - no Work Orders access.,SV-7509
+Sales Representative - F. Inspection at 100 percent but not submitted shows Open,Custom Roles and Permissions > Digital Inspections > Sales Representative,UI,Medium,Logged in as Sales Representative. No Work Orders access. An inspection can be filled to 100 percent without submitting.,"1. Log in.
+2. Fill all inspection items to 100 percent but do NOT click Submit and Generate Report.
+3. Observe the inspection status on the line.",Step 2: Not applicable - no Work Orders access.,SV-7509
+Sales Representative - G. Inspection status labels display correctly,Custom Roles and Permissions > Digital Inspections > Sales Representative,UI,Medium,Logged in as Sales Representative. No Work Orders access. A line has inspections in different states.,"1. Open a work order line with inspections in different states.
+2. Observe the status labels.","Step 2: Not applicable - no Work Orders access, statuses cannot be seen.",SV-7506
+Sales Representative - H. Remove an in-progress inspection,Custom Roles and Permissions > Digital Inspections > Sales Representative,Functional,High,Logged in as Sales Representative. No Work Orders access. A line has an in-progress / not-started inspection.,"1. Log in.
+2. Open the line with an in-progress inspection.
+3. Look for / click the bin (remove) icon.
+4. Confirm removal if prompted.",Step 3: Not applicable - no Work Orders access.,SV-7509
+Sales Representative - I. Remove a completed inspection,Custom Roles and Permissions > Digital Inspections > Sales Representative,Functional,High,Logged in as Sales Representative. No Work Orders access. A line has a completed inspection with a generated PDF report.,"1. Log in.
+2. Open the line with a completed inspection.
+3. Look for / click the bin (remove) icon.
+4. Confirm removal if prompted.",Step 3: Not applicable - no Work Orders access.,SV-7509
+Sales Representative - J. Reopen a completed inspection,Custom Roles and Permissions > Digital Inspections > Sales Representative,Functional,High,Logged in as Sales Representative. No Work Orders access. A line has a completed inspection.,"1. Log in.
+2. Open the line with a completed inspection.
+3. Click Open against the inspection.",Step 3: Not applicable - no Work Orders access.,SV-7509
+Sales Representative - K. Configure Inspection Templates (Settings > Service),Custom Roles and Permissions > Digital Inspections > Sales Representative,Functional,Medium,Logged in as Sales Representative. No Work Orders access.,"1. Log in.
+2. Go to Settings > Service.
+3. Open Inspection Templates.
+4. Create a new template with fields.",Step 2: Inspection Templates configuration is NOT accessible - it requires Settings plus the Service sub-setting.,SV-7521
+Time Clock - A. View inspections on a work order line,Custom Roles and Permissions > Digital Inspections > Time Clock,Functional,Medium,Logged in as Time Clock. No Work Orders access. A work order line has at least one inspection.,"1. Log in.
+2. Open a work order that has an inspection on a line.
+3. Locate the inspection on the line.","Step 1: Login succeeds.
+Step 2: Work Orders are not accessible to this role.
+Step 3: Inspections cannot be reached - no Work Orders access.",SV-7506
+Time Clock - B. Add inspection to a work order line,Custom Roles and Permissions > Digital Inspections > Time Clock,Functional,High,Logged in as Time Clock. No Work Orders access. A work order with at least one line exists.,"1. Log in.
+2. Open a work order and locate a line.
+3. Open the three-dot menu on the line.
+4. Select Add Inspection and choose a template.","Step 3: Not applicable - no Work Orders access, the line cannot be reached.",SV-7509
+Time Clock - C. Add multiple inspection templates to one line,Custom Roles and Permissions > Digital Inspections > Time Clock,Functional,Medium,Logged in as Time Clock. No Work Orders access. A work order line exists.,"1. Log in.
+2. Add an inspection template to a line.
+3. Add a second and third template to the same line.
+4. Attempt to add a fourth.",Step 2: Not applicable - no Work Orders access.,SV-7509
+Time Clock - D. Open and fill an in-progress inspection,Custom Roles and Permissions > Digital Inspections > Time Clock,Functional,High,Logged in as Time Clock. No Work Orders access. A line has an in-progress inspection.,"1. Log in.
+2. Open an in-progress inspection on a line (click Open).
+3. Attempt to fill/edit the inspection items.",Step 2: Not applicable - no Work Orders access.,SV-7509
+Time Clock - E. Complete an inspection (Submit and Generate Report),Custom Roles and Permissions > Digital Inspections > Time Clock,Functional,Medium,Logged in as Time Clock. No Work Orders access. An inspection is in progress with required fields fillable.,"1. Log in.
+2. Open an in-progress inspection.
+3. Fill all required fields.
+4. Click Submit and Generate Report.",Step 2: Not applicable - no Work Orders access.,SV-7509
+Time Clock - F. Inspection at 100 percent but not submitted shows Open,Custom Roles and Permissions > Digital Inspections > Time Clock,UI,Medium,Logged in as Time Clock. No Work Orders access. An inspection can be filled to 100 percent without submitting.,"1. Log in.
+2. Fill all inspection items to 100 percent but do NOT click Submit and Generate Report.
+3. Observe the inspection status on the line.",Step 2: Not applicable - no Work Orders access.,SV-7509
+Time Clock - G. Inspection status labels display correctly,Custom Roles and Permissions > Digital Inspections > Time Clock,UI,Medium,Logged in as Time Clock. No Work Orders access. A line has inspections in different states.,"1. Open a work order line with inspections in different states.
+2. Observe the status labels.","Step 2: Not applicable - no Work Orders access, statuses cannot be seen.",SV-7506
+Time Clock - H. Remove an in-progress inspection,Custom Roles and Permissions > Digital Inspections > Time Clock,Functional,High,Logged in as Time Clock. No Work Orders access. A line has an in-progress / not-started inspection.,"1. Log in.
+2. Open the line with an in-progress inspection.
+3. Look for / click the bin (remove) icon.
+4. Confirm removal if prompted.",Step 3: Not applicable - no Work Orders access.,SV-7509
+Time Clock - I. Remove a completed inspection,Custom Roles and Permissions > Digital Inspections > Time Clock,Functional,High,Logged in as Time Clock. No Work Orders access. A line has a completed inspection with a generated PDF report.,"1. Log in.
+2. Open the line with a completed inspection.
+3. Look for / click the bin (remove) icon.
+4. Confirm removal if prompted.",Step 3: Not applicable - no Work Orders access.,SV-7509
+Time Clock - J. Reopen a completed inspection,Custom Roles and Permissions > Digital Inspections > Time Clock,Functional,High,Logged in as Time Clock. No Work Orders access. A line has a completed inspection.,"1. Log in.
+2. Open the line with a completed inspection.
+3. Click Open against the inspection.",Step 3: Not applicable - no Work Orders access.,SV-7509
+Time Clock - K. Configure Inspection Templates (Settings > Service),Custom Roles and Permissions > Digital Inspections > Time Clock,Functional,Medium,Logged in as Time Clock. No Work Orders access.,"1. Log in.
+2. Go to Settings > Service.
+3. Open Inspection Templates.
+4. Create a new template with fields.",Step 2: Inspection Templates configuration is NOT accessible - it requires Settings plus the Service sub-setting.,SV-7521
