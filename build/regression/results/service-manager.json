@@ -1,0 +1,18 @@
+[
+ {
+  "num": 9,
+  "role": "Service Manager",
+  "feature_area": "Pricing visibility",
+  "where_to_go": "Work Orders → open a work order",
+  "what_to_do": "Check line prices, totals, Finance card, Stats tab.",
+  "expected_result": "All money visible. Service Manager has See Financial Data ON.",
+  "depth": "DEEP",
+  "status": "PASS",
+  "spec_reference_plain": "Per the spec: a role with 'See Financial Data' ON (which the Service Manager role has) must see every dollar figure on a work order — line prices, the Rate/Margin/Total columns, the Financial Info card, the Stats tab money, and the Finance tab invoice. [Ref: SV-5319 Custom Roles permission matrix; checklist Service Manager row #9 'Pricing shows (See Financial ON)']",
+  "expected_plain": "Logged in as a Service Manager, every price and dollar amount on a work order should be visible, nothing hidden or blanked.",
+  "actual_result_plain": "Opened work order S9-24661 as Tech-with-Service-Manager. All money was visible everywhere. The left Financial Info card showed Parts $0.00, Labor $929.72, Shop Supplies $97.62, Subtotal $1,027.34, GST $51.37, Total $1,078.71, Balance $1,078.71. The Lines grid showed the Rate ($232.43), Margin (100%) and Total ($929.72) columns with values. The Stats tab showed the Hours, Labor, Parts and Total breakdowns with Sell price/Cost/Margin/% dollar figures ($929.72 sell, $0 cost, 100% margin). The Finance tab showed the full invoice INV-S9-24661 with Labor $929.72, Parts $0.00, Shop supplies $97.62, Subtotal $1,027.34, GST(5%) $51.37, Total $1,078.71 and Balance $1,078.71. Nothing was hidden or masked.",
+  "replication_steps_plain": "",
+  "screenshot_ref": "sm-9.png",
+  "notes": "See Financial Data confirmed ON in the Service Manager fe-permissions (seeFinancialData:true). Money confirmed on Lines, Financial Info card, Stats tab and Finance tab."
+ }
+]
