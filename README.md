@@ -145,3 +145,29 @@ A full live test run of the suite was executed on staging (Foothills Group Inc),
 - **CSV exports** (repo root): `custom-roles-test-run-passed.csv`, `custom-roles-test-run-failed.csv` (Expected vs Actual columns), `custom-roles-test-run-blocked.csv`, `custom-roles-test-run-all.csv` (every case with a Status column).
 - **Run discrepancies** logged as **VIU-32..VIU-37** in the VIU Findings Log (see the VIU Findings Log sheet). VIU-37 is informational/VERIFIED; the rest are discrepancies.
 - **Access method** for future live sessions is documented (no secrets) in [`build/VIU-ACCESS-METHOD.md`](build/VIU-ACCESS-METHOD.md).
+
+### Blocked-recovery run (2026-07-02)
+
+The **41 non-DI** BLOCKED cases were re-attempted on throwaway data (the 21 Digital Inspections BLOCKED cases were excluded from recovery). Outcome: **3 PASS, 2 FAIL, 7 N/A (not in build), 29 still-blocked**. The 29 remain blocked because the restriction is a **front-end-only gate** (DOM-level only): the granular sub-permission / cross-toggle / view_mode is not observable via the API, only in the rendered form.
+
+- **3 PASS** — destructive delete grants confirmed on throwaway `ZZAUTOTEST` records: `SP-CUST-005` (customer delete, HTTP 201), `SP-CAT-004` (catalog part delete, HTTP 200), `SP-VEND-004` (vendor delete, HTTP 201).
+- **2 FAIL** — `SP-CPORT-001` and `SP-BPORT-001`: granting `customerPortalPageAccess` / `billingPortalPageAccess` hydrates the permission but the staff SPA build exposes no portal route or API (**VIU-39**; may be by-design — flag for product).
+- **7 N/A (not in build)** — the feature/permission does not exist in this build: `SP-SET-010`, `SP-SET-011`, `SP-SET-016`, `SP-HIST-001`, `SP-HIST-002`, `TE-ADMIN-001`, `TE-SM-005`.
+- **29 still-blocked** — front-end-only display gates, not server-enforced (**VIU-38**, HIGH).
+
+**Updated overall run totals: 235 PASS / 5 FAIL / 7 N/A / 50 BLOCKED of 297.**
+
+| Result | Count |
+|---|---|
+| PASS | 235 |
+| FAIL | 5 |
+| N/A (not in build) | 7 |
+| BLOCKED | 50 |
+| **Total** | **297** |
+
+Two new findings were logged:
+
+- **VIU-38 (DISCREPANCY, HIGH) — front-end-only enforcement.** The backend enforces only resource-level View/Edit. Granular sub-permissions (Delete; `woPickParts`/`woOrderParts`/`woReviewWorkOrders`), cross-toggles (`seeFinancialData`/`seeApArData`/`viewHistoryLogs`) and `view_mode` are front-end-only display gates — NOT enforced server-side. A DELETE succeeded via API with Edit-but-no-Delete; pick/order endpoints returned 400 (validation) not 403 with only `workOrdersView`; view responses were identical regardless of `seeApArData`/`view_mode`. UI restrictions are bypassable via direct API calls (security-relevant).
+- **VIU-39 (DISCREPANCY) — portal build gap.** Granting `customerPortalPageAccess` / `billingPortalPageAccess` in a staff role hydrates the permission but leads nowhere (no Customer/Billing Portal route or API in the staff build). May be by-design (portals are separate customer-facing apps) — flag for product confirmation.
+
+Deliverables: the QA-readable bug report `custom-roles-blocked-recovery-QA-report.xlsx` / `.csv` (41 non-DI recovery cases); the master by-status workbook `custom-roles-test-run-by-status.xlsx` (tabs **Passed / Failed / N-A (Not in Build) / Blocked**) with mirror `custom-roles-run-*-detail.csv` exports; and the updated `custom-roles-test-cases.xlsx` status tabs and `custom-roles-test-run-*.csv` exports.

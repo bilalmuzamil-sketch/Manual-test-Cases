@@ -204,11 +204,14 @@ def build_index_sheet(wb, counts, viu_stats, verified_counts):
         f"(doubled '/api/api/sso/check' path, no unsaved-changes guard on Create Role "
         f"X-close, silent-cascade vs confirmation-popup dependency-UX inconsistency). "
         f"A full live test run completed 2026-07-02 on staging (Foothills Group Inc), "
-        f"per-role as Tech via dev-login: 297 cases executed — 232 PASS / 3 FAIL / "
-        f"62 BLOCKED (non-destructive-unverifiable). Results live in the 'Run Summary', "
-        f"'Passed', 'Failed', and 'Blocked (Not Verified)' tabs and the "
-        f"custom-roles-test-run-*.csv exports; six run discrepancies (VIU-32..37) are "
-        f"logged in the VIU Findings Log. "
+        f"per-role as Tech via dev-login: 297 cases executed. After the 2026-07-02 "
+        f"blocked-recovery re-run (41 non-DI blocked re-attempted on throwaway data), "
+        f"the reconciled totals are 235 PASS / 5 FAIL / 7 N/A (not in build) / "
+        f"50 BLOCKED. Results live in the 'Run Summary', 'Passed', 'Failed', "
+        f"'N-A (Not in Build)', and 'Blocked (Not Verified)' tabs and the "
+        f"custom-roles-test-run-*.csv exports; eight run discrepancies (VIU-32..39, "
+        f"incl. VIU-38 FRONT-END-only enforcement [HIGH] and VIU-39 portal build gap) "
+        f"are logged in the VIU Findings Log. "
         f"{ver_match + ver_disc} test cases now VERIFIED "
         f"({ver_match} MATCH / {ver_disc} DISCREPANCY); remaining cases are "
         f"UNVERIFIED — VIU pending.")
@@ -350,8 +353,8 @@ def main():
 
     viu_ws = wb2["VIU Findings Log"]
     viu_data_rows = viu_ws.max_row - 1
-    print(f"\n-- VIU Findings Log rows = {viu_data_rows} (expected 37) --")
-    assert viu_data_rows == 37, viu_data_rows
+    print(f"\n-- VIU Findings Log rows = {viu_data_rows} (expected 39) --")
+    assert viu_data_rows == 39, viu_data_rows
 
     print("\n-- XLSX per-sheet data-row counts --")
     for name in ["Single Permission", "Template Edit",

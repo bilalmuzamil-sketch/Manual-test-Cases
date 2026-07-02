@@ -331,5 +331,23 @@
     "verdict": "VERIFIED (informational)",
     "evidence": "staging live test-run 2026-07-02",
     "notes": "Informational, not a defect. Confirms how view_mode is persisted; complements VIU-14/VIU-19/VIU-29."
+  },
+  {
+    "id": "VIU-38",
+    "topic": "Granular sub-permissions / cross-toggles / view_mode are FRONT-END-only gates, not server-enforced",
+    "spec_expectation": "Granular sub-permissions (Delete; woPickParts/woOrderParts/woReviewWorkOrders), cross-toggles (seeFinancialData/seeApArData/viewHistoryLogs) and view_mode should be enforced server-side so a restricted user cannot perform or see the gated action via any client.",
+    "actual_staging": "In this build the backend enforces ONLY resource-level View/Edit. Granular sub-permissions, cross-toggles and view_mode are FRONT-END-only display gates — NOT enforced server-side. Evidence: a DELETE succeeded via API with Edit-but-no-Delete; the pick/order endpoints returned 400 (validation) not 403 when the role held only workOrdersView; customer/work-order View responses were identical regardless of seeApArData/view_mode. Impact: UI restrictions are bypassable via direct API calls (security-relevant).",
+    "verdict": "DISCREPANCY",
+    "evidence": "staging live blocked-recovery 2026-07-02",
+    "notes": "HIGH severity. ref SP-*Delete, WOSUB, FIN/APAR, VM cases (blocked-recovery). Front-end gating only; server-side authorization on granular permissions is missing."
+  },
+  {
+    "id": "VIU-39",
+    "topic": "Customer/Billing Portal page-access grants hydrate but reach no route or API in the staff build",
+    "spec_expectation": "Granting customerPortalPageAccess / billingPortalPageAccess in a staff role should give access to a Customer Portal / Billing Portal surface.",
+    "actual_staging": "Granting customerPortalPageAccess / billingPortalPageAccess in a staff role hydrates the permission but leads nowhere — the staff SPA build has no Customer Portal / Billing Portal route or API. Granting the permission reaches no surface.",
+    "verdict": "DISCREPANCY",
+    "evidence": "staging live blocked-recovery 2026-07-02",
+    "notes": "May be by-design (portals are separate customer-facing apps) — flag for product confirmation. ref SP-CPORT-001, SP-BPORT-001 (now FAIL)."
   }
 ]
