@@ -126,5 +126,21 @@
   "replication_steps_plain": "1. Log in as the Tech user assigned the Service Manager role. 2. Click the shop/avatar button at the top-right ('Staging Heavy Duty - 9919 / TS') and choose 'Settings'. 3. You land on the Administration console. Look at the left sidebar. 4. Observe it lists Feature Flags, Settings, Staff, Roles & Permissions, Locations and Departments. 5. Click 'Staff' -> a full employee directory loads with a 'New Staff Member' button. 6. Click 'Roles & Permissions' -> the full list of roles loads with a 'Create Custom Role' button and edit controls on every role. 7. Click 'Locations' and 'Departments' -> full tables load with New Location / New Department buttons. Expected per checklist: only App Settings and Wages should be available; Staff, Roles & Permissions, Locations, Departments and Feature Flags should not be accessible to a Service Manager.",
   "screenshot_ref": "sm-14.png",
   "notes": "Departments grouping is under review (SV-7781). In-page role was verified as 'Service Manager' (localStorage user.role.name) and SM fe-permissions only include settingsApp + settingsWages (no staff/roles/locations management permissions), yet the Administration console exposes and opens Staff, Roles & Permissions, Locations, Departments and Feature Flags for this role. The role's own description ('limited admin (App Settings + Wages only)') is not honored by the UI. Screenshot shows the Roles & Permissions page (with Create Custom Role) open under the Service Manager, and the row for the Service Manager role itself reading 'Full operational access, limited admin (App Settings + Wages...'."
+ },
+ {
+  "num": 15,
+  "role": "Service Manager",
+  "feature_area": "AP/AR reports",
+  "where_to_go": "Reports → AP/AR aging reports",
+  "what_to_do": "Open them.",
+  "expected_result": "Accessible. Service Manager has Manage Accounts Payable and Receivable ON.",
+  "depth": "SPOT",
+  "status": "PASS",
+  "spec_reference_plain": "Per the spec: a role with the Accounts Payable/Receivable data permission ON (seeApArData, which the Service Manager role has, plus reportsPageAccess) can open the AP and AR aging reports. [Ref: SV-5319 permission matrix; checklist Service Manager row #15 'SM AP/AR access']",
+  "expected_plain": "As a Service Manager you should be able to open the Accounts Receivable and Accounts Payable aging reports.",
+  "actual_result_plain": "Both AP and AR aging reports were accessible and rendered full data for the Service Manager. The Reports page's left menu listed an ACCOUNTS RECEIVABLE group (A/R Aging Summary, A/R Aging Detail, A/R Aging Collection) and an ACCOUNTS PAYABLE group (A/P Aging Summary, A/P Aging Detail, A/P Unpaid Invoices). Opening A/R Aging Summary showed the aging table with Current / 1-30 / 31-60 / 61-90 / 91-and-over / Total columns and real totals (Totals row $253,475.64). Opening A/P Aging Summary likewise showed vendor aging with a Totals row of $4,002,673.89. No access block occurred.",
+  "replication_steps_plain": "",
+  "screenshot_ref": "sm-15.png",
+  "notes": "seeApArData is ON for the Service Manager. Both AR (A/R Aging Summary/Detail/Collection) and AP (A/P Aging Summary/Detail/Unpaid Invoices) reports open with data."
  }
 ]
