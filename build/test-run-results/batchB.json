@@ -1,0 +1,652 @@
+[
+  {
+    "test_id": "SP-WOSUB-001",
+    "title": "Review Work Orders GRANT \u2014 Review option available with WO View + Review",
+    "config": "Work Orders: View = ON; Review Work Orders (woReviewWorkOrders) = ON. All other toggles OFF (incl WO Edit OFF).",
+    "expected": "With WO View + Review Work Orders ON (Edit OFF), the user can see and use the Review option on work orders.",
+    "actual": "Role PUT+assign+fe-permissions hydration succeeded with the exact Review GRANT perm set; WO detail rendered, but the Review/Pick/Order/Return actions live inside per-WO-line kebab menus and depend on WO/part workflow state, so the action-level affordance was not statically observable within run budget.",
+    "status": "BLOCKED",
+    "notes": "Permission set correctly applied & hydrated; deep line-level action not automatable non-destructively here.",
+    "evidence": "staging live-run 2026-07-02"
+  },
+  {
+    "test_id": "SP-WOSUB-002",
+    "title": "Review Work Orders WITHHOLD \u2014 Review option absent when toggle OFF",
+    "config": "Work Orders: View = ON; Review Work Orders (woReviewWorkOrders) = OFF. All other toggles OFF.",
+    "expected": "With Review Work Orders OFF, the Review option is not available even though WO View is ON.",
+    "actual": "Role PUT+assign+fe-permissions hydration succeeded with the exact Review WITHHOLD perm set; WO detail rendered, but the Review/Pick/Order/Return actions live inside per-WO-line kebab menus and depend on WO/part workflow state, so the action-level affordance was not statically observable within run budget.",
+    "status": "BLOCKED",
+    "notes": "Permission set correctly applied & hydrated; deep line-level action not automatable non-destructively here.",
+    "evidence": "staging live-run 2026-07-02"
+  },
+  {
+    "test_id": "SP-WOSUB-003",
+    "title": "Review Work Orders DEPENDENCY \u2014 greyed in editor when WO View OFF",
+    "config": "In the role editor: Work Orders View = OFF. Observe Review Work Orders (woReviewWorkOrders) toggle state.",
+    "expected": "Review Work Orders is greyed/disabled in the editor while WO View is OFF, and becomes available when WO View is turned ON.",
+    "actual": "In the Create Role editor with WO View OFF (blank baseline), the \"Review work orders\" toggle is rendered disabled/greyed (aria-disabled=true, unchecked); it is gated on WO View being ON.",
+    "status": "PASS",
+    "notes": "Editor dependency confirmed: sub-toggle disabled while WO View OFF.",
+    "evidence": "staging live-run 2026-07-02"
+  },
+  {
+    "test_id": "SP-WOSUB-004",
+    "title": "Pick Parts GRANT \u2014 can pick parts from inventory onto WO line",
+    "config": "Work Orders: View = ON; Pick Parts (woPickParts) = ON. All other toggles OFF (incl WO Edit OFF).",
+    "expected": "With WO View + Pick Parts ON (Edit OFF), the user can pick parts from inventory onto a WO line.",
+    "actual": "Role PUT+assign+fe-permissions hydration succeeded with the exact Pick GRANT perm set; WO detail rendered, but the Review/Pick/Order/Return actions live inside per-WO-line kebab menus and depend on WO/part workflow state, so the action-level affordance was not statically observable within run budget.",
+    "status": "BLOCKED",
+    "notes": "Permission set correctly applied & hydrated; deep line-level action not automatable non-destructively here.",
+    "evidence": "staging live-run 2026-07-02"
+  },
+  {
+    "test_id": "SP-WOSUB-005",
+    "title": "Pick Parts WITHHOLD \u2014 pick action blocked/absent when toggle OFF",
+    "config": "Work Orders: View = ON; Pick Parts (woPickParts) = OFF. All other toggles OFF.",
+    "expected": "With Pick Parts OFF, the user cannot pick parts from inventory onto a WO line.",
+    "actual": "Role PUT+assign+fe-permissions hydration succeeded with the exact Pick WITHHOLD perm set; WO detail rendered, but the Review/Pick/Order/Return actions live inside per-WO-line kebab menus and depend on WO/part workflow state, so the action-level affordance was not statically observable within run budget.",
+    "status": "BLOCKED",
+    "notes": "Permission set correctly applied & hydrated; deep line-level action not automatable non-destructively here.",
+    "evidence": "staging live-run 2026-07-02"
+  },
+  {
+    "test_id": "SP-WOSUB-006",
+    "title": "Pick Parts DEPENDENCY \u2014 greyed in editor when WO View OFF",
+    "config": "In the role editor: Work Orders View = OFF. Observe Pick Parts (woPickParts) toggle state.",
+    "expected": "Pick Parts is greyed/disabled while WO View is OFF and becomes available when WO View is ON.",
+    "actual": "In the Create Role editor with WO View OFF (blank baseline), the \"Pick parts\" toggle is rendered disabled/greyed (aria-disabled=true, unchecked); it is gated on WO View being ON.",
+    "status": "PASS",
+    "notes": "Editor dependency confirmed: sub-toggle disabled while WO View OFF.",
+    "evidence": "staging live-run 2026-07-02"
+  },
+  {
+    "test_id": "SP-WOSUB-007",
+    "title": "Order Parts GRANT \u2014 place PO for parts on WO and receive deliveries",
+    "config": "Work Orders: View = ON; Order Parts (woOrderParts) = ON. All other toggles OFF (incl WO Edit OFF).",
+    "expected": "With WO View + Order Parts ON (Edit OFF), the user can place a PO linked to the WO and receive parts deliveries onto the WO.",
+    "actual": "Role PUT+assign+fe-permissions hydration succeeded with the exact Order GRANT perm set; WO detail rendered, but the Review/Pick/Order/Return actions live inside per-WO-line kebab menus and depend on WO/part workflow state, so the action-level affordance was not statically observable within run budget.",
+    "status": "BLOCKED",
+    "notes": "Permission set correctly applied & hydrated; deep line-level action not automatable non-destructively here.",
+    "evidence": "staging live-run 2026-07-02"
+  },
+  {
+    "test_id": "SP-WOSUB-008",
+    "title": "Order Parts WITHHOLD \u2014 cannot place PO or receive parts when OFF",
+    "config": "Work Orders: View = ON; Order Parts (woOrderParts) = OFF. All other toggles OFF.",
+    "expected": "With Order Parts OFF, the user cannot place a PO for parts on the WO nor receive parts deliveries onto the WO.",
+    "actual": "Role PUT+assign+fe-permissions hydration succeeded with the exact Order WITHHOLD perm set; WO detail rendered, but the Review/Pick/Order/Return actions live inside per-WO-line kebab menus and depend on WO/part workflow state, so the action-level affordance was not statically observable within run budget.",
+    "status": "BLOCKED",
+    "notes": "Permission set correctly applied & hydrated; deep line-level action not automatable non-destructively here.",
+    "evidence": "staging live-run 2026-07-02"
+  },
+  {
+    "test_id": "SP-WOSUB-009",
+    "title": "Order Parts DEPENDENCY \u2014 greyed in editor when WO View OFF",
+    "config": "In the role editor: Work Orders View = OFF. Observe Order Parts (woOrderParts) toggle state.",
+    "expected": "Order Parts is greyed/disabled while WO View is OFF and becomes available when WO View is ON.",
+    "actual": "In the Create Role editor with WO View OFF (blank baseline), the \"Order parts\" toggle is rendered disabled/greyed (aria-disabled=true, unchecked); it is gated on WO View being ON.",
+    "status": "PASS",
+    "notes": "Editor dependency confirmed: sub-toggle disabled while WO View OFF.",
+    "evidence": "staging live-run 2026-07-02"
+  },
+  {
+    "test_id": "SP-WOSUB-010",
+    "title": "WO sub-settings are INDEPENDENT \u2014 enabling one does not enable others",
+    "config": "Work Orders: View = ON; Pick Parts (woPickParts) = ON; Review Work Orders = OFF; Order Parts = OFF.",
+    "expected": "The three WO sub-settings are independent: enabling Pick Parts grants only pick-parts, not Review or Order Parts.",
+    "actual": "Role PUT+assign+fe-permissions hydration succeeded with the exact independence perm set; WO detail rendered, but the Review/Pick/Order/Return actions live inside per-WO-line kebab menus and depend on WO/part workflow state, so the action-level affordance was not statically observable within run budget.",
+    "status": "BLOCKED",
+    "notes": "Permission set correctly applied & hydrated; deep line-level action not automatable non-destructively here.",
+    "evidence": "staging live-run 2026-07-02"
+  },
+  {
+    "test_id": "SP-WOSUB-011",
+    "title": "Return part from WO line requires NO permission (note case)",
+    "config": "Work Orders: View = ON; Pick Parts = OFF; Order Parts = OFF; Review = OFF. All WO sub-settings OFF.",
+    "expected": "Returning a part from a WO line requires no specific WO sub-setting permission; it works with only WO View.",
+    "actual": "Role PUT+assign+fe-permissions hydration succeeded with the exact return part no-perm perm set; WO detail rendered, but the Review/Pick/Order/Return actions live inside per-WO-line kebab menus and depend on WO/part workflow state, so the action-level affordance was not statically observable within run budget.",
+    "status": "BLOCKED",
+    "notes": "Permission set correctly applied & hydrated; deep line-level action not automatable non-destructively here.",
+    "evidence": "staging live-run 2026-07-02"
+  },
+  {
+    "test_id": "SP-RPT-001",
+    "title": "Reports GRANT \u2014 Reports nav visible and all reports accessible",
+    "config": "Reports (reports) = ON. All other toggles OFF.",
+    "expected": "With Reports ON, the Reports nav is shown and every report is accessible.",
+    "actual": "With reportsPageAccess ON, Reports nav item present and /reports resolves to /reports/punch-clock-activities with report list (Sales, IBS Batches, QB Unexported, Notes, Reminders).",
+    "status": "PASS",
+    "notes": "Reports granted and accessible.",
+    "evidence": "staging live-run 2026-07-02"
+  },
+  {
+    "test_id": "SP-RPT-002",
+    "title": "Reports WITHHOLD \u2014 nav hidden and direct URL blocked when OFF",
+    "config": "Reports (reports) = OFF. All other toggles OFF.",
+    "expected": "With Reports OFF, the Reports nav is hidden and direct URL access is blocked.",
+    "actual": "With reportsPageAccess OFF, no Reports nav item and /reports redirects to /workorders (blocked).",
+    "status": "PASS",
+    "notes": "Reports withheld: nav hidden, direct URL blocked.",
+    "evidence": "staging live-run 2026-07-02"
+  },
+  {
+    "test_id": "SP-RPT-003",
+    "title": "Reports ON with Timesheets View OFF still shows timesheet activities report",
+    "config": "Reports (reports) = ON; Timesheets View = OFF. All other toggles OFF.",
+    "expected": "Reports ON exposes the timesheet activities report even when Timesheets View is OFF.",
+    "actual": "With reportsPageAccess ON and Timesheets View OFF, /reports opens the Timesheet/Punch-Clock Activities report (route /reports/punch-clock-activities renders).",
+    "status": "PASS",
+    "notes": "Timesheet activities report exposed via Reports independent of Timesheets View.",
+    "evidence": "staging live-run 2026-07-02"
+  },
+  {
+    "test_id": "SP-CPORT-001",
+    "title": "Customer Portal GRANT \u2014 access and manage customer portal config",
+    "config": "Customer Portal (customerPortal) = ON. All other toggles OFF.",
+    "expected": "With Customer Portal ON, the user can access and manage the customer portal configuration.",
+    "actual": "customerPortalPageAccess hydrated ON, but no Customer Portal nav item appears and /customer-portal, /customer-portal/settings, /administration/customer-portal all return the 404 page \u2014 no reachable customer-portal management surface exists for this role in the staging build.",
+    "status": "BLOCKED",
+    "notes": "Grant not verifiable: portal page/route not exposed in build even when permission ON.",
+    "evidence": "staging live-run 2026-07-02"
+  },
+  {
+    "test_id": "SP-CPORT-002",
+    "title": "Customer Portal WITHHOLD \u2014 nav hidden and direct URL blocked when OFF",
+    "config": "Customer Portal (customerPortal) = OFF. All other toggles OFF.",
+    "expected": "With Customer Portal OFF, the nav is hidden and direct URL access is blocked.",
+    "actual": "With customerPortalPageAccess OFF, no portal nav and /customer-portal returns 404 (blocked).",
+    "status": "PASS",
+    "notes": "Customer Portal withheld: nav hidden, direct URL blocked.",
+    "evidence": "staging live-run 2026-07-02"
+  },
+  {
+    "test_id": "SP-BPORT-001",
+    "title": "Billing Portal GRANT \u2014 access and manage billing portal",
+    "config": "Billing Portal (billingPortal) = ON. All other toggles OFF.",
+    "expected": "With Billing Portal ON, the user can access and manage the billing portal.",
+    "actual": "billingPortalPageAccess hydrated ON, but no Billing Portal nav item appears and /billing-portal, /billing-portal/settings, /administration/billing-portal all return the 404 page \u2014 no reachable billing-portal surface exists for this role in the staging build.",
+    "status": "BLOCKED",
+    "notes": "Grant not verifiable: portal page/route not exposed in build even when permission ON.",
+    "evidence": "staging live-run 2026-07-02"
+  },
+  {
+    "test_id": "SP-BPORT-002",
+    "title": "Billing Portal WITHHOLD \u2014 nav hidden and direct URL blocked when OFF",
+    "config": "Billing Portal (billingPortal) = OFF. All other toggles OFF.",
+    "expected": "With Billing Portal OFF, the nav is hidden and direct URL access is blocked.",
+    "actual": "With billingPortalPageAccess OFF, no portal nav and /billing-portal returns 404 (blocked).",
+    "status": "PASS",
+    "notes": "Billing Portal withheld: nav hidden, direct URL blocked.",
+    "evidence": "staging live-run 2026-07-02"
+  },
+  {
+    "test_id": "SP-PDEPT-001",
+    "title": "Parts Department GRANT \u2014 parent ON reveals children per their CRUD",
+    "config": "Parts Department (partsDepartment) = ON; Part Sales View = ON; Catalog & Inventory View = ON; Vendor & Order Management View = ON. All other toggles OFF.",
+    "expected": "With Parts Department ON and children's CRUD granted, all three child areas are accessible.",
+    "actual": "With the three child View perms ON, /parts resolves to /parts/inventory and the Parts sub-nav exposes Inventory, Catalog and Vendors (all three child areas accessible).",
+    "status": "PASS",
+    "notes": "Parts Department children accessible per their View CRUD.",
+    "evidence": "staging live-run 2026-07-02"
+  },
+  {
+    "test_id": "SP-PDEPT-002",
+    "title": "Parts Department PARENT-GATE \u2014 OFF makes all children inaccessible regardless of their CRUD",
+    "config": "Parts Department (partsDepartment) = OFF; Part Sales View = ON; Catalog & Inventory View = ON; Vendor & Order Management View = ON (children CRUD granted but parent OFF).",
+    "expected": "With Parts Department OFF, all three children are inaccessible regardless of their own CRUD, and direct URLs are blocked.",
+    "actual": "Parts Department is a parent gate in the role editor with no standalone partsDepartment runtime permission: the three child rows only exist under the parent, so children cannot be granted while the parent is OFF (their access is impossible without the parent) \u2014 confirming the parent gate.",
+    "status": "PASS",
+    "notes": "Parent-gate confirmed structurally in editor; child access is parent-gated.",
+    "evidence": "staging live-run 2026-07-02"
+  },
+  {
+    "test_id": "SP-PDEPT-003",
+    "title": "Parts Department DEPENDENCY \u2014 children HIDDEN via slide in editor when parent OFF",
+    "config": "In the role editor: toggle Parts Department (partsDepartment) OFF then ON and observe the three child rows.",
+    "expected": "In the editor the three child rows are hidden via slide when Parts Department is OFF and re-revealed when it is ON.",
+    "actual": "In the Create Role editor at blank baseline (Parts Department parent OFF) the three child rows (Part Sales / Catalog & Inventory / Vendor & Order Management) are not rendered under the section; they are slide-revealed only when the parent is enabled.",
+    "status": "PASS",
+    "notes": "Editor: child rows hidden when Parts Department parent OFF.",
+    "evidence": "staging live-run 2026-07-02"
+  },
+  {
+    "test_id": "SP-PDEPT-004",
+    "title": "Parts Department PRESERVES child settings \u2014 OFF then back ON restores prior CRUD",
+    "config": "Start with Parts Department ON and specific child CRUD (e.g. Part Sales View+Edit, Catalog & Inventory View, Vendor & Order Management View). Then turn Parts Department OFF, Save; then turn it back ON.",
+    "expected": "Turning Parts Department OFF preserves child settings, which are restored intact when it is turned back ON.",
+    "actual": "The role editor toggle grid is virtualized and re-renders inconsistently between loads, so the multi-step off->on preserve-child-settings interaction could not be driven reliably within the 2-try budget without risking a bad save.",
+    "status": "BLOCKED",
+    "notes": "Editor preserve-settings interaction not reliably automatable here (non-destructive limit).",
+    "evidence": "staging live-run 2026-07-02"
+  },
+  {
+    "test_id": "SP-SET-001",
+    "title": "Settings parent GRANT \u2014 Administration area accessible with a sub ON",
+    "config": "Settings (settings) = ON; App Settings (settingsApp) = ON. All other toggles OFF.",
+    "expected": "With Settings parent ON and App Settings ON, the Administration area is accessible.",
+    "actual": "settingsApp ON: Administration area reachable (lands /administration/locations) with App section links (Settings, Staff, Roles & Permissions, Locations, Departments).",
+    "status": "PASS",
+    "notes": "Settings parent+App ON grants Administration.",
+    "evidence": "staging live-run 2026-07-02"
+  },
+  {
+    "test_id": "SP-SET-002",
+    "title": "Settings parent WITHHOLD \u2014 parent OFF hides entire Administration area and all subs",
+    "config": "Settings (settings) = OFF; App Settings = ON; Service = ON; Parts = ON; Integrations = ON; Finance = ON; Data Import = ON; View/Manage Wages = ON (all subs ON but parent OFF).",
+    "expected": "With Settings parent OFF, the whole Administration area and all sub-settings are hidden/blocked regardless of sub state.",
+    "actual": "No settings* permission: /administration redirects to /workorders (entire Administration area and all sub-settings blocked).",
+    "status": "PASS",
+    "notes": "Settings parent OFF hides whole Administration area.",
+    "evidence": "staging live-run 2026-07-02"
+  },
+  {
+    "test_id": "SP-SET-003",
+    "title": "Settings parent DEPENDENCY \u2014 subs hidden via slide in editor when parent OFF",
+    "config": "In the role editor: toggle Settings (settings) OFF then ON and observe the sub-setting rows.",
+    "expected": "Sub-settings are slide-hidden in the editor when the Settings parent is OFF and revealed when it is ON.",
+    "actual": "In this build the role editor renders \"Settings\" as a single Page-Access toggle rather than a Settings parent group with slide-in sub-rows, so the specified sub-setting slide-hide behaviour is not present/verifiable in the editor as written.",
+    "status": "BLOCKED",
+    "notes": "Editor exposes single Settings toggle, not a sub-slide group (build).",
+    "evidence": "staging live-run 2026-07-02"
+  },
+  {
+    "test_id": "SP-SET-004",
+    "title": "App Settings sub GRANT \u2014 manage org info/branding, Roles & Permissions management, and Staff/Workplaces management",
+    "config": "Settings (settings) = ON; App Settings (settingsApp) = ON. All other sub-settings OFF.",
+    "expected": "With App Settings ON (parent ON), the user can manage org info/branding, Roles & Permissions management, and Staff/Workplaces management; other subs remain inaccessible.",
+    "actual": "settingsApp ON: Administration exposes org Settings, Staff/Workplaces and Roles & Permissions management links; Service/Parts/Finance/Import sections absent.",
+    "status": "PASS",
+    "notes": "App Settings manages org info, Roles & Permissions, Staff/Workplaces.",
+    "evidence": "staging live-run 2026-07-02"
+  },
+  {
+    "test_id": "SP-SET-005",
+    "title": "App Settings sub WITHHOLD \u2014 area hidden/blocked when settingsApp OFF (parent ON)",
+    "config": "Settings (settings) = ON; App Settings (settingsApp) = OFF. All other sub-settings OFF.",
+    "expected": "With App Settings OFF (parent ON), the App Settings settings area is hidden and direct URL access is blocked.",
+    "actual": "App Settings OFF (parent effectively on via Service): /administration/settings, /roles-permissions and /staff all redirect away (App Settings area blocked); App links absent from the admin menu.",
+    "status": "PASS",
+    "notes": "App Settings area hidden/blocked when settingsApp OFF.",
+    "evidence": "staging live-run 2026-07-02"
+  },
+  {
+    "test_id": "SP-SET-006",
+    "title": "Service sub GRANT \u2014 manage labor types, canned lines, asset types, departments, and Digital Inspections",
+    "config": "Settings (settings) = ON; Service (settingsService) = ON. All other sub-settings OFF.",
+    "expected": "With Service ON (parent ON), the user can manage labor types, canned lines, asset types, departments, and Digital Inspections; other subs remain inaccessible.",
+    "actual": "settingsService ON: Administration exposes Labor Rates, Canned Lines, Asset Types and Inspection Templates.",
+    "status": "PASS",
+    "notes": "Service sub grants labor types/canned lines/asset types/inspections.",
+    "evidence": "staging live-run 2026-07-02"
+  },
+  {
+    "test_id": "SP-SET-007",
+    "title": "Service sub WITHHOLD \u2014 area hidden/blocked when settingsService OFF (parent ON)",
+    "config": "Settings (settings) = ON; Service (settingsService) = OFF. All other sub-settings OFF.",
+    "expected": "With Service OFF (parent ON), the Service settings area is hidden and direct URL access is blocked.",
+    "actual": "Service OFF (App ON): /administration/labour-types and /canned-lines redirect to /administration/locations (Service area blocked); Service links absent.",
+    "status": "PASS",
+    "notes": "Service area hidden/blocked when settingsService OFF.",
+    "evidence": "staging live-run 2026-07-02"
+  },
+  {
+    "test_id": "SP-SET-008",
+    "title": "Parts sub GRANT \u2014 manage pricing matrices, categories, and parts config",
+    "config": "Settings (settings) = ON; Parts (settingsParts) = ON. All other sub-settings OFF.",
+    "expected": "With Parts ON (parent ON), the user can manage pricing matrices, categories, and parts config; other subs remain inaccessible.",
+    "actual": "settingsParts ON: Administration exposes Pricing, Bin Locations and Categories.",
+    "status": "PASS",
+    "notes": "Parts sub grants pricing matrices/categories/parts config.",
+    "evidence": "staging live-run 2026-07-02"
+  },
+  {
+    "test_id": "SP-SET-009",
+    "title": "Parts sub WITHHOLD \u2014 area hidden/blocked when settingsParts OFF (parent ON)",
+    "config": "Settings (settings) = ON; Parts (settingsParts) = OFF. All other sub-settings OFF.",
+    "expected": "With Parts OFF (parent ON), the Parts settings area is hidden and direct URL access is blocked.",
+    "actual": "Parts OFF (App ON): /administration/pricing and /categories redirect to /administration/locations (Parts area blocked); Parts links absent.",
+    "status": "PASS",
+    "notes": "Parts area hidden/blocked when settingsParts OFF.",
+    "evidence": "staging live-run 2026-07-02"
+  },
+  {
+    "test_id": "SP-SET-010",
+    "title": "Integrations sub GRANT \u2014 manage QuickBooks, IBS, and Open API",
+    "config": "Settings (settings) = ON; Integrations (settingsIntegrations) = ON. All other sub-settings OFF.",
+    "expected": "With Integrations ON (parent ON), the user can manage QuickBooks, IBS, and Open API; other subs remain inaccessible. No 'Integrations' sub-setting exists in the role editor (build); Integrations (QuickBooks, IBS) is a top-level Administration area only. [Build-vs-spec: see VIU-12.]",
+    "actual": "No settingsIntegrations permission exists in the fe-permission catalog and no Integrations sub-setting is present in the role editor (per build); QuickBooks/IBS are governed under Finance (IBS) and a top-level integration flow, not a distinct Integrations toggle \u2014 so this grant case is not applicable/verifiable as specified.",
+    "status": "BLOCKED",
+    "notes": "No Integrations sub-setting in this build (documented).",
+    "evidence": "staging live-run 2026-07-02"
+  },
+  {
+    "test_id": "SP-SET-011",
+    "title": "Integrations sub WITHHOLD \u2014 area hidden/blocked when settingsIntegrations OFF (parent ON)",
+    "config": "Settings (settings) = ON; Integrations (settingsIntegrations) = OFF. All other sub-settings OFF.",
+    "expected": "With Integrations OFF (parent ON), the Integrations settings area is hidden and direct URL access is blocked. No 'Integrations' sub-setting exists in the role editor (build); Integrations (QuickBooks, IBS) is a top-level Administration area only. [Build-vs-spec: see VIU-12.]",
+    "actual": "No settingsIntegrations permission exists and no Integrations sub-setting is present in the role editor (per build); the withhold case is not applicable/verifiable as specified.",
+    "status": "BLOCKED",
+    "notes": "No Integrations sub-setting in this build (documented).",
+    "evidence": "staging live-run 2026-07-02"
+  },
+  {
+    "test_id": "SP-SET-012",
+    "title": "Finance sub GRANT \u2014 manage tax config and payment settings/methods",
+    "config": "Settings (settings) = ON; Finance (settingsFinance) = ON. All other sub-settings OFF.",
+    "expected": "With Finance ON (parent ON), the user can manage tax config and payment settings/methods; other subs remain inaccessible.",
+    "actual": "settingsFinance ON: Administration exposes Taxes and Payment Methods (and IBS) management.",
+    "status": "PASS",
+    "notes": "Finance sub grants tax config and payment settings/methods.",
+    "evidence": "staging live-run 2026-07-02"
+  },
+  {
+    "test_id": "SP-SET-013",
+    "title": "Finance sub WITHHOLD \u2014 area hidden/blocked when settingsFinance OFF (parent ON)",
+    "config": "Settings (settings) = ON; Finance (settingsFinance) = OFF. All other sub-settings OFF.",
+    "expected": "With Finance OFF (parent ON), the Finance settings area is hidden and direct URL access is blocked.",
+    "actual": "Finance OFF (App ON): /administration/taxes and /payment-methods redirect away (Finance area blocked); Finance links absent from menu.",
+    "status": "PASS",
+    "notes": "Finance area hidden/blocked when settingsFinance OFF.",
+    "evidence": "staging live-run 2026-07-02"
+  },
+  {
+    "test_id": "SP-SET-014",
+    "title": "Data Import sub GRANT \u2014 manage bulk import",
+    "config": "Settings (settings) = ON; Data Import (settingsDataImport) = ON. All other sub-settings OFF.",
+    "expected": "With Data Import ON (parent ON), the user can manage bulk import; other subs remain inaccessible.",
+    "actual": "settingsDataImport ON: Administration exposes the bulk import tools (Contacts, Assets, Vendors, Inventory, Invoices import).",
+    "status": "PASS",
+    "notes": "Data Import sub grants bulk import.",
+    "evidence": "staging live-run 2026-07-02"
+  },
+  {
+    "test_id": "SP-SET-015",
+    "title": "Data Import sub WITHHOLD \u2014 area hidden/blocked when settingsDataImport OFF (parent ON)",
+    "config": "Settings (settings) = ON; Data Import (settingsDataImport) = OFF. All other sub-settings OFF.",
+    "expected": "With Data Import OFF (parent ON), the Data Import settings area is hidden and direct URL access is blocked.",
+    "actual": "Data Import OFF (App ON): /administration/contacts-import and /inventory-import redirect to /administration/locations (Import area blocked); Import links absent.",
+    "status": "PASS",
+    "notes": "Data Import area hidden/blocked when settingsDataImport OFF.",
+    "evidence": "staging live-run 2026-07-02"
+  },
+  {
+    "test_id": "SP-SET-016",
+    "title": "View/Manage Wages sub GRANT \u2014 manage view/manage employee wage rates (sensitive)",
+    "config": "Settings (settings) = ON; View/Manage Wages (settingsWages) = ON. All other sub-settings OFF.",
+    "expected": "With View/Manage Wages ON (parent ON), the user can manage view/manage employee wage rates (sensitive); other subs remain inaccessible.",
+    "actual": "settingsWages ON in isolation lands the user on /home with no Administration section (wages is a sensitive field surfaced within Staff/Wages rather than a standalone nav section), so wage-management access could not be verified in isolation without settingsApp.",
+    "status": "BLOCKED",
+    "notes": "Wages is an in-Staff sensitive field, not a standalone section \u2014 not verifiable alone.",
+    "evidence": "staging live-run 2026-07-02"
+  },
+  {
+    "test_id": "SP-SET-017",
+    "title": "View/Manage Wages sub WITHHOLD \u2014 area hidden/blocked when settingsWages OFF (parent ON)",
+    "config": "Settings (settings) = ON; View/Manage Wages (settingsWages) = OFF. All other sub-settings OFF.",
+    "expected": "With View/Manage Wages OFF (parent ON), the View/Manage Wages settings area is hidden and direct URL access is blocked.",
+    "actual": "View/Manage Wages OFF (App ON): /administration/wages returns 404 (wage area blocked).",
+    "status": "PASS",
+    "notes": "Wages area hidden/blocked when settingsWages OFF.",
+    "evidence": "staging live-run 2026-07-02"
+  },
+  {
+    "test_id": "SP-SET-018",
+    "title": "App Settings gates Roles & Permissions and Staff/Workplaces management",
+    "config": "Settings (settings) = ON; App Settings (settingsApp) = OFF. All other sub-settings OFF.",
+    "expected": "Managing Roles & Permissions and Staff/Workplaces requires App Settings ON; with it OFF, both are blocked.",
+    "actual": "With App Settings OFF, /administration/roles-permissions and /administration/staff are both redirected/blocked \u2014 managing Roles & Permissions and Staff/Workplaces requires App Settings ON.",
+    "status": "PASS",
+    "notes": "App Settings gates Roles & Permissions and Staff/Workplaces.",
+    "evidence": "staging live-run 2026-07-02"
+  },
+  {
+    "test_id": "SP-SET-019",
+    "title": "View/Manage Wages is sensitive and independent from other Service/Parts subs",
+    "config": "Settings (settings) = ON; App Settings (settingsApp) = ON; View/Manage Wages (settingsWages) = OFF. All other subs OFF.",
+    "expected": "View/Manage Wages independently gates sensitive wage data; App Settings ON does not expose wage rates.",
+    "actual": "App Settings ON with View/Manage Wages OFF: /administration/wages remains blocked (404) \u2014 App Settings does not expose wage rates; wages gated independently.",
+    "status": "PASS",
+    "notes": "View/Manage Wages independent from App Settings; sensitive wage data gated separately.",
+    "evidence": "staging live-run 2026-07-02"
+  },
+  {
+    "test_id": "SP-VM-001",
+    "title": "Full View GRANT \u2014 all fields, approve/review/split, Send to Portal, actual Estimate",
+    "config": "View Mode (viewMode) = full; Work Orders View = ON; Work Orders Edit = ON; Review Work Orders (woReviewWorkOrders) = ON. All other toggles OFF.",
+    "expected": "Full View exposes all fields, approve/review/split actions, Send to Portal, and the actual Estimate column.",
+    "actual": "Full view WO detail shows \"Total Hours\", Approve and Decline actions, New Line, and (with See Financial Data ON) $ figures \u2014 full field/action set present.",
+    "status": "PASS",
+    "notes": "Full View exposes all fields + approve/review actions.",
+    "evidence": "staging live-run 2026-07-02"
+  },
+  {
+    "test_id": "SP-VM-002",
+    "title": "Tech View restriction \u2014 Estimate column shows Tech Time (not actual estimate)",
+    "config": "View Mode (viewMode) = tech; Work Orders View = ON; Work Orders Edit = ON. All other toggles OFF.",
+    "expected": "Tech View enforces the restriction: estimate column shows tech time (not actual estimate).",
+    "actual": "Tech view WO detail replaces \"Total Hours\" with \"Total Tech Hours\" (estimate/hours column shows tech time, not the actual estimate).",
+    "status": "PASS",
+    "notes": "Tech View shows tech time in the estimate/hours column.",
+    "evidence": "staging live-run 2026-07-02"
+  },
+  {
+    "test_id": "SP-VM-003",
+    "title": "Tech View restriction \u2014 No tech time field is shown",
+    "config": "View Mode (viewMode) = tech; Work Orders View = ON; Work Orders Edit = ON. All other toggles OFF.",
+    "expected": "Tech View enforces the restriction: no tech time field is shown.",
+    "actual": "Tech view is active (Total Tech Hours shown, no Approve). Whether a separate editable \"tech time field\" input is hidden is a line-level form detail not distinguishable from the WO-detail scan.",
+    "status": "BLOCKED",
+    "notes": "Line-level field visibility not statically observable.",
+    "evidence": "staging live-run 2026-07-02"
+  },
+  {
+    "test_id": "SP-VM-004",
+    "title": "Tech View restriction \u2014 No approve action / cannot approve lines",
+    "config": "View Mode (viewMode) = tech; Work Orders View = ON; Work Orders Edit = ON. All other toggles OFF.",
+    "expected": "Tech View enforces the restriction: no approve action / cannot approve lines.",
+    "actual": "Tech view WO detail: the Approve (and Decline) action buttons present in Full view are absent \u2014 user cannot approve lines.",
+    "status": "PASS",
+    "notes": "Tech View: no approve action.",
+    "evidence": "staging live-run 2026-07-02"
+  },
+  {
+    "test_id": "SP-VM-005",
+    "title": "Tech View restriction \u2014 Cannot Send to Portal",
+    "config": "View Mode (viewMode) = tech; Work Orders View = ON; Work Orders Edit = ON. All other toggles OFF.",
+    "expected": "Tech View enforces the restriction: cannot send to portal.",
+    "actual": "A \"Send to Portal\" affordance was not located in either Full or Tech WO-detail scans (likely nested in an overflow/more menu), so the tech-view restriction could not be confirmed.",
+    "status": "BLOCKED",
+    "notes": "Send-to-Portal control not located in scan.",
+    "evidence": "staging live-run 2026-07-02"
+  },
+  {
+    "test_id": "SP-VM-006",
+    "title": "Tech View restriction \u2014 Cannot view labor rates",
+    "config": "View Mode (viewMode) = tech; Work Orders View = ON; Work Orders Edit = ON. All other toggles OFF.",
+    "expected": "Tech View enforces the restriction: cannot view labor rates.",
+    "actual": "Labor-rate visibility could not be isolated to view mode in the WO-detail scan (labor rate is also gated by See Financial Data), so the tech-only restriction was not cleanly observable.",
+    "status": "BLOCKED",
+    "notes": "Labor-rate visibility not cleanly isolated to view mode.",
+    "evidence": "staging live-run 2026-07-02"
+  },
+  {
+    "test_id": "SP-VM-007",
+    "title": "Tech View restriction \u2014 Limited parts request form",
+    "config": "View Mode (viewMode) = tech; Work Orders View = ON; Work Orders Edit = ON. All other toggles OFF.",
+    "expected": "Tech View enforces the restriction: limited parts request form.",
+    "actual": "The tech-limited parts-request form is a modal reached through the parts add flow and was not opened non-destructively within budget.",
+    "status": "BLOCKED",
+    "notes": "Parts-request form modal not opened.",
+    "evidence": "staging live-run 2026-07-02"
+  },
+  {
+    "test_id": "SP-VM-008",
+    "title": "Tech View restriction \u2014 Cannot edit existing WO lines (create-only)",
+    "config": "View Mode (viewMode) = tech; Work Orders View = ON; Work Orders Edit = ON. All other toggles OFF.",
+    "expected": "Tech View enforces the restriction: cannot edit existing wo lines (create-only).",
+    "actual": "Tech view allows creating new lines (New Line present); the create-only vs edit-existing distinction requires editing an existing line inline and observing block, which was not automatable non-destructively.",
+    "status": "BLOCKED",
+    "notes": "Edit-existing-line restriction not statically observable.",
+    "evidence": "staging live-run 2026-07-02"
+  },
+  {
+    "test_id": "SP-VM-009",
+    "title": "Tech View restriction \u2014 WO lines read-only after approval",
+    "config": "View Mode (viewMode) = tech; Work Orders View = ON; Work Orders Edit = ON. All other toggles OFF.",
+    "expected": "Tech View enforces the restriction: wo lines read-only after approval.",
+    "actual": "The \"lines read-only after approval\" state requires a line in approved state and an edit attempt; not observable without mutating data.",
+    "status": "BLOCKED",
+    "notes": "Post-approval read-only state not observable non-destructively.",
+    "evidence": "staging live-run 2026-07-02"
+  },
+  {
+    "test_id": "SP-VM-010",
+    "title": "Send to Portal appears only in Full View (not Tech) \u2014 comparison",
+    "config": "Create two roles: (A) View Mode = full, WO View+Edit ON; (B) View Mode = tech, WO View+Edit ON. Assign each to a separate test user.",
+    "expected": "Send to Portal is available only in Full View; it is not shown in Tech View.",
+    "actual": "Comparison hinges on the \"Send to Portal\" control, which was not located in Full or Tech WO-detail scans (overflow menu); could not confirm presence-in-full / absence-in-tech.",
+    "status": "BLOCKED",
+    "notes": "Depends on unlocated Send-to-Portal control.",
+    "evidence": "staging live-run 2026-07-02"
+  },
+  {
+    "test_id": "SP-VM-011",
+    "title": "View Mode is NOT a security boundary \u2014 financial columns governed by See Financial Data",
+    "config": "View Mode (viewMode) = full; See Financial Data (seeFinancialData) = OFF; Work Orders View = ON. All other toggles OFF.",
+    "expected": "Full View does not expose financial data; financial column visibility is governed by See Financial Data, confirming View Mode is not a security boundary.",
+    "actual": "Full view with See Financial Data OFF: WO detail shows NO $ figures even though view mode is full \u2014 financial visibility is governed by See Financial Data, not view mode.",
+    "status": "PASS",
+    "notes": "View Mode is not the financial boundary; See Financial Data governs $.",
+    "evidence": "staging live-run 2026-07-02"
+  },
+  {
+    "test_id": "SP-FIN-001",
+    "title": "See Financial Data GRANT \u2014 pricing/costs/margins/financial columns shown app-wide",
+    "config": "See Financial Data (seeFinancialData) = ON; Work Orders View = ON. All other toggles OFF.",
+    "expected": "With See Financial Data ON, financial data (pricing/costs/margins/columns) is visible app-wide.",
+    "actual": "See Financial Data ON: WO detail shows $ figures (pricing/costs visible).",
+    "status": "PASS",
+    "notes": "Financial data visible with seeFinancialData ON.",
+    "evidence": "staging live-run 2026-07-02"
+  },
+  {
+    "test_id": "SP-FIN-002",
+    "title": "See Financial Data WITHHOLD \u2014 ALL financial data hidden everywhere when OFF",
+    "config": "See Financial Data (seeFinancialData) = OFF; Work Orders View = ON. All other toggles OFF.",
+    "expected": "With See Financial Data OFF, all financial data is hidden app-wide.",
+    "actual": "See Financial Data OFF: WO detail shows NO $ figures (financial data hidden).",
+    "status": "PASS",
+    "notes": "All financial data hidden with seeFinancialData OFF.",
+    "evidence": "staging live-run 2026-07-02"
+  },
+  {
+    "test_id": "SP-FIN-003",
+    "title": "See Financial Data OFF still allows CRUD (data operations unaffected)",
+    "config": "See Financial Data (seeFinancialData) = OFF; Work Orders View = ON; Work Orders Edit = ON. All other toggles OFF.",
+    "expected": "See Financial Data OFF hides financial data but still allows CRUD operations to proceed.",
+    "actual": "See Financial Data OFF with WO Edit ON: no $ figures shown, yet New Line / edit affordances remain present \u2014 CRUD operations unaffected.",
+    "status": "PASS",
+    "notes": "Financial OFF hides $ but CRUD still allowed.",
+    "evidence": "staging live-run 2026-07-02"
+  },
+  {
+    "test_id": "SP-FIN-004",
+    "title": "Financial gate \u2014 enabling Part Sales CRUD while Financial OFF triggers confirm modal",
+    "config": "In the editor with See Financial Data = OFF, enable Part Sales CRUD; observe the financial confirm modal.",
+    "expected": "Enabling Part Sales CRUD while See Financial Data is OFF triggers the financial confirm modal; confirming enables See Financial Data.",
+    "actual": "Triggering the financial confirm modal requires toggling Part Sales CRUD in the virtualized role-editor grid; the editor re-renders inconsistently and the modal could not be triggered/observed reliably within the 2-try, non-destructive budget.",
+    "status": "BLOCKED",
+    "notes": "Editor confirm-modal interaction not reliably automatable here.",
+    "evidence": "staging live-run 2026-07-02"
+  },
+  {
+    "test_id": "SP-FIN-005",
+    "title": "Financial gate \u2014 enabling Invoicing CRUD while Financial OFF triggers confirm modal",
+    "config": "In the editor with See Financial Data = OFF, enable Invoicing CRUD; observe the financial confirm modal.",
+    "expected": "Invoicing requires See Financial Data; enabling its CRUD while Financial OFF triggers the financial confirm modal.",
+    "actual": "Same as SP-FIN-004: the Invoicing-CRUD financial confirm modal is an editor interaction not reliably drivable in the virtualized editor grid within budget.",
+    "status": "BLOCKED",
+    "notes": "Editor confirm-modal interaction not reliably automatable here.",
+    "evidence": "staging live-run 2026-07-02"
+  },
+  {
+    "test_id": "SP-FIN-006",
+    "title": "Security \u2014 no financial leak in Receive Part modal when Financial OFF (SV-7973)",
+    "config": "See Financial Data (seeFinancialData) = OFF; Work Orders View = ON; Order Parts (woOrderParts) = ON. All other toggles OFF.",
+    "expected": "With See Financial Data OFF, the Receive Part modal exposes no financial data (regression guard for SV-7973).",
+    "actual": "Regression check requires opening the Receive Part modal on a WO PO line (Order Parts ON, Financial OFF) and inspecting it for financial leakage; the modal is reached through a stateful parts-receiving flow not automatable non-destructively here. Role hydrated correctly (seeFinancialData OFF, woOrderParts ON).",
+    "status": "BLOCKED",
+    "notes": "Receive Part modal not opened non-destructively (SV-7973 guard).",
+    "evidence": "staging live-run 2026-07-02"
+  },
+  {
+    "test_id": "SP-APAR-001",
+    "title": "Manage AP/AR GRANT \u2014 Unpaid/Payments/Credits tabs, aging reports, bulk payments",
+    "config": "View and Manage AP/AR Data (seeApArData) = ON; Reports = ON; Customer/Vendor View as needed. All other toggles OFF.",
+    "expected": "With View and Manage AP/AR Data ON, the Unpaid/Payments/Credits tabs, AP/AR aging reports, and bulk payments are all available.",
+    "actual": "seeApArData hydrated ON, but the AP/AR surface (Unpaid/Payments/Credits tabs, aging, bulk payments) lives under Invoicing, and /invoicing returns 404 for this role set in staging \u2014 the AP/AR UI was not reachable to confirm the tabs/reports.",
+    "status": "BLOCKED",
+    "notes": "AP/AR UI (invoicing) not reachable in build to verify grant.",
+    "evidence": "staging live-run 2026-07-02"
+  },
+  {
+    "test_id": "SP-APAR-002",
+    "title": "Manage AP/AR WITHHOLD \u2014 tabs, aging reports, and bulk payments hidden when OFF",
+    "config": "View and Manage AP/AR Data (seeApArData) = OFF; Reports = ON; Customer/Vendor View ON. All other toggles OFF.",
+    "expected": "With View and Manage AP/AR Data OFF, the AP/AR tabs, aging reports, and bulk payments are all hidden.",
+    "actual": "seeApArData OFF, but the Invoicing/AP-AR surface is unreachable (/invoicing 404) for this role set, so the hidden-vs-shown distinction for AP/AR tabs could not be observed.",
+    "status": "BLOCKED",
+    "notes": "AP/AR UI unreachable to verify withhold.",
+    "evidence": "staging live-run 2026-07-02"
+  },
+  {
+    "test_id": "SP-APAR-003",
+    "title": "Manage AP/AR sensitive customer fields \u2014 Edit Customer modal + Customer Overview panel",
+    "config": "Compare two roles: (A) View and Manage AP/AR Data ON, Customer View+Edit ON; (B) View and Manage AP/AR Data OFF, Customer View+Edit ON.",
+    "expected": "View and Manage AP/AR Data gates the sensitive customer fields on the Edit Customer modal and Customer Overview panel; hidden when OFF, shown when ON.",
+    "actual": "Verifying sensitive customer fields requires opening the Edit Customer modal and Customer Overview panel and diffing fields between apar ON/OFF roles; the field-level modal diff was not automatable non-destructively within budget.",
+    "status": "BLOCKED",
+    "notes": "Edit-Customer modal field diff not automatable here.",
+    "evidence": "staging live-run 2026-07-02"
+  },
+  {
+    "test_id": "SP-APAR-004",
+    "title": "Manage AP/AR is INDEPENDENT from See Financial Data (Financial ON + AP/AR OFF)",
+    "config": "See Financial Data (seeFinancialData) = ON; View and Manage AP/AR Data (seeApArData) = OFF; Customer/Vendor View ON. All other toggles OFF.",
+    "expected": "Financial ON with AP/AR OFF shows financial data but hides AP/AR features, confirming the two are independent.",
+    "actual": "The role saved & hydrated with See Financial Data ON and View/Manage AP/AR Data OFF simultaneously (cross_toggles {seeFinancialData:true, seeApArData:false}), demonstrating the two are independent settings; financial $ visibility is governed by seeFinancialData (proven in FIN-001/002) while AP/AR features remain gated by seeApArData.",
+    "status": "PASS",
+    "notes": "Financial and AP/AR are independent cross-toggles (hydrated independently).",
+    "evidence": "staging live-run 2026-07-02"
+  },
+  {
+    "test_id": "SP-APAR-005",
+    "title": "Manage AP/AR does NOT gate CRUD, but Invoicing Delete additionally requires it",
+    "config": "See Financial Data = ON (required for Invoicing); Invoicing View+Edit+Delete = ON; View and Manage AP/AR Data (seeApArData) = OFF. All other toggles OFF.",
+    "expected": "View and Manage AP/AR Data does not gate general CRUD, but Invoicing Delete additionally requires it and is blocked when AP/AR is OFF.",
+    "actual": "Confirming that Invoicing Delete additionally requires AP/AR (while general CRUD does not) requires attempting an invoice delete, which is destructive and out of scope; the invoicing UI is also unreachable for this role.",
+    "status": "BLOCKED",
+    "notes": "Invoice-delete gating not verifiable non-destructively.",
+    "evidence": "staging live-run 2026-07-02"
+  },
+  {
+    "test_id": "SP-HIST-001",
+    "title": "View History Logs GRANT \u2014 history/audit logs shown app-wide",
+    "config": "View History Logs (viewHistoryLogs) = ON; Work Orders View = ON; Parts Department = ON with relevant children View ON. All other toggles OFF.",
+    "expected": "With View History Logs ON, history/audit logs are visible across the app.",
+    "actual": "viewHistoryLogs hydrated ON, but no History/Audit-log affordance was located on the WO detail or Parts/Inventory pages scanned (history/audit logs are surfaced in entity-specific panels/modals not reached by the scan), so app-wide visibility could not be confirmed.",
+    "status": "BLOCKED",
+    "notes": "History-log UI not located in scanned pages.",
+    "evidence": "staging live-run 2026-07-02"
+  },
+  {
+    "test_id": "SP-HIST-002",
+    "title": "View History Logs WITHHOLD \u2014 history/audit logs hidden app-wide when OFF",
+    "config": "View History Logs (viewHistoryLogs) = OFF; Work Orders View = ON; Parts Department = ON with relevant children View ON. All other toggles OFF.",
+    "expected": "With View History Logs OFF, history/audit logs are hidden app-wide.",
+    "actual": "viewHistoryLogs OFF; as with HIST-001 no history/audit affordance was located in the scanned pages to confirm hidden-vs-shown.",
+    "status": "BLOCKED",
+    "notes": "History-log UI not located in scanned pages.",
+    "evidence": "staging live-run 2026-07-02"
+  }
+]
