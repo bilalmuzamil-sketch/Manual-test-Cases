@@ -14,5 +14,21 @@
   "replication_steps_plain": "",
   "screenshot_ref": "sm-9.png",
   "notes": "See Financial Data confirmed ON in the Service Manager fe-permissions (seeFinancialData:true). Money confirmed on Lines, Financial Info card, Stats tab and Finance tab."
+ },
+ {
+  "num": 10,
+  "role": "Service Manager",
+  "feature_area": "Invoicing — Create",
+  "where_to_go": "Work Orders → open a work order → Finance tab",
+  "what_to_do": "Create an invoice / process a payment.",
+  "expected_result": "Allowed. Service Manager has Invoicing and Payments Create and Edit.",
+  "depth": "MUST",
+  "status": "PASS",
+  "spec_reference_plain": "Per the spec: a role with Invoicing and Payments = Create and Edit (which the Service Manager role has, permission invoicingPaymentsCreateAndEdit) may create invoices and process/record payments on a work order's Finance tab. [Ref: SV-5319 permission matrix; checklist Service Manager row #10 'SM can create invoices/payments']",
+  "expected_plain": "As a Service Manager you should be able to create an invoice on a not-yet-invoiced work order and record a payment on an invoiced one.",
+  "actual_result_plain": "On the Finance tab of not-yet-invoiced work order S9-24669 a 'Create Invoice' button was present and enabled. On the Finance tab of already-invoiced work order S9-24661 a 'New Payment' button was present; clicking it opened the payment dialog exposing 'Make Payment' and 'Send to Terminal' controls (i.e. the payment action was reachable, not blocked). Both the invoice-creation and payment-processing actions were available to the Service Manager.",
+  "replication_steps_plain": "",
+  "screenshot_ref": "sm-10.png",
+  "notes": "Confirmed invoicingPaymentsCreateAndEdit is ON for the Service Manager. Evidence: 'Create Invoice' on S9-24669 Finance tab and 'New Payment' -> Make Payment dialog on S9-24661 Finance tab. Controls left un-submitted to avoid unnecessary data churn; the front-end gate (button present + dialog reachable) is the permission proof."
  }
 ]
