@@ -62,5 +62,37 @@
   "replication_steps_plain": "1. Log in as the Tech user assigned the Service Manager role. 2. Open Work Orders and pick an invoiced work order (e.g. S9-24661). 3. Open the Finance tab. 4. Click the three-dots menu next to 'New Payment' at the top-right of the invoice. 5. Click 'Reverse'. 6. Observe the 'Warning' confirmation pop-up with a working Reverse button — the reversal proceeds, it is NOT blocked. Expected per checklist: reversal should be blocked because SM lacks Work Orders: Delete.",
   "screenshot_ref": "sm-N2.png",
   "notes": "NEW (v33) - refines struck row #24 logic for SM. Ref SV-8093 (https://shopview.atlassian.net/browse/SV-8093). Key finding: the system-default Service Manager role on staging (role_id a5bfcb60-2af7-47b1-938b-d0d1d101340b) DOES include workOrdersDelete, contradicting the checklist's stated SM permission set. So the v33 gating works correctly (reverse follows WO Delete), but the role configuration grants SM that permission, making the expected BLOCKED result wrong for this role."
+ },
+ {
+  "num": 12,
+  "role": "Service Manager",
+  "feature_area": "Work order edits",
+  "where_to_go": "Work Orders → open a work order → header",
+  "what_to_do": "Change mileage, lead tech, customer, asset.",
+  "expected_result": "Allowed. Service Manager has Work Orders Create and Edit.",
+  "depth": "MUST",
+  "status": "PASS",
+  "spec_reference_plain": "Per the spec: a role with Work Orders = Create and Edit (which the Service Manager role has, workOrdersCreateAndEdit) may edit a work order's header fields (lead technician, service advisor, customer, asset). NOTE: this row is flagged STALE in v33 — mileage/engine hours etc. are now gated by Work Order Lines: Create and Edit (see case N1). SM holds both. [Ref: SV-5319 permission matrix; checklist Service Manager row #12 'SM can edit WO header fields']",
+  "expected_plain": "As a Service Manager you should be able to change work-order header details like mileage, the lead technician, the customer, and the asset.",
+  "actual_result_plain": "On work order S9-24674 the header was fully editable for the Service Manager. The Lead Technician and Service Advisor fields showed active dropdown selectors (arrow_drop_down), the customer block and the asset block each showed a 'swap' (swap_horiz) control to change customer/asset, and the Mileage/Engine Hours/License Plate fields were editable input boxes (not read-only). I edited the Mileage field to 654,321, tabbed out, and after a full page reload the value persisted as 654,321 — confirming the edit saved. No permission block was encountered.",
+  "replication_steps_plain": "",
+  "screenshot_ref": "sm-12.png",
+  "notes": "STALE per spec v33: mileage etc. now gated by Work Order Lines: Create and Edit (see N1). Confirmed workOrdersCreateAndEdit AND workOrderLinesCreateAndEdit are both ON for SM, so all header/asset edits are allowed. Concrete write proof: mileage edit persisted (654,321) after reload."
+ },
+ {
+  "num": "N1",
+  "role": "Service Manager",
+  "feature_area": "Work order edits (v33 split)",
+  "where_to_go": "Work Orders -> header + line",
+  "what_to_do": "Edit header fields; then mileage/engine hours/license plate/VIN.",
+  "expected_result": "Allowed. Header = WO Create and Edit; mileage etc. = WOL Create and Edit (v33). SM has both.",
+  "depth": "MUST",
+  "status": "PASS",
+  "spec_reference_plain": "Per spec v33: work-order header fields are gated by Work Orders: Create and Edit, while asset fields (mileage, engine hours, license plate, VIN) are gated by Work Order Lines: Create and Edit. The Service Manager role holds both (workOrdersCreateAndEdit and workOrderLinesCreateAndEdit), so all of these edits should be allowed. [Ref: v33 split; checklist Service Manager row N1 'SM edits header + asset fields (WOL C&E)']",
+  "expected_plain": "As a Service Manager you should be able to edit both the header fields and the asset fields (mileage, engine hours, license plate, VIN) of a work order.",
+  "actual_result_plain": "On work order S9-24674 both groups of fields were editable for the Service Manager. Header: Lead Technician / Service Advisor dropdowns and customer/asset 'swap' controls were present and active. Asset fields: the Mileage, Engine Hours and License Plate fields were editable input boxes (read-only flag false). I typed 654,321 into Mileage and tabbed out; after reloading the page the Mileage input still held 654,321, proving the asset-field edit was accepted and saved. Nothing was blocked.",
+  "replication_steps_plain": "",
+  "screenshot_ref": "sm-N1.png",
+  "notes": "NEW (v33) - replaces struck row #12. Confirms the v33 permission split: SM has both WO Create&Edit (header) and WOL Create&Edit (mileage/engine hours/license plate/VIN). Mileage edit persisted after reload (654,321)."
  }
 ]
