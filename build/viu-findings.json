@@ -277,5 +277,59 @@
     "verdict": "VERIFIED (staging, live per-role Tech session, 2026-07-01) — behavior note",
     "evidence": "staging, live per-role (Tech) session, 2026-07-01",
     "notes": "D4: added as a precondition/note to per-role (assign-and-login-as-user) cases: 'After assigning the role, log out and log back in as the user (fresh login) so the new permissions load.'"
+  },
+  {
+    "id": "VIU-32",
+    "topic": "Invoicing Delete AP/AR dependency gate missing",
+    "spec_expectation": "Enabling Invoicing 'Delete / Reverse' should enforce BOTH gates: See Financial Data AND View and Manage AP/AR Data (the AP/AR gate should fire when AP/AR is OFF).",
+    "actual_staging": "In the Admin role editor with See Financial Data ON and View and Manage AP/AR Data OFF, enabling Invoicing 'Delete / Reverse' checked View + Create&Edit + Delete but did NOT trigger any 'View and Manage AP/AR Data' gate/modal and left AP/AR unchecked. The financial gate works; the AP/AR gate is absent.",
+    "verdict": "DISCREPANCY",
+    "evidence": "staging live test-run 2026-07-02",
+    "notes": "ref SP-INV-005 (test-run FAIL). Financial dependency gate fires correctly; the AP/AR dependency gate for Invoicing Delete never fires."
+  },
+  {
+    "id": "VIU-33",
+    "topic": "Time Clock system role grants workOrdersView (WO/DI reachable)",
+    "spec_expectation": "The 'Time Clock' system role is clock-in/out-only and should NOT grant Work Orders access; Work Orders and Digital Inspections should be unreachable for it.",
+    "actual_staging": "The live 'Time Clock' system role grants workOrdersView, so a Time-Clock user lands on /workorders with the WO list rendered and can reach Digital Inspections on a work-order line read-only (role lacks Work Order Lines rights). This contradicts the clock-in/out-only intent (description says 'Clock in/out only'). Effective fe-permissions verified live via Tech quick-login (match=true).",
+    "verdict": "DISCREPANCY",
+    "evidence": "staging live test-run 2026-07-02",
+    "notes": "ref DI-111 / DI-117 (test-run FAILs). No dedicated Digital Inspections/checklist permission exists in this org; DI access is governed by the existing WO permissions."
+  },
+  {
+    "id": "VIU-34",
+    "topic": "CRUD dependency cascade is UI-editor-only, not server-enforced",
+    "spec_expectation": "The CRUD dependency cascade (Delete requires Edit requires View) should be enforced by the backend, not just the UI editor.",
+    "actual_staging": "The CRUD dependency cascade is UI-editor-only and is NOT server-enforced: a direct API PUT of a Delete/Edit permission WITHOUT its View parent is accepted by the backend (no validation error), producing a stored role state the UI editor would never allow.",
+    "verdict": "DISCREPANCY",
+    "evidence": "staging live test-run 2026-07-02",
+    "notes": "ref batch C. The dependency invariant is only maintained client-side; the API trusts the caller."
+  },
+  {
+    "id": "VIU-35",
+    "topic": "/administration/inspection-templates route missing settingsService guard",
+    "spec_expectation": "The inspection-templates route should be guarded by settingsService and denied to roles without it.",
+    "actual_staging": "The /administration/inspection-templates route lacks a settingsService guard — it is reachable read-only via direct URL by any role holding any OTHER settings sub-permission. The Settings > Service MENU path is correctly denied, but the direct route is not protected by the same guard.",
+    "verdict": "DISCREPANCY",
+    "evidence": "staging live test-run 2026-07-02",
+    "notes": "ref batch E. Menu-level gating is correct; route-level guard on inspection-templates is missing."
+  },
+  {
+    "id": "VIU-36",
+    "topic": "Granted surfaces return 404 in this build (grant reaches 404)",
+    "spec_expectation": "A granted permission should lead to the working feature/page, not a 404.",
+    "actual_staging": "Several granted surfaces return 404 in this build even when the permission IS granted (Customer/Billing Portal, some Invoicing/AP-AR pages) — the grant path reaches a 404 rather than the feature. These cases were recorded BLOCKED (non-destructive-unverifiable) because the feature could not be exercised.",
+    "verdict": "DISCREPANCY / possible build gap",
+    "evidence": "staging live test-run 2026-07-02",
+    "notes": "ref batch B blocked set. Cannot distinguish permission bug from build-gap 404; flagged for build/deploy check."
+  },
+  {
+    "id": "VIU-37",
+    "topic": "view_mode auto-adds woFullViewMode/woTechViewMode marker permission",
+    "spec_expectation": "Setting the WO view_mode (Full View / Tech view) should carry the view-mode choice on the role.",
+    "actual_staging": "Setting view_mode full/tech auto-adds a woFullViewMode / woTechViewMode marker permission to the stored role (the choice is materialized as an explicit permission entry rather than a scalar field only).",
+    "verdict": "VERIFIED (informational)",
+    "evidence": "staging live test-run 2026-07-02",
+    "notes": "Informational, not a defect. Confirms how view_mode is persisted; complements VIU-14/VIU-19/VIU-29."
   }
 ]

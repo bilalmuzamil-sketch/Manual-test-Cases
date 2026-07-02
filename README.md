@@ -106,3 +106,42 @@ VIU pass 3 logged in AS the restricted **Tech** user (`tech@shopview.com`) on st
 - **D2 — zero-permission role not creatable (VIU-30).** Minimum one permission is enforced; documented as a known design constraint. Any "empty role" baseline should use a single-permission minimal role instead.
 - **D3 — verification location (VIU-29).** View-mode, delete, pick/order-parts, and see-financial-data effects are verified INSIDE the WO detail page (and invoicing for financial), not on the WO list. Affected per-role verification steps now state this explicitly.
 - **D4 — permission propagation (VIU-31).** After reassigning a role, the user must log out and log back in (fresh login) AND allow a brief settle before the new permissions take effect. This is now a precondition/note on the per-role (assign-and-login-as-user) cases.
+
+## Live Test Run (2026-07-02)
+
+A full live test run of the suite was executed on staging (Foothills Group Inc), per-role as **Tech** via dev-login. **297 cases** were executed with the following result:
+
+| Result | Count |
+|---|---|
+| PASS | 232 |
+| FAIL | 3 |
+| BLOCKED (not verified) | 62 |
+| **Total** | **297** |
+
+### Per-batch breakdown
+
+| Batch | PASS | FAIL | BLOCKED | Total |
+|---|---|---|---|---|
+| A | 43 | 1 | 8 | 52 |
+| B | 34 | 0 | 31 | 65 |
+| C | 39 | 0 | 2 | 41 |
+| D | 18 | 0 | 0 | 18 |
+| E | 98 | 2 | 21 | 121 |
+| **Total** | **232** | **3** | **62** | **297** |
+
+### The 3 FAILs
+
+- **SP-INV-005 — Invoicing Delete requires Manage AP/AR (AP/AR gate).** With See Financial Data ON and View/Manage AP/AR OFF, enabling Invoicing "Delete / Reverse" did NOT trigger the AP/AR dependency gate/modal (the financial gate works; the AP/AR gate is missing). Logged as VIU-32.
+- **DI-111 — Time Clock, view inspections on a work order line.** The "Time Clock" system role grants `workOrdersView`, so Work Orders (and Digital Inspections on a WO line, read-only) ARE reachable — contradicting the expected "no Work Orders access". Logged as VIU-33.
+- **DI-117 — Time Clock, inspection status labels display.** Same root cause as DI-111: because Time Clock grants `workOrdersView`, inspection status labels CAN be seen, contradicting the expected "no Work Orders access". Logged as VIU-33.
+
+### About BLOCKED cases
+
+**BLOCKED = non-destructive-unverifiable** — these cases are neither pass nor fail. They cover destructive actions not executed for safety (e.g. delete/reverse affordances), build-gap 404s where a granted surface returns 404 in this build (see VIU-36), and un-automatable UI checks (field-level gating not reliably verifiable by automated scan). Per-case reasons are recorded in the **Blocked (Not Verified)** tab of the workbook and in `custom-roles-test-run-blocked.csv`. None are hidden.
+
+### Deliverables
+
+- **Workbook tabs** (in `custom-roles-test-cases.xlsx`, alongside all original suite tabs): **Run Summary**, **Passed**, **Failed** (Expected vs Actual), **Blocked (Not Verified)**.
+- **CSV exports** (repo root): `custom-roles-test-run-passed.csv`, `custom-roles-test-run-failed.csv` (Expected vs Actual columns), `custom-roles-test-run-blocked.csv`, `custom-roles-test-run-all.csv` (every case with a Status column).
+- **Run discrepancies** logged as **VIU-32..VIU-37** in the VIU Findings Log (see the VIU Findings Log sheet). VIU-37 is informational/VERIFIED; the rest are discrepancies.
+- **Access method** for future live sessions is documented (no secrets) in [`build/VIU-ACCESS-METHOD.md`](build/VIU-ACCESS-METHOD.md).
