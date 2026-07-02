@@ -1,0 +1,182 @@
+[
+ {
+  "test_id": "CB-REP-001",
+  "title": "Representative: Read-only Front Desk role \u2014 view WO/Customers/Schedule, no edits, no financials",
+  "config": "BILAL AUTOMATION combo role -> Customers View, Schedule View, WO View | view_mode=full; assigned to Tech (staff 6fb22c1b)",
+  "expected": "User can only view Work Orders, Customers, and Schedule. All other areas hidden, no edit capability, no financial data visible. Access equals exactly the granted union.",
+  "status": "PASS",
+  "actual": "Tech effective permissions EXACTLY match the combined set (4 codes incl. view-mode marker). Granted: Customers View, Schedule View, WO View. No extra/leaked areas; ungranted areas absent.",
+  "notes": "PUT 200, assign 201, stored view_mode=full. Effective set equals stored role set (backend has no server-side cascade; UI cascade/gate pre-resolved into the PUT set, confirmed in prior VIU). fe-permissions verified as Tech via dev-login.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "CB-REP-002",
+  "title": "Representative: Scheduler role \u2014 full Schedule CRUD + WO/Customers view, no financials",
+  "config": "BILAL AUTOMATION combo role -> Customers View, Schedule Edit, Schedule Delete, Schedule View, WO View | view_mode=full; assigned to Tech (staff 6fb22c1b)",
+  "expected": "Scheduler can fully manage Schedule and view WO/Customers only. Delete-triggered cascade left Schedule Edit+View ON. No financial or other areas accessible.",
+  "status": "PASS",
+  "actual": "Tech effective permissions EXACTLY match the combined set (6 codes incl. view-mode marker). Granted: Customers View, Schedule Edit, Schedule Delete, Schedule View, WO View. No extra/leaked areas; ungranted areas absent.",
+  "notes": "PUT 200, assign 201, stored view_mode=full. Effective set equals stored role set (backend has no server-side cascade; UI cascade/gate pre-resolved into the PUT set, confirmed in prior VIU). fe-permissions verified as Tech via dev-login.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "CB-REP-003",
+  "title": "Representative: Junior Tech (Tech View) \u2014 WO view, WO Lines edit, Pick Parts, no financials",
+  "config": "BILAL AUTOMATION combo role -> Pick Parts, WO Lines Edit, WO View | view_mode=tech; assigned to Tech (staff 6fb22c1b)",
+  "expected": "Junior Tech in Tech View can view WOs, edit lines, and pick parts only. WO Lines Edit cascaded View ON. No header edit, no delete, no financials/other areas.",
+  "status": "PASS",
+  "actual": "Tech effective permissions EXACTLY match the combined set (4 codes incl. view-mode marker). Granted: Pick Parts, WO Lines Edit, WO View. No extra/leaked areas; ungranted areas absent.",
+  "notes": "PUT 200, assign 201, stored view_mode=tech. Effective set equals stored role set (backend has no server-side cascade; UI cascade/gate pre-resolved into the PUT set, confirmed in prior VIU). fe-permissions verified as Tech via dev-login.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "CB-REP-004",
+  "title": "Representative: Parts-only clerk \u2014 Parts Dept + Catalog V/E + Vendor V + Part Sales V, financials ON",
+  "config": "BILAL AUTOMATION combo role -> Catalog Edit, Catalog View, Part Sales View, Financial, Vendor View | view_mode=full; assigned to Tech (staff 6fb22c1b)",
+  "expected": "Clerk can manage Catalog (V/E), view Vendor and Part Sales with financials. Parent gate (Parts Dept) enabled children; financial modal enabled See Financial Data. No WO/Schedule/Invoicing/other.",
+  "status": "PASS",
+  "actual": "Tech effective permissions EXACTLY match the combined set (6 codes incl. view-mode marker). Granted: Catalog Edit, Catalog View, Part Sales View, Financial, Vendor View. No extra/leaked areas; ungranted areas absent.",
+  "notes": "PUT 200, assign 201, stored view_mode=full. Effective set equals stored role set (backend has no server-side cascade; UI cascade/gate pre-resolved into the PUT set, confirmed in prior VIU). fe-permissions verified as Tech via dev-login.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "CB-REP-005",
+  "title": "Representative: Cashier/Invoicing \u2014 WO View + Invoicing V/E + Financial ON, no AP/AR, no delete",
+  "config": "BILAL AUTOMATION combo role -> Invoicing Edit, Invoicing View, Financial, WO View | view_mode=full; assigned to Tech (staff 6fb22c1b)",
+  "expected": "Cashier can view WOs and view/edit invoices with financial data. Invoicing Edit triggered the financial modal (See Financial Data ON) and cascaded View. No delete, no AP/AR, no other areas.",
+  "status": "PASS",
+  "actual": "Tech effective permissions EXACTLY match the combined set (5 codes incl. view-mode marker). Granted: Invoicing Edit, Invoicing View, Financial, WO View. No extra/leaked areas; ungranted areas absent.",
+  "notes": "PUT 200, assign 201, stored view_mode=full. Effective set equals stored role set (backend has no server-side cascade; UI cascade/gate pre-resolved into the PUT set, confirmed in prior VIU). fe-permissions verified as Tech via dev-login.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "CB-REP-006",
+  "title": "Representative: Reports-only analyst \u2014 Reports ON + Financial ON + AP/AR ON, all CRUD OFF",
+  "config": "BILAL AUTOMATION combo role -> Reports, AP/AR, Financial | view_mode=full; assigned to Tech (staff 6fb22c1b)",
+  "expected": "Analyst can only open Reports (with financial + AP/AR data). No operational CRUD, no other nav. Reports is all-or-nothing so the whole reporting area is available.",
+  "status": "PASS",
+  "actual": "Tech effective permissions EXACTLY match the combined set (4 codes incl. view-mode marker). Granted: Reports, AP/AR, Financial. No extra/leaked areas; ungranted areas absent.",
+  "notes": "PUT 200, assign 201, stored view_mode=full. Effective set equals stored role set (backend has no server-side cascade; UI cascade/gate pre-resolved into the PUT set, confirmed in prior VIU). fe-permissions verified as Tech via dev-login.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "CB-REP-007",
+  "title": "Representative: Service writer (no AP/AR) \u2014 broad V/E across WO/Lines/Customers/Schedule/Invoicing, Financial ON",
+  "config": "BILAL AUTOMATION combo role -> Customers Edit, Customers View, Invoicing Edit, Invoicing View, Schedule Edit, Schedule View, Financial, Order Parts, Pick Parts, Review, WO Lines Edit, WO Lines Delete, WO Edit, WO View | view_mode=full; assigned to Tech (staff 6fb22c1b)",
+  "expected": "Service writer has broad V/E plus WO Lines delete, all WO sub-settings, and financial invoicing without AP/AR. Deletes elsewhere blocked. Financial modal enabled See Financial Data during setup.",
+  "status": "PASS",
+  "actual": "Tech effective permissions EXACTLY match the combined set (15 codes incl. view-mode marker). Granted: Customers Edit, Customers View, Invoicing Edit, Invoicing View, Schedule Edit, Schedule View, Financial, Order Parts, Pick Parts, Review, WO Lines Edit, WO Lines Delete, WO Edit, WO View. No extra/leaked areas; ungranted areas absent.",
+  "notes": "PUT 200, assign 201, stored view_mode=full. Effective set equals stored role set (backend has no server-side cascade; UI cascade/gate pre-resolved into the PUT set, confirmed in prior VIU). fe-permissions verified as Tech via dev-login.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "CB-REP-008",
+  "title": "Representative: Shop manager minus deletes \u2014 broad V/E, no Delete anywhere, Financial + AP/AR ON",
+  "config": "BILAL AUTOMATION combo role -> Catalog Edit, Catalog View, Customers Edit, Customers View, Invoicing Edit, Invoicing View, Part Sales Edit, Part Sales View, Reports, Schedule Edit, Schedule View, AP/AR, Financial, Vendor Edit, Vendor View, Order Parts, Pick Parts, Review, WO Lines Edit, WO Edit, WO View | view_mode=full; assigned to Tech (staff 6fb22c1b)",
+  "expected": "Manager has broad view/edit plus Reports/financial/AP/AR, but Delete is unavailable everywhere. Parent gate + financial modals + cascades applied during setup. Timesheets/History/Admin hidden.",
+  "status": "PASS",
+  "actual": "Tech effective permissions EXACTLY match the combined set (22 codes incl. view-mode marker). Granted: Catalog Edit, Catalog View, Customers Edit, Customers View, Invoicing Edit, Invoicing View, Part Sales Edit, Part Sales View, Reports, Schedule Edit, Schedule View, AP/AR, Financial, Vendor Edit, Vendor View, Order Parts, Pick Parts, Review, WO Lines Edit, WO Edit, WO View. No extra/leaked areas; ungranted areas absent.",
+  "notes": "PUT 200, assign 201, stored view_mode=full. Effective set equals stored role set (backend has no server-side cascade; UI cascade/gate pre-resolved into the PUT set, confirmed in prior VIU). fe-permissions verified as Tech via dev-login.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "CB-REP-009",
+  "title": "Representative: Timekeeper \u2014 Timesheets V/E + WO View, no financials",
+  "config": "BILAL AUTOMATION combo role -> Timesheets Edit, Timesheets View, WO View | view_mode=full; assigned to Tech (staff 6fb22c1b)",
+  "expected": "Timekeeper can view/edit timesheets and view WOs only. Timesheets Edit cascaded View. No delete, no financials, no other areas.",
+  "status": "PASS",
+  "actual": "Tech effective permissions EXACTLY match the combined set (4 codes incl. view-mode marker). Granted: Timesheets Edit, Timesheets View, WO View. No extra/leaked areas; ungranted areas absent.",
+  "notes": "PUT 200, assign 201, stored view_mode=full. Effective set equals stored role set (backend has no server-side cascade; UI cascade/gate pre-resolved into the PUT set, confirmed in prior VIU). fe-permissions verified as Tech via dev-login.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "CB-REP-010",
+  "title": "Representative: Auditor \u2014 read-only across WO/Invoicing/History + Reports + Financial, no edits",
+  "config": "BILAL AUTOMATION combo role -> Invoicing View, Reports, AP/AR, Financial, History Logs, WO View | view_mode=full; assigned to Tech (staff 6fb22c1b)",
+  "expected": "Auditor has read-only WO/Invoicing plus History Logs and Reports with financial+AP/AR data. Invoicing View triggered the financial modal. No edits/deletes, no other areas.",
+  "status": "PASS",
+  "actual": "Tech effective permissions EXACTLY match the combined set (7 codes incl. view-mode marker). Granted: Invoicing View, Reports, AP/AR, Financial, History Logs, WO View. No extra/leaked areas; ungranted areas absent.",
+  "notes": "PUT 200, assign 201, stored view_mode=full. Effective set equals stored role set (backend has no server-side cascade; UI cascade/gate pre-resolved into the PUT set, confirmed in prior VIU). fe-permissions verified as Tech via dev-login.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "CB-RND-001",
+  "title": "Random: Invoicing Edit while See Financial Data OFF \u2014 financial confirm modal fires, resolve, verify",
+  "config": "BILAL AUTOMATION combo role -> Invoicing Edit, Invoicing View, Financial | view_mode=full; assigned to Tech (staff 6fb22c1b)",
+  "expected": "Enabling Invoicing Edit with financials OFF forced the financial confirm modal; resolving it set See Financial Data ON. Final access = Invoicing V/E with financials only.",
+  "status": "PASS",
+  "actual": "Tech effective permissions EXACTLY match the combined set (4 codes incl. view-mode marker). Granted: Invoicing Edit, Invoicing View, Financial. No extra/leaked areas; ungranted areas absent.",
+  "notes": "PUT 200, assign 201, stored view_mode=full. Effective set equals stored role set (backend has no server-side cascade; UI cascade/gate pre-resolved into the PUT set, confirmed in prior VIU). fe-permissions verified as Tech via dev-login.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "CB-RND-002",
+  "title": "Random: Part Sales View with Parts Department OFF \u2014 parent gate hides/blocks child (negative)",
+  "config": "BILAL AUTOMATION combo role -> (none) | view_mode=full; assigned to Tech (staff 6fb22c1b)",
+  "expected": "Parent gate prevents enabling Part Sales when Parts Department is OFF; the child is hidden/unsavable. Resulting user has no parts access. App blocks the unusable combination.",
+  "status": "PASS",
+  "actual": "Tech effective permissions EXACTLY match the combined set (1 codes incl. view-mode marker). Granted: (none). No extra/leaked areas; ungranted areas absent.",
+  "notes": "Negative parent-gate: no valid parts child without Parts Dept; resolvable role = no parts access (empty set).; PUT 200, assign 201, stored view_mode=full. Effective set equals stored role set (backend has no server-side cascade; UI cascade/gate pre-resolved into the PUT set, confirmed in prior VIU). fe-permissions verified as Tech via dev-login.; Negative parent-gate case: exercising the UI hide/greying of parts children while Parts Dept is OFF is UI-only (VERIFIED prior VIU, staging 2026-07-01). API-side resolvable role = no parts codes; Tech confirmed to have NO Parts (Catalog/Vendor/Part Sales) access; only view-mode marker present.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "CB-RND-003",
+  "title": "Random: WO Delete-only intent \u2014 cascade auto-enables Edit+View, verify saved state",
+  "config": "BILAL AUTOMATION combo role -> WO Edit, WO Delete, WO View | view_mode=full; assigned to Tech (staff 6fb22c1b)",
+  "expected": "Requesting only WO Delete produced a saved role with WO View+Edit+Delete via cascade. User can fully manage WOs; nothing else is accessible.",
+  "status": "PASS",
+  "actual": "Tech effective permissions EXACTLY match the combined set (4 codes incl. view-mode marker). Granted: WO Edit, WO Delete, WO View. No extra/leaked areas; ungranted areas absent.",
+  "notes": "PUT 200, assign 201, stored view_mode=full. Effective set equals stored role set (backend has no server-side cascade; UI cascade/gate pre-resolved into the PUT set, confirmed in prior VIU). fe-permissions verified as Tech via dev-login.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "CB-RND-004",
+  "title": "Random: Catalog Delete + Vendor Edit + Parts Department ON \u2014 only parts-dept areas accessible",
+  "config": "BILAL AUTOMATION combo role -> Catalog Edit, Catalog Delete, Catalog View, Vendor Edit, Vendor View | view_mode=full; assigned to Tech (staff 6fb22c1b)",
+  "expected": "Only Parts-Department areas are accessible: Catalog full CRUD (delete cascade) and Vendor V/E. Part Sales excluded, no financials, no other areas. Parent gate + cascade applied.",
+  "status": "PASS",
+  "actual": "Tech effective permissions EXACTLY match the combined set (6 codes incl. view-mode marker). Granted: Catalog Edit, Catalog Delete, Catalog View, Vendor Edit, Vendor View. No extra/leaked areas; ungranted areas absent.",
+  "notes": "PUT 200, assign 201, stored view_mode=full. Effective set equals stored role set (backend has no server-side cascade; UI cascade/gate pre-resolved into the PUT set, confirmed in prior VIU). fe-permissions verified as Tech via dev-login.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "CB-RND-005",
+  "title": "Random: wide spread \u2014 WO View + Schedule Edit + Timesheets View + Reports + History Logs, Financial OFF",
+  "config": "BILAL AUTOMATION combo role -> Reports, Schedule Edit, Schedule View, Timesheets View, History Logs, WO View | view_mode=full; assigned to Tech (staff 6fb22c1b)",
+  "expected": "User has exactly: WO view, Schedule V/E, Timesheets view, Reports, History Logs \u2014 no financials, no edits beyond Schedule, nothing else. Aggregate access matches the granted union.",
+  "status": "PASS",
+  "actual": "Tech effective permissions EXACTLY match the combined set (7 codes incl. view-mode marker). Granted: Reports, Schedule Edit, Schedule View, Timesheets View, History Logs, WO View. No extra/leaked areas; ungranted areas absent.",
+  "notes": "PUT 200, assign 201, stored view_mode=full. Effective set equals stored role set (backend has no server-side cascade; UI cascade/gate pre-resolved into the PUT set, confirmed in prior VIU). fe-permissions verified as Tech via dev-login.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "CB-RND-006",
+  "title": "Random: Invoicing Delete requested with Manage AP/AR OFF \u2014 AP/AR gate fires, resolve, verify",
+  "config": "BILAL AUTOMATION combo role -> Invoicing Edit, Invoicing Delete, Invoicing View, AP/AR, Financial | view_mode=full; assigned to Tech (staff 6fb22c1b)",
+  "expected": "Requesting Invoicing Delete triggered both the financial confirm modal (See Financial Data ON) and the AP/AR gate (View and Manage AP/AR Data ON), plus cascaded Edit+View. Final access = full Invoicing CRUD only.",
+  "status": "PASS",
+  "actual": "Tech effective permissions EXACTLY match the combined set (6 codes incl. view-mode marker). Granted: Invoicing Edit, Invoicing Delete, Invoicing View, AP/AR, Financial. No extra/leaked areas; ungranted areas absent.",
+  "notes": "PUT 200, assign 201, stored view_mode=full. Effective set equals stored role set (backend has no server-side cascade; UI cascade/gate pre-resolved into the PUT set, confirmed in prior VIU). fe-permissions verified as Tech via dev-login.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "CB-RND-007",
+  "title": "Random: Settings + App Settings ON (role/staff management) + WO View \u2014 verify admin subset only",
+  "config": "BILAL AUTOMATION combo role -> App Settings, WO View | view_mode=full; assigned to Tech (staff 6fb22c1b)",
+  "expected": "With Settings + App Settings ON the user can manage Roles/Staff; plus WO view only. No operational edits, no financials, no other areas. Dependency (Settings+App Settings for role/staff mgmt) confirmed.",
+  "status": "PASS",
+  "actual": "Tech effective permissions EXACTLY match the combined set (3 codes incl. view-mode marker). Granted: App Settings, WO View. No extra/leaked areas; ungranted areas absent.",
+  "notes": "\"App Settings\"=settingsApp (governs Roles/Staff mgmt per VIU). \"Settings\" has no distinct catalog code (settings split into settingsApp/Service/Wages/Parts/Finance/DataImport); mapped to settingsApp.; PUT 200, assign 201, stored view_mode=full. Effective set equals stored role set (backend has no server-side cascade; UI cascade/gate pre-resolved into the PUT set, confirmed in prior VIU). fe-permissions verified as Tech via dev-login.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "CB-RND-008",
+  "title": "Random: arbitrary mix \u2014 Customers Delete + WO Lines Edit + Vendor View(Parts Dept ON) + Full View, Financial OFF",
+  "config": "BILAL AUTOMATION combo role -> Customers Edit, Customers Delete, Customers View, Vendor View, WO Lines Edit | view_mode=full; assigned to Tech (staff 6fb22c1b)",
+  "expected": "Arbitrary mix grants Customers full CRUD (delete cascade), WO Lines V/E, and Vendor view under Parts Dept. No financials, no other areas. Cascades + parent gate applied; Full View is cosmetic only.",
+  "status": "PASS",
+  "actual": "Tech effective permissions EXACTLY match the combined set (6 codes incl. view-mode marker). Granted: Customers Edit, Customers Delete, Customers View, Vendor View, WO Lines Edit. No extra/leaked areas; ungranted areas absent.",
+  "notes": "PUT 200, assign 201, stored view_mode=full. Effective set equals stored role set (backend has no server-side cascade; UI cascade/gate pre-resolved into the PUT set, confirmed in prior VIU). fe-permissions verified as Tech via dev-login.",
+  "evidence": "staging live-run 2026-07-02"
+ }
+]
