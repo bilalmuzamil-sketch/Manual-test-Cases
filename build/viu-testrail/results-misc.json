@@ -1,0 +1,50 @@
+[
+  {
+    "case_id": "C26532",
+    "what_checked": "Create a custom role ('ZZAUTOTEST Feedback', 1 permission enabled) via Roles & Permissions > Create Custom Role > Skip template > enter name + enable one permission > Create; capture the exact CREATE success toast verbatim.",
+    "actual_ui_observation": "On clicking 'Create' (POST /api/roles -> 201 Created), a success toast appeared verbatim: 'Role created successfully.' rendered with a green 'check_circle' icon and a 'Close' action. The app then returned to the roles list at /administration/roles-permissions and the new role 'ZZAUTOTEST Feedback' appeared (Role Type 'Custom', Users 0).",
+    "screenshot_ref": "screenshots/C26532.png",
+    "match": "Yes",
+    "ui_says_instead": ""
+  },
+  {
+    "case_id": "C26533",
+    "what_checked": "Edit the just-created role ('ZZAUTOTEST Feedback'), toggle a permission change, Save; capture the exact UPDATE success toast verbatim.",
+    "actual_ui_observation": "After changing a permission and clicking 'Save', an intermediate dialog titled 'Confirm Permission Updates' appeared ('Review the changes below before confirming. Some permissions will be removed, and new ones will be added.') with an 'add_circle Added permissions' list (e.g. 'Work Order Lines — Create & Edit'). After clicking 'Confirm' (PUT /api/roles/{id} -> 200), a success toast appeared verbatim: 'Role updated successfully.' (green 'check_circle' icon, 'Close' action). App returned to the roles list.",
+    "screenshot_ref": "screenshots/C26533.png",
+    "match": "Yes",
+    "ui_says_instead": ""
+  },
+  {
+    "case_id": "C26539",
+    "what_checked": "On the Staff page, change the Tech user's role (exact tech@shopview.com / staff_id 6fb22c1b...) from one role to another (Time Clock <-> ZZAUTOTEST Feedback) and capture the exact REASSIGN/role-change success toast verbatim.",
+    "actual_ui_observation": "The role reassign SUCCESS path shows NO success toast. Flow: Staff row for Tech ShopView (tech@shopview.com) > 'edit_note' opens the 'Edit Staff Member' modal (email field verified === 'tech@shopview.com'); the modal exposes a 'Role' select and, directly beneath it, an inline orange info banner (info icon) reading verbatim: 'Role changes may impact billing.'; buttons are 'Deactivate Account', 'Delete', 'Save & Close'. Selecting a new role and clicking 'Save & Close' fires POST /api/.../staff/6fb22c1b-d6c3-40eb-9cac-5cb9c61e36aa/change -> 201; the modal then closes and the Staff list row reflects the new Role, but NO q-notification/toast is emitted (verified across multiple attempts and both directions Time Clock->Feedback and Feedback->Time Clock; the same q-notification selector DID capture the error toast in C26493, confirming the selector works). The only role-change UI copy is the inline modal note 'Role changes may impact billing.'",
+    "screenshot_ref": "screenshots/C26539.png",
+    "match": "No",
+    "ui_says_instead": "No success toast is shown on a successful staff role reassign; the modal simply closes and the row updates. The only related copy is an inline modal note: 'Role changes may impact billing.' (This contrasts with role Create/Update which DO show 'Role created/updated successfully.' toasts.)"
+  },
+  {
+    "case_id": "C26493",
+    "what_checked": "Attempt to force a FAILED role change for the Tech user and capture the exact error toast wording AND whether the previous role is preserved.",
+    "actual_ui_observation": "A failed role change was triggered by intercepting and aborting the network request POST /api/.../staff/6fb22c1b-d6c3-40eb-9cac-5cb9c61e36aa/change while changing Tech's role from 'ZZAUTOTEST Feedback' to 'Time Clock'. On Save, an error toast appeared verbatim: 'Network Error' rendered with a red/warning style (warning triangle icon) and a 'Close' action. PREVIOUS ROLE PRESERVED: after the failure, the Staff list row for Tech ShopView (tech@shopview.com) still showed Role = 'ZZAUTOTEST Feedback' (the change did not persist). Note: this is a client-side network-failure error path, so the toast is the generic transport-layer message 'Network Error' rather than a domain-specific server error string; a genuine server-side 4xx/5xx error toast could not be triggered on demand. On the SUCCESS path the previous role is simply replaced (no preservation needed).",
+    "screenshot_ref": "screenshots/C26493.png",
+    "match": "Partial",
+    "ui_says_instead": "Error toast wording on a failed (aborted) request is the generic 'Network Error' (warning style, 'Close' action), not a domain-specific message. Previous role IS preserved (row still read 'ZZAUTOTEST Feedback')."
+  },
+  {
+    "case_id": "C26525",
+    "what_checked": "Observe migration/forced re-authentication: with an active Tech session, then (as admin) change Tech's role, check whether Tech's existing session is invalidated / forced to re-authenticate. Record only observable effects (Redis session destruction is a server mechanism, not directly visible).",
+    "actual_ui_observation": "The app authenticates via Google SSO (OIDC to accounts.google.com / auth.staging.shopview.com) backed by server-side session cookies (PHPSESSID + sv_sso_session). Two directly-observable effects were recorded: (1) SESSION INVALIDATION ON IDENTITY SWITCH — performing the DEV MODE 'Tech' quick-login on a context that shared the same PHPSESSID as the active admin session rebound/destroyed the prior admin session server-side: immediately afterward, admin API calls (GET /api/roles, GET /api/roles/{id}) began returning HTTP 403 and the admin roles-permissions page failed to load, requiring re-authentication (re-clicking the 'Admin' quick-login restored access). (2) NO ISOLATED SECOND SESSION WITHOUT SSO — attempting to establish an independent Tech session in a separate cookie jar (cf_clearance only, no shared sv_sso_session) caused the 'Tech' quick-login to redirect to the real Google sign-in page (accounts.google.com), which is out of scope (no Google SSO automation). Consequently a clean concurrent two-session test (a live independent Tech session + a separate admin role change) could NOT be completed in-browser. The server-side Redis session destruction itself is not visible in the UI; only the above HTTP-403 invalidation and the SSO redirect were observable.",
+    "screenshot_ref": "screenshots/C26525.png",
+    "match": "Partial",
+    "ui_says_instead": "Observable server-side session invalidation exists (prior session -> HTTP 403 after an identity switch, forcing re-auth), consistent with the described mechanism, but the specific 'admin changes Tech's role -> Tech's live session forced to re-auth' scenario could not be isolated in-browser because a second independent login requires Google SSO (out of scope). No toast is involved (as the case notes)."
+  },
+  {
+    "case_id": "C26549",
+    "what_checked": "Capture the AP/AR toggle's EXACT label + subtitle (including the exact list of sensitive customer field labels it names) in the role editor; THEN as Tech with seeApArData OFF open a Customer detail / Edit Customer modal and record which named fields are actually hidden vs shown.",
+    "actual_ui_observation": "ROLE EDITOR (verbatim): toggle label = 'View and Manage AP/AR Data'; subtitle = 'Controls visibility of unpaid invoices, payments and credits tabs on customer and vendor pages. Without this setting the following fields are hidden on the Edit Customer modal: Credit terms, Credit limit, Default Labor rate, Default Shop Supplies, Min and Max, Taxes, PO is required.' Named sensitive fields (7): Credit terms, Credit limit, Default Labor rate, Default Shop Supplies, Min and Max, Taxes, PO is required. TECH BEHAVIOR (logged in as Tech ShopView with AP/AR toggle OFF, role granted Customers View+Create&Edit only): (a) EDIT CUSTOMER MODAL — opening customer 'A 2 Company' > 'edit_note' opens the 'Edit Customer' modal which shows ONLY: Name*, Phone, Address 1, Address 2, City, ZIP/Postal Code, State/Province, Country, Sales Representative, Notes, Website, IBS, 'Pin notes?', Save. ALL 7 named AP/AR fields are ABSENT (hidden) from the Edit Customer modal — consistent with the subtitle claim. (b) CUSTOMER DETAIL PAGE — however, the customer detail left-info panel STILL shows two of the named fields to Tech with AP/AR OFF: 'Credit term: DOR' and 'Credit limit: $NaN'. So the AP/AR gate hides the 7 fields on the Edit Customer modal (as claimed) but does NOT hide Credit term/Credit limit on the customer detail page — the gate is not comprehensive across all customer surfaces (front-end gating limited to the Edit modal).",
+    "screenshot_ref": "screenshots/C26549.png",
+    "match": "Partial",
+    "ui_says_instead": "On the Edit Customer modal all 7 named fields ARE hidden (subtitle accurate). BUT the AP/AR toggle's claim is scoped only to the Edit Customer modal: the customer DETAIL page left panel still exposes 'Credit term' (DOR) and 'Credit limit' ($NaN) to a user with AP/AR OFF — i.e. the gate does not hide those fields everywhere. See screenshots/C26549-techmodal.png (modal, all 7 hidden) and screenshots/C26549-detail.png (detail page leaking Credit term + Credit limit)."
+  }
+]
