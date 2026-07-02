@@ -1,0 +1,66 @@
+[
+  {
+    "case_id": "C26370",
+    "what_checked": "In the blank Create Custom Role editor, compare the CRUD column headers of the 'Work order lines' card vs the 'Work orders' card; does 'Work order lines' have a View column?",
+    "actual_ui_observation": "'Work orders' card CRUD columns (verbatim): View, Create & Edit, Delete. 'Work order lines' card (description: 'Add, edit, and remove the individual labor and part lines on a work order.') CRUD columns (verbatim): Create & Edit, Delete. The 'Work order lines' card has NO View column.",
+    "screenshot_ref": "screenshots/C26370.png",
+    "match": "Yes",
+    "ui_says_instead": ""
+  },
+  {
+    "case_id": "C26406",
+    "what_checked": "Toggle 'Parts Department' (Page Access) ON and capture the child CRUD cards it exposes (names + count; claim: 3).",
+    "actual_ui_observation": "Toggling 'Parts Department' (description: 'Manage parts inventory, catalog, sales, and vendor operations.') ON exposes exactly 3 child CRUD cards (verbatim): 1) 'Part sales' - 'Manage part sales, returns and related transactions.' (View, Create & Edit, Delete); 2) 'Catalog and Inventory' - 'Manage the parts catalog and inventory levels.' (View, Create & Edit, Delete); 3) 'Vendor and order management' - 'Manage vendors, purchase orders, deliveries and part returns.' (View, Create & Edit, Delete). Count = 3.",
+    "screenshot_ref": "screenshots/C26406.png",
+    "match": "Yes",
+    "ui_says_instead": ""
+  },
+  {
+    "case_id": "C26441",
+    "what_checked": "Toggle 'Settings' (Page Access) ON and capture the indented sub-toggles it reveals (labels + count; claim: 6).",
+    "actual_ui_observation": "Toggling 'Settings' (description: 'Application configuration and administration.') ON reveals exactly 6 indented sub-toggles, each preceded by a 'subdirectory_arrow_right' indent icon (verbatim labels, in order): 1) App Settings, 2) Service, 3) Parts, 4) Finance, 5) Data Import, 6) View/Manage Wages. Count = 6.",
+    "screenshot_ref": "screenshots/C26441.png",
+    "match": "Yes",
+    "ui_says_instead": ""
+  },
+  {
+    "case_id": "C26452",
+    "what_checked": "Inside the 'Work orders' card, capture the view-mode selector pill labels (claim: 'Full View' and 'Tech view').",
+    "actual_ui_observation": "Inside the 'Work orders' card there is a 'View mode' section (subtitle verbatim: 'Controls interface complexity, not access controls.') with two segmented pill buttons (verbatim): 'Full View' (data-test-id=wosetting_view_mode_full) and 'Tech view' (data-test-id=wosetting_view_mode_tech).",
+    "screenshot_ref": "screenshots/C26452.png",
+    "match": "Yes",
+    "ui_says_instead": ""
+  },
+  {
+    "case_id": "C26453",
+    "what_checked": "Select 'Full View' and capture the exact info-panel text.",
+    "actual_ui_observation": "'Full View' is the default selection. The info panel (with an 'info' icon) titled 'Full View' shows verbatim: 'Complete interface with all fields visible and editable (subject to CRUD permissions). The estimate column shows the actual estimate value. Full parts request form with all fields. All workflow actions available (approve, review, split etc...).'",
+    "screenshot_ref": "screenshots/C26453.png",
+    "match": "Yes",
+    "ui_says_instead": ""
+  },
+  {
+    "case_id": "C26454",
+    "what_checked": "Select 'Tech view' and capture the exact info-panel text (should differ from Full View).",
+    "actual_ui_observation": "The 'Tech view' pill is DISABLED in a blank editor until a Work orders CRUD permission is enabled (button rendered with the disabled attribute). After enabling the Work orders 'View' checkbox, the 'Tech view' pill became enabled; selecting it changed the info panel title to 'Tech view' with verbatim body: 'Simplified interface focused on the technician workflow. Non-essential fields are hidden to reduce clutter, and only the actions a technician needs day-to-day are shown.' This differs from the Full View panel text.",
+    "screenshot_ref": "screenshots/C26454.png",
+    "match": "Yes",
+    "ui_says_instead": "Tech view pill is disabled until at least one Work orders CRUD permission is enabled; it is not immediately selectable in a blank editor."
+  },
+  {
+    "case_id": "C26471",
+    "what_checked": "With 'See Financial Data' OFF, enable a 'Part sales' permission checkbox and capture the Financial Data Confirmation modal (title + body + buttons) verbatim.",
+    "actual_ui_observation": "With 'See Financial Data' OFF, enabling the Part sales 'View' checkbox toggled on WITHOUT any modal. Enabling the Part sales 'Create & Edit' checkbox fired a confirmation modal (data-test-id=cancel_financial_data_confirm). Modal verbatim -- Title: 'Enable See Financial Data?'; Body: 'Part Sales requires See Financial Data. Enable it to grant this permission?'; Buttons: 'close' (X icon), 'Cancel', 'Enable'. Cancelled without saving.",
+    "screenshot_ref": "screenshots/C26471.png",
+    "match": "Partial",
+    "ui_says_instead": "Modal title is 'Enable See Financial Data?' (not literally 'Financial Data Confirmation'). Modal fires on the 'Create & Edit' checkbox; the 'View' checkbox toggled on without any confirmation modal."
+  },
+  {
+    "case_id": "C26474",
+    "what_checked": "With 'See Financial Data' OFF, enable an 'Invoicing & payments' checkbox and capture whether the SAME confirmation modal fires + its exact text.",
+    "actual_ui_observation": "With 'See Financial Data' OFF, enabling the 'Invoicing & payments' 'Create & Edit' checkbox fired the SAME confirmation modal (same title, styling, and data-test-id=cancel_financial_data_confirm). Modal verbatim -- Title: 'Enable See Financial Data?'; Body: 'Invoicing & Payments requires See Financial Data. Enable it to grant this permission?'; Buttons: 'close' (X icon), 'Cancel', 'Enable'. Only the resource name in the body differs from the Part sales modal. Cancelled without saving.",
+    "screenshot_ref": "screenshots/C26474.png",
+    "match": "Yes",
+    "ui_says_instead": "Same modal as C26471; only the leading resource name in the body differs ('Invoicing & Payments' vs 'Part Sales'). Modal title is 'Enable See Financial Data?', not 'Financial Data Confirmation'."
+  }
+]
