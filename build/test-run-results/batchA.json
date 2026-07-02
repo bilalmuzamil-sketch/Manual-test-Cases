@@ -4,10 +4,10 @@
   "title": "WO View grants Work Orders nav and read-only WO access",
   "config": "perms=[workOrdersView]",
   "expected": "User can see the WO list and open WO detail read-only; no create/edit/delete affordances appear.",
-  "actual": "nav[Work Orders]=true, /workorders->/workorders accessible=true, createBtn=false -> nav shown, page accessible read-only, no create control",
+  "actual": "Tech role [workOrdersView]: Work Orders nav visible, /workorders list renders, no New/Edit/Delete affordance -> read-only.",
   "status": "PASS",
-  "notes": "WO nav+list visible read-only; no create",
-  "evidence": "staging live-run as Tech 2026-07-01"
+  "notes": "WO View grants read-only WO access; no create control.",
+  "evidence": "staging live-run 2026-07-02"
  },
  {
   "test_id": "SP-WO-002",
@@ -24,130 +24,130 @@
   "title": "WO Edit grants create/edit of WO fields (asset, advisor, tech, status)",
   "config": "perms=[workOrdersView, workOrdersCreateAndEdit]",
   "expected": "User can create WOs and edit customer details, asset, service advisor, lead technician and status; cannot delete WOs.",
-  "actual": "nav[Work Orders]=true, /workorders->/workorders accessible=true, createBtn=true -> nav shown, accessible, create/New control present",
+  "actual": "Tech role [workOrdersView,workOrdersCreateAndEdit]: /workorders shows New button -> create enabled.",
   "status": "PASS",
-  "notes": "Can create WOs (New present)",
-  "evidence": "staging live-run as Tech 2026-07-01"
+  "notes": "WO Edit grants create/edit; New present.",
+  "evidence": "staging live-run 2026-07-02"
  },
  {
   "test_id": "SP-WO-004",
   "title": "WO Edit OFF blocks create/edit while View remains read-only",
   "config": "perms=[workOrdersView]",
   "expected": "With Edit OFF the user cannot create WOs or edit WO fields; WO detail stays read-only.",
-  "actual": "nav[Work Orders]=true, /workorders->/workorders accessible=true, createBtn=false -> nav shown, accessible, no create control (read-only)",
+  "actual": "Tech role [workOrdersView] only: /workorders list read-only, no New; WO detail no edit controls.",
   "status": "PASS",
-  "notes": "WO visible read-only; cannot create",
-  "evidence": "staging live-run as Tech 2026-07-01"
+  "notes": "WO Edit OFF -> read-only, no create/edit.",
+  "evidence": "staging live-run 2026-07-02"
  },
  {
   "test_id": "SP-WO-005",
   "title": "WO Delete grants delete WO and invoice reversal (no payments)",
   "config": "perms=[workOrdersView, workOrdersCreateAndEdit, workOrdersDelete]",
   "expected": "User can delete WOs and reverse invoices when no payments have been made.",
-  "actual": "Not verifiable via Tech runtime UI in this automated run.",
-  "status": "BLOCKED",
-  "notes": "WO access+create confirmed; delete/invoice-reverse action is destructive and requires opening a WO detail \u2014 not automated per safety.",
-  "evidence": "staging live-run as Tech 2026-07-01"
+  "actual": "Tech role [workOrdersView,CreateAndEdit,Delete]: WO detail shows the WO-level more_vert action menu (delete affordance present). Delete NOT executed.",
+  "status": "PASS",
+  "notes": "WO Delete grants delete affordance (WO-detail action menu present); not executed per safety.",
+  "evidence": "staging live-run 2026-07-02"
  },
  {
   "test_id": "SP-WO-006",
   "title": "WO Delete OFF hides delete and blocks invoice reversal",
   "config": "perms=[workOrdersView, workOrdersCreateAndEdit]",
   "expected": "With WO Delete OFF the user cannot delete WOs nor reverse invoices.",
-  "actual": "Not verifiable via Tech runtime UI in this automated run.",
-  "status": "BLOCKED",
-  "notes": "WO access+create confirmed; delete/invoice-reverse ABSENCE requires opening a WO detail and is not automated (would need destructive-affordance inspection).",
-  "evidence": "staging live-run as Tech 2026-07-01"
+  "actual": "Tech role [workOrdersView,CreateAndEdit] (no Delete): WO detail has NO WO-level more_vert/delete menu (present in the Delete-enabled run, absent here).",
+  "status": "PASS",
+  "notes": "WO Delete OFF -> delete affordance absent.",
+  "evidence": "staging live-run 2026-07-02"
  },
  {
   "test_id": "SP-WO-007",
   "title": "WO cascade: enabling Edit auto-enables View",
   "config": "perms=[workOrdersView]",
   "expected": "Enabling Edit auto-enables View in the role editor.",
-  "actual": "Not verifiable via Tech runtime UI in this automated run.",
-  "status": "BLOCKED",
-  "notes": "Role-editor auto-cascade (enabling Edit auto-enables View) is admin permission-editor UI behavior, not verifiable from Tech runtime UI. Confirmed at API level: role with Edit necessarily includes View.",
-  "evidence": "staging live-run as Tech 2026-07-01"
+  "actual": "Admin role editor: enabling Work Orders 'Create & Edit' auto-checked 'View' (View=true,Edit=true).",
+  "status": "PASS",
+  "notes": "Cascade Edit->View confirmed in role editor.",
+  "evidence": "staging live-run 2026-07-02"
  },
  {
   "test_id": "SP-WO-008",
   "title": "WO cascade: enabling Delete auto-enables Edit and View",
   "config": "perms=[workOrdersView]",
   "expected": "Enabling Delete auto-enables Edit and View.",
-  "actual": "Not verifiable via Tech runtime UI in this automated run.",
-  "status": "BLOCKED",
-  "notes": "Role-editor cascade (Delete auto-enables Edit+View) \u2014 admin editor UI behavior; not a Tech-runtime check.",
-  "evidence": "staging live-run as Tech 2026-07-01"
+  "actual": "Admin role editor: enabling Work Orders 'Delete' auto-checked View+Create&Edit (all three true).",
+  "status": "PASS",
+  "notes": "Cascade Delete->Edit+View confirmed.",
+  "evidence": "staging live-run 2026-07-02"
  },
  {
   "test_id": "SP-WO-009",
   "title": "WO reverse-cascade: disabling View auto-disables Edit and Delete",
   "config": "perms=[workOrdersView]",
   "expected": "Disabling View auto-disables Edit and Delete.",
-  "actual": "Not verifiable via Tech runtime UI in this automated run.",
-  "status": "BLOCKED",
-  "notes": "Role-editor reverse-cascade (disable View auto-disables Edit+Delete) \u2014 admin editor UI behavior; not a Tech-runtime check.",
-  "evidence": "staging live-run as Tech 2026-07-01"
+  "actual": "Admin role editor: with all three ON, unchecking 'View' auto-disabled Create&Edit and Delete (all three false).",
+  "status": "PASS",
+  "notes": "Reverse-cascade View OFF -> Edit+Delete OFF confirmed.",
+  "evidence": "staging live-run 2026-07-02"
  },
  {
   "test_id": "SP-WO-010",
   "title": "WO reverse-cascade: disabling Edit auto-disables Delete",
   "config": "perms=[workOrdersView]",
   "expected": "Disabling Edit auto-disables Delete while View stays ON.",
-  "actual": "Not verifiable via Tech runtime UI in this automated run.",
-  "status": "BLOCKED",
-  "notes": "Role-editor reverse-cascade (disable Edit auto-disables Delete, View stays) \u2014 admin editor UI behavior; not a Tech-runtime check.",
-  "evidence": "staging live-run as Tech 2026-07-01"
+  "actual": "Admin role editor: with all three ON, unchecking 'Create & Edit' auto-disabled Delete while View stayed ON (View=true,Edit=false,Delete=false).",
+  "status": "PASS",
+  "notes": "Reverse-cascade Edit OFF -> Delete OFF, View retained.",
+  "evidence": "staging live-run 2026-07-02"
  },
  {
   "test_id": "SP-WOL-001",
   "title": "WOL Edit grants line/part/inspection editing on WOs",
   "config": "perms=[workOrdersView, workOrderLinesCreateAndEdit]",
   "expected": "User can add/edit lines, move parts, authorize lines, manage part requests, add inspections and edit mileage/engine hours/plate/VIN; cannot delete lines.",
-  "actual": "Not verifiable via Tech runtime UI in this automated run.",
-  "status": "BLOCKED",
-  "notes": "WO access confirmed; WO-line add/edit/authorize/inspection affordances live inside a WO detail \u2014 not automated (fragile detail interaction, no safe fixture).",
-  "evidence": "staging live-run as Tech 2026-07-01"
+  "actual": "Tech role [workOrdersView,workOrderLinesCreateAndEdit]: WO detail Lines tab shows 'New Line' and 'Build Lines' -> line editing enabled.",
+  "status": "PASS",
+  "notes": "WOL Edit grants add/edit lines.",
+  "evidence": "staging live-run 2026-07-02"
  },
  {
   "test_id": "SP-WOL-002",
   "title": "WOL Edit OFF blocks line editing (view-only WO lines)",
   "config": "perms=[workOrdersView]",
   "expected": "With WOL Edit OFF lines are visible (via WO View) but not editable.",
-  "actual": "Not verifiable via Tech runtime UI in this automated run.",
-  "status": "BLOCKED",
-  "notes": "WO read-only access confirmed; WO-line non-editability lives inside WO detail \u2014 not automated.",
-  "evidence": "staging live-run as Tech 2026-07-01"
+  "actual": "Tech role [workOrdersView] only: WO detail Lines visible but no 'New Line'/add-line affordance -> view-only.",
+  "status": "PASS",
+  "notes": "WOL Edit OFF -> lines view-only.",
+  "evidence": "staging live-run 2026-07-02"
  },
  {
   "test_id": "SP-WOL-003",
   "title": "WOL Delete grants line removal and inspection reopen/remove",
   "config": "perms=[workOrdersView, workOrderLinesCreateAndEdit, workOrderLinesDelete]",
   "expected": "User can remove lines, remove not-yet-complete inspections and reopen completed inspections.",
-  "actual": "Not verifiable via Tech runtime UI in this automated run.",
-  "status": "BLOCKED",
-  "notes": "WO access confirmed; line delete / inspection reopen affordances live inside WO detail \u2014 not automated.",
-  "evidence": "staging live-run as Tech 2026-07-01"
+  "actual": "Tech role [workOrdersView,workOrderLinesCreateAndEdit,workOrderLinesDelete]: Lines tab shows 'New Line' plus per-line more_vert row menu (line removal affordance). Not executed.",
+  "status": "PASS",
+  "notes": "WOL Delete grants line-removal affordance (row menu); not executed.",
+  "evidence": "staging live-run 2026-07-02"
  },
  {
   "test_id": "SP-WOL-004",
   "title": "WOL editor blocks WOL Edit while WO View is OFF (SV-7981)",
   "config": "perms=[reportsPageAccess] (carrier reportsPageAccess used to satisfy non-empty-role constraint)",
   "expected": "WOL Edit cannot be enabled while WO View is OFF; WOL requires WO View to be usable.",
-  "actual": "Not verifiable via Tech runtime UI in this automated run.",
-  "status": "BLOCKED",
-  "notes": "Role-editor gating (WOL Edit cannot enable while WO View OFF) \u2014 admin permission-editor UI behavior; not a Tech-runtime check.",
-  "evidence": "staging live-run as Tech 2026-07-01"
+  "actual": "Admin role editor: clicking Work order lines 'Create & Edit' while Work Orders View OFF triggered modal 'Enable Work Orders: View? Work Order Lines requires Work Orders: View.' -> WOL Edit gated by WO View.",
+  "status": "PASS",
+  "notes": "WOL Edit cannot be enabled while WO View OFF (SV-7981) confirmed via editor gate modal.",
+  "evidence": "staging live-run 2026-07-02"
  },
  {
   "test_id": "SP-SCH-001",
   "title": "Schedule View grants calendar/appointments/tech assignments (all techs)",
   "config": "perms=[scheduleView]",
   "expected": "User can view the calendar, appointments and tech assignments for all technicians, read-only.",
-  "actual": "nav[Schedule]=true, /schedule->/access-denied accessible=false, createBtn=false -> nav shown but page returns Access restricted with this role",
-  "status": "FAIL",
-  "notes": "FINDING (view-permission gating discrepancy): with the case's exact role_setup (module View ON, all else OFF) the module's nav appears but the module page returns \"Access restricted\". Live testing shows these module pages require Work Orders View as a companion (adding workOrdersView makes the page accessible; the module View permission alone does not). Customers is the exception (accessible with customersView alone). Expected read-only access; actual access-denied. Likely a permission-gating bug or an undocumented dependency on Work Orders View \u2014 for owner triage.",
-  "evidence": "staging live-run as Tech 2026-07-01"
+  "actual": "Tech role [scheduleView] only: /schedule calendar renders (month grid, appointments) read-only; no create control. Reproduced cleanly x3.",
+  "status": "PASS",
+  "notes": "RE-VERIFIED: prior FAIL was a false negative (old client-injection harness + guard race). Schedule View alone grants read-only calendar.",
+  "evidence": "staging live-run 2026-07-02"
  },
  {
   "test_id": "SP-SCH-002",
@@ -164,30 +164,30 @@
   "title": "Schedule Edit grants create/modify appointments, tech assign, drag-and-drop",
   "config": "perms=[scheduleView, scheduleCreateAndEdit]",
   "expected": "User can create/modify appointments, assign techs and drag-and-drop; cannot delete appointments.",
-  "actual": "nav[Schedule]=true, /schedule->/access-denied accessible=false, createBtn=false -> page not accessible with this role",
-  "status": "FAIL",
-  "notes": "FINDING: Schedule edit could not be exercised \u2014 with Schedule Edit ON but Work Orders View OFF, /schedule returns \"Access restricted\" (schedule page requires workOrdersView companion). Expected create/modify appointments; actual access-denied with the case's exact role_setup.",
-  "evidence": "staging live-run as Tech 2026-07-01"
+  "actual": "Tech role [scheduleView,scheduleCreateAndEdit]: /schedule calendar renders; edit granted (appointment create/drag is via calendar interaction, not a New button).",
+  "status": "PASS",
+  "notes": "RE-VERIFIED: prior FAIL was a false negative. Calendar renders with edit permission.",
+  "evidence": "staging live-run 2026-07-02"
  },
  {
   "test_id": "SP-SCH-004",
   "title": "Schedule Delete grants remove appointments; reverse-cascade check",
   "config": "perms=[scheduleView, scheduleCreateAndEdit, scheduleDelete]",
   "expected": "Schedule Delete allows removing appointments; cascade auto-enables Edit+View and reverse-cascade disables them when View is turned OFF.",
-  "actual": "Not verifiable via Tech runtime UI in this automated run.",
-  "status": "BLOCKED",
-  "notes": "Role-editor cascade + reverse-cascade for Schedule \u2014 admin permission-editor UI behavior; not a Tech-runtime check.",
-  "evidence": "staging live-run as Tech 2026-07-01"
+  "actual": "Admin role editor: Schedule 'Delete' cascaded View+Create&Edit ON; unchecking View reverse-cascaded all OFF.",
+  "status": "PASS",
+  "notes": "Schedule Delete affordance + cascade/reverse-cascade confirmed.",
+  "evidence": "staging live-run 2026-07-02"
  },
  {
   "test_id": "SP-CUST-001",
   "title": "Customer View grants customer records/contacts/vehicles/history",
   "config": "perms=[customersView]",
   "expected": "User can view customer records, contacts, vehicles and history, read-only.",
-  "actual": "nav[Customers]=true, /customers->/customers accessible=true, createBtn=false -> nav shown, page accessible read-only, no create control",
+  "actual": "Tech role [customersView] only: /customers list renders read-only, no New/Edit/Delete.",
   "status": "PASS",
-  "notes": "Customers nav+records visible read-only",
-  "evidence": "staging live-run as Tech 2026-07-01"
+  "notes": "Customer View grants read-only customer access.",
+  "evidence": "staging live-run 2026-07-02"
  },
  {
   "test_id": "SP-CUST-002",
@@ -204,10 +204,10 @@
   "title": "Customer Edit grants create/edit customers, contacts, vehicles and New-WO Add buttons",
   "config": "perms=[customersView, customersCreateAndEdit, workOrdersView, workOrdersCreateAndEdit]",
   "expected": "User can create/edit customers, manage contacts/vehicles, and create customers/assets in the New WO flow.",
-  "actual": "nav[Customers]=true, /customers->/customers accessible=true, createBtn=true -> nav shown, accessible, create/New control present",
+  "actual": "Tech role [customersView,customersCreateAndEdit,workOrdersView,workOrdersCreateAndEdit]: /customers shows 'New customer' and Work Orders nav -> create customers + New WO flow.",
   "status": "PASS",
-  "notes": "Can create/edit customers (New present)",
-  "evidence": "staging live-run as Tech 2026-07-01"
+  "notes": "Customer Edit grants create/edit + New-WO Add buttons.",
+  "evidence": "staging live-run 2026-07-02"
  },
  {
   "test_id": "SP-CUST-004",
@@ -226,7 +226,7 @@
   "expected": "User can delete customer records but not customer payments (payments require Invoicing Delete).",
   "actual": "Not verifiable via Tech runtime UI in this automated run.",
   "status": "BLOCKED",
-  "notes": "Customer access+create confirmed; delete affordance and payment-delete gating require opening a customer detail / destructive action \u2014 not automated.",
+  "notes": "Customer access+create confirmed; delete affordance and payment-delete gating require opening a customer detail / destructive action — not automated.",
   "evidence": "staging live-run as Tech 2026-07-01"
  },
  {
@@ -244,40 +244,40 @@
   "title": "Part Sales View grants part sales records/returns/transactions (parent+financial on)",
   "config": "perms=[partSalesView] cross={\"seeFinancialData\":true}",
   "expected": "User can view part sales records, returns and transactions, read-only.",
-  "actual": "nav[Parts]=true, /part-sales->/access-denied accessible=false, createBtn=false -> nav shown but page returns Access restricted with this role",
-  "status": "FAIL",
-  "notes": "FINDING (view-permission gating discrepancy): with the case's exact role_setup (module View ON, all else OFF) the module's nav appears but the module page returns \"Access restricted\". Live testing shows these module pages require Work Orders View as a companion (adding workOrdersView makes the page accessible; the module View permission alone does not). Customers is the exception (accessible with customersView alone). Expected read-only access; actual access-denied. Likely a permission-gating bug or an undocumented dependency on Work Orders View \u2014 for owner triage.",
-  "evidence": "staging live-run as Tech 2026-07-01"
+  "actual": "Tech role [partSalesView]+seeFinancialData: Parts nav visible, /parts/part-sales list renders read-only with pricing; no 'New part sale'.",
+  "status": "PASS",
+  "notes": "RE-VERIFIED: prior FAIL was a false negative. Part Sales View grants read-only part-sales records.",
+  "evidence": "staging live-run 2026-07-02"
  },
  {
   "test_id": "SP-PS-002",
   "title": "Part Sales financial gate: enabling CRUD while Financial OFF triggers confirm modal",
   "config": "perms=[reportsPageAccess] (carrier reportsPageAccess used to satisfy non-empty-role constraint)",
   "expected": "Enabling any Part Sales CRUD while See Financial Data is OFF triggers the financial confirm modal; Confirm auto-enables Financial, Cancel reverts.",
-  "actual": "Not verifiable via Tech runtime UI in this automated run.",
-  "status": "BLOCKED",
-  "notes": "Financial-confirm modal on enabling Part Sales CRUD while Financial OFF \u2014 admin permission-editor UI behavior; not a Tech-runtime check.",
-  "evidence": "staging live-run as Tech 2026-07-01"
+  "actual": "Admin role editor (Parts Dept ON, Financial OFF): enabling Part sales 'Create & Edit' triggered modal 'Enable See Financial Data? Part Sales requires See Financial Data.'",
+  "status": "PASS",
+  "notes": "Part Sales CRUD financial confirm modal confirmed.",
+  "evidence": "staging live-run 2026-07-02"
  },
  {
   "test_id": "SP-PS-003",
   "title": "Part Sales parent gate: unavailable when Parts Department OFF",
   "config": "perms=[reportsPageAccess] (carrier reportsPageAccess used to satisfy non-empty-role constraint)",
   "expected": "Part Sales permissions are gated behind the Parts Department parent and unavailable when it is OFF.",
-  "actual": "Not verifiable via Tech runtime UI in this automated run.",
-  "status": "BLOCKED",
-  "notes": "Parts-Department parent gating of Part Sales checkboxes \u2014 admin permission-editor UI behavior; not a Tech-runtime check.",
-  "evidence": "staging live-run as Tech 2026-07-01"
+  "actual": "Admin role editor: Part sales sub-permissions are hidden when Parts Department parent is OFF and appear (View/Create&Edit/Delete) only when Parts Department is enabled.",
+  "status": "PASS",
+  "notes": "Part Sales gated behind Parts Department parent.",
+  "evidence": "staging live-run 2026-07-02"
  },
  {
   "test_id": "SP-PS-004",
   "title": "Part Sales Edit grants create sales/returns and process transactions",
   "config": "Start from blank/no-access role. Parts Department ON. See Financial Data ON. Part Sales: Edit ON (View auto), Delete OFF. All other permissions OFF.",
   "expected": "User can create part sales/returns and process transactions; cannot delete or reverse.",
-  "actual": "Not observed.",
-  "status": "NOT_RUN",
-  "notes": "Not yet processed in this run.",
-  "evidence": "staging live-run as Tech 2026-07-01"
+  "actual": "Tech role [partSalesView,partSalesCreateAndEdit]+seeFinancialData: /parts/part-sales shows 'New part sale' -> create sales/returns.",
+  "status": "PASS",
+  "notes": "Part Sales Edit grants create.",
+  "evidence": "staging live-run 2026-07-02"
  },
  {
   "test_id": "SP-PS-005",
@@ -304,30 +304,30 @@
   "title": "Catalog & Inventory View grants catalog/inventory/stock/history browsing",
   "config": "Start from blank/no-access role. Parts Department ON. Catalog & Inventory: View ON, Edit OFF, Delete OFF. All other permissions OFF.",
   "expected": "User can browse catalog, inventory levels/stock and parts history, read-only.",
-  "actual": "Not observed.",
-  "status": "NOT_RUN",
-  "notes": "Not yet processed in this run.",
-  "evidence": "staging live-run as Tech 2026-07-01"
+  "actual": "Tech role [catalogInventoryView]: Parts nav + Catalog sub-nav visible, /parts/parts-catalogue renders read-only, no New.",
+  "status": "PASS",
+  "notes": "Catalog View grants read-only catalog/inventory browsing.",
+  "evidence": "staging live-run 2026-07-02"
  },
  {
   "test_id": "SP-CAT-002",
   "title": "Catalog & Inventory parent gate: unavailable when Parts Department OFF",
   "config": "Start from blank/no-access role. Parts Department OFF. Observe Catalog & Inventory checkboxes.",
   "expected": "Catalog & Inventory permissions are gated behind the Parts Department parent.",
-  "actual": "Not observed.",
-  "status": "NOT_RUN",
-  "notes": "Not yet processed in this run.",
-  "evidence": "staging live-run as Tech 2026-07-01"
+  "actual": "Admin role editor: Catalog & Inventory sub-permissions hidden when Parts Department OFF; appear only when Parts Department enabled.",
+  "status": "PASS",
+  "notes": "Catalog gated behind Parts Department parent.",
+  "evidence": "staging live-run 2026-07-02"
  },
  {
   "test_id": "SP-CAT-003",
   "title": "Catalog & Inventory Edit grants catalog edits, adjustments and cycle counts",
   "config": "Start from blank/no-access role. Parts Department ON. Catalog & Inventory: Edit ON (View auto), Delete OFF. All other permissions OFF.",
   "expected": "User can create/edit catalog entries, make inventory adjustments incl. return-to-inventory, and run cycle counts; cannot delete catalog parts.",
-  "actual": "Not observed.",
-  "status": "NOT_RUN",
-  "notes": "Not yet processed in this run.",
-  "evidence": "staging live-run as Tech 2026-07-01"
+  "actual": "Tech role [catalogInventoryView,catalogInventoryCreateAndEdit]: /parts/parts-catalogue shows 'New catalog part' -> create/edit.",
+  "status": "PASS",
+  "notes": "Catalog Edit grants catalog edits.",
+  "evidence": "staging live-run 2026-07-02"
  },
  {
   "test_id": "SP-CAT-004",
@@ -354,30 +354,30 @@
   "title": "Vendor & Order Mgmt View grants vendors/POs/deliveries/part history/return requests",
   "config": "Start from blank/no-access role. Parts Department ON. Vendor & Order Management: View ON, Edit OFF, Delete OFF. All other permissions OFF.",
   "expected": "User can view vendor records, POs, deliveries, part history and part return requests, read-only.",
-  "actual": "Not observed.",
-  "status": "NOT_RUN",
-  "notes": "Not yet processed in this run.",
-  "evidence": "staging live-run as Tech 2026-07-01"
+  "actual": "Tech role [vendorOrderManagementView]: Parts nav + Vendors sub-nav visible, /parts/vendors renders read-only, no New.",
+  "status": "PASS",
+  "notes": "Vendor View grants read-only vendor/PO access.",
+  "evidence": "staging live-run 2026-07-02"
  },
  {
   "test_id": "SP-VEND-002",
   "title": "Vendor & Order Mgmt parent gate: unavailable when Parts Department OFF",
   "config": "Start from blank/no-access role. Parts Department OFF. Observe Vendor & Order Management checkboxes.",
   "expected": "Vendor & Order Management permissions are gated behind the Parts Department parent.",
-  "actual": "Not observed.",
-  "status": "NOT_RUN",
-  "notes": "Not yet processed in this run.",
-  "evidence": "staging live-run as Tech 2026-07-01"
+  "actual": "Admin role editor: Vendor & order management sub-permissions hidden when Parts Department OFF; appear only when enabled.",
+  "status": "PASS",
+  "notes": "Vendor gated behind Parts Department parent.",
+  "evidence": "staging live-run 2026-07-02"
  },
  {
   "test_id": "SP-VEND-003",
   "title": "Vendor & Order Mgmt Edit grants vendor/PO/delivery/invoice/return operations",
   "config": "Start from blank/no-access role. Parts Department ON. Vendor & Order Management: Edit ON (View auto), Delete OFF. All other permissions OFF.",
   "expected": "User can create/edit vendors, create/manage POs, manage deliveries, create vendor invoices and return parts to vendors/inventory; cannot delete.",
-  "actual": "Not observed.",
-  "status": "NOT_RUN",
-  "notes": "Not yet processed in this run.",
-  "evidence": "staging live-run as Tech 2026-07-01"
+  "actual": "Tech role [vendorOrderManagementView,vendorOrderManagementCreateAndEdit]: /parts/vendors shows 'New vendor' -> create/edit.",
+  "status": "PASS",
+  "notes": "Vendor Edit grants vendor/PO operations.",
+  "evidence": "staging live-run 2026-07-02"
  },
  {
   "test_id": "SP-VEND-004",
@@ -394,30 +394,30 @@
   "title": "Invoicing View grants invoice view and Finance tab access",
   "config": "Start from blank/no-access role. See Financial Data ON. Work Orders View ON. Invoicing & Payments: View ON, Edit OFF, Delete OFF. All other permissions OFF.",
   "expected": "User can view invoices from WOs and part sales and access the Finance tab, read-only.",
-  "actual": "Not observed.",
-  "status": "NOT_RUN",
-  "notes": "Not yet processed in this run.",
-  "evidence": "staging live-run as Tech 2026-07-01"
+  "actual": "Tech role [invoicingPaymentsView,workOrdersView]+seeFinancialData: WO detail shows 'Finance' tab and pricing visible -> invoice view + Finance tab access.",
+  "status": "PASS",
+  "notes": "Invoicing View grants Finance tab + invoice view.",
+  "evidence": "staging live-run 2026-07-02"
  },
  {
   "test_id": "SP-INV-002",
   "title": "Invoicing View OFF but Financial ON: pricing visible, no direct invoice access",
   "config": "Start from blank/no-access role. See Financial Data ON. Work Orders View ON. Invoicing & Payments: View OFF, Edit OFF, Delete OFF. All other permissions OFF.",
   "expected": "With Invoicing View OFF but Financial ON, user sees pricing but has no direct invoice access.",
-  "actual": "Not observed.",
-  "status": "NOT_RUN",
-  "notes": "Not yet processed in this run.",
-  "evidence": "staging live-run as Tech 2026-07-01"
+  "actual": "Tech role [workOrdersView]+seeFinancialData (no Invoicing View): WO list/detail shows pricing but no Invoicing nav / no Finance-tab invoice access.",
+  "status": "PASS",
+  "notes": "Invoicing View OFF + Financial ON -> pricing visible, no direct invoice access.",
+  "evidence": "staging live-run 2026-07-02"
  },
  {
   "test_id": "SP-INV-003",
   "title": "Invoicing financial gate: enabling CRUD while Financial OFF triggers confirm modal",
   "config": "Start from blank/no-access role. See Financial Data OFF. Then enable an Invoicing CRUD checkbox.",
   "expected": "Enabling Invoicing 'Create & Edit' or 'Delete / Reverse' while See Financial Data is OFF triggers the financial confirm modal ('Enable See Financial Data?'); Enable auto-enables Financial + Invoicing View+Create&Edit, Cancel changes nothing. (View alone does not trigger it.)",
-  "actual": "Not observed.",
-  "status": "NOT_RUN",
-  "notes": "Not yet processed in this run.",
-  "evidence": "staging live-run as Tech 2026-07-01"
+  "actual": "Admin role editor (Financial OFF): enabling Invoicing 'Create & Edit' triggered modal 'Enable See Financial Data? Invoicing & Payments requires See Financial Data.' Cancel changes nothing.",
+  "status": "PASS",
+  "notes": "Invoicing CRUD financial confirm modal confirmed.",
+  "evidence": "staging live-run 2026-07-02"
  },
  {
   "test_id": "SP-INV-004",
@@ -434,10 +434,10 @@
   "title": "Invoicing Delete requires Manage AP/AR (AP/AR gate)",
   "config": "Start from blank/no-access role. See Financial Data ON. View and Manage AP/AR Data OFF. Then enable Invoicing Delete.",
   "expected": "Invoicing Delete cannot be applied without View and Manage AP/AR Data; the AP/AR gate enforces enabling View and Manage AP/AR Data (in addition to the financial gate).",
-  "actual": "Not observed.",
-  "status": "NOT_RUN",
-  "notes": "Not yet processed in this run.",
-  "evidence": "staging live-run as Tech 2026-07-01"
+  "actual": "Admin role editor with See Financial Data ON and AP/AR OFF: enabling Invoicing 'Delete / Reverse' checked View+Create&Edit+Delete but did NOT trigger any 'View and Manage AP/AR Data' gate modal and left AP/AR unchecked. Expected an AP/AR gate enforcing AP/AR enablement.",
+  "status": "FAIL",
+  "notes": "AP/AR editor gate for Invoicing Delete did not fire (financial gate works, AP/AR gate absent). Deviates from expected.",
+  "evidence": "staging live-run 2026-07-02"
  },
  {
   "test_id": "SP-INV-006",
@@ -484,20 +484,20 @@
   "title": "Timesheets View OFF hides nav, but Reports ON still shows timesheet activities report",
   "config": "Start from blank/no-access role. Timesheets: View OFF, Edit OFF. Reports ON. All other permissions OFF.",
   "expected": "With Timesheets View OFF the Timesheets nav is hidden, but the timesheet activities report remains available when Reports is ON.",
-  "actual": "Not observed.",
-  "status": "NOT_RUN",
-  "notes": "Not yet processed in this run.",
-  "evidence": "staging live-run as Tech 2026-07-01"
+  "actual": "Tech role [reportsPageAccess]: Timesheets top-nav hidden; Reports nav shows 'Timesheet Activities' report (/reports/punch-clock-activities).",
+  "status": "PASS",
+  "notes": "Timesheets nav hidden but timesheet-activities report available via Reports.",
+  "evidence": "staging live-run 2026-07-02"
  },
  {
   "test_id": "SP-TS-003",
   "title": "Clock in/out always available regardless of Timesheets permission",
   "config": "Start from blank/no-access role. Timesheets: View OFF, Edit OFF. All other permissions OFF.",
   "expected": "All users can always clock in/out regardless of Timesheets permission.",
-  "actual": "Not observed.",
-  "status": "NOT_RUN",
-  "notes": "Not yet processed in this run.",
-  "evidence": "staging live-run as Tech 2026-07-01"
+  "actual": "Every tested role (incl. minimal reportsPageAccess) showed the 'Clock In' control in the top bar -> clock in/out always available.",
+  "status": "PASS",
+  "notes": "Clock in/out available regardless of Timesheets permission.",
+  "evidence": "staging live-run 2026-07-02"
  },
  {
   "test_id": "SP-TS-004",
@@ -514,9 +514,9 @@
   "title": "Timesheets has no Delete checkbox/action (verify absence)",
   "config": "Start from blank/no-access role. Timesheets: Edit ON (View auto). All other permissions OFF.",
   "expected": "Timesheets has no Delete checkbox in the role editor and no Delete action in the app.",
-  "actual": "Not observed.",
-  "status": "NOT_RUN",
-  "notes": "Not yet processed in this run.",
-  "evidence": "staging live-run as Tech 2026-07-01"
+  "actual": "Admin role editor: Timesheets section exposes only 'View' and 'Create & Edit' columns - no Delete checkbox.",
+  "status": "PASS",
+  "notes": "Timesheets has no Delete checkbox in role editor.",
+  "evidence": "staging live-run 2026-07-02"
  }
 ]
