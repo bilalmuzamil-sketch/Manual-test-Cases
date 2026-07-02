@@ -30,5 +30,37 @@
   "replication_steps_plain": "",
   "screenshot_ref": "sm-10.png",
   "notes": "Confirmed invoicingPaymentsCreateAndEdit is ON for the Service Manager. Evidence: 'Create Invoice' on S9-24669 Finance tab and 'New Payment' -> Make Payment dialog on S9-24661 Finance tab. Controls left un-submitted to avoid unnecessary data churn; the front-end gate (button present + dialog reachable) is the permission proof."
+ },
+ {
+  "num": 11,
+  "role": "Service Manager",
+  "feature_area": "Invoicing — Delete",
+  "where_to_go": "Work Orders → Finance tab → an invoice/payment",
+  "what_to_do": "Try to reverse an invoice / delete a payment / void a transaction.",
+  "expected_result": "BLOCKED. Service Manager has Invoicing and Payments = View/Create and Edit, NO Delete.",
+  "depth": "MUST",
+  "status": "FAIL",
+  "spec_reference_plain": "Per the checklist: a Service Manager has Invoicing and Payments = View plus Create-and-Edit but NOT Delete (no invoicingPaymentsDelete), so it should be blocked from reversing/voiding an invoice or deleting a payment. NOTE: this row is stale under spec v33 — reversing a work-order invoice was re-gated to Work Orders: Delete (see case N2 and SV-8093). [Ref: SV-5319 permission matrix; checklist Service Manager row #11 'SM cannot delete/reverse (no Invoicing Delete)']",
+  "expected_plain": "As a Service Manager you should NOT be able to reverse an invoice, delete a payment, or void a transaction — those controls should be hidden or should error.",
+  "actual_result_plain": "The Service Manager was NOT blocked from reversing. On the Finance tab of both an invoiced work order (S9-24661) and a paid one (S9-24656), the invoice actions menu (the three-dots menu next to New Payment) showed 'Reverse' and 'Issue Credit', both enabled. Clicking 'Reverse' opened a confirmation modal titled 'Warning' reading 'This action will re-open and undo the invoice. Are you sure you want to proceed?' with active Reverse and Cancel buttons — i.e. the reversal is fully available (I clicked Cancel/closed without confirming). No separate 'delete payment' or 'void transaction' control was surfaced anywhere, but because the reverse action is available the case's expected outcome (blocked from reversing) does not hold.",
+  "replication_steps_plain": "1. Log in as the Tech user who has the Service Manager role. 2. Go to Work Orders and open an invoiced work order (e.g. S9-24661). 3. Click the Finance tab. 4. Click the three-dots (more) menu at the top-right of the invoice, just left of 'New Payment'. 5. Observe the menu shows 'Reverse' and 'Issue Credit'. 6. Click 'Reverse'. 7. Observe a 'Warning' pop-up appears saying the invoice will be re-opened/undone with a working 'Reverse' button — the action is allowed, not blocked. Expected per checklist: this should have been blocked/hidden.",
+  "screenshot_ref": "sm-11.png",
+  "notes": "STALE row per spec v33 (superseded by N2). The staging Service Manager role actually includes workOrdersDelete (confirmed in fe-permissions), and under v33 invoice reversal is gated by Work Orders: Delete, so 'Reverse' is available to SM. The checklist premise 'no Invoicing Delete blocks this' no longer determines the outcome. Related: SV-8093."
+ },
+ {
+  "num": "N2",
+  "role": "Service Manager",
+  "feature_area": "Reverse invoice - now needs WO/Part Sales Delete (v33)",
+  "where_to_go": "Work Orders -> Finance tab",
+  "what_to_do": "Try to reverse a WO invoice.",
+  "expected_result": "BLOCKED. Reversing a WO invoice now requires Work Orders: Delete (v33). SM has WO = View/Create and Edit, NO Delete. (Previously framed as Invoicing Delete.)",
+  "depth": "MUST",
+  "status": "FAIL",
+  "spec_reference_plain": "Per spec v33 (SV-8093): reversing a work-order invoice is gated by the Work Orders: Delete permission. The checklist asserts the Service Manager has Work Orders = View/Create-and-Edit but NOT Delete, so it expects reversal to be BLOCKED. [Ref: SV-8093; checklist Service Manager row N2 'SM cannot reverse WO invoice (no WO Delete)']",
+  "expected_plain": "As a Service Manager you should NOT be able to reverse a work-order invoice, because the checklist says the role lacks the Work Orders: Delete permission that reversing now requires.",
+  "actual_result_plain": "The Service Manager WAS able to reverse a WO invoice. On the Finance tab of work order S9-24661, the invoice three-dots menu showed 'Reverse'; clicking it opened a confirmation modal ('Warning: This action will re-open and undo the invoice. Are you sure you want to proceed?') with an active Reverse button. The reversal action was fully available (I clicked Cancel, did not complete it). This contradicts the expected BLOCKED result. Root cause: the staging Service Manager role actually HAS the Work Orders: Delete permission (workOrdersDelete is present in the role's fe-permissions), so the v33 WO-Delete gate lets it reverse. The checklist's assumption that SM lacks WO Delete is not true for this staging role.",
+  "replication_steps_plain": "1. Log in as the Tech user assigned the Service Manager role. 2. Open Work Orders and pick an invoiced work order (e.g. S9-24661). 3. Open the Finance tab. 4. Click the three-dots menu next to 'New Payment' at the top-right of the invoice. 5. Click 'Reverse'. 6. Observe the 'Warning' confirmation pop-up with a working Reverse button — the reversal proceeds, it is NOT blocked. Expected per checklist: reversal should be blocked because SM lacks Work Orders: Delete.",
+  "screenshot_ref": "sm-N2.png",
+  "notes": "NEW (v33) - refines struck row #24 logic for SM. Ref SV-8093 (https://shopview.atlassian.net/browse/SV-8093). Key finding: the system-default Service Manager role on staging (role_id a5bfcb60-2af7-47b1-938b-d0d1d101340b) DOES include workOrdersDelete, contradicting the checklist's stated SM permission set. So the v33 gating works correctly (reverse follows WO Delete), but the role configuration grants SM that permission, making the expected BLOCKED result wrong for this role."
  }
 ]
