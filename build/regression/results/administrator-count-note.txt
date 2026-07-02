@@ -1,0 +1,41 @@
+Administrator case-count reconciliation ("15 vs 14")
+====================================================
+
+Source: build/regression/checklist.json, sheet role == "Administrator", "cases" array.
+
+The checklist "cases" array contains 15 rows:
+
+  checklist row  |  "#" value                                   |  result in administrator.json
+  ---------------+----------------------------------------------+------------------------------
+  row 3          |  1                                            |  num 1
+  row 4          |  2   (marked STALE per v33; still run)        |  num 2  (+ superseded by N1)
+  row 5          |  3                                            |  num 3
+  row 6          |  4   (marked STALE per v33; still run)        |  num 4  (+ superseded by N2)
+  row 7          |  5                                            |  num 5
+  row 8          |  6                                            |  num 6
+  row 9          |  7                                            |  num 7
+  row 10         |  8                                            |  num 8
+  row 12         |  "NEW TEST CASES (added per spec v33) - below"|  (none - SEPARATOR ROW, not a case)
+  row 13         |  N1  (replaces struck #2)                     |  num N1
+  row 14         |  N2  (replaces struck #4)                     |  num N2
+  row 15         |  N3                                           |  num N3
+  row 16         |  N4                                           |  num N4
+  row 17         |  N5                                           |  num N5
+  row 18         |  N6                                           |  num N6
+
+Explanation of "15 vs 14":
+- The 15th "row" (checklist row 12) is NOT a test case. It is a visual section
+  separator whose "#" field holds the literal text
+  "NEW TEST CASES (added per spec v33) - below" and whose every other field
+  (Login As, Feature Area, Where to Go, etc.) is null. It marks the start of the
+  new v33 rows and is bookkeeping only.
+- Rows #2 and #4 were struck/re-gated by spec v33 and replaced by N1 and N2
+  respectively, but both the original rows (#2, #4) AND their replacements
+  (N1, N2) are present and each has its own result object in administrator.json.
+- N3-N6 are brand-new v33 rows and each has a result object.
+
+Real test cases = 14 (# 1-8 and N1-N6).
+Result objects in administrator.json = 14 (num 1-8 and N1-N6).
+
+Conclusion: COUNT RECONCILED - no missing case. The apparent "15" is the 14 real
+cases plus the single non-case separator row (checklist row 12).
