@@ -1,0 +1,98 @@
+[
+  {
+    "case_id": "C26326",
+    "what_checked": "Choose a template modal lists all system role templates with descriptions; count (claim: 11).",
+    "actual_ui_observation": "Clicking 'Create Custom Role' opens a modal titled 'Choose a template' with subtitle 'Start from a template to pre-fill settings, or skip to start from scratch.' It lists 11 templates (verbatim name + description): 1) Admin — 'Full system access'; 2) Foreman — 'Oversees technicians and work orders'; 3) Office — 'Office administration, reporting, and back-office operations'; 4) Parts Manager — 'Full parts and inventory control'; 5) Parts Tech — 'Parts operations and vendor management'; 6) Sales Representative — 'Reports and financial data access only'; 7) Senior Service Advisor — 'Work order and customer management with expanded access'; 8) Service Advisor — 'Work order and customer management with invoicing access'; 9) Service Manager — 'Full operational access, limited admin (App Settings + Wages only)'; 10) Technician — 'Assigned work orders and time tracking (Tech View)'; 11) Time Clock — 'Clock in/out only'. Footer buttons: 'Skip' and 'Apply'. COUNT = 11.",
+    "screenshot_ref": "build/viu-testrail/screenshots/C26326.png",
+    "match": "Yes",
+    "ui_says_instead": ""
+  },
+  {
+    "case_id": "C26330",
+    "what_checked": "Skip template -> Create Role page: Basic Details header + Role name & Description field labels + required markers/placeholders.",
+    "actual_ui_observation": "After 'Skip', navigates to /administration/roles-permissions/new (page title 'Create Role'). Section header 'Basic Details' with helper text 'Add basic information about the role you are creating'. First field label is 'Role Name*' (trailing asterisk is the required marker); the input has no placeholder. Second field label 'Description' (a textarea, not required, no placeholder).",
+    "screenshot_ref": "build/viu-testrail/screenshots/C26330.png",
+    "match": "Yes",
+    "ui_says_instead": ""
+  },
+  {
+    "case_id": "C26331",
+    "what_checked": "Permissions section exposes all CRUD area cards in correct order + count.",
+    "actual_ui_observation": "Section header 'Permissions' with helper 'Set permissions that determine what users in this role can see and do.' CRUD area cards appear in this order: 1) Work orders (columns View / Create & Edit / Delete; also contains a 'View mode' Full View/Tech view selector and sub-items Review work orders, Pick parts, Order parts); 2) Work order lines (columns Create & Edit / Delete — no View column); 3) Schedule (View / Create & Edit / Delete); 4) Customers (View / Create & Edit / Delete); 5) Invoicing & payments (View / Create & Edit / Delete / Reverse); 6) Timesheets (View / Create & Edit — no Delete); 7) Parts Department (parent card; when ON exposes children Part sales, Catalog and Inventory, Vendor and order management). That is 7 CRUD-area cards. Below these are two non-CRUD sections: 'Page Access' (Reports, Customer portal, Settings, Billing Portal) and 'Cross-Cutting Toggles' (See Financial Data, View and Manage AP/AR Data, View History Logs).",
+    "screenshot_ref": "build/viu-testrail/screenshots/C26330.png",
+    "match": "Partial",
+    "ui_says_instead": "7 CRUD-area cards (Work orders, Work order lines, Schedule, Customers, Invoicing & payments, Timesheets, Parts Department), not a uniform set — CRUD columns differ per card (e.g. Work order lines has no View; Timesheets has no Delete; Invoicing uses 'Delete / Reverse'). Page Access and Cross-Cutting Toggles are separate non-CRUD sections."
+  },
+  {
+    "case_id": "C26333",
+    "what_checked": "Role name required: blank submission shows inline validation.",
+    "actual_ui_observation": "With Role Name blank the 'Create' button is disabled (cannot submit). Entering text then clearing the field (touched state) surfaces an inline validation message directly under the label: 'Role name is a required field'. The Create button remains disabled while the name is empty.",
+    "screenshot_ref": "build/viu-testrail/screenshots/C26333.png",
+    "match": "Yes",
+    "ui_says_instead": "Inline message 'Role name is a required field'. Note: submission is also prevented by the Create button being disabled, not by an on-click error."
+  },
+  {
+    "case_id": "C26335",
+    "what_checked": "Save with no permissions enabled is blocked with validation message; is Save disabled?",
+    "actual_ui_observation": "With a valid Role Name entered but zero permissions enabled, the 'Create' button is DISABLED (isDisabled=true). No separate inline/toast validation message is shown for the zero-permission state; the block is enforced solely by keeping the Create button disabled. Enabling one permission flips Create to enabled.",
+    "screenshot_ref": "build/viu-testrail/screenshots/C26335.png",
+    "match": "Partial",
+    "ui_says_instead": "No validation text is displayed; the save is blocked only by the 'Create' button being disabled until at least one permission is enabled."
+  },
+  {
+    "case_id": "C26336",
+    "what_checked": "Successful Create returns to Roles list with success toast and the role appears.",
+    "actual_ui_observation": "Created role 'ZZAUTOTEST Create 539285' with 1 permission enabled. On Create, a success toast appeared: 'Role created successfully.' (green check_circle icon, with a 'Close' action). The app returned to the roles list at /administration/roles-permissions and the new role 'ZZAUTOTEST Create 539285' is present in the list (Role Type 'Custom', Users 0).",
+    "screenshot_ref": "build/viu-testrail/screenshots/C26336.png",
+    "match": "Yes",
+    "ui_says_instead": ""
+  },
+  {
+    "case_id": "C26337",
+    "what_checked": "Failed save shows error toast and preserves editor state.",
+    "actual_ui_observation": "Could not trigger a hard error toast. Attempted a duplicate save by re-creating a role with the SAME name AND identical permissions as an existing role ('ZZAUTOTEST Create 539285'). Instead of an error toast, a confirmation dialog appeared titled 'Similar role already exists' with body 'A role \"ZZAUTOTEST Create 539285\" with identical permissions already exists.' and 'You can reuse the existing role or create a new one anyway.', buttons 'Cancel' and 'Create Anyway'. The editor state (Role Name and selections) was fully preserved. The POST /api/check-existing-roles (200) drives this. No genuine failed-save error toast was surfaced by this path (creation is not blocked — the user may proceed via 'Create Anyway').",
+    "screenshot_ref": "build/viu-testrail/screenshots/C26337.png",
+    "match": "No",
+    "ui_says_instead": "No error toast. Duplicate name+permissions shows a non-error confirmation modal 'Similar role already exists' (Cancel / Create Anyway); editor state is preserved. Could not trigger a real failed-save error toast."
+  },
+  {
+    "case_id": "C26338",
+    "what_checked": "Enabling every permission and toggle shows the Admin-equivalent warning banner (verbatim).",
+    "actual_ui_observation": "Applying the 'Admin' template (which pre-fills every permission/toggle) displays a warning banner at the top of the editor with a 'warning' icon, title 'Full administrative access', and body: 'This role has every permission enabled, giving it full administrative access. Make sure this is intended before saving.'",
+    "screenshot_ref": "build/viu-testrail/screenshots/C26338.png",
+    "match": "Yes",
+    "ui_says_instead": ""
+  },
+  {
+    "case_id": "C26343",
+    "what_checked": "Edit modifications save successfully with update toast.",
+    "actual_ui_observation": "Edited 'ZZAUTOTEST Create 539285', changed permissions, clicked 'Save'. An intermediate dialog 'Confirm Permission Updates' appeared: 'Review the changes below before confirming. Some permissions will be removed, and new ones will be added.' with 'Added permissions' / 'Removed permissions' lists, a 'Don't show this dialog again' option, and Cancel / Confirm buttons. After 'Confirm' (PUT /api/roles/{id} -> 200), a success toast appeared: 'Role updated successfully.' (check_circle, Close) and the app returned to the roles list.",
+    "screenshot_ref": "build/viu-testrail/screenshots/C26343.png",
+    "match": "Yes",
+    "ui_says_instead": "Update toast is 'Role updated successfully.'; note an extra 'Confirm Permission Updates' confirmation dialog is shown before the save completes."
+  },
+  {
+    "case_id": "C26348",
+    "what_checked": "Edit validation: Role name cannot be cleared.",
+    "actual_ui_observation": "In the role editor, clearing the Role Name field surfaces the inline validation 'Role name is a required field' directly under the 'Role Name*' label (Basic Details helper text in edit mode reads 'Add basic information about the role you are editing'). Attempting to Save with the name cleared did not persist/navigate (stayed on the .../edit URL); the name cannot be saved blank.",
+    "screenshot_ref": "build/viu-testrail/screenshots/C26348.png",
+    "match": "Yes",
+    "ui_says_instead": "Inline message 'Role name is a required field'; save is blocked (unlike Create, the Save button is not disabled but the save is rejected/blocked with the inline error)."
+  },
+  {
+    "case_id": "C26351",
+    "what_checked": "Custom role with 1+ users shows Cannot Delete modal with disabled confirm.",
+    "actual_ui_observation": "Created 'ZZAUTOTEST WithUsers' and assigned it to the Tech user (Tech ShopView, tech@shopview.com, staff_id 6fb22c1b...); the role's Users column then showed 1. There is NO 'Cannot Delete' modal. Deletion is prevented two ways: (1) The row three-dot (more_vert) menu for a custom role WITH users shows ONLY 'View Permissions' — the 'Delete' item is absent (a zero-user custom role's three-dot menu shows both 'View Permissions' and 'Delete'). (2) In the role editor, the 'Delete Role' button (data-test-id=delete_role_edit) is DISABLED (aria-disabled=true); hovering it shows a tooltip: 'This role is assigned to 1 user(s). Reassign them to another role before deleting.' No modal and therefore no confirm button appears.",
+    "screenshot_ref": "build/viu-testrail/screenshots/C26351-tooltip.png",
+    "match": "No",
+    "ui_says_instead": "No 'Cannot Delete' modal exists. A role with users cannot be deleted because the list three-dot menu hides the Delete option (only 'View Permissions' shown) and the editor 'Delete Role' button is disabled with tooltip 'This role is assigned to 1 user(s). Reassign them to another role before deleting.'"
+  },
+  {
+    "case_id": "C26354",
+    "what_checked": "Cannot Delete modal count accurately reflects current user assignments; cross-check vs actual assigned users.",
+    "actual_ui_observation": "No modal exists, so no modal user-count wording is present. The user count instead appears in the disabled 'Delete Role' button tooltip: 'This role is assigned to 1 user(s). Reassign them to another role before deleting.' This count is accurate: exactly 1 user (Tech ShopView) was assigned to 'ZZAUTOTEST WithUsers', and the roles-list Users column for the role also read '1'. Wording uses the literal 'user(s)' (no singular/plural resolution) and the numeral reflects the true assignment count.",
+    "screenshot_ref": "build/viu-testrail/screenshots/C26351-tooltip.png",
+    "match": "Partial",
+    "ui_says_instead": "Count is accurate (1 = actual assigned users) but is presented in the disabled Delete Role button tooltip ('assigned to 1 user(s)'), not in a Cannot-Delete modal. Uses non-pluralized 'user(s)'."
+  }
+]
