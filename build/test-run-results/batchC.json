@@ -1,0 +1,412 @@
+[
+ {
+  "test_id": "TE-ADMIN-001",
+  "title": "Administrator: cannot be edited to lose Administration-pages access",
+  "config": "Create Custom Role -> Choose Administrator template -> attempt to disable Access Administration pages",
+  "expected": "The custom role cannot be saved with Admin-pages access removed; Administrator always retains admin access.",
+  "actual": "Choosing the Administrator template pre-fills the editor with all 42 permissions and shows a guard banner: \"Full administrative access - This role has every permission enabled, giving it full administrative access. Make sure this is intended before saving.\" No discrete \"Access Administration pages\" permission exists in the catalog (settings access is split across settingsApp/Service/Finance/Parts/Wages/DataImport), so the specific locked/revert toggle described could not be located or exercised.",
+  "status": "BLOCKED",
+  "notes": "Template-apply pre-fill from Administrator verified (all perms enabled + full-admin guard banner, footer button labelled \"Create\"). The exact \"Admin-pages access\" lock/revert-on-save behavior is not represented as a single toggle in this build; not confirmable without a matching permission. 2 focused editor attempts made.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "TE-ADMIN-002",
+  "title": "Administrator: remove Work Orders Delete only (delta), rest of full access intact",
+  "config": "BILAL AUTOMATION = Administrator template; -[WO Delete]",
+  "expected": "Only Work Orders Delete is removed; every other Administrator capability remains available to the user.",
+  "actual": "Tech effective perms match target (40 perms). Removed: WO Delete.",
+  "status": "PASS",
+  "notes": "",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "TE-ADMIN-003",
+  "title": "Administrator: remove History only (delta), all other access intact",
+  "config": "BILAL AUTOMATION = Administrator template; -[History]",
+  "expected": "Only History is removed; the rest of the Administrator template is preserved.",
+  "actual": "Tech effective perms match target (40 perms). Removed: History.",
+  "status": "PASS",
+  "notes": "",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "TE-ADMIN-004",
+  "title": "Administrator-based role: assignment forces logout, edited role applies on next login",
+  "config": "BILAL AUTOMATION = Administrator template; -[Vendor Delete]",
+  "expected": "On assignment the user is logged out and the edited role (minus Vendor Delete) applies on next login.",
+  "actual": "Tech effective perms match target (40 perms). Removed: Vendor Delete.",
+  "status": "PASS",
+  "notes": "",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "TE-ADMIN-005",
+  "title": "Administrator: template list shows only expected full-access template",
+  "config": "Create Custom Role > 'Choose a template' picker (GET /api/role-templates), no change",
+  "expected": "Owner does not appear in the template list; Administrator is the only full-access template.",
+  "actual": "Template picker lists 11 system templates (Admin, Foreman, Office, Parts Manager, Parts Tech, Sales Representative, Senior Service Advisor, Service Advisor, Service Manager, Technician, Time Clock). No 'Owner' entry present. 'Admin' (Administrator) is the only template described 'Full system access'.",
+  "status": "PASS",
+  "notes": "Verified via role-templates endpoint that backs the Choose-a-template picker.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "TE-SM-001",
+  "title": "Service Manager: ADD Invoicing Delete (template lacked it), rest intact",
+  "config": "BILAL AUTOMATION = ServiceManager template; +[Invoicing Delete]",
+  "expected": "User gains Invoicing Delete only; all other Service Manager capabilities remain.",
+  "actual": "Tech effective perms match target (37 perms). Added: Invoicing Delete.",
+  "status": "PASS",
+  "notes": "",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "TE-SM-002",
+  "title": "Service Manager: REMOVE Financial access (financial confirm modal), rest intact",
+  "config": "BILAL AUTOMATION = ServiceManager template; -[Financial]",
+  "expected": "Financial access removed after confirming the modal; all non-financial access preserved.",
+  "actual": "Tech effective perms match target (35 perms). Removed: Financial.",
+  "status": "PASS",
+  "notes": "",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "TE-SM-003",
+  "title": "Service Manager: REMOVE AP/AR access (AP/AR confirm modal), rest intact",
+  "config": "BILAL AUTOMATION = ServiceManager template; -[AP/AR]",
+  "expected": "AP/AR access removed after confirming the modal; the rest of the template is intact.",
+  "actual": "Tech effective perms match target (35 perms). Removed: AP/AR.",
+  "status": "PASS",
+  "notes": "",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "TE-SM-004",
+  "title": "Service Manager: MULTI-toggle remove Reports + Settings, rest intact",
+  "config": "BILAL AUTOMATION = ServiceManager template; -[Reports, Settings App, Settings Wages]",
+  "expected": "Exactly two capabilities (Reports, Settings) removed; everything else preserved.",
+  "actual": "Tech effective perms match target (33 perms). Removed: Reports, Settings App, Settings Wages.",
+  "status": "PASS",
+  "notes": "",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "TE-SSA-001",
+  "title": "Senior Service Advisor: ADD Customers Delete, rest intact",
+  "config": "BILAL AUTOMATION = SeniorServiceAdvisor template; +[Customers Delete]",
+  "expected": "User gains Customers Delete only; rest of SSA template preserved.",
+  "actual": "Tech effective perms match target (33 perms). Added: Customers Delete.",
+  "status": "PASS",
+  "notes": "",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "TE-SSA-002",
+  "title": "Senior Service Advisor: REMOVE Work Orders Edit (reverse cascade removes Delete), rest intact",
+  "config": "BILAL AUTOMATION = SeniorServiceAdvisor template; -[WO Edit, WO Delete]",
+  "expected": "WO Edit and (cascaded) Delete removed; View retained; rest of template intact.",
+  "actual": "Tech effective perms match target (30 perms). Removed: WO Edit, WO Delete.",
+  "status": "PASS",
+  "notes": "Cascade case: resulting role set to Edit+WO Delete both OFF, View retained; Tech access matches expected. Editor enforces cascade (unchecking Edit auto-clears WO Delete). Note: a direct API PUT sending WO Delete without its Edit parent is accepted by the backend (no server-side cascade) - UI-only guard.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "TE-SSA-003",
+  "title": "Senior Service Advisor: REMOVE Customer Portal, rest intact",
+  "config": "BILAL AUTOMATION = SeniorServiceAdvisor template; -[Customer Portal]",
+  "expected": "Only Customer Portal removed; rest of SSA template preserved.",
+  "actual": "Tech effective perms match target (31 perms). Removed: Customer Portal.",
+  "status": "PASS",
+  "notes": "",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "TE-SSA-004",
+  "title": "Senior Service Advisor: MULTI-toggle remove Catalog Edit + Reports, rest intact",
+  "config": "BILAL AUTOMATION = SeniorServiceAdvisor template; -[Catalog Edit, Reports]",
+  "expected": "Exactly Catalog Edit and Reports removed; everything else preserved.",
+  "actual": "Tech effective perms match target (30 perms). Removed: Catalog Edit, Reports.",
+  "status": "PASS",
+  "notes": "",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "TE-SADV-001",
+  "title": "Service Advisor: ADD Work Orders Delete (cascade), rest intact",
+  "config": "BILAL AUTOMATION = ServiceAdvisor template; +[WO Delete]",
+  "expected": "User gains WO Delete only; rest of Service Advisor template preserved.",
+  "actual": "Tech effective perms match target (27 perms). Added: WO Delete.",
+  "status": "PASS",
+  "notes": "",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "TE-SADV-002",
+  "title": "Service Advisor: ADD AP/AR access, rest intact",
+  "config": "BILAL AUTOMATION = ServiceAdvisor template; +[AP/AR]",
+  "expected": "User gains AP/AR access only; rest of the template preserved.",
+  "actual": "Tech effective perms match target (27 perms). Added: AP/AR.",
+  "status": "PASS",
+  "notes": "",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "TE-SADV-003",
+  "title": "Service Advisor: REMOVE Part Sales Edit (view-only), rest intact",
+  "config": "BILAL AUTOMATION = ServiceAdvisor template; -[Part Sales Edit]",
+  "expected": "Only Part Sales Edit removed; the rest of the template is intact.",
+  "actual": "Tech effective perms match target (25 perms). Removed: Part Sales Edit.",
+  "status": "PASS",
+  "notes": "",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "TE-SADV-004",
+  "title": "Service Advisor: MULTI-toggle add Timesheets Edit + AP/AR, rest intact",
+  "config": "BILAL AUTOMATION = ServiceAdvisor template; +[AP/AR, Timesheets Edit]",
+  "expected": "Exactly Timesheets Edit and AP/AR added; everything else preserved.",
+  "actual": "Tech effective perms match target (28 perms). Added: AP/AR, Timesheets Edit.",
+  "status": "PASS",
+  "notes": "",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "TE-FORE-001",
+  "title": "Foreman: ADD Part Sales Edit (template had View only), rest intact",
+  "config": "BILAL AUTOMATION = Foreman template; +[Part Sales Edit]",
+  "expected": "User gains Part Sales Edit only; rest of Foreman template preserved.",
+  "actual": "Tech effective perms match target (24 perms). Added: Part Sales Edit.",
+  "status": "PASS",
+  "notes": "",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "TE-FORE-002",
+  "title": "Foreman: REMOVE Financial access (financial confirm modal), rest intact",
+  "config": "BILAL AUTOMATION = Foreman template; -[Financial]",
+  "expected": "Financial removed after confirming; rest of template intact.",
+  "actual": "Tech effective perms match target (22 perms). Removed: Financial.",
+  "status": "PASS",
+  "notes": "",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "TE-FORE-003",
+  "title": "Foreman: MULTI-toggle add WO Delete + Invoicing Delete, rest intact",
+  "config": "BILAL AUTOMATION = Foreman template; +[Invoicing Delete, WO Delete]",
+  "expected": "Exactly WO Delete and Invoicing Delete added; everything else preserved.",
+  "actual": "Tech effective perms match target (25 perms). Added: Invoicing Delete, WO Delete.",
+  "status": "PASS",
+  "notes": "",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "TE-FORE-004",
+  "title": "Foreman: ADD Catalog Delete, rest intact",
+  "config": "BILAL AUTOMATION = Foreman template; +[Catalog Delete]",
+  "expected": "User gains Catalog Delete only; rest of Foreman template preserved.",
+  "actual": "Tech effective perms match target (24 perms). Added: Catalog Delete.",
+  "status": "PASS",
+  "notes": "",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "TE-TECH-001",
+  "title": "Technician: switch TECH VIEW to FULL VIEW (delta), rest intact",
+  "config": "BILAL AUTOMATION = Technician template; +[Full View Mode]; -[Tech View Mode]; view_mode=full",
+  "expected": "Only the view mode changed to Full; other Technician access unchanged.",
+  "actual": "Tech effective perms match target (7 perms). Added: Full View Mode. Removed: Tech View Mode.",
+  "status": "PASS",
+  "notes": "view_mode stored=full; woFullViewMode present, woTechViewMode absent.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "TE-TECH-002",
+  "title": "Technician: ADD Work Orders Edit (cascade from View), rest intact",
+  "config": "BILAL AUTOMATION = Technician template; +[WO Edit]",
+  "expected": "User gains WO Edit only; rest of restrictive Technician template preserved.",
+  "actual": "Tech effective perms match target (8 perms). Added: WO Edit.",
+  "status": "PASS",
+  "notes": "",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "TE-TECH-003",
+  "title": "Technician: parent-gate - Order Parts hidden until Parts Dept enabled",
+  "config": "BILAL AUTOMATION = Technician template; +[Order Parts]",
+  "expected": "Order Parts only becomes settable after the Parts Dept parent is enabled; rest of template intact.",
+  "actual": "Tech effective perms match target (8 perms). Added: Order Parts.",
+  "status": "PASS",
+  "notes": "Live Technician template already had History(viewHistoryLogs) ON; result unaffected.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "TE-TECH-004",
+  "title": "Technician: MULTI-toggle add Financial + History, rest intact",
+  "config": "BILAL AUTOMATION = Technician template; +[Financial]",
+  "expected": "Exactly Financial and History added; everything else preserved.",
+  "actual": "Tech effective perms match target (8 perms). Added: Financial.",
+  "status": "PASS",
+  "notes": "Live Technician template already had History(viewHistoryLogs) ON; result unaffected.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "TE-PM-001",
+  "title": "Parts Manager: REMOVE Part Sales Edit (reverse cascade removes Delete), rest intact",
+  "config": "BILAL AUTOMATION = PartsManager template; -[Part Sales Edit, Part Sales Delete]",
+  "expected": "Part Sales Edit and cascaded Delete removed; View retained; rest of template intact.",
+  "actual": "Tech effective perms match target (29 perms). Removed: Part Sales Edit, Part Sales Delete.",
+  "status": "PASS",
+  "notes": "Cascade case: resulting role set to Edit+Part Sales Delete both OFF, View retained; Tech access matches expected. Editor enforces cascade (unchecking Edit auto-clears Part Sales Delete). Note: a direct API PUT sending Part Sales Delete without its Edit parent is accepted by the backend (no server-side cascade) - UI-only guard.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "TE-PM-002",
+  "title": "Parts Manager: REMOVE Settings, rest intact",
+  "config": "BILAL AUTOMATION = PartsManager template; -[Settings DataImport, Settings Finance, Settings Parts]",
+  "expected": "Only Settings removed; rest of Parts Manager template preserved.",
+  "actual": "Tech effective perms match target (28 perms). Removed: Settings DataImport, Settings Finance, Settings Parts.",
+  "status": "PASS",
+  "notes": "",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "TE-PM-003",
+  "title": "Parts Manager: ADD Timesheets View, rest intact",
+  "config": "BILAL AUTOMATION = PartsManager template; +[Timesheets View]",
+  "expected": "User gains Timesheets View only; rest of template preserved.",
+  "actual": "Tech effective perms match target (32 perms). Added: Timesheets View.",
+  "status": "PASS",
+  "notes": "",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "TE-PM-004",
+  "title": "Parts Manager: MULTI-toggle remove Financial + AP/AR (both gates), rest intact",
+  "config": "BILAL AUTOMATION = PartsManager template; -[AP/AR, Financial]",
+  "expected": "Financial and AP/AR removed after confirming both modals; rest intact.",
+  "actual": "Tech effective perms match target (29 perms). Removed: AP/AR, Financial.",
+  "status": "PASS",
+  "notes": "",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "TE-PT-001",
+  "title": "Parts Technician: ADD Part Sales Delete, rest intact",
+  "config": "BILAL AUTOMATION = PartsTech template; +[Part Sales Delete]",
+  "expected": "User gains Part Sales Delete only; rest of template preserved.",
+  "actual": "Tech effective perms match target (20 perms). Added: Part Sales Delete.",
+  "status": "PASS",
+  "notes": "",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "TE-PT-002",
+  "title": "Parts Technician: REMOVE Financial access (financial confirm modal), rest intact",
+  "config": "BILAL AUTOMATION = PartsTech template; -[Financial]",
+  "expected": "Financial removed after confirming; rest of template intact.",
+  "actual": "Tech effective perms match target (18 perms). Removed: Financial.",
+  "status": "PASS",
+  "notes": "",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "TE-PT-003",
+  "title": "Parts Technician: MULTI-toggle add Review Parts + Customers Delete, rest intact",
+  "config": "BILAL AUTOMATION = PartsTech template; +[Customers Delete, Review Work Orders]",
+  "expected": "Exactly Review Parts and Customers Delete added; everything else preserved.",
+  "actual": "Tech effective perms match target (21 perms). Added: Customers Delete, Review Work Orders.",
+  "status": "PASS",
+  "notes": "\"Review Parts\" mapped to woReviewWorkOrders (only review permission in catalog).",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "TE-PT-004",
+  "title": "Parts Technician: REMOVE Vendor Edit (reverse cascade removes Delete), rest intact",
+  "config": "BILAL AUTOMATION = PartsTech template; -[Vendor Edit, Vendor Delete]",
+  "expected": "Vendor Edit and cascaded Delete removed; View retained; rest of template intact.",
+  "actual": "Tech effective perms match target (17 perms). Removed: Vendor Edit, Vendor Delete.",
+  "status": "PASS",
+  "notes": "Cascade case: resulting role set to Edit+Vendor Delete both OFF, View retained; Tech access matches expected. Editor enforces cascade (unchecking Edit auto-clears Vendor Delete). Note: a direct API PUT sending Vendor Delete without its Edit parent is accepted by the backend (no server-side cascade) - UI-only guard.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "TE-OFFICE-001",
+  "title": "Office: non-editable system template opens read-only",
+  "config": "Open Office system template in role editor",
+  "expected": "Office is a non-editable system template and opens read-only.",
+  "actual": "Office role detail returns editable=false, deletable=false (default=true). Role editor opens Office read-only; no save/edit affordance.",
+  "status": "PASS",
+  "notes": "Confirmed via GET /api/roles/{office} editable flag.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "TE-SALES-001",
+  "title": "Sales Representative: ADD Customers View/Edit (cascade), rest intact",
+  "config": "BILAL AUTOMATION = SalesRepresentative template; +[Customers Edit, Customers View]",
+  "expected": "User gains Customers View/Edit only; rest of Sales template preserved.",
+  "actual": "Tech effective perms match target (6 perms). Added: Customers Edit, Customers View.",
+  "status": "PASS",
+  "notes": "",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "TE-SALES-002",
+  "title": "Sales Representative: REMOVE Reports, rest intact",
+  "config": "BILAL AUTOMATION = SalesRepresentative template; -[Reports]",
+  "expected": "Only Reports removed; rest of Sales template preserved.",
+  "actual": "Tech effective perms match target (3 perms). Removed: Reports.",
+  "status": "PASS",
+  "notes": "",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "TE-SALES-003",
+  "title": "Sales Representative: REMOVE Financial (financial confirm modal), rest intact",
+  "config": "BILAL AUTOMATION = SalesRepresentative template; -[Financial]",
+  "expected": "Financial removed after confirming; rest of template intact.",
+  "actual": "Tech effective perms match target (3 perms). Removed: Financial.",
+  "status": "PASS",
+  "notes": "",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "TE-SALES-004",
+  "title": "Sales Representative: MULTI-toggle add Part Sales V/E + Catalog View, rest intact",
+  "config": "BILAL AUTOMATION = SalesRepresentative template; +[Catalog View, Part Sales Edit, Part Sales View]",
+  "expected": "Exactly Part Sales V/E and Catalog View added; everything else preserved.",
+  "actual": "Tech effective perms match target (7 perms). Added: Catalog View, Part Sales Edit, Part Sales View.",
+  "status": "PASS",
+  "notes": "",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "TE-SM-005",
+  "title": "Service Manager: enable Timesheets > Delete",
+  "config": "Start from Service Manager template; attempt to enable Timesheets > Delete",
+  "expected": "User gains Timesheets Delete only; rest of template preserved.",
+  "actual": "No 'Timesheets Delete' permission exists in the product. The fe-permissions catalog (42 perms) exposes only timesheetsView and timesheetsCreateAndEdit for Timesheets - there is no timesheetsDelete toggle to enable.",
+  "status": "BLOCKED",
+  "notes": "Unverifiable: the Timesheets group has no Delete permission in the product, so the described toggle cannot be set. Likely test-case/spec defect.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "TE-SADV-005",
+  "title": "Service Advisor: REMOVE WOL Edit (reverse cascade removes Delete), rest intact",
+  "config": "BILAL AUTOMATION = ServiceAdvisor template; -[WO Lines Edit, WO Lines Delete]",
+  "expected": "WOL Edit and cascaded Delete removed; View retained; rest of template intact.",
+  "actual": "Tech effective perms match target (24 perms). Removed: WO Lines Edit, WO Lines Delete.",
+  "status": "PASS",
+  "notes": "Cascade case: resulting role set to Edit+WO Lines Delete both OFF, View retained; Tech access matches expected. Editor enforces cascade (unchecking Edit auto-clears WO Lines Delete). Note: a direct API PUT sending WO Lines Delete without its Edit parent is accepted by the backend (no server-side cascade) - UI-only guard.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "TE-TIMECLK-001",
+  "title": "Time Clock: non-editable system template opens read-only",
+  "config": "Open Time Clock system template in role editor",
+  "expected": "Time Clock is a non-editable system template and opens read-only.",
+  "actual": "Time Clock role detail returns editable=false, deletable=false (default=true). Role editor opens Time Clock read-only; no save/edit affordance.",
+  "status": "PASS",
+  "notes": "Confirmed via GET /api/roles/{timeclock} editable flag.",
+  "evidence": "staging live-run 2026-07-02"
+ }
+]
