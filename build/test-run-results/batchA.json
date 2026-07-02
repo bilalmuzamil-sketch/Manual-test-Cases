@@ -1,522 +1,522 @@
 [
-  {
-    "test_id": "SP-WO-001",
-    "title": "WO View grants Work Orders nav and read-only WO access",
-    "config": "Work Orders: View ON, Edit OFF, Delete OFF. All other permissions OFF.",
-    "expected": "User can see the WO list and open WO detail read-only; no create/edit/delete affordances appear.",
-    "actual": "Not observed \u2014 aborted: tech quick-login returned HTTP 403 after custom-role assignment (SP-WO-001).",
-    "status": "NOT_RUN",
-    "notes": "Health check passed (tech quick-login 200 with original Time Clock role). After assigning the required custom role (BILAL AUTOMATION) to Tech, POST /api/quick-login {key:'tech'} began returning HTTP 403 'Access denied' \u2014 confirmed twice in isolated fresh browsers. Per EARLY-ABORT rule, run stopped at first config (SP-WO-001). Tech restored to Time Clock role (77b069d1-...); BILAL AUTOMATION deleted (0 users). Tech quick-login remained 403 across bounded retries even after restore, indicating the tech-QL breakage on custom-role assignment persists (same failure mode as prior run). No per-role UI could be observed as Tech.",
-    "evidence": "staging live-run as Tech 2026-07-01"
-  },
-  {
-    "test_id": "SP-WO-002",
-    "title": "WO View OFF hides Work Orders nav and blocks direct URL",
-    "config": "Work Orders: View OFF, Edit OFF, Delete OFF. All other permissions OFF.",
-    "expected": "With WO View OFF the Work Orders nav is hidden and direct-URL access to a WO is blocked.",
-    "actual": "Not observed \u2014 aborted: tech quick-login returned HTTP 403 after custom-role assignment (SP-WO-001).",
-    "status": "NOT_RUN",
-    "notes": "Health check passed (tech quick-login 200 with original Time Clock role). After assigning the required custom role (BILAL AUTOMATION) to Tech, POST /api/quick-login {key:'tech'} began returning HTTP 403 'Access denied' \u2014 confirmed twice in isolated fresh browsers. Per EARLY-ABORT rule, run stopped at first config (SP-WO-001). Tech restored to Time Clock role (77b069d1-...); BILAL AUTOMATION deleted (0 users). Tech quick-login remained 403 across bounded retries even after restore, indicating the tech-QL breakage on custom-role assignment persists (same failure mode as prior run). No per-role UI could be observed as Tech.",
-    "evidence": "staging live-run as Tech 2026-07-01"
-  },
-  {
-    "test_id": "SP-WO-003",
-    "title": "WO Edit grants create/edit of WO fields (asset, advisor, tech, status)",
-    "config": "Work Orders: Edit ON (View auto-enabled), Delete OFF. All other permissions OFF.",
-    "expected": "User can create WOs and edit customer details, asset, service advisor, lead technician and status; cannot delete WOs.",
-    "actual": "Not observed \u2014 aborted: tech quick-login returned HTTP 403 after custom-role assignment (SP-WO-001).",
-    "status": "NOT_RUN",
-    "notes": "Health check passed (tech quick-login 200 with original Time Clock role). After assigning the required custom role (BILAL AUTOMATION) to Tech, POST /api/quick-login {key:'tech'} began returning HTTP 403 'Access denied' \u2014 confirmed twice in isolated fresh browsers. Per EARLY-ABORT rule, run stopped at first config (SP-WO-001). Tech restored to Time Clock role (77b069d1-...); BILAL AUTOMATION deleted (0 users). Tech quick-login remained 403 across bounded retries even after restore, indicating the tech-QL breakage on custom-role assignment persists (same failure mode as prior run). No per-role UI could be observed as Tech.",
-    "evidence": "staging live-run as Tech 2026-07-01"
-  },
-  {
-    "test_id": "SP-WO-004",
-    "title": "WO Edit OFF blocks create/edit while View remains read-only",
-    "config": "Work Orders: View ON, Edit OFF, Delete OFF. All other permissions OFF.",
-    "expected": "With Edit OFF the user cannot create WOs or edit WO fields; WO detail stays read-only.",
-    "actual": "Not observed \u2014 aborted: tech quick-login returned HTTP 403 after custom-role assignment (SP-WO-001).",
-    "status": "NOT_RUN",
-    "notes": "Health check passed (tech quick-login 200 with original Time Clock role). After assigning the required custom role (BILAL AUTOMATION) to Tech, POST /api/quick-login {key:'tech'} began returning HTTP 403 'Access denied' \u2014 confirmed twice in isolated fresh browsers. Per EARLY-ABORT rule, run stopped at first config (SP-WO-001). Tech restored to Time Clock role (77b069d1-...); BILAL AUTOMATION deleted (0 users). Tech quick-login remained 403 across bounded retries even after restore, indicating the tech-QL breakage on custom-role assignment persists (same failure mode as prior run). No per-role UI could be observed as Tech.",
-    "evidence": "staging live-run as Tech 2026-07-01"
-  },
-  {
-    "test_id": "SP-WO-005",
-    "title": "WO Delete grants delete WO and invoice reversal (no payments)",
-    "config": "Work Orders: Delete ON (Edit+View auto-enabled), all other permissions OFF.",
-    "expected": "User can delete WOs and reverse invoices when no payments have been made.",
-    "actual": "Not observed \u2014 aborted: tech quick-login returned HTTP 403 after custom-role assignment (SP-WO-001).",
-    "status": "NOT_RUN",
-    "notes": "Health check passed (tech quick-login 200 with original Time Clock role). After assigning the required custom role (BILAL AUTOMATION) to Tech, POST /api/quick-login {key:'tech'} began returning HTTP 403 'Access denied' \u2014 confirmed twice in isolated fresh browsers. Per EARLY-ABORT rule, run stopped at first config (SP-WO-001). Tech restored to Time Clock role (77b069d1-...); BILAL AUTOMATION deleted (0 users). Tech quick-login remained 403 across bounded retries even after restore, indicating the tech-QL breakage on custom-role assignment persists (same failure mode as prior run). No per-role UI could be observed as Tech.",
-    "evidence": "staging live-run as Tech 2026-07-01"
-  },
-  {
-    "test_id": "SP-WO-006",
-    "title": "WO Delete OFF hides delete and blocks invoice reversal",
-    "config": "Work Orders: Edit ON (View auto-enabled), Delete OFF. All other permissions OFF.",
-    "expected": "With WO Delete OFF the user cannot delete WOs nor reverse invoices.",
-    "actual": "Not observed \u2014 aborted: tech quick-login returned HTTP 403 after custom-role assignment (SP-WO-001).",
-    "status": "NOT_RUN",
-    "notes": "Health check passed (tech quick-login 200 with original Time Clock role). After assigning the required custom role (BILAL AUTOMATION) to Tech, POST /api/quick-login {key:'tech'} began returning HTTP 403 'Access denied' \u2014 confirmed twice in isolated fresh browsers. Per EARLY-ABORT rule, run stopped at first config (SP-WO-001). Tech restored to Time Clock role (77b069d1-...); BILAL AUTOMATION deleted (0 users). Tech quick-login remained 403 across bounded retries even after restore, indicating the tech-QL breakage on custom-role assignment persists (same failure mode as prior run). No per-role UI could be observed as Tech.",
-    "evidence": "staging live-run as Tech 2026-07-01"
-  },
-  {
-    "test_id": "SP-WO-007",
-    "title": "WO cascade: enabling Edit auto-enables View",
-    "config": "Work Orders all OFF, then toggle Edit ON during editing.",
-    "expected": "Enabling Edit auto-enables View in the role editor.",
-    "actual": "Not observed \u2014 aborted: tech quick-login returned HTTP 403 after custom-role assignment (SP-WO-001).",
-    "status": "NOT_RUN",
-    "notes": "Health check passed (tech quick-login 200 with original Time Clock role). After assigning the required custom role (BILAL AUTOMATION) to Tech, POST /api/quick-login {key:'tech'} began returning HTTP 403 'Access denied' \u2014 confirmed twice in isolated fresh browsers. Per EARLY-ABORT rule, run stopped at first config (SP-WO-001). Tech restored to Time Clock role (77b069d1-...); BILAL AUTOMATION deleted (0 users). Tech quick-login remained 403 across bounded retries even after restore, indicating the tech-QL breakage on custom-role assignment persists (same failure mode as prior run). No per-role UI could be observed as Tech.",
-    "evidence": "staging live-run as Tech 2026-07-01"
-  },
-  {
-    "test_id": "SP-WO-008",
-    "title": "WO cascade: enabling Delete auto-enables Edit and View",
-    "config": "Work Orders all OFF, then toggle Delete ON during editing.",
-    "expected": "Enabling Delete auto-enables Edit and View.",
-    "actual": "Not observed \u2014 aborted: tech quick-login returned HTTP 403 after custom-role assignment (SP-WO-001).",
-    "status": "NOT_RUN",
-    "notes": "Health check passed (tech quick-login 200 with original Time Clock role). After assigning the required custom role (BILAL AUTOMATION) to Tech, POST /api/quick-login {key:'tech'} began returning HTTP 403 'Access denied' \u2014 confirmed twice in isolated fresh browsers. Per EARLY-ABORT rule, run stopped at first config (SP-WO-001). Tech restored to Time Clock role (77b069d1-...); BILAL AUTOMATION deleted (0 users). Tech quick-login remained 403 across bounded retries even after restore, indicating the tech-QL breakage on custom-role assignment persists (same failure mode as prior run). No per-role UI could be observed as Tech.",
-    "evidence": "staging live-run as Tech 2026-07-01"
-  },
-  {
-    "test_id": "SP-WO-009",
-    "title": "WO reverse-cascade: disabling View auto-disables Edit and Delete",
-    "config": "Work Orders: Delete ON (Edit+View on), then disable View.",
-    "expected": "Disabling View auto-disables Edit and Delete.",
-    "actual": "Not observed \u2014 aborted: tech quick-login returned HTTP 403 after custom-role assignment (SP-WO-001).",
-    "status": "NOT_RUN",
-    "notes": "Health check passed (tech quick-login 200 with original Time Clock role). After assigning the required custom role (BILAL AUTOMATION) to Tech, POST /api/quick-login {key:'tech'} began returning HTTP 403 'Access denied' \u2014 confirmed twice in isolated fresh browsers. Per EARLY-ABORT rule, run stopped at first config (SP-WO-001). Tech restored to Time Clock role (77b069d1-...); BILAL AUTOMATION deleted (0 users). Tech quick-login remained 403 across bounded retries even after restore, indicating the tech-QL breakage on custom-role assignment persists (same failure mode as prior run). No per-role UI could be observed as Tech.",
-    "evidence": "staging live-run as Tech 2026-07-01"
-  },
-  {
-    "test_id": "SP-WO-010",
-    "title": "WO reverse-cascade: disabling Edit auto-disables Delete",
-    "config": "Work Orders: Delete ON (Edit+View on), then disable Edit.",
-    "expected": "Disabling Edit auto-disables Delete while View stays ON.",
-    "actual": "Not observed \u2014 aborted: tech quick-login returned HTTP 403 after custom-role assignment (SP-WO-001).",
-    "status": "NOT_RUN",
-    "notes": "Health check passed (tech quick-login 200 with original Time Clock role). After assigning the required custom role (BILAL AUTOMATION) to Tech, POST /api/quick-login {key:'tech'} began returning HTTP 403 'Access denied' \u2014 confirmed twice in isolated fresh browsers. Per EARLY-ABORT rule, run stopped at first config (SP-WO-001). Tech restored to Time Clock role (77b069d1-...); BILAL AUTOMATION deleted (0 users). Tech quick-login remained 403 across bounded retries even after restore, indicating the tech-QL breakage on custom-role assignment persists (same failure mode as prior run). No per-role UI could be observed as Tech.",
-    "evidence": "staging live-run as Tech 2026-07-01"
-  },
-  {
-    "test_id": "SP-WOL-001",
-    "title": "WOL Edit grants line/part/inspection editing on WOs",
-    "config": "Work Orders: View ON. WO Lines: Edit ON, Delete OFF. All other permissions OFF.",
-    "expected": "User can add/edit lines, move parts, authorize lines, manage part requests, add inspections and edit mileage/engine hours/plate/VIN; cannot delete lines.",
-    "actual": "Not observed \u2014 aborted: tech quick-login returned HTTP 403 after custom-role assignment (SP-WO-001).",
-    "status": "NOT_RUN",
-    "notes": "Health check passed (tech quick-login 200 with original Time Clock role). After assigning the required custom role (BILAL AUTOMATION) to Tech, POST /api/quick-login {key:'tech'} began returning HTTP 403 'Access denied' \u2014 confirmed twice in isolated fresh browsers. Per EARLY-ABORT rule, run stopped at first config (SP-WO-001). Tech restored to Time Clock role (77b069d1-...); BILAL AUTOMATION deleted (0 users). Tech quick-login remained 403 across bounded retries even after restore, indicating the tech-QL breakage on custom-role assignment persists (same failure mode as prior run). No per-role UI could be observed as Tech.",
-    "evidence": "staging live-run as Tech 2026-07-01"
-  },
-  {
-    "test_id": "SP-WOL-002",
-    "title": "WOL Edit OFF blocks line editing (view-only WO lines)",
-    "config": "Work Orders: View ON. WO Lines: Edit OFF, Delete OFF. All other permissions OFF.",
-    "expected": "With WOL Edit OFF lines are visible (via WO View) but not editable.",
-    "actual": "Not observed \u2014 aborted: tech quick-login returned HTTP 403 after custom-role assignment (SP-WO-001).",
-    "status": "NOT_RUN",
-    "notes": "Health check passed (tech quick-login 200 with original Time Clock role). After assigning the required custom role (BILAL AUTOMATION) to Tech, POST /api/quick-login {key:'tech'} began returning HTTP 403 'Access denied' \u2014 confirmed twice in isolated fresh browsers. Per EARLY-ABORT rule, run stopped at first config (SP-WO-001). Tech restored to Time Clock role (77b069d1-...); BILAL AUTOMATION deleted (0 users). Tech quick-login remained 403 across bounded retries even after restore, indicating the tech-QL breakage on custom-role assignment persists (same failure mode as prior run). No per-role UI could be observed as Tech.",
-    "evidence": "staging live-run as Tech 2026-07-01"
-  },
-  {
-    "test_id": "SP-WOL-003",
-    "title": "WOL Delete grants line removal and inspection reopen/remove",
-    "config": "Work Orders: View ON. WO Lines: Delete ON (Edit auto-enabled). All other permissions OFF.",
-    "expected": "User can remove lines, remove not-yet-complete inspections and reopen completed inspections.",
-    "actual": "Not observed \u2014 aborted: tech quick-login returned HTTP 403 after custom-role assignment (SP-WO-001).",
-    "status": "NOT_RUN",
-    "notes": "Health check passed (tech quick-login 200 with original Time Clock role). After assigning the required custom role (BILAL AUTOMATION) to Tech, POST /api/quick-login {key:'tech'} began returning HTTP 403 'Access denied' \u2014 confirmed twice in isolated fresh browsers. Per EARLY-ABORT rule, run stopped at first config (SP-WO-001). Tech restored to Time Clock role (77b069d1-...); BILAL AUTOMATION deleted (0 users). Tech quick-login remained 403 across bounded retries even after restore, indicating the tech-QL breakage on custom-role assignment persists (same failure mode as prior run). No per-role UI could be observed as Tech.",
-    "evidence": "staging live-run as Tech 2026-07-01"
-  },
-  {
-    "test_id": "SP-WOL-004",
-    "title": "WOL editor blocks WOL Edit while WO View is OFF (SV-7981)",
-    "config": "Work Orders: View OFF. Attempt to enable WO Lines Edit in editor.",
-    "expected": "WOL Edit cannot be enabled while WO View is OFF; WOL requires WO View to be usable.",
-    "actual": "Not observed \u2014 aborted: tech quick-login returned HTTP 403 after custom-role assignment (SP-WO-001).",
-    "status": "NOT_RUN",
-    "notes": "Health check passed (tech quick-login 200 with original Time Clock role). After assigning the required custom role (BILAL AUTOMATION) to Tech, POST /api/quick-login {key:'tech'} began returning HTTP 403 'Access denied' \u2014 confirmed twice in isolated fresh browsers. Per EARLY-ABORT rule, run stopped at first config (SP-WO-001). Tech restored to Time Clock role (77b069d1-...); BILAL AUTOMATION deleted (0 users). Tech quick-login remained 403 across bounded retries even after restore, indicating the tech-QL breakage on custom-role assignment persists (same failure mode as prior run). No per-role UI could be observed as Tech.",
-    "evidence": "staging live-run as Tech 2026-07-01"
-  },
-  {
-    "test_id": "SP-SCH-001",
-    "title": "Schedule View grants calendar/appointments/tech assignments (all techs)",
-    "config": "Schedule: View ON, Edit OFF, Delete OFF. All other permissions OFF.",
-    "expected": "User can view the calendar, appointments and tech assignments for all technicians, read-only.",
-    "actual": "Not observed \u2014 aborted: tech quick-login returned HTTP 403 after custom-role assignment (SP-WO-001).",
-    "status": "NOT_RUN",
-    "notes": "Health check passed (tech quick-login 200 with original Time Clock role). After assigning the required custom role (BILAL AUTOMATION) to Tech, POST /api/quick-login {key:'tech'} began returning HTTP 403 'Access denied' \u2014 confirmed twice in isolated fresh browsers. Per EARLY-ABORT rule, run stopped at first config (SP-WO-001). Tech restored to Time Clock role (77b069d1-...); BILAL AUTOMATION deleted (0 users). Tech quick-login remained 403 across bounded retries even after restore, indicating the tech-QL breakage on custom-role assignment persists (same failure mode as prior run). No per-role UI could be observed as Tech.",
-    "evidence": "staging live-run as Tech 2026-07-01"
-  },
-  {
-    "test_id": "SP-SCH-002",
-    "title": "Schedule View OFF hides Schedule nav and blocks direct URL",
-    "config": "Schedule: View OFF, Edit OFF, Delete OFF. All other permissions OFF.",
-    "expected": "With Schedule View OFF the Schedule nav is hidden and direct-URL access is blocked.",
-    "actual": "Not observed \u2014 aborted: tech quick-login returned HTTP 403 after custom-role assignment (SP-WO-001).",
-    "status": "NOT_RUN",
-    "notes": "Health check passed (tech quick-login 200 with original Time Clock role). After assigning the required custom role (BILAL AUTOMATION) to Tech, POST /api/quick-login {key:'tech'} began returning HTTP 403 'Access denied' \u2014 confirmed twice in isolated fresh browsers. Per EARLY-ABORT rule, run stopped at first config (SP-WO-001). Tech restored to Time Clock role (77b069d1-...); BILAL AUTOMATION deleted (0 users). Tech quick-login remained 403 across bounded retries even after restore, indicating the tech-QL breakage on custom-role assignment persists (same failure mode as prior run). No per-role UI could be observed as Tech.",
-    "evidence": "staging live-run as Tech 2026-07-01"
-  },
-  {
-    "test_id": "SP-SCH-003",
-    "title": "Schedule Edit grants create/modify appointments, tech assign, drag-and-drop",
-    "config": "Schedule: Edit ON (View auto-enabled), Delete OFF. All other permissions OFF.",
-    "expected": "User can create/modify appointments, assign techs and drag-and-drop; cannot delete appointments.",
-    "actual": "Not observed \u2014 aborted: tech quick-login returned HTTP 403 after custom-role assignment (SP-WO-001).",
-    "status": "NOT_RUN",
-    "notes": "Health check passed (tech quick-login 200 with original Time Clock role). After assigning the required custom role (BILAL AUTOMATION) to Tech, POST /api/quick-login {key:'tech'} began returning HTTP 403 'Access denied' \u2014 confirmed twice in isolated fresh browsers. Per EARLY-ABORT rule, run stopped at first config (SP-WO-001). Tech restored to Time Clock role (77b069d1-...); BILAL AUTOMATION deleted (0 users). Tech quick-login remained 403 across bounded retries even after restore, indicating the tech-QL breakage on custom-role assignment persists (same failure mode as prior run). No per-role UI could be observed as Tech.",
-    "evidence": "staging live-run as Tech 2026-07-01"
-  },
-  {
-    "test_id": "SP-SCH-004",
-    "title": "Schedule Delete grants remove appointments; reverse-cascade check",
-    "config": "Schedule: Delete ON (Edit+View auto-enabled), then disable View to check reverse cascade.",
-    "expected": "Schedule Delete allows removing appointments; cascade auto-enables Edit+View and reverse-cascade disables them when View is turned OFF.",
-    "actual": "Not observed \u2014 aborted: tech quick-login returned HTTP 403 after custom-role assignment (SP-WO-001).",
-    "status": "NOT_RUN",
-    "notes": "Health check passed (tech quick-login 200 with original Time Clock role). After assigning the required custom role (BILAL AUTOMATION) to Tech, POST /api/quick-login {key:'tech'} began returning HTTP 403 'Access denied' \u2014 confirmed twice in isolated fresh browsers. Per EARLY-ABORT rule, run stopped at first config (SP-WO-001). Tech restored to Time Clock role (77b069d1-...); BILAL AUTOMATION deleted (0 users). Tech quick-login remained 403 across bounded retries even after restore, indicating the tech-QL breakage on custom-role assignment persists (same failure mode as prior run). No per-role UI could be observed as Tech.",
-    "evidence": "staging live-run as Tech 2026-07-01"
-  },
-  {
-    "test_id": "SP-CUST-001",
-    "title": "Customer View grants customer records/contacts/vehicles/history",
-    "config": "Customer Management: View ON, Edit OFF, Delete OFF. All other permissions OFF.",
-    "expected": "User can view customer records, contacts, vehicles and history, read-only.",
-    "actual": "Not observed \u2014 aborted: tech quick-login returned HTTP 403 after custom-role assignment (SP-WO-001).",
-    "status": "NOT_RUN",
-    "notes": "Health check passed (tech quick-login 200 with original Time Clock role). After assigning the required custom role (BILAL AUTOMATION) to Tech, POST /api/quick-login {key:'tech'} began returning HTTP 403 'Access denied' \u2014 confirmed twice in isolated fresh browsers. Per EARLY-ABORT rule, run stopped at first config (SP-WO-001). Tech restored to Time Clock role (77b069d1-...); BILAL AUTOMATION deleted (0 users). Tech quick-login remained 403 across bounded retries even after restore, indicating the tech-QL breakage on custom-role assignment persists (same failure mode as prior run). No per-role UI could be observed as Tech.",
-    "evidence": "staging live-run as Tech 2026-07-01"
-  },
-  {
-    "test_id": "SP-CUST-002",
-    "title": "Customer View OFF hides Customers nav and blocks direct URL",
-    "config": "Customer Management: View OFF, Edit OFF, Delete OFF. All other permissions OFF.",
-    "expected": "With Customer View OFF the Customers nav is hidden and direct-URL access is blocked.",
-    "actual": "Not observed \u2014 aborted: tech quick-login returned HTTP 403 after custom-role assignment (SP-WO-001).",
-    "status": "NOT_RUN",
-    "notes": "Health check passed (tech quick-login 200 with original Time Clock role). After assigning the required custom role (BILAL AUTOMATION) to Tech, POST /api/quick-login {key:'tech'} began returning HTTP 403 'Access denied' \u2014 confirmed twice in isolated fresh browsers. Per EARLY-ABORT rule, run stopped at first config (SP-WO-001). Tech restored to Time Clock role (77b069d1-...); BILAL AUTOMATION deleted (0 users). Tech quick-login remained 403 across bounded retries even after restore, indicating the tech-QL breakage on custom-role assignment persists (same failure mode as prior run). No per-role UI could be observed as Tech.",
-    "evidence": "staging live-run as Tech 2026-07-01"
-  },
-  {
-    "test_id": "SP-CUST-003",
-    "title": "Customer Edit grants create/edit customers, contacts, vehicles and New-WO Add buttons",
-    "config": "Customer Management: Edit ON (View auto-enabled), Delete OFF. Work Orders: Edit ON (View auto) so New WO flow is reachable. All other permissions OFF.",
-    "expected": "User can create/edit customers, manage contacts/vehicles, and create customers/assets in the New WO flow.",
-    "actual": "Not observed \u2014 aborted: tech quick-login returned HTTP 403 after custom-role assignment (SP-WO-001).",
-    "status": "NOT_RUN",
-    "notes": "Health check passed (tech quick-login 200 with original Time Clock role). After assigning the required custom role (BILAL AUTOMATION) to Tech, POST /api/quick-login {key:'tech'} began returning HTTP 403 'Access denied' \u2014 confirmed twice in isolated fresh browsers. Per EARLY-ABORT rule, run stopped at first config (SP-WO-001). Tech restored to Time Clock role (77b069d1-...); BILAL AUTOMATION deleted (0 users). Tech quick-login remained 403 across bounded retries even after restore, indicating the tech-QL breakage on custom-role assignment persists (same failure mode as prior run). No per-role UI could be observed as Tech.",
-    "evidence": "staging live-run as Tech 2026-07-01"
-  },
-  {
-    "test_id": "SP-CUST-004",
-    "title": "Customer Edit OFF hides Add Customer/Add Asset in New WO flow",
-    "config": "Customer Management: View ON, Edit OFF. Work Orders: Edit ON (View auto). All other permissions OFF.",
-    "expected": "With Customer Edit OFF the Add Customer/Add Asset buttons are hidden in the New WO flow.",
-    "actual": "Not observed \u2014 aborted: tech quick-login returned HTTP 403 after custom-role assignment (SP-WO-001).",
-    "status": "NOT_RUN",
-    "notes": "Health check passed (tech quick-login 200 with original Time Clock role). After assigning the required custom role (BILAL AUTOMATION) to Tech, POST /api/quick-login {key:'tech'} began returning HTTP 403 'Access denied' \u2014 confirmed twice in isolated fresh browsers. Per EARLY-ABORT rule, run stopped at first config (SP-WO-001). Tech restored to Time Clock role (77b069d1-...); BILAL AUTOMATION deleted (0 users). Tech quick-login remained 403 across bounded retries even after restore, indicating the tech-QL breakage on custom-role assignment persists (same failure mode as prior run). No per-role UI could be observed as Tech.",
-    "evidence": "staging live-run as Tech 2026-07-01"
-  },
-  {
-    "test_id": "SP-CUST-005",
-    "title": "Customer Delete grants delete of customer records only (not payments)",
-    "config": "Customer Management: Delete ON (Edit+View auto). All other permissions OFF (Invoicing Delete OFF).",
-    "expected": "User can delete customer records but not customer payments (payments require Invoicing Delete).",
-    "actual": "Not observed \u2014 aborted: tech quick-login returned HTTP 403 after custom-role assignment (SP-WO-001).",
-    "status": "NOT_RUN",
-    "notes": "Health check passed (tech quick-login 200 with original Time Clock role). After assigning the required custom role (BILAL AUTOMATION) to Tech, POST /api/quick-login {key:'tech'} began returning HTTP 403 'Access denied' \u2014 confirmed twice in isolated fresh browsers. Per EARLY-ABORT rule, run stopped at first config (SP-WO-001). Tech restored to Time Clock role (77b069d1-...); BILAL AUTOMATION deleted (0 users). Tech quick-login remained 403 across bounded retries even after restore, indicating the tech-QL breakage on custom-role assignment persists (same failure mode as prior run). No per-role UI could be observed as Tech.",
-    "evidence": "staging live-run as Tech 2026-07-01"
-  },
-  {
-    "test_id": "SP-CUST-006",
-    "title": "Sensitive customer fields gated by Manage AP/AR, not Customer permission",
-    "config": "Customer Management: View ON. View and Manage AP/AR Data OFF. All other permissions OFF.",
-    "expected": "Sensitive customer fields remain gated by View and Manage AP/AR Data regardless of Customer View.",
-    "actual": "Not observed \u2014 aborted: tech quick-login returned HTTP 403 after custom-role assignment (SP-WO-001).",
-    "status": "NOT_RUN",
-    "notes": "Health check passed (tech quick-login 200 with original Time Clock role). After assigning the required custom role (BILAL AUTOMATION) to Tech, POST /api/quick-login {key:'tech'} began returning HTTP 403 'Access denied' \u2014 confirmed twice in isolated fresh browsers. Per EARLY-ABORT rule, run stopped at first config (SP-WO-001). Tech restored to Time Clock role (77b069d1-...); BILAL AUTOMATION deleted (0 users). Tech quick-login remained 403 across bounded retries even after restore, indicating the tech-QL breakage on custom-role assignment persists (same failure mode as prior run). No per-role UI could be observed as Tech.",
-    "evidence": "staging live-run as Tech 2026-07-01"
-  },
-  {
-    "test_id": "SP-PS-001",
-    "title": "Part Sales View grants part sales records/returns/transactions (parent+financial on)",
-    "config": "Parts Department: ON. See Financial Data: ON. Part Sales: View ON, Edit OFF, Delete OFF. All other permissions OFF.",
-    "expected": "User can view part sales records, returns and transactions, read-only.",
-    "actual": "Not observed \u2014 aborted: tech quick-login returned HTTP 403 after custom-role assignment (SP-WO-001).",
-    "status": "NOT_RUN",
-    "notes": "Health check passed (tech quick-login 200 with original Time Clock role). After assigning the required custom role (BILAL AUTOMATION) to Tech, POST /api/quick-login {key:'tech'} began returning HTTP 403 'Access denied' \u2014 confirmed twice in isolated fresh browsers. Per EARLY-ABORT rule, run stopped at first config (SP-WO-001). Tech restored to Time Clock role (77b069d1-...); BILAL AUTOMATION deleted (0 users). Tech quick-login remained 403 across bounded retries even after restore, indicating the tech-QL breakage on custom-role assignment persists (same failure mode as prior run). No per-role UI could be observed as Tech.",
-    "evidence": "staging live-run as Tech 2026-07-01"
-  },
-  {
-    "test_id": "SP-PS-002",
-    "title": "Part Sales financial gate: enabling CRUD while Financial OFF triggers confirm modal",
-    "config": "Parts Department ON. See Financial Data OFF. Then enable a Part Sales CRUD checkbox.",
-    "expected": "Enabling any Part Sales CRUD while See Financial Data is OFF triggers the financial confirm modal; Confirm auto-enables Financial, Cancel reverts.",
-    "actual": "Not observed \u2014 aborted: tech quick-login returned HTTP 403 after custom-role assignment (SP-WO-001).",
-    "status": "NOT_RUN",
-    "notes": "Health check passed (tech quick-login 200 with original Time Clock role). After assigning the required custom role (BILAL AUTOMATION) to Tech, POST /api/quick-login {key:'tech'} began returning HTTP 403 'Access denied' \u2014 confirmed twice in isolated fresh browsers. Per EARLY-ABORT rule, run stopped at first config (SP-WO-001). Tech restored to Time Clock role (77b069d1-...); BILAL AUTOMATION deleted (0 users). Tech quick-login remained 403 across bounded retries even after restore, indicating the tech-QL breakage on custom-role assignment persists (same failure mode as prior run). No per-role UI could be observed as Tech.",
-    "evidence": "staging live-run as Tech 2026-07-01"
-  },
-  {
-    "test_id": "SP-PS-003",
-    "title": "Part Sales parent gate: unavailable when Parts Department OFF",
-    "config": "Parts Department OFF. Observe Part Sales checkboxes.",
-    "expected": "Part Sales permissions are gated behind the Parts Department parent and unavailable when it is OFF.",
-    "actual": "Not observed \u2014 aborted: tech quick-login returned HTTP 403 after custom-role assignment (SP-WO-001).",
-    "status": "NOT_RUN",
-    "notes": "Health check passed (tech quick-login 200 with original Time Clock role). After assigning the required custom role (BILAL AUTOMATION) to Tech, POST /api/quick-login {key:'tech'} began returning HTTP 403 'Access denied' \u2014 confirmed twice in isolated fresh browsers. Per EARLY-ABORT rule, run stopped at first config (SP-WO-001). Tech restored to Time Clock role (77b069d1-...); BILAL AUTOMATION deleted (0 users). Tech quick-login remained 403 across bounded retries even after restore, indicating the tech-QL breakage on custom-role assignment persists (same failure mode as prior run). No per-role UI could be observed as Tech.",
-    "evidence": "staging live-run as Tech 2026-07-01"
-  },
-  {
-    "test_id": "SP-PS-004",
-    "title": "Part Sales Edit grants create sales/returns and process transactions",
-    "config": "Parts Department ON. See Financial Data ON. Part Sales: Edit ON (View auto), Delete OFF. All other permissions OFF.",
-    "expected": "User can create part sales/returns and process transactions; cannot delete or reverse.",
-    "actual": "Not observed \u2014 aborted: tech quick-login returned HTTP 403 after custom-role assignment (SP-WO-001).",
-    "status": "NOT_RUN",
-    "notes": "Health check passed (tech quick-login 200 with original Time Clock role). After assigning the required custom role (BILAL AUTOMATION) to Tech, POST /api/quick-login {key:'tech'} began returning HTTP 403 'Access denied' \u2014 confirmed twice in isolated fresh browsers. Per EARLY-ABORT rule, run stopped at first config (SP-WO-001). Tech restored to Time Clock role (77b069d1-...); BILAL AUTOMATION deleted (0 users). Tech quick-login remained 403 across bounded retries even after restore, indicating the tech-QL breakage on custom-role assignment persists (same failure mode as prior run). No per-role UI could be observed as Tech.",
-    "evidence": "staging live-run as Tech 2026-07-01"
-  },
-  {
-    "test_id": "SP-PS-005",
-    "title": "Part Sales Delete grants delete sales and reverse part-sale invoices",
-    "config": "Parts Department ON. See Financial Data ON. Part Sales: Delete ON (Edit+View auto). All other permissions OFF.",
-    "expected": "User can delete part sales and reverse part-sale invoices.",
-    "actual": "Not observed \u2014 aborted: tech quick-login returned HTTP 403 after custom-role assignment (SP-WO-001).",
-    "status": "NOT_RUN",
-    "notes": "Health check passed (tech quick-login 200 with original Time Clock role). After assigning the required custom role (BILAL AUTOMATION) to Tech, POST /api/quick-login {key:'tech'} began returning HTTP 403 'Access denied' \u2014 confirmed twice in isolated fresh browsers. Per EARLY-ABORT rule, run stopped at first config (SP-WO-001). Tech restored to Time Clock role (77b069d1-...); BILAL AUTOMATION deleted (0 users). Tech quick-login remained 403 across bounded retries even after restore, indicating the tech-QL breakage on custom-role assignment persists (same failure mode as prior run). No per-role UI could be observed as Tech.",
-    "evidence": "staging live-run as Tech 2026-07-01"
-  },
-  {
-    "test_id": "SP-PS-006",
-    "title": "Part Sales not reachable via direct URL without access (SV-7965)",
-    "config": "Parts Department OFF; Part Sales all OFF. All other permissions OFF.",
-    "expected": "Without Part Sales access, part sales cannot be reached via direct URL.",
-    "actual": "Not observed \u2014 aborted: tech quick-login returned HTTP 403 after custom-role assignment (SP-WO-001).",
-    "status": "NOT_RUN",
-    "notes": "Health check passed (tech quick-login 200 with original Time Clock role). After assigning the required custom role (BILAL AUTOMATION) to Tech, POST /api/quick-login {key:'tech'} began returning HTTP 403 'Access denied' \u2014 confirmed twice in isolated fresh browsers. Per EARLY-ABORT rule, run stopped at first config (SP-WO-001). Tech restored to Time Clock role (77b069d1-...); BILAL AUTOMATION deleted (0 users). Tech quick-login remained 403 across bounded retries even after restore, indicating the tech-QL breakage on custom-role assignment persists (same failure mode as prior run). No per-role UI could be observed as Tech.",
-    "evidence": "staging live-run as Tech 2026-07-01"
-  },
-  {
-    "test_id": "SP-CAT-001",
-    "title": "Catalog & Inventory View grants catalog/inventory/stock/history browsing",
-    "config": "Parts Department ON. Catalog & Inventory: View ON, Edit OFF, Delete OFF. All other permissions OFF.",
-    "expected": "User can browse catalog, inventory levels/stock and parts history, read-only.",
-    "actual": "Not observed \u2014 aborted: tech quick-login returned HTTP 403 after custom-role assignment (SP-WO-001).",
-    "status": "NOT_RUN",
-    "notes": "Health check passed (tech quick-login 200 with original Time Clock role). After assigning the required custom role (BILAL AUTOMATION) to Tech, POST /api/quick-login {key:'tech'} began returning HTTP 403 'Access denied' \u2014 confirmed twice in isolated fresh browsers. Per EARLY-ABORT rule, run stopped at first config (SP-WO-001). Tech restored to Time Clock role (77b069d1-...); BILAL AUTOMATION deleted (0 users). Tech quick-login remained 403 across bounded retries even after restore, indicating the tech-QL breakage on custom-role assignment persists (same failure mode as prior run). No per-role UI could be observed as Tech.",
-    "evidence": "staging live-run as Tech 2026-07-01"
-  },
-  {
-    "test_id": "SP-CAT-002",
-    "title": "Catalog & Inventory parent gate: unavailable when Parts Department OFF",
-    "config": "Parts Department OFF. Observe Catalog & Inventory checkboxes.",
-    "expected": "Catalog & Inventory permissions are gated behind the Parts Department parent.",
-    "actual": "Not observed \u2014 aborted: tech quick-login returned HTTP 403 after custom-role assignment (SP-WO-001).",
-    "status": "NOT_RUN",
-    "notes": "Health check passed (tech quick-login 200 with original Time Clock role). After assigning the required custom role (BILAL AUTOMATION) to Tech, POST /api/quick-login {key:'tech'} began returning HTTP 403 'Access denied' \u2014 confirmed twice in isolated fresh browsers. Per EARLY-ABORT rule, run stopped at first config (SP-WO-001). Tech restored to Time Clock role (77b069d1-...); BILAL AUTOMATION deleted (0 users). Tech quick-login remained 403 across bounded retries even after restore, indicating the tech-QL breakage on custom-role assignment persists (same failure mode as prior run). No per-role UI could be observed as Tech.",
-    "evidence": "staging live-run as Tech 2026-07-01"
-  },
-  {
-    "test_id": "SP-CAT-003",
-    "title": "Catalog & Inventory Edit grants catalog edits, adjustments and cycle counts",
-    "config": "Parts Department ON. Catalog & Inventory: Edit ON (View auto), Delete OFF. All other permissions OFF.",
-    "expected": "User can create/edit catalog entries, make inventory adjustments incl. return-to-inventory, and run cycle counts; cannot delete catalog parts.",
-    "actual": "Not observed \u2014 aborted: tech quick-login returned HTTP 403 after custom-role assignment (SP-WO-001).",
-    "status": "NOT_RUN",
-    "notes": "Health check passed (tech quick-login 200 with original Time Clock role). After assigning the required custom role (BILAL AUTOMATION) to Tech, POST /api/quick-login {key:'tech'} began returning HTTP 403 'Access denied' \u2014 confirmed twice in isolated fresh browsers. Per EARLY-ABORT rule, run stopped at first config (SP-WO-001). Tech restored to Time Clock role (77b069d1-...); BILAL AUTOMATION deleted (0 users). Tech quick-login remained 403 across bounded retries even after restore, indicating the tech-QL breakage on custom-role assignment persists (same failure mode as prior run). No per-role UI could be observed as Tech.",
-    "evidence": "staging live-run as Tech 2026-07-01"
-  },
-  {
-    "test_id": "SP-CAT-004",
-    "title": "Catalog & Inventory Delete grants delete parts from catalog",
-    "config": "Parts Department ON. Catalog & Inventory: Delete ON (Edit+View auto). All other permissions OFF.",
-    "expected": "User can delete parts from the catalog.",
-    "actual": "Not observed \u2014 aborted: tech quick-login returned HTTP 403 after custom-role assignment (SP-WO-001).",
-    "status": "NOT_RUN",
-    "notes": "Health check passed (tech quick-login 200 with original Time Clock role). After assigning the required custom role (BILAL AUTOMATION) to Tech, POST /api/quick-login {key:'tech'} began returning HTTP 403 'Access denied' \u2014 confirmed twice in isolated fresh browsers. Per EARLY-ABORT rule, run stopped at first config (SP-WO-001). Tech restored to Time Clock role (77b069d1-...); BILAL AUTOMATION deleted (0 users). Tech quick-login remained 403 across bounded retries even after restore, indicating the tech-QL breakage on custom-role assignment persists (same failure mode as prior run). No per-role UI could be observed as Tech.",
-    "evidence": "staging live-run as Tech 2026-07-01"
-  },
-  {
-    "test_id": "SP-CAT-005",
-    "title": "Catalog & Inventory View OFF blocks catalog browsing (with parent on)",
-    "config": "Parts Department ON. Catalog & Inventory: View OFF, Edit OFF, Delete OFF. All other permissions OFF.",
-    "expected": "With Catalog View OFF the catalog is not browsable and direct-URL access is blocked, even with Parts Department ON.",
-    "actual": "Not observed \u2014 aborted: tech quick-login returned HTTP 403 after custom-role assignment (SP-WO-001).",
-    "status": "NOT_RUN",
-    "notes": "Health check passed (tech quick-login 200 with original Time Clock role). After assigning the required custom role (BILAL AUTOMATION) to Tech, POST /api/quick-login {key:'tech'} began returning HTTP 403 'Access denied' \u2014 confirmed twice in isolated fresh browsers. Per EARLY-ABORT rule, run stopped at first config (SP-WO-001). Tech restored to Time Clock role (77b069d1-...); BILAL AUTOMATION deleted (0 users). Tech quick-login remained 403 across bounded retries even after restore, indicating the tech-QL breakage on custom-role assignment persists (same failure mode as prior run). No per-role UI could be observed as Tech.",
-    "evidence": "staging live-run as Tech 2026-07-01"
-  },
-  {
-    "test_id": "SP-VEND-001",
-    "title": "Vendor & Order Mgmt View grants vendors/POs/deliveries/part history/return requests",
-    "config": "Parts Department ON. Vendor & Order Management: View ON, Edit OFF, Delete OFF. All other permissions OFF.",
-    "expected": "User can view vendor records, POs, deliveries, part history and part return requests, read-only.",
-    "actual": "Not observed \u2014 aborted: tech quick-login returned HTTP 403 after custom-role assignment (SP-WO-001).",
-    "status": "NOT_RUN",
-    "notes": "Health check passed (tech quick-login 200 with original Time Clock role). After assigning the required custom role (BILAL AUTOMATION) to Tech, POST /api/quick-login {key:'tech'} began returning HTTP 403 'Access denied' \u2014 confirmed twice in isolated fresh browsers. Per EARLY-ABORT rule, run stopped at first config (SP-WO-001). Tech restored to Time Clock role (77b069d1-...); BILAL AUTOMATION deleted (0 users). Tech quick-login remained 403 across bounded retries even after restore, indicating the tech-QL breakage on custom-role assignment persists (same failure mode as prior run). No per-role UI could be observed as Tech.",
-    "evidence": "staging live-run as Tech 2026-07-01"
-  },
-  {
-    "test_id": "SP-VEND-002",
-    "title": "Vendor & Order Mgmt parent gate: unavailable when Parts Department OFF",
-    "config": "Parts Department OFF. Observe Vendor & Order Management checkboxes.",
-    "expected": "Vendor & Order Management permissions are gated behind the Parts Department parent.",
-    "actual": "Not observed \u2014 aborted: tech quick-login returned HTTP 403 after custom-role assignment (SP-WO-001).",
-    "status": "NOT_RUN",
-    "notes": "Health check passed (tech quick-login 200 with original Time Clock role). After assigning the required custom role (BILAL AUTOMATION) to Tech, POST /api/quick-login {key:'tech'} began returning HTTP 403 'Access denied' \u2014 confirmed twice in isolated fresh browsers. Per EARLY-ABORT rule, run stopped at first config (SP-WO-001). Tech restored to Time Clock role (77b069d1-...); BILAL AUTOMATION deleted (0 users). Tech quick-login remained 403 across bounded retries even after restore, indicating the tech-QL breakage on custom-role assignment persists (same failure mode as prior run). No per-role UI could be observed as Tech.",
-    "evidence": "staging live-run as Tech 2026-07-01"
-  },
-  {
-    "test_id": "SP-VEND-003",
-    "title": "Vendor & Order Mgmt Edit grants vendor/PO/delivery/invoice/return operations",
-    "config": "Parts Department ON. Vendor & Order Management: Edit ON (View auto), Delete OFF. All other permissions OFF.",
-    "expected": "User can create/edit vendors, create/manage POs, manage deliveries, create vendor invoices and return parts to vendors/inventory; cannot delete.",
-    "actual": "Not observed \u2014 aborted: tech quick-login returned HTTP 403 after custom-role assignment (SP-WO-001).",
-    "status": "NOT_RUN",
-    "notes": "Health check passed (tech quick-login 200 with original Time Clock role). After assigning the required custom role (BILAL AUTOMATION) to Tech, POST /api/quick-login {key:'tech'} began returning HTTP 403 'Access denied' \u2014 confirmed twice in isolated fresh browsers. Per EARLY-ABORT rule, run stopped at first config (SP-WO-001). Tech restored to Time Clock role (77b069d1-...); BILAL AUTOMATION deleted (0 users). Tech quick-login remained 403 across bounded retries even after restore, indicating the tech-QL breakage on custom-role assignment persists (same failure mode as prior run). No per-role UI could be observed as Tech.",
-    "evidence": "staging live-run as Tech 2026-07-01"
-  },
-  {
-    "test_id": "SP-VEND-004",
-    "title": "Vendor & Order Mgmt Delete grants delete vendors and POs",
-    "config": "Parts Department ON. Vendor & Order Management: Delete ON (Edit+View auto). All other permissions OFF.",
-    "expected": "User can delete vendors and delete POs.",
-    "actual": "Not observed \u2014 aborted: tech quick-login returned HTTP 403 after custom-role assignment (SP-WO-001).",
-    "status": "NOT_RUN",
-    "notes": "Health check passed (tech quick-login 200 with original Time Clock role). After assigning the required custom role (BILAL AUTOMATION) to Tech, POST /api/quick-login {key:'tech'} began returning HTTP 403 'Access denied' \u2014 confirmed twice in isolated fresh browsers. Per EARLY-ABORT rule, run stopped at first config (SP-WO-001). Tech restored to Time Clock role (77b069d1-...); BILAL AUTOMATION deleted (0 users). Tech quick-login remained 403 across bounded retries even after restore, indicating the tech-QL breakage on custom-role assignment persists (same failure mode as prior run). No per-role UI could be observed as Tech.",
-    "evidence": "staging live-run as Tech 2026-07-01"
-  },
-  {
-    "test_id": "SP-INV-001",
-    "title": "Invoicing View grants invoice view and Finance tab access",
-    "config": "See Financial Data ON. Work Orders View ON. Invoicing & Payments: View ON, Edit OFF, Delete OFF. All other permissions OFF.",
-    "expected": "User can view invoices from WOs and part sales and access the Finance tab, read-only.",
-    "actual": "Not observed \u2014 aborted: tech quick-login returned HTTP 403 after custom-role assignment (SP-WO-001).",
-    "status": "NOT_RUN",
-    "notes": "Health check passed (tech quick-login 200 with original Time Clock role). After assigning the required custom role (BILAL AUTOMATION) to Tech, POST /api/quick-login {key:'tech'} began returning HTTP 403 'Access denied' \u2014 confirmed twice in isolated fresh browsers. Per EARLY-ABORT rule, run stopped at first config (SP-WO-001). Tech restored to Time Clock role (77b069d1-...); BILAL AUTOMATION deleted (0 users). Tech quick-login remained 403 across bounded retries even after restore, indicating the tech-QL breakage on custom-role assignment persists (same failure mode as prior run). No per-role UI could be observed as Tech.",
-    "evidence": "staging live-run as Tech 2026-07-01"
-  },
-  {
-    "test_id": "SP-INV-002",
-    "title": "Invoicing View OFF but Financial ON: pricing visible, no direct invoice access",
-    "config": "See Financial Data ON. Work Orders View ON. Invoicing & Payments: View OFF, Edit OFF, Delete OFF. All other permissions OFF.",
-    "expected": "With Invoicing View OFF but Financial ON, user sees pricing but has no direct invoice access.",
-    "actual": "Not observed \u2014 aborted: tech quick-login returned HTTP 403 after custom-role assignment (SP-WO-001).",
-    "status": "NOT_RUN",
-    "notes": "Health check passed (tech quick-login 200 with original Time Clock role). After assigning the required custom role (BILAL AUTOMATION) to Tech, POST /api/quick-login {key:'tech'} began returning HTTP 403 'Access denied' \u2014 confirmed twice in isolated fresh browsers. Per EARLY-ABORT rule, run stopped at first config (SP-WO-001). Tech restored to Time Clock role (77b069d1-...); BILAL AUTOMATION deleted (0 users). Tech quick-login remained 403 across bounded retries even after restore, indicating the tech-QL breakage on custom-role assignment persists (same failure mode as prior run). No per-role UI could be observed as Tech.",
-    "evidence": "staging live-run as Tech 2026-07-01"
-  },
-  {
-    "test_id": "SP-INV-003",
-    "title": "Invoicing financial gate: enabling CRUD while Financial OFF triggers confirm modal",
-    "config": "See Financial Data OFF. Then enable an Invoicing CRUD checkbox.",
-    "expected": "Enabling Invoicing 'Create & Edit' or 'Delete / Reverse' while See Financial Data is OFF triggers the financial confirm modal ('Enable See Financial Data?'); Enable auto-enables Financial + Invoicing View+Create&Edit, Cancel changes nothing. (View alone does not trigger it.)",
-    "actual": "Not observed \u2014 aborted: tech quick-login returned HTTP 403 after custom-role assignment (SP-WO-001).",
-    "status": "NOT_RUN",
-    "notes": "Health check passed (tech quick-login 200 with original Time Clock role). After assigning the required custom role (BILAL AUTOMATION) to Tech, POST /api/quick-login {key:'tech'} began returning HTTP 403 'Access denied' \u2014 confirmed twice in isolated fresh browsers. Per EARLY-ABORT rule, run stopped at first config (SP-WO-001). Tech restored to Time Clock role (77b069d1-...); BILAL AUTOMATION deleted (0 users). Tech quick-login remained 403 across bounded retries even after restore, indicating the tech-QL breakage on custom-role assignment persists (same failure mode as prior run). No per-role UI could be observed as Tech.",
-    "evidence": "staging live-run as Tech 2026-07-01"
-  },
-  {
-    "test_id": "SP-INV-004",
-    "title": "Invoicing Edit grants create invoices, payments, deposits, Send to Terminal",
-    "config": "See Financial Data ON. Work Orders View ON. Invoicing & Payments: Edit ON (View auto), Delete OFF. All other permissions OFF.",
-    "expected": "User can create invoices, process payments, manage invoice fields, collect deposits and Send to Terminal; cannot delete payments or void.",
-    "actual": "Not observed \u2014 aborted: tech quick-login returned HTTP 403 after custom-role assignment (SP-WO-001).",
-    "status": "NOT_RUN",
-    "notes": "Health check passed (tech quick-login 200 with original Time Clock role). After assigning the required custom role (BILAL AUTOMATION) to Tech, POST /api/quick-login {key:'tech'} began returning HTTP 403 'Access denied' \u2014 confirmed twice in isolated fresh browsers. Per EARLY-ABORT rule, run stopped at first config (SP-WO-001). Tech restored to Time Clock role (77b069d1-...); BILAL AUTOMATION deleted (0 users). Tech quick-login remained 403 across bounded retries even after restore, indicating the tech-QL breakage on custom-role assignment persists (same failure mode as prior run). No per-role UI could be observed as Tech.",
-    "evidence": "staging live-run as Tech 2026-07-01"
-  },
-  {
-    "test_id": "SP-INV-005",
-    "title": "Invoicing Delete requires Manage AP/AR (AP/AR gate)",
-    "config": "See Financial Data ON. View and Manage AP/AR Data OFF. Then enable Invoicing Delete.",
-    "expected": "Invoicing Delete cannot be applied without View and Manage AP/AR Data; the AP/AR gate enforces enabling View and Manage AP/AR Data (in addition to the financial gate).",
-    "actual": "Not observed \u2014 aborted: tech quick-login returned HTTP 403 after custom-role assignment (SP-WO-001).",
-    "status": "NOT_RUN",
-    "notes": "Health check passed (tech quick-login 200 with original Time Clock role). After assigning the required custom role (BILAL AUTOMATION) to Tech, POST /api/quick-login {key:'tech'} began returning HTTP 403 'Access denied' \u2014 confirmed twice in isolated fresh browsers. Per EARLY-ABORT rule, run stopped at first config (SP-WO-001). Tech restored to Time Clock role (77b069d1-...); BILAL AUTOMATION deleted (0 users). Tech quick-login remained 403 across bounded retries even after restore, indicating the tech-QL breakage on custom-role assignment persists (same failure mode as prior run). No per-role UI could be observed as Tech.",
-    "evidence": "staging live-run as Tech 2026-07-01"
-  },
-  {
-    "test_id": "SP-INV-006",
-    "title": "Invoicing Delete grants delete payments, void transactions, delete part-sale return",
-    "config": "See Financial Data ON. View and Manage AP/AR Data ON. Work Orders View ON. Invoicing & Payments: Delete ON (Edit+View auto). All other permissions OFF.",
-    "expected": "User can delete payments (incl. customer payments), void transactions and delete a part-sale return.",
-    "actual": "Not observed \u2014 aborted: tech quick-login returned HTTP 403 after custom-role assignment (SP-WO-001).",
-    "status": "NOT_RUN",
-    "notes": "Health check passed (tech quick-login 200 with original Time Clock role). After assigning the required custom role (BILAL AUTOMATION) to Tech, POST /api/quick-login {key:'tech'} began returning HTTP 403 'Access denied' \u2014 confirmed twice in isolated fresh browsers. Per EARLY-ABORT rule, run stopped at first config (SP-WO-001). Tech restored to Time Clock role (77b069d1-...); BILAL AUTOMATION deleted (0 users). Tech quick-login remained 403 across bounded retries even after restore, indicating the tech-QL breakage on custom-role assignment persists (same failure mode as prior run). No per-role UI could be observed as Tech.",
-    "evidence": "staging live-run as Tech 2026-07-01"
-  },
-  {
-    "test_id": "SP-INV-007",
-    "title": "Cross-dep: deleting a customer payment needs Invoicing Delete (Customer Delete alone insufficient)",
-    "config": "Customer Management: Delete ON (Edit+View auto). Invoicing & Payments: all OFF. All other permissions OFF.",
-    "expected": "Customer Delete alone cannot delete a customer payment; Invoicing Delete is required.",
-    "actual": "Not observed \u2014 aborted: tech quick-login returned HTTP 403 after custom-role assignment (SP-WO-001).",
-    "status": "NOT_RUN",
-    "notes": "Health check passed (tech quick-login 200 with original Time Clock role). After assigning the required custom role (BILAL AUTOMATION) to Tech, POST /api/quick-login {key:'tech'} began returning HTTP 403 'Access denied' \u2014 confirmed twice in isolated fresh browsers. Per EARLY-ABORT rule, run stopped at first config (SP-WO-001). Tech restored to Time Clock role (77b069d1-...); BILAL AUTOMATION deleted (0 users). Tech quick-login remained 403 across bounded retries even after restore, indicating the tech-QL breakage on custom-role assignment persists (same failure mode as prior run). No per-role UI could be observed as Tech.",
-    "evidence": "staging live-run as Tech 2026-07-01"
-  },
-  {
-    "test_id": "SP-INV-008",
-    "title": "Cross-dep: reversing an invoice needs WO Delete even with Invoicing Edit",
-    "config": "See Financial Data ON. Work Orders: View ON, Delete OFF. Invoicing & Payments: Edit ON (View auto). All other permissions OFF.",
-    "expected": "Invoice reversal requires WO Delete; Invoicing Edit alone is insufficient.",
-    "actual": "Not observed \u2014 aborted: tech quick-login returned HTTP 403 after custom-role assignment (SP-WO-001).",
-    "status": "NOT_RUN",
-    "notes": "Health check passed (tech quick-login 200 with original Time Clock role). After assigning the required custom role (BILAL AUTOMATION) to Tech, POST /api/quick-login {key:'tech'} began returning HTTP 403 'Access denied' \u2014 confirmed twice in isolated fresh browsers. Per EARLY-ABORT rule, run stopped at first config (SP-WO-001). Tech restored to Time Clock role (77b069d1-...); BILAL AUTOMATION deleted (0 users). Tech quick-login remained 403 across bounded retries even after restore, indicating the tech-QL breakage on custom-role assignment persists (same failure mode as prior run). No per-role UI could be observed as Tech.",
-    "evidence": "staging live-run as Tech 2026-07-01"
-  },
-  {
-    "test_id": "SP-TS-001",
-    "title": "Timesheets View grants viewing timesheets from WOs; Timesheets nav visible",
-    "config": "Work Orders View ON. Timesheets: View ON, Edit OFF. All other permissions OFF.",
-    "expected": "User can view timesheets from WOs; no edit or delete actions available.",
-    "actual": "Not observed \u2014 aborted: tech quick-login returned HTTP 403 after custom-role assignment (SP-WO-001).",
-    "status": "NOT_RUN",
-    "notes": "Health check passed (tech quick-login 200 with original Time Clock role). After assigning the required custom role (BILAL AUTOMATION) to Tech, POST /api/quick-login {key:'tech'} began returning HTTP 403 'Access denied' \u2014 confirmed twice in isolated fresh browsers. Per EARLY-ABORT rule, run stopped at first config (SP-WO-001). Tech restored to Time Clock role (77b069d1-...); BILAL AUTOMATION deleted (0 users). Tech quick-login remained 403 across bounded retries even after restore, indicating the tech-QL breakage on custom-role assignment persists (same failure mode as prior run). No per-role UI could be observed as Tech.",
-    "evidence": "staging live-run as Tech 2026-07-01"
-  },
-  {
-    "test_id": "SP-TS-002",
-    "title": "Timesheets View OFF hides nav, but Reports ON still shows timesheet activities report",
-    "config": "Timesheets: View OFF, Edit OFF. Reports ON. All other permissions OFF.",
-    "expected": "With Timesheets View OFF the Timesheets nav is hidden, but the timesheet activities report remains available when Reports is ON.",
-    "actual": "Not observed \u2014 aborted: tech quick-login returned HTTP 403 after custom-role assignment (SP-WO-001).",
-    "status": "NOT_RUN",
-    "notes": "Health check passed (tech quick-login 200 with original Time Clock role). After assigning the required custom role (BILAL AUTOMATION) to Tech, POST /api/quick-login {key:'tech'} began returning HTTP 403 'Access denied' \u2014 confirmed twice in isolated fresh browsers. Per EARLY-ABORT rule, run stopped at first config (SP-WO-001). Tech restored to Time Clock role (77b069d1-...); BILAL AUTOMATION deleted (0 users). Tech quick-login remained 403 across bounded retries even after restore, indicating the tech-QL breakage on custom-role assignment persists (same failure mode as prior run). No per-role UI could be observed as Tech.",
-    "evidence": "staging live-run as Tech 2026-07-01"
-  },
-  {
-    "test_id": "SP-TS-003",
-    "title": "Clock in/out always available regardless of Timesheets permission",
-    "config": "Timesheets: View OFF, Edit OFF. All other permissions OFF.",
-    "expected": "All users can always clock in/out regardless of Timesheets permission.",
-    "actual": "Not observed \u2014 aborted: tech quick-login returned HTTP 403 after custom-role assignment (SP-WO-001).",
-    "status": "NOT_RUN",
-    "notes": "Health check passed (tech quick-login 200 with original Time Clock role). After assigning the required custom role (BILAL AUTOMATION) to Tech, POST /api/quick-login {key:'tech'} began returning HTTP 403 'Access denied' \u2014 confirmed twice in isolated fresh browsers. Per EARLY-ABORT rule, run stopped at first config (SP-WO-001). Tech restored to Time Clock role (77b069d1-...); BILAL AUTOMATION deleted (0 users). Tech quick-login remained 403 across bounded retries even after restore, indicating the tech-QL breakage on custom-role assignment persists (same failure mode as prior run). No per-role UI could be observed as Tech.",
-    "evidence": "staging live-run as Tech 2026-07-01"
-  },
-  {
-    "test_id": "SP-TS-004",
-    "title": "Timesheets Edit grants entry edits, hour adjustments, attendance for all staff",
-    "config": "Work Orders View ON. Timesheets: Edit ON (View auto). All other permissions OFF.",
-    "expected": "User can edit entries, adjust hours and manage attendance for all staff; confirms no Delete action exists.",
-    "actual": "Not observed \u2014 aborted: tech quick-login returned HTTP 403 after custom-role assignment (SP-WO-001).",
-    "status": "NOT_RUN",
-    "notes": "Health check passed (tech quick-login 200 with original Time Clock role). After assigning the required custom role (BILAL AUTOMATION) to Tech, POST /api/quick-login {key:'tech'} began returning HTTP 403 'Access denied' \u2014 confirmed twice in isolated fresh browsers. Per EARLY-ABORT rule, run stopped at first config (SP-WO-001). Tech restored to Time Clock role (77b069d1-...); BILAL AUTOMATION deleted (0 users). Tech quick-login remained 403 across bounded retries even after restore, indicating the tech-QL breakage on custom-role assignment persists (same failure mode as prior run). No per-role UI could be observed as Tech.",
-    "evidence": "staging live-run as Tech 2026-07-01"
-  },
-  {
-    "test_id": "SP-TS-005",
-    "title": "Timesheets has no Delete checkbox/action (verify absence)",
-    "config": "Timesheets: Edit ON (View auto). All other permissions OFF.",
-    "expected": "Timesheets has no Delete checkbox in the role editor and no Delete action in the app.",
-    "actual": "Not observed \u2014 aborted: tech quick-login returned HTTP 403 after custom-role assignment (SP-WO-001).",
-    "status": "NOT_RUN",
-    "notes": "Health check passed (tech quick-login 200 with original Time Clock role). After assigning the required custom role (BILAL AUTOMATION) to Tech, POST /api/quick-login {key:'tech'} began returning HTTP 403 'Access denied' \u2014 confirmed twice in isolated fresh browsers. Per EARLY-ABORT rule, run stopped at first config (SP-WO-001). Tech restored to Time Clock role (77b069d1-...); BILAL AUTOMATION deleted (0 users). Tech quick-login remained 403 across bounded retries even after restore, indicating the tech-QL breakage on custom-role assignment persists (same failure mode as prior run). No per-role UI could be observed as Tech.",
-    "evidence": "staging live-run as Tech 2026-07-01"
-  }
+ {
+  "test_id": "SP-WO-001",
+  "title": "WO View grants Work Orders nav and read-only WO access",
+  "config": "perms=[workOrdersView]",
+  "expected": "User can see the WO list and open WO detail read-only; no create/edit/delete affordances appear.",
+  "actual": "nav[Work Orders]=true, route /workorders denied=false, hasNew=false -> nav shown, page accessible read-only, no create button",
+  "status": "PASS",
+  "notes": "WO nav+list visible read-only; no create",
+  "evidence": "staging live-run as Tech 2026-07-01"
+ },
+ {
+  "test_id": "SP-WO-002",
+  "title": "WO View OFF hides Work Orders nav and blocks direct URL",
+  "config": "perms=[reportsPageAccess] (carrier reportsPageAccess used to satisfy non-empty-role constraint)",
+  "expected": "With WO View OFF the Work Orders nav is hidden and direct-URL access to a WO is blocked.",
+  "actual": "nav[Work Orders]=false, route /workorders denied=true, hasNew=false -> nav hidden and direct URL blocked (access-denied)",
+  "status": "PASS",
+  "notes": "WO nav hidden; direct URL blocked",
+  "evidence": "staging live-run as Tech 2026-07-01"
+ },
+ {
+  "test_id": "SP-WO-003",
+  "title": "WO Edit grants create/edit of WO fields (asset, advisor, tech, status)",
+  "config": "perms=[workOrdersView, workOrdersCreateAndEdit]",
+  "expected": "User can create WOs and edit customer details, asset, service advisor, lead technician and status; cannot delete WOs.",
+  "actual": "nav[Work Orders]=true, route /workorders denied=false, hasNew=true -> nav shown, accessible, create/New button present",
+  "status": "PASS",
+  "notes": "Can create WOs (New present)",
+  "evidence": "staging live-run as Tech 2026-07-01"
+ },
+ {
+  "test_id": "SP-WO-004",
+  "title": "WO Edit OFF blocks create/edit while View remains read-only",
+  "config": "perms=[workOrdersView]",
+  "expected": "With Edit OFF the user cannot create WOs or edit WO fields; WO detail stays read-only.",
+  "actual": "nav[Work Orders]=true, route /workorders denied=false, hasNew=false -> nav shown, accessible, no create button (read-only)",
+  "status": "PASS",
+  "notes": "WO visible read-only; cannot create",
+  "evidence": "staging live-run as Tech 2026-07-01"
+ },
+ {
+  "test_id": "SP-WO-005",
+  "title": "WO Delete grants delete WO and invoice reversal (no payments)",
+  "config": "perms=[workOrdersView, workOrdersCreateAndEdit, workOrdersDelete]",
+  "expected": "User can delete WOs and reverse invoices when no payments have been made.",
+  "actual": "Not verifiable via Tech runtime UI in this automated run.",
+  "status": "BLOCKED",
+  "notes": "WO access+create confirmed; delete/invoice-reverse action is destructive and requires opening a WO detail \u2014 not automated per safety.",
+  "evidence": "staging live-run as Tech 2026-07-01"
+ },
+ {
+  "test_id": "SP-WO-006",
+  "title": "WO Delete OFF hides delete and blocks invoice reversal",
+  "config": "perms=[workOrdersView, workOrdersCreateAndEdit]",
+  "expected": "With WO Delete OFF the user cannot delete WOs nor reverse invoices.",
+  "actual": "Not verifiable via Tech runtime UI in this automated run.",
+  "status": "BLOCKED",
+  "notes": "WO access+create confirmed; delete/invoice-reverse ABSENCE requires opening a WO detail and is not automated (would need destructive-affordance inspection).",
+  "evidence": "staging live-run as Tech 2026-07-01"
+ },
+ {
+  "test_id": "SP-WO-007",
+  "title": "WO cascade: enabling Edit auto-enables View",
+  "config": "perms=[workOrdersView]",
+  "expected": "Enabling Edit auto-enables View in the role editor.",
+  "actual": "Not verifiable via Tech runtime UI in this automated run.",
+  "status": "BLOCKED",
+  "notes": "Role-editor auto-cascade (enabling Edit auto-enables View) is admin permission-editor UI behavior, not verifiable from Tech runtime UI. Confirmed at API level: role with Edit necessarily includes View.",
+  "evidence": "staging live-run as Tech 2026-07-01"
+ },
+ {
+  "test_id": "SP-WO-008",
+  "title": "WO cascade: enabling Delete auto-enables Edit and View",
+  "config": "perms=[workOrdersView]",
+  "expected": "Enabling Delete auto-enables Edit and View.",
+  "actual": "Not verifiable via Tech runtime UI in this automated run.",
+  "status": "BLOCKED",
+  "notes": "Role-editor cascade (Delete auto-enables Edit+View) \u2014 admin editor UI behavior; not a Tech-runtime check.",
+  "evidence": "staging live-run as Tech 2026-07-01"
+ },
+ {
+  "test_id": "SP-WO-009",
+  "title": "WO reverse-cascade: disabling View auto-disables Edit and Delete",
+  "config": "perms=[workOrdersView]",
+  "expected": "Disabling View auto-disables Edit and Delete.",
+  "actual": "Not verifiable via Tech runtime UI in this automated run.",
+  "status": "BLOCKED",
+  "notes": "Role-editor reverse-cascade (disable View auto-disables Edit+Delete) \u2014 admin editor UI behavior; not a Tech-runtime check.",
+  "evidence": "staging live-run as Tech 2026-07-01"
+ },
+ {
+  "test_id": "SP-WO-010",
+  "title": "WO reverse-cascade: disabling Edit auto-disables Delete",
+  "config": "perms=[workOrdersView]",
+  "expected": "Disabling Edit auto-disables Delete while View stays ON.",
+  "actual": "Not verifiable via Tech runtime UI in this automated run.",
+  "status": "BLOCKED",
+  "notes": "Role-editor reverse-cascade (disable Edit auto-disables Delete, View stays) \u2014 admin editor UI behavior; not a Tech-runtime check.",
+  "evidence": "staging live-run as Tech 2026-07-01"
+ },
+ {
+  "test_id": "SP-WOL-001",
+  "title": "WOL Edit grants line/part/inspection editing on WOs",
+  "config": "perms=[workOrdersView, workOrderLinesCreateAndEdit]",
+  "expected": "User can add/edit lines, move parts, authorize lines, manage part requests, add inspections and edit mileage/engine hours/plate/VIN; cannot delete lines.",
+  "actual": "Not verifiable via Tech runtime UI in this automated run.",
+  "status": "BLOCKED",
+  "notes": "WO access confirmed; WO-line add/edit/authorize/inspection affordances live inside a WO detail \u2014 not automated (fragile detail interaction, no safe fixture).",
+  "evidence": "staging live-run as Tech 2026-07-01"
+ },
+ {
+  "test_id": "SP-WOL-002",
+  "title": "WOL Edit OFF blocks line editing (view-only WO lines)",
+  "config": "Start from blank/no-access role. Work Orders: View ON. WO Lines: Edit OFF, Delete OFF. All other permissions OFF.",
+  "expected": "With WOL Edit OFF lines are visible (via WO View) but not editable.",
+  "actual": "Not observed.",
+  "status": "NOT_RUN",
+  "notes": "Not yet processed in this run.",
+  "evidence": "staging live-run as Tech 2026-07-01"
+ },
+ {
+  "test_id": "SP-WOL-003",
+  "title": "WOL Delete grants line removal and inspection reopen/remove",
+  "config": "Start from blank/no-access role. Work Orders: View ON. WO Lines: Delete ON (Edit auto-enabled). All other permissions OFF.",
+  "expected": "User can remove lines, remove not-yet-complete inspections and reopen completed inspections.",
+  "actual": "Not observed.",
+  "status": "NOT_RUN",
+  "notes": "Not yet processed in this run.",
+  "evidence": "staging live-run as Tech 2026-07-01"
+ },
+ {
+  "test_id": "SP-WOL-004",
+  "title": "WOL editor blocks WOL Edit while WO View is OFF (SV-7981)",
+  "config": "Start from blank/no-access role. Work Orders: View OFF. Attempt to enable WO Lines Edit in editor.",
+  "expected": "WOL Edit cannot be enabled while WO View is OFF; WOL requires WO View to be usable.",
+  "actual": "Not observed.",
+  "status": "NOT_RUN",
+  "notes": "Not yet processed in this run.",
+  "evidence": "staging live-run as Tech 2026-07-01"
+ },
+ {
+  "test_id": "SP-SCH-001",
+  "title": "Schedule View grants calendar/appointments/tech assignments (all techs)",
+  "config": "Start from blank/no-access role. Schedule: View ON, Edit OFF, Delete OFF. All other permissions OFF.",
+  "expected": "User can view the calendar, appointments and tech assignments for all technicians, read-only.",
+  "actual": "Not observed.",
+  "status": "NOT_RUN",
+  "notes": "Not yet processed in this run.",
+  "evidence": "staging live-run as Tech 2026-07-01"
+ },
+ {
+  "test_id": "SP-SCH-002",
+  "title": "Schedule View OFF hides Schedule nav and blocks direct URL",
+  "config": "Start from blank/no-access role. Schedule: View OFF, Edit OFF, Delete OFF. All other permissions OFF.",
+  "expected": "With Schedule View OFF the Schedule nav is hidden and direct-URL access is blocked.",
+  "actual": "Not observed.",
+  "status": "NOT_RUN",
+  "notes": "Not yet processed in this run.",
+  "evidence": "staging live-run as Tech 2026-07-01"
+ },
+ {
+  "test_id": "SP-SCH-003",
+  "title": "Schedule Edit grants create/modify appointments, tech assign, drag-and-drop",
+  "config": "Start from blank/no-access role. Schedule: Edit ON (View auto-enabled), Delete OFF. All other permissions OFF.",
+  "expected": "User can create/modify appointments, assign techs and drag-and-drop; cannot delete appointments.",
+  "actual": "Not observed.",
+  "status": "NOT_RUN",
+  "notes": "Not yet processed in this run.",
+  "evidence": "staging live-run as Tech 2026-07-01"
+ },
+ {
+  "test_id": "SP-SCH-004",
+  "title": "Schedule Delete grants remove appointments; reverse-cascade check",
+  "config": "Start from blank/no-access role. Schedule: Delete ON (Edit+View auto-enabled), then disable View to check reverse cascade.",
+  "expected": "Schedule Delete allows removing appointments; cascade auto-enables Edit+View and reverse-cascade disables them when View is turned OFF.",
+  "actual": "Not observed.",
+  "status": "NOT_RUN",
+  "notes": "Not yet processed in this run.",
+  "evidence": "staging live-run as Tech 2026-07-01"
+ },
+ {
+  "test_id": "SP-CUST-001",
+  "title": "Customer View grants customer records/contacts/vehicles/history",
+  "config": "Start from blank/no-access role. Customer Management: View ON, Edit OFF, Delete OFF. All other permissions OFF.",
+  "expected": "User can view customer records, contacts, vehicles and history, read-only.",
+  "actual": "Not observed.",
+  "status": "NOT_RUN",
+  "notes": "Not yet processed in this run.",
+  "evidence": "staging live-run as Tech 2026-07-01"
+ },
+ {
+  "test_id": "SP-CUST-002",
+  "title": "Customer View OFF hides Customers nav and blocks direct URL",
+  "config": "Start from blank/no-access role. Customer Management: View OFF, Edit OFF, Delete OFF. All other permissions OFF.",
+  "expected": "With Customer View OFF the Customers nav is hidden and direct-URL access is blocked.",
+  "actual": "Not observed.",
+  "status": "NOT_RUN",
+  "notes": "Not yet processed in this run.",
+  "evidence": "staging live-run as Tech 2026-07-01"
+ },
+ {
+  "test_id": "SP-CUST-003",
+  "title": "Customer Edit grants create/edit customers, contacts, vehicles and New-WO Add buttons",
+  "config": "Start from blank/no-access role. Customer Management: Edit ON (View auto-enabled), Delete OFF. Work Orders: Edit ON (View auto) so New WO flow is reachable. All other permissions OFF.",
+  "expected": "User can create/edit customers, manage contacts/vehicles, and create customers/assets in the New WO flow.",
+  "actual": "Not observed.",
+  "status": "NOT_RUN",
+  "notes": "Not yet processed in this run.",
+  "evidence": "staging live-run as Tech 2026-07-01"
+ },
+ {
+  "test_id": "SP-CUST-004",
+  "title": "Customer Edit OFF hides Add Customer/Add Asset in New WO flow",
+  "config": "Start from blank/no-access role. Customer Management: View ON, Edit OFF. Work Orders: Edit ON (View auto). All other permissions OFF.",
+  "expected": "With Customer Edit OFF the Add Customer/Add Asset buttons are hidden in the New WO flow.",
+  "actual": "Not observed.",
+  "status": "NOT_RUN",
+  "notes": "Not yet processed in this run.",
+  "evidence": "staging live-run as Tech 2026-07-01"
+ },
+ {
+  "test_id": "SP-CUST-005",
+  "title": "Customer Delete grants delete of customer records only (not payments)",
+  "config": "Start from blank/no-access role. Customer Management: Delete ON (Edit+View auto). All other permissions OFF (Invoicing Delete OFF).",
+  "expected": "User can delete customer records but not customer payments (payments require Invoicing Delete).",
+  "actual": "Not observed.",
+  "status": "NOT_RUN",
+  "notes": "Not yet processed in this run.",
+  "evidence": "staging live-run as Tech 2026-07-01"
+ },
+ {
+  "test_id": "SP-CUST-006",
+  "title": "Sensitive customer fields gated by Manage AP/AR, not Customer permission",
+  "config": "Start from blank/no-access role. Customer Management: View ON. View and Manage AP/AR Data OFF. All other permissions OFF.",
+  "expected": "Sensitive customer fields remain gated by View and Manage AP/AR Data regardless of Customer View.",
+  "actual": "Not observed.",
+  "status": "NOT_RUN",
+  "notes": "Not yet processed in this run.",
+  "evidence": "staging live-run as Tech 2026-07-01"
+ },
+ {
+  "test_id": "SP-PS-001",
+  "title": "Part Sales View grants part sales records/returns/transactions (parent+financial on)",
+  "config": "Start from blank/no-access role. Parts Department: ON. See Financial Data: ON. Part Sales: View ON, Edit OFF, Delete OFF. All other permissions OFF.",
+  "expected": "User can view part sales records, returns and transactions, read-only.",
+  "actual": "Not observed.",
+  "status": "NOT_RUN",
+  "notes": "Not yet processed in this run.",
+  "evidence": "staging live-run as Tech 2026-07-01"
+ },
+ {
+  "test_id": "SP-PS-002",
+  "title": "Part Sales financial gate: enabling CRUD while Financial OFF triggers confirm modal",
+  "config": "Start from blank/no-access role. Parts Department ON. See Financial Data OFF. Then enable a Part Sales CRUD checkbox.",
+  "expected": "Enabling any Part Sales CRUD while See Financial Data is OFF triggers the financial confirm modal; Confirm auto-enables Financial, Cancel reverts.",
+  "actual": "Not observed.",
+  "status": "NOT_RUN",
+  "notes": "Not yet processed in this run.",
+  "evidence": "staging live-run as Tech 2026-07-01"
+ },
+ {
+  "test_id": "SP-PS-003",
+  "title": "Part Sales parent gate: unavailable when Parts Department OFF",
+  "config": "Start from blank/no-access role. Parts Department OFF. Observe Part Sales checkboxes.",
+  "expected": "Part Sales permissions are gated behind the Parts Department parent and unavailable when it is OFF.",
+  "actual": "Not observed.",
+  "status": "NOT_RUN",
+  "notes": "Not yet processed in this run.",
+  "evidence": "staging live-run as Tech 2026-07-01"
+ },
+ {
+  "test_id": "SP-PS-004",
+  "title": "Part Sales Edit grants create sales/returns and process transactions",
+  "config": "Start from blank/no-access role. Parts Department ON. See Financial Data ON. Part Sales: Edit ON (View auto), Delete OFF. All other permissions OFF.",
+  "expected": "User can create part sales/returns and process transactions; cannot delete or reverse.",
+  "actual": "Not observed.",
+  "status": "NOT_RUN",
+  "notes": "Not yet processed in this run.",
+  "evidence": "staging live-run as Tech 2026-07-01"
+ },
+ {
+  "test_id": "SP-PS-005",
+  "title": "Part Sales Delete grants delete sales and reverse part-sale invoices",
+  "config": "Start from blank/no-access role. Parts Department ON. See Financial Data ON. Part Sales: Delete ON (Edit+View auto). All other permissions OFF.",
+  "expected": "User can delete part sales and reverse part-sale invoices.",
+  "actual": "Not observed.",
+  "status": "NOT_RUN",
+  "notes": "Not yet processed in this run.",
+  "evidence": "staging live-run as Tech 2026-07-01"
+ },
+ {
+  "test_id": "SP-PS-006",
+  "title": "Part Sales not reachable via direct URL without access (SV-7965)",
+  "config": "Start from blank/no-access role. Parts Department OFF; Part Sales all OFF. All other permissions OFF.",
+  "expected": "Without Part Sales access, part sales cannot be reached via direct URL.",
+  "actual": "Not observed.",
+  "status": "NOT_RUN",
+  "notes": "Not yet processed in this run.",
+  "evidence": "staging live-run as Tech 2026-07-01"
+ },
+ {
+  "test_id": "SP-CAT-001",
+  "title": "Catalog & Inventory View grants catalog/inventory/stock/history browsing",
+  "config": "Start from blank/no-access role. Parts Department ON. Catalog & Inventory: View ON, Edit OFF, Delete OFF. All other permissions OFF.",
+  "expected": "User can browse catalog, inventory levels/stock and parts history, read-only.",
+  "actual": "Not observed.",
+  "status": "NOT_RUN",
+  "notes": "Not yet processed in this run.",
+  "evidence": "staging live-run as Tech 2026-07-01"
+ },
+ {
+  "test_id": "SP-CAT-002",
+  "title": "Catalog & Inventory parent gate: unavailable when Parts Department OFF",
+  "config": "Start from blank/no-access role. Parts Department OFF. Observe Catalog & Inventory checkboxes.",
+  "expected": "Catalog & Inventory permissions are gated behind the Parts Department parent.",
+  "actual": "Not observed.",
+  "status": "NOT_RUN",
+  "notes": "Not yet processed in this run.",
+  "evidence": "staging live-run as Tech 2026-07-01"
+ },
+ {
+  "test_id": "SP-CAT-003",
+  "title": "Catalog & Inventory Edit grants catalog edits, adjustments and cycle counts",
+  "config": "Start from blank/no-access role. Parts Department ON. Catalog & Inventory: Edit ON (View auto), Delete OFF. All other permissions OFF.",
+  "expected": "User can create/edit catalog entries, make inventory adjustments incl. return-to-inventory, and run cycle counts; cannot delete catalog parts.",
+  "actual": "Not observed.",
+  "status": "NOT_RUN",
+  "notes": "Not yet processed in this run.",
+  "evidence": "staging live-run as Tech 2026-07-01"
+ },
+ {
+  "test_id": "SP-CAT-004",
+  "title": "Catalog & Inventory Delete grants delete parts from catalog",
+  "config": "Start from blank/no-access role. Parts Department ON. Catalog & Inventory: Delete ON (Edit+View auto). All other permissions OFF.",
+  "expected": "User can delete parts from the catalog.",
+  "actual": "Not observed.",
+  "status": "NOT_RUN",
+  "notes": "Not yet processed in this run.",
+  "evidence": "staging live-run as Tech 2026-07-01"
+ },
+ {
+  "test_id": "SP-CAT-005",
+  "title": "Catalog & Inventory View OFF blocks catalog browsing (with parent on)",
+  "config": "Start from blank/no-access role. Parts Department ON. Catalog & Inventory: View OFF, Edit OFF, Delete OFF. All other permissions OFF.",
+  "expected": "With Catalog View OFF the catalog is not browsable and direct-URL access is blocked, even with Parts Department ON.",
+  "actual": "Not observed.",
+  "status": "NOT_RUN",
+  "notes": "Not yet processed in this run.",
+  "evidence": "staging live-run as Tech 2026-07-01"
+ },
+ {
+  "test_id": "SP-VEND-001",
+  "title": "Vendor & Order Mgmt View grants vendors/POs/deliveries/part history/return requests",
+  "config": "Start from blank/no-access role. Parts Department ON. Vendor & Order Management: View ON, Edit OFF, Delete OFF. All other permissions OFF.",
+  "expected": "User can view vendor records, POs, deliveries, part history and part return requests, read-only.",
+  "actual": "Not observed.",
+  "status": "NOT_RUN",
+  "notes": "Not yet processed in this run.",
+  "evidence": "staging live-run as Tech 2026-07-01"
+ },
+ {
+  "test_id": "SP-VEND-002",
+  "title": "Vendor & Order Mgmt parent gate: unavailable when Parts Department OFF",
+  "config": "Start from blank/no-access role. Parts Department OFF. Observe Vendor & Order Management checkboxes.",
+  "expected": "Vendor & Order Management permissions are gated behind the Parts Department parent.",
+  "actual": "Not observed.",
+  "status": "NOT_RUN",
+  "notes": "Not yet processed in this run.",
+  "evidence": "staging live-run as Tech 2026-07-01"
+ },
+ {
+  "test_id": "SP-VEND-003",
+  "title": "Vendor & Order Mgmt Edit grants vendor/PO/delivery/invoice/return operations",
+  "config": "Start from blank/no-access role. Parts Department ON. Vendor & Order Management: Edit ON (View auto), Delete OFF. All other permissions OFF.",
+  "expected": "User can create/edit vendors, create/manage POs, manage deliveries, create vendor invoices and return parts to vendors/inventory; cannot delete.",
+  "actual": "Not observed.",
+  "status": "NOT_RUN",
+  "notes": "Not yet processed in this run.",
+  "evidence": "staging live-run as Tech 2026-07-01"
+ },
+ {
+  "test_id": "SP-VEND-004",
+  "title": "Vendor & Order Mgmt Delete grants delete vendors and POs",
+  "config": "Start from blank/no-access role. Parts Department ON. Vendor & Order Management: Delete ON (Edit+View auto). All other permissions OFF.",
+  "expected": "User can delete vendors and delete POs.",
+  "actual": "Not observed.",
+  "status": "NOT_RUN",
+  "notes": "Not yet processed in this run.",
+  "evidence": "staging live-run as Tech 2026-07-01"
+ },
+ {
+  "test_id": "SP-INV-001",
+  "title": "Invoicing View grants invoice view and Finance tab access",
+  "config": "Start from blank/no-access role. See Financial Data ON. Work Orders View ON. Invoicing & Payments: View ON, Edit OFF, Delete OFF. All other permissions OFF.",
+  "expected": "User can view invoices from WOs and part sales and access the Finance tab, read-only.",
+  "actual": "Not observed.",
+  "status": "NOT_RUN",
+  "notes": "Not yet processed in this run.",
+  "evidence": "staging live-run as Tech 2026-07-01"
+ },
+ {
+  "test_id": "SP-INV-002",
+  "title": "Invoicing View OFF but Financial ON: pricing visible, no direct invoice access",
+  "config": "Start from blank/no-access role. See Financial Data ON. Work Orders View ON. Invoicing & Payments: View OFF, Edit OFF, Delete OFF. All other permissions OFF.",
+  "expected": "With Invoicing View OFF but Financial ON, user sees pricing but has no direct invoice access.",
+  "actual": "Not observed.",
+  "status": "NOT_RUN",
+  "notes": "Not yet processed in this run.",
+  "evidence": "staging live-run as Tech 2026-07-01"
+ },
+ {
+  "test_id": "SP-INV-003",
+  "title": "Invoicing financial gate: enabling CRUD while Financial OFF triggers confirm modal",
+  "config": "Start from blank/no-access role. See Financial Data OFF. Then enable an Invoicing CRUD checkbox.",
+  "expected": "Enabling Invoicing 'Create & Edit' or 'Delete / Reverse' while See Financial Data is OFF triggers the financial confirm modal ('Enable See Financial Data?'); Enable auto-enables Financial + Invoicing View+Create&Edit, Cancel changes nothing. (View alone does not trigger it.)",
+  "actual": "Not observed.",
+  "status": "NOT_RUN",
+  "notes": "Not yet processed in this run.",
+  "evidence": "staging live-run as Tech 2026-07-01"
+ },
+ {
+  "test_id": "SP-INV-004",
+  "title": "Invoicing Edit grants create invoices, payments, deposits, Send to Terminal",
+  "config": "Start from blank/no-access role. See Financial Data ON. Work Orders View ON. Invoicing & Payments: Edit ON (View auto), Delete OFF. All other permissions OFF.",
+  "expected": "User can create invoices, process payments, manage invoice fields, collect deposits and Send to Terminal; cannot delete payments or void.",
+  "actual": "Not observed.",
+  "status": "NOT_RUN",
+  "notes": "Not yet processed in this run.",
+  "evidence": "staging live-run as Tech 2026-07-01"
+ },
+ {
+  "test_id": "SP-INV-005",
+  "title": "Invoicing Delete requires Manage AP/AR (AP/AR gate)",
+  "config": "Start from blank/no-access role. See Financial Data ON. View and Manage AP/AR Data OFF. Then enable Invoicing Delete.",
+  "expected": "Invoicing Delete cannot be applied without View and Manage AP/AR Data; the AP/AR gate enforces enabling View and Manage AP/AR Data (in addition to the financial gate).",
+  "actual": "Not observed.",
+  "status": "NOT_RUN",
+  "notes": "Not yet processed in this run.",
+  "evidence": "staging live-run as Tech 2026-07-01"
+ },
+ {
+  "test_id": "SP-INV-006",
+  "title": "Invoicing Delete grants delete payments, void transactions, delete part-sale return",
+  "config": "Start from blank/no-access role. See Financial Data ON. View and Manage AP/AR Data ON. Work Orders View ON. Invoicing & Payments: Delete ON (Edit+View auto). All other permissions OFF.",
+  "expected": "User can delete payments (incl. customer payments), void transactions and delete a part-sale return.",
+  "actual": "Not observed.",
+  "status": "NOT_RUN",
+  "notes": "Not yet processed in this run.",
+  "evidence": "staging live-run as Tech 2026-07-01"
+ },
+ {
+  "test_id": "SP-INV-007",
+  "title": "Cross-dep: deleting a customer payment needs Invoicing Delete (Customer Delete alone insufficient)",
+  "config": "Start from blank/no-access role. Customer Management: Delete ON (Edit+View auto). Invoicing & Payments: all OFF. All other permissions OFF.",
+  "expected": "Customer Delete alone cannot delete a customer payment; Invoicing Delete is required.",
+  "actual": "Not observed.",
+  "status": "NOT_RUN",
+  "notes": "Not yet processed in this run.",
+  "evidence": "staging live-run as Tech 2026-07-01"
+ },
+ {
+  "test_id": "SP-INV-008",
+  "title": "Cross-dep: reversing an invoice needs WO Delete even with Invoicing Edit",
+  "config": "Start from blank/no-access role. See Financial Data ON. Work Orders: View ON, Delete OFF. Invoicing & Payments: Edit ON (View auto). All other permissions OFF.",
+  "expected": "Invoice reversal requires WO Delete; Invoicing Edit alone is insufficient.",
+  "actual": "Not observed.",
+  "status": "NOT_RUN",
+  "notes": "Not yet processed in this run.",
+  "evidence": "staging live-run as Tech 2026-07-01"
+ },
+ {
+  "test_id": "SP-TS-001",
+  "title": "Timesheets View grants viewing timesheets from WOs; Timesheets nav visible",
+  "config": "Start from blank/no-access role. Work Orders View ON. Timesheets: View ON, Edit OFF. All other permissions OFF.",
+  "expected": "User can view timesheets from WOs; no edit or delete actions available.",
+  "actual": "Not observed.",
+  "status": "NOT_RUN",
+  "notes": "Not yet processed in this run.",
+  "evidence": "staging live-run as Tech 2026-07-01"
+ },
+ {
+  "test_id": "SP-TS-002",
+  "title": "Timesheets View OFF hides nav, but Reports ON still shows timesheet activities report",
+  "config": "Start from blank/no-access role. Timesheets: View OFF, Edit OFF. Reports ON. All other permissions OFF.",
+  "expected": "With Timesheets View OFF the Timesheets nav is hidden, but the timesheet activities report remains available when Reports is ON.",
+  "actual": "Not observed.",
+  "status": "NOT_RUN",
+  "notes": "Not yet processed in this run.",
+  "evidence": "staging live-run as Tech 2026-07-01"
+ },
+ {
+  "test_id": "SP-TS-003",
+  "title": "Clock in/out always available regardless of Timesheets permission",
+  "config": "Start from blank/no-access role. Timesheets: View OFF, Edit OFF. All other permissions OFF.",
+  "expected": "All users can always clock in/out regardless of Timesheets permission.",
+  "actual": "Not observed.",
+  "status": "NOT_RUN",
+  "notes": "Not yet processed in this run.",
+  "evidence": "staging live-run as Tech 2026-07-01"
+ },
+ {
+  "test_id": "SP-TS-004",
+  "title": "Timesheets Edit grants entry edits, hour adjustments, attendance for all staff",
+  "config": "Start from blank/no-access role. Work Orders View ON. Timesheets: Edit ON (View auto). All other permissions OFF.",
+  "expected": "User can edit entries, adjust hours and manage attendance for all staff; confirms no Delete action exists.",
+  "actual": "Not observed.",
+  "status": "NOT_RUN",
+  "notes": "Not yet processed in this run.",
+  "evidence": "staging live-run as Tech 2026-07-01"
+ },
+ {
+  "test_id": "SP-TS-005",
+  "title": "Timesheets has no Delete checkbox/action (verify absence)",
+  "config": "Start from blank/no-access role. Timesheets: Edit ON (View auto). All other permissions OFF.",
+  "expected": "Timesheets has no Delete checkbox in the role editor and no Delete action in the app.",
+  "actual": "Not observed.",
+  "status": "NOT_RUN",
+  "notes": "Not yet processed in this run.",
+  "evidence": "staging live-run as Tech 2026-07-01"
+ }
 ]
