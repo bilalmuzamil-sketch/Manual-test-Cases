@@ -94,5 +94,21 @@
   "replication_steps_plain": "",
   "screenshot_ref": "sm-N1.png",
   "notes": "NEW (v33) - replaces struck row #12. Confirms the v33 permission split: SM has both WO Create&Edit (header) and WOL Create&Edit (mileage/engine hours/license plate/VIN). Mileage edit persisted after reload (654,321)."
+ },
+ {
+  "num": 13,
+  "role": "Service Manager",
+  "feature_area": "Customer Portal",
+  "where_to_go": "Top nav",
+  "what_to_do": "Confirm Customer Portal is accessible.",
+  "expected_result": "Accessible. Service Manager Customer Portal = ON (per 6/19 change).",
+  "depth": "SPOT",
+  "status": "PASS",
+  "spec_reference_plain": "Per the spec (6/19 change): the Service Manager role has Customer Portal access ON (customerPortalPageAccess), so the Customer Portal entry point should be visible/accessible to the role. [Ref: SV-5319 permission matrix; checklist Service Manager row #13 'SM Customer Portal now ON']",
+  "expected_plain": "As a Service Manager you should be able to reach the Customer Portal.",
+  "actual_result_plain": "The Customer Portal is accessible to the Service Manager. It is exposed from the account menu (click the shop/avatar 'Staging Heavy Duty - 9919 / TS' at the top-right): the menu lists 'Customer Portal' (with a 'New' badge and an open-in-new external-link icon), alongside Billing, Settings and Logout. The entry was present and enabled (not greyed/hidden). The same menu confirmed the logged-in user is 'Tech ShopView / tech@shopview.com'.",
+  "replication_steps_plain": "",
+  "screenshot_ref": "sm-13.png",
+  "notes": "customerPortalPageAccess is ON in the Service Manager fe-permissions. The Customer Portal link lives in the account/avatar menu (top-right), not as a separate top-nav tab; it opens in a new tab (open_in_new). Direct URL /customer-portal returns the app's generic not-found page, so the intended entry point is the account-menu link."
  }
 ]
