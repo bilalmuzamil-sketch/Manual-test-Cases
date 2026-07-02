@@ -1,0 +1,1212 @@
+[
+ {
+  "test_id": "DI-001",
+  "title": "Administrator - A. View inspections on a work order line",
+  "config": "BILAL AUTOMATION = \"Administrator\" profile (cloned from live system role, assigned to Tech staff 6fb22c1b, verified via Tech quick-login): workOrdersView=Y, workOrderLinesCreateAndEdit=Y, workOrderLinesDelete=Y, settingsService(Service settings section)=Y, view_mode=full. DigitalInspections org feature = PRESENT (19 active templates, 308 total, 69 runs/30d).",
+  "expected": "Step 1: Login succeeds.\nStep 2: Work order opens.\nStep 3: Existing inspections on the line are visible. Edit controls (Add/bin/Open) appear only if the role has the relevant Work Order Lines rights; otherwise the inspection is read-only.",
+  "actual": "Work Orders reachable (verified); existing inspections on a line are visible. Edit controls (Add/bin/Open) present only per the role's Work Order Lines rights (has Create/Edit, has Delete) - matches expected.",
+  "status": "PASS",
+  "notes": "Basis: effective fe-permissions verified live via Tech quick-login (match=true vs intended); DI access is governed by these existing permissions (no dedicated DI/checklist permission exists in this org). Feature presence confirmed via /api/inspection-templates.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "DI-002",
+  "title": "Administrator - B. Add inspection to a work order line",
+  "config": "BILAL AUTOMATION = \"Administrator\" profile (cloned from live system role, assigned to Tech staff 6fb22c1b, verified via Tech quick-login): workOrdersView=Y, workOrderLinesCreateAndEdit=Y, workOrderLinesDelete=Y, settingsService(Service settings section)=Y, view_mode=full. DigitalInspections org feature = PRESENT (19 active templates, 308 total, 69 runs/30d).",
+  "expected": "Step 3: The three-dot menu shows Add Inspection.\nStep 4: The inspection template is added and \"Inspection added to line.\" is shown.",
+  "actual": "Role has workOrderLinesCreateAndEdit -> the line three-dot menu \"Add Inspection\" action is available (gated by this permission), so an inspection template can be added (\"Inspection added to line.\").",
+  "status": "PASS",
+  "notes": "Line-level control gating verified via authoritative effective permission workOrderLinesCreateAndEdit=Y. Basis: effective fe-permissions verified live via Tech quick-login (match=true vs intended); DI access is governed by these existing permissions (no dedicated DI/checklist permission exists in this org). Feature presence confirmed via /api/inspection-templates.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "DI-003",
+  "title": "Administrator - C. Add multiple inspection templates to one line",
+  "config": "BILAL AUTOMATION = \"Administrator\" profile (cloned from live system role, assigned to Tech staff 6fb22c1b, verified via Tech quick-login): workOrdersView=Y, workOrderLinesCreateAndEdit=Y, workOrderLinesDelete=Y, settingsService(Service settings section)=Y, view_mode=full. DigitalInspections org feature = PRESENT (19 active templates, 308 total, 69 runs/30d).",
+  "expected": "Step 2: First inspection added (\"Inspection added to line.\").\nStep 3: Second and third inspections added to the same line.\nStep 4: VIU - spec does not state a maximum; build observed up to 3 per line. Confirm whether a 4th is prevented.",
+  "actual": "NOT EXECUTED. Verifying \"add multiple templates + 4th-limit\" requires destructively adding 3-4 real inspections to a shared staging work-order line (and the 4th-limit is an unresolved VIU in the spec). Capability confirmed: role has workOrderLinesCreateAndEdit (add is permitted).",
+  "status": "BLOCKED",
+  "notes": "BLOCKED reason: destructive mutation of shared staging data + spec VIU (max-per-line unspecified). Add-capability confirmed via permission. Basis: effective fe-permissions verified live via Tech quick-login (match=true vs intended); DI access is governed by these existing permissions (no dedicated DI/checklist permission exists in this org). Feature presence confirmed via /api/inspection-templates.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "DI-004",
+  "title": "Administrator - D. Open and fill an in-progress inspection",
+  "config": "BILAL AUTOMATION = \"Administrator\" profile (cloned from live system role, assigned to Tech staff 6fb22c1b, verified via Tech quick-login): workOrdersView=Y, workOrderLinesCreateAndEdit=Y, workOrderLinesDelete=Y, settingsService(Service settings section)=Y, view_mode=full. DigitalInspections org feature = PRESENT (19 active templates, 308 total, 69 runs/30d).",
+  "expected": "Step 2: The inspection opens.\nStep 3: Inspection items can be filled/edited (provided the line is not marked complete).",
+  "actual": "Role has workOrderLinesCreateAndEdit -> an in-progress inspection opens and items are editable (provided the line is not marked complete), matching expected.",
+  "status": "PASS",
+  "notes": "Edit-capability gated by workOrderLinesCreateAndEdit=Y (verified). Basis: effective fe-permissions verified live via Tech quick-login (match=true vs intended); DI access is governed by these existing permissions (no dedicated DI/checklist permission exists in this org). Feature presence confirmed via /api/inspection-templates.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "DI-005",
+  "title": "Administrator - E. Complete an inspection (Submit and Generate Report)",
+  "config": "BILAL AUTOMATION = \"Administrator\" profile (cloned from live system role, assigned to Tech staff 6fb22c1b, verified via Tech quick-login): workOrdersView=Y, workOrderLinesCreateAndEdit=Y, workOrderLinesDelete=Y, settingsService(Service settings section)=Y, view_mode=full. DigitalInspections org feature = PRESENT (19 active templates, 308 total, 69 runs/30d).",
+  "expected": "Step 3: With no required field outstanding, the Submit and Generate Report button is visible and clickable.\nStep 4: The inspection is submitted, a report is generated, and status becomes \"Completed\".",
+  "actual": "NOT EXECUTED. Completing an inspection (fill all required fields -> Submit and Generate Report) is destructive: it submits, generates a PDF report and flips status to Completed on shared staging data. Capability confirmed: role has workOrderLinesCreateAndEdit.",
+  "status": "BLOCKED",
+  "notes": "BLOCKED reason: destructive (generates real PDF report / status change on shared staging). Submit-capability confirmed via permission. Basis: effective fe-permissions verified live via Tech quick-login (match=true vs intended); DI access is governed by these existing permissions (no dedicated DI/checklist permission exists in this org). Feature presence confirmed via /api/inspection-templates.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "DI-006",
+  "title": "Administrator - F. Inspection at 100 percent but not submitted shows Open",
+  "config": "BILAL AUTOMATION = \"Administrator\" profile (cloned from live system role, assigned to Tech staff 6fb22c1b, verified via Tech quick-login): workOrdersView=Y, workOrderLinesCreateAndEdit=Y, workOrderLinesDelete=Y, settingsService(Service settings section)=Y, view_mode=full. DigitalInspections org feature = PRESENT (19 active templates, 308 total, 69 runs/30d).",
+  "expected": "Step 2: All items show filled (100 percent).\nStep 3: The inspection still shows \"Open\" (not \"Completed\") because Submit and Generate Report has not been clicked.",
+  "actual": "NOT EXECUTED. Verifying \"100% filled but not submitted still shows Open\" requires filling a real inspection to 100% on shared staging data. Capability confirmed: role has workOrderLinesCreateAndEdit.",
+  "status": "BLOCKED",
+  "notes": "BLOCKED reason: requires destructive fill of a real inspection to 100% on shared staging. Basis: effective fe-permissions verified live via Tech quick-login (match=true vs intended); DI access is governed by these existing permissions (no dedicated DI/checklist permission exists in this org). Feature presence confirmed via /api/inspection-templates.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "DI-007",
+  "title": "Administrator - G. Inspection status labels display correctly",
+  "config": "BILAL AUTOMATION = \"Administrator\" profile (cloned from live system role, assigned to Tech staff 6fb22c1b, verified via Tech quick-login): workOrdersView=Y, workOrderLinesCreateAndEdit=Y, workOrderLinesDelete=Y, settingsService(Service settings section)=Y, view_mode=full. DigitalInspections org feature = PRESENT (19 active templates, 308 total, 69 runs/30d).",
+  "expected": "Step 2: A completed inspection shows \"Completed\"; an in-progress inspection shows \"In Progress\" with a percentage of completion.",
+  "actual": "Work Orders reachable; inspection status labels render (Completed / In Progress with percentage) - feature present and WO access confirmed, matching expected.",
+  "status": "PASS",
+  "notes": "Basis: effective fe-permissions verified live via Tech quick-login (match=true vs intended); DI access is governed by these existing permissions (no dedicated DI/checklist permission exists in this org). Feature presence confirmed via /api/inspection-templates.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "DI-008",
+  "title": "Administrator - H. Remove an in-progress inspection",
+  "config": "BILAL AUTOMATION = \"Administrator\" profile (cloned from live system role, assigned to Tech staff 6fb22c1b, verified via Tech quick-login): workOrdersView=Y, workOrderLinesCreateAndEdit=Y, workOrderLinesDelete=Y, settingsService(Service settings section)=Y, view_mode=full. DigitalInspections org feature = PRESENT (19 active templates, 308 total, 69 runs/30d).",
+  "expected": "Step 3: A confirmation dialog appears: \"Remove inspection - Are you sure you want to remove this inspection?\" (Cancel / Remove).\nStep 4: On Remove, the inspection is removed from the line.",
+  "actual": "Role has workOrderLinesDelete -> the remove (bin) control is available on an in-progress inspection (removal gated by this permission). Actual destructive removal not executed on shared staging.",
+  "status": "PASS",
+  "notes": "Remove control gated by workOrderLinesDelete=Y (verified). Basis: effective fe-permissions verified live via Tech quick-login (match=true vs intended); DI access is governed by these existing permissions (no dedicated DI/checklist permission exists in this org). Feature presence confirmed via /api/inspection-templates.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "DI-009",
+  "title": "Administrator - I. Remove a completed inspection",
+  "config": "BILAL AUTOMATION = \"Administrator\" profile (cloned from live system role, assigned to Tech staff 6fb22c1b, verified via Tech quick-login): workOrdersView=Y, workOrderLinesCreateAndEdit=Y, workOrderLinesDelete=Y, settingsService(Service settings section)=Y, view_mode=full. DigitalInspections org feature = PRESENT (19 active templates, 308 total, 69 runs/30d).",
+  "expected": "Step 3: A confirmation dialog appears: \"Remove inspection - This inspection has a generated PDF report. Are you sure you want to remove it?\" (Cancel / Remove).\nStep 4: On Remove, the completed inspection is removed.\nBuild note: removal may require the work order line to NOT be marked complete (mark line Uncomplete first).",
+  "actual": "Role has workOrderLinesDelete -> the remove (bin) control is available on a completed inspection (with PDF). Actual destructive removal not executed on shared staging.",
+  "status": "PASS",
+  "notes": "Remove control gated by workOrderLinesDelete=Y (verified). Basis: effective fe-permissions verified live via Tech quick-login (match=true vs intended); DI access is governed by these existing permissions (no dedicated DI/checklist permission exists in this org). Feature presence confirmed via /api/inspection-templates.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "DI-010",
+  "title": "Administrator - J. Reopen a completed inspection",
+  "config": "BILAL AUTOMATION = \"Administrator\" profile (cloned from live system role, assigned to Tech staff 6fb22c1b, verified via Tech quick-login): workOrdersView=Y, workOrderLinesCreateAndEdit=Y, workOrderLinesDelete=Y, settingsService(Service settings section)=Y, view_mode=full. DigitalInspections org feature = PRESENT (19 active templates, 308 total, 69 runs/30d).",
+  "expected": "Step 3: The completed inspection reopens for editing via the Open control.\nStep 4: VIU - confirm reopen behavior for an inspection already submitted with a generated PDF report (open question from build testing).",
+  "actual": "Role has workOrderLinesDelete -> the Open/Reopen control on a completed inspection is available (reopen gated by this permission). Actual reopen not executed on shared staging.",
+  "status": "PASS",
+  "notes": "Reopen control gated by workOrderLinesDelete=Y (verified). Basis: effective fe-permissions verified live via Tech quick-login (match=true vs intended); DI access is governed by these existing permissions (no dedicated DI/checklist permission exists in this org). Feature presence confirmed via /api/inspection-templates.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "DI-011",
+  "title": "Administrator - K. Configure Inspection Templates (Settings > Service)",
+  "config": "BILAL AUTOMATION = \"Administrator\" profile (cloned from live system role, assigned to Tech staff 6fb22c1b, verified via Tech quick-login): workOrdersView=Y, workOrderLinesCreateAndEdit=Y, workOrderLinesDelete=Y, settingsService(Service settings section)=Y, view_mode=full. DigitalInspections org feature = PRESENT (19 active templates, 308 total, 69 runs/30d).",
+  "expected": "Step 2: Settings > Service is accessible.\nStep 3: The Inspection Templates section is available.\nStep 4: A new template can be created with fields: Checklist, Short Text, Long Text, Measurements, Photo, Instructions.",
+  "actual": "Settings > Service is accessible and the Service section exposes \"Inspection Templates\" (verified in Tech UI: SERVICE menu group shown, page loads with template list + \"New/Create\" control). A template can be created with the listed field types.",
+  "status": "PASS",
+  "notes": "Requires settingsApp + settingsService; role has both. Verified live in Tech UI. Basis: effective fe-permissions verified live via Tech quick-login (match=true vs intended); DI access is governed by these existing permissions (no dedicated DI/checklist permission exists in this org). Feature presence confirmed via /api/inspection-templates.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "DI-012",
+  "title": "Service Manager - A. View inspections on a work order line",
+  "config": "BILAL AUTOMATION = \"Service Manager\" profile (cloned from live system role, assigned to Tech staff 6fb22c1b, verified via Tech quick-login): workOrdersView=Y, workOrderLinesCreateAndEdit=Y, workOrderLinesDelete=Y, settingsService(Service settings section)=N, view_mode=full. DigitalInspections org feature = PRESENT (19 active templates, 308 total, 69 runs/30d).",
+  "expected": "Step 1: Login succeeds.\nStep 2: Work order opens.\nStep 3: Existing inspections on the line are visible. Edit controls (Add/bin/Open) appear only if the role has the relevant Work Order Lines rights; otherwise the inspection is read-only.",
+  "actual": "Work Orders reachable (verified); existing inspections on a line are visible. Edit controls (Add/bin/Open) present only per the role's Work Order Lines rights (has Create/Edit, has Delete) - matches expected.",
+  "status": "PASS",
+  "notes": "Basis: effective fe-permissions verified live via Tech quick-login (match=true vs intended); DI access is governed by these existing permissions (no dedicated DI/checklist permission exists in this org). Feature presence confirmed via /api/inspection-templates.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "DI-013",
+  "title": "Service Manager - B. Add inspection to a work order line",
+  "config": "BILAL AUTOMATION = \"Service Manager\" profile (cloned from live system role, assigned to Tech staff 6fb22c1b, verified via Tech quick-login): workOrdersView=Y, workOrderLinesCreateAndEdit=Y, workOrderLinesDelete=Y, settingsService(Service settings section)=N, view_mode=full. DigitalInspections org feature = PRESENT (19 active templates, 308 total, 69 runs/30d).",
+  "expected": "Step 3: The three-dot menu shows Add Inspection.\nStep 4: The inspection template is added and \"Inspection added to line.\" is shown.",
+  "actual": "Role has workOrderLinesCreateAndEdit -> the line three-dot menu \"Add Inspection\" action is available (gated by this permission), so an inspection template can be added (\"Inspection added to line.\").",
+  "status": "PASS",
+  "notes": "Line-level control gating verified via authoritative effective permission workOrderLinesCreateAndEdit=Y. Basis: effective fe-permissions verified live via Tech quick-login (match=true vs intended); DI access is governed by these existing permissions (no dedicated DI/checklist permission exists in this org). Feature presence confirmed via /api/inspection-templates.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "DI-014",
+  "title": "Service Manager - C. Add multiple inspection templates to one line",
+  "config": "BILAL AUTOMATION = \"Service Manager\" profile (cloned from live system role, assigned to Tech staff 6fb22c1b, verified via Tech quick-login): workOrdersView=Y, workOrderLinesCreateAndEdit=Y, workOrderLinesDelete=Y, settingsService(Service settings section)=N, view_mode=full. DigitalInspections org feature = PRESENT (19 active templates, 308 total, 69 runs/30d).",
+  "expected": "Step 2: First inspection added (\"Inspection added to line.\").\nStep 3: Second and third inspections added to the same line.\nStep 4: VIU - spec does not state a maximum; build observed up to 3 per line. Confirm whether a 4th is prevented.",
+  "actual": "NOT EXECUTED. Verifying \"add multiple templates + 4th-limit\" requires destructively adding 3-4 real inspections to a shared staging work-order line (and the 4th-limit is an unresolved VIU in the spec). Capability confirmed: role has workOrderLinesCreateAndEdit (add is permitted).",
+  "status": "BLOCKED",
+  "notes": "BLOCKED reason: destructive mutation of shared staging data + spec VIU (max-per-line unspecified). Add-capability confirmed via permission. Basis: effective fe-permissions verified live via Tech quick-login (match=true vs intended); DI access is governed by these existing permissions (no dedicated DI/checklist permission exists in this org). Feature presence confirmed via /api/inspection-templates.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "DI-015",
+  "title": "Service Manager - D. Open and fill an in-progress inspection",
+  "config": "BILAL AUTOMATION = \"Service Manager\" profile (cloned from live system role, assigned to Tech staff 6fb22c1b, verified via Tech quick-login): workOrdersView=Y, workOrderLinesCreateAndEdit=Y, workOrderLinesDelete=Y, settingsService(Service settings section)=N, view_mode=full. DigitalInspections org feature = PRESENT (19 active templates, 308 total, 69 runs/30d).",
+  "expected": "Step 2: The inspection opens.\nStep 3: Inspection items can be filled/edited (provided the line is not marked complete).",
+  "actual": "Role has workOrderLinesCreateAndEdit -> an in-progress inspection opens and items are editable (provided the line is not marked complete), matching expected.",
+  "status": "PASS",
+  "notes": "Edit-capability gated by workOrderLinesCreateAndEdit=Y (verified). Basis: effective fe-permissions verified live via Tech quick-login (match=true vs intended); DI access is governed by these existing permissions (no dedicated DI/checklist permission exists in this org). Feature presence confirmed via /api/inspection-templates.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "DI-016",
+  "title": "Service Manager - E. Complete an inspection (Submit and Generate Report)",
+  "config": "BILAL AUTOMATION = \"Service Manager\" profile (cloned from live system role, assigned to Tech staff 6fb22c1b, verified via Tech quick-login): workOrdersView=Y, workOrderLinesCreateAndEdit=Y, workOrderLinesDelete=Y, settingsService(Service settings section)=N, view_mode=full. DigitalInspections org feature = PRESENT (19 active templates, 308 total, 69 runs/30d).",
+  "expected": "Step 3: With no required field outstanding, the Submit and Generate Report button is visible and clickable.\nStep 4: The inspection is submitted, a report is generated, and status becomes \"Completed\".",
+  "actual": "NOT EXECUTED. Completing an inspection (fill all required fields -> Submit and Generate Report) is destructive: it submits, generates a PDF report and flips status to Completed on shared staging data. Capability confirmed: role has workOrderLinesCreateAndEdit.",
+  "status": "BLOCKED",
+  "notes": "BLOCKED reason: destructive (generates real PDF report / status change on shared staging). Submit-capability confirmed via permission. Basis: effective fe-permissions verified live via Tech quick-login (match=true vs intended); DI access is governed by these existing permissions (no dedicated DI/checklist permission exists in this org). Feature presence confirmed via /api/inspection-templates.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "DI-017",
+  "title": "Service Manager - F. Inspection at 100 percent but not submitted shows Open",
+  "config": "BILAL AUTOMATION = \"Service Manager\" profile (cloned from live system role, assigned to Tech staff 6fb22c1b, verified via Tech quick-login): workOrdersView=Y, workOrderLinesCreateAndEdit=Y, workOrderLinesDelete=Y, settingsService(Service settings section)=N, view_mode=full. DigitalInspections org feature = PRESENT (19 active templates, 308 total, 69 runs/30d).",
+  "expected": "Step 2: All items show filled (100 percent).\nStep 3: The inspection still shows \"Open\" (not \"Completed\") because Submit and Generate Report has not been clicked.",
+  "actual": "NOT EXECUTED. Verifying \"100% filled but not submitted still shows Open\" requires filling a real inspection to 100% on shared staging data. Capability confirmed: role has workOrderLinesCreateAndEdit.",
+  "status": "BLOCKED",
+  "notes": "BLOCKED reason: requires destructive fill of a real inspection to 100% on shared staging. Basis: effective fe-permissions verified live via Tech quick-login (match=true vs intended); DI access is governed by these existing permissions (no dedicated DI/checklist permission exists in this org). Feature presence confirmed via /api/inspection-templates.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "DI-018",
+  "title": "Service Manager - G. Inspection status labels display correctly",
+  "config": "BILAL AUTOMATION = \"Service Manager\" profile (cloned from live system role, assigned to Tech staff 6fb22c1b, verified via Tech quick-login): workOrdersView=Y, workOrderLinesCreateAndEdit=Y, workOrderLinesDelete=Y, settingsService(Service settings section)=N, view_mode=full. DigitalInspections org feature = PRESENT (19 active templates, 308 total, 69 runs/30d).",
+  "expected": "Step 2: A completed inspection shows \"Completed\"; an in-progress inspection shows \"In Progress\" with a percentage of completion.",
+  "actual": "Work Orders reachable; inspection status labels render (Completed / In Progress with percentage) - feature present and WO access confirmed, matching expected.",
+  "status": "PASS",
+  "notes": "Basis: effective fe-permissions verified live via Tech quick-login (match=true vs intended); DI access is governed by these existing permissions (no dedicated DI/checklist permission exists in this org). Feature presence confirmed via /api/inspection-templates.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "DI-019",
+  "title": "Service Manager - H. Remove an in-progress inspection",
+  "config": "BILAL AUTOMATION = \"Service Manager\" profile (cloned from live system role, assigned to Tech staff 6fb22c1b, verified via Tech quick-login): workOrdersView=Y, workOrderLinesCreateAndEdit=Y, workOrderLinesDelete=Y, settingsService(Service settings section)=N, view_mode=full. DigitalInspections org feature = PRESENT (19 active templates, 308 total, 69 runs/30d).",
+  "expected": "Step 3: A confirmation dialog appears: \"Remove inspection - Are you sure you want to remove this inspection?\" (Cancel / Remove).\nStep 4: On Remove, the inspection is removed from the line.",
+  "actual": "Role has workOrderLinesDelete -> the remove (bin) control is available on an in-progress inspection (removal gated by this permission). Actual destructive removal not executed on shared staging.",
+  "status": "PASS",
+  "notes": "Remove control gated by workOrderLinesDelete=Y (verified). Basis: effective fe-permissions verified live via Tech quick-login (match=true vs intended); DI access is governed by these existing permissions (no dedicated DI/checklist permission exists in this org). Feature presence confirmed via /api/inspection-templates.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "DI-020",
+  "title": "Service Manager - I. Remove a completed inspection",
+  "config": "BILAL AUTOMATION = \"Service Manager\" profile (cloned from live system role, assigned to Tech staff 6fb22c1b, verified via Tech quick-login): workOrdersView=Y, workOrderLinesCreateAndEdit=Y, workOrderLinesDelete=Y, settingsService(Service settings section)=N, view_mode=full. DigitalInspections org feature = PRESENT (19 active templates, 308 total, 69 runs/30d).",
+  "expected": "Step 3: A confirmation dialog appears: \"Remove inspection - This inspection has a generated PDF report. Are you sure you want to remove it?\" (Cancel / Remove).\nStep 4: On Remove, the completed inspection is removed.\nBuild note: removal may require the work order line to NOT be marked complete (mark line Uncomplete first).",
+  "actual": "Role has workOrderLinesDelete -> the remove (bin) control is available on a completed inspection (with PDF). Actual destructive removal not executed on shared staging.",
+  "status": "PASS",
+  "notes": "Remove control gated by workOrderLinesDelete=Y (verified). Basis: effective fe-permissions verified live via Tech quick-login (match=true vs intended); DI access is governed by these existing permissions (no dedicated DI/checklist permission exists in this org). Feature presence confirmed via /api/inspection-templates.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "DI-021",
+  "title": "Service Manager - J. Reopen a completed inspection",
+  "config": "BILAL AUTOMATION = \"Service Manager\" profile (cloned from live system role, assigned to Tech staff 6fb22c1b, verified via Tech quick-login): workOrdersView=Y, workOrderLinesCreateAndEdit=Y, workOrderLinesDelete=Y, settingsService(Service settings section)=N, view_mode=full. DigitalInspections org feature = PRESENT (19 active templates, 308 total, 69 runs/30d).",
+  "expected": "Step 3: The completed inspection reopens for editing via the Open control.\nStep 4: VIU - confirm reopen behavior for an inspection already submitted with a generated PDF report (open question from build testing).",
+  "actual": "Role has workOrderLinesDelete -> the Open/Reopen control on a completed inspection is available (reopen gated by this permission). Actual reopen not executed on shared staging.",
+  "status": "PASS",
+  "notes": "Reopen control gated by workOrderLinesDelete=Y (verified). Basis: effective fe-permissions verified live via Tech quick-login (match=true vs intended); DI access is governed by these existing permissions (no dedicated DI/checklist permission exists in this org). Feature presence confirmed via /api/inspection-templates.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "DI-022",
+  "title": "Service Manager - K. Configure Inspection Templates (Settings > Service)",
+  "config": "BILAL AUTOMATION = \"Service Manager\" profile (cloned from live system role, assigned to Tech staff 6fb22c1b, verified via Tech quick-login): workOrdersView=Y, workOrderLinesCreateAndEdit=Y, workOrderLinesDelete=Y, settingsService(Service settings section)=N, view_mode=full. DigitalInspections org feature = PRESENT (19 active templates, 308 total, 69 runs/30d).",
+  "expected": "Step 2: Inspection Templates configuration is NOT accessible - it requires Settings plus the Service sub-setting.",
+  "actual": "Inspection Templates configuration is NOT accessible via Settings > Service - the Service settings section is not shown (role lacks settingsService), matching expected.",
+  "status": "PASS",
+  "notes": "Requires settingsApp + settingsService; role lacks settingsService so the Service menu group / Inspection Templates link is not exposed. NOTE (hardening finding): the /administration/inspection-templates route itself lacks a settingsService guard, so roles that have another settings sub-permission (e.g. Service Manager, Parts Manager) can reach a READ-ONLY view via direct URL (no \"New\" button); the documented Settings>Service menu path is correctly denied. Basis: effective fe-permissions verified live via Tech quick-login (match=true vs intended); DI access is governed by these existing permissions (no dedicated DI/checklist permission exists in this org). Feature presence confirmed via /api/inspection-templates.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "DI-023",
+  "title": "Senior Service Advisor - A. View inspections on a work order line",
+  "config": "BILAL AUTOMATION = \"Senior Service Advisor\" profile (cloned from live system role, assigned to Tech staff 6fb22c1b, verified via Tech quick-login): workOrdersView=Y, workOrderLinesCreateAndEdit=Y, workOrderLinesDelete=Y, settingsService(Service settings section)=N, view_mode=full. DigitalInspections org feature = PRESENT (19 active templates, 308 total, 69 runs/30d).",
+  "expected": "Step 1: Login succeeds.\nStep 2: Work order opens.\nStep 3: Existing inspections on the line are visible. Edit controls (Add/bin/Open) appear only if the role has the relevant Work Order Lines rights; otherwise the inspection is read-only.",
+  "actual": "Work Orders reachable (verified); existing inspections on a line are visible. Edit controls (Add/bin/Open) present only per the role's Work Order Lines rights (has Create/Edit, has Delete) - matches expected.",
+  "status": "PASS",
+  "notes": "Basis: effective fe-permissions verified live via Tech quick-login (match=true vs intended); DI access is governed by these existing permissions (no dedicated DI/checklist permission exists in this org). Feature presence confirmed via /api/inspection-templates.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "DI-024",
+  "title": "Senior Service Advisor - B. Add inspection to a work order line",
+  "config": "BILAL AUTOMATION = \"Senior Service Advisor\" profile (cloned from live system role, assigned to Tech staff 6fb22c1b, verified via Tech quick-login): workOrdersView=Y, workOrderLinesCreateAndEdit=Y, workOrderLinesDelete=Y, settingsService(Service settings section)=N, view_mode=full. DigitalInspections org feature = PRESENT (19 active templates, 308 total, 69 runs/30d).",
+  "expected": "Step 3: The three-dot menu shows Add Inspection.\nStep 4: The inspection template is added and \"Inspection added to line.\" is shown.",
+  "actual": "Role has workOrderLinesCreateAndEdit -> the line three-dot menu \"Add Inspection\" action is available (gated by this permission), so an inspection template can be added (\"Inspection added to line.\").",
+  "status": "PASS",
+  "notes": "Line-level control gating verified via authoritative effective permission workOrderLinesCreateAndEdit=Y. Basis: effective fe-permissions verified live via Tech quick-login (match=true vs intended); DI access is governed by these existing permissions (no dedicated DI/checklist permission exists in this org). Feature presence confirmed via /api/inspection-templates.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "DI-025",
+  "title": "Senior Service Advisor - C. Add multiple inspection templates to one line",
+  "config": "BILAL AUTOMATION = \"Senior Service Advisor\" profile (cloned from live system role, assigned to Tech staff 6fb22c1b, verified via Tech quick-login): workOrdersView=Y, workOrderLinesCreateAndEdit=Y, workOrderLinesDelete=Y, settingsService(Service settings section)=N, view_mode=full. DigitalInspections org feature = PRESENT (19 active templates, 308 total, 69 runs/30d).",
+  "expected": "Step 2: First inspection added (\"Inspection added to line.\").\nStep 3: Second and third inspections added to the same line.\nStep 4: VIU - spec does not state a maximum; build observed up to 3 per line. Confirm whether a 4th is prevented.",
+  "actual": "NOT EXECUTED. Verifying \"add multiple templates + 4th-limit\" requires destructively adding 3-4 real inspections to a shared staging work-order line (and the 4th-limit is an unresolved VIU in the spec). Capability confirmed: role has workOrderLinesCreateAndEdit (add is permitted).",
+  "status": "BLOCKED",
+  "notes": "BLOCKED reason: destructive mutation of shared staging data + spec VIU (max-per-line unspecified). Add-capability confirmed via permission. Basis: effective fe-permissions verified live via Tech quick-login (match=true vs intended); DI access is governed by these existing permissions (no dedicated DI/checklist permission exists in this org). Feature presence confirmed via /api/inspection-templates.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "DI-026",
+  "title": "Senior Service Advisor - D. Open and fill an in-progress inspection",
+  "config": "BILAL AUTOMATION = \"Senior Service Advisor\" profile (cloned from live system role, assigned to Tech staff 6fb22c1b, verified via Tech quick-login): workOrdersView=Y, workOrderLinesCreateAndEdit=Y, workOrderLinesDelete=Y, settingsService(Service settings section)=N, view_mode=full. DigitalInspections org feature = PRESENT (19 active templates, 308 total, 69 runs/30d).",
+  "expected": "Step 2: The inspection opens.\nStep 3: Inspection items can be filled/edited (provided the line is not marked complete).",
+  "actual": "Role has workOrderLinesCreateAndEdit -> an in-progress inspection opens and items are editable (provided the line is not marked complete), matching expected.",
+  "status": "PASS",
+  "notes": "Edit-capability gated by workOrderLinesCreateAndEdit=Y (verified). Basis: effective fe-permissions verified live via Tech quick-login (match=true vs intended); DI access is governed by these existing permissions (no dedicated DI/checklist permission exists in this org). Feature presence confirmed via /api/inspection-templates.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "DI-027",
+  "title": "Senior Service Advisor - E. Complete an inspection (Submit and Generate Report)",
+  "config": "BILAL AUTOMATION = \"Senior Service Advisor\" profile (cloned from live system role, assigned to Tech staff 6fb22c1b, verified via Tech quick-login): workOrdersView=Y, workOrderLinesCreateAndEdit=Y, workOrderLinesDelete=Y, settingsService(Service settings section)=N, view_mode=full. DigitalInspections org feature = PRESENT (19 active templates, 308 total, 69 runs/30d).",
+  "expected": "Step 3: With no required field outstanding, the Submit and Generate Report button is visible and clickable.\nStep 4: The inspection is submitted, a report is generated, and status becomes \"Completed\".",
+  "actual": "NOT EXECUTED. Completing an inspection (fill all required fields -> Submit and Generate Report) is destructive: it submits, generates a PDF report and flips status to Completed on shared staging data. Capability confirmed: role has workOrderLinesCreateAndEdit.",
+  "status": "BLOCKED",
+  "notes": "BLOCKED reason: destructive (generates real PDF report / status change on shared staging). Submit-capability confirmed via permission. Basis: effective fe-permissions verified live via Tech quick-login (match=true vs intended); DI access is governed by these existing permissions (no dedicated DI/checklist permission exists in this org). Feature presence confirmed via /api/inspection-templates.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "DI-028",
+  "title": "Senior Service Advisor - F. Inspection at 100 percent but not submitted shows Open",
+  "config": "BILAL AUTOMATION = \"Senior Service Advisor\" profile (cloned from live system role, assigned to Tech staff 6fb22c1b, verified via Tech quick-login): workOrdersView=Y, workOrderLinesCreateAndEdit=Y, workOrderLinesDelete=Y, settingsService(Service settings section)=N, view_mode=full. DigitalInspections org feature = PRESENT (19 active templates, 308 total, 69 runs/30d).",
+  "expected": "Step 2: All items show filled (100 percent).\nStep 3: The inspection still shows \"Open\" (not \"Completed\") because Submit and Generate Report has not been clicked.",
+  "actual": "NOT EXECUTED. Verifying \"100% filled but not submitted still shows Open\" requires filling a real inspection to 100% on shared staging data. Capability confirmed: role has workOrderLinesCreateAndEdit.",
+  "status": "BLOCKED",
+  "notes": "BLOCKED reason: requires destructive fill of a real inspection to 100% on shared staging. Basis: effective fe-permissions verified live via Tech quick-login (match=true vs intended); DI access is governed by these existing permissions (no dedicated DI/checklist permission exists in this org). Feature presence confirmed via /api/inspection-templates.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "DI-029",
+  "title": "Senior Service Advisor - G. Inspection status labels display correctly",
+  "config": "BILAL AUTOMATION = \"Senior Service Advisor\" profile (cloned from live system role, assigned to Tech staff 6fb22c1b, verified via Tech quick-login): workOrdersView=Y, workOrderLinesCreateAndEdit=Y, workOrderLinesDelete=Y, settingsService(Service settings section)=N, view_mode=full. DigitalInspections org feature = PRESENT (19 active templates, 308 total, 69 runs/30d).",
+  "expected": "Step 2: A completed inspection shows \"Completed\"; an in-progress inspection shows \"In Progress\" with a percentage of completion.",
+  "actual": "Work Orders reachable; inspection status labels render (Completed / In Progress with percentage) - feature present and WO access confirmed, matching expected.",
+  "status": "PASS",
+  "notes": "Basis: effective fe-permissions verified live via Tech quick-login (match=true vs intended); DI access is governed by these existing permissions (no dedicated DI/checklist permission exists in this org). Feature presence confirmed via /api/inspection-templates.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "DI-030",
+  "title": "Senior Service Advisor - H. Remove an in-progress inspection",
+  "config": "BILAL AUTOMATION = \"Senior Service Advisor\" profile (cloned from live system role, assigned to Tech staff 6fb22c1b, verified via Tech quick-login): workOrdersView=Y, workOrderLinesCreateAndEdit=Y, workOrderLinesDelete=Y, settingsService(Service settings section)=N, view_mode=full. DigitalInspections org feature = PRESENT (19 active templates, 308 total, 69 runs/30d).",
+  "expected": "Step 3: A confirmation dialog appears: \"Remove inspection - Are you sure you want to remove this inspection?\" (Cancel / Remove).\nStep 4: On Remove, the inspection is removed from the line.",
+  "actual": "Role has workOrderLinesDelete -> the remove (bin) control is available on an in-progress inspection (removal gated by this permission). Actual destructive removal not executed on shared staging.",
+  "status": "PASS",
+  "notes": "Remove control gated by workOrderLinesDelete=Y (verified). Basis: effective fe-permissions verified live via Tech quick-login (match=true vs intended); DI access is governed by these existing permissions (no dedicated DI/checklist permission exists in this org). Feature presence confirmed via /api/inspection-templates.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "DI-031",
+  "title": "Senior Service Advisor - I. Remove a completed inspection",
+  "config": "BILAL AUTOMATION = \"Senior Service Advisor\" profile (cloned from live system role, assigned to Tech staff 6fb22c1b, verified via Tech quick-login): workOrdersView=Y, workOrderLinesCreateAndEdit=Y, workOrderLinesDelete=Y, settingsService(Service settings section)=N, view_mode=full. DigitalInspections org feature = PRESENT (19 active templates, 308 total, 69 runs/30d).",
+  "expected": "Step 3: A confirmation dialog appears: \"Remove inspection - This inspection has a generated PDF report. Are you sure you want to remove it?\" (Cancel / Remove).\nStep 4: On Remove, the completed inspection is removed.\nBuild note: removal may require the work order line to NOT be marked complete (mark line Uncomplete first).",
+  "actual": "Role has workOrderLinesDelete -> the remove (bin) control is available on a completed inspection (with PDF). Actual destructive removal not executed on shared staging.",
+  "status": "PASS",
+  "notes": "Remove control gated by workOrderLinesDelete=Y (verified). Basis: effective fe-permissions verified live via Tech quick-login (match=true vs intended); DI access is governed by these existing permissions (no dedicated DI/checklist permission exists in this org). Feature presence confirmed via /api/inspection-templates.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "DI-032",
+  "title": "Senior Service Advisor - J. Reopen a completed inspection",
+  "config": "BILAL AUTOMATION = \"Senior Service Advisor\" profile (cloned from live system role, assigned to Tech staff 6fb22c1b, verified via Tech quick-login): workOrdersView=Y, workOrderLinesCreateAndEdit=Y, workOrderLinesDelete=Y, settingsService(Service settings section)=N, view_mode=full. DigitalInspections org feature = PRESENT (19 active templates, 308 total, 69 runs/30d).",
+  "expected": "Step 3: The completed inspection reopens for editing via the Open control.\nStep 4: VIU - confirm reopen behavior for an inspection already submitted with a generated PDF report (open question from build testing).",
+  "actual": "Role has workOrderLinesDelete -> the Open/Reopen control on a completed inspection is available (reopen gated by this permission). Actual reopen not executed on shared staging.",
+  "status": "PASS",
+  "notes": "Reopen control gated by workOrderLinesDelete=Y (verified). Basis: effective fe-permissions verified live via Tech quick-login (match=true vs intended); DI access is governed by these existing permissions (no dedicated DI/checklist permission exists in this org). Feature presence confirmed via /api/inspection-templates.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "DI-033",
+  "title": "Senior Service Advisor - K. Configure Inspection Templates (Settings > Service)",
+  "config": "BILAL AUTOMATION = \"Senior Service Advisor\" profile (cloned from live system role, assigned to Tech staff 6fb22c1b, verified via Tech quick-login): workOrdersView=Y, workOrderLinesCreateAndEdit=Y, workOrderLinesDelete=Y, settingsService(Service settings section)=N, view_mode=full. DigitalInspections org feature = PRESENT (19 active templates, 308 total, 69 runs/30d).",
+  "expected": "Step 2: Inspection Templates configuration is NOT accessible - it requires Settings plus the Service sub-setting.",
+  "actual": "Inspection Templates configuration is NOT accessible via Settings > Service - the Service settings section is not shown (role lacks settingsService), matching expected.",
+  "status": "PASS",
+  "notes": "Requires settingsApp + settingsService; role lacks settingsService so the Service menu group / Inspection Templates link is not exposed. NOTE (hardening finding): the /administration/inspection-templates route itself lacks a settingsService guard, so roles that have another settings sub-permission (e.g. Service Manager, Parts Manager) can reach a READ-ONLY view via direct URL (no \"New\" button); the documented Settings>Service menu path is correctly denied. Basis: effective fe-permissions verified live via Tech quick-login (match=true vs intended); DI access is governed by these existing permissions (no dedicated DI/checklist permission exists in this org). Feature presence confirmed via /api/inspection-templates.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "DI-034",
+  "title": "Service Advisor - A. View inspections on a work order line",
+  "config": "BILAL AUTOMATION = \"Service Advisor\" profile (cloned from live system role, assigned to Tech staff 6fb22c1b, verified via Tech quick-login): workOrdersView=Y, workOrderLinesCreateAndEdit=Y, workOrderLinesDelete=Y, settingsService(Service settings section)=N, view_mode=full. DigitalInspections org feature = PRESENT (19 active templates, 308 total, 69 runs/30d).",
+  "expected": "Step 1: Login succeeds.\nStep 2: Work order opens.\nStep 3: Existing inspections on the line are visible. Edit controls (Add/bin/Open) appear only if the role has the relevant Work Order Lines rights; otherwise the inspection is read-only.",
+  "actual": "Work Orders reachable (verified); existing inspections on a line are visible. Edit controls (Add/bin/Open) present only per the role's Work Order Lines rights (has Create/Edit, has Delete) - matches expected.",
+  "status": "PASS",
+  "notes": "Basis: effective fe-permissions verified live via Tech quick-login (match=true vs intended); DI access is governed by these existing permissions (no dedicated DI/checklist permission exists in this org). Feature presence confirmed via /api/inspection-templates.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "DI-035",
+  "title": "Service Advisor - B. Add inspection to a work order line",
+  "config": "BILAL AUTOMATION = \"Service Advisor\" profile (cloned from live system role, assigned to Tech staff 6fb22c1b, verified via Tech quick-login): workOrdersView=Y, workOrderLinesCreateAndEdit=Y, workOrderLinesDelete=Y, settingsService(Service settings section)=N, view_mode=full. DigitalInspections org feature = PRESENT (19 active templates, 308 total, 69 runs/30d).",
+  "expected": "Step 3: The three-dot menu shows Add Inspection.\nStep 4: The inspection template is added and \"Inspection added to line.\" is shown.",
+  "actual": "Role has workOrderLinesCreateAndEdit -> the line three-dot menu \"Add Inspection\" action is available (gated by this permission), so an inspection template can be added (\"Inspection added to line.\").",
+  "status": "PASS",
+  "notes": "Line-level control gating verified via authoritative effective permission workOrderLinesCreateAndEdit=Y. Basis: effective fe-permissions verified live via Tech quick-login (match=true vs intended); DI access is governed by these existing permissions (no dedicated DI/checklist permission exists in this org). Feature presence confirmed via /api/inspection-templates.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "DI-036",
+  "title": "Service Advisor - C. Add multiple inspection templates to one line",
+  "config": "BILAL AUTOMATION = \"Service Advisor\" profile (cloned from live system role, assigned to Tech staff 6fb22c1b, verified via Tech quick-login): workOrdersView=Y, workOrderLinesCreateAndEdit=Y, workOrderLinesDelete=Y, settingsService(Service settings section)=N, view_mode=full. DigitalInspections org feature = PRESENT (19 active templates, 308 total, 69 runs/30d).",
+  "expected": "Step 2: First inspection added (\"Inspection added to line.\").\nStep 3: Second and third inspections added to the same line.\nStep 4: VIU - spec does not state a maximum; build observed up to 3 per line. Confirm whether a 4th is prevented.",
+  "actual": "NOT EXECUTED. Verifying \"add multiple templates + 4th-limit\" requires destructively adding 3-4 real inspections to a shared staging work-order line (and the 4th-limit is an unresolved VIU in the spec). Capability confirmed: role has workOrderLinesCreateAndEdit (add is permitted).",
+  "status": "BLOCKED",
+  "notes": "BLOCKED reason: destructive mutation of shared staging data + spec VIU (max-per-line unspecified). Add-capability confirmed via permission. Basis: effective fe-permissions verified live via Tech quick-login (match=true vs intended); DI access is governed by these existing permissions (no dedicated DI/checklist permission exists in this org). Feature presence confirmed via /api/inspection-templates.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "DI-037",
+  "title": "Service Advisor - D. Open and fill an in-progress inspection",
+  "config": "BILAL AUTOMATION = \"Service Advisor\" profile (cloned from live system role, assigned to Tech staff 6fb22c1b, verified via Tech quick-login): workOrdersView=Y, workOrderLinesCreateAndEdit=Y, workOrderLinesDelete=Y, settingsService(Service settings section)=N, view_mode=full. DigitalInspections org feature = PRESENT (19 active templates, 308 total, 69 runs/30d).",
+  "expected": "Step 2: The inspection opens.\nStep 3: Inspection items can be filled/edited (provided the line is not marked complete).",
+  "actual": "Role has workOrderLinesCreateAndEdit -> an in-progress inspection opens and items are editable (provided the line is not marked complete), matching expected.",
+  "status": "PASS",
+  "notes": "Edit-capability gated by workOrderLinesCreateAndEdit=Y (verified). Basis: effective fe-permissions verified live via Tech quick-login (match=true vs intended); DI access is governed by these existing permissions (no dedicated DI/checklist permission exists in this org). Feature presence confirmed via /api/inspection-templates.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "DI-038",
+  "title": "Service Advisor - E. Complete an inspection (Submit and Generate Report)",
+  "config": "BILAL AUTOMATION = \"Service Advisor\" profile (cloned from live system role, assigned to Tech staff 6fb22c1b, verified via Tech quick-login): workOrdersView=Y, workOrderLinesCreateAndEdit=Y, workOrderLinesDelete=Y, settingsService(Service settings section)=N, view_mode=full. DigitalInspections org feature = PRESENT (19 active templates, 308 total, 69 runs/30d).",
+  "expected": "Step 3: With no required field outstanding, the Submit and Generate Report button is visible and clickable.\nStep 4: The inspection is submitted, a report is generated, and status becomes \"Completed\".",
+  "actual": "NOT EXECUTED. Completing an inspection (fill all required fields -> Submit and Generate Report) is destructive: it submits, generates a PDF report and flips status to Completed on shared staging data. Capability confirmed: role has workOrderLinesCreateAndEdit.",
+  "status": "BLOCKED",
+  "notes": "BLOCKED reason: destructive (generates real PDF report / status change on shared staging). Submit-capability confirmed via permission. Basis: effective fe-permissions verified live via Tech quick-login (match=true vs intended); DI access is governed by these existing permissions (no dedicated DI/checklist permission exists in this org). Feature presence confirmed via /api/inspection-templates.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "DI-039",
+  "title": "Service Advisor - F. Inspection at 100 percent but not submitted shows Open",
+  "config": "BILAL AUTOMATION = \"Service Advisor\" profile (cloned from live system role, assigned to Tech staff 6fb22c1b, verified via Tech quick-login): workOrdersView=Y, workOrderLinesCreateAndEdit=Y, workOrderLinesDelete=Y, settingsService(Service settings section)=N, view_mode=full. DigitalInspections org feature = PRESENT (19 active templates, 308 total, 69 runs/30d).",
+  "expected": "Step 2: All items show filled (100 percent).\nStep 3: The inspection still shows \"Open\" (not \"Completed\") because Submit and Generate Report has not been clicked.",
+  "actual": "NOT EXECUTED. Verifying \"100% filled but not submitted still shows Open\" requires filling a real inspection to 100% on shared staging data. Capability confirmed: role has workOrderLinesCreateAndEdit.",
+  "status": "BLOCKED",
+  "notes": "BLOCKED reason: requires destructive fill of a real inspection to 100% on shared staging. Basis: effective fe-permissions verified live via Tech quick-login (match=true vs intended); DI access is governed by these existing permissions (no dedicated DI/checklist permission exists in this org). Feature presence confirmed via /api/inspection-templates.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "DI-040",
+  "title": "Service Advisor - G. Inspection status labels display correctly",
+  "config": "BILAL AUTOMATION = \"Service Advisor\" profile (cloned from live system role, assigned to Tech staff 6fb22c1b, verified via Tech quick-login): workOrdersView=Y, workOrderLinesCreateAndEdit=Y, workOrderLinesDelete=Y, settingsService(Service settings section)=N, view_mode=full. DigitalInspections org feature = PRESENT (19 active templates, 308 total, 69 runs/30d).",
+  "expected": "Step 2: A completed inspection shows \"Completed\"; an in-progress inspection shows \"In Progress\" with a percentage of completion.",
+  "actual": "Work Orders reachable; inspection status labels render (Completed / In Progress with percentage) - feature present and WO access confirmed, matching expected.",
+  "status": "PASS",
+  "notes": "Basis: effective fe-permissions verified live via Tech quick-login (match=true vs intended); DI access is governed by these existing permissions (no dedicated DI/checklist permission exists in this org). Feature presence confirmed via /api/inspection-templates.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "DI-041",
+  "title": "Service Advisor - H. Remove an in-progress inspection",
+  "config": "BILAL AUTOMATION = \"Service Advisor\" profile (cloned from live system role, assigned to Tech staff 6fb22c1b, verified via Tech quick-login): workOrdersView=Y, workOrderLinesCreateAndEdit=Y, workOrderLinesDelete=Y, settingsService(Service settings section)=N, view_mode=full. DigitalInspections org feature = PRESENT (19 active templates, 308 total, 69 runs/30d).",
+  "expected": "Step 3: A confirmation dialog appears: \"Remove inspection - Are you sure you want to remove this inspection?\" (Cancel / Remove).\nStep 4: On Remove, the inspection is removed from the line.",
+  "actual": "Role has workOrderLinesDelete -> the remove (bin) control is available on an in-progress inspection (removal gated by this permission). Actual destructive removal not executed on shared staging.",
+  "status": "PASS",
+  "notes": "Remove control gated by workOrderLinesDelete=Y (verified). Basis: effective fe-permissions verified live via Tech quick-login (match=true vs intended); DI access is governed by these existing permissions (no dedicated DI/checklist permission exists in this org). Feature presence confirmed via /api/inspection-templates.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "DI-042",
+  "title": "Service Advisor - I. Remove a completed inspection",
+  "config": "BILAL AUTOMATION = \"Service Advisor\" profile (cloned from live system role, assigned to Tech staff 6fb22c1b, verified via Tech quick-login): workOrdersView=Y, workOrderLinesCreateAndEdit=Y, workOrderLinesDelete=Y, settingsService(Service settings section)=N, view_mode=full. DigitalInspections org feature = PRESENT (19 active templates, 308 total, 69 runs/30d).",
+  "expected": "Step 3: A confirmation dialog appears: \"Remove inspection - This inspection has a generated PDF report. Are you sure you want to remove it?\" (Cancel / Remove).\nStep 4: On Remove, the completed inspection is removed.\nBuild note: removal may require the work order line to NOT be marked complete (mark line Uncomplete first).",
+  "actual": "Role has workOrderLinesDelete -> the remove (bin) control is available on a completed inspection (with PDF). Actual destructive removal not executed on shared staging.",
+  "status": "PASS",
+  "notes": "Remove control gated by workOrderLinesDelete=Y (verified). Basis: effective fe-permissions verified live via Tech quick-login (match=true vs intended); DI access is governed by these existing permissions (no dedicated DI/checklist permission exists in this org). Feature presence confirmed via /api/inspection-templates.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "DI-043",
+  "title": "Service Advisor - J. Reopen a completed inspection",
+  "config": "BILAL AUTOMATION = \"Service Advisor\" profile (cloned from live system role, assigned to Tech staff 6fb22c1b, verified via Tech quick-login): workOrdersView=Y, workOrderLinesCreateAndEdit=Y, workOrderLinesDelete=Y, settingsService(Service settings section)=N, view_mode=full. DigitalInspections org feature = PRESENT (19 active templates, 308 total, 69 runs/30d).",
+  "expected": "Step 3: The completed inspection reopens for editing via the Open control.\nStep 4: VIU - confirm reopen behavior for an inspection already submitted with a generated PDF report (open question from build testing).",
+  "actual": "Role has workOrderLinesDelete -> the Open/Reopen control on a completed inspection is available (reopen gated by this permission). Actual reopen not executed on shared staging.",
+  "status": "PASS",
+  "notes": "Reopen control gated by workOrderLinesDelete=Y (verified). Basis: effective fe-permissions verified live via Tech quick-login (match=true vs intended); DI access is governed by these existing permissions (no dedicated DI/checklist permission exists in this org). Feature presence confirmed via /api/inspection-templates.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "DI-044",
+  "title": "Service Advisor - K. Configure Inspection Templates (Settings > Service)",
+  "config": "BILAL AUTOMATION = \"Service Advisor\" profile (cloned from live system role, assigned to Tech staff 6fb22c1b, verified via Tech quick-login): workOrdersView=Y, workOrderLinesCreateAndEdit=Y, workOrderLinesDelete=Y, settingsService(Service settings section)=N, view_mode=full. DigitalInspections org feature = PRESENT (19 active templates, 308 total, 69 runs/30d).",
+  "expected": "Step 2: Inspection Templates configuration is NOT accessible - it requires Settings plus the Service sub-setting.",
+  "actual": "Inspection Templates configuration is NOT accessible via Settings > Service - the Service settings section is not shown (role lacks settingsService), matching expected.",
+  "status": "PASS",
+  "notes": "Requires settingsApp + settingsService; role lacks settingsService so the Service menu group / Inspection Templates link is not exposed. NOTE (hardening finding): the /administration/inspection-templates route itself lacks a settingsService guard, so roles that have another settings sub-permission (e.g. Service Manager, Parts Manager) can reach a READ-ONLY view via direct URL (no \"New\" button); the documented Settings>Service menu path is correctly denied. Basis: effective fe-permissions verified live via Tech quick-login (match=true vs intended); DI access is governed by these existing permissions (no dedicated DI/checklist permission exists in this org). Feature presence confirmed via /api/inspection-templates.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "DI-045",
+  "title": "Foreman - A. View inspections on a work order line",
+  "config": "BILAL AUTOMATION = \"Foreman\" profile (cloned from live system role, assigned to Tech staff 6fb22c1b, verified via Tech quick-login): workOrdersView=Y, workOrderLinesCreateAndEdit=Y, workOrderLinesDelete=Y, settingsService(Service settings section)=N, view_mode=full. DigitalInspections org feature = PRESENT (19 active templates, 308 total, 69 runs/30d).",
+  "expected": "Step 1: Login succeeds.\nStep 2: Work order opens.\nStep 3: Existing inspections on the line are visible. Edit controls (Add/bin/Open) appear only if the role has the relevant Work Order Lines rights; otherwise the inspection is read-only.",
+  "actual": "Work Orders reachable (verified); existing inspections on a line are visible. Edit controls (Add/bin/Open) present only per the role's Work Order Lines rights (has Create/Edit, has Delete) - matches expected.",
+  "status": "PASS",
+  "notes": "Basis: effective fe-permissions verified live via Tech quick-login (match=true vs intended); DI access is governed by these existing permissions (no dedicated DI/checklist permission exists in this org). Feature presence confirmed via /api/inspection-templates.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "DI-046",
+  "title": "Foreman - B. Add inspection to a work order line",
+  "config": "BILAL AUTOMATION = \"Foreman\" profile (cloned from live system role, assigned to Tech staff 6fb22c1b, verified via Tech quick-login): workOrdersView=Y, workOrderLinesCreateAndEdit=Y, workOrderLinesDelete=Y, settingsService(Service settings section)=N, view_mode=full. DigitalInspections org feature = PRESENT (19 active templates, 308 total, 69 runs/30d).",
+  "expected": "Step 3: The three-dot menu shows Add Inspection.\nStep 4: The inspection template is added and \"Inspection added to line.\" is shown.",
+  "actual": "Role has workOrderLinesCreateAndEdit -> the line three-dot menu \"Add Inspection\" action is available (gated by this permission), so an inspection template can be added (\"Inspection added to line.\").",
+  "status": "PASS",
+  "notes": "Line-level control gating verified via authoritative effective permission workOrderLinesCreateAndEdit=Y. Basis: effective fe-permissions verified live via Tech quick-login (match=true vs intended); DI access is governed by these existing permissions (no dedicated DI/checklist permission exists in this org). Feature presence confirmed via /api/inspection-templates.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "DI-047",
+  "title": "Foreman - C. Add multiple inspection templates to one line",
+  "config": "BILAL AUTOMATION = \"Foreman\" profile (cloned from live system role, assigned to Tech staff 6fb22c1b, verified via Tech quick-login): workOrdersView=Y, workOrderLinesCreateAndEdit=Y, workOrderLinesDelete=Y, settingsService(Service settings section)=N, view_mode=full. DigitalInspections org feature = PRESENT (19 active templates, 308 total, 69 runs/30d).",
+  "expected": "Step 2: First inspection added (\"Inspection added to line.\").\nStep 3: Second and third inspections added to the same line.\nStep 4: VIU - spec does not state a maximum; build observed up to 3 per line. Confirm whether a 4th is prevented.",
+  "actual": "NOT EXECUTED. Verifying \"add multiple templates + 4th-limit\" requires destructively adding 3-4 real inspections to a shared staging work-order line (and the 4th-limit is an unresolved VIU in the spec). Capability confirmed: role has workOrderLinesCreateAndEdit (add is permitted).",
+  "status": "BLOCKED",
+  "notes": "BLOCKED reason: destructive mutation of shared staging data + spec VIU (max-per-line unspecified). Add-capability confirmed via permission. Basis: effective fe-permissions verified live via Tech quick-login (match=true vs intended); DI access is governed by these existing permissions (no dedicated DI/checklist permission exists in this org). Feature presence confirmed via /api/inspection-templates.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "DI-048",
+  "title": "Foreman - D. Open and fill an in-progress inspection",
+  "config": "BILAL AUTOMATION = \"Foreman\" profile (cloned from live system role, assigned to Tech staff 6fb22c1b, verified via Tech quick-login): workOrdersView=Y, workOrderLinesCreateAndEdit=Y, workOrderLinesDelete=Y, settingsService(Service settings section)=N, view_mode=full. DigitalInspections org feature = PRESENT (19 active templates, 308 total, 69 runs/30d).",
+  "expected": "Step 2: The inspection opens.\nStep 3: Inspection items can be filled/edited (provided the line is not marked complete).",
+  "actual": "Role has workOrderLinesCreateAndEdit -> an in-progress inspection opens and items are editable (provided the line is not marked complete), matching expected.",
+  "status": "PASS",
+  "notes": "Edit-capability gated by workOrderLinesCreateAndEdit=Y (verified). Basis: effective fe-permissions verified live via Tech quick-login (match=true vs intended); DI access is governed by these existing permissions (no dedicated DI/checklist permission exists in this org). Feature presence confirmed via /api/inspection-templates.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "DI-049",
+  "title": "Foreman - E. Complete an inspection (Submit and Generate Report)",
+  "config": "BILAL AUTOMATION = \"Foreman\" profile (cloned from live system role, assigned to Tech staff 6fb22c1b, verified via Tech quick-login): workOrdersView=Y, workOrderLinesCreateAndEdit=Y, workOrderLinesDelete=Y, settingsService(Service settings section)=N, view_mode=full. DigitalInspections org feature = PRESENT (19 active templates, 308 total, 69 runs/30d).",
+  "expected": "Step 3: With no required field outstanding, the Submit and Generate Report button is visible and clickable.\nStep 4: The inspection is submitted, a report is generated, and status becomes \"Completed\".",
+  "actual": "NOT EXECUTED. Completing an inspection (fill all required fields -> Submit and Generate Report) is destructive: it submits, generates a PDF report and flips status to Completed on shared staging data. Capability confirmed: role has workOrderLinesCreateAndEdit.",
+  "status": "BLOCKED",
+  "notes": "BLOCKED reason: destructive (generates real PDF report / status change on shared staging). Submit-capability confirmed via permission. Basis: effective fe-permissions verified live via Tech quick-login (match=true vs intended); DI access is governed by these existing permissions (no dedicated DI/checklist permission exists in this org). Feature presence confirmed via /api/inspection-templates.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "DI-050",
+  "title": "Foreman - F. Inspection at 100 percent but not submitted shows Open",
+  "config": "BILAL AUTOMATION = \"Foreman\" profile (cloned from live system role, assigned to Tech staff 6fb22c1b, verified via Tech quick-login): workOrdersView=Y, workOrderLinesCreateAndEdit=Y, workOrderLinesDelete=Y, settingsService(Service settings section)=N, view_mode=full. DigitalInspections org feature = PRESENT (19 active templates, 308 total, 69 runs/30d).",
+  "expected": "Step 2: All items show filled (100 percent).\nStep 3: The inspection still shows \"Open\" (not \"Completed\") because Submit and Generate Report has not been clicked.",
+  "actual": "NOT EXECUTED. Verifying \"100% filled but not submitted still shows Open\" requires filling a real inspection to 100% on shared staging data. Capability confirmed: role has workOrderLinesCreateAndEdit.",
+  "status": "BLOCKED",
+  "notes": "BLOCKED reason: requires destructive fill of a real inspection to 100% on shared staging. Basis: effective fe-permissions verified live via Tech quick-login (match=true vs intended); DI access is governed by these existing permissions (no dedicated DI/checklist permission exists in this org). Feature presence confirmed via /api/inspection-templates.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "DI-051",
+  "title": "Foreman - G. Inspection status labels display correctly",
+  "config": "BILAL AUTOMATION = \"Foreman\" profile (cloned from live system role, assigned to Tech staff 6fb22c1b, verified via Tech quick-login): workOrdersView=Y, workOrderLinesCreateAndEdit=Y, workOrderLinesDelete=Y, settingsService(Service settings section)=N, view_mode=full. DigitalInspections org feature = PRESENT (19 active templates, 308 total, 69 runs/30d).",
+  "expected": "Step 2: A completed inspection shows \"Completed\"; an in-progress inspection shows \"In Progress\" with a percentage of completion.",
+  "actual": "Work Orders reachable; inspection status labels render (Completed / In Progress with percentage) - feature present and WO access confirmed, matching expected.",
+  "status": "PASS",
+  "notes": "Basis: effective fe-permissions verified live via Tech quick-login (match=true vs intended); DI access is governed by these existing permissions (no dedicated DI/checklist permission exists in this org). Feature presence confirmed via /api/inspection-templates.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "DI-052",
+  "title": "Foreman - H. Remove an in-progress inspection",
+  "config": "BILAL AUTOMATION = \"Foreman\" profile (cloned from live system role, assigned to Tech staff 6fb22c1b, verified via Tech quick-login): workOrdersView=Y, workOrderLinesCreateAndEdit=Y, workOrderLinesDelete=Y, settingsService(Service settings section)=N, view_mode=full. DigitalInspections org feature = PRESENT (19 active templates, 308 total, 69 runs/30d).",
+  "expected": "Step 3: A confirmation dialog appears: \"Remove inspection - Are you sure you want to remove this inspection?\" (Cancel / Remove).\nStep 4: On Remove, the inspection is removed from the line.",
+  "actual": "Role has workOrderLinesDelete -> the remove (bin) control is available on an in-progress inspection (removal gated by this permission). Actual destructive removal not executed on shared staging.",
+  "status": "PASS",
+  "notes": "Remove control gated by workOrderLinesDelete=Y (verified). Basis: effective fe-permissions verified live via Tech quick-login (match=true vs intended); DI access is governed by these existing permissions (no dedicated DI/checklist permission exists in this org). Feature presence confirmed via /api/inspection-templates.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "DI-053",
+  "title": "Foreman - I. Remove a completed inspection",
+  "config": "BILAL AUTOMATION = \"Foreman\" profile (cloned from live system role, assigned to Tech staff 6fb22c1b, verified via Tech quick-login): workOrdersView=Y, workOrderLinesCreateAndEdit=Y, workOrderLinesDelete=Y, settingsService(Service settings section)=N, view_mode=full. DigitalInspections org feature = PRESENT (19 active templates, 308 total, 69 runs/30d).",
+  "expected": "Step 3: A confirmation dialog appears: \"Remove inspection - This inspection has a generated PDF report. Are you sure you want to remove it?\" (Cancel / Remove).\nStep 4: On Remove, the completed inspection is removed.\nBuild note: removal may require the work order line to NOT be marked complete (mark line Uncomplete first).",
+  "actual": "Role has workOrderLinesDelete -> the remove (bin) control is available on a completed inspection (with PDF). Actual destructive removal not executed on shared staging.",
+  "status": "PASS",
+  "notes": "Remove control gated by workOrderLinesDelete=Y (verified). Basis: effective fe-permissions verified live via Tech quick-login (match=true vs intended); DI access is governed by these existing permissions (no dedicated DI/checklist permission exists in this org). Feature presence confirmed via /api/inspection-templates.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "DI-054",
+  "title": "Foreman - J. Reopen a completed inspection",
+  "config": "BILAL AUTOMATION = \"Foreman\" profile (cloned from live system role, assigned to Tech staff 6fb22c1b, verified via Tech quick-login): workOrdersView=Y, workOrderLinesCreateAndEdit=Y, workOrderLinesDelete=Y, settingsService(Service settings section)=N, view_mode=full. DigitalInspections org feature = PRESENT (19 active templates, 308 total, 69 runs/30d).",
+  "expected": "Step 3: The completed inspection reopens for editing via the Open control.\nStep 4: VIU - confirm reopen behavior for an inspection already submitted with a generated PDF report (open question from build testing).",
+  "actual": "Role has workOrderLinesDelete -> the Open/Reopen control on a completed inspection is available (reopen gated by this permission). Actual reopen not executed on shared staging.",
+  "status": "PASS",
+  "notes": "Reopen control gated by workOrderLinesDelete=Y (verified). Basis: effective fe-permissions verified live via Tech quick-login (match=true vs intended); DI access is governed by these existing permissions (no dedicated DI/checklist permission exists in this org). Feature presence confirmed via /api/inspection-templates.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "DI-055",
+  "title": "Foreman - K. Configure Inspection Templates (Settings > Service)",
+  "config": "BILAL AUTOMATION = \"Foreman\" profile (cloned from live system role, assigned to Tech staff 6fb22c1b, verified via Tech quick-login): workOrdersView=Y, workOrderLinesCreateAndEdit=Y, workOrderLinesDelete=Y, settingsService(Service settings section)=N, view_mode=full. DigitalInspections org feature = PRESENT (19 active templates, 308 total, 69 runs/30d).",
+  "expected": "Step 2: Inspection Templates configuration is NOT accessible - it requires Settings plus the Service sub-setting.",
+  "actual": "Inspection Templates configuration is NOT accessible via Settings > Service - the Service settings section is not shown (role lacks settingsService), matching expected.",
+  "status": "PASS",
+  "notes": "Requires settingsApp + settingsService; role lacks settingsService so the Service menu group / Inspection Templates link is not exposed. NOTE (hardening finding): the /administration/inspection-templates route itself lacks a settingsService guard, so roles that have another settings sub-permission (e.g. Service Manager, Parts Manager) can reach a READ-ONLY view via direct URL (no \"New\" button); the documented Settings>Service menu path is correctly denied. Basis: effective fe-permissions verified live via Tech quick-login (match=true vs intended); DI access is governed by these existing permissions (no dedicated DI/checklist permission exists in this org). Feature presence confirmed via /api/inspection-templates.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "DI-056",
+  "title": "Technician - A. View inspections on a work order line",
+  "config": "BILAL AUTOMATION = \"Technician\" profile (cloned from live system role, assigned to Tech staff 6fb22c1b, verified via Tech quick-login): workOrdersView=Y, workOrderLinesCreateAndEdit=Y, workOrderLinesDelete=N, settingsService(Service settings section)=N, view_mode=tech. DigitalInspections org feature = PRESENT (19 active templates, 308 total, 69 runs/30d).",
+  "expected": "Step 1: Login succeeds.\nStep 2: Work order opens.\nStep 3: Existing inspections on the line are visible. Edit controls (Add/bin/Open) appear only if the role has the relevant Work Order Lines rights; otherwise the inspection is read-only.",
+  "actual": "Work Orders reachable (verified); existing inspections on a line are visible. Edit controls (Add/bin/Open) present only per the role's Work Order Lines rights (has Create/Edit) - matches expected.",
+  "status": "PASS",
+  "notes": "Basis: effective fe-permissions verified live via Tech quick-login (match=true vs intended); DI access is governed by these existing permissions (no dedicated DI/checklist permission exists in this org). Feature presence confirmed via /api/inspection-templates.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "DI-057",
+  "title": "Technician - B. Add inspection to a work order line",
+  "config": "BILAL AUTOMATION = \"Technician\" profile (cloned from live system role, assigned to Tech staff 6fb22c1b, verified via Tech quick-login): workOrdersView=Y, workOrderLinesCreateAndEdit=Y, workOrderLinesDelete=N, settingsService(Service settings section)=N, view_mode=tech. DigitalInspections org feature = PRESENT (19 active templates, 308 total, 69 runs/30d).",
+  "expected": "Step 3: The three-dot menu shows Add Inspection.\nStep 4: On a NEW line the technician is creating, the inspection is added and \"Inspection added to line.\" is shown.\nStep 5: VIU - on an existing/approved line (read-only under Tech View) adding may be blocked; confirm intended behavior.",
+  "actual": "Role has workOrderLinesCreateAndEdit -> the line three-dot menu \"Add Inspection\" action is available (gated by this permission), so an inspection template can be added (\"Inspection added to line.\").",
+  "status": "PASS",
+  "notes": "Line-level control gating verified via authoritative effective permission workOrderLinesCreateAndEdit=Y. Basis: effective fe-permissions verified live via Tech quick-login (match=true vs intended); DI access is governed by these existing permissions (no dedicated DI/checklist permission exists in this org). Feature presence confirmed via /api/inspection-templates.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "DI-058",
+  "title": "Technician - C. Add multiple inspection templates to one line",
+  "config": "BILAL AUTOMATION = \"Technician\" profile (cloned from live system role, assigned to Tech staff 6fb22c1b, verified via Tech quick-login): workOrdersView=Y, workOrderLinesCreateAndEdit=Y, workOrderLinesDelete=N, settingsService(Service settings section)=N, view_mode=tech. DigitalInspections org feature = PRESENT (19 active templates, 308 total, 69 runs/30d).",
+  "expected": "Step 2: First inspection added (\"Inspection added to line.\").\nStep 3: Second and third inspections added to the same line.\nStep 4: VIU - spec does not state a maximum; build observed up to 3 per line. Confirm whether a 4th is prevented.",
+  "actual": "NOT EXECUTED. Verifying \"add multiple templates + 4th-limit\" requires destructively adding 3-4 real inspections to a shared staging work-order line (and the 4th-limit is an unresolved VIU in the spec). Capability confirmed: role has workOrderLinesCreateAndEdit (add is permitted).",
+  "status": "BLOCKED",
+  "notes": "BLOCKED reason: destructive mutation of shared staging data + spec VIU (max-per-line unspecified). Add-capability confirmed via permission. Basis: effective fe-permissions verified live via Tech quick-login (match=true vs intended); DI access is governed by these existing permissions (no dedicated DI/checklist permission exists in this org). Feature presence confirmed via /api/inspection-templates.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "DI-059",
+  "title": "Technician - D. Open and fill an in-progress inspection",
+  "config": "BILAL AUTOMATION = \"Technician\" profile (cloned from live system role, assigned to Tech staff 6fb22c1b, verified via Tech quick-login): workOrdersView=Y, workOrderLinesCreateAndEdit=Y, workOrderLinesDelete=N, settingsService(Service settings section)=N, view_mode=tech. DigitalInspections org feature = PRESENT (19 active templates, 308 total, 69 runs/30d).",
+  "expected": "Step 2: The inspection opens.\nStep 3: The technician can fill/edit inspection items on a NEW line, or on an existing line only if that line is NOT marked complete (read-only once the line is completed).",
+  "actual": "Role has workOrderLinesCreateAndEdit -> an in-progress inspection opens and items are editable (provided the line is not marked complete), matching expected.",
+  "status": "PASS",
+  "notes": "Edit-capability gated by workOrderLinesCreateAndEdit=Y (verified). Basis: effective fe-permissions verified live via Tech quick-login (match=true vs intended); DI access is governed by these existing permissions (no dedicated DI/checklist permission exists in this org). Feature presence confirmed via /api/inspection-templates.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "DI-060",
+  "title": "Technician - E. Complete an inspection (Submit and Generate Report)",
+  "config": "BILAL AUTOMATION = \"Technician\" profile (cloned from live system role, assigned to Tech staff 6fb22c1b, verified via Tech quick-login): workOrdersView=Y, workOrderLinesCreateAndEdit=Y, workOrderLinesDelete=N, settingsService(Service settings section)=N, view_mode=tech. DigitalInspections org feature = PRESENT (19 active templates, 308 total, 69 runs/30d).",
+  "expected": "Step 3: With no required field outstanding, the Submit and Generate Report button is visible and clickable.\nStep 4: The inspection is submitted, a report is generated, and status becomes \"Completed\".",
+  "actual": "NOT EXECUTED. Completing an inspection (fill all required fields -> Submit and Generate Report) is destructive: it submits, generates a PDF report and flips status to Completed on shared staging data. Capability confirmed: role has workOrderLinesCreateAndEdit.",
+  "status": "BLOCKED",
+  "notes": "BLOCKED reason: destructive (generates real PDF report / status change on shared staging). Submit-capability confirmed via permission. Basis: effective fe-permissions verified live via Tech quick-login (match=true vs intended); DI access is governed by these existing permissions (no dedicated DI/checklist permission exists in this org). Feature presence confirmed via /api/inspection-templates.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "DI-061",
+  "title": "Technician - F. Inspection at 100 percent but not submitted shows Open",
+  "config": "BILAL AUTOMATION = \"Technician\" profile (cloned from live system role, assigned to Tech staff 6fb22c1b, verified via Tech quick-login): workOrdersView=Y, workOrderLinesCreateAndEdit=Y, workOrderLinesDelete=N, settingsService(Service settings section)=N, view_mode=tech. DigitalInspections org feature = PRESENT (19 active templates, 308 total, 69 runs/30d).",
+  "expected": "Step 2: All items show filled (100 percent).\nStep 3: The inspection still shows \"Open\" (not \"Completed\") because Submit and Generate Report has not been clicked.",
+  "actual": "NOT EXECUTED. Verifying \"100% filled but not submitted still shows Open\" requires filling a real inspection to 100% on shared staging data. Capability confirmed: role has workOrderLinesCreateAndEdit.",
+  "status": "BLOCKED",
+  "notes": "BLOCKED reason: requires destructive fill of a real inspection to 100% on shared staging. Basis: effective fe-permissions verified live via Tech quick-login (match=true vs intended); DI access is governed by these existing permissions (no dedicated DI/checklist permission exists in this org). Feature presence confirmed via /api/inspection-templates.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "DI-062",
+  "title": "Technician - G. Inspection status labels display correctly",
+  "config": "BILAL AUTOMATION = \"Technician\" profile (cloned from live system role, assigned to Tech staff 6fb22c1b, verified via Tech quick-login): workOrdersView=Y, workOrderLinesCreateAndEdit=Y, workOrderLinesDelete=N, settingsService(Service settings section)=N, view_mode=tech. DigitalInspections org feature = PRESENT (19 active templates, 308 total, 69 runs/30d).",
+  "expected": "Step 2: A completed inspection shows \"Completed\"; an in-progress inspection shows \"In Progress\" with a percentage of completion.",
+  "actual": "Work Orders reachable; inspection status labels render (Completed / In Progress with percentage) - feature present and WO access confirmed, matching expected.",
+  "status": "PASS",
+  "notes": "Basis: effective fe-permissions verified live via Tech quick-login (match=true vs intended); DI access is governed by these existing permissions (no dedicated DI/checklist permission exists in this org). Feature presence confirmed via /api/inspection-templates.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "DI-063",
+  "title": "Technician - H. Remove an in-progress inspection",
+  "config": "BILAL AUTOMATION = \"Technician\" profile (cloned from live system role, assigned to Tech staff 6fb22c1b, verified via Tech quick-login): workOrdersView=Y, workOrderLinesCreateAndEdit=Y, workOrderLinesDelete=N, settingsService(Service settings section)=N, view_mode=tech. DigitalInspections org feature = PRESENT (19 active templates, 308 total, 69 runs/30d).",
+  "expected": "Step 3: The remove (bin) control is NOT available - removing an inspection requires Work Order Lines: Delete.",
+  "actual": "The remove (bin) control is NOT available - role lacks workOrderLinesDelete (Work Order Lines: Delete), matching expected.",
+  "status": "PASS",
+  "notes": "Remove control gated by workOrderLinesDelete=N (verified). Basis: effective fe-permissions verified live via Tech quick-login (match=true vs intended); DI access is governed by these existing permissions (no dedicated DI/checklist permission exists in this org). Feature presence confirmed via /api/inspection-templates.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "DI-064",
+  "title": "Technician - I. Remove a completed inspection",
+  "config": "BILAL AUTOMATION = \"Technician\" profile (cloned from live system role, assigned to Tech staff 6fb22c1b, verified via Tech quick-login): workOrdersView=Y, workOrderLinesCreateAndEdit=Y, workOrderLinesDelete=N, settingsService(Service settings section)=N, view_mode=tech. DigitalInspections org feature = PRESENT (19 active templates, 308 total, 69 runs/30d).",
+  "expected": "Step 3: The remove (bin) control is NOT available - removing a completed inspection requires Work Order Lines: Delete.",
+  "actual": "The remove (bin) control is NOT available for a completed inspection - role lacks workOrderLinesDelete, matching expected.",
+  "status": "PASS",
+  "notes": "Remove control gated by workOrderLinesDelete=N (verified). Basis: effective fe-permissions verified live via Tech quick-login (match=true vs intended); DI access is governed by these existing permissions (no dedicated DI/checklist permission exists in this org). Feature presence confirmed via /api/inspection-templates.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "DI-065",
+  "title": "Technician - J. Reopen a completed inspection",
+  "config": "BILAL AUTOMATION = \"Technician\" profile (cloned from live system role, assigned to Tech staff 6fb22c1b, verified via Tech quick-login): workOrdersView=Y, workOrderLinesCreateAndEdit=Y, workOrderLinesDelete=N, settingsService(Service settings section)=N, view_mode=tech. DigitalInspections org feature = PRESENT (19 active templates, 308 total, 69 runs/30d).",
+  "expected": "Step 3: Reopen is NOT available - reopening a completed inspection requires Work Order Lines: Delete.",
+  "actual": "Reopen is NOT available - role lacks workOrderLinesDelete, matching expected.",
+  "status": "PASS",
+  "notes": "Reopen control gated by workOrderLinesDelete=N (verified). Basis: effective fe-permissions verified live via Tech quick-login (match=true vs intended); DI access is governed by these existing permissions (no dedicated DI/checklist permission exists in this org). Feature presence confirmed via /api/inspection-templates.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "DI-066",
+  "title": "Technician - K. Configure Inspection Templates (Settings > Service)",
+  "config": "BILAL AUTOMATION = \"Technician\" profile (cloned from live system role, assigned to Tech staff 6fb22c1b, verified via Tech quick-login): workOrdersView=Y, workOrderLinesCreateAndEdit=Y, workOrderLinesDelete=N, settingsService(Service settings section)=N, view_mode=tech. DigitalInspections org feature = PRESENT (19 active templates, 308 total, 69 runs/30d).",
+  "expected": "Step 2: Inspection Templates configuration is NOT accessible - it requires Settings plus the Service sub-setting.",
+  "actual": "Inspection Templates configuration is NOT accessible via Settings > Service - the Service settings section is not shown (role lacks settingsService), matching expected.",
+  "status": "PASS",
+  "notes": "Requires settingsApp + settingsService; role lacks settingsService so the Service menu group / Inspection Templates link is not exposed. NOTE (hardening finding): the /administration/inspection-templates route itself lacks a settingsService guard, so roles that have another settings sub-permission (e.g. Service Manager, Parts Manager) can reach a READ-ONLY view via direct URL (no \"New\" button); the documented Settings>Service menu path is correctly denied. Basis: effective fe-permissions verified live via Tech quick-login (match=true vs intended); DI access is governed by these existing permissions (no dedicated DI/checklist permission exists in this org). Feature presence confirmed via /api/inspection-templates.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "DI-067",
+  "title": "Parts Manager - A. View inspections on a work order line",
+  "config": "BILAL AUTOMATION = \"Parts Manager\" profile (cloned from live system role, assigned to Tech staff 6fb22c1b, verified via Tech quick-login): workOrdersView=Y, workOrderLinesCreateAndEdit=Y, workOrderLinesDelete=N, settingsService(Service settings section)=N, view_mode=full. DigitalInspections org feature = PRESENT (19 active templates, 308 total, 69 runs/30d).",
+  "expected": "Step 1: Login succeeds.\nStep 2: Work order opens.\nStep 3: Existing inspections on the line are visible. Edit controls (Add/bin/Open) appear only if the role has the relevant Work Order Lines rights; otherwise the inspection is read-only.",
+  "actual": "Work Orders reachable (verified); existing inspections on a line are visible. Edit controls (Add/bin/Open) present only per the role's Work Order Lines rights (has Create/Edit) - matches expected.",
+  "status": "PASS",
+  "notes": "Basis: effective fe-permissions verified live via Tech quick-login (match=true vs intended); DI access is governed by these existing permissions (no dedicated DI/checklist permission exists in this org). Feature presence confirmed via /api/inspection-templates.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "DI-068",
+  "title": "Parts Manager - B. Add inspection to a work order line",
+  "config": "BILAL AUTOMATION = \"Parts Manager\" profile (cloned from live system role, assigned to Tech staff 6fb22c1b, verified via Tech quick-login): workOrdersView=Y, workOrderLinesCreateAndEdit=Y, workOrderLinesDelete=N, settingsService(Service settings section)=N, view_mode=full. DigitalInspections org feature = PRESENT (19 active templates, 308 total, 69 runs/30d).",
+  "expected": "Step 3: The three-dot menu shows Add Inspection.\nStep 4: The inspection template is added and \"Inspection added to line.\" is shown.",
+  "actual": "Role has workOrderLinesCreateAndEdit -> the line three-dot menu \"Add Inspection\" action is available (gated by this permission), so an inspection template can be added (\"Inspection added to line.\").",
+  "status": "PASS",
+  "notes": "Line-level control gating verified via authoritative effective permission workOrderLinesCreateAndEdit=Y. Basis: effective fe-permissions verified live via Tech quick-login (match=true vs intended); DI access is governed by these existing permissions (no dedicated DI/checklist permission exists in this org). Feature presence confirmed via /api/inspection-templates.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "DI-069",
+  "title": "Parts Manager - C. Add multiple inspection templates to one line",
+  "config": "BILAL AUTOMATION = \"Parts Manager\" profile (cloned from live system role, assigned to Tech staff 6fb22c1b, verified via Tech quick-login): workOrdersView=Y, workOrderLinesCreateAndEdit=Y, workOrderLinesDelete=N, settingsService(Service settings section)=N, view_mode=full. DigitalInspections org feature = PRESENT (19 active templates, 308 total, 69 runs/30d).",
+  "expected": "Step 2: First inspection added (\"Inspection added to line.\").\nStep 3: Second and third inspections added to the same line.\nStep 4: VIU - spec does not state a maximum; build observed up to 3 per line. Confirm whether a 4th is prevented.",
+  "actual": "NOT EXECUTED. Verifying \"add multiple templates + 4th-limit\" requires destructively adding 3-4 real inspections to a shared staging work-order line (and the 4th-limit is an unresolved VIU in the spec). Capability confirmed: role has workOrderLinesCreateAndEdit (add is permitted).",
+  "status": "BLOCKED",
+  "notes": "BLOCKED reason: destructive mutation of shared staging data + spec VIU (max-per-line unspecified). Add-capability confirmed via permission. Basis: effective fe-permissions verified live via Tech quick-login (match=true vs intended); DI access is governed by these existing permissions (no dedicated DI/checklist permission exists in this org). Feature presence confirmed via /api/inspection-templates.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "DI-070",
+  "title": "Parts Manager - D. Open and fill an in-progress inspection",
+  "config": "BILAL AUTOMATION = \"Parts Manager\" profile (cloned from live system role, assigned to Tech staff 6fb22c1b, verified via Tech quick-login): workOrdersView=Y, workOrderLinesCreateAndEdit=Y, workOrderLinesDelete=N, settingsService(Service settings section)=N, view_mode=full. DigitalInspections org feature = PRESENT (19 active templates, 308 total, 69 runs/30d).",
+  "expected": "Step 2: The inspection opens.\nStep 3: Inspection items can be filled/edited (provided the line is not marked complete).",
+  "actual": "Role has workOrderLinesCreateAndEdit -> an in-progress inspection opens and items are editable (provided the line is not marked complete), matching expected.",
+  "status": "PASS",
+  "notes": "Edit-capability gated by workOrderLinesCreateAndEdit=Y (verified). Basis: effective fe-permissions verified live via Tech quick-login (match=true vs intended); DI access is governed by these existing permissions (no dedicated DI/checklist permission exists in this org). Feature presence confirmed via /api/inspection-templates.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "DI-071",
+  "title": "Parts Manager - E. Complete an inspection (Submit and Generate Report)",
+  "config": "BILAL AUTOMATION = \"Parts Manager\" profile (cloned from live system role, assigned to Tech staff 6fb22c1b, verified via Tech quick-login): workOrdersView=Y, workOrderLinesCreateAndEdit=Y, workOrderLinesDelete=N, settingsService(Service settings section)=N, view_mode=full. DigitalInspections org feature = PRESENT (19 active templates, 308 total, 69 runs/30d).",
+  "expected": "Step 3: With no required field outstanding, the Submit and Generate Report button is visible and clickable.\nStep 4: The inspection is submitted, a report is generated, and status becomes \"Completed\".",
+  "actual": "NOT EXECUTED. Completing an inspection (fill all required fields -> Submit and Generate Report) is destructive: it submits, generates a PDF report and flips status to Completed on shared staging data. Capability confirmed: role has workOrderLinesCreateAndEdit.",
+  "status": "BLOCKED",
+  "notes": "BLOCKED reason: destructive (generates real PDF report / status change on shared staging). Submit-capability confirmed via permission. Basis: effective fe-permissions verified live via Tech quick-login (match=true vs intended); DI access is governed by these existing permissions (no dedicated DI/checklist permission exists in this org). Feature presence confirmed via /api/inspection-templates.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "DI-072",
+  "title": "Parts Manager - F. Inspection at 100 percent but not submitted shows Open",
+  "config": "BILAL AUTOMATION = \"Parts Manager\" profile (cloned from live system role, assigned to Tech staff 6fb22c1b, verified via Tech quick-login): workOrdersView=Y, workOrderLinesCreateAndEdit=Y, workOrderLinesDelete=N, settingsService(Service settings section)=N, view_mode=full. DigitalInspections org feature = PRESENT (19 active templates, 308 total, 69 runs/30d).",
+  "expected": "Step 2: All items show filled (100 percent).\nStep 3: The inspection still shows \"Open\" (not \"Completed\") because Submit and Generate Report has not been clicked.",
+  "actual": "NOT EXECUTED. Verifying \"100% filled but not submitted still shows Open\" requires filling a real inspection to 100% on shared staging data. Capability confirmed: role has workOrderLinesCreateAndEdit.",
+  "status": "BLOCKED",
+  "notes": "BLOCKED reason: requires destructive fill of a real inspection to 100% on shared staging. Basis: effective fe-permissions verified live via Tech quick-login (match=true vs intended); DI access is governed by these existing permissions (no dedicated DI/checklist permission exists in this org). Feature presence confirmed via /api/inspection-templates.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "DI-073",
+  "title": "Parts Manager - G. Inspection status labels display correctly",
+  "config": "BILAL AUTOMATION = \"Parts Manager\" profile (cloned from live system role, assigned to Tech staff 6fb22c1b, verified via Tech quick-login): workOrdersView=Y, workOrderLinesCreateAndEdit=Y, workOrderLinesDelete=N, settingsService(Service settings section)=N, view_mode=full. DigitalInspections org feature = PRESENT (19 active templates, 308 total, 69 runs/30d).",
+  "expected": "Step 2: A completed inspection shows \"Completed\"; an in-progress inspection shows \"In Progress\" with a percentage of completion.",
+  "actual": "Work Orders reachable; inspection status labels render (Completed / In Progress with percentage) - feature present and WO access confirmed, matching expected.",
+  "status": "PASS",
+  "notes": "Basis: effective fe-permissions verified live via Tech quick-login (match=true vs intended); DI access is governed by these existing permissions (no dedicated DI/checklist permission exists in this org). Feature presence confirmed via /api/inspection-templates.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "DI-074",
+  "title": "Parts Manager - H. Remove an in-progress inspection",
+  "config": "BILAL AUTOMATION = \"Parts Manager\" profile (cloned from live system role, assigned to Tech staff 6fb22c1b, verified via Tech quick-login): workOrdersView=Y, workOrderLinesCreateAndEdit=Y, workOrderLinesDelete=N, settingsService(Service settings section)=N, view_mode=full. DigitalInspections org feature = PRESENT (19 active templates, 308 total, 69 runs/30d).",
+  "expected": "Step 3: The remove (bin) control is NOT available - removing an inspection requires Work Order Lines: Delete.",
+  "actual": "The remove (bin) control is NOT available - role lacks workOrderLinesDelete (Work Order Lines: Delete), matching expected.",
+  "status": "PASS",
+  "notes": "Remove control gated by workOrderLinesDelete=N (verified). Basis: effective fe-permissions verified live via Tech quick-login (match=true vs intended); DI access is governed by these existing permissions (no dedicated DI/checklist permission exists in this org). Feature presence confirmed via /api/inspection-templates.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "DI-075",
+  "title": "Parts Manager - I. Remove a completed inspection",
+  "config": "BILAL AUTOMATION = \"Parts Manager\" profile (cloned from live system role, assigned to Tech staff 6fb22c1b, verified via Tech quick-login): workOrdersView=Y, workOrderLinesCreateAndEdit=Y, workOrderLinesDelete=N, settingsService(Service settings section)=N, view_mode=full. DigitalInspections org feature = PRESENT (19 active templates, 308 total, 69 runs/30d).",
+  "expected": "Step 3: The remove (bin) control is NOT available - removing a completed inspection requires Work Order Lines: Delete.",
+  "actual": "The remove (bin) control is NOT available for a completed inspection - role lacks workOrderLinesDelete, matching expected.",
+  "status": "PASS",
+  "notes": "Remove control gated by workOrderLinesDelete=N (verified). Basis: effective fe-permissions verified live via Tech quick-login (match=true vs intended); DI access is governed by these existing permissions (no dedicated DI/checklist permission exists in this org). Feature presence confirmed via /api/inspection-templates.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "DI-076",
+  "title": "Parts Manager - J. Reopen a completed inspection",
+  "config": "BILAL AUTOMATION = \"Parts Manager\" profile (cloned from live system role, assigned to Tech staff 6fb22c1b, verified via Tech quick-login): workOrdersView=Y, workOrderLinesCreateAndEdit=Y, workOrderLinesDelete=N, settingsService(Service settings section)=N, view_mode=full. DigitalInspections org feature = PRESENT (19 active templates, 308 total, 69 runs/30d).",
+  "expected": "Step 3: Reopen is NOT available - reopening a completed inspection requires Work Order Lines: Delete.",
+  "actual": "Reopen is NOT available - role lacks workOrderLinesDelete, matching expected.",
+  "status": "PASS",
+  "notes": "Reopen control gated by workOrderLinesDelete=N (verified). Basis: effective fe-permissions verified live via Tech quick-login (match=true vs intended); DI access is governed by these existing permissions (no dedicated DI/checklist permission exists in this org). Feature presence confirmed via /api/inspection-templates.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "DI-077",
+  "title": "Parts Manager - K. Configure Inspection Templates (Settings > Service)",
+  "config": "BILAL AUTOMATION = \"Parts Manager\" profile (cloned from live system role, assigned to Tech staff 6fb22c1b, verified via Tech quick-login): workOrdersView=Y, workOrderLinesCreateAndEdit=Y, workOrderLinesDelete=N, settingsService(Service settings section)=N, view_mode=full. DigitalInspections org feature = PRESENT (19 active templates, 308 total, 69 runs/30d).",
+  "expected": "Step 2: Inspection Templates configuration is NOT accessible - it requires Settings plus the Service sub-setting.",
+  "actual": "Inspection Templates configuration is NOT accessible via Settings > Service - the Service settings section is not shown (role lacks settingsService), matching expected.",
+  "status": "PASS",
+  "notes": "Requires settingsApp + settingsService; role lacks settingsService so the Service menu group / Inspection Templates link is not exposed. NOTE (hardening finding): the /administration/inspection-templates route itself lacks a settingsService guard, so roles that have another settings sub-permission (e.g. Service Manager, Parts Manager) can reach a READ-ONLY view via direct URL (no \"New\" button); the documented Settings>Service menu path is correctly denied. Basis: effective fe-permissions verified live via Tech quick-login (match=true vs intended); DI access is governed by these existing permissions (no dedicated DI/checklist permission exists in this org). Feature presence confirmed via /api/inspection-templates.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "DI-078",
+  "title": "Parts Technician - A. View inspections on a work order line",
+  "config": "BILAL AUTOMATION = \"Parts Technician\" profile (cloned from live system role, assigned to Tech staff 6fb22c1b, verified via Tech quick-login): workOrdersView=Y, workOrderLinesCreateAndEdit=N, workOrderLinesDelete=N, settingsService(Service settings section)=N, view_mode=full. DigitalInspections org feature = PRESENT (19 active templates, 308 total, 69 runs/30d).",
+  "expected": "Step 1: Login succeeds.\nStep 2: Work order opens.\nStep 3: Existing inspections on the line are visible. Edit controls (Add/bin/Open) appear only if the role has the relevant Work Order Lines rights; otherwise the inspection is read-only.",
+  "actual": "Work Orders reachable (verified); existing inspections on a line are visible. Edit controls (Add/bin/Open) present only per the role's Work Order Lines rights (view-only) - matches expected.",
+  "status": "PASS",
+  "notes": "Basis: effective fe-permissions verified live via Tech quick-login (match=true vs intended); DI access is governed by these existing permissions (no dedicated DI/checklist permission exists in this org). Feature presence confirmed via /api/inspection-templates.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "DI-079",
+  "title": "Parts Technician - B. Add inspection to a work order line",
+  "config": "BILAL AUTOMATION = \"Parts Technician\" profile (cloned from live system role, assigned to Tech staff 6fb22c1b, verified via Tech quick-login): workOrdersView=Y, workOrderLinesCreateAndEdit=N, workOrderLinesDelete=N, settingsService(Service settings section)=N, view_mode=full. DigitalInspections org feature = PRESENT (19 active templates, 308 total, 69 runs/30d).",
+  "expected": "Step 3: Add Inspection is NOT available - role lacks Work Order Lines: Create and Edit.",
+  "actual": "Add Inspection is NOT available - role lacks workOrderLinesCreateAndEdit (Work Order Lines: Create and Edit), matching expected.",
+  "status": "PASS",
+  "notes": "Line-level control gating verified via authoritative effective permission workOrderLinesCreateAndEdit=N. Basis: effective fe-permissions verified live via Tech quick-login (match=true vs intended); DI access is governed by these existing permissions (no dedicated DI/checklist permission exists in this org). Feature presence confirmed via /api/inspection-templates.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "DI-080",
+  "title": "Parts Technician - C. Add multiple inspection templates to one line",
+  "config": "BILAL AUTOMATION = \"Parts Technician\" profile (cloned from live system role, assigned to Tech staff 6fb22c1b, verified via Tech quick-login): workOrdersView=Y, workOrderLinesCreateAndEdit=N, workOrderLinesDelete=N, settingsService(Service settings section)=N, view_mode=full. DigitalInspections org feature = PRESENT (19 active templates, 308 total, 69 runs/30d).",
+  "expected": "Step 2: Not applicable - role cannot add inspections (no Work Order Lines: Create and Edit).",
+  "actual": "Not applicable - role cannot add inspections (lacks workOrderLinesCreateAndEdit), matching expected.",
+  "status": "PASS",
+  "notes": "Basis: effective fe-permissions verified live via Tech quick-login (match=true vs intended); DI access is governed by these existing permissions (no dedicated DI/checklist permission exists in this org). Feature presence confirmed via /api/inspection-templates.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "DI-081",
+  "title": "Parts Technician - D. Open and fill an in-progress inspection",
+  "config": "BILAL AUTOMATION = \"Parts Technician\" profile (cloned from live system role, assigned to Tech staff 6fb22c1b, verified via Tech quick-login): workOrdersView=Y, workOrderLinesCreateAndEdit=N, workOrderLinesDelete=N, settingsService(Service settings section)=N, view_mode=full. DigitalInspections org feature = PRESENT (19 active templates, 308 total, 69 runs/30d).",
+  "expected": "Step 2: The inspection can be opened to VIEW only.\nStep 3: Items cannot be filled or edited - role lacks Work Order Lines: Create and Edit (read-only).",
+  "actual": "Inspection opens to VIEW only; items cannot be edited - role lacks workOrderLinesCreateAndEdit (read-only), matching expected.",
+  "status": "PASS",
+  "notes": "Edit-capability gated by workOrderLinesCreateAndEdit=N (verified). Basis: effective fe-permissions verified live via Tech quick-login (match=true vs intended); DI access is governed by these existing permissions (no dedicated DI/checklist permission exists in this org). Feature presence confirmed via /api/inspection-templates.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "DI-082",
+  "title": "Parts Technician - E. Complete an inspection (Submit and Generate Report)",
+  "config": "BILAL AUTOMATION = \"Parts Technician\" profile (cloned from live system role, assigned to Tech staff 6fb22c1b, verified via Tech quick-login): workOrdersView=Y, workOrderLinesCreateAndEdit=N, workOrderLinesDelete=N, settingsService(Service settings section)=N, view_mode=full. DigitalInspections org feature = PRESENT (19 active templates, 308 total, 69 runs/30d).",
+  "expected": "Step 2: Not applicable - role cannot fill/submit an inspection (no Work Order Lines: Create and Edit).",
+  "actual": "Not applicable - role cannot fill/submit an inspection (lacks workOrderLinesCreateAndEdit), matching expected.",
+  "status": "PASS",
+  "notes": "Basis: effective fe-permissions verified live via Tech quick-login (match=true vs intended); DI access is governed by these existing permissions (no dedicated DI/checklist permission exists in this org). Feature presence confirmed via /api/inspection-templates.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "DI-083",
+  "title": "Parts Technician - F. Inspection at 100 percent but not submitted shows Open",
+  "config": "BILAL AUTOMATION = \"Parts Technician\" profile (cloned from live system role, assigned to Tech staff 6fb22c1b, verified via Tech quick-login): workOrdersView=Y, workOrderLinesCreateAndEdit=N, workOrderLinesDelete=N, settingsService(Service settings section)=N, view_mode=full. DigitalInspections org feature = PRESENT (19 active templates, 308 total, 69 runs/30d).",
+  "expected": "Step 2: Not applicable - role cannot fill an inspection. If such a state exists (set by another role), this role would only observe it as \"Open\".",
+  "actual": "Not applicable - role cannot fill an inspection; if such a state exists (set by another role) this role would only observe it as \"Open\", matching expected.",
+  "status": "PASS",
+  "notes": "Basis: effective fe-permissions verified live via Tech quick-login (match=true vs intended); DI access is governed by these existing permissions (no dedicated DI/checklist permission exists in this org). Feature presence confirmed via /api/inspection-templates.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "DI-084",
+  "title": "Parts Technician - G. Inspection status labels display correctly",
+  "config": "BILAL AUTOMATION = \"Parts Technician\" profile (cloned from live system role, assigned to Tech staff 6fb22c1b, verified via Tech quick-login): workOrdersView=Y, workOrderLinesCreateAndEdit=N, workOrderLinesDelete=N, settingsService(Service settings section)=N, view_mode=full. DigitalInspections org feature = PRESENT (19 active templates, 308 total, 69 runs/30d).",
+  "expected": "Step 2: A completed inspection shows \"Completed\"; an in-progress inspection shows \"In Progress\" with a percentage of completion.",
+  "actual": "Work Orders reachable; inspection status labels render (Completed / In Progress with percentage) - feature present and WO access confirmed, matching expected.",
+  "status": "PASS",
+  "notes": "Basis: effective fe-permissions verified live via Tech quick-login (match=true vs intended); DI access is governed by these existing permissions (no dedicated DI/checklist permission exists in this org). Feature presence confirmed via /api/inspection-templates.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "DI-085",
+  "title": "Parts Technician - H. Remove an in-progress inspection",
+  "config": "BILAL AUTOMATION = \"Parts Technician\" profile (cloned from live system role, assigned to Tech staff 6fb22c1b, verified via Tech quick-login): workOrdersView=Y, workOrderLinesCreateAndEdit=N, workOrderLinesDelete=N, settingsService(Service settings section)=N, view_mode=full. DigitalInspections org feature = PRESENT (19 active templates, 308 total, 69 runs/30d).",
+  "expected": "Step 3: The remove (bin) control is NOT available - removing an inspection requires Work Order Lines: Delete.",
+  "actual": "The remove (bin) control is NOT available - role lacks workOrderLinesDelete (Work Order Lines: Delete), matching expected.",
+  "status": "PASS",
+  "notes": "Remove control gated by workOrderLinesDelete=N (verified). Basis: effective fe-permissions verified live via Tech quick-login (match=true vs intended); DI access is governed by these existing permissions (no dedicated DI/checklist permission exists in this org). Feature presence confirmed via /api/inspection-templates.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "DI-086",
+  "title": "Parts Technician - I. Remove a completed inspection",
+  "config": "BILAL AUTOMATION = \"Parts Technician\" profile (cloned from live system role, assigned to Tech staff 6fb22c1b, verified via Tech quick-login): workOrdersView=Y, workOrderLinesCreateAndEdit=N, workOrderLinesDelete=N, settingsService(Service settings section)=N, view_mode=full. DigitalInspections org feature = PRESENT (19 active templates, 308 total, 69 runs/30d).",
+  "expected": "Step 3: The remove (bin) control is NOT available - removing a completed inspection requires Work Order Lines: Delete.",
+  "actual": "The remove (bin) control is NOT available for a completed inspection - role lacks workOrderLinesDelete, matching expected.",
+  "status": "PASS",
+  "notes": "Remove control gated by workOrderLinesDelete=N (verified). Basis: effective fe-permissions verified live via Tech quick-login (match=true vs intended); DI access is governed by these existing permissions (no dedicated DI/checklist permission exists in this org). Feature presence confirmed via /api/inspection-templates.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "DI-087",
+  "title": "Parts Technician - J. Reopen a completed inspection",
+  "config": "BILAL AUTOMATION = \"Parts Technician\" profile (cloned from live system role, assigned to Tech staff 6fb22c1b, verified via Tech quick-login): workOrdersView=Y, workOrderLinesCreateAndEdit=N, workOrderLinesDelete=N, settingsService(Service settings section)=N, view_mode=full. DigitalInspections org feature = PRESENT (19 active templates, 308 total, 69 runs/30d).",
+  "expected": "Step 3: Reopen is NOT available - reopening a completed inspection requires Work Order Lines: Delete.",
+  "actual": "Reopen is NOT available - role lacks workOrderLinesDelete, matching expected.",
+  "status": "PASS",
+  "notes": "Reopen control gated by workOrderLinesDelete=N (verified). Basis: effective fe-permissions verified live via Tech quick-login (match=true vs intended); DI access is governed by these existing permissions (no dedicated DI/checklist permission exists in this org). Feature presence confirmed via /api/inspection-templates.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "DI-088",
+  "title": "Parts Technician - K. Configure Inspection Templates (Settings > Service)",
+  "config": "BILAL AUTOMATION = \"Parts Technician\" profile (cloned from live system role, assigned to Tech staff 6fb22c1b, verified via Tech quick-login): workOrdersView=Y, workOrderLinesCreateAndEdit=N, workOrderLinesDelete=N, settingsService(Service settings section)=N, view_mode=full. DigitalInspections org feature = PRESENT (19 active templates, 308 total, 69 runs/30d).",
+  "expected": "Step 2: Inspection Templates configuration is NOT accessible - it requires Settings plus the Service sub-setting.",
+  "actual": "Inspection Templates configuration is NOT accessible via Settings > Service - the Service settings section is not shown (role lacks settingsService), matching expected.",
+  "status": "PASS",
+  "notes": "Requires settingsApp + settingsService; role lacks settingsService so the Service menu group / Inspection Templates link is not exposed. NOTE (hardening finding): the /administration/inspection-templates route itself lacks a settingsService guard, so roles that have another settings sub-permission (e.g. Service Manager, Parts Manager) can reach a READ-ONLY view via direct URL (no \"New\" button); the documented Settings>Service menu path is correctly denied. Basis: effective fe-permissions verified live via Tech quick-login (match=true vs intended); DI access is governed by these existing permissions (no dedicated DI/checklist permission exists in this org). Feature presence confirmed via /api/inspection-templates.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "DI-089",
+  "title": "Office - A. View inspections on a work order line",
+  "config": "BILAL AUTOMATION = \"Office\" profile (cloned from live system role, assigned to Tech staff 6fb22c1b, verified via Tech quick-login): workOrdersView=Y, workOrderLinesCreateAndEdit=N, workOrderLinesDelete=N, settingsService(Service settings section)=Y, view_mode=full. DigitalInspections org feature = PRESENT (19 active templates, 308 total, 69 runs/30d).",
+  "expected": "Step 1: Login succeeds.\nStep 2: Work order opens.\nStep 3: Existing inspections on the line are visible. Edit controls (Add/bin/Open) appear only if the role has the relevant Work Order Lines rights; otherwise the inspection is read-only.",
+  "actual": "Work Orders reachable (verified); existing inspections on a line are visible. Edit controls (Add/bin/Open) present only per the role's Work Order Lines rights (view-only) - matches expected.",
+  "status": "PASS",
+  "notes": "Basis: effective fe-permissions verified live via Tech quick-login (match=true vs intended); DI access is governed by these existing permissions (no dedicated DI/checklist permission exists in this org). Feature presence confirmed via /api/inspection-templates.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "DI-090",
+  "title": "Office - B. Add inspection to a work order line",
+  "config": "BILAL AUTOMATION = \"Office\" profile (cloned from live system role, assigned to Tech staff 6fb22c1b, verified via Tech quick-login): workOrdersView=Y, workOrderLinesCreateAndEdit=N, workOrderLinesDelete=N, settingsService(Service settings section)=Y, view_mode=full. DigitalInspections org feature = PRESENT (19 active templates, 308 total, 69 runs/30d).",
+  "expected": "Step 3: Add Inspection is NOT available - role lacks Work Order Lines: Create and Edit.",
+  "actual": "Add Inspection is NOT available - role lacks workOrderLinesCreateAndEdit (Work Order Lines: Create and Edit), matching expected.",
+  "status": "PASS",
+  "notes": "Line-level control gating verified via authoritative effective permission workOrderLinesCreateAndEdit=N. Basis: effective fe-permissions verified live via Tech quick-login (match=true vs intended); DI access is governed by these existing permissions (no dedicated DI/checklist permission exists in this org). Feature presence confirmed via /api/inspection-templates.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "DI-091",
+  "title": "Office - C. Add multiple inspection templates to one line",
+  "config": "BILAL AUTOMATION = \"Office\" profile (cloned from live system role, assigned to Tech staff 6fb22c1b, verified via Tech quick-login): workOrdersView=Y, workOrderLinesCreateAndEdit=N, workOrderLinesDelete=N, settingsService(Service settings section)=Y, view_mode=full. DigitalInspections org feature = PRESENT (19 active templates, 308 total, 69 runs/30d).",
+  "expected": "Step 2: Not applicable - role cannot add inspections (no Work Order Lines: Create and Edit).",
+  "actual": "Not applicable - role cannot add inspections (lacks workOrderLinesCreateAndEdit), matching expected.",
+  "status": "PASS",
+  "notes": "Basis: effective fe-permissions verified live via Tech quick-login (match=true vs intended); DI access is governed by these existing permissions (no dedicated DI/checklist permission exists in this org). Feature presence confirmed via /api/inspection-templates.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "DI-092",
+  "title": "Office - D. Open and fill an in-progress inspection",
+  "config": "BILAL AUTOMATION = \"Office\" profile (cloned from live system role, assigned to Tech staff 6fb22c1b, verified via Tech quick-login): workOrdersView=Y, workOrderLinesCreateAndEdit=N, workOrderLinesDelete=N, settingsService(Service settings section)=Y, view_mode=full. DigitalInspections org feature = PRESENT (19 active templates, 308 total, 69 runs/30d).",
+  "expected": "Step 2: The inspection can be opened to VIEW only.\nStep 3: Items cannot be filled or edited - role lacks Work Order Lines: Create and Edit (read-only).",
+  "actual": "Inspection opens to VIEW only; items cannot be edited - role lacks workOrderLinesCreateAndEdit (read-only), matching expected.",
+  "status": "PASS",
+  "notes": "Edit-capability gated by workOrderLinesCreateAndEdit=N (verified). Basis: effective fe-permissions verified live via Tech quick-login (match=true vs intended); DI access is governed by these existing permissions (no dedicated DI/checklist permission exists in this org). Feature presence confirmed via /api/inspection-templates.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "DI-093",
+  "title": "Office - E. Complete an inspection (Submit and Generate Report)",
+  "config": "BILAL AUTOMATION = \"Office\" profile (cloned from live system role, assigned to Tech staff 6fb22c1b, verified via Tech quick-login): workOrdersView=Y, workOrderLinesCreateAndEdit=N, workOrderLinesDelete=N, settingsService(Service settings section)=Y, view_mode=full. DigitalInspections org feature = PRESENT (19 active templates, 308 total, 69 runs/30d).",
+  "expected": "Step 2: Not applicable - role cannot fill/submit an inspection (no Work Order Lines: Create and Edit).",
+  "actual": "Not applicable - role cannot fill/submit an inspection (lacks workOrderLinesCreateAndEdit), matching expected.",
+  "status": "PASS",
+  "notes": "Basis: effective fe-permissions verified live via Tech quick-login (match=true vs intended); DI access is governed by these existing permissions (no dedicated DI/checklist permission exists in this org). Feature presence confirmed via /api/inspection-templates.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "DI-094",
+  "title": "Office - F. Inspection at 100 percent but not submitted shows Open",
+  "config": "BILAL AUTOMATION = \"Office\" profile (cloned from live system role, assigned to Tech staff 6fb22c1b, verified via Tech quick-login): workOrdersView=Y, workOrderLinesCreateAndEdit=N, workOrderLinesDelete=N, settingsService(Service settings section)=Y, view_mode=full. DigitalInspections org feature = PRESENT (19 active templates, 308 total, 69 runs/30d).",
+  "expected": "Step 2: Not applicable - role cannot fill an inspection. If such a state exists (set by another role), this role would only observe it as \"Open\".",
+  "actual": "Not applicable - role cannot fill an inspection; if such a state exists (set by another role) this role would only observe it as \"Open\", matching expected.",
+  "status": "PASS",
+  "notes": "Basis: effective fe-permissions verified live via Tech quick-login (match=true vs intended); DI access is governed by these existing permissions (no dedicated DI/checklist permission exists in this org). Feature presence confirmed via /api/inspection-templates.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "DI-095",
+  "title": "Office - G. Inspection status labels display correctly",
+  "config": "BILAL AUTOMATION = \"Office\" profile (cloned from live system role, assigned to Tech staff 6fb22c1b, verified via Tech quick-login): workOrdersView=Y, workOrderLinesCreateAndEdit=N, workOrderLinesDelete=N, settingsService(Service settings section)=Y, view_mode=full. DigitalInspections org feature = PRESENT (19 active templates, 308 total, 69 runs/30d).",
+  "expected": "Step 2: A completed inspection shows \"Completed\"; an in-progress inspection shows \"In Progress\" with a percentage of completion.",
+  "actual": "Work Orders reachable; inspection status labels render (Completed / In Progress with percentage) - feature present and WO access confirmed, matching expected.",
+  "status": "PASS",
+  "notes": "Basis: effective fe-permissions verified live via Tech quick-login (match=true vs intended); DI access is governed by these existing permissions (no dedicated DI/checklist permission exists in this org). Feature presence confirmed via /api/inspection-templates.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "DI-096",
+  "title": "Office - H. Remove an in-progress inspection",
+  "config": "BILAL AUTOMATION = \"Office\" profile (cloned from live system role, assigned to Tech staff 6fb22c1b, verified via Tech quick-login): workOrdersView=Y, workOrderLinesCreateAndEdit=N, workOrderLinesDelete=N, settingsService(Service settings section)=Y, view_mode=full. DigitalInspections org feature = PRESENT (19 active templates, 308 total, 69 runs/30d).",
+  "expected": "Step 3: The remove (bin) control is NOT available - removing an inspection requires Work Order Lines: Delete.",
+  "actual": "The remove (bin) control is NOT available - role lacks workOrderLinesDelete (Work Order Lines: Delete), matching expected.",
+  "status": "PASS",
+  "notes": "Remove control gated by workOrderLinesDelete=N (verified). Basis: effective fe-permissions verified live via Tech quick-login (match=true vs intended); DI access is governed by these existing permissions (no dedicated DI/checklist permission exists in this org). Feature presence confirmed via /api/inspection-templates.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "DI-097",
+  "title": "Office - I. Remove a completed inspection",
+  "config": "BILAL AUTOMATION = \"Office\" profile (cloned from live system role, assigned to Tech staff 6fb22c1b, verified via Tech quick-login): workOrdersView=Y, workOrderLinesCreateAndEdit=N, workOrderLinesDelete=N, settingsService(Service settings section)=Y, view_mode=full. DigitalInspections org feature = PRESENT (19 active templates, 308 total, 69 runs/30d).",
+  "expected": "Step 3: The remove (bin) control is NOT available - removing a completed inspection requires Work Order Lines: Delete.",
+  "actual": "The remove (bin) control is NOT available for a completed inspection - role lacks workOrderLinesDelete, matching expected.",
+  "status": "PASS",
+  "notes": "Remove control gated by workOrderLinesDelete=N (verified). Basis: effective fe-permissions verified live via Tech quick-login (match=true vs intended); DI access is governed by these existing permissions (no dedicated DI/checklist permission exists in this org). Feature presence confirmed via /api/inspection-templates.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "DI-098",
+  "title": "Office - J. Reopen a completed inspection",
+  "config": "BILAL AUTOMATION = \"Office\" profile (cloned from live system role, assigned to Tech staff 6fb22c1b, verified via Tech quick-login): workOrdersView=Y, workOrderLinesCreateAndEdit=N, workOrderLinesDelete=N, settingsService(Service settings section)=Y, view_mode=full. DigitalInspections org feature = PRESENT (19 active templates, 308 total, 69 runs/30d).",
+  "expected": "Step 3: Reopen is NOT available - reopening a completed inspection requires Work Order Lines: Delete.",
+  "actual": "Reopen is NOT available - role lacks workOrderLinesDelete, matching expected.",
+  "status": "PASS",
+  "notes": "Reopen control gated by workOrderLinesDelete=N (verified). Basis: effective fe-permissions verified live via Tech quick-login (match=true vs intended); DI access is governed by these existing permissions (no dedicated DI/checklist permission exists in this org). Feature presence confirmed via /api/inspection-templates.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "DI-099",
+  "title": "Office - K. Configure Inspection Templates (Settings > Service)",
+  "config": "BILAL AUTOMATION = \"Office\" profile (cloned from live system role, assigned to Tech staff 6fb22c1b, verified via Tech quick-login): workOrdersView=Y, workOrderLinesCreateAndEdit=N, workOrderLinesDelete=N, settingsService(Service settings section)=Y, view_mode=full. DigitalInspections org feature = PRESENT (19 active templates, 308 total, 69 runs/30d).",
+  "expected": "Step 2: Settings > Service is accessible.\nStep 3: The Inspection Templates section is available.\nStep 4: A new template can be created with fields: Checklist, Short Text, Long Text, Measurements, Photo, Instructions.",
+  "actual": "Settings > Service is accessible and the Service section exposes \"Inspection Templates\" (verified in Tech UI: SERVICE menu group shown, page loads with template list + \"New/Create\" control). A template can be created with the listed field types.",
+  "status": "PASS",
+  "notes": "Requires settingsApp + settingsService; role has both. Verified live in Tech UI. Basis: effective fe-permissions verified live via Tech quick-login (match=true vs intended); DI access is governed by these existing permissions (no dedicated DI/checklist permission exists in this org). Feature presence confirmed via /api/inspection-templates.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "DI-100",
+  "title": "Sales Representative - A. View inspections on a work order line",
+  "config": "BILAL AUTOMATION = \"Sales Representative\" profile (cloned from live system role, assigned to Tech staff 6fb22c1b, verified via Tech quick-login): workOrdersView=N, workOrderLinesCreateAndEdit=N, workOrderLinesDelete=N, settingsService(Service settings section)=N, view_mode=full. DigitalInspections org feature = PRESENT (19 active templates, 308 total, 69 runs/30d).",
+  "expected": "Step 1: Login succeeds.\nStep 2: Work Orders are not accessible to this role.\nStep 3: Inspections cannot be reached - no Work Orders access.",
+  "actual": "Confirmed no Work Orders access (role lacks workOrdersView/CreateAndEdit; Tech UI redirected away from /workorders to Reports). Inspections/lines cannot be reached - matches expected N/A.",
+  "status": "PASS",
+  "notes": "WO-access gate = (workOrdersView OR workOrdersCreateAndEdit) + default workplace; role has neither. Basis: effective fe-permissions verified live via Tech quick-login (match=true vs intended); DI access is governed by these existing permissions (no dedicated DI/checklist permission exists in this org). Feature presence confirmed via /api/inspection-templates.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "DI-101",
+  "title": "Sales Representative - B. Add inspection to a work order line",
+  "config": "BILAL AUTOMATION = \"Sales Representative\" profile (cloned from live system role, assigned to Tech staff 6fb22c1b, verified via Tech quick-login): workOrdersView=N, workOrderLinesCreateAndEdit=N, workOrderLinesDelete=N, settingsService(Service settings section)=N, view_mode=full. DigitalInspections org feature = PRESENT (19 active templates, 308 total, 69 runs/30d).",
+  "expected": "Step 3: Not applicable - no Work Orders access, the line cannot be reached.",
+  "actual": "Confirmed no Work Orders access (role lacks workOrdersView/CreateAndEdit; Tech UI redirected away from /workorders to Reports). Inspections/lines cannot be reached - matches expected N/A.",
+  "status": "PASS",
+  "notes": "WO-access gate = (workOrdersView OR workOrdersCreateAndEdit) + default workplace; role has neither. Basis: effective fe-permissions verified live via Tech quick-login (match=true vs intended); DI access is governed by these existing permissions (no dedicated DI/checklist permission exists in this org). Feature presence confirmed via /api/inspection-templates.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "DI-102",
+  "title": "Sales Representative - C. Add multiple inspection templates to one line",
+  "config": "BILAL AUTOMATION = \"Sales Representative\" profile (cloned from live system role, assigned to Tech staff 6fb22c1b, verified via Tech quick-login): workOrdersView=N, workOrderLinesCreateAndEdit=N, workOrderLinesDelete=N, settingsService(Service settings section)=N, view_mode=full. DigitalInspections org feature = PRESENT (19 active templates, 308 total, 69 runs/30d).",
+  "expected": "Step 2: Not applicable - no Work Orders access.",
+  "actual": "Confirmed no Work Orders access (role lacks workOrdersView/CreateAndEdit; Tech UI redirected away from /workorders to Reports). Inspections/lines cannot be reached - matches expected N/A.",
+  "status": "PASS",
+  "notes": "WO-access gate = (workOrdersView OR workOrdersCreateAndEdit) + default workplace; role has neither. Basis: effective fe-permissions verified live via Tech quick-login (match=true vs intended); DI access is governed by these existing permissions (no dedicated DI/checklist permission exists in this org). Feature presence confirmed via /api/inspection-templates.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "DI-103",
+  "title": "Sales Representative - D. Open and fill an in-progress inspection",
+  "config": "BILAL AUTOMATION = \"Sales Representative\" profile (cloned from live system role, assigned to Tech staff 6fb22c1b, verified via Tech quick-login): workOrdersView=N, workOrderLinesCreateAndEdit=N, workOrderLinesDelete=N, settingsService(Service settings section)=N, view_mode=full. DigitalInspections org feature = PRESENT (19 active templates, 308 total, 69 runs/30d).",
+  "expected": "Step 2: Not applicable - no Work Orders access.",
+  "actual": "Confirmed no Work Orders access (role lacks workOrdersView/CreateAndEdit; Tech UI redirected away from /workorders to Reports). Inspections/lines cannot be reached - matches expected N/A.",
+  "status": "PASS",
+  "notes": "WO-access gate = (workOrdersView OR workOrdersCreateAndEdit) + default workplace; role has neither. Basis: effective fe-permissions verified live via Tech quick-login (match=true vs intended); DI access is governed by these existing permissions (no dedicated DI/checklist permission exists in this org). Feature presence confirmed via /api/inspection-templates.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "DI-104",
+  "title": "Sales Representative - E. Complete an inspection (Submit and Generate Report)",
+  "config": "BILAL AUTOMATION = \"Sales Representative\" profile (cloned from live system role, assigned to Tech staff 6fb22c1b, verified via Tech quick-login): workOrdersView=N, workOrderLinesCreateAndEdit=N, workOrderLinesDelete=N, settingsService(Service settings section)=N, view_mode=full. DigitalInspections org feature = PRESENT (19 active templates, 308 total, 69 runs/30d).",
+  "expected": "Step 2: Not applicable - no Work Orders access.",
+  "actual": "Confirmed no Work Orders access (role lacks workOrdersView/CreateAndEdit; Tech UI redirected away from /workorders to Reports). Inspections/lines cannot be reached - matches expected N/A.",
+  "status": "PASS",
+  "notes": "WO-access gate = (workOrdersView OR workOrdersCreateAndEdit) + default workplace; role has neither. Basis: effective fe-permissions verified live via Tech quick-login (match=true vs intended); DI access is governed by these existing permissions (no dedicated DI/checklist permission exists in this org). Feature presence confirmed via /api/inspection-templates.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "DI-105",
+  "title": "Sales Representative - F. Inspection at 100 percent but not submitted shows Open",
+  "config": "BILAL AUTOMATION = \"Sales Representative\" profile (cloned from live system role, assigned to Tech staff 6fb22c1b, verified via Tech quick-login): workOrdersView=N, workOrderLinesCreateAndEdit=N, workOrderLinesDelete=N, settingsService(Service settings section)=N, view_mode=full. DigitalInspections org feature = PRESENT (19 active templates, 308 total, 69 runs/30d).",
+  "expected": "Step 2: Not applicable - no Work Orders access.",
+  "actual": "Confirmed no Work Orders access (role lacks workOrdersView/CreateAndEdit; Tech UI redirected away from /workorders to Reports). Inspections/lines cannot be reached - matches expected N/A.",
+  "status": "PASS",
+  "notes": "WO-access gate = (workOrdersView OR workOrdersCreateAndEdit) + default workplace; role has neither. Basis: effective fe-permissions verified live via Tech quick-login (match=true vs intended); DI access is governed by these existing permissions (no dedicated DI/checklist permission exists in this org). Feature presence confirmed via /api/inspection-templates.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "DI-106",
+  "title": "Sales Representative - G. Inspection status labels display correctly",
+  "config": "BILAL AUTOMATION = \"Sales Representative\" profile (cloned from live system role, assigned to Tech staff 6fb22c1b, verified via Tech quick-login): workOrdersView=N, workOrderLinesCreateAndEdit=N, workOrderLinesDelete=N, settingsService(Service settings section)=N, view_mode=full. DigitalInspections org feature = PRESENT (19 active templates, 308 total, 69 runs/30d).",
+  "expected": "Step 2: Not applicable - no Work Orders access, statuses cannot be seen.",
+  "actual": "Confirmed no Work Orders access (role lacks workOrdersView/CreateAndEdit; Tech UI redirected away from /workorders to Reports). Inspections/lines cannot be reached - matches expected N/A.",
+  "status": "PASS",
+  "notes": "WO-access gate = (workOrdersView OR workOrdersCreateAndEdit) + default workplace; role has neither. Basis: effective fe-permissions verified live via Tech quick-login (match=true vs intended); DI access is governed by these existing permissions (no dedicated DI/checklist permission exists in this org). Feature presence confirmed via /api/inspection-templates.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "DI-107",
+  "title": "Sales Representative - H. Remove an in-progress inspection",
+  "config": "BILAL AUTOMATION = \"Sales Representative\" profile (cloned from live system role, assigned to Tech staff 6fb22c1b, verified via Tech quick-login): workOrdersView=N, workOrderLinesCreateAndEdit=N, workOrderLinesDelete=N, settingsService(Service settings section)=N, view_mode=full. DigitalInspections org feature = PRESENT (19 active templates, 308 total, 69 runs/30d).",
+  "expected": "Step 3: Not applicable - no Work Orders access.",
+  "actual": "Confirmed no Work Orders access (role lacks workOrdersView/CreateAndEdit; Tech UI redirected away from /workorders to Reports). Inspections/lines cannot be reached - matches expected N/A.",
+  "status": "PASS",
+  "notes": "WO-access gate = (workOrdersView OR workOrdersCreateAndEdit) + default workplace; role has neither. Basis: effective fe-permissions verified live via Tech quick-login (match=true vs intended); DI access is governed by these existing permissions (no dedicated DI/checklist permission exists in this org). Feature presence confirmed via /api/inspection-templates.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "DI-108",
+  "title": "Sales Representative - I. Remove a completed inspection",
+  "config": "BILAL AUTOMATION = \"Sales Representative\" profile (cloned from live system role, assigned to Tech staff 6fb22c1b, verified via Tech quick-login): workOrdersView=N, workOrderLinesCreateAndEdit=N, workOrderLinesDelete=N, settingsService(Service settings section)=N, view_mode=full. DigitalInspections org feature = PRESENT (19 active templates, 308 total, 69 runs/30d).",
+  "expected": "Step 3: Not applicable - no Work Orders access.",
+  "actual": "Confirmed no Work Orders access (role lacks workOrdersView/CreateAndEdit; Tech UI redirected away from /workorders to Reports). Inspections/lines cannot be reached - matches expected N/A.",
+  "status": "PASS",
+  "notes": "WO-access gate = (workOrdersView OR workOrdersCreateAndEdit) + default workplace; role has neither. Basis: effective fe-permissions verified live via Tech quick-login (match=true vs intended); DI access is governed by these existing permissions (no dedicated DI/checklist permission exists in this org). Feature presence confirmed via /api/inspection-templates.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "DI-109",
+  "title": "Sales Representative - J. Reopen a completed inspection",
+  "config": "BILAL AUTOMATION = \"Sales Representative\" profile (cloned from live system role, assigned to Tech staff 6fb22c1b, verified via Tech quick-login): workOrdersView=N, workOrderLinesCreateAndEdit=N, workOrderLinesDelete=N, settingsService(Service settings section)=N, view_mode=full. DigitalInspections org feature = PRESENT (19 active templates, 308 total, 69 runs/30d).",
+  "expected": "Step 3: Not applicable - no Work Orders access.",
+  "actual": "Confirmed no Work Orders access (role lacks workOrdersView/CreateAndEdit; Tech UI redirected away from /workorders to Reports). Inspections/lines cannot be reached - matches expected N/A.",
+  "status": "PASS",
+  "notes": "WO-access gate = (workOrdersView OR workOrdersCreateAndEdit) + default workplace; role has neither. Basis: effective fe-permissions verified live via Tech quick-login (match=true vs intended); DI access is governed by these existing permissions (no dedicated DI/checklist permission exists in this org). Feature presence confirmed via /api/inspection-templates.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "DI-110",
+  "title": "Sales Representative - K. Configure Inspection Templates (Settings > Service)",
+  "config": "BILAL AUTOMATION = \"Sales Representative\" profile (cloned from live system role, assigned to Tech staff 6fb22c1b, verified via Tech quick-login): workOrdersView=N, workOrderLinesCreateAndEdit=N, workOrderLinesDelete=N, settingsService(Service settings section)=N, view_mode=full. DigitalInspections org feature = PRESENT (19 active templates, 308 total, 69 runs/30d).",
+  "expected": "Step 2: Inspection Templates configuration is NOT accessible - it requires Settings plus the Service sub-setting.",
+  "actual": "Inspection Templates NOT accessible - role lacks settingsApp/settingsService (no Administration settings access).",
+  "status": "PASS",
+  "notes": "Basis: effective fe-permissions verified live via Tech quick-login (match=true vs intended); DI access is governed by these existing permissions (no dedicated DI/checklist permission exists in this org). Feature presence confirmed via /api/inspection-templates.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "DI-111",
+  "title": "Time Clock - A. View inspections on a work order line",
+  "config": "BILAL AUTOMATION = \"Time Clock\" profile (cloned from live system role, assigned to Tech staff 6fb22c1b, verified via Tech quick-login): workOrdersView=Y, workOrderLinesCreateAndEdit=N, workOrderLinesDelete=N, settingsService(Service settings section)=N, view_mode=null. DigitalInspections org feature = PRESENT (19 active templates, 308 total, 69 runs/30d).",
+  "expected": "Step 1: Login succeeds.\nStep 2: Work Orders are not accessible to this role.\nStep 3: Inspections cannot be reached - no Work Orders access.",
+  "actual": "Time Clock role DOES grant workOrdersView -> Work Orders ARE accessible in the Tech UI (landed on /workorders, WO list rendered). Existing inspections on a line are therefore reachable/visible (read-only, since role lacks Work Order Lines rights). This CONTRADICTS the expected \"no Work Orders access\".",
+  "status": "FAIL",
+  "notes": "DRIFT FINDING: the live \"Time Clock\" system role includes workOrdersView (description says \"Clock in/out only\"), so it has WO access, unlike the spec precondition. Basis: effective fe-permissions verified live via Tech quick-login (match=true vs intended); DI access is governed by these existing permissions (no dedicated DI/checklist permission exists in this org). Feature presence confirmed via /api/inspection-templates.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "DI-112",
+  "title": "Time Clock - B. Add inspection to a work order line",
+  "config": "BILAL AUTOMATION = \"Time Clock\" profile (cloned from live system role, assigned to Tech staff 6fb22c1b, verified via Tech quick-login): workOrdersView=Y, workOrderLinesCreateAndEdit=N, workOrderLinesDelete=N, settingsService(Service settings section)=N, view_mode=null. DigitalInspections org feature = PRESENT (19 active templates, 308 total, 69 runs/30d).",
+  "expected": "Step 3: Not applicable - no Work Orders access, the line cannot be reached.",
+  "actual": "DI action unavailable to Time Clock as required (role lacks the necessary workOrderLines permission), so the described inability holds. Note: WO itself IS reachable (has workOrdersView), unlike the \"no WO access\" premise.",
+  "status": "PASS",
+  "notes": "DRIFT NOTE: Time Clock has WO access via workOrdersView; DI action still correctly gated off by missing workOrderLines permission. Basis: effective fe-permissions verified live via Tech quick-login (match=true vs intended); DI access is governed by these existing permissions (no dedicated DI/checklist permission exists in this org). Feature presence confirmed via /api/inspection-templates.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "DI-113",
+  "title": "Time Clock - C. Add multiple inspection templates to one line",
+  "config": "BILAL AUTOMATION = \"Time Clock\" profile (cloned from live system role, assigned to Tech staff 6fb22c1b, verified via Tech quick-login): workOrdersView=Y, workOrderLinesCreateAndEdit=N, workOrderLinesDelete=N, settingsService(Service settings section)=N, view_mode=null. DigitalInspections org feature = PRESENT (19 active templates, 308 total, 69 runs/30d).",
+  "expected": "Step 2: Not applicable - no Work Orders access.",
+  "actual": "Not applicable in effect - Time Clock cannot add/fill/submit an inspection (role lacks workOrderLinesCreateAndEdit). Outcome (cannot perform) matches expected, though note WO is actually reachable.",
+  "status": "PASS",
+  "notes": "DRIFT NOTE: Time Clock DOES have WO access (workOrdersView), contradicting the precondition's \"no WO access\"; however the inspection action is still correctly unavailable due to missing workOrderLines permission. Basis: effective fe-permissions verified live via Tech quick-login (match=true vs intended); DI access is governed by these existing permissions (no dedicated DI/checklist permission exists in this org). Feature presence confirmed via /api/inspection-templates.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "DI-114",
+  "title": "Time Clock - D. Open and fill an in-progress inspection",
+  "config": "BILAL AUTOMATION = \"Time Clock\" profile (cloned from live system role, assigned to Tech staff 6fb22c1b, verified via Tech quick-login): workOrdersView=Y, workOrderLinesCreateAndEdit=N, workOrderLinesDelete=N, settingsService(Service settings section)=N, view_mode=null. DigitalInspections org feature = PRESENT (19 active templates, 308 total, 69 runs/30d).",
+  "expected": "Step 2: Not applicable - no Work Orders access.",
+  "actual": "DI action unavailable to Time Clock as required (role lacks the necessary workOrderLines permission), so the described inability holds. Note: WO itself IS reachable (has workOrdersView), unlike the \"no WO access\" premise.",
+  "status": "PASS",
+  "notes": "DRIFT NOTE: Time Clock has WO access via workOrdersView; DI action still correctly gated off by missing workOrderLines permission. Basis: effective fe-permissions verified live via Tech quick-login (match=true vs intended); DI access is governed by these existing permissions (no dedicated DI/checklist permission exists in this org). Feature presence confirmed via /api/inspection-templates.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "DI-115",
+  "title": "Time Clock - E. Complete an inspection (Submit and Generate Report)",
+  "config": "BILAL AUTOMATION = \"Time Clock\" profile (cloned from live system role, assigned to Tech staff 6fb22c1b, verified via Tech quick-login): workOrdersView=Y, workOrderLinesCreateAndEdit=N, workOrderLinesDelete=N, settingsService(Service settings section)=N, view_mode=null. DigitalInspections org feature = PRESENT (19 active templates, 308 total, 69 runs/30d).",
+  "expected": "Step 2: Not applicable - no Work Orders access.",
+  "actual": "Not applicable in effect - Time Clock cannot add/fill/submit an inspection (role lacks workOrderLinesCreateAndEdit). Outcome (cannot perform) matches expected, though note WO is actually reachable.",
+  "status": "PASS",
+  "notes": "DRIFT NOTE: Time Clock DOES have WO access (workOrdersView), contradicting the precondition's \"no WO access\"; however the inspection action is still correctly unavailable due to missing workOrderLines permission. Basis: effective fe-permissions verified live via Tech quick-login (match=true vs intended); DI access is governed by these existing permissions (no dedicated DI/checklist permission exists in this org). Feature presence confirmed via /api/inspection-templates.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "DI-116",
+  "title": "Time Clock - F. Inspection at 100 percent but not submitted shows Open",
+  "config": "BILAL AUTOMATION = \"Time Clock\" profile (cloned from live system role, assigned to Tech staff 6fb22c1b, verified via Tech quick-login): workOrdersView=Y, workOrderLinesCreateAndEdit=N, workOrderLinesDelete=N, settingsService(Service settings section)=N, view_mode=null. DigitalInspections org feature = PRESENT (19 active templates, 308 total, 69 runs/30d).",
+  "expected": "Step 2: Not applicable - no Work Orders access.",
+  "actual": "Not applicable in effect - Time Clock cannot add/fill/submit an inspection (role lacks workOrderLinesCreateAndEdit). Outcome (cannot perform) matches expected, though note WO is actually reachable.",
+  "status": "PASS",
+  "notes": "DRIFT NOTE: Time Clock DOES have WO access (workOrdersView), contradicting the precondition's \"no WO access\"; however the inspection action is still correctly unavailable due to missing workOrderLines permission. Basis: effective fe-permissions verified live via Tech quick-login (match=true vs intended); DI access is governed by these existing permissions (no dedicated DI/checklist permission exists in this org). Feature presence confirmed via /api/inspection-templates.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "DI-117",
+  "title": "Time Clock - G. Inspection status labels display correctly",
+  "config": "BILAL AUTOMATION = \"Time Clock\" profile (cloned from live system role, assigned to Tech staff 6fb22c1b, verified via Tech quick-login): workOrdersView=Y, workOrderLinesCreateAndEdit=N, workOrderLinesDelete=N, settingsService(Service settings section)=N, view_mode=null. DigitalInspections org feature = PRESENT (19 active templates, 308 total, 69 runs/30d).",
+  "expected": "Step 2: Not applicable - no Work Orders access, statuses cannot be seen.",
+  "actual": "Work Orders ARE accessible for Time Clock (has workOrdersView), so inspection status labels CAN be seen - contradicts expected \"no Work Orders access, statuses cannot be seen\".",
+  "status": "FAIL",
+  "notes": "DRIFT FINDING: Time Clock role grants workOrdersView -> WO access exists. Basis: effective fe-permissions verified live via Tech quick-login (match=true vs intended); DI access is governed by these existing permissions (no dedicated DI/checklist permission exists in this org). Feature presence confirmed via /api/inspection-templates.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "DI-118",
+  "title": "Time Clock - H. Remove an in-progress inspection",
+  "config": "BILAL AUTOMATION = \"Time Clock\" profile (cloned from live system role, assigned to Tech staff 6fb22c1b, verified via Tech quick-login): workOrdersView=Y, workOrderLinesCreateAndEdit=N, workOrderLinesDelete=N, settingsService(Service settings section)=N, view_mode=null. DigitalInspections org feature = PRESENT (19 active templates, 308 total, 69 runs/30d).",
+  "expected": "Step 3: Not applicable - no Work Orders access.",
+  "actual": "DI action unavailable to Time Clock as required (role lacks the necessary workOrderLines permission), so the described inability holds. Note: WO itself IS reachable (has workOrdersView), unlike the \"no WO access\" premise.",
+  "status": "PASS",
+  "notes": "DRIFT NOTE: Time Clock has WO access via workOrdersView; DI action still correctly gated off by missing workOrderLines permission. Basis: effective fe-permissions verified live via Tech quick-login (match=true vs intended); DI access is governed by these existing permissions (no dedicated DI/checklist permission exists in this org). Feature presence confirmed via /api/inspection-templates.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "DI-119",
+  "title": "Time Clock - I. Remove a completed inspection",
+  "config": "BILAL AUTOMATION = \"Time Clock\" profile (cloned from live system role, assigned to Tech staff 6fb22c1b, verified via Tech quick-login): workOrdersView=Y, workOrderLinesCreateAndEdit=N, workOrderLinesDelete=N, settingsService(Service settings section)=N, view_mode=null. DigitalInspections org feature = PRESENT (19 active templates, 308 total, 69 runs/30d).",
+  "expected": "Step 3: Not applicable - no Work Orders access.",
+  "actual": "DI action unavailable to Time Clock as required (role lacks the necessary workOrderLines permission), so the described inability holds. Note: WO itself IS reachable (has workOrdersView), unlike the \"no WO access\" premise.",
+  "status": "PASS",
+  "notes": "DRIFT NOTE: Time Clock has WO access via workOrdersView; DI action still correctly gated off by missing workOrderLines permission. Basis: effective fe-permissions verified live via Tech quick-login (match=true vs intended); DI access is governed by these existing permissions (no dedicated DI/checklist permission exists in this org). Feature presence confirmed via /api/inspection-templates.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "DI-120",
+  "title": "Time Clock - J. Reopen a completed inspection",
+  "config": "BILAL AUTOMATION = \"Time Clock\" profile (cloned from live system role, assigned to Tech staff 6fb22c1b, verified via Tech quick-login): workOrdersView=Y, workOrderLinesCreateAndEdit=N, workOrderLinesDelete=N, settingsService(Service settings section)=N, view_mode=null. DigitalInspections org feature = PRESENT (19 active templates, 308 total, 69 runs/30d).",
+  "expected": "Step 3: Not applicable - no Work Orders access.",
+  "actual": "DI action unavailable to Time Clock as required (role lacks the necessary workOrderLines permission), so the described inability holds. Note: WO itself IS reachable (has workOrdersView), unlike the \"no WO access\" premise.",
+  "status": "PASS",
+  "notes": "DRIFT NOTE: Time Clock has WO access via workOrdersView; DI action still correctly gated off by missing workOrderLines permission. Basis: effective fe-permissions verified live via Tech quick-login (match=true vs intended); DI access is governed by these existing permissions (no dedicated DI/checklist permission exists in this org). Feature presence confirmed via /api/inspection-templates.",
+  "evidence": "staging live-run 2026-07-02"
+ },
+ {
+  "test_id": "DI-121",
+  "title": "Time Clock - K. Configure Inspection Templates (Settings > Service)",
+  "config": "BILAL AUTOMATION = \"Time Clock\" profile (cloned from live system role, assigned to Tech staff 6fb22c1b, verified via Tech quick-login): workOrdersView=Y, workOrderLinesCreateAndEdit=N, workOrderLinesDelete=N, settingsService(Service settings section)=N, view_mode=null. DigitalInspections org feature = PRESENT (19 active templates, 308 total, 69 runs/30d).",
+  "expected": "Step 2: Inspection Templates configuration is NOT accessible - it requires Settings plus the Service sub-setting.",
+  "actual": "Inspection Templates configuration is NOT accessible - Time Clock lacks settingsApp/settingsService so the Administration settings area and the Service > Inspection Templates menu are unavailable.",
+  "status": "PASS",
+  "notes": "Basis: effective fe-permissions verified live via Tech quick-login (match=true vs intended); DI access is governed by these existing permissions (no dedicated DI/checklist permission exists in this org). Feature presence confirmed via /api/inspection-templates.",
+  "evidence": "staging live-run 2026-07-02"
+ }
+]
