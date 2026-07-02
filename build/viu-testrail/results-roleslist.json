@@ -1,0 +1,153 @@
+[
+  {
+    "case_id": "C26307",
+    "what_checked": "Exact page title, subtitle string, column headers in order (list all + count), create button label + color.",
+    "actual_ui_observation": {
+      "browser_tab_title": "Roles & Permissions | ShopView",
+      "on_page_heading": "Roles & Permissions",
+      "subtitle": "NONE — no subtitle/descriptive string is rendered beneath the heading. Header container text is only: 'Roles & Permissions' + search field + 'Create Custom Role' button.",
+      "column_headers_in_order": ["(leading unlabeled icon column — holds lock icon)", "Role Name (sortable, arrow_drop_up)", "Description", "Template", "Role Type (sortable)", "Users (sortable)", "Action"],
+      "labeled_column_count": 6,
+      "create_button_label": "Create Custom Role",
+      "create_button_color": "background rgb(56, 116, 255) (blue), text rgb(255,255,255) (white)"
+    },
+    "screenshot_ref": "/tmp/viu1/C26307.png",
+    "match": "Partial",
+    "ui_says_instead": "Title 'Roles & Permissions' and the blue Create button MATCH the claim. BUT the UI shows 6 labeled columns (Role Name, Description, Template, Role Type, Users, Action) — not 5 — and there is NO subtitle string present."
+  },
+  {
+    "case_id": "C26309",
+    "what_checked": "Clicking Create button opens a modal; capture modal title + subtitle verbatim.",
+    "actual_ui_observation": {
+      "modal_title": "Choose a template",
+      "modal_subtitle": "Start from a template to pre-fill settings, or skip to start from scratch.",
+      "modal_controls": ["close (x)", "list of template cards (Admin, Foreman, Office, Parts Manager, Parts Tech, Sales Representative, Senior Service Advisor, Service Advisor, Service Manager ...)", "Skip button", "Apply button"]
+    },
+    "screenshot_ref": "/tmp/viu1/C26309.png",
+    "match": "Yes",
+    "ui_says_instead": ""
+  },
+  {
+    "case_id": "C26310",
+    "what_checked": "Which action icons appear on a CUSTOM role row (pencil/edit, three-dot, eye/view) — present/absent, tooltips.",
+    "actual_ui_observation": {
+      "custom_role_row_action_icons": ["edit (pencil)", "more_vert (three-dot)"],
+      "eye_view_standalone_icon": "ABSENT on custom rows",
+      "note": "'View Permissions' (eye) is NOT a standalone icon on custom/editable rows — it lives INSIDE the three-dot (more_vert) menu. A standalone eye/visibility icon appears in the Action column ONLY for locked system roles (Time Clock, Office), which show the eye instead of edit+three-dot.",
+      "tooltips_observed": "none (no title/aria-label text on the pencil/three-dot icons)"
+    },
+    "screenshot_ref": "/tmp/viu1/C26310.png",
+    "match": "Partial",
+    "ui_says_instead": "Custom rows expose pencil (edit) + three-dot (more_vert) as direct icons. There is NO standalone eye/view icon on custom rows — 'View Permissions' is an item inside the three-dot menu. Standalone eye icons appear only on locked system rows (Time Clock, Office)."
+  },
+  {
+    "case_id": "C26315",
+    "what_checked": "Is the Users column value a clickable blue number? Where does clicking navigate? Appearance.",
+    "actual_ui_observation": {
+      "nonzero_users": "Rendered as a blue clickable number — <a href=\"/administration/staff?roleName=<RoleName>\"> wrapping <span class=\"text-blue\">N</span>. Navigates to the Staff page filtered by roleName (e.g. /administration/staff?roleName=Admin).",
+      "zero_users": "Rendered as a RED number (<span class=\"text-red\">0</span>) with NO link — not clickable.",
+      "examples": "Admin=91 (blue link), Technician=65 (blue link), Service Advisor=2 (blue link); custom roles with 0 users show red '0' non-clickable."
+    },
+    "screenshot_ref": "/tmp/viu1/C26315.png",
+    "match": "Yes",
+    "ui_says_instead": "Confirmed: blue clickable number links to Staff (/administration/staff?roleName=...). Nuance: zero-user rows show a non-clickable RED '0' instead of a blue link."
+  },
+  {
+    "case_id": "C26316",
+    "what_checked": "Search field placeholder text; type a role name and record whether the list filters.",
+    "actual_ui_observation": {
+      "search_field": "Quasar input with a FLOATING LABEL 'Search Role' (no HTML placeholder attribute — placeholder attr is empty). Magnifier (search) icon on the left.",
+      "filter_behavior": "Typing 'Technician' filtered the list from 30 visible rows down to 1 row ('Technician'). List filters live as you type."
+    },
+    "screenshot_ref": "/tmp/viu1/C26316.png",
+    "match": "Yes",
+    "ui_says_instead": "Search filters the list. Minor detail: 'Search Role' is a floating label, not a placeholder attribute."
+  },
+  {
+    "case_id": "C26318",
+    "what_checked": "Left sidebar under a 'SETTINGS' group — is there a 'Locations' item? Capture exact group label and items.",
+    "actual_ui_observation": {
+      "sidebar_group_label": "SETTINGS",
+      "settings_group_items_in_order": ["Settings", "Staff", "Roles & Permissions", "Locations", "Departments", "Taxes"],
+      "locations_present": "YES — 'Locations' (location_on icon) appears in the SETTINGS group, between 'Roles & Permissions' and 'Departments'."
+    },
+    "screenshot_ref": "/tmp/viu1/C26318.png",
+    "match": "Yes",
+    "ui_says_instead": ""
+  },
+  {
+    "case_id": "C26320",
+    "what_checked": "Each system role's Description text verbatim, and COUNT of system roles listed.",
+    "actual_ui_observation": {
+      "system_role_count": 11,
+      "system_roles_and_descriptions_verbatim": [
+        {"role": "Admin", "description": "Full system access"},
+        {"role": "Parts Manager", "description": "Full parts and inventory control"},
+        {"role": "Time Clock", "description": "Clock in/out only"},
+        {"role": "Senior Service Advisor", "description": "Work order and customer management with expanded access"},
+        {"role": "Foreman", "description": "Oversees technicians and work orders"},
+        {"role": "Office", "description": "Office administration, reporting, and back-office operations"},
+        {"role": "Technician", "description": "Assigned work orders and time tracking (Tech View)"},
+        {"role": "Parts Tech", "description": "Parts operations and vendor management"},
+        {"role": "Service Manager", "description": "Full operational access, limited admin (App Settings + Wages only)"},
+        {"role": "Sales Representative", "description": "Reports and financial data access only"},
+        {"role": "Service Advisor", "description": "Work order and customer management with invoicing access"}
+      ]
+    },
+    "screenshot_ref": "/tmp/viu1/C26320.png",
+    "match": "Partial",
+    "ui_says_instead": "The UI lists 11 system roles (each with a description in the Description column), NOT 9 as the case asserts. Descriptions captured verbatim above."
+  },
+  {
+    "case_id": "C26321",
+    "what_checked": "What shows in Description for a custom role with a blank description (e.g. literal '-')?",
+    "actual_ui_observation": {
+      "blank_description_placeholder": "A literal hyphen '-' is shown in the Description column for custom roles with no admin-entered description.",
+      "examples_blank": ["Mudassir Test Role Migrated 6", "Mudassir Test Role 11", "Mudassir Test Role 1", "A - Custom", "A2 - Custom", "Milos Testing Role"],
+      "examples_with_description": ["C26400 customers-delete... -> 'Custom-role preset: zero permissions (negative-enforcement baseline)'", "C26379 review-on... -> 'Custom-role preset: Work Orders view-only'", "Parth cust1 -> 'Parth cust1'"],
+      "note": "No throwaway ZZAUTOTEST role needed — multiple existing blank-description custom roles already display '-'."
+    },
+    "screenshot_ref": "/tmp/viu1/C26321.png",
+    "match": "Yes",
+    "ui_says_instead": ""
+  },
+  {
+    "case_id": "C26322",
+    "what_checked": "Three-dot menu on an EDITABLE SYSTEM role row — list every menu item label verbatim (is there 'Duplicate'?), tooltips.",
+    "actual_ui_observation": {
+      "row_tested": "Admin (System, editable)",
+      "three_dot_menu_items_verbatim": ["View Permissions"],
+      "duplicate_present": "NO — there is no 'Duplicate' item.",
+      "tooltips": "none observed",
+      "note": "The three-dot menu on an editable system role contains only 'View Permissions' (with a visibility/eye icon). Edit is a separate pencil icon in the Action column, not inside this menu."
+    },
+    "screenshot_ref": "/tmp/viu1/C26322.png",
+    "match": "No",
+    "ui_says_instead": "The editable system-role three-dot menu exposes only 'View Permissions'. There is NO 'Duplicate' action."
+  },
+  {
+    "case_id": "C26324",
+    "what_checked": "Three-dot menu on a CUSTOM role row — list every item label verbatim (Duplicate/Edit/Delete/View?).",
+    "actual_ui_observation": {
+      "row_tested": "A - Custom (Custom role)",
+      "three_dot_menu_items_verbatim": ["View Permissions", "Delete"],
+      "delete_styling": "'Delete' shown in red with a delete (trash) icon",
+      "duplicate_present": "NO",
+      "edit_present_in_menu": "NO — Edit is a separate pencil icon in the Action column, not inside the three-dot menu"
+    },
+    "screenshot_ref": "/tmp/viu1/C26324.png",
+    "match": "Partial",
+    "ui_says_instead": "Custom-role three-dot menu contains only 'View Permissions' and 'Delete'. There is NO 'Duplicate' in the menu, and 'Edit' is NOT in the menu (it is a standalone pencil icon). So of the claimed items, only Delete and View are in the menu; Duplicate is absent."
+  },
+  {
+    "case_id": "C26325",
+    "what_checked": "Click Duplicate on a system role — what happens? (opens editor pre-filled? new custom role created? capture title + toast).",
+    "actual_ui_observation": {
+      "duplicate_action_found": "NONE — no 'Duplicate' control exists anywhere on the Roles list page (checked three-dot menus on both editable system role (Service Manager) and confirmed 0 'Duplicate' elements in the DOM).",
+      "result": "The Duplicate flow could not be exercised because the feature is not present in the UI. No role was created; nothing to clean up."
+    },
+    "screenshot_ref": "/tmp/viu1/C26325.png",
+    "match": "No",
+    "ui_says_instead": "There is no Duplicate action in the UI, so no 'pre-filled custom role' can be created via Duplicate. The system-role three-dot menu offers only 'View Permissions'."
+  }
+]
