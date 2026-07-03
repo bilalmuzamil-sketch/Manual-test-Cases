@@ -1,0 +1,22 @@
+{
+  "key": "SV-3715",
+  "summary": "Bug: Special Order Part Price/Cost Changes from .99 to .98 After Receipt",
+  "area": "parts / inventory",
+  "release_source": ["v0.31 Bug Fixes"],
+  "reported_issue": "A special order part with a cost or sell price ending in .99 (e.g. $16.99) was automatically changed to .98 (e.g. $16.98) after the part was received. Reported as unfixable via the Edit Part modal but correctable via the Parts tab.",
+  "expected_after_fix": "Prices/costs should reflect exactly what the user inputs (e.g. .99) and never be rounded/altered by workflow events like receiving.",
+  "role_used": "admin",
+  "steps_i_followed": [
+    "On WO S9-24917 opened the Edit Part Request modal for a vendor (special order) part 'Miscellaneous hardware'",
+    "Set Cost = $16.99 and saved (POST /api/work-orders/part/change-request returned 200)",
+    "Read the part request back via API: cost=16.99, cost_decimal=16.99 (exact, no .98 rounding)",
+    "Set a part number and vendor (123 Cannabis Forestlawn); status advanced from Requested -> Quoted with cost still $16.99",
+    "Attempted to reach the receipt step: the special-order receive requires the Purchase Orders workflow (authorize to order -> create PO -> receive against PO at /parts/orders)",
+    "Explored /parts/orders and an existing PO; could not create/receive a fresh $16.99 special-order PO within the session"
+  ],
+  "actual_now": "At the entry/edit/save stage the value $16.99 is preserved exactly (cost and cost_decimal both 16.99) - the Edit Part Request modal does NOT round to .98 and does save (contradicting the reported 'unfixable via Edit Part modal' symptom). I could not fully exercise the receipt step (authorize->PO->receive) end-to-end in this harness session, so the exact post-receipt value was not directly observed.",
+  "verdict": "NOT-TESTABLE",
+  "confidence": "medium",
+  "screenshot_ref": "build/bugfix-regression/screenshots/SV-3715.png",
+  "notes": "Partial result: the cost-handling at the request/quoted/Edit-Part-modal stage is clean (.99 preserved), which is evidence the rounding is likely fixed. The final receive-time transformation could not be driven because it needs the multi-step Purchase Order receiving flow (create-PO endpoints are flagged as prone to 500 on this staging session). Recommend a follow-up focused re-test that completes a special-order receipt of a $16.99 part."
+}
