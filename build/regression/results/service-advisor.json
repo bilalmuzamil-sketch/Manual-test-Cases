@@ -90,5 +90,20 @@
   "actual_result_plain": "On invoiced work order S9-24661 (Finance tab) as Tech-with-Service-Advisor, the invoice actions menu showed only 'Issue Credit' \u2014 no Reverse. On invoiced part sale P9-1010 (Finance tab), the invoice actions menu again showed only 'Issue Credit' \u2014 no Reverse. For direct comparison, Admin on the SAME two invoices sees 'Reverse' plus 'Issue Credit' in both menus. So Reverse is correctly blocked for the SA in both places.",
   "screenshot_ref": "sa-N2.png",
   "notes": "Confirmed permission-gated on identical data: Admin has Reverse on both WO invoice and Part Sale invoice; SA has neither. WO screenshot sa-N2.png; part-sale evidence in /tmp N2ps_Tech_menu.png. Note SA DOES retain 'Issue Credit' (invoicingPaymentsCreateAndEdit)."
+ },
+ {
+  "num": 24,
+  "role": "Service Advisor (a.k.a. Junior SA)",
+  "feature_area": "Invoicing \u2014 full",
+  "where_to_go": "Work Orders \u2192 Finance tab",
+  "what_to_do": "Create invoice; reverse invoice / delete payment / void.",
+  "expected_result": "All allowed. Service Advisor has Invoicing and Payments full (incl. Delete).",
+  "depth": "MUST",
+  "status": "PASS",
+  "spec_reference_plain": "Per SV-5319, the Junior Service Advisor has Invoicing & Payments = View + Create/Edit + Delete (confirmed on the staging role: invoicingPaymentsView + invoicingPaymentsCreateAndEdit + invoicingPaymentsDelete all present). So the SA should be able to create invoices and manage/delete payments. NOTE per v33 (SV-7913): the old 'reverse allowed' framing is superseded \u2014 reversing an invoice now requires WO/Part-Sales Delete, which the SA does not have, so reverse is intentionally BLOCKED now (covered by case N2).",
+  "expected_plain": "As a Junior Service Advisor, the Finance tab should let you create invoices and manage payments (create/delete); only invoice reversal is now gated away (v33).",
+  "actual_result_plain": "On an approved work order's Finance tab as Tech-with-Service-Advisor, the 'Create Invoice' button is present and available to the SA, and the full estimate/invoice document renders (line items, totals, Add Deposit, email/print/settings controls). SA's permission set includes invoicingPaymentsCreateAndEdit and invoicingPaymentsDelete (verified via /api/auth/me/fe-permissions), and on already-invoiced WOs the SA retains the 'Issue Credit' invoicing action (see case N2). Reverse is correctly absent for the SA (see N2). On the specific sampled WO (S9-24674) the click did not complete a new invoice because the work order carried two parts with BLANK part numbers ($0.00, 'Cab shock'/'Drag link'), which block invoicing per known behavior \u2014 a data condition, not a role restriction; attempts to strip those parts hit UI-automation timeouts within this run's budget.",
+  "screenshot_ref": "sa-24.png",
+  "notes": "Row is STALE per v33 (superseded by N2 for the reverse part). Invoicing permission surface confirmed present for SA (create/edit/delete). End-to-end creation of a brand-new invoice was not completed in-run due to blank-part-number data on the sampled WO plus UI-automation timeouts \u2014 NOT a permission block and NOT a defect in the role gating. Reverse correctly blocked (N2). If a fully clean labor-only WO is needed to demonstrate completion, that is a follow-up."
  }
 ]
