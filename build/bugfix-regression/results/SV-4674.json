@@ -1,0 +1,20 @@
+{
+  "key": "SV-4674",
+  "summary": "Bug: Part Number is Optional Field on Purchase Order",
+  "area": "parts / inventory",
+  "release_source": ["v0.44 Bug Fixes"],
+  "reported_issue": "On the PO page the Part Number field was optional but should be mandatory. A part could be added to a PO without a part number, leading to incomplete data.",
+  "expected_after_fix": "Validation for the Part Number field should trigger; a part should not be added to the PO unless all mandatory fields are populated.",
+  "role_used": "admin",
+  "steps_i_followed": [
+    "Navigated to Parts -> Purchase Orders (/parts/orders) and clicked 'New PO'",
+    "In the New Purchase Order dialog, filled Description ('ZZAUTOTEST part no number'), Quantity (2) and Cost (10), leaving Part Number empty",
+    "Clicked 'Add' to add the line item to the PO",
+    "Observed field validation and whether the part line was added"
+  ],
+  "actual_now": "Clicking Add without a Part Number triggers validation: the message 'Part number is a required field' is displayed and the Part Number field enters an error state. The part is NOT added - the parts table still shows 'Please add parts to order'. (The Vendor field similarly enforces 'Vendor is a required field'.)",
+  "verdict": "FIXED",
+  "confidence": "high",
+  "screenshot_ref": "build/bugfix-regression/screenshots/SV-4674.png",
+  "notes": "Part Number is now a mandatory field on the PO add-item form and blocks adding the line, matching the expected behavior."
+}
