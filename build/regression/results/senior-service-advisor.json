@@ -110,5 +110,21 @@
   "replication_steps_plain": "",
   "screenshot_ref": "ssa-N1.png",
   "notes": "NEW (v33) - replaces struck row #21. fe-permissions confirm invoicingPaymentsDelete=true. Same UI flow as case 21; the FE delete-return gate is open for this role."
+ },
+ {
+  "num": "N2",
+  "role": "Senior Service Advisor",
+  "feature_area": "Reverse invoice (v33)",
+  "where_to_go": "Work Orders -> Finance; Part Sales",
+  "what_to_do": "Reverse a WO invoice; reverse a Part Sales invoice.",
+  "expected_result": "Both allowed. WO invoice = WO Delete; Part Sales invoice = Part Sales Delete (v33). Sr SA has WO Delete and Part Sales Delete.",
+  "depth": "MUST",
+  "status": "PASS",
+  "spec_reference_plain": "Per spec v33, reversing a work-order invoice is gated by Work Orders: Delete and reversing a Part Sales invoice by Part Sales: Delete. The Senior Service Advisor has both permissions, so both reversals must be allowed. [Ref: SV-5319/v33 Custom Roles permission matrix; checklist Senior Service Advisor row N2]",
+  "expected_plain": "A Senior Service Advisor should be able to reverse both a work-order invoice and a part-sales invoice.",
+  "actual_result_plain": "Both reversals are available to the Senior Service Advisor. WORK ORDER invoice: on invoiced work order S9-24661, the Finance-tab invoice actions three-dots menu (next to New Payment) listed 'Reverse' and 'Issue Credit' (see case 17). PART SALES invoice: on invoiced part sale P9-1010 (status Invoiced, INV-P9-1010, Balance $47.88), opening the Finance-tab actions three-dots menu listed 'Reverse' and 'Issue Credit'. Neither was greyed out or blocked.",
+  "replication_steps_plain": "",
+  "screenshot_ref": "ssa-N2.png",
+  "notes": "NEW (v33). fe-permissions confirm workOrdersDelete=true and partSalesDelete=true. WO reverse evidence in ssa-17.png; Part Sales reverse evidence in ssa-N2.png. Note: on a part sale, the Reverse/Issue Credit menu lives on the Finance tab's top three-dots (the part-requests tab three-dots is a disabled 'modify parts' menu once invoiced)."
  }
 ]
