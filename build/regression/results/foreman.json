@@ -62,5 +62,21 @@
   "replication_steps_plain": "",
   "screenshot_ref": "fm-31.png",
   "notes": "fe-permissions: catalogInventoryView=true, catalogInventoryCreateAndEdit=true, woOrderParts=true, woPickParts=true. Order and pick both driven via the WO Part Requests tab action button; endpoint perform-request-status-action returned 201 for both (order: authorized_to_order->waiting_to_receive; pick: in_stock->staged). Note: the same endpoint correctly returns 400 (business rule, not 403) for parts still in 'requested' status or on non-authorized lines, confirming the block there is workflow-based, not a permission denial for the Foreman."
+ },
+ {
+  "num": 32,
+  "role": "Foreman",
+  "feature_area": "Invoicing",
+  "where_to_go": "Work Orders → Finance tab",
+  "what_to_do": "Create an invoice.",
+  "expected_result": "Allowed (create). Foreman has Invoicing View/Create and Edit (no Delete).",
+  "depth": "SPOT",
+  "status": "PASS",
+  "spec_reference_plain": "Per SV-5319, the Foreman role has Invoicing/Payments = View + Create and Edit (but NOT Delete), so a Foreman is allowed to create an invoice on a work order. [Ref: SV-5319 Custom Roles permission matrix; checklist Foreman row #32]",
+  "expected_plain": "Logged in as a Foreman, creating an invoice on a work order should work.",
+  "actual_result_plain": "Opened the Finance tab of completed work order S9-24662 as Tech-with-Foreman-role. The 'Create Invoice' button was present. Clicked it; the UI's POST /api/invoices/create returned HTTP 201 with a new invoice_id and the invoice INV-S9-24662 was generated. After the action the work-order status badge changed to 'Invoiced' and the Finance tab showed invoice INV-S9-24662. (The app then auto-opened a 'New Customer Payment' dialog, which is the separate payments step and was not needed for this case.)",
+  "replication_steps_plain": "",
+  "screenshot_ref": "fm-32.png",
+  "notes": "fe-permissions: invoicingPaymentsCreateAndEdit=true, invoicingPaymentsDelete=false. Invoice creation driven in the UI via Finance -> Create Invoice; endpoint invoices/create returned 201 and WO moved to Invoiced. No blocking parts and line already complete, so no Review/parts gate."
  }
 ]
