@@ -14,5 +14,37 @@
   "replication_steps_plain": "",
   "screenshot_ref": "pm-43.png",
   "notes": "seeFinancialData=true confirmed in fe-permissions. Prices render on the WO lines/parts view. (WO also shows an 'Over Limit' badge which per policy blocks nothing.)"
+ },
+ {
+  "num": 46,
+  "role": "Parts Manager",
+  "feature_area": "Work order delete",
+  "where_to_go": "Work Orders → open a work order",
+  "what_to_do": "Try to delete the work order.",
+  "expected_result": "BLOCKED. Parts Manager has Work Orders = View/Create and Edit, NO Delete.",
+  "depth": "MUST",
+  "status": "PASS",
+  "spec_reference_plain": "Per SV-5319, the Parts Manager role has Work Orders = View + Create and Edit but NOT Delete, so a Parts Manager must not be able to delete a work order; the 'Delete Work Order' control should be absent and the delete endpoint must be rejected. [Ref: SV-5319 Custom Roles permission matrix; checklist Parts Manager row #46]",
+  "expected_plain": "Logged in as a Parts Manager, there should be no way to delete a work order.",
+  "actual_result_plain": "Opened work order S9-24163 as Tech-with-Parts-Manager-role and opened the work-order header three-dot menu. The menu offered only 'Audit Log' (and Timesheets) with NO 'Delete Work Order' option. Backend was also verified: POST /api/work-orders/delete {work_order_id:...} as the Parts Manager returned HTTP 403 'Access denied.' fe-permissions confirm workOrdersDelete=false. So both the UI control and the backend correctly block deletion.",
+  "replication_steps_plain": "",
+  "screenshot_ref": "pm-46.png",
+  "notes": "Real denial. UI: three-dot menu omits 'Delete Work Order' (Admin's menu on the same WO includes it). Backend: /api/work-orders/delete returns 403 for Parts Manager. workOrdersDelete=false in fe-permissions. No backend enforcement gap."
+ },
+ {
+  "num": 47,
+  "role": "Parts Manager",
+  "feature_area": "Settings — Parts/Finance",
+  "where_to_go": "Settings (cog)",
+  "what_to_do": "Check which sub-sections appear.",
+  "expected_result": "Parts, Finance, Data Import available; App Settings and Wages NOT. Per Parts Manager sub-toggles.",
+  "depth": "SPOT",
+  "status": "PASS",
+  "spec_reference_plain": "Per SV-5319, the Parts Manager role has the Settings sub-toggles for Parts, Finance and Data Import ON, but App Settings and Wages OFF, so the Settings area should show only the Parts, Finance and Data-Import (Imports) sub-sections. [Ref: SV-5319 Custom Roles permission matrix; checklist Parts Manager row #47]",
+  "expected_plain": "Logged in as a Parts Manager, the Settings menu should show Parts, Finance and Data Import sections but not App Settings or Wages.",
+  "actual_result_plain": "Opened Settings (avatar menu -> Settings) as Tech-with-Parts-Manager-role. The Settings sidebar showed: PARTS (Pricing, Bin Locations, Categories), FINANCE (Payment Methods), IMPORTS/Data Import (Contacts, Assets, Vendors, Inventory, Invoices), plus Taxes and an IBS integration. There was NO 'App Settings' / company-configuration section and NO 'Wages' section. fe-permissions confirm settingsParts=true, settingsFinance=true, settingsDataImport=true and no App-Settings/Wages toggles.",
+  "replication_steps_plain": "",
+  "screenshot_ref": "pm-47.png",
+  "notes": "Matches expected subset: Parts, Finance, Data Import visible; App Settings and Wages absent. Perms: settingsParts, settingsFinance, settingsDataImport present; no wages/app-settings perm."
  }
 ]
