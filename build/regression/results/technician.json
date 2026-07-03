@@ -158,5 +158,21 @@
   "replication_steps_plain": "",
   "screenshot_ref": "tech-42.png",
   "notes": "Technician global search returns normal results (customersView + scheduleView present). Only Time Clock is emptied per the build change."
+ },
+ {
+  "num": "N1",
+  "role": "Technician",
+  "feature_area": "Mileage / engine hours (v33)",
+  "where_to_go": "Work Orders -> a line",
+  "what_to_do": "Enter/change mileage and engine hours.",
+  "expected_result": "Now gated by WOL: Create and Edit (v33, no longer spec-silent). Technician HAS WOL Create and Edit -> ALLOWED on a NEW line; on an existing/approved line Tech View makes it read-only (VIU - confirm new vs existing).",
+  "depth": "MUST",
+  "status": "PASS",
+  "spec_reference_plain": "Under spec v33, mileage/engine-hours capture is gated by Work Order Lines: Create and Edit (no longer spec-silent). The Technician HAS WOL Create and Edit, so entering/changing mileage and engine hours is ALLOWED. [Ref: spec v33; checklist Technician row N1]",
+  "expected_plain": "A technician should be able to enter and change the vehicle mileage and engine hours.",
+  "actual_result_plain": "Allowed and persisted. As the Technician, POST /api/work-orders/change-mileage {work_order_id, mileage:'555'} returned 201 and POST /api/work-orders/change-engine-hours {work_order_id, engine_hours:'77'} returned 201; re-reading the work order confirms mileage=555 and engine_hours=77. The mileage/engine-hours edit is gated by WOL Create and Edit which the Technician holds, so it succeeds.",
+  "replication_steps_plain": "",
+  "screenshot_ref": "tech-n1.png",
+  "notes": "workOrderLinesCreateAndEdit=true for Technician. Change persisted on S9-24706 (mileage 555, engine hours 77). Same evidence as case 38."
  }
 ]
