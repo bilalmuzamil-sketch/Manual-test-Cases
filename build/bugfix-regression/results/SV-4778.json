@@ -1,0 +1,20 @@
+{
+  "key": "SV-4778",
+  "summary": "Bug: Workorder -> Parts -> Margin column after it is edited it shows wrong sell price.",
+  "area": "parts / inventory",
+  "release_source": ["v0.43 Bug Fixes", "SV-4796 Epic (V0.43 Regression Testing Bugs)"],
+  "reported_issue": "On the Work Order Parts tab, editing the Margin (%) value caused the automatically calculated Sell Price to be wrong.",
+  "expected_after_fix": "Editing the Margin recalculates the Sell Price correctly (sell = cost / (1 - margin/100)).",
+  "role_used": "admin",
+  "steps_i_followed": [
+    "Logged in as admin, opened work order S9-24011 Parts tab (/workorders/<id>/part-requests).",
+    "Confirmed the existing calc convention from live rows (e.g. cost 12.50 / margin 48 / sell 24.04 -> (24.04-12.50)/24.04 = 48%).",
+    "On a part request (cost=12.50, original margin=48, sell=24.04) I edited the Margin input to 50 and blurred (Tab).",
+    "Read back the recalculated Sell Price."
+  ],
+  "actual_now": "After setting Margin=50 on a part with cost=12.50, the Sell Price recalculated to 25.00. Expected = 12.50/(1-0.50) = 25.00. Implied margin from the resulting sell price = 50.00%. The calculation is correct.",
+  "verdict": "FIXED",
+  "confidence": "high",
+  "screenshot_ref": "build/bugfix-regression/screenshots/SV-4778.png",
+  "notes": "Margin->Sell Price recalculation is accurate on current staging; the wrong-sell-price behavior does not reproduce."
+}
