@@ -1,0 +1,20 @@
+{
+  "key": "SV-4240",
+  "summary": "BE Financial Info card does not calculate Tax on Parts when Labor rate is Fixed Line Total.",
+  "area": "invoicing / accounting",
+  "release_source": ["v0.43 Bug Fixes"],
+  "reported_issue": "The Financial Info section on an Estimate calculated sales tax only on Shop Supplies, while the Finance tab calculated tax correctly on both Parts and Shop Supplies. Reproduced specifically when a line uses Labor Rate = Fixed Line Total.",
+  "expected_after_fix": "The Financial Info card should calculate and display Tax on Parts even when the Labor rate is Fixed Line Total, matching the Finance -> Invoice.",
+  "role_used": "admin",
+  "steps_i_followed": [
+    "Created a tax with Labor OFF / Parts ON / Shop Supplies ON at 8.25% and attempted to bind it to a WO; the WO tax resolves from the workplace (GST 5%, all enabled), not from the org default, so labor-off could not be forced onto the WO",
+    "Created a fresh WO (S12-24932 / f5032afd) for customer '11 A new Company'",
+    "Added a line with Labor Rate = Fixed Line Total (the line splits into Labor Portion + Parts Portion) and attached a part (sell price $200); total fixed-line amount = $1,000 across the fixed lines",
+    "Read the Financial Info card (Lines page) and compared it to the Finance invoice totals block"
+  ],
+  "actual_now": "The Fixed Line Total amount is classified under Parts (Parts $1,000.00, Labor $0.00) and it IS being taxed by the Financial Info card. The Financial Info card and the Finance invoice agree exactly: Subtotal $1,000.00, Tax $50.00 (5% on Parts), Total $1,050.00. The card is NOT omitting tax on the Parts portion of the Fixed Line Total line - there is no card-vs-invoice discrepancy.",
+  "verdict": "FIXED",
+  "confidence": "medium",
+  "screenshot_ref": "build/bugfix-regression/screenshots/SV-4240.png",
+  "notes": "Could not reproduce under the exact original tax config (Labor tax OFF): the WO's tax resolves to the workplace GST (labor+parts+shop all enabled), and neither the customer 'Default Tax Settings' dropdown (flaky in-harness) nor the org default tax override changed the WO's applied tax. Test therefore ran under GST (5%). The discriminating behavior from the bug - whether the Financial Info card taxes the PARTS portion of a Fixed Line Total line - was directly confirmed: the fixed-line amount appears under Parts ($1,000) and is fully taxed in BOTH the card and the invoice ($50 each, card==invoice). This matches expected_after_fix (card taxes Parts on fixed-line-total lines, consistent with the invoice). Org default tax was restored to HST and the temporary ZZAUTOTEST tax deleted."
+}
