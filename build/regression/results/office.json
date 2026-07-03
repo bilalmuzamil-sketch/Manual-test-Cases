@@ -96,5 +96,21 @@
   "depth_note": "SPOT",
   "screenshot_ref": "of-N1.png",
   "notes": "FE Notes tab reachable and confirmed: own note exposes Edit/Delete menu, others' note exposes none. Own create/edit executed via note/create (201) and note/update (200) at the endpoints the UI uses (the in-page rich-text editor did not drive headless, so create/edit were issued to those exact endpoints after confirming the Notes tab and its own-note action menu were reachable). Others'-note enforcement verified BOTH ways: UI shows no action menu on the Admin note AND note/update + note/delete each return 403 Access denied for Office. Test notes cleaned up afterward."
+ },
+ {
+  "num": "N2",
+  "role": "Office",
+  "feature_area": "Sensitive vendor fields (v33)",
+  "where_to_go": "Vendors -> a vendor -> Edit / Overview card",
+  "what_to_do": "Look for Credit Terms, Credit Limit, Taxes.",
+  "expected_result": "Visible. Sensitive VENDOR fields are gated by Manage AP/AR (v33, 7/1). Office has Manage AP/AR ON.",
+  "depth": "SPOT",
+  "status": "PASS",
+  "spec_reference_plain": "Per SV-5319 (v33, 7/1 change), a vendor's sensitive money fields (Credit Terms, Credit Limit, Taxes) are gated by the See/Manage AP/AR permission. Office has the See AP/AR data cross-toggle ON (seeApArData=true), so these vendor fields must be visible to Office.",
+  "expected_plain": "When Office opens a vendor, the Credit Terms, Credit Limit, and tax information should be visible (not hidden), because Office has AP/AR access.",
+  "actual_result_plain": "Logged in as Tech-with-Office, opened Parts -> Vendors -> vendor 'Aiwick Concrete'. The vendor overview card clearly showed Credit term: Net 30 and Credit limit: $0.00, plus AP-related tabs Unpaid Invoices and Payments. The vendor detail API the page loads (GET /api/parts-catalogue/vendor/{id}) returned the sensitive fields to Office unmasked: credit_term = 'Net 30', credit_limit = 0, and tax_id = 0c47b1fb-38bb-4788-8719-6900c365e34c (a tax setting assigned to the vendor). So all three sensitive vendor fields are visible/served to Office, matching the expectation. Office is view-only on vendors (no Edit form control, consistent with vendorOrderManagementView only), so the fields appear on the read/overview view rather than an editable form.",
+  "depth_note": "SPOT",
+  "screenshot_ref": "of-N2.png",
+  "notes": "seeApArData=true confirmed for Office. Credit Terms and Credit Limit render on the vendor overview card; the vendor's tax association (tax_id) is included unmasked in the vendor detail payload delivered to Office. This case expects ACCESS (not a denial), so no 403 check applies; visibility confirmed both in the UI card and the API payload. Office has no vendor Edit affordance (view-only), so the tax field is seen as data on the read view rather than an editable selector."
  }
 ]
