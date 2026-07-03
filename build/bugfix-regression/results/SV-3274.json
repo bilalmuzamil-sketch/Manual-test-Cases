@@ -1,0 +1,22 @@
+{
+  "key": "SV-3274",
+  "summary": "FE Edit What Are You Doing",
+  "area": "work orders",
+  "release_source": ["v0.54 Bug Fixes"],
+  "reported_issue": "When adding a new line you could only edit the 'What Are You Doing?' field while the cursor was still in it. After clicking out you had to delete the whole thing and retype it to make any change.",
+  "expected_after_fix": "The 'What Are You Doing?' field remains freely editable after clicking out and back in - you can place the cursor and edit mid-text without deleting everything.",
+  "role_used": "admin",
+  "steps_i_followed": [
+    "Opened WO S9-24917 (approved) lines page, clicked New Line to open the New Line dialog",
+    "Typed 'OilChangeService' into the 'What are you doing?' field (data-test-id select_line_canned_line)",
+    "Verified mid-text insertion works before blur (caret at pos 3, typed AAA -> OilAAAChangeService)",
+    "Clicked another field (Estimated Time) to blur the What Are You Doing field",
+    "Clicked back into the What Are You Doing field and inspected retained value",
+    "Placed caret at position 3 and typed BBB to test mid-text editing after blur"
+  ],
+  "actual_now": "On refocus after blur the field shows the retained text 'OilChangeService' and mid-text insertion works: typing BBB at position 3 produced 'OilBBBChangeService'. No need to delete and retype. Editing works the same before and after clicking out.",
+  "verdict": "FIXED",
+  "confidence": "high",
+  "screenshot_ref": "build/bugfix-regression/screenshots/SV-3274.png",
+  "notes": "The 'What are you doing?' field is a Quasar q-select combobox; its transient search text clears visually on blur, but the committed value is preserved and fully editable on refocus. No test line was saved."
+}
