@@ -1,0 +1,20 @@
+{
+  "key": "SV-4696",
+  "summary": "Credit Amount Rounding Off by 1 Cent (Both Vendor and Customer Credits)",
+  "area": "invoicing / accounting",
+  "release_source": ["v0.43 Bug Fixes"],
+  "reported_issue": "When entering credits on either the Vendor or Customer side, the system occasionally rounds the total amount down by $0.01 after saving. E.g. $33.37 saves as $33.36.",
+  "expected_after_fix": "The credit amount should remain exactly as entered after saving (no rounding or decimal change).",
+  "role_used": "admin",
+  "steps_i_followed": [
+    "Navigated to Parts -> Vendors -> vendor detail Unpaid Invoices tab (/parts/vendor/{id}/unpaid-invoices) for vendor Aiwick Concrete",
+    "Clicked 'New credit'",
+    "Entered Amount = $33.37 and memo 'ZZAUTOTEST 4696'",
+    "Clicked Save and observed the POST response and the credit displayed in the list"
+  ],
+  "actual_now": "POST /api/parts-catalogue/vendor/credit/create returned HTTP 200 and the credit persisted and displayed as exactly $33.37 (the UI showed 33.37 in three places, and 33.36 appeared nowhere). No 1-cent rounding occurred.",
+  "verdict": "FIXED",
+  "confidence": "high",
+  "screenshot_ref": "build/bugfix-regression/screenshots/SV-4696.png",
+  "notes": "Tested the vendor side with the reported problem value 33.37. Amount saved and displayed exactly. Customer side shares the same numeric handling; vendor path confirmed fixed."
+}
