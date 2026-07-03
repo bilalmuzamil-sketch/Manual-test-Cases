@@ -1,0 +1,20 @@
+{
+  "key": "SV-4803",
+  "summary": "Special Order Part with all Data Remains in Quoted Status after Line Status Changes from Need Approval to Approved",
+  "area": "parts / inventory",
+  "release_source": ["SV-4796 Epic (V0.43 Regression Testing Bugs)"],
+  "reported_issue": "When a line status is changed from Needs Approval/Authorization Required to Approved/Authorized, a requested Special Order Part with all data incorrectly stayed in Quoted status instead of updating to 'Auth to order' with an Order action.",
+  "expected_after_fix": "A Special Order Part with all data should auto-update from Quoted to 'Auth to order' (action Order); if missing data (vendor or cost) it should update to 'Requested' status.",
+  "role_used": "admin",
+  "steps_i_followed": [
+    "Ticket is marked OBSOLETE; confirmed it is still testable and in scope, then verified the behavior.",
+    "Used fixture WO S9-24917, line 3d37443f in status 'authorization_required' carrying two special-order (vendor-source) part requests: PR 199ff75e in 'Quoted' with full data (part# ZZAUTOTEST-1699 + vendor + cost 16.99), and PR 8b8152c1 in 'Requested' with no part#/vendor.",
+    "Changed the line status to authorized via POST /api/work-orders/lines/change-status (HTTP 200).",
+    "Re-read the line and inspected both part requests."
+  ],
+  "actual_now": "After authorizing the line, the special-order part with full data transitioned from 'Quoted' to 'authorized_to_order' (label 'Auth to order'), i.e. the Order-able state. The other special-order part that is missing data remained in 'Requested'. Both outcomes exactly match expected_after_fix.",
+  "verdict": "FIXED",
+  "confidence": "high",
+  "screenshot_ref": null,
+  "notes": "Ticket status OBSOLETE with no fixVersion, but the described bug does not reproduce: the auth-time promotion for special-order parts works, including the 'missing data -> Requested' branch."
+}

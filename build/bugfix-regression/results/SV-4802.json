@@ -1,0 +1,20 @@
+{
+  "key": "SV-4802",
+  "summary": "Inventory Part Remains in Quoted Status after Line Status Changes from Need Approval to Approved",
+  "area": "parts / inventory",
+  "release_source": ["v0.43 Bug Fixes", "SV-4796 Epic (V0.43 Regression Testing Bugs)"],
+  "reported_issue": "When a line status is changed from Needs Approval/Authorization Required to Approved/Authorized, a requested Inventory Part incorrectly stayed in Quoted status instead of updating to 'In stock' with a Pick action.",
+  "expected_after_fix": "The inventory part status should automatically update from Quoted to In stock (action Pick) when the line is authorized.",
+  "role_used": "admin",
+  "steps_i_followed": [
+    "Located an existing fixture matching the precondition: WO S9-24011, line a93ad8f1 in status 'authorization_required' with an inventory-source part request (375f3eb3, inventory_part_id 794a9962) sitting in status 'quoted'.",
+    "Captured the before state via GET /api/work-orders/lines/{wo}: line=authorization_required, part=quoted / 'Quoted', src=inventory.",
+    "Changed the line status to authorized via POST /api/work-orders/lines/change-status {line_id, status:'authorized'} (HTTP 200).",
+    "Re-read the line and inspected the same inventory part request; captured the parts tab screenshot."
+  ],
+  "actual_now": "After authorizing the line, the inventory part request automatically transitioned from 'Quoted' to status 'in_stock' (label 'In stock'). It no longer remains in Quoted. This matches the expected 'In stock / Pick' behavior.",
+  "verdict": "FIXED",
+  "confidence": "high",
+  "screenshot_ref": "build/bugfix-regression/screenshots/SV-4802.png",
+  "notes": "Tested on real fixture WO S9-24011 (disposable staging). The part moved to 'In stock' which is the Pick-able state, exactly as expected_after_fix."
+}
