@@ -78,5 +78,21 @@
   "replication_steps_plain": "",
   "screenshot_ref": "fm-32.png",
   "notes": "fe-permissions: invoicingPaymentsCreateAndEdit=true, invoicingPaymentsDelete=false. Invoice creation driven in the UI via Finance -> Create Invoice; endpoint invoices/create returned 201 and WO moved to Invoiced. No blocking parts and line already complete, so no Review/parts gate."
+ },
+ {
+  "num": "N1",
+  "role": "Foreman",
+  "feature_area": "WO asset fields (v33)",
+  "where_to_go": "Work Orders -> a line",
+  "what_to_do": "Edit mileage, engine hours, license plate, VIN.",
+  "expected_result": "Allowed. These are WOL: Create and Edit (v33). Foreman has WOL Create and Edit.",
+  "depth": "MUST",
+  "status": "PASS",
+  "spec_reference_plain": "Per SV-5319 v33, editing the work order's asset fields (mileage, engine hours, license plate, VIN) is governed by Work Order Lines = Create and Edit; the Foreman role has WOL Create and Edit, so a Foreman is allowed to edit these fields. [Ref: SV-5319 v33 Custom Roles permission matrix; checklist Foreman row N1]",
+  "expected_plain": "Logged in as a Foreman, editing the mileage, engine hours, license plate and VIN on a work order should work and save.",
+  "actual_result_plain": "Opened in-progress work order S9-24075 as Tech-with-Foreman-role. Edited the vehicle fields on the work order: set Mileage to 90906 (POST /api/work-orders/change-mileage returned 201), Engine Hours to 7006 (POST /api/work-orders/change-engine-hours returned 201) and License Plate to ZZAUTO906 (POST /api/work-orders/change-licence-plate returned 201). For the VIN, opened the asset edit form (Edit Vehicle) and changed the VIN from 43434 to ZZAUTO942026 (POST /api/vehicles/change returned 201). Re-reading the work order confirmed all four values persisted: mileage 90906, engineHours 7006, plate ZZAUTO906, vin ZZAUTO942026.",
+  "replication_steps_plain": "",
+  "screenshot_ref": "fm-N1.png",
+  "notes": "fe-permissions: workOrderLinesCreateAndEdit=true (and customersCreateAndEdit=true). Mileage/engine-hours/license-plate are inline-editable on the WO header and save via work-orders/change-mileage|change-engine-hours|change-licence-plate (all 201). VIN is a property of the asset and is edited via the vehicle Edit form (vehicles/change 201); the WO header shows VIN as read-only text. All edits succeeded and persisted."
  }
 ]
