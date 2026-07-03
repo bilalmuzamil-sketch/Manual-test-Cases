@@ -1,0 +1,18 @@
+[
+ {
+  "num": 33,
+  "role": "Technician",
+  "feature_area": "Pricing HIDDEN",
+  "where_to_go": "Work Orders → open a work order",
+  "what_to_do": "Look at line prices, Total/Labor/Parts columns, Finance card, Stats tab.",
+  "expected_result": "All prices/money are HIDDEN/blank. Technician has See Financial Data OFF.",
+  "depth": "DEEP",
+  "status": "PASS",
+  "spec_reference_plain": "Per SV-5319, the Technician role has the 'See Financial Data' cross-toggle OFF, so no dollar figures should appear anywhere on a work order (line Rate/Total, the Financial Info card, the Parts prices, or the Stats money). [Ref: SV-5319 Custom Roles permission matrix; checklist Technician row #33]",
+  "expected_plain": "Logged in as a Technician, every price and dollar amount on a work order should be hidden.",
+  "actual_result_plain": "Opened work order S9-24706 as Tech-with-Technician-role. There was NO money anywhere: the Lines grid columns are Name/Description, Actual/Estimate, Progress, Status, Action (no Rate/Total). There is no Financial Info card at all. The Parts tab (checked on S9-13556) shows Description, Part Number, Quantity, Category, Vendor, Requested At, Status, Actions - no price/cost/total columns. The Stats tab shows only hours (Tech hours, Clocked hours, Tech Efficiency) with no dollars. A body-wide scan found zero '$' figures. fe-permissions confirm cross_toggles.seeFinancialData=false and view_mode=tech.",
+  "replication_steps_plain": "",
+  "screenshot_ref": "tech-33.png",
+  "notes": "Also captured tech-33b-parts.png (Parts tab, no money) and tech-33c-stats.png (Stats, hours only). fe-permissions: seeFinancialData=false, view_mode=tech. Even the API masks money for tech (line labour_rate returned 0)."
+ }
+]
