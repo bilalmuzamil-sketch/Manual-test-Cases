@@ -1,0 +1,19 @@
+{
+  "key": "SV-3897",
+  "summary": "Change status of Paid WO to Paid - Foothills",
+  "area": "work orders",
+  "release_source": ["v0.31 Bug Fixes"],
+  "reported_issue": "Certain work orders are fully paid in ShopView but remain stuck on status 'invoiced' (should be 'paid'); users also cannot delete the payments to retry. Reported as very intermittent with unknown root cause; the ticket is a request to manually flip the status for Foothills' affected production WOs (S5-523, S5-2434, S5-2708, ... on app.shopview.com).",
+  "expected_after_fix": "Affected WOs' status corrected to 'paid'; (underlying) a fully-paid WO should transition to 'paid' rather than remaining 'invoiced'.",
+  "role_used": "admin",
+  "steps_i_followed": [
+    "Reviewed the ticket: it is a one-off manual production data-correction request referencing production WOs (app.shopview.com/S5-*) that do not exist on staging",
+    "On staging, inspected several 'invoiced' WOs' Finance tab (S9-24669, S9-24661, S9-24662) and captured the finance/invoice endpoints (/api/invoices/{invoiceId}/view)",
+    "Attempted to identify a fully-paid-but-stuck-invoiced WO to reproduce the condition"
+  ],
+  "actual_now": "The invoiced WOs examined on staging show normal non-zero invoice totals (e.g. $929.72, $1,394.58) and no clearly stuck fully-paid-but-invoiced record was located. The specific reported WOs are production-only and absent from staging; the bug is explicitly intermittent with an unknown trigger, so it cannot be deterministically reproduced in this harness. Querying /api/invoices/{id}/view with WO ids returns 400 (it expects invoice ids), so per-invoice paid/balance vs status could not be reconciled cheaply.",
+  "verdict": "NOT-TESTABLE",
+  "confidence": "high",
+  "screenshot_ref": "build/bugfix-regression/screenshots/SV-3897.png",
+  "notes": "This is a manual production data-fix / support request for an intermittent, root-cause-unknown condition on specific prod WOs; it is not a deterministic code-fix with a reproducible scenario on disposable staging. No stuck paid-but-invoiced WO was found on staging to reproduce it."
+}
