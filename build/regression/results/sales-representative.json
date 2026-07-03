@@ -14,5 +14,21 @@
   "replication_steps_plain": "",
   "screenshot_ref": "sr-57.png",
   "notes": "Nav-level expectation met: no Work Orders module link, and /workorders redirects to Reports. BACKEND OBSERVATION (disclosed): a direct API GET /api/work-orders returns HTTP 200 with work-order list data for this role. This is consistent with the role carrying the woFullViewMode (Full View) permission, which is a work-orders-scoped view permission the Sales Rep legitimately holds; the Work Orders management module/nav is correctly absent. Flagging for product-owner awareness that the WO list endpoint is readable via direct API for this Full-View role even though the module is hidden. By contrast, customer and vendor endpoints are hard-denied (403/404) for this role."
+ },
+ {
+  "num": 58,
+  "role": "Sales Representative",
+  "feature_area": "Reports + financial",
+  "where_to_go": "Reports",
+  "what_to_do": "Open reports.",
+  "expected_result": "Accessible. Sales Rep has Reports ON and See Financial Data ON.",
+  "depth": "MUST",
+  "status": "PASS",
+  "spec_reference_plain": "Per SV-5319, the Sales Representative role has Reports page access ON (reportsPageAccess) and See Financial Data ON (seeFinancialData cross-toggle true). So the Reports area must open and financial figures (dollar amounts) must be visible.",
+  "expected_plain": "A Sales Rep should be able to open the Reports area and see reports including financial dollar figures.",
+  "actual_result_plain": "Logged in as Tech-as-Sales-Representative. The Reports area was the default landing (home redirected to /reports/punch-clock-activities). Navigating to /reports opened the Reports module with a full left-hand report catalog: LABOR (Timesheet Activities), PERFORMANCE (Sales, Technician Efficiency, Advisor Analysis, Shop Efficiency), FINANCE (Sales Tax Collected), ACCOUNTS RECEIVABLE and ACCOUNTS PAYABLE report groups, plus IBS Batches, QB Unexported, Notes and Reminders. Opening A/R Aging Summary rendered real financial data with dollar amounts and a grand total of $271,834.78, confirming See Financial Data is ON.",
+  "replication_steps_plain": "",
+  "screenshot_ref": "sr-58.png",
+  "notes": "Reports access confirmed via UI (module opens, report catalog and data render). fe-permissions for the assigned role include reportsPageAccess and cross_toggle seeFinancialData=true. Financial dollar figures visible in A/R Aging Summary (see sr-59.png)."
  }
 ]
