@@ -190,5 +190,21 @@
   "replication_steps_plain": "",
   "screenshot_ref": "tech-n2.png",
   "notes": "Real completed return request (200, id 2cc3a628). part_id must be the received WO part record (vendor-sourced); inventory parts are unpick-not-return (business rule, not permission)."
+ },
+ {
+  "num": "N3",
+  "role": "Technician",
+  "feature_area": "WO Notes (v33)",
+  "where_to_go": "Work Orders -> Notes tab",
+  "what_to_do": "Create/edit own note.",
+  "expected_result": "Create/edit own note = WO View. Technician has WO View, so can view + create/edit own notes. Cannot edit/delete others' (no WO Delete).",
+  "depth": "MUST",
+  "status": "PASS",
+  "spec_reference_plain": "Per spec v33, viewing and creating/editing your OWN work-order note is gated by Work Order View (which the Technician has). Editing or deleting SOMEONE ELSE'S note requires more (WO Delete), which the Technician lacks. [Ref: spec v33; checklist Technician row N3]",
+  "expected_plain": "A technician can add and edit their own notes but cannot change or delete notes written by other people.",
+  "actual_result_plain": "Behaves exactly as expected. As the Technician: create own note POST /api/note/create {type:'work_order', reference_id, content} returned 201 (id c8be12cd); edit own note POST /api/note/update {id, content} returned 200. Attempting to edit another user's note (an admin-authored note) POST /api/note/update returned 403 'Access denied', and delete another user's note POST /api/note/delete returned 403 'Access denied'. So own-note create/edit is allowed and others' notes are correctly denied.",
+  "replication_steps_plain": "",
+  "screenshot_ref": "tech-n3.png",
+  "notes": "Correctly enforced BOTH ways: own create=201, own edit=200; others' edit=403 and others' delete=403. The Notes tab is present in the tech WO layout."
  }
 ]
