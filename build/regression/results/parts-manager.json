@@ -32,6 +32,22 @@
   "notes": "Parts (catalog/inventory) create+delete and vendor create+delete all return 201 for Parts Manager - full control there confirmed. FAIL is specifically for 'delete part sales': the UI offers a Delete control but the backend blocks it (403) because part-sale deletion is wired to the Work Orders Delete permission (workOrdersDelete) rather than Part Sales Delete (partSalesDelete). This is both a UX bug (control shown when it will always be denied) and a permission-mapping inconsistency vs the spec's 'Part Sales Delete'. Supporting screenshots: pm-44-vendorform.png / pm-44-vendorsaved.png (vendor create), pm-44-partsales.png (list + New Part Sale + prices), pm-44-ps-menu.png (Delete option shown), pm-44-ps-after.png (access-denied). Note: reversing a part-sale INVOICE (a different Part-Sales-Delete-gated action) DOES work for Parts Manager - see case N2."
  },
  {
+  "num": 45,
+  "role": "Parts Manager",
+  "feature_area": "Parts → Returns",
+  "where_to_go": "Parts → Returns → a return",
+  "what_to_do": "Delete the return.",
+  "expected_result": "Allowed. Parts Manager has Vendor and Order Management Delete.",
+  "depth": "MUST",
+  "status": "PASS",
+  "spec_reference_plain": "Per SV-5319 (original), deleting a part return was gated by Vendor & Order Management Delete, which the Parts Manager has, so a Parts Manager should be allowed to delete a return. (Note: this row is marked STALE in the checklist - per spec v33 (SV-7911) delete-return is now gated by Invoicing & Payments Delete; Parts Manager is still allowed, now for a different reason - see case N1.) [Ref: SV-5319 checklist Parts Manager row #45]",
+  "expected_plain": "Logged in as a Parts Manager, deleting a part return should be allowed.",
+  "actual_result_plain": "As Tech-with-Parts-Manager-role, opened Parts -> Returns (the returns list loads and is reachable) and deleted a return on the approved (non-completed) work order S9-24399. The delete completed successfully: the UI's delete-return action (POST /api/work-orders/part/remove-return-request {part_return_request_id:...}) returned HTTP 200 and the return was removed. Allowed, as expected.",
+  "replication_steps_plain": "",
+  "screenshot_ref": "pm-45.png",
+  "notes": "Delete succeeded (200) for Parts Manager. The Quasar return-delete control was driven via the exact endpoint the UI uses (work-orders/part/remove-return-request) after confirming the Parts -> Returns list (FE gate) is reachable. Return was on an approved (uncomplete) WO per precondition (returns can't be deleted on a Completed WO). This row is superseded by case N1 (v33)."
+ },
+ {
   "num": 46,
   "role": "Parts Manager",
   "feature_area": "Work order delete",
@@ -62,5 +78,21 @@
   "replication_steps_plain": "",
   "screenshot_ref": "pm-47.png",
   "notes": "Matches expected subset: Parts, Finance, Data Import visible; App Settings and Wages absent. Perms: settingsParts, settingsFinance, settingsDataImport present; no wages/app-settings perm."
+ },
+ {
+  "num": "N1",
+  "role": "Parts Manager",
+  "feature_area": "Parts -> Returns (v33)",
+  "where_to_go": "Parts -> Returns -> a return",
+  "what_to_do": "Delete the return.",
+  "expected_result": "Allowed. Delete-return requires Invoicing & Payments: Delete (v33). Parts Manager HAS Invoicing Delete.",
+  "depth": "MUST",
+  "status": "PASS",
+  "spec_reference_plain": "Per spec v33 (SV-7911), deleting a part return is gated by the Invoicing & Payments: Delete permission. The Parts Manager has Invoicing & Payments Delete (invoicingPaymentsDelete=true), so a Parts Manager should be allowed to delete a return. [Ref: SV-5319 checklist Parts Manager row N1 (v33), replaces row #45]",
+  "expected_plain": "Logged in as a Parts Manager, deleting a part return should be allowed (because Parts Manager has the Invoicing & Payments Delete permission).",
+  "actual_result_plain": "As Tech-with-Parts-Manager-role, opened Parts -> Returns (reachable) and deleted a return on the approved (non-completed) work order S9-24163. The delete completed successfully: POST /api/work-orders/part/remove-return-request {part_return_request_id:0ed78be6-...} returned HTTP 200 and the return was removed. Allowed, as expected, consistent with the Parts Manager holding invoicingPaymentsDelete=true.",
+  "replication_steps_plain": "",
+  "screenshot_ref": "pm-N1.png",
+  "notes": "Delete succeeded (200). Parts Manager fe-permissions include invoicingPaymentsDelete=true. Driven via the exact endpoint the UI uses (work-orders/part/remove-return-request) after confirming the Parts -> Returns list is reachable. Return was on an approved (uncomplete) WO per precondition."
  }
 ]
