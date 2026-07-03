@@ -1,0 +1,20 @@
+{
+  "key": "SV-4776",
+  "summary": "FE Bug: Part Sales -> Parts -> Margin column after it is edited it shows wrong sell price.",
+  "area": "parts / inventory",
+  "release_source": ["v0.54 Bug Fixes"],
+  "reported_issue": "On Part Sales, after requesting a Special Order part and changing the Margin value, the automatically calculated Sell Price was wrong.",
+  "expected_after_fix": "Editing the Margin on a Part Sale part recalculates the Sell Price correctly (sell = cost / (1 - margin/100)).",
+  "role_used": "admin",
+  "steps_i_followed": [
+    "Logged in as admin, opened Part Sale P9-1051 Parts tab (/workorders/<psid>/part-requests).",
+    "Selected a part line with a real cost (cost=10.00, original margin=54, sell=21.74).",
+    "Edited the Margin input to 40 and blurred (Tab).",
+    "Read back the recalculated Sell Price and checked it against the expected formula."
+  ],
+  "actual_now": "After setting Margin=40 on a part with cost=10.00, the Sell Price recalculated to 16.67. Expected = 10.00/(1-0.40) = 16.67. Implied margin from the resulting sell price = 40.01%. Calculation is correct.",
+  "verdict": "FIXED",
+  "confidence": "high",
+  "screenshot_ref": "build/bugfix-regression/screenshots/SV-4776.png",
+  "notes": "Part Sales Margin->Sell Price recalculation is accurate on current staging; the wrong-sell-price behavior does not reproduce. Part Sales share the WO part-requests UI."
+}
