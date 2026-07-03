@@ -1,0 +1,20 @@
+{
+  "key": "SV-3104",
+  "summary": "BUG: Loader should be added on vendor/unpaid_invoices page",
+  "area": "invoicing / accounting",
+  "release_source": ["v0.31 Bug Fixes"],
+  "reported_issue": "The vendor unpaid invoices page had no loading indicator while its data was being fetched (reported via video).",
+  "expected_after_fix": "A loader/spinner should display on the vendor unpaid_invoices page while the invoice data is loading.",
+  "role_used": "admin",
+  "steps_i_followed": [
+    "Navigated Parts > Vendors, opened a vendor (Aiwick Concrete) detail",
+    "Throttled the unpaid-invoices API response by ~2.5s to make any transient loader observable",
+    "Clicked the 'Unpaid Invoices' tab (route /parts/vendor/{id}/unpaid-invoices) and polled for spinner/loading elements",
+    "Let the request complete and confirmed the invoice table rendered"
+  ],
+  "actual_now": "While the (throttled) unpaid-invoices data was loading, a loader element appeared (one .q-spinner/.q-inner-loading progress indicator detected). After the request completed the Unpaid Invoices table rendered (e.g. credit C-9798, Balance -$645,456.00). The loader is present as required.",
+  "verdict": "FIXED",
+  "confidence": "high",
+  "screenshot_ref": "build/bugfix-regression/screenshots/SV-3104.png",
+  "notes": "Loader detected only by artificially delaying the API; on normal fast loads it flashes briefly, which is expected behavior for a loading indicator."
+}
