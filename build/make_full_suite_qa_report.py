@@ -1,7 +1,10 @@
 #!/usr/bin/env python3
 """Build a non-technical, manual-QA-readable Excel workbook for the FULL
-Custom Roles test-suite run (297 cases, batches A-E) with the
-blocked-recovery re-run applied as status overrides.
+Custom Roles test-suite run (batches A-E) with the blocked-recovery re-run
+applied as status overrides.
+
+Digital Inspections (DI-prefixed) cases are EXCLUDED per request, leaving
+176 of the original 297 cases.
 
 Output: CustomRoles_TestSuite_QA_Report.xlsx (repo root)
 Tabs: Summary | Passed Tests | Failed Tests | Blocked Tests | Not Applicable
@@ -41,7 +44,6 @@ GROUPS = [
     ("SP", "Role Permissions (individual permission toggles)"),
     ("TE", "Built-in Role Templates"),
     ("CB", "Combined Scenarios"),
-    ("DI", "Digital Inspections"),
 ]
 GROUP_ORDER = {p: i for i, (p, _) in enumerate(GROUPS)}
 GROUP_NAME = dict(GROUPS)
@@ -341,6 +343,8 @@ def main():
     cases = load_cases()
     recovery = load_recovery()
     unmatched = apply_overrides(cases, recovery)
+    # Digital Inspections (DI) cases are excluded from this report per request.
+    cases = [c for c in cases if not c["test_id"].upper().startswith("DI")]
     spec = harvest_spec_refs()
     ready_steps = harvest_ready_steps()
 
@@ -380,7 +384,8 @@ def main():
     ws.append([])
     sentence_row = ws.max_row + 1
     sentence = (
-        f"We ran the full Custom Roles test suite: {totals[0]} tests in total. "
+        f"We ran the Custom Roles test suite: {totals[0]} tests in total "
+        "(Digital Inspections cases excluded per request). "
         f"{totals[1]} passed, {totals[2]} failed, {totals[3]} could not be completed "
         f"(blocked), and {totals[4]} turned out not to apply to this build. "
         "The 'Failed Tests' tab has full step-by-step instructions to reproduce each "
