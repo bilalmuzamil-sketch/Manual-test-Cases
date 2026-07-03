@@ -1,0 +1,20 @@
+{
+  "key": "SV-3612",
+  "summary": "Stuck on invoiced status - paid",
+  "area": "invoicing / accounting",
+  "release_source": ["v0.31 Bug Fixes"],
+  "reported_issue": "Invoices with full payments applied were remaining in 'Invoiced' status instead of moving to 'Paid'.",
+  "expected_after_fix": "When the invoice balance reaches $0 via payments, the work order/invoice status should transition to 'Paid'.",
+  "role_used": "admin",
+  "steps_i_followed": [
+    "Opened Finance tab for WO S9-24674, confirmed status=Invoiced, Total $1,397.49, Payments $500.00, Balance $897.49",
+    "Clicked New Payment, selected payment method Cash, kept the prefilled full remaining amount $897.49",
+    "Clicked Make Payment",
+    "Reloaded the Finance tab and re-checked status and balance; also checked the work-orders list status via API"
+  ],
+  "actual_now": "After the full payment, Payments show $1,397.49 (= Total), Balance $0.00, and the status changed to 'Paid' in the finance header. The work-orders list API also reports status 'paid'. The order is not stuck on Invoiced.",
+  "verdict": "FIXED",
+  "confidence": "high",
+  "screenshot_ref": "build/bugfix-regression/screenshots/SV-3612.png",
+  "notes": "Also observed pre-existing paid orders (e.g. S9-24656) correctly at balance 0.00. Original prod-reported WOs are prod-only data, but the paid-transition mechanism works on staging. Test payment left applied on disposable staging WO."
+}
