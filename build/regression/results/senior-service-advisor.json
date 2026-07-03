@@ -126,5 +126,21 @@
   "replication_steps_plain": "",
   "screenshot_ref": "ssa-N2.png",
   "notes": "NEW (v33). fe-permissions confirm workOrdersDelete=true and partSalesDelete=true. WO reverse evidence in ssa-17.png; Part Sales reverse evidence in ssa-N2.png. Note: on a part sale, the Reverse/Issue Credit menu lives on the Finance tab's top three-dots (the part-requests tab three-dots is a disabled 'modify parts' menu once invoiced)."
+ },
+ {
+  "num": "N3",
+  "role": "Senior Service Advisor",
+  "feature_area": "WO Notes (v33)",
+  "where_to_go": "Work Orders -> Notes tab",
+  "what_to_do": "Edit/delete another user's note.",
+  "expected_result": "Allowed. Edit/delete ALL notes = WO Delete (v33). Sr SA has WO Delete.",
+  "depth": "SPOT",
+  "status": "PASS",
+  "spec_reference_plain": "Per spec v33, editing/deleting ALL work-order notes (including notes authored by other users) is gated by Work Orders: Delete. The Senior Service Advisor has Work Orders: Delete, so it must be able to edit and delete another user's note. [Ref: SV-5319/v33 Custom Roles permission matrix; checklist Senior Service Advisor row N3]",
+  "expected_plain": "A Senior Service Advisor should be able to edit and delete a note written by a different user.",
+  "actual_result_plain": "Allowed. A note authored by 'Admin ShopView' was placed on work order S9-24674. Logged in as Tech-with-Senior-Service-Advisor, the Notes tab showed that Admin-authored note, and its top-right three-dots menu offered 'Delete note', 'Edit note' and 'Attach files'. Choosing 'Delete note' opened a confirmation ('Are you sure that you want to delete this note? Any associated attachments will also be permanently deleted.') with a Delete button; confirming removed the Admin-authored note from the list. Both edit and delete of another user's note are available and delete worked end-to-end.",
+  "replication_steps_plain": "",
+  "screenshot_ref": "ssa-N3.png",
+  "notes": "NEW (v33). fe-permissions confirm workOrdersDelete=true. Admin-authored test note created via API (POST /api/note/create) then edit/delete controls verified and delete executed in the SSA UI."
  }
 ]
