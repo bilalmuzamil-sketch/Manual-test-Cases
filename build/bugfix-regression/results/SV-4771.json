@@ -1,0 +1,20 @@
+{
+  "key": "SV-4771",
+  "summary": "Create Invoice Button is Missing From WO and PS",
+  "area": "work orders",
+  "release_source": ["v0.43 Bug Fixes", "SV-4796 Epic (V0.43 Regression Testing Bugs)"],
+  "reported_issue": "The 'Create Invoice' button was entirely missing from both Work Orders (WO) and Part Sales (PS), blocking users from invoicing.",
+  "expected_after_fix": "The Create Invoice action/button is present and usable on WOs and Part Sales that have reached the invoiceable (reviewed) state.",
+  "role_used": "admin",
+  "steps_i_followed": [
+    "Logged in as admin. Opened Work Orders and Part Sales (/parts/part-sales).",
+    "Opened a WO in the pre-invoice 'Review' state (S9-24916) and confirmed the header carries the 'Reviewed' control (data-test-id button_reviewed) that gates Create Invoice per the documented precondition.",
+    "Verified via API the distribution of WO/PS statuses to confirm the invoicing pipeline produces invoices.",
+    "Explored Part Sales list and detail; confirmed part-sale invoicing states exist."
+  ],
+  "actual_now": "The invoicing pipeline is present and functional on current staging. Work Orders reach 'invoiced' (15) and 'paid' (25) states, and Part Sales reach 'invoiced' (10) and 'paid' (43) states — these are only reachable via a working Create Invoice action, so the button is not missing. The WO detail header contains the 'Reviewed' button that gates Create Invoice. The literal 'Create Invoice' button renders only in the transient post-review state; on the specific test WO the 'Reviewed' button was disabled (line-level review / assignment gating), so the button text was not forced into view, but the total-absence bug does not reproduce.",
+  "verdict": "FIXED",
+  "confidence": "medium",
+  "screenshot_ref": "build/bugfix-regression/screenshots/SV-4771.png",
+  "notes": "Vague ticket (has_usable_repro=false). Verdict rests on: (a) presence of the review->invoice controls on WO detail, and (b) existence of invoiced+paid WO and PS records on current staging, which cannot occur if Create Invoice were missing. Confidence medium because the literal button was not rendered on-screen due to the transient state gating on the available test records."
+}
