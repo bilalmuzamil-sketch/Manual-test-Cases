@@ -1,0 +1,20 @@
+{
+  "key": "SV-4145",
+  "summary": "Parts disappeared from Work Order S2-7450 after approval",
+  "area": "work orders",
+  "release_source": ["v0.31 Bug Fixes"],
+  "reported_issue": "On WO S2-7450 (Foothills Group), lines 1-3 were approved but the parts on lines 2 and 3 vanished from the order after approval; request to investigate why lines were cleared post-approval and whether data can be restored.",
+  "expected_after_fix": "Parts attached to work-order lines should not be cleared/deleted when a line is approved.",
+  "role_used": "admin",
+  "steps_i_followed": [
+    "Note: S2-7450 is a specific historical production incident/investigation; that exact WO is not present on staging, so I re-tested the general regression it implies (parts vanishing after approval)",
+    "Used WO S9-24938 whose lines carry part_requests (Gear oil; Brake pot; Misc hardware/fittings)",
+    "Approved / advanced the lines (Approve action, then bulk status change to Authorized)",
+    "Re-read the lines via UI and via GET /api/work-orders/lines/<id> to confirm parts still attached"
+  ],
+  "actual_now": "After approval/authorization the parts remained attached to their lines. UI showed both approved lines still listing their parts (Gear oil under line 1; Brake pot + Misc hardware under line 2, all 'Requested'). The API confirmed line 'Service - Steer hub oil' (status=authorized) still carries part_request 'Gear oil'. No parts were cleared by the approval action.",
+  "verdict": "FIXED",
+  "confidence": "medium",
+  "screenshot_ref": "build/bugfix-regression/screenshots/SV-4145.png",
+  "notes": "The specific S2-7450 incident is a historical production data investigation and is not reproducible on staging. The general regression (parts disappearing after line approval) does NOT reproduce: parts persist across Approve/Authorize on WO S9-24938 (verified in UI and API). Confidence medium because only the general behavior, not the exact incident, could be exercised."
+}
