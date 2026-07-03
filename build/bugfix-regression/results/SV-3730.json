@@ -1,0 +1,19 @@
+{
+  "key": "SV-3730",
+  "summary": "Work orders and invoice total wrong on work order page",
+  "area": "work orders",
+  "release_source": ["v0.43 Bug Fixes"],
+  "reported_issue": "On the work orders list page the totals were wrong - off by a few pennies while in work-order status, and 'way out' once invoiced. They should always match the finance tab (same source, no separate calculation).",
+  "expected_after_fix": "The total shown on the work orders list must equal the finance tab total for the same work order.",
+  "role_used": "admin",
+  "steps_i_followed": [
+    "Fetched the work orders list via API and recorded each WO totalPrice (cents)",
+    "Opened the Finance tab for several WOs (invoiced and paid) and read the finance Total/Payments/Balance",
+    "Compared list totals against finance totals"
+  ],
+  "actual_now": "List total equals finance Total for every WO checked: S9-24674 $1,397.49=$1,397.49; S9-24662 $1,618.06=$1,618.06; S9-24656 (paid) $1,348.39=$1,348.39 (payments $1,348.39, balance $0.00); S9-24669 $1,078.71=$1,078.71. No penny discrepancies and no large mismatches on invoiced orders.",
+  "verdict": "FIXED",
+  "confidence": "high",
+  "screenshot_ref": "build/bugfix-regression/screenshots/SV-3730.png",
+  "notes": "List totalPrice (in cents) matches finance Total across work-order, invoiced, and paid statuses."
+}
