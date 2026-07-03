@@ -30,5 +30,21 @@
   "replication_steps_plain": "",
   "screenshot_ref": "ssa-17.png",
   "notes": "fe-permissions confirm invoicingPaymentsView, invoicingPaymentsCreateAndEdit and invoicingPaymentsDelete all present. Create Invoice seen on non-invoiced WO; Reverse + Issue Credit seen in invoice actions menu on invoiced WO."
+ },
+ {
+  "num": 18,
+  "role": "Senior Service Advisor",
+  "feature_area": "Work order delete",
+  "where_to_go": "Work Orders → open a work order",
+  "what_to_do": "Delete the work order.",
+  "expected_result": "Allowed. Senior SA has Work Orders Delete.",
+  "depth": "MUST",
+  "status": "PASS",
+  "spec_reference_plain": "Per SV-5319 the Senior Service Advisor role has Work Orders: Delete ON, so the role must be able to delete a work order. [Ref: SV-5319 Custom Roles permission matrix; checklist Senior Service Advisor row #18]",
+  "expected_plain": "A Senior Service Advisor should be able to delete a whole work order.",
+  "actual_result_plain": "Delete was allowed and worked end-to-end. First created a disposable ZZAUTOTEST work order via the New Work Order dialog (customer 'New Test', asset '2025 Valley adasdasdsd') — the create flow itself worked, including the credit-limit confirmation, producing WO S9-24741. Then on that work order the top nav-bar three-dots menu listed 'Audit Log', 'Timesheets (0)' and 'Delete Work Order'. Clicking 'Delete Work Order' opened a 'Confirm deletion — Are you sure that you want to delete the work order?' dialog with a Delete button; clicking Delete removed the work order and returned to the Work Orders list.",
+  "replication_steps_plain": "",
+  "screenshot_ref": "ssa-18.png",
+  "notes": "fe-permissions confirm workOrdersDelete present. Deletion executed on disposable WO S9-24741 (created for this test). Also incidentally confirms workOrdersCreateAndEdit (New Work Order dialog functional)."
  }
 ]
