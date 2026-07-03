@@ -46,5 +46,21 @@
   "replication_steps_plain": "",
   "screenshot_ref": "fm-30.png",
   "notes": "fe-permissions has workOrderLinesDelete=true. Deletion driven fully in the UI (hover row -> tick line checkbox -> Line bulk-action -> Delete lines). Confirmed by line-count drop 4->3 and delete-lines endpoint returning 200."
+ },
+ {
+  "num": 31,
+  "role": "Foreman",
+  "feature_area": "Parts (view/edit)",
+  "where_to_go": "Parts → Catalog/Inventory; a WO line",
+  "what_to_do": "View catalog; order parts; pick parts.",
+  "expected_result": "View and order/pick allowed. Foreman has Catalog View/Create and Edit, Order Parts ON, Pick Parts ON.",
+  "depth": "MUST",
+  "status": "PASS",
+  "spec_reference_plain": "Per SV-5319, the Foreman role has Catalog/Inventory = View + Create and Edit, plus the Order Parts and Pick Parts toggles ON, so a Foreman can browse the parts catalog/inventory and can order and pick parts on a work order. [Ref: SV-5319 Custom Roles permission matrix; checklist Foreman row #31]",
+  "expected_plain": "Logged in as a Foreman, you should be able to see the parts catalog/inventory and to order and pick parts on a work order.",
+  "actual_result_plain": "As Tech-with-Foreman-role: (1) Parts nav opened the Inventory and Catalog pages with the full inventory table and a 'New Inventory Part' button visible (view + create). (2) Order parts: on approved work order S9-13556, part 8LWS-038 (status 'Authorized to Order' on an authorized line) I clicked the part action button; the UI's POST /api/work-orders/part/perform-request-status-action returned HTTP 201 and the part moved to 'Awaiting / waiting_to_receive' (i.e. it was ordered). (3) Pick parts: on approved work order S9-24185, an in-stock part (N68SL-356) I clicked the part action button; POST /api/work-orders/part/perform-request-status-action returned HTTP 201 and the in-stock part was picked/staged (it dropped off the outstanding part-requests list). No permission errors.",
+  "replication_steps_plain": "",
+  "screenshot_ref": "fm-31.png",
+  "notes": "fe-permissions: catalogInventoryView=true, catalogInventoryCreateAndEdit=true, woOrderParts=true, woPickParts=true. Order and pick both driven via the WO Part Requests tab action button; endpoint perform-request-status-action returned 201 for both (order: authorized_to_order->waiting_to_receive; pick: in_stock->staged). Note: the same endpoint correctly returns 400 (business rule, not 403) for parts still in 'requested' status or on non-authorized lines, confirming the block there is workflow-based, not a permission denial for the Foreman."
  }
 ]
