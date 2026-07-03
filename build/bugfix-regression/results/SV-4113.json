@@ -1,0 +1,20 @@
+{
+  "key": "SV-4113",
+  "summary": "Inventory Import Preview Not Working",
+  "area": "parts / inventory",
+  "release_source": ["v0.31 Bug Fixes"],
+  "reported_issue": "On staging, the Inventory Import preview did not work (no preview rendered), even though the imported parts were still visible in the app. On production the same file previewed as expected.",
+  "expected_after_fix": "Selecting/submitting a valid inventory CSV renders a preview table of the parsed rows before import.",
+  "role_used": "admin",
+  "steps_i_followed": [
+    "Navigated to /administration/inventory-import (Inventory Import Preview page)",
+    "Created a valid CSV with the documented columns (name, part_number, uom, quantity, min_qty, max_qty, grid_location, purchase_price, core_price, vendor, manufacturer, category) and 3 ZZAUTOTEST rows",
+    "Selected the CSV via 'Select CSV File' and clicked 'Submit File'",
+    "Observed the preview table and captured the data-preview API response (did NOT click Import Inventory)"
+  ],
+  "actual_now": "The preview works. POST /api/data-import/data-preview returned HTTP 200 with the parsed columns, and the preview table rendered all 3 ZZAUTOTEST rows with correct values across every column (Name/Part_number/Uom/Quantity/Min_qty/Max_qty/Grid_location/Purchase_price/Core_price/Vendor/Manufacturer/Category). The action buttons switched to 'Clear File' / 'Import Inventory'.",
+  "verdict": "FIXED",
+  "confidence": "high",
+  "screenshot_ref": "build/bugfix-regression/screenshots/SV-4113.png",
+  "notes": "Preview renders correctly before import. I intentionally did not click 'Import Inventory', so no parts were actually imported into staging. Note: the preview appears after clicking 'Submit File' (selecting the file alone does not populate the table)."
+}
