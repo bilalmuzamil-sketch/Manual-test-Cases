@@ -62,5 +62,21 @@
   "replication_steps_plain": "",
   "screenshot_ref": "tech-36.png",
   "notes": "Read-only behavior is delivered by Tech View (client view mode); the Technician role does technically hold workOrderLinesCreateAndEdit (needed to create new lines). No edit-existing-line control is exposed in the tech UI."
+ },
+ {
+  "num": 37,
+  "role": "Technician",
+  "feature_area": "WO header edits",
+  "where_to_go": "Work Orders → open a work order → header",
+  "what_to_do": "Try to change lead technician, service advisor, customer, asset.",
+  "expected_result": "BLOCKED. Technician has Work Orders = View only (no Create and Edit) → cannot edit header fields.",
+  "depth": "MUST",
+  "status": "FAIL",
+  "spec_reference_plain": "Per SV-5319, the Technician role has Work Orders = View only (no Create and Edit), so it must not be able to change work-order header fields such as lead technician, service advisor, customer or asset. [Ref: SV-5319; checklist Technician row #37]",
+  "expected_plain": "A technician should not be able to change the work order's lead technician, service advisor, customer or asset.",
+  "actual_result_plain": "Two-way check. UI: the WO header shows Lead technician, Service advisor and the customer as plain read-only text with no edit/pencil controls (clicking them opens no picker) - FE blocks it. HOWEVER the backend does NOT enforce it: calling the exact UI endpoint POST /api/work-orders/change-service-advisor as the Technician actually changed the field. Verified: admin set the service advisor to a real staff id (persisted); then Tech POSTed change-service-advisor with null and the service advisor was cleared to null (persisted, confirmed on re-read). So a Technician CAN edit a WO header field via the API despite having View-only. Permission-enforcement gap.",
+  "replication_steps_plain": "1) Log in as Tech (Technician role). 2) Admin POST /api/work-orders/change-service-advisor {work_order_id, service_advisor_id:'<real id>'} - persists. 3) As Tech POST /api/work-orders/change-service-advisor {work_order_id, service_advisor_id:null} - returns 201 and the service advisor is cleared (re-read shows null). The header change took effect for a View-only technician.",
+  "screenshot_ref": "tech-37.png",
+  "notes": "FAIL is a backend gap: the FE correctly renders the header read-only, but /work-orders/change-service-advisor (and the change-* family) accept the change for a Technician (returns 201 and persists). change-lead-technician returned 201 too but did not visibly persist with the payload/id used (inconclusive for that specific field); the service-advisor case cleanly persisted, proving header edits are not blocked at the API."
  }
 ]
