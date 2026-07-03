@@ -62,5 +62,21 @@
   "replication_steps_plain": "",
   "screenshot_ref": "build/regression/screenshots/tc-4.png",
   "notes": "No pricing surfaced anywhere; seeFinancialData=false and view_mode=null confirmed via /api/auth/me/fe-permissions."
+ },
+ {
+  "num": "N1",
+  "role": "Time Clock",
+  "feature_area": "No DI / notes / returns (v33)",
+  "where_to_go": "(nav)",
+  "what_to_do": "Confirm none of the new WO-related features are reachable.",
+  "expected_result": "All hidden. Time Clock has WO = View but View Mode empty and everything else Off; new v33 features (notes, returns, inspections) are not reachable in practice.",
+  "depth": "SPOT",
+  "status": "FAIL",
+  "spec_reference_plain": "The new v33 work-order features (notes, returns, inspections/DI) must NOT be reachable in practice for the Time Clock role - work orders are view-only with an empty view mode and everything else off.",
+  "expected_plain": "The Time Clock user should not be able to open or use notes, returns, or inspections, and must not be able to create anything.",
+  "actual_result_plain": "NOTES ARE REACHABLE AND WRITABLE - backend enforcement gap. In the work-order detail the 'Notes (5)' tab and the 'Pinned Notes' block are visible to the Time Clock user. Critically, the server does NOT enforce the restriction: POST /api/note/create returned 201 and actually created a note (id 3eefff1c-e9d6-4224-9830-3bb2f3291efe) that then appears in the work order's notes list, all as the Time Clock user. Several other work-order write endpoints also pass the permission check for this role (they return 400 validation, not 403): work-orders/lines/create, work-orders/lines/change-status, work-orders/tasks/create, work-orders/parts/create, invoices/create, note/update, note/delete. Returns and inspections ARE correctly blocked (inventory/returns/create => 403, part/manual-return-request/create => 403, inventory/parts/create => 403, customers/create => 403). So returns/DI enforcement is fine, but notes (and other WO writes) are a real backend enforcement gap for the most restricted role.",
+  "replication_steps_plain": "As the Tech user on the Time Clock role, call POST /api/note/create with body {type:'work_order_line', content:'test', reference_id:<a work-order line id>}. It returns 201 with a new note id, and the note then shows up in GET /api/notes?reference_id=<line id>. Expected: 403 Access denied. Same pattern: POST /api/work-orders/lines/change-status, /api/work-orders/lines/create, /api/invoices/create etc. return 400 (validation) instead of 403, meaning the permission gate is not applied to this role.",
+  "screenshot_ref": "build/regression/screenshots/tc-N1.png",
+  "notes": "Backend enforcement gap: a note was actually created and persisted by the Time Clock user (the most restricted role). Notes are also viewable in the WO detail. Only parts/returns/customers endpoints return proper 403; work-order lines/notes/invoices write endpoints reach validation (400) instead of being denied."
  }
 ]
