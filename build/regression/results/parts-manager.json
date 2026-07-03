@@ -94,5 +94,21 @@
   "replication_steps_plain": "",
   "screenshot_ref": "pm-N1.png",
   "notes": "Delete succeeded (200). Parts Manager fe-permissions include invoicingPaymentsDelete=true. Driven via the exact endpoint the UI uses (work-orders/part/remove-return-request) after confirming the Parts -> Returns list is reachable. Return was on an approved (uncomplete) WO per precondition."
+ },
+ {
+  "num": "N2",
+  "role": "Parts Manager",
+  "feature_area": "Reverse invoice (v33)",
+  "where_to_go": "Work Orders -> Finance; Part Sales",
+  "what_to_do": "Reverse a WO invoice; reverse a Part Sales invoice.",
+  "expected_result": "WO invoice = WO Delete - Parts Mgr has NO WO Delete -> BLOCKED. Part Sales invoice = Part Sales Delete - Parts Mgr HAS Part Sales Delete -> ALLOWED.",
+  "depth": "MUST",
+  "status": "PASS",
+  "spec_reference_plain": "Per spec v33, reversing a WORK ORDER invoice is gated by the Work Orders Delete permission and reversing a PART SALES invoice is gated by the Part Sales Delete permission. The Parts Manager has Part Sales Delete but NOT Work Orders Delete, so reversing a WO invoice should be BLOCKED and reversing a part-sales invoice should be ALLOWED. [Ref: SV-5319 checklist Parts Manager row N2 (v33)]",
+  "expected_plain": "Logged in as a Parts Manager, reversing a work-order invoice should be blocked, but reversing a part-sales invoice should be allowed.",
+  "actual_result_plain": "Both sides behaved exactly as expected as Tech-with-Parts-Manager-role. (1) WO invoice reverse - BLOCKED: on invoiced work order S9-24182's Finance tab there was no usable Reverse action, and calling the reverse endpoint POST /api/invoices/reverse-invoice {id:<WO invoice>} returned HTTP 403 'Access denied.' (2) Part-sales invoice reverse - ALLOWED: created an invoice for the complete part sale P9-987 (POST /api/invoices/create -> 201, invoice 0fb5a76a) and then reversed it as the Parts Manager (POST /api/invoices/reverse-invoice {id:0fb5a76a} -> HTTP 200, returned a reversal id). So the Parts Manager can reverse a part-sales invoice but not a work-order invoice, matching the permission split.",
+  "replication_steps_plain": "",
+  "screenshot_ref": "pm-N2.png",
+  "notes": "WO invoice reverse returns 403 for Parts Manager (workOrdersDelete=false) - correctly blocked at the backend, no enforcement gap. Part-sales invoice reverse returns 200 (partSalesDelete=true, invoicingPaymentsCreateAndEdit=true) - allowed. Also verified earlier that reversing an already-PAID part-sale invoice returns a 400 business error ('Customer transaction cannot be deleted') rather than 403, confirming the permission layer passes for part sales; the clean 200 was obtained on a freshly created (unpaid) part-sale invoice."
  }
 ]
