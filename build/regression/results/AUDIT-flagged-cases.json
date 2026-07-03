@@ -1,0 +1,114 @@
+[
+  {
+    "role": "Administrator",
+    "num": 4,
+    "feature_area": "Parts → Returns",
+    "current_status": "PASS",
+    "why_flagged": "Involves returns; action never executed: \"I did NOT execute the delete on a pre-existing real return\" and \"a fully-isolated throwaway return could not be created\" (notes: \"not executed, per safety\").",
+    "what_to_verify_on_retest": "Create a clean throwaway return and actually click Delete Return, confirming the delete completes and the return disappears."
+  },
+  {
+    "role": "Administrator",
+    "num": 5,
+    "feature_area": "Customer payments",
+    "current_status": "PASS",
+    "why_flagged": "Involves payment (delete/reverse). Executed cleanly in original run (\"Confirmed 'Reverse'; after reload the Payments list was empty\"), but payment area falls under criterion 1.",
+    "what_to_verify_on_retest": "On a clean throwaway invoice+payment, actually delete/reverse the payment and confirm the Payments list empties and the WO balance resets."
+  },
+  {
+    "role": "Administrator",
+    "num": "N2",
+    "feature_area": "Parts → Returns (v33)",
+    "current_status": "PASS",
+    "why_flagged": "Involves returns; \"Not executed on a pre-existing real return (safety); a clean throwaway return could not be created without touching real vendor/inventory data.\"",
+    "what_to_verify_on_retest": "Create a numbered throwaway return and actually execute Delete Return; confirm the deletion completes."
+  },
+  {
+    "role": "Administrator",
+    "num": "N3",
+    "feature_area": "Reverse invoice (v33)",
+    "current_status": "PASS",
+    "why_flagged": "Assumption A: \"'Create Invoice' stayed disabled because the throwaway customer showed 'Over Limit'\" so the part-sales invoice \"could not be finalized/reversed end-to-end.\"",
+    "what_to_verify_on_retest": "With a numbered part and a clean non-over-limit customer, actually create then reverse a Part Sales invoice and confirm both complete end-to-end."
+  },
+  {
+    "role": "Administrator",
+    "num": "N4",
+    "feature_area": "Return a part from a WO (v33)",
+    "current_status": "PASS",
+    "why_flagged": "Assumption B/parts data: \"While a part is still in 'Quoted' state the return control is hidden... which is why an earlier attempt could not exercise it\" (\"quoted\", \"could not\").",
+    "what_to_verify_on_retest": "Stage a numbered part actually RECEIVED into inventory on a throwaway WO, then click Return and confirm the return completes (server 201)."
+  },
+  {
+    "role": "Administrator",
+    "num": "N5",
+    "feature_area": "WO Notes (v33)",
+    "current_status": "PASS",
+    "why_flagged": "Others'-note action never executed: \"the note actions menu showed 'Edit note' and 'Delete note' as available to Admin (menu closed without executing, per safety)\" / notes: \"not executed, per safety.\"",
+    "what_to_verify_on_retest": "On throwaway data, actually execute Edit and Delete on another user's note and confirm both complete (own-note actions were already executed)."
+  },
+  {
+    "role": "Service Manager",
+    "num": 10,
+    "feature_area": "Invoicing — Create",
+    "current_status": "PASS",
+    "why_flagged": "Assumption C: \"Controls left un-submitted to avoid unnecessary data churn; the front-end gate (button present + dialog reachable) is the permission proof.\" Action never performed.",
+    "what_to_verify_on_retest": "On a clean not-yet-invoiced WO, actually click Create Invoice and record a payment; confirm both complete."
+  },
+  {
+    "role": "Service Manager",
+    "num": 11,
+    "feature_area": "Invoicing — Delete",
+    "current_status": "FAIL",
+    "why_flagged": "Involves invoice reverse/payment; reverse only reached the modal, not executed: \"I clicked Cancel/closed without confirming.\"",
+    "what_to_verify_on_retest": "Actually execute the Reverse on a throwaway invoice to confirm SM can truly complete (not just open) it, given the role has workOrdersDelete."
+  },
+  {
+    "role": "Service Manager",
+    "num": "N2",
+    "feature_area": "Reverse invoice - now needs WO/Part Sales Delete (v33)",
+    "current_status": "FAIL",
+    "why_flagged": "Involves invoice reverse; action never completed: \"The reversal action was fully available (I clicked Cancel, did not complete it).\" (\"did not complete\").",
+    "what_to_verify_on_retest": "Actually complete an invoice reversal as SM on throwaway data to confirm the reversal executes end-to-end (role reportedly has workOrdersDelete)."
+  },
+  {
+    "role": "Senior Service Advisor",
+    "num": 17,
+    "feature_area": "Invoicing — full",
+    "current_status": "PASS",
+    "why_flagged": "Involves invoicing create/reverse/payment; actions only observed as present controls, never executed: \"'Create Invoice' button\" and menu \"showed both 'Reverse' and 'Issue Credit'.\"",
+    "what_to_verify_on_retest": "On throwaway data, actually create an invoice and actually reverse it / delete a payment; confirm each action completes."
+  },
+  {
+    "role": "Senior Service Advisor",
+    "num": 19,
+    "feature_area": "Line delete + status",
+    "current_status": "PASS",
+    "why_flagged": "Assumption B/parts data: line delete did not complete — \"There are part requests present in selected lines that need to be moved before deletion\" (delete stopped at a data guard, not executed).",
+    "what_to_verify_on_retest": "On a throwaway line with numbered parts and NO outstanding part requests, actually delete the line and confirm the deletion completes."
+  },
+  {
+    "role": "Senior Service Advisor",
+    "num": 21,
+    "feature_area": "Parts → Returns",
+    "current_status": "PASS",
+    "why_flagged": "Involves returns; Assumption C: \"Automated harness reached the enabled Yes confirmation; capability/permission is granted\" (\"harness\"; delete not executed).",
+    "what_to_verify_on_retest": "On a clean throwaway return, actually click Yes to delete and confirm the return is removed."
+  },
+  {
+    "role": "Senior Service Advisor",
+    "num": "N1",
+    "feature_area": "Parts → Returns (v33)",
+    "current_status": "PASS",
+    "why_flagged": "Involves returns; action not executed and hedged on the gate: \"produced the permanent-delete confirmation... with an enabled 'Yes' button\" and \"the FE delete-return gate is open.\"",
+    "what_to_verify_on_retest": "Actually execute Delete Return on a throwaway return and confirm it completes."
+  },
+  {
+    "role": "Senior Service Advisor",
+    "num": "N2",
+    "feature_area": "Reverse invoice (v33)",
+    "current_status": "PASS",
+    "why_flagged": "Involves invoice reverse and part sales; both reversals only observed in the menu (\"listed 'Reverse' and 'Issue Credit'\"), never executed.",
+    "what_to_verify_on_retest": "On throwaway data, actually reverse both a WO invoice and a Part Sales invoice (numbered parts, non-over-limit customer) and confirm both complete."
+  }
+]
