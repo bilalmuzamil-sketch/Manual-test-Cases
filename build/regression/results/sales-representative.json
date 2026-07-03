@@ -46,5 +46,21 @@
   "replication_steps_plain": "",
   "screenshot_ref": "sr-59.png",
   "notes": "AP/AR access confirmed via UI (A/R Aging Summary renders real data). fe-permissions include seeApArData; cross_toggle seeApArData=true. Both A/R and A/P report groups present in the Reports nav."
+ },
+ {
+  "num": 60,
+  "role": "Sales Representative",
+  "feature_area": "No parts / customers edit",
+  "where_to_go": "Parts / Customers",
+  "what_to_do": "Look for these sections.",
+  "expected_result": "Customers and Part Sales = Off for Sales Rep; confirm hidden/no edit.",
+  "depth": "SPOT",
+  "status": "PASS",
+  "spec_reference_plain": "Per SV-5319, the Sales Representative role has Customers Off and Part Sales Off. The assigned system role has no customersView/customersCreateAndEdit and no partSales permissions, so the Customers and Part Sales modules must be hidden and not editable.",
+  "expected_plain": "A Sales Rep should not see a Customers section or a Part Sales section, and should not be able to open or edit them.",
+  "actual_result_plain": "Logged in as Tech-as-Sales-Representative. Neither Customers nor Part Sales appeared in the navigation (nav had only Dashboard and Reports). Navigating directly to /customers bounced to the Reports landing (/reports/punch-clock-activities) - no Customers module opened. Navigating to /part-sales and /partsales both showed a 'page not found' error screen ('This page is more missing than your 10mm socket') with only the Reports nav present - no Part Sales module. Backend: API GET /api/customers returned HTTP 403 Access denied, and POST /api/customers returned 405 (no write route), confirming customers are hard-denied with no edit.",
+  "replication_steps_plain": "",
+  "screenshot_ref": "sr-60.png",
+  "notes": "Customers is fully denied (nav hidden, /customers redirects to Reports, API GET /api/customers -> 403 Access denied). Part Sales module is hidden (nav absent, /part-sales -> not-found page). BACKEND OBSERVATION (disclosed): a direct API GET /api/part-sales returns HTTP 200 with part-sale list data (part sales are work-order-typed, response includes totalWorkOrderPrice), consistent with the role's woFullViewMode (Full View) permission; the Part Sales module UI is correctly absent and there is no create/edit surface. Flagging the readable part-sales list endpoint for product-owner awareness, same pattern as the WO list in case 57."
  }
 ]
