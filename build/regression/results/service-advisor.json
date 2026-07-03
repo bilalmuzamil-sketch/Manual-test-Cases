@@ -29,5 +29,21 @@
   "actual_result_plain": "Opened approved work order S9-24674 as Tech-with-Service-Advisor and opened the work order's top-right options menu. The menu contained only 'Audit Log' and 'Timesheets (0)'. There was NO Delete option anywhere in the menu. The work order cannot be deleted, exactly as expected.",
   "screenshot_ref": "sa-23.png",
   "notes": "WO nav-bar menu (data-test-id button_work_order_nav_bar_menu) had 0 delete entries. For comparison the Senior/Manager roles that have woDelete show a Delete entry here."
+ },
+ {
+  "num": 26,
+  "role": "Service Advisor (a.k.a. Junior SA)",
+  "feature_area": "AP/AR tabs",
+  "where_to_go": "Customers \u2192 a customer; Vendors \u2192 a vendor",
+  "what_to_do": "Look for Unpaid Invoices / Payments / Credits tabs.",
+  "expected_result": "HIDDEN. Service Advisor has Manage Accounts Payable and Receivable OFF.",
+  "depth": "MUST",
+  "status": "FAIL",
+  "spec_reference_plain": "Per SV-5319, the Junior Service Advisor has the 'Manage Accounts Payable and Receivable' (seeApArData) cross-toggle OFF (confirmed on the staging system role: seeApArData=false). The checklist therefore expects the customer/vendor AP-AR tabs (Unpaid Invoices / Payments / Credits) to be HIDDEN.",
+  "expected_plain": "As a Junior Service Advisor, opening a customer (or vendor) should NOT show the accounts-receivable/payable tabs like Invoices, Payments and Deposits/Credits.",
+  "actual_result_plain": "Opened customer 'new test' (eb304603) as Tech-with-Service-Advisor. The customer detail DID show the AR tabs: Work Orders (3), Part Sales, Contacts (1), Assets (1), Notes, Invoices (1), Payments (1), Deposits (1) \u2014 with live counts, so they load real AR data. This matches exactly what Admin (AP/AR ON) sees on the same customer, i.e. the tabs are NOT hidden for the SA. Root cause found in the frontend bundle: these tab routes are gated by requiredAnyPermission:['seeApArData','invoicingPaymentsDelete'] (an OR), and the Service Advisor role has invoicingPaymentsDelete=true, so the tabs unlock via the invoicing-delete permission despite seeApArData being OFF. (Note: the pure AP/AR-only surfaces \u2014 AR/AP Aging reports and IBS batch payments, which require seeApArData ALONE \u2014 are still hidden, and SA has no Reports page access anyway. The vendor detail page could not be reached at /parts/vendors/{id} \u2014 it 404s for Admin too, so the vendor route differs; the customer side alone already contradicts the expectation.)",
+  "replication_steps_plain": "1. Log in as the Tech user assigned the Service Advisor role. 2. Click Customers in the top nav. 3. Open any customer (e.g. 'new test'). 4. Look at the row of tabs under the customer name. 5. Observe that Invoices, Payments and Deposits tabs are present and show counts \u2014 they are NOT hidden, even though the role's Manage AP/AR toggle is OFF. Expected them to be hidden.",
+  "screenshot_ref": "sa-26.png",
+  "notes": "Deviation is a consequence of the v33 invoicing model: the AR tabs are unlocked by invoicingPaymentsDelete (which SA has), not only by seeApArData. So 'AP/AR OFF hides these tabs' does not hold for a role that also has invoicing delete. Flag for spec owner: expected result likely stale for this role."
  }
 ]
