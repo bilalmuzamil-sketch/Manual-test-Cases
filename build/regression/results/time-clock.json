@@ -1,0 +1,18 @@
+[
+ {
+  "num": 61,
+  "role": "Time Clock",
+  "feature_area": "Clock in/out only",
+  "where_to_go": "Top bar / clock",
+  "what_to_do": "Clock in and clock out.",
+  "expected_result": "Allowed. Time Clock = clock in/out only.",
+  "depth": "MUST",
+  "status": "PASS",
+  "spec_reference_plain": "The Time Clock role exists solely so a worker can clock in and clock out for the day. That one action must be allowed; everything else is off.",
+  "expected_plain": "The user can start their work time (clock in) and stop it (clock out).",
+  "actual_result_plain": "A 'Clock In' button appears in the top bar and opens a 'Clock In' dialog that lists the time-clock departments (Shop Time, Training, ClockEnabled, etc.). Clocking in succeeded (server created a time record, HTTP 201) and clocking out succeeded (HTTP 201). The top bar also shows running hours ('Hrs Today'). Clock in/out works end to end.",
+  "replication_steps_plain": "As the Tech user on the Time Clock role: click 'Clock In' in the top bar, pick a department -> a clock-in record is created; then clock out -> record is closed. Verified via API: POST /api/technician-tasks/department-clock-in {department_id} = 201; POST /api/technician-tasks/department-clock-out {task_id,description} = 201.",
+  "screenshot_ref": "build/regression/screenshots/tc-1.png",
+  "notes": "Full cycle verified (clock-in 201, clock-out 201) plus working UI dialog. IMPORTANT SETUP NOTE: the Tech test account was initially set to clockable=false (a per-STAFF attribute, independent of the role). While clockable=false the clock button was hidden and all clock endpoints returned 403. An admin set clockable=true so the role's clock-in/out capability could actually be exercised; after that it worked. Clocking is gated by the staff 'clockable' flag, not by the role's fe_permissions."
+ }
+]
