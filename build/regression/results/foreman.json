@@ -110,5 +110,21 @@
   "replication_steps_plain": "",
   "screenshot_ref": "fm-N2.png",
   "notes": "fe-permissions: workOrdersDelete=false. Real denial confirmed two ways: (1) UI - Foreman invoice kebab shows only 'Issue Credit' while Admin shows 'Reverse | Issue Credit'; (2) API - reverse-invoice returns 403 Access denied for the Foreman (payload shape {id:invoice_id}, discovered from Admin's own successful reverse call which returned 200). Endpoint exists (not a 404), so the feature is real and simply gated off for Foreman."
+ },
+ {
+  "num": "N3",
+  "role": "Foreman",
+  "feature_area": "Return a part from a WO (v33)",
+  "where_to_go": "Work Orders -> a line",
+  "what_to_do": "Return a part from the line.",
+  "expected_result": "Allowed - returning a part from a WO needs no permission (v33, 6/29).",
+  "depth": "SPOT",
+  "status": "PASS",
+  "spec_reference_plain": "Per SV-5319 v33 (6/29), returning a part from a work order requires no specific permission, so any role including the Foreman can create a part return from a WO line. [Ref: SV-5319 v33 Custom Roles notes; checklist Foreman row N3]",
+  "expected_plain": "Logged in as a Foreman, returning a part from a work-order line should work.",
+  "actual_result_plain": "Opened approved work order S9-24185 as Tech-with-Foreman-role and, on line ab24f401, opened the context menu of staged part 'SPO AWE' (part 69d29c86), which offered 'Move' and 'Return'. Clicked 'Return', which opened the 'Add new part return request' dialog. Entered the Return Reason 'ZZAUTOTEST Foreman return - defective', set Quantity 1, and clicked the confirm button. The dialog closed and the UI's POST /api/work-orders/part/make-return-request returned HTTP 200 with a new return-request id (8433a6a2-887c-45f8-91c0-b78df567a2e5). The return was created successfully with no permission error.",
+  "replication_steps_plain": "",
+  "screenshot_ref": "fm-N3.png",
+  "notes": "No permission gates return-a-part (v33). Driven fully in the UI: WO line -> part context menu -> Return -> fill Return Reason + Quantity -> confirm. Endpoint make-return-request returned 200 with a new return request id. Confirms Foreman can return a part."
  }
 ]
