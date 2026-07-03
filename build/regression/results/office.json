@@ -1,0 +1,18 @@
+[
+ {
+  "num": 52,
+  "role": "Office",
+  "feature_area": "Settings menu",
+  "where_to_go": "Settings (cog)",
+  "what_to_do": "Open Settings; check which items appear.",
+  "expected_result": "Settings, Staff, Roles & Permissions visible (App Settings ON). Service/Parts items per sub-toggles.",
+  "depth": "MUST",
+  "status": "PASS",
+  "spec_reference_plain": "Per SV-5319, the Office role has App Settings ON (settingsApp present on the assigned system Office role via /api/auth/me/fe-permissions), so the Settings area must show Settings, Staff, and Roles & Permissions. Sub-sections (Service, Finance, Imports, Parts) appear only if their own sub-toggle is on. Office has settingsService, settingsFinance and settingsDataImport ON but does NOT have settingsParts, so Service/Finance/Imports items show while a standalone Parts settings group does not.",
+  "expected_plain": "When Office opens Settings from the cog/avatar menu, they should see Settings, Staff, and Roles & Permissions, plus Service and Finance style items because those sub-toggles are on.",
+  "actual_result_plain": "Logged in as Tech-with-Office, opened the avatar (TS) menu and clicked Settings. The Settings area opened at /administration/locations. The left settings navigation showed: SETTINGS group = Settings, Staff, Roles & Permissions, Locations, Departments, Taxes; SERVICE group = Labor Rates, Canned Lines, Asset Types, Inspection Templates; INTEGRATIONS = IBS; FINANCE = Payment Methods; IMPORTS = Contacts, Assets, Vendors, Inventory, Invoices. Settings, Staff, and Roles & Permissions were all present as expected. Service and Finance items rendered per their sub-toggles. No standalone Parts settings group appeared, consistent with Office lacking the settingsParts toggle.",
+  "depth_note": "MUST",
+  "screenshot_ref": "of-52.png",
+  "notes": "App Settings (settingsApp) ON confirmed on the assigned system Office role. Departments and Locations both present under SETTINGS group (SV-7781 grouping still under review). Parts settings absent because settingsParts is not granted to Office."
+ }
+]
