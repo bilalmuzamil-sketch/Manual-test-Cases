@@ -1,0 +1,21 @@
+{
+  "key": "SV-3606",
+  "summary": "Regression - unable to update IBS approval code",
+  "area": "general / UI",
+  "release_source": ["v0.31 Bug Fixes"],
+  "reported_issue": "Users could not update the IBS approval code - the field was greyed out (showed a red 'no' circle on hover) and had no save option.",
+  "expected_after_fix": "The IBS approval code field should be open to edit and a save button should be present/enabled when edited.",
+  "role_used": "admin",
+  "steps_i_followed": [
+    "Identified customers with an IBS code set (e.g. Aavale Apparel, ibs=783666)",
+    "Opened the customer (/customers/{id}) and clicked Edit to open the customer edit form (the IBS approval code field lives here)",
+    "Inspected the IBS field state and attempted to change the value",
+    "Changed IBS from 783666 to 783699 and clicked Save",
+    "Verified persistence via API, then restored the original value 783666"
+  ],
+  "actual_now": "The IBS field is fully editable (input readOnly=false, disabled=false), not greyed out. Editing enables the Save button. Saving fired POST /api/customers/change (HTTP 200) and the value persisted (API confirmed ibs=783699). Original value restored to 783666 afterward.",
+  "verdict": "FIXED",
+  "confidence": "high",
+  "screenshot_ref": "build/bugfix-regression/screenshots/SV-3606.png",
+  "notes": "IBS approval code is a per-customer field edited via the customer Edit form; it now accepts edits and saves end-to-end. Test change was reverted."
+}
