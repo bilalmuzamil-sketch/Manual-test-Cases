@@ -1,0 +1,19 @@
+{
+  "key": "SV-3408",
+  "summary": "Part Request Identifier Not Working",
+  "area": "parts / inventory",
+  "release_source": ["v0.31 Bug Fixes"],
+  "reported_issue": "In the parts tab on a work order, an icon on the left was supposed to show the initials of the user who created the original parts request (with the full name on hover), but it showed 'AN' instead.",
+  "expected_after_fix": "The icon should show the correct initials of the user who created the parts request, and the full name on hover.",
+  "role_used": "admin",
+  "steps_i_followed": [
+    "Confirmed the ticket status in the source system is OBSOLETE",
+    "Attempted to open the work order parts view - the standalone /workorders/{id}/parts route returns 'The page does not exist!' (404)",
+    "Opened the WO lines view to reach the 'Parts (N)' sub-tab and looked for a per-part-request creator identifier icon"
+  ],
+  "actual_now": "The standalone per-work-order Parts tab described in the ticket no longer exists (the /parts route 404s); parts are surfaced inside the lines view as a 'Parts (N)' sub-tab. The specific 'creator initials' icon layout described (showing 'AN') is not present in the current UI. Combined with the ticket being explicitly marked OBSOLETE, this is not a valid re-test target.",
+  "verdict": "OBSOLETE",
+  "confidence": "medium",
+  "screenshot_ref": "build/bugfix-regression/screenshots/SV-3408.png",
+  "notes": "Ticket status is OBSOLETE in Jira; the feature/UI referenced has been reworked. Not re-tested against original repro because the described surface no longer exists."
+}
