@@ -110,5 +110,21 @@
   "replication_steps_plain": "",
   "screenshot_ref": "tech-39.png",
   "notes": "view_mode=tech. No Send to Portal control present in the tech WO layout."
+ },
+ {
+  "num": 40,
+  "role": "Technician",
+  "feature_area": "Pick parts",
+  "where_to_go": "Work Orders → a line",
+  "what_to_do": "Pick a part.",
+  "expected_result": "Allowed. Technician has Pick Parts ON.",
+  "depth": "SPOT",
+  "status": "PASS",
+  "spec_reference_plain": "Per SV-5319, the Technician role has 'Pick Parts' ON, so picking a part from stock must be allowed. [Ref: SV-5319; checklist Technician row #40]",
+  "expected_plain": "A technician should be able to pick a part.",
+  "actual_result_plain": "Picking a part as the Technician SUCCEEDED. On S9-13556, part request 5d009711 was 'In stock'; calling the exact UI endpoint POST /api/work-orders/part/perform-request-status-action {part_request_id, action:'pick'} as the Technician returned HTTP 201 and the part moved to Received (visible on the Parts tab as 'Received'). fe-permissions confirm woPickParts=true.",
+  "replication_steps_plain": "",
+  "screenshot_ref": "tech-40.png",
+  "notes": "Real completed pick (201). Parts tab of S9-13556 shows the picked parts as 'Received'. woPickParts=true."
  }
 ]
