@@ -14,5 +14,21 @@
   "replication_steps_plain": "As the Tech user on the Time Clock role: click 'Clock In' in the top bar, pick a department -> a clock-in record is created; then clock out -> record is closed. Verified via API: POST /api/technician-tasks/department-clock-in {department_id} = 201; POST /api/technician-tasks/department-clock-out {task_id,description} = 201.",
   "screenshot_ref": "build/regression/screenshots/tc-1.png",
   "notes": "Full cycle verified (clock-in 201, clock-out 201) plus working UI dialog. IMPORTANT SETUP NOTE: the Tech test account was initially set to clockable=false (a per-STAFF attribute, independent of the role). While clockable=false the clock button was hidden and all clock endpoints returned 403. An admin set clockable=true so the role's clock-in/out capability could actually be exercised; after that it worked. Clocking is gated by the staff 'clockable' flag, not by the role's fe_permissions."
+ },
+ {
+  "num": 62,
+  "role": "Time Clock",
+  "feature_area": "Global search EMPTY",
+  "where_to_go": "Top search bar",
+  "what_to_do": "Search for anything.",
+  "expected_result": "Returns EMPTY results. Build change: Time Clock role now returns empty search data.",
+  "depth": "MUST",
+  "status": "PASS",
+  "spec_reference_plain": "Per the v33 build change (FetchData controller), global search must return EMPTY results for the Time Clock role.",
+  "expected_plain": "Typing anything into the top search bar returns nothing.",
+  "actual_result_plain": "Searched 'Freightliner' (a value that clearly exists many times in the work-order list). The global search dropdown showed 'No results'. The backend search endpoint GET /api/global-search/fetch returned an empty data array (\"data\":[]).",
+  "replication_steps_plain": "",
+  "screenshot_ref": "build/regression/screenshots/tc-2.png",
+  "notes": "Confirmed both in the UI ('No results' for a term that exists) and at the API (global-search/fetch => {data:[]})."
  }
 ]
