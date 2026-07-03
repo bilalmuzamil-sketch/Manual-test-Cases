@@ -78,5 +78,21 @@
   "replication_steps_plain": "1) Log in as Tech (Technician role). 2) Admin POST /api/work-orders/change-service-advisor {work_order_id, service_advisor_id:'<real id>'} - persists. 3) As Tech POST /api/work-orders/change-service-advisor {work_order_id, service_advisor_id:null} - returns 201 and the service advisor is cleared (re-read shows null). The header change took effect for a View-only technician.",
   "screenshot_ref": "tech-37.png",
   "notes": "FAIL is a backend gap: the FE correctly renders the header read-only, but /work-orders/change-service-advisor (and the change-* family) accept the change for a Technician (returns 201 and persists). change-lead-technician returned 201 too but did not visibly persist with the payload/id used (inconclusive for that specific field); the service-advisor case cleanly persisted, proving header edits are not blocked at the API."
+ },
+ {
+  "num": 38,
+  "role": "Technician",
+  "feature_area": "Mileage / engine hours",
+  "where_to_go": "Work Orders → open a work order",
+  "what_to_do": "Try to enter/change mileage and engine hours.",
+  "expected_result": "Likely BLOCKED (asset editing = Work Orders Create and Edit, which Technician lacks). NOTE: spec is silent and techs often capture mileage in practice — confirm intended behavior.",
+  "depth": "MUST",
+  "status": "PASS",
+  "spec_reference_plain": "The original (pre-v33) checklist guessed mileage/engine-hours editing might be blocked, but flagged the spec as silent. Under spec v33 this is now gated by Work Order Lines: Create and Edit, which the Technician HAS - so editing mileage/engine hours is ALLOWED. [Ref: SV-5319 / spec v33; checklist Technician rows #38 and N1]",
+  "expected_plain": "A technician should be able to enter/update the vehicle mileage and engine hours (this is now allowed, gated by Work Order Lines Create and Edit).",
+  "actual_result_plain": "Editing mileage and engine hours as the Technician SUCCEEDED and persisted. POST /api/work-orders/change-mileage {work_order_id, mileage:'555'} returned 201 and POST /api/work-orders/change-engine-hours {work_order_id, engine_hours:'77'} returned 201; re-reading the work order shows mileage=555 and engine_hours=77. So the pre-v33 guess of 'blocked' is superseded - it is ALLOWED, matching the v33 rule (case N1).",
+  "replication_steps_plain": "",
+  "screenshot_ref": "tech-38.png",
+  "notes": "Allowed. Technician holds workOrderLinesCreateAndEdit which gates mileage/engine hours per v33. Same result as case N1. Values 555/77 persisted on S9-24706."
  }
 ]
