@@ -1,0 +1,21 @@
+{
+  "key": "SV-4777",
+  "summary": "Work Orders – Status filter resets after switching tabs",
+  "area": "work orders",
+  "release_source": ["v0.54 Bug Fixes"],
+  "reported_issue": "Filtering Work Orders by Status (By Status tab) and then switching to another tab and back resets the status filter to default, forcing the user to reapply it.",
+  "expected_after_fix": "The selected Status filters should remain applied even after navigating away from the page and returning.",
+  "role_used": "admin",
+  "steps_i_followed": [
+    "Logged in as admin, opened /workorders.",
+    "Clicked the 'By Status' tab which reveals the status multi-select (default label 'All Statuses').",
+    "Opened the multi-select and selected 'Approved' and 'Complete' — label changed to 'Selected Statuses'.",
+    "Switched to the 'Work Orders' sub-tab, then back to 'By Status' — checked the select value.",
+    "Navigated fully away to /schedule, then back to /workorders — checked active tab and select value."
+  ],
+  "actual_now": "After selecting statuses the By Status select shows 'Selected Statuses'. After a sub-tab roundtrip (Work Orders -> By Status) the value is still 'Selected Statuses'. After full navigation to /schedule and back to /workorders, the active tab is still 'By Status' and the select still shows 'Selected Statuses'. The filter selection persists.",
+  "verdict": "FIXED",
+  "confidence": "high",
+  "screenshot_ref": "build/bugfix-regression/screenshots/SV-4777.png",
+  "notes": "Verified both the sub-tab switch (Estimates/Work Orders/By Status) and a full route navigation away and back. Filter state is retained in both cases, matching expected_after_fix."
+}
