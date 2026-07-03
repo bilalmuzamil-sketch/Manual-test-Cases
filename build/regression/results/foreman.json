@@ -14,5 +14,21 @@
   "replication_steps_plain": "",
   "screenshot_ref": "fm-28.png",
   "notes": "fe-permissions: seeFinancialData=true, view_mode=full, woFullViewMode present. Money confirmed on the Financial Info card and Lines grid."
+ },
+ {
+  "num": 29,
+  "role": "Foreman",
+  "feature_area": "Work order delete",
+  "where_to_go": "Work Orders → open a work order",
+  "what_to_do": "Try to delete the work order.",
+  "expected_result": "BLOCKED. Foreman has Work Orders = View/Create and Edit, NO Delete.",
+  "depth": "MUST",
+  "status": "PASS",
+  "spec_reference_plain": "Per SV-5319, the Foreman role has Work Orders = View + Create and Edit but NOT Delete, so a Foreman must not be able to delete a work order; the 'Delete Work Order' control should not be offered. [Ref: SV-5319 Custom Roles permission matrix; checklist Foreman row #29]",
+  "expected_plain": "Logged in as a Foreman, there should be no way to delete a work order.",
+  "actual_result_plain": "Opened uncomplete work order S9-24075 (status 'In Progress') as Tech-with-Foreman-role and opened the work-order nav-bar menu (three-dot menu). The menu showed only 'Audit Log' and 'Timesheets (4)' with NO 'Delete Work Order' option. For comparison, the same menu on the same work order as Admin shows 'Audit Log | Timesheets (4) | Delete Work Order'. So the delete control is absent for the Foreman. fe-permissions confirm workOrdersDelete=false for the Foreman role.",
+  "replication_steps_plain": "",
+  "screenshot_ref": "fm-29.png",
+  "notes": "Real denial by control absence. Foreman fe-permissions has workOrdersDelete=false. Admin's nav menu on the same WO includes 'Delete Work Order' (though disabled here because the WO has labor clocked in); the Foreman menu omits the option entirely."
  }
 ]
