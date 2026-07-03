@@ -1,0 +1,18 @@
+{
+  "key": "SV-4800",
+  "summary": "Bug: Invoice calculation shows unexpected values for taxes",
+  "area": "invoicing / accounting",
+  "release_source": ["v0.43 Bug Fixes", "SV-4796 Epic (V0.43 Regression Testing Bugs)"],
+  "reported_issue": "Taxes did not add up: GST (5%) found 878.36 vs expected 873.36 (+$5) and PST (7%) found 1229.71 vs expected 1222.71 (+$7). The overage was exactly one rate-percent of $100, i.e. an extra ~$100 was being included in the taxable base.",
+  "expected_after_fix": "Each tax line equals its rate percentage applied to the correct taxable base (labour + parts + shop supplies per the tax's enabled flags), with no extra amount included.",
+  "role_used": "admin",
+  "steps_i_followed": [
+    "Attempted to open the exact invoice referenced in the ticket (WO 9930a4e7-4e39-43e5-a0b9-7a2b0c60c70d) via GET /api/work-orders/view/{id} — it returned 'workOrderId: Not found' (the Nov-2025 test WO no longer exists on staging).",
+    "Since the original record is gone, verified the tax engine directly: pulled 12 live WOs and, for each, recomputed the expected tax as rate% * taxable base, where the base sums total_labour_cost / total_parts_cost / shop_supplies_cost according to the tax's isEnabledLabor/Parts/ShopSupplies flags, then compared against the tax.rates[].amount actually returned."
+  ],
+  "actual_now": "On all 12 sampled WOs the returned tax amount equals rate% * taxable base within a penny of rounding (e.g. S9-24917 GST 5% base 727.96 -> 36.40 found 36.40; S9-24662 base 1541.01 -> 77.05 found 77.05). No WO showed a systematic overage. The specific failure signature from the ticket (tax inflated by exactly one rate-percent of $100, meaning ~$100 wrongly added to the taxable base) does not appear.",
+  "verdict": "FIXED",
+  "confidence": "medium",
+  "screenshot_ref": null,
+  "notes": "The exact invoice from the ticket no longer exists on staging, so the original numbers can't be re-asserted. Verdict rests on the tax engine now computing rate*base correctly across a broad sample with no over-taxation. Sampled WOs carry a single GST rate; a GST+PST combo like the original was not available, but the per-rate math is identical. Confidence medium due to inability to reproduce the exact triggering data."
+}
