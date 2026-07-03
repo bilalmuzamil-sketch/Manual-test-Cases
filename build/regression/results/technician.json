@@ -174,5 +174,21 @@
   "replication_steps_plain": "",
   "screenshot_ref": "tech-n1.png",
   "notes": "workOrderLinesCreateAndEdit=true for Technician. Change persisted on S9-24706 (mileage 555, engine hours 77). Same evidence as case 38."
+ },
+ {
+  "num": "N2",
+  "role": "Technician",
+  "feature_area": "Return a part from a WO (v33)",
+  "where_to_go": "Work Orders -> a line",
+  "what_to_do": "Return a part from the line.",
+  "expected_result": "Allowed - returning a part from a WO needs no permission (v33, 6/29). (Distinct from the SV-7838 403 bug on completing returns.)",
+  "depth": "SPOT",
+  "status": "PASS",
+  "spec_reference_plain": "Per spec v33 (6/29), making a part return request from a work order needs no special permission, so a Technician should be able to do it. [Ref: spec v33; checklist Technician row N2]",
+  "expected_plain": "A technician should be able to create a part return request from a work order.",
+  "actual_result_plain": "Allowed - a return was created. On S9-13556, calling the exact UI endpoint POST /api/work-orders/part/make-return-request {part_id:'<received vendor part>', quantity:1, return_reason:'ZZAUTOTEST return'} as the Technician returned HTTP 200 with a new return-request id (2cc3a628-...), and the work order's part_return_requests count went to 1. So returning a part needs no permission and works for the Technician. (Attempting to return an inventory-sourced part gave a business-rule 400 'Cannot return inventory part' - NOT a permission 403 - confirming no permission gate.)",
+  "replication_steps_plain": "",
+  "screenshot_ref": "tech-n2.png",
+  "notes": "Real completed return request (200, id 2cc3a628). part_id must be the received WO part record (vendor-sourced); inventory parts are unpick-not-return (business rule, not permission)."
  }
 ]
