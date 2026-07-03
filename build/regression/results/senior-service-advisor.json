@@ -46,5 +46,21 @@
   "replication_steps_plain": "",
   "screenshot_ref": "ssa-18.png",
   "notes": "fe-permissions confirm workOrdersDelete present. Deletion executed on disposable WO S9-24741 (created for this test). Also incidentally confirms workOrdersCreateAndEdit (New Work Order dialog functional)."
+ },
+ {
+  "num": 19,
+  "role": "Senior Service Advisor",
+  "feature_area": "Line delete + status",
+  "where_to_go": "Work Orders → a line",
+  "what_to_do": "Delete a line; approve a line.",
+  "expected_result": "Both allowed. Senior SA has WO Lines Delete and Full View.",
+  "depth": "MUST",
+  "status": "PASS",
+  "spec_reference_plain": "Per SV-5319 the Senior Service Advisor role has Work Order Lines: Delete ON and Full View mode, so the role must be able to both delete a work-order line and approve a line. [Ref: SV-5319 Custom Roles permission matrix; checklist Senior Service Advisor row #19]",
+  "expected_plain": "A Senior Service Advisor should be able to approve a work-order line and also delete a line.",
+  "actual_result_plain": "Both actions were available to the Senior Service Advisor. APPROVE: on work order S9-24674 the line 'Replace - Drag link' showed 'Approve' and 'Decline' buttons; clicking Approve changed the line status badge from 'Needs Approval' to 'Approved' and the work-order header from 'Estimate' to 'Approved' (approve works). DELETE: selecting a line's checkbox and opening the lines column three-dots menu showed a 'Delete lines' option (alongside 'Set line status' and 'Split work order'); clicking it was permission-allowed — it proceeded past any role gate to a data-integrity check, showing a red notice 'There are part requests present in selected lines that need to be moved before deletion' (a business rule about that specific line's part requests, not a permission denial). No permission block was hit on either action.",
+  "replication_steps_plain": "",
+  "screenshot_ref": "ssa-19.png",
+  "notes": "fe-permissions confirm workOrderLinesDelete=true and view_mode=full (woFullViewMode). Approve verified end-to-end (status transitioned to Approved). Delete lines option present and permitted; the only obstacle was a data guard on the specific line's outstanding part requests. Secondary screenshot ssa-19-deletemenu.png shows the Delete lines menu option."
  }
 ]
