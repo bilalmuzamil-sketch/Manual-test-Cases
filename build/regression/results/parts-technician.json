@@ -48,6 +48,22 @@
   "notes": "SUPERSEDED BY N1. Under the old gating (Vendor & Order Delete) this is a correct PASS: fe-permissions show vendorOrderManagementDelete=true and the delete succeeded (200). But per spec v33 (SV-7911) the gate should have moved to Invoicing & Payments: Delete, which this role does NOT have — see N1 for the authoritative v33 result (FAIL / gap)."
  },
  {
+  "num": 51,
+  "role": "Parts Technician",
+  "feature_area": "Pick / Order parts",
+  "where_to_go": "Work Orders → a line",
+  "what_to_do": "Pick and order parts.",
+  "expected_result": "Both allowed. Parts Technician has Pick Parts ON and Order Parts ON.",
+  "depth": "SPOT",
+  "status": "PASS",
+  "spec_reference_plain": "Per SV-5319, the Parts Technician role has both Pick Parts and Order Parts toggles ON, so picking a part from stock and ordering a part on a work-order line should both be allowed. [Ref: SV-5319 matrix; checklist Parts Technician row #51]",
+  "expected_plain": "As a Parts Technician you should be able to both order parts and pick parts on a work order.",
+  "actual_result_plain": "Both actions succeeded as the Parts Tech user. ORDER: part request 171128R on WO S-9714 was in 'authorized_to_order'; calling the app's endpoint POST /api/work-orders/part/perform-request-status-action {part_request_id, action:'order'} returned HTTP 201 and the part moved to 'waiting_to_receive' (Awaiting). PICK: part request WWF on WO S-9917 (an authorized line, in_stock) with action:'pick' returned HTTP 201 and the part moved toward Received. fe-permissions confirm woPickParts=true and woOrderParts=true.",
+  "replication_steps_plain": "",
+  "screenshot_ref": "pt-51.png",
+  "notes": "Both allowed as expected. woPickParts=true, woOrderParts=true in fe-permissions. Pick requires the WO line to be authorized first (a workflow gate: picking an in_stock part on a non-authorized line returns 400 'This action can only be performed on the authorized lines' - not a permission error); performed the pick on an already-authorized line to confirm the permission allows it (201)."
+ },
+ {
   "num": "N1",
   "role": "Parts Technician",
   "feature_area": "Parts -> Returns (v33)",
