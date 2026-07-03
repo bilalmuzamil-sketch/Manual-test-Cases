@@ -14,5 +14,21 @@
   "replication_steps_plain": "",
   "screenshot_ref": "ssa-16.png",
   "notes": "fe-permissions confirm cross_toggles.seeFinancialData=true and view_mode=full for the Senior Service Advisor role. Money confirmed on Lines, Financial Info card, Stats tab and Finance tab."
+ },
+ {
+  "num": 17,
+  "role": "Senior Service Advisor",
+  "feature_area": "Invoicing — full",
+  "where_to_go": "Work Orders → Finance tab",
+  "what_to_do": "Create invoice, then reverse an invoice / delete a payment / void.",
+  "expected_result": "All allowed. Senior SA has Invoicing and Payments View/Create and Edit/Delete (full).",
+  "depth": "MUST",
+  "status": "PASS",
+  "spec_reference_plain": "Per SV-5319 the Senior Service Advisor role has Invoicing & Payments View, Create/Edit AND Delete all ON, so the role can create invoices, take payments, and reverse/void/delete invoices and payments without restriction. [Ref: SV-5319 Custom Roles permission matrix; checklist Senior Service Advisor row #17]",
+  "expected_plain": "A Senior Service Advisor should be able to create an invoice and also reverse/void an invoice or delete a payment — nothing blocked.",
+  "actual_result_plain": "Confirmed full invoicing in the Finance tab. On not-yet-invoiced work order S9-24669 (Complete) the Finance tab showed an enabled 'Create Invoice' button. On invoiced work order S9-24661 the invoice actions three-dots menu (next to 'New Payment') showed both 'Reverse' and 'Issue Credit'; a 'New Payment' button was also present for taking payments. On paid work order S9-24656 the Finance tab rendered with Payments $1,348.39 / Balance $0.00 and the same invoice toolbar. No action was greyed out or blocked.",
+  "replication_steps_plain": "",
+  "screenshot_ref": "ssa-17.png",
+  "notes": "fe-permissions confirm invoicingPaymentsView, invoicingPaymentsCreateAndEdit and invoicingPaymentsDelete all present. Create Invoice seen on non-invoiced WO; Reverse + Issue Credit seen in invoice actions menu on invoiced WO."
  }
 ]
