@@ -1,0 +1,2789 @@
+[
+  {
+    "key": "SV-3104",
+    "summary": "BUG: Loader should be added on vendor/unpaid_invoices page",
+    "status": "Done",
+    "assignee": "Nebojsa Miskovic",
+    "type": "Bug",
+    "fix_version": "v0.31",
+    "release_source": [
+      "v0.31 Bug Fixes"
+    ],
+    "area": "invoicing / accounting",
+    "reported_issue": "* See video:",
+    "steps_to_reproduce": [],
+    "expected_after_fix": null,
+    "original_actual": null,
+    "has_usable_repro": false,
+    "labels": [
+      "Frontend",
+      "PR_Approved",
+      "QAcomplete",
+      "R1"
+    ],
+    "notes": "No explicit Steps-to-Reproduce block in description - repro must be inferred from the reported issue."
+  },
+  {
+    "key": "SV-3264",
+    "summary": "BUG: Columns Billable canot be sorted on administration/staff page",
+    "status": "Done",
+    "assignee": "parth fadadu",
+    "type": "Bug",
+    "fix_version": "v0.31",
+    "release_source": [
+      "v0.31 Bug Fixes"
+    ],
+    "area": "roles / permissions",
+    "reported_issue": "* On the page administration/staff each column with arrow can be sorted. It works for each field except for Billable.",
+    "steps_to_reproduce": [],
+    "expected_after_fix": "it should work the same as Is Active column",
+    "original_actual": null,
+    "has_usable_repro": false,
+    "labels": [
+      "Backend",
+      "PR_Approved",
+      "QAcomplete"
+    ],
+    "notes": "No explicit Steps-to-Reproduce block in description - repro must be inferred from the reported issue."
+  },
+  {
+    "key": "SV-3408",
+    "summary": "Part Request Identifier Not Working",
+    "status": "OBSOLETE",
+    "assignee": "Jasna Mladenovic",
+    "type": "Bug",
+    "fix_version": "v0.31",
+    "release_source": [
+      "v0.31 Bug Fixes"
+    ],
+    "area": "parts / inventory",
+    "reported_issue": "In the parts tab on a work order, on the left side there is an icon wich is supposed to have the user initials on it of 'who' created the original parts request. This is not working, and it is showing AN. See screen shot.\n\nIt should be showing the initials, and on hover, the persons name, of the user that created the initial parts request.\n\n‌\n\n‌\n\nSubmitted by Kimberly at Foothills\n\n—\ncreated by Support (intercom@shopview.com) in Intercom",
+    "steps_to_reproduce": [],
+    "expected_after_fix": null,
+    "original_actual": null,
+    "has_usable_repro": false,
+    "labels": [
+      "Backend",
+      "Frontend",
+      "QAcomplete"
+    ],
+    "notes": "Ticket status is OBSOLETE - confirm still in scope before testing.; No explicit Steps-to-Reproduce block in description - repro must be inferred from the reported issue."
+  },
+  {
+    "key": "SV-3606",
+    "summary": "Regression - unable to update IBS approval code",
+    "status": "Done",
+    "assignee": "parth fadadu",
+    "type": "Bug",
+    "fix_version": "v0.31",
+    "release_source": [
+      "v0.31 Bug Fixes"
+    ],
+    "area": "general / UI",
+    "reported_issue": "Users are not able to update the IBS approval code in the approval modal. Screenshot below and original ticket linked.\n\nField is greyed out and I get the red circle upon hover.\n\nTo fix:\n\nfield should be open to edit and a save button should be present when edited.",
+    "steps_to_reproduce": [],
+    "expected_after_fix": null,
+    "original_actual": null,
+    "has_usable_repro": false,
+    "labels": [
+      "Backend",
+      "Frontend",
+      "QAcomplete",
+      "Support"
+    ],
+    "notes": "No explicit Steps-to-Reproduce block in description - repro must be inferred from the reported issue."
+  },
+  {
+    "key": "SV-3612",
+    "summary": "Stuck on invoiced status - paid",
+    "status": "Done",
+    "assignee": "Milan Zivanovic",
+    "type": "Bug",
+    "fix_version": "v0.31",
+    "release_source": [
+      "v0.31 Bug Fixes"
+    ],
+    "area": "invoicing / accounting",
+    "reported_issue": "We have a user who is reporting that two of his invoices are showing as invoiced but are currently paid. nothing looks off with them but there are payments applied to them and I have confirmed the status is still Invoiced. the user was unable to provide any details, please test and confirm bug\n\nhttps://app.shopview.com/workorders/6d98be18-dc34-4b3d-8ec7-2a2234887f05/lines\n\n‌\n\nhttps://app.shopview.com/workorders/a666f762-adb3-4821-968c-780938759689/lines\n\nUpdate 06.12\n\nJust had this one reported as well for Caledonia\n\nhttps://app.shopview.com/workorders/6d68b7cb-197d-4484-9570-d408c525ef2e/finance\n\n---\n\n07.24.2025\n\nHere is a new one that was just reported for Caledonia as well S-1028.\n\nShows ...",
+    "steps_to_reproduce": [],
+    "expected_after_fix": null,
+    "original_actual": null,
+    "has_usable_repro": false,
+    "labels": [
+      "QAcomplete",
+      "Support"
+    ],
+    "notes": "No explicit Steps-to-Reproduce block in description - repro must be inferred from the reported issue."
+  },
+  {
+    "key": "SV-3715",
+    "summary": "Bug: Special Order Part Price/Cost Changes from .99 to .98 After Receipt",
+    "status": "Done",
+    "assignee": "parth fadadu",
+    "type": "Bug",
+    "fix_version": "v0.31",
+    "release_source": [
+      "v0.31 Bug Fixes"
+    ],
+    "area": "parts / inventory",
+    "reported_issue": "Description:\nThere is a pricing bug affecting special order parts where a cost or sell price ending in .99 (e.g., $16.99) is automatically changed to .98 (e.g., $16.98) after the part is received.\n\nThis issue has been confirmed to:\n\n* Only affect values ending in .99\n* Affect both cost and sell price\n* Happen after the part is received\n* Be unfixable via the Edit Part modal, but can be corrected via the Parts tab\n\n---",
+    "steps_to_reproduce": [
+      "Request a special order part.",
+      "Set Cost to $16.99.",
+      "Receive the part.",
+      "Observe the price/cost now reads $16.98.",
+      "Attempt to edit via Edit Part modal – value does not save.",
+      "Edit the value via the Parts tab – correctly saves as $16.99."
+    ],
+    "expected_after_fix": "Prices and costs should reflect exactly what the user inputs, especially for specific decimal values like .99. The system should not round or alter values during or after any workflow events like receiving a part.",
+    "original_actual": null,
+    "has_usable_repro": true,
+    "labels": [
+      "PR_Approved",
+      "QAcomplete",
+      "Support"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "SV-3897",
+    "summary": "Change status of Paid WO to Paid - Foothills",
+    "status": "Done",
+    "assignee": "Milan Zivanovic",
+    "type": "Bug",
+    "fix_version": "v0.31",
+    "release_source": [
+      "v0.31 Bug Fixes"
+    ],
+    "area": "work orders",
+    "reported_issue": "We had this bug reported before but I was never able to figure out how it happened and it is very intermittent, support was tagged to test.\n\nThe related bug ticket is linked and I believe we manually went in and flipped the status over for them, I’d like to do the same for Foothills please.\n\nHere are the WO that are paid in ShopView but stuck on the status invoiced. Users are also not able to delete the payments and try paying them again.\n\nS5-523 https://app.shopview.com/workorders/3cbe0c80-75f9-4f98-b9d9-89dfddb3a0bb/finance\n\nS5-2434 https://app.shopview.com/workorders/4b50d53b-9e8e-47fb-aea4-b358cc81c17b/finance\n\nS5-2708 ...",
+    "steps_to_reproduce": [],
+    "expected_after_fix": null,
+    "original_actual": null,
+    "has_usable_repro": false,
+    "labels": [
+      "QAcomplete"
+    ],
+    "notes": "No explicit Steps-to-Reproduce block in description - repro must be inferred from the reported issue."
+  },
+  {
+    "key": "SV-3916",
+    "summary": "Prevent Invoicing of Declined Work Orders",
+    "status": "Done",
+    "assignee": "parth fadadu",
+    "type": "Bug",
+    "fix_version": "v0.31",
+    "release_source": [
+      "v0.31 Bug Fixes"
+    ],
+    "area": "work orders",
+    "reported_issue": "Description:\n\nCurrently, a Work Order (WO) with all lines declined can still be invoiced. This leads to the following issues:\n\n* A $0 invoice is created and marked as paid.\n* When sent to QuickBooks (QB), the invoice contains no lines, resulting in a QB error.\n* Users are able to inadvertently invoice WOs that are entirely declined, which should either remain for future approval or be deleted if no longer needed.",
+    "steps_to_reproduce": [
+      "Create a Work Order.",
+      "Add a line item.",
+      "Decline the line.",
+      "Attempt to invoice the WO.",
+      "A $0 invoice is created and marked as paid."
+    ],
+    "expected_after_fix": "The \"Invoice\" button should not be present if all lines on the WO are declined. It should act like an open work order still. A WO must have at least one completed line, with all lines completed in order to be invoiced.",
+    "original_actual": null,
+    "has_usable_repro": true,
+    "labels": [
+      "QAcomplete",
+      "R1"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "SV-4071",
+    "summary": "Manually Remove Stuck Parts and Delete Work Order S-100",
+    "status": "Done",
+    "assignee": "Milan Zivanovic",
+    "type": "Bug",
+    "fix_version": "v0.31",
+    "release_source": [
+      "v0.31 Bug Fixes"
+    ],
+    "area": "work orders",
+    "reported_issue": "The customer reported that parts on Work Order S-100 are stuck and cannot be removed. A new WO (S-438) has already been created with the correct information.\n\n‌\n\nRequesting the backend team to:\n\n‌\n\n1. Manually remove the stuck parts from S-100\n2. Delete Work Order S-100 from the system\n\n‌\n\n‌\n\nCustomer: Antares Hire NZ Ltd\n\n‌",
+    "steps_to_reproduce": [],
+    "expected_after_fix": null,
+    "original_actual": null,
+    "has_usable_repro": false,
+    "labels": [
+      "QAcomplete",
+      "Support"
+    ],
+    "notes": "No explicit Steps-to-Reproduce block in description - repro must be inferred from the reported issue."
+  },
+  {
+    "key": "SV-4112",
+    "summary": "Bulk edit on Lines throws an error",
+    "status": "Done",
+    "assignee": "Dusan Bulovan",
+    "type": "Bug",
+    "fix_version": "v0.31",
+    "release_source": [
+      "v0.31 Bug Fixes"
+    ],
+    "area": "work orders",
+    "reported_issue": "When selecting multiple Lines, and then using gyros menu to change it in bulk, an error is thrown:\nCould not resolve the App\\\\VehicleService\\\\WorkOrders\\\\Application\\\\Line\\\\ChangeLines\\\\ChangeCommand class\nWhich is a masked error in front of real error:\nSQLSTATE[42S22]: Column not found: 1054 Unknown column 'pr.part_request_type' in 'where clause'",
+    "steps_to_reproduce": [],
+    "expected_after_fix": null,
+    "original_actual": null,
+    "has_usable_repro": false,
+    "labels": [],
+    "notes": "No explicit Steps-to-Reproduce block in description - repro must be inferred from the reported issue."
+  },
+  {
+    "key": "SV-4113",
+    "summary": "Inventory Import Preview Not Working",
+    "status": "Done",
+    "assignee": "Stefan Mitrovic",
+    "type": "Bug",
+    "fix_version": "v0.31",
+    "release_source": [
+      "v0.31 Bug Fixes"
+    ],
+    "area": "parts / inventory",
+    "reported_issue": "Environment:\nStaging\n\nIssue:\nThe Inventory Import preview is not working, but the imported parts are still visible in the app.\n\n‌\n\nOn production, the same file was imported successfully, and the preview worked as expected.",
+    "steps_to_reproduce": [],
+    "expected_after_fix": null,
+    "original_actual": null,
+    "has_usable_repro": false,
+    "labels": [
+      "Frontend",
+      "QAcomplete"
+    ],
+    "notes": "No explicit Steps-to-Reproduce block in description - repro must be inferred from the reported issue."
+  },
+  {
+    "key": "SV-4140",
+    "summary": "Schedule - Default Timeline Position",
+    "status": "Done",
+    "assignee": "Dusan Radulovic",
+    "type": "Bug",
+    "fix_version": "v0.31",
+    "release_source": [
+      "v0.31 Bug Fixes"
+    ],
+    "area": "scheduling",
+    "reported_issue": "Environment:\nStaging and Production\n\nIssue:\nNavigating between days in Scheduling table (via calendar picker, Prev/Next Day buttons, or the Today button) causes the timeline to briefly show 12:00 AM before jumping to the intended 6:00 AM. This issue does not occur on the initial Schedule page load.\n\nTest case:\n[https://shopview.testrail.io/index.php?/cases/view/1880](https://shopview.testrail.io/index.php?/cases/view/1880)",
+    "steps_to_reproduce": [],
+    "expected_after_fix": null,
+    "original_actual": null,
+    "has_usable_repro": false,
+    "labels": [
+      "Frontend",
+      "QAcomplete"
+    ],
+    "notes": "No explicit Steps-to-Reproduce block in description - repro must be inferred from the reported issue."
+  },
+  {
+    "key": "SV-4141",
+    "summary": "Schedule -  500 Error on July 23rd and Table Loading Issues After Location Change",
+    "status": "Done",
+    "assignee": "Milomir Kotlajic",
+    "type": "Bug",
+    "fix_version": "v0.31",
+    "release_source": [
+      "v0.31 Bug Fixes"
+    ],
+    "area": "scheduling",
+    "reported_issue": "Environment:\nStaging and Prod\n\nIssue:\n\n* 500 Error on July 23rd\n\n    * Opening the Scheduler defaults to Today’s date. This works as expected\n    * Clicking Prev to go to July 23rd triggers a 500 error\n    * Clicking Prev again to July 22nd gives no error\n    * Clicking Next to return to July 23rd triggers a 500 error again\n    * Selecting July 23rd from the calendar also triggers the error immediately\n    * The issue appears specific to July 23rd only\n\n* Changing Location Does Not Load Schedule Automatically\n\n    * When switching to a different shop location, the schedule does not load until the page is manually refreshed\n\n* Error When Location Has No Departments or Staff\n\n    * If the ...",
+    "steps_to_reproduce": [],
+    "expected_after_fix": null,
+    "original_actual": null,
+    "has_usable_repro": false,
+    "labels": [
+      "Backend",
+      "QAcomplete"
+    ],
+    "notes": "No explicit Steps-to-Reproduce block in description - repro must be inferred from the reported issue."
+  },
+  {
+    "key": "SV-4145",
+    "summary": "Parts disappeared from Work Order S2-7450 after approval",
+    "status": "Done",
+    "assignee": "Milan Zivanovic",
+    "type": "Bug",
+    "fix_version": "v0.31",
+    "release_source": [
+      "v0.31 Bug Fixes"
+    ],
+    "area": "work orders",
+    "reported_issue": "Kimberly Christiansen ([kchristiansen@foothillsgroup.ca](mailto:kchristiansen@foothillsgroup.ca))\n\n‌\n\nCustomer: Foothills Group\n\nIssue Summary:\n\nKimberly reported that in Work Order S2-7450, lines 1, 2, and 3 were approved by Davin. However, the parts on lines 2 and 3 have vanished from the order. From her understanding, these lines had parts that were either received or authorized to order. Kimberly did not work on this order personally, so she is unsure of what exactly was on those lines before they disappeared.\n\n‌\n\nRequest to the team to investigate the order history and determine why lines 2 and 3 were cleared or deleted post-approval. Determine if data can be restored.",
+    "steps_to_reproduce": [],
+    "expected_after_fix": null,
+    "original_actual": null,
+    "has_usable_repro": false,
+    "labels": [
+      "QAcomplete",
+      "Support"
+    ],
+    "notes": "No explicit Steps-to-Reproduce block in description - repro must be inferred from the reported issue."
+  },
+  {
+    "key": "SV-4153",
+    "summary": "BUG: Cannot open any workorder when logged in with roles that are not Admin",
+    "status": "Done",
+    "assignee": "Nemanja Djuric",
+    "type": "Bug",
+    "fix_version": "v0.31",
+    "release_source": [
+      "v0.31 Bug Fixes"
+    ],
+    "area": "roles / permissions",
+    "reported_issue": "Steps:\n\\- Login with user that has any role other than Admin\n\\- Try opening any of the work orders\n\nSee video:",
+    "steps_to_reproduce": [
+      "\\- Login with user that has any role other than Admin"
+    ],
+    "expected_after_fix": null,
+    "original_actual": null,
+    "has_usable_repro": true,
+    "labels": [
+      "Backend",
+      "Frontend",
+      "QAcomplete"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "SV-4177",
+    "summary": "BUG: Cannot add new staff member",
+    "status": "Done",
+    "assignee": "Nikola Milosevic",
+    "type": "Bug",
+    "fix_version": "v0.31",
+    "release_source": [
+      "v0.31 Bug Fixes"
+    ],
+    "area": "roles / permissions",
+    "reported_issue": "Steps:\n\n* Navigate to {{BASE_URL}}/administration/staff\n* Click New Staff member → New Staff Member dialog opens\n* Fill in dialog with valid data (set role to anything except Admin)\n* Click Save & Close",
+    "steps_to_reproduce": [
+      "Navigate to {{BASE_URL}}/administration/staff",
+      "Click New Staff member → New Staff Member dialog opens",
+      "Fill in dialog with valid data (set role to anything except Admin)",
+      "Click Save & Close"
+    ],
+    "expected_after_fix": "Staff member is added and email is sent to that member",
+    "original_actual": "{ \"errors\": \\[ { \"workPlaceId\": \"Workplace ID is missing.\" } \\] }",
+    "has_usable_repro": true,
+    "labels": [
+      "Frontend",
+      "QAcomplete",
+      "Regression"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "SV-4183",
+    "summary": "BUG: New staff member cannot complete registration",
+    "status": "Done",
+    "assignee": "Nemanja Djuric",
+    "type": "Bug",
+    "fix_version": "v0.31",
+    "release_source": [
+      "v0.31 Bug Fixes"
+    ],
+    "area": "roles / permissions",
+    "reported_issue": "Steps:\n\n* Add new Staff member\n* Open mail where invite was sent\n* Click accept invitation (open that link in incognito or logout from previous account)\n* Sett password and repeat password and click submit",
+    "steps_to_reproduce": [
+      "Add new Staff member",
+      "Open mail where invite was sent",
+      "Click accept invitation (open that link in incognito or logout from previous account)",
+      "Sett password and repeat password and click submit"
+    ],
+    "expected_after_fix": "User registered successfully",
+    "original_actual": "403 error",
+    "has_usable_repro": true,
+    "labels": [
+      "Backend",
+      "QAcomplete"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "SV-4208",
+    "summary": "BUG: Cannot return special order part",
+    "status": "Done",
+    "assignee": "Stefan Mitrovic",
+    "type": "Bug",
+    "fix_version": "v0.31",
+    "release_source": [
+      "v0.31 Bug Fixes"
+    ],
+    "area": "parts / inventory",
+    "reported_issue": "Issue 1: Return function is not working\n\n* See video:\n\n---\n\nIssue 2:  Full Return - Returning parts with cores does not return associated cores",
+    "steps_to_reproduce": [
+      "Order and receive a special order part with a core, with a quantity of 5 on any WO line",
+      "Click on the 3 dots next to the part name on the line",
+      "In the dropdown, select Return",
+      "Set the return quantity to 5 and click Save & Close",
+      "Observe"
+    ],
+    "expected_after_fix": "When parts with cores are returned, the same number of cores should also be returned",
+    "original_actual": "5 parts are returned, status is Returned → expected 5 associated cores remain staged on the line → not expected",
+    "has_usable_repro": true,
+    "labels": [
+      "Frontend",
+      "QAcomplete"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "SV-3208",
+    "summary": "Shop Supplies from Declined Lines Are Being Added to the Invoice When 'Show Declined Work' Is Toggled",
+    "status": "Done",
+    "assignee": "Milan Zivanovic",
+    "type": "Bug",
+    "fix_version": "v0.43",
+    "release_source": [
+      "v0.43 Bug Fixes"
+    ],
+    "area": "work orders",
+    "reported_issue": "Environment:\nStaging & Prod\n\nIssue:\nShop supplies from declined lines are being added to the Invoice when 'Show Declined Work' Is toggled.\n\nShow Declined Work toggle is OFF - everything looks good\n\nShow Declined Work toggle is ON - shop supplies from declined lines are being added to the Balance\n\n‌\n\nHow it should work:\nWhen a line item is marked as \"declined\" on a work order, it means the service or part associated with that line is not being processed or accepted. Therefore, no costs, such as shop supplies, parts, or labor time, should be included in the final calculations for that line. Even if there are parts listed or an estimated time for labor, they should not factor into the total ...",
+    "steps_to_reproduce": [],
+    "expected_after_fix": null,
+    "original_actual": null,
+    "has_usable_repro": false,
+    "labels": [],
+    "notes": "No explicit Steps-to-Reproduce block in description - repro must be inferred from the reported issue."
+  },
+  {
+    "key": "SV-3730",
+    "summary": "Work orders and invoice total wrong on work order page",
+    "status": "Done",
+    "assignee": "Milan Zivanovic",
+    "type": "Bug",
+    "fix_version": "v0.43",
+    "release_source": [
+      "v0.43 Bug Fixes"
+    ],
+    "area": "work orders",
+    "reported_issue": "On the work orders page, the totals are wrong.\n\n‌\n\nWhen in work order status still, it seems it is out by a few pennies. Once they are invoiced, they are way out.\n\nThese numbers should never be different then what the finance tab is showing. It needs to be pulling from the same place and not doing any of its own calculations.\n\n‌",
+    "steps_to_reproduce": [],
+    "expected_after_fix": null,
+    "original_actual": null,
+    "has_usable_repro": false,
+    "labels": [],
+    "notes": "No explicit Steps-to-Reproduce block in description - repro must be inferred from the reported issue."
+  },
+  {
+    "key": "SV-4219",
+    "summary": "Parts pricing does not update to current price when adding a canned line",
+    "status": "Done",
+    "assignee": "parth fadadu",
+    "type": "Bug",
+    "fix_version": "v0.43",
+    "release_source": [
+      "v0.43 Bug Fixes"
+    ],
+    "area": "parts / inventory",
+    "reported_issue": "When adding a canned line to a work order, the parts pricing does not update to the current sell price. Instead, it retains the sale price from when the canned line was originally saved.\n\n‌",
+    "steps_to_reproduce": [
+      "‌",
+      "Create a canned line with a part (example: LF14000NN) at a specific sell price (e.g., $2).",
+      "Update the part’s sell price in inventory (e.g., $4).",
+      "Add the same canned line to a work order.",
+      "Observe that the price displayed is still the original $2 instead of the updated $4."
+    ],
+    "expected_after_fix": "When a canned line is added, the part’s pricing should pull the current sell price from inventory. If it is a ‘fixed price’ in inventory, it should pull the fixed price. If it is not a fixed price, it should use the matrix as per category set up in inventory.",
+    "original_actual": "The canned line uses the sell price from when it was originally saved.",
+    "has_usable_repro": true,
+    "labels": [
+      "Backend",
+      "QAcomplete",
+      "Staging_Verified",
+      "Support"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "SV-4240",
+    "summary": "BE Financial Info card does not calculate Tax on Parts when Labor rate is Fixed Line Total.",
+    "status": "Done",
+    "assignee": "Milan Zivanovic",
+    "type": "Bug",
+    "fix_version": "v0.43",
+    "release_source": [
+      "v0.43 Bug Fixes"
+    ],
+    "area": "invoicing / accounting",
+    "reported_issue": "Customer Name: Genes Wrecker, Tire & Truck\n\nNumber of Users: 12\n\nEnvironment: Customer’s Account\n\n‌\n\nDescription:\n\nThe Financial Info section on an Estimate is only calculating sales tax on Shop Supplies, while in the Finance tab, tax is calculated correctly on both Parts and Shop Supplies.\n\n‌\n\nCustomer’s Account\n\n‌\n\n‌\n\nMy TEST ACCOUNT:\n\n‌\n\nI tested the same settings in my own account, and the tax calculation worked correctly. Later, now I just checked the line that the user added, it's a fixed line total. So if we add a Fixed line total, then we will be able to replicate it in the test accoutn.\n\n‌",
+    "steps_to_reproduce": [
+      "In Settings → Taxes, edit the relevant tax and toggle off tax for Labor. Ensure Parts and Shop Supplies are enabled; tax rate set to 8.25%.",
+      "Create a Work Order.",
+      "Add a new line and select Labor Rate = Fixed Line Total.",
+      "Save & Close the line.",
+      "Check the Financial Info card/section for the Work Order and review calculated taxes."
+    ],
+    "expected_after_fix": "The Financial Info card/section should calculate and display Tax on Parts at 8.25% (per client settings) even when the Labor rate is Fixed Line Total, matching the behavior of the Finance → Invoice.",
+    "original_actual": "The Financial Info card/section does not calculate or display Tax on Parts for the line with Fixed Line Total. Only Shop Supplies tax appears (consistent with Labor tax being disabled).",
+    "has_usable_repro": true,
+    "labels": [
+      "Staging_Verified",
+      "Support"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "SV-4696",
+    "summary": "Credit Amount Rounding Off by 1 Cent (Both Vendor and Customer Credits)",
+    "status": "Done",
+    "assignee": "Milomir Kotlajic",
+    "type": "Bug",
+    "fix_version": "v0.43",
+    "release_source": [
+      "v0.43 Bug Fixes"
+    ],
+    "area": "invoicing / accounting",
+    "reported_issue": "When entering credits on either the Vendor or Customer side, the system occasionally rounds the total amount down by $0.01 after saving.\nFor example, if a user enters $33.37, it saves as $33.36.",
+    "steps_to_reproduce": [
+      "Go to Vendors → Unpaid Invoices (or Customers → Unpaid Invoices)",
+      "Select a Vendor/Customer (e.g., NAPA).",
+      "Click Add Credit.",
+      "Enter a credit amount such as $33.37, $316.28, $73.24, $1053.84, etc.",
+      "Click Save.",
+      "Observe that the saved amount is reduced by $0.01 (e.g., $33.37 → $33.36)."
+    ],
+    "expected_after_fix": "The credit amount should remain exactly as entered after saving (no rounding or decimal change).",
+    "original_actual": "The system reduces the total by 1 cent after saving, e.g., $33.37 saves as $33.36.",
+    "has_usable_repro": true,
+    "labels": [
+      "QAcomplete",
+      "Staging_Verified"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "SV-4768",
+    "summary": "Bug: Not Able to Uncomplete the line from Workorder.",
+    "status": "Done",
+    "assignee": "Dusan Bulovan",
+    "type": "Bug",
+    "fix_version": "v0.43",
+    "release_source": [
+      "v0.43 Bug Fixes",
+      "SV-4796 Epic (V0.43 Regression Testing Bugs)"
+    ],
+    "area": "work orders",
+    "reported_issue": "Env: Staging",
+    "steps_to_reproduce": [
+      "Create a line",
+      "Mark it as complete",
+      "Attempt to uncomplete the line."
+    ],
+    "expected_after_fix": null,
+    "original_actual": null,
+    "has_usable_repro": true,
+    "labels": [
+      "Staging_Verified"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "SV-4771",
+    "summary": "Create Invoice Button is Missing From WO and PS",
+    "status": "Done",
+    "assignee": "Stefan Mitrovic",
+    "type": "Bug",
+    "fix_version": "v0.43",
+    "release_source": [
+      "v0.43 Bug Fixes",
+      "SV-4796 Epic (V0.43 Regression Testing Bugs)"
+    ],
+    "area": "work orders",
+    "reported_issue": "Environment:\nStage\n\nIssue:\nCreate Invoice button is missing from WO and PS",
+    "steps_to_reproduce": [],
+    "expected_after_fix": null,
+    "original_actual": null,
+    "has_usable_repro": false,
+    "labels": [
+      "Staging_Verified"
+    ],
+    "notes": "No explicit Steps-to-Reproduce block in description - repro must be inferred from the reported issue."
+  },
+  {
+    "key": "SV-4772",
+    "summary": "Bug: Workorder -> Parts tab is not showing the data in the relevant columns",
+    "status": "Done",
+    "assignee": "Nikola Milosevic",
+    "type": "Bug",
+    "fix_version": "v0.43",
+    "release_source": [
+      "v0.43 Bug Fixes",
+      "SV-4796 Epic (V0.43 Regression Testing Bugs)"
+    ],
+    "area": "parts / inventory",
+    "reported_issue": "STRs:\n\n* Request a few parts on a Wororder → Line\n* Click Parts Tab\n* Observe the alignment of the data in the columns\n  Result: The relevant data is not appearing under the correct headers/columns\n\nStaging Environment:\n\nProduction Environment:\n\n---\n\n‌\n\n‌",
+    "steps_to_reproduce": [
+      "Request a few parts on a Wororder → Line",
+      "Click Parts Tab",
+      "Observe the alignment of the data in the columns"
+    ],
+    "expected_after_fix": null,
+    "original_actual": null,
+    "has_usable_repro": true,
+    "labels": [
+      "Staging_Verified"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "SV-4778",
+    "summary": "Bug: Workorder -> Parts -> Margin column after it is edited it shows wrong sell price.",
+    "status": "Done",
+    "assignee": "Dusan Bulovan",
+    "type": "Bug",
+    "fix_version": "v0.43",
+    "release_source": [
+      "v0.43 Bug Fixes",
+      "SV-4796 Epic (V0.43 Regression Testing Bugs)"
+    ],
+    "area": "parts / inventory",
+    "reported_issue": "STRs:\n\n* Create a WorkOrder → Create Line -> Request a Special Order part\n* Complete the process of requesting a Special Order part\n* Click Parts tab\n* Change the value of the Margin\n* Observe the wrong sell price being automatically calculated.",
+    "steps_to_reproduce": [
+      "Create a WorkOrder → Create Line -> Request a Special Order part",
+      "Complete the process of requesting a Special Order part",
+      "Click Parts tab",
+      "Change the value of the Margin",
+      "Observe the wrong sell price being automatically calculated."
+    ],
+    "expected_after_fix": null,
+    "original_actual": null,
+    "has_usable_repro": true,
+    "labels": [
+      "Staging_Verified"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "SV-4779",
+    "summary": "Bug: Work Order can not be marked as completed if a part with core has been returned",
+    "status": "Done",
+    "assignee": "Dusan Bulovan",
+    "type": "Bug",
+    "fix_version": "v0.43",
+    "release_source": [
+      "v0.43 Bug Fixes",
+      "SV-4796 Epic (V0.43 Regression Testing Bugs)"
+    ],
+    "area": "parts / inventory",
+    "reported_issue": "STRs:\n\n* Create a WO → Request a special order part with core → Receive the part\n* DO NOT press OK/Not OK for the core\n* Return the main part with core (Refer to the screen recording)\n* Attempt to mark the WO as complete\n* Observe the result:\n\n    \n    Line cant be completed with unfulfilled Core part.\n    Please try to resolve this.\n    \n\nNote: This is not reproducible on Production\n\n‌\n\nScreen Recording: Staging:\n\n---\n\n‌\n\nScreen Recording production:",
+    "steps_to_reproduce": [
+      "Create a WO → Request a special order part with core → Receive the part",
+      "DO NOT press OK/Not OK for the core",
+      "Return the main part with core (Refer to the screen recording)",
+      "Attempt to mark the WO as complete",
+      "Observe the result:  Line cant be completed with unfulfilled Core part. Please try to resolve this. "
+    ],
+    "expected_after_fix": null,
+    "original_actual": null,
+    "has_usable_repro": true,
+    "labels": [
+      "Staging_Verified"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "SV-4800",
+    "summary": "Bug: Invoice calculation shows unexpected values for taxes",
+    "status": "Done",
+    "assignee": "Unassigned",
+    "type": "Bug",
+    "fix_version": "v0.43",
+    "release_source": [
+      "v0.43 Bug Fixes",
+      "SV-4796 Epic (V0.43 Regression Testing Bugs)"
+    ],
+    "area": "invoicing / accounting",
+    "reported_issue": "Issue is that taxes are not showing expected values.\nInvoice: https://app.staging.shopview.com/workorders/9930a4e7-4e39-43e5-a0b9-7a2b0c60c70d/finance\n\nError reported in test:\n\n\nThe following asserts failed:\n\tTax 'gst (5%)' value doesn't add up: Expected 873.36, Found 878.36,\n\tTax 'PST (7%)' value doesn't add up: Expected 1222.71, Found 1229.71\n\n\nAdditional info that might help in detecting cause for this bug:\ngst = 5% and its value is $5 greater than expected\nPST = 7% abd it’s value is $7 gretaer than expected\nMight be coincidence but it’s worth looking at.\n\nHere you can see entire log from test automation:\n\n\n2025-11-04 11:55:46 INFO  pages.finance.FinancePage - Estimate/Invoice toggle set ...",
+    "steps_to_reproduce": [],
+    "expected_after_fix": null,
+    "original_actual": null,
+    "has_usable_repro": false,
+    "labels": [],
+    "notes": "No explicit Steps-to-Reproduce block in description - repro must be inferred from the reported issue."
+  },
+  {
+    "key": "SV-4802",
+    "summary": "Inventory Part Remains in Quoted Status after Line Status Changes from Need Approval to Approved",
+    "status": "Done",
+    "assignee": "Nikola Milosevic",
+    "type": "Bug",
+    "fix_version": "v0.43",
+    "release_source": [
+      "v0.43 Bug Fixes",
+      "SV-4796 Epic (V0.43 Regression Testing Bugs)"
+    ],
+    "area": "parts / inventory",
+    "reported_issue": "Environment:\nStaging\n\nIssue:\nWhen the line status is updated from Needs Approval/Authorization Required to Approved/Authorized, requested Inventory Part incorrectly remains in the Quoted status instead of updating to the In stock with action Pick\n\n‌",
+    "steps_to_reproduce": [
+      "Create a non-authorized line (status of the line: Needs Approval/Authorization Required)",
+      "Request Inventory Part",
+      "Change the line status to Approved/Authorized",
+      "Observe"
+    ],
+    "expected_after_fix": "The inventory part status should automatically update from Quoted to In stock with action Pick",
+    "original_actual": "The inventory part remains in Quoted status",
+    "has_usable_repro": true,
+    "labels": [
+      "Staging_Verified"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "SV-4816",
+    "summary": "Decline Line With Staged Parts on the WO",
+    "status": "Done",
+    "assignee": "Dusan Bulovan",
+    "type": "Bug",
+    "fix_version": "v0.43",
+    "release_source": [
+      "v0.43 Bug Fixes",
+      "SV-4796 Epic (V0.43 Regression Testing Bugs)"
+    ],
+    "area": "work orders",
+    "reported_issue": "Environment:\nStaging vs Production\n\n‌\n\nIssue:\n\nStage → Line cannot be declined with staged parts\n\nProd → Line can be declined with staged parts\n\n‌",
+    "steps_to_reproduce": [
+      "Navigate to any WO line",
+      "Request and receive parts",
+      "Change status to Declined",
+      "method1: via Edit Line > Status (dropdown) > Declined",
+      "method2: via Line Options (3-dot menu) > Set line status > Declined",
+      "Observe"
+    ],
+    "expected_after_fix": "s:",
+    "original_actual": "s:",
+    "has_usable_repro": true,
+    "labels": [],
+    "notes": ""
+  },
+  {
+    "key": "SV-4821",
+    "summary": "Bug: Adding a part to the Fixed line total increases the Price of the Total by 1 cent.",
+    "status": "Done",
+    "assignee": "Unassigned",
+    "type": "Bug",
+    "fix_version": "v0.43",
+    "release_source": [
+      "v0.43 Bug Fixes",
+      "SV-4796 Epic (V0.43 Regression Testing Bugs)"
+    ],
+    "area": "parts / inventory",
+    "reported_issue": "Issue:\n\nAdding a part to the Fixed line total increases the Price of the Total by 1 cent.\n\n‌",
+    "steps_to_reproduce": [
+      "Create a Fixed line total."
+    ],
+    "expected_after_fix": null,
+    "original_actual": null,
+    "has_usable_repro": true,
+    "labels": [],
+    "notes": ""
+  },
+  {
+    "key": "SV-4871",
+    "summary": "Bug:  Paid Work Orders display incorrect totals in the Work Orders list",
+    "status": "Done",
+    "assignee": "Unassigned",
+    "type": "Bug",
+    "fix_version": "v0.43",
+    "release_source": [
+      "v0.43 Bug Fixes",
+      "SV-4796 Epic (V0.43 Regression Testing Bugs)"
+    ],
+    "area": "work orders",
+    "reported_issue": "### Environment:\n\n* Environment: Staging\n* User: [bilalmuzamil+shopview@gmail.com](mailto:bilalmuzamil+shopview@gmail.com)\n* Password: Bb1lal\\~123\n* Location: Import test\n\n---\n\n### Description:\n\nWhen filtering Work Orders by status = Paid, the Price Total shown in the Work Orders list does not match the total displayed under the Financial Info section or the Finance tab of the same Work Order.\nNote: The Work Order has NO parts\n\n### Steps to Reproduce (STRs):\n\n1. Log in using the credentials above.\n2. Switch to the location “Import test.”\n3. Navigate to the Work Orders section.\n4. Filter the Status by Paid.\n5. Observe the Price Total of the first Work Order appearing in the list and note the ...",
+    "steps_to_reproduce": [],
+    "expected_after_fix": null,
+    "original_actual": null,
+    "has_usable_repro": false,
+    "labels": [],
+    "notes": "No explicit Steps-to-Reproduce block in description - repro must be inferred from the reported issue."
+  },
+  {
+    "key": "SV-4880",
+    "summary": "Move Part: Ordering of the Line is Incorrect in Target Line Dropdown",
+    "status": "Done",
+    "assignee": "Stefan Mitrovic",
+    "type": "Bug",
+    "fix_version": "v0.43",
+    "release_source": [
+      "v0.43 Bug Fixes",
+      "SV-4796 Epic (V0.43 Regression Testing Bugs)"
+    ],
+    "area": "work orders",
+    "reported_issue": "Environment:\nStaging\n\n‌\n\nIssue:\nOrdering of the lines is incorrect in Move part to line modal →   Target Line dropdown",
+    "steps_to_reproduce": [
+      "Create WO with 4 lines",
+      "Name lines:",
+      "Line 1 → 111",
+      "Line 2 → 222",
+      "Line 3 → 333",
+      "Line 4 → 444",
+      "Request and pick any part on the Line 1",
+      "Move part to any other line",
+      "Observe"
+    ],
+    "expected_after_fix": "Only 3 line should be visible in Target Line dropdown as:",
+    "original_actual": "3 line are visible in Target Line dropdown as:",
+    "has_usable_repro": true,
+    "labels": [
+      "Staging_Verified"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "SV-4881",
+    "summary": "BUG: Cannot send invoice email if Customer Email is missing",
+    "status": "Done",
+    "assignee": "Vladimir Radojcic",
+    "type": "Bug",
+    "fix_version": "v0.43",
+    "release_source": [
+      "v0.43 Bug Fixes",
+      "SV-4796 Epic (V0.43 Regression Testing Bugs)"
+    ],
+    "area": "invoicing / accounting",
+    "reported_issue": "* See video:",
+    "steps_to_reproduce": [],
+    "expected_after_fix": null,
+    "original_actual": null,
+    "has_usable_repro": false,
+    "labels": [
+      "Backend",
+      "Staging_Verified"
+    ],
+    "notes": "No explicit Steps-to-Reproduce block in description - repro must be inferred from the reported issue."
+  },
+  {
+    "key": "SV-4845",
+    "summary": "Bug: Changing the Estimated Time for a fixed Line total sets all the values for Labor Portion/Parts Portion etc to \"0\"",
+    "status": "OBSOLETE",
+    "assignee": "Stefan Mitrovic",
+    "type": "Bug",
+    "fix_version": null,
+    "release_source": [
+      "v0.43 Regressions",
+      "SV-4796 Epic (V0.43 Regression Testing Bugs)"
+    ],
+    "area": "work orders",
+    "reported_issue": "Issue:\nChanging the Estimated Time for a fixed Line total sets all the values for Labor Portion/Parts Portion etc to \"0\"\n\nKindly Note: This is not reproducible on Production Environment.",
+    "steps_to_reproduce": [
+      "Create a WO → Create Line → Set the line to be the Fixed Line total"
+    ],
+    "expected_after_fix": null,
+    "original_actual": null,
+    "has_usable_repro": true,
+    "labels": [],
+    "notes": "Ticket status is OBSOLETE - confirm still in scope before testing.; No fixVersion set on ticket."
+  },
+  {
+    "key": "SV-4917",
+    "summary": "Email not sending after changing the invoice date",
+    "status": "Done",
+    "assignee": "Aleksa Toljic",
+    "type": "Bug",
+    "fix_version": "v0.45",
+    "release_source": [
+      "v0.43 Regressions"
+    ],
+    "area": "invoicing / accounting",
+    "reported_issue": "What happened:\nWhen creating a work order and proceeding to the invoice, if the user changes the invoice date and then attempts to send the invoice via email, the system keeps spinning (loading) and the email is never sent.\n\nWhere it happened:\nFeature: Invoice screen (within Work Order)\n\nClient: Fast Truck and Trailer, Benton\n\nReported by: Chris Prosise\n\nNumber of users: 21\n\nWhy it’s a problem (impact):\nUsers are unable to send invoices after updating the invoice date, which delays customer communication and impacts billing operations.",
+    "steps_to_reproduce": [
+      "Go to a work order.",
+      "Open the Invoice section.",
+      "Change the Invoice Date.",
+      "Click Email and try sending the invoice.",
+      "Observe that the system keeps spinning (loading) and the email is never sent."
+    ],
+    "expected_after_fix": "After clicking Email → Send, the invoice email should be sent immediately without any delay or loading issue.",
+    "original_actual": "The system shows a continuous loading spinner, and the invoice email is not sent.",
+    "has_usable_repro": true,
+    "labels": [
+      "QAcomplete",
+      "Staging_Verified"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "SV-4928",
+    "summary": "Work Order (Mobile View) – Unable to add new line in phone view",
+    "status": "Done",
+    "assignee": "Nebojsa Miskovic",
+    "type": "Bug",
+    "fix_version": null,
+    "release_source": [
+      "v0.43 Regressions"
+    ],
+    "area": "work orders",
+    "reported_issue": "What happened:\nIn the phone view of ShopView, the customer is unable to add a new line to a work order. The option to “Add New Line” does not appear on the screen. Customers are also unable to see Line, Part, Notes, Stat, Finance on phone view.\nWhere it happened:\nFeature: Work Order (Mobile/Phone View)\n\nClient: RB Truck Centre & Tire Shop\n\nReported by: Baj Toor\n\nNumber of users affected: 2\n\nWhy it’s a problem (impact):\nUsers accessing ShopView from their phones are unable to add new lines to work orders, preventing them from completing essential tasks such as adding parts or services. This impacts workflow efficiency and mobile usability.",
+    "steps_to_reproduce": [
+      "Log in to ShopView using a mobile device.",
+      "Open any work order.",
+      "Try to add a new line to the work order.",
+      "Observe that there is no option to add a new line."
+    ],
+    "expected_after_fix": "Users should be able to see and select an “Add New Line” option in the phone view of ShopView, allowing them to add items or parts to the work order.",
+    "original_actual": "The “Add New Line” option does not appear in the phone view, preventing users from adding new lines to work orders.",
+    "has_usable_repro": true,
+    "labels": [
+      "Staging_Verified"
+    ],
+    "notes": "No fixVersion set on ticket."
+  },
+  {
+    "key": "SV-4963",
+    "summary": "Taxes: Tax that is actively used can be deleted",
+    "status": "Done",
+    "assignee": "Sinisa Nogic",
+    "type": "Bug",
+    "fix_version": "v0.49",
+    "release_source": [
+      "v0.43 Regressions"
+    ],
+    "area": "invoicing / accounting",
+    "reported_issue": "Steps to Reproduce:\n\n1. Log in and navigate to: [{{BASE_URL}}/administration/taxes](https://app.staging.shopview.com/administration/taxes)\n2. Create a new tax for testing purposes\n3. Assign the previously created tax to some WO.\n4. Navigate to  {{BASE_URL}}/administration/taxes using the Admin account\n5. Try to delete the used tax (previously created tax and assigned to some WO).\n\n‌",
+    "steps_to_reproduce": [
+      "Log in and navigate to: [{{BASE_URL}}/administration/taxes](https://app.staging.shopview.com/administration/taxes)",
+      "Create a new tax for testing purposes",
+      "Assign the previously created tax to some WO.",
+      "Navigate to  {{BASE_URL}}/administration/taxes using the Admin account",
+      "Try to delete the used tax (previously created tax and assigned to some WO)."
+    ],
+    "expected_after_fix": "s: The Delete Tax icon is not clickable and displays the following error message on hover: _Cannot delete currently used tax._",
+    "original_actual": "The Delete Tax icon is active, and the tax is deleted successfully. This will cause an inability to open WO info via the Work Orders tab with the following error messages:",
+    "has_usable_repro": true,
+    "labels": [
+      "Prod_Verified",
+      "QAcomplete",
+      "Staging_Verified"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "SV-4970",
+    "summary": "Core - ShopCoach - Parts are not displaying when added to WO via either Line Builder OR Parts Guide",
+    "status": "Done",
+    "assignee": "Ryan Fyfe",
+    "type": "Bug",
+    "fix_version": "v0.46",
+    "release_source": [
+      "v0.43 Regressions"
+    ],
+    "area": "parts / inventory",
+    "reported_issue": "This PR addresses two regressions in ShopCoach workflows by fixing component refresh issues after parts are added (part dialog and line-builder) and improving the tech story editing experience.\n\nThe changes enable immediate UI updates after parts/work orders are added through ShopCoach, provide feedback when no parts are found, and streamline the tech story editing flow by allowing inline editing before saving.\n\nKey Changes:\n\n* Added component key-based refresh mechanism to force re-render of work order lines after ShopCoach actions\n* Implemented inline editing for tech stories with direct save capability, eliminating the need for a two-step accept-then-save workflow\n* Added user feedback ...",
+    "steps_to_reproduce": [],
+    "expected_after_fix": null,
+    "original_actual": null,
+    "has_usable_repro": false,
+    "labels": [],
+    "notes": "No explicit Steps-to-Reproduce block in description - repro must be inferred from the reported issue."
+  },
+  {
+    "key": "SV-5003",
+    "summary": "FE Sell Price Not Updating When Average Cost or Category Is Changed on  parts tab",
+    "status": "Done",
+    "assignee": "Nikola Milosevic",
+    "type": "Bug",
+    "fix_version": "v0.54",
+    "release_source": [
+      "v0.43 Regressions"
+    ],
+    "area": "parts / inventory",
+    "reported_issue": "### What happened\n\nWhen adding or editing a part on a work order in the parts tab, the sell price does not recalculate when the  cost is updated or when the category is selected/changed.\n\n‌\n\n#### Where it happened\n\n* Screen: Work Order → Parts tab\n* Workflow: Add or edit part on a work order\n* Reported by: Cody MacCarthy\n\n‌\n\n### Steps to Reproduce\n\n1. Open a Work Order.\n2. Go to the Parts tab.\n3. Add a part (or edit an existing part).\n4. Ensure a category is selected for that part.\n5. Change the cost field.\n6. Observe that the sell price does not update.\n7. Now change the category to a different one (with different markup).\n8. Observe that the sell price still does not recalculate based on ...",
+    "steps_to_reproduce": [
+      "Open a Work Order.",
+      "Go to the Parts tab.",
+      "Add a part (or edit an existing part).",
+      "Ensure a category is selected for that part.",
+      "Change the cost field.",
+      "Observe that the sell price does not update.",
+      "Now change the category to a different one (with different markup).",
+      "Observe that the sell price still does not recalculate based on the new category’s markup."
+    ],
+    "expected_after_fix": null,
+    "original_actual": null,
+    "has_usable_repro": true,
+    "labels": [
+      "Staging_Verified",
+      "Verified_on_prod"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "SV-5004",
+    "summary": "FR:Work Orders – Cannot Change Category for Inventory Part on Parts Tab (Only Works on Main WO Page)",
+    "status": "Done",
+    "assignee": "parth fadadu",
+    "type": "Bug",
+    "fix_version": "v0.55",
+    "release_source": [
+      "v0.43 Regressions"
+    ],
+    "area": "parts / inventory",
+    "reported_issue": "### What happened:\n\nWhen editing an inventory part on a work order:\n\n* From the main Work Order page, the user _is able_ to change the category and successfully save it.\n* However, when navigating to the Parts tab on the same work order, the system does NOT allow the category to be changed.\n* The category field becomes locked or uneditable, preventing updates.\n\n‌\n\n### Where it happened:\n\n* Screen 1: Work Order → Main Page (category CAN be changed)\n* Screen 2: Work Order → Parts Tab (category CANNOT be changed)\n* Feature: Category editing for Inventory Parts\n* Reported by: _Cody MacCarthy_\n* Environment: Production\n\n‌\n\n1. Open any Work Order.\n2. On the main Work Order page, select an ...",
+    "steps_to_reproduce": [],
+    "expected_after_fix": null,
+    "original_actual": null,
+    "has_usable_repro": false,
+    "labels": [
+      "Prod_Verified_Ayesha",
+      "QAComplete_Ayesha_Khan",
+      "Staging_Verified"
+    ],
+    "notes": "No explicit Steps-to-Reproduce block in description - repro must be inferred from the reported issue."
+  },
+  {
+    "key": "SV-5019",
+    "summary": "Work Orders to Invoices – Part Description presentation on line, parts tab and invoice",
+    "status": "Done",
+    "assignee": "Dipesh Changawala",
+    "type": "Bug",
+    "fix_version": "v0.49",
+    "release_source": [
+      "v0.43 Regressions"
+    ],
+    "area": "invoicing / accounting",
+    "reported_issue": "### What happened:\n\nIssue 1 – Capitalization Not Preserved\n\nOn Work Order S-1820, Line 1, the customer entered a part description in full capital letters:\n “HEATED HEADLIGHT”\n\nHowever, when the work order was converted to an invoice, the description automatically changed to lowercase, displaying as:\n “heated headlight”\n\nThe system is not preserving the customer’s original formatting. Uppercase text is being forced into lowercase formatting on the invoice.\n\nThis is problematic because customers and service writers often use capitalization intentionally to emphasize or highlight certain items. Losing formatting causes miscommunication and reduces clarity on the final invoice.\n\n### Where it ...",
+    "steps_to_reproduce": [],
+    "expected_after_fix": "Text formatting should be preserved exactly as entered in the work order. Capitalization should remain unchanged on the final invoice. If the user enters “HEATED HEADLIGHT,” the invoice must also show “HEATED HEADLIGHT.”",
+    "original_actual": null,
+    "has_usable_repro": false,
+    "labels": [
+      "QAcomplete",
+      "Staging_Verified",
+      "Support"
+    ],
+    "notes": "No explicit Steps-to-Reproduce block in description - repro must be inferred from the reported issue."
+  },
+  {
+    "key": "SV-5021",
+    "summary": "Work Orders – Finance Tab Fails to Load",
+    "status": "Done",
+    "assignee": "Jasna Mladenovic",
+    "type": "Bug",
+    "fix_version": null,
+    "release_source": [
+      "v0.43 Regressions"
+    ],
+    "area": "invoicing / accounting",
+    "reported_issue": "### What happened:\n\nWhen opening Work Order S-1032, the customer is able to successfully view Lines, Parts, Notes, Stats\n\nHowever, as soon as the customer navigates to the Finance tab, the system throws an error and the invoice fails to load.\n The Finance view remains blank or stuck on an error state, preventing the customer from accessing or reviewing any financial information tied to the work order.\n\n### Where it happened:\n\n* Screen: Work Order → Finance Tab\n* Work Order: S-1032\n* Client: _Tombstone Diesel & Iron_\n* Reported by: _Tyler Brooker_\n* Number of Users: 1\n* Environment: Production\n\n### Why it’s a problem (impact):\n\n* User is unable to review invoice information from the work ...",
+    "steps_to_reproduce": [
+      "Log in as the customer.",
+      "Open Work Order S-1032.",
+      "View tabs:",
+      "Lines → loads normally",
+      "Parts → loads normally"
+    ],
+    "expected_after_fix": null,
+    "original_actual": null,
+    "has_usable_repro": true,
+    "labels": [],
+    "notes": "No fixVersion set on ticket."
+  },
+  {
+    "key": "SV-5106",
+    "summary": "issue 2 CLONE - Work Orders to Invoices – Part Description presentation on line, parts tab and invoice",
+    "status": "Open",
+    "assignee": "Unassigned",
+    "type": "Bug",
+    "fix_version": null,
+    "release_source": [
+      "v0.43 Regressions"
+    ],
+    "area": "invoicing / accounting",
+    "reported_issue": "### What happened:\n\nIssue 2 – Description Field Appears Empty When Editing\n\nWhen the customer attempts to edit the description, the description box shows up as empty, even though the text exists.\nThis creates confusion and forces the user to retype the description manually because it _looks_ like the field contains no text.\n\n### Where it happened:\n\n* Screen: Work Order → Parts\n* Invoice Screen: Generated invoice from WO S-1820\n* Client: _SS Repair Ltd_\n* Reported by: _Sam Stuart_\n* Users: 8\n* Work Order: S-1820, Line 1\n* Behavior: Uppercase text changed to lowercase during conversion\n\n### Why it’s a problem (impact):\n\n* Customer-requested emphasis or formatting is lost.\n* Items that need to ...",
+    "steps_to_reproduce": [],
+    "expected_after_fix": "Text formatting should be preserved exactly as entered in the work order. Capitalization should remain unchanged on the final invoice. If the user enters “HEATED HEADLIGHT,” the invoice must also show “HEATED HEADLIGHT.”",
+    "original_actual": null,
+    "has_usable_repro": false,
+    "labels": [
+      "Support"
+    ],
+    "notes": "No fixVersion set on ticket.; No explicit Steps-to-Reproduce block in description - repro must be inferred from the reported issue."
+  },
+  {
+    "key": "SV-3256",
+    "summary": "FE/BE Column sorting not working - Advisor analysis",
+    "status": "Done",
+    "assignee": "Nebojsa Miskovic",
+    "type": "Bug",
+    "fix_version": "v0.44",
+    "release_source": [
+      "v0.44 Bug Fixes"
+    ],
+    "area": "reports",
+    "reported_issue": "As a user of the Advisor Analysis report, I want the first four columns (date, invoice number, customer and advisor) to be sortable so that I can organize and analyze the data more efficiently, while the remaining columns should remain static without sorting options.\n\n---\n\n### Requirements\n\n1. Only the first four columns in the Advisor Analysis report must include sorting functionality.\n2. Sorting should allow both ascending and descending order.\n3. A clear visual indicator (e.g., arrow icon) should show the current sort direction.\n4. Columns beyond the first four must not display any sorting option.\n5. Sorting should not affect the layout or accessibility of other columns.\n\n---\n\n### ...",
+    "steps_to_reproduce": [],
+    "expected_after_fix": null,
+    "original_actual": null,
+    "has_usable_repro": false,
+    "labels": [
+      "Backend",
+      "Frontend",
+      "QAcomplete",
+      "R1",
+      "Staging_Verified"
+    ],
+    "notes": "No explicit Steps-to-Reproduce block in description - repro must be inferred from the reported issue."
+  },
+  {
+    "key": "SV-4488",
+    "summary": "Text Fields – Accented character forces next letter into uppercase",
+    "status": "Done",
+    "assignee": "Nebojsa Miskovic",
+    "type": "Bug",
+    "fix_version": "v0.44",
+    "release_source": [
+      "v0.44 Bug Fixes"
+    ],
+    "area": "customer portal / customers",
+    "reported_issue": "Customer Name: GL Mécanique\nNumber of users: 11\n\n‌\n\nDescription\nWhat happened: When a user types an accented character (such as é, à, etc.), the following character automatically becomes uppercase.\n\nWhere it happened: Text input field in ShopView (example: customer/Vendor name).\n\nWhy it’s a problem (impact): This creates incorrect formatting in customer/shop names, notes, and other text entries. It slows down data entry and produces inaccurate records.",
+    "steps_to_reproduce": [
+      "Go to text field in ShopView (e.g., Customer name field).",
+      "Type a word that includes an accented character (for example: “é”).",
+      "Continue typing the next character.",
+      "Observe that the following character automatically appears in uppercase."
+    ],
+    "expected_after_fix": "After typing an accented character, the next letter should remain in lowercase (unless the user chooses to type uppercase). All transformations for text should be removed. Whatever and however user types text (uppercase or lowercase) should remain, app should not transform text",
+    "original_actual": "After typing an accented character, the next letter is automatically converted to uppercase.",
+    "has_usable_repro": true,
+    "labels": [
+      "QAcomplete",
+      "Staging_Verified",
+      "Support"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "SV-4674",
+    "summary": "Bug: Part Number is Optional Field on Purchase Order",
+    "status": "Done",
+    "assignee": "Nebojsa Miskovic",
+    "type": "Bug",
+    "fix_version": "v0.44",
+    "release_source": [
+      "v0.44 Bug Fixes"
+    ],
+    "area": "parts / inventory",
+    "reported_issue": "Environment:\nStage and Prod\n\nIssue:\nOn the PO page, the Part Number field is currently optional, but it is expected to be mandatory. This behavior is still present and may lead to incorrect or incomplete data entry. The field should be updated to reflect the correct validation rules.",
+    "steps_to_reproduce": [
+      "Navigate to PO page",
+      "Click on New PO",
+      "Populate all fields except Part Number",
+      "Click Add",
+      "Observe"
+    ],
+    "expected_after_fix": "Validation for part Number field should trigger Part should not be added to the PO unless all mandatory fields are populated",
+    "original_actual": "s:",
+    "has_usable_repro": true,
+    "labels": [
+      "QAcomplete",
+      "Staging_Verified"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "SV-4697",
+    "summary": "Scrolling issue on Customer Payments list causes page to jump back to top",
+    "status": "Done",
+    "assignee": "Aleksa Toljic",
+    "type": "Bug",
+    "fix_version": "v0.44",
+    "release_source": [
+      "v0.44 Bug Fixes"
+    ],
+    "area": "payments / ShopPay",
+    "reported_issue": "When the user attempts to scroll through payments under a customer profile, the list automatically jumps back to the top, preventing navigation to older payment records. The issue persists across browsers and after cache refresh or re-login.\n\nCustomer Impact:\nThe customer The Shop Truck & Trailer (Kirstie Doi) is unable to view older payments for Riverbend Moving and Storage, which is affecting her ability to resolve accounting issues. Any customer with larger lists of payments will be unable to make payments in ShopView and is fully blocked from the functionality.",
+    "steps_to_reproduce": [
+      "Go to Customers > Riverbend Moving and Storage.",
+      "Open the Payments tab.",
+      "Attempt to scroll down through the list of payments.",
+      "Observe that the view automatically jumps back to the top of the list."
+    ],
+    "expected_after_fix": "User should be able to scroll smoothly through the entire payment history without the screen jumping back.",
+    "original_actual": "The screen continuously jumps back to the top of the payment list, making it impossible to reach older payments.",
+    "has_usable_repro": true,
+    "labels": [
+      "QAcomplete",
+      "Staging_Verified"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "SV-4716",
+    "summary": "Regression - Part Cost Disappears When Picking or Receiving a Part",
+    "status": "Done",
+    "assignee": "Nebojsa Miskovic",
+    "type": "Bug",
+    "fix_version": "v0.44",
+    "release_source": [
+      "v0.44 Bug Fixes"
+    ],
+    "area": "parts / inventory",
+    "reported_issue": "Customer Name: Goguen Truck & Trailer Repairs\nNumber of Users: 20\nDate Reported: October 22, 2025\nEnvironment: Production\n\n---\n\nSummary:\nWhen picking or receiving a part, the part cost field intermittently disappears, causing the cost value to display as blank in the work order line.\n\n---\n\nDescription:\nThe issue occurs when a user attempts to pick or receive a part. After the part is picked, the cost value vanishes, even though the markup percentage and extended total remain visible.\n\nThe attached screenshot shows one of two identical parts, one displaying the cost correctly, while the other shows a blank cost field after being picked.\n\n‌\n\nThis issue was reported by Goguen Truck & Trailer ...",
+    "steps_to_reproduce": [
+      "Open any work order.",
+      "Add a part from inventory.",
+      "Pick or receive the part.",
+      "Observe that in some cases, the part cost disappears while other fields remain visible."
+    ],
+    "expected_after_fix": "Part cost should remain visible and consistent before and after the part is picked or received.",
+    "original_actual": "Part cost becomes blank after picking or receiving the part.",
+    "has_usable_repro": true,
+    "labels": [
+      "QAcomplete",
+      "Staging_Verified"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "SV-4722",
+    "summary": "Bug: First page of downloaded invoice appears blank — invoice content starts from page 2",
+    "status": "Done",
+    "assignee": "Dipesh Changawala",
+    "type": "Bug",
+    "fix_version": "v0.44",
+    "release_source": [
+      "v0.44 Bug Fixes"
+    ],
+    "area": "invoicing / accounting",
+    "reported_issue": "When generating and downloading an invoice that includes a long technician story, the first page of the PDF appears blank, and the actual invoice data begins from the second page.\n\nThis occurs consistently when lengthy text (such as detailed technician stories) is included in the invoice body.\n\n### Steps to Reproduce (STRs):\n\n1. Create a Work Order.\n2. Add a Line.\n3. Copy and paste a long text block (provided below) as the Technician Story for that line.\n4. Complete the Work Order.\n5. Review and Create Invoice.\n6. Download the invoice (PDF).\n\nTech Story Content: (Same content which the actual client used)\n\n\nAFTER HOURS CALLOUT\n8:00AM SATURDAY AUGUST 30, 2025.\n\nLine Total $100.00\n\nSERVICE ...",
+    "steps_to_reproduce": [],
+    "expected_after_fix": null,
+    "original_actual": null,
+    "has_usable_repro": false,
+    "labels": [
+      "QAcomplete",
+      "Staging_Verified"
+    ],
+    "notes": "No explicit Steps-to-Reproduce block in description - repro must be inferred from the reported issue."
+  },
+  {
+    "key": "SV-5037",
+    "summary": "Reports – Advisor Analysis Report Totals Do Not Match Sales Report or Service Advisor Closers",
+    "status": "Done",
+    "assignee": "Stefan Mitrovic",
+    "type": "Bug",
+    "fix_version": "v0.47.hotfix-2",
+    "release_source": [
+      "v0.44 Regressions"
+    ],
+    "area": "reports",
+    "reported_issue": "### What happened:\n\nClient reports that the Advisor Analysis report is showing incorrect or incomplete data, and totals do not match:\n\n* Sales Report totals\n* Service Advisor Closers data",
+    "steps_to_reproduce": [
+      "Go to Reports → Advisor Analysis.",
+      "Select This Month as the date range.",
+      "Observe totals — system only shows invoices starting Nov 12 onward.",
+      "Now open Reports → Sales.",
+      "Select the same This Month date range.",
+      "Observe Sales Report shows full month results, including Nov 3, 4, etc.",
+      "Compare subtotals — Advisor Analysis shows \\~$39,531.33, while Sales shows $124,736.36.",
+      "Test with different filters (\"Today\", \"Yesterday\", “This Month”).",
+      "Observe inconsistent or missing data in Advisor Analysis.",
+      "Optional: Compare closers/advisors assigned to invoices vs what Advisor Analysis shows."
+    ],
+    "expected_after_fix": "subtotals for advisors",
+    "original_actual": null,
+    "has_usable_repro": true,
+    "labels": [],
+    "notes": ""
+  },
+  {
+    "key": "SV-5047",
+    "summary": "Bug: Core part price should not appear as $0 under the header \"Rate\".",
+    "status": "Ready to Fix",
+    "assignee": "Unassigned",
+    "type": "Bug",
+    "fix_version": null,
+    "release_source": [
+      "v0.44 Regressions"
+    ],
+    "area": "parts / inventory",
+    "reported_issue": "Environment: Staging/Production",
+    "steps_to_reproduce": [
+      "Request-order-receive a special order part on a line (Set the core price as $10)",
+      "Do not press OK/Not OK",
+      "Observe The Core price appears as $0 under the header “Rate”(which is absolutely wrong)"
+    ],
+    "expected_after_fix": "The Core price under the header “RATE” should show the full core price if the OK/Not OK status is unconfirmed.",
+    "original_actual": null,
+    "has_usable_repro": true,
+    "labels": [],
+    "notes": "No fixVersion set on ticket."
+  },
+  {
+    "key": "SV-5052",
+    "summary": "Work Orders – Discrepancy Between Received Parts and Work Order Display (Only One Part Appears Even Though Two Were Received)",
+    "status": "OBSOLETE",
+    "assignee": "Unassigned",
+    "type": "Bug",
+    "fix_version": null,
+    "release_source": [
+      "v0.44 Regressions"
+    ],
+    "area": "purchase orders / vendor",
+    "reported_issue": "### What happened:\n\nOn Work Order S-32, the customer received two DEF Fluid parts and added the vendor invoice number.\n Initially, the work order displayed:\n\n* 2 parts received\n* 1 part waiting to be received\n* The system shows 2 received part on the work order\n* BUT the Vendor Invoices screen correctly shows both parts received\n* Searching the vendor transaction history also shows one received entries\n\nHowever, the work order itself only displays one of the received parts, and the second received part is missing completely.\n\n### Where it happened:\n\n* Screen 1: Work Order → S-32 → Parts\n* Screen 2: Parts → Vendor Invoice Receiving\n* Screen 3: Parts → Vendor Invoices list\n* Client: _Maktech ...",
+    "steps_to_reproduce": [
+      "Open Work Order S-32.",
+      "Receive two DEF Fluid parts from vendor O’Reilly Auto Parts.",
+      "Add vendor invoice number (e.g., 0333-355680).",
+      "Work order shows:",
+      "2 received",
+      "1 awaiting",
+      "The work order:",
+      "Only 2 received line remains.",
+      "Open Vendor Invoices → Invoice 0333-355680 / 0333-355682:",
+      "Shows both items received.",
+      "Search parts under vendor transactions:",
+      "Shows one receipt entries.",
+      "Work order still displays only one part."
+    ],
+    "expected_after_fix": null,
+    "original_actual": null,
+    "has_usable_repro": true,
+    "labels": [],
+    "notes": "Ticket status is OBSOLETE - confirm still in scope before testing.; No fixVersion set on ticket."
+  },
+  {
+    "key": "SV-4600",
+    "summary": "Apply vendor credit, leave remaining balance if larger than bill",
+    "status": "Done",
+    "assignee": "parth fadadu",
+    "type": "Bug",
+    "fix_version": "v0.48",
+    "release_source": [
+      "v0.48 Bug Fixes"
+    ],
+    "area": "invoicing / accounting",
+    "reported_issue": "Environment: Staging and Production\n\nIssue Description:\nWhen applying a vendor credit during payment, if the credit amount is greater than the bill amount, the system incorrectly marks the entire credit as spent. It does not leave the remaining balance to be claimed on another payment.\n\nExample:\n\n* Vendor payment amount: $125\n* Credit amount: $200",
+    "steps_to_reproduce": [
+      "Navigate to the Vendor Unpaid Invoices tab.",
+      "Select one payment and one credit where the credit amount is greater than the payment amount.",
+      "Click on New Payment.",
+      "Create the new payment.",
+      "Observe that the entire credit amount is consumed, and the remaining balance available to be claimed at a later time."
+    ],
+    "expected_after_fix": null,
+    "original_actual": null,
+    "has_usable_repro": true,
+    "labels": [
+      "QAcomplete",
+      "QB-Relevant",
+      "Staging_Verified"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "SV-5105",
+    "summary": "Mobile Bug: Work Orders List Not Loading on Mobile – “Failed To Load More Work Orders”",
+    "status": "Done",
+    "assignee": "Stefan Mitrovic",
+    "type": "Bug",
+    "fix_version": "v0.48.hotfix-1",
+    "release_source": [
+      "v0.48 Regressions"
+    ],
+    "area": "work orders",
+    "reported_issue": "Environment: Mobile device (browser), SV Production/Staging\n\nIssue: Work Orders fail to load on mobile. Immediately upon opening the Work Orders page, the app throws the error “Failed To load More Work Orders.”\n\n### Steps to Reproduce (STRs):\n\n1. Log in to your ShopView account on a mobile device.\n2. From the main menu, tap Work Orders.\n3. Observe the loading behavior.\n\n### Observed Behavior:\n\n* As soon as Work Orders is selected, the screen displays an error:\n  “Failed To load More Work Orders.”\n* No Work Orders load.\n\n### Expected Behavior:\n\n* The Work Orders list should load normally on mobile devices without errors.\n* No “Failed To load More Work Orders” error should appear unless ...",
+    "steps_to_reproduce": [],
+    "expected_after_fix": null,
+    "original_actual": null,
+    "has_usable_repro": false,
+    "labels": [
+      "Staging_Verified"
+    ],
+    "notes": "No explicit Steps-to-Reproduce block in description - repro must be inferred from the reported issue."
+  },
+  {
+    "key": "SV-5115",
+    "summary": "Mobile View - Techs cannot clock into work orders",
+    "status": "Done",
+    "assignee": "Stefan Mitrovic",
+    "type": "Bug",
+    "fix_version": "v0.48.hotfix-2",
+    "release_source": [
+      "v0.48 Regressions"
+    ],
+    "area": "work orders",
+    "reported_issue": "Multiple users reporting that techs cannot clock into work orders on the mobile version of the app, the start button is missing.\n\n‌\n\nAlso receiving complaints about:\n\n* Unable to sort the main WO list page (by number, status or customer\n* error message when loading the work orders page\n\n‌\n\n‌\n\n—\ncreated by Cody McCarthy (cody@shopview.com) in Intercom",
+    "steps_to_reproduce": [],
+    "expected_after_fix": null,
+    "original_actual": null,
+    "has_usable_repro": false,
+    "labels": [
+      "Hotfix"
+    ],
+    "notes": "No explicit Steps-to-Reproduce block in description - repro must be inferred from the reported issue."
+  },
+  {
+    "key": "SV-5122",
+    "summary": "Mobile View – Part Pick Option and Part Number Display Not Available on Work Order Lines",
+    "status": "Done",
+    "assignee": "Stefan Mitrovic",
+    "type": "Bug",
+    "fix_version": "v0.48.hotfix-3",
+    "release_source": [
+      "v0.48 Regressions"
+    ],
+    "area": "parts / inventory",
+    "reported_issue": "### What happened\n\nOn the mobile version of the application, users are unable to:\n\n1. Pick a part from the work order line\n2. See the part number displayed for parts on that line\n\nThe part pick button is  missing on the mobile view for the users, and part numbers do not appear where they should.\n This prevents users from adding or modifying parts while using the mobile interface.\n\n### Where it happened\n\n* Platform: Mobile version (browser/mobile view)\n* Feature: Work Orders → Lines → Parts section\n* Client: West Side Lube & Truck Repair Ltd\n* Reported by: Nicole Smith\n* Users: 9\n\n### Why it’s a problem\n\n* User cannot pick parts\n* Part numbers are invisible, making it impossible to identify ...",
+    "steps_to_reproduce": [
+      "Open the mobile version of the application (responsive/mobile view).",
+      "Navigate to any test Work Order.",
+      "Open a line on the work order.",
+      "Go to the Request Parts from the inventory.",
+      "Observe that:",
+      "No option appears to Pick the part on the line",
+      "Part numbers do not display"
+    ],
+    "expected_after_fix": null,
+    "original_actual": null,
+    "has_usable_repro": true,
+    "labels": [
+      "Staging_Verified"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "SV-5123",
+    "summary": "Mobile View – Invoice Layout Under Finance Tab Not Displaying Correctly",
+    "status": "Open",
+    "assignee": "Unassigned",
+    "type": "Bug",
+    "fix_version": null,
+    "release_source": [
+      "v0.48 Regressions"
+    ],
+    "area": "invoicing / accounting",
+    "reported_issue": "### What happened\n\nWhen viewing an invoice under the Finance tab in the mobile version, the invoice layout does not render properly.\n Elements appear misaligned, clipped, or out of order, making the invoice difficult or impossible to read on mobile.\n\nThis issue affects the mobile viewing experience for customers and technicians who rely on mobile devices to review invoice details.\n\n### Where it happened\n\n* Platform: Mobile view / responsive layout\n* Feature: Work Order → Finance tab → Invoice preview\n* Reported by: Tyler Brooker\n\n### How to Check:\n\n1. Open the application on a mobile device or switch browser to mobile responsive mode.\n2. Navigate to any test Work Order.\n3. Go to the Finance ...",
+    "steps_to_reproduce": [],
+    "expected_after_fix": null,
+    "original_actual": null,
+    "has_usable_repro": false,
+    "labels": [],
+    "notes": "No fixVersion set on ticket.; No explicit Steps-to-Reproduce block in description - repro must be inferred from the reported issue."
+  },
+  {
+    "key": "SV-5125",
+    "summary": "Mobile View: Core OK / Not OK Buttons Not Visible for Technicians",
+    "status": "Done",
+    "assignee": "Stefan Mitrovic",
+    "type": "Bug",
+    "fix_version": "v0.48.hotfix-3",
+    "release_source": [
+      "v0.48 Regressions"
+    ],
+    "area": "parts / inventory",
+    "reported_issue": "In the mobile viewport, technicians are unable to mark a picked core part as OK or Not OK because the corresponding UI buttons do not appear.\nThis functionality works in desktop view but is missing entirely from the mobile layout.\n\nThis blocks technicians from completing required core return workflows on mobile.\n\n# Steps to Reproduce (STRs):\n\n1. Log in on a mobile browser using a Technician account.\n2. Open any Work Order.\n3. Request a part with a core.\n4. Pick the part.\n5. Observe the UI options for the picked part.\n\n# Actual Result:\n\n* The OK / Not OK buttons do not appear in mobile view.\n\n# Expected Result:\n\n* The mobile UI should display the OK and Not OK options the same way as ...",
+    "steps_to_reproduce": [],
+    "expected_after_fix": null,
+    "original_actual": null,
+    "has_usable_repro": false,
+    "labels": [
+      "Staging_Verified"
+    ],
+    "notes": "No explicit Steps-to-Reproduce block in description - repro must be inferred from the reported issue."
+  },
+  {
+    "key": "SV-5128",
+    "summary": "Mobile View: Part Number is not appearing in the Work Order instead it shows Part Description.",
+    "status": "OBSOLETE",
+    "assignee": "Stefan Mitrovic",
+    "type": "Bug",
+    "fix_version": null,
+    "release_source": [
+      "v0.48 Regressions"
+    ],
+    "area": "parts / inventory",
+    "reported_issue": "Issue: Part Number is not appearing in the Work Order instead it shows Part Description.\n\nDesktop view:\n\nMobile View:",
+    "steps_to_reproduce": [],
+    "expected_after_fix": "The Part number and Description should appear for main part. For the Core part it is already showing the part number.",
+    "original_actual": null,
+    "has_usable_repro": false,
+    "labels": [],
+    "notes": "Ticket status is OBSOLETE - confirm still in scope before testing.; No fixVersion set on ticket.; No explicit Steps-to-Reproduce block in description - repro must be inferred from the reported issue."
+  },
+  {
+    "key": "SV-5132",
+    "summary": "Work Orders – Technicians Cannot Add Parts; “Save & Close” Does Nothing",
+    "status": "Done",
+    "assignee": "Stefan Mitrovic",
+    "type": "Bug",
+    "fix_version": "v0.48.hotfix-4",
+    "release_source": [
+      "v0.48 Regressions"
+    ],
+    "area": "parts / inventory",
+    "reported_issue": "# This is an Account Specific issue.\n\n* Feature: Work Orders → Parts → Add Part\n* Affected Users: Technician role only\n* Client: Gearhead Mechanical Ltd\n* Reported by: Chris Soetaert\n* Users: 5\n\n###\nWhat happened\n\nTechnicians are unable to add a part to a work order.\n When they open the Add Part window and click Save & Close, the modal does nothing — it does not close, and the part is not added to the work order.\n\nThis issue occurs only for technician users.\n Other roles are able to add and save parts normally.\n\n‌\n\n### Why it’s a problem\n\n* Technicians cannot add required parts to work orders\n* Causes workflow interruption in the shop\n* Advisors must manually intervene to add parts\n* ...",
+    "steps_to_reproduce": [
+      "Unable to reproduce locally."
+    ],
+    "expected_after_fix": null,
+    "original_actual": null,
+    "has_usable_repro": true,
+    "labels": [
+      "Staging_Verified",
+      "Support"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "SV-5187",
+    "summary": "BUG – Mobile Sessions Logging Users Out Automatically",
+    "status": "Done",
+    "assignee": "Milomir Kotlajic",
+    "type": "Bug",
+    "fix_version": "v0.51, v0.52",
+    "release_source": [
+      "v0.48 Regressions"
+    ],
+    "area": "mobile",
+    "reported_issue": "## Account-Specific Issue\n\nReported by: Cody\n Customer: Haggai Truck Center\n Number of Users: 6\n MRR: $506\n Date Requested: 12/11/25\n\n### Description of the Issue\n\nUsers on mobile devices are being logged out automatically after roughly one hour of inactivity. This appears to be happening consistently across the customer’s entire team.\n\nThe reporter is unable to reproduce the issue on his own device, suggesting the problem may be isolated to specific accounts, devices, or session-handling conditions on mobile.\n\nThis behavior causes interruptions in workflow and forces users to repeatedly log back into the system.\n\n### Impact\n\n* Frequent, unexpected session logouts\n* Disrupted workflow for ...",
+    "steps_to_reproduce": [
+      "Unable to reproduce locally."
+    ],
+    "expected_after_fix": null,
+    "original_actual": null,
+    "has_usable_repro": true,
+    "labels": [
+      "QAcomplete",
+      "Staging_Verified",
+      "Support"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "SV-5269",
+    "summary": "BE - Incorrect Payment Amount Displayed When Invoice Is Paid Using Credit Balance",
+    "status": "Done",
+    "assignee": "Dusan Bulovan",
+    "type": "Bug",
+    "fix_version": null,
+    "release_source": [
+      "v0.48 Regressions"
+    ],
+    "area": "invoicing / accounting",
+    "reported_issue": "Reported by @Jasna Mladenovic\n\n* Module: Customers → Payments / Unpaid Invoices\n* Payment Type: Credit Balance\n\nIssue Description\n\nWhen an invoice is paid using a customer’s existing credit balance, the Payment entry incorrectly shows the remaining credit amount instead of the invoice amount that was actually paid.\n\nIn the attached example, an invoice of $10.00 USD was paid using a credit balance of $14.18 USD. However, the system records the payment as $4.18, which is the _remaining credit_, not the _payment applied to the invoice_.\n\n‌",
+    "steps_to_reproduce": [],
+    "expected_after_fix": "The Payment row should show $10.00 (the invoice amount paid) The remaining credit ($4.18) should:",
+    "original_actual": null,
+    "has_usable_repro": false,
+    "labels": [
+      "Jasna_needed"
+    ],
+    "notes": "No fixVersion set on ticket.; No explicit Steps-to-Reproduce block in description - repro must be inferred from the reported issue."
+  },
+  {
+    "key": "SV-5277",
+    "summary": "New Contact Modal Does not appear after Creating Customer",
+    "status": "Open",
+    "assignee": "Unassigned",
+    "type": "Bug",
+    "fix_version": null,
+    "release_source": [
+      "v0.48 Regressions"
+    ],
+    "area": "customer portal / customers",
+    "reported_issue": "Environment\n\n* Environment: Staging\n* Module: Customers\n* Reproducibility: Consistent on Staging\n* Production: Not reproducible\n\nIssue Description\n\nAfter creating a new customer on Staging, the system does not open the new contact modal. (Sometimes the modal appears briefly and then closes automatically)",
+    "steps_to_reproduce": [],
+    "expected_after_fix": null,
+    "original_actual": null,
+    "has_usable_repro": false,
+    "labels": [],
+    "notes": "No fixVersion set on ticket.; No explicit Steps-to-Reproduce block in description - repro must be inferred from the reported issue."
+  },
+  {
+    "key": "SV-5296",
+    "summary": "BUG-Work order fails to open and shows error message - Workorder Invalidated",
+    "status": "Done",
+    "assignee": "Dusan Bulovan",
+    "type": "Bug",
+    "fix_version": null,
+    "release_source": [
+      "v0.48 Regressions"
+    ],
+    "area": "work orders",
+    "reported_issue": "## Account-Specific Issue\n\nReported by: Ashley Cochrum\nCustomer: Gene's Wrecker, Tire & Truck Repair LLC\nUsers: 9\nWork Order: S-30660\nURL:[ https://app.shopview.com/workorders](https://app.shopview.com/workorders)\n\n### What happened\n\nWhen attempting to open Work Order S-30660, the system fails to load the work order and instead displays an error message.\n\nThe user is unable to access the work order at all.\n\nError message shown:\n\n_Ooooops! An error occurred_\n_For more information, please contact support. Include your request ID:_\n\\[a8b14923-e0ad-4dbf-a3f4-7c6e25348944\\]\n\n## Steps to Reproduce\n\nUnable to reproduce on test account.\n\n## Steps to Observe in Client’s Account\n\n1. Log in to the ...",
+    "steps_to_reproduce": [
+      "Unable to reproduce on test account."
+    ],
+    "expected_after_fix": null,
+    "original_actual": null,
+    "has_usable_repro": true,
+    "labels": [
+      "Support"
+    ],
+    "notes": "No fixVersion set on ticket."
+  },
+  {
+    "key": "SV-5321",
+    "summary": "FE BUG Finance tab does not auto-refresh after updating shop supplies and tax settings",
+    "status": "Done",
+    "assignee": "Nebojsa Miskovic",
+    "type": "Bug",
+    "fix_version": "v0.52",
+    "release_source": [
+      "v0.48 Regressions"
+    ],
+    "area": "invoicing / accounting",
+    "reported_issue": "## Reported by\n\n* Reported by: Tyler Brooker\n\n‌\n\n---\n\n### What happened\n\nWhen shop supplies and tax settings are updated from the Financial Info tab while a user is already viewing the Finance tab on a work order, the Finance tab does not automatically refresh to reflect the new values.\n\nThe updated shop supplies and tax amounts only appear after the user manually refreshes the page or navigates away and comes back.\n\n‌\n\n---\n\n## Steps to Reproduce\n\n1. Open any test Work Order.\n2. Navigate to the Finance tab.\n3. Open the Financial Info tab or section.\n4. Update shop supplies and/or tax settings.\n5. Save the changes.\n6. See on the Finance tab without refreshing the page.\n7. Observe that the ...",
+    "steps_to_reproduce": [
+      "Open any test Work Order.",
+      "Navigate to the Finance tab.",
+      "Open the Financial Info tab or section.",
+      "Update shop supplies and/or tax settings.",
+      "Save the changes.",
+      "See on the Finance tab without refreshing the page.",
+      "Observe that the values have not updated.",
+      "Refresh the page and observe that the updated values now appear."
+    ],
+    "expected_after_fix": null,
+    "original_actual": null,
+    "has_usable_repro": true,
+    "labels": [
+      "QAcomplete",
+      "Staging_Verified"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "SV-3274",
+    "summary": "FE Edit What Are You Doing",
+    "status": "Done",
+    "assignee": "Nebojsa Miskovic",
+    "type": "Bug",
+    "fix_version": "v0.54",
+    "release_source": [
+      "v0.54 Bug Fixes"
+    ],
+    "area": "work orders",
+    "reported_issue": "When adding a new line you are only able to edit What Are You Doing, by moving your cursor if you haven’t clicked out of it. If you click out you have to delete the whole thing and type it out again.",
+    "steps_to_reproduce": [
+      "Add new line → type something in what are you doing → don’t click out and you can edit"
+    ],
+    "expected_after_fix": null,
+    "original_actual": null,
+    "has_usable_repro": true,
+    "labels": [
+      "QAcomplete",
+      "Staging_Verified",
+      "Support",
+      "Verified_on_prod"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "SV-4465",
+    "summary": "BE Labor amount missing thousands separator in totals section",
+    "status": "Done",
+    "assignee": "Milomir Kotlajic",
+    "type": "Bug",
+    "fix_version": "v0.54",
+    "release_source": [
+      "v0.54 Bug Fixes"
+    ],
+    "area": "invoicing / accounting",
+    "reported_issue": "Reported by: Grand Truck Trailer\nDate Reported: Sept 16, 2025\n\nDescription:\nIn the invoice totals block, the Labor amount is rendered without a thousands separator when the value is four digits or more. Example shows $1280.00 instead of $1,280.00. Screenshot attached.",
+    "steps_to_reproduce": [
+      "Open a work order with Labor total over 999",
+      "View or generate the invoice totals section or PDF.",
+      "Observe the Labor line item formatting."
+    ],
+    "expected_after_fix": "Labor total should display as $1,280.00 using standard US number formatting. The same formatting rule should apply consistently to Parts, Shop supplies, Subtotal, Tax, and Total.",
+    "original_actual": "Labor total displays as $1280.00 with no thousands separator.",
+    "has_usable_repro": true,
+    "labels": [
+      "Prod_Verified",
+      "QAcomplete",
+      "Staging_Verified",
+      "Support"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "SV-4526",
+    "summary": "Invoice – Printed invoice not reflecting all applied payments",
+    "status": "Done",
+    "assignee": "Milomir Kotlajic",
+    "type": "Bug",
+    "fix_version": "v0.54",
+    "release_source": [
+      "v0.54 Bug Fixes"
+    ],
+    "area": "invoicing / accounting",
+    "reported_issue": "Description\n\n* What happened: An invoice with multiple payments applied shows the correct balance in the Unpaid Invoices list, but the finance and printed invoice PDF still reflect an incorrect balance.\n* Where it happened:\n\n    * Customer: Gene’s Wrecker Tire Truck Repair LLC\n    * Invoice: Work Order: S-30199\n    * Screen: Unpaid Invoices vs Printed Invoice PDF\n\n* Why it’s a problem: Customers receive invoices with an incorrect balance, which creates confusion and potential accounting errors.\n\n### Description:\n\nWhen ShopView is open in multiple tabs and payments are made/deleted simultaneously, the system does not correctly sync state across tabs. This leads to a discrepancy between the ...",
+    "steps_to_reproduce": [],
+    "expected_after_fix": "The printed invoice should reflect the correct balance after all applied payments, matching the balance shown in the Unpaid Invoices tab.",
+    "original_actual": "The printed invoice shows an outdated/incorrect balance that does not include all applied payments, while the Unpaid Invoices tab shows the correct reduced balance.",
+    "has_usable_repro": false,
+    "labels": [
+      "Duplicate_Tab",
+      "Prod_Verified",
+      "QAcomplete",
+      "Staging_Verified",
+      "Support"
+    ],
+    "notes": "No explicit Steps-to-Reproduce block in description - repro must be inferred from the reported issue."
+  },
+  {
+    "key": "SV-4776",
+    "summary": "FE Bug: Part Sales -> Parts -> Margin column after it is edited it shows wrong sell price.",
+    "status": "Done",
+    "assignee": "Nikola Milosevic",
+    "type": "Bug",
+    "fix_version": "v0.54",
+    "release_source": [
+      "v0.54 Bug Fixes"
+    ],
+    "area": "parts / inventory",
+    "reported_issue": "STRs:\n\n* Navigate to Parts → Part Sales\n* Complete the process of requesting a Special Order part (As shown in the screen recording)\n* Change the value of the Margin\n* Observe the wrong sell price being automatically calculated.",
+    "steps_to_reproduce": [
+      "Navigate to Parts → Part Sales",
+      "Complete the process of requesting a Special Order part (As shown in the screen recording)",
+      "Change the value of the Margin",
+      "Observe the wrong sell price being automatically calculated."
+    ],
+    "expected_after_fix": "s:",
+    "original_actual": null,
+    "has_usable_repro": true,
+    "labels": [
+      "Staging_Verified"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "SV-4777",
+    "summary": "Work Orders – Status filter resets after switching tabs",
+    "status": "Done",
+    "assignee": "Nebojsa Miskovic",
+    "type": "Bug",
+    "fix_version": "v0.54",
+    "release_source": [
+      "v0.54 Bug Fixes"
+    ],
+    "area": "work orders",
+    "reported_issue": "What happened:\nWhen a user filters the Work Orders page by “Status” (e.g., selects “Estimates”), it correctly shows the filtered results. However, if the user switches to another tab (such as “Work Order” or any other tab) and then returns to the Work Orders page, the filter resets to default, and the user must reapply the filter.\n\nWhere it happened:\nScreen: Work Orders page\n\nFeature: \"By Status\" filter\n\nAffects: All users\n\nWhy it’s a problem:\nThis causes inconvenience for users who frequently switch between tabs while reviewing work orders, as they have to reapply the filter each time, reducing efficiency and user experience.",
+    "steps_to_reproduce": [
+      "Go to Work Orders page.",
+      "Click on the Status filter dropdown.",
+      "Select one or more options (e.g., Estimates).",
+      "Navigate to another tab (e.g., Work Order).",
+      "Return to the Work Orders page.",
+      "Observe that the filter resets to default."
+    ],
+    "expected_after_fix": "The selected Status filters should remain applied even after navigating away from the page and returning.",
+    "original_actual": "The Status filter resets to default when switching tabs, requiring the user to reselect the filters.",
+    "has_usable_repro": true,
+    "labels": [
+      "QAcomplete",
+      "Staging_Verified",
+      "Verified_on_prod"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "SV-4829",
+    "summary": "Purchase Order Details: Add Core to the Part",
+    "status": "Done",
+    "assignee": "parth fadadu",
+    "type": "Bug",
+    "fix_version": "v0.54",
+    "release_source": [
+      "v0.54 Bug Fixes"
+    ],
+    "area": "parts / inventory",
+    "reported_issue": "Environment:\nStage & Prod\n\n‌\n\nIssue:\nEditing Purchase Order by adding a Inventory Part without core than editing that same part by assigning core to it will result in incorrect Core Description.\n\nIssue can be also reproduced by adding the Inventory Part with Core (but removing core before saving changes) an then editing part by assigning core to it.",
+    "steps_to_reproduce": [
+      "Open any no-received Purchase Order (PO)",
+      "Add Inventory part to the order without a core",
+      "Edit that same part and assign core to it",
+      "Observe"
+    ],
+    "expected_after_fix": "Core Description is displayed as Core for $PartDescription",
+    "original_actual": "Core Description is displayed as $PartNumber",
+    "has_usable_repro": true,
+    "labels": [
+      "QAcomplete",
+      "Staging_Verified",
+      "Verified_on_prod"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "SV-5000",
+    "summary": "BE Work Orders – Sorting Not Working for Total Price, and Lines Columns Across Multiple Pages",
+    "status": "Done",
+    "assignee": "Vladimir Radojcic",
+    "type": "Bug",
+    "fix_version": "v0.54",
+    "release_source": [
+      "v0.54 Bug Fixes"
+    ],
+    "area": "work orders",
+    "reported_issue": "### What happened:\n\nThe sorting functionality is not working for key columns on multiple work order–related pages.\n Specifically, the Total Price, and Lines columns do not sort correctly when clicked.\n\nThis issue occurs across all major areas where work orders are listed:\n\n1. Main Work Orders page\n2. Customer profile → Work Orders tab\n3. Asset profile → Work Orders tab\n\nWhen users attempt to sort by these columns, nothing happens or the sort does not behave as expected. The table remains unchanged, making it impossible to organize or prioritize work orders based on these fields.\n\n### Where it happened:\n\n* Feature: Work Orders → Various list views\n* Pages Affected:\n\n    * Main Work Orders ...",
+    "steps_to_reproduce": [
+      "#### Main Work Orders Page",
+      "Navigate to Work Orders (main list).",
+      "Attempt to sort by  Total Price, or Lines.",
+      "Observe that the sorting does not work or the list does not update."
+    ],
+    "expected_after_fix": null,
+    "original_actual": null,
+    "has_usable_repro": true,
+    "labels": [
+      "Prod_Verified",
+      "QAcomplete",
+      "Staging_Verified"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "SV-5168",
+    "summary": "BE BUG – “N/A” Displays Before Asset Name When Asset Year Is Left Blank",
+    "status": "Done",
+    "assignee": "Vladimir Radojcic",
+    "type": "Bug",
+    "fix_version": "v0.54",
+    "release_source": [
+      "v0.54 Bug Fixes"
+    ],
+    "area": "invoicing / accounting",
+    "reported_issue": "### Customer Details\n\n* Customer Name: Straley Ag Repair LLC\n* Reported by: James Straley\n* Users: 1\n\n### What happened:\n\nWhen creating an asset and leaving the Year field blank (because the shop does not use year/model tracking), the system displays “N/A” on the invoice before the asset name.\n\nHowever, if the user edits the asset, enters a year, saves it, and then edits it again and removes the year, the invoice no longer shows “N/A”.\n\nThis indicates the system treats an initially blank year differently from a cleared year, creating inconsistent output.\n\n### Where it happened:\n\n* Work Orders → Finance → Invoice Preview\n* Asset block (Year + Asset Name display)\n\n### Why it’s a problem:\n\n* ...",
+    "steps_to_reproduce": [
+      "Create a new asset and leave the Year field blank.",
+      "Attach the asset to a test work order.",
+      "Go to the Finance tab and open the invoice preview.",
+      "See that the Asset section displays:"
+    ],
+    "expected_after_fix": null,
+    "original_actual": null,
+    "has_usable_repro": true,
+    "labels": [
+      "Prod_Verified",
+      "Staging_Verified"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "SV-5194",
+    "summary": "BUG: Paid work order shows “Invoiced” status with incomplete line and no reverse option",
+    "status": "Done",
+    "assignee": "Milomir Kotlajic",
+    "type": "Bug",
+    "fix_version": "v0.54",
+    "release_source": [
+      "v0.54 Bug Fixes"
+    ],
+    "area": "work orders",
+    "reported_issue": "### ACCOUNT-SPECIFIC ISSUE\n\nCustomer: SRP Automotive & Truck Repair\nReported by: SRP Service Dept\nUsers: 4\nWork Order: S-132\nInvoice: INV-S-132\nURL:[ https://app.shopview.com/workorders/eb5b2925-90ec-40a5-8ea1-8b25e6836f2e/finance](https://app.shopview.com/workorders/eb5b2925-90ec-40a5-8ea1-8b25e6836f2e/finance)\n\n### What happened\n\nThe customer has an old work order that was already paid in full. However:\n\n* The work order status still shows Invoiced instead of Paid.\n* One line on the work order appears as incomplete, even though the invoice exists and payment was made.\n* On the Finance tab / invoice view, the Reverse option is not available.\n* Because the reverse option is missing, the ...",
+    "steps_to_reproduce": [],
+    "expected_after_fix": null,
+    "original_actual": null,
+    "has_usable_repro": false,
+    "labels": [
+      "Duplicate_Tab",
+      "Prod_Verified",
+      "QAcomplete",
+      "Staging_Verified",
+      "Support"
+    ],
+    "notes": "No explicit Steps-to-Reproduce block in description - repro must be inferred from the reported issue."
+  },
+  {
+    "key": "SV-5750",
+    "summary": "BE BUG: Invoice marked as paid but payment not visible under customer",
+    "status": "Done",
+    "assignee": "Milomir Kotlajic",
+    "type": "Bug",
+    "fix_version": "v0.54",
+    "release_source": [
+      "v0.54 Bug Fixes"
+    ],
+    "area": "invoicing / accounting",
+    "reported_issue": "## Account-Specific Issue\n\nCompany: Caledonia Truck & Trailer Repair Inc.\nContact: Samantha Nealon\nNumber of Users: 13\n—--------------------------------------------------------------------------------------------------------------------------\n\nCustomer: Paul Kolobutin\nWork Order: S-1028\n\n‌\n\n---\n\n### What happened\n\nInvoice S-1028 shows as Paid when viewed from the Work Order screen.\n\nHowever:\n\n* Under Customers → Paul Kolobutin, there are:\n\n    * No unpaid invoices\n    * No payments listed\n\n* The invoice appears as paid but the associated payment does not display under the customer record.\n* The invoice is still appearing in the A/R Aging Summary Report as outstanding/unpaid.\n* Attempting to ...",
+    "steps_to_reproduce": [
+      "Unable to reproduce"
+    ],
+    "expected_after_fix": null,
+    "original_actual": null,
+    "has_usable_repro": true,
+    "labels": [
+      "QAcomplete",
+      "Support"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "SV-5868",
+    "summary": "BUG: Part category not available for assignment to a different matrix",
+    "status": "Done",
+    "assignee": "Nebojsa Miskovic",
+    "type": "Bug",
+    "fix_version": "v0.54",
+    "release_source": [
+      "v0.54 Bug Fixes"
+    ],
+    "area": "parts / inventory",
+    "reported_issue": "Reported by: Beutler Diesel Repair\nContact: Cody Beutler\nUsers: 1\n\n---\n\n### What happened\n\nThe client has assigned the “Filters” category to the \"74% Markup\" matrix and now wishes to assign it to the \"Loyal Customer\" matrix.\n\nThe client has deselected the category from the first matrix.\n\nWhen attempting to assign “Filters” to the new matrix, it is not available for selection.\n\n---\n\n### Why it’s a problem\n\n* Customer cannot price his filters correctly\n* Prevents creating estimates and invoices without manually adjusting every item in the filters category\n* Impacts workflow\n* Causes frustration with our platform\n* Further instances of this bug may impact other categories and other ...",
+    "steps_to_reproduce": [
+      "Impersonate Cody Beutler",
+      "Navigate to the Admin panel → Pricing",
+      "Open the 75% Matrix and confirm filters have been de-selected",
+      "Navigate to the Loyal Customer matrix, attempt to select the filters category",
+      "Observe the Filters category is not available for selection"
+    ],
+    "expected_after_fix": null,
+    "original_actual": null,
+    "has_usable_repro": true,
+    "labels": [
+      "QAcomplete",
+      "Staging_Verified",
+      "Verified_on_prod"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "SV-5869",
+    "summary": "Bug: Changing the Estimated Time for a fixed Line total changes the values for Labor Portion/Parts Portion",
+    "status": "Done",
+    "assignee": "Vladimir Radojcic",
+    "type": "Bug",
+    "fix_version": "v0.54",
+    "release_source": [
+      "v0.54 Bug Fixes"
+    ],
+    "area": "work orders",
+    "reported_issue": "Environment:\nProd/Staging\n\nIssue:\nChanging the Estimated Time for a fixed Line total changes the values for Labor Portion/Parts Portion",
+    "steps_to_reproduce": [
+      "Create a WO → Create Line → Set the line to be the Fixed Line total"
+    ],
+    "expected_after_fix": "value for part and labor portion should stay the same if fixed line total is selected",
+    "original_actual": null,
+    "has_usable_repro": true,
+    "labels": [
+      "QAcomplete",
+      "Staging_Verified",
+      "Verified_on_prod"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "SV-5992",
+    "summary": "FE BUG: Unpaid Invoices PDF Export Rendering Incorrect Page Break and Totals Layout",
+    "status": "Done",
+    "assignee": "Nebojsa Miskovic",
+    "type": "Bug",
+    "fix_version": "v0.54",
+    "release_source": [
+      "v0.54 Bug Fixes"
+    ],
+    "area": "invoicing / accounting",
+    "reported_issue": "Customer: Bernadette Whalen\nCompany: Caietti's Truck Repair\nNumber of Users: 8\n\n---\n\n### What happened:\n\nWhen downloading the Unpaid Invoices report for a customer, the rendered PDF layout appears broken.\n\n---\n\n### Why it’s a problem (impact):\n\n* Report formatting looks unprofessional when shared with customers.\n* Totals appear disconnected from their headers.\n* Can cause confusion when reviewing aging balances.\n* Impacts client-facing documentation and accounting reporting.\n\n---\n\n## Steps to Reproduce\n\n1. Go to Reports.\n2. Open Unpaid Invoices for a customer.\n3. Download or export the report as PDF.\n4. Review page layout.\n5. Observe that totals are pushed onto a separate page from the ...",
+    "steps_to_reproduce": [
+      "Go to Reports.",
+      "Open Unpaid Invoices for a customer.",
+      "Download or export the report as PDF.",
+      "Review page layout.",
+      "Observe that totals are pushed onto a separate page from the aging header."
+    ],
+    "expected_after_fix": null,
+    "original_actual": null,
+    "has_usable_repro": true,
+    "labels": [
+      "Prod_Verified",
+      "QAcomplete",
+      "Staging_Verified"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "SV-6086",
+    "summary": "Invoiced hours link takes you to blank page",
+    "status": "Done",
+    "assignee": "Sava Vukosavljev",
+    "type": "Bug",
+    "fix_version": "v0.54",
+    "release_source": [
+      "v0.54 Bug Fixes"
+    ],
+    "area": "invoicing / accounting",
+    "reported_issue": "Clicking Invoiced Hours link takes user to blank page.",
+    "steps_to_reproduce": [
+      "Open Tech Eff. report",
+      "Expand a staff member with data",
+      "Click on Invoiced Tech Hours"
+    ],
+    "expected_after_fix": "The work order opens The user work order line edit modal opens If the user does not have appropriate permissions, they will see an error (open question, do we have an existing error for this scenario?)",
+    "original_actual": null,
+    "has_usable_repro": true,
+    "labels": [
+      "Staging_Verified",
+      "Verified_on_prod"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "SV-6178",
+    "summary": "ShopPay - Update Payment Capture to record actual Stripe fees after payment completion",
+    "status": "Done",
+    "assignee": "Nemanja Djuric",
+    "type": "Bug",
+    "fix_version": "v0.54",
+    "release_source": [
+      "v0.54 Bug Fixes"
+    ],
+    "area": "payments / ShopPay",
+    "reported_issue": "# 1. Store Actual Fees After Payment Completes\n\nUpdate the payment flow to capture and store the actual Stripe fees after payment completion:\n\n* On payment success (via webhook), retrieve:\n\n    * balance_transaction.fee\n    * balance_transaction.fee_details\n\n* Persist the actual Stripe processing fee in our database\n\nThis will ensure accurate fee reporting and eliminate discrepancies caused by international card surcharges.\n\n---\n\n## 2. Provide a clear notice for international Cards Disclaimer\n\n* On the Account Setup Page where we display fees and ‘accept credit cards’, we should make it very clear inline that international cards have this surcharge:\n\n* On the actual payment modal, let’s add ...",
+    "steps_to_reproduce": [],
+    "expected_after_fix": null,
+    "original_actual": null,
+    "has_usable_repro": false,
+    "labels": [
+      "QAComplete_Viktoria_Videnovic",
+      "Staging_Verified",
+      "Support",
+      "Viktoria_Videnovic"
+    ],
+    "notes": "No explicit Steps-to-Reproduce block in description - repro must be inferred from the reported issue."
+  },
+  {
+    "key": "SV-6241",
+    "summary": "BE Part Sale Appears as Work Order Option When Creating Timesheet from Timesheet Activities Report",
+    "status": "Done",
+    "assignee": "Vladimir Radojcic",
+    "type": "Bug",
+    "fix_version": "v0.54",
+    "release_source": [
+      "v0.54 Bug Fixes"
+    ],
+    "area": "reports",
+    "reported_issue": "While creating a new Timesheet entry from the Timesheet Activities Report, the Work Order selection dropdown incorrectly includes Part Sale records.\n\nPart Sales should not be selectable as Work Orders when logging time, as they are not valid entities for timesheet tracking.\n\n---\n\n### Steps to Reproduce (STRs):\n\n1. Navigate to Reports → Timesheet Activities.\n2. Click on Create New Timesheet.\n3. Open the Work Order selection dropdown.\n4. Observe the list of available options.\n\n---\n\n### Actual Result:\n\n* Part Sale IDs (Part Sale #) appear in the Work Order dropdown.\n* Users can potentially select them while creating a timesheet.\n\n---\n\n### Expected Result:\n\n* Only valid Work Orders should ...",
+    "steps_to_reproduce": [],
+    "expected_after_fix": null,
+    "original_actual": null,
+    "has_usable_repro": false,
+    "labels": [
+      "Staging_Verified"
+    ],
+    "notes": "No explicit Steps-to-Reproduce block in description - repro must be inferred from the reported issue."
+  },
+  {
+    "key": "SV-6446",
+    "summary": "Payments - Error with reader. Sending payments blocked.",
+    "status": "Done",
+    "assignee": "Nemanja Djuric",
+    "type": "Bug",
+    "fix_version": "v0.54",
+    "release_source": [
+      "v0.54 Bug Fixes"
+    ],
+    "area": "payments / ShopPay",
+    "reported_issue": "Getting error with my reader when I try to send payment to it.\n\nI had multiple readers connected before to Foothills, and it was actually showing the same reader connected twice now, after the most recent fixes that you did.\n\nI disconnected all readers, and reconnected the one that I have.\n\n‌\n\nTest connection, connection works. Reader prompts ‘connection successful’ on first connection.\n\nSent a payment to terminal, and get error. Click try again, and error changes to this one below.\n\nRestarted reader, performed connection sequence and tried again. Same issue.\n\nWhen I test reader connection, it appears connected",
+    "steps_to_reproduce": [],
+    "expected_after_fix": null,
+    "original_actual": null,
+    "has_usable_repro": false,
+    "labels": [],
+    "notes": "No explicit Steps-to-Reproduce block in description - repro must be inferred from the reported issue."
+  },
+  {
+    "key": "SV-6628",
+    "summary": "Staff Filter is not showing all Staf members in the list to select one from.",
+    "status": "Done",
+    "assignee": "parth fadadu",
+    "type": "Bug",
+    "fix_version": "v0.54",
+    "release_source": [
+      "v0.54 Bug Fixes"
+    ],
+    "area": "roles / permissions",
+    "reported_issue": "STRs:\n\n(Intermittent issue)\n\n* Randomly add clock-in and clock out time for a few staff member for the current day.\n* For remaining 4 staff members only add the clock-in time\n* Refresh\n* Click the Staff filter\n* Observe: A few staff members are missing from the list.\n\n‌",
+    "steps_to_reproduce": [
+      "(Intermittent issue)",
+      "Randomly add clock-in and clock out time for a few staff member for the current day.",
+      "For remaining 4 staff members only add the clock-in time",
+      "Refresh",
+      "Click the Staff filter",
+      "Observe: A few staff members are missing from the list."
+    ],
+    "expected_after_fix": null,
+    "original_actual": null,
+    "has_usable_repro": true,
+    "labels": [
+      "Prod_Verified",
+      "Staging_Verified"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "SV-6669",
+    "summary": "Payments - Reciept not displaying when you click print invoice and receipt.",
+    "status": "Done",
+    "assignee": "Nemanja Djuric",
+    "type": "Bug",
+    "fix_version": "v0.54",
+    "release_source": [
+      "v0.54 Bug Fixes"
+    ],
+    "area": "payments / ShopPay",
+    "reported_issue": "Receipt does not show up when you click Print invoice and Receipt immediately after payment processes.\nI did not check the print receipt button, but that should also be looked at.\n\n‌\n\nhttps://www.loom.com/share/71d8127051d24838bb0928fd7ceb0e57",
+    "steps_to_reproduce": [],
+    "expected_after_fix": null,
+    "original_actual": null,
+    "has_usable_repro": false,
+    "labels": [],
+    "notes": "No explicit Steps-to-Reproduce block in description - repro must be inferred from the reported issue."
+  },
+  {
+    "key": "SV-6671",
+    "summary": "Poartal - Cannot de-select the customer after customer is selected with filter on the invoices page",
+    "status": "Done",
+    "assignee": "Nemanja Djuric",
+    "type": "Bug",
+    "fix_version": "v0.54",
+    "release_source": [
+      "v0.54 Bug Fixes"
+    ],
+    "area": "customer portal / customers",
+    "reported_issue": "On the invoices page in the portal, once you filter for a customer, you cannot unselect that customer filter without researching that customer name.\n\nSee video\n\nhttps://www.loom.com/share/7047181aed84414f891c16861f09210c\n\n‌\n\nWe need the ability to remove the customer from the filtered results, to re-display unfiltered invoice results easily, without needing to scroll down or research the customer in the drop down.\n\n‌",
+    "steps_to_reproduce": [],
+    "expected_after_fix": null,
+    "original_actual": null,
+    "has_usable_repro": false,
+    "labels": [
+      "QAComplete_Viktoria_Videnovic",
+      "QAcomplete",
+      "Staging_Verified",
+      "Viktoria_Videnovic"
+    ],
+    "notes": "No explicit Steps-to-Reproduce block in description - repro must be inferred from the reported issue."
+  },
+  {
+    "key": "SV-6681",
+    "summary": "Payments - Reader connection not working, after disconnect from one location and reconnect to another location",
+    "status": "Done",
+    "assignee": "Nemanja Djuric",
+    "type": "Bug",
+    "fix_version": "v0.54",
+    "release_source": [
+      "v0.54 Bug Fixes"
+    ],
+    "area": "payments / ShopPay",
+    "reported_issue": "Reader connection no longer working after disconnecting it from one location and then reconnecting it to a different location.\n\nVideo of issue: https://www.loom.com/share/631795649f7d465bb5c602c13382b632\n\nWhen setting up the new connection, it appears successful.\n\nOn settings screen, reader appears connected.\n\nTry to send a payment to the terminal, Payment fails.\n\nTest reader on the settings page, and it says the connection failed, even though it says the connection was successful when setting it up.\n\n‌",
+    "steps_to_reproduce": [],
+    "expected_after_fix": null,
+    "original_actual": null,
+    "has_usable_repro": false,
+    "labels": [],
+    "notes": "No explicit Steps-to-Reproduce block in description - repro must be inferred from the reported issue."
+  },
+  {
+    "key": "SV-6682",
+    "summary": "Mobile: Work Order Text Not Visible in Dark Mode on Mobile (Staging)",
+    "status": "Done",
+    "assignee": "Nikola Milosevic",
+    "type": "Bug",
+    "fix_version": "v0.54",
+    "release_source": [
+      "v0.54 Bug Fixes"
+    ],
+    "area": "mobile",
+    "reported_issue": "In Dark Mode on mobile devices, the Work Order text is not properly visible as it appears to be overridden by a white color, causing readability issues.\n\nThis results in poor contrast and makes the text difficult or impossible to read.\n\n---\n\n### Environment:\n\n* Staging\n* Mobile Device\n* Dark Mode Enabled\n\n---\n\n### Steps to Reproduce (STRs):\n\n1. Log in to your staging account using a mobile device.\n2. Ensure Dark Mode is enabled.\n3. Navigate to the Work Order section.\n\n---\n\n### Actual Result:\n\n* The Work Order text appears white/blended, making it hard to read against the background.\n\n---\n\n### Expected Result:\n\n* Text should have proper contrast in Dark Mode.\n* All text should remain clearly ...",
+    "steps_to_reproduce": [],
+    "expected_after_fix": null,
+    "original_actual": null,
+    "has_usable_repro": false,
+    "labels": [
+      "Staging_Verified"
+    ],
+    "notes": "No explicit Steps-to-Reproduce block in description - repro must be inferred from the reported issue."
+  },
+  {
+    "key": "SV-6801",
+    "summary": "BUG: Missing Payment in “View Payments” (Payout Mismatch UI)",
+    "status": "Done",
+    "assignee": "Nemanja Djuric",
+    "type": "Bug",
+    "fix_version": "v0.54",
+    "release_source": [
+      "v0.54 Bug Fixes"
+    ],
+    "area": "payments / ShopPay",
+    "reported_issue": "Account: KC Wholesale\n\nSummary:\n\nPayout total is correct, but “View Payments” is not displaying all underlying payments.\n\n‌\n\nDetails:\n\n‌\n\n* Payout Date: 4/14/2026\n* Payout Amount: $8,303.78\n* Under “View Payments”, only 2 payments are दिखाई दे रहे हैं:\n\n    1. $5,548.95 (Cassens Transport Co – S-129590)\n    2. $163.09 (ICON GRADING – P-129606)\n\n* Total of visible payments: $5,712.04\n* Missing Amount: $8,303.78 - $5,712.04 = $2,591.74\n\n‌\n\n‌\n\nIssue Behavior:\n\n‌\n\n* UI only shows 2 payments instead of all contributing transactions\n* Total payout amount is correct → backend aggregation seems accurate\n* However, payment breakdown is incomplete",
+    "steps_to_reproduce": [],
+    "expected_after_fix": null,
+    "original_actual": null,
+    "has_usable_repro": false,
+    "labels": [],
+    "notes": "No explicit Steps-to-Reproduce block in description - repro must be inferred from the reported issue."
+  },
+  {
+    "key": "SV-6851",
+    "summary": "Bug: Transaction Fee Deducted on Failed Payment Attempt Affecting Payout Amount",
+    "status": "Done",
+    "assignee": "Nemanja Djuric",
+    "type": "Bug",
+    "fix_version": "v0.54",
+    "release_source": [
+      "v0.54 Bug Fixes"
+    ],
+    "area": "payments / ShopPay",
+    "reported_issue": "Description:\nA discrepancy has been identified where a transaction fee is being deducted despite a failed payment attempt, resulting in a mismatch between the invoice total and the payout amount.\n\nCustomer: Daufeldt Transport Inc:\n\n* Invoice Total: $1,599.26\n* Payout Received: $1,595.80\n* Difference: $3.39\n* This difference matches the transaction fee from a failed payment attempt\n\n‌\n\nObserved Behavior:\n\n* A failed payment attempt still records a transaction fee\n* That fee appears to be deducted from the final payout\n* Resulting in underpayment relative to invoice total",
+    "steps_to_reproduce": [],
+    "expected_after_fix": null,
+    "original_actual": null,
+    "has_usable_repro": false,
+    "labels": [
+      "ai-triaged"
+    ],
+    "notes": "No explicit Steps-to-Reproduce block in description - repro must be inferred from the reported issue."
+  },
+  {
+    "key": "SV-6725",
+    "summary": "Customer -> Notes Attachment Thumbnails Truncated for  the receiver (Technicians)",
+    "status": "Done",
+    "assignee": "Dusan Vejin",
+    "type": "Bug",
+    "fix_version": null,
+    "release_source": [
+      "v0.54 Regressions"
+    ],
+    "area": "customer portal / customers",
+    "reported_issue": "Environment: Staging\n\nAttachment thumbnails in Customer → Notes are displayed correctly for Administrators, but appear truncated for Technicians when accessed via notifications.",
+    "steps_to_reproduce": [
+      "Log in as and administrator",
+      "Navigate to Customers → Notes",
+      "Create a new note and attach the picture and files and tag the technician in that note.",
+      "Now create the 2nd Note with attachement and tag the same Technician",
+      "Observe:"
+    ],
+    "expected_after_fix": null,
+    "original_actual": null,
+    "has_usable_repro": true,
+    "labels": [
+      "Staging_Verified"
+    ],
+    "notes": "No fixVersion set on ticket."
+  },
+  {
+    "key": "SV-6784",
+    "summary": "BUG: Work Order Status Color Not Differentiating (Approved vs In Progress)",
+    "status": "Done",
+    "assignee": "Ryan Fyfe",
+    "type": "Bug",
+    "fix_version": null,
+    "release_source": [
+      "v0.54 Regressions"
+    ],
+    "area": "work orders",
+    "reported_issue": "Description:\n\nThere appears to be a UI issue where “Approved” and “In Progress” work order statuses are both displaying in the same green color, making it difficult to distinguish between the two states at a glance.\n\n‌\n\nEach work order status (e.g., Approved, In Progress, Review) should have a clearly distinct color for quick visual identification.",
+    "steps_to_reproduce": [],
+    "expected_after_fix": null,
+    "original_actual": null,
+    "has_usable_repro": false,
+    "labels": [],
+    "notes": "No fixVersion set on ticket.; No explicit Steps-to-Reproduce block in description - repro must be inferred from the reported issue."
+  },
+  {
+    "key": "SV-6785",
+    "summary": "BUG: No Clear Visual Differentiation Between “Approved” and “In Progress” Work Order Statuses",
+    "status": "Done",
+    "assignee": "Jasna Mladenovic",
+    "type": "Bug",
+    "fix_version": null,
+    "release_source": [
+      "v0.54 Regressions"
+    ],
+    "area": "work orders",
+    "reported_issue": "Company: Goguen Truck and Trailer Repairs\nReported By: Cody McCarthy (via internal mention)\n\n---\n\n### Summary\n\nClient reports there is no clear visual differentiation between “Approved” and “In Progress” statuses on the Work Orders list view.\n\nFrom the screenshot provided, both statuses appear visually similar (green indicators and similar badge styling), making it difficult to quickly distinguish between the two states.\n\n---\n\n### Expected Result\n\n* “Approved” and “In Progress” should have distinct visual styling (color, badge, or icon).\n* Users should be able to quickly identify the operational stage at a glance.\n\n### Actual Result\n\n* Both statuses appear visually similar.\n* No strong ...",
+    "steps_to_reproduce": [],
+    "expected_after_fix": null,
+    "original_actual": null,
+    "has_usable_repro": false,
+    "labels": [],
+    "notes": "No fixVersion set on ticket.; No explicit Steps-to-Reproduce block in description - repro must be inferred from the reported issue."
+  },
+  {
+    "key": "SV-6786",
+    "summary": "Sentry issue DivisionByZeroError - SHOPVIEW-API-29J",
+    "status": "Done",
+    "assignee": "parth fadadu",
+    "type": "Bug",
+    "fix_version": null,
+    "release_source": [
+      "v0.54 Regressions"
+    ],
+    "area": "general / UI",
+    "reported_issue": "Environment - Production, Staging\nhttps://shopview.sentry.io/issues/7384617443/?alert_rule_id=14951188&alert_type=issue&environment=production&notification_uuid=fab03ae5-934c-459d-a224-2e8ad7454f44&project=4505600213778432&referrer=slack",
+    "steps_to_reproduce": [],
+    "expected_after_fix": null,
+    "original_actual": null,
+    "has_usable_repro": false,
+    "labels": [
+      "Hotfix",
+      "QAcomplete",
+      "Verified_on_prod"
+    ],
+    "notes": "No fixVersion set on ticket.; No explicit Steps-to-Reproduce block in description - repro must be inferred from the reported issue."
+  },
+  {
+    "key": "SV-6787",
+    "summary": "BUG: Error When Attempting to Review & Invoice Work Order S-1101",
+    "status": "Done",
+    "assignee": "Jasna Mladenovic",
+    "type": "Bug",
+    "fix_version": "v0.54.hotfix-1",
+    "release_source": [
+      "v0.54 Regressions"
+    ],
+    "area": "work orders",
+    "reported_issue": "### Account-Specific Issue\n\nCustomer: Amber Turpin\nCompany: Ed Rose Trucking Ltd\nUsers: 6\n\n---\n\n### Summary\n\nUser is receiving an error when attempting to Review and Invoice Work Order S-1101.\n\nThe system is preventing the work order from moving forward in the invoicing process.\n\nNOTE: THE PART PRICE IS $0\n\n---\n\n### Steps to Observe\n\n1. Open Work Order S-1101.\n2. Click Review.\n3. Attempt to proceed with Invoicing.\n4. System displays an error and blocks the action.\n\n---\n\n### Expected Result\n\nWork Order should successfully move to Review and allow invoicing without errors.\n\n### Actual Result\n\nSystem throws an error and prevents the work order from being invoiced.\n\n---\n\n### Impact\n\n* Work ...",
+    "steps_to_reproduce": [],
+    "expected_after_fix": null,
+    "original_actual": null,
+    "has_usable_repro": false,
+    "labels": [
+      "QAcomplete",
+      "Support"
+    ],
+    "notes": "No explicit Steps-to-Reproduce block in description - repro must be inferred from the reported issue."
+  },
+  {
+    "key": "SV-6788",
+    "summary": "Shopcoach intermittently not working",
+    "status": "In Progress",
+    "assignee": "Dusan Vejin",
+    "type": "Bug",
+    "fix_version": null,
+    "release_source": [
+      "v0.54 Regressions"
+    ],
+    "area": "work orders",
+    "reported_issue": "Sometimes need to run shopcoach line builder multiple times in order for it to work.\n\nIt will stop loading, and give no results. Then click build lines again and it restarts, and loads the second time.\n\nIssue is intermittent and not duplicated every time.",
+    "steps_to_reproduce": [],
+    "expected_after_fix": null,
+    "original_actual": null,
+    "has_usable_repro": false,
+    "labels": [],
+    "notes": "No fixVersion set on ticket.; No explicit Steps-to-Reproduce block in description - repro must be inferred from the reported issue."
+  },
+  {
+    "key": "SV-6789",
+    "summary": "Regression: Remove loading text",
+    "status": "Done",
+    "assignee": "Ryan Fyfe",
+    "type": "Bug",
+    "fix_version": null,
+    "release_source": [
+      "v0.54 Regressions"
+    ],
+    "area": "work orders",
+    "reported_issue": "Previously we removed the loading text from ShopCoach line builder but now it is back.\n\nRemove loading text descriptions from ShopCoach line builder.",
+    "steps_to_reproduce": [],
+    "expected_after_fix": null,
+    "original_actual": null,
+    "has_usable_repro": false,
+    "labels": [],
+    "notes": "No fixVersion set on ticket.; No explicit Steps-to-Reproduce block in description - repro must be inferred from the reported issue."
+  },
+  {
+    "key": "SV-6790",
+    "summary": "BUG: Mobile – Asset Expand Icon Misaligned, Making Mileage Field Difficult to Access",
+    "status": "Done",
+    "assignee": "Ryan Fyfe",
+    "type": "Bug",
+    "fix_version": null,
+    "release_source": [
+      "v0.54 Regressions"
+    ],
+    "area": "mobile",
+    "reported_issue": "### Summary\n\nOn the mobile app Work Order view, the asset section expand/collapse icon is misaligned and positioned too close to the asset switch icon, creating a touch-target conflict.\n\nThis layout issue makes it difficult for technicians to expand the asset section and access the Mileage field.\n\n---\n\n### Steps to Reproduce\n\n1. Open any Work Order in the Mobile.\n2. Locate the Asset card (example shown: “1/off Kustoms, LLC”).\n3. Attempt to tap the expand arrow icon in the top-right corner of the asset card.\n\n---\n\n### Expected Result\n\n* MILEAGE SHOULD BE EASILY ACCESSIBLE FOR THE TECHNICIANS ( Kindly if possible change the positioning and make it appear somewhere at the front)\n* Expand arrow ...",
+    "steps_to_reproduce": [
+      "Open any Work Order in the Mobile.",
+      "Locate the Asset card (example shown: “1/off Kustoms, LLC”).",
+      "Attempt to tap the expand arrow icon in the top-right corner of the asset card."
+    ],
+    "expected_after_fix": null,
+    "original_actual": null,
+    "has_usable_repro": true,
+    "labels": [
+      "claude-fix-jira"
+    ],
+    "notes": "No fixVersion set on ticket."
+  },
+  {
+    "key": "SV-6791",
+    "summary": "Customers > Work Orders tab: WO number duplicates the shop ID in the workplace prefix",
+    "status": "Done",
+    "assignee": "Nebojsa Miskovic",
+    "type": "Bug",
+    "fix_version": "v0.56",
+    "release_source": [
+      "v0.54 Regressions"
+    ],
+    "area": "work orders",
+    "reported_issue": "https://shopview.slack.com/archives/C0ASNLT3BT5/p1776263760986829\nIssue Details:\n\nThe Work Order number incorrectly duplicates the shop ID when displayed in the Customers > Work Orders tab. The WO number displays correctly in the Work Orders tab and on the Work Order detail page — the issue is isolated to the Customers > Work Orders tab only. The duplication compounds with each shop ID change, suggesting the prefix is being appended on top of an already-prefixed value rather than replacing it.\n\nEnvironment: Staging & Production\n\n---",
+    "steps_to_reproduce": [
+      "Navigate to the Work Orders tab and observe the WO number — it displays correctly with the shop ID prefix (e.g. if shop ID is 2, WO number shows as S2-123).",
+      "Navigate to Customers > Work Orders tab and observe the same WO number — the shop ID is duplicated (e.g. S22-123).",
+      "Navigate to Settings > Locations and change the shop ID from 2 to 22.",
+      "Go back to the Work Orders tab — WO number displays correctly as S22-123.",
+      "Navigate to Customers > Work Orders tab — shop ID is duplicated again (e.g. S2222-123).",
+      "Navigate to Settings > Locations and change the shop ID to 4422.",
+      "Go back to the Work Orders tab — WO number displays as S4422-123 (partially correct).",
+      "Navigate to Customers > Work Orders tab — shop ID is duplicated further (e.g. S44224422-123)."
+    ],
+    "expected_after_fix": "The WO number should display the correct shop ID prefix consistently across the entire application, including the Customers > Work Orders tab. The shop ID should never be duplicated regardless of its value or how many times it has been changed.",
+    "original_actual": "The WO number duplicates the shop ID in the Customers > Work Orders tab only. The duplication compounds with each shop ID change, producing increasingly incorrect values (e.g. S44224422-123). The Work Orders tab and Work Order detail page are not affected.",
+    "has_usable_repro": true,
+    "labels": [
+      "QAcomplete",
+      "Staging_Verified",
+      "Verified_on_prod"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "SV-6792",
+    "summary": "BUG: Regression – “What Are You Doing?” Field Persists After “Save and Add Line”",
+    "status": "Done",
+    "assignee": "Ryan Fyfe",
+    "type": "Bug",
+    "fix_version": null,
+    "release_source": [
+      "v0.54 Regressions"
+    ],
+    "area": "work orders",
+    "reported_issue": "Company: Goguen Truck and Trailer Repairs\nReported By: Cody McCarthy\n\n---\n\n### Summary\n\nClient reports a regression when adding new lines to a Work Order.\n\nWhen selecting “Save and Add Line”, the “What are you doing?” field (line description header) persists and carries over into the next new line instead of clearing.\n\n---\n\n### Steps to Reproduce\n\n1. Open any Work Order.\n2. Add a new line.\n3. Enter text in the “What are you doing?” field.\n4. Click Save and Add Line.\n5. Observe the new line form that opens automatically.\n\n---\n\n### Expected Result\n\n* The new line form should open blank.\n* The “What are you doing?” field should reset and not retain the previous entry.\n\n### Actual Result\n\n* The ...",
+    "steps_to_reproduce": [
+      "Open any Work Order.",
+      "Add a new line.",
+      "Enter text in the “What are you doing?” field.",
+      "Click Save and Add Line.",
+      "Observe the new line form that opens automatically."
+    ],
+    "expected_after_fix": null,
+    "original_actual": null,
+    "has_usable_repro": true,
+    "labels": [
+      "claude-fix-jira"
+    ],
+    "notes": "No fixVersion set on ticket."
+  },
+  {
+    "key": "SV-6794",
+    "summary": "Reports > Timesheet Activities: Staff filter has unwanted auto-selection and dependency issues",
+    "status": "Done",
+    "assignee": "Dusan Radulovic",
+    "type": "Bug",
+    "fix_version": "v0.55",
+    "release_source": [
+      "v0.54 Regressions"
+    ],
+    "area": "roles / permissions",
+    "reported_issue": "Summary: Reports > Timesheet Activities: Staff filter has unwanted auto-selection and dependency issues\n\nEnvironment: Staging and Production\n\n---\n\nIssue Description:\n\nThere are multiple interconnected filter issues in the Timesheet Activities report on the Reports page:\n\nA. Auto-selection of a staff member with data when a staff member with no data is selected When a staff member with no data is selected alongside a date filter, the report auto-selects a different staff member who has data for that date range instead of showing an empty state.\n\nB. Auto-selection of a staff member for specific date filters when no staff member is selected Selecting certain date filters without selecting any ...",
+    "steps_to_reproduce": [
+      "Issue A (Staging & Production):",
+      "Navigate to Reports > Timesheet Activities.",
+      "Observe that data for all staff members loads for \"This Month\" by default — which is correct.",
+      "Select a staff member who has no data for yesterday's date range.",
+      "Select \"Yesterday\" from the date filter.",
+      "Observe that the report auto-selects a different staff member who has data in the yesterday timeline."
+    ],
+    "expected_after_fix": "If a selected staff member has no data for the chosen date range, the table should show an empty state — it should not auto-select a different staff member. No staff member should be auto-selected when selecting any date filter without an explicit staff selection.",
+    "original_actual": "The staff filter automatically switches to a different staff member who has data in the selected date range instead of showing an empty state. On Staging, selecting \"Today\" or \"This Week\" without a staff selection triggers an unwanted auto-selection. On Production, selecting \"Yesterday\", \"Last Month\", or \"Last Quarter\" without a staff selection triggers an unwanted auto-selection. The auto-selected staff member persists across all date ranges until manually cleared. The staff filter dropdown only shows the auto-selected staff member and does not list any other staff members.",
+    "has_usable_repro": true,
+    "labels": [
+      "Prod_Verified_Ayesha",
+      "QAComplete_Viktoria_Videnovic",
+      "Staging_Verified"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "SV-6797",
+    "summary": "What are you doing sticks when using save and add line",
+    "status": "Done",
+    "assignee": "Nikola Milosevic",
+    "type": "Bug",
+    "fix_version": "v0.54.hotfix-2",
+    "release_source": [
+      "v0.54 Regressions"
+    ],
+    "area": "work orders",
+    "reported_issue": "Overview\n\nWhen a user enters a ‘what are you doing’ and then selects ‘save and add line’, the new modal for the new line persists the previous ‘what are you doing'",
+    "steps_to_reproduce": [
+      "Select New Line on a WO",
+      "Enter value into wha t are you doing",
+      "Ensure all required fields are populated",
+      "Select Save and Add Line",
+      "Observe"
+    ],
+    "expected_after_fix": "The ‘what are you doing’ field should be empty so the user can generate a new subsequent line",
+    "original_actual": null,
+    "has_usable_repro": true,
+    "labels": [
+      "QAcomplete"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "SV-6799",
+    "summary": "Work Orders: \"Approved\" and \"Paid\" statuses display the same color making them indistinguishable",
+    "status": "Open",
+    "assignee": "Ryan Fyfe",
+    "type": "Bug",
+    "fix_version": null,
+    "release_source": [
+      "v0.54 Regressions"
+    ],
+    "area": "work orders",
+    "reported_issue": "Issue Description:\n\nThere is a UI issue where the \"Approved\" and \"Paid\" work order statuses are both displaying in the same green color. This makes it difficult for users to distinguish between the two states at a glance, affecting both the Work Orders tab and the Customers > Work Orders tab.\n\n---",
+    "steps_to_reproduce": [
+      "Navigate to Work Orders (or Customers > Work Orders).",
+      "Ensure there are work orders with both \"Approved\" and \"Paid\" statuses visible.",
+      "Observe the status badge colors for \"Approved\" and \"Paid\".",
+      "Notice that both statuses display in the same green color."
+    ],
+    "expected_after_fix": "Each work order status (e.g., Approved, In Progress, Review, Paid) should have a clearly distinct color for quick visual identification. \"Approved\" and \"Paid\" should be visually distinguishable from one another at a glance.",
+    "original_actual": "Both \"Approved\" and \"Paid\" statuses display in the same green color in the Work Orders tab and Customers > Work Orders tab, making it impossible to differentiate between the two states without reading the label text.",
+    "has_usable_repro": true,
+    "labels": [],
+    "notes": "No fixVersion set on ticket."
+  },
+  {
+    "key": "SV-6802",
+    "summary": "Regression: When clocked in on mobile view, line is no longer green. Techs cannot tell easily which line they are clocked into.",
+    "status": "Done",
+    "assignee": "Ryan Fyfe",
+    "type": "Bug",
+    "fix_version": "v0.54.hotfix-3",
+    "release_source": [
+      "v0.54 Regressions"
+    ],
+    "area": "work orders",
+    "reported_issue": "On the mobile view when a user is clocked in, the line is not green anymore.\n\nThe only indicator that a technician has that they are clocked in is the STOP button, but no green line indicator anymore.\n\n‌\n\nIssue effects mobile view only.\n\n‌\n\nReported in person by multiple technicians.",
+    "steps_to_reproduce": [],
+    "expected_after_fix": null,
+    "original_actual": null,
+    "has_usable_repro": false,
+    "labels": [
+      "QAcomplete",
+      "Staging_Verified"
+    ],
+    "notes": "No explicit Steps-to-Reproduce block in description - repro must be inferred from the reported issue."
+  },
+  {
+    "key": "SV-6803",
+    "summary": "BUG: Missing Payment Notification Emails",
+    "status": "Done",
+    "assignee": "Nemanja Djuric",
+    "type": "Bug",
+    "fix_version": null,
+    "release_source": [
+      "v0.54 Regressions"
+    ],
+    "area": "payments / ShopPay",
+    "reported_issue": "Account: KC Wholesale\n\nSummary:\n\nCustomer is no longer receiving payment notification emails for ShopPay transactions (previously working).\n\nDetails:\n\n* Notifications were working before\n* Since yesterday, no payment notification emails are being received when an invoice is paid via ShopPay, the usual confirmation/notification email is not being triggered\n* Spam/Junk folder has already been checked → nothing found",
+    "steps_to_reproduce": [],
+    "expected_after_fix": null,
+    "original_actual": null,
+    "has_usable_repro": false,
+    "labels": [],
+    "notes": "No fixVersion set on ticket.; No explicit Steps-to-Reproduce block in description - repro must be inferred from the reported issue."
+  },
+  {
+    "key": "SV-6805",
+    "summary": "BUG: QuickBooks Export Fails – “Bookkeeping customer not found”",
+    "status": "OBSOLETE",
+    "assignee": "Mike Freeman",
+    "type": "Bug",
+    "fix_version": null,
+    "release_source": [
+      "v0.54 Regressions"
+    ],
+    "area": "customer portal / customers",
+    "reported_issue": "### Account-Specific Issue\n\nCustomer: Mike Fistler\nCompany: Central Iowa Ag & Machinery, LLC\nUsers: 5\n\n---\n\n### Summary\n\nCustomer reports that when transferring a customer transaction to QuickBooks, the export fails with a “Bookkeeping customer not found” error.\n\nThe affected transaction appears under Reports → QB Unexported Items with the following details:\n\n* Type: Payment Create\n* Transaction No.: 4625 ( There is no customer invoice of thai number)\n* Customer: Jeff Burkley\n* Error: _Bookkeeping customer not found for name \"Jeff Burkley\"._\n\nThe customer confirms that this customer does not exist in QuickBooks, and the expectation is that the integration should automatically create the ...",
+    "steps_to_reproduce": [
+      "Unable to Reproduce"
+    ],
+    "expected_after_fix": null,
+    "original_actual": null,
+    "has_usable_repro": true,
+    "labels": [
+      "Support"
+    ],
+    "notes": "Ticket status is OBSOLETE - confirm still in scope before testing.; No fixVersion set on ticket."
+  },
+  {
+    "key": "SV-6807",
+    "summary": "BUG: Parts Page – “Cycle Count” Triggers Column Chooser when it shouldn't.",
+    "status": "Done",
+    "assignee": "Nikola Milosevic",
+    "type": "Bug",
+    "fix_version": null,
+    "release_source": [
+      "v0.54 Regressions"
+    ],
+    "area": "parts / inventory",
+    "reported_issue": "Company: Foothills Group\n\n---\n\n### Summary\n\nOn the Parts → Inventory page, when clicking the 3-dot menu and selecting “Cycle Count”, the system incorrectly opens the Column Chooser panel while at the same time  initiating the Cycle Count function.\n\nThis behavior is not expected and appears to be a UI event misfire.\n\n---\n\n### Steps to Reproduce\n\n1. Navigate to Parts → Inventory.\n2. Click the 3-dot menu.\n3. Select Cycle Count.\n\n---\n\n### Expected Result\n\n* The Cycle Count workflow/modal should open.\n* Column visibility settings should remain unchanged.\n\n### Actual Result\n\n* The Column Chooser selection panel opens.\n* Cycle Count action does not initiate.\n\n---\n\n### Impact\n\n* Workflow ...",
+    "steps_to_reproduce": [
+      "Navigate to Parts → Inventory.",
+      "Click the 3-dot menu.",
+      "Select Cycle Count."
+    ],
+    "expected_after_fix": null,
+    "original_actual": null,
+    "has_usable_repro": true,
+    "labels": [
+      "QAComplete_Viktoria_Videnovic",
+      "Staging_Verified",
+      "Verified_on_prod"
+    ],
+    "notes": "No fixVersion set on ticket."
+  },
+  {
+    "key": "SV-6808",
+    "summary": "BUG: Work Order Print – Only First Page of Lines Prints (Remaining Lines Missing)",
+    "status": "Done",
+    "assignee": "Dusan Radulovic",
+    "type": "Bug",
+    "fix_version": "v0.56.2",
+    "release_source": [
+      "v0.54 Regressions"
+    ],
+    "area": "work orders",
+    "reported_issue": "Company: Foothills Group\n\n---\n\n### Summary\n\nWhen right-clicking the web page and using the browser print function and selecting Print, the print preview only includes the first page of work order lines. Any additional lines beyond the first page do not appear in the print output.\n\nThis behavior previously worked correctly and now appears to be a regression.\n\n---\n\n### Steps to Reproduce\n\n1. Open a Work Order with multiple lines (more than one page worth).\n2. Right-click anywhere on the Work Order page.\n3. Select Print.\n4. Review the print preview.\n\n---\n\n### Expected Result\n\n* All Work Order lines should appear across multiple pages in the print preview.\n* If the Work Order contains multiple ...",
+    "steps_to_reproduce": [
+      "Open a Work Order with multiple lines (more than one page worth).",
+      "Right-click anywhere on the Work Order page.",
+      "Select Print.",
+      "Review the print preview."
+    ],
+    "expected_after_fix": null,
+    "original_actual": null,
+    "has_usable_repro": true,
+    "labels": [
+      "Staging_Verified",
+      "claude-fix-jira"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "SV-6873",
+    "summary": "BUG - Auto Pick doubles picked quantity on approval and corrupts inventory on return",
+    "status": "Done",
+    "assignee": "Bilal Muzamil",
+    "type": "Bug",
+    "fix_version": "v0.55",
+    "release_source": [
+      "v0.54 Regressions"
+    ],
+    "area": "parts / inventory",
+    "reported_issue": "Severity: L2 – Medium\nPriority: High\nCustomer: Gabriel Lapointe / GL Mechanique\nArea: Inventory / Auto Pick / Part Sales / Work Orders\n\nDescription:\nWhen Auto Pick is enabled, approving a quoted part request causes the system to pick double the requested quantity. In the reported case, a request for 4 units of SV029 picked 8 units instead. Returning the item only restored 4 units, leaving inventory incorrect. Customer reported this occurs across multiple parts and in both Part Sales and Work Orders. Disabling Auto Pick made the workflow behave correctly.",
+    "steps_to_reproduce": [
+      "Enable Auto Pick.",
+      "Apply an inventory part (With core) to a work order line or part sale that is not approved.",
+      "Approve the request so it auto-picks.",
+      "Observe picked quantity and inventory.",
+      "Return the item and observe inventory again."
+    ],
+    "expected_after_fix": "System picks 4 and returns 4, restoring inventory accurately.",
+    "original_actual": "System picks 8 and returns only 4, leaving inventory short.",
+    "has_usable_repro": true,
+    "labels": [
+      "Staging_Verified",
+      "ai-triaged"
+    ],
+    "notes": ""
+  },
+  {
+    "key": "SV-4803",
+    "summary": "Special Order Part with all Data Remains in Quoted Status after Line Status Changes from Need Approval to Approved",
+    "status": "OBSOLETE",
+    "assignee": "Nikola Milosevic",
+    "type": "Bug",
+    "fix_version": null,
+    "release_source": [
+      "SV-4796 Epic (V0.43 Regression Testing Bugs)"
+    ],
+    "area": "parts / inventory",
+    "reported_issue": "Environment:\nStaging\n\n‌\n\nIssue:\nWhen the line status is updated from Needs Approval/Authorization Required to Approved/Authorized, requested Special Order Part with all data incorrectly remains in the Quoted status instead of updating to the Auth to order with action Order",
+    "steps_to_reproduce": [
+      "Create a non-authorized line (status of the line: Needs Approval/Authorization Required)",
+      "Request Special Order Part",
+      "Change the line status to Approved/Authorized",
+      "Observe"
+    ],
+    "expected_after_fix": "Special Order Part status should automatically update from Quoted to Auth to order with action Order If part is missing data aka Vendor or Cost it should update to Requested status",
+    "original_actual": "Special Order Part remains in Quoted status",
+    "has_usable_repro": true,
+    "labels": [],
+    "notes": "Ticket status is OBSOLETE - confirm still in scope before testing.; No fixVersion set on ticket."
+  },
+  {
+    "key": "SV-4847",
+    "summary": "Bug: Work Orders list and Financial Info section show incorrect totals until Work Order is revisited or refreshed",
+    "status": "OBSOLETE",
+    "assignee": "Unassigned",
+    "type": "Bug",
+    "fix_version": null,
+    "release_source": [
+      "SV-4796 Epic (V0.43 Regression Testing Bugs)"
+    ],
+    "area": "work orders",
+    "reported_issue": "The Work Orders list and Financial Info section display incorrect totals immediately after the WO creation. The totals only become correct after the Work Order is reopened or refreshed,\n\n### Environment:\n\n* Environment: Staging\n* User: [bilalmuzamil+shopview@gmail.com](mailto:bilalmuzamil+shopview@gmail.com)\n* Password: Bb1lal\\~123\n\n---\n\n### Steps to Reproduce (STRs):\n\n1. Log in to Staging using the credentials above.\n2. Create a new Work Order.\n3. Create a Line.\n4. Request an Inventory Part named “reteststage”\n\n    * Quantity: 1\n    * Price: $19\n\n5. Click Save and Close.\n6. Click the Finance tab.\n\n    * Observe: The total in the Finance tab differs from the total under the Financial Info ...",
+    "steps_to_reproduce": [],
+    "expected_after_fix": null,
+    "original_actual": null,
+    "has_usable_repro": false,
+    "labels": [
+      "Rejected_Staging"
+    ],
+    "notes": "Ticket status is OBSOLETE - confirm still in scope before testing.; No fixVersion set on ticket.; No explicit Steps-to-Reproduce block in description - repro must be inferred from the reported issue."
+  },
+  {
+    "key": "SV-4849",
+    "summary": "Bug: Work Order total price appears off in the workorders list.",
+    "status": "Done",
+    "assignee": "Unassigned",
+    "type": "Bug",
+    "fix_version": null,
+    "release_source": [
+      "SV-4796 Epic (V0.43 Regression Testing Bugs)"
+    ],
+    "area": "work orders",
+    "reported_issue": "The Work Orders total price is appearing off in the Workorders list.\n\n### Environment:\n\n* Environment: Staging\n* User: [bilalmuzamil+shopview@gmail.com](mailto:bilalmuzamil+shopview@gmail.com)\n* Password: Bb1lal\\~123\n\n---\n\nNot Reproducible on Production Environment\n\n---\n\n### Steps to Reproduce (STRs):\n\n1. Log in to Staging using the credentials above.\n2. Create a new Work Order.\n3. Create a Line.\n4. Request an Inventory Part named “reteststage”\n\n    * Quantity: 336563\n    * Price: Do NOT change\n\n5. Click Save and Close\n6. Do NOT pick the part\n7. Click the Main part.\n8. Change the price to $19\n9. Now click PICK to pick the part\n10. Click NOT OK for the core part\n11. Click the Work Orders ...",
+    "steps_to_reproduce": [],
+    "expected_after_fix": null,
+    "original_actual": null,
+    "has_usable_repro": false,
+    "labels": [],
+    "notes": "No fixVersion set on ticket.; No explicit Steps-to-Reproduce block in description - repro must be inferred from the reported issue."
+  },
+  {
+    "key": "SV-4910",
+    "summary": "Bug: Workorder -> \"New Line\" button is appearing in Blue background color",
+    "status": "Done",
+    "assignee": "Stefan Mitrovic",
+    "type": "Bug",
+    "fix_version": null,
+    "release_source": [
+      "SV-4796 Epic (V0.43 Regression Testing Bugs)"
+    ],
+    "area": "work orders",
+    "reported_issue": "Issue:  Workorder -> \"New Line\" button is appearing with Blue background color.\nOn production this is appearing with white background with Blue text color and blue outline.",
+    "steps_to_reproduce": [
+      "Create WO → See the “New Line“ button",
+      "Observe: The button to “New Line“ is appearing with blue background."
+    ],
+    "expected_after_fix": null,
+    "original_actual": null,
+    "has_usable_repro": true,
+    "labels": [],
+    "notes": "No fixVersion set on ticket."
+  }
+]
