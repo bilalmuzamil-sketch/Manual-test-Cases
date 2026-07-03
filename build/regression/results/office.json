@@ -30,5 +30,22 @@
   "depth_note": "MUST",
   "screenshot_ref": "of-53.png",
   "notes": "Real create/edit/delete all executed in the UI against staging on test customer id c9bb4198-1840-444d-bf0d-f10e0652730d (named ZZAUTOTEST). Endpoints: customers/create 201, customers/change 200, customers/delete 201. Test customer fully removed at end."
+ },
+ {
+  "num": 54,
+  "role": "Office",
+  "feature_area": "Send to Portal",
+  "where_to_go": "Work Orders → a work order",
+  "what_to_do": "Look for Send to Portal button.",
+  "expected_result": "NOT available. Office has Full View but CANNOT approve a WOL (Review WOs OFF, WO Lines View only).",
+  "depth": "MUST",
+  "status": "PASS",
+  "spec_reference_plain": "Per SV-5319, Office has Full View of work orders (woFullViewMode) but is view-only on lines: it does NOT have woReviewWorkOrders (cannot approve/review WO lines) nor workOrderLinesCreateAndEdit, and it lacks customerPortalPageAccess. The Send to Portal / customer approval action is gated in the app by userHasCustomerPortalAccess (customerPortalPageAccess), so Office must NOT see or be able to use Send to Portal.",
+  "expected_plain": "When Office opens a work order, there should be no Send to Portal button, because Office can view work orders but cannot approve lines or push them to the customer portal.",
+  "actual_result_plain": "Logged in as Tech-with-Office and opened work order S9-24919. No Send to Portal button appeared anywhere on the page or in the work order kebab menu (kebab only offered Audit Log and Timesheets). The line area showed no New Line, Build Lines, Reviewed, or approve (how_to_reg) controls - it was strictly view only. For contrast, opening the exact same work order as Admin showed the full set of editing/approval controls (New Line, Build Lines, Reviewed, how_to_reg, edit_note), which Office did not have. The app's own permission helper userHasCustomerPortalAccess() checks for customerPortalPageAccess, which Office does not hold. The button is correctly not available to Office.",
+  "depth_note": "MUST",
+  "replication_steps_plain": "",
+  "screenshot_ref": "of-54.png",
+  "notes": "BACKEND CHECK: the Send-to-Portal action maps to POST /api/work-orders/approvals/create-approval-request. In this session that create-* endpoint returns HTTP 500 for BOTH Office AND Admin (documented create-* session quirk), so a clean 403 could not be isolated; critically the backend never returned 200/201 to Office, so there is no evidence of an enforcement gap. Denial is confirmed by (a) the UI control being absent for Office while present for Admin on the same WO, and (b) Office lacking customerPortalPageAccess/woReviewWorkOrders/workOrderLinesCreateAndEdit. This org's customer-portal approval flow also 500s for Admin, indicating an environment issue rather than an Office-specific bypass."
  }
 ]
