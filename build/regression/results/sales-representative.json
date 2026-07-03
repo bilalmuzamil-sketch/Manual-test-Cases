@@ -30,5 +30,21 @@
   "replication_steps_plain": "",
   "screenshot_ref": "sr-58.png",
   "notes": "Reports access confirmed via UI (module opens, report catalog and data render). fe-permissions for the assigned role include reportsPageAccess and cross_toggle seeFinancialData=true. Financial dollar figures visible in A/R Aging Summary (see sr-59.png)."
+ },
+ {
+  "num": 59,
+  "role": "Sales Representative",
+  "feature_area": "AP/AR",
+  "where_to_go": "Reports → AP/AR reports",
+  "what_to_do": "Open them.",
+  "expected_result": "Accessible. Sales Rep has Manage Accounts Payable and Receivable ON.",
+  "depth": "SPOT",
+  "status": "PASS",
+  "spec_reference_plain": "Per SV-5319, the Sales Representative role has See AP/AR data ON (seeApArData permission and cross_toggle seeApArData=true), so the Accounts Receivable and Accounts Payable reports must be accessible with data.",
+  "expected_plain": "A Sales Rep should be able to open the A/R and A/P reports and see the aging data.",
+  "actual_result_plain": "Logged in as Tech-as-Sales-Representative. The Reports left nav showed an ACCOUNTS RECEIVABLE group (A/R Aging Summary, A/R Aging Detail, A/R Aging Collection) and an ACCOUNTS PAYABLE group (A/P Aging Summary, A/P Aging Detail, A/P Unpaid Invoices). Opening A/R Aging Summary (/reports/ar-aging-summary) loaded the report in full - a customer-by-customer aging table with Current / 1-30 / 31-60 / 61-90 / 91-and-over buckets and totals (grand total $271,834.78). The route did not redirect or show access-denied, confirming AP/AR access.",
+  "replication_steps_plain": "",
+  "screenshot_ref": "sr-59.png",
+  "notes": "AP/AR access confirmed via UI (A/R Aging Summary renders real data). fe-permissions include seeApArData; cross_toggle seeApArData=true. Both A/R and A/P report groups present in the Reports nav."
  }
 ]
