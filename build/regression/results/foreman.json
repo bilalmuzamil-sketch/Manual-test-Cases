@@ -30,5 +30,21 @@
   "replication_steps_plain": "",
   "screenshot_ref": "fm-29.png",
   "notes": "Real denial by control absence. Foreman fe-permissions has workOrdersDelete=false. Admin's nav menu on the same WO includes 'Delete Work Order' (though disabled here because the WO has labor clocked in); the Foreman menu omits the option entirely."
+ },
+ {
+  "num": 30,
+  "role": "Foreman",
+  "feature_area": "Line delete",
+  "where_to_go": "Work Orders → a line",
+  "what_to_do": "Delete a line.",
+  "expected_result": "Allowed. Foreman has Work Order Lines Delete.",
+  "depth": "MUST",
+  "status": "PASS",
+  "spec_reference_plain": "Per SV-5319, the Foreman role has Work Order Lines = Delete, so a Foreman is allowed to delete a (non-completed) work-order line. [Ref: SV-5319 Custom Roles permission matrix; checklist Foreman row #30]",
+  "expected_plain": "Logged in as a Foreman, deleting a work-order line should work.",
+  "actual_result_plain": "Opened work order S9-24181 (Approved) as Tech-with-Foreman-role. It had 4 lines. Selected the deletable line 'Replace - Brake pot' (status Authorized, no labor), opened the line bulk-action menu ('Set line status | Delete lines | Split work order') and clicked 'Delete lines'. The line was removed: the Lines header count went from Lines (4) to Lines (3) and the line's row disappeared. The UI's own call POST /api/work-orders/lines/delete-lines returned HTTP 200.",
+  "replication_steps_plain": "",
+  "screenshot_ref": "fm-30.png",
+  "notes": "fe-permissions has workOrderLinesDelete=true. Deletion driven fully in the UI (hover row -> tick line checkbox -> Line bulk-action -> Delete lines). Confirmed by line-count drop 4->3 and delete-lines endpoint returning 200."
  }
 ]
