@@ -75,5 +75,20 @@
   "actual_result_plain": "Selected a return in Parts \u2192 Returns as Tech-with-Service-Advisor; no Delete Return action was available, whereas Admin on the same return sees Delete Return. Deletion is correctly blocked.",
   "screenshot_ref": "sa-N1.png",
   "notes": "OUTCOME matches expected (blocked). IMPORTANT: the v33 stated REASON is inaccurate for the deployed role \u2014 this staging 'Service Advisor' role actually HAS invoicingPaymentsDelete=true (verified via /api/auth/me/fe-permissions), yet the return still cannot be deleted. So the delete-return gate is NOT invoicingPaymentsDelete for this role; the block comes from the missing vendorOrderManagementDelete/partSalesDelete. Flag for spec owner: v33 note says SA lacks Invoicing Delete, but SA has it."
+ },
+ {
+  "num": "N2",
+  "role": "Service Advisor (a.k.a. Junior SA)",
+  "feature_area": "Reverse invoice (v33)",
+  "where_to_go": "Work Orders -> Finance; Part Sales",
+  "what_to_do": "Reverse a WO invoice; reverse a Part Sales invoice.",
+  "expected_result": "WO invoice reverse = WO: Delete - SA has NO WO Delete -> BLOCKED. Part Sales invoice reverse = Part Sales: Delete - SA has Part Sales = View/Create and Edit, NO Delete -> BLOCKED.",
+  "depth": "MUST",
+  "status": "PASS",
+  "spec_reference_plain": "Per SV-5319 v33, reversing a Work Order invoice requires Work Orders: Delete, and reversing a Part Sales invoice requires Part Sales: Delete. The Junior Service Advisor lacks both (no workOrdersDelete, no partSalesDelete), so the Reverse action must be unavailable in both places.",
+  "expected_plain": "As a Junior Service Advisor, there should be no 'Reverse' option on either a work-order invoice or a part-sale invoice.",
+  "actual_result_plain": "On invoiced work order S9-24661 (Finance tab) as Tech-with-Service-Advisor, the invoice actions menu showed only 'Issue Credit' \u2014 no Reverse. On invoiced part sale P9-1010 (Finance tab), the invoice actions menu again showed only 'Issue Credit' \u2014 no Reverse. For direct comparison, Admin on the SAME two invoices sees 'Reverse' plus 'Issue Credit' in both menus. So Reverse is correctly blocked for the SA in both places.",
+  "screenshot_ref": "sa-N2.png",
+  "notes": "Confirmed permission-gated on identical data: Admin has Reverse on both WO invoice and Part Sale invoice; SA has neither. WO screenshot sa-N2.png; part-sale evidence in /tmp N2ps_Tech_menu.png. Note SA DOES retain 'Issue Credit' (invoicingPaymentsCreateAndEdit)."
  }
 ]
