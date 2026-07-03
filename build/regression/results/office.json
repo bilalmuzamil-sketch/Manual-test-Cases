@@ -14,5 +14,21 @@
   "depth_note": "MUST",
   "screenshot_ref": "of-52.png",
   "notes": "App Settings (settingsApp) ON confirmed on the assigned system Office role. Departments and Locations both present under SETTINGS group (SV-7781 grouping still under review). Parts settings absent because settingsParts is not granted to Office."
+ },
+ {
+  "num": 53,
+  "role": "Office",
+  "feature_area": "Customer — full",
+  "where_to_go": "Customers → a customer",
+  "what_to_do": "Create, edit, and delete a customer.",
+  "expected_result": "All allowed. Office has Customers View/Create and Edit/Delete.",
+  "depth": "MUST",
+  "status": "PASS",
+  "spec_reference_plain": "Per SV-5319, the Office role has full customer management: customersView, customersCreateAndEdit, and customersDelete are all granted on the assigned system Office role (confirmed via /api/auth/me/fe-permissions). So Office can create a new customer, edit an existing one, and delete one.",
+  "expected_plain": "Logged in as Office, creating a new customer, editing it, and deleting it should all succeed with no permission block.",
+  "actual_result_plain": "Logged in as Tech-with-Office. CREATE: clicked New Customer, filled Name with a ZZAUTOTEST name, clicked Save; the customer was created (POST /api/customers/create returned 201) and the app navigated to the new customer detail page. EDIT: opened the customer via the edit_note pencil, changed the Name to a ZZAUTOTEST EDITED value and clicked Save; the change saved (POST /api/customers/change returned 200) and the new name showed on the page. DELETE: opened Edit again, clicked the Delete button, confirmed the 'Are you sure you want to delete the company?' dialog with Delete; the customer was deleted (POST /api/customers/delete returned 201) and the app returned to the Customers list. All three operations succeeded, exactly as expected.",
+  "depth_note": "MUST",
+  "screenshot_ref": "of-53.png",
+  "notes": "Real create/edit/delete all executed in the UI against staging on test customer id c9bb4198-1840-444d-bf0d-f10e0652730d (named ZZAUTOTEST). Endpoints: customers/create 201, customers/change 200, customers/delete 201. Test customer fully removed at end."
  }
 ]
