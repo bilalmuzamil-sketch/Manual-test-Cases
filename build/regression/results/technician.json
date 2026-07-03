@@ -94,5 +94,21 @@
   "replication_steps_plain": "",
   "screenshot_ref": "tech-38.png",
   "notes": "Allowed. Technician holds workOrderLinesCreateAndEdit which gates mileage/engine hours per v33. Same result as case N1. Values 555/77 persisted on S9-24706."
+ },
+ {
+  "num": 39,
+  "role": "Technician",
+  "feature_area": "Send to Portal",
+  "where_to_go": "Work Orders → a work order",
+  "what_to_do": "Look for the Send to Portal button.",
+  "expected_result": "NOT visible. Send to Portal requires Full View; Technician has Tech View.",
+  "depth": "MUST",
+  "status": "PASS",
+  "spec_reference_plain": "Per SV-5319, 'Send to Portal' requires Full View; a Tech View technician should not see the Send to Portal button. [Ref: SV-5319; checklist Technician row #39]",
+  "expected_plain": "A technician should not see a 'Send to Portal' button anywhere on the work order.",
+  "actual_result_plain": "On S9-24706 as the Technician there is no 'Send to Portal' anywhere: a body-wide text scan found no 'Send to Portal', and opening the available action menus (line-level three-dot menus) surfaced only tech actions (Request part, Add line note, Save as canned line, Story history, Add inspection, Edit labor, Move) - no Send to Portal option. Confirms it is hidden for Tech View.",
+  "replication_steps_plain": "",
+  "screenshot_ref": "tech-39.png",
+  "notes": "view_mode=tech. No Send to Portal control present in the tech WO layout."
  }
 ]
