@@ -1,0 +1,20 @@
+{
+  "key": "SV-3208",
+  "summary": "Shop Supplies from Declined Lines Are Being Added to the Invoice When 'Show Declined Work' Is Toggled",
+  "area": "work orders",
+  "release_source": ["v0.43 Bug Fixes"],
+  "reported_issue": "With 'Show Declined Work' OFF the invoice balance was correct, but toggling it ON added shop supplies from declined lines to the Balance. Declined lines should never contribute costs (shop supplies, parts, labor) to totals.",
+  "expected_after_fix": "When declined work is shown, declined lines are displayed but do not affect the invoice subtotal, shop supplies, tax, total, or balance.",
+  "role_used": "admin",
+  "steps_i_followed": [
+    "Scanned invoiced/paid work orders (via /api/work-orders/lines with x-current-page header) for lines in declined status; found WO S2-15522 with 16 declined lines of 21",
+    "Opened its Finance tab; captured the invoice_id (8ed189b1...) from the invoice preview call which uses includeDeclined=0",
+    "Fetched /api/invoices/preview for the same invoice with includeDeclined=0 and includeDeclined=1",
+    "Parsed the summary Parts/Labor/Shop Supplies/Subtotal/Total/Balance from both preview HTML documents"
+  ],
+  "actual_now": "Both modes return identical summary totals: Parts 477.39, Labor 743.76, Shop Supplies 78.09, Subtotal 1,299.24, Total 1,364.21, Balance 0.00. With includeDeclined=1 the 16 declined lines are rendered (HTML grows 69,708 -> 98,864 chars, 'Declined' appears) but shop supplies and all totals stay unchanged.",
+  "verdict": "FIXED",
+  "confidence": "high",
+  "screenshot_ref": "build/bugfix-regression/screenshots/SV-3208.png",
+  "notes": "The 'Show Declined Work' toggle drives the includeDeclined param on the invoice preview; declined-line shop supplies no longer inflate the balance."
+}
