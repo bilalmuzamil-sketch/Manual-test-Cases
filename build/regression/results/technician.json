@@ -46,5 +46,21 @@
   "replication_steps_plain": "1) Log in as Tech (Technician role). 2) Admin sets line 56028d16 on S9-24706 to 'authorization_required'. 3) As Tech POST /api/work-orders/lines/change-status {line_id:'56028d16-...', status:'authorized'} - returns 200. 4) Re-read the line: status is now 'authorized'. The change persisted, so the approve/authorize action was NOT blocked at the API even though the UI hides it.",
   "screenshot_ref": "tech-35.png",
   "notes": "FAIL is a backend authorization gap: FE correctly hides the approve/authorize control, but /work-orders/lines/change-status accepts the change for a Technician. line-statuses metadata says 'authorized' requires ROLE_WORK_ORDER::CREATE_AND_EDIT which Technician lacks. Endpoint did not return 403; it returned 200 and applied the change."
+ },
+ {
+  "num": 36,
+  "role": "Technician",
+  "feature_area": "Tech View — edit line",
+  "where_to_go": "Work Orders → an existing line",
+  "what_to_do": "Try to edit an existing line.",
+  "expected_result": "BLOCKED/read-only. Tech View users can only create new lines, not edit existing ones.",
+  "depth": "MUST",
+  "status": "PASS",
+  "spec_reference_plain": "Per SV-5319, Tech View users can create NEW work-order lines but existing lines should be read-only (no edit-the-line control). [Ref: SV-5319; checklist Technician row #36]",
+  "expected_plain": "A technician should be able to add new lines but not edit the name/description/estimate of an existing line.",
+  "actual_result_plain": "On S9-24706 the existing lines are read-only in the UI: clicking a line name only expands it (shows Story/Labor/Parts) with no editable name/description/estimate fields, and the line's three-dot menu has NO 'edit line' option (it offers only Request part, Add line note, Save as canned line, Story history, Add inspection, Edit labor, Move labor - i.e. tech-work actions, not line-definition editing). A 'New Line' button and ShopCoach Line Builder are available for creating new lines. So existing lines are read-only for the Technician as expected.",
+  "replication_steps_plain": "",
+  "screenshot_ref": "tech-36.png",
+  "notes": "Read-only behavior is delivered by Tech View (client view mode); the Technician role does technically hold workOrderLinesCreateAndEdit (needed to create new lines). No edit-existing-line control is exposed in the tech UI."
  }
 ]
