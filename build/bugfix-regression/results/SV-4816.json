@@ -1,0 +1,20 @@
+{
+  "key": "SV-4816",
+  "summary": "Decline Line With Staged Parts on the WO",
+  "area": "work orders",
+  "release_source": ["v0.43 Bug Fixes", "SV-4796 Epic (V0.43 Regression Testing Bugs)"],
+  "reported_issue": "On Staging a WO line could NOT be declined when it had staged/received parts, whereas Production allowed declining such a line. Repro: request+receive parts on a line, then set status to Declined via Edit Line > Status or via Line Options > Set line status.",
+  "expected_after_fix": "A line that has staged/received parts can be declined (parity with Production).",
+  "role_used": "admin",
+  "steps_i_followed": [
+    "Scanned WOs for a line carrying a staged/received part; found WO S9-24011 line a93ad8f1 in status 'authorized' with an inventory part in 'in_stock' (staged) status.",
+    "Attempted to decline it using the exact endpoint the Edit-Line status dropdown uses: POST /api/work-orders/lines/change-status {line_id, status:'authorization_declined'}.",
+    "Re-read the line to confirm the resulting status.",
+    "Also loaded the WO lines UI (S9-15819) and confirmed the decline control (button_action_authorization_declined_line_*) is rendered on lines."
+  ],
+  "actual_now": "The decline succeeded: the endpoint returned HTTP 200 and the line with a staged part transitioned to 'authorization_declined' (and its parts reverted from in_stock back to quoted/requested). The line is no longer blocked from being declined. The UI exposes the decline action on lines.",
+  "verdict": "FIXED",
+  "confidence": "high",
+  "screenshot_ref": "build/bugfix-regression/screenshots/SV-4816.png",
+  "notes": "Verified via the same change-status endpoint the UI's Edit Line > Status > Declined path invokes. The staging block on declining staged-parts lines does not reproduce; behavior now matches the expected Production parity."
+}
