@@ -1,0 +1,20 @@
+{
+  "key": "SV-4141",
+  "summary": "Schedule - 500 Error on July 23rd and Table Loading Issues After Location Change",
+  "area": "scheduling",
+  "release_source": ["v0.31 Bug Fixes"],
+  "reported_issue": "Opening the Scheduler and navigating (Prev/Next/calendar) to July 23rd triggered a 500 error, specific to July 23rd only. Also: changing location did not auto-load the schedule (required manual refresh), and errors occurred when a location had no departments/staff.",
+  "expected_after_fix": "Schedule loads for any date including July 23rd without a 500; switching location auto-loads the schedule; no error when a location has no departments/staff.",
+  "role_used": "admin",
+  "steps_i_followed": [
+    "Identified the schedule data endpoint via network capture: GET /api/calendar?date=...&end_date=...",
+    "Called /api/calendar directly for 2025-07-22/23/24, 2026-07-22/23/24 and 2026-07-03",
+    "Loaded /schedule in the SPA (admin) and navigated forward several days via the next-day chevron while capturing every /api/calendar response status",
+    "Checked the rendered page for any error/500/'something went wrong' banner after navigation"
+  ],
+  "actual_now": "The /api/calendar endpoint returned HTTP 200 for every date tested, including July 23rd of both 2025 and 2026 (no 500). In the SPA, navigating day-by-day (July 3 -> 6) produced /api/calendar calls that all returned 200, and no error banner appeared. The specific July-23rd 500 no longer occurs.",
+  "verdict": "FIXED",
+  "confidence": "high",
+  "screenshot_ref": "build/bugfix-regression/screenshots/SV-4141.png",
+  "notes": "Primary reported defect (500 on July 23rd) is resolved; verified both via direct API and UI navigation. The secondary sub-issues (location-switch auto-load, empty-location handling) were not independently reproduced in this session as only one location was exercised, but no errors were observed during navigation."
+}

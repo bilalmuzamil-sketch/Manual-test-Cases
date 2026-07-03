@@ -1,0 +1,19 @@
+{
+  "key": "SV-4140",
+  "summary": "Schedule - Default Timeline Position",
+  "area": "scheduling",
+  "release_source": ["v0.31 Bug Fixes"],
+  "reported_issue": "Navigating between days in the Scheduling table (calendar picker, Prev/Next Day, or Today) causes the timeline to briefly show 12:00 AM before jumping to the intended 6:00 AM. Does not occur on the initial page load.",
+  "expected_after_fix": "When navigating between days the timeline should settle directly at the default 6:00 AM position without a transient 12:00 AM flash.",
+  "role_used": "admin",
+  "steps_i_followed": [
+    "Loaded /schedule (admin) and captured the day-view timeline on initial load",
+    "Navigated forward several days using the next-day chevron",
+    "Captured the timeline horizontal position after navigation settled"
+  ],
+  "actual_now": "The reported defect is a sub-second visual transient (a brief 12:00 AM flash mid-transition). This cannot be reliably captured with post-settle headless screenshots. In the settled screenshots the day-view timeline rests with 12:00 AM at the leftmost column on both initial load and after day navigation (interval = 60 Minutes); no error occurred.",
+  "verdict": "NOT-TESTABLE",
+  "confidence": "low",
+  "screenshot_ref": "build/bugfix-regression/screenshots/SV-4140.png",
+  "notes": "The core symptom is a transient render flash during the navigation animation, which is not observable via the screenshot-based harness (no frame-level capture). Observed settled state showed 12:00 AM at the timeline's left edge rather than 6:00 AM, but the horizontal scroll default vs. a mid-animation flash cannot be distinguished here, so no confident FIXED/STILL-REPRODUCES call is possible."
+}
