@@ -14,5 +14,21 @@
   "replication_steps_plain": "",
   "screenshot_ref": "tech-33.png",
   "notes": "Also captured tech-33b-parts.png (Parts tab, no money) and tech-33c-stats.png (Stats, hours only). fe-permissions: seeFinancialData=false, view_mode=tech. Even the API masks money for tech (line labour_rate returned 0)."
+ },
+ {
+  "num": 34,
+  "role": "Technician",
+  "feature_area": "Tech View — estimate",
+  "where_to_go": "Work Orders → a line",
+  "what_to_do": "Look at the Estimate column and labor rate fields.",
+  "expected_result": "Estimate column shows Tech Time (not the estimate value); labor rate columns/fields hidden. Technician has Tech View.",
+  "depth": "DEEP",
+  "status": "PASS",
+  "spec_reference_plain": "Per SV-5319, a Technician is a Tech View role: the line grid should show tech time/estimate hours instead of pricing, and labor-rate columns/fields must be hidden. [Ref: SV-5319; checklist Technician row #34]",
+  "expected_plain": "On a line, the technician should see tech-time/estimate hours, not a labor rate in dollars.",
+  "actual_result_plain": "On S9-24706 the line grid has a single 'Actual/Estimate' column showing hours (e.g. '0.00 / 23.00' and '0.00 / 2.00' = actual tech time / estimated hours). There is no labor-rate column and no dollar labor rate anywhere. The Stats tab lists the same hours per line (23.00, 2.00, Total 25.00). The API returned labour_rate=0 / labour_type_cost=0 for tech (masked). Confirms Tech View shows tech time and hides labor rate.",
+  "replication_steps_plain": "",
+  "screenshot_ref": "tech-34.png",
+  "notes": "view_mode=tech, woTechViewMode present. Actual/Estimate column carries hours, not money."
  }
 ]
