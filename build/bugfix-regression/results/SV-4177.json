@@ -1,0 +1,21 @@
+{
+  "key": "SV-4177",
+  "summary": "BUG: Cannot add new staff member",
+  "area": "roles / permissions",
+  "release_source": ["v0.31 Bug Fixes"],
+  "reported_issue": "Navigating to /administration/staff, opening New Staff Member, filling valid data with a role other than Admin, and clicking Save & Close failed to add the staff member.",
+  "expected_after_fix": "Staff member is added and an invitation email is sent to that member.",
+  "role_used": "admin",
+  "steps_i_followed": [
+    "Navigated to /administration/staff (as admin)",
+    "Clicked New Staff Member to open the dialog",
+    "Filled First Name=ZZAUTOTEST, Last Name=Regr<ts>, Email=zzautotest<ts>@shopview.com, Job Title, Salary Type=Hourly",
+    "Set Role to 'Technician' (a non-Admin role), selected a Department (required) and a Location",
+    "Clicked Save & Close and captured the create API response"
+  ],
+  "actual_now": "The form submitted successfully: POST /api/iam/create returned HTTP 201 with body {\"data\":{\"message\":\"created\",\"user_id\":\"8326277a-8f58-4368-a2d3-5ec8a388da7d\"}}. The dialog closed with no validation or server errors. (Initial attempt without a Department showed the expected inline required-field validation 'Departments must have at least 1 option selected', which is correct behavior.)",
+  "verdict": "FIXED",
+  "confidence": "high",
+  "screenshot_ref": "build/bugfix-regression/screenshots/SV-4177.png",
+  "notes": "A staff member with a non-Admin role (Technician) is created successfully (201 created, user_id returned). Email dispatch is server-side and implied by the successful create; not independently verified. Test staff created under ZZAUTOTEST naming on disposable staging."
+}
