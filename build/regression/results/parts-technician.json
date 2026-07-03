@@ -30,5 +30,37 @@
   "replication_steps_plain": "1. Log in as the Tech user assigned the Parts Tech system role. 2. Confirm fe-permissions has catalogInventoryCreateAndEdit but NOT catalogInventoryDelete. 3. Create a catalog part (POST /api/parts-catalogue/add-catalogue-part with name/part_number/size/measurement/tags) -> 201. 4. Attempt to delete it the same way the UI does: POST /api/parts-catalogue/remove-catalogue-part?id=<newPartId>. 5. Observe HTTP 200 and the part is gone from GET /api/parts-catalogue/catalogue-parts. Expected 403.",
   "screenshot_ref": "pt-49.png",
   "notes": "BACKEND ENFORCEMENT GAP. Create confirmed via UI (add-catalogue-part 201). Edit is expected-allowed (catalogInventoryCreateAndEdit present); the catalog edit dialog could not be driven headless and the edit endpoint was not captured, so edit was not directly exercised, but the existing catalog data shows edited parts (tags BILAL/EDITED) and the permission is present. The FAIL is driven entirely by delete: tech deleted a part via remove-catalogue-part?id= (HTTP 200) despite having no catalogInventoryDelete permission. Admin (with the permission) uses the same endpoint. Delete param is a query string ?id=<uuid>; body/other param shapes return 400."
+ },
+ {
+  "num": 50,
+  "role": "Parts Technician",
+  "feature_area": "Parts → Returns",
+  "where_to_go": "Parts → Returns → a return",
+  "what_to_do": "Try to delete the return.",
+  "expected_result": "Allowed? Parts Technician has Vendor and Order Management = View/Create and Edit/Delete → has Delete → return delete ALLOWED.",
+  "depth": "MUST",
+  "status": "PASS",
+  "spec_reference_plain": "Original SV-5319 reading: return-delete was gated by Vendor & Order Management: Delete. The Parts Technician role HAS Vendor & Order Management View/Create-and-Edit/Delete, so deleting a return would be ALLOWED. NOTE: this row is marked STALE in the checklist and is superseded by NEW row N1 (spec v33 / SV-7911), which flips the expectation to BLOCKED. [Ref: SV-5319 matrix; checklist Parts Technician row #50, superseded by N1]",
+  "expected_plain": "Under the original spec, a Parts Technician (who has Vendor & Order delete rights) should be able to delete a return.",
+  "actual_result_plain": "As the Parts Tech user, Parts → Returns lists returns and the row three-dots menu offers 'Return to inventory' and 'Delete Return'. Deleting a return actually works: the app's delete-return endpoint POST /api/work-orders/part/remove-return-request {part_return_request_id:<id>} returned HTTP 200 and the return request (part 47-0680, WO S-13556) was removed. This matches the ORIGINAL expected result (allowed via Vendor & Order Delete, which the role has).",
+  "replication_steps_plain": "",
+  "screenshot_ref": "pt-50.png",
+  "notes": "SUPERSEDED BY N1. Under the old gating (Vendor & Order Delete) this is a correct PASS: fe-permissions show vendorOrderManagementDelete=true and the delete succeeded (200). But per spec v33 (SV-7911) the gate should have moved to Invoicing & Payments: Delete, which this role does NOT have — see N1 for the authoritative v33 result (FAIL / gap)."
+ },
+ {
+  "num": "N1",
+  "role": "Parts Technician",
+  "feature_area": "Parts -> Returns (v33)",
+  "where_to_go": "Parts -> Returns -> a return",
+  "what_to_do": "Try to delete the return.",
+  "expected_result": "BLOCKED (v33). Delete-return now requires Invoicing & Payments: Delete. Parts Tech has Invoicing = View/Create and Edit, NO Delete. THIS FLIPS the old expected result.",
+  "depth": "MUST",
+  "status": "FAIL",
+  "spec_reference_plain": "Per spec v33 (SV-7911), deleting a Parts→Returns record now requires the Invoicing & Payments: Delete permission. The Parts Technician role has Invoicing & Payments View and Create-and-Edit but NOT Delete, so deleting a return should be BLOCKED — both the control unavailable AND the server rejecting the call with a permission error. [Ref: SV-5319/v33 SV-7911; checklist Parts Technician row N1, replaces #50]",
+  "expected_plain": "As a Parts Technician (no Invoicing Delete) you should NOT be able to delete a return; the system should refuse it.",
+  "actual_result_plain": "Delete is NOT blocked. As the Parts Tech user (fe-permissions confirm invoicingPaymentsDelete = FALSE), the Parts → Returns row menu still offers 'Delete Return', and deleting actually works: the app's endpoint POST /api/work-orders/part/remove-return-request {part_return_request_id:<id>} returned HTTP 200 and the return (part 47-0680, WO S-13556) was removed. So a Parts Technician can delete returns despite lacking Invoicing & Payments: Delete. The v33 SV-7911 gate is not enforced (the endpoint still behaves per the old Vendor & Order Delete gating, which this role has).",
+  "replication_steps_plain": "1. Log in as the Tech user with the Parts Tech system role. 2. Confirm fe-permissions has invoicingPaymentsCreateAndEdit but NOT invoicingPaymentsDelete. 3. Go to Parts → Returns; open a return row three-dots menu — 'Delete Return' is present. 4. Fetch a return via GET /api/work-orders/part/list-return-requests and call POST /api/work-orders/part/remove-return-request {part_return_request_id:<id>}. 5. Observe HTTP 200 and the return removed. Expected 403.",
+  "screenshot_ref": "pt-n1.png",
+  "notes": "BACKEND + UI ENFORCEMENT GAP vs spec v33. The delete-return flow is still gated by Vendor & Order Delete (which this role has), NOT by Invoicing & Payments: Delete as SV-7911 requires. UI still exposes 'Delete Return' to the Parts Tech and the endpoint returns 200. Same endpoint Parts Manager (case 45) used successfully. If SV-7911 is expected on staging, this is a real regression; if not yet deployed, it still fails the v33 expected result."
  }
 ]
