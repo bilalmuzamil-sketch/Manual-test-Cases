@@ -74,10 +74,10 @@
     "status": "PASS",
     "spec_reference_plain": "Per the spec: Admin has Invoicing and Payments Delete, so deleting a customer payment is allowed. [Ref: SV-5319 Custom Roles matrix; checklist Administrator row #5]",
     "expected_plain": "As an Administrator you should be able to delete (reverse) a customer payment from the customer's Payments tab.",
-    "actual_result_plain": "Created a throwaway invoice on WO S9-24716 and recorded a $464.10 Cash payment against it. Went to the throwaway customer → Payments tab (showed Payments (1)) and clicked the remove/trash action. A confirmation appeared: 'This action will reverse the payment for all invoices associated with it. The payment record is preserved for audit history.' Confirmed 'Reverse'; after reload the Payments list was empty and the WO balance/status returned to unpaid. Delete/reverse succeeded.",
+    "actual_result_plain": "RE-TEST with real execution. On the throwaway customer 'new test' (id eb304603, garbage test data), opened Customers -> the customer -> Payments tab which showed Payments (1) for the paid invoice on WO S9-24674. Clicked the row's delete/trash action; the confirmation appeared verbatim: 'This action will reverse the payment for all invoices associated with it. The payment record is preserved for audit history. Are you sure you want to proceed?' Clicked Reverse. Server returned POST /api/customer-account/reverse-customer-payment 201 (success). After reload the invoice payment was removed from the actionable Payments list, and the work order status changed from 'paid' to 'invoiced' (i.e. the balance was un-paid). The reversal completed end-to-end.",
     "replication_steps_plain": "",
     "screenshot_ref": "build/regression/screenshots/5.png",
-    "notes": "Executed on throwaway data (own invoice/payment under ZZAUTOTEST customer)."
+    "notes": "RE-TEST (real execution). Reverse-payment executed on disposable staging data: reverse-customer-payment returned 201 and WO S9-24674 moved paid->invoiced, confirming the payment was truly reversed (record retained for audit per the app's own dialog). 5-confirm.png = the reverse confirmation dialog; 5.png = Payments tab after (invoice payment gone). Confirms Admin Invoicing & Payments: Delete."
   },
   {
     "num": 6,
