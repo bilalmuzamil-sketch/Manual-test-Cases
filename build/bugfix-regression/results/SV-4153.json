@@ -1,0 +1,21 @@
+{
+  "key": "SV-4153",
+  "summary": "BUG: Cannot open any workorder when logged in with roles that are not Admin",
+  "area": "roles / permissions",
+  "release_source": ["v0.31 Bug Fixes"],
+  "reported_issue": "Logging in with any role other than Admin and trying to open any work order failed (work order would not open).",
+  "expected_after_fix": "A non-Admin user with work-order view permission can open work order detail pages normally.",
+  "role_used": "tech (assigned non-Admin role 'Service Advisor' for the test)",
+  "steps_i_followed": [
+    "Assigned the Tech staff member (6fb22c1b) the non-Admin 'Service Advisor' role via POST /api/staff/{id}/change (201)",
+    "Confirmed Tech's effective fe-permissions (26 perms, view_mode=full, includes workOrdersView / workOrdersCreateAndEdit but not admin)",
+    "Fresh Tech login via SPA hydration; navigated to /workorders (33 rows visible)",
+    "Opened a work order by clicking a list row cell and also by direct navigation to /workorders/<id>/lines",
+    "Captured detail page content, screenshots, and any 4xx/console errors"
+  ],
+  "actual_now": "As the non-Admin Tech (Service Advisor, 'TS'), the work order detail opened and rendered fully: WO S9-24938 showed Lines (2)/Parts (3)/Notes/Stats/Finance tabs, line items with statuses, the vehicle/customer sidebar and Financial Info. Clicking a list row navigated to /workorders/<id>/lines. No 4xx API errors and no console errors were observed.",
+  "verdict": "FIXED",
+  "confidence": "high",
+  "screenshot_ref": "build/bugfix-regression/screenshots/SV-4153.png",
+  "notes": "Non-Admin users can open work orders. Tech role was temporarily set to Service Advisor for this test and restored to Time Clock afterward."
+}
