@@ -94,5 +94,21 @@
   "replication_steps_plain": "",
   "screenshot_ref": "fm-N1.png",
   "notes": "fe-permissions: workOrderLinesCreateAndEdit=true (and customersCreateAndEdit=true). Mileage/engine-hours/license-plate are inline-editable on the WO header and save via work-orders/change-mileage|change-engine-hours|change-licence-plate (all 201). VIN is a property of the asset and is edited via the vehicle Edit form (vehicles/change 201); the WO header shows VIN as read-only text. All edits succeeded and persisted."
+ },
+ {
+  "num": "N2",
+  "role": "Foreman",
+  "feature_area": "Reverse invoice (v33)",
+  "where_to_go": "Work Orders -> Finance",
+  "what_to_do": "Try to reverse a WO invoice.",
+  "expected_result": "BLOCKED. WO invoice reverse = WO: Delete (v33). Foreman has WO = View/Create and Edit, NO Delete.",
+  "depth": "SPOT",
+  "status": "PASS",
+  "spec_reference_plain": "Per SV-5319 v33, reversing a work-order invoice is governed by Work Orders = Delete; the Foreman role has Work Orders View + Create and Edit but NOT Delete, so a Foreman must not be able to reverse an invoice - the Reverse control should be hidden and the endpoint should refuse. [Ref: SV-5319 v33 Custom Roles permission matrix; checklist Foreman row N2]",
+  "expected_plain": "Logged in as a Foreman, there should be no way to reverse (undo) a work-order invoice.",
+  "actual_result_plain": "Opened the Finance tab of invoiced work order S9-24661 as Tech-with-Foreman-role and opened the invoice actions menu (three-dot kebab on the invoice). It showed only 'Issue Credit' - there was NO 'Reverse' option. As Admin the same menu on the same invoice shows 'Reverse | Issue Credit', confirming the Reverse control is gated. To confirm the block is enforced server-side, the Foreman session called the same endpoint the UI uses, POST /api/invoices/reverse-invoice with body {id:<invoice_id>}; it returned HTTP 403 'Access denied.' So the Foreman is blocked both in the UI (control absent) and at the API (403).",
+  "replication_steps_plain": "",
+  "screenshot_ref": "fm-N2.png",
+  "notes": "fe-permissions: workOrdersDelete=false. Real denial confirmed two ways: (1) UI - Foreman invoice kebab shows only 'Issue Credit' while Admin shows 'Reverse | Issue Credit'; (2) API - reverse-invoice returns 403 Access denied for the Foreman (payload shape {id:invoice_id}, discovered from Admin's own successful reverse call which returned 200). Endpoint exists (not a 404), so the feature is real and simply gated off for Foreman."
  }
 ]
