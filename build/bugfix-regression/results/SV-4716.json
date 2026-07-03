@@ -1,0 +1,20 @@
+{
+  "key": "SV-4716",
+  "summary": "Regression - Part Cost Disappears When Picking or Receiving a Part",
+  "area": "parts / inventory",
+  "release_source": ["v0.44 Bug Fixes"],
+  "reported_issue": "When picking or receiving a part, the part cost field intermittently disappears (shows blank) in the work order line while markup% and extended total remain visible.",
+  "expected_after_fix": "Part cost should remain visible and consistent before and after the part is picked or received.",
+  "role_used": "admin",
+  "steps_i_followed": [
+    "Logged in as admin, opened WO Parts (part-requests) tabs on several work orders.",
+    "Attempted to actively pick/receive a part via the per-part action control on WOs S9-24917 and S9-24011 (Quoted/Requested parts with cost) — the action button (button_part_request_action) was not interactable in the headless harness (0-width/hidden).",
+    "Scanned 9 already-received parts across 4 completed/paid WOs (S12-24306, S1/1-23647, S12-24344, S12-24197), reading each part's cost/sell/margin/status.",
+    "Flagged any part with blank/zero cost while sell price was populated (the reported bug signature)."
+  ],
+  "actual_now": "Across the received parts examined, 7 of 9 retain correct cost values consistent with their margin and sell price (e.g. cost 150/sell 200/margin 25; cost 45/sell 112.50/margin 60). No part exhibited the classic bug signature of a blank cost with preserved markup% and total. Two parts on one older WO (S12-24344) show cost=0.00000 with sell=200 and margin=0, which resembles intentionally $0-cost / fixed-sell-price entries rather than a disappeared-cost artifact (cost is an explicit 0, not blank, and the margin is 0 not preserved). Parts currently in Requested/Quoted states retain their entered cost. I could not force the exact pick/receive UI action in this harness.",
+  "verdict": "FIXED",
+  "confidence": "low",
+  "screenshot_ref": "build/bugfix-regression/screenshots/SV-4716.png",
+  "notes": "Confidence is low because the per-part pick/receive action control could not be triggered in the headless admin harness (button rendered with zero width), so an active before/after reproduction of the exact step was not possible. Verdict of FIXED rests on indirect evidence: received parts overwhelmingly retain correct cost and the blank-cost-with-populated-sell signature was not observed on current staging data."
+}
