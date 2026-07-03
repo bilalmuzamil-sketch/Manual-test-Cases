@@ -1,0 +1,20 @@
+{
+  "key": "SV-4697",
+  "summary": "Scrolling issue on Customer Payments list causes page to jump back to top",
+  "area": "payments / ShopPay",
+  "release_source": ["v0.44 Bug Fixes"],
+  "reported_issue": "When scrolling through payments under a customer profile, the list automatically jumps back to the top, preventing navigation to older payment records. Reported for customer Riverbend Moving and Storage which has a large payment history.",
+  "expected_after_fix": "User can scroll smoothly through the entire payment history without the screen jumping back to the top.",
+  "role_used": "admin",
+  "steps_i_followed": [
+    "Logged in as admin. Confirmed the reported customer (Riverbend Moving and Storage) does not exist on staging (production-only customer).",
+    "Scanned staging customers for the largest payment list; the maximum found was 4 payments (Aachester Partners).",
+    "Opened that customer's Payments tab (endpoint /api/customer-payment/list?accountId=...&rowsPerPage=1000 loads all payments at once, no scroll-triggered re-fetch).",
+    "Forced a scrollable state with a short (420px) viewport, then programmatically scrolled both the scroll container (to 150px) and the window (to 300px), dispatched scroll events, waited 2s, and re-read scroll positions."
+  ],
+  "actual_now": "Scroll position remained stable: the container held at 150px and the window held at 300px after a 2s settle — no snap-back to top was observed. The payments list loads all rows in one request (rowsPerPage=1000), so there is no scroll-position-resetting re-fetch. The exact high-volume repro could not be fully stressed because no staging customer has a large payment list (max 4 payments) and the reported customer is production-only.",
+  "verdict": "FIXED",
+  "confidence": "low",
+  "screenshot_ref": "build/bugfix-regression/screenshots/SV-4697.png",
+  "notes": "No jump-to-top behavior reproduced on current staging; scroll positions held. Confidence is low because staging lacks a customer with a large enough payment history (the reported Riverbend customer does not exist on staging) to fully reproduce the original high-volume scenario. The all-at-once load pattern (no scroll re-fetch) is consistent with the scroll-jump being fixed."
+}
