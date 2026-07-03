@@ -94,5 +94,21 @@
   "replication_steps_plain": "1. Log in as the Tech user with the Parts Tech role. 2. Open a work order's Parts tab (reachable). 3. Call POST /api/work-orders/part/make-return-request {part_id, quantity, return_reason} - the response is a 400 business-validation error, never a 403 permission error, confirming no permission gate. (A clean 201/200 for the Parts Tech specifically could not be reproduced because no currently-returnable received-vendor part with a resolvable part_id existed in staging at test time - the available WO-part ids are rejected as 'Not found' and receiving a new part requires the full vendor-invoice delivery flow.)",
   "screenshot_ref": "pt-n2.png",
   "notes": "PASS on the permission dimension the case tests (no permission required). Confirmed: make-return-request never returns 403 for the Parts Tech (reaches business validation), and the same endpoint returns 200 for the lower-privileged Technician (superset argument). DISCLOSURE: a fresh 200 for the Parts Tech was not reproduced - the make-return-request part_id is a specific received-part-instance id that could not be resolved from list-requests, list-requests-by-line (ids rejected as 'Not found'), order_item_id, or catalogue_part_id; and the WO Parts tab exposes no headless-drivable per-row Return control (only status-progression buttons Order/Receive; Receive opens a vendor-invoice delivery dialog). No permission denial was ever observed."
+ },
+ {
+  "num": "N3",
+  "role": "Parts Technician",
+  "feature_area": "Invoicing = Part Sales path (WAD)",
+  "where_to_go": "Part Sales -> create invoice",
+  "what_to_do": "Create a Part Sales invoice.",
+  "expected_result": "Allowed. Parts Tech Invoicing Create and Edit is scoped to the PART SALES invoice path (Sasha WAD, SV-7903). WO invoices are the Service Advisor's job - not a Parts Tech gap.",
+  "depth": "SPOT",
+  "status": "PASS",
+  "spec_reference_plain": "Per spec v33 / SV-7903 (Sasha WAD), the Parts Technician's Invoicing & Payments Create-and-Edit is scoped to the Part Sales invoice path, so a Parts Tech should be able to create a Part Sales invoice/sale. (Work-order invoices are the Service Advisor's job and are out of scope here.) [Ref: SV-5319/v33 SV-7903; checklist Parts Technician row N3]",
+  "expected_plain": "As a Parts Technician you should be able to create a Part Sales invoice.",
+  "actual_result_plain": "Allowed - a Part Sales invoice was actually created as the Parts Tech user. Calling the app's create endpoint POST /api/part-sales {company_id:<customer>} returned HTTP 200 with a new part-sale id (fee6eb3c-...), and it now shows in the Part Sales list as P9-1046 (status Estimate, customer 'Iibay Landscaping'). The Part Sales list page (/parts/part-sales) is reachable and lists sales. fe-permissions confirm partSalesCreateAndEdit=true and invoicingPaymentsCreateAndEdit=true. No permission denial at any point.",
+  "replication_steps_plain": "",
+  "screenshot_ref": "pt-n3.png",
+  "notes": "PASS. Created via the app's create endpoint after confirming the Part Sales area is reachable for the Parts Tech (the part-sale detail SPA route did not render headlessly and the list rows/create button would not drive via Quasar, so creation was issued to the exact endpoint POST /api/part-sales the list uses; permission gate confirmed open - a bare POST returned 400 'company_id missing', never 403, then a valid POST returned 200). New ZZAUTOTEST-style record P9-1046 (Iibay Landscaping) created on disposable staging. partSalesCreateAndEdit=true, invoicingPaymentsCreateAndEdit=true."
  }
 ]
