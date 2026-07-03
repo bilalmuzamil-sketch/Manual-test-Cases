@@ -16,6 +16,22 @@
   "notes": "seeFinancialData=true confirmed in fe-permissions. Prices render on the WO lines/parts view. (WO also shows an 'Over Limit' badge which per policy blocks nothing.)"
  },
  {
+  "num": 44,
+  "role": "Parts Manager",
+  "feature_area": "Parts — full",
+  "where_to_go": "Parts → Catalog/Inventory; Vendors; Part Sales",
+  "what_to_do": "Create/edit/delete parts; manage vendors; delete part sales.",
+  "expected_result": "Full access. Parts Manager has Catalog, Vendor&Order, Part Sales all View/Create and Edit/Delete.",
+  "depth": "MUST",
+  "status": "FAIL",
+  "spec_reference_plain": "Per SV-5319, the Parts Manager role has full parts control: Catalog/Inventory View+Create/Edit+Delete, Vendor & Order Management View+Create/Edit+Delete, and Part Sales View+Create/Edit+Delete. So a Parts Manager should be able to create/edit/delete inventory & catalog parts, add/remove vendors, and delete part sales. [Ref: SV-5319 Custom Roles permission matrix; checklist Parts Manager row #44]",
+  "expected_plain": "Logged in as a Parts Manager, you should have full control over parts and vendors and be able to delete a part sale.",
+  "actual_result_plain": "Mostly works, but deleting a part SALE is blocked. Confirmed working as Tech-with-Parts-Manager-role: (1) Inventory/Catalog part CREATE succeeded - POST /api/inventory/parts/create returned 201 (created a ZZAUTOTEST part on bin A2CD). (2) Inventory/Catalog part DELETE succeeded - POST /api/inventory/parts/delete returned 201. (3) Vendor CREATE succeeded via the real UI 'New Vendor' form (filled Name/Country/Taxes, clicked Save & Close) - POST /api/parts-catalogue/add-vendor returned 201. (4) Vendor DELETE succeeded - POST /api/parts-catalogue/remove-vendor returned 201. (5) Part Sales list shows the 'New Part Sale' create button and prices. HOWEVER, deleting a part sale record FAILS: on part sale P9-994 the header three-dot menu DOES show a red 'Delete' option, but clicking it fires POST /api/work-orders/delete {work_order_id:...} which returns HTTP 403 'Access denied' and the app redirects the user to the /access-denied page. Part-sale deletion is gated by the Work Orders Delete permission (workOrdersDelete=false for Parts Manager) instead of the Part Sales Delete permission (partSalesDelete=true), so the Parts Manager cannot delete a part sale despite the spec granting Part Sales Delete and despite the UI presenting the Delete control.",
+  "replication_steps_plain": "1) Log in as Tech (assigned Parts Manager role). 2) Parts -> Part Sales -> open an estimate part sale (e.g. P9-994). 3) Open the header three-dot (kebab) menu -> click 'Delete' -> confirm. 4) Observe the request POST /api/work-orders/delete returns 403 and the browser lands on /access-denied; the part sale is NOT deleted.",
+  "screenshot_ref": "pm-44.png",
+  "notes": "Parts (catalog/inventory) create+delete and vendor create+delete all return 201 for Parts Manager - full control there confirmed. FAIL is specifically for 'delete part sales': the UI offers a Delete control but the backend blocks it (403) because part-sale deletion is wired to the Work Orders Delete permission (workOrdersDelete) rather than Part Sales Delete (partSalesDelete). This is both a UX bug (control shown when it will always be denied) and a permission-mapping inconsistency vs the spec's 'Part Sales Delete'. Supporting screenshots: pm-44-vendorform.png / pm-44-vendorsaved.png (vendor create), pm-44-partsales.png (list + New Part Sale + prices), pm-44-ps-menu.png (Delete option shown), pm-44-ps-after.png (access-denied). Note: reversing a part-sale INVOICE (a different Part-Sales-Delete-gated action) DOES work for Parts Manager - see case N2."
+ },
+ {
   "num": 46,
   "role": "Parts Manager",
   "feature_area": "Work order delete",
