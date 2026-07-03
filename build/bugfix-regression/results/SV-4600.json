@@ -1,0 +1,22 @@
+{
+  "key": "SV-4600",
+  "summary": "Apply vendor credit, leave remaining balance if larger than bill",
+  "area": "invoicing / accounting",
+  "release_source": ["v0.48 Bug Fixes"],
+  "reported_issue": "When applying a vendor credit during payment, if the credit amount is greater than the bill amount, the system incorrectly marks the entire credit as spent. It does not leave the remaining balance to be claimed on another payment. Example: payment $125, credit $200.",
+  "expected_after_fix": "When a credit larger than the bill is applied, only the bill amount should be consumed and the remaining credit balance should be retained for a future payment.",
+  "role_used": "admin",
+  "steps_i_followed": [
+    "Opened vendor '123 Cannabis Forestlawn' Unpaid Invoices tab (/parts/vendor/7d54f3e1.../unpaid-invoices). Starting vendor Balance = $16,370.95",
+    "Created a New credit of $1,500.00 (C-9816, memo 'ZZAUTOTEST 4600 bigcredit')",
+    "Selected the $1,027.17 delivery bill (WO 24633) and the $1,500.00 credit, clicked New Payment",
+    "In the New Vendor Payment dialog the UI previewed the credit as 'Applies $1,027.17 · $472.83 remaining'",
+    "Selected a payment method and clicked Make Payment (cash portion $0.00; fully covered by credit)",
+    "Reloaded and inspected the Payments tab, expanded the payment, and read GET /api/parts-catalogue/vendor/payment/list-by-vendor-account"
+  ],
+  "actual_now": "Despite the dialog preview showing '$472.83 remaining', the entire $1,500 credit was consumed. After the payment the credit C-9816 shows '-$1,500.00 Applied' and the API returns applied_credit_amount:1500, creditAmount:1500, creditBalance:0 for it. The credit no longer appears as available in Unpaid Invoices, and the vendor top Balance rose from $16,370.95 to $16,843.78 - an increase of exactly $472.83, i.e. the remaining credit balance was lost instead of retained. Applying a credit to a bill should be balance-neutral to total owed; here it increased owed by the un-retained remainder.",
+  "verdict": "STILL-REPRODUCES",
+  "confidence": "high",
+  "screenshot_ref": "build/bugfix-regression/screenshots/SV-4600.png",
+  "notes": "The frontend dialog computes and displays the correct '$472.83 remaining' preview, but on save the backend marks the whole credit as spent (creditBalance:0). This is the exact reported bug (credit > bill consumes entire credit). Regression confirmed via UI + API. Test data left on staging (ZZAUTOTEST credit fully applied)."
+}
