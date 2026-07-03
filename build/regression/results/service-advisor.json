@@ -1,0 +1,18 @@
+[
+ {
+  "num": 22,
+  "role": "Service Advisor (a.k.a. Junior SA)",
+  "feature_area": "Pricing visibility",
+  "where_to_go": "Work Orders \u2192 open a work order",
+  "what_to_do": "Check prices/totals/Finance/Stats.",
+  "expected_result": "All money visible. Service Advisor has See Financial Data ON.",
+  "depth": "DEEP",
+  "status": "PASS",
+  "spec_reference_plain": "Per SV-5319, the Junior Service Advisor role has the 'See Financial Data' cross-toggle ON (confirmed on the staging system 'Service Advisor' role: seeFinancialData=true), so every dollar figure on a work order \u2014 the Financial Info card, the line Rate/Margin/Total columns, the Stats tab money, and the Finance tab invoice \u2014 must be visible.",
+  "expected_plain": "Logged in as a Junior Service Advisor, every price and dollar amount on a work order should be visible, nothing hidden.",
+  "actual_result_plain": "Opened invoiced work order S9-24661 as Tech-with-Service-Advisor. All money visible everywhere. The Financial Info card showed Parts $0.00, Labor $929.72, Shop Supplies $97.62, Subtotal $1,027.34, GST $51.37, Total $1,078.71. The lines grid showed the Rate $232.43 column. The Stats tab showed the Sell/Cost/Margin money ($929.72 etc). The Finance tab rendered the full invoice with Labor $929.72, Shop supplies $97.62, Subtotal $1,027.34, GST $51.37, Total $1,078.71. Nothing was masked or hidden.",
+  "depth_note": "DEEP",
+  "screenshot_ref": "sa-22.png",
+  "notes": "seeFinancialData=true verified on the assigned system Service Advisor role via /api/auth/me/fe-permissions."
+ }
+]
