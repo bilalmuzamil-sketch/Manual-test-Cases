@@ -1,0 +1,20 @@
+{
+  "key": "SV-4071",
+  "summary": "Manually Remove Stuck Parts and Delete Work Order S-100",
+  "area": "work orders",
+  "release_source": ["v0.31 Bug Fixes"],
+  "reported_issue": "Parts on Work Order S-100 (customer Antares Hire NZ Ltd) are stuck and cannot be removed; request to the backend team to manually remove the stuck parts and delete WO S-100.",
+  "expected_after_fix": "The work order (and its stuck parts) can be removed; a WO with awaiting/stuck parts should be deletable rather than blocked.",
+  "role_used": "admin",
+  "steps_i_followed": [
+    "Noted S-100 / Antares Hire NZ is a specific production record (this staging org is Foothills Group Inc); tested the general regression it implies instead",
+    "Used disposable WO S9-24938 (3c12bbfa) which had 3 awaiting part_requests across 2 lines",
+    "Opened the WO-level kebab (Audit Log / Timesheets / Delete Work Order) and chose Delete Work Order",
+    "Observed the confirmation dialog and confirmed deletion, capturing the API response"
+  ],
+  "actual_now": "The WO with awaiting parts deleted successfully. The confirm dialog explicitly stated 'There are awaiting parts. Are you sure you want to delete this work order?' with Delete/Cancel; clicking Delete fired POST /api/work-orders/delete which returned HTTP 201 with {work_order_id: 3c12bbfa...} and redirected to the work-orders list. Awaiting/stuck parts do NOT block deletion; the system warns and allows it.",
+  "verdict": "FIXED",
+  "confidence": "medium",
+  "screenshot_ref": "build/bugfix-regression/screenshots/SV-4071.png",
+  "notes": "The specific S-100 / Antares Hire NZ incident is a prod-only manual data fix not reproducible on staging. The general regression (a work order with stuck/awaiting parts cannot be deleted) does NOT reproduce: a WO with awaiting parts is deletable via the UI (201). This also cleaned up the disposable test WO. Confidence medium because only the general delete behavior, not the exact S-100 record, could be exercised."
+}
