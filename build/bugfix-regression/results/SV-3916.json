@@ -1,0 +1,21 @@
+{
+  "key": "SV-3916",
+  "summary": "Prevent Invoicing of Declined Work Orders",
+  "area": "work orders",
+  "release_source": ["v0.31 Bug Fixes"],
+  "reported_issue": "A Work Order with all lines declined could still be invoiced, creating a $0 invoice marked as paid; when pushed to QuickBooks the empty invoice caused a QB error.",
+  "expected_after_fix": "The Invoice button should not be present if all lines on the WO are declined; it should act like an open work order. A WO must have at least one completed line (all lines completed) to be invoiced.",
+  "role_used": "admin",
+  "steps_i_followed": [
+    "Created a fresh WO (S9-24938) for customer 'ZZAUTOTEST regression throwaway' / 2020 Ford Transit (confirmed through the over-credit-limit dialog)",
+    "Added one line ('Service - Steer hub oil', est/tech time 2h) via the New Line dialog",
+    "Declined that line using the row Action -> Decline (line status became 'Declined'; it was the only line)",
+    "Checked the WO header and top kebab menu for any Invoice/Create Invoice control",
+    "Clicked 'Reviewed' to pass the review gate and re-checked all header buttons and the kebab menu for an invoice option"
+  ],
+  "actual_now": "With the WO's only line Declined, no 'Invoice'/'Create Invoice' control is present anywhere. Before review the header shows only New Line + Reviewed; the kebab menu shows only Audit Log, Timesheets, Delete Work Order. After clicking Reviewed the WO badge became 'Complete' but still exposed no invoice button and the kebab menu was unchanged (no invoice option). The all-declined WO cannot be invoiced.",
+  "verdict": "FIXED",
+  "confidence": "high",
+  "screenshot_ref": "build/bugfix-regression/screenshots/SV-3916.png",
+  "notes": "Matches expected_after_fix: the Invoice button is absent when all lines are declined, so no $0 invoice can be created. Test WO S9-24938 (3c12bbfa-30e8-4b45-9442-576242a42510) left on disposable staging under the ZZAUTOTEST customer."
+}
