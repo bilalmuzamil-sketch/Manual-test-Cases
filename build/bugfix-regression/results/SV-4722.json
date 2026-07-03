@@ -1,0 +1,20 @@
+{
+  "key": "SV-4722",
+  "summary": "Bug: First page of downloaded invoice appears blank — invoice content starts from page 2",
+  "area": "invoicing / accounting",
+  "release_source": ["v0.44 Bug Fixes"],
+  "reported_issue": "When downloading an invoice that includes a long technician story, the first page of the PDF is blank and the actual invoice content begins on page 2. Occurs consistently with lengthy tech-story text.",
+  "expected_after_fix": "The invoice PDF renders its content starting on page 1 (no blank leading page) even when a long technician story is present.",
+  "role_used": "admin",
+  "steps_i_followed": [
+    "Logged in as admin. Located the invoice PDF generation path: button_download_invoice and endpoint /api/invoices/preview?invoice_id=<id>&type=pdf.",
+    "Fetched and analyzed the PDF byte streams (zlib-inflate of content streams + text-operator counting) for 10 real invoices on staging.",
+    "Attempted to construct the exact repro: add a long (~2500 char) technician story to a line and generate its PDF.",
+    "Attempted estimate-preview PDF generation via WO id to bypass invoice creation."
+  ],
+  "actual_now": "General PDF pipeline check: all 10 invoices analyzed render their content on the FIRST page (first content stream carries the primary text, ~13 BT / ~80 Tj operators); none exhibited a blank leading page. However, the exact reported trigger (a long technician story spanning multiple pages) could NOT be constructed in this harness: (1) the rich-text tech-story editor did not persist programmatic input, (2) creating a new invoice requires the review->invoice flow which is gated (the 'Reviewed' button was disabled on available test WOs), and (3) the estimate-preview PDF endpoint rejects a WO id and requires an existing invoice_id. No existing invoice on staging had a long/multi-page tech story to test against.",
+  "verdict": "NOT-TESTABLE",
+  "confidence": "medium",
+  "screenshot_ref": "build/bugfix-regression/screenshots/SV-4722.png",
+  "notes": "Partial positive evidence: the invoice PDF renderer places content on page 1 for all 10 real invoices tested (no blank first page). But the specific long-tech-story multi-page condition that triggers the reported bug could not be created in the automated harness (tech-story editor + gated invoice generation), so a definitive FIXED/STILL-REPRODUCES verdict for the exact scenario is not possible here."
+}
