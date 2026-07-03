@@ -1,0 +1,20 @@
+{
+  "key": "SV-4465",
+  "summary": "BE Labor amount missing thousands separator in totals section",
+  "area": "invoicing / accounting",
+  "release_source": ["v0.54 Bug Fixes"],
+  "reported_issue": "In the invoice totals block, the Labor amount rendered without a thousands separator when four digits or more (e.g. $1280.00 instead of $1,280.00).",
+  "expected_after_fix": "Labor total should display as $1,280.00 with standard US number formatting; the same rule applied consistently to Parts, Shop supplies, Subtotal, Tax, and Total.",
+  "role_used": "admin",
+  "steps_i_followed": [
+    "Located a work order whose Labor total exceeds $999 by scanning the totals block of several WOs",
+    "Opened WO S12-23530 (id 54b32f65...) Finance tab and read the totals block",
+    "Verified formatting of Labor and the other total rows",
+    "Also confirmed 4-5 digit amounts render with commas across the WO list and finance line items"
+  ],
+  "actual_now": "The totals block renders Labor = $1,215.00 with a thousands separator (four+ digit value correctly comma-formatted). The other rows are also correctly formatted: Subtotal $4,251.46, GST $212.57, Total $4,464.03, Balance $4,464.03. No '$1215.00'-style unformatted values were observed anywhere; every 4-5 digit currency amount across the WO list ($9,928.86, $34,983.03, $87,269.73) and finance also uses commas.",
+  "verdict": "FIXED",
+  "confidence": "high",
+  "screenshot_ref": "build/bugfix-regression/screenshots/SV-4465.png",
+  "notes": "Verified in the WO Finance totals block (the invoice totals section). Labor >= $1,000 now shows the thousands separator consistently with Subtotal/Tax/Total."
+}
