@@ -1,0 +1,18 @@
+[
+ {
+  "num": 48,
+  "role": "Parts Technician",
+  "feature_area": "Pricing visibility",
+  "where_to_go": "Parts / Work Orders",
+  "what_to_do": "Check prices.",
+  "expected_result": "Visible. Parts Technician has See Financial Data ON.",
+  "depth": "SPOT",
+  "status": "PASS",
+  "spec_reference_plain": "Per SV-5319, the Parts Technician (system role 'Parts Tech') has the 'See Financial Data' cross-toggle ON, so dollar amounts (line rates/totals, part cost/sell, work-order finance totals) should be visible everywhere. [Ref: SV-5319 Custom Roles permission matrix; checklist Parts Technician row #48]",
+  "expected_plain": "Logged in as a Parts Technician, prices and dollar amounts on work orders and parts should be shown, not hidden.",
+  "actual_result_plain": "Opened work order S9-24917 as Tech-with-Parts-Tech-role. Dollar figures are fully visible. The Financial Info panel shows Parts $0.00, Labor $614.86, Shop Supplies $64.56, Subtotal $679.42, GST $33.97, Total $713.39, Balance $713.39. Line-level amounts render too ($232.43, $464.86, etc.). fe-permissions confirm cross_toggles.seeFinancialData=true and view_mode=full.",
+  "replication_steps_plain": "",
+  "screenshot_ref": "pt-48.png",
+  "notes": "seeFinancialData=true and woFullViewMode present in fe-permissions. WO shows an 'Over Limit' badge which per policy blocks nothing."
+ }
+]
