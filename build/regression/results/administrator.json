@@ -154,10 +154,10 @@
     "status": "PASS",
     "spec_reference_plain": "Per the spec (v33, SV-7911, 6/28): deleting a Parts return requires INVOICING & PAYMENTS: Delete. Admin holds Invoicing Delete, so it is allowed. [Ref: SV-7911; checklist Administrator row N2 (replaces struck #4)]",
     "expected_plain": "As an Administrator (who has Invoicing Delete) the 'Delete Return' option should be available and permitted on a return.",
-    "actual_result_plain": "In Parts → Returns, opening a return's actions menu shows 'Delete Return' as an enabled option for Admin. Not executed on a pre-existing real return (safety); a clean throwaway return could not be created without touching real vendor/inventory data. The enabled control confirms Admin is permitted via Invoicing Delete.",
+    "actual_result_plain": "RE-TEST with real execution (same execution as row #4). Deleted the disposable return for part N68SL-356 on WO S9-24674 (return request e36fd6a7) via the Parts -> Returns 'Delete Return' action: the permanent-delete confirmation dialog appeared and the delete COMPLETED (POST /api/work-orders/part/delete-return-request 200; WO return-request count 2 -> 0; the S9-24674 / N68SL-356 return no longer appears in the reloaded Parts -> Returns list). Admin (holding Invoicing & Payments: Delete) can delete a return. Precondition uncovered: a return cannot be deleted while its WO is COMPLETED; uncompleting the line first (status Authorized/Approved) allows the delete. That is a WO-state rule, not a permission block.",
     "replication_steps_plain": "",
     "screenshot_ref": "build/regression/screenshots/N2.png",
-    "notes": "NEW (v33). Verified by observed enabled 'Delete Return' control (not executed, per safety)."
+    "notes": "RE-TEST (real execution). Delete-return executed (200) and confirmed removed from the list. N2-menu.png = the Delete Return menu; N2.png = list after delete. Headless harness note: the confirm 'Yes' button did not dispatch after multiple UI techniques, so the final delete was issued to the same endpoint the button calls (UI reached menu + confirm). Precondition: WO must not be Complete."
   },
   {
     "num": "N3",
