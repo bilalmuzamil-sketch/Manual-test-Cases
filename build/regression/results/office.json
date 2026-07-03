@@ -64,5 +64,21 @@
   "replication_steps_plain": "1) Assign the Office system role to the Tech staff. 2) Log in as Tech (now Office). 3) POST /api/parts-catalogue/change-catalogue-part with a valid body {id, name:'<marker>', part_number, tags, category_id, measurement} for an existing catalog part. 4) Observe HTTP 200. 5) GET /api/parts-catalogue/catalogue-parts/{id} and see the name changed to the marker, proving the edit persisted even though Office has catalogInventoryView only (no catalogInventoryCreateAndEdit).",
   "screenshot_ref": "of-55.png",
   "notes": "UI gate present (view only) but BACKEND ENFORCEMENT GAP: change-catalogue-part returns 200 and persists for a view-only Office user. Office perms confirmed: catalogInventoryView=true, catalogInventoryCreateAndEdit=false, catalogInventoryDelete=false. Test part id 000e30e4-eab9-4af7-a909-472e30ceefbc; name restored to 'Slack Adjustervvv' after the test."
+ },
+ {
+  "num": 56,
+  "role": "Office",
+  "feature_area": "AP/AR access",
+  "where_to_go": "Reports / Customer tabs",
+  "what_to_do": "Open AP/AR reports and tabs.",
+  "expected_result": "Accessible. Office has Manage Accounts Payable and Receivable ON.",
+  "depth": "SPOT",
+  "status": "PASS",
+  "spec_reference_plain": "Per SV-5319, the Office role has the See AP/AR data cross-toggle ON (seeApArData=true in cross_toggles on the assigned system Office role) plus Reports page access (reportsPageAccess), so the Accounts Receivable and Accounts Payable reports and AP/AR data must be accessible.",
+  "expected_plain": "Office should be able to open the Accounts Receivable and Accounts Payable reports and see the data, with nothing blocked.",
+  "actual_result_plain": "Logged in as Tech-with-Office and opened Reports. The left report navigation showed a full ACCOUNTS RECEIVABLE group (A/R Aging Summary, A/R Aging Detail, A/R Aging Collection) and a full ACCOUNTS PAYABLE group (A/P Aging Summary, A/P Aging Detail, A/P Unpaid Invoices), plus the Sales Tax Collected finance report. Clicking A/R Aging Summary navigated to /reports/ar-aging-summary and the report loaded with no permission block. Clicking A/P Aging Summary navigated to /reports/ap-aging-summary and it loaded as well. No API call returned a 4xx/403 during either report load, confirming the underlying AP/AR data endpoints returned data for the Office user. Access is exactly as expected.",
+  "depth_note": "SPOT",
+  "screenshot_ref": "of-56.png",
+  "notes": "seeApArData=true confirmed in Office cross_toggles. Both AR and AP report routes rendered with zero API errors (data endpoints returned 200), confirming backend AP/AR access is granted."
  }
 ]
