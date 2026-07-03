@@ -1,0 +1,21 @@
+{
+  "key": "SV-4219",
+  "summary": "Parts pricing does not update to current price when adding a canned line",
+  "area": "parts / inventory",
+  "release_source": ["v0.43 Bug Fixes"],
+  "reported_issue": "When adding a canned line to a work order, the parts pricing did not update to the current sell price; it retained the sale price from when the canned line was originally saved.",
+  "expected_after_fix": "When a canned line is added, the part's pricing should pull the current sell price from inventory (fixed price if fixed, otherwise the category matrix), not the historical saved price.",
+  "role_used": "admin",
+  "steps_i_followed": [
+    "Opened WO S12-24601 lines, clicked New Line and selected canned line 'New Canned Line 1' (4 parts), Save & Close (POST /api/work-orders/.../lines/create-from-canned-line -> 201)",
+    "Read the resulting parts and rates on the Finance invoice",
+    "Cross-checked the parts against current pricing: inventory (GET /api/inventory/parts) and catalogue (GET /api/parts-catalogue/catalogue-parts)",
+    "Added a second canned line ('Milos testing canned lines', 6 parts) to widen the sample",
+    "Attempted a fully controlled reprice-then-readd using stocked fixed-price part N10054-038-038BR"
+  ],
+  "actual_now": "Canned-line parts are priced at CURRENT pricing when added, not a stale stored value. The two category-priced canned parts N82E-150BR and 4--FLT3030LCB20 (both category 'HD-Truck Accessories') were both added at $58.93 - the live category-matrix rate (identical because same category), exactly as the expected 'use the matrix per category' rule. The stocked fixed-price part N10054-038-038BR (inventory sell_price $200.00, is_fixed_price=true) shows Rate $200.00 on the WO, matching its current inventory fixed price. No stale/mismatched pricing was observed.",
+  "verdict": "FIXED",
+  "confidence": "medium",
+  "screenshot_ref": "build/bugfix-regression/screenshots/SV-4219.png",
+  "notes": "Observed canned-line adds reflect current inventory/matrix pricing (fixed price for fixed parts; category matrix for non-fixed), matching expected_after_fix. Could not complete a fully controlled reprice-then-readd on a single part because: the available canned lines do not contain a stocked, repriceable fixed-price part, and the inventory-update and canned-line-create write endpoints are not exposed to the read-only API user (405/404). Recommend a quick manual confirmation: save a canned line at price X, change the part's inventory price to Y, re-add the canned line and confirm it shows Y."
+}
