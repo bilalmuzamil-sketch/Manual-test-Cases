@@ -45,5 +45,35 @@
   "replication_steps_plain": "1. Log in as the Tech user assigned the Service Advisor role. 2. Click Customers in the top nav. 3. Open any customer (e.g. 'new test'). 4. Look at the row of tabs under the customer name. 5. Observe that Invoices, Payments and Deposits tabs are present and show counts \u2014 they are NOT hidden, even though the role's Manage AP/AR toggle is OFF. Expected them to be hidden.",
   "screenshot_ref": "sa-26.png",
   "notes": "Deviation is a consequence of the v33 invoicing model: the AR tabs are unlocked by invoicingPaymentsDelete (which SA has), not only by seeApArData. So 'AP/AR OFF hides these tabs' does not hold for a role that also has invoicing delete. Flag for spec owner: expected result likely stale for this role."
+ },
+ {
+  "num": 27,
+  "role": "Service Advisor (a.k.a. Junior SA)",
+  "feature_area": "Parts \u2192 Returns",
+  "where_to_go": "Parts \u2192 Returns \u2192 a return",
+  "what_to_do": "Try to delete the return.",
+  "expected_result": "BLOCKED. Service Advisor has Vendor and Order Management = View/Create and Edit, NO Delete \u2192 cannot delete return.",
+  "depth": "MUST",
+  "status": "PASS",
+  "spec_reference_plain": "Per SV-5319, the Junior Service Advisor cannot delete a part return because the role lacks the required Delete permission (staging role has vendorOrderManagementView + vendorOrderManagementCreateAndEdit and partSalesView/CreateAndEdit, but NO vendorOrderManagementDelete and NO partSalesDelete). So the Delete Return action must not be available.",
+  "expected_plain": "As a Junior Service Advisor, opening/selecting a part return should give no way to delete it.",
+  "actual_result_plain": "Went to Parts \u2192 Returns as Tech-with-Service-Advisor and selected a return row. No 'Delete Return' action appeared anywhere (the row-action area was empty). For direct comparison, on the exact same screen an Admin selecting the same return DOES get a 'Delete Return' action. So deletion is correctly blocked for the SA.",
+  "screenshot_ref": "sa-27.png",
+  "notes": "Confirmed permission-gated: Admin shows Delete Return, SA shows none. SA lacks vendorOrderManagementDelete and partSalesDelete."
+ },
+ {
+  "num": "N1",
+  "role": "Service Advisor (a.k.a. Junior SA)",
+  "feature_area": "Parts -> Returns (v33)",
+  "where_to_go": "Parts -> Returns -> a return",
+  "what_to_do": "Try to delete the return.",
+  "expected_result": "BLOCKED. Delete-return now requires Invoicing & Payments: Delete (v33). Service Advisor has Invoicing = View/Create and Edit, NO Delete. (Correct outcome, updated reason.)",
+  "depth": "MUST",
+  "status": "PASS",
+  "spec_reference_plain": "Per SV-5319 v33, deleting a return should be gated by a Delete permission the Junior Service Advisor does not have, so the outcome must be BLOCKED.",
+  "expected_plain": "As a Junior Service Advisor, there should be no way to delete a part return.",
+  "actual_result_plain": "Selected a return in Parts \u2192 Returns as Tech-with-Service-Advisor; no Delete Return action was available, whereas Admin on the same return sees Delete Return. Deletion is correctly blocked.",
+  "screenshot_ref": "sa-N1.png",
+  "notes": "OUTCOME matches expected (blocked). IMPORTANT: the v33 stated REASON is inaccurate for the deployed role \u2014 this staging 'Service Advisor' role actually HAS invoicingPaymentsDelete=true (verified via /api/auth/me/fe-permissions), yet the return still cannot be deleted. So the delete-return gate is NOT invoicingPaymentsDelete for this role; the block comes from the missing vendorOrderManagementDelete/partSalesDelete. Flag for spec owner: v33 note says SA lacks Invoicing Delete, but SA has it."
  }
 ]
