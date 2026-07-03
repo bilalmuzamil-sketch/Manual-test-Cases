@@ -1,0 +1,21 @@
+{
+  "key": "SV-4768",
+  "summary": "Bug: Not Able to Uncomplete the line from Workorder.",
+  "area": "work orders",
+  "release_source": ["v0.43 Bug Fixes", "SV-4796 Epic (V0.43 Regression Testing Bugs)"],
+  "reported_issue": "After marking a work-order line as Complete, the user could not uncomplete it (revert its status).",
+  "expected_after_fix": "A completed line can be uncompleted (its status reverted) without error.",
+  "role_used": "admin",
+  "steps_i_followed": [
+    "Logged in as admin, opened work order S9-24917 (/workorders/7a6b0b7f.../lines).",
+    "Located line 2 (WOL-NEW-24917-1) whose status badge read 'Complete'.",
+    "Selected the line's checkbox and opened the line bulk-action menu.",
+    "Chose 'Set line status' -> submenu offered 'Authorization required / Declined / Authorized / Complete'.",
+    "Selected 'Authorized' to revert (uncomplete) the completed line."
+  ],
+  "actual_now": "The line status changed from 'Complete' to 'Approved' immediately, with no error message. The uncomplete/revert action succeeded.",
+  "verdict": "FIXED",
+  "confidence": "high",
+  "screenshot_ref": "build/bugfix-regression/screenshots/SV-4768.png",
+  "notes": "There is no literal 'Uncomplete' button; reverting a completed line is done via bulk action -> Set line status -> a pre-complete status (Authorized). This worked cleanly. Line left in 'Approved' state on disposable staging."
+}
