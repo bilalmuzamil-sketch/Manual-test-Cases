@@ -1,0 +1,18 @@
+[
+ {
+  "num": 28,
+  "role": "Foreman",
+  "feature_area": "Pricing visibility",
+  "where_to_go": "Work Orders → open a work order",
+  "what_to_do": "Check prices/totals/Finance/Stats.",
+  "expected_result": "All money visible. Foreman has See Financial Data ON.",
+  "depth": "DEEP",
+  "status": "PASS",
+  "spec_reference_plain": "Per SV-5319, the Foreman role has the 'See Financial Data' cross-toggle ON, so every dollar figure on a work order (line Rate/Total, the Financial Info card, and the Finance/Stats money) must be visible and not hidden or masked. [Ref: SV-5319 Custom Roles permission matrix; checklist Foreman row #28]",
+  "expected_plain": "Logged in as a Foreman, every price and dollar amount on a work order should be visible.",
+  "actual_result_plain": "Opened invoiced work order S9-24661 as Tech-with-Foreman-role. All money was visible. The Financial Info card showed Parts $0.00, Labor $929.72, Shop Supplies $97.62, Subtotal $1,027.34, GST $51.37, Total $1,078.71 and Balance $1,078.71. The Lines grid showed the line Rate $232.43 and Total $929.72. Nothing was hidden or masked. fe-permissions confirm cross_toggles.seeFinancialData=true and view_mode=full for the Foreman role.",
+  "replication_steps_plain": "",
+  "screenshot_ref": "fm-28.png",
+  "notes": "fe-permissions: seeFinancialData=true, view_mode=full, woFullViewMode present. Money confirmed on the Financial Info card and Lines grid."
+ }
+]
