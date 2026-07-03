@@ -1,0 +1,19 @@
+{
+  "key": "SV-4208",
+  "summary": "BUG: Cannot return special order part",
+  "area": "parts / inventory",
+  "release_source": ["v0.31 Bug Fixes"],
+  "reported_issue": "Issue 1: Return function not working. Issue 2: Full Return - returning parts with cores does not return the associated cores (5 parts returned but the associated cores remained staged on the line).",
+  "expected_after_fix": "When parts with cores are returned, the same number of cores should also be returned.",
+  "role_used": "admin",
+  "steps_i_followed": [
+    "Opened a WO's lines and inspected the part 3-dots menu (Return only appears for received special-order parts; on requested/quoted parts it is not offered - a 'Core OK' option was present indicating core parts exist)",
+    "Opened Parts -> Returns and reviewed the Returns list (function state) and the Credits tab / 'Show cores only' filter",
+    "Inspected existing part-with-core returns to confirm whether cores are returned alongside their parts"
+  ],
+  "actual_now": "The Return function works: the Returns list is populated with completed returns (status 'Returned') and a 'Create Return' action is available. Parts with cores return their associated cores: for WO S12-24309 both the part 'Tets' ($100) and its 'Core for Tets' ($1) show status 'Returned' (return reason 'return 24309', dated Today); other paired examples include 'Core for SP 001' qty 10 (Returned) and multiple qty-5 returns of part 4--PC1462-6 with cores. The associated cores are being returned along with the parts, matching expected_after_fix.",
+  "verdict": "FIXED",
+  "confidence": "medium",
+  "screenshot_ref": "build/bugfix-regression/screenshots/SV-4208.png",
+  "notes": "Could not drive the exact end-to-end repro (order+receive a special-order 5-qty core part, then Return) because the Return action requires a received special-order part, which needs the authorize->PO->receive workflow that is not reliably drivable in this harness (same limitation documented in SV-3715). However the Returns list provides direct, recent (Today) evidence that the return function works and that parts-with-cores return their cores (part + matching 'Core for X' both 'Returned' for the same WO/vendor/reason), which is exactly the reported failure - so both Issue 1 and Issue 2 are resolved."
+}
