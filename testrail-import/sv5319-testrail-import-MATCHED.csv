@@ -1,0 +1,482 @@
+Title,Section,Type,Priority,Preconditions,Steps,Expected Result,References,,
+Verify Administrator can see all pricing and financial data on a work order,Custom Roles and Permissions > Role Permissions Regression > Administrator,Functional,High,"Log in to ShopView as a user assigned the Administrator role. (this role has the See Financial Data permission ON).
+At least one work order exists that contains labor and part lines with prices entered.","1. Click Work Orders in the main navigation.
+2. Open any work order from the list.
+3. Look at the price field on each work order line.
+4. Look at the Total, Labor, and Parts columns for the work order.
+5. Open the Finance card on the work order.
+6. Open the Stats tab of the work order.","Step 1: The Work Orders list opens and shows work orders.
+Step 2: The work order opens.
+Step 3: Every line price shows an actual dollar amount (not blank or masked).
+Step 4: The Total, Labor, and Parts columns show dollar amounts.
+Step 5: The Finance card shows invoice/payment totals.
+Step 6: The Stats tab shows financial figures. No money value is hidden anywhere on the work order.",SV-5319,,
+"Verify Administrator can edit work order header fields (customer, asset, service advisor, lead technician, status)",Custom Roles and Permissions > Role Permissions Regression > Administrator,Functional,High,"Log in to ShopView as a user assigned the Administrator role. (this role has Work Orders: Create and Edit, which gates header field edits per spec v33).
+At least one work order exists.","1. Click Work Orders in the main navigation and open a work order.
+2. In the work order header, change the Customer to a different customer and save.
+3. Change the Asset to a different asset and save.
+4. Change the Service Advisor to a different user and save.
+5. Change the Lead Technician to a different user and save.
+6. Change the work order Status and save.
+7. Refresh the page.","Every edit in steps 2-6 is allowed and saves without a permission error. After refreshing (step 7), all updated values persist.",SV-5319,,
+"Verify Administrator can edit mileage, engine hours, license plate, and VIN on a work order line",Custom Roles and Permissions > Role Permissions Regression > Administrator,Functional,High,"Log in to ShopView as a user assigned the Administrator role. (this role has Work Order Lines: Create and Edit, which gates mileage/engine hours/license plate/VIN edits per spec v33).
+At least one work order exists that contains labor and part lines with prices entered.","1. Open a work order and open one of its lines.
+2. Change the Mileage value and save.
+3. Change the Engine Hours value and save.
+4. Change the License Plate value and save.
+5. Change the VIN value and save.","All four fields (Mileage, Engine Hours, License Plate, VIN) are editable and each change saves successfully with no permission error.",SV-5319,,
+Verify Administrator can delete a work order line,Custom Roles and Permissions > Role Permissions Regression > Administrator,Functional,High,"Log in to ShopView as a user assigned the Administrator role. (this role has Work Order Lines: Delete).
+The work order contains at least one line that is NOT in Complete status (a line can be deleted in any status except Complete).","1. Open the work order and locate a line that is not in Complete status.
+2. Open the line's action menu and click Delete.
+3. Confirm the deletion in the confirmation dialog.",The line is deleted and disappears from the work order. Work order totals recalculate without the deleted line.,SV-5319,,
+"Verify Administrator can change a work order line status (approve, decline, complete)",Custom Roles and Permissions > Role Permissions Regression > Administrator,Functional,High,"Log in to ShopView as a user assigned the Administrator role. (this role has Work Order Lines: Create and Edit plus Full View).
+At least one work order exists that contains labor and part lines with prices entered.","1. Open a work order and locate a line.
+2. Change the line status to Approved.
+3. Change the line status to Declined.
+4. Change the line status to Complete.","Each status change (Approve, Decline, Complete) is available and saves successfully. The line shows its new status after each change.",SV-5319,,
+Verify Administrator can delete a parts return,Custom Roles and Permissions > Role Permissions Regression > Administrator,Functional,High,"Log in to ShopView as a user assigned the Administrator role. (this role has Invoicing & Payments: Delete, which gates deleting a return per spec v33 / SV-7911).
+At least one parts return record exists under Parts > Returns.","1. Click Parts in the main navigation, then open the Returns section.
+2. Open an existing return record.
+3. Click Delete (or Delete Return) and confirm.",The return is deleted and no longer appears in the Returns list.,"SV-5319, SV-7911",,
+Verify Administrator can delete a customer payment,Custom Roles and Permissions > Role Permissions Regression > Administrator,Functional,High,"Log in to ShopView as a user assigned the Administrator role. (this role has Invoicing & Payments: Delete).
+At least one customer payment has been recorded.","1. Click Customers in the main navigation and open a customer that has a recorded payment.
+2. Open the Payments tab on the customer.
+3. Click Delete on a payment and confirm.",The payment is deleted and removed from the Payments tab without a permission error.,SV-5319,,
+Verify Administrator can open all AP/AR reports,Custom Roles and Permissions > Role Permissions Regression > Administrator,Functional,High,"Log in to ShopView as a user assigned the Administrator role. (this role has Manage Accounts Payable and Receivable ON).
+Invoice/payment data exists so reports have content.","1. Click Reports in the main navigation.
+2. Open the AR Aging report.
+3. Open the AP Aging report.
+4. Open the Unpaid Invoices report.
+5. Open the Collections report.",Each of the four reports opens and displays data. No report is hidden and none returns a permission (403) error.,SV-5319,,
+Verify Administrator can access all Settings sub-sections,Custom Roles and Permissions > Role Permissions Regression > Administrator,Functional,Medium,Log in to ShopView as a user assigned the Administrator role. (this role has all Settings sub-toggles ON).,"1. Click the Settings (cog) icon.
+2. Open App Settings.
+3. Open the Service sub-section.
+4. Open the Parts sub-section.
+5. Open the Finance sub-section.
+6. Open the Data Import sub-section.
+7. Open the Wages sub-section.","All six sub-sections (App Settings, Service, Parts, Finance, Data Import, Wages) are visible and open successfully.",SV-5319,,
+Verify the roles list loads correctly for Administrator on the Roles & Permissions page,Custom Roles and Permissions > Role Permissions Regression > Administrator,Functional,High,"Log in to ShopView as a user assigned the Administrator role.
+Note: the roles API response shape changed in this build - watch for a blank or broken list.","1. Click the Settings (cog) icon.
+2. Open Roles & Permissions.","The page loads and every role (Administrator, Service Manager, Senior Service Advisor, Service Advisor, Foreman, Technician, Parts Manager, Parts Technician, Office, Sales Representative, Time Clock) is listed with its correct name. The list is not blank or broken.",SV-5319,,
+Verify Administrator can reverse a work order invoice,Custom Roles and Permissions > Role Permissions Regression > Administrator,Functional,High,"Log in to ShopView as a user assigned the Administrator role. (this role has Work Orders: Delete, which gates reversing a work order invoice per spec v33).
+The work order already has an invoice created on its Finance tab.
+Note: an OVER LIMIT badge on the customer does not block reversing an invoice.","1. Open the work order and go to its Finance tab.
+2. Locate the invoice and click Reverse (or Reverse Invoice).
+3. Confirm the action.",The invoice is reversed successfully. The Finance tab shows the invoice as reversed and the work order returns to its pre-invoice financial state.,SV-5319,,
+Verify Administrator can reverse a Part Sales invoice,Custom Roles and Permissions > Role Permissions Regression > Administrator,Functional,High,"Log in to ShopView as a user assigned the Administrator role. (this role has Part Sales: Delete, which gates reversing a Part Sales invoice per spec v33).
+At least one Part Sales invoice exists under Part Sales.","1. Click Part Sales in the main navigation.
+2. Open an existing Part Sales invoice.
+3. Click Reverse and confirm.",The Part Sales invoice is reversed successfully with no permission error.,SV-5319,,
+Verify Administrator can return a part from a work order line,Custom Roles and Permissions > Role Permissions Regression > Administrator,Functional,Medium,"Log in to ShopView as a user assigned the Administrator role.
+A work order line has a part that has been picked/received onto the line.
+Note: per spec v33, returning a part from a work order requires NO permission - only Work Orders: View to reach the work order.","1. Open the work order and open the line that has the part.
+2. Open the part's action menu and click Return (return part).
+3. Confirm the return.",The part return completes successfully; the part is returned off the line and inventory/return records update.,SV-5319,,
+Verify Administrator can create a work order note and edit or delete their own note,Custom Roles and Permissions > Role Permissions Regression > Administrator,Functional,High,"Log in to ShopView as a user assigned the Administrator role. (viewing, creating, and editing/deleting your OWN note is gated by Work Orders: View per spec v33).
+At least one work order exists.","1. Open a work order and go to the Notes tab.
+2. Click to add a new note, type ""Admin test note"", and save.
+3. Edit the note you just created, change the text to ""Admin test note - edited"", and save.
+4. Delete the note you just created and confirm.","Step 1: The Notes tab opens and existing notes are visible.
+Step 2: The new note is created and appears in the list.
+Step 3: The edit saves and the updated text is shown.
+Step 4: The note is deleted and removed from the list.",SV-5319,,
+Verify Administrator can edit and delete another user's work order note,Custom Roles and Permissions > Role Permissions Regression > Administrator,Functional,High,"Log in to ShopView as a user assigned the Administrator role. (editing/deleting ALL notes, including other users' notes, is gated by Work Orders: Delete per spec v33).
+A work order exists with a note created by a DIFFERENT user.","1. Open the work order and go to the Notes tab.
+2. Locate a note created by another user and edit its text, then save.
+3. Delete that same note and confirm.",Both the edit and the delete of another user's note succeed with no permission error.,SV-5319,,
+Verify Administrator can set the On Site status of an asset on a work order,Custom Roles and Permissions > Role Permissions Regression > Administrator,Functional,Medium,"Log in to ShopView as a user assigned the Administrator role. (setting On Site status is gated by Work Orders: Create and Edit per spec v33 / SV-8021).
+At least one work order exists.","1. Open a work order.
+2. Locate the asset's On Site status control.
+3. Change the On Site status and save.","The On Site status control is available, and the change saves successfully.","SV-5319, SV-8021",,
+Verify Service Manager can see all pricing and financial data on a work order,Custom Roles and Permissions > Role Permissions Regression > Service Manager,Functional,High,"Log in to ShopView as a user assigned the Service Manager role. (this role has See Financial Data ON).
+At least one work order exists that contains labor and part lines with prices entered.","1. Click Work Orders and open a work order.
+2. Check the price on each line and the work order totals.
+3. Open the Finance card.
+4. Open the Stats tab.","All money values are visible: line prices, totals, Finance card amounts, and Stats tab figures show dollar amounts (nothing blank or masked).",SV-5319,,
+Verify Service Manager can create an invoice on a work order,Custom Roles and Permissions > Role Permissions Regression > Service Manager,Functional,High,"Log in to ShopView as a user assigned the Service Manager role. (this role has Invoicing and Payments: Create and Edit).
+At least one work order exists.
+The work order has at least one part line where the part has been RECEIVED and has a part number (parts must be received with a part number before an invoice can be created), and the Review button on the work order has been clicked (an unclicked Review button blocks the Create Invoice button).","1. Open the work order and go to the Finance tab.
+2. Click Create Invoice.
+3. Complete the invoice dialog and save.",The invoice is created successfully and appears on the Finance tab. The Create Invoice button is enabled (not blocked).,SV-5319,,
+Verify Service Manager can process a payment on an invoice,Custom Roles and Permissions > Role Permissions Regression > Service Manager,Functional,High,"Log in to ShopView as a user assigned the Service Manager role. (this role has Invoicing and Payments: Create and Edit).
+The work order already has an invoice created on its Finance tab.","1. Open the work order's Finance tab.
+2. On the invoice, click the option to record/process a payment.
+3. Enter a payment amount and save.",The payment is recorded successfully and shows against the invoice.,SV-5319,,
+Verify Service Manager cannot delete a payment,Custom Roles and Permissions > Role Permissions Regression > Service Manager,Functional,High,"Log in to ShopView as a user assigned the Service Manager role. (this role has Invoicing and Payments = View/Create and Edit only - NO Delete).
+The work order already has an invoice created on its Finance tab.
+A payment has been recorded against the invoice.","1. Open the work order's Finance tab and locate the recorded payment.
+2. Look for a Delete option on the payment; if present, click it.","Deleting the payment is BLOCKED: the Delete action is hidden or disabled, or clicking it returns a permission error. Record in the test run whether the control is hidden, greyed out, or errors.",SV-5319,,
+Verify Service Manager cannot void a transaction,Custom Roles and Permissions > Role Permissions Regression > Service Manager,Functional,High,"Log in to ShopView as a user assigned the Service Manager role. (this role has NO Invoicing and Payments: Delete).
+The work order already has an invoice created on its Finance tab.","1. Open the work order's Finance tab and locate a transaction.
+2. Look for a Void option; if present, click it.","Voiding is BLOCKED: the Void action is hidden or disabled, or clicking it returns a permission error. Record which blocked state is shown.",SV-5319,,
+Verify Service Manager can access the Customer Portal,Custom Roles and Permissions > Role Permissions Regression > Service Manager,Functional,Medium,Log in to ShopView as a user assigned the Service Manager role. (Customer Portal was turned ON for Service Manager per the 6/19 change).,"1. Look at the top navigation.
+2. Click Customer Portal.",The Customer Portal entry is visible in the navigation and opens successfully.,SV-5319,,
+Verify Service Manager only sees App Settings and Wages in Settings,Custom Roles and Permissions > Role Permissions Regression > Service Manager,Functional,High,"Log in to ShopView as a user assigned the Service Manager role. (this role's Settings sub-toggles allow only App Settings and Wages).
+Note: Departments grouping is under review (SV-7781).","1. Click the Settings (cog) icon.
+2. Note which sub-sections are listed.
+3. Open App Settings.
+4. Open Wages.
+5. Look for Service, Parts, Finance, and Data Import sub-sections.","Step 1: Settings opens.
+Step 2: Only App Settings and Wages are available.
+Step 3: App Settings opens successfully.
+Step 4: Wages opens successfully.
+Step 5: Service, Parts, Finance, and Data Import do NOT appear (or do not open).","SV-5319, SV-7781",,
+Verify Service Manager can open AP/AR reports,Custom Roles and Permissions > Role Permissions Regression > Service Manager,Functional,Medium,Log in to ShopView as a user assigned the Service Manager role. (this role has Manage Accounts Payable and Receivable ON).,"1. Click Reports in the main navigation.
+2. Open the AR Aging report.
+3. Open the AP Aging report.",Both AP/AR aging reports open and display data with no permission error.,SV-5319,,
+Verify Service Manager can edit work order header fields,Custom Roles and Permissions > Role Permissions Regression > Service Manager,Functional,High,"Log in to ShopView as a user assigned the Service Manager role. (header fields are gated by Work Orders: Create and Edit per spec v33; this role has it).
+At least one work order exists.","1. Open a work order.
+2. In the header, change the Customer and save.
+3. Change the Asset and save.
+4. Change the Lead Technician and save.",All header edits are allowed and save successfully with no permission error.,SV-5319,,
+"Verify Service Manager can edit mileage, engine hours, license plate, and VIN on a work order line",Custom Roles and Permissions > Role Permissions Regression > Service Manager,Functional,High,"Log in to ShopView as a user assigned the Service Manager role. (these fields are gated by Work Order Lines: Create and Edit per spec v33; this role has it).
+At least one work order exists that contains labor and part lines with prices entered.","1. Open a work order and open a line.
+2. Change Mileage and save.
+3. Change Engine Hours and save.
+4. Change License Plate and save.
+5. Change VIN and save.",All four fields are editable and each change saves successfully.,SV-5319,,
+Verify Service Manager cannot reverse a work order invoice,Custom Roles and Permissions > Role Permissions Regression > Service Manager,Functional,High,"Log in to ShopView as a user assigned the Service Manager role. (reversing a work order invoice requires Work Orders: Delete per spec v33; Service Manager has Work Orders = View/Create and Edit, NO Delete).
+The work order already has an invoice created on its Finance tab.","1. Open the work order's Finance tab.
+2. Look for a Reverse option on the invoice; if present, click it.","Reversing the invoice is BLOCKED: the Reverse action is hidden or disabled, or clicking it returns a permission error. (Known failure SV-8093 was raised when this was allowed - retest.)","SV-5319, SV-8093",,
+Verify Service Manager can create and edit their own work order note,Custom Roles and Permissions > Role Permissions Regression > Service Manager,Functional,High,"Log in to ShopView as a user assigned the Service Manager role. (own-note create/edit is gated by Work Orders: View, which this role has).
+At least one work order exists.","1. Open a work order and go to the Notes tab.
+2. Add a new note with the text ""SM test note"" and save.
+3. Edit that note to ""SM test note - edited"" and save.",The note is created and the edit saves; the updated text is displayed.,SV-5319,,
+Verify Service Manager cannot edit or delete another user's work order note,Custom Roles and Permissions > Role Permissions Regression > Service Manager,Functional,High,"Log in to ShopView as a user assigned the Service Manager role. (editing/deleting ALL notes requires Work Orders: Delete per spec v33; this role does not have it).
+A work order exists with a note created by a DIFFERENT user.","1. Open the work order's Notes tab and locate a note created by another user.
+2. Try to edit the note.
+3. Try to delete the note.",Both editing and deleting another user's note are BLOCKED: the actions are hidden/disabled or return a permission error.,SV-5319,,
+Verify Senior Service Advisor can see all pricing and financial data on a work order,Custom Roles and Permissions > Role Permissions Regression > Senior Service Advisor,Functional,High,"Log in to ShopView as a user assigned the Senior Service Advisor role. (this role has See Financial Data ON).
+At least one work order exists that contains labor and part lines with prices entered.","1. Click Work Orders and open a work order.
+2. Check line prices and the work order totals.
+3. Open the Finance card and the Stats tab.","All money values (line prices, totals, Finance card, Stats tab) are visible with actual amounts.",SV-5319,,
+Verify Senior Service Advisor can create an invoice on a work order,Custom Roles and Permissions > Role Permissions Regression > Senior Service Advisor,Functional,High,"Log in to ShopView as a user assigned the Senior Service Advisor role. (this role has full Invoicing and Payments: View/Create and Edit/Delete).
+At least one work order exists.
+The work order has at least one part line where the part has been RECEIVED and has a part number (parts must be received with a part number before an invoice can be created), and the Review button on the work order has been clicked (an unclicked Review button blocks the Create Invoice button).","1. Open the work order and go to the Finance tab.
+2. Click Create Invoice, complete the dialog, and save.",The invoice is created successfully and appears on the Finance tab.,SV-5319,,
+Verify Senior Service Advisor can delete a payment,Custom Roles and Permissions > Role Permissions Regression > Senior Service Advisor,Functional,High,"Log in to ShopView as a user assigned the Senior Service Advisor role. (this role has Invoicing and Payments: Delete).
+The work order already has an invoice created on its Finance tab.
+A payment has been recorded against the invoice.","1. Open the work order's Finance tab and locate the payment.
+2. Click Delete on the payment and confirm.",The payment is deleted successfully with no permission error.,SV-5319,,
+Verify Senior Service Advisor can void a transaction,Custom Roles and Permissions > Role Permissions Regression > Senior Service Advisor,Functional,High,"Log in to ShopView as a user assigned the Senior Service Advisor role. (this role has Invoicing and Payments: Delete).
+The work order already has an invoice created on its Finance tab.","1. Open the work order's Finance tab and locate a transaction.
+2. Click Void and confirm.",The transaction is voided successfully.,SV-5319,,
+Verify Senior Service Advisor can delete a work order,Custom Roles and Permissions > Role Permissions Regression > Senior Service Advisor,Functional,High,"Log in to ShopView as a user assigned the Senior Service Advisor role. (this role has Work Orders: Delete).
+The work order is in Uncomplete status (a work order must be Uncomplete before it can be deleted).","1. Open the Uncomplete work order.
+2. Open the work order action menu and click Delete.
+3. Confirm the deletion.",The work order is deleted and no longer appears in the Work Orders list.,SV-5319,,
+Verify Senior Service Advisor can delete a work order line,Custom Roles and Permissions > Role Permissions Regression > Senior Service Advisor,Functional,High,"Log in to ShopView as a user assigned the Senior Service Advisor role. (this role has Work Order Lines: Delete).
+The work order contains at least one line that is NOT in Complete status (a line can be deleted in any status except Complete).","1. Open the work order and locate a line that is not Complete.
+2. Open the line's action menu, click Delete, and confirm.",The line is deleted and removed from the work order.,SV-5319,,
+Verify Senior Service Advisor can approve a work order line,Custom Roles and Permissions > Role Permissions Regression > Senior Service Advisor,Functional,High,"Log in to ShopView as a user assigned the Senior Service Advisor role. (this role has Work Order Lines Full View).
+At least one work order exists that contains labor and part lines with prices entered.","1. Open the work order and locate a line awaiting approval.
+2. Click Approve on the line.",The line is approved and its status updates to Approved.,SV-5319,,
+Verify Senior Service Advisor can access the Customer Portal,Custom Roles and Permissions > Role Permissions Regression > Senior Service Advisor,Functional,Medium,Log in to ShopView as a user assigned the Senior Service Advisor role. (Customer Portal = ON for this role).,1. Look at the top navigation and click Customer Portal.,The Customer Portal entry is visible and opens successfully.,SV-5319,,
+Verify Senior Service Advisor can delete a parts return,Custom Roles and Permissions > Role Permissions Regression > Senior Service Advisor,Functional,High,"Log in to ShopView as a user assigned the Senior Service Advisor role. (deleting a return requires Invoicing & Payments: Delete per spec v33 / SV-7911; this role has it).
+At least one parts return record exists under Parts > Returns.","1. Click Parts, open Returns, and open a return record.
+2. Click Delete and confirm.",The return is deleted and removed from the Returns list.,"SV-5319, SV-7911",,
+Verify Senior Service Advisor can reverse a work order invoice,Custom Roles and Permissions > Role Permissions Regression > Senior Service Advisor,Functional,High,"Log in to ShopView as a user assigned the Senior Service Advisor role. (reversing a work order invoice requires Work Orders: Delete per spec v33; this role has it).
+The work order already has an invoice created on its Finance tab.
+Note: an OVER LIMIT badge on the customer does not block reversing an invoice.","1. Open the work order's Finance tab.
+2. Click Reverse on the invoice and confirm.",The invoice is reversed successfully.,SV-5319,,
+Verify Senior Service Advisor can reverse a Part Sales invoice,Custom Roles and Permissions > Role Permissions Regression > Senior Service Advisor,Functional,High,"Log in to ShopView as a user assigned the Senior Service Advisor role. (reversing a Part Sales invoice requires Part Sales: Delete per spec v33; this role has it).
+At least one Part Sales invoice exists under Part Sales.","1. Click Part Sales and open an existing invoice.
+2. Click Reverse and confirm.",The Part Sales invoice is reversed successfully.,SV-5319,,
+Verify Senior Service Advisor can edit and delete another user's work order note,Custom Roles and Permissions > Role Permissions Regression > Senior Service Advisor,Functional,Medium,"Log in to ShopView as a user assigned the Senior Service Advisor role. (edit/delete ALL notes requires Work Orders: Delete per spec v33; this role has it).
+A work order exists with a note created by a DIFFERENT user.","1. Open the work order's Notes tab.
+2. Edit another user's note and save.
+3. Delete that note and confirm.",Both the edit and the delete succeed with no permission error.,SV-5319,,
+Verify Service Advisor can see all pricing and financial data on a work order,Custom Roles and Permissions > Role Permissions Regression > Service Advisor (Junior SA),Functional,High,"Log in to ShopView as a user assigned the Service Advisor role. (this role has See Financial Data ON).
+Note: the role may display as 'Junior Service Advisor' in the build (the spec calls it 'Service Advisor').
+At least one work order exists that contains labor and part lines with prices entered.","1. Click Work Orders and open a work order.
+2. Check line prices and totals.
+3. Open the Finance card and the Stats tab.","All money values (line prices, totals, Finance card, Stats tab) are visible with actual amounts.",SV-5319,,
+Verify Service Advisor cannot delete a work order,Custom Roles and Permissions > Role Permissions Regression > Service Advisor (Junior SA),Functional,High,"Log in to ShopView as a user assigned the Service Advisor role. (this role has Work Orders = View/Create and Edit, NO Delete).
+Note: the role may display as 'Junior Service Advisor' in the build (the spec calls it 'Service Advisor').
+The work order is in Uncomplete status (a work order must be Uncomplete before it can be deleted).","1. Open the Uncomplete work order.
+2. Open the work order action menu and look for a Delete option; if present, click it.","Deleting the work order is BLOCKED even though the work order is Uncomplete: the Delete action is hidden or disabled, or clicking it returns a permission error.",SV-5319,,
+Verify Service Advisor can create an invoice on a work order,Custom Roles and Permissions > Role Permissions Regression > Service Advisor (Junior SA),Functional,High,"Log in to ShopView as a user assigned the Service Advisor role. (this role has Invoicing and Payments: Create and Edit).
+Note: the role may display as 'Junior Service Advisor' in the build (the spec calls it 'Service Advisor').
+At least one work order exists.
+The work order has at least one part line where the part has been RECEIVED and has a part number (parts must be received with a part number before an invoice can be created), and the Review button on the work order has been clicked (an unclicked Review button blocks the Create Invoice button).","1. Open the work order and go to the Finance tab.
+2. Click Create Invoice, complete the dialog, and save.",The invoice is created successfully and appears on the Finance tab.,SV-5319,,
+Verify Service Advisor is blocked from deleting a payment while Manage AP/AR is OFF,Custom Roles and Permissions > Role Permissions Regression > Service Advisor (Junior SA),Functional,High,"Log in to ShopView as a user assigned the Service Advisor role. (this role has Invoicing and Payments: Delete, but Manage Accounts Payable and Receivable is OFF; per spec v33 / SV-7913, Invoicing Delete additionally requires Manage AP/AR ON - this blocking is intended, not a bug).
+Note: the role may display as 'Junior Service Advisor' in the build (the spec calls it 'Service Advisor').
+The work order already has an invoice created on its Finance tab.
+A payment has been recorded against the invoice.","1. Open the work order's Finance tab and locate the payment.
+2. Try to delete the payment.","Deleting the payment is BLOCKED (a configuration prompt or permission block appears) because Manage AP/AR is OFF, even though the role has Invoicing Delete. This is the intended behavior per SV-7913.","SV-5319, SV-7913",,
+Verify Service Advisor is blocked from voiding a transaction while Manage AP/AR is OFF,Custom Roles and Permissions > Role Permissions Regression > Service Advisor (Junior SA),Functional,High,"Log in to ShopView as a user assigned the Service Advisor role. (Invoicing Delete additionally requires Manage AP/AR ON per spec v33 / SV-7913; this role has Manage AP/AR OFF).
+Note: the role may display as 'Junior Service Advisor' in the build (the spec calls it 'Service Advisor').
+The work order already has an invoice created on its Finance tab.","1. Open the work order's Finance tab and locate a transaction.
+2. Try to void the transaction.",Voiding is BLOCKED (configuration prompt or permission block) because Manage AP/AR is OFF. Intended behavior per SV-7913.,"SV-5319, SV-7913",,
+Verify Service Advisor can pick a part on a work order line,Custom Roles and Permissions > Role Permissions Regression > Service Advisor (Junior SA),Functional,High,"Log in to ShopView as a user assigned the Service Advisor role. (this role has Pick Parts ON).
+Note: the role may display as 'Junior Service Advisor' in the build (the spec calls it 'Service Advisor').
+At least one work order exists that contains labor and part lines with prices entered.
+A part is available in inventory to pick. Note: an OVER LIMIT badge on the customer does not block picking parts.","1. Open a work order and open a line.
+2. Open the parts actions on the line and click Pick.
+3. Select the part and quantity and confirm.",The part is picked onto the line successfully; inventory decrements accordingly.,SV-5319,,
+Verify Service Advisor can order a part on a work order line,Custom Roles and Permissions > Role Permissions Regression > Service Advisor (Junior SA),Functional,High,"Log in to ShopView as a user assigned the Service Advisor role. (this role has Order Parts ON).
+Note: the role may display as 'Junior Service Advisor' in the build (the spec calls it 'Service Advisor').
+At least one work order exists that contains labor and part lines with prices entered.","1. Open a work order and open a line.
+2. Open the parts actions on the line and click Order.
+3. Select the part, vendor, and quantity and confirm the order.",The part order is created successfully with no permission error.,SV-5319,,
+Verify Service Advisor cannot see AP/AR tabs on customer and vendor pages,Custom Roles and Permissions > Role Permissions Regression > Service Advisor (Junior SA),Functional,High,"Log in to ShopView as a user assigned the Service Advisor role. (this role has Manage Accounts Payable and Receivable OFF).
+Note: the role may display as 'Junior Service Advisor' in the build (the spec calls it 'Service Advisor').
+At least one customer and one vendor exist.","1. Click Customers and open a customer.
+2. Look for Unpaid Invoices, Payments, and Credits tabs on the customer page.
+3. Click Vendors and open a vendor.
+4. Look for the equivalent AP/AR tabs on the vendor page.","The Unpaid Invoices, Payments, and Credits tabs are HIDDEN on both the customer page and the vendor page. (Known failure SV-8110 was raised when these were visible - retest.)","SV-5319, SV-8110",,
+Verify Service Advisor cannot delete a parts return,Custom Roles and Permissions > Role Permissions Regression > Service Advisor (Junior SA),Functional,High,"Log in to ShopView as a user assigned the Service Advisor role. (deleting a return requires Invoicing & Payments: Delete per spec v33; this role has Invoicing = View/Create and Edit, NO Delete).
+Note: the role may display as 'Junior Service Advisor' in the build (the spec calls it 'Service Advisor').
+At least one parts return record exists under Parts > Returns.","1. Click Parts, open Returns, and open a return record.
+2. Look for a Delete option; if present, click it.","Deleting the return is BLOCKED: the Delete Return control is absent or disabled, or clicking it returns a permission error.","SV-5319, SV-7911",,
+Verify Service Advisor cannot reverse a work order invoice,Custom Roles and Permissions > Role Permissions Regression > Service Advisor (Junior SA),Functional,High,"Log in to ShopView as a user assigned the Service Advisor role. (reversing a work order invoice requires Work Orders: Delete per spec v33; this role has NO Work Orders Delete).
+Note: the role may display as 'Junior Service Advisor' in the build (the spec calls it 'Service Advisor').
+The work order already has an invoice created on its Finance tab.","1. Open the work order's Finance tab.
+2. Look for a Reverse option on the invoice; if present, click it.",Reversing the work order invoice is BLOCKED: the action is hidden/disabled or returns a permission error.,SV-5319,,
+Verify Service Advisor cannot reverse a Part Sales invoice,Custom Roles and Permissions > Role Permissions Regression > Service Advisor (Junior SA),Functional,High,"Log in to ShopView as a user assigned the Service Advisor role. (reversing a Part Sales invoice requires Part Sales: Delete per spec v33; this role has Part Sales = View/Create and Edit, NO Delete).
+Note: the role may display as 'Junior Service Advisor' in the build (the spec calls it 'Service Advisor').
+At least one Part Sales invoice exists under Part Sales.","1. Click Part Sales and open an existing invoice.
+2. Look for a Reverse option; if present, click it.",Reversing the Part Sales invoice is BLOCKED: the action is hidden/disabled or returns a permission error.,SV-5319,,
+Verify Service Advisor can create and edit their own work order note,Custom Roles and Permissions > Role Permissions Regression > Service Advisor (Junior SA),Functional,Medium,"Log in to ShopView as a user assigned the Service Advisor role. (own-note create/edit is gated by Work Orders: View, which this role has).
+Note: the role may display as 'Junior Service Advisor' in the build (the spec calls it 'Service Advisor').
+At least one work order exists.","1. Open a work order and go to the Notes tab.
+2. Add a note with the text ""SA test note"" and save.
+3. Edit the note to ""SA test note - edited"" and save.",The note is created and the edit saves successfully.,SV-5319,,
+Verify Service Advisor cannot edit or delete another user's work order note,Custom Roles and Permissions > Role Permissions Regression > Service Advisor (Junior SA),Functional,Medium,"Log in to ShopView as a user assigned the Service Advisor role. (edit/delete ALL notes requires Work Orders: Delete, which this role lacks).
+Note: the role may display as 'Junior Service Advisor' in the build (the spec calls it 'Service Advisor').
+A work order exists with a note created by a DIFFERENT user.","1. Open the work order's Notes tab and locate another user's note.
+2. Try to edit the note.
+3. Try to delete the note.",Both actions are BLOCKED: hidden/disabled controls or a permission error.,SV-5319,,
+Verify Foreman can see all pricing and financial data on a work order,Custom Roles and Permissions > Role Permissions Regression > Foreman,Functional,High,"Log in to ShopView as a user assigned the Foreman role. (this role has See Financial Data ON).
+At least one work order exists that contains labor and part lines with prices entered.","1. Click Work Orders and open a work order.
+2. Check line prices and totals.
+3. Open the Finance card and the Stats tab.","All money values (line prices, totals, Finance card, Stats tab) are visible with actual amounts.",SV-5319,,
+Verify Foreman cannot delete a work order,Custom Roles and Permissions > Role Permissions Regression > Foreman,Functional,High,"Log in to ShopView as a user assigned the Foreman role. (this role has Work Orders = View/Create and Edit, NO Delete).
+The work order is in Uncomplete status (a work order must be Uncomplete before it can be deleted).","1. Open the Uncomplete work order.
+2. Open the work order action menu and look for a Delete option; if present, click it.",Deleting the work order is BLOCKED: the Delete action is hidden/disabled or returns a permission error.,SV-5319,,
+Verify Foreman can delete a work order line,Custom Roles and Permissions > Role Permissions Regression > Foreman,Functional,High,"Log in to ShopView as a user assigned the Foreman role. (this role has Work Order Lines: Delete).
+The work order contains at least one line that is NOT in Complete status (a line can be deleted in any status except Complete).","1. Open the work order and locate a line that is not Complete.
+2. Open the line's action menu, click Delete, and confirm.",The line is deleted and removed from the work order.,SV-5319,,
+Verify Foreman can view the parts catalog,Custom Roles and Permissions > Role Permissions Regression > Foreman,Functional,High,"Log in to ShopView as a user assigned the Foreman role. (this role has Catalog: View/Create and Edit).
+Parts exist in the catalog.","1. Click Parts in the main navigation.
+2. Open Catalog (and Inventory).",The catalog opens and parts are listed with their details.,SV-5319,,
+Verify Foreman can order a part on a work order line,Custom Roles and Permissions > Role Permissions Regression > Foreman,Functional,High,"Log in to ShopView as a user assigned the Foreman role. (this role has Order Parts ON).
+At least one work order exists that contains labor and part lines with prices entered.","1. Open a work order line and open the parts actions.
+2. Click Order, select part/vendor/quantity, and confirm.",The part order is created successfully.,SV-5319,,
+Verify Foreman can pick a part on a work order line,Custom Roles and Permissions > Role Permissions Regression > Foreman,Functional,High,"Log in to ShopView as a user assigned the Foreman role. (this role has Pick Parts ON).
+At least one work order exists that contains labor and part lines with prices entered.
+A part is available in inventory to pick. Note: an OVER LIMIT badge on the customer does not block picking parts.","1. Open a work order line and open the parts actions.
+2. Click Pick, select the part and quantity, and confirm.",The part is picked onto the line successfully.,SV-5319,,
+Verify Foreman can create an invoice on a work order,Custom Roles and Permissions > Role Permissions Regression > Foreman,Functional,Medium,"Log in to ShopView as a user assigned the Foreman role. (this role has Invoicing: View/Create and Edit - create only, no Delete).
+At least one work order exists.
+The work order has at least one part line where the part has been RECEIVED and has a part number (parts must be received with a part number before an invoice can be created), and the Review button on the work order has been clicked (an unclicked Review button blocks the Create Invoice button).","1. Open the work order's Finance tab.
+2. Click Create Invoice, complete the dialog, and save.",The invoice is created successfully and appears on the Finance tab.,SV-5319,,
+"Verify Foreman can edit mileage, engine hours, license plate, and VIN on a work order line",Custom Roles and Permissions > Role Permissions Regression > Foreman,Functional,High,"Log in to ShopView as a user assigned the Foreman role. (these fields are gated by Work Order Lines: Create and Edit per spec v33; this role has it).
+At least one work order exists that contains labor and part lines with prices entered.","1. Open a work order line.
+2. Change Mileage and save.
+3. Change Engine Hours and save.
+4. Change License Plate and save.
+5. Change VIN and save.",All four fields are editable and each change saves successfully.,SV-5319,,
+Verify Foreman cannot reverse a work order invoice,Custom Roles and Permissions > Role Permissions Regression > Foreman,Functional,Medium,"Log in to ShopView as a user assigned the Foreman role. (reversing a work order invoice requires Work Orders: Delete per spec v33; this role has NO Work Orders Delete).
+The work order already has an invoice created on its Finance tab.","1. Open the work order's Finance tab.
+2. Look for a Reverse option on the invoice; if present, click it.",Reversing is BLOCKED: the action is hidden/disabled or returns a permission error.,SV-5319,,
+Verify Foreman can return a part from a work order line,Custom Roles and Permissions > Role Permissions Regression > Foreman,Functional,Medium,"Log in to ShopView as a user assigned the Foreman role.
+A work order line has a part that has been picked/received onto the line.
+Note: per spec v33, returning a part from a work order requires NO permission.","1. Open the work order line that has the part.
+2. Open the part's action menu, click Return, and confirm.",The part return completes successfully.,SV-5319,,
+Verify all pricing and financial data is hidden from Technician on a work order,Custom Roles and Permissions > Role Permissions Regression > Technician,Functional,High,"Log in to ShopView as a user assigned the Technician role. (this role has See Financial Data OFF).
+At least one work order exists that contains labor and part lines with prices entered.","1. Click Work Orders and open a work order.
+2. Look at each line's price fields.
+3. Look at the Total, Labor, and Parts columns.
+4. Look for the Finance card.
+5. Look for the Stats tab.","Step 1: The work order opens.
+Step 2: Line prices are hidden or blank - no dollar amounts are shown.
+Step 3: The Total, Labor, and Parts columns show no money values.
+Step 4: The Finance card shows no financial amounts (or is not shown).
+Step 5: The Stats tab shows no financial figures (or is not shown). No money value is visible anywhere.",SV-5319,,
+Verify the Estimate column shows Tech Time and labor rates are hidden for Technician,Custom Roles and Permissions > Role Permissions Regression > Technician,Functional,High,"Log in to ShopView as a user assigned the Technician role. (this role uses Tech View).
+At least one work order exists that contains labor and part lines with prices entered.","1. Open a work order and open a line.
+2. Look at the Estimate column.
+3. Look for labor rate columns and fields.","Step 1: The line opens in Tech View.
+Step 2: The Estimate column shows Tech Time, NOT the estimate money value.
+Step 3: Labor rate columns/fields are hidden.",SV-5319,,
+Verify Technician cannot approve or authorize a work order line,Custom Roles and Permissions > Role Permissions Regression > Technician,Functional,High,"Log in to ShopView as a user assigned the Technician role. (Tech View users cannot approve work order lines).
+At least one work order exists that contains labor and part lines with prices entered.
+The work order has a line awaiting approval.","1. Open the work order and locate the line awaiting approval.
+2. Look for an Approve/Authorize action on the line.",The Approve/Authorize action is hidden - the Technician has no way to approve or authorize the line.,SV-5319,,
+Verify Technician cannot change a work order line status,Custom Roles and Permissions > Role Permissions Regression > Technician,Functional,High,"Log in to ShopView as a user assigned the Technician role. (Tech View blocks line status changes).
+At least one work order exists that contains labor and part lines with prices entered.","1. Open the work order and locate a line.
+2. Try to change the line's status.","Changing the line status is BLOCKED: the status control is hidden, disabled, or returns a permission error.",SV-5319,,
+Verify Technician cannot edit an existing work order line,Custom Roles and Permissions > Role Permissions Regression > Technician,Functional,High,"Log in to ShopView as a user assigned the Technician role. (Tech View users can only create new lines, not edit existing ones).
+At least one work order exists that contains labor and part lines with prices entered.","1. Open the work order and open an existing line.
+2. Try to edit any field on the line.",The existing line is read-only: edits are blocked or the fields are not editable.,SV-5319,,
+Verify Technician can create a new work order line,Custom Roles and Permissions > Role Permissions Regression > Technician,Functional,High,"Log in to ShopView as a user assigned the Technician role. (Tech View users can create new lines).
+At least one work order exists.","1. Open the work order.
+2. Click the option to add a new line.
+3. Enter a line description and save.",The new line is created successfully and appears on the work order.,SV-5319,,
+Verify Technician cannot edit work order header fields,Custom Roles and Permissions > Role Permissions Regression > Technician,Functional,High,"Log in to ShopView as a user assigned the Technician role. (this role has Work Orders = View only - no Create and Edit).
+At least one work order exists.","1. Open a work order.
+2. Try to change the Lead Technician in the header.
+3. Try to change the Service Advisor.
+4. Try to change the Customer.
+5. Try to change the Asset.",All header edits are BLOCKED: the fields are read-only/disabled or attempting a change returns a permission error.,SV-5319,,
+Verify the Send to Portal button is not visible for Technician,Custom Roles and Permissions > Role Permissions Regression > Technician,Functional,High,"Log in to ShopView as a user assigned the Technician role. (Send to Portal requires Full View; Technician has Tech View).
+At least one work order exists.","1. Open a work order.
+2. Look for the Send to Portal button.",The Send to Portal button is NOT visible anywhere on the work order.,SV-5319,,
+Verify Technician can pick a part on a work order line,Custom Roles and Permissions > Role Permissions Regression > Technician,Functional,Medium,"Log in to ShopView as a user assigned the Technician role. (this role has Pick Parts ON - the only parts action allowed).
+At least one work order exists that contains labor and part lines with prices entered.
+A part is available in inventory to pick. Note: an OVER LIMIT badge on the customer does not block picking parts.","1. Open a work order line and open the parts actions.
+2. Click Pick, select the part and quantity, and confirm.",The part is picked onto the line successfully.,SV-5319,,
+Verify Technician cannot order a part on a work order line,Custom Roles and Permissions > Role Permissions Regression > Technician,Functional,Medium,"Log in to ShopView as a user assigned the Technician role. (this role has Order Parts OFF).
+At least one work order exists that contains labor and part lines with prices entered.","1. Open a work order line and open the parts actions.
+2. Look for an Order option; if present, click it.",Ordering a part is BLOCKED: the Order action is hidden/disabled or returns a permission error.,SV-5319,,
+Verify global search still returns results for Technician after the empty-results change,Custom Roles and Permissions > Role Permissions Regression > Technician,Functional,High,"Log in to ShopView as a user assigned the Technician role.
+Customers and work orders exist that match the search term.
+Context: a build change makes global search return EMPTY results for the Time Clock role - confirm Technician is not also affected.","1. Click the top search bar.
+2. Type the name of an existing customer and press Enter.
+3. Type the number of an existing work order and press Enter.",Global search returns the matching customer and work order for Technician (results are NOT empty). Only the Time Clock role should return empty search results.,SV-5319,,
+Verify Technician can enter mileage and engine hours on a new work order line,Custom Roles and Permissions > Role Permissions Regression > Technician,Functional,High,"Log in to ShopView as a user assigned the Technician role. (mileage/engine hours are gated by Work Order Lines: Create and Edit per spec v33, which Technician has; Tech View makes EXISTING lines read-only, so test on a NEW line).
+At least one work order exists.","1. Open a work order and add a NEW line.
+2. Enter a Mileage value on the new line and save.
+3. Enter an Engine Hours value and save.
+4. Open an EXISTING (previously saved/approved) line and try the same edits.","Step 1: A new line is created.
+Step 2: Mileage saves successfully on the new line.
+Step 3: Engine Hours saves successfully on the new line.
+Step 4: On the existing line the fields are read-only (Tech View caveat) - record the actual behavior for confirmation.",SV-5319,,
+Verify Technician can return a part from a work order line,Custom Roles and Permissions > Role Permissions Regression > Technician,Functional,Medium,"Log in to ShopView as a user assigned the Technician role.
+A work order line has a part that has been picked/received onto the line.
+Note: per spec v33, returning a part from a work order requires NO permission. (Distinct from the SV-7838 403 bug on completing returns.)","1. Open the work order line that has the part.
+2. Open the part's action menu, click Return, and confirm.",The part return completes successfully with no 403/permission error.,"SV-5319, SV-7838",,
+Verify Technician can create and edit their own work order note,Custom Roles and Permissions > Role Permissions Regression > Technician,Functional,High,"Log in to ShopView as a user assigned the Technician role. (own-note create/edit is gated by Work Orders: View, which this role has).
+At least one work order exists.","1. Open a work order and go to the Notes tab.
+2. Add a note with the text ""Tech test note"" and save.
+3. Edit the note to ""Tech test note - edited"" and save.",The note is created and the edit saves; existing notes are viewable.,SV-5319,,
+Verify Technician cannot edit or delete another user's work order note,Custom Roles and Permissions > Role Permissions Regression > Technician,Functional,High,"Log in to ShopView as a user assigned the Technician role. (edit/delete ALL notes requires Work Orders: Delete, which this role lacks).
+A work order exists with a note created by a DIFFERENT user.","1. Open the work order's Notes tab and locate another user's note.
+2. Try to edit the note.
+3. Try to delete the note.",Both actions are BLOCKED: hidden/disabled controls or a permission error.,SV-5319,,
+Verify Parts Manager can see all pricing and financial data on work orders and parts,Custom Roles and Permissions > Role Permissions Regression > Parts Manager,Functional,High,"Log in to ShopView as a user assigned the Parts Manager role. (this role has See Financial Data ON).
+At least one work order exists that contains labor and part lines with prices entered.
+Parts with prices exist in the catalog.","1. Click Work Orders, open a work order, and check line prices and totals.
+2. Click Parts, open the Catalog, and check part prices.",All prices are visible with actual amounts on both work orders and parts.,SV-5319,,
+Verify Parts Manager can create and edit a part,Custom Roles and Permissions > Role Permissions Regression > Parts Manager,Functional,High,Log in to ShopView as a user assigned the Parts Manager role. (this role has Catalog: View/Create and Edit/Delete).,"1. Click Parts and open the Catalog.
+2. Click to add a new part, fill in the part name and part number, and save.
+3. Open the part you created, change its description, and save.",The part is created and the edit saves successfully.,SV-5319,,
+Verify Parts Manager can delete a part,Custom Roles and Permissions > Role Permissions Regression > Parts Manager,Functional,High,"Log in to ShopView as a user assigned the Parts Manager role. (this role has Catalog: Delete).
+A deletable part exists in the catalog (not in use on open documents).","1. Click Parts and open the Catalog.
+2. Open the part, click Delete, and confirm.",The part is deleted and removed from the catalog.,SV-5319,,
+"Verify Parts Manager can create, edit, and delete a vendor",Custom Roles and Permissions > Role Permissions Regression > Parts Manager,Functional,High,Log in to ShopView as a user assigned the Parts Manager role. (this role has Vendor and Order Management: View/Create and Edit/Delete).,"1. Click Vendors in the main navigation.
+2. Click to add a new vendor, fill in the vendor name, and save.
+3. Open the vendor, change a field, and save.
+4. Delete the vendor and confirm.","The vendor can be created, edited, and deleted with no permission errors.",SV-5319,,
+Verify Parts Manager can delete a part sale,Custom Roles and Permissions > Role Permissions Regression > Parts Manager,Functional,High,"Log in to ShopView as a user assigned the Parts Manager role. (this role has Part Sales: Delete).
+At least one part sale record exists.","1. Click Part Sales in the main navigation.
+2. Open a part sale, click Delete, and confirm.",The part sale is deleted successfully.,SV-5319,,
+Verify Parts Manager cannot delete a work order,Custom Roles and Permissions > Role Permissions Regression > Parts Manager,Functional,High,"Log in to ShopView as a user assigned the Parts Manager role. (this role has Work Orders = View/Create and Edit, NO Delete).
+The work order is in Uncomplete status (a work order must be Uncomplete before it can be deleted).","1. Open the Uncomplete work order.
+2. Open the work order action menu and look for a Delete option; if present, click it.",Deleting the work order is BLOCKED: the action is hidden/disabled or returns a permission error.,SV-5319,,
+"Verify Parts Manager sees only Parts, Finance, and Data Import in Settings",Custom Roles and Permissions > Role Permissions Regression > Parts Manager,Functional,Medium,Log in to ShopView as a user assigned the Parts Manager role. (per this role's Settings sub-toggles).,"1. Click the Settings (cog) icon.
+2. Note which sub-sections are listed.
+3. Open Parts, Finance, and Data Import.
+4. Look for App Settings and Wages.","Step 1: Settings opens.
+Step 2: Parts, Finance, and Data Import are available.
+Step 3: Each of the three opens successfully.
+Step 4: App Settings and Wages are NOT available.",SV-5319,,
+Verify Parts Manager can delete a parts return,Custom Roles and Permissions > Role Permissions Regression > Parts Manager,Functional,High,"Log in to ShopView as a user assigned the Parts Manager role. (deleting a return requires Invoicing & Payments: Delete per spec v33 / SV-7911; this role has it).
+At least one parts return record exists under Parts > Returns.","1. Click Parts, open Returns, and open a return record.
+2. Click Delete and confirm.",The return is deleted and removed from the Returns list.,"SV-5319, SV-7911",,
+Verify Parts Manager cannot reverse a work order invoice,Custom Roles and Permissions > Role Permissions Regression > Parts Manager,Functional,High,"Log in to ShopView as a user assigned the Parts Manager role. (reversing a work order invoice requires Work Orders: Delete per spec v33; this role has NO Work Orders Delete).
+The work order already has an invoice created on its Finance tab.","1. Open the work order's Finance tab.
+2. Look for a Reverse option on the invoice; if present, click it.",Reversing the work order invoice is BLOCKED: the action is hidden/disabled or returns a permission error.,SV-5319,,
+Verify Parts Manager can reverse a Part Sales invoice,Custom Roles and Permissions > Role Permissions Regression > Parts Manager,Functional,High,"Log in to ShopView as a user assigned the Parts Manager role. (reversing a Part Sales invoice requires Part Sales: Delete per spec v33; this role has it).
+At least one Part Sales invoice exists under Part Sales.","1. Click Part Sales and open an existing invoice.
+2. Click Reverse and confirm.",The Part Sales invoice is reversed successfully.,SV-5319,,
+Verify Parts Technician can see pricing on parts and work orders,Custom Roles and Permissions > Role Permissions Regression > Parts Technician,Functional,Medium,"Log in to ShopView as a user assigned the Parts Technician role. (this role has See Financial Data ON).
+At least one work order exists that contains labor and part lines with prices entered.
+Parts with prices exist.","1. Click Parts, open the Catalog, and check part prices.
+2. Click Work Orders, open a work order, and check line prices.",Prices are visible with actual amounts in both places.,SV-5319,,
+Verify Parts Technician can create and edit a part,Custom Roles and Permissions > Role Permissions Regression > Parts Technician,Functional,High,Log in to ShopView as a user assigned the Parts Technician role. (this role has Catalog: View/Create and Edit - no Delete).,"1. Click Parts and open the Catalog.
+2. Click to add a new part, fill in the part name and part number, and save.
+3. Open the part, change its description, and save.",The part is created and the edit saves successfully.,SV-5319,,
+Verify Parts Technician cannot delete a part,Custom Roles and Permissions > Role Permissions Regression > Parts Technician,Functional,High,"Log in to ShopView as a user assigned the Parts Technician role. (this role has NO Catalog: Delete).
+A part exists in the catalog.","1. Click Parts and open the Catalog.
+2. Open a part and look for a Delete option; if present, click it.",Deleting the part is BLOCKED: the Delete action is hidden/disabled or returns a permission error.,SV-5319,,
+Verify Parts Technician can pick a part on a work order line,Custom Roles and Permissions > Role Permissions Regression > Parts Technician,Functional,Medium,"Log in to ShopView as a user assigned the Parts Technician role. (this role has Pick Parts ON).
+At least one work order exists that contains labor and part lines with prices entered.
+A part is available in inventory to pick. Note: an OVER LIMIT badge on the customer does not block picking parts.","1. Open a work order line and open the parts actions.
+2. Click Pick, select the part and quantity, and confirm.",The part is picked onto the line successfully.,SV-5319,,
+Verify Parts Technician can order a part on a work order line,Custom Roles and Permissions > Role Permissions Regression > Parts Technician,Functional,Medium,"Log in to ShopView as a user assigned the Parts Technician role. (this role has Order Parts ON).
+At least one work order exists that contains labor and part lines with prices entered.","1. Open a work order line and open the parts actions.
+2. Click Order, select part/vendor/quantity, and confirm.",The part order is created successfully.,SV-5319,,
+Verify Parts Technician cannot delete a parts return,Custom Roles and Permissions > Role Permissions Regression > Parts Technician,Functional,High,"Log in to ShopView as a user assigned the Parts Technician role. (deleting a return requires Invoicing & Payments: Delete per spec v33 / SV-7911; this role has Invoicing = View/Create and Edit, NO Delete - this REVERSES the pre-v33 expectation).
+At least one parts return record exists under Parts > Returns.","1. Click Parts, open Returns, and open a return record.
+2. Look for a Delete option; if present, click it.",Deleting the return is BLOCKED: the Delete control is absent/disabled or returns a permission error. (Known failure SV-7911 was raised when this was allowed - retest.),"SV-5319, SV-7911",,
+Verify Parts Technician can return a part from a work order line,Custom Roles and Permissions > Role Permissions Regression > Parts Technician,Functional,Medium,"Log in to ShopView as a user assigned the Parts Technician role.
+A work order line has a part that has been picked/received onto the line.
+Note: per spec v33, returning a part from a work order requires NO permission. (Distinct from SV-7838 and from deleting a Parts > Returns record, which needs Invoicing Delete.)","1. Open the work order line that has the part.
+2. Open the part's action menu, click Return, and confirm.",The part return completes successfully.,SV-5319,,
+Verify Parts Technician can create a Part Sales invoice,Custom Roles and Permissions > Role Permissions Regression > Parts Technician,Functional,Medium,"Log in to ShopView as a user assigned the Parts Technician role. (this role's Invoicing: Create and Edit is scoped to the Part Sales invoice path per SV-7903 - works as designed; work order invoices are the Service Advisor's job).
+A customer and a RECEIVED part with a part number exist (parts must be received with a part number before invoicing).","1. Click Part Sales in the main navigation.
+2. Click to create a new Part Sales invoice.
+3. Add the part and customer and save the invoice.",The Part Sales invoice is created successfully.,"SV-5319, SV-7903",,
+"Verify Office sees Settings, Staff, and Roles & Permissions in the Settings menu",Custom Roles and Permissions > Role Permissions Regression > Office,Functional,High,Log in to ShopView as a user assigned the Office role. (this role has App Settings ON; Service/Parts items follow its sub-toggles). Note: Departments/Locations grouping is under review (SV-7781).,"1. Click the Settings (cog) icon.
+2. Note which items appear in the menu.
+3. Open Staff and Roles & Permissions.","Settings, Staff, and Roles & Permissions are visible and open successfully. Service/Parts items appear only per the role's sub-toggles.","SV-5319, SV-7781, SV-7809",,
+Verify Office can create and edit a customer,Custom Roles and Permissions > Role Permissions Regression > Office,Functional,High,Log in to ShopView as a user assigned the Office role. (this role has Customers: View/Create and Edit/Delete).,"1. Click Customers in the main navigation.
+2. Click to add a new customer, fill in the customer name, and save.
+3. Open the customer, change a field, and save.",The customer is created and the edit saves successfully.,SV-5319,,
+Verify Office can delete a customer,Custom Roles and Permissions > Role Permissions Regression > Office,Functional,High,"Log in to ShopView as a user assigned the Office role. (this role has Customers: Delete).
+A deletable customer exists (no blocking open documents).","1. Click Customers and open the customer.
+2. Click Delete and confirm.",The customer is deleted and removed from the Customers list.,SV-5319,,
+Verify the Send to Portal button is not available for Office,Custom Roles and Permissions > Role Permissions Regression > Office,Functional,High,"Log in to ShopView as a user assigned the Office role. (Office has Full View but cannot approve a work order line - Review WOs is OFF and Work Order Lines is View only - so Send to Portal must not be available).
+At least one work order exists.","1. Open a work order.
+2. Look for the Send to Portal button.",The Send to Portal button is NOT available for the Office role.,SV-5319,,
+Verify Office cannot edit a part (catalog is view-only),Custom Roles and Permissions > Role Permissions Regression > Office,Functional,Medium,"Log in to ShopView as a user assigned the Office role. (this role has Catalog and Inventory = View only).
+A part exists in the catalog.","1. Click Parts and open the Catalog.
+2. Open a part and try to edit any field.",Editing is BLOCKED: fields are read-only/disabled or saving returns a permission error. The part details remain viewable.,SV-5319,,
+Verify Office can open AP/AR reports and customer AP/AR tabs,Custom Roles and Permissions > Role Permissions Regression > Office,Functional,Medium,"Log in to ShopView as a user assigned the Office role. (this role has Manage Accounts Payable and Receivable ON).
+Invoice/payment data exists.","1. Click Reports and open the AR Aging and AP Aging reports.
+2. Click Customers, open a customer, and open the Unpaid Invoices / Payments / Credits tabs.","The AP/AR reports open with data, and the customer AP/AR tabs are visible and open successfully.",SV-5319,,
+Verify Office can create and edit their own work order note,Custom Roles and Permissions > Role Permissions Regression > Office,Functional,Medium,"Log in to ShopView as a user assigned the Office role. (own-note create/edit is gated by Work Orders: View, which this role has).
+At least one work order exists.","1. Open a work order and go to the Notes tab.
+2. Add a note with the text ""Office test note"" and save.
+3. Edit the note to ""Office test note - edited"" and save.",The note is created and the edit saves successfully. (Known failure SV-8018 was raised in this area - retest.),"SV-5319, SV-8018",,
+Verify Office cannot edit or delete another user's work order note,Custom Roles and Permissions > Role Permissions Regression > Office,Functional,Medium,"Log in to ShopView as a user assigned the Office role. (edit/delete ALL notes requires Work Orders: Delete; Office has Work Orders View only).
+A work order exists with a note created by a DIFFERENT user.","1. Open the work order's Notes tab and locate another user's note.
+2. Try to edit the note.
+3. Try to delete the note.",Both actions are BLOCKED: hidden/disabled controls or a permission error. (Known failure SV-8018 was raised when this was allowed - retest.),"SV-5319, SV-8018",,
+"Verify Office can see sensitive vendor fields (Credit Terms, Credit Limit, Taxes)",Custom Roles and Permissions > Role Permissions Regression > Office,Functional,Medium,"Log in to ShopView as a user assigned the Office role. (sensitive vendor fields are gated by Manage AP/AR per spec v33; Office has Manage AP/AR ON).
+At least one vendor exists with credit terms/limit and tax values set.","1. Click Vendors and open a vendor.
+2. Look at the vendor's Overview card.
+3. Open the vendor's Edit view and look for Credit Terms, Credit Limit, and Taxes.","Credit Terms, Credit Limit, and Taxes are VISIBLE to Office in both the Overview card and the Edit view. (Known failure SV-8133 was raised when they were hidden - retest.)","SV-5319, SV-8133",,
+Verify Work Orders is not shown in navigation for Sales Representative,Custom Roles and Permissions > Role Permissions Regression > Sales Representative,Functional,High,Log in to ShopView as a user assigned the Sales Representative role. (this role has Work Orders = Off).,"1. Look at the main navigation.
+2. Search the navigation for a Work Orders entry.","Work Orders does NOT appear anywhere in the navigation, and work orders cannot be opened by this role.","SV-5319, SV-8114",,
+Verify Sales Representative can open reports including financial data,Custom Roles and Permissions > Role Permissions Regression > Sales Representative,Functional,High,"Log in to ShopView as a user assigned the Sales Representative role. (this role has Reports ON and See Financial Data ON).
+Report data exists.","1. Click Reports in the main navigation.
+2. Open several reports, including the AR Aging report.",Reports are accessible and open with financial data visible. No report returns a 403 error. (Known failure SV-7996: AR Aging report threw a 403 - retest.),"SV-5319, SV-7996",,
+Verify Sales Representative can open AP/AR reports,Custom Roles and Permissions > Role Permissions Regression > Sales Representative,Functional,Medium,Log in to ShopView as a user assigned the Sales Representative role. (this role has Manage Accounts Payable and Receivable ON).,"1. Click Reports.
+2. Open the AP Aging and AR Aging reports.",Both AP/AR reports open successfully with no permission error. (Known failure SV-8011 was raised here - retest.),"SV-5319, SV-8011",,
+Verify Parts and Customers sections are hidden from Sales Representative,Custom Roles and Permissions > Role Permissions Regression > Sales Representative,Functional,Medium,Log in to ShopView as a user assigned the Sales Representative role. (this role has Customers = Off and Part Sales = Off).,"1. Look at the main navigation for Customers.
+2. Look at the main navigation for Parts / Part Sales.",Customers and Parts/Part Sales do NOT appear in the navigation (or are not editable if reachable) - the role's scope is limited to reports.,SV-5319,,
+Verify Sales Representative cannot access Vendors or vendor sensitive fields,Custom Roles and Permissions > Role Permissions Regression > Sales Representative,Functional,Medium,"Log in to ShopView as a user assigned the Sales Representative role. (this role has Vendor & Order Management = Off, so vendor sensitive fields are unreachable regardless of the Manage AP/AR gate introduced in spec v33).","1. Look at the main navigation for a Vendors entry.
+2. If a Vendors entry exists, try to open it.","Vendors is not reachable for Sales Representative, so vendor sensitive fields (Credit Terms, Credit Limit, Taxes) can never be displayed to this role.",SV-5319,,
+Verify Time Clock user can clock in and clock out,Custom Roles and Permissions > Role Permissions Regression > Time Clock,Functional,High,Log in to ShopView as a user assigned the Time Clock role. (this role is limited to clock in/out).,"1. Locate the clock control in the top bar.
+2. Click Clock In.
+3. Click Clock Out.","Both actions succeed: the user clocks in, the status shows as clocked in, and then clocks out successfully.",SV-5319,,
+Verify global search returns empty results for Time Clock user,Custom Roles and Permissions > Role Permissions Regression > Time Clock,Functional,High,"Log in to ShopView as a user assigned the Time Clock role.
+Customers and work orders exist in the system that would normally match the search.
+Context: a build change makes the Time Clock role return empty search data (FetchData controller).","1. Click the top search bar.
+2. Type the name of an existing customer and press Enter.
+3. Type an existing work order number and press Enter.","Global search returns EMPTY results for both searches - no customers, work orders, or other records are returned to the Time Clock user.",SV-5319,,
+Verify Time Clock navigation shows only Work Orders and Schedule as view-only,Custom Roles and Permissions > Role Permissions Regression > Time Clock,Functional,High,Log in to ShopView as a user assigned the Time Clock role. (per spec v39 amendment: Time Clock has Work Orders = View and Schedule = View; everything else is Off).,"1. Look at the main navigation and note every visible entry.
+2. Open Work Orders (if visible) and confirm it is view-only.
+3. Open Schedule (if visible) and confirm it is view-only.
+4. Look for Customers, Parts, Reports, and Settings.","Step 1: Only Work Orders and Schedule appear (per spec v39).
+Step 2: Work Orders opens in view-only mode - no create/edit/delete actions available.
+Step 3: Schedule opens in view-only mode.
+Step 4: Customers, Parts, Reports, and Settings are all hidden.",SV-5319,,
+Verify no financial data is shown to Time Clock user,Custom Roles and Permissions > Role Permissions Regression > Time Clock,Functional,Medium,Log in to ShopView as a user assigned the Time Clock role. (this role has See Financial Data OFF and View Mode Empty).,"1. Open every screen reachable by the Time Clock user (clock control, and Work Orders/Schedule if visible per spec v39).
+2. Look for any price, total, or other money value.",No pricing or financial data is displayed on any screen reachable by the Time Clock user.,SV-5319,,
+"Verify Time Clock user cannot reach work order notes, returns, or inspections",Custom Roles and Permissions > Role Permissions Regression > Time Clock,Functional,Medium,"Log in to ShopView as a user assigned the Time Clock role. (Time Clock has Work Orders = View with View Mode empty and everything else Off, so the v33 work-order features are not reachable in practice).","1. Check whether any work order detail content (Notes tab, part returns, digital inspections) can be opened.
+2. Check the navigation for Parts > Returns.","None of the v33 work-order features (notes, part returns, inspections) are reachable: the screens are hidden or empty for the Time Clock user.",SV-5319,,
