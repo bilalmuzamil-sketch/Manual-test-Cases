@@ -1,0 +1,20 @@
+{
+  "key": "SV-4779",
+  "summary": "Bug: Work Order can not be marked as completed if a part with core has been returned",
+  "area": "parts / inventory",
+  "release_source": ["v0.43 Bug Fixes", "SV-4796 Epic (V0.43 Regression Testing Bugs)"],
+  "reported_issue": "On staging, a WO/line could not be marked complete when a part with a core had been returned (OK/Not OK not pressed for the core). Completion was blocked with: 'Line cant be completed with unfulfilled Core part. Please try to resolve this.' (Not reproducible on Production.)",
+  "expected_after_fix": "The Work Order / line can be marked as complete even when a part with a core has been returned.",
+  "role_used": "admin",
+  "steps_i_followed": [
+    "Logged in as admin. Identified approved WOs that have part return requests.",
+    "Opened WO S9-24171 (approved, 1 line, 3 part returns). Confirmed on the Parts tab it has a received part (2a339025) with a Core charge of 1.00.",
+    "Went to the Lines tab (line a07f785a status 'Approved'), selected the line, used bulk action -> Set line status -> Complete.",
+    "Observed the resulting line status and any error notification/dialog mentioning 'core'."
+  ],
+  "actual_now": "The line was successfully set to 'Complete' with no error. No 'unfulfilled Core part' notification or dialog appeared (only an unrelated 'Build Lines' element was present). Completion of a line whose part carries a core, on a WO that has returns, succeeded. Corroborating: WOs S9-24176 (17 returns) and S9-24168 (14 returns) are already in 'ready_for_review', i.e. they were completed despite returned parts.",
+  "verdict": "FIXED",
+  "confidence": "medium",
+  "screenshot_ref": "build/bugfix-regression/screenshots/SV-4779.png",
+  "notes": "The reported core-related completion block does not reproduce: a line with a core-bearing part completed cleanly on a WO with returns. Confidence is medium rather than high because I could not deterministically force the exact 'core OK/Not OK unpressed immediately after returning the main part' substate through the harness (the per-part receive/return/core-acknowledge controls are not fully drivable headless), but the completion path that the bug blocked now works with a core part + returns present."
+}
