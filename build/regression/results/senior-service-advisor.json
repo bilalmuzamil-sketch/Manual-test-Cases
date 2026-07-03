@@ -62,5 +62,21 @@
   "replication_steps_plain": "",
   "screenshot_ref": "ssa-19.png",
   "notes": "fe-permissions confirm workOrderLinesDelete=true and view_mode=full (woFullViewMode). Approve verified end-to-end (status transitioned to Approved). Delete lines option present and permitted; the only obstacle was a data guard on the specific line's outstanding part requests. Secondary screenshot ssa-19-deletemenu.png shows the Delete lines menu option."
+ },
+ {
+  "num": 20,
+  "role": "Senior Service Advisor",
+  "feature_area": "Customer Portal",
+  "where_to_go": "Top nav",
+  "what_to_do": "Confirm Customer Portal accessible.",
+  "expected_result": "Accessible. Senior SA Customer Portal = ON.",
+  "depth": "SPOT",
+  "status": "PASS",
+  "spec_reference_plain": "Per SV-5319 the Senior Service Advisor role has Customer Portal Page Access = ON, so the Customer Portal must be reachable from the top navigation. [Ref: SV-5319 Custom Roles permission matrix; checklist Senior Service Advisor row #20]",
+  "expected_plain": "A Senior Service Advisor should be able to open the Customer Portal from the top-right menu.",
+  "actual_result_plain": "Customer Portal is accessible to the Senior Service Advisor. Opening the top-right account menu (click 'Staging Heavy Duty - 9919 / TS' avatar) — which correctly showed the logged-in user 'Tech ShopView / tech@shopview.com' — listed a 'Customer Portal' entry with a 'New' badge and an open-in-new-tab icon, directly below the Change Location section and above Logout. (Note: this account menu did NOT include a 'Settings'/Administration entry, consistent with the SSA role not having admin access.)",
+  "replication_steps_plain": "",
+  "screenshot_ref": "ssa-20.png",
+  "notes": "fe-permissions confirm customerPortalPageAccess present. Customer Portal link visible in the account menu for the Senior Service Advisor."
  }
 ]
