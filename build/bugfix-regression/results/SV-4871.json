@@ -1,0 +1,19 @@
+{
+  "key": "SV-4871",
+  "summary": "Bug: Paid Work Orders display incorrect totals in the Work Orders list",
+  "area": "work orders",
+  "release_source": ["v0.43 Bug Fixes", "SV-4796 Epic (V0.43 Regression Testing Bugs)"],
+  "reported_issue": "When filtering Work Orders by status = Paid, the Price Total shown in the Work Orders list did not match the total shown under the Financial Info section / Finance tab of the same WO (reported on a WO with no parts).",
+  "expected_after_fix": "The Price Total in the Work Orders list matches the WO's Finance/Financial-Info total for Paid work orders, including WOs with no parts.",
+  "role_used": "admin",
+  "steps_i_followed": [
+    "Loaded the Work Orders list (GET /api/work-orders?limit=100) which returns the same totalPrice the list UI renders.",
+    "Filtered to status = paid (25 Paid WOs present).",
+    "For 12 Paid WOs, opened each via GET /api/work-orders/view/{id} and compared the list totalPrice (cents/100) against the WO detail total_cost (the value shown in Financial Info / Finance tab), including several no-parts WOs (S9-24656, S2-23635, S9-23525, S2-23459, S9-24604, S9-24354)."
+  ],
+  "actual_now": "For every Paid WO checked the list Price Total equals the WO Finance total exactly (0 mismatches / 12), including no-parts WOs: e.g. S9-24656 list 1348.39 = view 1348.39, S9-24604 list 2696.77 = view 2696.77, S2-23635 list 130.48 = view 130.48. A broader all-status sweep of 18 more WOs also showed 0 mismatches.",
+  "verdict": "FIXED",
+  "confidence": "high",
+  "screenshot_ref": null,
+  "notes": "The list totalPrice is exactly the figure the Work Orders list renders, so an API-level match is authoritative for this display-consistency bug. No-parts Paid WOs (the ticket's specific case) match."
+}
