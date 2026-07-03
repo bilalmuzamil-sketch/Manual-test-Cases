@@ -30,5 +30,21 @@
   "replication_steps_plain": "",
   "screenshot_ref": "tech-34.png",
   "notes": "view_mode=tech, woTechViewMode present. Actual/Estimate column carries hours, not money."
+ },
+ {
+  "num": 35,
+  "role": "Technician",
+  "feature_area": "Tech View — approve line",
+  "where_to_go": "Work Orders → a line",
+  "what_to_do": "Try to approve/authorize the line; try to change line status.",
+  "expected_result": "BLOCKED — approve/authorize action hidden. Technician has Tech View (cannot approve WO lines).",
+  "depth": "DEEP",
+  "status": "FAIL",
+  "spec_reference_plain": "Per SV-5319, a Tech View technician must NOT be able to approve/authorize work-order lines; the line statuses Authorization required/Declined/Authorized/Complete all require the ROLE_WORK_ORDER::CREATE_AND_EDIT permission, which the Technician role does not have (Technician has Work Orders = View only). [Ref: SV-5319; line-statuses permission metadata; checklist Technician row #35]",
+  "expected_plain": "A technician should not be able to approve or authorize a work-order line, and there should be no control to do it.",
+  "actual_result_plain": "Two-way check. UI: the line's three-dot menu for the technician has NO approve/authorize option (only Request part, Add line note, Save as canned line, Story history, Add inspection, Edit labor, Move labor) - so the FE hides it correctly. HOWEVER the backend does NOT enforce the restriction: calling the exact UI endpoint POST /api/work-orders/lines/change-status {line_id, status:'authorized'} as the Technician returned HTTP 200 and the line status actually changed from 'authorization_required' to 'authorized' (verified by re-reading the line as both admin and tech). So the technician CAN authorize a line via the API despite lacking Create and Edit. This is a real permission-enforcement gap.",
+  "replication_steps_plain": "1) Log in as Tech (Technician role). 2) Admin sets line 56028d16 on S9-24706 to 'authorization_required'. 3) As Tech POST /api/work-orders/lines/change-status {line_id:'56028d16-...', status:'authorized'} - returns 200. 4) Re-read the line: status is now 'authorized'. The change persisted, so the approve/authorize action was NOT blocked at the API even though the UI hides it.",
+  "screenshot_ref": "tech-35.png",
+  "notes": "FAIL is a backend authorization gap: FE correctly hides the approve/authorize control, but /work-orders/lines/change-status accepts the change for a Technician. line-statuses metadata says 'authorized' requires ROLE_WORK_ORDER::CREATE_AND_EDIT which Technician lacks. Endpoint did not return 403; it returned 200 and applied the change."
  }
 ]
