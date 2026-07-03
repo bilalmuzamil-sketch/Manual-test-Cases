@@ -46,5 +46,21 @@
   "replication_steps_plain": "",
   "screenshot_ref": "build/regression/screenshots/tc-3.png",
   "notes": "Nav is minimal (only Work Orders + Schedule + Search + notifications). Passed on the security intent (all non-permitted modules hidden and 403 at API). Noted discrepancy: WO/Schedule appear because the role really does have those view permissions, contrary to the checklist's 'all Off' wording."
+ },
+ {
+  "num": 64,
+  "role": "Time Clock",
+  "feature_area": "Pricing N/A",
+  "where_to_go": "(wherever visible)",
+  "what_to_do": "Confirm no financial data shown.",
+  "expected_result": "No pricing. Time Clock has See Financial Data OFF and View Mode Empty.",
+  "depth": "SPOT",
+  "status": "PASS",
+  "spec_reference_plain": "Time Clock has 'See Financial Data' OFF and View Mode empty, so no pricing or financial figures should appear anywhere it can see.",
+  "expected_plain": "No prices or dollar amounts are shown to this user.",
+  "actual_result_plain": "On the work-order detail (the only content area with data), lines show only hours (e.g. 0.00/0.80) and part quantities (e.g. 1) with statuses like 'Quoted'/'Needs Approval' - there are no dollar amounts anywhere on the page. fe-permissions confirm seeFinancialData=false and view_mode=null. Financial/AR areas are blocked at the backend (GET customers => 403, GET invoices => 404).",
+  "replication_steps_plain": "",
+  "screenshot_ref": "build/regression/screenshots/tc-4.png",
+  "notes": "No pricing surfaced anywhere; seeFinancialData=false and view_mode=null confirmed via /api/auth/me/fe-permissions."
  }
 ]
