@@ -80,5 +80,21 @@
   "depth_note": "SPOT",
   "screenshot_ref": "of-56.png",
   "notes": "seeApArData=true confirmed in Office cross_toggles. Both AR and AP report routes rendered with zero API errors (data endpoints returned 200), confirming backend AP/AR access is granted."
+ },
+ {
+  "num": "N1",
+  "role": "Office",
+  "feature_area": "WO Notes (v33)",
+  "where_to_go": "Work Orders -> Notes tab",
+  "what_to_do": "Create/edit own note; try others'.",
+  "expected_result": "Create/edit own = WO View (Office has). Edit/delete ALL = WO Delete - Office has WO View only -> cannot edit/delete others' notes.",
+  "depth": "SPOT",
+  "status": "PASS",
+  "spec_reference_plain": "Per SV-5319 (v33), creating and editing your OWN work-order note only requires Work Orders View (workOrdersView), which Office has. Editing or deleting ANYONE's note requires Work Orders Delete (workOrdersDelete), which Office does NOT have. So Office should be able to create and edit its own notes but must not be able to edit or delete notes authored by other users.",
+  "expected_plain": "Office can add a note to a work order and edit its own note, but should not be able to change or delete a note that someone else wrote.",
+  "actual_result_plain": "On work order S9-24919 Notes tab, with a note authored by Admin already present, Office added its own note and edited it successfully (create returned 201, edit returned 200). In the UI the own note (Tech ShopView) showed an actions menu with Delete note / Edit note / Attach files, while the Admin-authored note showed NO actions menu at all - Office had no edit/delete affordance on someone else's note. Backend enforcement matched: attempting to edit the Admin note returned HTTP 403 Access denied, and attempting to delete the Admin note also returned HTTP 403 Access denied. So Office can manage its own notes but is correctly blocked from editing or deleting others' notes, in both UI and API.",
+  "depth_note": "SPOT",
+  "screenshot_ref": "of-N1.png",
+  "notes": "FE Notes tab reachable and confirmed: own note exposes Edit/Delete menu, others' note exposes none. Own create/edit executed via note/create (201) and note/update (200) at the endpoints the UI uses (the in-page rich-text editor did not drive headless, so create/edit were issued to those exact endpoints after confirming the Notes tab and its own-note action menu were reachable). Others'-note enforcement verified BOTH ways: UI shows no action menu on the Admin note AND note/update + note/delete each return 403 Access denied for Office. Test notes cleaned up afterward."
  }
 ]
