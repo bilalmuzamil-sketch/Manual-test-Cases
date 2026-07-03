@@ -142,5 +142,21 @@
   "replication_steps_plain": "",
   "screenshot_ref": "sm-15.png",
   "notes": "seeApArData is ON for the Service Manager. Both AR (A/R Aging Summary/Detail/Collection) and AP (A/P Aging Summary/Detail/Unpaid Invoices) reports open with data."
+ },
+ {
+  "num": "N3",
+  "role": "Service Manager",
+  "feature_area": "WO Notes (v33)",
+  "where_to_go": "Work Orders -> Notes tab",
+  "what_to_do": "Create/edit own note; try to edit/delete another user's note.",
+  "expected_result": "Create/edit own = WO View (SM has). Edit/delete ALL notes = WO Delete - SM has NO WO Delete, so cannot edit/delete others' notes.",
+  "depth": "MUST",
+  "status": "FAIL",
+  "spec_reference_plain": "Per spec v33: creating/editing your OWN work-order note only needs Work Orders: View (which the Service Manager has), while editing or deleting ANY note (including other users') is gated by Work Orders: Delete. The checklist asserts the Service Manager lacks Work Orders: Delete, so it should be able to manage its own notes but NOT edit or delete another user's note. [Ref: checklist Service Manager row N3 'SM WO Notes: own yes, all no']",
+  "expected_plain": "As a Service Manager you should be able to create and edit your own work-order notes, but you should NOT be able to edit or delete a note written by someone else.",
+  "actual_result_plain": "The 'own note' half passed but the 'others' notes' half failed. Create-own worked: as the Service Manager I added a note on work order S9-24674 (saved via POST /api/note/create) and it appeared under author 'Tech ShopView'. Then a second note was created by the Admin user (author 'Admin ShopView'). Viewing the Notes tab as the Service Manager, the three-dot action menu on the OTHER user's (Admin's) note offered 'Edit note', 'Delete note' and 'Attach files' — the same as on my own note. I clicked 'Delete note' on the Admin-authored note and it was removed (POST /api/note/delete; the note disappeared from the list), proving the Service Manager can delete another user's note. This contradicts the expected result (should not be able to edit/delete others' notes).",
+  "replication_steps_plain": "1. Log in as the Tech user assigned the Service Manager role. 2. Open a work order (e.g. S9-24674) and go to the Notes tab. 3. Click 'New Note', type something, and Save — the note is created under your name (this part is correct). 4. Have a DIFFERENT user (e.g. an Admin) add a note to the same work order. 5. Back as the Service Manager, refresh the Notes tab and click the three-dots menu on the OTHER user's note. 6. Observe that 'Edit note' and 'Delete note' are offered. 7. Click 'Delete note' — the other user's note is deleted. Expected per checklist: the Service Manager should NOT be able to edit or delete another user's note.",
+  "screenshot_ref": "sm-N3.png",
+  "notes": "NEW (v33). Root cause matches N2 and case 11/14: the staging Service Manager role actually includes workOrdersDelete, which is the permission that gates edit/delete of ALL notes, so the Service Manager gets Edit/Delete on other users' notes. Create/edit-own works as expected (WO View). Test data cleanup: both ZZAUTOTEST notes (the SM's own and the Admin's) were deleted after the test; no ZZAUTOTEST notes remain on the work order."
  }
 ]
