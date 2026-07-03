@@ -126,5 +126,21 @@
   "replication_steps_plain": "",
   "screenshot_ref": "tech-40.png",
   "notes": "Real completed pick (201). Parts tab of S9-13556 shows the picked parts as 'Received'. woPickParts=true."
+ },
+ {
+  "num": 41,
+  "role": "Technician",
+  "feature_area": "Order parts",
+  "where_to_go": "Work Orders → a line",
+  "what_to_do": "Try to order a part.",
+  "expected_result": "BLOCKED. Technician has Order Parts OFF.",
+  "depth": "SPOT",
+  "status": "FAIL",
+  "spec_reference_plain": "Per SV-5319, the Technician role has 'Order Parts' OFF, so ordering a part must be blocked. [Ref: SV-5319; checklist Technician row #41]",
+  "expected_plain": "A technician should NOT be able to order a part.",
+  "actual_result_plain": "Ordering a part as the Technician SUCCEEDED, which is wrong. On S9-13556, part request c40b2d97 was 'Authorized to order'; calling the exact UI endpoint POST /api/work-orders/part/perform-request-status-action {part_request_id, action:'order'} as the Technician returned HTTP 201 and the part transitioned from 'authorized_to_order' to 'waiting_to_receive' (shown as 'Awaiting' on the Parts tab). So the Technician CAN order parts despite Order Parts being OFF. Permission-enforcement gap.",
+  "replication_steps_plain": "1) Log in as Tech (Technician role). 2) On S9-13556 find an 'Authorized to order' part (c40b2d97). 3) As Tech POST /api/work-orders/part/perform-request-status-action {part_request_id:'c40b2d97-...', action:'order'} - returns 201. 4) Re-read: status changed to 'waiting_to_receive' (Awaiting). Ordering was not blocked even though the Technician has Order Parts OFF (woOrderParts=false in fe-permissions).",
+  "screenshot_ref": "tech-41.png",
+  "notes": "FAIL is a backend gap: fe-permissions shows woOrderParts=false, yet perform-request-status-action with action:'order' succeeded (201) and moved the part to Awaiting. Endpoint did not return 403."
  }
 ]
