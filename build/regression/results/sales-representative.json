@@ -62,5 +62,21 @@
   "replication_steps_plain": "",
   "screenshot_ref": "sr-60.png",
   "notes": "Customers is fully denied (nav hidden, /customers redirects to Reports, API GET /api/customers -> 403 Access denied). Part Sales module is hidden (nav absent, /part-sales -> not-found page). BACKEND OBSERVATION (disclosed): a direct API GET /api/part-sales returns HTTP 200 with part-sale list data (part sales are work-order-typed, response includes totalWorkOrderPrice), consistent with the role's woFullViewMode (Full View) permission; the Part Sales module UI is correctly absent and there is no create/edit surface. Flagging the readable part-sales list endpoint for product-owner awareness, same pattern as the WO list in case 57."
+ },
+ {
+  "num": "N1",
+  "role": "Sales Representative",
+  "feature_area": "Sensitive vendor fields (v33)",
+  "where_to_go": "Vendors (if reachable)",
+  "what_to_do": "N/A check - Sales Rep has no Vendor access.",
+  "expected_result": "Sales Rep has Vendor & Order = Off, so vendor sensitive fields are not reachable regardless of AP/AR. (Context: vendor sensitive fields gated by Manage AP/AR per v33.)",
+  "depth": "SPOT",
+  "status": "PASS",
+  "spec_reference_plain": "Per SV-5319 spec v33, the Sales Representative role has Vendor & Order Off. The assigned role has no vendor permissions, so the Vendors module - and therefore any sensitive vendor fields - must be unreachable, regardless of the role's AP/AR access. The v33 note that vendor sensitive fields are gated by Manage AP/AR does not apply here because vendor access itself is Off.",
+  "expected_plain": "A Sales Rep should not be able to reach the Vendors area at all, so there are no vendor sensitive fields to see.",
+  "actual_result_plain": "Logged in as Tech-as-Sales-Representative. There was no Vendors item in the navigation. Navigating directly to /vendors rendered a 'page not found' error screen ('The technician says this page is totaled') with only the Reports nav present - the Vendors module did not open. Backend: API GET /api/vendors and /api/vendor both returned HTTP 404 (resource not found) and POST /api/vendors returned 404, confirming the vendor area is entirely unreachable for this role. No vendor sensitive fields are exposed.",
+  "replication_steps_plain": "",
+  "screenshot_ref": "sr-N1.png",
+  "notes": "NEW (v33). Vendor access is Off and enforced: nav item absent, /vendors -> not-found page, vendor API endpoints return 404. Since the Vendors module is unreachable, the v33 vendor-sensitive-field gating (Manage AP/AR) is moot for this role. Clean denial on both UI and backend."
  }
 ]
