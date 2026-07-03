@@ -142,5 +142,21 @@
   "replication_steps_plain": "1) Log in as Tech (Technician role). 2) On S9-13556 find an 'Authorized to order' part (c40b2d97). 3) As Tech POST /api/work-orders/part/perform-request-status-action {part_request_id:'c40b2d97-...', action:'order'} - returns 201. 4) Re-read: status changed to 'waiting_to_receive' (Awaiting). Ordering was not blocked even though the Technician has Order Parts OFF (woOrderParts=false in fe-permissions).",
   "screenshot_ref": "tech-41.png",
   "notes": "FAIL is a backend gap: fe-permissions shows woOrderParts=false, yet perform-request-status-action with action:'order' succeeded (201) and moved the part to Awaiting. Endpoint did not return 403."
+ },
+ {
+  "num": 42,
+  "role": "Technician",
+  "feature_area": "Global search",
+  "where_to_go": "Top search bar",
+  "what_to_do": "Search for a customer / work order.",
+  "expected_result": "Returns EMPTY results for Technician? — NOTE: build change makes Time Clock return empty. Confirm whether Technician is also affected.",
+  "depth": "MUST",
+  "status": "PASS",
+  "spec_reference_plain": "The build change that forces empty global-search results applies to the Time Clock role. The checklist asks to confirm whether the Technician is also affected. [Ref: SV-5319 change analysis; checklist Technician row #42]",
+  "expected_plain": "Check whether the top global search returns results for a technician (it is empty only for Time Clock).",
+  "actual_result_plain": "Global search WORKS for the Technician - it returns results, it is NOT emptied. Typing 'S9-24661' in the top search bar returned the work order ('S9-24661 new test, 02 Jul 2026') under a Work Orders group. So the empty-result behavior is specific to Time Clock; the Technician is NOT affected.",
+  "replication_steps_plain": "",
+  "screenshot_ref": "tech-42.png",
+  "notes": "Technician global search returns normal results (customersView + scheduleView present). Only Time Clock is emptied per the build change."
  }
 ]
