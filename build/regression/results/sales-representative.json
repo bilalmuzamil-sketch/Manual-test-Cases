@@ -1,0 +1,18 @@
+[
+ {
+  "num": 57,
+  "role": "Sales Representative",
+  "feature_area": "No work orders",
+  "where_to_go": "Top nav",
+  "what_to_do": "Look for Work Orders.",
+  "expected_result": "Work Orders NOT in nav. Sales Rep has Work Orders = Off.",
+  "depth": "MUST",
+  "status": "PASS",
+  "spec_reference_plain": "Per SV-5319, the Sales Representative role has the Work Orders module Off. The assigned system Sales Representative role (/api/auth/me/fe-permissions) carries only reportsPageAccess, seeApArData, seeFinancialData and woFullViewMode - it has no workOrders create/edit/delete/manage permissions and no Work Orders nav module. So the Work Orders item must not appear in the navigation for this role.",
+  "expected_plain": "When logged in as a Sales Rep, the Work Orders menu item should not appear anywhere in the top/side navigation, and trying to open the Work Orders area directly should not land on a Work Orders screen.",
+  "actual_result_plain": "Logged in as Tech assigned the Sales Representative system role. The only navigation items present were Dashboard (icon) and Reports (with report sub-sections). There was NO Work Orders item in the nav. Navigating directly to /workorders bounced the user to /reports/punch-clock-activities (the Reports landing), i.e. the Work Orders module UI is not reachable.",
+  "replication_steps_plain": "",
+  "screenshot_ref": "sr-57.png",
+  "notes": "Nav-level expectation met: no Work Orders module link, and /workorders redirects to Reports. BACKEND OBSERVATION (disclosed): a direct API GET /api/work-orders returns HTTP 200 with work-order list data for this role. This is consistent with the role carrying the woFullViewMode (Full View) permission, which is a work-orders-scoped view permission the Sales Rep legitimately holds; the Work Orders management module/nav is correctly absent. Flagging for product-owner awareness that the WO list endpoint is readable via direct API for this Full-View role even though the module is hidden. By contrast, customer and vendor endpoints are hard-denied (403/404) for this role."
+ }
+]
