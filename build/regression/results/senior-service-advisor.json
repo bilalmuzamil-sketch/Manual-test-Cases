@@ -1,0 +1,18 @@
+[
+ {
+  "num": 16,
+  "role": "Senior Service Advisor",
+  "feature_area": "Pricing visibility",
+  "where_to_go": "Work Orders → open a work order",
+  "what_to_do": "Check prices/totals/Finance/Stats.",
+  "expected_result": "All money visible. Senior SA has See Financial Data ON.",
+  "depth": "DEEP",
+  "status": "PASS",
+  "spec_reference_plain": "Per SV-5319, the Senior Service Advisor role has the 'See Financial Data' cross-toggle ON, so every dollar figure on a work order — line Rate/Margin/Total, the Financial Info card, the Stats tab money columns, and the Finance tab invoice — must be visible, nothing hidden or masked. [Ref: SV-5319 Custom Roles permission matrix; checklist Senior Service Advisor row #16]",
+  "expected_plain": "Logged in as a Senior Service Advisor, every price and dollar amount on a work order should be visible.",
+  "actual_result_plain": "Opened invoiced work order S9-24661 as Tech-with-Senior-Service-Advisor. All money was visible everywhere. The left Financial Info card showed Parts $0.00, Labor $929.72, Shop Supplies $97.62, Subtotal $1,027.34, GST $51.37, Total $1,078.71, Balance $1,078.71. The Lines grid showed the Rate ($232.43), Margin (100%) and Total ($929.72) columns with values. The Stats tab showed Labor/Parts/Total sections with Sell price ($929.72), Cost ($0), Margin ($929.72) and % (100%) figures. The Finance tab rendered the full invoice INV-S9-24661 with Labor $929.72, Parts $0.00, Shop supplies $97.62, Subtotal $1,027.34, GST(5%) $51.37, Total $1,078.71 and Balance $1,078.71. Nothing was hidden or masked.",
+  "replication_steps_plain": "",
+  "screenshot_ref": "ssa-16.png",
+  "notes": "fe-permissions confirm cross_toggles.seeFinancialData=true and view_mode=full for the Senior Service Advisor role. Money confirmed on Lines, Financial Info card, Stats tab and Finance tab."
+ }
+]
