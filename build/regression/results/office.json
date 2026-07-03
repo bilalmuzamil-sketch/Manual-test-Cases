@@ -47,5 +47,22 @@
   "replication_steps_plain": "",
   "screenshot_ref": "of-54.png",
   "notes": "BACKEND CHECK: the Send-to-Portal action maps to POST /api/work-orders/approvals/create-approval-request. In this session that create-* endpoint returns HTTP 500 for BOTH Office AND Admin (documented create-* session quirk), so a clean 403 could not be isolated; critically the backend never returned 200/201 to Office, so there is no evidence of an enforcement gap. Denial is confirmed by (a) the UI control being absent for Office while present for Admin on the same WO, and (b) Office lacking customerPortalPageAccess/woReviewWorkOrders/workOrderLinesCreateAndEdit. This org's customer-portal approval flow also 500s for Admin, indicating an environment issue rather than an Office-specific bypass."
+ },
+ {
+  "num": 55,
+  "role": "Office",
+  "feature_area": "Catalog — view only",
+  "where_to_go": "Parts → Catalog/Inventory",
+  "what_to_do": "Try to edit a part.",
+  "expected_result": "BLOCKED/view only. Office has Catalog and Inventory = View only.",
+  "depth": "SPOT",
+  "status": "FAIL",
+  "spec_reference_plain": "Per SV-5319, the Office role has Catalog/Inventory as View only: catalogInventoryView is granted but catalogInventoryCreateAndEdit and catalogInventoryDelete are NOT (confirmed on the assigned system Office role via /api/auth/me/fe-permissions). Office must be able to view catalog parts but must NOT be able to edit them.",
+  "expected_plain": "Office should be able to look at catalog/inventory parts but not change them; any attempt to edit a part should be blocked in the UI and refused by the server.",
+  "actual_result_plain": "In the UI the restriction holds: on the Catalog tab (/parts/parts-catalogue) Office could open a part's detail (Slack Adjustervvv) but there were no Edit controls, no edit/delete icons, and no New/Add Part button - it was strictly view only. HOWEVER the server does NOT enforce this. Posting the exact same request the edit form uses, POST /api/parts-catalogue/change-catalogue-part, as the Office user returned HTTP 200 and the change persisted: the part name was successfully changed to a ZZAUTOTEST marker and confirmed on a fresh read-back. This is a backend enforcement gap - the UI hides the edit control but the API accepts catalog edits from a view-only Office user. Admin performing the same call also returns 200 (expected). The part was restored to its original name afterward.",
+  "depth_note": "SPOT",
+  "replication_steps_plain": "1) Assign the Office system role to the Tech staff. 2) Log in as Tech (now Office). 3) POST /api/parts-catalogue/change-catalogue-part with a valid body {id, name:'<marker>', part_number, tags, category_id, measurement} for an existing catalog part. 4) Observe HTTP 200. 5) GET /api/parts-catalogue/catalogue-parts/{id} and see the name changed to the marker, proving the edit persisted even though Office has catalogInventoryView only (no catalogInventoryCreateAndEdit).",
+  "screenshot_ref": "of-55.png",
+  "notes": "UI gate present (view only) but BACKEND ENFORCEMENT GAP: change-catalogue-part returns 200 and persists for a view-only Office user. Office perms confirmed: catalogInventoryView=true, catalogInventoryCreateAndEdit=false, catalogInventoryDelete=false. Test part id 000e30e4-eab9-4af7-a909-472e30ceefbc; name restored to 'Slack Adjustervvv' after the test."
  }
 ]
