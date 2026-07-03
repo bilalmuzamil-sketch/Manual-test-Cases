@@ -14,5 +14,21 @@
   "replication_steps_plain": "",
   "screenshot_ref": "pt-48.png",
   "notes": "seeFinancialData=true and woFullViewMode present in fe-permissions. WO shows an 'Over Limit' badge which per policy blocks nothing."
+ },
+ {
+  "num": 49,
+  "role": "Parts Technician",
+  "feature_area": "Parts — no delete",
+  "where_to_go": "Parts → Catalog/Inventory",
+  "what_to_do": "Create/edit a part; try to delete a part.",
+  "expected_result": "Create/edit allowed; DELETE blocked. Parts Technician has Catalog View/Create and Edit (no Delete).",
+  "depth": "MUST",
+  "status": "FAIL",
+  "spec_reference_plain": "Per SV-5319, the Parts Technician role has Catalog/Inventory View and Create-and-Edit but NOT Delete. So a Parts Tech should be able to add and edit catalog parts, but attempting to delete a catalog part should be refused (both the button hidden AND the server rejecting the call with a permission error). [Ref: SV-5319 Custom Roles permission matrix; checklist Parts Technician row #49]",
+  "expected_plain": "As a Parts Technician you can create and edit catalog parts, but you must NOT be able to delete a catalog part — the system should block it.",
+  "actual_result_plain": "Create is correctly allowed: as the Parts Tech user the 'New Catalog Part' button is present and creating a part via the catalog dialog succeeded (POST /api/parts-catalogue/add-catalogue-part returned 201, new part created). BUT delete is NOT blocked at the server: as the Parts Tech user (who has NO catalogInventoryDelete permission) I created a throwaway ZZAUTOTEST part and then called the same delete endpoint the app uses, POST /api/parts-catalogue/remove-catalogue-part?id=<partId>, and it returned 200 and the part was actually removed (it no longer appears in the catalogue list). The permission check is missing on the delete endpoint, so a Parts Tech can delete catalog parts despite lacking Delete rights. This is a backend enforcement gap.",
+  "replication_steps_plain": "1. Log in as the Tech user assigned the Parts Tech system role. 2. Confirm fe-permissions has catalogInventoryCreateAndEdit but NOT catalogInventoryDelete. 3. Create a catalog part (POST /api/parts-catalogue/add-catalogue-part with name/part_number/size/measurement/tags) -> 201. 4. Attempt to delete it the same way the UI does: POST /api/parts-catalogue/remove-catalogue-part?id=<newPartId>. 5. Observe HTTP 200 and the part is gone from GET /api/parts-catalogue/catalogue-parts. Expected 403.",
+  "screenshot_ref": "pt-49.png",
+  "notes": "BACKEND ENFORCEMENT GAP. Create confirmed via UI (add-catalogue-part 201). Edit is expected-allowed (catalogInventoryCreateAndEdit present); the catalog edit dialog could not be driven headless and the edit endpoint was not captured, so edit was not directly exercised, but the existing catalog data shows edited parts (tags BILAL/EDITED) and the permission is present. The FAIL is driven entirely by delete: tech deleted a part via remove-catalogue-part?id= (HTTP 200) despite having no catalogInventoryDelete permission. Admin (with the permission) uses the same endpoint. Delete param is a query string ?id=<uuid>; body/other param shapes return 400."
  }
 ]
