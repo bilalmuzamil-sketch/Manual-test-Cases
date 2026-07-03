@@ -1,0 +1,18 @@
+{
+  "key": "SV-4526",
+  "summary": "Invoice - Printed invoice not reflecting all applied payments",
+  "area": "invoicing / accounting",
+  "release_source": ["v0.54 Bug Fixes"],
+  "reported_issue": "An invoice with multiple payments applied shows the correct balance in Unpaid Invoices, but the finance and printed invoice PDF reflect an incorrect balance. Root cause per description: when ShopView is open in multiple tabs and payments are made/deleted simultaneously, state does not sync across tabs (label 'Duplicate_Tab').",
+  "expected_after_fix": "The printed invoice should reflect the correct balance after all applied payments, matching the balance shown in the Unpaid Invoices tab.",
+  "role_used": "admin",
+  "steps_i_followed": [
+    "No explicit single-tab repro exists (has_usable_repro=false); the reported defect is a cross-tab concurrency race (payments made/deleted simultaneously in duplicate tabs).",
+    "Performed the closest deterministic single-session check: opened a fully paid WO (S12-24602) Finance tab and compared the printed invoice totals to the finance balance."
+  ],
+  "actual_now": "In a single session the printed invoice and finance are consistent: Total $164.85, Payments $164.85, Balance $0.00 (status Paid), and the printed invoice block shows the same $164.85 / $0.00. No discrepancy observed single-tab. The specific reported failure requires two browser tabs performing simultaneous payment create/delete to trigger a sync race - a timing-dependent concurrency condition that cannot be reliably reproduced in this automated single-session harness.",
+  "verdict": "NOT-TESTABLE",
+  "confidence": "medium",
+  "screenshot_ref": "build/bugfix-regression/screenshots/SV-4526.png",
+  "notes": "Cross-tab / duplicate-tab concurrency race is not deterministically reproducible in the harness (no ability to drive two synchronized tabs racing create/delete). Single-tab printed-invoice-vs-finance balance is consistent, which is a positive signal but does not exercise the reported race. Recommend manual two-tab verification."
+}
