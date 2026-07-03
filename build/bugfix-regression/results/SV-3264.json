@@ -1,0 +1,21 @@
+{
+  "key": "SV-3264",
+  "summary": "BUG: Columns Billable canot be sorted on administration/staff page",
+  "area": "roles / permissions",
+  "release_source": ["v0.31 Bug Fixes"],
+  "reported_issue": "On administration/staff each sortable column works except Billable, which could not be sorted.",
+  "expected_after_fix": "Billable column should sort ascending/descending like the Is Active column.",
+  "role_used": "admin",
+  "steps_i_followed": [
+    "Logged in as admin and opened /administration/staff",
+    "Observed the Billable column has an arrow_drop_up sort indicator",
+    "Captured initial row order (Billable values mixed)",
+    "Clicked the Billable column header once",
+    "Clicked the Billable column header a second time"
+  ],
+  "actual_now": "Billable column is sortable. Before clicking, Billable values were mixed (Yes/No interleaved). After 1 click all top rows show Billable=No (ascending); after a 2nd click all top rows show Billable=Yes (descending). The header carries a sort arrow indicator.",
+  "verdict": "FIXED",
+  "confidence": "high",
+  "screenshot_ref": "build/bugfix-regression/screenshots/SV-3264.png",
+  "notes": "Sorting behaves consistently with other sortable columns."
+}
