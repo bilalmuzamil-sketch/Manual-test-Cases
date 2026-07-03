@@ -1,0 +1,19 @@
+{
+  "key": "SV-3256",
+  "summary": "FE/BE Column sorting not working - Advisor analysis",
+  "area": "reports",
+  "release_source": ["v0.44 Bug Fixes"],
+  "reported_issue": "Only the first four columns (date, invoice number, customer, advisor) of the Advisor Analysis report should be sortable with a visual sort indicator; the remaining columns must not be sortable.",
+  "expected_after_fix": "First 4 columns sortable ascending/descending with arrow indicator; columns beyond the first four not sortable.",
+  "role_used": "admin",
+  "steps_i_followed": [
+    "Logged in as admin, opened Reports and clicked Advisor Analysis (/reports/service-advisor-analysis)",
+    "Enumerated all table header cells and checked for sort arrow indicators",
+    "Captured first-column order, clicked the Date header, re-captured order"
+  ],
+  "actual_now": "Columns 0-3 (Date, Invoice, Customer, Advisor) each display an arrow_drop_up sort indicator; columns 4-17 (Days Open, Lines, Hrs Worked ... Subtotal) have no sort arrow. Clicking the Date header re-sorted the data (from Jul 03 2026 descending to Jul 01 2026 ascending).",
+  "verdict": "FIXED",
+  "confidence": "high",
+  "screenshot_ref": "build/bugfix-regression/screenshots/SV-3256.png",
+  "notes": "Exactly matches requirement: only the first four columns are sortable."
+}
