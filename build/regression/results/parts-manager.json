@@ -1,0 +1,18 @@
+[
+ {
+  "num": 43,
+  "role": "Parts Manager",
+  "feature_area": "Pricing visibility",
+  "where_to_go": "Work Orders / Parts",
+  "what_to_do": "Check prices on WOs and parts.",
+  "expected_result": "Visible. Parts Manager has See Financial Data ON.",
+  "depth": "DEEP",
+  "status": "PASS",
+  "spec_reference_plain": "Per SV-5319, the Parts Manager role has the 'See Financial Data' cross-toggle ON, so dollar figures (line rates/totals, part costs and sell prices, work-order finance totals) should be visible everywhere. [Ref: SV-5319 Custom Roles permission matrix; checklist Parts Manager row #43]",
+  "expected_plain": "Logged in as a Parts Manager, prices and dollar amounts on work orders and parts should be shown, not hidden.",
+  "actual_result_plain": "Opened work order S9-24163 as Tech-with-Parts-Manager-role. Dollar figures are fully visible across the lines and parts: sample amounts on the page included $24.39, $1,045.95, $109.82, $1,180.16, $1,239.16, $232.43, $116.22. Total/Labor/Parts/Rate columns and finance wording are present. fe-permissions confirm cross_toggles.seeFinancialData=true and view_mode=full, and the parts data returned by the API includes cost and sell_price fields with real numbers.",
+  "replication_steps_plain": "",
+  "screenshot_ref": "pm-43.png",
+  "notes": "seeFinancialData=true confirmed in fe-permissions. Prices render on the WO lines/parts view. (WO also shows an 'Over Limit' badge which per policy blocks nothing.)"
+ }
+]
