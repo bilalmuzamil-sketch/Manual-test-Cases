@@ -1,0 +1,20 @@
+{
+  "key": "SV-4112",
+  "summary": "Bulk edit on Lines throws an error",
+  "area": "work orders",
+  "release_source": ["v0.31 Bug Fixes"],
+  "reported_issue": "Selecting multiple Lines and using the gyros (3-dot) menu to change them in bulk threw: 'Could not resolve the App\\\\VehicleService\\\\WorkOrders\\\\Application\\\\Line\\\\ChangeLines\\\\ChangeCommand class', masking the real error SQLSTATE[42S22]: Column not found: 1054 Unknown column 'pr.part_request_type' in 'where clause'.",
+  "expected_after_fix": "Bulk-editing selected lines (e.g. Set line status) completes successfully without a 500/ChangeCommand/SQL error.",
+  "role_used": "admin",
+  "steps_i_followed": [
+    "Opened WO S9-24938 (2 lines) on the Lines tab",
+    "Selected all lines via the header select-all checkbox",
+    "Opened the table-header gyros (3-dot) menu -> confirmed bulk options: 'Set line status', 'Delete lines', 'Split work order'",
+    "Chose Set line status -> Authorized to perform a bulk status change while capturing the network response"
+  ],
+  "actual_now": "The bulk change fired POST /api/work-orders/lines/change-lines which returned HTTP 201 with body {\"data\":[]} (success). The line statuses updated and no error toast, no 'Could not resolve ... ChangeCommand' message, and no SQL 'Unknown column pr.part_request_type' error appeared.",
+  "verdict": "FIXED",
+  "confidence": "high",
+  "screenshot_ref": "build/bugfix-regression/screenshots/SV-4112.png",
+  "notes": "The bulk change-lines endpoint now returns 201 instead of the previously reported 500. Tested on disposable staging WO S9-24938 under the ZZAUTOTEST customer."
+}
