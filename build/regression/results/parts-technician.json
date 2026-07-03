@@ -78,5 +78,21 @@
   "replication_steps_plain": "1. Log in as the Tech user with the Parts Tech system role. 2. Confirm fe-permissions has invoicingPaymentsCreateAndEdit but NOT invoicingPaymentsDelete. 3. Go to Parts → Returns; open a return row three-dots menu — 'Delete Return' is present. 4. Fetch a return via GET /api/work-orders/part/list-return-requests and call POST /api/work-orders/part/remove-return-request {part_return_request_id:<id>}. 5. Observe HTTP 200 and the return removed. Expected 403.",
   "screenshot_ref": "pt-n1.png",
   "notes": "BACKEND + UI ENFORCEMENT GAP vs spec v33. The delete-return flow is still gated by Vendor & Order Delete (which this role has), NOT by Invoicing & Payments: Delete as SV-7911 requires. UI still exposes 'Delete Return' to the Parts Tech and the endpoint returns 200. Same endpoint Parts Manager (case 45) used successfully. If SV-7911 is expected on staging, this is a real regression; if not yet deployed, it still fails the v33 expected result."
+ },
+ {
+  "num": "N2",
+  "role": "Parts Technician",
+  "feature_area": "Return a part from a WO (v33)",
+  "where_to_go": "Work Orders -> a line",
+  "what_to_do": "Return a part from the line.",
+  "expected_result": "Allowed - no permission required (v33, 6/29). NOTE: distinct from SV-7838 (Technician 403) and from deleting a Parts-Returns record (which needs Invoicing Delete).",
+  "depth": "SPOT",
+  "status": "PASS",
+  "spec_reference_plain": "Per spec v33 (6/29), returning a part from a work order line requires NO permission - any staff member can do it. This is distinct from SV-7838 (which was about a Technician getting a 403 elsewhere) and from deleting a Parts→Returns record (which per v33 needs Invoicing & Payments: Delete). For the Parts Technician, returning a part should therefore be allowed / not permission-gated. [Ref: SV-5319/v33; checklist Parts Technician row N2]",
+  "expected_plain": "As a Parts Technician you should be able to return a part from a work order — it needs no special permission.",
+  "actual_result_plain": "Returning a part is NOT permission-gated for the Parts Tech. Calling the app's return endpoint POST /api/work-orders/part/make-return-request as the Parts Tech user never returns 403 - it passes straight into backend business validation (e.g. 400 'part_id: Not found' when an id can't be matched, 400 'Cannot return inventory part' for inventory-sourced parts). No permission barrier fires. This matches the recorded result for the strictly-lower-privileged Technician role, which returned HTTP 200 and created a return on this same endpoint (technician.json N2 PASS); the Parts Tech has a superset of the Technician's permissions, so it is at least as entitled. The Work Orders → Parts tab loads for the Parts Tech and shows received parts, confirming the area is reachable.",
+  "replication_steps_plain": "1. Log in as the Tech user with the Parts Tech role. 2. Open a work order's Parts tab (reachable). 3. Call POST /api/work-orders/part/make-return-request {part_id, quantity, return_reason} - the response is a 400 business-validation error, never a 403 permission error, confirming no permission gate. (A clean 201/200 for the Parts Tech specifically could not be reproduced because no currently-returnable received-vendor part with a resolvable part_id existed in staging at test time - the available WO-part ids are rejected as 'Not found' and receiving a new part requires the full vendor-invoice delivery flow.)",
+  "screenshot_ref": "pt-n2.png",
+  "notes": "PASS on the permission dimension the case tests (no permission required). Confirmed: make-return-request never returns 403 for the Parts Tech (reaches business validation), and the same endpoint returns 200 for the lower-privileged Technician (superset argument). DISCLOSURE: a fresh 200 for the Parts Tech was not reproduced - the make-return-request part_id is a specific received-part-instance id that could not be resolved from list-requests, list-requests-by-line (ids rejected as 'Not found'), order_item_id, or catalogue_part_id; and the WO Parts tab exposes no headless-drivable per-row Return control (only status-progression buttons Order/Receive; Receive opens a vendor-invoice delivery dialog). No permission denial was ever observed."
  }
 ]
