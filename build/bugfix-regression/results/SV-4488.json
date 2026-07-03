@@ -1,0 +1,20 @@
+{
+  "key": "SV-4488",
+  "summary": "Text Fields - Accented character forces next letter into uppercase",
+  "area": "customer portal / customers",
+  "release_source": ["v0.44 Bug Fixes"],
+  "reported_issue": "When a user types an accented character (such as e-acute, a-grave, etc.), the following character automatically becomes uppercase. Occurs in text inputs like customer/vendor name.",
+  "expected_after_fix": "After typing an accented character the next letter should remain as typed (lowercase). All automatic text transformations should be removed - text should remain exactly as the user types it.",
+  "role_used": "admin",
+  "steps_i_followed": [
+    "Opened Parts -> Vendors -> New vendor dialog",
+    "Focused the vendor Name text field and typed, character by character (80ms delay), 'naïve café test' entirely in lowercase",
+    "Read back the field value",
+    "Cleared and typed 'aébc déf' (accent immediately followed by a letter) and read back the value"
+  ],
+  "actual_now": "The field preserves exactly what was typed: 'naïve café test' -> 'naïve café test', and 'aébc déf' -> 'aébc déf'. The character following an accented character is NOT converted to uppercase, and no auto-capitalization/transformation is applied.",
+  "verdict": "FIXED",
+  "confidence": "high",
+  "screenshot_ref": "build/bugfix-regression/screenshots/SV-4488.png",
+  "notes": "Verified on the Vendor name text field (same input component family cited in the report as customer/vendor name). No forced uppercase after accents; text transformation removed as expected."
+}
