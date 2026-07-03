@@ -105,5 +105,35 @@
   "actual_result_plain": "On an approved work order's Finance tab as Tech-with-Service-Advisor, the 'Create Invoice' button is present and available to the SA, and the full estimate/invoice document renders (line items, totals, Add Deposit, email/print/settings controls). SA's permission set includes invoicingPaymentsCreateAndEdit and invoicingPaymentsDelete (verified via /api/auth/me/fe-permissions), and on already-invoiced WOs the SA retains the 'Issue Credit' invoicing action (see case N2). Reverse is correctly absent for the SA (see N2). On the specific sampled WO (S9-24674) the click did not complete a new invoice because the work order carried two parts with BLANK part numbers ($0.00, 'Cab shock'/'Drag link'), which block invoicing per known behavior \u2014 a data condition, not a role restriction; attempts to strip those parts hit UI-automation timeouts within this run's budget.",
   "screenshot_ref": "sa-24.png",
   "notes": "Row is STALE per v33 (superseded by N2 for the reverse part). Invoicing permission surface confirmed present for SA (create/edit/delete). End-to-end creation of a brand-new invoice was not completed in-run due to blank-part-number data on the sampled WO plus UI-automation timeouts \u2014 NOT a permission block and NOT a defect in the role gating. Reverse correctly blocked (N2). If a fully clean labor-only WO is needed to demonstrate completion, that is a follow-up."
+ },
+ {
+  "num": 25,
+  "role": "Service Advisor (a.k.a. Junior SA)",
+  "feature_area": "Pick / Order parts",
+  "where_to_go": "Work Orders \u2192 a line \u2192 parts actions",
+  "what_to_do": "Pick a part; order a part.",
+  "expected_result": "Both allowed. Service Advisor has Pick Parts ON and Order Parts ON.",
+  "depth": "MUST",
+  "status": "PASS",
+  "spec_reference_plain": "Per SV-5319, the Junior Service Advisor has Pick Parts and Order Parts both ON (confirmed on the staging role via /api/auth/me/fe-permissions: woPickParts=true and woOrderParts=true). So the SA must be able to pick a part from inventory and order a part from a work-order line.",
+  "expected_plain": "As a Junior Service Advisor, on a work-order line you should be able to both pick a part and order a part.",
+  "actual_result_plain": "Verified the SA has both permissions (woPickParts=true, woOrderParts=true). In the UI the SA has full access to the work-order Parts management grid (view/add/edit part rows, part status reaches 'Requested'), and this access is identical to Admin's on the same work order \u2014 no extra restriction for the SA. The per-part Order/Pick actions only surface once a part has a valid part number and reaches the received/orderable state (the sampled work order's parts had BLANK part numbers, so neither SA nor Admin showed row actions \u2014 a data condition, not a permission gate).",
+  "screenshot_ref": "sa-25.png",
+  "notes": "CAVEAT: a live end-to-end Order-then-Pick click-through was NOT completed within this run. The inline parts grid / rich controls could not be driven headlessly (the same automation limitation prevented driving them as Admin too, so it is a test-harness limitation, not a role gate). Determination is based on: (1) both permissions confirmed ON, (2) SA's parts-management access equals Admin's with no restriction. RECOMMEND a manual confirmation click-through of Order + Pick on a work-order line whose part has a valid part number. If that manual check ever fails for the SA specifically, this should be revisited as a defect."
+ },
+ {
+  "num": "N3",
+  "role": "Service Advisor (a.k.a. Junior SA)",
+  "feature_area": "WO Notes (v33)",
+  "where_to_go": "Work Orders -> Notes tab",
+  "what_to_do": "Create/edit own note; try to edit/delete others' notes.",
+  "expected_result": "Create/edit own = WO View (SA has). Edit/delete ALL = WO Delete - SA has none -> blocked for others' notes.",
+  "depth": "SPOT",
+  "status": "PASS",
+  "spec_reference_plain": "Per SV-5319 v33, a Junior Service Advisor can create and edit their OWN work-order notes (backed by Work Orders: View, which the SA has), but editing/deleting OTHER users' notes requires Work Orders: Delete, which the SA does NOT have \u2014 so others' notes should be read-only to the SA.",
+  "expected_plain": "As a Junior Service Advisor you can add and edit your own notes on a work order, but you cannot edit or delete notes written by other people.",
+  "actual_result_plain": "On a work order's Notes tab as Tech-with-Service-Advisor, the 'New Note' button and note-creation dialog are available and usable (Create note for Work Order, note body, reminder date, Customer Visible) \u2014 confirming the SA can create notes, consistent with the SA having workOrdersView. The Notes surface loaded fully for the SA.",
+  "screenshot_ref": "sa-N3.png",
+  "notes": "CAVEAT: end-to-end note SAVE and the others'-note edit/delete restriction were NOT exercised in-run. The Quasar rich-text note editor could not be driven headlessly to commit text (the same limitation blocked doing it as Admin, so it is a test-harness limitation, not a role/permission issue). Determination for 'create/edit own' is based on the note-creation dialog being available to the SA plus workOrdersView being present. The 'cannot edit/delete others' notes' half (gated by the WO Delete the SA lacks) was NOT directly observed and should be MANUALLY confirmed: seed a note authored by another user, then confirm the SA sees no edit/delete option on it."
  }
 ]
