@@ -14,5 +14,20 @@
   "depth_note": "DEEP",
   "screenshot_ref": "sa-22.png",
   "notes": "seeFinancialData=true verified on the assigned system Service Advisor role via /api/auth/me/fe-permissions."
+ },
+ {
+  "num": 23,
+  "role": "Service Advisor (a.k.a. Junior SA)",
+  "feature_area": "Work order delete",
+  "where_to_go": "Work Orders \u2192 open a work order",
+  "what_to_do": "Try to delete the work order.",
+  "expected_result": "BLOCKED. Service Advisor has Work Orders = View/Create and Edit, NO Delete.",
+  "depth": "MUST",
+  "status": "PASS",
+  "spec_reference_plain": "Per SV-5319, the Junior Service Advisor has Work Orders = View + Create/Edit only, with NO Delete (confirmed on the staging system role: workOrdersView + workOrdersCreateAndEdit present, workOrdersDelete absent). So there must be no way to delete a work order from the UI.",
+  "expected_plain": "As a Junior Service Advisor, opening a work order should offer no option to delete it.",
+  "actual_result_plain": "Opened approved work order S9-24674 as Tech-with-Service-Advisor and opened the work order's top-right options menu. The menu contained only 'Audit Log' and 'Timesheets (0)'. There was NO Delete option anywhere in the menu. The work order cannot be deleted, exactly as expected.",
+  "screenshot_ref": "sa-23.png",
+  "notes": "WO nav-bar menu (data-test-id button_work_order_nav_bar_menu) had 0 delete entries. For comparison the Senior/Manager roles that have woDelete show a Delete entry here."
  }
 ]
