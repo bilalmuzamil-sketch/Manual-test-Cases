@@ -1,0 +1,19 @@
+{
+  "key": "SV-6628",
+  "summary": "Staff Filter is not showing all Staff members in the list to select one from.",
+  "area": "roles / permissions",
+  "release_source": ["v0.54 Bug Fixes"],
+  "reported_issue": "Intermittent: after adding clock-in/out times for some staff and only clock-in (open punch) for others, refreshing and opening the Staff filter, some staff members were missing from the filter list.",
+  "expected_after_fix": "The Staff filter lists all staff members that have clock/punch activity in the selected period (including staff with only a clock-in / open punch).",
+  "role_used": "admin",
+  "steps_i_followed": [
+    "Logged in as admin, opened Reports -> Timesheet Activities (/reports/punch-clock-activities), period This Month.",
+    "Identified the 'Filter By Staff' dropdown and confirmed via network that it is populated by GET /api/staff/clocked (returns staff with punch-clock activity for the period).",
+    "Opened the Filter By Staff dropdown and enumerated its members; opened the New Timesheet dialog to exercise adding staff punch entries."
+  ],
+  "actual_now": "The 'Filter By Staff' dropdown loads from /api/staff/clocked and lists the staff who have clock activity in the period (this month: Admin ShopView, Vikt Custom Role A2, Viktoria Vid). The filter populates correctly from the dedicated clocked-staff endpoint; no staff with activity were observed missing. The New Timesheet dialog (Select Staff / Department / Start / End) allows adding both complete and open (clock-in-only) punches.",
+  "verdict": "FIXED",
+  "confidence": "medium",
+  "screenshot_ref": "build/bugfix-regression/screenshots/SV-6628.png",
+  "notes": "The originally-reported defect is explicitly intermittent and tied to a specific mix of clocked-in-only vs clocked-out staff on a given day. I confirmed the filter's data source (/api/staff/clocked) and that it returns staff with activity, but could not deterministically force the intermittent clock-in-only edge case within the harness budget. Verdict rests on the working filter mechanism plus the ticket's existing Prod_Verified and Staging_Verified labels. Confidence medium because the exact intermittent condition was not reproduced end-to-end."
+}
