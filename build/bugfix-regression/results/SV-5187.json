@@ -1,0 +1,18 @@
+{
+  "key": "SV-5187",
+  "summary": "BUG – Mobile Sessions Logging Users Out Automatically",
+  "area": "mobile",
+  "release_source": ["v0.48 Regressions"],
+  "reported_issue": "Users on mobile devices are logged out automatically after roughly one hour of inactivity, reported consistently across one customer's team (Haggai Truck Center, 6 users). The reporter could not reproduce it on his own device, suggesting it is isolated to specific accounts/devices/session-handling conditions on mobile.",
+  "expected_after_fix": "Mobile sessions should not log users out after ~1 hour of inactivity; session/token handling should keep users signed in per the intended session lifetime.",
+  "role_used": "n/a",
+  "steps_i_followed": [
+    "Reviewed the reproduction requirements: log in on a mobile device, leave the session idle for ~1 hour, observe automatic logout.",
+    "Assessed testability within the automated harness."
+  ],
+  "actual_now": "Not exercised. Reproduction requires (a) ~1 hour of real idle time to trigger the timeout, (b) the specific customer accounts/devices where it occurs (the original reporter could not reproduce it on his own device), and (c) real mobile-device session handling. The verification harness runs in short session windows (staging cookies expire in ~1 hour) and cannot simulate an hour of genuine inactivity nor the account/device-specific conditions, so the auto-logout cannot be observed.",
+  "verdict": "NOT-TESTABLE",
+  "confidence": "medium",
+  "screenshot_ref": null,
+  "notes": "Time-dependent (~1hr inactivity) and account/device-specific session bug. Best verified via backend session/token TTL configuration review and the affected customer's accounts, which are outside this harness. Recommend checking mobile refresh-token / session-cookie TTL and idle-timeout config for the reported accounts."
+}
