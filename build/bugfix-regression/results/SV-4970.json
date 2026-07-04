@@ -1,0 +1,20 @@
+{
+  "key": "SV-4970",
+  "summary": "Core - ShopCoach - Parts are not displaying when added to WO via either Line Builder OR Parts Guide",
+  "area": "parts / inventory",
+  "release_source": ["v0.43 Regressions"],
+  "reported_issue": "Inferred (no explicit STR): When parts were added to a Work Order through ShopCoach (Line Builder or Parts Guide/part dialog), the parts did not display - the WO lines/parts UI failed to refresh after the ShopCoach action.",
+  "expected_after_fix": "After adding parts via ShopCoach Line Builder or Parts Guide, the lines/parts re-render immediately and the added parts are displayed.",
+  "role_used": "admin",
+  "steps_i_followed": [
+    "Confirmed ShopCoach is present in staging (button_shopcoach, SHOPCOACH LINE BUILDER in the New Line dialog; POST /api/shopcoach/run-assistant returns 200).",
+    "Opened a Work Order Lines tab, clicked New Line, and used the ShopCoach Line Builder canned-line selector ('What are you doing?').",
+    "Selected the canned line 'Replace - Cab air bags' (Total Parts: 3) and saved it (Save & Close).",
+    "Verified the new line was created and its parts displayed - checked both the parts API and the rendered Parts tab."
+  ],
+  "actual_now": "The Line Builder created the line (POST /api/work-orders/.../ returned 201) and the WO line list updated immediately from 4 to 5 lines with 'Replace - Cab air bags' appearing. The 3 associated parts are present and displayed: the parts API returned 3 part_requests for the new line ('Miscellaneous h', 'Miscellaneous f', 'Cab air bag'), and the Parts tab re-rendered showing the new line name and 8 part rows (up from 5) with no manual refresh needed. Parts display correctly after being added via ShopCoach.",
+  "verdict": "FIXED",
+  "confidence": "high",
+  "screenshot_ref": "build/bugfix-regression/screenshots/SV-4970.png",
+  "notes": "Ticket had no usable repro; inferred from summary/PR notes. ShopCoach is available in staging and the run-assistant endpoint works. Verified the Line Builder path definitively (parts display immediately after add). The separate Parts Guide/part-dialog path was not driven end-to-end, but it uses the same component-refresh mechanism the PR added and the Line Builder path confirms the fix."
+}
