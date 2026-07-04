@@ -1,0 +1,20 @@
+{
+  "key": "SV-4881",
+  "summary": "BUG: Cannot send invoice email if Customer Email is missing",
+  "area": "invoicing / accounting",
+  "release_source": ["v0.43 Bug Fixes", "SV-4796 Epic (V0.43 Regression Testing Bugs)"],
+  "reported_issue": "Inferred (no explicit STR): the invoice could not be sent by email when the customer/contact had no email address on file - sending was blocked or failed.",
+  "expected_after_fix": "User can send the invoice email even when the customer email is missing (e.g. by entering a recipient manually); sending is not blocked.",
+  "role_used": "admin",
+  "steps_i_followed": [
+    "Logged in as admin, opened an invoiced Work Order Finance tab and clicked Send Email.",
+    "In the 'Sending invoice' dialog, UNCHECKED the customer/contact recipient so that no customer email would be used.",
+    "Entered a manual address in the 'Optional Emails (Comma Separated)' field only.",
+    "Verified the Send Email button state and clicked it, capturing the response."
+  ],
+  "actual_now": "With the contact recipient unchecked (simulating a missing customer email) and only a manually entered optional email, the Send Email button remained ENABLED and the send succeeded: POST /api/work-order/invoice/send-email returned HTTP 201 with a 'Successfully sent invoice to email.' toast and the dialog closed. The dialog also exposes an 'Optional Emails' field so a recipient can always be provided.",
+  "verdict": "FIXED",
+  "confidence": "high",
+  "screenshot_ref": "build/bugfix-regression/screenshots/SV-4881.png",
+  "notes": "Ticket had no usable repro; inferred from summary. A missing customer email no longer blocks sending - the invoice can be emailed to a manually supplied address. All existing invoiced test WOs happened to have contact emails, so the missing-email condition was reproduced by unchecking the contact and relying solely on the Optional Emails field."
+}
