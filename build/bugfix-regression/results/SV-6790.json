@@ -1,0 +1,20 @@
+{
+  "key": "SV-6790",
+  "summary": "BUG: Mobile – Asset Expand Icon Misaligned, Making Mileage Field Difficult to Access",
+  "area": "mobile",
+  "release_source": "v0.54 Regressions",
+  "reported_issue": "On the mobile Work Order view, the asset section expand/collapse icon is misaligned and positioned too close to the asset switch icon, creating a touch-target conflict that makes it hard to expand the asset section and access the Mileage field.",
+  "expected_after_fix": "Mileage should be easily accessible for technicians; the expand arrow should be repositioned so it does not conflict with the asset switch icon.",
+  "role_used": "admin",
+  "steps_i_followed": [
+    "Emulated an iPhone (390x844, isMobile+touch, iPhone UA) via Chromium and opened a Work Order detail (S9-15740).",
+    "Inspected the top asset/summary card and enumerated its icons and their coordinates.",
+    "Toggled the 'Show Details' control to expand the full Customer and Asset cards.",
+    "Located the asset card's switch icon and the expand/collapse control and confirmed Mileage is present in the expanded asset card."
+  ],
+  "actual_now": "The mobile asset area has been reworked. The compact WO card shows a single edit-pencil icon (top-right, ~25x25px) with no crowded expand-arrow/switch-icon pair. Expansion is now driven by a distinct, clearly-labeled 'Show Details / Hide Details' toggle (text + chevron) at the top of the section. In the expanded view each card (Customer, Asset) has a single swap/switch icon (⇄) in its own top-right corner, well separated from the 'Show/Hide Details' collapse control. Mileage is present and reachable in the expanded asset card. No misalignment or touch-target conflict between an expand arrow and the asset switch icon was observed.",
+  "verdict": "FIXED",
+  "confidence": "medium",
+  "screenshot_ref": "build/bugfix-regression/screenshots/SV-6790.png",
+  "notes": "Tested via Chromium mobile-viewport emulation (responsive/mobile-web is testable per harness rules). The specific crowded/misaligned expand-vs-switch icon layout described in the ticket no longer exists; the expand/collapse is a separate labeled control and Mileage is accessible. Confidence medium because the exact original account's card ('1/off Kustoms, LLC') could not be reproduced, but the general current mobile asset-card layout does not exhibit the reported conflict."
+}
