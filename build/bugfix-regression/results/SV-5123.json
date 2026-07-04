@@ -1,0 +1,20 @@
+{
+  "key": "SV-5123",
+  "summary": "Mobile View – Invoice Layout Under Finance Tab Not Displaying Correctly",
+  "area": "invoicing / accounting",
+  "release_source": ["v0.48 Regressions"],
+  "reported_issue": "When viewing an invoice under the Finance tab in mobile view, the invoice layout does not render properly — elements appear misaligned, clipped, or out of order, making the invoice difficult or impossible to read on mobile.",
+  "expected_after_fix": "The invoice under the Finance tab should render correctly and be readable in mobile/responsive view.",
+  "role_used": "admin",
+  "steps_i_followed": [
+    "Booted SPA in a mobile viewport (390x844, isMobile+touch, iPhone Safari UA).",
+    "Opened a paid WO (S9-24674) => Finance tab, which renders the invoice preview.",
+    "Measured document width vs viewport to detect horizontal clipping/overflow.",
+    "Captured a full-page mobile screenshot and visually inspected element order, alignment, and readability."
+  ],
+  "actual_now": "The invoice renders correctly and is fully readable on the mobile viewport. There is no horizontal overflow/clipping (documentElement scrollWidth 390 == viewport 390, overflowX 0) and no error. Content is in the correct order: shop header, Invoice number/date, Bill To, Remit payment to, vehicle info table, Service Order/Terms table, line-items table (Description/Quantity/Rate/Amount with Labor and Parts rows incl. the caps part description), Parts/Labor/Line totals, the totals block (Labor, Parts, Shop supplies, Subtotal, GST, Total, Payments, Balance), warranty terms, customer signature/printed name/date, and GST#/Powered by ShopView footer. The only residual is a minor cosmetic overlap of the shop logo image with the 'Invoice: INV-S9-24674' title/date in the header; it does not make the invoice difficult or impossible to read.",
+  "verdict": "FIXED",
+  "confidence": "medium",
+  "screenshot_ref": "build/bugfix-regression/screenshots/SV-5123.png",
+  "notes": "Tested via responsive/mobile viewport emulation (matches reported mobile/responsive view). The reported severe symptoms (misaligned, clipped, out of order, impossible to read) do not reproduce — the invoice is a well-ordered, fully readable responsive layout with no horizontal clipping. Minor caveat: a small header overlap between the shop logo graphic and the invoice-number block remains (cosmetic). Confidence medium due to the subjective/visual nature of layout assessment."
+}
