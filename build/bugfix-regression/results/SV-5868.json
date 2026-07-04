@@ -1,0 +1,19 @@
+{
+  "key": "SV-5868",
+  "summary": "BUG: Part category not available for assignment to a different matrix",
+  "area": "parts / inventory",
+  "release_source": ["v0.54 Bug Fixes"],
+  "reported_issue": "After deselecting a part category (e.g. 'Filters') from one pricing matrix (74% Markup), the category was not available for selection when trying to assign it to a different matrix (Loyal Customer). Prevented correct pricing of that category.",
+  "expected_after_fix": "A category that is not currently assigned to a matrix (deselected from its previous matrix) is available for selection in another matrix's Category dropdown.",
+  "role_used": "admin",
+  "steps_i_followed": [
+    "Logged in as admin, opened Administration -> Pricing (Pricing Matrices, 23 matrices).",
+    "Inspected data model via GET /api/pricing-rules/list and GET /api/parts-catalogue/categories-list: each category carries a single pricingMatrixId; 18 categories currently have pricingMatrixId=null (unassigned, i.e. deselected from any matrix).",
+    "Opened Edit Price Matrix on 'Ahtasham Price Matrix' (which has no categories) and opened the Category dropdown to see which categories are offered for assignment."
+  ],
+  "actual_now": "The Category dropdown lists exactly the 18 currently-unassigned categories and offers them for selection: .Brake Parts, .Suspension, Ahtasham, Ahtasham exempt, AUTO-Batteries, AUTO-Body, AUTO-Engine, AUTO-HVAC, AUTO-MISC CHARGES, AUTO-Tires & Wheels, C22327 PS Category, C22329 PS Category, C2618 Regression Category, C26597 Category, HD-CORE / FEE, HD-Shop Supply, Machine Sales, Suspension. A category not assigned to any matrix is fully selectable for assignment to another matrix, so a category deselected from one matrix can be reassigned to another.",
+  "verdict": "FIXED",
+  "confidence": "high",
+  "screenshot_ref": "build/bugfix-regression/screenshots/SV-5868.png",
+  "notes": "The dropdown deliberately shows only categories not already bound to a matrix (each category maps to at most one matrix). Since deselecting a category sets its matrix to null, it then appears in the picker of every other matrix. Verified the offered set equals the null-matrix set exactly (18/18)."
+}
