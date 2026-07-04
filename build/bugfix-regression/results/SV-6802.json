@@ -1,0 +1,22 @@
+{
+  "key": "SV-6802",
+  "summary": "Regression: When clocked in on mobile view, line is no longer green. Techs cannot tell easily which line they are clocked into.",
+  "area": "work orders",
+  "release_source": "v0.54 Regressions",
+  "reported_issue": "On the mobile view, when a user is clocked in, the line is not green anymore. The only indicator is the STOP button; the green line indicator is gone. Mobile view only.",
+  "expected_after_fix": "When clocked into a line on mobile, the line should show a green indicator so technicians can easily tell which line they are clocked into.",
+  "role_used": "admin",
+  "steps_i_followed": [
+    "Emulated an iPhone (390x844, isMobile+touch) and opened the mobile Work Orders view.",
+    "Tapped 'Clock In', selected a work order (S9-24927) with an Approved line.",
+    "Captured the line card background color BEFORE clocking in (white, rgb(255,255,255)).",
+    "Tapped 'Start' on the approved line to clock into it.",
+    "Captured the line card background color and header state AFTER clocking in.",
+    "Cleaned up: stopped the line timer and clocked out (verified header returned to 'Clock In')."
+  ],
+  "actual_now": "When clocked into the line, the entire line card turns GREEN: background color changes from white to rgba(165,214,167,0.3) (a light green / Material green-200 tint). The header shows a green stop_circle icon with a running timer (00:00:01...), the WO status badge flips to 'In Progress', and the line shows a red 'Stop' button. The green line indicator is clearly present, making it easy to identify the clocked-into line.",
+  "verdict": "FIXED",
+  "confidence": "high",
+  "screenshot_ref": "build/bugfix-regression/screenshots/SV-6802.png",
+  "notes": "Tested via Chromium mobile-viewport emulation. Measured the line card computed background color before vs after clocking in: white -> green tint rgba(165,214,167,0.3). Cleaned up by stopping the line and clocking admin out (verified). No Tech role change was needed for this test."
+}
