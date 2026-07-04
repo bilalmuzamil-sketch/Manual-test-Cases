@@ -1,0 +1,20 @@
+{
+  "key": "SV-4963",
+  "summary": "Taxes: Tax that is actively used can be deleted",
+  "area": "invoicing / accounting",
+  "release_source": ["v0.43 Regressions"],
+  "reported_issue": "A tax that is actively used (assigned to a WO/workplace) could be deleted. The Delete Tax icon was active and deletion succeeded, later breaking WO info loading.",
+  "expected_after_fix": "The Delete Tax icon is not clickable for a used tax and hover shows an error; deletion of a used tax is blocked.",
+  "role_used": "admin",
+  "steps_i_followed": [
+    "Logged in as admin, opened /administration/taxes.",
+    "Read isDeletable flag per tax from GET /api/taxes: used/default taxes (Exempt, GST, HST, HST BC, Zero Tax Rate) have isDeletable=false; the unused 'New Tax' has isDeletable=true.",
+    "In the UI, inspected the delete button (data-test-id=button_delete_tax) per row: it is disabled (q-btn--disable) for every used tax and enabled only for the unused 'New Tax'.",
+    "Attempted backend DELETE /api/taxes/{GST id} for a used tax."
+  ],
+  "actual_now": "The Delete button is disabled for all in-use taxes and enabled only for the unused tax. The backend DELETE on a used tax returns HTTP 400 with {\"error\":\"Tax is not deletable as it is used by one or more workplaces or companies\"}, and the tax remains present. A used tax can no longer be deleted.",
+  "verdict": "FIXED",
+  "confidence": "high",
+  "screenshot_ref": "build/bugfix-regression/screenshots/SV-4963.png",
+  "notes": "Backend now computes isDeletable and rejects deletion of used taxes; FE disables the delete icon accordingly. Tooltip message wording differs slightly from ticket ('Cannot delete currently used tax') but the gating and backend enforcement are in place. No test tax was actually deleted."
+}
