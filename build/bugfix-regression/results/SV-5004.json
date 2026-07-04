@@ -1,0 +1,20 @@
+{
+  "key": "SV-5004",
+  "summary": "FR:Work Orders – Cannot Change Category for Inventory Part on Parts Tab (Only Works on Main WO Page)",
+  "area": "parts / inventory",
+  "release_source": ["v0.43 Regressions"],
+  "reported_issue": "Inferred (no explicit STR): For an inventory part, the category can be changed on the main Work Order page but on the Parts tab the category field is locked/uneditable and cannot be changed.",
+  "expected_after_fix": "The category for an inventory part can be changed and saved on the Parts tab, same as on the main WO page.",
+  "role_used": "admin",
+  "steps_i_followed": [
+    "Logged in as admin. Inspected the parts list API (list-requests-by-line) which exposes a per-part disable_categories_select flag.",
+    "Confirmed inventory parts (part_source_type=inventory, inventory_part_id set, not core charge) have disable_categories_select=false; only core-charge lines and completed lines are locked.",
+    "On a WO Parts tab, opened an inventory part's category dropdown and selected a different category, capturing the save request/response.",
+    "Repeated to confirm the completed-line lock is a separate, general rule."
+  ],
+  "actual_now": "For an inventory part on a non-completed line (WO S9-24671, part a6ad9e67), the category select is enabled (disabled=false), and changing it saves successfully: POST /api/work-orders/part/change-request returned HTTP 200 with the updated part (disableCategoriesSelect:false, sellPrice recalculated to 86.51, margin 41.17). The category for inventory parts is now editable on the Parts tab. The only cases still locked are parts on a Completed line (400 'Part requests can't be modified on completed line.') and core-charge lines - both expected business rules, not the reported bug.",
+  "verdict": "FIXED",
+  "confidence": "high",
+  "screenshot_ref": "build/bugfix-regression/screenshots/SV-5004.png",
+  "notes": "Ticket had no usable repro; inferred from summary. Category change for inventory parts works on the Parts tab and persists (200) with sell-price recalculation. An initial attempt failed with 400 only because that part was on a completed line - a general modification lock unrelated to inventory/category editability."
+}
