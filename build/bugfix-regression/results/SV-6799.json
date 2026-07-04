@@ -1,0 +1,19 @@
+{
+  "key": "SV-6799",
+  "summary": "Work Orders: \"Approved\" and \"Paid\" statuses display the same color making them indistinguishable",
+  "area": "work orders",
+  "release_source": "v0.54 Regressions",
+  "reported_issue": "The 'Approved' and 'Paid' work order statuses both display in the same green color, making them hard to distinguish at a glance in the Work Orders tab and Customers > Work Orders tab.",
+  "expected_after_fix": "Each work order status should have a clearly distinct color. Approved and Paid should be visually distinguishable at a glance.",
+  "role_used": "admin",
+  "steps_i_followed": [
+    "Logged in as admin, opened Work Orders, and confirmed via API that both 'approved' (17) and 'paid' (42) WOs exist.",
+    "Opened the Work Orders 'By Status' view which renders status badges for Approved, Paid, Invoiced, Complete, Estimate, etc.",
+    "Read the computed pill background and text color of each status badge directly from the DOM."
+  ],
+  "actual_now": "Approved and Paid render with IDENTICAL styling: pill background rgb(224,242,241) and text color rgb(0,105,92) (a teal-green). Every other status has a distinct color (Estimate blue rgb(1,87,155)/rgb(229,237,255), Complete orange rgb(188,56,3)/rgb(255,239,202), Invoiced green rgb(67,160,71)). Approved and Paid are visually indistinguishable.",
+  "verdict": "STILL-REPRODUCES",
+  "confidence": "high",
+  "screenshot_ref": "build/bugfix-regression/screenshots/SV-6799.png",
+  "notes": "Verified by reading exact computed CSS of each status pill (border-radius 800px badges). Approved pill color == Paid pill color exactly. Bug persists on current staging."
+}
