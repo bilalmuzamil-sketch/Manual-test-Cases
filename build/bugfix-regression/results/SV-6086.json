@@ -1,0 +1,19 @@
+{
+  "key": "SV-6086",
+  "summary": "Invoiced hours link takes you to blank page",
+  "area": "invoicing / accounting",
+  "release_source": ["v0.54 Bug Fixes"],
+  "reported_issue": "On the Technician Efficiency report, expanding a staff member and clicking the Invoiced Tech Hours value navigated the user to a blank page.",
+  "expected_after_fix": "The work order opens and the work-order line edit modal opens (or an error is shown if the user lacks permission).",
+  "role_used": "admin",
+  "steps_i_followed": [
+    "Logged in as admin, opened Reports -> Technician Efficiency (/reports/technician-efficiency), Invoiced tab, This Month.",
+    "Expanded staff member Joel Parker (3.34 Invoiced Tech Hrs), revealing detail row: invoice S9-15019, WO Line '1. - Service - Mobile service call', Invoiced Tech Hrs 2.34.",
+    "Clicked the Invoiced Tech Hours value (2.34) in the detail row."
+  ],
+  "actual_now": "The app navigated to the work order at /workorders/9f8b3dd7-6f91-42d2-af49-2e58dcce1432/lines and opened the 'Edit Line' modal for that line (fields: What Are You Doing?, Status=Complete, Technician=Joel Parker, Labor Rate=Calgary After Hours Mobile Rate, Estimated/Tech Time, Save & Close). The page rendered fully (body length ~2145 chars) - not a blank page.",
+  "verdict": "FIXED",
+  "confidence": "high",
+  "screenshot_ref": "build/bugfix-regression/screenshots/SV-6086.png",
+  "notes": "Matches the expected-after-fix behavior exactly: clicking Invoiced Tech Hours opens the WO with the line edit modal instead of a blank page."
+}
