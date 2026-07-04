@@ -1,0 +1,20 @@
+{
+  "key": "SV-5115",
+  "summary": "Mobile View - Techs cannot clock into work orders (Start button missing); cannot sort WO list; error loading WO page",
+  "area": "work orders",
+  "release_source": ["v0.48 Regressions"],
+  "reported_issue": "On mobile: techs cannot clock into work orders because the Start button is missing; the main WO list cannot be sorted (by number/status/customer); and an error appears when loading the work orders page.",
+  "expected_after_fix": "On mobile the Start (clock-in) button should be available on WO lines, the WO list should be sortable, and the work orders page should load without errors.",
+  "role_used": "admin (mobile) + Tech / Time Clock role (mobile & desktop)",
+  "steps_i_followed": [
+    "Booted SPA in a mobile viewport (390x844, isMobile+touch, iPhone Safari UA).",
+    "As admin: opened /workorders, confirmed the sort control and clicked it; opened approved WO S9-24706 and checked for the Start button on labor lines.",
+    "As Tech (Time Clock role): repeated on mobile — list, sort control, and approved WO Start button.",
+    "As Tech on DESKTOP: opened the same approved WO to isolate whether a missing Start button is a mobile issue or a permission gate."
+  ],
+  "actual_now": "None of the mobile regressions reproduce. (1) Sort: the mobile WO list shows a working sort control (swap_vert) that opens a sort menu (number/status/customer) for both admin and tech. (2) Page load: the WO list and WO detail load with no error on mobile (no 'failed'/error text, no failing API calls). (3) Start button: on mobile, admin (full permissions) sees the Start (and Complete) button on approved WO lines, proving it renders on mobile. The Tech user does NOT see the Start button — but that is because the Tech's current 'Time Clock' role is view-only (perms: scheduleView, timesheetsView, workOrdersView) and it is equally absent on DESKTOP for that role. So the missing Start button is a permission gate tied to the restricted role, not a mobile-specific defect.",
+  "verdict": "FIXED",
+  "confidence": "medium",
+  "screenshot_ref": "build/bugfix-regression/screenshots/SV-5115.png",
+  "notes": "Tested via responsive/mobile viewport emulation (matches reported 'mobile version of the app'). The mobile-specific symptoms (start button missing, cannot sort, load error) do not reproduce: the Start button renders on mobile for a user with the required permission, sorting works, and pages load cleanly. The Time Clock role's lack of the Start button is permission-based (identical on desktop and mobile), not a mobile regression. Confidence medium because a clock-enabled Tech role was not provisioned; the Start-button rendering on mobile was validated via the admin session instead to avoid mutating the shared Tech role setup."
+}
