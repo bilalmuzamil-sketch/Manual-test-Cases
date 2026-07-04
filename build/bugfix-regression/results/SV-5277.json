@@ -1,0 +1,19 @@
+{
+  "key": "SV-5277",
+  "summary": "New Contact Modal Does not appear after Creating Customer",
+  "area": "customer portal / customers",
+  "release_source": ["v0.48 Regressions"],
+  "reported_issue": "After creating a new customer on Staging, the system does not open the new contact modal (sometimes it appears briefly and then closes automatically). Not reproducible on Production.",
+  "expected_after_fix": "After creating a new customer, the New Contact modal should open (as it does on Production) so the user can immediately add a contact.",
+  "role_used": "admin",
+  "steps_i_followed": [
+    "Logged in as admin, navigated to Customers.",
+    "Clicked New Customer, filled Name = 'ZZAUTOTEST Cust 22878', clicked Save.",
+    "Polled for 6 seconds watching for a New Contact / Add Contact modal (q-dialog visibility + contact-form text)."
+  ],
+  "actual_now": "After Save, the app navigated directly to the new customer's detail page (ZZAUTOTEST Cust 22878, Contacts 0 / Assets 0). No New Contact modal opened at any point during the 6-second observation window (dialogVisible=0 throughout). (A separate, unrelated 'Google Maps' error dialog appeared on the customer page.)",
+  "verdict": "STILL-REPRODUCES",
+  "confidence": "medium",
+  "screenshot_ref": "build/bugfix-regression/screenshots/SV-5277.png",
+  "notes": "On staging the New Contact modal still does not appear after customer creation, matching the reported behavior. The reporter noted the behavior can be intermittent ('sometimes appears briefly'); in this single run it never appeared. Verdict STILL-REPRODUCES; confidence medium due to the reported intermittency."
+}
