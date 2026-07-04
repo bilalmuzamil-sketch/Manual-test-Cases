@@ -1,0 +1,20 @@
+{
+  "key": "SV-6682",
+  "summary": "Mobile: Work Order Text Not Visible in Dark Mode on Mobile (Staging)",
+  "area": "mobile",
+  "release_source": ["v0.54 Bug Fixes"],
+  "reported_issue": "In Dark Mode on mobile, Work Order text was not properly visible — it appeared overridden by white color, causing poor contrast and making the text difficult/impossible to read.",
+  "expected_after_fix": "Text should have proper contrast in Dark Mode; all Work Order text should remain clearly legible.",
+  "role_used": "admin",
+  "steps_i_followed": [
+    "Logged in as admin in a mobile emulation context (390x844, isMobile+touch, iPhone UA, deviceScaleFactor 3).",
+    "Enabled Dark Mode via the app's persisted theme (localStorage 'mode' = dark), reloaded, and confirmed body class 'body--dark' with background rgb(20,24,36).",
+    "Navigated to the Work Orders section (Estimates list) and captured a screenshot; also programmatically measured text/background contrast ratios.",
+    "Attempted to open a WO detail (mobile redirected back to the list view)."
+  ],
+  "actual_now": "In mobile Dark Mode, Work Order text is clearly legible: WO numbers (e.g. S9-24948), customer names (Brabay Maintenance), asset/VIN values, and tab labels all render in white/light on the dark background with good contrast. Status badges ('Estimate') render in blue. No white-on-white or blended/invisible text was observed. The muted grey secondary labels ('Asset', 'Unit #') are intentional design and remain readable.",
+  "verdict": "FIXED",
+  "confidence": "high",
+  "screenshot_ref": "build/bugfix-regression/screenshots/SV-6682.png",
+  "notes": "Tested via Chromium mobile-viewport emulation with Dark Mode enabled (as permitted for mobile-web tickets). WO list text contrast is good; bug does not reproduce."
+}
