@@ -1,0 +1,19 @@
+{
+  "key": "SV-4910",
+  "summary": "Bug: Workorder -> \"New Line\" button is appearing in Blue background color",
+  "area": "work orders",
+  "release_source": ["SV-4796 Epic (V0.43 Regression Testing Bugs)"],
+  "reported_issue": "On the Work Order screen the 'New Line' button appears with a solid blue background. On production it appears with a white background, blue text, and a blue outline.",
+  "expected_after_fix": "New Line button rendered with white background, blue text color, and a blue outline (matching production).",
+  "role_used": "admin",
+  "steps_i_followed": [
+    "Logged in as admin, opened a Work Order and navigated to its Lines tab (/workorders/{id}/lines).",
+    "Located the New Line button (data-test-id=button_new_line) and read its computed styles.",
+    "Captured a screenshot of the button."
+  ],
+  "actual_now": "The New Line button still renders with a SOLID BLUE background: background-color rgb(56,116,255) (class bg-blue-10), text color rgb(255,255,255) (white), border-width 0px (no outline). This is the buggy appearance described in the ticket, not the expected white-background / blue-text / blue-outline styling.",
+  "verdict": "STILL-REPRODUCES",
+  "confidence": "medium",
+  "screenshot_ref": "build/bugfix-regression/screenshots/SV-4910.png",
+  "notes": "Ticket has no fixVersion and no Staging_Verified label. The button is a filled blue primary button, matching exactly what the bug reports as wrong. Could not compare against current production styling, so it is possible the design was intentionally standardized to a filled blue primary (which would make this OBSOLETE); however, purely against the ticket's expected state the bug still reproduces."
+}
