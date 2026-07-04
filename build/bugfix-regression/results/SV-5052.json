@@ -1,0 +1,21 @@
+{
+  "key": "SV-5052",
+  "summary": "Discrepancy Between Received Parts and Work Order Display (Only One Part Appears Even Though Two Were Received)",
+  "area": "purchase orders / vendor",
+  "release_source": ["v0.44 Regressions"],
+  "reported_issue": "On WO S-32 two DEF Fluid parts were received (with a vendor invoice number). The Vendor Invoices screen and vendor transaction history show both received, but the work order itself only displays one of the received parts; the second received part is missing.",
+  "expected_after_fix": "The work order Parts view should display all received parts, consistent with the Vendor Invoices/vendor transaction records.",
+  "role_used": "admin",
+  "steps_i_followed": [
+    "Booted SPA as admin (exact WO S-32 / Maktech is production data not present on staging; inferred repro by finding staging WOs where the same part was received multiple times).",
+    "Identified WOs with duplicate received parts via the list-requests-by-line API.",
+    "For WO S9-24182: API returned 4 received part_requests (2x '3.50-3.82... CLAMP' + 2x its Core); loaded the WO Parts tab and counted rendered description rows.",
+    "Repeated for WO S9-24176 (a part received 3 times).",
+    "Compared API received-part counts against UI-rendered rows."
+  ],
+  "actual_now": "No discrepancy observed. Every received part renders on the work order. WO S9-24182: API=4 part_requests (all received, incl. both duplicate copies) => UI shows all 4 description rows. WO S9-24176: API total=3, received=3 => UI shows all 3 rows. Both duplicate received copies of the same part appear on the work order; none are dropped.",
+  "verdict": "FIXED",
+  "confidence": "medium",
+  "screenshot_ref": "build/bugfix-regression/screenshots/SV-5052.png",
+  "notes": "Original WO S-32 not present on disposable staging shop. Tested the underlying symptom (multiple received units of the same part all displaying on the WO) on two staging WOs and found received-part count matches displayed rows in every case. Confidence medium since exact original record not reproducible."
+}
