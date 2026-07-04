@@ -1,0 +1,21 @@
+{
+  "key": "SV-6725",
+  "summary": "Customer -> Notes Attachment Thumbnails Truncated for the receiver (Technicians)",
+  "area": "customer portal / customers",
+  "release_source": ["v0.54 Regressions"],
+  "reported_issue": "Attachment thumbnails in Customer → Notes display correctly for Administrators but appear truncated for Technicians when the note is accessed via notifications (technician tagged in a note that has picture + file attachments).",
+  "expected_after_fix": "Attachment thumbnails in a customer note should render fully (not truncated) for technicians viewing the note via notification, matching the administrator view.",
+  "role_used": "admin (baseline) + tech (Time Clock role)",
+  "steps_i_followed": [
+    "As admin, opened Customers → A 2 Company → Notes; existing notes with attachment cards render correctly. Measured the attachment card: 250x102px, overflow:hidden (admin baseline).",
+    "Created a customer note via the composer (POST /api/note/create = 201).",
+    "Attempted to attach the test image and @mention the technician via the composer — the attach-files control did not open a file chooser headlessly and the @mention dropdown did not appear, so no image thumbnail / tech notification could be generated.",
+    "Logged in as the automation tech (quick-login): effective perms are only scheduleView/timesheetsView/workOrdersView. The Notifications panel showed 'no notifications', and navigating to the customer notes URL redirected to /workorders (no customersView).",
+    "Checked all notes via API for existing image (thumbnail-bearing) attachments — found none (only xlsx/csv/pdf file cards)."
+  ],
+  "actual_now": "Could not reproduce the technician-side notification view within the harness. The automation tech role cannot access customer notes and received no note-mention notification, and the note composer's image-attach and @mention controls could not be driven headlessly. On the admin side, attachment cards render cleanly (250x102, no visible clipping of the file cards). The specific 'thumbnail truncated for tech via notification' rendering could not be exercised.",
+  "verdict": "NOT-TESTABLE",
+  "confidence": "medium",
+  "screenshot_ref": "build/bugfix-regression/screenshots/SV-6725.png",
+  "notes": "Requires an image-attachment customer note delivered to a technician via a mention notification, then visually inspecting the technician's rendered thumbnail. Harness blockers: (1) composer image-attach/@mention would not drive headlessly; (2) the automation tech role (Time Clock) has no customer/notification access so no note notification is generated; (3) no existing notes contain image thumbnails to inspect. Admin-side baseline looked correct. Ticket carries the Staging_Verified label. Needs manual verification with a real technician account that receives the note notification."
+}
