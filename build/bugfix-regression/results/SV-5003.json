@@ -1,0 +1,19 @@
+{
+  "key": "SV-5003",
+  "summary": "FE Sell Price Not Updating When Average Cost or Category Is Changed on parts tab",
+  "area": "parts / inventory",
+  "release_source": ["v0.43 Regressions"],
+  "reported_issue": "On the Work Order Parts tab, when adding/editing a part the sell price did not recalculate when the cost was changed or when the category was selected/changed.",
+  "expected_after_fix": "Sell price recalculates immediately when the cost is changed and when the category (markup) is changed.",
+  "role_used": "admin",
+  "steps_i_followed": [
+    "Logged in as admin, opened a Work Order Parts tab (/part-requests) with inline-editable part rows.",
+    "Cost change test: set a part's cost to 123.45 and to 100 and read the sell price after each.",
+    "Category change test: with cost=100, opened the part's category dropdown and selected different categories, reading the sell price after each."
+  ],
+  "actual_now": "Sell price recalculates correctly. Setting cost=123.45 produced sell=274.33; setting cost=100 produced sell=222.22 (default markup applied). Changing the category to '70%override' recalculated sell to 170.00 (= 100 x 1.70, i.e. the 70% category markup). Both cost changes and category changes drive an immediate sell-price recalculation.",
+  "verdict": "FIXED",
+  "confidence": "high",
+  "screenshot_ref": "build/bugfix-regression/screenshots/SV-5003.png",
+  "notes": "Tested inline on the Parts tab (input_cost_*, input_sell_price_*, select_part_category_*). The change to a 70%-markup category yielded a sell of exactly cost*1.70, confirming category-driven recalculation."
+}
