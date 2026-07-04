@@ -1,0 +1,20 @@
+{
+  "key": "SV-6671",
+  "summary": "Portal - Cannot de-select the customer after customer is selected with filter on the invoices page",
+  "area": "customer portal / customers",
+  "release_source": ["v0.54 Bug Fixes"],
+  "reported_issue": "On the invoices page in the (customer) portal, once you filter for a customer you cannot unselect that customer filter without re-searching that customer name. Need the ability to remove the customer from the filtered results to re-display unfiltered invoices easily.",
+  "expected_after_fix": "The customer filter on the portal invoices page should be clearable (e.g. an X/clear affordance) so unfiltered invoice results are re-displayed without re-searching.",
+  "role_used": "admin",
+  "steps_i_followed": [
+    "Attempted to locate the reported invoices page in the staging admin SPA (app.staging.shopview.com).",
+    "Probed candidate routes: /invoices, /billing, /billing-portal, /customer-portal, /portal, /portal/invoices, /unpaid-invoices, /reports/unpaid-invoices, /finance/unpaid-invoices — all return the app's 'page not found' screen or fall back to the app shell.",
+    "Extracted route definitions from the app JS bundle (invoices, unpaid-invoices, invoices-import, ap-unpaid-invoices) — none resolve to a reachable staff-facing invoices page with a customer filter.",
+    "Confirmed the reported page is the customer-facing portal ('in the portal', per the ticket + Loom), which is a separate customer-authenticated experience."
+  ],
+  "actual_now": "The reported invoices page is part of the customer-facing billing/customer portal, which requires a customer-portal login. The available authentication method (staff quick-login for admin/tech) cannot access the customer portal, and the admin app has no equivalent invoices page (all invoice route probes 404). The customer-filter deselect behavior therefore could not be exercised.",
+  "verdict": "NOT-TESTABLE",
+  "confidence": "medium",
+  "screenshot_ref": null,
+  "notes": "Requires a customer-portal login (customer account) not provisionable via the staff quick-login harness. Ticket is labelled QAcomplete / Staging_Verified. Needs manual verification by logging into the customer portal and clearing the customer filter on the invoices page."
+}
