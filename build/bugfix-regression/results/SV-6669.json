@@ -1,0 +1,17 @@
+{
+  "key": "SV-6669",
+  "summary": "Payments - Receipt not displaying when you click print invoice and receipt.",
+  "area": "payments / ShopPay",
+  "release_source": ["v0.54 Bug Fixes"],
+  "reported_issue": "Immediately after a payment processes, clicking 'Print Invoice and Receipt' does not show/display the receipt (the receipt does not appear). The plain 'Print Receipt' button was also flagged for review.",
+  "expected_after_fix": "After a payment processes, clicking 'Print Invoice and Receipt' (and 'Print Receipt') correctly displays/generates the receipt document.",
+  "role_used": "admin",
+  "steps_i_followed": [
+    "Reviewed the flow: the reported defect occurs in the post-payment success screen of a ShopPay/Stripe payment - immediately after a charge processes you click 'Print Invoice and Receipt' and the receipt fails to display."
+  ],
+  "actual_now": "Reaching the 'Print Invoice and Receipt' control in the reported state requires completing a live ShopPay/Stripe payment to land on the post-payment success dialog where that button appears. The automated harness cannot process a real card payment (no live Stripe charge / card entry), so the immediate post-payment receipt-display path cannot be exercised end-to-end here.",
+  "verdict": "NOT-TESTABLE",
+  "confidence": "medium",
+  "screenshot_ref": null,
+  "notes": "Depends on a completed live ShopPay/Stripe payment to reach the post-payment 'Print Invoice and Receipt' action. Not reproducible in the harness without processing a real card charge. Referenced Loom repro in the ticket. Recommend a manual re-check after a test ShopPay payment."
+}

@@ -1,0 +1,17 @@
+{
+  "key": "SV-6178",
+  "summary": "ShopPay - Update Payment Capture to record actual Stripe fees after payment completion",
+  "area": "payments / ShopPay",
+  "release_source": ["v0.54 Bug Fixes"],
+  "reported_issue": "Payment capture should be updated to store the ACTUAL Stripe fees after payment completion (on webhook success, read balance_transaction.fee and fee_details and persist them) to eliminate discrepancies from international-card surcharges; plus add a clear inline international-card surcharge disclaimer on the Account Setup page and on the payment modal.",
+  "expected_after_fix": "After a payment completes, the actual Stripe processing fee (from the balance_transaction on the webhook) is stored and reported; and an international-card surcharge disclaimer is shown inline on the account setup fees section and the payment modal.",
+  "role_used": "admin",
+  "steps_i_followed": [
+    "Reviewed the change scope: (1) backend must capture balance_transaction.fee/fee_details from Stripe's payment-success webhook and persist the actual fee; (2) FE must show an international-card surcharge disclaimer on Account Setup and the payment modal."
+  ],
+  "actual_now": "The core of this ticket (persisting the ACTUAL Stripe fee from balance_transaction on the payment-success webhook) requires completing a real Stripe/ShopPay charge and receiving Stripe's asynchronous webhook - neither the live card charge nor the webhook delivery can be produced in this harness, so the fee-capture/persistence cannot be verified here. The secondary disclaimer-UI portion is FE-testable in principle but was not reached before the session-budget cap.",
+  "verdict": "NOT-TESTABLE",
+  "confidence": "medium",
+  "screenshot_ref": null,
+  "notes": "Primary behavior depends on a live Stripe payment + inbound Stripe webhook (balance_transaction.fee), not reproducible in the automated harness. Ticket is labelled Staging_Verified + QAComplete. The inline international-card disclaimer (Account Setup + payment modal) remains a follow-up FE spot-check that was not completed within budget."
+}

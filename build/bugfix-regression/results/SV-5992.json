@@ -1,0 +1,19 @@
+{
+  "key": "SV-5992",
+  "summary": "FE BUG: Unpaid Invoices PDF Export Rendering Incorrect Page Break and Totals Layout",
+  "area": "invoicing / accounting",
+  "release_source": ["v0.54 Bug Fixes"],
+  "reported_issue": "When downloading the customer Unpaid Invoices report as PDF, the layout appeared broken: totals were pushed onto a separate page from the aging header, making the report look unprofessional.",
+  "expected_after_fix": "The Unpaid Invoices PDF renders with correct pagination - totals stay grouped with their aging header and the layout is clean.",
+  "role_used": "admin",
+  "steps_i_followed": [
+    "Logged in as admin, opened Reports and the customer-facing Unpaid Invoices report; also opened a Customer record to locate the Unpaid Invoices / statement export.",
+    "Identified the report data endpoint GET /api/reporting/account-payable/unpaid-invoices-report (returns JSON, HTTP 200).",
+    "Attempted to fetch a server-side PDF rendition (?format=pdf, /pdf, /export, /download variants) to analyze per-page text distribution (pages vs totals/aging-header placement) with the PDF stream analyzer."
+  ],
+  "actual_now": "The Unpaid Invoices report's data comes from a JSON endpoint; there is no server-side PDF endpoint (all PDF-variant URLs returned 400/404). The PDF is composed on the client at export time, so the specific page-break/totals layout is a client-side rendering concern that cannot be captured or measured through the API in this harness. The exact customer Unpaid Invoices PDF export could not be generated within the session budget to visually assess the page-break behavior.",
+  "verdict": "NOT-TESTABLE",
+  "confidence": "low",
+  "screenshot_ref": null,
+  "notes": "Client-side-composed PDF layout bug. The report endpoint returns JSON only and no server PDF rendition is exposed, so per-page layout (totals grouped with aging header) is not reliably assessable via text extraction, and the specific customer PDF export path was not reached before the session-budget cap. Ticket is labelled Prod_Verified + Staging_Verified + QAcomplete by QA. Recommend a manual visual PDF export check to fully re-confirm."
+}

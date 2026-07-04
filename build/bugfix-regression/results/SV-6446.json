@@ -1,0 +1,17 @@
+{
+  "key": "SV-6446",
+  "summary": "Payments - Error with reader. Sending payments blocked.",
+  "area": "payments / ShopPay",
+  "release_source": ["v0.54 Bug Fixes"],
+  "reported_issue": "When sending a payment to a physical Stripe/ShopPay card reader (terminal), an error occurred and payments were blocked. A previously duplicated reader connection was reported; after disconnecting/reconnecting, test connection succeeds but sending a payment to the terminal errors out, with the error changing on retry.",
+  "expected_after_fix": "Payments can be sent to a connected card reader without the connection/send error; no duplicate reader entries.",
+  "role_used": "admin",
+  "steps_i_followed": [
+    "Reviewed the ShopPay payments / reader flow scope: the reported defect is triggered by sending a live payment to a physical Stripe Terminal card reader (WisePOS/BBPOS hardware) and observing the reader error."
+  ],
+  "actual_now": "This defect requires a physical Stripe/ShopPay card reader (terminal hardware) paired to the account and an actual payment sent to that device. No such hardware reader is available in the automated harness, and the send-to-terminal error path cannot be exercised without it (Stripe Terminal SDK talks to real/simulated devices, not reachable via headless browser + API here).",
+  "verdict": "NOT-TESTABLE",
+  "confidence": "high",
+  "screenshot_ref": null,
+  "notes": "Hardware-dependent (Stripe Terminal card reader). Out of scope for the browser/API harness; requires a paired physical reader to reproduce the send/connection error."
+}
