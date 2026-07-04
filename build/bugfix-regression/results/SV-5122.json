@@ -1,0 +1,21 @@
+{
+  "key": "SV-5122",
+  "summary": "Mobile View – Part Pick Option and Part Number Display Not Available on Work Order Lines",
+  "area": "parts / inventory",
+  "release_source": ["v0.48 Regressions"],
+  "reported_issue": "On mobile, users cannot pick a part from the work order line (the Pick button is missing) and part numbers do not display for parts on the line, preventing adding/modifying parts on mobile.",
+  "expected_after_fix": "On mobile the Pick option should be available on the line for in-stock parts and part numbers should display.",
+  "role_used": "admin",
+  "steps_i_followed": [
+    "Booted SPA in a mobile viewport (390x844, isMobile+touch, iPhone Safari UA).",
+    "Opened a WO Parts tab on mobile and read the part number fields.",
+    "Identified a WO with an in-stock part (S9-23636, statusInStock=1).",
+    "Opened its Parts tab and Lines tab on mobile and checked for the Pick option (Pick text / push_pin icon) and part number display.",
+    "Cross-checked against the desktop view of the same WO."
+  ],
+  "actual_now": "Both the Pick option and part numbers are present on mobile. Part numbers display in the Parts tab (e.g. 'special re', '334-1186', 'N68SL-3...', 'fghfhgfh', 'Bilal 798...') — visible in the mobile screenshot. For the in-stock part (S9-23636), the mobile Parts tab shows the 'Pick' status/action text and the push_pin (pick) icon, and the mobile Lines tab shows the push_pin (pick) icon on the line — matching desktop. Part number and Pick are not missing on mobile.",
+  "verdict": "FIXED",
+  "confidence": "medium",
+  "screenshot_ref": "build/bugfix-regression/screenshots/SV-5122.png",
+  "notes": "Tested via responsive/mobile viewport emulation (matches reported mobile/responsive view). The Pick option is rendered as a push_pin icon on the line (and 'Pick' text in the Parts tab) and part numbers render in the Part Number column on mobile. The reported missing-Pick/missing-part-number symptoms do not reproduce. Confidence medium: verified as admin; the original client's role was not provisioned, but Pick/part-number rendering is a UI capability shown to work on the mobile layout."
+}
