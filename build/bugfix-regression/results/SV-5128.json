@@ -1,0 +1,19 @@
+{
+  "key": "SV-5128",
+  "summary": "Mobile View: Part Number is not appearing in the Work Order instead it shows Part Description.",
+  "area": "parts / inventory",
+  "release_source": ["v0.48 Regressions"],
+  "reported_issue": "On the Work Order parts display, the Part Number was not appearing for the main part; only the Part Description was shown. (Core part already showed its part number.)",
+  "expected_after_fix": "The Part number and Description should both appear for the main part (as already worked for the core part).",
+  "role_used": "admin",
+  "steps_i_followed": [
+    "Opened Work Order S9-24674 (has 2 part lines with part number N68SL-356) as admin.",
+    "Desktop: Lines tab -> inspected the parts under line 1.",
+    "Mobile (390x844 iPhone emulation): opened the same WO -> Parts (2) sub-tab and inspected the Description vs Part Number columns."
+  ],
+  "actual_now": "Desktop Lines view shows each part as '(N68SL-356) 3.50-3.82\" ... SPRING LOADED T-BOLT CLAMP' for both the main part and its core - part number is prefixed and the description follows. Mobile Parts sub-tab shows a dedicated 'Part Number' column populated with N68SL-356 (and 'SPO REGRESS') separate from the 'Description' column for both main and core parts.",
+  "verdict": "FIXED",
+  "confidence": "high",
+  "screenshot_ref": "build/bugfix-regression/screenshots/SV-5128.png",
+  "notes": "Verified on both desktop and mobile viewports. Part number is present for the main part in both layouts. Mobile screenshot at /tmp/cln/SV-5128_mobile_parts.png also confirms a distinct populated Part Number field."
+}
