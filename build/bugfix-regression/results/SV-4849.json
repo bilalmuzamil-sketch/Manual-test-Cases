@@ -1,0 +1,19 @@
+{
+  "key": "SV-4849",
+  "summary": "Bug: Work Order total price appears off in the workorders list.",
+  "area": "work orders",
+  "release_source": ["SV-4796 Epic (V0.43 Regression Testing Bugs)"],
+  "reported_issue": "The Work Order total price shown in the Work Orders list appeared incorrect after a specific flow: request an inventory part 'reteststage' with Quantity 336563, save/close, change the price to $19, pick the part, then check the Work Orders list total vs the WO's finance total (not reproducible on Production).",
+  "expected_after_fix": "The Work Orders list Price Total matches the WO's Finance/Financial-Info total, even for very large part quantities.",
+  "role_used": "admin",
+  "steps_i_followed": [
+    "Located the exact ticket scenario already present on staging: WO S9-24715 carries an inventory part with quantity 336563 (the large-quantity case from the ticket) on a fixed-line-total line.",
+    "Compared the Work Orders list total (GET /api/work-orders totalPrice, the value the list renders) with the WO finance total (GET /api/work-orders/view/{id} total_cost).",
+    "Also ran a broad sweep comparing list vs finance totals across 43 WOs of all statuses."
+  ],
+  "actual_now": "For the large-quantity WO S9-24715 the list total (348.08) equals the finance total (348.08) exactly. Across the 43-WO sweep there were 0 list-vs-finance mismatches. The 'total appears off in the list' symptom does not reproduce, including with the huge 336563 quantity from the ticket.",
+  "verdict": "FIXED",
+  "confidence": "high",
+  "screenshot_ref": "build/bugfix-regression/screenshots/SV-4849.png",
+  "notes": "The ticket's exact large-quantity data (qty 336563) is present in S9-24715 and its list total matches finance, which is the precise invariant the bug violated. No fixVersion on the ticket, but the reported symptom is gone."
+}

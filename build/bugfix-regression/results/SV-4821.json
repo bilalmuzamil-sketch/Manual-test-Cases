@@ -1,0 +1,20 @@
+{
+  "key": "SV-4821",
+  "summary": "Bug: Adding a part to the Fixed line total increases the Price of the Total by 1 cent.",
+  "area": "parts / inventory",
+  "release_source": ["v0.43 Bug Fixes", "SV-4796 Epic (V0.43 Regression Testing Bugs)"],
+  "reported_issue": "On a line configured as a Fixed line total, adding a part incorrectly increased the line/total price by $0.01 (a rounding artifact) instead of leaving the fixed total unchanged.",
+  "expected_after_fix": "Adding a part to a Fixed line total does not change the fixed total; the line total stays exactly the configured fixed amount.",
+  "role_used": "admin",
+  "steps_i_followed": [
+    "Note: creating a fresh fixed line + part in-session was blocked (work-orders/create and parts/create return 500 this session, the documented create-endpoint quirk; the New Line dialog was intermittent).",
+    "Instead located a real fixture matching the exact precondition: WO S9-24715 line 6162a6b2 is a 'Fixed line total' (labour_type_id=fixed_line_total, fixed_line_total=300) that HAS two parts added to it (a vendor part qty 2 and an inventory part).",
+    "Read the line via GET /api/work-orders/lines/{wo} and the WO via GET /api/work-orders/view/{id} to check the persisted total against the configured fixed amount.",
+    "Also scanned 13 other fixed-line-total lines across staging to confirm none carry a fractional-cent residue."
+  ],
+  "actual_now": "The fixed line with parts added shows total_cost = 300.00, exactly equal to fixed_line_total = 300 (no $0.01 inflation). total_parts_sell_price is 0.00 (the fixed total absorbs the parts), and total_labour_cost is 300. The WO total (348.08) equals its finance total. All 13 other fixed-line-total lines likewise show exact totals (e.g. 500=500, 200=200, 3000=3000).",
+  "verdict": "FIXED",
+  "confidence": "medium",
+  "screenshot_ref": "build/bugfix-regression/screenshots/SV-4821.png",
+  "notes": "Verdict is based on the persisted state of a fixed line that already has parts added: no +1 cent residue survives on the fixed total. I could not watch the live add action this session (create-* APIs 500, New Line UI intermittent), hence medium confidence, but a per-part $0.01 inflation would have left a 300.01/300.02 residue and the total is exactly 300.00."
+}
