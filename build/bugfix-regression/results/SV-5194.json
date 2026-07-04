@@ -1,0 +1,20 @@
+{
+  "key": "SV-5194",
+  "summary": "BUG: Paid work order shows \"Invoiced\" status with incomplete line and no reverse option",
+  "area": "work orders",
+  "release_source": ["v0.54 Bug Fixes"],
+  "reported_issue": "A specific customer WO (SRP Automotive, S-132 / INV-S-132) that was already paid in full still showed status 'Invoiced' instead of 'Paid', had one line stuck as incomplete, and the Reverse option was missing on the Finance/invoice view, so the invoice could not be reversed.",
+  "expected_after_fix": "A fully paid work order should show status 'Paid'; lines/statuses should be consistent; and the reverse option should be available where applicable.",
+  "role_used": "admin",
+  "steps_i_followed": [
+    "Pulled 100 work orders; identified 25 'paid' and 15 'invoiced'.",
+    "Inspected several 'invoiced' WOs (S9-24669/24661/24662/24918) financials via /api/work-orders/view.",
+    "Inspected a 'paid' WO (S-24674) status and invoice fields.",
+    "Opened the paid WO Finance view in the SPA."
+  ],
+  "actual_now": "Staging status transitions are consistent: fully-paid WO S-24674 correctly shows status 'Paid' (open_balance 0). The sampled 'invoiced' WOs all have open_balance > 0 and amount_paid = 0, i.e. they are legitimately unpaid and correctly show 'Invoiced' - none are paid-in-full yet stuck at 'Invoiced'. No paid-but-stuck-at-'Invoiced' inconsistency was found on staging.",
+  "verdict": "NOT-TESTABLE",
+  "confidence": "medium",
+  "screenshot_ref": "build/bugfix-regression/screenshots/SV-5194.png",
+  "notes": "The reported defect is tied to one client's specific legacy work order (S-132) whose data was in an inconsistent state (paid but status Invoiced, incomplete line, missing reverse). That production/account-specific record is not accessible on staging and the inconsistency could not be reproduced with staging data. General behavior verified as correct: paid WOs show 'Paid', invoiced-unpaid WOs show 'Invoiced'. Recommend verifying directly against the client's WO S-132 / INV-S-132 whether the status/reverse now resolve."
+}
