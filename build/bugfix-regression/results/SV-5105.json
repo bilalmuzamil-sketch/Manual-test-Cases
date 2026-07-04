@@ -1,0 +1,20 @@
+{
+  "key": "SV-5105",
+  "summary": "Mobile Bug: Work Orders List Not Loading on Mobile – \"Failed To Load More Work Orders\"",
+  "area": "work orders",
+  "release_source": ["v0.48 Regressions"],
+  "reported_issue": "On mobile, opening Work Orders immediately throws 'Failed To load More Work Orders' and no work orders load.",
+  "expected_after_fix": "The Work Orders list should load normally on mobile without the 'Failed To load More Work Orders' error.",
+  "role_used": "admin",
+  "steps_i_followed": [
+    "Booted SPA as admin in a mobile viewport (390x844, isMobile+touch, iPhone Safari UA).",
+    "Navigated to /workorders and waited for load.",
+    "Checked the page for the 'Failed To Load More Work Orders' text and monitored /api/work-orders responses.",
+    "Scrolled to the bottom repeatedly to trigger the infinite-scroll 'load more' path."
+  ],
+  "actual_now": "The Work Orders list loads normally on the mobile viewport. 30 work-order rows render on initial load with no error text, no failed API responses, and no console errors. Scrolling triggers the load-more path successfully: rows grew from 30 to 126 with five paginated /api/work-orders calls all returning HTTP 200. No 'Failed To load More Work Orders' error appears at any point.",
+  "verdict": "FIXED",
+  "confidence": "high",
+  "screenshot_ref": "build/bugfix-regression/screenshots/SV-5105.png",
+  "notes": "Tested via responsive/mobile viewport emulation (Chromium isMobile + iPhone UA), which matches the reported 'mobile device (browser)' environment. Both initial load and infinite-scroll pagination work with all API calls 200."
+}
