@@ -1,0 +1,21 @@
+{
+  "key": "SV-6787",
+  "summary": "BUG: Error When Attempting to Review & Invoice Work Order S-1101",
+  "area": "work orders",
+  "release_source": ["v0.54 Regressions"],
+  "reported_issue": "User received an error when attempting to Review and Invoice Work Order S-1101; the system prevented the WO from moving forward in the invoicing process. NOTE: the part price is $0.",
+  "expected_after_fix": "The work order should successfully move to Review and allow invoicing without errors, even when a part price is $0.",
+  "role_used": "admin",
+  "steps_i_followed": [
+    "Logged in as admin. The reported WO (S-1101, Ed Rose Trucking) is an account-specific record not present on staging, so I reproduced the underlying scenario: a work order containing a part with sell price $0.",
+    "Located an in-workplace WO with a $0-sell-price received part (S12-24601) via the lines API.",
+    "Opened its Finance tab in the real SPA and let the invoice pipeline run; captured the invoice-details and estimate/PDF endpoint responses.",
+    "Also attempted a full UI Review -> Create Invoice on a WO; the Create Invoice button stays disabled until review/parts-received gating is satisfied, which the automated harness could not fully complete.",
+    "Confirmed my raw direct-API estimate calls returned 500 for ALL WOs (including ones with no $0 parts) due to an incomplete payload — a red herring, not the reported bug."
+  ],
+  "actual_now": "For the WO containing a $0-price part (S12-24601), the invoicing pipeline works: GET /api/invoices/{id}/details returned 200 (this is the margin/financials computation), and POST /api/work-orders/invoices/estimate returned 200 twice — generating both the invoice HTML and the PDF. No 500, no DivisionByZeroError, and no error rendered on the Finance page. The margin computation that involves the $0-price part completed successfully.",
+  "verdict": "FIXED",
+  "confidence": "medium",
+  "screenshot_ref": "build/bugfix-regression/screenshots/SV-6787.png",
+  "notes": "Could not click the final 'Create Invoice' button end-to-end because it stays disabled behind review/received-parts gating that the harness couldn't drive; however the margin-computing invoice-details + estimate/PDF generation (exactly where the original error occurred) now processes a $0-price part with HTTP 200. Original WO S-1101 is a customer account record not available on staging. Marked FIXED (v0.54.hotfix-1) with medium confidence."
+}

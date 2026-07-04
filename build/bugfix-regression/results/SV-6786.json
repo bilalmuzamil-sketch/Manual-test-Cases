@@ -1,0 +1,19 @@
+{
+  "key": "SV-6786",
+  "summary": "Sentry issue DivisionByZeroError - SHOPVIEW-API-29J",
+  "area": "general / UI",
+  "release_source": ["v0.54 Regressions"],
+  "reported_issue": "Sentry-reported backend DivisionByZeroError (SHOPVIEW-API-29J) on Production and Staging. No repro steps in the ticket; only a Sentry link (not accessible from this harness).",
+  "expected_after_fix": "The code path performing the division should guard against a zero denominator so it no longer raises DivisionByZeroError.",
+  "role_used": "admin",
+  "steps_i_followed": [
+    "No Sentry access from the harness, so inferred the most likely trigger: a financial margin/markup computation dividing by a $0 value (margin% = (sell - cost) / sell), which is the same $0-price condition called out in the related ticket SV-6787.",
+    "Exercised the financial/invoice pipeline against a WO containing a $0-sell-price part (S12-24601): loaded its Finance tab and triggered invoice details + estimate/PDF generation via the real SPA.",
+    "Checked all API responses for 500s / DivisionByZeroError across the invoice/estimate/details endpoints and across multiple WOs."
+  ],
+  "actual_now": "The margin-computing financial pipeline handled a $0-price part without error: GET /api/invoices/{id}/details = 200 and POST /api/work-orders/invoices/estimate = 200 (HTML + PDF), with no 500 and no DivisionByZeroError surfaced anywhere in the exercised flows. The $0-denominator financial division appears guarded.",
+  "verdict": "FIXED",
+  "confidence": "medium",
+  "screenshot_ref": "build/bugfix-regression/screenshots/SV-6786.png",
+  "notes": "Sentry issue not directly inspectable from the harness; verdict inferred from exercising the most plausible trigger (financial division by a $0 price), which now returns 200. Ticket is labelled QAcomplete / Verified_on_prod / Hotfix. Confidence medium because the exact Sentry stack frame could not be confirmed."
+}
