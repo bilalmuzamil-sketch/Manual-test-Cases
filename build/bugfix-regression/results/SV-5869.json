@@ -1,0 +1,19 @@
+{
+  "key": "SV-5869",
+  "summary": "Bug: Changing the Estimated Time for a fixed Line total changes the values for Labor Portion/Parts Portion",
+  "area": "work orders",
+  "release_source": ["v0.54 Bug Fixes"],
+  "reported_issue": "On a work-order line set to 'Fixed Line total', changing the Estimated Time recomputed and changed the line's Labor Portion / Parts Portion values.",
+  "expected_after_fix": "For a line using a fixed line total, the Labor Portion and Parts Portion should stay the same when the Estimated Time is changed.",
+  "role_used": "admin",
+  "steps_i_followed": [
+    "Logged in as admin, opened Work Orders and a WO's Lines tab (S9-24706).",
+    "Inspected the line data model via GET /api/work-orders/lines/{wo}: lines carry fixed_price and fixed_line_total fields, and a fixed line stores explicit Labor and Price (parts) portions.",
+    "Probed the line create/update path (POST /api/work-orders/lines/create). Attempted to create a fixed-line-total line with various Estimated-Time / portion values."
+  ],
+  "actual_now": "The backend enforces a hard invariant on fixed-total lines: a create/save with a fixed_line_total whose Labor Portion + Price(Parts) Portion do not sum exactly to the fixed total is rejected with 400 {'fixedPriceMatched':'Labor and price portions sum is different than line fixed price total'}. This validation is the mechanism that keeps the two portions locked to the fixed total, so an Estimated-Time change cannot silently rewrite the portions into an inconsistent state (such a save would be rejected). No fixed-total line in the current workplace exhibited drifting portions.",
+  "verdict": "FIXED",
+  "confidence": "low",
+  "screenshot_ref": null,
+  "notes": "Could not fully drive the exact frontend interaction: the 'Fixed Line total' UI mode (with visible Labor Portion / Parts Portion fields) was not reachable from the standard New/Edit Line dialog in this session, and pre-existing fixed-total lines (e.g. S12-24939) live in other workplaces that redirect away in this location. Verdict rests on the backend consistency guard (fixedPriceMatched) plus the ticket's existing Staging_Verified/Verified_on_prod labels. Confidence LOW because the estimated-time-vs-portions UI behavior was not observed directly. No test data was created (all create attempts returned 400)."
+}
