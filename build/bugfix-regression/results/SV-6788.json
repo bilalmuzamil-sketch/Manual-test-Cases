@@ -1,0 +1,21 @@
+{
+  "key": "SV-6788",
+  "summary": "Shopcoach intermittently not working",
+  "area": "work orders",
+  "release_source": ["v0.54 Regressions"],
+  "reported_issue": "Sometimes the ShopCoach line builder needs to be run multiple times before it works. It stops loading and gives no results; clicking Build Lines again restarts it and it loads the second time. Issue is intermittent and not reproduced every time.",
+  "expected_after_fix": "ShopCoach line builder should reliably return results on the first run.",
+  "role_used": "admin",
+  "steps_i_followed": [
+    "Logged in as admin (SPA hydration).",
+    "Opened multiple estimate work orders' Lines tab (S12-24939, S12-24579, S12-23512, S12-23300).",
+    "For each, typed a prompt into the ShopCoach 'Dot Inspection...' field and clicked Build Lines.",
+    "Watched the POST /api/shopcoach/run-assistant response and the resulting UI for each run.",
+    "Ran the builder 4 times total across different WOs; on a repeated same-WO attempt, re-triggered to check the 'run again' path."
+  ],
+  "actual_now": "Every ShopCoach build attempt returned HTTP 200 with valid line suggestions and rendered the 'SHOPCOACH LINE BUILDER' preview panel (e.g. 'Replace air filter' 0.3h + Engine Air Filter part, 'Check tire pressure' 0.2h) with an 'Add (N Lines)' button. No run stalled or returned empty results. The builder produced results on the first run in 4/4 attempts. (Note: line count doesn't auto-increment until the user clicks 'Add (N Lines)', which is the expected review flow, not a failure.)",
+  "verdict": "FIXED",
+  "confidence": "medium",
+  "screenshot_ref": "build/bugfix-regression/screenshots/SV-6788.png",
+  "notes": "Bug is intermittent by nature; could not reproduce any stall/no-results across 4 runs — builder worked reliably each time. Confidence medium because an intermittent failure cannot be fully ruled out from a limited sample."
+}

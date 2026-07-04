@@ -1,0 +1,20 @@
+{
+  "key": "SV-6789",
+  "summary": "Regression: Remove loading text",
+  "area": "work orders",
+  "release_source": ["v0.54 Regressions"],
+  "reported_issue": "Loading text descriptions were previously removed from the ShopCoach line builder, but the regression brought them back. They should be removed from the ShopCoach line builder.",
+  "expected_after_fix": "No verbose loading-text descriptions should appear in the ShopCoach line builder while it works.",
+  "role_used": "admin",
+  "steps_i_followed": [
+    "Logged in as admin and opened an estimate WO Lines tab.",
+    "Typed a prompt in the ShopCoach 'Dot Inspection...' field and clicked Build Lines.",
+    "Polled the DOM every ~350ms during the build to capture any loading/description text and screenshotted the loading state.",
+    "Also grepped the live app JS bundle for loading text literals."
+  ],
+  "actual_now": "During a build, the UI shows only a brief section header 'SHOPCOACH WORKING..' and the button label changes from 'Build Lines' to 'Building Lines...'. No verbose/rotating loading-text descriptions appear. When done, a clean 'SHOPCOACH LINE BUILDER' preview panel renders the suggested lines. The only descriptive text in the panel is the instructional help line ('Click to edit names, descriptions, labor hours, or parts...'), not loading text.",
+  "verdict": "FIXED",
+  "confidence": "medium",
+  "screenshot_ref": "build/bugfix-regression/screenshots/SV-6789.png",
+  "notes": "Verbose loading-text descriptions are gone; only a short 'SHOPCOACH WORKING..' status header and a 'Building Lines...' button state remain (standard minimal loading indicators). Confidence medium because the exact historical loading text being referenced could not be recovered to compare against."
+}
