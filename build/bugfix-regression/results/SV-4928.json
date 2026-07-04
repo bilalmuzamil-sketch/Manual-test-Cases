@@ -1,0 +1,20 @@
+{
+  "key": "SV-4928",
+  "summary": "Work Order (Mobile View) – Unable to add new line in phone view",
+  "area": "work orders",
+  "release_source": ["v0.43 Regressions"],
+  "reported_issue": "In phone view, users cannot add a new line to a work order - the 'Add New Line' option does not appear, and Line/Part/Notes/Stat/Finance are not visible.",
+  "expected_after_fix": "In phone view users can see and select an 'Add New Line' option and the Lines/Parts/Notes/Stats/Finance tabs.",
+  "role_used": "admin",
+  "steps_i_followed": [
+    "Launched a Chromium mobile context (390x844, iPhone UA, isMobile+touch) authenticated as admin.",
+    "Opened a Work Order's Lines tab (/workorders/{id}/lines) in the phone viewport.",
+    "Checked for the New Line button and for the Lines/Parts/Notes/Stats/Finance tabs, and confirmed visibility.",
+    "Captured a full-page mobile screenshot."
+  ],
+  "actual_now": "In the phone viewport the New Line button (data-test-id=button_new_line) is present and visible (offsetParent not null), and all tabs render: Lines (4), Parts (5), Notes, Timesheets, History, Stats, Finance. Users can see the Add New Line control and the full tab set in mobile view.",
+  "verdict": "FIXED",
+  "confidence": "high",
+  "screenshot_ref": "build/bugfix-regression/screenshots/SV-4928.png",
+  "notes": "Emulated an iPhone-sized viewport with touch. The reported missing controls (Add New Line, Line/Part/Notes/Stat/Finance) are all present and visible now."
+}
