@@ -1,0 +1,20 @@
+{
+  "key": "SV-5000",
+  "summary": "BE Work Orders – Sorting Not Working for Total Price, and Lines Columns Across Multiple Pages",
+  "area": "work orders",
+  "release_source": ["v0.54 Bug Fixes"],
+  "reported_issue": "Sorting does not work for Total Price and Lines columns on Work Orders list views (main list, customer profile WO tab, asset profile WO tab). Clicking the headers does nothing / list does not reorder.",
+  "expected_after_fix": "Clicking Total Price or Lines column headers sorts the work order list ascending/descending.",
+  "role_used": "admin",
+  "steps_i_followed": [
+    "Logged in as admin, opened /workorders.",
+    "Captured the list request emitted when clicking a column header: it uses pagination[sortBy] and pagination[descending].",
+    "Called GET /api/work-orders with pagination[sortBy]=totalPrice descending=false and true, and pagination[sortBy]=linesCount descending=false and true.",
+    "In the UI, clicked the Total Price header (asc then desc) and the Lines header and observed the rendered rows reorder."
+  ],
+  "actual_now": "API sorts correctly: totalPrice asc returned [0,0,0,...], totalPrice desc returned [11148051,8330883,7459883,...]; linesCount asc [0,0,0,0,0,1,1,1], linesCount desc [73,70,68,66,...]. In the UI, Total Price desc showed $74,598.83 > $52,480.33 > $37,581.67 (highest first) and asc showed empty/zero-price rows first; clicking Lines re-ordered the rows too. Sorting works on both columns.",
+  "verdict": "FIXED",
+  "confidence": "high",
+  "screenshot_ref": "build/bugfix-regression/screenshots/SV-5000.png",
+  "notes": "The frontend passes sortBy=totalPrice / sortBy=linesCount (not 'lines' or 'total_price'). Sorting is applied server-side across the full dataset, not just the current page. Confirmed both at API and UI level on the main Work Orders list."
+}
