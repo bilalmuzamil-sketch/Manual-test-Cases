@@ -1,0 +1,21 @@
+{
+  "key": "SV-6797",
+  "summary": "What are you doing sticks when using save and add line",
+  "area": "work orders",
+  "release_source": "v0.54 Regressions",
+  "reported_issue": "When a user enters a 'what are you doing' and then selects 'save and add line', the new modal for the new line persists the previous 'what are you doing'.",
+  "expected_after_fix": "The 'what are you doing' field should be empty so the user can generate a new subsequent line.",
+  "role_used": "admin",
+  "steps_i_followed": [
+    "Logged in as admin, opened an Estimate work order (S9-15740) and went to its Lines tab.",
+    "Clicked New Line to open the line editor dialog.",
+    "In the 'What Are You Doing?' field selected a value (canned job 'Replace - Brake pot'); the dialog showed Title = 'Replace - Brake pot'.",
+    "Clicked 'Save & Add Line'.",
+    "Observed the new line form that opened automatically and read the 'What Are You Doing?' field."
+  ],
+  "actual_now": "The line saved (Lines count went 2 -> 3, the Brake pot line was added to the WO). The new-line form that opened automatically has an EMPTY 'What Are You Doing?' field (only the floating placeholder label is shown, no value). 'Why Are You Doing It?' is also empty. The previous entry did NOT carry over. (Technician defaults to the WO lead tech, which is expected and not part of this ticket.)",
+  "verdict": "FIXED",
+  "confidence": "high",
+  "screenshot_ref": "build/bugfix-regression/screenshots/SV-6797.png",
+  "notes": "The 'What Are You Doing?' field is a canned-job selector; after Save & Add Line the next form opens blank. Verified via screenshot. Created a disposable ZZAUTOTEST line on staging WO S9-15740 in the process."
+}
