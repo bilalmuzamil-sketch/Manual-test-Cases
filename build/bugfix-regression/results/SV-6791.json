@@ -1,0 +1,20 @@
+{
+  "key": "SV-6791",
+  "summary": "Customers > Work Orders tab: WO number duplicates the shop ID in the workplace prefix",
+  "area": "work orders",
+  "release_source": "v0.54 Regressions",
+  "reported_issue": "WO number incorrectly duplicates the shop ID when displayed in the Customers > Work Orders tab (e.g. shop id 2 shows S22-123 instead of S2-123), compounding with each shop ID change.",
+  "expected_after_fix": "The WO number should display the correct shop ID prefix consistently across the app, including the Customers > Work Orders tab. Shop ID should never be duplicated.",
+  "role_used": "admin",
+  "steps_i_followed": [
+    "Logged in as admin and opened the Work Orders tab; noted numbers render as S12-24939, S12-24579, etc. (current shop ID prefix = S12).",
+    "Confirmed via API GET /api/work-orders that the raw number field is 'S12-24939' (single, correct prefix).",
+    "Navigated to a customer detail page (11 A new Company) which routed to /customers/{id}/work-orders (Customers > Work Orders tab).",
+    "Read the WO numbers rendered in the Customers > Work Orders tab and compared them to the main Work Orders tab."
+  ],
+  "actual_now": "Both the Work Orders tab and the Customers > Work Orders tab render identical, correctly-prefixed numbers (S12-24939, S12-24579, S12-23512, ...). No shop ID duplication was observed in the Customers > Work Orders tab. The API also returns the single correct prefix.",
+  "verdict": "FIXED",
+  "confidence": "high",
+  "screenshot_ref": "build/bugfix-regression/screenshots/SV-6791.png",
+  "notes": "Current staging shop ID prefix is S12. The reported duplication (e.g. S1212-) does not occur; prefix is consistent across tabs. Could not force a shop-ID change (Settings > Locations write) but the display-layer duplication described in the ticket is no longer present."
+}
