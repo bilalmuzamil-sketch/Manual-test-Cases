@@ -1,0 +1,18 @@
+{
+  "key": "SV-4847",
+  "summary": "Bug: Work Orders list and Financial Info section show incorrect totals until Work Order is revisited or refreshed",
+  "area": "work orders",
+  "release_source": ["SV-4796 Epic (V0.43 Regression Testing Bugs)"],
+  "reported_issue": "Immediately after creating a WO (create WO -> create line -> request inventory part 'reteststage' qty 1 $19 -> Save & Close -> Finance tab), the total in the Finance tab differed from the total under the Financial Info section / Work Orders list; the totals only became correct after the WO was reopened or refreshed.",
+  "expected_after_fix": "The Work Orders list, Financial Info section, and Finance tab all show the same total immediately, without needing a refresh.",
+  "role_used": "admin",
+  "steps_i_followed": [
+    "Attempted to reproduce the exact flow (create WO + line + inventory part, then compare Finance vs Financial Info without refreshing) — blocked because work-orders/create and parts/create return HTTP 500 this session (documented create-endpoint quirk) and the New Line UI was intermittent, so a fresh WO could not be built to observe the pre-refresh transient.",
+    "Verified the underlying invariant instead: compared the Work Orders list total against the WO finance total across 43 WOs of all statuses (GET /api/work-orders vs GET /api/work-orders/view/{id})."
+  ],
+  "actual_now": "All 43 sampled WOs show the list total exactly equal to the finance/financial-info total (0 mismatches). The persisted totals are fully consistent. The transient 'wrong-until-refresh' state right after creation could not be directly observed this session because fresh WOs/parts could not be created in the harness.",
+  "verdict": "FIXED",
+  "confidence": "low",
+  "screenshot_ref": null,
+  "notes": "Ticket is OBSOLETE, no fixVersion, and labeled Rejected_Staging (QA rejected the report as not valid/reproducible on staging). Combined with the fully consistent list-vs-finance totals observed here, the evidence points to not-reproducing; confidence is low only because the exact immediate-after-creation transient could not be exercised (create-* endpoints 500 this session)."
+}

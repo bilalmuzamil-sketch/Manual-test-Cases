@@ -1,0 +1,19 @@
+{
+  "key": "SV-4829",
+  "summary": "Purchase Order Details: Add Core to the Part",
+  "area": "parts / inventory",
+  "release_source": ["v0.54 Bug Fixes"],
+  "reported_issue": "On a Purchase Order, adding an Inventory Part without a core and then editing that part to assign a core produced an incorrect Core Description (it showed the part number '$PartNumber' instead of 'Core for $PartDescription'). Also reproducible by adding a part with a core, removing the core before save, then re-assigning it.",
+  "expected_after_fix": "The Core Description is displayed as 'Core for $PartDescription'.",
+  "role_used": "admin",
+  "steps_i_followed": [
+    "Located the PO API (GET /api/inventory/orders, detail GET /api/inventory/orders/{id}); PO items expose is_core / core_item_id / parent_part_number and a description field.",
+    "Scanned 60 purchase orders looking for an existing core line item to read its Core Description text.",
+    "Attempted to set up the exact scenario (add inventory part to a non-received PO, then assign a core) but PO item create/edit goes through the create-* endpoints that return HTTP 500 this session (documented session quirk), and the PO-editor UI was not reliably drivable in this harness."
+  ],
+  "actual_now": "No purchase order among the 60 scanned currently carries a core line item, so there was no fixture whose Core Description could be read, and the add-part-then-assign-core flow could not be executed this session (create/edit endpoints 500). The specific behavior could not be exercised.",
+  "verdict": "NOT-TESTABLE",
+  "confidence": "low",
+  "screenshot_ref": null,
+  "notes": "Blocked by the create-endpoint 500 quirk plus lack of an existing core-item fixture. Strong external signal that it is fixed: the ticket is labeled QAcomplete, Staging_Verified, and Verified_on_prod (fixVersion v0.54), i.e. QA already confirmed the fix on both staging and production. Re-run when the create-PO-item endpoint is healthy to directly assert the 'Core for {description}' text."
+}

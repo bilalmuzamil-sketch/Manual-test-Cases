@@ -1,0 +1,19 @@
+{
+  "key": "SV-4845",
+  "summary": "Bug: Changing the Estimated Time for a fixed Line total sets all the values for Labor Portion/Parts Portion etc to \"0\"",
+  "area": "work orders",
+  "release_source": ["v0.43 Regressions", "SV-4796 Epic (V0.43 Regression Testing Bugs)"],
+  "reported_issue": "For a line configured as a Fixed line total, changing the Estimated Time caused the Labor Portion / Parts Portion (and related values) to be reset to 0 in the line editor. Not reproducible on Production.",
+  "expected_after_fix": "Changing the Estimated Time on a fixed-line-total line keeps the Labor/Parts portions intact (does not zero them).",
+  "role_used": "admin",
+  "steps_i_followed": [
+    "Identified the fixed-line-total configuration and its portion fields via the API (labour_type_id=fixed_line_total; portions reflected in total_labour_cost / total_parts_sell_price / labor_margin).",
+    "Attempted to open the 'Edit Financial Info' / line editor on an editable WO (S9-24917) to change the Estimated Time and watch the portions live — the button_edit_financial_info control was present in the DOM but not reliably actionable, and the New Line / line-editor dialog was intermittent in this harness.",
+    "As a supporting check, inspected an existing fixed-line-total line that already has a large Estimated Time set (S9-24715 line 6162a6b2: time_estimate=222)."
+  ],
+  "actual_now": "The interactive glitch is a frontend recalculation that only manifests while editing Estimated Time in the line editor, which could not be driven reliably this session. Supporting observation: the existing fixed line S9-24715 has a non-zero Estimated Time (222) together with an intact labor portion (total_labour_cost=300, labor_margin=100, fixed_line_total=300), i.e. no persistent zeroing of portions is visible.",
+  "verdict": "NOT-TESTABLE",
+  "confidence": "low",
+  "screenshot_ref": null,
+  "notes": "Ticket is OBSOLETE with no fixVersion. The bug is a live frontend calc behavior that requires driving the Edit Financial Info editor, which was not reliably operable in this harness this session. Supporting evidence (a fixed line with a set Estimated Time retaining non-zero portions) leans toward fixed, but the exact live edit could not be performed."
+}
