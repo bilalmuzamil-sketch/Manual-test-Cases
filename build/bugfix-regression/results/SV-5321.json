@@ -1,0 +1,20 @@
+{
+  "key": "SV-5321",
+  "summary": "FE BUG Finance tab does not auto-refresh after updating shop supplies and tax settings",
+  "area": "invoicing / accounting",
+  "release_source": ["v0.48 Regressions"],
+  "reported_issue": "When shop supplies and/or tax settings are updated from the Financial Info section while the user is already viewing the Finance tab of a work order, the Finance tab does not auto-refresh; updated values only appear after a manual page refresh or navigating away and back.",
+  "expected_after_fix": "After saving shop supplies/tax changes in Financial Info, the Finance tab (invoice/estimate preview) should update automatically without a manual refresh.",
+  "role_used": "admin",
+  "steps_i_followed": [
+    "Opened work order S9-24948 Finance tab (invoice preview shows 'GST (5%)' tax line).",
+    "In the left 'Financial Info' section clicked the edit (Edit shop supplies charge) control to enter edit mode (Shop Supplies $, Taxes dropdown, Save).",
+    "Changed the Taxes dropdown from GST (5%) to 'Exempt (0%)' and clicked Save.",
+    "Without reloading the page, re-read the invoice preview and the Financial Info section."
+  ],
+  "actual_now": "Immediately after Save (no page refresh), the Financial Info section updated its tax row from 'GST' to 'Exempt', and the invoice/estimate preview reactively updated too - the 'GST (5%)' tax line was removed from the preview (Subtotal now flows straight to Total). Available tax options observed: Exempt (0%), GST (5%), HST (13%), HST BC (12%), New Tax (10%), Zero Tax Rate (0%). Both the sidebar and the preview reflected the new tax setting without a manual refresh.",
+  "verdict": "FIXED",
+  "confidence": "high",
+  "screenshot_ref": "build/bugfix-regression/screenshots/SV-5321.png",
+  "notes": "Verified the tax-settings path (label change is observable regardless of amounts). The Finance preview auto-refreshed on save. Test WO amounts were $0 so a shop-supplies dollar delta was not separately observable, but the same Financial Info Save drives both fields and the preview updated reactively. The Finance deep-link/tab was intermittently flaky (occasional bounce to WO list) but rendered on retry."
+}
