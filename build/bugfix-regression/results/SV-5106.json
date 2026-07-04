@@ -1,0 +1,20 @@
+{
+  "key": "SV-5106",
+  "summary": "issue 2 CLONE - Part Description presentation: Description Field Appears Empty When Editing",
+  "area": "invoicing / accounting",
+  "release_source": ["v0.43 Regressions"],
+  "reported_issue": "On WO S-1820 Parts screen, when the user attempts to edit a part description, the description box shows up as EMPTY even though the text exists, forcing them to retype it.",
+  "expected_after_fix": "The existing description text must be shown in the field when editing; the box should not appear empty.",
+  "role_used": "admin",
+  "steps_i_followed": [
+    "Booted SPA as admin (exact WO S-1820 is customer data not on staging; inferred repro on an existing staging WO with part descriptions).",
+    "Opened approved WO S9-24706 => Parts tab (part-requests) where part descriptions are edited inline.",
+    "Read the description controls both visually (screenshot) and via DOM (q-select native/label text).",
+    "Verified the displayed value for each part's Description field."
+  ],
+  "actual_now": "The Description field is populated and clearly shows the existing text when editing. The three part rows display 'special', 'Core for special', and 'ANTI-TURN WASHER , RIDEWELL' in their editable Description controls (visible in the screenshot and confirmed via the q-select native/label text). The field is not empty. (The underlying input.value is empty only because Description is a Quasar q-select whose selected label carries the value — the user sees the description text, which is the point of the ticket.)",
+  "verdict": "FIXED",
+  "confidence": "medium",
+  "screenshot_ref": "build/bugfix-regression/screenshots/SV-5106.png",
+  "notes": "Original WO S-1820 (SS Repair Ltd) not present on disposable staging shop; tested equivalent flow on staging. Description text renders in the edit field, so the reported 'appears empty' symptom does not reproduce. Confidence medium since exact original record not reproducible."
+}
