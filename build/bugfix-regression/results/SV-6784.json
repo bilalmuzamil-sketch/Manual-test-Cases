@@ -1,0 +1,20 @@
+{
+  "key": "SV-6784",
+  "summary": "BUG: Work Order Status Color Not Differentiating (Approved vs In Progress)",
+  "area": "work orders",
+  "release_source": ["v0.54 Regressions"],
+  "reported_issue": "“Approved” and “In Progress” work order statuses were both displaying in the same green color, making them hard to distinguish at a glance.",
+  "expected_after_fix": "Each work order status (Approved, In Progress, Review, etc.) should have a clearly distinct color for quick visual identification.",
+  "role_used": "admin",
+  "steps_i_followed": [
+    "Logged in as admin (SPA hydration) and opened /workorders.",
+    "Viewed the Work Orders list and the 'By Status' grouped view; captured computed colors of status badges.",
+    "Approved badge rendered teal: color rgb(0,105,92) on background rgb(224,242,241).",
+    "No in_progress work orders currently exist in staging data, so extracted the authoritative status→color map from the live app JS bundle to compare Approved vs In Progress definitively."
+  ],
+  "actual_now": "The live app color map assigns approved:[\"teal-10\",\"teal-1\"] (teal) and in_progress:[\"green-10\",\"green-1\"] (green) — two distinct color families. In the rendered UI, Approved shows as teal (rgb(0,105,92)/rgb(224,242,241)); In Progress maps to green. The two statuses no longer share the same color.",
+  "verdict": "FIXED",
+  "confidence": "high",
+  "screenshot_ref": "build/bugfix-regression/screenshots/SV-6784.png",
+  "notes": "Verified both by rendered computed styles (By Status view) and by the status→color mapping object in the current staging JS bundle. Approved=teal, In Progress=green are distinct. (Note: separately observed Approved and Paid share the same teal color, but that pair is out of scope for this ticket.)"
+}

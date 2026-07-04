@@ -1,0 +1,19 @@
+{
+  "key": "SV-6785",
+  "summary": "BUG: No Clear Visual Differentiation Between “Approved” and “In Progress” Work Order Statuses",
+  "area": "work orders",
+  "release_source": ["v0.54 Regressions"],
+  "reported_issue": "On the Work Orders list view, 'Approved' and 'In Progress' appeared visually similar (both green badges), making it difficult to quickly distinguish the two operational states.",
+  "expected_after_fix": "Approved and In Progress should have distinct visual styling (color/badge), so users can identify the operational stage at a glance.",
+  "role_used": "admin",
+  "steps_i_followed": [
+    "Logged in as admin and opened /workorders (list + 'By Status' grouped view).",
+    "Captured computed styles of status badges: Approved renders teal (color rgb(0,105,92) on rgb(224,242,241)).",
+    "No in_progress WOs exist in current staging data, so extracted the status→color map from the live JS bundle to compare Approved vs In Progress directly."
+  ],
+  "actual_now": "Live status→color map: approved:[\"teal-10\",\"teal-1\"] (teal) vs in_progress:[\"green-10\",\"green-1\"] (green). Approved and In Progress now use different color families and are clearly distinguishable. Same underlying issue as SV-6784.",
+  "verdict": "FIXED",
+  "confidence": "high",
+  "screenshot_ref": "build/bugfix-regression/screenshots/SV-6785.png",
+  "notes": "Duplicate of SV-6784 (same root cause). Confirmed distinct colors via both rendered UI and the JS bundle color map."
+}
