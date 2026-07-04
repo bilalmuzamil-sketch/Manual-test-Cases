@@ -1,0 +1,20 @@
+{
+  "key": "SV-5019",
+  "summary": "Work Orders to Invoices – Part Description presentation (Capitalization not preserved)",
+  "area": "invoicing / accounting",
+  "release_source": ["v0.43 Regressions"],
+  "reported_issue": "On WO S-1820 Line 1 a part description entered in full caps ('HEATED HEADLIGHT') was force-converted to lowercase ('heated headlight') on the generated invoice. The system was not preserving the user's original capitalization.",
+  "expected_after_fix": "Text formatting should be preserved exactly as entered; capitalization must remain unchanged on the final invoice. 'HEATED HEADLIGHT' entered => 'HEATED HEADLIGHT' on invoice.",
+  "role_used": "admin",
+  "steps_i_followed": [
+    "Booted SPA as admin (exact WO S-1820 is customer/production data, so inferred repro using an existing staging invoice that contains an ALL-CAPS part description).",
+    "Opened paid WO S9-24674 => Finance tab, which renders the generated invoice preview.",
+    "Located the invoice line-item part descriptions and read their exact casing.",
+    "Inspected the computed CSS text-transform on the description elements."
+  ],
+  "actual_now": "Capitalization is preserved on the invoice. The invoice line items render the part description in the same ALL-CAPS as entered: 'N68SL-356 - 3.50-3.82\" (89-97mm) SPRING LOADED T-BOLT CLAMP' and 'Core for ... SPRING LOADED T-BOLT CLAMP'. Computed style text-transform = 'none' on the description cells, so no forced lowercasing occurs. No caps->lowercase conversion observed.",
+  "verdict": "FIXED",
+  "confidence": "medium",
+  "screenshot_ref": "build/bugfix-regression/screenshots/SV-5019.png",
+  "notes": "Original WO S-1820 (SS Repair Ltd) is not on the disposable staging shop, so tested with an existing staging invoice containing caps descriptions. Casing is preserved end-to-end (line -> invoice) and CSS text-transform is 'none'. Confidence medium since the exact original record was not reproducible."
+}
