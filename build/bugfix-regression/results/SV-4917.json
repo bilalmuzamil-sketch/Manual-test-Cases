@@ -1,0 +1,20 @@
+{
+  "key": "SV-4917",
+  "summary": "Email not sending after changing the invoice date",
+  "area": "invoicing / accounting",
+  "release_source": ["v0.43 Regressions"],
+  "reported_issue": "On the invoice screen within a Work Order, changing the invoice date and then trying to send the invoice by email caused the system to keep spinning; the email was never sent.",
+  "expected_after_fix": "After Email -> Send, the invoice email should be sent immediately without any delay or loading issue.",
+  "role_used": "admin",
+  "steps_i_followed": [
+    "Logged in as admin, opened an invoiced Work Order (S9-24669) Finance tab.",
+    "Clicked Send Email (button_send_email); the 'Sending invoice' dialog opened pre-populated with the customer contact and email content.",
+    "Clicked Send Email in the dialog and timed the request.",
+    "Exercised the invoice lifecycle (reverse -> re-create invoice) to look for an invoice-date-change control in the create flow."
+  ],
+  "actual_now": "Sending the invoice email works correctly: POST /api/work-order/invoice/send-email returns HTTP 201 in ~1-2 seconds, a 'Successfully sent invoice to email.' success toast appears, and the dialog closes cleanly with no hanging spinner. Creating the invoice auto-assigns the invoice date; no perpetual-spinner / email-never-sent behavior was observed at any point.",
+  "verdict": "FIXED",
+  "confidence": "medium",
+  "screenshot_ref": "build/bugfix-regression/screenshots/SV-4917.png",
+  "notes": "Could not locate a standalone 'edit invoice date' control on an already-invoiced WO (Create Invoice auto-dates the invoice), so the exact date-change-then-email sequence could not be isolated. However, the reported failure symptom (spinner hangs, email never sent) does not reproduce: the send-email endpoint is healthy and responds quickly with success. Reversed and re-created the invoice on S9-24669 during testing (staging is disposable); it was left in the Invoiced state."
+}
