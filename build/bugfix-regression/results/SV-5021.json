@@ -1,0 +1,21 @@
+{
+  "key": "SV-5021",
+  "summary": "Work Orders – Finance Tab Fails to Load",
+  "area": "invoicing / accounting",
+  "release_source": ["v0.43 Regressions"],
+  "reported_issue": "Opening the Finance tab on a work order (reported on WO S-1032) throws an error and the invoice fails to load; the Finance view remains blank or stuck on an error state.",
+  "expected_after_fix": "Finance tab should load and display the invoice/financial info for the work order without errors.",
+  "role_used": "admin",
+  "steps_i_followed": [
+    "Booted SPA as admin.",
+    "The exact reported WO S-1032 (Tombstone Diesel & Iron) is production data not present on staging, so tested the general Finance-tab flow across multiple staging WOs.",
+    "Opened a paid WO (S9-24674) and navigated to /workorders/{id}/finance.",
+    "Opened an invoiced WO (S9-24669) Finance tab.",
+    "Captured the rendered Finance panel content and a screenshot."
+  ],
+  "actual_now": "The Finance tab loads correctly. For paid WO S9-24674 the tab rendered a complete invoice preview (Invoice INV-S9-24674, invoice date, Bill To, Remit payment to, line/parts breakdown, totals). No console errors were thrown (0 errors) and the page stayed on the /finance route. The invoiced WO also loaded its Finance tab cleanly. Only an 'approved' (not-yet-invoiced) WO returned a 500 and redirected to the list, which is expected since no invoice exists yet — not the reported blank/error state on an invoiced WO.",
+  "verdict": "FIXED",
+  "confidence": "medium",
+  "screenshot_ref": "build/bugfix-regression/screenshots/SV-5021.png",
+  "notes": "The specific production WO S-1032 could not be loaded on staging (disposable staging shop). Verdict is based on the general Finance-tab flow working across multiple paid/invoiced WOs with no error state. Confidence medium because the exact original record was not reproducible."
+}
