@@ -1,0 +1,22 @@
+{
+  "key": "SV-5168",
+  "summary": "BE BUG – \"N/A\" Displays Before Asset Name When Asset Year Is Left Blank",
+  "area": "invoicing / accounting",
+  "release_source": ["v0.54 Bug Fixes"],
+  "reported_issue": "When creating an asset and leaving the Year field blank, the invoice/estimate preview displays \"N/A\" before the asset name. An initially-blank year was treated differently from a cleared year (which showed no N/A).",
+  "expected_after_fix": "Invoice/estimate asset block should not display \"N/A\" when the year is blank; blank and cleared years should render consistently (no N/A).",
+  "role_used": "admin",
+  "steps_i_followed": [
+    "Logged in as admin via SPA hydration.",
+    "Work Orders -> New -> selected existing customer (Brabay Maintenance).",
+    "Clicked Add next to Asset and created a New Asset leaving the Year field blank (also make/model left default-blank), saved the asset.",
+    "Saved the Work Order (S9-24948 / da04415b-a237-4832-8175-2bf241b1f113); confirmed via API the vehicle.year = null (initially blank).",
+    "Opened Work Order -> Finance tab -> invoice/estimate preview (Estimate EST-S9-24948).",
+    "Inspected the Asset block header/value in the preview and scanned full page text for 'N/A'."
+  ],
+  "actual_now": "In the Finance invoice/estimate preview, the Asset column value renders empty for the null-year asset. No 'N/A' string appears anywhere in the preview or asset block. The year prefix is simply omitted when blank.",
+  "verdict": "FIXED",
+  "confidence": "medium",
+  "screenshot_ref": "build/bugfix-regression/screenshots/SV-5168.png",
+  "notes": "WO create via API 500s (known session quirk) so WO was created through the SPA UI. PDF text extraction of invoices/preview failed for this PDF format, so verification used the SPA finance invoice-preview render. Asset was created with year null (confirmed via /api/work-orders/view). No N/A prefix observed, matching expected_after_fix."
+}
