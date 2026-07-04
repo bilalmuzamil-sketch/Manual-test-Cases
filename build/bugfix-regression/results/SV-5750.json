@@ -1,0 +1,19 @@
+{
+  "key": "SV-5750",
+  "summary": "BE BUG: Invoice marked as paid but payment not visible under customer",
+  "area": "invoicing / accounting",
+  "release_source": ["v0.54 Bug Fixes"],
+  "reported_issue": "For a specific production account (Caledonia Truck & Trailer Repair Inc., customer Paul Kolobutin, Work Order S-1028): the invoice showed as Paid on the Work Order screen, but under the customer record there were no payments and no unpaid invoices listed, while the invoice still appeared as outstanding in the A/R Aging Summary. The associated payment did not display under the customer record (orphaned/mis-linked payment).",
+  "expected_after_fix": "A paid invoice's payment is correctly linked to and visible under the customer record, and the invoice no longer appears as outstanding in the A/R Aging report.",
+  "role_used": "admin",
+  "steps_i_followed": [
+    "Logged in as admin. Enumerated work orders and filtered for status=paid to locate a paid invoice to inspect.",
+    "Attempted to reproduce the specific data-integrity condition (paid invoice whose payment is not visible under the customer and that still shows in A/R Aging) on staging.",
+    "Probed company/invoice/A-R endpoints to reconcile a paid invoice against its customer's payment records."
+  ],
+  "actual_now": "The defect is a data-integrity issue tied to specific production records (a particular customer, invoice S-1028, and an orphaned payment) that do not exist on staging. The original ticket itself was filed with steps 'Unable to reproduce', i.e. even the reporting/QA team could not reproduce the corrupt state on demand. No equivalent corrupt paid-invoice/orphaned-payment record could be located or manufactured on staging to exercise this path.",
+  "verdict": "NOT-TESTABLE",
+  "confidence": "medium",
+  "screenshot_ref": null,
+  "notes": "Prod-only data defect. The specific mis-linked payment / A-R-outstanding-while-paid state is not present on staging and was 'Unable to reproduce' when originally reported, so a deterministic staging re-test of this exact record is not possible. Ticket is labelled QAcomplete. A general 'paid invoice shows under customer' happy-path does not validate the specific orphaned-payment fix, so it is not claimed as verification here."
+}
