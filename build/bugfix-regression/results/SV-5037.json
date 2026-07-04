@@ -1,0 +1,21 @@
+{
+  "key": "SV-5037",
+  "summary": "Reports – Advisor Analysis Report Totals Do Not Match Sales Report or Service Advisor Closers",
+  "area": "reports",
+  "release_source": ["v0.44 Regressions"],
+  "reported_issue": "Advisor Analysis shows incorrect/incomplete data; totals do not match the Sales Report. Specifically the Advisor Analysis was truncating the date range (only showing invoices from ~Nov 12 onward for 'This Month') while Sales showed the full month (Nov 3, 4, ...); subtotals differed (~$39,531 vs ~$124,736).",
+  "expected_after_fix": "Advisor Analysis should show correct per-advisor subtotals covering the full selected date range, consistent with the actual invoices in that range.",
+  "role_used": "admin",
+  "steps_i_followed": [
+    "Booted SPA as admin. Opened Reports => Advisor Analysis (route /reports/service-advisor-analysis) with 'This Month' range.",
+    "Opened Reports => Sales with the same 'This Month' range.",
+    "Pulled both report APIs directly (service-advisor-analysis/this_month and sales/this_month) with rowsPerPage=1000.",
+    "Compared invoice date spans, invoice sets, and totals between the two reports.",
+    "Investigated every invoice present in Sales but absent from Advisor Analysis, checking work_order_type and whether a service advisor was assigned."
+  ],
+  "actual_now": "The reported date-range truncation does NOT reproduce: both reports cover the identical span (Jul 01 -> Jul 03, the full available range for the current month on staging). Advisor Analysis is not dropping early-month invoices. There is a row-count difference (Advisor 25 vs Sales 41 invoices), but every invoice missing from Advisor Analysis is legitimately out of scope for a per-advisor report: 6 counter/part sales (P9-*), 3 credit memos (CM9-*), and 7 service orders (S9-*) that have NO service advisor assigned (verified on the WOs). No advisor-assigned service invoice within the range is missing. Advisor Analysis renders correct per-advisor subtotal rows.",
+  "verdict": "FIXED",
+  "confidence": "medium",
+  "screenshot_ref": "build/bugfix-regression/screenshots/SV-5037.png",
+  "notes": "Original production data (the Nov dataset with the mid-month cutoff) is not on staging, so the exact reported figures cannot be reproduced. The specific defect (date-range truncation causing beginning-of-month invoices to be omitted) does not reproduce — Advisor Analysis and Sales cover the same span. The residual total difference vs Sales is explained by report scope (Advisor excludes part sales, credit memos, and unassigned-advisor service orders) rather than a date bug, so 'totals don't match Sales' is expected behavior. Confidence medium due to inability to load the original production dataset."
+}
