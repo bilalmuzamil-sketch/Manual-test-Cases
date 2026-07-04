@@ -1,0 +1,20 @@
+{
+  "key": "SV-4880",
+  "summary": "Move Part: Ordering of the Line is Incorrect in Target Line Dropdown",
+  "area": "work orders",
+  "release_source": ["v0.43 Bug Fixes", "SV-4796 Epic (V0.43 Regression Testing Bugs)"],
+  "reported_issue": "In the 'Move part to line' modal, the Target Line dropdown listed the available lines in the wrong order.",
+  "expected_after_fix": "Target Line dropdown shows only the other lines (current line excluded), in correct positional order.",
+  "role_used": "admin",
+  "steps_i_followed": [
+    "Logged in as admin and opened a 4-line Work Order (S9-24073) on its Lines tab.",
+    "Confirmed the line order: 1-Brake Pads, 2-Engine Oil Filter, 3-Air Filter, 4-Engine Oil Change.",
+    "Opened the context menu on a part that sits on line 2 (Engine Oil Filter) and chose Move.",
+    "Opened the Target Line dropdown in the 'Move part to line' modal and read the option order."
+  ],
+  "actual_now": "The Target Line dropdown lists exactly 3 options in correct positional order: '1 - Brake Pads', '3 - Air Filter', '4 - Engine Oil Change'. The part's own line (2 - Engine Oil Filter) is correctly excluded, and the remaining lines appear in ascending position order.",
+  "verdict": "FIXED",
+  "confidence": "high",
+  "screenshot_ref": "build/bugfix-regression/screenshots/SV-4880.png",
+  "notes": "Used an existing 4-line WO rather than creating one named 111/222/333/444; the ordering behavior tested is identical. Dropdown excludes the source line and preserves positional order."
+}
