@@ -1,0 +1,20 @@
+{
+  "key": "SV-5296",
+  "summary": "BUG-Work order fails to open and shows error message - Workorder Invalidated",
+  "area": "work orders",
+  "release_source": ["v0.48 Regressions"],
+  "reported_issue": "Opening a specific work order (client S-30660) fails to load and shows 'Ooooops! An error occurred. For more information, please contact support. Include your request ID: [...]'. Reported as unable to reproduce on the test account.",
+  "expected_after_fix": "Work orders should open normally; no work order should fail to load with a server error / request ID.",
+  "role_used": "admin",
+  "steps_i_followed": [
+    "As admin, pulled the work-orders list and called GET /api/work-orders/view/{id} for several work orders across statuses.",
+    "Found work order S9-24917 (id 7a6b0b7f-9329-4c89-b2d4-8d288ca886c5) returned HTTP 500; retried the same view endpoint 4 times.",
+    "Interleaved a known-good WO (S-24674) to rule out session/transient errors.",
+    "Attempted to open S9-24917 in the SPA UI (/workorders/{id}/lines)."
+  ],
+  "actual_now": "WO S9-24917 persistently fails to open: GET /api/work-orders/view/7a6b0b7f... returns HTTP 500 on all 4 attempts with a body containing an error message plus a 'requestId' (e.g. ff66cc00-..., cf70c927-...), while other work orders (S-24674 paid, S9-24669/24661/24662 invoiced, S-24656 paid) return HTTP 200 and open fine. In the SPA, opening this WO does not render the detail page - it redirects/bounces to the work-orders list (the SPA's handling of the failed load) rather than showing the detail. This is the same failure mode as the report: a work order that cannot be opened due to a backend error carrying a request ID.",
+  "verdict": "STILL-REPRODUCES",
+  "confidence": "high",
+  "screenshot_ref": "build/bugfix-regression/screenshots/SV-5296.png",
+  "notes": "The client's specific WO (S-30660) is prod/account-specific and not accessible here, but the identical failure mode reproduces on staging with WO S9-24917: persistent HTTP 500 + requestId on the WO view endpoint makes the work order impossible to open. Recommend investigating the 500 with the captured request IDs (server-side data issue on that WO). Screenshot shows the SPA bounce to the WO list on failed load; primary evidence is the reproducible 500+requestId from the API."
+}
