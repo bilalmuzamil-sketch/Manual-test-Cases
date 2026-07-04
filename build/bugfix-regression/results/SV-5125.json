@@ -1,0 +1,19 @@
+{
+  "key": "SV-5125",
+  "summary": "Mobile View: Core OK / Not OK Buttons Not Visible for Technicians",
+  "area": "parts / inventory",
+  "release_source": ["v0.48 Regressions"],
+  "reported_issue": "In the mobile viewport, technicians cannot mark a picked core part as OK or Not OK because those buttons do not appear (they work on desktop). Repro: log in on mobile as a Technician, open a WO, request a part with a core, pick the part, observe the picked part options.",
+  "expected_after_fix": "The mobile UI should display the OK / Not OK options for a picked core the same way desktop does.",
+  "role_used": "admin (exploration) + tech Technician role (then restored)",
+  "steps_i_followed": [
+    "Reviewed the part/core-return workflow via API (list-return-requests, is_based_on_core_charge) and the WO Parts sub-tab on desktop and mobile (390x844 emulation).",
+    "Searched existing WOs for a core part in the 'picked / awaiting OK-Not OK inspection' state.",
+    "Attempted to construct the state (WO/part creation) to expose the OK/Not OK controls."
+  ],
+  "actual_now": "Could not exercise the OK/Not OK controls: existing WO cores on staging were already resolved (status 'Returned'), and no core part was found in the 'picked, awaiting OK/Not OK inspection' state. The specific precondition (request part with a core -> pick it -> core awaiting inspection) could not be constructed within the harness (WO/part create endpoints intermittently 500; no existing record in the needed state), so the OK/Not OK buttons could not be located even on desktop to establish a baseline for the mobile comparison. Note: general mobile WO parts rendering works (verified separately in SV-5128), so the mobile viewport itself is functional.",
+  "verdict": "NEEDS-INFO",
+  "confidence": "low",
+  "screenshot_ref": "build/bugfix-regression/screenshots/SV-5128.png",
+  "notes": "Blocker is the specific core-inspection data state, not the mobile viewport. To close out: set up a WO with a part that has a core, progress it to picked/awaiting-inspection, then compare the OK/Not OK control visibility on desktop vs 390px mobile as a Technician. Tech Technician role was used during investigation and restored to Time Clock."
+}

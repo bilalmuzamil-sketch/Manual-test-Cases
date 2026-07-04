@@ -1,0 +1,18 @@
+{
+  "key": "SV-5269",
+  "summary": "BE - Incorrect Payment Amount Displayed When Invoice Is Paid Using Credit Balance",
+  "area": "invoicing / accounting",
+  "release_source": ["v0.48 Regressions"],
+  "reported_issue": "When an invoice is paid using a customer's existing credit balance, the Payment entry shows the remaining credit instead of the invoice amount actually applied. Example: $10.00 invoice paid from a $14.18 credit balance recorded the payment as $4.18 (the remaining credit) rather than $10.00.",
+  "expected_after_fix": "The Payment row should show $10.00 (the invoice amount paid); the remaining credit ($4.18) should stay on the account as credit.",
+  "role_used": "admin (not exercised to completion)",
+  "steps_i_followed": [
+    "Identified the required scenario: a customer with an existing credit balance, an unpaid invoice, then apply the credit as payment and inspect the recorded Payment amount.",
+    "Assessed the setup: needs a customer credit balance + an invoice + a credit-balance payment application through Customers -> Payments."
+  ],
+  "actual_now": "Not verified within this session. The reproduction requires building a credit-balance-payment scenario (customer credit balance + unpaid invoice + apply credit) and reading back the recorded payment amount; this multi-step setup was not completed before the tool-budget cutoff for this batch. No determination of the payment-amount calculation was made.",
+  "verdict": "NEEDS-INFO",
+  "confidence": "low",
+  "screenshot_ref": null,
+  "notes": "Not tested due to batch tool-budget exhaustion after completing higher-feasibility tickets. This is a backend calculation bug that IS testable: create/find a customer with a credit balance, create an unpaid invoice, pay it using the credit balance, then verify the Payment row records the invoice amount applied (e.g. $10.00) and the residual stays as credit. Recommend a dedicated follow-up run for this ticket."
+}
