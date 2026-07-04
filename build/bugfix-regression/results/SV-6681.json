@@ -1,0 +1,17 @@
+{
+  "key": "SV-6681",
+  "summary": "Payments - Reader connection not working, after disconnect from one location and reconnect to another location",
+  "area": "payments / ShopPay",
+  "release_source": ["v0.54 Bug Fixes"],
+  "reported_issue": "A physical card reader/terminal stops working after being disconnected from one location and reconnected to a different location. Setup appears successful and the settings screen shows the reader connected, but sending a payment to the terminal fails and 'Test reader' reports connection failed.",
+  "expected_after_fix": "After moving a reader between locations, the reconnected reader should actually work and successfully process a terminal payment.",
+  "role_used": "admin",
+  "steps_i_followed": [
+    "Reviewed the reported scenario: it requires a physical Stripe/ShopPay card reader terminal, two shop locations, and live disconnect/reconnect of hardware, then an actual card-present payment to the terminal."
+  ],
+  "actual_now": "Cannot be exercised in this automated harness: it depends on physical card-reader hardware, a live third-party payment terminal (Stripe/ShopPay Terminal), and multi-location hardware re-pairing. No screen/API interaction can simulate the reader firmware handshake or a card-present transaction.",
+  "verdict": "NOT-TESTABLE",
+  "confidence": "high",
+  "screenshot_ref": null,
+  "notes": "Live 3rd-party payment hardware dependency — out of scope for browser/API automation. Requires manual verification with a real terminal moved between two locations."
+}
