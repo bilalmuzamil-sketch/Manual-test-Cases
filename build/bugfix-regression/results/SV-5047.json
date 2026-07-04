@@ -1,0 +1,21 @@
+{
+  "key": "SV-5047",
+  "summary": "Core part price should not appear as $0 under the header \"Rate\".",
+  "area": "parts / inventory",
+  "release_source": ["v0.44 Regressions"],
+  "reported_issue": "Request-order-receive a special order part on a line with a core price set. Before pressing OK/Not OK (review), the Core price appears as $0 under the header \"Rate\", which is wrong.",
+  "expected_after_fix": "The Core price under the header \"RATE\" should show the full core price if the OK/Not OK status is unconfirmed.",
+  "role_used": "admin",
+  "steps_i_followed": [
+    "Booted SPA as admin.",
+    "Located an existing WO with a received special-order core part whose OK/Not OK review is still unconfirmed (WO S9-24399, line 1 'HOD', part '(HOT SPO) Description of part' with core '(HOT SPO) Core for Description of part').",
+    "Confirmed via API that the core part_request (is_core_charge=true, status=received) has sell_price=1 and cost=1 (non-zero).",
+    "Opened the Lines tab and read the 'Rate' column for the core sub-row while the Ok / Not Ok buttons are still shown (review unconfirmed).",
+    "Captured screenshot."
+  ],
+  "actual_now": "The core part still shows Rate $0.00 (and Total $0) in the Lines tab while its OK/Not Ok review is unconfirmed (Ok / Not Ok buttons visible). The parent part '(HOT SPO) Description of part' shows its Rate $40.00 correctly, but the core row '(HOT SPO) Core for Description of part' shows $0.00 under Rate even though the core's actual sell_price is $1 per the API. The core price is therefore NOT shown under Rate before the OK/Not OK confirmation, exactly as reported.",
+  "verdict": "STILL-REPRODUCES",
+  "confidence": "high",
+  "screenshot_ref": "build/bugfix-regression/screenshots/SV-5047.png",
+  "notes": "Reproduced with real staging data (WO S9-24399). The core row displays Rate $0.00 while review (Ok/Not Ok) is unconfirmed, contradicting the expected behavior that the full core price should be shown. Regression persists."
+}
