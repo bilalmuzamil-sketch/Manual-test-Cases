@@ -1,0 +1,19 @@
+{
+  "key": "SV-6241",
+  "summary": "BE Part Sale Appears as Work Order Option When Creating Timesheet from Timesheet Activities Report",
+  "area": "reports",
+  "release_source": ["v0.54 Bug Fixes"],
+  "reported_issue": "When creating a new Timesheet entry from the Timesheet Activities report, the Work Order selection dropdown incorrectly included Part Sale records (Part Sale #), which are not valid entities for timesheet tracking.",
+  "expected_after_fix": "Only valid Work Orders should appear in the Work Order dropdown; Part Sales should not be selectable.",
+  "role_used": "admin",
+  "steps_i_followed": [
+    "Logged in as admin, opened Reports -> Timesheet Activities (/reports/punch-clock-activities).",
+    "Clicked New to open the New Timesheet dialog; identified the Work Order select. Confirmed its data source is GET /api/work-orders/simple-list (observed the dialog fetch pagination[rowsPerPage]=200).",
+    "Queried GET /api/work-orders/simple-list?pagination[rowsPerPage]=1000 (308 records) and inspected every record's number and fields for any Part Sale entries or part-sale type flags."
+  ],
+  "actual_now": "The Work Order dropdown source list returns 308 entries, all of which are work orders (number format S9-2xxxx, e.g. S9-24948, S9-24934, S9-24917). No entry has a Part Sale number, and the record schema (id, number, rawNumber, companyId, companyName, createdOn, invoiceShopId, shop_id, workplaceId) contains no part-sale-type entries. Zero Part Sale records are present in the dropdown source.",
+  "verdict": "FIXED",
+  "confidence": "high",
+  "screenshot_ref": "build/bugfix-regression/screenshots/SV-6241.png",
+  "notes": "The New Timesheet Work Order dropdown is fed by /api/work-orders/simple-list, which is authoritative for what the dropdown renders. That list now contains only work orders and no Part Sale records, matching the expected fix."
+}
