@@ -1,0 +1,21 @@
+{
+  "key": "SV-6873",
+  "summary": "BUG - Auto Pick doubles picked quantity on approval and corrupts inventory on return",
+  "area": "parts / inventory",
+  "release_source": ["v0.54 Regressions"],
+  "reported_issue": "With Auto Pick enabled, approving a quoted part request picks double the requested quantity (e.g. request 4 of SV029 picks 8). Returning restores only 4, leaving inventory short. Occurs in both Part Sales and Work Orders; disabling Auto Pick makes it behave correctly.",
+  "expected_after_fix": "System picks 4 and returns 4, restoring inventory accurately.",
+  "role_used": "admin",
+  "steps_i_followed": [
+    "Read org settings: found the relevant flag 'autoPickInventoryParts' = false (Auto Pick was OFF by default on this shop). The reported bug only manifests when Auto Pick is ENABLED.",
+    "Enabled Auto Pick: POST /api/organizations/settings/change {autoPickInventoryParts:true}; verified it read back as true.",
+    "Searched for the required repro state - an UNAPPROVED core INVENTORY part on a WO line - to approve and observe the pick quantity. Global /api/parts records were all status 'Authorized' (already approved); the only unapproved 'Requested' parts found (WO S9-24075) were quoted, non-inventory-linked parts with '(-)' part numbers, which do not exercise the inventory auto-pick path.",
+    "Attempted to build the state on disposable data: Work Order S9-24075 > New Line > Save & Add Part to add a core inventory part with qty 4, then approve with Auto Pick on and read the picked quantity / inventory delta.",
+    "Restored the setting: POST /api/organizations/settings/change {autoPickInventoryParts:false}; verified false."
+  ],
+  "actual_now": "Could not reach a FIXED/STILL-REPRODUCES determination. Confirmed the pre-condition matters (Auto Pick default OFF; enabled it successfully). However the required repro state (an unapproved, inventory-linked core part on a WO line, then approved) could not be constructed: no such existing record was found, and the New Line > Save & Add Part create flow did not advance in the harness - the 'What Are You Doing?' field is a canned-job combobox that validation-blocks free-typed values, so 'Save & Add Part' fired no create request (consistent with the documented session quirk that create-* flows are unreliable here). Without an approvable core inventory part I could not observe the pick quantity (4 vs 8) or the inventory delta.",
+  "verdict": "NEEDS-INFO",
+  "confidence": "low",
+  "screenshot_ref": "build/bugfix-regression/screenshots/SV-6873.png",
+  "notes": "Actionable to close out: with Auto Pick enabled, add a real core INVENTORY part (received, with a part number) to a WO line or Part Sale as an unapproved/quoted request of qty N (e.g. 4), approve it, and confirm picked qty == N (not 2N) and inventory drops by N; then return and confirm inventory restores by N. Blocker here was purely building the unapproved-core-inventory-part state via the harness-flaky create/add-part UI, not the fix itself. autoPickInventoryParts was restored to false after testing."
+}

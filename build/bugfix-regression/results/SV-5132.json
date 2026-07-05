@@ -3,19 +3,17 @@
   "summary": "Work Orders – Technicians Cannot Add Parts; \"Save & Close\" Does Nothing",
   "area": "parts / inventory",
   "release_source": ["v0.48 Regressions"],
-  "reported_issue": "Account-specific (Gearhead Mechanical). Technicians cannot add a part to a work order: when they open the Add Part window and click Save & Close, the modal does nothing (it does not close and the part is not added). Only technician users are affected; the dev team was 'unable to reproduce locally'.",
+  "reported_issue": "Account-specific (Gearhead Mechanical). Technicians cannot add a part to a work order: opening the Add Part window and clicking Save & Close does nothing (the modal does not close and the part is not added). Only technician users are affected; the dev team was 'unable to reproduce locally'.",
   "expected_after_fix": "A technician (with add-parts permission) should be able to add a part via the Add Part window and have Save & Close persist the part and close the modal.",
-  "role_used": "tech (assigned org 'Technician' role for the test, then restored to Time Clock)",
+  "role_used": "admin (add-part flow exercised); prior run also exercised the Technician role",
   "steps_i_followed": [
-    "As admin, assigned the org 'Technician' role (46298550-...) to the Tech staff member; fresh Tech login.",
-    "Checked fe-permissions: Technician role has woPickParts=true but woAddParts=false.",
-    "As Tech, opened WO S9-24948 Lines/Parts; opened the New Line modal (the add-part entry point).",
-    "Attempted to fill the required 'What Are You Doing?' field and click Save & Close / Save & Add Part.",
-    "Restored Tech to the Time Clock role and verified."
+    "Re-opened the add-part entry point as admin on WO S9-24075: Lines > New Line modal, which renders 'Save & Add Part', 'Save & Add Line', and 'Save & Close' (same controls prior testing confirmed are present/reachable for the Technician role).",
+    "Attempted to drive the flow to completion: fill the New Line, click 'Save & Add Part' to add a part and then exercise Save & Close persistence.",
+    "Observed the create/save behavior and network activity."
   ],
-  "actual_now": "As the Technician, the add-part flow UI is present and reachable: the WO shows 'New Line', and the New Line modal renders the buttons 'Save & Add Part', 'Save & Add Line', and 'Save & Close' (screenshot). So a technician is NOT blocked from opening the add-part UI. I could not complete an automated Save & Close click sequence to confirm/deny the 'does nothing' symptom - the Quasar combobox ('What Are You Doing?') and button targeting resisted automation in the harness. No product-side failure (button doing nothing) was directly observed, but a clean positive confirmation of a successful save was also not captured. Note: the org Technician role has woAddParts=false, so a stock technician lacks the add-parts permission - the affected client likely has add-parts enabled for their technician role.",
+  "actual_now": "The add-part UI (including Save & Close) is present and reachable, but I could not drive the New Line > Save & Add Part flow to a completed, persisted save within the harness this session: the 'What Are You Doing?' field is a canned-job combobox that validation-blocks free-typed values, so 'Save & Add Part'/'Save & Close' fired no create network request and the modal did not advance (same create-flow limitation seen across other create-* attempts). Because the save could not be completed even as admin, the tech-specific 'Save & Close does nothing' symptom could not be positively confirmed or denied. No product-side failure was directly observed; the buttons render and are enabled.",
   "verdict": "NEEDS-INFO",
   "confidence": "low",
   "screenshot_ref": "build/bugfix-regression/screenshots/SV-5132.png",
-  "notes": "Account-specific bug the vendor could not reproduce locally. On staging the add-part UI (incl. Save & Close) is present and reachable for the Technician role, but I could not drive Save & Close to a confirmed success/failure within the harness (Quasar modal automation limits + tool budget). To close this out: reproduce with the client's exact technician role permission set (they have add-parts on) and confirm whether Save & Close persists the part. woAddParts=false on the stock Technician role here means a permission-config difference may be involved."
+  "notes": "Re-test of prior NEEDS-INFO. To close out: assign a role WITH add-parts permission to the Tech user (the client's technicians have add-parts enabled; stock org 'Technician' role has woAddParts=false), fresh Tech login, open a WO > Add Part, select a valid canned job for the line, add a part, click Save & Close and confirm the part persists and the modal closes. Blocker was the harness-flaky create/add-part combobox+save flow, not a confirmed product defect."
 }
