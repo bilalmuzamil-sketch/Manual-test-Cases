@@ -4,15 +4,17 @@
   "area": "invoicing / accounting",
   "release_source": ["v0.48 Regressions"],
   "reported_issue": "When an invoice is paid using a customer's existing credit balance, the Payment entry shows the remaining credit instead of the invoice amount actually applied. Example: $10.00 invoice paid from a $14.18 credit balance recorded the payment as $4.18 (the remaining credit) rather than $10.00.",
-  "expected_after_fix": "The Payment row should show $10.00 (the invoice amount paid); the remaining credit ($4.18) should stay on the account as credit.",
-  "role_used": "admin (not exercised to completion)",
+  "expected_after_fix": "The Payment row should show the invoice amount paid (e.g. $10.00); the remaining credit ($4.18) should stay on the account as credit.",
+  "role_used": "admin",
   "steps_i_followed": [
-    "Identified the required scenario: a customer with an existing credit balance, an unpaid invoice, then apply the credit as payment and inspect the recorded Payment amount.",
-    "Assessed the setup: needs a customer credit balance + an invoice + a credit-balance payment application through Customers -> Payments."
+    "As admin, opened customer 'new test' (account a3b829a5...) which had two unpaid invoices of $1,078.71 each.",
+    "Created a credit balance larger than an invoice: Customers > Invoices > New Payment on invoice S9-24669 with method Cash and 'Amount to credit' = $1,500.00 (Payment amount $2,578.71). This paid the invoice and created a $1,500 account credit (deposit DEP9-680).",
+    "Paid the remaining unpaid invoice S9-24661 ($1,078.71) using the credit balance: selected the invoice, New Payment; the $1,500 credit auto-applied showing 'Applies $1,078.71 - $421.29 remaining', Payment amount $0.00, and submitted (button 'Create Credit').",
+    "Read the resulting payment record via /api/customer-payment/list and inspected the Payments list UI (expanded the credit payment)."
   ],
-  "actual_now": "Not verified within this session. The reproduction requires building a credit-balance-payment scenario (customer credit balance + unpaid invoice + apply credit) and reading back the recorded payment amount; this multi-step setup was not completed before the tool-budget cutoff for this batch. No determination of the payment-amount calculation was made.",
-  "verdict": "NEEDS-INFO",
-  "confidence": "low",
-  "screenshot_ref": null,
-  "notes": "Not tested due to batch tool-budget exhaustion after completing higher-feasibility tickets. This is a backend calculation bug that IS testable: create/find a customer with a credit balance, create an unpaid invoice, pay it using the credit balance, then verify the Payment row records the invoice amount applied (e.g. $10.00) and the residual stays as credit. Recommend a dedicated follow-up run for this ticket."
+  "actual_now": "The credit-balance payment records the INVOICE AMOUNT APPLIED, not the remaining credit. API record for the new payment: applied_credits = -1078.71, credits[]=DEP-680 applied 1078.71; invoice S9-24661 is now marked 'Paid'. In the Payments UI the expanded payment shows 'Invoice S9-24661 $1,078.71 Paid' and 'Deposit DEP9-680 Excess Payment -$1,078.71 Applied'. The $421.29 residual correctly remained on the account as credit (not recorded as the payment amount). This matches expected_after_fix: had the bug still existed, the payment would have recorded $421.29 (remaining credit) instead of $1,078.71 (invoice amount).",
+  "verdict": "FIXED",
+  "confidence": "high",
+  "screenshot_ref": "build/bugfix-regression/screenshots/SV-5269.png",
+  "notes": "Re-test of prior NEEDS-INFO. Reproduced the exact scenario end-to-end on disposable staging data (credit > invoice) and confirmed the payment now records the invoice amount applied ($1,078.71), with the surplus retained as credit ($421.29). Bug does not reproduce."
 }
