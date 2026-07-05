@@ -1,0 +1,19 @@
+{
+  "key": "SV-6808",
+  "summary": "BUG: Work Order Print – Only First Page of Lines Prints (Remaining Lines Missing)",
+  "area": "work orders",
+  "release_source": ["v0.54 Regressions"],
+  "reported_issue": "Using browser Print on a Work Order page, the print preview only includes the first page of work order lines; lines beyond the first page do not appear. Regression from previously-working behavior.",
+  "expected_after_fix": "All Work Order lines should appear across multiple pages in the print output.",
+  "role_used": "admin",
+  "steps_i_followed": [
+    "As admin, opened Work Order S2-15522 (id 06747f14...), which has 21 lines (72 rendered table rows including labor/parts/story sub-rows).",
+    "Emulated print media (equivalent to browser Print) and generated a print-to-PDF of the page.",
+    "Inspected the PDF page count and the print-media rendering of the lines table (row visibility and the scroll container's overflow)."
+  ],
+  "actual_now": "All lines print across multiple pages. The print-to-PDF produced 4 pages (not clipped to 1). In print media all 72 line rows are visible (visibleRows=72 of 72), the last line row renders, and the lines scroll container ('.q-table__middle') has overflow:visible with full expanded height (3102px) rather than a clipped fixed-height scroll region. This matches expected_after_fix - the print CSS now expands the lines table so every line flows across pages instead of being cut off after the first page.",
+  "verdict": "FIXED",
+  "confidence": "high",
+  "screenshot_ref": "build/bugfix-regression/screenshots/SV-6808.png",
+  "notes": "Root-cause pattern (scroll container clipping in print) is resolved: print media sets overflow:visible and full height, and the paginated PDF spans 4 pages for the 21-line WO."
+}
