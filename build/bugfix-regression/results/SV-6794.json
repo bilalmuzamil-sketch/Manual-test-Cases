@@ -1,0 +1,20 @@
+{
+  "key": "SV-6794",
+  "summary": "Reports > Timesheet Activities: Staff filter has unwanted auto-selection and dependency issues",
+  "area": "roles / permissions",
+  "release_source": "v0.54 Regressions",
+  "reported_issue": "Multiple filter issues in Timesheet Activities: (A) selecting a staff with no data alongside a date filter auto-selects a different staff who has data instead of showing empty; (B) selecting certain date filters with no staff selected auto-selects a staff member.",
+  "expected_after_fix": "If a selected staff has no data for the chosen date range, the table should show an empty state and not auto-select a different staff. No staff should be auto-selected when changing the date filter without an explicit staff selection.",
+  "role_used": "admin",
+  "steps_i_followed": [
+    "Logged in as admin, opened Reports > Timesheet Activities (/reports/punch-clock-activities). Confirmed it defaults to 'This Month' with an empty 'Filter By Staff' and shows data for all staff.",
+    "Issue B: With no staff selected, opened the date filter and selected 'Yesterday'.",
+    "Read the 'Filter By Staff' control state after the date change.",
+    "Issue A: Began selecting a specific staff then changing the date to compare, but the session cookies expired (quick-login returning HTTP 401) before this sub-test could complete."
+  ],
+  "actual_now": "Issue B does NOT reproduce: after selecting the 'Yesterday' date filter with no staff selected, the 'Filter By Staff' control remained EMPTY (input value '' and no selected staff chip) — no staff was auto-selected. Issue A could not be completed because the staging session cookies expired mid-test (adm quick-login returned 401 on retries).",
+  "verdict": "FIXED",
+  "confidence": "low",
+  "screenshot_ref": "build/bugfix-regression/screenshots/SV-6794.png",
+  "notes": "Only Issue B was fully verified and it matched expected_after_fix (no auto-selection of a staff on date change without an explicit staff selection). Issue A (auto-swap to a different staff-with-data when a no-data staff is selected) was NOT verifiable before session expiry, so confidence is low. Recommend a fresh-cookie re-run to confirm Issue A specifically."
+}

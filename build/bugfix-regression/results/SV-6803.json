@@ -1,0 +1,18 @@
+{
+  "key": "SV-6803",
+  "summary": "BUG: Missing Payment Notification Emails",
+  "area": "payments / ShopPay",
+  "release_source": "v0.54 Regressions",
+  "reported_issue": "For account KC Wholesale, the customer is no longer receiving payment notification/confirmation emails for ShopPay transactions (previously working). No emails since ~1 day before report; spam/junk already checked.",
+  "expected_after_fix": "When an invoice is paid via ShopPay, the usual payment confirmation/notification email should be triggered and delivered to the customer.",
+  "role_used": "admin (attempted)",
+  "steps_i_followed": [
+    "Reviewed the ticket: it concerns delivery of ShopPay payment-confirmation emails to an external mailbox for the production account KC Wholesale.",
+    "Determined that verifying email delivery requires (a) a real ShopPay payment via the live payment processor and (b) access to the recipient's email inbox / mail-delivery logs — neither is available in the staging test harness."
+  ],
+  "actual_now": "Not reproducible in the staging test harness. Confirming whether payment-notification emails are sent/delivered requires a live ShopPay transaction and inspection of an external inbox or the mail provider's delivery logs, which the harness cannot access. Cannot be validated via UI/API driving alone.",
+  "verdict": "NOT-TESTABLE",
+  "confidence": "medium",
+  "screenshot_ref": null,
+  "notes": "Email delivery + live 3rd-party ShopPay payment; production-account-specific. Requires mailbox/mail-log access outside the harness. Staging session cookies also expired during this batch."
+}

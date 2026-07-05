@@ -1,0 +1,18 @@
+{
+  "key": "SV-6805",
+  "summary": "BUG: QuickBooks Export Fails – “Bookkeeping customer not found”",
+  "area": "customer portal / customers",
+  "release_source": "v0.54 Regressions",
+  "reported_issue": "For account Central Iowa Ag & Machinery, transferring a customer transaction to QuickBooks fails with 'Bookkeeping customer not found for name \"Jeff Burkley\"'. The item appears under Reports > QB Unexported Items (Type: Payment Create, Txn 4625, Customer: Jeff Burkley). Expectation is the integration should auto-create the QuickBooks customer.",
+  "expected_after_fix": "QuickBooks export should not fail when the bookkeeping customer is missing; the integration should create the customer (or handle it gracefully) so the transaction exports successfully.",
+  "role_used": "admin (attempted)",
+  "steps_i_followed": [
+    "Reviewed the ticket (its own repro says 'Unable to Reproduce'). It concerns a live QuickBooks Online integration export for the production account Central Iowa Ag & Machinery and a specific unexported transaction (4625 / customer 'Jeff Burkley').",
+    "Determined this requires an actively connected QuickBooks company file plus the specific production account's unexported transaction, neither of which exists on the disposable staging shop; a real QB export round-trip against a live QuickBooks tenant is needed to observe the 'Bookkeeping customer not found' error."
+  ],
+  "actual_now": "Not reproducible in the staging test harness. The failure occurs during a live QuickBooks Online export for a specific production merchant/transaction; staging has no connected QuickBooks company with the matching customer/transaction, and the export cannot be exercised against the real 3rd-party integration here. The ticket itself is marked 'Unable to Reproduce'.",
+  "verdict": "NOT-TESTABLE",
+  "confidence": "medium",
+  "screenshot_ref": null,
+  "notes": "Live 3rd-party QuickBooks Online integration, production-account-specific data. Requires a connected QB tenant and the exact unexported transaction to reproduce. Staging session cookies also expired during this batch, preventing QB-unexported endpoint inspection."
+}
