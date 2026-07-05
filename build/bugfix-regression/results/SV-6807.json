@@ -1,0 +1,20 @@
+{
+  "key": "SV-6807",
+  "summary": "BUG: Parts Page – \"Cycle Count\" Triggers Column Chooser when it shouldn't.",
+  "area": "parts / inventory",
+  "release_source": ["v0.54 Regressions"],
+  "reported_issue": "On Parts > Inventory, clicking the 3-dot menu and selecting 'Cycle Count' incorrectly opens the Column Chooser panel instead of (or in addition to) starting the Cycle Count workflow. The Cycle Count action did not initiate.",
+  "expected_after_fix": "Selecting Cycle Count should open the Cycle Count workflow; column visibility settings should remain unchanged (no Column Chooser).",
+  "role_used": "admin",
+  "steps_i_followed": [
+    "As admin, navigated to Parts > Inventory (/parts/inventory).",
+    "Clicked the 3-dot menu (button aria-label 'Inventory actions' / more_vert). Menu items: 'Cycle count', 'Export'.",
+    "Selected 'Cycle count'.",
+    "Observed the resulting UI state (checked for any Column Chooser panel/dialog and for Cycle Count mode)."
+  ],
+  "actual_now": "Selecting 'Cycle count' correctly initiated the Cycle Count workflow: the inventory grid switched into count mode showing a 'Count' input column per row, Save/Cancel buttons, and 'Count changes available: 200'. No Column Chooser panel or dialog/menu opened (verified programmatically - no column-chooser dialog/menu present). Column visibility was unchanged. This matches expected_after_fix.",
+  "verdict": "FIXED",
+  "confidence": "high",
+  "screenshot_ref": "build/bugfix-regression/screenshots/SV-6807.png",
+  "notes": "Event-misfire is gone; Cycle Count starts as expected and does not trigger the Column Chooser."
+}
