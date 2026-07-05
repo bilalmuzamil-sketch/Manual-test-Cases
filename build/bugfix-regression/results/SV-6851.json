@@ -1,0 +1,19 @@
+{
+  "key": "SV-6851",
+  "summary": "Bug: Transaction Fee Deducted on Failed Payment Attempt Affecting Payout Amount",
+  "area": "payments / ShopPay",
+  "release_source": ["v0.54 Bug Fixes"],
+  "reported_issue": "A transaction fee is deducted despite a failed payment attempt, causing a mismatch between invoice total and payout. Customer Daufeldt Transport Inc: invoice total $1,599.26, payout received $1,595.80, difference $3.39 matching the fee from a failed payment attempt. A failed payment attempt still records a transaction fee, and that fee is deducted from the final payout, causing underpayment.",
+  "expected_after_fix": "A failed payment attempt should not record a transaction fee, so the payout is not reduced by a fee for a payment that never succeeded.",
+  "role_used": "admin",
+  "steps_i_followed": [
+    "Reviewed the reported scenario: it concerns the ShopPay/Stripe payment-processor transaction fee and the resulting bank PAYOUT amount reconciled against a specific production customer (Daufeldt Transport Inc).",
+    "Checked the staging app for any payout / ShopPay / transaction-fee reconciliation surface to reproduce or inspect the calculation: searched the SPA bundle for 'payout', 'shoppay', 'shop-pay', 'transaction_fee', 'transaction-fee', 'terminal' (all 0 matches; only generic 'stripe' present).",
+    "Assessed reproduction feasibility: reproducing requires triggering a real failing card payment through the live Stripe payment processor, having a fee recorded, and then observing the actual bank payout amount."
+  ],
+  "actual_now": "Not reproducible on staging. The behavior depends on (1) the live third-party Stripe payment processor actually processing a failed payment and generating a real bank payout, and (2) production-only financial data (the specific customer's transaction/payout history). The staging app exposes no payout or transaction-fee reconciliation UI/report to inspect the fee-vs-payout relationship (no payout/ShopPay/fee surfaces exist in the frontend). This is a live-third-party + prod-only-data reconciliation issue that cannot be exercised or verified on disposable staging.",
+  "verdict": "NOT-TESTABLE",
+  "confidence": "high",
+  "screenshot_ref": null,
+  "notes": "Requires live Stripe failed-payment + real payout reconciliation and prod-only customer data; no payout/transaction-fee surface exists in the staging app to verify the fix. Recommend verification against production payout/fee records (or a backend unit/integration test that asserts no fee is recorded for a failed payment attempt)."
+}
