@@ -8,9 +8,8 @@
     "type": "Functional",
     "permissions_required": "Customer Management: Create & Edit + Manage Accounts Payable and Receivable + See Financial Data + Fees & Discounts flag ON",
     "preconditions": [
-      "1. The Fees & Discounts feature flag is ON for the organization.",
-      "2. A test customer named ZZAUTOTEST Customer exists with exactly 2 default fees/discounts linked.",
-      "3. You are logged in with Customer Management: Create & Edit and Manage AP/AR permissions."
+      "1. A test customer named ZZAUTOTEST Customer exists with exactly 2 default fees/discounts linked.",
+      "2. You are logged in with Customer Management: Create & Edit and Manage AP/AR permissions."
     ],
     "steps": [
       "1. Go to Customers and open the ZZAUTOTEST Customer record.",
@@ -34,7 +33,7 @@
     "type": "Functional",
     "permissions_required": "Customer Management: Create & Edit + Manage AP/AR + See Financial Data + flag ON",
     "preconditions": [
-      "1. Flag ON; a customer with at least 1 default fee/discount exists.",
+      "1. A customer with at least 1 default fee/discount exists.",
       "2. You have Customer Management: Create & Edit + Manage AP/AR."
     ],
     "steps": [
@@ -61,7 +60,7 @@
     "type": "Functional",
     "permissions_required": "Customer Management: Create & Edit + Manage AP/AR + See Financial Data + flag ON",
     "preconditions": [
-      "1. Flag ON; a location template named \"ZZAUTOTEST Fleet Discount\" (Discount, % of Subtotal, 10%) exists and is NOT yet linked to the test customer.",
+      "1. A location template named \"ZZAUTOTEST Fleet Discount\" (Discount, % of Subtotal, 10%) exists and is NOT yet linked to the test customer.",
       "2. You have Customer Management: Create & Edit + Manage AP/AR."
     ],
     "steps": [
@@ -88,7 +87,7 @@
     "type": "Functional",
     "permissions_required": "Customer Management: Create & Edit + Manage AP/AR + See Financial Data + flag ON",
     "preconditions": [
-      "1. Flag ON; at least 3 templates exist that are NOT yet linked to the test customer.",
+      "1. At least 3 templates exist that are NOT yet linked to the test customer.",
       "2. You have Customer Management: Create & Edit + Manage AP/AR."
     ],
     "steps": [
@@ -114,7 +113,7 @@
     "type": "Functional",
     "permissions_required": "Customer Management: Create & Edit + Manage AP/AR + See Financial Data + flag ON",
     "preconditions": [
-      "1. Flag ON; the location has: (a) a template already linked to this customer, (b) an unlinked Fee/Discount template, and (c) an unlinked Processing Fee template.",
+      "1. The location has: (a) a template already linked to this customer, (b) an unlinked Fee/Discount template, and (c) an unlinked Processing Fee template.",
       "2. You have Customer Management: Create & Edit + Manage AP/AR."
     ],
     "steps": [
@@ -139,7 +138,7 @@
     "type": "Functional",
     "permissions_required": "Customer Management: Create & Edit + Manage AP/AR + See Financial Data + flag ON",
     "preconditions": [
-      "1. Flag ON; every location template is already linked to the test customer (or the location has no templates)."
+      "1. Every location template is already linked to the test customer (or the location has no templates)."
     ],
     "steps": [
       "1. Open the customer, Fees & Discounts tab, click \"Add Fee/Discount\".",
@@ -161,7 +160,7 @@
     "type": "Functional",
     "permissions_required": "Customer Management: Create & Edit + Manage AP/AR + See Financial Data + flag ON",
     "preconditions": [
-      "1. Flag ON; the customer has at least 1 default fee/discount."
+      "1. The customer has at least 1 default fee/discount."
     ],
     "steps": [
       "1. Open the customer, Fees & Discounts tab.",
@@ -187,7 +186,7 @@
     "type": "Functional",
     "permissions_required": "Customer Management: Create & Edit + Manage AP/AR + See Financial Data + flag ON",
     "preconditions": [
-      "1. Flag ON; the customer has zero default fees/discounts."
+      "1. The customer has zero default fees/discounts."
     ],
     "steps": [
       "1. Open the customer, Fees & Discounts tab.",
@@ -210,7 +209,7 @@
     "type": "Functional",
     "permissions_required": "Customer Management: Create & Edit + Manage AP/AR + Work Orders: Create & Edit + See Financial Data + flag ON",
     "preconditions": [
-      "1. Flag ON; the customer has a default \"ZZAUTOTEST Fleet Discount\" (Discount, % of Subtotal, 10%, non-taxable)."
+      "1. The customer has a default \"ZZAUTOTEST Fleet Discount\" (Discount, % of Subtotal, 10%, non-taxable)."
     ],
     "steps": [
       "1. Create a NEW work order for this customer with at least one labor line and one part so the subtotal is non-zero.",
@@ -235,7 +234,7 @@
     "type": "Functional",
     "permissions_required": "Customer Management: Create & Edit + Manage AP/AR + Work Orders: Create & Edit + See Financial Data + flag ON",
     "preconditions": [
-      "1. Flag ON; the customer has a default \"ZZAUTOTEST 10% Fee\" (Fee, % of Subtotal, 10%, taxable)."
+      "1. The customer has a default \"ZZAUTOTEST 10% Fee\" (Fee, % of Subtotal, 10%, taxable)."
     ],
     "steps": [
       "1. Create WO #1 for this customer with a net subtotal of $150.00. Note the adjustment amount.",
@@ -259,7 +258,7 @@
     "type": "Functional",
     "permissions_required": "Customer Management: Create & Edit + Manage AP/AR + Work Orders: Create & Edit + See Financial Data + flag ON",
     "preconditions": [
-      "1. Flag ON; the customer has a default \"ZZAUTOTEST Fleet Discount\".",
+      "1. The customer has a default \"ZZAUTOTEST Fleet Discount\".",
       "2. An OPEN work order for that customer already carries the auto-added adjustment from this default."
     ],
     "steps": [
@@ -284,7 +283,7 @@
     "type": "Functional",
     "permissions_required": "Settings → Finance (delete template) + Customer Management: Create & Edit + Manage AP/AR + Work Orders: Create & Edit + See Financial Data + flag ON",
     "preconditions": [
-      "1. Flag ON; a template \"ZZAUTOTEST Fleet Discount\" is a default on the customer AND has been auto-added to an existing OPEN work order."
+      "1. A template \"ZZAUTOTEST Fleet Discount\" is a default on the customer AND has been auto-added to an existing OPEN work order."
     ],
     "steps": [
       "1. Go to Administration → Service → Fees & Discounts and delete the \"ZZAUTOTEST Fleet Discount\" template (confirm the delete).",
@@ -309,7 +308,7 @@
     "type": "Functional",
     "permissions_required": "Customer Management: Create & Edit + Manage AP/AR + flag ON",
     "preconditions": [
-      "1. Flag ON; a disposable ZZAUTOTEST customer has at least 1 default fee/discount linked."
+      "1. A disposable ZZAUTOTEST customer has at least 1 default fee/discount linked."
     ],
     "steps": [
       "1. Delete the ZZAUTOTEST customer.",
@@ -332,7 +331,7 @@
     "type": "Functional",
     "permissions_required": "Customer Management: Create & Edit + Manage AP/AR + See Financial Data + flag ON",
     "preconditions": [
-      "1. Flag ON; the location has exactly 2 templates marked auto-apply and 1 template not auto-apply."
+      "1. The location has exactly 2 templates marked auto-apply and 1 template not auto-apply."
     ],
     "steps": [
       "1. Create a brand-new customer at this location.",
@@ -355,8 +354,7 @@
     "type": "Functional",
     "permissions_required": "Test with a role MISSING Manage Accounts Payable and Receivable (and separately missing Customer Management: Create & Edit)",
     "preconditions": [
-      "1. Flag ON.",
-      "2. A ZZAUTOTEST role is assigned to Tech (exact-user-match) with Customer Management: Create & Edit ON but Manage Accounts Payable and Receivable OFF."
+      "1. A ZZAUTOTEST role is assigned to Tech (exact-user-match) with Customer Management: Create & Edit ON but Manage Accounts Payable and Receivable OFF."
     ],
     "steps": [
       "1. Log in as Tech and open a customer record.",
@@ -380,7 +378,7 @@
     "type": "Functional",
     "permissions_required": "Settings → Finance + Customer Management: Create & Edit + Manage AP/AR + Work Orders: Create & Edit + See Financial Data + flag ON",
     "preconditions": [
-      "1. Flag ON; a template \"ZZAUTOTEST Env Fee\" is marked auto-apply at the location AND is a default on the test customer."
+      "1. A template \"ZZAUTOTEST Env Fee\" is marked auto-apply at the location AND is a default on the test customer."
     ],
     "steps": [
       "1. Create a NEW work order for the customer.",
@@ -403,7 +401,7 @@
     "type": "Negative",
     "permissions_required": "Customer Management: Create & Edit + Manage AP/AR + See Financial Data + flag ON",
     "preconditions": [
-      "1. Flag ON; a way to force a server error (e.g., simulate a network/API failure) on the add or remove call."
+      "1. A way to force a server error (e.g., simulate a network/API failure) on the add or remove call."
     ],
     "steps": [
       "1. On the customer Fees & Discounts tab, trigger an add or remove while the backend call fails.",
@@ -417,7 +415,6 @@
     "viu_status": "Pending — verify on staging once deployed",
     "notes": "Unlike WO/template save failures, customer-default failures use the generic system error, not a custom message."
   },
-
   {
     "id": "FD-TMPL-001",
     "area": "Template admin — location",
@@ -427,7 +424,7 @@
     "type": "Functional",
     "permissions_required": "Settings → Finance (Story 7 administration access) + flag ON",
     "preconditions": [
-      "1. Flag ON; you have Settings → Finance access."
+      "1. You have Settings → Finance access."
     ],
     "steps": [
       "1. Go to Administration → Service.",
@@ -450,7 +447,7 @@
     "type": "Functional",
     "permissions_required": "Settings → Finance + flag ON",
     "preconditions": [
-      "1. Flag ON; the location has at least 1 template."
+      "1. The location has at least 1 template."
     ],
     "steps": [
       "1. Open Administration → Service → Fees & Discounts.",
@@ -474,7 +471,7 @@
     "type": "Functional",
     "permissions_required": "Settings → Finance + flag ON",
     "preconditions": [
-      "1. Flag ON; you are on Administration → Service → Fees & Discounts."
+      "1. You are on Administration → Service → Fees & Discounts."
     ],
     "steps": [
       "1. Click \"New fee / discount\".",
@@ -501,7 +498,7 @@
     "type": "Functional",
     "permissions_required": "Settings → Finance + flag ON",
     "preconditions": [
-      "1. Flag ON; on the admin Fees & Discounts page."
+      "1. On the admin Fees & Discounts page."
     ],
     "steps": [
       "1. Click \"New fee / discount\".",
@@ -525,7 +522,7 @@
     "type": "Functional",
     "permissions_required": "Settings → Finance + Work Orders: Create & Edit + See Financial Data + flag ON",
     "preconditions": [
-      "1. Flag ON; you can create a template and then a new work order at the same location."
+      "1. You can create a template and then a new work order at the same location."
     ],
     "steps": [
       "1. Create a template \"ZZAUTOTEST Auto Fee\" (Fee, Flat Amount, $10.00, taxable) with \"Auto-apply to all new work orders at this location\" CHECKED.",
@@ -550,7 +547,7 @@
     "type": "Functional",
     "permissions_required": "Settings → Finance + flag ON",
     "preconditions": [
-      "1. Flag ON; a Fee template \"ZZAUTOTEST Shop Fee\" exists."
+      "1. A Fee template \"ZZAUTOTEST Shop Fee\" exists."
     ],
     "steps": [
       "1. On the admin Fees & Discounts page, click the \"ZZAUTOTEST Shop Fee\" row.",
@@ -575,7 +572,7 @@
     "type": "Functional",
     "permissions_required": "Settings → Finance + flag ON",
     "preconditions": [
-      "1. Flag ON; a template that is NOT a default for any customer exists."
+      "1. A template that is NOT a default for any customer exists."
     ],
     "steps": [
       "1. On the admin Fees & Discounts page, click the delete action on the template.",
@@ -599,7 +596,7 @@
     "type": "Functional",
     "permissions_required": "Settings → Finance + Customer Management: Create & Edit + Manage AP/AR + flag ON",
     "preconditions": [
-      "1. Flag ON; a template is set as a default for exactly 2 customers."
+      "1. A template is set as a default for exactly 2 customers."
     ],
     "steps": [
       "1. On the admin Fees & Discounts page, click the delete action on that template.",
@@ -621,7 +618,7 @@
     "type": "Functional",
     "permissions_required": "Settings → Finance + Work Orders: Create & Edit + See Financial Data + flag ON",
     "preconditions": [
-      "1. Flag ON; a template has been applied to an OPEN work order as an adjustment."
+      "1. A template has been applied to an OPEN work order as an adjustment."
     ],
     "steps": [
       "1. Delete the template from Administration → Service → Fees & Discounts (confirm).",
@@ -644,7 +641,7 @@
     "type": "Functional",
     "permissions_required": "Settings → Finance (create templates) + Work Order Lines: Create & Edit + See Financial Data + flag ON",
     "preconditions": [
-      "1. Flag ON; the location has: a \"% of Labor Total\" template, a \"% of Parts Total\" template, and a Flat Amount template.",
+      "1. The location has: a \"% of Labor Total\" template, a \"% of Parts Total\" template, and a Flat Amount template.",
       "2. A work order with at least one labor line and one part exists."
     ],
     "steps": [
@@ -672,7 +669,7 @@
     "type": "Functional",
     "permissions_required": "Settings → Finance + flag ON",
     "preconditions": [
-      "1. Flag ON; on the admin Fees & Discounts create dialog."
+      "1. On the admin Fees & Discounts create dialog."
     ],
     "steps": [
       "1. Set Calculation type = \"Flat Amount\" and observe whether \"Max Amount (Optional)\" is shown.",
@@ -697,7 +694,7 @@
     "type": "Functional",
     "permissions_required": "Settings → Finance + flag ON",
     "preconditions": [
-      "1. Flag ON; the location has zero templates."
+      "1. The location has zero templates."
     ],
     "steps": [
       "1. Open Administration → Service → Fees & Discounts.",
@@ -719,7 +716,7 @@
     "type": "Negative",
     "permissions_required": "Settings → Finance + flag ON",
     "preconditions": [
-      "1. Flag ON; on the admin Fees & Discounts create dialog."
+      "1. On the admin Fees & Discounts create dialog."
     ],
     "steps": [
       "1. Set Type = \"Discount\", Calculation type = \"% of Subtotal\", Percent = 150, and try to save.",
@@ -742,7 +739,7 @@
     "type": "Functional",
     "permissions_required": "Settings → Finance + flag ON",
     "preconditions": [
-      "1. Flag ON; on the admin Fees & Discounts create dialog with Type = Fee or Discount."
+      "1. On the admin Fees & Discounts create dialog with Type = Fee or Discount."
     ],
     "steps": [
       "1. Open the Calculation type dropdown.",
@@ -765,7 +762,7 @@
     "type": "Negative",
     "permissions_required": "Settings → Finance + flag ON",
     "preconditions": [
-      "1. Flag ON; a way to force a save failure on the template create/edit call."
+      "1. A way to force a save failure on the template create/edit call."
     ],
     "steps": [
       "1. Fill a valid template and click save while the backend call fails.",
@@ -787,8 +784,7 @@
     "type": "Functional",
     "permissions_required": "Test with a role that has and then lacks Settings → Finance",
     "preconditions": [
-      "1. Flag ON.",
-      "2. A ZZAUTOTEST role is assigned to Tech (exact-user-match) WITHOUT Settings → Finance."
+      "1. A ZZAUTOTEST role is assigned to Tech (exact-user-match) WITHOUT Settings → Finance."
     ],
     "steps": [
       "1. Log in as Tech and try to reach Administration → Service → Fees & Discounts.",
@@ -810,7 +806,7 @@
     "type": "Edge",
     "permissions_required": "Settings → Finance + flag ON",
     "preconditions": [
-      "1. Flag ON; on the admin Fees & Discounts create dialog."
+      "1. On the admin Fees & Discounts create dialog."
     ],
     "steps": [
       "1. Type a 100-character name and observe it is accepted.",
@@ -824,7 +820,6 @@
     "viu_status": "Pending — verify on staging once deployed",
     "notes": ""
   },
-
   {
     "id": "FD-PROC-001",
     "area": "Processing Fee — template builder",
@@ -834,7 +829,7 @@
     "type": "Functional",
     "permissions_required": "Settings → Finance + flag ON",
     "preconditions": [
-      "1. Flag ON; on the admin Fees & Discounts create dialog."
+      "1. On the admin Fees & Discounts create dialog."
     ],
     "steps": [
       "1. Open the Type dropdown in the template create dialog."
@@ -856,7 +851,7 @@
     "type": "Functional",
     "permissions_required": "Settings → Finance + flag ON",
     "preconditions": [
-      "1. Flag ON; on the admin Fees & Discounts create dialog with Type = \"Processing Fee\"."
+      "1. On the admin Fees & Discounts create dialog with Type = \"Processing Fee\"."
     ],
     "steps": [
       "1. Open the Calculation type dropdown while Type = Processing Fee.",
@@ -880,7 +875,7 @@
     "type": "Functional",
     "permissions_required": "Settings → Finance + flag ON",
     "preconditions": [
-      "1. Flag ON; on the admin create dialog with Type = Processing Fee."
+      "1. On the admin create dialog with Type = Processing Fee."
     ],
     "steps": [
       "1. Set Calculation type = Flat Amount and check for a Max Amount field.",
@@ -902,7 +897,7 @@
     "type": "Functional",
     "permissions_required": "Settings → Finance + flag ON",
     "preconditions": [
-      "1. Flag ON; on the admin create dialog with Type = Processing Fee."
+      "1. On the admin create dialog with Type = Processing Fee."
     ],
     "steps": [
       "1. Observe the Taxable control default value.",
@@ -927,7 +922,7 @@
     "type": "Negative",
     "permissions_required": "Work Orders: Create & Edit + Work Order Lines: Create & Edit + See Financial Data + flag ON",
     "preconditions": [
-      "1. Flag ON; a Processing Fee template exists.",
+      "1. A Processing Fee template exists.",
       "2. An open work order is available."
     ],
     "steps": [
@@ -951,7 +946,7 @@
     "type": "Functional",
     "permissions_required": "Settings → Finance + Work Orders: Create & Edit + See Financial Data + flag ON",
     "preconditions": [
-      "1. Flag ON; a Processing Fee template \"ZZAUTOTEST Proc Fee\" (Flat Amount $5.00, taxable Yes) is marked auto-apply."
+      "1. A Processing Fee template \"ZZAUTOTEST Proc Fee\" (Flat Amount $5.00, taxable Yes) is marked auto-apply."
     ],
     "steps": [
       "1. Create a NEW work order at that location.",
@@ -974,7 +969,7 @@
     "type": "Functional",
     "permissions_required": "Settings → Finance + Customer Management: Create & Edit + Manage AP/AR + Work Orders: Create & Edit + See Financial Data + flag ON",
     "preconditions": [
-      "1. Flag ON; a Processing Fee template is set as a default on the test customer."
+      "1. A Processing Fee template is set as a default on the test customer."
     ],
     "steps": [
       "1. Create a NEW work order for that customer.",
@@ -997,7 +992,7 @@
     "type": "Functional",
     "permissions_required": "Work Orders: Create & Edit + See Financial Data + flag ON",
     "preconditions": [
-      "1. Flag ON; an open WO carries a Processing Fee (via auto-apply or customer default)."
+      "1. An open WO carries a Processing Fee (via auto-apply or customer default)."
     ],
     "steps": [
       "1. Hover the Processing Fee entry in the WO Fees & Discounts card and open its 3-dot menu.",
@@ -1021,7 +1016,7 @@
     "type": "Functional",
     "permissions_required": "Settings → Finance + Work Orders: Create & Edit + See Financial Data + flag ON",
     "preconditions": [
-      "1. Flag ON; a Processing Fee template \"ZZAUTOTEST 3% Proc\" (% of Grand Total, 3%, taxable Yes) auto-applies.",
+      "1. A Processing Fee template \"ZZAUTOTEST 3% Proc\" (% of Grand Total, 3%, taxable Yes) auto-applies.",
       "2. A work order exists whose net subtotal (after line-level adjustments) = $300.00 and pre-fee tax = $24.00 (so Grand Total base = $324.00)."
     ],
     "steps": [
@@ -1046,7 +1041,7 @@
     "type": "Negative",
     "permissions_required": "Settings → Finance + flag ON",
     "preconditions": [
-      "1. Flag ON; ability to submit template data (via UI edge case or API) for a Processing Fee carrying a Max Amount, or a method other than Flat Amount / % of Grand Total."
+      "1. Ability to submit template data (via UI edge case or API) for a Processing Fee carrying a Max Amount, or a method other than Flat Amount / % of Grand Total."
     ],
     "steps": [
       "1. Attempt to save a Processing Fee template that carries a Max Amount.",
@@ -1069,7 +1064,7 @@
     "type": "Functional",
     "permissions_required": "Settings → Finance + Work Orders: Create & Edit + See Financial Data + flag ON",
     "preconditions": [
-      "1. Flag ON; a Processing Fee template exists and is on a WO."
+      "1. A Processing Fee template exists and is on a WO."
     ],
     "steps": [
       "1. On the admin dialog, confirm there is no way to make a Processing Fee a discount.",
@@ -1092,7 +1087,7 @@
     "type": "Functional",
     "permissions_required": "Settings → Finance + Work Orders: Create & Edit + See Financial Data + flag ON",
     "preconditions": [
-      "1. Flag ON; a Processing Fee template auto-applied to an existing OPEN work order (e.g. Flat $5.00)."
+      "1. A Processing Fee template auto-applied to an existing OPEN work order (e.g. Flat $5.00)."
     ],
     "steps": [
       "1. Edit the Processing Fee template amount from $5.00 to $8.00 and save.",
@@ -1115,7 +1110,7 @@
     "type": "Edge",
     "permissions_required": "Settings → Finance + Work Orders: Create & Edit + See Financial Data + flag ON",
     "preconditions": [
-      "1. Flag ON; two Processing Fee templates (both % of Grand Total) auto-apply to one work order.",
+      "1. Two Processing Fee templates (both % of Grand Total) auto-apply to one work order.",
       "2. Net subtotal $300.00, pre-fee tax $24.00 → Grand Total base $324.00."
     ],
     "steps": [
@@ -1139,7 +1134,7 @@
     "type": "Negative",
     "permissions_required": "Settings → Finance + flag ON",
     "preconditions": [
-      "1. Flag ON; ability to submit a Processing Fee with a non-empty minimum amount (no UI control exists; guard for external data)."
+      "1. Ability to submit a Processing Fee with a non-empty minimum amount (no UI control exists; guard for external data)."
     ],
     "steps": [
       "1. Submit a Processing Fee template that carries a minimum amount value."
@@ -1151,7 +1146,6 @@
     "viu_status": "Pending — verify on staging once deployed",
     "notes": "Min Amount exists only in the data model; both dialogs always send it empty (null)."
   },
-
   {
     "id": "FD-DOC-001",
     "area": "Customer document (estimate/invoice)",
@@ -1161,7 +1155,7 @@
     "type": "Functional",
     "permissions_required": "See Financial Data + flag ON",
     "preconditions": [
-      "1. Flag ON; a work order has whole-WO and line-level adjustments and can produce both an estimate and an invoice."
+      "1. A work order has whole-WO and line-level adjustments and can produce both an estimate and an invoice."
     ],
     "steps": [
       "1. View the customer ESTIMATE for the WO and note the adjustment rendering.",
@@ -1184,7 +1178,7 @@
     "type": "Functional",
     "permissions_required": "See Financial Data + flag ON",
     "preconditions": [
-      "1. Flag ON; a WO has a labor line with a \"Shop Supply Fee\" (% of Labor Total, fee) and a labor-line discount."
+      "1. A WO has a labor line with a \"Shop Supply Fee\" (% of Labor Total, fee) and a labor-line discount."
     ],
     "steps": [
       "1. View the customer estimate/invoice.",
@@ -1208,7 +1202,7 @@
     "type": "Functional",
     "permissions_required": "See Financial Data + flag ON",
     "preconditions": [
-      "1. Flag ON; a WO part has a percentage part-line adjustment and another part has a Flat Amount part-line adjustment."
+      "1. A WO part has a percentage part-line adjustment and another part has a Flat Amount part-line adjustment."
     ],
     "steps": [
       "1. View the customer estimate/invoice.",
@@ -1231,7 +1225,7 @@
     "type": "Functional",
     "permissions_required": "See Financial Data + flag ON",
     "preconditions": [
-      "1. Flag ON; a WO has both a fee and a discount adjustment."
+      "1. A WO has both a fee and a discount adjustment."
     ],
     "steps": [
       "1. View the customer estimate/invoice.",
@@ -1255,7 +1249,7 @@
     "type": "Functional",
     "permissions_required": "See Financial Data + flag ON",
     "preconditions": [
-      "1. Flag ON; a WO has 3 whole-WO adjustments created in a known order, including a % of Subtotal and a Flat Amount."
+      "1. A WO has 3 whole-WO adjustments created in a known order, including a % of Subtotal and a Flat Amount."
     ],
     "steps": [
       "1. View the customer estimate/invoice.",
@@ -1279,7 +1273,7 @@
     "type": "Functional",
     "permissions_required": "See Financial Data + flag ON",
     "preconditions": [
-      "1. Flag ON; a WO has three separate \"Shop Supply Fee\" line-level fees (same name+type) across different lines."
+      "1. A WO has three separate \"Shop Supply Fee\" line-level fees (same name+type) across different lines."
     ],
     "steps": [
       "1. View the customer estimate/invoice.",
@@ -1302,7 +1296,7 @@
     "type": "Functional",
     "permissions_required": "See Financial Data + flag ON",
     "preconditions": [
-      "1. Flag ON; a WO carries a % of Grand Total Processing Fee."
+      "1. A WO carries a % of Grand Total Processing Fee."
     ],
     "steps": [
       "1. View the customer estimate/invoice bottom Adjustments block."
@@ -1323,7 +1317,7 @@
     "type": "Functional",
     "permissions_required": "See Financial Data + flag ON",
     "preconditions": [
-      "1. Flag ON; a WO whose total shop supplies = $0.00."
+      "1. A WO whose total shop supplies = $0.00."
     ],
     "steps": [
       "1. View the customer estimate, the invoice, and the financial tab.",
@@ -1347,7 +1341,7 @@
     "type": "Functional",
     "permissions_required": "See Financial Data + Work Orders: Create & Edit + flag ON",
     "preconditions": [
-      "1. Flag ON; a WO that currently has $0.00 shop supplies (Shop Supplies hidden on customer views)."
+      "1. A WO that currently has $0.00 shop supplies (Shop Supplies hidden on customer views)."
     ],
     "steps": [
       "1. Add shop supplies so the total becomes > $0.00.",
@@ -1369,7 +1363,7 @@
     "type": "Edge",
     "permissions_required": "See Financial Data + flag ON",
     "preconditions": [
-      "1. Flag ON; a WO labor line with an adjustment is set to declined/not-billable."
+      "1. A WO labor line with an adjustment is set to declined/not-billable."
     ],
     "steps": [
       "1. View the customer estimate (including a Needs Approval estimate).",
@@ -1392,7 +1386,7 @@
     "type": "Functional",
     "permissions_required": "See Financial Data + flag ON",
     "preconditions": [
-      "1. Flag ON; a WO with labor, parts, shop supplies (> $0.00), and whole-WO adjustments."
+      "1. A WO with labor, parts, shop supplies (> $0.00), and whole-WO adjustments."
     ],
     "steps": [
       "1. View the customer estimate/invoice totals section from top to bottom."
@@ -1404,7 +1398,6 @@
     "viu_status": "Pending — verify on staging once deployed",
     "notes": ""
   },
-
   {
     "id": "FD-QB-001",
     "area": "QuickBooks sync",
@@ -1414,7 +1407,7 @@
     "type": "Functional",
     "permissions_required": "See Financial Data + flag ON + active QuickBooks connection",
     "preconditions": [
-      "1. Flag ON; location has an active QuickBooks connection with mapped Fee and Discount items.",
+      "1. Location has an active QuickBooks connection with mapped Fee and Discount items.",
       "2. A WO with one fee (+$10.00) and one discount (−$20.00) is invoiced."
     ],
     "steps": [
@@ -1439,7 +1432,7 @@
     "type": "Functional",
     "permissions_required": "See Financial Data + flag ON + active QuickBooks connection with mapped items",
     "preconditions": [
-      "1. Flag ON; QuickBooks connected with a mapped Fee item and Discount item.",
+      "1. QuickBooks connected with a mapped Fee item and Discount item.",
       "2. A WO has a fee named \"Hazmat Disposal Fee\"; the WO is invoiced."
     ],
     "steps": [
@@ -1463,7 +1456,7 @@
     "type": "Edge",
     "permissions_required": "See Financial Data + flag ON + active QuickBooks connection with mapped items",
     "preconditions": [
-      "1. Flag ON; QuickBooks connected; a WO has an adjustment that resolves to $0.00 (e.g. target not billable, or $0 base)."
+      "1. QuickBooks connected; a WO has an adjustment that resolves to $0.00 (e.g. target not billable, or $0 base)."
     ],
     "steps": [
       "1. Invoice the WO and inspect the QuickBooks line items.",
@@ -1486,7 +1479,7 @@
     "type": "Negative",
     "permissions_required": "Work Orders: Create & Edit + See Financial Data + flag ON + QuickBooks connected, Fee item UNMAPPED",
     "preconditions": [
-      "1. Flag ON; QuickBooks connected; the Fee item is NOT mapped in Settings → QuickBooks.",
+      "1. QuickBooks connected; the Fee item is NOT mapped in Settings → QuickBooks.",
       "2. The Discount item IS mapped.",
       "3. An open WO is available."
     ],
@@ -1511,7 +1504,7 @@
     "type": "Negative",
     "permissions_required": "Work Orders: Create & Edit + See Financial Data + flag ON + QuickBooks connected, Discount item UNMAPPED",
     "preconditions": [
-      "1. Flag ON; QuickBooks connected; the Discount item is NOT mapped; the Fee item IS mapped.",
+      "1. QuickBooks connected; the Discount item is NOT mapped; the Fee item IS mapped.",
       "2. An open WO is available."
     ],
     "steps": [
@@ -1535,7 +1528,7 @@
     "type": "Negative",
     "permissions_required": "Work Orders + Work Order Lines + Part Sales: Create & Edit + See Financial Data + flag ON + QuickBooks Fee item UNMAPPED",
     "preconditions": [
-      "1. Flag ON; QuickBooks connected; Fee item UNMAPPED."
+      "1. QuickBooks connected; Fee item UNMAPPED."
     ],
     "steps": [
       "1. Try to add a fee from: the WO dialog, a labor-line dialog, a part dialog, a part-sale whole-sale dialog and a single-part dialog, and by applying a fee template to a WO."
@@ -1556,7 +1549,7 @@
     "type": "Negative",
     "permissions_required": "Settings → Finance + Customer Management: Create & Edit + Manage AP/AR + flag ON + QuickBooks connected, Fee item UNMAPPED",
     "preconditions": [
-      "1. Flag ON; QuickBooks connected; Fee item UNMAPPED."
+      "1. QuickBooks connected; Fee item UNMAPPED."
     ],
     "steps": [
       "1. Try to mark a Fee template as auto-apply at the location.",
@@ -1579,7 +1572,7 @@
     "type": "Functional",
     "permissions_required": "Settings → Finance + flag ON",
     "preconditions": [
-      "1. Flag ON; scenario A: QuickBooks connected with Fee item unmapped; scenario B: QuickBooks NOT connected."
+      "1. Scenario A: QuickBooks connected with Fee item unmapped; scenario B: QuickBooks NOT connected."
     ],
     "steps": [
       "1. Scenario A: create/edit a NON-auto-apply Fee template.",
@@ -1602,7 +1595,7 @@
     "type": "Functional",
     "permissions_required": "See Financial Data + flag ON + active QuickBooks connection",
     "preconditions": [
-      "1. Flag ON; QuickBooks connected with mapped Fee item; a WO with a fee is ready to invoice/sync."
+      "1. QuickBooks connected with mapped Fee item; a WO with a fee is ready to invoice/sync."
     ],
     "steps": [
       "1. Unmap the Fee item in Settings → QuickBooks (or connect QuickBooks after fees already exist).",
@@ -1627,7 +1620,7 @@
     "type": "Functional",
     "permissions_required": "See Financial Data + flag ON + active QuickBooks connection with a Class set",
     "preconditions": [
-      "1. Flag ON; QuickBooks connected with a location Class set; a WO with fees/discounts is invoiced."
+      "1. QuickBooks connected with a location Class set; a WO with fees/discounts is invoiced."
     ],
     "steps": [
       "1. Inspect the synced invoice's line items and their Class."
@@ -1649,7 +1642,7 @@
     "type": "Negative",
     "permissions_required": "See Financial Data + flag ON + active QuickBooks connection",
     "preconditions": [
-      "1. Flag ON; QuickBooks connected; the location's Class has been deleted/deactivated in QuickBooks."
+      "1. QuickBooks connected; the location's Class has been deleted/deactivated in QuickBooks."
     ],
     "steps": [
       "1. Attempt to sync an invoice with fees/discounts."
@@ -1671,7 +1664,7 @@
     "type": "Edge",
     "permissions_required": "See Financial Data + Work Orders: Create & Edit + flag ON + active QuickBooks connection",
     "preconditions": [
-      "1. Flag ON; QuickBooks connected; a WO has $100.00 taxable parts and $10.00 tax."
+      "1. QuickBooks connected; a WO has $100.00 taxable parts and $10.00 tax."
     ],
     "steps": [
       "1. Add a NON-taxable $150.00 discount to the WO; observe the net subtotal, tax, and total.",
@@ -1695,7 +1688,7 @@
     "type": "Edge",
     "permissions_required": "See Financial Data + flag ON + active QuickBooks connection",
     "preconditions": [
-      "1. Flag ON; QuickBooks connected; a WO where stacked MULTIPLE discount lines drive the net subtotal below $0.00 (floor applies)."
+      "1. QuickBooks connected; a WO where stacked MULTIPLE discount lines drive the net subtotal below $0.00 (floor applies)."
     ],
     "steps": [
       "1. Invoice/sync the WO.",
@@ -1719,7 +1712,7 @@
     "type": "Functional",
     "permissions_required": "See Financial Data + Work Orders: Create & Edit + flag ON",
     "preconditions": [
-      "1. Flag ON; a WO where discounts will exceed the net subtotal."
+      "1. A WO where discounts will exceed the net subtotal."
     ],
     "steps": [
       "1. Add discounts that push the net subtotal below $0.00.",
@@ -1742,7 +1735,7 @@
     "type": "Functional",
     "permissions_required": "See Financial Data + flag ON + active QuickBooks connection",
     "preconditions": [
-      "1. Flag ON; QuickBooks connected; a WO where the floor applied (from FD-QB-012, $50.00 excess)."
+      "1. QuickBooks connected; a WO where the floor applied (from FD-QB-012, $50.00 excess)."
     ],
     "steps": [
       "1. After confirming the over-discount, check the customer's Deposits & Credits.",
@@ -1766,7 +1759,7 @@
     "type": "Functional",
     "permissions_required": "See Financial Data + flag ON + active QuickBooks connection with mapped items",
     "preconditions": [
-      "1. Flag ON; QuickBooks connected; a WO has one taxable fee and one non-taxable fee; the WO is invoiced."
+      "1. QuickBooks connected; a WO has one taxable fee and one non-taxable fee; the WO is invoiced."
     ],
     "steps": [
       "1. Inspect the synced QuickBooks lines for both fees."
@@ -1779,7 +1772,6 @@
     "viu_status": "Pending — verify on staging once deployed",
     "notes": ""
   },
-
   {
     "id": "FD-HIST-001",
     "area": "History log",
@@ -1789,7 +1781,7 @@
     "type": "Functional",
     "permissions_required": "View History Logs + Work Orders: Create & Edit + See Financial Data + flag ON",
     "preconditions": [
-      "1. Flag ON; you have View History Logs and can add/edit/remove adjustments on an open WO."
+      "1. You have View History Logs and can add/edit/remove adjustments on an open WO."
     ],
     "steps": [
       "1. Add a Fee to the WO, then edit it, then remove it.",
@@ -1814,7 +1806,7 @@
     "type": "Functional",
     "permissions_required": "View History Logs + Work Orders + Work Order Lines: Create & Edit + See Financial Data + flag ON",
     "preconditions": [
-      "1. Flag ON; a WO has (a) a whole-WO 10% fee named \"Env Fee\", (b) a labor-line $5.00 flat fee, (c) a part-line discount."
+      "1. A WO has (a) a whole-WO 10% fee named \"Env Fee\", (b) a labor-line $5.00 flat fee, (c) a part-line discount."
     ],
     "steps": [
       "1. Add each of the three adjustments and open the history log.",
@@ -1839,7 +1831,7 @@
     "type": "Functional",
     "permissions_required": "View History Logs + Work Orders + Work Order Lines: Create & Edit + See Financial Data + flag ON",
     "preconditions": [
-      "1. Flag ON; a WO has at least one whole-WO adjustment and one line-level adjustment logged."
+      "1. A WO has at least one whole-WO adjustment and one line-level adjustment logged."
     ],
     "steps": [
       "1. Open the WO history log and inspect the saved-state icon column and the Line column for adjustment entries."
@@ -1861,7 +1853,7 @@
     "type": "Functional",
     "permissions_required": "View History Logs (F&D flag OFF)",
     "preconditions": [
-      "1. A WO already has fee/discount history entries recorded while the flag was ON.",
+      "1. A WO already has fee/discount history entries.",
       "2. The Fees & Discounts feature flag is then turned OFF for the org."
     ],
     "steps": [
@@ -1885,7 +1877,7 @@
     "type": "Functional",
     "permissions_required": "View History Logs ON, See Financial Data OFF",
     "preconditions": [
-      "1. Flag ON; a WO has fee/discount history entries.",
+      "1. A WO has fee/discount history entries.",
       "2. A ZZAUTOTEST role is assigned to Tech with View History Logs ON but See Financial Data OFF (exact-user-match)."
     ],
     "steps": [
@@ -1910,7 +1902,7 @@
     "type": "Functional",
     "permissions_required": "Test with a role that lacks View History Logs",
     "preconditions": [
-      "1. Flag ON; a WO has fee/discount history.",
+      "1. A WO has fee/discount history.",
       "2. A ZZAUTOTEST role is assigned to Tech WITHOUT View History Logs (exact-user-match)."
     ],
     "steps": [
@@ -1933,7 +1925,7 @@
     "type": "Functional",
     "permissions_required": "View History Logs + Work Orders: Create & Edit + See Financial Data + flag ON",
     "preconditions": [
-      "1. Flag ON; a WO carries a Processing Fee (via auto-apply or customer default)."
+      "1. A WO carries a Processing Fee (via auto-apply or customer default)."
     ],
     "steps": [
       "1. Confirm the Processing Fee was added (auto) and then remove it from the WO.",
@@ -1957,7 +1949,7 @@
     "type": "Functional",
     "permissions_required": "View History Logs + Work Orders: Create & Edit + See Financial Data + flag ON",
     "preconditions": [
-      "1. Flag ON; a WO has a whole-WO 10% fee."
+      "1. A WO has a whole-WO 10% fee."
     ],
     "steps": [
       "1. Edit the fee's percent from 10% to 15% and save.",

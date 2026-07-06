@@ -8,10 +8,9 @@
     "type": "Functional",
     "permissions_required": "Work Orders: Create & Edit + See Financial Data + Fees & Discounts feature flag ON",
     "preconditions": [
-      "1. The Fees & Discounts feature flag is ON for the organization.",
-      "2. You are logged in as a role that has Work Orders: Create & Edit and See Financial Data.",
-      "3. An open (not Invoiced, not Paid) work order exists; you are viewing it and are NOT in history mode.",
-      "4. You are on the work order's Lines tab."
+      "1. You are logged in as a role that has Work Orders: Create & Edit and See Financial Data.",
+      "2. An open (not Invoiced, not Paid) work order exists; you are viewing it and are NOT in history mode.",
+      "3. You are on the work order's Lines tab."
     ],
     "steps": [
       "1. Click the ⋯ (More actions) menu at the top-right of the work order toolbar.",
@@ -36,7 +35,7 @@
     "type": "Functional",
     "permissions_required": "Work Orders: Create & Edit + See Financial Data + Fees & Discounts flag ON",
     "preconditions": [
-      "1. Feature flag ON; logged in with Work Orders: Create & Edit + See Financial Data.",
+      "1. Logged in with Work Orders: Create & Edit + See Financial Data.",
       "2. An open work order with subtotal exactly $10,715.39 (or any known subtotal) is open on the Lines tab."
     ],
     "steps": [
@@ -68,7 +67,7 @@
     "type": "Functional",
     "permissions_required": "Work Orders: Create & Edit + See Financial Data + Fees & Discounts flag ON",
     "preconditions": [
-      "1. Feature flag ON; logged in with Work Orders: Create & Edit + See Financial Data.",
+      "1. Logged in with Work Orders: Create & Edit + See Financial Data.",
       "2. An open work order with Work Order Total = $10,715.39 is open."
     ],
     "steps": [
@@ -98,7 +97,7 @@
     "type": "Functional",
     "permissions_required": "Work Orders: Create & Edit + See Financial Data + Fees & Discounts flag ON",
     "preconditions": [
-      "1. Feature flag ON; logged in with Work Orders: Create & Edit + See Financial Data.",
+      "1. Logged in with Work Orders: Create & Edit + See Financial Data.",
       "2. An open work order is open; the location's template library contains 'Fleet Standard Discount (−10%)'."
     ],
     "steps": [
@@ -128,7 +127,7 @@
     "type": "Functional",
     "permissions_required": "Work Orders: Create & Edit + See Financial Data + Fees & Discounts flag ON",
     "preconditions": [
-      "1. Feature flag ON; logged in with Work Orders: Create & Edit + See Financial Data.",
+      "1. Logged in with Work Orders: Create & Edit + See Financial Data.",
       "2. An open work order is open with the Add dialog freshly opened (all fields blank)."
     ],
     "steps": [
@@ -160,7 +159,7 @@
     "type": "Functional",
     "permissions_required": "Work Orders: Create & Edit + See Financial Data + Fees & Discounts flag ON",
     "preconditions": [
-      "1. Feature flag ON; logged in with Work Orders: Create & Edit + See Financial Data.",
+      "1. Logged in with Work Orders: Create & Edit + See Financial Data.",
       "2. An open work order whose relevant base for the fee is exactly $100.00 is open."
     ],
     "steps": [
@@ -187,7 +186,7 @@
     "type": "Functional",
     "permissions_required": "Work Orders: Create & Edit + See Financial Data + Fees & Discounts flag ON",
     "preconditions": [
-      "1. Feature flag ON; logged in with Work Orders: Create & Edit + See Financial Data.",
+      "1. Logged in with Work Orders: Create & Edit + See Financial Data.",
       "2. The whole-WO Add dialog is open."
     ],
     "steps": [
@@ -211,7 +210,7 @@
     "type": "Functional",
     "permissions_required": "Work Orders: Create & Edit + See Financial Data + Fees & Discounts flag ON",
     "preconditions": [
-      "1. Feature flag ON; logged in with Work Orders: Create & Edit + See Financial Data.",
+      "1. Logged in with Work Orders: Create & Edit + See Financial Data.",
       "2. The whole-WO Add dialog is open."
     ],
     "steps": [
@@ -236,7 +235,7 @@
     "type": "Functional",
     "permissions_required": "Work Orders: Create & Edit + See Financial Data + Fees & Discounts flag ON",
     "preconditions": [
-      "1. Feature flag ON; logged in with Work Orders: Create & Edit + See Financial Data.",
+      "1. Logged in with Work Orders: Create & Edit + See Financial Data.",
       "2. The whole-WO Add dialog is open with Name, Type='Fee', Calc type='Flat amount' set."
     ],
     "steps": [
@@ -260,7 +259,7 @@
     "type": "Functional",
     "permissions_required": "Work Orders: Create & Edit + See Financial Data + Fees & Discounts flag ON",
     "preconditions": [
-      "1. Feature flag ON; logged in with Work Orders: Create & Edit + See Financial Data.",
+      "1. Logged in with Work Orders: Create & Edit + See Financial Data.",
       "2. The whole-WO Add dialog is open."
     ],
     "steps": [
@@ -284,7 +283,7 @@
     "type": "Functional",
     "permissions_required": "Work Orders: Create & Edit + See Financial Data + Fees & Discounts flag ON",
     "preconditions": [
-      "1. Feature flag ON; logged in with Work Orders: Create & Edit + See Financial Data.",
+      "1. Logged in with Work Orders: Create & Edit + See Financial Data.",
       "2. An open work order with Net Labor total $200.00, Net Parts total $100.00, Shop Supplies $0.00 (so Subtotal = $300.00), no other adjustments."
     ],
     "steps": [
@@ -311,7 +310,7 @@
     "type": "Functional",
     "permissions_required": "Work Orders: Create & Edit + See Financial Data + Fees & Discounts flag ON",
     "preconditions": [
-      "1. Feature flag ON; logged in with Work Orders: Create & Edit + See Financial Data.",
+      "1. Logged in with Work Orders: Create & Edit + See Financial Data.",
       "2. A work order in Invoiced (or Paid) status is open."
     ],
     "steps": [
@@ -336,9 +335,8 @@
     "type": "Functional",
     "permissions_required": "See Financial Data ON but Work Orders: Create & Edit OFF; Fees & Discounts flag ON",
     "preconditions": [
-      "1. Feature flag ON.",
-      "2. Logged in as a role that HAS See Financial Data but does NOT have Work Orders: Create & Edit.",
-      "3. An open work order is open."
+      "1. Logged in as a role that HAS See Financial Data but does NOT have Work Orders: Create & Edit.",
+      "2. An open work order is open."
     ],
     "steps": [
       "1. Open the WO toolbar ⋯ menu and look for 'Add Work Order Fee / Discount'."
@@ -360,7 +358,7 @@
     "type": "Functional",
     "permissions_required": "Work Orders: Create & Edit + See Financial Data + Fees & Discounts flag ON",
     "preconditions": [
-      "1. Feature flag ON; logged in with Work Orders: Create & Edit + See Financial Data.",
+      "1. Logged in with Work Orders: Create & Edit + See Financial Data.",
       "2. The whole-WO Add dialog is freshly open."
     ],
     "steps": [
@@ -384,7 +382,7 @@
     "type": "Functional",
     "permissions_required": "Work Orders: Create & Edit + See Financial Data + Fees & Discounts flag ON",
     "preconditions": [
-      "1. Feature flag ON; logged in with Work Orders: Create & Edit + See Financial Data.",
+      "1. Logged in with Work Orders: Create & Edit + See Financial Data.",
       "2. The whole-WO Add dialog is open."
     ],
     "steps": [
@@ -408,7 +406,7 @@
     "type": "Functional",
     "permissions_required": "Work Order Lines: Create & Edit + See Financial Data + Fees & Discounts flag ON",
     "preconditions": [
-      "1. Feature flag ON; logged in with Work Order Lines: Create & Edit and See Financial Data.",
+      "1. Logged in with Work Order Lines: Create & Edit and See Financial Data.",
       "2. An open work order with a labor line, e.g. Line 1 'Service - Perform LOF and inspection', is open on the Lines tab."
     ],
     "steps": [
@@ -434,7 +432,7 @@
     "type": "Functional",
     "permissions_required": "Work Order Lines: Create & Edit + See Financial Data + Fees & Discounts flag ON",
     "preconditions": [
-      "1. Feature flag ON; logged in with Work Order Lines: Create & Edit + See Financial Data.",
+      "1. Logged in with Work Order Lines: Create & Edit + See Financial Data.",
       "2. An open work order with a labor line whose gross labor price is exactly $150.00, no existing adjustments on that line."
     ],
     "steps": [
@@ -462,7 +460,7 @@
     "type": "Functional",
     "permissions_required": "Work Order Lines: Create & Edit + See Financial Data + Fees & Discounts flag ON",
     "preconditions": [
-      "1. Feature flag ON; logged in with Work Order Lines: Create & Edit + See Financial Data.",
+      "1. Logged in with Work Order Lines: Create & Edit + See Financial Data.",
       "2. An open work order with two or more labor lines is open on the Lines tab."
     ],
     "steps": [
@@ -486,7 +484,7 @@
     "type": "Functional",
     "permissions_required": "Work Order Lines: Create & Edit + See Financial Data + Fees & Discounts flag ON",
     "preconditions": [
-      "1. Feature flag ON; logged in with Work Order Lines: Create & Edit + See Financial Data.",
+      "1. Logged in with Work Order Lines: Create & Edit + See Financial Data.",
       "2. An open work order with a labor line (any quantity/hours) is open."
     ],
     "steps": [
@@ -511,7 +509,7 @@
     "type": "Functional",
     "permissions_required": "Work Order Lines: Create & Edit + See Financial Data + Fees & Discounts flag ON",
     "preconditions": [
-      "1. Feature flag ON; logged in with Work Order Lines: Create & Edit + See Financial Data.",
+      "1. Logged in with Work Order Lines: Create & Edit + See Financial Data.",
       "2. An open work order with a labor line that carries a 10% fee adjustment resolving to a non-zero amount."
     ],
     "steps": [
@@ -537,7 +535,7 @@
     "type": "Functional",
     "permissions_required": "Work Order Lines: Create & Edit + See Financial Data + Fees & Discounts flag ON",
     "preconditions": [
-      "1. Feature flag ON; logged in with Work Order Lines: Create & Edit + See Financial Data.",
+      "1. Logged in with Work Order Lines: Create & Edit + See Financial Data.",
       "2. An open work order with a labor line that carries at least one fee/discount adjustment."
     ],
     "steps": [
@@ -562,9 +560,8 @@
     "type": "Functional",
     "permissions_required": "See Financial Data ON but Work Order Lines: Create & Edit OFF; Fees & Discounts flag ON",
     "preconditions": [
-      "1. Feature flag ON.",
-      "2. Logged in as a role with See Financial Data but WITHOUT Work Order Lines: Create & Edit.",
-      "3. An open work order with a labor line is open."
+      "1. Logged in as a role with See Financial Data but WITHOUT Work Order Lines: Create & Edit.",
+      "2. An open work order with a labor line is open."
     ],
     "steps": [
       "1. Hover the labor line and open its ⋯ menu.",
@@ -587,7 +584,7 @@
     "type": "Functional",
     "permissions_required": "Work Order Lines: Create & Edit + See Financial Data + Fees & Discounts flag ON",
     "preconditions": [
-      "1. Feature flag ON; logged in with Work Order Lines: Create & Edit + See Financial Data.",
+      "1. Logged in with Work Order Lines: Create & Edit + See Financial Data.",
       "2. An open work order with a part, e.g. '(LF3620) Engine Oil Filter', is open on the Lines or Parts tab."
     ],
     "steps": [
@@ -613,7 +610,7 @@
     "type": "Functional",
     "permissions_required": "Work Order Lines: Create & Edit + See Financial Data + Fees & Discounts flag ON",
     "preconditions": [
-      "1. Feature flag ON; logged in with Work Order Lines: Create & Edit + See Financial Data.",
+      "1. Logged in with Work Order Lines: Create & Edit + See Financial Data.",
       "2. An open work order with a part of quantity 3."
     ],
     "steps": [
@@ -640,7 +637,7 @@
     "type": "Functional",
     "permissions_required": "Work Order Lines: Create & Edit + See Financial Data + Fees & Discounts flag ON",
     "preconditions": [
-      "1. Feature flag ON; logged in with Work Order Lines: Create & Edit + See Financial Data.",
+      "1. Logged in with Work Order Lines: Create & Edit + See Financial Data.",
       "2. An open work order with a requested (pending / not yet picked) part of quantity 2 at sell price $20.00 each."
     ],
     "steps": [
@@ -667,7 +664,7 @@
     "type": "Functional",
     "permissions_required": "Work Order Lines: Create & Edit + See Financial Data + Fees & Discounts flag ON",
     "preconditions": [
-      "1. Feature flag ON; logged in with Work Order Lines: Create & Edit + See Financial Data.",
+      "1. Logged in with Work Order Lines: Create & Edit + See Financial Data.",
       "2. An open work order with a part of quantity 3 at sell price $20.00 each (gross part total $60.00)."
     ],
     "steps": [
@@ -693,7 +690,7 @@
     "type": "Functional",
     "permissions_required": "Work Order Lines: Create & Edit + See Financial Data + Fees & Discounts flag ON",
     "preconditions": [
-      "1. Feature flag ON; logged in with Work Order Lines: Create & Edit + See Financial Data.",
+      "1. Logged in with Work Order Lines: Create & Edit + See Financial Data.",
       "2. An open work order with a requested part that already carries a % of Parts Total discount."
     ],
     "steps": [
@@ -718,7 +715,7 @@
     "type": "Functional",
     "permissions_required": "Work Order Lines: Create & Edit + See Financial Data + Fees & Discounts flag ON",
     "preconditions": [
-      "1. Feature flag ON; logged in with Work Order Lines: Create & Edit + See Financial Data.",
+      "1. Logged in with Work Order Lines: Create & Edit + See Financial Data.",
       "2. An open work order with a part carrying a discount that resolves to a non-zero amount."
     ],
     "steps": [
@@ -744,7 +741,7 @@
     "type": "Functional",
     "permissions_required": "Work Order Lines: Create & Edit + See Financial Data + Fees & Discounts flag ON",
     "preconditions": [
-      "1. Feature flag ON; logged in with Work Order Lines: Create & Edit + See Financial Data.",
+      "1. Logged in with Work Order Lines: Create & Edit + See Financial Data.",
       "2. An open work order with a part that carries at least one adjustment."
     ],
     "steps": [
@@ -769,7 +766,7 @@
     "type": "Functional",
     "permissions_required": "Work Order Lines: Create & Edit + See Financial Data + Fees & Discounts flag ON",
     "preconditions": [
-      "1. Feature flag ON; logged in with Work Order Lines: Create & Edit + See Financial Data.",
+      "1. Logged in with Work Order Lines: Create & Edit + See Financial Data.",
       "2. An open work order with a part of quantity 1."
     ],
     "steps": [
@@ -794,7 +791,7 @@
     "type": "Functional",
     "permissions_required": "See Financial Data + Fees & Discounts flag ON (Work Order Lines: Create & Edit to have created it)",
     "preconditions": [
-      "1. Feature flag ON; logged in with See Financial Data.",
+      "1. Logged in with See Financial Data.",
       "2. An open work order where Line 1 labor carries a 'Line discount' of −5% resolving to −$26.08."
     ],
     "steps": [
@@ -819,7 +816,7 @@
     "type": "Functional",
     "permissions_required": "See Financial Data + Fees & Discounts flag ON",
     "preconditions": [
-      "1. Feature flag ON; logged in with See Financial Data.",
+      "1. Logged in with See Financial Data.",
       "2. An open work order where part '(LF3620) Engine Oil Filter' carries a 'Parts Handling Fee' of +$3.75."
     ],
     "steps": [
@@ -844,7 +841,7 @@
     "type": "Functional",
     "permissions_required": "See Financial Data + Fees & Discounts flag ON",
     "preconditions": [
-      "1. Feature flag ON; logged in with See Financial Data.",
+      "1. Logged in with See Financial Data.",
       "2. An open work order where the LF3620 part carries three adjustments: Part discount (−10%), Fleet discount (−5%), Parts Handling Fee (+$3.75)."
     ],
     "steps": [
@@ -872,7 +869,7 @@
     "type": "Functional",
     "permissions_required": "See Financial Data + Fees & Discounts flag ON",
     "preconditions": [
-      "1. Feature flag ON; logged in with See Financial Data.",
+      "1. Logged in with See Financial Data.",
       "2. An open work order where the LF3620 part has base total $58.47 plus adjustments −$6.49, −$2.92, +$3.75."
     ],
     "steps": [
@@ -897,7 +894,7 @@
     "type": "Functional",
     "permissions_required": "Work Order Lines: Create & Edit + See Financial Data + Fees & Discounts flag ON",
     "preconditions": [
-      "1. Feature flag ON; logged in with Work Order Lines: Create & Edit + See Financial Data.",
+      "1. Logged in with Work Order Lines: Create & Edit + See Financial Data.",
       "2. An open work order with at least one inline line-level adjustment."
     ],
     "steps": [
@@ -922,7 +919,7 @@
     "type": "Functional",
     "permissions_required": "See Financial Data + Fees & Discounts flag ON",
     "preconditions": [
-      "1. Feature flag ON; logged in with See Financial Data.",
+      "1. Logged in with See Financial Data.",
       "2. An open work order with 5 adjustments across scopes is open."
     ],
     "steps": [
@@ -948,7 +945,7 @@
     "type": "Functional",
     "permissions_required": "See Financial Data + Fees & Discounts flag ON",
     "preconditions": [
-      "1. Feature flag ON; logged in with See Financial Data.",
+      "1. Logged in with See Financial Data.",
       "2. An open work order (e.g. S2-13274) with a whole-WO discount and line-level part/labor adjustments."
     ],
     "steps": [
@@ -974,7 +971,7 @@
     "type": "Functional",
     "permissions_required": "See Financial Data + Fees & Discounts flag ON",
     "preconditions": [
-      "1. Feature flag ON; logged in with See Financial Data.",
+      "1. Logged in with See Financial Data.",
       "2. An open work order with adjustments: Work order discount −$857.23, Part discount −$649.00, Fleet discount −$292.00, Parts Handling Fee +$3.75, Line discount −$260.77."
     ],
     "steps": [
@@ -999,7 +996,7 @@
     "type": "Functional",
     "permissions_required": "See Financial Data + Fees & Discounts flag ON",
     "preconditions": [
-      "1. Feature flag ON; logged in with See Financial Data.",
+      "1. Logged in with See Financial Data.",
       "2. An open work order to which you add three adjustments in a known order: (a) Adjustment A first, (b) Adjustment B second, (c) Adjustment C third."
     ],
     "steps": [
@@ -1023,7 +1020,7 @@
     "type": "Functional",
     "permissions_required": "See Financial Data + Fees & Discounts flag ON",
     "preconditions": [
-      "1. Feature flag ON; logged in with See Financial Data.",
+      "1. Logged in with See Financial Data.",
       "2. An open work order with zero fee/discount adjustments of any scope."
     ],
     "steps": [
@@ -1046,7 +1043,7 @@
     "type": "Functional",
     "permissions_required": "See Financial Data + Fees & Discounts flag ON",
     "preconditions": [
-      "1. Feature flag ON; logged in with See Financial Data.",
+      "1. Logged in with See Financial Data.",
       "2. An open work order with 5 adjustments (any scopes) netting to −$2,055.25."
     ],
     "steps": [
@@ -1072,7 +1069,7 @@
     "type": "Functional",
     "permissions_required": "See Financial Data + Fees & Discounts flag ON",
     "preconditions": [
-      "1. Feature flag ON; logged in with See Financial Data.",
+      "1. Logged in with See Financial Data.",
       "2. An open work order with 5 adjustments as in FD-FIN-001."
     ],
     "steps": [
@@ -1097,9 +1094,8 @@
     "type": "Functional",
     "permissions_required": "Two variants — (a) See Financial Data ON, no adjustments; (b) See Financial Data OFF",
     "preconditions": [
-      "1. Feature flag ON.",
-      "2. Variant (a): logged in with See Financial Data, an open WO with zero adjustments.",
-      "3. Variant (b): logged in as a role WITHOUT See Financial Data, an open WO with adjustments."
+      "1. Variant (a): logged in with See Financial Data, an open WO with zero adjustments.",
+      "2. Variant (b): logged in as a role WITHOUT See Financial Data, an open WO with adjustments."
     ],
     "steps": [
       "1. Variant (a): open the WO and look at the Financial Info card for a 'Fees & Discounts (N)' row.",
@@ -1122,7 +1118,7 @@
     "type": "Functional",
     "permissions_required": "See Financial Data + Fees & Discounts flag ON (Work Orders: Create & Edit to see Edit/Delete)",
     "preconditions": [
-      "1. Feature flag ON; logged in with See Financial Data and Work Orders: Create & Edit.",
+      "1. Logged in with See Financial Data and Work Orders: Create & Edit.",
       "2. An open work order with a whole-WO 'Early Payment Discount' of −8% resolving to −$857.23, plus some line-level adjustments."
     ],
     "steps": [
@@ -1148,7 +1144,7 @@
     "type": "Functional",
     "permissions_required": "See Financial Data + Work Orders: Create & Edit + Fees & Discounts flag ON",
     "preconditions": [
-      "1. Feature flag ON; logged in with See Financial Data + Work Orders: Create & Edit.",
+      "1. Logged in with See Financial Data + Work Orders: Create & Edit.",
       "2. Variant (a): an open WO with only line-level adjustments and NO whole-WO adjustments.",
       "3. Variant (b): an open WO with at least one whole-WO adjustment."
     ],
@@ -1173,7 +1169,7 @@
     "type": "Functional",
     "permissions_required": "See Financial Data + Fees & Discounts flag ON",
     "preconditions": [
-      "1. Feature flag ON; logged in with See Financial Data.",
+      "1. Logged in with See Financial Data.",
       "2. A Parts page / WO parts view is open with part '#37346 Mobil 1 5W20' carrying exactly one adjustment 'Military Discount' −10%."
     ],
     "steps": [
@@ -1197,7 +1193,7 @@
     "type": "Functional",
     "permissions_required": "See Financial Data + Fees & Discounts flag ON",
     "preconditions": [
-      "1. Feature flag ON; logged in with See Financial Data.",
+      "1. Logged in with See Financial Data.",
       "2. Parts page open with part '#55073 Mobil 1 5W20' carrying three adjustments (first = 'Parts Handling Fee' 2%)."
     ],
     "steps": [
@@ -1221,7 +1217,7 @@
     "type": "Functional",
     "permissions_required": "See Financial Data + Work Order Lines: Create & Edit (or Part Sales: Create & Edit on a Part Sale) + flag ON",
     "preconditions": [
-      "1. Feature flag ON; logged in with See Financial Data and the relevant change permission.",
+      "1. Logged in with See Financial Data and the relevant change permission.",
       "2. Parts page open with part '#28439 Fleetguard FF5421' carrying no adjustments, on an editable sale/WO."
     ],
     "steps": [
@@ -1246,7 +1242,7 @@
     "type": "Functional",
     "permissions_required": "See Financial Data + Fees & Discounts flag ON",
     "preconditions": [
-      "1. Feature flag ON; logged in with See Financial Data.",
+      "1. Logged in with See Financial Data.",
       "2. Parts page open with part '#55073 Mobil 1 5W20' carrying three adjustments (Parts Handling Fee +$1.43, Military Discount −$3.31, Early Payment Discount −$0.99)."
     ],
     "steps": [
@@ -1273,7 +1269,7 @@
     "type": "Functional",
     "permissions_required": "See Financial Data + Fees & Discounts flag ON",
     "preconditions": [
-      "1. Feature flag ON; logged in with See Financial Data.",
+      "1. Logged in with See Financial Data.",
       "2. The #55073 breakdown modal from FD-PCOL-004 is open (Parts Handling Fee +$1.43, Military Discount −$3.31, Early Payment Discount −$0.99)."
     ],
     "steps": [
@@ -1295,7 +1291,7 @@
     "type": "Functional",
     "permissions_required": "Work Order Lines: Create & Edit (or Part Sales: Create & Edit) + See Financial Data + flag ON",
     "preconditions": [
-      "1. Feature flag ON; logged in with the relevant change permission + See Financial Data.",
+      "1. Logged in with the relevant change permission + See Financial Data.",
       "2. Parts page open with part #37346 carrying exactly ONE adjustment; the editable breakdown modal is open."
     ],
     "steps": [
@@ -1321,7 +1317,7 @@
     "type": "Functional",
     "permissions_required": "See Financial Data + Fees & Discounts flag ON",
     "preconditions": [
-      "1. Feature flag ON; logged in with See Financial Data.",
+      "1. Logged in with See Financial Data.",
       "2. Parts page open for an Invoiced/Paid (non-editable) sale/WO with a part that has no adjustments."
     ],
     "steps": [
@@ -1345,7 +1341,7 @@
     "type": "Functional",
     "permissions_required": "Work Orders: Create & Edit (whole-WO) / Work Order Lines: Create & Edit (line-level) + See Financial Data + flag ON",
     "preconditions": [
-      "1. Feature flag ON; logged in with the relevant change permission + See Financial Data.",
+      "1. Logged in with the relevant change permission + See Financial Data.",
       "2. An open work order with an existing whole-WO percentage discount adjustment."
     ],
     "steps": [
@@ -1373,7 +1369,7 @@
     "type": "Functional",
     "permissions_required": "Work Orders: Create & Edit / Work Order Lines: Create & Edit + See Financial Data + flag ON",
     "preconditions": [
-      "1. Feature flag ON; logged in with the relevant change permission + See Financial Data.",
+      "1. Logged in with the relevant change permission + See Financial Data.",
       "2. An open work order with an existing percentage adjustment whose base total has since changed (e.g. a line was added)."
     ],
     "steps": [
@@ -1401,7 +1397,7 @@
     "type": "Functional",
     "permissions_required": "Work Orders: Create & Edit / Work Order Lines: Create & Edit + See Financial Data + flag ON",
     "preconditions": [
-      "1. Feature flag ON; logged in with the relevant change permission + See Financial Data.",
+      "1. Logged in with the relevant change permission + See Financial Data.",
       "2. An open work order with an existing adjustment; a condition that forces a save failure can be simulated (e.g. server error)."
     ],
     "steps": [
@@ -1426,7 +1422,7 @@
     "type": "Functional",
     "permissions_required": "Work Orders: Create & Edit + See Financial Data + flag ON",
     "preconditions": [
-      "1. Feature flag ON; logged in with Work Orders: Create & Edit + See Financial Data.",
+      "1. Logged in with Work Orders: Create & Edit + See Financial Data.",
       "2. An open work order with a whole-WO discount named 'Early Payment Discount'."
     ],
     "steps": [
@@ -1453,9 +1449,8 @@
     "type": "Functional",
     "permissions_required": "Work Orders: Create & Edit ON, Delete OFF (whole-WO) + See Financial Data + flag ON",
     "preconditions": [
-      "1. Feature flag ON.",
-      "2. Logged in as a role that HAS Work Orders: Create & Edit and See Financial Data but does NOT have the separate 'Delete' permission.",
-      "3. An open work order with a whole-WO adjustment."
+      "1. Logged in as a role that HAS Work Orders: Create & Edit and See Financial Data but does NOT have the separate 'Delete' permission.",
+      "2. An open work order with a whole-WO adjustment."
     ],
     "steps": [
       "1. Hover the whole-WO adjustment entry on the sidebar card and open its ⋯ menu.",
@@ -1480,7 +1475,7 @@
     "type": "Functional",
     "permissions_required": "Work Order Lines: Create & Edit + See Financial Data + flag ON",
     "preconditions": [
-      "1. Feature flag ON; logged in with Work Order Lines: Create & Edit + See Financial Data.",
+      "1. Logged in with Work Order Lines: Create & Edit + See Financial Data.",
       "2. An open work order where a part carries a 'Fleet discount' adjustment shown inline."
     ],
     "steps": [
@@ -1507,7 +1502,7 @@
     "type": "Functional",
     "permissions_required": "Work Order Lines: Create & Edit + See Financial Data + flag ON",
     "preconditions": [
-      "1. Feature flag ON; logged in with Work Order Lines: Create & Edit + See Financial Data.",
+      "1. Logged in with Work Order Lines: Create & Edit + See Financial Data.",
       "2. An open work order with a part of gross part total exactly $100.00."
     ],
     "steps": [
@@ -1536,7 +1531,7 @@
     "type": "Functional",
     "permissions_required": "Work Orders: Create & Edit + Work Order Lines: Create & Edit + See Financial Data + flag ON",
     "preconditions": [
-      "1. Feature flag ON; logged in with Work Orders: Create & Edit, Work Order Lines: Create & Edit, and See Financial Data.",
+      "1. Logged in with Work Orders: Create & Edit, Work Order Lines: Create & Edit, and See Financial Data.",
       "2. An open work order with Gross Labor $200.00 and Gross Parts $100.00, no shop supplies.",
       "3. A Labor Line 10% discount already applied (Step 1: −$20.00, so Net Labor = $180.00)."
     ],
@@ -1564,7 +1559,7 @@
     "type": "Functional",
     "permissions_required": "Work Orders: Create & Edit + See Financial Data + flag ON",
     "preconditions": [
-      "1. Feature flag ON; logged in with Work Orders: Create & Edit + See Financial Data.",
+      "1. Logged in with Work Orders: Create & Edit + See Financial Data.",
       "2. An open work order; the location library has a 'Parts Handling Fee' template."
     ],
     "steps": [

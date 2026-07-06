@@ -8,9 +8,8 @@
     "type": "Functional",
     "permissions_required": "See Financial Data; Work Orders: Create and Edit (whole-WO add)",
     "preconditions": [
-      "1. Fees & Discounts feature flag is ON for the organization.",
-      "2. You are signed in with a role that has See Financial Data and Work Orders: Create and Edit.",
-      "3. An open work order (not Invoiced/Paid, not in history mode) exists whose relevant base equals exactly $150.00 (e.g. net labor total = $150.00). Mark any throwaway data ZZAUTOTEST."
+      "1. You are signed in with a role that has See Financial Data and Work Orders: Create and Edit.",
+      "2. An open work order (not Invoiced/Paid, not in history mode) exists whose relevant base equals exactly $150.00 (e.g. net labor total = $150.00). Mark any throwaway data ZZAUTOTEST."
     ],
     "steps": [
       "1. Open the work order.",
@@ -38,9 +37,8 @@
     "type": "Functional",
     "permissions_required": "See Financial Data; Work Orders: Create and Edit",
     "preconditions": [
-      "1. Feature flag ON.",
-      "2. Role has See Financial Data and Work Orders: Create and Edit.",
-      "3. An open work order whose target base equals exactly $33.33."
+      "1. Role has See Financial Data and Work Orders: Create and Edit.",
+      "2. An open work order whose target base equals exactly $33.33."
     ],
     "steps": [
       "1. Open the work order.",
@@ -68,9 +66,8 @@
     "type": "Functional",
     "permissions_required": "See Financial Data; Work Orders: Create and Edit (whole-WO); Work Order Lines: Create and Edit (labor line)",
     "preconditions": [
-      "1. Feature flag ON.",
-      "2. Role has See Financial Data plus the matching change permission.",
-      "3. An open work order with at least one labor line."
+      "1. Role has See Financial Data plus the matching change permission.",
+      "2. An open work order with at least one labor line."
     ],
     "steps": [
       "1. Open the work order.",
@@ -95,9 +92,8 @@
     "type": "Functional",
     "permissions_required": "See Financial Data; Work Order Lines: Create and Edit",
     "preconditions": [
-      "1. Feature flag ON.",
-      "2. Role has See Financial Data and Work Order Lines: Create and Edit.",
-      "3. An open work order with a part whose quantity = 3."
+      "1. Role has See Financial Data and Work Order Lines: Create and Edit.",
+      "2. An open work order with a part whose quantity = 3."
     ],
     "steps": [
       "1. Open the work order.",
@@ -123,9 +119,8 @@
     "type": "Functional",
     "permissions_required": "See Financial Data; Work Orders: Create and Edit",
     "preconditions": [
-      "1. Feature flag ON.",
-      "2. Role has See Financial Data and the matching change permission.",
-      "3. An open work order."
+      "1. Role has See Financial Data and the matching change permission.",
+      "2. An open work order."
     ],
     "steps": [
       "1. Open the Add Fee / Discount dialog at any scope.",
@@ -152,9 +147,8 @@
     "type": "Functional",
     "permissions_required": "See Financial Data; Work Orders: Create and Edit",
     "preconditions": [
-      "1. Feature flag ON.",
-      "2. Role has See Financial Data and the matching change permission.",
-      "3. An open work order."
+      "1. Role has See Financial Data and the matching change permission.",
+      "2. An open work order."
     ],
     "steps": [
       "1. Open the Add Fee / Discount dialog.",
@@ -179,9 +173,8 @@
     "type": "Functional",
     "permissions_required": "See Financial Data; Work Orders: Create and Edit",
     "preconditions": [
-      "1. Feature flag ON.",
-      "2. Role has See Financial Data and the matching change permission.",
-      "3. An open work order whose target base = $100.00."
+      "1. Role has See Financial Data and the matching change permission.",
+      "2. An open work order whose target base = $100.00."
     ],
     "steps": [
       "1. Open the Add Fee / Discount dialog on the $100.00 base.",
@@ -208,10 +201,9 @@
     "type": "Functional",
     "permissions_required": "See Financial Data; Work Orders: Create and Edit",
     "preconditions": [
-      "1. Feature flag ON.",
-      "2. Role has See Financial Data and the matching change permission.",
-      "3. An open work order whose target base = $100.00.",
-      "4. Note: a $0 Max Amount can normally only come from old data — an entered 0 is treated as empty in the current dialogs (S2-R25)."
+      "1. Role has See Financial Data and the matching change permission.",
+      "2. An open work order whose target base = $100.00.",
+      "3. Note: a $0 Max Amount can normally only come from old data — an entered 0 is treated as empty in the current dialogs (S2-R25)."
     ],
     "steps": [
       "1. Open the Add dialog, Type = Fee, percentage method, Percent = 50 on the $100.00 base.",
@@ -236,9 +228,8 @@
     "type": "Functional",
     "permissions_required": "See Financial Data; Work Order Lines: Create and Edit",
     "preconditions": [
-      "1. Feature flag ON.",
-      "2. Role has See Financial Data and the matching change permission.",
-      "3. An open work order with a target line whose base is $0.00 (e.g. a declined/not-billable labor line, §5-R12)."
+      "1. Role has See Financial Data and the matching change permission.",
+      "2. An open work order with a target line whose base is $0.00 (e.g. a declined/not-billable labor line, §5-R12)."
     ],
     "steps": [
       "1. Add a 15% fee (or any adjustment) against the $0.00 base line.",
@@ -263,9 +254,8 @@
     "type": "Functional",
     "permissions_required": "See Financial Data; Work Orders: Create and Edit",
     "preconditions": [
-      "1. Feature flag ON.",
-      "2. Role has See Financial Data and the matching change permission.",
-      "3. An open work order where an earlier discount has already driven a net total to or below $0 for a whole-WO percentage base."
+      "1. Role has See Financial Data and the matching change permission.",
+      "2. An open work order where an earlier discount has already driven a net total to or below $0 for a whole-WO percentage base."
     ],
     "steps": [
       "1. On a base that would compute negative (e.g. net parts total already floored), add a percentage fee/discount referencing that base.",
@@ -289,9 +279,8 @@
     "type": "Functional",
     "permissions_required": "See Financial Data; Work Orders: Create and Edit",
     "preconditions": [
-      "1. Feature flag ON.",
-      "2. Role has See Financial Data and the matching change permission.",
-      "3. An open work order for a taxable customer with a known tax rate and a taxable base."
+      "1. Role has See Financial Data and the matching change permission.",
+      "2. An open work order for a taxable customer with a known tax rate and a taxable base."
     ],
     "steps": [
       "1. Note the WO's current taxable amount and tax.",
@@ -317,9 +306,8 @@
     "type": "Functional",
     "permissions_required": "See Financial Data; Work Orders: Create and Edit; Work Order Lines: Create and Edit",
     "preconditions": [
-      "1. Feature flag ON.",
-      "2. Role has See Financial Data plus both change permissions.",
-      "3. An open work order with gross labor = $200.00 and gross parts = $100.00 (spec worked example)."
+      "1. Role has See Financial Data plus both change permissions.",
+      "2. An open work order with gross labor = $200.00 and gross parts = $100.00 (spec worked example)."
     ],
     "steps": [
       "1. Step 1 — add a Labor Line 10% discount on the $200 labor line.",
@@ -345,10 +333,9 @@
     "type": "Functional",
     "permissions_required": "Settings → Finance (template creation); See Financial Data (to view $ on the WO)",
     "preconditions": [
-      "1. Feature flag ON.",
-      "2. Role has Settings → Finance to create the template and See Financial Data to view amounts.",
-      "3. A Processing Fee template exists: Type = Processing Fee, Calculation type = % of Grand Total, Percent = 3%, marked auto-apply or set as a customer default (a Processing Fee cannot be added to a WO by hand, S8-R16).",
-      "4. An open work order whose net subtotal after line discounts = $300.00 with pre-fee tax = $24.00 (Grand Total base = $324.00)."
+      "1. Role has Settings → Finance to create the template and See Financial Data to view amounts.",
+      "2. A Processing Fee template exists: Type = Processing Fee, Calculation type = % of Grand Total, Percent = 3%, marked auto-apply or set as a customer default (a Processing Fee cannot be added to a WO by hand, S8-R16).",
+      "3. An open work order whose net subtotal after line discounts = $300.00 with pre-fee tax = $24.00 (Grand Total base = $324.00)."
     ],
     "steps": [
       "1. Create the WO so the auto-apply / customer-default Processing Fee is added.",
@@ -373,9 +360,8 @@
     "type": "Functional",
     "permissions_required": "Settings → Finance; See Financial Data",
     "preconditions": [
-      "1. Feature flag ON.",
-      "2. Role has Settings → Finance and See Financial Data.",
-      "3. On the template admin page, open the Processing Fee template create/edit dialog."
+      "1. Role has Settings → Finance and See Financial Data.",
+      "2. On the template admin page, open the Processing Fee template create/edit dialog."
     ],
     "steps": [
       "1. Create a Processing Fee template with Calculation type = % of Grand Total.",
@@ -402,10 +388,9 @@
     "type": "Functional",
     "permissions_required": "See Financial Data; Work Orders: Create and Edit",
     "preconditions": [
-      "1. Feature flag ON.",
-      "2. Role has See Financial Data and the matching change permission.",
-      "3. An open work order with $100.00 taxable parts and $10.00 tax (spec worked example).",
-      "4. Location has an active QuickBooks connection (to verify the credit memo)."
+      "1. Role has See Financial Data and the matching change permission.",
+      "2. An open work order with $100.00 taxable parts and $10.00 tax (spec worked example).",
+      "3. Location has an active QuickBooks connection (to verify the credit memo)."
     ],
     "steps": [
       "1. Add a whole-WO discount of $150.00 with Taxable = No.",
@@ -433,9 +418,8 @@
     "type": "Functional",
     "permissions_required": "See Financial Data; Work Orders: Create and Edit",
     "preconditions": [
-      "1. Feature flag ON.",
-      "2. Role has See Financial Data and the matching change permission.",
-      "3. An open work order with $100.00 taxable parts and $10.00 tax (same base as FD-CALC-015)."
+      "1. Role has See Financial Data and the matching change permission.",
+      "2. An open work order with $100.00 taxable parts and $10.00 tax (same base as FD-CALC-015)."
     ],
     "steps": [
       "1. Add a whole-WO discount of $150.00 with Taxable = Yes.",
@@ -461,10 +445,9 @@
     "type": "Functional",
     "permissions_required": "See Financial Data; Work Orders: Create and Edit",
     "preconditions": [
-      "1. Feature flag ON.",
-      "2. Role has See Financial Data and the matching change permission.",
-      "3. Location has an active QuickBooks connection.",
-      "4. An open work order with a small net subtotal and two or more discount lines whose combined size exceeds it."
+      "1. Role has See Financial Data and the matching change permission.",
+      "2. Location has an active QuickBooks connection.",
+      "3. An open work order with a small net subtotal and two or more discount lines whose combined size exceeds it."
     ],
     "steps": [
       "1. Add two (or more) whole-WO discounts whose total exceeds the net subtotal.",
@@ -490,9 +473,8 @@
     "type": "Functional",
     "permissions_required": "See Financial Data (the gate under test)",
     "preconditions": [
-      "1. Feature flag ON.",
-      "2. A work order (and a part sale, and a customer) already has adjustments to view.",
-      "3. Two ZZAUTOTEST custom roles ready: Role A WITH See Financial Data; Role B WITHOUT See Financial Data (otherwise identical). Use exact-user-match when assigning to Tech (Tech /change staff_id 6fb22c1b-…)."
+      "1. A work order (and a part sale, and a customer) already has adjustments to view.",
+      "2. Two ZZAUTOTEST custom roles ready: Role A WITH See Financial Data; Role B WITHOUT See Financial Data (otherwise identical). Use exact-user-match when assigning to Tech (Tech /change staff_id 6fb22c1b-…)."
     ],
     "steps": [
       "1. Assign Role A (SFD ON) to the test user; open the WO, Part Sale, Customer F&D tab.",
@@ -518,9 +500,8 @@
     "type": "Functional",
     "permissions_required": "See Financial Data (ON) + Work Orders: Create and Edit (the gate under test)",
     "preconditions": [
-      "1. Feature flag ON.",
-      "2. An open work order.",
-      "3. Two ZZAUTOTEST roles, both with See Financial Data ON: Role A WITH Work Orders: Create and Edit; Role B WITHOUT it. Assign by exact-user-match to Tech."
+      "1. An open work order.",
+      "2. Two ZZAUTOTEST roles, both with See Financial Data ON: Role A WITH Work Orders: Create and Edit; Role B WITHOUT it. Assign by exact-user-match to Tech."
     ],
     "steps": [
       "1. With Role A: open the WO toolbar ⋯ → confirm \"Add Work Order Fee / Discount\" is present; add, edit, and remove a whole-WO adjustment.",
@@ -545,9 +526,8 @@
     "type": "Functional",
     "permissions_required": "See Financial Data (ON) + Work Order Lines: Create and Edit (the gate under test)",
     "preconditions": [
-      "1. Feature flag ON.",
-      "2. An open work order with a labor line and a part.",
-      "3. Two ZZAUTOTEST roles, both with See Financial Data ON: Role A WITH Work Order Lines: Create and Edit; Role B WITHOUT it. Assign by exact-user-match to Tech."
+      "1. An open work order with a labor line and a part.",
+      "2. Two ZZAUTOTEST roles, both with See Financial Data ON: Role A WITH Work Order Lines: Create and Edit; Role B WITHOUT it. Assign by exact-user-match to Tech."
     ],
     "steps": [
       "1. With Role A: use a labor line's 3-dot menu → \"Add Fee / Discount\"; add, edit, remove a Labor Line adjustment. Repeat via a part's menu for a Part Line adjustment.",
@@ -572,9 +552,8 @@
     "type": "Functional",
     "permissions_required": "See Financial Data (ON) + Part Sales: Create and Edit (the gate under test)",
     "preconditions": [
-      "1. Feature flag ON.",
-      "2. An open part sale with at least one part.",
-      "3. Two ZZAUTOTEST roles, both with See Financial Data ON: Role A WITH Part Sales: Create and Edit; Role B WITHOUT it. Assign by exact-user-match to Tech."
+      "1. An open part sale with at least one part.",
+      "2. Two ZZAUTOTEST roles, both with See Financial Data ON: Role A WITH Part Sales: Create and Edit; Role B WITHOUT it. Assign by exact-user-match to Tech."
     ],
     "steps": [
       "1. With Role A: on the part sale, use a part row's menu → \"Add Fee / Discount\"; add, edit, remove a Part Line adjustment. Also use the toolbar ⋯ → \"Add Parts Sale Fee / Discount\" for a whole-parts-sale adjustment.",
@@ -599,9 +578,8 @@
     "type": "Functional",
     "permissions_required": "The relevant change permission ON, but See Financial Data OFF (the combination under test)",
     "preconditions": [
-      "1. Feature flag ON.",
-      "2. An open work order.",
-      "3. A ZZAUTOTEST role that HAS Work Orders: Create and Edit (and/or Work Order Lines / Part Sales Create and Edit) but has See Financial Data OFF. Assign by exact-user-match to Tech."
+      "1. An open work order.",
+      "2. A ZZAUTOTEST role that HAS Work Orders: Create and Edit (and/or Work Order Lines / Part Sales Create and Edit) but has See Financial Data OFF. Assign by exact-user-match to Tech."
     ],
     "steps": [
       "1. Assign the role (change permission ON, SFD OFF).",
@@ -626,9 +604,8 @@
     "type": "Functional",
     "permissions_required": "See Financial Data ON; the matching Create and Edit permission; explicitly WITHOUT the resource Delete permission",
     "preconditions": [
-      "1. Feature flag ON.",
-      "2. An open work order with an existing whole-WO adjustment.",
-      "3. A ZZAUTOTEST role with See Financial Data ON and Work Orders: Create and Edit ON, but with the Work Orders \"Delete\" permission OFF. Assign by exact-user-match to Tech."
+      "1. An open work order with an existing whole-WO adjustment.",
+      "2. A ZZAUTOTEST role with See Financial Data ON and Work Orders: Create and Edit ON, but with the Work Orders \"Delete\" permission OFF. Assign by exact-user-match to Tech."
     ],
     "steps": [
       "1. Assign the role (Create and Edit ON, Delete OFF).",
@@ -653,8 +630,7 @@
     "type": "Functional",
     "permissions_required": "Settings → Finance (the gate under test)",
     "preconditions": [
-      "1. Feature flag ON.",
-      "2. Two ZZAUTOTEST roles: Role A WITH Settings → Finance; Role B WITHOUT it. Assign by exact-user-match to Tech."
+      "1. Two ZZAUTOTEST roles: Role A WITH Settings → Finance; Role B WITHOUT it. Assign by exact-user-match to Tech."
     ],
     "steps": [
       "1. With Role A: go to Administration → Service → Fees & Discounts (below Canned Lines); create a template, edit it, delete it.",
@@ -679,9 +655,8 @@
     "type": "Functional",
     "permissions_required": "Customer Management: Create and Edit AND Manage Accounts Payable and Receivable (both gates under test)",
     "preconditions": [
-      "1. Feature flag ON.",
-      "2. A customer exists.",
-      "3. Three ZZAUTOTEST roles: (A) both permissions ON; (B) Customer Management ON but Manage AP/AR OFF; (C) Manage AP/AR ON but Customer Management OFF. Assign by exact-user-match to Tech."
+      "1. A customer exists.",
+      "2. Three ZZAUTOTEST roles: (A) both permissions ON; (B) Customer Management ON but Manage AP/AR OFF; (C) Manage AP/AR ON but Customer Management OFF. Assign by exact-user-match to Tech."
     ],
     "steps": [
       "1. With Role A: open the customer page and its \"Fees & Discounts\" tab; use \"Add Fee/Discount\" and Remove.",
@@ -765,9 +740,8 @@
     "type": "Functional",
     "permissions_required": "See Financial Data + the matching Create and Edit permission (still blocked by WO state)",
     "preconditions": [
-      "1. Feature flag ON.",
-      "2. The user has all F&D permissions (so only the WO state should block).",
-      "3. An Invoiced or Paid work order, and separately a way to enter history mode."
+      "1. The user has all F&D permissions (so only the WO state should block).",
+      "2. An Invoiced or Paid work order, and separately a way to enter history mode."
     ],
     "steps": [
       "1. Open an Invoiced or Paid WO; look for Add Fee / Discount at every starting place and for per-entry Edit/Delete menus.",
@@ -820,7 +794,7 @@
     "type": "Functional",
     "permissions_required": "View History Logs",
     "preconditions": [
-      "1. A work order already has fee/discount history entries created while the flag was ON.",
+      "1. A work order already has fee/discount history entries.",
       "2. The user has View History Logs.",
       "3. Ability to set the FeesAndDiscounts flag OFF."
     ],
@@ -846,9 +820,8 @@
     "type": "Functional",
     "permissions_required": "Feature flag ON; permission varies by test arm",
     "preconditions": [
-      "1. Feature flag ON for the org.",
-      "2. Two ZZAUTOTEST roles: one with the F&D-relevant permissions, one without.",
-      "3. An open work order."
+      "1. Two ZZAUTOTEST roles: one with the F&D-relevant permissions, one without.",
+      "2. An open work order."
     ],
     "steps": [
       "1. With the flag ON and the user lacking See Financial Data / the change permission, open the WO and look for F&D controls and amounts.",
@@ -873,9 +846,8 @@
     "type": "Functional",
     "permissions_required": "See Financial Data; the matching Create and Edit permission",
     "preconditions": [
-      "1. Feature flag ON.",
-      "2. Role has See Financial Data and the matching change permission.",
-      "3. An open work order; open the Add Fee / Discount dialog."
+      "1. Role has See Financial Data and the matching change permission.",
+      "2. An open work order; open the Add Fee / Discount dialog."
     ],
     "steps": [
       "1. With the dialog freshly opened (all fields empty), observe the Add button state.",
@@ -902,9 +874,8 @@
     "type": "Functional",
     "permissions_required": "See Financial Data; the matching Create and Edit permission",
     "preconditions": [
-      "1. Feature flag ON.",
-      "2. Role has See Financial Data and the matching change permission.",
-      "3. Add dialog open with Name and Type and Calculation type filled."
+      "1. Role has See Financial Data and the matching change permission.",
+      "2. Add dialog open with Name and Type and Calculation type filled."
     ],
     "steps": [
       "1. Leave Amount/Percent blank and attempt to save.",
@@ -929,9 +900,8 @@
     "type": "Functional",
     "permissions_required": "See Financial Data; the matching Create and Edit permission",
     "preconditions": [
-      "1. Feature flag ON.",
-      "2. Role has See Financial Data and the matching change permission.",
-      "3. Add dialog open with Type, Calculation type, and a valid Amount filled."
+      "1. Role has See Financial Data and the matching change permission.",
+      "2. Add dialog open with Type, Calculation type, and a valid Amount filled."
     ],
     "steps": [
       "1. Leave Name empty and attempt to save.",
@@ -956,9 +926,8 @@
     "type": "Functional",
     "permissions_required": "See Financial Data; the matching Create and Edit permission",
     "preconditions": [
-      "1. Feature flag ON.",
-      "2. Role has See Financial Data and the matching change permission.",
-      "3. Add dialog open."
+      "1. Role has See Financial Data and the matching change permission.",
+      "2. Add dialog open."
     ],
     "steps": [
       "1. Type = Discount, Calculation type = percentage, Percent = 100.5 → attempt save.",
@@ -984,9 +953,8 @@
     "type": "Functional",
     "permissions_required": "See Financial Data; the matching Create and Edit permission",
     "preconditions": [
-      "1. Feature flag ON.",
-      "2. Role has See Financial Data and the matching change permission.",
-      "3. Add dialog open with Name, Type, Calculation type set."
+      "1. Role has See Financial Data and the matching change permission.",
+      "2. Add dialog open with Name, Type, Calculation type set."
     ],
     "steps": [
       "1. Enter Amount = −5 (Flat) and attempt to save.",
@@ -1009,9 +977,8 @@
     "type": "Functional",
     "permissions_required": "See Financial Data; the matching Create and Edit permission",
     "preconditions": [
-      "1. Feature flag ON.",
-      "2. Role has See Financial Data and the matching change permission.",
-      "3. Add dialog open."
+      "1. Role has See Financial Data and the matching change permission.",
+      "2. Add dialog open."
     ],
     "steps": [
       "1. Choose a percentage Calculation type — confirm the Max Amount (Optional) field appears (S2-R24).",
@@ -1036,9 +1003,8 @@
     "type": "Functional",
     "permissions_required": "Settings → Finance (template setup); Customer Management: Create and Edit + Manage AP/AR (customer default); Work Orders: Create and Edit; See Financial Data",
     "preconditions": [
-      "1. Feature flag ON.",
-      "2. A template at the location is marked auto-apply (S7-R5).",
-      "3. The SAME template is also set as a default for a customer (S9-R2)."
+      "1. A template at the location is marked auto-apply (S7-R5).",
+      "2. The SAME template is also set as a default for a customer (S9-R2)."
     ],
     "steps": [
       "1. Create a NEW work order for that customer.",
