@@ -406,7 +406,7 @@ open_questions = [
      "admin Fees & Discounts page, or the Edit dialog / locked-field behavior. "
      "Confirm all these layouts live.",
      "S3 / S7 / §10", "VIU",
-     "FD-FIN-001 (Group B), FD-TMPL-001, FD-EDIT-001"),
+     "FD-DOC-001 (Group B), FD-TMPL-001, FD-EDIT-001"),
     ("Stats total placeholder mismatch",
      "The design mock's Statistics total placeholder (-$1,198.02) disagrees with "
      "its Financial Info total (-$2,055.25) for the same '(5)' set - a mock "
