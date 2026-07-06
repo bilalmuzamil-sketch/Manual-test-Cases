@@ -265,6 +265,10 @@ items are **gated by permission** (a hidden item means the role lacks the perm).
 - **Gotcha/Unblock:** the Quasar rich-text editor resists automation; note create/update still succeed via the endpoint. Story-history opens a panel (not a simple dialog).
 - **Confidence:** High (create/update/delete executed).
 
+### View History Logs (WO history + line story)
+- **Scope:** **View History Logs governs work-order-level history (the WO Audit Log / History) AND line-level (line story/history) — for WORK ORDERS ONLY. There is NO history log for Part Sales or Purchase Orders. (Confirmed with product owner.)** Do not assert any part-sales or PO history behavior.
+- **UI path:** WO detail → History / Audit Log section (WO-level); WO line → line story/history panel (line-level).
+
 ---
 
 ## ROLES / STAFF / ADMIN
