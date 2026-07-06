@@ -9,6 +9,10 @@ This is the single authoritative guide for running per-role / per-permission tes
 executions against ShopView **staging** and logging results to **TestRail**.
 It captures the proven approach so future runs do not have to rediscover it.
 
+> **Keeping this current:** update this runbook only when the **METHOD changes and
+> it's proven** — record **only what actually worked** (never failed approaches or
+> dead-ends); a gotcha goes in only as the working fix.
+
 ---
 
 ## 1. Overview & Scope

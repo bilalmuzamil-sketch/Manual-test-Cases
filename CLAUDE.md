@@ -4,9 +4,13 @@
 > That runbook holds the full, proven method; this file is a concise index +
 > durable memory. **No secrets in this repo — ever** (secrets live in `/tmp`).
 > - App action recipes (how to do each thing in ShopView): build/APP-ACTIONS-PLAYBOOK.md
-> - Keep the playbook current: after every run, append any newly-learned nav path,
->   action recipe, endpoint, or gotcha to build/APP-ACTIONS-PLAYBOOK.md (and update
->   this file/the runbook if a durable fact changed) so nothing learned is re-researched.
+> - Keep the books current: After each task, append ONLY success-proven learnings
+>   (working navigation paths, action recipes, endpoints, the specific unblock that
+>   worked) to build/APP-ACTIONS-PLAYBOOK.md; update build/TESTING-RUNBOOK.md when the
+>   method changes; update CLAUDE.md when a durable fact changes. Do NOT record failed
+>   approaches or dead-ends; a gotcha is recorded only as the working fix. Promote
+>   (verify) items to confirmed only after actually succeeding. Reuse the books for
+>   anything done before; research only genuinely new things.
 
 ## Project purpose
 Manual test-case authoring + live staging (Verify-in-UI) verification + TestRail
