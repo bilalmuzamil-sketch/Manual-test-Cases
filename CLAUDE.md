@@ -12,7 +12,36 @@
 >   (verify) items to confirmed only after actually succeeding. Reuse the books for
 >   anything done before; research only genuinely new things.
 
-## Project purpose
+## Projects in this workspace (two projects, one chat)
+This workspace/chat serves **TWO separate projects**. Keep their memory
+**SEPARATE** (don't mix facts/scope), but **reuse knowledge across them when
+genuinely helpful** (e.g. the staging access method + testing harness apply to
+both).
+
+1. **Custom Roles project** — Custom Roles & Permissions (ShopView). Existing
+   memory: this CLAUDE.md's detail sections, `build/TESTING-RUNBOOK.md`,
+   `build/APP-ACTIONS-PLAYBOOK.md`, `build/custom-roles-run/*`,
+   `build/custom-roles-spec-update/*`, TestRail section **3527** / run **312**.
+2. **Fees and Discount project** — Fees & Discounts V1 (ShopView). Memory:
+   `build/fees-discounts/*` (`requirements.md` = spec extract [NOTE: source PDF
+   was truncated at Story 2; Stories 3-13 missing], `viu-findings.md` when done,
+   `/tmp/fees-discounts` loom transcript). **STATUS: BLOCKED** — do not proceed
+   with VIU or case-writing until BOTH the COMPLETE spec (Stories 3-13, incl. the
+   Story-13 permissions table) AND the design files are provided.
+
+**STANDING RULES (apply to all projects):**
+1. **Never proceed without the complete set of information needed.** If
+   specs/designs/inputs are incomplete, STOP and ask for the missing pieces
+   before doing the work (do not guess or partially proceed on a half-spec).
+2. **Always confirm which project an instruction is for.** When the user gives an
+   instruction, first offer the options (Custom Roles project / Fees and Discount
+   project) and confirm the target project before acting — unless the instruction
+   itself unambiguously names or references one project's artifacts.
+3. **Separate memory per project; cross-use when useful.** Shared infrastructure
+   (staging access, harness scripts, TestRail API patterns) is common;
+   project-specific facts/scope/cases stay under each project's own files.
+
+## Project purpose (Custom Roles project)
 Manual test-case authoring + live staging (Verify-in-UI) verification + TestRail
 management for ShopView **"Custom Roles and Permissions"**, plus related
 regression / bug-fix re-testing.
