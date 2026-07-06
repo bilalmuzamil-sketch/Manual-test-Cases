@@ -1,0 +1,1096 @@
+[
+  {
+    "id": "SF-REV-01",
+    "area": "Review ON (Story 16)",
+    "story_ref": "R1",
+    "title": "Verify the Require Review setting drives the review flow when turned on",
+    "priority": "High",
+    "type": "Functional",
+    "permissions_required": "Admin / owner (settings) + Work Order edit access.",
+    "preconditions": [
+      "1. Signed in as Admin at https://sv7301.qa.shopview.com.",
+      "2. Require Review Before Completion is ON and saved."
+    ],
+    "steps": [
+      "1. Open a work order with approved lines.",
+      "2. Start completion.",
+      "3. Observe that the review flow is used."
+    ],
+    "expected": [
+      "1. With Require Review ON, completing routes into the review flow rather than completing directly."
+    ],
+    "design_ref": "Workflow Settings.html; WO Review Flow.html",
+    "viu_status": "VIU-Verified",
+    "notes": "Verified 2026-07-06 — the settings toggle drives the flow (08-settings-workorders.png, S16-04-review-wizard.png)."
+  },
+  {
+    "id": "SF-REV-02",
+    "area": "Review ON (Story 16)",
+    "story_ref": "R2",
+    "title": "Verify the completion CTA relabels to 'Complete & Send to Review' when review is on",
+    "priority": "High",
+    "type": "Functional",
+    "permissions_required": "Work Order edit access.",
+    "preconditions": [
+      "1. Signed in as Admin.",
+      "2. Require Review is ON.",
+      "3. A work order with approved lines is ready to complete."
+    ],
+    "steps": [
+      "1. Click Complete Work Order.",
+      "2. Read the wizard's primary CTA label."
+    ],
+    "expected": [
+      "1. The primary CTA reads 'Complete & Send to Review' (Send to Review)."
+    ],
+    "design_ref": "WO Review Flow.html",
+    "viu_status": "VIU-Verified",
+    "notes": "Verified 2026-07-06 (S16-04-review-wizard.png)."
+  },
+  {
+    "id": "SF-REV-03",
+    "area": "Review ON (Story 16)",
+    "story_ref": "R3",
+    "title": "Verify the Details step collects only mileage and engine hours when review is on (VIN captured later by reviewer)",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "Work Order edit access.",
+    "preconditions": [
+      "1. Signed in as Admin.",
+      "2. Require Review is ON.",
+      "3. A work order missing mileage/hours/VIN is ready to complete."
+    ],
+    "steps": [
+      "1. Start completion and reach the Details step.",
+      "2. Note which vehicle fields are collected."
+    ],
+    "expected": [
+      "1. The Details step collects mileage and engine hours only.",
+      "2. VIN is NOT collected here; it is captured later by the reviewer in the Mark Reviewed dialog."
+    ],
+    "design_ref": "WO Review Flow.html; requirements R3",
+    "viu_status": "VIU-Pending",
+    "notes": "Not isolated in VIU (the review Details split was not separately asserted). Needs live verification."
+  },
+  {
+    "id": "SF-REV-04",
+    "area": "Review ON (Story 16)",
+    "story_ref": "R4",
+    "title": "Verify 'Receive Parts' routes to the shared receive page (no inline modal) in the review flow",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "Work Order edit access + receive access.",
+    "preconditions": [
+      "1. Signed in as Admin.",
+      "2. Require Review is ON with a part-bearing work order."
+    ],
+    "steps": [
+      "1. Start completion and click Receive Parts.",
+      "2. Observe the destination."
+    ],
+    "expected": [
+      "1. Receive Parts opens the shared receive page (not an inline modal)."
+    ],
+    "design_ref": "WO Review Flow.html; Receive Vendor Parts - v2.html",
+    "viu_status": "VIU-Pending",
+    "notes": "Not driven in VIU. Needs live verification."
+  },
+  {
+    "id": "SF-REV-05",
+    "area": "Review ON (Story 16)",
+    "story_ref": "R5 / R6",
+    "title": "Verify Send to Review moves the WO to Review (amber) with a 'Ready for Review' banner and locks lines to Complete",
+    "priority": "Critical",
+    "type": "Functional",
+    "permissions_required": "Work Order edit access.",
+    "preconditions": [
+      "1. Signed in as Admin.",
+      "2. Require Review is ON and a work order with approved lines is in the completion wizard."
+    ],
+    "steps": [
+      "1. Click Complete & Send to Review.",
+      "2. Observe the work order status and banner.",
+      "3. Check the lines state and inventory pick state."
+    ],
+    "expected": [
+      "1. The work order status becomes Review (amber).",
+      "2. A 'Ready for Review' / 'Sent for review' indication is shown.",
+      "3. Lines lock to Complete and inventory is auto-picked."
+    ],
+    "design_ref": "WO Review Flow.html",
+    "viu_status": "VIU-Verified",
+    "notes": "Status→Review + 'Sent for review' verified 2026-07-06 (S16-05-after-send.png). Line-lock and auto-pick details (R6) not separately asserted."
+  },
+  {
+    "id": "SF-REV-06",
+    "area": "Review ON (Story 16)",
+    "story_ref": "R7 / R10",
+    "title": "Verify the Mark Reviewed dialog captures VIN (required) and disables Confirm until VIN is entered",
+    "priority": "Critical",
+    "type": "Functional",
+    "permissions_required": "Reviewer role (manager/foreman) — matrix TBD. Verified here as admin.",
+    "preconditions": [
+      "1. Signed in as Admin.",
+      "2. A work order is in Review state."
+    ],
+    "steps": [
+      "1. Click Mark Reviewed.",
+      "2. Observe the VIN field.",
+      "3. Clear the VIN and check the Confirm Review button, then enter a VIN."
+    ],
+    "expected": [
+      "1. The Mark Reviewed dialog exposes a VIN field (input_review_vin), required if missing.",
+      "2. Confirm Review is disabled until a VIN is present.",
+      "3. With a VIN, Confirm Review is enabled."
+    ],
+    "design_ref": "WO Review Flow.html; WO Review Flow - Handoff.md (test IDs)",
+    "viu_status": "VIU-Verified",
+    "notes": "Verified 2026-07-06 — dialog with VIN field, VIN pre-filled from asset, Confirm enabled (S16-06-mark-reviewed-dialog.png, S16-07-review-filled.png). Confirm-disabled-until-VIN inferred from VIN-required rule but not forced empty."
+  },
+  {
+    "id": "SF-REV-07",
+    "area": "Review ON (Story 16)",
+    "story_ref": "R6",
+    "title": "Verify on Send to Review lines lock to Complete and inventory is auto-picked",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "Work Order edit access.",
+    "preconditions": [
+      "1. Signed in as Admin.",
+      "2. A work order with an inventory line just went to Review."
+    ],
+    "steps": [
+      "1. Open the work order in Review state.",
+      "2. Check the line states.",
+      "3. Check whether inventory was auto-picked."
+    ],
+    "expected": [
+      "1. Lines are locked to Complete.",
+      "2. Inventory has been auto-picked."
+    ],
+    "design_ref": "requirements R6",
+    "viu_status": "VIU-Pending",
+    "notes": "Not separately asserted in VIU. Needs live verification."
+  },
+  {
+    "id": "SF-REV-08",
+    "area": "Review ON (Story 16)",
+    "story_ref": "R5 / R8 (distinct Reviewed state)",
+    "title": "Verify Confirm Review moves the WO to a distinct Reviewed state requiring a separate final Complete Work Order",
+    "priority": "High",
+    "type": "Functional",
+    "permissions_required": "Work Order edit access.",
+    "preconditions": [
+      "1. Signed in as Admin.",
+      "2. A work order is in Review with the Mark Reviewed dialog filled (VIN present)."
+    ],
+    "steps": [
+      "1. Click Confirm Review.",
+      "2. Observe the resulting work order state.",
+      "3. Look for a separate final 'Complete Work Order' action."
+    ],
+    "expected": [
+      "1. EXPECTED PER SPEC: the WO moves to Reviewed (green) with a 'sign-off complete' banner.",
+      "2. A separate final Complete Work Order action is required to move to Complete."
+    ],
+    "design_ref": "WO Review Flow.html; requirements R5/R8",
+    "viu_status": "Open-Question",
+    "notes": "VIU BUG #4: after Confirm Review the WO went straight to Complete — no distinct Reviewed holding state / separate final Complete click was observed (S16-08-reviewed.png). May be admin auto-progression. Do not record as passing against the expected. See Open Questions."
+  },
+  {
+    "id": "SF-REV-09",
+    "area": "Review ON (Story 16)",
+    "story_ref": "R7 (role-gating)",
+    "title": "Verify Mark Reviewed is available only to manager/foreman and disabled for an advisor with 'Awaiting review'",
+    "priority": "High",
+    "type": "Permissions",
+    "permissions_required": "Depends on permissions matrix (TBD). Reviewer (manager/foreman) and advisor credentials required.",
+    "preconditions": [
+      "1. Manager/foreman and advisor credentials exist.",
+      "2. A work order is in Review state."
+    ],
+    "steps": [
+      "1. Sign in as an advisor and open the work order in Review.",
+      "2. Confirm Mark Reviewed is disabled with 'Awaiting review'.",
+      "3. Sign in as a manager/foreman and confirm Mark Reviewed is available."
+    ],
+    "expected": [
+      "1. EXPECTED PER SPEC: advisors see Mark Reviewed disabled with 'Awaiting review'.",
+      "2. Managers/foremen can Mark Reviewed. (Final expected depends on the permissions matrix — TBD.)"
+    ],
+    "design_ref": "requirements R7",
+    "viu_status": "VIU-Pending",
+    "notes": "Role-gating not testable in VIU (admin-only session; tech key = 403). Expected depends on the (TBD) permissions matrix and the open 'role-gating review: custom roles vs open for v1' question. See Open Questions."
+  },
+  {
+    "id": "SF-REV-10",
+    "area": "Review ON (Story 16)",
+    "story_ref": "R7 / R10 (optional note)",
+    "title": "Verify the Mark Reviewed dialog includes an optional review note field (input_review_note)",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "Reviewer role (matrix TBD).",
+    "preconditions": [
+      "1. Signed in as Admin.",
+      "2. The Mark Reviewed dialog is open."
+    ],
+    "steps": [
+      "1. Look for an optional note field in the dialog.",
+      "2. Enter a note and Confirm."
+    ],
+    "expected": [
+      "1. EXPECTED PER SPEC: an optional review note field (input_review_note) is present.",
+      "2. A note can be entered and saved with the sign-off."
+    ],
+    "design_ref": "WO Review Flow - Handoff.md (test IDs)",
+    "viu_status": "Open-Question",
+    "notes": "VIU BUG #3: the Mark Reviewed dialog exposed ONLY the VIN field — no optional-note input (S16-06-mark-reviewed-dialog.png). Do not record as passing against the expected. See Open Questions."
+  },
+  {
+    "id": "SF-REV-11",
+    "area": "Review ON (Story 16)",
+    "story_ref": "R8",
+    "title": "Verify after sign-off the final Complete Work Order (any role) completes the WO and invoicing is blocked until reviewed",
+    "priority": "High",
+    "type": "Functional",
+    "permissions_required": "Work Order edit access + Finance access.",
+    "preconditions": [
+      "1. Signed in as Admin.",
+      "2. A work order is in Reviewed state (or a Review state before sign-off for the invoicing-block check)."
+    ],
+    "steps": [
+      "1. Before sign-off, attempt to invoice the work order.",
+      "2. After sign-off, click the final Complete Work Order (as any role).",
+      "3. Confirm the WO becomes Complete (invoice-ready)."
+    ],
+    "expected": [
+      "1. Invoicing is blocked until the WO is reviewed.",
+      "2. After sign-off, the final Complete Work Order (any role) makes the WO Complete and invoice-ready."
+    ],
+    "design_ref": "requirements R8",
+    "viu_status": "VIU-Pending",
+    "notes": "Overlaps VIU bug #4 (no distinct Reviewed state observed). Invoicing-block-until-reviewed not driven. Needs live verification."
+  },
+  {
+    "id": "SF-REV-12",
+    "area": "Review ON (Story 16)",
+    "story_ref": "R9",
+    "title": "Verify a 'Ready for Review' list filter/column surfaces the reviewer queue",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "WO list visibility.",
+    "preconditions": [
+      "1. Signed in as Admin.",
+      "2. At least one work order is in Review state."
+    ],
+    "steps": [
+      "1. Open the Work Orders list.",
+      "2. Look for a 'Ready for Review' filter or column.",
+      "3. Confirm work orders in Review appear in it."
+    ],
+    "expected": [
+      "1. EXPECTED PER SPEC: a 'Ready for Review' filter/column lists work orders awaiting review."
+    ],
+    "design_ref": "Work Orders List.html; requirements R9",
+    "viu_status": "VIU-Pending",
+    "notes": "A per-WO 'Ready for Review' indicator was seen (S16-05), but the list-level queue filter/column is flagged pending in the design handoff and was not verified. Needs dev complete / live verification."
+  },
+  {
+    "id": "SF-REV-13",
+    "area": "Review ON (Story 16)",
+    "story_ref": "R11",
+    "title": "Verify all lines must be approved to Send to Review (existing approve-line error)",
+    "priority": "Medium",
+    "type": "Negative",
+    "permissions_required": "Work Order edit access.",
+    "preconditions": [
+      "1. Signed in as Admin.",
+      "2. Require Review is ON and a work order has one unapproved line."
+    ],
+    "steps": [
+      "1. Click Complete & Send to Review.",
+      "2. Attempt to send with an unapproved line."
+    ],
+    "expected": [
+      "1. Send to Review is blocked with the existing approve-line error while any line is unapproved."
+    ],
+    "design_ref": "requirements R11",
+    "viu_status": "VIU-Pending",
+    "notes": "Not isolated in VIU (line-approval gate was PARTIAL). Needs live verification."
+  },
+  {
+    "id": "SF-REV-14",
+    "area": "Review ON (Story 16)",
+    "story_ref": "R Core parts / invoicing block",
+    "title": "Verify cores are resolved per rules before sign-off and invoicing is blocked until both Reviewed and all cores resolved",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "Work Order edit access + Finance access.",
+    "preconditions": [
+      "1. Signed in as Admin.",
+      "2. Require Review is ON and a work order has inventory and special-order cores."
+    ],
+    "steps": [
+      "1. Resolve inventory cores in the completion modal (after Pick) before Send to Review.",
+      "2. For required-invoice, resolve special-order cores after the Receive round-trip before Send to Review; for optional-invoice, resolve at the Create Invoice gate after sign-off.",
+      "3. Attempt to invoice before both Reviewed and cores are resolved."
+    ],
+    "expected": [
+      "1. Inventory cores are resolved before Send to Review.",
+      "2. Special-order cores follow the vendor-invoice rules.",
+      "3. Invoicing is blocked until the WO is Reviewed AND all cores are resolved."
+    ],
+    "design_ref": "requirements R Core parts",
+    "viu_status": "VIU-Pending",
+    "notes": "Not driven in VIU. Needs live verification."
+  },
+  {
+    "id": "SF-REV-15",
+    "area": "Review ON (Story 16)",
+    "story_ref": "R Open (default)",
+    "title": "Verify the Require Review default for new vs existing orgs matches the agreed cohort rule",
+    "priority": "Low",
+    "type": "Functional",
+    "permissions_required": "Admin / owner (settings).",
+    "preconditions": [
+      "1. A newly-created org and an existing org are available.",
+      "2. Signed in as Admin for each."
+    ],
+    "steps": [
+      "1. Check the Require Review default on a brand-new org.",
+      "2. Check that existing orgs keep today's behavior (backfilled)."
+    ],
+    "expected": [
+      "1. PENDING DECISION: the Require Review default follows the agreed cohort rule (e.g. on for bigger/existing shops), with existing orgs preserved via backfill."
+    ],
+    "design_ref": "requirements §8 open questions / R Open",
+    "viu_status": "Open-Question",
+    "notes": "Spec §8 marks the require-review default as UNRESOLVED. Confirm the intended default before pass/fail. See Open Questions."
+  },
+
+  {
+    "id": "SF-UX-01",
+    "area": "UX Refinements (Story 15)",
+    "story_ref": "S15-R1",
+    "title": "Verify the work order primary button reads 'Create Work Order'",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "Work Order create access.",
+    "preconditions": [
+      "1. Signed in as Admin.",
+      "2. You are on the Create Work Order form (/workorders → Create)."
+    ],
+    "steps": [
+      "1. Open the Create Work Order form.",
+      "2. Read the primary button label."
+    ],
+    "expected": [
+      "1. The primary button reads 'Create Work Order'."
+    ],
+    "design_ref": "Work Orders List.html; requirements S15-R1",
+    "viu_status": "VIU-Verified",
+    "notes": "Create flow verified during Story 2 setup (S2-01-create-form.png)."
+  },
+  {
+    "id": "SF-UX-02",
+    "area": "UX Refinements (Story 15)",
+    "story_ref": "S15-R2",
+    "title": "Verify required fields at completion appear in a centralized center modal and the tech story is NOT in that modal",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "Work Order edit access.",
+    "preconditions": [
+      "1. Signed in as Admin.",
+      "2. A work order requiring mileage/VIN is being completed."
+    ],
+    "steps": [
+      "1. Start completion.",
+      "2. Observe where required fields are collected.",
+      "3. Confirm the tech story is handled by its own flow, not inside this modal."
+    ],
+    "expected": [
+      "1. Required fields (mileage / VIN when required) are collected in a centralized center modal.",
+      "2. The tech story is NOT part of this modal (Story 17 handles it separately)."
+    ],
+    "design_ref": "WO Review Flow.html; requirements S15-R2",
+    "viu_status": "VIU-Verified",
+    "notes": "Centralized Details modal verified (S2-13-details.png); tech story ran as its own gate before the wizard (S2-11-techstory.png)."
+  },
+  {
+    "id": "SF-UX-03",
+    "area": "UX Refinements (Story 15)",
+    "story_ref": "S15-R3",
+    "title": "Verify the success screen shows WO number and total with Done and Go to Invoice, and the invoice number is on the Finance step",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "Work Order edit access.",
+    "preconditions": [
+      "1. Signed in as Admin.",
+      "2. A work order has just been completed."
+    ],
+    "steps": [
+      "1. Read the success screen.",
+      "2. Confirm WO number, total, Done and Go to Invoice.",
+      "3. Confirm the invoice number is shown on the Finance step, not the success screen."
+    ],
+    "expected": [
+      "1. The success screen shows the WO number and total with Done and Go to Invoice.",
+      "2. The invoice number appears on the Finance step, not on the success screen."
+    ],
+    "design_ref": "WO Review Flow.html; requirements S15-R3",
+    "viu_status": "VIU-Verified",
+    "notes": "Success screen verified (S2-14-success.png). Finance-step invoice-number location not separately driven."
+  },
+  {
+    "id": "SF-UX-04",
+    "area": "UX Refinements (Story 15)",
+    "story_ref": "S15-R4",
+    "title": "Verify the close-confirmation modal behavior (Close = closes modal only; Cancel = closes modal + returns to previous screen)",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "Work Order edit access.",
+    "preconditions": [
+      "1. Signed in as Admin.",
+      "2. A completion modal is open."
+    ],
+    "steps": [
+      "1. Trigger the close-confirmation modal.",
+      "2. Click Close (prominent/red) and observe.",
+      "3. Trigger it again and click Cancel (text link, far left) and observe."
+    ],
+    "expected": [
+      "1. PENDING DESIGN: Close closes the modal only (no discard) and stays on the work order.",
+      "2. Cancel closes the modal and returns to the previous screen."
+    ],
+    "design_ref": "requirements S15-R4 (design pending)",
+    "viu_status": "Open-Question",
+    "notes": "S15-R4 close-confirm design is explicitly pending ('Figma still to be added') — no design surface to test yet. Confirm before authoring expected. See Open Questions."
+  },
+
+  {
+    "id": "SF-PERM-01",
+    "area": "Permissions",
+    "story_ref": "S1 AC / §8 Permissions",
+    "title": "Verify only owner/admin can view and modify Work Order settings (non-admin blocked)",
+    "priority": "High",
+    "type": "Permissions",
+    "permissions_required": "Depends on permissions matrix (TBD). Non-admin credential required.",
+    "preconditions": [
+      "1. A non-admin user account exists.",
+      "2. You can sign in as that user."
+    ],
+    "steps": [
+      "1. Sign in as the non-admin user.",
+      "2. Attempt to open and modify /administration/settings → Work Orders."
+    ],
+    "expected": [
+      "1. The non-admin cannot view or modify Work Order settings (final expected depends on the permissions matrix — TBD)."
+    ],
+    "design_ref": "requirements S1 AC",
+    "viu_status": "VIU-Pending",
+    "notes": "BLOCKED in VIU (quick-login tech = 403; no non-admin session). Needs a real non-admin credential. Hypothesis to verify: backend may only enforce resource-level View/Edit while these are FE display gates (Custom Roles finding). See Open Questions."
+  },
+  {
+    "id": "SF-PERM-02",
+    "area": "Permissions",
+    "story_ref": "§8 Permissions",
+    "title": "Verify which roles can complete a work order (Simple completion)",
+    "priority": "Medium",
+    "type": "Permissions",
+    "permissions_required": "Depends on permissions matrix (TBD). Multiple role credentials required.",
+    "preconditions": [
+      "1. Credentials for several roles exist.",
+      "2. A work order ready to complete exists."
+    ],
+    "steps": [
+      "1. For each role, attempt to complete a work order.",
+      "2. Record which roles can and cannot."
+    ],
+    "expected": [
+      "1. PENDING MATRIX: expected depends on the permissions matrix (TBD). Do not assume specific role outcomes."
+    ],
+    "design_ref": "requirements §8 open questions",
+    "viu_status": "Open-Question",
+    "notes": "No permissions/role matrix supplied. Author only; expected depends on the matrix (TBD). See Open Questions."
+  },
+  {
+    "id": "SF-PERM-03",
+    "area": "Permissions",
+    "story_ref": "§8 Permissions",
+    "title": "Verify which roles can perform Bulk Receive",
+    "priority": "Medium",
+    "type": "Permissions",
+    "permissions_required": "Depends on permissions matrix (TBD).",
+    "preconditions": [
+      "1. Credentials for several roles exist.",
+      "2. The Bulk Receive flow is available (Story 7/8 built)."
+    ],
+    "steps": [
+      "1. For each role, attempt to reach and use Bulk Receive.",
+      "2. Record the outcomes."
+    ],
+    "expected": [
+      "1. PENDING MATRIX: expected depends on the permissions matrix (TBD)."
+    ],
+    "design_ref": "requirements §8 open questions",
+    "viu_status": "Open-Question",
+    "notes": "No matrix supplied; also Bulk Receive is not yet built. See Open Questions."
+  },
+  {
+    "id": "SF-PERM-04",
+    "area": "Permissions",
+    "story_ref": "R7 / §8 role-gating review",
+    "title": "Verify which roles can Mark Reviewed (sign off)",
+    "priority": "Medium",
+    "type": "Permissions",
+    "permissions_required": "Depends on permissions matrix (TBD). Manager/foreman + other role credentials required.",
+    "preconditions": [
+      "1. Credentials for manager/foreman and other roles exist.",
+      "2. A work order in Review state exists."
+    ],
+    "steps": [
+      "1. For each role, attempt to Mark Reviewed.",
+      "2. Record which roles can and cannot."
+    ],
+    "expected": [
+      "1. PENDING MATRIX: spec says manager/foreman only, but role-gating (custom roles vs open for v1) is UNRESOLVED. Expected depends on the matrix (TBD)."
+    ],
+    "design_ref": "requirements R7 / §8",
+    "viu_status": "Open-Question",
+    "notes": "Role-gating for review is an explicit open question. See Open Questions."
+  },
+  {
+    "id": "SF-PERM-05",
+    "area": "Permissions",
+    "story_ref": "S11-R3",
+    "title": "Verify the PO Receive button is hidden for office/readonly users",
+    "priority": "Medium",
+    "type": "Permissions",
+    "permissions_required": "Depends on permissions matrix (TBD). Office/readonly credential required.",
+    "preconditions": [
+      "1. An office/readonly credential exists.",
+      "2. A WO-originated PO exists."
+    ],
+    "steps": [
+      "1. Sign in as an office/readonly user.",
+      "2. Open the PO list and detail.",
+      "3. Confirm the Receive action is not shown."
+    ],
+    "expected": [
+      "1. EXPECTED PER SPEC: office/readonly users do not see the Receive action (final expected depends on the permissions matrix — TBD)."
+    ],
+    "design_ref": "requirements S11-R3",
+    "viu_status": "VIU-Pending",
+    "notes": "Not verifiable in VIU (no non-admin session). Needs an office/readonly credential. See Open Questions."
+  },
+  {
+    "id": "SF-PERM-06",
+    "area": "Permissions",
+    "story_ref": "§8 BE enforcement",
+    "title": "Verify whether the backend enforces the Simple-Flow settings or they are front-end display gates only",
+    "priority": "Medium",
+    "type": "Permissions",
+    "permissions_required": "Admin (API access) + a lower role credential.",
+    "preconditions": [
+      "1. Signed in with API access.",
+      "2. A relevant Simple-Flow setting (e.g. Require Vendor Invoice Number) is ON."
+    ],
+    "steps": [
+      "1. Attempt the gated action directly via the API (bypassing the UI), e.g. completing without the required invoice.",
+      "2. Observe whether the backend rejects (403/422) or allows it (200/201)."
+    ],
+    "expected": [
+      "1. PENDING DECISION: determine whether the backend enforces the setting (rejects) or the gate is front-end only (allows)."
+    ],
+    "design_ref": "requirements §8 open questions",
+    "viu_status": "Open-Question",
+    "notes": "§8 asks whether BE should enforce Simple-Flow settings. Hypothesis from Custom Roles: BE often enforces only resource-level View/Edit while granular gates are FE-only. Verify; do not assume. See Open Questions."
+  },
+  {
+    "id": "SF-PERM-07",
+    "area": "Permissions",
+    "story_ref": "§8 role-gating review",
+    "title": "Verify whether review role-gating uses custom roles or is open for v1",
+    "priority": "Low",
+    "type": "Permissions",
+    "permissions_required": "Depends on permissions matrix (TBD).",
+    "preconditions": [
+      "1. Credentials for several roles exist.",
+      "2. A work order in Review state exists."
+    ],
+    "steps": [
+      "1. Determine which roles can sign off review.",
+      "2. Determine whether this is governed by a custom-role permission or open to all."
+    ],
+    "expected": [
+      "1. PENDING DECISION: whether review sign-off is gated by custom roles or open for v1 is unresolved."
+    ],
+    "design_ref": "requirements §8 open questions",
+    "viu_status": "Open-Question",
+    "notes": "Explicit open question. See Open Questions."
+  },
+
+  {
+    "id": "SF-VAL-01",
+    "area": "Validation / Edge",
+    "story_ref": "S2-R2 / S3-R3 / S4-R3",
+    "title": "Verify completion is blocked when required mileage is missing",
+    "priority": "High",
+    "type": "Negative",
+    "permissions_required": "Work Order edit access.",
+    "preconditions": [
+      "1. Signed in as Admin.",
+      "2. Require Mileage is ON and the work order has no mileage."
+    ],
+    "steps": [
+      "1. Start completion.",
+      "2. Leave mileage empty and try to proceed."
+    ],
+    "expected": [
+      "1. Completion is blocked until mileage is entered."
+    ],
+    "design_ref": "WO Review Flow.html (Details step)",
+    "viu_status": "VIU-Pending",
+    "notes": "Details step seen (S2-13) but empty-field block not isolated. Needs live verification."
+  },
+  {
+    "id": "SF-VAL-02",
+    "area": "Validation / Edge",
+    "story_ref": "S15-R2 / S3-R3",
+    "title": "Verify completion is blocked when a required VIN is missing (non-review flow)",
+    "priority": "Medium",
+    "type": "Negative",
+    "permissions_required": "Work Order edit access.",
+    "preconditions": [
+      "1. Signed in as Admin.",
+      "2. VIN is required for this org's completion and the work order has no VIN.",
+      "3. Require Review is OFF (VIN is collected at completion in the non-review flow)."
+    ],
+    "steps": [
+      "1. Start completion.",
+      "2. Leave VIN empty and try to proceed."
+    ],
+    "expected": [
+      "1. Completion is blocked until the VIN is entered."
+    ],
+    "design_ref": "requirements S15-R2",
+    "viu_status": "VIU-Pending",
+    "notes": "Not isolated in VIU. Needs live verification. (In review flow, VIN is captured at Mark Reviewed — see SF-REV-06.)"
+  },
+  {
+    "id": "SF-VAL-03",
+    "area": "Validation / Edge",
+    "story_ref": "S3-R3 / S4-R3",
+    "title": "Verify completion is blocked when required engine hours are missing",
+    "priority": "Medium",
+    "type": "Negative",
+    "permissions_required": "Work Order edit access.",
+    "preconditions": [
+      "1. Signed in as Admin.",
+      "2. Require Engine Hours is ON and the work order has no engine hours."
+    ],
+    "steps": [
+      "1. Start completion.",
+      "2. Leave engine hours empty and try to proceed."
+    ],
+    "expected": [
+      "1. Completion is blocked until engine hours are entered."
+    ],
+    "design_ref": "requirements S3-R3 / S4-R3",
+    "viu_status": "VIU-Pending",
+    "notes": "Not driven in VIU. Needs live verification."
+  },
+  {
+    "id": "SF-VAL-04",
+    "area": "Validation / Edge",
+    "story_ref": "TS-R4",
+    "title": "Verify the tech-story Next/Continue button stays disabled while the story textarea is empty",
+    "priority": "Medium",
+    "type": "Negative",
+    "permissions_required": "Work Order edit access.",
+    "preconditions": [
+      "1. Signed in as Admin.",
+      "2. The tech-story modal is open on a line."
+    ],
+    "steps": [
+      "1. Leave the story textarea empty.",
+      "2. Check the Next/Continue button.",
+      "3. Type any text and check again."
+    ],
+    "expected": [
+      "1. With the textarea empty, Next/Continue is disabled.",
+      "2. After typing text, Next/Continue becomes enabled."
+    ],
+    "design_ref": "WO Review Flow.html",
+    "viu_status": "VIU-Verified",
+    "notes": "Verified 2026-07-06 — Continue disabled until non-empty (S2-11-techstory.png)."
+  },
+  {
+    "id": "SF-VAL-05",
+    "area": "Validation / Edge",
+    "story_ref": "S3-R3 / S4-R5 / §4",
+    "title": "Verify a required-invoice receive is blocked without a vendor invoice number",
+    "priority": "High",
+    "type": "Negative",
+    "permissions_required": "receive access.",
+    "preconditions": [
+      "1. Signed in as Admin.",
+      "2. Require Vendor Invoice Number is ON and a part is being received."
+    ],
+    "steps": [
+      "1. On the receive surface, leave the vendor invoice number empty.",
+      "2. Attempt to receive."
+    ],
+    "expected": [
+      "1. Receiving is blocked without a vendor invoice number.",
+      "2. Once an invoice number is entered, receiving is allowed."
+    ],
+    "design_ref": "requirements §4 / S4-R5",
+    "viu_status": "VIU-Pending",
+    "notes": "Not driven in VIU. Needs live verification."
+  },
+  {
+    "id": "SF-VAL-06",
+    "area": "Validation / Edge",
+    "story_ref": "S10 / S12-R2 / S13",
+    "title": "Verify a vendor-missing part cannot be received without both a vendor and a part number",
+    "priority": "High",
+    "type": "Negative",
+    "permissions_required": "receive access.",
+    "preconditions": [
+      "1. Signed in as Admin.",
+      "2. A vendor-missing part is on a receive surface."
+    ],
+    "steps": [
+      "1. Attempt to receive with no vendor.",
+      "2. Attempt to receive with a vendor but no part number.",
+      "3. Provide both and receive."
+    ],
+    "expected": [
+      "1. Receiving is blocked without a vendor.",
+      "2. Receiving is blocked without a part number.",
+      "3. Receiving succeeds only with both."
+    ],
+    "design_ref": "requirements S12-R2 / S10",
+    "viu_status": "VIU-Pending",
+    "notes": "Not driven in VIU. Needs live verification."
+  },
+  {
+    "id": "SF-VAL-07",
+    "area": "Validation / Edge",
+    "story_ref": "R7",
+    "title": "Verify Confirm Review is disabled until a VIN is entered in the Mark Reviewed dialog",
+    "priority": "Medium",
+    "type": "Negative",
+    "permissions_required": "Reviewer role (matrix TBD).",
+    "preconditions": [
+      "1. Signed in as Admin.",
+      "2. The Mark Reviewed dialog is open on a WO with no VIN on the asset."
+    ],
+    "steps": [
+      "1. Clear the VIN field.",
+      "2. Check the Confirm Review button.",
+      "3. Enter a VIN and check again."
+    ],
+    "expected": [
+      "1. Confirm Review is disabled while VIN is empty.",
+      "2. Confirm Review enables after a VIN is entered."
+    ],
+    "design_ref": "WO Review Flow.html; requirements R7",
+    "viu_status": "VIU-Pending",
+    "notes": "In VIU the VIN was pre-filled from the asset, so the empty-VIN disabled state was not forced. Needs a WO with no VIN to verify."
+  },
+  {
+    "id": "SF-VAL-08",
+    "area": "Validation / Edge",
+    "story_ref": "S3-R9 (idempotency)",
+    "title": "Verify re-completing after cancelling does not create duplicate POs",
+    "priority": "Medium",
+    "type": "Negative",
+    "permissions_required": "Work Order edit access.",
+    "preconditions": [
+      "1. Signed in as Admin.",
+      "2. A part-bearing work order had completion started and cancelled once."
+    ],
+    "steps": [
+      "1. Cancel the first completion attempt.",
+      "2. Start and complete again.",
+      "3. Inspect the POs."
+    ],
+    "expected": [
+      "1. No duplicate POs are created on the second attempt."
+    ],
+    "design_ref": "requirements S3-R9",
+    "viu_status": "VIU-Pending",
+    "notes": "Not driven in VIU. Needs live verification. (Also covered from the flow side in SF-COMP-23.)"
+  },
+  {
+    "id": "SF-VAL-09",
+    "area": "Validation / Edge",
+    "story_ref": "S8-R7 / §4 field locking",
+    "title": "Verify the sell field is locked after the work order is invoiced/paid with a lock icon and tooltip",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "receive access.",
+    "preconditions": [
+      "1. Signed in as Admin.",
+      "2. A part on an invoiced/paid work order is on a receive surface."
+    ],
+    "steps": [
+      "1. Open the receive surface for the invoiced/paid WO part.",
+      "2. Try to edit the sell field.",
+      "3. Hover the lock icon."
+    ],
+    "expected": [
+      "1. The sell field is locked (not editable).",
+      "2. A lock icon and tooltip 'Locked — this part is already invoiced or paid' are shown.",
+      "3. Only cost remains editable."
+    ],
+    "design_ref": "requirements S8-R7 / §4",
+    "viu_status": "VIU-Pending",
+    "notes": "Not driven in VIU. Needs live verification."
+  },
+  {
+    "id": "SF-VAL-10",
+    "area": "Validation / Edge",
+    "story_ref": "S9-R3 / §4 (uniqueness relaxed)",
+    "title": "Verify the same vendor invoice number can be reused across POs (uniqueness relaxed)",
+    "priority": "Low",
+    "type": "Functional",
+    "permissions_required": "receive access.",
+    "preconditions": [
+      "1. Signed in as Admin.",
+      "2. Two POs for the same vendor are being received."
+    ],
+    "steps": [
+      "1. Enter the same invoice number on both POs.",
+      "2. Receive both."
+    ],
+    "expected": [
+      "1. The reused invoice number is accepted (uniqueness is relaxed).",
+      "2. Both POs receive successfully."
+    ],
+    "design_ref": "requirements S9-R3 / §4",
+    "viu_status": "VIU-Pending",
+    "notes": "Not driven in VIU. Needs live verification."
+  },
+  {
+    "id": "SF-VAL-11",
+    "area": "Validation / Edge",
+    "story_ref": "Key Decision (line approval)",
+    "title": "Verify the approve-line error text appears when completing with an unapproved line",
+    "priority": "Medium",
+    "type": "Negative",
+    "permissions_required": "Work Order edit access.",
+    "preconditions": [
+      "1. Signed in as Admin.",
+      "2. A work order has one unapproved line and all other gates satisfied."
+    ],
+    "steps": [
+      "1. Click Complete Work Order.",
+      "2. Read the error shown at the final confirm."
+    ],
+    "expected": [
+      "1. The existing 'you need to approve the line to complete the work order' error is shown.",
+      "2. Completion does not proceed until the line is approved."
+    ],
+    "design_ref": "requirements §4 Key Decision",
+    "viu_status": "VIU-Pending",
+    "notes": "PARTIAL in VIU — error not cleanly isolated (S17-02-approval-error.png). Needs a WO whose only blocker is the unapproved line."
+  },
+
+  {
+    "id": "SF-QB-01",
+    "area": "QuickBooks / Inventory Integrity",
+    "story_ref": "§5 invariant 1",
+    "title": "Verify in-stock parts decrement inventory and write Part History on simple completion (skip path still runs lifecycle)",
+    "priority": "High",
+    "type": "Functional",
+    "permissions_required": "Work Order edit access + Inventory visibility.",
+    "preconditions": [
+      "1. Signed in as Admin.",
+      "2. A work order has an in-stock inventory part; its on-hand quantity is noted."
+    ],
+    "steps": [
+      "1. Complete the work order via the simple (skip) path.",
+      "2. Check the part's on-hand quantity and Part History."
+    ],
+    "expected": [
+      "1. The in-stock part's on-hand quantity decrements.",
+      "2. A Part History entry is written.",
+      "3. The skip path's status setter does not bypass inventory movement / Part History / catalog / delivery."
+    ],
+    "design_ref": "requirements §5 invariant 1",
+    "viu_status": "Open-Question",
+    "notes": "§8 open question: auto-receive of in-stock inventory on simple completion is unconfirmed, and the spec flags the bare status setter as an integrity risk. Not driven in VIU. See Open Questions."
+  },
+  {
+    "id": "SF-QB-02",
+    "area": "QuickBooks / Inventory Integrity",
+    "story_ref": "§5 / §4 (Create POs OFF)",
+    "title": "Verify Create POs OFF produces no PO, vendor bill or AP sync and no catalog/inventory sync",
+    "priority": "High",
+    "type": "Functional",
+    "permissions_required": "Admin / owner (settings) + Work Order edit access + QuickBooks visibility.",
+    "preconditions": [
+      "1. Signed in as Admin.",
+      "2. Create Purchase Orders is OFF (see SF-SET-03).",
+      "3. A work order with a vendor/found part exists."
+    ],
+    "steps": [
+      "1. Complete the work order with Create POs OFF.",
+      "2. Check for any PO, vendor bill, AP sync.",
+      "3. Check for any catalog/inventory sync of the vendor/found part."
+    ],
+    "expected": [
+      "1. EXPECTED PER SPEC: no PO, no vendor bill, no AP sync.",
+      "2. No catalog/inventory sync (part is received at request time only)."
+    ],
+    "design_ref": "requirements §4 / §5",
+    "viu_status": "Open-Question",
+    "notes": "Blocked by VIU bug #1: no 'Create Purchase Orders' toggle exists, so Create POs OFF cannot be configured. See Open Questions."
+  },
+  {
+    "id": "SF-QB-03",
+    "area": "QuickBooks / Inventory Integrity",
+    "story_ref": "§5 invariant 2",
+    "title": "Verify POs ON plus receiving runs the full pipeline: receive → Delivery → Vendor Bill → QuickBooks (both surfaces sync)",
+    "priority": "High",
+    "type": "Functional",
+    "permissions_required": "receive access + QuickBooks visibility.",
+    "preconditions": [
+      "1. Signed in as Admin.",
+      "2. Create POs is on and a work order has a receivable vendor part."
+    ],
+    "steps": [
+      "1. Receive the part via Accept Delivery.",
+      "2. Check that a Delivery, then a Vendor Bill, then a QuickBooks sync occur.",
+      "3. Repeat via the Bulk Receive surface (once built) and confirm it also syncs."
+    ],
+    "expected": [
+      "1. Receiving creates a Delivery, then a Vendor Bill, then syncs to QuickBooks.",
+      "2. Both receive surfaces sync the vendor bill (only complete-simple bypasses this)."
+    ],
+    "design_ref": "requirements §5 invariant 2",
+    "viu_status": "VIU-Pending",
+    "notes": "Not driven in VIU; needs QuickBooks inspection. Bulk Receive surface not yet built. Needs live verification."
+  },
+  {
+    "id": "SF-QB-04",
+    "area": "QuickBooks / Inventory Integrity",
+    "story_ref": "§5 (vendorless/no-PN)",
+    "title": "Verify a vendorless / no-PN part has zero inventory interaction until a vendor and/or part number is added",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "Inventory visibility.",
+    "preconditions": [
+      "1. Signed in as Admin.",
+      "2. A vendorless / no-PN part exists on a work order."
+    ],
+    "steps": [
+      "1. Before adding a vendor/PN, check inventory and Part History for the part.",
+      "2. Add a vendor and PN, then re-check."
+    ],
+    "expected": [
+      "1. Before a vendor/PN, there is zero inventory interaction (no item, no history).",
+      "2. After a vendor and PN are added, normal inventory handling applies."
+    ],
+    "design_ref": "requirements §5",
+    "viu_status": "VIU-Pending",
+    "notes": "Not driven in VIU. Needs live verification."
+  },
+  {
+    "id": "SF-QB-05",
+    "area": "QuickBooks / Inventory Integrity",
+    "story_ref": "§5 / S6-R3",
+    "title": "Verify Vendor Missing POs are excluded from QuickBooks until a vendor and part number are provided",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "QuickBooks visibility.",
+    "preconditions": [
+      "1. Signed in as Admin.",
+      "2. A Vendor Missing PO exists."
+    ],
+    "steps": [
+      "1. Check QuickBooks sync for the Vendor Missing PO.",
+      "2. Provide a vendor and part number and re-check."
+    ],
+    "expected": [
+      "1. While vendor/PN are missing, the PO is excluded from QuickBooks.",
+      "2. Once both are provided, it becomes eligible for QuickBooks."
+    ],
+    "design_ref": "requirements §5 / S6-R3",
+    "viu_status": "VIU-Pending",
+    "notes": "Not driven in VIU. Needs live verification."
+  },
+  {
+    "id": "SF-QB-06",
+    "area": "QuickBooks / Inventory Integrity",
+    "story_ref": "§8 (cost at completion)",
+    "title": "Verify cost at completion behavior to avoid $0-cost margins in QuickBooks",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "Work Order edit access + QuickBooks visibility.",
+    "preconditions": [
+      "1. Signed in as Admin.",
+      "2. A work order has a part with no cost recorded at completion."
+    ],
+    "steps": [
+      "1. Complete the work order.",
+      "2. Check the resulting cost/margin figures that flow to QuickBooks."
+    ],
+    "expected": [
+      "1. PENDING DECISION: whether cost can be entered at completion to avoid $0-cost margins is unresolved. Confirm the intended behavior."
+    ],
+    "design_ref": "requirements §8 open questions",
+    "viu_status": "Open-Question",
+    "notes": "§8 open question. Not driven in VIU. See Open Questions."
+  },
+  {
+    "id": "SF-QB-07",
+    "area": "QuickBooks / Inventory Integrity",
+    "story_ref": "§5 (Journal Entry / Inventory → QBO)",
+    "title": "Verify the Journal Entry / Inventory sync to QuickBooks fires on invoice creation (not PO-dependent)",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "Finance access + QuickBooks visibility.",
+    "preconditions": [
+      "1. Signed in as Admin.",
+      "2. A completed work order is ready to invoice."
+    ],
+    "steps": [
+      "1. Create the invoice.",
+      "2. Check for the Journal Entry / Inventory sync to QuickBooks."
+    ],
+    "expected": [
+      "1. The Journal Entry / Inventory sync to QuickBooks fires on invoice creation.",
+      "2. This sync is not dependent on a PO existing."
+    ],
+    "design_ref": "requirements §5",
+    "viu_status": "VIU-Pending",
+    "notes": "Not driven in VIU; needs QuickBooks inspection. Needs live verification."
+  },
+  {
+    "id": "SF-QB-08",
+    "area": "QuickBooks / Inventory Integrity",
+    "story_ref": "§5 invariant 3",
+    "title": "Verify Inventory Part History is preserved for any part that becomes inventory-tracked",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "Inventory visibility.",
+    "preconditions": [
+      "1. Signed in as Admin.",
+      "2. A part transitions to inventory-tracked (e.g. a part number is added and it is received)."
+    ],
+    "steps": [
+      "1. Add a part number to a previously untracked part and receive it.",
+      "2. Open the item's Part History."
+    ],
+    "expected": [
+      "1. Part History is preserved / created for the now inventory-tracked part."
+    ],
+    "design_ref": "requirements §5 invariant 3",
+    "viu_status": "VIU-Pending",
+    "notes": "Not driven in VIU. Needs live verification."
+  }
+]
