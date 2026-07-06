@@ -12,11 +12,11 @@
 >   (verify) items to confirmed only after actually succeeding. Reuse the books for
 >   anything done before; research only genuinely new things.
 
-## Projects in this workspace (two projects, one chat)
-This workspace/chat serves **TWO separate projects**. Keep their memory
+## Projects in this workspace (three projects, one chat)
+This workspace/chat serves **THREE separate projects**. Keep their memory
 **SEPARATE** (don't mix facts/scope), but **reuse knowledge across them when
 genuinely helpful** (e.g. the staging access method + testing harness apply to
-both).
+all).
 
 1. **Custom Roles project** — Custom Roles & Permissions (ShopView). Existing
    memory: this CLAUDE.md's detail sections, `build/TESTING-RUNBOOK.md`,
@@ -28,6 +28,15 @@ both).
    `/tmp/fees-discounts` loom transcript). **STATUS: BLOCKED** — do not proceed
    with VIU or case-writing until BOTH the COMPLETE spec (Stories 3-13, incl. the
    Story-13 permissions table) AND the design files are provided.
+3. **Simple flow project** — Simple Mode / Streamlined Work Order Completion &
+   Receiving (ShopView), Epic **SV-7301**. Memory: `build/simple-flow/*`
+   (`requirements.md` = COMPLETE spec, 17 stories SV-7696..SV-7710 + SV-7870 +
+   SV-7876; `design-notes.md`; `viu-findings.md`; `cases/*.json` = 156 authored
+   cases with `SF-` IDs; `SimpleFlow_V1_TestCases.xlsx/.csv`;
+   `build_workbook.py` + `gen_cases.py`). TestRail = later (not yet imported).
+   **STATUS: cases authored; VIU PARTIAL** — feature under development, so Stories
+   **7/8/9/14 are NOT built** and role-gating negatives are unverified. 14 open
+   questions consolidated in the workbook's Open Questions tab.
 
 **STANDING RULES (apply to all projects):**
 1. **Never proceed without the complete set of information needed.** If
@@ -68,6 +77,31 @@ regression / bug-fix re-testing.
   - `add_case` REQUIRES `custom_atmstatus:3` + `custom_automation_type:0`.
   - Result statuses: **1 Passed · 2 Blocked · 3 Untested · 4 Retest · 5 Failed**.
   - Scope structure lives in `build/custom-roles-run/run-plan.json`.
+
+## Durable key facts (simple flow)
+- **QA env:** app `https://sv7301.qa.shopview.com`; API host
+  `https://sv7301api.qa.shopview.com` (note: `sv7301api`, no dot).
+- **Auth:** `POST /api/quick-login {key:'admin'|'tech'}` gated by cookies
+  `sv_sso_session` / `PHPSESSID` / `cf_clearance` (domain `.qa.shopview.com`;
+  secrets in `/tmp` only). On sv7301 only the **admin** session works —
+  `{key:'tech'}` returns **403**, so non-admin/role-gating negatives are NOT
+  verifiable there.
+- **Settings-driven, NO feature flag** — behavior is controlled by the Work Order
+  settings tab (checked `/administration/feature-flags`: no "Simple Mode" flag).
+  Read `GET /api/organizations/settings`; save
+  `POST /api/organizations/settings/change` (full settings object).
+- **Routes:** WO settings `/administration/settings` → Work Orders tab; PO list
+  `/parts/orders`; deliveries/Accept-Delivery `/parts/deliveries`; WOs
+  `/workorders` → `/workorders/{id}/lines`.
+- **NOT built yet:** Stories **7** (PO multi-select), **8** (Bulk Receive page),
+  **9** (apply-invoice), **14** (Waiting-on-Parts column).
+- **VIU deviations (bugs):** (1) no "Create Purchase Orders" toggle / no
+  `createPurchaseOrders` field — POs always-on; (2) Save Settings always enabled;
+  (3) Mark-Reviewed dialog missing optional `input_review_note`; (4) review
+  sign-off jumps straight to Complete (no distinct "Reviewed" state observed).
+- **No permissions matrix supplied** — role-gating expected results are TBD.
+- **IDs:** case IDs use `SF-<AREA>-NN`; org `d55bc308-...` (shared with Custom
+  Roles). VIU tools in `/tmp/simple-flow/tools/`.
 
 ## Key findings to remember
 - **Enforcement model:** backend enforces only **resource-level View/Edit**;
