@@ -70,7 +70,7 @@ titles = []
 for c in cases:
     title = c["title"].strip()
     titles.append(title)
-    section = "Fees and Discounts V1 > " + c["area"].strip()
+    section = c["area"].strip()
     row = [
         title,
         section,
