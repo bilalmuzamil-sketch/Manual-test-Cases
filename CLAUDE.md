@@ -3,6 +3,10 @@
 > **Before any staging or TestRail testing, read `build/TESTING-RUNBOOK.md`.**
 > That runbook holds the full, proven method; this file is a concise index +
 > durable memory. **No secrets in this repo — ever** (secrets live in `/tmp`).
+> - App action recipes (how to do each thing in ShopView): build/APP-ACTIONS-PLAYBOOK.md
+> - Keep the playbook current: after every run, append any newly-learned nav path,
+>   action recipe, endpoint, or gotcha to build/APP-ACTIONS-PLAYBOOK.md (and update
+>   this file/the runbook if a durable fact changed) so nothing learned is re-researched.
 
 ## Project purpose
 Manual test-case authoring + live staging (Verify-in-UI) verification + TestRail
