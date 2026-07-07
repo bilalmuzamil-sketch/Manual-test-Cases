@@ -135,3 +135,21 @@ Both bugs share one root cause and could reasonably be filed as **one ticket**
 covering "any role without WO Lines: Delete" (Technician, Parts Manager, Parts
 Tech, Office, etc.). They are drafted as two here because there are two distinct
 failed tests. Say the word if you'd prefer a single consolidated ticket.
+
+---
+
+## CREATED
+
+User approved a single consolidated ticket. Filed **2026-07-07**:
+
+- **Issue key:** SV-8193
+- **Browse URL:** https://shopview.atlassian.net/browse/SV-8193
+- **Type/Project:** Bug · SV (ShopView) · **Parent epic:** SV-7388
+- **Product Area (required):** Work Orders (customfield_10153 = id 10120)
+- **Priority:** Medium · **Labels:** custom-roles, testrail, digital-inspections
+- **Links:** relates to SV-8095, relates to SV-7985
+- **Ayesha Khan** (accountId 712020:67f76d27-9119-4cb6-93c6-dbf94204abba)
+  @mentioned in both the description and a comment (comment mention resolved to
+  her accountId → notified) with the confirmation/obsolete request.
+- Covers both failed TestRail tests: 1561707 (C27659, Technician) and 1561719
+  (C27672, Parts Manager).
