@@ -1,6 +1,18 @@
 #!/usr/bin/env python3
 """Emit Fees & Discounts V1 cases in the user's exact TestRail import CSV format
-(matched to testrail-import/sv5319-testrail-import-MATCHED.csv), plus a review xlsx."""
+(matched to testrail-import/sv5319-testrail-import-MATCHED.csv), plus a review xlsx.
+
+CONTENT RULES enforced here (see task PART 2):
+  1. NO VIU wording anywhere. The internal `viu_status`, `notes`, and `design_ref`
+     fields are NOT emitted. No "(Ref: FD-... — VIU pending...)" traceability clause.
+  2. NO feature-flag preconditions. The literal phrase "feature flag" is reworded to
+     "Fees & Discounts feature" so 0 occurrences of "feature flag" remain, while the
+     genuine flag-gating test cases stay coherent.
+  3. Sections = leaf area names only (already leaf names in the source JSON).
+  4. References = spec/story reference only (no internal FD- ids, no VIU text).
+  5/6. Preconditions/Steps/Expected kept as authored, cleaned per rules above; no
+     TBD/pending meta text (the source expected results are clean).
+"""
 import csv, json, re, os
 
 BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # build/
@@ -28,8 +40,30 @@ for fn in FILES:
 print("Total cases loaded:", len(cases))
 
 
+def clean(s):
+    """Strip internal/VIU markers and rewrite the banned 'feature flag' phrase."""
+    if not s:
+        return s
+    # Drop the admin Feature-Flags nav parenthetical (avoids the banned phrase).
+    s = s.replace(" (Administration → Feature Flags)", "")
+    s = s.replace("(Administration → Feature Flags)", "")
+    # Rewrite flag phrases -> the feature name (keeps gating cases coherent).
+    # Handle product-name-prefixed forms first to avoid doubling the name.
+    s = s.replace("Fees & Discounts feature flag", "Fees & Discounts feature")
+    s = s.replace("FeesAndDiscounts feature flag", "Fees & Discounts feature")
+    s = s.replace("FeesAndDiscounts flag", "Fees & Discounts feature")
+    s = re.sub(r"feature[ -]flags?", "Fees & Discounts feature", s, flags=re.I)
+    # Strip any leftover internal "EXPECTED PER SPEC:" authoring prefix.
+    m = re.match(r"^(\s*\d+\.\s*)EXPECTED PER SPEC:\s*(.*)$", s, re.I | re.S)
+    if m:
+        rest = m.group(2)
+        rest = rest[:1].upper() + rest[1:] if rest else rest
+        s = m.group(1) + rest
+    return s
+
+
 def joinlines(lst):
-    return "\n".join(s.rstrip() for s in lst)
+    return "\n".join(clean(x.rstrip()) for x in lst)
 
 
 def build_refs(c):
@@ -37,38 +71,21 @@ def build_refs(c):
     sr = (c.get("story_ref") or "").strip()
     if sr:
         parts.append(sr)
-    blob = " ".join([str(c.get("notes", "")), str(c.get("design_ref", "")),
-                     str(c.get("story_ref", ""))])
-    for jira in sorted(set(re.findall(r"SV-\d+", blob))):
+    for jira in sorted(set(re.findall(r"SV-\d+", str(c.get("story_ref", ""))))):
         if jira not in " ".join(parts):
             parts.append(jira)
-    return " ".join(parts).strip()
+    return clean(" ".join(parts).strip())
 
 
 def build_preconditions(c):
-    lines = list(c.get("preconditions", []))
-    viu = (c.get("viu_status") or "").strip()
-    # normalize: "Pending — verify on staging once deployed" -> "VIU pending: verify on staging once deployed."
-    if viu:
-        viu_txt = viu
-        if viu_txt.lower().startswith("pending"):
-            rest = viu_txt.split("—", 1)
-            tail = rest[1].strip() if len(rest) > 1 else ""
-            viu_txt = "VIU pending: " + tail if tail else "VIU pending"
-        viu_txt = viu_txt.rstrip(".") + "."
-    else:
-        viu_txt = "VIU pending."
-    lines.append("(Ref: {} — {})".format(c.get("id", ""), viu_txt))
-    note = (c.get("notes") or "").strip()
-    if note:
-        lines.append("Note: " + note)
-    return "\n".join(s.rstrip() for s in lines)
+    # Authored preconditions only. No VIU clause, no notes, cleaned per rules.
+    return joinlines(c.get("preconditions", []))
 
 
 rows = []
 titles = []
 for c in cases:
-    title = c["title"].strip()
+    title = clean(c["title"].strip())
     titles.append(title)
     section = c["area"].strip()
     row = [
@@ -98,6 +115,11 @@ print("Wrote CSV:", OUT_CSV, "rows(data):", len(rows))
 from collections import Counter
 dupes = [t for t, n in Counter(titles).items() if n > 1]
 print("Duplicate titles:", dupes if dupes else "NONE")
+
+# --- Sanity checks (must be zero) ---
+blob = "\n".join("\t".join(r) for r in rows).lower()
+print("VIU occurrences:", blob.count("viu"))
+print("'feature flag' occurrences:", blob.count("feature flag"))
 
 # --- xlsx review copy ---
 from openpyxl import Workbook

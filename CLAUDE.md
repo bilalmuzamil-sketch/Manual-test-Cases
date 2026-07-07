@@ -28,6 +28,11 @@ all).
    `/tmp/fees-discounts` loom transcript). **STATUS: BLOCKED** — do not proceed
    with VIU or case-writing until BOTH the COMPLETE spec (Stories 3-13, incl. the
    Story-13 permissions table) AND the design files are provided.
+   *TestRail import (INTERIM):* `testrail-import/fees-discounts-v1-testrail-import.csv`
+   (+ `.xlsx`), all 182 cases via `build/fees-discounts/gen_import.py`; **VIU-word-free
+   and feature-flag-free by user rule**; INTERIM pending post-VIU + dev-answer
+   finalization (see `build/fees-discounts/RESUME-STRATEGY.md`). Permissions: DEFINED
+   / reuse-only — see `build/PERMISSIONS-ASSESSMENT.md`.
 3. **Simple flow project** — Simple Mode / Streamlined Work Order Completion &
    Receiving (ShopView), Epic **SV-7301**. Memory: `build/simple-flow/*`
    (`requirements.md` = COMPLETE spec, 17 stories SV-7696..SV-7710 + SV-7870 +
@@ -37,6 +42,12 @@ all).
    **STATUS: cases authored; VIU PARTIAL** — feature under development, so Stories
    **7/8/9/14 are NOT built** and role-gating negatives are unverified. 14 open
    questions consolidated in the workbook's Open Questions tab.
+   *TestRail import (INTERIM):* `testrail-import/simple-flow-v1-testrail-import.csv`
+   (+ `.xlsx`), all 156 cases via `build/simple-flow/gen_import.py`; **VIU-word-free
+   and feature-flag-free by user rule** (settings-driven, so settings preconditions
+   are kept); INTERIM pending post-VIU + dev-answer finalization (see
+   `build/simple-flow/RESUME-STRATEGY.md`). Permissions: REQUIRES definition (no role
+   matrix) — see `build/PERMISSIONS-ASSESSMENT.md`.
 
 **STANDING RULES (apply to all projects):**
 1. **Never proceed without the complete set of information needed.** If

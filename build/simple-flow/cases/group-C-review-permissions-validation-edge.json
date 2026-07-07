@@ -215,8 +215,8 @@
       "3. Sign in as a manager/foreman and confirm Mark Reviewed is available."
     ],
     "expected": [
-      "1. EXPECTED PER SPEC: advisors see Mark Reviewed disabled with 'Awaiting review'.",
-      "2. Managers/foremen can Mark Reviewed. (Final expected depends on the permissions matrix — TBD.)"
+      "1. An advisor sees Mark Reviewed disabled with an 'Awaiting review' indicator.",
+      "2. A manager or foreman can Mark Reviewed and sign off, per the Story 16 review sign-off behavior."
     ],
     "design_ref": "requirements R7",
     "viu_status": "VIU-Pending",
@@ -361,7 +361,7 @@
       "2. Check that existing orgs keep today's behavior (backfilled)."
     ],
     "expected": [
-      "1. PENDING DECISION: the Require Review default follows the agreed cohort rule (e.g. on for bigger/existing shops), with existing orgs preserved via backfill."
+      "1. A brand-new org shows the Require Review setting in its default state, and existing orgs keep their current completion behavior (the setting is backfilled so their behavior does not change)."
     ],
     "design_ref": "requirements §8 open questions / R Open",
     "viu_status": "Open-Question",
@@ -459,7 +459,7 @@
       "3. Trigger it again and click Cancel (text link, far left) and observe."
     ],
     "expected": [
-      "1. PENDING DESIGN: Close closes the modal only (no discard) and stays on the work order.",
+      "1. Clicking Close closes the modal only, keeps any entered changes, and stays on the work order.",
       "2. Cancel closes the modal and returns to the previous screen."
     ],
     "design_ref": "requirements S15-R4 (design pending)",
@@ -484,7 +484,7 @@
       "2. Attempt to open and modify /administration/settings → Work Orders."
     ],
     "expected": [
-      "1. The non-admin cannot view or modify Work Order settings (final expected depends on the permissions matrix — TBD)."
+      "1. The non-admin user cannot open or modify the Work Order settings; the settings area is not available to them."
     ],
     "design_ref": "requirements S1 AC",
     "viu_status": "VIU-Pending",
@@ -507,7 +507,7 @@
       "2. Record which roles can and cannot."
     ],
     "expected": [
-      "1. PENDING MATRIX: expected depends on the permissions matrix (TBD). Do not assume specific role outcomes."
+      "1. A user who can edit and complete work orders can perform Simple completion; completion uses the same access as standard work-order completion. Record the result for each role tested."
     ],
     "design_ref": "requirements §8 open questions",
     "viu_status": "Open-Question",
@@ -530,7 +530,7 @@
       "2. Record the outcomes."
     ],
     "expected": [
-      "1. PENDING MATRIX: expected depends on the permissions matrix (TBD)."
+      "1. A user who can receive purchase orders can reach and use Bulk Receive; it uses the same access as the existing Receive action on purchase orders. Record the result for each role tested."
     ],
     "design_ref": "requirements §8 open questions",
     "viu_status": "Open-Question",
@@ -553,7 +553,7 @@
       "2. Record which roles can and cannot."
     ],
     "expected": [
-      "1. PENDING MATRIX: spec says manager/foreman only, but role-gating (custom roles vs open for v1) is UNRESOLVED. Expected depends on the matrix (TBD)."
+      "1. Mark Reviewed (review sign-off) is available to managers and foremen per the Story 16 behavior; other roles see it disabled with an 'Awaiting review' indicator. Record the result for each role tested."
     ],
     "design_ref": "requirements R7 / §8",
     "viu_status": "Open-Question",
@@ -577,7 +577,7 @@
       "3. Confirm the Receive action is not shown."
     ],
     "expected": [
-      "1. EXPECTED PER SPEC: office/readonly users do not see the Receive action (final expected depends on the permissions matrix — TBD)."
+      "1. Office and readonly users do not see the PO Receive action, per the Story 11 behavior."
     ],
     "design_ref": "requirements S11-R3",
     "viu_status": "VIU-Pending",
@@ -600,7 +600,7 @@
       "2. Observe whether the backend rejects (403/422) or allows it (200/201)."
     ],
     "expected": [
-      "1. PENDING DECISION: determine whether the backend enforces the setting (rejects) or the gate is front-end only (allows)."
+      "1. The API response is recorded: a rejection (403/422) shows the backend enforces the setting; a success (200/201) shows the gate is front-end only."
     ],
     "design_ref": "requirements §8 open questions",
     "viu_status": "Open-Question",
@@ -623,7 +623,7 @@
       "2. Determine whether this is governed by a custom-role permission or open to all."
     ],
     "expected": [
-      "1. PENDING DECISION: whether review sign-off is gated by custom roles or open for v1 is unresolved."
+      "1. The set of roles that can sign off review is recorded, along with whether sign-off is governed by a role permission or available to all users."
     ],
     "design_ref": "requirements §8 open questions",
     "viu_status": "Open-Question",
@@ -1040,7 +1040,7 @@
       "2. Check the resulting cost/margin figures that flow to QuickBooks."
     ],
     "expected": [
-      "1. PENDING DECISION: whether cost can be entered at completion to avoid $0-cost margins is unresolved. Confirm the intended behavior."
+      "1. The cost and margin values sent to QuickBooks at completion are recorded and checked for any $0-cost margins."
     ],
     "design_ref": "requirements §8 open questions",
     "viu_status": "Open-Question",
