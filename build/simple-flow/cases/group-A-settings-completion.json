@@ -285,8 +285,8 @@
       "3. The backend rejects a Work Order settings save attempted by a role that lacks App Settings."
     ],
     "design_ref": "requirements S1 AC / §9 (App Settings gate)",
-    "viu_status": "VIU-Pending",
-    "notes": "Defined by SV-8183: the Work Order settings inherit the settingsApp route guard (no new atom); editable only by roles with App Settings ON (defaults Admin, Service Manager, Office). Role-gating negatives not yet verified live (only the admin session works on sv7301; tech key = 403)."
+    "viu_status": "VIU-Verified",
+    "notes": "Defined by SV-8183: the Work Order settings inherit the settingsApp route guard (no new atom); editable only by roles with App Settings ON (defaults Admin, Service Manager, Office). Role-gating negatives not yet verified live (only the admin session works on sv7301; tech key = 403). | VIU 2026-07-07 (Tech-unblock pass): CONFIRMED. Same as SF-PERM-01: tech redirected from settings route (FE) and BE POST /api/organizations/settings/change -> 403; admin -> 200. Non-admin cannot view or save WO settings."
   },
   {
     "id": "SF-SET-12",
@@ -387,7 +387,6 @@
     "viu_status": "VIU-Verified",
     "notes": "Verified 2026-07-06 (08-settings-workorders.png)."
   },
-
   {
     "id": "SF-COMP-01",
     "area": "Completion — No-PO / Skip (Story 2)",
@@ -986,7 +985,6 @@
     "viu_status": "VIU-Pending",
     "notes": "Not driven in VIU. Needs live verification."
   },
-
   {
     "id": "SF-CORE-01",
     "area": "Core parts — Completion modal (Stories 3/4/16)",
@@ -1242,7 +1240,6 @@
     "viu_status": "VIU-Pending",
     "notes": "Not driven in VIU. Needs live verification."
   },
-
   {
     "id": "SF-TECH-01",
     "area": "Tech Story Flow (Story 17)",

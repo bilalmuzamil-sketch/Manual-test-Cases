@@ -6,10 +6,16 @@
 > Logged in as **admin@shopview.com** (role Admin, view_mode full, 41 perms).
 > **Feature is settings-driven — NO "Simple Mode" feature flag exists** (checked
 > `/administration/feature-flags`). Behavior is controlled by the Work Order settings tab.
-> **Session note:** `quick-login {key:'tech'}` returns **403** in this env — only the
-> admin session works, so non-admin/role-gating negatives are NOT verifiable here.
+> **Session note (UPDATED 2026-07-07):** `quick-login {key:'tech'}` now returns **200**
+> (the prior 403 is FIXED). The tech user is a genuine **Technician** role (view_mode
+> `tech`; 6 perms: `customersView, woTechViewMode, workOrdersView, scheduleView,
+> woPickParts, workOrderLinesCreateAndEdit`) — matches the §9.2 Technician row exactly.
+> Role-gating negatives are now testable via the tech session. **quick-login is stateful
+> on the shared PHPSESSID** — it rebinds the one session, so probe strictly SEQUENTIALLY
+> per role (login role -> run that role's calls -> login next role).
 >
-> **VIU date:** 2026-07-06. Evidence screenshots: `build/simple-flow/viu-evidence/*.png`.
+> **VIU dates:** 2026-07-06 (initial) + **2026-07-07 (Tech-unblock pass)**.
+> Evidence screenshots: `build/simple-flow/viu-evidence/*.png`.
 > **Settings baseline** captured to `/tmp/simple-flow/settings-baseline.json` and
 > **RESTORED** at end (verified). Throwaway WO **S2-15747** created + **deleted** (clean).
 
@@ -157,15 +163,111 @@ Steps: set `requireReview=true`; reopened WO to Approved; Complete → review fl
    final Complete click was observed. Verify whether an intermediate Reviewed state
    should exist (possible auto-progression for admin).
 
+---
+
+# TECH-UNBLOCK PASS — 2026-07-07 (role-gating negatives now testable)
+
+Tech quick-login now works (200). Baseline captured to `/tmp/simple-flow/settings-baseline-2.json`
+and **RESTORED + verified** at end; **tech role NOT changed** (used as-is, verified unchanged).
+Six throwaway ZZAUTOTEST WOs created and **all deleted** (verified 0 active WOs remain;
+completed WOs required reopen-by-adding-a-line before `POST /api/work-orders/delete`).
+
+## Headline: does the BACKEND enforce the permission atoms, or FE-only?
+
+**MIXED — and this is the key result.** BE enforces only the *distinct* atoms; the
+collapsed WO-family atoms are effectively **FE-only** at the server.
+
+| Action (endpoint) | Tech (non-admin) | Admin | Verdict |
+|---|---|---|---|
+| **Settings save** `POST /api/organizations/settings/change` | **403** Access denied | 200 | **BE ENFORCES** `settingsApp` (distinct atom) |
+| Settings **read** `GET /api/organizations/settings` | 200 | 200 | read open; write gated |
+| **Complete WO** `POST /api/work-orders/{id}/simple-complete` | **201** (WO→complete) | 201 | **BE does NOT enforce** — atom collapse |
+| **Review sign-off** `POST /api/work-orders/change-status {status:"complete"}` | **201** | 201 | **BE does NOT enforce** `woReviewWorkOrders` |
+
+- Tech has `workOrderLinesCreateAndEdit`, which collapses to
+  `ROLE_WORK_ORDER::VIEW+CREATE_AND_EDIT` server-side (SV-7864). So the Technician —
+  who per §9.2 cannot complete or sign off — **CAN do both via the API**. The FE hides the
+  controls; the BE does not enforce the distinction.
+- Proof of tech-complete: tech `simple-complete` with `{}` returned the **same** business
+  validation 400 ("Line can not be completed without a tech story. id: …") as admin (i.e.
+  the permission voter PASSED for tech — not a 403); after admin set the story + mileage,
+  **tech `simple-complete` → 201, `status:"complete"`**.
+- **Net for SF-PERM-06:** expected #2 (any role with WO C&E can act on the WO) = CONFIRMED;
+  expected #1 ("BE enforces the atoms, not FE-only") = TRUE only for the settings atom,
+  **FALSE for WO completion / receive / review sign-off** (FE-only in practice).
+
+## FE gating (as Technician, browser)
+
+- **SF-PERM-02** — WO page: **"Complete Work Order" button HIDDEN** for Technician
+  (`TECH-wo-detail.png`). Tech cannot complete via UI (BE gap above notwithstanding).
+- **SF-PERM-01 / SF-SET-11** — `/administration/settings` **redirects** tech to
+  `/workorders` (FE route guard) (`TECH-settings.png`). Combined with the BE 403 →
+  settings are FULLY enforced (FE + BE).
+- **SF-PERM-05 / SF-RCV-03** — `/parts/orders` **redirects** tech to `/workorders`; no
+  Receive action reachable (`TECH-po-list.png`). (Tech used as a no-Order-Parts proxy; not
+  the exact Office role.)
+
+## Reviewer ≠ completer (the one NET-NEW Simple-Flow rule) — **NOT IMPLEMENTED (BUG)**
+
+- Enabled Require Review; admin **Sent to Review** (S2-15752 → status `ready_for_review`),
+  then the **same admin Marked it Reviewed** with no block → WO went **Review → Complete**
+  (`REV-admin-completer-markreviewed.png`). The reviewer≠completer restriction
+  (`sentToReviewBy`/`completedBy` stamp block) is **absent**.
+- Affects **SF-PERM-08, SF-PERM-04(3), SF-PERM-07(2), SF-REV-09(3)**.
+
+## Story 16 re-confirmations & endpoints
+
+- Send-to-Review reuses `POST /api/work-orders/{id}/simple-complete` (the `requireReview`
+  setting routes it to `ready_for_review` instead of `complete`).
+- Mark Reviewed dialog = **"Mark as reviewed", VIN-only** (`input_review_vin`), Cancel +
+  Confirm Review; **no optional note** (re-confirms BUG #3). Sign-off endpoint =
+  `POST /api/work-orders/change-status {id,status:"complete",work_order_part_cost:0}` and it
+  jumps **Review → Complete** with no distinct "Reviewed" state (re-confirms BUG #4).
+- Completion helper endpoints: `POST /api/work-orders/lines/change-story`
+  `{line_id,tech_story,work_order_id}`; `POST /api/work-orders/change-required-data`
+  `{work_order_id,data:{mileage,vin}}`.
+
+## BUGS / DEVIATIONS (this pass)
+
+5. **reviewer ≠ completer NOT enforced (NEW, high).** The one net-new Simple-Flow rule is
+   missing — a user can sign off their own completed/sent-to-review WO. (SF-PERM-08.)
+6. **WO-completion permission is FE-only at the BE (atom collapse consequence).** A
+   Technician (no `workOrdersCreateAndEdit`, Tech View) can complete a WO via
+   `simple-complete` (201). Whether this is "acceptable per SV-7864" or a gap is a
+   product call, but it means role-gating of completion is not server-enforced. (SF-PERM-02/06.)
+7. **Review sign-off permission (`woReviewWorkOrders`) is FE-only at the BE.** A Technician
+   without the atom drove the review→complete sign-off via `change-status` (201). (SF-PERM-07/REV-09.)
+   *(Settings enforcement, by contrast, IS real: tech settings-save → 403.)*
+
+## Cases moved this pass
+
+- **VIU-Verified (10):** SF-PERM-01, SF-PERM-02, SF-PERM-04, SF-PERM-05, SF-PERM-06,
+  SF-PERM-07, SF-PERM-08, SF-RCV-03, SF-REV-09, SF-SET-11.
+- **Still VIU-Pending (reasons):** SF-PERM-03 (Bulk Receive = Stories 7/8 not built),
+  SF-PERM-09 & SF-VPART-02 (vendorless part-add sub-form not reached in budget; tech
+  confirmed no `seeFinancialData`), SF-PERM-10 (only Technician-negative confirmed; other
+  roles need more accounts). Stories 7/8/9/14 remain dev-not-built (unchanged).
+
+---
+
 ## Reusable access facts (for the next VIU run)
 
 - API host `https://sv7301api.qa.shopview.com`; app `https://sv7301.qa.shopview.com`.
-- Auth: `POST /api/quick-login {"key":"admin"}` (tech key = 403 here). Then hydrate SPA
-  with localStorage `user` / `fe_permissions_wrapper` / `token` (boot2 pattern).
+- Auth: `POST /api/quick-login {"key":"admin"|"tech"}` (**tech now works = 200**). Then
+  hydrate SPA with localStorage `user` / `fe_permissions_wrapper` / `token` (boot2 pattern).
+  quick-login is stateful on the shared PHPSESSID — probe SEQUENTIALLY per role.
 - WO settings: read `GET /api/organizations/settings`; write
   `POST /api/organizations/settings/change` (full settings object).
 - New WO: `/workorders` → Create → pick Customer (searchable) + Asset (must have assets)
   → Save → lands on `/workorders/{id}/lines`. A WO with 0 lines auto-opens the New Line
   dialog. Canned-line field (`select_line_canned_line`) accepts only existing canned
-  lines ("Total Parts: 0" = labor-only). Delete via WO header more_vert → Delete Work Order.
-- Tools in `/tmp/simple-flow/tools/` (bridge.mjs, wolib.mjs, setapi.mjs, etc.).
+  lines ("Total Parts: 0" = labor-only). A **Customer Notes popup** often opens on the WO
+  detail page — dismiss (Ok/Escape) before acting.
+- Key endpoints: complete/send-to-review = `POST /api/work-orders/{id}/simple-complete`;
+  tech story = `POST /api/work-orders/lines/change-story`; required data =
+  `POST /api/work-orders/change-required-data`; status/sign-off =
+  `POST /api/work-orders/change-status`; delete = `POST /api/work-orders/delete`
+  (**completed WOs cannot be deleted** — reopen by adding a line first). WO list =
+  `GET /api/work-orders` (returns `{pagination, work_orders}`; excludes completed).
+- Tools in `/tmp/simple-flow/tools/` (`bridge.mjs`, `wolib.mjs` — now `hydrate(key,capture)`,
+  `setapi.mjs`, `perm-probe2.mjs`, `prove-tech.mjs`, `probe-review.mjs`, etc.).

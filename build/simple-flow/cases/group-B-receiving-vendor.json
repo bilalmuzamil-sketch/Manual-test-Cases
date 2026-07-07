@@ -53,7 +53,7 @@
     ],
     "design_ref": "requirements S5 AC / §9 (See Financial Data gate)",
     "viu_status": "VIU-Pending",
-    "notes": "SV-8183 Decision 4: vendorless / no-PN add requires See Financial Data. Field validation and the permission negative not yet verified live."
+    "notes": "SV-8183 Decision 4: vendorless / no-PN add requires See Financial Data. Field validation and the permission negative not yet verified live. | VIU 2026-07-07 (Tech-unblock pass): Field-required validations and the See-Financial-Data add-part block not driven (part-add sub-form not reached within budget). Tech confirmed lacking seeFinancialData."
   },
   {
     "id": "SF-VPART-03",
@@ -179,7 +179,6 @@
     "viu_status": "VIU-Pending",
     "notes": "Not driven in VIU. Needs live verification."
   },
-
   {
     "id": "SF-VMIS-01",
     "area": "Vendor Missing on WO PO (Story 6)",
@@ -330,7 +329,6 @@
     "viu_status": "VIU-Pending",
     "notes": "Not driven in VIU. Needs live verification."
   },
-
   {
     "id": "SF-POSEL-01",
     "area": "PO Multi-Select (Story 7)",
@@ -474,7 +472,6 @@
     "viu_status": "VIU-Pending",
     "notes": "NOT BUILT. Needs dev complete."
   },
-
   {
     "id": "SF-BULK-01",
     "area": "PO Bulk Receive Page (Story 8)",
@@ -730,7 +727,6 @@
     "viu_status": "VIU-Pending",
     "notes": "NOT BUILT. Needs dev complete."
   },
-
   {
     "id": "SF-INV-01",
     "area": "Apply Invoice to Selected POs (Story 9)",
@@ -809,7 +805,6 @@
     "viu_status": "VIU-Pending",
     "notes": "NOT BUILT. Needs dev complete."
   },
-
   {
     "id": "SF-PNFIX-01",
     "area": "Inline Part-Number Fix (Story 10)",
@@ -963,7 +958,6 @@
     "viu_status": "VIU-Pending",
     "notes": "Data-integrity guardrail; not driven in VIU. Needs live verification (likely backend inspection)."
   },
-
   {
     "id": "SF-RCV-01",
     "area": "Receive Button on WO POs (Story 11)",
@@ -1034,8 +1028,8 @@
       "2. Fulfilled POs do not show the Receive action."
     ],
     "design_ref": "requirements S11-R3 / §9 (Order Parts gate)",
-    "viu_status": "VIU-Pending",
-    "notes": "SV-8183 resolves 'office/readonly' to concrete atoms: Receive-on-WO is FE-gated by Order Parts; Office (WO View-only / Vendor & Order View-only) lacks it. Role-gating negative not yet verified live. Fulfilled-PO hiding also needs live verification."
+    "viu_status": "VIU-Verified",
+    "notes": "SV-8183 resolves 'office/readonly' to concrete atoms: Receive-on-WO is FE-gated by Order Parts; Office (WO View-only / Vendor & Order View-only) lacks it. Role-gating negative not yet verified live. Fulfilled-PO hiding also needs live verification. | VIU 2026-07-07 (Tech-unblock pass): FE CONFIRMED (via Technician as a no-Order-Parts proxy; not the exact Office role). Tech redirected from /parts/orders; Receive not reachable (TECH-po-list.png). Fulfilled-PO hiding not separately re-driven."
   },
   {
     "id": "SF-RCV-04",
@@ -1187,7 +1181,6 @@
     "viu_status": "VIU-Pending",
     "notes": "Existing behavior; not re-driven in VIU. Needs live verification."
   },
-
   {
     "id": "SF-VEND-01",
     "area": "Assign Vendor + Merge (Story 13)",
@@ -1315,7 +1308,6 @@
     "viu_status": "VIU-Pending",
     "notes": "Not driven in VIU. Needs live verification (likely partly backend)."
   },
-
   {
     "id": "SF-WOP-01",
     "area": "Waiting on Parts Column (Story 14)",
