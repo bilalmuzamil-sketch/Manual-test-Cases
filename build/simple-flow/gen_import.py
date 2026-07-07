@@ -50,6 +50,8 @@ def clean(s):
     """Strip internal authoring markers; keep functional content."""
     if not s:
         return s
+    # Drop internal case cross-references like " (see SF-SET-03)".
+    s = re.sub(r"\s*\(see (?:SF|FD)-[A-Z0-9-]+\)", "", s)
     m = re.match(r"^(\s*\d+\.\s*)EXPECTED PER SPEC:\s*(.*)$", s, re.I | re.S)
     if m:
         rest = m.group(2)

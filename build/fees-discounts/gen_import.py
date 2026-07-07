@@ -44,6 +44,8 @@ def clean(s):
     """Strip internal/VIU markers and rewrite the banned 'feature flag' phrase."""
     if not s:
         return s
+    # Drop internal case cross-references like " (see FD-WO-003)".
+    s = re.sub(r"\s*\(see (?:SF|FD)-[A-Z0-9-]+\)", "", s)
     # Drop the admin Feature-Flags nav parenthetical (avoids the banned phrase).
     s = s.replace(" (Administration → Feature Flags)", "")
     s = s.replace("(Administration → Feature Flags)", "")

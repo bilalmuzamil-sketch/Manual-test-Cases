@@ -118,7 +118,7 @@ Verify completion is blocked when a required vehicle field is missing,Completion
 2. The user is prompted to supply the missing required field.
 3. Completion proceeds only after the required field is filled.",SV-7697 (S2-R2 / S2 AC (missing required fields blocked)),,
 "Verify with Create POs OFF a work order with vendor parts completes with no PO, no vendor bill and no AP sync",Completion — No-PO / Skip (Story 2),Functional,High,"1. Signed in as Admin.
-2. Create Purchase Orders is set to OFF (see SF-SET-03).
+2. Create Purchase Orders is set to OFF.
 3. An open work order with an approved vendor-part line exists.","1. Complete the work order in one confirm.
 2. Check whether any PO was created.
 3. Check for any vendor bill / AP sync.","1. No PO is created.
@@ -764,7 +764,7 @@ Verify in-stock parts decrement inventory and write Part History on simple compl
 2. A Part History entry is written.
 3. The skip path's status setter does not bypass inventory movement / Part History / catalog / delivery.",§5 invariant 1,,
 "Verify Create POs OFF produces no PO, vendor bill or AP sync and no catalog/inventory sync",QuickBooks / Inventory Integrity,Functional,High,"1. Signed in as Admin.
-2. Create Purchase Orders is OFF (see SF-SET-03).
+2. Create Purchase Orders is OFF.
 3. A work order with a vendor/found part exists.","1. Complete the work order with Create POs OFF.
 2. Check for any PO, vendor bill, AP sync.
 3. Check for any catalog/inventory sync of the vendor/found part.","1. No PO, no vendor bill, no AP sync.

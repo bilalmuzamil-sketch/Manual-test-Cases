@@ -419,7 +419,7 @@
     "permissions_required": "See Financial Data; Work Orders: Create and Edit",
     "preconditions": [
       "1. Role has See Financial Data and the matching change permission.",
-      "2. An open work order with $100.00 taxable parts and $10.00 tax (same base as FD-CALC-015)."
+      "2. An open work order with $100.00 taxable parts and $10.00 tax."
     ],
     "steps": [
       "1. Add a whole-WO discount of $150.00 with Taxable = Yes.",
@@ -430,7 +430,7 @@
       "1. A taxable $150.00 discount lowers the taxable amount to $0.00.",
       "2. Tax = $0.00 (S6-R10c).",
       "3. Customer pays $0.00 total.",
-      "4. Contrast with FD-CALC-015 (non-taxable) where the $10.00 tax is still owed."
+      "4. By contrast, when the same discount is non-taxable the $10.00 tax is still owed."
     ],
     "design_ref": "design-notes §9 item 2 (no Taxable control in Add modal mock)",
     "viu_status": "Pending — verify on staging once deployed",
@@ -589,7 +589,7 @@
     "expected": [
       "1. Even with the change permission ON, add/edit/remove is NOT reachable while See Financial Data is OFF (S13-R6).",
       "2. The controls sit on screens that are hidden when SFD is off, so there is no way to add/edit/remove.",
-      "3. Dollar amounts are also hidden (per FD-PERM-001)."
+      "3. Dollar amounts are also hidden."
     ],
     "design_ref": "design-notes §1a/§2 (controls live on money-bearing surfaces)",
     "viu_status": "Pending — verify on staging once deployed",
@@ -805,7 +805,7 @@
     ],
     "expected": [
       "1. Fee/discount history entries REMAIN visible in the WO history log even with the flag off (S10-R1) — the documented exception to \"flag off hides everything.\"",
-      "2. All other F&D UI is still hidden (per FD-FLAG-001)."
+      "2. All other F&D UI is still hidden."
     ],
     "design_ref": "design-notes §10 (no history-log view mocked)",
     "viu_status": "Pending — verify on staging once deployed",
@@ -831,7 +831,7 @@
     "expected": [
       "1. Flag ON alone is not sufficient — without the permission, amounts are hidden and controls are unreachable.",
       "2. Once the permission is granted, the controls appear and the action works.",
-      "3. Confirms the flag and permission are two independent, both-required gates (cross-reference FD-PERM-010)."
+      "3. Confirms the flag and permission are two independent, both-required gates."
     ],
     "design_ref": "design-notes §10",
     "viu_status": "Pending — verify on staging once deployed",

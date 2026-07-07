@@ -27,7 +27,7 @@ Verify adding a whole-WO Flat Amount fee saves and shows the success toast,Work 
 2. Preview row label flips to 'Discount' and shows −$857.23 (8% × 10,715.39 = 857.2312, rounded to nearest cent = 857.23; §5-R3).
 3. Preview row 'New Work Order Total' shows $9,858.16.
 4. The bottom of the preview reads 'Tax is recalculated on save.' (S2-R35).
-5. The discount amount is signed and colored (see FD-WO-015 for the exact color, which differs spec vs design).",S2-R31..R35 / §5-R3,,
+5. The discount amount is signed and colored (the exact color differs between spec and design).",S2-R31..R35 / §5-R3,,
 Verify 'Apply from template' auto-fills the dialog fields with the template's values,Work Order — Whole-WO Fee/Discount,Functional,High,"1. Logged in with Work Orders: Create & Edit + See Financial Data.
 2. An open work order is open; the location's template library contains 'Fleet Standard Discount (−10%)'.","1. Open 'Add Work Order Fee / Discount'.
 2. Open the 'Apply from template (optional)' dropdown.
@@ -241,7 +241,7 @@ Verify the Financial Info card shows a collapsed 'Fees & Discounts (N)' row with
 2. The row is collapsed by default (S3-R21).
 3. The collapsed header shows the net total of all adjustments in plain grey: −$2,055.25 (S3-R22).",S3-R20 / S3-R21 / S3-R22,,
 "Verify expanding the Financial Info 'Fees & Discounts' row lists each adjustment (read-only, creation order)",Work Order — Financial Info card,Functional,Medium,"1. Logged in with See Financial Data.
-2. An open work order with 5 adjustments as in FD-FIN-001.","1. Expand the 'Fees & Discounts (5)' row in the Financial Info card.
+2. An open work order with 5 adjustments of mixed scope.","1. Expand the 'Fees & Discounts (5)' row in the Financial Info card.
 2. Read the listed adjustments and their amounts.
 3. Look for any add/edit/remove controls.","1. Opening lists each adjustment in creation order (oldest first) with name + resolved amount in plain grey (S3-R23, §5-R9). Example rows: Early Payment Discount −$857.23, Part discount (LF3620) −$649.00, Fleet discount (LF3620) −$292.00, Parts Handling Fee +$3.75, Line discount −$260.77.
 2. The list is read-only — no add/edit/remove control anywhere in this card (S3-R24).",S3-R23 / S3-R24 / §5-R9,,
@@ -281,7 +281,7 @@ Verify clicking a populated 'Fees & Discounts' cell opens the per-part breakdown
 3. Rows show base-aware Calculation phrasing and signed resolved Amounts, e.g. 'Parts Handling Fee · Fee · 2% of Labor Total · +$1.43 · $50.00', 'Military Discount · Discount · 10% of Subtotal · −$3.31 · —', 'Early Payment Discount · Discount · 3% of Parts Total · −$0.99 · —' (S11-R13: Max Amount shows '$X.XX' or '—').
 4. The modal has a 'Close' button (S11-R16).",S11-R11 / S11-R12 / S11-R13 / S11-R16,,
 Verify the breakdown modal 'Net adjustment' row equals the signed sum of the part's adjustments,Parts page — breakdown modal,Functional,Medium,"1. Logged in with See Financial Data.
-2. The #55073 breakdown modal from FD-PCOL-004 is open (Parts Handling Fee +$1.43, Military Discount −$3.31, Early Payment Discount −$0.99).",1. Read the 'Net adjustment' row at the bottom of the modal.,1. 'Net adjustment' shows the signed sum: +1.43 − 3.31 − 0.99 = −$2.87 (S11-R15).,S11-R15,,
+2. The #55073 breakdown modal is open (Parts Handling Fee +$1.43, Military Discount −$3.31, Early Payment Discount −$0.99).",1. Read the 'Net adjustment' row at the bottom of the modal.,1. 'Net adjustment' shows the signed sum: +1.43 − 3.31 − 0.99 = −$2.87 (S11-R15).,S11-R15,,
 Verify a per-row Remove (trash) on the breakdown modal removes the adjustment and closes the modal when the last is removed,Parts page — breakdown modal,Functional,High,"1. Logged in with the relevant change permission + See Financial Data.
 2. Parts page open with part #37346 carrying exactly ONE adjustment; the editable breakdown modal is open.","1. Confirm each row shows a 🗑 (Remove) control (only shown when the sale can be edited; S11-R14).
 2. Click the trash / Remove control on the single adjustment row.
@@ -622,7 +622,7 @@ Verify discount lines to QuickBooks are capped with largest-remainder whole-cent
 Verify a mandatory warn/confirm before saving when discounts exceed the net subtotal,QuickBooks — negative totals,Functional,High,1. A WO where discounts will exceed the net subtotal.,"1. Add discounts that push the net subtotal below $0.00.
 2. Attempt to save the WO.","1. Before the WO can be saved, the user is WARNED that the net subtotal will floor at $0.00, tax on the taxable base is still owed, and the excess (shown as a dollar amount) will be carried as a customer credit.
 2. The user must CONFIRM; the carry is never silent.",S6-R12,,
-Verify the excess is recorded as a customer credit and posts to QuickBooks as a tax-exempt goodwill credit memo,QuickBooks — negative totals,Functional,Medium,"1. QuickBooks connected; a WO where the floor applied (from FD-QB-012, $50.00 excess).","1. After confirming the over-discount, check the customer's Deposits & Credits.
+Verify the excess is recorded as a customer credit and posts to QuickBooks as a tax-exempt goodwill credit memo,QuickBooks — negative totals,Functional,Medium,1. QuickBooks connected; a WO where the floor applied (with a $50.00 excess carried as credit).,"1. After confirming the over-discount, check the customer's Deposits & Credits.
 2. Inspect the QuickBooks posting for the carried credit.","1. The floored-off amount ($50.00 in the worked example) is recorded as a freestanding customer credit not tied to a WO; it carries forward and is applied to the customer's next invoice.
 2. In QuickBooks it posts as a goodwill credit memo on the location's Customer Credit item, marked tax-exempt.
 3. It is NOT a QuickBooks payment (no cash received).","S6-R11, S6-R13",,
@@ -769,12 +769,12 @@ Verify the Processing Fee base includes tax on purpose and never uses a Max Amou
 4. Before save, a mandatory warning states the subtotal floors at $0.00, tax is still owed, and the $50.00 excess carries as a customer credit — user must confirm (S6-R12).
 5. The $50.00 excess is recorded as a freestanding customer credit not tied to a WO (S6-R11) and posts to QuickBooks as a tax-exempt goodwill credit memo on the Customer Credit item (S6-R13).","S6-R10, S6-R11, S6-R12, S6-R13",,
 "Verify a TAXABLE $150 discount on $100 parts drives the taxable amount to $0 → tax $0.00, customer pays $0.00",Calculation contract,Functional,Medium,"1. Role has See Financial Data and the matching change permission.
-2. An open work order with $100.00 taxable parts and $10.00 tax (same base as FD-CALC-015).","1. Add a whole-WO discount of $150.00 with Taxable = Yes.
+2. An open work order with $100.00 taxable parts and $10.00 tax.","1. Add a whole-WO discount of $150.00 with Taxable = Yes.
 2. Confirm the warning and save.
 3. Observe the WO totals.","1. A taxable $150.00 discount lowers the taxable amount to $0.00.
 2. Tax = $0.00 (S6-R10c).
 3. Customer pays $0.00 total.
-4. Contrast with FD-CALC-015 (non-taxable) where the $10.00 tax is still owed.",S6-R10c,,
+4. By contrast, when the same discount is non-taxable the $10.00 tax is still owed.",S6-R10c,,
 "Verify multiple discount lines are penny-capped via largest-remainder so capped discounts sum exactly to the floored net subtotal (no negative, whole-cent)",Calculation contract,Functional,Medium,"1. Role has See Financial Data and the matching change permission.
 2. Location has an active QuickBooks connection.
 3. An open work order with a small net subtotal and two or more discount lines whose combined size exceeds it.","1. Add two (or more) whole-WO discounts whose total exceeds the net subtotal.
@@ -813,7 +813,7 @@ Verify any add/edit/remove of an adjustment also requires See Financial Data to 
 2. Open the WO and try to reach the Add Fee / Discount controls at every starting place (toolbar ⋯, labor-line ⋮, part menu).
 3. Restore Tech to Time Clock after.","1. Even with the change permission ON, add/edit/remove is NOT reachable while See Financial Data is OFF (S13-R6).
 2. The controls sit on screens that are hidden when SFD is off, so there is no way to add/edit/remove.
-3. Dollar amounts are also hidden (per FD-PERM-001).",S13-R6,,
+3. Dollar amounts are also hidden.",S13-R6,,
 "Verify REMOVING an adjustment is governed by ""Create and Edit"", NOT the separate ""Delete"" permission",Permissions (Story 13),Functional,High,"1. An open work order with an existing whole-WO adjustment.
 2. A ZZAUTOTEST role with See Financial Data ON and Work Orders: Create and Edit ON, but with the Work Orders ""Delete"" permission OFF. Assign by exact-user-match to Tech.","1. Assign the role (Create and Edit ON, Delete OFF).
 2. Open the WO sidebar card, hover an adjustment's 3-dot menu, and choose Delete/Remove; confirm the removal.
@@ -869,13 +869,13 @@ Verify the WO history log STILL shows fee/discount entries even when the Fees & 
 3. Ability to set the Fees & Discounts feature OFF.","1. Set the Fees & Discounts feature OFF.
 2. Open the WO history log and look for the previously-recorded fee/discount entries.
 3. Restore the flag after.","1. Fee/discount history entries REMAIN visible in the WO history log even with the flag off (S10-R1) — the documented exception to ""flag off hides everything.""
-2. All other F&D UI is still hidden (per FD-FLAG-001).",S10-R1 (flag-off exception),,
+2. All other F&D UI is still hidden.",S10-R1 (flag-off exception),,
 "Verify with the flag ON, the matching permission is still required to use F&D",Feature-flag gating,Functional,Medium,"1. Two ZZAUTOTEST roles: one with the F&D-relevant permissions, one without.
 2. An open work order.","1. With the flag ON and the user lacking See Financial Data / the change permission, open the WO and look for F&D controls and amounts.
 2. Then grant the permissions and revisit.
 3. Restore Tech to Time Clock after.","1. Flag ON alone is not sufficient — without the permission, amounts are hidden and controls are unreachable.
 2. Once the permission is granted, the controls appear and the action works.
-3. Confirms the flag and permission are two independent, both-required gates (cross-reference FD-PERM-010).",§1 Fees & Discounts feature + S13-R1,,
+3. Confirms the flag and permission are two independent, both-required gates.",§1 Fees & Discounts feature + S13-R1,,
 Verify the Add button stays DISABLED until Name AND Type AND Calculation type AND Amount > 0 are all set,Validation / Edge,Functional,High,"1. Role has See Financial Data and the matching change permission.
 2. An open work order; open the Add Fee / Discount dialog.","1. With the dialog freshly opened (all fields empty), observe the Add button state.
 2. Fill fields one at a time — Name only; then + Type; then + Calculation type; then + Amount = 0; then Amount > 0 — observing the Add button after each.

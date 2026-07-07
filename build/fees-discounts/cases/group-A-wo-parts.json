@@ -82,7 +82,7 @@
       "2. Preview row label flips to 'Discount' and shows −$857.23 (8% × 10,715.39 = 857.2312, rounded to nearest cent = 857.23; §5-R3).",
       "3. Preview row 'New Work Order Total' shows $9,858.16.",
       "4. The bottom of the preview reads 'Tax is recalculated on save.' (S2-R35).",
-      "5. The discount amount is signed and colored (see FD-WO-015 for the exact color, which differs spec vs design)."
+      "5. The discount amount is signed and colored (the exact color differs between spec and design)."
     ],
     "design_ref": "Live preview block .fd-summary, updateSummary() (§6)",
     "viu_status": "Pending — verify on staging once deployed",
@@ -1070,7 +1070,7 @@
     "permissions_required": "See Financial Data + Fees & Discounts flag ON",
     "preconditions": [
       "1. Logged in with See Financial Data.",
-      "2. An open work order with 5 adjustments as in FD-FIN-001."
+      "2. An open work order with 5 adjustments of mixed scope."
     ],
     "steps": [
       "1. Expand the 'Fees & Discounts (5)' row in the Financial Info card.",
@@ -1270,7 +1270,7 @@
     "permissions_required": "See Financial Data + Fees & Discounts flag ON",
     "preconditions": [
       "1. Logged in with See Financial Data.",
-      "2. The #55073 breakdown modal from FD-PCOL-004 is open (Parts Handling Fee +$1.43, Military Discount −$3.31, Early Payment Discount −$0.99)."
+      "2. The #55073 breakdown modal is open (Parts Handling Fee +$1.43, Military Discount −$3.31, Early Payment Discount −$0.99)."
     ],
     "steps": [
       "1. Read the 'Net adjustment' row at the bottom of the modal."
