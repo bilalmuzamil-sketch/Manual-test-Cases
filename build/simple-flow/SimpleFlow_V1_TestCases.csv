@@ -62,11 +62,12 @@ SF-SET-10,Work Order Settings,"S1-R9 (future completions only, never retroactive
 2. Change a relevant Work Order setting (e.g. Require Vendor Invoice Number) and Save.
 3. Reopen the already-completed work order and inspect it.","1. The already-completed work order is not retroactively changed by the new setting.
 2. Only work orders completed after the change follow the new setting.",requirements S1-R9,VIU-Pending,Not driven in the VIU run (needs a second completion after a settings change). Needs live verification.
-SF-SET-11,Work Order Settings,S1 AC (non-admin can't see/modify),Verify a non-admin user cannot see or modify the Work Order settings,High,Permissions,Depends on permissions matrix (TBD). A non-admin (e.g. Advisor/Tech) credential is required.,"1. A non-admin user account exists for this org.
-2. You can sign in as that non-admin user.","1. Sign in as the non-admin user.
+SF-SET-11,Work Order Settings,S1 AC (non-admin can't see/modify),Verify a non-admin user cannot see or modify the Work Order settings,High,Permissions,"App Settings permission (system defaults: Admin, Service Manager, Office). A role WITHOUT App Settings (e.g. Service Advisor / Technician) is required for this negative.","1. A user without the App Settings permission (e.g. Service Advisor or Technician) exists for this org.
+2. You can sign in as that user.","1. Sign in as the user without App Settings.
 2. Attempt to open /administration/settings → Work Orders tab.
-3. Attempt to change and save a Work Order setting.","1. The non-admin cannot reach the Work Order settings, OR the settings are read-only for them.
-2. The non-admin cannot save changes to Work Order settings.",requirements S1 AC,VIU-Pending,BLOCKED in VIU: quick-login {key:'tech'} returned 403 in this env; only the admin session works. Needs a real non-admin credential. Expected also depends on the (TBD) permissions matrix.
+3. Attempt to change and save a Work Order setting, including a direct API save.","1. A role without the App Settings permission cannot reach the Work Order settings, or sees them read-only.
+2. That role cannot save changes to Work Order settings.
+3. The backend rejects a Work Order settings save attempted by a role that lacks App Settings.",requirements S1 AC / §9 (App Settings gate),VIU-Pending,"Defined by SV-8183: the Work Order settings inherit the settingsApp route guard (no new atom); editable only by roles with App Settings ON (defaults Admin, Service Manager, Office). Role-gating negatives not yet verified live (only the admin session works on sv7301; tech key = 403)."
 SF-SET-12,Work Order Settings,S1 AC (no requireVin / no operatingMode field),Verify the settings model contains no operatingMode field and no requireVin setting,Low,Functional,Admin (API access).,"1. Signed in as Admin with API access.
 2. You can call GET /api/organizations/settings.","1. Call GET /api/organizations/settings.
 2. Inspect the returned object keys for 'operatingMode'.
@@ -324,19 +325,22 @@ SF-TECH-08,Tech Story Flow (Story 17),TS Decision vs S15-R2,Verify tech story is
 3. Confirm both entry points save a story.","1. EXPECTED PER STORY 17: a story can be entered inline on the line.
 2. A story can also be entered via the completion gate modal.
 3. Both paths persist the story.",WO Review Flow.html; requirements TS Decision / S15-R2,Open-Question,"Spec drift: S15-R2 (older) said tech story stays on the line, not in a modal; Story 17 (SV-7876) supersedes with inline + gate-modal. Design handoff flags this as [Confirm]. Confirm Story 17 is authoritative. See Open Questions."
-SF-VPART-01,Vendorless / No-PN Part (Story 5),S5-R1,"Verify a part can be requested with only description, quantity and sell price (part number, cost, vendor empty)",High,Functional,Work Order edit access (add parts).,"1. Signed in as Admin at https://sv7301.qa.shopview.com.
+SF-VPART-01,Vendorless / No-PN Part (Story 5),S5-R1,"Verify a part can be requested with only description, quantity and sell price (part number, cost, vendor empty)",High,Functional,WO Lines: Create & Edit + See Financial Data (the sell price is mandatory and has no catalog source).,"1. Signed in as Admin at https://sv7301.qa.shopview.com.
 2. An open work order with a line is on its Lines tab.","1. Add a part to a line.
 2. Enter only a description, a quantity and a sell price.
 3. Leave part number, cost and vendor empty.
 4. Save the part.","1. The part saves successfully.
 2. The part appears on the line with its description, quantity and sell price.
-3. It is treated as a vendorless part downstream.",requirements S5-R1,VIU-Pending,Not driven in VIU (part-add flow not exercised). Needs live verification.
-SF-VPART-02,Vendorless / No-PN Part (Story 5),S5-R1 / S5 AC (validation),"Verify adding a part is blocked when description, quantity or sell price is missing",High,Negative,Work Order edit access (add parts).,"1. Signed in as Admin.
+3. It is treated as a vendorless part downstream.
+4. Adding a vendorless / no-part-number part requires WO Lines: Create & Edit and See Financial Data, because the sell price is mandatory and has no catalog source.",requirements S5-R1 / §9 (See Financial Data gate),VIU-Pending,SV-8183 Decision 4 adds a financial gate: vendorless / no-PN add requires See Financial Data (mandatory sell). Not driven live (part-add flow not exercised).
+SF-VPART-02,Vendorless / No-PN Part (Story 5),S5-R1 / S5 AC (validation),"Verify adding a part is blocked when description, quantity or sell price is missing",High,Negative,WO Lines: Create & Edit + See Financial Data. A role lacking See Financial Data (e.g. Technician) is used for the permission negative.,"1. Signed in as Admin.
 2. The add-part dialog is open on a work order line.","1. Leave the description empty and try to save.
 2. Fill description, leave quantity empty and try to save.
-3. Fill quantity, leave sell price empty and try to save.","1. Saving is blocked when the description is empty.
+3. Fill quantity, leave sell price empty and try to save.
+4. As a role without See Financial Data (e.g. Technician), attempt to add a vendorless / no-part-number part.","1. Saving is blocked when the description is empty.
 2. Saving is blocked when the quantity is empty.
-3. Saving is blocked when the sell price is empty.",requirements S5 AC,VIU-Pending,Not driven in VIU. Needs live verification of the exact rejection UX.
+3. Saving is blocked when the sell price is empty.
+4. A user without See Financial Data (for example a Technician) cannot add a vendorless / no-part-number part, because they cannot enter the mandatory sell price.",requirements S5 AC / §9 (See Financial Data gate),VIU-Pending,SV-8183 Decision 4: vendorless / no-PN add requires See Financial Data. Field validation and the permission negative not yet verified live.
 SF-VPART-03,Vendorless / No-PN Part (Story 5),S5-R2,Verify a vendorless part's type uses the existing source field (vendor or found) and never inventory,Medium,Functional,Work Order edit access.,"1. Signed in as Admin.
 2. A vendorless part has been added to a work order line.","1. Open the vendorless part's detail.
 2. Read its source / type field.","1. The source is 'vendor' or 'found'.
@@ -528,11 +532,11 @@ SF-RCV-01,Receive Button on WO POs (Story 11),S11-R1,Verify a Receive action app
 SF-RCV-02,Receive Button on WO POs (Story 11),S11-R2,Verify the Receive action opens the shared Accept Delivery surface,High,Functional,receive access.,"1. Signed in as Admin.
 2. A WO-originated PO with an unreceived part exists.","1. Click Receive on the PO.
 2. Observe the destination surface.",1. The shared Accept Delivery surface opens for that PO.,Receive Vendor Parts - v2.html,VIU-Pending,Not driven in VIU. Needs live verification.
-SF-RCV-03,Receive Button on WO POs (Story 11),S11-R3,Verify the Receive action is hidden for office/readonly users and for fulfilled POs,Medium,Permissions,Depends on permissions matrix (TBD). Office/readonly credential required.,"1. An office / readonly user credential exists.
-2. A fulfilled PO and an unfulfilled PO exist.","1. Sign in as an office/readonly user and open the PO list.
+SF-RCV-03,Receive Button on WO POs (Story 11),S11-R3,Verify the Receive action is hidden for office/readonly users and for fulfilled POs,Medium,Permissions,Order Parts permission (absent for Office / read-only roles).,"1. An Office / read-only user credential (no Order Parts) exists.
+2. A fulfilled PO and an unfulfilled PO exist.","1. Sign in as an Office / read-only user and open the PO list.
 2. Confirm the Receive action is hidden for them.
-3. As an authorized user, confirm the Receive action is hidden on a fulfilled PO.","1. EXPECTED PER SPEC: office/readonly users do not see the Receive action (final expected depends on the permissions matrix — TBD).
-2. Fulfilled POs do not show the Receive action.",requirements S11-R3,VIU-Pending,Role-gating negative not verifiable in VIU (no non-admin session; tech key = 403). Expected depends on the (TBD) permissions matrix. Fulfilled-PO hiding needs live verification.
+3. As an authorized user, confirm the Receive action is hidden on a fulfilled PO.","1. The Receive action requires the Order Parts permission; Office and read-only users (no Order Parts) do not see Receive on the PO list or detail.
+2. Fulfilled POs do not show the Receive action.",requirements S11-R3 / §9 (Order Parts gate),VIU-Pending,SV-8183 resolves 'office/readonly' to concrete atoms: Receive-on-WO is FE-gated by Order Parts; Office (WO View-only / Vendor & Order View-only) lacks it. Role-gating negative not yet verified live. Fulfilled-PO hiding also needs live verification.
 SF-RCV-04,Accept Delivery (Story 12),S12 (existing multi-vendor),"Verify the existing Accept Delivery screen groups by vendor with per-group invoice #, date, tax, note and Receive",Medium,Functional,receive access.,"1. Signed in as Admin.
 2. A multi-vendor delivery exists at /parts/deliveries.","1. Open Accept Delivery / Vendor Invoices at /parts/deliveries.
 2. Confirm grouping by vendor.
@@ -640,11 +644,12 @@ SF-REV-08,Review ON (Story 16),R5 / R8 (distinct Reviewed state),Verify Confirm 
 2. Observe the resulting work order state.
 3. Look for a separate final 'Complete Work Order' action.","1. EXPECTED PER SPEC: the WO moves to Reviewed (green) with a 'sign-off complete' banner.
 2. A separate final Complete Work Order action is required to move to Complete.",WO Review Flow.html; requirements R5/R8,Open-Question,VIU BUG #4: after Confirm Review the WO went straight to Complete — no distinct Reviewed holding state / separate final Complete click was observed (S16-08-reviewed.png). May be admin auto-progression. Do not record as passing against the expected. See Open Questions.
-SF-REV-09,Review ON (Story 16),R7 (role-gating),Verify Mark Reviewed is available only to manager/foreman and disabled for an advisor with 'Awaiting review',High,Permissions,Depends on permissions matrix (TBD). Reviewer (manager/foreman) and advisor credentials required.,"1. Manager/foreman and advisor credentials exist.
-2. A work order is in Review state.","1. Sign in as an advisor and open the work order in Review.
+SF-REV-09,Review ON (Story 16),R7 (role-gating),Verify Mark Reviewed is gated by the Review Work Orders permission and disabled for a role without it,High,Permissions,Review Work Orders permission + reviewer must not be the completer.,"1. A role with Review Work Orders and a role without it both exist.
+2. A work order is in Review state, sent to review by a known user.","1. Sign in as a role without Review Work Orders and open the work order in Review.
 2. Confirm Mark Reviewed is disabled with 'Awaiting review'.
-3. Sign in as a manager/foreman and confirm Mark Reviewed is available.","1. EXPECTED PER SPEC: advisors see Mark Reviewed disabled with 'Awaiting review'.
-2. Managers/foremen can Mark Reviewed. (Final expected depends on the permissions matrix — TBD.)",requirements R7,VIU-Pending,Role-gating not testable in VIU (admin-only session; tech key = 403). Expected depends on the (TBD) permissions matrix and the open 'role-gating review: custom roles vs open for v1' question. See Open Questions.
+3. Sign in as a role with Review Work Orders (system defaults grant it broadly; it can be limited to manager/foreman via custom roles) and confirm Mark Reviewed is available.","1. A role without the Review Work Orders permission sees Mark Reviewed disabled with an 'Awaiting review' indicator.
+2. A role with the Review Work Orders permission can Mark Reviewed and sign off.
+3. The user who completed / sent the work order to review cannot Mark Reviewed even with the permission; a different qualified reviewer can.",requirements R7 / §9 (Review Work Orders + reviewer != completer),VIU-Pending,"Defined by SV-8183: Mark Reviewed = Review Work Orders atom (defaults broad, narrowable to manager/foreman) plus reviewer != completer. Role-gating negatives not yet verified live (admin-only session on sv7301)."
 SF-REV-10,Review ON (Story 16),R7 / R10 (optional note),Verify the Mark Reviewed dialog includes an optional review note field (input_review_note),Medium,Functional,Reviewer role (matrix TBD).,"1. Signed in as Admin.
 2. The Mark Reviewed dialog is open.","1. Look for an optional note field in the dialog.
 2. Enter a note and Confirm.","1. EXPECTED PER SPEC: an optional review note field (input_review_note) is present.
@@ -669,7 +674,7 @@ SF-REV-14,Review ON (Story 16),R Core parts / invoicing block,Verify cores are r
 3. Invoicing is blocked until the WO is Reviewed AND all cores are resolved.",requirements R Core parts,VIU-Pending,Not driven in VIU. Needs live verification.
 SF-REV-15,Review ON (Story 16),R Open (default),Verify the Require Review default for new vs existing orgs matches the agreed cohort rule,Low,Functional,Admin / owner (settings).,"1. A newly-created org and an existing org are available.
 2. Signed in as Admin for each.","1. Check the Require Review default on a brand-new org.
-2. Check that existing orgs keep today's behavior (backfilled).","1. PENDING DECISION: the Require Review default follows the agreed cohort rule (e.g. on for bigger/existing shops), with existing orgs preserved via backfill.",requirements §8 open questions / R Open,Open-Question,Spec §8 marks the require-review default as UNRESOLVED. Confirm the intended default before pass/fail. See Open Questions.
+2. Check that existing orgs keep today's behavior (backfilled).","1. A brand-new org shows the Require Review setting in its default state, and existing orgs keep their current completion behavior (the setting is backfilled so their behavior does not change).",requirements §8 open questions / R Open,Open-Question,Spec §8 marks the require-review default as UNRESOLVED. Confirm the intended default before pass/fail. See Open Questions.
 SF-UX-01,UX Refinements (Story 15),S15-R1,Verify the work order primary button reads 'Create Work Order',Medium,Functional,Work Order create access.,"1. Signed in as Admin.
 2. You are on the Create Work Order form (/workorders → Create).","1. Open the Create Work Order form.
 2. Read the primary button label.",1. The primary button reads 'Create Work Order'.,Work Orders List.html; requirements S15-R1,VIU-Verified,Create flow verified during Story 2 setup (S2-01-create-form.png).
@@ -686,30 +691,61 @@ SF-UX-03,UX Refinements (Story 15),S15-R3,"Verify the success screen shows WO nu
 SF-UX-04,UX Refinements (Story 15),S15-R4,Verify the close-confirmation modal behavior (Close = closes modal only; Cancel = closes modal + returns to previous screen),Medium,Functional,Work Order edit access.,"1. Signed in as Admin.
 2. A completion modal is open.","1. Trigger the close-confirmation modal.
 2. Click Close (prominent/red) and observe.
-3. Trigger it again and click Cancel (text link, far left) and observe.","1. PENDING DESIGN: Close closes the modal only (no discard) and stays on the work order.
+3. Trigger it again and click Cancel (text link, far left) and observe.","1. Clicking Close closes the modal only, keeps any entered changes, and stays on the work order.
 2. Cancel closes the modal and returns to the previous screen.",requirements S15-R4 (design pending),Open-Question,S15-R4 close-confirm design is explicitly pending ('Figma still to be added') — no design surface to test yet. Confirm before authoring expected. See Open Questions.
-SF-PERM-01,Permissions,S1 AC / §8 Permissions,Verify only owner/admin can view and modify Work Order settings (non-admin blocked),High,Permissions,Depends on permissions matrix (TBD). Non-admin credential required.,"1. A non-admin user account exists.
-2. You can sign in as that user.","1. Sign in as the non-admin user.
-2. Attempt to open and modify /administration/settings → Work Orders.",1. The non-admin cannot view or modify Work Order settings (final expected depends on the permissions matrix — TBD).,requirements S1 AC,VIU-Pending,BLOCKED in VIU (quick-login tech = 403; no non-admin session). Needs a real non-admin credential. Hypothesis to verify: backend may only enforce resource-level View/Edit while these are FE display gates (Custom Roles finding). See Open Questions.
-SF-PERM-02,Permissions,§8 Permissions,Verify which roles can complete a work order (Simple completion),Medium,Permissions,Depends on permissions matrix (TBD). Multiple role credentials required.,"1. Credentials for several roles exist.
+SF-PERM-01,Permissions,S1 AC / §8 Permissions,Verify only owner/admin can view and modify Work Order settings (non-admin blocked),High,Permissions,"App Settings permission (system defaults: Admin, Service Manager, Office). A role without App Settings is used for the negative.","1. A role with the App Settings permission (e.g. Admin) and a role without it (e.g. Service Advisor or Technician) both exist.
+2. You can sign in as each.","1. Sign in as a role with App Settings and open and modify /administration/settings → Work Orders.
+2. Sign in as a role without App Settings and attempt to open and modify the same page.
+3. As the role without App Settings, attempt to save a Work Order settings change directly (API), and note the response.","1. Only a role with the App Settings permission (system defaults Admin, Service Manager and Office) can view and modify the Work Order settings page.
+2. A role without App Settings cannot open or change the Work Order settings.
+3. The backend rejects a Work Order settings save attempted by a role that lacks App Settings.",requirements S1 AC / §9 (App Settings gate),VIU-Pending,"Permission defined by SV-8183: the Work Order settings inherit the existing settingsApp route guard (no new atom); editable by any role with App Settings ON (defaults Admin, Service Manager, Office). Note Office can edit settings but cannot operate the flow. Role-gating negatives not yet verified live (only the admin session works on sv7301)."
+SF-PERM-02,Permissions,§8 Permissions,Verify which roles can complete a work order (Simple completion),Medium,Permissions,Work Orders: Create & Edit + WO Lines: Create & Edit + Full View (to approve lines).,"1. Credentials for several roles exist.
 2. A work order ready to complete exists.","1. For each role, attempt to complete a work order.
-2. Record which roles can and cannot.",1. PENDING MATRIX: expected depends on the permissions matrix (TBD). Do not assume specific role outcomes.,requirements §8 open questions,Open-Question,No permissions/role matrix supplied. Author only; expected depends on the matrix (TBD). See Open Questions.
-SF-PERM-03,Permissions,§8 Permissions,Verify which roles can perform Bulk Receive,Medium,Permissions,Depends on permissions matrix (TBD).,"1. Credentials for several roles exist.
+2. Record which roles can and cannot.","1. Roles with Work Orders: Create & Edit plus WO Lines: Create & Edit and Full View (needed to approve all lines) can complete a work order: Admin, Service Manager, Senior SA, Service Advisor, Foreman and Parts Manager.
+2. Technician and Parts Tech cannot complete (Technician cannot approve lines in Tech View and/or lacks Work Orders: Create & Edit; Parts Tech is a receiver, not a completer).
+3. Office, Sales Rep and Time Clock cannot complete a work order.",requirements §9 (Complete WO gate + per-role matrix),VIU-Pending,Expected defined by the SV-8183 role matrix. Role-gating negatives not yet verified live (only the admin session works on sv7301).
+SF-PERM-03,Permissions,§8 Permissions,Verify which roles can perform Bulk Receive,Medium,Permissions,Vendor & Order Mgmt: Create & Edit + See Financial Data.,"1. Credentials for several roles exist.
 2. The Bulk Receive flow is available (Story 7/8 built).","1. For each role, attempt to reach and use Bulk Receive.
-2. Record the outcomes.",1. PENDING MATRIX: expected depends on the permissions matrix (TBD).,requirements §8 open questions,Open-Question,No matrix supplied; also Bulk Receive is not yet built. See Open Questions.
-SF-PERM-04,Permissions,R7 / §8 role-gating review,Verify which roles can Mark Reviewed (sign off),Medium,Permissions,Depends on permissions matrix (TBD). Manager/foreman + other role credentials required.,"1. Credentials for manager/foreman and other roles exist.
-2. A work order in Review state exists.","1. For each role, attempt to Mark Reviewed.
-2. Record which roles can and cannot.","1. PENDING MATRIX: spec says manager/foreman only, but role-gating (custom roles vs open for v1) is UNRESOLVED. Expected depends on the matrix (TBD).",requirements R7 / §8,Open-Question,Role-gating for review is an explicit open question. See Open Questions.
-SF-PERM-05,Permissions,S11-R3,Verify the PO Receive button is hidden for office/readonly users,Medium,Permissions,Depends on permissions matrix (TBD). Office/readonly credential required.,"1. An office/readonly credential exists.
-2. A WO-originated PO exists.","1. Sign in as an office/readonly user.
+2. Record the outcomes.","1. Roles with Vendor & Order Mgmt: Create & Edit plus See Financial Data can reach and use Bulk Receive: Admin, Service Manager, Senior SA, Service Advisor, Foreman, Parts Manager and Parts Tech.
+2. Office (Vendor & Order Mgmt: View only) can open the Bulk Receive page but cannot receive.
+3. Sales Rep and Time Clock cannot reach Bulk Receive.",requirements §9 (Bulk Receive gate + per-role matrix),VIU-Pending,Expected defined by the SV-8183 role matrix (Bulk Receive = Vendor & Order Mgmt C&E + See Financial Data; Office is view-only). Bulk Receive is also not yet built. Role-gating negatives not yet verified live.
+SF-PERM-04,Permissions,R7 / §8 role-gating review,Verify which roles can Mark Reviewed (sign off),Medium,Permissions,Review Work Orders permission + reviewer must not be the completer.,"1. Credentials for roles with and without Review Work Orders exist.
+2. A work order in Review state exists, sent to review by a known user.","1. For each role, attempt to Mark Reviewed.
+2. Record which roles can and cannot.","1. Mark Reviewed (review sign-off) requires the Review Work Orders permission; system defaults grant it broadly, and it can be narrowed to manager/foreman via custom roles.
+2. A role without Review Work Orders sees Mark Reviewed disabled with an 'Awaiting review' indicator.
+3. The user who completed / sent the work order to review cannot Mark Reviewed it; a different user who holds Review Work Orders can sign off.",requirements R7 / §9 (Review Work Orders + reviewer != completer),VIU-Pending,Defined by SV-8183: Mark Reviewed = Review Work Orders atom (not open-to-all) PLUS the NET-NEW reviewer != completer hard rule. Role-gating negatives not yet verified live.
+SF-PERM-05,Permissions,S11-R3,Verify the PO Receive button is hidden for office/readonly users,Medium,Permissions,Order Parts permission (absent for Office / read-only roles).,"1. An Office / read-only credential (no Order Parts) exists.
+2. A WO-originated PO exists, plus a fulfilled PO.","1. Sign in as an Office / read-only user.
 2. Open the PO list and detail.
-3. Confirm the Receive action is not shown.",1. EXPECTED PER SPEC: office/readonly users do not see the Receive action (final expected depends on the permissions matrix — TBD).,requirements S11-R3,VIU-Pending,Not verifiable in VIU (no non-admin session). Needs an office/readonly credential. See Open Questions.
-SF-PERM-06,Permissions,§8 BE enforcement,Verify whether the backend enforces the Simple-Flow settings or they are front-end display gates only,Medium,Permissions,Admin (API access) + a lower role credential.,"1. Signed in with API access.
-2. A relevant Simple-Flow setting (e.g. Require Vendor Invoice Number) is ON.","1. Attempt the gated action directly via the API (bypassing the UI), e.g. completing without the required invoice.
-2. Observe whether the backend rejects (403/422) or allows it (200/201).",1. PENDING DECISION: determine whether the backend enforces the setting (rejects) or the gate is front-end only (allows).,requirements §8 open questions,Open-Question,§8 asks whether BE should enforce Simple-Flow settings. Hypothesis from Custom Roles: BE often enforces only resource-level View/Edit while granular gates are FE-only. Verify; do not assume. See Open Questions.
-SF-PERM-07,Permissions,§8 role-gating review,Verify whether review role-gating uses custom roles or is open for v1,Low,Permissions,Depends on permissions matrix (TBD).,"1. Credentials for several roles exist.
-2. A work order in Review state exists.","1. Determine which roles can sign off review.
-2. Determine whether this is governed by a custom-role permission or open to all.",1. PENDING DECISION: whether review sign-off is gated by custom roles or open for v1 is unresolved.,requirements §8 open questions,Open-Question,Explicit open question. See Open Questions.
+3. Confirm the Receive action is not shown, and confirm it is also absent on a fulfilled PO.","1. The Receive action requires the Order Parts permission; Office and read-only users (no Order Parts) do not see Receive on the PO list or PO detail.
+2. Receive is also hidden for fulfilled (already-received) POs.",requirements S11-R3 / §9 (Order Parts gate),VIU-Pending,SV-8183 resolves 'office/readonly' to concrete atoms: Receive-on-WO is FE-gated by Order Parts; Office (WO View-only / Vendor & Order View-only) lacks it. Role-gating negatives not yet verified live.
+SF-PERM-06,Permissions,§8 BE enforcement,Verify the backend enforces the Simple-Flow settings and permission atoms (not front-end only),Medium,Permissions,Admin (API access) + a lower role credential.,"1. Signed in with API access.
+2. A relevant Simple-Flow setting (e.g. Require Vendor Invoice Number) is ON.","1. Attempt a setting-violating action directly via the API (bypassing the UI), e.g. completing without the required invoice, and note the response.
+2. As a role that lacks the mapped atom, attempt the gated action via the API and note the response.
+3. As a role that has only Work Orders: Create & Edit, attempt to receive onto a work order and note the response.","1. The backend enforces the Simple-Flow settings and the permission atoms (it is not front-end only): a setting-violating or unauthorized request is rejected.
+2. Because several work-order atoms collapse to the same backend role pair, any role with Work Orders: Create & Edit can receive onto a work order.
+3. The receive endpoint accepts the documented OR of ROLE_DELIVERY_CREATE_AND_EDIT, ROLE_WORK_ORDER_PART_CREATE and ROLE_WORK_ORDER_CREATE_AND_EDIT.",requirements §9.4 (BE enforcement + atom collapse),VIU-Pending,"Answered by SV-8183: BE DOES enforce the Simple-Flow settings and atoms (change from the Custom Roles FE-only finding), subject to the WO-atom collapse caveat (SV-7864). Not yet driven live."
+SF-PERM-07,Permissions,§8 role-gating review,Verify review sign-off is governed by the Review Work Orders custom-role permission (not open to all),Low,Permissions,Review Work Orders permission + reviewer must not be the completer.,"1. Credentials for roles with and without Review Work Orders exist.
+2. A work order in Review state exists, sent to review by a known user.","1. Confirm that only roles holding Review Work Orders can sign off, and roles without it cannot.
+2. Confirm the user who completed / sent the work order to review cannot sign it off.","1. Review sign-off is governed by the Review Work Orders custom-role permission (it is NOT open to all users for v1).
+2. The permission gates the Mark Reviewed action, and the reviewer-not-completer rule is enforced (the completer cannot sign off).",requirements R7 / §9 (Review Work Orders + reviewer != completer),VIU-Pending,"Answered by SV-8183: review sign-off = Review Work Orders atom (custom-role gated, not open for v1) plus the reviewer != completer NET-NEW rule. Role-gating negatives not yet verified live."
+SF-PERM-08,Permissions,R7 (reviewer != completer),Verify the user who completed or sent the work order to review cannot Mark Reviewed it,High,Permissions,Review Work Orders permission + reviewer must not be the completer.,"1. Two different users who both hold the Review Work Orders permission exist.
+2. User A has completed / sent a work order to review; it is in Review state.","1. Sign in as User A (who sent the work order to review) and open the work order in Review.
+2. Attempt to Mark Reviewed.
+3. Sign in as User B (a different user who holds Review Work Orders) and Mark Reviewed.","1. User A cannot Mark Reviewed the work order they completed / sent to review; the action is blocked or disabled.
+2. User B, a different user who holds the Review Work Orders permission, can Mark Reviewed and sign off.
+3. The reviewer must be a different person from the completer.",requirements R7 / §9 (reviewer != completer NET-NEW rule),VIU-Pending,NET-NEW hard rule from SV-8183: stamp sentToReviewBy/completedBy and block Mark Reviewed for that user. Role-gating negatives not yet verified live.
+SF-PERM-09,Permissions,S5 / §9 (See Financial Data gate),Verify a Technician cannot add a vendorless / no-part-number part (lacks See Financial Data),High,Permissions,WO Lines: Create & Edit + See Financial Data. Technician has WO Lines: Create & Edit but no See Financial Data.,"1. A Technician credential exists (WO Lines: Create & Edit, no See Financial Data).
+2. An open work order with a line is available.","1. Sign in as the Technician and open the work order line.
+2. Attempt to add a vendorless / no-part-number part (description + quantity + sell price).","1. The Technician cannot add a vendorless / no-part-number part.
+2. The mandatory sell price cannot be entered without See Financial Data, so the add is prevented.",requirements S5 / §9 (Decision 4),VIU-Pending,"SV-8183 Decision 4: adding a vendorless part requires See Financial Data (sell is mandatory, no catalog source). Role-gating negative not yet verified live."
+SF-PERM-10,Permissions,§9 per-role completion matrix,Verify the Complete Work Order action follows the per-role completion permission matrix,High,Permissions,Work Orders: Create & Edit + WO Lines: Create & Edit + Full View.,"1. Credentials for each system role exist (Admin, Service Manager, Senior SA, Service Advisor, Foreman, Technician, Parts Manager, Parts Tech, Office, Sales Rep, Time Clock).
+2. A work order ready to complete is available.","1. For each role, open the work order and check whether the Complete Work Order action is available and usable.
+2. Record the result per role against the checklist below.
+3. Roles expected to be able to complete: Admin, Service Manager, Senior SA, Service Advisor, Foreman, Parts Manager.
+4. Roles expected NOT to be able to complete: Technician, Parts Tech, Office, Sales Rep, Time Clock.","1. Complete Work Order is available for Admin, Service Manager, Senior SA, Service Advisor, Foreman and Parts Manager.
+2. Complete Work Order is NOT available for Technician, Parts Tech, Office, Sales Rep or Time Clock.
+3. Technician and Parts Tech are blocked because they cannot approve lines and/or lack Work Orders: Create & Edit; Office is view-only; Sales Rep and Time Clock have no work-order edit access.",requirements §9 (per-role matrix),VIU-Pending,Per-role completion checklist derived from the SV-8183 role matrix. Role-gating negatives not yet verified live.
 SF-VAL-01,Validation / Edge,S2-R2 / S3-R3 / S4-R3,Verify completion is blocked when required mileage is missing,High,Negative,Work Order edit access.,"1. Signed in as Admin.
 2. Require Mileage is ON and the work order has no mileage.","1. Start completion.
 2. Leave mileage empty and try to proceed.",1. Completion is blocked until mileage is entered.,WO Review Flow.html (Details step),VIU-Pending,Details step seen (S2-13) but empty-field block not isolated. Needs live verification.
@@ -782,9 +818,10 @@ SF-QB-05,QuickBooks / Inventory Integrity,§5 / S6-R3,Verify Vendor Missing POs 
 2. A Vendor Missing PO exists.","1. Check QuickBooks sync for the Vendor Missing PO.
 2. Provide a vendor and part number and re-check.","1. While vendor/PN are missing, the PO is excluded from QuickBooks.
 2. Once both are provided, it becomes eligible for QuickBooks.",requirements §5 / S6-R3,VIU-Pending,Not driven in VIU. Needs live verification.
-SF-QB-06,QuickBooks / Inventory Integrity,§8 (cost at completion),Verify cost at completion behavior to avoid $0-cost margins in QuickBooks,Medium,Functional,Work Order edit access + QuickBooks visibility.,"1. Signed in as Admin.
+SF-QB-06,QuickBooks / Inventory Integrity,§8 (cost at completion),Verify cost at completion behavior to avoid $0-cost margins in QuickBooks,Medium,Functional,Work Order edit access + See Financial Data + QuickBooks visibility.,"1. Signed in as Admin.
 2. A work order has a part with no cost recorded at completion.","1. Complete the work order.
-2. Check the resulting cost/margin figures that flow to QuickBooks.",1. PENDING DECISION: whether cost can be entered at completion to avoid $0-cost margins is unresolved. Confirm the intended behavior.,requirements §8 open questions,Open-Question,§8 open question. Not driven in VIU. See Open Questions.
+2. Check the resulting cost/margin figures that flow to QuickBooks.","1. The cost and margin values sent to QuickBooks at completion are recorded and checked for any $0-cost margins.
+2. For vendorless / no-part-number parts the mandatory sell price is captured at add time behind the See Financial Data gate, so a completing user has a sell figure and $0-cost margins are avoided.",requirements §9 (See Financial Data gate on vendorless sell),VIU-Pending,Resolved by SV-8183 (Decision 4): the cost-at-completion concern is addressed by requiring See Financial Data to enter the mandatory sell on a vendorless add. Money figures still need live verification.
 SF-QB-07,QuickBooks / Inventory Integrity,§5 (Journal Entry / Inventory → QBO),Verify the Journal Entry / Inventory sync to QuickBooks fires on invoice creation (not PO-dependent),Medium,Functional,Finance access + QuickBooks visibility.,"1. Signed in as Admin.
 2. A completed work order is ready to invoice.","1. Create the invoice.
 2. Check for the Journal Entry / Inventory sync to QuickBooks.","1. The Journal Entry / Inventory sync to QuickBooks fires on invoice creation.

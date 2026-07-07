@@ -259,10 +259,11 @@ legend = (
     "8 Bulk Receive page, 9 apply-invoice, 14 Waiting-on-Parts) or a cookie/role-dependent check "
     "(non-admin role-gating negatives; full parts-receive + core round-trips; line-approval final block). "
     "See the 'VIU pending' tab.\n"
-    "- Open-Question = the EXPECTED result depends on an unresolved decision or a VIU deviation/bug. "
-    "See the 'Open Questions' tab (14 items, including the 4 live VIU deviations).\n"
-    "- No permissions/role matrix exists yet: role-gating cases are authored but their expected "
-    "results are marked TBD - do not assume role outcomes."
+    "- Open-Question = the EXPECTED result depends on an unresolved decision or a live build deviation. "
+    "See the 'Open Questions' tab (14 items: 3 RESOLVED by SV-8183, 11 still open pending Milos).\n"
+    "- Permissions are now DEFINED by SV-8183: Simple Flow reuses existing Custom Roles atoms "
+    "(no new atom) plus the NET-NEW reviewer!=completer rule. See requirements §9 for the "
+    "action->atom map and per-role matrix; role-gating negatives still need live verification."
 )
 ws.cell(row=r, column=1, value=legend).font = Font(italic=True)
 ws.merge_cells(start_row=r, start_column=1, end_row=r, end_column=6)
@@ -385,108 +386,134 @@ viu.freeze_panes = "A3"
 # ================================================================ Open Questions
 oq = wb.create_sheet("Open Questions")
 OQ_COLS = [
-    ("#", 5), ("Topic", 26), ("Question / Issue", 62),
-    ("Why it matters", 46), ("Affected cases", 34),
+    ("#", 5), ("Topic", 26), ("Question / Issue", 58),
+    ("Why it matters", 42), ("Affected cases", 30),
+    ("Status / Resolution", 56),
 ]
 oq.append([c[0] for c in OQ_COLS])
 style_header(oq, 1, len(OQ_COLS))
 
+RESOLVED_FILL = PatternFill("solid", fgColor="C6EFCE")  # green
+OPEN_FILL = PatternFill("solid", fgColor="FFE08A")      # amber
+
 open_questions = [
     ("No permissions / role matrix",
-     "The spec supplies NO consolidated permissions/role matrix (§8 flags it as "
+     "The spec supplied NO consolidated permissions/role matrix (§8 flagged it as "
      "unresolved). Which roles may complete WOs, bulk receive, edit settings, and "
-     "sign off review is undefined. Role-gating cases are authored but their expected "
-     "results are TBD.",
-     "Every role-gating case's expected result is a guess without this. Hypothesis to "
-     "verify (from Custom Roles): the backend may enforce only resource-level "
-     "View/Edit while granular gates are front-end display only.",
-     "SF-PERM-01..07, SF-SET-11, SF-RCV-03, SF-REV-09"),
+     "sign off review was undefined.",
+     "Every role-gating case's expected result depended on this.",
+     "SF-PERM-01..10, SF-SET-11, SF-RCV-03, SF-REV-09",
+     "RESOLVED by SV-8183. Simple Flow adds NO new permission atom - every action maps "
+     "to an existing Custom Roles atom (see requirements §9 action->atom map + per-role "
+     "matrix): Settings = App Settings (defaults Admin/Service Manager/Office); "
+     "Complete WO = Work Orders C&E + WO Lines C&E/Full View; Bulk Receive = Vendor & "
+     "Order Mgmt C&E + See Financial Data; Receive-on-WO = Order Parts (FE); Mark "
+     "Reviewed = Review Work Orders + reviewer != completer. Source: SV-8183."),
     ("Spec V2.3 vs design V1.4 drift",
      "The product .doc header says V2.3 but both design handoffs cite 'Simple Mode "
      "V1.4'. It is unclear which is authoritative where they differ.",
      "Design-vs-spec differences (defaults, tech-story placement, review states) can't "
      "be adjudicated until the authoritative version is confirmed.",
-     "Global - especially SF-SET-08, SF-TECH-08, SF-REV-08"),
+     "Global - especially SF-SET-08, SF-TECH-08, SF-REV-08",
+     "OPEN - pending Milos. Not addressed by SV-8183."),
     ("Settings first-use defaults conflict",
      "Spec §4/S1 defaults: Auto-approve OFF, Vendor invoice REQUIRED. Design "
      "HANDOFF.md defaults: Auto-approve ON, Vendor invoice Optional. The live org "
      "baseline shows autoApproveLines:true, requireVendorInvoiceNumber:false.",
      "The correct first-use defaults must be confirmed before pass/fail on the "
      "settings-default case and before framing the completion-flow matrix.",
-     "SF-SET-08"),
-    ("'Create Purchase Orders' toggle absent (VIU bug #1)",
+     "SF-SET-08",
+     "OPEN - pending Milos. Explicitly NOT addressed by SV-8183."),
+    ("'Create Purchase Orders' toggle absent (build deviation #1)",
      "Spec S1-R2 requires a 'Create purchase orders' toggle (default ON) so POs can "
      "be turned OFF. It does NOT exist in the UI and there is no createPurchaseOrders "
      "field in the settings API - POs appear always-on.",
      "The pure Story-2 'No-PO / skip' configuration cannot be set up, so the Create-POs-"
      "OFF completion and its QB integrity cases are untestable as specified. May be an "
      "intentional descope - confirm.",
-     "SF-SET-03, SF-COMP-06, SF-QB-02"),
+     "SF-SET-03, SF-COMP-06, SF-QB-02",
+     "OPEN - pending Milos. Explicitly NOT addressed by SV-8183."),
     ("Tech-story placement (Story 17 vs S15-R2)",
      "S15-R2 (older) says the tech story stays on the line, not in a modal; Story 17 "
      "(SV-7876) supersedes with inline + gate-modal. Design handoff flags this "
      "[Confirm].",
-     "Determines whether the tech-story gate-modal cases are authoritative. VIU showed "
-     "the gate-modal working, so Story 17 appears current - confirm.",
-     "SF-TECH-08 (and all SF-TECH-*)"),
+     "Determines whether the tech-story gate-modal cases are authoritative. The live "
+     "build showed the gate-modal working, so Story 17 appears current - confirm.",
+     "SF-TECH-08 (and all SF-TECH-*)",
+     "OPEN - pending Milos. Not addressed by SV-8183."),
     ("Cost at completion ($0-cost margins)",
      "§8 asks whether cost may be entered at completion to avoid $0-cost margins "
      "flowing to QuickBooks.",
      "Affects the expected QB margin figures at completion/invoice.",
-     "SF-QB-06"),
+     "SF-QB-06",
+     "RESOLVED by SV-8183 (Decision 4). A vendorless / no-PN part add requires See "
+     "Financial Data, so the mandatory sell price is captured at add time and $0-cost "
+     "margins are avoided. Source: SV-8183."),
     ("Auto-receive of in-stock inventory on simple completion",
      "§8 asks whether in-stock inventory parts should auto-receive/decrement on simple "
      "completion. The spec also flags the 'bare status setter' skip path as an "
      "integrity risk (it can emit no events).",
      "Determines whether inventory decrement + Part History are expected on the skip "
      "path - a data-integrity invariant.",
-     "SF-COMP-07, SF-QB-01"),
+     "SF-COMP-07, SF-QB-01",
+     "OPEN - pending Milos. Not addressed by SV-8183."),
     ("Does the backend enforce Simple-Flow settings?",
      "§8 asks whether the backend should enforce the Simple-Flow settings, or whether "
      "they are front-end gates only.",
-     "Sets the expected result for API-level negative tests (403/422 vs 200/201). "
-     "Custom Roles precedent: BE often enforces only resource-level View/Edit.",
-     "SF-PERM-06"),
-    ("Save Settings always enabled (VIU bug #2)",
+     "Sets the expected result for API-level negative tests (403/422 vs 200/201).",
+     "SF-PERM-06",
+     "RESOLVED by SV-8183. The backend DOES enforce the Simple-Flow settings AND the "
+     "permission atoms (not FE-only), subject to the WO-atom collapse caveat: any role "
+     "with WO Create & Edit can receive onto a WO, and the receive endpoint accepts the "
+     "OR of ROLE_DELIVERY_CREATE_AND_EDIT / ROLE_WORK_ORDER_PART_CREATE / "
+     "ROLE_WORK_ORDER_CREATE_AND_EDIT. Source: SV-8183."),
+    ("Save Settings always enabled (build deviation #2)",
      "The Save Settings button is clickable with no pending changes (no dirty-state "
      "gating).",
      "Minor UX deviation from the expected 'disabled until changed' behavior; confirm "
      "intended.",
-     "SF-SET-13"),
-    ("Mark Reviewed missing optional note (VIU bug #3)",
+     "SF-SET-13",
+     "OPEN - pending Milos. Not addressed by SV-8183."),
+    ("Mark Reviewed missing optional note (build deviation #3)",
      "Story 16 R7/R10 specify an optional review note field (input_review_note). The "
      "live Mark Reviewed dialog exposes ONLY the VIN field.",
      "The optional-note case cannot pass as specified; confirm whether the field was "
      "descoped or is not yet built.",
-     "SF-REV-10"),
-    ("Review sign-off jumps to Complete (VIU bug #4)",
+     "SF-REV-10",
+     "OPEN - pending Milos. Not addressed by SV-8183."),
+    ("Review sign-off jumps to Complete (build deviation #4)",
      "Story 16 R5/R8 describe Review -> Reviewed (green, sign-off complete) -> a "
      "separate final Complete Work Order -> Complete. Live, Confirm Review went "
      "straight to Complete with no distinct Reviewed holding state observed.",
      "Determines whether a distinct Reviewed state + separate final Complete are "
      "expected (possible admin auto-progression). Affects the review state-machine "
      "cases and the invoicing-block-until-reviewed check.",
-     "SF-REV-08, SF-REV-11"),
+     "SF-REV-08, SF-REV-11",
+     "OPEN - pending Milos. Not addressed by SV-8183."),
     ("Close-confirm modal design pending",
      "S15-R4 close-vs-cancel confirmation is explicitly 'Figma still to be added' - "
      "no design surface exists to test yet.",
      "The close-confirm case's expected behavior can't be finalized until the design "
      "ships.",
-     "SF-UX-04"),
+     "SF-UX-04",
+     "OPEN - pending Milos. Not addressed by SV-8183."),
     ("Require-review default (new vs existing orgs)",
      "§8 leaves the Require-review default unresolved (on for bigger/existing shops?) "
      "with existing orgs preserved via backfill.",
      "Sets the expected default state for the review-default case.",
-     "SF-REV-15"),
+     "SF-REV-15",
+     "OPEN - pending Milos. SV-8183 defined WHO can sign off review, but NOT the "
+     "require-review default cohort."),
     ("Accept Delivery vendor-missing group ordering",
      "S12-R1 says the vendor-missing group sits at the BOTTOM; S12-R3 says the "
      "vendor-missing group LEADS (top). The spec contradicts itself.",
      "Determines the expected ordering on the Accept Delivery / Bulk Receive screens.",
-     "SF-RCV-05, SF-RCV-07"),
+     "SF-RCV-05, SF-RCV-07",
+     "OPEN - pending Milos. Not addressed by SV-8183."),
 ]
 
-for i, (topic, q, why, ids) in enumerate(open_questions, start=1):
-    oq.append([i, topic, q, why, ids])
+for i, (topic, q, why, ids, status) in enumerate(open_questions, start=1):
+    oq.append([i, topic, q, why, ids, status])
     excel_row = i + 1
     alt = (i % 2 == 1)
     for col in range(1, len(OQ_COLS) + 1):
@@ -496,6 +523,11 @@ for i, (topic, q, why, ids) in enumerate(open_questions, start=1):
         if alt:
             cell.fill = ALT_FILL
     oq.cell(row=excel_row, column=1).alignment = WRAP_TOP_CENTER
+    scell = oq.cell(row=excel_row, column=6)
+    scell.fill = RESOLVED_FILL if status.startswith("RESOLVED") else OPEN_FILL
+
+resolved_n = sum(1 for x in open_questions if x[4].startswith("RESOLVED"))
+open_n = len(open_questions) - resolved_n
 
 for idx, (_, width) in enumerate(OQ_COLS, start=1):
     oq.column_dimensions[get_column_letter(idx)].width = width
@@ -511,7 +543,7 @@ with open(CSV_PATH, "w", newline="", encoding="utf-8") as fh:
 
 # ---------------------------------------------------------------- report
 print("Total cases on Test Cases tab:", len(cases))
-print("Open questions:", len(open_questions))
+print("Open questions:", len(open_questions), "(RESOLVED:", resolved_n, "OPEN:", open_n, ")")
 print("VIU-pending rows:", len(viu_pending))
 print("Areas:")
 for name in AREA_ORDER:

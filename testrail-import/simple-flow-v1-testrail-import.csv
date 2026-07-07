@@ -62,11 +62,12 @@ Verify a settings change applies to future completions only and not to already-c
 2. Change a relevant Work Order setting (e.g. Require Vendor Invoice Number) and Save.
 3. Reopen the already-completed work order and inspect it.","1. The already-completed work order is not retroactively changed by the new setting.
 2. Only work orders completed after the change follow the new setting.","SV-7696 (S1-R9 (future completions only, never retroactive))",,
-Verify a non-admin user cannot see or modify the Work Order settings,Work Order Settings,Functional,High,"1. A non-admin user account exists for this org.
-2. You can sign in as that non-admin user.","1. Sign in as the non-admin user.
+Verify a non-admin user cannot see or modify the Work Order settings,Work Order Settings,Functional,High,"1. A user without the App Settings permission (e.g. Service Advisor or Technician) exists for this org.
+2. You can sign in as that user.","1. Sign in as the user without App Settings.
 2. Attempt to open /administration/settings → Work Orders tab.
-3. Attempt to change and save a Work Order setting.","1. The non-admin cannot reach the Work Order settings, OR the settings are read-only for them.
-2. The non-admin cannot save changes to Work Order settings.",SV-7696 (S1 AC (non-admin can't see/modify)),,
+3. Attempt to change and save a Work Order setting, including a direct API save.","1. A role without the App Settings permission cannot reach the Work Order settings, or sees them read-only.
+2. That role cannot save changes to Work Order settings.
+3. The backend rejects a Work Order settings save attempted by a role that lacks App Settings.",SV-7696 (S1 AC (non-admin can't see/modify)),,
 Verify the settings model contains no operatingMode field and no requireVin setting,Work Order Settings,Functional,Low,"1. Signed in as Admin with API access.
 2. You can call GET /api/organizations/settings.","1. Call GET /api/organizations/settings.
 2. Inspect the returned object keys for 'operatingMode'.
@@ -330,13 +331,16 @@ Verify tech story is captured both inline and via the gate modal (Story 17 super
 3. Leave part number, cost and vendor empty.
 4. Save the part.","1. The part saves successfully.
 2. The part appears on the line with its description, quantity and sell price.
-3. It is treated as a vendorless part downstream.",SV-7700 (S5-R1),,
+3. It is treated as a vendorless part downstream.
+4. Adding a vendorless / no-part-number part requires WO Lines: Create & Edit and See Financial Data, because the sell price is mandatory and has no catalog source.",SV-7700 (S5-R1),,
 "Verify adding a part is blocked when description, quantity or sell price is missing",Vendorless / No-PN Part (Story 5),Functional,High,"1. Signed in as Admin.
 2. The add-part dialog is open on a work order line.","1. Leave the description empty and try to save.
 2. Fill description, leave quantity empty and try to save.
-3. Fill quantity, leave sell price empty and try to save.","1. Saving is blocked when the description is empty.
+3. Fill quantity, leave sell price empty and try to save.
+4. As a role without See Financial Data (e.g. Technician), attempt to add a vendorless / no-part-number part.","1. Saving is blocked when the description is empty.
 2. Saving is blocked when the quantity is empty.
-3. Saving is blocked when the sell price is empty.",SV-7700 (S5-R1 / S5 AC (validation)),,
+3. Saving is blocked when the sell price is empty.
+4. A user without See Financial Data (for example a Technician) cannot add a vendorless / no-part-number part, because they cannot enter the mandatory sell price.",SV-7700 (S5-R1 / S5 AC (validation)),,
 Verify a vendorless part's type uses the existing source field (vendor or found) and never inventory,Vendorless / No-PN Part (Story 5),Functional,Medium,"1. Signed in as Admin.
 2. A vendorless part has been added to a work order line.","1. Open the vendorless part's detail.
 2. Read its source / type field.","1. The source is 'vendor' or 'found'.
@@ -528,10 +532,10 @@ Verify a Receive action appears on WO-originated POs in both the PO list and the
 Verify the Receive action opens the shared Accept Delivery surface,Receive Button on WO POs (Story 11),Functional,High,"1. Signed in as Admin.
 2. A WO-originated PO with an unreceived part exists.","1. Click Receive on the PO.
 2. Observe the destination surface.",1. The shared Accept Delivery surface opens for that PO.,SV-7706 (S11-R2),,
-Verify the Receive action is hidden for office/readonly users and for fulfilled POs,Receive Button on WO POs (Story 11),Functional,Medium,"1. An office / readonly user credential exists.
-2. A fulfilled PO and an unfulfilled PO exist.","1. Sign in as an office/readonly user and open the PO list.
+Verify the Receive action is hidden for office/readonly users and for fulfilled POs,Receive Button on WO POs (Story 11),Functional,Medium,"1. An Office / read-only user credential (no Order Parts) exists.
+2. A fulfilled PO and an unfulfilled PO exist.","1. Sign in as an Office / read-only user and open the PO list.
 2. Confirm the Receive action is hidden for them.
-3. As an authorized user, confirm the Receive action is hidden on a fulfilled PO.","1. Office and readonly users do not see the Receive action, per the Story 11 behavior.
+3. As an authorized user, confirm the Receive action is hidden on a fulfilled PO.","1. The Receive action requires the Order Parts permission; Office and read-only users (no Order Parts) do not see Receive on the PO list or detail.
 2. Fulfilled POs do not show the Receive action.",SV-7706 (S11-R3),,
 "Verify the existing Accept Delivery screen groups by vendor with per-group invoice #, date, tax, note and Receive",Accept Delivery (Story 12),Functional,Medium,"1. Signed in as Admin.
 2. A multi-vendor delivery exists at /parts/deliveries.","1. Open Accept Delivery / Vendor Invoices at /parts/deliveries.
@@ -640,11 +644,12 @@ Verify Confirm Review moves the WO to a distinct Reviewed state requiring a sepa
 2. Observe the resulting work order state.
 3. Look for a separate final 'Complete Work Order' action.","1. The WO moves to Reviewed (green) with a 'sign-off complete' banner.
 2. A separate final Complete Work Order action is required to move to Complete.",SV-7870 (R5 / R8 (distinct Reviewed state)),,
-Verify Mark Reviewed is available only to manager/foreman and disabled for an advisor with 'Awaiting review',Review ON (Story 16),Functional,High,"1. Manager/foreman and advisor credentials exist.
-2. A work order is in Review state.","1. Sign in as an advisor and open the work order in Review.
+Verify Mark Reviewed is gated by the Review Work Orders permission and disabled for a role without it,Review ON (Story 16),Functional,High,"1. A role with Review Work Orders and a role without it both exist.
+2. A work order is in Review state, sent to review by a known user.","1. Sign in as a role without Review Work Orders and open the work order in Review.
 2. Confirm Mark Reviewed is disabled with 'Awaiting review'.
-3. Sign in as a manager/foreman and confirm Mark Reviewed is available.","1. An advisor sees Mark Reviewed disabled with an 'Awaiting review' indicator.
-2. A manager or foreman can Mark Reviewed and sign off, per the Story 16 review sign-off behavior.",SV-7870 (R7 (role-gating)),,
+3. Sign in as a role with Review Work Orders (system defaults grant it broadly; it can be limited to manager/foreman via custom roles) and confirm Mark Reviewed is available.","1. A role without the Review Work Orders permission sees Mark Reviewed disabled with an 'Awaiting review' indicator.
+2. A role with the Review Work Orders permission can Mark Reviewed and sign off.
+3. The user who completed / sent the work order to review cannot Mark Reviewed even with the permission; a different qualified reviewer can.",SV-7870 (R7 (role-gating)),,
 Verify the Mark Reviewed dialog includes an optional review note field (input_review_note),Review ON (Story 16),Functional,Medium,"1. Signed in as Admin.
 2. The Mark Reviewed dialog is open.","1. Look for an optional note field in the dialog.
 2. Enter a note and Confirm.","1. An optional review note field (input_review_note) is present.
@@ -688,28 +693,59 @@ Verify the close-confirmation modal behavior (Close = closes modal only; Cancel 
 2. Click Close (prominent/red) and observe.
 3. Trigger it again and click Cancel (text link, far left) and observe.","1. Clicking Close closes the modal only, keeps any entered changes, and stays on the work order.
 2. Cancel closes the modal and returns to the previous screen.",SV-7710 (S15-R4),,
-Verify only owner/admin can view and modify Work Order settings (non-admin blocked),Permissions,Functional,High,"1. A non-admin user account exists.
-2. You can sign in as that user.","1. Sign in as the non-admin user.
-2. Attempt to open and modify /administration/settings → Work Orders.",1. The non-admin user cannot open or modify the Work Order settings; the settings area is not available to them.,SV-7696 (S1 AC / §8 Permissions),,
+Verify only owner/admin can view and modify Work Order settings (non-admin blocked),Permissions,Functional,High,"1. A role with the App Settings permission (e.g. Admin) and a role without it (e.g. Service Advisor or Technician) both exist.
+2. You can sign in as each.","1. Sign in as a role with App Settings and open and modify /administration/settings → Work Orders.
+2. Sign in as a role without App Settings and attempt to open and modify the same page.
+3. As the role without App Settings, attempt to save a Work Order settings change directly (API), and note the response.","1. Only a role with the App Settings permission (system defaults Admin, Service Manager and Office) can view and modify the Work Order settings page.
+2. A role without App Settings cannot open or change the Work Order settings.
+3. The backend rejects a Work Order settings save attempted by a role that lacks App Settings.",SV-7696 (S1 AC / §8 Permissions),,
 Verify which roles can complete a work order (Simple completion),Permissions,Functional,Medium,"1. Credentials for several roles exist.
 2. A work order ready to complete exists.","1. For each role, attempt to complete a work order.
-2. Record which roles can and cannot.",1. A user who can edit and complete work orders can perform Simple completion; completion uses the same access as standard work-order completion. Record the result for each role tested.,§8 Permissions,,
+2. Record which roles can and cannot.","1. Roles with Work Orders: Create & Edit plus WO Lines: Create & Edit and Full View (needed to approve all lines) can complete a work order: Admin, Service Manager, Senior SA, Service Advisor, Foreman and Parts Manager.
+2. Technician and Parts Tech cannot complete (Technician cannot approve lines in Tech View and/or lacks Work Orders: Create & Edit; Parts Tech is a receiver, not a completer).
+3. Office, Sales Rep and Time Clock cannot complete a work order.",§8 Permissions,,
 Verify which roles can perform Bulk Receive,Permissions,Functional,Medium,"1. Credentials for several roles exist.
 2. The Bulk Receive flow is available (Story 7/8 built).","1. For each role, attempt to reach and use Bulk Receive.
-2. Record the outcomes.",1. A user who can receive purchase orders can reach and use Bulk Receive; it uses the same access as the existing Receive action on purchase orders. Record the result for each role tested.,§8 Permissions,,
-Verify which roles can Mark Reviewed (sign off),Permissions,Functional,Medium,"1. Credentials for manager/foreman and other roles exist.
-2. A work order in Review state exists.","1. For each role, attempt to Mark Reviewed.
-2. Record which roles can and cannot.",1. Mark Reviewed (review sign-off) is available to managers and foremen per the Story 16 behavior; other roles see it disabled with an 'Awaiting review' indicator. Record the result for each role tested.,SV-7870 (R7 / §8 role-gating review),,
-Verify the PO Receive button is hidden for office/readonly users,Permissions,Functional,Medium,"1. An office/readonly credential exists.
-2. A WO-originated PO exists.","1. Sign in as an office/readonly user.
+2. Record the outcomes.","1. Roles with Vendor & Order Mgmt: Create & Edit plus See Financial Data can reach and use Bulk Receive: Admin, Service Manager, Senior SA, Service Advisor, Foreman, Parts Manager and Parts Tech.
+2. Office (Vendor & Order Mgmt: View only) can open the Bulk Receive page but cannot receive.
+3. Sales Rep and Time Clock cannot reach Bulk Receive.",§8 Permissions,,
+Verify which roles can Mark Reviewed (sign off),Permissions,Functional,Medium,"1. Credentials for roles with and without Review Work Orders exist.
+2. A work order in Review state exists, sent to review by a known user.","1. For each role, attempt to Mark Reviewed.
+2. Record which roles can and cannot.","1. Mark Reviewed (review sign-off) requires the Review Work Orders permission; system defaults grant it broadly, and it can be narrowed to manager/foreman via custom roles.
+2. A role without Review Work Orders sees Mark Reviewed disabled with an 'Awaiting review' indicator.
+3. The user who completed / sent the work order to review cannot Mark Reviewed it; a different user who holds Review Work Orders can sign off.",SV-7870 (R7 / §8 role-gating review),,
+Verify the PO Receive button is hidden for office/readonly users,Permissions,Functional,Medium,"1. An Office / read-only credential (no Order Parts) exists.
+2. A WO-originated PO exists, plus a fulfilled PO.","1. Sign in as an Office / read-only user.
 2. Open the PO list and detail.
-3. Confirm the Receive action is not shown.","1. Office and readonly users do not see the PO Receive action, per the Story 11 behavior.",SV-7706 (S11-R3),,
-Verify whether the backend enforces the Simple-Flow settings or they are front-end display gates only,Permissions,Functional,Medium,"1. Signed in with API access.
-2. A relevant Simple-Flow setting (e.g. Require Vendor Invoice Number) is ON.","1. Attempt the gated action directly via the API (bypassing the UI), e.g. completing without the required invoice.
-2. Observe whether the backend rejects (403/422) or allows it (200/201).",1. The API response is recorded: a rejection (403/422) shows the backend enforces the setting; a success (200/201) shows the gate is front-end only.,§8 BE enforcement,,
-Verify whether review role-gating uses custom roles or is open for v1,Permissions,Functional,Low,"1. Credentials for several roles exist.
-2. A work order in Review state exists.","1. Determine which roles can sign off review.
-2. Determine whether this is governed by a custom-role permission or open to all.","1. The set of roles that can sign off review is recorded, along with whether sign-off is governed by a role permission or available to all users.",§8 role-gating review,,
+3. Confirm the Receive action is not shown, and confirm it is also absent on a fulfilled PO.","1. The Receive action requires the Order Parts permission; Office and read-only users (no Order Parts) do not see Receive on the PO list or PO detail.
+2. Receive is also hidden for fulfilled (already-received) POs.",SV-7706 (S11-R3),,
+Verify the backend enforces the Simple-Flow settings and permission atoms (not front-end only),Permissions,Functional,Medium,"1. Signed in with API access.
+2. A relevant Simple-Flow setting (e.g. Require Vendor Invoice Number) is ON.","1. Attempt a setting-violating action directly via the API (bypassing the UI), e.g. completing without the required invoice, and note the response.
+2. As a role that lacks the mapped atom, attempt the gated action via the API and note the response.
+3. As a role that has only Work Orders: Create & Edit, attempt to receive onto a work order and note the response.","1. The backend enforces the Simple-Flow settings and the permission atoms (it is not front-end only): a setting-violating or unauthorized request is rejected.
+2. Because several work-order atoms collapse to the same backend role pair, any role with Work Orders: Create & Edit can receive onto a work order.
+3. The receive endpoint accepts the documented OR of ROLE_DELIVERY_CREATE_AND_EDIT, ROLE_WORK_ORDER_PART_CREATE and ROLE_WORK_ORDER_CREATE_AND_EDIT.",§8 BE enforcement,,
+Verify review sign-off is governed by the Review Work Orders custom-role permission (not open to all),Permissions,Functional,Low,"1. Credentials for roles with and without Review Work Orders exist.
+2. A work order in Review state exists, sent to review by a known user.","1. Confirm that only roles holding Review Work Orders can sign off, and roles without it cannot.
+2. Confirm the user who completed / sent the work order to review cannot sign it off.","1. Review sign-off is governed by the Review Work Orders custom-role permission (it is NOT open to all users for v1).
+2. The permission gates the Mark Reviewed action, and the reviewer-not-completer rule is enforced (the completer cannot sign off).",§8 role-gating review,,
+Verify the user who completed or sent the work order to review cannot Mark Reviewed it,Permissions,Functional,High,"1. Two different users who both hold the Review Work Orders permission exist.
+2. User A has completed / sent a work order to review; it is in Review state.","1. Sign in as User A (who sent the work order to review) and open the work order in Review.
+2. Attempt to Mark Reviewed.
+3. Sign in as User B (a different user who holds Review Work Orders) and Mark Reviewed.","1. User A cannot Mark Reviewed the work order they completed / sent to review; the action is blocked or disabled.
+2. User B, a different user who holds the Review Work Orders permission, can Mark Reviewed and sign off.
+3. The reviewer must be a different person from the completer.",SV-7870 (R7 (reviewer != completer)),,
+Verify a Technician cannot add a vendorless / no-part-number part (lacks See Financial Data),Permissions,Functional,High,"1. A Technician credential exists (WO Lines: Create & Edit, no See Financial Data).
+2. An open work order with a line is available.","1. Sign in as the Technician and open the work order line.
+2. Attempt to add a vendorless / no-part-number part (description + quantity + sell price).","1. The Technician cannot add a vendorless / no-part-number part.
+2. The mandatory sell price cannot be entered without See Financial Data, so the add is prevented.",SV-7700 (S5 / §9 (See Financial Data gate)),,
+Verify the Complete Work Order action follows the per-role completion permission matrix,Permissions,Functional,High,"1. Credentials for each system role exist (Admin, Service Manager, Senior SA, Service Advisor, Foreman, Technician, Parts Manager, Parts Tech, Office, Sales Rep, Time Clock).
+2. A work order ready to complete is available.","1. For each role, open the work order and check whether the Complete Work Order action is available and usable.
+2. Record the result per role against the checklist below.
+3. Roles expected to be able to complete: Admin, Service Manager, Senior SA, Service Advisor, Foreman, Parts Manager.
+4. Roles expected NOT to be able to complete: Technician, Parts Tech, Office, Sales Rep, Time Clock.","1. Complete Work Order is available for Admin, Service Manager, Senior SA, Service Advisor, Foreman and Parts Manager.
+2. Complete Work Order is NOT available for Technician, Parts Tech, Office, Sales Rep or Time Clock.
+3. Technician and Parts Tech are blocked because they cannot approve lines and/or lack Work Orders: Create & Edit; Office is view-only; Sales Rep and Time Clock have no work-order edit access.",§9 per-role completion matrix,,
 Verify completion is blocked when required mileage is missing,Validation / Edge,Functional,High,"1. Signed in as Admin.
 2. Require Mileage is ON and the work order has no mileage.","1. Start completion.
 2. Leave mileage empty and try to proceed.",1. Completion is blocked until mileage is entered.,"SV-7697, SV-7698, SV-7699 (S2-R2 / S3-R3 / S4-R3)",,
@@ -784,7 +820,8 @@ Verify Vendor Missing POs are excluded from QuickBooks until a vendor and part n
 2. Once both are provided, it becomes eligible for QuickBooks.",SV-7701 (§5 / S6-R3),,
 Verify cost at completion behavior to avoid $0-cost margins in QuickBooks,QuickBooks / Inventory Integrity,Functional,Medium,"1. Signed in as Admin.
 2. A work order has a part with no cost recorded at completion.","1. Complete the work order.
-2. Check the resulting cost/margin figures that flow to QuickBooks.",1. The cost and margin values sent to QuickBooks at completion are recorded and checked for any $0-cost margins.,§8 (cost at completion),,
+2. Check the resulting cost/margin figures that flow to QuickBooks.","1. The cost and margin values sent to QuickBooks at completion are recorded and checked for any $0-cost margins.
+2. For vendorless / no-part-number parts the mandatory sell price is captured at add time behind the See Financial Data gate, so a completing user has a sell figure and $0-cost margins are avoided.",§8 (cost at completion),,
 Verify the Journal Entry / Inventory sync to QuickBooks fires on invoice creation (not PO-dependent),QuickBooks / Inventory Integrity,Functional,Medium,"1. Signed in as Admin.
 2. A completed work order is ready to invoice.","1. Create the invoice.
 2. Check for the Journal Entry / Inventory sync to QuickBooks.","1. The Journal Entry / Inventory sync to QuickBooks fires on invoice creation.
