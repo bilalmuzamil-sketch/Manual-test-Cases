@@ -85,6 +85,15 @@ There are **11 system roles**, all shipped as defaults (`default=true`):
 
 ### A3. Permission catalog (resources & structure — as it appears live)
 
+**Authoritative source list (2026-07-07):** the machine catalog of all permission
+atoms is now captured in **`build/custom-roles-run/permission-catalog-source.json`**
+(`GET /api/roles/{Admin}` → `fe_permissions`). Admin = **41 permission atoms**.
+View mode is itself a mutually-exclusive code (`woFullViewMode` / `woTechViewMode`),
+so there are 42 distinct codes but any single role carries exactly one → "~41" per
+role. The three `cross_toggles` are `seeFinancialData`, `seeApArData`,
+`viewHistoryLogs`. `GET /api/auth/me/fe-permissions` returns `fe_permissions` as
+code strings + `view_mode` + `cross_toggles`.
+
 Resource cards, each with the columns shown:
 
 | Resource / card | Columns present | Notes (live) |
@@ -102,19 +111,38 @@ Resource cards, each with the columns shown:
 
 **Work Order sub-permissions (under Work Orders):**
 - **Order Parts** — order parts on a work order. Works together with **See
-  Financial Data** (ordering involves prices/costs). *(Intended to also gate the
-  WO Parts tab — see §B/§C for the not-yet-confirmed part.)*
+  Financial Data** (ordering involves prices/costs). **CONFIRMED LIVE
+  (2026-07-07 VIU): Order Parts controls the WO Parts tab** — ON shows the Parts
+  tab (grid with a Core column); OFF hides it. Gated specifically by Order Parts,
+  not Pick Parts (Pick ON with Order OFF still hides the tab). Screenshots
+  `support-viu/g2_*`.
 - **Pick Parts** — pick in-stock parts.
-- **Add Parts** — add a part to a work-order line.
 - **Review Work Orders** — the Review sign-off step; until Review is done,
   **Create Invoice stays disabled**.
 
-**View Mode (Full vs Tech):** each role has a work-order **view mode**.
-- **Full View** = the complete work-order screen, including the line **Approve**
-  action and financial actions.
-- **Tech View** = a simplified, technician-focused view that **hides the Approve
-  action** (and other non-tech controls). Used for roles that do hands-on work but
-  shouldn't approve/see everything.
+*(Note: there is **no separate "Add Parts" permission atom** — the WO sub-perms in
+the catalog are Order Parts, Pick Parts, Review Work Orders, and the view-mode
+code. See the authoritative list in `permission-catalog-source.json`.)*
+
+**View Mode (Full vs Tech):** each role has a work-order **view mode**, expressed
+as a permission code — `woFullViewMode` (Full) or `woTechViewMode` (Tech),
+mutually exclusive.
+- **Full View** = the complete work-order screen.
+- **Tech View** = a simplified, technician-focused view.
+
+**CONFIRMED LIVE (2026-07-07 VIU) — Full-vs-Tech differences on the WO Lines
+screen** (with See Financial Data held equal, so money shows in both):
+
+| Element | Full view | Tech view |
+|---|---|---|
+| Per-line **Approve / Decline** action | Shown | **Hidden** |
+| Lines-toolbar **bulk-approve** icon | Shown | **Hidden** |
+| WO header hours label | "Total Hours" | "Total **Tech** Hours" |
+| Rate / Margin / Line total | governed by **See Financial Data**, not view mode | same |
+
+Headline: view mode's job is to **remove the Approve action** (per-line + bulk);
+money visibility is a separate lever (See Financial Data). Screenshots
+`support-viu/g4_*`.
 
 **Cross-cutting toggles (apply across resources):**
 - **See Financial Data (SFD)** — shows dollar amounts on **work orders, parts, and
@@ -126,10 +154,14 @@ Resource cards, each with the columns shown:
   Supplies, Min & Max, Taxes, "PO is required") and the customer AP/AR tabs.
   **Currently also gates the AP/AR aging reports** (see §B — the move to
   Reports-only is not live yet).
-- **View History Logs** — shows work-order history: the **WO-level Audit Log /
-  History** and the **line-level story/history**. **Work orders only** — there is
-  **no** history log for Part Sales or Purchase Orders (confirmed with product
-  owner).
+- **View History Logs** — shows work-order history. **CONFIRMED LIVE
+  (2026-07-07 VIU):** it is a **single WO history feed that contains BOTH
+  WO-level events** (e.g. `work_order.created`, `lineId: null`) **AND line-level
+  events** (e.g. `work_order.line.created`, populated `lineId`/`lineName`) — one
+  feed, keyed by presence of `lineId`. Surfaces as the WO **History** tab (via
+  `GET /api/work-orders/{wo}/history`). **Work orders only** — part-sales /
+  inventory-order / purchase-order history endpoints all 404; there is **no**
+  history log for Part Sales or Purchase Orders (confirmed with product owner).
 
 ### A4. Notes behaviour (live, per Sasha's confirmed rule)
 
@@ -167,11 +199,14 @@ implemented on staging**. Do **not** tell customers these behave this way today.
 |---|---|---|
 | **Aging reports follow the Reports permission (all-or-nothing), no longer Manage AP/AR** | Aging reports are **still gated by Manage AP/AR** (plus Reports) today | Case 26482 FAILED |
 | **Order Parts editor dependency on See Financial Data auto-enforced** (turning SFD off auto-clears Order Parts; turning Order Parts on prompts to enable SFD) | The role editor does **not** auto-link them — you can toggle Order Parts on with SFD off, and turning SFD off does not clear Order Parts | Cases 26475, 27869 FAILED |
-| **Order Parts controls the WO Parts tab (ON shows / OFF hides)** | Tab visibility looked the same ON/OFF; **not confirmed** on staging | Gap case 27868 (created, not verified); playbook "needs manual confirm" |
 | **QuickBooks relocated into Finance settings; Integrations group removed** | **QuickBooks is absent** from Finance (and everywhere); the **Integrations group is still present** (now hosts "IBS") | Cases 26448, 26529–26531 FAILED |
 | **Migration renames / legacy-role consolidation UI (Owner, SA Technician, JSA split, etc.)** | Staging is already post-migration; legacy roles / rename labels not observable ("Time Clock" not "Time Clock User"; no JSA role) | Migration cases 26507–26524 Blocked/Failed |
 | **On-toggle warning modal when enabling See Financial Data** | No dedicated warning modal on the toggle; access is only summarised in the Save "Confirm Permission Updates" dialog | Cases 26536, 26535 |
-| **Core OK/Not-OK + line story governed by WO Lines: Create & Edit** | The model is documented, but the core control could not be exercised — **not independently verified** | Gap case 27870 (not driven) |
+| **Core OK/Not-OK + line story governed by WO Lines: Create & Edit** | Model documented; core UI surface confirmed live (Parts grid "Core" column; inventory `is_core`/`core_charge`/`core_part_id` fields; e.g. part "CONNECTOR" core_charge $20) but the OK/Not-OK action still **not driven end-to-end** (needs a received core part seeded manually) | Gap case 27870 (not driven); 2026-07-07 VIU §Gap 5 |
+
+> **Resolved since last consolidation (2026-07-07 VIU):** "Order Parts controls
+> the WO Parts tab" is now **CONFIRMED LIVE** (moved to §A3 — ON shows / OFF hides,
+> gated by Order Parts specifically).
 
 **Note on Reports Sales report:** with SFD OFF the **Reports → Sales report still
 shows financial data**. This is likely **by design** (SFD is scoped to
@@ -227,16 +262,26 @@ Digital-Inspections DVI, and Backend-API sections were out of scope for this run
 
 ## E. What could NOT be determined from the files (gaps to fill)
 
-1. **No single authoritative permission-key catalog file** exists in the repo; the
-   list in §A3 is assembled from the playbook + run summaries. A formal atom list
-   (all 41 Admin permissions with machine keys) is not enumerated in one place.
-2. **WO Parts tab gating by Order Parts** is unconfirmed (looked identical ON/OFF).
-3. **Line-level history** visibility (vs WO-level) was not individually exercised;
-   only WO-level history was confirmed.
-4. **Core OK/Not-OK** control was never driven (couldn't seed a received core part).
+**2026-07-07 VIU update:** gaps 1–3 and 6 below are now **CLOSED**; gap 4 is
+**PARTIAL**. See `support-viu-findings.md` and
+`permission-catalog-source.json`.
+
+1. ~~No single authoritative permission-key catalog file.~~ **CLOSED** — captured
+   to `build/custom-roles-run/permission-catalog-source.json` (41 Admin atoms).
+2. ~~WO Parts tab gating by Order Parts unconfirmed.~~ **CLOSED** — Order Parts ON
+   shows the Parts tab / OFF hides it (gated by Order Parts, not Pick Parts).
+3. ~~Line-level vs WO-level history not exercised.~~ **CLOSED** — one WO history
+   feed carries both (`work_order.created` WO-level + `work_order.line.created`
+   line-level); part-sales/PO history 404 (WO-only).
+4. **Core OK/Not-OK** — **PARTIAL.** Core UI surface + data fields confirmed live
+   (Parts grid "Core" column; inventory `is_core`/`core_charge`/`core_part_id`),
+   but the OK/Not-OK action still not driven (needs a manually-seeded received
+   core part).
 5. **Per-role page-access details** (e.g. Customer Portal per role) are only partly
-   captured (SM = ON confirmed).
-6. **View Mode** matrix is only partially verified (7 passed / 8 retest in the
-   View Mode section); the Full-vs-Tech concept is confirmed but not exhaustively.
+   captured (SM = ON confirmed). *(Not in scope of this VIU.)*
+6. ~~View Mode matrix only partially verified.~~ **CLOSED** — Full-vs-Tech
+   confirmed: Tech view hides per-line Approve/Decline + the bulk-approve icon and
+   relabels hours "Total Tech Hours"; financials are governed by See Financial
+   Data, not view mode (see §A3 matrix).
 </content>
 </invoke>

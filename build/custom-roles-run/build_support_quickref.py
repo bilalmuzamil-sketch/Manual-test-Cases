@@ -82,10 +82,11 @@ HOW_ROWS = [
      "logout is normal, not an error."],
     ["Full view vs Tech view",
      "Every role has a work-order 'view mode'. FULL view shows the complete work "
-     "order, including the line Approve action and financial actions. TECH view is "
-     "a simpler, technician-focused screen that hides the Approve action and some "
-     "other controls — good for people who do the work but shouldn't approve or "
-     "see everything."],
+     "order, including the per-line Approve/Decline buttons and the bulk-approve "
+     "control. TECH view is a simpler, technician-focused screen that HIDES the "
+     "Approve/Decline actions (and the bulk-approve control) — good for people who "
+     "do the work but shouldn't approve. Note: seeing dollar amounts is a separate "
+     "setting ('See Financial Data'), not the view mode."],
     ["The two-layer idea",
      "Some things need TWO things switched on: the permission itself AND a related "
      "toggle. The main example is money: a user only sees dollar amounts if 'See "
@@ -160,20 +161,18 @@ CAT_ROWS = [
      "Settings sidebar (Roles, Staff, Locations, Labor Rates, Payment Methods, "
      "Wages, etc.)."],
     ["Order Parts (work-order sub-permission)",
-     "Ordering parts on a work order.",
+     "Ordering parts on a work order. It also controls the work order's PARTS tab: "
+     "with Order Parts on, the Parts tab appears; with it off, the Parts tab is "
+     "hidden.",
      "Single on/off sub-permission under Work Orders.",
      "Goes together with See Financial Data (ordering shows prices/costs)",
-     "Inside a work order (parts/ordering actions)."],
+     "Inside a work order (the Parts tab and the ordering actions)."],
     ["Pick Parts (work-order sub-permission)",
-     "Picking in-stock parts for a work order.",
+     "Picking in-stock parts for a work order. (Does not by itself show the Parts "
+     "tab — the Parts tab is controlled by Order Parts.)",
      "Single on/off sub-permission under Work Orders.",
      "-",
      "Inside a work order (Pick action on in-stock parts)."],
-    ["Add Parts (work-order sub-permission)",
-     "Adding a part to a work-order line.",
-     "Single on/off sub-permission under Work Orders.",
-     "-",
-     "Inside a work order > line > Request/Add part."],
     ["Review Work Orders (work-order sub-permission)",
      "The Review sign-off step on a work order. Until Review is done, Create "
      "Invoice stays disabled.",
@@ -196,12 +195,13 @@ CAT_ROWS = [
      "-",
      "Customer record (sensitive fields + AP/AR tabs); AP/AR aging reports."],
     ["View History Logs",
-     "The work-order history: the work-order-level Audit Log/History and the "
-     "line-level story/history. Work orders only — there is no history for Part "
-     "Sales or Purchase Orders.",
+     "The work-order history. This is one combined history that shows BOTH "
+     "work-order-level changes (e.g. the work order being created) AND line-level "
+     "changes (e.g. a line being created/changed — the line 'story'). Work orders "
+     "only — there is no history for Part Sales or Purchase Orders.",
      "Cross-cutting toggle (on/off).",
      "-",
-     "Inside a work order (History / Audit Log; line story)."],
+     "Inside a work order (the History tab / Audit Log; line story)."],
 ]
 
 # --- Tab 3: Role capability overview ----------------------------------------
@@ -258,10 +258,15 @@ FAQ_ROWS = [
      "Orders and Part Sales — they're one combined permission. To see cost and "
      "price columns there, the user also needs 'See Financial Data'."],
     ["What's the difference between Full view and Tech view?",
-     "Full view is the complete work-order screen, including the line Approve "
-     "action and financial actions. Tech view is a simpler, technician-focused "
-     "screen that hides the Approve action and some other controls — ideal for "
-     "people who do the work but shouldn't approve or see everything."],
+     "Full view is the complete work-order screen, including the per-line "
+     "Approve/Decline buttons and the bulk-approve control. Tech view is a simpler, "
+     "technician-focused screen that hides those approve actions — ideal for people "
+     "who do the work but shouldn't approve. Seeing dollar amounts is a separate "
+     "setting ('See Financial Data'), not the view mode."],
+    ["Which permission shows or hides the Parts tab on a work order?",
+     "The 'Order Parts' permission (under Work Orders). With Order Parts on, the "
+     "work order's Parts tab appears; with it off, the Parts tab is hidden. (Pick "
+     "Parts on its own does not show the tab.)"],
     ["How do I stop a role from seeing prices / dollar amounts?",
      "Turn off 'See Financial Data' for that role. With it off, dollar amounts are "
      "hidden on work orders, parts and invoices, and the Finance tab won't appear "
@@ -322,13 +327,14 @@ TS_ROWS = [
      "Needs Invoicing & Payments: Create & Edit + See Financial Data. Also the "
      "work order's Review step must be completed and all parts received with a real "
      "part number."],
+    ["\"There's no Parts tab on the work order.\"",
+     "Turn on 'Order Parts' (under Work Orders) — it controls the Parts tab. Pick "
+     "Parts alone does not show the tab."],
     ["\"They can't order parts on a work order.\"",
      "Turn on 'Order Parts' (under Work Orders) together with 'See Financial "
      "Data'."],
     ["\"They can't pick in-stock parts.\"",
      "Turn on 'Pick Parts' (under Work Orders)."],
-    ["\"They can't add a part to a line.\"",
-     "Turn on 'Add Parts' (under Work Orders)."],
     ["\"They can't approve work-order lines.\"",
      "Set the role to Full view (Tech view hides Approve) and give Work Order "
      "Lines: Create & Edit."],
@@ -403,10 +409,21 @@ INT_ROWS = [
      "Financial Data; QuickBooks is absent from Finance settings and the "
      "Integrations group is still present; various migration/rename UI items are "
      "not observable. Do not describe these to customers as working."],
-    ["Not fully verified",
-     "WO Parts tab gating by Order Parts is unconfirmed; line-level (vs "
-     "WO-level) history was not separately exercised; the core OK/Not-OK control "
-     "was not driven end-to-end."],
+    ["Verified in live VIU (2026-07-07)",
+     "Confirmed on staging: (a) Order Parts controls the WO Parts tab (on shows / "
+     "off hides; gated by Order Parts, not Pick Parts); (b) View History Logs is "
+     "one feed carrying both WO-level and line-level events, work-orders-only "
+     "(part-sales/PO history endpoints 404); (c) Full-vs-Tech view: Tech view hides "
+     "per-line Approve/Decline and the bulk-approve icon and relabels hours 'Total "
+     "Tech Hours' — money visibility is governed by See Financial Data, not view "
+     "mode; (d) authoritative permission catalog captured (41 Admin atoms) in "
+     "permission-catalog-source.json. There is NO separate 'Add Parts' permission "
+     "atom."],
+    ["Still not fully verified",
+     "Core OK/Not-OK: the core UI surface is confirmed live (Parts grid 'Core' "
+     "column; inventory core fields), but the OK/Not-OK action itself was not driven "
+     "end-to-end (needs a manually-seeded received core part). Governed per spec by "
+     "Work Order Lines: Create & Edit."],
 ]
 
 # ----------------------------------------------------------------------------
