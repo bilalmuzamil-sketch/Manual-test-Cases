@@ -6,7 +6,7 @@
     "title": "Verify a part can be requested with only description, quantity and sell price (part number, cost, vendor empty)",
     "priority": "High",
     "type": "Functional",
-    "permissions_required": "Work Order edit access (add parts).",
+    "permissions_required": "WO Lines: Create & Edit + See Financial Data (the sell price is mandatory and has no catalog source).",
     "preconditions": [
       "1. Signed in as Admin at https://sv7301.qa.shopview.com.",
       "2. An open work order with a line is on its Lines tab."
@@ -20,11 +20,12 @@
     "expected": [
       "1. The part saves successfully.",
       "2. The part appears on the line with its description, quantity and sell price.",
-      "3. It is treated as a vendorless part downstream."
+      "3. It is treated as a vendorless part downstream.",
+      "4. Adding a vendorless / no-part-number part requires WO Lines: Create & Edit and See Financial Data, because the sell price is mandatory and has no catalog source."
     ],
-    "design_ref": "requirements S5-R1",
+    "design_ref": "requirements S5-R1 / §9 (See Financial Data gate)",
     "viu_status": "VIU-Pending",
-    "notes": "Not driven in VIU (part-add flow not exercised). Needs live verification."
+    "notes": "SV-8183 Decision 4 adds a financial gate: vendorless / no-PN add requires See Financial Data (mandatory sell). Not driven live (part-add flow not exercised)."
   },
   {
     "id": "SF-VPART-02",
@@ -33,7 +34,7 @@
     "title": "Verify adding a part is blocked when description, quantity or sell price is missing",
     "priority": "High",
     "type": "Negative",
-    "permissions_required": "Work Order edit access (add parts).",
+    "permissions_required": "WO Lines: Create & Edit + See Financial Data. A role lacking See Financial Data (e.g. Technician) is used for the permission negative.",
     "preconditions": [
       "1. Signed in as Admin.",
       "2. The add-part dialog is open on a work order line."
@@ -41,16 +42,18 @@
     "steps": [
       "1. Leave the description empty and try to save.",
       "2. Fill description, leave quantity empty and try to save.",
-      "3. Fill quantity, leave sell price empty and try to save."
+      "3. Fill quantity, leave sell price empty and try to save.",
+      "4. As a role without See Financial Data (e.g. Technician), attempt to add a vendorless / no-part-number part."
     ],
     "expected": [
       "1. Saving is blocked when the description is empty.",
       "2. Saving is blocked when the quantity is empty.",
-      "3. Saving is blocked when the sell price is empty."
+      "3. Saving is blocked when the sell price is empty.",
+      "4. A user without See Financial Data (for example a Technician) cannot add a vendorless / no-part-number part, because they cannot enter the mandatory sell price."
     ],
-    "design_ref": "requirements S5 AC",
+    "design_ref": "requirements S5 AC / §9 (See Financial Data gate)",
     "viu_status": "VIU-Pending",
-    "notes": "Not driven in VIU. Needs live verification of the exact rejection UX."
+    "notes": "SV-8183 Decision 4: vendorless / no-PN add requires See Financial Data. Field validation and the permission negative not yet verified live."
   },
   {
     "id": "SF-VPART-03",
@@ -1016,23 +1019,23 @@
     "title": "Verify the Receive action is hidden for office/readonly users and for fulfilled POs",
     "priority": "Medium",
     "type": "Permissions",
-    "permissions_required": "Depends on permissions matrix (TBD). Office/readonly credential required.",
+    "permissions_required": "Order Parts permission (absent for Office / read-only roles).",
     "preconditions": [
-      "1. An office / readonly user credential exists.",
+      "1. An Office / read-only user credential (no Order Parts) exists.",
       "2. A fulfilled PO and an unfulfilled PO exist."
     ],
     "steps": [
-      "1. Sign in as an office/readonly user and open the PO list.",
+      "1. Sign in as an Office / read-only user and open the PO list.",
       "2. Confirm the Receive action is hidden for them.",
       "3. As an authorized user, confirm the Receive action is hidden on a fulfilled PO."
     ],
     "expected": [
-      "1. Office and readonly users do not see the Receive action, per the Story 11 behavior.",
+      "1. The Receive action requires the Order Parts permission; Office and read-only users (no Order Parts) do not see Receive on the PO list or detail.",
       "2. Fulfilled POs do not show the Receive action."
     ],
-    "design_ref": "requirements S11-R3",
+    "design_ref": "requirements S11-R3 / §9 (Order Parts gate)",
     "viu_status": "VIU-Pending",
-    "notes": "Role-gating negative not verifiable in VIU (no non-admin session; tech key = 403). Expected depends on the (TBD) permissions matrix. Fulfilled-PO hiding needs live verification."
+    "notes": "SV-8183 resolves 'office/readonly' to concrete atoms: Receive-on-WO is FE-gated by Order Parts; Office (WO View-only / Vendor & Order View-only) lacks it. Role-gating negative not yet verified live. Fulfilled-PO hiding also needs live verification."
   },
   {
     "id": "SF-RCV-04",

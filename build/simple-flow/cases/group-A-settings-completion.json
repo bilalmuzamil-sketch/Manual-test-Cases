@@ -269,23 +269,24 @@
     "title": "Verify a non-admin user cannot see or modify the Work Order settings",
     "priority": "High",
     "type": "Permissions",
-    "permissions_required": "Depends on permissions matrix (TBD). A non-admin (e.g. Advisor/Tech) credential is required.",
+    "permissions_required": "App Settings permission (system defaults: Admin, Service Manager, Office). A role WITHOUT App Settings (e.g. Service Advisor / Technician) is required for this negative.",
     "preconditions": [
-      "1. A non-admin user account exists for this org.",
-      "2. You can sign in as that non-admin user."
+      "1. A user without the App Settings permission (e.g. Service Advisor or Technician) exists for this org.",
+      "2. You can sign in as that user."
     ],
     "steps": [
-      "1. Sign in as the non-admin user.",
+      "1. Sign in as the user without App Settings.",
       "2. Attempt to open /administration/settings → Work Orders tab.",
-      "3. Attempt to change and save a Work Order setting."
+      "3. Attempt to change and save a Work Order setting, including a direct API save."
     ],
     "expected": [
-      "1. The non-admin cannot reach the Work Order settings, OR the settings are read-only for them.",
-      "2. The non-admin cannot save changes to Work Order settings."
+      "1. A role without the App Settings permission cannot reach the Work Order settings, or sees them read-only.",
+      "2. That role cannot save changes to Work Order settings.",
+      "3. The backend rejects a Work Order settings save attempted by a role that lacks App Settings."
     ],
-    "design_ref": "requirements S1 AC",
+    "design_ref": "requirements S1 AC / §9 (App Settings gate)",
     "viu_status": "VIU-Pending",
-    "notes": "BLOCKED in VIU: quick-login {key:'tech'} returned 403 in this env; only the admin session works. Needs a real non-admin credential. Expected also depends on the (TBD) permissions matrix."
+    "notes": "Defined by SV-8183: the Work Order settings inherit the settingsApp route guard (no new atom); editable only by roles with App Settings ON (defaults Admin, Service Manager, Office). Role-gating negatives not yet verified live (only the admin session works on sv7301; tech key = 403)."
   },
   {
     "id": "SF-SET-12",
