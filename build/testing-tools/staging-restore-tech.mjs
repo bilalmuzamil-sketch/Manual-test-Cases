@@ -11,7 +11,7 @@ import { login, api } from './staging-admin.mjs';
 
 const STAFF = '6fb22c1b-d6c3-40eb-9cac-5cb9c61e36aa';     // Tech staff member id (staging)
 const WP = 'b3c8c820-f815-4cf1-8938-10956c5ee71a';        // workplace id (staging)
-const TIMECLOCK = '77b069d1-19dd-4a7f-a541-819bd3cd7cde'; // default "Time Clock" role id (staging)
+const TIMECLOCK = '9834b7ec-4625-4fb7-9a82-b69de3703e48'; // default "Time Clock User" role id (staging; re-seeded 2026-07 — was 77b069d1-...)
 
 const { sessCookie } = await login('admin');
 let r = await api(sessCookie, 'POST', `/api/staff/${STAFF}/change`, {
