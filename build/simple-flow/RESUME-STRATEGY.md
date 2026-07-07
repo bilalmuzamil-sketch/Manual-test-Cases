@@ -14,6 +14,30 @@
 > Owner). Role-gating negatives remain VIU-Pending (admin-only session on
 > sv7301). The two-phase plan below still stands.
 
+## 0a. UNBLOCK → UPDATE LOOP (source of truth = Blockers Tracker) — 2026-07-07
+
+The package is now built for an iterative loop:
+1. User uploads `testrail-import/simple-flow-v1-testrail-import.csv` (all 159).
+2. TestRail assigns Case IDs → user exports the id map (or authorizes a read-only
+   API pull) into `build/simple-flow/testrail-id-map.csv` (`sf_id,testrail_case_id`).
+3. As each blocker clears, flip the case's `viu_status`/`expected` in `cases/*.json`,
+   re-run `gen_blockers.py`, then `gen_update.py <cleared SF ids>` → an ID-matched
+   UPDATE CSV (`testrail-import/simple-flow-UPDATE.csv`; XML on request).
+4. User imports the UPDATE file (update-existing, matched on ID). Repeat.
+
+**`SimpleFlow_Blockers_Tracker.xlsx`/`.md` is the source of truth.** Current
+counts (of 159): READY 35 · DEV-NOT-BUILT 25 · VIU-PENDING (QA) 78 · MILOS 15 ·
+BUG/RULING 6. See `UPDATE-LOOP-README.md` for the full process and `bugs-log.md`
+for the 3 new BE-enforcement bugs (BUG-5/6/7).
+
+**What to send next to unblock each batch:**
+- Milos's answers to the 11 Open Questions → unblocks the 15 MILOS cases.
+- Dev deploys Story 8 → 12 cases; Story 7 → 6; Story 9 → 4; Story 14 → 3.
+- Fresh sv7301 cookies (admin+tech) + seeded data → bulk of the 78 QA-pending.
+- A 2nd/3rd role account (Office/Service Manager/Foreman, some without See
+  Financial Data) → SF-PERM-09, SF-PERM-10.
+- A dev/PO ruling on FE-only enforcement + reviewer≠completer → the 6 BUG/RULING.
+
 ## 0. TWO-PHASE FINALIZATION PLAN (import files are INTERIM)
 
 The TestRail import files already on disk are **interim, not final**:

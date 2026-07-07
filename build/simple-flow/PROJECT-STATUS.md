@@ -8,6 +8,42 @@
 > (2026-07-07). Deliverables regenerated (workbook + interim TestRail import).
 > VIU PARTIAL (feature under development). Do NOT touch TestRail.
 
+## Unblock → Update loop (2026-07-07)
+
+The delivery package now supports an iterative unblock→update loop. **The Blockers
+Tracker is the source of truth** for what every case is waiting on and who
+unblocks it.
+
+- **Upload file (first):** `testrail-import/simple-flow-v1-testrail-import.csv`
+  (+ `.xlsx`) — all **159** cases, 0 VIU / 0 feature-flag / leaf sections /
+  header byte-identical to the reference. Regenerate: `gen_import.py`.
+- **Blockers Tracker (source of truth):**
+  `build/simple-flow/SimpleFlow_Blockers_Tracker.xlsx` (+ `.md`) — every case →
+  state + blocker category + owner + what's-needed. Regenerate: `gen_blockers.py`.
+- **Update generator:** `build/simple-flow/gen_update.py` — emits a TestRail-ready
+  UPDATE file for ONLY the cleared cases (ID-matched CSV via
+  `testrail-id-map.csv`; XML on request). Process: `UPDATE-LOOP-README.md`.
+
+### Current counts by blocker category (of 159)
+
+| Category | Count | Owner |
+|---|---:|---|
+| READY (VIU-Verified, uploadable) | 35 | — |
+| BLOCKED — DEV NOT BUILT | 25 | Dev team |
+| BLOCKED — VIU PENDING (QA) | 78 | QA (cookies + seed + role accounts) |
+| BLOCKED — MILOS ANSWER | 15 | Milos (PO) |
+| BLOCKED — BUG/RULING | 6 | Dev / PO ruling |
+
+DEV-NOT-BUILT breakdown: Story 8 Bulk Receive = 12 (10 SF-BULK + SF-PERM-03 +
+SF-VAL-09), Story 7 PO multi-select = 6, Story 9 apply-invoice = 4 (3 SF-INV +
+SF-VAL-10), Story 14 Waiting-on-Parts = 3.
+
+### New VIU bugs (see `bugs-log.md`)
+- BUG-5 reviewer≠completer NOT enforced (High).
+- BUG-6 WO-completion permission FE-only at the BE — Technician completed via API (High).
+- BUG-7 review sign-off permission FE-only at the BE (High).
+- Contradiction to resolve: SV-8183 "BE enforces" vs SV-7864 atom-collapse.
+
 ## SV-8183 update (2026-07-07)
 
 - **Permissions are now DEFINED.** SV-8183 maps every Simple-Flow action to an

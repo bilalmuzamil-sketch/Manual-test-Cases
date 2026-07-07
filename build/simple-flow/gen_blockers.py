@@ -1,0 +1,405 @@
+#!/usr/bin/env python3
+"""Simple Flow — Blockers Tracker generator.
+
+Classifies EVERY authored case (build/simple-flow/cases/*.json) into a delivery
+state and, if blocked, WHAT it is blocked on and WHO unblocks it. Emits:
+  - build/simple-flow/SimpleFlow_Blockers_Tracker.xlsx (Tracker + Summary tabs)
+  - build/simple-flow/SimpleFlow_Blockers_Tracker.md
+
+State model (derived from viu_status + viu-findings.md + OpenQuestions-for-Milos):
+  READY                       — VIU-Verified, expected finalized, uploadable now.
+  BLOCKED — DEV NOT BUILT     — Stories 7/8/9/14 + SF-PERM-03 (+ deps). Owner: Dev.
+  BLOCKED — VIU PENDING (QA)  — couldn't drive yet / needs cookies+seed/accounts. Owner: QA.
+  BLOCKED — MILOS ANSWER      — expected depends on the 11 Open Questions. Owner: Milos (PO).
+  BLOCKED — BUG/RULING        — new VIU findings need a dev/PO ruling. Owner: Dev/PO.
+"""
+import csv, json, os, re
+
+BASE = os.path.dirname(os.path.abspath(__file__))          # build/simple-flow
+CASES_DIR = os.path.join(BASE, "cases")
+OUT_XLSX = os.path.join(BASE, "SimpleFlow_Blockers_Tracker.xlsx")
+OUT_MD = os.path.join(BASE, "SimpleFlow_Blockers_Tracker.md")
+
+FILES = [
+    "group-A-settings-completion.json",
+    "group-B-receiving-vendor.json",
+    "group-C-review-permissions-validation-edge.json",
+]
+
+# --- Classification inputs ---------------------------------------------------
+
+# Cases whose PASS/FAIL verdict now hangs on a product/dev ruling (new VIU bugs).
+BUG_RULING = {
+    "SF-PERM-08": "reviewer != completer rule NOT implemented (a user can sign off "
+                  "their own WO). Ruling: enforce the rule (currently FAIL) or descope?",
+    "SF-PERM-06": "WO completion permission is FE-only at the BE (Technician completed "
+                  "via simple-complete API = 201). Ruling: SV-8183 says 'BE enforces' "
+                  "but SV-7864 atom-collapse lets any WO C&E role act. Which governs?",
+    "SF-PERM-02": "WO-completion role-gating is FE-only (button hidden for Tech, but BE "
+                  "allows it). Verdict depends on the same FE-vs-BE ruling as SF-PERM-06.",
+    "SF-PERM-07": "Review sign-off permission (woReviewWorkOrders) is FE-only at the BE "
+                  "(Technician drove change-status = 201). Same FE-vs-BE ruling.",
+    "SF-PERM-04": "Role-gating of Mark-Reviewed depends on reviewer!=completer (missing) "
+                  "and the FE-vs-BE ruling.",
+    "SF-REV-09": "Review role-gating expected depends on reviewer!=completer (missing) "
+                  "and the FE-vs-BE ruling.",
+}
+
+# Open-Question / Milos-owned cases -> the specific Open Question number(s).
+MILOS = {
+    "SF-SET-03":  ("Q5", "'Create purchase orders' toggle absent / POs always-on — descope or bug?"),
+    "SF-SET-08":  ("Q3, Q4", "First-use defaults: spec (Auto-approve OFF / invoice REQUIRED) vs design (ON / Optional)."),
+    "SF-SET-13":  ("Q6", "Save Settings always enabled (no dirty-state gating) — intended or bug?"),
+    "SF-COMP-06": ("Q5", "Create-POs-OFF => no PO config not possible (toggle absent)."),
+    "SF-COMP-07": ("Q2", "Auto-receive of in-stock parts on simple completion — intended behaviour?"),
+    "SF-TECH-08": ("Q9, Q4", "Tech-story placement: Story 17 (inline + gate-modal) vs S15-R2 (line-only)."),
+    "SF-REV-08":  ("Q8, Q4", "Distinct 'Reviewed' state before final Complete — expected or single-step?"),
+    "SF-REV-10":  ("Q7", "Optional review-note field (input_review_note) absent — descope or bug?"),
+    "SF-REV-11":  ("Q8", "Invoicing-blocked-until-reviewed depends on the Reviewed-state ruling (Q8)."),
+    "SF-REV-15":  ("Q1", "Require-review default cohort rule + new-org preset."),
+    "SF-UX-04":   ("Q10", "Close-vs-cancel confirm modal — design 'still to be added'."),
+    "SF-QB-01":   ("Q2", "Inventory decrement / Part History on skip-path completion."),
+    "SF-QB-02":   ("Q5", "QuickBooks integrity when Create-POs is OFF (toggle absent)."),
+    "SF-RCV-05":  ("Q11", "Vendor-missing group ordering on Accept Delivery — spec contradicts itself."),
+    "SF-RCV-07":  ("Q11", "Vendor-missing group ordering (S12-R1 bottom vs S12-R3 top)."),
+}
+
+# Dev-not-built: by area prefix -> (story label). Plus explicit case overrides.
+DEV_STORY_BY_PREFIX = {
+    "SF-POSEL": "Story 7 — PO multi-select (SV-7702)",
+    "SF-BULK":  "Story 8 — PO Bulk Receive page (SV-7703)",
+    "SF-INV":   "Story 9 — Apply invoice to selected POs (SV-7704)",
+    "SF-WOP":   "Story 14 — Waiting-on-Parts column (SV-7709)",
+}
+DEV_CASE_OVERRIDE = {
+    "SF-PERM-03": "Story 8 — PO Bulk Receive page (SV-7703)",
+    "SF-VAL-09":  "Story 8 — Bulk Receive field locking (S8-R7, SV-7703)",
+    "SF-VAL-10":  "Story 9 — Apply-invoice uniqueness (S9-R3, SV-7704)",
+}
+
+# Tailored "what's needed" for the special QA-pending cases.
+QA_OVERRIDE = {
+    "SF-PERM-09": "QA VIU: a role account WITHOUT 'See Financial Data' to prove the "
+                  "vendorless part-add gate (tech confirmed no seeFinancialData; sub-form not reached).",
+    "SF-PERM-10": "QA VIU: additional role accounts (Office / Service Manager / Foreman) "
+                  "to run the per-role completion matrix (only Technician-negative confirmed).",
+    "SF-VPART-02": "QA VIU: drive the vendorless / no-PN add sub-form validation "
+                   "(not reached in the last session's budget).",
+}
+
+# Area-family default "what's needed" for generic VIU-Pending cases.
+def qa_default(cid, area):
+    if cid.startswith("SF-CORE"):
+        return ("QA VIU: seed a WO with core-charge parts, drive the completion "
+                "Resolve-Cores modal + invoice-gate round-trip.")
+    if cid.startswith("SF-VPART"):
+        return "QA VIU: seed + drive the vendorless / no-PN part add flow."
+    if cid.startswith("SF-VEND"):
+        return "QA VIU: seed vendor-missing POs, drive Assign-Vendor + merge."
+    if cid.startswith("SF-VMIS"):
+        return "QA VIU: seed a WO PO with a vendor-missing part, drive the flag flow."
+    if cid.startswith("SF-PNFIX"):
+        return "QA VIU: drive the inline part-number fix flow with seeded PO lines."
+    if cid.startswith("SF-RCV"):
+        return "QA VIU: seed deliverable POs, drive the Receive / Accept-Delivery flow."
+    if cid.startswith("SF-CORE"):
+        return "QA VIU: seed core parts and drive the cores flow."
+    if cid.startswith("SF-QB"):
+        return ("QA VIU: complete a WO end-to-end and inspect the QuickBooks / inventory "
+                "side-effects (Journal Entry, Part History, inventory decrement).")
+    if cid.startswith("SF-COMP"):
+        return "QA VIU: seed the specific completion configuration and drive the wizard to Success."
+    if cid.startswith("SF-REV"):
+        return "QA VIU: enable Require Review and drive the review/sign-off round-trip."
+    if cid.startswith("SF-TECH"):
+        return "QA VIU: drive the multi-line tech-story gate flow (with the specific test-id)."
+    if cid.startswith("SF-VAL"):
+        return "QA VIU: drive the specific validation/edge scenario with seeded data."
+    if cid.startswith("SF-SET"):
+        return "QA VIU: toggle the setting and confirm the downstream behaviour."
+    return "QA VIU: fresh sv7301 cookies + seeded data to drive this scenario."
+
+
+def classify(c):
+    """Return dict: state, category, owner, needs, related."""
+    cid = c["id"]
+    area = c["area"]
+    vs = c.get("viu_status", "")
+    story = c.get("story_ref") or ""
+    prefix = "-".join(cid.split("-")[:2])  # e.g. SF-POSEL
+
+    # 1) Bug/ruling takes precedence (even over VIU-Verified).
+    if cid in BUG_RULING:
+        return dict(state="BLOCKED", category="BUG/RULING", owner="Dev / PO ruling",
+                    needs=BUG_RULING[cid], related=story + " | see viu-findings BUGS #5/#6/#7")
+
+    # 2) Dev-not-built.
+    dev = DEV_CASE_OVERRIDE.get(cid) or DEV_STORY_BY_PREFIX.get(prefix)
+    if dev:
+        return dict(state="BLOCKED", category="DEV NOT BUILT", owner="Dev team",
+                    needs="Dev deploys {}; then QA re-runs VIU.".format(dev),
+                    related=dev + " | " + story)
+
+    # 3) Milos-owned (Open-Question status or explicit Q dependency).
+    if cid in MILOS:
+        q, desc = MILOS[cid]
+        return dict(state="BLOCKED", category="MILOS ANSWER", owner="Milos (Product Owner)",
+                    needs="Milos answers Open Question {} — {}".format(q, desc),
+                    related=q + " | " + story)
+
+    # 4) VIU-Verified -> READY.
+    if vs == "VIU-Verified":
+        return dict(state="READY", category="READY (VIU-Verified)", owner="—",
+                    needs="None — VIU-verified; uploadable now.", related=story)
+
+    # 5) Everything else that is VIU-Pending -> QA pending.
+    needs = QA_OVERRIDE.get(cid) or qa_default(cid, area)
+    return dict(state="BLOCKED", category="VIU PENDING (QA)", owner="QA (needs cookies+seed data)",
+                needs=needs, related=story)
+
+
+def load_cases():
+    cases = []
+    for fn in FILES:
+        cases += json.load(open(os.path.join(CASES_DIR, fn)))
+    return cases
+
+
+def main():
+    cases = load_cases()
+    rows = []
+    for c in cases:
+        cls = classify(c)
+        rows.append([
+            c["id"], c["area"], c["title"].strip(), c.get("viu_status", ""),
+            cls["state"], cls["category"], cls["owner"], cls["needs"], cls["related"],
+        ])
+
+    from collections import Counter, OrderedDict
+    cat_counts = Counter(r[5] for r in rows)
+    state_counts = Counter(r[4] for r in rows)
+
+    CAT_ORDER = ["READY (VIU-Verified)", "BLOCKED — DEV NOT BUILT",
+                 "VIU PENDING (QA)", "MILOS ANSWER", "BUG/RULING"]
+    # normalise category display names
+    def catkey(name):
+        m = {"READY (VIU-Verified)": "READY (VIU-Verified)",
+             "DEV NOT BUILT": "BLOCKED — DEV NOT BUILT",
+             "VIU PENDING (QA)": "BLOCKED — VIU PENDING (QA)",
+             "MILOS ANSWER": "BLOCKED — MILOS ANSWER",
+             "BUG/RULING": "BLOCKED — BUG/RULING"}
+        return m.get(name, name)
+
+    # Rebuild counts with display names.
+    disp_counts = Counter(catkey(r[5]) for r in rows)
+
+    HEADER = ["Case ID", "Area", "Title", "Current VIU status", "State",
+              "Blocker category", "Who unblocks", "What's needed to unblock",
+              "Related story/question"]
+
+    # ---- What to send next (batches) ----
+    n_milos = disp_counts["BLOCKED — MILOS ANSWER"]
+    n_bug = disp_counts["BLOCKED — BUG/RULING"]
+    n_qa = disp_counts["BLOCKED — VIU PENDING (QA)"]
+    # dev sub-batches
+    dev_rows = [r for r in rows if r[5] == "DEV NOT BUILT"]
+    STORY_CANON = {7: "Story 7 — PO multi-select (SV-7702)",
+                   8: "Story 8 — PO Bulk Receive page (SV-7703)",
+                   9: "Story 9 — Apply invoice to selected POs (SV-7704)",
+                   14: "Story 14 — Waiting-on-Parts column (SV-7709)"}
+    dev_by_story = Counter()
+    for r in dev_rows:
+        lbl = r[8].split(" | ")[0]
+        m = re.search(r"Story (\d+)", lbl)
+        canon = STORY_CANON.get(int(m.group(1)), lbl) if m else lbl
+        dev_by_story[canon] += 1
+
+    send_next = []
+    send_next.append(("Milos's answers to the 11 Open Questions",
+                      "unblocks {} cases (all the MILOS-ANSWER rows). Send the filled-in "
+                      "OpenQuestions-for-Milos sheet.".format(n_milos)))
+    for lbl, n in sorted(dev_by_story.items(), key=lambda x: -x[1]):
+        send_next.append(("Dev deploys " + lbl,
+                          "unblocks {} case(s); then I re-run VIU and send an update file.".format(n)))
+    send_next.append(("Fresh QA cookies for sv7301 (admin + tech) + seeded test data",
+                      "unblocks the bulk of the {} VIU-PENDING (QA) cases (cores, receiving, "
+                      "vendor, validation round-trips).".format(n_qa)))
+    send_next.append(("A 2nd/3rd role account (Office, Service Manager, Foreman) — some WITHOUT "
+                      "'See Financial Data'",
+                      "unblocks SF-PERM-09 and SF-PERM-10 (per-role completion + vendorless-add gate)."))
+    send_next.append(("A dev/PO ruling on FE-only BE enforcement + the missing reviewer!=completer "
+                      "rule (resolve SV-8183 'BE enforces' vs SV-7864 atom-collapse)",
+                      "finalizes the {} BUG/RULING cases.".format(n_bug)))
+
+    # ---------------- XLSX ----------------
+    from openpyxl import Workbook
+    from openpyxl.styles import Font, Alignment, PatternFill
+    from openpyxl.utils import get_column_letter
+
+    wb = Workbook()
+    ws = wb.active
+    ws.title = "Blockers Tracker"
+    ws.append(HEADER)
+
+    STATE_FILL = {
+        "READY": "C6EFCE",
+    }
+    CAT_FILL = {
+        "READY (VIU-Verified)": "C6EFCE",
+        "DEV NOT BUILT": "F4CCCC",
+        "VIU PENDING (QA)": "FFF2CC",
+        "MILOS ANSWER": "D9E1F2",
+        "BUG/RULING": "FCE4D6",
+    }
+    for r in rows:
+        ws.append(r)
+
+    hdr_font = Font(bold=True, color="FFFFFF")
+    hdr_fill = PatternFill("solid", fgColor="305496")
+    for col in range(1, len(HEADER) + 1):
+        cell = ws.cell(row=1, column=col)
+        cell.font = hdr_font
+        cell.fill = hdr_fill
+        cell.alignment = Alignment(vertical="center", horizontal="left")
+
+    widths = {"Case ID": 13, "Area": 32, "Title": 55, "Current VIU status": 15,
+              "State": 11, "Blocker category": 20, "Who unblocks": 26,
+              "What's needed to unblock": 60, "Related story/question": 34}
+    for i, name in enumerate(HEADER, start=1):
+        ws.column_dimensions[get_column_letter(i)].width = widths.get(name, 12)
+
+    wrap = Alignment(wrap_text=True, vertical="top")
+    for ridx in range(2, len(rows) + 2):
+        cat = ws.cell(row=ridx, column=6).value
+        fill = CAT_FILL.get(cat)
+        for cidx in range(1, len(HEADER) + 1):
+            cell = ws.cell(row=ridx, column=cidx)
+            cell.alignment = wrap
+            if fill:
+                cell.fill = PatternFill("solid", fgColor=fill)
+    ws.freeze_panes = "A2"
+
+    # ---- Summary tab ----
+    ss = wb.create_sheet("Summary")
+    ss.append(["Simple Flow — Blockers Tracker · Summary"])
+    ss["A1"].font = Font(bold=True, size=14)
+    ss.append([])
+    ss.append(["Total authored cases", len(rows)])
+    ss.append([])
+    ss.append(["Blocker category", "Count", "Owner"])
+    OWNER = {"READY (VIU-Verified)": "— (ready to upload)",
+             "BLOCKED — DEV NOT BUILT": "Dev team",
+             "BLOCKED — VIU PENDING (QA)": "QA",
+             "BLOCKED — MILOS ANSWER": "Milos (PO)",
+             "BLOCKED — BUG/RULING": "Dev / PO ruling"}
+    order = ["READY (VIU-Verified)", "BLOCKED — DEV NOT BUILT",
+             "BLOCKED — VIU PENDING (QA)", "BLOCKED — MILOS ANSWER",
+             "BLOCKED — BUG/RULING"]
+    hdr_row = ss.max_row
+    for cidx in range(1, 4):
+        ss.cell(row=hdr_row, column=cidx).font = Font(bold=True)
+        ss.cell(row=hdr_row, column=cidx).fill = hdr_fill
+        ss.cell(row=hdr_row, column=cidx).font = hdr_font
+    for cat in order:
+        ss.append([cat, disp_counts.get(cat, 0), OWNER[cat]])
+        rr = ss.max_row
+        f = CAT_FILL.get(cat.replace("BLOCKED — ", "").replace("READY (VIU-Verified)", "READY (VIU-Verified)"))
+        # map display -> fill key
+        fk = {"READY (VIU-Verified)": "READY (VIU-Verified)",
+              "BLOCKED — DEV NOT BUILT": "DEV NOT BUILT",
+              "BLOCKED — VIU PENDING (QA)": "VIU PENDING (QA)",
+              "BLOCKED — MILOS ANSWER": "MILOS ANSWER",
+              "BLOCKED — BUG/RULING": "BUG/RULING"}[cat]
+        fill = CAT_FILL[fk]
+        for cidx in range(1, 4):
+            ss.cell(row=rr, column=cidx).fill = PatternFill("solid", fgColor=fill)
+    ss.append(["TOTAL", len(rows), ""])
+    ss.cell(row=ss.max_row, column=1).font = Font(bold=True)
+    ss.cell(row=ss.max_row, column=2).font = Font(bold=True)
+
+    # Dev sub-breakdown
+    ss.append([])
+    ss.append(["DEV NOT BUILT — by story", "Count"])
+    ss.cell(row=ss.max_row, column=1).font = Font(bold=True)
+    ss.cell(row=ss.max_row, column=2).font = Font(bold=True)
+    for lbl, n in sorted(dev_by_story.items(), key=lambda x: -x[1]):
+        ss.append([lbl, n])
+
+    ss.append([])
+    ss.append(["WHAT TO SEND ME NEXT (to unblock each batch)"])
+    ss.cell(row=ss.max_row, column=1).font = Font(bold=True, size=12)
+    for what, effect in send_next:
+        ss.append(["• " + what, effect])
+        ss.cell(row=ss.max_row, column=1).font = Font(bold=True)
+
+    ss.column_dimensions["A"].width = 60
+    ss.column_dimensions["B"].width = 70
+    ss.column_dimensions["C"].width = 22
+    for row in ss.iter_rows():
+        for cell in row:
+            if cell.alignment.wrap_text is not True:
+                cell.alignment = Alignment(wrap_text=True, vertical="top")
+
+    wb.save(OUT_XLSX)
+    print("Wrote", OUT_XLSX)
+
+    # ---------------- Markdown ----------------
+    def md_esc(s):
+        return (s or "").replace("|", "\\|").replace("\n", " ")
+
+    lines = []
+    lines.append("# Simple Flow — Blockers Tracker")
+    lines.append("")
+    lines.append("> Source of truth for what every authored Simple Flow case is waiting on "
+                 "and who unblocks it. Regenerate with `python3 build/simple-flow/gen_blockers.py`.")
+    lines.append("> Companion upload file: `testrail-import/simple-flow-v1-testrail-import.csv` "
+                 "(all 159 cases). Update loop: `build/simple-flow/gen_update.py` "
+                 "(+ `UPDATE-LOOP-README.md`).")
+    lines.append("")
+    lines.append("**Total authored cases: {}**".format(len(rows)))
+    lines.append("")
+    lines.append("## Summary — counts per category")
+    lines.append("")
+    lines.append("| Blocker category | Count | Owner |")
+    lines.append("|---|---:|---|")
+    for cat in order:
+        lines.append("| {} | {} | {} |".format(cat, disp_counts.get(cat, 0), OWNER[cat]))
+    lines.append("| **TOTAL** | **{}** | |".format(len(rows)))
+    lines.append("")
+    lines.append("### DEV NOT BUILT — by story")
+    lines.append("")
+    lines.append("| Story | Count |")
+    lines.append("|---|---:|")
+    for lbl, n in sorted(dev_by_story.items(), key=lambda x: -x[1]):
+        lines.append("| {} | {} |".format(lbl, n))
+    lines.append("")
+    lines.append("## WHAT TO SEND ME NEXT (to unblock each batch)")
+    lines.append("")
+    for what, effect in send_next:
+        lines.append("- **{}** → {}".format(what, effect))
+    lines.append("")
+    lines.append("## Full per-case tracker")
+    lines.append("")
+    lines.append("| Case ID | Area | Title | VIU status | State | Blocker category | "
+                 "Who unblocks | What's needed | Related |")
+    lines.append("|---|---|---|---|---|---|---|---|---|")
+    for r in rows:
+        cat_disp = {"READY (VIU-Verified)": "READY (VIU-Verified)",
+                    "DEV NOT BUILT": "BLOCKED — DEV NOT BUILT",
+                    "VIU PENDING (QA)": "BLOCKED — VIU PENDING (QA)",
+                    "MILOS ANSWER": "BLOCKED — MILOS ANSWER",
+                    "BUG/RULING": "BLOCKED — BUG/RULING"}[r[5]]
+        lines.append("| {} | {} | {} | {} | {} | {} | {} | {} | {} |".format(
+            r[0], md_esc(r[1]), md_esc(r[2]), md_esc(r[3]), r[4], cat_disp,
+            md_esc(r[6]), md_esc(r[7]), md_esc(r[8])))
+    lines.append("")
+    open(OUT_MD, "w").write("\n".join(lines))
+    print("Wrote", OUT_MD)
+
+    print("\nState counts:", dict(state_counts))
+    print("Category counts:", dict(disp_counts))
+    assert sum(disp_counts.values()) == len(rows) == 159
+
+
+if __name__ == "__main__":
+    main()
