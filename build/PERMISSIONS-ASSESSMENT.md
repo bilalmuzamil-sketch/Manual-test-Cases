@@ -7,9 +7,10 @@
 > Verdict in one line each:
 > - **Fees & Discounts V1 — DEFINED.** Reuses existing Custom-Roles permissions;
 >   introduces **no** new permission. Two existing gates need tightening at build.
-> - **Simple Flow — REQUIRES DEFINITION.** No role/permission matrix exists; the
->   roles for completion vs bulk-receive vs settings vs review are undecided, and the
->   Story-16 review sign-off gating is specifically undefined.
+> - **Simple Flow — DEFINED (source SV-8183).** Was "REQUIRES DEFINITION"; now
+>   resolved by Jira **SV-8183**. Reuses existing Custom Roles atoms only —
+>   introduces **no new permission atom**; adds **one NET-NEW behavioural rule
+>   (reviewer ≠ completer)**. Full matrix below.
 
 ---
 
@@ -53,42 +54,58 @@ change. **Bottom line: DEFINED — reuse existing permissions, add none, tighten
 
 ---
 
-## 2. Simple Flow — permissions REQUIRE new definitions (undecided)
+## 2. Simple Flow — permissions are DEFINED (source SV-8183; reuse only)
 
-**Source:** `build/simple-flow/requirements.md` §8 Open Questions + completeness gap
-#1 + Story 11 and Story 16 notes.
+**Source:** Jira **SV-8183** "Permission: Simple Flow — enforcement mapping to
+existing WO / Parts / Settings atoms" (Reporter Milos Vasic; Open; 07/Jul/26).
+Verbatim copy: `build/simple-flow/SV-8183-permissions-source.md`. Recorded into
+`build/simple-flow/requirements.md` §9 (matrix) + §10 (spec deltas). Mirrors
+SV-8095 (Digital Inspections).
 
-Simple Flow has **NO consolidated permissions/role matrix** (unlike Custom Roles or
-F&D Story 13). §8 explicitly lists as UNRESOLVED:
-**"Permissions — which roles do completion vs bulk receive vs settings vs review."**
-Completeness gap #1 adds: *"There is no consolidated permission table … any
-role-based test cases would be guesses."*
+SV-8183 resolves the previously-open §8 items ("which roles do completion vs bulk
+receive vs settings vs review"). **Simple Flow adds no permission atom of its own**
+— every action maps to an existing Custom Roles atom (SV-7388).
 
-What the spec DOES anchor (functionally, not as a role matrix):
-- **Settings** — Story 1 AC: non-admin users cannot see/modify Work Order settings
-  (admin/owner only).
-- **Receiving** — Story 11: the Receive action is "hidden for office/readonly users."
-- **Review sign-off** — Story 16 (SV-7870): "Mark Reviewed" is described as
-  **manager/foreman only**, but the spec flags **role-gating review (custom roles vs
-  open for v1)** as an **OPEN item (⚠️ Design pending)** — i.e. the actual permission
-  is undefined.
+Action → existing atom:
 
-What is genuinely undefined and must be **created/decided**:
-- Which role(s) may perform **Simple completion** (SF-PERM-02).
-- Which role(s) may perform **Bulk Receive** (SF-PERM-03).
-- Which role(s) may **change Work Order settings** (owner/admin implied, but not a
-  formal custom-role permission) (SF-PERM-01).
-- Which role(s) may **Mark Reviewed / sign off** and whether this is governed by a
-  custom-role permission or open to all for v1 (SF-PERM-04, SF-PERM-07). **This
-  Story-16 review sign-off gating (R7) is specifically undefined.**
+| Action | Permission required | Status |
+|---|---|---|
+| See/edit WO Settings page | **Settings › App Settings** (`settingsApp`) — inherits settings-route guard | EXISTING — reused |
+| Run completion (Complete / Send to Review / Reviewed→Complete) | **Work Orders: Create & Edit** | EXISTING — reused |
+| Approve all lines (hard gate) | **WO Lines: Create & Edit + Full View** (Tech View hides Approve) | EXISTING — reused |
+| Enter mileage/VIN/engine hours; tech story; resolve cores | **WO Lines: Create & Edit** | EXISTING — reused |
+| Add vendorless / no-PN part | **WO Lines: Create & Edit + See Financial Data** (mandatory sell) | EXISTING — reused (both) |
+| Pick inventory parts (auto-pick off) | **Pick Parts** (`woPickParts`) | EXISTING — reused |
+| Background order + create POs | **Order Parts** (`woOrderParts`) → requires See Financial Data | EXISTING — reused |
+| Receive on the WO | **FE: Order Parts.** BE: OR of `ROLE_DELIVERY_CREATE_AND_EDIT` / `ROLE_WORK_ORDER_PART_CREATE` / `ROLE_WORK_ORDER_CREATE_AND_EDIT` | EXISTING — reused |
+| Bulk Receive page | **Vendor & Order Mgmt: Create & Edit + See Financial Data** | EXISTING — reused |
+| Assign vendor / merge on vendor-missing PO | **Vendor & Order Mgmt: Create & Edit** | EXISTING — reused |
+| Inline part-number fix | **Catalog & Inventory: Create & Edit** | EXISTING — reused |
+| Cost/sell on receive screens | **See Financial Data** (sell state-locks once invoiced/paid) | EXISTING — reused |
+| Mark Reviewed / sign-off | **Review Work Orders** (`woReviewWorkOrders`) **+ reviewer ≠ completer** | EXISTING atom + **NET-NEW rule** |
+| Waiting-on-Parts column | **Work Orders: View** | EXISTING — reused |
+| Go to Invoice | **Invoicing & Payments: Create & Edit + See Financial Data** | EXISTING — reused |
 
-**Handling in the test cases:** these role-gating cases are INCLUDED (not dropped),
-each with a **best-defensible functional expected** written around behavior that IS
-defined/observed (e.g. completion uses the same access as standard work-order
-completion; receiving uses existing PO-receive access; office/readonly do not see
-Receive per Story 11; manager/foreman sign off per Story 16). None asserts an
-undefined custom-role outcome.
+**New permission atoms introduced: NONE.**
 
-**Bottom line: REQUIRES DEFINITION — a permission/role matrix (completion, bulk
-receive, settings, review sign-off) must be authored before these cases can be made
-definitive; the Story-16 review sign-off gating is the specific undefined item.**
+**One NET-NEW behavioural rule (not an atom, must be built):** **reviewer ≠
+completer** — the user who completed / sent-to-review a WO cannot Mark Reviewed it
+(stamp `sentToReviewBy`/`completedBy`; block Mark Reviewed for that user).
+
+**Per-role matrix:** see `build/simple-flow/requirements.md` §9.2. Highlights:
+Admin / Service Manager / Senior SA / Service Advisor / Foreman / Parts Manager =
+Complete; Technician = pick only (no complete, no vendorless — no See Financial
+Data); Parts Tech = receiver not completer; Office = can edit settings (App
+Settings) but cannot operate the flow (WO View-only); Sales Rep / Time Clock =
+nothing. Settings-editor system defaults = **Admin, Service Manager, Office**.
+
+**Backend enforcement:** SV-8183 says **BE enforces** the settings + atoms (not
+FE-only). Caveat — the **atom collapse**: `woOrderParts`,
+`workOrderLinesCreateAndEdit`, `woFullView`/`woTechView`, `workOrdersCreateAndEdit`
+all resolve to `ROLE_WORK_ORDER::VIEW + CREATE_AND_EDIT` at BE, so any role with WO
+Create & Edit can receive onto a WO (deliberate low-privilege trade-off, SV-7864);
+FE Order-Parts vs Full/Tech-View distinctions are conveniences, not BE-enforceable.
+
+**Bottom line: DEFINED — reuse existing atoms, add none; build one NET-NEW
+reviewer≠completer rule. Case updates proposed (not yet applied) — see the
+SV-8183 task report and requirements.md §10.**

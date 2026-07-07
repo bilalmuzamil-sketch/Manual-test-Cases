@@ -583,3 +583,152 @@ Require tech story (S1-R5).
 - **BE enforcement of the Simple-Flow settings** — should BE enforce them?
 - **Permissions** — which roles do completion vs bulk receive vs settings vs
   review. *(No permission table supplied — see gap #1.)*
+  **→ RESOLVED by SV-8183 (see §9 Permissions below).**
+
+---
+
+## 9. Permissions (from SV-8183)
+
+> **Source:** Jira story **SV-8183** — "Permission: Simple Flow — enforcement
+> mapping to existing WO / Parts / Settings atoms" (Reporter Milos Vasic, Open,
+> 07/Jul/26). Verbatim copy in `SV-8183-permissions-source.md`. **This RESOLVES
+> the previously-missing permission open questions.** Mirrors SV-8095 (Digital
+> Inspections). Status was **REQUIRES definition → now DEFINED.**
+
+**Core rule:** Simple Flow introduces **NO new permission atom.** Every action
+maps to an **existing Custom Roles atom** (SV-7388, merged to develop). The one
+NET-NEW rule is behavioural, not an atom: **reviewer ≠ completer** (must be built;
+see below).
+
+### 9.1 Action → existing atom map
+
+| Simple-Flow action | Story | Gated by (existing atom) |
+|---|---|---|
+| See/edit the WO Settings page | 1 | **Settings › App Settings** (`settingsApp`). No new gating — new toggles inherit the settings-route guard. |
+| Run completion (Active→Complete; Send to Review; Reviewed→Complete) | 2/3/4/16 | **Work Orders: Create & Edit** |
+| Approve all lines (hard gate to complete) | all | **WO Lines: Create & Edit + Full View** (Tech View hides Approve) |
+| Enter mileage / VIN / engine hours in completion modal | 2/3/4 | **WO Lines: Create & Edit** |
+| Tech story per line | 17 | **WO Lines: Create & Edit** |
+| Resolve inventory / special-order cores (Ok/Not OK) | 3/4/16 | **WO Lines: Create & Edit** |
+| Add a vendorless / no-part-number part (manual sell) | 5 | **WO Lines: Create & Edit + See Financial Data** (sell mandatory, no catalog source) |
+| Pick inventory parts in completion modal (auto-pick off) | 2/3/4 | **Pick Parts** (`woPickParts`) |
+| Background order + create POs on completion | 3/4/6 | **Order Parts** (`woOrderParts`) → requires See Financial Data |
+| Receive on the WO (line Receive button, "Receive parts" → Accept Delivery) | 3/4/11/12 | **FE: Order Parts** (`woOrderParts`). **BE (`ReceiveRequestedParts`): OR of `ROLE_DELIVERY_CREATE_AND_EDIT` / `ROLE_WORK_ORDER_PART_CREATE` / `ROLE_WORK_ORDER_CREATE_AND_EDIT`** |
+| Bulk Receive page (accountant, PO-list driven) | 7/8/9 | **Vendor & Order Mgmt: Create & Edit** (route gate `hasPartsPermissions`) **+ See Financial Data** for cost/sell edit |
+| Assign vendor to vendor-missing PO / merge / keep-separate | 6/13 | **Vendor & Order Mgmt: Create & Edit** |
+| Inline part-number fix → first-class inventory/catalog part | 10 | **Catalog & Inventory: Create & Edit** |
+| Cost/sell fields on receive screens (field locking) | 8/10 | **See Financial Data**; sell auto-locks once WO invoiced/paid (**state gate, not a permission**) |
+| Mark Reviewed / sign-off; VIN captured by reviewer | 16 | **Review Work Orders** (`woReviewWorkOrders`) **+ reviewer ≠ completer (NET-NEW hard rule)**; VIN entry → WO Lines: Create & Edit |
+| Waiting-on-Parts column (visibility) | 14 | **Work Orders: View**; receive click-through suppressed if user lacks the receive gate |
+| Go to Invoice / Create Invoice | 2/3/4 | **Invoicing & Payments: Create & Edit + See Financial Data** |
+
+### 9.2 Per-role matrix (from system-role defaults)
+
+| Role | Edit WO settings | Complete WO | Pick | Order/PO | Receive on WO | Bulk Receive | Assign vendor | Fix part # | Add vendorless | Mark Reviewed |
+|---|---|---|---|---|---|---|---|---|---|---|
+| Admin | Yes | Yes | Yes | Yes | Yes | Yes | Yes | Yes | Yes | Yes |
+| Service Manager | Yes | Yes | Yes | Yes | Yes | Yes | Yes | Yes | Yes | Yes |
+| Senior SA | No | Yes | Yes | Yes | Yes | Yes | Yes | Yes | Yes | Yes |
+| Service Advisor | No | Yes | Yes | Yes | Yes | Yes | Yes | Yes | Yes | Yes |
+| Foreman | No | Yes | Yes | Yes | Yes | Yes | Yes | Yes | Yes | Yes |
+| Technician | No | No (1) | Yes | No | No | No | No | No | No (2) | No |
+| Parts Manager | No | Yes | Yes | Yes | Yes | Yes | Yes | Yes | Yes | Yes |
+| Parts Tech | No | No (1) | Yes | Yes | Yes | Yes | Yes | Yes | No | No |
+| Office | Yes | No (3) | No | No | No | No (4) | No | No | No | No |
+| Sales Rep | No | No | No | No | No | No | No | No | No | No |
+| Time Clock | No | No | No | No | No | No | No | No | No | No |
+
+1. No completion = Tech View can't approve and/or no WO Create & Edit. Technician
+   can still pick; Parts Tech is a receiver, not a completer.
+2. Technician has WOL Create & Edit but **no See Financial Data** → cannot enter
+   mandatory sell → cannot add a vendorless part (Decision 4).
+3. Office has **WO: View only** → configures Simple Flow but cannot operate it.
+4. Office has **Vendor & Order Mgmt: View only** → can open Bulk Receive but
+   cannot receive.
+
+Custom roles combine atoms freely (e.g. Technician + Order Parts + Vendor & Order
+Mgmt C&E = "tech who also receives"; leave Review Work Orders ON only for
+manager/foreman for a stricter reviewer).
+
+### 9.3 NEW vs REUSED permissions
+
+- **NEW permission atoms introduced: NONE.** All actions reuse existing Custom
+  Roles atoms (`settingsApp`, `workOrdersCreateAndEdit`,
+  `workOrderLinesCreateAndEdit`, `woFullViewMode`/`woTechViewMode`, `woPickParts`,
+  `woOrderParts`, `seeFinancialData`, Vendor & Order Mgmt C&E, Catalog & Inventory
+  C&E, `woReviewWorkOrders`, Invoicing & Payments C&E, Work Orders: View).
+- **One NET-NEW behavioural rule (not an atom, must be built):** **reviewer ≠
+  completer** — stamp `sentToReviewBy`/`completedBy`; block Mark Reviewed for the
+  user who completed / sent-to-review.
+
+### 9.4 Backend-ENFORCED vs FRONT-END gate (per SV-8183)
+
+- **BE ENFORCES** the Simple-Flow settings AND the permission atoms — **not
+  FE-only** (AC: "BE enforces the Simple-Flow settings and the permission atoms").
+  *(This is a change from the Custom Roles finding that granular gates were
+  FE-only. Note the atom-collapse caveat below.)*
+- **BE atom collapse (caveat):** `woOrderParts`, `workOrderLinesCreateAndEdit`,
+  `woFullViewMode`, `woTechViewMode`, `workOrdersCreateAndEdit` all resolve to the
+  same BE pair `ROLE_WORK_ORDER::VIEW + CREATE_AND_EDIT` and are indistinguishable
+  server-side. So **any role with WO Create & Edit can receive onto a WO** — a
+  deliberate, spec-sanctioned low-privilege trade-off (SV-7864). FE distinctions
+  (Order Parts vs Full/Tech View) are **conveniences, not BE-enforceable
+  boundaries.**
+- **Receive-on-WO** specifically: **FE gate = Order Parts**; **BE gate = OR of
+  `ROLE_DELIVERY_CREATE_AND_EDIT` / `ROLE_WORK_ORDER_PART_CREATE` /
+  `ROLE_WORK_ORDER_CREATE_AND_EDIT`.**
+- **State (not permission) gates:** sell field auto-locks once WO invoiced/paid.
+
+---
+
+## 10. Spec updates (from SV-8183)
+
+> Deltas SV-8183 introduces vs our current requirements extract (V2.3). Recorded
+> for the case-update proposal (STEP 5) — cases NOT yet rewritten.
+
+1. **Permissions open questions RESOLVED (§8 → §9).** All four "which roles do
+   completion / bulk receive / settings / review" items are now answered by the
+   atom map + role matrix. Affects **SF-PERM-01..07, SF-RCV-03, SF-REV-09**.
+
+2. **Vendorless part now has a financial gate (NEW rule).** Adding a vendorless /
+   no-PN part (Story 5) requires **WO Lines: Create & Edit + See Financial Data**
+   (sell is mandatory, no catalog source). Normal catalogued part-adds do NOT
+   require financial visibility. Also resolves the §8 "cost at completion"
+   question (Decision 4). Affects **SF-VPART-01/02, SF-QB-06**.
+
+3. **Review sign-off gating DEFINED + NET-NEW reviewer≠completer rule.** Mark
+   Reviewed requires **Review Work Orders** atom (not "open for v1"); PLUS a hard
+   rule that the reviewer cannot be the person who completed / sent-to-review.
+   Affects **SF-REV-06/09, SF-PERM-04/07, SF-VAL-07**. Implies a NEW case for the
+   reviewer≠completer block.
+
+4. **BE enforcement answered: BE DOES enforce** settings + atoms (with the
+   atom-collapse caveat). Affects **SF-PERM-06** (expected can now be stated, not
+   left open).
+
+5. **"office/readonly" resolved to concrete atoms.** Story 11 "hidden for
+   office/readonly" = **Office role (WO View-only / Vendor & Order View-only)**
+   and any role lacking **Order Parts**. Affects **SF-RCV-03, SF-PERM-05**.
+
+6. **Settings-editor roles named.** Story 1 "owner/admin only" = any role with
+   **App Settings ON** — system defaults **Admin, Service Manager, Office** (note:
+   Office CAN edit settings but cannot operate the flow). Affects **SF-SET-11,
+   SF-PERM-01**.
+
+7. **Confirms `operatingMode` must be dropped (drift).** SV-8183 flags the POC
+   branch still renders the Full/Simple `operatingMode` selector; V2.3 says drop
+   it. Reinforces **SF-SET-02, SF-SET-12** (no operating-mode selector / field).
+
+8. **`settingsIntegrations` gap (track).** Permission catalog seeds
+   `[app, service, parts, finance, dataImport, wages]` — no `settingsIntegrations`
+   though Custom Roles lists Integrations. Tracked for Custom Roles; note only for
+   Simple Flow.
+
+9. **Unguarded feature-flags route (track).** The feature-flags admin route has no
+   permission guard. Informational — out of Simple Flow case scope.
+
+**NOT contradicted by SV-8183** (our other open items stand): the settings-default
+conflict (gap #3, auto-approve/create-POs/vendor-invoice defaults) is NOT
+addressed here; the four VIU deviations (missing Create-POs toggle, always-enabled
+Save, missing review note, review→Complete jump) are NOT addressed here; design
+V1.4-vs-spec-V2.3 drift is NOT addressed. Those remain open.
