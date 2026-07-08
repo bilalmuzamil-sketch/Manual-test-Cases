@@ -756,3 +756,91 @@ conflict (gap #3, auto-approve/create-POs/vendor-invoice defaults) is NOT
 addressed here; the four VIU deviations (missing Create-POs toggle, always-enabled
 Save, missing review note, review→Complete jump) are NOT addressed here; design
 V1.4-vs-spec-V2.3 drift is NOT addressed. Those remain open.
+
+---
+
+## Spec update (from `dffd85b6-…CompletionBulkReceiving.doc`, 2026-07-08, V2.4)
+
+> **The V2.3 body above is kept intact for traceability.** This section captures
+> the deltas the updated doc introduces. Version **V2.3 → V2.4**; title changed
+> **"…Completion & Receiving" → "…Completion & Bulk Receiving."** Full delta table
+> + case-impact proposal in `spec-change-diff.md`; readable verbatim copy in
+> `spec-current-source.md`. V2.4 = V2.3 **plus** the doc's 2026-07-08 change-log
+> batch (below). Cases are **NOT yet rewritten**.
+
+**V2.4 status line (verbatim-in-substance):** *Draft for build — V2.4 (line
+approval = all must be approved; sell-price mandatory at save + orderable-from-line;
+editable cost on Accept-Delivery; core resolution in Stories 3/4/8/10/16; in sync
+with Jira SV-7696…SV-7710 + SV-7870 + SV-7876).*
+
+**New/changed content (substance):**
+
+1. **§4 Key Decisions — new decision.** *Sell price is the only mandatory
+   financial field to add a part* (enforced **at save**; cost never mandatory —
+   edited later on the PO/receive). A **sell-price-only part** (missing vendor
+   and/or cost) is **orderable from the line** — the Order action creates the
+   Vendor-Missing PO and moves it to **waiting-to-receive**, so it never sits stuck
+   in "requested" with nothing to receive.
+
+2. **Story 3, S3-R1 (strengthened) — order-before-receive.** On Complete,
+   **actually order all approved-line parts** and create POs in the background
+   (vendorless **/ sell-price-only** part → WO's PO flagged Vendor Missing).
+   **Parts must reach waiting-to-receive** so "Receive parts" always has something
+   to receive — a part left in **requested** must never be routed to an empty
+   receive screen. (New AC bullet to match.)
+
+3. **Story 4, S4-R1 (added).** A **sell-price-only part (missing vendor and/or
+   cost) is ordered too → waiting-to-receive** (Story 6, S6-R7); parts must not
+   remain in "requested" with nothing to receive.
+
+4. **Story 5, S5-R1 (changed) — sell price validated AT SAVE.** The part **cannot
+   be saved/closed without a sell price (inline error), not deferred to
+   completion.** (AC: "missing description/quantity/sell price → blocked **inline
+   at save**, not deferred to completion.")
+   *NOTE — VIU conflict:* the live build does **not** enforce sell-at-save and
+   instead requires **Category** (SF-VPART-02 / BUG-9 / round-2 Q4).
+
+5. **Story 6, S6-R7 (NEW).** *Orderable from the line (sell-price-only parts).* A
+   part with a sell price but no cost and/or vendor can be **ordered from the
+   line's Order action** — creating/joining the WO's Vendor-Missing PO and moving
+   it **requested → waiting-to-receive** (same order path as completion, not
+   completion-only). At receive, vendor + part number still required (cost editable
+   — Story 10). (New AC bullet.)
+
+6. **Story 10 (restructured).** S10-R1 unchanged (PN mandatory to receive).
+   **NEW S10-R2 (promoted from AC to requirement):** when a PN is added the part
+   becomes a **first-class inventory/catalog part** — an **existing** number
+   **links** to the item (updates stock + received cost + Part History without
+   overwriting description/category); a **new** number **creates** a new item.
+   **S10-R3 (UPDATED):** field rules apply on **BOTH the Bulk Receive page AND the
+   single / Accept-Delivery receive screen — parity**; cost is **editable when
+   $0 / missing on either receive surface**; sell editable until WO invoiced/paid
+   then locked (lock icon + tooltip); after lock only cost editable.
+
+7. **Story 12, S12-R5 (NEW) — editable cost on Accept Delivery (parity).** On the
+   Accept-Delivery screen, **cost is editable when $0/missing** (pulled from WO/PO
+   when available) — matching Story 8 (S8-R7)/Story 10. Quantity stays editable;
+   the **sell-price lock rule is unchanged**. (New AC bullet.)
+
+8. **§8 Open Questions — new item: Part Sales impact (investigation — BE).** The
+   shared order/status logic (requested → orderable/waiting-to-receive; PO-on-order
+   without vendor/cost) may touch **Part Sales** (reuses the same endpoint/screen,
+   but has no "complete without receiving"). Keep Part Sales **unchanged unless the
+   shared logic forces a change** — confirm and report.
+
+9. **§9 Change Log** now embedded in the doc (2026-07-03…2026-07-08 entries).
+
+**Deltas that DID NOT change (spec still shows OLD behavior — the doc lags Milos's
+Google-sheet answers):**
+- **Require-review default** — S1-R4 still "Default **per cohort** (see §8)" and §8
+  still asks the cohort question. Milos's round-1 answer ("ON for all orgs") is
+  **NOT** reflected in V2.4. Our SF-REV-15 / SF-SET-14 rewrite is answer-backed
+  only, not spec-backed — confirm before applying.
+- **No-PO path / POs always ON** — V2.4 **still fully documents** Story 2 (No-PO),
+  S1-R2 "Off → no POs / Default ON", and §4 "Create POs OFF ⇒ no PO at all."
+  Milos's round-1 answer ("we removed PO OFF, always have a PO") is **contradicted**
+  by the V2.4 text. **Do NOT retire SF-COMP-06 / SF-QB-02 or rewrite SF-SET-03**
+  on the answer alone until Milos reconciles the doc.
+
+**Round-2 questions after V2.4:** only **Q4** partially resolved (sell price now
+mandatory at save; Category half still open). Q1, Q2, Q3, Q5 remain open.
