@@ -6,3 +6,9 @@ __pycache__/
 # OS junk
 .DS_Store
 Thumbs.db
+
+# Ephemeral per-round TestRail update artifacts (dry-run output of gen_update.py,
+# overwritten each round; regenerated on demand). Do NOT ignore the real import
+# files (fees-discounts-v1-testrail-import.*, simple-flow-v1-testrail-import.*).
+testrail-import/*-UPDATE.xml
+testrail-import/*-UPDATE.csv
