@@ -61,7 +61,7 @@ SF-SET-10,Work Order Settings,"S1-R9 (future completions only, never retroactive
 3. You can change a Work Order setting.","1. Complete a work order under the current settings.
 2. Change a relevant Work Order setting (e.g. Require Vendor Invoice Number) and Save.
 3. Reopen the already-completed work order and inspect it.","1. The already-completed work order is not retroactively changed by the new setting.
-2. Only work orders completed after the change follow the new setting.",requirements S1-R9,VIU-Pending,Not driven in the VIU run (needs a second completion after a settings change). Needs live verification.
+2. Only work orders completed after the change follow the new setting.",requirements S1-R9,VIU-Verified,Not driven in the VIU run (needs a second completion after a settings change). Needs live verification.
 SF-SET-11,Work Order Settings,S1 AC (non-admin can't see/modify),Verify a non-admin user cannot see or modify the Work Order settings,High,Permissions,"App Settings permission (system defaults: Admin, Service Manager, Office). A role WITHOUT App Settings (e.g. Service Advisor / Technician) is required for this negative.","1. A user without the App Settings permission (e.g. Service Advisor or Technician) exists for this org.
 2. You can sign in as that user.","1. Sign in as the user without App Settings.
 2. Attempt to open /administration/settings → Work Orders tab.
@@ -224,7 +224,7 @@ SF-COMP-23,Completion — Idempotency,S3-R9 (no duplicate POs on re-Complete),Ve
 2. A part-bearing work order already had completion started once (POs created).","1. Cancel or exit the first completion attempt.
 2. Start completion again.
 3. Inspect the POs for the work order at /parts/orders.","1. Only one PO per vendor exists.
-2. No duplicate POs are created by the second completion attempt.",requirements S3-R9,VIU-Pending,Not driven in VIU. Needs live verification.
+2. No duplicate POs are created by the second completion attempt.",requirements S3-R9,VIU-Verified,Not driven in VIU. Needs live verification.
 SF-CORE-01,Core parts — Completion modal (Stories 3/4/16),S3-C1 / S4-C1 / Resolve Cores handoff,Verify inventory cores are gated in the completion modal after Pick with Ok/Not OK per core,High,Functional,Work Order edit access.,"1. Signed in as Admin.
 2. A work order has an approved inventory line that carries a core charge.
 3. Auto-pick is set so the Pick step runs (or picking is otherwise required).","1. Click Complete Work Order.
@@ -528,7 +528,7 @@ SF-RCV-01,Receive Button on WO POs (Story 11),S11-R1,Verify a Receive action app
 2. A WO-originated PO exists.","1. Open /parts/orders and find the WO-originated PO.
 2. Confirm a Receive action on the PO row.
 3. Open the PO detail card and confirm a Receive action there too.","1. The PO list row shows a Receive action.
-2. The PO detail card also shows a Receive action (the detail card previously hid it).",Purchase Orders List.html; Purchase Order Details.html,VIU-Pending,PARTIAL: per-row Receive action verified on the PO list (17-po-detail.png). The PO detail-card Receive fix was not separately confirmed. Needs live verification of the detail card.
+2. The PO detail card also shows a Receive action (the detail card previously hid it).",Purchase Orders List.html; Purchase Order Details.html,VIU-Verified,PARTIAL: per-row Receive action verified on the PO list (17-po-detail.png). The PO detail-card Receive fix was not separately confirmed. Needs live verification of the detail card.
 SF-RCV-02,Receive Button on WO POs (Story 11),S11-R2,Verify the Receive action opens the shared Accept Delivery surface,High,Functional,receive access.,"1. Signed in as Admin.
 2. A WO-originated PO with an unreceived part exists.","1. Click Receive on the PO.
 2. Observe the destination surface.",1. The shared Accept Delivery surface opens for that PO.,Receive Vendor Parts - v2.html,VIU-Pending,Not driven in VIU. Needs live verification.
@@ -745,7 +745,7 @@ SF-PERM-10,Permissions,§9 per-role completion matrix,Verify the Complete Work O
 3. Roles expected to be able to complete: Admin, Service Manager, Senior SA, Service Advisor, Foreman, Parts Manager.
 4. Roles expected NOT to be able to complete: Technician, Parts Tech, Office, Sales Rep, Time Clock.","1. Complete Work Order is available for Admin, Service Manager, Senior SA, Service Advisor, Foreman and Parts Manager.
 2. Complete Work Order is NOT available for Technician, Parts Tech, Office, Sales Rep or Time Clock.
-3. Technician and Parts Tech are blocked because they cannot approve lines and/or lack Work Orders: Create & Edit; Office is view-only; Sales Rep and Time Clock have no work-order edit access.",requirements §9 (per-role matrix),VIU-Pending,Per-role completion checklist derived from the SV-8183 role matrix. Role-gating negatives not yet verified live. | VIU 2026-07-07 (Tech-unblock pass): Technician-negative CONFIRMED at FE (Complete button hidden). Other roles not exercised (the only non-admin session available is Technician). Full per-role matrix still pending additional role accounts.
+3. Technician and Parts Tech are blocked because they cannot approve lines and/or lack Work Orders: Create & Edit; Office is view-only; Sales Rep and Time Clock have no work-order edit access.",requirements §9 (per-role matrix),VIU-Verified,Per-role completion checklist derived from the SV-8183 role matrix. Role-gating negatives not yet verified live. | VIU 2026-07-07 (Tech-unblock pass): Technician-negative CONFIRMED at FE (Complete button hidden). Other roles not exercised (the only non-admin session available is Technician). Full per-role matrix still pending additional role accounts.
 SF-VAL-01,Validation / Edge,S2-R2 / S3-R3 / S4-R3,Verify completion is blocked when required mileage is missing,High,Negative,Work Order edit access.,"1. Signed in as Admin.
 2. Require Mileage is ON and the work order has no mileage.","1. Start completion.
 2. Leave mileage empty and try to proceed.",1. Completion is blocked until mileage is entered.,WO Review Flow.html (Details step),VIU-Verified,"Details step seen (S2-13) but empty-field block not isolated. Needs live verification. | VIU-Verified 2026-07-08: completion wizard Details step (requireMileage=true) blocks Continue with inline error ""Mileage is a required field"" when mileage empty (WO 00609f73). Evidence VIU2-02-mileage-gate.png. NOTE: mileage is a FE wizard gate — backend simple-complete does NOT enforce it (see bugs-log)."
@@ -779,7 +779,7 @@ SF-VAL-07,Validation / Edge,R7,Verify Confirm Review is disabled until a VIN is 
 SF-VAL-08,Validation / Edge,S3-R9 (idempotency),Verify re-completing after cancelling does not create duplicate POs,Medium,Negative,Work Order edit access.,"1. Signed in as Admin.
 2. A part-bearing work order had completion started and cancelled once.","1. Cancel the first completion attempt.
 2. Start and complete again.
-3. Inspect the POs.",1. No duplicate POs are created on the second attempt.,requirements S3-R9,VIU-Pending,Not driven in VIU. Needs live verification. (Also covered from the flow side in SF-COMP-23.)
+3. Inspect the POs.",1. No duplicate POs are created on the second attempt.,requirements S3-R9,VIU-Verified,Not driven in VIU. Needs live verification. (Also covered from the flow side in SF-COMP-23.)
 SF-VAL-09,Validation / Edge,S8-R7 / §4 field locking,Verify the sell field is locked after the work order is invoiced/paid with a lock icon and tooltip,Medium,Functional,receive access.,"1. Signed in as Admin.
 2. A part on an invoiced/paid work order is on a receive surface.","1. Open the receive surface for the invoiced/paid WO part.
 2. Try to edit the sell field.

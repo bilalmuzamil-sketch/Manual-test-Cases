@@ -128,6 +128,16 @@ regression / bug-fix re-testing.
 - **No permissions matrix supplied** — role-gating expected results are TBD.
 - **IDs:** case IDs use `SF-<AREA>-NN`; org `d55bc308-...` (shared with Custom
   Roles). VIU tools in `/tmp/simple-flow/tools/`.
+- **Self-service Tech role-switch (sv7301):** `POST /api/staff/{staff_id}/change`
+  with `{first_name,last_name,email,role_id,workplace_id}` (+ job_title/salary/
+  billable/clockable to avoid clobber). Tech: user `a7fd0a88-...`, **staff
+  `6fb22c1b-...`**, restore role **Technician `131b5274-...`**, workplace
+  `b3c8c820-...`. EXACT-MATCH `email==='tech@shopview.com'` before changing;
+  safety-net `restore-tech.mjs`. Only **Technician/Office/Admin** roles are
+  instantiated (Office `163abe0d-...`, Admin `16fec34c-...`); other 8 are templates
+  (`GET /api/role-templates`). Role detail `GET /api/roles/{id}`. Role create
+  `POST /api/roles` (needs `organization`+full `fe_permissions` code→bool map;
+  currently 500 — shape TBD).
 
 ## Key findings to remember
 - **Enforcement model:** backend enforces only **resource-level View/Edit**;

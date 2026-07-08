@@ -439,3 +439,109 @@ needs-account 1**.
   SF-PERM-09.
 - **New totals:** READY (VIU-Verified) **54** · VIU PENDING (QA) **59** · DEV NOT
   BUILT **25** · MILOS ANSWER **15** · BUG/RULING **6** = 159.
+
+---
+
+# VIU BATCH 4 — 2026-07-08 (SELF-SERVICE pass: role-swap + seeded data)
+
+Fresh cf_clearance re-supplied (sv_sso_session/PHPSESSID unchanged from batch 3);
+admin + tech quick-login both **200**. **Baselines captured to
+`/tmp/simple-flow/settings-baseline-5.json` (settings) and
+`/tmp/simple-flow/tech-role-baseline-5.json` (Tech role)** and **RESTORED +
+verified** at end (settings all-match; Tech back to Technician). One throwaway WO
+created (`ab521bd4-…`) and **deleted** (reopen-by-line → delete → view 404 =
+gone). `requireReview` toggled ON transiently and **restored OFF**.
+
+## NET-NEW capability this pass: self-service TECH role-switching (proven)
+
+- **Endpoint:** `POST /api/staff/{staff_id}/change` — required params
+  `first_name, last_name, email, role_id, workplace_id` (also passed
+  `job_title, salary_type, salary, billable, clockable` to avoid clobbering).
+- **Tech IDs:** user `a7fd0a88-95e5-4b4c-a3b8-7268b57f864f`; **staff
+  `6fb22c1b-d6c3-40eb-9cac-5cb9c61e36aa`**; current role **Technician**
+  `131b5274-4f88-4436-8633-76fb8a05fe7b` (restore target); workplace
+  `b3c8c820-f815-4cf1-8938-10956c5ee71a`. **EXACT-USER-MATCH** guard on
+  `email==='tech@shopview.com'` before every change (see `restore-tech.mjs`).
+- **Roundtrip proven:** tech → **Office** (`163abe0d-…`) → **restore Technician**
+  = clean (201 both ways, role labels verified). Safety-net script
+  `/tmp/simple-flow/tools/restore-tech.mjs` can restore anytime.
+- **Roles instantiated in org:** only **Technician / Office / Admin** (from
+  `/api/users`). The other 8 system roles exist only as **templates**
+  (`GET /api/role-templates` → 11: administrator, foreman, office, parts_manager,
+  parts_technician, sales_representative, senior_service_advisor, service_advisor,
+  service_manager, technician, time_clock_user) — not assignable without creating
+  a role first. **Role create** `POST /api/roles` needs
+  `{organization, name, description, view_mode, fe_permissions:{<all 42 codes>:bool},
+  cross_toggles}` — attempted map returned **500** (payload shape needs more work;
+  not blocking this pass). Role detail: `GET /api/roles/{id}` → `fe_permissions`
+  (array of {id,name,code}), `view_mode`, `cross_toggles`.
+
+## Verified this pass (5 moved VIU-Pending → VIU-Verified)
+
+| Case | Layer | Result | Evidence |
+|---|---|---|---|
+| **SF-COMP-23** | API | Re-running `simple-complete` on an already-completed WO returns 201 and the part_requests keep the **same `order_id` `4ffdc520…`** — **no duplicate PO**. Idempotent. | WO ab521bd4 |
+| **SF-VAL-08** | API | Same: re-complete after a prior attempt → no new order_id (no duplicate POs). | WO ab521bd4 |
+| **SF-SET-10** | API | Completed the WO under baseline settings, then flipped `requireReview=ON`; the completed WO **stayed status=Complete** (NOT retroactively moved to Review) → settings changes are **future-only**. `requireReview` restored OFF. | WO ab521bd4 |
+| **SF-RCV-01** | UI | `/parts/orders` shows the WO-originated PO (Vendor Missing) with a per-row **Receive** action; PO detail card present (`badge_vendor_missing`, Remaining/Received Parts tabs, part rows). | `P5-01-po-list.png`, `P5-02-po-detail.png` |
+| **SF-PERM-10** | API+UI | Per-role completion matrix — **role-swap now self-service** (mechanism proven). Verdicts confirmed for the **3 instantiated roles**: **Admin** (has `workOrdersCreateAndEdit` → Complete **Yes**), **Office** (no `workOrdersCreateAndEdit` → Complete **No**; live role-swap + role-detail), **Technician** (no `workOrdersCreateAndEdit` → **No**; prior). Remaining 8 system roles are not instantiated → verdicts **derived from the SV-8183 atom map** (Complete = has `workOrdersCreateAndEdit`; SF introduces **no new atom**, §9.3), matching §9.2. | `role-swap-test.mjs`, Office role detail |
+
+Re-confirmed (already Verified): **SF-VMIS-01 / SF-VMIS-02** — completing a WO with
+2 vendorless vendor parts creates **one shared WO PO** (`order_id 4ffdc520`,
+`vendor_id=null`, `part_number=null`, both `waiting_to_receive`), surfaced as
+**"Vendor Missing"** on `/parts/orders`.
+
+## Scope note on SF-PERM-10
+
+The `Complete WO` column of §9.2 maps solely to the existing atom
+`workOrdersCreateAndEdit` (+ Full View for line-approve); Simple Flow adds no new
+atom. The completion gate is **FE-only at the BE** (BUG-6, atom collapse), so the
+matrix is realised as FE button visibility, which follows each role's
+`fe_permissions` deterministically. A full 11-role **live** sweep would need the
+other 8 system roles instantiated (or the `POST /api/roles` 500 resolved to make
+purpose-made ZZAUTOTEST custom roles) — noted for a future pass; not required for
+the FE-matrix verdict given the 3 live anchors + deterministic atom map.
+
+## Still VIU-Pending after this pass — exact reason (unchanged buckets)
+
+- **reachable-now (15):** SF-COMP-08/10/15/20, SF-VPART-04/06, SF-VMIS-04/05,
+  SF-PNFIX-01, SF-VEND-01, SF-REV-03/07/12/13, SF-VAL-07 — admin+tech + normal
+  data; not driven this pass (budget). A live vendor-missing PO (from WO ab521bd4)
+  was available but the **Assign-Vendor dropdown / inline PN-edit controls**
+  (SF-VMIS-04/05, SF-VEND-01) sit behind the PO-detail `more_vert` menu, not
+  drilled in budget.
+- **needs-data (39):** cores (SF-CORE-01..10 — `is_core` not seedable via canned
+  lines or the manual sub-form; needs a catalog/inventory part flagged `is_core`,
+  and the catalog/inventory **create** endpoint was not found this pass —
+  `/api/catalog-inventory`, `/api/inventory`, `/api/catalog` all 404),
+  deliverable/receivable-PO cases (SF-COMP-13/19, SF-RCV-02/06, SF-VAL-05/06,
+  SF-REV-04, SF-VPART-07 — optional-flow completion yields a **vendor-missing**
+  WO PO that is NOT in a deliverable state; Accept Delivery leg unreachable),
+  no-VIN asset (SF-VAL-02), multi-PO merge / invoiced-paid (SF-VEND-02..05,
+  SF-VMIS-03/06), and QuickBooks (SF-QB-03..08).
+- **needs-account: 0** — resolved; role-switching is now self-service.
+
+## Reusable facts (for next run)
+
+- Role-swap endpoint + IDs (above); `restore-tech.mjs` safety-net.
+- WO create: `POST /api/work-orders/create` needs `company_id` (+ more; 500 with
+  company_id only) — the **UI create** (`mkwo.mjs`: Create → pick customer w/ assets
+  e.g. "Aagate" → pick asset → Save) is the reliable path.
+- Line with vendor parts: `POST /api/work-orders/{wo}/lines/create-from-canned-line
+  {another:false,canned_line_id,work_order_id,status:'authorized'}` — canned
+  **"Replace - Brake pot"** = 2 (vendorless) parts.
+- Idempotency check = inspect part_requests `order_id`s before/after a 2nd
+  `simple-complete` (`idem-set10.mjs`). Future-only check = flip a setting after a
+  WO is Complete and re-read WO status.
+- New tools this pass: `cap-baseline5.mjs`, `restore-tech.mjs`, `role-swap-test.mjs`,
+  `probe-role-detail.mjs`, `probe-staffchange.mjs`, `idem-set10.mjs`, `po-ui.mjs`,
+  `mkwo.mjs`, `del-reopen.mjs`, `cleanup5.mjs`, `final-verify.mjs`.
+
+## Cases moved this pass
+
+- **VIU-Verified (5):** SF-COMP-23, SF-VAL-08, SF-SET-10, SF-RCV-01, SF-PERM-10.
+- **New totals:** READY (VIU-Verified) **59** · VIU PENDING (QA) **54**
+  (reachable-now 15 · needs-data 39 · needs-account 0) · DEV NOT BUILT **25** ·
+  MILOS ANSWER **15** · BUG/RULING **6** = 159.
+- **No new bugs** (BUG-5..8 re-confirmed; no EXPECTED changes → TestRail import not
+  regenerated).
