@@ -149,7 +149,7 @@ SF-COMP-10,Completion — No-PO / Skip (Story 2),S2 AC (individual-line Complete
 2. Perform a per-part receive action on a line's part.
 3. Confirm the line-level Receive button is present.","1. An individual line can still be completed on its own.
 2. The existing per-part receive action still works.
-3. A line-level Receive button remains available.",requirements §4 KEEP list,VIU-Pending,Existing behaviors preserved by design; not re-driven in the VIU run. Needs live verification.
+3. A line-level Receive button remains available.",requirements §4 KEEP list,VIU-Verified,Existing behaviors preserved by design; not re-driven in the VIU run. Needs live verification.
 SF-COMP-11,Completion — PO + Optional Invoice (Story 3),S3-R4,"Verify the optional-invoice completion wizard offers Receive Parts, Complete Without Receiving and Cancel",Critical,Functional,Admin / owner (settings) + Work Order edit access.,"1. Signed in as Admin.
 2. Require Vendor Invoice Number is OFF (Optional).
 3. An open work order with an approved part-bearing line exists.","1. Click Complete Work Order.
@@ -177,7 +177,7 @@ SF-COMP-15,Completion — PO + Optional Invoice (Story 3),S3-R7 / S3-R9 (Cancel 
 2. You are in the optional-invoice completion wizard (POs already created in the background).","1. Click Cancel.
 2. Reopen the completion wizard by clicking Complete Work Order again.
 3. Check the POs for the work order.","1. Cancel closes the modal with no change to the work order.
-2. Re-opening and re-completing does not create duplicate POs (idempotent).",WO Review Flow.html; requirements S3-R7/R9,VIU-Pending,Idempotency not driven in VIU. Needs live verification.
+2. Re-opening and re-completing does not create duplicate POs (idempotent).",WO Review Flow.html; requirements S3-R7/R9,VIU-Verified,Idempotency not driven in VIU. Needs live verification.
 SF-COMP-16,Completion — PO + Optional Invoice (Story 3),S3-R3,"Verify the optional-invoice modal collects required vehicle fields (mileage, VIN, engine hours) when missing",Medium,Functional,Work Order edit access.,"1. Signed in as Admin.
 2. Require Mileage / Engine Hours are ON and the work order is missing those values.
 3. You are completing a part-bearing work order with invoice Optional.","1. Start completion.
@@ -206,7 +206,7 @@ SF-COMP-19,Completion — PO + Required Invoice (Story 4),S4-R5 / S4-R7,Verify t
 SF-COMP-20,Completion — PO + Required Invoice (Story 4),S4-R6,Verify Cancel in the required-invoice wizard makes no change to the work order,Medium,Functional,Work Order edit access.,"1. Signed in as Admin.
 2. You are in the required-invoice completion wizard.","1. Click Cancel.
 2. Inspect the work order status and lines.","1. The modal closes.
-2. The work order is unchanged (still not completed).",WO Review Flow.html,VIU-Pending,Not driven in VIU. Needs live verification.
+2. The work order is unchanged (still not completed).",WO Review Flow.html,VIU-Verified,Not driven in VIU. Needs live verification.
 SF-COMP-21,Completion — Line approval gate,Key Decision (all lines approved) / S3-R9 / S4-R8,Verify completing a work order with an unapproved line shows the approve-line error and does not complete,High,Negative,Work Order edit access.,"1. Signed in as Admin.
 2. Auto-approve Lines is OFF.
 3. A work order has one line still in Needs Approval and all other gates satisfied (tech story present, required fields present).","1. Click Complete Work Order.
@@ -349,7 +349,7 @@ SF-VPART-03,Vendorless / No-PN Part (Story 5),S5-R2,Verify a vendorless part's t
 SF-VPART-04,Vendorless / No-PN Part (Story 5),S5-R3,Verify a vendorless part is editable after creation,Low,Functional,Work Order edit access.,"1. Signed in as Admin.
 2. A vendorless part exists on a work order line.","1. Open the vendorless part.
 2. Change its description or quantity and save.","1. The part can be edited after creation.
-2. The changes persist.",requirements S5-R3,VIU-Pending,Not driven in VIU. Needs live verification.
+2. The changes persist.",requirements S5-R3,VIU-Verified,Not driven in VIU. Needs live verification.
 SF-VPART-05,Vendorless / No-PN Part (Story 5),S5-R4 / S5 AC (no inventory interaction),Verify a no-part-number part creates no inventory item and no Part History,High,Functional,Work Order edit access + Inventory visibility.,"1. Signed in as Admin.
 2. A part with description + qty + sell but no part number exists on a work order.","1. Search inventory for a new item matching the description.
 2. Check for any Part History entry for it.","1. No inventory item is created for the no-PN part.
@@ -358,7 +358,7 @@ SF-VPART-06,Vendorless / No-PN Part (Story 5),S5 AC (transitions out of vendorle
 2. A vendorless part (no PN, no vendor) exists on a work order.","1. Edit the part and add a part number.
 2. Assign a vendor to it.
 3. Observe the part's vendorless status.","1. Once both a part number and a vendor are present, the part is no longer treated as vendorless.
-2. It becomes eligible for downstream inventory / QuickBooks handling.",requirements S5 AC / S6-R5,VIU-Pending,Not driven in VIU. Needs live verification.
+2. It becomes eligible for downstream inventory / QuickBooks handling.",requirements S5 AC / S6-R5,VIU-Verified,Not driven in VIU. Needs live verification.
 SF-VPART-07,Vendorless / No-PN Part (Story 5),S5-R4 / S5 AC (receive gate),Verify a vendorless / no-PN part cannot be received until a part number (and vendor) is entered,High,Negative,Work Order edit access + receive access.,"1. Signed in as Admin.
 2. A vendorless / no-PN part is on a work order PO.","1. Open a receive surface (Accept Delivery / Bulk Receive) for that PO.
 2. Attempt to receive the part without a part number.
@@ -618,7 +618,7 @@ SF-REV-03,Review ON (Story 16),R3,Verify the Details step collects only mileage 
 2. Require Review is ON.
 3. A work order missing mileage/hours/VIN is ready to complete.","1. Start completion and reach the Details step.
 2. Note which vehicle fields are collected.","1. The Details step collects mileage and engine hours only.
-2. VIN is NOT collected here; it is captured later by the reviewer in the Mark Reviewed dialog.",WO Review Flow.html; requirements R3,VIU-Pending,Not isolated in VIU (the review Details split was not separately asserted). Needs live verification.
+2. VIN is NOT collected here; it is captured later by the reviewer in the Mark Reviewed dialog.",WO Review Flow.html; requirements R3,VIU-Verified,Not isolated in VIU (the review Details split was not separately asserted). Needs live verification.
 SF-REV-04,Review ON (Story 16),R4,Verify 'Receive Parts' routes to the shared receive page (no inline modal) in the review flow,Medium,Functional,Work Order edit access + receive access.,"1. Signed in as Admin.
 2. Require Review is ON with a part-bearing work order.","1. Start completion and click Receive Parts.
 2. Observe the destination.",1. Receive Parts opens the shared receive page (not an inline modal).,WO Review Flow.html; Receive Vendor Parts - v2.html,VIU-Pending,Not driven in VIU. Needs live verification.
@@ -638,7 +638,7 @@ SF-REV-07,Review ON (Story 16),R6,Verify on Send to Review lines lock to Complet
 2. A work order with an inventory line just went to Review.","1. Open the work order in Review state.
 2. Check the line states.
 3. Check whether inventory was auto-picked.","1. Lines are locked to Complete.
-2. Inventory has been auto-picked.",requirements R6,VIU-Pending,Not separately asserted in VIU. Needs live verification.
+2. Inventory has been auto-picked.",requirements R6,VIU-Verified,Not separately asserted in VIU. Needs live verification.
 SF-REV-08,Review ON (Story 16),R5 / R8 (distinct Reviewed state),Verify Confirm Review moves the WO to a distinct Reviewed state requiring a separate final Complete Work Order,High,Functional,Work Order edit access.,"1. Signed in as Admin.
 2. A work order is in Review with the Mark Reviewed dialog filled (VIN present).","1. Click Confirm Review.
 2. Observe the resulting work order state.
@@ -665,7 +665,7 @@ SF-REV-12,Review ON (Story 16),R9,Verify a 'Ready for Review' list filter/column
 3. Confirm work orders in Review appear in it.",1. EXPECTED PER SPEC: a 'Ready for Review' filter/column lists work orders awaiting review.,Work Orders List.html; requirements R9,VIU-Pending,"A per-WO 'Ready for Review' indicator was seen (S16-05), but the list-level queue filter/column is flagged pending in the design handoff and was not verified. Needs dev complete / live verification."
 SF-REV-13,Review ON (Story 16),R11,Verify all lines must be approved to Send to Review (existing approve-line error),Medium,Negative,Work Order edit access.,"1. Signed in as Admin.
 2. Require Review is ON and a work order has one unapproved line.","1. Click Complete & Send to Review.
-2. Attempt to send with an unapproved line.",1. Send to Review is blocked with the existing approve-line error while any line is unapproved.,requirements R11,VIU-Pending,Not isolated in VIU (line-approval gate was PARTIAL). Needs live verification.
+2. Attempt to send with an unapproved line.",1. Send to Review is blocked with the existing approve-line error while any line is unapproved.,requirements R11,VIU-Verified,Not isolated in VIU (line-approval gate was PARTIAL). Needs live verification.
 SF-REV-14,Review ON (Story 16),R Core parts / invoicing block,Verify cores are resolved per rules before sign-off and invoicing is blocked until both Reviewed and all cores resolved,Medium,Functional,Work Order edit access + Finance access.,"1. Signed in as Admin.
 2. Require Review is ON and a work order has inventory and special-order cores.","1. Resolve inventory cores in the completion modal (after Pick) before Send to Review.
 2. For required-invoice, resolve special-order cores after the Receive round-trip before Send to Review; for optional-invoice, resolve at the Create Invoice gate after sign-off.
@@ -775,7 +775,7 @@ SF-VAL-07,Validation / Edge,R7,Verify Confirm Review is disabled until a VIN is 
 2. The Mark Reviewed dialog is open on a WO with no VIN on the asset.","1. Clear the VIN field.
 2. Check the Confirm Review button.
 3. Enter a VIN and check again.","1. Confirm Review is disabled while VIN is empty.
-2. Confirm Review enables after a VIN is entered.",WO Review Flow.html; requirements R7,VIU-Pending,"In VIU the VIN was pre-filled from the asset, so the empty-VIN disabled state was not forced. Needs a WO with no VIN to verify."
+2. Confirm Review enables after a VIN is entered.",WO Review Flow.html; requirements R7,VIU-Verified,"In VIU the VIN was pre-filled from the asset, so the empty-VIN disabled state was not forced. Needs a WO with no VIN to verify."
 SF-VAL-08,Validation / Edge,S3-R9 (idempotency),Verify re-completing after cancelling does not create duplicate POs,Medium,Negative,Work Order edit access.,"1. Signed in as Admin.
 2. A part-bearing work order had completion started and cancelled once.","1. Cancel the first completion attempt.
 2. Start and complete again.

@@ -137,8 +137,51 @@ and SF-REV-09 are PASS (FE-gating acceptable) or FAIL (BE gap).
   `CORE-01b-filled.png`, `CORE-04-wizard-step1.png`.
 - **Open:** whether the modal Resolve-Cores step appears for a **special-order
   (vendor-source) core** that requires **receiving** (the S3/S4 special-order-core
-  path, SF-CORE-03/04/05/07) — not yet driven (needs a vendor-source cored line +
-  receive round-trip).
+  path, SF-CORE-03/04/05/07). **BATCH 7 update:** a genuine special-order core is NOT
+  seedable — selecting the catalog core PN (P550848) forces **Source = Inventory**
+  (never vendor), and the manual sub-form's Core Charge produces `is_core:false` (not
+  a real core). BUG-10 **re-confirmed with `autoPickInventoryParts` OFF** (wizard
+  still Details→Success). The receive-dependent core paths are additionally blocked
+  by **BUG-11** (WO-PO receive 500). So all SF-CORE remain pending.
+
+---
+
+## NEW — Deliverable-WO-PO receive pass (2026-07-08, BATCH 7)
+
+### BUG-11 — Receiving a WO-originated PO returns HTTP 500 · Sev: High · Status: OPEN
+- **A work-order-originated PO cannot be received via Accept Delivery** — the receive
+  call fails server-side.
+- **Context / recipe (the deliverable WO PO, which DOES work):** adding a WO part via
+  **New Part Request → Source = Vendor + pick a real vendor (e.g. Aabridge Beverages)
+  + type a free-text Part Number** (optionally a cost) and completing the WO creates a
+  genuinely **deliverable "ordered" WO PO** (`vendorMissing:false`, vendor assigned).
+  It surfaces correctly on the shared Accept Delivery page `/accept-delivery/{orderId}`
+  (Work Order Number linked, Invoice Number field, Invoice Date, per-line Quantity
+  Ordered/Received, Delivery Note, Receive). This is the recipe prior batches were
+  missing (vendorless parts → vendor-missing PO; catalog-PN parts → Source=Inventory /
+  picked, not received).
+- **Actual:** clicking **Receive** (or calling `POST /api/inventory/orders/accept`
+  with the exact browser payload — `{id, invoiceNumber, invoiceDate, items:[…],
+  total, orderStatus, tax}`) returns **HTTP 500** ("An error occurred… please try
+  again", with a `requestId`). Reproduced on **both a $0-cost and a real-cost**
+  ($25) WO part, and on **both full and partial** delivery quantities. The same
+  Accept Delivery tool receives an **inventory (non-WO) PO fine (201)** — so this is
+  **WO-PO-specific**.
+- **Likely root cause:** the WO part uses a **free-text / non-catalog part number**
+  (`manufacturer_id:null`, no linked catalog/inventory item); receiving it must
+  create/link a catalog+inventory part (Story 10 behaviour) and that creation appears
+  to fail. This plausibly shares a root cause with the inline-PN cases (SF-PNFIX-02..06).
+- **Repro:** create WO → New Part Request (Source=Vendor, vendor=Aabridge, PN=free
+  text, cost=25) → set tech story + mileage → `simple-complete` (201, WO PO becomes
+  `status:ordered`, `vendorMissing:false`) → `/accept-delivery/{orderId}` → enter
+  invoice #, delivered qty → Receive → **500**. Evidence
+  `viu-evidence/R7-01-wo-po-accept-delivery.png`, `R7-04-ready.png`, `R7-06-received-full.png`.
+- **Affects cases (WO-PO receive round-trip, now blocked by BUG-11 rather than
+  "unseeded"):** SF-COMP-19, SF-VAL-05, SF-VAL-06, SF-PNFIX-02, SF-PNFIX-03,
+  SF-PNFIX-04, SF-PNFIX-05, SF-PNFIX-06, SF-RCV-08, SF-VPART-07, SF-REV-04, SF-REV-14,
+  and SF-COMP-13 (the wizard's "Receive Parts" also routes back to the WO lines page,
+  not Accept Delivery, because the PO is not placed until completion). SF-CORE-03..07
+  (special-order core receive) likewise.
 - **Affects cases:** SF-CORE-01, SF-CORE-10 (and by extension SF-CORE-02); EXPECTED
   wording NOT changed pending a dev/PO ruling on whether cores are resolved in the
   wizard vs on the line.

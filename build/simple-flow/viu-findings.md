@@ -668,3 +668,122 @@ now proven live for every role, not derived.)
   MILOS ANSWER **15** · BUG/RULING **6** = 159.
 - **New bug:** BUG-10 (no Resolve-Cores wizard step for inventory core). No EXPECTED
   changed (flagged for dev/PO ruling) → TestRail import NOT regenerated.
+
+---
+
+# VIU BATCH 6 — 2026-07-08 (deliverable WO-PO receive leg + review batch + reachable-now)
+
+Task-provided QA cookies (PHPSESSID `21427ed6…`); admin + tech quick-login both
+**200**. **Baselines captured to `/tmp/simple-flow/settings-baseline-7.json`
+(settings) + `/tmp/simple-flow/tech-role-baseline-7.json` (Tech role)** and
+**RESTORED + verified** at end (settings all match baseline-7; Tech = Technician
+`131b5274`, **never swapped this pass**). Settings toggled transiently and all
+restored: `requireReview` ON→OFF, `requireVendorInvoiceNumber` ON→OFF,
+`autoPickInventoryParts` OFF→ON. **Seven throwaway WOs** created (24e51b02,
+d063b3e7, 70ad5a64, 7fe628cb, 493fcbfd, 56a8f33b, 43eb65ca) and **all deleted**
+(verified view 404). Their WO POs (1db306d2, a98e947a, bd8b903f, + S2-15771) were
+removed with the WOs (GONE). **P550848 inventory returned to qty 6** (the core WO's
+picked unit was released on delete). No catalog parts or user POs deleted.
+Evidence: `viu-evidence/R7-*.png`.
+
+## HEADLINE — deliverable WO PO recipe FOUND; but receiving it 500s (BUG-11)
+
+- **Recipe (works):** New Part Request → **Source = Vendor + pick a real vendor +
+  type a free-text Part Number** (optionally a cost) → set tech story + mileage →
+  `simple-complete` → the WO PO comes out **`status:ordered`, `vendorMissing:false`,
+  vendor assigned** (e.g. S-15770, Aabridge Beverages). It renders on the shared
+  Accept Delivery surface `/accept-delivery/{orderId}` with **Work Order Number
+  (linked), Invoice Number, Invoice Date, per-line Quantity Ordered/Received,
+  Delivery Note, Receive**. This is what prior batches lacked (vendorless → vendor-
+  missing PO; catalog-PN → Source=Inventory/picked).
+- **But receiving 500s (BUG-11):** `POST /api/inventory/orders/accept` returns HTTP
+  500 for the WO PO (exact browser payload `{id,invoiceNumber,invoiceDate,items,
+  total,orderStatus,tax}`), on both $0-cost and $25-cost parts and both full/partial
+  qty. Same tool receives an inventory (non-WO) PO fine → WO-PO-specific. Likely the
+  free-text/non-catalog PN (`manufacturer_id:null`) failing catalog/inventory
+  creation on receive. See bugs-log **BUG-11**.
+- **Consequence:** the WO-PO receive **round-trip** cases stay blocked — now by a
+  concrete server bug, not "unseeded": SF-COMP-13/19, SF-VAL-05/06, SF-PNFIX-02..06,
+  SF-RCV-08, SF-VPART-07, SF-REV-04/14, SF-CORE-03..07.
+
+## Verified this pass (9 moved VIU-Pending → VIU-Verified)
+
+| Case | Layer | Result | Evidence |
+|---|---|---|---|
+| **SF-REV-03** | UI | With `requireReview` ON, the completion wizard **Details** step collects **Mileage only** (engine-hours off; **VIN not prompted** — captured later by reviewer). Wizard = "Complete & Send to Review", steps **1 Details → 2 Receive → 3 Success**. | `R7-REV03-details.png` |
+| **SF-REV-07** | UI+API | **Send To Review** (CTA on the WO) → after Complete-Without-Receiving the WO goes to **Review**, the **line locks to `complete`**, and parts **auto-pick** (`waiting_to_receive`). Success panel "Sent for review — a reviewer will sign off before this order can be invoiced." | `R7-REV-success.png` |
+| **SF-REV-13** | API | With `requireReview` ON, Send-to-Review (`simple-complete`) on a WO with an `authorization_required` line → **400 "All lines must be approved before completing the work order."** | — |
+| **SF-VAL-07** | UI | Mark-Reviewed dialog ("Mark as reviewed", `input_review_vin`): **Confirm Review is enabled with a VIN and becomes DISABLED when the VIN is cleared** → gated on VIN. | `R7-VAL07-markreviewed.png` |
+| **SF-VPART-04** | UI | A vendorless part **is editable after creation** — clicking it opens the full **`dialog_part`** (Part Number, Description, Quantity, Source, Vendor, Cost, Sell, etc.). | `R7-VPART04-editdialog.png` |
+| **SF-VPART-06** | UI+API | Editing a vendorless part to **add a Part Number + Vendor** → `POST /api/work-orders/part/change-request` 200 → part now has `part_number` + `vendor_id` + `vendor_name` (**transitions out of vendorless**). | `R7-VPART06-filled.png` |
+| **SF-COMP-10** | UI | Per-line **Complete** button (`button_action_complete_line_{id}`) and per-part action controls (`button_requested_part_context_menu_…`, `button_part_request_action`) are present alongside Simple completion. | `R7-VPART-lines.png` |
+| **SF-COMP-15** | UI+API | **Cancel** in the optional-invoice wizard closes the modal, WO stays **Approved**, and the org order count is **unchanged (113 → 113)** → no PO created, no duplicate. | `R7-COMP15-wizard.png` |
+| **SF-COMP-20** | UI+API | **Cancel** in the required-invoice wizard (`requireVendorInvoiceNumber` ON; buttons Cancel · Receive Parts · Complete Work Order, **Complete disabled, no skip**) → WO stays **Approved** (no change). Re-confirms SF-COMP-18. | `R7-COMP20-required-wizard.png` |
+
+## Not-verified this pass — precise blockers
+
+- **SF-VMIS-04 / SF-VMIS-05 / SF-VEND-01 (assign vendor + PN-edit on a vendor-missing
+  PO):** **NOT reachable on the current build.** A vendor-missing WO PO (S2-15774,
+  bd8b903f) shows the **Vendor Missing badge** on `/parts/orders` and on its single
+  Accept Delivery page, but **no assign-vendor dropdown and no inline PN-edit** on any
+  reachable surface: PO list = per-row **Receive** only (no ⋮/more_vert menu); single
+  `/accept-delivery/{id}` = badge + invoice/qty/Receive only; `/parts/deliveries` =
+  received Vendor-Invoices list. The Story-13 "vendor-missing group + vendor dropdown"
+  UI appears to live on the **Bulk Receive page (Story 8, NOT built)**. Reclassify
+  SF-VMIS-04/05 + SF-VEND-01 to **dev-not-built (Story 8/13 UI)**. NB the part-level
+  vendor+PN assignment DOES work via the WO Parts editor (SF-VPART-06,
+  `part/change-request`), which clears the vendorless state at the part level.
+- **SF-PNFIX-01 (no-number PO line "Missing part number" inline Edit):** same surface
+  gap — the vendor-missing PO's Accept Delivery shows an empty Part Number cell but no
+  "Missing part number" Edit control; inline PN-fix appears tied to Bulk Receive
+  (Story 8). Reclassify to dev-not-built / needs-data.
+- **SF-COMP-08 (auto-pick OFF ⇒ pick step in modal):** with `autoPickInventoryParts`
+  OFF, adding P550848 (catalog inventory core) **still picks it via the bin-quantity
+  input** (status `in_stock`), so the wizard shows no Pick step (Details→Success). Needs
+  an **unpicked inventory part** at completion — not seedable through the current
+  add-part form. Remains reachable-pending / needs-data.
+- **SF-REV-12 (Ready-for-Review list filter/column):** the WO list has a **By Status**
+  tab with an **"All Statuses"** filter and a **Status** column, and the "Ready for
+  Review" label is present, but the filter dropdown options did not enumerate in the
+  harness — could not confirm a dedicated Review filter option. Reachable-pending.
+- **SF-VAL-02 (VIN missing, non-review flow):** still needs an **asset with no VIN**;
+  VIN prefills from the asset and the asset-creation flow (VIN likely required) was not
+  reliably drivable in this harness. Needs-data.
+- **SF-CORE-* :** BUG-10 re-confirmed with `autoPickInventoryParts` OFF (no Resolve-
+  Cores wizard step for an inventory core; resolution is line-level). A genuine
+  **special-order (vendor-source) core is not seedable** (catalog core PN forces
+  Source=Inventory; sub-form Core Charge → `is_core:false`), and receive-dependent
+  core paths are blocked by BUG-11. All SF-CORE remain pending.
+
+## Reusable facts (for next run)
+
+- **Deliverable WO PO recipe** (above). Complete via API: set tech story
+  (`/api/work-orders/lines/change-story`), mileage (`/api/work-orders/change-required-data`),
+  then `POST /api/work-orders/{id}/simple-complete`. Order appears via
+  `GET /api/inventory/orders/{orderId}` → `{data:{order:{status:'ordered',vendorMissing,
+  vendor_name,items:[…]}}}`. Accept-Delivery receive payload (browser):
+  `POST /api/inventory/orders/accept {id, invoiceNumber, invoiceDate, note,
+  items:JSON.stringify([...{quantity_received, total}]), total, orderStatus:'fulfilled', tax}`
+  → **500 for WO POs (BUG-11)**.
+- **Edit a WO part** = `POST /api/work-orders/part/change-request` (add PN/vendor,
+  clears vendorless). Part-add sub-form for a **deliverable vendor part**: type free-
+  text PN in `select_part` + Enter, pick `select_part_vendor`, `select_part_category`,
+  `input_part_cost`, then description/qty/sell, `button_workorder_part_save`.
+- **Robust WO create** = `mkwo3.mjs` (test-ids `select_customer_select` /
+  `select_company_vehicle_select`; search "Aagate" → 2 opts / 17 assets). The older
+  `mkwo.mjs` is flaky.
+- Accept Delivery UI fields: `input[name="invoice-number"]`, `input[name="delivered"]`,
+  Receive button `data-test-id="button_base"` (exact text "Receive").
+- New tools this pass: `mkwo3.mjs`, `add-vpart-cost.mjs`, `story-complete.mjs`,
+  `complete-inspect.mjs`, `ad-drive.mjs`/`ad-receive3.mjs`/`ad-receive4.mjs`,
+  `api-accept3.mjs`, `review-send7.mjs`, `rev13.mjs`, `vpart06.mjs`, `comp15-drive.mjs`,
+  `comp20-drive.mjs`, `core-wizard7.mjs`, `vmis-drive.mjs`, `cleanup7.mjs`, `verify-final7.mjs`.
+
+## Cases moved this pass
+- **VIU-Verified (9):** SF-REV-03, SF-REV-07, SF-REV-13, SF-VAL-07, SF-VPART-04,
+  SF-VPART-06, SF-COMP-10, SF-COMP-15, SF-COMP-20.
+- **New bug:** BUG-11 (WO-PO receive 500). **Reclassified** SF-VMIS-04/05 + SF-VEND-01
+  + SF-PNFIX-01 to dev-not-built/needs-data (Story 8/13 UI absent). No EXPECTED wording
+  changed → TestRail import NOT regenerated.
+- **New totals:** READY (VIU-Verified) **70** · VIU PENDING (QA) **43** · DEV NOT
+  BUILT **25** · MILOS ANSWER **15** · BUG/RULING **6** = 159.
