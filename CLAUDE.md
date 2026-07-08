@@ -22,7 +22,13 @@ all).
    memory: this CLAUDE.md's detail sections, `build/TESTING-RUNBOOK.md`,
    `build/APP-ACTIONS-PLAYBOOK.md`, `build/custom-roles-run/*`,
    `build/custom-roles-spec-update/*`, TestRail section **3527** / run **312**.
-2. **Fees and Discount project** — Fees & Discounts V1 (ShopView). Memory:
+2. **Fees and Discount project** — Fees & Discounts V1 (ShopView). **CANONICAL
+   STATE DOC (read first for resume):** `build/fees-discounts/PROJECT-STATE.md` —
+   the single authoritative snapshot (case inventory 182 + VIU breakdown, TestRail
+   state, deliverables index, FDBUG register, open threads, env/access facts,
+   how-to-resume). Per-case status tallied by
+   `build/fees-discounts/FeesDiscounts_Blockers_Tracker.md`/`.xlsx` (regenerate with
+   `python3 build/fees-discounts/gen_blockers.py`). Memory:
    `build/fees-discounts/*` (`requirements.md` = COMPLETE spec Stories 1–14 + §5
    calc contract; `design-notes.md`; `viu-recon.md` = qb env map/access/harness;
    **TWO same-day VIU passes 2026-07-08:** pass A = `viu-findings.md` +
@@ -30,12 +36,16 @@ all).
    `viu-qb-findings.md` + `screenshots/viu-qb/` (UI-deep) — pass B's doc holds
    the merged scoreboard + reconciliation + FDBUG register + API map).
    **STATUS: FEATURE LIVE on `qb.qa.shopview.com` / API
-   `sv7387api.qa.shopview.com` (flag ON) — deep-VIU BATCH 1 DONE 2026-07-08:**
-   all 182 cases adjudicated in `cases/*.json` `viu_status`, both passes merged
-   (72 Verified / 36 Deviation / 11 Blocked-NotBuilt [S11 Part Sales ×7 + S8
-   Processing-Fee builder UI ×4] / 31 Blocked-Env [QuickBooks; flag-off skipped
-   on shared env; most Story-13 perms] / 32 Pending [parts UI flows,
-   invoice-time walks]). **FDBUG register (13+)** — headline: FDBUG-1 WO +
+   `sv7387api.qa.shopview.com` (flag ON) — deep-VIU BATCH 1 + BATCH 2 DONE
+   2026-07-08 (batch-2 commit `93279ed`):** all 182 cases adjudicated in
+   `cases/*.json` `viu_status`. **Current tally (batch-2): 88 VIU-Verified / 94
+   not-yet-verified** = 27 Deviation (7 code-bug, 3 PO-question, 17 case-update) /
+   11 Blocked-NotBuilt [S11 Part Sales ×7 + S8 Processing-Fee builder UI ×4] / 18
+   Blocked-Env [QuickBooks ×13 + flag-off/shared-env ×5] / 4 Needs-Account
+   [Story-13 per-role: FD-PERM-004/008/010, FD-CUST-015] / 34 Pending [parts UI
+   flows, invoice-time walk; 6 are PO-flagged deviations]. Batch-2 flipped 9
+   Story-13 perm cases to Verified by deriving per-role capability from
+   `roles-matrix.json` (only 4 still need a real non-Tech account). **FDBUG register (13+)** — headline: FDBUG-1 WO +
    estimate Subtotal/Total EXCLUDE adjustment amounts while GST includes their
    tax; FDBUG-2 processing-fee base wrongly includes whole-WO fees+tax; FDBUG-3
    auto-applied adjustments write no history entries; whole-WO adjustment add is

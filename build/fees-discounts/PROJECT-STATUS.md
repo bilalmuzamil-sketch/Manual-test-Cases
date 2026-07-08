@@ -1,7 +1,20 @@
 # Fees and Discount project — STATUS
 
-**STATUS (2026-07-08): FEATURE LIVE on qb QA env — Deep-VIU BATCH 1 DONE (two
-parallel same-day passes, merged).**
+> **CANONICAL RESUME SNAPSHOT: `build/fees-discounts/PROJECT-STATE.md`** — read that
+> first (case inventory, VIU breakdown, TestRail state, deliverables index, FDBUG
+> register, open threads, env/access facts, how-to-resume). Per-case state is tallied
+> by `build/fees-discounts/FeesDiscounts_Blockers_Tracker.md`/`.xlsx` (regenerate with
+> `python3 build/fees-discounts/gen_blockers.py`). This file is the narrative log.
+
+**STATUS (2026-07-08): FEATURE LIVE on qb QA env — Deep-VIU BATCH 1 + BATCH 2 DONE
+(batch-2 commit `93279ed`).** Current tally: **88 VIU-Verified / 94 not-yet-verified**
+of 182 = 27 Deviation (7 code-bug · 3 PO-question · 17 case-update) · 11 Blocked-NotBuilt
+(S11 Part Sales ×7 + S8 Processing-Fee builder UI ×4) · 18 Blocked-Env (QuickBooks ×13
++ flag-off/shared-env ×5) · 4 Needs-Account (Story-13 per-role) · 34 Pending (6 are
+PO-flagged deviations). See `PROJECT-STATE.md` §2 for the full breakdown.
+
+**STATUS (batch 1, superseded by the tally above): FEATURE LIVE on qb QA env — Deep-VIU
+BATCH 1 DONE (two parallel same-day passes, merged).**
 Env: `qb.qa.shopview.com` / API `sv7387api.qa.shopview.com` (flag ON).
 - **Pass A** (API-heavy, Admin+Tech): `viu-findings.md` + `bugs-log.md` + `viu-evidence/`.
 - **Pass B** (UI-deep): **`viu-qb-findings.md`** (merged scoreboard, reconciliation,
