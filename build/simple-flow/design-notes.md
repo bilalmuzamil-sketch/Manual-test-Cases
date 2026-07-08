@@ -126,3 +126,52 @@
 - Story 16 "Ready for Review" queue (list filter/column) — pending.
 - Tech-story placement (modal vs on-the-line) — **confirm** (Story 17 vs S15-R2).
 - Settings design defaults conflict with spec defaults (see `HANDOFF.md` note).
+
+---
+
+## Design update (from Simple_Flow_Design_1.zip)
+
+> **Ingested 2026-07-08** from `Simple_Flow_Design_1.zip`
+> (→ `/tmp/simple-flow-design-2/`). Full delta table + case-impact proposals live
+> in `build/simple-flow/design-change-diff.md`. **This bundle is a REFRESH /
+> re-export of the same design set, not a design change.**
+
+**What's the same (verified):**
+- **Filename set is identical** to the original catalog above — all 15 HTML
+  mockups, 3 MD handoffs, 4 JSX, 2 CSS present; **0 new / 0 removed** design docs.
+- The **3 MD handoffs are content-consistent** with the descriptions above: same
+  6 driving/settings toggles + same defaults (Auto-approve ON, Create-POs ON,
+  Vendor-invoice **Optional** default, Tech/Mileage/Engine OFF, Auto-pick ON,
+  "Require review" still omitted from the settings page), same WO state/badge
+  table, same completion-wizard + review-gate + tech-story-modal behavior, same
+  Resolve-cores step order and gate logic, same 9-row and 12-row case matrices,
+  same element test IDs, same open-items lists.
+- Key HTML surfaces render the same screens: **Workflow Settings v1** (6 cards,
+  Optional/Required vendor-invoice radios, no Require-review toggle);
+  **Workflow Settings v2** (fuller admin sidebar; surfaces the vendor-invoice
+  **Required** state copy "Advisors must enter vendor invoice number before
+  completing WO"; still no Require-review toggle); **Work Orders List**
+  ("Waiting On Parts" column + "Create Work Order"); **Receive Vendor Parts - v2**
+  (Bulk / Accept-Delivery, grouped by vendor); **Purchase Orders List / Details**;
+  **Resolve Cores** family.
+- All zip entries share one export timestamp (2026-07-08 14:59), so mtime cannot
+  flag individual edits; pixel-level HTML/PNG tweaks can't be ruled out, but
+  **no semantic/behavioral change was found**, so no cases are impacted.
+
+**What's new:**
+- **1 new screenshot** — `uploads/Screenshot 2026-07-08 at 16.57.07.png` (upload
+  count 42 → 43; dated after the prior range end of 2026-07-06). It captures the
+  **Review "Mark work order reviewed" confirm dialog** (artboard "9 · Review —
+  Confirm sign-off dialog, 9/12"): **VIN / Serial # (REQUIRED)** + **Review note
+  (optional)** + Cancel / **Confirm Reviewed** (disabled until VIN); WO shows a
+  `Review` badge and an amber "Ready for Review" banner. This **confirms** the
+  optional-review-note field and the VIN-required-at-review behavior already
+  documented in `WO Review Flow - Handoff.md` §7 (test IDs `input_review_vin`,
+  `input_review_note`, `button_confirm_review`) and already reflected in SF-REV /
+  SF-VAL cases — so **NO case change** is needed.
+
+**Still open (unchanged by this bundle):** the settings-default conflict (gap #3)
+and the four VIU deviations (missing Create-POs toggle, always-enabled Save,
+missing optional review note **on live**, review→Complete jump) all persist — the
+07-08 screenshot confirms the review note is intended by design, so its live
+absence remains a build gap, not a design change.
