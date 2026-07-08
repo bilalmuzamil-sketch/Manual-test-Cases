@@ -48,6 +48,10 @@ all).
    are kept); INTERIM pending post-VIU + dev-answer finalization (see
    `build/simple-flow/RESUME-STRATEGY.md`). Permissions: REQUIRES definition (no role
    matrix) — see `build/PERMISSIONS-ASSESSMENT.md`.
+   **Simple Flow contradiction rule:** when two inputs conflict (spec doc vs answer
+   sheet vs design), the MOST RECENT update is authoritative (last-update-wins). The
+   V2.4 spec doc + 2026-07-08 design bundle are the latest and override the earlier
+   round-1 answer sheet where they disagree.
 
 **STANDING RULES (apply to all projects):**
 1. **Never proceed without the complete set of information needed.** If
