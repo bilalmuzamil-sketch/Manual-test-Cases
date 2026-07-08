@@ -105,6 +105,14 @@ regression / bug-fix re-testing.
   - Scope structure lives in `build/custom-roles-run/run-plan.json`.
 
 ## Durable key facts (simple flow)
+- **SHORTCUT INTERPRETATION PRINCIPLE (Simple Flow ONLY):** Simple Flow's purpose
+  is to shorten/skip legacy multi-step flows to reach the **same end state faster**.
+  Therefore any behavior that reaches the same destination by SKIPPING a legacy
+  flow/step is **EXPECTED** (not a bug, not a PO question). It is ONLY a defect if
+  the skip (a) throws an **ERROR**, or (b) **corrupts data / inventory / Part-History
+  integrity**. Applied 2026-07-08: BUG-3, BUG-4, BUG-10 reclassified → EXPECTED;
+  BUG-11 stays a REAL DEFECT (skip 500s); BUG-5/6/7/8/9 = OTHER (enforcement or
+  added-requirement, not flow-skips). Detail in `build/simple-flow/finding-reclassification.md`.
 - **QA env:** app `https://sv7301.qa.shopview.com`; API host
   `https://sv7301api.qa.shopview.com` (note: `sv7301api`, no dot).
 - **Auth:** `POST /api/quick-login {key:'admin'|'tech'}` gated by cookies

@@ -117,7 +117,13 @@ and SF-REV-09 are PASS (FE-gating acceptable) or FAIL (BE gap).
   tweak to add "Category required"; NOT yet changed in the cases/import — flagged
   for PO/team ruling).
 
-### BUG-10 — No "Resolve Cores" step in the completion wizard for an inventory core (resolution is line-level) · Sev: Medium · Status: OPEN
+### BUG-10 — No "Resolve Cores" step in the completion wizard for an inventory core (resolution is line-level) · Sev: Medium · Status: RECLASSIFIED → EXPECTED (2026-07-08)
+> **RECLASSIFIED → EXPECTED** per the Simple Flow shortcut principle (see
+> `finding-reclassification.md`): the wizard skipping the Resolve-Cores step and
+> going Details→Success still reaches the same end state with **no error and no
+> data/inventory/Part-History corruption** — core Ok/Not-Ok stays available as a
+> line-level control. **Not a defect, not a PO question.** (The receive-dependent
+> special-order-core paths remain separately blocked by BUG-11, a real defect.)
 - **Spec (SF-CORE-01/10, S3-C1/S4-C1, "Resolve Cores handoff"):** after Pick, the
   completion **modal/wizard** should show a distinct **Resolve Cores** step listing
   the core lines, with **Ok / Not OK per core** and a live **"+$ to invoice"**
@@ -211,12 +217,20 @@ Affects SF-SET-03, SF-COMP-06, SF-QB-02.
 The Save button on the Work Orders settings tab is clickable with no pending
 changes (no dirty-state gating). Affects SF-SET-13.
 
-### BUG-3 — Mark Reviewed dialog missing optional note · Open Q7
+### BUG-3 — Mark Reviewed dialog missing optional note · Open Q7 · RECLASSIFIED → EXPECTED (2026-07-08)
 Story 16 R7/R10 specify an optional `input_review_note`; the live dialog exposes
 only the VIN field. Affects SF-REV-10.
+> **RECLASSIFIED → EXPECTED** per the Simple Flow shortcut principle (see
+> `finding-reclassification.md`): omitting an optional note is a simplification
+> that reaches the same signed-off end state with no error/corruption. **Not a
+> defect.** (Kept in Milos Round-2 as a one-line confirm only.)
 
-### BUG-4 — Review sign-off jumps to Complete · Open Q8
+### BUG-4 — Review sign-off jumps to Complete · Open Q8 · RECLASSIFIED → EXPECTED (2026-07-08)
 Story 16 R5/R8 describe Review → **Reviewed** → (final Complete) → Complete as
 distinct states; live, Confirm Review went straight to Complete with no distinct
 "Reviewed" state observed (possible admin auto-progression). Affects SF-REV-08,
 SF-REV-11.
+> **RECLASSIFIED → EXPECTED** per the Simple Flow shortcut principle (see
+> `finding-reclassification.md`): a skipped intermediate "Reviewed" state that
+> still reaches the same Complete end state with no error/corruption. **Not a
+> defect.**

@@ -69,6 +69,30 @@ test cases:
 
 ---
 
+## INTERPRETATION NOTE — Simple Flow "shortcut" principle (authoring rule)
+
+> **Scope: Simple Flow ONLY.** Simple Flow (Simple Mode) exists to shorten/skip
+> legacy multi-step flows so the user reaches the **same end state faster**.
+> Therefore, when authoring/verifying expected results:
+>
+> - Any behavior that reaches the same destination by **SKIPPING** a legacy
+>   flow/step is **EXPECTED** — it is NOT a bug and NOT a question for the PO.
+> - It is a **DEFECT only** if the skip (a) throws an **ERROR**, or (b) **corrupts
+>   data / inventory / Part-History integrity**.
+>
+> Applied 2026-07-08 (see `finding-reclassification.md`): the completion wizard
+> having **no distinct "Resolve Cores" step** (core Ok/Not-Ok is line-level;
+> Details→Success) = EXPECTED; review sign-off going **straight Review→Complete**
+> with no distinct "Reviewed" holding state = EXPECTED; the Mark-Reviewed dialog
+> **omitting the optional review-note field** = EXPECTED (a simplification, still a
+> light PO confirm). By contrast, **receiving a WO-originated PO returning HTTP 500
+> (BUG-11)** = REAL DEFECT (the skip throws an error). Permission/enforcement
+> findings (BE not enforcing completion/review atoms — BUG-6/7/8) and added
+> requirements (vendorless part-add requiring a Category — BUG-9) are NOT
+> flow-skips; they remain OTHER (question/bug as appropriate).
+
+---
+
 ## Story ↔ Jira ID map (recovered from .doc)
 
 | Story | Title | Jira |
