@@ -23,11 +23,28 @@ all).
    `build/APP-ACTIONS-PLAYBOOK.md`, `build/custom-roles-run/*`,
    `build/custom-roles-spec-update/*`, TestRail section **3527** / run **312**.
 2. **Fees and Discount project** — Fees & Discounts V1 (ShopView). Memory:
-   `build/fees-discounts/*` (`requirements.md` = spec extract [NOTE: source PDF
-   was truncated at Story 2; Stories 3-13 missing], `viu-findings.md` when done,
-   `/tmp/fees-discounts` loom transcript). **STATUS: BLOCKED** — do not proceed
-   with VIU or case-writing until BOTH the COMPLETE spec (Stories 3-13, incl. the
-   Story-13 permissions table) AND the design files are provided.
+   `build/fees-discounts/*` (`requirements.md` = COMPLETE spec Stories 1–14 + §5
+   calc contract; `design-notes.md`; `viu-recon.md` = qb env map/access/harness;
+   **TWO same-day VIU passes 2026-07-08:** pass A = `viu-findings.md` +
+   `bugs-log.md` + `viu-evidence/` (API-heavy, Admin+Tech); pass B =
+   `viu-qb-findings.md` + `screenshots/viu-qb/` (UI-deep) — pass B's doc holds
+   the merged scoreboard + reconciliation + FDBUG register + API map).
+   **STATUS: FEATURE LIVE on `qb.qa.shopview.com` / API
+   `sv7387api.qa.shopview.com` (flag ON) — deep-VIU BATCH 1 DONE 2026-07-08:**
+   all 182 cases adjudicated in `cases/*.json` `viu_status`, both passes merged
+   (72 Verified / 36 Deviation / 11 Blocked-NotBuilt [S11 Part Sales ×7 + S8
+   Processing-Fee builder UI ×4] / 31 Blocked-Env [QuickBooks; flag-off skipped
+   on shared env; most Story-13 perms] / 32 Pending [parts UI flows,
+   invoice-time walks]). **FDBUG register (13+)** — headline: FDBUG-1 WO +
+   estimate Subtotal/Total EXCLUDE adjustment amounts while GST includes their
+   tax; FDBUG-2 processing-fee base wrongly includes whole-WO fees+tax; FDBUG-3
+   auto-applied adjustments write no history entries; whole-WO adjustment add is
+   FE-only enforced (pass A tech 201) while templates admin IS BE-enforced (403).
+   Double-add known bug NOT reproduced in the controlled repro (1 adjustment per
+   template). **Tech quick-login on qb is FLAKY** (403 for recon/pass B, 200 for
+   pass A — retest each run). **qb env is SHARED** — parallel testers toggled/
+   deleted data mid-run; never assume env state. Batch-2 backlog at end of
+   `viu-qb-findings.md`.
    *TestRail import (INTERIM):* `testrail-import/fees-discounts-v1-testrail-import.csv`
    (+ `.xlsx`), all 182 cases via `build/fees-discounts/gen_import.py`; **VIU-word-free
    and feature-flag-free by user rule**; INTERIM pending post-VIU + dev-answer
