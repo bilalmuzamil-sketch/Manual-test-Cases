@@ -127,11 +127,15 @@ intro = (
     "validation/edge cases.\n\n"
     "The cases were authored from the complete written spec plus the design "
     "mockups (see build/fees-discounts/requirements.md and design-notes.md).\n\n"
-    "VIU (Verify-in-UI on staging) is PENDING: the feature is not yet deployed on "
-    "staging. The feature flag is ON, but the backend and UI have not shipped "
-    "(expected in roughly two weeks). Because of this, EVERY case is marked "
-    "\"VIU pending\" - the cases are written to the spec and must be re-verified "
-    "against the live app once it is deployed. See the \"VIU (pending)\" tab.\n\n"
+    "VIU (Verify-in-UI): a deep VIU pass ran 2026-07-08 on the qb QA env "
+    "(qb.qa.shopview.com / sv7387api). 62 of 182 cases are VIU-Verified (built "
+    "surfaces: the full §5 calculation contract - math matches EXACTLY - plus "
+    "whole-WO / labor / part adjustments, validation, history log, template CRUD, "
+    "customer-default endpoints, and partial permissions). 120 stay VIU-Pending: "
+    "not-built surfaces (Processing Fee/Story 8, Part Sales/Story 11, "
+    "QuickBooks/Story 6, customer documents/Story 5-14) and cases needing per-role "
+    "logins or a flag-off org. See build/fees-discounts/viu-findings.md and "
+    "bugs-log.md; per-case verdicts are in the VIU Status column here.\n\n"
     "Where the design mockups and the written spec disagree, or where the current "
     "build is known to differ, the case Notes flag it and the item is consolidated "
     "on the \"Open Questions\" tab - review that tab before execution."
@@ -258,8 +262,11 @@ tc.freeze_panes = "B2"  # freeze header row + Test ID column
 # ================================================================ VIU (pending)
 viu = wb.create_sheet("VIU (pending)")
 banner = (
-    "VIU PENDING - Fees & Discounts not yet deployed on staging. Fill this tab "
-    "once the feature is live (see build/fees-discounts/RESUME-STRATEGY.md)."
+    "VIU worksheet - deep VIU pass ran 2026-07-08 on qb QA env: 62/182 "
+    "VIU-Verified, 120 VIU-Pending. Per-case verdicts + evidence are in the "
+    "VIU Status column of the Test Cases tab; details in viu-findings.md. Use "
+    "this tab to record any further re-verification (not-built surfaces + "
+    "per-role/flag-off cases remain)."
 )
 viu.append([banner])
 viu.merge_cells("A1:H1")

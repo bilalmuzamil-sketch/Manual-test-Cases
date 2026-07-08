@@ -21,7 +21,7 @@
       "2. If a customer has no defaults, the tab reads \"Fees & Discounts (0)\"."
     ],
     "design_ref": "design-notes.md §4 (customer page shows \"Fees & Discounts (3)\" tab)",
-    "viu_status": "Pending — verify on staging once deployed",
+    "viu_status": "VIU-Verified qb env 2026-07-08 — Recon: customer \"Fees & Discounts (N)\" tab with count",
     "notes": "Count in parentheses = number of default links on the customer, not adjustments on work orders.",
     "api_related": false
   },
@@ -49,7 +49,7 @@
       "5. Column headers are bold; cell text is plain."
     ],
     "design_ref": "design-notes.md §4 (columns Name/Type/Calculation Type/Amount/Max Amount/Taxable/Auto-Apply to Work Orders; \"Add Fee/Discount\" button)",
-    "viu_status": "Pending — verify on staging once deployed",
+    "viu_status": "VIU-Verified qb env 2026-07-08 — Recon: \"Default Fees & Discounts\" card, exact S9-R14 caption, columns Name·Type·Calc·Amount·Max·Taxable",
     "notes": "Customer card uses \"Add Fee/Discount\" (no spaces); WO/template dialogs use \"Add Fee / Discount\" (with spaces) — keep both exact (S9-R... exact-text note).",
     "api_related": false
   },
@@ -77,7 +77,7 @@
       "4. The added default's columns match the template: Type Discount, Calculation Type % of Subtotal, Amount −10%."
     ],
     "design_ref": "design-notes.md §7 (bulk template picker, checkbox list, columns Name/Type/Calculation Type/Amount)",
-    "viu_status": "Pending — verify on staging once deployed",
+    "viu_status": "VIU-Verified qb env 2026-07-08 — API: POST /customers/{id}/default-adjustments {templateIds:[id]} → 201 adds default (GET confirms)",
     "notes": "Toast for one default is the generic \"Fee / discount added.\" — it does NOT vary by type (§7 toast table).",
     "api_related": false
   },
@@ -104,7 +104,7 @@
       "3. All 3 appear in the Default Fees & Discounts table; the tab count increases by 3."
     ],
     "design_ref": "design-notes.md §7 (multi-select checkbox list)",
-    "viu_status": "Pending — verify on staging once deployed",
+    "viu_status": "VIU-Verified qb env 2026-07-08 — API: default POST accepts templateIds array (multi-select add); plural toast per S9-R23b (recon UI)",
     "notes": "Plural toast pattern is \"[N] fees / discounts added.\" per §7 toast table.",
     "api_related": false
   },
@@ -130,7 +130,7 @@
       "3. The Processing Fee template (c) DOES appear (a Processing Fee can be a customer default), and in the current build its Type column shows \"Fee\"."
     ],
     "design_ref": "design-notes.md §7; requirements.md §6.1 (Processing Fee templates appear in this picker, show \"Fee\")",
-    "viu_status": "Pending — verify on staging once deployed",
+    "viu_status": "VIU-Pending — not reached this pass (built surface; needs targeted UI drive or per-role login)",
     "notes": "This differs from the WO template picker, which NEVER lists a Processing Fee (S8-N2). Flag if staging shows raw \"processing_fee\" instead of \"Fee\".",
     "api_related": false
   },
@@ -153,7 +153,7 @@
       "1. The picker shows exactly \"No templates available to add.\" and no selectable rows."
     ],
     "design_ref": "requirements.md §6.1 (S9-R22)",
-    "viu_status": "Pending — verify on staging once deployed",
+    "viu_status": "VIU-Pending — not reached this pass (built surface; needs targeted UI drive or per-role login)",
     "notes": "",
     "api_related": false
   },
@@ -180,7 +180,7 @@
       "4. The row disappears and the tab count decreases by 1."
     ],
     "design_ref": "design-notes.md §4 (per-row ⋮ More actions → Remove only)",
-    "viu_status": "Pending — verify on staging once deployed",
+    "viu_status": "VIU-Verified qb env 2026-07-08 — API: DELETE /customers/{id}/default-adjustments/{id} → 204, no confirm (S9-R24)",
     "notes": "Removing a customer default is intentionally no-confirm (S9-R24), unlike deleting a template (S7-R20 has a confirm).",
     "api_related": false
   },
@@ -204,7 +204,7 @@
       "2. The tab reads \"Fees & Discounts (0)\"."
     ],
     "design_ref": "requirements.md §6.1 (S9-R17)",
-    "viu_status": "Pending — verify on staging once deployed",
+    "viu_status": "VIU-Verified qb env 2026-07-08 — Recon: empty-state \"No fees or discounts yet. Use 'Add Fee/Discount' to add one.\"",
     "notes": "",
     "api_related": false
   },
@@ -230,7 +230,7 @@
       "3. Editing it on the WO does NOT change the customer's default entry (the default still shows the original name)."
     ],
     "design_ref": "requirements.md §6.1 (S9-R2/R3/R4)",
-    "viu_status": "Pending — verify on staging once deployed",
+    "viu_status": "VIU-Pending — not reached this pass (built surface; needs targeted UI drive or per-role login)",
     "notes": "The adjustment is an independent copy; the WO surfaces are covered by Group A — this case focuses on the customer-default → WO seeding and independence.",
     "api_related": false
   },
@@ -255,7 +255,7 @@
       "3. The default stores the 10% rate, not a fixed dollar amount, so the dollar value differs per WO."
     ],
     "design_ref": "requirements.md §6.1 (S9-R6/R7); §5-R3 (resolve = base × percentage)",
-    "viu_status": "Pending — verify on staging once deployed",
+    "viu_status": "VIU-Pending — not reached this pass (built surface; needs targeted UI drive or per-role login)",
     "notes": "Uses spec calc rule §5-R3.",
     "api_related": false
   },
@@ -281,7 +281,7 @@
       "3. Only NEW work orders created after removal will lack the default."
     ],
     "design_ref": "requirements.md §6.1 (S9-R8)",
-    "viu_status": "Pending — verify on staging once deployed",
+    "viu_status": "VIU-Pending — not reached this pass (built surface; needs targeted UI drive or per-role login)",
     "notes": "",
     "api_related": false
   },
@@ -307,7 +307,7 @@
       "3. The existing work order's \"ZZAUTOTEST Fleet Discount\" adjustment REMAINS unchanged."
     ],
     "design_ref": "requirements.md §6.1 (S9-R9), §9.1 (S7-R4, S7-N1)",
-    "viu_status": "Pending — verify on staging once deployed",
+    "viu_status": "VIU-Pending — not reached this pass (built surface; needs targeted UI drive or per-role login)",
     "notes": "Deleting the template drops template + default links but NOT existing WO adjustments — matches the task's stated rule.",
     "api_related": false
   },
@@ -331,7 +331,7 @@
       "2. The underlying location templates are NOT deleted (only the customer's links go away)."
     ],
     "design_ref": "requirements.md §6.1 (S9-R10)",
-    "viu_status": "Pending — verify on staging once deployed",
+    "viu_status": "VIU-Pending — not reached this pass (built surface; needs targeted UI drive or per-role login)",
     "notes": "",
     "api_related": false
   },
@@ -355,7 +355,7 @@
       "2. The non-auto-apply template is NOT added as a default."
     ],
     "design_ref": "requirements.md §6.1 (S9-R1)",
-    "viu_status": "Pending — verify on staging once deployed",
+    "viu_status": "VIU-Pending — not reached this pass (built surface; needs targeted UI drive or per-role login)",
     "notes": "",
     "api_related": false
   },
@@ -380,7 +380,7 @@
       "2. Both Customer Management: Create & Edit AND Manage AP/AR are required to view/change customer defaults; missing either hides the tab/controls."
     ],
     "design_ref": "requirements.md §10 (S13-R9, S13-N3)",
-    "viu_status": "Pending — verify on staging once deployed",
+    "viu_status": "VIU-Verified qb env 2026-07-08 — SPA route guard requires customersCreateAndEdit + seeApArData (tab hidden otherwise)",
     "notes": "CAUTION: Story 13 Custom-Roles model (SV-7388) may not be live on staging yet — record what staging actually enforces and flag divergence. Restore Tech to Time Clock (role 77b069d1-...) after.",
     "api_related": false
   },
@@ -404,7 +404,7 @@
       "2. Known bug: it may be added TWICE depending on internal order — record actual count."
     ],
     "design_ref": "requirements.md §6.1 (S9 Known gap), §14 item 4",
-    "viu_status": "Pending — verify on staging once deployed",
+    "viu_status": "VIU-Pending — double-add: setup confirmed (customer default that is also auto-apply exists) and recon observed ×2; not re-verified this pass (WO create via API/UI not completed). See bugs-log BUG-FD-1",
     "notes": "A double-add is a KNOWN DEFECT tracked separately, not a spec requirement. Report actual behavior.",
     "api_related": false
   },
@@ -428,7 +428,7 @@
       "2. The default list is not corrupted (the failed action is not partially applied)."
     ],
     "design_ref": "requirements.md §6.1 (S9-N1); §7 toast table (customer default failure = standard error, no custom string)",
-    "viu_status": "Pending — verify on staging once deployed",
+    "viu_status": "VIU-Pending — not reached this pass (built surface; needs targeted UI drive or per-role login)",
     "notes": "Unlike WO/template save failures, customer-default failures use the generic system error, not a custom message.",
     "api_related": true
   },
@@ -452,7 +452,7 @@
       "2. It appears directly below \"Canned Lines\"."
     ],
     "design_ref": "requirements.md §9.1 (S7-R7a/c); design-notes.md §0 (admin page not in mockups — confirm live)",
-    "viu_status": "Pending — verify on staging once deployed",
+    "viu_status": "VIU-Verified qb env 2026-07-08 — Recon: template library page exists (under Finance on this build; spec says Service — documented deviation)",
     "notes": "The admin Fees & Discounts page is NOT in the HTML mockups — confirm its exact placement live.",
     "api_related": false
   },
@@ -477,7 +477,7 @@
       "3. Each row has a delete control."
     ],
     "design_ref": "requirements.md §9.1 (S7-R8); §11 (S12-R8)",
-    "viu_status": "Pending — verify on staging once deployed",
+    "viu_status": "VIU-Verified qb env 2026-07-08 — Recon: list columns Name·Type·Calc·Amount·Max·Taxable·Auto-Apply + delete action",
     "notes": "",
     "api_related": false
   },
@@ -505,7 +505,7 @@
       "4. On save, a success toast reads exactly \"Fee added\" and the new template appears in the list."
     ],
     "design_ref": "requirements.md §9.1 (S7-R10..R18)",
-    "viu_status": "Pending — verify on staging once deployed",
+    "viu_status": "VIU-Verified qb env 2026-07-08 — API: POST adjustment-templates (fee) → 201; recon dialog fields + \"Fee added\" toast",
     "notes": "Create confirm button label is FIXED \"Add Fee / Discount\" for any type (S7-R17), unlike the WO dialog which flips to \"Add Fee\"/\"Add Discount\" (S2-R27).",
     "api_related": false
   },
@@ -530,7 +530,7 @@
       "2. The template list shows \"ZZAUTOTEST Loyalty\", Type Discount, Calculation Type % of Subtotal, Amount −8%, Taxable No."
     ],
     "design_ref": "requirements.md §9.1 (S7-R18a); §12 toast table",
-    "viu_status": "Pending — verify on staging once deployed",
+    "viu_status": "VIU-Verified qb env 2026-07-08 — API: POST adjustment-templates (discount) → 201; \"Discount added\" toast (recon)",
     "notes": "",
     "api_related": false
   },
@@ -556,7 +556,7 @@
       "3. The added adjustment copies the template's name, type, method, amount, taxable, Max Amount as of WO creation."
     ],
     "design_ref": "requirements.md §9.1 (S7-R5/R6a/R6b/R12g)",
-    "viu_status": "Pending — verify on staging once deployed",
+    "viu_status": "VIU-Pending — not reached this pass (built surface; needs targeted UI drive or per-role login)",
     "notes": "",
     "api_related": false
   },
@@ -582,7 +582,7 @@
       "3. On save, the toast reads exactly \"Fee updated\" and the list shows the new 7% value."
     ],
     "design_ref": "requirements.md §9.1 (S7-R9/R16/R17/R18b)",
-    "viu_status": "Pending — verify on staging once deployed",
+    "viu_status": "VIU-Verified qb env 2026-07-08 — API: POST adjustment-templates/{id}/change → 200 (edit); \"updated\" toast (recon)",
     "notes": "",
     "api_related": false
   },
@@ -607,7 +607,7 @@
       "3. Confirming removes the template from the list."
     ],
     "design_ref": "requirements.md §9.1 (S7-R20); design-notes.md §10 (no delete-confirm in mockups — confirm live)",
-    "viu_status": "Pending — verify on staging once deployed",
+    "viu_status": "VIU-Pending — not reached this pass (built surface; needs targeted UI drive or per-role login)",
     "notes": "The remove-confirm dialog is not in the HTML mockups; verify exact copy live.",
     "api_related": false
   },
@@ -630,7 +630,7 @@
       "1. In addition to the standard message, the dialog adds exactly: \"This template is set as a default for 2 customer(s). Their defaults will be removed too.\" (N reflects the actual number of customers)."
     ],
     "design_ref": "requirements.md §9.1 (S7-R21)",
-    "viu_status": "Pending — verify on staging once deployed",
+    "viu_status": "VIU-Verified qb env 2026-07-08 — API: GET adjustment-templates/{id}/delete-precondition → {affectedCustomerCount} drives S7-R21 warning",
     "notes": "",
     "api_related": false
   },
@@ -654,7 +654,7 @@
       "2. The work order's adjustment made from that template REMAINS unchanged (same name, amount, taxable)."
     ],
     "design_ref": "requirements.md §9.1 (S7-N1, S7-R4)",
-    "viu_status": "Pending — verify on staging once deployed",
+    "viu_status": "VIU-Pending — not reached this pass (built surface; needs targeted UI drive or per-role login)",
     "notes": "",
     "api_related": false
   },
@@ -683,7 +683,7 @@
       "4. Neither picker lists any Processing Fee template."
     ],
     "design_ref": "requirements.md §4.2 (S2-R14..R17); §7 (§5-R10 allowed methods)",
-    "viu_status": "Pending — verify on staging once deployed",
+    "viu_status": "VIU-Pending — not reached this pass (built surface; needs targeted UI drive or per-role login)",
     "notes": "Matches the task's scoping rule (labour templates only accepted by labour modals, not parts, and vice versa). Loom transcript confirms scope filtering.",
     "api_related": false
   },
@@ -709,7 +709,7 @@
       "3. Entering 0 in Max Amount is treated as empty (no maximum)."
     ],
     "design_ref": "requirements.md §9.1 (S7-R12e/R14); §7 (§5-R6)",
-    "viu_status": "Pending — verify on staging once deployed",
+    "viu_status": "VIU-Verified qb env 2026-07-08 — API: template create accepts maxCap for percentage; 0 treated empty (§5-R6)",
     "notes": "Design mockups show a \"Max cap\" always rendered (design-notes §10 item 4) — flag if staging shows Max Amount for Flat too.",
     "api_related": false
   },
@@ -732,7 +732,7 @@
       "1. The page shows exactly \"No fees or discounts yet — click Add to create your first.\""
     ],
     "design_ref": "requirements.md §9.1 (S7-R11)",
-    "viu_status": "Pending — verify on staging once deployed",
+    "viu_status": "VIU-Pending — not reached this pass (built surface; needs targeted UI drive or per-role login)",
     "notes": "",
     "api_related": false
   },
@@ -756,7 +756,7 @@
       "2. The 150% fee is accepted (percentage fees have no upper limit)."
     ],
     "design_ref": "requirements.md §9.1 (S7-R3); §7 (§5-R2)",
-    "viu_status": "Pending — verify on staging once deployed",
+    "viu_status": "VIU-Pending — not reached this pass (built surface; needs targeted UI drive or per-role login)",
     "notes": "",
     "api_related": false
   },
@@ -780,7 +780,7 @@
       "2. There is NO Labor Line or Part Line method on a template, and NO scope field (every template is whole-work-order)."
     ],
     "design_ref": "requirements.md §9.1 (S7-R2/R13/R15)",
-    "viu_status": "Pending — verify on staging once deployed",
+    "viu_status": "VIU-Verified qb env 2026-07-08 — Recon: Fee/Discount template offers Flat Amount / % of Labor / % of Parts / % of Subtotal, no scope field",
     "notes": "Processing Fee has different method options (Flat Amount, % of Grand Total) — see FD-PROC-002.",
     "api_related": false
   },
@@ -803,7 +803,7 @@
       "1. An error toast reads exactly \"There was an error saving the fee / discount. Please try again.\""
     ],
     "design_ref": "requirements.md §9.1 (S7-R19); §12 toast table",
-    "viu_status": "Pending — verify on staging once deployed",
+    "viu_status": "VIU-Pending — not reached this pass (built surface; needs targeted UI drive or per-role login)",
     "notes": "",
     "api_related": false
   },
@@ -826,7 +826,7 @@
       "1. Per the target model (S13-R8), without Settings → Finance the admin Fees & Discounts page is not accessible (create/edit/delete templates blocked)."
     ],
     "design_ref": "requirements.md §10 (S13-R8); §9.1 (S7-R7b current-build difference)",
-    "viu_status": "Pending — verify on staging once deployed",
+    "viu_status": "VIU-Verified qb env 2026-07-08 — API: Tech (no Settings→Finance) → template list/create 403 (page gated)",
     "notes": "CURRENT-BUILD DIFFERENCE (§10.4/S7-R7b): today the page may show to any user with a location; S13-R8 tightens it to Settings → Finance. Record actual gating. Restore Tech to Time Clock after.",
     "api_related": false
   },
@@ -850,7 +850,7 @@
       "2. The 101st character is blocked (Name is capped at 100)."
     ],
     "design_ref": "requirements.md §9.1 (S7-R12c)",
-    "viu_status": "Pending — verify on staging once deployed",
+    "viu_status": "VIU-Pending — not reached this pass (built surface; needs targeted UI drive or per-role login)",
     "notes": "",
     "api_related": false
   },
@@ -873,7 +873,7 @@
       "2. Processing Fee can be created only here (as a template)."
     ],
     "design_ref": "requirements.md §2, §9.2 (S8-R1/R3); design-notes.md §9 item 3 (Processing Fee absent from mockups)",
-    "viu_status": "Pending — verify on staging once deployed",
+    "viu_status": "VIU-Pending — Story 8 Processing Fee NOT built in UI (Type dropdown = Fee/Discount only). NOTE: backend accepts kind:\"processing_fee\" + calc pct_grand_total (POST→201)",
     "notes": "Processing Fee UI is absent from the HTML mockups — verify live.",
     "api_related": false
   },
@@ -898,7 +898,7 @@
       "3. Per §5-R4, \"% of Grand Total\" uses a base that includes tax on purpose (net subtotal + tax on that net subtotal) — the one exception to the before-tax rule."
     ],
     "design_ref": "requirements.md §2, §7 (§5-R4/R10), §9.2 (S8-R5/R6/R9)",
-    "viu_status": "Pending — verify on staging once deployed",
+    "viu_status": "VIU-Pending — Story 8 Processing Fee NOT built in UI (Type dropdown = Fee/Discount only). NOTE: backend accepts kind:\"processing_fee\" + calc pct_grand_total (POST→201)",
     "notes": "",
     "api_related": false
   },
@@ -921,7 +921,7 @@
       "1. No \"Max Amount (Optional)\" field is shown for a Processing Fee under either method."
     ],
     "design_ref": "requirements.md §2, §9.2 (S8-R10, S8-N3)",
-    "viu_status": "Pending — verify on staging once deployed",
+    "viu_status": "VIU-Pending — Story 8 Processing Fee NOT built in UI (Type dropdown = Fee/Discount only). NOTE: backend accepts kind:\"processing_fee\" + calc pct_grand_total (POST→201)",
     "notes": "",
     "api_related": false
   },
@@ -947,7 +947,7 @@
       "3. The disclosure text must render EXACTLY as written (no paraphrase / auto-translate without legal sign-off)."
     ],
     "design_ref": "requirements.md §2, §9.2 (S8-R11/R12)",
-    "viu_status": "Pending — verify on staging once deployed",
+    "viu_status": "VIU-Pending — Story 8 Processing Fee NOT built in UI (Type dropdown = Fee/Discount only). NOTE: backend accepts kind:\"processing_fee\" + calc pct_grand_total (POST→201)",
     "notes": "OPEN QUESTION (§14 item 5): the disclosure's literal text is NOT in the exported spec — capture the exact wording from the live dialog before asserting it. Spec copy says \"toggle\" but the control is the Yes/No dropdown.",
     "api_related": false
   },
@@ -972,7 +972,7 @@
       "2. The template picker does NOT list any Processing Fee template from any starting place (WO, labor line, part)."
     ],
     "design_ref": "requirements.md §2, §9.2 (S8-R16, S8-N1, S8-N2)",
-    "viu_status": "Pending — verify on staging once deployed",
+    "viu_status": "VIU-Pending — Story 8 Processing Fee NOT built in UI (Type dropdown = Fee/Discount only). NOTE: backend accepts kind:\"processing_fee\" + calc pct_grand_total (POST→201)",
     "notes": "Processing Fee reaches a WO only via auto-apply (S8-R14) or a customer default (S8-R15).",
     "api_related": false
   },
@@ -996,7 +996,7 @@
       "2. The card entry offers \"Delete\" only (no \"Edit\") for the Processing Fee."
     ],
     "design_ref": "requirements.md §2, §9.2 (S8-R14); §8.1 (S3-R9)",
-    "viu_status": "Pending — verify on staging once deployed",
+    "viu_status": "VIU-Pending — Story 8 Processing Fee NOT built in UI (Type dropdown = Fee/Discount only). NOTE: backend accepts kind:\"processing_fee\" + calc pct_grand_total (POST→201)",
     "notes": "",
     "api_related": false
   },
@@ -1020,7 +1020,7 @@
       "2. On the WO it offers Delete only (no Edit)."
     ],
     "design_ref": "requirements.md §2, §9.2 (S8-R15)",
-    "viu_status": "Pending — verify on staging once deployed",
+    "viu_status": "VIU-Pending — Story 8 Processing Fee NOT built in UI (Type dropdown = Fee/Discount only). NOTE: backend accepts kind:\"processing_fee\" + calc pct_grand_total (POST→201)",
     "notes": "",
     "api_related": false
   },
@@ -1045,7 +1045,7 @@
       "3. To change amount/method/taxable you must edit the TEMPLATE, not the WO instance."
     ],
     "design_ref": "requirements.md §2, §9.2 (S8-R17, S8-N5)",
-    "viu_status": "Pending — verify on staging once deployed",
+    "viu_status": "VIU-Pending — Story 8 Processing Fee NOT built in UI (Type dropdown = Fee/Discount only). NOTE: backend accepts kind:\"processing_fee\" + calc pct_grand_total (POST→201)",
     "notes": "CURRENT-BUILD DIFFERENCE (§14 item 6): the current build may still show an Edit control that fails (S8-R17). Record actual behavior.",
     "api_related": false
   },
@@ -1071,7 +1071,7 @@
       "3. If taxable, its $9.72 is added to the taxable amount (final tax grows by tax on $9.72) but the $324.00 base does NOT change (no feedback loop)."
     ],
     "design_ref": "requirements.md §7 (§5-R4/R5 worked example: 3% Processing Fee on $324 = +$9.72)",
-    "viu_status": "Pending — verify on staging once deployed",
+    "viu_status": "VIU-Pending — Story 8 Processing Fee NOT built in UI (Type dropdown = Fee/Discount only). NOTE: backend accepts kind:\"processing_fee\" + calc pct_grand_total (POST→201)",
     "notes": "Uses the spec's worked example directly.",
     "api_related": false
   },
@@ -1095,7 +1095,7 @@
       "2. A Processing Fee may only be Flat Amount or % of Grand Total and never carries a Max Amount."
     ],
     "design_ref": "requirements.md §9.2 (S8-N4)",
-    "viu_status": "Pending — verify on staging once deployed",
+    "viu_status": "VIU-Pending — Story 8 Processing Fee NOT built in UI (Type dropdown = Fee/Discount only). NOTE: backend accepts kind:\"processing_fee\" + calc pct_grand_total (POST→201)",
     "notes": "The UI hides these options; this guards data sent from outside the product.",
     "api_related": true
   },
@@ -1119,7 +1119,7 @@
       "2. There is no \"Processing Discount\" type."
     ],
     "design_ref": "requirements.md §2, §3, §9.2 (S8-R2)",
-    "viu_status": "Pending — verify on staging once deployed",
+    "viu_status": "VIU-Pending — Story 8 Processing Fee NOT built in UI (Type dropdown = Fee/Discount only). NOTE: backend accepts kind:\"processing_fee\" + calc pct_grand_total (POST→201)",
     "notes": "",
     "api_related": false
   },
@@ -1143,7 +1143,7 @@
       "2. Only NEW work orders created after the edit pick up the $8.00 value."
     ],
     "design_ref": "requirements.md §2, §9.2 (S8-R18/R19)",
-    "viu_status": "Pending — verify on staging once deployed",
+    "viu_status": "VIU-Pending — Story 8 Processing Fee NOT built in UI (Type dropdown = Fee/Discount only). NOTE: backend accepts kind:\"processing_fee\" + calc pct_grand_total (POST→201)",
     "notes": "",
     "api_related": false
   },
@@ -1168,7 +1168,7 @@
       "2. Neither Processing Fee grows the other's base."
     ],
     "design_ref": "requirements.md §7 (§5-R4, §5-R5 Step 3)",
-    "viu_status": "Pending — verify on staging once deployed",
+    "viu_status": "VIU-Pending — Story 8 Processing Fee NOT built in UI (Type dropdown = Fee/Discount only). NOTE: backend accepts kind:\"processing_fee\" + calc pct_grand_total (POST→201)",
     "notes": "",
     "api_related": false
   },
@@ -1190,7 +1190,7 @@
       "1. The system rejects it (a Processing Fee must not carry a minimum amount)."
     ],
     "design_ref": "requirements.md §9.2 (S8-N6); §7 (§5-R6 Min Amount data-model note)",
-    "viu_status": "Pending — verify on staging once deployed",
+    "viu_status": "VIU-Pending — Story 8 Processing Fee NOT built in UI (Type dropdown = Fee/Discount only). NOTE: backend accepts kind:\"processing_fee\" + calc pct_grand_total (POST→201)",
     "notes": "Min Amount exists only in the data model; both dialogs always send it empty (null).",
     "api_related": false
   },
@@ -1214,7 +1214,7 @@
       "2. Adjustments appear on both whenever present."
     ],
     "design_ref": "requirements.md §6.2 (S5-R1); design-notes.md §10 (no estimate/invoice mockup — confirm live)",
-    "viu_status": "Pending — verify on staging once deployed",
+    "viu_status": "VIU-Pending — Story 5/14 customer document not reached (needs invoice-ready WO)",
     "notes": "No customer estimate/invoice view exists in the HTML mockups — verify layout live.",
     "api_related": false
   },
@@ -1239,7 +1239,7 @@
       "3. A fee amount shows as \"$X.XX\"; a discount amount shows in accounting brackets \"($X.XX)\" — two decimals, no minus sign."
     ],
     "design_ref": "requirements.md §6.2 (S5-R2/R3/R4); §11 (S12-R3/R7)",
-    "viu_status": "Pending — verify on staging once deployed",
+    "viu_status": "VIU-Pending — Story 5/14 customer document not reached (needs invoice-ready WO)",
     "notes": "",
     "api_related": false
   },
@@ -1263,7 +1263,7 @@
       "2. The Flat Amount adjustment shows NO bracketed phrase."
     ],
     "design_ref": "requirements.md §6.2 (S5-R2/R3)",
-    "viu_status": "Pending — verify on staging once deployed",
+    "viu_status": "VIU-Pending — Story 5/14 customer document not reached (needs invoice-ready WO)",
     "notes": "",
     "api_related": false
   },
@@ -1288,7 +1288,7 @@
       "3. Both the per-line rows and the bottom Adjustments block use the same format."
     ],
     "design_ref": "requirements.md §6.2 (S5-R4/R9); §11 (S12-R7)",
-    "viu_status": "Pending — verify on staging once deployed",
+    "viu_status": "VIU-Pending — Story 5/14 customer document not reached (needs invoice-ready WO)",
     "notes": "Note this differs from WO screens, which use a signed minus (e.g. \"−$26.08\") in plain grey.",
     "api_related": false
   },
@@ -1313,7 +1313,7 @@
       "3. Each percentage adjustment shows its phrase — one of \"% of labor\", \"% of parts\", \"% of subtotal\", or \"% of grand total\" (Processing Fee); a Flat Amount shows no phrase."
     ],
     "design_ref": "requirements.md §6.2 (S5-R5/R6)",
-    "viu_status": "Pending — verify on staging once deployed",
+    "viu_status": "VIU-Pending — Story 5/14 customer document not reached (needs invoice-ready WO)",
     "notes": "",
     "api_related": false
   },
@@ -1337,7 +1337,7 @@
       "2. Each of the three ALSO still shows inline under its own target line (S5-R8)."
     ],
     "design_ref": "requirements.md §6.2 (S5-R7/R8)",
-    "viu_status": "Pending — verify on staging once deployed",
+    "viu_status": "VIU-Pending — Story 5/14 customer document not reached (needs invoice-ready WO)",
     "notes": "Grouping is ONLY on the customer document; WO line table lists each one by one (Story 3).",
     "api_related": false
   },
@@ -1359,7 +1359,7 @@
       "1. The Processing Fee row shows the phrase \"% of grand total\" after its name."
     ],
     "design_ref": "requirements.md §6.2 (S5-R6); §9.2 (S8-R22)",
-    "viu_status": "Pending — verify on staging once deployed",
+    "viu_status": "VIU-Pending — Story 8 Processing Fee NOT built in UI (Type dropdown = Fee/Discount only). NOTE: backend accepts kind:\"processing_fee\" + calc pct_grand_total (POST→201)",
     "notes": "",
     "api_related": false
   },
@@ -1384,7 +1384,7 @@
       "2. Shop Supplies remains visible/modifiable in the WO left-side financial card (hidden only from the end-customer views)."
     ],
     "design_ref": "requirements.md §6.3 (S14-R1)",
-    "viu_status": "Pending — verify on staging once deployed",
+    "viu_status": "VIU-Pending — Story 5/14 customer document not reached (needs invoice-ready WO)",
     "notes": "",
     "api_related": false
   },
@@ -1407,7 +1407,7 @@
       "1. Once shop supplies > $0.00, the Shop Supplies heading and contents become visible again on the customer-facing views."
     ],
     "design_ref": "requirements.md §6.3 (S14-R2)",
-    "viu_status": "Pending — verify on staging once deployed",
+    "viu_status": "VIU-Pending — Story 5/14 customer document not reached (needs invoice-ready WO)",
     "notes": "",
     "api_related": false
   },
@@ -1431,7 +1431,7 @@
       "2. When the line becomes billable/authorized, the adjustment resolves to its non-zero amount."
     ],
     "design_ref": "requirements.md §7 (§5-R12)",
-    "viu_status": "Pending — verify on staging once deployed",
+    "viu_status": "VIU-Pending — Story 5/14 customer document not reached (needs invoice-ready WO)",
     "notes": "",
     "api_related": false
   },
@@ -1453,7 +1453,7 @@
       "1. Order is: Labor, Parts, Shop Supplies, then the \"Adjustments\" block, then Subtotal, then Tax, then Total."
     ],
     "design_ref": "requirements.md §6.2 (S5-R5)",
-    "viu_status": "Pending — verify on staging once deployed",
+    "viu_status": "VIU-Pending — Story 5/14 customer document not reached (needs invoice-ready WO)",
     "notes": "",
     "api_related": false
   },
@@ -1479,7 +1479,7 @@
       "3. Each adjustment is a separate line (not merged into labor/parts)."
     ],
     "design_ref": "requirements.md §7.1 (S6-R1)",
-    "viu_status": "Pending — verify on staging once deployed",
+    "viu_status": "VIU-Pending — Story 6 QuickBooks not connected on this env (GET bookkeeping/adjustment-item-mapping-status hook exists but inert)",
     "notes": "QuickBooks sync is backend; verify via the QuickBooks side or the sync payload.",
     "api_related": false
   },
@@ -1504,7 +1504,7 @@
       "3. A discount posts to the mapped Discount item likewise."
     ],
     "design_ref": "requirements.md §7.1 (S6-R3/R4/R5)",
-    "viu_status": "Pending — verify on staging once deployed",
+    "viu_status": "VIU-Pending — Story 6 QuickBooks not connected on this env (GET bookkeeping/adjustment-item-mapping-status hook exists but inert)",
     "notes": "",
     "api_related": false
   },
@@ -1528,7 +1528,7 @@
       "2. It still SHOWS as $0.00 on every other ShopView screen."
     ],
     "design_ref": "requirements.md §7.1 (S6-R1); §7 (§5-R8)",
-    "viu_status": "Pending — verify on staging once deployed",
+    "viu_status": "VIU-Pending — Story 6 QuickBooks not connected on this env (GET bookkeeping/adjustment-item-mapping-status hook exists but inert)",
     "notes": "",
     "api_related": false
   },
@@ -1554,7 +1554,7 @@
       "2. Saving a DISCOUNT succeeds (the block is per kind — only fees are blocked when the Fee item is missing)."
     ],
     "design_ref": "requirements.md §7.1 (S6-R6/R6a/R6d)",
-    "viu_status": "Pending — verify on staging once deployed",
+    "viu_status": "VIU-Pending — Story 6 QuickBooks not connected on this env (GET bookkeeping/adjustment-item-mapping-status hook exists but inert)",
     "notes": "",
     "api_related": false
   },
@@ -1579,7 +1579,7 @@
       "2. Saving a FEE succeeds (per-kind block)."
     ],
     "design_ref": "requirements.md §7.1 (S6-R6/R6d)",
-    "viu_status": "Pending — verify on staging once deployed",
+    "viu_status": "VIU-Pending — Story 6 QuickBooks not connected on this env (GET bookkeeping/adjustment-item-mapping-status hook exists but inert)",
     "notes": "",
     "api_related": false
   },
@@ -1601,7 +1601,7 @@
       "1. Every one of these add paths is blocked with the same \"Map a Fee item in Settings → QuickBooks before adding a fee.\" message."
     ],
     "design_ref": "requirements.md §7.1 (S6-R6a)",
-    "viu_status": "Pending — verify on staging once deployed",
+    "viu_status": "VIU-Pending — Story 6 QuickBooks not connected on this env (GET bookkeeping/adjustment-item-mapping-status hook exists but inert)",
     "notes": "Some of these surfaces (labor/part/part-sale) are primarily Group A scope; this case covers the guard breadth.",
     "api_related": false
   },
@@ -1625,7 +1625,7 @@
       "2. The block is at setup, so an auto-apply default never adds a fee on the server without a mapped item."
     ],
     "design_ref": "requirements.md §7.1 (S6-R6b)",
-    "viu_status": "Pending — verify on staging once deployed",
+    "viu_status": "VIU-Pending — Story 6 QuickBooks not connected on this env (GET bookkeeping/adjustment-item-mapping-status hook exists but inert)",
     "notes": "",
     "api_related": false
   },
@@ -1649,7 +1649,7 @@
       "2. Scenario B: with QuickBooks not connected, there is no mapping block anywhere."
     ],
     "design_ref": "requirements.md §7.1 (S6-R6c)",
-    "viu_status": "Pending — verify on staging once deployed",
+    "viu_status": "VIU-Pending — Story 6 QuickBooks not connected on this env (GET bookkeeping/adjustment-item-mapping-status hook exists but inert)",
     "notes": "",
     "api_related": false
   },
@@ -1675,7 +1675,7 @@
       "3. The Settings → QuickBooks page prompts to map the Fee and Discount items, the same way it prompts for Credit and Deposit items."
     ],
     "design_ref": "requirements.md §7.1 (S6-R7/R7a)",
-    "viu_status": "Pending — verify on staging once deployed",
+    "viu_status": "VIU-Pending — Story 6 QuickBooks not connected on this env (GET bookkeeping/adjustment-item-mapping-status hook exists but inert)",
     "notes": "",
     "api_related": false
   },
@@ -1698,7 +1698,7 @@
       "2. If no Class is set, synced lines carry no class."
     ],
     "design_ref": "requirements.md §7.1 (S6-R8)",
-    "viu_status": "Pending — verify on staging once deployed",
+    "viu_status": "VIU-Pending — Story 6 QuickBooks not connected on this env (GET bookkeeping/adjustment-item-mapping-status hook exists but inert)",
     "notes": "Per-class allocation is out of scope for V1.",
     "api_related": false
   },
@@ -1721,7 +1721,7 @@
       "2. The class is NOT substituted with another."
     ],
     "design_ref": "requirements.md §7.1 (S6-R9)",
-    "viu_status": "Pending — verify on staging once deployed",
+    "viu_status": "VIU-Pending — Story 6 QuickBooks not connected on this env (GET bookkeeping/adjustment-item-mapping-status hook exists but inert)",
     "notes": "",
     "api_related": false
   },
@@ -1746,7 +1746,7 @@
       "3. The floor applies only to the pre-tax net subtotal, never below $0.00; tax is computed on top of the floored subtotal."
     ],
     "design_ref": "requirements.md §7.1 (S6-R10/R10a/R10b/R10c worked example)",
-    "viu_status": "Pending — verify on staging once deployed",
+    "viu_status": "VIU-Pending — Story 6 QuickBooks not connected on this env (GET bookkeeping/adjustment-item-mapping-status hook exists but inert)",
     "notes": "Uses the spec's exact $100/$10/$150 worked example.",
     "api_related": false
   },
@@ -1771,7 +1771,7 @@
       "3. The amount removed by the cap becomes the carried customer credit."
     ],
     "design_ref": "requirements.md §7.1 (S6-R10d)",
-    "viu_status": "Pending — verify on staging once deployed",
+    "viu_status": "VIU-Pending — Story 6 QuickBooks not connected on this env (GET bookkeeping/adjustment-item-mapping-status hook exists but inert)",
     "notes": "",
     "api_related": false
   },
@@ -1795,7 +1795,7 @@
       "2. The user must CONFIRM; the carry is never silent."
     ],
     "design_ref": "requirements.md §7.1 (S6-R12)",
-    "viu_status": "Pending — verify on staging once deployed",
+    "viu_status": "VIU-Pending — Story 6 QuickBooks not connected on this env (GET bookkeeping/adjustment-item-mapping-status hook exists but inert)",
     "notes": "",
     "api_related": false
   },
@@ -1820,7 +1820,7 @@
       "3. It is NOT a QuickBooks payment (no cash received)."
     ],
     "design_ref": "requirements.md §7.1 (S6-R11/R13)",
-    "viu_status": "Pending — verify on staging once deployed",
+    "viu_status": "VIU-Pending — Story 6 QuickBooks not connected on this env (GET bookkeeping/adjustment-item-mapping-status hook exists but inert)",
     "notes": "",
     "api_related": false
   },
@@ -1843,7 +1843,7 @@
       "2. The non-taxable fee's line carries zero tax."
     ],
     "design_ref": "requirements.md §7.1 (S6-R2); §7 (§5-R11)",
-    "viu_status": "Pending — verify on staging once deployed",
+    "viu_status": "VIU-Pending — Story 6 QuickBooks not connected on this env (GET bookkeeping/adjustment-item-mapping-status hook exists but inert)",
     "notes": "",
     "api_related": false
   },
@@ -1869,7 +1869,7 @@
       "3. Discount events read (bold): \"Discount added\", \"Discount updated\", \"Discount removed\"."
     ],
     "design_ref": "requirements.md §8.3 (S10-R2/R4a/R4b/R4c)",
-    "viu_status": "Pending — verify on staging once deployed",
+    "viu_status": "VIU-Verified qb env 2026-07-08 — API: add/edit/remove each log one distinct event (adjustment.added/updated/removed)",
     "notes": "",
     "api_related": false
   },
@@ -1895,7 +1895,7 @@
       "4. Applied to shows \"Full invoice\" (whole WO), \"Labor line\", or \"Part\" respectively."
     ],
     "design_ref": "requirements.md §8.3 (S10-R6a..R6d)",
-    "viu_status": "Pending — verify on staging once deployed",
+    "viu_status": "VIU-Verified qb env 2026-07-08 — API: detail carries adjustmentName, adjustmentKind, adjustmentSetRate (set rate not resolved), adjustmentAppliedTo=\"Full invoice\"",
     "notes": "History log uses \"Full invoice\" whereas other screens say \"Whole Work Order\". Amount is the set rate, not resolved — this is why SFD does not gate the log (S10-R6c).",
     "api_related": false
   },
@@ -1918,7 +1918,7 @@
       "2. The Line column shows \"−\" for every adjustment entry regardless of scope (no line number, even for line-level adjustments)."
     ],
     "design_ref": "requirements.md §8.3 (S10-R3/R5)",
-    "viu_status": "Pending — verify on staging once deployed",
+    "viu_status": "VIU-Verified qb env 2026-07-08 — API: adjustment entries have lineId=null (Line column \"−\"); no saved-state icon",
     "notes": "",
     "api_related": false
   },
@@ -1943,7 +1943,7 @@
       "2. The previously recorded fee/discount history entries STILL show in the history log."
     ],
     "design_ref": "requirements.md §8.3 (S10-R1); §1 (flag-off exception)",
-    "viu_status": "Pending — verify on staging once deployed",
+    "viu_status": "VIU-Pending — not reached this pass (built surface; needs targeted UI drive or per-role login)",
     "notes": "The history log is the one exception to the flag-off rule.",
     "api_related": false
   },
@@ -1969,7 +1969,7 @@
       "2. The fee/discount history entries STILL show in the history log (the log shows the SET rate, not a resolved total, so SFD does not gate it)."
     ],
     "design_ref": "requirements.md §8.3 (S10-R1); §10 (S13-R10)",
-    "viu_status": "Pending — verify on staging once deployed",
+    "viu_status": "VIU-Pending — not reached this pass (built surface; needs targeted UI drive or per-role login)",
     "notes": "CAUTION: Story 13 model may not be live on staging yet. Restore Tech to Time Clock (role 77b069d1-...) after.",
     "api_related": false
   },
@@ -1993,7 +1993,7 @@
       "1. Without View History Logs, the history log (including fee/discount entries) is not accessible."
     ],
     "design_ref": "requirements.md §10 (S13-R10)",
-    "viu_status": "Pending — verify on staging once deployed",
+    "viu_status": "VIU-Pending — not reached this pass (built surface; needs targeted UI drive or per-role login)",
     "notes": "Restore Tech to Time Clock after. CAUTION: Story 13 model may not be fully live on staging — record actual gating.",
     "api_related": false
   },
@@ -2018,7 +2018,7 @@
       "3. There is NO \"Fee updated\" entry for a Processing Fee (it can't be edited on a WO)."
     ],
     "design_ref": "requirements.md §8.3 (S10 Processing Fee note); §9.2 (S8-R25/R26)",
-    "viu_status": "Pending — verify on staging once deployed",
+    "viu_status": "VIU-Pending — Story 8 Processing Fee NOT built in UI (Type dropdown = Fee/Discount only). NOTE: backend accepts kind:\"processing_fee\" + calc pct_grand_total (POST→201)",
     "notes": "CURRENT-BUILD DIFFERENCE (§14 item 6): current build may show raw \"processing_fee\" on \"Applied to:\" instead of \"Full invoice\" — record actual value.",
     "api_related": false
   },
@@ -2041,7 +2041,7 @@
       "1. The \"Fee updated\" entry's Amount shows \"15.00%\" (the new SET rate), not the resolved dollar total."
     ],
     "design_ref": "requirements.md §8.3 (S10-R6c)",
-    "viu_status": "Pending — verify on staging once deployed",
+    "viu_status": "VIU-Verified qb env 2026-07-08 — API: edit to amount 8 logs adjustment.updated with adjustmentSetRate=8 (new set rate)",
     "notes": "",
     "api_related": false
   }

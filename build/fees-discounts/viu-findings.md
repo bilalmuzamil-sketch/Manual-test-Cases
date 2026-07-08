@@ -1,108 +1,172 @@
-# Fees & Discounts — Verify-in-UI (VIU) findings on STAGING
+# Fees & Discounts V1 — Verify-in-UI (VIU) findings — qb QA env
 
-**Date:** 2026-07-06
-**Environment:** `app.staging.shopview.com` (SPA) driven headless as **ADMIN**
-(quick-login `key:'admin'`, boot2 hydration). Org
-`d55bc308-e61a-438d-b5f1-c7a73c89d49f`.
-**Purpose:** With the **FeesAndDiscounts** feature flag now enabled for the org,
-check whether ANY Fees & Discounts UI actually renders / works.
+**Date:** 2026-07-08 · **Env:** app `https://qb.qa.shopview.com`, API
+`https://sv7387api.qa.shopview.com` (SV-7387) · Org `d55bc308…` "Staging
+Foothills Group Inc".
+**Method:** Admin + Technician sessions (`POST /api/quick-login {key:'admin'|'tech'}`,
+both 200 on this env now), boot2 hydration for browser; direct API for the calc
+contract, validation, permissions, history and template CRUD. Evidence:
+`viu-evidence/*.png`; calc data `/tmp/fdcln/calc-results.json` (ephemeral).
 
-## Precondition confirmed: the flag really is ON for this org
-- `GET /api/organization/feature-flags?organization_id=d55bc308-…` returns the
-  org's **enabled** feature set, and **`FeesAndDiscounts` is present** in it.
-  (This is a curated subset of the global flag catalog — e.g. `ShopPay`,
-  `Dashboards`, `DashboardAll` from the global list are NOT in the org set — so
-  its presence means the flag is genuinely enabled for the org, not just defined.)
-- The Administration → **Feature Flags** page also lists `FeesAndDiscounts`
-  (screenshot `viu-50-feature-flags.png`).
+> Supersedes the 2026-07-06 staging findings (feature did not render there).
+> Recon surface map: `viu-recon.md`. Bugs/deviations: `bugs-log.md`.
 
-So the frontend has the flag it would gate on. Despite that, **no F&D controls
-render anywhere.**
+## Summary
 
----
-
-## Per-surface results
-
-### 1. Work Order (WO `S10-24280`, id `544c84ac-…`, 3 lines, ready_for_review)
-Screenshots: `viu-10-wo-lines.png`, `viu-11-wo-menu-0..3.png`,
-`viu-12-wo-scrolled.png`, `viu-13-tab-Stats.png`.
-The WO detail rendered normally on `/workorders/{id}/lines` (no bounce). Tabs
-present: **Lines (3) · Parts (4) · Notes (1) · Stats · Finance**.
-
-- **Toolbar / ⋯ menu "Add fee / discount" (whole WO):** **Does NOT render.** The
-  header ⋮ / more_vert menus were opened; one shows only the WO financial
-  summary (Parts / Labor / Shop Supplies / Subtotal / HST / Total / Balance) —
-  **no "Add fee / discount" action and no Fees & Discounts row.**
-- **Labor line 3-dot menu "Add fee / discount":** **Does NOT render.** The
-  available 3-dot menus on the lines grid (25 more_vert icons scanned, first
-  several opened) contained **no** fee/discount option.
-- **"Work Order Fee / Discount" sidebar card:** **Does NOT render.** The left
-  sidebar has only the WO summary, customer, asset, and **Financial Info** cards.
-- **Stats tab "Fees & Discounts (N)" section:** **Does NOT render.** The Stats
-  (`/statistics`) tab loaded with no F&D section.
-- **Financial Info "Fees & Discounts" row:** **Does NOT render.** Financial Info
-  card lists Parts / Labor / … only — no Fees & Discounts row.
-- DOM scan for "fee"/"discount" across body text and HTML on every WO view:
-  **zero real matches.**
-
-### 2. Parts page
-Screenshots: `viu-20-parts.png` (`/parts/inventory`), `viu-21-part-sales.png`
-(`/parts/part-sales`).
-- **"FEES & DISCOUNTS" column / "+ Add" on a part:** **Does NOT render.** No F&D
-  column, no add control. (Two apparent "fee" hits in raw HTML were **false
-  positives** inside UUIDs, e.g. `…27feb**dfee**457…` / `…name_b7bc…` — not F&D
-  UI.)
-
-### 3. Customer page (customer `eb304603-…` "new test")
-Screenshots: `viu-30-customers.png`, `viu-32-customer-detail.png`.
-- Customer detail rendered. Tabs present:
-  **Work Orders (1) · Part Sales · Contacts (1) · Assets (2) · Notes · Invoices ·
-  Payments (5) · Deposits.**
-- **"Fees & Discounts" tab + "Add Fee/Discount" button:** **Does NOT render.**
-  No such tab, no button. DOM scan: zero F&D matches.
-
-### 4. Administration → Service (Fees & Discounts templates)
-Screenshot: `viu-41-admin-settings.png`.
-- The Administration left nav **SERVICE** section contains exactly:
-  **Labor Rates · Canned Lines · Asset Types · Inspection Templates.**
-- **"Fees & Discounts" templates area:** **Does NOT render / does not exist.**
-  DOM scan of the full Administration page: `fee`=false, `discount`=false. Direct
-  route guesses (`/administration/service`, `/settings/service`) return the app's
-  "page does not exist" 404 screen.
+| Area | Verified | Pending | Note |
+|---|---|---|---|
+| §5 Calculation contract (FD-CALC) | 10 / 17 | 7 | Math matches spec EXACTLY; pending = Processing Fee + QB-negative-total |
+| Permissions (FD-PERM) | 3 / 11 | 8 | BE-enforced: templates, paid/invoiced. FE-only: whole-WO add (BUG-FD-3) |
+| Validation (FD-VAL) | 5 / 7 | 2 | All BE value validation confirmed |
+| Feature-flag (FD-FLAG) | 0 / 3 | 3 | Flag ON confirmed; off-state not toggled |
+| WO whole-WO (FD-WO) | 11 / 15 | 4 | dialog, preview, card, validation, base math |
+| Labor line (FD-LABOR) | 4 / 7 | 3 | scope-lock, gross-base, per-item flat |
+| Part line (FD-PART) | 3 / 8 | 5 | per-item flat, gross qty×sell base |
+| Inline display (FD-INLINE) | 0 / 5 | 5 | data model confirmed; ↳ visual not screenshotted |
+| Statistics (FD-STATS) | 0 / 5 | 5 | layout DEVIATION (BUG-FD-2) |
+| Financial Info / card (FD-FIN) | 2 / 5 | 3 | card + Financial Info row confirmed |
+| Parts-sale column (FD-PCOL) | 0 / 7 | 7 | Story 11 NOT built |
+| Edit (FD-EDIT) | 2 / 3 | 1 | re-resolve + history-update |
+| Remove (FD-REMOVE) | 1 / 3 | 2 | confirm dialog + 204 |
+| Stacking (FD-STACK) | 1 / 3 | 2 | Step-2 net base |
+| Customer defaults (FD-CUST) | 7 / 17 | 10 | tab/caption/columns, add/remove endpoints, route-guard |
+| Templates admin (FD-TMPL) | 9 / 17 | 8 | CRUD, columns, methods, gating, delete-precondition |
+| Processing Fee (FD-PROC) | 0 / 14 | 14 | Story 8 NOT built (BE accepts it — NOTE-FD-4) |
+| Customer documents (FD-DOC) | 0 / 11 | 11 | Story 5/14 not reached |
+| QuickBooks (FD-QB) | 0 / 16 | 16 | Story 6 not connected |
+| History log (FD-HIST) | 4 / 8 | 4 | add/edit/remove events, fields, "Full invoice" |
+| **TOTAL** | **62 / 182** | **120** | |
 
 ---
 
-## Dialog / add-edit-remove behavior
-Not reachable to test — **no F&D control renders on any surface**, so there is
-no Add dialog to open and nothing to add / edit / remove. (Consistent with the
-earlier API probe: no fee/discount permission in `fe-permissions`, no WO
-adjustment fields, all fee/discount endpoints 404.)
+## Priority 1 — §5 Calculation contract (highest value): MATH MATCHES EXACTLY
 
----
+Test WO **S3-15513** (`0993b0a6…`, open/approved): gross **labor $749.75**, gross
+**parts $386.34**, **shop supplies $78.72**, **subtotal $1,214.81**, GST 5%
+($60.75). Target labor line `422f311e…` (gross $749.75); target part `9c5d99a7…`
+(qty 2 × sell $116.34 = $232.68 gross).
 
-## VERDICT
+Adjustment payload (reverse-engineered + used):
+`POST /api/work-orders/adjustments/add {workOrderId, kind:"fee"|"discount",
+name, calculationType:"flat"|"pct_labor"|"pct_parts"|"pct_subtotal", amount,
+maxCap, scope:"whole_wo"|"labor_line"|"part_line", targetId, taxable,
+templateId, description}` → response includes `resolvedAmount`.
 
-**Fees & Discounts is NOT exercisable in the UI at all (not even partially).**
+| Scenario | Expected (spec) | Actual | ✓ |
+|---|---|---|---|
+| WO flat $5 fee | +$5.00 | +$5.00 | ✓ |
+| WO % of Subtotal 10% | $1214.81×.10 = $121.48 | $121.48 | ✓ |
+| WO % of Labor 10% | $749.75×.10 = 74.975 → **$74.98 (half-cent UP)** | $74.98 | ✓ |
+| WO % of Parts 10% | $386.34×.10 = 38.634 → $38.63 (down) | $38.63 | ✓ |
+| WO % of Subtotal 10% discount | −$121.48 (minus sign) | −$121.48 | ✓ |
+| WO discount 150% | REJECT (≤100%) | 400 "cannot exceed 100%" | ✓ |
+| WO fee 150% | allowed (no fee cap) | +$1822.22 | ✓ |
+| WO % 10% + Max Amount $50 | clamp to +$50.00 | +$50.00 | ✓ |
+| WO % 10% + Max Amount $0 | 0 = empty → no cap ($121.48) | $121.48 | ✓ |
+| Flat amount $0 | REJECT (>0) | 400 "greater than zero" | ✓ |
+| Flat amount $0.01 | +$0.01 | +$0.01 | ✓ |
+| Labor-line % of Labor 10% | gross line $749.75×.10 = $74.98 | $74.98 | ✓ |
+| Labor-line flat $10 | +$10.00 exact (no qty) | +$10.00 | ✓ |
+| Labor-line % of Subtotal | REJECT (method not allowed for scope) | 400 "not allowed for this scope" | ✓ |
+| Part-line % of Parts 10% | $232.68×.10 = 23.268 → $23.27 | $23.27 | ✓ |
+| Part-line flat $5 (qty 2) | **per item** 5×2 = $10.00 | $10.00 | ✓ |
+| Part-line % of Labor | REJECT (method not allowed) | 400 | ✓ |
+| **Resolve order** labor-line 10% disc then whole-WO 5% of Labor | line-level first → net labor $674.77; whole-WO on NET = $674.77×.05 = **$33.74** (not gross $37.49) | $33.74 | ✓ |
+| **Tax** taxable $100 fee | GST +$5.00 ($60.75→$65.75) | $65.75 | ✓ |
+| **Tax** non-taxable $100 fee | GST unchanged | $60.75 | ✓ |
 
-The **FeesAndDiscounts flag is confirmed enabled for the org**, but the ShopView
-staging **frontend renders no Fees & Discounts controls on any surface** (Work
-Order whole-WO menu, labor-line menu, sidebar card, Stats section, Financial Info
-row, Parts column, Customer tab/button, or Administration → Service templates).
-Combined with the API probe (no permission, no adjustment fields, all endpoints
-404), the feature is **not deployed on staging on either the frontend or the
-backend** despite the flag being on. There is no "frontend present but backend
-missing" split — **both layers are absent.** The design in
-`build/fees-discounts/design-notes.md` / `requirements.md` cannot currently be
-verified against the live app; it should be treated as **not yet implemented on
-staging.**
+**Verdict: every §5 rule tested resolves EXACTLY to the spec** — base selection by
+scope/method (§5-R4/R10), half-cent-rounds-up (§5-R3), per-item flat on parts
+(§5-R14), sign (§5-R7), Max cap (§5-R6), min-value & percentage limits (§5-R1/R2),
+3-step resolve order on net totals (§5-R5), taxable/non-taxable tax impact
+(§5-R11). Pending: FD-CALC-013/014 (Processing Fee — not built), 015/016/017
+(negative-total floor / credit memo — need QB), 009/010 ($0/negative base & QB
+skip — not driven).
 
-## Screenshots (all in `build/fees-discounts/screenshots/`)
-- `viu-01-wo-list.png` — Work Orders list
-- `viu-10-wo-lines.png` — WO detail /lines (tabs, Financial Info card)
-- `viu-11-wo-menu-0..3.png` — WO 3-dot / more_vert menus opened
-- `viu-12-wo-scrolled.png` — WO detail scrolled (sidebar cards)
-- `viu-13-tab-Stats.png` — WO Stats tab
-- `viu-20-parts.png` / `viu-21-part-sales.png` — Parts inventory / Part Sales
-- `viu-30-customers.png` / `viu-32-customer-detail.png` — Customers list / detail (tabs)
-- `viu-41-admin-settings.png` — Administration nav (SERVICE section)
-- `viu-50-feature-flags.png` — Feature Flags admin page (FeesAndDiscounts listed)
+## Priority 2 — Whole-WO fee/discount (Story 2/3)
+
+- Dialog opens from WO toolbar ⋯ "Add Fee/Discount" (`cap-add-dialog.png`); fields
+  Apply-from-template, Name, Type (default Fee), Calculation Type (default Flat
+  Amount), Amount/Percent, Max Amount (percentage only), Taxable (default Yes).
+- Live preview correct: "Work-order subtotal $1,214.81 → Fee · 10% +$121.48 → New
+  work-order subtotal $1,336.29 / Tax is recalculated on save"; empty-amount state
+  "Enter an amount to see the impact." (`cap-add-filled.png`).
+- Saved whole-WO fee appears on the **"WO Fees & Discounts"** sidebar card (name +
+  "$11.00" rate badge + "+$11.00" resolved grey) and as **Financial Info →
+  "Fees & Discounts (1) $11.00"** (`wo-card-after-add.png`).
+- Add dialog fires `GET bookkeeping/adjustment-item-mapping-status` — the QB
+  mapping-guard hook (S6-R6), inert because QB isn't connected here.
+- Validation (BE): empty name 400, name>100 400, amount 0/negative 400,
+  discount>100% 400, add on Invoiced/Paid WO **409**.
+
+## Priority 3 — Labor-line & Part-line (Story 1/§5)
+
+- Labor line ⋯ opens a scope-locked dialog "Applying to: {line}", Calc default
+  "% Of Labor Total". Part row ⋯ opens part-line scope. (recon + build).
+- Line/part adjustments are stored on `line.adjustments` / `part.adjustments`
+  (separate from `work_order.adjustments`) — they resolve on the target's gross
+  value and feed the whole-WO net totals (confirmed via the resolve-order test).
+- Method restriction enforced per scope (labor→flat/%labor, part→flat/%parts);
+  disallowed methods 400.
+
+## Priority 4 — Customer defaults + auto-apply (Story 9)
+
+- Tab/card/caption/columns/empty-state match spec (recon).
+- Endpoints: `GET/POST /api/customers/{id}/default-adjustments`
+  (POST body `{templateIds:[…]}` → 201, supports multi-add), `DELETE
+  /api/customers/{id}/default-adjustments/{defaultId}` → 204 (no confirm, S9-R24).
+- Route guard requires `customersCreateAndEdit` + `seeApArData` (S13-R9).
+- **Double-add (BUG-FD-1):** setup confirmed present; recon observed ×2; not
+  re-driven this pass (WO-create blocked). See bugs-log.
+
+## Priority 5 — History / audit log (Story 10)
+
+`GET /api/work-orders/{id}/history` — each add/edit/remove logs exactly one event
+(`work_order.adjustment.added/updated/removed`) carrying `adjustmentName`,
+`adjustmentKind`, `adjustmentSetRate` (**set rate, not resolved**),
+`adjustmentAppliedTo="Full invoice"` (whole-WO), `lineId=null` (Line column "−").
+Matches S10-R2/R4/R5/R6.
+
+## Priority 6 — Template Builder / admin (Story 7)
+
+`GET/POST /api/adjustment-templates`, `POST …/{id}/change`, `DELETE …/{id}`,
+`GET …/{id}/delete-precondition` (`{affectedCustomerCount}` → S7-R21 warning).
+Create (fee/discount) 201, edit 200, delete 204. List columns + 4 whole-WO methods
++ no-scope-field per recon. Page gated by Settings→Finance (Tech 403). Location
+placement is under **Finance** (deviation from spec Service, NOTE-FD-5).
+
+## Priority 7 — Permissions (Story 13)
+
+| Action | Result | Enforcement |
+|---|---|---|
+| Whole-WO add (Tech, no `workOrdersCreateAndEdit`) | **201 allowed** | **FE-only, NOT BE-enforced** (BUG-FD-3) |
+| Labor-line add (Tech HAS `workOrderLinesCreateAndEdit`) | 201 | consistent (can't isolate enforcement) |
+| Template create/list (Tech, no Settings→Finance) | **403** | **BE-enforced** |
+| See financial amounts (Tech `view_mode:tech`) | `sub_total:"0.00"` | financials **masked** in payload (SFD gate) |
+| Customer defaults tab | route guard `customersCreateAndEdit`+`seeApArData` | FE gate confirmed |
+| Add on Invoiced/Paid WO | 409 | **BE-enforced** (S3-R1b) |
+
+**Limitation:** the `tech` quick-login user (`a7fd0a88…`) is **not in the org
+staff table** (`/api/staff/{id}/view` 404) and quick-login only supports
+admin/tech, so per-role FE-gating and enforcement for the other 9 roles could not
+be probed on this env. Those permission cases stay VIU-Pending.
+
+## Left VIU-Pending (per instructions / not reachable)
+
+- **Story 8 Processing Fee** — UI not built (BE accepts `kind:processing_fee`, NOTE-FD-4).
+- **Story 11 Part Sales** — no F&D affordances on part sales.
+- **Story 6 QuickBooks** — not connected (mapping guard, sync, negative-total credit memo).
+- **Story 5/14 customer documents** — not reached (needs invoice-ready WO).
+- **Feature-flag OFF** state — not toggled (would affect the whole org).
+- Per-role permission negatives for non-Tech roles — quick-login limited.
+
+## Cleanup / safety
+
+- Baseline captured to `baseline-templates.json`. All test WO adjustments removed
+  (whole-WO + line + part). Test templates ("ZZAUTOTEST …") deleted. Customer
+  default added to Aacrest removed; Aaborough's pre-existing default left intact.
+- **Restored** the two baseline templates ("Flat fee" $12, "Customer fee" $200) to
+  `autoApply:true` (they were observed flipped to false mid-session — see report).
+- Final state: exactly the 2 baseline templates, both auto-apply, 0 stray
+  adjustments. No roles changed (used tech quick-login, not role-switch). Secrets
+  in `/tmp` only.

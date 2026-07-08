@@ -1,0 +1,121 @@
+[
+  {
+    "label": "WO flat fee $5",
+    "status": 201,
+    "resolved": 5,
+    "expect": "+5.00",
+    "err": null
+  },
+  {
+    "label": "WO pct_subtotal 10% fee",
+    "status": 201,
+    "resolved": 121.48,
+    "expect": "121.48",
+    "err": null
+  },
+  {
+    "label": "WO pct_labor 10% fee",
+    "status": 201,
+    "resolved": 74.98,
+    "expect": "74.98 (749.75*.1 half-up)",
+    "err": null
+  },
+  {
+    "label": "WO pct_parts 10% fee",
+    "status": 201,
+    "resolved": 38.63,
+    "expect": "38.63 (386.34*.1 down)",
+    "err": null
+  },
+  {
+    "label": "WO pct_subtotal 10% DISCOUNT",
+    "status": 201,
+    "resolved": -121.48,
+    "expect": "-121.48",
+    "err": null
+  },
+  {
+    "label": "WO discount pct 150% (>100 blocked)",
+    "status": 400,
+    "resolved": null,
+    "expect": "REJECT >100%",
+    "err": "{\"errors\":[{\"error\":\"A percentage discount cannot exceed 100%.\"}]}"
+  },
+  {
+    "label": "WO fee pct 150% (no cap allowed)",
+    "status": 201,
+    "resolved": 1822.22,
+    "expect": "allowed 1822.22",
+    "err": null
+  },
+  {
+    "label": "WO pct_subtotal 10% maxCap 50",
+    "status": 201,
+    "resolved": 50,
+    "expect": "+50 capped",
+    "err": null
+  },
+  {
+    "label": "WO pct_subtotal 10% maxCap 0",
+    "status": 201,
+    "resolved": 121.48,
+    "expect": "121.48 (0=empty)",
+    "err": null
+  },
+  {
+    "label": "WO flat amount 0 (min)",
+    "status": 400,
+    "resolved": null,
+    "expect": "REJECT >0",
+    "err": "{\"errors\":[{\"error\":\"The adjustment amount must be greater than zero.\"}]}"
+  },
+  {
+    "label": "WO flat amount 0.01",
+    "status": 201,
+    "resolved": 0.01,
+    "expect": "+0.01 min ok",
+    "err": null
+  },
+  {
+    "label": "LABOR pct_labor 10%",
+    "status": 201,
+    "resolved": 74.98,
+    "expect": "74.98 gross line",
+    "err": null
+  },
+  {
+    "label": "LABOR flat $10 (no qty)",
+    "status": 201,
+    "resolved": 10,
+    "expect": "10.00 exact",
+    "err": null
+  },
+  {
+    "label": "LABOR pct_subtotal (invalid method)",
+    "status": 400,
+    "resolved": null,
+    "expect": "REJECT bad method",
+    "err": "{\"errors\":[{\"calculationType\":\"The calculation type is not allowed for this scope.\"}]}"
+  },
+  {
+    "label": "PART pct_parts 10%",
+    "status": 201,
+    "resolved": 23.27,
+    "expect": "23.27 (232.68*.1)",
+    "err": null
+  },
+  {
+    "label": "PART flat $5 per-item x2",
+    "status": 201,
+    "resolved": 10,
+    "expect": "10.00 (§5-R14 5*2)",
+    "err": null
+  },
+  {
+    "label": "PART pct_labor (invalid method)",
+    "status": 400,
+    "resolved": null,
+    "expect": "REJECT bad method",
+    "err": "{\"errors\":[{\"calculationType\":\"The calculation type is not allowed for this scope.\"}]}"
+  }
+]
