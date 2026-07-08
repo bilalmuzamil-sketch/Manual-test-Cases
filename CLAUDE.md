@@ -66,6 +66,15 @@ all).
    request/response checks — MUST be placed in a TestRail section whose title
    includes 'API'. UI-only cases stay in their functional sections. Apply to every
    TestRail import going forward.
+5. **Self-service test data & roles (all projects):** On the disposable
+   test/QA/staging environments, CREATE and DELETE whatever data a test case needs
+   yourself (work orders, POs, parts, assets, inventory items, custom roles, etc.)
+   — never block on missing data you can seed. To verify role-specific behavior,
+   assign the Tech user the needed role (a system role, or a purpose-made custom
+   role), test, then RESTORE Tech to its original role afterward. Do not block on
+   anything you can do yourself. Still: mark throwaway data ZZAUTOTEST, restore any
+   user/role/settings you change, and don't do irreversible things outside the
+   disposable env.
 
 ## Project purpose (Custom Roles project)
 Manual test-case authoring + live staging (Verify-in-UI) verification + TestRail
