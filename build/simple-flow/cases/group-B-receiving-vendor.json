@@ -25,7 +25,7 @@
     ],
     "design_ref": "requirements S5-R1 / §9 (See Financial Data gate)",
     "viu_status": "VIU-Pending",
-    "notes": "SV-8183 Decision 4 adds a financial gate: vendorless / no-PN add requires See Financial Data (mandatory sell). Not driven live (part-add flow not exercised).",
+    "notes": "SV-8183 Decision 4 adds a financial gate: vendorless / no-PN add requires See Financial Data (mandatory sell). Not driven live (part-add flow not exercised). | 2026-07-08: attempted admin add — the manual part-request add sub-form is reached via the line's Parts tab which requires the line's \"parts authorized\" state; not reliably drivable in this harness session (line-edit dialog exposed no Parts tab for a labor line). Canned-line parts DO create the vendorless shape (part_number=null, vendor_id=null, part_source_type=\"vendor\", editable sell_price), corroborating the data model, but the description+qty+sell manual sub-form itself remains UI-unverified. Still needs a driven add-part sub-form.",
     "api_related": false
   },
   {
@@ -54,7 +54,7 @@
     ],
     "design_ref": "requirements S5 AC / §9 (See Financial Data gate)",
     "viu_status": "VIU-Pending",
-    "notes": "SV-8183 Decision 4: vendorless / no-PN add requires See Financial Data. Field validation and the permission negative not yet verified live. | VIU 2026-07-07 (Tech-unblock pass): Field-required validations and the See-Financial-Data add-part block not driven (part-add sub-form not reached within budget). Tech confirmed lacking seeFinancialData.",
+    "notes": "SV-8183 Decision 4: vendorless / no-PN add requires See Financial Data. Field validation and the permission negative not yet verified live. | VIU 2026-07-07 (Tech-unblock pass): Field-required validations and the See-Financial-Data add-part block not driven (part-add sub-form not reached within budget). Tech confirmed lacking seeFinancialData. | 2026-07-08: manual add-part sub-form validation not reached (see SF-VPART-01). Still pending; also needs a Technician (no See Financial Data) for the permission half.",
     "api_related": false
   },
   {
@@ -209,8 +209,8 @@
       "2. No separate 'dummy PO' is created for it."
     ],
     "design_ref": "Purchase Orders List.html; requirements S6-R1",
-    "viu_status": "VIU-Pending",
-    "notes": "PO list route /parts/orders confirmed; the no-dummy-PO placement was not driven end to end. Needs live verification.",
+    "viu_status": "VIU-Verified",
+    "notes": "PO list route /parts/orders confirmed; the no-dummy-PO placement was not driven end to end. Needs live verification. | VIU-Verified 2026-07-08: after completing a WO (53d021fb) with 2 vendorless vendor-parts, both part_requests received the SAME order_id (0a9db3e6-...) with vendor_id=null and part_number=null — one shared WO PO, no separate dummy PO.",
     "api_related": false
   },
   {

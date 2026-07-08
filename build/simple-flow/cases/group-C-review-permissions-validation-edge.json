@@ -717,7 +717,7 @@
     ],
     "design_ref": "requirements S5 / §9 (Decision 4)",
     "viu_status": "VIU-Pending",
-    "notes": "SV-8183 Decision 4: adding a vendorless part requires See Financial Data (sell is mandatory, no catalog source). Role-gating negative not yet verified live. | VIU 2026-07-07 (Tech-unblock pass): Not driven this pass: the vendorless part-add sits in a line Parts sub-form not reached within budget. Tech CONFIRMED to lack seeFinancialData (role capture). BE financial-gate on add-part remains untested.",
+    "notes": "SV-8183 Decision 4: adding a vendorless part requires See Financial Data (sell is mandatory, no catalog source). Role-gating negative not yet verified live. | VIU 2026-07-07 (Tech-unblock pass): Not driven this pass: the vendorless part-add sits in a line Parts sub-form not reached within budget. Tech CONFIRMED to lack seeFinancialData (role capture). BE financial-gate on add-part remains untested. | 2026-07-08: tech confirmed lacks seeFinancialData (roles-capture). The vendorless part-add sub-form could not be reached even as admin this pass (see SF-VPART-01), so the FE See-Financial-Data gate on the add sub-form is still unverified. Note: given the app's pattern (mileage/VIN/completion gates are FE-only, BE non-enforcing), this gate is likely FE-only too. Still needs a driven add-part sub-form + a non-SFD role.",
     "api_related": false
   },
   {
@@ -768,8 +768,8 @@
       "1. Completion is blocked until mileage is entered."
     ],
     "design_ref": "WO Review Flow.html (Details step)",
-    "viu_status": "VIU-Pending",
-    "notes": "Details step seen (S2-13) but empty-field block not isolated. Needs live verification.",
+    "viu_status": "VIU-Verified",
+    "notes": "Details step seen (S2-13) but empty-field block not isolated. Needs live verification. | VIU-Verified 2026-07-08: completion wizard Details step (requireMileage=true) blocks Continue with inline error \"Mileage is a required field\" when mileage empty (WO 00609f73). Evidence VIU2-02-mileage-gate.png. NOTE: mileage is a FE wizard gate — backend simple-complete does NOT enforce it (see bugs-log).",
     "api_related": false
   },
   {
@@ -1023,8 +1023,8 @@
       "2. Completion does not proceed until the line is approved."
     ],
     "design_ref": "requirements §4 Key Decision",
-    "viu_status": "VIU-Pending",
-    "notes": "PARTIAL in VIU — error not cleanly isolated (S17-02-approval-error.png). Needs a WO whose only blocker is the unapproved line.",
+    "viu_status": "VIU-Verified",
+    "notes": "PARTIAL in VIU — error not cleanly isolated (S17-02-approval-error.png). Needs a WO whose only blocker is the unapproved line. | VIU-Verified 2026-07-08: simple-complete with an unapproved (authorization_required) line returns 400 with text \"All lines must be approved before completing the work order.\" (WO a71ec2f0).",
     "api_related": false
   },
   {

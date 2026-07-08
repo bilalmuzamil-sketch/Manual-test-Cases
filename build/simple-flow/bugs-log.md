@@ -71,6 +71,30 @@ and SF-REV-09 are PASS (FE-gating acceptable) or FAIL (BE gap).
 
 ---
 
+## NEW — VIU batch (2026-07-08): completion required-fields are FE-only at the backend
+
+### BUG-8 — mileage / VIN / engine-hours completion gates are FE-only (not BE-enforced) · Sev: Medium · Status: OPEN
+- **The required-vehicle-field gates at completion are enforced only by the
+  completion wizard (front-end), not by the backend `simple-complete` endpoint.**
+- **Repro:** With `requireMileage=true` (and `requireVehicleIdentifier=true`), on a
+  fresh WO whose mileage was still empty, `POST /api/work-orders/{id}/simple-complete
+  {}` returned **201** and drove the WO to Complete once the only *BE-checked*
+  blockers (tech story, line approval) were cleared — mileage was set only later.
+  By contrast the **completion wizard UI** blocks Continue with the inline error
+  **"Mileage is a required field"** (`viu-evidence/VIU2-02-mileage-gate.png`).
+- **Expected (per §4 / SV-8183 "backend enforces"):** backend rejects completion
+  when a required vehicle field is missing.
+- **Actual:** backend accepts; only the wizard enforces it. Consistent with the
+  BUG-6/BUG-7 FE-only pattern.
+- **Affects cases:** SF-VAL-01 (verified at the UI layer), SF-VAL-02, SF-VAL-03,
+  SF-COMP-05, SF-COMP-16, SF-REV-03. (The UI-level blocks are real and were
+  verified where driven; the backend non-enforcement is the deviation.)
+- **Note:** the **tech-story gate** and the **all-lines-approved gate** ARE
+  BE-enforced (`simple-complete` → 400 with explicit messages), so the split is
+  per-check, not blanket.
+
+---
+
 ## Earlier pass (2026-07-06): settings / review deviations vs spec
 
 Recorded here for completeness; tracked as Open Questions to Milos (see

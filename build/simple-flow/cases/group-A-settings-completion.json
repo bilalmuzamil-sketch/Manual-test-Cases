@@ -534,8 +534,8 @@
       "3. Completion proceeds only after the required field is filled."
     ],
     "design_ref": "WO Review Flow.html (Details step)",
-    "viu_status": "VIU-Pending",
-    "notes": "The Details step collecting Mileage was seen (S2-13-details.png) but the empty-field block was not isolated. Needs live verification.",
+    "viu_status": "VIU-Verified",
+    "notes": "The Details step collecting Mileage was seen (S2-13-details.png) but the empty-field block was not isolated. Needs live verification. | VIU-Verified 2026-07-08: completion wizard (WO 00609f73) blocks with \"Mileage is a required field\" when the required vehicle field (mileage) is empty on Continue. Evidence VIU2-02-mileage-gate.png.",
     "api_related": false
   },
   {
@@ -752,7 +752,7 @@
     ],
     "design_ref": "Receive Vendor Parts - v2.html",
     "viu_status": "VIU-Pending",
-    "notes": "Actions verified present; the Receive-Parts navigation and multi-vendor receive were not driven. Needs live verification.",
+    "notes": "Actions verified present; the Receive-Parts navigation and multi-vendor receive were not driven. Needs live verification. | 2026-07-08: could not verify — clicking \"Receive Parts\" in the optional-invoice Receive step did not open Accept Delivery because the seeded parts were vendor-missing (no vendor/part number = not receivable); it returned to the WO lines page. Needs a WO with genuinely receivable parts (vendor + part number seeded).",
     "api_related": false
   },
   {
@@ -778,8 +778,8 @@
       "3. The line still shows a Receive button."
     ],
     "design_ref": "WO Review Flow.html",
-    "viu_status": "VIU-Pending",
-    "notes": "Action present (S3-01) but not driven to completion. Needs live verification. Waiting-on-Parts column itself is not built (Story 14).",
+    "viu_status": "VIU-Verified",
+    "notes": "Action present (S3-01) but not driven to completion. Needs live verification. Waiting-on-Parts column itself is not built (Story 14). | VIU-Verified 2026-07-08: optional-invoice (requireVendorInvoiceNumber=false) completion via simple-complete returned 201 and WO->Complete while both parts stayed status=waiting_to_receive (quantity_remaining preserved); UI Receive step shows the \"Complete Without Receiving\" button (VIU2-03-receive-step.png). Line-Receive-button sub-claim not separately asserted.",
     "api_related": false
   },
   {
@@ -966,8 +966,8 @@
       "3. There is no new disabled state — the error surfaces on Complete."
     ],
     "design_ref": "requirements §4 Key Decision / S3-R9",
-    "viu_status": "VIU-Pending",
-    "notes": "PARTIAL in VIU: the Needs-Approval state was seen (S17-01) but the final 'cannot complete unapproved' block was not cleanly isolated (tech-story/parts gates dominated). Needs a targeted WO whose ONLY blocker is an unapproved line (S17-02-approval-error.png context).",
+    "viu_status": "VIU-Verified",
+    "notes": "PARTIAL in VIU: the Needs-Approval state was seen (S17-01) but the final 'cannot complete unapproved' block was not cleanly isolated (tech-story/parts gates dominated). Needs a targeted WO whose ONLY blocker is an unapproved line (S17-02-approval-error.png context). | VIU-Verified 2026-07-08: simple-complete on a WO with an authorization_required line returned 400 \"All lines must be approved before completing the work order.\" (BE-enforced). WO a71ec2f0.",
     "api_related": false
   },
   {
@@ -993,8 +993,8 @@
       "2. After re-approving all lines, completion proceeds."
     ],
     "design_ref": "requirements §4 Key Decision",
-    "viu_status": "VIU-Pending",
-    "notes": "Not driven in VIU. Needs live verification.",
+    "viu_status": "VIU-Verified",
+    "notes": "Not driven in VIU. Needs live verification. | VIU-Verified 2026-07-08: block fires from the line's own authorization_required status while org autoApproveLines=true (unchanged), i.e. holds regardless of Auto-approve. Same 400 as SF-COMP-21.",
     "api_related": false
   },
   {

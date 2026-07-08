@@ -43,9 +43,9 @@ unblocks it.
 
 | Category | Count | Owner |
 |---|---:|---|
-| READY (VIU-Verified, uploadable) | 35 | — |
+| READY (VIU-Verified, uploadable) | 42 | — |
 | BLOCKED — DEV NOT BUILT | 25 | Dev team |
-| BLOCKED — VIU PENDING (QA) | 78 | QA (cookies + seed + role accounts) |
+| BLOCKED — VIU PENDING (QA) | 71 | QA (cookies + seed + role accounts) |
 | BLOCKED — MILOS ANSWER | 15 | Milos (PO) |
 | BLOCKED — BUG/RULING | 6 | Dev / PO ruling |
 

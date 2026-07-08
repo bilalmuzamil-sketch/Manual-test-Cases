@@ -250,6 +250,75 @@ collapsed WO-family atoms are effectively **FE-only** at the server.
 
 ---
 
+# VIU BATCH — 2026-07-08 (built-surface pending cases)
+
+Fresh QA cookies re-supplied (new 64-hex `sv_sso_session`); admin + tech
+quick-login both **200**. Baseline captured to
+`/tmp/simple-flow/settings-baseline-3.json` and **RESTORED/verified** at end
+(settings never changed this pass — matched baseline throughout). **Tech role NOT
+changed** (verified still Technician). Three throwaway WOs created (53d021fb /
+S2-15755, a71ec2f0, 00609f73 / S2-15757) and **all deleted** (verified 0 of mine
+remain; completed one reopened by adding a line before delete).
+
+**API shapes shifted since 07-07** (record for next run): WO list
+`GET /api/work-orders` → `{data:{pagination,work_orders}}`; WO detail
+`GET /api/work-orders/view/{id}` → `{data:{work_order}}`; lines
+`GET /api/work-orders/lines/{id}` → `{data:{collection:[…]}}` (each line has
+`line_id`, `status` in {authorization_required, authorization_declined, authorized},
+`tech_story`, `part_requests[]`). **Line create = `POST
+/api/work-orders/{woId}/lines/create-from-canned-line {another,canned_line_id,
+work_order_id,status}`** (status must be a valid line-status; canned-line ids from
+`GET /api/work-orders/canned-lines?pagination[rowsPerPage]=1000`).
+
+## Verified this pass (7 moved VIU-Pending → VIU-Verified)
+
+| Case | Layer | Result | Evidence |
+|---|---|---|---|
+| **SF-COMP-21** | API | `simple-complete` on a WO with an `authorization_required` line → **400 "All lines must be approved before completing the work order."** BE-enforced. | WO a71ec2f0 |
+| **SF-VAL-11** | API | Same 400 confirms the approve-line error text. | WO a71ec2f0 |
+| **SF-COMP-22** | API | Block fires from the line's own `authorization_required` status while org `autoApproveLines=true` — holds regardless of Auto-approve. | WO a71ec2f0 |
+| **SF-VMIS-01** | API | Completing a WO with 2 vendorless vendor-parts assigned both part_requests the **same `order_id`** with `vendor_id=null`, `part_number=null` — one shared WO PO, **no dummy PO**. | WO 53d021fb |
+| **SF-COMP-14** | API+UI | Optional-invoice (`requireVendorInvoiceNumber=false`) completion → **201, WO=Complete** with both parts still `waiting_to_receive` (qty_remaining preserved); UI Receive step shows the **"Complete Without Receiving"** button. | `VIU2-03-receive-step.png` |
+| **SF-VAL-01** | UI | Completion-wizard Details step blocks Continue with inline **"Mileage is a required field"** when mileage empty. | `VIU2-02-mileage-gate.png` |
+| **SF-COMP-05** | UI | Same mileage gate = "required vehicle field missing blocks completion". | `VIU2-02-mileage-gate.png` |
+
+Re-confirmed (already Verified): **SF-COMP-11** (Receive step: Cancel · Complete
+Without Receiving · Receive Parts) and **SF-COMP-12** ("2 parts waiting to
+receive" count) — `VIU2-01-wizard-details.png`, `VIU2-03-receive-step.png`.
+Wizard = **1 Details → 2 Receive → 3 Success**.
+
+## Key new finding — completion required-fields are FE-only at the BE (BUG-8)
+
+`simple-complete` does **NOT** enforce mileage / VIN / engine-hours; only the
+completion **wizard** does. The **tech-story** gate and the **all-lines-approved**
+gate, by contrast, **are** BE-enforced (explicit 400s). So enforcement is
+per-check, matching the FE-only pattern of BUG-6/BUG-7. See bugs-log BUG-8.
+Impact: SF-VAL-01/02/03, SF-COMP-05/16, SF-REV-03 are verifiable only at the UI
+layer (where the gate is real).
+
+## Still VIU-Pending after this pass — exact blocker
+
+- **SF-VPART-01/02, SF-PERM-09 (vendorless / no-PN part add):** the manual
+  part-request add sub-form is reached via a line's Parts tab that requires the
+  line's "parts authorized" path; not reliably drivable in this harness session
+  (the labor-line edit dialog exposed no Parts tab). Canned-line parts DO produce
+  the vendorless shape (`part_number=null, vendor_id=null, part_source_type=
+  "vendor"`, editable `sell_price`), corroborating the model, but the
+  description+qty+sell **manual sub-form** + its See-Financial-Data gate remain
+  UI-unverified. Needs a driven add-part sub-form (+ a non-SFD role for PERM-09).
+- **SF-COMP-13 / SF-RCV-02 (Receive Parts → Accept Delivery):** "Receive Parts"
+  in the optional Receive step returned to the WO lines page rather than Accept
+  Delivery because the seeded parts were **vendor-missing (not receivable)**.
+  Needs a WO seeded with genuinely receivable parts (vendor + part number).
+- **SF-VAL-02 (VIN missing), SF-VAL-03 (engine hours missing):** VIN was
+  pre-populated from the asset (not asked in the wizard); engine hours needs
+  `requireHours=ON`. Both need a targeted wizard drive with the field forced empty.
+- **Cores (SF-CORE-*):** no core-charge / is_core part could be seeded via the
+  canned lines used; needs a seeded inventory core part or a core-bearing canned
+  line. Not attempted end-to-end.
+- **SF-PERM-10 (per-role completion matrix):** only admin (+) and Technician (−,
+  FE) available; other roles (Office/Service Manager/Foreman/etc.) need accounts.
+
 ## Reusable access facts (for the next VIU run)
 
 - API host `https://sv7301api.qa.shopview.com`; app `https://sv7301.qa.shopview.com`.
