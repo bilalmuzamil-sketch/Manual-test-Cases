@@ -1,0 +1,160 @@
+ID,sf_id,title,section
+29350,SF-BULK-01,Verify the Bulk Receive page has a 'Back to Purchase Orders' link that returns to the PO list,PO Bulk Receive Page (Story 8)
+29351,SF-BULK-02,Verify the Bulk Receive page groups POs by vendor with a vendor count and per-vendor expand/collapse,PO Bulk Receive Page (Story 8)
+29352,SF-BULK-03,"Verify each PO row shows the PO number, related work order (or inventory/no-WO indicator) and parts count",PO Bulk Receive Page (Story 8)
+29353,SF-BULK-04,Verify selection behavior: nothing selected by default; selecting a PO selects all its parts; individual parts selectable; actions locked until checked,PO Bulk Receive Page (Story 8)
+29354,SF-BULK-05,Verify the per-PO 'Receive parts (N)' button is disabled until a vendor invoice number is entered,PO Bulk Receive Page (Story 8)
+29355,SF-BULK-06,Verify field editability and locking on Bulk Receive (qty and cost editable; sell locks after WO invoiced/paid),PO Bulk Receive Page (Story 8)
+29356,SF-BULK-07,Verify assigning a vendor to a Vendor Missing PO moves it into that vendor's group and entering the missing PN enables receiving,PO Bulk Receive Page (Story 8)
+29357,SF-BULK-08,Verify Receive all receives everything selected at once and supports partial receive,PO Bulk Receive Page (Story 8)
+29358,SF-BULK-09,Verify Bulk Receive uses the same pipeline as single-PO receive (Delivery → Vendor Bill → QuickBooks),PO Bulk Receive Page (Story 8)
+29359,SF-BULK-10,"Verify a cored part's Ok/Not OK resolution becomes available once received, and core-only partial receive is supported",PO Bulk Receive Page (Story 8)
+29290,SF-COMP-01,Verify a Complete Work Order button appears next to New Line on the work order,Completion — No-PO / Skip (Story 2)
+29291,SF-COMP-02,Verify a work order with no parts completes in one confirm and reaches the Success screen,Completion — No-PO / Skip (Story 2)
+29292,SF-COMP-03,Verify the Success screen shows the work order number and total with Done and Go to Invoice actions,Completion — No-PO / Skip (Story 2)
+29293,SF-COMP-04,Verify Go to Invoice from the Success screen opens the Finance step where the invoice number is shown,Completion — No-PO / Skip (Story 2)
+29294,SF-COMP-05,Verify completion is blocked when a required vehicle field is missing,Completion — No-PO / Skip (Story 2)
+29295,SF-COMP-06,"Verify with Create POs OFF a work order with vendor parts completes with no PO, no vendor bill and no AP sync",Completion — No-PO / Skip (Story 2)
+29296,SF-COMP-07,Verify in-stock inventory parts decrement inventory and write Part History on simple completion,Completion — No-PO / Skip (Story 2)
+29297,SF-COMP-08,Verify with Auto-pick Inventory OFF the completion modal requires picking parts before Complete,Completion — No-PO / Skip (Story 2)
+29298,SF-COMP-09,Verify adding a new line to a completed work order returns it to Approved,Completion — No-PO / Skip (Story 2)
+29299,SF-COMP-10,Verify individual-line Complete and per-part receive actions still work alongside Simple completion,Completion — No-PO / Skip (Story 2)
+29300,SF-COMP-11,"Verify the optional-invoice completion wizard offers Receive Parts, Complete Without Receiving and Cancel",Completion — PO + Optional Invoice (Story 3)
+29301,SF-COMP-12,Verify the optional-invoice modal creates POs in the background and shows the count of parts to receive,Completion — PO + Optional Invoice (Story 3)
+29302,SF-COMP-13,Verify Receive Parts opens the shared Accept Delivery page to receive all vendors at once,Completion — PO + Optional Invoice (Story 3)
+29303,SF-COMP-14,"Verify Complete Without Receiving completes the WO, keeps unreceived parts waiting, and keeps the line Receive button",Completion — PO + Optional Invoice (Story 3)
+29304,SF-COMP-15,Verify Cancel closes the completion modal with no change and no duplicate POs on re-open,Completion — PO + Optional Invoice (Story 3)
+29305,SF-COMP-16,"Verify the optional-invoice modal collects required vehicle fields (mileage, VIN, engine hours) when missing",Completion — PO + Optional Invoice (Story 3)
+29306,SF-COMP-17,Verify the optional-invoice flow reaches the Success screen with WO number and total,Completion — PO + Optional Invoice (Story 3)
+29307,SF-COMP-18,Verify the required-invoice wizard disables Complete until parts are received and offers no skip option,Completion — PO + Required Invoice (Story 4)
+29308,SF-COMP-19,Verify the required-invoice receive round-trip returns to the modal and enables Complete once all received,Completion — PO + Required Invoice (Story 4)
+29309,SF-COMP-20,Verify Cancel in the required-invoice wizard makes no change to the work order,Completion — PO + Required Invoice (Story 4)
+29310,SF-COMP-21,Verify completing a work order with an unapproved line shows the approve-line error and does not complete,Completion — Line approval gate
+29311,SF-COMP-22,Verify a manually unapproved line still blocks completion even when Auto-approve is ON,Completion — Line approval gate
+29312,SF-COMP-23,Verify re-running completion after a prior attempt does not create duplicate POs,Completion — Idempotency
+29313,SF-CORE-01,Verify inventory cores are gated in the completion modal after Pick with Ok/Not OK per core,Core parts — Completion modal (Stories 3/4/16)
+29314,SF-CORE-02,Verify the Resolve Cores step is skipped when the work order has no cores,Core parts — Completion modal
+29315,SF-CORE-03,Verify special-order cores leave the optional-invoice completion unchanged and Complete Without Receiving stays available,Core parts — Completion modal
+29316,SF-CORE-04,Verify the invoice shows a 'Cores pending' flag when unresolved special-order cores exist,Core parts — Invoice gate
+29317,SF-CORE-05,Verify resolving cores at the Create Invoice gate routes to receive the cored line then lets invoicing proceed,Core parts — Invoice gate
+29318,SF-CORE-06,"Verify cancelling the invoice-gate core resolution leaves the WO completed, un-invoiced and cores-pending",Core parts — Invoice gate
+29319,SF-CORE-07,Verify special-order cores are resolved after the required-invoice Receive round-trip before Complete,Core parts — Required invoice (Story 4)
+29320,SF-CORE-08,Verify the invoice gate detects an unresolved special-order core that exists only as a PartRequest,Core parts — Guardrail
+29321,SF-CORE-09,Verify part-sale work orders auto-resolve cores at receive while service work orders require manual Ok/Not OK,Core parts — Guardrail
+29322,SF-CORE-10,Verify the Resolve Cores step shows a live running '+$ to invoice' total as cores are marked Not OK,Core parts — Resolve step UI
+29360,SF-INV-01,Verify each vendor group has an 'Apply invoice to selected POs' control enabled only with an invoice # and ≥1 PO selected,Apply Invoice to Selected POs (Story 9)
+29361,SF-INV-02,"Verify Apply pre-fills one invoice number into only the selected POs of that vendor, still editable per PO",Apply Invoice to Selected POs (Story 9)
+29362,SF-INV-03,"Verify Apply Invoice is scoped per vendor, not offered for the vendorless group, and allows a reused invoice number",Apply Invoice to Selected POs (Story 9)
+29405,SF-PERM-01,Verify only owner/admin can view and modify Work Order settings (non-admin blocked),API — Permissions
+29406,SF-PERM-02,Verify which roles can complete a work order (Simple completion),Permissions
+29407,SF-PERM-03,Verify which roles can perform Bulk Receive,Permissions
+29408,SF-PERM-04,Verify which roles can Mark Reviewed (sign off),Permissions
+29409,SF-PERM-05,Verify the PO Receive button is hidden for office/readonly users,Permissions
+29410,SF-PERM-06,Verify the backend enforces the Simple-Flow settings and permission atoms (not front-end only),API — Permissions
+29411,SF-PERM-07,Verify review sign-off is governed by the Review Work Orders custom-role permission (not open to all),Permissions
+29412,SF-PERM-08,Verify the user who completed or sent the work order to review cannot Mark Reviewed it,Permissions
+29413,SF-PERM-09,Verify a Technician cannot add a vendorless / no-part-number part (lacks See Financial Data),Permissions
+29414,SF-PERM-10,Verify the Complete Work Order action follows the per-role completion permission matrix,Permissions
+29363,SF-PNFIX-01,Verify a no-number part shows 'Missing part number' with Edit → enter → save that persists immediately,Inline Part-Number Fix (Story 10)
+29364,SF-PNFIX-02,Verify entering a NEW part number creates a new inventory/catalog part with stock and Part History on receive,Inline Part-Number Fix (Story 10)
+29365,SF-PNFIX-03,Verify entering an EXISTING part number links to that item and updates stock/cost/history without overwriting description or category,Inline Part-Number Fix (Story 10)
+29366,SF-PNFIX-04,Verify inline part-number field-locking rules match the receive-screen rules (sell locks after invoiced/paid),Inline Part-Number Fix (Story 10)
+29367,SF-PNFIX-05,Verify a part cannot be received without a part number (and a vendor for vendor-missing) even on an invoiced/paid WO,Inline Part-Number Fix (Story 10)
+29368,SF-PNFIX-06,"Verify the inline part-number save drives real catalog creation/linking, inventory stock and Part History (not just a stored string)",Inline Part-Number Fix (Story 10)
+29344,SF-POSEL-01,Verify the PO list has a select-all checkbox and per-PO checkboxes,PO Multi-Select (Story 7)
+29345,SF-POSEL-02,"Verify selecting POs shows a bar with 'N purchase orders selected', Clear and Receive Selected",PO Multi-Select (Story 7)
+29346,SF-POSEL-03,Verify Receive Selected opens the PO Bulk Receive page carrying the selected POs,PO Multi-Select (Story 7)
+29347,SF-POSEL-04,Verify fulfilled (already-received) POs are not selectable,PO Multi-Select (Story 7)
+29348,SF-POSEL-05,Verify Vendor Missing POs are selectable and clearly indicated in the list,PO Multi-Select (Story 7)
+29349,SF-POSEL-06,Verify select-all only toggles POs on the current page/filter,PO Multi-Select (Story 7)
+29426,SF-QB-01,Verify in-stock parts decrement inventory and write Part History on simple completion (skip path still runs lifecycle),QuickBooks / Inventory Integrity
+29427,SF-QB-02,"Verify Create POs OFF produces no PO, vendor bill or AP sync and no catalog/inventory sync",QuickBooks / Inventory Integrity
+29428,SF-QB-03,Verify POs ON plus receiving runs the full pipeline: receive → Delivery → Vendor Bill → QuickBooks (both surfaces sync),QuickBooks / Inventory Integrity
+29429,SF-QB-04,Verify a vendorless / no-PN part has zero inventory interaction until a vendor and/or part number is added,QuickBooks / Inventory Integrity
+29430,SF-QB-05,Verify Vendor Missing POs are excluded from QuickBooks until a vendor and part number are provided,QuickBooks / Inventory Integrity
+29431,SF-QB-06,Verify cost at completion behavior to avoid $0-cost margins in QuickBooks,QuickBooks / Inventory Integrity
+29432,SF-QB-07,Verify the Journal Entry / Inventory sync to QuickBooks fires on invoice creation (not PO-dependent),QuickBooks / Inventory Integrity
+29433,SF-QB-08,Verify Inventory Part History is preserved for any part that becomes inventory-tracked,QuickBooks / Inventory Integrity
+29369,SF-RCV-01,Verify a Receive action appears on WO-originated POs in both the PO list and the PO detail card,Receive Button on WO POs (Story 11)
+29370,SF-RCV-02,Verify the Receive action opens the shared Accept Delivery surface,Receive Button on WO POs (Story 11)
+29371,SF-RCV-03,Verify the Receive action is hidden for office/readonly users and for fulfilled POs,Receive Button on WO POs (Story 11)
+29372,SF-RCV-04,"Verify the existing Accept Delivery screen groups by vendor with per-group invoice #, date, tax, note and Receive",Accept Delivery (Story 12)
+29373,SF-RCV-05,"Verify new vendorless/no-PN WO parts and WO-originated POs appear and are receivable on Accept Delivery, with the vendor-missing group at the bottom",Accept Delivery (Story 12)
+29374,SF-RCV-06,"Verify Accept Delivery receive gates: vendor set, missing part number entered, vendor invoice # captured",Accept Delivery (Story 12)
+29375,SF-RCV-07,Verify Accept Delivery shows a '+N' vendor indicator and leads with the vendor-missing group,Accept Delivery (Story 12)
+29376,SF-RCV-08,Verify each vendor group produces its own vendor bill and separate AP entry in QuickBooks,Accept Delivery (Story 12)
+29377,SF-RCV-09,Verify a 'received more than ordered' warning appears when received quantity exceeds ordered quantity,Accept Delivery (Story 12)
+29386,SF-REV-01,Verify the Require Review setting drives the review flow when turned on,Review ON (Story 16)
+29387,SF-REV-02,Verify the completion CTA relabels to 'Complete & Send to Review' when review is on,Review ON (Story 16)
+29388,SF-REV-03,Verify the Details step collects only mileage and engine hours when review is on (VIN captured later by reviewer),Review ON (Story 16)
+29389,SF-REV-04,Verify 'Receive Parts' routes to the shared receive page (no inline modal) in the review flow,Review ON (Story 16)
+29390,SF-REV-05,Verify Send to Review moves the WO to Review (amber) with a 'Ready for Review' banner and locks lines to Complete,Review ON (Story 16)
+29391,SF-REV-06,Verify the Mark Reviewed dialog captures VIN (required) and disables Confirm until VIN is entered,Review ON (Story 16)
+29392,SF-REV-07,Verify on Send to Review lines lock to Complete and inventory is auto-picked,Review ON (Story 16)
+29393,SF-REV-08,Verify Confirm Review moves the WO to a distinct Reviewed state requiring a separate final Complete Work Order,Review ON (Story 16)
+29394,SF-REV-09,Verify Mark Reviewed is gated by the Review Work Orders permission and disabled for a role without it,Review ON (Story 16)
+29395,SF-REV-10,Verify the Mark Reviewed dialog includes an optional review note field (input_review_note),Review ON (Story 16)
+29396,SF-REV-11,Verify after sign-off the final Complete Work Order (any role) completes the WO and invoicing is blocked until reviewed,Review ON (Story 16)
+29397,SF-REV-12,Verify a 'Ready for Review' list filter/column surfaces the reviewer queue,Review ON (Story 16)
+29398,SF-REV-13,Verify all lines must be approved to Send to Review (existing approve-line error),Review ON (Story 16)
+29399,SF-REV-14,Verify cores are resolved per rules before sign-off and invoicing is blocked until both Reviewed and all cores resolved,Review ON (Story 16)
+29400,SF-REV-15,Verify the Require Review default for new vs existing orgs matches the agreed cohort rule,Review ON (Story 16)
+29275,SF-SET-01,Verify the Work Order settings page shows all Simple-Flow toggles in order with new vs existing visually distinct,Work Order Settings
+29276,SF-SET-02,Verify there is no operating-mode selector and no VIN-required setting on the Work Order settings page,Work Order Settings
+29277,SF-SET-03,"Verify a 'Create Purchase Orders' toggle exists and, when off, hides the Vendor Invoice sub-setting",Work Order Settings
+29278,SF-SET-04,Verify the Require Vendor Invoice Number toggle is present with helper text and drives Optional vs Required completion,API — Work Order Settings
+29279,SF-SET-05,Verify Auto-approve Lines ON approves a work-order line the moment it is added,Work Order Settings
+29280,SF-SET-06,Verify Auto-approve Lines OFF leaves a new line in Needs Approval with Approve/Decline actions,Work Order Settings
+29281,SF-SET-07,"Verify existing settings (tech story, mileage, engine hours, auto-pick) display the org's current values",API — Work Order Settings
+29282,SF-SET-08,"Verify first-use defaults on a brand-new org (auto-approve OFF, create POs ON, vendor invoice REQUIRED)",Work Order Settings
+29283,SF-SET-09,Verify saving a settings change persists after page reload,API — Work Order Settings
+29284,SF-SET-10,Verify a settings change applies to future completions only and not to already-completed work orders,Work Order Settings
+29285,SF-SET-11,Verify a non-admin user cannot see or modify the Work Order settings,API — Work Order Settings
+29286,SF-SET-12,Verify the settings model contains no operatingMode field and no requireVin setting,API — Work Order Settings
+29287,SF-SET-13,Verify the Save Settings button is only enabled when there is an unsaved change,Work Order Settings
+29288,SF-SET-14,Verify the Require Review Before Completion toggle is present on the settings page and drives the review flow,Work Order Settings
+29289,SF-SET-15,Verify every Work Order setting toggle has descriptive helper text,Work Order Settings
+29323,SF-TECH-01,Verify each work order line shows a Story sub-row with an 'Add tech story for this line' link when empty,Tech Story Flow (Story 17)
+29324,SF-TECH-02,Verify with Require tech story ON every line needs a story before the work order can complete,Tech Story Flow (Story 17)
+29325,SF-TECH-03,Verify Complete opens the tech-story modal first and then chains into completion (order: tech story → parts → complete),Tech Story Flow (Story 17)
+29326,SF-TECH-04,"Verify the tech-story modal structure (header, per-line card, Line X of N, required textarea, disabled Next)",Tech Story Flow (Story 17)
+29327,SF-TECH-05,"Verify multi-line tech-story navigation (Back after line 1, Continue/Save on the last line)",Tech Story Flow (Story 17)
+29328,SF-TECH-06,"Verify a saved tech story renders inline with a green check, the text and an Edit link",Tech Story Flow (Story 17)
+29329,SF-TECH-07,Verify the tech-story textarea exposes the test id input_tech_story,Tech Story Flow (Story 17)
+29330,SF-TECH-08,Verify tech story is captured both inline and via the gate modal (Story 17 supersedes on-the-line-only wording),Tech Story Flow (Story 17)
+29401,SF-UX-01,Verify the work order primary button reads 'Create Work Order',UX Refinements (Story 15)
+29402,SF-UX-02,Verify required fields at completion appear in a centralized center modal and the tech story is NOT in that modal,UX Refinements (Story 15)
+29403,SF-UX-03,"Verify the success screen shows WO number and total with Done and Go to Invoice, and the invoice number is on the Finance step",UX Refinements (Story 15)
+29404,SF-UX-04,Verify the close-confirmation modal behavior (Close = closes modal only; Cancel = closes modal + returns to previous screen),UX Refinements (Story 15)
+29415,SF-VAL-01,Verify completion is blocked when required mileage is missing,Validation / Edge
+29416,SF-VAL-02,Verify completion is blocked when a required VIN is missing (non-review flow),Validation / Edge
+29417,SF-VAL-03,Verify completion is blocked when required engine hours are missing,Validation / Edge
+29418,SF-VAL-04,Verify the tech-story Next/Continue button stays disabled while the story textarea is empty,Validation / Edge
+29419,SF-VAL-05,Verify a required-invoice receive is blocked without a vendor invoice number,Validation / Edge
+29420,SF-VAL-06,Verify a vendor-missing part cannot be received without both a vendor and a part number,Validation / Edge
+29421,SF-VAL-07,Verify Confirm Review is disabled until a VIN is entered in the Mark Reviewed dialog,Validation / Edge
+29422,SF-VAL-08,Verify re-completing after cancelling does not create duplicate POs,Validation / Edge
+29423,SF-VAL-09,Verify the sell field is locked after the work order is invoiced/paid with a lock icon and tooltip,Validation / Edge
+29424,SF-VAL-10,Verify the same vendor invoice number can be reused across POs (uniqueness relaxed),Validation / Edge
+29425,SF-VAL-11,Verify the approve-line error text appears when completing with an unapproved line,Validation / Edge
+29378,SF-VEND-01,Verify the vendor-missing group provides a vendor dropdown that assigns a vendor at PO level and saves it,Assign Vendor + Merge (Story 13)
+29379,SF-VEND-02,Verify assigning a vendor already on this PO prompts 'Add to {vendor}?' with Merge vs Keep Separate,Assign Vendor + Merge (Story 13)
+29380,SF-VEND-03,Verify assigning a vendor that is on another PO for the same WO prompts to merge the POs,Assign Vendor + Merge (Story 13)
+29381,SF-VEND-04,"Verify assigning a different vendor with no collision auto-assigns, clears the QB flag and enables Receive",Assign Vendor + Merge (Story 13)
+29382,SF-VEND-05,"Verify vendor matching is by ID (not name), merge is scoped to the same WO, and receiving is blocked when the WO is invoiced/paid",Assign Vendor + Merge (Story 13)
+29338,SF-VMIS-01,Verify a vendorless vendor-part goes onto the work order's normal PO with no separate dummy PO,Vendor Missing on WO PO (Story 6)
+29339,SF-VMIS-02,Verify a 'Vendor Missing +N' indication shows on the PO list and PO detail,Vendor Missing on WO PO (Story 6)
+29340,SF-VMIS-03,Verify a Vendor Missing PO is flagged and excluded from QuickBooks sync,Vendor Missing on WO PO (Story 6)
+29341,SF-VMIS-04,Verify a Vendor Missing PO offers options to select a vendor and enter/edit the part number,Vendor Missing on WO PO (Story 6)
+29342,SF-VMIS-05,Verify the Vendor Missing flag clears once both a vendor and a part number are provided,Vendor Missing on WO PO (Story 6)
+29343,SF-VMIS-06,Verify reports mark Vendor Missing POs as 'needs vendor',Vendor Missing on WO PO (Story 6)
+29331,SF-VPART-01,"Verify a part can be requested with only description, quantity and sell price (part number, cost, vendor empty)",Vendorless / No-PN Part (Story 5)
+29332,SF-VPART-02,"Verify adding a part is blocked when description, quantity or sell price is missing",Vendorless / No-PN Part (Story 5)
+29333,SF-VPART-03,Verify a vendorless part's type uses the existing source field (vendor or found) and never inventory,Vendorless / No-PN Part (Story 5)
+29334,SF-VPART-04,Verify a vendorless part is editable after creation,Vendorless / No-PN Part (Story 5)
+29335,SF-VPART-05,Verify a no-part-number part creates no inventory item and no Part History,Vendorless / No-PN Part (Story 5)
+29336,SF-VPART-06,Verify adding a part number and vendor later transitions the part out of vendorless,Vendorless / No-PN Part (Story 5)
+29337,SF-VPART-07,Verify a vendorless / no-PN part cannot be received until a part number (and vendor) is entered,Vendorless / No-PN Part (Story 5)
+29383,SF-WOP-01,Verify an optional 'Waiting on Parts' column can be enabled from the column selector and shows the unreceived-parts count per WO,Waiting on Parts Column (Story 14)
+29384,SF-WOP-02,Verify clicking the Waiting on Parts count opens Accept Delivery for the WO's first unreceived PO,Waiting on Parts Column (Story 14)
+29385,SF-WOP-03,Verify a work order with nothing to receive shows '—' with no link in the Waiting on Parts column,Waiting on Parts Column (Story 14)
