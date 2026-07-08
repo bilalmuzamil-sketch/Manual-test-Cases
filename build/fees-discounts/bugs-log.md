@@ -10,26 +10,34 @@ broken behavior; **Note** = build fact worth tracking.
 
 ---
 
-## BUG-FD-1 — Customer-default + location auto-apply can double-add on a new WO
+## BUG-FD-1 — Customer-default + location auto-apply double-add — NOT REPRODUCED on current build (batch 2)
 - **Type:** Bug (known S9 gap, requirements §14 item 4).
 - **Cases:** FD-CUST-016, FD-VAL-007.
-- **Status this pass:** Setup CONFIRMED, not re-observed via a fresh WO create.
-- **Repro / evidence:**
-  1. A template can be simultaneously **auto-apply at the location** AND a
-     **customer default**. Confirmed live: template "Customer fee" (id
-     `43e94ed0…`, `autoApply:true`) is also a customer default on customer
-     Aaborough Works (`7af75d7c…`) — `GET /api/customers/7af75d7c…/default-adjustments`
-     returns it.
-  2. Recon (2026-07-08) directly **observed the auto-apply template landing ×2**
-     on one newly-created WO — the shape of this bug.
-  3. Intended result per spec: **one** adjustment on the WO; a duplicate is the
-     defect.
-- **Why not re-observed here:** `POST /api/work-orders/create` needs a vehicle
-  that is associated to the target company (`company_id` is derived from
-  `vehicle_company_id`); could not cleanly seed that association within budget,
-  and the New-WO UI flow timed out. Recommend re-confirming by creating a WO for
-  Aaborough via the UI and counting the "Customer fee" adjustments (expect 2 =
-  bug).
+- **Status (batch 2, 2026-07-08):** **Re-driven cleanly with a fresh WO create —
+  did NOT reproduce. The backend DEDUPES.** The double-add could not be produced
+  through the WO-create path.
+- **What was tested (two independent clean setups, both via `POST
+  /api/work-orders/create`, the same endpoint the UI "New Work Order" button
+  calls):**
+  1. **Manual-default setup:** template "Customer fee" (`43e94ed0…`,
+     `autoApply:true`) was ALSO set as a customer default on company Aosquare
+     Forestry (`1f17bcab…`). New WO created → **exactly ONE "Customer fee"
+     adjustment** (control "Flat fee", auto-apply only, also 1). Result = correct.
+  2. **Auto-inheritance setup (S9-R1 path):** a brand-new customer was created
+     while "Customer fee" was auto-apply → it auto-inherited "Customer fee" AND
+     "Flat fee" as defaults (FD-CUST-014 confirms). *(WO-create for that new
+     customer needs a vehicle owned by the new company; vehicle-create needs a
+     contact/customer_id the new company doesn't yet have, so this exact WO count
+     was not completed — but setup #1 covers the same "auto-apply + default"
+     collision.)*
+- **Conclusion:** on the current qb build the auto-apply + customer-default
+  collision resolves to **one** adjustment (intended per spec). The recon
+  (2026-07-08) ×2 observation was **not reproducible** here — the bug appears
+  **fixed or not triggerable via the create path**. Recommend confirming with the
+  team whether the S9 dedupe fix has shipped; if so, FD-CUST-016/FD-VAL-007
+  EXPECTED (double-add) should be re-scoped to "single adjustment".
+- **Evidence:** `/tmp/fdcln/batch2-results.json` (BUG-FD-1 = NOT-REPRODUCED, count
+  1), `/tmp/fdcln/cust-lifecycle-results.json` (FD-CUST-014 inheritance).
 
 ## BUG-FD-2 — Statistics tab F&D layout differs from spec (aggregate, not per-row)
 - **Type:** Deviation (S4-R2 / S4-R3).
@@ -58,6 +66,49 @@ broken behavior; **Note** = build fact worth tracking.
   for `view_mode:tech` (`sub_total:"0.00"`).
 - **Action:** Confirm whether whole-WO adjustment writes should be BE-enforced or
   remain FE-gated for V1.
+- **Batch-2 reconfirm (2026-07-08):** re-ran with the `tech` quick-login (now 200
+  on qb). Tech fe-permissions = `customersView, scheduleView, woPickParts,
+  workOrderLinesCreateAndEdit, workOrdersView, woTechViewMode` (no
+  `workOrdersCreateAndEdit`). `POST /api/work-orders/adjustments/add`
+  scope=`whole_wo` → **201** again (FE-only). By contrast **template create → 403**
+  and **customer-default GET+POST → 403** (BE-enforced), and `view_mode=tech`
+  masks financials (`sub_total:"0.00"`). **New:** the WO **history** endpoint is
+  also **NOT BE-enforced** — tech (no `viewHistoryLogs`) `GET
+  /work-orders/{id}/history` → **200 with 100 entries** (so View History Logs is an
+  FE display gate; F&D history persists regardless — S10-R1). Full data in
+  `/tmp/fdcln/enforce-tech-results.json`; per-role FE matrix in
+  `/tmp/fdcln/roles-matrix.json`.
+
+## BUG-FD-4 — WO Add/Edit dialog: "Add" button not disabled on an empty form (Deviation)
+- **Type:** Deviation (S2-N1/N2 / design §6 validateForm()).
+- **Cases:** FD-WO-005, FD-VAL-001 (flagged VIU-Pending — DEVIATION, not rewritten).
+- **Detail:** The Add Fee/Discount dialog shows the confirm button **enabled**
+  (blue "Add Fee") even with Name and Amount empty (evidence
+  `viu-evidence/b2-05-add-dialog-empty.png`). The build enforces required-field
+  validation **on submit** (inline error "Amount must be greater than 0",
+  confirmed batch 1) rather than by disabling the button. The underlying spec rule
+  (can't save an empty/invalid adjustment) still holds; only the mechanism
+  (disabled-button vs inline-error) differs. Same pattern as the batch-1
+  "Save Settings always enabled" template-dialog note.
+- **Action:** Confirm intended (inline-error vs disabled-button).
+
+## BUG-FD-5 — Inline line adjustments: no "Show N more" collapse toggle (Deviation)
+- **Type:** Deviation (S3-R15 / S3-R16 / S12-R6).
+- **Cases:** FD-INLINE-003 (flagged VIU-Pending — DEVIATION).
+- **Detail:** With **two** labor-line adjustments on one line, **both** inline rows
+  render and **no "Show N more" / "Show less"** toggle was observed (evidence
+  `viu-evidence/b2-05`). Spec expects only the first row + a toggle when ≥2.
+- **Action:** Confirm whether the collapse toggle is planned for V1.
+
+## NOTE-FD-7 — Add dialog Taxable is a toggle; template delete-confirm wording differs
+- **Type:** Note / minor deviation (recon-level wording drift, §6.1 / S2-R26 / S7-R20).
+- **Detail:** (a) The WO Add/Edit dialog **Taxable** control is a **Yes/No toggle
+  switch**, not the spec's Yes/No **dropdown** (S2-R26); default Yes (b2-05).
+  (b) The template **delete-confirm** dialog title is **"Delete Template"** with
+  message **"This template is set as a default for 1 customer. Deleting it will
+  remove it from them."** (b2c-05) — the S7-R21 customer-default warning IS present,
+  but the base wording differs from spec S7-R20 ("Are you sure you want to delete
+  this fee / discount?"). Low severity.
 
 ## NOTE-FD-4 — Processing Fee: UI not built, but backend accepts it
 - **Type:** Note (Story 8; leave VIU-pending per instructions).

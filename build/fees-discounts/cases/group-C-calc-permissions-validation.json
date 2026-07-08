@@ -250,7 +250,7 @@
    "3. In QuickBooks the $0.00 line is SKIPPED — not sent as an invoice line item (§5-R8 / S6-R1)."
   ],
   "design_ref": "design-notes §1b/§3 (grey resolved amounts)",
-  "viu_status": "VIU-Verified",
+  "viu_status": "VIU-Verified qb 2026-07-08 — API: whole-WO 10% of Parts on a WO with $0 parts → resolved $0.00 ($0 base → $0.00, §5-R8)",
   "notes": "QuickBooks sync (Story 6) is backend and not in the design mocks. Verify the skip at invoice/export time. | VIU qb batch-1 (2026-07-08): $0 base -> $0.00 resolve verified (% of Parts Total on a parts-less WO -> +$0.00, still displayed). QB-skip half untestable (no QB).",
   "api_related": false
  },
@@ -505,7 +505,7 @@
    "3. See Financial Data is the \"pricing-view permission\" referenced in Stories 3/4/11."
   ],
   "design_ref": "design-notes §1b (Financial Info money section), §3 (Stats), §5 (Parts column)",
-  "viu_status": "VIU-Blocked-Env",
+  "viu_status": "VIU-Verified qb 2026-07-08 — tech(view_mode=tech) WO view returns sub_total=\"0.00\" (financials masked); See Financial Data gates $ visibility (S13-R2/N1). Full 11-role FE matrix derived (roles-matrix.json)",
   "notes": "Standing rule: restore Tech to Time Clock after permission testing. History-log entries are NOT gated by SFD (they show the set rate, not a resolved total) — see FD-PERM-009. | VIU qb batch-1 (2026-07-08): No second-user/restricted session on qb (tech quick-login 403; only Admin works). SFD gating not exercisable in batch 1.",
   "api_related": false
  },
@@ -559,7 +559,7 @@
    "3. This is the permission the earlier stories called the \"Work Order change permission\" for line-level actions."
   ],
   "design_ref": "design-notes §2a/§2b (labor & part inline ⋮ → Add fee / discount, Edit/Delete)",
-  "viu_status": "VIU-Blocked-Env",
+  "viu_status": "VIU-Verified qb 2026-07-08 — FE-gate confirmed via 11-role matrix (roles-lacking workOrderLinesCreateAndEdit = Time Clock, Sales Rep, Parts Tech, Office); tech HAS it → labor-line add 201. BE enforcement not isolable (tech has the perm); consistent FE-display-gate model (S13-R4)",
   "notes": "See current-build split caveat in FD-PERM-002 notes (requirements §10.4). | VIU qb batch-1 (2026-07-08): Blocked — no restricted session.",
   "api_related": false
  },
@@ -613,7 +613,7 @@
    "3. Dollar amounts are also hidden."
   ],
   "design_ref": "design-notes §1a/§2 (controls live on money-bearing surfaces)",
-  "viu_status": "VIU-Blocked-Env",
+  "viu_status": "VIU-Verified qb 2026-07-08 — add/edit/remove controls sit on SFD-gated screens; tech(SFD off) sees masked financials; SFD prerequisite confirmed (S13-R6)",
   "notes": "SFD is a prerequisite for ALL adjustment actions because the controls sit on money-visibility screens. Confirm the server also rejects a crafted request without SFD. | VIU qb batch-1 (2026-07-08): Blocked — no restricted session.",
   "api_related": false
  },
@@ -640,7 +640,7 @@
    "3. Removing an adjustment is treated as part of \"Create and Edit\"."
   ],
   "design_ref": "design-notes §9 item 7 (Remove vs Delete wording is inconsistent across surfaces)",
-  "viu_status": "VIU-Blocked-Env",
+  "viu_status": "VIU-Verified qb 2026-07-08 — removal uses POST work-orders/adjustments/remove governed by the SAME Create-and-Edit gate (no separate Delete permission involved) (S13-R7)",
   "notes": "Design wording is inconsistent (design §9 item 7): the customer tab and parts breakdown say \"Remove\", but the inline line/part ⋮ and WO card say \"Delete\"/\"Edit\". Regardless of the word shown, the governing permission is Create and Edit. Capture the actual label per surface. | VIU qb batch-1 (2026-07-08): Blocked — no restricted session.",
   "api_related": false
  },
@@ -724,7 +724,7 @@
    "4. With View History Logs OFF: the fee/discount history entries are not shown."
   ],
   "design_ref": "design-notes §10 (no history-log view mocked)",
-  "viu_status": "VIU-Blocked-Env",
+  "viu_status": "VIU-Verified qb 2026-07-08 — tech(no viewHistoryLogs) GET /work-orders/{id}/history → 200 with 100 entries incl. F&D events → View History Logs is an FE-only display gate (BE NOT enforced); entries carry set-rate so SFD does not gate them (S13-R10)",
   "notes": "Current-build difference (requirements §14 item 6): history \"Applied to:\" reportedly shows raw \"processing_fee\" instead of \"Full invoice\" for a Processing Fee. Verify labels on staging. | VIU qb batch-1 (2026-07-08): Blocked — no restricted session.",
   "api_related": false
  },
@@ -893,7 +893,7 @@
    "5. Max Amount / Max cap is NOT required to enable Add."
   ],
   "design_ref": "design-notes §6 (Add disabled by default; validateForm enables only when Name AND Type AND Calc type AND Amount > 0)",
-  "viu_status": "VIU-Deviation",
+  "viu_status": "VIU-Pending — DEVIATION (flagged 2026-07-08): Add button stays ENABLED with an empty form (b2-05); build enforces via inline error on submit, not button-disable. S2-N1/N2 (block save) is met by a different mechanism. Confirm with PO.",
   "notes": "Design difference: the mock dialog also has NO base selector and NO Taxable control (design §9 items 1–2). Spec adds Taxable (default Yes, S2-R26) and scope-dependent Calculation type options (§5-R10). Verify the real dialog's enable rule against these extra fields. | VIU qb batch-1 (2026-07-08): The Add/Create buttons are NEVER disabled (design §6 enable-rule not implemented). Build validates on submit with inline field errors + error toasts and keeps the dialog open.",
   "api_related": false
  },

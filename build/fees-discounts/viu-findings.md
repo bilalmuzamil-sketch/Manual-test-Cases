@@ -35,7 +35,110 @@ contract, validation, permissions, history and template CRUD. Evidence:
 | Customer documents (FD-DOC) | 0 / 11 | 11 | Story 5/14 not reached |
 | QuickBooks (FD-QB) | 0 / 16 | 16 | Story 6 not connected |
 | History log (FD-HIST) | 4 / 8 | 4 | add/edit/remove events, fields, "Full invoice" |
-| **TOTAL** | **62 / 182** | **120** | |
+| **TOTAL** | **62 / 182** | **120** | *(batch-1; see Batch-2 update below → 88 / 182)* |
+
+---
+
+## BATCH 2 (2026-07-08) — reachable built-surface remainder + Story 13 per-role
+
+**New totals: 88 VIU-Verified / 94 Pending (of 182)** — +26 net this batch.
+Env unchanged (qb / SV-7387). Method: admin + **tech** quick-login (both 200 now;
+the earlier tech-403 is FIXED on qb), direct API for calc/CRUD/enforcement, boot2
+for the visual cases. Evidence: `viu-evidence/b2-*.png`, `viu-evidence/b2c-*.png`;
+data `/tmp/fdcln/{batch2-results.json,fixup3-results.json,cust-lifecycle-results.json,
+roles-matrix.json,enforce-tech-results.json}` (ephemeral).
+
+### Cases moved to VIU-Verified this batch (30)
+**API-verified:** FD-STACK-001 (part multi-adj each on own gross base, no stacking),
+FD-STACK-003 (same template applied twice → 2 adjustments), FD-PART-008 (flat qty-1
+part = base amount), FD-TMPL-013 (pct-discount 150% rejected 400 / pct-fee 150%
+allowed), FD-TMPL-017 (name 100-char limit), FD-TMPL-009 (delete template leaves WO
+adj), FD-TMPL-005 (auto-apply lands on new WO), FD-CUST-009/010 (pct default added
+as independent copy, re-resolves), FD-CUST-011 (remove default keeps existing WO
+adj), FD-CUST-012 (delete template drops default link), FD-CUST-013 (delete customer
+removes default links), FD-CUST-014 (new customer inherits auto-apply as defaults),
+FD-CALC-009 ($0 base → $0.00), FD-HIST-005 (history persists w/ set-rate under SFD
+off), FD-LABOR-006 (delete line removes its adjustment).
+**UI-verified (b2-05 / b2-04 / b2c-05):** FD-INLINE-001/002 (↳ inline line/part
+rows, signed grey resolved), FD-INLINE-004 (per-line Total includes own adj),
+FD-INLINE-005 (inline 3-dot menu), FD-STATS-003 (Stats Net = signed sum), FD-TMPL-007
+(delete-confirm dialog + S7-R21 warning).
+**Story 13 (roles-matrix + tech enforcement):** FD-PERM-001 (SFD masks $ amounts),
+FD-PERM-003 (line/part gate via matrix), FD-PERM-005 (SFD prerequisite),
+FD-PERM-006 / FD-REMOVE-002 (remove uses Create-and-Edit not Delete), FD-PERM-009 /
+FD-HIST-006 (View History Logs is FE-only; BE returns history), FD-LABOR-007
+(labor-line starting place FE-gated by WO Lines C&E).
+
+### Story 13 — per-role permissions (self-service)
+**Login limitation:** qb `quick-login` supports only `{admin}` and `{tech}` keys;
+there is **no per-user login key**, and the `tech` quick-login user is not a
+role-switchable staff record on this env — so a **live UI login as each of the other
+9 roles was not feasible**. Per the task's fallback, per-role gating was verified by
+(a) **enumerating every role's fe-permissions** (`GET /api/organizations/{org}/roles`
+→ `GET /api/roles/{id}`) and mapping to the S13 action table, and (b) **live BE
+enforcement** using the `tech` (Technician) session, which cleanly isolates several
+gates (tech HAS `workOrderLinesCreateAndEdit` but LACKS `workOrdersCreateAndEdit`,
+`seeFinancialData`, `settingsFinance`, `customersCreateAndEdit`, `seeApArData`,
+`viewHistoryLogs`).
+
+**Per-role FE-capability matrix (all 11 roles, derived from role fe-permissions):**
+
+| Role | See $ (SFD) | Whole-WO adj | Line/Part adj | Part-Sale adj | Manage templates | Customer defaults | History |
+|---|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+| Admin | Y | Y | Y | Y | Y | Y | Y |
+| Parts Manager | Y | Y | Y | Y | Y | Y | Y |
+| Service Manager | Y | Y | Y | Y | Y | · | Y |
+| Senior Service Advisor | Y | Y | Y | Y | · | Y | Y |
+| Service Advisor | Y | Y | Y | Y | · | · | Y |
+| Foreman | Y | Y | Y | · | · | · | Y |
+| Office User | Y | · | · | · | Y | Y | Y |
+| Parts Technician | Y | · | · | Y | · | · | Y |
+| Sales Representative | Y | · | · | · | · | · | · |
+| Technician | · | · | Y | · | · | · | · |
+| Time Clock User | · | · | · | · | · | · | · |
+
+(Y = the role's fe-permissions satisfy that S13 action's required permission(s); · = denied. Data: `roles-matrix.json`.)
+
+**Live BE enforcement (tech session — `enforce-tech-results.json`):**
+
+| Action | Tech FE gate | Endpoint result | Enforcement |
+|---|---|---|---|
+| See $ amounts | DENY (view_mode=tech) | WO view `sub_total:"0.00"` | **BE-masked** (SFD) |
+| Whole-WO add | DENY (no WO C&E) | `adjustments/add` whole_wo → **201** | **FE-only** (BUG-FD-3) |
+| Labor-line add | ALLOW (has Lines C&E) | `adjustments/add` labor_line → 201 | allowed (consistent) |
+| Manage templates | DENY (no Settings→Finance) | `POST adjustment-templates` → **403** | **BE-enforced** |
+| Customer defaults | DENY (no cust C&E + AP/AR) | GET+POST default-adjustments → **403** | **BE-enforced** |
+| History log | DENY (no View History Logs) | `GET .../history` → **200 (100 rows)** | **FE-only** (not enforced) |
+
+**Takeaway:** BE actually enforces only **templates (Settings→Finance)**, **customer
+defaults (Customer C&E + AP/AR)**, and **SFD money-masking**. Whole-WO adjustment
+writes and the history log are **FE display gates only** (BE allows) — matching the
+project enforcement model. Could NOT be tested: live per-role UI gating for the other
+9 roles (no per-user login), Part-Sale adjustment gate (Story 11 not built),
+flag-OFF gate combination (FD-PERM-010/FD-FLAG-*; would affect the whole org).
+
+### Deviations flagged this batch (kept VIU-Pending — DEVIATION, not rewritten)
+- **FD-WO-005 / FD-VAL-001** — Add button not disabled on empty form (BUG-FD-4).
+- **FD-INLINE-003** — no "Show N more" toggle with ≥2 line adjustments (BUG-FD-5).
+- **FD-STATS-002 / FD-STATS-004** — Stats aggregate layout, no per-adjustment rows (BUG-FD-2).
+- **FD-CUST-005** — customer picker is a single dropdown, not a checkbox multi-select (NOTE-FD-5).
+
+### BUG-FD-1 double-add — NOT reproduced (see bugs-log)
+Re-driven cleanly via a fresh WO create (the same endpoint the UI uses) with the
+auto-apply template ALSO set as a customer default → **exactly one** adjustment
+(backend dedupes). Appears fixed / not triggerable via the create path.
+
+### Still VIU-Pending on built surfaces (reason)
+Not captured this pass (UI interaction/state not driven): FD-WO-004 (template
+autofill), FD-WO-015 (colored preview row), FD-FIN-002/003/005 (expand + no-adj
+states), FD-STATS-005 (no-adj hidden), FD-CUST-006/017 (empty picker / failure
+toast), FD-EDIT-003 (save-failure keeps dialog), FD-REMOVE-003 (inline remove),
+FD-TMPL-010/012/015 (picker scoping / empty list / save-failure toast).
+Not constructible via API this pass: FD-CALC-010 (negative base can't be forced),
+FD-LABOR-005 / FD-PART-006 (not-billable target), FD-PART-003/005/007 (requested /
+requested→received / delete-part — needs a WO with a staged/requested part; delete
+mechanism proven identical via FD-LABOR-006). Blocked by not-built / org-wide:
+FD-PERM-010, FD-FLAG-001/002/003, FD-HIST-004 (flag-OFF not toggled).
 
 ---
 
