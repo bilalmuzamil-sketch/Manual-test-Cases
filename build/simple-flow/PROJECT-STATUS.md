@@ -8,6 +8,21 @@
 > (2026-07-07). Deliverables regenerated (workbook + interim TestRail import).
 > VIU PARTIAL (feature under development). Do NOT touch TestRail.
 
+## API-folder rule applied (2026-07-08)
+
+STANDING RULE 4 (CLAUDE.md) is now applied to this project: any case whose
+preconditions/steps/expected include API-related content (endpoints, HTTP
+verbs/status codes, backend request/response checks) is routed to a TestRail
+section whose title includes "API". Each case JSON now carries an `api_related`
+boolean, and `gen_import.py` / `gen_update.py` / `gen_blockers.py` derive the
+section from it (`"API — <leaf area>"` when true, else the leaf area).
+
+- **7 cases** flagged API-related and moved into **2 API sections**:
+  `API — Work Order Settings` (SF-SET-04, SF-SET-07, SF-SET-09, SF-SET-11,
+  SF-SET-12) and `API — Permissions` (SF-PERM-01, SF-PERM-06).
+- Regenerated import still has **159** data rows + byte-identical header,
+  **0 VIU / 0 feature-flag**.
+
 ## Unblock → Update loop (2026-07-07)
 
 The delivery package now supports an iterative unblock→update loop. **The Blockers

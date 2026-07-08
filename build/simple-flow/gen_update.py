@@ -97,6 +97,15 @@ def build_refs(c):
     return spec
 
 
+def section_for(c):
+    """Leaf area name; API-related cases route to 'API — <area>' (STANDING RULE 4).
+    Kept in sync with gen_import.py."""
+    area = c["area"].strip()
+    if c.get("api_related"):
+        return "API — " + area
+    return area
+
+
 def load_cases():
     cases = []
     for fn in FILES:
@@ -210,7 +219,7 @@ def write_csv(out, rows, id_matched):
         for sf, tr, c in rows:
             base = [
                 clean(c["title"].strip()),
-                c["area"].strip(),
+                section_for(c),
                 "Functional",
                 c["priority"].strip(),
                 joinlines(c.get("preconditions", [])),
@@ -234,7 +243,7 @@ def write_xml(out, rows):
     from collections import OrderedDict
     sections = OrderedDict()
     for sf, tr, c in rows:
-        sections.setdefault(c["area"].strip(), []).append((sf, tr, c))
+        sections.setdefault(section_for(c), []).append((sf, tr, c))
 
     L = ['<?xml version="1.0" encoding="UTF-8"?>', "<suite>", "  <name>Simple Flow V1 — UPDATE</name>",
          "  <sections>"]

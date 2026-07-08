@@ -165,13 +165,22 @@ def load_cases():
     return cases
 
 
+def section_for(c):
+    """TestRail section for this case; API-related cases route to 'API — <area>'
+    (STANDING RULE 4). Kept in sync with gen_import.py."""
+    area = c["area"].strip()
+    if c.get("api_related"):
+        return "API — " + area
+    return area
+
+
 def main():
     cases = load_cases()
     rows = []
     for c in cases:
         cls = classify(c)
         rows.append([
-            c["id"], c["area"], c["title"].strip(), c.get("viu_status", ""),
+            c["id"], section_for(c), c["title"].strip(), c.get("viu_status", ""),
             cls["state"], cls["category"], cls["owner"], cls["needs"], cls["related"],
         ])
 

@@ -21,7 +21,8 @@
     ],
     "design_ref": "Workflow Settings.html; WO Review Flow.html",
     "viu_status": "VIU-Verified",
-    "notes": "Verified 2026-07-06 — the settings toggle drives the flow (08-settings-workorders.png, S16-04-review-wizard.png)."
+    "notes": "Verified 2026-07-06 — the settings toggle drives the flow (08-settings-workorders.png, S16-04-review-wizard.png).",
+    "api_related": false
   },
   {
     "id": "SF-REV-02",
@@ -45,7 +46,8 @@
     ],
     "design_ref": "WO Review Flow.html",
     "viu_status": "VIU-Verified",
-    "notes": "Verified 2026-07-06 (S16-04-review-wizard.png)."
+    "notes": "Verified 2026-07-06 (S16-04-review-wizard.png).",
+    "api_related": false
   },
   {
     "id": "SF-REV-03",
@@ -70,7 +72,8 @@
     ],
     "design_ref": "WO Review Flow.html; requirements R3",
     "viu_status": "VIU-Pending",
-    "notes": "Not isolated in VIU (the review Details split was not separately asserted). Needs live verification."
+    "notes": "Not isolated in VIU (the review Details split was not separately asserted). Needs live verification.",
+    "api_related": false
   },
   {
     "id": "SF-REV-04",
@@ -93,7 +96,8 @@
     ],
     "design_ref": "WO Review Flow.html; Receive Vendor Parts - v2.html",
     "viu_status": "VIU-Pending",
-    "notes": "Not driven in VIU. Needs live verification."
+    "notes": "Not driven in VIU. Needs live verification.",
+    "api_related": false
   },
   {
     "id": "SF-REV-05",
@@ -119,7 +123,8 @@
     ],
     "design_ref": "WO Review Flow.html",
     "viu_status": "VIU-Verified",
-    "notes": "Status→Review + 'Sent for review' verified 2026-07-06 (S16-05-after-send.png). Line-lock and auto-pick details (R6) not separately asserted."
+    "notes": "Status→Review + 'Sent for review' verified 2026-07-06 (S16-05-after-send.png). Line-lock and auto-pick details (R6) not separately asserted.",
+    "api_related": false
   },
   {
     "id": "SF-REV-06",
@@ -145,7 +150,8 @@
     ],
     "design_ref": "WO Review Flow.html; WO Review Flow - Handoff.md (test IDs)",
     "viu_status": "VIU-Verified",
-    "notes": "Verified 2026-07-06 — dialog with VIN field, VIN pre-filled from asset, Confirm enabled (S16-06-mark-reviewed-dialog.png, S16-07-review-filled.png). Confirm-disabled-until-VIN inferred from VIN-required rule but not forced empty."
+    "notes": "Verified 2026-07-06 — dialog with VIN field, VIN pre-filled from asset, Confirm enabled (S16-06-mark-reviewed-dialog.png, S16-07-review-filled.png). Confirm-disabled-until-VIN inferred from VIN-required rule but not forced empty.",
+    "api_related": false
   },
   {
     "id": "SF-REV-07",
@@ -170,7 +176,8 @@
     ],
     "design_ref": "requirements R6",
     "viu_status": "VIU-Pending",
-    "notes": "Not separately asserted in VIU. Needs live verification."
+    "notes": "Not separately asserted in VIU. Needs live verification.",
+    "api_related": false
   },
   {
     "id": "SF-REV-08",
@@ -195,7 +202,8 @@
     ],
     "design_ref": "WO Review Flow.html; requirements R5/R8",
     "viu_status": "Open-Question",
-    "notes": "VIU BUG #4: after Confirm Review the WO went straight to Complete — no distinct Reviewed holding state / separate final Complete click was observed (S16-08-reviewed.png). May be admin auto-progression. Do not record as passing against the expected. See Open Questions."
+    "notes": "VIU BUG #4: after Confirm Review the WO went straight to Complete — no distinct Reviewed holding state / separate final Complete click was observed (S16-08-reviewed.png). May be admin auto-progression. Do not record as passing against the expected. See Open Questions.",
+    "api_related": false
   },
   {
     "id": "SF-REV-09",
@@ -221,7 +229,8 @@
     ],
     "design_ref": "requirements R7 / §9 (Review Work Orders + reviewer != completer)",
     "viu_status": "VIU-Verified",
-    "notes": "Defined by SV-8183: Mark Reviewed = Review Work Orders atom (defaults broad, narrowable to manager/foreman) plus reviewer != completer. Role-gating negatives not yet verified live (admin-only session on sv7301). | VIU 2026-07-07 (Tech-unblock pass): RESULT: FAIL. Mark Reviewed is NOT gated by Review Work Orders at the BE: tech (no woReviewWorkOrders) drove change-status->complete on a ready_for_review WO -> 201. FE hides the control for non-reviewers, but BE does not enforce; reviewer!=completer also not enforced."
+    "notes": "Defined by SV-8183: Mark Reviewed = Review Work Orders atom (defaults broad, narrowable to manager/foreman) plus reviewer != completer. Role-gating negatives not yet verified live (admin-only session on sv7301). | VIU 2026-07-07 (Tech-unblock pass): RESULT: FAIL. Mark Reviewed is NOT gated by Review Work Orders at the BE: tech (no woReviewWorkOrders) drove change-status->complete on a ready_for_review WO -> 201. FE hides the control for non-reviewers, but BE does not enforce; reviewer!=completer also not enforced.",
+    "api_related": false
   },
   {
     "id": "SF-REV-10",
@@ -245,7 +254,8 @@
     ],
     "design_ref": "WO Review Flow - Handoff.md (test IDs)",
     "viu_status": "Open-Question",
-    "notes": "VIU BUG #3: the Mark Reviewed dialog exposed ONLY the VIN field — no optional-note input (S16-06-mark-reviewed-dialog.png). Do not record as passing against the expected. See Open Questions."
+    "notes": "VIU BUG #3: the Mark Reviewed dialog exposed ONLY the VIN field — no optional-note input (S16-06-mark-reviewed-dialog.png). Do not record as passing against the expected. See Open Questions.",
+    "api_related": false
   },
   {
     "id": "SF-REV-11",
@@ -270,7 +280,8 @@
     ],
     "design_ref": "requirements R8",
     "viu_status": "VIU-Pending",
-    "notes": "Overlaps VIU bug #4 (no distinct Reviewed state observed). Invoicing-block-until-reviewed not driven. Needs live verification."
+    "notes": "Overlaps VIU bug #4 (no distinct Reviewed state observed). Invoicing-block-until-reviewed not driven. Needs live verification.",
+    "api_related": false
   },
   {
     "id": "SF-REV-12",
@@ -294,7 +305,8 @@
     ],
     "design_ref": "Work Orders List.html; requirements R9",
     "viu_status": "VIU-Pending",
-    "notes": "A per-WO 'Ready for Review' indicator was seen (S16-05), but the list-level queue filter/column is flagged pending in the design handoff and was not verified. Needs dev complete / live verification."
+    "notes": "A per-WO 'Ready for Review' indicator was seen (S16-05), but the list-level queue filter/column is flagged pending in the design handoff and was not verified. Needs dev complete / live verification.",
+    "api_related": false
   },
   {
     "id": "SF-REV-13",
@@ -317,7 +329,8 @@
     ],
     "design_ref": "requirements R11",
     "viu_status": "VIU-Pending",
-    "notes": "Not isolated in VIU (line-approval gate was PARTIAL). Needs live verification."
+    "notes": "Not isolated in VIU (line-approval gate was PARTIAL). Needs live verification.",
+    "api_related": false
   },
   {
     "id": "SF-REV-14",
@@ -343,7 +356,8 @@
     ],
     "design_ref": "requirements R Core parts",
     "viu_status": "VIU-Pending",
-    "notes": "Not driven in VIU. Needs live verification."
+    "notes": "Not driven in VIU. Needs live verification.",
+    "api_related": false
   },
   {
     "id": "SF-REV-15",
@@ -366,7 +380,8 @@
     ],
     "design_ref": "requirements §8 open questions / R Open",
     "viu_status": "Open-Question",
-    "notes": "Spec §8 marks the require-review default as UNRESOLVED. Confirm the intended default before pass/fail. See Open Questions."
+    "notes": "Spec §8 marks the require-review default as UNRESOLVED. Confirm the intended default before pass/fail. See Open Questions.",
+    "api_related": false
   },
   {
     "id": "SF-UX-01",
@@ -389,7 +404,8 @@
     ],
     "design_ref": "Work Orders List.html; requirements S15-R1",
     "viu_status": "VIU-Verified",
-    "notes": "Create flow verified during Story 2 setup (S2-01-create-form.png)."
+    "notes": "Create flow verified during Story 2 setup (S2-01-create-form.png).",
+    "api_related": false
   },
   {
     "id": "SF-UX-02",
@@ -414,7 +430,8 @@
     ],
     "design_ref": "WO Review Flow.html; requirements S15-R2",
     "viu_status": "VIU-Verified",
-    "notes": "Centralized Details modal verified (S2-13-details.png); tech story ran as its own gate before the wizard (S2-11-techstory.png)."
+    "notes": "Centralized Details modal verified (S2-13-details.png); tech story ran as its own gate before the wizard (S2-11-techstory.png).",
+    "api_related": false
   },
   {
     "id": "SF-UX-03",
@@ -439,7 +456,8 @@
     ],
     "design_ref": "WO Review Flow.html; requirements S15-R3",
     "viu_status": "VIU-Verified",
-    "notes": "Success screen verified (S2-14-success.png). Finance-step invoice-number location not separately driven."
+    "notes": "Success screen verified (S2-14-success.png). Finance-step invoice-number location not separately driven.",
+    "api_related": false
   },
   {
     "id": "SF-UX-04",
@@ -464,7 +482,8 @@
     ],
     "design_ref": "requirements S15-R4 (design pending)",
     "viu_status": "Open-Question",
-    "notes": "S15-R4 close-confirm design is explicitly pending ('Figma still to be added') — no design surface to test yet. Confirm before authoring expected. See Open Questions."
+    "notes": "S15-R4 close-confirm design is explicitly pending ('Figma still to be added') — no design surface to test yet. Confirm before authoring expected. See Open Questions.",
+    "api_related": false
   },
   {
     "id": "SF-PERM-01",
@@ -490,7 +509,8 @@
     ],
     "design_ref": "requirements S1 AC / §9 (App Settings gate)",
     "viu_status": "VIU-Verified",
-    "notes": "Permission defined by SV-8183: the Work Order settings inherit the existing settingsApp route guard (no new atom); editable by any role with App Settings ON (defaults Admin, Service Manager, Office). Note Office can edit settings but cannot operate the flow. Role-gating negatives not yet verified live (only the admin session works on sv7301). | VIU 2026-07-07 (Tech-unblock pass): CONFIRMED (FE+BE). Tech (Technician, no settingsApp) redirected from /administration/settings to /workorders (FE route guard, TECH-settings.png). BE POST /api/organizations/settings/change -> 403 'Access denied' for tech; admin -> 200. Settings atom is fully enforced both FE and BE."
+    "notes": "Permission defined by SV-8183: the Work Order settings inherit the existing settingsApp route guard (no new atom); editable by any role with App Settings ON (defaults Admin, Service Manager, Office). Note Office can edit settings but cannot operate the flow. Role-gating negatives not yet verified live (only the admin session works on sv7301). | VIU 2026-07-07 (Tech-unblock pass): CONFIRMED (FE+BE). Tech (Technician, no settingsApp) redirected from /administration/settings to /workorders (FE route guard, TECH-settings.png). BE POST /api/organizations/settings/change -> 403 'Access denied' for tech; admin -> 200. Settings atom is fully enforced both FE and BE.",
+    "api_related": true
   },
   {
     "id": "SF-PERM-02",
@@ -515,7 +535,8 @@
     ],
     "design_ref": "requirements §9 (Complete WO gate + per-role matrix)",
     "viu_status": "VIU-Verified",
-    "notes": "Expected defined by the SV-8183 role matrix. Role-gating negatives not yet verified live (only the admin session works on sv7301). | VIU 2026-07-07 (Tech-unblock pass): FE CONFIRMED / BE GAP. Technician: 'Complete Work Order' button HIDDEN on WO page (TECH-wo-detail.png) -> cannot complete via UI (expected #2 holds at FE). BUT BE does NOT enforce: tech POST /api/work-orders/{id}/simple-complete -> 201 (WO moved to complete) after admin prepped story+mileage. Atom collapse: workOrderLinesCreateAndEdit -> ROLE_WORK_ORDER_CREATE_AND_EDIT. So a Technician CAN complete via API. See BUGS/DEVIATIONS."
+    "notes": "Expected defined by the SV-8183 role matrix. Role-gating negatives not yet verified live (only the admin session works on sv7301). | VIU 2026-07-07 (Tech-unblock pass): FE CONFIRMED / BE GAP. Technician: 'Complete Work Order' button HIDDEN on WO page (TECH-wo-detail.png) -> cannot complete via UI (expected #2 holds at FE). BUT BE does NOT enforce: tech POST /api/work-orders/{id}/simple-complete -> 201 (WO moved to complete) after admin prepped story+mileage. Atom collapse: workOrderLinesCreateAndEdit -> ROLE_WORK_ORDER_CREATE_AND_EDIT. So a Technician CAN complete via API. See BUGS/DEVIATIONS.",
+    "api_related": false
   },
   {
     "id": "SF-PERM-03",
@@ -540,7 +561,8 @@
     ],
     "design_ref": "requirements §9 (Bulk Receive gate + per-role matrix)",
     "viu_status": "VIU-Pending",
-    "notes": "Expected defined by the SV-8183 role matrix (Bulk Receive = Vendor & Order Mgmt C&E + See Financial Data; Office is view-only). Bulk Receive is also not yet built. Role-gating negatives not yet verified live. | VIU 2026-07-07 (Tech-unblock pass): Bulk Receive depends on Stories 7/8 (PO multi-select + Bulk Receive page) which are NOT BUILT; also tech is redirected from /parts routes. Role matrix for Bulk Receive not drivable until the page ships."
+    "notes": "Expected defined by the SV-8183 role matrix (Bulk Receive = Vendor & Order Mgmt C&E + See Financial Data; Office is view-only). Bulk Receive is also not yet built. Role-gating negatives not yet verified live. | VIU 2026-07-07 (Tech-unblock pass): Bulk Receive depends on Stories 7/8 (PO multi-select + Bulk Receive page) which are NOT BUILT; also tech is redirected from /parts routes. Role matrix for Bulk Receive not drivable until the page ships.",
+    "api_related": false
   },
   {
     "id": "SF-PERM-04",
@@ -565,7 +587,8 @@
     ],
     "design_ref": "requirements R7 / §9 (Review Work Orders + reviewer != completer)",
     "viu_status": "VIU-Verified",
-    "notes": "Defined by SV-8183: Mark Reviewed = Review Work Orders atom (not open-to-all) PLUS the NET-NEW reviewer != completer hard rule. Role-gating negatives not yet verified live. | VIU 2026-07-07 (Tech-unblock pass): RESULT: partial FAIL. Mark Reviewed dialog = 'Mark as reviewed', VIN-only (input_review_vin), no note. reviewer!=completer NOT enforced (admin completer self-signed Review->Complete, REV-admin-completer-markreviewed.png). Review atom not BE-enforced (tech change-status->complete 201). Sign-off jumps Review->Complete (no distinct Reviewed state)."
+    "notes": "Defined by SV-8183: Mark Reviewed = Review Work Orders atom (not open-to-all) PLUS the NET-NEW reviewer != completer hard rule. Role-gating negatives not yet verified live. | VIU 2026-07-07 (Tech-unblock pass): RESULT: partial FAIL. Mark Reviewed dialog = 'Mark as reviewed', VIN-only (input_review_vin), no note. reviewer!=completer NOT enforced (admin completer self-signed Review->Complete, REV-admin-completer-markreviewed.png). Review atom not BE-enforced (tech change-status->complete 201). Sign-off jumps Review->Complete (no distinct Reviewed state).",
+    "api_related": false
   },
   {
     "id": "SF-PERM-05",
@@ -590,7 +613,8 @@
     ],
     "design_ref": "requirements S11-R3 / §9 (Order Parts gate)",
     "viu_status": "VIU-Verified",
-    "notes": "SV-8183 resolves 'office/readonly' to concrete atoms: Receive-on-WO is FE-gated by Order Parts; Office (WO View-only / Vendor & Order View-only) lacks it. Role-gating negatives not yet verified live. | VIU 2026-07-07 (Tech-unblock pass): FE CONFIRMED. Technician (no woOrderParts) redirected from /parts/orders to /workorders; no Receive action reachable (TECH-po-list.png). BE receive endpoint not driven this pass (part+PO setup), but per SF-PERM-06 the WO-atom collapse implies BE would allow it."
+    "notes": "SV-8183 resolves 'office/readonly' to concrete atoms: Receive-on-WO is FE-gated by Order Parts; Office (WO View-only / Vendor & Order View-only) lacks it. Role-gating negatives not yet verified live. | VIU 2026-07-07 (Tech-unblock pass): FE CONFIRMED. Technician (no woOrderParts) redirected from /parts/orders to /workorders; no Receive action reachable (TECH-po-list.png). BE receive endpoint not driven this pass (part+PO setup), but per SF-PERM-06 the WO-atom collapse implies BE would allow it.",
+    "api_related": false
   },
   {
     "id": "SF-PERM-06",
@@ -616,7 +640,8 @@
     ],
     "design_ref": "requirements §9.4 (BE enforcement + atom collapse)",
     "viu_status": "VIU-Verified",
-    "notes": "Answered by SV-8183: BE DOES enforce the Simple-Flow settings and atoms (change from the Custom Roles FE-only finding), subject to the WO-atom collapse caveat (SV-7864). Not yet driven live. | VIU 2026-07-07 (Tech-unblock pass): HEADLINE / MIXED RESULT. BE enforces DISTINCT atoms (settingsApp: tech settings-save -> 403) but does NOT enforce the WO-family atoms: tech simple-complete -> 201 and tech change-status->complete (review sign-off) -> 201, due to the documented atom collapse (SV-7864). Expected #2 (any role with WO C&E can act on the WO) CONFIRMED. Expected #1 ('BE enforces the atoms, not FE-only') is only TRUE for the settings atom; for WO completion/receive/review sign-off the gate is EFFECTIVELY FE-ONLY. This nuances SV-8183's blanket 'BE enforces' claim."
+    "notes": "Answered by SV-8183: BE DOES enforce the Simple-Flow settings and atoms (change from the Custom Roles FE-only finding), subject to the WO-atom collapse caveat (SV-7864). Not yet driven live. | VIU 2026-07-07 (Tech-unblock pass): HEADLINE / MIXED RESULT. BE enforces DISTINCT atoms (settingsApp: tech settings-save -> 403) but does NOT enforce the WO-family atoms: tech simple-complete -> 201 and tech change-status->complete (review sign-off) -> 201, due to the documented atom collapse (SV-7864). Expected #2 (any role with WO C&E can act on the WO) CONFIRMED. Expected #1 ('BE enforces the atoms, not FE-only') is only TRUE for the settings atom; for WO completion/receive/review sign-off the gate is EFFECTIVELY FE-ONLY. This nuances SV-8183's blanket 'BE enforces' claim.",
+    "api_related": true
   },
   {
     "id": "SF-PERM-07",
@@ -640,7 +665,8 @@
     ],
     "design_ref": "requirements R7 / §9 (Review Work Orders + reviewer != completer)",
     "viu_status": "VIU-Verified",
-    "notes": "Answered by SV-8183: review sign-off = Review Work Orders atom (custom-role gated, not open for v1) plus the reviewer != completer NET-NEW rule. Role-gating negatives not yet verified live. | VIU 2026-07-07 (Tech-unblock pass): RESULT: FAIL. Review sign-off NOT gated at BE by Review Work Orders (tech, lacking woReviewWorkOrders, completed sign-off via POST /api/work-orders/change-status status=complete -> 201). reviewer!=completer NOT enforced. Gating is FE-only. See BUGS."
+    "notes": "Answered by SV-8183: review sign-off = Review Work Orders atom (custom-role gated, not open for v1) plus the reviewer != completer NET-NEW rule. Role-gating negatives not yet verified live. | VIU 2026-07-07 (Tech-unblock pass): RESULT: FAIL. Review sign-off NOT gated at BE by Review Work Orders (tech, lacking woReviewWorkOrders, completed sign-off via POST /api/work-orders/change-status status=complete -> 201). reviewer!=completer NOT enforced. Gating is FE-only. See BUGS.",
+    "api_related": false
   },
   {
     "id": "SF-PERM-08",
@@ -666,7 +692,8 @@
     ],
     "design_ref": "requirements R7 / §9 (reviewer != completer NET-NEW rule)",
     "viu_status": "VIU-Verified",
-    "notes": "NET-NEW hard rule from SV-8183: stamp sentToReviewBy/completedBy and block Mark Reviewed for that user. Role-gating negatives not yet verified live. | VIU 2026-07-07 (Tech-unblock pass): RESULT: FAIL (BUG). reviewer!=completer NOT implemented: the SAME admin user who Sent to Review successfully Marked it Reviewed, moving Review->Complete with no block (REV-admin-completer-markreviewed.png). No two-user restriction. This is the one NET-NEW Simple-Flow rule and it is missing."
+    "notes": "NET-NEW hard rule from SV-8183: stamp sentToReviewBy/completedBy and block Mark Reviewed for that user. Role-gating negatives not yet verified live. | VIU 2026-07-07 (Tech-unblock pass): RESULT: FAIL (BUG). reviewer!=completer NOT implemented: the SAME admin user who Sent to Review successfully Marked it Reviewed, moving Review->Complete with no block (REV-admin-completer-markreviewed.png). No two-user restriction. This is the one NET-NEW Simple-Flow rule and it is missing.",
+    "api_related": false
   },
   {
     "id": "SF-PERM-09",
@@ -690,7 +717,8 @@
     ],
     "design_ref": "requirements S5 / §9 (Decision 4)",
     "viu_status": "VIU-Pending",
-    "notes": "SV-8183 Decision 4: adding a vendorless part requires See Financial Data (sell is mandatory, no catalog source). Role-gating negative not yet verified live. | VIU 2026-07-07 (Tech-unblock pass): Not driven this pass: the vendorless part-add sits in a line Parts sub-form not reached within budget. Tech CONFIRMED to lack seeFinancialData (role capture). BE financial-gate on add-part remains untested."
+    "notes": "SV-8183 Decision 4: adding a vendorless part requires See Financial Data (sell is mandatory, no catalog source). Role-gating negative not yet verified live. | VIU 2026-07-07 (Tech-unblock pass): Not driven this pass: the vendorless part-add sits in a line Parts sub-form not reached within budget. Tech CONFIRMED to lack seeFinancialData (role capture). BE financial-gate on add-part remains untested.",
+    "api_related": false
   },
   {
     "id": "SF-PERM-10",
@@ -717,7 +745,8 @@
     ],
     "design_ref": "requirements §9 (per-role matrix)",
     "viu_status": "VIU-Pending",
-    "notes": "Per-role completion checklist derived from the SV-8183 role matrix. Role-gating negatives not yet verified live. | VIU 2026-07-07 (Tech-unblock pass): Technician-negative CONFIRMED at FE (Complete button hidden). Other roles not exercised (the only non-admin session available is Technician). Full per-role matrix still pending additional role accounts."
+    "notes": "Per-role completion checklist derived from the SV-8183 role matrix. Role-gating negatives not yet verified live. | VIU 2026-07-07 (Tech-unblock pass): Technician-negative CONFIRMED at FE (Complete button hidden). Other roles not exercised (the only non-admin session available is Technician). Full per-role matrix still pending additional role accounts.",
+    "api_related": false
   },
   {
     "id": "SF-VAL-01",
@@ -740,7 +769,8 @@
     ],
     "design_ref": "WO Review Flow.html (Details step)",
     "viu_status": "VIU-Pending",
-    "notes": "Details step seen (S2-13) but empty-field block not isolated. Needs live verification."
+    "notes": "Details step seen (S2-13) but empty-field block not isolated. Needs live verification.",
+    "api_related": false
   },
   {
     "id": "SF-VAL-02",
@@ -764,7 +794,8 @@
     ],
     "design_ref": "requirements S15-R2",
     "viu_status": "VIU-Pending",
-    "notes": "Not isolated in VIU. Needs live verification. (In review flow, VIN is captured at Mark Reviewed — see SF-REV-06.)"
+    "notes": "Not isolated in VIU. Needs live verification. (In review flow, VIN is captured at Mark Reviewed — see SF-REV-06.)",
+    "api_related": false
   },
   {
     "id": "SF-VAL-03",
@@ -787,7 +818,8 @@
     ],
     "design_ref": "requirements S3-R3 / S4-R3",
     "viu_status": "VIU-Pending",
-    "notes": "Not driven in VIU. Needs live verification."
+    "notes": "Not driven in VIU. Needs live verification.",
+    "api_related": false
   },
   {
     "id": "SF-VAL-04",
@@ -812,7 +844,8 @@
     ],
     "design_ref": "WO Review Flow.html",
     "viu_status": "VIU-Verified",
-    "notes": "Verified 2026-07-06 — Continue disabled until non-empty (S2-11-techstory.png)."
+    "notes": "Verified 2026-07-06 — Continue disabled until non-empty (S2-11-techstory.png).",
+    "api_related": false
   },
   {
     "id": "SF-VAL-05",
@@ -836,7 +869,8 @@
     ],
     "design_ref": "requirements §4 / S4-R5",
     "viu_status": "VIU-Pending",
-    "notes": "Not driven in VIU. Needs live verification."
+    "notes": "Not driven in VIU. Needs live verification.",
+    "api_related": false
   },
   {
     "id": "SF-VAL-06",
@@ -862,7 +896,8 @@
     ],
     "design_ref": "requirements S12-R2 / S10",
     "viu_status": "VIU-Pending",
-    "notes": "Not driven in VIU. Needs live verification."
+    "notes": "Not driven in VIU. Needs live verification.",
+    "api_related": false
   },
   {
     "id": "SF-VAL-07",
@@ -887,7 +922,8 @@
     ],
     "design_ref": "WO Review Flow.html; requirements R7",
     "viu_status": "VIU-Pending",
-    "notes": "In VIU the VIN was pre-filled from the asset, so the empty-VIN disabled state was not forced. Needs a WO with no VIN to verify."
+    "notes": "In VIU the VIN was pre-filled from the asset, so the empty-VIN disabled state was not forced. Needs a WO with no VIN to verify.",
+    "api_related": false
   },
   {
     "id": "SF-VAL-08",
@@ -911,7 +947,8 @@
     ],
     "design_ref": "requirements S3-R9",
     "viu_status": "VIU-Pending",
-    "notes": "Not driven in VIU. Needs live verification. (Also covered from the flow side in SF-COMP-23.)"
+    "notes": "Not driven in VIU. Needs live verification. (Also covered from the flow side in SF-COMP-23.)",
+    "api_related": false
   },
   {
     "id": "SF-VAL-09",
@@ -937,7 +974,8 @@
     ],
     "design_ref": "requirements S8-R7 / §4",
     "viu_status": "VIU-Pending",
-    "notes": "Not driven in VIU. Needs live verification."
+    "notes": "Not driven in VIU. Needs live verification.",
+    "api_related": false
   },
   {
     "id": "SF-VAL-10",
@@ -961,7 +999,8 @@
     ],
     "design_ref": "requirements S9-R3 / §4",
     "viu_status": "VIU-Pending",
-    "notes": "Not driven in VIU. Needs live verification."
+    "notes": "Not driven in VIU. Needs live verification.",
+    "api_related": false
   },
   {
     "id": "SF-VAL-11",
@@ -985,7 +1024,8 @@
     ],
     "design_ref": "requirements §4 Key Decision",
     "viu_status": "VIU-Pending",
-    "notes": "PARTIAL in VIU — error not cleanly isolated (S17-02-approval-error.png). Needs a WO whose only blocker is the unapproved line."
+    "notes": "PARTIAL in VIU — error not cleanly isolated (S17-02-approval-error.png). Needs a WO whose only blocker is the unapproved line.",
+    "api_related": false
   },
   {
     "id": "SF-QB-01",
@@ -1010,7 +1050,8 @@
     ],
     "design_ref": "requirements §5 invariant 1",
     "viu_status": "Open-Question",
-    "notes": "§8 open question: auto-receive of in-stock inventory on simple completion is unconfirmed, and the spec flags the bare status setter as an integrity risk. Not driven in VIU. See Open Questions."
+    "notes": "§8 open question: auto-receive of in-stock inventory on simple completion is unconfirmed, and the spec flags the bare status setter as an integrity risk. Not driven in VIU. See Open Questions.",
+    "api_related": false
   },
   {
     "id": "SF-QB-02",
@@ -1036,7 +1077,8 @@
     ],
     "design_ref": "requirements §4 / §5",
     "viu_status": "Open-Question",
-    "notes": "Blocked by VIU bug #1: no 'Create Purchase Orders' toggle exists, so Create POs OFF cannot be configured. See Open Questions."
+    "notes": "Blocked by VIU bug #1: no 'Create Purchase Orders' toggle exists, so Create POs OFF cannot be configured. See Open Questions.",
+    "api_related": false
   },
   {
     "id": "SF-QB-03",
@@ -1061,7 +1103,8 @@
     ],
     "design_ref": "requirements §5 invariant 2",
     "viu_status": "VIU-Pending",
-    "notes": "Not driven in VIU; needs QuickBooks inspection. Bulk Receive surface not yet built. Needs live verification."
+    "notes": "Not driven in VIU; needs QuickBooks inspection. Bulk Receive surface not yet built. Needs live verification.",
+    "api_related": false
   },
   {
     "id": "SF-QB-04",
@@ -1085,7 +1128,8 @@
     ],
     "design_ref": "requirements §5",
     "viu_status": "VIU-Pending",
-    "notes": "Not driven in VIU. Needs live verification."
+    "notes": "Not driven in VIU. Needs live verification.",
+    "api_related": false
   },
   {
     "id": "SF-QB-05",
@@ -1109,7 +1153,8 @@
     ],
     "design_ref": "requirements §5 / S6-R3",
     "viu_status": "VIU-Pending",
-    "notes": "Not driven in VIU. Needs live verification."
+    "notes": "Not driven in VIU. Needs live verification.",
+    "api_related": false
   },
   {
     "id": "SF-QB-06",
@@ -1133,7 +1178,8 @@
     ],
     "design_ref": "requirements §9 (See Financial Data gate on vendorless sell)",
     "viu_status": "VIU-Pending",
-    "notes": "Resolved by SV-8183 (Decision 4): the cost-at-completion concern is addressed by requiring See Financial Data to enter the mandatory sell on a vendorless add. Money figures still need live verification."
+    "notes": "Resolved by SV-8183 (Decision 4): the cost-at-completion concern is addressed by requiring See Financial Data to enter the mandatory sell on a vendorless add. Money figures still need live verification.",
+    "api_related": false
   },
   {
     "id": "SF-QB-07",
@@ -1157,7 +1203,8 @@
     ],
     "design_ref": "requirements §5",
     "viu_status": "VIU-Pending",
-    "notes": "Not driven in VIU; needs QuickBooks inspection. Needs live verification."
+    "notes": "Not driven in VIU; needs QuickBooks inspection. Needs live verification.",
+    "api_related": false
   },
   {
     "id": "SF-QB-08",
@@ -1180,6 +1227,7 @@
     ],
     "design_ref": "requirements §5 invariant 3",
     "viu_status": "VIU-Pending",
-    "notes": "Not driven in VIU. Needs live verification."
+    "notes": "Not driven in VIU. Needs live verification.",
+    "api_related": false
   }
 ]

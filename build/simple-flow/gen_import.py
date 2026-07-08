@@ -103,12 +103,26 @@ def build_refs(c):
     return spec
 
 
+def section_for(c):
+    """Leaf area name; API-related cases are routed to an 'API — <area>' section
+    (STANDING RULE 4: API content must live under an API-titled section)."""
+    area = c["area"].strip()
+    if c.get("api_related"):
+        return "API — " + area
+    return area
+
+
 rows = []
 titles = []
+api_sections = set()
+api_moved = 0
 for c in cases:
     title = clean(c["title"].strip())
     titles.append(title)
-    section = c["area"].strip()
+    section = section_for(c)
+    if c.get("api_related"):
+        api_sections.add(section)
+        api_moved += 1
     row = [
         title,
         section,
@@ -140,6 +154,8 @@ print("VIU occurrences:", blob.count("viu"))
 print("'feature flag' occurrences:", blob.count("feature flag"))
 print("Sections with 'Simple' prefix:",
       [r[1] for r in rows if r[1].lower().startswith("simple")] or "NONE")
+print("API sections created:", len(api_sections), sorted(api_sections))
+print("API-flagged cases routed to API sections:", api_moved)
 
 from openpyxl import Workbook
 from openpyxl.styles import Font, Alignment, PatternFill

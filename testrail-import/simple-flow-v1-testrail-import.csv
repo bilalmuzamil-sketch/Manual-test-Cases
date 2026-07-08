@@ -17,7 +17,7 @@ Verify there is no operating-mode selector and no VIN-required setting on the Wo
 3. Turn it On and observe the Vendor Invoice Number setting.","1. EXPECTED PER SPEC (currently NOT met): a 'Create purchase orders' toggle exists, default On, with helper text.
 2. With Create POs Off, the Vendor Invoice (Optional/Required) sub-setting is hidden and no vendor-invoice capture happens in completion.
 3. With Create POs On, the Vendor Invoice (Optional/Required) sub-setting appears with helper text.",SV-7696 (S1-R2 (Create purchase orders)),,
-Verify the Require Vendor Invoice Number toggle is present with helper text and drives Optional vs Required completion,Work Order Settings,Functional,Critical,"1. Signed in as Admin.
+Verify the Require Vendor Invoice Number toggle is present with helper text and drives Optional vs Required completion,API — Work Order Settings,Functional,Critical,"1. Signed in as Admin.
 2. On /administration/settings → Work Orders tab.","1. Locate the 'Require Vendor Invoice Number' toggle.
 2. Read its helper text.
 3. Note its current On/Off state.","1. The 'Require Vendor Invoice Number' toggle is present.
@@ -37,7 +37,7 @@ Verify Auto-approve Lines OFF leaves a new line in Needs Approval with Approve/D
 3. Observe the new line's approval state and actions.","1. The new line is created.
 2. The line shows a 'Needs Approval' state.
 3. Approve and Decline actions are available on the line.",SV-7696 (S1-R1 (Auto-approve OFF)),,
-"Verify existing settings (tech story, mileage, engine hours, auto-pick) display the org's current values",Work Order Settings,Functional,Medium,"1. Signed in as Admin.
+"Verify existing settings (tech story, mileage, engine hours, auto-pick) display the org's current values",API — Work Order Settings,Functional,Medium,"1. Signed in as Admin.
 2. On /administration/settings → Work Orders tab.
 3. GET /api/organizations/settings values are known for this org.","1. Read the Require Tech Story, Require Mileage, Require Engine Hours and Automatically Pick Inventory Parts toggles.
 2. Compare each shown state against the API settings object.","1. Each existing toggle is shown.
@@ -48,7 +48,7 @@ Verify Auto-approve Lines OFF leaves a new line in Needs Approval with Approve/D
 2. Read the default state of Auto-approve Lines, Create Purchase Orders, and Vendor Invoice.","1. Auto-approve Lines = OFF.
 2. Create Purchase Orders = ON.
 3. Vendor Invoice = REQUIRED.",SV-7696 (S1 first-use defaults / §4),,
-Verify saving a settings change persists after page reload,Work Order Settings,Functional,High,"1. Signed in as Admin.
+Verify saving a settings change persists after page reload,API — Work Order Settings,Functional,High,"1. Signed in as Admin.
 2. On /administration/settings → Work Orders tab.
 3. Note the current state of one toggle (e.g. Require Engine Hours).","1. Flip one toggle (e.g. Require Engine Hours) to the opposite state.
 2. Click Save Settings.
@@ -62,13 +62,13 @@ Verify a settings change applies to future completions only and not to already-c
 2. Change a relevant Work Order setting (e.g. Require Vendor Invoice Number) and Save.
 3. Reopen the already-completed work order and inspect it.","1. The already-completed work order is not retroactively changed by the new setting.
 2. Only work orders completed after the change follow the new setting.","SV-7696 (S1-R9 (future completions only, never retroactive))",,
-Verify a non-admin user cannot see or modify the Work Order settings,Work Order Settings,Functional,High,"1. A user without the App Settings permission (e.g. Service Advisor or Technician) exists for this org.
+Verify a non-admin user cannot see or modify the Work Order settings,API — Work Order Settings,Functional,High,"1. A user without the App Settings permission (e.g. Service Advisor or Technician) exists for this org.
 2. You can sign in as that user.","1. Sign in as the user without App Settings.
 2. Attempt to open /administration/settings → Work Orders tab.
 3. Attempt to change and save a Work Order setting, including a direct API save.","1. A role without the App Settings permission cannot reach the Work Order settings, or sees them read-only.
 2. That role cannot save changes to Work Order settings.
 3. The backend rejects a Work Order settings save attempted by a role that lacks App Settings.",SV-7696 (S1 AC (non-admin can't see/modify)),,
-Verify the settings model contains no operatingMode field and no requireVin setting,Work Order Settings,Functional,Low,"1. Signed in as Admin with API access.
+Verify the settings model contains no operatingMode field and no requireVin setting,API — Work Order Settings,Functional,Low,"1. Signed in as Admin with API access.
 2. You can call GET /api/organizations/settings.","1. Call GET /api/organizations/settings.
 2. Inspect the returned object keys for 'operatingMode'.
 3. Inspect for a 'requireVin' Work Order setting.","1. There is no operatingMode field in the settings object.
@@ -693,7 +693,7 @@ Verify the close-confirmation modal behavior (Close = closes modal only; Cancel 
 2. Click Close (prominent/red) and observe.
 3. Trigger it again and click Cancel (text link, far left) and observe.","1. Clicking Close closes the modal only, keeps any entered changes, and stays on the work order.
 2. Cancel closes the modal and returns to the previous screen.",SV-7710 (S15-R4),,
-Verify only owner/admin can view and modify Work Order settings (non-admin blocked),Permissions,Functional,High,"1. A role with the App Settings permission (e.g. Admin) and a role without it (e.g. Service Advisor or Technician) both exist.
+Verify only owner/admin can view and modify Work Order settings (non-admin blocked),API — Permissions,Functional,High,"1. A role with the App Settings permission (e.g. Admin) and a role without it (e.g. Service Advisor or Technician) both exist.
 2. You can sign in as each.","1. Sign in as a role with App Settings and open and modify /administration/settings → Work Orders.
 2. Sign in as a role without App Settings and attempt to open and modify the same page.
 3. As the role without App Settings, attempt to save a Work Order settings change directly (API), and note the response.","1. Only a role with the App Settings permission (system defaults Admin, Service Manager and Office) can view and modify the Work Order settings page.
@@ -719,7 +719,7 @@ Verify the PO Receive button is hidden for office/readonly users,Permissions,Fun
 2. Open the PO list and detail.
 3. Confirm the Receive action is not shown, and confirm it is also absent on a fulfilled PO.","1. The Receive action requires the Order Parts permission; Office and read-only users (no Order Parts) do not see Receive on the PO list or PO detail.
 2. Receive is also hidden for fulfilled (already-received) POs.",SV-7706 (S11-R3),,
-Verify the backend enforces the Simple-Flow settings and permission atoms (not front-end only),Permissions,Functional,Medium,"1. Signed in with API access.
+Verify the backend enforces the Simple-Flow settings and permission atoms (not front-end only),API — Permissions,Functional,Medium,"1. Signed in with API access.
 2. A relevant Simple-Flow setting (e.g. Require Vendor Invoice Number) is ON.","1. Attempt a setting-violating action directly via the API (bypassing the UI), e.g. completing without the required invoice, and note the response.
 2. As a role that lacks the mapped atom, attempt the gated action via the API and note the response.
 3. As a role that has only Work Orders: Create & Edit, attempt to receive onto a work order and note the response.","1. The backend enforces the Simple-Flow settings and the permission atoms (it is not front-end only): a setting-violating or unauthorized request is rejected.

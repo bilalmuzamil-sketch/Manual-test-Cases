@@ -60,6 +60,12 @@ all).
 3. **Separate memory per project; cross-use when useful.** Shared infrastructure
    (staging access, harness scripts, TestRail API patterns) is common;
    project-specific facts/scope/cases stay under each project's own files.
+4. **API test placement:** ANY test case (any project) whose preconditions, steps,
+   or expected results include API-related content — API endpoints, HTTP
+   methods/verbs, HTTP status codes (200/201/204/400/403…), or explicit backend
+   request/response checks — MUST be placed in a TestRail section whose title
+   includes 'API'. UI-only cases stay in their functional sections. Apply to every
+   TestRail import going forward.
 
 ## Project purpose (Custom Roles project)
 Manual test-case authoring + live staging (Verify-in-UI) verification + TestRail
