@@ -51,10 +51,14 @@ and then keeping them current as each blocker clears. Three artifacts drive it:
    python3 build/simple-flow/gen_update.py SF-BULK-01 SF-BULK-02 ... SF-PERM-03
    # or:  python3 build/simple-flow/gen_update.py --file cleared-ids.txt
    ```
-   Output → `testrail-import/simple-flow-UPDATE.csv`.
+   Output → `testrail-import/simple-flow-UPDATE.xml` (**XML is now the default**;
+   add `--format csv` for `simple-flow-UPDATE.csv`). The XML follows TestRail's
+   suite/section/case schema and, when the Case-ID map is present, carries a
+   `<id>C#####</id>` per case so the import targets the existing case in place.
 
-6. **You import the UPDATE file** into TestRail with mode = *update existing*,
-   matched on the **ID** column. Only those cases change; nothing is duplicated.
+6. **You import the UPDATE file** into TestRail with mode = *update existing*. For
+   XML the `<id>` per case targets the existing case; for CSV, match on the **ID**
+   column. Only those cases change; nothing is duplicated.
 
 7. **Repeat** from step 3 as each blocker clears. Each round you also get a
    refreshed Blockers Tracker so the remaining work is always visible.
@@ -65,19 +69,25 @@ and then keeping them current as each blocker clears. Three artifacts drive it:
 python3 gen_update.py SF-BULK-01 SF-BULK-02        # ids on the command line
 python3 gen_update.py --file ids.txt                # one SF id per line (# comments ok)
 python3 gen_update.py --all-ready                   # every currently-READY case
-python3 gen_update.py SF-REV-10 --format xml        # emit TestRail suite XML instead
-python3 gen_update.py SF-REV-10 --out /path/out.csv # custom output path
+python3 gen_update.py SF-REV-10 --format csv        # emit ID-matched CSV instead of XML
+python3 gen_update.py SF-REV-10 --out /path/out.xml # custom output path
 python3 gen_update.py SF-REV-10 --map /path/map.csv # custom id-map path
 ```
 
-- **Default format = ID-matched CSV** (updates cases in place). It reads
-  `build/simple-flow/testrail-id-map.csv`; the emitted CSV's first column is `ID`
-  (the TestRail Case ID) — map it to **ID** on import and pick *update existing*.
-- **XML available on request** (`--format xml`) — emits a TestRail suite XML with
-  the same content and a `<id>` per case when the map is present.
-- **No id map present?** The script still runs but emits **Title-keyed** rows (no
-  ID column) and prints a WARNING. Title matching risks creating duplicates, so
-  establishing the id map (step 2) is strongly preferred.
+- **Default format = TestRail suite XML** (`simple-flow-UPDATE.xml`). Sections
+  nest per TestRail's XML import schema; each case has title + custom
+  preconds/steps/expected, and — when the Case-ID map is present — a
+  `<id>C#####</id>` so the import **updates the existing case in place**.
+- **CSV available** (`--format csv`) — emits an ID-matched CSV whose first column
+  is `ID` (the TestRail Case ID); map it to **ID** on import and pick
+  *update existing*.
+- **The Case-ID map is required to update EXISTING cases** (either format). Save
+  it as `build/simple-flow/testrail-id-map.csv` (`sf_id,testrail_case_id`). We
+  pull it **read-only** via the TestRail API (with your permission) or you export
+  it from TestRail after the initial import (step 2).
+- **No id map present?** The script still runs but emits **Title-keyed** output
+  (no `<id>`/`ID` column) and prints a WARNING. Title matching risks creating
+  duplicates, so establishing the id map (step 2) is strongly preferred.
 - Content rules match the upload file exactly: **no VIU wording, no feature-flag
   phrase**, leaf section names, References = Jira story id(s) + spec-rule ref. The
   script re-reads the current case JSONs, so whatever you regenerate reflects the

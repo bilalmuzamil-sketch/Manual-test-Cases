@@ -5,15 +5,24 @@ Given a list of SF- case IDs whose blocker just cleared, emit a TestRail-ready
 UPDATE file containing ONLY those cases, rebuilt from the current case JSONs
 (so any flipped viu_status / expected is picked up). This does NOT hit TestRail.
 
-MATCHING / OUTPUT
-  - Preferred: ID-matched CSV (updates cases IN PLACE, no duplicates). Reads the
-    mapping file build/simple-flow/testrail-id-map.csv (columns: sf_id,testrail_case_id)
-    and emits a CSV whose first column is the TestRail Case ID (e.g. 12345 or C12345).
-    On TestRail import, map that column to "ID" and choose "update existing".
-  - Fallback: if the map file is ABSENT (or a given SF id is missing from it), the
-    row is emitted keyed by Title (no ID column) and a WARNING is printed — Title
-    matching risks duplicates, so exporting/authorizing the id map is preferred.
-  - --format xml emits a TestRail suite XML (sections/cases) instead of CSV.
+OUTPUT FORMAT
+  - DEFAULT = TestRail suite XML (sections -> cases). Follows TestRail's XML
+    import schema (suite/section/case with custom preconds/steps/expected). When
+    the id map is present each case carries a <id>C#####</id> so the import
+    TARGETS the existing case in place (no duplicates); without the map the case
+    is emitted title-only and TestRail creates/matches by title.
+  - --format csv still available: ID-matched CSV (updates cases IN PLACE) whose
+    first column is the TestRail Case ID (e.g. 12345 or C12345); on import map
+    that column to "ID" and choose "update existing".
+
+MATCHING (both formats)
+  - The Case-ID map build/simple-flow/testrail-id-map.csv (columns:
+    sf_id,testrail_case_id) is what lets an UPDATE target existing cases. Pull it
+    read-only via the TestRail API (with user permission) or the user exports it
+    after the initial import.
+  - If the map is ABSENT (or a given SF id is missing from it) the case is emitted
+    keyed by Title (no <id>/ID column) and a WARNING is printed — Title matching
+    risks duplicates, so establishing the id map is preferred.
 
 CONTENT RULES: identical to gen_import.py — NO VIU wording, NO feature-flag phrase,
 leaf section names, References = Jira story id(s) + spec-rule ref.
@@ -21,9 +30,9 @@ leaf section names, References = Jira story id(s) + spec-rule ref.
 USAGE
   python3 gen_update.py SF-BULK-01 SF-BULK-02 ...        # ids on the command line
   python3 gen_update.py --file ids.txt                    # one SF id per line
-  python3 gen_update.py --all-ready                       # every READY case (from tracker logic)
-  python3 gen_update.py SF-REV-10 --format xml            # emit XML instead of CSV
-  python3 gen_update.py SF-REV-10 --out /tmp/update.csv   # custom output path
+  python3 gen_update.py --all-ready                       # every READY case (from tracker logic); emits XML
+  python3 gen_update.py SF-REV-10 --format csv            # emit CSV instead of the default XML
+  python3 gen_update.py SF-REV-10 --out /tmp/update.xml   # custom output path
   python3 gen_update.py SF-REV-10 --map /path/to/map.csv  # custom id-map path
 """
 import argparse, csv, json, os, re, sys, html
@@ -146,7 +155,7 @@ def main():
     ap.add_argument("--file", help="file with one SF id per line")
     ap.add_argument("--all-ready", action="store_true", help="include every READY case")
     ap.add_argument("--map", default=DEFAULT_MAP, help="path to sf_id->testrail_case_id map CSV")
-    ap.add_argument("--format", choices=["csv", "xml"], default="csv", help="output format (default csv)")
+    ap.add_argument("--format", choices=["csv", "xml"], default="xml", help="output format (default xml)")
     ap.add_argument("--out", help="output path (default under testrail-import/)")
     args = ap.parse_args()
 

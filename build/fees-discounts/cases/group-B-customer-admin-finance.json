@@ -22,7 +22,8 @@
     ],
     "design_ref": "design-notes.md §4 (customer page shows \"Fees & Discounts (3)\" tab)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": "Count in parentheses = number of default links on the customer, not adjustments on work orders."
+    "notes": "Count in parentheses = number of default links on the customer, not adjustments on work orders.",
+    "api_related": false
   },
   {
     "id": "FD-CUST-002",
@@ -49,7 +50,8 @@
     ],
     "design_ref": "design-notes.md §4 (columns Name/Type/Calculation Type/Amount/Max Amount/Taxable/Auto-Apply to Work Orders; \"Add Fee/Discount\" button)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": "Customer card uses \"Add Fee/Discount\" (no spaces); WO/template dialogs use \"Add Fee / Discount\" (with spaces) — keep both exact (S9-R... exact-text note)."
+    "notes": "Customer card uses \"Add Fee/Discount\" (no spaces); WO/template dialogs use \"Add Fee / Discount\" (with spaces) — keep both exact (S9-R... exact-text note).",
+    "api_related": false
   },
   {
     "id": "FD-CUST-003",
@@ -76,7 +78,8 @@
     ],
     "design_ref": "design-notes.md §7 (bulk template picker, checkbox list, columns Name/Type/Calculation Type/Amount)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": "Toast for one default is the generic \"Fee / discount added.\" — it does NOT vary by type (§7 toast table)."
+    "notes": "Toast for one default is the generic \"Fee / discount added.\" — it does NOT vary by type (§7 toast table).",
+    "api_related": false
   },
   {
     "id": "FD-CUST-004",
@@ -102,7 +105,8 @@
     ],
     "design_ref": "design-notes.md §7 (multi-select checkbox list)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": "Plural toast pattern is \"[N] fees / discounts added.\" per §7 toast table."
+    "notes": "Plural toast pattern is \"[N] fees / discounts added.\" per §7 toast table.",
+    "api_related": false
   },
   {
     "id": "FD-CUST-005",
@@ -127,7 +131,8 @@
     ],
     "design_ref": "design-notes.md §7; requirements.md §6.1 (Processing Fee templates appear in this picker, show \"Fee\")",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": "This differs from the WO template picker, which NEVER lists a Processing Fee (S8-N2). Flag if staging shows raw \"processing_fee\" instead of \"Fee\"."
+    "notes": "This differs from the WO template picker, which NEVER lists a Processing Fee (S8-N2). Flag if staging shows raw \"processing_fee\" instead of \"Fee\".",
+    "api_related": false
   },
   {
     "id": "FD-CUST-006",
@@ -149,7 +154,8 @@
     ],
     "design_ref": "requirements.md §6.1 (S9-R22)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": ""
+    "notes": "",
+    "api_related": false
   },
   {
     "id": "FD-CUST-007",
@@ -175,7 +181,8 @@
     ],
     "design_ref": "design-notes.md §4 (per-row ⋮ More actions → Remove only)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": "Removing a customer default is intentionally no-confirm (S9-R24), unlike deleting a template (S7-R20 has a confirm)."
+    "notes": "Removing a customer default is intentionally no-confirm (S9-R24), unlike deleting a template (S7-R20 has a confirm).",
+    "api_related": false
   },
   {
     "id": "FD-CUST-008",
@@ -198,7 +205,8 @@
     ],
     "design_ref": "requirements.md §6.1 (S9-R17)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": ""
+    "notes": "",
+    "api_related": false
   },
   {
     "id": "FD-CUST-009",
@@ -223,7 +231,8 @@
     ],
     "design_ref": "requirements.md §6.1 (S9-R2/R3/R4)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": "The adjustment is an independent copy; the WO surfaces are covered by Group A — this case focuses on the customer-default → WO seeding and independence."
+    "notes": "The adjustment is an independent copy; the WO surfaces are covered by Group A — this case focuses on the customer-default → WO seeding and independence.",
+    "api_related": false
   },
   {
     "id": "FD-CUST-010",
@@ -247,7 +256,8 @@
     ],
     "design_ref": "requirements.md §6.1 (S9-R6/R7); §5-R3 (resolve = base × percentage)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": "Uses spec calc rule §5-R3."
+    "notes": "Uses spec calc rule §5-R3.",
+    "api_related": false
   },
   {
     "id": "FD-CUST-011",
@@ -272,7 +282,8 @@
     ],
     "design_ref": "requirements.md §6.1 (S9-R8)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": ""
+    "notes": "",
+    "api_related": false
   },
   {
     "id": "FD-CUST-012",
@@ -297,7 +308,8 @@
     ],
     "design_ref": "requirements.md §6.1 (S9-R9), §9.1 (S7-R4, S7-N1)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": "Deleting the template drops template + default links but NOT existing WO adjustments — matches the task's stated rule."
+    "notes": "Deleting the template drops template + default links but NOT existing WO adjustments — matches the task's stated rule.",
+    "api_related": false
   },
   {
     "id": "FD-CUST-013",
@@ -320,7 +332,8 @@
     ],
     "design_ref": "requirements.md §6.1 (S9-R10)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": ""
+    "notes": "",
+    "api_related": false
   },
   {
     "id": "FD-CUST-014",
@@ -343,7 +356,8 @@
     ],
     "design_ref": "requirements.md §6.1 (S9-R1)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": ""
+    "notes": "",
+    "api_related": false
   },
   {
     "id": "FD-CUST-015",
@@ -367,7 +381,8 @@
     ],
     "design_ref": "requirements.md §10 (S13-R9, S13-N3)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": "CAUTION: Story 13 Custom-Roles model (SV-7388) may not be live on staging yet — record what staging actually enforces and flag divergence. Restore Tech to Time Clock (role 77b069d1-...) after."
+    "notes": "CAUTION: Story 13 Custom-Roles model (SV-7388) may not be live on staging yet — record what staging actually enforces and flag divergence. Restore Tech to Time Clock (role 77b069d1-...) after.",
+    "api_related": false
   },
   {
     "id": "FD-CUST-016",
@@ -390,7 +405,8 @@
     ],
     "design_ref": "requirements.md §6.1 (S9 Known gap), §14 item 4",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": "A double-add is a KNOWN DEFECT tracked separately, not a spec requirement. Report actual behavior."
+    "notes": "A double-add is a KNOWN DEFECT tracked separately, not a spec requirement. Report actual behavior.",
+    "api_related": false
   },
   {
     "id": "FD-CUST-017",
@@ -413,7 +429,8 @@
     ],
     "design_ref": "requirements.md §6.1 (S9-N1); §7 toast table (customer default failure = standard error, no custom string)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": "Unlike WO/template save failures, customer-default failures use the generic system error, not a custom message."
+    "notes": "Unlike WO/template save failures, customer-default failures use the generic system error, not a custom message.",
+    "api_related": true
   },
   {
     "id": "FD-TMPL-001",
@@ -436,7 +453,8 @@
     ],
     "design_ref": "requirements.md §9.1 (S7-R7a/c); design-notes.md §0 (admin page not in mockups — confirm live)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": "The admin Fees & Discounts page is NOT in the HTML mockups — confirm its exact placement live."
+    "notes": "The admin Fees & Discounts page is NOT in the HTML mockups — confirm its exact placement live.",
+    "api_related": false
   },
   {
     "id": "FD-TMPL-002",
@@ -460,7 +478,8 @@
     ],
     "design_ref": "requirements.md §9.1 (S7-R8); §11 (S12-R8)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": ""
+    "notes": "",
+    "api_related": false
   },
   {
     "id": "FD-TMPL-003",
@@ -487,7 +506,8 @@
     ],
     "design_ref": "requirements.md §9.1 (S7-R10..R18)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": "Create confirm button label is FIXED \"Add Fee / Discount\" for any type (S7-R17), unlike the WO dialog which flips to \"Add Fee\"/\"Add Discount\" (S2-R27)."
+    "notes": "Create confirm button label is FIXED \"Add Fee / Discount\" for any type (S7-R17), unlike the WO dialog which flips to \"Add Fee\"/\"Add Discount\" (S2-R27).",
+    "api_related": false
   },
   {
     "id": "FD-TMPL-004",
@@ -511,7 +531,8 @@
     ],
     "design_ref": "requirements.md §9.1 (S7-R18a); §12 toast table",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": ""
+    "notes": "",
+    "api_related": false
   },
   {
     "id": "FD-TMPL-005",
@@ -536,7 +557,8 @@
     ],
     "design_ref": "requirements.md §9.1 (S7-R5/R6a/R6b/R12g)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": ""
+    "notes": "",
+    "api_related": false
   },
   {
     "id": "FD-TMPL-006",
@@ -561,7 +583,8 @@
     ],
     "design_ref": "requirements.md §9.1 (S7-R9/R16/R17/R18b)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": ""
+    "notes": "",
+    "api_related": false
   },
   {
     "id": "FD-TMPL-007",
@@ -585,7 +608,8 @@
     ],
     "design_ref": "requirements.md §9.1 (S7-R20); design-notes.md §10 (no delete-confirm in mockups — confirm live)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": "The remove-confirm dialog is not in the HTML mockups; verify exact copy live."
+    "notes": "The remove-confirm dialog is not in the HTML mockups; verify exact copy live.",
+    "api_related": false
   },
   {
     "id": "FD-TMPL-008",
@@ -607,7 +631,8 @@
     ],
     "design_ref": "requirements.md §9.1 (S7-R21)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": ""
+    "notes": "",
+    "api_related": false
   },
   {
     "id": "FD-TMPL-009",
@@ -630,7 +655,8 @@
     ],
     "design_ref": "requirements.md §9.1 (S7-N1, S7-R4)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": ""
+    "notes": "",
+    "api_related": false
   },
   {
     "id": "FD-TMPL-010",
@@ -658,7 +684,8 @@
     ],
     "design_ref": "requirements.md §4.2 (S2-R14..R17); §7 (§5-R10 allowed methods)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": "Matches the task's scoping rule (labour templates only accepted by labour modals, not parts, and vice versa). Loom transcript confirms scope filtering."
+    "notes": "Matches the task's scoping rule (labour templates only accepted by labour modals, not parts, and vice versa). Loom transcript confirms scope filtering.",
+    "api_related": false
   },
   {
     "id": "FD-TMPL-011",
@@ -683,7 +710,8 @@
     ],
     "design_ref": "requirements.md §9.1 (S7-R12e/R14); §7 (§5-R6)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": "Design mockups show a \"Max cap\" always rendered (design-notes §10 item 4) — flag if staging shows Max Amount for Flat too."
+    "notes": "Design mockups show a \"Max cap\" always rendered (design-notes §10 item 4) — flag if staging shows Max Amount for Flat too.",
+    "api_related": false
   },
   {
     "id": "FD-TMPL-012",
@@ -705,7 +733,8 @@
     ],
     "design_ref": "requirements.md §9.1 (S7-R11)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": ""
+    "notes": "",
+    "api_related": false
   },
   {
     "id": "FD-TMPL-013",
@@ -728,7 +757,8 @@
     ],
     "design_ref": "requirements.md §9.1 (S7-R3); §7 (§5-R2)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": ""
+    "notes": "",
+    "api_related": false
   },
   {
     "id": "FD-TMPL-014",
@@ -751,7 +781,8 @@
     ],
     "design_ref": "requirements.md §9.1 (S7-R2/R13/R15)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": "Processing Fee has different method options (Flat Amount, % of Grand Total) — see FD-PROC-002."
+    "notes": "Processing Fee has different method options (Flat Amount, % of Grand Total) — see FD-PROC-002.",
+    "api_related": false
   },
   {
     "id": "FD-TMPL-015",
@@ -773,7 +804,8 @@
     ],
     "design_ref": "requirements.md §9.1 (S7-R19); §12 toast table",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": ""
+    "notes": "",
+    "api_related": false
   },
   {
     "id": "FD-TMPL-016",
@@ -795,7 +827,8 @@
     ],
     "design_ref": "requirements.md §10 (S13-R8); §9.1 (S7-R7b current-build difference)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": "CURRENT-BUILD DIFFERENCE (§10.4/S7-R7b): today the page may show to any user with a location; S13-R8 tightens it to Settings → Finance. Record actual gating. Restore Tech to Time Clock after."
+    "notes": "CURRENT-BUILD DIFFERENCE (§10.4/S7-R7b): today the page may show to any user with a location; S13-R8 tightens it to Settings → Finance. Record actual gating. Restore Tech to Time Clock after.",
+    "api_related": false
   },
   {
     "id": "FD-TMPL-017",
@@ -818,7 +851,8 @@
     ],
     "design_ref": "requirements.md §9.1 (S7-R12c)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": ""
+    "notes": "",
+    "api_related": false
   },
   {
     "id": "FD-PROC-001",
@@ -840,7 +874,8 @@
     ],
     "design_ref": "requirements.md §2, §9.2 (S8-R1/R3); design-notes.md §9 item 3 (Processing Fee absent from mockups)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": "Processing Fee UI is absent from the HTML mockups — verify live."
+    "notes": "Processing Fee UI is absent from the HTML mockups — verify live.",
+    "api_related": false
   },
   {
     "id": "FD-PROC-002",
@@ -864,7 +899,8 @@
     ],
     "design_ref": "requirements.md §2, §7 (§5-R4/R10), §9.2 (S8-R5/R6/R9)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": ""
+    "notes": "",
+    "api_related": false
   },
   {
     "id": "FD-PROC-003",
@@ -886,7 +922,8 @@
     ],
     "design_ref": "requirements.md §2, §9.2 (S8-R10, S8-N3)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": ""
+    "notes": "",
+    "api_related": false
   },
   {
     "id": "FD-PROC-004",
@@ -911,7 +948,8 @@
     ],
     "design_ref": "requirements.md §2, §9.2 (S8-R11/R12)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": "OPEN QUESTION (§14 item 5): the disclosure's literal text is NOT in the exported spec — capture the exact wording from the live dialog before asserting it. Spec copy says \"toggle\" but the control is the Yes/No dropdown."
+    "notes": "OPEN QUESTION (§14 item 5): the disclosure's literal text is NOT in the exported spec — capture the exact wording from the live dialog before asserting it. Spec copy says \"toggle\" but the control is the Yes/No dropdown.",
+    "api_related": false
   },
   {
     "id": "FD-PROC-005",
@@ -935,7 +973,8 @@
     ],
     "design_ref": "requirements.md §2, §9.2 (S8-R16, S8-N1, S8-N2)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": "Processing Fee reaches a WO only via auto-apply (S8-R14) or a customer default (S8-R15)."
+    "notes": "Processing Fee reaches a WO only via auto-apply (S8-R14) or a customer default (S8-R15).",
+    "api_related": false
   },
   {
     "id": "FD-PROC-006",
@@ -958,7 +997,8 @@
     ],
     "design_ref": "requirements.md §2, §9.2 (S8-R14); §8.1 (S3-R9)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": ""
+    "notes": "",
+    "api_related": false
   },
   {
     "id": "FD-PROC-007",
@@ -981,7 +1021,8 @@
     ],
     "design_ref": "requirements.md §2, §9.2 (S8-R15)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": ""
+    "notes": "",
+    "api_related": false
   },
   {
     "id": "FD-PROC-008",
@@ -1005,7 +1046,8 @@
     ],
     "design_ref": "requirements.md §2, §9.2 (S8-R17, S8-N5)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": "CURRENT-BUILD DIFFERENCE (§14 item 6): the current build may still show an Edit control that fails (S8-R17). Record actual behavior."
+    "notes": "CURRENT-BUILD DIFFERENCE (§14 item 6): the current build may still show an Edit control that fails (S8-R17). Record actual behavior.",
+    "api_related": false
   },
   {
     "id": "FD-PROC-009",
@@ -1030,7 +1072,8 @@
     ],
     "design_ref": "requirements.md §7 (§5-R4/R5 worked example: 3% Processing Fee on $324 = +$9.72)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": "Uses the spec's worked example directly."
+    "notes": "Uses the spec's worked example directly.",
+    "api_related": false
   },
   {
     "id": "FD-PROC-010",
@@ -1053,7 +1096,8 @@
     ],
     "design_ref": "requirements.md §9.2 (S8-N4)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": "The UI hides these options; this guards data sent from outside the product."
+    "notes": "The UI hides these options; this guards data sent from outside the product.",
+    "api_related": true
   },
   {
     "id": "FD-PROC-011",
@@ -1076,7 +1120,8 @@
     ],
     "design_ref": "requirements.md §2, §3, §9.2 (S8-R2)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": ""
+    "notes": "",
+    "api_related": false
   },
   {
     "id": "FD-PROC-012",
@@ -1099,7 +1144,8 @@
     ],
     "design_ref": "requirements.md §2, §9.2 (S8-R18/R19)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": ""
+    "notes": "",
+    "api_related": false
   },
   {
     "id": "FD-PROC-013",
@@ -1123,7 +1169,8 @@
     ],
     "design_ref": "requirements.md §7 (§5-R4, §5-R5 Step 3)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": ""
+    "notes": "",
+    "api_related": false
   },
   {
     "id": "FD-PROC-014",
@@ -1144,7 +1191,8 @@
     ],
     "design_ref": "requirements.md §9.2 (S8-N6); §7 (§5-R6 Min Amount data-model note)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": "Min Amount exists only in the data model; both dialogs always send it empty (null)."
+    "notes": "Min Amount exists only in the data model; both dialogs always send it empty (null).",
+    "api_related": false
   },
   {
     "id": "FD-DOC-001",
@@ -1167,7 +1215,8 @@
     ],
     "design_ref": "requirements.md §6.2 (S5-R1); design-notes.md §10 (no estimate/invoice mockup — confirm live)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": "No customer estimate/invoice view exists in the HTML mockups — verify layout live."
+    "notes": "No customer estimate/invoice view exists in the HTML mockups — verify layout live.",
+    "api_related": false
   },
   {
     "id": "FD-DOC-002",
@@ -1191,7 +1240,8 @@
     ],
     "design_ref": "requirements.md §6.2 (S5-R2/R3/R4); §11 (S12-R3/R7)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": ""
+    "notes": "",
+    "api_related": false
   },
   {
     "id": "FD-DOC-003",
@@ -1214,7 +1264,8 @@
     ],
     "design_ref": "requirements.md §6.2 (S5-R2/R3)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": ""
+    "notes": "",
+    "api_related": false
   },
   {
     "id": "FD-DOC-004",
@@ -1238,7 +1289,8 @@
     ],
     "design_ref": "requirements.md §6.2 (S5-R4/R9); §11 (S12-R7)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": "Note this differs from WO screens, which use a signed minus (e.g. \"−$26.08\") in plain grey."
+    "notes": "Note this differs from WO screens, which use a signed minus (e.g. \"−$26.08\") in plain grey.",
+    "api_related": false
   },
   {
     "id": "FD-DOC-005",
@@ -1262,7 +1314,8 @@
     ],
     "design_ref": "requirements.md §6.2 (S5-R5/R6)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": ""
+    "notes": "",
+    "api_related": false
   },
   {
     "id": "FD-DOC-006",
@@ -1285,7 +1338,8 @@
     ],
     "design_ref": "requirements.md §6.2 (S5-R7/R8)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": "Grouping is ONLY on the customer document; WO line table lists each one by one (Story 3)."
+    "notes": "Grouping is ONLY on the customer document; WO line table lists each one by one (Story 3).",
+    "api_related": false
   },
   {
     "id": "FD-DOC-007",
@@ -1306,7 +1360,8 @@
     ],
     "design_ref": "requirements.md §6.2 (S5-R6); §9.2 (S8-R22)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": ""
+    "notes": "",
+    "api_related": false
   },
   {
     "id": "FD-DOC-008",
@@ -1330,7 +1385,8 @@
     ],
     "design_ref": "requirements.md §6.3 (S14-R1)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": ""
+    "notes": "",
+    "api_related": false
   },
   {
     "id": "FD-DOC-009",
@@ -1352,7 +1408,8 @@
     ],
     "design_ref": "requirements.md §6.3 (S14-R2)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": ""
+    "notes": "",
+    "api_related": false
   },
   {
     "id": "FD-DOC-010",
@@ -1375,7 +1432,8 @@
     ],
     "design_ref": "requirements.md §7 (§5-R12)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": ""
+    "notes": "",
+    "api_related": false
   },
   {
     "id": "FD-DOC-011",
@@ -1396,7 +1454,8 @@
     ],
     "design_ref": "requirements.md §6.2 (S5-R5)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": ""
+    "notes": "",
+    "api_related": false
   },
   {
     "id": "FD-QB-001",
@@ -1421,7 +1480,8 @@
     ],
     "design_ref": "requirements.md §7.1 (S6-R1)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": "QuickBooks sync is backend; verify via the QuickBooks side or the sync payload."
+    "notes": "QuickBooks sync is backend; verify via the QuickBooks side or the sync payload.",
+    "api_related": false
   },
   {
     "id": "FD-QB-002",
@@ -1445,7 +1505,8 @@
     ],
     "design_ref": "requirements.md §7.1 (S6-R3/R4/R5)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": ""
+    "notes": "",
+    "api_related": false
   },
   {
     "id": "FD-QB-003",
@@ -1468,7 +1529,8 @@
     ],
     "design_ref": "requirements.md §7.1 (S6-R1); §7 (§5-R8)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": ""
+    "notes": "",
+    "api_related": false
   },
   {
     "id": "FD-QB-004",
@@ -1493,7 +1555,8 @@
     ],
     "design_ref": "requirements.md §7.1 (S6-R6/R6a/R6d)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": ""
+    "notes": "",
+    "api_related": false
   },
   {
     "id": "FD-QB-005",
@@ -1517,7 +1580,8 @@
     ],
     "design_ref": "requirements.md §7.1 (S6-R6/R6d)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": ""
+    "notes": "",
+    "api_related": false
   },
   {
     "id": "FD-QB-006",
@@ -1538,7 +1602,8 @@
     ],
     "design_ref": "requirements.md §7.1 (S6-R6a)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": "Some of these surfaces (labor/part/part-sale) are primarily Group A scope; this case covers the guard breadth."
+    "notes": "Some of these surfaces (labor/part/part-sale) are primarily Group A scope; this case covers the guard breadth.",
+    "api_related": false
   },
   {
     "id": "FD-QB-007",
@@ -1561,7 +1626,8 @@
     ],
     "design_ref": "requirements.md §7.1 (S6-R6b)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": ""
+    "notes": "",
+    "api_related": false
   },
   {
     "id": "FD-QB-008",
@@ -1584,7 +1650,8 @@
     ],
     "design_ref": "requirements.md §7.1 (S6-R6c)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": ""
+    "notes": "",
+    "api_related": false
   },
   {
     "id": "FD-QB-009",
@@ -1609,7 +1676,8 @@
     ],
     "design_ref": "requirements.md §7.1 (S6-R7/R7a)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": ""
+    "notes": "",
+    "api_related": false
   },
   {
     "id": "FD-QB-010",
@@ -1631,7 +1699,8 @@
     ],
     "design_ref": "requirements.md §7.1 (S6-R8)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": "Per-class allocation is out of scope for V1."
+    "notes": "Per-class allocation is out of scope for V1.",
+    "api_related": false
   },
   {
     "id": "FD-QB-011",
@@ -1653,7 +1722,8 @@
     ],
     "design_ref": "requirements.md §7.1 (S6-R9)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": ""
+    "notes": "",
+    "api_related": false
   },
   {
     "id": "FD-QB-012",
@@ -1677,7 +1747,8 @@
     ],
     "design_ref": "requirements.md §7.1 (S6-R10/R10a/R10b/R10c worked example)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": "Uses the spec's exact $100/$10/$150 worked example."
+    "notes": "Uses the spec's exact $100/$10/$150 worked example.",
+    "api_related": false
   },
   {
     "id": "FD-QB-013",
@@ -1701,7 +1772,8 @@
     ],
     "design_ref": "requirements.md §7.1 (S6-R10d)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": ""
+    "notes": "",
+    "api_related": false
   },
   {
     "id": "FD-QB-014",
@@ -1724,7 +1796,8 @@
     ],
     "design_ref": "requirements.md §7.1 (S6-R12)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": ""
+    "notes": "",
+    "api_related": false
   },
   {
     "id": "FD-QB-015",
@@ -1748,7 +1821,8 @@
     ],
     "design_ref": "requirements.md §7.1 (S6-R11/R13)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": ""
+    "notes": "",
+    "api_related": false
   },
   {
     "id": "FD-QB-016",
@@ -1770,7 +1844,8 @@
     ],
     "design_ref": "requirements.md §7.1 (S6-R2); §7 (§5-R11)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": ""
+    "notes": "",
+    "api_related": false
   },
   {
     "id": "FD-HIST-001",
@@ -1795,7 +1870,8 @@
     ],
     "design_ref": "requirements.md §8.3 (S10-R2/R4a/R4b/R4c)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": ""
+    "notes": "",
+    "api_related": false
   },
   {
     "id": "FD-HIST-002",
@@ -1820,7 +1896,8 @@
     ],
     "design_ref": "requirements.md §8.3 (S10-R6a..R6d)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": "History log uses \"Full invoice\" whereas other screens say \"Whole Work Order\". Amount is the set rate, not resolved — this is why SFD does not gate the log (S10-R6c)."
+    "notes": "History log uses \"Full invoice\" whereas other screens say \"Whole Work Order\". Amount is the set rate, not resolved — this is why SFD does not gate the log (S10-R6c).",
+    "api_related": false
   },
   {
     "id": "FD-HIST-003",
@@ -1842,7 +1919,8 @@
     ],
     "design_ref": "requirements.md §8.3 (S10-R3/R5)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": ""
+    "notes": "",
+    "api_related": false
   },
   {
     "id": "FD-HIST-004",
@@ -1866,7 +1944,8 @@
     ],
     "design_ref": "requirements.md §8.3 (S10-R1); §1 (flag-off exception)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": "The history log is the one exception to the flag-off rule."
+    "notes": "The history log is the one exception to the flag-off rule.",
+    "api_related": false
   },
   {
     "id": "FD-HIST-005",
@@ -1891,7 +1970,8 @@
     ],
     "design_ref": "requirements.md §8.3 (S10-R1); §10 (S13-R10)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": "CAUTION: Story 13 model may not be live on staging yet. Restore Tech to Time Clock (role 77b069d1-...) after."
+    "notes": "CAUTION: Story 13 model may not be live on staging yet. Restore Tech to Time Clock (role 77b069d1-...) after.",
+    "api_related": false
   },
   {
     "id": "FD-HIST-006",
@@ -1914,7 +1994,8 @@
     ],
     "design_ref": "requirements.md §10 (S13-R10)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": "Restore Tech to Time Clock after. CAUTION: Story 13 model may not be fully live on staging — record actual gating."
+    "notes": "Restore Tech to Time Clock after. CAUTION: Story 13 model may not be fully live on staging — record actual gating.",
+    "api_related": false
   },
   {
     "id": "FD-HIST-007",
@@ -1938,7 +2019,8 @@
     ],
     "design_ref": "requirements.md §8.3 (S10 Processing Fee note); §9.2 (S8-R25/R26)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": "CURRENT-BUILD DIFFERENCE (§14 item 6): current build may show raw \"processing_fee\" on \"Applied to:\" instead of \"Full invoice\" — record actual value."
+    "notes": "CURRENT-BUILD DIFFERENCE (§14 item 6): current build may show raw \"processing_fee\" on \"Applied to:\" instead of \"Full invoice\" — record actual value.",
+    "api_related": false
   },
   {
     "id": "FD-HIST-008",
@@ -1960,6 +2042,7 @@
     ],
     "design_ref": "requirements.md §8.3 (S10-R6c)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": ""
+    "notes": "",
+    "api_related": false
   }
 ]

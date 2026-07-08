@@ -24,7 +24,8 @@
     ],
     "design_ref": "Add new fee/discount modal (design-notes §6); WO toolbar ⋯ menu (§1)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": "Design↔spec: spec title = 'New Fee / Discount'; design mockup title = 'Add new fee/discount'. Authored to spec; flag the label difference at execution. Toolbar label 'Add Work Order Fee / Discount' is per S1-R1/S11-R4a comparison."
+    "notes": "Design↔spec: spec title = 'New Fee / Discount'; design mockup title = 'Add new fee/discount'. Authored to spec; flag the label difference at execution. Toolbar label 'Add Work Order Fee / Discount' is per S1-R1/S11-R4a comparison.",
+    "api_related": false
   },
   {
     "id": "FD-WO-002",
@@ -56,7 +57,8 @@
     ],
     "design_ref": "Add new fee/discount modal footer Add button (§6); WO Fee/Discount sidebar card (§1a)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": "Whole-WO Flat Amount base = the set amount, no quantity (open question #2 in requirements §14: no explicit Whole-WO Flat base row). Confirm button label per spec is 'Add Fee'; design mockup uses fixed 'Add' — flag."
+    "notes": "Whole-WO Flat Amount base = the set amount, no quantity (open question #2 in requirements §14: no explicit Whole-WO Flat base row). Confirm button label per spec is 'Add Fee'; design mockup uses fixed 'Add' — flag.",
+    "api_related": false
   },
   {
     "id": "FD-WO-003",
@@ -86,7 +88,8 @@
     ],
     "design_ref": "Live preview block .fd-summary, updateSummary() (§6)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": "Design↔spec: the design preview always computes a percentage against the single flat WO Total and has NO base selector, whereas spec §5-R4 says whole-WO % must resolve against Net Labor / Net Parts / Subtotal depending on method. This is requirements open question #1. On staging, confirm which base is actually used; the −$857.23 number here matches the design's single-total math."
+    "notes": "Design↔spec: the design preview always computes a percentage against the single flat WO Total and has NO base selector, whereas spec §5-R4 says whole-WO % must resolve against Net Labor / Net Parts / Subtotal depending on method. This is requirements open question #1. On staging, confirm which base is actually used; the −$857.23 number here matches the design's single-total math.",
+    "api_related": false
   },
   {
     "id": "FD-WO-004",
@@ -116,7 +119,8 @@
     ],
     "design_ref": "'Apply from template' <select id=fd-template>, applyTemplate() / FD_TEMPLATES (§6)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": "Design mockup uses a 6-entry dropdown (Fleet Standard Discount, Loyalty Discount, Parts Handling Fee, Environmental Fee, Early Payment Discount, Labor Surcharge). Spec says the real product shares one location template library; substitute an actual staging template name if different. Taxable is not collected by the design's Add modal (design↔spec discrepancy #2)."
+    "notes": "Design mockup uses a 6-entry dropdown (Fleet Standard Discount, Loyalty Discount, Parts Handling Fee, Environmental Fee, Early Payment Discount, Labor Surcharge). Spec says the real product shares one location template library; substitute an actual staging template name if different. Taxable is not collected by the design's Add modal (design↔spec discrepancy #2).",
+    "api_related": false
   },
   {
     "id": "FD-WO-005",
@@ -148,7 +152,8 @@
     ],
     "design_ref": "footer Add button #fd-add-btn, validateForm() (§6)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": "The disabled-Add rule is the design's only validation gate; spec S2-N1/S2-N2 also expect inline error text on empty Name/Amount, which the design mockup does NOT render (design open item §10). Verify whether staging shows inline errors in addition to the disabled button."
+    "notes": "The disabled-Add rule is the design's only validation gate; spec S2-N1/S2-N2 also expect inline error text on empty Name/Amount, which the design mockup does NOT render (design open item §10). Verify whether staging shows inline errors in addition to the disabled button.",
+    "api_related": false
   },
   {
     "id": "FD-WO-006",
@@ -175,7 +180,8 @@
     ],
     "design_ref": "Max cap input #fd-maxcap (§6)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": "Design↔spec discrepancy #4: the design shows 'Max cap' unconditionally and even caps Flat Amount, while spec (S2-R24, §5-R6) shows Max Amount ONLY for a percentage method and never for Flat/Processing Fee. Field label is 'Max Amount (Optional)' per spec vs 'Max cap' in design. Also verify an entered Max Amount of 0 is treated as empty / no maximum (§5-R6, S2-R25)."
+    "notes": "Design↔spec discrepancy #4: the design shows 'Max cap' unconditionally and even caps Flat Amount, while spec (S2-R24, §5-R6) shows Max Amount ONLY for a percentage method and never for Flat/Processing Fee. Field label is 'Max Amount (Optional)' per spec vs 'Max cap' in design. Also verify an entered Max Amount of 0 is treated as empty / no maximum (§5-R6, S2-R25).",
+    "api_related": false
   },
   {
     "id": "FD-WO-007",
@@ -199,7 +205,8 @@
     ],
     "design_ref": "footer Add button #fd-add-btn (§6)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": "Design↔spec: the design mockup uses a fixed 'Add' button label that does NOT change with Type. Authored to spec S2-R27; flag the fixed label if staging matches the mockup."
+    "notes": "Design↔spec: the design mockup uses a fixed 'Add' button label that does NOT change with Type. Authored to spec S2-R27; flag the fixed label if staging matches the mockup.",
+    "api_related": false
   },
   {
     "id": "FD-WO-008",
@@ -224,7 +231,8 @@
     ],
     "design_ref": "validateForm() (§6)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": "Verify whether staging surfaces an inline 'Name required' error (spec) or only keeps the button disabled (design)."
+    "notes": "Verify whether staging surfaces an inline 'Name required' error (spec) or only keeps the button disabled (design).",
+    "api_related": false
   },
   {
     "id": "FD-WO-009",
@@ -248,7 +256,8 @@
     ],
     "design_ref": "validateForm() requires Amount>0 (§6)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": "Confirm minimum enforcement: Flat < $0.01 and Percentage < 0.01% are invalid (§5-R1)."
+    "notes": "Confirm minimum enforcement: Flat < $0.01 and Percentage < 0.01% are invalid (§5-R1).",
+    "api_related": false
   },
   {
     "id": "FD-WO-010",
@@ -272,7 +281,8 @@
     ],
     "design_ref": "Add modal Type/Calc/Amount fields (§6)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": "The design mockup does not model the >100% discount validation (no inline error states). Verify the guard exists on staging."
+    "notes": "The design mockup does not model the >100% discount validation (no inline error states). Verify the guard exists on staging.",
+    "api_related": false
   },
   {
     "id": "FD-WO-011",
@@ -299,7 +309,8 @@
     ],
     "design_ref": "Calc bases seen in read-only lists (§7 note); Add modal has no base selector (§6)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": "Design open question #1: the design Add modal only offers 'Percentage'/'Flat amount' with no base selector and computes % off a single flat total. Spec §5-R10 requires the four distinct whole-WO methods. Authored to spec; on staging confirm whether the base is a selectable Calculation type option or is chosen elsewhere."
+    "notes": "Design open question #1: the design Add modal only offers 'Percentage'/'Flat amount' with no base selector and computes % off a single flat total. Spec §5-R10 requires the four distinct whole-WO methods. Authored to spec; on staging confirm whether the base is a selectable Calculation type option or is chosen elsewhere.",
+    "api_related": false
   },
   {
     "id": "FD-WO-012",
@@ -324,7 +335,8 @@
     ],
     "design_ref": "starting places (§1, §2)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": "Also verify per-entry/per-row Edit/Delete 3-dot menus are hidden on Invoiced/Paid WOs (S3-N3)."
+    "notes": "Also verify per-entry/per-row Edit/Delete 3-dot menus are hidden on Invoiced/Paid WOs (S3-N3).",
+    "api_related": false
   },
   {
     "id": "FD-WO-013",
@@ -347,7 +359,8 @@
     ],
     "design_ref": "starting places (§1)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": "Whole-WO add/edit/remove maps to Work Orders: Create & Edit (S13-R3). Per requirements §10.4 the current build may use one WO-edit check rather than the split whole-WO vs line-level model — verify."
+    "notes": "Whole-WO add/edit/remove maps to Work Orders: Create & Edit (S13-R3). Per requirements §10.4 the current build may use one WO-edit check rather than the split whole-WO vs line-level model — verify.",
+    "api_related": false
   },
   {
     "id": "FD-WO-014",
@@ -371,7 +384,8 @@
     ],
     "design_ref": "live preview .fd-summary initial state (§6)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": "Also verify the totals-load-failure preview text 'We couldn't load the figures to preview this selection.' (S2-R42) if a failure can be simulated."
+    "notes": "Also verify the totals-load-failure preview text 'We couldn't load the figures to preview this selection.' (S2-R42) if a failure can be simulated.",
+    "api_related": false
   },
   {
     "id": "FD-WO-015",
@@ -395,7 +409,8 @@
     ],
     "design_ref": "live preview color logic updateSummary() (§6, §1a)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": "Design↔spec color conflict: the design mockup renders DISCOUNT amounts in green (--sv-success-text) and FEE amounts in amber/warning (--sv-warning-text), the OPPOSITE of spec S2-R33 (fee green, discount red). Authored the expected to spec; flag the mismatch and confirm the actual color on staging."
+    "notes": "Design↔spec color conflict: the design mockup renders DISCOUNT amounts in green (--sv-success-text) and FEE amounts in amber/warning (--sv-warning-text), the OPPOSITE of spec S2-R33 (fee green, discount red). Authored the expected to spec; flag the mismatch and confirm the actual color on staging.",
+    "api_related": false
   },
   {
     "id": "FD-LABOR-001",
@@ -421,7 +436,8 @@
     ],
     "design_ref": "labor line ⋯ menu items incl. 'Add fee / discount' (§2, §2a)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": "Line-level add/edit/remove maps to Work Order Lines: Create & Edit (S13-R4). Design mockup subtitle format is a scope link; spec exact string is 'Applying to: Line {N} Labor — {name}'."
+    "notes": "Line-level add/edit/remove maps to Work Order Lines: Create & Edit (S13-R4). Design mockup subtitle format is a scope link; spec exact string is 'Applying to: Line {N} Labor — {name}'.",
+    "api_related": false
   },
   {
     "id": "FD-LABOR-002",
@@ -449,7 +465,8 @@
     ],
     "design_ref": "labor sub-row ⋯ 'Add fee / discount' (§2a); breakdown 'Calculation' shows base-aware phrasing (§8)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": "Default method for a labor line = % of Labor Total (S2-R22). Note the design Add modal lacks base-aware calc options (open question #1)."
+    "notes": "Default method for a labor line = % of Labor Total (S2-R22). Note the design Add modal lacks base-aware calc options (open question #1).",
+    "api_related": false
   },
   {
     "id": "FD-LABOR-003",
@@ -473,7 +490,8 @@
     ],
     "design_ref": "line ⋯ dropdown: Uncomplete/Add line note/Save line/Story history/Audit log/Add fee / discount (§2)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": "'Add fee / discount' is NOT on the work-order line's right-click menu — it is the row 3-dot menu (S1 context note)."
+    "notes": "'Add fee / discount' is NOT on the work-order line's right-click menu — it is the row 3-dot menu (S1 context note).",
+    "api_related": false
   },
   {
     "id": "FD-LABOR-004",
@@ -498,7 +516,8 @@
     ],
     "design_ref": "Add modal Flat amount (§6)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": "Contrast with Part Line Flat Amount, which IS per-item × quantity (see FD-PART-002)."
+    "notes": "Contrast with Part Line Flat Amount, which IS per-item × quantity (see FD-PART-002).",
+    "api_related": false
   },
   {
     "id": "FD-LABOR-005",
@@ -524,7 +543,8 @@
     ],
     "design_ref": "inline line adjustment rows (§2a)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": "Line-level adjustments show wherever their target shows, including a Needs Approval estimate (§5-R12)."
+    "notes": "Line-level adjustments show wherever their target shows, including a Needs Approval estimate (§5-R12).",
+    "api_related": false
   },
   {
     "id": "FD-LABOR-006",
@@ -549,7 +569,8 @@
     ],
     "design_ref": "line table (§2)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": "Deleting a line/part removes its adjustments even though removal normally uses the Create & Edit permission (this is a whole-record delete)."
+    "notes": "Deleting a line/part removes its adjustments even though removal normally uses the Create & Edit permission (this is a whole-record delete).",
+    "api_related": false
   },
   {
     "id": "FD-LABOR-007",
@@ -573,7 +594,8 @@
     ],
     "design_ref": "labor ⋯ menu (§2a)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": "Labor/part-line actions require Work Order Lines: Create & Edit (S13-R4), distinct from the whole-WO permission (S13-R3)."
+    "notes": "Labor/part-line actions require Work Order Lines: Create & Edit (S13-R4), distinct from the whole-WO permission (S13-R3).",
+    "api_related": false
   },
   {
     "id": "FD-PART-001",
@@ -599,7 +621,8 @@
     ],
     "design_ref": "part ⋯ 'Add fee / discount' (§2b); Add modal Part-scope subtitle 'Line 2 · S2-13274' (§6)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": "Default method for a part = % of Parts Total (S2-R22). Design subtitle is a scope link; spec exact string is 'Applying to: Line {N} Part — ({part number}) {description}'."
+    "notes": "Default method for a part = % of Parts Total (S2-R22). Design subtitle is a scope link; spec exact string is 'Applying to: Line {N} Part — ({part number}) {description}'.",
+    "api_related": false
   },
   {
     "id": "FD-PART-002",
@@ -626,7 +649,8 @@
     ],
     "design_ref": "part inline adjustment rows (§2b); Add modal Flat amount (§6)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": "Key edge behavior — Part Line Flat Amount is the only Flat Amount scope that multiplies by quantity. See FD-PART-008 for the qty=1 edge (−$5.00)."
+    "notes": "Key edge behavior — Part Line Flat Amount is the only Flat Amount scope that multiplies by quantity. See FD-PART-008 for the qty=1 edge (−$5.00).",
+    "api_related": false
   },
   {
     "id": "FD-PART-003",
@@ -653,7 +677,8 @@
     ],
     "design_ref": "part row ⋯ (§2b); part-requests 'Fees & Discounts' column (§5)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": "The part menu offers 'Add fee / discount' for both staged and requested parts (S1-R4). See FD-PART-005 for requested→received persistence."
+    "notes": "The part menu offers 'Add fee / discount' for both staged and requested parts (S1-R4). See FD-PART-005 for requested→received persistence.",
+    "api_related": false
   },
   {
     "id": "FD-PART-004",
@@ -679,7 +704,8 @@
     ],
     "design_ref": "part inline rows (§2b); breakdown 'Calculation' base-aware phrasing (§8)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": "Part Line percentage base uses the target's gross part total (before whole-WO nets)."
+    "notes": "Part Line percentage base uses the target's gross part total (before whole-WO nets).",
+    "api_related": false
   },
   {
     "id": "FD-PART-005",
@@ -704,7 +730,8 @@
     ],
     "design_ref": "part row / Fees & Discounts column (§5)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": "Companion to FD-PART-003 (adding to a requested part)."
+    "notes": "Companion to FD-PART-003 (adding to a requested part).",
+    "api_related": false
   },
   {
     "id": "FD-PART-006",
@@ -730,7 +757,8 @@
     ],
     "design_ref": "part inline rows (§2b)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": "A part is billable when authorized, not declined, and still has quantity left (§5-R12)."
+    "notes": "A part is billable when authorized, not declined, and still has quantity left (§5-R12).",
+    "api_related": false
   },
   {
     "id": "FD-PART-007",
@@ -755,7 +783,8 @@
     ],
     "design_ref": "part row (§2b)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": "Same delete-cascade behavior as labor lines (FD-LABOR-006)."
+    "notes": "Same delete-cascade behavior as labor lines (FD-LABOR-006).",
+    "api_related": false
   },
   {
     "id": "FD-PART-008",
@@ -780,7 +809,8 @@
     ],
     "design_ref": "part inline rows (§2b)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": "Confirms quantity changes re-resolve a Part Line Flat Amount adjustment (§5-R14)."
+    "notes": "Confirms quantity changes re-resolve a Part Line Flat Amount adjustment (§5-R14).",
+    "api_related": false
   },
   {
     "id": "FD-INLINE-001",
@@ -805,7 +835,8 @@
     ],
     "design_ref": "inline 'Line discount −5%' under Line 1 with amount −$26.08 (§2a)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": "Plain grey (not green/red) is correct outside the Add/Edit preview (S12-R1/R2)."
+    "notes": "Plain grey (not green/red) is correct outside the Add/Edit preview (S12-R1/R2).",
+    "api_related": false
   },
   {
     "id": "FD-INLINE-002",
@@ -830,7 +861,8 @@
     ],
     "design_ref": "inline part adjustments incl. Parts Handling Fee +$3.75 (§2b)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": "Flat rate badge = signed dollar amount; percentage rate badge = signed percent with zeros removed (S3-R6/R7, S12-R4)."
+    "notes": "Flat rate badge = signed dollar amount; percentage rate badge = signed percent with zeros removed (S3-R6/R7, S12-R4).",
+    "api_related": false
   },
   {
     "id": "FD-INLINE-003",
@@ -858,7 +890,8 @@
     ],
     "design_ref": "'Show 2 more' toggle .wo-show-more; screenshots 01-show-more/-state (§2b)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": "Same collapse/expand behavior applies to a labor line with 2+ adjustments."
+    "notes": "Same collapse/expand behavior applies to a labor line with 2+ adjustments.",
+    "api_related": false
   },
   {
     "id": "FD-INLINE-004",
@@ -883,7 +916,8 @@
     ],
     "design_ref": "part Total column stacking base + adjustments (§2b)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": "Numbers taken from the design mockup (placeholder data); confirm actual stacked figures on staging."
+    "notes": "Numbers taken from the design mockup (placeholder data); confirm actual stacked figures on staging.",
+    "api_related": false
   },
   {
     "id": "FD-INLINE-005",
@@ -908,7 +942,8 @@
     ],
     "design_ref": "inline .wo-inline-more-btn → Edit · Delete (§2a/§2b)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": "Design uses 'Edit/Delete' wording inline; spec says removal uses the Create & Edit permission (not the Delete permission) despite the 'Delete' label (design↔spec wording note #7)."
+    "notes": "Design uses 'Edit/Delete' wording inline; spec says removal uses the Create & Edit permission (not the Delete permission) despite the 'Delete' label (design↔spec wording note #7).",
+    "api_related": false
   },
   {
     "id": "FD-STATS-001",
@@ -934,7 +969,8 @@
     ],
     "design_ref": "Stats 'Fees & Discounts (5)' table, columns Value + Amount, scope links (§3)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": "Design↔spec column-label difference: spec S4-R2 = '%' column; design mockup = 'Value' column. Authored to spec; flag the actual header on staging."
+    "notes": "Design↔spec column-label difference: spec S4-R2 = '%' column; design mockup = 'Value' column. Authored to spec; flag the actual header on staging.",
+    "api_related": false
   },
   {
     "id": "FD-STATS-002",
@@ -960,7 +996,8 @@
     ],
     "design_ref": "Stats scope links .stats-sub-link (§3)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": "Scope hyperlink is a design affordance; confirm the exact jump/breakdown behavior on staging."
+    "notes": "Scope hyperlink is a design affordance; confirm the exact jump/breakdown behavior on staging.",
+    "api_related": false
   },
   {
     "id": "FD-STATS-003",
@@ -985,7 +1022,8 @@
     ],
     "design_ref": "Stats Total row (§3)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": "The design mockup's Stats total placeholder (−$1,198.02) disagrees with its Financial Info total (−$2,055.25) for the same '(5)' set — treat as mock placeholder inconsistency (design §3 warning). Expected here uses the correct signed sum −$2,055.25."
+    "notes": "The design mockup's Stats total placeholder (−$1,198.02) disagrees with its Financial Info total (−$2,055.25) for the same '(5)' set — treat as mock placeholder inconsistency (design §3 warning). Expected here uses the correct signed sum −$2,055.25.",
+    "api_related": false
   },
   {
     "id": "FD-STATS-004",
@@ -1009,7 +1047,8 @@
     ],
     "design_ref": "Stats table row order (§3)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": "The Group-A task brief mentions 'descending build order', but spec §5-R9 is explicit that WO screens (sidebar card, Financial Info, line table, Statistics tab) list adjustments in creation order OLDEST first. Authored to spec — flag the wording difference and confirm the actual order on staging."
+    "notes": "The Group-A task brief mentions 'descending build order', but spec §5-R9 is explicit that WO screens (sidebar card, Financial Info, line table, Statistics tab) list adjustments in creation order OLDEST first. Authored to spec — flag the wording difference and confirm the actual order on staging.",
+    "api_related": false
   },
   {
     "id": "FD-STATS-005",
@@ -1032,7 +1071,8 @@
     ],
     "design_ref": "Stats section (§3)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": "Mirrors the Financial Info row hidden state (S3-N2) and the sidebar card hidden state (S3-N1)."
+    "notes": "Mirrors the Financial Info row hidden state (S3-N2) and the sidebar card hidden state (S3-N1).",
+    "api_related": false
   },
   {
     "id": "FD-FIN-001",
@@ -1058,7 +1098,8 @@
     ],
     "design_ref": "Financial Info card 'Fees & Discounts (5)' −$2,055.25 (§1b)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": "This is a distinct count/total from the sidebar 'Work Order Fee / Discount' card, which lists whole-WO adjustments only."
+    "notes": "This is a distinct count/total from the sidebar 'Work Order Fee / Discount' card, which lists whole-WO adjustments only.",
+    "api_related": false
   },
   {
     "id": "FD-FIN-002",
@@ -1083,7 +1124,8 @@
     ],
     "design_ref": "Financial Info card nested F&D breakdown (§1b)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": "Financial Info card is read-only for adjustments (key decision, §3 of spec). Scope disambiguation uses a suffix e.g. '(LF3620)'."
+    "notes": "Financial Info card is read-only for adjustments (key decision, §3 of spec). Scope disambiguation uses a suffix e.g. '(LF3620)'.",
+    "api_related": false
   },
   {
     "id": "FD-FIN-003",
@@ -1107,7 +1149,8 @@
     ],
     "design_ref": "Financial Info card (§1b)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": "See Financial Data gates visibility of all fee/discount dollar amounts across surfaces (S13-R2/N1)."
+    "notes": "See Financial Data gates visibility of all fee/discount dollar amounts across surfaces (S13-R2/N1).",
+    "api_related": false
   },
   {
     "id": "FD-FIN-004",
@@ -1133,7 +1176,8 @@
     ],
     "design_ref": "'Work Order Fee / Discount' card .wo-fd-card, entry 'Early Payment Discount −8% −$857.23', ⋯ Edit/Delete (§1a)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": "Design↔spec color note: the design renders the discount amount in green (--sv-success-text); spec S12-R1 says sidebar amounts are plain grey. Authored to spec (plain grey); flag the color. Card title is 'Work Order Fee / Discount' in the final mockup vs 'WO Fees & Discounts' in v1 mockup / spec S3-R3."
+    "notes": "Design↔spec color note: the design renders the discount amount in green (--sv-success-text); spec S12-R1 says sidebar amounts are plain grey. Authored to spec (plain grey); flag the color. Card title is 'Work Order Fee / Discount' in the final mockup vs 'WO Fees & Discounts' in v1 mockup / spec S3-R3.",
+    "api_related": false
   },
   {
     "id": "FD-FIN-005",
@@ -1158,7 +1202,8 @@
     ],
     "design_ref": "'Work Order Fee / Discount' card (§1a); v1 mockup adds an 'Add Fee / Discount' button",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": "Design↔spec: the v1 mockup card includes an 'Add Fee / Discount' secondary button, which contradicts spec S3-R10 (no Add control on the card). Authored to spec (no Add control); flag if staging shows an in-card Add button."
+    "notes": "Design↔spec: the v1 mockup card includes an 'Add Fee / Discount' secondary button, which contradicts spec S3-R10 (no Add control on the card). Authored to spec (no Add control); flag if staging shows an in-card Add button.",
+    "api_related": false
   },
   {
     "id": "FD-PCOL-001",
@@ -1182,7 +1227,8 @@
     ],
     "design_ref": "Parts table 'Fees & Discounts' column .pt-fd-cell; #37346 single state (§5)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": "The 'Fees & Discounts' column shows only on a part sale / parts view when the flag is on (S11-R7). Core-charge rows have an empty column (S11-R8)."
+    "notes": "The 'Fees & Discounts' column shows only on a part sale / parts view when the flag is on (S11-R7). Core-charge rows have an empty column (S11-R8).",
+    "api_related": false
   },
   {
     "id": "FD-PCOL-002",
@@ -1206,7 +1252,8 @@
     ],
     "design_ref": "#55073 'Parts Handling Fee 2% +2' badge (§5)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": "Badge count N is the number of adjustments AFTER the first (so 3 total → '+2')."
+    "notes": "Badge count N is the number of adjustments AFTER the first (so 3 total → '+2').",
+    "api_related": false
   },
   {
     "id": "FD-PCOL-003",
@@ -1231,7 +1278,8 @@
     ],
     "design_ref": "#28439 empty state .pt-fd-add-btn (§5)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": "The '+ Add' button is disabled when the sale/WO cannot be edited (see FD-PCOL-008)."
+    "notes": "The '+ Add' button is disabled when the sale/WO cannot be edited (see FD-PCOL-008).",
+    "api_related": false
   },
   {
     "id": "FD-PCOL-004",
@@ -1258,7 +1306,8 @@
     ],
     "design_ref": "per-part breakdown modal, Parts-page editable variant with Max Amount + 🗑 (§8)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": "The WO-line/customer variant of this breakdown omits the Max Amount column and the per-row trash (read-only); the Parts-page variant adds both (design §8)."
+    "notes": "The WO-line/customer variant of this breakdown omits the Max Amount column and the per-row trash (read-only); the Parts-page variant adds both (design §8).",
+    "api_related": false
   },
   {
     "id": "FD-PCOL-005",
@@ -1280,7 +1329,8 @@
     ],
     "design_ref": "breakdown modal 'Net adjustment −$2.87' (§8)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": "For a single-adjustment part (#37346 Military Discount −$6.53) the Net adjustment equals that one amount (−$6.53)."
+    "notes": "For a single-adjustment part (#37346 Military Discount −$6.53) the Net adjustment equals that one amount (−$6.53).",
+    "api_related": false
   },
   {
     "id": "FD-PCOL-006",
@@ -1306,7 +1356,8 @@
     ],
     "design_ref": "breakdown modal per-row .pfd-trash-btn 'Remove' (§8)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": "Removal uses the Create & Edit permission, NOT the Delete permission (S13-R7). Per-row remove is shown only when the sale/WO can be edited (S11-R14)."
+    "notes": "Removal uses the Create & Edit permission, NOT the Delete permission (S13-R7). Per-row remove is shown only when the sale/WO can be edited (S11-R14).",
+    "api_related": false
   },
   {
     "id": "FD-PCOL-007",
@@ -1330,7 +1381,8 @@
     ],
     "design_ref": "empty-state '+ Add' button disabled behavior (§5)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": "Ties to the Invoiced/Paid lifecycle gate (S1-N1, S3-R1b)."
+    "notes": "Ties to the Invoiced/Paid lifecycle gate (S1-N1, S3-R1b).",
+    "api_related": false
   },
   {
     "id": "FD-EDIT-001",
@@ -1358,7 +1410,8 @@
     ],
     "design_ref": "No standalone Edit modal in mockups — 'Edit' is a menu item only (design §10); Add modal presumably reused",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": "Design open item #10: the mockups contain NO Edit-dialog markup and do not show which fields are locked. Authored strictly to spec S2-R4/R5/R8; verify locked-field behavior on staging. Confirm button label on edit = 'Save' (S2-R28)."
+    "notes": "Design open item #10: the mockups contain NO Edit-dialog markup and do not show which fields are locked. Authored strictly to spec S2-R4/R5/R8; verify locked-field behavior on staging. Confirm button label on edit = 'Save' (S2-R28).",
+    "api_related": false
   },
   {
     "id": "FD-EDIT-002",
@@ -1386,7 +1439,8 @@
     ],
     "design_ref": "template picker add-mode only (§6); no Edit modal markup (§10)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": "Verify re-resolution uses current (not original) totals."
+    "notes": "Verify re-resolution uses current (not original) totals.",
+    "api_related": false
   },
   {
     "id": "FD-EDIT-003",
@@ -1411,7 +1465,8 @@
     ],
     "design_ref": "no error/toast UI in mockups (§10)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": "The design mockups model no error/toast states; this is spec-driven (S2-R30, §7 toast table)."
+    "notes": "The design mockups model no error/toast states; this is spec-driven (S2-R30, §7 toast table).",
+    "api_related": false
   },
   {
     "id": "FD-REMOVE-001",
@@ -1438,7 +1493,8 @@
     ],
     "design_ref": "sidebar ⋯ 'Delete' (§1a); no confirm dialog modeled in mockups (§10)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": "Design uses the label 'Delete' on the sidebar/inline ⋯ menus but the spec confirm dialog is titled 'Remove Fee / Discount' with a 'Remove' button; the design mockups do NOT model the confirm dialog (§10). Authored to spec — flag the label mismatch and confirm the dialog exists on staging."
+    "notes": "Design uses the label 'Delete' on the sidebar/inline ⋯ menus but the spec confirm dialog is titled 'Remove Fee / Discount' with a 'Remove' button; the design mockups do NOT model the confirm dialog (§10). Authored to spec — flag the label mismatch and confirm the dialog exists on staging.",
+    "api_related": false
   },
   {
     "id": "FD-REMOVE-002",
@@ -1464,7 +1520,8 @@
     ],
     "design_ref": "sidebar ⋯ Delete (§1a)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": "Key permission nuance: 'Delete' permission is for whole records (WO, labor line, part); removing an adjustment is part of 'Create and Edit' (S13-R7). For a line/part adjustment the required permission is Work Order Lines: Create & Edit (S13-R4)."
+    "notes": "Key permission nuance: 'Delete' permission is for whole records (WO, labor line, part); removing an adjustment is part of 'Create and Edit' (S13-R7). For a line/part adjustment the required permission is Work Order Lines: Create & Edit (S13-R4).",
+    "api_related": false
   },
   {
     "id": "FD-REMOVE-003",
@@ -1491,7 +1548,8 @@
     ],
     "design_ref": "inline .wo-inline-more-btn Edit/Delete (§2b)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": "If removing brings the count down to one adjustment, the 'Show N more' toggle should disappear."
+    "notes": "If removing brings the count down to one adjustment, the 'Show N more' toggle should disappear.",
+    "api_related": false
   },
   {
     "id": "FD-STACK-001",
@@ -1520,7 +1578,8 @@
     ],
     "design_ref": "part inline stacking + Show N more (§2b); breakdown Net adjustment (§8)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": "Critical calc rule: line-level percentages all resolve against the same gross base — they never compound on each other (§5-R5)."
+    "notes": "Critical calc rule: line-level percentages all resolve against the same gross base — they never compound on each other (§5-R5).",
+    "api_related": false
   },
   {
     "id": "FD-STACK-002",
@@ -1548,7 +1607,8 @@
     ],
     "design_ref": "sidebar card lists multiple whole-WO adjustments (§1a); Stats/Financial totals (§1b, §3)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": "Uses the spec's own §5 worked example. Confirms three-step resolve order and no compounding between whole-WO adjustments."
+    "notes": "Uses the spec's own §5 worked example. Confirms three-step resolve order and no compounding between whole-WO adjustments.",
+    "api_related": false
   },
   {
     "id": "FD-STACK-003",
@@ -1573,6 +1633,7 @@
     ],
     "design_ref": "'Apply from template' dropdown (§6); sidebar card (§1a)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": "This is intentional manual re-application, distinct from the auto-apply + customer-default DOUBLE-ADD bug (requirements open question #4), which is a known defect, not a spec requirement."
+    "notes": "This is intentional manual re-application, distinct from the auto-apply + customer-default DOUBLE-ADD bug (requirements open question #4), which is a known defect, not a spec requirement.",
+    "api_related": false
   }
 ]

@@ -428,7 +428,7 @@ Verify the customer Fees & Discounts tab and controls are hidden without the req
 Verify a template that is both location auto-apply AND a customer default is added only ONCE to a new WO,Customer defaults — known bug,Functional,Medium,"1. A template ""ZZAUTOTEST Env Fee"" is marked auto-apply at the location AND is a default on the test customer.","1. Create a NEW work order for the customer.
 2. Open the WO Fees & Discounts card and count how many ""ZZAUTOTEST Env Fee"" adjustments appear.","1. Intended result: exactly ONE ""ZZAUTOTEST Env Fee"" adjustment on the WO.
 2. Known bug: it may be added TWICE depending on internal order — record actual count.",S9 known gap (§14 item 4),,
-Verify add/remove/load failure on customer defaults shows the standard error notification,Customer Fees & Discounts tab — negative,Functional,Low,"1. A way to force a server error (e.g., simulate a network/API failure) on the add or remove call.","1. On the customer Fees & Discounts tab, trigger an add or remove while the backend call fails.
+Verify add/remove/load failure on customer defaults shows the standard error notification,API — Customer Fees & Discounts tab — negative,Functional,Low,"1. A way to force a server error (e.g., simulate a network/API failure) on the add or remove call.","1. On the customer Fees & Discounts tab, trigger an add or remove while the backend call fails.
 2. Observe the feedback.","1. The system shows its STANDARD error notification (no custom per-action string).
 2. The default list is not corrupted (the failed action is not partially applied).",S9-N1,,
 "Verify the location template library lives at Administration → Service → Fees & Discounts, below Canned Lines",Template admin — location,Functional,High,1. You have Settings → Finance access.,"1. Go to Administration → Service.
@@ -528,7 +528,7 @@ Verify a % of Grand Total Processing Fee resolves last on a tax-inclusive base (
 2. Check the resolve order relative to other adjustments.","1. The Processing Fee resolves to +$9.72 (3% × $324.00).
 2. It resolves LAST (Step 3), excluded from its own base and from every other Processing Fee's base.
 3. If taxable, its $9.72 is added to the taxable amount (final tax grows by tax on $9.72) but the $324.00 base does NOT change (no feedback loop).","S8-R5, §5-R4, §5-R5 (Step 3)",,
-Verify a Processing Fee with a Max Amount or a disallowed method is rejected,Processing Fee — negative,Functional,Medium,"1. Ability to submit template data (via UI edge case or API) for a Processing Fee carrying a Max Amount, or a method other than Flat Amount / % of Grand Total.","1. Attempt to save a Processing Fee template that carries a Max Amount.
+Verify a Processing Fee with a Max Amount or a disallowed method is rejected,API — Processing Fee — negative,Functional,Medium,"1. Ability to submit template data (via UI edge case or API) for a Processing Fee carrying a Max Amount, or a method other than Flat Amount / % of Grand Total.","1. Attempt to save a Processing Fee template that carries a Max Amount.
 2. Attempt to save a Processing Fee with a method other than Flat Amount or % of Grand Total (e.g. % of Subtotal).","1. Both attempts are REJECTED by the system.
 2. A Processing Fee may only be Flat Amount or % of Grand Total and never carries a Max Amount.",S8-N4,,
 Verify a Processing Fee always adds to the total (never a discount),Processing Fee — sign,Functional,Medium,1. A Processing Fee template exists and is on a WO.,"1. On the admin dialog, confirm there is no way to make a Processing Fee a discount.

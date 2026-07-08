@@ -26,7 +26,8 @@
     ],
     "design_ref": "design-notes §6 (Add modal), §3 (Stats), §1a (sidebar card sign convention fee +)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": "Design open question: the mock Add modal has NO calculation-base selector and computes % against a single flat WO total (design §9.1). Spec §5-R4 requires the base to depend on scope/method. Verify staging actually offers % of Labor Total / Parts Total / Subtotal and resolves against the correct base."
+    "notes": "Design open question: the mock Add modal has NO calculation-base selector and computes % against a single flat WO total (design §9.1). Spec §5-R4 requires the base to depend on scope/method. Verify staging actually offers % of Labor Total / Parts Total / Subtotal and resolves against the correct base.",
+    "api_related": false
   },
   {
     "id": "FD-CALC-002",
@@ -55,7 +56,8 @@
     ],
     "design_ref": "design-notes §6 (preview math floors negatives to 0 but does not model half-cent rounding)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": "Rounding is a §5 enforced rule not modeled in the design mock. Confirm the server, not just the preview, rounds half-cent up."
+    "notes": "Rounding is a §5 enforced rule not modeled in the design mock. Confirm the server, not just the preview, rounds half-cent up.",
+    "api_related": false
   },
   {
     "id": "FD-CALC-003",
@@ -81,7 +83,8 @@
     ],
     "design_ref": "design-notes §6 (Flat amount → $ prefix)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": "Open question (requirements §14 item 2): §5-R4's base table lists explicit bases only for the three percentage methods; Whole-WO Flat Amount base = \"the set amount\" by inference. Confirm no explicit Whole-WO Flat base row is expected."
+    "notes": "Open question (requirements §14 item 2): §5-R4's base table lists explicit bases only for the three percentage methods; Whole-WO Flat Amount base = \"the set amount\" by inference. Confirm no explicit Whole-WO Flat base row is expected.",
+    "api_related": false
   },
   {
     "id": "FD-CALC-004",
@@ -108,7 +111,8 @@
     ],
     "design_ref": "design-notes §5 (Parts F&D column), §8 (per-part breakdown viewer)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": "Part Line Flat is the only Flat method that multiplies by quantity (§5-R14). Whole-WO and Labor Line Flat do not."
+    "notes": "Part Line Flat is the only Flat method that multiplies by quantity (§5-R14). Whole-WO and Labor Line Flat do not.",
+    "api_related": false
   },
   {
     "id": "FD-CALC-005",
@@ -136,7 +140,8 @@
     ],
     "design_ref": "design-notes §9 item 4/§10 (no validation/error visual states mocked beyond disabled Add)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": "Design mock shows no inline error copy for over-100% discounts (design §10). Capture the actual error message/behavior on staging."
+    "notes": "Design mock shows no inline error copy for over-100% discounts (design §10). Capture the actual error message/behavior on staging.",
+    "api_related": false
   },
   {
     "id": "FD-CALC-006",
@@ -162,7 +167,8 @@
     ],
     "design_ref": "design-notes §6 (Add button enabled only when Amount > 0)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": "Design's Add button stays disabled when Amount is 0 (design §6), which enforces \"> 0\" but does not distinguish the $0.01 / 0.01% floor. Verify the exact floor on staging."
+    "notes": "Design's Add button stays disabled when Amount is 0 (design §6), which enforces \"> 0\" but does not distinguish the $0.01 / 0.01% floor. Verify the exact floor on staging.",
+    "api_related": false
   },
   {
     "id": "FD-CALC-007",
@@ -190,7 +196,8 @@
     ],
     "design_ref": "design-notes §6 (\"Max cap\" field), §9 item 4",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": "Design difference: the mock labels the field \"Max cap\" (spec label is \"Max Amount (Optional)\") and shows it unconditionally, even capping Flat amounts (design §9 item 4). Spec restricts Max Amount to percentage methods only. Verify staging hides it for Flat Amount."
+    "notes": "Design difference: the mock labels the field \"Max cap\" (spec label is \"Max Amount (Optional)\") and shows it unconditionally, even capping Flat amounts (design §9 item 4). Spec restricts Max Amount to percentage methods only. Verify staging hides it for Flat Amount.",
+    "api_related": false
   },
   {
     "id": "FD-CALC-008",
@@ -217,7 +224,8 @@
     ],
     "design_ref": "design-notes §6 (Max cap min=0)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": "Two behaviors of \"0\" that must not be confused: typed 0 = empty/no cap (S2-R25); a stored 0 from legacy data forces $0 (§5-R6). Min Amount exists in the data model only, always sent null by both dialogs."
+    "notes": "Two behaviors of \"0\" that must not be confused: typed 0 = empty/no cap (S2-R25); a stored 0 from legacy data forces $0 (§5-R6). Min Amount exists in the data model only, always sent null by both dialogs.",
+    "api_related": false
   },
   {
     "id": "FD-CALC-009",
@@ -243,7 +251,8 @@
     ],
     "design_ref": "design-notes §1b/§3 (grey resolved amounts)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": "QuickBooks sync (Story 6) is backend and not in the design mocks. Verify the skip at invoice/export time."
+    "notes": "QuickBooks sync (Story 6) is backend and not in the design mocks. Verify the skip at invoice/export time.",
+    "api_related": false
   },
   {
     "id": "FD-CALC-010",
@@ -268,7 +277,8 @@
     ],
     "design_ref": "design-notes §6 (preview floors negative amounts to 0 via Math.max(0, raw))",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": "The design preview floors negative amounts to 0 (design §6), consistent with §5. This case is about the BASE being floored, not the whole-total floor (that is FD-CALC-016/017)."
+    "notes": "The design preview floors negative amounts to 0 (design §6), consistent with §5. This case is about the BASE being floored, not the whole-total floor (that is FD-CALC-016/017).",
+    "api_related": false
   },
   {
     "id": "FD-CALC-011",
@@ -295,7 +305,8 @@
     ],
     "design_ref": "design-notes §9 item 2 (no Taxable control in the Add/Edit modal mock; Taxable shown only on customer tab)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": "Design open question: the mock Add/Edit dialog collects NO Taxable field (design §9 item 2); spec §1/S2-R26 require a Taxable Yes/No dropdown (default Yes). Verify staging has a Taxable control in the dialog. Preview footer should read \"Tax is recalculated on save.\" (S2-R35)."
+    "notes": "Design open question: the mock Add/Edit dialog collects NO Taxable field (design §9 item 2); spec §1/S2-R26 require a Taxable Yes/No dropdown (default Yes). Verify staging has a Taxable control in the dialog. Preview footer should read \"Tax is recalculated on save.\" (S2-R35).",
+    "api_related": false
   },
   {
     "id": "FD-CALC-012",
@@ -322,7 +333,8 @@
     ],
     "design_ref": "design-notes §6 (mock preview computes % against a single flat WO total — does not model step order or per-base)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": "Design mock's preview is base-blind (design §9 item 1). This case validates the enforced §5-R5 step order on the server, not the preview."
+    "notes": "Design mock's preview is base-blind (design §9 item 1). This case validates the enforced §5-R5 step order on the server, not the preview.",
+    "api_related": false
   },
   {
     "id": "FD-CALC-013",
@@ -349,7 +361,8 @@
     ],
     "design_ref": "design-notes §9 item 3 (no Processing Fee in the mocks; % of Grand Total appears nowhere in the design)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": "Design does not mock Processing Fee at all (design §9 item 3); it is template/admin-only. On a WO a Processing Fee is remove-only, no Edit (S8-R17); current build reportedly still shows a failing Edit control (requirements §14 item 6)."
+    "notes": "Design does not mock Processing Fee at all (design §9 item 3); it is template/admin-only. On a WO a Processing Fee is remove-only, no Edit (S8-R17); current build reportedly still shows a failing Edit control (requirements §14 item 6).",
+    "api_related": false
   },
   {
     "id": "FD-CALC-014",
@@ -377,7 +390,8 @@
     ],
     "design_ref": "design-notes §9 item 3/4 (no Processing Fee UI; Max cap shown for others)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": "% of Grand Total is offered only for a Processing Fee (S8-R9). With multiple Processing Fees, each uses the same base excluding every Processing Fee's amount and tax (§5-R4)."
+    "notes": "% of Grand Total is offered only for a Processing Fee (S8-R9). With multiple Processing Fees, each uses the same base excluding every Processing Fee's amount and tax (§5-R4).",
+    "api_related": false
   },
   {
     "id": "FD-CALC-015",
@@ -407,7 +421,8 @@
     ],
     "design_ref": "design-notes §10 (no negative-total / warning UI mocked)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": "Over-discounting flow is backend/QuickBooks (Story 6) and not in the design mocks. Capture the exact warning text and confirm the credit memo is marked tax-exempt."
+    "notes": "Over-discounting flow is backend/QuickBooks (Story 6) and not in the design mocks. Capture the exact warning text and confirm the credit memo is marked tax-exempt.",
+    "api_related": false
   },
   {
     "id": "FD-CALC-016",
@@ -434,7 +449,8 @@
     ],
     "design_ref": "design-notes §9 item 2 (no Taxable control in Add modal mock)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": "Reaching a $0.00 total with no tax requires the discount to be taxable and large enough to zero the taxable amount (S6-R10c)."
+    "notes": "Reaching a $0.00 total with no tax requires the discount to be taxable and large enough to zero the taxable amount (S6-R10c).",
+    "api_related": false
   },
   {
     "id": "FD-CALC-017",
@@ -462,7 +478,8 @@
     ],
     "design_ref": "design-notes §10 (not mocked)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": "Largest-remainder penny allocation is a backend QuickBooks-sync detail (S6-R10d). Verify line sums equal the floored subtotal to the cent."
+    "notes": "Largest-remainder penny allocation is a backend QuickBooks-sync detail (S6-R10d). Verify line sums equal the floored subtotal to the cent.",
+    "api_related": false
   },
   {
     "id": "FD-PERM-001",
@@ -489,7 +506,8 @@
     ],
     "design_ref": "design-notes §1b (Financial Info money section), §3 (Stats), §5 (Parts column)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": "Standing rule: restore Tech to Time Clock after permission testing. History-log entries are NOT gated by SFD (they show the set rate, not a resolved total) — see FD-PERM-009."
+    "notes": "Standing rule: restore Tech to Time Clock after permission testing. History-log entries are NOT gated by SFD (they show the set rate, not a resolved total) — see FD-PERM-009.",
+    "api_related": false
   },
   {
     "id": "FD-PERM-002",
@@ -515,7 +533,8 @@
     ],
     "design_ref": "design-notes §1a (WO Fee/Discount card Edit/Delete menu)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": "Current-build difference (requirements §10.4): the app may use one WO-edit check where S13-R3/R4 split whole-WO from line-level. Record which permission staging actually enforces."
+    "notes": "Current-build difference (requirements §10.4): the app may use one WO-edit check where S13-R3/R4 split whole-WO from line-level. Record which permission staging actually enforces.",
+    "api_related": false
   },
   {
     "id": "FD-PERM-003",
@@ -541,7 +560,8 @@
     ],
     "design_ref": "design-notes §2a/§2b (labor & part inline ⋮ → Add fee / discount, Edit/Delete)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": "See current-build split caveat in FD-PERM-002 notes (requirements §10.4)."
+    "notes": "See current-build split caveat in FD-PERM-002 notes (requirements §10.4).",
+    "api_related": false
   },
   {
     "id": "FD-PERM-004",
@@ -567,7 +587,8 @@
     ],
     "design_ref": "design-notes §5 (Parts F&D column: single / +N / +Add states), §8 (per-part breakdown viewer)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": "Part Sale does not use Labor Line scope (S11-R2b); a labor-based method resolves to $0 (S11-R2a)."
+    "notes": "Part Sale does not use Labor Line scope (S11-R2b); a labor-based method resolves to $0 (S11-R2a).",
+    "api_related": false
   },
   {
     "id": "FD-PERM-005",
@@ -593,7 +614,8 @@
     ],
     "design_ref": "design-notes §1a/§2 (controls live on money-bearing surfaces)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": "SFD is a prerequisite for ALL adjustment actions because the controls sit on money-visibility screens. Confirm the server also rejects a crafted request without SFD."
+    "notes": "SFD is a prerequisite for ALL adjustment actions because the controls sit on money-visibility screens. Confirm the server also rejects a crafted request without SFD.",
+    "api_related": false
   },
   {
     "id": "FD-PERM-006",
@@ -619,7 +641,8 @@
     ],
     "design_ref": "design-notes §9 item 7 (Remove vs Delete wording is inconsistent across surfaces)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": "Design wording is inconsistent (design §9 item 7): the customer tab and parts breakdown say \"Remove\", but the inline line/part ⋮ and WO card say \"Delete\"/\"Edit\". Regardless of the word shown, the governing permission is Create and Edit. Capture the actual label per surface."
+    "notes": "Design wording is inconsistent (design §9 item 7): the customer tab and parts breakdown say \"Remove\", but the inline line/part ⋮ and WO card say \"Delete\"/\"Edit\". Regardless of the word shown, the governing permission is Create and Edit. Capture the actual label per surface.",
+    "api_related": false
   },
   {
     "id": "FD-PERM-007",
@@ -644,7 +667,8 @@
     ],
     "design_ref": "design-notes §0/§10 (no Template Builder / Administration page in the mocks)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": "Current-build difference (requirements §10.4 / S7-R7b): the admin page is shown today to any user with a location; S13-R8 tightens it to Settings → Finance. Record which staging enforces."
+    "notes": "Current-build difference (requirements §10.4 / S7-R7b): the admin page is shown today to any user with a location; S13-R8 tightens it to Settings → Finance. Record which staging enforces.",
+    "api_related": false
   },
   {
     "id": "FD-PERM-008",
@@ -672,7 +696,8 @@
     ],
     "design_ref": "design-notes §4 (Customer \"Fees & Discounts (3)\" tab, columns incl. Auto-Apply, per-row Remove)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": "Project CLAUDE.md note: per Sasha's spec updates, Manage AP/AR no longer gates aging reports — but it IS still the gate (with Customer Management) for customer F&D defaults per S13-R9. Verify staging enforces both."
+    "notes": "Project CLAUDE.md note: per Sasha's spec updates, Manage AP/AR no longer gates aging reports — but it IS still the gate (with Customer Management) for customer F&D defaults per S13-R9. Verify staging enforces both.",
+    "api_related": false
   },
   {
     "id": "FD-PERM-009",
@@ -700,7 +725,8 @@
     ],
     "design_ref": "design-notes §10 (no history-log view mocked)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": "Current-build difference (requirements §14 item 6): history \"Applied to:\" reportedly shows raw \"processing_fee\" instead of \"Full invoice\" for a Processing Fee. Verify labels on staging."
+    "notes": "Current-build difference (requirements §14 item 6): history \"Applied to:\" reportedly shows raw \"processing_fee\" instead of \"Full invoice\" for a Processing Fee. Verify labels on staging.",
+    "api_related": false
   },
   {
     "id": "FD-PERM-010",
@@ -729,7 +755,8 @@
     ],
     "design_ref": "design-notes §10 (no feature-flag-off empty state mocked)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": "The two gates are independent: the flag decides the feature exists (per org); the permission decides what a user may do. Fees & Discounts adds no permission of its own (S13-R1)."
+    "notes": "The two gates are independent: the flag decides the feature exists (per org); the permission decides what a user may do. Fees & Discounts adds no permission of its own (S13-R1).",
+    "api_related": false
   },
   {
     "id": "FD-PERM-011",
@@ -756,7 +783,8 @@
     ],
     "design_ref": "design-notes §5 (S11-R9: \"+ Add\" disabled when the sale can't be edited)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": "OPEN QUESTION (requirements §14 item 3): the spec does not define what puts a user in \"history mode.\" Flag this — the history-mode portion of the step cannot be made concrete until the trigger is confirmed on staging."
+    "notes": "OPEN QUESTION (requirements §14 item 3): the spec does not define what puts a user in \"history mode.\" Flag this — the history-mode portion of the step cannot be made concrete until the trigger is confirmed on staging.",
+    "api_related": false
   },
   {
     "id": "FD-FLAG-001",
@@ -783,7 +811,8 @@
     ],
     "design_ref": "design-notes §10 (no feature-flag-off empty state is mocked)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": "The one exception is the WO history log (covered by FD-FLAG-002). On the current staging build the flag is ON but the feature is not yet deployed (viu-findings.md) — re-verify deploy state before running."
+    "notes": "The one exception is the WO history log (covered by FD-FLAG-002). On the current staging build the flag is ON but the feature is not yet deployed (viu-findings.md) — re-verify deploy state before running.",
+    "api_related": false
   },
   {
     "id": "FD-FLAG-002",
@@ -809,7 +838,8 @@
     ],
     "design_ref": "design-notes §10 (no history-log view mocked)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": "History entries show the set rate, not a resolved dollar total, so they are not gated by See Financial Data either (S10-R6c)."
+    "notes": "History entries show the set rate, not a resolved dollar total, so they are not gated by See Financial Data either (S10-R6c).",
+    "api_related": false
   },
   {
     "id": "FD-FLAG-003",
@@ -835,7 +865,8 @@
     ],
     "design_ref": "design-notes §10",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": "This is the flag-side complement of FD-PERM-010; keep both to document the flag ON + permission-required interaction from each direction."
+    "notes": "This is the flag-side complement of FD-PERM-010; keep both to document the flag ON + permission-required interaction from each direction.",
+    "api_related": false
   },
   {
     "id": "FD-VAL-001",
@@ -863,7 +894,8 @@
     ],
     "design_ref": "design-notes §6 (Add disabled by default; validateForm enables only when Name AND Type AND Calc type AND Amount > 0)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": "Design difference: the mock dialog also has NO base selector and NO Taxable control (design §9 items 1–2). Spec adds Taxable (default Yes, S2-R26) and scope-dependent Calculation type options (§5-R10). Verify the real dialog's enable rule against these extra fields."
+    "notes": "Design difference: the mock dialog also has NO base selector and NO Taxable control (design §9 items 1–2). Spec adds Taxable (default Yes, S2-R26) and scope-dependent Calculation type options (§5-R10). Verify the real dialog's enable rule against these extra fields.",
+    "api_related": false
   },
   {
     "id": "FD-VAL-002",
@@ -889,7 +921,8 @@
     ],
     "design_ref": "design-notes §6 (Add disabled unless Amount > 0), §10 (no inline error text mocked)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": "Design mock shows no inline error copy — only the disabled Add button (design §10). Capture the actual inline error text/behavior on staging."
+    "notes": "Design mock shows no inline error copy — only the disabled Add button (design §10). Capture the actual inline error text/behavior on staging.",
+    "api_related": false
   },
   {
     "id": "FD-VAL-003",
@@ -915,7 +948,8 @@
     ],
     "design_ref": "design-notes §6 (Name is a required field for Add enablement)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": "Verify the exact 100-character enforcement (hard cap vs error) on staging."
+    "notes": "Verify the exact 100-character enforcement (hard cap vs error) on staging.",
+    "api_related": false
   },
   {
     "id": "FD-VAL-004",
@@ -942,7 +976,8 @@
     ],
     "design_ref": "design-notes §10 (no over-100% error copy mocked)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": "Same rule as FD-CALC-005 but framed as dialog validation. Capture the exact rejection UX on staging."
+    "notes": "Same rule as FD-CALC-005 but framed as dialog validation. Capture the exact rejection UX on staging.",
+    "api_related": false
   },
   {
     "id": "FD-VAL-005",
@@ -966,7 +1001,8 @@
     ],
     "design_ref": "design-notes §6/§10 (mock silently floors negative preview amounts to 0; no negative-input error copy)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": "Design mock silently floors negatives to 0 in the preview (design §6) and has no negative-input error state (design §10). Confirm the real dialog rejects negatives rather than silently flooring."
+    "notes": "Design mock silently floors negatives to 0 in the preview (design §6) and has no negative-input error state (design §10). Confirm the real dialog rejects negatives rather than silently flooring.",
+    "api_related": false
   },
   {
     "id": "FD-VAL-006",
@@ -992,7 +1028,8 @@
     ],
     "design_ref": "design-notes §6 (\"Max cap\" min=0), §9 item 4 (design shows Max cap unconditionally and caps flat amounts)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": "Design difference: the mock labels the field \"Max cap\", shows it for ALL methods, and caps Flat amounts (design §9 item 4). Spec restricts Max Amount to percentage methods only. Verify staging matches the spec (hidden for Flat)."
+    "notes": "Design difference: the mock labels the field \"Max cap\", shows it for ALL methods, and caps Flat amounts (design §9 item 4). Spec restricts Max Amount to percentage methods only. Verify staging matches the spec (hidden for Flat).",
+    "api_related": false
   },
   {
     "id": "FD-VAL-007",
@@ -1017,6 +1054,7 @@
     ],
     "design_ref": "design-notes §4 (customer defaults tab with Auto-Apply column)",
     "viu_status": "Pending — verify on staging once deployed",
-    "notes": "OPEN QUESTION / KNOWN BUG (requirements §14 item 4, S9 note): treat a double-add as a KNOWN DEFECT, not a spec requirement; log it in the VIU tab rather than marking the case Failed against spec. Related: a user may deliberately apply the same template to one WO more than once by hand (that is allowed, §1)."
+    "notes": "OPEN QUESTION / KNOWN BUG (requirements §14 item 4, S9 note): treat a double-add as a KNOWN DEFECT, not a spec requirement; log it in the VIU tab rather than marking the case Failed against spec. Related: a user may deliberately apply the same template to one WO more than once by hand (that is allowed, §1).",
+    "api_related": false
   }
 ]

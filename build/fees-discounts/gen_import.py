@@ -8,7 +8,10 @@ CONTENT RULES enforced here (see task PART 2):
   2. NO feature-flag preconditions. The literal phrase "feature flag" is reworded to
      "Fees & Discounts feature" so 0 occurrences of "feature flag" remain, while the
      genuine flag-gating test cases stay coherent.
-  3. Sections = leaf area names only (already leaf names in the source JSON).
+  3. Sections = leaf area names only (already leaf names in the source JSON),
+     EXCEPT api_related cases which route to "API — <leaf area>" (STANDING RULE 4:
+     any case with API endpoints/methods/status-codes/backend request-response
+     checks must live under an API-titled section).
   4. References = spec/story reference only (no internal FD- ids, no VIU text).
   5/6. Preconditions/Steps/Expected kept as authored, cleaned per rules above; no
      TBD/pending meta text (the source expected results are clean).
@@ -84,12 +87,27 @@ def build_preconditions(c):
     return joinlines(c.get("preconditions", []))
 
 
+def section_for(c):
+    """Leaf area name; API-related cases are routed to an 'API — <area>' section
+    (STANDING RULE 4: API content must live under an API-titled section).
+    Kept in sync with build/simple-flow/gen_import.py."""
+    area = c["area"].strip()
+    if c.get("api_related"):
+        return "API — " + area
+    return area
+
+
 rows = []
 titles = []
+api_sections = set()
+api_moved = 0
 for c in cases:
     title = clean(c["title"].strip())
     titles.append(title)
-    section = c["area"].strip()
+    section = section_for(c)
+    if c.get("api_related"):
+        api_sections.add(section)
+        api_moved += 1
     row = [
         title,
         section,
@@ -122,6 +140,8 @@ print("Duplicate titles:", dupes if dupes else "NONE")
 blob = "\n".join("\t".join(r) for r in rows).lower()
 print("VIU occurrences:", blob.count("viu"))
 print("'feature flag' occurrences:", blob.count("feature flag"))
+print("API sections created:", len(api_sections), sorted(api_sections))
+print("API-flagged cases routed to API sections:", api_moved)
 
 # --- xlsx review copy ---
 from openpyxl import Workbook
