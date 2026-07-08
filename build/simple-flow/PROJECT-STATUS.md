@@ -8,6 +8,30 @@
 > (2026-07-07). Deliverables regenerated (workbook + interim TestRail import).
 > VIU PARTIAL (feature under development). Do NOT touch TestRail.
 
+## Milos answered the Open Questions (2026-07-08) — PENDING APPLICATION
+
+Milos filled in the "Open Questions for Milos" Google Sheet (all 11 answered,
+some ambiguous). Fetched + recorded — **not yet applied** (awaiting user confirm
+before touching case JSONs / Excel / TestRail).
+
+- **Source (verbatim):** `milos-answers-source.md` / `.csv` / `.xlsx`.
+- **Mapping + proposed changes:** `milos-answers-mapping.md` (Q# → outcome →
+  affected cases → proposed new EXPECTED / ticket note).
+- **Quick outcome index:**
+  - Q1 (SF-REV-15, SF-SET-14): Require Review defaults **ON for all orgs** → spec change.
+  - Q2 (SF-COMP-07, SF-QB-01): No-PO path **removed**; inventory-decrement invariant NOT explicitly answered → HOLD.
+  - Q3 (SF-SET-08): spec defaults **authoritative** (Auto-approve OFF / POs ON / invoice REQUIRED) → expected confirmed; live defaults are a **BUG**.
+  - Q4: **Spec V2.3 governs** (design = visual ref only) → global ruling.
+  - Q5 (SF-SET-03, SF-COMP-06, SF-QB-02): Create-POs-OFF **descoped**, POs always on → rewrite SF-SET-03, retire SF-COMP-06/SF-QB-02. **BUG-1 not a bug.**
+  - Q6 (SF-SET-13): Save-always-enabled **intended/nice-to-have** → soften expected. **BUG-2 downgraded.**
+  - Q7 (SF-REV-10): review-note **descoped** (he typed "bug" but described descope — confirm). **BUG-3 → descope.**
+  - Q8 (SF-REV-08, SF-REV-11): **UNANSWERED** ("not sure what this means"). BUG-4 unresolved.
+  - Q9 (SF-TECH-*): **UNANSWERED** (mis-pasted No-PO text). Cases already assume Story 17.
+  - Q10 (SF-UX-04): close/cancel behavior **defined** → confirmed/enrich, un-blocks the case.
+  - Q11 (SF-RCV-05, SF-RCV-07): vendor-missing group **leads (top)** → rewrite SF-RCV-05, SF-RCV-07 confirmed.
+- **Not covered by the sheet (still parked):** BUG-9 (vendorless requires Category),
+  BUG-10 (no Resolve-Cores step), SF-PERM-06 / BUG-6 / BUG-7 (BE-vs-FE enforcement).
+
 ## API-folder rule applied (2026-07-08)
 
 STANDING RULE 4 (CLAUDE.md) is now applied to this project: any case whose
