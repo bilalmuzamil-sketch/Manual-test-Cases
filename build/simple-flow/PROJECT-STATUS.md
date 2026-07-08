@@ -1,5 +1,10 @@
 # Simple Flow — Project Status
 
+> **CANONICAL STATE DOC:** for the full authoritative resume snapshot (case
+> inventory + VIU breakdown, TestRail state, deliverables index, open threads,
+> env/access facts, how-to-resume) see **`build/simple-flow/PROJECT-STATE.md`**.
+> This file is the narrative status log.
+>
 > **Project:** Simple Flow (Simple Mode — Streamlined Work Order Completion &
 > Receiving). ShopView. Epic **SV-7301**.
 > **Separate project** from Custom Roles and Fees & Discounts — keep memory

@@ -34,7 +34,11 @@ all).
    finalization (see `build/fees-discounts/RESUME-STRATEGY.md`). Permissions: DEFINED
    / reuse-only — see `build/PERMISSIONS-ASSESSMENT.md`.
 3. **Simple flow project** — Simple Mode / Streamlined Work Order Completion &
-   Receiving (ShopView), Epic **SV-7301**. Memory: `build/simple-flow/*`
+   Receiving (ShopView), Epic **SV-7301**. **CANONICAL STATE DOC (read first for
+   resume):** `build/simple-flow/PROJECT-STATE.md` — the single authoritative
+   snapshot (case inventory 162 + VIU breakdown, TestRail state, deliverables
+   index, open threads, env/access facts, how-to-resume). Memory:
+   `build/simple-flow/*`
    (`requirements.md` = COMPLETE spec, 17 stories SV-7696..SV-7710 + SV-7870 +
    SV-7876; `design-notes.md`; `viu-findings.md`; `cases/*.json` = 156 authored
    cases with `SF-` IDs; `SimpleFlow_V1_TestCases.xlsx/.csv`;
