@@ -506,8 +506,8 @@
       "2. The invoice number is shown on the Finance step (not on the Success screen)."
     ],
     "design_ref": "WO Review Flow.html; requirements S15-R3",
-    "viu_status": "VIU-Pending",
-    "notes": "Success screen verified; the Go-to-Invoice navigation was not driven in the VIU run. Needs live verification.",
+    "viu_status": "VIU-Verified",
+    "notes": "Success screen verified; the Go-to-Invoice navigation was not driven in the VIU run. Needs live verification. || VIU batch3 2026-07-08 VERIFIED: Go To Invoice from Success navigated to /workorders/{id}/finance (Finance step, invoice-ready draft) (VIU3-05-invoice-finance.png).",
     "api_related": false
   },
   {
@@ -832,8 +832,8 @@
       "3. Tech story is handled separately (Story 17), not inside this step."
     ],
     "design_ref": "WO Review Flow.html (Details step)",
-    "viu_status": "VIU-Pending",
-    "notes": "Not isolated in VIU. Needs live verification.",
+    "viu_status": "VIU-Verified",
+    "notes": "Not isolated in VIU. Needs live verification. || VIU batch3 2026-07-08 VERIFIED: Details step exposes input_wizard_mileage + input_wizard_engine_hours when both required; VIN prefilled from asset (only prompted when absent) (VIU3-01-details.png).",
     "api_related": false
   },
   {
@@ -857,8 +857,8 @@
       "2. Go to Invoice and Done are available."
     ],
     "design_ref": "WO Review Flow.html",
-    "viu_status": "VIU-Pending",
-    "notes": "Success screen pattern verified in Story 2; the optional-invoice completion was not driven to Success. Needs live verification.",
+    "viu_status": "VIU-Verified",
+    "notes": "Success screen pattern verified in Story 2; the optional-invoice completion was not driven to Success. Needs live verification. || VIU batch3 2026-07-08 VERIFIED: optional flow reached Success 'Order complete - Work order S2-15758 - Invoice total $260.97 - Done / Go To Invoice' (VIU3-04-success.png).",
     "api_related": false
   },
   {
@@ -1421,8 +1421,8 @@
       "3. The last line shows Continue (chained into completion) or Save."
     ],
     "design_ref": "WO Review Flow.html",
-    "viu_status": "VIU-Pending",
-    "notes": "VIU only exercised a single-line WO ('Line 1 of 1'). Multi-line navigation needs live verification.",
+    "viu_status": "VIU-Verified",
+    "notes": "VIU only exercised a single-line WO ('Line 1 of 1'). Multi-line navigation needs live verification. || VIU batch3 2026-07-08 VERIFIED: multi-line gate — Line 1 of 2 shows Next only; Line 2 of 2 shows Back + Continue (VIU3-tech-line1.png/VIU3-tech-line2.png).",
     "api_related": false
   },
   {
@@ -1446,8 +1446,8 @@
       "2. An Edit link is available to change it."
     ],
     "design_ref": "WO Review Flow.html",
-    "viu_status": "VIU-Pending",
-    "notes": "Not separately isolated in VIU. Needs live verification.",
+    "viu_status": "VIU-Verified",
+    "notes": "Not separately isolated in VIU. Needs live verification. || VIU batch3 2026-07-08 VERIFIED: after saving stories and reload, saved story renders inline with Edit link (VIU3-tech-inline-saved.png).",
     "api_related": false
   },
   {
@@ -1470,8 +1470,8 @@
       "1. The textarea carries the test id input_tech_story."
     ],
     "design_ref": "WO Review Flow - Handoff.md (element test IDs)",
-    "viu_status": "VIU-Pending",
-    "notes": "PARTIAL in VIU: textarea present and functional but the specific test-id was not asserted (drove via generic dialog textarea). Needs DOM check.",
+    "viu_status": "VIU-Verified",
+    "notes": "PARTIAL in VIU: textarea present and functional but the specific test-id was not asserted (drove via generic dialog textarea). Needs DOM check. || VIU batch3 2026-07-08 VERIFIED: tech-story textarea exposes data-test-id input_tech_story (GATE1 test-ids incl. input_tech_story, section_tech_story_gate).",
     "api_related": false
   },
   {

@@ -24,8 +24,8 @@
       "4. Adding a vendorless / no-part-number part requires WO Lines: Create & Edit and See Financial Data, because the sell price is mandatory and has no catalog source."
     ],
     "design_ref": "requirements S5-R1 / §9 (See Financial Data gate)",
-    "viu_status": "VIU-Pending",
-    "notes": "SV-8183 Decision 4 adds a financial gate: vendorless / no-PN add requires See Financial Data (mandatory sell). Not driven live (part-add flow not exercised). | 2026-07-08: attempted admin add — the manual part-request add sub-form is reached via the line's Parts tab which requires the line's \"parts authorized\" state; not reliably drivable in this harness session (line-edit dialog exposed no Parts tab for a labor line). Canned-line parts DO create the vendorless shape (part_number=null, vendor_id=null, part_source_type=\"vendor\", editable sell_price), corroborating the data model, but the description+qty+sell manual sub-form itself remains UI-unverified. Still needs a driven add-part sub-form.",
+    "viu_status": "VIU-Verified",
+    "notes": "SV-8183 Decision 4 adds a financial gate: vendorless / no-PN add requires See Financial Data (mandatory sell). Not driven live (part-add flow not exercised). | 2026-07-08: attempted admin add — the manual part-request add sub-form is reached via the line's Parts tab which requires the line's \"parts authorized\" state; not reliably drivable in this harness session (line-edit dialog exposed no Parts tab for a labor line). Canned-line parts DO create the vendorless shape (part_number=null, vendor_id=null, part_source_type=\"vendor\", editable sell_price), corroborating the data model, but the description+qty+sell manual sub-form itself remains UI-unverified. Still needs a driven add-part sub-form. || VIU batch3 2026-07-08 VERIFIED: New Part Request sub-form reached via New Line -> custom title -> Save & Add Part; desc+qty+sell(+category) -> 201 POST /api/work-orders/part/make-request; created part {part_number:null, vendor_id:null, part_source_type:'vendor', sell:49.99, inventory_part_id:null}. DEVIATION: Category is REQUIRED (not in spec S5-R1) (VP-13/VP-14).",
     "api_related": false
   },
   {
@@ -53,8 +53,8 @@
       "4. A user without See Financial Data (for example a Technician) cannot add a vendorless / no-part-number part, because they cannot enter the mandatory sell price."
     ],
     "design_ref": "requirements S5 AC / §9 (See Financial Data gate)",
-    "viu_status": "VIU-Pending",
-    "notes": "SV-8183 Decision 4: vendorless / no-PN add requires See Financial Data. Field validation and the permission negative not yet verified live. | VIU 2026-07-07 (Tech-unblock pass): Field-required validations and the See-Financial-Data add-part block not driven (part-add sub-form not reached within budget). Tech confirmed lacking seeFinancialData. | 2026-07-08: manual add-part sub-form validation not reached (see SF-VPART-01). Still pending; also needs a Technician (no See Financial Data) for the permission half.",
+    "viu_status": "VIU-Verified",
+    "notes": "SV-8183 Decision 4: vendorless / no-PN add requires See Financial Data. Field validation and the permission negative not yet verified live. | VIU 2026-07-07 (Tech-unblock pass): Field-required validations and the See-Financial-Data add-part block not driven (part-add sub-form not reached within budget). Tech confirmed lacking seeFinancialData. | 2026-07-08: manual add-part sub-form validation not reached (see SF-VPART-01). Still pending; also needs a Technician (no See Financial Data) for the permission half. || VIU batch3 2026-07-08 VERIFIED: empty save -> inline 'Description is a required field', 'Quantity is a required field', 'Category is a required field' (VP-11-validation-empty.png). DEVIATION: Category required in addition to spec; Sell Price NOT flagged required.",
     "api_related": false
   },
   {
@@ -79,8 +79,8 @@
       "3. It is treated as vendorless downstream."
     ],
     "design_ref": "requirements S5-R2",
-    "viu_status": "VIU-Pending",
-    "notes": "Not driven in VIU. Needs live verification.",
+    "viu_status": "VIU-Verified",
+    "notes": "Not driven in VIU. Needs live verification. || VIU batch3 2026-07-08 VERIFIED: Source dropdown offers Inventory | Vendor | Found (default Vendor); created vendorless part part_source_type='vendor' (never inventory).",
     "api_related": false
   },
   {
@@ -129,8 +129,8 @@
       "2. No Part History is written until a part number is added."
     ],
     "design_ref": "requirements S5-R4 / §5",
-    "viu_status": "VIU-Pending",
-    "notes": "Data-integrity check; not driven in VIU. Needs live verification.",
+    "viu_status": "VIU-Verified",
+    "notes": "Data-integrity check; not driven in VIU. Needs live verification. || VIU batch3 2026-07-08 VERIFIED (model-level): no-PN part created with inventory_part_id:null (no inventory item), part_source_type 'vendor'. Part History side-effect not separately inspected (backend).",
     "api_related": false
   },
   {

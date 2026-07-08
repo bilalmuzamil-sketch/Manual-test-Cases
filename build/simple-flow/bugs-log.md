@@ -95,6 +95,38 @@ and SF-REV-09 are PASS (FE-gating acceptable) or FAIL (BE gap).
 
 ---
 
+## NEW — VIU batch 3 (2026-07-08): vendorless part-add requires Category
+
+### BUG-9 — Vendorless / no-PN part add requires a Category (spec S5-R1 says only description + qty + sell) · Sev: Low · Status: OPEN
+- **The "New Part Request" sub-form enforces a required Category** in addition to
+  Description and Quantity. Spec S5-R1 says a part can be requested with **only
+  description, quantity and sell price**.
+- **Repro:** WO `/lines` → New Line → custom title → **Save & Add Part** → in "New
+  Part Request", click Save with fields empty → inline errors **"Description is a
+  required field", "Quantity is a required field", "Category is a required field"**.
+  Filling only description + quantity + sell price does **not** save (Category
+  blocks); adding a Category → **201 `POST /api/work-orders/part/make-request`**.
+  Evidence: `viu-evidence/VP-11-validation-empty.png`, `VP-13/VP-14`.
+- **Also observed:** **Sell Price is NOT flagged required** by the form (contrary
+  to S5-R1's "sell price mandatory"). The created part is correctly vendorless
+  (`part_number:null, vendor_id:null, part_source_type:'vendor', inventory_part_id:null`).
+- **Expected:** per S5-R1, only description + quantity + sell price required (no
+  Category gate); sell price required.
+- **Actual:** Category required; sell price not enforced.
+- **Affects cases:** SF-VPART-01, SF-VPART-02 (expected-result wording may need a
+  tweak to add "Category required"; NOT yet changed in the cases/import — flagged
+  for PO/team ruling).
+
+### Note — vendorless part-add financial fields are FE-gated for non-SFD roles (SF-PERM-09)
+- As **Technician** (no See Financial Data) the New Part Request form **hides** all
+  financial fields (Sell Price, Cost, Core Charge, Margin, Vendor, Category); tech
+  sees only Part Number, Description, Quantity. This is an **FE gate** (fields hidden),
+  consistent with the FE-only enforcement pattern of BUG-6/7/8 — not necessarily a
+  bug, but recorded so the SF-PERM-09 verdict is understood as FE-level.
+  Evidence: `viu-evidence/PERM09-tech-partform.png`.
+
+---
+
 ## Earlier pass (2026-07-06): settings / review deviations vs spec
 
 Recorded here for completeness; tracked as Open Questions to Milos (see

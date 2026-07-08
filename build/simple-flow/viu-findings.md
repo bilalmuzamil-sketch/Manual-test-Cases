@@ -340,3 +340,102 @@ layer (where the gate is real).
   `GET /api/work-orders` (returns `{pagination, work_orders}`; excludes completed).
 - Tools in `/tmp/simple-flow/tools/` (`bridge.mjs`, `wolib.mjs` — now `hydrate(key,capture)`,
   `setapi.mjs`, `perm-probe2.mjs`, `prove-tech.mjs`, `probe-review.mjs`, etc.).
+
+---
+
+# VIU BATCH 3 — 2026-07-08 (built-surface deep pass + sub-classify pending)
+
+Fresh QA cookies re-supplied (task-provided PHPSESSID `21427ed6…`; admin + tech
+quick-login both **200**). **Baseline captured to
+`/tmp/simple-flow/settings-baseline-4.json`** and **RESTORED + verified** at end
+(matched baseline exactly). `requireHours` was toggled ON to test the engine-hours
+gate and **restored to OFF**. **Tech role NOT changed** (verified still
+Technician). Five throwaway WOs created (d27f4c4b/S2-15758, 76deb20c, 7c1bd7ed,
+ac2e78b1, 80325fb4) and **all deleted** (verified 0 of mine remain; completed one
+reopened by adding a line before delete). Evidence in `viu-evidence/` (VIU3-*,
+VP-*, RCV*-*, CORE-*, PERM09-* PNGs).
+
+> **Proxy gotcha (record):** the API `.mjs` helper scripts MUST be run with
+> `NODE_USE_ENV_PROXY=1 NODE_EXTRA_CA_CERTS=/root/.ccr/ca-bundle.crt` — without
+> them `fetch` goes direct and quick-login returns a spurious **403** (not a real
+> auth failure). The Playwright drives also need `BRIDGE=http://127.0.0.1:<port>`
+> (rebuild bridge fresh; port rotates).
+
+## Verified this pass (12 moved VIU-Pending → VIU-Verified)
+
+| Case | Layer | Result | Evidence |
+|---|---|---|---|
+| **SF-VAL-03** | UI | Details step inline **"Engine Hours is a required field"** with `requireHours=ON` + empty field; Continue blocked. | VIU3-02 |
+| **SF-COMP-16** | UI | Details step exposes `input_wizard_mileage` + `input_wizard_engine_hours` when both required; **VIN prefilled from asset** (only prompted when absent). | VIU3-01 |
+| **SF-COMP-17** | UI | Optional flow reached Success: "Order complete · Work order **S2-15758** · **Invoice total $260.97** · Done / Go To Invoice". | VIU3-04 |
+| **SF-COMP-04** | UI | **Go To Invoice** navigated to `/workorders/{id}/finance` (Finance step / invoice-ready draft). | VIU3-05 |
+| **SF-TECH-05** | UI | Multi-line gate: **Line 1 of 2 = Next only**; **Line 2 of 2 = Back + Continue**. | VIU3-tech-line1/line2 |
+| **SF-TECH-06** | UI | After save + reload, story renders **inline with an Edit link**. | VIU3-tech-inline-saved |
+| **SF-TECH-07** | UI | Textarea exposes **`data-test-id="input_tech_story"`** (+ `section_tech_story_gate`, `button_tech_story_next`). | VIU3-tech-line1 |
+| **SF-VPART-01** | UI+API | New Part Request sub-form (New Line → custom title → **Save & Add Part**); desc+qty+sell+category → **201 `POST /api/work-orders/part/make-request`**; created part `{part_number:null, vendor_id:null, part_source_type:'vendor', sell:49.99, inventory_part_id:null}`. **DEVIATION: Category is REQUIRED** (not in spec S5-R1). | VP-13/VP-14 |
+| **SF-VPART-02** | UI | Empty save → inline **"Description / Quantity / Category is a required field"**. DEVIATION: Category required (Sell Price NOT flagged required). | VP-11 |
+| **SF-VPART-03** | UI+API | Source dropdown = **Inventory \| Vendor \| Found** (default Vendor); created vendorless part `part_source_type='vendor'` (never inventory). | VP-* |
+| **SF-VPART-05** | API | No-PN part created with **`inventory_part_id:null`** (no inventory item), source vendor. (Part-History side-effect not separately inspected.) | — |
+| **SF-PERM-09** | UI | As **Technician (non-SFD)** the New Part Request form **HIDES all financial fields** (Sell Price, Cost, Core Charge, Margin, Vendor, Category) — tech sees only Part Number, Description, Quantity → cannot supply the mandatory sell price for a vendorless part. **FE-only gate** (consistent with BUG-6/7/8). | PERM09-tech-partform |
+
+Re-confirmed (already Verified): **SF-COMP-11/12/14** — optional Receive step = "N
+parts waiting to receive" + Cancel · Complete Without Receiving · Receive Parts
+(VIU3-03). Wizard = **1 Details → 2 Receive → 3 Success** (Receive step skipped
+for a no-parts WO).
+
+## New findings / seeding facts (for classification + next run)
+
+- **Vendorless part sub-form path (CONFIRMED):** WO `/lines` → **New Line** →
+  type a **custom "What Are You Doing?" title** (do NOT pick a canned line — a
+  canned selection collapses the dialog to Title-only and HIDES "Save & Add Part")
+  → **Save & Add Part** opens the **"New Part Request"** dialog. Test-ids:
+  `select_part` (Part Number, catalog-searchable), `input_workorder_part_description`,
+  `input_workorder_part_quantity`, `select_workorder_part_source` (Inventory/Vendor/
+  Found), `select_part_category`, `select_part_vendor`, `input_part_cost`,
+  `input_workorder_part_core_charge`, `input_workorder_part_sell_price`,
+  `input_workorder_part_margin`; save = `button_workorder_part_save`. Endpoint =
+  `POST /api/work-orders/part/make-request`. **Harness tip:** the combobox menu
+  overlays the Save button — commit the title with Enter, click `dialog_title`, then
+  DOM-click `button_save_add_part` via `page.evaluate`.
+- **Canned-line parts are ALL vendorless** (`part_number:null, vendor_id:null,
+  is_core:false, core_charge:0, part_source_type:'vendor', status:'requested'`) —
+  no canned line seeds a receivable or a core part.
+- **Cores NOT seedable via the sub-form:** entering a **Core Charge** creates a part
+  with `core_charge>0, total_core_charge>0` but **`is_core:false`**. Genuine cores
+  need a catalog/inventory part flagged `is_core` (not creatable via canned lines or
+  the manual sub-form). So all **SF-CORE-*** = needs-data.
+- **Receivable parts — partial:** vendors (30+, e.g. "Aabridge Beverages") and a
+  catalog exist; a **Source=Vendor** part with a free part number saves (201).
+  BUT selecting a **catalog Part Number** forces **Source=Inventory** (in-stock →
+  picked, not received). Completing the WO (optional flow) then clicking **Receive
+  Parts** still **routed back to `/workorders/{id}/lines`, NOT Accept Delivery** —
+  the wizard's background PO is not in a deliverable state. So **SF-COMP-13 /
+  SF-RCV-02 / SF-RCV-06 / SF-VAL-05/06** = needs-data: a WO PO placed/ordered with a
+  pending delivery (Accept Delivery leg not reachable from the optional wizard here).
+- **VIN gate (SF-VAL-02) = needs-data:** VIN is **prefilled from the asset**, so the
+  non-review wizard never prompts for it; testing the gate needs an **asset with no
+  VIN**.
+
+## VIU PENDING (QA) sub-classification (59 remaining after this pass)
+
+Recorded per-case in the Blockers Tracker's new **"VIU sub-bucket"** column
+(+ Summary tab count). Totals: **reachable-now 19 · needs-data 39 ·
+needs-account 1**.
+- **reachable-now (19):** SF-SET-10, SF-COMP-08/10/15/20/23, SF-VPART-04/06,
+  SF-VMIS-04/05, SF-PNFIX-01, SF-RCV-01, SF-VEND-01, SF-REV-03/07/12/13,
+  SF-VAL-07/08 — admin+tech + normal data; just need another VIU pass.
+- **needs-data (39):** all SF-CORE-01..10 (genuine is_core part + receiving),
+  SF-COMP-13/19, SF-VPART-07, SF-VMIS-03/06, SF-PNFIX-02..06, SF-RCV-02/06/08/09,
+  SF-REV-04/14, SF-VEND-02..05, SF-VAL-02/05/06, SF-QB-03..08 — receiving /
+  deliverable-PO / QuickBooks / invoiced-paid / no-VIN-asset states not seedable
+  via the app here.
+- **needs-account (1):** SF-PERM-10 — Office / Service Manager / Foreman (+ other)
+  role accounts for the per-role completion matrix.
+
+## Cases moved this pass
+
+- **VIU-Verified (12):** SF-VAL-03, SF-COMP-16, SF-COMP-17, SF-COMP-04, SF-TECH-05,
+  SF-TECH-06, SF-TECH-07, SF-VPART-01, SF-VPART-02, SF-VPART-03, SF-VPART-05,
+  SF-PERM-09.
+- **New totals:** READY (VIU-Verified) **54** · VIU PENDING (QA) **59** · DEV NOT
+  BUILT **25** · MILOS ANSWER **15** · BUG/RULING **6** = 159.

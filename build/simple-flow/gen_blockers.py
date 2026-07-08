@@ -77,6 +77,78 @@ DEV_CASE_OVERRIDE = {
     "SF-VAL-10":  "Story 9 — Apply-invoice uniqueness (S9-R3, SV-7704)",
 }
 
+# --- VIU sub-bucket classification (only meaningful for VIU PENDING (QA) rows) --
+# Buckets:
+#   reachable-now = verifiable with admin+tech + normal data (just needs another
+#                   VIU pass; no new inputs).
+#   needs-data    = needs a data state that couldn't be seeded via the app.
+#   needs-account = needs a role account we don't have (named).
+_REACHABLE = "admin+tech + normal WO data; needs another VIU pass (no new inputs)."
+SUBBUCKET = {
+    # ---- reachable-now (19) ----
+    "SF-SET-10":   ("reachable-now", _REACHABLE),
+    "SF-COMP-08":  ("reachable-now", "flip Auto-pick Inventory OFF and drive the completion modal pick step."),
+    "SF-COMP-10":  ("reachable-now", _REACHABLE),
+    "SF-COMP-15":  ("reachable-now", "drive optional-flow Cancel and re-open; check no duplicate POs."),
+    "SF-COMP-20":  ("reachable-now", "required-invoice flow (requireVendorInvoiceNumber=ON) + part-bearing WO; Cancel = no change."),
+    "SF-COMP-23":  ("reachable-now", "re-run completion after a prior attempt; check no duplicate POs."),
+    "SF-VPART-04": ("reachable-now", "edit an existing vendorless part inline (part_number/sell/qty row fields exist)."),
+    "SF-VPART-06": ("reachable-now", "add a PN + vendor to a vendorless part and confirm it transitions out of vendorless."),
+    "SF-VMIS-04":  ("reachable-now", "vendor-missing PO seedable by completing a WO with vendorless vendor parts; check vendor-select + PN-edit options."),
+    "SF-VMIS-05":  ("reachable-now", "vendor-missing PO; confirm the flag clears once vendor + PN supplied."),
+    "SF-PNFIX-01": ("reachable-now", "no-PN PO line; inline Missing-part-number Edit -> enter -> save persists."),
+    "SF-RCV-01":   ("reachable-now", "seed a WO-originated PO; confirm Receive action on PO list + detail."),
+    "SF-VEND-01":  ("reachable-now", "vendor-missing PO; confirm vendor dropdown assigns a vendor at PO level and saves."),
+    "SF-REV-03":   ("reachable-now", "enable Require Review; Details step collects mileage + engine hours (VIN captured later by reviewer)."),
+    "SF-REV-07":   ("reachable-now", "enable Require Review; Send to Review locks lines to Complete + auto-picks inventory."),
+    "SF-REV-12":   ("reachable-now", "enable Require Review; confirm a 'Ready for Review' list filter/column."),
+    "SF-REV-13":   ("reachable-now", "enable Require Review; all lines must be approved to Send to Review (approve-line error)."),
+    "SF-VAL-07":   ("reachable-now", "review flow; Confirm Review disabled until VIN entered in Mark Reviewed dialog."),
+    "SF-VAL-08":   ("reachable-now", "re-complete after cancelling; check no duplicate POs."),
+    # ---- needs-data (39) ----
+    "SF-COMP-13":  ("needs-data", "a WO PO in an ORDERED/deliverable state (vendor-assigned part on a PO with pending delivery); optional-flow 'Receive Parts' routed back to the WO, not Accept Delivery."),
+    "SF-COMP-19":  ("needs-data", "a receivable PO + vendor invoice number to drive the required-invoice receive round-trip."),
+    "SF-CORE-01":  ("needs-data", "an inventory/catalog part flagged is_core (genuine core) + a received cored line; the manual sub-form only sets core_charge (is_core stays false) and resolve-cores needs receiving."),
+    "SF-CORE-02":  ("needs-data", "a genuine core part to prove the Resolve-Cores step appears, plus a no-core WO to prove it is skipped (is_core not seedable via canned/sub-form)."),
+    "SF-CORE-03":  ("needs-data", "a special-order core part + optional-invoice completion (needs is_core part)."),
+    "SF-CORE-04":  ("needs-data", "an unresolved special-order core at the invoice gate ('Cores pending' flag) — needs is_core part + receiving."),
+    "SF-CORE-05":  ("needs-data", "resolve cores at the Create-Invoice gate -> receive the cored line (needs is_core part + receiving)."),
+    "SF-CORE-06":  ("needs-data", "cancel the invoice-gate core resolution (needs is_core part + invoice gate)."),
+    "SF-CORE-07":  ("needs-data", "special-order cores in the required-invoice receive round-trip (needs is_core part + receiving)."),
+    "SF-CORE-08":  ("needs-data", "an unresolved special-order core that exists only as a PartRequest (needs is_core part)."),
+    "SF-CORE-09":  ("needs-data", "a part-sale WO vs service WO with cores (needs is_core part + receiving)."),
+    "SF-CORE-10":  ("needs-data", "the Resolve-Cores step live '+$ to invoice' total (needs is_core part + receiving)."),
+    "SF-VPART-07": ("needs-data", "a receivable/deliverable state to prove a vendorless/no-PN part cannot be received until PN + vendor entered."),
+    "SF-VMIS-03":  ("needs-data", "QuickBooks sync inspection (vendor-missing PO excluded from QB)."),
+    "SF-VMIS-06":  ("needs-data", "reports data (Vendor Missing POs flagged 'needs vendor')."),
+    "SF-PNFIX-02": ("needs-data", "receiving + inventory/catalog inspection (new PN creates inventory part + stock + Part History on receive)."),
+    "SF-PNFIX-03": ("needs-data", "receiving + inventory inspection (existing PN links to item, updates stock/cost/history)."),
+    "SF-PNFIX-04": ("needs-data", "a WO in invoiced/paid state (sell-field locking)."),
+    "SF-PNFIX-05": ("needs-data", "an invoiced/paid WO + a receive attempt (cannot receive without PN)."),
+    "SF-PNFIX-06": ("needs-data", "receiving + catalog/inventory back-end inspection (real creation/linking, not a stored string)."),
+    "SF-RCV-02":   ("needs-data", "an ordered/deliverable PO so the Receive action opens Accept Delivery (optional-flow Receive Parts routed back to the WO in VIU)."),
+    "SF-RCV-06":   ("needs-data", "a deliverable PO to exercise Accept Delivery receive gates (vendor set, missing PN entered, invoice # captured)."),
+    "SF-RCV-08":   ("needs-data", "QuickBooks inspection (per-vendor vendor bill + separate AP entry)."),
+    "SF-RCV-09":   ("needs-data", "a receive with received qty > ordered qty (received-more-than-ordered warning)."),
+    "SF-REV-04":   ("needs-data", "a deliverable PO in the review flow (Receive Parts routes to the shared receive page)."),
+    "SF-REV-14":   ("needs-data", "cores + receiving in the review flow (cores resolved before sign-off; invoicing blocked until Reviewed + cores resolved)."),
+    "SF-VEND-02":  ("needs-data", "a PO where the assigned vendor already exists on the PO (Add-to-vendor merge vs keep-separate prompt)."),
+    "SF-VEND-03":  ("needs-data", "two POs for the same WO with the same vendor (merge-POs prompt)."),
+    "SF-VEND-04":  ("needs-data", "a vendor-missing PO + receive-enable + QB-flag-clear check after auto-assign."),
+    "SF-VEND-05":  ("needs-data", "invoiced/paid WO + multi-PO merge guardrail state (match-by-ID, merge scoped to same WO, receive blocked when invoiced/paid)."),
+    "SF-VAL-02":   ("needs-data", "an asset/vehicle with NO VIN so the non-review wizard prompts for VIN (VIN is currently prefilled from the asset, so the gate is not reachable with existing assets)."),
+    "SF-VAL-05":   ("needs-data", "a required-invoice receive attempt without an invoice number (receivable PO)."),
+    "SF-VAL-06":   ("needs-data", "a vendor-missing part receive attempt (deliverable state)."),
+    "SF-QB-03":    ("needs-data", "QuickBooks / inventory back-end inspection (receive -> Delivery -> Vendor Bill -> QBO) — likely needs dev/QB access."),
+    "SF-QB-04":    ("needs-data", "QuickBooks / inventory inspection (vendorless/no-PN part = zero inventory interaction) — likely needs dev/QB access."),
+    "SF-QB-05":    ("needs-data", "QuickBooks inspection (Vendor-Missing POs excluded from QB until vendor + PN) — likely needs dev/QB access."),
+    "SF-QB-06":    ("needs-data", "QuickBooks inspection (cost-at-completion to avoid $0-cost margins) — likely needs dev/QB access."),
+    "SF-QB-07":    ("needs-data", "QuickBooks inspection (Journal Entry / Inventory sync fires on invoice creation) — likely needs dev/QB access."),
+    "SF-QB-08":    ("needs-data", "Inventory Part History inspection for any part that becomes inventory-tracked — likely needs dev/QB access."),
+    # ---- needs-account (1) ----
+    "SF-PERM-10":  ("needs-account", "role accounts Office / Service Manager / Foreman (ideally also Senior SA / Parts Manager / Sales Rep / Time Clock) to run the per-role completion matrix (only admin+ and Technician- available)."),
+}
+
 # Tailored "what's needed" for the special QA-pending cases.
 QA_OVERRIDE = {
     "SF-PERM-09": "QA VIU: a role account WITHOUT 'See Financial Data' to prove the "
@@ -179,14 +251,21 @@ def main():
     rows = []
     for c in cases:
         cls = classify(c)
+        if cls["category"] == "VIU PENDING (QA)":
+            sb, sbnote = SUBBUCKET.get(c["id"], ("reachable-now", _REACHABLE))
+        else:
+            sb, sbnote = "—", ""
         rows.append([
             c["id"], section_for(c), c["title"].strip(), c.get("viu_status", ""),
             cls["state"], cls["category"], cls["owner"], cls["needs"], cls["related"],
+            sb, sbnote,
         ])
 
     from collections import Counter, OrderedDict
     cat_counts = Counter(r[5] for r in rows)
     state_counts = Counter(r[4] for r in rows)
+    # VIU sub-bucket counts (only over VIU PENDING (QA) rows).
+    sub_counts = Counter(r[9] for r in rows if r[5] == "VIU PENDING (QA)")
 
     CAT_ORDER = ["READY (VIU-Verified)", "BLOCKED — DEV NOT BUILT",
                  "VIU PENDING (QA)", "MILOS ANSWER", "BUG/RULING"]
@@ -204,7 +283,8 @@ def main():
 
     HEADER = ["Case ID", "Area", "Title", "Current VIU status", "State",
               "Blocker category", "Who unblocks", "What's needed to unblock",
-              "Related story/question"]
+              "Related story/question", "VIU sub-bucket",
+              "VIU sub-bucket detail (QA-pending only)"]
 
     # ---- What to send next (batches) ----
     n_milos = disp_counts["BLOCKED — MILOS ANSWER"]
@@ -273,10 +353,14 @@ def main():
 
     widths = {"Case ID": 13, "Area": 32, "Title": 55, "Current VIU status": 15,
               "State": 11, "Blocker category": 20, "Who unblocks": 26,
-              "What's needed to unblock": 60, "Related story/question": 34}
+              "What's needed to unblock": 60, "Related story/question": 34,
+              "VIU sub-bucket": 15,
+              "VIU sub-bucket detail (QA-pending only)": 65}
     for i, name in enumerate(HEADER, start=1):
         ws.column_dimensions[get_column_letter(i)].width = widths.get(name, 12)
 
+    SUB_FILL = {"reachable-now": "C6EFCE", "needs-data": "FFF2CC",
+                "needs-account": "F4CCCC"}
     wrap = Alignment(wrap_text=True, vertical="top")
     for ridx in range(2, len(rows) + 2):
         cat = ws.cell(row=ridx, column=6).value
@@ -286,6 +370,10 @@ def main():
             cell.alignment = wrap
             if fill:
                 cell.fill = PatternFill("solid", fgColor=fill)
+        # Override the VIU sub-bucket cell (col 10) with its own colour.
+        sbval = ws.cell(row=ridx, column=10).value
+        if sbval in SUB_FILL:
+            ws.cell(row=ridx, column=10).fill = PatternFill("solid", fgColor=SUB_FILL[sbval])
     ws.freeze_panes = "A2"
 
     # ---- Summary tab ----
@@ -333,6 +421,29 @@ def main():
     ss.cell(row=ss.max_row, column=2).font = Font(bold=True)
     for lbl, n in sorted(dev_by_story.items(), key=lambda x: -x[1]):
         ss.append([lbl, n])
+
+    # VIU PENDING (QA) sub-bucket breakdown
+    ss.append([])
+    ss.append(["VIU PENDING (QA) — by sub-bucket", "Count", "Meaning"])
+    hr = ss.max_row
+    for cidx in range(1, 4):
+        ss.cell(row=hr, column=cidx).font = Font(bold=True)
+    SUB_MEAN = {
+        "reachable-now": "admin+tech + normal data; just needs another VIU pass (no new inputs).",
+        "needs-data": "needs a data state not seedable via the app (see per-case detail).",
+        "needs-account": "needs a role account we don't have (see per-case detail).",
+    }
+    SUB_ORDER = ["reachable-now", "needs-data", "needs-account"]
+    for sb in SUB_ORDER:
+        ss.append([sb, sub_counts.get(sb, 0), SUB_MEAN[sb]])
+        rr = ss.max_row
+        f = {"reachable-now": "C6EFCE", "needs-data": "FFF2CC",
+             "needs-account": "F4CCCC"}[sb]
+        for cidx in range(1, 3):
+            ss.cell(row=rr, column=cidx).fill = PatternFill("solid", fgColor=f)
+    ss.append(["TOTAL VIU PENDING (QA)", sum(sub_counts.values()), ""])
+    ss.cell(row=ss.max_row, column=1).font = Font(bold=True)
+    ss.cell(row=ss.max_row, column=2).font = Font(bold=True)
 
     ss.append([])
     ss.append(["WHAT TO SEND ME NEXT (to unblock each batch)"])
@@ -382,6 +493,19 @@ def main():
     for lbl, n in sorted(dev_by_story.items(), key=lambda x: -x[1]):
         lines.append("| {} | {} |".format(lbl, n))
     lines.append("")
+    lines.append("### VIU PENDING (QA) — by sub-bucket")
+    lines.append("")
+    lines.append("| VIU sub-bucket | Count | Meaning |")
+    lines.append("|---|---:|---|")
+    _submean = {
+        "reachable-now": "admin+tech + normal data; just needs another VIU pass (no new inputs).",
+        "needs-data": "needs a data state not seedable via the app (see per-case detail).",
+        "needs-account": "needs a role account we don't have (see per-case detail).",
+    }
+    for sb in ["reachable-now", "needs-data", "needs-account"]:
+        lines.append("| {} | {} | {} |".format(sb, sub_counts.get(sb, 0), _submean[sb]))
+    lines.append("| **TOTAL VIU PENDING (QA)** | **{}** | |".format(sum(sub_counts.values())))
+    lines.append("")
     lines.append("## WHAT TO SEND ME NEXT (to unblock each batch)")
     lines.append("")
     for what, effect in send_next:
@@ -390,17 +514,17 @@ def main():
     lines.append("## Full per-case tracker")
     lines.append("")
     lines.append("| Case ID | Area | Title | VIU status | State | Blocker category | "
-                 "Who unblocks | What's needed | Related |")
-    lines.append("|---|---|---|---|---|---|---|---|---|")
+                 "Who unblocks | What's needed | Related | VIU sub-bucket | Sub-bucket detail |")
+    lines.append("|---|---|---|---|---|---|---|---|---|---|---|")
     for r in rows:
         cat_disp = {"READY (VIU-Verified)": "READY (VIU-Verified)",
                     "DEV NOT BUILT": "BLOCKED — DEV NOT BUILT",
                     "VIU PENDING (QA)": "BLOCKED — VIU PENDING (QA)",
                     "MILOS ANSWER": "BLOCKED — MILOS ANSWER",
                     "BUG/RULING": "BLOCKED — BUG/RULING"}[r[5]]
-        lines.append("| {} | {} | {} | {} | {} | {} | {} | {} | {} |".format(
+        lines.append("| {} | {} | {} | {} | {} | {} | {} | {} | {} | {} | {} |".format(
             r[0], md_esc(r[1]), md_esc(r[2]), md_esc(r[3]), r[4], cat_disp,
-            md_esc(r[6]), md_esc(r[7]), md_esc(r[8])))
+            md_esc(r[6]), md_esc(r[7]), md_esc(r[8]), r[9], md_esc(r[10])))
     lines.append("")
     open(OUT_MD, "w").write("\n".join(lines))
     print("Wrote", OUT_MD)
