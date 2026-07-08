@@ -1042,8 +1042,8 @@
       "1. The shared Accept Delivery surface opens for that PO."
     ],
     "design_ref": "Receive Vendor Parts - v2.html",
-    "viu_status": "VIU-Pending",
-    "notes": "Not driven in VIU. Needs live verification.",
+    "viu_status": "VIU-Verified",
+    "notes": "VIU 2026-07-08 (BATCH 5): drove /accept-delivery/{order} for the provided receivable PO 93fb82e9 (PO 'I2-1202', vendor Aabridge Beverages). The destination IS the shared Accept Delivery / Purchase Order Details surface (Invoice Number, Invoice Date, per-line Quantity Received, Tax, Delivery Note, Receive). Receive completed via POST /api/inventory/orders/accept -> 201 and the PO left the ordered list. Evidence R6-01-accept-delivery.png, R6-03-after-receive.png.",
     "api_related": false
   },
   {
@@ -1150,7 +1150,7 @@
     ],
     "design_ref": "requirements S12-R2",
     "viu_status": "VIU-Pending",
-    "notes": "Not driven in VIU. Needs live verification.",
+    "notes": "VIU 2026-07-08 (BATCH 5): drove the Accept Delivery happy path on PO 93fb82e9 (vendor set = Aabridge Beverages, PN present, invoice # field 'invoice-number' captured, Invoice Date default) -> Receive POST /api/inventory/orders/accept 201. The POSITIVE gates (vendor set, invoice captured) confirmed. Still pending: the NEGATIVE sub-gates (receive blocked with vendor unset / missing PN) need a vendor-missing item on an Accept Delivery group (this PO already had vendor+PN). reachable-now.",
     "api_related": false
   },
   {
@@ -1224,8 +1224,8 @@
       "1. A 'received more than ordered' warning is shown (existing behavior)."
     ],
     "design_ref": "requirements S12 (existing behavior)",
-    "viu_status": "VIU-Pending",
-    "notes": "Existing behavior; not re-driven in VIU. Needs live verification.",
+    "viu_status": "VIU-Verified",
+    "notes": "VIU 2026-07-08 (BATCH 5): on PO 93fb82e9 Accept Delivery, set the main line's Quantity Received to 15 (ordered = 10) -> the row surfaced a 'Received More Than Ordered' warning. Existing behavior confirmed. Evidence R9-01-over-quantity.png.",
     "api_related": false
   },
   {

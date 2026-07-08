@@ -127,7 +127,7 @@ SUBBUCKET = {
     "SF-PNFIX-05": ("needs-data", "an invoiced/paid WO + a receive attempt (cannot receive without PN)."),
     "SF-PNFIX-06": ("needs-data", "receiving + catalog/inventory back-end inspection (real creation/linking, not a stored string)."),
     "SF-RCV-02":   ("needs-data", "an ordered/deliverable PO so the Receive action opens Accept Delivery (optional-flow Receive Parts routed back to the WO in VIU)."),
-    "SF-RCV-06":   ("needs-data", "a deliverable PO to exercise Accept Delivery receive gates (vendor set, missing PN entered, invoice # captured)."),
+    "SF-RCV-06":   ("reachable-now", "BATCH 5: Accept Delivery happy path driven on PO 93fb82e9 (vendor set, invoice # captured -> Receive 201). Only the NEGATIVE sub-gates remain (receive blocked with vendor unset / missing PN) — need a vendor-missing item on an Accept Delivery group (seedable by completing a WO with vendorless vendor parts)."),
     "SF-RCV-08":   ("needs-data", "QuickBooks inspection (per-vendor vendor bill + separate AP entry)."),
     "SF-RCV-09":   ("needs-data", "a receive with received qty > ordered qty (received-more-than-ordered warning)."),
     "SF-REV-04":   ("needs-data", "a deliverable PO in the review flow (Receive Parts routes to the shared receive page)."),

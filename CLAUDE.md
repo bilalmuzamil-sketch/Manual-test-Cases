@@ -109,9 +109,11 @@ regression / bug-fix re-testing.
   `https://sv7301api.qa.shopview.com` (note: `sv7301api`, no dot).
 - **Auth:** `POST /api/quick-login {key:'admin'|'tech'}` gated by cookies
   `sv_sso_session` / `PHPSESSID` / `cf_clearance` (domain `.qa.shopview.com`;
-  secrets in `/tmp` only). On sv7301 only the **admin** session works —
-  `{key:'tech'}` returns **403**, so non-admin/role-gating negatives are NOT
-  verifiable there.
+  secrets in `/tmp` only). **Both `{key:'admin'}` and `{key:'tech'}` return 200**
+  (the earlier tech-403 is FIXED). quick-login is **stateful on the shared
+  PHPSESSID** — probe roles strictly SEQUENTIALLY. Read fe-permissions at
+  `GET /api/auth/me/fe-permissions` → `{data:{fe_permissions:[<codes>],view_mode,
+  cross_toggles}}` (array of code strings, NOT a bool map).
 - **Settings-driven, NO feature flag** — behavior is controlled by the Work Order
   settings tab (checked `/administration/feature-flags`: no "Simple Mode" flag).
   Read `GET /api/organizations/settings`; save
@@ -121,11 +123,27 @@ regression / bug-fix re-testing.
   `/workorders` → `/workorders/{id}/lines`.
 - **NOT built yet:** Stories **7** (PO multi-select), **8** (Bulk Receive page),
   **9** (apply-invoice), **14** (Waiting-on-Parts column).
+- **Receive/inventory endpoints:** PO list `GET /api/inventory/orders`; order detail
+  `GET /api/inventory/orders/{id}` (`{data:{order:{items}}}`); deliveries
+  `GET /api/inventory/deliveries`; inventory parts `GET /api/inventory/parts?…&search=`.
+  **Receive = `POST /api/inventory/orders/accept`** (driven from
+  `/accept-delivery/{orderId}` = the shared Accept Delivery surface: fields
+  `invoice-number`, Invoice Date, per-line `delivered` qty, Tax, note; over-qty →
+  "Received More Than Ordered" warning). Remove a WO part =
+  `POST /api/work-orders/parts/delete {part_id,work_order_id}` (returns picked
+  inventory + enables WO delete).
+- **Cores:** genuine cored inventory part **P550848** (core_charge=1, has
+  core_part_id). Add via New Part Request → `select_part` catalog PN (forces
+  Source=Inventory; qty via `input_bin_quantity_{binId}`). **BUG-10:** the completion
+  wizard shows NO distinct "Resolve Cores" step for a pre-picked inventory core
+  (goes Details→Success); core Ok/Not-Ok is a LINE-level control.
 - **VIU deviations (bugs):** (1) no "Create Purchase Orders" toggle / no
   `createPurchaseOrders` field — POs always-on; (2) Save Settings always enabled;
   (3) Mark-Reviewed dialog missing optional `input_review_note`; (4) review
   sign-off jumps straight to Complete (no distinct "Reviewed" state observed).
-- **No permissions matrix supplied** — role-gating expected results are TBD.
+- **Permissions matrix = §9 of requirements.md (from SV-8183)** — DEFINED and now
+  **live-verified for all 11 roles** (SF-PERM-10). Completion gate = FE-only at BE
+  (BUG-6 atom-collapse).
 - **IDs:** case IDs use `SF-<AREA>-NN`; org `d55bc308-...` (shared with Custom
   Roles). VIU tools in `/tmp/simple-flow/tools/`.
 - **Self-service Tech role-switch (sv7301):** `POST /api/staff/{staff_id}/change`
@@ -133,11 +151,17 @@ regression / bug-fix re-testing.
   billable/clockable to avoid clobber). Tech: user `a7fd0a88-...`, **staff
   `6fb22c1b-...`**, restore role **Technician `131b5274-...`**, workplace
   `b3c8c820-...`. EXACT-MATCH `email==='tech@shopview.com'` before changing;
-  safety-net `restore-tech.mjs`. Only **Technician/Office/Admin** roles are
-  instantiated (Office `163abe0d-...`, Admin `16fec34c-...`); other 8 are templates
-  (`GET /api/role-templates`). Role detail `GET /api/roles/{id}`. Role create
-  `POST /api/roles` (needs `organization`+full `fe_permissions` code→bool map;
-  currently 500 — shape TBD).
+  safety-net `restore-tech.mjs`. **ALL 11 system roles are REAL & assignable** (the
+  earlier "only 3 instantiated / other 8 are templates" note was WRONG). Roles list:
+  `GET /api/organizations/{org}/roles` (405 on `/api/roles`). Ids: Admin
+  `16fec34c…`, Service Manager `ef6e24c2…`, Senior Service Advisor `e03f176f…`,
+  Service Advisor `3874cc56…`, Foreman `897018a5…`, Technician `131b5274…`, Parts
+  Manager `5d703b9b…`, Parts Tech `486622b9…`, Office `163abe0d…`, Sales
+  Representative `8eb4a1c1…`, Time Clock `0a198766…` (full map
+  `/tmp/simple-flow/roles-map-6.json`). Assign any role to Tech via
+  `POST /api/staff/{staff_id}/change` with that `role_id`. Role detail
+  `GET /api/roles/{id}`. **SF-PERM-10 full 11-role completion matrix VERIFIED live**
+  (matches §9.2 exactly; Complete gate = `workOrdersCreateAndEdit`).
 
 ## Key findings to remember
 - **Enforcement model:** backend enforces only **resource-level View/Edit**;

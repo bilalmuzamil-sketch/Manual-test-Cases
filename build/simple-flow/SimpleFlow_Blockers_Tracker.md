@@ -9,9 +9,9 @@
 
 | Blocker category | Count | Owner |
 |---|---:|---|
-| READY (VIU-Verified) | 59 | — (ready to upload) |
+| READY (VIU-Verified) | 61 | — (ready to upload) |
 | BLOCKED — DEV NOT BUILT | 25 | Dev team |
-| BLOCKED — VIU PENDING (QA) | 54 | QA |
+| BLOCKED — VIU PENDING (QA) | 52 | QA |
 | BLOCKED — MILOS ANSWER | 15 | Milos (PO) |
 | BLOCKED — BUG/RULING | 6 | Dev / PO ruling |
 | **TOTAL** | **159** | |
@@ -29,10 +29,10 @@
 
 | VIU sub-bucket | Count | Meaning |
 |---|---:|---|
-| reachable-now | 15 | admin+tech + normal data; just needs another VIU pass (no new inputs). |
-| needs-data | 39 | needs a data state not seedable via the app (see per-case detail). |
+| reachable-now | 16 | admin+tech + normal data; just needs another VIU pass (no new inputs). |
+| needs-data | 36 | needs a data state not seedable via the app (see per-case detail). |
 | needs-account | 0 | needs a role account we don't have (see per-case detail). |
-| **TOTAL VIU PENDING (QA)** | **54** | |
+| **TOTAL VIU PENDING (QA)** | **52** | |
 
 ## WHAT TO SEND ME NEXT (to unblock each batch)
 
@@ -41,7 +41,7 @@
 - **Dev deploys Story 7 — PO multi-select (SV-7702)** → unblocks 6 case(s); then I re-run VIU and send an update file.
 - **Dev deploys Story 9 — Apply invoice to selected POs (SV-7704)** → unblocks 4 case(s); then I re-run VIU and send an update file.
 - **Dev deploys Story 14 — Waiting-on-Parts column (SV-7709)** → unblocks 3 case(s); then I re-run VIU and send an update file.
-- **Fresh QA cookies for sv7301 (admin + tech) + seeded test data** → unblocks the bulk of the 54 VIU-PENDING (QA) cases (cores, receiving, vendor, validation round-trips).
+- **Fresh QA cookies for sv7301 (admin + tech) + seeded test data** → unblocks the bulk of the 52 VIU-PENDING (QA) cases (cores, receiving, vendor, validation round-trips).
 - **A 2nd/3rd role account (Office, Service Manager, Foreman) — some WITHOUT 'See Financial Data'** → unblocks SF-PERM-09 and SF-PERM-10 (per-role completion + vendorless-add gate).
 - **A dev/PO ruling on FE-only BE enforcement + the missing reviewer!=completer rule (resolve SV-8183 'BE enforces' vs SV-7864 atom-collapse)** → finalizes the 6 BUG/RULING cases.
 
@@ -144,14 +144,14 @@
 | SF-PNFIX-05 | Inline Part-Number Fix (Story 10) | Verify a part cannot be received without a part number (and a vendor for vendor-missing) even on an invoiced/paid WO | VIU-Pending | BLOCKED | BLOCKED — VIU PENDING (QA) | QA (needs cookies+seed data) | QA VIU: drive the inline part-number fix flow with seeded PO lines. | S10 Negative | needs-data | an invoiced/paid WO + a receive attempt (cannot receive without PN). |
 | SF-PNFIX-06 | Inline Part-Number Fix (Story 10) | Verify the inline part-number save drives real catalog creation/linking, inventory stock and Part History (not just a stored string) | VIU-Pending | BLOCKED | BLOCKED — VIU PENDING (QA) | QA (needs cookies+seed data) | QA VIU: drive the inline part-number fix flow with seeded PO lines. | S10 Technical guardrails | needs-data | receiving + catalog/inventory back-end inspection (real creation/linking, not a stored string). |
 | SF-RCV-01 | Receive Button on WO POs (Story 11) | Verify a Receive action appears on WO-originated POs in both the PO list and the PO detail card | VIU-Verified | READY | READY (VIU-Verified) | — | None — VIU-verified; uploadable now. | S11-R1 | — |  |
-| SF-RCV-02 | Receive Button on WO POs (Story 11) | Verify the Receive action opens the shared Accept Delivery surface | VIU-Pending | BLOCKED | BLOCKED — VIU PENDING (QA) | QA (needs cookies+seed data) | QA VIU: seed deliverable POs, drive the Receive / Accept-Delivery flow. | S11-R2 | needs-data | an ordered/deliverable PO so the Receive action opens Accept Delivery (optional-flow Receive Parts routed back to the WO in VIU). |
+| SF-RCV-02 | Receive Button on WO POs (Story 11) | Verify the Receive action opens the shared Accept Delivery surface | VIU-Verified | READY | READY (VIU-Verified) | — | None — VIU-verified; uploadable now. | S11-R2 | — |  |
 | SF-RCV-03 | Receive Button on WO POs (Story 11) | Verify the Receive action is hidden for office/readonly users and for fulfilled POs | VIU-Verified | READY | READY (VIU-Verified) | — | None — VIU-verified; uploadable now. | S11-R3 | — |  |
 | SF-RCV-04 | Accept Delivery (Story 12) | Verify the existing Accept Delivery screen groups by vendor with per-group invoice #, date, tax, note and Receive | VIU-Verified | READY | READY (VIU-Verified) | — | None — VIU-verified; uploadable now. | S12 (existing multi-vendor) | — |  |
 | SF-RCV-05 | Accept Delivery (Story 12) | Verify new vendorless/no-PN WO parts and WO-originated POs appear and are receivable on Accept Delivery, with the vendor-missing group at the bottom | VIU-Pending | BLOCKED | BLOCKED — MILOS ANSWER | Milos (Product Owner) | Milos answers Open Question Q11 — Vendor-missing group ordering on Accept Delivery — spec contradicts itself. | Q11 \| S12-R1 | — |  |
-| SF-RCV-06 | Accept Delivery (Story 12) | Verify Accept Delivery receive gates: vendor set, missing part number entered, vendor invoice # captured | VIU-Pending | BLOCKED | BLOCKED — VIU PENDING (QA) | QA (needs cookies+seed data) | QA VIU: seed deliverable POs, drive the Receive / Accept-Delivery flow. | S12-R2 | needs-data | a deliverable PO to exercise Accept Delivery receive gates (vendor set, missing PN entered, invoice # captured). |
+| SF-RCV-06 | Accept Delivery (Story 12) | Verify Accept Delivery receive gates: vendor set, missing part number entered, vendor invoice # captured | VIU-Pending | BLOCKED | BLOCKED — VIU PENDING (QA) | QA (needs cookies+seed data) | QA VIU: seed deliverable POs, drive the Receive / Accept-Delivery flow. | S12-R2 | reachable-now | BATCH 5: Accept Delivery happy path driven on PO 93fb82e9 (vendor set, invoice # captured -> Receive 201). Only the NEGATIVE sub-gates remain (receive blocked with vendor unset / missing PN) — need a vendor-missing item on an Accept Delivery group (seedable by completing a WO with vendorless vendor parts). |
 | SF-RCV-07 | Accept Delivery (Story 12) | Verify Accept Delivery shows a '+N' vendor indicator and leads with the vendor-missing group | VIU-Pending | BLOCKED | BLOCKED — MILOS ANSWER | Milos (Product Owner) | Milos answers Open Question Q11 — Vendor-missing group ordering (S12-R1 bottom vs S12-R3 top). | Q11 \| S12-R3 | — |  |
 | SF-RCV-08 | Accept Delivery (Story 12) | Verify each vendor group produces its own vendor bill and separate AP entry in QuickBooks | VIU-Pending | BLOCKED | BLOCKED — VIU PENDING (QA) | QA (needs cookies+seed data) | QA VIU: seed deliverable POs, drive the Receive / Accept-Delivery flow. | S12-R4 | needs-data | QuickBooks inspection (per-vendor vendor bill + separate AP entry). |
-| SF-RCV-09 | Accept Delivery (Story 12) | Verify a 'received more than ordered' warning appears when received quantity exceeds ordered quantity | VIU-Pending | BLOCKED | BLOCKED — VIU PENDING (QA) | QA (needs cookies+seed data) | QA VIU: seed deliverable POs, drive the Receive / Accept-Delivery flow. | S12 (existing) received-more-than-ordered | needs-data | a receive with received qty > ordered qty (received-more-than-ordered warning). |
+| SF-RCV-09 | Accept Delivery (Story 12) | Verify a 'received more than ordered' warning appears when received quantity exceeds ordered quantity | VIU-Verified | READY | READY (VIU-Verified) | — | None — VIU-verified; uploadable now. | S12 (existing) received-more-than-ordered | — |  |
 | SF-VEND-01 | Assign Vendor + Merge (Story 13) | Verify the vendor-missing group provides a vendor dropdown that assigns a vendor at PO level and saves it | VIU-Pending | BLOCKED | BLOCKED — VIU PENDING (QA) | QA (needs cookies+seed data) | QA VIU: seed vendor-missing POs, drive Assign-Vendor + merge. | S13-R1 | reachable-now | vendor-missing PO; confirm vendor dropdown assigns a vendor at PO level and saves. |
 | SF-VEND-02 | Assign Vendor + Merge (Story 13) | Verify assigning a vendor already on this PO prompts 'Add to {vendor}?' with Merge vs Keep Separate | VIU-Pending | BLOCKED | BLOCKED — VIU PENDING (QA) | QA (needs cookies+seed data) | QA VIU: seed vendor-missing POs, drive Assign-Vendor + merge. | S13-R2 | needs-data | a PO where the assigned vendor already exists on the PO (Add-to-vendor merge vs keep-separate prompt). |
 | SF-VEND-03 | Assign Vendor + Merge (Story 13) | Verify assigning a vendor that is on another PO for the same WO prompts to merge the POs | VIU-Pending | BLOCKED | BLOCKED — VIU PENDING (QA) | QA (needs cookies+seed data) | QA VIU: seed vendor-missing POs, drive Assign-Vendor + merge. | S13-R3 | needs-data | two POs for the same WO with the same vendor (merge-POs prompt). |

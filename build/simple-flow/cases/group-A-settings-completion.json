@@ -1049,7 +1049,7 @@
     ],
     "design_ref": "Resolve Cores Flow.html; Core Resolution.html; Pick Parts + Cores.html",
     "viu_status": "VIU-Pending",
-    "notes": "Core sub-flows were observation-level only in VIU. Needs a cored inventory part and a live walk.",
+    "notes": "VIU 2026-07-08 (BATCH 5) — CORE PART NOW SEEDED but DEVIATION found. Added genuine cored inventory part P550848 (FUEL/WATER SEPARATOR; core_charge=1, has core_part_id) to a service WO line via the catalog Part Number selector (Source auto-set Inventory; cost 53.52 / core 1.00 / sell 86.32 auto-fill; qty via bin-amount input). The core generates a 'P550848 Core' sub-line on the WO with per-core Ok / Not Ok controls and a $ amount ($0 until Not OK) on the line's Parts view. BUT the completion wizard did NOT present a distinct 'Resolve Cores' step — completion went Details->Success (verified with autoPick ON and OFF). So the expected 'Resolve Cores step in the completion modal' is NOT observed for a pre-picked in-stock inventory core; the Ok/Not OK resolution is a LINE-LEVEL control, not a wizard step. See bugs-log BUG-10. Still pending: whether the modal step appears for a SPECIAL-ORDER (vendor-source) core that requires receiving (SF-CORE-03/04/05/07). Evidence CORE-01-part-selected.png, CORE-01b-filled.png, CORE-04-wizard-step1.png.",
     "api_related": false
   },
   {
@@ -1285,7 +1285,7 @@
     ],
     "design_ref": "Resolve Cores Flow.html; Resolve Cores Flow - Handoff.md",
     "viu_status": "VIU-Pending",
-    "notes": "Not driven in VIU. Needs live verification.",
+    "notes": "VIU 2026-07-08 (BATCH 5): the per-core Ok/Not Ok + $ amount surface exists on the WO line Parts view (P550848 Core sub-line shows '$0' until Not OK), but there is NO distinct 'Resolve Cores' step in the completion wizard (verified autoPick ON/OFF; completion goes Details->Success). So the live '+$ to invoice' running total belonging to a Resolve-Cores step is not present as specified — see SF-CORE-01 note + bugs-log BUG-10. Still pending pending the special-order (vendor-source) core path.",
     "api_related": false
   },
   {

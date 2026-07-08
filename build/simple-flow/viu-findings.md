@@ -545,3 +545,126 @@ the FE-matrix verdict given the 3 live anchors + deterministic atom map.
   MILOS ANSWER **15** · BUG/RULING **6** = 159.
 - **No new bugs** (BUG-5..8 re-confirmed; no EXPECTED changes → TestRail import not
   regenerated).
+
+---
+
+# VIU BATCH 5 — 2026-07-08 (self-service role matrix + receive round-trip + cores)
+
+Task-provided QA cookies (PHPSESSID `21427ed6…`); admin + tech quick-login both
+**200**. **Baselines captured to `/tmp/simple-flow/settings-baseline-6.json`
+(settings) + `/tmp/simple-flow/tech-role-baseline-6.json` (Tech role)** and
+**RESTORED + verified** at end (settings all match baseline-6; Tech back to
+Technician `131b5274`). `autoPickInventoryParts` toggled OFF transiently for a core
+test and **restored ON** (verified). Four throwaway WOs created
+(`e13e9682`, `c45dbbeb`, `524f9360`, `60943c8b`) and **all deleted** (verified view
+404); the picked P550848 units were returned (inventory back to qty **6**). The
+user's receivable PO **93fb82e9** was **received** (intended action — not deleted);
+the P550848 catalog part was **not** deleted.
+
+> **Host-mismatch note:** the FIRST core part / PO the task gave (FG-OF-3890, order
+> 24ecb126, app.staging URL) do **NOT** exist on sv7301 QA (searched inventory +
+> all 110 orders / 200 deliveries → absent). The user re-supplied the correct
+> sv7301 IDs: core part **P550848**, PO **93fb82e9** — both present and used.
+
+## HEADLINE — all 11 system roles are REAL & assignable (prior "only 3 instantiated" note was WRONG)
+
+`GET /api/organizations/{org}/roles` returns **12 roles** (11 system + 1 custom
+"Bilal CRPT - Random"), each with a real `role_id`, all assignable to the Tech user
+via `POST /api/staff/{staff_id}/change`. Role-id map saved to
+`/tmp/simple-flow/roles-map-6.json`. This CORRECTS the batch-4 assumption that only
+Technician/Office/Admin were instantiated and the other 8 were templates.
+
+**Role ids (sv7301):** Admin `16fec34c…`, Service Manager `ef6e24c2…`, Senior
+Service Advisor `e03f176f…`, Service Advisor `3874cc56…`, Foreman `897018a5…`,
+Technician `131b5274…`, Parts Manager `5d703b9b…`, Parts Tech `486622b9…`,
+Office `163abe0d…`, Sales Representative `8eb4a1c1…`, Time Clock `0a198766…`.
+
+**fe-permissions shape (record):** `GET /api/auth/me/fe-permissions` →
+`{data:{fe_permissions:[<code strings>], view_mode, cross_toggles, template_id}}`
+(an **array of code strings**, not a bool map). quick-login `data.role.fePermissions`
+also carries the array as `{id,name}` objects.
+
+### SF-PERM-10 — FULL LIVE 11-role completion matrix (matches §9.2 exactly)
+
+Assigned Tech each role in turn → quick-login tech → read fe-permissions. Complete
+gate = `workOrdersCreateAndEdit`; Mark-Reviewed = `woReviewWorkOrders`; Settings =
+`settingsApp`.
+
+| Role | Complete (workOrdersCreateAndEdit) | Mark Reviewed | Settings | view_mode | §9.2 match |
+|---|---|---|---|---|---|
+| Admin | Yes | Yes | Yes | full | ✓ |
+| Service Manager | Yes | Yes | Yes | full | ✓ |
+| Senior Service Advisor | Yes | Yes | No | full | ✓ |
+| Service Advisor | Yes | Yes | No | full | ✓ |
+| Foreman | Yes | Yes | No | full | ✓ |
+| Technician | **No** | No | No | tech | ✓ |
+| Parts Manager | Yes | Yes | No | full | ✓ |
+| Parts Tech | **No** | No | No | full | ✓ |
+| Office | **No** | No | Yes | full | ✓ |
+| Sales Representative | **No** | No | No | full | ✓ |
+| Time Clock | **No** | No | No | null | ✓ |
+
+Pick (`woPickParts`) and Order (`woOrderParts`) columns also matched §9.2 for all 11
+(e.g. Office pick/order = No; Parts Tech order = Yes; Tech pick = Yes / order = No).
+Tech restored to Technician + verified. Data: `/tmp/simple-flow/role-matrix-6.json`.
+(Completion gate is FE-only at the BE per BUG-6 atom-collapse; the matrix is realised
+as FE button visibility, which follows each role's fe_permissions deterministically —
+now proven live for every role, not derived.)
+
+## Receive round-trip — Accept Delivery (PO 93fb82e9 "I2-1202", vendor Aabridge Beverages)
+
+- **SF-RCV-02 → VERIFIED:** `/accept-delivery/{order}` IS the shared Accept Delivery /
+  Purchase Order Details surface (Invoice Number `invoice-number`, Invoice Date,
+  per-line Quantity Received `delivered`, Tax, Delivery Note, Receive). Receive →
+  **`POST /api/inventory/orders/accept` 201**, PO left the ordered list.
+  `R6-01-accept-delivery.png`, `R6-03-after-receive.png`.
+- **SF-RCV-09 → VERIFIED:** setting a line's Quantity Received to **15** (ordered 10)
+  surfaced a **"Received More Than Ordered"** warning. `R9-01-over-quantity.png`.
+- **SF-RCV-06 → PARTIAL (reachable-now):** happy-path gates confirmed (vendor set,
+  invoice # captured → Receive 201); the NEGATIVE sub-gates (blocked with vendor
+  unset / missing PN) still need a vendor-missing item on Accept Delivery.
+- Endpoint: `POST /api/inventory/orders/accept`; order detail
+  `GET /api/inventory/orders/{id}` → `{data:{order:{items:[…]}}}`; PO list
+  `/parts/orders` → `GET /api/inventory/orders`; deliveries `/parts/deliveries` →
+  `GET /api/inventory/deliveries`; inventory parts `GET /api/inventory/parts?...&search=`.
+- **Note:** this is an INVENTORY PO (not WO-linked). The optional-completion-wizard
+  "Receive Parts → Accept Delivery" leg (SF-COMP-13/19, SF-VAL-05/06, SF-REV-04) is
+  still not reachable from a WO completion (WO POs come out vendor-missing / not
+  deliverable) — those remain needs-data.
+
+## Cores — genuine cored part seeded; but NO Resolve-Cores step in the completion wizard (BUG-10)
+
+- Added genuine cored inventory part **P550848** (FUEL/WATER SEPARATOR; `core_charge=1`,
+  has `core_part_id`; catalogue_part_id `4b4753e0…`) to a service WO line via the
+  catalog Part Number selector (`select_part` → type P550848). Selecting the catalog PN
+  forces **Source = Inventory**; cost 53.52 / core 1.00 / sell 86.32 **auto-fill**;
+  quantity is the **bin-amount input** `input_bin_quantity_{binId}` (NOT
+  `input_workorder_part_quantity`, which 400s "quantity: Missing required parameter"
+  for inventory source). Save → `POST /api/work-orders/part/make-request` 201.
+- The core generates a **"P550848 Core" sub-line** on the WO with per-core **Ok / Not
+  Ok** controls + a `$` amount (`$0` until Not OK) on the **line's Parts view**.
+- **DEVIATION (BUG-10):** the **completion wizard did NOT present a distinct "Resolve
+  Cores" step** — completion went **Details → Success** (verified with
+  `autoPickInventoryParts` **ON and OFF**). So SF-CORE-01/10's "Resolve Cores step in
+  the completion modal with a live +$ total" is NOT observed for a pre-picked in-stock
+  inventory core; resolution is line-level. `CORE-01-part-selected.png`,
+  `CORE-01b-filled.png`, `CORE-04-wizard-step1.png`.
+- **Still open:** whether the wizard step appears for a **special-order (vendor-source)
+  core** requiring receiving (SF-CORE-03/04/05/07) — not driven. All SF-CORE remain
+  pending with updated detail.
+
+## Cleanup helper (record)
+- WO with picked inventory parts can't be deleted ("has received parts"). Remove parts
+  first: **`POST /api/work-orders/parts/delete {part_id, work_order_id}` → 201** (also
+  returns the picked units to inventory), then reopen-if-complete (add a canned line)
+  and `POST /api/work-orders/delete`. Line `parts[]` holds `id, is_core, core_charge,
+  core_part_id, core_resolved, binAllocations, …`.
+
+## Cases moved this pass
+- **VIU-Verified (2 new):** SF-RCV-02, SF-RCV-09. **Upgraded to full-live evidence:**
+  SF-PERM-10 (all 11 roles, was derived).
+- **New totals:** READY (VIU-Verified) **61** · VIU PENDING (QA) **52**
+  (reachable-now 16 · needs-data 36 · needs-account 0) · DEV NOT BUILT **25** ·
+  MILOS ANSWER **15** · BUG/RULING **6** = 159.
+- **New bug:** BUG-10 (no Resolve-Cores wizard step for inventory core). No EXPECTED
+  changed (flagged for dev/PO ruling) → TestRail import NOT regenerated.

@@ -745,7 +745,7 @@
     ],
     "design_ref": "requirements §9 (per-role matrix)",
     "viu_status": "VIU-Verified",
-    "notes": "Per-role completion checklist derived from the SV-8183 role matrix. Role-gating negatives not yet verified live. | VIU 2026-07-07 (Tech-unblock pass): Technician-negative CONFIRMED at FE (Complete button hidden). Other roles not exercised (the only non-admin session available is Technician). Full per-role matrix still pending additional role accounts.",
+    "notes": "VIU 2026-07-08 (BATCH 5) — FULL LIVE 11-ROLE SWEEP (all system roles are REAL/assignable; the prior 'only 3 instantiated' assumption was WRONG). Assigned the Tech user each of the 11 roles in turn via POST /api/staff/{id}/change, quick-login'd tech, and read /api/auth/me/fe-permissions. Complete-WO gate = workOrdersCreateAndEdit. LIVE RESULT matches §9.2 EXACTLY: HAS complete (workOrdersCreateAndEdit=true) -> Admin, Service Manager, Senior Service Advisor, Service Advisor, Foreman, Parts Manager; NO complete -> Technician (view=tech), Parts Tech, Office, Sales Representative, Time Clock. Mark-Reviewed gate (woReviewWorkOrders) and Settings gate (settingsApp) and Pick/Order gates also matched §9.2 for all 11. Tech restored to Technician + verified. Evidence /tmp/simple-flow/role-matrix-6.json. (Completion gate is FE-only at BE per BUG-6/atom-collapse — matrix realised as FE button visibility.)",
     "api_related": false
   },
   {

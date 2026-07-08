@@ -117,6 +117,32 @@ and SF-REV-09 are PASS (FE-gating acceptable) or FAIL (BE gap).
   tweak to add "Category required"; NOT yet changed in the cases/import — flagged
   for PO/team ruling).
 
+### BUG-10 — No "Resolve Cores" step in the completion wizard for an inventory core (resolution is line-level) · Sev: Medium · Status: OPEN
+- **Spec (SF-CORE-01/10, S3-C1/S4-C1, "Resolve Cores handoff"):** after Pick, the
+  completion **modal/wizard** should show a distinct **Resolve Cores** step listing
+  the core lines, with **Ok / Not OK per core** and a live **"+$ to invoice"**
+  running total; Continue disabled until all cores resolved.
+- **Actual (VIU 2026-07-08, BATCH 5):** a genuine cored inventory part **P550848**
+  (FUEL/WATER SEPARATOR; `core_charge=1`, has `core_part_id`) added to a service WO
+  line generates a **"P550848 Core" sub-line** on the WO with **Ok / Not Ok**
+  controls + a `$` amount (`$0` until Not OK) on the **line's Parts view** — but the
+  **completion wizard does NOT present a Resolve Cores step**. Completing the WO went
+  straight **Details → Success** (verified with `autoPickInventoryParts` **ON and
+  OFF**). The core resolution is therefore a **line-level control, not a wizard
+  step**.
+- **Repro:** WO `/lines` → New Line (custom title) → Save & Add Part → select
+  catalog PN **P550848** (Source auto-set Inventory; cost/core/sell auto-fill; qty
+  via bin-amount input) → Save → Complete Work Order → wizard shows only Details then
+  Success; no Resolve Cores step. Evidence `viu-evidence/CORE-01-part-selected.png`,
+  `CORE-01b-filled.png`, `CORE-04-wizard-step1.png`.
+- **Open:** whether the modal Resolve-Cores step appears for a **special-order
+  (vendor-source) core** that requires **receiving** (the S3/S4 special-order-core
+  path, SF-CORE-03/04/05/07) — not yet driven (needs a vendor-source cored line +
+  receive round-trip).
+- **Affects cases:** SF-CORE-01, SF-CORE-10 (and by extension SF-CORE-02); EXPECTED
+  wording NOT changed pending a dev/PO ruling on whether cores are resolved in the
+  wizard vs on the line.
+
 ### Note — vendorless part-add financial fields are FE-gated for non-SFD roles (SF-PERM-09)
 - As **Technician** (no See Financial Data) the New Part Request form **hides** all
   financial fields (Sell Price, Cost, Core Charge, Margin, Vendor, Category); tech
