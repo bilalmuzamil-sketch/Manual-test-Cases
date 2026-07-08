@@ -183,7 +183,7 @@
     "id": "SF-REV-08",
     "area": "Review ON (Story 16)",
     "story_ref": "R5 / R8 (distinct Reviewed state)",
-    "title": "Verify Confirm Review moves the WO to a distinct Reviewed state requiring a separate final Complete Work Order",
+    "title": "Verify Confirm Review signs off and completes the work order directly (no distinct Reviewed holding state)",
     "priority": "High",
     "type": "Functional",
     "permissions_required": "Work Order edit access.",
@@ -197,12 +197,12 @@
       "3. Look for a separate final 'Complete Work Order' action."
     ],
     "expected": [
-      "1. EXPECTED PER SPEC: the WO moves to Reviewed (green) with a 'sign-off complete' banner.",
-      "2. A separate final Complete Work Order action is required to move to Complete."
+      "1. After Confirm Review the sign-off completes and the work order moves directly Review -> Complete.",
+      "2. There is no distinct 'Reviewed' holding state and no separate final 'Complete Work Order' click."
     ],
     "design_ref": "WO Review Flow.html; requirements R5/R8",
-    "viu_status": "Open-Question",
-    "notes": "VIU BUG #4: after Confirm Review the WO went straight to Complete — no distinct Reviewed holding state / separate final Complete click was observed (S16-08-reviewed.png). May be admin auto-progression. Do not record as passing against the expected. See Open Questions.",
+    "viu_status": "VIU-Verified",
+    "notes": "VIU BUG #4: after Confirm Review the WO went straight to Complete — no distinct Reviewed holding state / separate final Complete click was observed (S16-08-reviewed.png). May be admin auto-progression. Do not record as passing against the expected. See Open Questions. || [RECONCILED 2026-07-08] BUG-4 EXPECTED (shortcut principle): sign-off goes directly Review->Complete; no distinct Reviewed state. V2.4 unchanged.",
     "api_related": false
   },
   {
@@ -236,7 +236,7 @@
     "id": "SF-REV-10",
     "area": "Review ON (Story 16)",
     "story_ref": "R7 / R10 (optional note)",
-    "title": "Verify the Mark Reviewed dialog includes an optional review note field (input_review_note)",
+    "title": "Verify the Mark Reviewed dialog includes VIN (required) and an optional review note field (input_review_note)",
     "priority": "Medium",
     "type": "Functional",
     "permissions_required": "Reviewer role (matrix TBD).",
@@ -245,23 +245,25 @@
       "2. The Mark Reviewed dialog is open."
     ],
     "steps": [
-      "1. Look for an optional note field in the dialog.",
-      "2. Enter a note and Confirm."
+      "1. Open the Mark Reviewed dialog.",
+      "2. Confirm a required VIN / Serial # field (Confirm disabled until VIN entered).",
+      "3. Confirm an optional review note field is present; enter a note and Confirm."
     ],
     "expected": [
-      "1. EXPECTED PER SPEC: an optional review note field (input_review_note) is present.",
-      "2. A note can be entered and saved with the sign-off."
+      "1. The Mark Reviewed dialog shows a VIN / Serial # field that is required (Confirm Reviewed is disabled until VIN is entered).",
+      "2. An optional review note field (input_review_note) is present.",
+      "3. A note can be entered and saved with the sign-off."
     ],
     "design_ref": "WO Review Flow - Handoff.md (test IDs)",
-    "viu_status": "Open-Question",
-    "notes": "VIU BUG #3: the Mark Reviewed dialog exposed ONLY the VIN field — no optional-note input (S16-06-mark-reviewed-dialog.png). Do not record as passing against the expected. See Open Questions.",
+    "viu_status": "VIU-Pending",
+    "notes": "VIU BUG #3: the Mark Reviewed dialog exposed ONLY the VIN field — no optional-note input (S16-06-mark-reviewed-dialog.png). Do not record as passing against the expected. See Open Questions. || [RECONCILED 2026-07-08 — REVERSAL] Design bundle (07-08 'Mark work order reviewed' screenshot) CONFIRMS the optional review-note field is INTENDED (VIN required + optional note). Earlier EXPECTED reclassification REVERSED -> BUG-3 back to REAL DEFECT/build-gap (live dialog missing the note).",
     "api_related": false
   },
   {
     "id": "SF-REV-11",
     "area": "Review ON (Story 16)",
     "story_ref": "R8",
-    "title": "Verify after sign-off the final Complete Work Order (any role) completes the WO and invoicing is blocked until reviewed",
+    "title": "Verify sign-off completes the work order directly (no separate final Complete) and invoicing is blocked until reviewed",
     "priority": "High",
     "type": "Functional",
     "permissions_required": "Work Order edit access + Finance access.",
@@ -271,16 +273,16 @@
     ],
     "steps": [
       "1. Before sign-off, attempt to invoice the work order.",
-      "2. After sign-off, click the final Complete Work Order (as any role).",
-      "3. Confirm the WO becomes Complete (invoice-ready)."
+      "2. Complete the review sign-off (Confirm Review).",
+      "3. Confirm the work order becomes Complete (invoice-ready)."
     ],
     "expected": [
-      "1. Invoicing is blocked until the WO is reviewed.",
-      "2. After sign-off, the final Complete Work Order (any role) makes the WO Complete and invoice-ready."
+      "1. Invoicing is blocked until the work order is reviewed.",
+      "2. After sign-off the work order moves directly Review -> Complete (invoice-ready), with no separate final Complete Work Order click."
     ],
     "design_ref": "requirements R8",
     "viu_status": "VIU-Pending",
-    "notes": "Overlaps VIU bug #4 (no distinct Reviewed state observed). Invoicing-block-until-reviewed not driven. Needs live verification.",
+    "notes": "Overlaps VIU bug #4 (no distinct Reviewed state observed). Invoicing-block-until-reviewed not driven. Needs live verification. || [RECONCILED 2026-07-08] BUG-4 EXPECTED: sign-off completes directly; no separate final Complete step. Invoicing-block-until-reviewed still VIU-pending.",
     "api_related": false
   },
   {
@@ -380,7 +382,7 @@
     ],
     "design_ref": "requirements §8 open questions / R Open",
     "viu_status": "Open-Question",
-    "notes": "Spec §8 marks the require-review default as UNRESOLVED. Confirm the intended default before pass/fail. See Open Questions.",
+    "notes": "Spec §8 marks the require-review default as UNRESOLVED. Confirm the intended default before pass/fail. See Open Questions. || [RECONCILED V2.4 2026-07-08 — last-update-wins] Round-1 answer sheet said 'Require Review ON for ALL orgs'; V2.4 S1-R4 (latest) keeps 'Default per cohort (see §8)' -> per-cohort RETAINED; the 'ON for all' rewrite was NOT applied. §8 still marks which cohorts default ON as unresolved.",
     "api_related": false
   },
   {
@@ -477,12 +479,13 @@
       "3. Trigger it again and click Cancel (text link, far left) and observe."
     ],
     "expected": [
-      "1. Clicking Close closes the modal only, keeps any entered changes, and stays on the work order.",
-      "2. Cancel closes the modal and returns to the previous screen."
+      "1. Close (prominent/red button) closes the confirmation modal only, discards nothing (no discard warning), and stays on the work order.",
+      "2. Cancel (text link, far left) closes the modal and returns to the previous screen.",
+      "3. Other consumers of the shared confirmation dialog keep their existing action labels."
     ],
     "design_ref": "requirements S15-R4 (design pending)",
-    "viu_status": "Open-Question",
-    "notes": "S15-R4 close-confirm design is explicitly pending ('Figma still to be added') — no design surface to test yet. Confirm before authoring expected. See Open Questions.",
+    "viu_status": "VIU-Pending",
+    "notes": "S15-R4 close-confirm design is explicitly pending ('Figma still to be added') — no design surface to test yet. Confirm before authoring expected. See Open Questions. || [RECONCILED 2026-07-08] Milos Q10 (S15-R4): behavior defined — Close = modal-only / no discard; Cancel = returns to previous screen. Un-blocked (was pending design).",
     "api_related": false
   },
   {
@@ -1049,8 +1052,8 @@
       "3. The skip path's status setter does not bypass inventory movement / Part History / catalog / delivery."
     ],
     "design_ref": "requirements §5 invariant 1",
-    "viu_status": "Open-Question",
-    "notes": "§8 open question: auto-receive of in-stock inventory on simple completion is unconfirmed, and the spec flags the bare status setter as an integrity risk. Not driven in VIU. See Open Questions.",
+    "viu_status": "VIU-Pending",
+    "notes": "§8 open question: auto-receive of in-stock inventory on simple completion is unconfirmed, and the spec flags the bare status setter as an integrity risk. Not driven in VIU. See Open Questions. || [RECONCILED V2.4 2026-07-08] Un-held: No-PO path RETAINED (V2.4). Inventory-decrement + Part-History invariant remains VIU-pending / round-2 Q3.",
     "api_related": false
   },
   {
@@ -1077,7 +1080,7 @@
     ],
     "design_ref": "requirements §4 / §5",
     "viu_status": "Open-Question",
-    "notes": "Blocked by VIU bug #1: no 'Create Purchase Orders' toggle exists, so Create POs OFF cannot be configured. See Open Questions.",
+    "notes": "Blocked by VIU bug #1: no 'Create Purchase Orders' toggle exists, so Create POs OFF cannot be configured. See Open Questions. || [RECONCILED V2.4 2026-07-08 — last-update-wins] RETIRE CANCELLED. V2.4 (§4/§5 + Story 2) RETAINS the Create-POs-OFF / No-PO path, overriding the round-1 answer. Case stands as V2.4 documentation. BUG-1 = spec-vs-build gap, not a descope.",
     "api_related": false
   },
   {
@@ -1228,6 +1231,28 @@
     "design_ref": "requirements §5 invariant 3",
     "viu_status": "VIU-Pending",
     "notes": "Not driven in VIU. Needs live verification.",
+    "api_related": false
+  },
+  {
+    "id": "SF-QB-09",
+    "area": "QuickBooks / Inventory Integrity",
+    "story_ref": "§8 open question (Part Sales impact — BE investigation)",
+    "title": "Investigate: Part Sales unaffected by the shared order/status logic (requested -> orderable/waiting-to-receive)",
+    "priority": "Low",
+    "type": "Functional",
+    "permissions_required": "Inventory / Part Sales visibility.",
+    "preconditions": [
+      "1. PLACEHOLDER for a new V2.4 §8 open question (needs BE investigation)."
+    ],
+    "steps": [
+      "1. Investigation pending — steps to be defined once dev confirms whether the shared order/status logic touches Part Sales."
+    ],
+    "expected": [
+      "1. OPEN / NEEDS INVESTIGATION — expected result to be defined after dev confirmation. Keep Part Sales unchanged unless the shared logic forces a change (V2.4 §8)."
+    ],
+    "design_ref": "requirements §8 (Part Sales impact investigation)",
+    "viu_status": "Open-Question",
+    "notes": "NEW V2.4 §8 open question (D9). Placeholder only — do NOT fabricate expected. The shared order/status logic (requested -> orderable/waiting-to-receive; PO-on-order without vendor/cost) may touch Part Sales; confirm with dev and report. Excluded from the TestRail XML update batch until scoped.",
     "api_related": false
   }
 ]

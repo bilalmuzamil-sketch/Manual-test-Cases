@@ -129,7 +129,10 @@ def load_map(path):
     with open(path, newline="") as f:
         for row in csv.DictReader(f):
             sf = (row.get("sf_id") or "").strip()
-            tr = (row.get("testrail_case_id") or "").strip()
+            # Accept either an explicit testrail_case_id column or the exported
+            # TestRail "ID"/"id"/"case_id" column (the map is exported from TestRail).
+            tr = (row.get("testrail_case_id") or row.get("ID")
+                  or row.get("id") or row.get("case_id") or "").strip()
             if sf and tr:
                 m[sf] = tr
     return m

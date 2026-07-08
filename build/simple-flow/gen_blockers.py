@@ -531,7 +531,7 @@ def main():
 
     print("\nState counts:", dict(state_counts))
     print("Category counts:", dict(disp_counts))
-    assert sum(disp_counts.values()) == len(rows) == 159
+    assert sum(disp_counts.values()) == len(rows) == 162
 
 
 if __name__ == "__main__":

@@ -113,9 +113,13 @@ and SF-REV-09 are PASS (FE-gating acceptable) or FAIL (BE gap).
 - **Expected:** per S5-R1, only description + quantity + sell price required (no
   Category gate); sell price required.
 - **Actual:** Category required; sell price not enforced.
-- **Affects cases:** SF-VPART-01, SF-VPART-02 (expected-result wording may need a
-  tweak to add "Category required"; NOT yet changed in the cases/import — flagged
-  for PO/team ruling).
+- **Affects cases:** SF-VPART-01, SF-VPART-02.
+- **2026-07-08 RECONCILIATION (V2.4):** V2.4 **S5-R1** now makes **sell price the
+  only mandatory financial field, validated AT SAVE (inline)**. SF-VPART-01/02
+  expected were updated to the V2.4 wording (sell required inline at save; sell-only
+  parts orderable from the line). The live build's failure to enforce sell **and**
+  its extra Category requirement are therefore a confirmed **spec-vs-build gap**
+  (build lags V2.4) — see the Spec-vs-build gaps section below. Status: OPEN.
 
 ### BUG-10 — No "Resolve Cores" step in the completion wizard for an inventory core (resolution is line-level) · Sev: Medium · Status: RECLASSIFIED → EXPECTED (2026-07-08)
 > **RECLASSIFIED → EXPECTED** per the Simple Flow shortcut principle (see
@@ -217,13 +221,17 @@ Affects SF-SET-03, SF-COMP-06, SF-QB-02.
 The Save button on the Work Orders settings tab is clickable with no pending
 changes (no dirty-state gating). Affects SF-SET-13.
 
-### BUG-3 — Mark Reviewed dialog missing optional note · Open Q7 · RECLASSIFIED → EXPECTED (2026-07-08)
+### BUG-3 — Mark Reviewed dialog missing optional note · Open Q7 · REAL DEFECT / build-gap (2026-07-08 REVERSAL)
 Story 16 R7/R10 specify an optional `input_review_note`; the live dialog exposes
 only the VIN field. Affects SF-REV-10.
-> **RECLASSIFIED → EXPECTED** per the Simple Flow shortcut principle (see
-> `finding-reclassification.md`): omitting an optional note is a simplification
-> that reaches the same signed-off end state with no error/corruption. **Not a
-> defect.** (Kept in Milos Round-2 as a one-line confirm only.)
+> **REVERSED back to REAL DEFECT / build-gap (2026-07-08)** — supersedes the earlier
+> "RECLASSIFIED → EXPECTED". The refreshed **2026-07-08 design bundle** (the "Mark
+> work order reviewed" confirm-dialog screenshot; see `design-change-diff.md`) shows
+> the dialog **by design** carries **VIN / Serial # (required) + an optional Review
+> note** field. Because the note is design-intended, its **absence on live is a
+> build gap**, not a Simple-Flow simplification. Under the last-update-wins rule the
+> 07-08 design is the latest input and governs. **SF-REV-10 expected restored** to
+> VIN-required + optional-note. Sev: Low (optional field). Status: OPEN.
 
 ### BUG-4 — Review sign-off jumps to Complete · Open Q8 · RECLASSIFIED → EXPECTED (2026-07-08)
 Story 16 R5/R8 describe Review → **Reviewed** → (final Complete) → Complete as
@@ -234,3 +242,34 @@ SF-REV-11.
 > `finding-reclassification.md`): a skipped intermediate "Reviewed" state that
 > still reaches the same Complete end state with no error/corruption. **Not a
 > defect.**
+
+---
+
+## NEW — Spec-vs-build gaps (2026-07-08 reconciled batch: build lags V2.4 spec / 07-08 design)
+
+Recorded when applying the reconciled V2.4 + design batch (last-update-wins). These
+are cases where the authoritative spec/design is now settled but the **live build
+lags** — case EXPECTED follows the spec; the live deviation is the gap to fix.
+
+### GAP-A — Vendorless "New Part Request" requires Category + does not enforce sell · Sev: Low · Status: OPEN
+- **Spec (V2.4 S5-R1):** sell price is the **only mandatory financial field**,
+  validated **at save (inline)**; no Category gate.
+- **Live build:** empty-save errors flag **Description / Quantity / Category** as
+  required and do **NOT** flag Sell Price. (Same evidence as BUG-9.)
+- **Impact:** SF-VPART-01 / SF-VPART-02 expected follow V2.4 (sell required inline at
+  save); the build's Category gate + non-enforced sell is the gap. Ties to BUG-9.
+
+### GAP-B — Wrong first-use settings defaults · Sev: Medium · Status: OPEN
+- **Spec (§4 / S1 defaults, confirmed Milos Q3):** first-use defaults = Auto-approve
+  Lines **OFF**, Create Purchase Orders **ON**, Vendor Invoice **REQUIRED**.
+- **Live build / design HANDOFF:** first-use shows Auto-approve **ON**, Vendor
+  Invoice **Optional** (`autoApproveLines:true`, `requireVendorInvoiceNumber:false`).
+- **Impact:** SF-SET-08 expected is authoritative (spec defaults); the live/design
+  defaults are the gap to fix. (Downgraded BUG-1/BUG-2 do not apply here.)
+
+### Reminder — No-PO path RETAINED (V2.4), BUG-1 is a build-lag not a descope
+- Under last-update-wins, **V2.4 (Story 2 + S1-R2 + §4) retains the No-PO / Create-POs-OFF
+  path**, overriding the round-1 "POs always on" answer. So **BUG-1** (no Create-POs
+  toggle live; POs always-on) is now a **spec-vs-build gap** (build lags V2.4), not an
+  intended descope. Cases SF-SET-03 / SF-COMP-06 / SF-QB-02 are **NOT retired** and
+  stand as V2.4 documentation.

@@ -77,7 +77,7 @@
     ],
     "design_ref": "requirements S1-R2; HANDOFF.md (settings cards)",
     "viu_status": "Open-Question",
-    "notes": "VIU BUG #1: no 'Create purchase orders' toggle in the UI and no createPurchaseOrders field in GET /api/organizations/settings (08-settings-workorders.png). POs appear always-on. Expected above is spec-authored; do NOT record as passing. See Open Questions tab.",
+    "notes": "VIU BUG #1: no 'Create purchase orders' toggle in the UI and no createPurchaseOrders field in GET /api/organizations/settings (08-settings-workorders.png). POs appear always-on. Expected above is spec-authored; do NOT record as passing. See Open Questions tab. || [RECONCILED V2.4 2026-07-08 — last-update-wins] Rewrite to 'POs always on' CANCELLED. V2.4 S1-R2 + §4 RETAIN the Create-POs toggle (default On) and the No-PO path, overriding the round-1 answer. BUG-1 (toggle absent live) = spec-vs-build gap, build lags V2.4.",
     "api_related": false
   },
   {
@@ -207,13 +207,13 @@
       "2. Read the default state of Auto-approve Lines, Create Purchase Orders, and Vendor Invoice."
     ],
     "expected": [
-      "1. EXPECTED PER SPEC: Auto-approve Lines = OFF.",
-      "2. EXPECTED PER SPEC: Create Purchase Orders = ON.",
-      "3. EXPECTED PER SPEC: Vendor Invoice = REQUIRED."
+      "1. Auto-approve Lines = OFF (spec default — authoritative).",
+      "2. Create Purchase Orders = ON.",
+      "3. Vendor Invoice = REQUIRED."
     ],
     "design_ref": "requirements §4 / S1 defaults; HANDOFF.md (design defaults differ)",
-    "viu_status": "Open-Question",
-    "notes": "CONFLICT: spec defaults (Auto-approve OFF, invoice REQUIRED) vs design HANDOFF.md defaults (Auto-approve ON, invoice Optional). Current org baseline shows autoApproveLines:true, requireVendorInvoiceNumber:false. Also 'Create Purchase Orders' toggle is absent (bug #1). Confirm the authoritative first-use defaults before pass/fail. See Open Questions.",
+    "viu_status": "VIU-Pending",
+    "notes": "CONFLICT: spec defaults (Auto-approve OFF, invoice REQUIRED) vs design HANDOFF.md defaults (Auto-approve ON, invoice Optional). Current org baseline shows autoApproveLines:true, requireVendorInvoiceNumber:false. Also 'Create Purchase Orders' toggle is absent (bug #1). Confirm the authoritative first-use defaults before pass/fail. See Open Questions. || [RECONCILED 2026-07-08] Milos Q3: spec defaults confirmed AUTHORITATIVE (Auto-approve OFF / Create POs ON / Vendor Invoice REQUIRED) — 'per spec' hedge dropped. Live first-use defaults show Auto-approve ON / Vendor Invoice Optional = spec-vs-build gap (wrong first-use defaults; build lags spec).",
     "api_related": false
   },
   {
@@ -342,12 +342,12 @@
       "2. Flip a toggle and look at the Save Settings button again."
     ],
     "expected": [
-      "1. EXPECTED (typical UX): with no changes, Save Settings is disabled.",
-      "2. After a change, Save Settings becomes enabled."
+      "1. Saving persists the settings changes.",
+      "2. Dirty-state gating (disabling Save until a change is made) is NOT required in v1 — Save being always enabled is acceptable (low-priority polish, not a blocker)."
     ],
     "design_ref": "Workflow Settings.html",
-    "viu_status": "Open-Question",
-    "notes": "VIU BUG #2: Save Settings is always enabled (no dirty-state gating) — S1-01-settings-baseline.png. Confirm intended behavior; do not record as passing against the expected. See Open Questions.",
+    "viu_status": "VIU-Pending",
+    "notes": "VIU BUG #2: Save Settings is always enabled (no dirty-state gating) — S1-01-settings-baseline.png. Confirm intended behavior; do not record as passing against the expected. See Open Questions. || [RECONCILED 2026-07-08] Milos Q6: dirty-state gating not required in v1; BUG-2 downgraded to nice-to-have (Save-always-enabled acceptable).",
     "api_related": false
   },
   {
@@ -374,7 +374,7 @@
     ],
     "design_ref": "Workflow Settings.html; WO Review Flow.html",
     "viu_status": "VIU-Verified",
-    "notes": "Verified 2026-07-06 — the toggle IS on the settings page (resolves the design-handoff note that it was prototype-only). See S16-04-review-wizard.png.",
+    "notes": "Verified 2026-07-06 — the toggle IS on the settings page (resolves the design-handoff note that it was prototype-only). See S16-04-review-wizard.png. || [RECONCILED V2.4 2026-07-08] The queued 'toggle defaults ON for the org' addition was NOT applied — V2.4 S1-R4 keeps per-cohort defaults (see §8). Toggle-present + routes-to-review expectations stand.",
     "api_related": false
   },
   {
@@ -563,7 +563,7 @@
     ],
     "design_ref": "requirements §4 / §5; S2-R6",
     "viu_status": "Open-Question",
-    "notes": "Blocked by VIU bug #1: no 'Create Purchase Orders' toggle exists, so Create POs OFF cannot be configured. Expected depends on that toggle shipping. See Open Questions.",
+    "notes": "Blocked by VIU bug #1: no 'Create Purchase Orders' toggle exists, so Create POs OFF cannot be configured. Expected depends on that toggle shipping. See Open Questions. || [RECONCILED V2.4 2026-07-08 — last-update-wins] RETIRE CANCELLED. V2.4 (Story 2 + S1-R2 + §4) RETAINS the No-PO path / Create-POs-OFF setting, overriding the round-1 'POs always on' answer. Case stands as V2.4 documentation. BUG-1 (no Create-POs toggle live) is a spec-vs-build gap (build lags V2.4), not an intended descope.",
     "api_related": false
   },
   {
@@ -590,8 +590,8 @@
       "3. The skip path does not bypass inventory movement / Part History."
     ],
     "design_ref": "requirements §5 invariant 1",
-    "viu_status": "Open-Question",
-    "notes": "§8 open question — auto-receive of in-stock inventory on simple completion is UNCONFIRMED. Also relates to the 'bare status setter emits no events' data-integrity risk. Not driven in VIU. Confirm intended behavior.",
+    "viu_status": "VIU-Pending",
+    "notes": "§8 open question — auto-receive of in-stock inventory on simple completion is UNCONFIRMED. Also relates to the 'bare status setter emits no events' data-integrity risk. Not driven in VIU. Confirm intended behavior. || [RECONCILED V2.4 2026-07-08] Un-held: No-PO path RETAINED (V2.4), so the completion expectations stand. Inventory-decrement + Part-History invariant remains VIU-pending / round-2 Q3 (in-stock decrement on completion not yet confirmed).",
     "api_related": false
   },
   {
@@ -721,12 +721,14 @@
     ],
     "expected": [
       "1. The modal shows the number of parts waiting to receive (e.g. '2 parts waiting to receive').",
-      "2. Background POs are created for the vendor parts (a vendorless part goes on the WO's PO flagged Vendor Missing).",
-      "3. Inventory-pick status is reflected in the modal."
+      "2. Background POs are created for the vendor parts (a vendorless / sell-price-only part goes on the work order's PO flagged Vendor Missing).",
+      "3. All approved-line parts are actually ordered and reach waiting-to-receive, so 'Receive Parts' always has something to receive.",
+      "4. No approved part is left in 'requested' and routed to an empty receive screen.",
+      "5. Inventory-pick status is reflected in the modal."
     ],
     "design_ref": "WO Review Flow.html",
-    "viu_status": "VIU-Verified",
-    "notes": "Parts-to-receive count verified 2026-07-06 ('2 parts waiting to receive', S3-01-wizard-optional.png). Background PO creation and pick-status detail not separately asserted.",
+    "viu_status": "VIU-Pending",
+    "notes": "Parts-to-receive count verified 2026-07-06 ('2 parts waiting to receive', S3-01-wizard-optional.png). Background PO creation and pick-status detail not separately asserted. || [V2.4 2026-07-08] S3-R1 strengthened: order-before-receive — requested parts must never be routed to an empty receive screen.",
     "api_related": false
   },
   {
@@ -882,11 +884,12 @@
     "expected": [
       "1. The wizard shows a Receive step ('2 parts waiting to receive').",
       "2. The primary Complete Work Order CTA is DISABLED until all parts are received.",
-      "3. There is NO 'Complete without receiving' option."
+      "3. There is NO 'Complete without receiving' option.",
+      "4. Approved sell-price-only parts (missing vendor and/or cost) are ordered too and reach waiting-to-receive before the receive gate — no approved part is left in 'requested' with nothing to receive."
     ],
     "design_ref": "WO Review Flow.html",
     "viu_status": "VIU-Verified",
-    "notes": "Verified 2026-07-06 with requireVendorInvoiceNumber=true; Complete CTA disabled, Receive Parts present, no skip option (S4-02-wizard.png).",
+    "notes": "Verified 2026-07-06 with requireVendorInvoiceNumber=true; Complete CTA disabled, Receive Parts present, no skip option (S4-02-wizard.png). || [V2.4 2026-07-08] S4-R1: sell-price-only parts are ordered too -> waiting-to-receive before the required-invoice receive gate.",
     "api_related": false
   },
   {
@@ -910,11 +913,12 @@
     "expected": [
       "1. The receive page collects qty, tax, date, note and invoice # per vendor.",
       "2. On return, once all parts are received the Complete Work Order CTA is enabled.",
-      "3. Completing shows the Success screen."
+      "3. Completing shows the Success screen.",
+      "4. Sell-price-only parts were ordered to waiting-to-receive, so they appear in the receive round-trip and are not left in 'requested'."
     ],
     "design_ref": "WO Review Flow.html; Receive Vendor Parts - v2.html",
     "viu_status": "VIU-Pending",
-    "notes": "The disabled-CTA state was verified; the full receive round-trip was not driven (needs a parts-receive walk). Needs live verification.",
+    "notes": "The disabled-CTA state was verified; the full receive round-trip was not driven (needs a parts-receive walk). Needs live verification. || [V2.4 2026-07-08] S4-R1: sell-price-only parts ordered too -> present in the receive round-trip.",
     "api_related": false
   },
   {
@@ -1027,7 +1031,7 @@
     "id": "SF-CORE-01",
     "area": "Core parts — Completion modal (Stories 3/4/16)",
     "story_ref": "S3-C1 / S4-C1 / Resolve Cores handoff",
-    "title": "Verify inventory cores are gated in the completion modal after Pick with Ok/Not OK per core",
+    "title": "Verify inventory cores are resolved via a line-level Ok/Not-OK control (no distinct Resolve-Cores wizard step)",
     "priority": "High",
     "type": "Functional",
     "permissions_required": "Work Order edit access.",
@@ -1037,26 +1041,26 @@
       "3. Auto-pick is set so the Pick step runs (or picking is otherwise required)."
     ],
     "steps": [
-      "1. Click Complete Work Order.",
-      "2. Complete the Pick step.",
-      "3. Observe the Resolve Cores step and mark each core Ok (returned) or Not OK (keep + charge).",
-      "4. Try to continue before resolving all cores."
+      "1. Add a cored inventory part to a work order line and open the line's Parts view.",
+      "2. Confirm the part generates a Core sub-line with per-core Ok / Not-OK controls and a $ amount.",
+      "3. Click Complete Work Order and step through the completion wizard.",
+      "4. Confirm there is no distinct Resolve Cores step and completion goes Details -> Success."
     ],
     "expected": [
-      "1. A Resolve Cores step appears after Pick, listing only the core lines.",
-      "2. Each core offers Ok (returned, no charge) and Not OK (keep + charge).",
-      "3. Continue is disabled until all cores are resolved."
+      "1. The cored part generates a Core sub-line on the line's Parts view with per-core Ok (returned, no charge) and Not-OK (keep + charge) controls and a $ amount ($0 until Not-OK).",
+      "2. The completion wizard has NO distinct Resolve Cores step; a work order whose only remaining action is core resolution completes Details -> Success.",
+      "3. Core resolution is a line-level control, not a wizard step."
     ],
     "design_ref": "Resolve Cores Flow.html; Core Resolution.html; Pick Parts + Cores.html",
-    "viu_status": "VIU-Pending",
-    "notes": "VIU 2026-07-08 (BATCH 5) — CORE PART NOW SEEDED but DEVIATION found. Added genuine cored inventory part P550848 (FUEL/WATER SEPARATOR; core_charge=1, has core_part_id) to a service WO line via the catalog Part Number selector (Source auto-set Inventory; cost 53.52 / core 1.00 / sell 86.32 auto-fill; qty via bin-amount input). The core generates a 'P550848 Core' sub-line on the WO with per-core Ok / Not Ok controls and a $ amount ($0 until Not OK) on the line's Parts view. BUT the completion wizard did NOT present a distinct 'Resolve Cores' step — completion went Details->Success (verified with autoPick ON and OFF). So the expected 'Resolve Cores step in the completion modal' is NOT observed for a pre-picked in-stock inventory core; the Ok/Not OK resolution is a LINE-LEVEL control, not a wizard step. See bugs-log BUG-10. Still pending: whether the modal step appears for a SPECIAL-ORDER (vendor-source) core that requires receiving (SF-CORE-03/04/05/07). Evidence CORE-01-part-selected.png, CORE-01b-filled.png, CORE-04-wizard-step1.png.",
+    "viu_status": "VIU-Verified",
+    "notes": "VIU 2026-07-08 (BATCH 5) — CORE PART NOW SEEDED but DEVIATION found. Added genuine cored inventory part P550848 (FUEL/WATER SEPARATOR; core_charge=1, has core_part_id) to a service WO line via the catalog Part Number selector (Source auto-set Inventory; cost 53.52 / core 1.00 / sell 86.32 auto-fill; qty via bin-amount input). The core generates a 'P550848 Core' sub-line on the WO with per-core Ok / Not Ok controls and a $ amount ($0 until Not OK) on the line's Parts view. BUT the completion wizard did NOT present a distinct 'Resolve Cores' step — completion went Details->Success (verified with autoPick ON and OFF). So the expected 'Resolve Cores step in the completion modal' is NOT observed for a pre-picked in-stock inventory core; the Ok/Not OK resolution is a LINE-LEVEL control, not a wizard step. See bugs-log BUG-10. Still pending: whether the modal step appears for a SPECIAL-ORDER (vendor-source) core that requires receiving (SF-CORE-03/04/05/07). Evidence CORE-01-part-selected.png, CORE-01b-filled.png, CORE-04-wizard-step1.png. || [RECONCILED 2026-07-08] BUG-10 EXPECTED (shortcut principle): cores are line-level; no wizard step; Details->Success. V2.4 unchanged.",
     "api_related": false
   },
   {
     "id": "SF-CORE-02",
     "area": "Core parts — Completion modal",
     "story_ref": "S3-C1 (skipped if none)",
-    "title": "Verify the Resolve Cores step is skipped when the work order has no cores",
+    "title": "Verify a work order with no cores completes with no core sub-lines and no Resolve-Cores wizard step",
     "priority": "Low",
     "type": "Functional",
     "permissions_required": "Work Order edit access.",
@@ -1070,12 +1074,12 @@
       "3. Watch for a Resolve Cores step."
     ],
     "expected": [
-      "1. No Resolve Cores step appears.",
-      "2. Completion proceeds directly through the normal steps."
+      "1. No core sub-lines appear (the work order has no cores).",
+      "2. There is no distinct Resolve Cores wizard step; completion proceeds directly Details -> Success."
     ],
     "design_ref": "Resolve Cores Flow - Handoff.md",
     "viu_status": "VIU-Pending",
-    "notes": "Not driven in VIU. Needs live verification.",
+    "notes": "Not driven in VIU. Needs live verification. || [RECONCILED 2026-07-08] BUG-10 EXPECTED: no wizard Resolve-Cores step in any case; cores are line-level.",
     "api_related": false
   },
   {
@@ -1265,7 +1269,7 @@
     "id": "SF-CORE-10",
     "area": "Core parts — Resolve step UI",
     "story_ref": "Resolve Cores handoff (live +$ total)",
-    "title": "Verify the Resolve Cores step shows a live running '+$ to invoice' total as cores are marked Not OK",
+    "title": "Verify the core '+$ to invoice' amount is shown at the line level as a core is marked Not-OK (no Resolve-Cores wizard total)",
     "priority": "Low",
     "type": "Functional",
     "permissions_required": "Work Order edit access.",
@@ -1274,18 +1278,18 @@
       "2. You are in the Resolve Cores step with multiple cores."
     ],
     "steps": [
-      "1. Mark one core Not OK (keep + charge).",
-      "2. Observe the running total.",
-      "3. Mark another core Not OK and observe again."
+      "1. On the line's Parts view, mark a Core sub-line Not-OK (keep + charge).",
+      "2. Observe the $ amount on that Core sub-line.",
+      "3. Mark the core Ok and observe the $ amount again."
     ],
     "expected": [
-      "1. A live '+$ to invoice' total is shown.",
-      "2. The total increases as each core is marked Not OK.",
-      "3. Marking a core Ok does not add to the total."
+      "1. The Core sub-line shows a $ amount on the line's Parts view ($0 until it is marked Not-OK).",
+      "2. Marking the core Not-OK sets the +$ to invoice on that line.",
+      "3. There is no distinct Resolve Cores wizard step with a running total; the core $ is a line-level control."
     ],
     "design_ref": "Resolve Cores Flow.html; Resolve Cores Flow - Handoff.md",
-    "viu_status": "VIU-Pending",
-    "notes": "VIU 2026-07-08 (BATCH 5): the per-core Ok/Not Ok + $ amount surface exists on the WO line Parts view (P550848 Core sub-line shows '$0' until Not OK), but there is NO distinct 'Resolve Cores' step in the completion wizard (verified autoPick ON/OFF; completion goes Details->Success). So the live '+$ to invoice' running total belonging to a Resolve-Cores step is not present as specified — see SF-CORE-01 note + bugs-log BUG-10. Still pending pending the special-order (vendor-source) core path.",
+    "viu_status": "VIU-Verified",
+    "notes": "VIU 2026-07-08 (BATCH 5): the per-core Ok/Not Ok + $ amount surface exists on the WO line Parts view (P550848 Core sub-line shows '$0' until Not OK), but there is NO distinct 'Resolve Cores' step in the completion wizard (verified autoPick ON/OFF; completion goes Details->Success). So the live '+$ to invoice' running total belonging to a Resolve-Cores step is not present as specified — see SF-CORE-01 note + bugs-log BUG-10. Still pending pending the special-order (vendor-source) core path. || [RECONCILED 2026-07-08] BUG-10 EXPECTED: '+$ to invoice' is a line-level Core sub-line amount, not a wizard-step running total.",
     "api_related": false
   },
   {

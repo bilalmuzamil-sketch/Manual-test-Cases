@@ -16,7 +16,7 @@ SF-SET-03,Work Order Settings,S1-R2 (Create purchase orders),"Verify a 'Create P
 2. Turn it Off and observe the Vendor Invoice Number setting.
 3. Turn it On and observe the Vendor Invoice Number setting.","1. EXPECTED PER SPEC (currently NOT met): a 'Create purchase orders' toggle exists, default On, with helper text.
 2. With Create POs Off, the Vendor Invoice (Optional/Required) sub-setting is hidden and no vendor-invoice capture happens in completion.
-3. With Create POs On, the Vendor Invoice (Optional/Required) sub-setting appears with helper text.",requirements S1-R2; HANDOFF.md (settings cards),Open-Question,VIU BUG #1: no 'Create purchase orders' toggle in the UI and no createPurchaseOrders field in GET /api/organizations/settings (08-settings-workorders.png). POs appear always-on. Expected above is spec-authored; do NOT record as passing. See Open Questions tab.
+3. With Create POs On, the Vendor Invoice (Optional/Required) sub-setting appears with helper text.",requirements S1-R2; HANDOFF.md (settings cards),Open-Question,"VIU BUG #1: no 'Create purchase orders' toggle in the UI and no createPurchaseOrders field in GET /api/organizations/settings (08-settings-workorders.png). POs appear always-on. Expected above is spec-authored; do NOT record as passing. See Open Questions tab. || [RECONCILED V2.4 2026-07-08 — last-update-wins] Rewrite to 'POs always on' CANCELLED. V2.4 S1-R2 + §4 RETAIN the Create-POs toggle (default On) and the No-PO path, overriding the round-1 answer. BUG-1 (toggle absent live) = spec-vs-build gap, build lags V2.4."
 SF-SET-04,Work Order Settings,S1-R3 (Vendor invoice Optional/Required),Verify the Require Vendor Invoice Number toggle is present with helper text and drives Optional vs Required completion,Critical,Functional,Admin / owner (settings area).,"1. Signed in as Admin.
 2. On /administration/settings → Work Orders tab.","1. Locate the 'Require Vendor Invoice Number' toggle.
 2. Read its helper text.
@@ -45,9 +45,9 @@ SF-SET-07,Work Order Settings,S1-R5..R8 (existing settings surfaced),"Verify exi
 3. States display without altering the values.",Workflow Settings.html,VIU-Verified,"Verified 2026-07-06 vs baseline requireTechStories:true, requireMileage:true, requireHours:false, autoPickInventoryParts:true (08-settings-workorders.png)."
 SF-SET-08,Work Order Settings,S1 first-use defaults / §4,"Verify first-use defaults on a brand-new org (auto-approve OFF, create POs ON, vendor invoice REQUIRED)",High,Functional,Admin / owner of a newly-created org.,"1. A brand-new organization that has never edited Work Order settings is available.
 2. Signed in as that org's Admin.","1. Open /administration/settings → Work Orders tab for the new org.
-2. Read the default state of Auto-approve Lines, Create Purchase Orders, and Vendor Invoice.","1. EXPECTED PER SPEC: Auto-approve Lines = OFF.
-2. EXPECTED PER SPEC: Create Purchase Orders = ON.
-3. EXPECTED PER SPEC: Vendor Invoice = REQUIRED.",requirements §4 / S1 defaults; HANDOFF.md (design defaults differ),Open-Question,"CONFLICT: spec defaults (Auto-approve OFF, invoice REQUIRED) vs design HANDOFF.md defaults (Auto-approve ON, invoice Optional). Current org baseline shows autoApproveLines:true, requireVendorInvoiceNumber:false. Also 'Create Purchase Orders' toggle is absent (bug #1). Confirm the authoritative first-use defaults before pass/fail. See Open Questions."
+2. Read the default state of Auto-approve Lines, Create Purchase Orders, and Vendor Invoice.","1. Auto-approve Lines = OFF (spec default — authoritative).
+2. Create Purchase Orders = ON.
+3. Vendor Invoice = REQUIRED.",requirements §4 / S1 defaults; HANDOFF.md (design defaults differ),VIU-Pending,"CONFLICT: spec defaults (Auto-approve OFF, invoice REQUIRED) vs design HANDOFF.md defaults (Auto-approve ON, invoice Optional). Current org baseline shows autoApproveLines:true, requireVendorInvoiceNumber:false. Also 'Create Purchase Orders' toggle is absent (bug #1). Confirm the authoritative first-use defaults before pass/fail. See Open Questions. || [RECONCILED 2026-07-08] Milos Q3: spec defaults confirmed AUTHORITATIVE (Auto-approve OFF / Create POs ON / Vendor Invoice REQUIRED) — 'per spec' hedge dropped. Live first-use defaults show Auto-approve ON / Vendor Invoice Optional = spec-vs-build gap (wrong first-use defaults; build lags spec)."
 SF-SET-09,Work Order Settings,S1-R9 (Save persists org-wide),Verify saving a settings change persists after page reload,High,Functional,Admin / owner (settings area).,"1. Signed in as Admin.
 2. On /administration/settings → Work Orders tab.
 3. Note the current state of one toggle (e.g. Require Engine Hours).","1. Flip one toggle (e.g. Require Engine Hours) to the opposite state.
@@ -75,14 +75,14 @@ SF-SET-12,Work Order Settings,S1 AC (no requireVin / no operatingMode field),Ver
 2. There is no requireVin Work Order setting exposed.",requirements §4 Key Decisions,VIU-Verified,Verified 2026-07-06 via GET /api/organizations/settings; no operatingMode / no requireVin toggle. (requireVehicleIdentifier exists but is not a WO-settings toggle.)
 SF-SET-13,Work Order Settings,S1 (Save dirty-state),Verify the Save Settings button is only enabled when there is an unsaved change,Low,Functional,Admin / owner (settings area).,"1. Signed in as Admin.
 2. On /administration/settings → Work Orders tab with no pending changes.","1. With no changes made, look at the Save Settings button.
-2. Flip a toggle and look at the Save Settings button again.","1. EXPECTED (typical UX): with no changes, Save Settings is disabled.
-2. After a change, Save Settings becomes enabled.",Workflow Settings.html,Open-Question,VIU BUG #2: Save Settings is always enabled (no dirty-state gating) — S1-01-settings-baseline.png. Confirm intended behavior; do not record as passing against the expected. See Open Questions.
+2. Flip a toggle and look at the Save Settings button again.","1. Saving persists the settings changes.
+2. Dirty-state gating (disabling Save until a change is made) is NOT required in v1 — Save being always enabled is acceptable (low-priority polish, not a blocker).",Workflow Settings.html,VIU-Pending,VIU BUG #2: Save Settings is always enabled (no dirty-state gating) — S1-01-settings-baseline.png. Confirm intended behavior; do not record as passing against the expected. See Open Questions. || [RECONCILED 2026-07-08] Milos Q6: dirty-state gating not required in v1; BUG-2 downgraded to nice-to-have (Save-always-enabled acceptable).
 SF-SET-14,Work Order Settings,S1-R4 (Require review before completion),Verify the Require Review Before Completion toggle is present on the settings page and drives the review flow,High,Functional,Admin / owner (settings area).,"1. Signed in as Admin.
 2. On /administration/settings → Work Orders tab.","1. Locate the 'Require Review Before Completion' toggle.
 2. Turn it On and Save.
 3. Start completing a work order and observe the completion CTA.","1. The 'Require Review Before Completion' toggle is present on the page (not prototype-only).
 2. With it On, completing a work order routes into the review flow (Story 16).
-3. The completion CTA relabels to 'Complete & Send to Review'.",Workflow Settings.html; WO Review Flow.html,VIU-Verified,Verified 2026-07-06 — the toggle IS on the settings page (resolves the design-handoff note that it was prototype-only). See S16-04-review-wizard.png.
+3. The completion CTA relabels to 'Complete & Send to Review'.",Workflow Settings.html; WO Review Flow.html,VIU-Verified,Verified 2026-07-06 — the toggle IS on the settings page (resolves the design-handoff note that it was prototype-only). See S16-04-review-wizard.png. || [RECONCILED V2.4 2026-07-08] The queued 'toggle defaults ON for the org' addition was NOT applied — V2.4 S1-R4 keeps per-cohort defaults (see §8). Toggle-present + routes-to-review expectations stand.
 SF-SET-15,Work Order Settings,S1 AC (helper text per toggle),Verify every Work Order setting toggle has descriptive helper text,Low,Functional,Admin / owner (settings area).,"1. Signed in as Admin.
 2. On /administration/settings → Work Orders tab.","1. Read each toggle's supporting description text.
 2. Confirm each explains what On vs Off does.","1. Every toggle has a short helper description.
@@ -124,14 +124,14 @@ SF-COMP-06,Completion — No-PO / Skip (Story 2),S2-R6 / S2 AC (Create POs off �
 2. Check whether any PO was created.
 3. Check for any vendor bill / AP sync.","1. EXPECTED PER SPEC: no PO is created.
 2. No vendor bill and no AP sync occur.
-3. No catalog/inventory sync for the vendor/found part; it is received at request time only.",requirements §4 / §5; S2-R6,Open-Question,"Blocked by VIU bug #1: no 'Create Purchase Orders' toggle exists, so Create POs OFF cannot be configured. Expected depends on that toggle shipping. See Open Questions."
+3. No catalog/inventory sync for the vendor/found part; it is received at request time only.",requirements §4 / §5; S2-R6,Open-Question,"Blocked by VIU bug #1: no 'Create Purchase Orders' toggle exists, so Create POs OFF cannot be configured. Expected depends on that toggle shipping. See Open Questions. || [RECONCILED V2.4 2026-07-08 — last-update-wins] RETIRE CANCELLED. V2.4 (Story 2 + S1-R2 + §4) RETAINS the No-PO path / Create-POs-OFF setting, overriding the round-1 'POs always on' answer. Case stands as V2.4 documentation. BUG-1 (no Create-POs toggle live) is a spec-vs-build gap (build lags V2.4), not an intended descope."
 SF-COMP-07,Completion — No-PO / Skip (Story 2),S2-R6 / §5 invariant 1,Verify in-stock inventory parts decrement inventory and write Part History on simple completion,High,Functional,Work Order edit access + Inventory visibility.,"1. Signed in as Admin.
 2. An open work order has an approved in-stock inventory part line.
 3. Note the part's current on-hand quantity.","1. Complete the work order via the simple (skip) flow.
 2. Check the inventory on-hand quantity for that part.
 3. Check the part's Part History.","1. The in-stock part's on-hand quantity decrements by the used amount.
 2. A Part History entry is written for the movement.
-3. The skip path does not bypass inventory movement / Part History.",requirements §5 invariant 1,Open-Question,§8 open question — auto-receive of in-stock inventory on simple completion is UNCONFIRMED. Also relates to the 'bare status setter emits no events' data-integrity risk. Not driven in VIU. Confirm intended behavior.
+3. The skip path does not bypass inventory movement / Part History.",requirements §5 invariant 1,VIU-Pending,"§8 open question — auto-receive of in-stock inventory on simple completion is UNCONFIRMED. Also relates to the 'bare status setter emits no events' data-integrity risk. Not driven in VIU. Confirm intended behavior. || [RECONCILED V2.4 2026-07-08] Un-held: No-PO path RETAINED (V2.4), so the completion expectations stand. Inventory-decrement + Part-History invariant remains VIU-pending / round-2 Q3 (in-stock decrement on completion not yet confirmed)."
 SF-COMP-08,Completion — No-PO / Skip (Story 2),S2-R2 / S2 AC (auto-pick off ⇒ pick in modal),Verify with Auto-pick Inventory OFF the completion modal requires picking parts before Complete,Medium,Functional,Admin / owner (settings) + Work Order edit access.,"1. Signed in as Admin.
 2. Automatically Pick Inventory Parts is OFF and saved.
 3. An open work order with an approved inventory-part line exists.","1. Click Complete Work Order.
@@ -160,8 +160,10 @@ SF-COMP-12,Completion — PO + Optional Invoice (Story 3),S3-R1 / S3-R2 / S3-R9,
 3. An open work order with two approved vendor-part lines exists.","1. Click Complete Work Order.
 2. Read the parts-to-receive count in the modal.
 3. Check that POs were created in the background for the vendor parts.","1. The modal shows the number of parts waiting to receive (e.g. '2 parts waiting to receive').
-2. Background POs are created for the vendor parts (a vendorless part goes on the WO's PO flagged Vendor Missing).
-3. Inventory-pick status is reflected in the modal.",WO Review Flow.html,VIU-Verified,"Parts-to-receive count verified 2026-07-06 ('2 parts waiting to receive', S3-01-wizard-optional.png). Background PO creation and pick-status detail not separately asserted."
+2. Background POs are created for the vendor parts (a vendorless / sell-price-only part goes on the work order's PO flagged Vendor Missing).
+3. All approved-line parts are actually ordered and reach waiting-to-receive, so 'Receive Parts' always has something to receive.
+4. No approved part is left in 'requested' and routed to an empty receive screen.
+5. Inventory-pick status is reflected in the modal.",WO Review Flow.html,VIU-Pending,"Parts-to-receive count verified 2026-07-06 ('2 parts waiting to receive', S3-01-wizard-optional.png). Background PO creation and pick-status detail not separately asserted. || [V2.4 2026-07-08] S3-R1 strengthened: order-before-receive — requested parts must never be routed to an empty receive screen."
 SF-COMP-13,Completion — PO + Optional Invoice (Story 3),S3-R5,Verify Receive Parts opens the shared Accept Delivery page to receive all vendors at once,High,Functional,Work Order edit access + receive access.,"1. Signed in as Admin.
 2. You are in the optional-invoice completion wizard for a multi-vendor part work order.","1. Click Receive Parts.
 2. Observe the destination screen.
@@ -195,14 +197,16 @@ SF-COMP-18,Completion — PO + Required Invoice (Story 4),S4-R4,Verify the requi
 2. Observe the primary CTA state.
 3. Look for a 'Complete without receiving' option.","1. The wizard shows a Receive step ('2 parts waiting to receive').
 2. The primary Complete Work Order CTA is DISABLED until all parts are received.
-3. There is NO 'Complete without receiving' option.",WO Review Flow.html,VIU-Verified,"Verified 2026-07-06 with requireVendorInvoiceNumber=true; Complete CTA disabled, Receive Parts present, no skip option (S4-02-wizard.png)."
+3. There is NO 'Complete without receiving' option.
+4. Approved sell-price-only parts (missing vendor and/or cost) are ordered too and reach waiting-to-receive before the receive gate — no approved part is left in 'requested' with nothing to receive.",WO Review Flow.html,VIU-Verified,"Verified 2026-07-06 with requireVendorInvoiceNumber=true; Complete CTA disabled, Receive Parts present, no skip option (S4-02-wizard.png). || [V2.4 2026-07-08] S4-R1: sell-price-only parts are ordered too -> waiting-to-receive before the required-invoice receive gate."
 SF-COMP-19,Completion — PO + Required Invoice (Story 4),S4-R5 / S4-R7,Verify the required-invoice receive round-trip returns to the modal and enables Complete once all received,High,Functional,Work Order edit access + receive access.,"1. Signed in as Admin.
 2. You are in the required-invoice completion wizard with unreceived parts.","1. Click Receive Parts.
 2. On the shared Accept Delivery page, enter qty, tax, date, note and vendor invoice # per vendor and receive all parts.
 3. Click Back to Work Order (or finish).
 4. Observe the completion modal CTA, then click Complete Work Order.","1. The receive page collects qty, tax, date, note and invoice # per vendor.
 2. On return, once all parts are received the Complete Work Order CTA is enabled.
-3. Completing shows the Success screen.",WO Review Flow.html; Receive Vendor Parts - v2.html,VIU-Pending,The disabled-CTA state was verified; the full receive round-trip was not driven (needs a parts-receive walk). Needs live verification.
+3. Completing shows the Success screen.
+4. Sell-price-only parts were ordered to waiting-to-receive, so they appear in the receive round-trip and are not left in 'requested'.",WO Review Flow.html; Receive Vendor Parts - v2.html,VIU-Pending,The disabled-CTA state was verified; the full receive round-trip was not driven (needs a parts-receive walk). Needs live verification. || [V2.4 2026-07-08] S4-R1: sell-price-only parts ordered too -> present in the receive round-trip.
 SF-COMP-20,Completion — PO + Required Invoice (Story 4),S4-R6,Verify Cancel in the required-invoice wizard makes no change to the work order,Medium,Functional,Work Order edit access.,"1. Signed in as Admin.
 2. You are in the required-invoice completion wizard.","1. Click Cancel.
 2. Inspect the work order status and lines.","1. The modal closes.
@@ -225,19 +229,19 @@ SF-COMP-23,Completion — Idempotency,S3-R9 (no duplicate POs on re-Complete),Ve
 2. Start completion again.
 3. Inspect the POs for the work order at /parts/orders.","1. Only one PO per vendor exists.
 2. No duplicate POs are created by the second completion attempt.",requirements S3-R9,VIU-Verified,Not driven in VIU. Needs live verification.
-SF-CORE-01,Core parts — Completion modal (Stories 3/4/16),S3-C1 / S4-C1 / Resolve Cores handoff,Verify inventory cores are gated in the completion modal after Pick with Ok/Not OK per core,High,Functional,Work Order edit access.,"1. Signed in as Admin.
+SF-CORE-01,Core parts — Completion modal (Stories 3/4/16),S3-C1 / S4-C1 / Resolve Cores handoff,Verify inventory cores are resolved via a line-level Ok/Not-OK control (no distinct Resolve-Cores wizard step),High,Functional,Work Order edit access.,"1. Signed in as Admin.
 2. A work order has an approved inventory line that carries a core charge.
-3. Auto-pick is set so the Pick step runs (or picking is otherwise required).","1. Click Complete Work Order.
-2. Complete the Pick step.
-3. Observe the Resolve Cores step and mark each core Ok (returned) or Not OK (keep + charge).
-4. Try to continue before resolving all cores.","1. A Resolve Cores step appears after Pick, listing only the core lines.
-2. Each core offers Ok (returned, no charge) and Not OK (keep + charge).
-3. Continue is disabled until all cores are resolved.",Resolve Cores Flow.html; Core Resolution.html; Pick Parts + Cores.html,VIU-Pending,"VIU 2026-07-08 (BATCH 5) — CORE PART NOW SEEDED but DEVIATION found. Added genuine cored inventory part P550848 (FUEL/WATER SEPARATOR; core_charge=1, has core_part_id) to a service WO line via the catalog Part Number selector (Source auto-set Inventory; cost 53.52 / core 1.00 / sell 86.32 auto-fill; qty via bin-amount input). The core generates a 'P550848 Core' sub-line on the WO with per-core Ok / Not Ok controls and a $ amount ($0 until Not OK) on the line's Parts view. BUT the completion wizard did NOT present a distinct 'Resolve Cores' step — completion went Details->Success (verified with autoPick ON and OFF). So the expected 'Resolve Cores step in the completion modal' is NOT observed for a pre-picked in-stock inventory core; the Ok/Not OK resolution is a LINE-LEVEL control, not a wizard step. See bugs-log BUG-10. Still pending: whether the modal step appears for a SPECIAL-ORDER (vendor-source) core that requires receiving (SF-CORE-03/04/05/07). Evidence CORE-01-part-selected.png, CORE-01b-filled.png, CORE-04-wizard-step1.png."
-SF-CORE-02,Core parts — Completion modal,S3-C1 (skipped if none),Verify the Resolve Cores step is skipped when the work order has no cores,Low,Functional,Work Order edit access.,"1. Signed in as Admin.
+3. Auto-pick is set so the Pick step runs (or picking is otherwise required).","1. Add a cored inventory part to a work order line and open the line's Parts view.
+2. Confirm the part generates a Core sub-line with per-core Ok / Not-OK controls and a $ amount.
+3. Click Complete Work Order and step through the completion wizard.
+4. Confirm there is no distinct Resolve Cores step and completion goes Details -> Success.","1. The cored part generates a Core sub-line on the line's Parts view with per-core Ok (returned, no charge) and Not-OK (keep + charge) controls and a $ amount ($0 until Not-OK).
+2. The completion wizard has NO distinct Resolve Cores step; a work order whose only remaining action is core resolution completes Details -> Success.
+3. Core resolution is a line-level control, not a wizard step.",Resolve Cores Flow.html; Core Resolution.html; Pick Parts + Cores.html,VIU-Verified,"VIU 2026-07-08 (BATCH 5) — CORE PART NOW SEEDED but DEVIATION found. Added genuine cored inventory part P550848 (FUEL/WATER SEPARATOR; core_charge=1, has core_part_id) to a service WO line via the catalog Part Number selector (Source auto-set Inventory; cost 53.52 / core 1.00 / sell 86.32 auto-fill; qty via bin-amount input). The core generates a 'P550848 Core' sub-line on the WO with per-core Ok / Not Ok controls and a $ amount ($0 until Not OK) on the line's Parts view. BUT the completion wizard did NOT present a distinct 'Resolve Cores' step — completion went Details->Success (verified with autoPick ON and OFF). So the expected 'Resolve Cores step in the completion modal' is NOT observed for a pre-picked in-stock inventory core; the Ok/Not OK resolution is a LINE-LEVEL control, not a wizard step. See bugs-log BUG-10. Still pending: whether the modal step appears for a SPECIAL-ORDER (vendor-source) core that requires receiving (SF-CORE-03/04/05/07). Evidence CORE-01-part-selected.png, CORE-01b-filled.png, CORE-04-wizard-step1.png. || [RECONCILED 2026-07-08] BUG-10 EXPECTED (shortcut principle): cores are line-level; no wizard step; Details->Success. V2.4 unchanged."
+SF-CORE-02,Core parts — Completion modal,S3-C1 (skipped if none),Verify a work order with no cores completes with no core sub-lines and no Resolve-Cores wizard step,Low,Functional,Work Order edit access.,"1. Signed in as Admin.
 2. A work order has no core parts.","1. Click Complete Work Order.
 2. Step through the completion wizard.
-3. Watch for a Resolve Cores step.","1. No Resolve Cores step appears.
-2. Completion proceeds directly through the normal steps.",Resolve Cores Flow - Handoff.md,VIU-Pending,Not driven in VIU. Needs live verification.
+3. Watch for a Resolve Cores step.","1. No core sub-lines appear (the work order has no cores).
+2. There is no distinct Resolve Cores wizard step; completion proceeds directly Details -> Success.",Resolve Cores Flow - Handoff.md,VIU-Pending,Not driven in VIU. Needs live verification. || [RECONCILED 2026-07-08] BUG-10 EXPECTED: no wizard Resolve-Cores step in any case; cores are line-level.
 SF-CORE-03,Core parts — Completion modal,S3-C2,Verify special-order cores leave the optional-invoice completion unchanged and Complete Without Receiving stays available,Medium,Functional,Work Order edit access.,"1. Signed in as Admin.
 2. Require Vendor Invoice Number is OFF (Optional).
 3. A work order has a special-order (vendor) cored part not yet received.","1. Click Complete Work Order.
@@ -274,12 +278,12 @@ SF-CORE-09,Core parts — Guardrail,S3 Guardrail (part-sale vs service WO),Verif
 2. A part-sale work order and a service work order, each with a cored part, exist.","1. Receive the cored part on the part-sale work order and check core status.
 2. Receive the cored part on the service work order and check core status.","1. On the part-sale WO the core auto-resolves at receive.
 2. On the service WO the core requires manual Ok / Not OK.",requirements S3 Guardrail,VIU-Pending,Not driven in VIU. Needs live verification.
-SF-CORE-10,Core parts — Resolve step UI,Resolve Cores handoff (live +$ total),Verify the Resolve Cores step shows a live running '+$ to invoice' total as cores are marked Not OK,Low,Functional,Work Order edit access.,"1. Signed in as Admin.
-2. You are in the Resolve Cores step with multiple cores.","1. Mark one core Not OK (keep + charge).
-2. Observe the running total.
-3. Mark another core Not OK and observe again.","1. A live '+$ to invoice' total is shown.
-2. The total increases as each core is marked Not OK.
-3. Marking a core Ok does not add to the total.",Resolve Cores Flow.html; Resolve Cores Flow - Handoff.md,VIU-Pending,"VIU 2026-07-08 (BATCH 5): the per-core Ok/Not Ok + $ amount surface exists on the WO line Parts view (P550848 Core sub-line shows '$0' until Not OK), but there is NO distinct 'Resolve Cores' step in the completion wizard (verified autoPick ON/OFF; completion goes Details->Success). So the live '+$ to invoice' running total belonging to a Resolve-Cores step is not present as specified — see SF-CORE-01 note + bugs-log BUG-10. Still pending pending the special-order (vendor-source) core path."
+SF-CORE-10,Core parts — Resolve step UI,Resolve Cores handoff (live +$ total),Verify the core '+$ to invoice' amount is shown at the line level as a core is marked Not-OK (no Resolve-Cores wizard total),Low,Functional,Work Order edit access.,"1. Signed in as Admin.
+2. You are in the Resolve Cores step with multiple cores.","1. On the line's Parts view, mark a Core sub-line Not-OK (keep + charge).
+2. Observe the $ amount on that Core sub-line.
+3. Mark the core Ok and observe the $ amount again.","1. The Core sub-line shows a $ amount on the line's Parts view ($0 until it is marked Not-OK).
+2. Marking the core Not-OK sets the +$ to invoice on that line.
+3. There is no distinct Resolve Cores wizard step with a running total; the core $ is a line-level control.",Resolve Cores Flow.html; Resolve Cores Flow - Handoff.md,VIU-Verified,"VIU 2026-07-08 (BATCH 5): the per-core Ok/Not Ok + $ amount surface exists on the WO line Parts view (P550848 Core sub-line shows '$0' until Not OK), but there is NO distinct 'Resolve Cores' step in the completion wizard (verified autoPick ON/OFF; completion goes Details->Success). So the live '+$ to invoice' running total belonging to a Resolve-Cores step is not present as specified — see SF-CORE-01 note + bugs-log BUG-10. Still pending pending the special-order (vendor-source) core path. || [RECONCILED 2026-07-08] BUG-10 EXPECTED: '+$ to invoice' is a line-level Core sub-line amount, not a wizard-step running total."
 SF-TECH-01,Tech Story Flow (Story 17),TS-R1,Verify each work order line shows a Story sub-row with an 'Add tech story for this line' link when empty,High,Functional,Work Order edit access.,"1. Signed in as Admin.
 2. Require Tech Story is ON.
 3. A work order has a line with no tech story yet.","1. Open the work order Lines tab.
@@ -329,18 +333,19 @@ SF-VPART-01,Vendorless / No-PN Part (Story 5),S5-R1,"Verify a part can be reques
 2. An open work order with a line is on its Lines tab.","1. Add a part to a line.
 2. Enter only a description, a quantity and a sell price.
 3. Leave part number, cost and vendor empty.
-4. Save the part.","1. The part saves successfully.
-2. The part appears on the line with its description, quantity and sell price.
-3. It is treated as a vendorless part downstream.
-4. Adding a vendorless / no-part-number part requires WO Lines: Create & Edit and See Financial Data, because the sell price is mandatory and has no catalog source.",requirements S5-R1 / §9 (See Financial Data gate),VIU-Verified,"SV-8183 Decision 4 adds a financial gate: vendorless / no-PN add requires See Financial Data (mandatory sell). Not driven live (part-add flow not exercised). | 2026-07-08: attempted admin add — the manual part-request add sub-form is reached via the line's Parts tab which requires the line's ""parts authorized"" state; not reliably drivable in this harness session (line-edit dialog exposed no Parts tab for a labor line). Canned-line parts DO create the vendorless shape (part_number=null, vendor_id=null, part_source_type=""vendor"", editable sell_price), corroborating the data model, but the description+qty+sell manual sub-form itself remains UI-unverified. Still needs a driven add-part sub-form. || VIU batch3 2026-07-08 VERIFIED: New Part Request sub-form reached via New Line -> custom title -> Save & Add Part; desc+qty+sell(+category) -> 201 POST /api/work-orders/part/make-request; created part {part_number:null, vendor_id:null, part_source_type:'vendor', sell:49.99, inventory_part_id:null}. DEVIATION: Category is REQUIRED (not in spec S5-R1) (VP-13/VP-14)."
+4. Save the part.","1. The part saves successfully with only description, quantity and sell price entered.
+2. Sell price is the only mandatory financial field and is validated at save (inline) — the part cannot be saved without it (not deferred to completion).
+3. The part appears on the line with its description, quantity and sell price and is treated as a vendorless part downstream.
+4. A sell-price-only part (missing vendor and/or cost) is orderable from the line — Order creates/joins the Vendor-Missing PO and moves it to waiting-to-receive.
+5. Adding a vendorless / no-part-number part requires WO Lines: Create & Edit and See Financial Data, because the sell price is mandatory and has no catalog source.",requirements S5-R1 / §9 (See Financial Data gate),VIU-Pending,"SV-8183 Decision 4 adds a financial gate: vendorless / no-PN add requires See Financial Data (mandatory sell). Not driven live (part-add flow not exercised). | 2026-07-08: attempted admin add — the manual part-request add sub-form is reached via the line's Parts tab which requires the line's ""parts authorized"" state; not reliably drivable in this harness session (line-edit dialog exposed no Parts tab for a labor line). Canned-line parts DO create the vendorless shape (part_number=null, vendor_id=null, part_source_type=""vendor"", editable sell_price), corroborating the data model, but the description+qty+sell manual sub-form itself remains UI-unverified. Still needs a driven add-part sub-form. || VIU batch3 2026-07-08 VERIFIED: New Part Request sub-form reached via New Line -> custom title -> Save & Add Part; desc+qty+sell(+category) -> 201 POST /api/work-orders/part/make-request; created part {part_number:null, vendor_id:null, part_source_type:'vendor', sell:49.99, inventory_part_id:null}. DEVIATION: Category is REQUIRED (not in spec S5-R1) (VP-13/VP-14). || [V2.4 2026-07-08] S5-R1: sell price = only mandatory financial field, validated AT SAVE (inline); S6-R7: sell-price-only part orderable from the line. Live build enforces Category (not sell) = spec-vs-build gap (BUG-9)."
 SF-VPART-02,Vendorless / No-PN Part (Story 5),S5-R1 / S5 AC (validation),"Verify adding a part is blocked when description, quantity or sell price is missing",High,Negative,WO Lines: Create & Edit + See Financial Data. A role lacking See Financial Data (e.g. Technician) is used for the permission negative.,"1. Signed in as Admin.
 2. The add-part dialog is open on a work order line.","1. Leave the description empty and try to save.
 2. Fill description, leave quantity empty and try to save.
 3. Fill quantity, leave sell price empty and try to save.
-4. As a role without See Financial Data (e.g. Technician), attempt to add a vendorless / no-part-number part.","1. Saving is blocked when the description is empty.
-2. Saving is blocked when the quantity is empty.
-3. Saving is blocked when the sell price is empty.
-4. A user without See Financial Data (for example a Technician) cannot add a vendorless / no-part-number part, because they cannot enter the mandatory sell price.",requirements S5 AC / §9 (See Financial Data gate),VIU-Verified,"SV-8183 Decision 4: vendorless / no-PN add requires See Financial Data. Field validation and the permission negative not yet verified live. | VIU 2026-07-07 (Tech-unblock pass): Field-required validations and the See-Financial-Data add-part block not driven (part-add sub-form not reached within budget). Tech confirmed lacking seeFinancialData. | 2026-07-08: manual add-part sub-form validation not reached (see SF-VPART-01). Still pending; also needs a Technician (no See Financial Data) for the permission half. || VIU batch3 2026-07-08 VERIFIED: empty save -> inline 'Description is a required field', 'Quantity is a required field', 'Category is a required field' (VP-11-validation-empty.png). DEVIATION: Category required in addition to spec; Sell Price NOT flagged required."
+4. As a role without See Financial Data (e.g. Technician), attempt to add a vendorless / no-part-number part.","1. Saving is blocked inline at save when the description is empty.
+2. Saving is blocked inline at save when the quantity is empty.
+3. Saving is blocked inline at save when the sell price is empty — sell price is validated at save, not deferred to completion.
+4. A user without See Financial Data (for example a Technician) cannot add a vendorless / no-part-number part, because they cannot enter the mandatory sell price.",requirements S5 AC / §9 (See Financial Data gate),VIU-Pending,"SV-8183 Decision 4: vendorless / no-PN add requires See Financial Data. Field validation and the permission negative not yet verified live. | VIU 2026-07-07 (Tech-unblock pass): Field-required validations and the See-Financial-Data add-part block not driven (part-add sub-form not reached within budget). Tech confirmed lacking seeFinancialData. | 2026-07-08: manual add-part sub-form validation not reached (see SF-VPART-01). Still pending; also needs a Technician (no See Financial Data) for the permission half. || VIU batch3 2026-07-08 VERIFIED: empty save -> inline 'Description is a required field', 'Quantity is a required field', 'Category is a required field' (VP-11-validation-empty.png). DEVIATION: Category required in addition to spec; Sell Price NOT flagged required. || [V2.4 2026-07-08] S5-R1: sell price validated inline at save. Live build requires Category and does NOT enforce sell = spec-vs-build gap (BUG-9)."
 SF-VPART-03,Vendorless / No-PN Part (Story 5),S5-R2,Verify a vendorless part's type uses the existing source field (vendor or found) and never inventory,Medium,Functional,Work Order edit access.,"1. Signed in as Admin.
 2. A vendorless part has been added to a work order line.","1. Open the vendorless part's detail.
 2. Read its source / type field.","1. The source is 'vendor' or 'found'.
@@ -395,6 +400,12 @@ SF-VMIS-06,Vendor Missing on WO PO (Story 6),S6-R6,Verify reports mark Vendor Mi
 2. A Vendor Missing PO exists.
 3. A relevant PO report is available.","1. Open the PO report that lists POs.
 2. Find the Vendor Missing PO.",1. The report marks the Vendor Missing PO as 'needs vendor'.,requirements S6-R6,VIU-Pending,Not driven in VIU. Needs live verification.
+SF-VMIS-07,Vendor Missing on WO PO (Story 6),S6-R7,"Verify a sell-price-only part is orderable from the line's Order action, joins the Vendor-Missing PO and moves to waiting-to-receive",High,Functional,Work Order edit access + See Financial Data.,"1. Signed in as Admin at https://sv7301.qa.shopview.com.
+2. An open work order has a sell-price-only line part (sell price set; vendor and/or cost missing; part number empty).","1. On the line, use the Order action for the sell-price-only part.
+2. Open the PO list at /parts/orders and find the work order's PO.
+3. Confirm the part's status.","1. Ordering from the line creates or joins the work order's Vendor-Missing PO (no separate dummy PO).
+2. The part moves from 'requested' to 'waiting-to-receive' without completing the work order.
+3. At receive, a vendor and part number are still required (cost editable — Story 10).",requirements S6-R7; Purchase Orders List.html,VIU-Pending,"NEW in V2.4 (S6-R7 orderable-from-line). The sell-price-only vendorless part shape is confirmed from prior VIU (SF-VMIS-01: two vendorless parts shared ONE WO PO, order_id 0a9db3e6, vendor_id=null, part_number=null — no dummy PO); the line-level Order action -> waiting-to-receive path itself is not yet driven live."
 SF-POSEL-01,PO Multi-Select (Story 7),S7-R1,Verify the PO list has a select-all checkbox and per-PO checkboxes,High,Functional,PO visibility.,"1. Signed in as Admin.
 2. The PO list at /parts/orders has multiple POs.","1. Open /parts/orders.
 2. Look for a select-all checkbox in the header.
@@ -448,9 +459,10 @@ SF-BULK-05,PO Bulk Receive Page (Story 8),S8-R6,Verify the per-PO 'Receive parts
 SF-BULK-06,PO Bulk Receive Page (Story 8),S8-R7 / S10-R2,Verify field editability and locking on Bulk Receive (qty and cost editable; sell locks after WO invoiced/paid),High,Functional,receive access.,"1. Signed in as Admin.
 2. The Bulk Receive page has a PO whose WO is NOT yet invoiced/paid, and another whose WO IS invoiced/paid.","1. On the not-yet-invoiced PO, edit quantity, cost and sell.
 2. On the invoiced/paid PO, try to edit sell.
-3. Hover the locked sell field.","1. EXPECTED PER SPEC: quantity and cost are editable; sell is editable while the WO is not invoiced/paid.
-2. After the WO is invoiced/paid, sell is locked with a lock icon and tooltip 'Locked — this part is already invoiced or paid'.
-3. After locking, only cost remains editable.",Receive Vendor Parts - v2.html,VIU-Pending,NOT BUILT. Needs dev complete.
+3. Hover the locked sell field.","1. Quantity and cost are editable; sell is editable while the work order is not invoiced/paid.
+2. After the work order is invoiced/paid, sell is locked with a lock icon and tooltip 'Locked — this part is already invoiced or paid'.
+3. After locking, only cost remains editable.
+4. The field rules have parity with the Accept-Delivery receive screen; cost is editable when $0 or missing on either surface.",Receive Vendor Parts - v2.html,VIU-Pending,NOT BUILT. Needs dev complete. || [V2.4 2026-07-08] S8-R7/S10-R2: field-rule parity with Accept Delivery; cost editable when $0/missing. Story 8 not built.
 SF-BULK-07,PO Bulk Receive Page (Story 8),S8-R8,Verify assigning a vendor to a Vendor Missing PO moves it into that vendor's group and entering the missing PN enables receiving,High,Functional,receive access + PO edit.,"1. Signed in as Admin.
 2. The Bulk Receive page has a Vendor Missing PO.","1. Assign a vendor to the Vendor Missing PO.
 2. Confirm it moves into that vendor's group.
@@ -511,8 +523,10 @@ SF-PNFIX-03,Inline Part-Number Fix (Story 10),S10 AC (existing number),Verify en
 3. The item's existing description and category are NOT overwritten.",requirements S10 AC,VIU-Pending,Not driven in VIU. Needs live verification.
 SF-PNFIX-04,Inline Part-Number Fix (Story 10),S10-R2 / S8-R7,Verify inline part-number field-locking rules match the receive-screen rules (sell locks after invoiced/paid),Medium,Functional,part edit / receive access.,"1. Signed in as Admin.
 2. A part on an invoiced/paid WO and a part on an open WO are available.","1. On the open WO part, confirm qty/cost/sell are editable.
-2. On the invoiced/paid WO part, confirm sell is locked and cost is editable.","1. Open WO: quantity, cost and sell editable.
-2. Invoiced/paid WO: sell locked (lock icon + tooltip), only cost editable.",requirements S10-R2 / S8-R7,VIU-Pending,Not driven in VIU. Needs live verification.
+2. On the invoiced/paid WO part, confirm sell is locked and cost is editable.","1. Open work order: quantity, cost and sell are editable.
+2. Invoiced/paid work order: sell is locked (lock icon + tooltip), only cost editable.
+3. The inline part-number field rules apply with parity across BOTH the Bulk Receive page AND the single / Accept-Delivery receive screen.
+4. Cost is editable when $0 or missing on either receive surface.",requirements S10-R2 / S8-R7,VIU-Pending,Not driven in VIU. Needs live verification. || [V2.4 2026-07-08] S10-R2/R3: field-rule parity across Bulk Receive AND Accept Delivery; cost editable when $0/missing on either. (WO-PO receive verification still blocked by BUG-11.)
 SF-PNFIX-05,Inline Part-Number Fix (Story 10),S10 Negative,Verify a part cannot be received without a part number (and a vendor for vendor-missing) even on an invoiced/paid WO,High,Negative,receive access.,"1. Signed in as Admin.
 2. A part without a part number is on a receive surface.","1. Attempt to receive the part with no part number.
 2. For a vendor-missing part, attempt to receive with no vendor.","1. Receiving is blocked without a part number.
@@ -543,18 +557,19 @@ SF-RCV-04,Accept Delivery (Story 12),S12 (existing multi-vendor),"Verify the exi
 3. Confirm each vendor group has its own invoice #, date, tax, note and Receive.","1. The screen groups items by vendor.
 2. Each vendor group has its own invoice number, date, tax, note and Receive action.
 3. Multiple vendors on one PO are supported (existing behavior).",Receive Vendor Parts - v2.html,VIU-Verified,Existing surface present at /parts/deliveries (13-vendor-invoices.png); reused not rebuilt. Not deep-driven — group fields not each asserted.
-SF-RCV-05,Accept Delivery (Story 12),S12-R1,"Verify new vendorless/no-PN WO parts and WO-originated POs appear and are receivable on Accept Delivery, with the vendor-missing group at the bottom",High,Functional,receive access.,"1. Signed in as Admin.
+SF-RCV-05,Accept Delivery (Story 12),S12-R1,"Verify new vendorless/no-PN WO parts and WO-originated POs appear and are receivable on Accept Delivery, with the vendor-missing group at the top",High,Functional,receive access.,"1. Signed in as Admin.
 2. A WO has a vendorless/no-PN part and a WO-originated PO reached via the Receive button.","1. Open Accept Delivery for the WO.
 2. Confirm the vendorless/no-PN parts appear.
-3. Confirm the vendor-missing group is at the bottom.","1. New vendorless/no-PN WO parts appear and are receivable here.
+3. Confirm the vendor-missing group is at the top (leading).","1. New vendorless/no-PN WO parts appear and are receivable here.
 2. WO-originated POs reached via the Receive button appear.
-3. Vendor-missing parts sit in their own group at the bottom.",Receive Vendor Parts - v2.html; requirements S12-R1,VIU-Pending,Not driven in VIU. Needs live verification.
+3. Vendor-missing parts sit in their own group that LEADS (appears at the top), because they need action (assign a vendor) before receiving.",Receive Vendor Parts - v2.html; requirements S12-R1,VIU-Pending,"Not driven in VIU. Needs live verification. || [RECONCILED 2026-07-08] Milos Q11: vendor-missing group LEADS (top), not bottom — title/step/expected corrected."
 SF-RCV-06,Accept Delivery (Story 12),S12-R2,"Verify Accept Delivery receive gates: vendor set, missing part number entered, vendor invoice # captured",High,Negative,receive access.,"1. Signed in as Admin.
 2. A vendor-missing / no-PN part is in an Accept Delivery group.","1. Attempt to receive without a vendor set.
 2. Attempt to receive without a part number.
 3. Attempt to receive without a vendor invoice number.","1. Receiving is gated until a vendor is set.
 2. Receiving is gated until the missing part number is entered.
-3. Receiving is gated until a vendor invoice number is captured.",requirements S12-R2,VIU-Pending,"VIU 2026-07-08 (BATCH 5): drove the Accept Delivery happy path on PO 93fb82e9 (vendor set = Aabridge Beverages, PN present, invoice # field 'invoice-number' captured, Invoice Date default) -> Receive POST /api/inventory/orders/accept 201. The POSITIVE gates (vendor set, invoice captured) confirmed. Still pending: the NEGATIVE sub-gates (receive blocked with vendor unset / missing PN) need a vendor-missing item on an Accept Delivery group (this PO already had vendor+PN). reachable-now."
+3. Receiving is gated until a vendor invoice number is captured.
+4. On Accept Delivery, cost is editable when $0 or missing (parity with Bulk Receive); the sell-price lock rule is unchanged.",requirements S12-R2,VIU-Pending,"VIU 2026-07-08 (BATCH 5): drove the Accept Delivery happy path on PO 93fb82e9 (vendor set = Aabridge Beverages, PN present, invoice # field 'invoice-number' captured, Invoice Date default) -> Receive POST /api/inventory/orders/accept 201. The POSITIVE gates (vendor set, invoice captured) confirmed. Still pending: the NEGATIVE sub-gates (receive blocked with vendor unset / missing PN) need a vendor-missing item on an Accept Delivery group (this PO already had vendor+PN). reachable-now. || [V2.4 2026-07-08] S12-R5: editable-cost parity on Accept Delivery; sell-lock unchanged."
 SF-RCV-07,Accept Delivery (Story 12),S12-R3,Verify Accept Delivery shows a '+N' vendor indicator and leads with the vendor-missing group,Low,Functional,receive access.,"1. Signed in as Admin.
 2. A multi-vendor delivery with a vendor-missing group exists.","1. Open Accept Delivery.
 2. Confirm the '+N' vendor indicator.
@@ -567,6 +582,12 @@ SF-RCV-08,Accept Delivery (Story 12),S12-R4,Verify each vendor group produces it
 SF-RCV-09,Accept Delivery (Story 12),S12 (existing) received-more-than-ordered,Verify a 'received more than ordered' warning appears when received quantity exceeds ordered quantity,Medium,Negative,receive access.,"1. Signed in as Admin.
 2. A delivery item with a known ordered quantity is on Accept Delivery.","1. Set the received quantity above the ordered quantity.
 2. Observe the warning.",1. A 'received more than ordered' warning is shown (existing behavior).,requirements S12 (existing behavior),VIU-Verified,"VIU 2026-07-08 (BATCH 5): on PO 93fb82e9 Accept Delivery, set the main line's Quantity Received to 15 (ordered = 10) -> the row surfaced a 'Received More Than Ordered' warning. Existing behavior confirmed. Evidence R9-01-over-quantity.png."
+SF-RCV-10,Accept Delivery (Story 12),S12-R5,Verify cost is editable on the Accept Delivery screen when $0 or missing (parity with Bulk Receive),Medium,Functional,receive access.,"1. Signed in as Admin.
+2. An Accept Delivery group has a line whose cost is $0 or missing (cost is pulled from the WO/PO when available).","1. Open Accept Delivery for the delivery.
+2. Locate a line with a $0 or missing cost and edit the cost.
+3. Confirm the quantity remains editable and the sell-price lock rule is unchanged.","1. Cost is editable on Accept Delivery when $0 or missing (matching Bulk Receive / Story 8 / Story 10).
+2. Quantity stays editable.
+3. The sell-price lock rule is unchanged (sell locks only after the work order is invoiced/paid).",requirements S12-R5; Receive Vendor Parts - v2.html,VIU-Pending,"NEW in V2.4 (S12-R5 editable-cost parity). VIU confirmed cost is editable in the receive tooling on $0 and $25 parts, but the WO-originated-PO receive round-trip is blocked by BUG-11 (HTTP 500), so the Accept-Delivery parity path is verify-pending."
 SF-VEND-01,Assign Vendor + Merge (Story 13),S13-R1,Verify the vendor-missing group provides a vendor dropdown that assigns a vendor at PO level and saves it,High,Functional,receive access + PO edit.,"1. Signed in as Admin.
 2. A vendor-missing group is shown on the receive surface.","1. Open the vendor-missing group's vendor dropdown.
 2. Choose a vendor.
@@ -639,26 +660,28 @@ SF-REV-07,Review ON (Story 16),R6,Verify on Send to Review lines lock to Complet
 2. Check the line states.
 3. Check whether inventory was auto-picked.","1. Lines are locked to Complete.
 2. Inventory has been auto-picked.",requirements R6,VIU-Verified,Not separately asserted in VIU. Needs live verification.
-SF-REV-08,Review ON (Story 16),R5 / R8 (distinct Reviewed state),Verify Confirm Review moves the WO to a distinct Reviewed state requiring a separate final Complete Work Order,High,Functional,Work Order edit access.,"1. Signed in as Admin.
+SF-REV-08,Review ON (Story 16),R5 / R8 (distinct Reviewed state),Verify Confirm Review signs off and completes the work order directly (no distinct Reviewed holding state),High,Functional,Work Order edit access.,"1. Signed in as Admin.
 2. A work order is in Review with the Mark Reviewed dialog filled (VIN present).","1. Click Confirm Review.
 2. Observe the resulting work order state.
-3. Look for a separate final 'Complete Work Order' action.","1. EXPECTED PER SPEC: the WO moves to Reviewed (green) with a 'sign-off complete' banner.
-2. A separate final Complete Work Order action is required to move to Complete.",WO Review Flow.html; requirements R5/R8,Open-Question,VIU BUG #4: after Confirm Review the WO went straight to Complete — no distinct Reviewed holding state / separate final Complete click was observed (S16-08-reviewed.png). May be admin auto-progression. Do not record as passing against the expected. See Open Questions.
+3. Look for a separate final 'Complete Work Order' action.","1. After Confirm Review the sign-off completes and the work order moves directly Review -> Complete.
+2. There is no distinct 'Reviewed' holding state and no separate final 'Complete Work Order' click.",WO Review Flow.html; requirements R5/R8,VIU-Verified,VIU BUG #4: after Confirm Review the WO went straight to Complete — no distinct Reviewed holding state / separate final Complete click was observed (S16-08-reviewed.png). May be admin auto-progression. Do not record as passing against the expected. See Open Questions. || [RECONCILED 2026-07-08] BUG-4 EXPECTED (shortcut principle): sign-off goes directly Review->Complete; no distinct Reviewed state. V2.4 unchanged.
 SF-REV-09,Review ON (Story 16),R7 (role-gating),Verify Mark Reviewed is gated by the Review Work Orders permission and disabled for a role without it,High,Permissions,Review Work Orders permission + reviewer must not be the completer.,"1. A role with Review Work Orders and a role without it both exist.
 2. A work order is in Review state, sent to review by a known user.","1. Sign in as a role without Review Work Orders and open the work order in Review.
 2. Confirm Mark Reviewed is disabled with 'Awaiting review'.
 3. Sign in as a role with Review Work Orders (system defaults grant it broadly; it can be limited to manager/foreman via custom roles) and confirm Mark Reviewed is available.","1. A role without the Review Work Orders permission sees Mark Reviewed disabled with an 'Awaiting review' indicator.
 2. A role with the Review Work Orders permission can Mark Reviewed and sign off.
 3. The user who completed / sent the work order to review cannot Mark Reviewed even with the permission; a different qualified reviewer can.",requirements R7 / §9 (Review Work Orders + reviewer != completer),VIU-Verified,"Defined by SV-8183: Mark Reviewed = Review Work Orders atom (defaults broad, narrowable to manager/foreman) plus reviewer != completer. Role-gating negatives not yet verified live (admin-only session on sv7301). | VIU 2026-07-07 (Tech-unblock pass): RESULT: FAIL. Mark Reviewed is NOT gated by Review Work Orders at the BE: tech (no woReviewWorkOrders) drove change-status->complete on a ready_for_review WO -> 201. FE hides the control for non-reviewers, but BE does not enforce; reviewer!=completer also not enforced."
-SF-REV-10,Review ON (Story 16),R7 / R10 (optional note),Verify the Mark Reviewed dialog includes an optional review note field (input_review_note),Medium,Functional,Reviewer role (matrix TBD).,"1. Signed in as Admin.
-2. The Mark Reviewed dialog is open.","1. Look for an optional note field in the dialog.
-2. Enter a note and Confirm.","1. EXPECTED PER SPEC: an optional review note field (input_review_note) is present.
-2. A note can be entered and saved with the sign-off.",WO Review Flow - Handoff.md (test IDs),Open-Question,VIU BUG #3: the Mark Reviewed dialog exposed ONLY the VIN field — no optional-note input (S16-06-mark-reviewed-dialog.png). Do not record as passing against the expected. See Open Questions.
-SF-REV-11,Review ON (Story 16),R8,Verify after sign-off the final Complete Work Order (any role) completes the WO and invoicing is blocked until reviewed,High,Functional,Work Order edit access + Finance access.,"1. Signed in as Admin.
+SF-REV-10,Review ON (Story 16),R7 / R10 (optional note),Verify the Mark Reviewed dialog includes VIN (required) and an optional review note field (input_review_note),Medium,Functional,Reviewer role (matrix TBD).,"1. Signed in as Admin.
+2. The Mark Reviewed dialog is open.","1. Open the Mark Reviewed dialog.
+2. Confirm a required VIN / Serial # field (Confirm disabled until VIN entered).
+3. Confirm an optional review note field is present; enter a note and Confirm.","1. The Mark Reviewed dialog shows a VIN / Serial # field that is required (Confirm Reviewed is disabled until VIN is entered).
+2. An optional review note field (input_review_note) is present.
+3. A note can be entered and saved with the sign-off.",WO Review Flow - Handoff.md (test IDs),VIU-Pending,VIU BUG #3: the Mark Reviewed dialog exposed ONLY the VIN field — no optional-note input (S16-06-mark-reviewed-dialog.png). Do not record as passing against the expected. See Open Questions. || [RECONCILED 2026-07-08 — REVERSAL] Design bundle (07-08 'Mark work order reviewed' screenshot) CONFIRMS the optional review-note field is INTENDED (VIN required + optional note). Earlier EXPECTED reclassification REVERSED -> BUG-3 back to REAL DEFECT/build-gap (live dialog missing the note).
+SF-REV-11,Review ON (Story 16),R8,Verify sign-off completes the work order directly (no separate final Complete) and invoicing is blocked until reviewed,High,Functional,Work Order edit access + Finance access.,"1. Signed in as Admin.
 2. A work order is in Reviewed state (or a Review state before sign-off for the invoicing-block check).","1. Before sign-off, attempt to invoice the work order.
-2. After sign-off, click the final Complete Work Order (as any role).
-3. Confirm the WO becomes Complete (invoice-ready).","1. Invoicing is blocked until the WO is reviewed.
-2. After sign-off, the final Complete Work Order (any role) makes the WO Complete and invoice-ready.",requirements R8,VIU-Pending,Overlaps VIU bug #4 (no distinct Reviewed state observed). Invoicing-block-until-reviewed not driven. Needs live verification.
+2. Complete the review sign-off (Confirm Review).
+3. Confirm the work order becomes Complete (invoice-ready).","1. Invoicing is blocked until the work order is reviewed.
+2. After sign-off the work order moves directly Review -> Complete (invoice-ready), with no separate final Complete Work Order click.",requirements R8,VIU-Pending,Overlaps VIU bug #4 (no distinct Reviewed state observed). Invoicing-block-until-reviewed not driven. Needs live verification. || [RECONCILED 2026-07-08] BUG-4 EXPECTED: sign-off completes directly; no separate final Complete step. Invoicing-block-until-reviewed still VIU-pending.
 SF-REV-12,Review ON (Story 16),R9,Verify a 'Ready for Review' list filter/column surfaces the reviewer queue,Medium,Functional,WO list visibility.,"1. Signed in as Admin.
 2. At least one work order is in Review state.","1. Open the Work Orders list.
 2. Look for a 'Ready for Review' filter or column.
@@ -674,7 +697,7 @@ SF-REV-14,Review ON (Story 16),R Core parts / invoicing block,Verify cores are r
 3. Invoicing is blocked until the WO is Reviewed AND all cores are resolved.",requirements R Core parts,VIU-Pending,Not driven in VIU. Needs live verification.
 SF-REV-15,Review ON (Story 16),R Open (default),Verify the Require Review default for new vs existing orgs matches the agreed cohort rule,Low,Functional,Admin / owner (settings).,"1. A newly-created org and an existing org are available.
 2. Signed in as Admin for each.","1. Check the Require Review default on a brand-new org.
-2. Check that existing orgs keep today's behavior (backfilled).","1. A brand-new org shows the Require Review setting in its default state, and existing orgs keep their current completion behavior (the setting is backfilled so their behavior does not change).",requirements §8 open questions / R Open,Open-Question,Spec §8 marks the require-review default as UNRESOLVED. Confirm the intended default before pass/fail. See Open Questions.
+2. Check that existing orgs keep today's behavior (backfilled).","1. A brand-new org shows the Require Review setting in its default state, and existing orgs keep their current completion behavior (the setting is backfilled so their behavior does not change).",requirements §8 open questions / R Open,Open-Question,Spec §8 marks the require-review default as UNRESOLVED. Confirm the intended default before pass/fail. See Open Questions. || [RECONCILED V2.4 2026-07-08 — last-update-wins] Round-1 answer sheet said 'Require Review ON for ALL orgs'; V2.4 S1-R4 (latest) keeps 'Default per cohort (see §8)' -> per-cohort RETAINED; the 'ON for all' rewrite was NOT applied. §8 still marks which cohorts default ON as unresolved.
 SF-UX-01,UX Refinements (Story 15),S15-R1,Verify the work order primary button reads 'Create Work Order',Medium,Functional,Work Order create access.,"1. Signed in as Admin.
 2. You are on the Create Work Order form (/workorders → Create).","1. Open the Create Work Order form.
 2. Read the primary button label.",1. The primary button reads 'Create Work Order'.,Work Orders List.html; requirements S15-R1,VIU-Verified,Create flow verified during Story 2 setup (S2-01-create-form.png).
@@ -691,8 +714,9 @@ SF-UX-03,UX Refinements (Story 15),S15-R3,"Verify the success screen shows WO nu
 SF-UX-04,UX Refinements (Story 15),S15-R4,Verify the close-confirmation modal behavior (Close = closes modal only; Cancel = closes modal + returns to previous screen),Medium,Functional,Work Order edit access.,"1. Signed in as Admin.
 2. A completion modal is open.","1. Trigger the close-confirmation modal.
 2. Click Close (prominent/red) and observe.
-3. Trigger it again and click Cancel (text link, far left) and observe.","1. Clicking Close closes the modal only, keeps any entered changes, and stays on the work order.
-2. Cancel closes the modal and returns to the previous screen.",requirements S15-R4 (design pending),Open-Question,S15-R4 close-confirm design is explicitly pending ('Figma still to be added') — no design surface to test yet. Confirm before authoring expected. See Open Questions.
+3. Trigger it again and click Cancel (text link, far left) and observe.","1. Close (prominent/red button) closes the confirmation modal only, discards nothing (no discard warning), and stays on the work order.
+2. Cancel (text link, far left) closes the modal and returns to the previous screen.
+3. Other consumers of the shared confirmation dialog keep their existing action labels.",requirements S15-R4 (design pending),VIU-Pending,S15-R4 close-confirm design is explicitly pending ('Figma still to be added') — no design surface to test yet. Confirm before authoring expected. See Open Questions. || [RECONCILED 2026-07-08] Milos Q10 (S15-R4): behavior defined — Close = modal-only / no discard; Cancel = returns to previous screen. Un-blocked (was pending design).
 SF-PERM-01,Permissions,S1 AC / §8 Permissions,Verify only owner/admin can view and modify Work Order settings (non-admin blocked),High,Permissions,"App Settings permission (system defaults: Admin, Service Manager, Office). A role without App Settings is used for the negative.","1. A role with the App Settings permission (e.g. Admin) and a role without it (e.g. Service Advisor or Technician) both exist.
 2. You can sign in as each.","1. Sign in as a role with App Settings and open and modify /administration/settings → Work Orders.
 2. Sign in as a role without App Settings and attempt to open and modify the same page.
@@ -798,13 +822,13 @@ SF-QB-01,QuickBooks / Inventory Integrity,§5 invariant 1,Verify in-stock parts 
 2. A work order has an in-stock inventory part; its on-hand quantity is noted.","1. Complete the work order via the simple (skip) path.
 2. Check the part's on-hand quantity and Part History.","1. The in-stock part's on-hand quantity decrements.
 2. A Part History entry is written.
-3. The skip path's status setter does not bypass inventory movement / Part History / catalog / delivery.",requirements §5 invariant 1,Open-Question,"§8 open question: auto-receive of in-stock inventory on simple completion is unconfirmed, and the spec flags the bare status setter as an integrity risk. Not driven in VIU. See Open Questions."
+3. The skip path's status setter does not bypass inventory movement / Part History / catalog / delivery.",requirements §5 invariant 1,VIU-Pending,"§8 open question: auto-receive of in-stock inventory on simple completion is unconfirmed, and the spec flags the bare status setter as an integrity risk. Not driven in VIU. See Open Questions. || [RECONCILED V2.4 2026-07-08] Un-held: No-PO path RETAINED (V2.4). Inventory-decrement + Part-History invariant remains VIU-pending / round-2 Q3."
 SF-QB-02,QuickBooks / Inventory Integrity,§5 / §4 (Create POs OFF),"Verify Create POs OFF produces no PO, vendor bill or AP sync and no catalog/inventory sync",High,Functional,Admin / owner (settings) + Work Order edit access + QuickBooks visibility.,"1. Signed in as Admin.
 2. Create Purchase Orders is OFF (see SF-SET-03).
 3. A work order with a vendor/found part exists.","1. Complete the work order with Create POs OFF.
 2. Check for any PO, vendor bill, AP sync.
 3. Check for any catalog/inventory sync of the vendor/found part.","1. EXPECTED PER SPEC: no PO, no vendor bill, no AP sync.
-2. No catalog/inventory sync (part is received at request time only).",requirements §4 / §5,Open-Question,"Blocked by VIU bug #1: no 'Create Purchase Orders' toggle exists, so Create POs OFF cannot be configured. See Open Questions."
+2. No catalog/inventory sync (part is received at request time only).",requirements §4 / §5,Open-Question,"Blocked by VIU bug #1: no 'Create Purchase Orders' toggle exists, so Create POs OFF cannot be configured. See Open Questions. || [RECONCILED V2.4 2026-07-08 — last-update-wins] RETIRE CANCELLED. V2.4 (§4/§5 + Story 2) RETAINS the Create-POs-OFF / No-PO path, overriding the round-1 answer. Case stands as V2.4 documentation. BUG-1 = spec-vs-build gap, not a descope."
 SF-QB-03,QuickBooks / Inventory Integrity,§5 invariant 2,Verify POs ON plus receiving runs the full pipeline: receive → Delivery → Vendor Bill → QuickBooks (both surfaces sync),High,Functional,receive access + QuickBooks visibility.,"1. Signed in as Admin.
 2. Create POs is on and a work order has a receivable vendor part.","1. Receive the part via Accept Delivery.
 2. Check that a Delivery, then a Vendor Bill, then a QuickBooks sync occur.
@@ -829,3 +853,4 @@ SF-QB-07,QuickBooks / Inventory Integrity,§5 (Journal Entry / Inventory → QBO
 SF-QB-08,QuickBooks / Inventory Integrity,§5 invariant 3,Verify Inventory Part History is preserved for any part that becomes inventory-tracked,Medium,Functional,Inventory visibility.,"1. Signed in as Admin.
 2. A part transitions to inventory-tracked (e.g. a part number is added and it is received).","1. Add a part number to a previously untracked part and receive it.
 2. Open the item's Part History.",1. Part History is preserved / created for the now inventory-tracked part.,requirements §5 invariant 3,VIU-Pending,Not driven in VIU. Needs live verification.
+SF-QB-09,QuickBooks / Inventory Integrity,§8 open question (Part Sales impact — BE investigation),Investigate: Part Sales unaffected by the shared order/status logic (requested -> orderable/waiting-to-receive),Low,Functional,Inventory / Part Sales visibility.,1. PLACEHOLDER for a new V2.4 §8 open question (needs BE investigation).,1. Investigation pending — steps to be defined once dev confirms whether the shared order/status logic touches Part Sales.,1. OPEN / NEEDS INVESTIGATION — expected result to be defined after dev confirmation. Keep Part Sales unchanged unless the shared logic forces a change (V2.4 §8).,requirements §8 (Part Sales impact investigation),Open-Question,NEW V2.4 §8 open question (D9). Placeholder only — do NOT fabricate expected. The shared order/status logic (requested -> orderable/waiting-to-receive; PO-on-order without vendor/cost) may touch Part Sales; confirm with dev and report. Excluded from the TestRail XML update batch until scoped.

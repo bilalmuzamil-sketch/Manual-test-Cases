@@ -18,14 +18,15 @@
       "4. Save the part."
     ],
     "expected": [
-      "1. The part saves successfully.",
-      "2. The part appears on the line with its description, quantity and sell price.",
-      "3. It is treated as a vendorless part downstream.",
-      "4. Adding a vendorless / no-part-number part requires WO Lines: Create & Edit and See Financial Data, because the sell price is mandatory and has no catalog source."
+      "1. The part saves successfully with only description, quantity and sell price entered.",
+      "2. Sell price is the only mandatory financial field and is validated at save (inline) — the part cannot be saved without it (not deferred to completion).",
+      "3. The part appears on the line with its description, quantity and sell price and is treated as a vendorless part downstream.",
+      "4. A sell-price-only part (missing vendor and/or cost) is orderable from the line — Order creates/joins the Vendor-Missing PO and moves it to waiting-to-receive.",
+      "5. Adding a vendorless / no-part-number part requires WO Lines: Create & Edit and See Financial Data, because the sell price is mandatory and has no catalog source."
     ],
     "design_ref": "requirements S5-R1 / §9 (See Financial Data gate)",
-    "viu_status": "VIU-Verified",
-    "notes": "SV-8183 Decision 4 adds a financial gate: vendorless / no-PN add requires See Financial Data (mandatory sell). Not driven live (part-add flow not exercised). | 2026-07-08: attempted admin add — the manual part-request add sub-form is reached via the line's Parts tab which requires the line's \"parts authorized\" state; not reliably drivable in this harness session (line-edit dialog exposed no Parts tab for a labor line). Canned-line parts DO create the vendorless shape (part_number=null, vendor_id=null, part_source_type=\"vendor\", editable sell_price), corroborating the data model, but the description+qty+sell manual sub-form itself remains UI-unverified. Still needs a driven add-part sub-form. || VIU batch3 2026-07-08 VERIFIED: New Part Request sub-form reached via New Line -> custom title -> Save & Add Part; desc+qty+sell(+category) -> 201 POST /api/work-orders/part/make-request; created part {part_number:null, vendor_id:null, part_source_type:'vendor', sell:49.99, inventory_part_id:null}. DEVIATION: Category is REQUIRED (not in spec S5-R1) (VP-13/VP-14).",
+    "viu_status": "VIU-Pending",
+    "notes": "SV-8183 Decision 4 adds a financial gate: vendorless / no-PN add requires See Financial Data (mandatory sell). Not driven live (part-add flow not exercised). | 2026-07-08: attempted admin add — the manual part-request add sub-form is reached via the line's Parts tab which requires the line's \"parts authorized\" state; not reliably drivable in this harness session (line-edit dialog exposed no Parts tab for a labor line). Canned-line parts DO create the vendorless shape (part_number=null, vendor_id=null, part_source_type=\"vendor\", editable sell_price), corroborating the data model, but the description+qty+sell manual sub-form itself remains UI-unverified. Still needs a driven add-part sub-form. || VIU batch3 2026-07-08 VERIFIED: New Part Request sub-form reached via New Line -> custom title -> Save & Add Part; desc+qty+sell(+category) -> 201 POST /api/work-orders/part/make-request; created part {part_number:null, vendor_id:null, part_source_type:'vendor', sell:49.99, inventory_part_id:null}. DEVIATION: Category is REQUIRED (not in spec S5-R1) (VP-13/VP-14). || [V2.4 2026-07-08] S5-R1: sell price = only mandatory financial field, validated AT SAVE (inline); S6-R7: sell-price-only part orderable from the line. Live build enforces Category (not sell) = spec-vs-build gap (BUG-9).",
     "api_related": false
   },
   {
@@ -47,14 +48,14 @@
       "4. As a role without See Financial Data (e.g. Technician), attempt to add a vendorless / no-part-number part."
     ],
     "expected": [
-      "1. Saving is blocked when the description is empty.",
-      "2. Saving is blocked when the quantity is empty.",
-      "3. Saving is blocked when the sell price is empty.",
+      "1. Saving is blocked inline at save when the description is empty.",
+      "2. Saving is blocked inline at save when the quantity is empty.",
+      "3. Saving is blocked inline at save when the sell price is empty — sell price is validated at save, not deferred to completion.",
       "4. A user without See Financial Data (for example a Technician) cannot add a vendorless / no-part-number part, because they cannot enter the mandatory sell price."
     ],
     "design_ref": "requirements S5 AC / §9 (See Financial Data gate)",
-    "viu_status": "VIU-Verified",
-    "notes": "SV-8183 Decision 4: vendorless / no-PN add requires See Financial Data. Field validation and the permission negative not yet verified live. | VIU 2026-07-07 (Tech-unblock pass): Field-required validations and the See-Financial-Data add-part block not driven (part-add sub-form not reached within budget). Tech confirmed lacking seeFinancialData. | 2026-07-08: manual add-part sub-form validation not reached (see SF-VPART-01). Still pending; also needs a Technician (no See Financial Data) for the permission half. || VIU batch3 2026-07-08 VERIFIED: empty save -> inline 'Description is a required field', 'Quantity is a required field', 'Category is a required field' (VP-11-validation-empty.png). DEVIATION: Category required in addition to spec; Sell Price NOT flagged required.",
+    "viu_status": "VIU-Pending",
+    "notes": "SV-8183 Decision 4: vendorless / no-PN add requires See Financial Data. Field validation and the permission negative not yet verified live. | VIU 2026-07-07 (Tech-unblock pass): Field-required validations and the See-Financial-Data add-part block not driven (part-add sub-form not reached within budget). Tech confirmed lacking seeFinancialData. | 2026-07-08: manual add-part sub-form validation not reached (see SF-VPART-01). Still pending; also needs a Technician (no See Financial Data) for the permission half. || VIU batch3 2026-07-08 VERIFIED: empty save -> inline 'Description is a required field', 'Quantity is a required field', 'Category is a required field' (VP-11-validation-empty.png). DEVIATION: Category required in addition to spec; Sell Price NOT flagged required. || [V2.4 2026-07-08] S5-R1: sell price validated inline at save. Live build requires Category and does NOT enforce sell = spec-vs-build gap (BUG-9).",
     "api_related": false
   },
   {
@@ -340,6 +341,33 @@
     "design_ref": "requirements S6-R6",
     "viu_status": "VIU-Pending",
     "notes": "Not driven in VIU. Needs live verification.",
+    "api_related": false
+  },
+  {
+    "id": "SF-VMIS-07",
+    "area": "Vendor Missing on WO PO (Story 6)",
+    "story_ref": "S6-R7",
+    "title": "Verify a sell-price-only part is orderable from the line's Order action, joins the Vendor-Missing PO and moves to waiting-to-receive",
+    "priority": "High",
+    "type": "Functional",
+    "permissions_required": "Work Order edit access + See Financial Data.",
+    "preconditions": [
+      "1. Signed in as Admin at https://sv7301.qa.shopview.com.",
+      "2. An open work order has a sell-price-only line part (sell price set; vendor and/or cost missing; part number empty)."
+    ],
+    "steps": [
+      "1. On the line, use the Order action for the sell-price-only part.",
+      "2. Open the PO list at /parts/orders and find the work order's PO.",
+      "3. Confirm the part's status."
+    ],
+    "expected": [
+      "1. Ordering from the line creates or joins the work order's Vendor-Missing PO (no separate dummy PO).",
+      "2. The part moves from 'requested' to 'waiting-to-receive' without completing the work order.",
+      "3. At receive, a vendor and part number are still required (cost editable — Story 10)."
+    ],
+    "design_ref": "requirements S6-R7; Purchase Orders List.html",
+    "viu_status": "VIU-Pending",
+    "notes": "NEW in V2.4 (S6-R7 orderable-from-line). The sell-price-only vendorless part shape is confirmed from prior VIU (SF-VMIS-01: two vendorless parts shared ONE WO PO, order_id 0a9db3e6, vendor_id=null, part_number=null — no dummy PO); the line-level Order action -> waiting-to-receive path itself is not yet driven live.",
     "api_related": false
   },
   {
@@ -641,13 +669,14 @@
       "3. Hover the locked sell field."
     ],
     "expected": [
-      "1. EXPECTED PER SPEC: quantity and cost are editable; sell is editable while the WO is not invoiced/paid.",
-      "2. After the WO is invoiced/paid, sell is locked with a lock icon and tooltip 'Locked — this part is already invoiced or paid'.",
-      "3. After locking, only cost remains editable."
+      "1. Quantity and cost are editable; sell is editable while the work order is not invoiced/paid.",
+      "2. After the work order is invoiced/paid, sell is locked with a lock icon and tooltip 'Locked — this part is already invoiced or paid'.",
+      "3. After locking, only cost remains editable.",
+      "4. The field rules have parity with the Accept-Delivery receive screen; cost is editable when $0 or missing on either surface."
     ],
     "design_ref": "Receive Vendor Parts - v2.html",
     "viu_status": "VIU-Pending",
-    "notes": "NOT BUILT. Needs dev complete.",
+    "notes": "NOT BUILT. Needs dev complete. || [V2.4 2026-07-08] S8-R7/S10-R2: field-rule parity with Accept Delivery; cost editable when $0/missing. Story 8 not built.",
     "api_related": false
   },
   {
@@ -935,12 +964,14 @@
       "2. On the invoiced/paid WO part, confirm sell is locked and cost is editable."
     ],
     "expected": [
-      "1. Open WO: quantity, cost and sell editable.",
-      "2. Invoiced/paid WO: sell locked (lock icon + tooltip), only cost editable."
+      "1. Open work order: quantity, cost and sell are editable.",
+      "2. Invoiced/paid work order: sell is locked (lock icon + tooltip), only cost editable.",
+      "3. The inline part-number field rules apply with parity across BOTH the Bulk Receive page AND the single / Accept-Delivery receive screen.",
+      "4. Cost is editable when $0 or missing on either receive surface."
     ],
     "design_ref": "requirements S10-R2 / S8-R7",
     "viu_status": "VIU-Pending",
-    "notes": "Not driven in VIU. Needs live verification.",
+    "notes": "Not driven in VIU. Needs live verification. || [V2.4 2026-07-08] S10-R2/R3: field-rule parity across Bulk Receive AND Accept Delivery; cost editable when $0/missing on either. (WO-PO receive verification still blocked by BUG-11.)",
     "api_related": false
   },
   {
@@ -1103,7 +1134,7 @@
     "id": "SF-RCV-05",
     "area": "Accept Delivery (Story 12)",
     "story_ref": "S12-R1",
-    "title": "Verify new vendorless/no-PN WO parts and WO-originated POs appear and are receivable on Accept Delivery, with the vendor-missing group at the bottom",
+    "title": "Verify new vendorless/no-PN WO parts and WO-originated POs appear and are receivable on Accept Delivery, with the vendor-missing group at the top",
     "priority": "High",
     "type": "Functional",
     "permissions_required": "receive access.",
@@ -1114,16 +1145,16 @@
     "steps": [
       "1. Open Accept Delivery for the WO.",
       "2. Confirm the vendorless/no-PN parts appear.",
-      "3. Confirm the vendor-missing group is at the bottom."
+      "3. Confirm the vendor-missing group is at the top (leading)."
     ],
     "expected": [
       "1. New vendorless/no-PN WO parts appear and are receivable here.",
       "2. WO-originated POs reached via the Receive button appear.",
-      "3. Vendor-missing parts sit in their own group at the bottom."
+      "3. Vendor-missing parts sit in their own group that LEADS (appears at the top), because they need action (assign a vendor) before receiving."
     ],
     "design_ref": "Receive Vendor Parts - v2.html; requirements S12-R1",
     "viu_status": "VIU-Pending",
-    "notes": "Not driven in VIU. Needs live verification.",
+    "notes": "Not driven in VIU. Needs live verification. || [RECONCILED 2026-07-08] Milos Q11: vendor-missing group LEADS (top), not bottom — title/step/expected corrected.",
     "api_related": false
   },
   {
@@ -1146,11 +1177,12 @@
     "expected": [
       "1. Receiving is gated until a vendor is set.",
       "2. Receiving is gated until the missing part number is entered.",
-      "3. Receiving is gated until a vendor invoice number is captured."
+      "3. Receiving is gated until a vendor invoice number is captured.",
+      "4. On Accept Delivery, cost is editable when $0 or missing (parity with Bulk Receive); the sell-price lock rule is unchanged."
     ],
     "design_ref": "requirements S12-R2",
     "viu_status": "VIU-Pending",
-    "notes": "VIU 2026-07-08 (BATCH 5): drove the Accept Delivery happy path on PO 93fb82e9 (vendor set = Aabridge Beverages, PN present, invoice # field 'invoice-number' captured, Invoice Date default) -> Receive POST /api/inventory/orders/accept 201. The POSITIVE gates (vendor set, invoice captured) confirmed. Still pending: the NEGATIVE sub-gates (receive blocked with vendor unset / missing PN) need a vendor-missing item on an Accept Delivery group (this PO already had vendor+PN). reachable-now.",
+    "notes": "VIU 2026-07-08 (BATCH 5): drove the Accept Delivery happy path on PO 93fb82e9 (vendor set = Aabridge Beverages, PN present, invoice # field 'invoice-number' captured, Invoice Date default) -> Receive POST /api/inventory/orders/accept 201. The POSITIVE gates (vendor set, invoice captured) confirmed. Still pending: the NEGATIVE sub-gates (receive blocked with vendor unset / missing PN) need a vendor-missing item on an Accept Delivery group (this PO already had vendor+PN). reachable-now. || [V2.4 2026-07-08] S12-R5: editable-cost parity on Accept Delivery; sell-lock unchanged.",
     "api_related": false
   },
   {
@@ -1226,6 +1258,33 @@
     "design_ref": "requirements S12 (existing behavior)",
     "viu_status": "VIU-Verified",
     "notes": "VIU 2026-07-08 (BATCH 5): on PO 93fb82e9 Accept Delivery, set the main line's Quantity Received to 15 (ordered = 10) -> the row surfaced a 'Received More Than Ordered' warning. Existing behavior confirmed. Evidence R9-01-over-quantity.png.",
+    "api_related": false
+  },
+  {
+    "id": "SF-RCV-10",
+    "area": "Accept Delivery (Story 12)",
+    "story_ref": "S12-R5",
+    "title": "Verify cost is editable on the Accept Delivery screen when $0 or missing (parity with Bulk Receive)",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "receive access.",
+    "preconditions": [
+      "1. Signed in as Admin.",
+      "2. An Accept Delivery group has a line whose cost is $0 or missing (cost is pulled from the WO/PO when available)."
+    ],
+    "steps": [
+      "1. Open Accept Delivery for the delivery.",
+      "2. Locate a line with a $0 or missing cost and edit the cost.",
+      "3. Confirm the quantity remains editable and the sell-price lock rule is unchanged."
+    ],
+    "expected": [
+      "1. Cost is editable on Accept Delivery when $0 or missing (matching Bulk Receive / Story 8 / Story 10).",
+      "2. Quantity stays editable.",
+      "3. The sell-price lock rule is unchanged (sell locks only after the work order is invoiced/paid)."
+    ],
+    "design_ref": "requirements S12-R5; Receive Vendor Parts - v2.html",
+    "viu_status": "VIU-Pending",
+    "notes": "NEW in V2.4 (S12-R5 editable-cost parity). VIU confirmed cost is editable in the receive tooling on $0 and $25 parts, but the WO-originated-PO receive round-trip is blocked by BUG-11 (HTTP 500), so the Accept-Delivery parity path is verify-pending.",
     "api_related": false
   },
   {

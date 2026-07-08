@@ -45,7 +45,7 @@ Verify Auto-approve Lines OFF leaves a new line in Needs Approval with Approve/D
 3. States display without altering the values.",SV-7696 (S1-R5..R8 (existing settings surfaced)),,
 "Verify first-use defaults on a brand-new org (auto-approve OFF, create POs ON, vendor invoice REQUIRED)",Work Order Settings,Functional,High,"1. A brand-new organization that has never edited Work Order settings is available.
 2. Signed in as that org's Admin.","1. Open /administration/settings → Work Orders tab for the new org.
-2. Read the default state of Auto-approve Lines, Create Purchase Orders, and Vendor Invoice.","1. Auto-approve Lines = OFF.
+2. Read the default state of Auto-approve Lines, Create Purchase Orders, and Vendor Invoice.","1. Auto-approve Lines = OFF (spec default — authoritative).
 2. Create Purchase Orders = ON.
 3. Vendor Invoice = REQUIRED.",SV-7696 (S1 first-use defaults / §4),,
 Verify saving a settings change persists after page reload,API — Work Order Settings,Functional,High,"1. Signed in as Admin.
@@ -75,8 +75,8 @@ Verify the settings model contains no operatingMode field and no requireVin sett
 2. There is no requireVin Work Order setting exposed.",SV-7696 (S1 AC (no requireVin / no operatingMode field)),,
 Verify the Save Settings button is only enabled when there is an unsaved change,Work Order Settings,Functional,Low,"1. Signed in as Admin.
 2. On /administration/settings → Work Orders tab with no pending changes.","1. With no changes made, look at the Save Settings button.
-2. Flip a toggle and look at the Save Settings button again.","1. EXPECTED (typical UX): with no changes, Save Settings is disabled.
-2. After a change, Save Settings becomes enabled.",SV-7696 (S1 (Save dirty-state)),,
+2. Flip a toggle and look at the Save Settings button again.","1. Saving persists the settings changes.
+2. Dirty-state gating (disabling Save until a change is made) is NOT required in v1 — Save being always enabled is acceptable (low-priority polish, not a blocker).",SV-7696 (S1 (Save dirty-state)),,
 Verify the Require Review Before Completion toggle is present on the settings page and drives the review flow,Work Order Settings,Functional,High,"1. Signed in as Admin.
 2. On /administration/settings → Work Orders tab.","1. Locate the 'Require Review Before Completion' toggle.
 2. Turn it On and Save.
@@ -160,8 +160,10 @@ Verify the optional-invoice modal creates POs in the background and shows the co
 3. An open work order with two approved vendor-part lines exists.","1. Click Complete Work Order.
 2. Read the parts-to-receive count in the modal.
 3. Check that POs were created in the background for the vendor parts.","1. The modal shows the number of parts waiting to receive (e.g. '2 parts waiting to receive').
-2. Background POs are created for the vendor parts (a vendorless part goes on the WO's PO flagged Vendor Missing).
-3. Inventory-pick status is reflected in the modal.",SV-7698 (S3-R1 / S3-R2 / S3-R9),,
+2. Background POs are created for the vendor parts (a vendorless / sell-price-only part goes on the work order's PO flagged Vendor Missing).
+3. All approved-line parts are actually ordered and reach waiting-to-receive, so 'Receive Parts' always has something to receive.
+4. No approved part is left in 'requested' and routed to an empty receive screen.
+5. Inventory-pick status is reflected in the modal.",SV-7698 (S3-R1 / S3-R2 / S3-R9),,
 Verify Receive Parts opens the shared Accept Delivery page to receive all vendors at once,Completion — PO + Optional Invoice (Story 3),Functional,High,"1. Signed in as Admin.
 2. You are in the optional-invoice completion wizard for a multi-vendor part work order.","1. Click Receive Parts.
 2. Observe the destination screen.
@@ -195,14 +197,16 @@ Verify the required-invoice wizard disables Complete until parts are received an
 2. Observe the primary CTA state.
 3. Look for a 'Complete without receiving' option.","1. The wizard shows a Receive step ('2 parts waiting to receive').
 2. The primary Complete Work Order CTA is DISABLED until all parts are received.
-3. There is NO 'Complete without receiving' option.",SV-7699 (S4-R4),,
+3. There is NO 'Complete without receiving' option.
+4. Approved sell-price-only parts (missing vendor and/or cost) are ordered too and reach waiting-to-receive before the receive gate — no approved part is left in 'requested' with nothing to receive.",SV-7699 (S4-R4),,
 Verify the required-invoice receive round-trip returns to the modal and enables Complete once all received,Completion — PO + Required Invoice (Story 4),Functional,High,"1. Signed in as Admin.
 2. You are in the required-invoice completion wizard with unreceived parts.","1. Click Receive Parts.
 2. On the shared Accept Delivery page, enter qty, tax, date, note and vendor invoice # per vendor and receive all parts.
 3. Click Back to Work Order (or finish).
 4. Observe the completion modal CTA, then click Complete Work Order.","1. The receive page collects qty, tax, date, note and invoice # per vendor.
 2. On return, once all parts are received the Complete Work Order CTA is enabled.
-3. Completing shows the Success screen.",SV-7699 (S4-R5 / S4-R7),,
+3. Completing shows the Success screen.
+4. Sell-price-only parts were ordered to waiting-to-receive, so they appear in the receive round-trip and are not left in 'requested'.",SV-7699 (S4-R5 / S4-R7),,
 Verify Cancel in the required-invoice wizard makes no change to the work order,Completion — PO + Required Invoice (Story 4),Functional,Medium,"1. Signed in as Admin.
 2. You are in the required-invoice completion wizard.","1. Click Cancel.
 2. Inspect the work order status and lines.","1. The modal closes.
@@ -225,19 +229,19 @@ Verify re-running completion after a prior attempt does not create duplicate POs
 2. Start completion again.
 3. Inspect the POs for the work order at /parts/orders.","1. Only one PO per vendor exists.
 2. No duplicate POs are created by the second completion attempt.",SV-7698 (S3-R9 (no duplicate POs on re-Complete)),,
-Verify inventory cores are gated in the completion modal after Pick with Ok/Not OK per core,Core parts — Completion modal (Stories 3/4/16),Functional,High,"1. Signed in as Admin.
+Verify inventory cores are resolved via a line-level Ok/Not-OK control (no distinct Resolve-Cores wizard step),Core parts — Completion modal (Stories 3/4/16),Functional,High,"1. Signed in as Admin.
 2. A work order has an approved inventory line that carries a core charge.
-3. Auto-pick is set so the Pick step runs (or picking is otherwise required).","1. Click Complete Work Order.
-2. Complete the Pick step.
-3. Observe the Resolve Cores step and mark each core Ok (returned) or Not OK (keep + charge).
-4. Try to continue before resolving all cores.","1. A Resolve Cores step appears after Pick, listing only the core lines.
-2. Each core offers Ok (returned, no charge) and Not OK (keep + charge).
-3. Continue is disabled until all cores are resolved.","SV-7698, SV-7699, SV-7870 (S3-C1 / S4-C1 / Resolve Cores handoff)",,
-Verify the Resolve Cores step is skipped when the work order has no cores,Core parts — Completion modal,Functional,Low,"1. Signed in as Admin.
+3. Auto-pick is set so the Pick step runs (or picking is otherwise required).","1. Add a cored inventory part to a work order line and open the line's Parts view.
+2. Confirm the part generates a Core sub-line with per-core Ok / Not-OK controls and a $ amount.
+3. Click Complete Work Order and step through the completion wizard.
+4. Confirm there is no distinct Resolve Cores step and completion goes Details -> Success.","1. The cored part generates a Core sub-line on the line's Parts view with per-core Ok (returned, no charge) and Not-OK (keep + charge) controls and a $ amount ($0 until Not-OK).
+2. The completion wizard has NO distinct Resolve Cores step; a work order whose only remaining action is core resolution completes Details -> Success.
+3. Core resolution is a line-level control, not a wizard step.","SV-7698, SV-7699, SV-7870 (S3-C1 / S4-C1 / Resolve Cores handoff)",,
+Verify a work order with no cores completes with no core sub-lines and no Resolve-Cores wizard step,Core parts — Completion modal,Functional,Low,"1. Signed in as Admin.
 2. A work order has no core parts.","1. Click Complete Work Order.
 2. Step through the completion wizard.
-3. Watch for a Resolve Cores step.","1. No Resolve Cores step appears.
-2. Completion proceeds directly through the normal steps.",SV-7698 (S3-C1 (skipped if none)),,
+3. Watch for a Resolve Cores step.","1. No core sub-lines appear (the work order has no cores).
+2. There is no distinct Resolve Cores wizard step; completion proceeds directly Details -> Success.",SV-7698 (S3-C1 (skipped if none)),,
 Verify special-order cores leave the optional-invoice completion unchanged and Complete Without Receiving stays available,Core parts — Completion modal,Functional,Medium,"1. Signed in as Admin.
 2. Require Vendor Invoice Number is OFF (Optional).
 3. A work order has a special-order (vendor) cored part not yet received.","1. Click Complete Work Order.
@@ -274,12 +278,12 @@ Verify part-sale work orders auto-resolve cores at receive while service work or
 2. A part-sale work order and a service work order, each with a cored part, exist.","1. Receive the cored part on the part-sale work order and check core status.
 2. Receive the cored part on the service work order and check core status.","1. On the part-sale WO the core auto-resolves at receive.
 2. On the service WO the core requires manual Ok / Not OK.",SV-7698 (S3 Guardrail (part-sale vs service WO)),,
-Verify the Resolve Cores step shows a live running '+$ to invoice' total as cores are marked Not OK,Core parts — Resolve step UI,Functional,Low,"1. Signed in as Admin.
-2. You are in the Resolve Cores step with multiple cores.","1. Mark one core Not OK (keep + charge).
-2. Observe the running total.
-3. Mark another core Not OK and observe again.","1. A live '+$ to invoice' total is shown.
-2. The total increases as each core is marked Not OK.
-3. Marking a core Ok does not add to the total.",Resolve Cores handoff (live +$ total),,
+Verify the core '+$ to invoice' amount is shown at the line level as a core is marked Not-OK (no Resolve-Cores wizard total),Core parts — Resolve step UI,Functional,Low,"1. Signed in as Admin.
+2. You are in the Resolve Cores step with multiple cores.","1. On the line's Parts view, mark a Core sub-line Not-OK (keep + charge).
+2. Observe the $ amount on that Core sub-line.
+3. Mark the core Ok and observe the $ amount again.","1. The Core sub-line shows a $ amount on the line's Parts view ($0 until it is marked Not-OK).
+2. Marking the core Not-OK sets the +$ to invoice on that line.
+3. There is no distinct Resolve Cores wizard step with a running total; the core $ is a line-level control.",Resolve Cores handoff (live +$ total),,
 Verify each work order line shows a Story sub-row with an 'Add tech story for this line' link when empty,Tech Story Flow (Story 17),Functional,High,"1. Signed in as Admin.
 2. Require Tech Story is ON.
 3. A work order has a line with no tech story yet.","1. Open the work order Lines tab.
@@ -329,17 +333,18 @@ Verify tech story is captured both inline and via the gate modal (Story 17 super
 2. An open work order with a line is on its Lines tab.","1. Add a part to a line.
 2. Enter only a description, a quantity and a sell price.
 3. Leave part number, cost and vendor empty.
-4. Save the part.","1. The part saves successfully.
-2. The part appears on the line with its description, quantity and sell price.
-3. It is treated as a vendorless part downstream.
-4. Adding a vendorless / no-part-number part requires WO Lines: Create & Edit and See Financial Data, because the sell price is mandatory and has no catalog source.",SV-7700 (S5-R1),,
+4. Save the part.","1. The part saves successfully with only description, quantity and sell price entered.
+2. Sell price is the only mandatory financial field and is validated at save (inline) — the part cannot be saved without it (not deferred to completion).
+3. The part appears on the line with its description, quantity and sell price and is treated as a vendorless part downstream.
+4. A sell-price-only part (missing vendor and/or cost) is orderable from the line — Order creates/joins the Vendor-Missing PO and moves it to waiting-to-receive.
+5. Adding a vendorless / no-part-number part requires WO Lines: Create & Edit and See Financial Data, because the sell price is mandatory and has no catalog source.",SV-7700 (S5-R1),,
 "Verify adding a part is blocked when description, quantity or sell price is missing",Vendorless / No-PN Part (Story 5),Functional,High,"1. Signed in as Admin.
 2. The add-part dialog is open on a work order line.","1. Leave the description empty and try to save.
 2. Fill description, leave quantity empty and try to save.
 3. Fill quantity, leave sell price empty and try to save.
-4. As a role without See Financial Data (e.g. Technician), attempt to add a vendorless / no-part-number part.","1. Saving is blocked when the description is empty.
-2. Saving is blocked when the quantity is empty.
-3. Saving is blocked when the sell price is empty.
+4. As a role without See Financial Data (e.g. Technician), attempt to add a vendorless / no-part-number part.","1. Saving is blocked inline at save when the description is empty.
+2. Saving is blocked inline at save when the quantity is empty.
+3. Saving is blocked inline at save when the sell price is empty — sell price is validated at save, not deferred to completion.
 4. A user without See Financial Data (for example a Technician) cannot add a vendorless / no-part-number part, because they cannot enter the mandatory sell price.",SV-7700 (S5-R1 / S5 AC (validation)),,
 Verify a vendorless part's type uses the existing source field (vendor or found) and never inventory,Vendorless / No-PN Part (Story 5),Functional,Medium,"1. Signed in as Admin.
 2. A vendorless part has been added to a work order line.","1. Open the vendorless part's detail.
@@ -395,6 +400,12 @@ Verify reports mark Vendor Missing POs as 'needs vendor',Vendor Missing on WO PO
 2. A Vendor Missing PO exists.
 3. A relevant PO report is available.","1. Open the PO report that lists POs.
 2. Find the Vendor Missing PO.",1. The report marks the Vendor Missing PO as 'needs vendor'.,SV-7701 (S6-R6),,
+"Verify a sell-price-only part is orderable from the line's Order action, joins the Vendor-Missing PO and moves to waiting-to-receive",Vendor Missing on WO PO (Story 6),Functional,High,"1. Signed in as Admin at https://sv7301.qa.shopview.com.
+2. An open work order has a sell-price-only line part (sell price set; vendor and/or cost missing; part number empty).","1. On the line, use the Order action for the sell-price-only part.
+2. Open the PO list at /parts/orders and find the work order's PO.
+3. Confirm the part's status.","1. Ordering from the line creates or joins the work order's Vendor-Missing PO (no separate dummy PO).
+2. The part moves from 'requested' to 'waiting-to-receive' without completing the work order.
+3. At receive, a vendor and part number are still required (cost editable — Story 10).",SV-7701 (S6-R7),,
 Verify the PO list has a select-all checkbox and per-PO checkboxes,PO Multi-Select (Story 7),Functional,High,"1. Signed in as Admin.
 2. The PO list at /parts/orders has multiple POs.","1. Open /parts/orders.
 2. Look for a select-all checkbox in the header.
@@ -448,9 +459,10 @@ Verify the per-PO 'Receive parts (N)' button is disabled until a vendor invoice 
 Verify field editability and locking on Bulk Receive (qty and cost editable; sell locks after WO invoiced/paid),PO Bulk Receive Page (Story 8),Functional,High,"1. Signed in as Admin.
 2. The Bulk Receive page has a PO whose WO is NOT yet invoiced/paid, and another whose WO IS invoiced/paid.","1. On the not-yet-invoiced PO, edit quantity, cost and sell.
 2. On the invoiced/paid PO, try to edit sell.
-3. Hover the locked sell field.","1. Quantity and cost are editable; sell is editable while the WO is not invoiced/paid.
-2. After the WO is invoiced/paid, sell is locked with a lock icon and tooltip 'Locked — this part is already invoiced or paid'.
-3. After locking, only cost remains editable.","SV-7703, SV-7705 (S8-R7 / S10-R2)",,
+3. Hover the locked sell field.","1. Quantity and cost are editable; sell is editable while the work order is not invoiced/paid.
+2. After the work order is invoiced/paid, sell is locked with a lock icon and tooltip 'Locked — this part is already invoiced or paid'.
+3. After locking, only cost remains editable.
+4. The field rules have parity with the Accept-Delivery receive screen; cost is editable when $0 or missing on either surface.","SV-7703, SV-7705 (S8-R7 / S10-R2)",,
 Verify assigning a vendor to a Vendor Missing PO moves it into that vendor's group and entering the missing PN enables receiving,PO Bulk Receive Page (Story 8),Functional,High,"1. Signed in as Admin.
 2. The Bulk Receive page has a Vendor Missing PO.","1. Assign a vendor to the Vendor Missing PO.
 2. Confirm it moves into that vendor's group.
@@ -511,8 +523,10 @@ Verify entering an EXISTING part number links to that item and updates stock/cos
 3. The item's existing description and category are NOT overwritten.",SV-7705 (S10 AC (existing number)),,
 Verify inline part-number field-locking rules match the receive-screen rules (sell locks after invoiced/paid),Inline Part-Number Fix (Story 10),Functional,Medium,"1. Signed in as Admin.
 2. A part on an invoiced/paid WO and a part on an open WO are available.","1. On the open WO part, confirm qty/cost/sell are editable.
-2. On the invoiced/paid WO part, confirm sell is locked and cost is editable.","1. Open WO: quantity, cost and sell editable.
-2. Invoiced/paid WO: sell locked (lock icon + tooltip), only cost editable.","SV-7703, SV-7705 (S10-R2 / S8-R7)",,
+2. On the invoiced/paid WO part, confirm sell is locked and cost is editable.","1. Open work order: quantity, cost and sell are editable.
+2. Invoiced/paid work order: sell is locked (lock icon + tooltip), only cost editable.
+3. The inline part-number field rules apply with parity across BOTH the Bulk Receive page AND the single / Accept-Delivery receive screen.
+4. Cost is editable when $0 or missing on either receive surface.","SV-7703, SV-7705 (S10-R2 / S8-R7)",,
 Verify a part cannot be received without a part number (and a vendor for vendor-missing) even on an invoiced/paid WO,Inline Part-Number Fix (Story 10),Functional,High,"1. Signed in as Admin.
 2. A part without a part number is on a receive surface.","1. Attempt to receive the part with no part number.
 2. For a vendor-missing part, attempt to receive with no vendor.","1. Receiving is blocked without a part number.
@@ -543,18 +557,19 @@ Verify the Receive action is hidden for office/readonly users and for fulfilled 
 3. Confirm each vendor group has its own invoice #, date, tax, note and Receive.","1. The screen groups items by vendor.
 2. Each vendor group has its own invoice number, date, tax, note and Receive action.
 3. Multiple vendors on one PO are supported (existing behavior).",SV-7707 (S12 (existing multi-vendor)),,
-"Verify new vendorless/no-PN WO parts and WO-originated POs appear and are receivable on Accept Delivery, with the vendor-missing group at the bottom",Accept Delivery (Story 12),Functional,High,"1. Signed in as Admin.
+"Verify new vendorless/no-PN WO parts and WO-originated POs appear and are receivable on Accept Delivery, with the vendor-missing group at the top",Accept Delivery (Story 12),Functional,High,"1. Signed in as Admin.
 2. A WO has a vendorless/no-PN part and a WO-originated PO reached via the Receive button.","1. Open Accept Delivery for the WO.
 2. Confirm the vendorless/no-PN parts appear.
-3. Confirm the vendor-missing group is at the bottom.","1. New vendorless/no-PN WO parts appear and are receivable here.
+3. Confirm the vendor-missing group is at the top (leading).","1. New vendorless/no-PN WO parts appear and are receivable here.
 2. WO-originated POs reached via the Receive button appear.
-3. Vendor-missing parts sit in their own group at the bottom.",SV-7707 (S12-R1),,
+3. Vendor-missing parts sit in their own group that LEADS (appears at the top), because they need action (assign a vendor) before receiving.",SV-7707 (S12-R1),,
 "Verify Accept Delivery receive gates: vendor set, missing part number entered, vendor invoice # captured",Accept Delivery (Story 12),Functional,High,"1. Signed in as Admin.
 2. A vendor-missing / no-PN part is in an Accept Delivery group.","1. Attempt to receive without a vendor set.
 2. Attempt to receive without a part number.
 3. Attempt to receive without a vendor invoice number.","1. Receiving is gated until a vendor is set.
 2. Receiving is gated until the missing part number is entered.
-3. Receiving is gated until a vendor invoice number is captured.",SV-7707 (S12-R2),,
+3. Receiving is gated until a vendor invoice number is captured.
+4. On Accept Delivery, cost is editable when $0 or missing (parity with Bulk Receive); the sell-price lock rule is unchanged.",SV-7707 (S12-R2),,
 Verify Accept Delivery shows a '+N' vendor indicator and leads with the vendor-missing group,Accept Delivery (Story 12),Functional,Low,"1. Signed in as Admin.
 2. A multi-vendor delivery with a vendor-missing group exists.","1. Open Accept Delivery.
 2. Confirm the '+N' vendor indicator.
@@ -567,6 +582,12 @@ Verify each vendor group produces its own vendor bill and separate AP entry in Q
 Verify a 'received more than ordered' warning appears when received quantity exceeds ordered quantity,Accept Delivery (Story 12),Functional,Medium,"1. Signed in as Admin.
 2. A delivery item with a known ordered quantity is on Accept Delivery.","1. Set the received quantity above the ordered quantity.
 2. Observe the warning.",1. A 'received more than ordered' warning is shown (existing behavior).,SV-7707 (S12 (existing) received-more-than-ordered),,
+Verify cost is editable on the Accept Delivery screen when $0 or missing (parity with Bulk Receive),Accept Delivery (Story 12),Functional,Medium,"1. Signed in as Admin.
+2. An Accept Delivery group has a line whose cost is $0 or missing (cost is pulled from the WO/PO when available).","1. Open Accept Delivery for the delivery.
+2. Locate a line with a $0 or missing cost and edit the cost.
+3. Confirm the quantity remains editable and the sell-price lock rule is unchanged.","1. Cost is editable on Accept Delivery when $0 or missing (matching Bulk Receive / Story 8 / Story 10).
+2. Quantity stays editable.
+3. The sell-price lock rule is unchanged (sell locks only after the work order is invoiced/paid).",SV-7707 (S12-R5),,
 Verify the vendor-missing group provides a vendor dropdown that assigns a vendor at PO level and saves it,Assign Vendor + Merge (Story 13),Functional,High,"1. Signed in as Admin.
 2. A vendor-missing group is shown on the receive surface.","1. Open the vendor-missing group's vendor dropdown.
 2. Choose a vendor.
@@ -639,26 +660,28 @@ Verify on Send to Review lines lock to Complete and inventory is auto-picked,Rev
 2. Check the line states.
 3. Check whether inventory was auto-picked.","1. Lines are locked to Complete.
 2. Inventory has been auto-picked.",SV-7870 (R6),,
-Verify Confirm Review moves the WO to a distinct Reviewed state requiring a separate final Complete Work Order,Review ON (Story 16),Functional,High,"1. Signed in as Admin.
+Verify Confirm Review signs off and completes the work order directly (no distinct Reviewed holding state),Review ON (Story 16),Functional,High,"1. Signed in as Admin.
 2. A work order is in Review with the Mark Reviewed dialog filled (VIN present).","1. Click Confirm Review.
 2. Observe the resulting work order state.
-3. Look for a separate final 'Complete Work Order' action.","1. The WO moves to Reviewed (green) with a 'sign-off complete' banner.
-2. A separate final Complete Work Order action is required to move to Complete.",SV-7870 (R5 / R8 (distinct Reviewed state)),,
+3. Look for a separate final 'Complete Work Order' action.","1. After Confirm Review the sign-off completes and the work order moves directly Review -> Complete.
+2. There is no distinct 'Reviewed' holding state and no separate final 'Complete Work Order' click.",SV-7870 (R5 / R8 (distinct Reviewed state)),,
 Verify Mark Reviewed is gated by the Review Work Orders permission and disabled for a role without it,Review ON (Story 16),Functional,High,"1. A role with Review Work Orders and a role without it both exist.
 2. A work order is in Review state, sent to review by a known user.","1. Sign in as a role without Review Work Orders and open the work order in Review.
 2. Confirm Mark Reviewed is disabled with 'Awaiting review'.
 3. Sign in as a role with Review Work Orders (system defaults grant it broadly; it can be limited to manager/foreman via custom roles) and confirm Mark Reviewed is available.","1. A role without the Review Work Orders permission sees Mark Reviewed disabled with an 'Awaiting review' indicator.
 2. A role with the Review Work Orders permission can Mark Reviewed and sign off.
 3. The user who completed / sent the work order to review cannot Mark Reviewed even with the permission; a different qualified reviewer can.",SV-7870 (R7 (role-gating)),,
-Verify the Mark Reviewed dialog includes an optional review note field (input_review_note),Review ON (Story 16),Functional,Medium,"1. Signed in as Admin.
-2. The Mark Reviewed dialog is open.","1. Look for an optional note field in the dialog.
-2. Enter a note and Confirm.","1. An optional review note field (input_review_note) is present.
-2. A note can be entered and saved with the sign-off.",SV-7870 (R7 / R10 (optional note)),,
-Verify after sign-off the final Complete Work Order (any role) completes the WO and invoicing is blocked until reviewed,Review ON (Story 16),Functional,High,"1. Signed in as Admin.
+Verify the Mark Reviewed dialog includes VIN (required) and an optional review note field (input_review_note),Review ON (Story 16),Functional,Medium,"1. Signed in as Admin.
+2. The Mark Reviewed dialog is open.","1. Open the Mark Reviewed dialog.
+2. Confirm a required VIN / Serial # field (Confirm disabled until VIN entered).
+3. Confirm an optional review note field is present; enter a note and Confirm.","1. The Mark Reviewed dialog shows a VIN / Serial # field that is required (Confirm Reviewed is disabled until VIN is entered).
+2. An optional review note field (input_review_note) is present.
+3. A note can be entered and saved with the sign-off.",SV-7870 (R7 / R10 (optional note)),,
+Verify sign-off completes the work order directly (no separate final Complete) and invoicing is blocked until reviewed,Review ON (Story 16),Functional,High,"1. Signed in as Admin.
 2. A work order is in Reviewed state (or a Review state before sign-off for the invoicing-block check).","1. Before sign-off, attempt to invoice the work order.
-2. After sign-off, click the final Complete Work Order (as any role).
-3. Confirm the WO becomes Complete (invoice-ready).","1. Invoicing is blocked until the WO is reviewed.
-2. After sign-off, the final Complete Work Order (any role) makes the WO Complete and invoice-ready.",SV-7870 (R8),,
+2. Complete the review sign-off (Confirm Review).
+3. Confirm the work order becomes Complete (invoice-ready).","1. Invoicing is blocked until the work order is reviewed.
+2. After sign-off the work order moves directly Review -> Complete (invoice-ready), with no separate final Complete Work Order click.",SV-7870 (R8),,
 Verify a 'Ready for Review' list filter/column surfaces the reviewer queue,Review ON (Story 16),Functional,Medium,"1. Signed in as Admin.
 2. At least one work order is in Review state.","1. Open the Work Orders list.
 2. Look for a 'Ready for Review' filter or column.
@@ -691,8 +714,9 @@ Verify required fields at completion appear in a centralized center modal and th
 Verify the close-confirmation modal behavior (Close = closes modal only; Cancel = closes modal + returns to previous screen),UX Refinements (Story 15),Functional,Medium,"1. Signed in as Admin.
 2. A completion modal is open.","1. Trigger the close-confirmation modal.
 2. Click Close (prominent/red) and observe.
-3. Trigger it again and click Cancel (text link, far left) and observe.","1. Clicking Close closes the modal only, keeps any entered changes, and stays on the work order.
-2. Cancel closes the modal and returns to the previous screen.",SV-7710 (S15-R4),,
+3. Trigger it again and click Cancel (text link, far left) and observe.","1. Close (prominent/red button) closes the confirmation modal only, discards nothing (no discard warning), and stays on the work order.
+2. Cancel (text link, far left) closes the modal and returns to the previous screen.
+3. Other consumers of the shared confirmation dialog keep their existing action labels.",SV-7710 (S15-R4),,
 Verify only owner/admin can view and modify Work Order settings (non-admin blocked),API — Permissions,Functional,High,"1. A role with the App Settings permission (e.g. Admin) and a role without it (e.g. Service Advisor or Technician) both exist.
 2. You can sign in as each.","1. Sign in as a role with App Settings and open and modify /administration/settings → Work Orders.
 2. Sign in as a role without App Settings and attempt to open and modify the same page.
@@ -829,3 +853,4 @@ Verify the Journal Entry / Inventory sync to QuickBooks fires on invoice creatio
 Verify Inventory Part History is preserved for any part that becomes inventory-tracked,QuickBooks / Inventory Integrity,Functional,Medium,"1. Signed in as Admin.
 2. A part transitions to inventory-tracked (e.g. a part number is added and it is received).","1. Add a part number to a previously untracked part and receive it.
 2. Open the item's Part History.",1. Part History is preserved / created for the now inventory-tracked part.,§5 invariant 3,,
+Investigate: Part Sales unaffected by the shared order/status logic (requested -> orderable/waiting-to-receive),QuickBooks / Inventory Integrity,Functional,Low,1. PLACEHOLDER for a new V2.4 §8 open question (needs BE investigation).,1. Investigation pending — steps to be defined once dev confirms whether the shared order/status logic touches Part Sales.,1. OPEN / NEEDS INVESTIGATION — expected result to be defined after dev confirmation. Keep Part Sales unchanged unless the shared logic forces a change (V2.4 §8).,§8 open question (Part Sales impact — BE investigation),,

@@ -26,7 +26,7 @@ kept as a question or bug on its own merits.
 | Finding / BUG-# | Description | Classification | Reasoning (per principle) | Affected cases | Resulting expected wording (if EXPECTED) / ticket-or-question note |
 |---|---|---|---|---|---|
 | **BUG-10** | Completion wizard has **no distinct "Resolve Cores" step**; core OK/Not-OK is a **line-level** control on the line's Parts view; wizard goes Details→Success. No error. | **EXPECTED** | A skipped intermediate step that still reaches the same end state (Success / invoice-ready), with no error and no data/inventory/Part-History corruption. The core is still resolvable (line-level Ok/Not-Ok). | SF-CORE-01..10 | Core resolution is a **line-level** control (Ok / Not-Ok + $ on the line's Parts view); the completion wizard has **no distinct Resolve-Cores step** and goes Details→Success. (Receive-dependent special-order-core paths remain separately blocked by BUG-11 — a real defect, not this reclassification.) |
-| **BUG-3** | Mark-Reviewed dialog captures VIN only; **no optional `input_review_note`** field. No error. | **EXPECTED** | Omitting an optional note is a simplification that reaches the same end state (WO reviewed/signed-off) with no error and no data corruption. Milos's Round-1 answer already leaned "won't be in the build." | SF-REV-10 | The Mark-Reviewed dialog shows only the current field(s) (VIN); there is **no optional review-note field** (simplified per Simple Flow). *Kept in Milos Round-2 as a one-line confirm only (likely intended).* |
+| **BUG-3** | Mark-Reviewed dialog captures VIN only; **no optional `input_review_note`** field. No error. | **REAL DEFECT / build-gap — REVERSED 2026-07-08** (was EXPECTED) | The refreshed **2026-07-08 design bundle** shows the "Mark work order reviewed" dialog carries **VIN (required) + an optional Review note** *by design* (see `design-change-diff.md`). Under **last-update-wins** the 07-08 design is the latest input, so the note is INTENDED and its live absence is a **build gap**, not a Simple-Flow simplification. | SF-REV-10 | EXPECTED **restored** to: the Mark-Reviewed dialog shows **VIN / Serial # (required)** + an **optional review-note field** (`input_review_note`); a note can be saved with the sign-off. Live absence = build gap to fix. |
 | **BUG-4** | Review sign-off jumps **Review → Complete**; no distinct "Reviewed" holding state; no separate final Complete click. No error. | **EXPECTED** | A skipped intermediate state ("Reviewed") that still reaches the same end state (Complete / invoice-ready) with no error and no data corruption. | SF-REV-08, SF-REV-11 | After Confirm Review the WO signs off and moves **directly Review → Complete**; there is **no distinct "Reviewed" holding state** and no separate final "Complete Work Order" click. |
 | **BUG-11** | Receiving a **WO-originated PO** via Accept Delivery returns **HTTP 500** (`POST /api/inventory/orders/accept`); inventory (non-WO) POs receive fine (201). | **REAL DEFECT** | The skip **throws an ERROR** (server 500) — fails prong (a) of the principle. Also blocks the receive lifecycle (potential Part-History/inventory integrity risk). File as a bug. | SF-COMP-13/19, SF-VAL-05/06, SF-PNFIX-02..06, SF-RCV-08, SF-VPART-07, SF-REV-04/14, SF-CORE-03..07 | KEEP as bug to file (Sev High). No EXPECTED rewrite — expected wording stays as the receive round-trip; case verification is blocked on the fix. |
 | **BUG-9** | Vendorless "New Part Request" sub-form **requires a Category** beyond spec S5-R1 (desc + qty + sell); Sell Price not enforced. | **OTHER** | **Not a flow-skip** — it is an ADDED required field, the opposite of skipping a step. Keep as a PO question (is Category-required intended for v1?). | SF-VPART-01, SF-VPART-02 | KEEP as PO question (Milos Round-2 Q4). If confirmed intended → expected adds "Category is required"; also confirm whether Sell Price should be enforced. |
@@ -36,9 +36,12 @@ kept as a question or bug on its own merits.
 | **BUG-1** | No "Create Purchase Orders" toggle / no `createPurchaseOrders` field — POs always-on. | **OTHER (RESOLVED)** | Already resolved by Milos (Round-1 Q5) as an **intended descope** — POs are always created. Not reopened here. | SF-SET-03, SF-COMP-06, SF-QB-02 | Already handled in `milos-answers-mapping.md` (descope): rewrite SF-SET-03; retire SF-COMP-06 / SF-QB-02. No change from this pass. |
 | **BUG-2** | Save Settings button always enabled (no dirty-state gating). | **OTHER (RESOLVED)** | Already resolved by Milos (Round-1 Q6) as **nice-to-have, non-blocker**. Not reopened here. | SF-SET-13 | Already handled in `milos-answers-mapping.md` (soften expected). No change from this pass. |
 
-**Summary counts:** EXPECTED = **3** (BUG-3, BUG-4, BUG-10) · REAL DEFECT = **1**
-(BUG-11) · OTHER = **6** (BUG-5, BUG-6, BUG-7, BUG-8, BUG-9, plus BUG-1/BUG-2
-already resolved by Milos).
+**Summary counts (updated 2026-07-08 after the reconciled V2.4/design batch):**
+EXPECTED = **2** (BUG-4, BUG-10) · REAL DEFECT / build-gap = **2** (BUG-11, and
+**BUG-3 REVERSED** back to a build-gap because the 07-08 design intends the optional
+review note) · OTHER = **6** (BUG-5, BUG-6, BUG-7, BUG-8, BUG-9, plus BUG-1/BUG-2 —
+note BUG-1 is now a **build-lag/spec-vs-build gap** under last-update-wins, since V2.4
+retains the No-PO path, not an intended descope).
 
 ---
 
@@ -59,12 +62,13 @@ already resolved by Milos).
   wording NOT changed by this reclassification — these remain **blocked by BUG-11**
   (WO-PO receive 500, a real defect) and stay pending the fix.
 
-### From BUG-3 (EXPECTED) — no optional review-note field
-- **SF-REV-10:** change EXPECTED from "an optional review note field
-  (`input_review_note`) is present and can be saved with the sign-off" → **"The
-  Mark-Reviewed dialog shows only the current field(s) (VIN); there is no optional
-  review-note field (simplified for Simple Flow)."** *(Still listed as a one-line
-  confirm in Milos Round-2 in case he wants the field added.)*
+### From BUG-3 (REVERSED 2026-07-08 → build-gap) — optional review-note field IS intended
+- **SF-REV-10:** EXPECTED **restored** to the note-present wording — the dialog shows
+  **VIN / Serial # (required)** + an **optional review-note field (`input_review_note`)**;
+  a note can be entered and saved with the sign-off. The earlier "no optional
+  review-note field" reclassification is **withdrawn** — the 07-08 design bundle
+  confirms the note is intended, so the live dialog's missing note is a **build gap**
+  (BUG-3, REAL DEFECT/build-gap).
 
 ### From BUG-4 (EXPECTED) — sign-off completes directly, no distinct Reviewed state
 - **SF-REV-08, SF-REV-11:** change EXPECTED from "Review → **Reviewed** (distinct
