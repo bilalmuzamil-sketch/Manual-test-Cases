@@ -1,100 +1,77 @@
 # Fees & Discounts V1 — QA env (qb) VIU Recon
 
-> **STATUS: BLOCKED at access — egress allowlist.** The F&D QA environment's real
-> **API host is not reachable** from this session's egress proxy, so authentication
-> and surface recon could not be performed. Details below. This file captures the
-> durable findings (the real API host, the app host, the cookie set) so the next
-> run resumes instantly once the host is allowlisted.
+> **STATUS: RECON COMPLETE (2026-07-08).** Access established, feature is LIVE,
+> and the F&D surfaces were walked as Admin. Earlier egress blocker resolved
+> (the API host was allowlisted). Screenshots in `/tmp/fees-discounts/recon/*.png`
+> (ephemeral). Secrets in `/tmp` only — never in this repo.
 
-## Environment (qb / SV-7387)
+## 1. Environment & access (VERIFIED)
 
-| Thing | Value | Reachable? |
-|---|---|---|
-| **App (SPA) host** | `https://qb.qa.shopview.com/` | **YES** — returns the SPA `index.html` (HTTP 200). |
-| **Real API host** | `https://sv7387api.qa.shopview.com` | **NO** — egress proxy returns **403 "Host not in allowlist: sv7387api.qa.shopview.com"**. |
-| `qbapi.qa.shopview.com` (guessed candidate) | — | **NO** — DNS/policy: proxy `502 connect_rejected` (does not resolve / not allowed). Not the API host. |
-| `qb.qa.shopview.com/api/...` | — | Serves SPA HTML (the SPA returns index.html for unknown routes) — **not** the API. |
+| Thing | Value |
+|---|---|
+| **App (SPA)** | `https://qb.qa.shopview.com/` |
+| **API host** | **`https://sv7387api.qa.shopview.com`** (found by grepping the SPA bundle `/js/index.*.js`; env = SV-7387, the F&D permissions Jira). `qbapi.qa.shopview.com` does NOT exist. |
+| **Auth** | `POST /api/quick-login {key:'admin'}` → **200**, gated by cookies. Same DEV quick-login pattern as staging/sv7301. |
+| **Cookies that worked** | `sv_sso_session` (64-hex) + `PHPSESSID` (32-hex) + `cf_clearance` (values in `/tmp/fees-discounts/cookies.env`, chmod 600). First auth succeeded with just the first two; a `cf_clearance` was supplied mid-run and kept. No Cloudflare challenge was ever observed on either host. |
+| **Logged-in user** | **Admin ShopView**, role **Admin** (41 fe-permissions, `view_mode: full`), org `d55bc308-…` "Staging Foothills Group Inc", shop "Staging Lethbridge - 4310". |
+| **admin vs tech** | `{key:'admin'}` → **200**. `{key:'tech'}` → **403 `{"errors":[{"error":"Access denied."}]}`** — app-level denial (tried first-in-sequence and with fresh cookies; NOT a cookie problem). **Tech quick-login is not enabled on this env.** Role-based negatives need the staff role-switch method instead (assign roles to a user via `/api/staff/{id}/change`). |
+| **Gotcha (proxy)** | Running node WITHOUT `NODE_USE_ENV_PROXY=1 NODE_EXTRA_CA_CERTS=/root/.ccr/ca-bundle.crt` produces a spurious proxy 403 "Host not in allowlist" even after allowlisting — always set both. |
+| **Gotcha (SPA deep links)** | Deep-linking to sub-routes (`/administration/adjustment-templates`, `/workorders/{id}/stats`, `/parts/part-sales/{id}`) renders an **"Error \| ShopView"** blank page. **Navigate in-SPA** (land on `/workorders` or `/administration/settings`, then click the nav/tab/row). `/workorders/{id}/lines` deep-link works fine, and — unlike staging — existing-WO detail does **NOT** bounce on this env. |
+| **Harness** | `/tmp/fdcln/fd-admin.mjs` (API client), `/tmp/fdcln/fd-boot2.mjs` (Chromium boot2 hydration, cookie domain `.qa.shopview.com`, chromium `/opt/pw-browsers/chromium-1194/chrome-linux/chrome`, Playwright straight at `$HTTPS_PROXY` — no separate bridge needed). |
 
-**How the API host was found:** the SPA index at `https://qb.qa.shopview.com/`
-loads one bundle `/js/index.*.js`; grepping it for `*.shopview.com` yields exactly
-one API host: **`https://sv7387api.qa.shopview.com`**. (Env is SV-7387 — the F&D
-Custom-Roles/permissions Jira, consistent with the F&D feature branch.)
+## 2. Feature flag — F&D is LIVE
 
-## The blocker (report to user)
+- Flags endpoint: **`GET /api/feature-flags`** → `{data:{featureFlags:[…]}}` (13 flags).
+- **`FeesAndDiscounts` flag EXISTS and its toggle is ON** at `/administration/feature-flags`
+  (sidebar DEV TOOLS → Feature Flags; toggle `aria-checked=true`). No action needed.
+- `QuickBooks` flag exists in the list (untouched/off); `LateFeesMvp` also present.
+- Screenshot: `feature-flags.png`.
 
-The agent egress proxy's allowlist does **not** include `sv7387api.qa.shopview.com`.
-- `POST https://sv7387api.qa.shopview.com/api/quick-login` →
-  **403 `Host not in allowlist: sv7387api.qa.shopview.com. Add this host to your
-  network egress settings to allow access.`**
-- `qbapi.qa.shopview.com` → proxy `502 connect_rejected` (recorded in
-  `$HTTPS_PROXY/__agentproxy/status`).
+## 3. Per-surface BUILT / NOT-YET table
 
-Per `/root/.ccr/README.md`, a 403 from the proxy is an **organization egress-policy
-denial** — I must **not** retry or route around it, only report it. The pattern
-`app-host allowed, API-host blocked` is the same shape as other QA envs; the fix is
-to **add `sv7387api.qa.shopview.com` to the session's network egress allowlist**
-(the app host `qb.qa.shopview.com` is already allowed).
+| Surface (spec story) | Route / path | Status | Evidence |
+|---|---|---|---|
+| **Template Builder / admin templates** (S7) | Administration → **FINANCE → Fees & Discounts** = `/administration/adjustment-templates` (in-SPA click only) | **BUILT** | Page "Fees & Discounts", **"New Fee / Discount"** button, table **Name·Type·Calculation Type·Amount·Max Amount·Taxable·Auto-Apply To Work Orders** + edit/delete. Create dialog: Name, Type, Calculation Type, $ Default Amount, Taxable, **"Auto-apply to new work orders"**, Description (Optional), Cancel/Create. One template exists ("Flat fee", auto-apply Yes). NOTE: spec places it under Service below Canned Lines (S7-R7a) — build puts it under **Finance** (matches S13-R8 target). |
+| **Processing Fee** (S8) | Template create dialog → Type dropdown | **NOT-YET** | Type dropdown offers **only "Fee" and "Discount"** — **no "Processing Fee"** third type (S8-R1 absent). No % of Grand Total anywhere. |
+| **Whole-WO fee/discount** (S1/S2/S3) | WO detail toolbar **⋯ → "Add Fee/Discount"**; sidebar **"WO Fees & Discounts"** card | **BUILT** (end-to-end verified) | Added a fee live: dialog "Add new fee/discount" with **Apply From Template**, Name, Type, Calculation Type, Amount, **Max Amount (Optional)** (percentage only), Taxable, **live preview** ("Work-order subtotal $2,049.10 → Fee +$1.00 → New work-order subtotal $2,050.10", **"Tax is recalculated on save."**, empty state **"Enter an amount to see the impact."**), confirm **"Add Fee"** (label follows Type). Toast **"Fee added"**. Card lists entries name + set amount + signed resolved amount, per-entry ⋯ → **Edit \| Remove**. Remove → confirm **"Remove Fee / Discount" / "Are you sure you want to remove this fee?"** → toast **"Fee removed"**. Inline validation "Amount must be greater than 0" (§5-R1). |
+| **Labor-line adjustment** (S1-R3) | WO line header **⋯ → "Add Fee/Discount"** (menu also has Uncomplete/Add line note/Edit labor/Move labor) | **BUILT** | Dialog opens **scope-locked**: subtitle **"Applying to: {line name}"**, Calculation Type defaults **"% Of Labor Total"**, Max Amount (Optional) present. |
+| **Part-line adjustment** (S1-R5) | WO part row **⋯ → "Move \| Add Fee/Discount"** | **BUILT** | Menu item present on the part row of an open WO (staged part). Dialog not driven further (recon). |
+| **Financial Info card row** (S3-R20) | WO sidebar Financial Info | **BUILT** | **"Fees & Discounts (N)"** row with net total (e.g. "(2) $26.00"), expandable, read-only. |
+| **Statistics tab F&D section** (S4) | WO → **Stats** tab (in-SPA; lands on `/workorders/{id}/statistics`) | **BUILT (different layout than spec)** | Section "Fees & Discounts" shows **aggregate rows: "Fees (1) $11.00 / Discounts (0) $0.00 / Net $11.00"** — NOT the spec's per-adjustment rows with % + Amount columns (S4-R2/R3). Flag for case updates. |
+| **History/audit log entries** (S10) | WO toolbar ⋯ → **Audit Log** ("Work Order Log" dialog) | **BUILT** | After the live add: entry **"Fee added / Admin ShopView / Line=− / Name: ZZAUTOTEST recon fee \| Amount: $1.00 \| Applied to: Full invoice"** — matches S10-R4a/R5/R6 incl. the exact "Full invoice" label. |
+| **Customer default templates + auto-apply** (S9) | Customer page → **"Fees & Discounts (N)"** tab = `/customers/{id}/default-adjustments` | **BUILT** | Card **"Default Fees & Discounts"** with the exact S9-R14 caption, columns Name·Type·Calculation Type·Amount·Max Amount·Taxable, empty state **"No fees or discounts yet. Use 'Add Fee/Discount' to add one."** (exact S9-R17), **"Add Fee/Discount"** button. Picker is a **"Fee / Discount Templates" dropdown with Cancel/Save** — NOT the spec's checkbox multi-select list w/ "Add" (S9-R18/R20) — flag for case updates. **Auto-apply works**: the auto-apply template ("Flat fee") landed on newly created WOs automatically (seen ×2 on one WO — matches the documented S9 double-add known bug shape; needs a dedicated test). |
+| **Part Sales adjustments** (S11) | Part Sale detail = `/parts/part-sale/{id}/part-requests` (via list click) | **NOT-YET** | Zero fee/discount affordances: parts table columns Description…Vendor·Requested At·Status·Actions — **no "Fees & Discounts" column** (S11-R7); toolbar ⋯ = "Delete \| Set status" — **no "Add Parts Sale Fee / Discount"** (S11-R4a); no sidebar F&D card; no "fee" text anywhere on the page. |
+| **QuickBooks mapping** (S6) | Settings sidebar INTEGRATIONS | **NOT PRESENT** (presence-only check) | INTEGRATIONS group shows **IBS only** — no QuickBooks settings page; `QuickBooks` feature flag exists but not enabled. S6 mapping-guard behavior untestable on this env. (QB deep-VIU out of scope anyway.) |
+| **Estimate/invoice rendering** (S5), **Shop Supplies hide** (S14) | WO Finance tab / customer documents | **UNVERIFIED** | Not walked in this recon (needs an invoice-ready WO). Finance tab exists on the WO. |
 
-**NEEDS USER APPROVAL:** allowlist host `sv7387api.qa.shopview.com` for network
-egress. Once added, re-run the probe (below) — the two supplied cookies can then be
-validated.
+Build wording note: the app uses **"Add Fee/Discount"** (no spaces) at every WO starting
+place — the spec's WO-toolbar label "Add Work Order Fee / Discount" and the
+spaces-around-slash convention (S1-R1/S11-R4a, §6.1 exact-text note) do NOT match the
+current build. Card menu says "Edit | Remove" (spec S3-R9 says Edit/Delete).
 
-## Cookies (names only — values in `/tmp/fees-discounts/cookies.env`, chmod 600)
+## 4. What's VIU-able NOW vs blocked
 
-Two cookies supplied (no `cf_clearance`):
-- `sv_sso_session` (64-hex) — the SSO session.
-- `PHPSESSID` (32-hex) — PHP session.
+**VIU-able now (as Admin):**
+- Story 1 (starting places: WO toolbar, line menu, part menu) — all present.
+- Story 2 (Add/Edit dialog: fields, template picker, live preview, validation, toasts).
+- Story 3 (sidebar card, Financial Info row, edit/remove flows, open-WO gating).
+- Story 4 (Stats tab — but layout deviates from spec; verify against build reality).
+- Story 7 (template builder CRUD + auto-apply checkbox).
+- Story 9 (customer defaults tab, add/remove defaults, auto-apply to new WOs — incl. the double-add bug check).
+- Story 10 (history log entries — proven working).
+- §5 calculation contract (via live preview + saved amounts on throwaway WOs).
+- Story 12 visual rules (signed badges, grey amounts — spot-check).
 
-**Not yet validated** — could not reach the API host to test them. Whether
-`cf_clearance` is also needed is **undetermined**: the app host `qb.qa` served HTML
-without any Cloudflare challenge, so a challenge was **not** observed, but the
-authenticated API path was never exercised. Re-check after allowlisting.
+**Blocked / not possible yet:**
+- **Story 8 Processing Fee — NOT built** (no third type in the template builder).
+- **Story 11 Part Sales — NOT built** (no F&D affordances on a part sale).
+- **Story 6 QuickBooks — no QuickBooks integration on this env** (mapping guard, sync, negative-total credit memo untestable).
+- Story 5 / Story 14 (customer documents) — unverified; needs an invoiceable WO walk (likely possible, just not done in recon).
+- Story 13 permissions matrix — `{key:'tech'}` quick-login is disabled; use the staff role-switch method (assign role → fresh login for that user); a working second-user login path must be established first.
 
-## Logged-in user / role
+## 5. Ops notes / cleanup
 
-**Undetermined** — quick-login could not run (API host blocked). Admin & tech both
-untested.
-
-## Is F&D live / feature flag
-
-**Undetermined** — could not reach `/administration/feature-flags` or
-`/api/organizations/settings`. Per spec §1, F&D is gated by a per-org
-**"Fees & Discounts" feature flag**; whether it is ON on this env is unverified.
-
-## Per-surface BUILT / NOT-YET table
-
-**All undetermined — no surface could be loaded.** Target surfaces to check once
-access is restored (from `requirements.md` + `design-notes.md`):
-
-| Surface | Route to check | Status |
-|---|---|---|
-| Feature flag "FeesAndDiscounts" | `/administration/feature-flags` | UNVERIFIED |
-| Template Builder / admin templates (Story 7/8) | Administration → Service → **Fees & Discounts** (below Canned Lines) | UNVERIFIED |
-| Whole-WO fee/discount (Story 1/3) | WO detail `⋯` → "Add Work Order Fee / Discount"; sidebar "WO Fees & Discounts" card | UNVERIFIED |
-| Labor-line adjustment (Story 1) | WO line row 3-dot → Add fee / discount | UNVERIFIED |
-| Part-line adjustment (Story 1) | WO part menu → Add fee / discount | UNVERIFIED |
-| Processing Fee (Story 8, template-only) | admin F&D page → Type = "Processing Fee" | UNVERIFIED |
-| Customer default templates + auto-apply (Story 9) | Customer page → "Fees & Discounts (N)" tab | UNVERIFIED |
-| Part Sales adjustments (Story 11) | Part Sale → `⋯` "Add Parts Sale Fee / Discount"; parts "Fees & Discounts" column | UNVERIFIED |
-| Audit / history log (Story 10) | WO history log — "Fee added/updated/removed" entries | UNVERIFIED |
-| QuickBooks line-item mapping (Story 6) | Settings → QuickBooks (Fee/Discount item map) | UNVERIFIED (QB out of scope for deep VIU) |
-
-## What's VIU-able now
-
-**Nothing.** All F&D verification is blocked on egress access to
-`sv7387api.qa.shopview.com`. The SPA cannot even hydrate/authenticate in a browser,
-because every `/api/*` call the SPA makes targets the blocked API host (the MITM
-bridge relays through the same egress proxy).
-
-## Resume procedure (once the host is allowlisted)
-
-1. Harness is already staged at `/tmp/fdcln/` (`fd-admin.mjs`, `probe.mjs`) and
-   cookies at `/tmp/fdcln/cookies.json` (= `/tmp/fees-discounts/cookies.env`).
-2. `cd /tmp/fdcln && NODE_USE_ENV_PROXY=1 NODE_EXTRA_CA_CERTS=/root/.ccr/ca-bundle.crt node probe.mjs`
-   with `FD_API=https://sv7387api.qa.shopview.com` — confirms cookies, logged-in
-   user, admin+tech, org settings.
-3. Then boot2-hydrate Chromium against `https://qb.qa.shopview.com/` (adapt
-   `build/testing-tools/staging-boot2.mjs`: APP = qb host, API = sv7387api host,
-   cookie domain `.qa.shopview.com`, chromium glob
-   `/opt/pw-browsers/chromium-*/chrome-linux/chrome`).
-4. Walk the surface table above; screenshot to `/tmp/fees-discounts/recon/*.png`.
+- Test data: added ZZAUTOTEST fee on WO S3-15888 and **removed it** (card restored to prior state). No other data changed. No roles changed.
+- WOs used (existing, untouched): S3-15888 `33fbafa9-…` (open, 1 line, 12 parts), S3-15893 `cac7f93c-…` (0 lines). Part sale P3-69 `5b07d396-…`. Customer `7af75d7c-…` (Aaborough Works).
+- Endpoints confirmed: `GET /api/feature-flags`, `GET /api/adjustment-templates` (`{data:{templates:[…]}}`), `GET /api/work-orders?page=&limit=` (`{data:{work_orders:[{linesCount,partRequestsCount,…}]}}`), `GET /api/part-sales` (`{data:{partSales:[…]}}`), `GET /api/work-orders/simple-list` (`{data:{collection}}` — no line counts).
+- Screenshots (ephemeral): `/tmp/fees-discounts/recon/*.png` — feature-flags, admin-adjustment-templates, admin-template-create-dialog, admin-template-type-options, wo-add-dialog(+filled), wo-after-add, wo-remove-confirm, wo-audit-after-add, wo-line-add-dialog, wo-menu-idx1/3/4, wo-stats-tab, customer-fd-tab, customer-add-picker, part-sale-detail, home.
