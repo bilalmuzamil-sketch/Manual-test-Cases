@@ -14,12 +14,12 @@
     ],
     "steps": [
       "1. Click the ⋯ (More actions) menu at the top-right of the work order toolbar.",
-      "2. Click the menu item 'Add Work Order Fee / Discount'.",
+      "2. Click the menu item 'Add Fee/Discount'.",
       "3. Observe the dialog title and any subtitle."
     ],
     "expected": [
-      "1. A dialog opens with the title 'New Fee / Discount' (spec S2-R9). In the current design mockup the header reads 'Add new fee/discount' with the WO number (e.g. 'S2-13274') as the context subtitle.",
-      "2. There is NO 'Applying to:' subtitle, because Whole Work Order scope has none (S2-R12).",
+      "1. A dialog opens with the title 'Add new fee/discount' and the work order number (e.g. 'S2-13274') shown as the context subtitle.",
+      "2. There is NO 'Applying to:' subtitle, because Whole Work Order scope has none.",
       "3. The scope is Whole Work Order and cannot be changed from inside the dialog (there is no scope dropdown)."
     ],
     "design_ref": "Add new fee/discount modal (design-notes §6); WO toolbar ⋯ menu (§1)",
@@ -430,9 +430,9 @@
       "3. Read the dialog title and subtitle."
     ],
     "expected": [
-      "1. The dialog opens locked to Labor Line scope for that specific line (S1-R3).",
-      "2. A grey subtitle reads 'Applying to: Line 1 Labor — Service - Perform LOF and inspection' (S2-R10), or 'Applying to: Line 1 Labor' when the line has no name.",
-      "3. Scope/target cannot be changed inside the dialog (S2-R8)."
+      "1. The dialog opens locked to Labor Line scope for that specific line.",
+      "2. A grey subtitle reads 'Applying to: {line name}' (e.g. 'Applying to: Service - Perform LOF and inspection'); it does NOT include a 'Line {N} Labor —' prefix.",
+      "3. Scope/target cannot be changed inside the dialog."
     ],
     "design_ref": "labor line ⋯ menu items incl. 'Add fee / discount' (§2, §2a)",
     "viu_status": "VIU-Deviation",
@@ -1165,14 +1165,14 @@
       "2. An open work order with a whole-WO 'Early Payment Discount' of −8% resolving to −$857.23, plus some line-level adjustments."
     ],
     "steps": [
-      "1. Look at the left-sidebar 'Work Order Fee / Discount' card.",
+      "1. Look at the left-sidebar 'WO Fees & Discounts' card.",
       "2. Read the listed entries and confirm which scopes appear.",
       "3. Hover an entry and open its ⋯ menu."
     ],
     "expected": [
-      "1. The card lists ONLY whole-Work-Order adjustments (S3-R3) — line-level adjustments do NOT appear here.",
-      "2. The 'Early Payment Discount' entry shows a signed rate badge '−8%' (S3-R5/R6) and the resolved amount −$857.23 in plain grey, signed (S3-R8).",
-      "3. Hovering shows a ⋯ 3-dot menu with 'Edit' and 'Delete' only (S3-R9), shown only when the WO is open and the user has the change permission."
+      "1. The card is titled 'WO Fees & Discounts' and lists ONLY whole-Work-Order adjustments — line-level adjustments do NOT appear here.",
+      "2. The 'Early Payment Discount' entry shows a signed rate badge '−8%' and the resolved amount −$857.23 in plain grey, signed.",
+      "3. Hovering shows a ⋯ 3-dot menu with 'Edit' and 'Remove' only, shown only when the WO is open and the user has the change permission."
     ],
     "design_ref": "'Work Order Fee / Discount' card .wo-fd-card, entry 'Early Payment Discount −8% −$857.23', ⋯ Edit/Delete (§1a)",
     "viu_status": "VIU-Deviation",
@@ -1481,15 +1481,15 @@
       "2. An open work order with a whole-WO discount named 'Early Payment Discount'."
     ],
     "steps": [
-      "1. On the sidebar 'Work Order Fee / Discount' card, hover the 'Early Payment Discount' entry and open its ⋯ menu.",
-      "2. Click 'Delete'.",
+      "1. On the sidebar 'WO Fees & Discounts' card, hover the 'Early Payment Discount' entry and open its ⋯ menu.",
+      "2. Click 'Remove'.",
       "3. Read the confirm dialog.",
       "4. Click the confirm button."
     ],
     "expected": [
-      "1. A confirm dialog opens titled 'Remove Fee / Discount' with the message 'Remove \"Early Payment Discount\" from this work order?' and a red 'Remove' confirm button (S3-R11a).",
-      "2. On confirm, the adjustment is removed (S3-R11b).",
-      "3. A success toast reads 'Discount removed' (§7); the entry disappears from the card and the count/totals update."
+      "1. A confirm dialog opens titled 'Remove Fee / Discount' with the message 'Are you sure you want to remove this fee?' and a red 'Remove' confirm button.",
+      "2. On confirm, the adjustment is removed.",
+      "3. A success toast confirms removal (observed wording 'Fee removed'; confirm whether it varies to 'Discount removed' by adjustment kind); the entry disappears from the card and the count/totals update."
     ],
     "design_ref": "sidebar ⋯ 'Delete' (§1a); no confirm dialog modeled in mockups (§10)",
     "viu_status": "VIU-Deviation",

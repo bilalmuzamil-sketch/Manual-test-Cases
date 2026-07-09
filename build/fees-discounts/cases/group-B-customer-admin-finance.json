@@ -444,12 +444,12 @@
    "1. You have Settings → Finance access."
   ],
   "steps": [
-   "1. Go to Administration → Service.",
+   "1. Go to Administration → Finance.",
    "2. Locate the Fees & Discounts section."
   ],
   "expected": [
-   "1. A \"Fees & Discounts\" template page/section is present under Administration → Service.",
-   "2. It appears directly below \"Canned Lines\"."
+   "1. A \"Fees & Discounts\" template page/section is present under Administration → Finance (route /administration/adjustment-templates).",
+   "2. It appears directly below \"Payment Methods\"."
   ],
   "design_ref": "requirements.md §9.1 (S7-R7a/c); design-notes.md §0 (admin page not in mockups — confirm live)",
   "viu_status": "VIU-Deviation",
@@ -495,14 +495,14 @@
   "steps": [
    "1. Click \"New fee / discount\".",
    "2. Confirm the dialog title reads \"New Fee / Discount\".",
-   "3. Set Type = \"Fee\"; Calculation type = \"% of Labor Total\"; Name = \"ZZAUTOTEST Shop Fee\"; Percent = 5; leave Max Amount blank; Taxable = \"Yes\"; leave the auto-apply checkbox unchecked.",
+   "3. Set Type = \"Fee\"; Calculation type = \"% of Labor Total\"; Name = \"ZZAUTOTEST Shop Fee\"; Percent = 5; leave Max Amount blank; leave the Taxable toggle ON; optionally add a Description; leave the \"Auto-apply to new work orders\" toggle OFF.",
    "4. Click the confirm button."
   ],
   "expected": [
-   "1. The dialog has fields: Type (Fee/Discount/Processing Fee dropdown), Calculation type, Name (up to 100 chars), Amount or Percent, \"Max Amount (Optional)\" (percentage methods only), Taxable Yes/No (default Yes), and an \"Auto-apply to all new work orders at this location\" checkbox.",
+   "1. The dialog has fields: Type (Fee/Discount/Processing Fee dropdown), Calculation type, Name (up to 100 chars), \"$ Default Amount\"/Percent, \"Max Amount (Optional)\" (percentage methods only), a Taxable toggle (default ON), a \"Description (Optional)\" field (up to 255 chars), and an \"Auto-apply to new work orders\" toggle.",
    "2. There is NO scope field (every template is whole-WO).",
-   "3. The confirm button reads exactly \"Add Fee / Discount\" (fixed label for creation, any type).",
-   "4. On save, a success toast reads exactly \"Fee added\" and the new template appears in the list."
+   "3. The confirm button reads exactly \"Create\".",
+   "4. On save, a success toast reads exactly \"Template created\" and the new template appears in the list."
   ],
   "design_ref": "requirements.md §9.1 (S7-R10..R18)",
   "viu_status": "VIU-Deviation",
@@ -522,11 +522,11 @@
   ],
   "steps": [
    "1. Click \"New fee / discount\".",
-   "2. Set Type = \"Discount\"; Calculation type = \"% of Subtotal\"; Name = \"ZZAUTOTEST Loyalty\"; Percent = 8; Taxable = \"No\".",
-   "3. Click \"Add Fee / Discount\"."
+   "2. Set Type = \"Discount\"; Calculation type = \"% of Subtotal\"; Name = \"ZZAUTOTEST Loyalty\"; Percent = 8; set the Taxable toggle OFF.",
+   "3. Click \"Create\"."
   ],
   "expected": [
-   "1. Save succeeds and the toast reads exactly \"Discount added\".",
+   "1. Save succeeds and the toast reads exactly \"Template created\" (a generic message, not a per-type \"Discount added\").",
    "2. The template list shows \"ZZAUTOTEST Loyalty\", Type Discount, Calculation Type % of Subtotal, Amount −8%, Taxable No."
   ],
   "design_ref": "requirements.md §9.1 (S7-R18a); §12 toast table",
@@ -578,8 +578,8 @@
   ],
   "expected": [
    "1. Clicking the row opens the edit dialog titled \"Edit Fee / Discount\".",
-   "2. The confirm button reads exactly \"Save\" (edit mode).",
-   "3. On save, the toast reads exactly \"Fee updated\" and the list shows the new 7% value."
+   "2. The confirm button reads exactly \"Save\" (edit mode); Type and Calculation type are locked (read-only) in template edit.",
+   "3. On save, the toast reads exactly \"Template updated\" and the list shows the new 7% value."
   ],
   "design_ref": "requirements.md §9.1 (S7-R9/R16/R17/R18b)",
   "viu_status": "VIU-Deviation",
@@ -627,7 +627,7 @@
    "2. Read the confirm dialog."
   ],
   "expected": [
-   "1. In addition to the standard message, the dialog adds exactly: \"This template is set as a default for 2 customer(s). Their defaults will be removed too.\" (N reflects the actual number of customers)."
+   "1. In addition to the standard message, the dialog adds exactly: \"This template is set as a default for 2 customer(s). Deleting it will remove it from them.\" (N reflects the actual number of customers)."
   ],
   "design_ref": "requirements.md §9.1 (S7-R21)",
   "viu_status": "VIU-Deviation",
@@ -1037,10 +1037,10 @@
   ],
   "steps": [
    "1. Hover the Processing Fee entry in the WO Fees & Discounts card and open its 3-dot menu.",
-   "2. Attempt to remove it."
+   "2. Note the available actions, then attempt to remove it."
   ],
   "expected": [
-   "1. The entry's menu offers \"Delete\" only — there is NO \"Edit\" for a Processing Fee.",
+   "1. The entry's menu shows \"Edit\" and \"Remove\"; the Edit control is inert for a Processing Fee — attempting to edit it is rejected by the system (a Processing Fee cannot be edited on the WO instance).",
    "2. Removing it works normally (opens the \"Remove Fee / Discount\" confirm and removes on confirm).",
    "3. To change amount/method/taxable you must edit the TEMPLATE, not the WO instance."
   ],
