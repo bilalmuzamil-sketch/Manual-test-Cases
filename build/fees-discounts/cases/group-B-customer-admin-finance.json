@@ -130,8 +130,8 @@
    "3. The Processing Fee template (c) DOES appear (a Processing Fee can be a customer default), and in the current build its Type column shows \"Fee\"."
   ],
   "design_ref": "design-notes.md §7; requirements.md §6.1 (Processing Fee templates appear in this picker, show \"Fee\")",
-  "viu_status": "VIU-Pending — DEVIATION (flagged 2026-07-08, = NOTE-FD-5): the customer \"Add Fee/Discount\" picker is a single-select \"Fee / Discount Templates\" dropdown + Cancel/Save (b2c-07), NOT the spec's checkbox multi-select list with \"Add\" (S9-R18/R20). Dropdown content (unlinked-only, Processing-Fee-as-Fee) not expanded this pass.",
-  "notes": "This differs from the WO template picker, which NEVER lists a Processing Fee (S8-N2). Flag if staging shows raw \"processing_fee\" instead of \"Fee\". | VIU qb batch-1 (2026-07-08): Picker lists only unlinked templates (verified: linked one disappears on reopen). DEVIATION: dropdown rows show the NAME only (no Type/Calc/Amount columns). Processing-fee template in the customer TABLE shows Type 'Processing fee' (better than the spec note's 'Fee'); its picker Type label not observable (no Type in picker). Shots s5-01, s11-02.",
+  "viu_status": "VIU-Deviation (case-update — PO answer Q6=A: single-at-a-time customer-defaults picker is an accepted deliberate judgement call, NOT a bug; observed single-select dropdown b2c-07). Re-word case to single-select dropdown; the three list assertions (linked hidden / unlinked shown / Processing Fee shown as type 'Fee') still apply. Ref spec-v1-reconciliation §3 Q6.",
+  "notes": "This differs from the WO template picker, which NEVER lists a Processing Fee (S8-N2). Flag if staging shows raw \"processing_fee\" instead of \"Fee\". | VIU qb batch-1 (2026-07-08): Picker lists only unlinked templates (verified: linked one disappears on reopen). DEVIATION: dropdown rows show the NAME only (no Type/Calc/Amount columns). Processing-fee template in the customer TABLE shows Type 'Processing fee' (better than the spec note's 'Fee'); its picker Type label not observable (no Type in picker). Shots s5-01, s11-02. | RECON 2026-07-09 (spec-v1-reconciliation.md + PO answer sheet): PO Q6=A accepts single-select dropdown (close FDBUG-7 as won't-fix); adopt case-update wording.",
   "api_related": false
  },
  {
@@ -1453,8 +1453,8 @@
    "1. Order is: Labor, Parts, Shop Supplies, then the \"Adjustments\" block, then Subtotal, then Tax, then Total."
   ],
   "design_ref": "requirements.md §6.2 (S5-R5)",
-  "viu_status": "VIU-Deviation",
-  "notes": "VIU qb batch-1 (2026-07-08): Adjustments block position ok (after Labor/Parts/Shop supplies, before Subtotal -> GST -> Total). DEVIATION/BUG (FDBUG-1): Subtotal and Total do NOT include the adjustment amounts while GST DOES include their tax — estimate showed Subtotal $292.83 / GST $17.75 / Total $310.58 with +$62.25 net adjustments missing from the total; a fees-only WO showed 'Total $10.93' = tax alone. Customer-facing money is wrong.",
+  "viu_status": "VIU-Deviation (FDBUG-1) — GST-ENV CAVEAT: symptom was framed on a GST (5%) org but v1 is US-sales-tax-only (spec-v1-reconciliation §1). The structural half (Subtotal/Total exclude the net adjustment amount) is tax-model-independent, BUT it did NOT reproduce on estimate documents in batch-4 (totals reconciled on 3 WOs). Treat as INCONCLUSIVE — needs a controlled US-sales-tax repro before filing as a v1 defect.",
+  "notes": "VIU qb batch-1 (2026-07-08): Adjustments block position ok (after Labor/Parts/Shop supplies, before Subtotal -> GST -> Total). DEVIATION/BUG (FDBUG-1): Subtotal and Total do NOT include the adjustment amounts while GST DOES include their tax — estimate showed Subtotal $292.83 / GST $17.75 / Total $310.58 with +$62.25 net adjustments missing from the total; a fees-only WO showed 'Total $10.93' = tax alone. Customer-facing money is wrong. | RECON 2026-07-09 (spec-v1-reconciliation.md + PO answer sheet): FDBUG-1 GST-artifact-re-eval: batch-4 non-repro on estimates + GST framing -> needs US-tax repro.",
   "api_related": false
  },
  {

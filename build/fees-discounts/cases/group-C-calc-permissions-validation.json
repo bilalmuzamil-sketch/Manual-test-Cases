@@ -360,8 +360,8 @@
       "3. It resolves in Step 3 (last), is excluded from its own base, and does not change any other adjustment's base."
     ],
     "design_ref": "design-notes §9 item 3 (no Processing Fee in the mocks; % of Grand Total appears nowhere in the design)",
-    "viu_status": "VIU-Deviation",
-    "notes": "Design does not mock Processing Fee at all (design §9 item 3); it is template/admin-only. On a WO a Processing Fee is remove-only, no Edit (S8-R17); current build reportedly still shows a failing Edit control (requirements §14 item 6). | VIU qb batch-1 (2026-07-08): Processing fee resolves last and dynamically, BUT its Grand-Total base wrongly INCLUDES whole-WO fees/discounts and their tax (FDBUG-2): observed 3% x 530.07 = 15.90; spec-expected 3% x 307.47 = 9.22.",
+    "viu_status": "VIU-Deviation (FDBUG-2) — PARTIAL GST CAVEAT: the base-composition defect (whole-WO fees/discounts leaking into the Processing-Fee %-of-Grand-Total base, violating §5-R4) is tax-model-INDEPENDENT and likely still holds under US tax; only the exact dollar figure (observed with GST ×1.05) is off-model. Re-verify the number on a US-sales-tax org; keep as a bug. Ref spec-v1-reconciliation §1.",
+    "notes": "Design does not mock Processing Fee at all (design §9 item 3); it is template/admin-only. On a WO a Processing Fee is remove-only, no Edit (S8-R17); current build reportedly still shows a failing Edit control (requirements §14 item 6). | VIU qb batch-1 (2026-07-08): Processing fee resolves last and dynamically, BUT its Grand-Total base wrongly INCLUDES whole-WO fees/discounts and their tax (FDBUG-2): observed 3% x 530.07 = 15.90; spec-expected 3% x 307.47 = 9.22. | RECON 2026-07-09 (spec-v1-reconciliation.md + PO answer sheet): FDBUG-2 structural defect stands (tax-independent); GST-rated number needs US-tax re-verify.",
     "api_related": false
   },
   {
@@ -893,8 +893,8 @@
       "5. Max Amount / Max cap is NOT required to enable Add."
     ],
     "design_ref": "design-notes §6 (Add disabled by default; validateForm enables only when Name AND Type AND Calc type AND Amount > 0)",
-    "viu_status": "VIU-Pending — DEVIATION (flagged 2026-07-08): Add button stays ENABLED with an empty form (b2-05); build enforces via inline error on submit, not button-disable. S2-N1/N2 (block save) is met by a different mechanism. Confirm with PO.",
-    "notes": "Design difference: the mock dialog also has NO base selector and NO Taxable control (design §9 items 1–2). Spec adds Taxable (default Yes, S2-R26) and scope-dependent Calculation type options (§5-R10). Verify the real dialog's enable rule against these extra fields. | VIU qb batch-1 (2026-07-08): The Add/Create buttons are NEVER disabled (design §6 enable-rule not implemented). Build validates on submit with inline field errors + error toasts and keeps the dialog open.",
+    "viu_status": "VIU-Deviation (CONFIRMED DEFECT — PO answer Q4=B: Add button must be disabled until Name+Type+Calc+Amount>0; build stays enabled and validates on submit, observed b2-05). Case expected upheld; route to dev. Ref spec-v1-reconciliation §3 Q4.",
+    "notes": "Design difference: the mock dialog also has NO base selector and NO Taxable control (design §9 items 1–2). Spec adds Taxable (default Yes, S2-R26) and scope-dependent Calculation type options (§5-R10). Verify the real dialog's enable rule against these extra fields. | VIU qb batch-1 (2026-07-08): The Add/Create buttons are NEVER disabled (design §6 enable-rule not implemented). Build validates on submit with inline field errors + error toasts and keeps the dialog open. | RECON 2026-07-09 (spec-v1-reconciliation.md + PO answer sheet): PO Q4=B -> confirmed defect (BUG-FD-4).",
     "api_related": false
   },
   {

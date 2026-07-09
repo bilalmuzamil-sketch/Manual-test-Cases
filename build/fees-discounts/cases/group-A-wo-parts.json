@@ -151,8 +151,8 @@
       "6. With Amount = 25 and all other required fields set, Add becomes enabled. Max cap is NOT required."
     ],
     "design_ref": "footer Add button #fd-add-btn, validateForm() (§6)",
-    "viu_status": "VIU-Pending — DEVIATION (flagged 2026-07-08): the Add dialog \"Add Fee\" button is NOT disabled on an empty form (evidence b2-05); the build validates on submit with an inline error (\"Amount must be greater than 0\", batch-1) rather than a disabled button. Spec/design §6 expects a disabled button. Confirm intended behavior — do not rewrite.",
-    "notes": "The disabled-Add rule is the design's only validation gate; spec S2-N1/S2-N2 also expect inline error text on empty Name/Amount, which the design mockup does NOT render (design open item §10). Verify whether staging shows inline errors in addition to the disabled button. | VIU qb batch-1 (2026-07-08): Add button is NEVER disabled. Build validates on save: inline errors ('Name is a required field', 'Percent must be greater than 0') and error toast for >100% discount; dialog stays open. Design's disabled-until-valid rule not implemented. Shot s8-10.",
+    "viu_status": "VIU-Deviation (CONFIRMED DEFECT — PO answer Q4=B: Add button must be greyed out until valid; build leaves it enabled and validates on submit instead, observed b2-05). Case expected (disabled-until-valid, design §6) upheld; route to dev. Ref spec-v1-reconciliation §3 Q4.",
+    "notes": "The disabled-Add rule is the design's only validation gate; spec S2-N1/S2-N2 also expect inline error text on empty Name/Amount, which the design mockup does NOT render (design open item §10). Verify whether staging shows inline errors in addition to the disabled button. | VIU qb batch-1 (2026-07-08): Add button is NEVER disabled. Build validates on save: inline errors ('Name is a required field', 'Percent must be greater than 0') and error toast for >100% discount; dialog stays open. Design's disabled-until-valid rule not implemented. Shot s8-10. | RECON 2026-07-09 (spec-v1-reconciliation.md + PO answer sheet): PO Q4=B confirms disabled-until-valid is correct; build wrong -> confirmed defect (BUG-FD-4), not a PO question.",
     "api_related": false
   },
   {
@@ -889,8 +889,8 @@
       "4. The toggle label changes to 'Show less' when expanded (S3-R16)."
     ],
     "design_ref": "'Show 2 more' toggle .wo-show-more; screenshots 01-show-more/-state (§2b)",
-    "viu_status": "VIU-Pending — DEVIATION (flagged 2026-07-08): with 2 labor-line adjustments on one line, BOTH rows are shown inline and NO \"Show N more\"/\"Show less\" toggle was observed (b2-05). Spec S3-R15/R16 expects only the first + a toggle. Confirm intended.",
-    "notes": "Same collapse/expand behavior applies to a labor line with 2+ adjustments. | VIU qb batch-1 (2026-07-08): With 2 adjustments on the line BOTH rows show; NO 'Show N more'/'Show less' toggle exists (S3-R15/R16 not implemented). Shot s13-01.",
+    "viu_status": "VIU-Deviation (CONFIRMED DEFECT — PO answer Q5=B: line-level 'Show N more' collapse was in the design, under-specified in spec; build shows all adjustment rows with no toggle, observed b2-05). Case expected (S3-R15/R16) upheld; route to dev. Ref spec-v1-reconciliation §3 Q5.",
+    "notes": "Same collapse/expand behavior applies to a labor line with 2+ adjustments. | VIU qb batch-1 (2026-07-08): With 2 adjustments on the line BOTH rows show; NO 'Show N more'/'Show less' toggle exists (S3-R15/R16 not implemented). Shot s13-01. | RECON 2026-07-09 (spec-v1-reconciliation.md + PO answer sheet): PO Q5=B -> confirmed defect (BUG-FD-5).",
     "api_related": false
   },
   {
@@ -995,8 +995,8 @@
       "3. Clicking a scope link jumps to that scope / opens its breakdown (the 'jump to scope' affordance)."
     ],
     "design_ref": "Stats scope links .stats-sub-link (§3)",
-    "viu_status": "VIU-Pending — DEVIATION (flagged 2026-07-08, = BUG-FD-2): Stats F&D section shows AGGREGATE rows (Fees (3) $87.98 / Discounts (2) −$74.14 / Net $13.84), NOT per-adjustment rows with scope hyperlink (b2-04). S4-R2/R3 per-row layout not built.",
-    "notes": "Scope hyperlink is a design affordance; confirm the exact jump/breakdown behavior on staging. | VIU qb batch-1 (2026-07-08): No per-adjustment rows exist in the aggregate layout, so no scope hyperlink per row (design §3 not built).",
+    "viu_status": "VIU-Deviation (CONFIRMED DEFECT — PO answer Q1=B: per-row Statistics layout with scope hyperlink was in Branko's design and regressed in spec/build; build shows aggregate rows only, observed b2-04). Case expected (S4-R2/R3) upheld; route to dev. Ref spec-v1-reconciliation §3 Q1.",
+    "notes": "Scope hyperlink is a design affordance; confirm the exact jump/breakdown behavior on staging. | VIU qb batch-1 (2026-07-08): No per-adjustment rows exist in the aggregate layout, so no scope hyperlink per row (design §3 not built). | RECON 2026-07-09 (spec-v1-reconciliation.md + PO answer sheet): PO Q1=B -> confirmed defect (BUG-FD-2), per-row layout is correct.",
     "api_related": false
   },
   {
@@ -1046,8 +1046,8 @@
       "1. Rows list in creation order oldest-first: A, then B, then C (§5-R9)."
     ],
     "design_ref": "Stats table row order (§3)",
-    "viu_status": "VIU-Pending — DEVIATION (flagged 2026-07-08, = BUG-FD-2): Stats shows aggregate totals only, so per-adjustment creation-order rows cannot be verified (b2-04). Depends on the per-row layout (not built).",
-    "notes": "The Group-A task brief mentions 'descending build order', but spec §5-R9 is explicit that WO screens (sidebar card, Financial Info, line table, Statistics tab) list adjustments in creation order OLDEST first. Authored to spec — flag the wording difference and confirm the actual order on staging. | VIU qb batch-1 (2026-07-08): No per-adjustment rows -> creation-order rule not applicable in current build.",
+    "viu_status": "VIU-Deviation (CONFIRMED DEFECT — PO answer Q1=B: per-row Statistics layout was in design and regressed; aggregate-only build cannot show per-adjustment creation-order rows, observed b2-04). Depends on the per-row layout fix. Ref spec-v1-reconciliation §3 Q1.",
+    "notes": "The Group-A task brief mentions 'descending build order', but spec §5-R9 is explicit that WO screens (sidebar card, Financial Info, line table, Statistics tab) list adjustments in creation order OLDEST first. Authored to spec — flag the wording difference and confirm the actual order on staging. | VIU qb batch-1 (2026-07-08): No per-adjustment rows -> creation-order rule not applicable in current build. | RECON 2026-07-09 (spec-v1-reconciliation.md + PO answer sheet): PO Q1=B -> confirmed defect (BUG-FD-2); creation-order verifiable once per-row layout ships.",
     "api_related": false
   },
   {
