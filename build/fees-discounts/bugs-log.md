@@ -132,3 +132,9 @@ broken behavior; **Note** = build fact worth tracking.
   uses spaces around the slash; build uses **"Add Fee/Discount"** (no spaces) at
   the WO toolbar and card menu says **"Edit | Remove"** (spec S3-R9 says
   "Edit / Delete"). Low severity wording drift.
+
+## FDBUG-3 — reinforced (batch-3, 2026-07-09)
+- Batch-3 FD-HIST-007 attempt: a Processing Fee auto-applied to a fresh WO produced NO
+  history entry (`GET /api/work-orders/{id}/history` empty for the new WO) — same root
+  cause as FDBUG-3 (auto-applied adjustments are not logged). Not a new bug; blocks the
+  positive verification of FD-HIST-007 until fixed.

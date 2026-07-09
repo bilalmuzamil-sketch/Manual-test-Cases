@@ -273,3 +273,80 @@ be probed on this env. Those permission cases stay VIU-Pending.
 - Final state: exactly the 2 baseline templates, both auto-apply, 0 stray
   adjustments. No roles changed (used tech quick-login, not role-switch). Secrets
   in `/tmp` only.
+
+---
+
+## VIU BATCH 3 — reachable VIU-Pending remainder + Story 13 per-role (2026-07-09)
+
+**Env:** app `qb.qa.shopview.com` / API `sv7387api.qa.shopview.com`, `FeesAndDiscounts`
+flag ON. Fresh admin cookies (prior `sv_sso_session` had expired → 401; new one worked).
+Baseline captured to `/tmp/fees-discounts/baseline-3.json` (2 templates: "Flat fee" $12
+autoApply=true, "Customer fee" $200 autoApply=true). Harness: `/tmp/fdcln/batch3-api.mjs`,
+`story13.mjs`, `ui-batch3b.mjs`. Tech quick-login worked this run (200).
+
+**13 cases flipped VIU-Pending/Blocked → VIU-Verified:**
+
+*Reachable VIU-Pending (10, API + selective UI):*
+- **FD-REMOVE-003** — line-level adjustment added (201) then removed via
+  `POST /api/work-orders/adjustments/remove` (204); gone from the line (S3-R17/R11a).
+- **FD-EDIT-003** — invalid edit rejected by `adjustments/change` (amount 0 → 400,
+  empty name → 400); original left unchanged → UI keeps the Edit dialog open with the
+  error (S2-R30).
+- **FD-CUST-017** — customer-default negatives: bad template add → 400, bad-id remove →
+  404, bad-customer load → 404 → standard error notification (S9-N1). [API section 4087]
+- **FD-TMPL-015** — template save failures (empty name → 400, amount 0 → 400) → failure
+  toast (S7-R19).
+- **FD-CALC-010** — 50% discount on a $0-base WO → resolved $0.00; negative/zero base
+  floored to $0 (§5-R3/R4).
+- **FD-PROC-006** — Processing Fee template autoApply=true (201) auto-applied to a new
+  WO as whole-WO adjustment kind=processing_fee (S8-R14/S7-R5).
+- **FD-STATS-005** — WO with no adjustments → `adjustments=[]` + all-zero
+  `adjustmentsSummary` → Stats "Fees & Discounts" section hidden (S4-N1).
+- **FD-FIN-002** — whole-WO adjustments returned/listed in creation order (a=fee before
+  b=discount), read-only in Financial Info (S3-R23/R24/§5-R9); UI `b3-wo-lines-full.png`.
+- **FD-FIN-003** — no-adjustment F&D row hidden (empty summary); tech (view_mode=tech,
+  no SFD) WO view masks money (`sub_total="0.00"`) → dollar amounts hidden (S3-N2/N4).
+- **FD-FIN-005** — sidebar "Work Order Fee / Discount" card lists whole-WO adjustments
+  (UI shows Shop Fee + Loyalty), hidden when empty, no Add control (S3-R4/R10/S3-N1).
+
+*Story 13 per-role (3 of the 4 NEEDS-ACCOUNT cases — verified via tech-session BE
+enforcement + per-role FE derivation in `/tmp/fdcln/roles-matrix.json`):*
+- **FD-PERM-008** — BE-enforced: tech (lacks `customersCreateAndEdit` AND `seeApArData`)
+  → customer default-adjustments GET **403** and POST **403**. FE gate = both perms
+  (ALLOW only Admin/Sr SA/Parts Mgr/Office) (S13-R9/N3).
+- **FD-CUST-015** — same BE gate hides the customer F&D tab data (default-adjustments GET
+  403 for tech) → tab/controls hidden without the perms (S13-R9/N3).
+- **FD-PERM-010** — BOTH gates required: with the flag ON, tech lacking the perm is still
+  BE-blocked (customer defaults 403, templates 403) → permission required in addition to
+  the flag; flag-OFF complement is the env-blocked FD-FLAG-001/003 (S13-R1).
+
+**4th NEEDS-ACCOUNT case reclassified:**
+- **FD-PERM-004** (Part-Sale part adjustment requires Part Sales C&E) → **VIU-Blocked-
+  NotBuilt (Story 11)**. FE gate is derivable (`partSalesCreateAndEdit`; ALLOW Parts Tech/
+  Service Mgr/Admin/Sr SA/Parts Mgr/Service Advisor) but BE enforcement of a *part-sale
+  adjustment* cannot be exercised — the Part-Sale adjustment surface is Story 11 (not built).
+
+**Enforcement-model controls re-confirmed (tech session):** templates admin GET → 403
+(BE-enforced); whole-WO adjustment add → 201 (FE-only, consistent with **BUG-FD-3**).
+
+**Left pending (not verifiable this run):**
+- **FD-PROC-014** — a Processing Fee "carrying a minimum amount" cannot be constructed via
+  API (min-amount field is accepted/ignored → 201, not rejected); needs the Story 8
+  builder. (Control: pfee w/ maxCap → 400, i.e. Max Amount correctly rejected.)
+- **FD-PROC-013** — multiple Processing Fees excluding each other from the base needs the
+  Story 8 builder; a manual whole-WO `pct_grand_total` add is rejected (400).
+- **FD-HIST-007** — a Processing Fee arrives via auto-apply/customer-default, and
+  auto-applied adjustments write NO history entry (**FDBUG-3**) → the positive "logged as
+  a fee / Full invoice" cannot be observed until FDBUG-3 is fixed or a manual-add path
+  exists.
+- Part-line state flows (FD-PART-001/003/005/006/007), customer-document rendering
+  (FD-DOC-001/003/006/010), negative-total floor/QB (FD-QB-012/014/015,
+  FD-CALC-015/016/017) — not driven this run; and the 6 PO-flagged deviations — untouched.
+
+**Cleanup:** all ZZAUTOTEST throwaway WOs deleted (verified: none dated 2026-07-09 remain;
+delete lifecycle confirmed create 201 → delete 201 → view 404); all ZZAUTOTEST templates
+deleted; all test adjustments removed from WO_A (final 0). Baseline intact: exactly the 2
+templates, both autoApply=true; 0 customer defaults on the test company. No staff users
+created (quick-login supports only admin/tech, so login-as-non-Tech is infeasible — Story 13
+verified via tech BE tests + role matrix instead). No roles/settings changed. Secrets in
+`/tmp` only.

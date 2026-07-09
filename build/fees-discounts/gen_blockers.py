@@ -171,7 +171,7 @@ def classify(c):
     if vs == "VIU-Blocked-NotBuilt":
         if cid.startswith("FD-PROC"):
             dev = "Story 8 — Processing-Fee builder UI (SV-73xx)"
-        elif cid.startswith("FD-PCOL"):
+        elif cid.startswith("FD-PCOL") or cid == "FD-PERM-004":
             dev = "Story 11 — Part Sales fees/discounts (SV-73xx)"
         else:
             dev = "Story not built"
