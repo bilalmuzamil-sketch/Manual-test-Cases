@@ -2,7 +2,7 @@
 
 > **THIS IS THE CANONICAL STATE DOC for the Simple Flow project.** It is a single
 > authoritative snapshot so the project can be resumed with zero re-discovery.
-> **Last updated:** 2026-07-08.
+> **Last updated:** 2026-07-09 (Milos Round-2 answers applied + pushed to TestRail).
 > **Source of truth for per-case status:** `SimpleFlow_Blockers_Tracker.md`/`.xlsx`
 > (regenerate with `python3 build/simple-flow/gen_blockers.py`). All counts below
 > are cited from that tracker — do not invent numbers; re-read the tracker if in doubt.
@@ -160,7 +160,7 @@ without See Financial Data) → SF-PERM-09/10; Dev/PO ruling → the 6 BUG/RULIN
 
 **Milos (PO) question rounds:**
 - Round 1 (answered): `build/simple-flow/OpenQuestions-for-Milos.md` / `.xlsx` (11 Q); answers `milos-answers-source.md` / `.csv` / `.xlsx`; mapping `milos-answers-mapping.md`.
-- Round 2 (open): `build/simple-flow/OpenQuestions-for-Milos-Round2.md` / `.xlsx` (5 Q).
+- Round 2 (answered + applied 2026-07-09): questions `build/simple-flow/OpenQuestions-for-Milos-Round2.md` / `.xlsx` (5 Q); answers `milos-round2-answers-source.csv` / `.xlsx`; mapping `milos-round2-mapping.md`; 5 cases pushed to TestRail (log in `testrail-push-v2.4-log.md`).
 - Permissions source: `build/simple-flow/SV-8183-permissions-source.md`.
 
 **Generators (Python):**
@@ -173,12 +173,26 @@ without See Financial Data) → SF-PERM-09/10; Dev/PO ruling → the 6 BUG/RULIN
 
 ## 5. Open threads / what unblocks what
 
-**A. Milos Round-2 (PENDING — 5 questions, `OpenQuestions-for-Milos-Round2.md`):**
-- **Q1 (was R1 Q7)** — Mark-Reviewed optional review-note field: confirm intended vs bug (BUG-3; note: the 07-08 design shows it as intended → currently treated as build-gap). Affects SF-REV-10.
-- **Q2 (was R1 Q9)** — Tech-story entry points: confirm Story 17 (inline + gate-modal) supersedes S15-R2 (line-only). Affects all SF-TECH-*.
-- **Q3 (was R1 Q2)** — Inventory lifecycle on completion: do in-stock parts still decrement on-hand + write Part History at completion (data-integrity invariant)? Affects SF-COMP-07, SF-QB-01 (on HOLD until answered).
-- **Q4 (BUG-9)** — "New Part Request" required fields: is Category intended-required, and should Sell Price be enforced? Affects SF-VPART-01/02.
-- **Q5 (SF-PERM-06 / BUG-6 / BUG-7)** — Backend enforcement of completion / review-sign-off atoms: FE-only (SV-7864 atom-collapse) acceptable, or a BE gap vs SV-8183? Resolves the 6 BUG/RULING cases.
+**A. Milos Round-2 (ANSWERED + APPLIED 2026-07-09 — see `milos-round2-mapping.md`,
+source `milos-round2-answers-source.csv`/`.xlsx`):** 5 cases pushed live to TestRail
+(all update 200, verify 200).
+- **Q1 (was R1 Q7)** — Review-note field: **DESCOPED.** Milos removed the optional
+  note from the design; v1 = VIN-only. SF-REV-10 expected updated (→ VIU-Verified).
+  **BUG-3 CLOSED (not a bug).**
+- **Q2 (was R1 Q9)** — Tech-story: **Story 17 CONFIRMED authoritative** (visuals only;
+  complete stories individually or several at once). SF-TECH-08 open question closed;
+  other SF-TECH already correct.
+- **Q3 (was R1 Q2)** — Inventory lifecycle: **CONFIRMED** in-stock parts decrement +
+  write Part History on completion. SF-COMP-07 / SF-QB-01 expected already correct
+  (no change); still VIU-Pending on a live decrement drive.
+- **Q4 (BUG-9)** — Part-request required fields: **Category IS required, Sell Price
+  NOT enforced = intended for v1.** SF-VPART-01/02 expected updated (→ VIU-Verified).
+  **BUG-9 / GAP-A CLOSED (intended).** Follow-up: See-Financial-Data gate rationale
+  overturned — permission gate on vendorless add is an open item.
+- **Q5 (SF-PERM-06 / BUG-6 / BUG-7)** — BE enforcement: **RULED — UI gating = PASS for
+  v1; API gap stays OPEN** (record "UI pass / API fail"). SF-PERM-06 expected updated;
+  settles SF-PERM-02/04/07/08 + SF-REV-09 as UI-PASS. **BUG-6 / BUG-7 remain OPEN fix
+  tickets.**
 
 **B. 7 Jira bug drafts pending Atlassian (`jira-bug-drafts.md`, NOT yet filed — no
 Atlassian MCP in this env; file from the chat app). All under epic SV-7301,

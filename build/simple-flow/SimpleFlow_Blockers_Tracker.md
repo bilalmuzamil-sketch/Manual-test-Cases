@@ -9,9 +9,9 @@
 
 | Blocker category | Count | Owner |
 |---|---:|---|
-| READY (VIU-Verified) | 69 | — (ready to upload) |
+| READY (VIU-Verified) | 71 | — (ready to upload) |
 | BLOCKED — DEV NOT BUILT | 25 | Dev team |
-| BLOCKED — VIU PENDING (QA) | 47 | QA |
+| BLOCKED — VIU PENDING (QA) | 45 | QA |
 | BLOCKED — MILOS ANSWER | 15 | Milos (PO) |
 | BLOCKED — BUG/RULING | 6 | Dev / PO ruling |
 | **TOTAL** | **162** | |
@@ -29,10 +29,10 @@
 
 | VIU sub-bucket | Count | Meaning |
 |---|---:|---|
-| reachable-now | 7 | admin+tech + normal data; just needs another VIU pass (no new inputs). |
+| reachable-now | 5 | admin+tech + normal data; just needs another VIU pass (no new inputs). |
 | needs-data | 40 | needs a data state not seedable via the app (see per-case detail). |
 | needs-account | 0 | needs a role account we don't have (see per-case detail). |
-| **TOTAL VIU PENDING (QA)** | **47** | |
+| **TOTAL VIU PENDING (QA)** | **45** | |
 
 ## WHAT TO SEND ME NEXT (to unblock each batch)
 
@@ -41,7 +41,7 @@
 - **Dev deploys Story 7 — PO multi-select (SV-7702)** → unblocks 6 case(s); then I re-run VIU and send an update file.
 - **Dev deploys Story 9 — Apply invoice to selected POs (SV-7704)** → unblocks 4 case(s); then I re-run VIU and send an update file.
 - **Dev deploys Story 14 — Waiting-on-Parts column (SV-7709)** → unblocks 3 case(s); then I re-run VIU and send an update file.
-- **Fresh QA cookies for sv7301 (admin + tech) + seeded test data** → unblocks the bulk of the 47 VIU-PENDING (QA) cases (cores, receiving, vendor, validation round-trips).
+- **Fresh QA cookies for sv7301 (admin + tech) + seeded test data** → unblocks the bulk of the 45 VIU-PENDING (QA) cases (cores, receiving, vendor, validation round-trips).
 - **A 2nd/3rd role account (Office, Service Manager, Foreman) — some WITHOUT 'See Financial Data'** → unblocks SF-PERM-09 and SF-PERM-10 (per-role completion + vendorless-add gate).
 - **A dev/PO ruling on FE-only BE enforcement + the missing reviewer!=completer rule (resolve SV-8183 'BE enforces' vs SV-7864 atom-collapse)** → finalizes the 6 BUG/RULING cases.
 
@@ -104,9 +104,9 @@
 | SF-TECH-05 | Tech Story Flow (Story 17) | Verify multi-line tech-story navigation (Back after line 1, Continue/Save on the last line) | VIU-Verified | READY | READY (VIU-Verified) | — | None — VIU-verified; uploadable now. | TS-R4 (multi-line navigation) | — |  |
 | SF-TECH-06 | Tech Story Flow (Story 17) | Verify a saved tech story renders inline with a green check, the text and an Edit link | VIU-Verified | READY | READY (VIU-Verified) | — | None — VIU-verified; uploadable now. | TS-R5 | — |  |
 | SF-TECH-07 | Tech Story Flow (Story 17) | Verify the tech-story textarea exposes the test id input_tech_story | VIU-Verified | READY | READY (VIU-Verified) | — | None — VIU-verified; uploadable now. | TS-R6 (test id) | — |  |
-| SF-TECH-08 | Tech Story Flow (Story 17) | Verify tech story is captured both inline and via the gate modal (Story 17 supersedes on-the-line-only wording) | Open-Question | BLOCKED | BLOCKED — MILOS ANSWER | Milos (Product Owner) | Milos answers Open Question Q9, Q4 — Tech-story placement: Story 17 (inline + gate-modal) vs S15-R2 (line-only). | Q9, Q4 \| TS Decision vs S15-R2 | — |  |
-| SF-VPART-01 | Vendorless / No-PN Part (Story 5) | Verify a part can be requested with only description, quantity and sell price (part number, cost, vendor empty) | VIU-Pending | BLOCKED | BLOCKED — VIU PENDING (QA) | QA (needs cookies+seed data) | QA VIU: seed + drive the vendorless / no-PN part add flow. | S5-R1 | reachable-now | admin+tech + normal WO data; needs another VIU pass (no new inputs). |
-| SF-VPART-02 | Vendorless / No-PN Part (Story 5) | Verify adding a part is blocked when description, quantity or sell price is missing | VIU-Pending | BLOCKED | BLOCKED — VIU PENDING (QA) | QA (needs cookies+seed data) | QA VIU: drive the vendorless / no-PN add sub-form validation (not reached in the last session's budget). | S5-R1 / S5 AC (validation) | reachable-now | admin+tech + normal WO data; needs another VIU pass (no new inputs). |
+| SF-TECH-08 | Tech Story Flow (Story 17) | Verify tech story is captured both inline and via the gate modal (Story 17 supersedes on-the-line-only wording) | VIU-Verified | BLOCKED | BLOCKED — MILOS ANSWER | Milos (Product Owner) | Milos answers Open Question Q9, Q4 — Tech-story placement: Story 17 (inline + gate-modal) vs S15-R2 (line-only). | Q9, Q4 \| TS Decision vs S15-R2 | — |  |
+| SF-VPART-01 | Vendorless / No-PN Part (Story 5) | Verify a vendorless part can be requested with description, quantity and category (part number, cost, vendor and sell price left empty) | VIU-Verified | READY | READY (VIU-Verified) | — | None — VIU-verified; uploadable now. | S5-R1 | — |  |
+| SF-VPART-02 | Vendorless / No-PN Part (Story 5) | Verify adding a part is blocked when description, quantity or category is missing (sell price not enforced) | VIU-Verified | READY | READY (VIU-Verified) | — | None — VIU-verified; uploadable now. | S5-R1 / S5 AC (validation) | — |  |
 | SF-VPART-03 | Vendorless / No-PN Part (Story 5) | Verify a vendorless part's type uses the existing source field (vendor or found) and never inventory | VIU-Verified | READY | READY (VIU-Verified) | — | None — VIU-verified; uploadable now. | S5-R2 | — |  |
 | SF-VPART-04 | Vendorless / No-PN Part (Story 5) | Verify a vendorless part is editable after creation | VIU-Verified | READY | READY (VIU-Verified) | — | None — VIU-verified; uploadable now. | S5-R3 | — |  |
 | SF-VPART-05 | Vendorless / No-PN Part (Story 5) | Verify a no-part-number part creates no inventory item and no Part History | VIU-Verified | READY | READY (VIU-Verified) | — | None — VIU-verified; uploadable now. | S5-R4 / S5 AC (no inventory interaction) | — |  |
@@ -171,7 +171,7 @@
 | SF-REV-07 | Review ON (Story 16) | Verify on Send to Review lines lock to Complete and inventory is auto-picked | VIU-Verified | READY | READY (VIU-Verified) | — | None — VIU-verified; uploadable now. | R6 | — |  |
 | SF-REV-08 | Review ON (Story 16) | Verify Confirm Review signs off and completes the work order directly (no distinct Reviewed holding state) | VIU-Verified | BLOCKED | BLOCKED — MILOS ANSWER | Milos (Product Owner) | Milos answers Open Question Q8, Q4 — Distinct 'Reviewed' state before final Complete — expected or single-step? | Q8, Q4 \| R5 / R8 (distinct Reviewed state) | — |  |
 | SF-REV-09 | Review ON (Story 16) | Verify Mark Reviewed is gated by the Review Work Orders permission and disabled for a role without it | VIU-Verified | BLOCKED | BLOCKED — BUG/RULING | Dev / PO ruling | Review role-gating expected depends on reviewer!=completer (missing) and the FE-vs-BE ruling. | R7 (role-gating) \| see viu-findings BUGS #5/#6/#7 | — |  |
-| SF-REV-10 | Review ON (Story 16) | Verify the Mark Reviewed dialog includes VIN (required) and an optional review note field (input_review_note) | VIU-Pending | BLOCKED | BLOCKED — MILOS ANSWER | Milos (Product Owner) | Milos answers Open Question Q7 — Optional review-note field (input_review_note) absent — descope or bug? | Q7 \| R7 / R10 (optional note) | — |  |
+| SF-REV-10 | Review ON (Story 16) | Verify the Mark Reviewed dialog includes VIN / Serial # (required) with no review note field | VIU-Verified | BLOCKED | BLOCKED — MILOS ANSWER | Milos (Product Owner) | Milos answers Open Question Q7 — Optional review-note field (input_review_note) absent — descope or bug? | Q7 \| R7 (VIN required, no note) | — |  |
 | SF-REV-11 | Review ON (Story 16) | Verify sign-off completes the work order directly (no separate final Complete) and invoicing is blocked until reviewed | VIU-Pending | BLOCKED | BLOCKED — MILOS ANSWER | Milos (Product Owner) | Milos answers Open Question Q8 — Invoicing-blocked-until-reviewed depends on the Reviewed-state ruling (Q8). | Q8 \| R8 | — |  |
 | SF-REV-12 | Review ON (Story 16) | Verify a 'Ready for Review' list filter/column surfaces the reviewer queue | VIU-Pending | BLOCKED | BLOCKED — VIU PENDING (QA) | QA (needs cookies+seed data) | QA VIU: enable Require Review and drive the review/sign-off round-trip. | R9 | reachable-now | enable Require Review; confirm a 'Ready for Review' list filter/column. |
 | SF-REV-13 | Review ON (Story 16) | Verify all lines must be approved to Send to Review (existing approve-line error) | VIU-Verified | READY | READY (VIU-Verified) | — | None — VIU-verified; uploadable now. | R11 | — |  |
@@ -186,7 +186,7 @@
 | SF-PERM-03 | Permissions | Verify which roles can perform Bulk Receive | VIU-Pending | BLOCKED | BLOCKED — DEV NOT BUILT | Dev team | Dev deploys Story 8 — PO Bulk Receive page (SV-7703); then QA re-runs VIU. | Story 8 — PO Bulk Receive page (SV-7703) \| §8 Permissions | — |  |
 | SF-PERM-04 | Permissions | Verify which roles can Mark Reviewed (sign off) | VIU-Verified | BLOCKED | BLOCKED — BUG/RULING | Dev / PO ruling | Role-gating of Mark-Reviewed depends on reviewer!=completer (missing) and the FE-vs-BE ruling. | R7 / §8 role-gating review \| see viu-findings BUGS #5/#6/#7 | — |  |
 | SF-PERM-05 | Permissions | Verify the PO Receive button is hidden for office/readonly users | VIU-Verified | READY | READY (VIU-Verified) | — | None — VIU-verified; uploadable now. | S11-R3 | — |  |
-| SF-PERM-06 | API — Permissions | Verify the backend enforces the Simple-Flow settings and permission atoms (not front-end only) | VIU-Verified | BLOCKED | BLOCKED — BUG/RULING | Dev / PO ruling | WO completion permission is FE-only at the BE (Technician completed via simple-complete API = 201). Ruling: SV-8183 says 'BE enforces' but SV-7864 atom-collapse lets any WO C&E role act. Which governs? | §8 BE enforcement \| see viu-findings BUGS #5/#6/#7 | — |  |
+| SF-PERM-06 | API — Permissions | Verify permission gating of Simple-Flow settings and work-order actions (UI gating is the v1 pass criterion) | VIU-Verified | BLOCKED | BLOCKED — BUG/RULING | Dev / PO ruling | WO completion permission is FE-only at the BE (Technician completed via simple-complete API = 201). Ruling: SV-8183 says 'BE enforces' but SV-7864 atom-collapse lets any WO C&E role act. Which governs? | §8 BE enforcement \| see viu-findings BUGS #5/#6/#7 | — |  |
 | SF-PERM-07 | Permissions | Verify review sign-off is governed by the Review Work Orders custom-role permission (not open to all) | VIU-Verified | BLOCKED | BLOCKED — BUG/RULING | Dev / PO ruling | Review sign-off permission (woReviewWorkOrders) is FE-only at the BE (Technician drove change-status = 201). Same FE-vs-BE ruling. | §8 role-gating review \| see viu-findings BUGS #5/#6/#7 | — |  |
 | SF-PERM-08 | Permissions | Verify the user who completed or sent the work order to review cannot Mark Reviewed it | VIU-Verified | BLOCKED | BLOCKED — BUG/RULING | Dev / PO ruling | reviewer != completer rule NOT implemented (a user can sign off their own WO). Ruling: enforce the rule (currently FAIL) or descope? | R7 (reviewer != completer) \| see viu-findings BUGS #5/#6/#7 | — |  |
 | SF-PERM-09 | Permissions | Verify a Technician cannot add a vendorless / no-part-number part (lacks See Financial Data) | VIU-Verified | READY | READY (VIU-Verified) | — | None — VIU-verified; uploadable now. | S5 / §9 (See Financial Data gate) | — |  |

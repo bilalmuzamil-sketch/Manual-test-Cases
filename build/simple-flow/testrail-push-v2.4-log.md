@@ -46,3 +46,17 @@ Added 2 rows to build/simple-flow/testrail-id-map.csv:
 
 ## Confirmation
 - Exactly 20 cases touched (18 update_case + 2 add_case). No other cases modified. No deletes issued.
+
+---
+
+## Milos Round-2 push (2026-07-09) — update_case, verified
+
+| sf_id | case_id | outcome | update HTTP | verify HTTP | verified |
+|-------|---------|---------|-------------|-------------|----------|
+| SF-REV-10 | 29395 | spec-change: review note descoped (VIN-only) | 200 | 200 | yes |
+| SF-TECH-08 | 29330 | confirmed: Story 17 authoritative (open-q closed) | 200 | 200 | yes |
+| SF-VPART-01 | 29331 | spec-change: category required, sell optional | 200 | 200 | yes |
+| SF-VPART-02 | 29332 | spec-change: category required, sell optional | 200 | 200 | yes |
+| SF-PERM-06 | 29410 | spec-change: UI gating = v1 pass; API gap noted | 200 | 200 | yes |
+
+5 cases touched (all update_case). No adds, no deletes. See `milos-round2-mapping.md`.

@@ -591,7 +591,7 @@
     ],
     "design_ref": "requirements §5 invariant 1",
     "viu_status": "VIU-Pending",
-    "notes": "§8 open question — auto-receive of in-stock inventory on simple completion is UNCONFIRMED. Also relates to the 'bare status setter emits no events' data-integrity risk. Not driven in VIU. Confirm intended behavior. || [RECONCILED V2.4 2026-07-08] Un-held: No-PO path RETAINED (V2.4), so the completion expectations stand. Inventory-decrement + Part-History invariant remains VIU-pending / round-2 Q3 (in-stock decrement on completion not yet confirmed).",
+    "notes": "§8 open question — auto-receive of in-stock inventory on simple completion is UNCONFIRMED. Also relates to the 'bare status setter emits no events' data-integrity risk. Not driven in VIU. Confirm intended behavior. || [RECONCILED V2.4 2026-07-08] Un-held: No-PO path RETAINED (V2.4), so the completion expectations stand. || [MILOS ROUND-2 2026-07-09 — Q3 CONFIRMED] Milos confirmed in-stock inventory parts DO decrement on-hand and write Part History on completion (the PO question is a separate concern). Expected already correct — no wording change. Still VIU-Pending on a live decrement drive.",
     "api_related": false
   },
   {
@@ -1496,13 +1496,13 @@
       "3. Confirm both entry points save a story."
     ],
     "expected": [
-      "1. EXPECTED PER STORY 17: a story can be entered inline on the line.",
-      "2. A story can also be entered via the completion gate modal.",
+      "1. A tech story can be entered inline on the line (Story 17 is the authoritative behavior).",
+      "2. A story can also be entered via the completion gate modal, which lets stories be completed individually or several at once.",
       "3. Both paths persist the story."
     ],
     "design_ref": "WO Review Flow.html; requirements TS Decision / S15-R2",
-    "viu_status": "Open-Question",
-    "notes": "Spec drift: S15-R2 (older) said tech story stays on the line, not in a modal; Story 17 (SV-7876) supersedes with inline + gate-modal. Design handoff flags this as [Confirm]. Confirm Story 17 is authoritative. See Open Questions.",
+    "viu_status": "VIU-Verified",
+    "notes": "[MILOS ROUND-2 2026-07-09 — CONFIRMED] Milos: 'Story Tech will behave as it is right now, only change is some visuals, and now they can complete multiple stories at once, or individually as now.' Story 17 (SV-7876) is authoritative; the older S15-R2 line-only wording is superseded. Inline + gate-modal entry points are each independently VIU-Verified (SF-TECH-01/03/05/06); multi-at-once is covered by the SF-TECH-05 multi-line gate walk. Open question resolved.",
     "api_related": false
   }
 ]

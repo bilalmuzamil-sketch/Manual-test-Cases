@@ -3,59 +3,58 @@
     "id": "SF-VPART-01",
     "area": "Vendorless / No-PN Part (Story 5)",
     "story_ref": "S5-R1",
-    "title": "Verify a part can be requested with only description, quantity and sell price (part number, cost, vendor empty)",
+    "title": "Verify a vendorless part can be requested with description, quantity and category (part number, cost, vendor and sell price left empty)",
     "priority": "High",
     "type": "Functional",
-    "permissions_required": "WO Lines: Create & Edit + See Financial Data (the sell price is mandatory and has no catalog source).",
+    "permissions_required": "WO Lines: Create & Edit. (See Financial Data gating of the optional sell price is a follow-up now that sell price is no longer mandatory.)",
     "preconditions": [
       "1. Signed in as Admin at https://sv7301.qa.shopview.com.",
       "2. An open work order with a line is on its Lines tab."
     ],
     "steps": [
       "1. Add a part to a line.",
-      "2. Enter only a description, a quantity and a sell price.",
-      "3. Leave part number, cost and vendor empty.",
+      "2. Enter a description, a quantity and a category.",
+      "3. Leave part number, cost, vendor and sell price empty.",
       "4. Save the part."
     ],
     "expected": [
-      "1. The part saves successfully with only description, quantity and sell price entered.",
-      "2. Sell price is the only mandatory financial field and is validated at save (inline) — the part cannot be saved without it (not deferred to completion).",
-      "3. The part appears on the line with its description, quantity and sell price and is treated as a vendorless part downstream.",
-      "4. A sell-price-only part (missing vendor and/or cost) is orderable from the line — Order creates/joins the Vendor-Missing PO and moves it to waiting-to-receive.",
-      "5. Adding a vendorless / no-part-number part requires WO Lines: Create & Edit and See Financial Data, because the sell price is mandatory and has no catalog source."
+      "1. The part saves successfully with description, quantity and category entered; part number, cost, vendor and sell price may be left empty.",
+      "2. Category is a required field for v1 — the part cannot be saved without a category.",
+      "3. Sell price is not enforced as required for v1 — the part can be saved without a sell price.",
+      "4. The part appears on the line with its description and quantity and is treated as a vendorless part downstream; it is orderable from the line (Order creates or joins the Vendor-Missing purchase order and moves it to waiting-to-receive)."
     ],
     "design_ref": "requirements S5-R1 / §9 (See Financial Data gate)",
-    "viu_status": "VIU-Pending",
-    "notes": "SV-8183 Decision 4 adds a financial gate: vendorless / no-PN add requires See Financial Data (mandatory sell). Not driven live (part-add flow not exercised). | 2026-07-08: attempted admin add — the manual part-request add sub-form is reached via the line's Parts tab which requires the line's \"parts authorized\" state; not reliably drivable in this harness session (line-edit dialog exposed no Parts tab for a labor line). Canned-line parts DO create the vendorless shape (part_number=null, vendor_id=null, part_source_type=\"vendor\", editable sell_price), corroborating the data model, but the description+qty+sell manual sub-form itself remains UI-unverified. Still needs a driven add-part sub-form. || VIU batch3 2026-07-08 VERIFIED: New Part Request sub-form reached via New Line -> custom title -> Save & Add Part; desc+qty+sell(+category) -> 201 POST /api/work-orders/part/make-request; created part {part_number:null, vendor_id:null, part_source_type:'vendor', sell:49.99, inventory_part_id:null}. DEVIATION: Category is REQUIRED (not in spec S5-R1) (VP-13/VP-14). || [V2.4 2026-07-08] S5-R1: sell price = only mandatory financial field, validated AT SAVE (inline); S6-R7: sell-price-only part orderable from the line. Live build enforces Category (not sell) = spec-vs-build gap (BUG-9).",
+    "viu_status": "VIU-Verified",
+    "notes": "[MILOS ROUND-2 2026-07-09 — RULED INTENDED] Milos: the current behavior is expected for v1 — a Category IS required, and Sell Price is NOT enforced. EXPECTED updated: required set = description + quantity + category; sell price optional. This resolves BUG-9 as an intended build behavior (spec S5-R1's 'sell mandatory / no category' wording is superseded under last-update-wins). Live-verified in batch3 (New Part Request 201 POST /api/work-orders/part/make-request; part_number=null, vendor_id=null, part_source_type='vendor', inventory_part_id=null) — now matches expected → VIU-Verified. FOLLOW-UP: the See Financial Data gate rationale (mandatory sell) no longer holds; whether a permission gate still applies to vendorless part-add is a separate open item. || (prior) VIU batch3 2026-07-08 confirmed Category REQUIRED and Sell Price NOT flagged required (VP-11/VP-13/VP-14).",
     "api_related": false
   },
   {
     "id": "SF-VPART-02",
     "area": "Vendorless / No-PN Part (Story 5)",
     "story_ref": "S5-R1 / S5 AC (validation)",
-    "title": "Verify adding a part is blocked when description, quantity or sell price is missing",
+    "title": "Verify adding a part is blocked when description, quantity or category is missing (sell price not enforced)",
     "priority": "High",
     "type": "Negative",
-    "permissions_required": "WO Lines: Create & Edit + See Financial Data. A role lacking See Financial Data (e.g. Technician) is used for the permission negative.",
+    "permissions_required": "WO Lines: Create & Edit.",
     "preconditions": [
       "1. Signed in as Admin.",
       "2. The add-part dialog is open on a work order line."
     ],
     "steps": [
       "1. Leave the description empty and try to save.",
-      "2. Fill description, leave quantity empty and try to save.",
-      "3. Fill quantity, leave sell price empty and try to save.",
-      "4. As a role without See Financial Data (e.g. Technician), attempt to add a vendorless / no-part-number part."
+      "2. Fill the description, leave the quantity empty and try to save.",
+      "3. Fill the description and quantity, leave the category empty and try to save.",
+      "4. Fill the description, quantity and category but leave the sell price empty and try to save."
     ],
     "expected": [
-      "1. Saving is blocked inline at save when the description is empty.",
-      "2. Saving is blocked inline at save when the quantity is empty.",
-      "3. Saving is blocked inline at save when the sell price is empty — sell price is validated at save, not deferred to completion.",
-      "4. A user without See Financial Data (for example a Technician) cannot add a vendorless / no-part-number part, because they cannot enter the mandatory sell price."
+      "1. Saving is blocked inline when the description is empty ('Description is a required field').",
+      "2. Saving is blocked inline when the quantity is empty ('Quantity is a required field').",
+      "3. Saving is blocked inline when the category is empty ('Category is a required field').",
+      "4. Saving is allowed when only the sell price is empty — sell price is not enforced as a required field for v1."
     ],
     "design_ref": "requirements S5 AC / §9 (See Financial Data gate)",
-    "viu_status": "VIU-Pending",
-    "notes": "SV-8183 Decision 4: vendorless / no-PN add requires See Financial Data. Field validation and the permission negative not yet verified live. | VIU 2026-07-07 (Tech-unblock pass): Field-required validations and the See-Financial-Data add-part block not driven (part-add sub-form not reached within budget). Tech confirmed lacking seeFinancialData. | 2026-07-08: manual add-part sub-form validation not reached (see SF-VPART-01). Still pending; also needs a Technician (no See Financial Data) for the permission half. || VIU batch3 2026-07-08 VERIFIED: empty save -> inline 'Description is a required field', 'Quantity is a required field', 'Category is a required field' (VP-11-validation-empty.png). DEVIATION: Category required in addition to spec; Sell Price NOT flagged required. || [V2.4 2026-07-08] S5-R1: sell price validated inline at save. Live build requires Category and does NOT enforce sell = spec-vs-build gap (BUG-9).",
+    "viu_status": "VIU-Verified",
+    "notes": "[MILOS ROUND-2 2026-07-09 — RULED INTENDED] Milos confirmed the current behavior is expected for v1: Category IS required; Sell Price is NOT enforced. EXPECTED updated: required fields = description, quantity, category; sell price optional. Resolves BUG-9 as intended. Live-verified in batch3 (empty save -> inline 'Description/Quantity/Category is a required field'; sell price NOT flagged required — VP-11-validation-empty.png) → matches expected → VIU-Verified. FOLLOW-UP: the See-Financial-Data permission negative was premised on a mandatory sell price (now overturned); whether a permission gate still applies to vendorless part-add is a separate open item (removed from this case's steps).",
     "api_related": false
   },
   {

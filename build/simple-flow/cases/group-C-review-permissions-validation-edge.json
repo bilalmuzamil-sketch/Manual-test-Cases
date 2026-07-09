@@ -235,8 +235,8 @@
   {
     "id": "SF-REV-10",
     "area": "Review ON (Story 16)",
-    "story_ref": "R7 / R10 (optional note)",
-    "title": "Verify the Mark Reviewed dialog includes VIN (required) and an optional review note field (input_review_note)",
+    "story_ref": "R7 (VIN required, no note)",
+    "title": "Verify the Mark Reviewed dialog includes VIN / Serial # (required) with no review note field",
     "priority": "Medium",
     "type": "Functional",
     "permissions_required": "Reviewer role (matrix TBD).",
@@ -247,16 +247,16 @@
     "steps": [
       "1. Open the Mark Reviewed dialog.",
       "2. Confirm a required VIN / Serial # field (Confirm disabled until VIN entered).",
-      "3. Confirm an optional review note field is present; enter a note and Confirm."
+      "3. Confirm there is no review note field, then complete the sign-off."
     ],
     "expected": [
       "1. The Mark Reviewed dialog shows a VIN / Serial # field that is required (Confirm Reviewed is disabled until VIN is entered).",
-      "2. An optional review note field (input_review_note) is present.",
-      "3. A note can be entered and saved with the sign-off."
+      "2. There is no review note field on the dialog.",
+      "3. The sign-off completes using the VIN / Serial # only."
     ],
     "design_ref": "WO Review Flow - Handoff.md (test IDs)",
-    "viu_status": "VIU-Pending",
-    "notes": "VIU BUG #3: the Mark Reviewed dialog exposed ONLY the VIN field — no optional-note input (S16-06-mark-reviewed-dialog.png). Do not record as passing against the expected. See Open Questions. || [RECONCILED 2026-07-08 — REVERSAL] Design bundle (07-08 'Mark work order reviewed' screenshot) CONFIRMS the optional review-note field is INTENDED (VIN required + optional note). Earlier EXPECTED reclassification REVERSED -> BUG-3 back to REAL DEFECT/build-gap (live dialog missing the note).",
+    "viu_status": "VIU-Verified",
+    "notes": "[MILOS ROUND-2 2026-07-09] Review note DESCOPED — Milos: 'There will not be note on this field; it is a design issue which I removed from the design yesterday.' Under last-update-wins this supersedes the 07-08 design reversal. EXPECTED updated to VIN-only (no note). The live dialog (VIN-only, S16-06-mark-reviewed-dialog.png) now MATCHES the expected — VIU-Verified. BUG-3 resolved as an intended descope (no longer a build gap).",
     "api_related": false
   },
   {
@@ -623,7 +623,7 @@
     "id": "SF-PERM-06",
     "area": "Permissions",
     "story_ref": "§8 BE enforcement",
-    "title": "Verify the backend enforces the Simple-Flow settings and permission atoms (not front-end only)",
+    "title": "Verify permission gating of Simple-Flow settings and work-order actions (UI gating is the v1 pass criterion)",
     "priority": "Medium",
     "type": "Permissions",
     "permissions_required": "Admin (API access) + a lower role credential.",
@@ -632,18 +632,20 @@
       "2. A relevant Simple-Flow setting (e.g. Require Vendor Invoice Number) is ON."
     ],
     "steps": [
-      "1. Attempt a setting-violating action directly via the API (bypassing the UI), e.g. completing without the required invoice, and note the response.",
-      "2. As a role that lacks the mapped atom, attempt the gated action via the API and note the response.",
-      "3. As a role that has only Work Orders: Create & Edit, attempt to receive onto a work order and note the response."
+      "1. As a role that lacks the mapped permission, confirm the gated setting/action is hidden or unavailable in the UI.",
+      "2. Attempt the same setting change directly via the API (bypassing the UI) as that role, and note the response.",
+      "3. As a role that lacks the completion / review sign-off permission, attempt to complete a work order and to sign off a review directly via the API, and note the response.",
+      "4. As a role that has only Work Orders: Create & Edit, attempt to receive onto a work order and note the response."
     ],
     "expected": [
-      "1. The backend enforces the Simple-Flow settings and the permission atoms (it is not front-end only): a setting-violating or unauthorized request is rejected.",
-      "2. Because several work-order atoms collapse to the same backend role pair, any role with Work Orders: Create & Edit can receive onto a work order.",
-      "3. The receive endpoint accepts the documented OR of ROLE_DELIVERY_CREATE_AND_EDIT, ROLE_WORK_ORDER_PART_CREATE and ROLE_WORK_ORDER_CREATE_AND_EDIT."
+      "1. UI gating is the pass criterion for v1: a role without the mapped permission does not see or cannot use the gated setting/action in the UI.",
+      "2. The Simple-Flow settings atom is enforced at the backend too — the unauthorized settings request is rejected.",
+      "3. The work-order completion and review sign-off atoms are NOT enforced at the backend — a direct API call from a role lacking the permission still succeeds. This passes for v1 on the UI restriction, but the API-level gap is a KNOWN ISSUE to fix; record the result as 'UI pass / API fail' so it stays on record.",
+      "4. Because several work-order atoms collapse to the same backend role pair, any role with Work Orders: Create & Edit can receive onto / act on a work order via the API (documented OR of ROLE_DELIVERY_CREATE_AND_EDIT, ROLE_WORK_ORDER_PART_CREATE and ROLE_WORK_ORDER_CREATE_AND_EDIT)."
     ],
     "design_ref": "requirements §9.4 (BE enforcement + atom collapse)",
     "viu_status": "VIU-Verified",
-    "notes": "Answered by SV-8183: BE DOES enforce the Simple-Flow settings and atoms (change from the Custom Roles FE-only finding), subject to the WO-atom collapse caveat (SV-7864). Not yet driven live. | VIU 2026-07-07 (Tech-unblock pass): HEADLINE / MIXED RESULT. BE enforces DISTINCT atoms (settingsApp: tech settings-save -> 403) but does NOT enforce the WO-family atoms: tech simple-complete -> 201 and tech change-status->complete (review sign-off) -> 201, due to the documented atom collapse (SV-7864). Expected #2 (any role with WO C&E can act on the WO) CONFIRMED. Expected #1 ('BE enforces the atoms, not FE-only') is only TRUE for the settings atom; for WO completion/receive/review sign-off the gate is EFFECTIVELY FE-ONLY. This nuances SV-8183's blanket 'BE enforces' claim.",
+    "notes": "[MILOS ROUND-2 2026-07-09 — ruling by Bilal] For now the UI restriction is the PASS for these test cases; the API restriction is not required to pass. After running, note that it passed for UI and failed for API so there is a record to eventually fix it. | Live (VIU 2026-07-07 Tech-unblock pass): BE enforces the DISTINCT settings atom (tech settings-save -> 403) but does NOT enforce the WO-family atoms (tech simple-complete -> 201, tech change-status->complete review sign-off -> 201) due to the atom collapse (SV-7864). The FE hides the buttons for the unauthorized role. This API gap is tracked as BUG-6 (completion) and BUG-7 (review sign-off) for eventual fix.",
     "api_related": true
   },
   {
@@ -1053,7 +1055,7 @@
     ],
     "design_ref": "requirements §5 invariant 1",
     "viu_status": "VIU-Pending",
-    "notes": "§8 open question: auto-receive of in-stock inventory on simple completion is unconfirmed, and the spec flags the bare status setter as an integrity risk. Not driven in VIU. See Open Questions. || [RECONCILED V2.4 2026-07-08] Un-held: No-PO path RETAINED (V2.4). Inventory-decrement + Part-History invariant remains VIU-pending / round-2 Q3.",
+    "notes": "§8 open question: auto-receive of in-stock inventory on simple completion is unconfirmed, and the spec flags the bare status setter as an integrity risk. Not driven in VIU. See Open Questions. || [RECONCILED V2.4 2026-07-08] Un-held: No-PO path RETAINED (V2.4). || [MILOS ROUND-2 2026-07-09 — Q3 CONFIRMED] Milos confirmed the invariant: in-stock inventory parts DO decrement on-hand and write Part History on completion (his PO note is separate from this data-integrity invariant). Expected already correct — no wording change. Still VIU-Pending on a live decrement drive.",
     "api_related": false
   },
   {

@@ -10,6 +10,25 @@
 
 ---
 
+## MILOS ROUND-2 RESOLUTIONS (2026-07-09)
+
+Milos answered the Round-2 open questions (`milos-round2-answers-source.*`,
+`milos-round2-mapping.md`). Impact on this log:
+
+- **BUG-3 (review note) → CLOSED / NOT A BUG.** Note removed from the design; v1 has
+  no review-note field. SF-REV-10 expected updated to VIN-only.
+- **BUG-9 / GAP-A (part-request required fields) → CLOSED / INTENDED.** Category IS
+  required, Sell Price NOT enforced — expected for v1. SF-VPART-01/02 expected updated.
+- **BUG-6 / BUG-7 (BE enforcement of completion / review sign-off) → RULED: UI gating
+  = PASS for v1; API gap stays OPEN as a fix ticket.** Record results as "UI pass /
+  API fail". SF-PERM-06 expected updated.
+- **Q3 inventory-decrement invariant → CONFIRMED** (in-stock parts DO decrement +
+  write Part History on completion); SF-COMP-07 / SF-QB-01 expected already correct.
+- **Q2 tech-story (Story 17) → CONFIRMED authoritative** (visuals only + complete
+  stories individually or several at once); SF-TECH-08 open question closed.
+
+---
+
 ## NEW — Tech-unblock pass (2026-07-07): backend enforcement gaps
 
 These three surfaced once the Technician session became testable (`quick-login
@@ -60,14 +79,23 @@ the atoms"** claim vs the **SV-7864 atom-collapse** behaviour.
   /api/organizations/settings/change` → 403.)*
 - **Affects cases:** SF-PERM-07, SF-REV-09.
 
-### ⚠ Contradiction to resolve (BUG-6 / BUG-7)
+### ⚠ Contradiction to resolve (BUG-6 / BUG-7) — RULED 2026-07-09 (Milos Round-2 Q5, ruling by Bilal)
 **SV-8183 says "the backend enforces the atoms"**, but **SV-7864 (atom collapse)**
 means any Work-Orders Create-&-Edit role can complete/receive/sign-off a WO
 regardless of the finer Simple-Flow atoms. VIU shows the split is real: the
 **settings** atom (`settingsApp`) is BE-enforced (tech → 403), but **WO
-completion, receive, and review sign-off are FE-only** (tech → 201). A dev/PO
-ruling is needed on which governs — this decides whether SF-PERM-02/04/06/07/08
-and SF-REV-09 are PASS (FE-gating acceptable) or FAIL (BE gap).
+completion, receive, and review sign-off are FE-only** (tech → 201).
+> **RULING (2026-07-09, Milos Round-2 Q5, by Bilal):** *"For now let's consider the
+> UI restriction the pass for the test cases and not necessarily the API restriction,
+> but do note in the comments after running the tests that it passed for UI and failed
+> for API so there can be a record in the system to eventually fix that."* So for v1
+> the permission cases **PASS on UI gating** (the FE hides the button for the
+> unauthorized role). The BE non-enforcement of the WO-completion / review-sign-off
+> atoms (**BUG-6 / BUG-7**) is a **known API gap kept OPEN for a future fix** — record
+> each result as **"UI pass / API fail"**. This settles SF-PERM-02/04/06/07/08 and
+> SF-REV-09 as **UI-PASS** for v1. **SF-PERM-06 expected updated** accordingly (UI
+> gating = pass criterion; API gap recorded). BUG-6 / BUG-7 remain OPEN as fix
+> tickets; the settings atom stays BE-enforced.
 
 ---
 
@@ -120,6 +148,14 @@ and SF-REV-09 are PASS (FE-gating acceptable) or FAIL (BE gap).
   parts orderable from the line). The live build's failure to enforce sell **and**
   its extra Category requirement are therefore a confirmed **spec-vs-build gap**
   (build lags V2.4) — see the Spec-vs-build gaps section below. Status: OPEN.
+- **2026-07-09 RESOLUTION → NOT A BUG (Milos Round-2, Q4):** Milos ruled the
+  **current behavior is expected for v1** — **Category IS required** and **Sell Price
+  is NOT enforced**. Under last-update-wins this supersedes the V2.4 S5-R1 wording.
+  **SF-VPART-01/02 expected updated** to: required = description + quantity + category;
+  sell price optional. GAP-A (below) is likewise **closed**. Status: CLOSED (intended).
+  FOLLOW-UP (separate item): the See-Financial-Data gate rationale was "sell is
+  mandatory" (now overturned) — whether a permission gate still applies to vendorless
+  part-add is an open question.
 
 ### BUG-10 — No "Resolve Cores" step in the completion wizard for an inventory core (resolution is line-level) · Sev: Medium · Status: RECLASSIFIED → EXPECTED (2026-07-08)
 > **RECLASSIFIED → EXPECTED** per the Simple Flow shortcut principle (see
@@ -221,17 +257,16 @@ Affects SF-SET-03, SF-COMP-06, SF-QB-02.
 The Save button on the Work Orders settings tab is clickable with no pending
 changes (no dirty-state gating). Affects SF-SET-13.
 
-### BUG-3 — Mark Reviewed dialog missing optional note · Open Q7 · REAL DEFECT / build-gap (2026-07-08 REVERSAL)
+### BUG-3 — Mark Reviewed dialog missing optional note · Open Q7 · RESOLVED → NOT A BUG (Milos Round-2, 2026-07-09)
 Story 16 R7/R10 specify an optional `input_review_note`; the live dialog exposes
 only the VIN field. Affects SF-REV-10.
-> **REVERSED back to REAL DEFECT / build-gap (2026-07-08)** — supersedes the earlier
-> "RECLASSIFIED → EXPECTED". The refreshed **2026-07-08 design bundle** (the "Mark
-> work order reviewed" confirm-dialog screenshot; see `design-change-diff.md`) shows
-> the dialog **by design** carries **VIN / Serial # (required) + an optional Review
-> note** field. Because the note is design-intended, its **absence on live is a
-> build gap**, not a Simple-Flow simplification. Under the last-update-wins rule the
-> 07-08 design is the latest input and governs. **SF-REV-10 expected restored** to
-> VIN-required + optional-note. Sev: Low (optional field). Status: OPEN.
+> **RESOLVED → intended descope (2026-07-09, Milos Round-2)** — supersedes the
+> 2026-07-08 "REAL DEFECT / build-gap" reversal. Milos: *"There will not be note on
+> this field; it is a design issue which I removed from the design yesterday."* The
+> optional review note has been **removed from the design**, so there is **no note
+> field** in v1. Under last-update-wins his 2026-07-09 answer governs over the 07-08
+> design bundle. **SF-REV-10 expected updated to VIN-only (no note)** and the live
+> VIN-only dialog now matches expected. **No longer a bug.** Status: CLOSED.
 
 ### BUG-4 — Review sign-off jumps to Complete · Open Q8 · RECLASSIFIED → EXPECTED (2026-07-08)
 Story 16 R5/R8 describe Review → **Reviewed** → (final Complete) → Complete as
