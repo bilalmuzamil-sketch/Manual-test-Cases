@@ -1,10 +1,11 @@
 # TestRail update log — Custom Roles bug-guards C26569–C26573 → assert CASCADE
 
+**Ticket:** these guard updates trace to **SV-7885** (parent Epic **SV-7388**).
 **Date:** 2026-07-09
 **Authorization:** user-approved TestRail WRITE (this specific task).
 **Scope:** ONLY case_ids 26569, 26570, 26571, 26572, 26573. No runs/results/other
 cases created, updated, or deleted.
-**Source of the fix:** `build/random-tasks/customroles-role-api-cascade.md` —
+**Source of the fix:** `build/random-tasks/SV-7885-customroles-role-api-cascade.md` —
 verified on staging that role create (`POST /api/roles`) and update
 (`PUT /api/roles/{id}`) now **auto-cascade parent permissions server-side**
 (does NOT return 400, does NOT persist invalid bundles verbatim).

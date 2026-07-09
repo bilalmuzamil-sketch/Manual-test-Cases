@@ -38,4 +38,4 @@ All CLAUDE.md STANDING RULES apply, notably:
 | Ticket | Type | Env | Status | File |
 |--------|------|-----|--------|------|
 | SV-8182 | Bug re-test | staging (app.staging.shopview.com) | ✅ FIXED — approval-request no longer 500s; send-to-portal verified end-to-end (2026-07-09) | `SV-8182.md` |
-| SV-7388 (role-API cascade; bug key TBD) | Backend bug re-verify | staging (api.staging.shopview.com) | ✅ FIXED-by-cascade — role create (`POST /api/roles`) + update (`PUT /api/roles/{id}`) now auto-add parent perms server-side; invalid bundles no longer persisted verbatim. E2E guards C26569–C26573 assert 400/reject so stay red — realign to cascade (2026-07-09) | `customroles-role-api-cascade.md` |
+| SV-7885 (role-API cascade; parent Epic SV-7388) | Backend bug re-verify | staging (api.staging.shopview.com) | ✅ Verified — fixed by cascade (CRUD chains) + See-Financial-Data dependency FE-only + PARTS_DEPARTMENT out of scope | `SV-7885-customroles-role-api-cascade.md` |

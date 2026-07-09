@@ -1,6 +1,6 @@
-# Custom Roles — Role-API permission parent-gate / CRUD-cascade enforcement
+# SV-7885 — Custom Roles — Role-API permission parent-gate / CRUD-cascade enforcement
 
-**Ticket:** parent Epic **SV-7388** (Custom Roles & Permissions). Specific bug key = **TBD** (not supplied; note it when filed). Related E2E bug-guards: **C26569–C26573**.
+**Ticket:** **SV-7885** (parent Epic **SV-7388** — Custom Roles & Permissions). Related E2E bug-guards: **C26569–C26573**.
 **Type:** Backend bug re-verification (does the role create/update API enforce the permission parent-gate / CRUD-cascade rules server-side?).
 **Env:** STAGING — app `https://app.staging.shopview.com`, API `https://api.staging.shopview.com`. Org `d55bc308-e61a-438d-b5f1-c7a73c89d49f` (confirmed live). Auth: dev quick-login `{key:'admin'}` (org admin) gated by the SV-8182 staging cookie set — **auth OK** (LOGIN 200 / calls 200).
 **Date:** 2026-07-09.
