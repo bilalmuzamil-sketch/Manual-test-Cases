@@ -194,7 +194,7 @@ completion, receive, and review sign-off are FE-only** (tech → 201).
 
 ## NEW — Deliverable-WO-PO receive pass (2026-07-08, BATCH 7)
 
-### BUG-11 — Receiving a WO-originated PO returns HTTP 500 (Accept-Delivery path only) · Sev: High → Low · Status: WORKAROUND EXISTS (bulk path fixed)
+### BUG-11 — WO-PO receive HTTP 500 on the LEGACY Accept-Delivery path (the new Bulk Receive pipeline works — receive-requested-parts returns 200) · Sev: High → Low · Status: WORKAROUND EXISTS (bulk path works) — valid bug for the legacy single-PO path only, lower urgency
 > **UPDATE 2026-07-09 (re-VIU, Stories 7/8/9 now built):** BUG-11 does **NOT
 > reproduce on the new Bulk Receive pipeline**. Receiving a self-created deliverable
 > WO PO (S-15786, Source=Vendor + free-text PN, qty 2) via the Bulk Receive page ran

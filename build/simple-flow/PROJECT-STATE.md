@@ -47,16 +47,20 @@ spec S5-R1 "sell mandatory at save" (open Q — see §3/§5.E). Full assessment:
 
 **Overall status:** Cases **authored (162)** and **permissions applied (SV-8183)**.
 Deliverables regenerated (workbook, interim TestRail import, blockers tracker). VIU
-is **PARTIAL** (feature under active development). The **v2.4 reconciliation batch +
-Milos Round-2 batch were pushed to TestRail** (18 updates + 2 adds; then 5 R2
-updates). **BIG UPDATE (2026-07-09 epic ingest):** the Epic's "What's Been Built"
-reports **Stories 7 / 8 / 9 / 14 as now BUILT** on sv7301 (previously marked
-DEV-NOT-BUILT) ⇒ **~35 cases now likely VIU-able and need a targeted re-VIU on
-sv7301** (list in §5.E). Remaining work is gated on: **that re-VIU** (with fresh QA
-cookies), dev fix BUG-11, two spec-vs-build conflicts to reconcile (dummy-PO;
-"Waiting on Receive" label), a 2nd/3rd role account, and the **5** refreshed Jira
-bug drafts awaiting filing. **Do NOT write to TestRail without explicit user
-permission.**
+is **PARTIAL but much further along**. The **v2.4 reconciliation batch + Milos
+Round-2 batch were pushed to TestRail** (18 updates + 2 adds; then 5 R2 updates).
+**BIG UPDATE (RE-VIU BATCH 7, 2026-07-09):** the Epic was correct — **Stories 7 / 8 /
+9 / 14 are now BUILT and were live-verified** on sv7301; **24 cases flipped to
+VIU-Verified**, **DEV-NOT-BUILT dropped to 0**, both spec-vs-Epic conflicts were
+**resolved in favour of the spec** (vendorless → Vendor-Missing on the WO's own PO,
+not a Dummy PO; column = "Waiting On Parts") with **no case changes**, and **BUG-11
+was downgraded** (the 500 is confined to the legacy Accept-Delivery path; the new
+Bulk Receive pipeline receives WO POs successfully). Remaining work is gated on:
+**the 46 VIU-PENDING** (7 reachable-now + 39 needs-data — cores / WO-PO receive via
+bulk / invoiced-paid WO / VIN-less asset / QuickBooks; see §8), the **6 BUG/RULING**
++ **15 MILOS-ANSWER** cases, a 2nd/3rd role account for the last SF-PERM-09/10
+negatives, and the **5** Jira bug drafts awaiting filing. **Do NOT write to TestRail
+without explicit user permission.**
 
 ---
 
@@ -91,29 +95,34 @@ SF-PERM-02/04/06/07/08 + SF-REV-09, + a few under Milos-answer) — VIU-verified
 yet uploadable-clean. **DEV-NOT-BUILT dropped 25 → 0** this pass (Stories 7/8/9/14
 confirmed built; `gen_blockers.py` classifier updated accordingly).
 
-**DEV-NOT-BUILT (25) by story:**
+**DEV-NOT-BUILT — now 0 (Stories 7/8/9/14 CONFIRMED BUILT on sv7301, RE-VIU BATCH 7,
+2026-07-09):** the 25 cases previously blocked on these four stories are all built and
+were re-VIU'd live; 24 flipped to VIU-Verified and 1 (SF-BULK-10, core Ok/NotOk on the
+bulk page) moved to VIU-Pending / needs-data (needs a genuine `is_core` part). For the
+record, the four stories that were built:
 
-| Story (Jira) | Count | Cases |
-|---|---:|---|
-| Story 8 — PO Bulk Receive page (SV-7703) | 12 | SF-BULK-01..10, SF-PERM-03, SF-VAL-09 |
-| Story 7 — PO multi-select (SV-7702) | 6 | SF-POSEL-01..06 |
-| Story 9 — Apply invoice to selected POs (SV-7704) | 4 | SF-INV-01..03, SF-VAL-10 |
-| Story 14 — Waiting-on-Parts column (SV-7709) | 3 | SF-WOP-01..03 |
+| Story (Jira) | Cases | Status now |
+|---|---|---|
+| Story 7 — PO multi-select (SV-7702) | SF-POSEL-01..06 | BUILT — all VIU-Verified |
+| Story 8 — PO Bulk Receive page (SV-7703) | SF-BULK-01..10, SF-PERM-03, SF-VAL-09 | BUILT — SF-BULK-01..09 + SF-PERM-03 Verified; SF-BULK-10 (needs-data core) + SF-VAL-09 (needs invoiced/paid WO) VIU-Pending |
+| Story 9 — Apply invoice to selected POs (SV-7704) | SF-INV-01..03, SF-VAL-10 | BUILT — SF-INV-01..03 Verified; SF-VAL-10 (reused-invoice#) VIU-Pending reachable-now |
+| Story 14 — Waiting-on-Parts column (SV-7709) | SF-WOP-01..03 | BUILT — SF-WOP-01/03 Verified; SF-WOP-02 (click-count→Accept-Delivery) VIU-Pending reachable-now |
 
-**VIU-PENDING (QA) (47) by sub-bucket:**
+**VIU-PENDING (QA) (46) by sub-bucket:**
 
 | Sub-bucket | Count | Meaning |
 |---|---:|---|
-| reachable-now | 7 | admin+tech + normal data; just needs another VIU pass, no new inputs |
-| needs-data | 40 | needs a data state not seedable via the app (cores, receiving, QB inspection, vendor-missing UI, invoiced/paid WO, VIN-less asset) |
+| reachable-now | 7 | admin+tech + normal data; just needs another VIU pass, no new inputs (SF-COMP-12, SF-VMIS-07, SF-RCV-10, SF-WOP-02, SF-VAL-10, SF-REV-12, SF-QB-09) |
+| needs-data | 39 | needs a data state not seedable via the app (cores, WO-PO receive via bulk path, QB inspection, invoiced/paid WO, VIN-less asset, multi-PO merge) |
 | needs-account | 0 | (none currently) |
-| **TOTAL** | **47** | |
+| **TOTAL** | **46** | |
 
 **Blocker owners (who unblocks what):** Milos (PO) → the 15 MILOS-ANSWER cases;
-Dev team → the 25 DEV-NOT-BUILT (+ BUG-11 unblocks a large slice of the VIU-pending
-receive cases); QA (fresh sv7301 cookies admin+tech + seeded data) → the bulk of
-the 47 VIU-PENDING; a 2nd/3rd role account (Office/Service Manager/Foreman, some
-without See Financial Data) → SF-PERM-09/10; Dev/PO ruling → the 6 BUG/RULING.
+Dev team → BUG-11 (legacy Accept-Delivery 500 — now LOW urgency, a working Bulk
+Receive path exists) + the other OPEN fix tickets; QA (fresh sv7301 cookies
+admin+tech + seeded data) → the bulk of the 46 VIU-PENDING; a 2nd/3rd role account
+(Office/Service Manager/Foreman, some without See Financial Data) → the last
+SF-PERM-09/10 negatives; Dev/PO ruling → the 6 BUG/RULING. **DEV-NOT-BUILT is now 0.**
 
 ---
 
@@ -226,62 +235,99 @@ after Milos Round-2 (BUG-3 + BUG-9 closed):**
 1. TICKET 1 (BUG-5, High) — reviewer can sign off own WO (reviewer≠completer not enforced).
 2. TICKET 2 (BUG-6 + BUG-7, Medium) — WO completion & review sign-off enforced UI-only, bypassable via API. **Milos R2 Q5: UI gating = v1 pass; this is the OPEN fix ticket for the API gap.**
 3. TICKET 3 (BUG-8, Medium) — required completion fields (mileage/VIN/engine hours) UI-only, not BE-enforced.
-4. TICKET 4 (BUG-11, High) — receiving a WO-originated PO returns HTTP 500.
+4. TICKET 4 (BUG-11, **Low — downgraded 2026-07-09**) — WO-PO receive HTTP 500 on the LEGACY Accept-Delivery path only; the new Bulk Receive pipeline works (`receive-requested-parts` → 200).
 5. TICKET 5 (GAP-B, Medium) — wrong first-use settings defaults (Auto-approve/Vendor-invoice).
    - **CLOSED by Milos Round-2 (NOT filed):** BUG-3 (review-note descoped → intended v1, was TICKET 1); BUG-9 / GAP-A (vendorless Category-required / Sell-optional → intended v1, was TICKET 5).
    - **Deliberately NOT filed (earlier):** BUG-1 (No-PO retained per V2.4 = build-lag note), BUG-2 (nice-to-have), BUG-4 & BUG-10 (EXPECTED under the shortcut rule).
 
 **C. Dev dependencies that gate the remaining VIU:**
-- **BUG-11 (HTTP 500 on WO-PO receive)** — blocks the entire WO receive round-trip; gates SF-COMP-13/19, SF-VAL-05/06, SF-PNFIX-02..06, SF-RCV-08, SF-VPART-07, SF-REV-04/14, SF-CORE-03..07. Highest-leverage single fix for the VIU-pending backlog.
-- **Stories 7 / 8 / 9 / 14 NOT built** — 25 DEV-NOT-BUILT cases wait on these deploys (see §2). Story 8 in particular gates the vendor-missing assign-vendor / inline-PN-fix UI that several VIU-pending cases also need.
+- **BUG-11 DOWNGRADED (RE-VIU BATCH 7, 2026-07-09):** the HTTP 500 is now confined to
+  the **legacy Accept-Delivery path** (`POST /api/inventory/orders/accept`). The **new
+  Bulk Receive pipeline works** — receiving a self-created deliverable WO PO via the
+  Bulk Receive page ran `POST /api/orders/receive-requested-parts` → **200** (created a
+  Delivery / Vendor Bill, moved the order to partial_delivery). So the WO-PO receive
+  round-trip is now achievable via the bulk path and the SF-COMP-13/19, SF-VAL-05/06,
+  SF-PNFIX-02..06, SF-RCV-08, SF-VPART-07, SF-REV-04/14, SF-CORE-03..07 cases are
+  largely **unblocked via Bulk Receive** (re-VIU as budget allows). BUG-11 remains a
+  valid but **LOW-urgency** bug for the single-PO Accept-Delivery surface (a working
+  path exists).
+- **Stories 7 / 8 / 9 / 14 CONFIRMED BUILT (RE-VIU BATCH 7)** — no longer a dependency.
+  The 25 formerly-DEV-NOT-BUILT cases were re-VIU'd live: 24 VIU-Verified, 1
+  (SF-BULK-10) → needs-data. Story 8's Bulk Receive page also delivers the
+  vendor-missing assign-vendor prompt + inline PN-fix UI that earlier VIU-pending
+  cases needed. **DEV-NOT-BUILT = 0.**
 
 **D. QuickBooks parked:** all QB/inventory-integrity checks (SF-QB-03..08,
 SF-VMIS-03, SF-RCV-08) need QuickBooks/inventory back-end inspection — likely
 requires dev/QB access; parked until an inspection path is provided.
 
-**E. Latest spec/design/epic batch ingested (2026-07-09) — RE-VIU REQUIRED
-(full detail `spec-epic-diff-latest.md`):**
+**E. Latest spec/design/epic batch (2026-07-09) — RE-VIU BATCH 7 DONE
+(full detail `viu-findings.md` BATCH 7, `spec-epic-diff-latest.md`):**
 
-The Epic "What's Been Built" reports **Stories 7 / 8 / 9 / 14 (+ 6 / 13) as BUILT**
-on sv7301, contradicting our last VIU (2026-07-08) which marked them DEV-NOT-BUILT.
-They were almost certainly **deployed since that pass**. **Do NOT flip any status
-until re-VIU confirms live (shared env).** ~35 VIU-Pending cases become likely
-VIU-able:
+The Epic "What's Been Built" reported **Stories 7 / 8 / 9 / 14 as BUILT** on sv7301,
+contradicting our 2026-07-08 VIU. **RE-VIU confirmed the Epic was correct** — all four
+were deployed since that pass and are live-verified:
 
-- **Primary — 22 cases directly gated on Stories 7/8/9/14 (all VIU-Pending now):**
-  - Story 7 (PO multi-select): **SF-POSEL-01..06** (6)
-  - Story 8 (Bulk Receive page): **SF-BULK-01..10** (10)
-  - Story 9 (Apply invoice): **SF-INV-01, -02, -03** (3)
-  - Story 14 (Waiting on Parts/Receive column): **SF-WOP-01, -02, -03** (3)
-- **Secondary — ~13 dependents now reachable (vendor-assign / bulk surfaces exist):**
-  SF-VEND-01..05 (Story-13 assign-vendor + merge), SF-VMIS-03..07
-  (Vendor-Missing resolve/receive), SF-RCV-05, -06, -07, -08, -10, SF-PERM-03
-  (bulk-receive role gating), SF-QB-03 (both-surface pipeline; revisit
-  SF-QB-06/07/08). Also revisit VIU deviations #1 (Create-POs toggle, now reportedly
-  built → re-VIU SF-SET-08/-13) and #3 (review-note — already closed by Milos R2).
+- **Story 7 (PO multi-select) BUILT** — `checkbox_select_all_orders` + per-row
+  `checkbox_select_order_{id}`; action bar "N Purchase Orders selected" + Clear +
+  Receive Selected → `/bulk-receive?ids=…`. SF-POSEL-01..06 all VIU-Verified.
+- **Story 8 (Bulk Receive page) BUILT** — "Receive Vendor Parts" page grouped by
+  vendor, per-PO/part checkboxes, qty/cost/sell inputs, per-PO invoice + Receive,
+  global Receive All, Vendor-Missing group with `select_assign_vendor_{poId}` +
+  `input_part_number_{partId}`. SF-BULK-01..09 + SF-PERM-03 Verified; SF-BULK-10
+  (core Ok/NotOk) → needs-data.
+- **Story 9 (Apply invoice) BUILT** — per-vendor `input_apply_invoice_{vendorId}` +
+  "Apply to selected POs"; vendorless group has no apply control. SF-INV-01..03 Verified.
+- **Story 14 (Waiting on Parts column) BUILT** — column selector offers "Waiting On
+  Parts" (`toggle_column_unreceivedPartRequestsCount`), off by default, count per WO,
+  "—"/no-link when nothing to receive. SF-WOP-01/03 Verified; SF-WOP-02 reachable-now.
 
-**Two spec-vs-build CONFLICTS to flag / escalate (re-VIU + Milos/dev):**
-1. **Dummy PO vs shared WO PO.** Epic (3) says vendorless parts go on a **separate
-   no-vendor "Dummy" PO** with **Receive hidden** until a vendor is assigned. Spec
-   V2.4 (Story 6 / §4 / §6) says **NO dummy PO — the vendorless part goes on the
-   WO's normal PO, flagged Vendor Missing**. Our SF-VMIS-01/02 assert "on the WO's
-   PO, not a separate dummy PO" and SF-POSEL-05 asserts vendor-missing POs are
-   *selectable*; if the app shipped a separate dummy PO with Receive hidden, those
-   cases may FAIL. **Built app is ground truth for VIU** — re-VIU SF-VMIS-01/02,
-   SF-POSEL-05, SF-BULK-04/07, SF-VEND-*; escalate the terminology mismatch to
-   Milos/dev.
-2. **"Waiting on Receive" vs "Waiting on Parts" label.** Epic (5) calls the shipped
-   WO-list column **"Waiting on Receive"** and says it **replaces the old badge**;
-   spec + our cases (SF-WOP-*) call it **"Waiting on Parts"**. Confirm the live
-   column header and the replaces-badge behavior; update SF-WOP-01/02/03 wording to
-   the shipped label (last-update-wins → the built label).
+**Both spec-vs-build CONFLICTS RESOLVED — in favour of the SPEC (no case changes needed):**
+1. **Dummy PO vs shared WO PO → SPEC WINS.** The built app places vendorless parts on
+   the **WO's own PO flagged "Vendor Missing"** (self-created S-15787: 2 vendorless
+   parts share ONE order_id, vendorMissing=true — **no separate dummy PO**). On the
+   Bulk Receive page they appear under a **"Vendor Missing" group** with an inline
+   **assign-vendor** prompt; **Receive is shown-but-disabled (not hidden)** and
+   vendor-missing POs **are selectable** on the PO list. → SF-VMIS-01/02 and
+   SF-POSEL-05 are **correct as written**; the Epic's "Dummy PO / Receive hidden"
+   wording is not the shipped behaviour.
+2. **"Waiting on Receive" vs "Waiting on Parts" label → SPEC WINS.** The shipped column
+   label is **"Waiting On Parts"** (toggle `toggle_column_unreceivedPartRequestsCount`),
+   not the Epic's "Waiting on Receive". → SF-WOP-01/02/03 **correct as written**.
+
+Because both conflicts resolved to "built matches our existing spec-based expecteds",
+**no case EXPECTED diverged and no TestRail write was required** (and TestRail writes
+need explicit user permission).
+
+**Minor observations from RE-VIU BATCH 7 (recorded in `bugs-log.md` OBS-1..4 — notes,
+not filing-grade defects):**
+- **OBS-1** — the two conflicts above (both resolved in favour of the spec).
+- **OBS-2** — the Bulk Receive page renders the **"Vendor Missing" group LAST** (spec
+  S12-R3 wants the vendor-missing group to lead on Accept Delivery); flag whether the
+  same lead-ordering should apply on the Bulk page (affects SF-RCV-05/07 wording only).
+- **OBS-3** — SF-VMIS-05: the order Vendor-Missing flag clears on **vendor assignment
+  alone** (before a PN is entered); the part number is enforced as a separate per-part
+  receive gate. Functionally equivalent; nuance noted.
+- **OBS-4** — SF-POSEL-04: fulfilled POs are **excluded** from the PO list (not
+  shown-disabled), so inherently not selectable. Outcome matches; mechanism differs.
+
+**Residual state from RE-VIU BATCH 7 (shared env — note for the next run):**
+- **Irreversible received ZZAUTOTEST PO S-15786** (partial_delivery) + its
+  Delivery/Vendor-Bill (invoice ZZAUTOTEST-APPLY-1, Aabridge Beverages) remain —
+  received deliveries are **not reversible in-app**. The paired vendorless PO S-15787
+  and both throwaway WOs (80d52344, 41a9e195) were deleted; 0 stray ZZPN inventory parts.
+- **Settings drift:** a **parallel tester on the shared env** flipped
+  `autoPickInventoryParts→false` and `requireVendorInvoiceNumber→false` mid-run. This
+  pass made **ZERO settings writes**, so nothing was clobbered/restored by us; do not
+  assume baseline settings on the next run — re-read `GET /api/organizations/settings`.
 
 **F. Open items queued for the NEXT Milos/dev round (product decisions, not bugs):**
-1. **Dummy-PO vs shared-WO-PO terminology conflict** — does the shipped app place a
-   vendorless part on a **separate "Dummy" no-vendor PO** (Epic) or on the **WO's
-   own PO flagged Vendor Missing** (spec V2.4)? And is Receive **hidden** or
-   **disabled-but-shown** until a vendor is assigned? Needs a Milos/dev ruling to
-   settle the spec-vs-build wording (drives SF-VMIS-01/02, SF-POSEL-05).
+1. **Dummy-PO vs shared-WO-PO terminology conflict — RESOLVED by RE-VIU (§5.E):** the
+   shipped app uses the **WO's own PO flagged Vendor Missing** (spec V2.4), not a
+   separate Dummy PO, and Receive is **disabled-but-shown**. Remaining (minor, OBS-2):
+   should the **Vendor-Missing group LEAD** on the Bulk Receive page (as spec S12-R3
+   wants on Accept Delivery), rather than render last? A wording-only Milos/dev confirm
+   (affects SF-RCV-05/07 only).
 2. **"$0 sell price, no action needed" (design) vs "sell mandatory at save" (spec
    S5-R1) tension** — the latest completion-design screenshot warns "$0.00 sell
    price, no action needed to continue" (allows $0), while spec S5-R1 makes sell
@@ -340,9 +386,12 @@ VIU-able:
   `/workorders/{id}/lines`.
 - **Key endpoints:** PO list `GET /api/inventory/orders`; order detail
   `GET /api/inventory/orders/{id}`; deliveries `GET /api/inventory/deliveries`;
-  inventory parts `GET /api/inventory/parts?…&search=`; **Receive =
-  `POST /api/inventory/orders/accept`** (works for inventory POs; **500 for WO POs
-  = BUG-11**); simple completion `POST /api/work-orders/{id}/simple-complete`;
+  inventory parts `GET /api/inventory/parts?…&search=`; **legacy single-PO Receive =
+  `POST /api/inventory/orders/accept`** (works for inventory POs; **500 for WO POs =
+  BUG-11, now LOW urgency**); **Bulk Receive (WORKS for WO POs) =
+  `POST /api/orders/receive-requested-parts`** (+ `GET /api/inventory/orders/receive-view`),
+  driven from the `/bulk-receive?ids=…` page; simple completion
+  `POST /api/work-orders/{id}/simple-complete`;
   change status `POST /api/work-orders/change-status`; remove WO part
   `POST /api/work-orders/parts/delete {part_id,work_order_id}`; new part request
   `POST /api/work-orders/part/make-request`.
@@ -358,8 +407,13 @@ VIU-able:
   Technician `131b5274…`, Parts Manager `5d703b9b…`, Parts Tech `486622b9…`,
   Office `163abe0d…`, Sales Rep `8eb4a1c1…`, Time Clock `0a198766…` (full map
   `/tmp/simple-flow/roles-map-6.json`).
-- **NOT built yet:** Stories 7 (PO multi-select), 8 (Bulk Receive page), 9
-  (apply-invoice), 14 (Waiting-on-Parts column).
+- **Stories 7 / 8 / 9 / 14 are BUILT** (confirmed live RE-VIU BATCH 7, 2026-07-09):
+  PO multi-select (`checkbox_select_all_orders` / per-row `checkbox_select_order_{id}`;
+  Receive Selected → `/bulk-receive?ids=…`), the Bulk Receive page ("Receive Vendor
+  Parts", grouped by vendor, Vendor-Missing group with `select_assign_vendor_{poId}` +
+  `input_part_number_{partId}`), Apply-invoice (`input_apply_invoice_{vendorId}`), and
+  the "Waiting On Parts" column (`toggle_column_unreceivedPartRequestsCount`, off by
+  default). Nothing in Simple Flow is DEV-NOT-BUILT.
 - **Cores:** genuine cored inventory part **P550848** (core_charge=1, has
   core_part_id); add via New Part Request → select_part catalog PN (forces
   Source=Inventory; qty via `input_bin_quantity_{binId}`). A genuine special-order
@@ -383,20 +437,39 @@ VIU-able:
 **Confirm the project first** (this workspace holds 3 projects) — instruction must
 target **Simple Flow**.
 
-**>>> NEXT ACTION (as of 2026-07-09): a targeted re-VIU on sv7301 with FRESH
-cookies.** The Epic reports Stories 7/8/9/14 (+6/13) now BUILT (§5.E), so:
-1. Get fresh sv7301 cookies (admin + tech) into `/tmp` and rebuild the MITM bridge
-   (Chromium can't TLS the egress proxy directly; boot2 hydration; tools in
-   `/tmp/simple-flow/tools/`).
-2. Re-VIU the **22 primary** cases first — SF-POSEL-01..06, SF-BULK-01..10,
-   SF-INV-01..03, SF-WOP-01..03 — then the **~13 secondary** — SF-VEND-*,
-   SF-VMIS-03..07, SF-RCV-05..08/10, SF-PERM-03, SF-QB-03.
-3. While there, resolve the **two conflicts** (dummy-PO shape; "Waiting on Receive"
-   vs "Waiting on Parts" label — §5.E) and re-check VIU-deviation #1 (Create-POs
-   toggle) on SF-SET-08/-13.
-4. **Do NOT flip any `viu_status` until confirmed live** (shared env). After
-   confirmation, update `cases/*.json`, re-run `gen_blockers.py` + `gen_import.py`,
-   emit an ID-matched `gen_update.py` file, get user approval, then push.
+**>>> DONE (RE-VIU BATCH 7, 2026-07-09):** Stories 7/8/9/14 confirmed BUILT & live,
+24 cases flipped to VIU-Verified, DEV-NOT-BUILT → 0, both spec-vs-Epic conflicts
+resolved in favour of the spec (no case changes), BUG-11 downgraded (§5.C/E). No
+TestRail writes (no EXPECTED diverged).
+
+**>>> NEXT ACTION: work down the remaining 46 VIU-PENDING (QA).** With fresh sv7301
+cookies (admin + tech) + a rebuilt MITM bridge (Chromium can't TLS the egress proxy
+directly; boot2 hydration; tools in `/tmp/simple-flow/tools/`):
+
+1. **reachable-now (7)** — just need another VIU pass, no new inputs / seeding:
+   **SF-COMP-12** (background PO count), **SF-VMIS-07** (sell-only part orderable →
+   Vendor-Missing PO), **SF-RCV-10** (cost editable on Accept Delivery), **SF-WOP-02**
+   (click Waiting-on-Parts count → Accept Delivery — needs a stable WO row with a
+   non-zero count), **SF-VAL-10** (reuse one invoice # across POs via Apply-invoice),
+   **SF-REV-12** (Ready-for-Review list filter/column), **SF-QB-09** (Part-Sales
+   unaffected by shared order/status logic).
+2. **needs-data (39)** — need a data state seeded first. Grouped by what to seed:
+   - **core part** (genuine `is_core`, not seedable via canned/sub-form): all
+     SF-CORE-02..09, SF-BULK-10, SF-REV-14.
+   - **WO-PO receive via the Bulk Receive path** (BUG-11 no longer blocks — use
+     `/bulk-receive`, not legacy Accept-Delivery): SF-COMP-13/19, SF-VAL-05/06,
+     SF-PNFIX-01..06, SF-VPART-07, SF-REV-04, SF-RCV-06.
+   - **invoiced/paid WO** (sell-field lock / receive-block guardrails): SF-VAL-09,
+     SF-VEND-02..05.
+   - **VIN-less asset** (non-review VIN gate): SF-VAL-02.
+   - **QuickBooks / reports back-end inspection** (likely dev/QB access): SF-QB-03..08,
+     SF-VMIS-03/06, SF-RCV-08.
+   - **Accept-Delivery surface specifics:** SF-RCV-05/07 (also gated on Milos Q11
+     ordering — see §5.A/OBS-2).
+3. **needs-account: 0** — role-switching is self-service (assign Tech the role, then
+   restore Technician `131b5274`).
+4. After any live confirmation, update `cases/*.json`, re-run `gen_blockers.py` +
+   `gen_import.py`, emit an ID-matched `gen_update.py` file, get user approval, then push.
 
 **Other resume paths (as inputs land):**
 
@@ -410,18 +483,16 @@ cookies.** The Epic reports Stories 7/8/9/14 (+6/13) now BUILT (§5.E), so:
    then `gen_update.py <cleared SF ids>` for an ID-matched TestRail update file.
 4. **Ask the user before any TestRail write.**
 
-**When dev fixes land (BUG-11 / Stories 7/8/9/14):**
+**When the legacy Accept-Delivery BUG-11 500 is fixed (LOW urgency — bulk path works):**
 1. Get fresh sv7301 cookies (admin + tech) into `/tmp` and rebuild the MITM bridge.
-2. Re-run VIU for the now-reachable cases (BUG-11 unblocks the WO-receive round-trip
-   set; each story deploy unblocks its DEV-NOT-BUILT cases — see §2).
-3. Flip verified cases to VIU-Verified in `cases/*.json`, regenerate deliverables,
-   emit an ID-matched update file, get user approval, then push.
+2. Re-confirm the single-PO `POST /api/inventory/orders/accept` receive on a WO PO
+   now returns 201 (the round-trip is already achievable via `/bulk-receive`).
 
 **When fresh QA cookies / role accounts are supplied:**
-1. Cookies → work the 47 VIU-PENDING (reachable-now 7 first, then needs-data 40
-   as data becomes seedable).
-2. A 2nd/3rd role account (some WITHOUT See Financial Data) → verify SF-PERM-09/10
-   role-gating negatives; restore Tech to Technician afterward.
+1. Cookies → work the 46 VIU-PENDING (reachable-now 7 first, then needs-data 39
+   as data becomes seedable — see the NEXT ACTION list above).
+2. A 2nd/3rd role account (some WITHOUT See Financial Data) → close the last
+   SF-PERM-09/10 role-gating negatives; restore Tech to Technician afterward.
 
 **File the 7 Jira bug drafts** (`jira-bug-drafts.md`) from the chat app where
 Atlassian is connected (not available in this CLI env).

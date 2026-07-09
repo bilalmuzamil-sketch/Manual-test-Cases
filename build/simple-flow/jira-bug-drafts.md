@@ -168,16 +168,25 @@ SF-VAL-01, SF-VAL-02, SF-VAL-03, SF-COMP-05 (also SF-COMP-16, SF-REV-03)
 
 ---
 
-## TICKET 4 (from BUG-11) — Priority: High
+## TICKET 4 (from BUG-11) — Priority: Low (downgraded from High)
 
-**Summary:** Simple Mode: receiving a work-order-originated PO returns HTTP 500 (blocks the receive round-trip)
+> **Downgraded 2026-07-09 (RE-VIU BATCH 7):** the 500 is confined to the LEGACY
+> single-PO Accept-Delivery path. The new Bulk Receive pipeline receives the same
+> WO PO successfully (`POST /api/orders/receive-requested-parts` → 200), so a working
+> path exists and the WO-PO receive round-trip is achievable. Still a valid bug for
+> the legacy Accept-Delivery surface, but lower urgency.
+
+**Summary:** Simple Mode: WO-PO receive returns HTTP 500 on the LEGACY Accept-Delivery path (the new Bulk Receive pipeline works — receive-requested-parts returns 200)
 
 **Description:**
 
 *Summary of issue*
-A work-order-originated purchase order cannot be received via Accept Delivery — the
-receive call fails server-side with HTTP 500. A non-WO (inventory) PO receives fine,
-so this is WO-PO-specific and blocks the entire WO receive round-trip.
+A work-order-originated purchase order cannot be received via the LEGACY single-PO
+Accept Delivery surface — that receive call fails server-side with HTTP 500. A non-WO
+(inventory) PO receives fine on the same surface, so this is WO-PO-specific. **The new
+Bulk Receive pipeline is unaffected** — the same WO PO receives successfully via Bulk
+Receive (`POST /api/orders/receive-requested-parts` → 200, creating a Delivery /
+Vendor Bill), so a working path exists.
 
 *Simplified Steps to Reproduce*
 1. Create a work order, add a part via New Part Request → Source = Vendor, pick a
@@ -185,23 +194,25 @@ so this is WO-PO-specific and blocks the entire WO receive round-trip.
    a cost).
 2. Set the tech story + mileage, then complete the WO — this places a deliverable
    "ordered" WO PO (`vendorMissing:false`).
-3. Open the shared Accept Delivery page `/accept-delivery/{orderId}`.
+3. Open the shared **legacy** Accept Delivery page `/accept-delivery/{orderId}`.
 4. Enter an invoice number and a delivered quantity, then click Receive.
 
 *Expected*
 The WO PO receives successfully (HTTP 201) and the delivery is recorded, the same
-way a non-WO inventory PO receives (Story 10 behaviour — receiving a free-text /
-non-catalog part number should create/link the catalog + inventory part).
+way a non-WO inventory PO receives on this surface (and the same way the Bulk Receive
+page already receives this WO PO). Story 10 behaviour — receiving a free-text /
+non-catalog part number should create/link the catalog + inventory part.
 
 *Actual*
-Receive returns HTTP 500 ("An error occurred… please try again", with a
-`requestId`). Reproduced via the UI Receive button and via
+On the legacy Accept-Delivery path, Receive returns HTTP 500 ("An error occurred…
+please try again", with a `requestId`). Reproduced via the UI Receive button and via
 `POST /api/inventory/orders/accept` with the exact browser payload; on both a
 $0-cost and a real-cost ($25) WO part, and on both full and partial delivery
-quantities. The same tool receives a non-WO inventory PO fine (201). Likely cause:
-the WO part uses a free-text / non-catalog part number (`manufacturer_id:null`, no
-linked catalog/inventory item); receiving it must create/link a catalog + inventory
-part and that creation fails.
+quantities. The same tool receives a non-WO inventory PO fine (201), and the **Bulk
+Receive path receives the same WO PO fine (200)**. Likely cause: the WO part uses a
+free-text / non-catalog part number (`manufacturer_id:null`, no linked catalog/
+inventory item); receiving it must create/link a catalog + inventory part and that
+creation fails on the legacy `accept` endpoint only.
 Evidence: `viu-evidence/R7-01-wo-po-accept-delivery.png`, `R7-04-ready.png`,
 `R7-06-received-full.png`.
 
@@ -209,9 +220,12 @@ Evidence: `viu-evidence/R7-01-wo-po-accept-delivery.png`, `R7-04-ready.png`,
 SF-COMP-13, SF-COMP-19, SF-VAL-05, SF-VAL-06, SF-PNFIX-02, SF-PNFIX-03,
 SF-PNFIX-04, SF-PNFIX-05, SF-PNFIX-06, SF-RCV-08, SF-VPART-07, SF-REV-04,
 SF-REV-14, SF-CORE-03, SF-CORE-04, SF-CORE-05, SF-CORE-07
+(NB: these are now largely testable via the Bulk Receive path; this ticket only
+blocks the legacy single-PO Accept-Delivery surface.)
 
 *Related*
-- relates to SV-7301 (Simple Flow) / Story 10 (receive creates/links part)
+- relates to SV-7301 (Simple Flow) / Story 10 (receive creates/links part) / Story 8
+  (Bulk Receive — the working path)
 
 ---
 
