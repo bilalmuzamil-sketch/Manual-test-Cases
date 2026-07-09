@@ -82,6 +82,39 @@ current build. Card menu says "Edit | Remove" (spec S3-R9 says Edit/Delete).
 - Story 5 / Story 14 (customer documents) — unverified; needs an invoiceable WO walk (likely possible, just not done in recon).
 - Story 13 permissions matrix — `{key:'tech'}` quick-login is disabled; use the staff role-switch method (assign role → fresh login for that user); a working second-user login path must be established first.
 
+## 4b. Env-validation session 2026-07-09 (batch-6, fresh cookies)
+
+- **Backend was HEALTHY for ~10 min then went 500 again.** With the fresh cookie
+  set, `sv7387api.qa.shopview.com` returned 200 on `quick-login`,
+  `/api/organizations/settings`, `/api/auth/me/fe-permissions`, all
+  `/api/bookkeeping/*`, `/api/iam/change-location` from ~19:00–19:08Z, then the
+  **entire backend flipped to HTTP 500 on every endpoint (incl. unauthenticated
+  `/api/feature-flags` and `quick-login`)** from ~19:09Z onward. The app SPA
+  (`qb.qa.shopview.com`) still served 200 (static shell only). This is the
+  recurring **sv7387api 500 incident**, not auth/cookie expiry — the SAME pattern
+  as batch-5. Live VIU of the QB / floor / numeric-calc surfaces was blocked again.
+- **BOTH `quick-login {key:'admin'}` AND `{key:'tech'}` returned 200 this run**
+  (tech was NOT flaky here — retest each run as before).
+- **QuickBooks CONFIRMED CONNECTED** (during the healthy window):
+  `adjustment-item-mapping-status` = `{quickBooksConnected:true,feeItemMapped:true,
+  discountItemMapped:true}`; `bookkeeping/integration` returned the live QB chart of
+  accounts + the mapping fields `feeItemId` / `discountItemId` /
+  `customerCreditItemId`; `products-and-services` = 100 items incl **"Customer Credit
+  Applied"** (id 1149, Service, non-taxable) = the S6-R13 goodwill-credit item;
+  `unexported-items` = 4 real sync artifacts incl a `customer_invoice_create`
+  rejected with **"Enter a transaction amount that is 0 or greater"** (S3-15929,
+  Aacrest Works — the QB negative-amount guard behind the S6-R10 floor) and a
+  `credit_memo_create` — direct evidence the floor/credit-memo machinery is real.
+- **KEY LIMITATION for FD-QB line-item cases:** there is **no API to READ an
+  exported QuickBooks invoice's line items** — only `unexported-items` (failures).
+  So FD-QB-001/002/003/010/016 (own-line-item / description=name / $0-skip / single
+  Class / per-line tax) cannot be fully VIU'd from the API alone; they need
+  **QuickBooks-UI inspection of a synced invoice**. Combined with this being a
+  **GST (Canadian) org** (v1 is US-sales-tax-only per `spec-v1-reconciliation.md`
+  §1/§2), the 13+3 FD-QB cases remain **Blocked-Env**: env-reachable but gated on
+  (a) a healthy backend, (b) a US-sales-tax org for the tax numbers, and (c)
+  QB-side invoice-line inspection.
+
 ## 5. Ops notes / cleanup
 
 - Test data: added ZZAUTOTEST fee on WO S3-15888 and **removed it** (card restored to prior state). No other data changed. No roles changed.
