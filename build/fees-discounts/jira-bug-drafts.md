@@ -1,295 +1,530 @@
-# Fees & Discounts V1 — Jira Bug Drafts (ready to file)
+# Fees & Discounts V1 — Jira Bug Drafts (plain-language, ready to file)
 
 > **STATUS: NOT YET FILED — Atlassian is not reachable from this Claude Code
 > environment.** File these via your chat app where Atlassian / Jira IS connected.
 > Do NOT auto-create them from here.
 >
-> Source of truth: `build/fees-discounts/bugs-log.md`,
-> `build/fees-discounts/viu-qb-findings.md` (FDBUG register + API map),
-> `build/fees-discounts/viu-findings.md`. Spec = `build/fees-discounts/requirements.md`.
+> **Rewritten 2026-07-09** after the v1 closeout reconciliation
+> (`spec-v1-reconciliation.md`) and Milos's PO answer sheet
+> (`data-sheet-source.md`). Every ticket below is written in plain language so a
+> non-technical reader can understand it; anything technical (spec references,
+> internal bug codes, test-case IDs, endpoints, observed figures) lives only in
+> the "Technical notes (QA internal)" block at the bottom of each draft — trim
+> that block if you don't want it in the filed ticket.
 >
-> These are the **confirmed F&D CODE bugs** (behaviour is wrong or missing). Pure
-> label/copy/UX-mechanism drift and product-ruling questions are NOT filed here —
-> they live in `build/fees-discounts/Deviations-and-Questions-for-PO.md`.
+> **Changes in this rewrite:**
+> - **DROPPED:** the "customer defaults are added one at a time" complaint is
+>   NOT a bug — the Product Owner confirmed one-at-a-time is deliberate
+>   (answer sheet Q6 = A). No ticket. *(QA internal: FDBUG-7 closed as accepted.)*
+> - **ON HOLD:** Ticket 1 (customer totals leave out fees/discounts) is kept as
+>   a draft but must **NOT be filed yet** — it needs a re-check on a US
+>   sales-tax organization first (see the flag on the ticket).
+> - **ADDED (PO-confirmed defects):** Tickets 8–11 — Statistics list (Q1=B),
+>   Add-button greyed-out (Q4=B), "show more" collapse (Q5=B), and the missing
+>   Processing Fee option (Q3=B, in scope for this release).
 
 ## Common fields (apply to all tickets)
 
 - **Project:** ShopView — **SV**
 - **Issue type:** **Bug**
 - **Product Area (REQUIRED, `customfield_10153`):** **Work Orders** (id **`10120`**)
-- **Parent (epic):** **TBD — confirm the F&D epic key before filing.** The F&D spec
-  header lists **Epic = TBD**; `SV-7387` is only the QA-env / F&D-permissions label
-  and `SV-7388` is the *Custom Roles & Permissions* epic — **neither is the Fees &
-  Discounts epic.** Leave `parent` **unset** until the correct F&D epic is confirmed.
+- **Parent (epic):** **SV-7387 — Fees & Discounts** (confirmed from the v1 spec).
 - **Labels:** `fees-discounts`, `qa`, `testrail`
 - **cloudId (same ShopView Atlassian instance):** `19fdd96d-a135-46c4-83e7-d2cc218a4e63`
-- **QA env:** app `https://qb.qa.shopview.com` · API `https://sv7387api.qa.shopview.com`
-  (SV-7387) · `FeesAndDiscounts` flag ON.
+- **QA env:** app `https://qb.qa.shopview.com` (Fees & Discounts feature ON).
 
 ---
 
-## TICKET 1 (FDBUG-1) — Priority: High
+## TICKET 1 — Priority: High — **ON HOLD, DO NOT FILE YET**
 
-**Summary:** Fees & Discounts: work-order & estimate Subtotal/Total EXCLUDE adjustment amounts while GST still taxes them (customer-facing money is wrong)
+> **DO NOT FILE THIS TICKET YET.** We tested on a Canadian-tax (GST) test shop,
+> but this release only covers US sales tax — so the wrong numbers we saw might
+> be caused by the test shop's tax setup rather than by the feature. Also, when
+> we re-checked a day later, the numbers came out RIGHT on three work orders.
+> We will re-run this check on a US sales-tax shop first. File only if it still
+> reproduces there.
+
+**Title:** Customer's total sometimes leaves out the fees and discounts on the work order
 
 **Description:**
 
-*Summary of issue*
-On a work order carrying fees/discounts, the money totals leave the net adjustment
-amount OUT of the Subtotal and Total, yet the GST/tax line still INCLUDES the tax
-effect of those same adjustments. The customer-facing money (WO Financial Info and
-the estimate/invoice document) is therefore wrong.
+*What the user does:* A shop adds one or more fees or discounts to a work order,
+then looks at the money totals — on the work order's financial summary and on
+the estimate/invoice document the customer receives.
 
-*Simplified Steps to Reproduce*
-1. Open a work order and add one or more whole-WO fees (e.g. a fees-only WO).
-2. Look at the WO Financial Info Total/Balance and `total_cost`.
-3. Generate the customer estimate/invoice document and read Subtotal / GST / Total.
+*What happens now (when it goes wrong):* The Subtotal and Total leave the fee
+and discount amounts OUT, while the tax line still includes the tax on those
+same fees and discounts. So the customer sees a total that doesn't add up — in
+one example a work order with about $219 of fees showed a total of only $10.93
+(just the tax).
 
-*Expected*
-The Adjustments block is included BEFORE the Subtotal, so Subtotal = base + net
-adjustments, GST is computed on that adjustment-inclusive Subtotal, and Total =
-Subtotal + GST (per S5-R5). `total_cost` matches the document Total.
+*What should happen:* Fees and discounts are part of the bill. The Subtotal
+should include them, tax should be worked out on that full amount, and the
+Total should equal Subtotal plus tax. The work order's stored total should
+match the document the customer gets.
 
-*Actual*
-`total_cost`, Financial-Info Total/Balance AND the estimate's Subtotal/Total all
-OMIT the net adjustment amount, while GST DOES include the adjustments' tax effect.
-Batch 1/2 examples: a fees-only WO showed **Total $10.93 = tax alone** (fees $218.68
-ignored); an estimate showed **Subtotal $292.83 / GST $17.75 / Total $310.58** with
-**+$62.25 net adjustments missing**.
+*Steps to replicate:*
+1. Open a work order and add one or more fees to the whole work order.
+2. Look at the work order's financial summary (Total / Balance).
+3. Create the customer estimate document and read its Subtotal, tax, and Total.
 
-*Inconsistency / re-check note*
-This reproduced in **batch 1/2 (2026-07-08)** but did **NOT reproduce in batch 4
-(2026-07-09)** — three WOs' estimate documents reconciled correctly (Subtotal
-includes net adjustments, GST on the adjustment-inclusive Subtotal, `total_cost`
-matches). It may be a partial/shipped fix, or scenario-specific (discount-heavy /
-excess-credit / a particular surface such as fees-only WOs or the Financial-Info
-tab vs the estimate). **Please confirm whether a fix shipped between 07-08 and 07-09
-and which surfaces/scenarios it covers**; QA will run a controlled re-check to pin
-the trigger.
+*Expected:* Subtotal includes the fees/discounts; tax is calculated on that
+amount; Total = Subtotal + tax; the summary and the document agree.
 
-*Affected cases*
-FD-DOC-011 (expected deliberately left unchanged pending this ticket).
+*Actual:* On the failing runs, Subtotal and Total omitted the fee/discount
+amounts while the tax line still included their tax — the customer-facing
+money was wrong.
 
-*Related*
-- Spec S5-R5 (Adjustments before Subtotal).
-- Parent epic: **TBD — confirm F&D epic key.**
+*Epic link:* SV-7387
+
+**Technical notes (QA internal):**
+- Internal ref FDBUG-1; affected case FD-DOC-011; spec S5-R5 (Adjustments before
+  Subtotal).
+- Repro evidence (batch 1/2, 2026-07-08, GST org): fees-only WO showed
+  `total_cost` **$10.93 = tax alone** (fees $218.68 ignored); an estimate showed
+  Subtotal $292.83 / GST $17.75 / Total $310.58 with **+$62.25 net adjustments
+  missing**. Surfaces: WO `total_cost`, Financial-Info Total/Balance, estimate
+  Subtotal/Total.
+- **Did NOT reproduce in batch 4 (2026-07-09):** three WOs' estimate documents
+  reconciled correctly (estimate doc via
+  `POST /api/work-orders/invoices/estimate`).
+- **Hold reason:** v1 is US-sales-tax-only (Canada GST/PST is Phase 2); the GST
+  org makes the tax half of the symptom off-model, and the non-repro suggests a
+  partial fix or a scenario-specific trigger. Action: controlled re-repro on a
+  US sales-tax org (fees-only WO + Financial Info surface, and a discount-heavy
+  estimate) before filing. See `spec-v1-reconciliation.md` §1.
 
 ---
 
-## TICKET 2 (FDBUG-2) — Priority: High
+## TICKET 2 — Priority: High
 
-**Summary:** Fees & Discounts: Processing-Fee grand-total base wrongly includes whole-WO fees/discounts and their tax (overcharges the customer)
+**Title:** Processing fee is worked out on too big an amount, overcharging the customer
 
 **Description:**
 
-*Summary of issue*
-A Processing Fee calculated as "% of grand total" is computed on a base that
-incorrectly includes the whole-WO fees/discounts (and their tax). Per §5-R4 the
-processing-fee base must EXCLUDE every whole-WO adjustment, so the customer is
-overcharged.
+*What the user does:* A shop adds a processing fee that is defined as a
+percentage of the work order's grand total (for example 3%), on a work order
+that also has other whole-work-order fees or discounts.
 
-*Simplified Steps to Reproduce*
-1. On a WO with a subtotal, add a whole-WO fee (e.g. $212.00 of whole-WO fees).
-2. Apply a Processing Fee of 3% (calculation type "% of grand total").
-3. Compare the resolved processing-fee amount to the spec base.
+*What happens now:* The processing fee is calculated on an amount that wrongly
+includes the other whole-work-order fees/discounts (and their tax). In our
+test the customer was charged $15.90 instead of $9.22 — an overcharge.
 
-*Expected*
-Per §5-R4 the pfee base EXCLUDES all whole-WO adjustments → 3% × 307.47 = **$9.22**.
-(Tax-inclusion, resolve-last, and the no-self-feedback tax rule all behave correctly.)
+*What should happen:* By design, the processing fee should be worked out on
+the work order's own total only — the other whole-work-order fees and
+discounts must be left OUT of that calculation.
 
-*Actual*
-The pfee base includes the whole-WO fees + their tax → observed 3% × (292.83
-subtotal + 212.00 whole-WO fees) × 1.05 = **$15.90** (overcharge).
+*Steps to replicate:*
+1. Take a work order with normal labor/parts charges.
+2. Add a whole-work-order fee (for example a couple of hundred dollars).
+3. Add a processing fee of 3% of the grand total.
+4. Compare the processing-fee amount to 3% of the work order's own total
+   (without the other fee).
 
-*Affected cases*
-FD-PROC-009, FD-CALC-013 (also feeds the Stats totals in FD-STATS-001/002/004).
+*Expected:* The processing fee equals 3% of the work order's own total,
+excluding other whole-work-order fees/discounts.
 
-*Related*
-- Spec §5-R4 (processing-fee base excludes whole-WO adjustments).
-- Parent epic: **TBD — confirm F&D epic key.**
+*Actual:* The processing fee is bigger, because the other whole-work-order
+fee and its tax were included in the calculation.
+
+*Epic link:* SV-7387
+
+**Technical notes (QA internal):**
+- Internal ref FDBUG-2; affected cases FD-PROC-009, FD-CALC-013 (also feeds the
+  Statistics totals in FD-STATS-001/002/004); spec §5-R4 (pfee base excludes
+  every whole-WO adjustment).
+- Observed on the GST org: 3% × (292.83 subtotal + 212.00 whole-WO fees) × 1.05
+  = **$15.90** vs expected 3% × 307.47 = **$9.22**. Tax-inclusion, resolve-last
+  and the no-self-feedback tax rule behaved correctly.
+- The ×1.05 factor is GST — **re-verify the exact figures on a US sales-tax
+  org** — but the structural error (whole-WO adjustments leaking into the base)
+  is tax-model-independent, so the defect stands (`spec-v1-reconciliation.md`
+  §1). Status: still open.
 
 ---
 
-## TICKET 3 (FDBUG-3) — Priority: Medium
+## TICKET 3 — Priority: Medium
 
-**Summary:** Fees & Discounts: auto-applied adjustments write NO history-log entry (audit gap)
+**Title:** Fees and discounts that are added automatically don't show up in the work order's history
 
 **Description:**
 
-*Summary of issue*
-Adjustments that land on a work order automatically (location auto-apply and
-customer-default templates, including a customer-default Processing Fee) are not
-recorded in the WO history log. Manual add/edit/remove ARE logged correctly, so the
-audit trail is incomplete for anything auto-applied.
+*What the user does:* A shop sets certain fee/discount templates to be applied
+automatically (for the location, or as a customer's defaults). When a new work
+order is created, those fees/discounts are added to it automatically. The user
+then opens the work order's history to see what happened.
 
-*Simplified Steps to Reproduce*
-1. Set one or more templates to auto-apply (and/or set customer defaults).
-2. Create a new work order for that customer/location so the adjustments auto-apply.
-3. Open the WO history (`GET /api/work-orders/{id}/history`).
+*What happens now:* The history shows nothing about the automatically-added
+fees/discounts. Only fees/discounts that a person adds, edits, or removes by
+hand get recorded. So the paper trail is incomplete — a fee can appear on a
+work order with no record of when or how it got there.
 
-*Expected*
-Each auto-applied adjustment writes a history entry (added, as a fee/discount,
-"Applied to: Full invoice"), consistent with manual add/edit/remove logging (§1 /
-S10-R2).
+*What should happen:* Every fee or discount added to a work order — whether by
+hand or automatically — should get its own line in the work order's history.
 
-*Actual*
-A new WO that received 3 automatic adjustments (location auto-apply ×2 + a
-customer-default processing fee) logged only "Created"/"Line created" — no
-adjustment entries. Reconfirmed in batch 3: a Processing Fee auto-applied to a fresh
-WO produced NO history entry (history empty for the new WO).
+*Steps to replicate:*
+1. Set one or more fee/discount templates to apply automatically (and/or set
+   them as a customer's defaults).
+2. Create a new work order for that customer, so the fees/discounts are added
+   automatically.
+3. Open the work order's history.
 
-*Affected cases*
-FD-HIST-001 (also blocks the positive verification of FD-HIST-007).
+*Expected:* One history entry for each automatically-added fee/discount, the
+same as when someone adds one by hand.
 
-*Related*
-- Spec §1 / S10-R2 (history logs adjustment lifecycle).
-- Parent epic: **TBD — confirm F&D epic key.**
+*Actual:* No history entries at all for the automatic ones — only entries like
+"Created" appear.
+
+*Epic link:* SV-7387
+
+**Technical notes (QA internal):**
+- Internal ref FDBUG-3; affected case FD-HIST-001 (also blocks the positive
+  verification of FD-HIST-007); spec §1 / S10-R2 (history logs adjustment
+  lifecycle).
+- Repro: a new WO that received 3 automatic adjustments (location auto-apply ×2
+  + a customer-default processing fee) logged only "Created"/"Line created".
+  Reconfirmed batch 3: an auto-applied Processing Fee produced NO history entry.
+  History read: `GET /api/work-orders/{id}/history`.
 
 ---
 
-## TICKET 4 (FDBUG-9) — Priority: Medium
+## TICKET 4 — Priority: Medium
 
-**Summary:** Fees & Discounts: Max Amount of 0 is accepted and treated as NO cap (should force $0.00 / be treated as empty)
+**Title:** Setting a fee/discount's maximum amount to 0 removes the limit instead of applying it
 
 **Description:**
 
-*Summary of issue*
-A percentage adjustment saved with a Max Amount (maxCap) of 0 is stored and then
-resolves with NO cap applied, instead of forcing the result to $0.00 (spec §5-R6) —
-and the product contract is that 0 should be treated as empty / never sent (S7-R14).
-Either way, the current behaviour (0 = unlimited) is wrong.
+*What the user does:* A shop creates a percentage fee or discount and types 0
+into the "Max Amount" (maximum) field.
 
-*Simplified Steps to Reproduce*
-1. Add a percentage fee/discount (e.g. 10%) with Max Amount = 0.
-2. Save it against a WO whose base makes 10% non-trivial (e.g. base $324.60).
-3. Read the resolved amount.
+*What happens now:* The 0 is saved, and then ignored — the fee/discount is
+applied with NO maximum at all. For example, a 10% fee with a maximum of 0
+still charged $32.46.
 
-*Expected*
-Per §5-R6, Max $0 forces the resolved amount to **$0.00**; and per S7-R14 a 0 is
-treated as empty (no maximum). The build should NOT resolve an uncapped amount for
-maxCap 0.
+*What should happen:* A maximum of 0 should never mean "no limit". It should
+either cap the amount at $0.00 or be treated the same as leaving the field
+empty — but silently removing the limit is wrong either way.
 
-*Actual*
-`maxCap:0` is accepted and treated as NO cap — 10% of $324.60 resolved to **$32.46**
-despite maxCap 0.
+*Steps to replicate:*
+1. Add a percentage fee or discount (for example 10%) with Max Amount = 0.
+2. Save it on a work order big enough that 10% is a real amount.
+3. Look at the amount that was applied.
 
-*Affected cases*
-FD-CALC-008, FD-VAL-006 (also the 0-handling clause of FD-TMPL-011).
+*Expected:* The maximum of 0 takes effect (amount capped) or the 0 is treated
+as "no value entered" — not as "unlimited".
 
-*Related*
-- Spec §5-R6 / S7-R14 (Max Amount 0 handling).
-- Parent epic: **TBD — confirm F&D epic key.**
+*Actual:* The full uncapped percentage is charged as if no maximum was set.
+
+*Epic link:* SV-7387
+
+**Technical notes (QA internal):**
+- Internal ref FDBUG-9; affected cases FD-CALC-008, FD-VAL-006 (also the
+  0-handling clause of FD-TMPL-011); spec §5-R6 (Max $0 forces $0.00) vs S7-R14
+  (0 treated as empty / never sent) — either contract beats the live "0 =
+  unlimited".
+- Repro: `maxCap:0` accepted; 10% of $324.60 resolved to **$32.46**.
 
 ---
 
-## TICKET 5 (FDBUG-10) — Priority: Medium
+## TICKET 5 — Priority: Medium
 
-**Summary:** Fees & Discounts: a percentage below the minimum is silently rounded up instead of being rejected
+**Title:** A percentage that's too small is quietly changed instead of being rejected
 
 **Description:**
 
-*Summary of issue*
-A percentage value below the allowed minimum is accepted and silently coerced
-(rounded up) to the minimum, rather than being rejected with a validation error.
+*What the user does:* A shop enters a percentage fee/discount with a value
+below the smallest allowed percentage (for example 0.005%).
 
-*Simplified Steps to Reproduce*
-1. Add a percentage fee/discount with a percent below the minimum (e.g. 0.005%).
+*What happens now:* The app accepts it and silently rounds it up to the
+smallest allowed value (0.01%) without telling the user.
+
+*What should happen:* The app should refuse the too-small value and show a
+validation message, so the user knowingly enters a valid percentage.
+
+*Steps to replicate:*
+1. Add a percentage fee or discount and enter a percent below the minimum
+   (for example 0.005%).
 2. Save it.
-3. Observe the stored/resolved percent.
+3. Look at the saved percentage.
 
-*Expected*
-Per §5-R1 a percent below the minimum is **rejected** (validation error 400), not
-accepted.
+*Expected:* The save is rejected with a clear validation message.
 
-*Actual*
-0.005% is accepted and rounded UP to 0.01% (201) instead of being rejected.
+*Actual:* The save succeeds and the percentage has been quietly changed to
+0.01%.
 
-*Affected cases*
-FD-CALC-006.
+*Epic link:* SV-7387
 
-*Related*
-- Spec §5-R1 (minimum percentage value).
-- Parent epic: **TBD — confirm F&D epic key.**
+**Technical notes (QA internal):**
+- Internal ref FDBUG-10; affected case FD-CALC-006; spec §5-R1 (below-minimum
+  percent is rejected, expected HTTP 400).
+- Repro: 0.005% accepted (201) and rounded UP to 0.01%.
 
 ---
 
-## TICKET 6 (FDBUG-14) — Priority: Low
+## TICKET 6 — Priority: Low
 
-**Summary:** Fees & Discounts: part-line Add Fee/Discount dialog has label/copy defects ("% of Labor Total" mislabel, raw enum "Pct_parts", missing "Line N Part —" prefix)
+**Title:** Add Fee/Discount window on a part shows the wrong wording in three places
 
 **Description:**
 
-*Summary of issue*
-On the part-line "Add Fee/Discount" dialog the calculation behaviour is correct
-(dialog locked to the part; exactly 2 calc methods; the percentage resolves against
-the Part total), but three labels are wrong.
+*What the user does:* On a work order, the user opens the menu on a part and
+chooses "Add Fee/Discount". A window opens for adding a fee or discount to
+that part.
 
-*Simplified Steps to Reproduce*
-1. Open a WO with a part on a line → part row ⋯ → "Add Fee/Discount".
-2. Read the dialog subtitle and the Calculation Type field.
-3. Select the percentage option and read its label and preview.
+*What happens now:* The math is right, but three pieces of wording are wrong:
+1. The line at the top that says what the fee applies to shows only the part's
+   name — it's missing the "Line … Part —" lead-in and the part number.
+2. The "Calculation Type" box shows a raw internal code instead of a readable
+   label.
+3. The percentage choice is labelled as a percentage "of Labor Total" when it
+   actually (and correctly) works on the Part total.
 
-*Expected*
-Per S2-R11 / §5-R10: (a) subtitle "Applying to: Line {N} Part — {part name} ({part
-number})"; (b) Calculation Type shows a humanized label; (c) the part-line
-percentage option is labelled **"% of Parts Total"**.
+*What should happen:* The window should say plainly which line and part the
+fee applies to (with the part number), show a readable calculation-type label,
+and label the percentage option as a percentage of the Parts total.
 
-*Actual*
-(a) Subtitle reads "Applying to: 1710 U-JOINT 1.938X6.094" — omits the "Line {N}
-Part —" prefix and the part number in parens; (b) the Calculation Type field default
-shows the raw enum **"Pct_parts"**; (c) the part-line percentage option is
-mislabelled **"% of Labor Total"** even though it correctly resolves against the Part
-total (preview: "Part total $232.68 … Fee · 10% +$23.27"). Behaviour is right; labels
-are wrong. Evidence: `screenshots/viu-qb/partui3-dialog`, `partui5-partcalc`,
-`partui6-preview`.
+*Steps to replicate:*
+1. Open a work order that has a part on a line.
+2. On the part's row, open the "…" menu and choose "Add Fee/Discount".
+3. Read the "Applying to:" line and the Calculation Type box.
+4. Select the percentage option and read its label and the preview.
 
-*Affected cases*
-FD-PART-001.
+*Expected:* Clear, human-readable labels that match what the calculation
+actually does.
 
-*Related*
-- Spec S2-R11 (subtitle) / §5-R10 (part percentage label).
-- Parent epic: **TBD — confirm F&D epic key.**
+*Actual:* Missing lead-in/part number, a raw internal code, and a percentage
+option labelled "Labor" that really uses the Part total.
+
+*Epic link:* SV-7387
+
+**Technical notes (QA internal):**
+- Internal ref FDBUG-14; affected case FD-PART-001; spec S2-R11 (subtitle
+  "Applying to: Line {N} Part — {part name} ({part number})") / §5-R10
+  (part-line percentage labelled "% of Parts Total").
+- Observed: subtitle "Applying to: 1710 U-JOINT 1.938X6.094" (no prefix / no
+  part number in parens); Calculation Type default shows raw enum
+  **"Pct_parts"**; percentage option mislabelled **"% of Labor Total"** while
+  correctly resolving against the Part total (preview "Part total $232.68 …
+  Fee · 10% +$23.27"). Evidence: `screenshots/viu-qb/partui3-dialog`,
+  `partui5-partcalc`, `partui6-preview`.
 
 ---
 
-## TICKET 7 (BUG-FD-3 — enforcement gap) — Priority: Medium
+## TICKET 7 — Priority: Medium
 
-**Summary:** Fees & Discounts: whole-WO adjustment add/edit/remove is enforced only in the front end, bypassable via the API
+**Title:** Users who can't see the fee/discount buttons can still add fees/discounts another way
 
 **Description:**
 
-*Summary of issue*
-Role-gating of **whole-WO** adjustment writes is a front-end display gate only — the
-backend does not enforce the required "Work Orders: Create and Edit" permission, so a
-role without it (e.g. Technician) can add/edit/remove a whole-WO adjustment via the
-API. (Note: this overlaps the product-ruling question in
-`Deviations-and-Questions-for-PO.md` items FD-PERM-002 / FD-WO-013 — file this ONLY
-if the PO confirms the writes should be server-enforced.)
+*What the user does:* A staff member whose role is not allowed to edit work
+orders (for example a technician) opens a work order. As designed, the buttons
+for adding a whole-work-order fee or discount are hidden from them.
 
-*Simplified Steps to Reproduce*
-1. Sign in as a role WITHOUT `workOrdersCreateAndEdit` (e.g. Technician; quick-login
-   `{key:'tech'}` on qb).
-2. Confirm the whole-WO "Add … Fee / Discount" controls are hidden in the UI.
-3. Call `POST /api/work-orders/adjustments/add` with `scope:"whole_wo"` for a valid WO.
+*What happens now:* Hiding the buttons is the ONLY protection. If such a user
+sends the add/edit/remove request directly (bypassing the screen — something a
+technically-minded person or a script can do), the system accepts it. So the
+permission is only skin-deep.
 
-*Expected*
-Per S13-R3 the backend rejects the write with **403** (permission enforced
-server-side), the same way templates admin and customer-defaults are enforced.
+*What should happen:* The system itself should refuse the request from a user
+whose role doesn't allow it — the same way it already refuses them access to
+the fee/discount template admin pages and to customer defaults.
 
-*Actual*
-The backend allows it — Technician without `workOrdersCreateAndEdit` got **201** on
-`adjustments/add` scope=`whole_wo` (reconfirmed batch 2). It is an FE-only gate.
-By contrast the same tech session correctly gets **403** on template create/list and
-on customer default-adjustments GET/POST (those ARE BE-enforced), and financials are
-masked for `view_mode:tech`. Separately, the WO **history** endpoint is also FE-only
-(tech without `viewHistoryLogs` got 200 with entries) — same enforcement-model class.
+*Steps to replicate:*
+1. Sign in as a role that is not allowed to create/edit work orders (for
+   example Technician).
+2. Confirm the whole-work-order "Add Fee / Discount" buttons are hidden on a
+   work order.
+3. Send the add-fee request directly to the system for that work order
+   (details in the technical notes).
 
-*Affected cases*
-FD-PERM-002, FD-WO-013 (also touches FD-PERM-007, FD-TMPL-016; and the history
-FE-only observation touches FD-PERM-009 / FD-HIST-006).
+*Expected:* The system refuses the request because the role lacks permission.
 
-*Related*
-- Spec S13-R3 (whole-WO add/edit/remove requires Work Orders: Create and Edit).
-- Depends on the PO ruling in `Deviations-and-Questions-for-PO.md` (FD-PERM-002 /
-  FD-WO-013): confirm whether server-side enforcement is intended for V1 before filing.
-- Parent epic: **TBD — confirm F&D epic key.**
+*Actual:* The system accepts it and the fee is added.
+
+*Epic link:* SV-7387
+
+**Technical notes (QA internal):**
+- Internal ref BUG-FD-3 (enforcement gap); affected cases FD-PERM-002,
+  FD-WO-013 (also touches FD-PERM-007, FD-TMPL-016; the history endpoint has
+  the same FE-only class — FD-PERM-009 / FD-HIST-006); spec S13-R3.
+- Repro: Technician (quick-login `{key:'tech'}` on qb) without
+  `workOrdersCreateAndEdit` → `POST /api/work-orders/adjustments/add` with
+  `scope:"whole_wo"` returned **201** (expected 403). Same session correctly
+  gets 403 on template create/list and customer default-adjustments GET/POST
+  (BE-enforced), and financials are masked for `view_mode:tech`. WO history
+  endpoint also FE-only (tech without `viewHistoryLogs` got 200 with entries).
+- **Routing:** the PO answer sheet did NOT cover this (it is a dev/enforcement
+  decision, not a product decision — `spec-v1-reconciliation.md` §3). The spec
+  Key Decisions confirm the permission *mapping* is correct; only enforcement
+  depth is open. Route to dev; file as a bug or a dev-decision ticket per the
+  dev lead's call.
+
+---
+
+## TICKET 8 — Priority: Medium — NEW (PO-confirmed defect, answer sheet Q1 = B)
+
+**Title:** Statistics page lumps all fees/discounts into one total instead of listing each one
+
+**Description:**
+
+*What the user does:* A user opens a work order's Statistics page to see how
+the money breaks down, including the fees and discounts on the work order.
+
+*What happens now:* All the fees are rolled up into a single combined line
+(for example "Fees (3): $227.90"), and likewise for discounts. You can't see
+the individual fees and discounts or their amounts on this page.
+
+*What should happen:* Each fee and each discount should be listed on its own
+row with its own amount. The Product Owner confirmed the row-by-row list was
+in the original design and that today's combined total is a defect (the
+requirement was lost when the design was written up).
+
+*Steps to replicate:*
+1. Open a work order that has two or more fees and at least one discount.
+2. Open its Statistics page.
+3. Look at how fees and discounts are presented.
+
+*Expected:* One row per fee and per discount, each with its own name and
+amount.
+
+*Actual:* One combined "Fees (N)" total and one combined "Discounts (N)"
+total.
+
+*Epic link:* SV-7387
+
+**Technical notes (QA internal):**
+- PO answer sheet Q1 = **B** ("story defect; fixed originally in Branko's
+  design, regressed in the spec"). Internal refs BUG-FD-2 / FDBUG-6; affected
+  cases FD-STATS-001 (+ FD-STATS-002, FD-STATS-004 — their totals are also
+  polluted by the TICKET-2 base error). Design evidence: `stats-table.png` in
+  the design bundle (`design-v1-catalog.md`).
+
+---
+
+## TICKET 9 — Priority: Low — NEW (PO-confirmed defect, answer sheet Q4 = B)
+
+**Title:** "Add" button on the fee/discount form is clickable before the form is filled in
+
+**Description:**
+
+*What the user does:* A user opens the window to add a fee or discount and
+looks at the "Add" button before filling anything in.
+
+*What happens now:* The "Add" button is already clickable. If you click it too
+early, you get an error message.
+
+*What should happen:* The "Add" button should stay greyed out (disabled) until
+everything required is filled in correctly, so it's impossible to submit an
+incomplete form. The Product Owner confirmed this is how it should work.
+
+*Steps to replicate:*
+1. Open any "Add Fee/Discount" window (whole work order or a line).
+2. Before typing anything, look at the "Add" button.
+3. Click it.
+
+*Expected:* The button is greyed out and can't be clicked until the form is
+valid.
+
+*Actual:* The button is active immediately, and clicking it shows an error.
+
+*Epic link:* SV-7387
+
+**Technical notes (QA internal):**
+- PO answer sheet Q4 = **B** (grey out until valid). Internal ref BUG-FD-4;
+  affected cases FD-WO-005, FD-VAL-001 (keep the spec expected =
+  disabled-until-valid).
+
+---
+
+## TICKET 10 — Priority: Low — NEW (PO-confirmed defect, answer sheet Q5 = B)
+
+**Title:** When a line has several fees/discounts they all show at once — the "show more" collapse is missing
+
+**Description:**
+
+*What the user does:* A user adds two or more fees/discounts to the same labor
+or part line on a work order, then views that line.
+
+*What happens now:* Every fee/discount is displayed at full length all the
+time. There is no "show more / show less" control, so lines with several
+fees/discounts get long and cluttered.
+
+*What should happen:* When a line has several fees/discounts, the extras
+should collapse behind a "show more" control. The Product Owner confirmed this
+collapse was in the design and its absence is a defect (it was under-described
+in the write-up).
+
+*Steps to replicate:*
+1. On a work order line, add two or more fees/discounts.
+2. View the line in the work order.
+
+*Expected:* The extra fees/discounts are collapsed behind a "show more"
+control.
+
+*Actual:* All of them are always shown expanded; no such control exists.
+
+*Epic link:* SV-7387
+
+**Technical notes (QA internal):**
+- PO answer sheet Q5 = **B** ("fixed in the design with a 'show more'").
+  Internal ref BUG-FD-5; affected case FD-INLINE-003 (keep the spec expected =
+  show-more collapse). Design evidence: the `*show-more*.png` frames in the
+  design bundle (`design-v1-catalog.md`).
+
+---
+
+## TICKET 11 — Priority: High — NEW (PO-confirmed in-scope gap, answer sheet Q3 = B)
+
+**Title:** "Processing Fee" can't be created in the app even though it's part of this release
+
+**Description:**
+
+*What the user does:* An admin goes to the fees/discounts template settings to
+create a Processing Fee (a fee that covers card-processing costs, worked out
+as a percentage of the bill).
+
+*What happens now:* There is no visible way to create one. The template
+builder only offers Fee and Discount — the Processing Fee choice is missing
+from the screen, even though the system underneath is already partly able to
+handle one.
+
+*What should happen:* The Product Owner confirmed the Processing Fee option IS
+part of this release, so the visible option needs to be added: pick
+"Processing Fee" when creating a template, set its percentage, and have it
+behave per the feature's rules.
+
+*Steps to replicate:*
+1. Sign in as an admin.
+2. Open Settings → the fees/discounts templates screen.
+3. Create a new template and look for a "Processing Fee" choice.
+
+*Expected:* "Processing Fee" is offered alongside Fee and Discount and can be
+created, edited, and used like the design describes.
+
+*Actual:* No Processing Fee option anywhere in the screen.
+
+*Epic link:* SV-7387
+
+**Technical notes (QA internal):**
+- PO answer sheet Q3 = **B** ("should be part of this release — the visible
+  option needs to be added"). Internal refs NOTE-FD-4 / FDBUG-8 (Story 8);
+  affected cases FD-PROC-001..004 (builder UI, currently Blocked-NotBuilt);
+  keeps FD-PROC-001…014 in v1 scope.
+- The BE already accepts `kind:processing_fee` on
+  `POST /api/adjustment-templates` (that is how the WO-side processing-fee
+  cases were driven); only the builder UI is absent. Do NOT descope to
+  Phase 2. Note the epic's "what shipped" list omits it; the PO ruling makes
+  it in-scope.
+
+---
+
+## Dropped — recorded here so it isn't re-raised
+
+- **Customer defaults are added one at a time from a dropdown (no multi-tick
+  checklist).** The Product Owner confirmed this is deliberate — adding one at
+  a time lowers the risk of accidentally adding several, and the extra clicks
+  are worth it (answer sheet Q6 = **A**). This is accepted behavior, NOT a
+  bug; no ticket will be filed. *(QA internal: FDBUG-7 / NOTE-FD-5 closed as
+  won't-fix/accepted; the FD-CUST-003/004/005/006/007 cases get the
+  single-select case-wording update instead — see
+  `reconciliation-actions.md` group C.)*
