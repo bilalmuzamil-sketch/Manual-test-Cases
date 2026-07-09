@@ -140,3 +140,47 @@ fePermission (absent from GET /api/fe-permissions), so it cannot be exercised as
 server-side cascade at all (UI-only gate, out of scope). Only the WO CRUD parent
 chain (create/edit/delete/view) cascades server-side.
 ```
+
+## Re-verification (C26569 Schedule / C26570 Customers) — last loose end
+
+**Date:** 2026-07-09. Same env/org/auth (LOGIN 200). These two guards had their
+assertions set to the CRUD-cascade outcome by **extrapolation** from the verified
+Work-Orders cascade (probes a/b above), never probed directly. Verified LIVE now.
+
+**Codes confirmed** from `GET /api/fe-permissions` (42-code catalog): Schedule =
+`scheduleView` / `scheduleCreateAndEdit` / `scheduleDelete`; Customers =
+`customersView` / `customersCreateAndEdit` / `customersDelete`.
+
+| Case | Scenario | Method | Sent fePermissions | HTTP | Persisted on fetch-back | Outcome |
+|------|----------|--------|--------------------|------|-------------------------|---------|
+| C26569 | Schedule Edit without View | POST | `scheduleCreateAndEdit` | **201** | `scheduleCreateAndEdit`, **`scheduleView`** | **AUTO-CASCADED** (View parent added) |
+| C26570 | Customers Delete only (no edit/view) | POST | `customersDelete` | **201** | `customersDelete`, **`customersCreateAndEdit`**, **`customersView`** | **AUTO-CASCADED** (full chain added) |
+
+### Verdict
+Both Schedule and Customers behave **identically to the Work-Orders CRUD chain** —
+the backend **auto-cascades parents server-side** on create (`POST /api/roles`):
+child ⇒ its View parent (`scheduleCreateAndEdit` ⇒ `scheduleView`), and
+`customersDelete` ⇒ `customersCreateAndEdit` ⇒ `customersView` (full chain). No
+verbatim persistence, no 400. The extrapolation was **CORRECT**; both TestRail
+cases (C26569, C26570) already assert cascade and match reality — **left as-is, no
+correction needed**.
+
+### Consolidated final status — all 5 guards (C26569–C26573)
+- **C26569 Schedule** — asserts **CASCADE**; ✅ live-verified correct.
+- **C26570 Customers** — asserts **CASCADE**; ✅ live-verified correct.
+- **C26571 Part Sales + See-Financial-Data** — asserts **VERBATIM / FE-only gate**
+  (SFD not cascaded); ✅ live-verified, corrected in prior pass.
+- **C26572 Invoicing + See-Financial-Data** — asserts **VERBATIM / FE-only gate**;
+  ✅ live-verified, corrected in prior pass.
+- **C26573 PARTS_DEPARTMENT** — **OUT OF SCOPE** (UI-only, no fePermission bundle);
+  ✅ rewritten in prior pass.
+
+So: the **CRUD parent chains cascade server-side** (Work-Orders, Schedule,
+Customers = C26569/C26570). The **cross-toggle dependencies do NOT cascade** (they
+are FE-only display gates = C26571/C26572). **PARTS_DEPARTMENT** has no backend
+cascade surface (C26573).
+
+### Safety / cleanup (Schedule/Customers pass)
+2 probe roles created (`ZZAUTOTEST reverify 26569/26570`), both deleted
+(`DELETE /api/roles/{id}` → 204), follow-up list confirmed **0 ZZAUTOTEST roles
+remaining**. No real roles touched. Cookies `/tmp` only.

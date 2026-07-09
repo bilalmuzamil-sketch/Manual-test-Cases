@@ -187,3 +187,38 @@ been corrected to the actual behavior.
 Only 26571/26572/26573 touched in this correction. 26569/26570 unchanged. No runs,
 results, or other cases created/modified/deleted. 3 probe roles created and all
 deleted (0 ZZAUTOTEST remaining).
+
+---
+
+## CONFIRMATION — C26569/C26570 re-verified live, NO correction needed
+
+**Date:** 2026-07-09 (final loose-end pass). **TestRail writes:** NONE (read-only
+`get_case` only). The Schedule (C26569) and Customers (C26570) guards had their
+cascade assertions set by extrapolation from the verified Work-Orders chain; they
+were never directly probed. Verified LIVE now (probe
+`/tmp/random-tasks/sched-cust-probe.mjs`; results in `sched-cust-results.json`).
+
+**Actual probe results (POST /api/roles as org admin, org d55bc308…):**
+- C26569 `fe:[scheduleCreateAndEdit]` (no scheduleView) → **201**, fetch-back
+  persisted `[scheduleCreateAndEdit, scheduleView]` → **AUTO-CASCADED** (View
+  parent added). Matches the case's current cascade assertion exactly.
+- C26570 `fe:[customersDelete]` only → **201**, fetch-back persisted
+  `[customersCreateAndEdit, customersDelete, customersView]` → **AUTO-CASCADED**
+  full chain. Matches the case's current cascade assertion exactly.
+
+**Outcome:** reality == asserted cascade for both. **No `update_case` performed —
+both cases left as-is (already correct).** 2 probe roles created
+(`ZZAUTOTEST reverify 26569/26570`), both deleted (204), 0 ZZAUTOTEST remaining.
+
+### FINAL consolidated status — all 5 guards (C26569–C26573)
+| Case | Area | Asserts | Live status |
+|------|------|---------|-------------|
+| 26569 | Schedule CRUD chain | **CASCADE** (edit⇒view) | ✅ verified correct (no change) |
+| 26570 | Customers CRUD chain | **CASCADE** (delete⇒edit⇒view) | ✅ verified correct (no change) |
+| 26571 | Part Sales + See-Financial-Data | **VERBATIM / FE-only gate** | ✅ verified, corrected earlier |
+| 26572 | Invoicing + See-Financial-Data | **VERBATIM / FE-only gate** | ✅ verified, corrected earlier |
+| 26573 | PARTS_DEPARTMENT | **OUT OF SCOPE** (UI-only) | ✅ verified, rewritten earlier |
+
+CRUD parent chains cascade server-side (WO + Schedule + Customers). Cross-toggle
+dependencies (See-Financial-Data) do NOT cascade (FE-only gates).
+PARTS_DEPARTMENT has no backend cascade surface.
