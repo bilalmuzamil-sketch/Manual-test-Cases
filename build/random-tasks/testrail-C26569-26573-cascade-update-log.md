@@ -117,3 +117,73 @@ both of which were rewritten.
 
 Only these 5 cases were touched. Section/type/refs unchanged. No runs, results,
 or other cases were created, modified, or deleted.
+
+---
+
+## CORRECTION — C26571/72/73 re-verified live and rewritten to ACTUAL behavior
+
+**Date:** 2026-07-09 (same-day follow-up). **Authorization:** user-approved
+TestRail WRITE for these three cases. **Scope:** ONLY 26571, 26572, 26573.
+26569/26570 (verified CRUD-cascade) were **left untouched**.
+
+**Why:** the three cases above had been EXTRAPOLATED (assumed cascade) rather than
+directly probed. Live re-verification on staging (probe
+`/tmp/random-tasks/reverify-probe.mjs`; results in `reverify-results.json`) showed
+the fin-data dependency and PARTS_DEPARTMENT gate behave DIFFERENTLY from the WO
+CRUD chain — they do NOT cascade. The earlier "cascade" wording was wrong and has
+been corrected to the actual behavior.
+
+**Actual probe results (all POST /api/roles as org admin):**
+- C26571 `fe:[partSalesView]`, `ct.seeFinancialData:false` → **201**, fetch-back
+  persisted `[partSalesView]`, `seeFinancialData` stayed **false** → **VERBATIM**
+  (no cascade, no 400).
+- C26572 `fe:[invoicingPaymentsView]`, `ct.seeFinancialData:false` → **201**,
+  fetch-back persisted `[invoicingPaymentsView]`, `seeFinancialData` stayed
+  **false** → **VERBATIM** (no cascade, no 400).
+- C26573 `fe:[partSalesView]`, `ct.seeFinancialData:true` → **201**, fetch-back
+  `[partSalesView, seeFinancialData]`. `GET /api/fe-permissions` = 42 codes, **no
+  PARTS_DEPARTMENT** → gate is UI-only, not a settable fePermission → nothing to
+  cascade → **out of scope**.
+
+### C26571 — corrected (old cascade wording → verbatim/FE-only)
+- **Old title:** "BE cascades PART_SALES_* dependency on SEE_FINANCIAL_DATA"
+- **New title:** "BE persists PART_SALES view without See Financial Data (fin-data
+  dependency NOT cascaded server-side)"
+- **Old expected:** 201 + SEE_FINANCIAL_DATA auto-added (cascade).
+- **New expected:** 201; seeFinancialData NOT auto-added (stays false); bundle
+  persists VERBATIM; no cascade, no 400. NOTE added that See-Financial-Data is a
+  FE-only display gate, unlike the WO CRUD chain.
+- Steps clarified that seeFinancialData is a cross_toggle boolean, not an fePermission.
+- **update_case HTTP 200; re-fetch confirmed.**
+
+### C26572 — corrected (old cascade wording → verbatim/FE-only)
+- **Old title:** "BE cascades INVOICING_* dependency on SEE_FINANCIAL_DATA"
+- **New title:** "BE persists INVOICING view without See Financial Data (fin-data
+  dependency NOT cascaded server-side)"
+- **Old expected:** 201 + SEE_FINANCIAL_DATA auto-added (cascade).
+- **New expected:** 201; seeFinancialData NOT auto-added (stays false); bundle
+  persists VERBATIM; no cascade, no 400. Same FE-only note.
+- **update_case HTTP 200; re-fetch confirmed.**
+
+### C26573 — corrected (old cascade wording → out-of-scope UI-only gate)
+- **Old title:** "BE cascades Parts area bundles to the PARTS_DEPARTMENT parent gate"
+- **New title:** "PARTS_DEPARTMENT is a UI-only gate - not exercisable as a
+  server-side fePermission cascade (out of scope)"
+- **Old expected:** 201 + PARTS_DEPARTMENT auto-added (cascade).
+- **New expected:** PARTS_DEPARTMENT confirmed absent from GET /api/fe-permissions
+  (UI-only); POST returns 201 and persists verbatim; no PARTS_DEPARTMENT
+  materializes; scenario CANNOT be a server-side cascade → out of scope per the
+  ticket's own note.
+- **update_case HTTP 200; re-fetch confirmed.**
+
+### Corrected-scope summary
+
+| Case | Old assertion | Actual behavior (verified) | New assertion |
+|------|---------------|----------------------------|---------------|
+| 26571 | cascade (SFD auto-added) | VERBATIM, SFD stays false, 201 | persists verbatim, FE-only gate |
+| 26572 | cascade (SFD auto-added) | VERBATIM, SFD stays false, 201 | persists verbatim, FE-only gate |
+| 26573 | cascade (PARTS_DEPARTMENT added) | no such fePermission; 201 verbatim | out of scope, UI-only gate |
+
+Only 26571/26572/26573 touched in this correction. 26569/26570 unchanged. No runs,
+results, or other cases created/modified/deleted. 3 probe roles created and all
+deleted (0 ZZAUTOTEST remaining).

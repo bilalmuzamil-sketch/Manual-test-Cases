@@ -89,3 +89,54 @@ though the behaviour is correct.
 
 Verified on staging by QA.
 ```
+
+## Re-verification (C26571/72/73)
+
+**Date:** 2026-07-09. Same env/org/auth (LOGIN 200). These three combos had been
+EXTRAPOLATED (not directly probed) in the first pass, so they were re-verified live
+because they rely on DIFFERENT mechanisms than the WO CRUD parent chain: the
+**See-Financial-Data cross-toggle dependency** and the **PARTS_DEPARTMENT gate**.
+
+**Key mechanism fact confirmed:** `seeFinancialData` / `seeApArData` /
+`viewHistoryLogs` are **cross_toggles (booleans)**, NOT fePermission ids. And
+`GET /api/fe-permissions` returns **42 codes** with **NO `PARTS_DEPARTMENT`** (nor
+any parts-department) code — confirming PARTS_DEPARTMENT is UI-only with no
+fePermission bundle. Part-related codes present: partSalesView/CreateAndEdit/Delete,
+settingsParts, woOrderParts, woPickParts.
+
+| Combo | Sent | HTTP | Persisted (fetch-back) | Outcome |
+|-------|------|------|------------------------|---------|
+| C26571 part-sales view, NO SFD | fe:`[partSalesView]`, ct:`{seeFinancialData:false}` | **201** | fe:`[partSalesView]`; ct:`{seeFinancialData:false}` | **VERBATIM — no cascade, no 400.** seeFinancialData NOT auto-added |
+| C26572 invoicing view, NO SFD | fe:`[invoicingPaymentsView]`, ct:`{seeFinancialData:false}` | **201** | fe:`[invoicingPaymentsView]`; ct:`{seeFinancialData:false}` | **VERBATIM — no cascade, no 400.** seeFinancialData NOT auto-added |
+| C26573 part-sales + SFD, NO PARTS_DEPARTMENT | fe:`[partSalesView]`, ct:`{seeFinancialData:true}` | **201** | fe:`[partSalesView, seeFinancialData]`; ct:`{seeFinancialData:true}` | **VERBATIM.** PARTS_DEPARTMENT is not a settable fePermission → nothing to cascade → **out of scope** as a BE cascade |
+
+(Note: when `seeFinancialData` is `true` it surfaces in the role detail's
+`fe_permissions[]` list AND in `cross_toggles`; when `false` it appears in neither
+fe list. It is set/read via `cross_toggles`, not as an fePermission id.)
+
+### Verdict for these three (DIFFERENT from the WO story)
+The **See-Financial-Data dependency does NOT cascade or 400 server-side** for either
+Part Sales (C26571) or Invoicing (C26572) — the bundle persists verbatim and the
+toggle is a **FE-only display gate**. This is the OPPOSITE of the WO CRUD parent
+chain (which DOES auto-cascade). The first-pass extrapolation (that these would
+cascade like WO) was **WRONG** and has been corrected. **PARTS_DEPARTMENT** (C26573)
+has no fePermission bundle at all (UI-only), so it cannot be exercised as a
+server-side cascade — the case was rewritten to out-of-scope.
+
+### Safety / cleanup (re-verify pass)
+3 probe roles created (`ZZAUTOTEST reverify 26571/26572/26573`), all deleted
+(`DELETE /api/roles/{id}` → 204), follow-up list confirmed **0 ZZAUTOTEST roles
+remaining**. No real roles touched. Cookies `/tmp` only.
+
+### Updated note for the Jira/ticket comment (fin-data & parts-department differ)
+```
+Correction to the earlier cascade write-up: the See-Financial-Data dependency does
+NOT behave like the Work-Order CRUD chain. Re-verified on staging 2026-07-09:
+creating a role with Part Sales view (C26571) or Invoicing view (C26572) but WITHOUT
+See Financial Data returns 201 and persists the bundle verbatim — See Financial Data
+is NOT auto-added and there is no 400. That dependency is a front-end display gate
+only, not enforced/cascaded server-side. PARTS_DEPARTMENT (C26573) is not a settable
+fePermission (absent from GET /api/fe-permissions), so it cannot be exercised as a
+server-side cascade at all (UI-only gate, out of scope). Only the WO CRUD parent
+chain (create/edit/delete/view) cascades server-side.
+```
