@@ -794,7 +794,7 @@
       "SV-4796 Epic (V0.43 Regression Testing Bugs)"
     ],
     "area": "work orders",
-    "reported_issue": "### Environment:\n\n* Environment: Staging\n* User: [bilalmuzamil+shopview@gmail.com](mailto:bilalmuzamil+shopview@gmail.com)\n* Password: Bb1lal\\~123\n* Location: Import test\n\n---\n\n### Description:\n\nWhen filtering Work Orders by status = Paid, the Price Total shown in the Work Orders list does not match the total displayed under the Financial Info section or the Finance tab of the same Work Order.\nNote: The Work Order has NO parts\n\n### Steps to Reproduce (STRs):\n\n1. Log in using the credentials above.\n2. Switch to the location “Import test.”\n3. Navigate to the Work Orders section.\n4. Filter the Status by Paid.\n5. Observe the Price Total of the first Work Order appearing in the list and note the ...",
+    "reported_issue": "### Environment:\n\n* Environment: Staging\n* User: [bilalmuzamil+shopview@gmail.com](mailto:bilalmuzamil+shopview@gmail.com)\n* Password: [REDACTED]\n* Location: Import test\n\n---\n\n### Description:\n\nWhen filtering Work Orders by status = Paid, the Price Total shown in the Work Orders list does not match the total displayed under the Financial Info section or the Finance tab of the same Work Order.\nNote: The Work Order has NO parts\n\n### Steps to Reproduce (STRs):\n\n1. Log in using the credentials above.\n2. Switch to the location “Import test.”\n3. Navigate to the Work Orders section.\n4. Filter the Status by Paid.\n5. Observe the Price Total of the first Work Order appearing in the list and note the ...",
     "steps_to_reproduce": [],
     "expected_after_fix": null,
     "original_actual": null,
@@ -2735,7 +2735,7 @@
       "SV-4796 Epic (V0.43 Regression Testing Bugs)"
     ],
     "area": "work orders",
-    "reported_issue": "The Work Orders list and Financial Info section display incorrect totals immediately after the WO creation. The totals only become correct after the Work Order is reopened or refreshed,\n\n### Environment:\n\n* Environment: Staging\n* User: [bilalmuzamil+shopview@gmail.com](mailto:bilalmuzamil+shopview@gmail.com)\n* Password: Bb1lal\\~123\n\n---\n\n### Steps to Reproduce (STRs):\n\n1. Log in to Staging using the credentials above.\n2. Create a new Work Order.\n3. Create a Line.\n4. Request an Inventory Part named “reteststage”\n\n    * Quantity: 1\n    * Price: $19\n\n5. Click Save and Close.\n6. Click the Finance tab.\n\n    * Observe: The total in the Finance tab differs from the total under the Financial Info ...",
+    "reported_issue": "The Work Orders list and Financial Info section display incorrect totals immediately after the WO creation. The totals only become correct after the Work Order is reopened or refreshed,\n\n### Environment:\n\n* Environment: Staging\n* User: [bilalmuzamil+shopview@gmail.com](mailto:bilalmuzamil+shopview@gmail.com)\n* Password: [REDACTED]\n\n---\n\n### Steps to Reproduce (STRs):\n\n1. Log in to Staging using the credentials above.\n2. Create a new Work Order.\n3. Create a Line.\n4. Request an Inventory Part named “reteststage”\n\n    * Quantity: 1\n    * Price: $19\n\n5. Click Save and Close.\n6. Click the Finance tab.\n\n    * Observe: The total in the Finance tab differs from the total under the Financial Info ...",
     "steps_to_reproduce": [],
     "expected_after_fix": null,
     "original_actual": null,
@@ -2756,7 +2756,7 @@
       "SV-4796 Epic (V0.43 Regression Testing Bugs)"
     ],
     "area": "work orders",
-    "reported_issue": "The Work Orders total price is appearing off in the Workorders list.\n\n### Environment:\n\n* Environment: Staging\n* User: [bilalmuzamil+shopview@gmail.com](mailto:bilalmuzamil+shopview@gmail.com)\n* Password: Bb1lal\\~123\n\n---\n\nNot Reproducible on Production Environment\n\n---\n\n### Steps to Reproduce (STRs):\n\n1. Log in to Staging using the credentials above.\n2. Create a new Work Order.\n3. Create a Line.\n4. Request an Inventory Part named “reteststage”\n\n    * Quantity: 336563\n    * Price: Do NOT change\n\n5. Click Save and Close\n6. Do NOT pick the part\n7. Click the Main part.\n8. Change the price to $19\n9. Now click PICK to pick the part\n10. Click NOT OK for the core part\n11. Click the Work Orders ...",
+    "reported_issue": "The Work Orders total price is appearing off in the Workorders list.\n\n### Environment:\n\n* Environment: Staging\n* User: [bilalmuzamil+shopview@gmail.com](mailto:bilalmuzamil+shopview@gmail.com)\n* Password: [REDACTED]\n\n---\n\nNot Reproducible on Production Environment\n\n---\n\n### Steps to Reproduce (STRs):\n\n1. Log in to Staging using the credentials above.\n2. Create a new Work Order.\n3. Create a Line.\n4. Request an Inventory Part named “reteststage”\n\n    * Quantity: 336563\n    * Price: Do NOT change\n\n5. Click Save and Close\n6. Do NOT pick the part\n7. Click the Main part.\n8. Change the price to $19\n9. Now click PICK to pick the part\n10. Click NOT OK for the core part\n11. Click the Work Orders ...",
     "steps_to_reproduce": [],
     "expected_after_fix": null,
     "original_actual": null,

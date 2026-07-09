@@ -680,7 +680,7 @@ Adding a part to the Fixed line total increases the Price of the Total by 1 cent
 
 * Environment: Staging
 * User: [bilalmuzamil+shopview@gmail.com](mailto:bilalmuzamil+shopview@gmail.com)
-* Password: Bb1lal\~123
+* Password: [REDACTED]
 * Location: Import test
 
 ---
@@ -2743,7 +2743,7 @@ When the line status is updated from Needs Approval/Authorization Required to Ap
 
 * Environment: Staging
 * User: [bilalmuzamil+shopview@gmail.com](mailto:bilalmuzamil+shopview@gmail.com)
-* Password: Bb1lal\~123
+* Password: [REDACTED]
 
 ---
 
@@ -2776,7 +2776,7 @@ When the line status is updated from Needs Approval/Authorization Required to Ap
 
 * Environment: Staging
 * User: [bilalmuzamil+shopview@gmail.com](mailto:bilalmuzamil+shopview@gmail.com)
-* Password: Bb1lal\~123
+* Password: [REDACTED]
 
 ---
 
