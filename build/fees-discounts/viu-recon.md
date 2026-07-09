@@ -41,7 +41,7 @@
 | **History/audit log entries** (S10) | WO toolbar ⋯ → **Audit Log** ("Work Order Log" dialog) | **BUILT** | After the live add: entry **"Fee added / Admin ShopView / Line=− / Name: ZZAUTOTEST recon fee \| Amount: $1.00 \| Applied to: Full invoice"** — matches S10-R4a/R5/R6 incl. the exact "Full invoice" label. |
 | **Customer default templates + auto-apply** (S9) | Customer page → **"Fees & Discounts (N)"** tab = `/customers/{id}/default-adjustments` | **BUILT** | Card **"Default Fees & Discounts"** with the exact S9-R14 caption, columns Name·Type·Calculation Type·Amount·Max Amount·Taxable, empty state **"No fees or discounts yet. Use 'Add Fee/Discount' to add one."** (exact S9-R17), **"Add Fee/Discount"** button. Picker is a **"Fee / Discount Templates" dropdown with Cancel/Save** — NOT the spec's checkbox multi-select list w/ "Add" (S9-R18/R20) — flag for case updates. **Auto-apply works**: the auto-apply template ("Flat fee") landed on newly created WOs automatically (seen ×2 on one WO — matches the documented S9 double-add known bug shape; needs a dedicated test). |
 | **Part Sales adjustments** (S11) | Part Sale detail = `/parts/part-sale/{id}/part-requests` (via list click) | **NOT-YET** | Zero fee/discount affordances: parts table columns Description…Vendor·Requested At·Status·Actions — **no "Fees & Discounts" column** (S11-R7); toolbar ⋯ = "Delete \| Set status" — **no "Add Parts Sale Fee / Discount"** (S11-R4a); no sidebar F&D card; no "fee" text anywhere on the page. |
-| **QuickBooks mapping** (S6) | Settings sidebar INTEGRATIONS | **NOT PRESENT** (presence-only check) | INTEGRATIONS group shows **IBS only** — no QuickBooks settings page; `QuickBooks` feature flag exists but not enabled. S6 mapping-guard behavior untestable on this env. (QB deep-VIU out of scope anyway.) |
+| **QuickBooks mapping** (S6) | Settings sidebar INTEGRATIONS | **NOW CONNECTED — 2026-07-09 update** | ~~batch-1: INTEGRATIONS showed IBS only, no QB.~~ **SUPERSEDED 2026-07-09:** QuickBooks IS connected on this env (org Foothills, location **Staging Lethbridge - 4310** = the default_workplace). API proof: `GET /api/bookkeeping/adjustment-item-mapping-status` → `{quickBooksConnected:true,feeItemMapped:true,discountItemMapped:true}`; `GET /api/bookkeeping/integration` returned the real QuickBooks chart of accounts; `GET /api/bookkeeping/unexported-items` returned real failed-sync invoices (e.g. S3-15889 "already exists on QuickBooks"). Both org locations show `bookkeeping_enabled:true`. S6 is now env-reachable — behavior VIU still **pending** (the sv7387api backend went into a sustained 500 incident on 2026-07-09 ~05:44Z before the mapping/sync/floor cases could be exercised; retest when env healthy). |
 | **Estimate/invoice rendering** (S5), **Shop Supplies hide** (S14) | WO Finance tab / customer documents | **UNVERIFIED** | Not walked in this recon (needs an invoice-ready WO). Finance tab exists on the WO. |
 
 Build wording note: the app uses **"Add Fee/Discount"** (no spaces) at every WO starting
@@ -65,7 +65,20 @@ current build. Card menu says "Edit | Remove" (spec S3-R9 says Edit/Delete).
 **Blocked / not possible yet:**
 - **Story 8 Processing Fee — NOT built** (no third type in the template builder).
 - **Story 11 Part Sales — NOT built** (no F&D affordances on a part sale).
-- **Story 6 QuickBooks — no QuickBooks integration on this env** (mapping guard, sync, negative-total credit memo untestable).
+- **Story 6 QuickBooks — NOW CONNECTED (2026-07-09), VIU pending.** QuickBooks IS
+  connected on this env (location Staging Lethbridge - 4310 = default_workplace;
+  mapping-status connected+both items mapped; real QB chart of accounts + unexported
+  items returned). The batch-1 "no QB" blocker is **superseded**. **Change the
+  session's active location** with `POST /api/iam/change-location {workplace_id}`
+  (Lethbridge `f8a8b802-7780-4b16-bf10-343caeb616b2`, Heavy Duty
+  `b3c8c820-f815-4cf1-8938-10956c5ee71a`; both `bookkeeping_enabled:true`). QB API
+  surface: `GET /api/bookkeeping/adjustment-item-mapping-status`,
+  `GET /api/bookkeeping/integration` (hits live QB — flaky), `GET/POST
+  /api/bookkeeping/products-and-services` · `code`, `PUT /api/bookkeeping/settings`
+  (mapping save), `GET /api/bookkeeping/unexported-items` + `…/{id}/retry` +
+  `…/{id}/mark-done`. The 2026-07-09 verification pass could not exercise behavior:
+  the whole sv7387api backend returned 500 on every endpoint (incl. `quick-login`)
+  for the entire window — a backend incident, not auth expiry. Retest when healthy.
 - Story 5 / Story 14 (customer documents) — unverified; needs an invoiceable WO walk (likely possible, just not done in recon).
 - Story 13 permissions matrix — `{key:'tech'}` quick-login is disabled; use the staff role-switch method (assign role → fresh login for that user); a working second-user login path must be established first.
 

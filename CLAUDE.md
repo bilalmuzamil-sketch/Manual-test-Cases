@@ -117,6 +117,17 @@ all).
    anything you can do yourself. Still: mark throwaway data ZZAUTOTEST, restore any
    user/role/settings you change, and don't do irreversible things outside the
    disposable env.
+6. **Everything except TestRail is a disposable TEST account — act freely.** All
+   environments and third-party/integration accounts provided (staging, QA, qb,
+   QuickBooks, and any other integration/environment) are disposable TEST accounts —
+   nothing there is off-limits or irreversible-in-a-bad-way. Fully exercise them:
+   create WOs/adjustments, invoice, push/sync to QuickBooks and verify real QB line
+   items/GL/tax/totals end-to-end, unmap/remap settings, etc. Do NOT skip a
+   verification just because it writes to a third-party integration. (Still tag
+   throwaway data ZZAUTOTEST for tidiness and clean up in-app where easy, and restore
+   settings/roles/location you change.) **The ONLY real/production system is
+   TestRail — NEVER write to TestRail (create/update/delete cases, runs, or results)
+   without explicit user permission.**
 
 ## Project purpose (Custom Roles project)
 Manual test-case authoring + live staging (Verify-in-UI) verification + TestRail

@@ -439,3 +439,87 @@ WOs deleted). All ZZAUTOTEST adjustments removed from WO_A (final 0; sub_total b
 1,214.81, status Approved). 0 ZZAUTOTEST templates; baseline = exactly 2 autoApply templates
 ("Flat fee"/"Customer fee"); 0 customer defaults on the test company. No roles/users/settings
 changed. Secrets in `/tmp` only.
+
+---
+
+## BATCH 5 (2026-07-09) — QuickBooks unblock attempt via Lethbridge location (Story 6)
+
+**Goal:** exercise the Story-6 QuickBooks cases (FD-QB-*) now that QB is reportedly
+connected under a location with a live QuickBooks integration. Env unchanged (qb /
+SV-7387). Method: Admin quick-login + direct API.
+
+### Key factual finding — QuickBooks IS NOW CONNECTED (batch-1 "no QB" is SUPERSEDED)
+
+The batch-1 recon concluded "no QuickBooks integration on this env." **That is no longer
+true.** As of 2026-07-09, QuickBooks is connected on the qb env:
+
+- **Org:** `d55bc308…` "Staging Foothills Group Inc" — **2 locations, BOTH with
+  `bookkeeping_enabled:true`:** `Staging Lethbridge - 4310` (`f8a8b802-7780-4b16-bf10-343caeb616b2`,
+  shop_id 3) = the admin user's **default_workplace**, and `Staging Heavy Duty - 9919`
+  (`b3c8c820-f815-4cf1-8938-10956c5ee71a`, shop_id 2). The company plan line even reads
+  "Quickbooks Integration - qty: 5".
+- `GET /api/bookkeeping/adjustment-item-mapping-status` →
+  `{quickBooksConnected:true, feeItemMapped:true, discountItemMapped:true}` (this is the
+  endpoint the FE polls before every add — the S6-R6 mapping guard's data source).
+- `GET /api/bookkeeping/integration` returned the **real QuickBooks chart of accounts**
+  (Accounts Receivable, tax accounts, credit-card accounts, etc.) — proof of a live QB
+  connection. (This endpoint hits live QB and is flaky — it 500'd on retry.)
+- `GET /api/bookkeeping/unexported-items` returned **real failed-sync invoices** (e.g.
+  S3-15889 "Aacrest Works" — "Invoice with number 'S3-15889' already exists on QuickBooks")
+  — evidence the invoice→QB sync pipeline and the Unexported-Items recovery surface (S6-R7)
+  are live and populated.
+
+### Location-switch mechanism (documented for reuse)
+
+- **Change active location:** `POST /api/iam/change-location {workplace_id:"<id>"}` → 200
+  `{data:{bookkeeping_enabled:true}}`. (Payload key is `workplace_id`; `{workplace}`/`{id}`
+  → 400 "Workplace is missing.") Do NOT confuse with the durable `details.default_workplace`
+  — change-location only sets the **active session** location; it does **not** change the
+  user's stored default. Every fresh `quick-login` lands on `default_workplace` (= Lethbridge).
+- The task's premise ("current org has QB off; switch to Lethbridge") turned out to be moot:
+  the session's default/active location was **already Lethbridge**, and QB is connected on
+  BOTH locations of this org. So there was no wrong-location blocker — only the batch-1
+  QB-absence, which is now resolved.
+- QB API surface (from the SPA bundle): `GET /api/bookkeeping/integration`,
+  `GET /api/bookkeeping/adjustment-item-mapping-status`,
+  `GET/POST /api/bookkeeping/products-and-services` · `code`,
+  `PUT /api/bookkeeping/settings` (save the Fee/Discount item mapping),
+  `POST /api/bookkeeping/enable-deposit-sync`,
+  `GET /api/bookkeeping/unexported-items` + `…/{id}/retry` + `…/{id}/mark-done`.
+  There is **no non-committing "QB export preview"** endpoint — the invoice→QB sync runs
+  server-side automatically on invoicing; results appear (on failure) in unexported-items.
+
+### Why the FD-QB cases were NOT flipped to Verified this batch — backend incident
+
+Immediately after the connection was confirmed and the change-location endpoint was mapped,
+the entire **sv7387api backend began returning HTTP 500 on every endpoint — including
+`POST /api/quick-login`** — and stayed down for the full verification window (≈10 min of
+retries, first 500 ~05:44Z). This is a **backend incident, not auth expiry** (auth expiry
+returns 401/409; the cookies are still valid). No FD-QB behavior (mapping guard block, floor
+at $0, warn/confirm, the actual QB line items / GL / tax / totals) could be exercised, so
+**no FD-QB case was flipped to VIU-Verified — that would be dishonest.** The FD-QB cases stay
+at their prior status; their notes are updated to record that QB is now connected and that the
+retest is gated only on env availability.
+
+**No test data was created this batch:** zero WOs / adjustments / invoices / template changes;
+no bookkeeping settings were touched (the integration GET is read-only and 500'd anyway); no
+QB sync was triggered. change-location calls ran on ephemeral fresh-login sessions only and do
+not mutate the stored default. **Nothing to clean up.**
+
+### What a healthy-env retest should now do (all env-reachable)
+
+1. **Mapping guard (FD-QB-004/005/006/007/008):** read mapping-status; unmap the Fee item via
+   `PUT /api/bookkeeping/settings` (capture the current mapping first to restore), confirm
+   `feeItemMapped:false`, attempt an add on each surface → expect the exact S6-R6d block; verify
+   the per-kind rule (discount still allowed); test the auto-apply-default block (S6-R6b); remap.
+2. **Floor / credit (FD-QB-012/014/015):** seed a $100 taxable-parts + $10-tax WO, add a $150
+   non-taxable discount → net subtotal −$50 floors to $0, tax stays $10 (customer pays $10),
+   $50 excess → customer credit; then the taxable-$150 variant → $0/$0. Watch for the S6-R12
+   warn/confirm; check `adjustmentsSummary.excessCreditAmount` and Deposits & Credits.
+3. **Sync line items (FD-QB-001/002/003/010/013/016):** invoice a ZZAUTOTEST WO carrying a fee +
+   a discount (+ a $0 adjustment + one taxable / one non-taxable) → confirm it syncs (absent from
+   unexported-items) and inspect the QuickBooks-side invoice: fee = own line +, discount = own
+   line −, $0 skipped, description = adjustment name, item = mapped Fee/Discount item, line tax
+   follows Taxable, class applied, totals reconcile. (QB-side read needs the QuickBooks UI/sandbox.)
+4. **Unmap-recovery (FD-QB-009) + Class (FD-QB-010/011):** unmap an in-use item → invoice →
+   confirm it routes to Unexported Items → remap → retry → exports. Class propagation/validation.

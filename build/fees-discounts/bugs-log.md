@@ -158,3 +158,25 @@ broken behavior; **Note** = build fact worth tracking.
   surface. Possible fix shipped, or FDBUG-1 is scenario-specific (discount-heavy/excess
   credit) or on a different surface. FD-DOC-011 expected left unchanged pending FDBUG-1
   owner confirmation.
+
+---
+
+## NOTE-FD-8 — QuickBooks IS now connected on the qb env (batch-5, 2026-07-09); Story-6 VIU pending a healthy env
+- **Type:** Note (env fact) — supersedes the batch-1 "no QuickBooks on this env" blocker.
+- **Fact:** QuickBooks is connected on qb / SV-7387 (org "Staging Foothills Group Inc",
+  location **Staging Lethbridge - 4310** = the admin default_workplace; both org locations
+  `bookkeeping_enabled:true`). `GET /api/bookkeeping/adjustment-item-mapping-status` →
+  `{quickBooksConnected:true, feeItemMapped:true, discountItemMapped:true}`;
+  `GET /api/bookkeeping/integration` returned the real QB chart of accounts;
+  `GET /api/bookkeeping/unexported-items` returned real failed-sync invoices. Switch the
+  active session location with `POST /api/iam/change-location {workplace_id}`.
+- **No product bug found:** the Story-6 mapping/sync/floor behavior could NOT be exercised
+  this batch — the entire sv7387api backend went into a sustained HTTP 500 incident (every
+  endpoint incl. `quick-login`) for the whole verification window (first 500 ~05:44Z,
+  2026-07-09). This is a backend-availability incident, not auth expiry and not a product
+  defect. **No FDBUG-QB was raised** because nothing could be observed. The FD-QB cases
+  remain at their prior status; retest when the env is healthy (see `viu-findings.md`
+  Batch-5 for the ready-to-run retest plan).
+- **No data created / no cleanup needed** this batch (all calls were reads + ephemeral
+  session location switches; no WOs/adjustments/invoices/settings touched; no QB sync
+  triggered).

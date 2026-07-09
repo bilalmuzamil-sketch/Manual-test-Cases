@@ -30,8 +30,14 @@ PDF was truncated at Story 2; the current `requirements.md` covers the stories
 exercised by the 182 cases — S1–S14 + §5 + §7/§9/§10/§13.)
 
 **Env:** app `https://qb.qa.shopview.com` · API `https://sv7387api.qa.shopview.com`
-(SV-7387) · **`FeesAndDiscounts` flag = ON**. `QuickBooks` flag exists but is **not
-connected** on this env. Full env/access map: `viu-recon.md`.
+(SV-7387) · **`FeesAndDiscounts` flag = ON**. **QuickBooks IS now CONNECTED (2026-07-09
+batch-5 finding — supersedes the earlier "not connected"):** org "Staging Foothills Group
+Inc", location **Staging Lethbridge - 4310** (= admin default_workplace; both org locations
+`bookkeeping_enabled:true`); `adjustment-item-mapping-status` = connected + both items mapped;
+real QB chart of accounts + unexported-items returned. Switch active location via
+`POST /api/iam/change-location {workplace_id}`. Story-6 behavior VIU still **pending a healthy
+env** (the sv7387api backend was in a sustained 500 incident during the 2026-07-09 attempt).
+Full env/access map: `viu-recon.md`.
 
 **Overall status:** **FEATURE LIVE on qb; cases authored (182) and adjudicated;
 Deep-VIU batch 1–4 DONE.** After **batch 4** (2026-07-09, part-line state flows +
@@ -86,8 +92,10 @@ Blockers Tracker).
 **Not-Built (11) by story:** Story 8 (Processing-Fee builder UI) = FD-PROC-001..004;
 Story 11 (Part Sales fees/discounts) = FD-PCOL-001..007.
 
-**ENV (18) by sub-bucket:** QuickBooks (Story 6, no QB connected on qb) = FD-QB-001..011,
-013, 016 (13); flag-off / shared-env = FD-FLAG-001/002/003, FD-HIST-004, FD-TMPL-012 (5).
+**ENV (18) by sub-bucket:** QuickBooks (Story 6) = FD-QB-001..011, 013, 016 (13) — **now
+env-reachable (QB connected 2026-07-09); retest gated only on env availability** (behavior VIU
+still pending after the 2026-07-09 backend 500 incident); flag-off / shared-env =
+FD-FLAG-001/002/003, FD-HIST-004, FD-TMPL-012 (5).
 
 **VIU-Pending (34):** 28 generic QA-pending (parts UI flows, invoice-time walk, misc
 retests) + **6 PO-flagged deviations** batch-2 recorded but did not rewrite:
@@ -249,8 +257,20 @@ FD-INLINE-003, FD-STATS-002, FD-STATS-004, FD-CUST-005 — see §2.)
   recon) — retest each run. Only admin/tech are supported; the other 9 roles need a
   real account. Read FE permissions at `GET /api/auth/me/fe-permissions`.
 - **Feature flag:** `GET /api/feature-flags` → `{data:{featureFlags:[…]}}`;
-  `FeesAndDiscounts` toggle is ON at `/administration/feature-flags`. `QuickBooks`
-  flag exists but is not connected.
+  `FeesAndDiscounts` toggle is ON at `/administration/feature-flags`.
+- **QuickBooks (Story 6) — CONNECTED as of 2026-07-09.** Location **Staging Lethbridge - 4310**
+  (`f8a8b802-7780-4b16-bf10-343caeb616b2`) = admin default_workplace; Heavy Duty
+  (`b3c8c820-f815-4cf1-8938-10956c5ee71a`); both `bookkeeping_enabled:true`. Switch active
+  location: `POST /api/iam/change-location {workplace_id}` (key is `workplace_id`; only sets
+  the ephemeral session location, NOT the stored default). QB endpoints:
+  `GET /api/bookkeeping/adjustment-item-mapping-status`
+  (`{quickBooksConnected,feeItemMapped,discountItemMapped}` — the S6-R6 guard's data source),
+  `GET /api/bookkeeping/integration` (live QB chart of accounts — flaky/500s),
+  `GET/POST /api/bookkeeping/products-and-services`·`code`, `PUT /api/bookkeeping/settings`
+  (save Fee/Discount item mapping), `GET /api/bookkeeping/unexported-items` +
+  `…/{id}/retry`/`…/{id}/mark-done`. No non-committing QB export preview exists (sync is
+  automatic on invoicing). Story-6 behavior VIU pending a healthy env (batch-5 attempt hit a
+  sustained sv7387api 500 incident).
 - **Enforcement model (Story 13, batch-2 confirmed):** templates admin (Settings→
   Finance) is **BE-enforced** (Tech → 403 list/create); **customer-defaults GET+POST
   are BE-enforced** (403); **See Financial Data** masks financials in the payload
