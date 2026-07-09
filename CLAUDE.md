@@ -133,14 +133,17 @@ all).
    settings/roles/location you change.) **The ONLY real/production system is
    TestRail — NEVER write to TestRail (create/update/delete cases, runs, or results)
    without explicit user permission.**
-7. **PO questions (all projects):** When preparing open questions for a Product
-   Owner, write them in the SIMPLEST, non-technical layman form — POs are
-   non-technical. Each question = plain "What happens now" + "the question" +
+7. **PO & Dev questions (all projects):** When preparing open questions for a
+   Product Owner OR for Developers, write them in the SIMPLEST, non-technical
+   layman form. Each question = plain "What happens now" + "the question" +
    simple A/B options + a blank answer. NO case IDs, API/HTTP terms, bug codes,
-   enum names, or jargon in the PO-facing content. Include ONLY genuine PRODUCT
-   DECISIONS — never put bugs/defects in front of the PO (bugs go to dev tickets).
-   Keep any internal question→case-ID mapping on a separate QA-only section/sheet,
-   out of the PO-facing view.
+   enum names, or jargon in the reader-facing content. Include ONLY genuine PRODUCT
+   DECISIONS for the PO — never put bugs/defects in front of the PO (bugs go to dev
+   tickets). Keep any internal question→case-ID mapping on a separate QA-only
+   section/sheet, out of the reader-facing view. Whenever we surface questions to a
+   Product Owner OR to Developers, the reader-facing wording MUST be in very simple,
+   layman, non-technical language — assume the reader is not technical at all. This
+   applies to every question deliverable going forward, for every project.
 8. **TestRail IDs in deliverables (all projects):** EVERY deliverable that lists
    test cases (Excel workbooks, results/blockers trackers, CSVs, per-status files)
    MUST include the TestRail Case ID (C#####) — and a clickable TestRail link where
