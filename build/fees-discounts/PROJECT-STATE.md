@@ -103,11 +103,15 @@ FD-WO-005 + FD-VAL-001 (BUG-FD-4), FD-INLINE-003 (BUG-FD-5), FD-STATS-002 + FD-S
   **`API — Customer Fees & Discounts tab — negative` (section 4087)** = FD-CUST-017
   (case 28501) and **`API — Processing Fee — negative` (section 4088)** = FD-PROC-010
   (case 28528). Audit: `testrail-fd-api-section-move-log.md`.
-- **F&D Case-ID map:** **DOES NOT EXIST YET.** Unlike Simple Flow (which has
-  `testrail-id-map.csv`), F&D has NO `FD-id ↔ TestRail case_id` map. The API-move log
-  only mapped the 2 API cases by title (28501, 28528). **⚠ A read-only Case-ID map
-  MUST be built (match by title against the live suite) BEFORE any XML/API update
-  loop** — do not attempt an ID-matched update without it.
+- **F&D Case-ID map:** **BUILT 2026-07-09** → `build/fees-discounts/testrail-id-map.csv`
+  (columns `ID,fd_id,title,section`; all **182** cases mapped read-only against the live
+  suite under parent 3894). **178** matched on exact (normalized) title; the remaining
+  **4** matched via the documented feature-flag-free rename ("feature flag" /
+  "FeesAndDiscounts flag" → "Fees & Discounts feature"), each an unambiguous 1:1 pairing:
+  FD-HIST-004→28563, FD-PERM-010→28594, FD-FLAG-001→28596, FD-FLAG-002→28597. The 2 API
+  cases confirm the earlier log (FD-CUST-017→28501, FD-PROC-010→28528). Use this before
+  any ID-matched TestRail update loop. **Never write to TestRail without explicit user
+  permission.**
 - **Import files remain INTERIM** (`testrail-import/fees-discounts-v1-testrail-import.csv`
   / `.xlsx`, all 182; VIU-word-free + feature-flag-free per user rule) pending
   post-VIU + dev/PO-answer finalization (two-phase plan in `RESUME-STRATEGY.md`).
