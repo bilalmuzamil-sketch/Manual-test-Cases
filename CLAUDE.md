@@ -128,6 +128,14 @@ all).
    settings/roles/location you change.) **The ONLY real/production system is
    TestRail — NEVER write to TestRail (create/update/delete cases, runs, or results)
    without explicit user permission.**
+7. **PO questions (all projects):** When preparing open questions for a Product
+   Owner, write them in the SIMPLEST, non-technical layman form — POs are
+   non-technical. Each question = plain "What happens now" + "the question" +
+   simple A/B options + a blank answer. NO case IDs, API/HTTP terms, bug codes,
+   enum names, or jargon in the PO-facing content. Include ONLY genuine PRODUCT
+   DECISIONS — never put bugs/defects in front of the PO (bugs go to dev tickets).
+   Keep any internal question→case-ID mapping on a separate QA-only section/sheet,
+   out of the PO-facing view.
 
 ## Project purpose (Custom Roles project)
 Manual test-case authoring + live staging (Verify-in-UI) verification + TestRail
