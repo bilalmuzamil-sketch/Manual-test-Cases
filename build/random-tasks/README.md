@@ -37,4 +37,4 @@ All CLAUDE.md STANDING RULES apply, notably:
 
 | Ticket | Type | Env | Status | File |
 |--------|------|-----|--------|------|
-| SV-8182 | Bug re-test | staging (app.staging.shopview.com) | Fetch BLOCKED — awaiting user paste + fresh cookies | `SV-8182.md` |
+| SV-8182 | Bug re-test | staging (app.staging.shopview.com) | ✅ FIXED — approval-request no longer 500s; send-to-portal verified end-to-end (2026-07-09) | `SV-8182.md` |
