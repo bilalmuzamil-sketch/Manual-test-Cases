@@ -194,9 +194,23 @@ completion, receive, and review sign-off are FE-only** (tech → 201).
 
 ## NEW — Deliverable-WO-PO receive pass (2026-07-08, BATCH 7)
 
-### BUG-11 — Receiving a WO-originated PO returns HTTP 500 · Sev: High · Status: OPEN
+### BUG-11 — Receiving a WO-originated PO returns HTTP 500 (Accept-Delivery path only) · Sev: High → Low · Status: WORKAROUND EXISTS (bulk path fixed)
+> **UPDATE 2026-07-09 (re-VIU, Stories 7/8/9 now built):** BUG-11 does **NOT
+> reproduce on the new Bulk Receive pipeline**. Receiving a self-created deliverable
+> WO PO (S-15786, Source=Vendor + free-text PN, qty 2) via the Bulk Receive page ran
+> **`POST /api/orders/receive-requested-parts` → 200** (+ `/api/inventory/orders/
+> receive-view` 200), created a Delivery / Vendor Bill (invoice ZZAUTOTEST-APPLY-1,
+> Aabridge Beverages), and moved the order to `partial_delivery` (received 1 of 2).
+> The 500 only occurs on the **legacy `POST /api/inventory/orders/accept`
+> (Accept-Delivery) path**; the bulk path uses a different endpoint that works. Net:
+> the WO-PO receive round-trip is now achievable via Bulk Receive — the cases listed
+> below as "blocked by BUG-11" are largely **unblocked via the bulk path** (re-VIU as
+> budget allows). Severity downgraded (a working path exists); the Accept-Delivery
+> 500 should still be fixed for the single-PO receive surface.
+
 - **A work-order-originated PO cannot be received via Accept Delivery** — the receive
-  call fails server-side.
+  call fails server-side (legacy `/api/inventory/orders/accept`). See the 2026-07-09
+  update above: the Bulk Receive pipeline is unaffected.
 - **Context / recipe (the deliverable WO PO, which DOES work):** adding a WO part via
   **New Part Request → Source = Vendor + pick a real vendor (e.g. Aabridge Beverages)
   + type a free-text Part Number** (optionally a cost) and completing the WO creates a
@@ -308,3 +322,49 @@ lags** — case EXPECTED follows the spec; the live deviation is the gap to fix.
   toggle live; POs always-on) is now a **spec-vs-build gap** (build lags V2.4), not an
   intended descope. Cases SF-SET-03 / SF-COMP-06 / SF-QB-02 are **NOT retired** and
   stand as V2.4 documentation.
+
+---
+
+## RE-VIU 2026-07-09 — Stories 7/8/9/14 confirmed BUILT: new observations / minor deviations
+
+Recorded during the targeted re-VIU on sv7301 after the Epic reported Stories
+7/8/9/14 built. All confirmed live. These are **minor deviations / notes**, not
+filing-grade defects (no error/corruption).
+
+### OBS-1 — Two spec-vs-Epic conflicts RESOLVED in favour of the SPEC (no case change needed)
+- **(a) "Dummy PO" (Epic) vs "Vendor Missing on the WO's PO" (spec V2.4):** the built
+  app places vendorless parts on the **WO's own PO** flagged **"Vendor Missing"**
+  (a self-created WO with 2 vendorless parts → both share ONE order_id, S-15787,
+  vendorMissing=true — no separate dummy PO). On the Bulk Receive page they appear
+  under a **"Vendor Missing" group** with an inline **assign-vendor** prompt
+  ("Assign a vendor to receive these parts"); Receive is **shown-but-disabled**, not
+  hidden, and vendor-missing POs **are selectable** on the PO list. → Spec V2.4 wins;
+  SF-VMIS-01/02 and SF-POSEL-05 are correct as written.
+- **(b) "Waiting on Receive" (Epic) vs "Waiting on Parts" (spec/cases):** the shipped
+  column label is **"Waiting On Parts"** (column toggle `toggle_column_
+  unreceivedPartRequestsCount`). → Spec/cases correct as written; the Epic's "Waiting
+  on Receive" is not the shipped label. No SF-WOP wording change needed.
+> Because both conflicts resolved to "built matches our existing spec-based
+> expecteds", **no case EXPECTED diverged and no TestRail update_case was required.**
+
+### OBS-2 — Vendor-Missing group ordering on the Bulk Receive page (minor)
+- The **Bulk Receive page** renders the **"Vendor Missing" group LAST** (after the
+  real vendor groups). Spec S12-R3 (Accept Delivery) wants the vendor-missing group
+  to **LEAD** (it needs action first). This is on the Story-8 Bulk page (a different
+  surface than Accept Delivery); flag for a Milos/dev confirm whether the vendor-
+  missing group should lead on the Bulk Receive page too. Affects SF-RCV-05/07 wording
+  only if the same ordering rule is meant to apply to Bulk Receive.
+
+### OBS-3 — SF-VMIS-05: order Vendor-Missing flag clears on VENDOR assignment alone
+- Assigning a vendor to a vendor-missing PO sets `vendorMissing → false` and moves it
+  to the vendor group **immediately** (before any part number is entered). The part
+  number is enforced as a **separate per-part receive gate** (a part still cannot be
+  received until its PN is entered). Spec S6-R5 phrases the flag as clearing once
+  **both** vendor and PN are present; the built behaviour splits this (vendor → group/
+  flag; PN → receive gate). Functionally equivalent for receiving; note the nuance.
+
+### OBS-4 — SF-POSEL-04: fulfilled POs are EXCLUDED from the PO list (not shown-disabled)
+- The PO list (`GET /api/inventory/orders`) returns only `ordered` / `partial_delivery`
+  orders — fulfilled POs do not appear at all, so they are inherently not selectable
+  for receive (stronger than the case's "checkbox disabled" wording). Outcome matches
+  the case expected; mechanism differs.

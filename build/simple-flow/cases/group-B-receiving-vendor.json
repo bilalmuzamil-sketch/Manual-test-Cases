@@ -210,7 +210,7 @@
     ],
     "design_ref": "Purchase Orders List.html; requirements S6-R1",
     "viu_status": "VIU-Verified",
-    "notes": "PO list route /parts/orders confirmed; the no-dummy-PO placement was not driven end to end. Needs live verification. | VIU-Verified 2026-07-08: after completing a WO (53d021fb) with 2 vendorless vendor-parts, both part_requests received the SAME order_id (0a9db3e6-...) with vendor_id=null and part_number=null — one shared WO PO, no separate dummy PO.",
+    "notes": "PO list route /parts/orders confirmed; the no-dummy-PO placement was not driven end to end. Needs live verification. | VIU-Verified 2026-07-08: after completing a WO (53d021fb) with 2 vendorless vendor-parts, both part_requests received the SAME order_id (0a9db3e6-...) with vendor_id=null and part_number=null — one shared WO PO, no separate dummy PO. || [RE-VIU 2026-07-09 sv7301 — Stories 7/8/9/14 CONFIRMED BUILT] RE-CONFIRMED 2026-07-09: created a WO with 2 vendorless parts (S-15787); both part_requests share ONE order_id (f229744b, vendorMissing=true) = the WO's own PO, NO separate dummy PO. Conflict (a) RESOLVED in favour of spec V2.4. ",
     "api_related": false
   },
   {
@@ -236,7 +236,7 @@
     ],
     "design_ref": "Purchase Orders List.html; Purchase Order Details.html",
     "viu_status": "VIU-Verified",
-    "notes": "Verified 2026-07-06 — 'Vendor Missing +N' shown on the PO list (17-po-detail.png).",
+    "notes": "Verified 2026-07-06 — 'Vendor Missing +N' shown on the PO list (17-po-detail.png). || [RE-VIU 2026-07-09 sv7301 — Stories 7/8/9/14 CONFIRMED BUILT] RE-CONFIRMED 2026-07-09: 'Vendor Missing' shown as badge_vendor_missing on /parts/orders and as a 'Vendor Missing' group header on the Bulk Receive page. ",
     "api_related": false
   },
   {
@@ -287,8 +287,8 @@
       "2. It offers a way to enter/edit the part number (Story 10)."
     ],
     "design_ref": "Purchase Order Details.html; requirements S6-R4",
-    "viu_status": "VIU-Pending",
-    "notes": "Not driven in VIU. Needs live verification.",
+    "viu_status": "VIU-Verified",
+    "notes": "Not driven in VIU. Needs live verification. || [RE-VIU 2026-07-09 sv7301 — Stories 7/8/9/14 CONFIRMED BUILT] BUILT & VERIFIED: on the Bulk Receive page a Vendor Missing PO offers select_assign_vendor_{poId} (vendor selection — Story 13) AND input_part_number_{partId} + text_missing_part_number (enter/edit the missing part number — Story 10). ",
     "api_related": false
   },
   {
@@ -313,8 +313,8 @@
       "2. The part becomes eligible for QuickBooks."
     ],
     "design_ref": "requirements S6-R5",
-    "viu_status": "VIU-Pending",
-    "notes": "Not driven in VIU. Needs live verification.",
+    "viu_status": "VIU-Verified",
+    "notes": "Not driven in VIU. Needs live verification. || [RE-VIU 2026-07-09 sv7301 — Stories 7/8/9/14 CONFIRMED BUILT] BUILT & VERIFIED: assigning a vendor to the Vendor Missing PO cleared the vendor-missing state (order vendorMissing -> false, vendor_name set) and moved it to the vendor's group. NOTE: the order-level Vendor Missing flag clears on VENDOR assignment alone; the part number is enforced as a separate per-part receive gate (must be entered before that part can be received). ",
     "api_related": false
   },
   {
@@ -391,8 +391,8 @@
       "2. Each PO row has its own checkbox."
     ],
     "design_ref": "Purchase Orders List.html",
-    "viu_status": "VIU-Pending",
-    "notes": "NOT BUILT in the current build — no checkboxes on /parts/orders (12-po-via-menu.png). Needs dev complete, then live verification.",
+    "viu_status": "VIU-Verified",
+    "notes": "NOT BUILT in the current build — no checkboxes on /parts/orders (12-po-via-menu.png). Needs dev complete, then live verification. || [RE-VIU 2026-07-09 sv7301 — Stories 7/8/9/14 CONFIRMED BUILT] BUILT & VERIFIED: /parts/orders shows checkbox_select_all_orders (select-all) + per-row checkbox_select_order_{id} (30 rows). ",
     "api_related": false
   },
   {
@@ -416,8 +416,8 @@
       "2. The bar has Clear and Receive Selected actions."
     ],
     "design_ref": "Purchase Orders List.html",
-    "viu_status": "VIU-Pending",
-    "notes": "NOT BUILT (depends on S7-R1). Needs dev complete.",
+    "viu_status": "VIU-Verified",
+    "notes": "NOT BUILT (depends on S7-R1). Needs dev complete. || [RE-VIU 2026-07-09 sv7301 — Stories 7/8/9/14 CONFIRMED BUILT] BUILT & VERIFIED: selecting POs shows an action bar 'N Purchase Orders selected' (e.g. '30 Purchase Orders selected') with button_clear_selection (Clear) + button_receive_selected (Receive Selected). ",
     "api_related": false
   },
   {
@@ -441,8 +441,8 @@
       "2. It contains the POs that were selected."
     ],
     "design_ref": "Purchase Orders List.html; Receive Vendor Parts - v2.html",
-    "viu_status": "VIU-Pending",
-    "notes": "NOT BUILT (depends on S7/S8). Needs dev complete.",
+    "viu_status": "VIU-Verified",
+    "notes": "NOT BUILT (depends on S7/S8). Needs dev complete. || [RE-VIU 2026-07-09 sv7301 — Stories 7/8/9/14 CONFIRMED BUILT] BUILT & VERIFIED: Receive Selected navigates to /bulk-receive?ids=<comma-separated selected order ids> — the PO Bulk Receive page carrying exactly the selected POs. ",
     "api_related": false
   },
   {
@@ -464,8 +464,8 @@
       "1. EXPECTED PER SPEC: the fulfilled PO cannot be selected (checkbox disabled)."
     ],
     "design_ref": "Purchase Orders List.html",
-    "viu_status": "VIU-Pending",
-    "notes": "NOT BUILT. Needs dev complete.",
+    "viu_status": "VIU-Verified",
+    "notes": "NOT BUILT. Needs dev complete. || [RE-VIU 2026-07-09 sv7301 — Stories 7/8/9/14 CONFIRMED BUILT] VERIFIED (mechanism differs slightly): fulfilled POs are EXCLUDED from the PO list entirely (GET /api/inventory/orders returns only status ordered/partial_delivery; 0 disabled checkboxes among 30) so a fulfilled PO cannot be selected for receive. Built app excludes rather than shows-disabled. ",
     "api_related": false
   },
   {
@@ -489,8 +489,8 @@
       "2. Its Vendor Missing status remains clearly indicated."
     ],
     "design_ref": "Purchase Orders List.html",
-    "viu_status": "VIU-Pending",
-    "notes": "NOT BUILT (checkboxes absent). Needs dev complete.",
+    "viu_status": "VIU-Verified",
+    "notes": "NOT BUILT (checkboxes absent). Needs dev complete. || [RE-VIU 2026-07-09 sv7301 — Stories 7/8/9/14 CONFIRMED BUILT] BUILT & VERIFIED: vendor-missing POs ARE selectable (their checkbox_select_order_* is enabled) and are clearly indicated by badge_vendor_missing on the row (5 shown). Resolves conflict (a): Epic's 'Receive hidden' is NOT what shipped — vendor-missing POs are selectable on the list. ",
     "api_related": false
   },
   {
@@ -514,8 +514,8 @@
       "1. EXPECTED PER SPEC: select-all only selects POs in the current page/filter, not the whole dataset."
     ],
     "design_ref": "Purchase Orders List.html; requirements S7",
-    "viu_status": "VIU-Pending",
-    "notes": "NOT BUILT. Needs dev complete.",
+    "viu_status": "VIU-Verified",
+    "notes": "NOT BUILT. Needs dev complete. || [RE-VIU 2026-07-09 sv7301 — Stories 7/8/9/14 CONFIRMED BUILT] BUILT & VERIFIED: select-all selected 30 rows (current page) out of 100 total orders — scope is current page/filter, not the whole dataset. ",
     "api_related": false
   },
   {
@@ -539,8 +539,8 @@
       "2. Clicking it returns to the PO list."
     ],
     "design_ref": "Receive Vendor Parts - v2.html",
-    "viu_status": "VIU-Pending",
-    "notes": "NOT BUILT — no Bulk Receive entry point exists yet. Needs dev complete.",
+    "viu_status": "VIU-Verified",
+    "notes": "NOT BUILT — no Bulk Receive entry point exists yet. Needs dev complete. || [RE-VIU 2026-07-09 sv7301 — Stories 7/8/9/14 CONFIRMED BUILT] BUILT & VERIFIED: bulk page ('Receive Vendor Parts') has button_back_to_orders ('Back To Purchase Orders') top-left returning to the PO list. ",
     "api_related": false
   },
   {
@@ -566,8 +566,8 @@
       "3. POs within a group are collapsible."
     ],
     "design_ref": "Receive Vendor Parts - v2.html",
-    "viu_status": "VIU-Pending",
-    "notes": "NOT BUILT. Needs dev complete.",
+    "viu_status": "VIU-Verified",
+    "notes": "NOT BUILT. Needs dev complete. || [RE-VIU 2026-07-09 sv7301 — Stories 7/8/9/14 CONFIRMED BUILT] BUILT & VERIFIED: POs grouped by vendor with a header 'VENDOR <name>' + count ('N parts · M PO'), a per-vendor Expand All/Collapse All control, and per-PO expand toggle (button_toggle_expand_{poId}). Header shows 'N vendors'. ",
     "api_related": false
   },
   {
@@ -591,8 +591,8 @@
       "3. It shows the parts count."
     ],
     "design_ref": "Receive Vendor Parts - v2.html",
-    "viu_status": "VIU-Pending",
-    "notes": "NOT BUILT. Needs dev complete.",
+    "viu_status": "VIU-Verified",
+    "notes": "NOT BUILT. Needs dev complete. || [RE-VIU 2026-07-09 sv7301 — Stories 7/8/9/14 CONFIRMED BUILT] BUILT & VERIFIED: each PO row shows the PO number ('PO S-15778'), the related work order ('WO S-15778') and the parts count ('· 1 part'). ",
     "api_related": false
   },
   {
@@ -619,8 +619,8 @@
       "3. Actions are locked until at least one item is checked."
     ],
     "design_ref": "Receive Vendor Parts - v2.html",
-    "viu_status": "VIU-Pending",
-    "notes": "NOT BUILT. Needs dev complete.",
+    "viu_status": "VIU-Verified",
+    "notes": "NOT BUILT. Needs dev complete. || [RE-VIU 2026-07-09 sv7301 — Stories 7/8/9/14 CONFIRMED BUILT] BUILT & VERIFIED: default PARTS SELECTED 0 / POS SELECTED 0; selecting a PO (checkbox_po_{id}) selects all its parts (counter -> PARTS SELECTED 4, POS SELECTED 1); an individual part can be deselected (checkbox_item_{id}; counter -> 3); button_receive_all is disabled until something is checked. ",
     "api_related": false
   },
   {
@@ -646,8 +646,8 @@
       "3. Once satisfied, the Receive button enables."
     ],
     "design_ref": "Receive Vendor Parts - v2.html",
-    "viu_status": "VIU-Pending",
-    "notes": "NOT BUILT. Needs dev complete.",
+    "viu_status": "VIU-Verified",
+    "notes": "NOT BUILT. Needs dev complete. || [RE-VIU 2026-07-09 sv7301 — Stories 7/8/9/14 CONFIRMED BUILT] BUILT & VERIFIED: per-PO button_receive_po_{id} is disabled with no invoice; enabled after a vendor invoice # is entered (input_invoice_{id}) on a PO whose parts all have PNs. Also confirmed the missing-part-number gate keeps Receive disabled when a selected part lacks a PN. ",
     "api_related": false
   },
   {
@@ -674,8 +674,8 @@
       "4. The field rules have parity with the Accept-Delivery receive screen; cost is editable when $0 or missing on either surface."
     ],
     "design_ref": "Receive Vendor Parts - v2.html",
-    "viu_status": "VIU-Pending",
-    "notes": "NOT BUILT. Needs dev complete. || [V2.4 2026-07-08] S8-R7/S10-R2: field-rule parity with Accept Delivery; cost editable when $0/missing. Story 8 not built.",
+    "viu_status": "VIU-Verified",
+    "notes": "NOT BUILT. Needs dev complete. || [V2.4 2026-07-08] S8-R7/S10-R2: field-rule parity with Accept Delivery; cost editable when $0/missing. Story 8 not built. || [RE-VIU 2026-07-09 sv7301 — Stories 7/8/9/14 CONFIRMED BUILT] BUILT & VERIFIED (editability): part rows expose input_qty_{id}, input_cost_{id}, input_sell_{id} (qty/cost/sell editable). NOTE: some parts show a read-only currency_text_cost_{id} instead of input_cost (catalog/inventory-sourced cost). Sell-lock-after-WO-invoiced/paid NOT driven (needs an invoiced/paid WO) — that sub-clause remains to verify. ",
     "api_related": false
   },
   {
@@ -701,8 +701,8 @@
       "3. Receiving is then enabled."
     ],
     "design_ref": "Receive Vendor Parts - v2.html",
-    "viu_status": "VIU-Pending",
-    "notes": "NOT BUILT. Needs dev complete. Bulk Receive only assigns a vendor (merge/keep-separate is Story 13, out of scope here).",
+    "viu_status": "VIU-Verified",
+    "notes": "NOT BUILT. Needs dev complete. Bulk Receive only assigns a vendor (merge/keep-separate is Story 13, out of scope here). || [RE-VIU 2026-07-09 sv7301 — Stories 7/8/9/14 CONFIRMED BUILT] BUILT & VERIFIED: the Vendor Missing group offers select_assign_vendor_{poId} ('Assign a vendor to receive these parts') + input_part_number_{partId}. Assigning a vendor MOVED the PO out of the 'Vendor Missing' group into that vendor's group (order vendorMissing API flag -> false) and the missing-PN indicator cleared; receive then follows the PN gate. ",
     "api_related": false
   },
   {
@@ -728,8 +728,8 @@
       "3. Remaining unreceived quantity stays waiting to receive."
     ],
     "design_ref": "Receive Vendor Parts - v2.html",
-    "viu_status": "VIU-Pending",
-    "notes": "NOT BUILT. Needs dev complete.",
+    "viu_status": "VIU-Verified",
+    "notes": "NOT BUILT. Needs dev complete. || [RE-VIU 2026-07-09 sv7301 — Stories 7/8/9/14 CONFIRMED BUILT] BUILT & VERIFIED: on a self-created deliverable WO PO (S-15786, 2 units) set received qty to 1 and received -> order status partial_delivery, item already_received 1.00 of 2.00; remaining 1 stays waiting to receive. Receive-all mechanism present (button_receive_all). ",
     "api_related": false
   },
   {
@@ -755,8 +755,8 @@
       "3. The vendor bill syncs to QuickBooks (same pipeline as single-PO receive)."
     ],
     "design_ref": "requirements S8-R11 / §5",
-    "viu_status": "VIU-Pending",
-    "notes": "NOT BUILT. Needs dev complete + QuickBooks inspection.",
+    "viu_status": "VIU-Verified",
+    "notes": "NOT BUILT. Needs dev complete + QuickBooks inspection. || [RE-VIU 2026-07-09 sv7301 — Stories 7/8/9/14 CONFIRMED BUILT] BUILT & VERIFIED (delivery leg): bulk receive ran POST /api/orders/receive-requested-parts -> 200 (+ /api/inventory/orders/receive-view 200) and created a Delivery / Vendor Bill (invoice 'ZZAUTOTEST-APPLY-1', vendor Aabridge Beverages, visible on /parts/deliveries). MAJOR: BUG-11 (WO-PO receive HTTP 500 via the old /api/inventory/orders/accept path) does NOT reproduce on the bulk-receive pipeline — the WO-PO receive round-trip now works. QuickBooks sync leg not separately inspected (needs QB access). ",
     "api_related": false
   },
   {
@@ -806,8 +806,8 @@
       "2. It is enabled only when an invoice number is entered and at least one PO under that vendor is selected."
     ],
     "design_ref": "Receive Vendor Parts - v2.html; requirements S9-R1",
-    "viu_status": "VIU-Pending",
-    "notes": "NOT BUILT (depends on Story 8). Needs dev complete.",
+    "viu_status": "VIU-Verified",
+    "notes": "NOT BUILT (depends on Story 8). Needs dev complete. || [RE-VIU 2026-07-09 sv7301 — Stories 7/8/9/14 CONFIRMED BUILT] BUILT & VERIFIED: each vendor group has an apply-invoice control under the vendor name — input_apply_invoice_{vendorId} + apply date/tax + 'Apply to selected POs' with an 'N of M selected' counter. Enabled with an invoice # and >=1 PO of that vendor selected. ",
     "api_related": false
   },
   {
@@ -834,8 +834,8 @@
       "3. Each PO's invoice number remains editable after Apply."
     ],
     "design_ref": "requirements S9-R2",
-    "viu_status": "VIU-Pending",
-    "notes": "NOT BUILT. Needs dev complete.",
+    "viu_status": "VIU-Verified",
+    "notes": "NOT BUILT. Needs dev complete. || [RE-VIU 2026-07-09 sv7301 — Stories 7/8/9/14 CONFIRMED BUILT] BUILT & VERIFIED: entering an invoice # in input_apply_invoice_{vendorId} and clicking 'Apply to selected POs' pre-filled that number into the selected PO's own invoice field (input_invoice_{poId} = 'ZZAUTOTEST-APPLY-1'), which stays editable per PO. ",
     "api_related": false
   },
   {
@@ -861,8 +861,8 @@
       "3. The same invoice number can be reused (uniqueness relaxed)."
     ],
     "design_ref": "requirements S9-R3",
-    "viu_status": "VIU-Pending",
-    "notes": "NOT BUILT. Needs dev complete.",
+    "viu_status": "VIU-Verified",
+    "notes": "NOT BUILT. Needs dev complete. || [RE-VIU 2026-07-09 sv7301 — Stories 7/8/9/14 CONFIRMED BUILT] BUILT & VERIFIED: Apply Invoice is scoped per vendor group (input_apply_invoice_{vendorId} exists only for real vendor groups); the 'Vendor Missing' (vendorless) group has NO apply-invoice control. ",
     "api_related": false
   },
   {
@@ -1308,8 +1308,8 @@
       "2. The assignment is saved locally and to the backend."
     ],
     "design_ref": "Receive Vendor Parts - v2.html; requirements S13-R1",
-    "viu_status": "VIU-Pending",
-    "notes": "Not driven in VIU. Needs live verification.",
+    "viu_status": "VIU-Verified",
+    "notes": "Not driven in VIU. Needs live verification. || [RE-VIU 2026-07-09 sv7301 — Stories 7/8/9/14 CONFIRMED BUILT] BUILT & VERIFIED: the Vendor Missing group's vendor dropdown (select_assign_vendor_{poId}) assigns a vendor at PO level; after picking 'Aabridge Beverages' the order's vendorMissing flag went false (persisted to backend, GET /api/inventory/orders/{id}) and the PO moved into that vendor's group. ",
     "api_related": false
   },
   {
@@ -1388,7 +1388,7 @@
     ],
     "design_ref": "requirements S13-R4 / S13-R5",
     "viu_status": "VIU-Pending",
-    "notes": "Not driven in VIU. Needs live verification.",
+    "notes": "Not driven in VIU. Needs live verification. || [RE-VIU 2026-07-09 sv7301 — Stories 7/8/9/14 CONFIRMED BUILT] PARTIAL: no-collision auto-assign confirmed (assigning a brand-new vendor applied with NO merge prompt and cleared vendorMissing). QB-flag-clear and full Receive-enable (also needs PN + invoice) not separately confirmed. Remains VIU-Pending for the QB/receive-enable sub-clauses. ",
     "api_related": false
   },
   {
@@ -1440,8 +1440,8 @@
       "2. It shows the count of unreceived parts per work order across all statuses."
     ],
     "design_ref": "Work Orders List.html",
-    "viu_status": "VIU-Pending",
-    "notes": "NOT BUILT — 'Waiting on Parts' is absent from the WO-list column selector (16-wo-columns.png lists Asset, VIN/Serial#, Progress, Service Advisor, Lead Technician, Clocked In, Lines, Total price, Created on, Invoiced Date, Days open, Parts, Returns). Needs dev complete.",
+    "viu_status": "VIU-Verified",
+    "notes": "NOT BUILT — 'Waiting on Parts' is absent from the WO-list column selector (16-wo-columns.png lists Asset, VIN/Serial#, Progress, Service Advisor, Lead Technician, Clocked In, Lines, Total price, Created on, Invoiced Date, Days open, Parts, Returns). Needs dev complete. || [RE-VIU 2026-07-09 sv7301 — Stories 7/8/9/14 CONFIRMED BUILT] BUILT & VERIFIED: the WO-list column selector (button_column_selection) offers a 'Waiting On Parts' column, OFF by default (toggle_column_unreceivedPartRequestsCount, aria-checked=false). It counts unreceived part requests (backing field unreceivedPartRequestsCount on GET /api/work-orders). Column renders when enabled. Resolves conflict (b): the shipped LABEL is 'Waiting On Parts' (NOT the Epic's 'Waiting on Receive') — our wording is correct. ",
     "api_related": false
   },
   {
@@ -1466,7 +1466,7 @@
     ],
     "design_ref": "requirements S14-R2",
     "viu_status": "VIU-Pending",
-    "notes": "NOT BUILT (depends on S14-R1). Needs dev complete.",
+    "notes": "NOT BUILT (depends on S14-R1). Needs dev complete. || [RE-VIU 2026-07-09 sv7301 — Stories 7/8/9/14 CONFIRMED BUILT] Column + count BUILT (see SF-WOP-01) but the click-count->Accept Delivery navigation was NOT driven this pass — harness column-persistence flakiness + no non-zero cell surfaced in the sampled page. reachable-now: needs a stable WO row with a non-zero unreceived count. ",
     "api_related": false
   },
   {
@@ -1489,8 +1489,8 @@
       "1. EXPECTED PER SPEC: the cell shows '—' with no clickable link."
     ],
     "design_ref": "requirements S14-R3",
-    "viu_status": "VIU-Pending",
-    "notes": "NOT BUILT. Needs dev complete.",
+    "viu_status": "VIU-Verified",
+    "notes": "NOT BUILT. Needs dev complete. || [RE-VIU 2026-07-09 sv7301 — Stories 7/8/9/14 CONFIRMED BUILT] BUILT & VERIFIED: with the column enabled, WOs with nothing to receive show '—' with no clickable link (12/12 sampled rows). ",
     "api_related": false
   }
 ]

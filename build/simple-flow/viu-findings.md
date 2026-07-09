@@ -787,3 +787,99 @@ Evidence: `viu-evidence/R7-*.png`.
   changed → TestRail import NOT regenerated.
 - **New totals:** READY (VIU-Verified) **70** · VIU PENDING (QA) **43** · DEV NOT
   BUILT **25** · MILOS ANSWER **15** · BUG/RULING **6** = 159.
+
+---
+
+# VIU BATCH 7 — 2026-07-09 (RE-VIU: Stories 7/8/9/14 now BUILT on sv7301)
+
+Task-provided QA cookies (new `sv_sso_session` dc0d3acf…; PHPSESSID 21427ed6…);
+admin + tech quick-login both **200** on sv7301. Fresh MITM bridge rebuilt (port
+46045). **Settings baseline captured to `/tmp/simple-flow/settings-baseline-8.json`**
+— NOTE: this pass made **ZERO settings writes**; settings drifted mid-run (a parallel
+tester on the shared env flipped autoPickInventoryParts→false, requireVendorInvoiceNumber
+→false), so nothing was restored (I changed nothing to restore; did not clobber the
+concurrent tester). **Tech role NOT swapped** (only quick-login tech for SF-PERM-03).
+Two throwaway WOs created (`80d52344`/S-15786 deliverable vendor part; `41a9e195`/
+S-15787 vendorless) and **both deleted** (verify 404). Residual: received ZZAUTOTEST
+PO S-15786 (partial_delivery) + its Delivery/Vendor-Bill (invoice ZZAUTOTEST-APPLY-1)
+remain — received deliveries are not reversible in-app; PO S-15787 gone; 0 stray ZZPN
+inventory parts. Evidence: `viu-evidence/REVI-*.png`.
+
+## HEADLINE — Stories 7 / 8 / 9 / 14 are BUILT and verified live
+
+The Epic was correct: all four stories deployed since the 2026-07-08 pass.
+
+- **Story 7 — PO multi-select (BUILT):** `/parts/orders` has `checkbox_select_all_orders`
+  + per-row `checkbox_select_order_{id}`; selecting shows an action bar
+  "**N Purchase Orders selected**" + **Clear** (`button_clear_selection`) + **Receive
+  Selected** (`button_receive_selected`); Receive Selected → **`/bulk-receive?ids=<ids>`**.
+- **Story 8 — PO Bulk Receive page (BUILT):** "Receive Vendor Parts" page with
+  `button_back_to_orders`, POs **grouped by vendor** ("VENDOR <name>" + "N parts · M PO"
+  + per-vendor Expand/Collapse All), per-PO expand + `checkbox_po_{id}`, part rows
+  `checkbox_item_{id}` / `input_qty_{id}` / `input_cost_{id}` (some read-only
+  `currency_text_cost`) / `input_sell_{id}`, per-PO `input_invoice_{id}` +
+  `button_receive_po_{id}`, global `button_receive_all`, live counters
+  (PARTS/POS SELECTED, COST TOTAL). **Vendor Missing group** with
+  `select_assign_vendor_{poId}` + `input_part_number_{partId}` +
+  `text_missing_part_number`.
+- **Story 9 — Apply invoice (BUILT):** per-vendor `input_apply_invoice_{vendorId}` +
+  apply date/tax + "Apply to selected POs" (+ "N of M selected"); vendorless group
+  has **no** apply control.
+- **Story 14 — Waiting on Parts column (BUILT):** column selector offers "**Waiting On
+  Parts**" (`toggle_column_unreceivedPartRequestsCount`), **off by default**; counts
+  `unreceivedPartRequestsCount` (backing field on `GET /api/work-orders`); WOs with
+  nothing show "—" no link.
+
+## CRITICAL — BUG-11 does NOT reproduce on the Bulk Receive pipeline
+
+Receiving a self-created deliverable WO PO (S-15786) via Bulk Receive ran
+**`POST /api/orders/receive-requested-parts` → 200** (+ `/api/inventory/orders/
+receive-view` 200), created a Delivery/Vendor-Bill, and moved the order to
+partial_delivery (received 1 of 2). The legacy Accept-Delivery 500
+(`/api/inventory/orders/accept`) is bypassed by the bulk path. WO-PO receive
+round-trip is now achievable. (bugs-log BUG-11 updated → severity downgraded.)
+
+## Two conflicts RESOLVED (both in favour of the SPEC — no case EXPECTED changed)
+
+- **(a) Dummy-PO vs Vendor-Missing:** vendorless parts go on the **WO's own PO**
+  flagged **"Vendor Missing"** (self-created S-15787: 2 vendorless parts share ONE
+  order_id, vendorMissing=true — no dummy PO); grouped under "Vendor Missing" on the
+  bulk page with an inline assign-vendor prompt; Receive shown-but-disabled (not
+  hidden); vendor-missing POs are selectable on the list. Spec V2.4 wins →
+  SF-VMIS-01/02, SF-POSEL-05 correct as written.
+- **(b) Column label:** shipped label is "**Waiting On Parts**" (not the Epic's
+  "Waiting on Receive"). Spec/cases correct as written.
+> Because both conflicts matched our existing spec-based expecteds, **no EXPECTED
+> diverged and no TestRail update_case was needed** (and TestRail writes require
+> explicit user permission per standing rule).
+
+## Cases moved this pass (24 VIU-Pending/dev-not-built → VIU-Verified)
+
+- Story 7: **SF-POSEL-01, -02, -03, -04, -05, -06** (6).
+- Story 8: **SF-BULK-01, -02, -03, -04, -05, -06, -07, -08, -09** (9; -06 editability
+  verified, sell-lock-after-invoiced pending; -09 delivery leg verified, QB leg not
+  inspected).
+- Story 9: **SF-INV-01, -02, -03** (3).
+- Story 14: **SF-WOP-01, -03** (2).
+- Story 13/6: **SF-VEND-01, SF-VMIS-04, -05** (3).
+- Permissions: **SF-PERM-03** (1) — bulk receive FE-gated by Order Parts (Technician
+  redirected from /parts/orders + /bulk-receive; full matrix derives from SF-PERM-10).
+
+## Still VIU-Pending after this pass — exact reason
+
+- **SF-BULK-10** (core Ok/NotOk on bulk) — needs a genuine is_core part received.
+- **SF-WOP-02** (click count → Accept Delivery) — column+count built; the click-nav
+  undriven (harness column-persistence flakiness + no non-zero cell surfaced). reachable-now.
+- **SF-VAL-09** (sell-lock after invoiced/paid on bulk) — needs an invoiced/paid WO.
+- **SF-VAL-10** (reused invoice # / relaxed uniqueness) — reachable-now, targeted drive.
+- **SF-VEND-02..05** (merge / keep-separate / cross-PO merge / by-ID / invoiced-block)
+  — need multi-PO + same-vendor collision + invoiced states.
+- **SF-VMIS-03/06, SF-RCV-05/06/07/08/10, SF-QB-03** — QB/reports/Accept-Delivery-
+  surface specifics (QB access; Accept-Delivery leg not driven this pass).
+
+## New tools this pass (`/tmp/simple-flow/tools/`)
+`revi-step0.mjs`, `revi-bulk.mjs`, `revi-bulk2.mjs`, `revi-bulk3.mjs`, `revi-posel.mjs`,
+`revi-receive.mjs`, `mk-vmis.mjs`, `revi-assign.mjs`, `revi-wop.mjs`..`revi-wop6.mjs`,
+`wop-probe.mjs`, `wop-api.mjs`/`wop-api2.mjs`, `revi-perm03.mjs`, `revi-cleanup.mjs`,
+`revi-verify.mjs`, `mkwo5.mjs` (create WO via `button_new_work_order` — the old
+`mkwo3.mjs` "Create" text is stale; button is now "Create Work Order").

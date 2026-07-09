@@ -2,10 +2,18 @@
 
 > **THIS IS THE CANONICAL STATE DOC for the Simple Flow project.** It is a single
 > authoritative snapshot so the project can be resumed with zero re-discovery.
-> **Last updated:** 2026-07-09 (Milos Round-2 applied + pushed to TestRail; then
-> latest spec/design/epic batch ingested — see §5.E. NEW: the Epic reports Stories
-> 7/8/9/14 are now BUILT ⇒ a targeted re-VIU on sv7301 is the next action; bug
-> drafts refreshed to 5 tickets after BUG-3 + BUG-9 closed).
+> **Last updated:** 2026-07-09 (**RE-VIU BATCH 7 DONE** — Stories 7/8/9/14 CONFIRMED
+> BUILT & verified live on sv7301; 24 cases flipped VIU-Pending/dev-not-built →
+> VIU-Verified; DEV-NOT-BUILT category now **0**; both spec-vs-Epic conflicts resolved
+> in favour of the spec; BUG-11 found NOT to reproduce on the new Bulk Receive path.
+> Prior: Milos Round-2 applied + pushed to TestRail; latest spec/design/epic batch
+> ingested — see §5.E.).
+> **RE-VIU BATCH 7 quick facts (2026-07-09):** VIU-Verified **104** / VIU-Pending
+> **53** / Open-Question **5** (= 162). Blockers tracker: READY **95** / VIU-PENDING
+> (QA) **46** / MILOS **15** / BUG-RULING **6** / DEV-NOT-BUILT **0**. Full evidence:
+> `viu-findings.md` BATCH 7; observations in `bugs-log.md` (OBS-1..4 + BUG-11 update).
+> No TestRail writes this pass (no EXPECTED diverged; conflicts matched existing
+> spec-based expecteds; TestRail writes need explicit user permission).
 > **Source of truth for per-case status:** `SimpleFlow_Blockers_Tracker.md`/`.xlsx`
 > (regenerate with `python3 build/simple-flow/gen_blockers.py`). All counts below
 > are cited from that tracker — do not invent numbers; re-read the tracker if in doubt.
@@ -69,18 +77,19 @@ permission.**
 
 | Blocker category | Count | Owner |
 |---|---:|---|
-| READY (VIU-Verified, uploadable now) | 69 | — |
-| BLOCKED — DEV NOT BUILT | 25 | Dev team |
-| BLOCKED — VIU PENDING (QA) | 47 | QA |
+| READY (VIU-Verified, uploadable now) | 95 | — |
+| BLOCKED — DEV NOT BUILT | 0 | Dev team (Stories 7/8/9/14 now BUILT) |
+| BLOCKED — VIU PENDING (QA) | 46 | QA |
 | BLOCKED — MILOS ANSWER | 15 | Milos (PO) |
 | BLOCKED — BUG/RULING | 6 | Dev / PO ruling |
 | **TOTAL** | **162** | |
 
-**VIU status field tally across the case JSONs:** VIU-Verified **76** · VIU-Pending
-**80** · Open-Question **6** (= 162). Note the difference from "READY = 69": **7
-VIU-Verified cases are held** under a ruling/answer — 6 under BUG/RULING
-(SF-PERM-02/04/06/07/08, SF-REV-09) + 1 under Milos-answer (SF-REV-08) — so they
-are VIU-verified but not yet uploadable-clean.
+**VIU status field tally across the case JSONs (post-BATCH-7):** VIU-Verified **104**
+· VIU-Pending **53** · Open-Question **5** (= 162). Note the difference from "READY =
+95": **9 VIU-Verified cases are held** under a ruling/answer (6 BUG/RULING
+SF-PERM-02/04/06/07/08 + SF-REV-09, + a few under Milos-answer) — VIU-verified but not
+yet uploadable-clean. **DEV-NOT-BUILT dropped 25 → 0** this pass (Stories 7/8/9/14
+confirmed built; `gen_blockers.py` classifier updated accordingly).
 
 **DEV-NOT-BUILT (25) by story:**
 

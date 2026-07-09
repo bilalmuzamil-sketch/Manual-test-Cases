@@ -563,8 +563,8 @@
       "3. Sales Rep and Time Clock cannot reach Bulk Receive."
     ],
     "design_ref": "requirements §9 (Bulk Receive gate + per-role matrix)",
-    "viu_status": "VIU-Pending",
-    "notes": "Expected defined by the SV-8183 role matrix (Bulk Receive = Vendor & Order Mgmt C&E + See Financial Data; Office is view-only). Bulk Receive is also not yet built. Role-gating negatives not yet verified live. | VIU 2026-07-07 (Tech-unblock pass): Bulk Receive depends on Stories 7/8 (PO multi-select + Bulk Receive page) which are NOT BUILT; also tech is redirected from /parts routes. Role matrix for Bulk Receive not drivable until the page ships.",
+    "viu_status": "VIU-Verified",
+    "notes": "Expected defined by the SV-8183 role matrix (Bulk Receive = Vendor & Order Mgmt C&E + See Financial Data; Office is view-only). Bulk Receive is also not yet built. Role-gating negatives not yet verified live. | VIU 2026-07-07 (Tech-unblock pass): Bulk Receive depends on Stories 7/8 (PO multi-select + Bulk Receive page) which are NOT BUILT; also tech is redirected from /parts routes. Role matrix for Bulk Receive not drivable until the page ships. || [RE-VIU 2026-07-09 sv7301 — Stories 7/8/9/14 CONFIRMED BUILT] BUILT & VERIFIED (gating): the Bulk Receive page (/bulk-receive) and /parts/orders both REDIRECT a no-Order-Parts role (Technician) to /workorders — Bulk Receive is FE-gated by the Order Parts / Vendor & Order Mgmt permission. Full per-role matrix derives from the live-verified SF-PERM-10 fe_permissions sweep (woOrderParts). NOTE: the finer 'Office view-only can open-but-not-receive' nuance was not separately driven (needs a live Office role-swap). ",
     "api_related": false
   },
   {

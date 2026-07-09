@@ -65,17 +65,12 @@ MILOS = {
 }
 
 # Dev-not-built: by area prefix -> (story label). Plus explicit case overrides.
-DEV_STORY_BY_PREFIX = {
-    "SF-POSEL": "Story 7 — PO multi-select (SV-7702)",
-    "SF-BULK":  "Story 8 — PO Bulk Receive page (SV-7703)",
-    "SF-INV":   "Story 9 — Apply invoice to selected POs (SV-7704)",
-    "SF-WOP":   "Story 14 — Waiting-on-Parts column (SV-7709)",
-}
-DEV_CASE_OVERRIDE = {
-    "SF-PERM-03": "Story 8 — PO Bulk Receive page (SV-7703)",
-    "SF-VAL-09":  "Story 8 — Bulk Receive field locking (S8-R7, SV-7703)",
-    "SF-VAL-10":  "Story 9 — Apply-invoice uniqueness (S9-R3, SV-7704)",
-}
+# NOTE 2026-07-09: Stories 7/8/9/14 (SF-POSEL/SF-BULK/SF-INV/SF-WOP) were CONFIRMED
+# BUILT & VIU-verified live on sv7301 (re-VIU pass) — they are no longer dev-not-built.
+# Their per-case state is now driven by viu_status (VIU-Verified => READY; the few still
+# unverified => VIU PENDING (QA)). DEV NOT BUILT is now empty.
+DEV_STORY_BY_PREFIX = {}
+DEV_CASE_OVERRIDE = {}
 
 # --- VIU sub-bucket classification (only meaningful for VIU PENDING (QA) rows) --
 # Buckets:
@@ -147,6 +142,11 @@ SUBBUCKET = {
     "SF-QB-08":    ("needs-data", "Inventory Part History inspection for any part that becomes inventory-tracked — likely needs dev/QB access."),
     # ---- needs-account (1) ----
     "SF-PERM-10":  ("needs-account", "role accounts Office / Service Manager / Foreman (ideally also Senior SA / Parts Manager / Sales Rep / Time Clock) to run the per-role completion matrix (only admin+ and Technician- available)."),
+    # ---- Stories 7/8/9/14 now BUILT — the few still-unverified re-VIU cases ----
+    "SF-WOP-02":   ("reachable-now", "RE-VIU 2026-07-09: 'Waiting On Parts' column + unreceived count BUILT & verified (SF-WOP-01); only the click-count->Accept-Delivery navigation is undriven (harness column-persistence flakiness + no non-zero cell surfaced). Just needs a stable WO row with a non-zero count."),
+    "SF-BULK-10":  ("needs-data", "RE-VIU 2026-07-09: Bulk Receive page BUILT; this case needs a genuine cored part received on the bulk page to expose Ok/Not-OK resolution (is_core part not seedable via canned/sub-form)."),
+    "SF-VAL-09":   ("needs-data", "RE-VIU 2026-07-09: Bulk Receive field-locking BUILT (qty/cost/sell editable verified); the sell-lock-after-invoiced/paid clause needs an invoiced/paid WO to drive."),
+    "SF-VAL-10":   ("reachable-now", "RE-VIU 2026-07-09: Apply-invoice BUILT & verified (SF-INV-01/02/03); the reused-invoice-number (uniqueness relaxed) clause just needs a targeted drive applying the same invoice # to multiple POs."),
 }
 
 # Tailored "what's needed" for the special QA-pending cases.
