@@ -195,3 +195,74 @@ AR aging GET /api/reporting/account-receivable/aging-summary-report; WO history 
 | C1883 | Passed | A line on an Invoiced work order cannot be freely edited (the invoiced work order is locked). | On an Invoiced work order the line is flagged non-editable (editable = false) and an edit attempt was rejected, so the line is read-only while the work order is invoiced. Matches (line locked on an invoiced WO). |
 | C2005 | Passed | Turning a tax's Shop Supplies option on/off controls whether shop supplies are taxed on the invoice. | On a work order with $21.00 shop supplies: with the tax's Shop Supplies option ON, GST 5% was $11.05; with Shop Supplies OFF, GST dropped to $10.00 (exactly $1.05 less = 5% of the $21.00 shop supplies). The Shop Supplies tax toggle correctly controls shop-supplies taxation on the invoice. Matches. (Tax setting restored afterward.) |
 | C22196 | Passed | Clicking the Inventory parts count on a bin row opens the Inventory page filtered to that bin. | Clicking the inventory-parts count number on a Bin Locations row navigated to the Inventory page pre-filtered by that bin (URL /parts/inventory?binLocation=A1-01). Matches. |
+| C26597 | Passed | The Issue Credit picker lets you pick parts to credit but does not allow selecting labor. | Opened Issue Credit on an invoiced work order: the dialog is a parts-only picker (Credit Date, Outcome Store Credit/Refund, Reason, and a 'Parts to return' section). There is no labor selection, confirming labor is not selectable. Matches (the invoice used had no creditable parts, so the live-total-as-you-select amount was not additionally exercised). |
+| C22324 | Retest | A partial payment ($200) can be made on an invoiced work order, leaving a remaining balance. | Retest: the New Payment modal is reachable and correctly lists the open invoices with balances, but submitting a payment fails this session because the create-customer-payment endpoint returns a server error (a known intermittent 500), so the partial payment could not be completed. Retry when the payment endpoint is healthy. |
+| C22420 | Retest | A first full payment on an invoiced work order moves it to Paid. | Retest: same as the partial-payment case — the New Payment modal opens but submitting a payment hits the create-customer-payment server error (intermittent 500) this session, so the payment could not be completed. Retry when the payment endpoint is healthy. |
+| C988 | Retest | Paying an invoice with a credit larger than the invoice total is handled correctly. | Retest: requires creating a credit larger than the invoice and applying it; payment/credit submission fails this session because the create-customer-payment endpoint returns a server error (intermittent 500). Retry when the payment endpoint is healthy. |
+| C993 | Retest | The payment amount is correct after checking and unchecking a credit. | Retest: requires applying/removing a credit against an invoice; payment/credit submission fails this session (create-customer-payment intermittent 500). Retry when the payment endpoint is healthy. |
+| C26601 | Retest | Applying a credit smaller than the invoice partially settles it. | Retest: requires creating and applying a held credit; credit/payment submission fails this session (create-customer-payment intermittent 500). Retry when the payment endpoint is healthy. |
+| C26603 | Retest | A mixed payment (cash plus credit) settles one invoice. | Retest: requires submitting a payment and applying a credit; payment submission fails this session (create-customer-payment intermittent 500). Retry when the payment endpoint is healthy. |
+| C26604 | Retest | An existing held credit memo can be cashed out. | Retest: requires creating and cashing out a held credit; credit submission fails this session (create-customer-payment intermittent 500). Retry when the payment endpoint is healthy. |
+| C1004 | Retest | The PO item Cost field rejects invalid (e.g. negative) values. | Retest: the backend accepts a negative cost on the PO item (no server-side rejection), so this is a front-end field validation. The PO edit dialog's field-level validation needs a manual UI check to confirm it blocks invalid cost entry. |
+| C1999 | Retest | An invoice is frozen (locked/read-only) after it is sent to the customer. | Retest: not exercised this session — needs generating an invoice, sending it to the customer, and then confirming the invoice is locked. (Related: a line on an invoiced work order is already confirmed read-only.) |
+| C2594 | Retest | Moving a part from an Approved Part Sale to an Estimate Part Sale sets the part status to Quoted. | Retest: the part-sale move endpoint could not be identified via the API and the part-sales UI route is unreliable in the automated harness. Needs a manual UI pass or the exact move endpoint. |
+| C2639 | Retest | On a Part Sale, turning the Tax Parts option off results in no tax on parts. | Retest: the identical tax 'Parts' toggle is confirmed to control parts taxation on work-order invoices (see the WO tax-parts case), but the part-sale-specific Finance surface was not directly exercised because part-sale detail endpoints were not reachable in the harness. Verify on a part sale in the UI. |
+| C19336 | Retest | Toggling a category in the New Price Matrix does not make the list flash/reload (regression fixed). | Retest: this is a visual 'no flash / no reload' regression that cannot be reliably observed in the headless automation. Needs a manual UI pass to confirm the toggle list stays stable. |
+| C22272 | Retest | The part-search dropdown tooltip shows the full list of bin locations. | Retest: this is a hover tooltip on a truncated bin list; hover tooltips cannot be reliably triggered/observed in the headless harness. Needs a manual UI check. |
+| C25703 | Retest | A work order can be created from the Schedule calendar (customer/vehicle reactivity). | Retest: creating a work order from the calendar requires a click/drag on a day/resource grid cell, which cannot be reliably driven in the headless automation. Needs a manual UI pass. |
+
+---
+
+## Session checkpoint 2 (2026-07-09) — Phase 2b: remaining 58 functional flows
+
+**Resulted this session: 58 / 58 remaining** — 32 Passed, 10 Blocked, 16 Retest, 0 Failed.
+**Final run 331 tally (of 160): 96 Passed · 4 Failed · 10 Blocked · 50 Retest · 0 Untested.**
+
+**New Passes (32):** taxes 1960 (multi-rate create), 1998 (change tax in Financial Info recalcs),
+2004 (tax Parts toggle controls parts tax on invoice: $2.82 vs $0.00), 2005 (tax Shop Supplies
+toggle: GST $11.05 vs $10.00), 2011 (X resets to default GST); IBS 24545 (connect); part requests
+257/32/24549/2134; 22238 (negative return blocked); PO 2470 (edit before receiving); 139 (vendor
+delete); splits 290/291/2189 (Split to/Split from history); 2137 (change customer moves vehicle);
+221 (edit tech story); 19278 (dept clock-out no error); 1883 (invoiced-WO line editable=false);
+DI 26652/26655/26657/26658/26659/26660/26718; deposits 22342/22344/22409; 22196 (bin count link
+-> filtered inventory); 26597 (Issue Credit picker parts-only, labor not selectable).
+
+**Blocked (10):** 18624/18628/18653/18681/18682/18685/18710 (customer-portal Card/ACH payments —
+external payment processor + portal customer login, not seedable from staff harness); 24547/25189/
+25190 (IBS Multi-Tenancy feature flag not enabled on this org — no IBS Location ID field / Remit-To
+card).
+
+**Retest (16):** 22324/22420/988/993/26601/26603/26604 (payment/credit submission blocked —
+create-customer-payment returns intermittent 500 this session; modals confirmed reachable);
+1004 (PO cost validation is FE-only, BE accepts negative — needs UI); 1999 (invoice-frozen-after-send
+not exercised); 2594 (part-sale move endpoint unknown + PS UI flaky); 2639 (WO tax-Parts mechanism
+proven via 2004; part-sale finance surface not directly exercised); 19336 (pricing toggle "no flash"
+= visual regression, headless-unobservable); 22272 (hover tooltip, headless-undrivable); 25703
+(schedule calendar grid-create, headless-undrivable); DI 26663 (name-immutability: API allowed rename,
+UI lock unconfirmed), 26654 (field type hot-swap: builder-only, API type-swap 400).
+
+**Method/endpoints proven this session:** WO tax = `POST /api/work-orders/{id}/tax {id:taxId}`
+(empty body = reset to default); tax CRUD = `POST /api/taxes`, `POST /api/taxes/{id}` (update),
+`DELETE /api/taxes/{id}`; WO split = `POST /api/work-orders/split {work_order_id,ids:[lineIds]}`;
+part request add = `part/make-request` (needs part_category_id; source enum inventory|vendor),
+edit = `part/change-request {id,...}`; tech story via `work-orders/lines/change` (needs lineName);
+change customer = `work-orders/change-customer {work_order_id,company_id,customer_id}` (adds vehicle
+to new customer, many-to-many); PO item edit = `inventory/orders/change-item {order_id,item_id,
+quantity_ordered,price,...}`; dept clock = `technician-tasks/department-clock-in {department_id}` ->
+`.../department-clock-out {task_id,description}`; vendor = `add-vendor`(needs tax_id+credit_term+
+credit_limit)/`remove-vendor`; IBS = `POST /api/ibs/settings/credentials` / `.../disconnect`;
+DI builder = `POST /api/inspection-templates` (create on SAVE, deferred), `PUT .../{id}/draft`
+(name+sections+fields+isSignatureRequired), `POST .../{id}/publish`, `POST .../{id}/archive`;
+estimate doc = `POST /api/work-orders/invoices/estimate {work_order_id,type:'html',issue_date,due_date}`
+(reflects tax config, NOT the WO tax override — override shows in Financial Info UI). SPA WO-detail
+bounces on direct mount; reach it via in-list pushState: land on /workorders then
+`history.pushState({},'','/workorders/{id}/lines'); dispatchEvent(new PopStateEvent('popstate'))`.
+**create-customer-payment 500s this session (known quirk).**
+
+**Cleanup/restore verified:** IBS disconnected; GST tax restored (Parts/Shop/Labor all ON); WO
+310fe4fa tax restored to GST; PO item df8dd842 restored to 16.99; C2137 throwaway customer+contact
+deleted and vehicle unlinked; all ZZAUTOTEST vendors deleted; ZZAUTOTEST DI drafts deleted
+("ZZAUTOTEST RENAMED" published template left ARCHIVED — published templates can't be deleted).
+Tech user role NOT modified this session (no staff/change calls). Residual: one ZZAUTOTEST
+part request on sandbox estimate WO 310fe4fa (quoted-inventory PR on an unauthorized line — not
+removable via API, not shown on Parts tab; harmless, tagged, on a disposable estimate WO).
