@@ -620,7 +620,7 @@
       "3. The available Calculation methods are Flat Amount and % of Parts Total only (§5-R10)."
     ],
     "design_ref": "part ⋯ 'Add fee / discount' (§2b); Add modal Part-scope subtitle 'Line 2 · S2-13274' (§6)",
-    "viu_status": "VIU-Pending",
+    "viu_status": "VIU-Deviation qb 2026-07-09 (batch4, FDBUG-14 label) — part ⋯ menu offers \"Add Fee/Discount\" and dialog IS locked to the part (subtitle \"Applying to: 1710 U-JOINT 1.938X6.094\"), with exactly 2 calc methods; BUT (a) subtitle omits the spec’s \"Line {N} Part —\" prefix + part number in parens (S2-R11), (b) default calc shows raw enum \"Pct_parts\" not humanized, (c) the part-line percentage option is MISLABELED \"% of Labor Total\" though it resolves correctly against Part total ($232.68→10%=$23.27, preview says \"Part total\"). Behavior correct, labels wrong. Evidence: screenshots viu-qb/partui3/5/6.",
     "notes": "Default method for a part = % of Parts Total (S2-R22). Design subtitle is a scope link; spec exact string is 'Applying to: Line {N} Part — ({part number}) {description}'. | VIU qb batch-1 (2026-07-08): Not driven in batch 1 — no part staged on the throwaway WO (part-request seeding flow not automated yet). API scope 'part_line' exists. Batch-2: seed a part request, drive the part-row menu. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — Recon: part row ⋯ menu offers Add Fee/Discount → part_line scope",
     "api_related": false
   },
@@ -676,7 +676,7 @@
       "3. It resolves against quantity × sell price = 2 × $20.00 = $40.00 → 10% = −$4.00."
     ],
     "design_ref": "part row ⋯ (§2b); part-requests 'Fees & Discounts' column (§5)",
-    "viu_status": "VIU-Pending",
+    "viu_status": "VIU-Verified qb 2026-07-09 (batch4) — API: 10% “% of Parts Total” discount added to a REQUESTED (not-yet-received) vendor part qty2 @ $20 → resolved −$4.00 (2×$20=$40→10%), shows on the part_request before pick (adjustments[] on part_request; §5-R13). Seeded via make-request source=vendor status=requested on throwaway WO.",
     "notes": "The part menu offers 'Add fee / discount' for both staged and requested parts (S1-R4). See FD-PART-005 for requested→received persistence. | VIU qb batch-1 (2026-07-08): Requested-part adjustment not driven (no part seeded). Batch-2.",
     "api_related": false
   },
@@ -729,7 +729,7 @@
       "3. A received part cannot be re-pointed back to a request (§5-R13)."
     ],
     "design_ref": "part row / Fees & Discounts column (§5)",
-    "viu_status": "VIU-Pending",
+    "viu_status": "VIU-Pending (batch4 NOT-SEEDABLE) — requested→received transition needs the Purchase-Order + Accept-Delivery receiving subsystem: perform-request-status-action rejects ALL direct actions on a “requested” vendor request (\"This action cannot be performed on requested part requests\") and change-request will not set status. Adjacent evidence exists (FD-PART-003 requested resolves; FD-PART-002/004 received resolves) but the transition itself is out of admin+normal-data scope this batch.",
     "notes": "Companion to FD-PART-003 (adding to a requested part). | VIU qb batch-1 (2026-07-08): Requested->received attachment not driven. Batch-2.",
     "api_related": false
   },
@@ -756,7 +756,7 @@
       "2. When the part becomes billable (authorized, not declined, quantity left) it resolves to its non-zero amount again."
     ],
     "design_ref": "part inline rows (§2b)",
-    "viu_status": "VIU-Pending",
+    "viu_status": "VIU-Verified qb 2026-07-09 (batch4) — API: with a part-line % discount on the part, declining the line (lines/change-status → authorization_declined) resolved the adjustment to $0.00 while it stayed visible; re-authorizing restored −$4.00 (§5-R12). Same declined-line mechanism underpins FD-DOC-010.",
     "notes": "A part is billable when authorized, not declined, and still has quantity left (§5-R12). | VIU qb batch-1 (2026-07-08): Declined/returned-part $0 resolve not driven (labor-line analogue verified). Batch-2.",
     "api_related": false
   },
@@ -782,7 +782,7 @@
       "3. The 'Fees & Discounts (N)' count and totals decrease accordingly."
     ],
     "design_ref": "part row (§2b)",
-    "viu_status": "VIU-Pending",
+    "viu_status": "VIU-Verified qb 2026-07-09 (batch4) — API: deleting the part (remove-request) removed the part and ITS adjustment (\"ReqDisc\" gone, 0 part_requests) while a separate labor-line adjustment persisted → only adjustments pointing to the deleted part are removed (S3-R2).",
     "notes": "Same delete-cascade behavior as labor lines (FD-LABOR-006). | VIU qb batch-1 (2026-07-08): Part deletion cascade not driven (line-delete cascade verified for labor). Batch-2.",
     "api_related": false
   },

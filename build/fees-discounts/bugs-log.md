@@ -138,3 +138,23 @@ broken behavior; **Note** = build fact worth tracking.
   history entry (`GET /api/work-orders/{id}/history` empty for the new WO) — same root
   cause as FDBUG-3 (auto-applied adjustments are not logged). Not a new bug; blocks the
   positive verification of FD-HIST-007 until fixed.
+
+## FDBUG-14 — Part-line "Add Fee/Discount" dialog: label/copy defects (batch-4, 2026-07-09)
+- **Type:** Deviation — copy/label (behavior correct). Case: FD-PART-001. Owner: Dev/PO copy.
+- **Detail:** On the WO part ⋯ → "Add Fee/Discount" dialog (part-line scope), behavior is
+  correct (dialog locked to the part; exactly 2 calc methods; percentage resolves against
+  the Part total — preview shows "Part total $232.68 … Fee · 10% +$23.27"), BUT the LABELS
+  are wrong: (a) subtitle reads "Applying to: 1710 U-JOINT 1.938X6.094" — omits the spec's
+  "Line {N} Part —" prefix and the part number in parens (S2-R11); (b) the Calculation Type
+  field default shows the raw enum **"Pct_parts"** instead of a humanized label; (c) the
+  part-line percentage option is mislabeled **"% of Labor Total"** where §5-R10 expects
+  **"% of Parts Total"**. Evidence: screenshots viu-qb/partui3-dialog, partui5-partcalc,
+  partui6-preview.
+
+## FDBUG-1 — NOT reproduced on estimate documents (batch-4 note, 2026-07-09)
+- Across three WOs' estimate docs this batch the Subtotal/GST/Total reconciled correctly
+  (Subtotal includes net adjustments; GST on the adjustment-inclusive Subtotal; `total_cost`
+  matches). FDBUG-1 (totals excluding adjustment amounts) did NOT reproduce on the estimate
+  surface. Possible fix shipped, or FDBUG-1 is scenario-specific (discount-heavy/excess
+  credit) or on a different surface. FD-DOC-011 expected left unchanged pending FDBUG-1
+  owner confirmation.

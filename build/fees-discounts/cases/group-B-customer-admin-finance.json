@@ -1214,7 +1214,7 @@
       "2. Adjustments appear on both whenever present."
     ],
     "design_ref": "requirements.md §6.2 (S5-R1); design-notes.md §10 (no estimate/invoice mockup — confirm live)",
-    "viu_status": "VIU-Pending",
+    "viu_status": "VIU-Verified qb 2026-07-09 (batch4) — the estimate document (POST work-orders/invoices/estimate) is rendered with the INVOICE template (header literally \"Invoice: INV-…\", Invoice Date, Due date, remit-to, mechanic’s-lien clause); the estimate and committed invoice share ONE document/layout (same invoices renderer family: estimate / invoices-preview / snapshot). Full adjustment layout verified on the estimate; adjustments appear whenever present. (No live invoiced WO with adjustments existed to pull non-destructively; committing/reversing a live invoice on the shared env was out of scope.)",
     "notes": "No customer estimate/invoice view exists in the HTML mockups — verify layout live. | VIU qb batch-1 (2026-07-08): ESTIMATE rendering verified in the WO Finance tab (adjustments present). Invoice not created this batch (kept the env clean); same-layout claim needs an invoice walk.",
     "api_related": false
   },
@@ -1263,7 +1263,7 @@
       "2. The Flat Amount adjustment shows NO bracketed phrase."
     ],
     "design_ref": "requirements.md §6.2 (S5-R2/R3)",
-    "viu_status": "VIU-Pending",
+    "viu_status": "VIU-Verified qb 2026-07-09 (batch4) — estimate: part-line pct discount renders \"ZZAUTOTEST PartPct (% of parts) ($23.27)\" WITH the \"(% of parts)\" phrase; part-line Flat Amount renders \"ZZAUTOTEST PartFlat $5.00\" with NO bracketed phrase (S5). Evidence: est-WOA-adj.",
     "notes": "VIU qb batch-1 (2026-07-08): Part-line phrase pending (no part seeded).",
     "api_related": false
   },
@@ -1337,7 +1337,7 @@
       "2. Each of the three ALSO still shows inline under its own target line (S5-R8)."
     ],
     "design_ref": "requirements.md §6.2 (S5-R7/R8)",
-    "viu_status": "VIU-Pending",
+    "viu_status": "VIU-Verified qb 2026-07-09 (batch4) — estimate: three same-name+type \"ShopSupply\" fees grouped into ONE bottom-block row \"ZZAUTOTEST ShopSupply (×3) $6.00\" AND each still shows inline \"↳ ZZAUTOTEST ShopSupply $2.00\" under its own target (S5-R8). Evidence: est-WOA-adj.",
     "notes": "Grouping is ONLY on the customer document; WO line table lists each one by one (Story 3). | VIU qb batch-1 (2026-07-08): Line-level adjustment DOES also appear in the bottom block as its own row (S5-R8 half verified); grouping with '(xN)' count needs >1 same-name line-level adjustments — pending.",
     "api_related": false
   },
@@ -1431,7 +1431,7 @@
       "2. When the line becomes billable/authorized, the adjustment resolves to its non-zero amount."
     ],
     "design_ref": "requirements.md §7 (§5-R12)",
-    "viu_status": "VIU-Pending",
+    "viu_status": "VIU-Verified qb 2026-07-09 (batch4) — estimate on a DECLINED line: both the part-line \"ReqDisc (% of parts) ($0.00)\" and labor-line \"LineFeeDeclined (% of labor) $0.00\" render but resolve to $0.00 while still shown (Labor $0.00 / Parts $0.00); re-authorizing restores non-zero (§5-R12). Needs-Approval banner variant not separately captured; $0-resolution confirmed regardless of authorization state.",
     "notes": "VIU qb batch-1 (2026-07-08): Declined-line $0.00 doc row pending (declined $0 resolution itself verified via API).",
     "api_related": false
   },

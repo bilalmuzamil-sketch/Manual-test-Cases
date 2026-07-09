@@ -34,8 +34,14 @@ exercised by the 182 cases — S1–S14 + §5 + §7/§9/§10/§13.)
 connected** on this env. Full env/access map: `viu-recon.md`.
 
 **Overall status:** **FEATURE LIVE on qb; cases authored (182) and adjudicated;
-Deep-VIU batch 1 + batch 2 DONE.** After batch 2 the case JSONs stand at **88
-VIU-Verified** and **94 not-yet-verified** (of 182). Interim TestRail import exists
+Deep-VIU batch 1–4 DONE.** After **batch 4** (2026-07-09, part-line state flows +
+customer-document rendering) the case JSONs stand at **108 VIU-Verified** / **28
+VIU-Deviation** / **16 VIU-Pending** / **12 Blocked-NotBuilt** / **18 Blocked-Env**
+(of 182). Batch 4 flipped 7 pending → Verified (FD-PART-003/006/007,
+FD-DOC-001/003/006/010) and 1 → Deviation (FD-PART-001 = FDBUG-14 label defects);
+FD-PART-005 stays Pending (requested→received needs the PO/Accept-Delivery receiving
+subsystem). Notable: **FDBUG-1 did NOT reproduce on estimate documents in batch 4**
+(totals reconciled on 3 WOs) — flag for the FDBUG-1 owner. Interim TestRail import exists
 and the two API-flagged cases were moved into API-titled sections. Remaining work is
 gated on: **dev** (Stories 6/8/11 + the code-bug deviations), **PO** (deviation
 confirmations + double-add + NOTE-FD-4), **QA** (fresh cookies → the VIU-pending
@@ -62,13 +68,12 @@ Blockers Tracker).
 
 | State / bucket | Count | Meaning |
 |---|---:|---|
-| **VIU-Verified (READY)** | **88** | Exercised on the build and matches spec — uploadable now |
-| **VIU-Deviation** | **27** | Built but deviates from spec (see §5 sub-split) |
-| **Blocked — DEV NOT BUILT** | **11** | Surface absent: Story 8 Processing-Fee builder UI (4) + Story 11 Part Sales (7) |
+| **VIU-Verified (READY)** | **108** | Exercised on the build and matches spec — uploadable now (batch-4: 101→108) |
+| **VIU-Deviation** | **28** | Built but deviates from spec (batch-4 added FD-PART-001 / FDBUG-14) |
+| **Blocked — DEV NOT BUILT** | **12** | Surface absent: Story 8 Processing-Fee builder UI (4) + Story 11 Part Sales (8) |
 | **Blocked — ENV** | **18** | Story 6 QuickBooks (13) + flag-off / shared-env (5) |
-| **Blocked — NEEDS-ACCOUNT** | **4** | Story-13 per-role negatives needing a non-Tech role login (FD-PERM-004/008/010, FD-CUST-015) |
-| **VIU-Pending** | **34** | Built surface, not yet driven (parts UI flows, invoice-time walk, retests); 6 of these are PO-flagged deviations |
-| **TOTAL** | **182** | 88 verified + 94 not-yet-verified |
+| **VIU-Pending** | **16** | Built surface, not yet driven (incl. FD-PART-005 receive-transition, invoice-time walk, PO-flagged deviations, the 4 Story-13 per-role negatives) |
+| **TOTAL** | **182** | 108 verified + 74 not-yet-verified |
 
 **VIU-Deviation (27) sub-split** (bug-vs-PO-question):
 

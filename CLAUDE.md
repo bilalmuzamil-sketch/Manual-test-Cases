@@ -36,14 +36,21 @@ all).
    `viu-qb-findings.md` + `screenshots/viu-qb/` (UI-deep) — pass B's doc holds
    the merged scoreboard + reconciliation + FDBUG register + API map).
    **STATUS: FEATURE LIVE on `qb.qa.shopview.com` / API
-   `sv7387api.qa.shopview.com` (flag ON) — deep-VIU BATCH 1 + BATCH 2 DONE
-   2026-07-08 (batch-2 commit `93279ed`):** all 182 cases adjudicated in
-   `cases/*.json` `viu_status`. **Current tally (batch-2): 88 VIU-Verified / 94
-   not-yet-verified** = 27 Deviation (7 code-bug, 3 PO-question, 17 case-update) /
-   11 Blocked-NotBuilt [S11 Part Sales ×7 + S8 Processing-Fee builder UI ×4] / 18
-   Blocked-Env [QuickBooks ×13 + flag-off/shared-env ×5] / 4 Needs-Account
-   [Story-13 per-role: FD-PERM-004/008/010, FD-CUST-015] / 34 Pending [parts UI
-   flows, invoice-time walk; 6 are PO-flagged deviations]. Batch-2 flipped 9
+   `sv7387api.qa.shopview.com` (flag ON) — deep-VIU BATCH 1–4 DONE
+   (batch-4 2026-07-09):** all 182 cases adjudicated in
+   `cases/*.json` `viu_status`. **Current tally (batch-4): 108 VIU-Verified / 74
+   not-yet-verified** = 28 Deviation / 12 Blocked-NotBuilt [S11 Part Sales ×8 + S8
+   Processing-Fee builder UI ×4] / 18 Blocked-Env [QuickBooks ×13 +
+   flag-off/shared-env ×5] / 16 Pending [FD-PART-005 receive-transition,
+   invoice-time walk, 6 PO-flagged deviations, 4 Story-13 per-role negatives].
+   **Batch-4:** flipped 7 Pending→Verified (FD-PART-003/006/007, FD-DOC-001/003/006/010)
+   + 1→Deviation (FD-PART-001 = FDBUG-14 part-line dialog label defects); the customer
+   estimate/invoice doc is `POST /api/work-orders/invoices/estimate {work_order_id,type:
+   'html',issue_date,due_date}` (invoice-template HTML); part requests seed via
+   `part/make-request {line,work_order,description,quantity,part_source_type,part_number,
+   sell_price,cost,part_category_id}` + `lines/change-status` for authorize/decline;
+   **FDBUG-1 did NOT reproduce on estimate docs in batch 4** (totals reconciled on 3 WOs).
+   Batch-2 flipped 9
    Story-13 perm cases to Verified by deriving per-role capability from
    `roles-matrix.json` (only 4 still need a real non-Tech account). **FDBUG register (13+)** — headline: FDBUG-1 WO +
    estimate Subtotal/Total EXCLUDE adjustment amounts while GST includes their
