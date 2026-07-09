@@ -141,6 +141,13 @@ all).
    DECISIONS — never put bugs/defects in front of the PO (bugs go to dev tickets).
    Keep any internal question→case-ID mapping on a separate QA-only section/sheet,
    out of the PO-facing view.
+8. **TestRail IDs in deliverables (all projects):** EVERY deliverable that lists
+   test cases (Excel workbooks, results/blockers trackers, CSVs, per-status files)
+   MUST include the TestRail Case ID (C#####) — and a clickable TestRail link where
+   practical (https://shopview.testrail.io/index.php?/cases/view/<id>) — so the user
+   can locate each case in TestRail. Show it alongside any internal (SF-/FD-/etc.)
+   ID. Source it from the per-project testrail-id-map.csv. Bake this into every
+   workbook generator going forward.
 
 ## Project purpose (Custom Roles project)
 Manual test-case authoring + live staging (Verify-in-UI) verification + TestRail

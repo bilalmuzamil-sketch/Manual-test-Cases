@@ -18,6 +18,8 @@ BASE = os.path.dirname(os.path.abspath(__file__))
 CASES_DIR = os.path.join(BASE, "cases")
 XLSX = os.path.join(BASE, "FeesDiscounts_V1_TestCases.xlsx")
 CSV_PATH = os.path.join(BASE, "FeesDiscounts_V1_TestCases.csv")
+TR_MAP_PATH = os.path.join(BASE, "testrail-id-map.csv")
+TR_LINK_BASE = "https://shopview.testrail.io/index.php?/cases/view/"
 
 GROUP_FILES = [
     "group-A-wo-parts.json",
@@ -30,6 +32,33 @@ cases = []
 for gf in GROUP_FILES:
     with open(os.path.join(CASES_DIR, gf), encoding="utf-8") as fh:
         cases.extend(json.load(fh))  # group A then B then C, original order within
+
+# ---------------------------------------------------------------- TestRail id map
+# fd_id -> TestRail numeric case id (from testrail-id-map.csv). Every deliverable
+# that lists test cases must carry the TestRail Case ID (C#####) + link so the
+# user can locate each case in TestRail (see CLAUDE.md standing rule 8).
+TR_MAP = {}
+with open(TR_MAP_PATH, encoding="utf-8") as fh:
+    for row in csv.DictReader(fh):
+        fd = (row.get("fd_id") or "").strip()
+        cid = (row.get("ID") or "").strip()
+        if fd:
+            TR_MAP[fd] = cid
+
+
+def tr_id(fd_id):
+    """Return the 'C<case_id>' TestRail id for an FD- case, or '' if unmapped."""
+    cid = TR_MAP.get(fd_id, "")
+    return f"C{cid}" if cid else ""
+
+
+def tr_link(fd_id):
+    """Return the clickable TestRail case URL for an FD- case, or '' if unmapped."""
+    cid = TR_MAP.get(fd_id, "")
+    return f"{TR_LINK_BASE}{cid}" if cid else ""
+
+
+_unmapped = [c["id"] for c in cases if c["id"] not in TR_MAP]
 
 # ---------------------------------------------------------------- area buckets
 def bucket(area):
@@ -221,19 +250,22 @@ ws.freeze_panes = "A2"
 # ================================================================ Test Cases
 tc = wb.create_sheet("Test Cases")
 COLS = [
-    ("Test ID", 14), ("Area", 26), ("Story Ref", 16), ("Title", 50),
+    ("Test ID", 14), ("TestRail ID", 12), ("TestRail Link", 40),
+    ("Area", 26), ("Story Ref", 16), ("Title", 50),
     ("Priority", 12), ("Type", 12), ("Permissions Required", 34),
     ("Preconditions", 52), ("Steps To Reproduce", 56), ("Expected Result", 56),
     ("Design Ref", 30), ("VIU Status", 20), ("Notes", 46),
 ]
 headers = [c[0] for c in COLS]
+PRIORITY_COL = headers.index("Priority") + 1  # 1-based col of the Priority cell
 tc.append(headers)
 style_header(tc, 1, len(headers))
 
 csv_rows = [headers]
 for i, c in enumerate(cases):
     row = [
-        c["id"], c["area"], c["story_ref"], c["title"], c["priority"], c["type"],
+        c["id"], tr_id(c["id"]), tr_link(c["id"]),
+        c["area"], c["story_ref"], c["title"], c["priority"], c["type"],
         c["permissions_required"], n_join(c["preconditions"]), n_join(c["steps"]),
         n_join(c["expected"]), c["design_ref"], c["viu_status"], c.get("notes", ""),
     ]
@@ -247,10 +279,10 @@ for i, c in enumerate(cases):
         cell.border = BORDER
         if alt:
             cell.fill = ALT_FILL
-    # priority colour (col 5)
+    # priority colour
     pfill = PRIORITY_FILL.get(c["priority"])
     if pfill:
-        pc = tc.cell(row=excel_row, column=5)
+        pc = tc.cell(row=excel_row, column=PRIORITY_COL)
         pc.fill = pfill
         pc.alignment = WRAP_TOP_CENTER
     tc.cell(row=excel_row, column=1).font = BOLD
@@ -269,14 +301,15 @@ banner = (
     "per-role/flag-off cases remain)."
 )
 viu.append([banner])
-viu.merge_cells("A1:H1")
+viu.merge_cells("A1:J1")
 viu["A1"].fill = BANNER_FILL
 viu["A1"].font = BANNER_FONT
 viu["A1"].alignment = Alignment(wrap_text=True, vertical="center", horizontal="left")
 viu.row_dimensions[1].height = 42
 
 VIU_COLS = [
-    ("Test ID", 14), ("Area", 26), ("Title", 60), ("Permissions Required", 34),
+    ("Test ID", 14), ("TestRail ID", 12), ("TestRail Link", 40),
+    ("Area", 26), ("Title", 60), ("Permissions Required", 34),
     ("VIU Result (Pass/Fail/Blocked)", 24),
     ("Observed Behavior on Staging", 46), ("Screenshot", 22), ("Notes", 40),
 ]
@@ -284,7 +317,8 @@ viu.append([c[0] for c in VIU_COLS])
 style_header(viu, 2, len(VIU_COLS))
 
 for i, c in enumerate(cases):
-    viu.append([c["id"], c["area"], c["title"], c["permissions_required"],
+    viu.append([c["id"], tr_id(c["id"]), tr_link(c["id"]),
+                c["area"], c["title"], c["permissions_required"],
                 "", "", "", ""])
     excel_row = i + 3
     alt = (i % 2 == 1)
@@ -470,6 +504,14 @@ with open(CSV_PATH, "w", newline="", encoding="utf-8") as fh:
 
 # ---------------------------------------------------------------- report
 print("Total cases on Test Cases tab:", len(cases))
+mapped = sum(1 for c in cases if c["id"] in TR_MAP and TR_MAP[c["id"]])
+print(f"TestRail IDs mapped: {mapped}/{len(cases)}")
+if _unmapped:
+    print("UNMAPPED FD cases (TestRail ID left blank):")
+    for fd in _unmapped:
+        print("  ", fd)
+else:
+    print("All FD cases mapped to a TestRail case id.")
 print("Open questions:", len(open_questions))
 print("Areas:")
 for name in AREA_ORDER:
