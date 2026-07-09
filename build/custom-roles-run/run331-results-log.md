@@ -112,3 +112,43 @@ Status legend: 1 Passed · 2 Blocked · 3 Untested · 4 Retest · 5 Failed
 | C59 | Retest | Work Order list column selection works (add/remove columns). | The Work Orders list renders and a column-control affordance appears, but the add/remove-column interaction was not driven this session. Retest by opening the column selector and toggling columns. |
 | C1851 | Retest | A work order shows In Progress status (when a user is clocked in). | The Work Orders list has a By Status filter and a Status column. Confirming the In-Progress-when-clocked-in transition needs a work order with an active clock-in, which was not set up this session. Retest by clocking a tech into a WO and checking the status. |
 | C2175 | Retest | The Invoiced Date is shown on all Work Orders pages. | The default Work Orders list does not show an Invoiced Date column; confirming it across the invoiced/completed WO pages needs those pages checked with invoiced data. Retest across the WO status pages. |
+| C27873 | Retest | Modify/delete actions on another user's customer note are hidden without Work Orders Delete. | Flagged: under the updated spec, customer notes are governed by Customer Management permissions (View = create/edit anyone's note + delete own; Delete = delete others' notes), NOT by Work Orders Delete. The case's Work-Orders-Delete linkage is outdated, so its expectation cannot be validated as written. Retest against the current customer-note permission model (Customer Management). |
+
+---
+
+## Session checkpoint (2026-07-09)
+
+**Resulted this session: 102 / 160** — 64 Passed, 4 Failed, 34 Retest, 0 Blocked.
+(Blocked/26553 was re-posted as Retest after the aging endpoint was found.)
+
+**Key deviations found (Failed) — against the 12 spec changes:**
+- **C26482** — aging reports still gated by Manage AP/AR (spec #2 "aging follows Reports" NOT live). With AP/AR OFF + Reports ON, all 6 aging reports are hidden; only Sales + Sales Tax Collected show.
+- **C26475** — See Financial OFF does not prompt/clear dependents (spec #5 NOT live). No prompt, no auto-clear.
+- **C26387 / C26388** — Add Customer / Add Asset affordances still appear in the New WO flow when Customer Management Create & Edit is OFF (front-end gating gap).
+
+**Method notes:** permission/per-role cases adjudicated from live per-role `fe_permissions`
+(GET /api/roles/{id}); WO-history, settings-persist, tech-no-pricing, aging enforcement
+via API; login-redirects, WO columns, reports render, staff eye-icon/billable via Chromium
+(browser). Tech account was NOT modified (read-only role data + quick-login only) — remains
+on its pre-existing Technician role. No ZZAUTOTEST data created; org setting toggle reverted.
+
+**RESUME POINT — 58 Untested (deep functional flows; need data seeding / multi-step UI /
+endpoint discovery):**
+- Taxes: 1960, 1998, 1999, 2004, 2005, 2011
+- IBS integration: 24545, 24547, 25189, 25190
+- Parts pricing regression: 19336
+- Customer-portal partial payments: 18628, 18685, 18624, 18681, 18682, 18653, 18710
+- New WO from schedule: 25703
+- WO lines: 2134, 32, 290, 291, 2189, 1883, 2137, 221, 24549, 257
+- Deposits / Credit memos: 22324, 22342, 22344, 22409, 22420, 26597, 26601, 26603, 26604
+- Parts (vendor/PO/multi-bin/part-sales finance): 2470, 1004, 139, 22196, 22238, 22272, 2594, 2639
+- Timesheet clock-out regression: 19278
+- Unpaid invoices: 988, 993
+- Digital Inspections builder/lifecycle: 26652, 26654, 26655, 26657, 26658, 26659, 26660, 26663, 26718
+
+Useful endpoints discovered for the resume: taxes GET /api/taxes; vendors GET
+/api/parts-catalogue/vendors ({collection:[...]}); inventory GET /api/inventory/parts;
+pricing GET /api/pricing-rules/list; reporting GET /api/reporting/{report}/{range};
+AR aging GET /api/reporting/account-receivable/aging-summary-report; WO history GET
+/api/work-orders/{id}/history; settings GET /api/organizations/settings + POST
+/api/organizations/settings/change.
