@@ -67,25 +67,25 @@
   ],
   "steps": [
    "1. Open the customer, go to the Fees & Discounts tab, click \"Add Fee/Discount\".",
-   "2. In the picker titled \"Add Fee/Discount\" with caption \"Select a fee or discount template to add to this customer.\", tick the checkbox for \"ZZAUTOTEST Fleet Discount\".",
-   "3. Click \"Add\"."
+   "2. In the picker, open the \"Fee / Discount Templates\" dropdown and select \"ZZAUTOTEST Fleet Discount\" (templates are added one at a time).",
+   "3. Click \"Save\"."
   ],
   "expected": [
-   "1. The picker lists each available template as a row with a checkbox plus Name, Type, Calculation Type, Amount.",
-   "2. After clicking Add, the picker closes and a success toast reads exactly \"Fee / discount added.\" (fades on its own).",
+   "1. The picker is a single-select dropdown listing the available templates — one template is picked and added at a time (adding one at a time is the intended behavior).",
+   "2. After clicking Save, the picker closes and a success toast reads exactly \"Fee / discount added.\" (fades on its own).",
    "3. \"ZZAUTOTEST Fleet Discount\" now appears as a row in the Default Fees & Discounts table and the tab count increases by 1.",
    "4. The added default's columns match the template: Type Discount, Calculation Type % of Subtotal, Amount −10%."
   ],
   "design_ref": "design-notes.md §7 (bulk template picker, checkbox list, columns Name/Type/Calculation Type/Amount)",
   "viu_status": "VIU-Deviation",
-  "notes": "Toast for one default is the generic \"Fee / discount added.\" — it does NOT vary by type (§7 toast table). | VIU qb batch-1 (2026-07-08): Add works end-to-end (toast 'Fee / discount added', row + count update, POST /customers/{id}/default-adjustments {templateIds:[...]}). DEVIATIONS from S9-R18/19/20: picker is a single 'Fee / Discount Templates' DROPDOWN with Cancel/SAVE (spec: caption + checkbox multi-select list + 'Add' button); no caption text. Shots s4-04/05/06. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: POST /customers/{id}/default-adjustments {templateIds:[id]} → 201 adds default (GET confirms)",
+  "notes": "Toast for one default is the generic \"Fee / discount added.\" — it does NOT vary by type (§7 toast table). | VIU qb batch-1 (2026-07-08): Add works end-to-end (toast 'Fee / discount added', row + count update, POST /customers/{id}/default-adjustments {templateIds:[...]}). DEVIATIONS from S9-R18/19/20: picker is a single 'Fee / Discount Templates' DROPDOWN with Cancel/SAVE (spec: caption + checkbox multi-select list + 'Add' button); no caption text. Shots s4-04/05/06. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: POST /customers/{id}/default-adjustments {templateIds:[id]} → 201 adds default (GET confirms) | PO CLARIFY 2026-07-09 (Chris Ward answer sheet Q6=A): the single-select dropdown picker (one template per add) is the accepted intended behavior — a deliberate judgement call to avoid accidental multi-adds; case re-worded away from the spec's checkbox multi-select picker. FDBUG-7 closed won't-fix.",
   "api_related": false
  },
  {
   "id": "FD-CUST-004",
   "area": "Customer Fees & Discounts tab",
-  "story_ref": "S9-R20, S9-R21, S9-R23b",
-  "title": "Verify multi-select adding of several templates at once shows the plural toast",
+  "story_ref": "S9-R20, S9-R21, S9-R23a",
+  "title": "Verify several templates are added as customer defaults one at a time (no multi-select)",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "Customer Management: Create & Edit + Manage AP/AR + See Financial Data + flag ON",
@@ -95,17 +95,17 @@
   ],
   "steps": [
    "1. Open the customer, Fees & Discounts tab, click \"Add Fee/Discount\".",
-   "2. Tick the checkboxes for 3 templates.",
-   "3. Click \"Add\"."
+   "2. Select the first template from the dropdown and click \"Save\".",
+   "3. Repeat the add for the second and third templates, one at a time."
   ],
   "expected": [
-   "1. All 3 selected templates are linked in one action.",
-   "2. A success toast reads exactly \"3 fees / discounts added.\" (the [N] is the number selected).",
-   "3. All 3 appear in the Default Fees & Discounts table; the tab count increases by 3."
+   "1. The picker allows only ONE template per add — there is no way to tick several at once (adding one at a time is the intended behavior, so a user cannot accidentally add multiples).",
+   "2. Each add closes the picker and shows its own success toast \"Fee / discount added.\"",
+   "3. After the three adds, all 3 templates appear in the Default Fees & Discounts table and the tab count increases by 3."
   ],
   "design_ref": "design-notes.md §7 (multi-select checkbox list)",
   "viu_status": "VIU-Deviation",
-  "notes": "Plural toast pattern is \"[N] fees / discounts added.\" per §7 toast table. | VIU qb batch-1 (2026-07-08): Multi-select NOT possible in the UI (single-select dropdown; reopening shows no list once one is chosen). Backend accepts templateIds ARRAY (API multi-link 201), so only the UI multi-select + '[N] fees / discounts added' toast are missing. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: default POST accepts templateIds array (multi-select add); plural toast per S9-R23b (recon UI)",
+  "notes": "Plural toast pattern is \"[N] fees / discounts added.\" per §7 toast table. | VIU qb batch-1 (2026-07-08): Multi-select NOT possible in the UI (single-select dropdown; reopening shows no list once one is chosen). Backend accepts templateIds ARRAY (API multi-link 201), so only the UI multi-select + '[N] fees / discounts added' toast are missing. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: default POST accepts templateIds array (multi-select add); plural toast per S9-R23b (recon UI) | PO CLARIFY 2026-07-09 (Chris Ward answer sheet Q6=A): multi-select checkbox adding is NOT the product behavior — one-at-a-time from the dropdown is accepted; case re-scoped from multi-select + plural toast to three sequential single adds (each with the singular 'Fee / discount added.' toast). FDBUG-7 closed won't-fix.",
   "api_related": false
  },
  {
@@ -122,16 +122,17 @@
   ],
   "steps": [
    "1. Open the customer, Fees & Discounts tab, click \"Add Fee/Discount\".",
-   "2. Review the list of templates offered."
+   "2. Open the \"Fee / Discount Templates\" dropdown and review the list of templates offered."
   ],
   "expected": [
-   "1. The already-linked template (a) does NOT appear in the picker.",
-   "2. The unlinked Fee/Discount template (b) appears.",
-   "3. The Processing Fee template (c) DOES appear (a Processing Fee can be a customer default), and in the current build its Type column shows \"Fee\"."
+   "1. The picker is a single-select dropdown — templates are added one at a time (this is the intended behavior).",
+   "2. The already-linked template (a) does NOT appear in the picker.",
+   "3. The unlinked Fee/Discount template (b) appears.",
+   "4. The Processing Fee template (c) DOES appear (a Processing Fee can be a customer default), and in the current build its Type column shows \"Fee\"."
   ],
   "design_ref": "design-notes.md §7; requirements.md §6.1 (Processing Fee templates appear in this picker, show \"Fee\")",
   "viu_status": "VIU-Deviation (case-update — PO answer Q6=A: single-at-a-time customer-defaults picker is an accepted deliberate judgement call, NOT a bug; observed single-select dropdown b2c-07). Re-word case to single-select dropdown; the three list assertions (linked hidden / unlinked shown / Processing Fee shown as type 'Fee') still apply. Ref spec-v1-reconciliation §3 Q6.",
-  "notes": "This differs from the WO template picker, which NEVER lists a Processing Fee (S8-N2). Flag if staging shows raw \"processing_fee\" instead of \"Fee\". | VIU qb batch-1 (2026-07-08): Picker lists only unlinked templates (verified: linked one disappears on reopen). DEVIATION: dropdown rows show the NAME only (no Type/Calc/Amount columns). Processing-fee template in the customer TABLE shows Type 'Processing fee' (better than the spec note's 'Fee'); its picker Type label not observable (no Type in picker). Shots s5-01, s11-02. | RECON 2026-07-09 (spec-v1-reconciliation.md + PO answer sheet): PO Q6=A accepts single-select dropdown (close FDBUG-7 as won't-fix); adopt case-update wording.",
+  "notes": "This differs from the WO template picker, which NEVER lists a Processing Fee (S8-N2). Flag if staging shows raw \"processing_fee\" instead of \"Fee\". | VIU qb batch-1 (2026-07-08): Picker lists only unlinked templates (verified: linked one disappears on reopen). DEVIATION: dropdown rows show the NAME only (no Type/Calc/Amount columns). Processing-fee template in the customer TABLE shows Type 'Processing fee' (better than the spec note's 'Fee'); its picker Type label not observable (no Type in picker). Shots s5-01, s11-02. | RECON 2026-07-09 (spec-v1-reconciliation.md + PO answer sheet): PO Q6=A accepts single-select dropdown (close FDBUG-7 as won't-fix); adopt case-update wording. | PO CLARIFY 2026-07-09 (Chris Ward answer sheet Q6=A): the single-select dropdown picker (one template per add) is the accepted intended behavior — a deliberate judgement call to avoid accidental multi-adds; case re-worded away from the spec's checkbox multi-select picker. FDBUG-7 closed won't-fix.",
   "api_related": false
  },
  {
@@ -150,18 +151,18 @@
    "2. Read the picker body."
   ],
   "expected": [
-   "1. The picker shows exactly \"No templates available to add.\" and no selectable rows."
+   "1. The picker's template dropdown shows the \"No results\" empty state and offers no selectable templates to add."
   ],
   "design_ref": "requirements.md §6.1 (S9-R22)",
   "viu_status": "VIU-Deviation",
-  "notes": "VIU qb batch-1 (2026-07-08): With every template linked, the picker dropdown shows generic 'No results' — spec S9-R22 wants 'No templates available to add.'. Shot s5-03.",
+  "notes": "VIU qb batch-1 (2026-07-08): With every template linked, the picker dropdown shows generic 'No results' — spec S9-R22 wants 'No templates available to add.'. Shot s5-03. | PO CLARIFY 2026-07-09 (Chris Ward answer sheet Q6=A): the shipped single-select dropdown was accepted as-is, so its \"No results\" empty state is adopted as the expected empty message (replaces the spec S9-R22 wording 'No templates available to add.').",
   "api_related": false
  },
  {
   "id": "FD-CUST-007",
   "area": "Customer Fees & Discounts tab",
   "story_ref": "S9-R16, S9-R24",
-  "title": "Verify removing a customer default via the row menu needs no confirm and toasts",
+  "title": "Verify removing a customer default via the row's remove action needs no confirm and toasts",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "Customer Management: Create & Edit + Manage AP/AR + See Financial Data + flag ON",
@@ -170,18 +171,18 @@
   ],
   "steps": [
    "1. Open the customer, Fees & Discounts tab.",
-   "2. On a default row, open the 3-dot (⋮) actions menu.",
-   "3. Click \"Remove\"."
+   "2. On a default row, locate the remove (trash) action.",
+   "3. Click the remove (trash) icon."
   ],
   "expected": [
-   "1. The row menu offers only one item, \"Remove\" (no inline Edit, no \"Delete\").",
+   "1. Each default row offers a direct remove (trash) action only (no inline Edit, no separate \"Delete\").",
    "2. No confirmation dialog appears; the default is removed immediately.",
    "3. A success toast reads exactly \"Fee / discount removed.\"",
    "4. The row disappears and the tab count decreases by 1."
   ],
   "design_ref": "design-notes.md §4 (per-row ⋮ More actions → Remove only)",
   "viu_status": "VIU-Deviation",
-  "notes": "Removing a customer default is intentionally no-confirm (S9-R24), unlike deleting a template (S7-R20 has a confirm). | VIU qb batch-1 (2026-07-08): Remove = DIRECT trash icon per row (spec: 3-dot menu with 'Remove'); needs no confirm (matches S9-R24) BUT NO 'Fee / discount removed' toast was observed. Row disappears, count updates. Shots s5-04/05. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: DELETE /customers/{id}/default-adjustments/{id} → 204, no confirm (S9-R24)",
+  "notes": "Removing a customer default is intentionally no-confirm (S9-R24), unlike deleting a template (S7-R20 has a confirm). | VIU qb batch-1 (2026-07-08): Remove = DIRECT trash icon per row (spec: 3-dot menu with 'Remove'); needs no confirm (matches S9-R24) BUT NO 'Fee / discount removed' toast was observed. Row disappears, count updates. Shots s5-04/05. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: DELETE /customers/{id}/default-adjustments/{id} → 204, no confirm (S9-R24) | PO CLARIFY 2026-07-09 (Chris Ward answer sheet Q6=A): the shipped customer-defaults tab UX was accepted as-is; the remove control is a direct per-row trash icon (not a 3-dot menu with 'Remove'), still no-confirm per S9-R24. Toast expectation kept (missing toast remains a tracked deviation).",
   "api_related": false
  },
  {
@@ -400,12 +401,12 @@
    "2. Open the WO Fees & Discounts card and count how many \"ZZAUTOTEST Env Fee\" adjustments appear."
   ],
   "expected": [
-   "1. Intended result: exactly ONE \"ZZAUTOTEST Env Fee\" adjustment on the WO.",
-   "2. Known bug: it may be added TWICE depending on internal order — record actual count."
+   "1. Exactly ONE \"ZZAUTOTEST Env Fee\" adjustment appears on the new work order.",
+   "2. No second copy of the same template's adjustment is added — the single add is the settled intended behavior (a duplicate would be a defect)."
   ],
   "design_ref": "requirements.md §6.1 (S9 Known gap), §14 item 4",
   "viu_status": "VIU-Verified",
-  "notes": "A double-add is a KNOWN DEFECT tracked separately, not a spec requirement. Report actual behavior. | VIU qb batch-1 (2026-07-08): Double-add NOT reproduced (good): customer with templates that are BOTH location-auto-apply AND its defaults got each adjustment exactly ONCE (appliedBy=customer_default) on a new WO. The S9 known bug appears fixed on this build. | [pass A same-day parallel verdict] VIU-Pending — double-add: setup confirmed (customer default that is also auto-apply exists) and recon observed ×2; not re-verified this pass (WO create via API/UI not completed). See bugs-log BUG-FD-1 | CONFLICT NOTE: pass A (bugs-log BUG-FD-1) kept double-add open based on the earlier recon x2 observation; pass B controlled repro (customer with BOTH auto-apply templates as defaults, fresh WO 19:40Z) produced exactly ONE adjustment per template. Treat as fixed/intermittent - PO confirm.",
+  "notes": "A double-add is a KNOWN DEFECT tracked separately, not a spec requirement. Report actual behavior. | VIU qb batch-1 (2026-07-08): Double-add NOT reproduced (good): customer with templates that are BOTH location-auto-apply AND its defaults got each adjustment exactly ONCE (appliedBy=customer_default) on a new WO. The S9 known bug appears fixed on this build. | [pass A same-day parallel verdict] VIU-Pending — double-add: setup confirmed (customer default that is also auto-apply exists) and recon observed ×2; not re-verified this pass (WO create via API/UI not completed). See bugs-log BUG-FD-1 | CONFLICT NOTE: pass A (bugs-log BUG-FD-1) kept double-add open based on the earlier recon x2 observation; pass B controlled repro (customer with BOTH auto-apply templates as defaults, fresh WO 19:40Z) produced exactly ONE adjustment per template. Treat as fixed/intermittent - PO confirm. | PO CLARIFY 2026-07-09 (Chris Ward answer sheet Q2=A): adding only once is confirmed as the settled intended behavior; EXPECTED re-scoped from 'known bug may add twice — record actual count' to exactly ONE. BUG-FD-1 closed as settled.",
   "api_related": false
  },
  {
@@ -627,11 +628,12 @@
    "2. Read the confirm dialog."
   ],
   "expected": [
-   "1. In addition to the standard message, the dialog adds exactly: \"This template is set as a default for 2 customer(s). Deleting it will remove it from them.\" (N reflects the actual number of customers)."
+   "1. The standardized \"Delete Template\" confirmation dialog opens (the same standardized delete confirmation used elsewhere in Settings, e.g. for pricing matrices).",
+   "2. The dialog includes the warning: \"This template is set as a default for 2 customer(s). Deleting it will remove it from them.\" — the number reflects how many customers currently have the template as a default."
   ],
   "design_ref": "requirements.md §9.1 (S7-R21)",
   "viu_status": "VIU-Deviation",
-  "notes": "VIU qb batch-1 (2026-07-08): Warning present when template is a customer default: 'This template is set as a default for 1 customer. Deleting it will remove it from them.' + delete-precondition API {affectedCustomerCount:N}. Wording differs from spec S7-R21 ('...for [N] customer(s). Their defaults will be removed too.'). Shot s16-01. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: GET adjustment-templates/{id}/delete-precondition → {affectedCustomerCount} drives S7-R21 warning",
+  "notes": "VIU qb batch-1 (2026-07-08): Warning present when template is a customer default: 'This template is set as a default for 1 customer. Deleting it will remove it from them.' + delete-precondition API {affectedCustomerCount:N}. Wording differs from spec S7-R21 ('...for [N] customer(s). Their defaults will be removed too.'). Shot s16-01. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: GET adjustment-templates/{id}/delete-precondition → {affectedCustomerCount} drives S7-R21 warning | EPIC/PO CLARIFY 2026-07-09: epic SV-7387 confirms the standardized (pricing-matrix-style) delete dialog is the intended behavior, so the live wording '...Deleting it will remove it from them.' is adopted as expected; the spec S7-R21 text '...Their defaults will be removed too.' is stale. NOTE-FD-7b closed.",
   "api_related": false
  },
  {

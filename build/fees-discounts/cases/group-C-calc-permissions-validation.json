@@ -1035,7 +1035,7 @@
     "id": "FD-VAL-007",
     "area": "Validation / Edge",
     "story_ref": "S9 known gap (auto-apply + customer-default duplication); S7-R5, S9-R2",
-    "title": "Verify a template that is BOTH location auto-apply and a customer default yields ONE adjustment on a new WO (known double-add bug)",
+    "title": "Verify a template that is BOTH location auto-apply and a customer default yields ONE adjustment on a new WO",
     "priority": "Medium",
     "type": "Functional",
     "permissions_required": "Settings → Finance (template setup); Customer Management: Create and Edit + Manage AP/AR (customer default); Work Orders: Create and Edit; See Financial Data",
@@ -1049,12 +1049,12 @@
       "3. Count how many times the shared template's adjustment was added."
     ],
     "expected": [
-      "1. Intended result: the adjustment appears exactly ONCE on the new WO (§14 item 4 / S9 known gap).",
-      "2. Known bug: the current build may add it TWICE depending on internal order — record the actual count."
+      "1. The shared template's adjustment appears exactly ONCE on the new work order — the auto-apply and customer-default paths do not stack.",
+      "2. No duplicate copy is added (the single add is the settled intended behavior; a double-add would be a defect)."
     ],
     "design_ref": "design-notes §4 (customer defaults tab with Auto-Apply column)",
     "viu_status": "VIU-Verified",
-    "notes": "OPEN QUESTION / KNOWN BUG (requirements §14 item 4, S9 note): treat a double-add as a KNOWN DEFECT, not a spec requirement; log it in the VIU tab rather than marking the case Failed against spec. Related: a user may deliberately apply the same template to one WO more than once by hand (that is allowed, §1). | VIU qb batch-1 (2026-07-08): Template both auto-apply AND customer default -> exactly ONE adjustment on the new WO (dedup works; known S9 gap not reproduced). | [pass A same-day parallel verdict] VIU-Pending — double-add (same as FD-CUST-016); see bugs-log BUG-FD-1 | CONFLICT NOTE: see FD-CUST-016 - pass B controlled repro got ONE adjustment per template (no double-add).",
+    "notes": "OPEN QUESTION / KNOWN BUG (requirements §14 item 4, S9 note): treat a double-add as a KNOWN DEFECT, not a spec requirement; log it in the VIU tab rather than marking the case Failed against spec. Related: a user may deliberately apply the same template to one WO more than once by hand (that is allowed, §1). | VIU qb batch-1 (2026-07-08): Template both auto-apply AND customer default -> exactly ONE adjustment on the new WO (dedup works; known S9 gap not reproduced). | [pass A same-day parallel verdict] VIU-Pending — double-add (same as FD-CUST-016); see bugs-log BUG-FD-1 | CONFLICT NOTE: see FD-CUST-016 - pass B controlled repro got ONE adjustment per template (no double-add). | PO CLARIFY 2026-07-09 (Chris Ward answer sheet Q2=A): adding only once is confirmed as the settled intended behavior; EXPECTED re-scoped from 'known bug may add twice — record actual count' to exactly ONE. BUG-FD-1 closed as settled.",
     "api_related": false
   }
 ]
