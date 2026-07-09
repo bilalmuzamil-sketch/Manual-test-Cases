@@ -58,9 +58,13 @@ It captures the proven approach so future runs do not have to rediscover it.
   "cf_clearance": "...", "sv_sso_session": "..." }`.
 - `creds.json` shape: `{ "host": "https://shopview.testrail.io", "email": "...",
   "password": "<api_key_or_password>" }`.
-- Staging sessions are **short (~1 hour)**; `sv_sso_session` outlives the other
-  two but the effective window is still ~1 hour. Re-acquire cookies from a live
-  authenticated `app.staging` browser login when a window expires.
+- Staging session cookies (`app.staging.shopview.com` / `api.staging.shopview.com`)
+  last **~24 HOURS** — they expire only after ~24h **OR** when a new deployment
+  happens; they do **NOT** expire after ~1 hour. Plan long VIU runs accordingly (a
+  whole run can be done in one window). If quick-login returns **401 `sso_required`**
+  / **409** before 24h, suspect a **deployment** (or a genuinely stale set) and
+  re-request cookies. Re-acquire cookies from a live authenticated `app.staging`
+  browser login when a window expires.
 - Sandbox **Network access must be Full** — a restricted allowlist blocks the
   `*.staging.shopview.com` hosts and the run cannot proceed.
 
@@ -338,5 +342,6 @@ the real cause is usually a blank/missing part number.
 - **No Monitor tool, no idle-waiting.**
 - **Push** at the end and at step 0.
 - On **HTTP 401 `sso_required`** or **persistent 409**: commit, restore Tech,
-  and report **"cookies expired"** (the session window lapsed — re-supply
+  and report **"cookies expired"** (the ~24h session window lapsed, or — if it
+  happens well before 24h — a **deployment** likely rotated the session; re-supply
   cookies per section 2).

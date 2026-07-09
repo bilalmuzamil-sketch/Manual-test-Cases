@@ -147,6 +147,10 @@ regression / bug-fix re-testing.
   `api.staging.shopview.com` = Symfony JSON backend.
 - **Auth:** DEV `POST /api/quick-login {key:'admin'|'tech'}` (gated by valid
   session cookies). Prefer quick-login SSO over raw-cookie API (raw can 409).
+- **Session cookie lifetime:** staging cookies last **~24 HOURS** — they expire
+  only after ~24h OR when a new deployment happens; they do **NOT** expire after
+  ~1h (plan long VIU runs in one window). A 401 `sso_required` / 409 before 24h ⇒
+  suspect a deployment (or a stale set) and re-request cookies.
 - **UI automation:** Chromium can't TLS through the egress proxy directly — build
   a FRESH MITM bridge per run (port rotates; read `$HTTPS_PROXY` live). Use the
   `boot2` hydration pattern (seed cookies + localStorage `user` /
