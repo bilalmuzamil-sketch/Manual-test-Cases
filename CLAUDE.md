@@ -18,10 +18,15 @@ This workspace/chat serves **THREE separate projects**. Keep their memory
 genuinely helpful** (e.g. the staging access method + testing harness apply to
 all).
 
-1. **Custom Roles project** — Custom Roles & Permissions (ShopView). Existing
-   memory: this CLAUDE.md's detail sections, `build/TESTING-RUNBOOK.md`,
+1. **Custom Roles project** — Custom Roles & Permissions (ShopView).
+   **CANONICAL RUN-331 RESUME DOC (read first to resume the run-331 re-test):**
+   `build/custom-roles-run/RUN331-STATE.md` — the single authoritative snapshot of
+   the run 331 ("Nightly Test Run - Jul 9 2026", 160 cases vs the 09-Jul spec) effort
+   (final tally 96P/4F/10B/50R/0U; 3 master-case edits + 16 flagged; findings; retest/
+   blocked resume detail; env/endpoints; how-to-resume). Existing memory: this
+   CLAUDE.md's detail sections, `build/TESTING-RUNBOOK.md`,
    `build/APP-ACTIONS-PLAYBOOK.md`, `build/custom-roles-run/*`,
-   `build/custom-roles-spec-update/*`, TestRail section **3527** / run **312**.
+   `build/custom-roles-spec-update/*`, TestRail section **3527** / runs **312** & **331**.
 2. **Fees and Discount project** — Fees & Discounts V1 (ShopView). **CANONICAL
    STATE DOC (read first for resume):** `build/fees-discounts/PROJECT-STATE.md` —
    the single authoritative snapshot (case inventory 182 + VIU breakdown, TestRail
