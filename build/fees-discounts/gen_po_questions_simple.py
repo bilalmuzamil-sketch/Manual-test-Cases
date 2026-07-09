@@ -1,10 +1,14 @@
 #!/usr/bin/env python3
 """Generate PO-Questions-SIMPLE.xlsx — plain-English Fees & Discounts questions for the PO.
 
+STATUS: all 6 questions ANSWERED by Milos (received 2026-07-09 via the PO answer
+sheet, archived as data-sheet-source.xlsx/.csv/.md). The workbook now records
+each answer and the resulting action.
+
 Sheets:
-  - About        : friendly intro
-  - PO Questions  : # | Topic | What happens now | The question | Options | Your answer
-  - Internal      : QA-only mapping (Q# -> case IDs / refs); NOT for the PO
+  - About        : friendly intro + answered banner
+  - PO Questions  : # | Topic | What happens now | The question | Options | Your answer | Resulting action
+  - Internal      : QA-only mapping (Q# -> case IDs / refs + outcome); NOT for the PO
 """
 from openpyxl import Workbook
 from openpyxl.styles import Font, Alignment, PatternFill, Border, Side
@@ -29,6 +33,11 @@ questions = [
               "fee and discount be listed separately with its own row?"),
         "opts": ("A) Keep it as it is - one combined total is fine for now.\n"
                  "B) Change it so each fee and discount is listed on its own row."),
+        "answer": ("ANSWERED - B. \"This is actually a story defect. It was fixed "
+                   "originally in Branko's design, but appears to have regressed in "
+                   "the spec.\""),
+        "action": ("The row-by-row list is what's intended, so the current combined "
+                   "total is a defect and a dev ticket has been drafted to fix it."),
     },
     {
         "topic": "A customer's default fee now adds only once - please confirm",
@@ -38,6 +47,9 @@ questions = [
         "q": "Can you confirm that adding it only once is the intended behavior?",
         "opts": ("A) Yes - adding it only once is correct. Treat this as settled.\n"
                  "B) No - it should behave differently (please describe)."),
+        "answer": "ANSWERED - A. Adding it only once is correct; treat as settled.",
+        "action": ("This is settled - the earlier double-add worry is closed and our "
+                   "test cases will be updated to expect exactly one added fee."),
     },
     {
         "topic": "\"Processing Fee\" isn't visible in the app yet, but is partly ready",
@@ -47,6 +59,11 @@ questions = [
               "a later one?"),
         "opts": ("A) It's coming in a later release - leave the visible option out for now.\n"
                  "B) It should be part of this release - the visible option needs to be added."),
+        "answer": ("ANSWERED - B. It should be part of this release - the visible "
+                   "option needs to be added."),
+        "action": ("The missing Processing Fee option is an in-scope gap for this "
+                   "release, so a dev ticket has been drafted to add it and our "
+                   "Processing Fee test cases stay in scope."),
     },
     {
         "topic": "The \"Add\" button on the fee form is clickable before the form is filled in",
@@ -57,6 +74,10 @@ questions = [
               "\"Add\" button stay greyed out until the form is valid?"),
         "opts": ("A) Keep it as it is - showing an error on click is fine for now.\n"
                  "B) Change it so the button is greyed out until the form is filled in correctly."),
+        "answer": ("ANSWERED - B. Change it so the button is greyed out until the "
+                   "form is filled in correctly."),
+        "action": ("The always-clickable button is a defect, so a dev ticket has been "
+                   "drafted to keep the button greyed out until the form is valid."),
     },
     {
         "topic": "When a line has several fees/discounts, they all show at once (no \"show more\")",
@@ -67,6 +88,10 @@ questions = [
               "\"show more\" collapse when there are several?"),
         "opts": ("A) Keep it as it is - showing them all at once is fine.\n"
                  "B) Change it so extra ones collapse under a \"show more\" option."),
+        "answer": ("ANSWERED - B. \"Similar to #1. It was fixed in the design with a "
+                   "'show more' ... apparently I didn't define this properly in the spec.\""),
+        "action": ("The \"show more\" collapse is what's intended, so its absence is "
+                   "a defect and a dev ticket has been drafted to add it."),
     },
     {
         "topic": "On customer-defaults you add templates one at a time from a dropdown",
@@ -77,16 +102,27 @@ questions = [
               "there be a checklist to add several at once?"),
         "opts": ("A) Keep it as it is - adding one at a time is fine.\n"
                  "B) Change it so you can tick several and add them all at once."),
+        "answer": ("ANSWERED - A. Keep as-is - \"judgement call. There's higher risk "
+                   "that a user will inadvertently add multiples ... the additional "
+                   "clicks are worthwhile.\""),
+        "action": ("One-at-a-time is accepted as the intended behavior - no bug will "
+                   "be filed and our test cases will be reworded to match it."),
     },
 ]
 
 internal_map = [
-    ("1", "Part 1 #1", "FD-STATS-001 (BUG-FD-2 / FDBUG-6); also settles FD-STATS-002, FD-STATS-004"),
-    ("2", "Part 1 #4", "FD-CUST-016 / FD-VAL-007 (BUG-FD-1 double-add; did not reproduce - confirm S9 dedupe shipped)"),
-    ("3", "Part 1 #5", "NOTE-FD-4 (Story 8 Processing Fee - backend accepts it, builder UI missing)"),
-    ("4", "Part 1 #6", "FD-WO-005 / FD-VAL-001 (BUG-FD-4 - confirm button enabled; validation on submit)"),
-    ("5", "Part 1 #7", "FD-INLINE-003 (BUG-FD-5 - no \"Show N more\" collapse on line adjustments)"),
-    ("6", "Part 1 #8", "FD-CUST-005 (NOTE-FD-5 / FDBUG-7); ruling also settles FD-CUST-003/004/006/007"),
+    ("1", "Part 1 #1", "FD-STATS-001 (BUG-FD-2 / FDBUG-6); also settles FD-STATS-002, FD-STATS-004",
+     "B -> confirmed DEFECT (per-row regressed from Branko's design); dev ticket drafted (jira-bug-drafts.md TICKET 8); keep spec expected"),
+    ("2", "Part 1 #4", "FD-CUST-016 / FD-VAL-007 (BUG-FD-1 double-add; did not reproduce - confirm S9 dedupe shipped)",
+     "A -> settled; close BUG-FD-1; re-scope EXPECTED to exactly-one adjustment"),
+    ("3", "Part 1 #5", "NOTE-FD-4 (Story 8 Processing Fee - backend accepts it, builder UI missing)",
+     "B -> in-scope build GAP; dev ticket drafted (TICKET 11); FD-PROC-* stay v1"),
+    ("4", "Part 1 #6", "FD-WO-005 / FD-VAL-001 (BUG-FD-4 - confirm button enabled; validation on submit)",
+     "B -> confirmed DEFECT (disabled-until-valid); dev ticket drafted (TICKET 9); keep spec expected"),
+    ("5", "Part 1 #7", "FD-INLINE-003 (BUG-FD-5 - no \"Show N more\" collapse on line adjustments)",
+     "B -> confirmed DEFECT (show-more was in design); dev ticket drafted (TICKET 10); keep spec expected"),
+    ("6", "Part 1 #8", "FD-CUST-005 (NOTE-FD-5 / FDBUG-7); ruling also settles FD-CUST-003/004/006/007",
+     "A -> ACCEPTED behavior; close FDBUG-7 won't-fix; adopt single-select case-wording updates"),
 ]
 
 wb = Workbook()
@@ -99,18 +135,20 @@ ws["A1"] = "Fees & Discounts - A Few Quick Questions for You"
 ws["A1"].font = TITLE_FONT
 about_lines = [
     "",
+    "STATUS: ALL 6 QUESTIONS ANSWERED (Milos, received 2026-07-09). Thank you!",
+    "",
     "This is about the new Fees & Discounts feature.",
     "",
     ("While checking it over, we found a handful of spots where the app behaves a little "
      "differently than the original write-up described. None of these are problems on "
-     "their own - we just want your quick call on each one so we know which way you'd "
+     "their own - we just wanted your quick call on each one so we know which way you'd "
      "like it to work."),
     "",
-    ("There are no wrong answers. On the \"PO Questions\" tab, each row has a short "
-     "description of what happens now, the question, and simple A/B options. Please pick "
-     "an option (or write your own) in the \"Your answer\" column."),
+    ("The \"PO Questions\" tab now shows each question with the answer received in the "
+     "\"Your answer\" column and what we are doing about it in the \"Resulting action\" "
+     "column."),
     "",
-    "It should take just a few minutes. Thank you!",
+    "Thank you - your answers are helping us finish this feature the way you want it.",
 ]
 r = 2
 for line in about_lines:
@@ -120,8 +158,9 @@ for line in about_lines:
 
 # --- PO Questions sheet ---
 wq = wb.create_sheet("PO Questions")
-headers = ["#", "Topic", "What happens now", "The question", "Options", "Your answer"]
-widths = [5, 34, 46, 40, 46, 26]
+headers = ["#", "Topic", "What happens now", "The question", "Options",
+           "Your answer", "Resulting action"]
+widths = [5, 30, 42, 36, 42, 44, 44]
 for c, (h, w) in enumerate(zip(headers, widths), start=1):
     cell = wq.cell(row=1, column=1 + c - 1, value=h)
     cell.fill = HEADER_FILL
@@ -133,7 +172,8 @@ wq.freeze_panes = "A2"
 
 for i, item in enumerate(questions, start=1):
     row = i + 1
-    vals = [i, item["topic"], item["now"], item["q"], item["opts"], ""]
+    vals = [i, item["topic"], item["now"], item["q"], item["opts"],
+            item["answer"], item["action"]]
     for c, v in enumerate(vals, start=1):
         cell = wq.cell(row=row, column=c, value=v)
         cell.alignment = WRAP_CENTER if c == 1 else WRAP
@@ -144,9 +184,9 @@ for i, item in enumerate(questions, start=1):
 wi = wb.create_sheet("Internal (QA only)")
 wi["A1"] = "INTERNAL - for QA only. Do NOT share with the PO."
 wi["A1"].font = Font(bold=True, color="C00000", size=12)
-wi.merge_cells("A1:C1")
-ih = ["Q#", "Source thread", "Cases / refs covered"]
-iw = [6, 22, 90]
+wi.merge_cells("A1:D1")
+ih = ["Q#", "Source thread", "Cases / refs covered", "PO answer -> outcome"]
+iw = [6, 18, 62, 62]
 for c, (h, w) in enumerate(ih, start=1) if False else []:
     pass
 for c, (h, w) in enumerate(zip(ih, iw), start=1):
@@ -156,23 +196,26 @@ for c, (h, w) in enumerate(zip(ih, iw), start=1):
     cell.alignment = WRAP_CENTER
     cell.border = BORDER
     wi.column_dimensions[chr(64 + c)].width = w
-for i, (qn, src, refs) in enumerate(internal_map, start=4):
-    for c, v in enumerate([qn, src, refs], start=1):
+for i, (qn, src, refs, outcome) in enumerate(internal_map, start=4):
+    for c, v in enumerate([qn, src, refs, outcome], start=1):
         cell = wi.cell(row=i, column=c, value=v)
         cell.alignment = WRAP
         cell.border = BORDER
     wi.row_dimensions[i].height = 30
 note_row = 4 + len(internal_map) + 1
 wi.cell(row=note_row, column=1,
-        value=("Note: Two threads were REMOVED from the PO document as dev bugs (not "
-               "product decisions), already covered in jira-bug-drafts.md: the whole-WO "
-               "permission \"hidden but not backend-enforced\" item (BUG-FD-3), and the "
-               "customer total/estimate leaving out the fee/discount amount (FDBUG-1). "
-               "Pure code-bug tickets and the Part 2 case-update wording proposals are "
-               "also excluded. Source: "
+        value=("Note: Answers received 2026-07-09 via the PO answer sheet, archived as "
+               "data-sheet-source.xlsx/.csv/.md; verbatim answers + outcomes in "
+               "spec-v1-reconciliation.md sec.3. Two threads were REMOVED from the PO "
+               "document as dev bugs (not product decisions), already covered in "
+               "jira-bug-drafts.md: the whole-WO permission \"hidden but not "
+               "backend-enforced\" item (BUG-FD-3, still open with dev), and the "
+               "customer total/estimate leaving out the fee/discount amount (FDBUG-1, "
+               "on hold pending a US-tax re-check). Pure code-bug tickets and the "
+               "Part 2 case-update wording proposals are also excluded. Source: "
                "build/fees-discounts/Deviations-and-Questions-for-PO.md")).alignment = WRAP
-wi.merge_cells(start_row=note_row, start_column=1, end_row=note_row, end_column=3)
-wi.row_dimensions[note_row].height = 45
+wi.merge_cells(start_row=note_row, start_column=1, end_row=note_row, end_column=4)
+wi.row_dimensions[note_row].height = 60
 
 wb.save(OUT)
 print(f"Wrote {OUT} with {len(questions)} PO questions.")
