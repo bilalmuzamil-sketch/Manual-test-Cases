@@ -18,8 +18,13 @@ keeps the derived files current automatically.
      answer),
    - appends the change to `KB-CHANGELOG.md` (created on first update),
    - updates `spec-sync-state.json` with the new hash and date,
+   - regenerates `launcher.html` and republishes the launcher artifact, so the
+     team's instant-answer page and its download buttons are updated
+     automatically,
    - commits and pushes to the `claude/support-bot-critical-feature-f1e8wd`
-     branch with a message describing the spec change.
+     branch with a message describing the spec change,
+   - **sends the owner a push notification** saying the spec changed and which
+     knowledge file(s) to swap into the claude.ai Project.
 
 ## How updates reach the running bot
 
