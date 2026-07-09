@@ -17,6 +17,27 @@
 >
 > **Date consolidated:** 2026-07-07. **Env:** `app.staging.shopview.com` /
 > `api.staging.shopview.com`.
+>
+> **Spec-update ingest (2026-07-09):** ingested the updated Confluence spec
+> "Custom Roles and Permissions" (SV-7388), **export dated 09 Jul 2026** (latest
+> Change Log row 09 Jul 2026). Verbatim copy:
+> `build/custom-roles-spec-update/updated-spec-source.md`; full delta:
+> `build/custom-roles-spec-update/updated-spec-diff.md`; TestRail write audit:
+> `build/custom-roles-spec-update/testrail-caseupdate-2-log.md`. This pass diffed
+> the spec against the **RUN 331** case set (160 cases;
+> `build/custom-roles-run/run331-tests.json`) and updated 3 cases (C2528, C26424,
+> C26475), flagging 16 others. **Several §B "spec-pending" items below are now
+> confirmed in the updated spec** (Order Parts controls the WO Parts tab + requires
+> SFD; aging reports follow the Reports permission; Integrations settings stays and
+> hosts QuickBooks/IBS/Open API) — treat §B as historical drift notes pending the
+> Phase-2 VIU re-verification. **New/changed spec expectations for Phase-2 VIU:**
+> View History Logs renamed **View Part History** (Part-history only; WO audit log
+> now needs WO Create&Edit, line story needs WOL View); Reverse Invoice moved to
+> **WO → Delete**; SFD OFF **prompts** to disable dependents (no silent auto-clear);
+> Manage AP/AR requires SFD ON + gates sensitive **Vendor** fields; Customer Portal
+> default ON for SA/SSA/SM/PM; Office **cannot create invoices** (hard-coded);
+> customer notes governed by **Customer Management** perms; Send to Portal needs
+> Full View; Send to Terminal needs Invoicing C&E + Customer Portal ON.
 
 ---
 
