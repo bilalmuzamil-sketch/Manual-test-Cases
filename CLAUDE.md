@@ -72,6 +72,8 @@ all).
    and feature-flag-free by user rule**; INTERIM pending post-VIU + dev-answer
    finalization (see `build/fees-discounts/RESUME-STRATEGY.md`). Permissions: DEFINED
    / reuse-only — see `build/PERMISSIONS-ASSESSMENT.md`.
+   **PO for Fees & Discounts = Chris Ward; PO for Simple Flow = Milos — never mix
+   attributions.**
 3. **Simple flow project** — Simple Mode / Streamlined Work Order Completion &
    Receiving (ShopView), Epic **SV-7301**. **CANONICAL STATE DOC (read first for
    resume):** `build/simple-flow/PROJECT-STATE.md` — the single authoritative

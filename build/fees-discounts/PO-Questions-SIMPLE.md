@@ -1,6 +1,7 @@
 # Fees & Discounts — A Few Quick Questions for You
 
-> **STATUS: ALL 6 QUESTIONS ANSWERED (Milos, received 2026-07-09).** Milos
+> **STATUS: ALL 6 QUESTIONS ANSWERED (Chris Ward, the Fees & Discounts PO,
+> received 2026-07-09).** Chris Ward
 > returned this questionnaire filled in via the PO answer sheet (saved as
 > `data-sheet-source.xlsx/.csv/.md`). Each question below now shows his answer
 > and the resulting action. Full reconciliation: `spec-v1-reconciliation.md`;

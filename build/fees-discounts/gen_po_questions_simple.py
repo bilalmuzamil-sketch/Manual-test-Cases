@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """Generate PO-Questions-SIMPLE.xlsx — plain-English Fees & Discounts questions for the PO.
 
-STATUS: all 6 questions ANSWERED by Milos (received 2026-07-09 via the PO answer
+STATUS: all 6 questions ANSWERED by Chris Ward, the Fees & Discounts PO
+(received 2026-07-09 via the PO answer
 sheet, archived as data-sheet-source.xlsx/.csv/.md). The workbook now records
 each answer and the resulting action.
 
@@ -135,7 +136,7 @@ ws["A1"] = "Fees & Discounts - A Few Quick Questions for You"
 ws["A1"].font = TITLE_FONT
 about_lines = [
     "",
-    "STATUS: ALL 6 QUESTIONS ANSWERED (Milos, received 2026-07-09). Thank you!",
+    "STATUS: ALL 6 QUESTIONS ANSWERED (Chris Ward, received 2026-07-09). Thank you!",
     "",
     "This is about the new Fees & Discounts feature.",
     "",

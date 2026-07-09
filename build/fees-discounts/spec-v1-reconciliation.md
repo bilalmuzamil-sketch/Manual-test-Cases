@@ -8,7 +8,7 @@
 > **Inputs ingested (2026-07-09):**
 > - Updated spec `d2d8b21d-FeesDiscountsV1_1.doc` → `spec-v1-source.md`
 > - Design bundles (×3, byte-identical) → `design-v1-catalog.md`
-> - PO answer sheet (Google Sheet) → `data-sheet-source.(xlsx/csv/md)`
+> - PO answer sheet (Google Sheet, answered by Chris Ward, the F&D PO) → `data-sheet-source.(xlsx/csv/md)`
 > - Epic SV-7387 → `epic-content.md`
 >
 > **Our findings read for this reconciliation:** `viu-qb-findings.md`,

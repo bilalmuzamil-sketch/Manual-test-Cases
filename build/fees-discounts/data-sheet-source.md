@@ -6,7 +6,9 @@
 
 ## What this sheet IS
 It is **NOT** test data, calc fixtures, or customer/template fixtures. It is the
-**PO answer sheet** — the completed responses to our **6 layman PO questions**
+**PO answer sheet** — answered by **Chris Ward, the Fees & Discounts PO**
+(NOT Milos — Milos is the Simple Flow project's PO) — the completed responses
+to our **6 layman PO questions**
 (`PO-Questions-SIMPLE.md`). Columns: `# | Topic | What happens now | The question
 | Options | Your answer`. It is a filled-in copy of our own PO questionnaire, so
 it directly resolves the Part-1 PO threads.

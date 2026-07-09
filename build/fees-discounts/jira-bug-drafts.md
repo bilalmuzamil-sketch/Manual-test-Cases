@@ -5,7 +5,7 @@
 > Do NOT auto-create them from here.
 >
 > **Rewritten 2026-07-09** after the v1 closeout reconciliation
-> (`spec-v1-reconciliation.md`) and Milos's PO answer sheet
+> (`spec-v1-reconciliation.md`) and Chris Ward's (the F&D PO's) PO answer sheet
 > (`data-sheet-source.md`). Every ticket below is written in plain language so a
 > non-technical reader can understand it; anything technical (spec references,
 > internal bug codes, test-case IDs, endpoints, observed figures) lives only in

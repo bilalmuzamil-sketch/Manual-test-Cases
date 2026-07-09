@@ -28,7 +28,7 @@
 - ✅ `jira-bug-drafts.md` fully rewritten in plain language; Epic set to
   **SV-7387** on every draft; FDBUG-7 dropped/annotated as accepted (Q6=A).
 - ✅ `PO-Questions-SIMPLE.md` + `.xlsx` (+ generator) updated — all 6 questions
-  marked ANSWERED with Milos's answer + one-sentence resulting action.
+  marked ANSWERED with Chris Ward's answer + one-sentence resulting action.
 
 ## Left entirely to the finalization pass (not started)
 
