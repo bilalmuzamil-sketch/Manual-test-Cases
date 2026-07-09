@@ -883,3 +883,54 @@ round-trip is now achievable. (bugs-log BUG-11 updated → severity downgraded.)
 `wop-probe.mjs`, `wop-api.mjs`/`wop-api2.mjs`, `revi-perm03.mjs`, `revi-cleanup.mjs`,
 `revi-verify.mjs`, `mkwo5.mjs` (create WO via `button_new_work_order` — the old
 `mkwo3.mjs` "Create" text is stale; button is now "Create Work Order").
+
+---
+
+# VIU BATCH 8 — 2026-07-09 (FOLLOW-UP: reachable-now + self-served data cases)
+
+Task-provided QA cookies (sv_sso_session dc0d3acf…; PHPSESSID 21427ed6…); admin
+quick-login **200** on sv7301. Fresh MITM bridge rebuilt (port 41543). **Settings
+baseline captured to `/tmp/simple-flow/settings-baseline-fu.json` and RESTORED +
+verified at end (match=true).** Env had drifted before this run (parallel tester:
+requireMileage=false, requireHours=true, requireTechStories=false,
+autoPickInventoryParts=false) — captured as the run baseline and restored to it.
+**Tech role NOT swapped** (all drives as admin) — verified Tech still Technician
+`131b5274` at end. **Five throwaway WOs created** (ea1bc4bf/S2-15788, 614b7a28/
+S2-15789, af478404/S-15790, dd9e7433/S2-15791, 54550495/S2-15792) and **ALL DELETED**
+(verify 404). Evidence: `viu-evidence/REVI-*.png`.
+
+## Verified this pass (8 moved VIU-Pending → VIU-Verified)
+
+| Case | Layer | Result |
+|---|---|---|
+| **SF-WOP-02** | UI | Enabled the "Waiting On Parts" column (via `workOrders.storedColumns`), clicked a WO's "**2 Parts Waiting**" count → navigated to **`/bulk-receive?ids=<poId>`** ("Receive Vendor Parts") for that WO's unreceived PO. Same end-state; opens the **new consolidated Bulk Receive page**, not the legacy Accept Delivery named in the case (wording deviation — expected refined). |
+| **SF-REV-12** | UI | WO list **By Status** tab exposes a status multiselect incl. **"Review"**; selecting it filters to review-status WOs (reviewer queue). |
+| **SF-VAL-10** | UI+API | Applied the SAME invoice # "ZZAUTOTEST-VAL10" to two POs (S-15788, S-15789) via the vendor group "Apply to selected POs"; both PO invoice fields carried it; Receive All → `POST /api/orders/receive-requested-parts` **200** both. Reused invoice accepted; both received. |
+| **SF-VEND-04** | UI+API | Assigned a non-colliding vendor (Aacastle Apparel) to a Vendor-Missing PO (89378cf0/S-15790): **no** merge/keep-separate prompt (auto-assign), **`POST /api/orders/{id}/assign-vendor` 200**, `vendorMissing` cleared true→false, PO left the Vendor-Missing group into the vendor group (Receive enabled w/ PN+invoice). |
+| **SF-VMIS-07** | UI+API | Line's part **Order** action (`button_part_request_action`) → `POST /api/work-orders/part/perform-request-status-action` **201**; part moved `authorized_to_order`→`waiting_to_receive` with an order_id (vendor null = joined the WO Vendor-Missing PO, no dummy PO), **WITHOUT** completing the WO (status stayed Approved). |
+| **SF-COMP-12** | UI+API | Optional-invoice wizard receive step shows "**2 parts waiting to receive**" + "**1 part is not ordered yet … will order those parts**" (background PO creation); API confirmed order_id + waiting_to_receive; both Receive Parts & Complete Without Receiving present. |
+| **SF-RCV-10** | UI | On the built receive surface (Bulk Receive = consolidated Accept Delivery for WO POs): cost field **editable when $0** (readonly=false, "0"→9.99), qty editable, sell editable (WO not invoiced → lock rule unchanged). |
+| **SF-RCV-06** | UI | Receive gates on the built receive surface: (1) vendor-missing PO **blocks receive** (`button_receive_po` disabled) until vendor assigned; (2) missing PN required (`text_missing_part_number`; SF-BULK-07 PN→enable); (3) vendor invoice # required (SF-BULK-05). Cost editable when $0 (SF-RCV-10). |
+
+## New endpoint / mechanism facts (for next run)
+- **Assign vendor (Bulk Receive Vendor-Missing group):** `POST /api/orders/{orderId}/assign-vendor` → 200; a non-colliding vendor auto-assigns (no prompt), clears `vendorMissing`, and relocates the PO to the vendor's group. Reveal the group's per-PO controls by expanding `button_toggle_expand_vendor-missing` then clicking `checkbox_po_{poId}` (exposes `select_assign_vendor_{poId}`, `input_part_number_{partId}`, `input_cost_{partId}`, `input_sell_{partId}`, `input_qty_{partId}`, `input_invoice_{poId}`, `button_receive_po_{poId}`).
+- **Line "Order" a requested part (no completion):** `POST /api/work-orders/part/perform-request-status-action` (from `button_part_request_action`) moves an `authorized_to_order` part → `waiting_to_receive` onto the WO's PO.
+- **"Waiting On Parts" column** cannot be toggled via the headless q-toggle (known flakiness); set `localStorage.workOrders.storedColumns.unreceivedPartRequestsCount=true` instead. The count cell links to `/bulk-receive?ids=<firstUnreceivedPO>`.
+- **Invoicing a WO is NOT drivable here:** `POST /api/work-orders/change-status {status:'invoiced'}` → 400 "cannot be changed manually to invoiced"; the finance `button_create_invoice` needs the invoice-builder / IBS-approval flow (did not fire headless). Blocks SF-VAL-09 / SF-VEND-05(receive-block) / SF-PNFIX-04/05 (invoiced/paid state).
+
+## Still VIU-Pending after this pass — exact reason
+- **SF-VAL-09 / SF-VEND-05 (receive-block)** — need an invoiced/paid WO with an unreceived part; invoicing not drivable (above).
+- **SF-VEND-02** — needs a same-vendor-already-on-PO collision (per-part assign) to trigger the "Add to {vendor}?" Merge vs Keep-Separate prompt; PO-level assign of a non-colliding vendor auto-assigns (SF-VEND-04) with no prompt.
+- **SF-VEND-03** — needs two POs on the SAME WO sharing a vendor (WO vendorless parts collapse onto ONE PO → hard to seed two).
+- **SF-BULK-10** — needs a genuine special-order (vendor-source) `is_core` part received on the bulk page (P550848 forces Source=Inventory/auto-pick; sub-form Core Charge → is_core=false — not seedable).
+- **SF-RCV-05 / SF-RCV-07** — MILOS-ANSWER (vendor-missing group ordering, Q11); OBS: bulk page renders the Vendor-Missing group (position not re-audited this pass).
+- **SF-VMIS-03/06, SF-RCV-08, SF-QB-03..08** — QuickBooks / reports back-end inspection (need QB access).
+- **SF-QB-09** — Open-Question (needs dev confirmation).
+
+## Cases moved this pass
+- **VIU-Verified (8):** SF-WOP-02, SF-REV-12, SF-VAL-10, SF-VEND-04, SF-VMIS-07, SF-COMP-12, SF-RCV-10, SF-RCV-06.
+- **New totals (case JSON viu_status):** VIU-Verified **112** · VIU-Pending **45** · Open-Question **5** = 162.
+- **No new filing-grade bugs.** One wording deviation recorded (SF-WOP-02 → Bulk Receive, not legacy Accept Delivery) — see bugs-log OBS-5. No TestRail writes (writes require explicit user permission; SF-WOP-02 expected refined locally, push pending approval).
+
+## Residual (shared env — note for next run)
+- **Irreversible received deliveries:** POs S-15788 + S-15789 were received under invoice **ZZAUTOTEST-VAL10** (SF-VAL-10) before their WOs were deleted — the Delivery/Vendor-Bill records may persist (received deliveries are not reversible in-app). All five throwaway WOs themselves were deleted (verify 404).

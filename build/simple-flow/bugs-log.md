@@ -368,3 +368,18 @@ filing-grade defects (no error/corruption).
   orders — fulfilled POs do not appear at all, so they are inherently not selectable
   for receive (stronger than the case's "checkbox disabled" wording). Outcome matches
   the case expected; mechanism differs.
+
+### OBS-5 — SF-WOP-02: "Waiting on Parts" count opens Bulk Receive, not legacy Accept Delivery (BATCH 8, 2026-07-09)
+- Clicking a WO's "Waiting On Parts" count navigates to the **new consolidated Bulk
+  Receive page** `/bulk-receive?ids=<firstUnreceivedPO>` ("Receive Vendor Parts"),
+  NOT the legacy "Accept Delivery" screen worded in SF-WOP-02. Same end-state (receive
+  the WO's first unreceived PO). Not a defect — a surface consolidation; SF-WOP-02
+  expected refined locally. The same consolidation underlies SF-RCV-06/RCV-10 verdicts
+  (the WO-PO receive surface is Bulk Receive; the legacy single-PO Accept-Delivery
+  path still 500s for WO POs — BUG-11). No product decision needed; wording note only.
+
+### NOTE — assign-vendor endpoint (BATCH 8)
+- The Bulk Receive Vendor-Missing group assign-vendor action = `POST /api/orders/{orderId}/assign-vendor`
+  (200); a non-colliding vendor auto-assigns with no Merge/Keep-Separate prompt and
+  clears `vendorMissing`. The Story-13 merge/keep-separate prompt (SF-VEND-02/03) only
+  surfaces on a same-vendor / same-WO collision, which was not seedable this pass.

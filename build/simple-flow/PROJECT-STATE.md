@@ -2,18 +2,20 @@
 
 > **THIS IS THE CANONICAL STATE DOC for the Simple Flow project.** It is a single
 > authoritative snapshot so the project can be resumed with zero re-discovery.
-> **Last updated:** 2026-07-09 (**RE-VIU BATCH 7 DONE** — Stories 7/8/9/14 CONFIRMED
-> BUILT & verified live on sv7301; 24 cases flipped VIU-Pending/dev-not-built →
-> VIU-Verified; DEV-NOT-BUILT category now **0**; both spec-vs-Epic conflicts resolved
-> in favour of the spec; BUG-11 found NOT to reproduce on the new Bulk Receive path.
-> Prior: Milos Round-2 applied + pushed to TestRail; latest spec/design/epic batch
-> ingested — see §5.E.).
-> **RE-VIU BATCH 7 quick facts (2026-07-09):** VIU-Verified **104** / VIU-Pending
-> **53** / Open-Question **5** (= 162). Blockers tracker: READY **95** / VIU-PENDING
-> (QA) **46** / MILOS **15** / BUG-RULING **6** / DEV-NOT-BUILT **0**. Full evidence:
-> `viu-findings.md` BATCH 7; observations in `bugs-log.md` (OBS-1..4 + BUG-11 update).
-> No TestRail writes this pass (no EXPECTED diverged; conflicts matched existing
-> spec-based expecteds; TestRail writes need explicit user permission).
+> **Last updated:** 2026-07-09 (**FOLLOW-UP VIU BATCH 8 DONE** — 8 more cases flipped
+> VIU-Pending → VIU-Verified via reachable-now + self-served data drives on sv7301:
+> SF-WOP-02, SF-REV-12, SF-VAL-10, SF-VEND-04, SF-VMIS-07, SF-COMP-12, SF-RCV-10,
+> SF-RCV-06. No new filing-grade bugs; one wording deviation (SF-WOP-02 → Bulk Receive,
+> OBS-5). New endpoints: `POST /api/orders/{id}/assign-vendor`, `POST /api/work-orders/
+> part/perform-request-status-action`. Settings + Tech restored; 5 throwaway WOs deleted.
+> Prior: RE-VIU BATCH 7 — Stories 7/8/9/14 CONFIRMED BUILT; DEV-NOT-BUILT **0**;
+> conflicts resolved in favour of spec; BUG-11 downgraded — see §5.E.)
+> **BATCH 8 quick facts (2026-07-09):** VIU-Verified **112** / VIU-Pending **45** /
+> Open-Question **5** (= 162). Blockers tracker: READY **103** / VIU-PENDING (QA) **38**
+> / MILOS **15** / BUG-RULING **6** / DEV-NOT-BUILT **0**. Full evidence:
+> `viu-findings.md` BATCH 8; observations in `bugs-log.md` (OBS-1..5 + BUG-11 update).
+> No TestRail writes this pass (SF-WOP-02 expected refined locally only; TestRail
+> writes need explicit user permission).
 > **Source of truth for per-case status:** `SimpleFlow_Blockers_Tracker.md`/`.xlsx`
 > (regenerate with `python3 build/simple-flow/gen_blockers.py`). All counts below
 > are cited from that tracker — do not invent numbers; re-read the tracker if in doubt.
@@ -81,15 +83,15 @@ without explicit user permission.**
 
 | Blocker category | Count | Owner |
 |---|---:|---|
-| READY (VIU-Verified, uploadable now) | 95 | — |
+| READY (VIU-Verified, uploadable now) | 103 | — |
 | BLOCKED — DEV NOT BUILT | 0 | Dev team (Stories 7/8/9/14 now BUILT) |
-| BLOCKED — VIU PENDING (QA) | 46 | QA |
+| BLOCKED — VIU PENDING (QA) | 38 | QA |
 | BLOCKED — MILOS ANSWER | 15 | Milos (PO) |
 | BLOCKED — BUG/RULING | 6 | Dev / PO ruling |
 | **TOTAL** | **162** | |
 
-**VIU status field tally across the case JSONs (post-BATCH-7):** VIU-Verified **104**
-· VIU-Pending **53** · Open-Question **5** (= 162). Note the difference from "READY =
+**VIU status field tally across the case JSONs (post-BATCH-8):** VIU-Verified **112**
+· VIU-Pending **45** · Open-Question **5** (= 162). Note the difference from "READY =
 95": **9 VIU-Verified cases are held** under a ruling/answer (6 BUG/RULING
 SF-PERM-02/04/06/07/08 + SF-REV-09, + a few under Milos-answer) — VIU-verified but not
 yet uploadable-clean. **DEV-NOT-BUILT dropped 25 → 0** this pass (Stories 7/8/9/14
@@ -112,10 +114,18 @@ record, the four stories that were built:
 
 | Sub-bucket | Count | Meaning |
 |---|---:|---|
-| reachable-now | 7 | admin+tech + normal data; just needs another VIU pass, no new inputs (SF-COMP-12, SF-VMIS-07, SF-RCV-10, SF-WOP-02, SF-VAL-10, SF-REV-12, SF-QB-09) |
-| needs-data | 39 | needs a data state not seedable via the app (cores, WO-PO receive via bulk path, QB inspection, invoiced/paid WO, VIN-less asset, multi-PO merge) |
+| reachable-now | ~1 | SF-QB-09 only (Open-Question, needs dev confirm). BATCH 8 cleared the rest: SF-COMP-12, SF-VMIS-07, SF-RCV-10, SF-WOP-02, SF-VAL-10, SF-REV-12 → VIU-Verified. |
+| needs-data | ~37 | needs a data state not seedable via the app (special-order cores, invoiced/paid WO [invoicing not drivable in-harness], multi-PO/same-vendor merge collision, VIN-less asset, QB inspection) |
 | needs-account | 0 | (none currently) |
-| **TOTAL** | **46** | |
+| **TOTAL** | **38** | |
+
+**BATCH 8 (2026-07-09) cleared 8 VIU-Pending → VIU-Verified:** SF-WOP-02, SF-REV-12,
+SF-VAL-10, SF-VEND-04, SF-VMIS-07, SF-COMP-12, SF-RCV-10, SF-RCV-06. Remaining
+needs-data headliners: **SF-VAL-09 / SF-VEND-05** (invoiced/paid WO — invoicing not
+drivable: API blocks manual status, UI Create-Invoice needs the builder/IBS flow),
+**SF-VEND-02/03** (same-vendor / same-WO merge collision not seedable),
+**SF-BULK-10** (special-order is_core part not seedable), **SF-VMIS-03/06 · SF-RCV-08 ·
+SF-QB-03..08** (QuickBooks/reports back-end access), **SF-RCV-05/07** (MILOS Q11).
 
 **Blocker owners (who unblocks what):** Milos (PO) → the 15 MILOS-ANSWER cases;
 Dev team → BUG-11 (legacy Accept-Delivery 500 — now LOW urgency, a working Bulk

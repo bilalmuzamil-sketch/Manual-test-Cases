@@ -621,8 +621,8 @@ Verify an optional 'Waiting on Parts' column can be enabled from the column sele
 2. It shows the count of unreceived parts per work order across all statuses.",SV-7709 (S14-R1),,
 Verify clicking the Waiting on Parts count opens Accept Delivery for the WO's first unreceived PO,Waiting on Parts Column (Story 14),Functional,Medium,"1. Signed in as Admin.
 2. The Waiting on Parts column is enabled and a WO shows a count.","1. Click the count on a work order row.
-2. Observe the destination.","1. Accept Delivery opens for the work order's first unreceived PO.
-2. Receiving behaves as it does today from there.",SV-7709 (S14-R2),,
+2. Observe the destination.","1. EXPECTED (built): clicking the count opens the receiving surface for the work order's first unreceived PO. In the current build this is the consolidated Bulk Receive page (/bulk-receive), which supersedes the legacy Accept Delivery screen for work-order POs.
+2. Receiving behaves as it does from the Bulk Receive page from there.",SV-7709 (S14-R2),,
 Verify a work order with nothing to receive shows '—' with no link in the Waiting on Parts column,Waiting on Parts Column (Story 14),Functional,Low,"1. Signed in as Admin.
 2. A WO with nothing to receive (or POs off) is in the list with the column enabled.","1. Find a WO with nothing waiting to receive.
 2. Read its Waiting on Parts cell.",1. The cell shows '—' with no clickable link.,SV-7709 (S14-R3),,
