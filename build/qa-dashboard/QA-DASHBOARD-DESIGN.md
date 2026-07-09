@@ -203,3 +203,41 @@ AFTER startOfWeek()`. Slightly stricter, works without the custom field.
   §3 (items 10–11).
 - F4/F5/F6 count a ticket for its QA Assignee even if someone else clicked the
   final transition; use the `BY "X"` variant if that ever matters.
+
+---
+
+## 8. Addendum (2026-07-09): label-based tracking + epic & member filters
+
+**Team conventions discovered live** (35-day sweep of every labelled SV ticket):
+- Completion labels in real use: `QAComplete_<Firstname>_<Lastname>` (Mudassir 75,
+  Viktoria 39, Nebojsa 18, Ayesha 4, Stefan 3, Ahtasham 2, Nemanja 2, Dusan 1).
+  Also in use: `Staging_Verified`, `Rejected_Staging`, `Prod_Verified_Ayesha`.
+- **`*_inprogress` labels do not exist in Jira yet** (probed: 0 tickets) — the
+  convention is being introduced now. Recommended canonical form:
+  `<Firstname><Lastname>_inprogress` (e.g. `BilalMuzamil_inprogress`), added when
+  the QA picks the ticket up, removed when testing ends.
+
+**Hygiene defects found (fix for reliable tracking):**
+- 11 tickets carry a bare `QAcomplete` (no name) — credit nobody.
+- 2 tickets use lowercase `QAcomplete_Ahtasham_Amjad` (casing drift).
+- 55 tickets have a QAComplete label whose person is NOT in QA Assignee.
+- Bilal has 0 QAComplete labels — his completions only visible via QA Assignee.
+
+**New JQL building blocks:**
+- Per-member in-progress: `project = SV AND labels = "BilalMuzamil_inprogress"`
+- Per-member completed (label OR field+transition):
+  `project = SV AND (labels = "QAComplete_Ayesha_Khan" OR ("QA Assignee" = "Ayesha Khan" AND status CHANGED FROM ("TESTING QA","TESTING STAGE") TO ("Ready for Production","Done") AFTER startOfWeek()))`
+- Per-epic (covers stories AND their story-defects): `parentEpic = SV-7388`
+- Epic × member: `parentEpic = SV-7388 AND labels = "QAComplete_Mudassir_Qamar"`
+- Time-bucketing a LABEL is impossible in JQL (labels have no change history in
+  search) — daily/weekly/monthly completed still needs the status-transition form.
+
+**Jira dashboard additions:** an Epic quick-filter row (one saved filter per active
+epic), per-member Two-Dimensional gadgets (Epic × Status), and a per-member counter
+row driven by the label filters above. Active epics right now: SV-7388 Custom Roles
+(361 QA tickets), SV-7301 Simple Mode, SV-7387 Fees & Discounts, SV-8181 Digital
+Inspection V2 (+ archived ones).
+
+**Interactive snapshot artifact:** `qa-dashboard-interactive-2026-07-09.html`
+(template: `qa-dashboard-template.html`, data: `dash-data-2026-07-09.json`,
+650 tickets). Attribution rule: QAComplete label wins, QA Assignee is fallback.

@@ -1,0 +1,402 @@
+<title>ShopView QA Team Dashboard</title>
+<style>
+  :root {
+    --page:#f9f9f7; --surface:#fcfcfb; --ink:#0b0b0b; --ink-2:#52514e; --muted:#898781;
+    --grid:#e1e0d9; --baseline:#c3c2b7; --ring:rgba(11,11,11,0.10); --track:#efeeea;
+    --blue:#2a78d6; --aqua:#1baf7a; --crit:#d03b3b; --serious:#ec835a; --warn:#fab219; --good:#006300;
+    --cellmax:42,120,214;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --page:#0d0d0d; --surface:#1a1a19; --ink:#ffffff; --ink-2:#c3c2b7; --muted:#898781;
+      --grid:#2c2c2a; --baseline:#383835; --ring:rgba(255,255,255,0.10); --track:#242423;
+      --blue:#3987e5; --aqua:#199e70; --good:#0ca30c; --cellmax:57,135,229; }
+  }
+  :root[data-theme="dark"] { --page:#0d0d0d; --surface:#1a1a19; --ink:#ffffff; --ink-2:#c3c2b7;
+    --muted:#898781; --grid:#2c2c2a; --baseline:#383835; --ring:rgba(255,255,255,0.10);
+    --track:#242423; --blue:#3987e5; --aqua:#199e70; --good:#0ca30c; --cellmax:57,135,229;
+    --crit:#d03b3b; --serious:#ec835a; --warn:#fab219; }
+  :root[data-theme="light"] { --page:#f9f9f7; --surface:#fcfcfb; --ink:#0b0b0b; --ink-2:#52514e;
+    --muted:#898781; --grid:#e1e0d9; --baseline:#c3c2b7; --ring:rgba(11,11,11,0.10);
+    --track:#efeeea; --blue:#2a78d6; --aqua:#1baf7a; --good:#006300; --cellmax:42,120,214;
+    --crit:#d03b3b; --serious:#ec835a; --warn:#fab219; }
+
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--page); color:var(--ink);
+    font:15px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif; }
+  .wrap { max-width:1180px; margin:0 auto; padding:26px 20px 48px; }
+  header.top { display:flex; flex-wrap:wrap; align-items:baseline; gap:8px 16px; }
+  h1 { font-size:22px; font-weight:650; margin:0; letter-spacing:-0.01em; }
+  .asof { color:var(--muted); font-size:13px; }
+  .sub { color:var(--ink-2); font-size:14px; margin:4px 0 18px; max-width:75ch; }
+
+  /* filter bar */
+  .filters { position:sticky; top:0; z-index:5; background:var(--page); padding:10px 0 12px;
+    display:flex; flex-wrap:wrap; gap:10px; align-items:center; border-bottom:1px solid var(--grid); }
+  .filters label { font-size:11px; font-weight:650; letter-spacing:0.06em; text-transform:uppercase;
+    color:var(--muted); display:block; margin-bottom:3px; }
+  .f { display:flex; flex-direction:column; }
+  select, input[type=search] { font:13.5px system-ui,sans-serif; color:var(--ink);
+    background:var(--surface); border:1px solid var(--ring); border-radius:7px; padding:6px 9px; min-width:150px; }
+  select:focus-visible, input:focus-visible, button:focus-visible { outline:2px solid var(--blue); outline-offset:1px; }
+  .reset { align-self:flex-end; background:none; border:1px solid var(--ring); border-radius:7px;
+    color:var(--ink-2); font-size:13px; padding:6px 12px; cursor:pointer; }
+  .reset:hover { background:var(--track); }
+  .fcount { align-self:flex-end; font-size:13px; color:var(--muted); padding:6px 0; }
+
+  .eyebrow { font-size:11px; font-weight:650; letter-spacing:0.08em; text-transform:uppercase;
+    color:var(--muted); margin:26px 0 10px; }
+  .cards { display:grid; gap:14px; }
+  .kpis { grid-template-columns:repeat(6,1fr); }
+  .two { grid-template-columns:1fr 1fr; }
+  @media (max-width:1000px){ .kpis{grid-template-columns:repeat(3,1fr);} }
+  @media (max-width:640px){ .kpis{grid-template-columns:repeat(2,1fr);} .two{grid-template-columns:1fr;} }
+  .card { background:var(--surface); border:1px solid var(--ring); border-radius:10px; padding:14px 16px; }
+  .card h2 { font-size:14px; font-weight:650; margin:0 0 2px; }
+  .card .note { color:var(--muted); font-size:12.5px; margin:0 0 12px; }
+  .stat .label { color:var(--ink-2); font-size:12.5px; line-height:1.3; }
+  .stat .value { font-size:30px; font-weight:650; line-height:1.15; margin-top:2px; }
+  .stat .hint { color:var(--muted); font-size:12px; margin-top:2px; }
+
+  .rows { display:grid; gap:7px; }
+  .row { display:grid; grid-template-columns:150px 1fr 40px; gap:10px; align-items:center; border-radius:4px; }
+  .row:hover { background:color-mix(in srgb, var(--track) 60%, transparent); }
+  .row .name { font-size:13px; color:var(--ink-2); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .row .name.dim { color:var(--muted); font-style:italic; }
+  .row .val { font-size:13px; font-weight:600; text-align:right; font-variant-numeric:tabular-nums; }
+  .track { background:var(--track); border-radius:4px; height:16px; position:relative; overflow:hidden; }
+  .fill { position:absolute; inset:0 auto 0 0; border-radius:0 4px 4px 0; }
+  .fill.b { background:var(--blue); } .fill.a { background:var(--aqua); } .fill.dim { background:var(--baseline); }
+
+  /* matrix */
+  .mwrap { overflow-x:auto; }
+  table.matrix { border-collapse:collapse; font-size:13px; min-width:640px; width:100%; }
+  .matrix th { font-weight:600; color:var(--muted); text-align:right; padding:5px 8px;
+    border-bottom:1px solid var(--grid); white-space:nowrap; }
+  .matrix th:first-child { text-align:left; }
+  .matrix td { text-align:right; padding:5px 8px; font-variant-numeric:tabular-nums;
+    border-bottom:1px solid var(--grid); color:var(--ink); }
+  .matrix td.ep { text-align:left; color:var(--ink-2); max-width:250px; overflow:hidden;
+    text-overflow:ellipsis; white-space:nowrap; }
+  .matrix td.tot, .matrix th.tot { font-weight:650; border-left:1px solid var(--grid); }
+  .matrix tr:hover td { background:color-mix(in srgb, var(--track) 55%, transparent); }
+  .matrix td .cell { display:inline-block; min-width:30px; padding:1px 6px; border-radius:5px; }
+  .seg-note { color:var(--muted); font-size:12px; margin-top:8px; }
+  .mtabs { display:flex; gap:6px; flex-wrap:wrap; margin-bottom:12px; }
+  .mtab { font-size:12.5px; border:1px solid var(--ring); background:none; color:var(--ink-2);
+    border-radius:999px; padding:4px 12px; cursor:pointer; }
+  .mtab[aria-pressed="true"] { background:var(--blue); border-color:var(--blue); color:#fff; font-weight:600; }
+
+  /* ticket table */
+  table.tix { border-collapse:collapse; width:100%; font-size:13px; }
+  .tix th { text-align:left; color:var(--muted); font-weight:600; padding:5px 10px 7px 0;
+    border-bottom:1px solid var(--grid); cursor:pointer; user-select:none; white-space:nowrap; }
+  .tix th:hover { color:var(--ink); }
+  .tix td { padding:6px 10px 6px 0; border-bottom:1px solid var(--grid); color:var(--ink-2); vertical-align:top; }
+  .tix td.k { font-weight:600; white-space:nowrap; }
+  .tix tr:hover td { background:color-mix(in srgb, var(--track) 55%, transparent); }
+  .chip { display:inline-block; font-size:11px; font-weight:600; border-radius:999px; padding:0 8px;
+    border:1px solid var(--ring); color:var(--ink-2); margin:1px 2px 1px 0; white-space:nowrap; }
+  .chip.done { color:var(--good); border-color:var(--good); }
+  .chip.test { color:var(--blue); border-color:var(--blue); }
+  .chip.rej { color:var(--crit); border-color:var(--crit); }
+  .chip.wait { color:color-mix(in srgb, var(--warn) 70%, var(--ink)); border-color:var(--warn); }
+  .more { margin-top:10px; background:none; border:1px solid var(--ring); border-radius:7px;
+    color:var(--ink-2); font-size:13px; padding:6px 14px; cursor:pointer; }
+  .more:hover { background:var(--track); }
+
+  .hyg li { margin:4px 0; color:var(--ink-2); font-size:13.5px; }
+  .hyg b { color:var(--ink); }
+  .warnink { color:var(--serious); font-weight:600; }
+  code { font-family:ui-monospace,"SF Mono",Menlo,monospace; font-size:12px; color:var(--ink-2);
+    background:var(--track); padding:1px 5px; border-radius:4px; }
+  footer { margin-top:34px; color:var(--muted); font-size:12.5px; border-top:1px solid var(--grid); padding-top:14px; }
+  footer p { margin:6px 0; max-width:95ch; }
+  a { color:var(--blue); text-decoration:none; }
+  a:hover { text-decoration:underline; }
+  .totalline { font-size:13px; color:var(--ink-2); margin-top:12px; padding-top:10px; border-top:1px solid var(--grid); }
+  .totalline b { color:var(--ink); }
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <h1>ShopView QA Team Dashboard</h1>
+    <span class="asof">Interactive snapshot · Wed 9 Jul 2026 · project SV · 650 QA-related tickets (last 35 days)</span>
+  </header>
+  <p class="sub">Filter by QA member, epic, and time period — every number, chart, and table below
+  recomputes. Who-did-what comes from the <b>QAComplete_&lt;name&gt;</b> labels first, then the
+  <b>QA&nbsp;Assignee</b> field; <b>*_inprogress</b> labels are detected automatically once the team
+  starts using them.</p>
+
+  <div class="filters" id="filters">
+    <div class="f"><label for="fq">QA member</label>
+      <select id="fq"><option value="">All members</option></select></div>
+    <div class="f"><label for="fe">Epic</label>
+      <select id="fe"><option value="">All epics</option></select></div>
+    <div class="f"><label for="ft">Time period</label>
+      <select id="ft">
+        <option value="week" selected>This week (since 6 Jul)</option>
+        <option value="today">Today (9 Jul)</option>
+        <option value="month">This month (July)</option>
+        <option value="all">Last 35 days</option>
+      </select></div>
+    <div class="f"><label for="fy">Ticket type</label>
+      <select id="fy"><option value="">All types</option><option>Bug</option>
+      <option>Story Defect</option><option>Story</option><option>Task</option></select></div>
+    <div class="f"><label for="fs">Search table</label>
+      <input type="search" id="fs" placeholder="key or words…"></div>
+    <button class="reset" id="freset">Reset</button>
+    <span class="fcount" id="fcount"></span>
+  </div>
+
+  <div class="eyebrow">Snapshot for this selection</div>
+  <div class="cards kpis" id="kpis"></div>
+
+  <div class="eyebrow">Per QA member</div>
+  <div class="cards two">
+    <div class="card">
+      <h2>QA completed in the period</h2>
+      <p class="note" id="cdone-note"></p>
+      <div class="rows" id="cdone"></div>
+    </div>
+    <div class="card">
+      <h2>In testing right now</h2>
+      <p class="note">Status TESTING QA / TESTING STAGE — regardless of time period</p>
+      <div class="rows" id="ctest"></div>
+    </div>
+  </div>
+
+  <div class="cards two" style="margin-top:14px">
+    <div class="card">
+      <h2>Bugs reported in the period</h2>
+      <p class="note" id="cbugs-note"></p>
+      <div class="rows" id="cbugs"></div>
+    </div>
+    <div class="card">
+      <h2>Waiting in queue + rejected</h2>
+      <p class="note">Current statuses, split per attributed member</p>
+      <div class="rows" id="cqueue"></div>
+    </div>
+  </div>
+
+  <div class="eyebrow">Epic × QA member matrix</div>
+  <div class="card">
+    <div class="mtabs" id="mtabs"></div>
+    <div class="mwrap"><table class="matrix" id="matrix"></table></div>
+    <p class="seg-note">Cell shade = count (darker = more). Rows sorted by total. Respects the
+    member / type filters above; the metric decides how time applies.</p>
+  </div>
+
+  <div class="eyebrow">Label hygiene — fix these to make the tracking reliable</div>
+  <div class="card hyg">
+    <ul>
+      <li><b>0 tickets</b> carry a <code>*_inprogress</code> label so far — the convention is brand
+      new. Recommended standard: <code>&lt;Firstname&gt;&lt;Lastname&gt;_inprogress</code>
+      (e.g. <code>BilalMuzamil_inprogress</code>), one per ticket, removed when testing ends.
+      This page auto-detects any spelling that ends in <code>_inprogress</code>.</li>
+      <li><span class="warnink">11 tickets</span> have a bare <code>QAcomplete</code> label with
+      <b>no name</b> — they credit nobody. Standard: <code>QAComplete_Firstname_Lastname</code>.</li>
+      <li><span class="warnink">2 tickets</span> use lowercase <code>QAcomplete_Ahtasham_Amjad</code>
+      while everyone else uses <code>QAComplete_…</code> — pick one casing (this page tolerates both;
+      Jira's label autocomplete does not).</li>
+      <li><span class="warnink">55 tickets</span> have a <code>QAComplete_&lt;name&gt;</code> label whose
+      person is <b>not</b> in the QA Assignee field. This page trusts the label; in Jira, keep both in
+      sync or gadgets keyed on QA Assignee will disagree with label counts.</li>
+      <li>Label totals found (35 days): Mudassir 75 · Viktoria 39 · Nebojsa 18 · Ayesha 4 ·
+      Stefan 3 · Ahtasham 2 · Nemanja 2 · Dusan 1. Bilal has <b>0</b> QAComplete labels —
+      his completions are visible only via QA Assignee + status transitions.</li>
+    </ul>
+  </div>
+
+  <div class="eyebrow">Tickets in this selection</div>
+  <div class="card">
+    <table class="tix" id="tix"></table>
+    <button class="more" id="more" hidden>Show 60 more</button>
+  </div>
+
+  <footer>
+    <p><b>Recreate these filters in Jira</b> (add to the saved filters from the blueprint):
+    per-member in-progress <code>labels = "BilalMuzamil_inprogress"</code> ·
+    per-member completed <code>labels in ("QAComplete_Ayesha_Khan") OR ("QA Assignee" = "Ayesha Khan" AND status CHANGED FROM ("TESTING QA","TESTING STAGE") TO ("Ready for Production","Done") AFTER startOfWeek())</code> ·
+    per-epic <code>parentEpic = SV-7388</code> (works for stories AND their story defects) ·
+    combined <code>parentEpic = SV-7388 AND labels = "QAComplete_Mudassir_Qamar"</code>.
+    In a dashboard, add an <b>Epic</b> quick-filter per epic and use Two-Dimensional gadgets
+    (Epic × Status) per member.</p>
+    <p><b>Definitions.</b> "QA completed" = ticket reached the Done status category in the period,
+    credited to the <code>QAComplete_*</code> label person when present, else the QA Assignee.
+    "In testing", "waiting", "rejected" are current statuses (Jira can't time-bucket label changes).
+    A ticket credited to two people counts once for each.</p>
+    <p><b>Snapshot as of 9 Jul 2026</b> — ask me to refresh it any time; the Jira-native version
+    stays live on its own.</p>
+  </footer>
+</div>
+
+<script>
+const DATA = "__DATA__";
+const T = DATA.tickets, EPICS = DATA.epics;
+const QA = ["Bilal Muzamil","Ayesha Khan","Mudassir Qamar","Viktoria Videnovic","Nebojsa Glavinic","Ahtasham Amjad"];
+const START = { today:"2026-07-09", week:"2026-07-06", month:"2026-07-01", all:"2026-06-04" };
+const TESTING = new Set(["TESTING QA","TESTING STAGE"]);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const epShort = k => !k ? "No epic" : (EPICS[k]||k).replace(/^\[ARCHIVED\]\s*/,"");
+
+// attribution: completion credit = label people if any, else QA Assignee
+T.forEach(t => {
+  t.credit = t.lc.length ? t.lc : t.qa;
+  t.people = [...new Set([...t.qa, ...t.lc, ...t.lip])];
+});
+
+const $ = id => document.getElementById(id);
+const state = { q:"", e:"", t:"week", y:"", s:"", shown:60, metric:"done", sort:["up",-1] };
+
+// populate selects
+{
+  const fq = $("fq");
+  const others = [...new Set(T.flatMap(t=>t.people))].filter(p=>!QA.includes(p)).sort();
+  [...QA, ...others].forEach(p => fq.add(new Option(p,p)));
+  const fe = $("fe");
+  const counts = {};
+  T.forEach(t => { const k=t.ep||"NONE"; counts[k]=(counts[k]||0)+1; });
+  Object.keys(counts).sort((a,b)=>counts[b]-counts[a]).forEach(k => {
+    fe.add(new Option(`${epShort(k==="NONE"?null:k)} (${counts[k]})`, k));
+  });
+}
+
+function inPeriod(d){ return d && d >= START[state.t]; }
+function matchBase(t){           // person + epic + type (time applied per-metric)
+  if (state.q && !(t.people.includes(state.q) || t.rep===state.q)) return false;
+  if (state.e && (t.ep||"NONE")!==state.e) return false;
+  if (state.y && t.ty!==state.y) return false;
+  return true;
+}
+function personsOf(list){        // count per person incl. unattributed bucket
+  const c = {}; QA.forEach(p=>c[p]=0); c["(unattributed)"]=0;
+  list.forEach(([t,who]) => {
+    const ps = who.length?who:["(unattributed)"];
+    ps.forEach(p => { if(!(p in c)) c[p]=0; c[p]++; });
+  });
+  return c;
+}
+function bars(el, counts, cls, dimKeys){
+  const entries = Object.entries(counts).filter(([k,v]) => v>0 || QA.includes(k));
+  entries.sort((a,b)=> b[1]-a[1] || a[0].localeCompare(b[0]));
+  const max = Math.max(1, ...entries.map(e=>e[1]));
+  el.innerHTML = entries.map(([k,v]) => `
+    <div class="row" title="${esc(k)}: ${v}">
+      <span class="name ${QA.includes(k)?"":"dim"}">${esc(k)}</span>
+      <span class="track">${v?`<span class="fill ${QA.includes(k)?cls:"dim"}" style="width:${(v/max*100).toFixed(1)}%"></span>`:""}</span>
+      <span class="val">${v}</span>
+    </div>`).join("") || `<p class="note">Nothing in this selection.</p>`;
+}
+
+const METRICS = {
+  done:  { label:"QA completed",  pick:t=>matchBase(t)&&t.dn&&inPeriod(t.dn), who:t=>t.credit },
+  test:  { label:"In testing now",pick:t=>matchBase(t)&&TESTING.has(t.st),    who:t=>[...new Set([...t.qa,...t.lip])] },
+  bugs:  { label:"Bugs reported", pick:t=>matchBase(t)&&(t.ty==="Bug"||t.ty==="Story Defect")&&inPeriod(t.cr), who:t=>[t.rep].filter(Boolean) },
+  all:   { label:"All activity",  pick:t=>matchBase(t)&&inPeriod(t.up),       who:t=>t.people }
+};
+
+function render(){
+  const pLabel = {today:"today",week:"this week",month:"in July",all:"in 35 days"}[state.t];
+  const base = T.filter(matchBase);
+  const waiting = base.filter(t=>t.st==="Ready for QA");
+  const testing = base.filter(t=>TESTING.has(t.st));
+  const staging = base.filter(t=>t.st==="Merged to Staging");
+  const rejected = base.filter(t=>t.st==="REJECTED FROM TESTING");
+  const done = base.filter(t=>t.dn&&inPeriod(t.dn));
+  const bugs = base.filter(t=>(t.ty==="Bug"||t.ty==="Story Defect")&&inPeriod(t.cr));
+
+  $("kpis").innerHTML = [
+    ["Waiting for QA", waiting.length, "status Ready for QA"],
+    ["In testing now", testing.length, "TESTING QA + STAGE"],
+    ["Awaiting staging check", staging.length, "Merged to Staging"],
+    [`QA completed ${pLabel}`, done.length, "reached Done category"],
+    ["Rejected (current)", rejected.length, "REJECTED FROM TESTING"],
+    [`Bugs reported ${pLabel}`, bugs.length, "by reporter, created date"],
+  ].map(([l,v,h])=>`<div class="card stat"><div class="label">${l}</div><div class="value">${v}</div><div class="hint">${h}</div></div>`).join("");
+
+  $("cdone-note").textContent = `${done.length} tickets reached Done ${pLabel} — credit: QAComplete label, else QA Assignee`;
+  bars($("cdone"), personsOf(done.map(t=>[t,t.credit])), "b");
+  bars($("ctest"), personsOf(testing.map(t=>[t,[...new Set([...t.qa,...t.lip])]])), "a");
+  $("cbugs-note").textContent = `${bugs.length} bugs / story defects created ${pLabel}, by reporter`;
+  bars($("cbugs"), personsOf(bugs.map(t=>[t,[t.rep].filter(Boolean)])), "b");
+  const queueMix = {};
+  waiting.forEach(t=>{ (t.people.length?t.people:["(queue — nobody yet)"]).forEach(p=>queueMix[p]=(queueMix[p]||0)+1); });
+  rejected.forEach(t=>{ (t.people.length?t.people:["(unattributed)"]).forEach(p=>queueMix["⚠ rejected: "+p]=(queueMix["⚠ rejected: "+p]||0)+1); });
+  bars($("cqueue"), queueMix, "b");
+
+  renderMatrix(); renderTable();
+}
+
+function renderMatrix(){
+  $("mtabs").innerHTML = Object.entries(METRICS).map(([k,m]) =>
+    `<button class="mtab" aria-pressed="${state.metric===k}" data-m="${k}">${m.label}</button>`).join("");
+  $("mtabs").querySelectorAll(".mtab").forEach(b=>b.onclick=()=>{state.metric=b.dataset.m; renderMatrix();});
+  const M = METRICS[state.metric];
+  const rows = {};
+  T.filter(M.pick).forEach(t => {
+    const ek = t.ep||"NONE";
+    rows[ek] = rows[ek] || {};
+    const ps = M.who(t); (ps.length?ps:["(unattributed)"]).forEach(p=>{
+      const col = QA.includes(p)?p:"(unattributed)";
+      rows[ek][col]=(rows[ek][col]||0)+1;
+    });
+  });
+  const cols = [...QA, "(unattributed)"];
+  const eks = Object.keys(rows).sort((a,b)=>{
+    const s=o=>Object.values(rows[o]).reduce((x,y)=>x+y,0); return s(b)-s(a);
+  });
+  let max=1; eks.forEach(e=>cols.forEach(c=>{max=Math.max(max,rows[e][c]||0);}));
+  const short = p => p==="(unattributed)"?"Unattrib.":p.split(" ")[0];
+  let h = `<tr><th>Epic</th>${cols.map(c=>`<th title="${esc(c)}">${esc(short(c))}</th>`).join("")}<th class="tot">Total</th></tr>`;
+  eks.forEach(e=>{
+    const tot = Object.values(rows[e]).reduce((x,y)=>x+y,0);
+    h += `<tr><td class="ep" title="${esc(e==="NONE"?"No epic":e+" — "+epShort(e))}">${esc(epShort(e==="NONE"?null:e))}</td>`;
+    h += cols.map(c=>{
+      const v=rows[e][c]||0;
+      const op=v? (0.12+0.55*v/max).toFixed(2) : 0;
+      return `<td><span class="cell" style="background:rgba(var(--cellmax),${op})">${v||"·"}</span></td>`;
+    }).join("");
+    h += `<td class="tot">${tot}</td></tr>`;
+  });
+  if(!eks.length) h += `<tr><td class="ep">Nothing in this selection.</td></tr>`;
+  $("matrix").innerHTML = h;
+}
+
+function statusChip(t){
+  if (t.cat==="Done") return `<span class="chip done">${esc(t.st)}</span>`;
+  if (TESTING.has(t.st)) return `<span class="chip test">${esc(t.st)}</span>`;
+  if (t.st==="REJECTED FROM TESTING") return `<span class="chip rej">Rejected</span>`;
+  if (t.st==="Ready for QA") return `<span class="chip wait">Ready for QA</span>`;
+  return `<span class="chip">${esc(t.st)}</span>`;
+}
+function renderTable(){
+  const M = METRICS[state.metric];
+  let list = T.filter(t=>matchBase(t)&&inPeriod(t.up));
+  if (state.s){ const s=state.s.toLowerCase();
+    list = list.filter(t=>t.k.toLowerCase().includes(s)||t.s.toLowerCase().includes(s)||epShort(t.ep).toLowerCase().includes(s)); }
+  const [col,dir]=state.sort;
+  list.sort((a,b)=>{ const x=a[col]??"", y=b[col]??""; return (x<y?-1:x>y?1:0)*dir; });
+  $("fcount").textContent = `${list.length} tickets match`;
+  const cols=[["k","Ticket"],["s","Summary"],["ep","Epic"],["st","Status"],["ty","Type"],["up","Updated"]];
+  let h=`<tr>${cols.map(([c,l])=>`<th data-c="${c}">${l}${state.sort[0]===c?(dir>0?" ↑":" ↓"):""}</th>`).join("")}<th>QA</th></tr>`;
+  list.slice(0,state.shown).forEach(t=>{
+    const who=[...new Set([...t.credit,...t.lip])];
+    h+=`<tr><td class="k"><a href="https://shopview.atlassian.net/browse/${t.k}" target="_blank" rel="noopener">${t.k}</a></td>
+    <td>${esc(t.s)}</td><td>${esc(epShort(t.ep))}</td><td>${statusChip(t)}${t.sv?' <span class="chip">Staging_Verified</span>':""}${t.rj?' <span class="chip rej">Rejected_Staging</span>':""}</td>
+    <td>${esc(t.ty)}</td><td>${t.up}</td>
+    <td>${who.map(p=>`<span class="chip">${esc(p.split(" ")[0])}${t.lip.includes(p)?" ⏳":""}</span>`).join("")||'<span class="chip">—</span>'}</td></tr>`;
+  });
+  $("tix").innerHTML=h;
+  $("tix").querySelectorAll("th[data-c]").forEach(th=>th.onclick=()=>{
+    const c=th.dataset.c; state.sort=[c, state.sort[0]===c?-state.sort[1]:(c==="up"?-1:1)]; renderTable(); });
+  $("more").hidden = list.length<=state.shown;
+  $("more").onclick=()=>{ state.shown+=60; renderTable(); };
+}
+
+["fq","fe","ft","fy"].forEach(id=>$(id).onchange=e=>{
+  state[{fq:"q",fe:"e",ft:"t",fy:"y"}[id]]=e.target.value; state.shown=60; render(); });
+$("fs").oninput=e=>{ state.s=e.target.value.trim(); renderTable(); };
+$("freset").onclick=()=>{ state.q=state.e=state.y=state.s=""; state.t="week"; state.shown=60;
+  ["fq","fe","fy"].forEach(i=>$(i).value=""); $("ft").value="week"; $("fs").value=""; render(); };
+render();
+</script>
