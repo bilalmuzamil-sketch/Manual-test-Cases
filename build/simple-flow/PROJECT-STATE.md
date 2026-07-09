@@ -2,7 +2,10 @@
 
 > **THIS IS THE CANONICAL STATE DOC for the Simple Flow project.** It is a single
 > authoritative snapshot so the project can be resumed with zero re-discovery.
-> **Last updated:** 2026-07-09 (Milos Round-2 answers applied + pushed to TestRail).
+> **Last updated:** 2026-07-09 (Milos Round-2 applied + pushed to TestRail; then
+> latest spec/design/epic batch ingested — see §5.E. NEW: the Epic reports Stories
+> 7/8/9/14 are now BUILT ⇒ a targeted re-VIU on sv7301 is the next action; bug
+> drafts refreshed to 5 tickets after BUG-3 + BUG-9 closed).
 > **Source of truth for per-case status:** `SimpleFlow_Blockers_Tracker.md`/`.xlsx`
 > (regenerate with `python3 build/simple-flow/gen_blockers.py`). All counts below
 > are cited from that tracker — do not invent numbers; re-read the tracker if in doubt.
@@ -26,14 +29,26 @@ adds the 2026-07-08 change-log batch: sell-price-at-save, receive-screen parity,
 etc.). 17 stories: S1–S15 = SV-7696..SV-7710, S16 = SV-7870, S17 = SV-7876. The
 reconciled authoritative inputs are the **V2.4 spec doc** + the **2026-07-08 design
 bundle** (last-update-wins over the earlier round-1 Milos answer sheet).
+**2026-07-09 latest-batch ingest:** the newly uploaded spec doc is the **SAME V2.4**
+(no new version — only HTML-parse artifacts + minor non-material Story-3 clarifying
+phrases; `requirements.md` needs no revision). The **design bundle is a refresh**
+(design-latest-catalog) that surfaces one open tension: a completion screenshot
+warns **"$0.00 sell price, no action needed to continue"**, which conflicts with
+spec S5-R1 "sell mandatory at save" (open Q — see §3/§5.E). Full assessment:
+`build/simple-flow/spec-epic-diff-latest.md`.
 
 **Overall status:** Cases **authored (162)** and **permissions applied (SV-8183)**.
 Deliverables regenerated (workbook, interim TestRail import, blockers tracker). VIU
-is **PARTIAL** (feature under active development). The **v2.4 reconciliation batch
-was pushed to TestRail** (18 updates + 2 adds). Remaining work is gated on: Milos
-Round-2 answers, dev fixes (BUG-11 + Stories 7/8/9/14), fresh QA cookies + role
-accounts, and 7 Jira bug drafts awaiting filing. **Do NOT write to TestRail without
-explicit user permission.**
+is **PARTIAL** (feature under active development). The **v2.4 reconciliation batch +
+Milos Round-2 batch were pushed to TestRail** (18 updates + 2 adds; then 5 R2
+updates). **BIG UPDATE (2026-07-09 epic ingest):** the Epic's "What's Been Built"
+reports **Stories 7 / 8 / 9 / 14 as now BUILT** on sv7301 (previously marked
+DEV-NOT-BUILT) ⇒ **~35 cases now likely VIU-able and need a targeted re-VIU on
+sv7301** (list in §5.E). Remaining work is gated on: **that re-VIU** (with fresh QA
+cookies), dev fix BUG-11, two spec-vs-build conflicts to reconcile (dummy-PO;
+"Waiting on Receive" label), a 2nd/3rd role account, and the **5** refreshed Jira
+bug drafts awaiting filing. **Do NOT write to TestRail without explicit user
+permission.**
 
 ---
 
@@ -156,7 +171,8 @@ without See Financial Data) → SF-PERM-09/10; Dev/PO ruling → the 6 BUG/RULIN
 - `build/simple-flow/finding-reclassification.md` — shortcut-principle reclassification of BUG-3/4/9/10/11 + BE-enforcement findings.
 - `build/simple-flow/bugs-log.md` — all VIU bugs/deviations (BUG-1..BUG-11 + GAP-A/B).
 - `build/simple-flow/viu-findings.md` — full VIU evidence + endpoints; `build/simple-flow/viu-evidence/` — screenshots.
-- `build/simple-flow/jira-bug-drafts.md` — 7 ready-to-file Jira bug tickets (see §5).
+- `build/simple-flow/jira-bug-drafts.md` — **5** ready-to-file Jira bug tickets (see §5.B; refreshed 2026-07-09 after BUG-3 + BUG-9 closed).
+- `build/simple-flow/spec-epic-diff-latest.md` — 2026-07-09 latest spec/design/epic ingest + diff + re-VIU proposal (source of §5.E); companions `spec-latest-source.md`, `epic-content.md` (verbatim epic), `design-latest-catalog.md`.
 
 **Milos (PO) question rounds:**
 - Round 1 (answered): `build/simple-flow/OpenQuestions-for-Milos.md` / `.xlsx` (11 Q); answers `milos-answers-source.md` / `.csv` / `.xlsx`; mapping `milos-answers-mapping.md`.
@@ -194,17 +210,17 @@ source `milos-round2-answers-source.csv`/`.xlsx`):** 5 cases pushed live to Test
   settles SF-PERM-02/04/07/08 + SF-REV-09 as UI-PASS. **BUG-6 / BUG-7 remain OPEN fix
   tickets.**
 
-**B. 7 Jira bug drafts pending Atlassian (`jira-bug-drafts.md`, NOT yet filed — no
+**B. 5 Jira bug drafts pending Atlassian (`jira-bug-drafts.md`, NOT yet filed — no
 Atlassian MCP in this env; file from the chat app). All under epic SV-7301,
-Product Area = Work Orders (`customfield_10153` id 10120):**
-1. TICKET 1 (BUG-3, Medium) — Mark-Reviewed dialog missing optional review-note field.
-2. TICKET 2 (BUG-5, High) — reviewer can sign off own WO (reviewer≠completer not enforced).
-3. TICKET 3 (BUG-6 + BUG-7, Medium) — WO completion & review sign-off enforced UI-only, bypassable via API.
-4. TICKET 4 (BUG-8, Medium) — required completion fields (mileage/VIN/engine hours) UI-only, not BE-enforced.
-5. TICKET 5 (BUG-9 / GAP-A, Medium) — vendorless "New Part Request" requires Category (not in spec) + doesn't enforce Sell Price.
-6. TICKET 6 (BUG-11, High) — receiving a WO-originated PO returns HTTP 500.
-7. TICKET 7 (GAP-B, Medium) — wrong first-use settings defaults (Auto-approve/Vendor-invoice).
-   - **Deliberately NOT filed:** BUG-1 (No-PO retained per V2.4 = build-lag note), BUG-2 (nice-to-have), BUG-4 & BUG-10 (EXPECTED under the shortcut rule).
+Product Area = Work Orders (`customfield_10153` id 10120). Refreshed 2026-07-09
+after Milos Round-2 (BUG-3 + BUG-9 closed):**
+1. TICKET 1 (BUG-5, High) — reviewer can sign off own WO (reviewer≠completer not enforced).
+2. TICKET 2 (BUG-6 + BUG-7, Medium) — WO completion & review sign-off enforced UI-only, bypassable via API. **Milos R2 Q5: UI gating = v1 pass; this is the OPEN fix ticket for the API gap.**
+3. TICKET 3 (BUG-8, Medium) — required completion fields (mileage/VIN/engine hours) UI-only, not BE-enforced.
+4. TICKET 4 (BUG-11, High) — receiving a WO-originated PO returns HTTP 500.
+5. TICKET 5 (GAP-B, Medium) — wrong first-use settings defaults (Auto-approve/Vendor-invoice).
+   - **CLOSED by Milos Round-2 (NOT filed):** BUG-3 (review-note descoped → intended v1, was TICKET 1); BUG-9 / GAP-A (vendorless Category-required / Sell-optional → intended v1, was TICKET 5).
+   - **Deliberately NOT filed (earlier):** BUG-1 (No-PO retained per V2.4 = build-lag note), BUG-2 (nice-to-have), BUG-4 & BUG-10 (EXPECTED under the shortcut rule).
 
 **C. Dev dependencies that gate the remaining VIU:**
 - **BUG-11 (HTTP 500 on WO-PO receive)** — blocks the entire WO receive round-trip; gates SF-COMP-13/19, SF-VAL-05/06, SF-PNFIX-02..06, SF-RCV-08, SF-VPART-07, SF-REV-04/14, SF-CORE-03..07. Highest-leverage single fix for the VIU-pending backlog.
@@ -213,6 +229,60 @@ Product Area = Work Orders (`customfield_10153` id 10120):**
 **D. QuickBooks parked:** all QB/inventory-integrity checks (SF-QB-03..08,
 SF-VMIS-03, SF-RCV-08) need QuickBooks/inventory back-end inspection — likely
 requires dev/QB access; parked until an inspection path is provided.
+
+**E. Latest spec/design/epic batch ingested (2026-07-09) — RE-VIU REQUIRED
+(full detail `spec-epic-diff-latest.md`):**
+
+The Epic "What's Been Built" reports **Stories 7 / 8 / 9 / 14 (+ 6 / 13) as BUILT**
+on sv7301, contradicting our last VIU (2026-07-08) which marked them DEV-NOT-BUILT.
+They were almost certainly **deployed since that pass**. **Do NOT flip any status
+until re-VIU confirms live (shared env).** ~35 VIU-Pending cases become likely
+VIU-able:
+
+- **Primary — 22 cases directly gated on Stories 7/8/9/14 (all VIU-Pending now):**
+  - Story 7 (PO multi-select): **SF-POSEL-01..06** (6)
+  - Story 8 (Bulk Receive page): **SF-BULK-01..10** (10)
+  - Story 9 (Apply invoice): **SF-INV-01, -02, -03** (3)
+  - Story 14 (Waiting on Parts/Receive column): **SF-WOP-01, -02, -03** (3)
+- **Secondary — ~13 dependents now reachable (vendor-assign / bulk surfaces exist):**
+  SF-VEND-01..05 (Story-13 assign-vendor + merge), SF-VMIS-03..07
+  (Vendor-Missing resolve/receive), SF-RCV-05, -06, -07, -08, -10, SF-PERM-03
+  (bulk-receive role gating), SF-QB-03 (both-surface pipeline; revisit
+  SF-QB-06/07/08). Also revisit VIU deviations #1 (Create-POs toggle, now reportedly
+  built → re-VIU SF-SET-08/-13) and #3 (review-note — already closed by Milos R2).
+
+**Two spec-vs-build CONFLICTS to flag / escalate (re-VIU + Milos/dev):**
+1. **Dummy PO vs shared WO PO.** Epic (3) says vendorless parts go on a **separate
+   no-vendor "Dummy" PO** with **Receive hidden** until a vendor is assigned. Spec
+   V2.4 (Story 6 / §4 / §6) says **NO dummy PO — the vendorless part goes on the
+   WO's normal PO, flagged Vendor Missing**. Our SF-VMIS-01/02 assert "on the WO's
+   PO, not a separate dummy PO" and SF-POSEL-05 asserts vendor-missing POs are
+   *selectable*; if the app shipped a separate dummy PO with Receive hidden, those
+   cases may FAIL. **Built app is ground truth for VIU** — re-VIU SF-VMIS-01/02,
+   SF-POSEL-05, SF-BULK-04/07, SF-VEND-*; escalate the terminology mismatch to
+   Milos/dev.
+2. **"Waiting on Receive" vs "Waiting on Parts" label.** Epic (5) calls the shipped
+   WO-list column **"Waiting on Receive"** and says it **replaces the old badge**;
+   spec + our cases (SF-WOP-*) call it **"Waiting on Parts"**. Confirm the live
+   column header and the replaces-badge behavior; update SF-WOP-01/02/03 wording to
+   the shipped label (last-update-wins → the built label).
+
+**F. Open items queued for the NEXT Milos/dev round (product decisions, not bugs):**
+1. **Dummy-PO vs shared-WO-PO terminology conflict** — does the shipped app place a
+   vendorless part on a **separate "Dummy" no-vendor PO** (Epic) or on the **WO's
+   own PO flagged Vendor Missing** (spec V2.4)? And is Receive **hidden** or
+   **disabled-but-shown** until a vendor is assigned? Needs a Milos/dev ruling to
+   settle the spec-vs-build wording (drives SF-VMIS-01/02, SF-POSEL-05).
+2. **"$0 sell price, no action needed" (design) vs "sell mandatory at save" (spec
+   S5-R1) tension** — the latest completion-design screenshot warns "$0.00 sell
+   price, no action needed to continue" (allows $0), while spec S5-R1 makes sell
+   mandatory at save. (Note: Milos R2 Q4 already ruled sell is NOT enforced on the
+   vendorless part-request form; this remaining tension is about the **completion /
+   receive** surface's $0-sell handling.) Confirm whether $0 sell is allowed at
+   completion. Drives SF-VAL-* / SF-VPART-*.
+3. **See-Financial-Data gate on vendorless part-add** — carried from Milos R2 Q4:
+   its "sell is mandatory" premise was overturned; whether a permission gate still
+   applies is open (SF-VPART-02, SF-PERM-09).
 
 ---
 
@@ -302,7 +372,24 @@ requires dev/QB access; parked until an inspection path is provided.
 ## 8. How to resume
 
 **Confirm the project first** (this workspace holds 3 projects) — instruction must
-target **Simple Flow**. Then, depending on what lands:
+target **Simple Flow**.
+
+**>>> NEXT ACTION (as of 2026-07-09): a targeted re-VIU on sv7301 with FRESH
+cookies.** The Epic reports Stories 7/8/9/14 (+6/13) now BUILT (§5.E), so:
+1. Get fresh sv7301 cookies (admin + tech) into `/tmp` and rebuild the MITM bridge
+   (Chromium can't TLS the egress proxy directly; boot2 hydration; tools in
+   `/tmp/simple-flow/tools/`).
+2. Re-VIU the **22 primary** cases first — SF-POSEL-01..06, SF-BULK-01..10,
+   SF-INV-01..03, SF-WOP-01..03 — then the **~13 secondary** — SF-VEND-*,
+   SF-VMIS-03..07, SF-RCV-05..08/10, SF-PERM-03, SF-QB-03.
+3. While there, resolve the **two conflicts** (dummy-PO shape; "Waiting on Receive"
+   vs "Waiting on Parts" label — §5.E) and re-check VIU-deviation #1 (Create-POs
+   toggle) on SF-SET-08/-13.
+4. **Do NOT flip any `viu_status` until confirmed live** (shared env). After
+   confirmation, update `cases/*.json`, re-run `gen_blockers.py` + `gen_import.py`,
+   emit an ID-matched `gen_update.py` file, get user approval, then push.
+
+**Other resume paths (as inputs land):**
 
 **When Milos answers Round-2 (`OpenQuestions-for-Milos-Round2.md`):**
 1. Record answers verbatim (new `milos-answers-round2-source.*`) and map them in a

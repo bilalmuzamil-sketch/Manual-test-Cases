@@ -4,20 +4,37 @@
 > Atlassian/Jira create-issue tool surfaced at run time; only GitHub tools were
 > available).** File these via your chat app where Atlassian IS connected.
 >
-> **THIS IS THE CURRENT RECONCILED BUG SET (2026-07-08)** — it supersedes the
-> earlier 3-draft version. The set changed after the V2.4 spec, Milos answers, and
-> the shortcut-principle reclassification work.
+> **THIS IS THE CURRENT RECONCILED BUG SET (2026-07-09, post-Milos-Round-2)** — it
+> supersedes the earlier 7-draft version. Two tickets were CLOSED after Milos's
+> Round-2 answers (see "Recently closed" below); the set is now **5 tickets**.
 >
-> Source of truth: `build/simple-flow/bugs-log.md`,
+> Source of truth: `build/simple-flow/bugs-log.md`, `milos-round2-mapping.md`,
 > `finding-reclassification.md`, `contradiction-resolution.md`,
 > `spec-change-diff.md`, `viu-findings.md`.
->
-> **Deliberately NOT filed** (per reconciliation): **BUG-1** (No-PO path retained
-> per V2.4 = build-lag note only), **BUG-2** (Save-always-enabled = nice-to-have),
-> **BUG-4** and **BUG-10** (both EXPECTED under the Simple Flow shortcut rule — a
-> skipped step that still reaches the same end state with no error/corruption).
 
-## Common fields (apply to all 7 tickets)
+## Recently CLOSED — do NOT file (Milos Round-2, 2026-07-09)
+
+- **BUG-3 (Mark-Reviewed review-note field)** — **CLOSED / NOT A BUG.** Milos
+  descoped the optional review note; v1 is VIN-only *by design* ("it is a design
+  issue which I removed from the design yesterday"). Under last-update-wins this
+  supersedes the 2026-07-08 design bundle that had restored the note. SF-REV-10
+  expected updated to VIN-only (matches live). Was TICKET 1.
+- **BUG-9 / GAP-A (vendorless "New Part Request" Category-required / Sell optional)**
+  — **CLOSED / INTENDED for v1.** Milos ruled the current build behaviour is
+  expected: **Category IS required** and **Sell Price is NOT enforced**. Supersedes
+  V2.4 S5-R1. SF-VPART-01/02 expected updated accordingly. Was TICKET 5.
+  *(Follow-up, NOT a bug: whether a See-Financial-Data permission gate still applies
+  to vendorless part-add is an open product item — its "sell is mandatory" premise
+  was overturned by this ruling.)*
+
+## Still deliberately NOT filed (from earlier reconciliation)
+
+- **BUG-1** (No-PO path retained per V2.4 = build-lag note only).
+- **BUG-2** (Save-always-enabled = nice-to-have).
+- **BUG-4** and **BUG-10** (both EXPECTED under the Simple Flow shortcut rule — a
+  skipped step that still reaches the same end state with no error/corruption).
+
+## Common fields (apply to all 5 tickets)
 
 - **Project:** ShopView — SV
 - **Issue type:** Bug
@@ -29,43 +46,7 @@
 
 ---
 
-## TICKET 1 (from BUG-3) — Priority: Medium
-
-**Summary:** Simple Mode: Mark-Reviewed dialog is missing the optional review-note field
-
-**Description:**
-
-*Summary of issue*
-The "Mark work order reviewed" confirmation dialog does not include the optional
-review-note field. The 2026-07-08 design bundle shows the dialog is meant to carry
-a VIN / Serial # (required) plus an optional review note; the live build exposes
-only the VIN field, so this is a build gap.
-
-*Simplified Steps to Reproduce*
-1. Enable 'Require Review Before Completion' in Work Order settings.
-2. Complete a work order so it moves to the "ready for review" state.
-3. Open the work order and click Mark Reviewed to open the confirm dialog.
-4. Look for a field to add an optional review note.
-
-*Expected*
-The Mark-Reviewed dialog shows VIN / Serial # (required) and an optional
-review-note field (`input_review_note`); a note can be typed and saved with the
-sign-off. (Per the 2026-07-08 design bundle "Mark work order reviewed" dialog and
-Story 16 R7/R10; last-update-wins makes the 07-08 design authoritative.)
-
-*Actual*
-The dialog exposes only the VIN field — there is no optional review-note field, so
-no note can be captured at sign-off.
-
-*Affected cases*
-SF-REV-10
-
-*Related*
-- Parent epic: SV-7301 (Simple Flow)
-
----
-
-## TICKET 2 (from BUG-5) — Priority: High
+## TICKET 1 (from BUG-5) — Priority: High
 
 **Summary:** Simple Mode: reviewer can sign off their own work order (reviewer ≠ completer not enforced)
 
@@ -101,7 +82,12 @@ SF-PERM-08 (also touches SF-PERM-04, SF-PERM-07, SF-REV-09)
 
 ---
 
-## TICKET 3 (from BUG-6 + BUG-7) — Priority: Medium
+## TICKET 2 (from BUG-6 + BUG-7) — Priority: Medium
+
+> **Milos Round-2 Q5 ruling (2026-07-09):** for v1 the permission cases **PASS on UI
+> gating** (the FE hides the button for the unauthorized role); this backend
+> non-enforcement is a **known API gap kept OPEN for a future fix**. Results are
+> recorded as "UI pass / API fail". This ticket IS that fix ticket.
 
 **Summary:** Simple Mode: work-order completion & review sign-off permissions enforced only in the UI, bypassable via API
 
@@ -110,7 +96,9 @@ SF-PERM-08 (also touches SF-PERM-04, SF-PERM-07, SF-REV-09)
 *Summary of issue*
 Role-gating of work-order completion and of review sign-off is only a front-end
 display gate — the backend does not enforce it, so a role without the permission
-(e.g. Technician) can complete a WO / sign off a review via the API.
+(e.g. Technician) can complete a WO / sign off a review via the API. Per the Milos
+Round-2 Q5 ruling, UI gating is accepted as the v1 pass criterion; this ticket
+tracks the backend enforcement gap to eventually fix.
 
 *Simplified Steps to Reproduce*
 1. Sign in as a role WITHOUT the completion permission (e.g. Technician; no
@@ -142,7 +130,7 @@ SF-PERM-06 (also touches SF-PERM-02, SF-PERM-07, SF-REV-09)
 
 ---
 
-## TICKET 4 (from BUG-8) — Priority: Medium
+## TICKET 3 (from BUG-8) — Priority: Medium
 
 **Summary:** Simple Mode: required completion fields (mileage / VIN / engine hours) enforced only in the UI wizard, not the backend
 
@@ -180,45 +168,7 @@ SF-VAL-01, SF-VAL-02, SF-VAL-03, SF-COMP-05 (also SF-COMP-16, SF-REV-03)
 
 ---
 
-## TICKET 5 (from BUG-9 / GAP-A) — Priority: Medium
-
-**Summary:** Simple Mode: vendorless "New Part Request" requires a Category (not in spec) and does not enforce Sell Price
-
-**Description:**
-
-*Summary of issue*
-The vendorless "New Part Request" sub-form requires a Category, which is not in the
-spec, and does NOT enforce Sell Price. V2.4 S5-R1 makes Sell Price the only
-mandatory financial field (validated inline at save), so the build is wrong vs V2.4.
-
-*Simplified Steps to Reproduce*
-1. Open a work order → /lines → New Line → give it a custom title.
-2. Click Save & Add Part → the "New Part Request" sub-form opens.
-3. Click Save with fields empty and read the inline errors.
-4. Fill only Description + Quantity + Sell Price (no Category) and click Save.
-
-*Expected*
-Per V2.4 S5-R1: Sell Price is the only mandatory financial field, validated inline
-at save; a part is requestable with description + quantity + sell price and no
-Category gate. A sell-only part is orderable from the line.
-
-*Actual*
-Empty-save flags "Description is a required field", "Quantity is a required field",
-and "Category is a required field" — Category blocks the save even though it is not
-in the spec. Sell Price is NOT flagged required (contrary to S5-R1). Adding a
-Category → 201 `POST /api/work-orders/part/make-request`.
-Evidence: `viu-evidence/VP-11-validation-empty.png`, `VP-13`, `VP-14`.
-
-*Affected cases*
-SF-VPART-01, SF-VPART-02 (see also SF-PERM-09 — for non-SFD roles the form
-correctly hides all financial fields, an FE gate, recorded for context)
-
-*Related*
-- relates to SV-7301 (Simple Flow) / V2.4 S5-R1
-
----
-
-## TICKET 6 (from BUG-11) — Priority: High
+## TICKET 4 (from BUG-11) — Priority: High
 
 **Summary:** Simple Mode: receiving a work-order-originated PO returns HTTP 500 (blocks the receive round-trip)
 
@@ -265,7 +215,7 @@ SF-REV-14, SF-CORE-03, SF-CORE-04, SF-CORE-05, SF-CORE-07
 
 ---
 
-## TICKET 7 (from GAP-B) — Priority: Medium
+## TICKET 5 (from GAP-B) — Priority: Medium
 
 **Summary:** Simple Mode: wrong first-use organization settings defaults (Auto-approve / Vendor-invoice)
 
@@ -294,3 +244,5 @@ SF-SET-08
 
 *Related*
 - relates to SV-7301 (Simple Flow) / §4 first-use defaults (Milos Q3)
+</content>
+</invoke>
