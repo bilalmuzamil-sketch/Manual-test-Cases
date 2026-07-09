@@ -1,0 +1,91 @@
+# Custom Roles — Role-API permission parent-gate / CRUD-cascade enforcement
+
+**Ticket:** parent Epic **SV-7388** (Custom Roles & Permissions). Specific bug key = **TBD** (not supplied; note it when filed). Related E2E bug-guards: **C26569–C26573**.
+**Type:** Backend bug re-verification (does the role create/update API enforce the permission parent-gate / CRUD-cascade rules server-side?).
+**Env:** STAGING — app `https://app.staging.shopview.com`, API `https://api.staging.shopview.com`. Org `d55bc308-e61a-438d-b5f1-c7a73c89d49f` (confirmed live). Auth: dev quick-login `{key:'admin'}` (org admin) gated by the SV-8182 staging cookie set — **auth OK** (LOGIN 200 / calls 200).
+**Date:** 2026-07-09.
+
+## The bug (as ticketed)
+- Endpoint (ticketed): `POST` (create) / `PUT` (update) `/api/organizations/{orgId}/roles`.
+- BUG (actual, reported): API returns **201 and persists invalid bundles verbatim** — a child without its parent (`workOrdersCreateAndEdit` without `workOrdersView`), `workOrdersDelete` without createEdit/view, or a parent-gated sub-toggle (`woReviewWorkOrders` / `woPickParts` / `woOrderParts`) with no parent WO area — no cascade, no 400.
+- EXPECTED (fix — EITHER contract acceptable): API should **auto-CASCADE** (granting a child auto-includes its parents: delete⇒createEdit⇒view) **OR REJECT with 400**.
+- Out of scope: `PARTS_DEPARTMENT` (UI-only toggle, no fePermission bundle).
+
+## Endpoint correction (important)
+The ticket names `POST/PUT /api/organizations/{orgId}/roles`, but that route is **GET-only** — `POST` there returns **405 Method Not Allowed (Allow: GET)**. The real role create/update endpoints are:
+- Create: `POST /api/roles`
+- Update: `PUT /api/roles/{id}`
+- Delete: `DELETE /api/roles/{id}` (204)
+- Read: `GET /api/organizations/{orgId}/roles` (list) · `GET /api/roles/{id}` (detail, returns `fe_permissions[]`)
+- Permission catalog (code→id map): `GET /api/fe-permissions`
+
+Valid create/update payload shape:
+```
+{ "name": "...", "description": "...", "organization": "<orgId>",
+  "cross_toggles": { "seeFinancialData": false, "seeApArData": false, "viewHistoryLogs": false },
+  "fe_permissions": [ "<permissionId>", ... ] }   // ids, not codes
+```
+(`description` is required on PUT; `cross_toggles` must be the object with those three keys.)
+
+## Probes run (each: POST/PUT the bundle → record HTTP status → GET the role back → record persisted permissions)
+
+| # | Scenario | Method | Sent fePermissions | HTTP status | Persisted on fetch-back | Outcome |
+|---|----------|--------|--------------------|-------------|-------------------------|---------|
+| a | child without parent | POST | `workOrdersCreateAndEdit` | **201** | `workOrdersCreateAndEdit`, **`workOrdersView`** | **AUTO-CASCADED** (parent added) |
+| b | delete without createEdit/view | POST | `workOrdersDelete` | **201** | `workOrdersDelete`, **`workOrdersCreateAndEdit`**, **`workOrdersView`** | **AUTO-CASCADED** (full chain added) |
+| c | gated sub-toggle, no parent area | POST | `woOrderParts` | **201** | `woOrderParts`, **`workOrdersView`** | **AUTO-CASCADED** (parent WO area added) |
+| c2 | gated sub-toggle, no parent area | POST | `woPickParts` | **201** | `woPickParts`, **`workOrdersView`** | **AUTO-CASCADED** (parent WO area added) |
+| d | update: create valid then drop parent | PUT | `workOrdersCreateAndEdit` (dropped `workOrdersView`) | **200** | `workOrdersCreateAndEdit`, **`workOrdersView`** | **AUTO-CASCADED** (view re-added) |
+| d2 | update: sub-toggle only | PUT | `woOrderParts` | **200** | `woOrderParts`, **`workOrdersView`** | **AUTO-CASCADED** (parent WO area added) |
+
+In every case the fetch-back showed the parent(s) **auto-added**. In NO case did the API persist the invalid bundle verbatim, and in NO case did it return 400 for the missing parent.
+
+## Verdict
+
+**FIXED — by CASCADE (not by reject).**
+
+The original bug (201 + invalid bundle persisted verbatim) **does NOT reproduce**. The API now **auto-cascades parents server-side** on both **create (`POST /api/roles`)** and **update (`PUT /api/roles/{id}`)**:
+- child ⇒ its View parent is added (`workOrdersCreateAndEdit` ⇒ `workOrdersView`);
+- `workOrdersDelete` ⇒ `workOrdersCreateAndEdit` ⇒ `workOrdersView` (full chain);
+- a parent-gated WO sub-toggle (`woOrderParts` / `woPickParts`) ⇒ its parent WO area (`workOrdersView`) is added.
+
+This satisfies the ticket's accepted fix contract (EITHER cascade OR reject → cascade was chosen). Behavior is **consistent across create and update**.
+
+### Note for the E2E bug-guards C26569–C26573
+Those guards assert **400 (reject)**. They will stay **red** — but **not because the bug is unfixed**. The backend implemented the **cascade** branch of the accepted contract instead of the **reject** branch, so a 201-with-parents-added is now correct. The guards should be **updated to assert the cascade outcome** (201 + parent(s) present on fetch-back) rather than a 400, OR the product decision to cascade-vs-reject should be reconfirmed and the guards realigned. This is a test-expectation mismatch, not a live defect.
+
+## Safety / cleanup
+All probe roles were named `ZZAUTOTEST …`. All **6** created roles were deleted (`DELETE /api/roles/{id}` → 204) and a follow-up list confirmed **0 `ZZAUTOTEST` roles remaining**. No existing/real roles were modified; the PUT test used a role created by this run. Cookies were kept in `/tmp` only.
+
+## Ready-to-post Jira comment
+
+```
+Re-verified on staging (build sv5319, org admin via API). Result: FIXED — by cascade.
+
+The reported behaviour (create/update returning 201 and persisting an invalid
+permission bundle verbatim) no longer reproduces. The role create and update APIs
+now auto-cascade parent permissions on the server:
+
+- Creating a role with "Work Orders: Create & Edit" but not "View" -> "View" is
+  auto-added on save.
+- Creating a role with "Work Orders: Delete" only -> "Create & Edit" and "View"
+  are both auto-added (full chain).
+- Creating a role with a Work-Order sub-toggle (e.g. Order Parts, Pick Parts) and
+  no Work-Order area -> the Work-Order "View" area is auto-added.
+- The same auto-cascade applies on update: removing "View" while keeping
+  "Create & Edit" simply re-adds "View".
+
+Verified across both create (POST) and update (PUT); in every case the saved role,
+when fetched back, contained the required parent permissions. No invalid bundle was
+ever persisted, and no 400 was returned.
+
+This matches the accepted fix (cascade OR reject); the cascade path was implemented.
+
+One follow-up for the automated bug-guards: they currently assert a 400 (reject
+outcome). Since the fix took the cascade path instead, those checks should be
+updated to assert the cascade result (save succeeds and the parent permissions are
+present afterwards) rather than a rejection — otherwise they will report red even
+though the behaviour is correct.
+
+Verified on staging by QA.
+```
