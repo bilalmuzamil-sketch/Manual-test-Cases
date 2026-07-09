@@ -97,6 +97,30 @@ for bug_id, _sev, _status, _desc, affects in BUG_REGISTER:
         CASE_TO_BUGS.setdefault(cid, []).append(bug_id)
 
 
+TESTRAIL_MAP_CSV = os.path.join(BASE, "testrail-id-map.csv")
+TESTRAIL_VIEW_URL = "https://shopview.testrail.io/index.php?/cases/view/%s"
+
+
+def load_testrail_map():
+    """sf_id -> TestRail numeric case_id (str). Column ID holds the case id."""
+    m = {}
+    with open(TESTRAIL_MAP_CSV, newline="") as f:
+        for row in csv.DictReader(f):
+            case_id = (row.get("ID") or row.get("testrail_case_id") or "").strip()
+            sf_id = (row.get("sf_id") or "").strip()
+            if sf_id and case_id:
+                m[sf_id] = case_id
+    return m
+
+
+def testrail_cells(sf_id, tr_map):
+    """Return (tr_id_display, tr_link_url) for a case; blanks if unmapped."""
+    cid = tr_map.get(sf_id)
+    if not cid:
+        return "", ""
+    return "C%s" % cid, TESTRAIL_VIEW_URL % cid
+
+
 def load_cases():
     cases = []
     for fn in gen_blockers.FILES:
@@ -125,6 +149,10 @@ def blocker_for(c):
 def main():
     cases = load_cases()
     assert len(cases) == 162, "expected 162 cases, got %d" % len(cases)
+
+    tr_map = load_testrail_map()
+    tr_blanks = [c["id"] for c in cases if c["id"] not in tr_map]
+    n_mapped = len(cases) - len(tr_blanks)
 
     # ---- recompute counts ----
     viu_counts = Counter(c.get("viu_status", "?") for c in cases)
@@ -172,8 +200,9 @@ def main():
     }
     SUB_FILL = {"reachable-now": "C6EFCE", "needs-data": "FFF2CC", "needs-account": "F4CCCC"}
 
-    STATUS_COLS = ["Case ID", "Area", "Title", "Priority", "VIU Status",
-                   "Blocker/Reason", "Notes"]
+    STATUS_COLS = ["TestRail ID", "TestRail Link", "SF ID (Case ID)", "Area",
+                   "Title", "Priority", "VIU Status", "Blocker/Reason", "Notes"]
+    LINK_FONT = Font(color="0563C1", underline="single")
 
     def style_header(ws, ncols, row=1):
         for col in range(1, ncols + 1):
@@ -237,6 +266,29 @@ def main():
     r += 1
     ss.cell(row=r, column=1, value="Current headline tally: VIU-Verified 112 / VIU-Pending 45 / Open-Question 5. "
                                    "DEV-NOT-BUILT is now 0 (Stories 7/8/9/14 confirmed built & VIU-verified).")
+    ss.cell(row=r, column=1).font = Font(italic=True)
+    r += 2
+
+    # TestRail mapping coverage
+    ss.cell(row=r, column=1, value="TestRail ID coverage")
+    ss.cell(row=r, column=1).font = Font(bold=True, size=12)
+    r += 1
+    ss.cell(row=r, column=1, value="Cases mapped to a TestRail ID")
+    ss.cell(row=r, column=2, value=n_mapped)
+    r += 1
+    ss.cell(row=r, column=1, value="Cases with NO TestRail ID (blank)")
+    ss.cell(row=r, column=2, value=len(tr_blanks))
+    if tr_blanks:
+        ss.cell(row=r, column=3, value="Blank: " + ", ".join(tr_blanks) +
+                " — add after the next TestRail sync (IDs not guessed).")
+        ss.cell(row=r, column=2).fill = PatternFill("solid", fgColor="FCE4D6")
+    else:
+        ss.cell(row=r, column=3, value="All authored cases have a TestRail ID (C<id>) + view link.")
+        ss.cell(row=r, column=2).fill = PatternFill("solid", fgColor="C6EFCE")
+    r += 1
+    ss.cell(row=r, column=1, value="Each status tab now carries: TestRail ID (C<id>) + a clickable "
+                                   "TestRail Link (https://shopview.testrail.io/index.php?/cases/view/<id>) "
+                                   "alongside the internal SF ID.")
     ss.cell(row=r, column=1).font = Font(italic=True)
     r += 2
 
@@ -329,6 +381,8 @@ def main():
             cols = STATUS_COLS[:-1] + [extra_col[0]] + [STATUS_COLS[-1]]
         ws.append(cols)
         style_header(ws, len(cols))
+        link_col = cols.index("TestRail Link") + 1
+        viu_col = cols.index("VIU Status") + 1
         for pc in rows:
             reason = pc["cat"]
             if pc["cat"] == "BLOCKED — VIU PENDING (QA)":
@@ -338,15 +392,20 @@ def main():
                 reason = "%s · %s" % (pc["cat"], pc["needs"])
             elif pc["cat"] == "BLOCKED — BUG/RULING":
                 reason = "%s · %s" % (pc["cat"], pc["needs"])
-            row = [pc["id"], pc["area"], pc["title"], pc["priority"], pc["viu"], reason]
+            tr_id, tr_link = testrail_cells(pc["id"], tr_map)
+            notes = pc["notes"]
+            if not tr_id:
+                notes = ("[No TestRail ID in map — add after next TestRail sync] " + notes).strip()
+            row = [tr_id, tr_link, pc["id"], pc["area"], pc["title"], pc["priority"],
+                   pc["viu"], reason]
             if extra_col:
                 row.append(extra_col[1](pc))
-            row.append(pc["notes"])
+            row.append(notes)
             ws.append(row)
         # style body
         ncols = len(cols)
         for ridx in range(2, len(rows) + 2):
-            vcell = ws.cell(row=ridx, column=5)  # VIU Status
+            vcell = ws.cell(row=ridx, column=viu_col)  # VIU Status
             vfill = VIU_FILL.get(vcell.value)
             for cidx in range(1, ncols + 1):
                 cell = ws.cell(row=ridx, column=cidx)
@@ -354,9 +413,14 @@ def main():
                 cell.border = BORDER
             if vfill:
                 vcell.fill = PatternFill("solid", fgColor=vfill)
+            lcell = ws.cell(row=ridx, column=link_col)
+            if lcell.value:
+                lcell.hyperlink = lcell.value
+                lcell.font = LINK_FONT
         # widths
-        base_w = {"Case ID": 13, "Area": 34, "Title": 55, "Priority": 10,
-                  "VIU Status": 14, "Blocker/Reason": 60, "Notes": 60}
+        base_w = {"TestRail ID": 12, "TestRail Link": 52, "SF ID (Case ID)": 16,
+                  "Area": 34, "Title": 55, "Priority": 10, "VIU Status": 14,
+                  "Blocker/Reason": 60, "Notes": 60}
         widths = [base_w.get(c, 30) for c in cols]
         set_widths(ws, widths)
         ws.freeze_panes = "A2"
@@ -381,27 +445,37 @@ def main():
     ws.cell(row=1, column=1).font = TITLE_FONT
     ws.append([])
     hdr_row = 3
-    dcols = ["Case ID", "Area", "Title", "Priority", "VIU Status", "BUG-#", "Notes"]
+    dcols = ["TestRail ID", "TestRail Link", "SF ID (Case ID)", "Area", "Title",
+             "Priority", "VIU Status", "BUG-#", "Notes"]
     for i, h in enumerate(dcols, start=1):
         ws.cell(row=hdr_row, column=i, value=h)
     style_header(ws, len(dcols), hdr_row)
     dev_rows = [pc for pc in per_case if pc["bugs"]]
     ridx = hdr_row + 1
     for pc in dev_rows:
-        ws.cell(row=ridx, column=1, value=pc["id"])
-        ws.cell(row=ridx, column=2, value=pc["area"])
-        ws.cell(row=ridx, column=3, value=pc["title"])
-        ws.cell(row=ridx, column=4, value=pc["priority"])
-        ws.cell(row=ridx, column=5, value=pc["viu"])
-        ws.cell(row=ridx, column=6, value=", ".join(pc["bugs"]))
-        ws.cell(row=ridx, column=7, value=pc["notes"])
+        tr_id, tr_link = testrail_cells(pc["id"], tr_map)
+        notes = pc["notes"]
+        if not tr_id:
+            notes = ("[No TestRail ID in map — add after next TestRail sync] " + notes).strip()
+        ws.cell(row=ridx, column=1, value=tr_id)
+        lcell = ws.cell(row=ridx, column=2, value=tr_link)
+        if tr_link:
+            lcell.hyperlink = tr_link
+            lcell.font = LINK_FONT
+        ws.cell(row=ridx, column=3, value=pc["id"])
+        ws.cell(row=ridx, column=4, value=pc["area"])
+        ws.cell(row=ridx, column=5, value=pc["title"])
+        ws.cell(row=ridx, column=6, value=pc["priority"])
+        ws.cell(row=ridx, column=7, value=pc["viu"])
+        ws.cell(row=ridx, column=8, value=", ".join(pc["bugs"]))
+        ws.cell(row=ridx, column=9, value=notes)
         vfill = VIU_FILL.get(pc["viu"])
         for cidx in range(1, len(dcols) + 1):
             cell = ws.cell(row=ridx, column=cidx)
             cell.alignment = WRAP
             cell.border = BORDER
         if vfill:
-            ws.cell(row=ridx, column=5).fill = PatternFill("solid", fgColor=vfill)
+            ws.cell(row=ridx, column=7).fill = PatternFill("solid", fgColor=vfill)
         ridx += 1
 
     # --- Bug register block ---
@@ -442,7 +516,7 @@ def main():
                   "BUG-4 and BUG-10 are reclassified EXPECTED under the shortcut principle.")
     ws.cell(row=ridx, column=1).font = Font(italic=True)
 
-    set_widths(ws, [13, 12, 40, 70, 40])
+    set_widths(ws, [12, 52, 16, 34, 55, 10, 14, 14, 60])
     ws.freeze_panes = "A4"
 
     # ================= 6. TestRail Sync Status =================
@@ -507,15 +581,20 @@ def main():
     # ---------------- CSV mirror (flat, all cases) ----------------
     with open(OUT_CSV, "w", newline="") as f:
         w = csv.writer(f)
-        w.writerow(["Case ID", "Area", "Title", "Priority", "VIU Status",
+        w.writerow(["TestRail ID", "TestRail Link", "SF ID (Case ID)", "Area",
+                    "Title", "Priority", "VIU Status",
                     "Blocker Category", "VIU Sub-bucket", "Who Unblocks",
                     "What's Needed", "BUG-#", "Notes"])
         for pc in per_case:
-            w.writerow([pc["id"], pc["area"], pc["title"], pc["priority"], pc["viu"],
+            tr_id, tr_link = testrail_cells(pc["id"], tr_map)
+            notes = pc["notes"]
+            if not tr_id:
+                notes = ("[No TestRail ID in map — add after next TestRail sync] " + notes).strip()
+            w.writerow([tr_id, tr_link, pc["id"], pc["area"], pc["title"], pc["priority"], pc["viu"],
                         pc["cat"], pc["sub"] if pc["sub"] != "—" else "",
                         pc["owner"] if pc["owner"] != "—" else "",
                         pc["needs"] if pc["needs"] != "None — VIU-verified; uploadable now." else "",
-                        ", ".join(pc["bugs"]), pc["notes"]])
+                        ", ".join(pc["bugs"]), notes])
     print("Wrote", OUT_CSV)
 
     # ---------------- console recap ----------------
@@ -525,6 +604,11 @@ def main():
     print("Blocker category:", dict(cat_counts))
     print("VIU-PENDING sub-buckets:", dict(sub_counts))
     print("Cases tied to a bug/deviation:", n_dev)
+    print("TestRail IDs mapped: %d / %d (blank: %d)" % (n_mapped, len(cases), len(tr_blanks)))
+    if tr_blanks:
+        print("  BLANK (no TestRail ID):", ", ".join(tr_blanks))
+    print("  spot-check SF-VMIS-07 ->", tr_map.get("SF-VMIS-07"),
+          "| SF-RCV-10 ->", tr_map.get("SF-RCV-10"))
     assert sum(viu_counts.values()) == 162
     assert sum(cat_counts.values()) == 162
 
