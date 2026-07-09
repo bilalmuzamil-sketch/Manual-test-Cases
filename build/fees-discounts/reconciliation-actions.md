@@ -23,6 +23,25 @@
 | **G** | BUG-FD-3 whole-WO FE-only enforcement (FD-PERM-002, FD-WO-013) — route to dev (no PO answer; mapping confirmed, enforcement depth open) | ✅ draft DONE NOW / 🧑 decision awaits dev | TICKET 7 layman-ized with the dev-routing note. |
 | **G** | Remaining dev bugs unchanged by the closeout package: FDBUG-3 (auto-apply not logged), FDBUG-9 (maxCap 0), FDBUG-10 (percent rounded up), FDBUG-14 (part-dialog labels); plus FDBUG-11 (missing Type line) & FDBUG-13 (no line-scope picker) not yet drafted | ✅ drafts DONE NOW (TICKETS 3/4/5/6) / 🧑 fixes await dev | FDBUG-11 & FDBUG-13 remain register-only (low sev, no ticket drafted yet — decide at finalization whether to draft or bundle). |
 
+## PO-answer clarifications applied (2026-07-09, later pass — user-authorized TestRail writes)
+
+- ✅ **Group B DONE:** FD-CUST-016 + FD-VAL-007 EXPECTED re-scoped to exactly ONE
+  adjustment (Q2=A settled; BUG-FD-1 closed) — local `cases/*.json` + TestRail
+  master cases C28500 / C28605 updated.
+- ✅ **Group C (PO/epic-driven part) DONE:** FD-CUST-003/004/005/006/007 re-worded
+  to the accepted single-select dropdown picker (Q6=A; FDBUG-7 won't-fix) and
+  FD-TMPL-008 adopts the standardized Delete Template dialog wording — local
+  `cases/*.json` + TestRail C28487/C28488/C28489/C28490/C28491/C28509 updated.
+  (The 13 pure label/copy Part-2 case-updates remain ⏳ finalization — not
+  PO-answer-driven.)
+- ✅ **Group A case side re-checked — deliberately NO case edits:** FD-STATS-001/
+  002/004, FD-WO-005, FD-VAL-001, FD-INLINE-003 already state the PO-confirmed
+  expected behavior (per-row Stats / disabled-until-valid / show-more); the build
+  is what's wrong (dev tickets). FD-PROC-* audited for Q3: no wording implies the
+  builder UI is optional/out-of-scope, so no edits.
+- 📜 Per-case audit: `testrail-po-clarify-log.md`. Attribution note: the answers
+  are **Chris Ward's** (F&D PO), not Milos's (Simple Flow PO).
+
 ## Also done this pass (supporting items)
 
 - ✅ `jira-bug-drafts.md` fully rewritten in plain language; Epic set to
