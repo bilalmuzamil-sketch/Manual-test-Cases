@@ -152,3 +152,16 @@ pricing GET /api/pricing-rules/list; reporting GET /api/reporting/{report}/{rang
 AR aging GET /api/reporting/account-receivable/aging-summary-report; WO history GET
 /api/work-orders/{id}/history; settings GET /api/organizations/settings + POST
 /api/organizations/settings/change.
+| C1960 | Passed | You can create a new tax that has more than one rate. | Created a tax with two rates (5% + 8%); the system saved both rates and totaled them to 13%. Matches. |
+| C24545 | Passed | Saving IBS credentials connects the IBS integration. | Saved IBS credentials; the integration switched to Connected and Active with the client ID shown masked. Matches. |
+| C257 | Passed | A new part request can be added to a work order line and saved with Save & Close. | Added a new part request to a line; it saved and appeared on the line. Matches. |
+| C32 | Passed | An existing part request can be edited and the changes are saved. | Edited the part request description and quantity; both changes saved and persisted on re-open. Matches. |
+| C24549 | Passed | Editing a part request to paste in a Part Number and Save & Close keeps the pasted value. | Set a new part number on the request and saved; the pasted part number persisted on re-open. Matches. |
+| C2134 | Passed | A special-order part request can be changed into an Inventory part. | Created a special (vendor-sourced) part request, then changed its source to Inventory; it converted successfully and its cost became locked as expected for inventory parts. Matches. |
+| C22238 | Passed | A return quantity cannot be negative; validation blocks it. | Entering a negative return quantity was rejected with a validation error (value must be at least 0.01). Matches. |
+| C2470 | Passed | A purchase-order item can be edited before it is received; the new data saves and displays correctly. | Edited an unreceived PO item quantity (1 to 3) and cost (16.99 to 22.50); the changes saved and displayed correctly, then were restored. Matches. |
+| C139 | Passed | A vendor can be deleted. | Created a vendor, confirmed it appeared in the list, then deleted it; it was removed and no longer appears. Matches. |
+| C290 | Passed | A work order can be split by moving a line into a new work order. | Split one line off a work order; a new work order was created containing that line while the original kept its remaining line. Matches. |
+| C291 | Passed | A work order can be split with multiple lines at once. | Selected two lines and split; a new work order was created containing both lines and the original kept the rest. Matches. |
+| C2189 | Passed | Splitting a work order is recorded in the work order history. | After splitting, the original work order history shows a Split to entry and the new work order shows a Split from entry. Matches. |
+| C2137 | Passed | Changing the customer on a work order adds that work order's vehicle to the new customer's vehicle list. | Changed the work order to a different customer; the vehicle became associated with the new customer (it had to be unlinked from that customer before the customer could be deleted). Matches. |
