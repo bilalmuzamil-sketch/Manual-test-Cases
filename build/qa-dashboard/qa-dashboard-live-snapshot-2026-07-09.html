@@ -1,0 +1,362 @@
+<title>ShopView QA Team Dashboard</title>
+<style>
+  :root {
+    --page: #f9f9f7;
+    --surface: #fcfcfb;
+    --ink: #0b0b0b;
+    --ink-2: #52514e;
+    --muted: #898781;
+    --grid: #e1e0d9;
+    --baseline: #c3c2b7;
+    --ring: rgba(11,11,11,0.10);
+    --track: #efeeea;
+    --blue: #2a78d6;
+    --aqua: #1baf7a;
+    --crit: #d03b3b;
+    --serious: #ec835a;
+    --warn: #fab219;
+    --good: #006300;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --page: #0d0d0d;
+      --surface: #1a1a19;
+      --ink: #ffffff;
+      --ink-2: #c3c2b7;
+      --muted: #898781;
+      --grid: #2c2c2a;
+      --baseline: #383835;
+      --ring: rgba(255,255,255,0.10);
+      --track: #242423;
+      --blue: #3987e5;
+      --aqua: #199e70;
+      --crit: #d03b3b;
+      --serious: #ec835a;
+      --warn: #fab219;
+      --good: #0ca30c;
+    }
+  }
+  :root[data-theme="dark"] {
+    --page: #0d0d0d; --surface: #1a1a19; --ink: #ffffff; --ink-2: #c3c2b7;
+    --muted: #898781; --grid: #2c2c2a; --baseline: #383835;
+    --ring: rgba(255,255,255,0.10); --track: #242423;
+    --blue: #3987e5; --aqua: #199e70; --good: #0ca30c;
+    --crit: #d03b3b; --serious: #ec835a; --warn: #fab219;
+  }
+  :root[data-theme="light"] {
+    --page: #f9f9f7; --surface: #fcfcfb; --ink: #0b0b0b; --ink-2: #52514e;
+    --muted: #898781; --grid: #e1e0d9; --baseline: #c3c2b7;
+    --ring: rgba(11,11,11,0.10); --track: #efeeea;
+    --blue: #2a78d6; --aqua: #1baf7a; --good: #006300;
+    --crit: #d03b3b; --serious: #ec835a; --warn: #fab219;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--page); color: var(--ink);
+    font: 15px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif;
+  }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 28px 20px 48px; }
+
+  header.top { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 16px; margin-bottom: 6px; }
+  h1 { font-size: 22px; font-weight: 650; margin: 0; letter-spacing: -0.01em; }
+  .asof { color: var(--muted); font-size: 13px; }
+  .sub { color: var(--ink-2); font-size: 14px; margin: 0 0 22px; max-width: 68ch; }
+
+  .eyebrow {
+    font-size: 11px; font-weight: 650; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--muted); margin: 30px 0 10px;
+  }
+  .eyebrow .jql { font-weight: 500; letter-spacing: 0; text-transform: none; }
+
+  .cards { display: grid; gap: 14px; }
+  .kpis { grid-template-columns: repeat(4, 1fr); }
+  .two  { grid-template-columns: 1fr 1fr; }
+  .three{ grid-template-columns: repeat(3, 1fr); }
+  @media (max-width: 900px) { .kpis { grid-template-columns: repeat(2, 1fr); } .three { grid-template-columns: 1fr; } }
+  @media (max-width: 640px) { .kpis, .two { grid-template-columns: 1fr; } }
+
+  .card {
+    background: var(--surface); border: 1px solid var(--ring); border-radius: 10px;
+    padding: 16px 18px;
+  }
+  .card h2 { font-size: 14px; font-weight: 650; margin: 0 0 2px; }
+  .card .note { color: var(--muted); font-size: 12.5px; margin: 0 0 12px; }
+
+  .stat .label { color: var(--ink-2); font-size: 13px; }
+  .stat .value { font-size: 34px; font-weight: 650; line-height: 1.15; margin-top: 2px; }
+  .stat .hint  { color: var(--muted); font-size: 12.5px; margin-top: 4px; }
+  .stat .hint.alert { color: var(--serious); }
+
+  /* bar rows */
+  .rows { display: grid; gap: 7px; }
+  .row {
+    display: grid; grid-template-columns: 150px 1fr 34px; gap: 10px; align-items: center;
+    border-radius: 4px;
+  }
+  .row:hover { background: color-mix(in srgb, var(--track) 60%, transparent); }
+  .row .name { font-size: 13px; color: var(--ink-2); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .row .name.dim { color: var(--muted); font-style: italic; }
+  .row .val { font-size: 13px; font-weight: 600; text-align: right; font-variant-numeric: tabular-nums; }
+  .track { background: var(--track); border-radius: 4px; height: 16px; position: relative; overflow: hidden; }
+  .fill { position: absolute; inset: 0 auto 0 0; border-radius: 0 4px 4px 0; }
+  .fill.b { background: var(--blue); }
+  .fill.dim { background: var(--baseline); }
+  /* stacked segments: 2px surface gap via border; lives inside a full-width .track */
+  .stack { display: flex; height: 100%; border-radius: 0 4px 4px 0; overflow: hidden; }
+  .seg { height: 100%; }
+  .seg + .seg { border-left: 2px solid var(--surface); }
+  .seg.qa { background: var(--aqua); }
+  .seg.stage { background: var(--blue); }
+
+  .legend { display: flex; gap: 16px; align-items: center; font-size: 12.5px; color: var(--ink-2); margin: 0 0 12px; }
+  .key { display: inline-flex; align-items: center; gap: 6px; }
+  .swatch { width: 10px; height: 10px; border-radius: 3px; display: inline-block; }
+
+  .totalline { font-size: 13px; color: var(--ink-2); margin-top: 12px; padding-top: 10px; border-top: 1px solid var(--grid); }
+  .totalline b { color: var(--ink); }
+
+  /* priority list */
+  .prio { display: grid; gap: 10px; }
+  .prow { display: grid; grid-template-columns: 84px 1fr 52px; gap: 10px; align-items: center; }
+  .pill { font-size: 12px; font-weight: 650; padding: 1px 8px; border-radius: 999px; justify-self: start;
+          border: 1.5px solid; background: transparent; }
+  .pill.c { color: var(--crit); border-color: var(--crit); }
+  .pill.s { color: var(--serious); border-color: var(--serious); }
+  .pill.w { color: color-mix(in srgb, var(--warn) 70%, var(--ink)); border-color: var(--warn); }
+  .prow .val { text-align: right; font-weight: 600; font-variant-numeric: tabular-nums; }
+  .fill.c { background: var(--crit); } .fill.s { background: var(--serious); } .fill.w { background: var(--warn); }
+
+  table { border-collapse: collapse; width: 100%; font-size: 13px; }
+  th { text-align: left; color: var(--muted); font-weight: 600; padding: 4px 10px 6px 0; border-bottom: 1px solid var(--grid); }
+  td { padding: 6px 10px 6px 0; border-bottom: 1px solid var(--grid); color: var(--ink-2); vertical-align: top; }
+  td.k { font-weight: 600; color: var(--ink); white-space: nowrap; font-variant-numeric: tabular-nums; }
+  td:last-child, th:last-child { white-space: nowrap; padding-right: 0; }
+  tr:last-child td { border-bottom: none; }
+
+  footer { margin-top: 34px; color: var(--muted); font-size: 12.5px; border-top: 1px solid var(--grid); padding-top: 14px; }
+  footer p { margin: 6px 0; max-width: 90ch; }
+  footer code { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 11.5px; color: var(--ink-2);
+                background: var(--track); padding: 1px 5px; border-radius: 4px; }
+  a { color: var(--blue); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  a:focus-visible, .row:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <h1>ShopView QA Team Dashboard</h1>
+    <span class="asof">Live snapshot · Wed 9 Jul 2026 · project SV · shopview.atlassian.net</span>
+  </header>
+  <p class="sub">Every number on this page was pulled from Jira today with the exact saved-filter
+  queries the real Jira dashboard will use. Per-person numbers come from the <b>QA&nbsp;Assignee</b>
+  field (the normal assignee stays with the developer during testing).</p>
+
+  <!-- ============ KPI ROW ============ -->
+  <div class="eyebrow">Right now</div>
+  <div class="cards kpis">
+    <div class="card stat">
+      <div class="label">Waiting for QA (team queue)</div>
+      <div class="value">15</div>
+      <div class="hint">status "Ready for QA" — none picked up yet</div>
+    </div>
+    <div class="card stat">
+      <div class="label">Awaiting staging check</div>
+      <div class="value">18</div>
+      <div class="hint">status "Merged to Staging"</div>
+    </div>
+    <div class="card stat">
+      <div class="label">Being tested now</div>
+      <div class="value">36</div>
+      <div class="hint">TESTING QA + TESTING STAGE</div>
+    </div>
+    <div class="card stat">
+      <div class="label">Blocked</div>
+      <div class="value">71</div>
+      <div class="hint alert">largest risk pool on the board</div>
+    </div>
+  </div>
+
+  <!-- ============ IN TESTING BY QA ============ -->
+  <div class="eyebrow">Who is testing what</div>
+  <div class="cards two">
+    <div class="card">
+      <h2>Tickets in testing, per QA member</h2>
+      <p class="note">36 tickets currently in a testing status</p>
+      <div class="legend">
+        <span class="key"><span class="swatch" style="background:var(--aqua)"></span>TESTING QA (QA env)</span>
+        <span class="key"><span class="swatch" style="background:var(--blue)"></span>TESTING STAGE (staging)</span>
+      </div>
+      <div class="rows">
+        <div class="row" title="Bilal Muzamil — 22 in TESTING STAGE">
+          <span class="name">Bilal Muzamil</span>
+          <span class="track"><span class="stack" style="width:100%"><span class="seg stage" style="flex:1"></span></span></span>
+          <span class="val">22</span>
+        </div>
+        <div class="row" title="No QA assignee — 4 TESTING QA, 3 TESTING STAGE">
+          <span class="name dim">No QA assignee</span>
+          <span class="track"><span class="stack" style="width:31.8%"><span class="seg qa" style="flex:4"></span><span class="seg stage" style="flex:3"></span></span></span>
+          <span class="val">7</span>
+        </div>
+        <div class="row" title="Ayesha Khan — 3 in TESTING STAGE">
+          <span class="name">Ayesha Khan</span>
+          <span class="track"><span class="stack" style="width:13.6%"><span class="seg stage" style="flex:3"></span></span></span>
+          <span class="val">3</span>
+        </div>
+        <div class="row" title="Nebojsa Glavinic — 2 TESTING QA, 1 TESTING STAGE">
+          <span class="name">Nebojsa Glavinic</span>
+          <span class="track"><span class="stack" style="width:13.6%"><span class="seg qa" style="flex:2"></span><span class="seg stage" style="flex:1"></span></span></span>
+          <span class="val">3</span>
+        </div>
+        <div class="row" title="Ahtasham Amjad — 1 in TESTING QA">
+          <span class="name">Ahtasham Amjad</span>
+          <span class="track"><span class="stack" style="width:4.5%"><span class="seg qa" style="flex:1"></span></span></span>
+          <span class="val">1</span>
+        </div>
+        <div class="row" title="Dusan Bulovan (non-QA) — 1 in TESTING STAGE">
+          <span class="name dim">Dusan Bulovan (dev)</span>
+          <span class="track"><span class="stack" style="width:4.5%"><span class="seg stage" style="flex:1"></span></span></span>
+          <span class="val">1</span>
+        </div>
+      </div>
+      <div class="totalline">7 in-testing tickets have <b>no QA Assignee</b> — the field the whole
+      dashboard keys off. Worth a team reminder.</div>
+    </div>
+
+    <div class="card">
+      <h2>Oldest tickets waiting in the queue</h2>
+      <p class="note">Top of the 15-ticket "Ready for QA" queue, oldest first</p>
+      <table>
+        <tr><th>Ticket</th><th>Summary</th><th>Since</th></tr>
+        <tr><td class="k"><a href="https://shopview.atlassian.net/browse/SV-7696">SV-7696</a></td><td>Work Order Settings (Simple Flow)</td><td>16 Jun</td></tr>
+        <tr><td class="k"><a href="https://shopview.atlassian.net/browse/SV-7700">SV-7700</a></td><td>Add a Vendorless / No-Part-Number Part to a Work Order</td><td>16 Jun</td></tr>
+        <tr><td class="k"><a href="https://shopview.atlassian.net/browse/SV-7701">SV-7701</a></td><td>Vendorless Part on the WO PO — "Vendor Missing" + QuickBooks flag</td><td>16 Jun</td></tr>
+        <tr><td class="k"><a href="https://shopview.atlassian.net/browse/SV-7702">SV-7702</a></td><td>PO Multi-Select + "Receive Selected"</td><td>16 Jun</td></tr>
+        <tr><td class="k"><a href="https://shopview.atlassian.net/browse/SV-7703">SV-7703</a></td><td>PO Bulk Receive Page</td><td>16 Jun</td></tr>
+      </table>
+      <div class="totalline">3 queue tickets have sat <b>&gt; 3 days</b> without a status change
+      (SV-7696, SV-7710, SV-7876).</div>
+    </div>
+  </div>
+
+  <!-- ============ THROUGHPUT ============ -->
+  <div class="eyebrow">Passed QA, per member — today vs this week vs this month</div>
+  <div class="cards three">
+
+    <div class="card">
+      <h2>Today</h2>
+      <p class="note">30 tickets passed QA so far today</p>
+      <div class="rows">
+        <div class="row"><span class="name">Bilal Muzamil</span><span class="track"><span class="fill b" style="width:100%"></span></span><span class="val">13</span></div>
+        <div class="row"><span class="name">Ayesha Khan</span><span class="track"></span><span class="val">0</span></div>
+        <div class="row"><span class="name">Viktoria Videnovic</span><span class="track"><span class="fill b" style="width:38%"></span></span><span class="val">5</span></div>
+        <div class="row"><span class="name">Mudassir Qamar</span><span class="track"><span class="fill b" style="width:8%"></span></span><span class="val">1</span></div>
+        <div class="row"><span class="name">Nebojsa Glavinic</span><span class="track"><span class="fill b" style="width:31%"></span></span><span class="val">4</span></div>
+        <div class="row"><span class="name">Ahtasham Amjad</span><span class="track"></span><span class="val">0</span></div>
+        <div class="row"><span class="name dim">No QA assignee</span><span class="track"><span class="fill dim" style="width:46%"></span></span><span class="val">6</span></div>
+        <div class="row"><span class="name dim">Others (non-QA)</span><span class="track"><span class="fill dim" style="width:23%"></span></span><span class="val">3</span></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>This week</h2>
+      <p class="note">116 tickets passed QA since Monday</p>
+      <div class="rows">
+        <div class="row"><span class="name">Bilal Muzamil</span><span class="track"><span class="fill b" style="width:100%"></span></span><span class="val">68</span></div>
+        <div class="row"><span class="name">Ayesha Khan</span><span class="track"><span class="fill b" style="width:24%"></span></span><span class="val">16</span></div>
+        <div class="row"><span class="name">Viktoria Videnovic</span><span class="track"><span class="fill b" style="width:12%"></span></span><span class="val">8</span></div>
+        <div class="row"><span class="name">Mudassir Qamar</span><span class="track"><span class="fill b" style="width:4.4%"></span></span><span class="val">3</span></div>
+        <div class="row"><span class="name">Nebojsa Glavinic</span><span class="track"><span class="fill b" style="width:12%"></span></span><span class="val">8</span></div>
+        <div class="row"><span class="name">Ahtasham Amjad</span><span class="track"></span><span class="val">0</span></div>
+        <div class="row"><span class="name dim">No QA assignee</span><span class="track"><span class="fill dim" style="width:16%"></span></span><span class="val">11</span></div>
+        <div class="row"><span class="name dim">Others (non-QA)</span><span class="track"><span class="fill dim" style="width:5.9%"></span></span><span class="val">4</span></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>This month (July)</h2>
+      <p class="note">161 tickets passed QA since 1 July</p>
+      <div class="rows">
+        <div class="row"><span class="name">Bilal Muzamil</span><span class="track"><span class="fill b" style="width:100%"></span></span><span class="val">77</span></div>
+        <div class="row"><span class="name">Ayesha Khan</span><span class="track"><span class="fill b" style="width:29%"></span></span><span class="val">22</span></div>
+        <div class="row"><span class="name">Viktoria Videnovic</span><span class="track"><span class="fill b" style="width:22%"></span></span><span class="val">17</span></div>
+        <div class="row"><span class="name">Mudassir Qamar</span><span class="track"><span class="fill b" style="width:18%"></span></span><span class="val">14</span></div>
+        <div class="row"><span class="name">Nebojsa Glavinic</span><span class="track"><span class="fill b" style="width:16%"></span></span><span class="val">12</span></div>
+        <div class="row"><span class="name">Ahtasham Amjad</span><span class="track"></span><span class="val">0</span></div>
+        <div class="row"><span class="name dim">No QA assignee</span><span class="track"><span class="fill dim" style="width:22%"></span></span><span class="val">17</span></div>
+        <div class="row"><span class="name dim">Others (non-QA)</span><span class="track"><span class="fill dim" style="width:10%"></span></span><span class="val">8</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ QUALITY ============ -->
+  <div class="eyebrow">Quality signals</div>
+  <div class="cards three">
+
+    <div class="card">
+      <h2>Sent back to developers this week</h2>
+      <p class="note">15 tickets rejected from testing — defects caught before release</p>
+      <div class="rows">
+        <div class="row"><span class="name">Bilal Muzamil</span><span class="track"><span class="fill b" style="width:100%"></span></span><span class="val">5</span></div>
+        <div class="row"><span class="name">Viktoria Videnovic</span><span class="track"><span class="fill b" style="width:80%"></span></span><span class="val">4</span></div>
+        <div class="row"><span class="name">Mudassir Qamar</span><span class="track"><span class="fill b" style="width:80%"></span></span><span class="val">4</span></div>
+        <div class="row"><span class="name">Ayesha Khan</span><span class="track"><span class="fill b" style="width:20%"></span></span><span class="val">1</span></div>
+        <div class="row"><span class="name">Ahtasham Amjad</span><span class="track"><span class="fill b" style="width:20%"></span></span><span class="val">1</span></div>
+        <div class="row"><span class="name dim">No QA assignee</span><span class="track"><span class="fill dim" style="width:20%"></span></span><span class="val">1</span></div>
+      </div>
+      <div class="totalline">Against 116 passed this week ≈ <b>1 in 9</b> dev hand-offs
+      failed QA — the team's first-time-pass health number.</div>
+    </div>
+
+    <div class="card">
+      <h2>Bugs found by each tester this month</h2>
+      <p class="note">123 bugs / story defects reported by QA since 1 July</p>
+      <div class="rows">
+        <div class="row"><span class="name">Bilal Muzamil</span><span class="track"><span class="fill b" style="width:100%"></span></span><span class="val">40</span></div>
+        <div class="row"><span class="name">Viktoria Videnovic</span><span class="track"><span class="fill b" style="width:85%"></span></span><span class="val">34</span></div>
+        <div class="row"><span class="name">Ayesha Khan</span><span class="track"><span class="fill b" style="width:60%"></span></span><span class="val">24</span></div>
+        <div class="row"><span class="name">Ahtasham Amjad</span><span class="track"><span class="fill b" style="width:28%"></span></span><span class="val">11</span></div>
+        <div class="row"><span class="name">Mudassir Qamar</span><span class="track"><span class="fill b" style="width:23%"></span></span><span class="val">9</span></div>
+        <div class="row"><span class="name">Nebojsa Glavinic</span><span class="track"><span class="fill b" style="width:13%"></span></span><span class="val">5</span></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Open bug backlog by priority</h2>
+      <p class="note">Unresolved bugs / story defects, active in the last 6 months</p>
+      <div class="prio">
+        <div class="prow">
+          <span class="pill c">Highest</span>
+          <span class="track"><span class="fill c" style="width:3%; min-width:6px"></span></span>
+          <span class="val">6</span>
+        </div>
+        <div class="prow">
+          <span class="pill s">High</span>
+          <span class="track"><span class="fill s" style="width:11%"></span></span>
+          <span class="val">28</span>
+        </div>
+        <div class="prow">
+          <span class="pill w">Medium</span>
+          <span class="track"><span class="fill w" style="width:100%"></span></span>
+          <span class="val">266+</span>
+        </div>
+      </div>
+      <div class="totalline">Total <b>300+</b> (the Medium tail extends past what one pull
+      returns; Highest / High counts are exact).</div>
+    </div>
+  </div>
+
+  <!-- ============ FOOTER ============ -->
+  <footer>
+    <p><b>How each widget maps to the real Jira dashboard</b> (filter numbers from the
+    blueprint in <code>build/qa-dashboard/QA-DASHBOARD-DESIGN.md</code>):
+    queue = F1 · staging = F2 · in testing = F3 · passed today/week/month = F5/F6/F7 ·
+    rejected = F9 · bugs found = F10 · backlog = F11 · stale queue = F8.</p>
+    <p><b>Definitions.</b> "Passed QA" = the ticket moved out of TESTING QA / TESTING STAGE into
+    Ready for Production or Done. "Sent back" = moved to REJECTED FROM TESTING (a caught defect,
+    not a QA failure). A ticket with two people in QA Assignee counts once for each, so member
+    rows can sum slightly above the ticket total.</p>
+    <p><b>Snapshot, not auto-refreshing:</b> this page shows Jira as of 9 Jul 2026. The real
+    dashboard built from the blueprint updates itself continuously inside Jira.</p>
+  </footer>
+</div>
