@@ -2,7 +2,15 @@
 
 > **THIS IS THE CANONICAL STATE DOC for the Simple Flow project.** It is a single
 > authoritative snapshot so the project can be resumed with zero re-discovery.
-> **Last updated:** 2026-07-09 (**FOLLOW-UP VIU BATCH 8 DONE** — 8 more cases flipped
+> **Last updated:** 2026-07-09 (**FINAL STATE SAVE** — reconciled after BATCH 8 +
+> the per-status results workbook. Tally re-verified from `cases/*.json`:
+> VIU-Verified **112** / VIU-Pending **45** / Open-Question **5** = 162; blockers
+> READY **103** / VIU-PENDING (QA) **38** / MILOS **15** / BUG-RULING **6** /
+> DEV-NOT-BUILT **0**. TestRail: SV-8183 + V2.4 + Milos-R2 batches pushed & verified;
+> the SF-WOP-02 expected refinement is HELD pending user approval; no SF execution run
+> exists so VIU pass/fail status is NOT logged in a TestRail run. Documentation-only
+> pass — no code/case changes.)
+> **Prior:** 2026-07-09 (**FOLLOW-UP VIU BATCH 8 DONE** — 8 more cases flipped
 > VIU-Pending → VIU-Verified via reachable-now + self-served data drives on sv7301:
 > SF-WOP-02, SF-REV-12, SF-VAL-10, SF-VEND-04, SF-VMIS-07, SF-COMP-12, SF-RCV-10,
 > SF-RCV-06. No new filing-grade bugs; one wording deviation (SF-WOP-02 → Bulk Receive,
@@ -12,7 +20,10 @@
 > conflicts resolved in favour of spec; BUG-11 downgraded — see §5.E.)
 > **BATCH 8 quick facts (2026-07-09):** VIU-Verified **112** / VIU-Pending **45** /
 > Open-Question **5** (= 162). Blockers tracker: READY **103** / VIU-PENDING (QA) **38**
-> / MILOS **15** / BUG-RULING **6** / DEV-NOT-BUILT **0**. Full evidence:
+> / MILOS **15** / BUG-RULING **6** / DEV-NOT-BUILT **0** (the VIU-Pending-45 field-count
+> vs VIU-PENDING(QA)-38 blocker-count differ because 8 VIU-Pending cases are owned by
+> the MILOS-ANSWER blocker, and VIU-PENDING(QA) 38 = those remaining 37 VIU-Pending +
+> 1 Open-Question SF-QB-09). Full evidence:
 > `viu-findings.md` BATCH 8; observations in `bugs-log.md` (OBS-1..5 + BUG-11 update).
 > No TestRail writes this pass (SF-WOP-02 expected refined locally only; TestRail
 > writes need explicit user permission).
@@ -57,11 +68,15 @@ VIU-Verified**, **DEV-NOT-BUILT dropped to 0**, both spec-vs-Epic conflicts were
 **resolved in favour of the spec** (vendorless → Vendor-Missing on the WO's own PO,
 not a Dummy PO; column = "Waiting On Parts") with **no case changes**, and **BUG-11
 was downgraded** (the 500 is confined to the legacy Accept-Delivery path; the new
-Bulk Receive pipeline receives WO POs successfully). Remaining work is gated on:
-**the 46 VIU-PENDING** (7 reachable-now + 39 needs-data — cores / WO-PO receive via
-bulk / invoiced-paid WO / VIN-less asset / QuickBooks; see §8), the **6 BUG/RULING**
-+ **15 MILOS-ANSWER** cases, a 2nd/3rd role account for the last SF-PERM-09/10
-negatives, and the **5** Jira bug drafts awaiting filing. **Do NOT write to TestRail
+Bulk Receive pipeline receives WO POs successfully). BATCH 8 then cleared the
+reachable-now backlog. Remaining work is gated on: **the 38 VIU-PENDING (QA)** — now
+almost entirely **genuinely blocked** (see §5.G): QuickBooks-connected access
+(SF-VMIS-03/06, SF-RCV-08, SF-QB-03..08), an invoiced/paid WO state that is not
+drivable in-harness (SF-VAL-09, SF-VEND-05), a special-order core part (SF-BULK-10),
+same-vendor/same-WO merge-collision seeding (SF-VEND-02/03), Milos Q11 group-ordering
+(SF-RCV-05/07), and the SF-QB-09 open question; plus the **6 BUG/RULING** + **15
+MILOS-ANSWER** cases, a 2nd/3rd role account for the last SF-PERM-09/10 negatives, and
+the **5** Jira bug drafts awaiting filing. **Do NOT write to TestRail
 without explicit user permission.**
 
 ---
@@ -110,12 +125,12 @@ record, the four stories that were built:
 | Story 9 — Apply invoice to selected POs (SV-7704) | SF-INV-01..03, SF-VAL-10 | BUILT — SF-INV-01..03 Verified; SF-VAL-10 (reused-invoice#) VIU-Pending reachable-now |
 | Story 14 — Waiting-on-Parts column (SV-7709) | SF-WOP-01..03 | BUILT — SF-WOP-01/03 Verified; SF-WOP-02 (click-count→Accept-Delivery) VIU-Pending reachable-now |
 
-**VIU-PENDING (QA) (46) by sub-bucket:**
+**VIU-PENDING (QA) (38) by sub-bucket:**
 
 | Sub-bucket | Count | Meaning |
 |---|---:|---|
 | reachable-now | ~1 | SF-QB-09 only (Open-Question, needs dev confirm). BATCH 8 cleared the rest: SF-COMP-12, SF-VMIS-07, SF-RCV-10, SF-WOP-02, SF-VAL-10, SF-REV-12 → VIU-Verified. |
-| needs-data | ~37 | needs a data state not seedable via the app (special-order cores, invoiced/paid WO [invoicing not drivable in-harness], multi-PO/same-vendor merge collision, VIN-less asset, QB inspection) |
+| needs-data | ~37 | needs a data state not seedable via the app (special-order cores, invoiced/paid WO [invoicing not drivable in-harness], multi-PO/same-vendor merge collision, VIN-less asset, QuickBooks-connected inspection) |
 | needs-account | 0 | (none currently) |
 | **TOTAL** | **38** | |
 
@@ -130,7 +145,7 @@ SF-QB-03..08** (QuickBooks/reports back-end access), **SF-RCV-05/07** (MILOS Q11
 **Blocker owners (who unblocks what):** Milos (PO) → the 15 MILOS-ANSWER cases;
 Dev team → BUG-11 (legacy Accept-Delivery 500 — now LOW urgency, a working Bulk
 Receive path exists) + the other OPEN fix tickets; QA (fresh sv7301 cookies
-admin+tech + seeded data) → the bulk of the 46 VIU-PENDING; a 2nd/3rd role account
+admin+tech + seeded data) → the bulk of the 38 VIU-PENDING (QA); a 2nd/3rd role account
 (Office/Service Manager/Foreman, some without See Financial Data) → the last
 SF-PERM-09/10 negatives; Dev/PO ruling → the 6 BUG/RULING. **DEV-NOT-BUILT is now 0.**
 
@@ -157,8 +172,17 @@ SF-PERM-09/10 negatives; Dev/PO ruling → the 6 BUG/RULING. **DEV-NOT-BUILT is 
     `custom_atmstatus:3` + `custom_automation_type:0`. Both added to the id-map.
   - Refs note: TestRail strips the space after commas in multi-ref lists
     (SF-CORE-01, SF-PNFIX-04, SF-BULK-06) — content identical, not a diff.
-- **What's synced:** all 162 authored cases exist in TestRail; the v2.4
-  reconciliation deltas are pushed. The interim import files on disk
+- **What's synced (all pushed & re-fetch-verified):** the **SV-8183 permissions
+  batch**, the **V2.4 reconciliation batch** (18 updates + 2 adds), and the **Milos
+  Round-2 batch** (5 updates). All 162 authored cases exist in TestRail; the v2.4
+  reconciliation deltas are pushed.
+- **HELD (pending user approval — NOT pushed):** the **SF-WOP-02 expected refinement**
+  (Waiting-on-Parts count click → Bulk Receive / Accept Delivery wording, per BATCH 8
+  OBS-5). Held because TestRail writes require explicit user permission.
+- **No execution run:** there is **no Simple Flow execution run** in TestRail, so the
+  VIU pass/fail results are **NOT logged as a TestRail run** — per-case VIU status lives
+  only in `cases/*.json` + `SimpleFlow_Blockers_Tracker.*` + `SimpleFlow_Results.*`.
+- The interim import files on disk
   (`testrail-import/simple-flow-v1-testrail-import.csv`/`.xlsx`) are the full-suite
   upload; `simple-flow-v2.4-update.xml` / `simple-flow-UPDATE.xml` are the
   update-only artifacts. **Import files remain INTERIM** pending post-VIU +
@@ -185,6 +209,7 @@ SF-PERM-09/10 negatives; Dev/PO ruling → the 6 BUG/RULING. **DEV-NOT-BUILT is 
 
 **Tracking / status:**
 - `build/simple-flow/SimpleFlow_Blockers_Tracker.md` / `.xlsx` — **source of truth** for per-case state + blocker + owner + what's-needed.
+- `build/simple-flow/SimpleFlow_Results.xlsx` / `.csv` — per-status results workbook (a tab per VIU result status + Summary), built by `build_results_workbook.py`.
 - `build/simple-flow/PROJECT-STATE.md` — **this file** (canonical resume snapshot).
 - `build/simple-flow/PROJECT-STATUS.md` — narrative status log.
 - `build/simple-flow/RESUME-STRATEGY.md` — two-phase finalization + unblock→update loop.
@@ -208,7 +233,7 @@ SF-PERM-09/10 negatives; Dev/PO ruling → the 6 BUG/RULING. **DEV-NOT-BUILT is 
 - Permissions source: `build/simple-flow/SV-8183-permissions-source.md`.
 
 **Generators (Python):**
-- `gen_import.py` (rebuilds TestRail import CSV **and** the Excel workbook), `gen_blockers.py` (tracker), `gen_update.py` (ID-matched update file), `gen_cases.py`, `build_workbook.py`, `build_settings_quickref.py`, `gen_milos_questions.py`, `gen_milos_questions_r2.py`.
+- `gen_import.py` (rebuilds TestRail import CSV **and** the Excel workbook), `gen_blockers.py` (tracker), `build_results_workbook.py` (per-status results workbook `SimpleFlow_Results.xlsx`/`.csv`), `gen_update.py` (ID-matched update file), `gen_cases.py`, `build_workbook.py`, `build_settings_quickref.py`, `gen_milos_questions.py`, `gen_milos_questions_r2.py`.
 
 **Audit logs:**
 - `build/simple-flow/testrail-push-v2.4-log.md` (the 20-case v2.4 push), `build/simple-flow/testrail-sync-log.md`.
@@ -349,6 +374,31 @@ not filing-grade defects):**
    its "sell is mandatory" premise was overturned; whether a permission gate still
    applies is open (SF-VPART-02, SF-PERM-09).
 
+**G. The remaining 38 VIU-PENDING (QA) — genuinely blocked (post-BATCH-8):** the
+reachable-now backlog is cleared; what's left needs an input/state that is not
+seedable in the current harness:
+- **QuickBooks-connected access** — SF-VMIS-03/06, SF-RCV-08, SF-QB-03..08 (GL / tax /
+  line-item / inventory-integrity checks against a live QuickBooks connection).
+- **An invoiced/paid WO state** — SF-VAL-09, SF-VEND-05 (**invoicing is not drivable
+  in-harness**: the API blocks manual status changes and the UI Create-Invoice needs the
+  builder/IBS flow).
+- **A special-order core part** — SF-BULK-10 (a genuine vendor-source `is_core` part is
+  not seedable via the canned catalog/sub-form).
+- **Merge-collision seeding** — SF-VEND-02/03 (same-vendor / same-WO PO merge collision
+  cannot be seeded).
+- **Milos Q11 group-ordering** — SF-RCV-05/07 (Accept-Delivery vendor-missing-group lead
+  ordering; also OBS-2).
+- **SF-QB-09** — open question (needs a dev confirm that Part-Sales is unaffected by the
+  shared order/status logic).
+
+**H. Residual disposable-env state (harmless):** the **irreversible received
+ZZAUTOTEST POs** from RE-VIU BATCH 7/8 (e.g. S-15786, partial_delivery + its
+Delivery/Vendor-Bill) remain on the shared sv7301 test env — received deliveries are
+**not reversible in-app**. This is **harmless** (tagged ZZAUTOTEST on a disposable
+env); all reversible throwaway data (paired vendorless PO, throwaway WOs, stray ZZPN
+inventory) was deleted. Do not assume baseline settings on the next run (shared env;
+re-read `GET /api/organizations/settings`).
+
 ---
 
 ## 6. Standing rules learned (Simple Flow) — all recorded in CLAUDE.md
@@ -447,65 +497,56 @@ not filing-grade defects):**
 **Confirm the project first** (this workspace holds 3 projects) — instruction must
 target **Simple Flow**.
 
-**>>> DONE (RE-VIU BATCH 7, 2026-07-09):** Stories 7/8/9/14 confirmed BUILT & live,
-24 cases flipped to VIU-Verified, DEV-NOT-BUILT → 0, both spec-vs-Epic conflicts
-resolved in favour of the spec (no case changes), BUG-11 downgraded (§5.C/E). No
-TestRail writes (no EXPECTED diverged).
+**>>> DONE (through BATCH 8, 2026-07-09):** Stories 7/8/9/14 confirmed BUILT & live;
+DEV-NOT-BUILT → 0; both spec-vs-Epic conflicts resolved in favour of the spec (no case
+changes); BUG-11 downgraded (§5.C/E); the reachable-now VIU backlog cleared (112
+VIU-Verified). No TestRail writes this effort (the SF-WOP-02 expected refinement is
+held pending user approval).
 
-**>>> NEXT ACTION: work down the remaining 46 VIU-PENDING (QA).** With fresh sv7301
-cookies (admin + tech) + a rebuilt MITM bridge (Chromium can't TLS the egress proxy
-directly; boot2 hydration; tools in `/tmp/simple-flow/tools/`):
+**>>> NEXT ACTIONS (priority order) — the 38 VIU-PENDING (QA) are now genuinely
+blocked (§5.G); each needs an input/state to proceed:**
 
-1. **reachable-now (7)** — just need another VIU pass, no new inputs / seeding:
-   **SF-COMP-12** (background PO count), **SF-VMIS-07** (sell-only part orderable →
-   Vendor-Missing PO), **SF-RCV-10** (cost editable on Accept Delivery), **SF-WOP-02**
-   (click Waiting-on-Parts count → Accept Delivery — needs a stable WO row with a
-   non-zero count), **SF-VAL-10** (reuse one invoice # across POs via Apply-invoice),
-   **SF-REV-12** (Ready-for-Review list filter/column), **SF-QB-09** (Part-Sales
-   unaffected by shared order/status logic).
-2. **needs-data (39)** — need a data state seeded first. Grouped by what to seed:
-   - **core part** (genuine `is_core`, not seedable via canned/sub-form): all
-     SF-CORE-02..09, SF-BULK-10, SF-REV-14.
-   - **WO-PO receive via the Bulk Receive path** (BUG-11 no longer blocks — use
-     `/bulk-receive`, not legacy Accept-Delivery): SF-COMP-13/19, SF-VAL-05/06,
-     SF-PNFIX-01..06, SF-VPART-07, SF-REV-04, SF-RCV-06.
-   - **invoiced/paid WO** (sell-field lock / receive-block guardrails): SF-VAL-09,
-     SF-VEND-02..05.
+1. **(optional, quick) Push the SF-WOP-02 expected refinement to TestRail** — the one
+   held delta (BATCH 8 OBS-5, Waiting-on-Parts count → Bulk Receive / Accept Delivery
+   wording). Emit an ID-matched `gen_update.py SF-WOP-02` file, **get user approval,
+   then push** (never write TestRail without explicit permission).
+2. **QuickBooks-connected setup** → unblocks the QB/inventory-integrity cases:
+   SF-QB-03..08, SF-VMIS-03/06, SF-RCV-08 (+ confirm SF-QB-09). Needs a live QuickBooks
+   connection to inspect GL / tax / line items / inventory integrity end-to-end.
+3. **A drivable invoicing flow** → unblocks SF-VAL-09, SF-VEND-05 (invoiced/paid WO
+   guardrails). Invoicing is not drivable in the current harness (API blocks manual
+   status; UI Create-Invoice needs the builder/IBS flow) — needs that path enabled.
+4. **Milos Q11 group-ordering answer** → unblocks SF-RCV-05/07 (Accept-Delivery
+   vendor-missing-group lead ordering; also OBS-2, wording-only).
+5. **File the 5 Jira bug drafts** (`jira-bug-drafts.md`) from the chat app where
+   Atlassian is connected (not available in this CLI env): BUG-5, BUG-6+7, BUG-8,
+   BUG-11 (Low), GAP-B.
+
+**Also needs-data (seed first, then re-VIU via `/bulk-receive` — not legacy
+Accept-Delivery):**
+   - **special-order core** (genuine vendor-source `is_core`): SF-BULK-10 (+ core cases
+     SF-CORE-02..09, SF-REV-14 need a genuine core part).
+   - **merge-collision seeding** (same-vendor / same-WO PO merge): SF-VEND-02/03.
+   - **WO-PO receive via Bulk Receive** (BUG-11 no longer blocks): SF-COMP-13/19,
+     SF-VAL-05/06, SF-PNFIX-01..06, SF-VPART-07, SF-REV-04, SF-RCV-06.
    - **VIN-less asset** (non-review VIN gate): SF-VAL-02.
-   - **QuickBooks / reports back-end inspection** (likely dev/QB access): SF-QB-03..08,
-     SF-VMIS-03/06, SF-RCV-08.
-   - **Accept-Delivery surface specifics:** SF-RCV-05/07 (also gated on Milos Q11
-     ordering — see §5.A/OBS-2).
-3. **needs-account: 0** — role-switching is self-service (assign Tech the role, then
-   restore Technician `131b5274`).
-4. After any live confirmation, update `cases/*.json`, re-run `gen_blockers.py` +
-   `gen_import.py`, emit an ID-matched `gen_update.py` file, get user approval, then push.
+   - **needs-account: 0** — role-switching is self-service (assign Tech the role, then
+     restore Technician `131b5274`); a 2nd/3rd role account (some WITHOUT See Financial
+     Data) would close the last SF-PERM-09/10 negatives.
 
-**Other resume paths (as inputs land):**
+**Harness note (any re-VIU):** fresh sv7301 cookies (admin + tech) into `/tmp` + a
+rebuilt MITM bridge (Chromium can't TLS the egress proxy directly; boot2 hydration;
+tools in `/tmp/simple-flow/tools/`). After any live confirmation: update `cases/*.json`,
+re-run `gen_blockers.py` + `gen_import.py` + `build_results_workbook.py`, emit an
+ID-matched `gen_update.py` file, get user approval, then push.
 
-**When Milos answers Round-2 (`OpenQuestions-for-Milos-Round2.md`):**
-1. Record answers verbatim (new `milos-answers-round2-source.*`) and map them in a
-   new mapping doc (mirror `milos-answers-mapping.md`).
-2. Apply the confirmed outcomes to the case JSONs (`cases/*.json`): flip
-   `viu_status`/`expected` for the 15 MILOS-ANSWER cases (+ the 6 BUG/RULING if Q5
-   rules on FE-vs-BE enforcement).
-3. Re-run `gen_blockers.py`, then `gen_import.py` (rebuilds import CSV + workbook),
-   then `gen_update.py <cleared SF ids>` for an ID-matched TestRail update file.
+**When Milos answers a further round (`OpenQuestions-for-Milos-Round2.md` etc.):**
+1. Record answers verbatim + map them in a new mapping doc (mirror `milos-answers-mapping.md`).
+2. Apply outcomes to `cases/*.json`: flip `viu_status`/`expected` for the affected
+   MILOS-ANSWER cases (+ the 6 BUG/RULING if a ruling lands on FE-vs-BE enforcement).
+3. Re-run `gen_blockers.py`, `gen_import.py`, `build_results_workbook.py`, then
+   `gen_update.py <cleared SF ids>` for an ID-matched TestRail update file.
 4. **Ask the user before any TestRail write.**
-
-**When the legacy Accept-Delivery BUG-11 500 is fixed (LOW urgency — bulk path works):**
-1. Get fresh sv7301 cookies (admin + tech) into `/tmp` and rebuild the MITM bridge.
-2. Re-confirm the single-PO `POST /api/inventory/orders/accept` receive on a WO PO
-   now returns 201 (the round-trip is already achievable via `/bulk-receive`).
-
-**When fresh QA cookies / role accounts are supplied:**
-1. Cookies → work the 46 VIU-PENDING (reachable-now 7 first, then needs-data 39
-   as data becomes seedable — see the NEXT ACTION list above).
-2. A 2nd/3rd role account (some WITHOUT See Financial Data) → close the last
-   SF-PERM-09/10 role-gating negatives; restore Tech to Technician afterward.
-
-**File the 7 Jira bug drafts** (`jira-bug-drafts.md`) from the chat app where
-Atlassian is connected (not available in this CLI env).
 
 **Two-phase finalization** (`RESUME-STRATEGY.md`): current TestRail import files
 are INTERIM. FINAL = the regenerated post-VIU + dev-answered files. Never write to
