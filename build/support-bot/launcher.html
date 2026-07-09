@@ -1,0 +1,1301 @@
+<title>ShopView Support Assistant — Custom Roles &amp; Permissions</title>
+<style>
+  :root {
+    --bg: #f6f7f5;
+    --surface: #ffffff;
+    --surface-2: #eef1ee;
+    --ink: #1c2321;
+    --ink-2: #55615c;
+    --line: #dde3df;
+    --accent: #0e6e5c;
+    --accent-ink: #ffffff;
+    --accent-soft: #e2f0ec;
+    --warn: #8a5a00;
+    --warn-soft: #f7ecd7;
+    --focus: #0e6e5c;
+    --radius: 10px;
+    --sans: -apple-system, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    --mono: ui-monospace, "SF Mono", "Cascadia Mono", Consolas, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #141918;
+      --surface: #1d2422;
+      --surface-2: #232b29;
+      --ink: #e7ece9;
+      --ink-2: #9caba4;
+      --line: #313b38;
+      --accent: #43bda2;
+      --accent-ink: #10201c;
+      --accent-soft: #1d332e;
+      --warn: #e0b25e;
+      --warn-soft: #33290f;
+      --focus: #43bda2;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #141918; --surface: #1d2422; --surface-2: #232b29; --ink: #e7ece9;
+    --ink-2: #9caba4; --line: #313b38; --accent: #43bda2; --accent-ink: #10201c;
+    --accent-soft: #1d332e; --warn: #e0b25e; --warn-soft: #33290f; --focus: #43bda2;
+  }
+  :root[data-theme="light"] {
+    --bg: #f6f7f5; --surface: #ffffff; --surface-2: #eef1ee; --ink: #1c2321;
+    --ink-2: #55615c; --line: #dde3df; --accent: #0e6e5c; --accent-ink: #ffffff;
+    --accent-soft: #e2f0ec; --warn: #8a5a00; --warn-soft: #f7ecd7; --focus: #0e6e5c;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font-family: var(--sans); font-size: 16px; line-height: 1.55;
+  }
+  .wrap { max-width: 860px; margin: 0 auto; padding: 28px 20px 80px; }
+
+  header.top { padding-top: 12px; }
+  .eyebrow {
+    font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--accent); font-weight: 600;
+  }
+  h1 {
+    font-size: clamp(24px, 4.5vw, 34px); line-height: 1.15; margin: 8px 0 10px;
+    letter-spacing: -0.015em; text-wrap: balance; font-weight: 700;
+  }
+  .lede { color: var(--ink-2); max-width: 60ch; margin: 0 0 22px; }
+
+  .tabs { display: flex; gap: 8px; border-bottom: 1px solid var(--line); margin-bottom: 26px; }
+  .tab {
+    appearance: none; background: none; border: none; cursor: pointer;
+    font: 600 15px var(--sans); color: var(--ink-2); padding: 10px 14px 12px;
+    border-bottom: 2.5px solid transparent; margin-bottom: -1px;
+  }
+  .tab[aria-selected="true"] { color: var(--ink); border-bottom-color: var(--accent); }
+  .tab:focus-visible, button:focus-visible, a:focus-visible, input:focus-visible, summary:focus-visible {
+    outline: 2px solid var(--focus); outline-offset: 2px; border-radius: 4px;
+  }
+
+  /* ---------- Instant answers ---------- */
+  .searchbar {
+    display: flex; gap: 10px; align-items: center; background: var(--surface);
+    border: 1.5px solid var(--line); border-radius: var(--radius); padding: 4px 6px 4px 16px;
+  }
+  .searchbar svg { flex: none; color: var(--ink-2); }
+  .searchbar input {
+    flex: 1; border: none; background: none; color: var(--ink);
+    font: 16px var(--sans); padding: 11px 0; min-width: 0;
+  }
+  .searchbar input::placeholder { color: var(--ink-2); }
+  .searchbar input:focus { outline: none; }
+
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 14px 0 6px; }
+  .chip {
+    appearance: none; cursor: pointer; border: 1px solid var(--line);
+    background: var(--surface); color: var(--ink-2); border-radius: 999px;
+    font: 500 13px var(--sans); padding: 5px 12px;
+  }
+  .chip[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+
+  .diag {
+    background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+    margin: 18px 0 6px;
+  }
+  .diag > summary {
+    cursor: pointer; list-style: none; display: flex; align-items: center; gap: 10px;
+    padding: 14px 16px; font-weight: 650; font-size: 15px;
+  }
+  .diag > summary::-webkit-details-marker { display: none; }
+  .diag > summary::after { content: "+"; margin-left: auto; color: var(--ink-2); font-size: 18px; }
+  .diag[open] > summary::after { content: "–"; }
+  .diag ol { margin: 0; padding: 0 20px 16px 38px; color: var(--ink); }
+  .diag li { margin: 7px 0; }
+  .diag li b { font-weight: 650; }
+  .diag .why { color: var(--ink-2); }
+
+  .count { font-family: var(--mono); font-size: 12px; color: var(--ink-2); margin: 16px 2px 8px; }
+
+  .qa {
+    background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+    margin: 10px 0;
+  }
+  .qa > summary {
+    cursor: pointer; list-style: none; padding: 13px 16px;
+    display: flex; align-items: baseline; gap: 10px;
+  }
+  .qa > summary::-webkit-details-marker { display: none; }
+  .qa .q { font-weight: 600; font-size: 15px; flex: 1; }
+  .badge {
+    flex: none; font: 600 10.5px var(--mono); letter-spacing: 0.08em; text-transform: uppercase;
+    padding: 3px 8px; border-radius: 999px; align-self: center; white-space: nowrap;
+  }
+  .badge.cat { background: var(--surface-2); color: var(--ink-2); }
+  .badge.esc { background: var(--warn-soft); color: var(--warn); }
+  .qa .a { padding: 0 16px 15px; color: var(--ink); border-top: 1px dashed var(--line); }
+  .qa .a p { margin: 12px 0 0; max-width: 68ch; }
+  .empty {
+    text-align: center; color: var(--ink-2); padding: 40px 16px;
+    background: var(--surface); border: 1px dashed var(--line); border-radius: var(--radius); margin-top: 12px;
+  }
+  .empty b { color: var(--ink); }
+
+  /* ---------- Launch tab ---------- */
+  .note {
+    background: var(--accent-soft); border-radius: var(--radius); padding: 14px 16px;
+    font-size: 14.5px; margin: 0 0 20px; max-width: 72ch;
+  }
+  .step {
+    background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+    padding: 18px 18px 16px; margin: 14px 0; display: grid;
+    grid-template-columns: 34px 1fr; gap: 4px 14px;
+  }
+  .step .num {
+    grid-row: span 3; width: 30px; height: 30px; border-radius: 50%;
+    background: var(--accent); color: var(--accent-ink); font: 700 14px var(--mono);
+    display: flex; align-items: center; justify-content: center; margin-top: 2px;
+  }
+  .step h3 { margin: 2px 0 4px; font-size: 16.5px; }
+  .step p { margin: 0 0 12px; color: var(--ink-2); font-size: 14.5px; max-width: 62ch; }
+  .step .acts { display: flex; flex-wrap: wrap; gap: 10px; }
+  .btn {
+    appearance: none; cursor: pointer; text-decoration: none; display: inline-flex;
+    align-items: center; gap: 8px; border-radius: 8px; font: 600 14px var(--sans);
+    padding: 9px 16px; border: 1.5px solid transparent;
+  }
+  .btn.primary { background: var(--accent); color: var(--accent-ink); }
+  .btn.ghost { background: var(--surface); color: var(--ink); border-color: var(--line); }
+  .btn:active { transform: translateY(1px); }
+  @media (prefers-reduced-motion: reduce) { .btn:active { transform: none; } }
+  .done { color: var(--accent); font-weight: 650; }
+
+  footer {
+    margin-top: 40px; padding-top: 16px; border-top: 1px solid var(--line);
+    color: var(--ink-2); font-size: 13px;
+  }
+  footer p { margin: 6px 0; max-width: 75ch; }
+  [hidden] { display: none !important; }
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <div class="eyebrow">ShopView · Support Team</div>
+    <h1>Custom Roles &amp; Permissions — Support Assistant</h1>
+    <p class="lede">Type a customer's question below and get a ready-to-send answer. For anything the answers here don't cover, launch the AI bot (one-time, 3 clicks) in the second tab.</p>
+  </header>
+
+  <div class="tabs" role="tablist">
+    <button class="tab" id="tab-answers" role="tab" aria-selected="true" aria-controls="panel-answers">Instant answers</button>
+    <button class="tab" id="tab-launch" role="tab" aria-selected="false" aria-controls="panel-launch">Launch the AI bot</button>
+  </div>
+
+  <!-- ======================= INSTANT ANSWERS ======================= -->
+  <section id="panel-answers" role="tabpanel" aria-labelledby="tab-answers">
+    <div class="searchbar">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.8-3.8"></path></svg>
+      <input id="q" type="search" placeholder="Try: user can't see prices · delete role · owner role gone…" autocomplete="off" aria-label="Search support answers">
+    </div>
+    <div class="chips" id="chips" role="group" aria-label="Filter by topic"></div>
+
+    <details class="diag">
+      <summary>⚙ Start every "user can't see / can't do X" ticket with these 6 checks</summary>
+      <ol>
+        <li><b>What role does the user have?</b> <span class="why">(Administration → Staff)</span></li>
+        <li><b>What does that role actually allow?</b> <span class="why">Use "View Permissions" next to the role for a read-only summary.</span></li>
+        <li><b>Did they log out and back in after a role change?</b> <span class="why">Role changes only take effect at the next login.</span></li>
+        <li><b>Is a master switch off?</b> <span class="why">"Parts Department" off hides all parts pages; "Settings" off hides all admin pages — no matter the detailed settings.</span></li>
+        <li><b>Is a money switch off?</b> <span class="why">"See Financial Data" off hides every price and total app-wide; "Manage Accounts Payable and Receivable" off hides payment tabs and credit fields.</span></li>
+        <li><b>Is the user in Tech View?</b> <span class="why">Tech View intentionally hides approve buttons, labor rates, tech time and Send&nbsp;to&nbsp;Portal — that's the simplified technician screen, not a bug.</span></li>
+      </ol>
+    </details>
+
+    <div class="count" id="count"></div>
+    <div id="results"></div>
+    <div class="empty" id="empty" hidden>
+      <p><b>No matching answer here.</b><br>This is exactly what the AI bot is for — open the <b>Launch the AI bot</b> tab, or escalate to your team lead.</p>
+    </div>
+  </section>
+
+  <!-- ======================= LAUNCH ======================= -->
+  <section id="panel-launch" role="tabpanel" aria-labelledby="tab-launch" hidden>
+    <p class="note"><b>One-time setup, about 3 minutes.</b> The AI bot runs inside claude.ai as a "Project". You paste one text, upload two files, and it's live for your whole team. Everything you need is on the buttons below.</p>
+
+    <div class="step">
+      <div class="num">1</div>
+      <h3>Create the Project</h3>
+      <p>Open claude.ai, go to <b>Projects → New project</b>, and name it <b>Support: Custom Roles Release</b>.</p>
+      <div class="acts"><a class="btn primary" href="https://claude.ai/projects" target="_blank" rel="noopener">Open claude.ai Projects ↗</a></div>
+    </div>
+
+    <div class="step">
+      <div class="num">2</div>
+      <h3>Paste the bot's instructions</h3>
+      <p>In the Project, open <b>Instructions</b> (Set project instructions) and paste what this button copies. This tells the bot how to answer, when to escalate, and how to write for customers.</p>
+      <div class="acts"><button class="btn primary" id="copyPrompt">Copy the bot instructions</button><span class="done" id="copiedMsg" hidden>Copied ✓ — now paste into Project instructions</span></div>
+    </div>
+
+    <div class="step">
+      <div class="num">3</div>
+      <h3>Upload the bot's knowledge</h3>
+      <p>Download these two files, then drag both into the Project's <b>knowledge</b> area. They contain the complete feature reference and the approved answers.</p>
+      <div class="acts">
+        <button class="btn ghost" data-dl="kb">⬇ knowledge-base.md</button>
+        <button class="btn ghost" data-dl="faq">⬇ faq.md</button>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="num">4</div>
+      <h3>Start using it</h3>
+      <p>Invite your support team to the Project. Workflow: paste the customer's question → the bot drafts a reply, tells you why, gives a confidence level, and flags anything that must be escalated → an agent reviews and sends. Keep a human review on every answer for the first two weeks.</p>
+    </div>
+
+    <p class="note" style="background: var(--warn-soft); color: inherit;"><b>Auto-updates:</b> the product spec is checked every day. When it changes, the knowledge files are updated automatically — you'll just re-download the changed file from here (ask Claude for the fresh link) and replace it in the Project's knowledge.</p>
+  </section>
+
+  <footer>
+    <p>Source of truth: the official "Custom Roles and Permissions" product specification (internal Confluence). Knowledge snapshot: <b>July 9, 2026</b> — kept current by a daily automatic sync.</p>
+    <p>These answers cover intended product behavior. If a customer reports something different from what an answer says, treat it as a possible bug and escalate with: the user's role, exact settings, steps, expected vs. actual.</p>
+  </footer>
+</div>
+
+<!-- ============ Embedded files for download / copy ============ -->
+<script type="text/plain" id="file-prompt">
+# System Prompt — ShopView Support Co-Pilot: Custom Roles and Permissions
+
+You are the ShopView Support Co-Pilot for the Custom Roles and Permissions
+release. You help ShopView's support team answer customer questions about the
+new roles and permissions system. Your users are support agents; the text you
+draft may be sent onward to shop owners, managers, and staff, so write your
+draft replies for that audience.
+
+## Your knowledge
+
+Your only sources of truth are the two documents provided to you:
+
+1. Knowledge Base (knowledge-base.md) — the complete feature reference,
+   distilled from the official product specification.
+2. FAQ (faq.md) — pre-approved answers to common questions.
+
+Answer ONLY from these documents. If the answer is not in them, say so plainly
+and recommend escalation. Never invent behavior, settings, role names,
+permission rules, or migration outcomes. A wrong answer about permissions can
+expose a shop's financial data or lock out its staff — "I don't know, let's
+escalate" is always better than a guess.
+
+## How to answer
+
+For every question, produce:
+
+1. Draft reply — the customer-ready answer, in plain non-technical language.
+   Short paragraphs or numbered steps. No internal jargon, no spec section
+   numbers, no setting keys (use the on-screen labels, e.g. "See Financial
+   Data").
+2. Why (for the agent, 1–3 bullets) — which knowledge-base rule the answer
+   rests on, so the agent can verify it.
+3. Confidence — High / Medium / Low.
+   - High: the KB or FAQ states it directly.
+   - Medium: it follows clearly from stated rules but isn't spelled out.
+   - Low: partially covered or ambiguous → recommend escalation instead of
+     sending.
+4. Escalate? — Yes/No, and to whom.
+
+If the customer's question is ambiguous, ask the agent the ONE clarifying
+question that would resolve it (usually: which role does the user have, and
+which exact toggles are on), rather than answering every branch.
+
+## Standard first diagnostic
+
+Most "user can't see / can't do X" tickets resolve to one of these — check in
+this order before anything else:
+
+1. What role does the user have? (Administration > Staff)
+2. What does that role actually grant? (use the "View Permissions" read-only
+   summary on the role)
+3. Did the user log out and back in after a role change? Role changes force a
+   logout and only take effect at next login.
+4. Is a parent toggle off? Parts Department OFF hides all three parts areas;
+   Settings OFF hides all admin sub-sections — regardless of the child
+   settings.
+5. Is a cross-cutting toggle off? "See Financial Data" OFF hides ALL
+   prices/costs/totals app-wide; "Manage Accounts Payable and Receivable" OFF
+   hides Unpaid Invoices / Payments / Credits tabs and sensitive
+   customer/vendor fields.
+6. Is the user in Tech View? Tech View hides tech time, approve actions,
+   labor rates, Send to Portal, and makes approved lines read-only — that is
+   the intended simplified interface, not a bug.
+
+## Escalation rules — always escalate, never improvise, when:
+
+- The reported behavior contradicts the knowledge base (possible product bug)
+  → escalate to QA/engineering with: role, exact toggles, steps, expected vs
+  actual.
+- The question is about "Reset to Template" — this behavior is not yet
+  finalized in the specification.
+- Data appears lost or corrupted (roles disappeared, permissions changed by
+  themselves, users locked out en masse).
+- Anything involving billing, refunds, contracts, or account credentials.
+- A customer asks for behavior that is out of scope of this release (audit
+  log of permission changes, per-user data scoping such as "see only my own
+  records", per-report access control, dashboard-per-role) → confirm it is
+  not part of this release and offer to log it as feedback.
+- A security concern (e.g. a user claims they can see or do something their
+  role should not allow) → treat as priority; escalate to QA/engineering
+  immediately.
+
+## Tone and style for draft replies
+
+- Plain, friendly, layman English. The audience is shop staff, not developers.
+- Lead with the direct answer, then the steps or reason.
+- When something works as designed but surprises the customer (e.g. a
+  capability change after migration), acknowledge the surprise, explain the
+  intent in one sentence, and give the fix (usually: an admin can create a
+  custom role or adjust the assigned role).
+- Never blame the customer. Never promise dates, fixes, or product changes.
+- Never share internal links (Confluence, Jira, Figma) with customers.
+
+## Hard rules
+
+- One user = one role. There is no permission stacking.
+- Do not advise workarounds that grant broader access than needed (especially
+  "just make them an Admin") — the whole point of this feature is avoiding
+  that. Suggest a custom role instead.
+- If the agent asks you something about ShopView outside this feature, help if
+  the knowledge covers it; otherwise say it is outside this bot's scope.
+</script>
+
+<script type="text/plain" id="file-kb"># Knowledge Base — ShopView Custom Roles and Permissions
+
+Distilled from the official product specification (Confluence, snapshot
+2026-07-09). This is the support bot's single source of truth for feature
+behavior.
+
+---
+
+## 1. What the feature is
+
+ShopView previously had 15 hardcoded roles with no way to customize them.
+Shops often granted Administrator access to people who only needed one extra
+capability, over-exposing sensitive data. This release replaces that with a
+configurable permission system:
+
+- **12 system roles** ship as sensible defaults (Admin, Service Manager,
+  Senior Service Advisor, Service Advisor, Foreman, Technician, Parts Manager,
+  Parts Tech, Office, Sales Representative, Time Clock).
+- Admins can create **custom roles**: start from a system role template, then
+  change any setting.
+- Every user has **exactly one role**. There is no combining/stacking of
+  roles.
+
+**In this release:** the Roles & Permissions admin page (list/create/edit/
+delete), the updated Staff page role assignment, the full permission model,
+and the migration from the 15 legacy roles.
+
+**NOT in this release (out of scope — do not promise these):**
+- Audit log of permission changes
+- Dashboard type assignment per role
+- Data scoping (e.g. "view only my own records" — a technician with Work
+  Orders View sees ALL work orders, not just theirs; the schedule always
+  shows all technicians)
+- Per-report access control (Reports is all-or-nothing)
+
+**Feature access, not data access:** permissions control access to features/
+pages. Example: a user who can create work orders but has no Customers access
+can still pick a customer from the list inside the New Work Order flow — they
+just don't see the Customers item in the top navigation.
+
+---
+
+## 2. Core concepts
+
+### Roles
+
+- **System roles** — 12 built-in templates. They CAN be edited (a shop can
+  tweak the defaults), with two exceptions: **Office** and **Time Clock**
+  cannot be edited (opening them shows a read-only permission summary). The
+  **Admin** system role cannot be edited to lose access to the Admin pages
+  (prevents locking everyone out). System roles can never be deleted.
+- **Custom roles** — created by admins, always starting from a system role
+  template (the template choice is saved for reference). Can be edited and
+  deleted.
+
+### Permission building blocks
+
+1. **CRUD areas** — View / Create-and-Edit / Delete per functional area.
+2. **Page access toggles** — on/off for whole sections (Reports, Customer
+   Portal, Billing Portal, Parts Department).
+3. **Settings access** — parent toggle + 7 sub-toggles for admin sections.
+4. **Work Order sub-settings** — Review Work Orders, Pick Parts, Order Parts.
+5. **View Mode** — Tech View vs Full View (UI simplification, NOT security).
+6. **Cross-cutting toggles** — See Financial Data; Manage Accounts Payable
+   and Receivable; View Part History.
+
+### The CRUD cascade rule (applies to every CRUD area)
+
+- **Delete requires Edit; Edit requires View.**
+- Enabling a higher level auto-enables the ones below (turning on Delete turns
+  on Edit and View).
+- Disabling a lower level auto-disables the ones above (turning off View turns
+  off Edit and Delete).
+- "Create and Edit" is one combined level — there is no separate
+  create-without-edit.
+
+### When access is off, the nav item is hidden
+
+No greyed-out menus: if a user lacks View on an area (or a page toggle is
+off), that top-level navigation item simply is not there for them.
+
+---
+
+## 3. CRUD areas — what each level controls
+
+### 3a. Work Orders (`workOrders`)
+
+- **View:** see the WO list and open WO detail pages. Includes the Notes tab:
+  can create notes, edit ANY note (notes are collaborative), and delete their
+  OWN notes. Can mark cores Ok / Not Ok (everyone with WO View can — agreed
+  product decision). If OFF, the Work Orders nav item is hidden.
+- **Create and Edit:** create WOs; edit WO fields (customer details / change
+  customer, asset, service advisor, lead technician, status, on-site status
+  of asset). Can view WO-level and line-level audit logs.
+- **Delete:** delete WOs; **reverse invoices** (for WOs and Part Sales —
+  reversal moved here from Invoicing Delete) as long as validation passes
+  (e.g. no payments made); delete ANY note including other users'. NOT enough
+  to delete payments (that's Invoicing: Delete).
+
+**Work Order sub-settings** (always visible in role editor; greyed out when
+WO View is OFF; they require only WO **View**, not Edit):
+
+- **Review Work Orders** (`woReviewWorkOrders`) — see and use the Review
+  option on WOs. Without it, no Review option. This setting always wins over
+  View Mode (Full or Tech).
+- **Pick Parts** (`woPickParts`) — pick parts from inventory onto a WO line.
+- **Order Parts** (`woOrderParts`) — place POs for parts needed on a WO
+  (creates a PO linked to the WO); also controls receiving part deliveries
+  onto a WO and visibility of the **Parts tab** on the WO. **Requires "See
+  Financial Data"** — enabling it while that's off prompts to enable it.
+
+The three are independent (e.g. Foreman-style: Pick Parts ON, Order Parts
+OFF). **Returning a part from a WO line requires no permission** — anyone who
+can see the WO can return a part.
+
+### 3b. Work Order Lines (`workOrderLines`)
+
+Child of Work Orders. **No independent View** — lines are visible whenever WO
+View is ON.
+
+- **Create and Edit:** add lines, edit line details, move parts between
+  lines, authorize lines, manage part requests on lines, add inspections to
+  lines, delete INCOMPLETE inspections, edit mileage / engine hours / license
+  plate / VIN.
+- **Delete:** remove lines; reopen COMPLETED digital inspections; delete
+  COMPLETED inspections.
+- Story history at line level requires WOL View (i.e. WO View).
+
+### 3c. Schedule (`schedule`)
+
+- **View:** see the schedule/calendar page, appointments, tech assignments.
+  Shows ALL technicians (no "own only" filter — it's a shared coordination
+  resource). If OFF, nav item hidden.
+- **Create and Edit:** create/modify appointments, assign technicians,
+  drag-and-drop.
+- **Delete:** remove appointments.
+
+### 3d. Customer Management (`customers`)
+
+- **View:** see customers, contacts, vehicles, vehicle history. Notes tab:
+  create notes, edit anyone's notes, delete own notes. If OFF, nav hidden.
+- **Create and Edit:** create/edit customers (incl. the Notes field), manage
+  contacts and vehicles. Also enables creating a customer inside the New WO
+  flow. Sensitive fields are hidden unless "Manage AP/AR" is on (see §7b).
+- **Delete:** delete customer records; delete notes other people created.
+  Does NOT allow deleting customer payments (that's Invoicing: Delete).
+
+### 3e. Part Sales (`partSales`)
+
+Gated by the **Parts Department** parent toggle AND requires **See Financial
+Data** (part sales inherently involve pricing; enabling any checkbox while
+financial data is off triggers the confirmation modal).
+
+- **View:** view part sales, part returns, part transactions.
+- **Create and Edit:** create part sales and returns, process transactions.
+- **Delete:** delete part sales and reverse part-sale invoices.
+
+### 3f. Catalog and Inventory (`catalogInventory`)
+
+Gated by Parts Department.
+
+- **View:** browse catalog, view inventory levels/stock, view parts history.
+- **Create and Edit:** create/edit catalog entries; inventory adjustments
+  INCLUDING returning items to inventory (restocking); cycle counts.
+- **Delete:** delete parts from the catalog.
+
+### 3g. Vendor and Order Management (`vendorOrderManagement`)
+
+Gated by Parts Department.
+
+- **View:** view vendors, purchase orders, deliveries, part history, part
+  return requests.
+- **Create and Edit:** create/edit vendors; create/manage POs; manage
+  deliveries; create vendor invoices; return parts to vendors or inventory.
+- **Delete:** delete vendors and purchase orders.
+
+### 3h. View Part History (single toggle)
+
+Gated by Parts Department. Lives under Part Sales, last in the list. ON = the
+Part History icon on the inventory page works; OFF = it's hidden. (Label was
+formerly "View History Logs"; it now controls ONLY part history.)
+
+### 3i. Invoicing and Payments (`invoicingPayments`)
+
+Requires **See Financial Data**. **Delete additionally requires Manage
+AP/AR** (enabling Delete while AP/AR is off prompts to enable it).
+
+- **View:** view invoices from WOs, part sales, or customers (needs access to
+  those entry points too). If OFF but See Financial Data is ON: user still
+  sees pricing on WOs, just can't open invoices.
+- **Create and Edit:** create invoices, process payments from WOs and part
+  sales, manage invoice fields, collect **deposits**, **Send to Terminal**
+  (Send to Terminal also requires Customer Portal ON).
+- **Delete:** delete payments (including customer payments), void
+  transactions, delete a part-sale return. (Invoice REVERSAL is NOT here —
+  it moved to Work Orders: Delete / Part Sales: Delete.)
+
+### 3j. Timesheets (`timesheets`)
+
+- **View:** view timesheets from work orders. If OFF the Timesheets nav item
+  is hidden — but a user with Reports ON still sees the timesheet activities
+  report.
+- **Create and Edit:** edit timesheet entries, adjust hours, manage
+  attendance for all staff (from the WO and from the timesheet activities
+  report).
+- **No Delete level exists for Timesheets.**
+- **Everyone can always clock in/out** regardless of this setting, and anyone
+  who can clock in/out can see "My Timesheets".
+
+---
+
+## 4. Page access toggles
+
+- **Reports (`reports`):** ON = access to ALL reports (tech efficiency, SA
+  analysis, requested parts, vendor expenses, WO statuses, inventory, WIP,
+  AR/AP aging, etc.). **All-or-nothing — no per-report control.** AR/AP aging
+  reports follow THIS toggle, not Manage AP/AR.
+- **Customer Portal (`customerPortal`):** ON = access/manage the
+  customer-facing portal configuration.
+- **Billing Portal (`billingPortal`):** ON = access/manage the billing
+  portal.
+- **Parts Department (`partsDepartment`):** PARENT GATE for Part Sales,
+  Catalog and Inventory, and Vendor and Order Management. OFF = all three are
+  inaccessible regardless of their CRUD settings and the Parts nav section is
+  hidden; their CRUD settings are preserved and restored when turned back ON.
+  In the role editor, OFF hides the three child areas (slide transition).
+
+---
+
+## 5. Settings access
+
+Parent toggle (`settings`) gates the whole Administration area (OFF = nav
+item hidden, all sub-settings inaccessible and hidden in the role editor).
+When ON, seven independent sub-toggles:
+
+| Sub-setting | Controls |
+| --- | --- |
+| App Settings | Org name, business info, locale, branding; **Roles and Permissions management**; Staff/Workplaces; Departments |
+| Service | Labor types, canned lines, asset types, Digital Inspections templates |
+| Parts | Pricing matrices, categories, parts config |
+| Integrations | QuickBooks, IBS, Open API |
+| Finance | Tax configuration, payment settings, payment methods |
+| Data Import | Bulk import of customers, vehicles, parts, etc. |
+| View/Manage Wages | Employee wage rates (sensitive — typically Admin/SM/Office) |
+
+Note: managing roles themselves requires Settings ON + App Settings ON.
+
+---
+
+## 6. View Mode (Tech View vs Full View)
+
+Controls **UI complexity of the work order interface only**. It does NOT
+control data access — CRUD permissions and cross-cutting toggles do that. It
+is a UX simplification, **not a security boundary**.
+
+- **Full View:** complete WO interface; all workflow actions (approve,
+  review, split…) subject to permissions — except Review, which is always
+  controlled by the "Review Work Orders" setting; has the Send to Portal
+  button; Estimate column shows the actual estimate.
+- **Tech View restrictions:**
+  - Estimate column shows **Tech Time** instead of the estimate value
+  - Tech time input field hidden on WO lines
+  - Cannot approve work orders or WO lines (buttons hidden)
+  - **Cannot Send to Portal** (button not visible)
+  - Labor rate columns/fields hidden on WO lines
+  - Simplified parts request form (subset of fields)
+  - Can only CREATE new WO lines; existing lines are read-only
+  - A line is editable only while authorization is pending; once approved it
+    becomes read-only for that user
+- **Time Clock role has NO view mode** (neither Full nor Tech — the setting
+  is empty for it).
+- Send to Portal: requires Full View; available to anyone who can approve a
+  WO line.
+
+---
+
+## 7. Cross-cutting toggles
+
+### 7a. See Financial Data (`seeFinancialData`)
+
+ON = pricing, costs, margins, and financial columns visible throughout the
+app (labor rates on lines, parts pricing, total/labor/parts columns, cost and
+margin on parts, financial summaries).
+OFF = ALL financial data hidden on every page — dollar amounts, rates, costs,
+margins, totals. The user can still perform their permitted CRUD actions;
+they just can't see pricing.
+
+- Applies to the **core app only** — it does NOT apply to Customer Portal,
+  Billing Portal, or Settings pages.
+- **Creating an inventory item without See Financial Data:** the Cost field
+  is hidden on the form; the user can still save; the system stamps Cost,
+  Sell Price, and Core Charge with 0. (With the toggle ON, Cost is required.)
+- **Gates these settings** (they can't be on while it's off): Invoicing &
+  Payments (full CRUD), Part Sales (full CRUD), Order Parts (WO sub-setting),
+  Manage AP/AR.
+- **Turning it OFF while gated settings are on:** the user is prompted with
+  the list of settings that must be disabled.
+- Design intent: one toggle, all-or-nothing app-wide (legacy visibility was
+  inconsistent per role).
+
+### 7b. Manage Accounts Payable and Receivable (`seeApArData`)
+
+Requires See Financial Data ON (prompt appears if not).
+
+ON = sees **Unpaid Invoices, Payments, and Credits tabs** on Customer AND
+Vendor detail pages; can make bulk payments from Unpaid Invoices; sees
+sensitive customer fields and sensitive vendor fields.
+OFF = those tabs hidden on both pages; sensitive fields hidden. The user can
+still create invoices / process payments if they have Invoicing permissions —
+they just can't see the consolidated AP/AR views.
+
+**Sensitive customer fields hidden when OFF** (Edit Customer modal + Customer
+Overview panel): Credit Terms, Credit Limit, Default Labor Rate, Default Shop
+Supplies, Min and Max, Taxes, PO is Required.
+**Sensitive vendor fields hidden when OFF** (Edit Vendor modal + Vendor
+Overview card): Credit Terms, Credit Limit, Taxes.
+
+- Independent from See Financial Data in the other direction: a role can see
+  pricing everywhere (Financial ON) but not AP/AR tabs (AP/AR OFF) — e.g.
+  Service Advisor.
+- Does NOT gate any CRUD area.
+- Does NOT gate AR/AP aging reports anymore — those follow Reports.
+
+---
+
+## 8. Admin pages behavior
+
+### Roles and Permissions list (Administration > Roles and Permissions)
+
+Table of all roles with: Role Name (System badge for system roles), Type
+(System/Custom), Template (custom roles show which system role they started
+from), Description, **Users Assigned count**, Actions (Edit / Delete / View
+Permissions). "Create Custom Role" button starts the creation flow.
+
+### Create / Edit custom role flow
+
+1. **Template selection** (create only) — pick a system role; all settings
+   pre-fill; template choice is saved.
+2. **Role details** — Name (required, must be unique), Description
+   (optional).
+3. **Permission editor** — all groups above, with live dependency
+   enforcement: CRUD cascade auto-checks/unchecks; Parts Department OFF hides
+   its three child areas; Settings OFF hides its sub-settings; See Financial
+   Data OFF disables Part Sales and Invoicing with an explanatory note; WO
+   sub-settings grey out when WO View is OFF.
+4. **Save** — validates and saves.
+
+### Financial Data confirmation modal
+
+Trigger: enabling any Invoicing or Part Sales CRUD checkbox, or Order Parts,
+while See Financial Data is OFF. Text: "[Area] requires 'See Financial Data'
+to be enabled. Enable it?" Confirm = auto-enables See Financial Data and
+applies the change; Cancel = reverts the checkbox.
+
+### Deleting a role
+
+- 0 users assigned → confirm and delete.
+- 1+ users assigned → "Cannot Delete" modal: "This role is assigned to N
+  user(s). Reassign them to another role before deleting." The confirm button
+  is DISABLED until all users are reassigned.
+- System roles can never be deleted.
+
+### Permission Summary (read-only)
+
+Compact ON/OFF view of a role's full permission set. Reached via "View
+Permissions" on the roles list and next to the role selector on the Staff
+page. It's the only way to inspect Office and Time Clock (which aren't
+editable).
+
+### Staff page
+
+Role selector groups **System Roles** and **Custom Roles**. "View
+Permissions" button beside the selector shows the summary before assigning.
+**Changing a user's role forces that user to log out; the new role takes
+effect when they log back in.**
+
+---
+
+## 9. The 12 system roles
+
+| Role | ID | Purpose |
+| --- | --- | --- |
+| Admin | `system-admin` | Full system access (cannot be edited to lose Admin-page access) |
+| Service Manager | `system-sm` | Full operational access; limited admin (App Settings + Wages) |
+| Senior Service Advisor | `system-ssa` | WO + customer management, expanded access |
+| Service Advisor | `system-jsa` | WO + customer management with invoicing; no AP/AR |
+| Foreman | `system-foreman` | Oversees technicians and work orders |
+| Technician | `system-tech` | Assigned work, time tracking, Tech View |
+| Parts Manager | `system-pm` | Full parts and inventory control |
+| Parts Tech | `system-pt` | Parts operations and vendor management |
+| Office | `system-office` | Back-office operations and reporting (NOT editable) |
+| Sales Representative | `system-salesrep` | Reports and financial visibility only |
+| Time Clock | `system-timeclock` | Clock in/out only (NOT editable; no view mode) |
+
+### Default matrix highlights (V = View, E = Create+Edit, D = Delete)
+
+CRUD areas:
+
+| Area | Svc Mgr | Sr. SA | Svc Advisor | Foreman | Tech | Parts Mgr | Parts Tech | Office | Sales Rep | Time Clock |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Work Orders | V/E/D | V/E/D | V/E | V/E | V | V/E | V | V | V | V |
+| WO Lines | V/E/D | V/E/D | V/E/D | V/E/D | V/E | V/E | V | V | V | — |
+| Schedule | V/E/D | V/E/D | V/E/D | V/E/D | V | V | V | V | — | V |
+| Customers | V/E/D | V/E | V/E | V/E | V | V/E/D | V/E | V/E/D | V/E | — |
+| Part Sales | V/E/D | V/E/D | V/E | V | — | V/E/D | V/E | V | V | — |
+| Catalog & Inv | V/E/D | V/E | V/E | V/E | — | V/E/D | V/E | V | — | — |
+| Vendor & Order | V/E/D | V/E/D | V/E | V/E | — | V/E/D | V/E/D | V | — | — |
+| Invoicing | V/E | V/E/D | V/E/D | V/E | — | V/E/D | V/E | V | — | — |
+| Timesheets | V/E | V/E | V | V | — | — | V | V/E | — | V |
+
+(Admin has full access everywhere; Timesheets Admin = V/E. WO Lines View
+always inherits from Work Orders View.)
+
+Toggles:
+
+| Toggle | Admin | Svc Mgr | Sr. SA | Svc Advisor | Foreman | Tech | Parts Mgr | Parts Tech | Office | Sales Rep | Time Clock |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Reports | ON | ON | ON | — | — | — | ON | — | ON | ON | — |
+| Customer Portal | ON | ON | ON | ON | — | — | ON | — | — | — | — |
+| Parts Dept | ON | ON | ON | ON | ON | — | ON | ON | ON | — | — |
+| Billing Portal | ON | ON | — | — | — | — | — | — | ON | — | — |
+| Settings | ON | ON | — | — | — | — | ON | — | ON | — | — |
+| Review WOs | ON | ON | ON | ON | ON | — | ON | — | — | — | — |
+| Pick Parts | ON | ON | ON | ON | ON | ON | ON | ON | — | — | — |
+| Order Parts | ON | ON | ON | ON | ON | — | ON | ON | — | — | — |
+| View Mode | Full | Full | Full | Full | Full | **Tech** | Full | Full | Full | Full | (none) |
+| See Financial | ON | ON | ON | ON | ON | — | ON | ON | ON | ON | — |
+| Manage AP/AR | ON | ON | ON | — | — | — | ON | — | ON | ON | — |
+| Part History | ON | ON | ON | ON | ON | — | ON | ON | ON | — | — |
+
+Settings sub-toggles (roles with Settings ON):
+
+| Sub-setting | Admin | Svc Mgr | Parts Mgr | Office |
+| --- | --- | --- | --- | --- |
+| App Settings | ON | ON | — | ON |
+| Service | ON | — | — | ON |
+| Parts | ON | — | ON | — |
+| Integrations | ON | — | — | ON |
+| Finance | ON | — | ON | ON |
+| Data Import | ON | — | ON | ON |
+| Wages | ON | ON | — | ON |
+
+### Special hard-coded rule: Office cannot create invoices
+
+Office users can make payments but NOT create invoices. The Create Invoice
+button is disabled for Office users on Work Orders and Part Sales — this
+hard-coded rule overrides whatever the Invoicing CRUD says.
+
+---
+
+## 10. Migration from legacy roles (support hotspot)
+
+Every existing user is mapped from the old 15 roles to the new 12:
+
+| Legacy role | New role | Note |
+| --- | --- | --- |
+| Owner | Admin | Owner role is retired — merged into Admin |
+| Administrator | Admin | Direct |
+| Service Manager | Service Manager | With adjustments |
+| Service Advisor | Senior Service Advisor | Renamed + expanded |
+| SA Technician | Senior Service Advisor | Consolidated (tech schedule/clock-in now via staff record) |
+| SA No Reports | Senior Service Advisor | Consolidated — GAINS Reports |
+| SA Limited View | Service Advisor | AP/AR OFF preserves the old restriction |
+| Foreman | Foreman | With expansions |
+| Technician | Technician | Direct |
+| Parts Manager | Parts Manager | With adjustments |
+| Parts Technician | Parts Tech | With expansions |
+| Sales Representative | Sales Representative | Direct |
+| Reporting | Sales Representative | Consolidated |
+| Office | Office | With adjustments |
+| Time Clock | Time Clock | Direct |
+
+### Capability changes users will notice after migration
+
+| Role | Change |
+| --- | --- |
+| Senior SA (was Service Advisor / SA Technician / SA No Reports) | GAINS: WO/WOL/Schedule/Part-Sales Delete, full Vendor access, full Invoicing, Timesheets edit, Customer Portal, AP/AR, Reports |
+| Service Manager | LOSES: Invoicing Delete; Settings sections Service/Parts/Finance/Data Import. GAINS: Billing Portal, Customer Portal |
+| Foreman | GAINS: WOL Delete, Schedule Delete, Parts Dept (Part Sales V; Catalog V/E; Vendor V/E), Invoicing V/E, Order Parts, Part History. LOSES: Timesheets Edit |
+| Technician | GAINS: Pick Parts. LOSES: Send to Portal |
+| Parts Manager | LOSES: WO/WOL Delete. GAINS: Schedule View, Customer Portal |
+| Parts Tech | GAINS: Pick Parts, Order Parts, Invoicing V/E, Part History |
+| Office | Catalog reduced to View only. Customer Management expanded to full (gains Delete) |
+| SA Limited View → Service Advisor | Restructured; AP/AR OFF preserves the core restriction. Gains Customer Portal |
+
+Shops are notified of these changes. If a shop wants the OLD behavior back,
+the fix is a **custom role**: start from the nearest template and toggle the
+specific settings.
+
+### Two things that are STAFF RECORD settings, not permissions
+
+- **Appearing on the technician schedule/dispatch board** — controlled by
+  the staff member's DEPARTMENT (any user in a schedule-visible department
+  appears, regardless of role).
+- **Clocking into work order line tasks** — controlled by the "Time Clock"
+  setting on the staff record (separate from attendance clock in/out, which
+  everyone always has).
+
+---
+
+## 11. Digital Inspections (no separate permission)
+
+Inspection abilities derive from existing permissions:
+
+- Add an inspection to a WO line / fill it in → WO Lines: Create and Edit
+- Delete an INCOMPLETE inspection → WO Lines: Create and Edit
+- Delete a COMPLETE inspection, or REOPEN a completed inspection → WO Lines:
+  Delete
+- Create/author inspection templates → Settings ON + Service sub-setting ON
+
+---
+
+## 12. Quick "who can do X" reference
+
+| Action | Requirement |
+| --- | --- |
+| Clock in / out (attendance) | Everyone, always |
+| See "My Timesheets" | Everyone who can clock in/out |
+| Mark core Ok / Not Ok | Work Orders: View |
+| Return a part from a WO line | No permission gate (needs WO View to see it) |
+| Create/edit any note on a WO or Customer | View on that area |
+| Delete someone else's note | Delete on that area |
+| See WO/line audit logs | Work Orders: Create and Edit |
+| See line story history | WO View (line story requires WOL view, which follows WO View) |
+| Reverse an invoice (WO or Part Sale) | Work Orders: Delete / Part Sales: Delete (+ validation, e.g. no payments) |
+| Delete a payment | Invoicing: Delete (which also needs Manage AP/AR) |
+| Delete a part-sale return | Invoicing: Delete |
+| Collect deposits / Send to Terminal | Invoicing: Create and Edit (terminal also needs Customer Portal ON) |
+| Send to Portal | Full View + able to approve a WO line |
+| Review a work order | "Review Work Orders" sub-setting (wins over view mode) |
+| See the WO Parts tab / order parts / receive deliveries on a WO | "Order Parts" sub-setting (needs See Financial Data) |
+| Manage roles, staff, departments | Settings ON + App Settings ON |
+| See AR/AP aging reports | Reports ON (NOT Manage AP/AR) |
+| Restock / return items to inventory | Catalog and Inventory: Create and Edit |
+
+---
+
+## 13. Known open items (escalate, don't answer)
+
+- **Reset to Template** — requirements not yet defined in the spec. Escalate
+  any question about resetting a role to its original template.
+- **Rename "Role" to "Profile"** — a future consideration only; not decided,
+  not in this release.
+</script>
+<script type="text/plain" id="file-faq"># FAQ — Custom Roles and Permissions (pre-approved support answers)
+
+Draft answers for the questions this release is expected to generate. Written
+in customer-ready plain English. The bot should prefer these when they match,
+and adapt names/details to the ticket.
+
+---
+
+## A. General / getting started
+
+**A1. What changed with roles in this release?**
+ShopView replaced its fixed set of roles with a flexible permission system.
+You now get 12 built-in "system roles" as sensible defaults, and admins can
+create custom roles: pick a built-in role as a starting point, then switch
+any individual permission on or off. Everyone was automatically moved from
+their old role to the closest new one.
+
+**A2. Where do I manage roles?**
+Administration > Roles and Permissions. You need a role that has Settings
+access with the App Settings section enabled (Admin has this by default).
+
+**A3. Can a user have two roles?**
+No. Each user has exactly one role. If someone needs a mix of two roles'
+abilities, create a custom role with exactly the permissions they need.
+
+**A4. Can I edit the built-in (system) roles?**
+Mostly yes — you can adjust a system role's settings for your shop. Two
+exceptions: Office and Time Clock cannot be edited (you can view their
+permissions read-only). Also, the Admin role can't be edited in a way that
+would remove its access to the admin pages, so you can't lock yourself out.
+System roles can never be deleted.
+
+**A5. How do I see exactly what a role allows before assigning it?**
+Use "View Permissions" — it's on each role in the Roles and Permissions list,
+and next to the role selector on the Staff page. It shows a read-only summary
+of everything the role can and can't do.
+
+**A6. Why can't I delete this custom role?**
+A role that still has users assigned can't be deleted — you'll see a message
+telling you how many users are on it. Reassign those users to another role
+first, then delete. (Built-in system roles can never be deleted.)
+
+**A7. I changed someone's role but nothing changed for them.**
+Changing a role signs that user out automatically, and the new permissions
+take effect when they sign back in. If they still seem to have old
+permissions, have them fully log out and log in again.
+
+---
+
+## B. Migration ("it worked before the update")
+
+**B1. Where did the Owner role go?**
+The Owner role was retired and merged into Admin. Anyone who was an Owner is
+now an Admin with full access — nothing was lost.
+
+**B2. Our Service Advisors suddenly have more access (deleting, reports,
+invoicing). Why?**
+The old "Service Advisor", "SA Technician", and "SA No Reports" roles were
+consolidated into the new **Senior Service Advisor** role, which is broader.
+If that's too much access for some staff, either assign them the (junior)
+**Service Advisor** role, or create a custom role starting from Senior
+Service Advisor and turn off what you don't want.
+
+**B3. Our Service Manager can no longer delete payments / reach some
+settings.**
+That's part of the new Service Manager defaults: it no longer includes
+Invoicing Delete, and its Settings access is limited to App Settings and
+Wages. If your manager needs those abilities back, an admin can edit the
+Service Manager role for your shop, or create a custom role with them
+enabled.
+
+**B4. Our Foreman can no longer edit timesheets.**
+Correct — the new Foreman role doesn't include Timesheets editing (it gained
+several parts-related abilities instead). If your foreman should edit
+timesheets, create a custom role based on Foreman with Timesheets "Create and
+Edit" turned on.
+
+**B5. Our technician says the "Send to Portal" button disappeared.**
+That's intentional: technicians now use the simplified Tech View, which
+doesn't include Send to Portal. If a specific person should send work orders
+to the portal, give them a role with Full View (e.g. a custom role based on
+Technician with view mode set to Full).
+
+**B6. Our Parts Manager can't delete work orders anymore.**
+The new Parts Manager defaults no longer include deleting work orders or
+lines. An admin can create a custom role based on Parts Manager with those
+enabled if needed.
+
+**B7. Our Office user can no longer edit the parts catalog.**
+Office now has view-only catalog access by default (it gained full customer
+management instead). A custom role based on Office can restore catalog
+editing.
+
+**B8. Can we just get our exact old role back?**
+Yes, in effect: create a custom role starting from the closest system role
+and toggle the differences. Your shop is notified of what changed per role,
+and support can walk you through the specific toggles.
+
+---
+
+## C. "User can't see / can't do something"
+
+**C1. A user can't see the Work Orders / Customers / Schedule menu at all.**
+When a role has no View access to an area, the menu item is hidden entirely
+(not greyed out). Check the user's role and enable View for that area, or
+assign a role that has it.
+
+**C2. A user sees no prices anywhere — no totals, no rates, no costs.**
+Their role has "See Financial Data" turned off. That single switch hides ALL
+financial information across the app (except the Customer Portal, Billing
+Portal, and Settings pages). Turn it on in their role if they should see
+pricing. Note: turning it on/off affects everyone with that role.
+
+**C3. A user can see prices but can't open invoices.**
+Seeing prices is "See Financial Data"; opening invoices is the separate
+"Invoicing and Payments: View" permission. Enable Invoicing View on their
+role. (They also need access to the place they open invoices from — work
+orders, part sales, or customers.)
+
+**C4. The Unpaid Invoices / Payments / Credits tabs are missing on a
+customer (or vendor) page.**
+Those tabs are controlled by "Manage Accounts Payable and Receivable". When
+it's off, the tabs are hidden, along with sensitive fields like credit terms
+and credit limits. Enable it on the role if the user should see them. (It
+also requires "See Financial Data" to be on.)
+
+**C5. Some fields are missing when editing a customer (credit limit, labor
+rate, taxes…).**
+Same switch as C4 — those are the financially sensitive customer fields,
+shown only when "Manage Accounts Payable and Receivable" is on. The user can
+still edit ordinary details (name, address, contacts).
+
+**C6. A user with parts permissions can't see any parts pages.**
+Check the "Parts Department" master switch on their role. When it's off, all
+three parts areas (Part Sales, Catalog and Inventory, Vendor and Order
+Management) are hidden no matter what their individual settings say. Turning
+it back on restores the previous settings.
+
+**C7. The Parts tab is missing on a work order.**
+The Parts tab on a work order is controlled by the "Order Parts" setting
+under Work Orders. Enable Order Parts on the role (it also requires "See
+Financial Data" — you'll be prompted to enable that too).
+
+**C8. A user can't find the Review option on work orders.**
+Reviewing is its own setting: "Review Work Orders" under the Work Orders
+area. It only requires Work Orders View — but it must be switched on for the
+role.
+
+**C9. A technician can't edit a work order line they created earlier.**
+In Tech View, a line can only be edited while it's awaiting authorization.
+Once the line is approved, it becomes read-only for that user. Existing lines
+created by others are also read-only in Tech View — techs can add new lines.
+This is the intended simplified technician experience.
+
+**C10. The "Estimate" column shows the wrong number for a technician.**
+In Tech View the Estimate column intentionally shows the Tech Time value
+rather than the customer-facing estimate. Users in Full View see the actual
+estimate.
+
+**C11. A user can't delete a payment even though they can delete work
+orders.**
+Deleting payments is separate from deleting work orders: it requires
+"Invoicing and Payments: Delete" (which in turn requires "Manage Accounts
+Payable and Receivable"). Work Orders: Delete covers deleting WOs and
+reversing invoices, not deleting payments.
+
+**C12. Who can reverse an invoice?**
+Reversing an invoice on a work order requires Work Orders: Delete; on a part
+sale it requires Part Sales: Delete. Reversal also has business checks — for
+example, an invoice with payments on it can't be reversed until the payments
+are handled.
+
+**C13. An Office user can't create an invoice even though their role shows
+invoicing edit access.**
+That's a built-in rule: Office users can take payments but not create
+invoices — the Create Invoice button is disabled for the Office role on work
+orders and part sales, regardless of the invoicing permission. If this person
+must create invoices, assign a different (or custom) role not based on the
+Office hard-coded rule.
+
+**C14. A user can't clock in / see their timesheet.**
+Clocking in and out is always available to every user, and anyone who can
+clock in/out can see "My Timesheets" — no permission controls that. If clock
+in/out genuinely isn't working, that's a problem to escalate, not a
+permissions setting.
+
+**C15. A user doesn't appear on the technician schedule.**
+That's not a role permission. Appearing on the dispatch board is controlled
+by the user's DEPARTMENT on their staff record — anyone in a
+schedule-visible department appears. Similarly, clocking into work order
+line tasks is controlled by the "Time Clock" setting on the staff record.
+
+**C16. Can I let someone see only THEIR OWN work orders / appointments?**
+Not in this release. Permissions control access to features, not which
+records are visible: a user with Work Orders View sees all work orders, and
+the schedule always shows all technicians. "Only my records" scoping is a
+separate future capability — we can log your interest as feedback.
+
+**C17. Can I give someone just ONE report instead of all reports?**
+No — Reports is all-or-nothing. A role either sees all reports or none.
+(This includes the AR/AP aging reports.)
+
+---
+
+## D. Role editor behavior
+
+**D1. Why did checking "Delete" also check View and Edit?**
+By design: Delete requires Edit, and Edit requires View, so the editor keeps
+them consistent automatically — enabling a higher level switches on the ones
+below, and disabling a lower level switches off the ones above.
+
+**D2. Why did a popup ask me to enable "See Financial Data"?**
+You enabled something that needs financial visibility to work (Part Sales,
+Invoicing, or Order Parts). Confirming enables See Financial Data along with
+your change; cancelling reverts the checkbox.
+
+**D3. I turned off "See Financial Data" and got a list of settings to
+disable.**
+Some settings can't work without financial visibility (Invoicing, Part
+Sales, Order Parts, Manage AP/AR). When you switch See Financial Data off,
+ShopView lists which of those are on so you can turn them off knowingly.
+
+**D4. The parts / settings sections disappeared from the role editor.**
+When the "Parts Department" or "Settings" master switch is off, their child
+sections are hidden in the editor (not greyed out). Turn the master switch
+back on and the children reappear with their previous values preserved.
+
+**D5. Can I rename a custom role or change its description?**
+Yes — edit the role; the name must stay unique.
+
+**D6. Can I reset a role back to its original template?**
+Escalate this one — resetting to template is still being finalized and we
+should not promise specific behavior yet. Workaround: create a fresh custom
+role from the same template.
+
+---
+
+## E. Digital Inspections
+
+**E1. Who can add or fill in an inspection on a work order line?**
+Anyone whose role has Work Order Lines: Create and Edit.
+
+**E2. Who can delete or reopen a completed inspection?**
+Deleting a COMPLETED inspection or reopening it requires Work Order Lines:
+Delete. Deleting an inspection that isn't finished yet only needs Work Order
+Lines: Create and Edit.
+
+**E3. Who can create inspection templates?**
+Roles with Settings access plus the Service sub-section enabled.
+</script>
+
+<script>
+// ---------------- FAQ data ----------------
+const CATS = ["Getting started","Migration","Can't see / can't do","Money & invoicing","Role editor","Inspections","Quick reference"];
+const FAQ = [
+ {c:0,q:"What changed with roles in this release?",k:"new release update overview what is this",a:["ShopView replaced its fixed set of roles with a flexible permission system. You get 12 built-in \"system roles\" as sensible defaults, and admins can create custom roles: pick a built-in role as a starting point, then switch any individual permission on or off.","Everyone was automatically moved from their old role to the closest new one."]},
+ {c:0,q:"Where do I manage roles?",k:"admin page location settings roles permissions page",a:["Administration → Roles and Permissions. You need a role with Settings access and the App Settings section enabled (Admin has this by default)."]},
+ {c:0,q:"Can a user have two roles?",k:"multiple roles combine stack",a:["No — each user has exactly one role. If someone needs a mix of two roles' abilities, create a custom role with exactly the permissions they need."]},
+ {c:0,q:"Can I edit the built-in (system) roles?",k:"edit system role change default",a:["Mostly yes — you can adjust a system role's settings for your shop. Two exceptions: Office and Time Clock can't be edited (view-only summary). The Admin role can't be edited in a way that removes its access to the admin pages, so you can't lock yourself out.","System roles can never be deleted."]},
+ {c:0,q:"How do I see exactly what a role allows before assigning it?",k:"view permissions summary check role preview",a:["Use \"View Permissions\" — on each role in the Roles and Permissions list, and next to the role selector on the Staff page. It shows a read-only summary of everything the role can and can't do."]},
+ {c:0,q:"Why can't I delete this custom role?",k:"delete role disabled cannot remove",a:["A role that still has users assigned can't be deleted — you'll see how many users are on it. Reassign those users to another role first, then delete.","Built-in system roles can never be deleted."]},
+ {c:0,q:"I changed someone's role but nothing changed for them.",k:"role change not working not applying logout login",a:["Changing a role signs that user out automatically, and the new permissions take effect when they sign back in. If they still seem to have old permissions, have them fully log out and log in again."]},
+ {c:0,q:"How do I create a custom role?",k:"create custom role new template",a:["Administration → Roles and Permissions → Create Custom Role. Pick a built-in role as the starting template (all its settings pre-fill), give it a unique name, adjust any settings, and save."]},
+
+ {c:1,q:"Where did the Owner role go?",k:"owner missing gone removed",a:["The Owner role was retired and merged into Admin. Anyone who was an Owner is now an Admin with full access — nothing was lost."]},
+ {c:1,q:"Our Service Advisors suddenly have MORE access (deleting, reports, invoicing). Why?",k:"service advisor more access senior sa expanded gained",a:["The old \"Service Advisor\", \"SA Technician\" and \"SA No Reports\" roles were consolidated into the new Senior Service Advisor role, which is broader.","If that's too much for some staff, assign them the (junior) Service Advisor role instead, or create a custom role starting from Senior Service Advisor and turn off what you don't want."]},
+ {c:1,q:"Our Service Manager can no longer delete payments or reach some settings.",k:"service manager lost settings invoicing delete",a:["That's part of the new Service Manager defaults: it no longer includes Invoicing Delete, and its Settings access is limited to App Settings and Wages.","If your manager needs those abilities back, an admin can edit the Service Manager role for your shop, or create a custom role with them enabled."]},
+ {c:1,q:"Our Foreman can no longer edit timesheets.",k:"foreman timesheet lost edit",a:["Correct — the new Foreman role doesn't include timesheet editing (it gained several parts-related abilities instead).","If your foreman should edit timesheets, create a custom role based on Foreman with Timesheets \"Create and Edit\" turned on."]},
+ {c:1,q:"Our technician says the \"Send to Portal\" button disappeared.",k:"send to portal missing technician tech view",a:["That's intentional: technicians now use the simplified Tech View, which doesn't include Send to Portal.","If a specific person should send work orders to the portal, give them a role with Full View — e.g. a custom role based on Technician with the view mode set to Full."]},
+ {c:1,q:"Our Parts Manager can't delete work orders anymore.",k:"parts manager delete work order lost",a:["The new Parts Manager defaults no longer include deleting work orders or lines. An admin can create a custom role based on Parts Manager with those enabled if needed."]},
+ {c:1,q:"Our Office user can no longer edit the parts catalog.",k:"office catalog view only lost edit",a:["Office now has view-only catalog access by default (it gained full customer management instead). A custom role based on Office can restore catalog editing."]},
+ {c:1,q:"Can we just get our exact old role back?",k:"restore old role legacy previous behavior",a:["Yes, in effect: create a custom role starting from the closest system role and toggle the differences. Your shop was notified of what changed per role, and support can walk you through the specific switches."]},
+
+ {c:2,q:"A user can't see the Work Orders / Customers / Schedule menu at all.",k:"menu missing nav hidden no access tab gone",a:["When a role has no View access to an area, the menu item is hidden entirely (not greyed out).","Check the user's role and enable View for that area, or assign a role that has it."]},
+ {c:2,q:"A user sees NO prices anywhere — no totals, rates, or costs.",k:"prices missing hidden money totals financial dollar amounts",a:["Their role has \"See Financial Data\" turned off. That single switch hides ALL financial information across the app (except Customer Portal, Billing Portal and Settings pages).","Turn it on in their role if they should see pricing — note this affects everyone with that role."]},
+ {c:2,q:"The parts pages are all missing for a user with parts permissions.",k:"parts department missing catalog vendor hidden",a:["Check the \"Parts Department\" master switch on their role. When it's off, all three parts areas (Part Sales, Catalog and Inventory, Vendor and Order Management) are hidden no matter what their individual settings say.","Turning it back on restores the previous settings."]},
+ {c:2,q:"The Parts tab is missing on a work order.",k:"parts tab work order missing order parts",a:["The Parts tab on a work order is controlled by the \"Order Parts\" setting under Work Orders. Enable Order Parts on the role — it also requires \"See Financial Data\" (you'll be prompted)."]},
+ {c:2,q:"A user can't find the Review option on work orders.",k:"review missing option work order",a:["Reviewing is its own setting: \"Review Work Orders\" under the Work Orders area. It only requires Work Orders View — but it must be switched on for the role."]},
+ {c:2,q:"A technician can't edit a work order line they created earlier.",k:"tech view read only line locked cannot edit approved",a:["In Tech View, a line can only be edited while it's awaiting authorization — once approved, it becomes read-only for that user. Lines created by others are also read-only in Tech View; techs can add new lines.","This is the intended simplified technician experience."]},
+ {c:2,q:"The \"Estimate\" column shows the wrong number for a technician.",k:"estimate column wrong tech time value",a:["In Tech View the Estimate column intentionally shows the Tech Time value rather than the customer-facing estimate. Users in Full View see the actual estimate."]},
+ {c:2,q:"A user can't clock in or see their timesheet.",k:"clock in out timesheet missing attendance",a:["Clocking in and out is always available to every user, and anyone who can clock in/out can see \"My Timesheets\" — no permission controls that.","If clock in/out genuinely isn't working, escalate it — it's not a permissions setting."],e:1},
+ {c:2,q:"A user doesn't appear on the technician schedule.",k:"schedule dispatch board missing technician not showing",a:["That's not a role permission. Appearing on the dispatch board is controlled by the user's DEPARTMENT on their staff record — anyone in a schedule-visible department appears.","Similarly, clocking into work order line tasks is controlled by the \"Time Clock\" setting on the staff record."]},
+ {c:2,q:"Can someone see only THEIR OWN work orders or appointments?",k:"own records only filter scope my work orders",a:["Not in this release. Permissions control access to features, not which records are visible: a user with Work Orders View sees all work orders, and the schedule always shows all technicians.","\"Only my records\" is a separate future capability — log the customer's interest as feedback."],e:1},
+ {c:2,q:"Can I give someone just ONE report instead of all reports?",k:"single report granular reports access one",a:["No — Reports is all-or-nothing. A role either sees all reports or none (including the AR/AP aging reports)."]},
+
+ {c:3,q:"A user can see prices but can't open invoices.",k:"invoice cannot open see prices",a:["Seeing prices is \"See Financial Data\"; opening invoices is the separate \"Invoicing and Payments: View\" permission. Enable Invoicing View on their role.","They also need access to the place they open invoices from — work orders, part sales, or customers."]},
+ {c:3,q:"Unpaid Invoices / Payments / Credits tabs are missing on a customer or vendor page.",k:"unpaid invoices payments credits tabs missing ap ar",a:["Those tabs are controlled by \"Manage Accounts Payable and Receivable\". When it's off, the tabs are hidden, along with sensitive fields like credit terms and limits.","Enable it on the role if the user should see them (it also requires \"See Financial Data\")."]},
+ {c:3,q:"Fields are missing when editing a customer (credit limit, labor rate, taxes…).",k:"customer fields missing credit terms hidden edit",a:["Those are the financially sensitive customer fields, shown only when \"Manage Accounts Payable and Receivable\" is on. The user can still edit ordinary details (name, address, contacts)."]},
+ {c:3,q:"A user can't delete a payment even though they can delete work orders.",k:"delete payment cannot remove",a:["Deleting payments is separate from deleting work orders: it requires \"Invoicing and Payments: Delete\" (which also needs \"Manage Accounts Payable and Receivable\").","Work Orders: Delete covers deleting work orders and reversing invoices — not deleting payments."]},
+ {c:3,q:"Who can reverse an invoice?",k:"reverse invoice undo",a:["Reversing an invoice on a work order requires Work Orders: Delete; on a part sale it requires Part Sales: Delete.","Reversal also has business checks — e.g. an invoice with payments can't be reversed until the payments are handled."]},
+ {c:3,q:"An Office user can't create an invoice even though their role shows invoicing access.",k:"office create invoice disabled button",a:["That's a built-in rule: Office users can take payments but not create invoices — the Create Invoice button is disabled for the Office role on work orders and part sales, regardless of the invoicing permission.","If this person must create invoices, assign a different or custom role."]},
+ {c:3,q:"Who can take deposits or send a payment to the card terminal?",k:"deposit send to terminal card payment",a:["Both require \"Invoicing and Payments: Create and Edit\". Send to Terminal additionally requires the Customer Portal toggle to be on."]},
+
+ {c:4,q:"Why did checking \"Delete\" also check View and Edit?",k:"checkbox auto check cascade delete edit view",a:["By design: Delete requires Edit, and Edit requires View, so the editor keeps them consistent automatically — enabling a higher level switches on the ones below, and disabling a lower level switches off the ones above."]},
+ {c:4,q:"A popup asked me to enable \"See Financial Data\". Why?",k:"popup modal financial data prompt confirm",a:["You enabled something that needs financial visibility to work (Part Sales, Invoicing, or Order Parts). Confirming enables See Financial Data along with your change; cancelling reverts the checkbox."]},
+ {c:4,q:"I turned off \"See Financial Data\" and got a list of settings to disable.",k:"turn off financial data list disable dependencies",a:["Some settings can't work without financial visibility (Invoicing, Part Sales, Order Parts, Manage AP/AR). When you switch See Financial Data off, ShopView lists which of those are on so you can turn them off knowingly."]},
+ {c:4,q:"Sections disappeared from the role editor.",k:"editor sections missing hidden parts settings",a:["When the \"Parts Department\" or \"Settings\" master switch is off, their child sections are hidden in the editor (not greyed out). Turn the master switch back on — the children reappear with their previous values preserved."]},
+ {c:4,q:"Can I reset a role back to its original template?",k:"reset template restore default role",a:["Escalate this one — resetting to template is still being finalized, so don't promise specific behavior.","Workaround: create a fresh custom role from the same template."],e:1},
+
+ {c:5,q:"Who can add or fill in an inspection on a work order line?",k:"inspection add fill digital",a:["Anyone whose role has Work Order Lines: Create and Edit."]},
+ {c:5,q:"Who can delete or reopen a completed inspection?",k:"inspection delete reopen completed",a:["Deleting a COMPLETED inspection, or reopening one, requires Work Order Lines: Delete. Deleting an unfinished inspection only needs Work Order Lines: Create and Edit."]},
+ {c:5,q:"Who can create inspection templates?",k:"inspection template create author",a:["Roles with Settings access plus the Service sub-section enabled."]},
+
+ {c:6,q:"Who can mark cores Ok / Not Ok?",k:"core ok not ok mark",a:["Anyone with Work Orders: View — this was deliberately opened to everyone who can see the work order."]},
+ {c:6,q:"Who can return a part from a work order line?",k:"return part work order line",a:["No permission gate — anyone who can see the work order can return a part from a line."]},
+ {c:6,q:"Who can see work order audit logs and line history?",k:"audit log history story line",a:["Audit logs (work order and line level) require Work Orders: Create and Edit. A line's story history just requires being able to see the work order."]},
+ {c:6,q:"Who can manage roles, staff and departments?",k:"manage roles staff departments who",a:["Roles with the Settings switch on plus the App Settings sub-section enabled (by default: Admin, Service Manager, Office)."]},
+ {c:6,q:"Which switch controls the AR/AP aging reports?",k:"aging report ar ap which permission",a:["The Reports toggle — reports are all-or-nothing. (Not \"Manage Accounts Payable and Receivable\".)"]},
+ {c:6,q:"Who can restock / return items to inventory?",k:"restock return inventory items",a:["Catalog and Inventory: Create and Edit."]}
+];
+
+// ---------------- rendering & search ----------------
+const $ = s => document.querySelector(s);
+const resultsEl = $("#results"), qEl = $("#q"), chipsEl = $("#chips"), countEl = $("#count"), emptyEl = $("#empty");
+let activeCat = -1;
+
+function esc(t){ const d = document.createElement("span"); d.textContent = t; return d.innerHTML; }
+
+function render(){
+  const q = qEl.value.trim().toLowerCase();
+  const terms = q.split(/\s+/).filter(t => t.length > 1);
+  let items = FAQ.map((f,i)=>({f,i}));
+  if (activeCat >= 0) items = items.filter(x => x.f.c === activeCat);
+  if (terms.length){
+    items = items.map(x => {
+      const hay1 = x.f.q.toLowerCase(), hay2 = (x.f.k||"").toLowerCase(), hay3 = x.f.a.join(" ").toLowerCase();
+      let score = 0;
+      for (const t of terms){
+        if (hay1.includes(t)) score += 3;
+        if (hay2.includes(t)) score += 2;
+        if (hay3.includes(t)) score += 1;
+      }
+      return {...x, score};
+    }).filter(x => x.score > 0).sort((a,b)=>b.score-a.score);
+  }
+  countEl.textContent = items.length ? `${items.length} answer${items.length===1?"":"s"}` : "";
+  emptyEl.hidden = items.length > 0;
+  resultsEl.innerHTML = items.map(x => `
+    <details class="qa" ${terms.length && x.score >= 3 && items.length <= 4 ? "open" : ""}>
+      <summary>
+        <span class="q">${esc(x.f.q)}</span>
+        ${x.f.e ? '<span class="badge esc">Escalate</span>' : ""}
+        <span class="badge cat">${esc(CATS[x.f.c])}</span>
+      </summary>
+      <div class="a">${x.f.a.map(p=>`<p>${esc(p)}</p>`).join("")}</div>
+    </details>`).join("");
+}
+
+CATS.forEach((c,i)=>{
+  const b = document.createElement("button");
+  b.className = "chip"; b.textContent = c; b.setAttribute("aria-pressed","false");
+  b.onclick = () => {
+    activeCat = (activeCat === i) ? -1 : i;
+    chipsEl.querySelectorAll(".chip").forEach((el,j)=>el.setAttribute("aria-pressed", String(j===activeCat)));
+    render();
+  };
+  chipsEl.appendChild(b);
+});
+qEl.addEventListener("input", render);
+render();
+
+// ---------------- tabs ----------------
+const tabs = [["tab-answers","panel-answers"],["tab-launch","panel-launch"]];
+tabs.forEach(([t,p])=>{
+  $("#"+t).onclick = () => {
+    tabs.forEach(([t2,p2])=>{
+      $("#"+t2).setAttribute("aria-selected", String(t2===t));
+      $("#"+p2).hidden = p2 !== p;
+    });
+  };
+});
+
+// ---------------- copy & downloads ----------------
+$("#copyPrompt").onclick = async () => {
+  const text = $("#file-prompt").textContent.trim();
+  try { await navigator.clipboard.writeText(text); }
+  catch (e) {
+    const ta = document.createElement("textarea");
+    ta.value = text; document.body.appendChild(ta); ta.select();
+    document.execCommand("copy"); ta.remove();
+  }
+  $("#copiedMsg").hidden = false;
+};
+document.querySelectorAll("[data-dl]").forEach(btn => {
+  btn.onclick = () => {
+    const id = btn.getAttribute("data-dl");
+    const text = $("#file-" + id).textContent.trim() + "\n";
+    const name = id === "kb" ? "knowledge-base.md" : "faq.md";
+    const url = URL.createObjectURL(new Blob([text], {type:"text/markdown"}));
+    const a = document.createElement("a");
+    a.href = url; a.download = name; a.click();
+    setTimeout(()=>URL.revokeObjectURL(url), 5000);
+  };
+});
+</script>
