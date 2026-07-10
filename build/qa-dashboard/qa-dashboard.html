@@ -207,22 +207,6 @@
     <div class="mwrap"><table class="matrix" id="inprog"></table></div>
   </div>
 
-  <div class="eyebrow">🙋 Assigned to a QA member &amp; not yet Done — QA likely needs to respond</div>
-  <div class="card">
-    <p class="note">Tickets whose <b>Assignee</b> is a QA member and status is <b>less than Done</b> — usually a
-    question or change waiting on QA. Also includes <b>Tasks raised by a QA member</b> that are still open
-    (shown with whom they're assigned to). Respects the epic/member filters.</p>
-    <div class="mwrap"><table class="tix" id="tbl-needs"></table></div>
-  </div>
-
-  <div class="eyebrow">🧾 In a QA member's queue (QA&nbsp;Assignee) &amp; not yet Done</div>
-  <div class="card">
-    <p class="note">Tickets where the <b>QA&nbsp;Assignee</b> field is a QA member and status is
-    <b>less than Done</b> — the QA member's open testing workload. Respects the epic/member filters.</p>
-    <div class="mwrap"><table class="tix" id="tbl-queue"></table></div>
-    <button class="more" id="queue-more" hidden></button>
-  </div>
-
   <div class="eyebrow">📋 Per-person activity — Yesterday vs Today (PKT)</div>
   <div class="card">
     <p class="note">What each QA person did <b>yesterday (9 Jul)</b> and <b>today (10 Jul)</b>, Pakistan time.
@@ -279,6 +263,22 @@
 
   <div class="eyebrow">Label hygiene — fix these to make the tracking reliable</div>
   <div class="card hyg"><ul id="hyg"></ul></div>
+
+  <div class="eyebrow">🙋 Assigned to a QA member &amp; not yet Done — QA likely needs to respond</div>
+  <div class="card">
+    <p class="note">Tickets whose <b>Assignee</b> is a QA member and status is <b>less than Done</b> — usually a
+    question or change waiting on QA. Also includes <b>Tasks raised by a QA member</b> that are still open
+    (shown with whom they're assigned to). Respects the epic/member filters.</p>
+    <div class="mwrap"><table class="tix" id="tbl-needs"></table></div>
+  </div>
+
+  <div class="eyebrow">🧾 In a QA member's queue (QA&nbsp;Assignee) &amp; not yet Done</div>
+  <div class="card">
+    <p class="note">Tickets where the <b>QA&nbsp;Assignee</b> field is a QA member and status is
+    <b>less than Done</b> — the QA member's open testing workload. Respects the epic/member filters.</p>
+    <div class="mwrap"><table class="tix" id="tbl-queue"></table></div>
+    <button class="more" id="queue-more" hidden></button>
+  </div>
 
   <div class="eyebrow">Tickets in this selection</div>
   <div class="card">
