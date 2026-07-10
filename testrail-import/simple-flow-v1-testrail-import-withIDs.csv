@@ -1,0 +1,857 @@
+Case ID,TestRail Link,Title,Section,Type,Priority,Preconditions,Steps,Expected Result,References,,
+C29275,https://shopview.testrail.io/index.php?/cases/view/29275,Verify the Work Order settings page shows all Simple-Flow toggles in order with new vs existing visually distinct,Work Order Settings,Functional,Critical,"1. You are signed in as an Admin at https://sv7301.qa.shopview.com.
+2. You can reach Administration.","1. Go to /administration/settings.
+2. Click the 'Work Orders' tab.
+3. Read the list of settings top to bottom.","1. The page lists these toggles: Auto-approve Lines, Require Vendor Invoice Number, Require Review Before Completion, Require Tech Story, Require Mileage, Require Engine Hours, Automatically Pick Inventory Parts.
+2. Each toggle shows an On/Off control and its current state.
+3. No 'operating mode' (Full/Simple) selector appears anywhere on the page.",SV-7696 (S1-R1..R8 / Story 1 AC),,
+C29276,https://shopview.testrail.io/index.php?/cases/view/29276,Verify there is no operating-mode selector and no VIN-required setting on the Work Order settings page,Work Order Settings,Functional,High,"1. Signed in as Admin.
+2. On /administration/settings → Work Orders tab.","1. Scan the whole Work Orders settings tab.
+2. Look specifically for a 'Mode' / 'Full vs Simple' selector.
+3. Look specifically for a 'Require VIN' / 'VIN required' toggle.","1. There is no operating-mode (Full/Simple) selector.
+2. There is no 'Require VIN' toggle in the Work Order settings.
+3. Behavior is driven only by the individual setting toggles.",SV-7696 (S1 AC / Key Decision (no operatingMode)),,
+C29277,https://shopview.testrail.io/index.php?/cases/view/29277,"Verify a 'Create Purchase Orders' toggle exists and, when off, hides the Vendor Invoice sub-setting",Work Order Settings,Functional,Critical,"1. Signed in as Admin.
+2. On /administration/settings → Work Orders tab.","1. Locate a 'Create purchase orders' toggle.
+2. Turn it Off and observe the Vendor Invoice Number setting.
+3. Turn it On and observe the Vendor Invoice Number setting.","1. EXPECTED PER SPEC (currently NOT met): a 'Create purchase orders' toggle exists, default On, with helper text.
+2. With Create POs Off, the Vendor Invoice (Optional/Required) sub-setting is hidden and no vendor-invoice capture happens in completion.
+3. With Create POs On, the Vendor Invoice (Optional/Required) sub-setting appears with helper text.",SV-7696 (S1-R2 (Create purchase orders)),,
+C29278,https://shopview.testrail.io/index.php?/cases/view/29278,Verify the Require Vendor Invoice Number toggle is present with helper text and drives Optional vs Required completion,API — Work Order Settings,Functional,Critical,"1. Signed in as Admin.
+2. On /administration/settings → Work Orders tab.","1. Locate the 'Require Vendor Invoice Number' toggle.
+2. Read its helper text.
+3. Note its current On/Off state.","1. The 'Require Vendor Invoice Number' toggle is present.
+2. Helper text reads (approximately): 'When on, parts and a vendor invoice number are required to complete a work order. When off, complete now and receive parts later.'
+3. Its state maps to requireVendorInvoiceNumber in GET /api/organizations/settings.",SV-7696 (S1-R3 (Vendor invoice Optional/Required)),,
+C29279,https://shopview.testrail.io/index.php?/cases/view/29279,Verify Auto-approve Lines ON approves a work-order line the moment it is added,Work Order Settings,Functional,High,"1. Signed in as Admin.
+2. Auto-approve Lines is set to ON and saved.
+3. An open work order is on its Lines tab.","1. Click New Line.
+2. Fill in a canned line and Save.
+3. Observe the new line's approval state.","1. The new line is created.
+2. The line is immediately Approved.
+3. No 'Needs Approval' / Approve-Decline prompt is shown for the line.",SV-7696 (S1-R1 (Auto-approve ON)),,
+C29280,https://shopview.testrail.io/index.php?/cases/view/29280,Verify Auto-approve Lines OFF leaves a new line in Needs Approval with Approve/Decline actions,Work Order Settings,Functional,High,"1. Signed in as Admin.
+2. Auto-approve Lines is set to OFF and saved.
+3. An open work order is on its Lines tab.","1. Click New Line.
+2. Fill in a canned line and Save.
+3. Observe the new line's approval state and actions.","1. The new line is created.
+2. The line shows a 'Needs Approval' state.
+3. Approve and Decline actions are available on the line.",SV-7696 (S1-R1 (Auto-approve OFF)),,
+C29281,https://shopview.testrail.io/index.php?/cases/view/29281,"Verify existing settings (tech story, mileage, engine hours, auto-pick) display the org's current values",API — Work Order Settings,Functional,Medium,"1. Signed in as Admin.
+2. On /administration/settings → Work Orders tab.
+3. GET /api/organizations/settings values are known for this org.","1. Read the Require Tech Story, Require Mileage, Require Engine Hours and Automatically Pick Inventory Parts toggles.
+2. Compare each shown state against the API settings object.","1. Each existing toggle is shown.
+2. Each toggle's On/Off state matches the org's current API value.
+3. States display without altering the values.",SV-7696 (S1-R5..R8 (existing settings surfaced)),,
+C29282,https://shopview.testrail.io/index.php?/cases/view/29282,"Verify first-use defaults on a brand-new org (auto-approve OFF, create POs ON, vendor invoice REQUIRED)",Work Order Settings,Functional,High,"1. A brand-new organization that has never edited Work Order settings is available.
+2. Signed in as that org's Admin.","1. Open /administration/settings → Work Orders tab for the new org.
+2. Read the default state of Auto-approve Lines, Create Purchase Orders, and Vendor Invoice.","1. Auto-approve Lines = OFF (spec default — authoritative).
+2. Create Purchase Orders = ON.
+3. Vendor Invoice = REQUIRED.",SV-7696 (S1 first-use defaults / §4),,
+C29283,https://shopview.testrail.io/index.php?/cases/view/29283,Verify saving a settings change persists after page reload,API — Work Order Settings,Functional,High,"1. Signed in as Admin.
+2. On /administration/settings → Work Orders tab.
+3. Note the current state of one toggle (e.g. Require Engine Hours).","1. Flip one toggle (e.g. Require Engine Hours) to the opposite state.
+2. Click Save Settings.
+3. Reload the page.
+4. Re-read the toggle. (Restore it afterward to leave the org unchanged.)","1. Save Settings completes without error (POST /api/organizations/settings/change).
+2. After reload the toggle keeps the new state.
+3. GET /api/organizations/settings reflects the new value.",SV-7696 (S1-R9 (Save persists org-wide)),,
+C29284,https://shopview.testrail.io/index.php?/cases/view/29284,Verify a settings change applies to future completions only and not to already-completed work orders,Work Order Settings,Functional,Medium,"1. Signed in as Admin.
+2. A work order was already completed under the previous settings.
+3. You can change a Work Order setting.","1. Complete a work order under the current settings.
+2. Change a relevant Work Order setting (e.g. Require Vendor Invoice Number) and Save.
+3. Reopen the already-completed work order and inspect it.","1. The already-completed work order is not retroactively changed by the new setting.
+2. Only work orders completed after the change follow the new setting.","SV-7696 (S1-R9 (future completions only, never retroactive))",,
+C29285,https://shopview.testrail.io/index.php?/cases/view/29285,Verify a non-admin user cannot see or modify the Work Order settings,API — Work Order Settings,Functional,High,"1. A user without the App Settings permission (e.g. Service Advisor or Technician) exists for this org.
+2. You can sign in as that user.","1. Sign in as the user without App Settings.
+2. Attempt to open /administration/settings → Work Orders tab.
+3. Attempt to change and save a Work Order setting, including a direct API save.","1. A role without the App Settings permission cannot reach the Work Order settings, or sees them read-only.
+2. That role cannot save changes to Work Order settings.
+3. The backend rejects a Work Order settings save attempted by a role that lacks App Settings.",SV-7696 (S1 AC (non-admin can't see/modify)),,
+C29286,https://shopview.testrail.io/index.php?/cases/view/29286,Verify the settings model contains no operatingMode field and no requireVin setting,API — Work Order Settings,Functional,Low,"1. Signed in as Admin with API access.
+2. You can call GET /api/organizations/settings.","1. Call GET /api/organizations/settings.
+2. Inspect the returned object keys for 'operatingMode'.
+3. Inspect for a 'requireVin' Work Order setting.","1. There is no operatingMode field in the settings object.
+2. There is no requireVin Work Order setting exposed.",SV-7696 (S1 AC (no requireVin / no operatingMode field)),,
+C29287,https://shopview.testrail.io/index.php?/cases/view/29287,Verify the Save Settings button is only enabled when there is an unsaved change,Work Order Settings,Functional,Low,"1. Signed in as Admin.
+2. On /administration/settings → Work Orders tab with no pending changes.","1. With no changes made, look at the Save Settings button.
+2. Flip a toggle and look at the Save Settings button again.","1. Saving persists the settings changes.
+2. Dirty-state gating (disabling Save until a change is made) is NOT required in v1 — Save being always enabled is acceptable (low-priority polish, not a blocker).",SV-7696 (S1 (Save dirty-state)),,
+C29288,https://shopview.testrail.io/index.php?/cases/view/29288,Verify the Require Review Before Completion toggle is present on the settings page and drives the review flow,Work Order Settings,Functional,High,"1. Signed in as Admin.
+2. On /administration/settings → Work Orders tab.","1. Locate the 'Require Review Before Completion' toggle.
+2. Turn it On and Save.
+3. Start completing a work order and observe the completion CTA.","1. The 'Require Review Before Completion' toggle is present on the page (not prototype-only).
+2. With it On, completing a work order routes into the review flow (Story 16).
+3. The completion CTA relabels to 'Complete & Send to Review'.",SV-7696 (S1-R4 (Require review before completion)),,
+C29289,https://shopview.testrail.io/index.php?/cases/view/29289,Verify every Work Order setting toggle has descriptive helper text,Work Order Settings,Functional,Low,"1. Signed in as Admin.
+2. On /administration/settings → Work Orders tab.","1. Read each toggle's supporting description text.
+2. Confirm each explains what On vs Off does.","1. Every toggle has a short helper description.
+2. Each description explains the On and Off behavior in plain language.",SV-7696 (S1 AC (helper text per toggle)),,
+C29290,https://shopview.testrail.io/index.php?/cases/view/29290,Verify a Complete Work Order button appears next to New Line on the work order,Completion — No-PO / Skip (Story 2),Functional,Critical,"1. Signed in as Admin.
+2. An open work order with at least one approved line is on its Lines tab.","1. Look at the work order Lines toolbar.
+2. Locate the New Line button.
+3. Locate the Complete Work Order button.","1. A 'Complete Work Order' button is present.
+2. It sits near the New Line action on the work order.",SV-7697 (S2-R1),,
+C29291,https://shopview.testrail.io/index.php?/cases/view/29291,Verify a work order with no parts completes in one confirm and reaches the Success screen,Completion — No-PO / Skip (Story 2),Functional,Critical,"1. Signed in as Admin.
+2. An open work order with a single labor-only, approved line exists (no parts).
+3. Required-field settings for this org are known (e.g. Require Mileage ON).","1. On the work order Lines tab, click Complete Work Order.
+2. If a tech-story modal appears first, enter a story and click Continue.
+3. In the Details step, enter any required fields (e.g. Mileage).
+4. Click Complete Work Order in the wizard.","1. There is no PO / receive / invoice step for a no-parts work order (wizard = Details → Success).
+2. The Success screen appears reading 'Order complete' and 'Sent to Finance as an invoice-ready draft'.
+3. All lines move to Completed and the work order status becomes Complete.",SV-7697 (S2-R2 / S2-R3 / S2-R4),,
+C29292,https://shopview.testrail.io/index.php?/cases/view/29292,Verify the Success screen shows the work order number and total with Done and Go to Invoice actions,Completion — No-PO / Skip (Story 2),Functional,High,"1. Signed in as Admin.
+2. You have just completed a work order and are on the Success screen.","1. Read the work order number on the Success screen.
+2. Read the total shown.
+3. Identify the Done and Go To Invoice buttons.","1. The Success screen shows the work order number (e.g. S2-15747).
+2. It shows the invoice total (e.g. $382.77).
+3. Both a Done and a Go To Invoice button are present.","SV-7697, SV-7710 (S2-R4 / S2-R5 / S15-R3)",,
+C29293,https://shopview.testrail.io/index.php?/cases/view/29293,Verify Go to Invoice from the Success screen opens the Finance step where the invoice number is shown,Completion — No-PO / Skip (Story 2),Functional,Medium,"1. Signed in as Admin.
+2. You are on the Success screen of a just-completed work order.","1. Click Go To Invoice.
+2. Observe the destination screen.
+3. Look for the invoice number.","1. You are taken to the Finance / invoice step for that work order.
+2. The invoice number is shown on the Finance step (not on the Success screen).","SV-7697, SV-7710 (S2-R5 / S15-R3)",,
+C29294,https://shopview.testrail.io/index.php?/cases/view/29294,Verify completion is blocked when a required vehicle field is missing,Completion — No-PO / Skip (Story 2),Functional,High,"1. Signed in as Admin.
+2. Require Mileage (or another required field) is ON.
+3. An open work order with an approved line and NO mileage recorded is ready to complete.","1. Click Complete Work Order.
+2. In the Details step, leave the required field (e.g. Mileage) empty.
+3. Attempt to confirm completion.","1. Completion is blocked while the required field is empty.
+2. The user is prompted to supply the missing required field.
+3. Completion proceeds only after the required field is filled.",SV-7697 (S2-R2 / S2 AC (missing required fields blocked)),,
+C29295,https://shopview.testrail.io/index.php?/cases/view/29295,"Verify with Create POs OFF a work order with vendor parts completes with no PO, no vendor bill and no AP sync",Completion — No-PO / Skip (Story 2),Functional,High,"1. Signed in as Admin.
+2. Create Purchase Orders is set to OFF.
+3. An open work order with an approved vendor-part line exists.","1. Complete the work order in one confirm.
+2. Check whether any PO was created.
+3. Check for any vendor bill / AP sync.","1. No PO is created.
+2. No vendor bill and no AP sync occur.
+3. No catalog/inventory sync for the vendor/found part; it is received at request time only.",SV-7697 (S2-R6 / S2 AC (Create POs off ⇒ no PO)),,
+C29296,https://shopview.testrail.io/index.php?/cases/view/29296,Verify in-stock inventory parts decrement inventory and write Part History on simple completion,Completion — No-PO / Skip (Story 2),Functional,High,"1. Signed in as Admin.
+2. An open work order has an approved in-stock inventory part line.
+3. Note the part's current on-hand quantity.","1. Complete the work order via the simple (skip) flow.
+2. Check the inventory on-hand quantity for that part.
+3. Check the part's Part History.","1. The in-stock part's on-hand quantity decrements by the used amount.
+2. A Part History entry is written for the movement.
+3. The skip path does not bypass inventory movement / Part History.",SV-7697 (S2-R6 / §5 invariant 1),,
+C29297,https://shopview.testrail.io/index.php?/cases/view/29297,Verify with Auto-pick Inventory OFF the completion modal requires picking parts before Complete,Completion — No-PO / Skip (Story 2),Functional,Medium,"1. Signed in as Admin.
+2. Automatically Pick Inventory Parts is OFF and saved.
+3. An open work order with an approved inventory-part line exists.","1. Click Complete Work Order.
+2. Observe the Pick step in the completion modal.
+3. Try to continue without picking, then pick and continue.","1. A Pick step appears offering 'Pick all from default bins' and 'Review individually'.
+2. You cannot complete until inventory parts are picked.
+3. After picking, completion can proceed.",SV-7697 (S2-R2 / S2 AC (auto-pick off ⇒ pick in modal)),,
+C29298,https://shopview.testrail.io/index.php?/cases/view/29298,Verify adding a new line to a completed work order returns it to Approved,Completion — No-PO / Skip (Story 2),Functional,Medium,"1. Signed in as Admin.
+2. A work order is in Complete status.","1. Open the completed work order.
+2. Add a New Line.
+3. Observe the work order status.","1. The work order status returns to Approved.
+2. On the next completion, the modal summarizes already-received vs newly-added parts.",SV-7697 (S2-R6 / S2 AC (re-open returns to Approved)),,
+C29299,https://shopview.testrail.io/index.php?/cases/view/29299,Verify individual-line Complete and per-part receive actions still work alongside Simple completion,Completion — No-PO / Skip (Story 2),Functional,Medium,"1. Signed in as Admin.
+2. An open work order with multiple lines and a receivable part exists.","1. Complete one individual line on the work order.
+2. Perform a per-part receive action on a line's part.
+3. Confirm the line-level Receive button is present.","1. An individual line can still be completed on its own.
+2. The existing per-part receive action still works.
+3. A line-level Receive button remains available.",SV-7697 (S2 AC (individual-line Complete + per-part receive kept)),,
+C29300,https://shopview.testrail.io/index.php?/cases/view/29300,"Verify the optional-invoice completion wizard offers Receive Parts, Complete Without Receiving and Cancel",Completion — PO + Optional Invoice (Story 3),Functional,Critical,"1. Signed in as Admin.
+2. Require Vendor Invoice Number is OFF (Optional).
+3. An open work order with an approved part-bearing line exists.","1. Click Complete Work Order.
+2. Observe the wizard actions.","1. The wizard shows a Receive step (e.g. 'N parts waiting to receive').
+2. The actions are Cancel, Complete Without Receiving, and Receive Parts.",SV-7698 (S3-R4),,
+C29301,https://shopview.testrail.io/index.php?/cases/view/29301,Verify the optional-invoice modal creates POs in the background and shows the count of parts to receive,Completion — PO + Optional Invoice (Story 3),Functional,High,"1. Signed in as Admin.
+2. Require Vendor Invoice Number is OFF (Optional).
+3. An open work order with two approved vendor-part lines exists.","1. Click Complete Work Order.
+2. Read the parts-to-receive count in the modal.
+3. Check that POs were created in the background for the vendor parts.","1. The modal shows the number of parts waiting to receive (e.g. '2 parts waiting to receive').
+2. Background POs are created for the vendor parts (a vendorless / sell-price-only part goes on the work order's PO flagged Vendor Missing).
+3. All approved-line parts are actually ordered and reach waiting-to-receive, so 'Receive Parts' always has something to receive.
+4. No approved part is left in 'requested' and routed to an empty receive screen.
+5. Inventory-pick status is reflected in the modal.",SV-7698 (S3-R1 / S3-R2 / S3-R9),,
+C29302,https://shopview.testrail.io/index.php?/cases/view/29302,Verify Receive Parts opens the shared Accept Delivery page to receive all vendors at once,Completion — PO + Optional Invoice (Story 3),Functional,High,"1. Signed in as Admin.
+2. You are in the optional-invoice completion wizard for a multi-vendor part work order.","1. Click Receive Parts.
+2. Observe the destination screen.
+3. Confirm all vendors' parts appear together.","1. The shared Accept Delivery page opens.
+2. Parts from all vendors are shown for receiving at once.",SV-7698 (S3-R5),,
+C29303,https://shopview.testrail.io/index.php?/cases/view/29303,"Verify Complete Without Receiving completes the WO, keeps unreceived parts waiting, and keeps the line Receive button",Completion — PO + Optional Invoice (Story 3),Functional,High,"1. Signed in as Admin.
+2. You are in the optional-invoice completion wizard with unreceived parts.","1. Click Complete Without Receiving.
+2. Observe the work order status and the Success screen.
+3. Reopen the work order and check the unreceived part lines.","1. The work order completes and the Success screen appears.
+2. Unreceived parts remain in a waiting-to-receive state (would show in the Waiting on Parts column).
+3. The line still shows a Receive button.",SV-7698 (S3-R6),,
+C29304,https://shopview.testrail.io/index.php?/cases/view/29304,Verify Cancel closes the completion modal with no change and no duplicate POs on re-open,Completion — PO + Optional Invoice (Story 3),Functional,Medium,"1. Signed in as Admin.
+2. You are in the optional-invoice completion wizard (POs already created in the background).","1. Click Cancel.
+2. Reopen the completion wizard by clicking Complete Work Order again.
+3. Check the POs for the work order.","1. Cancel closes the modal with no change to the work order.
+2. Re-opening and re-completing does not create duplicate POs (idempotent).",SV-7698 (S3-R7 / S3-R9 (Cancel idempotent)),,
+C29305,https://shopview.testrail.io/index.php?/cases/view/29305,"Verify the optional-invoice modal collects required vehicle fields (mileage, VIN, engine hours) when missing",Completion — PO + Optional Invoice (Story 3),Functional,Medium,"1. Signed in as Admin.
+2. Require Mileage / Engine Hours are ON and the work order is missing those values.
+3. You are completing a part-bearing work order with invoice Optional.","1. Start completion.
+2. Observe the required vehicle fields collected.
+3. Leave one empty and try to continue.","1. The modal collects the required vehicle fields that are missing.
+2. Continuation is blocked until required fields are supplied.
+3. Tech story is handled separately (Story 17), not inside this step.",SV-7698 (S3-R3),,
+C29306,https://shopview.testrail.io/index.php?/cases/view/29306,Verify the optional-invoice flow reaches the Success screen with WO number and total,Completion — PO + Optional Invoice (Story 3),Functional,Medium,"1. Signed in as Admin.
+2. You completed a part-bearing work order via Complete Without Receiving (invoice Optional).","1. After completing, read the Success screen.
+2. Identify the WO number, total, and Go to Invoice / Done buttons.","1. The Success screen shows the WO number and total.
+2. Go to Invoice and Done are available.",SV-7698 (S3-R8),,
+C29307,https://shopview.testrail.io/index.php?/cases/view/29307,Verify the required-invoice wizard disables Complete until parts are received and offers no skip option,Completion — PO + Required Invoice (Story 4),Functional,Critical,"1. Signed in as Admin.
+2. Require Vendor Invoice Number is ON (Required).
+3. An open work order with two approved unreceived part lines exists.","1. Click Complete Work Order.
+2. Observe the primary CTA state.
+3. Look for a 'Complete without receiving' option.","1. The wizard shows a Receive step ('2 parts waiting to receive').
+2. The primary Complete Work Order CTA is DISABLED until all parts are received.
+3. There is NO 'Complete without receiving' option.
+4. Approved sell-price-only parts (missing vendor and/or cost) are ordered too and reach waiting-to-receive before the receive gate — no approved part is left in 'requested' with nothing to receive.",SV-7699 (S4-R4),,
+C29308,https://shopview.testrail.io/index.php?/cases/view/29308,Verify the required-invoice receive round-trip returns to the modal and enables Complete once all received,Completion — PO + Required Invoice (Story 4),Functional,High,"1. Signed in as Admin.
+2. You are in the required-invoice completion wizard with unreceived parts.","1. Click Receive Parts.
+2. On the shared Accept Delivery page, enter qty, tax, date, note and vendor invoice # per vendor and receive all parts.
+3. Click Back to Work Order (or finish).
+4. Observe the completion modal CTA, then click Complete Work Order.","1. The receive page collects qty, tax, date, note and invoice # per vendor.
+2. On return, once all parts are received the Complete Work Order CTA is enabled.
+3. Completing shows the Success screen.
+4. Sell-price-only parts were ordered to waiting-to-receive, so they appear in the receive round-trip and are not left in 'requested'.",SV-7699 (S4-R5 / S4-R7),,
+C29309,https://shopview.testrail.io/index.php?/cases/view/29309,Verify Cancel in the required-invoice wizard makes no change to the work order,Completion — PO + Required Invoice (Story 4),Functional,Medium,"1. Signed in as Admin.
+2. You are in the required-invoice completion wizard.","1. Click Cancel.
+2. Inspect the work order status and lines.","1. The modal closes.
+2. The work order is unchanged (still not completed).",SV-7699 (S4-R6),,
+C29310,https://shopview.testrail.io/index.php?/cases/view/29310,Verify completing a work order with an unapproved line shows the approve-line error and does not complete,Completion — Line approval gate,Functional,High,"1. Signed in as Admin.
+2. Auto-approve Lines is OFF.
+3. A work order has one line still in Needs Approval and all other gates satisfied (tech story present, required fields present).","1. Click Complete Work Order.
+2. Proceed through any tech-story / details gates.
+3. Attempt the final Complete confirm.","1. The existing 'you need to approve the line to complete the work order' error appears.
+2. The work order does not complete while a line is unapproved.
+3. There is no new disabled state — the error surfaces on Complete.","SV-7698, SV-7699 (Key Decision (all lines approved) / S3-R9 / S4-R8)",,
+C29311,https://shopview.testrail.io/index.php?/cases/view/29311,Verify a manually unapproved line still blocks completion even when Auto-approve is ON,Completion — Line approval gate,Functional,Medium,"1. Signed in as Admin.
+2. Auto-approve Lines is ON.
+3. A work order has a line that was manually un-approved after being added.","1. Confirm one line is unapproved.
+2. Click Complete Work Order and attempt to complete.
+3. Re-approve the line and retry.","1. With the line unapproved, completion is blocked with the approve-line error.
+2. After re-approving all lines, completion proceeds.",Key Decision (holds regardless of Auto-approve),,
+C29312,https://shopview.testrail.io/index.php?/cases/view/29312,Verify re-running completion after a prior attempt does not create duplicate POs,Completion — Idempotency,Functional,Medium,"1. Signed in as Admin.
+2. A part-bearing work order already had completion started once (POs created).","1. Cancel or exit the first completion attempt.
+2. Start completion again.
+3. Inspect the POs for the work order at /parts/orders.","1. Only one PO per vendor exists.
+2. No duplicate POs are created by the second completion attempt.",SV-7698 (S3-R9 (no duplicate POs on re-Complete)),,
+C29313,https://shopview.testrail.io/index.php?/cases/view/29313,Verify inventory cores are resolved via a line-level Ok/Not-OK control (no distinct Resolve-Cores wizard step),Core parts — Completion modal (Stories 3/4/16),Functional,High,"1. Signed in as Admin.
+2. A work order has an approved inventory line that carries a core charge.
+3. Auto-pick is set so the Pick step runs (or picking is otherwise required).","1. Add a cored inventory part to a work order line and open the line's Parts view.
+2. Confirm the part generates a Core sub-line with per-core Ok / Not-OK controls and a $ amount.
+3. Click Complete Work Order and step through the completion wizard.
+4. Confirm there is no distinct Resolve Cores step and completion goes Details -> Success.","1. The cored part generates a Core sub-line on the line's Parts view with per-core Ok (returned, no charge) and Not-OK (keep + charge) controls and a $ amount ($0 until Not-OK).
+2. The completion wizard has NO distinct Resolve Cores step; a work order whose only remaining action is core resolution completes Details -> Success.
+3. Core resolution is a line-level control, not a wizard step.","SV-7698, SV-7699, SV-7870 (S3-C1 / S4-C1 / Resolve Cores handoff)",,
+C29314,https://shopview.testrail.io/index.php?/cases/view/29314,Verify a work order with no cores completes with no core sub-lines and no Resolve-Cores wizard step,Core parts — Completion modal,Functional,Low,"1. Signed in as Admin.
+2. A work order has no core parts.","1. Click Complete Work Order.
+2. Step through the completion wizard.
+3. Watch for a Resolve Cores step.","1. No core sub-lines appear (the work order has no cores).
+2. There is no distinct Resolve Cores wizard step; completion proceeds directly Details -> Success.",SV-7698 (S3-C1 (skipped if none)),,
+C29315,https://shopview.testrail.io/index.php?/cases/view/29315,Verify special-order cores leave the optional-invoice completion unchanged and Complete Without Receiving stays available,Core parts — Completion modal,Functional,Medium,"1. Signed in as Admin.
+2. Require Vendor Invoice Number is OFF (Optional).
+3. A work order has a special-order (vendor) cored part not yet received.","1. Click Complete Work Order.
+2. Observe whether a core-resolution step appears.
+3. Confirm Complete Without Receiving is still available.","1. There is nothing to resolve yet for special-order cores in the completion modal.
+2. Complete Without Receiving remains available.",SV-7698 (S3-C2),,
+C29316,https://shopview.testrail.io/index.php?/cases/view/29316,Verify the invoice shows a 'Cores pending' flag when unresolved special-order cores exist,Core parts — Invoice gate,Functional,Medium,"1. Signed in as Admin.
+2. A completed (optional-invoice) work order has an unresolved special-order core.","1. Open the work order's invoice / Finance view.
+2. Look for a cores indicator.",1. The invoice shows a 'Cores pending' flag while special-order cores are unresolved.,SV-7698 (S3-C3),,
+C29317,https://shopview.testrail.io/index.php?/cases/view/29317,Verify resolving cores at the Create Invoice gate routes to receive the cored line then lets invoicing proceed,Core parts — Invoice gate,Functional,High,"1. Signed in as Admin.
+2. A completed (optional-invoice) work order has an unresolved special-order core.","1. Click Create Invoice.
+2. In the resolve module, route to receive the cored line (core-only partial receive).
+3. Resolve each core Ok / Not OK.
+4. Continue to invoice.","1. The Create Invoice gate opens a resolve module for the unresolved cores.
+2. It routes to receive the cored line(s) (core-only partial receive supported).
+3. After resolving Ok/Not OK the invoice proceeds.",SV-7698 (S3-C4),,
+C29318,https://shopview.testrail.io/index.php?/cases/view/29318,"Verify cancelling the invoice-gate core resolution leaves the WO completed, un-invoiced and cores-pending",Core parts — Invoice gate,Functional,Medium,"1. Signed in as Admin.
+2. A completed work order has an unresolved special-order core and you are in the invoice-gate resolve module.","1. Cancel the resolve module.
+2. Inspect the work order and invoice state.","1. The work order remains Completed.
+2. It remains un-invoiced.
+3. Cores remain pending.",SV-7698 (S3-C4 (cancel path)),,
+C29319,https://shopview.testrail.io/index.php?/cases/view/29319,Verify special-order cores are resolved after the required-invoice Receive round-trip before Complete,Core parts — Required invoice (Story 4),Functional,High,"1. Signed in as Admin.
+2. Require Vendor Invoice Number is ON (Required).
+3. A work order has a special-order cored part.","1. Complete Work Order → Receive Parts and receive the cored part.
+2. On return, observe the Resolve-cores modal.
+3. Resolve each core Ok / Not OK, then Complete.","1. After the receive round-trip a gated Resolve-cores modal appears.
+2. Cores can be resolved (part is always received, so always resolvable).
+3. After resolving, Complete succeeds to the Success screen.",SV-7699 (S4-C2),,
+C29320,https://shopview.testrail.io/index.php?/cases/view/29320,Verify the invoice gate detects an unresolved special-order core that exists only as a PartRequest,Core parts — Guardrail,Functional,Medium,"1. Signed in as Admin.
+2. A completed work order has a special-order cored part that exists only as a PartRequest (no WorkOrderPart yet).","1. Click Create Invoice.
+2. Observe whether the unresolved core is detected.","1. The invoice gate detects the unresolved core even though it is only a PartRequest.
+2. The user is required to resolve it before invoicing.",SV-7698 (S3 Guardrail (PartRequest-only core)),,
+C29321,https://shopview.testrail.io/index.php?/cases/view/29321,Verify part-sale work orders auto-resolve cores at receive while service work orders require manual Ok/Not OK,Core parts — Guardrail,Functional,Medium,"1. Signed in as Admin.
+2. A part-sale work order and a service work order, each with a cored part, exist.","1. Receive the cored part on the part-sale work order and check core status.
+2. Receive the cored part on the service work order and check core status.","1. On the part-sale WO the core auto-resolves at receive.
+2. On the service WO the core requires manual Ok / Not OK.",SV-7698 (S3 Guardrail (part-sale vs service WO)),,
+C29322,https://shopview.testrail.io/index.php?/cases/view/29322,Verify the core '+$ to invoice' amount is shown at the line level as a core is marked Not-OK (no Resolve-Cores wizard total),Core parts — Resolve step UI,Functional,Low,"1. Signed in as Admin.
+2. You are in the Resolve Cores step with multiple cores.","1. On the line's Parts view, mark a Core sub-line Not-OK (keep + charge).
+2. Observe the $ amount on that Core sub-line.
+3. Mark the core Ok and observe the $ amount again.","1. The Core sub-line shows a $ amount on the line's Parts view ($0 until it is marked Not-OK).
+2. Marking the core Not-OK sets the +$ to invoice on that line.
+3. There is no distinct Resolve Cores wizard step with a running total; the core $ is a line-level control.",Resolve Cores handoff (live +$ total),,
+C29323,https://shopview.testrail.io/index.php?/cases/view/29323,Verify each work order line shows a Story sub-row with an 'Add tech story for this line' link when empty,Tech Story Flow (Story 17),Functional,High,"1. Signed in as Admin.
+2. Require Tech Story is ON.
+3. A work order has a line with no tech story yet.","1. Open the work order Lines tab.
+2. Look under the line for a Story sub-row.","1. The line has a Story sub-row.
+2. When empty, it shows an 'Add tech story for this line' link.",SV-7876 (TS-R1),,
+C29324,https://shopview.testrail.io/index.php?/cases/view/29324,Verify with Require tech story ON every line needs a story before the work order can complete,Tech Story Flow (Story 17),Functional,High,"1. Signed in as Admin.
+2. Require Tech Story is ON.
+3. A work order has at least one line missing a story.","1. Click Complete Work Order.
+2. Observe whether completion proceeds without stories.","1. Completion cannot proceed while any line is missing a tech story.
+2. The user is routed to enter the missing stories first.",SV-7876 (TS-R2),,
+C29325,https://shopview.testrail.io/index.php?/cases/view/29325,Verify Complete opens the tech-story modal first and then chains into completion (order: tech story → parts → complete),Tech Story Flow (Story 17),Functional,Critical,"1. Signed in as Admin.
+2. Require Tech Story is ON.
+3. A work order has a line missing a story.","1. Click Complete Work Order.
+2. Observe the first modal that appears.
+3. Enter a story and click Continue.
+4. Observe the next step.","1. The tech-story modal opens FIRST (before the completion wizard).
+2. After Continue, the flow chains into the completion wizard (parts/pick → complete).
+3. Gate order is tech story → parts → complete/send-to-review.",SV-7876 (TS-R3),,
+C29326,https://shopview.testrail.io/index.php?/cases/view/29326,"Verify the tech-story modal structure (header, per-line card, Line X of N, required textarea, disabled Next)",Tech Story Flow (Story 17),Functional,High,"1. Signed in as Admin.
+2. The tech-story modal is open during completion.","1. Read the modal header.
+2. Read the per-line card (line #, name, technician).
+3. Read the 'Line X of N' indicator.
+4. Leave the textarea empty and check the Next/Continue button.","1. The header reads 'Tech story' with 'WO# · Customer'.
+2. A per-line card shows the line number, name and technician; a 'Line X of N' indicator is shown.
+3. The Next/Continue button is disabled until the textarea is non-empty.",SV-7876 (TS-R4),,
+C29327,https://shopview.testrail.io/index.php?/cases/view/29327,"Verify multi-line tech-story navigation (Back after line 1, Continue/Save on the last line)",Tech Story Flow (Story 17),Functional,Medium,"1. Signed in as Admin.
+2. A work order has two or more lines all missing stories, and Require Tech Story is ON.","1. Start completion so the tech-story modal opens on Line 1 of N.
+2. Enter a story and click Next.
+3. On line 2, check for a Back button.
+4. On the last line, check the final button.","1. On line 1 there is no Back button; after line 1, a Back button appears.
+2. Each line requires a non-empty story to advance.
+3. The last line shows Continue (chained into completion) or Save.",SV-7876 (TS-R4 (multi-line navigation)),,
+C29328,https://shopview.testrail.io/index.php?/cases/view/29328,"Verify a saved tech story renders inline with a green check, the text and an Edit link",Tech Story Flow (Story 17),Functional,Medium,"1. Signed in as Admin.
+2. A line has a saved tech story.","1. View the line's Story sub-row.
+2. Confirm the story text and controls.","1. The saved story renders inline with a green check and the story text.
+2. An Edit link is available to change it.",SV-7876 (TS-R5),,
+C29329,https://shopview.testrail.io/index.php?/cases/view/29329,Verify the tech-story textarea exposes the test id input_tech_story,Tech Story Flow (Story 17),Functional,Low,"1. Signed in as Admin.
+2. The tech-story modal is open.","1. Inspect the textarea element.
+2. Confirm its test id / data attribute.",1. The textarea carries the test id input_tech_story.,SV-7876 (TS-R6 (test id)),,
+C29330,https://shopview.testrail.io/index.php?/cases/view/29330,Verify tech story is captured both inline and via the gate modal (Story 17 supersedes on-the-line-only wording),Tech Story Flow (Story 17),Functional,Medium,"1. Signed in as Admin.
+2. A work order has a line missing a story.","1. Add a tech story inline via the line's 'Add tech story' link.
+2. On a separate line missing a story, trigger the gate modal by clicking Complete.
+3. Confirm both entry points save a story.","1. A tech story can be entered inline on the line (Story 17 is the authoritative behavior).
+2. A story can also be entered via the completion gate modal, which lets stories be completed individually or several at once.
+3. Both paths persist the story.","SV-7710, SV-7876 (TS Decision vs S15-R2)",,
+C29331,https://shopview.testrail.io/index.php?/cases/view/29331,"Verify a vendorless part can be requested with description, quantity and category (part number, cost, vendor and sell price left empty)",Vendorless / No-PN Part (Story 5),Functional,High,"1. Signed in as Admin at https://sv7301.qa.shopview.com.
+2. An open work order with a line is on its Lines tab.","1. Add a part to a line.
+2. Enter a description, a quantity and a category.
+3. Leave part number, cost, vendor and sell price empty.
+4. Save the part.","1. The part saves successfully with description, quantity and category entered; part number, cost, vendor and sell price may be left empty.
+2. Category is a required field for v1 — the part cannot be saved without a category.
+3. Sell price is not enforced as required for v1 — the part can be saved without a sell price.
+4. The part appears on the line with its description and quantity and is treated as a vendorless part downstream; it is orderable from the line (Order creates or joins the Vendor-Missing purchase order and moves it to waiting-to-receive).",SV-7700 (S5-R1),,
+C29332,https://shopview.testrail.io/index.php?/cases/view/29332,"Verify adding a part is blocked when description, quantity or category is missing (sell price not enforced)",Vendorless / No-PN Part (Story 5),Functional,High,"1. Signed in as Admin.
+2. The add-part dialog is open on a work order line.","1. Leave the description empty and try to save.
+2. Fill the description, leave the quantity empty and try to save.
+3. Fill the description and quantity, leave the category empty and try to save.
+4. Fill the description, quantity and category but leave the sell price empty and try to save.","1. Saving is blocked inline when the description is empty ('Description is a required field').
+2. Saving is blocked inline when the quantity is empty ('Quantity is a required field').
+3. Saving is blocked inline when the category is empty ('Category is a required field').
+4. Saving is allowed when only the sell price is empty — sell price is not enforced as a required field for v1.",SV-7700 (S5-R1 / S5 AC (validation)),,
+C29333,https://shopview.testrail.io/index.php?/cases/view/29333,Verify a vendorless part's type uses the existing source field (vendor or found) and never inventory,Vendorless / No-PN Part (Story 5),Functional,Medium,"1. Signed in as Admin.
+2. A vendorless part has been added to a work order line.","1. Open the vendorless part's detail.
+2. Read its source / type field.","1. The source is 'vendor' or 'found'.
+2. It is never set to 'inventory'.
+3. It is treated as vendorless downstream.",SV-7700 (S5-R2),,
+C29334,https://shopview.testrail.io/index.php?/cases/view/29334,Verify a vendorless part is editable after creation,Vendorless / No-PN Part (Story 5),Functional,Low,"1. Signed in as Admin.
+2. A vendorless part exists on a work order line.","1. Open the vendorless part.
+2. Change its description or quantity and save.","1. The part can be edited after creation.
+2. The changes persist.",SV-7700 (S5-R3),,
+C29335,https://shopview.testrail.io/index.php?/cases/view/29335,Verify a no-part-number part creates no inventory item and no Part History,Vendorless / No-PN Part (Story 5),Functional,High,"1. Signed in as Admin.
+2. A part with description + qty + sell but no part number exists on a work order.","1. Search inventory for a new item matching the description.
+2. Check for any Part History entry for it.","1. No inventory item is created for the no-PN part.
+2. No Part History is written until a part number is added.",SV-7700 (S5-R4 / S5 AC (no inventory interaction)),,
+C29336,https://shopview.testrail.io/index.php?/cases/view/29336,Verify adding a part number and vendor later transitions the part out of vendorless,Vendorless / No-PN Part (Story 5),Functional,Medium,"1. Signed in as Admin.
+2. A vendorless part (no PN, no vendor) exists on a work order.","1. Edit the part and add a part number.
+2. Assign a vendor to it.
+3. Observe the part's vendorless status.","1. Once both a part number and a vendor are present, the part is no longer treated as vendorless.
+2. It becomes eligible for downstream inventory / QuickBooks handling.",SV-7700 (S5 AC (transitions out of vendorless)),,
+C29337,https://shopview.testrail.io/index.php?/cases/view/29337,Verify a vendorless / no-PN part cannot be received until a part number (and vendor) is entered,Vendorless / No-PN Part (Story 5),Functional,High,"1. Signed in as Admin.
+2. A vendorless / no-PN part is on a work order PO.","1. Open a receive surface (Accept Delivery / Bulk Receive) for that PO.
+2. Attempt to receive the part without a part number.
+3. Attempt to receive it without a vendor.","1. Receiving is blocked while the part number is missing.
+2. Receiving is blocked while the vendor is missing.
+3. Receiving is enabled only after both a part number and a vendor are provided.",SV-7700 (S5-R4 / S5 AC (receive gate)),,
+C29338,https://shopview.testrail.io/index.php?/cases/view/29338,Verify a vendorless vendor-part goes onto the work order's normal PO with no separate dummy PO,Vendor Missing on WO PO (Story 6),Functional,High,"1. Signed in as Admin.
+2. A work order has a vendor part with no vendor assigned and Create POs is on.
+3. The work order has been completed so POs are generated.","1. Open the PO list at /parts/orders.
+2. Find the PO for this work order.
+3. Confirm the vendorless part is on that PO.","1. The vendorless part is placed on the work order's normal PO.
+2. No separate 'dummy PO' is created for it.",SV-7701 (S6-R1),,
+C29339,https://shopview.testrail.io/index.php?/cases/view/29339,Verify a 'Vendor Missing +N' indication shows on the PO list and PO detail,Vendor Missing on WO PO (Story 6),Functional,High,"1. Signed in as Admin.
+2. A PO exists that holds a part with no vendor.","1. Open /parts/orders.
+2. Look for the Vendor Missing indication on the PO row.
+3. Open the PO detail and confirm the indication there.","1. The PO list shows a 'Vendor Missing' indication (with '+N' when multiple vendors are involved).
+2. The PO detail also shows the Vendor Missing flag.",SV-7701 (S6-R2),,
+C29340,https://shopview.testrail.io/index.php?/cases/view/29340,Verify a Vendor Missing PO is flagged and excluded from QuickBooks sync,Vendor Missing on WO PO (Story 6),Functional,High,"1. Signed in as Admin.
+2. A Vendor Missing PO exists.
+3. QuickBooks integration is available for inspection.","1. Trigger / inspect QuickBooks sync for the PO.
+2. Confirm the Vendor Missing PO is excluded.","1. The Vendor Missing PO is flagged.
+2. It is excluded from QuickBooks sync while the vendor is missing.",SV-7701 (S6-R3),,
+C29341,https://shopview.testrail.io/index.php?/cases/view/29341,Verify a Vendor Missing PO offers options to select a vendor and enter/edit the part number,Vendor Missing on WO PO (Story 6),Functional,Medium,"1. Signed in as Admin.
+2. A Vendor Missing PO detail is open.","1. Open the PO detail.
+2. Look for a way to select a vendor.
+3. Look for a way to enter/edit the missing part number.","1. The PO detail offers a vendor selection option (Story 13).
+2. It offers a way to enter/edit the part number (Story 10).",SV-7701 (S6-R4),,
+C29342,https://shopview.testrail.io/index.php?/cases/view/29342,Verify the Vendor Missing flag clears once both a vendor and a part number are provided,Vendor Missing on WO PO (Story 6),Functional,High,"1. Signed in as Admin.
+2. A Vendor Missing PO exists with a part lacking vendor and part number.","1. Assign a vendor to the PO.
+2. Enter the missing part number.
+3. Observe the Vendor Missing flag.","1. Once both a vendor and a part number are provided the Vendor Missing flag is removed.
+2. The part becomes eligible for QuickBooks.",SV-7701 (S6-R5),,
+C29343,https://shopview.testrail.io/index.php?/cases/view/29343,Verify reports mark Vendor Missing POs as 'needs vendor',Vendor Missing on WO PO (Story 6),Functional,Low,"1. Signed in as Admin.
+2. A Vendor Missing PO exists.
+3. A relevant PO report is available.","1. Open the PO report that lists POs.
+2. Find the Vendor Missing PO.",1. The report marks the Vendor Missing PO as 'needs vendor'.,SV-7701 (S6-R6),,
+C29439,https://shopview.testrail.io/index.php?/cases/view/29439,"Verify a sell-price-only part is orderable from the line's Order action, joins the Vendor-Missing PO and moves to waiting-to-receive",Vendor Missing on WO PO (Story 6),Functional,High,"1. Signed in as Admin at https://sv7301.qa.shopview.com.
+2. An open work order has a sell-price-only line part (sell price set; vendor and/or cost missing; part number empty).","1. On the line, use the Order action for the sell-price-only part.
+2. Open the PO list at /parts/orders and find the work order's PO.
+3. Confirm the part's status.","1. Ordering from the line creates or joins the work order's Vendor-Missing PO (no separate dummy PO).
+2. The part moves from 'requested' to 'waiting-to-receive' without completing the work order.
+3. At receive, a vendor and part number are still required (cost editable — Story 10).",SV-7701 (S6-R7),,
+C29344,https://shopview.testrail.io/index.php?/cases/view/29344,Verify the PO list has a select-all checkbox and per-PO checkboxes,PO Multi-Select (Story 7),Functional,High,"1. Signed in as Admin.
+2. The PO list at /parts/orders has multiple POs.","1. Open /parts/orders.
+2. Look for a select-all checkbox in the header.
+3. Look for a checkbox on each PO row.","1. A select-all checkbox is present.
+2. Each PO row has its own checkbox.",SV-7702 (S7-R1),,
+C29345,https://shopview.testrail.io/index.php?/cases/view/29345,"Verify selecting POs shows a bar with 'N purchase orders selected', Clear and Receive Selected",PO Multi-Select (Story 7),Functional,High,"1. Signed in as Admin.
+2. The PO list has selectable POs.","1. Select one or more POs.
+2. Observe the action bar.","1. A bar appears reading 'N purchase orders selected'.
+2. The bar has Clear and Receive Selected actions.",SV-7702 (S7-R2),,
+C29346,https://shopview.testrail.io/index.php?/cases/view/29346,Verify Receive Selected opens the PO Bulk Receive page carrying the selected POs,PO Multi-Select (Story 7),Functional,High,"1. Signed in as Admin.
+2. Two or more POs are selected on the PO list.","1. Click Receive Selected.
+2. Observe the destination page and the POs shown.","1. The PO Bulk Receive page opens (Story 8).
+2. It contains the POs that were selected.",SV-7702 (S7-R3),,
+C29347,https://shopview.testrail.io/index.php?/cases/view/29347,Verify fulfilled (already-received) POs are not selectable,PO Multi-Select (Story 7),Functional,Medium,"1. Signed in as Admin.
+2. The PO list contains at least one fulfilled PO.",1. Attempt to select a fulfilled PO's checkbox.,1. The fulfilled PO cannot be selected (checkbox disabled).,SV-7702 (S7-R4),,
+C29348,https://shopview.testrail.io/index.php?/cases/view/29348,Verify Vendor Missing POs are selectable and clearly indicated in the list,PO Multi-Select (Story 7),Functional,Medium,"1. Signed in as Admin.
+2. The PO list contains a Vendor Missing PO.","1. Select a Vendor Missing PO.
+2. Confirm its Vendor Missing indication is shown while selected.","1. The Vendor Missing PO is selectable.
+2. Its Vendor Missing status remains clearly indicated.",SV-7702 (S7-R5),,
+C29349,https://shopview.testrail.io/index.php?/cases/view/29349,Verify select-all only toggles POs on the current page/filter,PO Multi-Select (Story 7),Functional,Low,"1. Signed in as Admin.
+2. The PO list has more POs than fit on one page (or a filter is applied).","1. Apply a filter or page the list.
+2. Click select-all.
+3. Check which POs are selected.","1. Select-all only selects POs in the current page/filter, not the whole dataset.",SV-7702 (S7 (select-all scope)),,
+C29350,https://shopview.testrail.io/index.php?/cases/view/29350,Verify the Bulk Receive page has a 'Back to Purchase Orders' link that returns to the PO list,PO Bulk Receive Page (Story 8),Functional,Medium,"1. Signed in as Admin.
+2. You reached the Bulk Receive page via Receive Selected.","1. Locate the top-left 'Back to Purchase Orders' link.
+2. Click it.","1. A 'Back to Purchase Orders' link is present top-left.
+2. Clicking it returns to the PO list.",SV-7703 (S8-R1),,
+C29351,https://shopview.testrail.io/index.php?/cases/view/29351,Verify the Bulk Receive page groups POs by vendor with a vendor count and per-vendor expand/collapse,PO Bulk Receive Page (Story 8),Functional,High,"1. Signed in as Admin.
+2. Multiple POs across multiple vendors were sent to the Bulk Receive page.","1. Read the vendor group headers and counts.
+2. Use one vendor's Expand/Collapse all control.
+3. Confirm each vendor has its own control (not one global).","1. POs are grouped by vendor with a count per vendor.
+2. Each vendor group has its own Expand/Collapse all control.
+3. POs within a group are collapsible.",SV-7703 (S8-R2 / S8-R3),,
+C29352,https://shopview.testrail.io/index.php?/cases/view/29352,"Verify each PO row shows the PO number, related work order (or inventory/no-WO indicator) and parts count",PO Bulk Receive Page (Story 8),Functional,Medium,"1. Signed in as Admin.
+2. The Bulk Receive page is open with several POs.",1. Read a PO row's details.,"1. The row shows the PO number.
+2. It shows the related work order, or an inventory / no-WO indicator.
+3. It shows the parts count.",SV-7703 (S8-R4),,
+C29353,https://shopview.testrail.io/index.php?/cases/view/29353,Verify selection behavior: nothing selected by default; selecting a PO selects all its parts; individual parts selectable; actions locked until checked,PO Bulk Receive Page (Story 8),Functional,High,"1. Signed in as Admin.
+2. The Bulk Receive page is open with POs and parts.","1. Confirm nothing is selected on load.
+2. Select a PO and confirm all its parts get selected.
+3. Deselect an individual part.
+4. Confirm the receive action is locked when nothing is checked.","1. Nothing is selected by default.
+2. Selecting a PO selects all its parts; individual parts can be toggled.
+3. Actions are locked until at least one item is checked.",SV-7703 (S8-R5),,
+C29354,https://shopview.testrail.io/index.php?/cases/view/29354,Verify the per-PO 'Receive parts (N)' button is disabled until a vendor invoice number is entered,PO Bulk Receive Page (Story 8),Functional,High,"1. Signed in as Admin.
+2. A PO's parts are selected on the Bulk Receive page.","1. Confirm the 'Receive parts (N)' button state with no invoice number.
+2. Enter a vendor invoice number.
+3. Confirm the button state again.","1. The Receive button is disabled without a vendor invoice number.
+2. For a vendor-missing PO it also requires a vendor assigned and the missing part number entered.
+3. Once satisfied, the Receive button enables.",SV-7703 (S8-R6),,
+C29355,https://shopview.testrail.io/index.php?/cases/view/29355,Verify field editability and locking on Bulk Receive (qty and cost editable; sell locks after WO invoiced/paid),PO Bulk Receive Page (Story 8),Functional,High,"1. Signed in as Admin.
+2. The Bulk Receive page has a PO whose WO is NOT yet invoiced/paid, and another whose WO IS invoiced/paid.","1. On the not-yet-invoiced PO, edit quantity, cost and sell.
+2. On the invoiced/paid PO, try to edit sell.
+3. Hover the locked sell field.","1. Quantity and cost are editable; sell is editable while the work order is not invoiced/paid.
+2. After the work order is invoiced/paid, sell is locked with a lock icon and tooltip 'Locked — this part is already invoiced or paid'.
+3. After locking, only cost remains editable.
+4. The field rules have parity with the Accept-Delivery receive screen; cost is editable when $0 or missing on either surface.","SV-7703, SV-7705 (S8-R7 / S10-R2)",,
+C29356,https://shopview.testrail.io/index.php?/cases/view/29356,Verify assigning a vendor to a Vendor Missing PO moves it into that vendor's group and entering the missing PN enables receiving,PO Bulk Receive Page (Story 8),Functional,High,"1. Signed in as Admin.
+2. The Bulk Receive page has a Vendor Missing PO.","1. Assign a vendor to the Vendor Missing PO.
+2. Confirm it moves into that vendor's group.
+3. Enter the missing part number and confirm receiving becomes enabled.","1. Assigning a vendor moves the PO into that vendor's group.
+2. Entering the missing part number unflags it.
+3. Receiving is then enabled.",SV-7703 (S8-R8),,
+C29357,https://shopview.testrail.io/index.php?/cases/view/29357,Verify Receive all receives everything selected at once and supports partial receive,PO Bulk Receive Page (Story 8),Functional,High,"1. Signed in as Admin.
+2. Multiple POs/parts are selected with valid invoice numbers on the Bulk Receive page.","1. Reduce one part's received quantity below its ordered quantity.
+2. Click Receive all.
+3. Confirm the receipts.","1. Everything selected is received at once.
+2. Partial receive (received qty below ordered) is supported.
+3. Remaining unreceived quantity stays waiting to receive.",SV-7703 (S8-R10),,
+C29358,https://shopview.testrail.io/index.php?/cases/view/29358,Verify Bulk Receive uses the same pipeline as single-PO receive (Delivery → Vendor Bill → QuickBooks),PO Bulk Receive Page (Story 8),Functional,High,"1. Signed in as Admin.
+2. You received POs on the Bulk Receive page.","1. After receiving, check that a Delivery record was created.
+2. Check that a Vendor Bill was created.
+3. Check that the vendor bill synced to QuickBooks.","1. A Delivery is created.
+2. A Vendor Bill is created.
+3. The vendor bill syncs to QuickBooks (same pipeline as single-PO receive).",SV-7703 (S8-R11),,
+C29359,https://shopview.testrail.io/index.php?/cases/view/29359,"Verify a cored part's Ok/Not OK resolution becomes available once received, and core-only partial receive is supported",PO Bulk Receive Page (Story 8),Functional,Medium,"1. Signed in as Admin.
+2. A PO on the Bulk Receive page holds a cored part.","1. Receive only the cored line (core-only partial receive).
+2. Confirm an Ok/Not OK resolution becomes available for the core.","1. Core-only partial receive is supported.
+2. Once the cored part is received, its Ok/Not OK resolution becomes available (for Story 3/4 resolution).",SV-7703 (S8-C1 / S8-C2),,
+C29360,https://shopview.testrail.io/index.php?/cases/view/29360,Verify each vendor group has an 'Apply invoice to selected POs' control enabled only with an invoice # and ≥1 PO selected,Apply Invoice to Selected POs (Story 9),Functional,High,"1. Signed in as Admin.
+2. The Bulk Receive page has a vendor group with multiple POs.","1. Locate the 'Apply invoice to selected POs' control under the vendor name.
+2. With no invoice # and no PO selected, confirm it is disabled.
+3. Enter an invoice # and select at least one PO under that vendor.","1. The control appears under the vendor name.
+2. It is enabled only when an invoice number is entered and at least one PO under that vendor is selected.",SV-7704 (S9-R1),,
+C29361,https://shopview.testrail.io/index.php?/cases/view/29361,"Verify Apply pre-fills one invoice number into only the selected POs of that vendor, still editable per PO",Apply Invoice to Selected POs (Story 9),Functional,High,"1. Signed in as Admin.
+2. A vendor group has several POs; some are selected.","1. Enter one invoice number.
+2. Click Apply.
+3. Inspect the selected and unselected POs' invoice fields.
+4. Edit one PO's invoice number.","1. The invoice number is pre-filled into only the selected POs of that vendor.
+2. Unselected POs are not changed.
+3. Each PO's invoice number remains editable after Apply.",SV-7704 (S9-R2),,
+C29362,https://shopview.testrail.io/index.php?/cases/view/29362,"Verify Apply Invoice is scoped per vendor, not offered for the vendorless group, and allows a reused invoice number",Apply Invoice to Selected POs (Story 9),Functional,Medium,"1. Signed in as Admin.
+2. The Bulk Receive page has multiple vendor groups plus a vendorless group.","1. Confirm Apply Invoice is available per vendor group.
+2. Confirm the vendorless group has no Apply Invoice control.
+3. Apply the same invoice number to POs where uniqueness is relaxed.","1. Apply Invoice is scoped to each vendor group.
+2. The vendorless group has no Apply Invoice control.
+3. The same invoice number can be reused (uniqueness relaxed).",SV-7704 (S9-R3),,
+C29363,https://shopview.testrail.io/index.php?/cases/view/29363,Verify a no-number part shows 'Missing part number' with Edit → enter → save that persists immediately,Inline Part-Number Fix (Story 10),Functional,High,"1. Signed in as Admin.
+2. A part with no part number is on a PO or receive surface.","1. Locate the 'Missing part number' indicator on the part.
+2. Click Edit and enter a part number.
+3. Save and reload.","1. The part shows 'Missing part number' with an Edit action.
+2. Entering and saving a part number persists it immediately.
+3. A part number is mandatory to receive.",SV-7705 (S10-R1),,
+C29364,https://shopview.testrail.io/index.php?/cases/view/29364,Verify entering a NEW part number creates a new inventory/catalog part with stock and Part History on receive,Inline Part-Number Fix (Story 10),Functional,High,"1. Signed in as Admin.
+2. A part with a newly-entered part number (not matching any existing item) is ready to receive with a vendor assigned.","1. Enter a brand-new part number and save.
+2. Receive the part.
+3. Check inventory and Part History for the new item.","1. A new inventory/catalog part is created.
+2. Stock is added for the received quantity.
+3. A Part History entry is written.",SV-7705 (S10 AC (new number)),,
+C29365,https://shopview.testrail.io/index.php?/cases/view/29365,Verify entering an EXISTING part number links to that item and updates stock/cost/history without overwriting description or category,Inline Part-Number Fix (Story 10),Functional,High,"1. Signed in as Admin.
+2. An inventory item with a known part number exists; a part on a PO can be given that number.","1. Enter the existing part number on the part and save.
+2. Receive the part.
+3. Check the linked item's stock, received cost, Part History, description and category.","1. The part links to the existing inventory item.
+2. Stock, received cost and Part History update.
+3. The item's existing description and category are NOT overwritten.",SV-7705 (S10 AC (existing number)),,
+C29366,https://shopview.testrail.io/index.php?/cases/view/29366,Verify inline part-number field-locking rules match the receive-screen rules (sell locks after invoiced/paid),Inline Part-Number Fix (Story 10),Functional,Medium,"1. Signed in as Admin.
+2. A part on an invoiced/paid WO and a part on an open WO are available.","1. On the open WO part, confirm qty/cost/sell are editable.
+2. On the invoiced/paid WO part, confirm sell is locked and cost is editable.","1. Open work order: quantity, cost and sell are editable.
+2. Invoiced/paid work order: sell is locked (lock icon + tooltip), only cost editable.
+3. The inline part-number field rules apply with parity across BOTH the Bulk Receive page AND the single / Accept-Delivery receive screen.
+4. Cost is editable when $0 or missing on either receive surface.","SV-7703, SV-7705 (S10-R2 / S8-R7)",,
+C29367,https://shopview.testrail.io/index.php?/cases/view/29367,Verify a part cannot be received without a part number (and a vendor for vendor-missing) even on an invoiced/paid WO,Inline Part-Number Fix (Story 10),Functional,High,"1. Signed in as Admin.
+2. A part without a part number is on a receive surface.","1. Attempt to receive the part with no part number.
+2. For a vendor-missing part, attempt to receive with no vendor.","1. Receiving is blocked without a part number.
+2. For vendor-missing, receiving is also blocked without a vendor.
+3. On an invoiced/paid WO, sell stays locked and cost stays editable while the block applies.",SV-7705 (S10 Negative),,
+C29368,https://shopview.testrail.io/index.php?/cases/view/29368,"Verify the inline part-number save drives real catalog creation/linking, inventory stock and Part History (not just a stored string)",Inline Part-Number Fix (Story 10),Functional,Medium,"1. Signed in as Admin.
+2. A default part category exists and a vendor is assigned to the part.","1. Enter a part number inline and receive.
+2. Verify a CataloguePart and an inventory stock Part were created (not just a string on the request).
+3. Verify Part History exists.","1. A catalog part is created/linked.
+2. An inventory stock Part exists (a CataloguePart alone is not stock).
+3. Part History is written; the flow does not rely on the complete-simple bypass to create inventory.",SV-7705 (S10 Technical guardrails),,
+C29369,https://shopview.testrail.io/index.php?/cases/view/29369,Verify a Receive action appears on WO-originated POs in both the PO list and the PO detail card,Receive Button on WO POs (Story 11),Functional,High,"1. Signed in as Admin.
+2. A WO-originated PO exists.","1. Open /parts/orders and find the WO-originated PO.
+2. Confirm a Receive action on the PO row.
+3. Open the PO detail card and confirm a Receive action there too.","1. The PO list row shows a Receive action.
+2. The PO detail card also shows a Receive action (the detail card previously hid it).",SV-7706 (S11-R1),,
+C29370,https://shopview.testrail.io/index.php?/cases/view/29370,Verify the Receive action opens the shared Accept Delivery surface,Receive Button on WO POs (Story 11),Functional,High,"1. Signed in as Admin.
+2. A WO-originated PO with an unreceived part exists.","1. Click Receive on the PO.
+2. Observe the destination surface.",1. The shared Accept Delivery surface opens for that PO.,SV-7706 (S11-R2),,
+C29371,https://shopview.testrail.io/index.php?/cases/view/29371,Verify the Receive action is hidden for office/readonly users and for fulfilled POs,Receive Button on WO POs (Story 11),Functional,Medium,"1. An Office / read-only user credential (no Order Parts) exists.
+2. A fulfilled PO and an unfulfilled PO exist.","1. Sign in as an Office / read-only user and open the PO list.
+2. Confirm the Receive action is hidden for them.
+3. As an authorized user, confirm the Receive action is hidden on a fulfilled PO.","1. The Receive action requires the Order Parts permission; Office and read-only users (no Order Parts) do not see Receive on the PO list or detail.
+2. Fulfilled POs do not show the Receive action.",SV-7706 (S11-R3),,
+C29372,https://shopview.testrail.io/index.php?/cases/view/29372,"Verify the existing Accept Delivery screen groups by vendor with per-group invoice #, date, tax, note and Receive",Accept Delivery (Story 12),Functional,Medium,"1. Signed in as Admin.
+2. A multi-vendor delivery exists at /parts/deliveries.","1. Open Accept Delivery / Vendor Invoices at /parts/deliveries.
+2. Confirm grouping by vendor.
+3. Confirm each vendor group has its own invoice #, date, tax, note and Receive.","1. The screen groups items by vendor.
+2. Each vendor group has its own invoice number, date, tax, note and Receive action.
+3. Multiple vendors on one PO are supported (existing behavior).",SV-7707 (S12 (existing multi-vendor)),,
+C29373,https://shopview.testrail.io/index.php?/cases/view/29373,"Verify new vendorless/no-PN WO parts and WO-originated POs appear and are receivable on Accept Delivery, with the vendor-missing group at the top",Accept Delivery (Story 12),Functional,High,"1. Signed in as Admin.
+2. A WO has a vendorless/no-PN part and a WO-originated PO reached via the Receive button.","1. Open Accept Delivery for the WO.
+2. Confirm the vendorless/no-PN parts appear.
+3. Confirm the vendor-missing group is at the top (leading).","1. New vendorless/no-PN WO parts appear and are receivable here.
+2. WO-originated POs reached via the Receive button appear.
+3. Vendor-missing parts sit in their own group that LEADS (appears at the top), because they need action (assign a vendor) before receiving.",SV-7707 (S12-R1),,
+C29374,https://shopview.testrail.io/index.php?/cases/view/29374,"Verify Accept Delivery receive gates: vendor set, missing part number entered, vendor invoice # captured",Accept Delivery (Story 12),Functional,High,"1. Signed in as Admin.
+2. A vendor-missing / no-PN part is in an Accept Delivery group.","1. Attempt to receive without a vendor set.
+2. Attempt to receive without a part number.
+3. Attempt to receive without a vendor invoice number.","1. Receiving is gated until a vendor is set.
+2. Receiving is gated until the missing part number is entered.
+3. Receiving is gated until a vendor invoice number is captured.
+4. On Accept Delivery, cost is editable when $0 or missing (parity with Bulk Receive); the sell-price lock rule is unchanged.",SV-7707 (S12-R2),,
+C29375,https://shopview.testrail.io/index.php?/cases/view/29375,Verify Accept Delivery shows a '+N' vendor indicator and leads with the vendor-missing group,Accept Delivery (Story 12),Functional,Low,"1. Signed in as Admin.
+2. A multi-vendor delivery with a vendor-missing group exists.","1. Open Accept Delivery.
+2. Confirm the '+N' vendor indicator.
+3. Confirm the ordering of the vendor-missing group.","1. A '+N' indicator summarizes multiple vendors.
+2. The vendor-missing group leads (appears first).",SV-7707 (S12-R3),,
+C29376,https://shopview.testrail.io/index.php?/cases/view/29376,Verify each vendor group produces its own vendor bill and separate AP entry in QuickBooks,Accept Delivery (Story 12),Functional,High,"1. Signed in as Admin.
+2. A multi-vendor delivery is received.","1. Receive each vendor group with its own invoice number.
+2. Check QuickBooks / AP for the resulting bills.","1. Each vendor group creates its own vendor bill.
+2. Each syncs to QuickBooks as a separate AP entry.",SV-7707 (S12-R4),,
+C29377,https://shopview.testrail.io/index.php?/cases/view/29377,Verify a 'received more than ordered' warning appears when received quantity exceeds ordered quantity,Accept Delivery (Story 12),Functional,Medium,"1. Signed in as Admin.
+2. A delivery item with a known ordered quantity is on Accept Delivery.","1. Set the received quantity above the ordered quantity.
+2. Observe the warning.",1. A 'received more than ordered' warning is shown (existing behavior).,SV-7707 (S12 (existing) received-more-than-ordered),,
+C29440,https://shopview.testrail.io/index.php?/cases/view/29440,Verify cost is editable on the Accept Delivery screen when $0 or missing (parity with Bulk Receive),Accept Delivery (Story 12),Functional,Medium,"1. Signed in as Admin.
+2. An Accept Delivery group has a line whose cost is $0 or missing (cost is pulled from the WO/PO when available).","1. Open Accept Delivery for the delivery.
+2. Locate a line with a $0 or missing cost and edit the cost.
+3. Confirm the quantity remains editable and the sell-price lock rule is unchanged.","1. Cost is editable on Accept Delivery when $0 or missing (matching Bulk Receive / Story 8 / Story 10).
+2. Quantity stays editable.
+3. The sell-price lock rule is unchanged (sell locks only after the work order is invoiced/paid).",SV-7707 (S12-R5),,
+C29378,https://shopview.testrail.io/index.php?/cases/view/29378,Verify the vendor-missing group provides a vendor dropdown that assigns a vendor at PO level and saves it,Assign Vendor + Merge (Story 13),Functional,High,"1. Signed in as Admin.
+2. A vendor-missing group is shown on the receive surface.","1. Open the vendor-missing group's vendor dropdown.
+2. Choose a vendor.
+3. Reload and confirm the assignment persists.","1. The vendor dropdown assigns a vendor at PO level.
+2. The assignment is saved locally and to the backend.",SV-7708 (S13-R1),,
+C29379,https://shopview.testrail.io/index.php?/cases/view/29379,Verify assigning a vendor already on this PO prompts 'Add to {vendor}?' with Merge vs Keep Separate,Assign Vendor + Merge (Story 13),Functional,High,"1. Signed in as Admin.
+2. A PO already has vendor X, and a vendor-missing group on the same PO is being assigned vendor X.","1. Assign the same vendor that is already on this PO.
+2. Observe the prompt.
+3. Try both 'Yes, Merge' and 'No, Keep Separate' in separate runs.","1. A prompt 'Add to {vendor}?' appears.
+2. 'Yes, Merge' combines into one group; 'No, Keep Separate' keeps two invoice numbers for the same vendor on one PO (valid).",SV-7708 (S13-R2),,
+C29380,https://shopview.testrail.io/index.php?/cases/view/29380,Verify assigning a vendor that is on another PO for the same WO prompts to merge the POs,Assign Vendor + Merge (Story 13),Functional,Medium,"1. Signed in as Admin.
+2. Two POs for the same WO exist; vendor Y is on the other PO.","1. Assign vendor Y to the vendor-missing group.
+2. Accept the merge prompt.
+3. Confirm items moved and the emptied source PO is removed.","1. A prompt to merge the POs appears.
+2. Items move to the target PO; the emptied source PO is removed.
+3. The view redirects to the target PO.",SV-7708 (S13-R3),,
+C29381,https://shopview.testrail.io/index.php?/cases/view/29381,"Verify assigning a different vendor with no collision auto-assigns, clears the QB flag and enables Receive",Assign Vendor + Merge (Story 13),Functional,Medium,"1. Signed in as Admin.
+2. A vendor-missing group with a valid part number is being assigned a brand-new vendor (no collision).","1. Assign a different vendor that is not already on any PO for this WO.
+2. Observe the QuickBooks flag and the group's Receive action.","1. The vendor auto-assigns with no prompt.
+2. The QuickBooks 'vendor missing' flag clears.
+3. The group's Receive action becomes enabled.",SV-7708 (S13-R4 / S13-R5),,
+C29382,https://shopview.testrail.io/index.php?/cases/view/29382,"Verify vendor matching is by ID (not name), merge is scoped to the same WO, and receiving is blocked when the WO is invoiced/paid",Assign Vendor + Merge (Story 13),Functional,Medium,"1. Signed in as Admin.
+2. Two vendors share the same name but different IDs; an invoiced/paid WO with a vendor-missing PO exists.","1. Assign a vendor and confirm matching is by ID (same-name different-ID vendors are not treated as the same).
+2. Attempt a merge across different work orders.
+3. Attempt to receive on the invoiced/paid WO.","1. Vendors are matched by ID, not name.
+2. Merge only applies within the same work order.
+3. Receiving is blocked when the WO is invoiced/paid.",SV-7708 (S13 Technical guardrails),,
+C29383,https://shopview.testrail.io/index.php?/cases/view/29383,Verify an optional 'Waiting on Parts' column can be enabled from the column selector and shows the unreceived-parts count per WO,Waiting on Parts Column (Story 14),Functional,High,"1. Signed in as Admin.
+2. The Work Orders list is open with WOs that have unreceived parts.","1. Open the Work Orders list column selector.
+2. Enable 'Waiting on Parts'.
+3. Read the column values across statuses.","1. A 'Waiting on Parts' column is offered in the column selector (off by default).
+2. It shows the count of unreceived parts per work order across all statuses.",SV-7709 (S14-R1),,
+C29384,https://shopview.testrail.io/index.php?/cases/view/29384,Verify clicking the Waiting on Parts count opens Accept Delivery for the WO's first unreceived PO,Waiting on Parts Column (Story 14),Functional,Medium,"1. Signed in as Admin.
+2. The Waiting on Parts column is enabled and a WO shows a count.","1. Click the count on a work order row.
+2. Observe the destination.","1. EXPECTED (built): clicking the count opens the receiving surface for the work order's first unreceived PO. In the current build this is the consolidated Bulk Receive page (/bulk-receive), which supersedes the legacy Accept Delivery screen for work-order POs.
+2. Receiving behaves as it does from the Bulk Receive page from there.",SV-7709 (S14-R2),,
+C29385,https://shopview.testrail.io/index.php?/cases/view/29385,Verify a work order with nothing to receive shows '—' with no link in the Waiting on Parts column,Waiting on Parts Column (Story 14),Functional,Low,"1. Signed in as Admin.
+2. A WO with nothing to receive (or POs off) is in the list with the column enabled.","1. Find a WO with nothing waiting to receive.
+2. Read its Waiting on Parts cell.",1. The cell shows '—' with no clickable link.,SV-7709 (S14-R3),,
+C29386,https://shopview.testrail.io/index.php?/cases/view/29386,Verify the Require Review setting drives the review flow when turned on,Review ON (Story 16),Functional,High,"1. Signed in as Admin at https://sv7301.qa.shopview.com.
+2. Require Review Before Completion is ON and saved.","1. Open a work order with approved lines.
+2. Start completion.
+3. Observe that the review flow is used.","1. With Require Review ON, completing routes into the review flow rather than completing directly.",SV-7870 (R1),,
+C29387,https://shopview.testrail.io/index.php?/cases/view/29387,Verify the completion CTA relabels to 'Complete & Send to Review' when review is on,Review ON (Story 16),Functional,High,"1. Signed in as Admin.
+2. Require Review is ON.
+3. A work order with approved lines is ready to complete.","1. Click Complete Work Order.
+2. Read the wizard's primary CTA label.",1. The primary CTA reads 'Complete & Send to Review' (Send to Review).,SV-7870 (R2),,
+C29388,https://shopview.testrail.io/index.php?/cases/view/29388,Verify the Details step collects only mileage and engine hours when review is on (VIN captured later by reviewer),Review ON (Story 16),Functional,Medium,"1. Signed in as Admin.
+2. Require Review is ON.
+3. A work order missing mileage/hours/VIN is ready to complete.","1. Start completion and reach the Details step.
+2. Note which vehicle fields are collected.","1. The Details step collects mileage and engine hours only.
+2. VIN is NOT collected here; it is captured later by the reviewer in the Mark Reviewed dialog.",SV-7870 (R3),,
+C29389,https://shopview.testrail.io/index.php?/cases/view/29389,Verify 'Receive Parts' routes to the shared receive page (no inline modal) in the review flow,Review ON (Story 16),Functional,Medium,"1. Signed in as Admin.
+2. Require Review is ON with a part-bearing work order.","1. Start completion and click Receive Parts.
+2. Observe the destination.",1. Receive Parts opens the shared receive page (not an inline modal).,SV-7870 (R4),,
+C29390,https://shopview.testrail.io/index.php?/cases/view/29390,Verify Send to Review moves the WO to Review (amber) with a 'Ready for Review' banner and locks lines to Complete,Review ON (Story 16),Functional,Critical,"1. Signed in as Admin.
+2. Require Review is ON and a work order with approved lines is in the completion wizard.","1. Click Complete & Send to Review.
+2. Observe the work order status and banner.
+3. Check the lines state and inventory pick state.","1. The work order status becomes Review (amber).
+2. A 'Ready for Review' / 'Sent for review' indication is shown.
+3. Lines lock to Complete and inventory is auto-picked.",SV-7870 (R5 / R6),,
+C29391,https://shopview.testrail.io/index.php?/cases/view/29391,Verify the Mark Reviewed dialog captures VIN (required) and disables Confirm until VIN is entered,Review ON (Story 16),Functional,Critical,"1. Signed in as Admin.
+2. A work order is in Review state.","1. Click Mark Reviewed.
+2. Observe the VIN field.
+3. Clear the VIN and check the Confirm Review button, then enter a VIN.","1. The Mark Reviewed dialog exposes a VIN field (input_review_vin), required if missing.
+2. Confirm Review is disabled until a VIN is present.
+3. With a VIN, Confirm Review is enabled.",SV-7870 (R7 / R10),,
+C29392,https://shopview.testrail.io/index.php?/cases/view/29392,Verify on Send to Review lines lock to Complete and inventory is auto-picked,Review ON (Story 16),Functional,Medium,"1. Signed in as Admin.
+2. A work order with an inventory line just went to Review.","1. Open the work order in Review state.
+2. Check the line states.
+3. Check whether inventory was auto-picked.","1. Lines are locked to Complete.
+2. Inventory has been auto-picked.",SV-7870 (R6),,
+C29393,https://shopview.testrail.io/index.php?/cases/view/29393,Verify Confirm Review signs off and completes the work order directly (no distinct Reviewed holding state),Review ON (Story 16),Functional,High,"1. Signed in as Admin.
+2. A work order is in Review with the Mark Reviewed dialog filled (VIN present).","1. Click Confirm Review.
+2. Observe the resulting work order state.
+3. Look for a separate final 'Complete Work Order' action.","1. After Confirm Review the sign-off completes and the work order moves directly Review -> Complete.
+2. There is no distinct 'Reviewed' holding state and no separate final 'Complete Work Order' click.",SV-7870 (R5 / R8 (distinct Reviewed state)),,
+C29394,https://shopview.testrail.io/index.php?/cases/view/29394,Verify Mark Reviewed is gated by the Review Work Orders permission and disabled for a role without it,Review ON (Story 16),Functional,High,"1. A role with Review Work Orders and a role without it both exist.
+2. A work order is in Review state, sent to review by a known user.","1. Sign in as a role without Review Work Orders and open the work order in Review.
+2. Confirm Mark Reviewed is disabled with 'Awaiting review'.
+3. Sign in as a role with Review Work Orders (system defaults grant it broadly; it can be limited to manager/foreman via custom roles) and confirm Mark Reviewed is available.","1. A role without the Review Work Orders permission sees Mark Reviewed disabled with an 'Awaiting review' indicator.
+2. A role with the Review Work Orders permission can Mark Reviewed and sign off.
+3. The user who completed / sent the work order to review cannot Mark Reviewed even with the permission; a different qualified reviewer can.",SV-7870 (R7 (role-gating)),,
+C29395,https://shopview.testrail.io/index.php?/cases/view/29395,Verify the Mark Reviewed dialog includes VIN / Serial # (required) with no review note field,Review ON (Story 16),Functional,Medium,"1. Signed in as Admin.
+2. The Mark Reviewed dialog is open.","1. Open the Mark Reviewed dialog.
+2. Confirm a required VIN / Serial # field (Confirm disabled until VIN entered).
+3. Confirm there is no review note field, then complete the sign-off.","1. The Mark Reviewed dialog shows a VIN / Serial # field that is required (Confirm Reviewed is disabled until VIN is entered).
+2. There is no review note field on the dialog.
+3. The sign-off completes using the VIN / Serial # only.","SV-7870 (R7 (VIN required, no note))",,
+C29396,https://shopview.testrail.io/index.php?/cases/view/29396,Verify sign-off completes the work order directly (no separate final Complete) and invoicing is blocked until reviewed,Review ON (Story 16),Functional,High,"1. Signed in as Admin.
+2. A work order is in Reviewed state (or a Review state before sign-off for the invoicing-block check).","1. Before sign-off, attempt to invoice the work order.
+2. Complete the review sign-off (Confirm Review).
+3. Confirm the work order becomes Complete (invoice-ready).","1. Invoicing is blocked until the work order is reviewed.
+2. After sign-off the work order moves directly Review -> Complete (invoice-ready), with no separate final Complete Work Order click.",SV-7870 (R8),,
+C29397,https://shopview.testrail.io/index.php?/cases/view/29397,Verify a 'Ready for Review' list filter/column surfaces the reviewer queue,Review ON (Story 16),Functional,Medium,"1. Signed in as Admin.
+2. At least one work order is in Review state.","1. Open the Work Orders list.
+2. Look for a 'Ready for Review' filter or column.
+3. Confirm work orders in Review appear in it.",1. A 'Ready for Review' filter/column lists work orders awaiting review.,SV-7870 (R9),,
+C29398,https://shopview.testrail.io/index.php?/cases/view/29398,Verify all lines must be approved to Send to Review (existing approve-line error),Review ON (Story 16),Functional,Medium,"1. Signed in as Admin.
+2. Require Review is ON and a work order has one unapproved line.","1. Click Complete & Send to Review.
+2. Attempt to send with an unapproved line.",1. Send to Review is blocked with the existing approve-line error while any line is unapproved.,SV-7870 (R11),,
+C29399,https://shopview.testrail.io/index.php?/cases/view/29399,Verify cores are resolved per rules before sign-off and invoicing is blocked until both Reviewed and all cores resolved,Review ON (Story 16),Functional,Medium,"1. Signed in as Admin.
+2. Require Review is ON and a work order has inventory and special-order cores.","1. Resolve inventory cores in the completion modal (after Pick) before Send to Review.
+2. For required-invoice, resolve special-order cores after the Receive round-trip before Send to Review; for optional-invoice, resolve at the Create Invoice gate after sign-off.
+3. Attempt to invoice before both Reviewed and cores are resolved.","1. Inventory cores are resolved before Send to Review.
+2. Special-order cores follow the vendor-invoice rules.
+3. Invoicing is blocked until the WO is Reviewed AND all cores are resolved.",SV-7870 (R Core parts / invoicing block),,
+C29400,https://shopview.testrail.io/index.php?/cases/view/29400,Verify the Require Review default for new vs existing orgs matches the agreed cohort rule,Review ON (Story 16),Functional,Low,"1. A newly-created org and an existing org are available.
+2. Signed in as Admin for each.","1. Check the Require Review default on a brand-new org.
+2. Check that existing orgs keep today's behavior (backfilled).","1. A brand-new org shows the Require Review setting in its default state, and existing orgs keep their current completion behavior (the setting is backfilled so their behavior does not change).",SV-7870 (R Open (default)),,
+C29401,https://shopview.testrail.io/index.php?/cases/view/29401,Verify the work order primary button reads 'Create Work Order',UX Refinements (Story 15),Functional,Medium,"1. Signed in as Admin.
+2. You are on the Create Work Order form (/workorders → Create).","1. Open the Create Work Order form.
+2. Read the primary button label.",1. The primary button reads 'Create Work Order'.,SV-7710 (S15-R1),,
+C29402,https://shopview.testrail.io/index.php?/cases/view/29402,Verify required fields at completion appear in a centralized center modal and the tech story is NOT in that modal,UX Refinements (Story 15),Functional,Medium,"1. Signed in as Admin.
+2. A work order requiring mileage/VIN is being completed.","1. Start completion.
+2. Observe where required fields are collected.
+3. Confirm the tech story is handled by its own flow, not inside this modal.","1. Required fields (mileage / VIN when required) are collected in a centralized center modal.
+2. The tech story is NOT part of this modal (Story 17 handles it separately).",SV-7710 (S15-R2),,
+C29403,https://shopview.testrail.io/index.php?/cases/view/29403,"Verify the success screen shows WO number and total with Done and Go to Invoice, and the invoice number is on the Finance step",UX Refinements (Story 15),Functional,Medium,"1. Signed in as Admin.
+2. A work order has just been completed.","1. Read the success screen.
+2. Confirm WO number, total, Done and Go to Invoice.
+3. Confirm the invoice number is shown on the Finance step, not the success screen.","1. The success screen shows the WO number and total with Done and Go to Invoice.
+2. The invoice number appears on the Finance step, not on the success screen.",SV-7710 (S15-R3),,
+C29404,https://shopview.testrail.io/index.php?/cases/view/29404,Verify the close-confirmation modal behavior (Close = closes modal only; Cancel = closes modal + returns to previous screen),UX Refinements (Story 15),Functional,Medium,"1. Signed in as Admin.
+2. A completion modal is open.","1. Trigger the close-confirmation modal.
+2. Click Close (prominent/red) and observe.
+3. Trigger it again and click Cancel (text link, far left) and observe.","1. Close (prominent/red button) closes the confirmation modal only, discards nothing (no discard warning), and stays on the work order.
+2. Cancel (text link, far left) closes the modal and returns to the previous screen.
+3. Other consumers of the shared confirmation dialog keep their existing action labels.",SV-7710 (S15-R4),,
+C29405,https://shopview.testrail.io/index.php?/cases/view/29405,Verify only owner/admin can view and modify Work Order settings (non-admin blocked),API — Permissions,Functional,High,"1. A role with the App Settings permission (e.g. Admin) and a role without it (e.g. Service Advisor or Technician) both exist.
+2. You can sign in as each.","1. Sign in as a role with App Settings and open and modify /administration/settings → Work Orders.
+2. Sign in as a role without App Settings and attempt to open and modify the same page.
+3. As the role without App Settings, attempt to save a Work Order settings change directly (API), and note the response.","1. Only a role with the App Settings permission (system defaults Admin, Service Manager and Office) can view and modify the Work Order settings page.
+2. A role without App Settings cannot open or change the Work Order settings.
+3. The backend rejects a Work Order settings save attempted by a role that lacks App Settings.",SV-7696 (S1 AC / §8 Permissions),,
+C29406,https://shopview.testrail.io/index.php?/cases/view/29406,Verify which roles can complete a work order (Simple completion),Permissions,Functional,Medium,"1. Credentials for several roles exist.
+2. A work order ready to complete exists.","1. For each role, attempt to complete a work order.
+2. Record which roles can and cannot.","1. Roles with Work Orders: Create & Edit plus WO Lines: Create & Edit and Full View (needed to approve all lines) can complete a work order: Admin, Service Manager, Senior SA, Service Advisor, Foreman and Parts Manager.
+2. Technician and Parts Tech cannot complete (Technician cannot approve lines in Tech View and/or lacks Work Orders: Create & Edit; Parts Tech is a receiver, not a completer).
+3. Office, Sales Rep and Time Clock cannot complete a work order.",§8 Permissions,,
+C29407,https://shopview.testrail.io/index.php?/cases/view/29407,Verify which roles can perform Bulk Receive,Permissions,Functional,Medium,"1. Credentials for several roles exist.
+2. The Bulk Receive flow is available (Story 7/8 built).","1. For each role, attempt to reach and use Bulk Receive.
+2. Record the outcomes.","1. Roles with Vendor & Order Mgmt: Create & Edit plus See Financial Data can reach and use Bulk Receive: Admin, Service Manager, Senior SA, Service Advisor, Foreman, Parts Manager and Parts Tech.
+2. Office (Vendor & Order Mgmt: View only) can open the Bulk Receive page but cannot receive.
+3. Sales Rep and Time Clock cannot reach Bulk Receive.",§8 Permissions,,
+C29408,https://shopview.testrail.io/index.php?/cases/view/29408,Verify which roles can Mark Reviewed (sign off),Permissions,Functional,Medium,"1. Credentials for roles with and without Review Work Orders exist.
+2. A work order in Review state exists, sent to review by a known user.","1. For each role, attempt to Mark Reviewed.
+2. Record which roles can and cannot.","1. Mark Reviewed (review sign-off) requires the Review Work Orders permission; system defaults grant it broadly, and it can be narrowed to manager/foreman via custom roles.
+2. A role without Review Work Orders sees Mark Reviewed disabled with an 'Awaiting review' indicator.
+3. The user who completed / sent the work order to review cannot Mark Reviewed it; a different user who holds Review Work Orders can sign off.",SV-7870 (R7 / §8 role-gating review),,
+C29409,https://shopview.testrail.io/index.php?/cases/view/29409,Verify the PO Receive button is hidden for office/readonly users,Permissions,Functional,Medium,"1. An Office / read-only credential (no Order Parts) exists.
+2. A WO-originated PO exists, plus a fulfilled PO.","1. Sign in as an Office / read-only user.
+2. Open the PO list and detail.
+3. Confirm the Receive action is not shown, and confirm it is also absent on a fulfilled PO.","1. The Receive action requires the Order Parts permission; Office and read-only users (no Order Parts) do not see Receive on the PO list or PO detail.
+2. Receive is also hidden for fulfilled (already-received) POs.",SV-7706 (S11-R3),,
+C29410,https://shopview.testrail.io/index.php?/cases/view/29410,Verify permission gating of Simple-Flow settings and work-order actions (UI gating is the v1 pass criterion),API — Permissions,Functional,Medium,"1. Signed in with API access.
+2. A relevant Simple-Flow setting (e.g. Require Vendor Invoice Number) is ON.","1. As a role that lacks the mapped permission, confirm the gated setting/action is hidden or unavailable in the UI.
+2. Attempt the same setting change directly via the API (bypassing the UI) as that role, and note the response.
+3. As a role that lacks the completion / review sign-off permission, attempt to complete a work order and to sign off a review directly via the API, and note the response.
+4. As a role that has only Work Orders: Create & Edit, attempt to receive onto a work order and note the response.","1. UI gating is the pass criterion for v1: a role without the mapped permission does not see or cannot use the gated setting/action in the UI.
+2. The Simple-Flow settings atom is enforced at the backend too — the unauthorized settings request is rejected.
+3. The work-order completion and review sign-off atoms are NOT enforced at the backend — a direct API call from a role lacking the permission still succeeds. This passes for v1 on the UI restriction, but the API-level gap is a KNOWN ISSUE to fix; record the result as 'UI pass / API fail' so it stays on record.
+4. Because several work-order atoms collapse to the same backend role pair, any role with Work Orders: Create & Edit can receive onto / act on a work order via the API (documented OR of ROLE_DELIVERY_CREATE_AND_EDIT, ROLE_WORK_ORDER_PART_CREATE and ROLE_WORK_ORDER_CREATE_AND_EDIT).",§8 BE enforcement,,
+C29411,https://shopview.testrail.io/index.php?/cases/view/29411,Verify review sign-off is governed by the Review Work Orders custom-role permission (not open to all),Permissions,Functional,Low,"1. Credentials for roles with and without Review Work Orders exist.
+2. A work order in Review state exists, sent to review by a known user.","1. Confirm that only roles holding Review Work Orders can sign off, and roles without it cannot.
+2. Confirm the user who completed / sent the work order to review cannot sign it off.","1. Review sign-off is governed by the Review Work Orders custom-role permission (it is NOT open to all users for v1).
+2. The permission gates the Mark Reviewed action, and the reviewer-not-completer rule is enforced (the completer cannot sign off).",§8 role-gating review,,
+C29412,https://shopview.testrail.io/index.php?/cases/view/29412,Verify the user who completed or sent the work order to review cannot Mark Reviewed it,Permissions,Functional,High,"1. Two different users who both hold the Review Work Orders permission exist.
+2. User A has completed / sent a work order to review; it is in Review state.","1. Sign in as User A (who sent the work order to review) and open the work order in Review.
+2. Attempt to Mark Reviewed.
+3. Sign in as User B (a different user who holds Review Work Orders) and Mark Reviewed.","1. User A cannot Mark Reviewed the work order they completed / sent to review; the action is blocked or disabled.
+2. User B, a different user who holds the Review Work Orders permission, can Mark Reviewed and sign off.
+3. The reviewer must be a different person from the completer.",SV-7870 (R7 (reviewer != completer)),,
+C29413,https://shopview.testrail.io/index.php?/cases/view/29413,Verify a Technician cannot add a vendorless / no-part-number part (lacks See Financial Data),Permissions,Functional,High,"1. A Technician credential exists (WO Lines: Create & Edit, no See Financial Data).
+2. An open work order with a line is available.","1. Sign in as the Technician and open the work order line.
+2. Attempt to add a vendorless / no-part-number part (description + quantity + sell price).","1. The Technician cannot add a vendorless / no-part-number part.
+2. The mandatory sell price cannot be entered without See Financial Data, so the add is prevented.",SV-7700 (S5 / §9 (See Financial Data gate)),,
+C29414,https://shopview.testrail.io/index.php?/cases/view/29414,Verify the Complete Work Order action follows the per-role completion permission matrix,Permissions,Functional,High,"1. Credentials for each system role exist (Admin, Service Manager, Senior SA, Service Advisor, Foreman, Technician, Parts Manager, Parts Tech, Office, Sales Rep, Time Clock).
+2. A work order ready to complete is available.","1. For each role, open the work order and check whether the Complete Work Order action is available and usable.
+2. Record the result per role against the checklist below.
+3. Roles expected to be able to complete: Admin, Service Manager, Senior SA, Service Advisor, Foreman, Parts Manager.
+4. Roles expected NOT to be able to complete: Technician, Parts Tech, Office, Sales Rep, Time Clock.","1. Complete Work Order is available for Admin, Service Manager, Senior SA, Service Advisor, Foreman and Parts Manager.
+2. Complete Work Order is NOT available for Technician, Parts Tech, Office, Sales Rep or Time Clock.
+3. Technician and Parts Tech are blocked because they cannot approve lines and/or lack Work Orders: Create & Edit; Office is view-only; Sales Rep and Time Clock have no work-order edit access.",§9 per-role completion matrix,,
+C29415,https://shopview.testrail.io/index.php?/cases/view/29415,Verify completion is blocked when required mileage is missing,Validation / Edge,Functional,High,"1. Signed in as Admin.
+2. Require Mileage is ON and the work order has no mileage.","1. Start completion.
+2. Leave mileage empty and try to proceed.",1. Completion is blocked until mileage is entered.,"SV-7697, SV-7698, SV-7699 (S2-R2 / S3-R3 / S4-R3)",,
+C29416,https://shopview.testrail.io/index.php?/cases/view/29416,Verify completion is blocked when a required VIN is missing (non-review flow),Validation / Edge,Functional,Medium,"1. Signed in as Admin.
+2. VIN is required for this org's completion and the work order has no VIN.
+3. Require Review is OFF (VIN is collected at completion in the non-review flow).","1. Start completion.
+2. Leave VIN empty and try to proceed.",1. Completion is blocked until the VIN is entered.,"SV-7698, SV-7710 (S15-R2 / S3-R3)",,
+C29417,https://shopview.testrail.io/index.php?/cases/view/29417,Verify completion is blocked when required engine hours are missing,Validation / Edge,Functional,Medium,"1. Signed in as Admin.
+2. Require Engine Hours is ON and the work order has no engine hours.","1. Start completion.
+2. Leave engine hours empty and try to proceed.",1. Completion is blocked until engine hours are entered.,"SV-7698, SV-7699 (S3-R3 / S4-R3)",,
+C29418,https://shopview.testrail.io/index.php?/cases/view/29418,Verify the tech-story Next/Continue button stays disabled while the story textarea is empty,Validation / Edge,Functional,Medium,"1. Signed in as Admin.
+2. The tech-story modal is open on a line.","1. Leave the story textarea empty.
+2. Check the Next/Continue button.
+3. Type any text and check again.","1. With the textarea empty, Next/Continue is disabled.
+2. After typing text, Next/Continue becomes enabled.",SV-7876 (TS-R4),,
+C29419,https://shopview.testrail.io/index.php?/cases/view/29419,Verify a required-invoice receive is blocked without a vendor invoice number,Validation / Edge,Functional,High,"1. Signed in as Admin.
+2. Require Vendor Invoice Number is ON and a part is being received.","1. On the receive surface, leave the vendor invoice number empty.
+2. Attempt to receive.","1. Receiving is blocked without a vendor invoice number.
+2. Once an invoice number is entered, receiving is allowed.","SV-7698, SV-7699 (S3-R3 / S4-R5 / §4)",,
+C29420,https://shopview.testrail.io/index.php?/cases/view/29420,Verify a vendor-missing part cannot be received without both a vendor and a part number,Validation / Edge,Functional,High,"1. Signed in as Admin.
+2. A vendor-missing part is on a receive surface.","1. Attempt to receive with no vendor.
+2. Attempt to receive with a vendor but no part number.
+3. Provide both and receive.","1. Receiving is blocked without a vendor.
+2. Receiving is blocked without a part number.
+3. Receiving succeeds only with both.","SV-7705, SV-7707, SV-7708 (S10 / S12-R2 / S13)",,
+C29421,https://shopview.testrail.io/index.php?/cases/view/29421,Verify Confirm Review is disabled until a VIN is entered in the Mark Reviewed dialog,Validation / Edge,Functional,Medium,"1. Signed in as Admin.
+2. The Mark Reviewed dialog is open on a WO with no VIN on the asset.","1. Clear the VIN field.
+2. Check the Confirm Review button.
+3. Enter a VIN and check again.","1. Confirm Review is disabled while VIN is empty.
+2. Confirm Review enables after a VIN is entered.",SV-7870 (R7),,
+C29422,https://shopview.testrail.io/index.php?/cases/view/29422,Verify re-completing after cancelling does not create duplicate POs,Validation / Edge,Functional,Medium,"1. Signed in as Admin.
+2. A part-bearing work order had completion started and cancelled once.","1. Cancel the first completion attempt.
+2. Start and complete again.
+3. Inspect the POs.",1. No duplicate POs are created on the second attempt.,SV-7698 (S3-R9 (idempotency)),,
+C29423,https://shopview.testrail.io/index.php?/cases/view/29423,Verify the sell field is locked after the work order is invoiced/paid with a lock icon and tooltip,Validation / Edge,Functional,Medium,"1. Signed in as Admin.
+2. A part on an invoiced/paid work order is on a receive surface.","1. Open the receive surface for the invoiced/paid WO part.
+2. Try to edit the sell field.
+3. Hover the lock icon.","1. The sell field is locked (not editable).
+2. A lock icon and tooltip 'Locked — this part is already invoiced or paid' are shown.
+3. Only cost remains editable.",SV-7703 (S8-R7 / §4 field locking),,
+C29424,https://shopview.testrail.io/index.php?/cases/view/29424,Verify the same vendor invoice number can be reused across POs (uniqueness relaxed),Validation / Edge,Functional,Low,"1. Signed in as Admin.
+2. Two POs for the same vendor are being received.","1. Enter the same invoice number on both POs.
+2. Receive both.","1. The reused invoice number is accepted (uniqueness is relaxed).
+2. Both POs receive successfully.",SV-7704 (S9-R3 / §4 (uniqueness relaxed)),,
+C29425,https://shopview.testrail.io/index.php?/cases/view/29425,Verify the approve-line error text appears when completing with an unapproved line,Validation / Edge,Functional,Medium,"1. Signed in as Admin.
+2. A work order has one unapproved line and all other gates satisfied.","1. Click Complete Work Order.
+2. Read the error shown at the final confirm.","1. The existing 'you need to approve the line to complete the work order' error is shown.
+2. Completion does not proceed until the line is approved.",Key Decision (line approval),,
+C29426,https://shopview.testrail.io/index.php?/cases/view/29426,Verify in-stock parts decrement inventory and write Part History on simple completion (skip path still runs lifecycle),QuickBooks / Inventory Integrity,Functional,High,"1. Signed in as Admin.
+2. A work order has an in-stock inventory part; its on-hand quantity is noted.","1. Complete the work order via the simple (skip) path.
+2. Check the part's on-hand quantity and Part History.","1. The in-stock part's on-hand quantity decrements.
+2. A Part History entry is written.
+3. The skip path's status setter does not bypass inventory movement / Part History / catalog / delivery.",§5 invariant 1,,
+C29427,https://shopview.testrail.io/index.php?/cases/view/29427,"Verify Create POs OFF produces no PO, vendor bill or AP sync and no catalog/inventory sync",QuickBooks / Inventory Integrity,Functional,High,"1. Signed in as Admin.
+2. Create Purchase Orders is OFF.
+3. A work order with a vendor/found part exists.","1. Complete the work order with Create POs OFF.
+2. Check for any PO, vendor bill, AP sync.
+3. Check for any catalog/inventory sync of the vendor/found part.","1. No PO, no vendor bill, no AP sync.
+2. No catalog/inventory sync (part is received at request time only).",§5 / §4 (Create POs OFF),,
+C29428,https://shopview.testrail.io/index.php?/cases/view/29428,Verify POs ON plus receiving runs the full pipeline: receive → Delivery → Vendor Bill → QuickBooks (both surfaces sync),QuickBooks / Inventory Integrity,Functional,High,"1. Signed in as Admin.
+2. Create POs is on and a work order has a receivable vendor part.","1. Receive the part via Accept Delivery.
+2. Check that a Delivery, then a Vendor Bill, then a QuickBooks sync occur.
+3. Repeat via the Bulk Receive surface (once built) and confirm it also syncs.","1. Receiving creates a Delivery, then a Vendor Bill, then syncs to QuickBooks.
+2. Both receive surfaces sync the vendor bill (only complete-simple bypasses this).",§5 invariant 2,,
+C29429,https://shopview.testrail.io/index.php?/cases/view/29429,Verify a vendorless / no-PN part has zero inventory interaction until a vendor and/or part number is added,QuickBooks / Inventory Integrity,Functional,Medium,"1. Signed in as Admin.
+2. A vendorless / no-PN part exists on a work order.","1. Before adding a vendor/PN, check inventory and Part History for the part.
+2. Add a vendor and PN, then re-check.","1. Before a vendor/PN, there is zero inventory interaction (no item, no history).
+2. After a vendor and PN are added, normal inventory handling applies.",§5 (vendorless/no-PN),,
+C29430,https://shopview.testrail.io/index.php?/cases/view/29430,Verify Vendor Missing POs are excluded from QuickBooks until a vendor and part number are provided,QuickBooks / Inventory Integrity,Functional,Medium,"1. Signed in as Admin.
+2. A Vendor Missing PO exists.","1. Check QuickBooks sync for the Vendor Missing PO.
+2. Provide a vendor and part number and re-check.","1. While vendor/PN are missing, the PO is excluded from QuickBooks.
+2. Once both are provided, it becomes eligible for QuickBooks.",SV-7701 (§5 / S6-R3),,
+C29431,https://shopview.testrail.io/index.php?/cases/view/29431,Verify cost at completion behavior to avoid $0-cost margins in QuickBooks,QuickBooks / Inventory Integrity,Functional,Medium,"1. Signed in as Admin.
+2. A work order has a part with no cost recorded at completion.","1. Complete the work order.
+2. Check the resulting cost/margin figures that flow to QuickBooks.","1. The cost and margin values sent to QuickBooks at completion are recorded and checked for any $0-cost margins.
+2. For vendorless / no-part-number parts the mandatory sell price is captured at add time behind the See Financial Data gate, so a completing user has a sell figure and $0-cost margins are avoided.",§8 (cost at completion),,
+C29432,https://shopview.testrail.io/index.php?/cases/view/29432,Verify the Journal Entry / Inventory sync to QuickBooks fires on invoice creation (not PO-dependent),QuickBooks / Inventory Integrity,Functional,Medium,"1. Signed in as Admin.
+2. A completed work order is ready to invoice.","1. Create the invoice.
+2. Check for the Journal Entry / Inventory sync to QuickBooks.","1. The Journal Entry / Inventory sync to QuickBooks fires on invoice creation.
+2. This sync is not dependent on a PO existing.",§5 (Journal Entry / Inventory → QBO),,
+C29433,https://shopview.testrail.io/index.php?/cases/view/29433,Verify Inventory Part History is preserved for any part that becomes inventory-tracked,QuickBooks / Inventory Integrity,Functional,Medium,"1. Signed in as Admin.
+2. A part transitions to inventory-tracked (e.g. a part number is added and it is received).","1. Add a part number to a previously untracked part and receive it.
+2. Open the item's Part History.",1. Part History is preserved / created for the now inventory-tracked part.,§5 invariant 3,,
+,,Investigate: Part Sales unaffected by the shared order/status logic (requested -> orderable/waiting-to-receive),QuickBooks / Inventory Integrity,Functional,Low,1. PLACEHOLDER for a new V2.4 §8 open question (needs BE investigation).,1. Investigation pending — steps to be defined once dev confirms whether the shared order/status logic touches Part Sales.,1. OPEN / NEEDS INVESTIGATION — expected result to be defined after dev confirmation. Keep Part Sales unchanged unless the shared logic forces a change (V2.4 §8).,§8 open question (Part Sales impact — BE investigation),,
