@@ -420,8 +420,8 @@
       "5. The $50.00 excess is recorded as a freestanding customer credit not tied to a WO (S6-R11) and posts to QuickBooks as a tax-exempt goodwill credit memo on the Customer Credit item (S6-R13)."
     ],
     "design_ref": "design-notes §10 (no negative-total / warning UI mocked)",
-    "viu_status": "VIU-Pending",
-    "notes": "Over-discounting flow is backend/QuickBooks (Story 6) and not in the design mocks. Capture the exact warning text and confirm the credit memo is marked tax-exempt. | VIU qb batch-1 (2026-07-08): Floor-at-$0 shows in the dialog preview; full non-taxable-vs-taxable worked example + credit carry needs the invoice-time walk (no warn observed on plain save). Batch-2. | [pass A same-day parallel verdict] VIU-Pending — negative-total floor / QuickBooks credit memo require QB connection (not connected)",
+    "viu_status": "VIU-Verified qb 2026-07-09 (batch-6) — API on WO S3-15513 (sub $1,214.81, GST $60.75): non-taxable flat discount $1,265 (exceeds sub by $50.19) -> sub_total floored to 0.00 (S6-R10/R10a), GST UNCHANGED at 60.75 (S6-R10b, tax still owed), total = 60.75 (= the tax), adjustmentsSummary.excessCreditAmount = 50.19 exactly (excess captured as credit). WO restored to baseline after. GST-org caveat: rate is 5% GST not US sales tax; floor rules are model-safe per spec Change Log (US+Canada). Warn/confirm dialog is NOT shown (see FD-QB-014 deviation/FDBUG-15); QB credit-memo posting still pending (FD-QB-015).",
+    "notes": "Over-discounting flow is backend/QuickBooks (Story 6) and not in the design mocks. Capture the exact warning text and confirm the credit memo is marked tax-exempt. | VIU qb batch-1 (2026-07-08): Floor-at-$0 shows in the dialog preview; full non-taxable-vs-taxable worked example + credit carry needs the invoice-time walk (no warn observed on plain save). Batch-2. | [pass A same-day parallel verdict] VIU-Pending — negative-total floor / QuickBooks credit memo require QB connection (not connected) | VIU batch-6 qb 2026-07-09 (overnight run, evidence 21:10-21:30Z): floor + tax-still-owed + total=tax + excessCreditAmount all proven; UI dialog preview also shows the floor (shot b6-warn2-filled).",
     "api_related": false
   },
   {
@@ -448,8 +448,8 @@
       "4. By contrast, when the same discount is non-taxable the $10.00 tax is still owed."
     ],
     "design_ref": "design-notes §9 item 2 (no Taxable control in Add modal mock)",
-    "viu_status": "VIU-Pending",
-    "notes": "Reaching a $0.00 total with no tax requires the discount to be taxable and large enough to zero the taxable amount (S6-R10c). | VIU qb batch-1 (2026-07-08): Taxable over-discount example pending with FD-CALC-015. | [pass A same-day parallel verdict] VIU-Pending — negative-total floor / QuickBooks credit memo require QB connection (not connected)",
+    "viu_status": "VIU-Verified qb 2026-07-09 (batch-6) — API on WO S3-15513 (sub $1,214.81, GST $60.75): TAXABLE flat discount $1,265 -> sub_total 0.00, GST 0 (taxable discount drives the taxable amount to 0, S6-R10c), total 0.00 (customer pays nothing); contrast with the non-taxable variant (GST stays 60.75) proven in the same run. excessCreditAmount 50.19. WO restored after. GST-org caveat noted; structure is tax-model-safe.",
+    "notes": "Reaching a $0.00 total with no tax requires the discount to be taxable and large enough to zero the taxable amount (S6-R10c). | VIU qb batch-1 (2026-07-08): Taxable over-discount example pending with FD-CALC-015. | [pass A same-day parallel verdict] VIU-Pending — negative-total floor / QuickBooks credit memo require QB connection (not connected) | VIU batch-6 qb 2026-07-09 (overnight run, evidence 21:10-21:30Z): taxable over-discount zeroes tax and total; non-taxable contrast proven.",
     "api_related": false
   },
   {
@@ -477,8 +477,8 @@
       "4. The amount removed by the cap equals the carried customer credit (S6-R11)."
     ],
     "design_ref": "design-notes §10 (not mocked)",
-    "viu_status": "VIU-Pending",
-    "notes": "Largest-remainder penny allocation is a backend QuickBooks-sync detail (S6-R10d). Verify line sums equal the floored subtotal to the cent. | VIU qb batch-1 (2026-07-08): Penny-cap allocation is QB-export behavior — blocked/pending with FD-QB-013. | [pass A same-day parallel verdict] VIU-Pending — negative-total floor / QuickBooks credit memo require QB connection (not connected)",
+    "viu_status": "VIU-Blocked-Env (batch-6 partial) — FLOOR half VERIFIED via API on WO S3-15513: two stacked whole-WO discounts ($972 + $608 = $1,580 > sub $1,214.81) -> sub floors at 0.00 (never negative), excessCreditAmount = 365.19 exactly (1,580 - 1,214.81). The QB half (discount LINES capped to sum exactly to the floored subtotal via largest-remainder whole-cent allocation) is NOT observable this run: no API reads exported QB invoice lines, work-order line creation 500s env-wide (can't build a fresh invoiceable WO), and existing complete WOs fail QB export on duplicate invoice numbers. Needs QB-UI inspection of a cleanly synced invoice.",
+    "notes": "Largest-remainder penny allocation is a backend QuickBooks-sync detail (S6-R10d). Verify line sums equal the floored subtotal to the cent. | VIU qb batch-1 (2026-07-08): Penny-cap allocation is QB-export behavior — blocked/pending with FD-QB-013. | [pass A same-day parallel verdict] VIU-Pending — negative-total floor / QuickBooks credit memo require QB connection (not connected) | VIU batch-6 qb 2026-07-09 (overnight run, evidence 21:10-21:30Z): floor+stacking proven; QB penny-cap needs QB-side line view.",
     "api_related": false
   },
   {

@@ -464,3 +464,32 @@ never go in the repo.
   Outcome = Store Credit / Refund). **create-customer-payment 500s in some sessions** (blocks payment/credit submit).
 - **Bin count link:** Settings → Bin Locations (`/administration/bins`) → click a row's Inventory-parts count
   → `/parts/inventory?binLocation={bin}` (filtered).
+- **qb (SV-7387) env SLEEP/WAKE:** the env auto-sleeps (API + `/api/quick-login` 302 →
+  `sleep.qa.shopview.com`). Wake it yourself: `POST https://fz4hhptxi8.execute-api.ca-central-1.amazonaws.com/default/toggleQaEnv`
+  body `{"action":"wake","env":"sv7387"}` (lambda answers "sv7387 is waking up."), then poll the API ROOT `https://sv7387api.qa.shopview.com/`
+  until 200 (~60s; it passes 503 while booting). Root `/` returning 200 `{"data":[]}` = awake.
+- **qb "sustained 500 incident" ROOT CAUSE = poisoned shared PHPSESSID (batch-6 proven):** when every `/api/*`
+  request 500s with a requestId but the API root is 200, the backend is fine — the SESSION is corrupt. Fix:
+  re-run `POST /api/quick-login {key:'admin'}` **WITHOUT sending the old PHPSESSID** (keep sv_sso_session +
+  cf_clearance) → 200 + fresh PHPSESSID → everything 200 again. Diagnostic ladder: no cookies → 401; sso+cf only
+  → 409; poisoned PHPSESSID → 500 on everything. **Avoid `POST /api/iam/change-location`** (prime suspect
+  trigger in batch-5 AND batch-6; admin default_workplace is already Lethbridge = the QB location).
+- **Invoice a WO (qb):** WO must be status `complete` AND have ≥1 completed line. Walk statuses with
+  `POST /api/work-orders/change-status {id:<woId>,status:'approved'|'in_progress'|'ready_for_review'|'complete'}`
+  (key is `id`, NOT work_order_id), then `POST /api/invoices/create {work_order_id,issue_date,due_date}` → 201
+  `{invoice_id,customer_account_id,remaining_balance,…}`; WO becomes `Invoiced`; QB export fires automatically
+  (failures land in `GET /api/bookkeeping/unexported-items`; clear own junk with `POST …/unexported-items/{id}/mark-done`).
+  Undo with `POST /api/invoices/reverse-invoice {invoice_id}`.
+- **WO line creation is BROKEN on qb (2026-07-09/10):** `POST /api/work-orders/lines/create` AND
+  `POST /api/work-orders/{id}/lines/create-from-canned-line` 500 on every WO/payload (labour_type/fixed_price
+  variants too; `fixed_price:0` and valid payloads alike). Blocks building fresh invoiceable WOs — reuse existing
+  complete WOs (e.g. S-15895/S-15894, 1 completed line each) with add→observe→restore deltas.
+- **Over-discount floor observables (API):** `work_order.adjustmentsSummary.excessCreditAmount` carries the
+  floored-off excess exactly (e.g. discount 1265 on sub 1214.81 → 50.19); `sub_total` floors to "0.00"; a
+  NON-taxable over-discount leaves `tax.amountTotal` unchanged (customer still owes tax); a TAXABLE one zeroes it.
+  The Add-dialog live preview shows the floor ("New work-order subtotal $0.00 / Tax is recalculated on save")
+  but there is NO warn/confirm on save (FDBUG-15).
+- **WO Add Fee/Discount dialog (UI automation):** toolbar `button:has(i:text("more_vert"))` → menu item
+  "Add Fee/Discount". Dialog selects order: [0]=Apply From Template (readonly combobox — don't fill), [1]=Type
+  (Fee/Discount), [2]=Calculation Type. Name = first `input:not([readonly]):not([type=number])`; Amount =
+  `input[type=number]`. Submit label = "Add Fee"/"Add Discount".

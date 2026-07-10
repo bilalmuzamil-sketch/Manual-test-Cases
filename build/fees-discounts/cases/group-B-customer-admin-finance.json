@@ -1170,8 +1170,8 @@
    "2. Neither Processing Fee grows the other's base."
   ],
   "design_ref": "requirements.md §7 (§5-R4, §5-R5 Step 3)",
-  "viu_status": "VIU-Pending",
-  "notes": "VIU qb batch-1 (2026-07-08): Multiple simultaneous processing fees not tested (single pfee only). Batch-2.",
+  "viu_status": "VIU-Verified qb 2026-07-09 (batch-6) — API: two auto-apply processing_fee templates (3% + 2%, pct_grand_total) on a fresh WO with a $100 whole-WO taxable fee: pfee3 resolved 3.15 and pfee2 resolved 2.10 = 3%/2% of the SAME 105.00 base (100 + 5.00 GST); neither pfee's amount or tax grew the other's base (else 2% would be ~2.17). Shared-base exclusion of ALL processing fees proven (§5-R4 pfee-exclusion half). NOTE: the base still wrongly INCLUDES the whole-WO fee + its tax = FDBUG-2 (tracked on FD-PROC-009/FD-CALC-013, unchanged).",
+  "notes": "VIU qb batch-1 (2026-07-08): Multiple simultaneous processing fees not tested (single pfee only). Batch-2. | VIU batch-6 qb 2026-07-09 (overnight run, evidence 21:10-21:30Z): both pfees share one base excluding every pfee's amount+tax; FDBUG-2 base composition unchanged.",
   "api_related": false
  },
  {
@@ -1192,8 +1192,8 @@
    "1. The system rejects it (a Processing Fee must not carry a minimum amount)."
   ],
   "design_ref": "requirements.md §9.2 (S8-N6); §7 (§5-R6 Min Amount data-model note)",
-  "viu_status": "VIU-Pending",
-  "notes": "Min Amount exists only in the data model; both dialogs always send it empty (null). | VIU qb batch-1 (2026-07-08): Min-amount payload guard (S8-N6) not probed. Batch-2 API probe (minCap field).",
+  "viu_status": "VIU-Verified qb 2026-07-09 (batch-6) — API: POST /api/adjustment-templates kind=processing_fee with a minimum in all three plausible spellings (defaultMinAmount / minAmount / defaultMinCap, value 5) -> 201 each time BUT the stored template contains NO minimum field (response + persisted object show only defaultAmount/defaultMaxCap) — the min is STRIPPED, so a Processing Fee cannot carry a minimum amount (the §8 invariant holds). Enforcement style is silent-ignore on the raw API rather than an explicit reject; no builder UI exists (Story 8 gap) so no user-facing path can set one. Flag wording follow-up only.",
+  "notes": "Min Amount exists only in the data model; both dialogs always send it empty (null). | VIU qb batch-1 (2026-07-08): Min-amount payload guard (S8-N6) not probed. Batch-2 API probe (minCap field). | VIU batch-6 qb 2026-07-09 (overnight run, evidence 21:10-21:30Z): min fields silently stripped; invariant enforced; note ignore-vs-reject semantics.",
   "api_related": false
  },
  {
@@ -1748,8 +1748,8 @@
    "3. The floor applies only to the pre-tax net subtotal, never below $0.00; tax is computed on top of the floored subtotal."
   ],
   "design_ref": "requirements.md §7.1 (S6-R10/R10a/R10b/R10c worked example)",
-  "viu_status": "VIU-Pending",
-  "notes": "Uses the spec's exact $100/$10/$150 worked example. | VIU qb batch-1 (2026-07-08): QB export untestable, but floor evidence exists: the add-dialog preview floors 'New work-order subtotal' at $0.00 for an over-100% discount, and adjustmentsSummary carries an 'excessCreditAmount' field (0 so far). Full worked-example (tax-still-owed) needs an invoice-time walk — batch 2. | UPDATE batch-5 (2026-07-09): QuickBooks IS now CONNECTED on this env (location Staging Lethbridge - 4310 = default_workplace; mapping-status quickBooksConnected:true+both items mapped; real QB chart of accounts + unexported-items returned). Batch-1 'no QB' blocker SUPERSEDED. Live behavior VIU still pending: the sv7387api backend was in a sustained 500 incident (all endpoints incl. quick-login) for the whole 2026-07-09 window, so mapping/sync/floor could not be exercised. Retest plan in viu-findings.md Batch-5.",
+  "viu_status": "VIU-Verified qb 2026-07-09 (batch-6) — behavior proven at WO level with QuickBooks connected (mapping-status connected+mapped): non-taxable over-discount -> net subtotal floors 0.00, tax on the original taxable base STILL OWED (GST unchanged 60.75), customer pays exactly the tax (total 60.75 = tax), excess captured (excessCreditAmount 50.19); taxable variant -> tax 0.00 (both worked-example halves structurally proven on sub $1,214.81 instead of the $100/$10/$150 numbers). GST-org caveat: rates differ from the US worked example; floor rules are model-safe per spec Change Log.",
+  "notes": "Uses the spec's exact $100/$10/$150 worked example. | VIU qb batch-1 (2026-07-08): QB export untestable, but floor evidence exists: the add-dialog preview floors 'New work-order subtotal' at $0.00 for an over-100% discount, and adjustmentsSummary carries an 'excessCreditAmount' field (0 so far). Full worked-example (tax-still-owed) needs an invoice-time walk — batch 2. | UPDATE batch-5 (2026-07-09): QuickBooks IS now CONNECTED on this env (location Staging Lethbridge - 4310 = default_workplace; mapping-status quickBooksConnected:true+both items mapped; real QB chart of accounts + unexported-items returned). Batch-1 'no QB' blocker SUPERSEDED. Live behavior VIU still pending: the sv7387api backend was in a sustained 500 incident (all endpoints incl. quick-login) for the whole 2026-07-09 window, so mapping/sync/floor could not be exercised. Retest plan in viu-findings.md Batch-5. | VIU batch-6 qb 2026-07-09 (overnight run, evidence 21:10-21:30Z): both halves of the worked example proven structurally at WO level (see FD-CALC-015/016).",
   "api_related": false
  },
  {
@@ -1797,8 +1797,8 @@
    "2. The user must CONFIRM; the carry is never silent."
   ],
   "design_ref": "requirements.md §7.1 (S6-R12)",
-  "viu_status": "VIU-Pending",
-  "notes": "VIU qb batch-1 (2026-07-08): No warn/confirm was shown when saving a 100% discount via API/UI on an open WO — the S6-R12 warning presumably belongs to the invoice/save flow; needs an invoicing walk. excessCreditAmount field exists. | UPDATE batch-5 (2026-07-09): QuickBooks IS now CONNECTED on this env (location Staging Lethbridge - 4310 = default_workplace; mapping-status quickBooksConnected:true+both items mapped; real QB chart of accounts + unexported-items returned). Batch-1 'no QB' blocker SUPERSEDED. Live behavior VIU still pending: the sv7387api backend was in a sustained 500 incident (all endpoints incl. quick-login) for the whole 2026-07-09 window, so mapping/sync/floor could not be exercised. Retest plan in viu-findings.md Batch-5.",
+  "viu_status": "VIU-Deviation qb 2026-07-09 (batch-6) — NEW BUG (FDBUG-15): NO warn/confirm exists. UI: WO S3-15513 Add-dialog with a $1,265 discount vs $1,214.81 subtotal live-previews 'New work-order subtotal $0.00' but clicking 'Add Discount' saves IMMEDIATELY — no warning that the subtotal floors, no mention that tax is still owed, no dollar amount of the excess, no confirm step; the $50.19 excess was carried silently (excessCreditAmount 50.19 straight after save). Violates S6-R12 ('the carry is never silent'). Evidence: shots b6-warn2-filled / b6-warn2-after-submit; API add also 201s with no warning payload.",
+  "notes": "VIU qb batch-1 (2026-07-08): No warn/confirm was shown when saving a 100% discount via API/UI on an open WO — the S6-R12 warning presumably belongs to the invoice/save flow; needs an invoicing walk. excessCreditAmount field exists. | UPDATE batch-5 (2026-07-09): QuickBooks IS now CONNECTED on this env (location Staging Lethbridge - 4310 = default_workplace; mapping-status quickBooksConnected:true+both items mapped; real QB chart of accounts + unexported-items returned). Batch-1 'no QB' blocker SUPERSEDED. Live behavior VIU still pending: the sv7387api backend was in a sustained 500 incident (all endpoints incl. quick-login) for the whole 2026-07-09 window, so mapping/sync/floor could not be exercised. Retest plan in viu-findings.md Batch-5. | VIU batch-6 qb 2026-07-09 (overnight run, evidence 21:10-21:30Z): over-discount saves with no warn/confirm; excess carried silently = FDBUG-15 (S6-R12).",
   "api_related": false
  },
  {
@@ -2020,8 +2020,8 @@
    "3. There is NO \"Fee updated\" entry for a Processing Fee (it can't be edited on a WO)."
   ],
   "design_ref": "requirements.md §8.3 (S10 Processing Fee note); §9.2 (S8-R25/R26)",
-  "viu_status": "VIU-Pending",
-  "notes": "CURRENT-BUILD DIFFERENCE (§14 item 6): current build may show raw \"processing_fee\" on \"Applied to:\" instead of \"Full invoice\" — record actual value. | VIU qb batch-1 (2026-07-08): Processing-fee history could not be verified: its auto-add wrote NO entry (FDBUG-3), and its removal wasn't exercised before cleanup. Batch-2: remove a pfee manually and check the entry.",
+  "viu_status": "VIU-Deviation qb 2026-07-09 (batch-6, extends FDBUG-3) — API: auto-apply processing_fee template fired on a fresh WO (adjustment present, appliedBy=auto) but the history log has NO add entry for it (FDBUG-3: auto-applied adjustments are not logged). A MANUAL whole-WO fee on the same WO logged work_order.adjustment.added with adjustmentKind=fee, adjustmentAppliedTo='Full invoice' (matches the expected applied-to). Removing the processing fee DID log work_order.adjustment.removed, and there is NO 'updated' entry (expected #3 holds). Expected #1 (add logged) FAILS for the auto-added pfee.",
+  "notes": "CURRENT-BUILD DIFFERENCE (§14 item 6): current build may show raw \"processing_fee\" on \"Applied to:\" instead of \"Full invoice\" — record actual value. | VIU qb batch-1 (2026-07-08): Processing-fee history could not be verified: its auto-add wrote NO entry (FDBUG-3), and its removal wasn't exercised before cleanup. Batch-2: remove a pfee manually and check the entry. | VIU batch-6 qb 2026-07-09 (overnight run, evidence 21:10-21:30Z): pfee auto-add NOT logged (FDBUG-3); remove logged; no updated entry; Full invoice label confirmed on manual entries.",
   "api_related": false
  },
  {

@@ -3,7 +3,7 @@
 > **THIS IS THE CANONICAL STATE DOC for the Fees & Discounts (F&D V1) project.** It
 > is a single authoritative snapshot so the project can be resumed with zero
 > re-discovery.
-> **Last updated:** 2026-07-08 (after VIU **batch 2**, commit `93279ed`).
+> **Last updated:** 2026-07-10 (after VIU **batch 6**, the 2026-07-09 overnight live run).
 > **Source of truth for per-case status:** the case JSONs `build/fees-discounts/cases/*.json`
 > (`viu_status`), tallied by `build/fees-discounts/FeesDiscounts_Blockers_Tracker.md`/`.xlsx`
 > (regenerate with `python3 build/fees-discounts/gen_blockers.py`). All counts below
@@ -34,25 +34,41 @@ exercised by the 182 cases — S1–S14 + §5 + §7/§9/§10/§13.)
 batch-5 finding — supersedes the earlier "not connected"):** org "Staging Foothills Group
 Inc", location **Staging Lethbridge - 4310** (= admin default_workplace; both org locations
 `bookkeeping_enabled:true`); `adjustment-item-mapping-status` = connected + both items mapped;
-real QB chart of accounts + unexported-items returned. Switch active location via
-`POST /api/iam/change-location {workplace_id}`. Story-6 behavior VIU still **pending a healthy
-env** (the sv7387api backend was in a sustained 500 incident during the 2026-07-09 attempt).
+real QB chart of accounts + unexported-items returned. **AVOID `POST /api/iam/change-location`** — batch-6
+root-caused the recurring "sustained 500 incident": it is a **POISONED SHARED PHPSESSID**
+(every request carrying it 500s; a fresh quick-login WITHOUT the old PHPSESSID mints a
+working session), and change-location is the prime suspect trigger (500s began minutes
+after it in both batch-5 and batch-6; admin default_workplace is already Lethbridge so it
+is unnecessary). **The env also SLEEPS**: 302s to `sleep.qa.shopview.com`; wake with
+`POST https://fz4hhptxi8.execute-api.ca-central-1.amazonaws.com/default/toggleQaEnv
+{action:'wake',env:'sv7387'}` then poll the API root `/` for 200 (~60s).
 Full env/access map: `viu-recon.md`.
 
 **Overall status:** **FEATURE LIVE on qb; cases authored (182) and adjudicated;
-Deep-VIU batch 1–4 DONE.** After **batch 4** (2026-07-09, part-line state flows +
-customer-document rendering) the case JSONs stand at **108 VIU-Verified** / **28
-VIU-Deviation** / **16 VIU-Pending** / **12 Blocked-NotBuilt** / **18 Blocked-Env**
-(of 182). Batch 4 flipped 7 pending → Verified (FD-PART-003/006/007,
-FD-DOC-001/003/006/010) and 1 → Deviation (FD-PART-001 = FDBUG-14 label defects);
-FD-PART-005 stays Pending (requested→received needs the PO/Accept-Delivery receiving
-subsystem). Notable: **FDBUG-1 did NOT reproduce on estimate documents in batch 4**
-(totals reconciled on 3 WOs) — flag for the FDBUG-1 owner. Interim TestRail import exists
-and the two API-flagged cases were moved into API-titled sections. Remaining work is
-gated on: **dev** (Stories 6/8/11 + the code-bug deviations), **PO** (deviation
-confirmations + double-add + NOTE-FD-4), **QA** (fresh cookies → the VIU-pending
-surfaces), and **restricted-role accounts** (4 Story-13 per-role negatives). **Do NOT
-write to TestRail without explicit user permission.**
+Deep-VIU batch 1–6 DONE.** After **batch 6** (2026-07-09 overnight live run: floor
+contract, processing fees, invoice→QB export attempt, over-discount UI) the case JSONs
+stand at **113 VIU-Verified** / **36 VIU-Deviation** / **2 VIU-Pending** / **12
+Blocked-NotBuilt** / **19 Blocked-Env** (of 182). Batch 6 flipped 5 → Verified
+(FD-CALC-015/016 floor+tax, FD-PROC-013 shared pfee base, FD-PROC-014 min-stripped,
+FD-QB-012 worked-example behavior) and 2 → Deviation (FD-HIST-007 = FDBUG-3 extension,
+auto-added pfee not logged; **FD-QB-014 = NEW FDBUG-15: over-discount saves with NO
+warn/confirm — the excess credit is carried SILENTLY, violating S6-R12**), and moved
+FD-CALC-017 → Blocked-Env (floor half proven; QB penny-cap needs QB-side line view).
+Earlier on 2026-07-09: 6 PO-flagged pending cases were adjudicated to firm deviations
+from the PO answer sheet and FDBUG-1/2 were GST-scoped per `spec-v1-reconciliation.md`.
+**Only 2 VIU-Pending remain: FD-PART-005** (receive-transition; line-create broken) and
+**FD-QB-015** (over-discount invoice → customer credit + QB goodwill memo; run was
+terminated mid-flow). **More FDBUG-1 counter-evidence:** batch-6 saw adjustments
+INCLUDED in sub_total (line-less WO: sub 5.00 = +10 −5; S-15895: 182.76→187.76 after
++10/−5) — FDBUG-1 looks fixed on the current build. **New env bugs:** work-order line
+creation 500s env-wide (plain + canned, any WO — blocks fresh invoiceable WOs);
+QB invoice export of re-invoiced WOs fails on duplicate document numbers. Remaining work
+is gated on: **dev** (Stories 6/8/11 + code-bug deviations + the line-create env bug),
+**PO** (3 PO-question deviations), **QA** (fresh cookies → FD-PART-005, FD-QB-015, the
+QB mapping-guard cycle FD-QB-004..009, flag-off cases, **and the batch-6 leftover
+cleanup — see §6**), and **QB-side invoice-line inspection** (FD-QB line cases). **Do
+NOT write to TestRail without explicit user permission** (the 2026-07-09 user
+authorization covered the VIU sync runs of that day only).
 
 ---
 
@@ -74,12 +90,12 @@ Blockers Tracker).
 
 | State / bucket | Count | Meaning |
 |---|---:|---|
-| **VIU-Verified (READY)** | **108** | Exercised on the build and matches spec — uploadable now (batch-4: 101→108) |
-| **VIU-Deviation** | **28** | Built but deviates from spec (batch-4 added FD-PART-001 / FDBUG-14) |
+| **VIU-Verified (READY)** | **113** | Exercised on the build and matches spec — uploadable now (batch-6: 108→113) |
+| **VIU-Deviation** | **36** | Built but deviates from spec (batch-6 added FD-HIST-007 + FD-QB-014/FDBUG-15; 2026-07-09 recon pass firmed 6 PO-flagged pendings) |
 | **Blocked — DEV NOT BUILT** | **12** | Surface absent: Story 8 Processing-Fee builder UI (4) + Story 11 Part Sales (8) |
-| **Blocked — ENV** | **18** | Story 6 QuickBooks (13) + flag-off / shared-env (5) |
-| **VIU-Pending** | **16** | Built surface, not yet driven (incl. FD-PART-005 receive-transition, invoice-time walk, PO-flagged deviations, the 4 Story-13 per-role negatives) |
-| **TOTAL** | **182** | 108 verified + 74 not-yet-verified |
+| **Blocked — ENV** | **19** | Story 6 QuickBooks (13, incl. FD-CALC-017's QB half) + flag-off / shared-env (5) + FD-CALC-017 |
+| **VIU-Pending** | **2** | FD-PART-005 (receive-transition; line-create env bug) + FD-QB-015 (over-discount invoice → credit memo; run terminated mid-flow) |
+| **TOTAL** | **182** | 113 verified + 69 not-yet-verified |
 
 **VIU-Deviation (27) sub-split** (bug-vs-PO-question):
 
@@ -219,6 +235,23 @@ FD-INLINE-003, FD-STATS-002, FD-STATS-004, FD-CUST-005 — see §2.)
 ---
 
 ## 6. Open threads / what unblocks what
+
+- **BATCH-6 LEFTOVER CLEANUP (do FIRST on next fresh cookies)** — the overnight run
+  was cut by a session limit mid-cycle and then the cookies expired, leaving on qb:
+  (1) **WO S-15895 (`75f19d9c-6afc-47f3-9b0b-24f9cec75b12`) is INVOICED** (invoice
+  `b99ec25e-3443-4211-8977-3d735dd705b7`) carrying 2 ZZAUTOTEST adjustments
+  ("ZZAUTOTEST Hazmat Disposal Fee" +$10 taxable, "ZZAUTOTEST Loyalty Discount" −$5
+  non-taxable) — reverse via `POST /api/invoices/reverse-invoice`, remove both
+  adjustments, restore status `complete` (baseline: sub 182.76 / GST 9.14 / total
+  191.90, adjs ["Flat fee"]); (2) its failed QB export sits in
+  `bookkeeping/unexported-items` ("Invoice S3-15895 already exists on QuickBooks") —
+  `POST …/unexported-items/{id}/mark-done`; (3) **4 line-less ZZAUTOTEST estimate WOs
+  to delete**: `b7c9e9a5-c1f9-4f5d-9f3f-f45111321bfd` (walked to Complete),
+  `529a8526-fd23-4b5b-b88c-a1e2e9232768`, `202fc9ca-46c8-44b3-b906-aed9622fd736`,
+  `38a84055-67c2-484f-b339-c298cc86692e`. A ready script exists at
+  `/tmp/fdcln/fd6-resume-clean.mjs` (rebuild from this list if /tmp was wiped). No
+  settings/mapping/flag/role changes were left un-restored (WO S3-15513 verified back
+  to baseline; templates all deleted 204).
 
 - **Fresh qb cookies → resume VIU.** Unblocks the **34 VIU-Pending** (parts UI flows,
   invoice-time walk incl. FDBUG-1 on a real invoice + over-discount floor/credit,
