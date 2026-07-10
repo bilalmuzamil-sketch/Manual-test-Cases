@@ -40,41 +40,25 @@ all).
    `bugs-log.md` + `viu-evidence/` (API-heavy, Admin+Tech); pass B =
    `viu-qb-findings.md` + `screenshots/viu-qb/` (UI-deep) — pass B's doc holds
    the merged scoreboard + reconciliation + FDBUG register + API map).
-   **STATUS: FEATURE LIVE on `qb.qa.shopview.com` / API
-   `sv7387api.qa.shopview.com` (flag ON) — FRESH FULL VIU PASS DONE 2026-07-10**
-   (all 182 cases re-adjudicated live in one run; every case carries
-   `fresh_run: 2026-07-10` + a fresh evidence note; tester-facing workbook
-   `FeesDiscounts_FreshVIU_2026-07-10.xlsx`). **Current tally: 114 VIU-Verified /
-   68 not-yet-verified** = 35 Deviation / 12 Blocked-NotBuilt [S11 Part Sales ×7 +
-   FD-PERM-004 + S8 Processing-Fee builder UI ×4 — both re-checked live] / 20
-   Blocked-Env [QuickBooks internals + unmap-500 ×14 + flag-off/shared-env ×6] /
-   1 Pending [FD-PART-005; line-create 500 persists]. Fresh-pass headlines:
-   **FDBUG-1 NOT reproduced (3rd clean pass; FD-DOC-011 → Verified)**; **FDBUG-12
-   FIXED** (API customers now inherit auto-apply defaults); **NEW FDBUG-16** (API
-   accepts empty-name adjustment 201, UI blocks — FE-only guard); FD-QB-015's
-   in-app credit half VERIFIED (excess → customer credit exactly); Technician role
-   DRIFTED on qb (now has WO C&E + Delete — re-derive roles-matrix before reuse);
-   env bugs persisting: line-create 500, QB duplicate-doc-number export failure,
-   bookkeeping unmap 500.
-   **Batch-4:** flipped 7 Pending→Verified (FD-PART-003/006/007, FD-DOC-001/003/006/010)
-   + 1→Deviation (FD-PART-001 = FDBUG-14 part-line dialog label defects); the customer
-   estimate/invoice doc is `POST /api/work-orders/invoices/estimate {work_order_id,type:
-   'html',issue_date,due_date}` (invoice-template HTML); part requests seed via
-   `part/make-request {line,work_order,description,quantity,part_source_type,part_number,
-   sell_price,cost,part_category_id}` + `lines/change-status` for authorize/decline;
-   **FDBUG-1 did NOT reproduce on estimate docs in batch 4** (totals reconciled on 3 WOs).
-   Batch-2 flipped 9
-   Story-13 perm cases to Verified by deriving per-role capability from
-   `roles-matrix.json` (only 4 still need a real non-Tech account). **FDBUG register (13+)** — headline: FDBUG-1 WO +
-   estimate Subtotal/Total EXCLUDE adjustment amounts while GST includes their
-   tax; FDBUG-2 processing-fee base wrongly includes whole-WO fees+tax; FDBUG-3
-   auto-applied adjustments write no history entries; whole-WO adjustment add is
-   FE-only enforced (pass A tech 201) while templates admin IS BE-enforced (403).
-   Double-add known bug NOT reproduced in the controlled repro (1 adjustment per
-   template). **Tech quick-login on qb is FLAKY** (403 for recon/pass B, 200 for
-   pass A — retest each run). **qb env is SHARED** — parallel testers toggled/
-   deleted data mid-run; never assume env state. Batch-2 backlog at end of
-   `viu-qb-findings.md`.
+   **STATUS: ⏸️ PAUSED 2026-07-10 — WAITING ON Chris Ward's answers to the
+   Round-2 PO sheet** (`PO-Questions-Round2.xlsx`, 4 questions; user will share
+   the filled file). **Resume = PROJECT-STATE.md §0** (pre-decided per-answer
+   action map incl. which held Jira drafts release/drop and which TestRail cases
+   get expected-result updates — TestRail edits need fresh one-day authorization
+   then). FEATURE LIVE on `qb.qa.shopview.com` / API `sv7387api.qa.shopview.com`
+   (flag ON); **FRESH FULL VIU PASS DONE 2026-07-10** (all 182 cases
+   re-adjudicated live; every case carries `fresh_run: 2026-07-10` + evidence;
+   workbook `FeesDiscounts_FreshVIU_2026-07-10.xlsx`). **Tally: 114 VIU-Verified /
+   35 Deviation / 12 Blocked-NotBuilt / 20 Blocked-Env / 1 Pending.** Headlines:
+   FDBUG-1 NOT reproduced (3rd clean pass — treat fixed; FD-DOC-011 Verified);
+   FDBUG-12 FIXED; NEW FDBUG-16 (API accepts empty-name adjustment, FE-only
+   guard); Jira drafts ready to file except TICKET 4/5 held on Round-2; env bugs
+   for dev: WO line-create 500, QB duplicate-doc-number export failure,
+   bookkeeping unmap 500; **Technician role DRIFTED on qb — re-derive
+   roles-matrix before any permission retest**. **qb env is SHARED** (never
+   assume env state) and **tech quick-login is FLAKY** — retest each run. All
+   detail (FDBUG register, open threads, env/access, how-to-resume) lives in
+   PROJECT-STATE.md.
    *TestRail import (INTERIM):* `testrail-import/fees-discounts-v1-testrail-import.csv`
    (+ `.xlsx`), all 182 cases via `build/fees-discounts/gen_import.py`; **VIU-word-free
    and feature-flag-free by user rule**; INTERIM pending post-VIU + dev-answer

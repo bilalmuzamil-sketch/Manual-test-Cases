@@ -3,9 +3,12 @@
 > **THIS IS THE CANONICAL STATE DOC for the Fees & Discounts (F&D V1) project.** It
 > is a single authoritative snapshot so the project can be resumed with zero
 > re-discovery.
-> **Last updated:** 2026-07-10 (after the **FRESH FULL VIU PASS 2026-07-10** — all 182 cases
-> re-adjudicated live in one day-run; raw probe results in `fresh-viu-2026-07-10/`;
-> tester-facing workbook `FeesDiscounts_FreshVIU_2026-07-10.xlsx`).
+> **Last updated:** 2026-07-10 (PAUSE SNAPSHOT — after the **FRESH FULL VIU PASS
+> 2026-07-10** [all 182 cases re-adjudicated live in one day-run; raw probe results in
+> `fresh-viu-2026-07-10/`; tester-facing workbook `FeesDiscounts_FreshVIU_2026-07-10.xlsx`]
+> and after sending the **Round-2 PO question sheet** to Chris Ward).
+> **⏸️ THE PROJECT IS PAUSED — see §0 below for what we're waiting on and the exact
+> resume procedure.**
 > **Source of truth for per-case status:** the case JSONs `build/fees-discounts/cases/*.json`
 > (`viu_status`), tallied by `build/fees-discounts/FeesDiscounts_Blockers_Tracker.md`/`.xlsx`
 > (regenerate with `python3 build/fees-discounts/gen_blockers.py`). All counts below
@@ -13,6 +16,141 @@
 > Companion docs kept current: `PROJECT-STATUS.md` (narrative log), `viu-qb-findings.md`
 > + `viu-findings.md` (VIU evidence + FDBUG register), `bugs-log.md`, `viu-recon.md`
 > (env map), `RESUME-STRATEGY.md` (two-phase finalization).
+
+---
+
+## 0. PAUSED — WAITING ON (read this first) — pause snapshot 2026-07-10
+
+**The project is PAUSED until Chris Ward (the F&D PO) returns the filled Round-2
+question sheet.** This section is the complete pause snapshot: what we're waiting
+on, the pre-decided per-answer action map, everything else open at pause, and the
+ordered resume checklist. The rest of this doc holds the standing detail.
+
+### 0.1 Waiting on: Chris Ward's answers to `PO-Questions-Round2.xlsx` (4 questions)
+
+- **What was sent:** `build/fees-discounts/PO-Questions-Round2.xlsx` (+ `.md`;
+  generator `gen_po_questions_round2.py`) — 4 plain-language product decisions
+  raised by the fresh full VIU pass 2026-07-10. **The user will share the filled
+  file back** — that is the resume trigger.
+- **Resume = apply this PRE-DECIDED action map** (condensed from the Round-2 QA
+  Internal Mapping at the bottom of `PO-Questions-Round2.md` — read that for full
+  spec refs/evidence). **NOTE: every TestRail edit below requires FRESH one-day
+  user authorization at execution time** — the 2026-07-09/10 authorization is
+  spent (standing rule: never write to TestRail without explicit permission).
+
+| Q | Topic (internal ref → cases) | Answer → action | TestRail cases to update |
+|---|---|---|---|
+| **Q1** | Over-discount saves silently, no warn/confirm (**FDBUG-15** → FD-QB-014; companions FD-QB-012 floor / FD-QB-015 credit) | **A (add warning):** keep spec expected on FD-QB-014 (stays Deviation until dev fix); DRAFT + release a **NEW dev ticket** for the missing S6-R12 warn/confirm (no draft exists yet — write it then). **B (silent OK):** case-update FD-QB-014 expected → silent save + exact customer credit; flip to Verified; update C28557 (align C28555/C28558 wording only if touched). | [C28557](https://shopview.testrail.io/index.php?/cases/view/28557) (+ [C28555](https://shopview.testrail.io/index.php?/cases/view/28555), [C28558](https://shopview.testrail.io/index.php?/cases/view/28558) companions) |
+| **Q2** | maxCap 0 stored but ignored = "no limit" (**FDBUG-9** → FD-CALC-008, FD-VAL-006, FD-TMPL-011; **held draft = jira-bug-drafts.md TICKET 4**) | **A (0 = no limit):** case-update all 3 expecteds to "0 = no cap"; **DROP TICKET 4**; flip cases to Verified; update the 3 C-cases. **B (cap at $0.00):** **FILE TICKET 4 as drafted** (§5-R6 wins); cases keep spec expected (stay Deviation until fix). **C (refuse 0):** new validation requirement — revise TICKET 4 to "reject 0", case-update all 3 expecteds to rejection; update the 3 C-cases. | [C28575](https://shopview.testrail.io/index.php?/cases/view/28575), [C28604](https://shopview.testrail.io/index.php?/cases/view/28604), [C28512](https://shopview.testrail.io/index.php?/cases/view/28512) |
+| **Q3** | Below-minimum percent silently coerced up to 0.01% (**FDBUG-10** → FD-CALC-006; **held draft = TICKET 5**) | **A (rounding fine):** case-update FD-CALC-006 to expect coercion; **DROP TICKET 5**; flip to Verified; update C28573. **B (store exact):** revise TICKET 5 to a store-exact dev change (likely new precision spec); case gets exact-value expected. **C (reject):** **FILE TICKET 5 as drafted**; case keeps spec expected (Deviation until fix). | [C28573](https://shopview.testrail.io/index.php?/cases/view/28573) |
+| **Q4** | Processing-fee minimum silently stripped on create (no FDBUG — §8 no-minimum invariant holds; deviation = silent-ignore vs explicit reject → FD-PROC-014, currently Verified with a standing wording note) | **A (support pfee minimums):** spec/data-model change — annotate `requirements.md`, author NEW pfee-minimum cases, update C28532 expected. **B (don't support, but make clear):** case-update FD-PROC-014 to expect explicit reject / absent field (vs today's silent strip); update C28532; optionally a low-sev dev tweak ticket for the silent strip. | [C28532](https://shopview.testrail.io/index.php?/cases/view/28532) |
+
+### 0.2 Current fresh-pass state (2026-07-10)
+
+- **Tally (all 182 cases re-adjudicated live in one run): 114 VIU-Verified / 35
+  VIU-Deviation / 12 Blocked-NotBuilt / 20 Blocked-Env / 1 VIU-Pending
+  (FD-PART-005).** Every case in `cases/*.json` carries `fresh_run: 2026-07-10` +
+  a fresh evidence note. Detail: §2 below.
+- **Deliverables at pause** (paths relative to repo root):
+  - `build/fees-discounts/FeesDiscounts_FreshVIU_2026-07-10.xlsx` / `.csv` —
+    tester-facing fresh-pass workbook (generator `gen_fresh_viu_workbook.py`).
+  - `build/fees-discounts/FeesDiscounts_Blockers_Tracker.md` / `.xlsx` — per-case
+    source of truth (regenerate: `python3 build/fees-discounts/gen_blockers.py`).
+  - `build/fees-discounts/PO-Questions-Round2.md` / `.xlsx` — the sheet sent to
+    Chris (PO-facing 4 questions + QA-only internal mapping in the `.md`).
+  - `build/fees-discounts/jira-bug-drafts.md` — 11 plain-language dev-ticket
+    drafts **with hold flags** (see §0.3; user files via Atlassian — unreachable
+    from this env).
+  - `build/fees-discounts/testrail-viu-sync-log.md` — 2026-07-10 authorized sync
+    audit: 114 Verified cases gated, **0 updates needed (all no-op)**.
+  - `build/fees-discounts/fresh-viu-2026-07-10/` — raw probe JSONs (P1–P6 +
+    templates baseline; the 4 line-create-500 requestIds live here).
+  - Audit logs: `testrail-po-clarify-log.md`, `testrail-caseupdate-log.md`,
+    `section-rename-log.md`, `testrail-fd-api-section-move-log.md`.
+  - `build/fees-discounts/testrail-id-map.csv` — all 182 FD-ID→C# mappings.
+
+### 0.3 Other open threads at pause
+
+**Dev tickets (`jira-bug-drafts.md`; the USER files them — Atlassian unreachable here):**
+- **CLEARED — ready to file now (not gated on Chris):** TICKET 2 (FDBUG-2 pfee
+  base includes whole-WO adjustments — re-confirmed live 2026-07-10), TICKET 3
+  (FDBUG-3 auto-applied adjustments write no history — re-confirmed), TICKET 6
+  (FDBUG-14 part-line dialog label defects), TICKET 7 (BUG-FD-3 whole-WO FE-only
+  enforcement — dev-routing; finding stands from pass A but is currently NOT
+  re-testable, see role drift below), TICKETS 8–11 (round-1 PO-confirmed defects:
+  Stats per-row, Add disabled-until-valid, show-more collapse, missing
+  Processing-Fee builder UI).
+- **HELD on Chris's Round-2 answers:** TICKET 4 (Q2) and TICKET 5 (Q3); plus a
+  potential NEW Q1 ticket (over-discount warning) that exists only if Q1=A.
+- **DROP/CLOSE recommended:** TICKET 1 (FDBUG-1 totals bug) — NOT reproduced on
+  3 consecutive passes; FD-DOC-011 now Verified; residual work is the GST→US-tax
+  re-word of FD-EDIT-002 / FD-DOC-011 / FD-CALC-011 / FD-CALC-014 (reconciliation
+  group D), not a bug filing.
+- **FDBUG-12 CONFIRMED FIXED** 2026-07-10 (API-created customers now inherit
+  auto-apply defaults). **FDBUG-16 NEW** (raw API accepts an empty-name adjustment
+  201 while the UI blocks — FE-only guard, low sev; regression vs batch-3's 400):
+  no draft yet — decide at resume whether to draft or bundle (same pending call as
+  register-only FDBUG-11/FDBUG-13).
+
+**Env issues to hand dev (environment, not F&D code):**
+- **WO line-create 500** env-wide — 4 requestIds captured in the
+  `fresh-viu-2026-07-10/` probe JSONs; blocks FD-PART-005 + seeding fresh
+  invoiceable WOs.
+- **QB unmap 500** — `PUT /api/bookkeeping/settings {settings:{feeItemId:null}}`
+  500s; the mapping-guard cycle FD-QB-004..008 cannot be driven.
+- **QB export failure on duplicate document numbers** (re-invoiced WOs never
+  reach QuickBooks).
+- **Technician role DRIFTED on the shared qb env** (now has
+  `workOrdersCreateAndEdit` + `workOrdersDelete`) — the `/tmp/fdcln/roles-matrix.json`
+  derivations are STALE; **re-derive the roles matrix before ANY permission
+  retest** (BUG-FD-3 / FD-PERM re-checks are invalid until then).
+
+**Human / env-window items:**
+- **~14 QB-UI eyeball checks need a human logged into QuickBooks** (no QB read
+  API): FD-QB-001..011, 013, 016 line internals + FD-QB-015's goodwill-memo half
+  + FD-CALC-017's penny-cap half.
+- **6 flag-off / shared-env cases deliberately NOT run** while the manual tester
+  is active on the shared env (FD-FLAG-001/002/003, FD-HIST-004, FD-TMPL-012) —
+  need a coordinated flag-off window.
+- **Leftover ZZ-tagged shells (harmless, documented in §6):** WO **S-15947**
+  (`b7c9e9a5…`; Completed → undeletable, stripped to 0 lines / 0 adjustments / $0)
+  and customer **"ZZAUTOTEST FD Fresh710"** (`b881540e…`; empty shell, undeletable
+  due to an orphan contact with no discoverable API).
+
+### 0.4 Env / access facts for the resume session
+
+- **Cookies are EPHEMERAL** — re-supply per session into `/tmp` only
+  (`sv_sso_session` + `PHPSESSID` + `cf_clearance`, domain `.qa.shopview.com`).
+  Never in the repo.
+- **The env sleeps** — wake with
+  `POST https://fz4hhptxi8.execute-api.ca-central-1.amazonaws.com/default/toggleQaEnv
+  {action:'wake',env:'sv7387'}`, then poll the API root `/` for 200 (~60s).
+- **Poisoned-PHPSESSID fix** — if every request 500s, mint a fresh quick-login
+  WITHOUT the old PHPSESSID; avoid `POST /api/iam/change-location`. Full working
+  recipe: `build/APP-ACTIONS-PLAYBOOK.md`.
+- **TestRail sync** — `build/fees-discounts/testrail_viu_sync.py` is idempotent
+  (gates on the gen_import.py rules; the 2026-07-10 run was 114 gated / 0 updates,
+  all no-op), but **every run needs fresh explicit user authorization that day**.
+  ID source: `testrail-id-map.csv`.
+
+### 0.5 How to resume (ordered checklist)
+
+1. **Ingest Chris's filled `PO-Questions-Round2.xlsx`** (the user will share it).
+2. **Apply the §0.1 action map:** edit `cases/*.json` expecteds + `viu_status`
+   flips per answer; release / drop / revise the held Jira drafts (TICKET 4,
+   TICKET 5, potential new Q1 ticket) in `jira-bug-drafts.md`; hand the user the
+   cleared tickets (§0.3) to file via Atlassian.
+3. **Ask the user for fresh one-day TestRail write authorization.**
+4. **Sync TestRail** (`testrail_viu_sync.py` / targeted `update_case`) for the
+   §0.1 cases + any newly-Verified cases; append the per-case audit log.
+5. **Regenerate deliverables:** `gen_blockers.py` → `gen_fresh_viu_workbook.py`
+   → `gen_import.py` + `build_workbook.py` (two-phase finalization per
+   `RESUME-STRATEGY.md`).
+6. **Then the remaining VIU backlog if the env allows:** 20 Blocked-Env (needs
+   the unmap-500 fix for FD-QB-004..008, a human QB-UI eyeball for the ~14 QB
+   checks, and a flag-off window for the 6 shared-env cases) + 1 Pending
+   FD-PART-005 (needs the line-create-500 fix). **Re-derive the roles matrix
+   first** before touching any permission case.
 
 ---
 
@@ -46,7 +184,8 @@ is unnecessary). **The env also SLEEPS**: 302s to `sleep.qa.shopview.com`; wake 
 {action:'wake',env:'sv7387'}` then poll the API root `/` for 200 (~60s).
 Full env/access map: `viu-recon.md`.
 
-**Overall status:** **FEATURE LIVE on qb; FRESH FULL VIU PASS DONE 2026-07-10** (all 182
+**Overall status:** **PAUSED 2026-07-10 awaiting Chris Ward's Round-2 answers (§0).**
+**FEATURE LIVE on qb; FRESH FULL VIU PASS DONE 2026-07-10** (all 182
 cases re-adjudicated live the day the manual tester started; every `viu_status` now
 carries `fresh_run: 2026-07-10` + a fresh evidence note). Tally: **114 VIU-Verified /
 35 VIU-Deviation / 12 Blocked-NotBuilt / 20 Blocked-Env / 1 VIU-Pending (FD-PART-005)**.
@@ -262,11 +401,11 @@ FD-INLINE-003, FD-STATS-002, FD-STATS-004, FD-CUST-005 — see §2.)
   defaults/financials. (3) The 3 pre-existing unexported entries (S3-15929, S3-15889 ×2)
   belong to OTHER testers — left untouched.
 
-- **Fresh qb cookies → resume VIU.** Unblocks the **34 VIU-Pending** (parts UI flows,
-  invoice-time walk incl. FDBUG-1 on a real invoice + over-discount floor/credit,
-  misc retests) AND — via the self-service staff role-switch — is a prerequisite for
-  driving the remaining role work. (Tech quick-login is **FLAKY** on qb — 200 in
-  batch-1/2, 403 in recon — retest each run.)
+- **Fresh qb cookies → resume VIU.** (Post-fresh-pass the VIU backlog is only the
+  **20 Blocked-Env + 1 VIU-Pending** — see §0.5 step 6.) Fresh cookies are also —
+  via the self-service staff role-switch — a prerequisite for the remaining role
+  work. (Tech quick-login is **FLAKY** on qb — 200 in batch-1/2, 403 in recon —
+  retest each run.)
 - **Restricted-role accounts → the 4 NEEDS-ACCOUNT Story-13 negatives**
   (FD-PERM-004/008/010, FD-CUST-015). The tech quick-login user is **not in the org
   staff table** on qb and quick-login only supports admin/tech, so the other 9 roles
@@ -358,13 +497,14 @@ FD-INLINE-003, FD-STATS-002, FD-STATS-004, FD-CUST-005 — see §2.)
 ## 8. How to resume
 
 **Confirm the project first** (this workspace holds 3 projects) — instruction must
-target **Fees & Discounts**. Then, depending on what lands:
+target **Fees & Discounts**. **The primary resume path is §0.5** (the project is
+paused on Chris Ward's Round-2 answers). The generic per-trigger paths below stay
+valid for whatever lands:
 
 **When fresh qb cookies are supplied:**
 1. Get admin (+ retest tech) cookies into `/tmp`; rebuild the boot2 harness.
-2. Work the **34 VIU-Pending** (parts UI flows → FD-PART-*/FD-PCOL deps once built,
-   invoice-time walk → FDBUG-1 on a real invoice + over-discount floor/credit, misc
-   retests — see the batch-2 backlog at the end of `viu-qb-findings.md`).
+2. Work the remaining VIU backlog — **20 Blocked-Env + 1 VIU-Pending
+   (FD-PART-005)** — as the env allows (§0.5 step 6; §2 lists the cases).
 3. Flip verified cases to VIU-Verified in `cases/*.json`; re-run
    `gen_blockers.py`, then `gen_import.py` + `build_workbook.py`.
 
@@ -375,13 +515,14 @@ negatives (FD-PERM-004/008/010, FD-CUST-015); restore Tech afterward.
 now-reachable cases (Story 8 → FD-PROC-001..004; Story 11 → FD-PCOL-001..007; a
 QB-connected env → the 13 QB cases; the 7 code-bug deviations retest after fix).
 
-**When the PO answers:** apply rulings to the 3 PO-question deviations + the 6
-pending PO-flagged deviations + the double-add pair + NOTE-FD-4; finalize the 17
-case-update deviations; regenerate deliverables.
+**When the PO answers (= the Round-2 sheet comes back):** follow §0.5 — apply the
+§0.1 per-answer action map, release/drop the held tickets, then sync + regenerate.
+(Round-1's 6 answers are already fully actioned — see `reconciliation-actions.md`
++ `testrail-po-clarify-log.md`.)
 
-**Before any TestRail update loop:** BUILD the missing **F&D Case-ID map** first
-(read-only, match by title against the live suite under parent 3894), then generate
-an ID-matched update file. **Ask the user before any TestRail write.**
+**Before any TestRail update loop:** the **F&D Case-ID map is BUILT**
+(`testrail-id-map.csv`, all 182) — use it for ID-matched updates. **Ask the user
+before any TestRail write (fresh one-day authorization each time).**
 
 **Two-phase finalization** (`RESUME-STRATEGY.md`): the current import files are
 INTERIM; FINAL = the regenerated post-VIU + dev/PO-answered files.
