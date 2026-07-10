@@ -9,9 +9,9 @@
 
 | Blocker category | Count | Owner |
 |---|---:|---|
-| READY (VIU-Verified) | 113 | — (ready to upload) |
+| READY (VIU-Verified) | 114 | — (ready to upload) |
 | BLOCKED — DEV NOT BUILT | 0 | Dev team |
-| BLOCKED — VIU PENDING (QA) | 32 | QA |
+| BLOCKED — VIU PENDING (QA) | 31 | QA |
 | BLOCKED — MILOS ANSWER | 13 | Milos (PO) |
 | BLOCKED — BUG/RULING | 4 | Dev / PO ruling |
 | **TOTAL** | **162** | |
@@ -25,15 +25,15 @@
 
 | VIU sub-bucket | Count | Meaning |
 |---|---:|---|
-| reachable-now | 2 | admin+tech + normal data; just needs another VIU pass (no new inputs). |
+| reachable-now | 1 | admin+tech + normal data; just needs another VIU pass (no new inputs). |
 | needs-data | 30 | needs a data state not seedable via the app (see per-case detail). |
 | needs-account | 0 | needs a role account we don't have (see per-case detail). |
-| **TOTAL VIU PENDING (QA)** | **32** | |
+| **TOTAL VIU PENDING (QA)** | **31** | |
 
 ## WHAT TO SEND ME NEXT (to unblock each batch)
 
 - **Milos's answers to the 11 Open Questions** → unblocks 13 cases (all the MILOS-ANSWER rows). Send the filled-in OpenQuestions-for-Milos sheet.
-- **Fresh QA cookies for sv7301 (admin + tech) + seeded test data** → unblocks the bulk of the 32 VIU-PENDING (QA) cases (cores, receiving, vendor, validation round-trips).
+- **Fresh QA cookies for sv7301 (admin + tech) + seeded test data** → unblocks the bulk of the 31 VIU-PENDING (QA) cases (cores, receiving, vendor, validation round-trips).
 - **A 2nd/3rd role account (Office, Service Manager, Foreman) — some WITHOUT 'See Financial Data'** → unblocks SF-PERM-09 and SF-PERM-10 (per-role completion + vendorless-add gate).
 - **A dev/PO ruling on FE-only BE enforcement + the missing reviewer!=completer rule (resolve SV-8183 'BE enforces' vs SV-7864 atom-collapse)** → finalizes the 4 BUG/RULING cases.
 
@@ -63,7 +63,7 @@
 | SF-COMP-05 | Completion — No-PO / Skip (Story 2) | Verify completion is blocked when a required vehicle field is missing | VIU-Verified | READY | READY (VIU-Verified) | — | None — VIU-verified; uploadable now. | S2-R2 / S2 AC (missing required fields blocked) | — |  |
 | SF-COMP-06 | Completion — No-PO / Skip (Story 2) | Verify with Create POs OFF a work order with vendor parts completes with no PO, no vendor bill and no AP sync | Open-Question | BLOCKED | BLOCKED — MILOS ANSWER | Milos (Product Owner) | Milos answers Open Question Q5 — Create-POs-OFF => no PO config not possible (toggle absent). | Q5 \| S2-R6 / S2 AC (Create POs off ⇒ no PO) | — |  |
 | SF-COMP-07 | Completion — No-PO / Skip (Story 2) | Verify in-stock inventory parts decrement inventory and write Part History on simple completion | VIU-Verified | READY | READY (VIU-Verified) | — | None — VIU-verified; uploadable now. | S2-R6 / §5 invariant 1 | — |  |
-| SF-COMP-08 | Completion — No-PO / Skip (Story 2) | Verify with Auto-pick Inventory OFF the completion modal requires picking parts before Complete | VIU-Pending | BLOCKED | BLOCKED — VIU PENDING (QA) | QA (needs cookies+seed data) | QA VIU: seed the specific completion configuration and drive the wizard to Success. | S2-R2 / S2 AC (auto-pick off ⇒ pick in modal) | reachable-now | FRESH VIU 2026-07-10: with autoPickInventoryParts=OFF, an added inventory part stays 'in_stock' and simple-complete is BE-BLOCKED (400 'All inventory and found parts must be picked...'); after line-level Pick it completes (201) — expected #2/#3 PROVEN. Remaining: surface the completion-WIZARD Pick step UI ('Pick all from default bins'/'Review individually') for expected #1 (drive the completion modal, not line-level pick). |
+| SF-COMP-08 | Completion — No-PO / Skip (Story 2) | Verify with Auto-pick Inventory OFF the completion modal requires picking parts before Complete | VIU-Verified | READY | READY (VIU-Verified) | — | None — VIU-verified; uploadable now. | S2-R2 / S2 AC (auto-pick off ⇒ pick in modal) | — |  |
 | SF-COMP-09 | Completion — No-PO / Skip (Story 2) | Verify adding a new line to a completed work order returns it to Approved | VIU-Verified | READY | READY (VIU-Verified) | — | None — VIU-verified; uploadable now. | S2-R6 / S2 AC (re-open returns to Approved) | — |  |
 | SF-COMP-10 | Completion — No-PO / Skip (Story 2) | Verify individual-line Complete and per-part receive actions still work alongside Simple completion | VIU-Verified | READY | READY (VIU-Verified) | — | None — VIU-verified; uploadable now. | S2 AC (individual-line Complete + per-part receive kept) | — |  |
 | SF-COMP-11 | Completion — PO + Optional Invoice (Story 3) | Verify the optional-invoice completion wizard offers Receive Parts, Complete Without Receiving and Cancel | VIU-Verified | READY | READY (VIU-Verified) | — | None — VIU-verified; uploadable now. | S3-R4 | — |  |

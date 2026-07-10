@@ -799,7 +799,7 @@
   ],
   "design_ref": "requirements S15-R2",
   "viu_status": "VIU-Pending",
-  "notes": "Not isolated in VIU. Needs live verification. (In review flow, VIN is captured at Mark Reviewed — see SF-REV-06.)",
+  "notes": "Not isolated in VIU. Needs live verification. (In review flow, VIN is captured at Mark Reviewed — see SF-REV-06.) || [FRESH VIU 2026-07-10 sv7301] STILL BLOCKED (needs-data: VIN-less asset). Confirmed not seedable in-harness: all 50 sampled vehicles (GET /api/vehicles) carry a VIN; POST /api/vehicles -> 405 (GET-only, no API create route found). The non-review completion wizard only prompts for VIN when the asset lacks one, so this gate needs a VIN-less asset seeded (or an existing vehicle's VIN cleared, which would modify shared data).",
   "api_related": false
  },
  {

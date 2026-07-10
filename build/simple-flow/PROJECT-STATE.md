@@ -2,9 +2,22 @@
 
 > **THIS IS THE CANONICAL STATE DOC for the Simple Flow project.** It is a single
 > authoritative snapshot so the project can be resumed with zero re-discovery.
-> **Last updated:** 2026-07-10 (**FRESH VIU RUN IN PROGRESS** — checkpoint 3. Tally now:
-> VIU-Verified **120** / VIU-Pending **37** / Open-Question **5** = 162; blockers READY
-> **113** / VIU-PENDING (QA) **32** / MILOS **13** / BUG-RULING **4**.
+> **Last updated:** 2026-07-10 (**FRESH VIU RUN COMPLETE** — 9 cases flipped to
+> VIU-Verified this run. Final tally: VIU-Verified **121** / VIU-Pending **36** /
+> Open-Question **5** = 162; blockers READY **114** / VIU-PENDING (QA) **31** / MILOS
+> **13** / BUG-RULING **4**. Env stayed healthy (admin+tech 200); settings toggled during
+> the run then RESTORED to the run baseline (verified match); Tech never swapped (still
+> Technician); all throwaway WOs deleted (0 ZZAUTOTEST WOs remain). RESIDUAL: P550848
+> inventory net 6→4 (2 units consumed by the SF-COMP-07/08 pick/decrement tests; those
+> WOs were already gone on the shared env so the picked units could not be returned) +
+> irreversible received ZZAUTOTEST deliveries S-15797/S-15798 (received deliveries are
+> not reversible in-app). **Batch 4 flipped SF-COMP-08 → VIU-Verified** (completion-modal
+> Pick step: section_wizard_pick / button_pick_all; can't complete until picked; proceeds
+> after Pick All). SF-VAL-02 confirmed STILL BLOCKED (no seedable VIN-less asset; POST
+> /api/vehicles 405). SF-PNFIX-02/03/06 STILL BLOCKED (vendor free-text PN creates no
+> inventory part; Part-History surface OBS-6-blocked). Remaining VIU-PENDING(QA) 31 are
+> genuinely blocked: cores (not seedable), QuickBooks, invoiced/paid WO, merge-collision,
+> VIN-less asset, Part-History surface (OBS-6), Milos Q11.
 > **Batch 3 flipped 2 more → VIU-Verified:** SF-COMP-13 (optional wizard 'Receive Parts'
 > navigates to the consolidated /bulk-receive shared receive page — OBS-5) and SF-REV-04
 > (review-flow wizard 'Send To Review'; receive step has NO inline modal; 'Receive Parts'
