@@ -53,6 +53,33 @@ on success; on Jira/MCP failure, skip silently — the next run retries.
    commit/push to `claude/qa-jira-dashboard-i7zxr1` only on the first refresh
    of the day, to avoid commit spam.
 
+## Timezone, in-progress & activity (added 2026-07-10)
+
+All dates are **Pakistan time (PKT, UTC+5)**. The extractor converts every Jira
+timestamp to PKT before taking the date; "today"/"yesterday" and all buckets are PKT days.
+A PKT calendar day D = the Bogota-time (Jira account tz, UTC-5) window
+`["D-1 14:00", "D 14:00")` — used as the DURING bounds below.
+
+**In-progress tracker** (`data.inprogress`): tickets carrying an `InProgress_<First>_<Last>`
+label (prefix) or `<name>_inprogress` (suffix). gen_data.py reads them from the ticket set;
+"since" comes from the optional `inprogress-since.json` sidecar `{issueKey: "YYYY-MM-DD"}`.
+To fill "since", for each in-progress ticket call getJiraIssue expand=changelog and find the
+history whose `items[].field=="labels"` toString first contains the label → that history's
+`created` (converted to PKT date). Stale = ticket already resolved (statusCategory Done).
+
+**Per-person activity table** (`activity.json` sidecar, PKT yesterday/today):
+- **Created** & **Commented**: from one window pull
+  `project = SV AND updated >= "<yest-start Bogota>" ORDER BY updated DESC` with
+  `fields=[created,reporter,comment,...]` — bucket created(reporter) and comment(author) by PKT day.
+- **Rejected / Moved to Done / Reassigned**: per QA member per day, count via
+  `status CHANGED TO "REJECTED FROM TESTING" BY "<name>" DURING ("<d0 Bogota>","<d1 Bogota>")`,
+  `status CHANGED TO ("Done","Ready for Production") BY ...`, `assignee CHANGED BY ...`.
+  (fields=[key]; the tool returns full issues regardless, so count `issues.nodes` length.)
+- Write `activity.json`: `{people:{<name>:{created:[y,t],commented:[y,t],rejected:[y,t],done:[y,t],reassigned:[y,t]}}}`.
+
+gen_data.py emits `tz`, `epicStart`, `dataMinDate`, `inprogress`, `activity`. Selecting an epic
+auto-sets the calendar to its start (Custom Roles SV-7388 pinned 17 Jun); default view = Custom Roles.
+
 ## Notes
 - Attribution: `QAComplete_*` label wins, QA Assignee is fallback; `*_inprogress`
   auto-detected (see gen_data.py FIRST map for name resolution — extend it when

@@ -44,8 +44,9 @@ for r in recs:
             if not l.startswith('QAComplete'): lower += 1
             if p: lc.append(p)
             else: bare += 1
-        elif ll.endswith('_inprogress'):
-            p = person_from(l[:-len('_inprogress')])
+        elif ll.endswith('_inprogress') or ll.startswith('inprogress_'):
+            raw = l[:-len('_inprogress')] if ll.endswith('_inprogress') else l[len('inprogress_'):]
+            p = person_from(raw)
             inprog += 1
             if p: lip.append(p)
         elif ll == 'staging_verified': sv = True
@@ -82,8 +83,29 @@ for ek in epics:
 epic_start.update(EPIC_HANDOFF)
 data_min = min((t['cr'] for t in out), default=ASOF)
 
-data = {'asof': ASOF, 'tickets': out, 'epics': epics,
+# In-progress tickets: any ticket currently carrying an InProgress_<name> / <name>_inprogress
+# label. "since" from the optional changelog sidecar; stale = ticket already resolved.
+try:
+    since_map = json.load(open(f'{W}/inprogress-since.json'))
+except Exception:
+    since_map = {}
+inprogress = []
+for t in out:
+    if t['lip']:
+        inprogress.append({'k': t['k'], 's': t['s'], 'people': t['lip'],
+                           'st': t['st'], 'stale': t['cat'] == 'Done',
+                           'since': since_map.get(t['k'])})
+inprogress.sort(key=lambda r: (r['since'] or '9999'))
+
+# Per-person activity (yesterday/today, PKT) from the optional sidecar.
+try:
+    activity = json.load(open(f'{W}/activity.json'))
+except Exception:
+    activity = None
+
+data = {'asof': ASOF, 'tz': 'PKT (UTC+5)', 'tickets': out, 'epics': epics,
         'epicStart': epic_start, 'dataMinDate': data_min,
+        'inprogress': inprogress, 'activity': activity,
         'hygiene': {'inprog': inprog, 'bare': bare, 'lower': lower, 'mismatch': mismatch,
                     'per_person': dict(per_person.most_common())}}
 json.dump(data, open(f'{W}/dash-data.json', 'w'), separators=(',', ':'))

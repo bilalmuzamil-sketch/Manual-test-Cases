@@ -123,9 +123,9 @@
     <span class="asof" id="asof"></span>
   </header>
   <p class="sub">Filter by QA member, epic, and time period — every number, chart, and table below
-  recomputes. Who-did-what comes from the <b>QAComplete_&lt;name&gt;</b> labels first, then the
-  <b>QA&nbsp;Assignee</b> field; <b>*_inprogress</b> labels are detected automatically once the team
-  starts using them.</p>
+  recomputes for that selection. Pick a member to focus the whole page on one person. Who-did-what comes
+  from the <b>QAComplete_&lt;name&gt;</b> labels first, then the <b>QA&nbsp;Assignee</b> field;
+  <b>InProgress_&lt;name&gt;</b> labels feed the in-progress tracker. All dates are Pakistan time.</p>
 
   <div class="filters" id="filters">
     <div class="f"><label for="fq">QA member</label>
@@ -165,6 +165,23 @@
 
   <div class="eyebrow">Snapshot for this selection</div>
   <div class="cards kpis" id="kpis"></div>
+
+  <div class="eyebrow">⏳ In progress right now — who is holding which ticket, and since when</div>
+  <div class="card">
+    <p class="note">Read from the <code>InProgress_&lt;name&gt;</code> labels. "Since" = when that label was
+    applied (PKT). A row flagged <span class="warnink">stale</span> means the ticket is already resolved
+    but still carries an in-progress label — remove it to keep this accurate.</p>
+    <div class="mwrap"><table class="matrix" id="inprog"></table></div>
+  </div>
+
+  <div class="eyebrow">📋 Per-person activity — Yesterday vs Today (PKT)</div>
+  <div class="card">
+    <p class="note">What each QA person did <b>yesterday (9 Jul)</b> and <b>today (10 Jul)</b>, Pakistan time.
+    <b>Created</b> = new bugs/defects filed · <b>Commented</b> = tickets they left a comment on (testing notes)
+    · <b>Rejected</b> = sent back to dev · <b>Done</b> = moved to Done/Ready&nbsp;for&nbsp;Production ·
+    <b>Reassigned</b> = changed the assignee. Independent of the date filter above.</p>
+    <div class="mwrap"><table class="matrix" id="activity"></table></div>
+  </div>
 
   <div class="eyebrow">Per QA member</div>
   <div class="cards two">
@@ -261,7 +278,8 @@ const DATA_MIN = DATA.dataMinDate || MIN_DATE;  // earliest date the picker allo
 const fmtD = s => new Date(s+"T12:00:00Z").toLocaleDateString("en-GB",{weekday:"short",day:"numeric",month:"short",year:"numeric",timeZone:"UTC"});
 const fmtShort = s => new Date(s+"T12:00:00Z").toLocaleDateString("en-GB",{day:"numeric",month:"short",timeZone:"UTC"});
 document.getElementById("asof").textContent =
-  `Interactive snapshot · ${fmtD(ASOF)} · project SV · ${T.length} QA-related tickets (last 2 months) · auto-refreshes hourly on weekdays`;
+  `Interactive snapshot · ${fmtD(ASOF)} · project SV · ${T.length} QA-related tickets (last 2 months) · all dates in ${DATA.tz||"PKT"} · auto-refreshes hourly on weekdays`;
+const ACT = DATA.activity, INPROG = DATA.inprogress || [];
 {
   const H = DATA.hygiene, pp = H.per_person;
   const names = Object.keys(pp);
@@ -330,7 +348,8 @@ function personsOf(list){        // count per person incl. unattributed bucket
   return c;
 }
 function bars(el, counts, cls, dimKeys){
-  const entries = Object.entries(counts).filter(([k,v]) => v>0 || QA.includes(k));
+  let entries = Object.entries(counts).filter(([k,v]) => v>0 || QA.includes(k));
+  if (state.q) entries = entries.filter(([k]) => k===state.q);
   entries.sort((a,b)=> b[1]-a[1] || a[0].localeCompare(b[0]));
   const max = Math.max(1, ...entries.map(e=>e[1]));
   el.innerHTML = entries.map(([k,v]) => `
@@ -391,7 +410,51 @@ function render(){
   rejected.forEach(t=>{ (t.people.length?t.people:["(unattributed)"]).forEach(p=>queueMix["⚠ rejected: "+p]=(queueMix["⚠ rejected: "+p]||0)+1); });
   bars($("cqueue"), queueMix, "b");
 
-  renderPrimary(); renderMatrix(); renderTable();
+  renderInprog(); renderActivity(); renderPrimary(); renderMatrix(); renderTable();
+}
+
+function renderInprog(){
+  let rows = INPROG.filter(r => !state.q || r.people.includes(state.q));
+  let h = `<tr><th style="text-align:left">Ticket</th><th style="text-align:left">Summary</th>
+    <th style="text-align:left">In progress with</th><th style="text-align:left">Since (PKT)</th>
+    <th style="text-align:left">Days</th><th style="text-align:left">Ticket status</th></tr>`;
+  rows.forEach(r => {
+    const days = r.since ? Math.round((A - new Date(r.since+"T12:00:00Z"))/864e5) : null;
+    h += `<tr>
+      <td class="ep"><a href="https://shopview.atlassian.net/browse/${r.k}" target="_blank" rel="noopener">${r.k}</a></td>
+      <td class="ep" title="${esc(r.s)}" style="max-width:320px">${esc(r.s)}</td>
+      <td class="ep">${r.people.map(p=>`<span class="chip test">${esc(p)}</span>`).join("")}</td>
+      <td class="ep">${r.since?fmtD(r.since):'<span style="color:var(--muted)">— not recorded —</span>'}</td>
+      <td class="ep">${days!=null?days+"d":"·"}</td>
+      <td class="ep">${esc(r.st)}${r.stale?' <span class="chip rej">stale label</span>':''}</td></tr>`;
+  });
+  if (!rows.length) h += `<tr><td class="ep" colspan="6" style="color:var(--muted)">No tickets currently carry an InProgress_&lt;name&gt; label${state.q?" for "+esc(state.q):""}. Once the team starts labelling, they appear here.</td></tr>`;
+  $("inprog").innerHTML = h;
+}
+
+function renderActivity(){
+  if (!ACT){ $("activity").innerHTML = ""; return; }
+  const COLS = [["created","Created"],["commented","Commented"],["rejected","Rejected"],
+    ["done","Moved to Done"],["reassigned","Reassigned"]];
+  const names = Object.keys(ACT.people).filter(p => !state.q || p===state.q);
+  let h = `<tr><th style="text-align:left" rowspan="2">QA member</th>`
+    + COLS.map(([,l])=>`<th colspan="2" style="text-align:center">${l}</th>`).join("")
+    + `</tr><tr>` + COLS.map(()=>`<th>Yest</th><th>Today</th>`).join("") + `</tr>`;
+  // column maxima for shading
+  const mx = {}; COLS.forEach(([k])=>{ mx[k]=Math.max(1,...names.map(p=>Math.max(...(ACT.people[p][k]||[0,0])))); });
+  names.forEach(p => {
+    h += `<tr><td class="ep" style="${QA.includes(p)?"":"color:var(--muted)"}">${esc(p)}</td>`;
+    COLS.forEach(([k]) => {
+      const [y,t] = ACT.people[p][k] || [0,0];
+      const cell = (v,accent) => v
+        ? `<span class="cell" style="background:rgba(var(--cellmax),${(0.12+0.55*v/mx[k]).toFixed(2)})">${v}</span>`
+        : "·";
+      h += `<td>${cell(y)}</td><td>${cell(t)}</td>`;
+    });
+    h += `</tr>`;
+  });
+  if (!names.length) h += `<tr><td class="ep">No activity.</td></tr>`;
+  $("activity").innerHTML = h;
 }
 
 function renderPrimary(){
@@ -406,7 +469,7 @@ function renderPrimary(){
       (by[p] = by[p] || {_t:0}); by[p][ek] = (by[p][ek]||0)+1; by[p]._t++;
     });
   });
-  const rows = QA.map(p => {
+  const rows = QA.filter(p => !state.q || p===state.q).map(p => {
     const m = by[p]; if (!m || !m._t) return [p, null, 0, 0, null, 0];
     const eps = Object.entries(m).filter(([k])=>k!=="_t").sort((a,b)=>b[1]-a[1]);
     const [e1,c1] = eps[0]; const [e2,c2] = eps[1] || [null,0];
@@ -443,7 +506,8 @@ function renderLead(){
     REF.forEach(([,r],i) => { if (inRange(t.cr,r)) by[t.rep].ref[i]++; });
   });
   QA.forEach(p => { by[p] = by[p] || {sel:0, ref:[0,0,0,0]}; });
-  const rows = Object.entries(by).filter(([p,v]) => v.sel>0 || v.ref[3]>0 || QA.includes(p));
+  let rows = Object.entries(by).filter(([p,v]) => v.sel>0 || v.ref[3]>0 || QA.includes(p));
+  if (state.q) rows = rows.filter(([p]) => p===state.q);
   rows.sort((a,b) => b[1].sel-a[1].sel || b[1].ref[3]-a[1].ref[3]);
   const max = Math.max(1, ...rows.map(r=>r[1].sel));
   const medal = i => i===0?"🥇":i===1?"🥈":i===2?"🥉":`${i+1}`;
@@ -553,9 +617,18 @@ $("ft").onchange=e=>{
   if (f>t) [f,t]=[t,f];
   state.from=f; state.to=t; $("ft").value="custom"; state.shown=60; render(); });
 $("fs").oninput=e=>{ state.s=e.target.value.trim(); renderTable(); };
-$("freset").onclick=()=>{ state.q=state.e=state.y=state.s=""; state.shown=60;
-  [state.from,state.to]=PRESETS.week; syncDates();
-  ["fq","fe","fy"].forEach(i=>$(i).value=""); $("ft").value="week"; $("fs").value=""; render(); };
-syncDates();
+$("freset").onclick=()=>{ state.q=state.y=state.s=""; state.shown=60; applyDefaultEpic();
+  ["fq","fy"].forEach(i=>$(i).value=""); $("fs").value=""; render(); };
+
+// Default view: Custom Roles & Permissions epic, dated from its 17 Jun handoff → today.
+function applyDefaultEpic(){
+  const DEF = "SV-7388";
+  if (EPICS[DEF] && EPIC_START[DEF]) {
+    state.e = DEF; state.from = EPIC_START[DEF]; state.to = ASOF;
+    $("fe").value = DEF; $("ft").value = "custom";
+  } else { state.e=""; [state.from,state.to]=PRESETS.week; $("ft").value="week"; }
+  syncDates();
+}
+applyDefaultEpic();
 render();
 </script>
