@@ -1,0 +1,57 @@
+[
+ {
+  "id": "FD-DOC-008",
+  "verdict": "PASS",
+  "detail": "baseline estimate (shop_supplies 0): 'Shop Supplies' present=false"
+ },
+ {
+  "id": "FD-DOC-001",
+  "verdict": "EVID",
+  "detail": "estimate rendered via invoice template: header contains 'Invoice'=true; Adjustments block present=true (baseline has 'Flat fee')"
+ },
+ {
+  "id": "FD-DOC-002",
+  "verdict": "PASS",
+  "detail": "labor-line row: 'ZZAUTOTEST LabPct (% of labor) $0.00' ('(% of labor)' present=true)"
+ },
+ {
+  "id": "FD-DOC-003",
+  "verdict": "PASS",
+  "detail": "part pct row: 'ZZAUTOTEST PartPct (% of parts) ($17.08)'; flat row: 'ZZAUTOTEST PartFlat $8.00'"
+ },
+ {
+  "id": "FD-DOC-004",
+  "verdict": "PASS",
+  "detail": "fee fmt found=true; discount accounting fmt '($5.00)' found=true"
+ },
+ {
+  "id": "FD-DOC-005",
+  "verdict": "PASS",
+  "detail": "order idx: Flat fee 869 < WFee 885 < WDisc 908"
+ },
+ {
+  "id": "FD-DOC-006",
+  "verdict": "PASS",
+  "detail": "'(x3)' grouping present=true; Grp occurrences=4"
+ },
+ {
+  "id": "FD-DOC-011",
+  "verdict": "EVID",
+  "detail": "doc Subtotal=202.68 GST=undefined Total=170.76 vs API sub=202.68 tax=9.14 total=211.82 (FDBUG-1 reproduces only if doc excludes adj)"
+ },
+ {
+  "id": "FD-DOC-010",
+  "verdict": "BLOCKED",
+  "detail": "line status change on Complete WO -> 400 {\"errors\":[{\"error\":\"Can`t change status while there are staged parts. Please move parts to another  (prior batch-4 evidence stands)"
+ },
+ {
+  "id": "FD-DOC-009",
+  "verdict": "CHECK",
+  "detail": "shop supplies set (201, cost=0); estimate shows 'Shop Supplies'=false"
+ },
+ {
+  "id": "RESTORE-S15895-P4",
+  "verdict": "OK",
+  "detail": "{\"sub\":182.76,\"tax\":9.14,\"tot\":191.9,\"adjs\":[\"Flat fee\"]}"
+ }
+]

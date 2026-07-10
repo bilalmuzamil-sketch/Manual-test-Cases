@@ -1,0 +1,47 @@
+[
+ {
+  "id": "FD-QB-004",
+  "verdict": "BLOCKED",
+  "detail": "unmap PUT -> 400 {\"errors\":[{\"settings\":\"Missing required parameter\"}]}; mapping-status {\"quickBooksConnected\":true,\"feeItemMapped\":true,\"discountItemMapped\":true}"
+ },
+ {
+  "id": "INV-STATE",
+  "verdict": "EVID",
+  "detail": "WO now Invoiced; invoice 51ce39ac-d196-4137-9017-a9f98f0851ae; remaining_balance=9.14"
+ },
+ {
+  "id": "FD-WO-012",
+  "verdict": "PASS",
+  "detail": "add on Invoiced WO -> 409 [{\"error\":\"Adjustments cannot be changed on an invoiced or paid work order.\"}]"
+ },
+ {
+  "id": "FD-PERM-011",
+  "verdict": "SAME",
+  "detail": "same probe"
+ },
+ {
+  "id": "FD-WO-012b",
+  "verdict": "EVID",
+  "detail": "edit on Invoiced -> 409"
+ },
+ {
+  "id": "FD-QB-015",
+  "verdict": "EVID-part1",
+  "detail": "invoice details (400): {\"errors\":[{\"workOrderId\":\"Not found\"}]}"
+ },
+ {
+  "id": "FD-QB-015b",
+  "verdict": "EVID",
+  "detail": "customer transactions after invoicing over-discounted WO: total 0, credit-like rows: []"
+ },
+ {
+  "id": "FD-QB-EXPORT",
+  "verdict": "EVID",
+  "detail": "new unexported entries after invoice: [{\"type\":\"customer_invoice_create\",\"number\":\"S3-15895\",\"msg\":\"\"}]"
+ },
+ {
+  "id": "RESTORE-S15895-P5",
+  "verdict": "OK",
+  "detail": "{\"sub\":182.76,\"tax\":9.14,\"tot\":191.9,\"adjs\":[\"Flat fee\"],\"status\":\"Complete\"}"
+ }
+]

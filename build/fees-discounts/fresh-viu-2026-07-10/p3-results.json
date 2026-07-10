@@ -1,0 +1,97 @@
+[
+ {
+  "id": "TECH-LOGIN",
+  "verdict": "OK",
+  "detail": "tech 200; view_mode=tech; perms=8 [customersView,scheduleView,woPickParts,workOrderLinesCreateAndEdit,workOrdersCreateAndEdit,workOrdersDelete,workOrdersView,woTechViewMode]"
+ },
+ {
+  "id": "FD-PERM-007",
+  "verdict": "PASS",
+  "detail": "tech templates GET -> 403; POST -> 403 (BE-enforced)"
+ },
+ {
+  "id": "FD-TMPL-016",
+  "verdict": "SAME",
+  "detail": "admin page gate settingsFinance; BE half above"
+ },
+ {
+  "id": "FD-PERM-008",
+  "verdict": "PASS",
+  "detail": "tech defaults GET -> 403; POST -> 403"
+ },
+ {
+  "id": "FD-CUST-015",
+  "verdict": "SAME",
+  "detail": "same probe"
+ },
+ {
+  "id": "FD-PERM-001",
+  "verdict": "PASS",
+  "detail": "tech WO view sub_total=0.00 total=0.00 (masked when 0.00; admin sees 182.76)"
+ },
+ {
+  "id": "FD-PERM-005",
+  "verdict": "SAME",
+  "detail": "SFD masks the surfaces holding add/edit/remove controls"
+ },
+ {
+  "id": "FD-FIN-003",
+  "verdict": "SAME",
+  "detail": "money masked for tech; F&D row hidden with no adjustments (see FD-STATS-005 summary-zero evidence)"
+ },
+ {
+  "id": "FD-PERM-002",
+  "verdict": "DEVIATION-persists(BUG-FD-3)",
+  "detail": "tech whole-WO add -> 201; edit -> 200; remove -> 204 (tech lacks workOrdersCreateAndEdit per matrix)"
+ },
+ {
+  "id": "FD-WO-013",
+  "verdict": "SAME",
+  "detail": "FE-only visibility gate; BE unchanged (probe above)"
+ },
+ {
+  "id": "FD-PERM-003",
+  "verdict": "PASS-positive",
+  "detail": "tech (HAS lines C&E) line add -> 201, remove -> 204; negative side = FE gate per roles-matrix"
+ },
+ {
+  "id": "FD-PERM-006",
+  "verdict": "SAME",
+  "detail": "remove used same C&E gate (no Delete perm involved) — tech remove results above"
+ },
+ {
+  "id": "FD-REMOVE-002",
+  "verdict": "SAME",
+  "detail": "same probe"
+ },
+ {
+  "id": "FD-PERM-009",
+  "verdict": "DEVIATION-FE-only(as-before)",
+  "detail": "tech history GET -> 200, adjustment entries 56 (BE does not enforce viewHistoryLogs)"
+ },
+ {
+  "id": "FD-HIST-005",
+  "verdict": "SAME",
+  "detail": "entries carry set rate: {\"id\":\"a66f623d-a1f9-44fd-8217-af5f79153f27\",\"eventType\":\"work_order.adjustment.removed\",\"eventName\":\"Adjustment removed\",\"workOrderId\":\"75f19d9c-6afc-47f3-9b0b"
+ },
+ {
+  "id": "FD-HIST-006",
+  "verdict": "SAME",
+  "detail": "FE display gate only"
+ },
+ {
+  "id": "FD-PERM-010",
+  "verdict": "PASS",
+  "detail": "flag ON (feature-flags) AND tech still 403 on templates/defaults -> both gates required"
+ },
+ {
+  "id": "FD-WO-012",
+  "verdict": "NO-DATA",
+  "detail": "no invoiced/paid WO in first 100"
+ },
+ {
+  "id": "ROLES-MATRIX",
+  "verdict": "OK",
+  "detail": "roles-matrix.json present with 11 entries (per-role FE derivations for PERM/LABOR-007 negatives reusable)"
+ }
+]

@@ -1,0 +1,37 @@
+[
+ {
+  "id": "FD-CUST-009",
+  "verdict": "PASS",
+  "detail": "new WO adjs: Capped discount/customer_default,ZZAUTOTEST defpct/customer_default"
+ },
+ {
+  "id": "FD-CUST-010",
+  "verdict": "PASS",
+  "detail": "copied as percent amount=7 calc=pct_subtotal (independent copy)"
+ },
+ {
+  "id": "FD-CUST-011",
+  "verdict": "PASS",
+  "detail": "default link removed; existing WO adjustment intact"
+ },
+ {
+  "id": "FD-CUST-016",
+  "verdict": "PASS",
+  "detail": "auto+default template landed 1x (appliedBy=customer_default)"
+ },
+ {
+  "id": "FD-VAL-007",
+  "verdict": "PASS",
+  "detail": "same probe"
+ },
+ {
+  "id": "FD-PROC-007",
+  "verdict": "PASS",
+  "detail": "customer-default pfee: {\"kind\":\"processing_fee\",\"appliedBy\":\"customer_default\",\"amount\":2.5}"
+ },
+ {
+  "id": "FD-CUST-013",
+  "verdict": "CHECK",
+  "detail": "customer delete -> 400; defaults endpoint after -> 200"
+ }
+]
