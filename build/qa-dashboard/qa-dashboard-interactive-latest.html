@@ -159,7 +159,8 @@
   <div class="card">
     <p class="note">Hunting down and reporting a bug is the hardest QA work, so it leads the page.
     <b>Ranked by Bugs + Story Defects created in the selected date range</b> (the bar). The
-    Today / Wk / Mo / 2mo columns are fixed reference points. The member &amp; epic filters apply.</p>
+    Today / Wk / Mo / Until&nbsp;today columns are fixed reference points ("Until today" = the whole
+    2-month data window). The member &amp; epic filters apply.</p>
     <div class="mwrap"><table class="matrix" id="lead"></table></div>
   </div>
 
@@ -498,7 +499,7 @@ function renderLead(){
   const bugs = T.filter(t => (t.ty==="Bug"||t.ty==="Story Defect") && t.rep &&
     (!state.e || (t.ep||"NONE")===state.e));
   const REF = [["Today",PRESETS.today],["Wk",PRESETS.week],
-    ["Mo",PRESETS.month],["2mo",PRESETS.last62]];
+    ["Mo",PRESETS.month],["Until today",PRESETS.last62]];
   const by = {};   // person -> {sel, ref:[..]}
   bugs.forEach(t => {
     by[t.rep] = by[t.rep] || {sel:0, ref:[0,0,0,0]};
