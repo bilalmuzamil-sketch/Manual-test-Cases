@@ -60,3 +60,23 @@ Added 2 rows to build/simple-flow/testrail-id-map.csv:
 | SF-PERM-06 | 29410 | spec-change: UI gating = v1 pass; API gap noted | 200 | 200 | yes |
 
 5 cases touched (all update_case). No adds, no deletes. See `milos-round2-mapping.md`.
+
+---
+
+## SF-WOP-02 expected refinement push (2026-07-10) — update_case, verified
+
+- Date: 2026-07-10
+- Host: https://shopview.testrail.io · Project 1 · Suite 1 (Master)
+- Authorization: user said "Go ahead" — scope limited to this ONE master-case update; no runs/results, no other cases.
+- Method: curl + Basic auth (node fetch blocked for this host). GET → diff → update only the changed field → re-fetch verify.
+
+| sf_id | case_id | outcome | update HTTP | verify HTTP | verified |
+|-------|---------|---------|-------------|-------------|----------|
+| SF-WOP-02 | 29384 | expected refined: count-click opens the consolidated Bulk Receive page (/bulk-receive) that supersedes legacy Accept Delivery for WO POs (BATCH-8 OBS-5) | 200 | 200 | yes |
+
+**Diff (single field changed):**
+- `custom_expected` BEFORE: "1. Accept Delivery opens for the work order's first unreceived PO.\n2. Receiving behaves as it does today from there."
+- `custom_expected` AFTER: "1. EXPECTED (built): clicking the count opens the receiving surface for the work order's first unreceived PO. In the current build this is the consolidated Bulk Receive page (/bulk-receive), which supersedes the legacy Accept Delivery screen for work-order POs.\n2. Receiving behaves as it does from the Bulk Receive page from there."
+- Unchanged (re-fetch confirmed identical): `title`, `refs`, `custom_preconds`, `custom_steps`.
+
+1 case touched (update_case). No adds, no deletes. Re-fetch confirmed the new expected matches the local case JSON byte-for-byte and no other field moved.

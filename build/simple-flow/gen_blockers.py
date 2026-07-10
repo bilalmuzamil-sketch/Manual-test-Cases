@@ -28,21 +28,31 @@ FILES = [
 
 # --- Classification inputs ---------------------------------------------------
 
-# Cases whose PASS/FAIL verdict now hangs on a product/dev ruling (new VIU bugs).
+# Cases whose PASS/FAIL verdict still hangs on a product/dev ruling.
+# NOTE 2026-07-10: user ruled on the FE-vs-API enforcement gap ("If the front end is
+# blocking it and just not blocked from the API then mark them as passed"). This resolves
+# the cases whose ONLY gap is "UI blocks it, API does not" (BUG-6/BUG-7 = fix ticket T2):
+#   SF-PERM-02 (WO-completion FE gate) and SF-PERM-06 (settings/WO-action FE gate) were
+#   REMOVED from BUG_RULING; they now fall through to READY (viu_status already VIU-Verified)
+#   with a PASS note applied in the case JSON.
+# The four cases below STAY held: they additionally require the reviewer != completer rule
+# (BUG-5), a functional rule MISSING at the UI too (a completer can self-sign via the UI —
+# screenshot REV-admin-completer-markreviewed.png). That is NOT a "UI blocks / API does not"
+# situation, so the 2026-07-10 ruling does not cover them; they wait on a BUG-5
+# (reviewer != completer) ruling/fix (TICKET 1).
 BUG_RULING = {
     "SF-PERM-08": "reviewer != completer rule NOT implemented (a user can sign off "
-                  "their own WO). Ruling: enforce the rule (currently FAIL) or descope?",
-    "SF-PERM-06": "WO completion permission is FE-only at the BE (Technician completed "
-                  "via simple-complete API = 201). Ruling: SV-8183 says 'BE enforces' "
-                  "but SV-7864 atom-collapse lets any WO C&E role act. Which governs?",
-    "SF-PERM-02": "WO-completion role-gating is FE-only (button hidden for Tech, but BE "
-                  "allows it). Verdict depends on the same FE-vs-BE ruling as SF-PERM-06.",
-    "SF-PERM-07": "Review sign-off permission (woReviewWorkOrders) is FE-only at the BE "
-                  "(Technician drove change-status = 201). Same FE-vs-BE ruling.",
-    "SF-PERM-04": "Role-gating of Mark-Reviewed depends on reviewer!=completer (missing) "
-                  "and the FE-vs-BE ruling.",
-    "SF-REV-09": "Review role-gating expected depends on reviewer!=completer (missing) "
-                  "and the FE-vs-BE ruling.",
+                  "their own WO via the UI). NOT covered by the 2026-07-10 FE-vs-API ruling "
+                  "(the UI does not block it) — held on BUG-5 (TICKET 1): enforce or descope?",
+    "SF-PERM-07": "Review sign-off permission FE-only at BE was resolved by the 2026-07-10 "
+                  "ruling (UI pass / API fail, T2), BUT this case's expected also requires "
+                  "reviewer != completer, which fails at the UI too (BUG-5). Held on BUG-5 (TICKET 1).",
+    "SF-PERM-04": "Role-gating of Mark-Reviewed: FE-vs-API part resolved by the 2026-07-10 "
+                  "ruling, but the expected also requires reviewer != completer, which is "
+                  "missing at the UI (BUG-5). Held on BUG-5 (TICKET 1).",
+    "SF-REV-09": "Review role-gating: FE-vs-API part resolved by the 2026-07-10 ruling, but "
+                 "the expected also requires reviewer != completer, missing at the UI (BUG-5). "
+                 "Held on BUG-5 (TICKET 1).",
 }
 
 # Open-Question / Milos-owned cases -> the specific Open Question number(s).

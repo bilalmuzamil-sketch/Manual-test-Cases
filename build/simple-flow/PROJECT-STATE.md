@@ -2,14 +2,26 @@
 
 > **THIS IS THE CANONICAL STATE DOC for the Simple Flow project.** It is a single
 > authoritative snapshot so the project can be resumed with zero re-discovery.
-> **Last updated:** 2026-07-09 (**FINAL STATE SAVE** — reconciled after BATCH 8 +
-> the per-status results workbook. Tally re-verified from `cases/*.json`:
-> VIU-Verified **112** / VIU-Pending **45** / Open-Question **5** = 162; blockers
-> READY **103** / VIU-PENDING (QA) **38** / MILOS **15** / BUG-RULING **6** /
+> **Last updated:** 2026-07-10 (**TWO USER-AUTHORIZED ACTIONS APPLIED** — see this
+> block. Tally: VIU-Verified **112** / VIU-Pending **45** / Open-Question **5** = 162;
+> blockers READY **105** / VIU-PENDING (QA) **38** / MILOS **15** / BUG-RULING **4** /
 > DEV-NOT-BUILT **0**. TestRail: SV-8183 + V2.4 + Milos-R2 batches pushed & verified;
-> the SF-WOP-02 expected refinement is HELD pending user approval; no SF execution run
-> exists so VIU pass/fail status is NOT logged in a TestRail run. Documentation-only
-> pass — no code/case changes.)
+> **the SF-WOP-02 expected refinement is now PUSHED & VERIFIED (2026-07-10, case
+> 29384, update 200 / verify 200 — only `custom_expected` changed; audit in
+> `testrail-push-v2.4-log.md`)** — the held push is RESOLVED. No SF execution run
+> exists, so VIU pass/fail status is NOT logged in a TestRail run.
+> **UI-vs-API permission ruling (user, 2026-07-10):** "If the front end is blocking
+> it and just not blocked from the API then mark them as passed." Applied to the
+> 6 held BUG/RULING cases — flipped ONLY the two whose situation is exactly
+> "UI blocks it, API does not" (gap = BUG-6/7 = fix ticket **T2**): **SF-PERM-02**
+> (WO-completion FE gate) and **SF-PERM-06** (settings/WO-action FE gate) → now
+> **READY/Passed** (note: "UI enforcement confirmed; API gap tracked as fix ticket
+> (T2) per user ruling 2026-07-10 + Milos R2 Q5"). The other 4 (**SF-PERM-04,
+> SF-PERM-07, SF-PERM-08, SF-REV-09**) STAY held: their expected also requires the
+> **reviewer != completer** rule (**BUG-5 / TICKET 1**), which is missing at the UI
+> too (a completer can self-sign via the UI) — NOT a "UI blocks / API does not"
+> situation, so the ruling does not cover them; they wait on a BUG-5 ruling/fix.
+> So BUG-RULING went **6 → 4**, READY **103 → 105**.)
 > **Prior:** 2026-07-09 (**FOLLOW-UP VIU BATCH 8 DONE** — 8 more cases flipped
 > VIU-Pending → VIU-Verified via reachable-now + self-served data drives on sv7301:
 > SF-WOP-02, SF-REV-12, SF-VAL-10, SF-VEND-04, SF-VMIS-07, SF-COMP-12, SF-RCV-10,
@@ -18,15 +30,15 @@
 > part/perform-request-status-action`. Settings + Tech restored; 5 throwaway WOs deleted.
 > Prior: RE-VIU BATCH 7 — Stories 7/8/9/14 CONFIRMED BUILT; DEV-NOT-BUILT **0**;
 > conflicts resolved in favour of spec; BUG-11 downgraded — see §5.E.)
-> **BATCH 8 quick facts (2026-07-09):** VIU-Verified **112** / VIU-Pending **45** /
-> Open-Question **5** (= 162). Blockers tracker: READY **103** / VIU-PENDING (QA) **38**
-> / MILOS **15** / BUG-RULING **6** / DEV-NOT-BUILT **0** (the VIU-Pending-45 field-count
+> **Current quick facts (2026-07-10):** VIU-Verified **112** / VIU-Pending **45** /
+> Open-Question **5** (= 162). Blockers tracker: READY **105** / VIU-PENDING (QA) **38**
+> / MILOS **15** / BUG-RULING **4** / DEV-NOT-BUILT **0** (the VIU-Pending-45 field-count
 > vs VIU-PENDING(QA)-38 blocker-count differ because 8 VIU-Pending cases are owned by
 > the MILOS-ANSWER blocker, and VIU-PENDING(QA) 38 = those remaining 37 VIU-Pending +
 > 1 Open-Question SF-QB-09). Full evidence:
 > `viu-findings.md` BATCH 8; observations in `bugs-log.md` (OBS-1..5 + BUG-11 update).
-> No TestRail writes this pass (SF-WOP-02 expected refined locally only; TestRail
-> writes need explicit user permission).
+> (Historical BATCH-8 note: SF-WOP-02 expected was refined locally then; it was
+> pushed to TestRail on 2026-07-10 — see the Last-updated block above.)
 > **Source of truth for per-case status:** `SimpleFlow_Blockers_Tracker.md`/`.xlsx`
 > (regenerate with `python3 build/simple-flow/gen_blockers.py`). All counts below
 > are cited from that tracker — do not invent numbers; re-read the tracker if in doubt.
@@ -74,8 +86,9 @@ almost entirely **genuinely blocked** (see §5.G): QuickBooks-connected access
 (SF-VMIS-03/06, SF-RCV-08, SF-QB-03..08), an invoiced/paid WO state that is not
 drivable in-harness (SF-VAL-09, SF-VEND-05), a special-order core part (SF-BULK-10),
 same-vendor/same-WO merge-collision seeding (SF-VEND-02/03), Milos Q11 group-ordering
-(SF-RCV-05/07), and the SF-QB-09 open question; plus the **6 BUG/RULING** + **15
-MILOS-ANSWER** cases, a 2nd/3rd role account for the last SF-PERM-09/10 negatives, and
+(SF-RCV-05/07), and the SF-QB-09 open question; plus the **4 BUG/RULING** (all held on
+BUG-5 reviewer != completer) + **15 MILOS-ANSWER** cases, a 2nd/3rd role account for the
+last SF-PERM-09/10 negatives, and
 the **5** Jira bug drafts awaiting filing. **Do NOT write to TestRail
 without explicit user permission.**
 
@@ -98,19 +111,22 @@ without explicit user permission.**
 
 | Blocker category | Count | Owner |
 |---|---:|---|
-| READY (VIU-Verified, uploadable now) | 103 | — |
+| READY (VIU-Verified, uploadable now) | 105 | — |
 | BLOCKED — DEV NOT BUILT | 0 | Dev team (Stories 7/8/9/14 now BUILT) |
 | BLOCKED — VIU PENDING (QA) | 38 | QA |
 | BLOCKED — MILOS ANSWER | 15 | Milos (PO) |
-| BLOCKED — BUG/RULING | 6 | Dev / PO ruling |
+| BLOCKED — BUG/RULING | 4 | Dev / PO ruling |
 | **TOTAL** | **162** | |
 
-**VIU status field tally across the case JSONs (post-BATCH-8):** VIU-Verified **112**
+**VIU status field tally across the case JSONs:** VIU-Verified **112**
 · VIU-Pending **45** · Open-Question **5** (= 162). Note the difference from "READY =
-95": **9 VIU-Verified cases are held** under a ruling/answer (6 BUG/RULING
-SF-PERM-02/04/06/07/08 + SF-REV-09, + a few under Milos-answer) — VIU-verified but not
-yet uploadable-clean. **DEV-NOT-BUILT dropped 25 → 0** this pass (Stories 7/8/9/14
-confirmed built; `gen_blockers.py` classifier updated accordingly).
+105": some VIU-Verified cases are still held under a ruling/answer — now **4 BUG/RULING**
+(SF-PERM-04/07/08 + SF-REV-09, all tied to the reviewer != completer rule / BUG-5), plus
+a few under Milos-answer. **2026-07-10 ruling flipped SF-PERM-02 + SF-PERM-06** from held
+→ READY/Passed (their gap was exactly "UI blocks / API does not" = fix ticket T2). The
+remaining 4 also require reviewer != completer, which is missing at the UI too (not a
+"UI blocks / API does not" case), so they stay held on BUG-5 (TICKET 1). **DEV-NOT-BUILT
+is 0** (Stories 7/8/9/14 confirmed built; `gen_blockers.py` classifier updated accordingly).
 
 **DEV-NOT-BUILT — now 0 (Stories 7/8/9/14 CONFIRMED BUILT on sv7301, RE-VIU BATCH 7,
 2026-07-09):** the 25 cases previously blocked on these four stories are all built and
@@ -147,7 +163,8 @@ Dev team → BUG-11 (legacy Accept-Delivery 500 — now LOW urgency, a working B
 Receive path exists) + the other OPEN fix tickets; QA (fresh sv7301 cookies
 admin+tech + seeded data) → the bulk of the 38 VIU-PENDING (QA); a 2nd/3rd role account
 (Office/Service Manager/Foreman, some without See Financial Data) → the last
-SF-PERM-09/10 negatives; Dev/PO ruling → the 6 BUG/RULING. **DEV-NOT-BUILT is now 0.**
+SF-PERM-09/10 negatives; Dev/PO ruling → the 4 BUG/RULING (all held on BUG-5, reviewer
+!= completer). **DEV-NOT-BUILT is now 0.**
 
 ---
 
@@ -173,12 +190,16 @@ SF-PERM-09/10 negatives; Dev/PO ruling → the 6 BUG/RULING. **DEV-NOT-BUILT is 
   - Refs note: TestRail strips the space after commas in multi-ref lists
     (SF-CORE-01, SF-PNFIX-04, SF-BULK-06) — content identical, not a diff.
 - **What's synced (all pushed & re-fetch-verified):** the **SV-8183 permissions
-  batch**, the **V2.4 reconciliation batch** (18 updates + 2 adds), and the **Milos
-  Round-2 batch** (5 updates). All 162 authored cases exist in TestRail; the v2.4
-  reconciliation deltas are pushed.
-- **HELD (pending user approval — NOT pushed):** the **SF-WOP-02 expected refinement**
-  (Waiting-on-Parts count click → Bulk Receive / Accept Delivery wording, per BATCH 8
-  OBS-5). Held because TestRail writes require explicit user permission.
+  batch**, the **V2.4 reconciliation batch** (18 updates + 2 adds), the **Milos
+  Round-2 batch** (5 updates), and the **SF-WOP-02 expected refinement** (2026-07-10,
+  case 29384). All 162 authored cases exist in TestRail; the v2.4 reconciliation
+  deltas are pushed.
+- **SF-WOP-02 expected refinement — PUSHED & VERIFIED (2026-07-10):** case **29384**,
+  update 200 / verify 200; only `custom_expected` changed (Waiting-on-Parts count click →
+  consolidated Bulk Receive page /bulk-receive that supersedes legacy Accept Delivery for
+  WO POs, per BATCH-8 OBS-5); title/refs/preconds/steps unchanged. Authorized by the user
+  ("Go ahead"), scope = this one case only. Audit: `testrail-push-v2.4-log.md`. The held
+  push is RESOLVED.
 - **No execution run:** there is **no Simple Flow execution run** in TestRail, so the
   VIU pass/fail results are **NOT logged as a TestRail run** — per-case VIU status lives
   only in `cases/*.json` + `SimpleFlow_Blockers_Tracker.*` + `SimpleFlow_Results.*`.
@@ -497,19 +518,20 @@ re-read `GET /api/organizations/settings`).
 **Confirm the project first** (this workspace holds 3 projects) — instruction must
 target **Simple Flow**.
 
-**>>> DONE (through BATCH 8, 2026-07-09):** Stories 7/8/9/14 confirmed BUILT & live;
+**>>> DONE (through 2026-07-10):** Stories 7/8/9/14 confirmed BUILT & live;
 DEV-NOT-BUILT → 0; both spec-vs-Epic conflicts resolved in favour of the spec (no case
 changes); BUG-11 downgraded (§5.C/E); the reachable-now VIU backlog cleared (112
-VIU-Verified). No TestRail writes this effort (the SF-WOP-02 expected refinement is
-held pending user approval).
+VIU-Verified). **2026-07-10:** SF-WOP-02 expected refinement PUSHED & VERIFIED to
+TestRail (case 29384); user's UI-vs-API permission ruling APPLIED (SF-PERM-02 + SF-PERM-06
+flipped to READY/Passed; the 4 reviewer!=completer cases stay held on BUG-5).
 
 **>>> NEXT ACTIONS (priority order) — the 38 VIU-PENDING (QA) are now genuinely
 blocked (§5.G); each needs an input/state to proceed:**
 
-1. **(optional, quick) Push the SF-WOP-02 expected refinement to TestRail** — the one
-   held delta (BATCH 8 OBS-5, Waiting-on-Parts count → Bulk Receive / Accept Delivery
-   wording). Emit an ID-matched `gen_update.py SF-WOP-02` file, **get user approval,
-   then push** (never write TestRail without explicit permission).
+1. **BUG-5 (reviewer != completer) ruling/fix** → finalizes the last 4 BUG/RULING cases
+   (SF-PERM-04/07/08, SF-REV-09). This rule is missing at the UI too (a completer can
+   self-sign via the UI), so it was NOT covered by the 2026-07-10 FE-vs-API ruling; it
+   needs its own dev/PO decision (enforce = currently FAIL, or descope for v1).
 2. **QuickBooks-connected setup** → unblocks the QB/inventory-integrity cases:
    SF-QB-03..08, SF-VMIS-03/06, SF-RCV-08 (+ confirm SF-QB-09). Needs a live QuickBooks
    connection to inspect GL / tax / line items / inventory integrity end-to-end.
@@ -543,7 +565,7 @@ ID-matched `gen_update.py` file, get user approval, then push.
 **When Milos answers a further round (`OpenQuestions-for-Milos-Round2.md` etc.):**
 1. Record answers verbatim + map them in a new mapping doc (mirror `milos-answers-mapping.md`).
 2. Apply outcomes to `cases/*.json`: flip `viu_status`/`expected` for the affected
-   MILOS-ANSWER cases (+ the 6 BUG/RULING if a ruling lands on FE-vs-BE enforcement).
+   MILOS-ANSWER cases (+ the remaining 4 BUG/RULING if a BUG-5 reviewer!=completer ruling lands).
 3. Re-run `gen_blockers.py`, `gen_import.py`, `build_results_workbook.py`, then
    `gen_update.py <cleared SF ids>` for an ID-matched TestRail update file.
 4. **Ask the user before any TestRail write.**

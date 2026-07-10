@@ -538,7 +538,7 @@
   ],
   "design_ref": "requirements §9 (Complete WO gate + per-role matrix)",
   "viu_status": "VIU-Verified",
-  "notes": "Expected defined by the SV-8183 role matrix. Role-gating negatives not yet verified live (only the admin session works on sv7301). | VIU 2026-07-07 (Tech-unblock pass): FE CONFIRMED / BE GAP. Technician: 'Complete Work Order' button HIDDEN on WO page (TECH-wo-detail.png) -> cannot complete via UI (expected #2 holds at FE). BUT BE does NOT enforce: tech POST /api/work-orders/{id}/simple-complete -> 201 (WO moved to complete) after admin prepped story+mileage. Atom collapse: workOrderLinesCreateAndEdit -> ROLE_WORK_ORDER_CREATE_AND_EDIT. So a Technician CAN complete via API. See BUGS/DEVIATIONS.",
+  "notes": "Expected defined by the SV-8183 role matrix. Role-gating negatives not yet verified live (only the admin session works on sv7301). | VIU 2026-07-07 (Tech-unblock pass): FE CONFIRMED / BE GAP. Technician: 'Complete Work Order' button HIDDEN on WO page (TECH-wo-detail.png) -> cannot complete via UI (expected #2 holds at FE). BUT BE does NOT enforce: tech POST /api/work-orders/{id}/simple-complete -> 201 (WO moved to complete) after admin prepped story+mileage. Atom collapse: workOrderLinesCreateAndEdit -> ROLE_WORK_ORDER_CREATE_AND_EDIT. So a Technician CAN complete via API. See BUGS/DEVIATIONS. | [RULING APPLIED 2026-07-10] PASS. UI enforcement confirmed; API gap tracked as fix ticket (T2) per user ruling 2026-07-10 + Milos R2 Q5. Front end blocks completion for the unauthorized role and only the API is not blocked, so this case passes for v1; the API gap stays on record as TICKET 2 (BUG-6).",
   "api_related": false
  },
  {
@@ -645,7 +645,7 @@
   ],
   "design_ref": "requirements §9.4 (BE enforcement + atom collapse)",
   "viu_status": "VIU-Verified",
-  "notes": "[MILOS ROUND-2 2026-07-09 — ruling by Bilal] For now the UI restriction is the PASS for these test cases; the API restriction is not required to pass. After running, note that it passed for UI and failed for API so there is a record to eventually fix it. | Live (VIU 2026-07-07 Tech-unblock pass): BE enforces the DISTINCT settings atom (tech settings-save -> 403) but does NOT enforce the WO-family atoms (tech simple-complete -> 201, tech change-status->complete review sign-off -> 201) due to the atom collapse (SV-7864). The FE hides the buttons for the unauthorized role. This API gap is tracked as BUG-6 (completion) and BUG-7 (review sign-off) for eventual fix.",
+  "notes": "[MILOS ROUND-2 2026-07-09 — ruling by Bilal] For now the UI restriction is the PASS for these test cases; the API restriction is not required to pass. After running, note that it passed for UI and failed for API so there is a record to eventually fix it. | Live (VIU 2026-07-07 Tech-unblock pass): BE enforces the DISTINCT settings atom (tech settings-save -> 403) but does NOT enforce the WO-family atoms (tech simple-complete -> 201, tech change-status->complete review sign-off -> 201) due to the atom collapse (SV-7864). The FE hides the buttons for the unauthorized role. This API gap is tracked as BUG-6 (completion) and BUG-7 (review sign-off) for eventual fix. | [RULING APPLIED 2026-07-10] PASS. UI enforcement confirmed; API gap tracked as fix ticket (T2) per user ruling 2026-07-10 + Milos R2 Q5. Front end gates the setting/action for the unauthorized role and only the API is not blocked, so this case passes for v1; the API gap stays on record as TICKET 2 (BUG-6/BUG-7).",
   "api_related": true
  },
  {
