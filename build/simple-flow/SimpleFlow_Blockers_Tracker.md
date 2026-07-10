@@ -9,9 +9,9 @@
 
 | Blocker category | Count | Owner |
 |---|---:|---|
-| READY (VIU-Verified) | 111 | — (ready to upload) |
+| READY (VIU-Verified) | 113 | — (ready to upload) |
 | BLOCKED — DEV NOT BUILT | 0 | Dev team |
-| BLOCKED — VIU PENDING (QA) | 34 | QA |
+| BLOCKED — VIU PENDING (QA) | 32 | QA |
 | BLOCKED — MILOS ANSWER | 13 | Milos (PO) |
 | BLOCKED — BUG/RULING | 4 | Dev / PO ruling |
 | **TOTAL** | **162** | |
@@ -26,14 +26,14 @@
 | VIU sub-bucket | Count | Meaning |
 |---|---:|---|
 | reachable-now | 2 | admin+tech + normal data; just needs another VIU pass (no new inputs). |
-| needs-data | 32 | needs a data state not seedable via the app (see per-case detail). |
+| needs-data | 30 | needs a data state not seedable via the app (see per-case detail). |
 | needs-account | 0 | needs a role account we don't have (see per-case detail). |
-| **TOTAL VIU PENDING (QA)** | **34** | |
+| **TOTAL VIU PENDING (QA)** | **32** | |
 
 ## WHAT TO SEND ME NEXT (to unblock each batch)
 
 - **Milos's answers to the 11 Open Questions** → unblocks 13 cases (all the MILOS-ANSWER rows). Send the filled-in OpenQuestions-for-Milos sheet.
-- **Fresh QA cookies for sv7301 (admin + tech) + seeded test data** → unblocks the bulk of the 34 VIU-PENDING (QA) cases (cores, receiving, vendor, validation round-trips).
+- **Fresh QA cookies for sv7301 (admin + tech) + seeded test data** → unblocks the bulk of the 32 VIU-PENDING (QA) cases (cores, receiving, vendor, validation round-trips).
 - **A 2nd/3rd role account (Office, Service Manager, Foreman) — some WITHOUT 'See Financial Data'** → unblocks SF-PERM-09 and SF-PERM-10 (per-role completion + vendorless-add gate).
 - **A dev/PO ruling on FE-only BE enforcement + the missing reviewer!=completer rule (resolve SV-8183 'BE enforces' vs SV-7864 atom-collapse)** → finalizes the 4 BUG/RULING cases.
 
@@ -68,7 +68,7 @@
 | SF-COMP-10 | Completion — No-PO / Skip (Story 2) | Verify individual-line Complete and per-part receive actions still work alongside Simple completion | VIU-Verified | READY | READY (VIU-Verified) | — | None — VIU-verified; uploadable now. | S2 AC (individual-line Complete + per-part receive kept) | — |  |
 | SF-COMP-11 | Completion — PO + Optional Invoice (Story 3) | Verify the optional-invoice completion wizard offers Receive Parts, Complete Without Receiving and Cancel | VIU-Verified | READY | READY (VIU-Verified) | — | None — VIU-verified; uploadable now. | S3-R4 | — |  |
 | SF-COMP-12 | Completion — PO + Optional Invoice (Story 3) | Verify the optional-invoice modal creates POs in the background and shows the count of parts to receive | VIU-Verified | READY | READY (VIU-Verified) | — | None — VIU-verified; uploadable now. | S3-R1 / S3-R2 / S3-R9 | — |  |
-| SF-COMP-13 | Completion — PO + Optional Invoice (Story 3) | Verify Receive Parts opens the shared Accept Delivery page to receive all vendors at once | VIU-Pending | BLOCKED | BLOCKED — VIU PENDING (QA) | QA (needs cookies+seed data) | QA VIU: seed the specific completion configuration and drive the wizard to Success. | S3-R5 | needs-data | BATCH 6: a deliverable ORDERED WO PO IS now achievable (Source=Vendor + real vendor + free-text PN). The shared Accept Delivery page opens for it via the PO Receive action, BUT the completion WIZARD Receive Parts still routes back to the WO lines (PO not placed until completion), and receiving the WO PO 500s (BUG-11). |
+| SF-COMP-13 | Completion — PO + Optional Invoice (Story 3) | Verify Receive Parts opens the shared Accept Delivery page to receive all vendors at once | VIU-Verified | READY | READY (VIU-Verified) | — | None — VIU-verified; uploadable now. | S3-R5 | — |  |
 | SF-COMP-14 | Completion — PO + Optional Invoice (Story 3) | Verify Complete Without Receiving completes the WO, keeps unreceived parts waiting, and keeps the line Receive button | VIU-Verified | READY | READY (VIU-Verified) | — | None — VIU-verified; uploadable now. | S3-R6 | — |  |
 | SF-COMP-15 | Completion — PO + Optional Invoice (Story 3) | Verify Cancel closes the completion modal with no change and no duplicate POs on re-open | VIU-Verified | READY | READY (VIU-Verified) | — | None — VIU-verified; uploadable now. | S3-R7 / S3-R9 (Cancel idempotent) | — |  |
 | SF-COMP-16 | Completion — PO + Optional Invoice (Story 3) | Verify the optional-invoice modal collects required vehicle fields (mileage, VIN, engine hours) when missing | VIU-Verified | READY | READY (VIU-Verified) | — | None — VIU-verified; uploadable now. | S3-R3 | — |  |
@@ -157,7 +157,7 @@
 | SF-REV-01 | Review ON (Story 16) | Verify the Require Review setting drives the review flow when turned on | VIU-Verified | READY | READY (VIU-Verified) | — | None — VIU-verified; uploadable now. | R1 | — |  |
 | SF-REV-02 | Review ON (Story 16) | Verify the completion CTA relabels to 'Complete & Send to Review' when review is on | VIU-Verified | READY | READY (VIU-Verified) | — | None — VIU-verified; uploadable now. | R2 | — |  |
 | SF-REV-03 | Review ON (Story 16) | Verify the Details step collects only mileage and engine hours when review is on (VIN captured later by reviewer) | VIU-Verified | READY | READY (VIU-Verified) | — | None — VIU-verified; uploadable now. | R3 | — |  |
-| SF-REV-04 | Review ON (Story 16) | Verify 'Receive Parts' routes to the shared receive page (no inline modal) in the review flow | VIU-Pending | BLOCKED | BLOCKED — VIU PENDING (QA) | QA (needs cookies+seed data) | QA VIU: enable Require Review and drive the review/sign-off round-trip. | R4 | needs-data | BATCH 6: deliverable WO PO achievable in the review flow, but receiving it is blocked by BUG-11 (500). |
+| SF-REV-04 | Review ON (Story 16) | Verify 'Receive Parts' routes to the shared receive page (no inline modal) in the review flow | VIU-Verified | READY | READY (VIU-Verified) | — | None — VIU-verified; uploadable now. | R4 | — |  |
 | SF-REV-05 | Review ON (Story 16) | Verify Send to Review moves the WO to Review (amber) with a 'Ready for Review' banner and locks lines to Complete | VIU-Verified | READY | READY (VIU-Verified) | — | None — VIU-verified; uploadable now. | R5 / R6 | — |  |
 | SF-REV-06 | Review ON (Story 16) | Verify the Mark Reviewed dialog captures VIN (required) and disables Confirm until VIN is entered | VIU-Verified | READY | READY (VIU-Verified) | — | None — VIU-verified; uploadable now. | R7 / R10 | — |  |
 | SF-REV-07 | Review ON (Story 16) | Verify on Send to Review lines lock to Complete and inventory is auto-picked | VIU-Verified | READY | READY (VIU-Verified) | — | None — VIU-verified; uploadable now. | R6 | — |  |

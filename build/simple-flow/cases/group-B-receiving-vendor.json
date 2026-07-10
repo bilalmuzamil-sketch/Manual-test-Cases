@@ -916,7 +916,7 @@
   ],
   "design_ref": "requirements S10 AC",
   "viu_status": "VIU-Pending",
-  "notes": "Data-integrity check; not driven in VIU. Needs live verification.",
+  "notes": "Data-integrity check; not driven in VIU. Needs live verification. || [FRESH VIU 2026-07-10 sv7301] STILL BLOCKED. Received a WO-PO vendor part carrying a NEW free-text part number (ZZPN-FIX01) via /bulk-receive (POST /api/orders/receive-requested-parts 200). NO new inventory part was created (GET /api/inventory/parts?search=ZZPN-FIX01 = 0 before AND after) — consistent with vendor-source parts being direct-to-WO consumption, not inventory-tracked (cf. SF-VPART-05); /api/catalogue/parts search 404. Whether a new PN should create a catalog/inventory item + Part History on receive needs the inventory-integrity/Part-History surface, which is BLOCKED-ENV (OBS-6). Applies equally to SF-PNFIX-03/06.",
   "api_related": false
  },
  {

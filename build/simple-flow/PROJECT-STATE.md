@@ -2,9 +2,16 @@
 
 > **THIS IS THE CANONICAL STATE DOC for the Simple Flow project.** It is a single
 > authoritative snapshot so the project can be resumed with zero re-discovery.
-> **Last updated:** 2026-07-10 (**FRESH VIU RUN IN PROGRESS** — checkpoint 2. Tally now:
-> VIU-Verified **118** / VIU-Pending **39** / Open-Question **5** = 162; blockers READY
-> **111** / VIU-PENDING (QA) **34** / MILOS **13** / BUG-RULING **4**.
+> **Last updated:** 2026-07-10 (**FRESH VIU RUN IN PROGRESS** — checkpoint 3. Tally now:
+> VIU-Verified **120** / VIU-Pending **37** / Open-Question **5** = 162; blockers READY
+> **113** / VIU-PENDING (QA) **32** / MILOS **13** / BUG-RULING **4**.
+> **Batch 3 flipped 2 more → VIU-Verified:** SF-COMP-13 (optional wizard 'Receive Parts'
+> navigates to the consolidated /bulk-receive shared receive page — OBS-5) and SF-REV-04
+> (review-flow wizard 'Send To Review'; receive step has NO inline modal; 'Receive Parts'
+> routes to /bulk-receive). Settings toggled (requireVendorInvoiceNumber, requireReview)
+> then RESTORED to run baseline. Also recorded SF-PNFIX-02/03/06 STILL BLOCKED (a received
+> vendor free-text PN creates NO inventory part — vendor-source is direct-consumption;
+> inventory/catalog + Part-History surface OBS-6-blocked).
 > **Batch 2 (bulk-receive round-trips, BUG-11 NOT reproduced) flipped 5 → VIU-Verified:**
 > SF-VAL-05 (required-invoice receive gate: receive disabled w/o invoice#, enabled with),
 > SF-COMP-19 (received deliverable WO PO S-15797 via /bulk-receive → 200; completion then

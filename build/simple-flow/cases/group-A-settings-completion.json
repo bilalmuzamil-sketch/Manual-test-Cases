@@ -753,8 +753,8 @@
    "2. Parts from all vendors are shown for receiving at once."
   ],
   "design_ref": "Receive Vendor Parts - v2.html",
-  "viu_status": "VIU-Pending",
-  "notes": "Actions verified present; the Receive-Parts navigation and multi-vendor receive were not driven. Needs live verification. | 2026-07-08: could not verify — clicking \"Receive Parts\" in the optional-invoice Receive step did not open Accept Delivery because the seeded parts were vendor-missing (no vendor/part number = not receivable); it returned to the WO lines page. Needs a WO with genuinely receivable parts (vendor + part number seeded).",
+  "viu_status": "VIU-Verified",
+  "notes": "Actions verified present; the Receive-Parts navigation and multi-vendor receive were not driven. Needs live verification. | 2026-07-08: could not verify — clicking \"Receive Parts\" in the optional-invoice Receive step did not open Accept Delivery because the seeded parts were vendor-missing (no vendor/part number = not receivable); it returned to the WO lines page. Needs a WO with genuinely receivable parts (vendor + part number seeded). || [FRESH VIU 2026-07-10 sv7301] VERIFIED (OBS-5 consolidation; supersedes BATCH-6 BUG-11 block). With requireVendorInvoiceNumber=OFF, the optional-invoice completion wizard shows 'N parts waiting to receive' + 'Clicking Receive Parts will take you to the purchase order page' + a background-order note; clicking Receive Parts navigated to the consolidated shared receive page /bulk-receive?workOrderId=...&returnTo=WorkOrder ('Receive Vendor Parts', receive all vendors at once) — the shipped shared receive surface (replaces the legacy Accept Delivery named in the case, per OBS-5). Setting restored.",
   "api_related": false
  },
  {
