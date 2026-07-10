@@ -157,8 +157,8 @@
   <div class="eyebrow">🏆 Bug hunting leaderboard — who finds and reports the bugs</div>
   <div class="card">
     <p class="note">Hunting down and reporting a bug is the hardest QA work, so it leads the page.
-    Counts = Bugs + Story Defects <b>created</b> by each reporter (fixed periods for fair
-    comparison; the epic filter applies, the time filter does not).</p>
+    <b>Ranked by Bugs + Story Defects created in the selected date range</b> (the bar). The
+    Today / Wk / Mo / 2mo columns are fixed reference points. The member &amp; epic filters apply.</p>
     <div class="mwrap"><table class="matrix" id="lead"></table></div>
   </div>
 
@@ -173,8 +173,9 @@
       <div class="rows" id="cdone"></div>
     </div>
     <div class="card">
-      <h2>In testing right now</h2>
-      <p class="note">Status TESTING QA / TESTING STAGE — regardless of time period</p>
+      <h2>In testing right now <span style="font-weight:400;color:var(--muted)">· live state</span></h2>
+      <p class="note">Tickets sitting in TESTING QA / TESTING STAGE <b>right now</b>. This is a
+      point-in-time status — Jira has no per-day status history to filter it by date.</p>
       <div class="rows" id="ctest"></div>
     </div>
   </div>
@@ -186,17 +187,17 @@
       <div class="rows" id="cbugs"></div>
     </div>
     <div class="card">
-      <h2>Waiting in queue + rejected</h2>
-      <p class="note">Current statuses, split per attributed member</p>
+      <h2>Waiting in queue + rejected <span style="font-weight:400;color:var(--muted)">· live state</span></h2>
+      <p class="note">Current statuses right now, split per attributed member — point-in-time, not date-filtered.</p>
       <div class="rows" id="cqueue"></div>
     </div>
   </div>
 
   <div class="eyebrow">Primary epic per QA member — what each person mainly works on</div>
   <div class="card">
-    <p class="note">Each person's <b>main epic</b> = the epic they've touched on the most tickets across
-    the whole 2-month window (independent of the time filter, so the label is stable). "Focus" = what
-    share of their work sits in that one epic.</p>
+    <p class="note">Each person's <b>main epic</b> = the epic they touched on the most tickets
+    <b>within the selected date range</b> (tickets active in that window). "Focus" = what share of their
+    range work sits in that one epic. Change the calendar and this re-ranks with everything else.</p>
     <div class="mwrap"><table class="matrix" id="primary"></table></div>
   </div>
 
@@ -379,10 +380,11 @@ function render(){
 }
 
 function renderPrimary(){
-  // per person: count involvement per epic across ALL tickets (stable, ignores time filter);
-  // respects the member filter only to bold the selected row.
+  // per person: count involvement per epic across tickets ACTIVE in the selected range
+  // (updated within from..to). Follows the calendar like everything else.
   const by = {};   // person -> {epic -> count}, plus _total
   T.forEach(t => {
+    if (!inPeriod(t.up)) return;
     const ek = t.ep || "NONE";
     t.people.forEach(p => {
       if (!QA.includes(p)) return;
@@ -413,29 +415,36 @@ function renderPrimary(){
 }
 
 function renderLead(){
-  // bugs by reporter over fixed buckets; epic filter applies, time filter does not
+  // bugs by reporter: RANKED by count in the selected range (follows the calendar);
+  // fixed Today/Week/Month columns kept as reference context. epic filter applies.
   const bugs = T.filter(t => (t.ty==="Bug"||t.ty==="Story Defect") && t.rep &&
     (!state.e || (t.ep||"NONE")===state.e));
-  const BUCKETS = [["Today",PRESETS.today],["This week",PRESETS.week],
-    ["This month",PRESETS.month],["Last 2 months",PRESETS.last62]];
-  const by = {};
+  const REF = [["Today",PRESETS.today],["Wk",PRESETS.week],
+    ["Mo",PRESETS.month],["2mo",PRESETS.last62]];
+  const by = {};   // person -> {sel, ref:[..]}
   bugs.forEach(t => {
-    by[t.rep] = by[t.rep] || [0,0,0,0];
-    BUCKETS.forEach(([,r],i) => { if (inRange(t.cr,r)) by[t.rep][i]++; });
+    by[t.rep] = by[t.rep] || {sel:0, ref:[0,0,0,0]};
+    if (inPeriod(t.cr)) by[t.rep].sel++;
+    REF.forEach(([,r],i) => { if (inRange(t.cr,r)) by[t.rep].ref[i]++; });
   });
-  QA.forEach(p => { by[p] = by[p] || [0,0,0,0]; });
-  const rows = Object.entries(by).filter(([p,v]) => v[3]>0 || QA.includes(p));
-  rows.sort((a,b) => b[1][3]-a[1][3] || b[1][2]-a[1][2]);
-  const max = Math.max(1, ...rows.map(r=>r[1][3]));
+  QA.forEach(p => { by[p] = by[p] || {sel:0, ref:[0,0,0,0]}; });
+  const rows = Object.entries(by).filter(([p,v]) => v.sel>0 || v.ref[3]>0 || QA.includes(p));
+  rows.sort((a,b) => b[1].sel-a[1].sel || b[1].ref[3]-a[1].ref[3]);
+  const max = Math.max(1, ...rows.map(r=>r[1].sel));
   const medal = i => i===0?"🥇":i===1?"🥈":i===2?"🥉":`${i+1}`;
+  const rlabel = state.from===state.to ? fmtShort(state.from)
+    : `${fmtShort(state.from)}–${fmtShort(state.to)}`;
   let h = `<tr><th style="text-align:left">#</th><th style="text-align:left">Reporter</th>
-    ${BUCKETS.map(([l])=>`<th>${l}</th>`).join("")}<th style="text-align:left;width:32%">&nbsp;</th></tr>`;
+    <th>${esc(rlabel)}</th><th style="text-align:left;width:26%">&nbsp;</th>
+    ${REF.map(([l])=>`<th>${l}</th>`).join("")}</tr>`;
   rows.forEach(([p,v],i) => {
-    h += `<tr${i===0&&v[3]>0?' style="font-weight:650"':''}>
-      <td class="ep" style="max-width:34px">${v[3]>0?medal(i):"·"}</td>
+    const lead = v.sel>0;
+    h += `<tr${i===0&&lead?' style="font-weight:650"':''}>
+      <td class="ep" style="max-width:34px">${lead?medal(i):"·"}</td>
       <td class="ep" style="${QA.includes(p)?"":"font-style:italic;color:var(--muted)"}">${esc(p)}</td>
-      ${v.map(n=>`<td>${n||"·"}</td>`).join("")}
-      <td><span class="track" style="display:block"><span class="fill b" style="width:${(v[3]/max*100).toFixed(1)}%"></span></span></td></tr>`;
+      <td class="tot">${v.sel||"·"}</td>
+      <td><span class="track" style="display:block"><span class="fill b" style="width:${(v.sel/max*100).toFixed(1)}%"></span></span></td>
+      ${v.ref.map(n=>`<td style="color:var(--muted)">${n||"·"}</td>`).join("")}</tr>`;
   });
   $("lead").innerHTML = h;
 }
