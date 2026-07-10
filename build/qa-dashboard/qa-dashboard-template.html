@@ -192,6 +192,14 @@
     </div>
   </div>
 
+  <div class="eyebrow">Primary epic per QA member — what each person mainly works on</div>
+  <div class="card">
+    <p class="note">Each person's <b>main epic</b> = the epic they've touched on the most tickets across
+    the whole 2-month window (independent of the time filter, so the label is stable). "Focus" = what
+    share of their work sits in that one epic.</p>
+    <div class="mwrap"><table class="matrix" id="primary"></table></div>
+  </div>
+
   <div class="eyebrow">Epic × QA member matrix</div>
   <div class="card">
     <div class="mtabs" id="mtabs"></div>
@@ -367,7 +375,41 @@ function render(){
   rejected.forEach(t=>{ (t.people.length?t.people:["(unattributed)"]).forEach(p=>queueMix["⚠ rejected: "+p]=(queueMix["⚠ rejected: "+p]||0)+1); });
   bars($("cqueue"), queueMix, "b");
 
-  renderMatrix(); renderTable();
+  renderPrimary(); renderMatrix(); renderTable();
+}
+
+function renderPrimary(){
+  // per person: count involvement per epic across ALL tickets (stable, ignores time filter);
+  // respects the member filter only to bold the selected row.
+  const by = {};   // person -> {epic -> count}, plus _total
+  T.forEach(t => {
+    const ek = t.ep || "NONE";
+    t.people.forEach(p => {
+      if (!QA.includes(p)) return;
+      (by[p] = by[p] || {_t:0}); by[p][ek] = (by[p][ek]||0)+1; by[p]._t++;
+    });
+  });
+  const rows = QA.map(p => {
+    const m = by[p]; if (!m || !m._t) return [p, null, 0, 0, null, 0];
+    const eps = Object.entries(m).filter(([k])=>k!=="_t").sort((a,b)=>b[1]-a[1]);
+    const [e1,c1] = eps[0]; const [e2,c2] = eps[1] || [null,0];
+    return [p, e1, c1, m._t, e2, c2];
+  });
+  rows.sort((a,b)=> b[3]-a[3]);
+  let h = `<tr><th style="text-align:left">QA member</th><th style="text-align:left">Primary epic</th>
+    <th>Tickets</th><th>Focus</th><th style="text-align:left">2nd epic</th><th>Total</th></tr>`;
+  rows.forEach(([p,e1,c1,tot,e2,c2]) => {
+    const sel = state.q && state.q===p;
+    const focus = tot ? Math.round(c1/tot*100) : 0;
+    h += `<tr${sel?' style="font-weight:650"':''}>
+      <td class="ep" style="${QA.includes(p)?"":"color:var(--muted)"}">${esc(p)}</td>
+      <td class="ep" title="${esc(e1?epShort(e1==="NONE"?null:e1):"")}">${e1?`<span class="chip test">${esc(epShort(e1==="NONE"?null:e1))}</span>`:'<span class="chip">— none —</span>'}</td>
+      <td>${c1||"·"}</td>
+      <td>${tot?`<span class="cell" style="background:rgba(var(--cellmax),${(0.12+0.55*focus/100).toFixed(2)})">${focus}%</span>`:"·"}</td>
+      <td class="ep" style="color:var(--muted)">${e2?esc(epShort(e2==="NONE"?null:e2))+` (${c2})`:"—"}</td>
+      <td class="tot">${tot}</td></tr>`;
+  });
+  $("primary").innerHTML = h;
 }
 
 function renderLead(){
