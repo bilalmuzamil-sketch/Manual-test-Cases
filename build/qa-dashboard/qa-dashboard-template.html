@@ -120,7 +120,7 @@
 <div class="wrap">
   <header class="top">
     <h1>ShopView QA Team Dashboard</h1>
-    <span class="asof">Interactive snapshot · Wed 9 Jul 2026 · project SV · 650 QA-related tickets (last 35 days)</span>
+    <span class="asof" id="asof"></span>
   </header>
   <p class="sub">Filter by QA member, epic, and time period — every number, chart, and table below
   recomputes. Who-did-what comes from the <b>QAComplete_&lt;name&gt;</b> labels first, then the
@@ -134,11 +134,17 @@
       <select id="fe"><option value="">All epics</option></select></div>
     <div class="f"><label for="ft">Time period</label>
       <select id="ft">
-        <option value="week" selected>This week (since 6 Jul)</option>
-        <option value="today">Today (9 Jul)</option>
-        <option value="month">This month (July)</option>
-        <option value="all">Last 35 days</option>
+        <option value="week" selected>This week</option>
+        <option value="today">Today</option>
+        <option value="last7">Last 7 days</option>
+        <option value="month">This month</option>
+        <option value="lastmonth">Last month</option>
+        <option value="last30">Last 30 days</option>
+        <option value="last62">Last 2 months (max)</option>
+        <option value="custom">Custom range…</option>
       </select></div>
+    <div class="f"><label for="fd1">From</label><input type="date" id="fd1"></div>
+    <div class="f"><label for="fd2">To</label><input type="date" id="fd2"></div>
     <div class="f"><label for="fy">Ticket type</label>
       <select id="fy"><option value="">All types</option><option>Bug</option>
       <option>Story Defect</option><option>Story</option><option>Task</option></select></div>
@@ -146,6 +152,14 @@
       <input type="search" id="fs" placeholder="key or words…"></div>
     <button class="reset" id="freset">Reset</button>
     <span class="fcount" id="fcount"></span>
+  </div>
+
+  <div class="eyebrow">🏆 Bug hunting leaderboard — who finds and reports the bugs</div>
+  <div class="card">
+    <p class="note">Hunting down and reporting a bug is the hardest QA work, so it leads the page.
+    Counts = Bugs + Story Defects <b>created</b> by each reporter (fixed periods for fair
+    comparison; the epic filter applies, the time filter does not).</p>
+    <div class="mwrap"><table class="matrix" id="lead"></table></div>
   </div>
 
   <div class="eyebrow">Snapshot for this selection</div>
@@ -187,25 +201,7 @@
   </div>
 
   <div class="eyebrow">Label hygiene — fix these to make the tracking reliable</div>
-  <div class="card hyg">
-    <ul>
-      <li><b>0 tickets</b> carry a <code>*_inprogress</code> label so far — the convention is brand
-      new. Recommended standard: <code>&lt;Firstname&gt;&lt;Lastname&gt;_inprogress</code>
-      (e.g. <code>BilalMuzamil_inprogress</code>), one per ticket, removed when testing ends.
-      This page auto-detects any spelling that ends in <code>_inprogress</code>.</li>
-      <li><span class="warnink">11 tickets</span> have a bare <code>QAcomplete</code> label with
-      <b>no name</b> — they credit nobody. Standard: <code>QAComplete_Firstname_Lastname</code>.</li>
-      <li><span class="warnink">2 tickets</span> use lowercase <code>QAcomplete_Ahtasham_Amjad</code>
-      while everyone else uses <code>QAComplete_…</code> — pick one casing (this page tolerates both;
-      Jira's label autocomplete does not).</li>
-      <li><span class="warnink">55 tickets</span> have a <code>QAComplete_&lt;name&gt;</code> label whose
-      person is <b>not</b> in the QA Assignee field. This page trusts the label; in Jira, keep both in
-      sync or gadgets keyed on QA Assignee will disagree with label counts.</li>
-      <li>Label totals found (35 days): Mudassir 75 · Viktoria 39 · Nebojsa 18 · Ayesha 4 ·
-      Stefan 3 · Ahtasham 2 · Nemanja 2 · Dusan 1. Bilal has <b>0</b> QAComplete labels —
-      his completions are visible only via QA Assignee + status transitions.</li>
-    </ul>
-  </div>
+  <div class="card hyg"><ul id="hyg"></ul></div>
 
   <div class="eyebrow">Tickets in this selection</div>
   <div class="card">
@@ -225,8 +221,7 @@
     credited to the <code>QAComplete_*</code> label person when present, else the QA Assignee.
     "In testing", "waiting", "rejected" are current statuses (Jira can't time-bucket label changes).
     A ticket credited to two people counts once for each.</p>
-    <p><b>Snapshot as of 9 Jul 2026</b> — ask me to refresh it any time; the Jira-native version
-    stays live on its own.</p>
+    <p id="foot-asof"></p>
   </footer>
 </div>
 
@@ -234,7 +229,49 @@
 const DATA = "__DATA__";
 const T = DATA.tickets, EPICS = DATA.epics;
 const QA = ["Bilal Muzamil","Ayesha Khan","Mudassir Qamar","Viktoria Videnovic","Nebojsa Glavinic","Ahtasham Amjad"];
-const START = { today:"2026-07-09", week:"2026-07-06", month:"2026-07-01", all:"2026-06-04" };
+// all period boundaries derive from the snapshot date, so refreshes need no code edits
+const ASOF = DATA.asof;
+const iso = d => d.toISOString().slice(0,10);
+const A = new Date(ASOF + "T12:00:00Z");
+const daysAgo = n => iso(new Date(A.getTime() - n*864e5));
+const PRESETS = {
+  today:     [ASOF, ASOF],
+  week:      [daysAgo((A.getUTCDay()+6)%7), ASOF],
+  last7:     [daysAgo(6), ASOF],
+  month:     [ASOF.slice(0,8)+"01", ASOF],
+  lastmonth: (()=>{ const f=new Date(Date.UTC(A.getUTCFullYear(),A.getUTCMonth()-1,1));
+                    const l=new Date(Date.UTC(A.getUTCFullYear(),A.getUTCMonth(),0));
+                    return [iso(f), iso(l)]; })(),
+  last30:    [daysAgo(29), ASOF],
+  last62:    [daysAgo(62), ASOF],
+};
+const MIN_DATE = daysAgo(62);
+const fmtD = s => new Date(s+"T12:00:00Z").toLocaleDateString("en-GB",{weekday:"short",day:"numeric",month:"short",year:"numeric",timeZone:"UTC"});
+const fmtShort = s => new Date(s+"T12:00:00Z").toLocaleDateString("en-GB",{day:"numeric",month:"short",timeZone:"UTC"});
+document.getElementById("asof").textContent =
+  `Interactive snapshot · ${fmtD(ASOF)} · project SV · ${T.length} QA-related tickets (last 2 months) · auto-refreshes hourly on weekdays`;
+{
+  const H = DATA.hygiene, pp = H.per_person;
+  const names = Object.keys(pp);
+  document.getElementById("hyg").innerHTML = `
+    <li><b>${H.inprog} tickets</b> carry a <code>*_inprogress</code> label. Standard:
+    <code>&lt;Firstname&gt;&lt;Lastname&gt;_inprogress</code> (e.g. <code>BilalMuzamil_inprogress</code>),
+    added when the QA picks the ticket up, removed when testing ends — this page auto-detects any
+    spelling ending in <code>_inprogress</code>.</li>
+    <li><span class="${H.bare?"warnink":""}">${H.bare} tickets</span> have a bare <code>QAcomplete</code>
+    label with <b>no name</b> — they credit nobody. Standard: <code>QAComplete_Firstname_Lastname</code>.</li>
+    <li><span class="${H.lower?"warnink":""}">${H.lower} tickets</span> use non-standard casing
+    (e.g. <code>QAcomplete_…</code> vs <code>QAComplete_…</code>) — pick one casing; Jira's label
+    autocomplete treats them as different labels.</li>
+    <li><span class="${H.mismatch?"warnink":""}">${H.mismatch} tickets</span> have a
+    <code>QAComplete_&lt;name&gt;</code> label whose person is <b>not</b> in the QA Assignee field.
+    This page trusts the label; keep both in sync or QA-Assignee-based gadgets will disagree.</li>
+    <li>QAComplete label totals (last 2 months): ${names.length?names.map(n=>`${n} ${pp[n]}`).join(" · "):"none"}.
+    ${names.includes("Bilal")?"":"Bilal has <b>0</b> QAComplete labels — his completions are only visible via QA Assignee + status transitions."}</li>`;
+}
+document.getElementById("foot-asof").innerHTML =
+  `<b>Snapshot as of ${fmtD(ASOF)}</b> — refreshed automatically every hour on weekdays; ask me for an
+  immediate refresh any time. The Jira-native dashboard stays live on its own.`;
 const TESTING = new Set(["TESTING QA","TESTING STAGE"]);
 const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const epShort = k => !k ? "No epic" : (EPICS[k]||k).replace(/^\[ARCHIVED\]\s*/,"");
@@ -246,7 +283,10 @@ T.forEach(t => {
 });
 
 const $ = id => document.getElementById(id);
-const state = { q:"", e:"", t:"week", y:"", s:"", shown:60, metric:"done", sort:["up",-1] };
+const state = { q:"", e:"", from:PRESETS.week[0], to:PRESETS.week[1], y:"", s:"",
+                shown:60, metric:"done", sort:["up",-1] };
+function syncDates(){ $("fd1").value = state.from; $("fd2").value = state.to; }
+["fd1","fd2"].forEach(id => { const el=$(id); el.min=MIN_DATE; el.max=ASOF; });
 
 // populate selects
 {
@@ -261,7 +301,8 @@ const state = { q:"", e:"", t:"week", y:"", s:"", shown:60, metric:"done", sort:
   });
 }
 
-function inPeriod(d){ return d && d >= START[state.t]; }
+function inPeriod(d){ return d && d >= state.from && d <= state.to; }
+function inRange(d, r){ return d && d >= r[0] && d <= r[1]; }
 function matchBase(t){           // person + epic + type (time applied per-metric)
   if (state.q && !(t.people.includes(state.q) || t.rep===state.q)) return false;
   if (state.e && (t.ep||"NONE")!==state.e) return false;
@@ -296,7 +337,9 @@ const METRICS = {
 };
 
 function render(){
-  const pLabel = {today:"today",week:"this week",month:"in July",all:"in 35 days"}[state.t];
+  const pLabel = state.from===state.to ? `on ${fmtShort(state.from)}`
+    : `${fmtShort(state.from)} – ${fmtShort(state.to)}`;
+  renderLead();
   const base = T.filter(matchBase);
   const waiting = base.filter(t=>t.st==="Ready for QA");
   const testing = base.filter(t=>TESTING.has(t.st));
@@ -325,6 +368,34 @@ function render(){
   bars($("cqueue"), queueMix, "b");
 
   renderMatrix(); renderTable();
+}
+
+function renderLead(){
+  // bugs by reporter over fixed buckets; epic filter applies, time filter does not
+  const bugs = T.filter(t => (t.ty==="Bug"||t.ty==="Story Defect") && t.rep &&
+    (!state.e || (t.ep||"NONE")===state.e));
+  const BUCKETS = [["Today",PRESETS.today],["This week",PRESETS.week],
+    ["This month",PRESETS.month],["Last 2 months",PRESETS.last62]];
+  const by = {};
+  bugs.forEach(t => {
+    by[t.rep] = by[t.rep] || [0,0,0,0];
+    BUCKETS.forEach(([,r],i) => { if (inRange(t.cr,r)) by[t.rep][i]++; });
+  });
+  QA.forEach(p => { by[p] = by[p] || [0,0,0,0]; });
+  const rows = Object.entries(by).filter(([p,v]) => v[3]>0 || QA.includes(p));
+  rows.sort((a,b) => b[1][3]-a[1][3] || b[1][2]-a[1][2]);
+  const max = Math.max(1, ...rows.map(r=>r[1][3]));
+  const medal = i => i===0?"🥇":i===1?"🥈":i===2?"🥉":`${i+1}`;
+  let h = `<tr><th style="text-align:left">#</th><th style="text-align:left">Reporter</th>
+    ${BUCKETS.map(([l])=>`<th>${l}</th>`).join("")}<th style="text-align:left;width:32%">&nbsp;</th></tr>`;
+  rows.forEach(([p,v],i) => {
+    h += `<tr${i===0&&v[3]>0?' style="font-weight:650"':''}>
+      <td class="ep" style="max-width:34px">${v[3]>0?medal(i):"·"}</td>
+      <td class="ep" style="${QA.includes(p)?"":"font-style:italic;color:var(--muted)"}">${esc(p)}</td>
+      ${v.map(n=>`<td>${n||"·"}</td>`).join("")}
+      <td><span class="track" style="display:block"><span class="fill b" style="width:${(v[3]/max*100).toFixed(1)}%"></span></span></td></tr>`;
+  });
+  $("lead").innerHTML = h;
 }
 
 function renderMatrix(){
@@ -393,10 +464,20 @@ function renderTable(){
   $("more").onclick=()=>{ state.shown+=60; renderTable(); };
 }
 
-["fq","fe","ft","fy"].forEach(id=>$(id).onchange=e=>{
-  state[{fq:"q",fe:"e",ft:"t",fy:"y"}[id]]=e.target.value; state.shown=60; render(); });
+["fq","fe","fy"].forEach(id=>$(id).onchange=e=>{
+  state[{fq:"q",fe:"e",fy:"y"}[id]]=e.target.value; state.shown=60; render(); });
+$("ft").onchange=e=>{
+  const p=e.target.value;
+  if (p!=="custom"){ [state.from,state.to]=PRESETS[p]; syncDates(); }
+  state.shown=60; render(); };
+["fd1","fd2"].forEach(id=>$(id).onchange=()=>{
+  let f=$("fd1").value||MIN_DATE, t=$("fd2").value||ASOF;
+  if (f>t) [f,t]=[t,f];
+  state.from=f; state.to=t; $("ft").value="custom"; state.shown=60; render(); });
 $("fs").oninput=e=>{ state.s=e.target.value.trim(); renderTable(); };
-$("freset").onclick=()=>{ state.q=state.e=state.y=state.s=""; state.t="week"; state.shown=60;
+$("freset").onclick=()=>{ state.q=state.e=state.y=state.s=""; state.shown=60;
+  [state.from,state.to]=PRESETS.week; syncDates();
   ["fq","fe","fy"].forEach(i=>$(i).value=""); $("ft").value="week"; $("fs").value=""; render(); };
+syncDates();
 render();
 </script>
