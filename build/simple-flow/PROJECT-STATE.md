@@ -2,7 +2,27 @@
 
 > **THIS IS THE CANONICAL STATE DOC for the Simple Flow project.** It is a single
 > authoritative snapshot so the project can be resumed with zero re-discovery.
-> **Last updated:** 2026-07-10 (**PO RULING — reviewer ≠ completer DESCOPED from v1**
+> **Last updated:** 2026-07-10 (**PO RULING CLARIFIED + TestRail push DONE** —
+> Milos (relayed by QA lead) clarified the reviewer≠completer descope: the **reviewer ≠
+> completer IDENTITY rule is NOT in v1; self-review IS allowed when the user's role holds
+> the Mark Reviewed permission (permission-gated only)** — a user MAY Mark Reviewed a WO
+> they completed, PROVIDED their role holds the Mark Reviewed permission; not everyone can
+> review, only permissioned roles. **SF-PERM-08 is NO LONGER OBSOLETE** — RE-PURPOSED into
+> the POSITIVE case ("a user who holds the Mark Reviewed permission can Mark Reviewed a WO
+> they completed"; expected: permissioned completer CAN self-review, non-permissioned
+> cannot) → VIU-Verified (self-review-by-a-permissioned-role directly observed; permission-
+> gating verified via the SF-PERM-10 11-role sweep). **SF-PERM-04/07 + SF-REV-09** expecteds
+> tightened to explicitly ALLOW self-review by a permissioned role (identity assertion still
+> absent) → kept VIU-Verified. **TestRail push DONE (QA-lead authorized 2026-07-10):**
+> update_case for SF-PERM-04 (C29408), SF-PERM-07 (C29411), SF-PERM-08 (C29412), SF-REV-09
+> (C29394) — all update 200 / verify 200, GET→diff→update-changed-only→re-fetch-verify;
+> audit in `testrail-push-v2.4-log.md`. The 4 cases' held push is now RESOLVED. The
+> authoritative per-role behavior table was re-added to requirements.md §9 under its
+> canonical SV-8183 title (matches §9.2 cell-for-cell — no conflicts). requirements.md §9
+> note + contradiction-resolution.md updated to the clarified form. **Tally UNCHANGED:**
+> VIU-Verified 121 / VIU-Pending 36 / Open-Question 5 = 162; READY 118 / VIU-PENDING (QA)
+> 31 / MILOS 13 / BUG-RULING 0.)
+> **Prior Last updated:** 2026-07-10 (**PO RULING — reviewer ≠ completer DESCOPED from v1**
 > (Milos, relayed by the QA lead). A user completing AND then reviewing / marking-reviewed
 > their OWN work order is EXPECTED / acceptable in v1 — NOT a defect. Origin kept for
 > history: the strict same-user block came only from SV-8183 "Decision 3 / NET-NEW must be
@@ -589,18 +609,23 @@ TestRail (case 29384); user's UI-vs-API permission ruling APPLIED (SF-PERM-02 + 
 flipped to READY/Passed). **2026-07-10 (later):** PO ruling — reviewer ≠ completer DESCOPED
 from v1 (Milos); the 4 reviewer!=completer cases (SF-PERM-04/07/08, SF-REV-09) LEFT the
 BUG/RULING bucket → READY (identity assertion removed, permission-gating retained &
-VIU-Verified; SF-PERM-08 obsolete). BUG-5 / TICKET 1 DROPPED as expected. BUG-RULING 4 → 0,
-READY 114 → 118. Their TestRail push is PENDING QA-lead authorization.
+VIU-Verified). **2026-07-10 CLARIFIED:** self-review IS allowed for a permissioned role
+(permission-gated only); SF-PERM-08 RE-PURPOSED into the POSITIVE self-review case (NOT
+obsolete). BUG-5 / TICKET 1 DROPPED as expected. BUG-RULING 4 → 0, READY 114 → 118.
+**TestRail push DONE (QA-lead authorized 2026-07-10):** SF-PERM-04 (C29408) / SF-PERM-07
+(C29411) / SF-PERM-08 (C29412) / SF-REV-09 (C29394) update_case, all update 200 / verify 200.
 
 **>>> NEXT ACTIONS (priority order) — the 38 VIU-PENDING (QA) are now genuinely
 blocked (§5.G); each needs an input/state to proceed:**
 
-1. **[RESOLVED 2026-07-10 — DESCOPED]** BUG-5 (reviewer != completer) — the PO (Milos)
-   ruled the same-user block is NOT a v1 requirement; a completer may review their own WO.
-   The 4 formerly-held cases (SF-PERM-04/07/08, SF-REV-09) are now READY (VIU-Verified;
-   SF-PERM-08 obsolete). **OPEN sub-thread:** these 4 cases' TestRail push is **PENDING
-   QA-lead authorization** — the QA lead decides separately whether/how to push them (and
-   whether to retire SF-PERM-08) in TestRail; no TestRail writes were made here.
+1. **[RESOLVED 2026-07-10 — CLARIFIED + PUSHED]** BUG-5 (reviewer != completer) — the PO
+   (Milos) ruled the same-user IDENTITY block is NOT a v1 requirement; **self-review IS
+   allowed when the user's role holds the Mark Reviewed permission (permission-gated only)**.
+   The 4 formerly-held cases (SF-PERM-04/07/08, SF-REV-09) are READY / VIU-Verified.
+   **SF-PERM-08 is NOT obsolete** — RE-PURPOSED into the POSITIVE self-review case.
+   **TestRail push DONE (QA-lead authorized 2026-07-10):** update_case for SF-PERM-04
+   (C29408), SF-PERM-07 (C29411), SF-PERM-08 (C29412), SF-REV-09 (C29394) — all update 200
+   / verify 200; audit `testrail-push-v2.4-log.md`. Sub-thread CLOSED.
 2. **QuickBooks-connected setup** → unblocks the QB/inventory-integrity cases:
    SF-QB-03..08, SF-VMIS-03/06, SF-RCV-08 (+ confirm SF-QB-09). Needs a live QuickBooks
    connection to inspect GL / tax / line items / inventory integrity end-to-end.

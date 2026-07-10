@@ -54,41 +54,54 @@ design, so they were applied as-is (see `milos-answers-mapping.md` /
 
 ---
 
-## PO ruling 2026-07-10 — reviewer ≠ completer DESCOPED from v1 (Milos)
+## PO ruling 2026-07-10 — reviewer ≠ completer identity rule NOT in v1; self-review permission-gated only (Milos)
 
 > **Date:** 2026-07-10 · **Decided by:** Milos (PO), relayed by the QA lead.
 > **Rule applied:** *last-update-wins* (this 2026-07-10 PO ruling is the most recent
 > input and supersedes the SV-8183 "Decision 3 / NET-NEW must be built" acceptance
 > criterion where they conflict).
+>
+> **CLARIFICATION (2026-07-10, later):** the ruling is that the **reviewer ≠ completer
+> IDENTITY rule is NOT in v1; self-review IS allowed when the user's role holds the
+> Mark Reviewed permission (permission-gated only).**
 
-**Ruling:** The **"reviewer ≠ completer" hard rule is NOT a v1 requirement.** A user
-completing AND then reviewing / marking-reviewed their **own** work order is
-**EXPECTED / acceptable behavior in v1** — it is **not** a defect.
+**Ruling:** The **"reviewer ≠ completer" IDENTITY rule is NOT a v1 requirement.**
+**Self-review IS acceptable** — a user **MAY** Mark Reviewed a work order they
+completed, **PROVIDED their role holds the Mark Reviewed permission.** Not everyone can
+review — only roles with the power in the permission matrix can. So the rule is **purely
+PERMISSION-gated, with NO identity restriction.** A completer marking their own WO
+reviewed (when permissioned) is **EXPECTED / acceptable behavior in v1**, not a defect.
 
 **Background / origin (kept for history):** The strict same-user identity block came
 only from **SV-8183** acceptance-criteria ("Decision 3 / NET-NEW must be built");
-**Story 16 (SV-7870)** only ever required a different **ROLE** (already covered by the
-Review Work Orders permission gate). Milos has now ruled the strict identity block out
-of v1.
+**Story 16 (SV-7870)** only ever required a role that holds the permission (already
+covered by the Review Work Orders permission gate). Milos has now ruled the strict
+identity block out of v1.
 
-**Decision applied (LOCAL artifacts only — TestRail push held for QA-lead authorization):**
+**Decision applied (LOCAL artifacts + AUTHORIZED TestRail push, see push log):**
 
 - **SF-PERM-04, SF-PERM-07, SF-REV-09** — reviewer ≠ completer assertion REMOVED from
-  each expected; the Review Work Orders **permission-gating** half is retained. Re-adjudicated
+  each expected; wording tightened to explicitly ALLOW self-review by a permissioned
+  role; the Review Work Orders **permission-gating** half is retained. Re-adjudicated
   from existing VIU evidence to **VIU-Verified** (permission-gating live-verified via the
   SF-PERM-10 BATCH-5 11-role fe-permissions sweep; per Milos R2 Q5 UI gating is the v1 pass
   criterion, API gap tracked as TICKET 2 / BUG-6/7). `fresh_run: 2026-07-10` added.
-- **SF-PERM-08** (the dedicated same-user case) — nothing meaningful remains once the
-  identity rule is removed → marked **OBSOLETE / covered-by SF-PERM-04 + SF-PERM-07**;
-  left in the file (not deleted) and flagged for the QA lead to retire in TestRail.
+- **SF-PERM-08** — **RE-PURPOSED into the POSITIVE case** (not obsolete): "a user who
+  holds the Mark Reviewed permission can Mark Reviewed a work order they completed."
+  Expected: (1) a permissioned completer CAN self-review (self-review allowed); (2) a
+  user WITHOUT the permission cannot (disabled / "Awaiting review"). Self-review-by-a-
+  permissioned-role was directly VIU-observed (admin completer self-signed Review→Complete)
+  and permission-gating verified via the SF-PERM-10 11-role matrix → **VIU-Verified**.
 - **BUG-5 / TICKET 1** (reviewer can sign off own WO) — **DROPPED / closed-as-expected**;
   moved to the "Dropped — expected behavior per PO (Milos), 2026-07-10" section of
   `jira-bug-drafts.md` (record retained, not deleted). Removed from the Milos-confirm
   and bug-drafts deliverables.
-- **requirements.md §9** — dated descope note appended (identity rule marked descoped;
-  SV-8183 origin kept for history).
+- **requirements.md §9** — dated clarified note updated (identity rule not in v1;
+  self-review permission-gated only; SV-8183 origin kept for history) + the authoritative
+  per-role behavior table re-added under its canonical SV-8183 title.
 
 **Net effect:** These 4 cases leave the **BLOCKED — BUG/RULING** bucket (they no longer
-wait on a BUG-5 ruling) and move to **READY** (VIU-Verified). Their TestRail push is
-**PENDING QA-lead authorization** (the QA lead decides separately on TestRail; no
-TestRail writes were made here).
+wait on a BUG-5 ruling) and move to **READY** (VIU-Verified); SF-PERM-08 is a verified
+POSITIVE case (no longer obsolete). Their TestRail push was **AUTHORIZED by the QA lead
+2026-07-10** and executed for SF-PERM-04/07/08 + SF-REV-09 (update_case only; see
+`testrail-push-v2.4-log.md`).

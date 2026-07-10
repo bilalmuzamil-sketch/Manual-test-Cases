@@ -624,20 +624,25 @@ maps to an **existing Custom Roles atom** (SV-7388, merged to develop). The one
 NET-NEW rule is behavioural, not an atom: **reviewer ≠ completer** (must be built;
 see below).
 
-> **⚠️ DESCOPED FOR v1 — PO ruling (Milos), 2026-07-10 (relayed by the QA lead):**
-> The **reviewer ≠ completer** hard rule is **NOT a v1 requirement.** A user who
-> completes AND then reviews / marks-reviewed their **own** work order is **EXPECTED /
-> acceptable behavior in v1** — it is **not** a defect. Origin kept for history: the
-> strict same-user identity block came only from **SV-8183** acceptance-criteria
-> ("Decision 3 / NET-NEW must be built"); **Story 16 (SV-7870)** only ever required a
-> different **ROLE**, which the Review Work Orders permission gate already covers. Milos
-> has now ruled the strict identity block out of v1. **Every "reviewer ≠ completer"
-> mention below (§9.1 Mark-Reviewed row, §9.3 NET-NEW rule, §10 item 3) is DESCOPED for
-> v1** — the Review Work Orders permission-gating stays; only the same-user block is
-> dropped. Case impact: SF-PERM-04/07 + SF-REV-09 re-adjudicated (identity assertion
-> removed; permission-gating retained & VIU-Verified); SF-PERM-08 (dedicated same-user
-> case) marked OBSOLETE / covered-by SF-PERM-04+07. Origin bug BUG-5 / TICKET 1 dropped
-> as expected behavior.
+> **⚠️ CLARIFIED FOR v1 — PO ruling (Milos), 2026-07-10 (relayed by the QA lead):**
+> The **reviewer ≠ completer IDENTITY rule is NOT in v1; self-review IS allowed when
+> the user's role holds the Mark Reviewed permission (permission-gated only).** In
+> plain terms: a user **MAY** Mark Reviewed a work order they completed themselves,
+> **provided their role holds the Review Work Orders / Mark Reviewed permission**. Not
+> everyone can review — only roles that hold the permission in the matrix can — so the
+> rule is **purely PERMISSION-gated, with NO identity restriction**. Origin kept for
+> history: the strict same-user identity block came only from **SV-8183**
+> acceptance-criteria ("Decision 3 / NET-NEW must be built"); **Story 16 (SV-7870)**
+> only ever required a role that holds the permission, which the Review Work Orders
+> gate already covers. Milos has now ruled the strict identity block out of v1.
+> **Every "reviewer ≠ completer" mention below (§9.1 Mark-Reviewed row, §9.3 NET-NEW
+> rule, §10 item 3) is DESCOPED for v1** — the Review Work Orders permission-gating
+> stays; only the same-user identity block is dropped. Case impact: SF-PERM-04/07 +
+> SF-REV-09 re-adjudicated (identity assertion removed; self-review-by-a-permissioned-role
+> explicitly allowed; permission-gating retained & VIU-Verified); **SF-PERM-08 RE-PURPOSED**
+> into the POSITIVE case (a permissioned user CAN Mark Reviewed a WO they completed;
+> a user without the permission cannot) — no longer obsolete. Origin bug BUG-5 /
+> TICKET 1 dropped as expected behavior.
 
 ### 9.1 Action → existing atom map
 
@@ -688,6 +693,39 @@ see below).
 Custom roles combine atoms freely (e.g. Technician + Order Parts + Vendor & Order
 Mgmt C&E = "tech who also receives"; leave Review Work Orders ON only for
 manager/foreman for a stricter reviewer).
+
+### Resulting per-role behavior (derived from the system-role matrix)
+
+> **Authoritative per-role behavior table** (re-added 2026-07-10 from
+> `SV-8183-permissions-source.md`). Under last-update-wins this is the latest
+> authoritative input for per-role behavior. **Reconciliation vs §9.2:** this table
+> matches §9.2 above cell-for-cell — **no conflicts / no deltas** (both are the same
+> SV-8183 system-role matrix). Kept here under its canonical SV-8183 title for
+> traceability.
+
+| Role | Edit WO settings | Complete WO | Pick | Order/PO | Receive on WO | Bulk Receive | Assign vendor | Fix part # | Add vendorless part | Mark Reviewed |
+|---|---|---|---|---|---|---|---|---|---|---|
+| Admin | Yes | Yes | Yes | Yes | Yes | Yes | Yes | Yes | Yes | Yes |
+| Service Manager | Yes | Yes | Yes | Yes | Yes | Yes | Yes | Yes | Yes | Yes |
+| Senior SA | No | Yes | Yes | Yes | Yes | Yes | Yes | Yes | Yes | Yes |
+| Service Advisor | No | Yes | Yes | Yes | Yes | Yes | Yes | Yes | Yes | Yes |
+| Foreman | No | Yes | Yes | Yes | Yes | Yes | Yes | Yes | Yes | Yes |
+| Technician | No | No (1) | Yes | No | No | No | No | No | No (2) | No |
+| Parts Manager | No | Yes | Yes | Yes | Yes | Yes | Yes | Yes | Yes | Yes |
+| Parts Tech | No | No (1) | Yes | Yes | Yes | Yes | Yes | Yes | No | No |
+| Office | Yes | No (3) | No | No | No | No (4) | No | No | No | No |
+| Sales Rep | No | No | No | No | No | No | No | No | No | No |
+| Time Clock | No | No | No | No | No | No | No | No | No | No |
+
+**Footnote definitions (verbatim from SV-8183):**
+
+1. **No completion** = Tech View can't approve lines and/or no WO: Create & Edit.
+   Technician can still pick; Parts Tech is a receiver, not a completer.
+2. Technician has WOL Create & Edit but **no See Financial Data**, so cannot enter
+   the mandatory sell price → cannot add a vendorless part (**Decision 4**).
+3. Office has **WO: View only** → configures Simple Flow but cannot operate it.
+4. Office has **Vendor & Order Mgmt: View only** → can open Bulk Receive but
+   cannot receive.
 
 ### 9.3 NEW vs REUSED permissions
 

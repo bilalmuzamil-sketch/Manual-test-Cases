@@ -80,3 +80,24 @@ Added 2 rows to build/simple-flow/testrail-id-map.csv:
 - Unchanged (re-fetch confirmed identical): `title`, `refs`, `custom_preconds`, `custom_steps`.
 
 1 case touched (update_case). No adds, no deletes. Re-fetch confirmed the new expected matches the local case JSON byte-for-byte and no other field moved.
+
+---
+
+## Reviewer-self-review clarification push (2026-07-10) — update_case, verified
+
+- Date: 2026-07-10
+- Host: https://shopview.testrail.io · Project 1 · Suite 1 (Master)
+- Authorization: QA lead authorized (2026-07-10) the update_case push for these 4 cases only.
+- Ruling applied: reviewer != completer IDENTITY rule is NOT in v1; self-review IS allowed when the user's role holds the Mark Reviewed permission (permission-gated only).
+- Method: curl + Basic auth (node fetch blocked for this host). For EACH: GET → diff → update only changed fields → re-fetch verify (all local fields match).
+- Scope: update_case ONLY. No runs, no results, no adds, no deletes. No other cases touched.
+- API-section rule: all 4 are UI permission cases (api_related=false); new content has no endpoints/HTTP/status codes → no 'API'-titled section move needed. Sections unchanged (Permissions / Review ON).
+
+| sf_id | case_id | fields changed | update HTTP | verify HTTP | verified |
+|-------|---------|----------------|-------------|-------------|----------|
+| SF-PERM-04 | 29408 | custom_expected (added self-review-allowed clause; identity restriction absent) | 200 | 200 | yes |
+| SF-PERM-07 | 29411 | custom_expected, custom_steps (added self-review-allowed clause; steps synced to local) | 200 | 200 | yes |
+| SF-PERM-08 | 29412 | title, refs, custom_preconds, custom_steps, custom_expected (RE-PURPOSED from obsolete negative into POSITIVE self-review case) | 200 | 200 | yes |
+| SF-REV-09 | 29394 | custom_expected (added self-review-allowed clause) | 200 | 200 | yes |
+
+4 cases touched (all update_case). Re-fetch confirmed each case's title/refs/preconds/steps/expected match the local case JSON exactly.
