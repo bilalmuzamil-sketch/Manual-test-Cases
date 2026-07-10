@@ -19,10 +19,11 @@ on success; on Jira/MCP failure, skip silently — the next run retries.
    "Nebojsa Glavinic", "Ahtasham Amjad")) ORDER BY updated DESC
    ```
    fields: `["summary","status","labels","customfield_10385","parent","priority",
-   "issuetype","created","updated","resolutiondate","statuscategorychangedate","reporter"]`
-   (customfield_10385 = QA Assignee.) Results exceed the token cap and are saved
-   to files — extract each page with a compact extractor into `tickets.jsonl`
-   records: `{key,summary,status,type,priority,labels,qa,reporter,parent,
+   "issuetype","created","updated","resolutiondate","statuscategorychangedate","reporter","assignee"]`
+   (customfield_10385 = QA Assignee; `assignee` = the normal/developer assignee —
+   REQUIRED for the two follow-up tables below.) Results exceed the token cap and are
+   saved to files — extract each page with a compact extractor into `tickets.jsonl`
+   records: `{key,summary,status,type,priority,labels,qa,reporter,assignee,parent,
    parentType,parentSummary,created,updated,resolved,catchange,statusCat}`
    (see git history of this folder for the exact extract.py), then dedupe by key
    into `tickets-unique.json`.
@@ -77,8 +78,28 @@ history whose `items[].field=="labels"` toString first contains the label → th
   (fields=[key]; the tool returns full issues regardless, so count `issues.nodes` length.)
 - Write `activity.json`: `{people:{<name>:{created:[y,t],commented:[y,t],rejected:[y,t],done:[y,t],reassigned:[y,t]}}}`.
 
-gen_data.py emits `tz`, `epicStart`, `dataMinDate`, `inprogress`, `activity`. Selecting an epic
-auto-sets the calendar to its start (Custom Roles SV-7388 pinned 17 Jun); default view = Custom Roles.
+gen_data.py emits `tz`, `epicStart`, `dataMinDate`, `inprogress`, `activity`, and `tables`.
+Selecting an epic auto-sets the calendar to its start (Custom Roles SV-7388 pinned 17 Jun);
+default view = Custom Roles.
+
+## Coverage bars & follow-up tables (added 2026-07-10)
+
+Each ticket record gets a **defect flag** `dz` = `type in (Bug, Story Defect)` **OR**
+`type == Task AND reporter in QA_TEAM` (QA-raised tasks count as tickets/defects). The
+QA_TEAM set lives at the top of gen_data.py — keep it in sync with the roster.
+
+- **QA Testing Coverage bar** (`renderProgress`): of the epic's `dz` defects, how many
+  reached Done (`statusCategory == Done`, which already folds in Obsolete/Duplicate). Stories
+  are EXCLUDED. Named "QA Testing Coverage", explicitly *not* release readiness.
+- **Story Completion bar** (`renderStoryProgress`): of the epic's `type == Story` tickets,
+  how many are Done. Separate from defect coverage.
+- **Two follow-up tables** in `data.tables` (both "less than Done" = `statusCategory != Done`):
+  - `needsResponse` — the normal **Assignee** is a QA member (a query likely waiting on QA),
+    PLUS any open **QA-raised Task** (shown with its assignee + a "Why" chip).
+  - `openQueue` — the **QA Assignee** field is a QA member (their open testing workload).
+  Both tables respect the epic + member filters client-side (`needsMatch`/`queueMatch`). The
+  `needsResponse` items currently carry no epic, so they only appear under "All epics"; the
+  empty-state hints the user to switch the Epic filter.
 
 ## Notes
 - Attribution: `QAComplete_*` label wins, QA Assignee is fallback; `*_inprogress`

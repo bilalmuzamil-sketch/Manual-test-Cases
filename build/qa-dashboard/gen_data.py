@@ -23,6 +23,10 @@ def person_from(tok):
     if not tok: return None
     return FIRST.get(tok.split('_')[0]) or FIRST.get(tok)
 
+# The QA team (used to decide which Tasks count as tickets, and to build the queue tables).
+QA_TEAM = {'Bilal Muzamil','Ayesha Khan','Mudassir Qamar','Viktoria Videnovic',
+           'Nebojsa Glavinic','Ahtasham Amjad'}
+
 recs = json.load(open(f'{W}/tickets-unique.json'))
 semap = json.load(open(f'{W}/story-epic-map.json'))
 
@@ -56,10 +60,12 @@ for r in recs:
             if p: lc.append(p)
     if lc and r['qa'] and not set(lc) & set(r['qa']): mismatch += 1
     dn = r['catchange'] if r['statusCat'] == 'Done' else None
+    # A "defect ticket" for coverage = Bug / Story Defect, OR a Task raised by a QA member.
+    is_defect = r['type'] in ('Bug', 'Story Defect') or (r['type'] == 'Task' and r['reporter'] in QA_TEAM)
     out.append({'k':r['key'],'s':r['summary'][:96],'st':r['status'],'ty':r['type'],
-        'pr':r['priority'],'ep':ep,'qa':r['qa'],'rep':r['reporter'],'lc':sorted(set(lc)),
-        'lip':sorted(set(lip)),'sv':sv,'rj':rj,'cr':r['created'],'up':r['updated'],'dn':dn,
-        'cat':r['statusCat']})
+        'pr':r['priority'],'ep':ep,'qa':r['qa'],'rep':r['reporter'],'as':r.get('assignee'),
+        'lc':sorted(set(lc)),'lip':sorted(set(lip)),'sv':sv,'rj':rj,'cr':r['created'],
+        'up':r['updated'],'dn':dn,'cat':r['statusCat'],'dz':is_defect})
 
 per_person = Counter()
 for lbl, n in variants.items():
@@ -103,7 +109,30 @@ try:
 except Exception:
     activity = None
 
+# Two follow-up tables (all "less than Done" = statusCategory not Done):
+#  needsResponse — the normal Assignee is a QA member (a query is likely waiting on QA),
+#                  PLUS any QA-raised Task still open (so we see it + who it's assigned to).
+#  openQueue     — the QA Assignee field is a QA member and the ticket isn't finished.
+def trow(t):
+    return {'k': t['k'], 'ty': t['ty'], 's': t['s'], 'assignee': t['as'],
+            'qa': t['qa'], 'st': t['st'], 'ep': t['ep']}
+needs_response, open_queue = [], []
+for t in out:
+    if t['cat'] == 'Done':
+        continue
+    assignee_is_qa = t['as'] in QA_TEAM
+    qa_raised_task = t['ty'] == 'Task' and t['rep'] in QA_TEAM
+    if assignee_is_qa or qa_raised_task:
+        row = trow(t)
+        row['reason'] = 'Assignee is QA' if assignee_is_qa else 'QA-raised task'
+        needs_response.append(row)
+    if any(p in QA_TEAM for p in t['qa']):
+        open_queue.append(trow(t))
+needs_response.sort(key=lambda r: (r['ep'] or 'zz', r['k']))
+open_queue.sort(key=lambda r: (r['ep'] or 'zz', r['k']))
+
 data = {'asof': ASOF, 'tz': 'PKT (UTC+5)', 'tickets': out, 'epics': epics,
+        'tables': {'needsResponse': needs_response, 'openQueue': open_queue},
         'epicStart': epic_start, 'dataMinDate': data_min,
         'inprogress': inprogress, 'activity': activity,
         'hygiene': {'inprog': inprog, 'bare': bare, 'lower': lower, 'mismatch': mismatch,

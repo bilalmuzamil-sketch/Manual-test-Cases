@@ -207,6 +207,22 @@
     <div class="mwrap"><table class="matrix" id="inprog"></table></div>
   </div>
 
+  <div class="eyebrow">🙋 Assigned to a QA member &amp; not yet Done — QA likely needs to respond</div>
+  <div class="card">
+    <p class="note">Tickets whose <b>Assignee</b> is a QA member and status is <b>less than Done</b> — usually a
+    question or change waiting on QA. Also includes <b>Tasks raised by a QA member</b> that are still open
+    (shown with whom they're assigned to). Respects the epic/member filters.</p>
+    <div class="mwrap"><table class="tix" id="tbl-needs"></table></div>
+  </div>
+
+  <div class="eyebrow">🧾 In a QA member's queue (QA&nbsp;Assignee) &amp; not yet Done</div>
+  <div class="card">
+    <p class="note">Tickets where the <b>QA&nbsp;Assignee</b> field is a QA member and status is
+    <b>less than Done</b> — the QA member's open testing workload. Respects the epic/member filters.</p>
+    <div class="mwrap"><table class="tix" id="tbl-queue"></table></div>
+    <button class="more" id="queue-more" hidden></button>
+  </div>
+
   <div class="eyebrow">📋 Per-person activity — Yesterday vs Today (PKT)</div>
   <div class="card">
     <p class="note">What each QA person did <b>yesterday (9 Jul)</b> and <b>today (10 Jul)</b>, Pakistan time.
@@ -314,6 +330,8 @@ const fmtShort = s => new Date(s+"T12:00:00Z").toLocaleDateString("en-GB",{day:"
 document.getElementById("asof").textContent =
   `Interactive snapshot · ${fmtD(ASOF)} · project SV · ${T.length} QA-related tickets (last 2 months) · all dates in ${DATA.tz||"PKT"} · auto-refreshes hourly on weekdays`;
 const ACT = DATA.activity, INPROG = DATA.inprogress || [];
+const NEEDS = (DATA.tables && DATA.tables.needsResponse) || [];
+const QUEUE = (DATA.tables && DATA.tables.openQueue) || [];
 {
   const H = DATA.hygiene, pp = H.per_person;
   const names = Object.keys(pp);
@@ -348,7 +366,7 @@ T.forEach(t => {
 
 const $ = id => document.getElementById(id);
 const state = { q:"", e:"", from:PRESETS.week[0], to:PRESETS.week[1], y:"", s:"",
-                shown:60, metric:"done", sort:["up",-1] };
+                shown:60, qshown:60, metric:"done", sort:["up",-1] };
 function syncDates(){ $("fd1").value = state.from; $("fd2").value = state.to; }
 ["fd1","fd2"].forEach(id => { const el=$(id); el.min=DATA_MIN; el.max=ASOF; });
 
@@ -402,6 +420,7 @@ const METRICS = {
 };
 
 function render(){
+  state.qshown = 60;
   const pLabel = state.from===state.to ? `on ${fmtShort(state.from)}`
     : `${fmtShort(state.from)} – ${fmtShort(state.to)}`;
   // epic-range explainer
@@ -444,14 +463,75 @@ function render(){
   rejected.forEach(t=>{ (t.people.length?t.people:["(unattributed)"]).forEach(p=>queueMix["⚠ rejected: "+p]=(queueMix["⚠ rejected: "+p]||0)+1); });
   bars($("cqueue"), queueMix, "b");
 
-  renderProgress(); renderStoryProgress(); renderInprog(); renderActivity(); renderPrimary(); renderMatrix(); renderTable();
+  renderProgress(); renderStoryProgress(); renderInprog(); renderNeeds(); renderQueue(); renderActivity(); renderPrimary(); renderMatrix(); renderTable();
 }
 
-const DEFECT_TYPES = new Set(["Bug","Story Defect"]);
+// Two follow-up tables (both prebuilt in DATA.tables, both "less than Done"):
+//  needsResponse — Assignee is a QA member (a query likely waiting on QA), plus open QA-raised Tasks.
+//  openQueue     — QA Assignee field is a QA member (their open testing workload).
+// Both respect the active epic + member filters.
+function needsMatch(r){
+  if (state.e && (r.ep||"NONE")!==state.e) return false;
+  if (state.q && !(r.assignee===state.q || (r.qa||[]).includes(state.q))) return false;
+  return true;
+}
+function queueMatch(r){
+  if (state.e && (r.ep||"NONE")!==state.e) return false;
+  if (state.q && !(r.qa||[]).includes(state.q)) return false;
+  return true;
+}
+function tixHead(extra){
+  return `<tr><th style="text-align:left">Ticket</th><th style="text-align:left">Type</th>
+    <th style="text-align:left">Summary</th><th style="text-align:left">Assignee</th>
+    <th style="text-align:left">QA&nbsp;Assignee</th><th style="text-align:left">Status</th>
+    <th style="text-align:left">Epic</th>${extra||""}</tr>`;
+}
+function tixRow(r, extra){
+  const qa = (r.qa||[]);
+  return `<tr>
+    <td class="k"><a href="https://shopview.atlassian.net/browse/${r.k}" target="_blank" rel="noopener">${r.k}</a></td>
+    <td>${esc(r.ty)}</td><td>${esc(r.s)}</td>
+    <td>${r.assignee?esc(r.assignee):'<span style="color:var(--muted)">—</span>'}</td>
+    <td>${qa.length?qa.map(p=>`<span class="chip">${esc(p.split(" ")[0])}</span>`).join(""):'<span class="chip">—</span>'}</td>
+    <td>${statusChip(r)}</td><td>${esc(epShort(r.ep))}</td>${extra||""}</tr>`;
+}
+function renderNeeds(){
+  const rows = NEEDS.filter(needsMatch);
+  let h = tixHead(`<th style="text-align:left">Why</th>`);
+  if (!rows.length){
+    const anyElsewhere = NEEDS.some(r => !state.q || r.assignee===state.q || (r.qa||[]).includes(state.q));
+    const hint = (state.e && anyElsewhere)
+      ? ` There are items in other epics — switch <b>Epic</b> to <b>All epics</b> to see them.`
+      : ``;
+    h += `<tr><td colspan="8" style="color:var(--muted)">Nothing waiting on QA in this selection — no less-than-Done ticket is assigned to a QA member (and no open QA-raised task). 🎉${hint}</td></tr>`;
+  }
+  rows.forEach(r=>{
+    const chip = r.reason==="QA-raised task"
+      ? `<span class="chip test">QA-raised task</span>`
+      : `<span class="chip wait">Assignee is QA</span>`;
+    h += tixRow(r, `<td>${chip}</td>`);
+  });
+  $("tbl-needs").innerHTML = h;
+}
+function renderQueue(){
+  const rows = QUEUE.filter(queueMatch);
+  let h = tixHead();
+  if (!rows.length){
+    h += `<tr><td colspan="7" style="color:var(--muted)">No open ticket in a QA member's queue for this selection.</td></tr>`;
+  }
+  rows.slice(0, state.qshown).forEach(r=> h += tixRow(r));
+  $("tbl-queue").innerHTML = h;
+  const btn = $("queue-more");
+  btn.hidden = rows.length <= state.qshown;
+  btn.textContent = `Show ${Math.min(60, rows.length-state.qshown)} more (${rows.length} total)`;
+  btn.onclick = ()=>{ state.qshown += 60; renderQueue(); };
+}
+
 function renderProgress(){
-  // QA testing coverage = of the BUGS/DEFECTS reported for this epic (since its start date),
-  // how many QA has finished (reached Done). Stories are excluded (they have their own bar).
-  const scope = T.filter(t => matchBase(t) && DEFECT_TYPES.has(t.ty));
+  // QA testing coverage = of the BUGS/DEFECTS reported for this epic (Bug + Story Defect +
+  // Tasks raised by a QA member, flagged t.dz), how many QA has finished (reached Done —
+  // which counts Obsolete/Duplicate too). Stories are excluded (they have their own bar).
+  const scope = T.filter(t => matchBase(t) && t.dz);
   const total = scope.length;
   const done = scope.filter(t => t.cat === "Done").length;
   const openInTest = scope.filter(t => TESTING.has(t.st)).length;
@@ -462,8 +542,8 @@ function renderProgress(){
   const span = state.from===state.to ? fmtShort(state.from) : `${fmtShort(state.from)} – ${fmtShort(state.to)}`;
   $("prog-pct").textContent = pct + "%";
   $("prog-fill").style.width = pct + "%";
-  $("prog-note").innerHTML = `<b>${done}</b> of <b>${total}</b> bugs/defects reported for <b>${esc(label)}</b> `
-    + `(${span}) have finished QA (reached Done). ${remaining} still in the pipeline.`;
+  $("prog-note").innerHTML = `<b>${done}</b> of <b>${total}</b> bugs/defects (Bug + Story Defect + QA-raised Tasks) `
+    + `for <b>${esc(label)}</b> (${span}) have finished QA (reached Done, incl. Obsolete/Duplicate). ${remaining} still in the pipeline.`;
   $("prog-legend").innerHTML = total ? `
     <span class="k"><span class="sw" style="background:var(--blue)"></span>QA finished (Done): <b>&nbsp;${done}</b></span>
     <span class="k"><span class="sw" style="background:var(--track);border:1px solid var(--ring)"></span>Not yet finished: <b>&nbsp;${remaining}</b></span>
