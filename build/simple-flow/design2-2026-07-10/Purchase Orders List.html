@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Purchase Orders</title>
+  <link rel="stylesheet" href="colors_and_type.css">
+  <style>
+    body {
+      margin: 0;
+      background: var(--sv-white);
+    }
+
+    .app-shell {
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+    }
+
+    /* ── Top nav ── */
+    .app-header {
+      height: 64px;
+      flex-shrink: 0;
+      background: var(--sv-white);
+      border-bottom: 1px solid var(--sv-border-strong);
+      display: flex;
+      align-items: center;
+      padding: 0 var(--sv-space-6);
+      gap: var(--sv-space-8);
+    }
+
+    .logo {
+      width: 36px;
+      height: 36px;
+      background: var(--sv-brand-blue);
+      border-radius: var(--sv-radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      flex-shrink: 0;
+    }
+
+    .nav {
+      display: flex;
+      gap: var(--sv-space-2);
+      flex: 1;
+    }
+
+    .nav-link {
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--sv-grey-700);
+      text-decoration: none;
+      padding: 8px 14px;
+      border-radius: var(--sv-radius-md);
+    }
+
+    .nav-link:hover {
+      background: var(--sv-grey-50);
+      text-decoration: none;
+    }
+
+    .nav-link.active {
+      background: var(--sv-grey-100);
+      color: var(--sv-grey-800);
+      font-weight: 600;
+    }
+
+    .search-bar {
+      width: 440px;
+      height: 44px;
+      border: 1px solid var(--sv-border-strong);
+      border-radius: var(--sv-radius-md);
+      padding: 0 14px;
+      font-size: 15px;
+      font-family: var(--sv-font-ui);
+      color: var(--sv-fg-secondary);
+      background: var(--sv-white);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .search-bar input {
+      border: 0;
+      outline: 0;
+      flex: 1;
+      font-size: 15px;
+      font-family: inherit;
+      color: var(--sv-fg-primary);
+      background: transparent;
+    }
+
+    .kbd {
+      font-size: 12px;
+      color: var(--sv-fg-tertiary);
+      border: 1px solid var(--sv-border-strong);
+      border-radius: var(--sv-radius-xs);
+      padding: 1px 6px;
+      font-family: var(--sv-font-ui);
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: var(--sv-space-5);
+    }
+
+    .user-chip {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border: 1px solid var(--sv-border-strong);
+      border-radius: var(--sv-radius-pill);
+      padding: 4px 4px 4px 16px;
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--sv-grey-700);
+    }
+
+    .avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--sv-grey-800);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      font-size: 13px;
+    }
+
+    /* ── Body layout ── */
+    .app-body {
+      flex: 1;
+      display: flex;
+      min-height: 0;
+    }
+
+    .sidebar {
+      width: 264px;
+      flex-shrink: 0;
+      border-right: 1px solid var(--sv-border-strong);
+      padding: var(--sv-space-6) var(--sv-space-4);
+      overflow-y: auto;
+    }
+
+    .sidebar-group {
+      margin-bottom: var(--sv-space-6);
+    }
+
+    .sidebar-label {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--sv-fg-tertiary);
+      padding: 0 var(--sv-space-3);
+      margin-bottom: var(--sv-space-2);
+    }
+
+    .sidebar-item {
+      display: flex;
+      align-items: center;
+      gap: var(--sv-space-3);
+      padding: 9px var(--sv-space-3);
+      border-radius: var(--sv-radius-md);
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--sv-grey-700);
+      text-decoration: none;
+      margin-bottom: 2px;
+    }
+
+    .sidebar-item:hover {
+      background: var(--sv-grey-50);
+      text-decoration: none;
+    }
+
+    .sidebar-item.active {
+      color: var(--sv-brand-blue);
+      font-weight: 600;
+    }
+
+    .sidebar-item.active svg {
+      color: var(--sv-brand-blue);
+    }
+
+    .sidebar-item svg {
+      color: var(--sv-grey-500);
+      flex-shrink: 0;
+    }
+
+    .main {
+      flex: 1;
+      overflow-y: auto;
+      background: var(--sv-white);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .main-inner {
+      padding: var(--sv-space-6) var(--sv-space-8);
+      max-width: 1600px;
+      width: 100%;
+    }
+
+    /* ── Selection banner ── */
+    .selection-banner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--sv-primary-25);
+      border: 1px solid var(--sv-primary-200);
+      border-radius: var(--sv-radius-lg);
+      padding: var(--sv-space-3) var(--sv-space-3) var(--sv-space-3) var(--sv-space-5);
+      margin-bottom: var(--sv-space-6);
+    }
+
+    .selection-left {
+      display: flex;
+      align-items: center;
+      gap: var(--sv-space-5);
+    }
+
+    .selection-count-group {
+      display: flex;
+      align-items: center;
+      gap: var(--sv-space-3);
+    }
+
+    .count-badge {
+      min-width: 30px;
+      height: 30px;
+      padding: 0 9px;
+      border-radius: var(--sv-radius-pill);
+      background: var(--sv-brand-blue);
+      color: white;
+      font-size: 14px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .selection-text {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--sv-grey-800);
+    }
+
+    .clear-link {
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--sv-brand-blue);
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
+      padding: 0;
+    }
+
+    .clear-link:hover {
+      text-decoration: underline;
+    }
+
+    /* ── Page heading ── */
+    .page-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: var(--sv-space-5);
+    }
+
+    .page-title {
+      font-size: 26px;
+      font-weight: 700;
+      color: var(--sv-grey-800);
+      margin: 0;
+    }
+
+    .page-actions {
+      display: flex;
+      align-items: center;
+      gap: var(--sv-space-4);
+    }
+
+    .icon-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: var(--sv-radius-md);
+      border: 1px solid var(--sv-border-strong);
+      background: var(--sv-white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: var(--sv-grey-600);
+    }
+
+    .icon-btn:hover {
+      background: var(--sv-grey-50);
+    }
+
+    /* ── Table ── */
+    .po-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .po-table thead th {
+      text-align: left;
+      padding: 14px var(--sv-space-4);
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--sv-grey-700);
+      border-bottom: 1px solid var(--sv-border-strong);
+      white-space: nowrap;
+    }
+
+    .po-table tbody td {
+      padding: 18px var(--sv-space-4);
+      font-size: 15px;
+      color: var(--sv-grey-700);
+      border-bottom: 1px solid var(--sv-border);
+      vertical-align: middle;
+      white-space: nowrap;
+    }
+
+    .po-table tbody tr:hover {
+      background: var(--sv-grey-50);
+    }
+
+    .col-check { width: 48px; }
+    .col-right { text-align: right; }
+
+    .wo-id, .pon-id {
+      font-weight: 500;
+      color: var(--sv-grey-800);
+    }
+
+    .muted {
+      color: var(--sv-fg-tertiary);
+    }
+
+    .vendor-cell {
+      display: inline-flex;
+      align-items: baseline;
+      gap: 2px;
+    }
+
+    .vendor-more {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--sv-brand-blue);
+      vertical-align: super;
+    }
+
+    /* Vendor Missing badge */
+    .vendor-missing {
+      display: inline-flex;
+      align-items: center;
+      padding: 3px 12px;
+      border-radius: var(--sv-radius-pill);
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--sv-warning-700);
+      background: var(--sv-warning-50);
+      border: 1px solid var(--sv-warning-200);
+    }
+
+    /* Status pills */
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      padding: 3px 12px;
+      border-radius: var(--sv-radius-pill);
+      font-size: 13px;
+      font-weight: 500;
+      border: 1px solid;
+    }
+
+    .status-ordered {
+      color: var(--sv-info-text);
+      background: var(--sv-white);
+      border-color: var(--sv-primary-200);
+    }
+
+    .status-partial {
+      color: var(--sv-error-700);
+      background: var(--sv-white);
+      border-color: var(--sv-error-200);
+    }
+
+    .price {
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* Checkbox */
+    .checkbox {
+      width: 22px;
+      height: 22px;
+      border-radius: var(--sv-radius-sm);
+      border: 1.5px solid var(--sv-grey-300);
+      background: var(--sv-white);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    .checkbox.checked {
+      background: var(--sv-brand-blue);
+      border-color: var(--sv-brand-blue);
+    }
+
+    .checkbox.indeterminate {
+      background: var(--sv-brand-blue);
+      border-color: var(--sv-brand-blue);
+    }
+
+    .receive-pill {
+      height: 40px;
+      padding: 0 22px;
+      border-radius: var(--sv-radius-md);
+      background: var(--sv-brand-blue);
+      color: white;
+      font-size: 15px;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    .receive-pill:hover {
+      background: var(--sv-primary-700);
+    }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+  <script type="text/babel" src="components.jsx"></script>
+  <script type="text/babel">
+    const { useState } = React;
+    const { createRoot } = ReactDOM;
+    const { Icon } = window;
+
+    const purchaseOrders = [
+      { id: 1, wo: 'S2-15741', pon: 'S2-15741', vendor: 'Vendor Missing', more: 0, status: 'Ordered', created: 'Jun 18, 2026', orderedBy: 'Admin ShopView', total: 0.00, note: '-' },
+      { id: 2, wo: 'S2-15740', pon: 'S2-15740', vendor: 'Vendor Missing', more: 0, status: 'Ordered', created: 'Jun 15, 2026', orderedBy: 'Admin ShopView', total: 0.00, note: '-' },
+      { id: 3, wo: 'S2-15739', pon: 'S2-15739', vendor: 'Vendor Missing', more: 0, status: 'Ordered', created: 'Jun 15, 2026', orderedBy: 'Admin ShopView', total: 0.00, note: '-' },
+      { id: 4, wo: 'S2-15738', pon: 'S2-15738', vendor: 'Vendor Missing', more: 1, status: 'Ordered', created: 'Jun 12, 2026', orderedBy: 'Admin ShopView', total: 0.00, note: '-' },
+      { id: 5, wo: 'S2-15736', pon: 'S2-15736', vendor: 'Vendor Missing', more: 0, status: 'Ordered', created: 'Jun 12, 2026', orderedBy: 'Admin ShopView', total: 0.00, note: '-' },
+      { id: 6, wo: 'S2-15735', pon: 'S2-15735', vendor: 'Achester Landscaping', more: 1, status: 'Ordered', created: 'Jun 11, 2026', orderedBy: 'Admin ShopView', total: 0.00, note: '-' },
+      { id: 7, wo: 'S2-15734', pon: 'S2-15734', vendor: 'Vendor Missing', more: 2, status: 'Ordered', created: 'Jun 11, 2026', orderedBy: 'Admin ShopView', total: 0.00, note: '-' },
+      { id: 8, wo: 'S2-15733', pon: 'S2-15733', vendor: 'Vendor Missing', more: 0, status: 'Ordered', created: 'Jun 11, 2026', orderedBy: 'Admin ShopView', total: 0.00, note: '-' },
+      { id: 9, wo: '-', pon: 'I2-1188', vendor: 'Quimill Equipment', more: 0, status: 'Ordered', created: 'Jun 5, 2026', orderedBy: 'Kayla Ford', total: 20.13, note: '-' },
+      { id: 10, wo: '-', pon: 'I2-1185', vendor: 'Oosquare Works', more: 0, status: 'Ordered', created: 'Jun 4, 2026', orderedBy: 'Kayla Ford', total: 2348.46, note: '-' },
+      { id: 11, wo: 'S2-15669', pon: 'S2-15669', vendor: 'Leview Ventures', more: 0, status: 'Partial Delivery', created: 'Jun 4, 2026', orderedBy: 'Kayla Ford', total: 1549.99, note: '-' },
+      { id: 12, wo: 'S2-15614', pon: 'S2-15614', vendor: 'Quimill Equipment', more: 0, status: 'Ordered', created: 'Jun 4, 2026', orderedBy: 'Kayla Ford', total: 155.92, note: '-' },
+      { id: 13, wo: 'S2-15673', pon: 'S2-15673', vendor: 'Quimill Equipment', more: 0, status: 'Ordered', created: 'Jun 4, 2026', orderedBy: 'Kayla Ford', total: 257.88, note: '-' },
+      { id: 14, wo: 'S2-15649', pon: 'S2-15649', vendor: 'Quimill Equipment', more: 0, status: 'Partial Delivery', created: 'Jun 4, 2026', orderedBy: 'Kayla Ford', total: 647.95, note: '-' },
+      { id: 15, wo: 'S2-15644', pon: 'S2-15644', vendor: 'Piplains Holdings', more: 1, status: 'Partial Delivery', created: 'Jun 4, 2026', orderedBy: 'Joshua Shelton', total: 1769.84, note: '-' },
+      { id: 16, wo: '-', pon: 'I2-1180', vendor: 'Juton Enterprises', more: 0, status: 'Partial Delivery', created: 'Jun 3, 2026', orderedBy: 'Joshua Shelton', total: 99.01, note: '-' },
+      { id: 17, wo: '-', pon: 'I2-1175', vendor: 'Qemoor Construction', more: 0, status: 'Ordered', created: 'Jun 2, 2026', orderedBy: 'Kayla Ford', total: 722.73, note: '-' },
+      { id: 18, wo: 'P2-105', pon: 'P2-105', vendor: 'Juton Enterprises', more: 0, status: 'Partial Delivery', created: 'May 29, 2026', orderedBy: 'Joshua Shelton', total: 293.16, note: '-' },
+      { id: 19, wo: 'S2-15299', pon: 'S2-15299', vendor: 'Suport Supply', more: 0, status: 'Partial Delivery', created: 'May 28, 2026', orderedBy: 'Joshua Shelton', total: 1606.64, note: '-' },
+    ];
+
+    function Check({ state, onClick }) {
+      return (
+        <span className={`checkbox ${state === true ? 'checked' : ''} ${state === 'some' ? 'indeterminate' : ''}`} onClick={onClick}>
+          {state === true && <Icon name="check" size={14} stroke={3} style={{ color: '#fff' }} />}
+          {state === 'some' && <span style={{ width: 10, height: 2, background: '#fff', borderRadius: 1 }} />}
+        </span>
+      );
+    }
+
+    function StatusPill({ status }) {
+      const cls = status === 'Partial Delivery' ? 'status-partial' : 'status-ordered';
+      return <span className={`status-pill ${cls}`}>{status}</span>;
+    }
+
+    function App() {
+      const [selected, setSelected] = useState(new Set());
+
+      const allSelected = selected.size === purchaseOrders.length;
+      const noneSelected = selected.size === 0;
+      const headerState = allSelected ? true : (noneSelected ? false : 'some');
+
+      const toggleAll = () => {
+        if (allSelected) setSelected(new Set());
+        else setSelected(new Set(purchaseOrders.map(p => p.id)));
+      };
+
+      const toggleOne = (id) => {
+        const next = new Set(selected);
+        if (next.has(id)) next.delete(id);
+        else next.add(id);
+        setSelected(next);
+      };
+
+      const clear = () => setSelected(new Set());
+
+      return (
+        <div className="app-shell">
+          <header className="app-header">
+            <div className="logo">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                <polyline points="9 22 9 12 15 12 15 22"/>
+              </svg>
+            </div>
+            <nav className="nav">
+              <a href="#" className="nav-link">Work Orders</a>
+              <a href="#" className="nav-link">Schedule</a>
+              <a href="#" className="nav-link">Customers</a>
+              <a href="#" className="nav-link active">Parts</a>
+              <a href="#" className="nav-link">Reports</a>
+            </nav>
+            <div className="search-bar">
+              <Icon name="search" size={18} style={{ color: 'var(--sv-fg-tertiary)' }} />
+              <input type="text" placeholder="Search" />
+              <span className="kbd">⌘K</span>
+            </div>
+            <div className="header-right">
+              <div style={{ display: 'flex', alignItems: 'center', gap: 7, fontSize: 15, fontWeight: 500, color: 'var(--sv-grey-700)' }}>
+                <Icon name="clock" size={20} style={{ color: 'var(--sv-grey-600)' }} /> Clock In
+              </div>
+              <Icon name="bell" size={22} style={{ color: 'var(--sv-grey-600)' }} />
+              <div className="user-chip">
+                Staging Heavy Duty - 9919
+                <span className="avatar">AS</span>
+              </div>
+            </div>
+          </header>
+
+          <div className="app-body">
+            <aside className="sidebar">
+              <div className="sidebar-group">
+                <div className="sidebar-label">Sales &amp; Service</div>
+                <a href="#" className="sidebar-item">
+                  <Icon name="tag" size={20} /> Part Sales
+                </a>
+              </div>
+              <div className="sidebar-group">
+                <div className="sidebar-label">Parts</div>
+                <a href="#" className="sidebar-item">
+                  <Icon name="box" size={20} /> Inventory
+                </a>
+                <a href="#" className="sidebar-item">
+                  <Icon name="clipboard" size={20} /> Catalog
+                </a>
+              </div>
+              <div className="sidebar-group">
+                <div className="sidebar-label">Supply Chain</div>
+                <a href="#" className="sidebar-item">
+                  <Icon name="copy" size={20} /> Returns
+                </a>
+                <a href="#" className="sidebar-item active">
+                  <Icon name="cart" size={20} /> Purchase Orders
+                </a>
+                <a href="#" className="sidebar-item">
+                  <Icon name="truck" size={20} /> Vendor Invoices
+                </a>
+                <a href="#" className="sidebar-item">
+                  <Icon name="store" size={20} /> Vendors
+                </a>
+              </div>
+            </aside>
+
+            <main className="main">
+              <div className="main-inner">
+                {selected.size > 0 && (
+                  <div className="selection-banner">
+                    <div className="selection-left">
+                      <div className="selection-count-group">
+                        <span className="count-badge">{selected.size}</span>
+                        <span className="selection-text">Purchase Orders selected</span>
+                      </div>
+                      <button className="clear-link" onClick={clear}>Clear</button>
+                    </div>
+                    <button className="receive-pill" onClick={() => { window.location.href = 'Receive Vendor Parts - v2.html'; }}>Receive Selected</button>
+                  </div>
+                )}
+
+                <div className="page-head">
+                  <h1 className="page-title">Purchase Orders</h1>
+                  <div className="page-actions">
+                    <button className="icon-btn" title="Columns">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <rect x="3" y="4" width="18" height="16" rx="2"/>
+                        <line x1="9" y1="4" x2="9" y2="20"/>
+                        <line x1="15" y1="4" x2="15" y2="20"/>
+                      </svg>
+                    </button>
+                    <button className="receive-pill">New PO</button>
+                  </div>
+                </div>
+
+                <table className="po-table">
+                  <thead>
+                    <tr>
+                      <th className="col-check"><Check state={headerState} onClick={toggleAll} /></th>
+                      <th>Work Order</th>
+                      <th>Purchase Order Number</th>
+                      <th>Vendor</th>
+                      <th>Order Status</th>
+                      <th>Created On</th>
+                      <th>Ordered By</th>
+                      <th className="col-right">Total Price</th>
+                      <th>Note</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {purchaseOrders.map((po) => {
+                      const isSel = selected.has(po.id);
+                      return (
+                        <tr key={po.id}>
+                          <td><Check state={isSel} onClick={() => toggleOne(po.id)} /></td>
+                          <td>{po.wo === '-' ? <span className="muted">-</span> : <span className="wo-id">{po.wo}</span>}</td>
+                          <td><span className="pon-id">{po.pon}</span></td>
+                          <td>
+                            {po.vendor === 'Vendor Missing'
+                              ? <span className="vendor-cell">
+                                  <span className="vendor-missing">Vendor Missing</span>
+                                  {po.more > 0 && <span className="vendor-more">+{po.more}</span>}
+                                </span>
+                              : <span className="vendor-cell">
+                                  {po.vendor}
+                                  {po.more > 0 && <span className="vendor-more">+{po.more}</span>}
+                                </span>}
+                          </td>
+                          <td><StatusPill status={po.status} /></td>
+                          <td>{po.created}</td>
+                          <td>{po.orderedBy}</td>
+                          <td className="col-right price">${po.total.toFixed(2)}</td>
+                          <td className="muted">{po.note}</td>
+                          <td className="col-right"><button className="receive-pill" style={{ height: 36, padding: '0 18px', fontSize: 14 }} onClick={() => { window.location.href = 'Purchase Order Details.html'; }}>Receive</button></td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </div>
+            </main>
+          </div>
+        </div>
+      );
+    }
+
+    createRoot(document.getElementById('root')).render(<App />);
+  </script>
+</body>
+</html>

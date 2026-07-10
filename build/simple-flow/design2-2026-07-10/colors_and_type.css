@@ -1,0 +1,302 @@
+/* Shopview Design System — tokens + base element styles.
+   Derived from the ShopView Design System Figma (FOUNDATIONS pages).
+*/
+
+/* Inter — brand font, 18pt optical size (optimized for UI text).
+   Served locally from /fonts/. Covers 100–900 weights + italics. */
+@font-face { font-family: 'Inter'; font-style: normal; font-weight: 100; font-display: swap;
+  src: url('fonts/Inter_18pt-Thin.ttf') format('truetype'); }
+@font-face { font-family: 'Inter'; font-style: italic; font-weight: 100; font-display: swap;
+  src: url('fonts/Inter_18pt-ThinItalic.ttf') format('truetype'); }
+@font-face { font-family: 'Inter'; font-style: normal; font-weight: 200; font-display: swap;
+  src: url('fonts/Inter_18pt-ExtraLight.ttf') format('truetype'); }
+@font-face { font-family: 'Inter'; font-style: italic; font-weight: 200; font-display: swap;
+  src: url('fonts/Inter_18pt-ExtraLightItalic.ttf') format('truetype'); }
+@font-face { font-family: 'Inter'; font-style: normal; font-weight: 300; font-display: swap;
+  src: url('fonts/Inter_18pt-Light.ttf') format('truetype'); }
+@font-face { font-family: 'Inter'; font-style: italic; font-weight: 300; font-display: swap;
+  src: url('fonts/Inter_18pt-LightItalic.ttf') format('truetype'); }
+@font-face { font-family: 'Inter'; font-style: normal; font-weight: 400; font-display: swap;
+  src: url('fonts/Inter_18pt-Regular.ttf') format('truetype'); }
+@font-face { font-family: 'Inter'; font-style: italic; font-weight: 400; font-display: swap;
+  src: url('fonts/Inter_18pt-Italic.ttf') format('truetype'); }
+@font-face { font-family: 'Inter'; font-style: normal; font-weight: 500; font-display: swap;
+  src: url('fonts/Inter_18pt-Medium.ttf') format('truetype'); }
+@font-face { font-family: 'Inter'; font-style: italic; font-weight: 500; font-display: swap;
+  src: url('fonts/Inter_18pt-MediumItalic.ttf') format('truetype'); }
+@font-face { font-family: 'Inter'; font-style: normal; font-weight: 600; font-display: swap;
+  src: url('fonts/Inter_18pt-SemiBold.ttf') format('truetype'); }
+@font-face { font-family: 'Inter'; font-style: italic; font-weight: 600; font-display: swap;
+  src: url('fonts/Inter_18pt-SemiBoldItalic.ttf') format('truetype'); }
+@font-face { font-family: 'Inter'; font-style: normal; font-weight: 700; font-display: swap;
+  src: url('fonts/Inter_18pt-Bold.ttf') format('truetype'); }
+@font-face { font-family: 'Inter'; font-style: italic; font-weight: 700; font-display: swap;
+  src: url('fonts/Inter_18pt-BoldItalic.ttf') format('truetype'); }
+@font-face { font-family: 'Inter'; font-style: normal; font-weight: 800; font-display: swap;
+  src: url('fonts/Inter_18pt-ExtraBold.ttf') format('truetype'); }
+@font-face { font-family: 'Inter'; font-style: italic; font-weight: 800; font-display: swap;
+  src: url('fonts/Inter_18pt-ExtraBoldItalic.ttf') format('truetype'); }
+@font-face { font-family: 'Inter'; font-style: normal; font-weight: 900; font-display: swap;
+  src: url('fonts/Inter_18pt-Black.ttf') format('truetype'); }
+@font-face { font-family: 'Inter'; font-style: italic; font-weight: 900; font-display: swap;
+  src: url('fonts/Inter_18pt-BlackItalic.ttf') format('truetype'); }
+
+/* Inter display — 28pt optical size for headlines/hero use (H1/H2). */
+@font-face { font-family: 'Inter Display'; font-style: normal; font-weight: 400; font-display: swap;
+  src: url('fonts/Inter_28pt-Regular.ttf') format('truetype'); }
+@font-face { font-family: 'Inter Display'; font-style: normal; font-weight: 500; font-display: swap;
+  src: url('fonts/Inter_28pt-Medium.ttf') format('truetype'); }
+@font-face { font-family: 'Inter Display'; font-style: normal; font-weight: 600; font-display: swap;
+  src: url('fonts/Inter_28pt-SemiBold.ttf') format('truetype'); }
+@font-face { font-family: 'Inter Display'; font-style: italic; font-weight: 600; font-display: swap;
+  src: url('fonts/Inter_28pt-SemiBoldItalic.ttf') format('truetype'); }
+@font-face { font-family: 'Inter Display'; font-style: normal; font-weight: 700; font-display: swap;
+  src: url('fonts/Inter_28pt-Bold.ttf') format('truetype'); }
+@font-face { font-family: 'Inter Display'; font-style: italic; font-weight: 700; font-display: swap;
+  src: url('fonts/Inter_28pt-BoldItalic.ttf') format('truetype'); }
+@font-face { font-family: 'Inter Display'; font-style: normal; font-weight: 800; font-display: swap;
+  src: url('fonts/Inter_28pt-ExtraBold.ttf') format('truetype'); }
+@font-face { font-family: 'Inter Display'; font-style: normal; font-weight: 900; font-display: swap;
+  src: url('fonts/Inter_28pt-Black.ttf') format('truetype'); }
+
+:root {
+  /* ── Basic ───────────────────────────────────────────────────── */
+  --sv-white: #FFFFFF;
+  --sv-black: #121212;
+
+  /* ── Brand ───────────────────────────────────────────────────── */
+  --sv-brand-blue:      #257CFF;     /* primary-500 */
+  --sv-brand-blue-dark: #175CD3;     /* primary-700 — link visited / hover */
+  --sv-brand-dark:      #202939;     /* dark text on light bg */
+
+  /* ── Primary (Blue) scale — Figma Color/Brand/Primary ────────── */
+  --sv-primary-25:   #F4FAFF;
+  --sv-primary-50:   #E9F5FF;
+  --sv-primary-100:  #D8ECFF;
+  --sv-primary-200:  #BEDFFF;
+  --sv-primary-300:  #82C1FB;
+  --sv-primary-400:  #4B96FF;
+  --sv-primary-500:  #257CFF;       /* Primary */
+  --sv-primary-600:  #2170E6;
+  --sv-primary-700:  #175CD3;       /* hover for primary buttons */
+  --sv-primary-800:  #0B254D;
+  --sv-primary-900:  #040C19;
+
+  /* ── Neutrals (Grey 25–900) — Figma Color/Grey ───────────────── */
+  --sv-grey-25:   #FCFCFD;
+  --sv-grey-50:   #F8FAFC;
+  --sv-grey-100:  #EEF2F6;
+  --sv-grey-200:  #E3E8EF;
+  --sv-grey-300:  #CDD5DF;
+  --sv-grey-400:  #9AA4B2;
+  --sv-grey-500:  #697586;
+  --sv-grey-600:  #4B5565;
+  --sv-grey-700:  #364152;
+  --sv-grey-800:  #202939;
+  --sv-grey-900:  #121926;
+
+  /* ── Feedback / Success — Figma Color/Feedback/Success ───────── */
+  --sv-success-25:  #F6FEF9;
+  --sv-success-50:  #EDFCF2;
+  --sv-success-100: #D3F8DF;
+  --sv-success-200: #AAF0C4;
+  --sv-success-300: #73E2A3;
+  --sv-success-400: #3CCB7F;
+  --sv-success-500: #16B364;
+  --sv-success-600: #099250;
+  --sv-success-700: #087443;
+  --sv-success-800: #095C37;
+  --sv-success-900: #084C2E;
+
+  /* ── Feedback / Error — Figma Color/Feedback/Error ───────────── */
+  --sv-error-25:  #FFFBFA;
+  --sv-error-50:  #FEF3F2;
+  --sv-error-100: #FEE4E2;
+  --sv-error-200: #FECDCA;
+  --sv-error-300: #FDA29B;
+  --sv-error-400: #F97066;
+  --sv-error-500: #F04438;
+  --sv-error-600: #D92D20;
+  --sv-error-700: #B42318;
+  --sv-error-800: #912018;
+  --sv-error-900: #7A271A;
+
+  /* ── Feedback / Warning — Figma Color/Feedback/Warning ───────── */
+  --sv-warning-25:  #FFFCF5;
+  --sv-warning-50:  #FFFAEB;
+  --sv-warning-100: #FEF0C7;
+  --sv-warning-200: #FEDF89;
+  --sv-warning-300: #FEC84B;
+  --sv-warning-400: #FDB022;
+  --sv-warning-500: #F79009;
+  --sv-warning-600: #DC6803;
+  --sv-warning-700: #B54708;
+  --sv-warning-800: #93370D;
+  --sv-warning-900: #7A2E0E;
+
+  /* ── Convenience aliases (semantic shorthand) ────────────────── */
+  --sv-success:      var(--sv-success-500);
+  --sv-success-fill: var(--sv-success-100);
+  --sv-success-text: var(--sv-success-700);
+  --sv-warning:      var(--sv-warning-500);
+  --sv-warning-fill: var(--sv-warning-100);
+  --sv-warning-text: var(--sv-warning-700);
+  --sv-error:        var(--sv-error-500);
+  --sv-error-fill:   var(--sv-error-100);
+  --sv-error-text:   var(--sv-error-700);
+  --sv-info:         var(--sv-primary-500);
+  --sv-info-fill:    var(--sv-primary-50);
+  --sv-info-text:    var(--sv-primary-700);
+
+  /* ── Additional / Teal — Figma Color/Additional Teal ─────────── */
+  --sv-teal-25:  #F6FEFC;
+  --sv-teal-50:  #F0FDF9;
+  --sv-teal-100: #CCFBEF;
+  --sv-teal-200: #99F6E0;
+  --sv-teal-300: #5FE9D0;
+  --sv-teal-400: #2ED3B7;
+  --sv-teal-500: #15B79E;
+  --sv-teal-600: #0E9384;
+  --sv-teal-700: #107569;
+  --sv-teal-800: #125D56;
+  --sv-teal-900: #134E48;
+
+  /* ── Additional / Cyan — Figma Color/Additional Cyan ─────────── */
+  --sv-cyan-25:  #F5FEFF;
+  --sv-cyan-50:  #ECFDFF;
+  --sv-cyan-100: #CFF9FE;
+  --sv-cyan-200: #A5F0FC;
+  --sv-cyan-300: #67E3F9;
+  --sv-cyan-400: #22CCEE;
+  --sv-cyan-500: #06AED4;
+  --sv-cyan-600: #088AB2;
+  --sv-cyan-700: #0E7090;
+  --sv-cyan-800: #155B75;
+  --sv-cyan-900: #164C63;
+
+  /* ── Additional / Violet — Figma Color/Additional Violet ─────── */
+  --sv-violet-25:  #FBFAFF;
+  --sv-violet-50:  #F5F3FF;
+  --sv-violet-100: #ECE9FE;
+  --sv-violet-200: #DDD6FE;
+  --sv-violet-300: #C3B5FD;
+  --sv-violet-400: #A48AFB;
+  --sv-violet-500: #875BF7;
+  --sv-violet-600: #7839EE;
+  --sv-violet-700: #6927DA;
+  --sv-violet-800: #5720B7;
+  --sv-violet-900: #491C96;
+
+  /* ── Additional / Purple — Figma Color/Additional Purple ─────── */
+  --sv-purple-25:  #FAFAFF;
+  --sv-purple-50:  #F4F3FF;
+  --sv-purple-100: #EBE9FE;
+  --sv-purple-200: #D9D6FE;
+  --sv-purple-300: #BDB4FE;
+  --sv-purple-400: #9B8AFB;
+  --sv-purple-500: #7A5AF8;
+  --sv-purple-600: #6938EF;
+  --sv-purple-700: #5925DC;
+  --sv-purple-800: #4A1FB8;
+  --sv-purple-900: #3E1C96;
+
+  /* ── Additional / Pink — Figma Color/Additional Pink ─────────── */
+  --sv-pink-25:  #FEF6FB;
+  --sv-pink-50:  #FDF2FA;
+  --sv-pink-100: #FCE7F6;
+  --sv-pink-200: #FCCEEE;
+  --sv-pink-300: #FAA7E0;
+  --sv-pink-400: #F670C7;
+  --sv-pink-500: #EE46BC;
+  --sv-pink-600: #DD2590;
+  --sv-pink-700: #C11574;
+  --sv-pink-800: #9E165F;
+  --sv-pink-900: #851651;
+
+  /* ── Surfaces ────────────────────────────────────────────────── */
+  --sv-bg-app:       #F8FAFC;
+  --sv-bg-surface:   #FFFFFF;
+  --sv-bg-tint-warm: #FFFAEB; /* help / guidance */
+  --sv-bg-tint-cool: #E9F5FF; /* tips / info */
+  --sv-overlay:      rgba(15,17,26,0.5);
+
+  /* ── Foreground semantics ────────────────────────────────────── */
+  --sv-fg-primary:   var(--sv-grey-700);  /* main text */
+  --sv-fg-secondary: var(--sv-grey-500);  /* labels, muted */
+  --sv-fg-tertiary:  var(--sv-grey-400);  /* hints, placeholder */
+  --sv-fg-disabled:  var(--sv-grey-300);
+  --sv-fg-inverse:   #FFFFFF;
+  --sv-fg-link:      var(--sv-brand-blue);
+
+  /* ── Borders ─────────────────────────────────────────────────── */
+  --sv-border:        var(--sv-grey-100);
+  --sv-border-strong: var(--sv-grey-200);
+  --sv-border-focus:  var(--sv-brand-blue);
+
+  /* ── Radii ───────────────────────────────────────────────────── */
+  --sv-radius-xs:   4px;
+  --sv-radius-sm:   6px;
+  --sv-radius-md:   8px;
+  --sv-radius-lg:   12px;
+  --sv-radius-xl:   16px;
+  --sv-radius-pill: 9999px;
+
+  /* ── Spacing (4px base; scale follows Figma) ─────────────────── */
+  --sv-space-1: 4px;   --sv-space-2: 8px;   --sv-space-3: 12px;
+  --sv-space-4: 16px;  --sv-space-5: 20px;  --sv-space-6: 24px;
+  --sv-space-7: 28px;
+  --sv-space-8: 32px;  --sv-space-10: 40px; --sv-space-12: 48px;
+  --sv-space-16: 64px; --sv-space-20: 80px; --sv-space-24: 96px;
+  --sv-space-32: 128px;
+
+  /* ── Elevation ───────────────────────────────────────────────── */
+  --sv-shadow-xs: 0 1px 2px rgba(16,24,40,0.05);
+  --sv-shadow-sm: 0 1px 2px rgba(11,23,51,0.05), 0 1px 3px rgba(11,23,51,0.05);
+  --sv-shadow-md: 0 4px 8px rgba(11,23,51,0.08), 0 1px 2px rgba(11,23,51,0.05);
+  --sv-shadow-lg: 0 12px 24px rgba(11,23,51,0.10), 0 4px 8px rgba(11,23,51,0.05);
+  --sv-focus-ring: 0 0 0 4px rgba(37,124,255,0.24);
+
+  /* ── Type ────────────────────────────────────────────────────── */
+  --sv-font-ui:      'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --sv-font-display: 'Inter Display', 'Inter', system-ui, sans-serif;
+  --sv-font-mono:    ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+
+  /* Type scale (px / line-height / weight) — matches Figma */
+  --sv-h1-size: 30px;  --sv-h1-lh: 38px;  --sv-h1-weight: 600;
+  --sv-h2-size: 24px;  --sv-h2-lh: 32px;  --sv-h2-weight: 600;
+  --sv-h3-size: 20px;  --sv-h3-lh: 28px;  --sv-h3-weight: 500;
+  --sv-h4-size: 16px;  --sv-h4-lh: 24px;  --sv-h4-weight: 600;
+  --sv-body-size: 14px;  --sv-body-lh: 20px;  --sv-body-weight: 400;
+  --sv-body2-size: 12px; --sv-body2-lh: 16px; --sv-body2-weight: 500; --sv-body2-tracking: 0.01em;
+  --sv-caption-size: 10px; --sv-caption-lh: 14px; --sv-caption-weight: 600; --sv-caption-tracking: 0.015em;
+}
+
+/* ── Base element styles ───────────────────────────────────────── */
+html, body {
+  font-family: var(--sv-font-ui);
+  font-size: var(--sv-body-size);
+  line-height: var(--sv-body-lh);
+  color: var(--sv-fg-primary);
+  background: var(--sv-bg-surface);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1, .sv-h1 { font-family: var(--sv-font-ui); font-size: var(--sv-h1-size); line-height: var(--sv-h1-lh); font-weight: var(--sv-h1-weight); color: var(--sv-grey-600); margin: 0; letter-spacing: -0.01em; }
+h2, .sv-h2 { font-family: var(--sv-font-ui); font-size: var(--sv-h2-size); line-height: var(--sv-h2-lh); font-weight: var(--sv-h2-weight); color: var(--sv-grey-700); margin: 0; }
+h3, .sv-h3 { font-family: var(--sv-font-ui); font-size: var(--sv-h3-size); line-height: var(--sv-h3-lh); font-weight: var(--sv-h3-weight); color: var(--sv-grey-700); margin: 0; }
+h4, .sv-h4 { font-family: var(--sv-font-ui); font-size: var(--sv-h4-size); line-height: var(--sv-h4-lh); font-weight: var(--sv-h4-weight); color: var(--sv-grey-700); margin: 0; }
+
+p, .sv-body { font-size: var(--sv-body-size); line-height: var(--sv-body-lh); color: var(--sv-fg-primary); margin: 0; }
+.sv-body-strong { font-weight: 600; }
+.sv-body2 { font-size: var(--sv-body2-size); line-height: var(--sv-body2-lh); font-weight: var(--sv-body2-weight); letter-spacing: var(--sv-body2-tracking); color: var(--sv-fg-secondary); }
+.sv-caption { font-size: var(--sv-caption-size); line-height: var(--sv-caption-lh); font-weight: var(--sv-caption-weight); letter-spacing: var(--sv-caption-tracking); text-transform: none; color: var(--sv-fg-secondary); }
+
+code, pre, .sv-mono { font-family: var(--sv-font-mono); font-size: 13px; }
+
+a { color: var(--sv-fg-link); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+hr { border: 0; border-top: 1px solid var(--sv-border); margin: var(--sv-space-4) 0; }
+
+*, *::before, *::after { box-sizing: border-box; }

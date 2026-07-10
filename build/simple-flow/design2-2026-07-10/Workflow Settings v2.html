@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Workflow Settings - Shopview</title>
+  <link rel="stylesheet" href="colors_and_type.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: var(--sv-bg-app);
+      font-family: var(--sv-font-ui);
+      color: var(--sv-fg-primary);
+      overflow-x: hidden;
+    }
+
+    /* Header */
+    .header {
+      background: white;
+      border-bottom: 1px solid var(--sv-border);
+      height: 64px;
+      display: flex;
+      align-items: center;
+      padding: 0 var(--sv-space-6);
+      gap: var(--sv-space-8);
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: var(--sv-space-2);
+      color: var(--sv-brand-blue);
+      font-weight: 600;
+    }
+
+    .logo img {
+      width: 32px;
+      height: 32px;
+    }
+
+    .main-nav {
+      display: flex;
+      gap: var(--sv-space-6);
+      flex: 1;
+    }
+
+    .main-nav a {
+      color: var(--sv-fg-primary);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 14px;
+      padding: var(--sv-space-2) 0;
+    }
+
+    .main-nav a:hover {
+      color: var(--sv-brand-blue);
+    }
+
+    .search-bar {
+      position: relative;
+      width: 280px;
+    }
+
+    .search-bar input {
+      width: 100%;
+      padding: var(--sv-space-2) var(--sv-space-3) var(--sv-space-2) 36px;
+      border: 1px solid var(--sv-border-strong);
+      border-radius: var(--sv-radius-md);
+      font-size: 14px;
+      background: var(--sv-grey-50);
+    }
+
+    .search-bar input::placeholder {
+      color: var(--sv-fg-tertiary);
+    }
+
+    .search-bar .search-icon {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--sv-fg-tertiary);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: var(--sv-space-4);
+    }
+
+    .avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--sv-grey-700);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      font-size: 14px;
+    }
+
+    /* Layout */
+    .layout {
+      display: flex;
+      margin-top: 64px;
+      min-height: calc(100vh - 64px);
+    }
+
+    /* Sidebar */
+    .sidebar {
+      width: 240px;
+      background: white;
+      border-right: 1px solid var(--sv-border);
+      padding: var(--sv-space-6) 0;
+      position: fixed;
+      left: 0;
+      top: 64px;
+      bottom: 0;
+      overflow-y: auto;
+    }
+
+    .sidebar-section {
+      margin-bottom: var(--sv-space-6);
+    }
+
+    .sidebar-title {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--sv-fg-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 0 var(--sv-space-4);
+      margin-bottom: var(--sv-space-2);
+      display: flex;
+      align-items: center;
+      gap: var(--sv-space-2);
+    }
+
+    .sidebar-link {
+      display: flex;
+      align-items: center;
+      gap: var(--sv-space-3);
+      padding: var(--sv-space-2) var(--sv-space-4);
+      color: var(--sv-fg-primary);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      transition: background 120ms ease-out;
+    }
+
+    .sidebar-link:hover {
+      background: var(--sv-grey-50);
+    }
+
+    .sidebar-link.active {
+      background: var(--sv-primary-50);
+      color: var(--sv-brand-blue);
+      font-weight: 600;
+    }
+
+    /* Main Content */
+    .main-content {
+      margin-left: 240px;
+      flex: 1;
+      padding: var(--sv-space-6);
+    }
+
+    /* Tabs */
+    .tabs {
+      display: flex;
+      gap: var(--sv-space-6);
+      border-bottom: 1px solid var(--sv-border);
+      margin-bottom: var(--sv-space-6);
+    }
+
+    .tab {
+      padding: var(--sv-space-3) 0;
+      color: var(--sv-fg-secondary);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -1px;
+      transition: all 120ms ease-out;
+    }
+
+    .tab:hover {
+      color: var(--sv-fg-primary);
+    }
+
+    .tab.active {
+      color: var(--sv-brand-blue);
+      border-bottom-color: var(--sv-brand-blue);
+      font-weight: 600;
+    }
+
+    /* Page Header */
+    .page-header {
+      margin-bottom: var(--sv-space-6);
+    }
+
+    .page-title {
+      font-size: 24px;
+      font-weight: 600;
+      color: var(--sv-grey-700);
+      margin-bottom: var(--sv-space-2);
+    }
+
+    .page-description {
+      font-size: 14px;
+      color: var(--sv-fg-secondary);
+    }
+
+    /* Settings Cards */
+    .settings-card {
+      background: white;
+      border: 1px solid var(--sv-border);
+      border-radius: var(--sv-radius-lg);
+      padding: var(--sv-space-6);
+      margin-bottom: var(--sv-space-5);
+      box-shadow: var(--sv-shadow-xs);
+    }
+
+    .setting-row {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: var(--sv-space-6);
+      padding: var(--sv-space-5) 0;
+    }
+
+    .setting-row:not(:last-child) {
+      border-bottom: 1px solid var(--sv-border);
+    }
+
+    .setting-row:first-child {
+      padding-top: 0;
+    }
+
+    .setting-row:last-child {
+      padding-bottom: 0;
+    }
+
+    .setting-info {
+      flex: 1;
+    }
+
+    .setting-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--sv-fg-primary);
+      margin-bottom: var(--sv-space-1);
+    }
+
+    .setting-description {
+      font-size: 14px;
+      color: var(--sv-fg-secondary);
+      line-height: 1.5;
+    }
+
+    .setting-control {
+      flex-shrink: 0;
+    }
+
+    /* Subsection within card */
+    .setting-subsection {
+      margin-top: var(--sv-space-4);
+      padding: var(--sv-space-4);
+      background: var(--sv-grey-50);
+      border-radius: var(--sv-radius-md);
+      border: 1px solid var(--sv-border);
+    }
+
+    .subsection-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--sv-fg-primary);
+      margin-bottom: var(--sv-space-3);
+    }
+
+    .subsection-description {
+      font-size: 13px;
+      color: var(--sv-fg-secondary);
+      margin-bottom: var(--sv-space-4);
+      line-height: 1.5;
+    }
+
+    .subsection-options {
+      display: flex;
+      flex-direction: column;
+      gap: var(--sv-space-3);
+    }
+
+    .option-label {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--sv-fg-primary);
+      margin-bottom: var(--sv-space-1);
+    }
+
+    .option-desc {
+      font-size: 12px;
+      color: var(--sv-fg-secondary);
+      margin-top: var(--sv-space-1);
+    }
+
+    /* Toggle Switch */
+    .toggle-switch {
+      position: relative;
+      width: 44px;
+      height: 24px;
+      cursor: pointer;
+    }
+
+    .toggle-switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .toggle-slider {
+      position: absolute;
+      inset: 0;
+      background: var(--sv-grey-300);
+      border-radius: 12px;
+      transition: all 160ms ease-out;
+    }
+
+    .toggle-slider:before {
+      content: '';
+      position: absolute;
+      height: 18px;
+      width: 18px;
+      left: 3px;
+      top: 3px;
+      background: white;
+      border-radius: 50%;
+      transition: all 160ms ease-out;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+    }
+
+    .toggle-switch input:checked + .toggle-slider {
+      background: var(--sv-brand-blue);
+    }
+
+    .toggle-switch input:checked + .toggle-slider:before {
+      transform: translateX(20px);
+    }
+
+    .toggle-switch:hover .toggle-slider {
+      background: var(--sv-grey-400);
+    }
+
+    .toggle-switch input:checked:hover + .toggle-slider {
+      background: var(--sv-primary-600);
+    }
+
+    /* Radio buttons */
+    .radio-group {
+      display: flex;
+      flex-direction: column;
+      gap: var(--sv-space-3);
+    }
+
+    .radio-option {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--sv-space-3);
+      cursor: pointer;
+    }
+
+    .radio-option input[type="radio"] {
+      width: 20px;
+      height: 20px;
+      margin: 0;
+      cursor: pointer;
+      accent-color: var(--sv-brand-blue);
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .radio-label {
+      flex: 1;
+    }
+
+    .radio-label-text {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--sv-fg-primary);
+      display: block;
+    }
+
+    .radio-label-desc {
+      font-size: 13px;
+      color: var(--sv-fg-secondary);
+      margin-top: 2px;
+      display: block;
+    }
+
+    /* Save button */
+    .save-button-container {
+      position: fixed;
+      bottom: 0;
+      right: 0;
+      padding: var(--sv-space-4) var(--sv-space-6);
+      background: white;
+      border-top: 1px solid var(--sv-border);
+      display: flex;
+      justify-content: flex-end;
+      left: 240px;
+      z-index: 50;
+    }
+
+    .btn-primary {
+      background: var(--sv-brand-blue);
+      color: white;
+      border: none;
+      border-radius: var(--sv-radius-md);
+      padding: 10px 20px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 120ms ease-out;
+      box-shadow: var(--sv-shadow-xs);
+    }
+
+    .btn-primary:hover {
+      background: var(--sv-primary-700);
+      box-shadow: var(--sv-shadow-sm);
+    }
+
+    .btn-primary:active {
+      background: var(--sv-primary-800);
+      box-shadow: none;
+    }
+
+    /* Badge for ON/OFF */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 2px 8px;
+      border-radius: var(--sv-radius-pill);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.01em;
+    }
+
+    .badge.on {
+      background: var(--sv-success-fill);
+      color: var(--sv-success-text);
+    }
+
+    .badge.off {
+      background: var(--sv-grey-100);
+      color: var(--sv-fg-secondary);
+    }
+
+    /* Disabled state for subsections */
+    .setting-subsection.disabled {
+      opacity: 0.5;
+      pointer-events: none;
+    }
+
+    /* Toggle row inside subsection */
+    .subsection-toggle-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--sv-space-4);
+      padding: var(--sv-space-3) 0;
+    }
+
+    .subsection-toggle-row:not(:last-child) {
+      border-bottom: 1px solid var(--sv-border);
+      padding-bottom: var(--sv-space-3);
+      margin-bottom: var(--sv-space-3);
+    }
+
+    .subsection-toggle-info {
+      flex: 1;
+    }
+
+    .subsection-toggle-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--sv-fg-primary);
+      margin-bottom: var(--sv-space-1);
+    }
+
+    .subsection-toggle-desc {
+      font-size: 13px;
+      color: var(--sv-fg-secondary);
+      line-height: 1.5;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="logo">
+      <img src="assets/symbol-primary.svg" alt="Shopview">
+    </div>
+    <nav class="main-nav">
+      <a href="#">Work Orders</a>
+      <a href="#">Schedule</a>
+      <a href="#">Customers</a>
+      <a href="#">Parts</a>
+      <a href="#">Reports</a>
+    </nav>
+    <div class="search-bar">
+      <i data-lucide="search" class="search-icon" width="16" height="16"></i>
+      <input type="text" placeholder="Search">
+    </div>
+    <div class="header-actions">
+      <i data-lucide="bell" width="20" height="20"></i>
+      <div class="avatar">OD</div>
+    </div>
+  </header>
+
+  <!-- Layout -->
+  <div class="layout">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-section">
+        <div class="sidebar-title">
+          DEV TOOLS
+          <i data-lucide="info" width="12" height="12"></i>
+        </div>
+        <a href="#" class="sidebar-link">
+          <i data-lucide="flag" width="16" height="16"></i>
+          Feature Flags
+        </a>
+      </div>
+
+      <div class="sidebar-section">
+        <div class="sidebar-title">SETTINGS</div>
+        <a href="#" class="sidebar-link active">
+          <i data-lucide="settings" width="16" height="16"></i>
+          Settings
+        </a>
+        <a href="#" class="sidebar-link">
+          <i data-lucide="users" width="16" height="16"></i>
+          Staff
+        </a>
+        <a href="#" class="sidebar-link">
+          <i data-lucide="map-pin" width="16" height="16"></i>
+          Locations
+        </a>
+        <a href="#" class="sidebar-link">
+          <i data-lucide="target" width="16" height="16"></i>
+          IBS Remit to
+        </a>
+        <a href="#" class="sidebar-link">
+          <i data-lucide="building-2" width="16" height="16"></i>
+          Departments
+        </a>
+        <a href="#" class="sidebar-link">
+          <i data-lucide="dollar-sign" width="16" height="16"></i>
+          Taxes
+        </a>
+      </div>
+
+      <div class="sidebar-section">
+        <div class="sidebar-title">SERVICE</div>
+        <a href="#" class="sidebar-link">
+          <i data-lucide="clock" width="16" height="16"></i>
+          Labor Rates
+        </a>
+        <a href="#" class="sidebar-link">
+          <i data-lucide="list-checks" width="16" height="16"></i>
+          Canned Lines
+        </a>
+        <a href="#" class="sidebar-link">
+          <i data-lucide="truck" width="16" height="16"></i>
+          Asset Types
+        </a>
+      </div>
+
+      <div class="sidebar-section">
+        <div class="sidebar-title">PARTS</div>
+        <a href="#" class="sidebar-link">
+          <i data-lucide="tag" width="16" height="16"></i>
+          Pricing
+        </a>
+        <a href="#" class="sidebar-link">
+          <i data-lucide="package" width="16" height="16"></i>
+          Bin Locations
+        </a>
+        <a href="#" class="sidebar-link">
+          <i data-lucide="grid-3x3" width="16" height="16"></i>
+          Categories
+        </a>
+      </div>
+
+      <div class="sidebar-section">
+        <div class="sidebar-title">INTEGRATIONS</div>
+      </div>
+
+      <div class="sidebar-section">
+        <div class="sidebar-title">FINANCE</div>
+        <a href="#" class="sidebar-link">
+          <i data-lucide="credit-card" width="16" height="16"></i>
+          Payment Methods
+        </a>
+      </div>
+
+      <div class="sidebar-section">
+        <div class="sidebar-title">IMPORTS</div>
+        <a href="#" class="sidebar-link">
+          <i data-lucide="user" width="16" height="16"></i>
+          Contacts
+        </a>
+        <a href="#" class="sidebar-link">
+          <i data-lucide="truck" width="16" height="16"></i>
+          Assets
+        </a>
+        <a href="#" class="sidebar-link">
+          <i data-lucide="building" width="16" height="16"></i>
+          Vendors
+        </a>
+        <a href="#" class="sidebar-link">
+          <i data-lucide="package" width="16" height="16"></i>
+          Inventory
+        </a>
+        <a href="#" class="sidebar-link">
+          <i data-lucide="file-text" width="16" height="16"></i>
+          Invoices
+        </a>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Tabs -->
+      <div class="tabs">
+        <a href="#" class="tab">Organization</a>
+        <a href="#" class="tab">Invoice</a>
+        <a href="#" class="tab active">Workflow</a>
+      </div>
+
+      <!-- Page Header -->
+      <div class="page-header">
+        <h1 class="page-title">Workflow</h1>
+        <p class="page-description">Configure how advisors complete work orders and which fields are required.</p>
+      </div>
+
+      <!-- Settings Cards -->
+      
+      <!-- Auto-approve lines -->
+      <div class="settings-card">
+        <div class="setting-row">
+          <div class="setting-info">
+            <div class="setting-title">Auto-approve lines</div>
+            <div class="setting-description">New lines are approved automatically when they're added — no separate Approve step. Techs can start work immediately and progress shows on the WO.</div>
+          </div>
+          <div class="setting-control">
+            <label class="toggle-switch">
+              <input type="checkbox" checked>
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Create purchase orders -->
+      <div class="settings-card">
+        <div class="setting-row">
+          <div class="setting-info">
+            <div class="setting-title">Create purchase orders</div>
+            <div class="setting-description">When a work order with vendor parts is completed, purchase orders are created automatically.</div>
+            
+            <!-- Subsection for ON/OFF toggle -->
+            <div class="setting-subsection" id="po-creation-section">
+              <div class="subsection-toggle-row">
+                <div class="subsection-toggle-info">
+                  <div class="subsection-toggle-title">POs are created on completion</div>
+                  <div class="subsection-toggle-desc">You can enter vendor invoice numbers during or after the process.</div>
+                </div>
+                <label class="toggle-switch">
+                  <input type="checkbox" id="po-creation-toggle" checked onchange="handlePOToggle()">
+                  <span class="toggle-slider"></span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Subsection for vendor invoice number -->
+            <div class="setting-subsection" id="vendor-invoice-section">
+              <div class="subsection-toggle-row">
+                <div class="subsection-toggle-info">
+                  <div class="subsection-toggle-title">Vendor invoice number required</div>
+                  <div class="subsection-toggle-desc">Advisors must enter vendor invoice number before completing WO.</div>
+                </div>
+                <label class="toggle-switch">
+                  <input type="checkbox" id="vendor-invoice-toggle">
+                  <span class="toggle-slider"></span>
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="setting-control">
+            <label class="toggle-switch">
+              <input type="checkbox" checked id="main-po-toggle" onchange="handleMainPOToggle()">
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Require Tech Story -->
+      <div class="settings-card">
+        <div class="setting-row">
+          <div class="setting-info">
+            <div class="setting-title">Require Tech Story</div>
+            <div class="setting-description">Tech story will be a required field before a line can be completed on a work order</div>
+          </div>
+          <div class="setting-control">
+            <label class="toggle-switch">
+              <input type="checkbox">
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Require Mileage -->
+      <div class="settings-card">
+        <div class="setting-row">
+          <div class="setting-info">
+            <div class="setting-title">Require Mileage</div>
+            <div class="setting-description">Mileage will be a required field before a line can be completed on a work order</div>
+          </div>
+          <div class="setting-control">
+            <label class="toggle-switch">
+              <input type="checkbox">
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Require Engine Hours -->
+      <div class="settings-card">
+        <div class="setting-row">
+          <div class="setting-info">
+            <div class="setting-title">Require Engine Hours</div>
+            <div class="setting-description">Engine hours will be a required field before a line can be completed on a work order</div>
+          </div>
+          <div class="setting-control">
+            <label class="toggle-switch">
+              <input type="checkbox">
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Automatically Pick Inventory Parts -->
+      <div class="settings-card">
+        <div class="setting-row">
+          <div class="setting-info">
+            <div class="setting-title">Automatically Pick Inventory Parts</div>
+            <div class="setting-description">Inventory and found parts will automatically skip the pick step and go straight to staged when authorized</div>
+          </div>
+          <div class="setting-control">
+            <label class="toggle-switch">
+              <input type="checkbox" checked>
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Spacer for fixed button -->
+      <div style="height: 80px;"></div>
+    </main>
+  </div>
+
+  <!-- Save Button -->
+  <div class="save-button-container">
+    <button class="btn-primary">Save Settings</button>
+  </div>
+
+  <script>
+    // Initialize Lucide icons
+    lucide.createIcons();
+
+    // Handle main PO toggle - enables/disables the entire section
+    function handleMainPOToggle() {
+      const mainToggle = document.getElementById('main-po-toggle');
+      const poCreationSection = document.getElementById('po-creation-section');
+      const vendorInvoiceSection = document.getElementById('vendor-invoice-section');
+      const poCreationToggle = document.getElementById('po-creation-toggle');
+      
+      if (!mainToggle.checked) {
+        // Disable both subsections when main toggle is OFF
+        poCreationSection.classList.add('disabled');
+        vendorInvoiceSection.classList.add('disabled');
+      } else {
+        // Enable sections when main toggle is ON
+        poCreationSection.classList.remove('disabled');
+        // Check if PO creation toggle is ON before enabling vendor invoice
+        if (poCreationToggle.checked) {
+          vendorInvoiceSection.classList.remove('disabled');
+        }
+      }
+    }
+
+    // Handle PO creation toggle - enables/disables vendor invoice section
+    function handlePOToggle() {
+      const poCreationToggle = document.getElementById('po-creation-toggle');
+      const vendorInvoiceSection = document.getElementById('vendor-invoice-section');
+      const mainToggle = document.getElementById('main-po-toggle');
+      
+      if (!poCreationToggle.checked || !mainToggle.checked) {
+        // Disable vendor invoice section when PO creation is OFF
+        vendorInvoiceSection.classList.add('disabled');
+      } else {
+        // Enable vendor invoice section when PO creation is ON
+        vendorInvoiceSection.classList.remove('disabled');
+      }
+    }
+  </script>
+</body>
+</html>
