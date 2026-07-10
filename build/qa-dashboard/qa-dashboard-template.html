@@ -57,6 +57,15 @@
   .stat .value { font-size:30px; font-weight:650; line-height:1.15; margin-top:2px; }
   .stat .hint { color:var(--muted); font-size:12px; margin-top:2px; }
 
+  /* epic testing-progress bar */
+  .prog-head { display:flex; justify-content:space-between; align-items:flex-start; gap:16px; margin-bottom:10px; }
+  .prog-pct { font-size:34px; font-weight:650; line-height:1; color:var(--blue); white-space:nowrap; font-variant-numeric:tabular-nums; }
+  .prog-track { height:22px; border-radius:6px; background:var(--track); overflow:hidden; display:flex; }
+  .prog-fill { height:100%; background:var(--blue); border-radius:6px 0 0 6px; }
+  .prog-legend { display:flex; gap:18px; flex-wrap:wrap; margin-top:8px; font-size:12.5px; color:var(--ink-2); }
+  .prog-legend .k { display:inline-flex; align-items:center; gap:6px; }
+  .prog-legend .sw { width:10px; height:10px; border-radius:3px; display:inline-block; }
+
   .rows { display:grid; gap:7px; }
   .row { display:grid; grid-template-columns:150px 1fr 40px; gap:10px; align-items:center; border-radius:4px; }
   .row:hover { background:color-mix(in srgb, var(--track) 60%, transparent); }
@@ -167,6 +176,20 @@
   <div class="eyebrow">Snapshot for this selection</div>
   <div class="cards kpis" id="kpis"></div>
 
+  <div class="eyebrow">QA testing progress for this epic</div>
+  <div class="card">
+    <div class="prog-head">
+      <div><h2 style="margin:0">QA Testing Coverage <span style="font-weight:400;color:var(--muted)">· % of this epic's tickets QA has finished testing</span></h2>
+        <p class="note" id="prog-note" style="margin:4px 0 0"></p></div>
+      <div class="prog-pct" id="prog-pct"></div>
+    </div>
+    <div class="prog-track"><span class="prog-fill" id="prog-fill"></span></div>
+    <div class="prog-legend" id="prog-legend"></div>
+    <p class="note" style="margin:10px 0 0;color:var(--serious)">⚠ This is <b>QA testing coverage</b> — how many
+    tickets QA has worked through — <b>not release readiness</b>. It does not judge bug severity, whether fixes
+    are verified in production, or whether the epic is safe to ship.</p>
+  </div>
+
   <div class="eyebrow">⏳ In progress right now — who is holding which ticket, and since when</div>
   <div class="card">
     <p class="note">Read from the <code>InProgress_&lt;name&gt;</code> labels. "Since" = when that label was
@@ -180,7 +203,8 @@
     <p class="note">What each QA person did <b>yesterday (9 Jul)</b> and <b>today (10 Jul)</b>, Pakistan time.
     <b>Created</b> = new bugs/defects filed · <b>Commented</b> = tickets they left a comment on (testing notes)
     · <b>Rejected</b> = sent back to dev · <b>Done</b> = moved to Done/Ready&nbsp;for&nbsp;Production ·
-    <b>Reassigned</b> = changed the assignee. Independent of the date filter above.</p>
+    <b>Reassigned</b> = changed the assignee. Independent of the date filter above.
+    <b>Hover any number ≤ 10</b> to see the exact ticket keys (e.g. SV-5505).</p>
     <div class="mwrap"><table class="matrix" id="activity"></table></div>
   </div>
 
@@ -411,7 +435,29 @@ function render(){
   rejected.forEach(t=>{ (t.people.length?t.people:["(unattributed)"]).forEach(p=>queueMix["⚠ rejected: "+p]=(queueMix["⚠ rejected: "+p]||0)+1); });
   bars($("cqueue"), queueMix, "b");
 
-  renderInprog(); renderActivity(); renderPrimary(); renderMatrix(); renderTable();
+  renderProgress(); renderInprog(); renderActivity(); renderPrimary(); renderMatrix(); renderTable();
+}
+
+function renderProgress(){
+  // QA testing coverage for the epic scope: how many of this epic's testable tickets QA has finished
+  // (reached the Done category), out of everything in scope. NOT release readiness.
+  const scope = T.filter(matchBase);
+  const total = scope.length;
+  const done = scope.filter(t => t.cat === "Done").length;
+  const openInTest = scope.filter(t => TESTING.has(t.st)).length;
+  const waiting = scope.filter(t => t.st === "Ready for QA").length;
+  const remaining = total - done;
+  const pct = total ? Math.round(done/total*100) : 0;
+  const label = state.e ? epShort(state.e==="NONE"?null:state.e) : (state.q || "all QA tickets");
+  $("prog-pct").textContent = pct + "%";
+  $("prog-fill").style.width = pct + "%";
+  $("prog-note").innerHTML = `<b>${done}</b> of <b>${total}</b> tickets in <b>${esc(label)}</b> have finished QA (reached Done). `
+    + `${remaining} still in the pipeline.`;
+  $("prog-legend").innerHTML = total ? `
+    <span class="k"><span class="sw" style="background:var(--blue)"></span>QA finished (Done): <b>&nbsp;${done}</b></span>
+    <span class="k"><span class="sw" style="background:var(--track);border:1px solid var(--ring)"></span>Not yet finished: <b>&nbsp;${remaining}</b></span>
+    <span class="k">· in testing now: ${openInTest}</span>
+    <span class="k">· waiting in queue: ${waiting}</span>` : `<span class="k" style="color:var(--muted)">No tickets in this selection.</span>`;
 }
 
 function renderInprog(){
@@ -441,16 +487,22 @@ function renderActivity(){
   let h = `<tr><th style="text-align:left" rowspan="2">QA member</th>`
     + COLS.map(([,l])=>`<th colspan="2" style="text-align:center">${l}</th>`).join("")
     + `</tr><tr>` + COLS.map(()=>`<th>Yest</th><th>Today</th>`).join("") + `</tr>`;
-  // column maxima for shading
-  const mx = {}; COLS.forEach(([k])=>{ mx[k]=Math.max(1,...names.map(p=>Math.max(...(ACT.people[p][k]||[0,0])))); });
+  // each cell is a list of ticket keys → count = length; tooltip shows keys when count ≤ 10
+  const len = v => Array.isArray(v) ? v.length : (v||0);
+  const keysOf = v => Array.isArray(v) ? v : [];
+  const mx = {}; COLS.forEach(([k])=>{ mx[k]=Math.max(1,...names.map(p=>Math.max(len(ACT.people[p][k]?.[0]),len(ACT.people[p][k]?.[1])))); });
   names.forEach(p => {
     h += `<tr><td class="ep" style="${QA.includes(p)?"":"color:var(--muted)"}">${esc(p)}</td>`;
     COLS.forEach(([k]) => {
-      const [y,t] = ACT.people[p][k] || [0,0];
-      const cell = (v,accent) => v
-        ? `<span class="cell" style="background:rgba(var(--cellmax),${(0.12+0.55*v/mx[k]).toFixed(2)})">${v}</span>`
-        : "·";
-      h += `<td>${cell(y)}</td><td>${cell(t)}</td>`;
+      const pair = ACT.people[p][k] || [[],[]];
+      const cell = (v) => {
+        const n = len(v);
+        if (!n) return "·";
+        const tip = (n<=10) ? ` title="${esc(keysOf(v).join(", "))}" style="cursor:help;background:rgba(var(--cellmax),${(0.12+0.55*n/mx[k]).toFixed(2)})"`
+                            : ` title="${n} tickets (too many to list)" style="background:rgba(var(--cellmax),${(0.12+0.55*n/mx[k]).toFixed(2)})"`;
+        return `<span class="cell"${tip}>${n}</span>`;
+      };
+      h += `<td>${cell(pair[0])}</td><td>${cell(pair[1])}</td>`;
     });
     h += `</tr>`;
   });
