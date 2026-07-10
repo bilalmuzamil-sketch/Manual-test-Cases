@@ -179,15 +179,24 @@
   <div class="eyebrow">QA testing progress for this epic</div>
   <div class="card">
     <div class="prog-head">
-      <div><h2 style="margin:0">QA Testing Coverage <span style="font-weight:400;color:var(--muted)">· % of this epic's tickets QA has finished testing</span></h2>
+      <div><h2 style="margin:0">QA Testing Coverage <span style="font-weight:400;color:var(--muted)">· % of this epic's reported bugs/defects QA has finished testing</span></h2>
         <p class="note" id="prog-note" style="margin:4px 0 0"></p></div>
       <div class="prog-pct" id="prog-pct"></div>
     </div>
     <div class="prog-track"><span class="prog-fill" id="prog-fill"></span></div>
     <div class="prog-legend" id="prog-legend"></div>
-    <p class="note" style="margin:10px 0 0;color:var(--serious)">⚠ This is <b>QA testing coverage</b> — how many
-    tickets QA has worked through — <b>not release readiness</b>. It does not judge bug severity, whether fixes
-    are verified in production, or whether the epic is safe to ship.</p>
+    <p class="note" style="margin:10px 0 0;color:var(--serious)">⚠ This is <b>QA testing coverage of bugs/defects</b> —
+    how many reported defects QA has worked through — <b>not release readiness</b>. It excludes Stories (see the
+    Story Completion bar below), and does not judge bug severity or whether fixes are verified in production.</p>
+  </div>
+  <div class="card" style="margin-top:14px">
+    <div class="prog-head">
+      <div><h2 style="margin:0">Story Completion <span style="font-weight:400;color:var(--muted)">· % of this epic's stories that are Done</span></h2>
+        <p class="note" id="story-note" style="margin:4px 0 0"></p></div>
+      <div class="prog-pct" id="story-pct" style="color:var(--aqua)"></div>
+    </div>
+    <div class="prog-track"><span class="prog-fill" id="story-fill" style="background:var(--aqua)"></span></div>
+    <div class="prog-legend" id="story-legend"></div>
   </div>
 
   <div class="eyebrow">⏳ In progress right now — who is holding which ticket, and since when</div>
@@ -435,13 +444,14 @@ function render(){
   rejected.forEach(t=>{ (t.people.length?t.people:["(unattributed)"]).forEach(p=>queueMix["⚠ rejected: "+p]=(queueMix["⚠ rejected: "+p]||0)+1); });
   bars($("cqueue"), queueMix, "b");
 
-  renderProgress(); renderInprog(); renderActivity(); renderPrimary(); renderMatrix(); renderTable();
+  renderProgress(); renderStoryProgress(); renderInprog(); renderActivity(); renderPrimary(); renderMatrix(); renderTable();
 }
 
+const DEFECT_TYPES = new Set(["Bug","Story Defect"]);
 function renderProgress(){
-  // QA testing coverage for the epic scope: how many of this epic's testable tickets QA has finished
-  // (reached the Done category), out of everything in scope. NOT release readiness.
-  const scope = T.filter(matchBase);
+  // QA testing coverage = of the BUGS/DEFECTS reported for this epic (since its start date),
+  // how many QA has finished (reached Done). Stories are excluded (they have their own bar).
+  const scope = T.filter(t => matchBase(t) && DEFECT_TYPES.has(t.ty));
   const total = scope.length;
   const done = scope.filter(t => t.cat === "Done").length;
   const openInTest = scope.filter(t => TESTING.has(t.st)).length;
@@ -449,15 +459,32 @@ function renderProgress(){
   const remaining = total - done;
   const pct = total ? Math.round(done/total*100) : 0;
   const label = state.e ? epShort(state.e==="NONE"?null:state.e) : (state.q || "all QA tickets");
+  const span = state.from===state.to ? fmtShort(state.from) : `${fmtShort(state.from)} – ${fmtShort(state.to)}`;
   $("prog-pct").textContent = pct + "%";
   $("prog-fill").style.width = pct + "%";
-  $("prog-note").innerHTML = `<b>${done}</b> of <b>${total}</b> tickets in <b>${esc(label)}</b> have finished QA (reached Done). `
-    + `${remaining} still in the pipeline.`;
+  $("prog-note").innerHTML = `<b>${done}</b> of <b>${total}</b> bugs/defects reported for <b>${esc(label)}</b> `
+    + `(${span}) have finished QA (reached Done). ${remaining} still in the pipeline.`;
   $("prog-legend").innerHTML = total ? `
     <span class="k"><span class="sw" style="background:var(--blue)"></span>QA finished (Done): <b>&nbsp;${done}</b></span>
     <span class="k"><span class="sw" style="background:var(--track);border:1px solid var(--ring)"></span>Not yet finished: <b>&nbsp;${remaining}</b></span>
     <span class="k">· in testing now: ${openInTest}</span>
-    <span class="k">· waiting in queue: ${waiting}</span>` : `<span class="k" style="color:var(--muted)">No tickets in this selection.</span>`;
+    <span class="k">· waiting in queue: ${waiting}</span>` : `<span class="k" style="color:var(--muted)">No bugs/defects in this selection.</span>`;
+}
+function renderStoryProgress(){
+  // Story completion = of the STORIES in this epic, how many are Done. Separate from defect testing.
+  const scope = T.filter(t => matchBase(t) && t.ty === "Story");
+  const total = scope.length;
+  const done = scope.filter(t => t.cat === "Done").length;
+  const pct = total ? Math.round(done/total*100) : 0;
+  const label = state.e ? epShort(state.e==="NONE"?null:state.e) : (state.q || "this selection");
+  $("story-pct").textContent = pct + "%";
+  $("story-fill").style.width = pct + "%";
+  $("story-note").innerHTML = total
+    ? `<b>${done}</b> of <b>${total}</b> stories in <b>${esc(label)}</b> are Done. ${total-done} still open.`
+    : `No stories in <b>${esc(label)}</b>.`;
+  $("story-legend").innerHTML = total ? `
+    <span class="k"><span class="sw" style="background:var(--aqua)"></span>Stories Done: <b>&nbsp;${done}</b></span>
+    <span class="k"><span class="sw" style="background:var(--track);border:1px solid var(--ring)"></span>Open: <b>&nbsp;${total-done}</b></span>` : "";
 }
 
 function renderInprog(){
