@@ -917,8 +917,8 @@
    "4. Sell-price-only parts were ordered to waiting-to-receive, so they appear in the receive round-trip and are not left in 'requested'."
   ],
   "design_ref": "WO Review Flow.html; Receive Vendor Parts - v2.html",
-  "viu_status": "VIU-Pending",
-  "notes": "The disabled-CTA state was verified; the full receive round-trip was not driven (needs a parts-receive walk). Needs live verification. || [V2.4 2026-07-08] S4-R1: sell-price-only parts ordered too -> present in the receive round-trip.",
+  "viu_status": "VIU-Verified",
+  "notes": "The disabled-CTA state was verified; the full receive round-trip was not driven (needs a parts-receive walk). Needs live verification. || [V2.4 2026-07-08] S4-R1: sell-price-only parts ordered too -> present in the receive round-trip. || [FRESH VIU 2026-07-10 sv7301] VERIFIED via Bulk Receive pipeline (BUG-11 NOT reproduced). Received deliverable WO PO S-15797 via /bulk-receive (POST /api/orders/receive-requested-parts 200 + /api/inventory/orders/receive-view 200 -> Delivery created, order fulfilled). With requireVendorInvoiceNumber=ON and all parts received, the completion wizard showed NO 'waiting to receive' step and Complete proceeded to Success (S3-15797, invoice-ready draft, total $84). NOTE per OBS-5: the receive surface is the consolidated /bulk-receive page (received there rather than an in-wizard modal round-trip); the 'enables Complete once all received' outcome is confirmed.",
   "api_related": false
  },
  {

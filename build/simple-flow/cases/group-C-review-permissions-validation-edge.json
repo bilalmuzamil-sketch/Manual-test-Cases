@@ -873,8 +873,8 @@
    "2. Once an invoice number is entered, receiving is allowed."
   ],
   "design_ref": "requirements §4 / S4-R5",
-  "viu_status": "VIU-Pending",
-  "notes": "Not driven in VIU. Needs live verification.",
+  "viu_status": "VIU-Verified",
+  "notes": "Not driven in VIU. Needs live verification. || [FRESH VIU 2026-07-10 sv7301] VERIFIED. Deliverable WO PO S-15797 (vendor Aabridge Beverages) on /bulk-receive: button_receive_po DISABLED with no vendor invoice # (receive_all also disabled), ENABLED once invoice # entered. Required-invoice receive gate enforced on the built Bulk Receive surface. Supersedes BATCH-6 BUG-11 block (receive pipeline works: POST /api/orders/receive-requested-parts 200).",
   "api_related": false
  },
  {
@@ -900,8 +900,8 @@
    "3. Receiving succeeds only with both."
   ],
   "design_ref": "requirements S12-R2 / S10",
-  "viu_status": "VIU-Pending",
-  "notes": "Not driven in VIU. Needs live verification.",
+  "viu_status": "VIU-Verified",
+  "notes": "Not driven in VIU. Needs live verification. || [FRESH VIU 2026-07-10 sv7301] VERIFIED. Vendor-missing WO PO S-15798 on /bulk-receive: receive DISABLED while vendorMissing (no vendor); still DISABLED after assign-vendor (POST /api/orders/{id}/assign-vendor 200) while the part number is missing; ENABLED only once vendor + PN + cost + vendor invoice # are all present. Cannot receive without BOTH a vendor and a part number.",
   "api_related": false
  },
  {

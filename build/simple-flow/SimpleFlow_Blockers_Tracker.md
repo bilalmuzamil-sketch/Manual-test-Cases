@@ -9,9 +9,9 @@
 
 | Blocker category | Count | Owner |
 |---|---:|---|
-| READY (VIU-Verified) | 106 | — (ready to upload) |
+| READY (VIU-Verified) | 111 | — (ready to upload) |
 | BLOCKED — DEV NOT BUILT | 0 | Dev team |
-| BLOCKED — VIU PENDING (QA) | 39 | QA |
+| BLOCKED — VIU PENDING (QA) | 34 | QA |
 | BLOCKED — MILOS ANSWER | 13 | Milos (PO) |
 | BLOCKED — BUG/RULING | 4 | Dev / PO ruling |
 | **TOTAL** | **162** | |
@@ -26,14 +26,14 @@
 | VIU sub-bucket | Count | Meaning |
 |---|---:|---|
 | reachable-now | 2 | admin+tech + normal data; just needs another VIU pass (no new inputs). |
-| needs-data | 37 | needs a data state not seedable via the app (see per-case detail). |
+| needs-data | 32 | needs a data state not seedable via the app (see per-case detail). |
 | needs-account | 0 | needs a role account we don't have (see per-case detail). |
-| **TOTAL VIU PENDING (QA)** | **39** | |
+| **TOTAL VIU PENDING (QA)** | **34** | |
 
 ## WHAT TO SEND ME NEXT (to unblock each batch)
 
 - **Milos's answers to the 11 Open Questions** → unblocks 13 cases (all the MILOS-ANSWER rows). Send the filled-in OpenQuestions-for-Milos sheet.
-- **Fresh QA cookies for sv7301 (admin + tech) + seeded test data** → unblocks the bulk of the 39 VIU-PENDING (QA) cases (cores, receiving, vendor, validation round-trips).
+- **Fresh QA cookies for sv7301 (admin + tech) + seeded test data** → unblocks the bulk of the 34 VIU-PENDING (QA) cases (cores, receiving, vendor, validation round-trips).
 - **A 2nd/3rd role account (Office, Service Manager, Foreman) — some WITHOUT 'See Financial Data'** → unblocks SF-PERM-09 and SF-PERM-10 (per-role completion + vendorless-add gate).
 - **A dev/PO ruling on FE-only BE enforcement + the missing reviewer!=completer rule (resolve SV-8183 'BE enforces' vs SV-7864 atom-collapse)** → finalizes the 4 BUG/RULING cases.
 
@@ -74,7 +74,7 @@
 | SF-COMP-16 | Completion — PO + Optional Invoice (Story 3) | Verify the optional-invoice modal collects required vehicle fields (mileage, VIN, engine hours) when missing | VIU-Verified | READY | READY (VIU-Verified) | — | None — VIU-verified; uploadable now. | S3-R3 | — |  |
 | SF-COMP-17 | Completion — PO + Optional Invoice (Story 3) | Verify the optional-invoice flow reaches the Success screen with WO number and total | VIU-Verified | READY | READY (VIU-Verified) | — | None — VIU-verified; uploadable now. | S3-R8 | — |  |
 | SF-COMP-18 | Completion — PO + Required Invoice (Story 4) | Verify the required-invoice wizard disables Complete until parts are received and offers no skip option | VIU-Verified | READY | READY (VIU-Verified) | — | None — VIU-verified; uploadable now. | S4-R4 | — |  |
-| SF-COMP-19 | Completion — PO + Required Invoice (Story 4) | Verify the required-invoice receive round-trip returns to the modal and enables Complete once all received | VIU-Pending | BLOCKED | BLOCKED — VIU PENDING (QA) | QA (needs cookies+seed data) | QA VIU: seed the specific completion configuration and drive the wizard to Success. | S4-R5 / S4-R7 | needs-data | BATCH 6: deliverable WO PO achieved, but the receive round-trip is blocked by BUG-11 (POST /api/inventory/orders/accept returns 500 for a WO PO). |
+| SF-COMP-19 | Completion — PO + Required Invoice (Story 4) | Verify the required-invoice receive round-trip returns to the modal and enables Complete once all received | VIU-Verified | READY | READY (VIU-Verified) | — | None — VIU-verified; uploadable now. | S4-R5 / S4-R7 | — |  |
 | SF-COMP-20 | Completion — PO + Required Invoice (Story 4) | Verify Cancel in the required-invoice wizard makes no change to the work order | VIU-Verified | READY | READY (VIU-Verified) | — | None — VIU-verified; uploadable now. | S4-R6 | — |  |
 | SF-COMP-21 | Completion — Line approval gate | Verify completing a work order with an unapproved line shows the approve-line error and does not complete | VIU-Verified | READY | READY (VIU-Verified) | — | None — VIU-verified; uploadable now. | Key Decision (all lines approved) / S3-R9 / S4-R8 | — |  |
 | SF-COMP-22 | Completion — Line approval gate | Verify a manually unapproved line still blocks completion even when Auto-approve is ON | VIU-Verified | READY | READY (VIU-Verified) | — | None — VIU-verified; uploadable now. | Key Decision (holds regardless of Auto-approve) | — |  |
@@ -103,7 +103,7 @@
 | SF-VPART-04 | Vendorless / No-PN Part (Story 5) | Verify a vendorless part is editable after creation | VIU-Verified | READY | READY (VIU-Verified) | — | None — VIU-verified; uploadable now. | S5-R3 | — |  |
 | SF-VPART-05 | Vendorless / No-PN Part (Story 5) | Verify a no-part-number part creates no inventory item and no Part History | VIU-Verified | READY | READY (VIU-Verified) | — | None — VIU-verified; uploadable now. | S5-R4 / S5 AC (no inventory interaction) | — |  |
 | SF-VPART-06 | Vendorless / No-PN Part (Story 5) | Verify adding a part number and vendor later transitions the part out of vendorless | VIU-Verified | READY | READY (VIU-Verified) | — | None — VIU-verified; uploadable now. | S5 AC (transitions out of vendorless) | — |  |
-| SF-VPART-07 | Vendorless / No-PN Part (Story 5) | Verify a vendorless / no-PN part cannot be received until a part number (and vendor) is entered | VIU-Pending | BLOCKED | BLOCKED — VIU PENDING (QA) | QA (needs cookies+seed data) | QA VIU: seed + drive the vendorless / no-PN part add flow. | S5-R4 / S5 AC (receive gate) | needs-data | BATCH 6: deliverable WO PO achievable, but receiving it is blocked by BUG-11 (500), so the cannot-receive-until-PN+vendor proof cannot complete. |
+| SF-VPART-07 | Vendorless / No-PN Part (Story 5) | Verify a vendorless / no-PN part cannot be received until a part number (and vendor) is entered | VIU-Verified | READY | READY (VIU-Verified) | — | None — VIU-verified; uploadable now. | S5-R4 / S5 AC (receive gate) | — |  |
 | SF-VMIS-01 | Vendor Missing on WO PO (Story 6) | Verify a vendorless vendor-part goes onto the work order's normal PO with no separate dummy PO | VIU-Verified | READY | READY (VIU-Verified) | — | None — VIU-verified; uploadable now. | S6-R1 | — |  |
 | SF-VMIS-02 | Vendor Missing on WO PO (Story 6) | Verify a 'Vendor Missing +N' indication shows on the PO list and PO detail | VIU-Verified | READY | READY (VIU-Verified) | — | None — VIU-verified; uploadable now. | S6-R2 | — |  |
 | SF-VMIS-03 | Vendor Missing on WO PO (Story 6) | Verify a Vendor Missing PO is flagged and excluded from QuickBooks sync | VIU-Pending | BLOCKED | BLOCKED — VIU PENDING (QA) | QA (needs cookies+seed data) | QA VIU: seed a WO PO with a vendor-missing part, drive the flag flow. | S6-R3 | needs-data | QuickBooks sync inspection (vendor-missing PO excluded from QB). |
@@ -130,7 +130,7 @@
 | SF-INV-01 | Apply Invoice to Selected POs (Story 9) | Verify each vendor group has an 'Apply invoice to selected POs' control enabled only with an invoice # and ≥1 PO selected | VIU-Verified | READY | READY (VIU-Verified) | — | None — VIU-verified; uploadable now. | S9-R1 | — |  |
 | SF-INV-02 | Apply Invoice to Selected POs (Story 9) | Verify Apply pre-fills one invoice number into only the selected POs of that vendor, still editable per PO | VIU-Verified | READY | READY (VIU-Verified) | — | None — VIU-verified; uploadable now. | S9-R2 | — |  |
 | SF-INV-03 | Apply Invoice to Selected POs (Story 9) | Verify Apply Invoice is scoped per vendor, not offered for the vendorless group, and allows a reused invoice number | VIU-Verified | READY | READY (VIU-Verified) | — | None — VIU-verified; uploadable now. | S9-R3 | — |  |
-| SF-PNFIX-01 | Inline Part-Number Fix (Story 10) | Verify a no-number part shows 'Missing part number' with Edit → enter → save that persists immediately | VIU-Pending | BLOCKED | BLOCKED — VIU PENDING (QA) | QA (needs cookies+seed data) | QA VIU: drive the inline part-number fix flow with seeded PO lines. | S10-R1 | needs-data | BATCH 6: no inline Missing-part-number Edit on the vendor-missing PO Accept Delivery (empty PN cell, no edit control). Inline PN-fix appears tied to the Bulk Receive page (Story 8, NOT built). |
+| SF-PNFIX-01 | Inline Part-Number Fix (Story 10) | Verify a no-number part shows 'Missing part number' with Edit → enter → save that persists immediately | VIU-Verified | READY | READY (VIU-Verified) | — | None — VIU-verified; uploadable now. | S10-R1 | — |  |
 | SF-PNFIX-02 | Inline Part-Number Fix (Story 10) | Verify entering a NEW part number creates a new inventory/catalog part with stock and Part History on receive | VIU-Pending | BLOCKED | BLOCKED — VIU PENDING (QA) | QA (needs cookies+seed data) | QA VIU: drive the inline part-number fix flow with seeded PO lines. | S10 AC (new number) | needs-data | receiving + inventory/catalog inspection (new PN creates inventory part + stock + Part History on receive). |
 | SF-PNFIX-03 | Inline Part-Number Fix (Story 10) | Verify entering an EXISTING part number links to that item and updates stock/cost/history without overwriting description or category | VIU-Pending | BLOCKED | BLOCKED — VIU PENDING (QA) | QA (needs cookies+seed data) | QA VIU: drive the inline part-number fix flow with seeded PO lines. | S10 AC (existing number) | needs-data | receiving + inventory inspection (existing PN links to item, updates stock/cost/history). |
 | SF-PNFIX-04 | Inline Part-Number Fix (Story 10) | Verify inline part-number field-locking rules match the receive-screen rules (sell locks after invoiced/paid) | VIU-Pending | BLOCKED | BLOCKED — VIU PENDING (QA) | QA (needs cookies+seed data) | QA VIU: drive the inline part-number fix flow with seeded PO lines. | S10-R2 / S8-R7 | needs-data | a WO in invoiced/paid state (sell-field locking). |
@@ -187,8 +187,8 @@
 | SF-VAL-02 | Validation / Edge | Verify completion is blocked when a required VIN is missing (non-review flow) | VIU-Pending | BLOCKED | BLOCKED — VIU PENDING (QA) | QA (needs cookies+seed data) | QA VIU: drive the specific validation/edge scenario with seeded data. | S15-R2 / S3-R3 | needs-data | an asset/vehicle with NO VIN so the non-review wizard prompts for VIN. BATCH 6: VIN prefills from the asset; the asset-creation flow (VIN likely required) was not reliably drivable in-harness. Needs a VIN-less asset seeded. |
 | SF-VAL-03 | Validation / Edge | Verify completion is blocked when required engine hours are missing | VIU-Verified | READY | READY (VIU-Verified) | — | None — VIU-verified; uploadable now. | S3-R3 / S4-R3 | — |  |
 | SF-VAL-04 | Validation / Edge | Verify the tech-story Next/Continue button stays disabled while the story textarea is empty | VIU-Verified | READY | READY (VIU-Verified) | — | None — VIU-verified; uploadable now. | TS-R4 | — |  |
-| SF-VAL-05 | Validation / Edge | Verify a required-invoice receive is blocked without a vendor invoice number | VIU-Pending | BLOCKED | BLOCKED — VIU PENDING (QA) | QA (needs cookies+seed data) | QA VIU: drive the specific validation/edge scenario with seeded data. | S3-R3 / S4-R5 / §4 | needs-data | BATCH 6: blocked by BUG-11 (WO-PO receive 500) — cannot complete a required-invoice receive to test the no-invoice-number negative. |
-| SF-VAL-06 | Validation / Edge | Verify a vendor-missing part cannot be received without both a vendor and a part number | VIU-Pending | BLOCKED | BLOCKED — VIU PENDING (QA) | QA (needs cookies+seed data) | QA VIU: drive the specific validation/edge scenario with seeded data. | S10 / S12-R2 / S13 | needs-data | BATCH 6: blocked by BUG-11 (WO-PO receive 500) and no assign-vendor UI on the reachable receive surface. |
+| SF-VAL-05 | Validation / Edge | Verify a required-invoice receive is blocked without a vendor invoice number | VIU-Verified | READY | READY (VIU-Verified) | — | None — VIU-verified; uploadable now. | S3-R3 / S4-R5 / §4 | — |  |
+| SF-VAL-06 | Validation / Edge | Verify a vendor-missing part cannot be received without both a vendor and a part number | VIU-Verified | READY | READY (VIU-Verified) | — | None — VIU-verified; uploadable now. | S10 / S12-R2 / S13 | — |  |
 | SF-VAL-07 | Validation / Edge | Verify Confirm Review is disabled until a VIN is entered in the Mark Reviewed dialog | VIU-Verified | READY | READY (VIU-Verified) | — | None — VIU-verified; uploadable now. | R7 | — |  |
 | SF-VAL-08 | Validation / Edge | Verify re-completing after cancelling does not create duplicate POs | VIU-Verified | READY | READY (VIU-Verified) | — | None — VIU-verified; uploadable now. | S3-R9 (idempotency) | — |  |
 | SF-VAL-09 | Validation / Edge | Verify the sell field is locked after the work order is invoiced/paid with a lock icon and tooltip | VIU-Pending | BLOCKED | BLOCKED — VIU PENDING (QA) | QA (needs cookies+seed data) | QA VIU: drive the specific validation/edge scenario with seeded data. | S8-R7 / §4 field locking | needs-data | RE-VIU 2026-07-09: Bulk Receive field-locking BUILT (qty/cost/sell editable verified); the sell-lock-after-invoiced/paid clause needs an invoiced/paid WO to drive. |

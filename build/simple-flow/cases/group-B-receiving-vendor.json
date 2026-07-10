@@ -182,8 +182,8 @@
    "3. Receiving is enabled only after both a part number and a vendor are provided."
   ],
   "design_ref": "requirements S5-R4 / S12-R2",
-  "viu_status": "VIU-Pending",
-  "notes": "Not driven in VIU. Needs live verification.",
+  "viu_status": "VIU-Verified",
+  "notes": "Not driven in VIU. Needs live verification. || [FRESH VIU 2026-07-10 sv7301] VERIFIED via Bulk Receive (BUG-11 no longer blocks). Vendorless/no-PN part on WO PO S-15798 could NOT be received (button_receive_po disabled) until a part number (and vendor) were entered; enabled after PN+vendor+invoice. The inline PN entry persisted to the order item immediately (GET /api/inventory/orders/{id} item.part_number=ZZPN-FIX01; PartRequest pn set).",
   "api_related": false
  },
  {
@@ -888,8 +888,8 @@
    "3. A part number is mandatory to receive."
   ],
   "design_ref": "Purchase Order Details.html; requirements S10-R1",
-  "viu_status": "VIU-Pending",
-  "notes": "Not driven in VIU. Needs live verification.",
+  "viu_status": "VIU-Verified",
+  "notes": "Not driven in VIU. Needs live verification. || [FRESH VIU 2026-07-10 sv7301] VERIFIED on the built Bulk Receive page (Story 8/10 inline PN-fix UI is shipped; the BATCH-6 'appears tied to Story 8, NOT built' note is SUPERSEDED). A no-number part shows 'Missing part number' (text visible); the inline input_part_number_{partId} Edit -> enter PN -> the 'Missing part number' text clears AND the PN persists immediately to the backend (order item.part_number=ZZPN-FIX01, PartRequest pn set) without a page reload.",
   "api_related": false
  },
  {

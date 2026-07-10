@@ -2,9 +2,19 @@
 
 > **THIS IS THE CANONICAL STATE DOC for the Simple Flow project.** It is a single
 > authoritative snapshot so the project can be resumed with zero re-discovery.
-> **Last updated:** 2026-07-10 (**FRESH VIU RUN IN PROGRESS** — checkpoint. Tally now:
-> VIU-Verified **113** / VIU-Pending **44** / Open-Question **5** = 162; blockers READY
-> **106** / VIU-PENDING (QA) **39** / MILOS **13** / BUG-RULING **4**. **SF-COMP-07
+> **Last updated:** 2026-07-10 (**FRESH VIU RUN IN PROGRESS** — checkpoint 2. Tally now:
+> VIU-Verified **118** / VIU-Pending **39** / Open-Question **5** = 162; blockers READY
+> **111** / VIU-PENDING (QA) **34** / MILOS **13** / BUG-RULING **4**.
+> **Batch 2 (bulk-receive round-trips, BUG-11 NOT reproduced) flipped 5 → VIU-Verified:**
+> SF-VAL-05 (required-invoice receive gate: receive disabled w/o invoice#, enabled with),
+> SF-COMP-19 (received deliverable WO PO S-15797 via /bulk-receive → 200; completion then
+> proceeded to Success with no waiting-to-receive step), SF-VAL-06 (vendor-missing receive
+> needs BOTH vendor + PN), SF-VPART-07 (no-PN part not receivable until PN+vendor entered),
+> SF-PNFIX-01 (inline PN-fix on Bulk Receive persists to the order item immediately —
+> BATCH-6 'not built' note superseded). Seeded WO POs S-15797 (deliverable, received) +
+> S-15798 (vendor-missing → vendor-assigned + received-enabled) as ZZAUTOTEST. Checkpoint 1
+> below.
+> **Checkpoint 1:** VIU-Verified **113**. **SF-COMP-07
 > flipped VIU-Pending → VIU-Verified** (inventory-decrement live-proven: part P550848
 > on-hand 6→5 on pick, persisted through simple-complete 201; skip-path did not bypass
 > the movement; MILOS Q2/R2-Q3 already answered so removed from MILOS → READY).
