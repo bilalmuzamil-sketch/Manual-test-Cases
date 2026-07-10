@@ -44,101 +44,68 @@ BORDER = Border(left=THIN, right=THIN, top=THIN, bottom=THIN)
 # ---------------------------------------------------------------------------
 questions = [
     {
-        "topic": "Should a work order have to be reviewed before it can be billed?",
-        "now": ("When the \"needs a review before it is finished\" option is turned "
-                "on, the person doing the review signs it off and the work order is "
-                "finished right away. Today there is nothing that stops someone from "
-                "creating the customer's bill (invoice) before that review sign-off "
-                "has happened. (This is the same idea we asked about last time - it "
-                "was not clear then, so here it is in plainer words.)"),
-        "q": ("When review is required, should the app stop anyone from billing the "
-              "customer until the work order has actually been reviewed and signed "
-              "off?"),
-        "opts": ("A) Yes - block billing until the review is done. No invoice can be "
-                 "created until someone has reviewed and signed off the work order.\n"
-                 "B) No - billing can happen any time; the review is just an extra "
-                 "step and does not hold up billing."),
+        "picture": ("A mechanic just finished fixing a customer's car, so the repair "
+                    "job is done. Right away, the shop can send the customer their "
+                    "bill - even though nobody has double-checked the mechanic's work "
+                    "yet."),
+        "today": ("The bill can go out straight away, before anyone reviews or "
+                  "approves the finished job."),
+        "decide": ("Should the system make someone review and approve the job first, "
+                   "before the customer's bill can be sent?"),
+        "opts": ("A) The job must be reviewed and approved before the bill can go out.\n"
+                 "B) It's fine to send the bill without a review.\n"
+                 "C) Let each shop choose for itself."),
     },
     {
-        "topic": "For a brand-new company, should \"require a review\" start ON or OFF?",
-        "now": ("There is a setting that makes every work order go through a review "
-                "before it is finished. When a brand-new company (organization) "
-                "starts using the app, we need to know what that setting should be "
-                "set to out of the box, before anyone changes it."),
-        "q": ("When a new company first starts using the app, should \"require a "
-              "review before finishing\" already be turned ON, or start OFF so they "
-              "can turn it on if they want it?"),
-        "opts": ("A) Start ON - new companies get review-required by default; they can "
-                 "turn it off if they don't want it.\n"
-                 "B) Start OFF - new companies get no review by default; they can turn "
-                 "it on if they want it."),
+        "picture": ("A brand-new shop opens the app for the very first time and starts "
+                    "writing up repair jobs, with nothing changed yet."),
+        "today": ("There is a step for \"someone must review a job before it's "
+                  "finished,\" and we need to decide how it should start out for a "
+                  "brand-new shop."),
+        "decide": ("When a brand-new shop first starts, should that \"must review "
+                   "before finishing\" step start turned ON or start turned OFF?"),
+        "opts": ("A) Start turned ON.\n"
+                 "B) Start turned OFF."),
     },
     {
-        "topic": "What should the \"are you sure you want to close this?\" pop-up say and do?",
-        "now": ("When someone tries to close a window that they were filling in, a "
-                "small pop-up can appear to check they meant to. The exact wording "
-                "and the two buttons on that pop-up have not been designed yet, so we "
-                "need to know how it should behave: which button just closes the "
-                "little pop-up and keeps their work, and which one backs all the way "
-                "out to the previous screen."),
-        "q": ("How should the confirmation pop-up work - what should the two buttons "
-              "say, and what should each one do?"),
-        "opts": ("A) One button = \"stay here\" (closes only the little pop-up and "
-                 "keeps everything they typed); the other = \"leave\" (backs out to "
-                 "the previous screen). Nothing they typed is ever thrown away just by "
-                 "using this pop-up.\n"
-                 "B) Something different - please describe the wording and what each "
-                 "button should do."),
+        "picture": ("Someone is part-way through a repair job that isn't finished, and "
+                    "they click to close it or cancel it."),
+        "today": ("Nothing warns them - it just closes, even if the job isn't done "
+                  "and there is unsaved work."),
+        "decide": ("What should happen when someone closes or cancels a repair job "
+                   "that isn't finished?"),
+        "opts": ("A) Show a pop-up message asking them to confirm before leaving.\n"
+                 "B) Only warn them when there is unfinished or unsaved work.\n"
+                 "C) No pop-up needed - just let it close."),
     },
     {
-        "topic": "Where should parts that are missing a supplier sit in the receiving list?",
-        "now": ("On the screens where parts are received, parts that don't yet have a "
-                "supplier (vendor) chosen are grouped together on their own, because "
-                "someone has to pick a supplier for them before they can be received. "
-                "On one receiving screen this \"missing supplier\" group already sits "
-                "at the top; on the newer receiving screen it currently sits at the "
-                "bottom. We want them to be consistent."),
-        "q": ("Should the \"missing supplier\" group always sit at the TOP of the "
-              "list (so people deal with it first) on every receiving screen?"),
-        "opts": ("A) Yes - always put the \"missing supplier\" group at the top on "
-                 "every receiving screen, so it's the first thing people see and act "
-                 "on.\n"
-                 "B) No - leave it at the bottom on the newer screen (only the older "
-                 "screen leads with it)."),
+        "picture": ("A parts person is receiving a delivery of parts. A few of the "
+                    "parts don't have a supplier chosen yet, so they're bunched "
+                    "together in their own group."),
+        "today": ("That \"no supplier yet\" group shows up at the bottom of the list "
+                  "on the newer receiving screen."),
+        "decide": ("Where should the \"no supplier yet\" group appear in the receiving "
+                   "list?"),
+        "opts": ("A) At the top of the list.\n"
+                 "B) At the bottom of the list.\n"
+                 "C) Mixed in with all the other parts."),
     },
     {
-        "topic": "Can a work order be finished with a $0.00 selling price on a part?",
-        "now": ("When a part is added, it has a selling price (what the customer is "
-                "charged for it). The newer design shows a work order being finished "
-                "even when a part's selling price is still $0.00 - it shows a small "
-                "note that says \"$0.00 sell price, no action needed to continue\" "
-                "and lets the person finish. An earlier write-up said a selling price "
-                "must be filled in before saving. We need to know which one is right."),
-        "q": ("Should a work order be allowed to be finished when a part still has a "
-              "$0.00 selling price, or must every part have a real selling price "
-              "first?"),
-        "opts": ("A) Allow it - finishing with a $0.00 selling price is fine; just "
-                 "show the little note and let the person continue (as the newer "
-                 "design shows).\n"
-                 "B) Require a price - a part must have a real selling price before "
-                 "the work order can be finished (or before it can be saved)."),
+        "picture": ("A mechanic is wrapping up a repair job, but one of the parts on "
+                    "it still shows a price of $0."),
+        "today": ("The system lets them finish the job even with that $0 part price."),
+        "decide": ("Should the system let them finish the job with a $0 part price, or "
+                   "stop them until a real price is entered?"),
+        "opts": ("A) Let them finish even at $0.\n"
+                 "B) Stop them until a price is entered."),
     },
     {
-        "topic": "Should adding a part with no supplier need the \"can see money figures\" permission?",
-        "now": ("Some staff have permission to see money figures (costs and selling "
-                "prices) and some do not. A person can add a part that has no supplier "
-                "yet. We used to assume this required the \"can see money figures\" "
-                "permission because a selling price had to be typed in - but you've "
-                "since told us a selling price is NOT required here, so that reason no "
-                "longer holds. We need to know whether that permission should still be "
-                "required to add a part with no supplier."),
-        "q": ("Should adding a part that has no supplier yet still require the \"can "
-              "see money figures\" permission, or should anyone who can edit the work "
-              "order be able to add one?"),
-        "opts": ("A) Yes, still require it - only people who can see money figures can "
-                 "add a part with no supplier.\n"
-                 "B) No - anyone who can edit the work order can add a part with no "
-                 "supplier (money figures aren't involved anymore)."),
+        "picture": ("Someone is adding a part to a repair job, but no supplier has "
+                    "been chosen for that part yet."),
+        "today": ("Anyone who can work on the job is able to add a part like this."),
+        "decide": ("Who should be allowed to add a part that has no supplier yet?"),
+        "opts": ("A) Only people who are allowed to see prices and money figures.\n"
+                 "B) Anyone who can edit the repair job."),
     },
 ]
 
@@ -251,22 +218,23 @@ wb = Workbook()
 ws = wb.active
 ws.title = "Questions for PO"
 ws.column_dimensions["A"].width = 5
-for col, w in zip("BCDEF", [40, 56, 46, 60, 30]):
+for col, w in zip("BCDEF", [50, 42, 44, 52, 28]):
     ws.column_dimensions[col].width = w
 
 ws["A1"] = "Simple Mode - Round 3: A Few Quick Questions for You"
 ws["A1"].font = TITLE_FONT
 ws.merge_cells("A1:F1")
-intro = ("Hi Milos! Thanks for your answers to the earlier rounds - they are all "
-         "actioned. While finishing our checks we found a few more spots where we "
-         "need your call on how it should work. No wrong answers - for each one, "
-         "pick an option (or write your own) in the \"Your answer\" box.")
+intro = ("Thanks so much, Milos - just pick one option per row; there are no wrong "
+         "answers, we just need your preference. Each row tells a quick little "
+         "story of something happening in the shop, then asks what you'd like the "
+         "app to do.")
 ws["A2"] = intro
 ws["A2"].alignment = WRAP
 ws.merge_cells("A2:F2")
 ws.row_dimensions[2].height = 45
 
-headers = ["#", "Topic", "What happens now", "The question", "Options", "Your answer"]
+headers = ["#", "Picture this", "What happens today",
+           "What we need you to decide", "Your options", "Your answer"]
 HDR_ROW = 4
 for c, h in enumerate(headers, start=1):
     cell = ws.cell(row=HDR_ROW, column=c, value=h)
@@ -278,12 +246,12 @@ ws.freeze_panes = "A5"
 
 for i, item in enumerate(questions, start=1):
     row = HDR_ROW + i
-    vals = [i, item["topic"], item["now"], item["q"], item["opts"], ""]
+    vals = [i, item["picture"], item["today"], item["decide"], item["opts"], ""]
     for c, v in enumerate(vals, start=1):
         cell = ws.cell(row=row, column=c, value=v)
         cell.alignment = WRAP_CENTER if c == 1 else WRAP
         cell.border = BORDER
-    ws.row_dimensions[row].height = 165
+    ws.row_dimensions[row].height = 150
 
 # --- QA Internal Mapping sheet ---
 wi = wb.create_sheet("QA Internal Mapping")
@@ -401,26 +369,26 @@ wb.save(XLSX_OUT)
 md = []
 md.append("# Simple Mode — Round 3: A Few Quick Questions for You")
 md.append("")
-md.append("Hi Milos! Thanks for your answers to the earlier rounds — they are all")
-md.append("actioned. While finishing our checks we found a few more spots where we")
-md.append("need your call on how it should work.")
-md.append("")
-md.append("There are **no wrong answers**. For each item, pick an option (or write")
-md.append("your own) on the **\"Your answer\"** line. It should take just a few")
-md.append("minutes.")
+md.append("Thanks so much, Milos! **Just pick one option per row — there are no")
+md.append("wrong answers, we just need your preference.** Each item below tells a")
+md.append("quick little story of something happening in the shop, then asks what")
+md.append("you'd like the app to do.")
 md.append("")
 md.append("---")
 for i, item in enumerate(questions, start=1):
     md.append("")
-    md.append(f"## {i}. {item['topic']}")
+    md.append(f"## {i}.")
     md.append("")
-    md.append("**What happens now**")
-    md.append(item["now"])
+    md.append("**Picture this**")
+    md.append(item["picture"])
     md.append("")
-    md.append("**The question**")
-    md.append(item["q"])
+    md.append("**What happens today**")
+    md.append(item["today"])
     md.append("")
-    md.append("**Options**")
+    md.append("**What we need you to decide**")
+    md.append(item["decide"])
+    md.append("")
+    md.append("**Your options**")
     for line in item["opts"].split("\n"):
         md.append(f"- {line}")
     md.append("")

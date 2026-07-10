@@ -1,106 +1,124 @@
 # Simple Mode — Round 3: A Few Quick Questions for You
 
-Hi Milos! Thanks for your answers to the earlier rounds — they are all
-actioned. While finishing our checks we found a few more spots where we
-need your call on how it should work.
-
-There are **no wrong answers**. For each item, pick an option (or write
-your own) on the **"Your answer"** line. It should take just a few
-minutes.
+Thanks so much, Milos! **Just pick one option per row — there are no
+wrong answers, we just need your preference.** Each item below tells a
+quick little story of something happening in the shop, then asks what
+you'd like the app to do.
 
 ---
 
-## 1. Should a work order have to be reviewed before it can be billed?
+## 1.
 
-**What happens now**
-When the "needs a review before it is finished" option is turned on, the person doing the review signs it off and the work order is finished right away. Today there is nothing that stops someone from creating the customer's bill (invoice) before that review sign-off has happened. (This is the same idea we asked about last time - it was not clear then, so here it is in plainer words.)
+**Picture this**
+A mechanic just finished fixing a customer's car, so the repair job is done. Right away, the shop can send the customer their bill - even though nobody has double-checked the mechanic's work yet.
 
-**The question**
-When review is required, should the app stop anyone from billing the customer until the work order has actually been reviewed and signed off?
+**What happens today**
+The bill can go out straight away, before anyone reviews or approves the finished job.
 
-**Options**
-- A) Yes - block billing until the review is done. No invoice can be created until someone has reviewed and signed off the work order.
-- B) No - billing can happen any time; the review is just an extra step and does not hold up billing.
+**What we need you to decide**
+Should the system make someone review and approve the job first, before the customer's bill can be sent?
+
+**Your options**
+- A) The job must be reviewed and approved before the bill can go out.
+- B) It's fine to send the bill without a review.
+- C) Let each shop choose for itself.
 
 **Your answer:** ______________________________________________
 
 ---
 
-## 2. For a brand-new company, should "require a review" start ON or OFF?
+## 2.
 
-**What happens now**
-There is a setting that makes every work order go through a review before it is finished. When a brand-new company (organization) starts using the app, we need to know what that setting should be set to out of the box, before anyone changes it.
+**Picture this**
+A brand-new shop opens the app for the very first time and starts writing up repair jobs, with nothing changed yet.
 
-**The question**
-When a new company first starts using the app, should "require a review before finishing" already be turned ON, or start OFF so they can turn it on if they want it?
+**What happens today**
+There is a step for "someone must review a job before it's finished," and we need to decide how it should start out for a brand-new shop.
 
-**Options**
-- A) Start ON - new companies get review-required by default; they can turn it off if they don't want it.
-- B) Start OFF - new companies get no review by default; they can turn it on if they want it.
+**What we need you to decide**
+When a brand-new shop first starts, should that "must review before finishing" step start turned ON or start turned OFF?
 
-**Your answer:** ______________________________________________
-
----
-
-## 3. What should the "are you sure you want to close this?" pop-up say and do?
-
-**What happens now**
-When someone tries to close a window that they were filling in, a small pop-up can appear to check they meant to. The exact wording and the two buttons on that pop-up have not been designed yet, so we need to know how it should behave: which button just closes the little pop-up and keeps their work, and which one backs all the way out to the previous screen.
-
-**The question**
-How should the confirmation pop-up work - what should the two buttons say, and what should each one do?
-
-**Options**
-- A) One button = "stay here" (closes only the little pop-up and keeps everything they typed); the other = "leave" (backs out to the previous screen). Nothing they typed is ever thrown away just by using this pop-up.
-- B) Something different - please describe the wording and what each button should do.
+**Your options**
+- A) Start turned ON.
+- B) Start turned OFF.
 
 **Your answer:** ______________________________________________
 
 ---
 
-## 4. Where should parts that are missing a supplier sit in the receiving list?
+## 3.
 
-**What happens now**
-On the screens where parts are received, parts that don't yet have a supplier (vendor) chosen are grouped together on their own, because someone has to pick a supplier for them before they can be received. On one receiving screen this "missing supplier" group already sits at the top; on the newer receiving screen it currently sits at the bottom. We want them to be consistent.
+**Picture this**
+Someone is part-way through a repair job that isn't finished, and they click to close it or cancel it.
 
-**The question**
-Should the "missing supplier" group always sit at the TOP of the list (so people deal with it first) on every receiving screen?
+**What happens today**
+Nothing warns them - it just closes, even if the job isn't done and there is unsaved work.
 
-**Options**
-- A) Yes - always put the "missing supplier" group at the top on every receiving screen, so it's the first thing people see and act on.
-- B) No - leave it at the bottom on the newer screen (only the older screen leads with it).
+**What we need you to decide**
+What should happen when someone closes or cancels a repair job that isn't finished?
 
-**Your answer:** ______________________________________________
-
----
-
-## 5. Can a work order be finished with a $0.00 selling price on a part?
-
-**What happens now**
-When a part is added, it has a selling price (what the customer is charged for it). The newer design shows a work order being finished even when a part's selling price is still $0.00 - it shows a small note that says "$0.00 sell price, no action needed to continue" and lets the person finish. An earlier write-up said a selling price must be filled in before saving. We need to know which one is right.
-
-**The question**
-Should a work order be allowed to be finished when a part still has a $0.00 selling price, or must every part have a real selling price first?
-
-**Options**
-- A) Allow it - finishing with a $0.00 selling price is fine; just show the little note and let the person continue (as the newer design shows).
-- B) Require a price - a part must have a real selling price before the work order can be finished (or before it can be saved).
+**Your options**
+- A) Show a pop-up message asking them to confirm before leaving.
+- B) Only warn them when there is unfinished or unsaved work.
+- C) No pop-up needed - just let it close.
 
 **Your answer:** ______________________________________________
 
 ---
 
-## 6. Should adding a part with no supplier need the "can see money figures" permission?
+## 4.
 
-**What happens now**
-Some staff have permission to see money figures (costs and selling prices) and some do not. A person can add a part that has no supplier yet. We used to assume this required the "can see money figures" permission because a selling price had to be typed in - but you've since told us a selling price is NOT required here, so that reason no longer holds. We need to know whether that permission should still be required to add a part with no supplier.
+**Picture this**
+A parts person is receiving a delivery of parts. A few of the parts don't have a supplier chosen yet, so they're bunched together in their own group.
 
-**The question**
-Should adding a part that has no supplier yet still require the "can see money figures" permission, or should anyone who can edit the work order be able to add one?
+**What happens today**
+That "no supplier yet" group shows up at the bottom of the list on the newer receiving screen.
 
-**Options**
-- A) Yes, still require it - only people who can see money figures can add a part with no supplier.
-- B) No - anyone who can edit the work order can add a part with no supplier (money figures aren't involved anymore).
+**What we need you to decide**
+Where should the "no supplier yet" group appear in the receiving list?
+
+**Your options**
+- A) At the top of the list.
+- B) At the bottom of the list.
+- C) Mixed in with all the other parts.
+
+**Your answer:** ______________________________________________
+
+---
+
+## 5.
+
+**Picture this**
+A mechanic is wrapping up a repair job, but one of the parts on it still shows a price of $0.
+
+**What happens today**
+The system lets them finish the job even with that $0 part price.
+
+**What we need you to decide**
+Should the system let them finish the job with a $0 part price, or stop them until a real price is entered?
+
+**Your options**
+- A) Let them finish even at $0.
+- B) Stop them until a price is entered.
+
+**Your answer:** ______________________________________________
+
+---
+
+## 6.
+
+**Picture this**
+Someone is adding a part to a repair job, but no supplier has been chosen for that part yet.
+
+**What happens today**
+Anyone who can work on the job is able to add a part like this.
+
+**What we need you to decide**
+Who should be allowed to add a part that has no supplier yet?
+
+**Your options**
+- A) Only people who are allowed to see prices and money figures.
+- B) Anyone who can edit the repair job.
 
 **Your answer:** ______________________________________________
 
