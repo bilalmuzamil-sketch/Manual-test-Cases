@@ -18,9 +18,10 @@ Sheets:
                             (standing rule 8; source testrail-id-map.csv), spec/story
                             refs, and current status.
 
-Source of truth: build/simple-flow/jira-bug-drafts.md (5 reconciled tickets,
-post-Milos-Round-2). These are DEFECTS (dev tickets), kept OUT of any PO-facing
-deliverable (standing rule 7).
+Source of truth: build/simple-flow/jira-bug-drafts.md (4 active tickets TICKET 2-5,
+post-Milos-Round-2, updated 2026-07-10 after BUG-5/TICKET 1 was dropped as expected
+behavior). These are DEFECTS (dev tickets), kept OUT of any PO-facing deliverable
+(standing rule 7).
 """
 from openpyxl import Workbook
 from openpyxl.styles import Font, Alignment, PatternFill, Border, Side
@@ -43,26 +44,11 @@ BORDER = Border(left=THIN, right=THIN, top=THIN, bottom=THIN)
 # Reader-facing content (layman ONLY — no IDs, no bug codes, no tech terms)
 # ---------------------------------------------------------------------------
 bugs = [
-    {
-        "title": "A person can approve (sign off) their own work order review",
-        "now": ("When work orders must be reviewed before they are finished, the "
-                "reviewer is supposed to be a different person from whoever did the "
-                "work. Right now that isn't enforced: the same person who completed "
-                "the work order and sent it for review can turn around and sign off "
-                "on their own review. There's no separate second pair of eyes."),
-        "should": ("The person who completed the work order (or sent it for review) "
-                   "should NOT be allowed to sign off on its review. A different "
-                   "person has to be the reviewer, so someone can't rubber-stamp "
-                   "their own work."),
-        "steps": ("1. In Work Order settings, turn on \"require a review before "
-                  "finishing\".\n"
-                  "2. As one person, complete a work order and send it for review.\n"
-                  "3. As that SAME person, open it and click \"Mark Reviewed\", then "
-                  "confirm.\n"
-                  "4. Notice it lets you sign off your own work - it should have "
-                  "stopped you."),
-        "severity": "High",
-    },
+    # DROPPED 2026-07-10 — "A person can approve (sign off) their own work order review"
+    # (BUG-5 / TICKET 1) was settled as EXPECTED behavior by Milos's ruling: reviewer !=
+    # completer is not a v1 requirement, so a completer may review their own WO. Removed
+    # from the active bug list. See jira-bug-drafts.md "Dropped — expected behavior per
+    # PO (Milos), 2026-07-10".
     {
         "title": ("Permission to finish or review a work order is only enforced on "
                   "the screen, not behind the scenes"),
@@ -159,17 +145,10 @@ bugs = [
 # Each entry: (bug_no, internal_codes, [(sf_id, testrail_id), ...], refs, status)
 # ---------------------------------------------------------------------------
 internal_map = [
+    # BUG-5 / TICKET 1 REMOVED 2026-07-10: dropped as EXPECTED behavior by Milos
+    # (reviewer != completer not a v1 requirement). SF-PERM-04/07 + SF-REV-09 now
+    # VIU-Verified; SF-PERM-08 obsolete. Remaining bugs renumbered 1-4.
     (1,
-     "BUG-5. Jira draft: jira-bug-drafts.md TICKET 1 (not yet filed — no Atlassian "
-     "MCP in this env).",
-     [("SF-PERM-08", 29412), ("SF-PERM-04", 29408), ("SF-PERM-07", 29411),
-      ("SF-REV-09", 29394)],
-     "SV-8183 reviewer!=completer rule (net-new Simple-Flow permission). Evidence "
-     "viu-evidence/REV-admin-completer-markreviewed.png (admin sent WO S2-15752 to "
-     "review then same admin confirmed).",
-     "OPEN — CONFIRMED bug, expected NOT rewritten. High. Primary SF-PERM-08; "
-     "touches SF-PERM-04/07 + SF-REV-09 (recorded UI-pass per Milos R2 Q5)."),
-    (2,
      "BUG-6 + BUG-7. Jira draft: TICKET 2. Milos R2 Q5: UI gating = v1 PASS; this is "
      "the OPEN fix ticket for the behind-the-screen (API) gap.",
      [("SF-PERM-06", 29410), ("SF-PERM-02", 29406), ("SF-PERM-07", 29411),
@@ -180,7 +159,7 @@ internal_map = [
      "contrast tech settings/change -> 403 (settings atom IS enforced).",
      "OPEN — CONFIRMED bug (API gap kept open per Milos R2 Q5). Medium. SF-PERM-06 "
      "= API section (4090). Results recorded \"UI pass / API fail\"."),
-    (3,
+    (2,
      "BUG-8. Jira draft: TICKET 3.",
      [("SF-VAL-01", 29415), ("SF-VAL-02", 29416), ("SF-VAL-03", 29417),
       ("SF-COMP-05", 29294), ("SF-COMP-16", 29305), ("SF-REV-03", 29388)],
@@ -190,7 +169,7 @@ internal_map = [
      "OPEN — CONFIRMED bug, expected NOT rewritten. Medium. Required-field gates "
      "(mileage/VIN/engine hours) are UI-only; backend-checked blockers (tech story, "
      "line approval) ARE enforced."),
-    (4,
+    (3,
      "BUG-11. Jira draft: TICKET 4. DOWNGRADED 2026-07-09 (RE-VIU BATCH 7): confined "
      "to the LEGACY single-PO Accept-Delivery path; the new Bulk Receive pipeline "
      "works (receive-requested-parts -> 200).",
@@ -207,7 +186,7 @@ internal_map = [
      "OPEN — Low (downgraded). Affected cases now largely testable via the Bulk "
      "Receive path; this ticket only blocks the legacy single-PO Accept-Delivery "
      "surface."),
-    (5,
+    (4,
      "GAP-B. Jira draft: TICKET 5.",
      [("SF-SET-08", 29282)],
      "§4 / S1 first-use defaults (confirmed Milos Q3): Auto-approve OFF, Create POs "
@@ -231,7 +210,7 @@ for col, w in zip("BCDEF", [40, 60, 48, 58, 12]):
 ws["A1"] = "Simple Mode - Bug Drafts (plain-English)"
 ws["A1"].font = TITLE_FONT
 ws.merge_cells("A1:F1")
-intro = ("Five issues found while testing Simple Mode, written in plain English. "
+intro = ("Four issues found while testing Simple Mode, written in plain English. "
          "Each row explains what happens now, what should happen instead, and simple "
          "steps to see it. (These are defects for the dev team - not questions for "
          "the product owner.)")
@@ -304,13 +283,15 @@ for bno, codes, cases, refs, status in internal_map:
 
 note_row = r + 1
 wi.cell(row=note_row, column=1, value=(
-    "Notes: Source of truth = jira-bug-drafts.md (5 reconciled tickets, "
-    "post-Milos-Round-2). TestRail IDs sourced from testrail-id-map.csv (standing "
-    "rule 8). These are DEFECTS for the dev team (Jira TICKET 1-5 under epic "
-    "SV-7301, Product Area Work Orders) - NOT filed yet (no Atlassian MCP here; file "
-    "from the chat app). Kept OUT of any PO-facing deliverable (standing rule 7). "
-    "CLOSED / not filed: BUG-3 (review-note descoped, Milos R2 Q1), BUG-9/GAP-A "
-    "(vendorless category-req/sell-optional intended, Milos R2 Q4), BUG-1/2/4/10.")
+    "Notes: Source of truth = jira-bug-drafts.md (4 active tickets TICKET 2-5, "
+    "post-Milos-Round-2, updated 2026-07-10). TestRail IDs sourced from "
+    "testrail-id-map.csv (standing rule 8). These are DEFECTS for the dev team (Jira "
+    "TICKET 2-5 under epic SV-7301, Product Area Work Orders) - NOT filed yet (no "
+    "Atlassian MCP here; file from the chat app). Kept OUT of any PO-facing "
+    "deliverable (standing rule 7). DROPPED as expected: BUG-5/TICKET 1 (reviewer != "
+    "completer descoped v1, Milos 2026-07-10). CLOSED / not filed: BUG-3 (review-note "
+    "descoped, Milos R2 Q1), BUG-9/GAP-A (vendorless category-req/sell-optional "
+    "intended, Milos R2 Q4), BUG-1/2/4/10.")
     ).alignment = WRAP
 wi.merge_cells(start_row=note_row, start_column=1, end_row=note_row, end_column=6)
 wi.row_dimensions[note_row].height = 90
@@ -323,7 +304,7 @@ wb.save(XLSX_OUT)
 md = []
 md.append("# Simple Mode — Bug Drafts (plain-English)")
 md.append("")
-md.append("Five issues found while testing Simple Mode, written in plain English.")
+md.append("Four issues found while testing Simple Mode, written in plain English.")
 md.append("Each entry explains what happens now, what should happen instead, and")
 md.append("simple steps to see it. **These are defects for the dev team — not")
 md.append("questions for the product owner.**")
@@ -363,14 +344,15 @@ for bno, codes, cases, refs, status in internal_map:
     md.append(f"- **Refs:** {refs}")
     md.append(f"- **Current status:** {status}")
     md.append("")
-md.append("**Notes:** Source of truth = `jira-bug-drafts.md` (5 reconciled tickets,")
-md.append("post-Milos-Round-2). TestRail IDs sourced from `testrail-id-map.csv`")
-md.append("(standing rule 8). These are DEFECTS for the dev team (Jira TICKET 1–5")
-md.append("under epic SV-7301, Product Area Work Orders) — NOT filed yet (no")
-md.append("Atlassian MCP here; file from the chat app). Kept OUT of any PO-facing")
-md.append("deliverable (standing rule 7). CLOSED / not filed: BUG-3 (review-note")
-md.append("descoped, Milos R2 Q1), BUG-9/GAP-A (vendorless category-req/sell-optional")
-md.append("intended, Milos R2 Q4), BUG-1/2/4/10.")
+md.append("**Notes:** Source of truth = `jira-bug-drafts.md` (4 active tickets")
+md.append("TICKET 2–5, post-Milos-Round-2, updated 2026-07-10). TestRail IDs sourced")
+md.append("from `testrail-id-map.csv` (standing rule 8). These are DEFECTS for the dev")
+md.append("team (Jira TICKET 2–5 under epic SV-7301, Product Area Work Orders) — NOT")
+md.append("filed yet (no Atlassian MCP here; file from the chat app). Kept OUT of any")
+md.append("PO-facing deliverable (standing rule 7). DROPPED as expected: BUG-5/TICKET 1")
+md.append("(reviewer != completer descoped v1, Milos 2026-07-10). CLOSED / not filed:")
+md.append("BUG-3 (review-note descoped, Milos R2 Q1), BUG-9/GAP-A (vendorless")
+md.append("category-req/sell-optional intended, Milos R2 Q4), BUG-1/2/4/10.")
 md.append("")
 
 with open(MD_OUT, "w") as f:

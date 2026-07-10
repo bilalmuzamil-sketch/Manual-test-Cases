@@ -4,9 +4,12 @@
 > Atlassian/Jira create-issue tool surfaced at run time; only GitHub tools were
 > available).** File these via your chat app where Atlassian IS connected.
 >
-> **THIS IS THE CURRENT RECONCILED BUG SET (2026-07-09, post-Milos-Round-2)** — it
-> supersedes the earlier 7-draft version. Two tickets were CLOSED after Milos's
-> Round-2 answers (see "Recently closed" below); the set is now **5 tickets**.
+> **THIS IS THE CURRENT RECONCILED BUG SET (2026-07-09, post-Milos-Round-2;
+> updated 2026-07-10)** — it supersedes the earlier 7-draft version. Two tickets were
+> CLOSED after Milos's Round-2 answers (see "Recently closed" below), and **TICKET 1
+> (BUG-5, reviewer ≠ completer) was DROPPED as expected behavior per Milos's
+> 2026-07-10 ruling** (see "Dropped — expected behavior" below). The set is now
+> **4 active tickets** (TICKETs 2–5).
 >
 > Source of truth: `build/simple-flow/bugs-log.md`, `milos-round2-mapping.md`,
 > `finding-reclassification.md`, `contradiction-resolution.md`,
@@ -34,7 +37,37 @@
 - **BUG-4** and **BUG-10** (both EXPECTED under the Simple Flow shortcut rule — a
   skipped step that still reaches the same end state with no error/corruption).
 
-## Common fields (apply to all 5 tickets)
+## Dropped — expected behavior per PO (Milos), 2026-07-10
+
+- **BUG-5 / TICKET 1 (reviewer can sign off their own work order)** —
+  **DROPPED / CLOSED-AS-EXPECTED.** The PO (Milos), via the QA lead on 2026-07-10,
+  ruled that the "reviewer ≠ completer" hard rule is **NOT a v1 requirement**: a user
+  completing AND then reviewing / marking-reviewed their own work order is **EXPECTED /
+  acceptable behavior in v1**, not a defect. Background: the strict same-user identity
+  block came only from SV-8183 acceptance-criteria "Decision 3 / NET-NEW must be built";
+  Story 16 (SV-7870) only ever required a different ROLE, and Milos has now ruled the
+  strict identity block out of v1. **Do NOT file this ticket.** The record is retained
+  below (struck-through as closed) for history; the previously-observed self-review is
+  now correct behavior. Affected cases SF-PERM-04/07 and SF-REV-09 re-adjudicated to
+  VIU-Verified (permission-gating retained & verified); SF-PERM-08 (the dedicated
+  same-user case) marked OBSOLETE / covered-by SF-PERM-04+07.
+
+  > ~~**TICKET 1 (from BUG-5) — Priority: High**~~ — CLOSED-AS-EXPECTED 2026-07-10.
+  >
+  > *Summary:* Simple Mode: reviewer can sign off their own work order (reviewer ≠
+  > completer not enforced). **Resolution:** not a bug — reviewer ≠ completer descoped
+  > from v1 by Milos (2026-07-10). A completer may review their own WO.
+  >
+  > *Original repro (for history):* Enable 'Require Review Before Completion'; as one
+  > user complete a WO and send it to review; as the SAME user Mark Reviewed and
+  > confirm — the WO went Review → Complete with no restriction (admin, WO S2-15752;
+  > evidence `viu-evidence/REV-admin-completer-markreviewed.png`). This is now the
+  > accepted v1 behavior.
+  >
+  > *Affected cases:* SF-PERM-08 (obsolete), SF-PERM-04, SF-PERM-07, SF-REV-09.
+  > *Related:* SV-8183 (reviewer ≠ completer — descoped v1), SV-7870 (Story 16 — role-only).
+
+## Common fields (apply to all 4 active tickets: TICKETs 2–5)
 
 - **Project:** ShopView — SV
 - **Issue type:** Bug
@@ -43,42 +76,6 @@
 - **Labels:** `simple-flow`, `qa`, `testrail`
 - **cloudId:** `19fdd96d-a135-46c4-83e7-d2cc218a4e63`
 - **QA env:** app `https://sv7301.qa.shopview.com` · API `https://sv7301api.qa.shopview.com`
-
----
-
-## TICKET 1 (from BUG-5) — Priority: High
-
-**Summary:** Simple Mode: reviewer can sign off their own work order (reviewer ≠ completer not enforced)
-
-**Description:**
-
-*Summary of issue*
-The one net-new Simple-Flow permission rule — the reviewer must not be the same
-person who completed / sent the work order to review — is not implemented. A user
-can sign off (Mark Reviewed) their own completed work order.
-
-*Simplified Steps to Reproduce*
-1. Enable 'Require Review Before Completion' in Work Order settings.
-2. As one user, complete a work order and send it to review.
-3. As the SAME user, open that work order and click Mark Reviewed, then confirm.
-
-*Expected*
-The user who completed / sent the WO to review is barred from signing it off — a
-different reviewer is required (reviewer ≠ completer, per SV-8183's
-reviewer≠completer rule). The `sentToReviewBy` / `completedBy` stamp should block
-the same user.
-
-*Actual*
-No block occurs. Observed live: admin sent WO S2-15752 to review
-(`status: ready_for_review`) then the same admin confirmed the review — the WO went
-Review → Complete with no restriction.
-Evidence: `viu-evidence/REV-admin-completer-markreviewed.png`.
-
-*Affected cases*
-SF-PERM-08 (also touches SF-PERM-04, SF-PERM-07, SF-REV-09)
-
-*Related*
-- relates to SV-8183 (reviewer≠completer / backend-enforcement claim)
 
 ---
 

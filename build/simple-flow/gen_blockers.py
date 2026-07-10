@@ -35,25 +35,17 @@ FILES = [
 #   SF-PERM-02 (WO-completion FE gate) and SF-PERM-06 (settings/WO-action FE gate) were
 #   REMOVED from BUG_RULING; they now fall through to READY (viu_status already VIU-Verified)
 #   with a PASS note applied in the case JSON.
-# The four cases below STAY held: they additionally require the reviewer != completer rule
-# (BUG-5), a functional rule MISSING at the UI too (a completer can self-sign via the UI —
-# screenshot REV-admin-completer-markreviewed.png). That is NOT a "UI blocks / API does not"
-# situation, so the 2026-07-10 ruling does not cover them; they wait on a BUG-5
-# (reviewer != completer) ruling/fix (TICKET 1).
-BUG_RULING = {
-    "SF-PERM-08": "reviewer != completer rule NOT implemented (a user can sign off "
-                  "their own WO via the UI). NOT covered by the 2026-07-10 FE-vs-API ruling "
-                  "(the UI does not block it) — held on BUG-5 (TICKET 1): enforce or descope?",
-    "SF-PERM-07": "Review sign-off permission FE-only at BE was resolved by the 2026-07-10 "
-                  "ruling (UI pass / API fail, T2), BUT this case's expected also requires "
-                  "reviewer != completer, which fails at the UI too (BUG-5). Held on BUG-5 (TICKET 1).",
-    "SF-PERM-04": "Role-gating of Mark-Reviewed: FE-vs-API part resolved by the 2026-07-10 "
-                  "ruling, but the expected also requires reviewer != completer, which is "
-                  "missing at the UI (BUG-5). Held on BUG-5 (TICKET 1).",
-    "SF-REV-09": "Review role-gating: FE-vs-API part resolved by the 2026-07-10 ruling, but "
-                 "the expected also requires reviewer != completer, missing at the UI (BUG-5). "
-                 "Held on BUG-5 (TICKET 1).",
-}
+# UPDATE 2026-07-10 (PO ruling, Milos, relayed by QA lead): the reviewer != completer hard
+# rule is DESCOPED from v1 — a completer reviewing their own WO is EXPECTED, not a defect
+# (origin: SV-8183 Decision-3/NET-NEW; Story 16/SV-7870 only ever needed a different ROLE).
+# The four cases that were held on BUG-5 (SF-PERM-04, SF-PERM-07, SF-PERM-08, SF-REV-09) had
+# the identity assertion removed and were re-adjudicated to VIU-Verified (permission-gating
+# retained & verified). They now fall through to READY. SF-PERM-08 (the dedicated same-user
+# case) is marked OBSOLETE / covered-by SF-PERM-04+07 in the case JSON (kept VIU-Verified so
+# it exits BUG/RULING; flagged for the QA lead to retire in TestRail). BUG-5 / TICKET 1 dropped
+# as expected. NOTE: these 4 cases' TestRail push is PENDING QA-lead authorization.
+# BUG_RULING is now empty.
+BUG_RULING = {}
 
 # Open-Question / Milos-owned cases -> the specific Open Question number(s).
 MILOS = {

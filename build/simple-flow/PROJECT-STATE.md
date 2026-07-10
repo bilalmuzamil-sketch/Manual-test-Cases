@@ -2,7 +2,27 @@
 
 > **THIS IS THE CANONICAL STATE DOC for the Simple Flow project.** It is a single
 > authoritative snapshot so the project can be resumed with zero re-discovery.
-> **Last updated:** 2026-07-10 (**FRESH VIU RUN COMPLETE** — 9 cases flipped to
+> **Last updated:** 2026-07-10 (**PO RULING — reviewer ≠ completer DESCOPED from v1**
+> (Milos, relayed by the QA lead). A user completing AND then reviewing / marking-reviewed
+> their OWN work order is EXPECTED / acceptable in v1 — NOT a defect. Origin kept for
+> history: the strict same-user block came only from SV-8183 "Decision 3 / NET-NEW must be
+> built"; Story 16 / SV-7870 only ever needed a different ROLE. **The 4 cases held on
+> BUG-5 (SF-PERM-04, SF-PERM-07, SF-PERM-08, SF-REV-09) LEAVE the BUG/RULING bucket:** the
+> identity assertion was removed from each expected; the Review Work Orders permission-gating
+> was retained and re-adjudicated to VIU-Verified (live-verified via the SF-PERM-10 BATCH-5
+> 11-role fe-permissions sweep; per Milos R2 Q5 UI gating = v1 pass, API gap = TICKET 2 /
+> BUG-6/7). **SF-PERM-08** (the dedicated same-user case) is marked **OBSOLETE / covered-by
+> SF-PERM-04+07** (kept VIU-Verified so it exits BUG/RULING; flagged for the QA lead to
+> retire in TestRail). **BUG-5 / TICKET 1 DROPPED** as expected behavior (moved to
+> jira-bug-drafts.md "Dropped" section; removed from the Milos-confirm + bug-drafts
+> deliverables — now 4 active tickets TICKET 2–5). requirements.md §9 + contradiction-
+> resolution.md carry dated descope notes. **NEW tally: VIU-Verified 121 / VIU-Pending 36 /
+> Open-Question 5 = 162; blockers READY 114 → 118 / VIU-PENDING (QA) 31 / MILOS 13 /
+> BUG-RULING 4 → 0 / DEV-NOT-BUILT 0.** The 4 cases' TestRail push is **PENDING QA-lead
+> authorization** (no TestRail writes were made). Deliverables regenerated:
+> SimpleFlow_Blockers_Tracker, SimpleFlow_Results, SimpleFlow_Bug-Drafts,
+> SimpleFlow_Bugs-for-Milos-Confirm.)
+> **Prior Last updated:** 2026-07-10 (**FRESH VIU RUN COMPLETE** — 9 cases flipped to
 > VIU-Verified this run. Final tally: VIU-Verified **121** / VIU-Pending **36** /
 > Open-Question **5** = 162; blockers READY **114** / VIU-PENDING (QA) **31** / MILOS
 > **13** / BUG-RULING **4**. Env stayed healthy (admin+tech 200); settings toggled during
@@ -566,15 +586,21 @@ DEV-NOT-BUILT → 0; both spec-vs-Epic conflicts resolved in favour of the spec 
 changes); BUG-11 downgraded (§5.C/E); the reachable-now VIU backlog cleared (112
 VIU-Verified). **2026-07-10:** SF-WOP-02 expected refinement PUSHED & VERIFIED to
 TestRail (case 29384); user's UI-vs-API permission ruling APPLIED (SF-PERM-02 + SF-PERM-06
-flipped to READY/Passed; the 4 reviewer!=completer cases stay held on BUG-5).
+flipped to READY/Passed). **2026-07-10 (later):** PO ruling — reviewer ≠ completer DESCOPED
+from v1 (Milos); the 4 reviewer!=completer cases (SF-PERM-04/07/08, SF-REV-09) LEFT the
+BUG/RULING bucket → READY (identity assertion removed, permission-gating retained &
+VIU-Verified; SF-PERM-08 obsolete). BUG-5 / TICKET 1 DROPPED as expected. BUG-RULING 4 → 0,
+READY 114 → 118. Their TestRail push is PENDING QA-lead authorization.
 
 **>>> NEXT ACTIONS (priority order) — the 38 VIU-PENDING (QA) are now genuinely
 blocked (§5.G); each needs an input/state to proceed:**
 
-1. **BUG-5 (reviewer != completer) ruling/fix** → finalizes the last 4 BUG/RULING cases
-   (SF-PERM-04/07/08, SF-REV-09). This rule is missing at the UI too (a completer can
-   self-sign via the UI), so it was NOT covered by the 2026-07-10 FE-vs-API ruling; it
-   needs its own dev/PO decision (enforce = currently FAIL, or descope for v1).
+1. **[RESOLVED 2026-07-10 — DESCOPED]** BUG-5 (reviewer != completer) — the PO (Milos)
+   ruled the same-user block is NOT a v1 requirement; a completer may review their own WO.
+   The 4 formerly-held cases (SF-PERM-04/07/08, SF-REV-09) are now READY (VIU-Verified;
+   SF-PERM-08 obsolete). **OPEN sub-thread:** these 4 cases' TestRail push is **PENDING
+   QA-lead authorization** — the QA lead decides separately whether/how to push them (and
+   whether to retire SF-PERM-08) in TestRail; no TestRail writes were made here.
 2. **QuickBooks-connected setup** → unblocks the QB/inventory-integrity cases:
    SF-QB-03..08, SF-VMIS-03/06, SF-RCV-08 (+ confirm SF-QB-09). Needs a live QuickBooks
    connection to inspect GL / tax / line items / inventory integrity end-to-end.
@@ -583,9 +609,9 @@ blocked (§5.G); each needs an input/state to proceed:**
    status; UI Create-Invoice needs the builder/IBS flow) — needs that path enabled.
 4. **Milos Q11 group-ordering answer** → unblocks SF-RCV-05/07 (Accept-Delivery
    vendor-missing-group lead ordering; also OBS-2, wording-only).
-5. **File the 5 Jira bug drafts** (`jira-bug-drafts.md`) from the chat app where
-   Atlassian is connected (not available in this CLI env): BUG-5, BUG-6+7, BUG-8,
-   BUG-11 (Low), GAP-B.
+5. **File the 4 active Jira bug drafts** (`jira-bug-drafts.md`) from the chat app where
+   Atlassian is connected (not available in this CLI env): BUG-6+7, BUG-8, BUG-11 (Low),
+   GAP-B. (BUG-5 / TICKET 1 was DROPPED 2026-07-10 as expected behavior — do NOT file.)
 
 **Also needs-data (seed first, then re-VIU via `/bulk-receive` — not legacy
 Accept-Delivery):**
@@ -608,7 +634,8 @@ ID-matched `gen_update.py` file, get user approval, then push.
 **When Milos answers a further round (`OpenQuestions-for-Milos-Round2.md` etc.):**
 1. Record answers verbatim + map them in a new mapping doc (mirror `milos-answers-mapping.md`).
 2. Apply outcomes to `cases/*.json`: flip `viu_status`/`expected` for the affected
-   MILOS-ANSWER cases (+ the remaining 4 BUG/RULING if a BUG-5 reviewer!=completer ruling lands).
+   MILOS-ANSWER cases. (The 4 reviewer!=completer BUG/RULING cases were already resolved by
+   the 2026-07-10 descope ruling — see the Last-updated block.)
 3. Re-run `gen_blockers.py`, `gen_import.py`, `build_results_workbook.py`, then
    `gen_update.py <cleared SF ids>` for an ID-matched TestRail update file.
 4. **Ask the user before any TestRail write.**

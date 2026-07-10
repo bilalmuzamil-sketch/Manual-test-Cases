@@ -10,26 +10,6 @@ we just need your call.
 ## 1.
 
 **Picture this**
-A mechanic finishes a repair job. Right now, that same mechanic is also allowed to be the person who double-checks and approves their own work - nobody else has to look it over. Picture one person doing the repair AND signing off that it's all correct.
-
-**What happens today**
-The person who did the work can approve their own work. No second person is needed to review it.
-
-**Our question for you**
-Is this a problem we should fix, or is this how it should work?
-
-**Your options**
-- A) This is a problem - please fix it.
-- B) This is fine - it's how it should work.
-- C) Let each shop choose whether a different person must approve.
-
-**Your answer:** ______________________________________________
-
----
-
-## 2.
-
-**Picture this**
 The screen correctly hides the "finish" and "approve" buttons from people who aren't supposed to have them. But the system behind the screen doesn't fully block those actions - so a very technical person could still find a way around the screen to do them.
 
 **What happens today**
@@ -47,7 +27,7 @@ Is this a problem we should fix, or is this how it should work?
 
 ---
 
-## 3.
+## 2.
 
 **Picture this**
 When finishing a repair job, the screen asks for details like the mileage, the vehicle's ID number, or the engine hours. But the system behind the screen doesn't truly require them - so a very technical person could skip those details by going around the screen.
@@ -67,7 +47,7 @@ Is this a problem we should fix, or is this how it should work?
 
 ---
 
-## 4.
+## 3.
 
 **Picture this**
 There are two ways to receive parts that have arrived from a supplier. The newer way works fine. The older way shows an error message when a parts person tries to use it for parts that came from a repair job.
@@ -87,7 +67,7 @@ Is this a problem we should fix, or is this how it should work?
 
 ---
 
-## 5.
+## 4.
 
 **Picture this**
 When a brand-new shop opens the app for the very first time, some of the starting switches are set the wrong way by default - for example, jobs auto-approve on their own, and a supplier's bill isn't required when it should be.
@@ -121,18 +101,7 @@ affected cases (with TestRail links), refs, current status and what each
 answer triggers. **Do not include this section (or any IDs/codes in it) in
 the PO-facing copy or the "For Milos to confirm" tab.**
 
-### Item 1 — BUG-5 (TICKET 1, High)
-
-- **Affected cases:**
-  - SF-PERM-08 — [C29412](https://shopview.testrail.io/index.php?/cases/view/29412)
-  - SF-PERM-04 — [C29408](https://shopview.testrail.io/index.php?/cases/view/29408)
-  - SF-PERM-07 — [C29411](https://shopview.testrail.io/index.php?/cases/view/29411)
-  - SF-REV-09 — [C29394](https://shopview.testrail.io/index.php?/cases/view/29394)
-- **Refs:** SV-8183 reviewer!=completer rule (the one net-new Simple-Flow permission). requirements.md Story 16.
-- **Current status:** NOT filed (Atlassian MCP unavailable at run time). Reproduced live: admin sent WO S2-15752 to review then same admin confirmed it. Evidence viu-evidence/REV-admin-completer-markreviewed.png.
-- **What each answer triggers:** A (problem) -> file TICKET 1 (High); SF-PERM-08 stays Failed/Deviation and the reviewer!=completer negative is enforced. B (fine) -> mark SF-PERM-08 + related expected/pass (self-review allowed by design); drop the ticket. C -> make it a per-shop setting (new requirement + spec/story update).
-
-### Item 2 — BUG-6 + BUG-7 (TICKET 2, Medium)
+### Item 1 — BUG-6 + BUG-7 (TICKET 2, Medium)
 
 - **Affected cases:**
   - SF-PERM-06 — [C29410](https://shopview.testrail.io/index.php?/cases/view/29410)
@@ -143,7 +112,7 @@ the PO-facing copy or the "For Milos to confirm" tab.**
 - **Current status:** NOT filed. UI gating passes; backend allows the action (201) via API for a role without the permission (e.g. Technician). Recorded 'UI pass / API fail'.
 - **What each answer triggers:** A (problem) -> file TICKET 2 (Medium) to add backend enforcement; keep cases 'UI pass / API fail'. B (fine) -> accept UI-only gating as intended (atom-collapse per SV-7864); mark cases pass on UI, drop ticket. C -> file but defer (backlog).
 
-### Item 3 — BUG-8 (TICKET 3, Medium)
+### Item 2 — BUG-8 (TICKET 3, Medium)
 
 - **Affected cases:**
   - SF-VAL-01 — [C29415](https://shopview.testrail.io/index.php?/cases/view/29415)
@@ -156,7 +125,7 @@ the PO-facing copy or the "For Milos to confirm" tab.**
 - **Current status:** NOT filed. Wizard blocks completion until fields are filled (viu-evidence/VIU2-02-mileage-gate.png) but backend completes without them (simple-complete returned 201 with mileage empty).
 - **What each answer triggers:** A (problem) -> file TICKET 3 (Medium) to enforce required fields backend-side; cases stay Deviation until fixed. B (fine) -> UI-only enforcement accepted; mark SF-VAL-01/02/03 + related expected/pass on UI. C -> file but defer.
 
-### Item 4 — BUG-11 (TICKET 4, Low)
+### Item 3 — BUG-11 (TICKET 4, Low)
 
 - **Affected cases:**
   - SF-COMP-13 — [C29302](https://shopview.testrail.io/index.php?/cases/view/29302)
@@ -180,7 +149,7 @@ the PO-facing copy or the "For Milos to confirm" tab.**
 - **Current status:** NOT filed. Legacy Accept-Delivery receive of a WO-PO returns HTTP 500; new Bulk Receive receives the same WO PO fine. Evidence R7-01/R7-04/R7-06 in viu-evidence/. Affected cases now largely testable via Bulk Receive.
 - **What each answer triggers:** A (problem) -> file TICKET 4 (Low) to fix the legacy Accept-Delivery 500. B (fine) -> accept legacy path as-is (use Bulk Receive); mark cases pass via Bulk Receive path. C -> retire the legacy single-PO Accept-Delivery surface (product/scope decision) and standardize on Bulk Receive.
 
-### Item 5 — GAP-B (TICKET 5, Medium)
+### Item 4 — GAP-B (TICKET 5, Medium)
 
 - **Affected cases:**
   - SF-SET-08 — [C29282](https://shopview.testrail.io/index.php?/cases/view/29282)
@@ -188,7 +157,8 @@ the PO-facing copy or the "For Milos to confirm" tab.**
 - **Current status:** NOT filed. First-use build ships Auto-approve Lines ON and Vendor Invoice Optional (autoApproveLines:true, requireVendorInvoiceNumber:false) - opposite of the confirmed defaults.
 - **What each answer triggers:** A (problem) -> file TICKET 5 (Medium) to correct the first-use defaults; SF-SET-08 stays Deviation until fixed. B (fine) -> Milos re-confirms the shipped defaults are acceptable; update SF-SET-08 expected to match live and pass.
 
-**Notes:** The 5 items are the reconciled Simple Flow bug drafts
+**Notes:** These items are the reconciled Simple Flow bug drafts (BUG-5/
+TICKET 1 reviewer-self-review dropped 2026-07-10 as expected per Milos)
 (`jira-bug-drafts.md`, 2026-07-09 post-Milos-Round-2). This is the
 PO-DECISION view so Milos can confirm expected-vs-bug; it does NOT replace
 the QA/dev-facing `SimpleFlow_Bug-Drafts.xlsx`. TestRail IDs sourced from

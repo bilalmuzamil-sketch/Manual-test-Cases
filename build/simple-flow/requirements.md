@@ -624,6 +624,21 @@ maps to an **existing Custom Roles atom** (SV-7388, merged to develop). The one
 NET-NEW rule is behavioural, not an atom: **reviewer ≠ completer** (must be built;
 see below).
 
+> **⚠️ DESCOPED FOR v1 — PO ruling (Milos), 2026-07-10 (relayed by the QA lead):**
+> The **reviewer ≠ completer** hard rule is **NOT a v1 requirement.** A user who
+> completes AND then reviews / marks-reviewed their **own** work order is **EXPECTED /
+> acceptable behavior in v1** — it is **not** a defect. Origin kept for history: the
+> strict same-user identity block came only from **SV-8183** acceptance-criteria
+> ("Decision 3 / NET-NEW must be built"); **Story 16 (SV-7870)** only ever required a
+> different **ROLE**, which the Review Work Orders permission gate already covers. Milos
+> has now ruled the strict identity block out of v1. **Every "reviewer ≠ completer"
+> mention below (§9.1 Mark-Reviewed row, §9.3 NET-NEW rule, §10 item 3) is DESCOPED for
+> v1** — the Review Work Orders permission-gating stays; only the same-user block is
+> dropped. Case impact: SF-PERM-04/07 + SF-REV-09 re-adjudicated (identity assertion
+> removed; permission-gating retained & VIU-Verified); SF-PERM-08 (dedicated same-user
+> case) marked OBSOLETE / covered-by SF-PERM-04+07. Origin bug BUG-5 / TICKET 1 dropped
+> as expected behavior.
+
 ### 9.1 Action → existing atom map
 
 | Simple-Flow action | Story | Gated by (existing atom) |

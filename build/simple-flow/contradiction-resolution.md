@@ -51,3 +51,44 @@ design, so they were applied as-is (see `milos-answers-mapping.md` /
   SF-SET-03 **NOT** rewritten to "POs always on".
 - BUG-1 and the vendorless-form + first-use-defaults deviations recorded as
   **spec-vs-build gaps** (build lags the latest spec/design).
+
+---
+
+## PO ruling 2026-07-10 — reviewer ≠ completer DESCOPED from v1 (Milos)
+
+> **Date:** 2026-07-10 · **Decided by:** Milos (PO), relayed by the QA lead.
+> **Rule applied:** *last-update-wins* (this 2026-07-10 PO ruling is the most recent
+> input and supersedes the SV-8183 "Decision 3 / NET-NEW must be built" acceptance
+> criterion where they conflict).
+
+**Ruling:** The **"reviewer ≠ completer" hard rule is NOT a v1 requirement.** A user
+completing AND then reviewing / marking-reviewed their **own** work order is
+**EXPECTED / acceptable behavior in v1** — it is **not** a defect.
+
+**Background / origin (kept for history):** The strict same-user identity block came
+only from **SV-8183** acceptance-criteria ("Decision 3 / NET-NEW must be built");
+**Story 16 (SV-7870)** only ever required a different **ROLE** (already covered by the
+Review Work Orders permission gate). Milos has now ruled the strict identity block out
+of v1.
+
+**Decision applied (LOCAL artifacts only — TestRail push held for QA-lead authorization):**
+
+- **SF-PERM-04, SF-PERM-07, SF-REV-09** — reviewer ≠ completer assertion REMOVED from
+  each expected; the Review Work Orders **permission-gating** half is retained. Re-adjudicated
+  from existing VIU evidence to **VIU-Verified** (permission-gating live-verified via the
+  SF-PERM-10 BATCH-5 11-role fe-permissions sweep; per Milos R2 Q5 UI gating is the v1 pass
+  criterion, API gap tracked as TICKET 2 / BUG-6/7). `fresh_run: 2026-07-10` added.
+- **SF-PERM-08** (the dedicated same-user case) — nothing meaningful remains once the
+  identity rule is removed → marked **OBSOLETE / covered-by SF-PERM-04 + SF-PERM-07**;
+  left in the file (not deleted) and flagged for the QA lead to retire in TestRail.
+- **BUG-5 / TICKET 1** (reviewer can sign off own WO) — **DROPPED / closed-as-expected**;
+  moved to the "Dropped — expected behavior per PO (Milos), 2026-07-10" section of
+  `jira-bug-drafts.md` (record retained, not deleted). Removed from the Milos-confirm
+  and bug-drafts deliverables.
+- **requirements.md §9** — dated descope note appended (identity rule marked descoped;
+  SV-8183 origin kept for history).
+
+**Net effect:** These 4 cases leave the **BLOCKED — BUG/RULING** bucket (they no longer
+wait on a BUG-5 ruling) and move to **READY** (VIU-Verified). Their TestRail push is
+**PENDING QA-lead authorization** (the QA lead decides separately on TestRail; no
+TestRail writes were made here).

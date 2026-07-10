@@ -9,11 +9,11 @@
 
 | Blocker category | Count | Owner |
 |---|---:|---|
-| READY (VIU-Verified) | 114 | — (ready to upload) |
+| READY (VIU-Verified) | 118 | — (ready to upload) |
 | BLOCKED — DEV NOT BUILT | 0 | Dev team |
 | BLOCKED — VIU PENDING (QA) | 31 | QA |
 | BLOCKED — MILOS ANSWER | 13 | Milos (PO) |
-| BLOCKED — BUG/RULING | 4 | Dev / PO ruling |
+| BLOCKED — BUG/RULING | 0 | Dev / PO ruling |
 | **TOTAL** | **162** | |
 
 ### DEV NOT BUILT — by story
@@ -35,7 +35,7 @@
 - **Milos's answers to the 11 Open Questions** → unblocks 13 cases (all the MILOS-ANSWER rows). Send the filled-in OpenQuestions-for-Milos sheet.
 - **Fresh QA cookies for sv7301 (admin + tech) + seeded test data** → unblocks the bulk of the 31 VIU-PENDING (QA) cases (cores, receiving, vendor, validation round-trips).
 - **A 2nd/3rd role account (Office, Service Manager, Foreman) — some WITHOUT 'See Financial Data'** → unblocks SF-PERM-09 and SF-PERM-10 (per-role completion + vendorless-add gate).
-- **A dev/PO ruling on FE-only BE enforcement + the missing reviewer!=completer rule (resolve SV-8183 'BE enforces' vs SV-7864 atom-collapse)** → finalizes the 4 BUG/RULING cases.
+- **A dev/PO ruling on FE-only BE enforcement + the missing reviewer!=completer rule (resolve SV-8183 'BE enforces' vs SV-7864 atom-collapse)** → finalizes the 0 BUG/RULING cases.
 
 ## Full per-case tracker
 
@@ -162,7 +162,7 @@
 | SF-REV-06 | Review ON (Story 16) | Verify the Mark Reviewed dialog captures VIN (required) and disables Confirm until VIN is entered | VIU-Verified | READY | READY (VIU-Verified) | — | None — VIU-verified; uploadable now. | R7 / R10 | — |  |
 | SF-REV-07 | Review ON (Story 16) | Verify on Send to Review lines lock to Complete and inventory is auto-picked | VIU-Verified | READY | READY (VIU-Verified) | — | None — VIU-verified; uploadable now. | R6 | — |  |
 | SF-REV-08 | Review ON (Story 16) | Verify Confirm Review signs off and completes the work order directly (no distinct Reviewed holding state) | VIU-Verified | BLOCKED | BLOCKED — MILOS ANSWER | Milos (Product Owner) | Milos answers Open Question Q8, Q4 — Distinct 'Reviewed' state before final Complete — expected or single-step? | Q8, Q4 \| R5 / R8 (distinct Reviewed state) | — |  |
-| SF-REV-09 | Review ON (Story 16) | Verify Mark Reviewed is gated by the Review Work Orders permission and disabled for a role without it | VIU-Verified | BLOCKED | BLOCKED — BUG/RULING | Dev / PO ruling | Review role-gating: FE-vs-API part resolved by the 2026-07-10 ruling, but the expected also requires reviewer != completer, missing at the UI (BUG-5). Held on BUG-5 (TICKET 1). | R7 (role-gating) \| see viu-findings BUGS #5/#6/#7 | — |  |
+| SF-REV-09 | Review ON (Story 16) | Verify Mark Reviewed is gated by the Review Work Orders permission and disabled for a role without it | VIU-Verified | READY | READY (VIU-Verified) | — | None — VIU-verified; uploadable now. | R7 (role-gating) | — |  |
 | SF-REV-10 | Review ON (Story 16) | Verify the Mark Reviewed dialog includes VIN / Serial # (required) with no review note field | VIU-Verified | BLOCKED | BLOCKED — MILOS ANSWER | Milos (Product Owner) | Milos answers Open Question Q7 — Optional review-note field (input_review_note) absent — descope or bug? | Q7 \| R7 (VIN required, no note) | — |  |
 | SF-REV-11 | Review ON (Story 16) | Verify sign-off completes the work order directly (no separate final Complete) and invoicing is blocked until reviewed | VIU-Pending | BLOCKED | BLOCKED — MILOS ANSWER | Milos (Product Owner) | Milos answers Open Question Q8 — Invoicing-blocked-until-reviewed depends on the Reviewed-state ruling (Q8). | Q8 \| R8 | — |  |
 | SF-REV-12 | Review ON (Story 16) | Verify a 'Ready for Review' list filter/column surfaces the reviewer queue | VIU-Verified | READY | READY (VIU-Verified) | — | None — VIU-verified; uploadable now. | R9 | — |  |
@@ -176,11 +176,11 @@
 | SF-PERM-01 | API — Permissions | Verify only owner/admin can view and modify Work Order settings (non-admin blocked) | VIU-Verified | READY | READY (VIU-Verified) | — | None — VIU-verified; uploadable now. | S1 AC / §8 Permissions | — |  |
 | SF-PERM-02 | Permissions | Verify which roles can complete a work order (Simple completion) | VIU-Verified | READY | READY (VIU-Verified) | — | None — VIU-verified; uploadable now. | §8 Permissions | — |  |
 | SF-PERM-03 | Permissions | Verify which roles can perform Bulk Receive | VIU-Verified | READY | READY (VIU-Verified) | — | None — VIU-verified; uploadable now. | §8 Permissions | — |  |
-| SF-PERM-04 | Permissions | Verify which roles can Mark Reviewed (sign off) | VIU-Verified | BLOCKED | BLOCKED — BUG/RULING | Dev / PO ruling | Role-gating of Mark-Reviewed: FE-vs-API part resolved by the 2026-07-10 ruling, but the expected also requires reviewer != completer, which is missing at the UI (BUG-5). Held on BUG-5 (TICKET 1). | R7 / §8 role-gating review \| see viu-findings BUGS #5/#6/#7 | — |  |
+| SF-PERM-04 | Permissions | Verify which roles can Mark Reviewed (sign off) | VIU-Verified | READY | READY (VIU-Verified) | — | None — VIU-verified; uploadable now. | R7 / §8 role-gating review | — |  |
 | SF-PERM-05 | Permissions | Verify the PO Receive button is hidden for office/readonly users | VIU-Verified | READY | READY (VIU-Verified) | — | None — VIU-verified; uploadable now. | S11-R3 | — |  |
 | SF-PERM-06 | API — Permissions | Verify permission gating of Simple-Flow settings and work-order actions (UI gating is the v1 pass criterion) | VIU-Verified | READY | READY (VIU-Verified) | — | None — VIU-verified; uploadable now. | §8 BE enforcement | — |  |
-| SF-PERM-07 | Permissions | Verify review sign-off is governed by the Review Work Orders custom-role permission (not open to all) | VIU-Verified | BLOCKED | BLOCKED — BUG/RULING | Dev / PO ruling | Review sign-off permission FE-only at BE was resolved by the 2026-07-10 ruling (UI pass / API fail, T2), BUT this case's expected also requires reviewer != completer, which fails at the UI too (BUG-5). Held on BUG-5 (TICKET 1). | §8 role-gating review \| see viu-findings BUGS #5/#6/#7 | — |  |
-| SF-PERM-08 | Permissions | Verify the user who completed or sent the work order to review cannot Mark Reviewed it | VIU-Verified | BLOCKED | BLOCKED — BUG/RULING | Dev / PO ruling | reviewer != completer rule NOT implemented (a user can sign off their own WO via the UI). NOT covered by the 2026-07-10 FE-vs-API ruling (the UI does not block it) — held on BUG-5 (TICKET 1): enforce or descope? | R7 (reviewer != completer) \| see viu-findings BUGS #5/#6/#7 | — |  |
+| SF-PERM-07 | Permissions | Verify review sign-off is governed by the Review Work Orders custom-role permission (not open to all) | VIU-Verified | READY | READY (VIU-Verified) | — | None — VIU-verified; uploadable now. | §8 role-gating review | — |  |
+| SF-PERM-08 | Permissions | [OBSOLETE — descoped v1] The completer reviewing their own WO is EXPECTED in v1 (was: user who completed cannot Mark Reviewed) | VIU-Verified | READY | READY (VIU-Verified) | — | None — VIU-verified; uploadable now. | R7 (review sign-off) — reviewer != completer DESCOPED v1 | — |  |
 | SF-PERM-09 | Permissions | Verify a Technician cannot add a vendorless / no-part-number part (lacks See Financial Data) | VIU-Verified | READY | READY (VIU-Verified) | — | None — VIU-verified; uploadable now. | S5 / §9 (See Financial Data gate) | — |  |
 | SF-PERM-10 | Permissions | Verify the Complete Work Order action follows the per-role completion permission matrix | VIU-Verified | READY | READY (VIU-Verified) | — | None — VIU-verified; uploadable now. | §9 per-role completion matrix | — |  |
 | SF-VAL-01 | Validation / Edge | Verify completion is blocked when required mileage is missing | VIU-Verified | READY | READY (VIU-Verified) | — | None — VIU-verified; uploadable now. | S2-R2 / S3-R3 / S4-R3 | — |  |

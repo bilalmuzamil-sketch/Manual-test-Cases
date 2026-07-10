@@ -2,10 +2,11 @@
 """Generate the MOST-SIMPLIFIED "possible problems" sheet for Milos (Simple Flow PO).
 
 Purpose: give Milos (completely non-technical) a plain, everyday-scenario view of
-the 5 open bug drafts so HE can decide, per item, whether each is a real problem to
+the open bug drafts so HE can decide, per item, whether each is a real problem to
 fix or is actually how it should work (expected). This is the PO-DECISION view of
 the same items that live in the QA/dev-facing SimpleFlow_Bug-Drafts.xlsx — it does
-NOT overwrite that file.
+NOT overwrite that file. (BUG-5 / TICKET 1 "reviewer can sign off own WO" was
+DROPPED 2026-07-10 as expected behavior per Milos's ruling and is no longer listed.)
 
 Outputs (regenerable — run from the repo root):
   - build/simple-flow/SimpleFlow_Bugs-for-Milos-Confirm.xlsx
@@ -22,7 +23,7 @@ Sheets:
                              testrail-id-map.csv), spec/story refs, current status,
                              and what each answer triggers on our side.
 
-Source of the 5 items: build/simple-flow/jira-bug-drafts.md (the 5 drafts). The
+Source of the items: build/simple-flow/jira-bug-drafts.md (active drafts). The
 reader-facing wording follows the friendly scenario tone of
 gen_po_questions_round3.py Tab 1 (standing rule 7 — plain layman language).
 """
@@ -51,17 +52,10 @@ STD_OPTS_AB = ("A) This is a problem - please fix it.\n"
 # Reader-facing content (layman ONLY — no IDs, codes, or tech terms)
 # ---------------------------------------------------------------------------
 items = [
-    {   # BUG-5 / TICKET 1 (High)
-        "picture": ("A mechanic finishes a repair job. Right now, that same mechanic "
-                    "is also allowed to be the person who double-checks and approves "
-                    "their own work - nobody else has to look it over. Picture one "
-                    "person doing the repair AND signing off that it's all correct."),
-        "today": ("The person who did the work can approve their own work. No second "
-                  "person is needed to review it."),
-        "question": STD_QUESTION,
-        "opts": (STD_OPTS_AB + "\n"
-                 "C) Let each shop choose whether a different person must approve."),
-    },
+    # NOTE: BUG-5 / TICKET 1 (reviewer can sign off their own work order) was DROPPED
+    # 2026-07-10 — settled as EXPECTED behavior by Milos's ruling (reviewer != completer
+    # is not a v1 requirement). Removed from this PO-confirm sheet; see jira-bug-drafts.md
+    # "Dropped — expected behavior per PO (Milos), 2026-07-10".
     {   # BUG-6 + BUG-7 / TICKET 2 (Medium)
         "picture": ("The screen correctly hides the \"finish\" and \"approve\" buttons "
                     "from people who aren't supposed to have them. But the system "
@@ -116,18 +110,10 @@ items = [
 #             refs, status, triggers
 # ---------------------------------------------------------------------------
 internal_map = [
-    ("BUG-5", "TICKET 1", "High",
-     [("SF-PERM-08", 29412), ("SF-PERM-04", 29408), ("SF-PERM-07", 29411),
-      ("SF-REV-09", 29394)],
-     "SV-8183 reviewer!=completer rule (the one net-new Simple-Flow permission). "
-     "requirements.md Story 16.",
-     "NOT filed (Atlassian MCP unavailable at run time). Reproduced live: admin sent "
-     "WO S2-15752 to review then same admin confirmed it. Evidence "
-     "viu-evidence/REV-admin-completer-markreviewed.png.",
-     "A (problem) -> file TICKET 1 (High); SF-PERM-08 stays Failed/Deviation and the "
-     "reviewer!=completer negative is enforced. B (fine) -> mark SF-PERM-08 + related "
-     "expected/pass (self-review allowed by design); drop the ticket. C -> make it a "
-     "per-shop setting (new requirement + spec/story update)."),
+    # BUG-5 / TICKET 1 REMOVED 2026-07-10: settled as EXPECTED by Milos (reviewer !=
+    # completer is not a v1 requirement; a completer may review their own WO). No longer a
+    # PO decision. SF-PERM-04/07 + SF-REV-09 re-adjudicated VIU-Verified; SF-PERM-08
+    # obsolete. See jira-bug-drafts.md "Dropped — expected behavior per PO (Milos)".
     ("BUG-6 + BUG-7", "TICKET 2", "Medium",
      [("SF-PERM-06", 29410), ("SF-PERM-02", 29406), ("SF-PERM-07", 29411),
       ("SF-REV-09", 29394)],
@@ -266,8 +252,10 @@ for i, (bug, ticket, prio, cases, refs, status, triggers) in enumerate(internal_
 
 note_row = r + 1
 wi.cell(row=note_row, column=1, value=(
-    "Notes: The 5 items are the reconciled Simple Flow bug drafts (jira-bug-drafts.md, "
-    "2026-07-09 post-Milos-Round-2). This sheet is the PO-DECISION view so Milos can "
+    "Notes: These items are the reconciled Simple Flow bug drafts (jira-bug-drafts.md, "
+    "2026-07-09 post-Milos-Round-2, updated 2026-07-10). BUG-5/TICKET 1 (reviewer can "
+    "sign off own WO) was DROPPED 2026-07-10 as expected behavior per Milos and is no "
+    "longer listed. This sheet is the PO-DECISION view so Milos can "
     "confirm expected-vs-bug; it does NOT replace the QA/dev-facing "
     "SimpleFlow_Bug-Drafts.xlsx. TestRail Case IDs sourced from testrail-id-map.csv "
     "(standing rule 8); every affected case's clickable link is preserved in the .md "
@@ -338,7 +326,8 @@ for i, (bug, ticket, prio, cases, refs, status, triggers) in enumerate(internal_
     md.append(f"- **Current status:** {status}")
     md.append(f"- **What each answer triggers:** {triggers}")
     md.append("")
-md.append("**Notes:** The 5 items are the reconciled Simple Flow bug drafts")
+md.append("**Notes:** These items are the reconciled Simple Flow bug drafts (BUG-5/")
+md.append("TICKET 1 reviewer-self-review dropped 2026-07-10 as expected per Milos)")
 md.append("(`jira-bug-drafts.md`, 2026-07-09 post-Milos-Round-2). This is the")
 md.append("PO-DECISION view so Milos can confirm expected-vs-bug; it does NOT replace")
 md.append("the QA/dev-facing `SimpleFlow_Bug-Drafts.xlsx`. TestRail IDs sourced from")

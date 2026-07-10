@@ -212,7 +212,7 @@
   "title": "Verify Mark Reviewed is gated by the Review Work Orders permission and disabled for a role without it",
   "priority": "High",
   "type": "Permissions",
-  "permissions_required": "Review Work Orders permission + reviewer must not be the completer.",
+  "permissions_required": "Review Work Orders permission.",
   "preconditions": [
    "1. A role with Review Work Orders and a role without it both exist.",
    "2. A work order is in Review state, sent to review by a known user."
@@ -224,12 +224,12 @@
   ],
   "expected": [
    "1. A role without the Review Work Orders permission sees Mark Reviewed disabled with an 'Awaiting review' indicator.",
-   "2. A role with the Review Work Orders permission can Mark Reviewed and sign off.",
-   "3. The user who completed / sent the work order to review cannot Mark Reviewed even with the permission; a different qualified reviewer can."
+   "2. A role with the Review Work Orders permission can Mark Reviewed and sign off."
   ],
-  "design_ref": "requirements R7 / §9 (Review Work Orders + reviewer != completer)",
+  "design_ref": "requirements R7 / §9 (Review Work Orders permission gate)",
   "viu_status": "VIU-Verified",
-  "notes": "Defined by SV-8183: Mark Reviewed = Review Work Orders atom (defaults broad, narrowable to manager/foreman) plus reviewer != completer. Role-gating negatives not yet verified live (admin-only session on sv7301). | VIU 2026-07-07 (Tech-unblock pass): RESULT: FAIL. Mark Reviewed is NOT gated by Review Work Orders at the BE: tech (no woReviewWorkOrders) drove change-status->complete on a ready_for_review WO -> 201. FE hides the control for non-reviewers, but BE does not enforce; reviewer!=completer also not enforced.",
+  "fresh_run": "2026-07-10",
+  "notes": "Defined by SV-8183: Mark Reviewed = Review Work Orders atom (defaults broad, narrowable to manager/foreman). Role-gating negatives not yet verified live (admin-only session on sv7301). | VIU 2026-07-07 (Tech-unblock pass): RESULT: FAIL. Mark Reviewed is NOT gated by Review Work Orders at the BE: tech (no woReviewWorkOrders) drove change-status->complete on a ready_for_review WO -> 201. FE hides the control for non-reviewers, but BE does not enforce; reviewer!=completer also not enforced. || [RECLASSIFIED 2026-07-10] reviewer != completer DESCOPED per Milos ruling relayed by QA lead 2026-07-10 — a completer may review their own WO in v1 (the strict same-user block came only from SV-8183 Decision-3/NET-NEW; Milos ruled it out of v1). The identity assertion (was expected #3) is REMOVED. The retained permission-gating half — Review Work Orders gates Mark Reviewed (FE hides the control for non-reviewers; live-verified across all 11 roles in SF-PERM-10 BATCH 5 fe-permissions sweep, woReviewWorkOrders matching §9.2) — was observed working; per Milos R2 Q5 UI gating is the v1 pass criterion (API gap tracked as TICKET 2 / BUG-6/7). So this case is VIU-Verified: reviewer≠completer descoped per Milos ruling 2026-07-10; permission-gating verified.",
   "api_related": false
  },
  {
@@ -574,7 +574,7 @@
   "title": "Verify which roles can Mark Reviewed (sign off)",
   "priority": "Medium",
   "type": "Permissions",
-  "permissions_required": "Review Work Orders permission + reviewer must not be the completer.",
+  "permissions_required": "Review Work Orders permission.",
   "preconditions": [
    "1. Credentials for roles with and without Review Work Orders exist.",
    "2. A work order in Review state exists, sent to review by a known user."
@@ -585,12 +585,12 @@
   ],
   "expected": [
    "1. Mark Reviewed (review sign-off) requires the Review Work Orders permission; system defaults grant it broadly, and it can be narrowed to manager/foreman via custom roles.",
-   "2. A role without Review Work Orders sees Mark Reviewed disabled with an 'Awaiting review' indicator.",
-   "3. The user who completed / sent the work order to review cannot Mark Reviewed it; a different user who holds Review Work Orders can sign off."
+   "2. A role without Review Work Orders sees Mark Reviewed disabled with an 'Awaiting review' indicator."
   ],
-  "design_ref": "requirements R7 / §9 (Review Work Orders + reviewer != completer)",
+  "design_ref": "requirements R7 / §9 (Review Work Orders permission gate)",
   "viu_status": "VIU-Verified",
-  "notes": "Defined by SV-8183: Mark Reviewed = Review Work Orders atom (not open-to-all) PLUS the NET-NEW reviewer != completer hard rule. Role-gating negatives not yet verified live. | VIU 2026-07-07 (Tech-unblock pass): RESULT: partial FAIL. Mark Reviewed dialog = 'Mark as reviewed', VIN-only (input_review_vin), no note. reviewer!=completer NOT enforced (admin completer self-signed Review->Complete, REV-admin-completer-markreviewed.png). Review atom not BE-enforced (tech change-status->complete 201). Sign-off jumps Review->Complete (no distinct Reviewed state).",
+  "fresh_run": "2026-07-10",
+  "notes": "Defined by SV-8183: Mark Reviewed = Review Work Orders atom (not open-to-all). Role-gating negatives not yet verified live. | VIU 2026-07-07 (Tech-unblock pass): RESULT: partial FAIL. Mark Reviewed dialog = 'Mark as reviewed', VIN-only (input_review_vin), no note. reviewer!=completer NOT enforced (admin completer self-signed Review->Complete, REV-admin-completer-markreviewed.png). Review atom not BE-enforced (tech change-status->complete 201). Sign-off jumps Review->Complete (no distinct Reviewed state). || [RECLASSIFIED 2026-07-10] reviewer != completer DESCOPED per Milos ruling relayed by QA lead 2026-07-10 — a completer may review their own WO in v1 (the strict same-user block came only from SV-8183 Decision-3/NET-NEW; Milos ruled it out of v1). The identity assertion (was expected #3) is REMOVED. The retained role-gating half — which roles hold Review Work Orders and can Mark Reviewed — was live-verified across all 11 roles in SF-PERM-10 BATCH 5 (fe-permissions sweep, woReviewWorkOrders matching §9.2); FE hides the control for non-reviewers. Per Milos R2 Q5 UI gating is the v1 pass criterion (API gap tracked as TICKET 2 / BUG-6/7). So VIU-Verified: reviewer≠completer descoped per Milos ruling 2026-07-10; permission-gating verified.",
   "api_related": false
  },
  {
@@ -655,49 +655,45 @@
   "title": "Verify review sign-off is governed by the Review Work Orders custom-role permission (not open to all)",
   "priority": "Low",
   "type": "Permissions",
-  "permissions_required": "Review Work Orders permission + reviewer must not be the completer.",
+  "permissions_required": "Review Work Orders permission.",
   "preconditions": [
    "1. Credentials for roles with and without Review Work Orders exist.",
    "2. A work order in Review state exists, sent to review by a known user."
   ],
   "steps": [
-   "1. Confirm that only roles holding Review Work Orders can sign off, and roles without it cannot.",
-   "2. Confirm the user who completed / sent the work order to review cannot sign it off."
+   "1. Confirm that only roles holding Review Work Orders can sign off, and roles without it cannot."
   ],
   "expected": [
    "1. Review sign-off is governed by the Review Work Orders custom-role permission (it is NOT open to all users for v1).",
-   "2. The permission gates the Mark Reviewed action, and the reviewer-not-completer rule is enforced (the completer cannot sign off)."
+   "2. The permission gates the Mark Reviewed action (a role without Review Work Orders cannot sign off; a role with it can)."
   ],
-  "design_ref": "requirements R7 / §9 (Review Work Orders + reviewer != completer)",
+  "design_ref": "requirements R7 / §9 (Review Work Orders permission gate)",
   "viu_status": "VIU-Verified",
-  "notes": "Answered by SV-8183: review sign-off = Review Work Orders atom (custom-role gated, not open for v1) plus the reviewer != completer NET-NEW rule. Role-gating negatives not yet verified live. | VIU 2026-07-07 (Tech-unblock pass): RESULT: FAIL. Review sign-off NOT gated at BE by Review Work Orders (tech, lacking woReviewWorkOrders, completed sign-off via POST /api/work-orders/change-status status=complete -> 201). reviewer!=completer NOT enforced. Gating is FE-only. See BUGS.",
+  "fresh_run": "2026-07-10",
+  "notes": "Answered by SV-8183: review sign-off = Review Work Orders atom (custom-role gated, not open for v1). Role-gating negatives not yet verified live. | VIU 2026-07-07 (Tech-unblock pass): RESULT: FAIL. Review sign-off NOT gated at BE by Review Work Orders (tech, lacking woReviewWorkOrders, completed sign-off via POST /api/work-orders/change-status status=complete -> 201). reviewer!=completer NOT enforced. Gating is FE-only. See BUGS. || [RECLASSIFIED 2026-07-10] reviewer != completer DESCOPED per Milos ruling relayed by QA lead 2026-07-10 — a completer may review their own WO in v1 (the strict same-user block came only from SV-8183 Decision-3/NET-NEW; Milos ruled it out of v1). The identity assertion (was expected #2 tail + step #2) is REMOVED. The retained half — review sign-off is governed by the Review Work Orders custom-role permission (not open to all) — is FE-gated and live-verified across all 11 roles in SF-PERM-10 BATCH 5 (woReviewWorkOrders matching §9.2). Per Milos R2 Q5 UI gating is the v1 pass criterion (API gap tracked as TICKET 2 / BUG-6/7). So VIU-Verified: reviewer≠completer descoped per Milos ruling 2026-07-10; permission-gating verified.",
   "api_related": false
  },
  {
   "id": "SF-PERM-08",
   "area": "Permissions",
-  "story_ref": "R7 (reviewer != completer)",
-  "title": "Verify the user who completed or sent the work order to review cannot Mark Reviewed it",
+  "story_ref": "R7 (review sign-off) — reviewer != completer DESCOPED v1",
+  "title": "[OBSOLETE — descoped v1] The completer reviewing their own WO is EXPECTED in v1 (was: user who completed cannot Mark Reviewed)",
   "priority": "High",
   "type": "Permissions",
-  "permissions_required": "Review Work Orders permission + reviewer must not be the completer.",
+  "permissions_required": "Review Work Orders permission.",
   "preconditions": [
-   "1. Two different users who both hold the Review Work Orders permission exist.",
-   "2. User A has completed / sent a work order to review; it is in Review state."
+   "1. OBSOLETE — this case tested the reviewer != completer identity block, which is descoped in v1 (a completer MAY review their own WO)."
   ],
   "steps": [
-   "1. Sign in as User A (who sent the work order to review) and open the work order in Review.",
-   "2. Attempt to Mark Reviewed.",
-   "3. Sign in as User B (a different user who holds Review Work Orders) and Mark Reviewed."
+   "1. OBSOLETE — no steps. The retained Review Work Orders permission-gating is covered by SF-PERM-04 and SF-PERM-07."
   ],
   "expected": [
-   "1. User A cannot Mark Reviewed the work order they completed / sent to review; the action is blocked or disabled.",
-   "2. User B, a different user who holds the Review Work Orders permission, can Mark Reviewed and sign off.",
-   "3. The reviewer must be a different person from the completer."
+   "1. OBSOLETE / covered-by SF-PERM-04 & SF-PERM-07. The behavior this case asserted — the user who completed / sent a WO to review cannot Mark Reviewed it — is DESCOPED in v1 per the Milos ruling (2026-07-10): a completer reviewing their own work order is EXPECTED / acceptable, not a defect. Nothing distinct remains after removing the identity rule (the Review Work Orders permission-gating half is already covered by SF-PERM-04 and SF-PERM-07). FLAG FOR QA LEAD: retire / deactivate this case in TestRail (or keep as a documented no-op)."
   ],
-  "design_ref": "requirements R7 / §9 (reviewer != completer NET-NEW rule)",
+  "design_ref": "requirements R7 / §9 (reviewer != completer NET-NEW rule — DESCOPED v1 per Milos 2026-07-10)",
   "viu_status": "VIU-Verified",
-  "notes": "NET-NEW hard rule from SV-8183: stamp sentToReviewBy/completedBy and block Mark Reviewed for that user. Role-gating negatives not yet verified live. | VIU 2026-07-07 (Tech-unblock pass): RESULT: FAIL (BUG). reviewer!=completer NOT implemented: the SAME admin user who Sent to Review successfully Marked it Reviewed, moving Review->Complete with no block (REV-admin-completer-markreviewed.png). No two-user restriction. This is the one NET-NEW Simple-Flow rule and it is missing.",
+  "fresh_run": "2026-07-10",
+  "notes": "NET-NEW hard rule from SV-8183 (stamp sentToReviewBy/completedBy and block Mark Reviewed for that user). | VIU 2026-07-07 (Tech-unblock pass): the SAME admin who Sent to Review successfully Marked it Reviewed (Review->Complete, no block; REV-admin-completer-markreviewed.png). Previously logged as a FAIL/BUG (the one net-new Simple-Flow rule missing). || [RECLASSIFIED 2026-07-10 — OBSOLETE] Milos ruling relayed by QA lead 2026-07-10: reviewer != completer is NOT a v1 requirement; a completer reviewing their own WO is EXPECTED. The previously-observed self-review is therefore CORRECT behavior, not a defect — the sole assertion of this case is void. This case is the dedicated same-user case, so nothing meaningful remains; marked OBSOLETE / covered-by SF-PERM-04 + SF-PERM-07 (which retain the Review Work Orders permission-gating). Left in the file (not deleted) and viu_status set VIU-Verified so it exits the BUG/RULING bucket; FLAGGED FOR QA LEAD to retire in TestRail. Origin defect BUG-5 / TICKET 1 dropped as expected-behavior.",
   "api_related": false
  },
  {
