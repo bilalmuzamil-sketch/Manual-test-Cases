@@ -9,10 +9,10 @@
 
 | Blocker category | Count | Owner |
 |---|---:|---|
-| READY (VIU-Verified) | 105 | — (ready to upload) |
+| READY (VIU-Verified) | 106 | — (ready to upload) |
 | BLOCKED — DEV NOT BUILT | 0 | Dev team |
-| BLOCKED — VIU PENDING (QA) | 38 | QA |
-| BLOCKED — MILOS ANSWER | 15 | Milos (PO) |
+| BLOCKED — VIU PENDING (QA) | 39 | QA |
+| BLOCKED — MILOS ANSWER | 13 | Milos (PO) |
 | BLOCKED — BUG/RULING | 4 | Dev / PO ruling |
 | **TOTAL** | **162** | |
 
@@ -25,15 +25,15 @@
 
 | VIU sub-bucket | Count | Meaning |
 |---|---:|---|
-| reachable-now | 1 | admin+tech + normal data; just needs another VIU pass (no new inputs). |
+| reachable-now | 2 | admin+tech + normal data; just needs another VIU pass (no new inputs). |
 | needs-data | 37 | needs a data state not seedable via the app (see per-case detail). |
 | needs-account | 0 | needs a role account we don't have (see per-case detail). |
-| **TOTAL VIU PENDING (QA)** | **38** | |
+| **TOTAL VIU PENDING (QA)** | **39** | |
 
 ## WHAT TO SEND ME NEXT (to unblock each batch)
 
-- **Milos's answers to the 11 Open Questions** → unblocks 15 cases (all the MILOS-ANSWER rows). Send the filled-in OpenQuestions-for-Milos sheet.
-- **Fresh QA cookies for sv7301 (admin + tech) + seeded test data** → unblocks the bulk of the 38 VIU-PENDING (QA) cases (cores, receiving, vendor, validation round-trips).
+- **Milos's answers to the 11 Open Questions** → unblocks 13 cases (all the MILOS-ANSWER rows). Send the filled-in OpenQuestions-for-Milos sheet.
+- **Fresh QA cookies for sv7301 (admin + tech) + seeded test data** → unblocks the bulk of the 39 VIU-PENDING (QA) cases (cores, receiving, vendor, validation round-trips).
 - **A 2nd/3rd role account (Office, Service Manager, Foreman) — some WITHOUT 'See Financial Data'** → unblocks SF-PERM-09 and SF-PERM-10 (per-role completion + vendorless-add gate).
 - **A dev/PO ruling on FE-only BE enforcement + the missing reviewer!=completer rule (resolve SV-8183 'BE enforces' vs SV-7864 atom-collapse)** → finalizes the 4 BUG/RULING cases.
 
@@ -62,8 +62,8 @@
 | SF-COMP-04 | Completion — No-PO / Skip (Story 2) | Verify Go to Invoice from the Success screen opens the Finance step where the invoice number is shown | VIU-Verified | READY | READY (VIU-Verified) | — | None — VIU-verified; uploadable now. | S2-R5 / S15-R3 | — |  |
 | SF-COMP-05 | Completion — No-PO / Skip (Story 2) | Verify completion is blocked when a required vehicle field is missing | VIU-Verified | READY | READY (VIU-Verified) | — | None — VIU-verified; uploadable now. | S2-R2 / S2 AC (missing required fields blocked) | — |  |
 | SF-COMP-06 | Completion — No-PO / Skip (Story 2) | Verify with Create POs OFF a work order with vendor parts completes with no PO, no vendor bill and no AP sync | Open-Question | BLOCKED | BLOCKED — MILOS ANSWER | Milos (Product Owner) | Milos answers Open Question Q5 — Create-POs-OFF => no PO config not possible (toggle absent). | Q5 \| S2-R6 / S2 AC (Create POs off ⇒ no PO) | — |  |
-| SF-COMP-07 | Completion — No-PO / Skip (Story 2) | Verify in-stock inventory parts decrement inventory and write Part History on simple completion | VIU-Pending | BLOCKED | BLOCKED — MILOS ANSWER | Milos (Product Owner) | Milos answers Open Question Q2 — Auto-receive of in-stock parts on simple completion — intended behaviour? | Q2 \| S2-R6 / §5 invariant 1 | — |  |
-| SF-COMP-08 | Completion — No-PO / Skip (Story 2) | Verify with Auto-pick Inventory OFF the completion modal requires picking parts before Complete | VIU-Pending | BLOCKED | BLOCKED — VIU PENDING (QA) | QA (needs cookies+seed data) | QA VIU: seed the specific completion configuration and drive the wizard to Success. | S2-R2 / S2 AC (auto-pick off ⇒ pick in modal) | needs-data | BATCH 6: with autoPickInventoryParts OFF, adding a catalog inventory part (P550848) still picks it via the bin-quantity input (status in_stock) so no Pick step appears. Needs an UNPICKED inventory part at completion (not seedable via the current add-part form). |
+| SF-COMP-07 | Completion — No-PO / Skip (Story 2) | Verify in-stock inventory parts decrement inventory and write Part History on simple completion | VIU-Verified | READY | READY (VIU-Verified) | — | None — VIU-verified; uploadable now. | S2-R6 / §5 invariant 1 | — |  |
+| SF-COMP-08 | Completion — No-PO / Skip (Story 2) | Verify with Auto-pick Inventory OFF the completion modal requires picking parts before Complete | VIU-Pending | BLOCKED | BLOCKED — VIU PENDING (QA) | QA (needs cookies+seed data) | QA VIU: seed the specific completion configuration and drive the wizard to Success. | S2-R2 / S2 AC (auto-pick off ⇒ pick in modal) | reachable-now | FRESH VIU 2026-07-10: with autoPickInventoryParts=OFF, an added inventory part stays 'in_stock' and simple-complete is BE-BLOCKED (400 'All inventory and found parts must be picked...'); after line-level Pick it completes (201) — expected #2/#3 PROVEN. Remaining: surface the completion-WIZARD Pick step UI ('Pick all from default bins'/'Review individually') for expected #1 (drive the completion modal, not line-level pick). |
 | SF-COMP-09 | Completion — No-PO / Skip (Story 2) | Verify adding a new line to a completed work order returns it to Approved | VIU-Verified | READY | READY (VIU-Verified) | — | None — VIU-verified; uploadable now. | S2-R6 / S2 AC (re-open returns to Approved) | — |  |
 | SF-COMP-10 | Completion — No-PO / Skip (Story 2) | Verify individual-line Complete and per-part receive actions still work alongside Simple completion | VIU-Verified | READY | READY (VIU-Verified) | — | None — VIU-verified; uploadable now. | S2 AC (individual-line Complete + per-part receive kept) | — |  |
 | SF-COMP-11 | Completion — PO + Optional Invoice (Story 3) | Verify the optional-invoice completion wizard offers Receive Parts, Complete Without Receiving and Cancel | VIU-Verified | READY | READY (VIU-Verified) | — | None — VIU-verified; uploadable now. | S3-R4 | — |  |
@@ -194,7 +194,7 @@
 | SF-VAL-09 | Validation / Edge | Verify the sell field is locked after the work order is invoiced/paid with a lock icon and tooltip | VIU-Pending | BLOCKED | BLOCKED — VIU PENDING (QA) | QA (needs cookies+seed data) | QA VIU: drive the specific validation/edge scenario with seeded data. | S8-R7 / §4 field locking | needs-data | RE-VIU 2026-07-09: Bulk Receive field-locking BUILT (qty/cost/sell editable verified); the sell-lock-after-invoiced/paid clause needs an invoiced/paid WO to drive. |
 | SF-VAL-10 | Validation / Edge | Verify the same vendor invoice number can be reused across POs (uniqueness relaxed) | VIU-Verified | READY | READY (VIU-Verified) | — | None — VIU-verified; uploadable now. | S9-R3 / §4 (uniqueness relaxed) | — |  |
 | SF-VAL-11 | Validation / Edge | Verify the approve-line error text appears when completing with an unapproved line | VIU-Verified | READY | READY (VIU-Verified) | — | None — VIU-verified; uploadable now. | Key Decision (line approval) | — |  |
-| SF-QB-01 | QuickBooks / Inventory Integrity | Verify in-stock parts decrement inventory and write Part History on simple completion (skip path still runs lifecycle) | VIU-Pending | BLOCKED | BLOCKED — MILOS ANSWER | Milos (Product Owner) | Milos answers Open Question Q2 — Inventory decrement / Part History on skip-path completion. | Q2 \| §5 invariant 1 | — |  |
+| SF-QB-01 | QuickBooks / Inventory Integrity | Verify in-stock parts decrement inventory and write Part History on simple completion (skip path still runs lifecycle) | VIU-Pending | BLOCKED | BLOCKED — VIU PENDING (QA) | QA (needs cookies+seed data) | QA VIU: complete a WO end-to-end and inspect the QuickBooks / inventory side-effects (Journal Entry, Part History, inventory decrement). | §5 invariant 1 | needs-data | FRESH VIU 2026-07-10: decrement half PROVEN (P550848 on-hand 6->5 on pick, persisted through simple-complete 201). Part-History LOG surface BLOCKED-ENV: GET /api/inventory/parts/history -> 500; /parts/inventory/{id} detail page crashes ('page is totaled'); other history endpoints 404/405 (see bugs-log OBS-6). QuickBooks-integrity leg needs QB access. |
 | SF-QB-02 | QuickBooks / Inventory Integrity | Verify Create POs OFF produces no PO, vendor bill or AP sync and no catalog/inventory sync | Open-Question | BLOCKED | BLOCKED — MILOS ANSWER | Milos (Product Owner) | Milos answers Open Question Q5 — QuickBooks integrity when Create-POs is OFF (toggle absent). | Q5 \| §5 / §4 (Create POs OFF) | — |  |
 | SF-QB-03 | QuickBooks / Inventory Integrity | Verify POs ON plus receiving runs the full pipeline: receive → Delivery → Vendor Bill → QuickBooks (both surfaces sync) | VIU-Pending | BLOCKED | BLOCKED — VIU PENDING (QA) | QA (needs cookies+seed data) | QA VIU: complete a WO end-to-end and inspect the QuickBooks / inventory side-effects (Journal Entry, Part History, inventory decrement). | §5 invariant 2 | needs-data | QuickBooks / inventory back-end inspection (receive -> Delivery -> Vendor Bill -> QBO) — likely needs dev/QB access. |
 | SF-QB-04 | QuickBooks / Inventory Integrity | Verify a vendorless / no-PN part has zero inventory interaction until a vendor and/or part number is added | VIU-Pending | BLOCKED | BLOCKED — VIU PENDING (QA) | QA (needs cookies+seed data) | QA VIU: complete a WO end-to-end and inspect the QuickBooks / inventory side-effects (Journal Entry, Part History, inventory decrement). | §5 (vendorless/no-PN) | needs-data | QuickBooks / inventory inspection (vendorless/no-PN part = zero inventory interaction) — likely needs dev/QB access. |

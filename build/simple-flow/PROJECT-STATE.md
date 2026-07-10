@@ -2,7 +2,20 @@
 
 > **THIS IS THE CANONICAL STATE DOC for the Simple Flow project.** It is a single
 > authoritative snapshot so the project can be resumed with zero re-discovery.
-> **Last updated:** 2026-07-10 (**TWO USER-AUTHORIZED ACTIONS APPLIED** — see this
+> **Last updated:** 2026-07-10 (**FRESH VIU RUN IN PROGRESS** — checkpoint. Tally now:
+> VIU-Verified **113** / VIU-Pending **44** / Open-Question **5** = 162; blockers READY
+> **106** / VIU-PENDING (QA) **39** / MILOS **13** / BUG-RULING **4**. **SF-COMP-07
+> flipped VIU-Pending → VIU-Verified** (inventory-decrement live-proven: part P550848
+> on-hand 6→5 on pick, persisted through simple-complete 201; skip-path did not bypass
+> the movement; MILOS Q2/R2-Q3 already answered so removed from MILOS → READY).
+> **SF-QB-01** decrement half proven, but its Part-History LOG surface is **BLOCKED-ENV**
+> (GET /api/inventory/parts/history → 500; /parts/inventory/{id} detail page crashes;
+> other history endpoints 404/405) → moved MILOS → VIU-PENDING (QA) needs-data; captured
+> as **OBS-6** (possible NEW env/build defect for dev). **SF-COMP-08** BE pick-gate proven
+> (auto-pick OFF ⇒ can't complete unpicked, completes after pick) — remains VIU-Pending on
+> the completion-modal Pick-step UI. Env healthy: admin+tech quick-login 200; bridge fresh.
+> Run continues (bulk-receive round-trips next).)
+> **Prior Last-updated:** 2026-07-10 (**TWO USER-AUTHORIZED ACTIONS APPLIED** — see this
 > block. Tally: VIU-Verified **112** / VIU-Pending **45** / Open-Question **5** = 162;
 > blockers READY **105** / VIU-PENDING (QA) **38** / MILOS **15** / BUG-RULING **4** /
 > DEV-NOT-BUILT **0**. TestRail: SV-8183 + V2.4 + Milos-R2 batches pushed & verified;

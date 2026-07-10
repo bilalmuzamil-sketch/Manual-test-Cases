@@ -61,14 +61,16 @@ MILOS = {
     "SF-SET-08":  ("Q3, Q4", "First-use defaults: spec (Auto-approve OFF / invoice REQUIRED) vs design (ON / Optional)."),
     "SF-SET-13":  ("Q6", "Save Settings always enabled (no dirty-state gating) — intended or bug?"),
     "SF-COMP-06": ("Q5", "Create-POs-OFF => no PO config not possible (toggle absent)."),
-    "SF-COMP-07": ("Q2", "Auto-receive of in-stock parts on simple completion — intended behaviour?"),
+    # SF-COMP-07 removed from MILOS 2026-07-10: Q2/R2-Q3 answered (decrement confirmed) AND
+    #   live-verified (on-hand 6->5 on pick, persisted through simple-complete). Now VIU-Verified -> READY.
     "SF-TECH-08": ("Q9, Q4", "Tech-story placement: Story 17 (inline + gate-modal) vs S15-R2 (line-only)."),
     "SF-REV-08":  ("Q8, Q4", "Distinct 'Reviewed' state before final Complete — expected or single-step?"),
     "SF-REV-10":  ("Q7", "Optional review-note field (input_review_note) absent — descope or bug?"),
     "SF-REV-11":  ("Q8", "Invoicing-blocked-until-reviewed depends on the Reviewed-state ruling (Q8)."),
     "SF-REV-15":  ("Q1", "Require-review default cohort rule + new-org preset."),
     "SF-UX-04":   ("Q10", "Close-vs-cancel confirm modal — design 'still to be added'."),
-    "SF-QB-01":   ("Q2", "Inventory decrement / Part History on skip-path completion."),
+    # SF-QB-01 removed from MILOS 2026-07-10: Q2/R2-Q3 answered; decrement half now live-proven,
+    #   remaining Part-History LOG surface is an env/QA blocker (see SUBBUCKET) -> VIU PENDING (QA).
     "SF-QB-02":   ("Q5", "QuickBooks integrity when Create-POs is OFF (toggle absent)."),
     "SF-RCV-05":  ("Q11", "Vendor-missing group ordering on Accept Delivery — spec contradicts itself."),
     "SF-RCV-07":  ("Q11", "Vendor-missing group ordering (S12-R1 bottom vs S12-R3 top)."),
@@ -92,7 +94,8 @@ _REACHABLE = "admin+tech + normal WO data; needs another VIU pass (no new inputs
 SUBBUCKET = {
     # ---- reachable-now (19) ----
     "SF-SET-10":   ("reachable-now", _REACHABLE),
-    "SF-COMP-08":  ("needs-data", "BATCH 6: with autoPickInventoryParts OFF, adding a catalog inventory part (P550848) still picks it via the bin-quantity input (status in_stock) so no Pick step appears. Needs an UNPICKED inventory part at completion (not seedable via the current add-part form)."),
+    "SF-COMP-08":  ("reachable-now", "FRESH VIU 2026-07-10: with autoPickInventoryParts=OFF, an added inventory part stays 'in_stock' and simple-complete is BE-BLOCKED (400 'All inventory and found parts must be picked...'); after line-level Pick it completes (201) — expected #2/#3 PROVEN. Remaining: surface the completion-WIZARD Pick step UI ('Pick all from default bins'/'Review individually') for expected #1 (drive the completion modal, not line-level pick)."),
+    "SF-QB-01":    ("needs-data", "FRESH VIU 2026-07-10: decrement half PROVEN (P550848 on-hand 6->5 on pick, persisted through simple-complete 201). Part-History LOG surface BLOCKED-ENV: GET /api/inventory/parts/history -> 500; /parts/inventory/{id} detail page crashes ('page is totaled'); other history endpoints 404/405 (see bugs-log OBS-6). QuickBooks-integrity leg needs QB access."),
     "SF-COMP-10":  ("reachable-now", _REACHABLE),
     "SF-COMP-15":  ("reachable-now", "drive optional-flow Cancel and re-open; check no duplicate POs."),
     "SF-COMP-20":  ("reachable-now", "required-invoice flow (requireVendorInvoiceNumber=ON) + part-bearing WO; Cancel = no change."),

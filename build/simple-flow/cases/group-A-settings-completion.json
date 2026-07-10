@@ -590,8 +590,8 @@
    "3. The skip path does not bypass inventory movement / Part History."
   ],
   "design_ref": "requirements §5 invariant 1",
-  "viu_status": "VIU-Pending",
-  "notes": "§8 open question — auto-receive of in-stock inventory on simple completion is UNCONFIRMED. Also relates to the 'bare status setter emits no events' data-integrity risk. Not driven in VIU. Confirm intended behavior. || [RECONCILED V2.4 2026-07-08] Un-held: No-PO path RETAINED (V2.4), so the completion expectations stand. || [MILOS ROUND-2 2026-07-09 — Q3 CONFIRMED] Milos confirmed in-stock inventory parts DO decrement on-hand and write Part History on completion (the PO question is a separate concern). Expected already correct — no wording change. Still VIU-Pending on a live decrement drive.",
+  "viu_status": "VIU-Verified",
+  "notes": "§8 open question — auto-receive of in-stock inventory on simple completion is UNCONFIRMED. Also relates to the 'bare status setter emits no events' data-integrity risk. Not driven in VIU. Confirm intended behavior. || [RECONCILED V2.4 2026-07-08] Un-held: No-PO path RETAINED (V2.4), so the completion expectations stand. || [MILOS ROUND-2 2026-07-09 — Q3 CONFIRMED] Milos confirmed in-stock inventory parts DO decrement on-hand and write Part History on completion (the PO question is a separate concern). Expected already correct — no wording change. Still VIU-Pending on a live decrement drive. || [FRESH VIU 2026-07-10 sv7301] VERIFIED (decrement + skip-path no-bypass). Seeded WO 1490338a with inventory part P550848 (inv_part 000657fe, on-hand 6). Manual Pick (button_part_request_action -> POST /api/work-orders/part/perform-request-status-action 201) decremented on-hand 6->5; simple-complete (skip path) BE-gated on picking (400 'All inventory and found parts must be picked before completing the work order.' until picked), then returned 201 (WO=Complete) with on-hand STAYING 5 (movement not bypassed by the skip-path status setter; confirmed via API GET /api/inventory/parts/{id}.quantity AND the /parts/inventory list UI showing qty 5). Part-History LOG DISPLAY not separately surfaced (see SF-QB-01 note / OBS-6) but the net on-hand movement is proven.",
   "api_related": false
  },
  {
@@ -619,7 +619,7 @@
   ],
   "design_ref": "Pick Parts Step.html",
   "viu_status": "VIU-Pending",
-  "notes": "Auto-pick was ON in the VIU baseline, so the pick step was not exercised. Needs live verification with auto-pick OFF.",
+  "notes": "Auto-pick was ON in the VIU baseline, so the pick step was not exercised. Needs live verification with auto-pick OFF. || [FRESH VIU 2026-07-10 sv7301] PROGRESS: with autoPickInventoryParts=OFF (current org drift), adding inventory part P550848 left it status 'in_stock' (NOT auto-picked); simple-complete BE-BLOCKED 400 'All inventory and found parts must be picked before completing the work order.'; after line-level Pick (perform-request-status-action 201 -> status picked) completion proceeded (201). Expected #2 (cannot complete until picked) and #3 (after pick, completes) PROVEN. Expected #1 (completion-MODAL Pick step offering 'Pick all from default bins'/'Review individually') NOT yet surfaced — pick was driven at line level, not via the completion wizard's pick step. Remains VIU-Pending on the modal pick-step UI.",
   "api_related": false
  },
  {

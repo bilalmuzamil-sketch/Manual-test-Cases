@@ -383,3 +383,19 @@ filing-grade defects (no error/corruption).
   (200); a non-colliding vendor auto-assigns with no Merge/Keep-Separate prompt and
   clears `vendorMissing`. The Story-13 merge/keep-separate prompt (SF-VEND-02/03) only
   surfaces on a same-vendor / same-WO collision, which was not seedable this pass.
+
+### OBS-6 — Part-History display surface errors (env/build defect candidate, FRESH VIU 2026-07-10)
+- While proving SF-COMP-07/SF-QB-01 inventory decrement on sv7301, the **Part-History
+  display surface could not be reached**: `GET /api/inventory/parts/history` (with
+  `part_id`/`inventory_part_id`/`workplace_id` param variants) returns **HTTP 500**
+  ("An error occurred… please try again a bit later", one `requestId: 8d752c7…`);
+  `POST /api/inventory/parts/history` → **405** (method not allowed); the SPA route
+  `/parts/inventory/{id}` (part detail) **crashes to the "this page is totaled 💥"
+  error page** (no detail/History tab renders); `/api/inventory/parts/{id}/history`,
+  `/api/reports/part-history`, `/api/catalogue-parts/history` → **404**.
+- The underlying **inventory movement IS correct** (P550848 on-hand 6→5 on pick,
+  persisted through simple-complete; visible in the `/parts/inventory` list and via
+  `GET /api/inventory/parts/{id}.quantity`). So this is a **display/reporting-surface
+  bug**, not a data-integrity failure. Flagged as a **possible NEW env/build defect for
+  the dev list** (Part-History report 500 + part-detail page crash). It blocks the
+  Part-History-LOG half of SF-QB-01 / SF-QB-08 from independent VIU confirmation.
