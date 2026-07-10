@@ -41,13 +41,21 @@ all).
    `viu-qb-findings.md` + `screenshots/viu-qb/` (UI-deep) — pass B's doc holds
    the merged scoreboard + reconciliation + FDBUG register + API map).
    **STATUS: FEATURE LIVE on `qb.qa.shopview.com` / API
-   `sv7387api.qa.shopview.com` (flag ON) — deep-VIU BATCH 1–4 DONE
-   (batch-4 2026-07-09):** all 182 cases adjudicated in
-   `cases/*.json` `viu_status`. **Current tally (batch-4): 108 VIU-Verified / 74
-   not-yet-verified** = 28 Deviation / 12 Blocked-NotBuilt [S11 Part Sales ×8 + S8
-   Processing-Fee builder UI ×4] / 18 Blocked-Env [QuickBooks ×13 +
-   flag-off/shared-env ×5] / 16 Pending [FD-PART-005 receive-transition,
-   invoice-time walk, 6 PO-flagged deviations, 4 Story-13 per-role negatives].
+   `sv7387api.qa.shopview.com` (flag ON) — FRESH FULL VIU PASS DONE 2026-07-10**
+   (all 182 cases re-adjudicated live in one run; every case carries
+   `fresh_run: 2026-07-10` + a fresh evidence note; tester-facing workbook
+   `FeesDiscounts_FreshVIU_2026-07-10.xlsx`). **Current tally: 114 VIU-Verified /
+   68 not-yet-verified** = 35 Deviation / 12 Blocked-NotBuilt [S11 Part Sales ×7 +
+   FD-PERM-004 + S8 Processing-Fee builder UI ×4 — both re-checked live] / 20
+   Blocked-Env [QuickBooks internals + unmap-500 ×14 + flag-off/shared-env ×6] /
+   1 Pending [FD-PART-005; line-create 500 persists]. Fresh-pass headlines:
+   **FDBUG-1 NOT reproduced (3rd clean pass; FD-DOC-011 → Verified)**; **FDBUG-12
+   FIXED** (API customers now inherit auto-apply defaults); **NEW FDBUG-16** (API
+   accepts empty-name adjustment 201, UI blocks — FE-only guard); FD-QB-015's
+   in-app credit half VERIFIED (excess → customer credit exactly); Technician role
+   DRIFTED on qb (now has WO C&E + Delete — re-derive roles-matrix before reuse);
+   env bugs persisting: line-create 500, QB duplicate-doc-number export failure,
+   bookkeeping unmap 500.
    **Batch-4:** flipped 7 Pending→Verified (FD-PART-003/006/007, FD-DOC-001/003/006/010)
    + 1→Deviation (FD-PART-001 = FDBUG-14 part-line dialog label defects); the customer
    estimate/invoice doc is `POST /api/work-orders/invoices/estimate {work_order_id,type:
