@@ -152,6 +152,7 @@
       <input type="search" id="fs" placeholder="key or words…"></div>
     <button class="reset" id="freset">Reset</button>
     <span class="fcount" id="fcount"></span>
+    <div id="epicnote" style="flex-basis:100%;font-size:12.5px;color:var(--ink-2);margin-top:2px"></div>
   </div>
 
   <div class="eyebrow">🏆 Bug hunting leaderboard — who finds and reports the bugs</div>
@@ -254,7 +255,9 @@ const PRESETS = {
   last30:    [daysAgo(29), ASOF],
   last62:    [daysAgo(62), ASOF],
 };
-const MIN_DATE = daysAgo(62);
+const MIN_DATE = daysAgo(62);            // floor for the relative presets
+const EPIC_START = DATA.epicStart || {}; // per-epic start (first linked defect; Custom Roles pinned 17 Jun)
+const DATA_MIN = DATA.dataMinDate || MIN_DATE;  // earliest date the picker allows (covers epic starts)
 const fmtD = s => new Date(s+"T12:00:00Z").toLocaleDateString("en-GB",{weekday:"short",day:"numeric",month:"short",year:"numeric",timeZone:"UTC"});
 const fmtShort = s => new Date(s+"T12:00:00Z").toLocaleDateString("en-GB",{day:"numeric",month:"short",timeZone:"UTC"});
 document.getElementById("asof").textContent =
@@ -295,7 +298,7 @@ const $ = id => document.getElementById(id);
 const state = { q:"", e:"", from:PRESETS.week[0], to:PRESETS.week[1], y:"", s:"",
                 shown:60, metric:"done", sort:["up",-1] };
 function syncDates(){ $("fd1").value = state.from; $("fd2").value = state.to; }
-["fd1","fd2"].forEach(id => { const el=$(id); el.min=MIN_DATE; el.max=ASOF; });
+["fd1","fd2"].forEach(id => { const el=$(id); el.min=DATA_MIN; el.max=ASOF; });
 
 // populate selects
 {
@@ -348,6 +351,18 @@ const METRICS = {
 function render(){
   const pLabel = state.from===state.to ? `on ${fmtShort(state.from)}`
     : `${fmtShort(state.from)} – ${fmtShort(state.to)}`;
+  // epic-range explainer
+  const en = $("epicnote");
+  if (state.e) {
+    const es = EPIC_START[state.e];
+    const pinned = state.e === "SV-7388";
+    const early = es && es < MIN_DATE;
+    en.innerHTML = `📌 Showing <b>${esc(epShort(state.e==="NONE"?null:state.e))}</b> from its
+      ${pinned ? "QA-handoff date" : "first linked bug/defect"} <b>${es?fmtD(es):"—"}</b> to today`
+      + (early ? ` · <span style="color:var(--serious)">note: this epic began before the ~2-month
+         data window, so counts before ${fmtShort(MIN_DATE)} are partial</span>` : "");
+    en.style.display = "block";
+  } else { en.style.display = "none"; }
   renderLead();
   const base = T.filter(matchBase);
   const waiting = base.filter(t=>t.st==="Ready for QA");
@@ -515,8 +530,20 @@ function renderTable(){
   $("more").onclick=()=>{ state.shown+=60; renderTable(); };
 }
 
-["fq","fe","fy"].forEach(id=>$(id).onchange=e=>{
-  state[{fq:"q",fe:"e",fy:"y"}[id]]=e.target.value; state.shown=60; render(); });
+["fq","fy"].forEach(id=>$(id).onchange=e=>{
+  state[{fq:"q",fy:"y"}[id]]=e.target.value; state.shown=60; render(); });
+// Selecting an epic auto-sets the calendar to that epic's start (first linked
+// defect; Custom Roles pinned to the 17 Jun QA handoff) → today, driving the whole page.
+$("fe").onchange=e=>{
+  state.e = e.target.value;
+  if (state.e && EPIC_START[state.e]) {
+    state.from = EPIC_START[state.e];
+    state.to = ASOF;
+    $("ft").value = "custom";
+    syncDates();
+  }
+  state.shown=60; render();
+};
 $("ft").onchange=e=>{
   const p=e.target.value;
   if (p!=="custom"){ [state.from,state.to]=PRESETS[p]; syncDates(); }

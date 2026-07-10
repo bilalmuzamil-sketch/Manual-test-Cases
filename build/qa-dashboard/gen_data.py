@@ -65,7 +65,25 @@ for lbl, n in variants.items():
     p = person_from(lbl[len('qacomplete'):]) if lbl.lower().startswith('qacomplete') else None
     if p: per_person[p.split(' ')[0]] += n
 
+# Per-epic start date = earliest created among its linked Bug/Story Defect;
+# fall back to earliest created of any linked ticket if the epic has no defect yet.
+# Known QA-handoff overrides win (data-derived value matches, but keep it explicit).
+EPIC_HANDOFF = {'SV-7388': '2026-06-17'}   # Custom Roles & Permissions handed to QA 17 Jun 2026
+defect_min, any_min = {}, {}
+for t in out:
+    ek = t['ep']
+    if not ek: continue
+    any_min[ek] = min(any_min.get(ek, '9999'), t['cr'])
+    if t['ty'] in ('Bug', 'Story Defect'):
+        defect_min[ek] = min(defect_min.get(ek, '9999'), t['cr'])
+epic_start = {}
+for ek in epics:
+    epic_start[ek] = defect_min.get(ek) or any_min.get(ek) or ASOF
+epic_start.update(EPIC_HANDOFF)
+data_min = min((t['cr'] for t in out), default=ASOF)
+
 data = {'asof': ASOF, 'tickets': out, 'epics': epics,
+        'epicStart': epic_start, 'dataMinDate': data_min,
         'hygiene': {'inprog': inprog, 'bare': bare, 'lower': lower, 'mismatch': mismatch,
                     'per_person': dict(per_person.most_common())}}
 json.dump(data, open(f'{W}/dash-data.json', 'w'), separators=(',', ':'))
