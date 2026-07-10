@@ -9,12 +9,12 @@
 
 | Blocker category | Count | Owner |
 |---|---:|---|
-| READY (VIU-Verified) | 113 | — (ready to upload) |
-| BLOCKED — DEVIATION | 36 | Dev fix / PO ruling / QA case-update |
+| READY (VIU-Verified) | 114 | — (ready to upload) |
+| BLOCKED — DEVIATION | 35 | Dev fix / PO ruling / QA case-update |
 | BLOCKED — DEV NOT BUILT | 12 | Dev team (Stories 8 & 11) |
-| BLOCKED — ENV | 19 | Dev / QA env (QuickBooks, flag-off) |
+| BLOCKED — ENV | 20 | Dev / QA env (QuickBooks, flag-off) |
 | BLOCKED — NEEDS-ACCOUNT | 0 | QA (restricted-role session) |
-| BLOCKED — VIU PENDING (QA) | 2 | QA (fresh cookies + seed data) |
+| BLOCKED — VIU PENDING (QA) | 1 | QA (fresh cookies + seed data) |
 | **TOTAL** | **182** | |
 
 ### By authoring group
@@ -29,7 +29,7 @@
 
 | Sub-bucket | Count | Meaning |
 |---|---:|---|
-| code-bug | 7 | confirmed FDBUG code defect — needs a dev fix |
+| code-bug | 6 | confirmed FDBUG code defect — needs a dev fix |
 | PO-question | 3 | expected hangs on a Product-Owner ruling |
 | case-update | 26 | label/copy/UX drift — update case text once build confirmed intended |
 
@@ -44,16 +44,16 @@
 
 | Sub-bucket | Count |
 |---|---:|
-| quickbooks | 13 |
+| quickbooks | 14 |
 | flag-off/env | 6 |
 
 ## WHAT TO SEND ME NEXT (to unblock each batch)
 
-- **Fresh qb QA cookies (admin; tech quick-login is FLAKY — retest each run)** → unblocks the 2 VIU-PENDING cases (parts UI flows, invoice-time walk, retests) AND — via the self-service staff role-switch — the 0 NEEDS-ACCOUNT Story-13 per-role negatives.
+- **Fresh qb QA cookies (admin; tech quick-login is FLAKY — retest each run)** → unblocks the 1 VIU-PENDING cases (parts UI flows, invoice-time walk, retests) AND — via the self-service staff role-switch — the 0 NEEDS-ACCOUNT Story-13 per-role negatives.
 - **Dev deploys Story 8 (Processing-Fee builder UI) + Story 11 (Part Sales fees/discounts)** → unblocks the 12 DEV-NOT-BUILT cases (Story 8 = 4, Story 11 = 8); then QA re-runs VIU.
-- **A QuickBooks-connected env (or dev/QB-side inspection) for Story 6** → unblocks the 13 QuickBooks ENV cases (mapping guard, sync, negative-total credit memo).
+- **A QuickBooks-connected env (or dev/QB-side inspection) for Story 6** → unblocks the 14 QuickBooks ENV cases (mapping guard, sync, negative-total credit memo).
 - **A flag-off maintenance window on a non-shared env** → unblocks the 6 flag-off/shared-env cases (FD-FLAG-001/002/003, FD-HIST-004, FD-TMPL-012).
-- **PO/dev rulings on the deviations + double-add + NOTE-FD-4** → finalizes the 3 PO-question deviations (Stats layout, whole-WO FE-vs-BE enforcement), the double-add confirmation (FD-CUST-016/FD-VAL-007), and NOTE-FD-4 (BE accepts processing_fee). Dev fixes finalize the 7 code-bug deviations; QA updates the 26 copy/UX-drift deviations once the build is confirmed intended.
+- **PO/dev rulings on the deviations + double-add + NOTE-FD-4** → finalizes the 3 PO-question deviations (Stats layout, whole-WO FE-vs-BE enforcement), the double-add confirmation (FD-CUST-016/FD-VAL-007), and NOTE-FD-4 (BE accepts processing_fee). Dev fixes finalize the 6 code-bug deviations; QA updates the 26 copy/UX-drift deviations once the build is confirmed intended.
 - **Restricted-role accounts (or confirmation the self-service staff role-switch is usable on qb)** → unblocks the 0 NEEDS-ACCOUNT Story-13 per-role negatives (restore Tech afterward).
 
 ## Full per-case tracker
@@ -179,7 +179,7 @@
 | FD-DOC-008 | B (Customer/Admin/Finance) | Customer document — Shop Supplies (S14) | Verify Shop Supplies is hidden on the estimate/invoice/financial tab when the total is $0.00 | VIU-Verified | READY | READY (VIU-Verified) | — | None — VIU-verified; uploadable now. | S14-R1 | verified |
 | FD-DOC-009 | B (Customer/Admin/Finance) | Customer document — Shop Supplies (S14) | Verify Shop Supplies reappears on the customer views when its total becomes greater than $0.00 | VIU-Verified | READY | READY (VIU-Verified) | — | None — VIU-verified; uploadable now. | S14-R2 | verified |
 | FD-DOC-010 | B (Customer/Admin/Finance) | Customer document — line-level $0 target | Verify a line-level adjustment on a not-billable (declined) line resolves to $0.00 but still shows | VIU-Verified | READY | READY (VIU-Verified) | — | None — VIU-verified; uploadable now. | §5-R12 | verified |
-| FD-DOC-011 | B (Customer/Admin/Finance) | Customer document — layout | Verify the Adjustments block sits after Labor/Parts/Shop Supplies and before Subtotal → Tax → Total | VIU-Deviation | BLOCKED | BLOCKED — DEVIATION | Dev team | Dev fix — FDBUG-1 (MAJOR) — WO/estimate Subtotal/Total exclude adjustments while GST taxes them. | S5-R5 | code-bug |
+| FD-DOC-011 | B (Customer/Admin/Finance) | Customer document — layout | Verify the Adjustments block sits after Labor/Parts/Shop Supplies and before Subtotal → Tax → Total | VIU-Verified | READY | READY (VIU-Verified) | — | None — VIU-verified; uploadable now. | S5-R5 | verified |
 | FD-QB-001 | B (Customer/Admin/Finance) | QuickBooks sync | Verify each fee/discount exports to QuickBooks as its own invoice line item (fee +, discount −) | VIU-Blocked-Env | BLOCKED | BLOCKED — ENV | Dev / QA env | QuickBooks integration not present on qb env (Story 6). Needs a QB-connected env or dev/QB-side inspection. | S6-R1 | quickbooks |
 | FD-QB-002 | B (Customer/Admin/Finance) | QuickBooks sync | Verify the QuickBooks line description equals the adjustment name and the item is the mapped Fee/Discount item | VIU-Blocked-Env | BLOCKED | BLOCKED — ENV | Dev / QA env | QuickBooks integration not present on qb env (Story 6). Needs a QB-connected env or dev/QB-side inspection. | S6-R3, S6-R5 | quickbooks |
 | FD-QB-003 | B (Customer/Admin/Finance) | QuickBooks sync — edge | Verify a $0.00 resolved adjustment is skipped when sent to QuickBooks | VIU-Blocked-Env | BLOCKED | BLOCKED — ENV | Dev / QA env | QuickBooks integration not present on qb env (Story 6). Needs a QB-connected env or dev/QB-side inspection. | S6-R1, §5-R8 | quickbooks |
@@ -194,7 +194,7 @@
 | FD-QB-012 | B (Customer/Admin/Finance) | QuickBooks — negative totals | Verify the net subtotal floors at $0.00 with the $100/$10/$150 worked example (non-taxable vs taxable discount) | VIU-Verified | READY | READY (VIU-Verified) | — | None — VIU-verified; uploadable now. | S6-R10, S6-R10a, S6-R10b, S6-R10c | verified |
 | FD-QB-013 | B (Customer/Admin/Finance) | QuickBooks — negative totals | Verify discount lines to QuickBooks are capped with largest-remainder whole-cent penny allocation | VIU-Blocked-Env | BLOCKED | BLOCKED — ENV | Dev / QA env | QuickBooks integration not present on qb env (Story 6). Needs a QB-connected env or dev/QB-side inspection. | S6-R10d | quickbooks |
 | FD-QB-014 | B (Customer/Admin/Finance) | QuickBooks — negative totals | Verify a mandatory warn/confirm before saving when discounts exceed the net subtotal | VIU-Deviation | BLOCKED | BLOCKED — DEVIATION | QA (case-text update) | Build deviates from spec wording/UX — update case text once the build is confirmed intended (label/copy/UX drift; see viu-qb-findings.md). | S6-R12 | case-update |
-| FD-QB-015 | B (Customer/Admin/Finance) | QuickBooks — negative totals | Verify the excess is recorded as a customer credit and posts to QuickBooks as a tax-exempt goodwill credit memo | VIU-Pending | BLOCKED | BLOCKED — VIU PENDING (QA) | QA (needs cookies+seed data) | Fresh qb cookies + seeded/throwaway data; drive this built surface (parts UI flows, invoice-time walk, misc retests — see viu-qb-findings.md batch-2 backlog). | S6-R11, S6-R13 | reachable/needs-data |
+| FD-QB-015 | B (Customer/Admin/Finance) | QuickBooks — negative totals | Verify the excess is recorded as a customer credit and posts to QuickBooks as a tax-exempt goodwill credit memo | VIU-Blocked-Env | BLOCKED | BLOCKED — ENV | Dev / QA env | QuickBooks integration not present on qb env (Story 6). Needs a QB-connected env or dev/QB-side inspection. | S6-R11, S6-R13 | quickbooks |
 | FD-QB-016 | B (Customer/Admin/Finance) | QuickBooks sync — tax | Verify a synced line's tax follows the adjustment's taxable setting | VIU-Blocked-Env | BLOCKED | BLOCKED — ENV | Dev / QA env | QuickBooks integration not present on qb env (Story 6). Needs a QB-connected env or dev/QB-side inspection. | S6-R2, §5-R11 | quickbooks |
 | FD-HIST-001 | B (Customer/Admin/Finance) | History log | Verify one history entry per add/edit/remove with the correct bold event labels | VIU-Deviation | BLOCKED | BLOCKED — DEVIATION | Dev team | Dev fix — FDBUG-3 — auto-applied adjustments write NO history-log entry. | S10-R2, S10-R4a, S10-R4b, S10-R4c | code-bug |
 | FD-HIST-002 | B (Customer/Admin/Finance) | History log | Verify the history detail block shows Name, Type, Amount (set rate), and Applied-to label | VIU-Deviation | BLOCKED | BLOCKED — DEVIATION | QA (case-text update) | Build deviates from spec wording/UX — update case text once the build is confirmed intended (label/copy/UX drift; see viu-qb-findings.md). | S10-R6a, S10-R6b, S10-R6c, S10-R6d | case-update |

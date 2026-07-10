@@ -22,8 +22,9 @@
   ],
   "design_ref": "design-notes.md §4 (customer page shows \"Fees & Discounts (3)\" tab)",
   "viu_status": "VIU-Verified",
-  "notes": "Count in parentheses = number of default links on the customer, not adjustments on work orders. | VIU qb batch-1 (2026-07-08): Tab label 'Fees & Discounts (N)' counts defaults live: (0) empty, (1) after add, (3)/(2) after ops. Shots s4-03/07. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — Recon: customer \"Fees & Discounts (N)\" tab with count",
-  "api_related": false
+  "notes": "Count in parentheses = number of default links on the customer, not adjustments on work orders. | VIU qb batch-1 (2026-07-08): Tab label 'Fees & Discounts (N)' counts defaults live: (0) empty, (1) after add, (3)/(2) after ops. Shots s4-03/07. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — Recon: customer \"Fees & Discounts (N)\" tab with count | FRESH VIU 2026-07-10: tab label 'Fees & Discounts (N)' re-observed (live count from defaults)",
+  "api_related": false,
+  "fresh_run": "2026-07-10"
  },
  {
   "id": "FD-CUST-002",
@@ -50,8 +51,9 @@
   ],
   "design_ref": "design-notes.md §4 (columns Name/Type/Calculation Type/Amount/Max Amount/Taxable/Auto-Apply to Work Orders; \"Add Fee/Discount\" button)",
   "viu_status": "VIU-Verified",
-  "notes": "Customer card uses \"Add Fee/Discount\" (no spaces); WO/template dialogs use \"Add Fee / Discount\" (with spaces) — keep both exact (S9-R... exact-text note). | VIU qb batch-1 (2026-07-08): Card 'Default Fees & Discounts'; caption EXACTLY matches S9-R14; columns Name/Type/Calculation Type/Amount/Max Amount/Taxable + actions; bold headers/plain cells. Shot s4-03. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — Recon: \"Default Fees & Discounts\" card, exact S9-R14 caption, columns Name·Type·Calc·Amount·Max·Taxable",
-  "api_related": false
+  "notes": "Customer card uses \"Add Fee/Discount\" (no spaces); WO/template dialogs use \"Add Fee / Discount\" (with spaces) — keep both exact (S9-R... exact-text note). | VIU qb batch-1 (2026-07-08): Card 'Default Fees & Discounts'; caption EXACTLY matches S9-R14; columns Name/Type/Calculation Type/Amount/Max Amount/Taxable + actions; bold headers/plain cells. Shot s4-03. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — Recon: \"Default Fees & Discounts\" card, exact S9-R14 caption, columns Name·Type·Calc·Amount·Max·Taxable | FRESH VIU 2026-07-10: card header + exact caption re-observed ('These fees & discounts auto-apply to every new work order for this customer…')",
+  "api_related": false,
+  "fresh_run": "2026-07-10"
  },
  {
   "id": "FD-CUST-003",
@@ -78,8 +80,9 @@
   ],
   "design_ref": "design-notes.md §7 (bulk template picker, checkbox list, columns Name/Type/Calculation Type/Amount)",
   "viu_status": "VIU-Deviation",
-  "notes": "Toast for one default is the generic \"Fee / discount added.\" — it does NOT vary by type (§7 toast table). | VIU qb batch-1 (2026-07-08): Add works end-to-end (toast 'Fee / discount added', row + count update, POST /customers/{id}/default-adjustments {templateIds:[...]}). DEVIATIONS from S9-R18/19/20: picker is a single 'Fee / Discount Templates' DROPDOWN with Cancel/SAVE (spec: caption + checkbox multi-select list + 'Add' button); no caption text. Shots s4-04/05/06. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: POST /customers/{id}/default-adjustments {templateIds:[id]} → 201 adds default (GET confirms) | PO CLARIFY 2026-07-09 (Chris Ward answer sheet Q6=A): the single-select dropdown picker (one template per add) is the accepted intended behavior — a deliberate judgement call to avoid accidental multi-adds; case re-worded away from the spec's checkbox multi-select picker. FDBUG-7 closed won't-fix.",
-  "api_related": false
+  "notes": "Toast for one default is the generic \"Fee / discount added.\" — it does NOT vary by type (§7 toast table). | VIU qb batch-1 (2026-07-08): Add works end-to-end (toast 'Fee / discount added', row + count update, POST /customers/{id}/default-adjustments {templateIds:[...]}). DEVIATIONS from S9-R18/19/20: picker is a single 'Fee / Discount Templates' DROPDOWN with Cancel/SAVE (spec: caption + checkbox multi-select list + 'Add' button); no caption text. Shots s4-04/05/06. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: POST /customers/{id}/default-adjustments {templateIds:[id]} → 201 adds default (GET confirms) | PO CLARIFY 2026-07-09 (Chris Ward answer sheet Q6=A): the single-select dropdown picker (one template per add) is the accepted intended behavior — a deliberate judgement call to avoid accidental multi-adds; case re-worded away from the spec's checkbox multi-select picker. FDBUG-7 closed won't-fix. | FRESH VIU 2026-07-10: single-select add works (API 201, UI single picker) — PO Q6=A accepted; case text still needs the single-select re-wording (case-update)",
+  "api_related": false,
+  "fresh_run": "2026-07-10"
  },
  {
   "id": "FD-CUST-004",
@@ -105,8 +108,9 @@
   ],
   "design_ref": "design-notes.md §7 (multi-select checkbox list)",
   "viu_status": "VIU-Deviation",
-  "notes": "Plural toast pattern is \"[N] fees / discounts added.\" per §7 toast table. | VIU qb batch-1 (2026-07-08): Multi-select NOT possible in the UI (single-select dropdown; reopening shows no list once one is chosen). Backend accepts templateIds ARRAY (API multi-link 201), so only the UI multi-select + '[N] fees / discounts added' toast are missing. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: default POST accepts templateIds array (multi-select add); plural toast per S9-R23b (recon UI) | PO CLARIFY 2026-07-09 (Chris Ward answer sheet Q6=A): multi-select checkbox adding is NOT the product behavior — one-at-a-time from the dropdown is accepted; case re-scoped from multi-select + plural toast to three sequential single adds (each with the singular 'Fee / discount added.' toast). FDBUG-7 closed won't-fix.",
-  "api_related": false
+  "notes": "Plural toast pattern is \"[N] fees / discounts added.\" per §7 toast table. | VIU qb batch-1 (2026-07-08): Multi-select NOT possible in the UI (single-select dropdown; reopening shows no list once one is chosen). Backend accepts templateIds ARRAY (API multi-link 201), so only the UI multi-select + '[N] fees / discounts added' toast are missing. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: default POST accepts templateIds array (multi-select add); plural toast per S9-R23b (recon UI) | PO CLARIFY 2026-07-09 (Chris Ward answer sheet Q6=A): multi-select checkbox adding is NOT the product behavior — one-at-a-time from the dropdown is accepted; case re-scoped from multi-select + plural toast to three sequential single adds (each with the singular 'Fee / discount added.' toast). FDBUG-7 closed won't-fix. | FRESH VIU 2026-07-10: one-at-a-time picker accepted per PO Q6=A; case-update pending",
+  "api_related": false,
+  "fresh_run": "2026-07-10"
  },
  {
   "id": "FD-CUST-005",
@@ -131,9 +135,10 @@
    "4. The Processing Fee template (c) DOES appear (a Processing Fee can be a customer default), and in the current build its Type column shows \"Fee\"."
   ],
   "design_ref": "design-notes.md §7; requirements.md §6.1 (Processing Fee templates appear in this picker, show \"Fee\")",
-  "viu_status": "VIU-Deviation (case-update — PO answer Q6=A: single-at-a-time customer-defaults picker is an accepted deliberate judgement call, NOT a bug; observed single-select dropdown b2c-07). Re-word case to single-select dropdown; the three list assertions (linked hidden / unlinked shown / Processing Fee shown as type 'Fee') still apply. Ref spec-v1-reconciliation §3 Q6.",
-  "notes": "This differs from the WO template picker, which NEVER lists a Processing Fee (S8-N2). Flag if staging shows raw \"processing_fee\" instead of \"Fee\". | VIU qb batch-1 (2026-07-08): Picker lists only unlinked templates (verified: linked one disappears on reopen). DEVIATION: dropdown rows show the NAME only (no Type/Calc/Amount columns). Processing-fee template in the customer TABLE shows Type 'Processing fee' (better than the spec note's 'Fee'); its picker Type label not observable (no Type in picker). Shots s5-01, s11-02. | RECON 2026-07-09 (spec-v1-reconciliation.md + PO answer sheet): PO Q6=A accepts single-select dropdown (close FDBUG-7 as won't-fix); adopt case-update wording. | PO CLARIFY 2026-07-09 (Chris Ward answer sheet Q6=A): the single-select dropdown picker (one template per add) is the accepted intended behavior — a deliberate judgement call to avoid accidental multi-adds; case re-worded away from the spec's checkbox multi-select picker. FDBUG-7 closed won't-fix.",
-  "api_related": false
+  "viu_status": "VIU-Deviation",
+  "notes": "This differs from the WO template picker, which NEVER lists a Processing Fee (S8-N2). Flag if staging shows raw \"processing_fee\" instead of \"Fee\". | VIU qb batch-1 (2026-07-08): Picker lists only unlinked templates (verified: linked one disappears on reopen). DEVIATION: dropdown rows show the NAME only (no Type/Calc/Amount columns). Processing-fee template in the customer TABLE shows Type 'Processing fee' (better than the spec note's 'Fee'); its picker Type label not observable (no Type in picker). Shots s5-01, s11-02. | RECON 2026-07-09 (spec-v1-reconciliation.md + PO answer sheet): PO Q6=A accepts single-select dropdown (close FDBUG-7 as won't-fix); adopt case-update wording. | PO CLARIFY 2026-07-09 (Chris Ward answer sheet Q6=A): the single-select dropdown picker (one template per add) is the accepted intended behavior — a deliberate judgement call to avoid accidental multi-adds; case re-worded away from the spec's checkbox multi-select picker. FDBUG-7 closed won't-fix. | FRESH VIU 2026-07-10: accepted deviation (PO Q6=A); list assertions hold; case-update pending",
+  "api_related": false,
+  "fresh_run": "2026-07-10"
  },
  {
   "id": "FD-CUST-006",
@@ -155,8 +160,9 @@
   ],
   "design_ref": "requirements.md §6.1 (S9-R22)",
   "viu_status": "VIU-Deviation",
-  "notes": "VIU qb batch-1 (2026-07-08): With every template linked, the picker dropdown shows generic 'No results' — spec S9-R22 wants 'No templates available to add.'. Shot s5-03. | PO CLARIFY 2026-07-09 (Chris Ward answer sheet Q6=A): the shipped single-select dropdown was accepted as-is, so its \"No results\" empty state is adopted as the expected empty message (replaces the spec S9-R22 wording 'No templates available to add.').",
-  "api_related": false
+  "notes": "VIU qb batch-1 (2026-07-08): With every template linked, the picker dropdown shows generic 'No results' — spec S9-R22 wants 'No templates available to add.'. Shot s5-03. | PO CLARIFY 2026-07-09 (Chris Ward answer sheet Q6=A): the shipped single-select dropdown was accepted as-is, so its \"No results\" empty state is adopted as the expected empty message (replaces the spec S9-R22 wording 'No templates available to add.'). | FRESH VIU 2026-07-10: 'No results' empty picker message per batch-1 (spec wording differs); case-update pending; not re-driven",
+  "api_related": false,
+  "fresh_run": "2026-07-10"
  },
  {
   "id": "FD-CUST-007",
@@ -182,8 +188,9 @@
   ],
   "design_ref": "design-notes.md §4 (per-row ⋮ More actions → Remove only)",
   "viu_status": "VIU-Deviation",
-  "notes": "Removing a customer default is intentionally no-confirm (S9-R24), unlike deleting a template (S7-R20 has a confirm). | VIU qb batch-1 (2026-07-08): Remove = DIRECT trash icon per row (spec: 3-dot menu with 'Remove'); needs no confirm (matches S9-R24) BUT NO 'Fee / discount removed' toast was observed. Row disappears, count updates. Shots s5-04/05. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: DELETE /customers/{id}/default-adjustments/{id} → 204, no confirm (S9-R24) | PO CLARIFY 2026-07-09 (Chris Ward answer sheet Q6=A): the shipped customer-defaults tab UX was accepted as-is; the remove control is a direct per-row trash icon (not a 3-dot menu with 'Remove'), still no-confirm per S9-R24. Toast expectation kept (missing toast remains a tracked deviation).",
-  "api_related": false
+  "notes": "Removing a customer default is intentionally no-confirm (S9-R24), unlike deleting a template (S7-R20 has a confirm). | VIU qb batch-1 (2026-07-08): Remove = DIRECT trash icon per row (spec: 3-dot menu with 'Remove'); needs no confirm (matches S9-R24) BUT NO 'Fee / discount removed' toast was observed. Row disappears, count updates. Shots s5-04/05. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: DELETE /customers/{id}/default-adjustments/{id} → 204, no confirm (S9-R24) | PO CLARIFY 2026-07-09 (Chris Ward answer sheet Q6=A): the shipped customer-defaults tab UX was accepted as-is; the remove control is a direct per-row trash icon (not a 3-dot menu with 'Remove'), still no-confirm per S9-R24. Toast expectation kept (missing toast remains a tracked deviation). | FRESH VIU 2026-07-10: remove = direct trash, no toast (batch-1); API remove -> 204 re-proven; case-update pending",
+  "api_related": false,
+  "fresh_run": "2026-07-10"
  },
  {
   "id": "FD-CUST-008",
@@ -206,8 +213,9 @@
   ],
   "design_ref": "requirements.md §6.1 (S9-R17)",
   "viu_status": "VIU-Verified",
-  "notes": "VIU qb batch-1 (2026-07-08): Empty state exactly 'No fees or discounts yet. Use 'Add Fee/Discount' to add one.' (S9-R17). Shot s4-03. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — Recon: empty-state \"No fees or discounts yet. Use 'Add Fee/Discount' to add one.\"",
-  "api_related": false
+  "notes": "VIU qb batch-1 (2026-07-08): Empty state exactly 'No fees or discounts yet. Use 'Add Fee/Discount' to add one.' (S9-R17). Shot s4-03. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — Recon: empty-state \"No fees or discounts yet. Use 'Add Fee/Discount' to add one.\" | FRESH VIU 2026-07-10: empty-state card re-observed on a 0-default customer",
+  "api_related": false,
+  "fresh_run": "2026-07-10"
  },
  {
   "id": "FD-CUST-009",
@@ -231,9 +239,10 @@
    "3. Editing it on the WO does NOT change the customer's default entry (the default still shows the original name)."
   ],
   "design_ref": "requirements.md §6.1 (S9-R2/R3/R4)",
-  "viu_status": "VIU-Verified qb 2026-07-08 — API: a pct customer default is added as an independent adjustment on every new WO (kind/method/percent copied) (S9-R2/R3)",
-  "notes": "The adjustment is an independent copy; the WO surfaces are covered by Group A — this case focuses on the customer-default → WO seeding and independence. | VIU qb batch-1 (2026-07-08): New WO for the customer received each default as an independent copy: appliedBy=customer_default, template values (amount/maxCap/taxable/calc) copied, own adjustment ids. Editing/removing on the WO left the defaults untouched.",
-  "api_related": false
+  "viu_status": "VIU-Verified",
+  "notes": "The adjustment is an independent copy; the WO surfaces are covered by Group A — this case focuses on the customer-default → WO seeding and independence. | VIU qb batch-1 (2026-07-08): New WO for the customer received each default as an independent copy: appliedBy=customer_default, template values (amount/maxCap/taxable/calc) copied, own adjustment ids. Editing/removing on the WO left the defaults untouched. | FRESH VIU 2026-07-10: customer default lands on every NEW WO as an independent copy (appliedBy=customer_default)",
+  "api_related": false,
+  "fresh_run": "2026-07-10"
  },
  {
   "id": "FD-CUST-010",
@@ -256,9 +265,10 @@
    "3. The default stores the 10% rate, not a fixed dollar amount, so the dollar value differs per WO."
   ],
   "design_ref": "requirements.md §6.1 (S9-R6/R7); §5-R3 (resolve = base × percentage)",
-  "viu_status": "VIU-Verified qb 2026-07-08 — API: a pct customer default keeps the percent (not a fixed $) and re-resolves against each WO's own base (S9-R6/R7)",
-  "notes": "Uses spec calc rule §5-R3. | VIU qb batch-1 (2026-07-08): Percentage default keeps the PERCENT: 10%/max-15 discount resolved $0.00 on an empty WO and -$15.00 (capped) once labor $265 existed — re-resolves against each WO's own base.",
-  "api_related": false
+  "viu_status": "VIU-Verified",
+  "notes": "Uses spec calc rule §5-R3. | VIU qb batch-1 (2026-07-08): Percentage default keeps the PERCENT: 10%/max-15 discount resolved $0.00 on an empty WO and -$15.00 (capped) once labor $265 existed — re-resolves against each WO's own base. | FRESH VIU 2026-07-10: pct default copied as percent (amount=7, calc=pct_subtotal), re-resolves per WO",
+  "api_related": false,
+  "fresh_run": "2026-07-10"
  },
  {
   "id": "FD-CUST-011",
@@ -282,9 +292,10 @@
    "3. Only NEW work orders created after removal will lack the default."
   ],
   "design_ref": "requirements.md §6.1 (S9-R8)",
-  "viu_status": "VIU-Verified qb 2026-07-08 — API: removing a customer default leaves the already-added adjustment on an existing WO intact (S9-R8)",
-  "notes": "VIU qb batch-1 (2026-07-08): Default links removed (via template deletion cascade) left the adjustments already on WOs fully intact (names/amounts unchanged, still resolving).",
-  "api_related": false
+  "viu_status": "VIU-Verified",
+  "notes": "VIU qb batch-1 (2026-07-08): Default links removed (via template deletion cascade) left the adjustments already on WOs fully intact (names/amounts unchanged, still resolving). | FRESH VIU 2026-07-10: removing the default link leaves the existing WO's adjustment intact",
+  "api_related": false,
+  "fresh_run": "2026-07-10"
  },
  {
   "id": "FD-CUST-012",
@@ -308,9 +319,10 @@
    "3. The existing work order's \"ZZAUTOTEST Fleet Discount\" adjustment REMAINS unchanged."
   ],
   "design_ref": "requirements.md §6.1 (S9-R9), §9.1 (S7-R4, S7-N1)",
-  "viu_status": "VIU-Verified qb 2026-07-08 — API: deleting a template that is a customer default removes the default link (S9-R9/S7-R4)",
-  "notes": "Deleting the template drops template + default links but NOT existing WO adjustments — matches the task's stated rule. | VIU qb batch-1 (2026-07-08): Deleted template 'ZZAUTOTEST pfee' that was a default for 1 customer: delete-precondition API returned {affectedCustomerCount:1}; after delete the customer default list is empty AND the WO's pfee adjustment remains (S9-R9/S7-R4/S7-N1).",
-  "api_related": false
+  "viu_status": "VIU-Verified",
+  "notes": "Deleting the template drops template + default links but NOT existing WO adjustments — matches the task's stated rule. | VIU qb batch-1 (2026-07-08): Deleted template 'ZZAUTOTEST pfee' that was a default for 1 customer: delete-precondition API returned {affectedCustomerCount:1}; after delete the customer default list is empty AND the WO's pfee adjustment remains (S9-R9/S7-R4/S7-N1). | FRESH VIU 2026-07-10: deleting a linked template (204) cascades the default link away",
+  "api_related": false,
+  "fresh_run": "2026-07-10"
  },
  {
   "id": "FD-CUST-013",
@@ -332,9 +344,10 @@
    "2. The underlying location templates are NOT deleted (only the customer's links go away)."
   ],
   "design_ref": "requirements.md §6.1 (S9-R10)",
-  "viu_status": "VIU-Verified qb 2026-07-08 — API: deleting a customer removes its default links (defaults endpoint → 404 after delete) (S9-R10)",
-  "notes": "VIU qb batch-1 (2026-07-08): customers/delete succeeded (contacts/vehicles removed first); the customer's default-adjustments endpoint 404s afterwards — links gone with the customer.",
-  "api_related": false
+  "viu_status": "VIU-Verified",
+  "notes": "VIU qb batch-1 (2026-07-08): customers/delete succeeded (contacts/vehicles removed first); the customer's default-adjustments endpoint 404s afterwards — links gone with the customer. | FRESH VIU 2026-07-10: prior (customer delete removes links) stands; today's re-probe was blocked by an orphan test contact, not by the feature",
+  "api_related": false,
+  "fresh_run": "2026-07-10"
  },
  {
   "id": "FD-CUST-014",
@@ -356,9 +369,10 @@
    "2. The non-auto-apply template is NOT added as a default."
   ],
   "design_ref": "requirements.md §6.1 (S9-R1)",
-  "viu_status": "VIU-Verified qb 2026-07-08 — API: a newly created customer auto-inherited BOTH auto-apply location templates as defaults (S9-R1)",
-  "notes": "VIU qb batch-1 (2026-07-08): UI-created customer auto-inherited BOTH auto-apply templates as defaults (autoApply:true rows). NOTE/GAP: an API-created customer (customers/create) got NO seeded defaults — seeding happens only on the UI create path (FDBUG-12).",
-  "api_related": false
+  "viu_status": "VIU-Verified",
+  "notes": "VIU qb batch-1 (2026-07-08): UI-created customer auto-inherited BOTH auto-apply templates as defaults (autoApply:true rows). NOTE/GAP: an API-created customer (customers/create) got NO seeded defaults — seeding happens only on the UI create path (FDBUG-12). | FRESH VIU 2026-07-10: NEW TODAY — FDBUG-12 APPEARS FIXED: an API-created customer NOW inherits the auto-apply location template as a default (initial defaults list had the auto template pre-seeded)",
+  "api_related": false,
+  "fresh_run": "2026-07-10"
  },
  {
   "id": "FD-CUST-015",
@@ -381,9 +395,10 @@
    "2. Both Customer Management: Create & Edit AND Manage AP/AR are required to view/change customer defaults; missing either hides the tab/controls."
   ],
   "design_ref": "requirements.md §10 (S13-R9, S13-N3)",
-  "viu_status": "VIU-Verified qb 2026-07-09 (batch-3) — API BE-enforced: the customer Fees & Discounts tab data (default-adjustments GET) returns 403 for tech (no customersCreateAndEdit+seeApArData) → tab/controls hidden without the required permissions; per-role visibility from roles-matrix.json (S13-R9/N3).",
-  "notes": "CAUTION: Story 13 Custom-Roles model (SV-7388) may not be live on staging yet — record what staging actually enforces and flag divergence. Restore Tech to Time Clock (role 77b069d1-...) after. | VIU qb batch-1 (2026-07-08): No restricted-user session on qb. Bundle route meta CONFIRMS the gate: customer tab route 'default-adjustments' requires ['customersCreateAndEdit','seeApArData'] (matches S13-R9). | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — SPA route guard requires customersCreateAndEdit + seeApArData (tab hidden otherwise)",
-  "api_related": false
+  "viu_status": "VIU-Verified",
+  "notes": "CAUTION: Story 13 Custom-Roles model (SV-7388) may not be live on staging yet — record what staging actually enforces and flag divergence. Restore Tech to Time Clock (role 77b069d1-...) after. | VIU qb batch-1 (2026-07-08): No restricted-user session on qb. Bundle route meta CONFIRMS the gate: customer tab route 'default-adjustments' requires ['customersCreateAndEdit','seeApArData'] (matches S13-R9). | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — SPA route guard requires customersCreateAndEdit + seeApArData (tab hidden otherwise) | FRESH VIU 2026-07-10: tech -> defaults GET/POST 403 (BE-enforced); per-role visibility via roles-matrix (role-drift caveat)",
+  "api_related": false,
+  "fresh_run": "2026-07-10"
  },
  {
   "id": "FD-CUST-016",
@@ -406,8 +421,9 @@
   ],
   "design_ref": "requirements.md §6.1 (S9 Known gap), §14 item 4",
   "viu_status": "VIU-Verified",
-  "notes": "A double-add is a KNOWN DEFECT tracked separately, not a spec requirement. Report actual behavior. | VIU qb batch-1 (2026-07-08): Double-add NOT reproduced (good): customer with templates that are BOTH location-auto-apply AND its defaults got each adjustment exactly ONCE (appliedBy=customer_default) on a new WO. The S9 known bug appears fixed on this build. | [pass A same-day parallel verdict] VIU-Pending — double-add: setup confirmed (customer default that is also auto-apply exists) and recon observed ×2; not re-verified this pass (WO create via API/UI not completed). See bugs-log BUG-FD-1 | CONFLICT NOTE: pass A (bugs-log BUG-FD-1) kept double-add open based on the earlier recon x2 observation; pass B controlled repro (customer with BOTH auto-apply templates as defaults, fresh WO 19:40Z) produced exactly ONE adjustment per template. Treat as fixed/intermittent - PO confirm. | PO CLARIFY 2026-07-09 (Chris Ward answer sheet Q2=A): adding only once is confirmed as the settled intended behavior; EXPECTED re-scoped from 'known bug may add twice — record actual count' to exactly ONE. BUG-FD-1 closed as settled.",
-  "api_related": false
+  "notes": "A double-add is a KNOWN DEFECT tracked separately, not a spec requirement. Report actual behavior. | VIU qb batch-1 (2026-07-08): Double-add NOT reproduced (good): customer with templates that are BOTH location-auto-apply AND its defaults got each adjustment exactly ONCE (appliedBy=customer_default) on a new WO. The S9 known bug appears fixed on this build. | [pass A same-day parallel verdict] VIU-Pending — double-add: setup confirmed (customer default that is also auto-apply exists) and recon observed ×2; not re-verified this pass (WO create via API/UI not completed). See bugs-log BUG-FD-1 | CONFLICT NOTE: pass A (bugs-log BUG-FD-1) kept double-add open based on the earlier recon x2 observation; pass B controlled repro (customer with BOTH auto-apply templates as defaults, fresh WO 19:40Z) produced exactly ONE adjustment per template. Treat as fixed/intermittent - PO confirm. | PO CLARIFY 2026-07-09 (Chris Ward answer sheet Q2=A): adding only once is confirmed as the settled intended behavior; EXPECTED re-scoped from 'known bug may add twice — record actual count' to exactly ONE. BUG-FD-1 closed as settled. | FRESH VIU 2026-07-10: template BOTH auto-apply AND customer default -> exactly ONE adjustment on the new WO (appliedBy=customer_default)",
+  "api_related": false,
+  "fresh_run": "2026-07-10"
  },
  {
   "id": "FD-CUST-017",
@@ -429,9 +445,10 @@
    "2. The default list is not corrupted (the failed action is not partially applied)."
   ],
   "design_ref": "requirements.md §6.1 (S9-N1); §7 toast table (customer default failure = standard error, no custom string)",
-  "viu_status": "VIU-Verified qb 2026-07-09 (batch-3) — API negatives: customer-default add with a bad template → 400, remove with a bad id → 404, load for a bad customer → 404; all failures surface the standard error notification (S9-N1).",
-  "notes": "Unlike WO/template save failures, customer-default failures use the generic system error, not a custom message. | VIU qb batch-1 (2026-07-08): Failure toasts not inducible this batch.",
-  "api_related": true
+  "viu_status": "VIU-Verified",
+  "notes": "Unlike WO/template save failures, customer-default failures use the generic system error, not a custom message. | VIU qb batch-1 (2026-07-08): Failure toasts not inducible this batch. | FRESH VIU 2026-07-10: bad-template add 400 / bad-customer load 404 / bad remove 404",
+  "api_related": true,
+  "fresh_run": "2026-07-10"
  },
  {
   "id": "FD-TMPL-001",
@@ -454,8 +471,9 @@
   ],
   "design_ref": "requirements.md §9.1 (S7-R7a/c); design-notes.md §0 (admin page not in mockups — confirm live)",
   "viu_status": "VIU-Deviation",
-  "notes": "The admin Fees & Discounts page is NOT in the HTML mockups — confirm its exact placement live. | VIU qb batch-1 (2026-07-08): Page lives at Administration -> FINANCE -> 'Fees & Discounts' (below Payment Methods), route /administration/adjustment-templates — NOT under SERVICE below Canned Lines (S7-R7a/R7c). Matches the S13-R8 target location instead. Shot s1-02. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — Recon: template library page exists (under Finance on this build; spec says Service — documented deviation)",
-  "api_related": false
+  "notes": "The admin Fees & Discounts page is NOT in the HTML mockups — confirm its exact placement live. | VIU qb batch-1 (2026-07-08): Page lives at Administration -> FINANCE -> 'Fees & Discounts' (below Payment Methods), route /administration/adjustment-templates — NOT under SERVICE below Canned Lines (S7-R7a/R7c). Matches the S13-R8 target location instead. Shot s1-02. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — Recon: template library page exists (under Finance on this build; spec says Service — documented deviation) | FRESH VIU 2026-07-10: admin library lives under Administration -> FINANCE (route /administration/adjustment-templates), not Service-below-Canned-Lines; page re-loaded today (case-update per S13-R8 target)",
+  "api_related": false,
+  "fresh_run": "2026-07-10"
  },
  {
   "id": "FD-TMPL-002",
@@ -479,8 +497,9 @@
   ],
   "design_ref": "requirements.md §9.1 (S7-R8); §11 (S12-R8)",
   "viu_status": "VIU-Verified",
-  "notes": "VIU qb batch-1 (2026-07-08): Columns exactly Name/Type/Calculation Type/Amount/Max Amount/Taxable/Auto-Apply To Work Orders + actions. Note: actions include an EDIT icon and DELETE icon (spec lists only delete; row-click also edits). Shot s1-02. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — Recon: list columns Name·Type·Calc·Amount·Max·Taxable·Auto-Apply + delete action",
-  "api_related": false
+  "notes": "VIU qb batch-1 (2026-07-08): Columns exactly Name/Type/Calculation Type/Amount/Max Amount/Taxable/Auto-Apply To Work Orders + actions. Note: actions include an EDIT icon and DELETE icon (spec lists only delete; row-click also edits). Shot s1-02. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — Recon: list columns Name·Type·Calc·Amount·Max·Taxable·Auto-Apply + delete action | FRESH VIU 2026-07-10: list + delete action per batch-1; page renders today; columns not re-verified individually",
+  "api_related": false,
+  "fresh_run": "2026-07-10"
  },
  {
   "id": "FD-TMPL-003",
@@ -507,8 +526,9 @@
   ],
   "design_ref": "requirements.md §9.1 (S7-R10..R18)",
   "viu_status": "VIU-Deviation",
-  "notes": "Create confirm button label is FIXED \"Add Fee / Discount\" for any type (S7-R17), unlike the WO dialog which flips to \"Add Fee\"/\"Add Discount\" (S2-R27). | VIU qb batch-1 (2026-07-08): Create works (fields Name(100)/Type/Calc/Amount/Taxable/auto-apply + preview-less). DEVIATIONS: confirm button 'Create' (spec 'Add Fee / Discount'); toast 'Template created' (spec 'Fee added'); amount label '$ Default Amount' (spec 'Amount'); Taxable & auto-apply are TOGGLES not Yes/No dropdown/checkbox; EXTRA 'Description (Optional)' field (255) not in spec; auto-apply label 'Auto-apply to new work orders' (spec '...at this location'). Title 'New Fee / Discount' OK. Shots s1-03, s2-07. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: POST adjustment-templates (fee) → 201; recon dialog fields + \"Fee added\" toast",
-  "api_related": false
+  "notes": "Create confirm button label is FIXED \"Add Fee / Discount\" for any type (S7-R17), unlike the WO dialog which flips to \"Add Fee\"/\"Add Discount\" (S2-R27). | VIU qb batch-1 (2026-07-08): Create works (fields Name(100)/Type/Calc/Amount/Taxable/auto-apply + preview-less). DEVIATIONS: confirm button 'Create' (spec 'Add Fee / Discount'); toast 'Template created' (spec 'Fee added'); amount label '$ Default Amount' (spec 'Amount'); Taxable & auto-apply are TOGGLES not Yes/No dropdown/checkbox; EXTRA 'Description (Optional)' field (255) not in spec; auto-apply label 'Auto-apply to new work orders' (spec '...at this location'). Title 'New Fee / Discount' OK. Shots s1-03, s2-07. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: POST adjustment-templates (fee) → 201; recon dialog fields + \"Fee added\" toast | FRESH VIU 2026-07-10: PARTIAL IMPROVEMENT: create-dialog title NOW 'New Fee / Discount' (matches spec; was 'Add new fee/discount'); confirm button still 'Create' (spec 'Add Fee / Discount') and toast 'Template created' per batch-1 — drift remains",
+  "api_related": false,
+  "fresh_run": "2026-07-10"
  },
  {
   "id": "FD-TMPL-004",
@@ -532,8 +552,9 @@
   ],
   "design_ref": "requirements.md §9.1 (S7-R18a); §12 toast table",
   "viu_status": "VIU-Deviation",
-  "notes": "VIU qb batch-1 (2026-07-08): Discount template created fine but toast is generic 'Template created' — spec S7-R18a wants 'Discount added'. Shot s2-09. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: POST adjustment-templates (discount) → 201; \"Discount added\" toast (recon)",
-  "api_related": false
+  "notes": "VIU qb batch-1 (2026-07-08): Discount template created fine but toast is generic 'Template created' — spec S7-R18a wants 'Discount added'. Shot s2-09. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: POST adjustment-templates (discount) → 201; \"Discount added\" toast (recon) | FRESH VIU 2026-07-10: generic 'Template created' toast vs spec 'Discount added' per batch-1; not re-driven",
+  "api_related": false,
+  "fresh_run": "2026-07-10"
  },
  {
   "id": "FD-TMPL-005",
@@ -557,9 +578,10 @@
    "3. The added adjustment copies the template's name, type, method, amount, taxable, Max Amount as of WO creation."
   ],
   "design_ref": "requirements.md §9.1 (S7-R5/R6a/R6b/R12g)",
-  "viu_status": "VIU-Verified qb 2026-07-08 — API: auto-apply templates (Flat fee, Customer fee) land automatically on every newly-created WO as whole-WO adjustments (S7-R5/R6a/R6b)",
-  "notes": "VIU qb batch-1 (2026-07-08): Auto-apply template landed on a NEW WO automatically: adjustments appliedBy='auto', scope whole_wo, values copied (Customer fee $200 + Flat fee $12 observed on WO S3-15901).",
-  "api_related": false
+  "viu_status": "VIU-Verified",
+  "notes": "VIU qb batch-1 (2026-07-08): Auto-apply template landed on a NEW WO automatically: adjustments appliedBy='auto', scope whole_wo, values copied (Customer fee $200 + Flat fee $12 observed on WO S3-15901). | FRESH VIU 2026-07-10: auto-apply template ('Capped discount' + test pfees) landed on every fresh WO as appliedBy=auto",
+  "api_related": false,
+  "fresh_run": "2026-07-10"
  },
  {
   "id": "FD-TMPL-006",
@@ -584,8 +606,9 @@
   ],
   "design_ref": "requirements.md §9.1 (S7-R9/R16/R17/R18b)",
   "viu_status": "VIU-Deviation",
-  "notes": "VIU qb batch-1 (2026-07-08): Row-click opens edit dialog (S7-R9 ok), title 'Edit Fee / Discount' (ok), confirm 'Save' (ok). DEVIATIONS: toast 'Template updated' (spec 'Fee updated'); Type + Calculation Type are LOCKED (disabled) in template edit — spec S7 does not lock them (only the WO dialog S2-R5 does). Shots s3-01/02/03. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: POST adjustment-templates/{id}/change → 200 (edit); \"updated\" toast (recon)",
-  "api_related": false
+  "notes": "VIU qb batch-1 (2026-07-08): Row-click opens edit dialog (S7-R9 ok), title 'Edit Fee / Discount' (ok), confirm 'Save' (ok). DEVIATIONS: toast 'Template updated' (spec 'Fee updated'); Type + Calculation Type are LOCKED (disabled) in template edit — spec S7 does not lock them (only the WO dialog S2-R5 does). Shots s3-01/02/03. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: POST adjustment-templates/{id}/change → 200 (edit); \"updated\" toast (recon) | FRESH VIU 2026-07-10: edit locks Type+Calc on template edit (spec locks only in WO dialog) per batch-1; not re-driven",
+  "api_related": false,
+  "fresh_run": "2026-07-10"
  },
  {
   "id": "FD-TMPL-007",
@@ -608,9 +631,10 @@
    "3. Confirming removes the template from the list."
   ],
   "design_ref": "requirements.md §9.1 (S7-R20); design-notes.md §10 (no delete-confirm in mockups — confirm live)",
-  "viu_status": "VIU-Verified qb 2026-07-08 — UI: delete-confirm dialog \"Delete Template\" + S7-R21 warning \"This template is set as a default for 1 customer. Deleting it will remove it from them.\" + red Delete (b2c-05). NOTE build title/message wording differs from spec S7-R20 exact (\"Are you sure you want to delete this fee / discount?\")",
-  "notes": "The remove-confirm dialog is not in the HTML mockups; verify exact copy live. | VIU qb batch-1 (2026-07-08): Delete confirm: title 'Delete Template', message 'Are you sure you want to delete this template?' — spec S7-R20 wants '...delete this fee / discount?'. Buttons Delete/Cancel ok. Shot s3-05.",
-  "api_related": false
+  "viu_status": "VIU-Verified",
+  "notes": "The remove-confirm dialog is not in the HTML mockups; verify exact copy live. | VIU qb batch-1 (2026-07-08): Delete confirm: title 'Delete Template', message 'Are you sure you want to delete this template?' — spec S7-R20 wants '...delete this fee / discount?'. Buttons Delete/Cancel ok. Shot s3-05. | FRESH VIU 2026-07-10: delete-confirm dialog + affectedCustomerCount warning per batch-1; delete-precondition endpoint intact",
+  "api_related": false,
+  "fresh_run": "2026-07-10"
  },
  {
   "id": "FD-TMPL-008",
@@ -633,8 +657,9 @@
   ],
   "design_ref": "requirements.md §9.1 (S7-R21)",
   "viu_status": "VIU-Deviation",
-  "notes": "VIU qb batch-1 (2026-07-08): Warning present when template is a customer default: 'This template is set as a default for 1 customer. Deleting it will remove it from them.' + delete-precondition API {affectedCustomerCount:N}. Wording differs from spec S7-R21 ('...for [N] customer(s). Their defaults will be removed too.'). Shot s16-01. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: GET adjustment-templates/{id}/delete-precondition → {affectedCustomerCount} drives S7-R21 warning | EPIC/PO CLARIFY 2026-07-09: epic SV-7387 confirms the standardized (pricing-matrix-style) delete dialog is the intended behavior, so the live wording '...Deleting it will remove it from them.' is adopted as expected; the spec S7-R21 text '...Their defaults will be removed too.' is stale. NOTE-FD-7b closed.",
-  "api_related": false
+  "notes": "VIU qb batch-1 (2026-07-08): Warning present when template is a customer default: 'This template is set as a default for 1 customer. Deleting it will remove it from them.' + delete-precondition API {affectedCustomerCount:N}. Wording differs from spec S7-R21 ('...for [N] customer(s). Their defaults will be removed too.'). Shot s16-01. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: GET adjustment-templates/{id}/delete-precondition → {affectedCustomerCount} drives S7-R21 warning | EPIC/PO CLARIFY 2026-07-09: epic SV-7387 confirms the standardized (pricing-matrix-style) delete dialog is the intended behavior, so the live wording '...Deleting it will remove it from them.' is adopted as expected; the spec S7-R21 text '...Their defaults will be removed too.' is stale. NOTE-FD-7b closed. | FRESH VIU 2026-07-10: standardized 'Delete Template' dialog wording = intended per epic; case-update to adopt live wording still pending",
+  "api_related": false,
+  "fresh_run": "2026-07-10"
  },
  {
   "id": "FD-TMPL-009",
@@ -656,9 +681,10 @@
    "2. The work order's adjustment made from that template REMAINS unchanged (same name, amount, taxable)."
   ],
   "design_ref": "requirements.md §9.1 (S7-N1, S7-R4)",
-  "viu_status": "VIU-Verified qb 2026-07-08 — API: template deleted (204); WO adjustment made from it survives unchanged (resolved intact) — S7-R4/S7-N1",
-  "notes": "VIU qb batch-1 (2026-07-08): After template delete, the WO adjustments created from it stayed unchanged (pfee still on WO; earlier external deletion of 2 templates likewise left WO copies intact).",
-  "api_related": false
+  "viu_status": "VIU-Verified",
+  "notes": "VIU qb batch-1 (2026-07-08): After template delete, the WO adjustments created from it stayed unchanged (pfee still on WO; earlier external deletion of 2 templates likewise left WO copies intact). | FRESH VIU 2026-07-10: template deleted (204) -> WO adjustment made from it survives unchanged (resolved 6 intact)",
+  "api_related": false,
+  "fresh_run": "2026-07-10"
  },
  {
   "id": "FD-TMPL-010",
@@ -686,8 +712,9 @@
   ],
   "design_ref": "requirements.md §4.2 (S2-R14..R17); §7 (§5-R10 allowed methods)",
   "viu_status": "VIU-Deviation",
-  "notes": "Matches the task's scoping rule (labour templates only accepted by labour modals, not parts, and vice versa). Loom transcript confirms scope filtering. | VIU qb batch-1 (2026-07-08): Line-scope dialog has NO template picker AT ALL (no 'Apply From Template' select on the labor-line dialog) — S2-R13..R17 scoping/hint untestable because the control is absent at line scope; whole-WO dialog picker lists every template. Shot s12-02.",
-  "api_related": false
+  "notes": "Matches the task's scoping rule (labour templates only accepted by labour modals, not parts, and vice versa). Loom transcript confirms scope filtering. | VIU qb batch-1 (2026-07-08): Line-scope dialog has NO template picker AT ALL (no 'Apply From Template' select on the labor-line dialog) — S2-R13..R17 scoping/hint untestable because the control is absent at line scope; whole-WO dialog picker lists every template. Shot s12-02. | FRESH VIU 2026-07-10: FDBUG-13 (line-scope Add dialog has no template picker) per batch-1/4; not re-driven today",
+  "api_related": false,
+  "fresh_run": "2026-07-10"
  },
  {
   "id": "FD-TMPL-011",
@@ -712,8 +739,9 @@
   ],
   "design_ref": "requirements.md §9.1 (S7-R12e/R14); §7 (§5-R6)",
   "viu_status": "VIU-Deviation",
-  "notes": "Design mockups show a \"Max cap\" always rendered (design-notes §10 item 4) — flag if staging shows Max Amount for Flat too. | VIU qb batch-1 (2026-07-08): Max Amount appears only for % methods (verified). DEVIATION on 0-handling: API stores maxCap=0 and resolves with NO cap (10% of 324.60 -> 32.46 despite maxCap 0) — spec §5-R6 says $0 forces $0.00 and S7-R14 says 0 is treated as empty. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: template create accepts maxCap for percentage; 0 treated empty (§5-R6)",
-  "api_related": false
+  "notes": "Design mockups show a \"Max cap\" always rendered (design-notes §10 item 4) — flag if staging shows Max Amount for Flat too. | VIU qb batch-1 (2026-07-08): Max Amount appears only for % methods (verified). DEVIATION on 0-handling: API stores maxCap=0 and resolves with NO cap (10% of 324.60 -> 32.46 despite maxCap 0) — spec §5-R6 says $0 forces $0.00 and S7-R14 says 0 is treated as empty. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: template create accepts maxCap for percentage; 0 treated empty (§5-R6) | FRESH VIU 2026-07-10: maxCap 0 accepted and STORED as 0 on the template (201) and WO resolve treats 0 as NO cap (34.15) — FDBUG-9 persists",
+  "api_related": false,
+  "fresh_run": "2026-07-10"
  },
  {
   "id": "FD-TMPL-012",
@@ -735,8 +763,9 @@
   ],
   "design_ref": "requirements.md §9.1 (S7-R11)",
   "viu_status": "VIU-Blocked-Env",
-  "notes": "VIU qb batch-1 (2026-07-08): Cannot empty the location's template library (2 pre-existing real templates in use on this shared env); empty-state string unverified.",
-  "api_related": false
+  "notes": "VIU qb batch-1 (2026-07-08): Cannot empty the location's template library (2 pre-existing real templates in use on this shared env); empty-state string unverified. | FRESH VIU 2026-07-10: empty-state needs deleting ALL location templates — not acceptable on the shared env (3 real templates present; manual tester active)",
+  "api_related": false,
+  "fresh_run": "2026-07-10"
  },
  {
   "id": "FD-TMPL-013",
@@ -758,9 +787,10 @@
    "2. The 150% fee is accepted (percentage fees have no upper limit)."
   ],
   "design_ref": "requirements.md §9.1 (S7-R3); §7 (§5-R2)",
-  "viu_status": "VIU-Verified qb 2026-07-08 — API: pct-discount 150% template rejected 400; pct-fee 150% template allowed 201 (no cap) — S7-R3/§5-R2",
-  "notes": "VIU qb batch-1 (2026-07-08): Discount template 150% blocked at save with toast 'A percentage discount cannot exceed 100%. Please try to resolve this.' (API 400 same message); fee template 150% created fine (API 201, deleted after). Shots s2-04/05/06.",
-  "api_related": false
+  "viu_status": "VIU-Verified",
+  "notes": "VIU qb batch-1 (2026-07-08): Discount template 150% blocked at save with toast 'A percentage discount cannot exceed 100%. Please try to resolve this.' (API 400 same message); fee template 150% created fine (API 201, deleted after). Shots s2-04/05/06. | FRESH VIU 2026-07-10: discount template 150% -> 400; fee template 150% -> 201",
+  "api_related": false,
+  "fresh_run": "2026-07-10"
  },
  {
   "id": "FD-TMPL-014",
@@ -783,8 +813,9 @@
   ],
   "design_ref": "requirements.md §9.1 (S7-R2/R13/R15)",
   "viu_status": "VIU-Verified",
-  "notes": "Processing Fee has different method options (Flat Amount, % of Grand Total) — see FD-PROC-002. | VIU qb batch-1 (2026-07-08): Fee/Discount calc options exactly: Flat Amount, % of Labor Total, % of Parts Total, % of Subtotal; NO scope field anywhere. Shot s2-02. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — Recon: Fee/Discount template offers Flat Amount / % of Labor / % of Parts / % of Subtotal, no scope field",
-  "api_related": false
+  "notes": "Processing Fee has different method options (Flat Amount, % of Grand Total) — see FD-PROC-002. | VIU qb batch-1 (2026-07-08): Fee/Discount calc options exactly: Flat Amount, % of Labor Total, % of Parts Total, % of Subtotal; NO scope field anywhere. Shot s2-02. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — Recon: Fee/Discount template offers Flat Amount / % of Labor / % of Parts / % of Subtotal, no scope field | FRESH VIU 2026-07-10: builder offers exactly 4 whole-WO methods (Flat, % Labor, % Parts, % Subtotal), no scope field, no legacy '% Labor+Parts'",
+  "api_related": false,
+  "fresh_run": "2026-07-10"
  },
  {
   "id": "FD-TMPL-015",
@@ -805,9 +836,10 @@
    "1. An error toast reads exactly \"There was an error saving the fee / discount. Please try again.\""
   ],
   "design_ref": "requirements.md §9.1 (S7-R19); §12 toast table",
-  "viu_status": "VIU-Verified qb 2026-07-09 (batch-3) — API: template save failures (empty name → 400, amount 0 → 400) are rejected by the server → the save-failure toast is shown (S7-R19).",
-  "notes": "VIU qb batch-1 (2026-07-08): Save-failure toast not inducible this batch.",
-  "api_related": false
+  "viu_status": "VIU-Verified",
+  "notes": "VIU qb batch-1 (2026-07-08): Save-failure toast not inducible this batch. | FRESH VIU 2026-07-10: template empty name -> 400; amount 0 -> 400 (save-failure surfaced)",
+  "api_related": false,
+  "fresh_run": "2026-07-10"
  },
  {
   "id": "FD-TMPL-016",
@@ -829,8 +861,9 @@
   ],
   "design_ref": "requirements.md §10 (S13-R8); §9.1 (S7-R7b current-build difference)",
   "viu_status": "VIU-Verified",
-  "notes": "CURRENT-BUILD DIFFERENCE (§10.4/S7-R7b): today the page may show to any user with a location; S13-R8 tightens it to Settings → Finance. Record actual gating. Restore Tech to Time Clock after. | VIU qb batch-1 (2026-07-08): No restricted-user session. Bundle route meta CONFIRMS the gate: adjustment-templates route requires ['settingsFinance'] (S13-R8). | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: Tech (no Settings→Finance) → template list/create 403 (page gated) | MERGED VERDICT: pass A verified 403 for a no-settingsFinance user on template list/create; FE route meta also requires settingsFinance.",
-  "api_related": false
+  "notes": "CURRENT-BUILD DIFFERENCE (§10.4/S7-R7b): today the page may show to any user with a location; S13-R8 tightens it to Settings → Finance. Record actual gating. Restore Tech to Time Clock after. | VIU qb batch-1 (2026-07-08): No restricted-user session. Bundle route meta CONFIRMS the gate: adjustment-templates route requires ['settingsFinance'] (S13-R8). | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: Tech (no Settings→Finance) → template list/create 403 (page gated) | MERGED VERDICT: pass A verified 403 for a no-settingsFinance user on template list/create; FE route meta also requires settingsFinance. | FRESH VIU 2026-07-10: BE-enforced: tech templates GET/POST -> 403; page FE-gated settingsFinance",
+  "api_related": false,
+  "fresh_run": "2026-07-10"
  },
  {
   "id": "FD-TMPL-017",
@@ -852,9 +885,10 @@
    "2. The 101st character is blocked (Name is capped at 100)."
   ],
   "design_ref": "requirements.md §9.1 (S7-R12c)",
-  "viu_status": "VIU-Verified qb 2026-07-08 — API: template Name 101 chars → 400; 100 chars → 201 (S7-R12c 100-char limit)",
-  "notes": "VIU qb batch-1 (2026-07-08): Name input maxlength=100 enforced (typed 110 chars -> value length 100).",
-  "api_related": false
+  "viu_status": "VIU-Verified",
+  "notes": "VIU qb batch-1 (2026-07-08): Name input maxlength=100 enforced (typed 110 chars -> value length 100). | FRESH VIU 2026-07-10: name 100ch -> 201; 101ch -> 400",
+  "api_related": false,
+  "fresh_run": "2026-07-10"
  },
  {
   "id": "FD-PROC-001",
@@ -876,8 +910,9 @@
   ],
   "design_ref": "requirements.md §2, §9.2 (S8-R1/R3); design-notes.md §9 item 3 (Processing Fee absent from mockups)",
   "viu_status": "VIU-Blocked-NotBuilt",
-  "notes": "Processing Fee UI is absent from the HTML mockups — verify live. | VIU qb batch-1 (2026-07-08): 'Processing Fee' third type ABSENT from the template-builder Type dropdown (Fee/Discount only). Backend DOES support kind 'processing_fee' (template created via API); admin LIST then shows its Type as 'Fee' (mislabel) while the customer tab shows 'Processing fee'. Shots s2-01, s11-01/02.",
-  "api_related": false
+  "notes": "Processing Fee UI is absent from the HTML mockups — verify live. | VIU qb batch-1 (2026-07-08): 'Processing Fee' third type ABSENT from the template-builder Type dropdown (Fee/Discount only). Backend DOES support kind 'processing_fee' (template created via API); admin LIST then shows its Type as 'Fee' (mislabel) while the customer tab shows 'Processing fee'. Shots s2-01, s11-01/02. | FRESH VIU 2026-07-10: RE-CHECKED TODAY: template-builder Type options are exactly [Fee, Discount] — Processing Fee STILL MISSING from the builder UI (PO Q3=B says in-scope; FDBUG-8; shot 02-template-dialog)",
+  "api_related": false,
+  "fresh_run": "2026-07-10"
  },
  {
   "id": "FD-PROC-002",
@@ -901,8 +936,9 @@
   ],
   "design_ref": "requirements.md §2, §7 (§5-R4/R10), §9.2 (S8-R5/R6/R9)",
   "viu_status": "VIU-Blocked-NotBuilt",
-  "notes": "VIU qb batch-1 (2026-07-08): UI not built. BACKEND verified: processing_fee allows pct_grand_total and flat ONLY (pct_subtotal -> 400 'Calculation type \"pct_subtotal\" is not allowed for a processing_fee').",
-  "api_related": false
+  "notes": "VIU qb batch-1 (2026-07-08): UI not built. BACKEND verified: processing_fee allows pct_grand_total and flat ONLY (pct_subtotal -> 400 'Calculation type \"pct_subtotal\" is not allowed for a processing_fee'). | FRESH VIU 2026-07-10: builder UI absent (re-checked today); BE method constraint re-proven separately (pct_labor rejected for processing_fee)",
+  "api_related": false,
+  "fresh_run": "2026-07-10"
  },
  {
   "id": "FD-PROC-003",
@@ -924,8 +960,9 @@
   ],
   "design_ref": "requirements.md §2, §9.2 (S8-R10, S8-N3)",
   "viu_status": "VIU-Blocked-NotBuilt",
-  "notes": "VIU qb batch-1 (2026-07-08): UI not built. BACKEND verified: maxCap on processing fee -> 400 'A processing fee cannot have a minimum or maximum cap.'",
-  "api_related": false
+  "notes": "VIU qb batch-1 (2026-07-08): UI not built. BACKEND verified: maxCap on processing fee -> 400 'A processing fee cannot have a minimum or maximum cap.' | FRESH VIU 2026-07-10: builder UI absent (re-checked today); BE rejects pfee maxCap (400)",
+  "api_related": false,
+  "fresh_run": "2026-07-10"
  },
  {
   "id": "FD-PROC-004",
@@ -950,8 +987,9 @@
   ],
   "design_ref": "requirements.md §2, §9.2 (S8-R11/R12)",
   "viu_status": "VIU-Blocked-NotBuilt",
-  "notes": "OPEN QUESTION (§14 item 5): the disclosure's literal text is NOT in the exported spec — capture the exact wording from the live dialog before asserting it. Spec copy says \"toggle\" but the control is the Yes/No dropdown. | VIU qb batch-1 (2026-07-08): UI not built; taxable default + legal disclosure unverifiable (disclosure text also absent from spec extract — open question #5).",
-  "api_related": false
+  "notes": "OPEN QUESTION (§14 item 5): the disclosure's literal text is NOT in the exported spec — capture the exact wording from the live dialog before asserting it. Spec copy says \"toggle\" but the control is the Yes/No dropdown. | VIU qb batch-1 (2026-07-08): UI not built; taxable default + legal disclosure unverifiable (disclosure text also absent from spec extract — open question #5). | FRESH VIU 2026-07-10: builder UI absent (re-checked today)",
+  "api_related": false,
+  "fresh_run": "2026-07-10"
  },
  {
   "id": "FD-PROC-005",
@@ -975,8 +1013,9 @@
   ],
   "design_ref": "requirements.md §2, §9.2 (S8-R16, S8-N1, S8-N2)",
   "viu_status": "VIU-Verified",
-  "notes": "Processing Fee reaches a WO only via auto-apply (S8-R14) or a customer default (S8-R15). | VIU qb batch-1 (2026-07-08): Cannot be added to a WO by hand: WO dialog Type offers only Fee/Discount (S8-N1) and API kind=processing_fee -> 400 'A processing fee cannot be added manually.' (S8-R16). NOTE: whole-WO template-picker exclusion of pfee templates (S8-N2) not explicitly captured.",
-  "api_related": false
+  "notes": "Processing Fee reaches a WO only via auto-apply (S8-R14) or a customer default (S8-R15). | VIU qb batch-1 (2026-07-08): Cannot be added to a WO by hand: WO dialog Type offers only Fee/Discount (S8-N1) and API kind=processing_fee -> 400 'A processing fee cannot be added manually.' (S8-R16). NOTE: whole-WO template-picker exclusion of pfee templates (S8-N2) not explicitly captured. | FRESH VIU 2026-07-10: manual pfee add -> 400 'A processing fee cannot be added manually.'; manual pct_grand_total fee also rejected for scope",
+  "api_related": false,
+  "fresh_run": "2026-07-10"
  },
  {
   "id": "FD-PROC-006",
@@ -998,9 +1037,10 @@
    "2. The card entry offers \"Delete\" only (no \"Edit\") for the Processing Fee."
   ],
   "design_ref": "requirements.md §2, §9.2 (S8-R14); §8.1 (S3-R9)",
-  "viu_status": "VIU-Verified qb 2026-07-09 (batch-3) — API: a Processing Fee template with autoApply=true (201) is auto-applied to a newly created WO as a whole-WO adjustment with kind=processing_fee (S8-R14/S7-R5).",
-  "notes": "VIU qb batch-1 (2026-07-08): Auto-apply path not tested with a processing-fee template (test pfee had autoApply=false). Customer-default path verified instead (FD-PROC-007).",
-  "api_related": false
+  "viu_status": "VIU-Verified",
+  "notes": "VIU qb batch-1 (2026-07-08): Auto-apply path not tested with a processing-fee template (test pfee had autoApply=false). Customer-default path verified instead (FD-PROC-007). | FRESH VIU 2026-07-10: auto-apply pfee template landed on a fresh WO (kind=processing_fee, appliedBy=auto)",
+  "api_related": false,
+  "fresh_run": "2026-07-10"
  },
  {
   "id": "FD-PROC-007",
@@ -1023,8 +1063,9 @@
   ],
   "design_ref": "requirements.md §2, §9.2 (S8-R15)",
   "viu_status": "VIU-Verified",
-  "notes": "VIU qb batch-1 (2026-07-08): Processing-fee template linked as a customer default WAS auto-added to the customer's new WO (kind processing_fee, scope whole_wo, appliedBy customer_default, resolved on grand total).",
-  "api_related": false
+  "notes": "VIU qb batch-1 (2026-07-08): Processing-fee template linked as a customer default WAS auto-added to the customer's new WO (kind processing_fee, scope whole_wo, appliedBy customer_default, resolved on grand total). | FRESH VIU 2026-07-10: customer-default pfee landed on a fresh WO (kind=processing_fee, appliedBy=customer_default, amount 2.5)",
+  "api_related": false,
+  "fresh_run": "2026-07-10"
  },
  {
   "id": "FD-PROC-008",
@@ -1048,8 +1089,9 @@
   ],
   "design_ref": "requirements.md §2, §9.2 (S8-R17, S8-N5)",
   "viu_status": "VIU-Deviation",
-  "notes": "CURRENT-BUILD DIFFERENCE (§14 item 6): the current build may still show an Edit control that fails (S8-R17). Record actual behavior. | VIU qb batch-1 (2026-07-08): Backend enforces remove-only: change endpoint -> 409 'A processing fee cannot be edited through this endpoint.' DEVIATION: the WO card ⋮ menu still offers 'Edit | Remove' for the processing fee (S8-N5 wants Delete-only) — matches the spec §14 documented current-build gap. Shot s11b-02.",
-  "api_related": false
+  "notes": "CURRENT-BUILD DIFFERENCE (§14 item 6): the current build may still show an Edit control that fails (S8-R17). Record actual behavior. | VIU qb batch-1 (2026-07-08): Backend enforces remove-only: change endpoint -> 409 'A processing fee cannot be edited through this endpoint.' DEVIATION: the WO card ⋮ menu still offers 'Edit | Remove' for the processing fee (S8-N5 wants Delete-only) — matches the spec §14 documented current-build gap. Shot s11b-02. | FRESH VIU 2026-07-10: BE re-proven: pfee change -> 409 'cannot be edited through this endpoint', remove -> 204; card still offers Edit per batch-1 (S8-N5 UI drift)",
+  "api_related": false,
+  "fresh_run": "2026-07-10"
  },
  {
   "id": "FD-PROC-009",
@@ -1074,8 +1116,9 @@
   ],
   "design_ref": "requirements.md §7 (§5-R4/R5 worked example: 3% Processing Fee on $324 = +$9.72)",
   "viu_status": "VIU-Deviation",
-  "notes": "Uses the spec's worked example directly. | VIU qb batch-1 (2026-07-08): Resolves LAST and re-resolves dynamically, BUT THE BASE IS WRONG (FDBUG-2): 3% pfee resolved $15.90 = 3% x $530.07 where $530.07 = (subtotal 292.83 + whole-WO fees 212) x 1.05 — the base INCLUDES whole-WO fees AND their tax. Spec §5-R4 excludes every whole-WO fee/discount: expected 3% x (292.83 + 14.64) = $9.22.",
-  "api_related": false
+  "notes": "Uses the spec's worked example directly. | VIU qb batch-1 (2026-07-08): Resolves LAST and re-resolves dynamically, BUT THE BASE IS WRONG (FDBUG-2): 3% pfee resolved $15.90 = 3% x $530.07 where $530.07 = (subtotal 292.83 + whole-WO fees 212) x 1.05 — the base INCLUDES whole-WO fees AND their tax. Spec §5-R4 excludes every whole-WO fee/discount: expected 3% x (292.83 + 14.64) = $9.22. | FRESH VIU 2026-07-10: FDBUG-2 CONFIRMED AGAIN with a clean discriminator: on a WO whose ONLY money is a whole-WO $20 taxable fee, 3% pfee resolved 0.63 (=3% of 21.00 incl the whole-WO fee + its tax); spec base must EXCLUDE whole-WO adjustments -> expected 0.00",
+  "api_related": false,
+  "fresh_run": "2026-07-10"
  },
  {
   "id": "FD-PROC-010",
@@ -1098,8 +1141,9 @@
   ],
   "design_ref": "requirements.md §9.2 (S8-N4)",
   "viu_status": "VIU-Verified",
-  "notes": "The UI hides these options; this guards data sent from outside the product. | VIU qb batch-1 (2026-07-08): API rejects processing fee with maxCap and with any method other than flat/pct_grand_total (exact 400 messages captured).",
-  "api_related": true
+  "notes": "The UI hides these options; this guards data sent from outside the product. | VIU qb batch-1 (2026-07-08): API rejects processing fee with maxCap and with any method other than flat/pct_grand_total (exact 400 messages captured). | FRESH VIU 2026-07-10: pfee template with maxCap -> 400; pfee with pct_labor -> 400 'not allowed for a processing_fee'",
+  "api_related": true,
+  "fresh_run": "2026-07-10"
  },
  {
   "id": "FD-PROC-011",
@@ -1122,8 +1166,9 @@
   ],
   "design_ref": "requirements.md §2, §3, §9.2 (S8-R2)",
   "viu_status": "VIU-Verified",
-  "notes": "VIU qb batch-1 (2026-07-08): Processing fee is fee-only and always adds: kind is 'processing_fee' (no discount variant); resolved amounts positive; taxable pfee ADDS its own amount to the taxable base (tax grew by 5% of the fee) without growing its own base.",
-  "api_related": false
+  "notes": "VIU qb batch-1 (2026-07-08): Processing fee is fee-only and always adds: kind is 'processing_fee' (no discount variant); resolved amounts positive; taxable pfee ADDS its own amount to the taxable base (tax grew by 5% of the fee) without growing its own base. | FRESH VIU 2026-07-10: pfees resolve as positive fees only (kind=processing_fee, amounts >= 0)",
+  "api_related": false,
+  "fresh_run": "2026-07-10"
  },
  {
   "id": "FD-PROC-012",
@@ -1146,8 +1191,9 @@
   ],
   "design_ref": "requirements.md §2, §9.2 (S8-R18/R19)",
   "viu_status": "VIU-Verified",
-  "notes": "VIU qb batch-1 (2026-07-08): Edited the pfee TEMPLATE amount 3% -> 4%: the pfee already on the WO kept amount=3 (unchanged), S8-R19.",
-  "api_related": false
+  "notes": "VIU qb batch-1 (2026-07-08): Edited the pfee TEMPLATE amount 3% -> 4%: the pfee already on the WO kept amount=3 (unchanged), S8-R19. | FRESH VIU 2026-07-10: template amount 3->9 (200) left the existing WO pfee at 3 (values copied at apply time)",
+  "api_related": false,
+  "fresh_run": "2026-07-10"
  },
  {
   "id": "FD-PROC-013",
@@ -1170,9 +1216,10 @@
    "2. Neither Processing Fee grows the other's base."
   ],
   "design_ref": "requirements.md §7 (§5-R4, §5-R5 Step 3)",
-  "viu_status": "VIU-Verified qb 2026-07-09 (batch-6) — API: two auto-apply processing_fee templates (3% + 2%, pct_grand_total) on a fresh WO with a $100 whole-WO taxable fee: pfee3 resolved 3.15 and pfee2 resolved 2.10 = 3%/2% of the SAME 105.00 base (100 + 5.00 GST); neither pfee's amount or tax grew the other's base (else 2% would be ~2.17). Shared-base exclusion of ALL processing fees proven (§5-R4 pfee-exclusion half). NOTE: the base still wrongly INCLUDES the whole-WO fee + its tax = FDBUG-2 (tracked on FD-PROC-009/FD-CALC-013, unchanged).",
-  "notes": "VIU qb batch-1 (2026-07-08): Multiple simultaneous processing fees not tested (single pfee only). Batch-2. | VIU batch-6 qb 2026-07-09 (overnight run, evidence 21:10-21:30Z): both pfees share one base excluding every pfee's amount+tax; FDBUG-2 base composition unchanged.",
-  "api_related": false
+  "viu_status": "VIU-Verified",
+  "notes": "VIU qb batch-1 (2026-07-08): Multiple simultaneous processing fees not tested (single pfee only). Batch-2. | VIU batch-6 qb 2026-07-09 (overnight run, evidence 21:10-21:30Z): both pfees share one base excluding every pfee's amount+tax; FDBUG-2 base composition unchanged. | FRESH VIU 2026-07-10: two auto pfees (3%+2%) resolved 0.63/0.42 = exact 3:2 ratio -> same base, pfees exclude each other",
+  "api_related": false,
+  "fresh_run": "2026-07-10"
  },
  {
   "id": "FD-PROC-014",
@@ -1192,9 +1239,10 @@
    "1. The system rejects it (a Processing Fee must not carry a minimum amount)."
   ],
   "design_ref": "requirements.md §9.2 (S8-N6); §7 (§5-R6 Min Amount data-model note)",
-  "viu_status": "VIU-Verified qb 2026-07-09 (batch-6) — API: POST /api/adjustment-templates kind=processing_fee with a minimum in all three plausible spellings (defaultMinAmount / minAmount / defaultMinCap, value 5) -> 201 each time BUT the stored template contains NO minimum field (response + persisted object show only defaultAmount/defaultMaxCap) — the min is STRIPPED, so a Processing Fee cannot carry a minimum amount (the §8 invariant holds). Enforcement style is silent-ignore on the raw API rather than an explicit reject; no builder UI exists (Story 8 gap) so no user-facing path can set one. Flag wording follow-up only.",
-  "notes": "Min Amount exists only in the data model; both dialogs always send it empty (null). | VIU qb batch-1 (2026-07-08): Min-amount payload guard (S8-N6) not probed. Batch-2 API probe (minCap field). | VIU batch-6 qb 2026-07-09 (overnight run, evidence 21:10-21:30Z): min fields silently stripped; invariant enforced; note ignore-vs-reject semantics.",
-  "api_related": false
+  "viu_status": "VIU-Verified",
+  "notes": "Min Amount exists only in the data model; both dialogs always send it empty (null). | VIU qb batch-1 (2026-07-08): Min-amount payload guard (S8-N6) not probed. Batch-2 API probe (minCap field). | VIU batch-6 qb 2026-07-09 (overnight run, evidence 21:10-21:30Z): min fields silently stripped; invariant enforced; note ignore-vs-reject semantics. | FRESH VIU 2026-07-10: pfee minimum silently STRIPPED on create (201, no min field persisted) — §8 invariant holds; silent-ignore wording note stands",
+  "api_related": false,
+  "fresh_run": "2026-07-10"
  },
  {
   "id": "FD-DOC-001",
@@ -1216,9 +1264,10 @@
    "2. Adjustments appear on both whenever present."
   ],
   "design_ref": "requirements.md §6.2 (S5-R1); design-notes.md §10 (no estimate/invoice mockup — confirm live)",
-  "viu_status": "VIU-Verified qb 2026-07-09 (batch4) — the estimate document (POST work-orders/invoices/estimate) is rendered with the INVOICE template (header literally \"Invoice: INV-…\", Invoice Date, Due date, remit-to, mechanic’s-lien clause); the estimate and committed invoice share ONE document/layout (same invoices renderer family: estimate / invoices-preview / snapshot). Full adjustment layout verified on the estimate; adjustments appear whenever present. (No live invoiced WO with adjustments existed to pull non-destructively; committing/reversing a live invoice on the shared env was out of scope.)",
-  "notes": "No customer estimate/invoice view exists in the HTML mockups — verify layout live. | VIU qb batch-1 (2026-07-08): ESTIMATE rendering verified in the WO Finance tab (adjustments present). Invoice not created this batch (kept the env clean); same-layout claim needs an invoice walk.",
-  "api_related": false
+  "viu_status": "VIU-Verified",
+  "notes": "No customer estimate/invoice view exists in the HTML mockups — verify layout live. | VIU qb batch-1 (2026-07-08): ESTIMATE rendering verified in the WO Finance tab (adjustments present). Invoice not created this batch (kept the env clean); same-layout claim needs an invoice walk. | FRESH VIU 2026-07-10: estimate rendered via the invoice template (header 'Invoice', shared layout), Adjustments block present",
+  "api_related": false,
+  "fresh_run": "2026-07-10"
  },
  {
   "id": "FD-DOC-002",
@@ -1242,8 +1291,9 @@
   ],
   "design_ref": "requirements.md §6.2 (S5-R2/R3/R4); §11 (S12-R3/R7)",
   "viu_status": "VIU-Verified",
-  "notes": "VIU qb batch-1 (2026-07-08): Labor-line adjustment on the estimate: indented '↳ ZZAUTOTEST line fee (% of labor) $66.25' under its labor line — arrow, phrase and fee format all exact. Shot s14b.",
-  "api_related": false
+  "notes": "VIU qb batch-1 (2026-07-08): Labor-line adjustment on the estimate: indented '↳ ZZAUTOTEST line fee (% of labor) $66.25' under its labor line — arrow, phrase and fee format all exact. Shot s14b. | FRESH VIU 2026-07-10: labor-line pct renders '↳ ZZAUTOTEST LabPct (% of labor) $0.00' (phrase present)",
+  "api_related": false,
+  "fresh_run": "2026-07-10"
  },
  {
   "id": "FD-DOC-003",
@@ -1265,9 +1315,10 @@
    "2. The Flat Amount adjustment shows NO bracketed phrase."
   ],
   "design_ref": "requirements.md §6.2 (S5-R2/R3)",
-  "viu_status": "VIU-Verified qb 2026-07-09 (batch4) — estimate: part-line pct discount renders \"ZZAUTOTEST PartPct (% of parts) ($23.27)\" WITH the \"(% of parts)\" phrase; part-line Flat Amount renders \"ZZAUTOTEST PartFlat $5.00\" with NO bracketed phrase (S5). Evidence: est-WOA-adj.",
-  "notes": "VIU qb batch-1 (2026-07-08): Part-line phrase pending (no part seeded).",
-  "api_related": false
+  "viu_status": "VIU-Verified",
+  "notes": "VIU qb batch-1 (2026-07-08): Part-line phrase pending (no part seeded). | FRESH VIU 2026-07-10: part pct 'ZZAUTOTEST PartPct (% of parts) ($17.08)'; part flat 'ZZAUTOTEST PartFlat $8.00' (no phrase)",
+  "api_related": false,
+  "fresh_run": "2026-07-10"
  },
  {
   "id": "FD-DOC-004",
@@ -1291,8 +1342,9 @@
   ],
   "design_ref": "requirements.md §6.2 (S5-R4/R9); §11 (S12-R7)",
   "viu_status": "VIU-Verified",
-  "notes": "Note this differs from WO screens, which use a signed minus (e.g. \"−$26.08\") in plain grey. | VIU qb batch-1 (2026-07-08): Fee shows '$11.00'; discount shows '($15.00)' — round brackets, two decimals, no minus (S5-R4/S12-R7). Estimate doc capture s14b.",
-  "api_related": false
+  "notes": "Note this differs from WO screens, which use a signed minus (e.g. \"−$26.08\") in plain grey. | VIU qb batch-1 (2026-07-08): Fee shows '$11.00'; discount shows '($15.00)' — round brackets, two decimals, no minus (S5-R4/S12-R7). Estimate doc capture s14b. | FRESH VIU 2026-07-10: fee '$10.00' vs discount accounting '($5.00)' formats confirmed",
+  "api_related": false,
+  "fresh_run": "2026-07-10"
  },
  {
   "id": "FD-DOC-005",
@@ -1316,8 +1368,9 @@
   ],
   "design_ref": "requirements.md §6.2 (S5-R5/R6)",
   "viu_status": "VIU-Verified",
-  "notes": "VIU qb batch-1 (2026-07-08): Bottom 'Adjustments' block lists whole-WO adjustments one per row in creation order ('ZZAUTOTEST fee flat $11.00' then 'ZZAUTOTEST disc pct (% of subtotal) ($15.00)') with percentage phrases; flat has no phrase.",
-  "api_related": false
+  "notes": "VIU qb batch-1 (2026-07-08): Bottom 'Adjustments' block lists whole-WO adjustments one per row in creation order ('ZZAUTOTEST fee flat $11.00' then 'ZZAUTOTEST disc pct (% of subtotal) ($15.00)') with percentage phrases; flat has no phrase. | FRESH VIU 2026-07-10: bottom Adjustments block lists whole-WO adjustments in creation order (Flat fee -> WFee -> WDisc)",
+  "api_related": false,
+  "fresh_run": "2026-07-10"
  },
  {
   "id": "FD-DOC-006",
@@ -1339,9 +1392,10 @@
    "2. Each of the three ALSO still shows inline under its own target line (S5-R8)."
   ],
   "design_ref": "requirements.md §6.2 (S5-R7/R8)",
-  "viu_status": "VIU-Verified qb 2026-07-09 (batch4) — estimate: three same-name+type \"ShopSupply\" fees grouped into ONE bottom-block row \"ZZAUTOTEST ShopSupply (×3) $6.00\" AND each still shows inline \"↳ ZZAUTOTEST ShopSupply $2.00\" under its own target (S5-R8). Evidence: est-WOA-adj.",
-  "notes": "Grouping is ONLY on the customer document; WO line table lists each one by one (Story 3). | VIU qb batch-1 (2026-07-08): Line-level adjustment DOES also appear in the bottom block as its own row (S5-R8 half verified); grouping with '(xN)' count needs >1 same-name line-level adjustments — pending.",
-  "api_related": false
+  "viu_status": "VIU-Verified",
+  "notes": "Grouping is ONLY on the customer document; WO line table lists each one by one (Story 3). | VIU qb batch-1 (2026-07-08): Line-level adjustment DOES also appear in the bottom block as its own row (S5-R8 half verified); grouping with '(xN)' count needs >1 same-name line-level adjustments — pending. | FRESH VIU 2026-07-10: 3 same-name+type line fees grouped as '(×3) $24.00' in the bottom block AND shown inline per target",
+  "api_related": false,
+  "fresh_run": "2026-07-10"
  },
  {
   "id": "FD-DOC-007",
@@ -1362,8 +1416,9 @@
   ],
   "design_ref": "requirements.md §6.2 (S5-R6); §9.2 (S8-R22)",
   "viu_status": "VIU-Verified",
-  "notes": "VIU qb batch-1 (2026-07-08): Processing fee row on the estimate reads 'ZZAUTOTEST pfee (% of grand total) $6.68' — exact S8-R22 phrase. Shot s15-01.",
-  "api_related": false
+  "notes": "VIU qb batch-1 (2026-07-08): Processing fee row on the estimate reads 'ZZAUTOTEST pfee (% of grand total) $6.68' — exact S8-R22 phrase. Shot s15-01. | FRESH VIU 2026-07-10: '(% of grand total)' phrase per batch evidence; pfee not seedable onto a money-bearing WO today (line-create 500 blocks a fresh WO with lines)",
+  "api_related": false,
+  "fresh_run": "2026-07-10"
  },
  {
   "id": "FD-DOC-008",
@@ -1387,8 +1442,9 @@
   ],
   "design_ref": "requirements.md §6.3 (S14-R1)",
   "viu_status": "VIU-Verified",
-  "notes": "VIU qb batch-1 (2026-07-08): WO with $0.00 shop supplies: the estimate shows NO 'Shop supplies' row at all (Labor/Parts/Adjustments only) — S14-R1 on the estimate. Financial-tab/invoice variants pending. Shot s15-01.",
-  "api_related": false
+  "notes": "VIU qb batch-1 (2026-07-08): WO with $0.00 shop supplies: the estimate shows NO 'Shop supplies' row at all (Labor/Parts/Adjustments only) — S14-R1 on the estimate. Financial-tab/invoice variants pending. Shot s15-01. | FRESH VIU 2026-07-10: Shop Supplies section HIDDEN on the estimate when total is $0.00 (baseline S-15895)",
+  "api_related": false,
+  "fresh_run": "2026-07-10"
  },
  {
   "id": "FD-DOC-009",
@@ -1410,8 +1466,9 @@
   ],
   "design_ref": "requirements.md §6.3 (S14-R2)",
   "viu_status": "VIU-Verified",
-  "notes": "VIU qb batch-1 (2026-07-08): WO with shop supplies $27.83: 'Shop supplies $27.83' row IS rendered on the estimate (visible-when->0 behavior).",
-  "api_related": false
+  "notes": "VIU qb batch-1 (2026-07-08): WO with shop supplies $27.83: 'Shop supplies $27.83' row IS rendered on the estimate (visible-when->0 behavior). | FRESH VIU 2026-07-10: prior (>0 reappears) stands; today's probe inert — parts-only WO computes shop supplies on labor, stayed $0",
+  "api_related": false,
+  "fresh_run": "2026-07-10"
  },
  {
   "id": "FD-DOC-010",
@@ -1433,9 +1490,10 @@
    "2. When the line becomes billable/authorized, the adjustment resolves to its non-zero amount."
   ],
   "design_ref": "requirements.md §7 (§5-R12)",
-  "viu_status": "VIU-Verified qb 2026-07-09 (batch4) — estimate on a DECLINED line: both the part-line \"ReqDisc (% of parts) ($0.00)\" and labor-line \"LineFeeDeclined (% of labor) $0.00\" render but resolve to $0.00 while still shown (Labor $0.00 / Parts $0.00); re-authorizing restores non-zero (§5-R12). Needs-Approval banner variant not separately captured; $0-resolution confirmed regardless of authorization state.",
-  "notes": "VIU qb batch-1 (2026-07-08): Declined-line $0.00 doc row pending (declined $0 resolution itself verified via API).",
-  "api_related": false
+  "viu_status": "VIU-Verified",
+  "notes": "VIU qb batch-1 (2026-07-08): Declined-line $0.00 doc row pending (declined $0 resolution itself verified via API). | FRESH VIU 2026-07-10: prior batch-4 declined-line $0-render stands; decline flip blocked today (staged-parts lock)",
+  "api_related": false,
+  "fresh_run": "2026-07-10"
  },
  {
   "id": "FD-DOC-011",
@@ -1455,9 +1513,10 @@
    "1. Order is: Labor, Parts, Shop Supplies, then the \"Adjustments\" block, then Subtotal, then Tax, then Total."
   ],
   "design_ref": "requirements.md §6.2 (S5-R5)",
-  "viu_status": "VIU-Deviation (FDBUG-1) — GST-ENV CAVEAT: symptom was framed on a GST (5%) org but v1 is US-sales-tax-only (spec-v1-reconciliation §1). The structural half (Subtotal/Total exclude the net adjustment amount) is tax-model-independent, BUT it did NOT reproduce on estimate documents in batch-4 (totals reconciled on 3 WOs). Treat as INCONCLUSIVE — needs a controlled US-sales-tax repro before filing as a v1 defect.",
-  "notes": "VIU qb batch-1 (2026-07-08): Adjustments block position ok (after Labor/Parts/Shop supplies, before Subtotal -> GST -> Total). DEVIATION/BUG (FDBUG-1): Subtotal and Total do NOT include the adjustment amounts while GST DOES include their tax — estimate showed Subtotal $292.83 / GST $17.75 / Total $310.58 with +$62.25 net adjustments missing from the total; a fees-only WO showed 'Total $10.93' = tax alone. Customer-facing money is wrong. | RECON 2026-07-09 (spec-v1-reconciliation.md + PO answer sheet): FDBUG-1 GST-artifact-re-eval: batch-4 non-repro on estimates + GST framing -> needs US-tax repro.",
-  "api_related": false
+  "viu_status": "VIU-Verified",
+  "notes": "VIU qb batch-1 (2026-07-08): Adjustments block position ok (after Labor/Parts/Shop supplies, before Subtotal -> GST -> Total). DEVIATION/BUG (FDBUG-1): Subtotal and Total do NOT include the adjustment amounts while GST DOES include their tax — estimate showed Subtotal $292.83 / GST $17.75 / Total $310.58 with +$62.25 net adjustments missing from the total; a fees-only WO showed 'Total $10.93' = tax alone. Customer-facing money is wrong. | RECON 2026-07-09 (spec-v1-reconciliation.md + PO answer sheet): FDBUG-1 GST-artifact-re-eval: batch-4 non-repro on estimates + GST framing -> needs US-tax repro. | FRESH VIU 2026-07-10: FDBUG-1 NOT REPRODUCED (3rd consecutive pass): document bottom block reads Subtotal $202.68 / GST (5%) $9.14 / Total $211.82 = EXACTLY the API values incl. all adjustments; block sits before Subtotal. Residual: re-word GST example to US sales tax (v1 scope)",
+  "api_related": false,
+  "fresh_run": "2026-07-10"
  },
  {
   "id": "FD-QB-001",
@@ -1482,8 +1541,9 @@
   ],
   "design_ref": "requirements.md §7.1 (S6-R1)",
   "viu_status": "VIU-Blocked-Env",
-  "notes": "QuickBooks sync is backend; verify via the QuickBooks side or the sync payload. | VIU qb batch-1 (2026-07-08): No QuickBooks settings UI on qb env (INTEGRATIONS shows IBS only) and no QB account to sync into; invoiced-sync not exercisable. NOTE: GET /api/bookkeeping/adjustment-item-mapping-status EXISTS -> {quickBooksConnected:true, feeItemMapped:true, discountItemMapped:true} (the app polls it before every add). | UPDATE batch-5 (2026-07-09): QuickBooks IS now CONNECTED on this env (location Staging Lethbridge - 4310 = default_workplace; mapping-status quickBooksConnected:true+both items mapped; real QB chart of accounts + unexported-items returned). Batch-1 'no QB' blocker SUPERSEDED. Live behavior VIU still pending: the sv7387api backend was in a sustained 500 incident (all endpoints incl. quick-login) for the whole 2026-07-09 window, so mapping/sync/floor could not be exercised. Retest plan in viu-findings.md Batch-5.",
-  "api_related": false
+  "notes": "QuickBooks sync is backend; verify via the QuickBooks side or the sync payload. | VIU qb batch-1 (2026-07-08): No QuickBooks settings UI on qb env (INTEGRATIONS shows IBS only) and no QB account to sync into; invoiced-sync not exercisable. NOTE: GET /api/bookkeeping/adjustment-item-mapping-status EXISTS -> {quickBooksConnected:true, feeItemMapped:true, discountItemMapped:true} (the app polls it before every add). | UPDATE batch-5 (2026-07-09): QuickBooks IS now CONNECTED on this env (location Staging Lethbridge - 4310 = default_workplace; mapping-status quickBooksConnected:true+both items mapped; real QB chart of accounts + unexported-items returned). Batch-1 'no QB' blocker SUPERSEDED. Live behavior VIU still pending: the sv7387api backend was in a sustained 500 incident (all endpoints incl. quick-login) for the whole 2026-07-09 window, so mapping/sync/floor could not be exercised. Retest plan in viu-findings.md Batch-5. | FRESH VIU 2026-07-10: QB invoice line internals unobservable (no read API; export of re-invoiced WOs fails on duplicate doc numbers) — needs QB-UI eyeball of a cleanly synced invoice",
+  "api_related": false,
+  "fresh_run": "2026-07-10"
  },
  {
   "id": "FD-QB-002",
@@ -1507,8 +1567,9 @@
   ],
   "design_ref": "requirements.md §7.1 (S6-R3/R4/R5)",
   "viu_status": "VIU-Blocked-Env",
-  "notes": "VIU qb batch-1 (2026-07-08): Blocked with FD-QB-001 (no QB sync surface). | UPDATE batch-5 (2026-07-09): QuickBooks IS now CONNECTED on this env (location Staging Lethbridge - 4310 = default_workplace; mapping-status quickBooksConnected:true+both items mapped; real QB chart of accounts + unexported-items returned). Batch-1 'no QB' blocker SUPERSEDED. Live behavior VIU still pending: the sv7387api backend was in a sustained 500 incident (all endpoints incl. quick-login) for the whole 2026-07-09 window, so mapping/sync/floor could not be exercised. Retest plan in viu-findings.md Batch-5.",
-  "api_related": false
+  "notes": "VIU qb batch-1 (2026-07-08): Blocked with FD-QB-001 (no QB sync surface). | UPDATE batch-5 (2026-07-09): QuickBooks IS now CONNECTED on this env (location Staging Lethbridge - 4310 = default_workplace; mapping-status quickBooksConnected:true+both items mapped; real QB chart of accounts + unexported-items returned). Batch-1 'no QB' blocker SUPERSEDED. Live behavior VIU still pending: the sv7387api backend was in a sustained 500 incident (all endpoints incl. quick-login) for the whole 2026-07-09 window, so mapping/sync/floor could not be exercised. Retest plan in viu-findings.md Batch-5. | FRESH VIU 2026-07-10: as FD-QB-001 — needs QB UI (generic Fee/Discount item + description=name)",
+  "api_related": false,
+  "fresh_run": "2026-07-10"
  },
  {
   "id": "FD-QB-003",
@@ -1531,8 +1592,9 @@
   ],
   "design_ref": "requirements.md §7.1 (S6-R1); §7 (§5-R8)",
   "viu_status": "VIU-Blocked-Env",
-  "notes": "VIU qb batch-1 (2026-07-08): Blocked with FD-QB-001. $0.00 resolve itself verified (§5-R8) — only the QB skip is untestable. | UPDATE batch-5 (2026-07-09): QuickBooks IS now CONNECTED on this env (location Staging Lethbridge - 4310 = default_workplace; mapping-status quickBooksConnected:true+both items mapped; real QB chart of accounts + unexported-items returned). Batch-1 'no QB' blocker SUPERSEDED. Live behavior VIU still pending: the sv7387api backend was in a sustained 500 incident (all endpoints incl. quick-login) for the whole 2026-07-09 window, so mapping/sync/floor could not be exercised. Retest plan in viu-findings.md Batch-5.",
-  "api_related": false
+  "notes": "VIU qb batch-1 (2026-07-08): Blocked with FD-QB-001. $0.00 resolve itself verified (§5-R8) — only the QB skip is untestable. | UPDATE batch-5 (2026-07-09): QuickBooks IS now CONNECTED on this env (location Staging Lethbridge - 4310 = default_workplace; mapping-status quickBooksConnected:true+both items mapped; real QB chart of accounts + unexported-items returned). Batch-1 'no QB' blocker SUPERSEDED. Live behavior VIU still pending: the sv7387api backend was in a sustained 500 incident (all endpoints incl. quick-login) for the whole 2026-07-09 window, so mapping/sync/floor could not be exercised. Retest plan in viu-findings.md Batch-5. | FRESH VIU 2026-07-10: as FD-QB-001 — $0-line skip only visible QB-side",
+  "api_related": false,
+  "fresh_run": "2026-07-10"
  },
  {
   "id": "FD-QB-004",
@@ -1557,8 +1619,9 @@
   ],
   "design_ref": "requirements.md §7.1 (S6-R6/R6a/R6d)",
   "viu_status": "VIU-Blocked-Env",
-  "notes": "VIU qb batch-1 (2026-07-08): Mapping guard not triggerable: mapping-status reports both items MAPPED and there is no QB settings page to unmap on this env. The guard endpoint exists and is called before every add dialog. | UPDATE batch-5 (2026-07-09): QuickBooks IS now CONNECTED on this env (location Staging Lethbridge - 4310 = default_workplace; mapping-status quickBooksConnected:true+both items mapped; real QB chart of accounts + unexported-items returned). Batch-1 'no QB' blocker SUPERSEDED. Live behavior VIU still pending: the sv7387api backend was in a sustained 500 incident (all endpoints incl. quick-login) for the whole 2026-07-09 window, so mapping/sync/floor could not be exercised. Retest plan in viu-findings.md Batch-5.",
-  "api_related": false
+  "notes": "VIU qb batch-1 (2026-07-08): Mapping guard not triggerable: mapping-status reports both items MAPPED and there is no QB settings page to unmap on this env. The guard endpoint exists and is called before every add dialog. | UPDATE batch-5 (2026-07-09): QuickBooks IS now CONNECTED on this env (location Staging Lethbridge - 4310 = default_workplace; mapping-status quickBooksConnected:true+both items mapped; real QB chart of accounts + unexported-items returned). Batch-1 'no QB' blocker SUPERSEDED. Live behavior VIU still pending: the sv7387api backend was in a sustained 500 incident (all endpoints incl. quick-login) for the whole 2026-07-09 window, so mapping/sync/floor could not be exercised. Retest plan in viu-findings.md Batch-5. | FRESH VIU 2026-07-10: unmap not achievable today: PUT bookkeeping/settings {settings:{feeItemId:null}} -> 500 (requestId 4bd14847); flat payload -> 400 'settings missing'. Mapping stayed connected+mapped (verified). Guard cycle needs a working unmap (dev/QB-side)",
+  "api_related": false,
+  "fresh_run": "2026-07-10"
  },
  {
   "id": "FD-QB-005",
@@ -1582,8 +1645,9 @@
   ],
   "design_ref": "requirements.md §7.1 (S6-R6/R6d)",
   "viu_status": "VIU-Blocked-Env",
-  "notes": "VIU qb batch-1 (2026-07-08): Blocked with FD-QB-004. | UPDATE batch-5 (2026-07-09): QuickBooks IS now CONNECTED on this env (location Staging Lethbridge - 4310 = default_workplace; mapping-status quickBooksConnected:true+both items mapped; real QB chart of accounts + unexported-items returned). Batch-1 'no QB' blocker SUPERSEDED. Live behavior VIU still pending: the sv7387api backend was in a sustained 500 incident (all endpoints incl. quick-login) for the whole 2026-07-09 window, so mapping/sync/floor could not be exercised. Retest plan in viu-findings.md Batch-5.",
-  "api_related": false
+  "notes": "VIU qb batch-1 (2026-07-08): Blocked with FD-QB-004. | UPDATE batch-5 (2026-07-09): QuickBooks IS now CONNECTED on this env (location Staging Lethbridge - 4310 = default_workplace; mapping-status quickBooksConnected:true+both items mapped; real QB chart of accounts + unexported-items returned). Batch-1 'no QB' blocker SUPERSEDED. Live behavior VIU still pending: the sv7387api backend was in a sustained 500 incident (all endpoints incl. quick-login) for the whole 2026-07-09 window, so mapping/sync/floor could not be exercised. Retest plan in viu-findings.md Batch-5. | FRESH VIU 2026-07-10: as FD-QB-004 (unmap 500)",
+  "api_related": false,
+  "fresh_run": "2026-07-10"
  },
  {
   "id": "FD-QB-006",
@@ -1604,8 +1668,9 @@
   ],
   "design_ref": "requirements.md §7.1 (S6-R6a)",
   "viu_status": "VIU-Blocked-Env",
-  "notes": "Some of these surfaces (labor/part/part-sale) are primarily Group A scope; this case covers the guard breadth. | VIU qb batch-1 (2026-07-08): Blocked with FD-QB-004. | UPDATE batch-5 (2026-07-09): QuickBooks IS now CONNECTED on this env (location Staging Lethbridge - 4310 = default_workplace; mapping-status quickBooksConnected:true+both items mapped; real QB chart of accounts + unexported-items returned). Batch-1 'no QB' blocker SUPERSEDED. Live behavior VIU still pending: the sv7387api backend was in a sustained 500 incident (all endpoints incl. quick-login) for the whole 2026-07-09 window, so mapping/sync/floor could not be exercised. Retest plan in viu-findings.md Batch-5.",
-  "api_related": false
+  "notes": "Some of these surfaces (labor/part/part-sale) are primarily Group A scope; this case covers the guard breadth. | VIU qb batch-1 (2026-07-08): Blocked with FD-QB-004. | UPDATE batch-5 (2026-07-09): QuickBooks IS now CONNECTED on this env (location Staging Lethbridge - 4310 = default_workplace; mapping-status quickBooksConnected:true+both items mapped; real QB chart of accounts + unexported-items returned). Batch-1 'no QB' blocker SUPERSEDED. Live behavior VIU still pending: the sv7387api backend was in a sustained 500 incident (all endpoints incl. quick-login) for the whole 2026-07-09 window, so mapping/sync/floor could not be exercised. Retest plan in viu-findings.md Batch-5. | FRESH VIU 2026-07-10: as FD-QB-004 (unmap 500)",
+  "api_related": false,
+  "fresh_run": "2026-07-10"
  },
  {
   "id": "FD-QB-007",
@@ -1628,8 +1693,9 @@
   ],
   "design_ref": "requirements.md §7.1 (S6-R6b)",
   "viu_status": "VIU-Blocked-Env",
-  "notes": "VIU qb batch-1 (2026-07-08): Blocked with FD-QB-004. | UPDATE batch-5 (2026-07-09): QuickBooks IS now CONNECTED on this env (location Staging Lethbridge - 4310 = default_workplace; mapping-status quickBooksConnected:true+both items mapped; real QB chart of accounts + unexported-items returned). Batch-1 'no QB' blocker SUPERSEDED. Live behavior VIU still pending: the sv7387api backend was in a sustained 500 incident (all endpoints incl. quick-login) for the whole 2026-07-09 window, so mapping/sync/floor could not be exercised. Retest plan in viu-findings.md Batch-5.",
-  "api_related": false
+  "notes": "VIU qb batch-1 (2026-07-08): Blocked with FD-QB-004. | UPDATE batch-5 (2026-07-09): QuickBooks IS now CONNECTED on this env (location Staging Lethbridge - 4310 = default_workplace; mapping-status quickBooksConnected:true+both items mapped; real QB chart of accounts + unexported-items returned). Batch-1 'no QB' blocker SUPERSEDED. Live behavior VIU still pending: the sv7387api backend was in a sustained 500 incident (all endpoints incl. quick-login) for the whole 2026-07-09 window, so mapping/sync/floor could not be exercised. Retest plan in viu-findings.md Batch-5. | FRESH VIU 2026-07-10: as FD-QB-004 (unmap 500)",
+  "api_related": false,
+  "fresh_run": "2026-07-10"
  },
  {
   "id": "FD-QB-008",
@@ -1652,8 +1718,9 @@
   ],
   "design_ref": "requirements.md §7.1 (S6-R6c)",
   "viu_status": "VIU-Blocked-Env",
-  "notes": "VIU qb batch-1 (2026-07-08): Half-verified: with items mapped/connected (per mapping-status) adds are never blocked anywhere (dozens of adds succeeded). Not-connected/unmapped variants untestable on this env. | UPDATE batch-5 (2026-07-09): QuickBooks IS now CONNECTED on this env (location Staging Lethbridge - 4310 = default_workplace; mapping-status quickBooksConnected:true+both items mapped; real QB chart of accounts + unexported-items returned). Batch-1 'no QB' blocker SUPERSEDED. Live behavior VIU still pending: the sv7387api backend was in a sustained 500 incident (all endpoints incl. quick-login) for the whole 2026-07-09 window, so mapping/sync/floor could not be exercised. Retest plan in viu-findings.md Batch-5.",
-  "api_related": false
+  "notes": "VIU qb batch-1 (2026-07-08): Half-verified: with items mapped/connected (per mapping-status) adds are never blocked anywhere (dozens of adds succeeded). Not-connected/unmapped variants untestable on this env. | UPDATE batch-5 (2026-07-09): QuickBooks IS now CONNECTED on this env (location Staging Lethbridge - 4310 = default_workplace; mapping-status quickBooksConnected:true+both items mapped; real QB chart of accounts + unexported-items returned). Batch-1 'no QB' blocker SUPERSEDED. Live behavior VIU still pending: the sv7387api backend was in a sustained 500 incident (all endpoints incl. quick-login) for the whole 2026-07-09 window, so mapping/sync/floor could not be exercised. Retest plan in viu-findings.md Batch-5. | FRESH VIU 2026-07-10: as FD-QB-004; positive half (template create while MAPPED) works throughout",
+  "api_related": false,
+  "fresh_run": "2026-07-10"
  },
  {
   "id": "FD-QB-009",
@@ -1678,8 +1745,9 @@
   ],
   "design_ref": "requirements.md §7.1 (S6-R7/R7a)",
   "viu_status": "VIU-Blocked-Env",
-  "notes": "VIU qb batch-1 (2026-07-08): Unexported-items recovery untestable (no QB). | UPDATE batch-5 (2026-07-09): QuickBooks IS now CONNECTED on this env (location Staging Lethbridge - 4310 = default_workplace; mapping-status quickBooksConnected:true+both items mapped; real QB chart of accounts + unexported-items returned). Batch-1 'no QB' blocker SUPERSEDED. Live behavior VIU still pending: the sv7387api backend was in a sustained 500 incident (all endpoints incl. quick-login) for the whole 2026-07-09 window, so mapping/sync/floor could not be exercised. Retest plan in viu-findings.md Batch-5.",
-  "api_related": false
+  "notes": "VIU qb batch-1 (2026-07-08): Unexported-items recovery untestable (no QB). | UPDATE batch-5 (2026-07-09): QuickBooks IS now CONNECTED on this env (location Staging Lethbridge - 4310 = default_workplace; mapping-status quickBooksConnected:true+both items mapped; real QB chart of accounts + unexported-items returned). Batch-1 'no QB' blocker SUPERSEDED. Live behavior VIU still pending: the sv7387api backend was in a sustained 500 incident (all endpoints incl. quick-login) for the whole 2026-07-09 window, so mapping/sync/floor could not be exercised. Retest plan in viu-findings.md Batch-5. | FRESH VIU 2026-07-10: unexported-items list + retry + mark-done endpoints re-exercised (mark-done 200 on my entries); the unmap-in-flight repro blocked by the unmap 500",
+  "api_related": false,
+  "fresh_run": "2026-07-10"
  },
  {
   "id": "FD-QB-010",
@@ -1701,8 +1769,9 @@
   ],
   "design_ref": "requirements.md §7.1 (S6-R8)",
   "viu_status": "VIU-Blocked-Env",
-  "notes": "Per-class allocation is out of scope for V1. | VIU qb batch-1 (2026-07-08): Class propagation untestable (no QB). | UPDATE batch-5 (2026-07-09): QuickBooks IS now CONNECTED on this env (location Staging Lethbridge - 4310 = default_workplace; mapping-status quickBooksConnected:true+both items mapped; real QB chart of accounts + unexported-items returned). Batch-1 'no QB' blocker SUPERSEDED. Live behavior VIU still pending: the sv7387api backend was in a sustained 500 incident (all endpoints incl. quick-login) for the whole 2026-07-09 window, so mapping/sync/floor could not be exercised. Retest plan in viu-findings.md Batch-5.",
-  "api_related": false
+  "notes": "Per-class allocation is out of scope for V1. | VIU qb batch-1 (2026-07-08): Class propagation untestable (no QB). | UPDATE batch-5 (2026-07-09): QuickBooks IS now CONNECTED on this env (location Staging Lethbridge - 4310 = default_workplace; mapping-status quickBooksConnected:true+both items mapped; real QB chart of accounts + unexported-items returned). Batch-1 'no QB' blocker SUPERSEDED. Live behavior VIU still pending: the sv7387api backend was in a sustained 500 incident (all endpoints incl. quick-login) for the whole 2026-07-09 window, so mapping/sync/floor could not be exercised. Retest plan in viu-findings.md Batch-5. | FRESH VIU 2026-07-10: Class application only visible QB-side",
+  "api_related": false,
+  "fresh_run": "2026-07-10"
  },
  {
   "id": "FD-QB-011",
@@ -1724,8 +1793,9 @@
   ],
   "design_ref": "requirements.md §7.1 (S6-R9)",
   "viu_status": "VIU-Blocked-Env",
-  "notes": "VIU qb batch-1 (2026-07-08): Class validation untestable (no QB). | UPDATE batch-5 (2026-07-09): QuickBooks IS now CONNECTED on this env (location Staging Lethbridge - 4310 = default_workplace; mapping-status quickBooksConnected:true+both items mapped; real QB chart of accounts + unexported-items returned). Batch-1 'no QB' blocker SUPERSEDED. Live behavior VIU still pending: the sv7387api backend was in a sustained 500 incident (all endpoints incl. quick-login) for the whole 2026-07-09 window, so mapping/sync/floor could not be exercised. Retest plan in viu-findings.md Batch-5.",
-  "api_related": false
+  "notes": "VIU qb batch-1 (2026-07-08): Class validation untestable (no QB). | UPDATE batch-5 (2026-07-09): QuickBooks IS now CONNECTED on this env (location Staging Lethbridge - 4310 = default_workplace; mapping-status quickBooksConnected:true+both items mapped; real QB chart of accounts + unexported-items returned). Batch-1 'no QB' blocker SUPERSEDED. Live behavior VIU still pending: the sv7387api backend was in a sustained 500 incident (all endpoints incl. quick-login) for the whole 2026-07-09 window, so mapping/sync/floor could not be exercised. Retest plan in viu-findings.md Batch-5. | FRESH VIU 2026-07-10: stale-Class abort only reproducible QB-side",
+  "api_related": false,
+  "fresh_run": "2026-07-10"
  },
  {
   "id": "FD-QB-012",
@@ -1748,9 +1818,10 @@
    "3. The floor applies only to the pre-tax net subtotal, never below $0.00; tax is computed on top of the floored subtotal."
   ],
   "design_ref": "requirements.md §7.1 (S6-R10/R10a/R10b/R10c worked example)",
-  "viu_status": "VIU-Verified qb 2026-07-09 (batch-6) — behavior proven at WO level with QuickBooks connected (mapping-status connected+mapped): non-taxable over-discount -> net subtotal floors 0.00, tax on the original taxable base STILL OWED (GST unchanged 60.75), customer pays exactly the tax (total 60.75 = tax), excess captured (excessCreditAmount 50.19); taxable variant -> tax 0.00 (both worked-example halves structurally proven on sub $1,214.81 instead of the $100/$10/$150 numbers). GST-org caveat: rates differ from the US worked example; floor rules are model-safe per spec Change Log.",
-  "notes": "Uses the spec's exact $100/$10/$150 worked example. | VIU qb batch-1 (2026-07-08): QB export untestable, but floor evidence exists: the add-dialog preview floors 'New work-order subtotal' at $0.00 for an over-100% discount, and adjustmentsSummary carries an 'excessCreditAmount' field (0 so far). Full worked-example (tax-still-owed) needs an invoice-time walk — batch 2. | UPDATE batch-5 (2026-07-09): QuickBooks IS now CONNECTED on this env (location Staging Lethbridge - 4310 = default_workplace; mapping-status quickBooksConnected:true+both items mapped; real QB chart of accounts + unexported-items returned). Batch-1 'no QB' blocker SUPERSEDED. Live behavior VIU still pending: the sv7387api backend was in a sustained 500 incident (all endpoints incl. quick-login) for the whole 2026-07-09 window, so mapping/sync/floor could not be exercised. Retest plan in viu-findings.md Batch-5. | VIU batch-6 qb 2026-07-09 (overnight run, evidence 21:10-21:30Z): both halves of the worked example proven structurally at WO level (see FD-CALC-015/016).",
-  "api_related": false
+  "viu_status": "VIU-Verified",
+  "notes": "Uses the spec's exact $100/$10/$150 worked example. | VIU qb batch-1 (2026-07-08): QB export untestable, but floor evidence exists: the add-dialog preview floors 'New work-order subtotal' at $0.00 for an over-100% discount, and adjustmentsSummary carries an 'excessCreditAmount' field (0 so far). Full worked-example (tax-still-owed) needs an invoice-time walk — batch 2. | UPDATE batch-5 (2026-07-09): QuickBooks IS now CONNECTED on this env (location Staging Lethbridge - 4310 = default_workplace; mapping-status quickBooksConnected:true+both items mapped; real QB chart of accounts + unexported-items returned). Batch-1 'no QB' blocker SUPERSEDED. Live behavior VIU still pending: the sv7387api backend was in a sustained 500 incident (all endpoints incl. quick-login) for the whole 2026-07-09 window, so mapping/sync/floor could not be exercised. Retest plan in viu-findings.md Batch-5. | VIU batch-6 qb 2026-07-09 (overnight run, evidence 21:10-21:30Z): both halves of the worked example proven structurally at WO level (see FD-CALC-015/016). | FRESH VIU 2026-07-10: floor worked-example halves re-proven at WO level: non-taxable over-discount -> sub 0.00, tax UNCHANGED (9.14), total=tax, excess 117.24; taxable variant -> tax 0.00, total 0.00",
+  "api_related": false,
+  "fresh_run": "2026-07-10"
  },
  {
   "id": "FD-QB-013",
@@ -1774,8 +1845,9 @@
   ],
   "design_ref": "requirements.md §7.1 (S6-R10d)",
   "viu_status": "VIU-Blocked-Env",
-  "notes": "VIU qb batch-1 (2026-07-08): Penny-cap allocation is QB-export-side — untestable without QB. | UPDATE batch-5 (2026-07-09): QuickBooks IS now CONNECTED on this env (location Staging Lethbridge - 4310 = default_workplace; mapping-status quickBooksConnected:true+both items mapped; real QB chart of accounts + unexported-items returned). Batch-1 'no QB' blocker SUPERSEDED. Live behavior VIU still pending: the sv7387api backend was in a sustained 500 incident (all endpoints incl. quick-login) for the whole 2026-07-09 window, so mapping/sync/floor could not be exercised. Retest plan in viu-findings.md Batch-5.",
-  "api_related": false
+  "notes": "VIU qb batch-1 (2026-07-08): Penny-cap allocation is QB-export-side — untestable without QB. | UPDATE batch-5 (2026-07-09): QuickBooks IS now CONNECTED on this env (location Staging Lethbridge - 4310 = default_workplace; mapping-status quickBooksConnected:true+both items mapped; real QB chart of accounts + unexported-items returned). Batch-1 'no QB' blocker SUPERSEDED. Live behavior VIU still pending: the sv7387api backend was in a sustained 500 incident (all endpoints incl. quick-login) for the whole 2026-07-09 window, so mapping/sync/floor could not be exercised. Retest plan in viu-findings.md Batch-5. | FRESH VIU 2026-07-10: penny-cap allocation of discount LINES only visible on QB invoice lines",
+  "api_related": false,
+  "fresh_run": "2026-07-10"
  },
  {
   "id": "FD-QB-014",
@@ -1797,9 +1869,10 @@
    "2. The user must CONFIRM; the carry is never silent."
   ],
   "design_ref": "requirements.md §7.1 (S6-R12)",
-  "viu_status": "VIU-Deviation qb 2026-07-09 (batch-6) — NEW BUG (FDBUG-15): NO warn/confirm exists. UI: WO S3-15513 Add-dialog with a $1,265 discount vs $1,214.81 subtotal live-previews 'New work-order subtotal $0.00' but clicking 'Add Discount' saves IMMEDIATELY — no warning that the subtotal floors, no mention that tax is still owed, no dollar amount of the excess, no confirm step; the $50.19 excess was carried silently (excessCreditAmount 50.19 straight after save). Violates S6-R12 ('the carry is never silent'). Evidence: shots b6-warn2-filled / b6-warn2-after-submit; API add also 201s with no warning payload.",
-  "notes": "VIU qb batch-1 (2026-07-08): No warn/confirm was shown when saving a 100% discount via API/UI on an open WO — the S6-R12 warning presumably belongs to the invoice/save flow; needs an invoicing walk. excessCreditAmount field exists. | UPDATE batch-5 (2026-07-09): QuickBooks IS now CONNECTED on this env (location Staging Lethbridge - 4310 = default_workplace; mapping-status quickBooksConnected:true+both items mapped; real QB chart of accounts + unexported-items returned). Batch-1 'no QB' blocker SUPERSEDED. Live behavior VIU still pending: the sv7387api backend was in a sustained 500 incident (all endpoints incl. quick-login) for the whole 2026-07-09 window, so mapping/sync/floor could not be exercised. Retest plan in viu-findings.md Batch-5. | VIU batch-6 qb 2026-07-09 (overnight run, evidence 21:10-21:30Z): over-discount saves with no warn/confirm; excess carried silently = FDBUG-15 (S6-R12).",
-  "api_related": false
+  "viu_status": "VIU-Deviation",
+  "notes": "VIU qb batch-1 (2026-07-08): No warn/confirm was shown when saving a 100% discount via API/UI on an open WO — the S6-R12 warning presumably belongs to the invoice/save flow; needs an invoicing walk. excessCreditAmount field exists. | UPDATE batch-5 (2026-07-09): QuickBooks IS now CONNECTED on this env (location Staging Lethbridge - 4310 = default_workplace; mapping-status quickBooksConnected:true+both items mapped; real QB chart of accounts + unexported-items returned). Batch-1 'no QB' blocker SUPERSEDED. Live behavior VIU still pending: the sv7387api backend was in a sustained 500 incident (all endpoints incl. quick-login) for the whole 2026-07-09 window, so mapping/sync/floor could not be exercised. Retest plan in viu-findings.md Batch-5. | VIU batch-6 qb 2026-07-09 (overnight run, evidence 21:10-21:30Z): over-discount saves with no warn/confirm; excess carried silently = FDBUG-15 (S6-R12). | FRESH VIU 2026-07-10: FDBUG-15 CONFIRMED AGAIN (API half): over-discount saves 201 with NO warning payload; excess carried silently (117.24). Batch-6 UI shots show no warn/confirm dialog. Violates S6-R12",
+  "api_related": false,
+  "fresh_run": "2026-07-10"
  },
  {
   "id": "FD-QB-015",
@@ -1822,9 +1895,10 @@
    "3. It is NOT a QuickBooks payment (no cash received)."
   ],
   "design_ref": "requirements.md §7.1 (S6-R11/R13)",
-  "viu_status": "VIU-Pending",
-  "notes": "VIU qb batch-1 (2026-07-08): Customer-credit carry needs the invoicing walk (Deposits & Credits check) — batch 2. | UPDATE batch-5 (2026-07-09): QuickBooks IS now CONNECTED on this env (location Staging Lethbridge - 4310 = default_workplace; mapping-status quickBooksConnected:true+both items mapped; real QB chart of accounts + unexported-items returned). Batch-1 'no QB' blocker SUPERSEDED. Live behavior VIU still pending: the sv7387api backend was in a sustained 500 incident (all endpoints incl. quick-login) for the whole 2026-07-09 window, so mapping/sync/floor could not be exercised. Retest plan in viu-findings.md Batch-5.",
-  "api_related": false
+  "viu_status": "VIU-Blocked-Env",
+  "notes": "VIU qb batch-1 (2026-07-08): Customer-credit carry needs the invoicing walk (Deposits & Credits check) — batch 2. | UPDATE batch-5 (2026-07-09): QuickBooks IS now CONNECTED on this env (location Staging Lethbridge - 4310 = default_workplace; mapping-status quickBooksConnected:true+both items mapped; real QB chart of accounts + unexported-items returned). Batch-1 'no QB' blocker SUPERSEDED. Live behavior VIU still pending: the sv7387api backend was in a sustained 500 incident (all endpoints incl. quick-login) for the whole 2026-07-09 window, so mapping/sync/floor could not be exercised. Retest plan in viu-findings.md Batch-5. | FRESH VIU 2026-07-10: IN-APP HALF VERIFIED TODAY: invoicing the over-discounted WO recorded a CUSTOMER CREDIT (unpaid-transactions 2->4; 'current' bucket -11.63 -> -119.73 = +9.14 invoice & -117.24 credit exactly). QB goodwill-memo half unobservable: invoice export fails on the duplicate-doc-number env bug, no credit_memo export fired, no QB read API — needs QB UI on a cleanly synced org",
+  "api_related": false,
+  "fresh_run": "2026-07-10"
  },
  {
   "id": "FD-QB-016",
@@ -1846,8 +1920,9 @@
   ],
   "design_ref": "requirements.md §7.1 (S6-R2); §7 (§5-R11)",
   "viu_status": "VIU-Blocked-Env",
-  "notes": "VIU qb batch-1 (2026-07-08): Line-tax on synced lines untestable (no QB). In-app tax behavior itself verified under §5-R11. | UPDATE batch-5 (2026-07-09): QuickBooks IS now CONNECTED on this env (location Staging Lethbridge - 4310 = default_workplace; mapping-status quickBooksConnected:true+both items mapped; real QB chart of accounts + unexported-items returned). Batch-1 'no QB' blocker SUPERSEDED. Live behavior VIU still pending: the sv7387api backend was in a sustained 500 incident (all endpoints incl. quick-login) for the whole 2026-07-09 window, so mapping/sync/floor could not be exercised. Retest plan in viu-findings.md Batch-5.",
-  "api_related": false
+  "notes": "VIU qb batch-1 (2026-07-08): Line-tax on synced lines untestable (no QB). In-app tax behavior itself verified under §5-R11. | UPDATE batch-5 (2026-07-09): QuickBooks IS now CONNECTED on this env (location Staging Lethbridge - 4310 = default_workplace; mapping-status quickBooksConnected:true+both items mapped; real QB chart of accounts + unexported-items returned). Batch-1 'no QB' blocker SUPERSEDED. Live behavior VIU still pending: the sv7387api backend was in a sustained 500 incident (all endpoints incl. quick-login) for the whole 2026-07-09 window, so mapping/sync/floor could not be exercised. Retest plan in viu-findings.md Batch-5. | FRESH VIU 2026-07-10: tax code on the QB line unobservable in-app; in-app taxable base shifts re-proven (FD-CALC-011)",
+  "api_related": false,
+  "fresh_run": "2026-07-10"
  },
  {
   "id": "FD-HIST-001",
@@ -1872,8 +1947,9 @@
   ],
   "design_ref": "requirements.md §8.3 (S10-R2/R4a/R4b/R4c)",
   "viu_status": "VIU-Deviation",
-  "notes": "VIU qb batch-1 (2026-07-08): Manual actions each write ONE entry with bold labels 'Fee added' / 'Fee updated' / 'Fee removed' (verified sequence). DEVIATION/BUG (FDBUG-3): AUTO-APPLIED adjustments (location auto-apply, customer defaults, processing fee) write NO history entry at all — a new WO with 3 auto adjustments showed only 'Created'/'Line created'. Shots s9-12, s11b-04. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: add/edit/remove each log one distinct event (adjustment.added/updated/removed)",
-  "api_related": false
+  "notes": "VIU qb batch-1 (2026-07-08): Manual actions each write ONE entry with bold labels 'Fee added' / 'Fee updated' / 'Fee removed' (verified sequence). DEVIATION/BUG (FDBUG-3): AUTO-APPLIED adjustments (location auto-apply, customer defaults, processing fee) write NO history entry at all — a new WO with 3 auto adjustments showed only 'Created'/'Line created'. Shots s9-12, s11b-04. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: add/edit/remove each log one distinct event (adjustment.added/updated/removed) | FRESH VIU 2026-07-10: FDBUG-3 CONFIRMED AGAIN: auto-applied adjustments (auto template + auto pfees) write NO history entry (fresh WO: 1 auto adjustment, 0 adjustment events); manual add/edit/remove ARE logged (added=15/updated=1/removed=15 in today's battery)",
+  "api_related": false,
+  "fresh_run": "2026-07-10"
  },
  {
   "id": "FD-HIST-002",
@@ -1898,8 +1974,9 @@
   ],
   "design_ref": "requirements.md §8.3 (S10-R6a..R6d)",
   "viu_status": "VIU-Deviation",
-  "notes": "History log uses \"Full invoice\" whereas other screens say \"Whole Work Order\". Amount is the set rate, not resolved — this is why SFD does not gate the log (S10-R6c). | VIU qb batch-1 (2026-07-08): Details block shows 'Name: Flat fee | Amount: $20.00 | Applied to: Full invoice' — Name ok, Amount = SET RATE not resolved total (ok), 'Full invoice' label exact (ok). DEVIATION: NO 'Type:' line in the details (S10-R6b). Shot s9-12. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: detail carries adjustmentName, adjustmentKind, adjustmentSetRate (set rate not resolved), adjustmentAppliedTo=\"Full invoice\"",
-  "api_related": false
+  "notes": "History log uses \"Full invoice\" whereas other screens say \"Whole Work Order\". Amount is the set rate, not resolved — this is why SFD does not gate the log (S10-R6c). | VIU qb batch-1 (2026-07-08): Details block shows 'Name: Flat fee | Amount: $20.00 | Applied to: Full invoice' — Name ok, Amount = SET RATE not resolved total (ok), 'Full invoice' label exact (ok). DEVIATION: NO 'Type:' line in the details (S10-R6b). Shot s9-12. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: detail carries adjustmentName, adjustmentKind, adjustmentSetRate (set rate not resolved), adjustmentAppliedTo=\"Full invoice\" | FRESH VIU 2026-07-10: FDBUG-11 (details omit 'Type:' line) per batch-1; entry payload captured today (eventType/eventName/user fields); UI detail block not re-driven",
+  "api_related": false,
+  "fresh_run": "2026-07-10"
  },
  {
   "id": "FD-HIST-003",
@@ -1921,8 +1998,9 @@
   ],
   "design_ref": "requirements.md §8.3 (S10-R3/R5)",
   "viu_status": "VIU-Verified",
-  "notes": "VIU qb batch-1 (2026-07-08): Adjustment entries show Line column '-' and no saved-state icon. Shot s9-12. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: adjustment entries have lineId=null (Line column \"−\"); no saved-state icon",
-  "api_related": false
+  "notes": "VIU qb batch-1 (2026-07-08): Adjustment entries show Line column '-' and no saved-state icon. Shot s9-12. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: adjustment entries have lineId=null (Line column \"−\"); no saved-state icon | FRESH VIU 2026-07-10: adjustment entries carry lineId=null -> Line column '−'; saved-state icon empty per batch",
+  "api_related": false,
+  "fresh_run": "2026-07-10"
  },
  {
   "id": "FD-HIST-004",
@@ -1946,8 +2024,9 @@
   ],
   "design_ref": "requirements.md §8.3 (S10-R1); §1 (flag-off exception)",
   "viu_status": "VIU-Blocked-Env",
-  "notes": "The history log is the one exception to the flag-off rule. | VIU qb batch-1 (2026-07-08): Flag-off visibility not tested — org-level flag toggle skipped on this SHARED env (concurrent dev activity observed); needs a maintenance window or dedicated env.",
-  "api_related": false
+  "notes": "The history log is the one exception to the flag-off rule. | VIU qb batch-1 (2026-07-08): Flag-off visibility not tested — org-level flag toggle skipped on this SHARED env (concurrent dev activity observed); needs a maintenance window or dedicated env. | FRESH VIU 2026-07-10: feature-flag OFF window deliberately not taken on the shared env (manual tester active today)",
+  "api_related": false,
+  "fresh_run": "2026-07-10"
  },
  {
   "id": "FD-HIST-005",
@@ -1971,9 +2050,10 @@
    "2. The fee/discount history entries STILL show in the history log (the log shows the SET rate, not a resolved total, so SFD does not gate it)."
   ],
   "design_ref": "requirements.md §8.3 (S10-R1); §10 (S13-R10)",
-  "viu_status": "VIU-Verified qb 2026-07-08 — tech(SFD off): GET history → 200 with entries; add event carries adjustmentSetRate=8% (SET rate, not resolved), kind, appliedTo=\"Full invoice\" — F&D history persists independent of SFD (S10-R1/R6c/S13-R10)",
-  "notes": "CAUTION: Story 13 model may not be live on staging yet. Restore Tech to Time Clock (role 77b069d1-...) after. | VIU qb batch-1 (2026-07-08): SFD-off visibility needs a restricted user session — not available on qb this batch.",
-  "api_related": false
+  "viu_status": "VIU-Verified",
+  "notes": "CAUTION: Story 13 model may not be live on staging yet. Restore Tech to Time Clock (role 77b069d1-...) after. | VIU qb batch-1 (2026-07-08): SFD-off visibility needs a restricted user session — not available on qb this batch. | FRESH VIU 2026-07-10: tech (no SFD): history GET 200 incl. F&D entries with SET rate — history independent of SFD",
+  "api_related": false,
+  "fresh_run": "2026-07-10"
  },
  {
   "id": "FD-HIST-006",
@@ -1995,9 +2075,10 @@
    "1. Without View History Logs, the history log (including fee/discount entries) is not accessible."
   ],
   "design_ref": "requirements.md §10 (S13-R10)",
-  "viu_status": "VIU-Verified qb 2026-07-08 — View History Logs is an FE display gate only: tech without it still receives F&D history entries from the API (200) — BE does not enforce (S13-R10)",
-  "notes": "Restore Tech to Time Clock after. CAUTION: Story 13 model may not be fully live on staging — record actual gating. | VIU qb batch-1 (2026-07-08): View-History-Logs gating needs a restricted user session.",
-  "api_related": false
+  "viu_status": "VIU-Verified",
+  "notes": "Restore Tech to Time Clock after. CAUTION: Story 13 model may not be fully live on staging — record actual gating. | VIU qb batch-1 (2026-07-08): View-History-Logs gating needs a restricted user session. | FRESH VIU 2026-07-10: View History Logs is an FE display gate (tech got 200 + 56 adjustment entries); documented enforcement model",
+  "api_related": false,
+  "fresh_run": "2026-07-10"
  },
  {
   "id": "FD-HIST-007",
@@ -2020,9 +2101,10 @@
    "3. There is NO \"Fee updated\" entry for a Processing Fee (it can't be edited on a WO)."
   ],
   "design_ref": "requirements.md §8.3 (S10 Processing Fee note); §9.2 (S8-R25/R26)",
-  "viu_status": "VIU-Deviation qb 2026-07-09 (batch-6, extends FDBUG-3) — API: auto-apply processing_fee template fired on a fresh WO (adjustment present, appliedBy=auto) but the history log has NO add entry for it (FDBUG-3: auto-applied adjustments are not logged). A MANUAL whole-WO fee on the same WO logged work_order.adjustment.added with adjustmentKind=fee, adjustmentAppliedTo='Full invoice' (matches the expected applied-to). Removing the processing fee DID log work_order.adjustment.removed, and there is NO 'updated' entry (expected #3 holds). Expected #1 (add logged) FAILS for the auto-added pfee.",
-  "notes": "CURRENT-BUILD DIFFERENCE (§14 item 6): current build may show raw \"processing_fee\" on \"Applied to:\" instead of \"Full invoice\" — record actual value. | VIU qb batch-1 (2026-07-08): Processing-fee history could not be verified: its auto-add wrote NO entry (FDBUG-3), and its removal wasn't exercised before cleanup. Batch-2: remove a pfee manually and check the entry. | VIU batch-6 qb 2026-07-09 (overnight run, evidence 21:10-21:30Z): pfee auto-add NOT logged (FDBUG-3); remove logged; no updated entry; Full invoice label confirmed on manual entries.",
-  "api_related": false
+  "viu_status": "VIU-Deviation",
+  "notes": "CURRENT-BUILD DIFFERENCE (§14 item 6): current build may show raw \"processing_fee\" on \"Applied to:\" instead of \"Full invoice\" — record actual value. | VIU qb batch-1 (2026-07-08): Processing-fee history could not be verified: its auto-add wrote NO entry (FDBUG-3), and its removal wasn't exercised before cleanup. Batch-2: remove a pfee manually and check the entry. | VIU batch-6 qb 2026-07-09 (overnight run, evidence 21:10-21:30Z): pfee auto-add NOT logged (FDBUG-3); remove logged; no updated entry; Full invoice label confirmed on manual entries. | FRESH VIU 2026-07-10: extends FDBUG-3: auto-added pfee NOT logged on add; REMOVAL logged; no 'updated' entries (manual base fee logged correctly)",
+  "api_related": false,
+  "fresh_run": "2026-07-10"
  },
  {
   "id": "FD-HIST-008",
@@ -2044,7 +2126,8 @@
   ],
   "design_ref": "requirements.md §8.3 (S10-R6c)",
   "viu_status": "VIU-Verified",
-  "notes": "VIU qb batch-1 (2026-07-08): Edit $12->$20 logged 'Fee updated ... Amount: $20.00' — the NEW set rate, not a resolved total. Shot s9-12. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: edit to amount 8 logs adjustment.updated with adjustmentSetRate=8 (new set rate)",
-  "api_related": false
+  "notes": "VIU qb batch-1 (2026-07-08): Edit $12->$20 logged 'Fee updated ... Amount: $20.00' — the NEW set rate, not a resolved total. Shot s9-12. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: edit to amount 8 logs adjustment.updated with adjustmentSetRate=8 (new set rate) | FRESH VIU 2026-07-10: work_order.adjustment.updated entry written on edit (set rate carried)",
+  "api_related": false,
+  "fresh_run": "2026-07-10"
  }
 ]

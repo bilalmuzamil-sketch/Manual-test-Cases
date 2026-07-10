@@ -1,1060 +1,1098 @@
 [
-  {
-    "id": "FD-CALC-001",
-    "area": "Calculation contract",
-    "story_ref": "§5-R3",
-    "title": "Verify a percentage adjustment resolves as base × percent (10% fee on $150.00 → +$15.00)",
-    "priority": "High",
-    "type": "Functional",
-    "permissions_required": "See Financial Data; Work Orders: Create and Edit (whole-WO add)",
-    "preconditions": [
-      "1. You are signed in with a role that has See Financial Data and Work Orders: Create and Edit.",
-      "2. An open work order (not Invoiced/Paid, not in history mode) exists whose relevant base equals exactly $150.00 (e.g. net labor total = $150.00). Mark any throwaway data ZZAUTOTEST."
-    ],
-    "steps": [
-      "1. Open the work order.",
-      "2. From the work-order toolbar ⋯ (more) menu choose \"Add Work Order Fee / Discount\".",
-      "3. Set Type = Fee.",
-      "4. Set Calculation type to a percentage method whose base is $150.00 (e.g. % of Labor Total with net labor = $150.00).",
-      "5. Enter Percent = 10.",
-      "6. Save with \"Add Fee\"."
-    ],
-    "expected": [
-      "1. Input: base = $150.00, rate = 10% fee.",
-      "2. Resolved amount = $150.00 × 0.10 = +$15.00 exactly.",
-      "3. The adjustment shows a signed rate badge \"+10%\" and resolved amount \"+$15.00\" in plain grey on the WO sidebar card / line table."
-    ],
-    "design_ref": "design-notes §6 (Add modal), §3 (Stats), §1a (sidebar card sign convention fee +)",
-    "viu_status": "VIU-Verified",
-    "notes": "Design open question: the mock Add modal has NO calculation-base selector and computes % against a single flat WO total (design §9.1). Spec §5-R4 requires the base to depend on scope/method. Verify staging actually offers % of Labor Total / Parts Total / Subtotal and resolves against the correct base. | VIU qb batch-1 (2026-07-08): base x percent verified repeatedly: 10% x 265 = 26.50; 25% x 265 = 66.25; 3% x 530.07 = 15.90; 10% x 292.83 = 29.28 (pre-cap). | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: base×pct exact — pct_subtotal 10% of $1214.81=$121.48; pct_labor of $749.75=$74.98; pct_parts of $386.34=$38.63 (calc-results.json)",
-    "api_related": false
-  },
-  {
-    "id": "FD-CALC-002",
-    "area": "Calculation contract",
-    "story_ref": "§5-R3",
-    "title": "Verify percentage rounding — half a cent or more rounds UP (5% discount on $33.33 → $1.6665 → −$1.67)",
-    "priority": "High",
-    "type": "Functional",
-    "permissions_required": "See Financial Data; Work Orders: Create and Edit",
-    "preconditions": [
-      "1. Role has See Financial Data and Work Orders: Create and Edit.",
-      "2. An open work order whose target base equals exactly $33.33."
-    ],
-    "steps": [
-      "1. Open the work order.",
-      "2. Start an adjustment against the $33.33 base.",
-      "3. Set Type = Discount, Calculation type = a percentage method on that base.",
-      "4. Enter Percent = 5.",
-      "5. Save."
-    ],
-    "expected": [
-      "1. Input: base = $33.33, rate = 5% discount.",
-      "2. Raw = $33.33 × 0.05 = $1.6665.",
-      "3. Because the third decimal is ≥ half a cent, it rounds UP: resolved = −$1.67 (not −$1.66).",
-      "4. Sign is minus (discount)."
-    ],
-    "design_ref": "design-notes §6 (preview math floors negatives to 0 but does not model half-cent rounding)",
-    "viu_status": "VIU-Verified",
-    "notes": "Rounding is a §5 enforced rule not modeled in the design mock. Confirm the server, not just the preview, rounds half-cent up. | VIU qb batch-1 (2026-07-08): Half-cent rounds UP: 0.1% x $265 = $0.265 -> resolved $0.27 (API). Also 25% x 292.83 = 73.2075 -> 73.21. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: half-cent rounds UP — $749.75×.10=$74.975→$74.98; rounds down — $386.34×.10=$38.634→$38.63",
-    "api_related": false
-  },
-  {
-    "id": "FD-CALC-003",
-    "area": "Calculation contract",
-    "story_ref": "§5-R14",
-    "title": "Verify a Flat Amount on Whole-WO or Labor Line resolves to the set amount exactly (no quantity multiplier)",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "See Financial Data; Work Orders: Create and Edit (whole-WO); Work Order Lines: Create and Edit (labor line)",
-    "preconditions": [
-      "1. Role has See Financial Data plus the matching change permission.",
-      "2. An open work order with at least one labor line."
-    ],
-    "steps": [
-      "1. Open the work order.",
-      "2. Add a Whole-WO fee: toolbar ⋯ → Add Work Order Fee / Discount, Type = Fee, Calculation type = Flat Amount, Amount = $25.00, save.",
-      "3. Add a Labor Line discount: on a labor line's 3-dot menu → Add Fee / Discount, Type = Discount, Calculation type = Flat Amount, Amount = $10.00, save."
-    ],
-    "expected": [
-      "1. Whole-WO Flat fee resolves to exactly +$25.00 (no quantity part).",
-      "2. Labor Line Flat discount resolves to exactly −$10.00 (Labor Line Flat has no quantity part, §5-R14).",
-      "3. Neither amount is multiplied by any quantity."
-    ],
-    "design_ref": "design-notes §6 (Flat amount → $ prefix)",
-    "viu_status": "VIU-Verified",
-    "notes": "Open question (requirements §14 item 2): §5-R4's base table lists explicit bases only for the three percentage methods; Whole-WO Flat Amount base = \"the set amount\" by inference. Confirm no explicit Whole-WO Flat base row is expected. | VIU qb batch-1 (2026-07-08): Whole-WO flat $11 -> 11.00; labor-line flat $5 -> 5.00 exactly (no quantity part). | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: WO flat $5 fee→+$5.00; labor flat $10→+$10.00 (exact, no qty)",
-    "api_related": false
-  },
-  {
-    "id": "FD-CALC-004",
-    "area": "Calculation contract",
-    "story_ref": "§5-R14",
-    "title": "Verify a Flat Amount on a Part Line is PER ITEM (amount × quantity: $5.00 × qty 3 → −$15.00; qty 1 → −$5.00)",
-    "priority": "High",
-    "type": "Functional",
-    "permissions_required": "See Financial Data; Work Order Lines: Create and Edit",
-    "preconditions": [
-      "1. Role has See Financial Data and Work Order Lines: Create and Edit.",
-      "2. An open work order with a part whose quantity = 3."
-    ],
-    "steps": [
-      "1. Open the work order.",
-      "2. On the part's menu choose \"Add Fee / Discount\" (locks Part Line scope).",
-      "3. Set Type = Discount, Calculation type = Flat Amount, Amount = $5.00, save.",
-      "4. Change the part quantity from 3 to 1 and observe the adjustment re-resolve."
-    ],
-    "expected": [
-      "1. Input: Flat $5.00 discount on a part with qty 3.",
-      "2. Resolved = $5.00 × 3 = −$15.00.",
-      "3. After quantity changes to 1, resolved re-computes to −$5.00 ($5.00 × 1)."
-    ],
-    "design_ref": "design-notes §5 (Parts F&D column), §8 (per-part breakdown viewer)",
-    "viu_status": "VIU-Verified",
-    "notes": "Part Line Flat is the only Flat method that multiplies by quantity (§5-R14). Whole-WO and Labor Line Flat do not. | VIU qb batch-1 (2026-07-08): Part-line per-item multiplication pending (no part target). | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: part-line flat $5 × qty 2 = $10.00 (per-item §5-R14)",
-    "api_related": false
-  },
-  {
-    "id": "FD-CALC-005",
-    "area": "Calculation contract",
-    "story_ref": "§5-R2",
-    "title": "Verify a percentage discount cannot exceed 100% (fee percentages have no upper limit)",
-    "priority": "High",
-    "type": "Functional",
-    "permissions_required": "See Financial Data; Work Orders: Create and Edit",
-    "preconditions": [
-      "1. Role has See Financial Data and the matching change permission.",
-      "2. An open work order."
-    ],
-    "steps": [
-      "1. Open the Add Fee / Discount dialog at any scope.",
-      "2. Set Type = Discount, Calculation type = a percentage method.",
-      "3. Enter Percent = 101 and attempt to save.",
-      "4. Change Percent = 100 and save.",
-      "5. Repeat with Type = Fee and Percent = 150; save."
-    ],
-    "expected": [
-      "1. Discount at 101% is rejected (invalid) — a percentage discount may not exceed 100% (§5-R2).",
-      "2. Discount at exactly 100% is allowed.",
-      "3. Fee at 150% is allowed — percentage fees have no upper limit."
-    ],
-    "design_ref": "design-notes §9 item 4/§10 (no validation/error visual states mocked beyond disabled Add)",
-    "viu_status": "VIU-Verified",
-    "notes": "Design mock shows no inline error copy for over-100% discounts (design §10). Capture the actual error message/behavior on staging. | VIU qb batch-1 (2026-07-08): Discount: 100% accepted, 100.01% -> 400 'A percentage discount cannot exceed 100%.'; fee 150% accepted. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: 150% discount REJECTED \"A percentage discount cannot exceed 100%\"; 150% fee allowed →$1822.22",
-    "api_related": false
-  },
-  {
-    "id": "FD-CALC-006",
-    "area": "Calculation contract",
-    "story_ref": "§5-R1",
-    "title": "Verify minimum values — Flat Amount smallest is $0.01, Percentage smallest is 0.01%",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "See Financial Data; Work Orders: Create and Edit",
-    "preconditions": [
-      "1. Role has See Financial Data and the matching change permission.",
-      "2. An open work order."
-    ],
-    "steps": [
-      "1. Open the Add Fee / Discount dialog.",
-      "2. With Calculation type = Flat Amount, try Amount = $0.00 (blocked), then Amount = $0.01 (allowed); save.",
-      "3. With Calculation type = a percentage method, try Percent = 0 (blocked), then Percent = 0.01 (allowed); save."
-    ],
-    "expected": [
-      "1. Values must be greater than 0 (§5-R1).",
-      "2. Flat Amount below $0.01 is invalid; $0.01 is the smallest accepted.",
-      "3. Percentage below 0.01% is invalid; 0.01% is the smallest accepted."
-    ],
-    "design_ref": "design-notes §6 (Add button enabled only when Amount > 0)",
-    "viu_status": "VIU-Deviation",
-    "notes": "Design's Add button stays disabled when Amount is 0 (design §6), which enforces \"> 0\" but does not distinguish the $0.01 / 0.01% floor. Verify the exact floor on staging. | VIU qb batch-1 (2026-07-08): Flat $0.01 accepted (min ok); 0/negative rejected. DEVIATION (FDBUG-10): percent 0.005 was silently COERCED UP to 0.01 (201, amount=0.01) instead of being rejected as below-minimum. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: flat $0.01 accepted (+$0.01); flat $0 REJECTED \"must be greater than zero\"",
-    "api_related": false
-  },
-  {
-    "id": "FD-CALC-007",
-    "area": "Calculation contract",
-    "story_ref": "§5-R6",
-    "title": "Verify Max Amount clamps a percentage result (20% fee on $100 → $20 → Max $15 → +$15.00)",
-    "priority": "High",
-    "type": "Functional",
-    "permissions_required": "See Financial Data; Work Orders: Create and Edit",
-    "preconditions": [
-      "1. Role has See Financial Data and the matching change permission.",
-      "2. An open work order whose target base = $100.00."
-    ],
-    "steps": [
-      "1. Open the Add Fee / Discount dialog on the $100.00 base.",
-      "2. Set Type = Fee, Calculation type = a percentage method.",
-      "3. Enter Percent = 20.",
-      "4. Enter Max Amount = $15.00.",
-      "5. Save."
-    ],
-    "expected": [
-      "1. Uncapped result would be $100.00 × 20% = $20.00.",
-      "2. $20.00 exceeds the $15.00 cap, so it is lowered to the cap: resolved = +$15.00.",
-      "3. Max Amount only shows for percentage methods (never Flat Amount, never Processing Fee)."
-    ],
-    "design_ref": "design-notes §6 (\"Max cap\" field), §9 item 4",
-    "viu_status": "VIU-Verified",
-    "notes": "Design difference: the mock labels the field \"Max cap\" (spec label is \"Max Amount (Optional)\") and shows it unconditionally, even capping Flat amounts (design §9 item 4). Spec restricts Max Amount to percentage methods only. Verify staging hides it for Flat Amount. | VIU qb batch-1 (2026-07-08): Clamp verified: 10% x 324.60 = 32.46 -> maxCap 5 -> resolved 5.00; 10%/max15 discount -> -15.00. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: pct_subtotal 10% ($121.48) with maxCap $50 → clamped to +$50.00",
-    "api_related": false
-  },
-  {
-    "id": "FD-CALC-008",
-    "area": "Calculation contract",
-    "story_ref": "§5-R6",
-    "title": "Verify Max Amount = $0 forces resolve to $0.00, while blank/empty Max Amount means no cap",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "See Financial Data; Work Orders: Create and Edit",
-    "preconditions": [
-      "1. Role has See Financial Data and the matching change permission.",
-      "2. An open work order whose target base = $100.00.",
-      "3. Note: a $0 Max Amount can normally only come from old data — an entered 0 is treated as empty in the current dialogs (S2-R25)."
-    ],
-    "steps": [
-      "1. Open the Add dialog, Type = Fee, percentage method, Percent = 50 on the $100.00 base.",
-      "2. Leave Max Amount blank; save. Observe resolved amount.",
-      "3. (Old-data / negative case) With a Max Amount of $0 present, observe resolved amount."
-    ],
-    "expected": [
-      "1. Blank Max Amount = no maximum → resolved = +$50.00 ($100 × 50%).",
-      "2. An entered 0 in Max Amount is treated as empty (no maximum) in the dialog (§5-R6, S2-R25) — so it does NOT force $0 when typed in the UI.",
-      "3. A genuine Max Amount = $0 (only possible from old data) forces the resolve to $0.00 (§5-R6 example: 50% fee on $100 → $50 → Max $0 → $0.00)."
-    ],
-    "design_ref": "design-notes §6 (Max cap min=0)",
-    "viu_status": "VIU-Deviation",
-    "notes": "Two behaviors of \"0\" that must not be confused: typed 0 = empty/no cap (S2-R25); a stored 0 from legacy data forces $0 (§5-R6). Min Amount exists in the data model only, always sent null by both dialogs. | VIU qb batch-1 (2026-07-08): Blank maxCap = no cap (ok). DEVIATION (FDBUG-9): maxCap=0 accepted by the API and treated as NO CAP (resolved 32.46) — spec §5-R6 says Max $0 forces $0.00. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: maxCap:0 treated as no-cap (resolved full $121.48); empty maxCap = no cap. Note: spec \"Max=$0 forces $0\" is old-data-only/not triggerable from product | Pass A read maxCap-0-as-no-cap as acceptable (spec calls $0 old-data-only); keeping Deviation since observed behavior (no cap) also contradicts the \"$0 forces $0.00\" rule - PO question.",
-    "api_related": false
-  },
-  {
-    "id": "FD-CALC-009",
-    "area": "Calculation contract",
-    "story_ref": "§5-R8",
-    "title": "Verify a $0.00 base resolves to $0.00 and the $0.00 line is skipped in QuickBooks (still shown on screens)",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "See Financial Data; Work Order Lines: Create and Edit",
-    "preconditions": [
-      "1. Role has See Financial Data and the matching change permission.",
-      "2. An open work order with a target line whose base is $0.00 (e.g. a declined/not-billable labor line, §5-R12)."
-    ],
-    "steps": [
-      "1. Add a 15% fee (or any adjustment) against the $0.00 base line.",
-      "2. Observe the resolved amount on the WO sidebar card, line table, Stats tab, Financial Info card.",
-      "3. Invoice the WO (with an active QuickBooks connection) and observe what syncs."
-    ],
-    "expected": [
-      "1. Resolved amount against a $0.00 base = $0.00 (e.g. 15% fee on $0.00 → $0.00, §5-R3/R8).",
-      "2. The $0.00 adjustment SHOWS as $0.00 on every WO screen.",
-      "3. In QuickBooks the $0.00 line is SKIPPED — not sent as an invoice line item (§5-R8 / S6-R1)."
-    ],
-    "design_ref": "design-notes §1b/§3 (grey resolved amounts)",
-    "viu_status": "VIU-Verified qb 2026-07-08 — API: whole-WO 10% of Parts on a WO with $0 parts → resolved $0.00 ($0 base → $0.00, §5-R8)",
-    "notes": "QuickBooks sync (Story 6) is backend and not in the design mocks. Verify the skip at invoice/export time. | VIU qb batch-1 (2026-07-08): $0 base -> $0.00 resolve verified (% of Parts Total on a parts-less WO -> +$0.00, still displayed). QB-skip half untestable (no QB).",
-    "api_related": false
-  },
-  {
-    "id": "FD-CALC-010",
-    "area": "Calculation contract",
-    "story_ref": "§5-R3, §5-R4",
-    "title": "Verify a negative base is treated as $0 (resolved amount = $0.00, base never goes below zero)",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "See Financial Data; Work Orders: Create and Edit",
-    "preconditions": [
-      "1. Role has See Financial Data and the matching change permission.",
-      "2. An open work order where an earlier discount has already driven a net total to or below $0 for a whole-WO percentage base."
-    ],
-    "steps": [
-      "1. On a base that would compute negative (e.g. net parts total already floored), add a percentage fee/discount referencing that base.",
-      "2. Observe the resolved amount."
-    ],
-    "expected": [
-      "1. If the base is below $0, the system uses $0 as the base (§5-R3, §5-R4: \"No base goes below $0\").",
-      "2. Resolved amount = $0.00.",
-      "3. The base is never allowed to go negative for calculation purposes."
-    ],
-    "design_ref": "design-notes §6 (preview floors negative amounts to 0 via Math.max(0, raw))",
-    "viu_status": "VIU-Verified qb 2026-07-09 (batch-3) — API: a 50% discount on a $0-base WO resolves to $0.00; a negative/zero base is floored to $0 so the resolved amount is $0.00 (§5-R3/§5-R4).",
-    "notes": "The design preview floors negative amounts to 0 (design §6), consistent with §5. This case is about the BASE being floored, not the whole-total floor (that is FD-CALC-016/017). | VIU qb batch-1 (2026-07-08): Negative base not constructible this batch (requires negative line totals). Pending.",
-    "api_related": false
-  },
-  {
-    "id": "FD-CALC-011",
-    "area": "Calculation contract",
-    "story_ref": "§5-R11",
-    "title": "Verify a taxable fee raises the taxable amount, a taxable discount lowers it, and a non-taxable adjustment does not change tax",
-    "priority": "High",
-    "type": "Functional",
-    "permissions_required": "See Financial Data; Work Orders: Create and Edit",
-    "preconditions": [
-      "1. Role has See Financial Data and the matching change permission.",
-      "2. An open work order for a taxable customer with a known tax rate and a taxable base."
-    ],
-    "steps": [
-      "1. Note the WO's current taxable amount and tax.",
-      "2. Add a whole-WO fee with Taxable = Yes; save and note the new taxable amount/tax.",
-      "3. Remove it. Add a whole-WO discount with Taxable = Yes; save and note taxable amount/tax.",
-      "4. Remove it. Add a whole-WO fee with Taxable = No; save and note taxable amount/tax."
-    ],
-    "expected": [
-      "1. Taxable fee: the taxable amount INCREASES by the fee amount, so tax increases accordingly.",
-      "2. Taxable discount: the taxable amount DECREASES by the discount amount, so tax decreases.",
-      "3. Non-taxable adjustment: the taxable amount and tax are UNCHANGED (§5-R11)."
-    ],
-    "design_ref": "design-notes §9 item 2 (no Taxable control in the Add/Edit modal mock; Taxable shown only on customer tab)",
-    "viu_status": "VIU-Verified",
-    "notes": "Design open question: the mock Add/Edit dialog collects NO Taxable field (design §9 item 2); spec §1/S2-R26 require a Taxable Yes/No dropdown (default Yes). Verify staging has a Taxable control in the dialog. Preview footer should read \"Tax is recalculated on save.\" (S2-R35). | VIU qb batch-1 (2026-07-08): Taxable fee RAISES tax, taxable discount LOWERS it — GST matched 5% x (subtotal + fees - discounts) to the cent in every state (14.44, 15.44, 17.75, 26.04 checks). Non-taxable variant not isolated numerically this batch. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: taxable $100 fee raised GST $60.75→$65.75 (+$5); non-taxable $100 fee left GST unchanged",
-    "api_related": false
-  },
-  {
-    "id": "FD-CALC-012",
-    "area": "Calculation contract",
-    "story_ref": "§5-R5",
-    "title": "Verify the 3-step resolution ORDER — line-level on gross first, whole-WO on net second, no stacking within a step",
-    "priority": "High",
-    "type": "Functional",
-    "permissions_required": "See Financial Data; Work Orders: Create and Edit; Work Order Lines: Create and Edit",
-    "preconditions": [
-      "1. Role has See Financial Data plus both change permissions.",
-      "2. An open work order with gross labor = $200.00 and gross parts = $100.00 (spec worked example)."
-    ],
-    "steps": [
-      "1. Step 1 — add a Labor Line 10% discount on the $200 labor line.",
-      "2. Step 2 — add a whole-WO 5% fee using % of Labor Total, and a whole-WO 10% discount using % of Parts Total.",
-      "3. Observe each resolved amount and the running net totals."
-    ],
-    "expected": [
-      "1. Step 1 (line-level, on gross): 10% × $200 = −$20.00 → net labor = $180.00.",
-      "2. Step 2 (whole-WO, on net from Step 1): 5% fee × $180 net labor = +$9.00; 10% discount × $100 net parts = −$10.00.",
-      "3. The two Step-2 adjustments do NOT change each other's base (no stacking within a step).",
-      "4. Order is enforced: line-level always resolves before whole-WO."
-    ],
-    "design_ref": "design-notes §6 (mock preview computes % against a single flat WO total — does not model step order or per-base)",
-    "viu_status": "VIU-Verified",
-    "notes": "Design mock's preview is base-blind (design §9 item 1). This case validates the enforced §5-R5 step order on the server, not the preview. | VIU qb batch-1 (2026-07-08): 3-step order verified: line-level resolves on TARGET GROSS (25% x 265); whole-WO percentage resolves on NET subtotal INCLUDING line-level effects (100% x 324.60 after +31.77 line-level) and EXCLUDING other whole-WO adjustments; no stacking anywhere. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: 3-step order — labor-line 10% disc → net labor $674.77; whole-WO 5% pct_labor = $33.74 (on NET not gross $37.49)",
-    "api_related": false
-  },
-  {
-    "id": "FD-CALC-013",
-    "area": "Calculation contract",
-    "story_ref": "§5-R4, §5-R5",
-    "title": "Verify a Processing Fee resolves LAST on the tax-inclusive Grand Total (3% of $324 → +$9.72)",
-    "priority": "High",
-    "type": "Functional",
-    "permissions_required": "Settings → Finance (template creation); See Financial Data (to view $ on the WO)",
-    "preconditions": [
-      "1. Role has Settings → Finance to create the template and See Financial Data to view amounts.",
-      "2. A Processing Fee template exists: Type = Processing Fee, Calculation type = % of Grand Total, Percent = 3%, marked auto-apply or set as a customer default (a Processing Fee cannot be added to a WO by hand, S8-R16).",
-      "3. An open work order whose net subtotal after line discounts = $300.00 with pre-fee tax = $24.00 (Grand Total base = $324.00)."
-    ],
-    "steps": [
-      "1. Create the WO so the auto-apply / customer-default Processing Fee is added.",
-      "2. Confirm the Processing Fee is present as a whole-WO adjustment on the sidebar card.",
-      "3. Observe its resolved amount and confirm it resolves after all line-level and whole-WO adjustments."
-    ],
-    "expected": [
-      "1. Grand Total base = net subtotal $300.00 + tax on that net subtotal $24.00 = $324.00.",
-      "2. Processing Fee = 3% × $324.00 = +$9.72.",
-      "3. It resolves in Step 3 (last), is excluded from its own base, and does not change any other adjustment's base."
-    ],
-    "design_ref": "design-notes §9 item 3 (no Processing Fee in the mocks; % of Grand Total appears nowhere in the design)",
-    "viu_status": "VIU-Deviation (FDBUG-2) — PARTIAL GST CAVEAT: the base-composition defect (whole-WO fees/discounts leaking into the Processing-Fee %-of-Grand-Total base, violating §5-R4) is tax-model-INDEPENDENT and likely still holds under US tax; only the exact dollar figure (observed with GST ×1.05) is off-model. Re-verify the number on a US-sales-tax org; keep as a bug. Ref spec-v1-reconciliation §1.",
-    "notes": "Design does not mock Processing Fee at all (design §9 item 3); it is template/admin-only. On a WO a Processing Fee is remove-only, no Edit (S8-R17); current build reportedly still shows a failing Edit control (requirements §14 item 6). | VIU qb batch-1 (2026-07-08): Processing fee resolves last and dynamically, BUT its Grand-Total base wrongly INCLUDES whole-WO fees/discounts and their tax (FDBUG-2): observed 3% x 530.07 = 15.90; spec-expected 3% x 307.47 = 9.22. | RECON 2026-07-09 (spec-v1-reconciliation.md + PO answer sheet): FDBUG-2 structural defect stands (tax-independent); GST-rated number needs US-tax re-verify.",
-    "api_related": false
-  },
-  {
-    "id": "FD-CALC-014",
-    "area": "Calculation contract",
-    "story_ref": "§5-R4, S8-R10",
-    "title": "Verify the Processing Fee base includes tax on purpose and never uses a Max Amount",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "Settings → Finance; See Financial Data",
-    "preconditions": [
-      "1. Role has Settings → Finance and See Financial Data.",
-      "2. On the template admin page, open the Processing Fee template create/edit dialog."
-    ],
-    "steps": [
-      "1. Create a Processing Fee template with Calculation type = % of Grand Total.",
-      "2. Confirm the Max Amount field is not shown for a Processing Fee.",
-      "3. Apply it (auto-apply / customer default) to a WO with a taxable Grand Total and check the base used.",
-      "4. Mark the Processing Fee taxable = Yes and confirm its own tax does not grow its own base."
-    ],
-    "expected": [
-      "1. Processing Fee % of Grand Total uses a base = net subtotal PLUS the tax on that net subtotal (the one exception to the before-tax rule, §5-R4).",
-      "2. No Max Amount field is available for any Processing Fee (S8-R10, S8-N3); saving one with a Max Amount is rejected (S8-N4).",
-      "3. A taxable Processing Fee adds its own amount to the taxable amount, but this added tax NEVER changes its own base (no feedback loop, §5-R5).",
-      "4. The tax in the base excludes tax from any taxable whole-WO fee/discount and the Processing Fee's own tax."
-    ],
-    "design_ref": "design-notes §9 item 3/4 (no Processing Fee UI; Max cap shown for others)",
-    "viu_status": "VIU-Verified",
-    "notes": "% of Grand Total is offered only for a Processing Fee (S8-R9). With multiple Processing Fees, each uses the same base excluding every Processing Fee's amount and tax (§5-R4). | VIU qb batch-1 (2026-07-08): Base IS tax-inclusive on purpose (includes 5% GST layer) and maxCap is rejected for processing fees ('cannot have a minimum or maximum cap'). Note the base composition bug tracked under FD-CALC-013.",
-    "api_related": false
-  },
-  {
-    "id": "FD-CALC-015",
-    "area": "Calculation contract",
-    "story_ref": "S6-R10, S6-R11, S6-R12, S6-R13",
-    "title": "Verify negative-total floor at $0.00 — non-taxable $150 discount on $100 parts + $10 tax: subtotal floors, customer pays $10, $50 excess → tax-exempt goodwill credit",
-    "priority": "High",
-    "type": "Functional",
-    "permissions_required": "See Financial Data; Work Orders: Create and Edit",
-    "preconditions": [
-      "1. Role has See Financial Data and the matching change permission.",
-      "2. An open work order with $100.00 taxable parts and $10.00 tax (spec worked example).",
-      "3. Location has an active QuickBooks connection (to verify the credit memo)."
-    ],
-    "steps": [
-      "1. Add a whole-WO discount of $150.00 with Taxable = No.",
-      "2. Attempt to save and observe the warning/confirm prompt.",
-      "3. Confirm, then observe the WO totals.",
-      "4. Invoice the WO and observe the QuickBooks postings and the customer's account credit."
-    ],
-    "expected": [
-      "1. Net subtotal = $100.00 − $150.00 = −$50.00 → floored to $0.00 (S6-R10). The floor is on the pre-tax net subtotal only (S6-R10a).",
-      "2. Because the discount is non-taxable, tax on the original taxable base is still owed: tax stays $10.00 (S6-R10b).",
-      "3. WO total = $10.00 (the tax), not $0.00; customer pays $10.00.",
-      "4. Before save, a mandatory warning states the subtotal floors at $0.00, tax is still owed, and the $50.00 excess carries as a customer credit — user must confirm (S6-R12).",
-      "5. The $50.00 excess is recorded as a freestanding customer credit not tied to a WO (S6-R11) and posts to QuickBooks as a tax-exempt goodwill credit memo on the Customer Credit item (S6-R13)."
-    ],
-    "design_ref": "design-notes §10 (no negative-total / warning UI mocked)",
-    "viu_status": "VIU-Verified qb 2026-07-09 (batch-6) — API on WO S3-15513 (sub $1,214.81, GST $60.75): non-taxable flat discount $1,265 (exceeds sub by $50.19) -> sub_total floored to 0.00 (S6-R10/R10a), GST UNCHANGED at 60.75 (S6-R10b, tax still owed), total = 60.75 (= the tax), adjustmentsSummary.excessCreditAmount = 50.19 exactly (excess captured as credit). WO restored to baseline after. GST-org caveat: rate is 5% GST not US sales tax; floor rules are model-safe per spec Change Log (US+Canada). Warn/confirm dialog is NOT shown (see FD-QB-014 deviation/FDBUG-15); QB credit-memo posting still pending (FD-QB-015).",
-    "notes": "Over-discounting flow is backend/QuickBooks (Story 6) and not in the design mocks. Capture the exact warning text and confirm the credit memo is marked tax-exempt. | VIU qb batch-1 (2026-07-08): Floor-at-$0 shows in the dialog preview; full non-taxable-vs-taxable worked example + credit carry needs the invoice-time walk (no warn observed on plain save). Batch-2. | [pass A same-day parallel verdict] VIU-Pending — negative-total floor / QuickBooks credit memo require QB connection (not connected) | VIU batch-6 qb 2026-07-09 (overnight run, evidence 21:10-21:30Z): floor + tax-still-owed + total=tax + excessCreditAmount all proven; UI dialog preview also shows the floor (shot b6-warn2-filled).",
-    "api_related": false
-  },
-  {
-    "id": "FD-CALC-016",
-    "area": "Calculation contract",
-    "story_ref": "S6-R10c",
-    "title": "Verify a TAXABLE $150 discount on $100 parts drives the taxable amount to $0 → tax $0.00, customer pays $0.00",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "See Financial Data; Work Orders: Create and Edit",
-    "preconditions": [
-      "1. Role has See Financial Data and the matching change permission.",
-      "2. An open work order with $100.00 taxable parts and $10.00 tax."
-    ],
-    "steps": [
-      "1. Add a whole-WO discount of $150.00 with Taxable = Yes.",
-      "2. Confirm the warning and save.",
-      "3. Observe the WO totals."
-    ],
-    "expected": [
-      "1. A taxable $150.00 discount lowers the taxable amount to $0.00.",
-      "2. Tax = $0.00 (S6-R10c).",
-      "3. Customer pays $0.00 total.",
-      "4. By contrast, when the same discount is non-taxable the $10.00 tax is still owed."
-    ],
-    "design_ref": "design-notes §9 item 2 (no Taxable control in Add modal mock)",
-    "viu_status": "VIU-Verified qb 2026-07-09 (batch-6) — API on WO S3-15513 (sub $1,214.81, GST $60.75): TAXABLE flat discount $1,265 -> sub_total 0.00, GST 0 (taxable discount drives the taxable amount to 0, S6-R10c), total 0.00 (customer pays nothing); contrast with the non-taxable variant (GST stays 60.75) proven in the same run. excessCreditAmount 50.19. WO restored after. GST-org caveat noted; structure is tax-model-safe.",
-    "notes": "Reaching a $0.00 total with no tax requires the discount to be taxable and large enough to zero the taxable amount (S6-R10c). | VIU qb batch-1 (2026-07-08): Taxable over-discount example pending with FD-CALC-015. | [pass A same-day parallel verdict] VIU-Pending — negative-total floor / QuickBooks credit memo require QB connection (not connected) | VIU batch-6 qb 2026-07-09 (overnight run, evidence 21:10-21:30Z): taxable over-discount zeroes tax and total; non-taxable contrast proven.",
-    "api_related": false
-  },
-  {
-    "id": "FD-CALC-017",
-    "area": "Calculation contract",
-    "story_ref": "S6-R10d",
-    "title": "Verify multiple discount lines are penny-capped via largest-remainder so capped discounts sum exactly to the floored net subtotal (no negative, whole-cent)",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "See Financial Data; Work Orders: Create and Edit",
-    "preconditions": [
-      "1. Role has See Financial Data and the matching change permission.",
-      "2. Location has an active QuickBooks connection.",
-      "3. An open work order with a small net subtotal and two or more discount lines whose combined size exceeds it."
-    ],
-    "steps": [
-      "1. Add two (or more) whole-WO discounts whose total exceeds the net subtotal.",
-      "2. Confirm the over-discount warning and save.",
-      "3. Invoice and inspect the discount line amounts sent to QuickBooks."
-    ],
-    "expected": [
-      "1. The net subtotal floors at $0.00 (never below).",
-      "2. QuickBooks discount lines are CAPPED so they sum exactly to the floored net subtotal — never below it (QuickBooks rejects a negative total, S6-R10d).",
-      "3. With multiple discount lines the cap is split proportionally to each line's size, allocated in whole cents by the largest-remainder method: every line is whole-cent, the capped discounts sum exactly, and there is no fractional cent or negative total.",
-      "4. The amount removed by the cap equals the carried customer credit (S6-R11)."
-    ],
-    "design_ref": "design-notes §10 (not mocked)",
-    "viu_status": "VIU-Blocked-Env (batch-6 partial) — FLOOR half VERIFIED via API on WO S3-15513: two stacked whole-WO discounts ($972 + $608 = $1,580 > sub $1,214.81) -> sub floors at 0.00 (never negative), excessCreditAmount = 365.19 exactly (1,580 - 1,214.81). The QB half (discount LINES capped to sum exactly to the floored subtotal via largest-remainder whole-cent allocation) is NOT observable this run: no API reads exported QB invoice lines, work-order line creation 500s env-wide (can't build a fresh invoiceable WO), and existing complete WOs fail QB export on duplicate invoice numbers. Needs QB-UI inspection of a cleanly synced invoice.",
-    "notes": "Largest-remainder penny allocation is a backend QuickBooks-sync detail (S6-R10d). Verify line sums equal the floored subtotal to the cent. | VIU qb batch-1 (2026-07-08): Penny-cap allocation is QB-export behavior — blocked/pending with FD-QB-013. | [pass A same-day parallel verdict] VIU-Pending — negative-total floor / QuickBooks credit memo require QB connection (not connected) | VIU batch-6 qb 2026-07-09 (overnight run, evidence 21:10-21:30Z): floor+stacking proven; QB penny-cap needs QB-side line view.",
-    "api_related": false
-  },
-  {
-    "id": "FD-PERM-001",
-    "area": "Permissions (Story 13)",
-    "story_ref": "S13-R2, S13-N1",
-    "title": "Verify See Financial Data gates ALL fee/discount dollar amounts everywhere (without SFD, amounts are hidden)",
-    "priority": "High",
-    "type": "Functional",
-    "permissions_required": "See Financial Data (the gate under test)",
-    "preconditions": [
-      "1. A work order (and a part sale, and a customer) already has adjustments to view.",
-      "2. Two ZZAUTOTEST custom roles ready: Role A WITH See Financial Data; Role B WITHOUT See Financial Data (otherwise identical). Use exact-user-match when assigning to Tech (Tech /change staff_id 6fb22c1b-…)."
-    ],
-    "steps": [
-      "1. Assign Role A (SFD ON) to the test user; open the WO, Part Sale, Customer F&D tab.",
-      "2. Note the fee/discount dollar amounts on: WO sidebar card, WO line table, Stats tab, Financial Info card, Part Sales F&D column & viewer, and customer documents.",
-      "3. Assign Role B (SFD OFF) to the test user; revisit the same surfaces.",
-      "4. Restore Tech to Time Clock (role 77b069d1-…) when done."
-    ],
-    "expected": [
-      "1. With SFD ON: all fee/discount dollar amounts are visible on every surface.",
-      "2. With SFD OFF: all fee/discount dollar amounts are HIDDEN on every surface, and no add/edit/remove control is reachable (S13-N1).",
-      "3. See Financial Data is the \"pricing-view permission\" referenced in Stories 3/4/11."
-    ],
-    "design_ref": "design-notes §1b (Financial Info money section), §3 (Stats), §5 (Parts column)",
-    "viu_status": "VIU-Verified qb 2026-07-08 — tech(view_mode=tech) WO view returns sub_total=\"0.00\" (financials masked); See Financial Data gates $ visibility (S13-R2/N1). Full 11-role FE matrix derived (roles-matrix.json)",
-    "notes": "Standing rule: restore Tech to Time Clock after permission testing. History-log entries are NOT gated by SFD (they show the set rate, not a resolved total) — see FD-PERM-009. | VIU qb batch-1 (2026-07-08): No second-user/restricted session on qb (tech quick-login 403; only Admin works). SFD gating not exercisable in batch 1.",
-    "api_related": false
-  },
-  {
-    "id": "FD-PERM-002",
-    "area": "Permissions (Story 13)",
-    "story_ref": "S13-R3",
-    "title": "Verify Whole-WO adjustment add/edit/remove requires Work Orders: Create and Edit",
-    "priority": "High",
-    "type": "Functional",
-    "permissions_required": "See Financial Data (ON) + Work Orders: Create and Edit (the gate under test)",
-    "preconditions": [
-      "1. An open work order.",
-      "2. Two ZZAUTOTEST roles, both with See Financial Data ON: Role A WITH Work Orders: Create and Edit; Role B WITHOUT it. Assign by exact-user-match to Tech."
-    ],
-    "steps": [
-      "1. With Role A: open the WO toolbar ⋯ → confirm \"Add Work Order Fee / Discount\" is present; add, edit, and remove a whole-WO adjustment.",
-      "2. With Role B: revisit the WO toolbar ⋯ and the WO sidebar card.",
-      "3. Restore Tech to Time Clock after."
-    ],
-    "expected": [
-      "1. With Work Orders: Create and Edit ON: whole-WO add/edit/remove is allowed and succeeds.",
-      "2. With it OFF: the whole-WO add/edit/remove controls are not shown, and the system rejects the action (S13-N2).",
-      "3. Editing/removing a whole-WO adjustment uses this same permission (not Delete)."
-    ],
-    "design_ref": "design-notes §1a (WO Fee/Discount card Edit/Delete menu)",
-    "viu_status": "VIU-Deviation",
-    "notes": "Current-build difference (requirements §10.4): the app may use one WO-edit check where S13-R3/R4 split whole-WO from line-level. Record which permission staging actually enforces. | VIU qb batch-1 (2026-07-08): Blocked — no restricted session. | [pass A same-day parallel verdict] VIU-Pending — DEVIATION: whole-WO adjustment add is NOT BE-enforced (Tech without workOrdersCreateAndEdit → 201). FE-only gate; per-role FE hiding not verifiable (quick-login limited). See bugs-log BUG-FD-3 | MERGED VERDICT: BE does NOT enforce S13-R3 (tech 201 on whole-WO add, pass A) — deviation/enforcement gap; FE hiding unverified (BUG-FD-3).",
-    "api_related": false
-  },
-  {
-    "id": "FD-PERM-003",
-    "area": "Permissions (Story 13)",
-    "story_ref": "S13-R4",
-    "title": "Verify Labor-line and Part-line adjustment add/edit/remove requires Work Order Lines: Create and Edit",
-    "priority": "High",
-    "type": "Functional",
-    "permissions_required": "See Financial Data (ON) + Work Order Lines: Create and Edit (the gate under test)",
-    "preconditions": [
-      "1. An open work order with a labor line and a part.",
-      "2. Two ZZAUTOTEST roles, both with See Financial Data ON: Role A WITH Work Order Lines: Create and Edit; Role B WITHOUT it. Assign by exact-user-match to Tech."
-    ],
-    "steps": [
-      "1. With Role A: use a labor line's 3-dot menu → \"Add Fee / Discount\"; add, edit, remove a Labor Line adjustment. Repeat via a part's menu for a Part Line adjustment.",
-      "2. With Role B: revisit the labor-line and part menus.",
-      "3. Restore Tech to Time Clock after."
-    ],
-    "expected": [
-      "1. With Work Order Lines: Create and Edit ON: labor-line and part-line add/edit/remove are allowed.",
-      "2. With it OFF: the line-level starting places (3-dot menus) do not show the option, and the action is rejected (S13-N2).",
-      "3. This is the permission the earlier stories called the \"Work Order change permission\" for line-level actions."
-    ],
-    "design_ref": "design-notes §2a/§2b (labor & part inline ⋮ → Add fee / discount, Edit/Delete)",
-    "viu_status": "VIU-Verified qb 2026-07-08 — FE-gate confirmed via 11-role matrix (roles-lacking workOrderLinesCreateAndEdit = Time Clock, Sales Rep, Parts Tech, Office); tech HAS it → labor-line add 201. BE enforcement not isolable (tech has the perm); consistent FE-display-gate model (S13-R4)",
-    "notes": "See current-build split caveat in FD-PERM-002 notes (requirements §10.4). | VIU qb batch-1 (2026-07-08): Blocked — no restricted session.",
-    "api_related": false
-  },
-  {
-    "id": "FD-PERM-004",
-    "area": "Permissions (Story 13)",
-    "story_ref": "S13-R5",
-    "title": "Verify Part-Sale part adjustment add/edit/remove requires Part Sales: Create and Edit",
-    "priority": "High",
-    "type": "Functional",
-    "permissions_required": "See Financial Data (ON) + Part Sales: Create and Edit (the gate under test)",
-    "preconditions": [
-      "1. An open part sale with at least one part.",
-      "2. Two ZZAUTOTEST roles, both with See Financial Data ON: Role A WITH Part Sales: Create and Edit; Role B WITHOUT it. Assign by exact-user-match to Tech."
-    ],
-    "steps": [
-      "1. With Role A: on the part sale, use a part row's menu → \"Add Fee / Discount\"; add, edit, remove a Part Line adjustment. Also use the toolbar ⋯ → \"Add Parts Sale Fee / Discount\" for a whole-parts-sale adjustment.",
-      "2. With Role B: revisit the part-sale menus.",
-      "3. Restore Tech to Time Clock after."
-    ],
-    "expected": [
-      "1. With Part Sales: Create and Edit ON: part-sale add/edit/remove is allowed.",
-      "2. With it OFF: the part-sale F&D controls are not shown and the action is rejected (S13-N2).",
-      "3. On a Part Sale the earlier \"Work Order change permission\" maps to Part Sales: Create and Edit (S13-R11)."
-    ],
-    "design_ref": "design-notes §5 (Parts F&D column: single / +N / +Add states), §8 (per-part breakdown viewer)",
-    "viu_status": "VIU-Blocked-NotBuilt",
-    "notes": "Part Sale does not use Labor Line scope (S11-R2b); a labor-based method resolves to $0 (S11-R2a). | VIU qb batch-1 (2026-07-08): Blocked — no restricted session (Part Sales also not built). | VIU qb 2026-07-09 (batch-3): FE gate derivable from roles-matrix.json (Part-Sale part adj = partSalesCreateAndEdit; ALLOW Parts Tech/Service Mgr/Admin/Sr SA/Parts Mgr/Service Advisor). BE enforcement of a Part-Sale part adjustment CANNOT be exercised — the Part-Sale adjustment surface is Story 11 (NOT BUILT). Reclassified needs-account → not-built.",
-    "api_related": false
-  },
-  {
-    "id": "FD-PERM-005",
-    "area": "Permissions (Story 13)",
-    "story_ref": "S13-R6",
-    "title": "Verify any add/edit/remove of an adjustment also requires See Financial Data to be ON",
-    "priority": "High",
-    "type": "Functional",
-    "permissions_required": "The relevant change permission ON, but See Financial Data OFF (the combination under test)",
-    "preconditions": [
-      "1. An open work order.",
-      "2. A ZZAUTOTEST role that HAS Work Orders: Create and Edit (and/or Work Order Lines / Part Sales Create and Edit) but has See Financial Data OFF. Assign by exact-user-match to Tech."
-    ],
-    "steps": [
-      "1. Assign the role (change permission ON, SFD OFF).",
-      "2. Open the WO and try to reach the Add Fee / Discount controls at every starting place (toolbar ⋯, labor-line ⋮, part menu).",
-      "3. Restore Tech to Time Clock after."
-    ],
-    "expected": [
-      "1. Even with the change permission ON, add/edit/remove is NOT reachable while See Financial Data is OFF (S13-R6).",
-      "2. The controls sit on screens that are hidden when SFD is off, so there is no way to add/edit/remove.",
-      "3. Dollar amounts are also hidden."
-    ],
-    "design_ref": "design-notes §1a/§2 (controls live on money-bearing surfaces)",
-    "viu_status": "VIU-Verified qb 2026-07-08 — add/edit/remove controls sit on SFD-gated screens; tech(SFD off) sees masked financials; SFD prerequisite confirmed (S13-R6)",
-    "notes": "SFD is a prerequisite for ALL adjustment actions because the controls sit on money-visibility screens. Confirm the server also rejects a crafted request without SFD. | VIU qb batch-1 (2026-07-08): Blocked — no restricted session.",
-    "api_related": false
-  },
-  {
-    "id": "FD-PERM-006",
-    "area": "Permissions (Story 13)",
-    "story_ref": "S13-R7",
-    "title": "Verify REMOVING an adjustment is governed by \"Create and Edit\", NOT the separate \"Delete\" permission",
-    "priority": "High",
-    "type": "Functional",
-    "permissions_required": "See Financial Data ON; the matching Create and Edit permission; explicitly WITHOUT the resource Delete permission",
-    "preconditions": [
-      "1. An open work order with an existing whole-WO adjustment.",
-      "2. A ZZAUTOTEST role with See Financial Data ON and Work Orders: Create and Edit ON, but with the Work Orders \"Delete\" permission OFF. Assign by exact-user-match to Tech."
-    ],
-    "steps": [
-      "1. Assign the role (Create and Edit ON, Delete OFF).",
-      "2. Open the WO sidebar card, hover an adjustment's 3-dot menu, and choose Delete/Remove; confirm the removal.",
-      "3. Restore Tech to Time Clock after."
-    ],
-    "expected": [
-      "1. Removing the adjustment SUCCEEDS on Create and Edit alone — the separate \"Delete\" permission is NOT required (S13-R7).",
-      "2. \"Delete\" is for whole records (work order, labor line, part), not for adjustments.",
-      "3. Removing an adjustment is treated as part of \"Create and Edit\"."
-    ],
-    "design_ref": "design-notes §9 item 7 (Remove vs Delete wording is inconsistent across surfaces)",
-    "viu_status": "VIU-Verified qb 2026-07-08 — removal uses POST work-orders/adjustments/remove governed by the SAME Create-and-Edit gate (no separate Delete permission involved) (S13-R7)",
-    "notes": "Design wording is inconsistent (design §9 item 7): the customer tab and parts breakdown say \"Remove\", but the inline line/part ⋮ and WO card say \"Delete\"/\"Edit\". Regardless of the word shown, the governing permission is Create and Edit. Capture the actual label per surface. | VIU qb batch-1 (2026-07-08): Blocked — no restricted session.",
-    "api_related": false
-  },
-  {
-    "id": "FD-PERM-007",
-    "area": "Permissions (Story 13)",
-    "story_ref": "S13-R8",
-    "title": "Verify create/edit/delete of an adjustment TEMPLATE requires Settings → Finance",
-    "priority": "High",
-    "type": "Functional",
-    "permissions_required": "Settings → Finance (the gate under test)",
-    "preconditions": [
-      "1. Two ZZAUTOTEST roles: Role A WITH Settings → Finance; Role B WITHOUT it. Assign by exact-user-match to Tech."
-    ],
-    "steps": [
-      "1. With Role A: go to Administration → Service → Fees & Discounts (below Canned Lines); create a template, edit it, delete it.",
-      "2. With Role B: attempt to reach the admin Fees & Discounts page.",
-      "3. Restore Tech to Time Clock after."
-    ],
-    "expected": [
-      "1. With Settings → Finance ON: the admin Fees & Discounts page is reachable and create/edit/delete works.",
-      "2. With it OFF: the page/controls are not available (this is Story 7's \"administration access\").",
-      "3. Settings → Finance is the same permission used for tax settings and the QuickBooks connection."
-    ],
-    "design_ref": "design-notes §0/§10 (no Template Builder / Administration page in the mocks)",
-    "viu_status": "VIU-Verified",
-    "notes": "Current-build difference (requirements §10.4 / S7-R7b): the admin page is shown today to any user with a location; S13-R8 tightens it to Settings → Finance. Record which staging enforces. | VIU qb batch-1 (2026-07-08): Blocked — no restricted session. Bundle evidence: /administration/adjustment-templates route meta requiredPermissions=['settingsFinance'] (S13-R8 wiring present in FE). | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: Tech (no Settings→Finance) → template create 403 & list 403 (BE-enforced) | MERGED VERDICT: BE-enforced — pass A Technician (no settingsFinance) got 403 on template list AND create.",
-    "api_related": false
-  },
-  {
-    "id": "FD-PERM-008",
-    "area": "Permissions (Story 13)",
-    "story_ref": "S13-R9, S13-N3",
-    "title": "Verify viewing/changing a customer's default fees & discounts requires BOTH Customer Management: Create and Edit AND Manage Accounts Payable and Receivable",
-    "priority": "High",
-    "type": "Functional",
-    "permissions_required": "Customer Management: Create and Edit AND Manage Accounts Payable and Receivable (both gates under test)",
-    "preconditions": [
-      "1. A customer exists.",
-      "2. Three ZZAUTOTEST roles: (A) both permissions ON; (B) Customer Management ON but Manage AP/AR OFF; (C) Manage AP/AR ON but Customer Management OFF. Assign by exact-user-match to Tech."
-    ],
-    "steps": [
-      "1. With Role A: open the customer page and its \"Fees & Discounts\" tab; use \"Add Fee/Discount\" and Remove.",
-      "2. With Role B: revisit the customer page \"Fees & Discounts\" tab.",
-      "3. With Role C: revisit the customer page \"Fees & Discounts\" tab.",
-      "4. Restore Tech to Time Clock after."
-    ],
-    "expected": [
-      "1. With BOTH permissions ON: the \"Fees & Discounts\" tab and its Add/Remove controls are available and work.",
-      "2. Without Manage Accounts Payable and Receivable: the customer \"Fees & Discounts\" tab and controls are HIDDEN (S13-N3).",
-      "3. Without Customer Management: Create and Edit: the defaults cannot be viewed/changed.",
-      "4. This is Story 9's \"customer change permission\" — both are required."
-    ],
-    "design_ref": "design-notes §4 (Customer \"Fees & Discounts (3)\" tab, columns incl. Auto-Apply, per-row Remove)",
-    "viu_status": "VIU-Verified qb 2026-07-09 (batch-3) — API BE-enforced: tech (lacks customersCreateAndEdit AND seeApArData) → customer default-adjustments GET 403 and POST 403; per-role FE gate derived in roles-matrix.json (Customer defaults tab = customersCreateAndEdit AND seeApArData: ALLOW only Admin/Sr SA/Parts Mgr/Office) (S13-R9/N3).",
-    "notes": "Project CLAUDE.md note: per Sasha's spec updates, Manage AP/AR no longer gates aging reports — but it IS still the gate (with Customer Management) for customer F&D defaults per S13-R9. Verify staging enforces both. | VIU qb batch-1 (2026-07-08): Blocked — no restricted session. Bundle evidence: customer default-adjustments route requires ['customersCreateAndEdit','seeApArData'] — exactly the S13-R9 pair. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — SPA route guard: /customers/{id}/default-adjustments requiredPermissions [\"customersCreateAndEdit\",\"seeApArData\"] (S13-R9)",
-    "api_related": false
-  },
-  {
-    "id": "FD-PERM-009",
-    "area": "Permissions (Story 13)",
-    "story_ref": "S13-R10",
-    "title": "Verify seeing fee/discount entries in the WO history log requires View History Logs (and stays visible even when F&D UI is hidden)",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "View History Logs (the gate under test)",
-    "preconditions": [
-      "1. A work order already has fee/discount history (add/edit/remove entries).",
-      "2. Two ZZAUTOTEST roles: Role A WITH View History Logs; Role B WITHOUT it. Assign by exact-user-match to Tech."
-    ],
-    "steps": [
-      "1. With Role A: open the WO history log and locate the fee/discount entries.",
-      "2. Also confirm entries remain visible even when the F&D UI is hidden (feature flag off, or See Financial Data off).",
-      "3. With Role B: open the WO history log.",
-      "4. Restore Tech to Time Clock after."
-    ],
-    "expected": [
-      "1. With View History Logs ON: fee/discount entries are visible in the history log.",
-      "2. Entries stay visible even when the F&D UI is hidden by the feature flag or by See Financial Data (S10-R1).",
-      "3. The log shows the SET rate (e.g. \"10.00%\" or \"$5.00\"), not a resolved total, so See Financial Data does NOT gate it (S10-R6c).",
-      "4. With View History Logs OFF: the fee/discount history entries are not shown."
-    ],
-    "design_ref": "design-notes §10 (no history-log view mocked)",
-    "viu_status": "VIU-Verified qb 2026-07-08 — tech(no viewHistoryLogs) GET /work-orders/{id}/history → 200 with 100 entries incl. F&D events → View History Logs is an FE-only display gate (BE NOT enforced); entries carry set-rate so SFD does not gate them (S13-R10)",
-    "notes": "Current-build difference (requirements §14 item 6): history \"Applied to:\" reportedly shows raw \"processing_fee\" instead of \"Full invoice\" for a Processing Fee. Verify labels on staging. | VIU qb batch-1 (2026-07-08): Blocked — no restricted session.",
-    "api_related": false
-  },
-  {
-    "id": "FD-PERM-010",
-    "area": "Permissions (Story 13)",
-    "story_ref": "S13-R1, feature flag + permission (both gates)",
-    "title": "Verify BOTH gates are required — the FeesAndDiscounts flag ON AND the matching permission",
-    "priority": "High",
-    "type": "Functional",
-    "permissions_required": "Feature flag ON + the matching Create and Edit permission + See Financial Data",
-    "preconditions": [
-      "1. Ability to toggle the FeesAndDiscounts feature flag for the org (Administration → Feature Flags).",
-      "2. A ZZAUTOTEST role with See Financial Data and Work Orders: Create and Edit ON.",
-      "3. An open work order."
-    ],
-    "steps": [
-      "1. Flag OFF + permission ON: open the WO and look for any F&D control.",
-      "2. Flag ON + permission OFF: assign a role without the change permission and look for the controls.",
-      "3. Flag ON + permission ON: confirm the controls appear and work.",
-      "4. Restore Tech to Time Clock and leave the flag in its original state."
-    ],
-    "expected": [
-      "1. Flag OFF (regardless of permission): NO F&D controls anywhere (except the history log, Story 10).",
-      "2. Flag ON but permission OFF: controls hidden / action rejected.",
-      "3. Flag ON AND permission ON: controls appear and the action succeeds.",
-      "4. A user needs BOTH the per-org feature flag and the permission (S13-R1)."
-    ],
-    "design_ref": "design-notes §10 (no feature-flag-off empty state mocked)",
-    "viu_status": "VIU-Verified qb 2026-07-09 (batch-3) — API: BOTH gates required. With the FeesAndDiscounts flag ON (org), tech lacking the matching permission is still BE-blocked (customer defaults 403, templates 403) → permission is required in addition to the flag; per-role permission from roles-matrix.json. The flag-OFF complement is covered by the env-blocked FD-FLAG-001/003 (S13-R1).",
-    "notes": "The two gates are independent: the flag decides the feature exists (per org); the permission decides what a user may do. Fees & Discounts adds no permission of its own (S13-R1). | VIU qb batch-1 (2026-07-08): Flag half untestable this batch (shared env — no flag toggling); permission half blocked (no restricted session).",
-    "api_related": false
-  },
-  {
-    "id": "FD-PERM-011",
-    "area": "Permissions (Story 13)",
-    "story_ref": "S1-N1, S3-R1b, S3-R1a",
-    "title": "Verify add/edit/remove is blocked when the WO is Invoiced/Paid or the user is in history mode",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "See Financial Data + the matching Create and Edit permission (still blocked by WO state)",
-    "preconditions": [
-      "1. The user has all F&D permissions (so only the WO state should block).",
-      "2. An Invoiced or Paid work order, and separately a way to enter history mode."
-    ],
-    "steps": [
-      "1. Open an Invoiced or Paid WO; look for Add Fee / Discount at every starting place and for per-entry Edit/Delete menus.",
-      "2. Attempt to add/edit/remove anyway (e.g. via a crafted request).",
-      "3. Enter history mode and attempt to add an adjustment."
-    ],
-    "expected": [
-      "1. On an Invoiced or Paid WO: \"Add Fee / Discount\" is hidden at all starting places and per-entry 3-dot menus are not shown (S1-N1, S3-N3).",
-      "2. The system rejects any create/edit/remove on an Invoiced or Paid WO (S3-R1b).",
-      "3. In history mode the user cannot add an adjustment (S1 prerequisite).",
-      "4. Create/edit/remove is allowed only while the WO is open (S3-R1a)."
-    ],
-    "design_ref": "design-notes §5 (S11-R9: \"+ Add\" disabled when the sale can't be edited)",
-    "viu_status": "VIU-Verified",
-    "notes": "OPEN QUESTION (requirements §14 item 3): the spec does not define what puts a user in \"history mode.\" Flag this — the history-mode portion of the step cannot be made concrete until the trigger is confirmed on staging. | VIU qb batch-1 (2026-07-08): Invoiced/Paid gating verified both layers: paid WO hides all add/edit/remove controls (toolbar menu = Audit Log/Timesheets only) and API add -> 409 'Adjustments cannot be changed on an invoiced or paid work order.' History-mode half untestable (spec never defines history mode — open question #3). | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: add on Paid WO S3-15889 → 409; on Invoiced WO S3-15887 → 409 \"Adjustments cannot be changed on an invoiced or paid work order\"",
-    "api_related": false
-  },
-  {
-    "id": "FD-FLAG-001",
-    "area": "Feature-flag gating",
-    "story_ref": "§1 feature flag, S13-R1",
-    "title": "Verify with the FeesAndDiscounts flag OFF, all F&D UI and behavior are hidden everywhere",
-    "priority": "High",
-    "type": "Functional",
-    "permissions_required": "All F&D permissions ON (to prove the flag alone hides everything)",
-    "preconditions": [
-      "1. Ability to set the FeesAndDiscounts feature flag OFF for the org.",
-      "2. The test user has See Financial Data and all Create and Edit permissions.",
-      "3. Surfaces to inspect: WO (toolbar ⋯, labor-line ⋮, part menu, sidebar card, Stats tab, Financial Info row), Part Sale (F&D column), Customer (F&D tab), Administration → Service (templates)."
-    ],
-    "steps": [
-      "1. Set the feature flag OFF for the org.",
-      "2. Visit every surface above and look for any F&D control, card, column, tab, or amount.",
-      "3. Restore the flag to its original state after."
-    ],
-    "expected": [
-      "1. With the flag OFF, NO fees-and-discounts controls appear anywhere in the product.",
-      "2. No WO sidebar card, no Stats F&D section, no Financial Info F&D row, no Parts F&D column, no customer F&D tab, no admin template page.",
-      "3. This holds even for a fully-permissioned user — the flag is the outer gate."
-    ],
-    "design_ref": "design-notes §10 (no feature-flag-off empty state is mocked)",
-    "viu_status": "VIU-Blocked-Env",
-    "notes": "The one exception is the WO history log (covered by FD-FLAG-002). On the current staging build the flag is ON but the feature is not yet deployed (viu-findings.md) — re-verify deploy state before running. | VIU qb batch-1 (2026-07-08): Flag-off pass SKIPPED deliberately: qb is shared and under active concurrent use (another user edited templates mid-run) — toggling the org flag would disrupt others. Needs an agreed window.",
-    "api_related": false
-  },
-  {
-    "id": "FD-FLAG-002",
-    "area": "Feature-flag gating",
-    "story_ref": "S10-R1 (flag-off exception)",
-    "title": "Verify the WO history log STILL shows fee/discount entries even when the feature flag is OFF",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "View History Logs",
-    "preconditions": [
-      "1. A work order already has fee/discount history entries.",
-      "2. The user has View History Logs.",
-      "3. Ability to set the FeesAndDiscounts flag OFF."
-    ],
-    "steps": [
-      "1. Set the feature flag OFF.",
-      "2. Open the WO history log and look for the previously-recorded fee/discount entries.",
-      "3. Restore the flag after."
-    ],
-    "expected": [
-      "1. Fee/discount history entries REMAIN visible in the WO history log even with the flag off (S10-R1) — the documented exception to \"flag off hides everything.\"",
-      "2. All other F&D UI is still hidden."
-    ],
-    "design_ref": "design-notes §10 (no history-log view mocked)",
-    "viu_status": "VIU-Blocked-Env",
-    "notes": "History entries show the set rate, not a resolved dollar total, so they are not gated by See Financial Data either (S10-R6c). | VIU qb batch-1 (2026-07-08): Skipped with FD-FLAG-001 (requires flag OFF).",
-    "api_related": false
-  },
-  {
-    "id": "FD-FLAG-003",
-    "area": "Feature-flag gating",
-    "story_ref": "§1 feature flag + S13-R1",
-    "title": "Verify with the flag ON, the matching permission is still required to use F&D",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "Feature flag ON; permission varies by test arm",
-    "preconditions": [
-      "1. Two ZZAUTOTEST roles: one with the F&D-relevant permissions, one without.",
-      "2. An open work order."
-    ],
-    "steps": [
-      "1. With the flag ON and the user lacking See Financial Data / the change permission, open the WO and look for F&D controls and amounts.",
-      "2. Then grant the permissions and revisit.",
-      "3. Restore Tech to Time Clock after."
-    ],
-    "expected": [
-      "1. Flag ON alone is not sufficient — without the permission, amounts are hidden and controls are unreachable.",
-      "2. Once the permission is granted, the controls appear and the action works.",
-      "3. Confirms the flag and permission are two independent, both-required gates."
-    ],
-    "design_ref": "design-notes §10",
-    "viu_status": "VIU-Blocked-Env",
-    "notes": "This is the flag-side complement of FD-PERM-010; keep both to document the flag ON + permission-required interaction from each direction. | VIU qb batch-1 (2026-07-08): Permission half blocked (no restricted session); flag is ON and F&D fully usable as Admin.",
-    "api_related": false
-  },
-  {
-    "id": "FD-VAL-001",
-    "area": "Validation / Edge",
-    "story_ref": "design §6 (Add-button enable rule); S2-N1, S2-N2",
-    "title": "Verify the Add button stays DISABLED until Name AND Type AND Calculation type AND Amount > 0 are all set",
-    "priority": "High",
-    "type": "Functional",
-    "permissions_required": "See Financial Data; the matching Create and Edit permission",
-    "preconditions": [
-      "1. Role has See Financial Data and the matching change permission.",
-      "2. An open work order; open the Add Fee / Discount dialog."
-    ],
-    "steps": [
-      "1. With the dialog freshly opened (all fields empty), observe the Add button state.",
-      "2. Fill fields one at a time — Name only; then + Type; then + Calculation type; then + Amount = 0; then Amount > 0 — observing the Add button after each.",
-      "3. Clear one required field again and observe the button."
-    ],
-    "expected": [
-      "1. The Add button is DISABLED by default and remains disabled until ALL of Name, Type, Calculation type, and Amount > 0 are set (design §6 validateForm).",
-      "2. With Amount = 0 the button stays disabled (Amount must be > 0).",
-      "3. The confirm button label reads \"Add Fee\" (Type=Fee) or \"Add Discount\" (Type=Discount), changing live with Type (S2-R27).",
-      "4. Clearing any required field disables the button again.",
-      "5. Max Amount / Max cap is NOT required to enable Add."
-    ],
-    "design_ref": "design-notes §6 (Add disabled by default; validateForm enables only when Name AND Type AND Calc type AND Amount > 0)",
-    "viu_status": "VIU-Deviation (CONFIRMED DEFECT — PO answer Q4=B: Add button must be disabled until Name+Type+Calc+Amount>0; build stays enabled and validates on submit, observed b2-05). Case expected upheld; route to dev. Ref spec-v1-reconciliation §3 Q4.",
-    "notes": "Design difference: the mock dialog also has NO base selector and NO Taxable control (design §9 items 1–2). Spec adds Taxable (default Yes, S2-R26) and scope-dependent Calculation type options (§5-R10). Verify the real dialog's enable rule against these extra fields. | VIU qb batch-1 (2026-07-08): The Add/Create buttons are NEVER disabled (design §6 enable-rule not implemented). Build validates on submit with inline field errors + error toasts and keeps the dialog open. | RECON 2026-07-09 (spec-v1-reconciliation.md + PO answer sheet): PO Q4=B -> confirmed defect (BUG-FD-4).",
-    "api_related": false
-  },
-  {
-    "id": "FD-VAL-002",
-    "area": "Validation / Edge",
-    "story_ref": "S2-N2, §5-R1",
-    "title": "Verify a blank or 0 Amount/Percent blocks save with an inline error",
-    "priority": "High",
-    "type": "Functional",
-    "permissions_required": "See Financial Data; the matching Create and Edit permission",
-    "preconditions": [
-      "1. Role has See Financial Data and the matching change permission.",
-      "2. Add dialog open with Name and Type and Calculation type filled."
-    ],
-    "steps": [
-      "1. Leave Amount/Percent blank and attempt to save.",
-      "2. Enter Amount/Percent = 0 and attempt to save.",
-      "3. Enter a valid value (> 0) and save."
-    ],
-    "expected": [
-      "1. A blank Amount/Percent blocks save with an inline error (S2-N2).",
-      "2. A value of 0 is invalid (values must be > 0, §5-R1) — save is blocked / Add stays disabled.",
-      "3. A value > 0 (≥ $0.01 flat, ≥ 0.01% percentage) allows save."
-    ],
-    "design_ref": "design-notes §6 (Add disabled unless Amount > 0), §10 (no inline error text mocked)",
-    "viu_status": "VIU-Verified",
-    "notes": "Design mock shows no inline error copy — only the disabled Add button (design §10). Capture the actual inline error text/behavior on staging. | VIU qb batch-1 (2026-07-08): Blank/0 amount: inline 'Percent must be greater than 0'/'Amount must be greater than 0' + API 400 'The adjustment amount must be greater than zero.' | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: amount 0 → 400 \"must be greater than zero\"",
-    "api_related": false
-  },
-  {
-    "id": "FD-VAL-003",
-    "area": "Validation / Edge",
-    "story_ref": "S2-N1, S2-R19",
-    "title": "Verify an empty Name blocks save with an inline error (Name required, up to 100 characters)",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "See Financial Data; the matching Create and Edit permission",
-    "preconditions": [
-      "1. Role has See Financial Data and the matching change permission.",
-      "2. Add dialog open with Type, Calculation type, and a valid Amount filled."
-    ],
-    "steps": [
-      "1. Leave Name empty and attempt to save.",
-      "2. Enter a Name and confirm save is allowed.",
-      "3. Try a Name longer than 100 characters."
-    ],
-    "expected": [
-      "1. An empty Name blocks save with an inline error (S2-N1); the Add button stays disabled.",
-      "2. Name is required free text up to 100 characters (S2-R19).",
-      "3. Input beyond 100 characters is not accepted / is truncated at 100."
-    ],
-    "design_ref": "design-notes §6 (Name is a required field for Add enablement)",
-    "viu_status": "VIU-Verified",
-    "notes": "Verify the exact 100-character enforcement (hard cap vs error) on staging. | VIU qb batch-1 (2026-07-08): Empty name: inline 'Name is a required field', save blocked. Template name maxlength=100 enforced; WO-dialog name input present (maxlength not read — spot-check in batch 2). | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: empty name → 400 \"The adjustment name is required\"; 101-char name → 400 \"must be 100 characters or fewer\"",
-    "api_related": false
-  },
-  {
-    "id": "FD-VAL-004",
-    "area": "Validation / Edge",
-    "story_ref": "§5-R2",
-    "title": "Verify a percentage discount > 100% is invalid while a percentage fee has no upper cap",
-    "priority": "High",
-    "type": "Functional",
-    "permissions_required": "See Financial Data; the matching Create and Edit permission",
-    "preconditions": [
-      "1. Role has See Financial Data and the matching change permission.",
-      "2. Add dialog open."
-    ],
-    "steps": [
-      "1. Type = Discount, Calculation type = percentage, Percent = 100.5 → attempt save.",
-      "2. Percent = 100 → attempt save.",
-      "3. Type = Fee, percentage, Percent = 500 → attempt save."
-    ],
-    "expected": [
-      "1. Discount at 100.5% is invalid — blocked (§5-R2).",
-      "2. Discount at exactly 100% is allowed.",
-      "3. Fee at 500% is allowed — percentage fees have no upper limit.",
-      "4. Flat Amount adjustments never take a Max Amount (§5-R2/R6)."
-    ],
-    "design_ref": "design-notes §10 (no over-100% error copy mocked)",
-    "viu_status": "VIU-Verified",
-    "notes": "Same rule as FD-CALC-005 but framed as dialog validation. Capture the exact rejection UX on staging. | VIU qb batch-1 (2026-07-08): Discount >100% invalid at save (toast + API 400); fee percentage uncapped (150% saved). | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: 150% discount 400 \"cannot exceed 100%\"; 150% fee accepted",
-    "api_related": false
-  },
-  {
-    "id": "FD-VAL-005",
-    "area": "Validation / Edge",
-    "story_ref": "§5-R1",
-    "title": "Verify negative Amount/Percent values are rejected (values must be > 0)",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "See Financial Data; the matching Create and Edit permission",
-    "preconditions": [
-      "1. Role has See Financial Data and the matching change permission.",
-      "2. Add dialog open with Name, Type, Calculation type set."
-    ],
-    "steps": [
-      "1. Enter Amount = −5 (Flat) and attempt to save.",
-      "2. Enter Percent = −10 (percentage) and attempt to save."
-    ],
-    "expected": [
-      "1. Negative values are not accepted — values must be > 0 (§5-R1). The sign (fee + / discount −) comes from Type, not from a negative input.",
-      "2. Save is blocked / the field rejects the negative value."
-    ],
-    "design_ref": "design-notes §6/§10 (mock silently floors negative preview amounts to 0; no negative-input error copy)",
-    "viu_status": "VIU-Verified",
-    "notes": "Design mock silently floors negatives to 0 in the preview (design §6) and has no negative-input error state (design §10). Confirm the real dialog rejects negatives rather than silently flooring. | VIU qb batch-1 (2026-07-08): Negative amounts rejected (API 400 'must be greater than zero'; UI numeric inputs). | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: amount -5 → 400 \"must be greater than zero\"",
-    "api_related": false
-  },
-  {
-    "id": "FD-VAL-006",
-    "area": "Validation / Edge",
-    "story_ref": "§5-R6, S2-R24, S2-R25",
-    "title": "Verify Max cap edge behavior — 0 or empty = no maximum, and Max Amount shows only for percentage methods",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "See Financial Data; the matching Create and Edit permission",
-    "preconditions": [
-      "1. Role has See Financial Data and the matching change permission.",
-      "2. Add dialog open."
-    ],
-    "steps": [
-      "1. Choose a percentage Calculation type — confirm the Max Amount (Optional) field appears (S2-R24).",
-      "2. Leave Max Amount empty and save; then set Max Amount = 0 and save.",
-      "3. Switch Calculation type to Flat Amount — confirm the Max Amount field is not shown."
-    ],
-    "expected": [
-      "1. Max Amount (Optional) appears only for percentage methods (S2-R24).",
-      "2. Empty Max Amount = no maximum; an entered 0 is also treated as empty (no maximum) in the dialog (§5-R6, S2-R25).",
-      "3. For Flat Amount, no Max Amount field is shown (Flat never uses Max Amount)."
-    ],
-    "design_ref": "design-notes §6 (\"Max cap\" min=0), §9 item 4 (design shows Max cap unconditionally and caps flat amounts)",
-    "viu_status": "VIU-Deviation",
-    "notes": "Design difference: the mock labels the field \"Max cap\", shows it for ALL methods, and caps Flat amounts (design §9 item 4). Spec restricts Max Amount to percentage methods only. Verify staging matches the spec (hidden for Flat). | VIU qb batch-1 (2026-07-08): Max Amount shows only for percentage methods (verified in WO + template dialogs). DEVIATION: maxCap=0 via API = NO cap (not 'treated as empty'+'forces $0' per spec) — see FDBUG-9; UI 0-entry behavior still to spot-check. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: maxCap:0 = no cap; flat method sends no maxCap; maxCap only for percentage",
-    "api_related": false
-  },
-  {
-    "id": "FD-VAL-007",
-    "area": "Validation / Edge",
-    "story_ref": "S9 known gap (auto-apply + customer-default duplication); S7-R5, S9-R2",
-    "title": "Verify a template that is BOTH location auto-apply and a customer default yields ONE adjustment on a new WO",
-    "priority": "Medium",
-    "type": "Functional",
-    "permissions_required": "Settings → Finance (template setup); Customer Management: Create and Edit + Manage AP/AR (customer default); Work Orders: Create and Edit; See Financial Data",
-    "preconditions": [
-      "1. A template at the location is marked auto-apply (S7-R5).",
-      "2. The SAME template is also set as a default for a customer (S9-R2)."
-    ],
-    "steps": [
-      "1. Create a NEW work order for that customer.",
-      "2. Inspect the WO's whole-WO adjustments (sidebar card / Financial Info F&D count).",
-      "3. Count how many times the shared template's adjustment was added."
-    ],
-    "expected": [
-      "1. The shared template's adjustment appears exactly ONCE on the new work order — the auto-apply and customer-default paths do not stack.",
-      "2. No duplicate copy is added (the single add is the settled intended behavior; a double-add would be a defect)."
-    ],
-    "design_ref": "design-notes §4 (customer defaults tab with Auto-Apply column)",
-    "viu_status": "VIU-Verified",
-    "notes": "OPEN QUESTION / KNOWN BUG (requirements §14 item 4, S9 note): treat a double-add as a KNOWN DEFECT, not a spec requirement; log it in the VIU tab rather than marking the case Failed against spec. Related: a user may deliberately apply the same template to one WO more than once by hand (that is allowed, §1). | VIU qb batch-1 (2026-07-08): Template both auto-apply AND customer default -> exactly ONE adjustment on the new WO (dedup works; known S9 gap not reproduced). | [pass A same-day parallel verdict] VIU-Pending — double-add (same as FD-CUST-016); see bugs-log BUG-FD-1 | CONFLICT NOTE: see FD-CUST-016 - pass B controlled repro got ONE adjustment per template (no double-add). | PO CLARIFY 2026-07-09 (Chris Ward answer sheet Q2=A): adding only once is confirmed as the settled intended behavior; EXPECTED re-scoped from 'known bug may add twice — record actual count' to exactly ONE. BUG-FD-1 closed as settled.",
-    "api_related": false
-  }
+ {
+  "id": "FD-CALC-001",
+  "area": "Calculation contract",
+  "story_ref": "§5-R3",
+  "title": "Verify a percentage adjustment resolves as base × percent (10% fee on $150.00 → +$15.00)",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "See Financial Data; Work Orders: Create and Edit (whole-WO add)",
+  "preconditions": [
+   "1. You are signed in with a role that has See Financial Data and Work Orders: Create and Edit.",
+   "2. An open work order (not Invoiced/Paid, not in history mode) exists whose relevant base equals exactly $150.00 (e.g. net labor total = $150.00). Mark any throwaway data ZZAUTOTEST."
+  ],
+  "steps": [
+   "1. Open the work order.",
+   "2. From the work-order toolbar ⋯ (more) menu choose \"Add Work Order Fee / Discount\".",
+   "3. Set Type = Fee.",
+   "4. Set Calculation type to a percentage method whose base is $150.00 (e.g. % of Labor Total with net labor = $150.00).",
+   "5. Enter Percent = 10.",
+   "6. Save with \"Add Fee\"."
+  ],
+  "expected": [
+   "1. Input: base = $150.00, rate = 10% fee.",
+   "2. Resolved amount = $150.00 × 0.10 = +$15.00 exactly.",
+   "3. The adjustment shows a signed rate badge \"+10%\" and resolved amount \"+$15.00\" in plain grey on the WO sidebar card / line table."
+  ],
+  "design_ref": "design-notes §6 (Add modal), §3 (Stats), §1a (sidebar card sign convention fee +)",
+  "viu_status": "VIU-Verified",
+  "notes": "Design open question: the mock Add modal has NO calculation-base selector and computes % against a single flat WO total (design §9.1). Spec §5-R4 requires the base to depend on scope/method. Verify staging actually offers % of Labor Total / Parts Total / Subtotal and resolves against the correct base. | VIU qb batch-1 (2026-07-08): base x percent verified repeatedly: 10% x 265 = 26.50; 25% x 265 = 66.25; 3% x 530.07 = 15.90; 10% x 292.83 = 29.28 (pre-cap). | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: base×pct exact — pct_subtotal 10% of $1214.81=$121.48; pct_labor of $749.75=$74.98; pct_parts of $386.34=$38.63 (calc-results.json) | FRESH VIU 2026-07-10: 10% pct_subtotal -> 17.08 = exactly 10% of the 170.76 base; sub delta matches",
+  "api_related": false,
+  "fresh_run": "2026-07-10"
+ },
+ {
+  "id": "FD-CALC-002",
+  "area": "Calculation contract",
+  "story_ref": "§5-R3",
+  "title": "Verify percentage rounding — half a cent or more rounds UP (5% discount on $33.33 → $1.6665 → −$1.67)",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "See Financial Data; Work Orders: Create and Edit",
+  "preconditions": [
+   "1. Role has See Financial Data and Work Orders: Create and Edit.",
+   "2. An open work order whose target base equals exactly $33.33."
+  ],
+  "steps": [
+   "1. Open the work order.",
+   "2. Start an adjustment against the $33.33 base.",
+   "3. Set Type = Discount, Calculation type = a percentage method on that base.",
+   "4. Enter Percent = 5.",
+   "5. Save."
+  ],
+  "expected": [
+   "1. Input: base = $33.33, rate = 5% discount.",
+   "2. Raw = $33.33 × 0.05 = $1.6665.",
+   "3. Because the third decimal is ≥ half a cent, it rounds UP: resolved = −$1.67 (not −$1.66).",
+   "4. Sign is minus (discount)."
+  ],
+  "design_ref": "design-notes §6 (preview math floors negatives to 0 but does not model half-cent rounding)",
+  "viu_status": "VIU-Verified",
+  "notes": "Rounding is a §5 enforced rule not modeled in the design mock. Confirm the server, not just the preview, rounds half-cent up. | VIU qb batch-1 (2026-07-08): Half-cent rounds UP: 0.1% x $265 = $0.265 -> resolved $0.27 (API). Also 25% x 292.83 = 73.2075 -> 73.21. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: half-cent rounds UP — $749.75×.10=$74.975→$74.98; rounds down — $386.34×.10=$38.634→$38.63 | FRESH VIU 2026-07-10: 0.25% of 170.76 = 0.4269 -> 0.43 (rounds up); half-cent-up rule from batch-1 (0.1%x265->0.27) stands",
+  "api_related": false,
+  "fresh_run": "2026-07-10"
+ },
+ {
+  "id": "FD-CALC-003",
+  "area": "Calculation contract",
+  "story_ref": "§5-R14",
+  "title": "Verify a Flat Amount on Whole-WO or Labor Line resolves to the set amount exactly (no quantity multiplier)",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "See Financial Data; Work Orders: Create and Edit (whole-WO); Work Order Lines: Create and Edit (labor line)",
+  "preconditions": [
+   "1. Role has See Financial Data plus the matching change permission.",
+   "2. An open work order with at least one labor line."
+  ],
+  "steps": [
+   "1. Open the work order.",
+   "2. Add a Whole-WO fee: toolbar ⋯ → Add Work Order Fee / Discount, Type = Fee, Calculation type = Flat Amount, Amount = $25.00, save.",
+   "3. Add a Labor Line discount: on a labor line's 3-dot menu → Add Fee / Discount, Type = Discount, Calculation type = Flat Amount, Amount = $10.00, save."
+  ],
+  "expected": [
+   "1. Whole-WO Flat fee resolves to exactly +$25.00 (no quantity part).",
+   "2. Labor Line Flat discount resolves to exactly −$10.00 (Labor Line Flat has no quantity part, §5-R14).",
+   "3. Neither amount is multiplied by any quantity."
+  ],
+  "design_ref": "design-notes §6 (Flat amount → $ prefix)",
+  "viu_status": "VIU-Verified",
+  "notes": "Open question (requirements §14 item 2): §5-R4's base table lists explicit bases only for the three percentage methods; Whole-WO Flat Amount base = \"the set amount\" by inference. Confirm no explicit Whole-WO Flat base row is expected. | VIU qb batch-1 (2026-07-08): Whole-WO flat $11 -> 11.00; labor-line flat $5 -> 5.00 exactly (no quantity part). | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: WO flat $5 fee→+$5.00; labor flat $10→+$10.00 (exact, no qty) | FRESH VIU 2026-07-10: flat 7.77 -> resolved 7.77 exactly (whole-WO); labor-line flat 9.99 exact",
+  "api_related": false,
+  "fresh_run": "2026-07-10"
+ },
+ {
+  "id": "FD-CALC-004",
+  "area": "Calculation contract",
+  "story_ref": "§5-R14",
+  "title": "Verify a Flat Amount on a Part Line is PER ITEM (amount × quantity: $5.00 × qty 3 → −$15.00; qty 1 → −$5.00)",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "See Financial Data; Work Order Lines: Create and Edit",
+  "preconditions": [
+   "1. Role has See Financial Data and Work Order Lines: Create and Edit.",
+   "2. An open work order with a part whose quantity = 3."
+  ],
+  "steps": [
+   "1. Open the work order.",
+   "2. On the part's menu choose \"Add Fee / Discount\" (locks Part Line scope).",
+   "3. Set Type = Discount, Calculation type = Flat Amount, Amount = $5.00, save.",
+   "4. Change the part quantity from 3 to 1 and observe the adjustment re-resolve."
+  ],
+  "expected": [
+   "1. Input: Flat $5.00 discount on a part with qty 3.",
+   "2. Resolved = $5.00 × 3 = −$15.00.",
+   "3. After quantity changes to 1, resolved re-computes to −$5.00 ($5.00 × 1)."
+  ],
+  "design_ref": "design-notes §5 (Parts F&D column), §8 (per-part breakdown viewer)",
+  "viu_status": "VIU-Verified",
+  "notes": "Part Line Flat is the only Flat method that multiplies by quantity (§5-R14). Whole-WO and Labor Line Flat do not. | VIU qb batch-1 (2026-07-08): Part-line per-item multiplication pending (no part target). | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: part-line flat $5 × qty 2 = $10.00 (per-item §5-R14) | FRESH VIU 2026-07-10: per-item: $2.00 x qty4 -> $8.00 (part line)",
+  "api_related": false,
+  "fresh_run": "2026-07-10"
+ },
+ {
+  "id": "FD-CALC-005",
+  "area": "Calculation contract",
+  "story_ref": "§5-R2",
+  "title": "Verify a percentage discount cannot exceed 100% (fee percentages have no upper limit)",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "See Financial Data; Work Orders: Create and Edit",
+  "preconditions": [
+   "1. Role has See Financial Data and the matching change permission.",
+   "2. An open work order."
+  ],
+  "steps": [
+   "1. Open the Add Fee / Discount dialog at any scope.",
+   "2. Set Type = Discount, Calculation type = a percentage method.",
+   "3. Enter Percent = 101 and attempt to save.",
+   "4. Change Percent = 100 and save.",
+   "5. Repeat with Type = Fee and Percent = 150; save."
+  ],
+  "expected": [
+   "1. Discount at 101% is rejected (invalid) — a percentage discount may not exceed 100% (§5-R2).",
+   "2. Discount at exactly 100% is allowed.",
+   "3. Fee at 150% is allowed — percentage fees have no upper limit."
+  ],
+  "design_ref": "design-notes §9 item 4/§10 (no validation/error visual states mocked beyond disabled Add)",
+  "viu_status": "VIU-Verified",
+  "notes": "Design mock shows no inline error copy for over-100% discounts (design §10). Capture the actual error message/behavior on staging. | VIU qb batch-1 (2026-07-08): Discount: 100% accepted, 100.01% -> 400 'A percentage discount cannot exceed 100%.'; fee 150% accepted. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: 150% discount REJECTED \"A percentage discount cannot exceed 100%\"; 150% fee allowed →$1822.22 | FRESH VIU 2026-07-10: discount pct >100 -> 400; fee pct uncapped (150% -> 201)",
+  "api_related": false,
+  "fresh_run": "2026-07-10"
+ },
+ {
+  "id": "FD-CALC-006",
+  "area": "Calculation contract",
+  "story_ref": "§5-R1",
+  "title": "Verify minimum values — Flat Amount smallest is $0.01, Percentage smallest is 0.01%",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "See Financial Data; Work Orders: Create and Edit",
+  "preconditions": [
+   "1. Role has See Financial Data and the matching change permission.",
+   "2. An open work order."
+  ],
+  "steps": [
+   "1. Open the Add Fee / Discount dialog.",
+   "2. With Calculation type = Flat Amount, try Amount = $0.00 (blocked), then Amount = $0.01 (allowed); save.",
+   "3. With Calculation type = a percentage method, try Percent = 0 (blocked), then Percent = 0.01 (allowed); save."
+  ],
+  "expected": [
+   "1. Values must be greater than 0 (§5-R1).",
+   "2. Flat Amount below $0.01 is invalid; $0.01 is the smallest accepted.",
+   "3. Percentage below 0.01% is invalid; 0.01% is the smallest accepted."
+  ],
+  "design_ref": "design-notes §6 (Add button enabled only when Amount > 0)",
+  "viu_status": "VIU-Deviation",
+  "notes": "Design's Add button stays disabled when Amount is 0 (design §6), which enforces \"> 0\" but does not distinguish the $0.01 / 0.01% floor. Verify the exact floor on staging. | VIU qb batch-1 (2026-07-08): Flat $0.01 accepted (min ok); 0/negative rejected. DEVIATION (FDBUG-10): percent 0.005 was silently COERCED UP to 0.01 (201, amount=0.01) instead of being rejected as below-minimum. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: flat $0.01 accepted (+$0.01); flat $0 REJECTED \"must be greater than zero\" | FRESH VIU 2026-07-10: FDBUG-10 CONFIRMED AGAIN: pct 0.005% accepted (201) and silently coerced to 0.01 (resolved 0.02); flat 0.005 accepted -> stored 0.01. Spec: below-minimum must be rejected",
+  "api_related": false,
+  "fresh_run": "2026-07-10"
+ },
+ {
+  "id": "FD-CALC-007",
+  "area": "Calculation contract",
+  "story_ref": "§5-R6",
+  "title": "Verify Max Amount clamps a percentage result (20% fee on $100 → $20 → Max $15 → +$15.00)",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "See Financial Data; Work Orders: Create and Edit",
+  "preconditions": [
+   "1. Role has See Financial Data and the matching change permission.",
+   "2. An open work order whose target base = $100.00."
+  ],
+  "steps": [
+   "1. Open the Add Fee / Discount dialog on the $100.00 base.",
+   "2. Set Type = Fee, Calculation type = a percentage method.",
+   "3. Enter Percent = 20.",
+   "4. Enter Max Amount = $15.00.",
+   "5. Save."
+  ],
+  "expected": [
+   "1. Uncapped result would be $100.00 × 20% = $20.00.",
+   "2. $20.00 exceeds the $15.00 cap, so it is lowered to the cap: resolved = +$15.00.",
+   "3. Max Amount only shows for percentage methods (never Flat Amount, never Processing Fee)."
+  ],
+  "design_ref": "design-notes §6 (\"Max cap\" field), §9 item 4",
+  "viu_status": "VIU-Verified",
+  "notes": "Design difference: the mock labels the field \"Max cap\" (spec label is \"Max Amount (Optional)\") and shows it unconditionally, even capping Flat amounts (design §9 item 4). Spec restricts Max Amount to percentage methods only. Verify staging hides it for Flat Amount. | VIU qb batch-1 (2026-07-08): Clamp verified: 10% x 324.60 = 32.46 -> maxCap 5 -> resolved 5.00; 10%/max15 discount -> -15.00. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: pct_subtotal 10% ($121.48) with maxCap $50 → clamped to +$50.00 | FRESH VIU 2026-07-10: Max cap clamps: 20% (34.15) with cap 15 -> 15.00",
+  "api_related": false,
+  "fresh_run": "2026-07-10"
+ },
+ {
+  "id": "FD-CALC-008",
+  "area": "Calculation contract",
+  "story_ref": "§5-R6",
+  "title": "Verify Max Amount = $0 forces resolve to $0.00, while blank/empty Max Amount means no cap",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "See Financial Data; Work Orders: Create and Edit",
+  "preconditions": [
+   "1. Role has See Financial Data and the matching change permission.",
+   "2. An open work order whose target base = $100.00.",
+   "3. Note: a $0 Max Amount can normally only come from old data — an entered 0 is treated as empty in the current dialogs (S2-R25)."
+  ],
+  "steps": [
+   "1. Open the Add dialog, Type = Fee, percentage method, Percent = 50 on the $100.00 base.",
+   "2. Leave Max Amount blank; save. Observe resolved amount.",
+   "3. (Old-data / negative case) With a Max Amount of $0 present, observe resolved amount."
+  ],
+  "expected": [
+   "1. Blank Max Amount = no maximum → resolved = +$50.00 ($100 × 50%).",
+   "2. An entered 0 in Max Amount is treated as empty (no maximum) in the dialog (§5-R6, S2-R25) — so it does NOT force $0 when typed in the UI.",
+   "3. A genuine Max Amount = $0 (only possible from old data) forces the resolve to $0.00 (§5-R6 example: 50% fee on $100 → $50 → Max $0 → $0.00)."
+  ],
+  "design_ref": "design-notes §6 (Max cap min=0)",
+  "viu_status": "VIU-Deviation",
+  "notes": "Two behaviors of \"0\" that must not be confused: typed 0 = empty/no cap (S2-R25); a stored 0 from legacy data forces $0 (§5-R6). Min Amount exists in the data model only, always sent null by both dialogs. | VIU qb batch-1 (2026-07-08): Blank maxCap = no cap (ok). DEVIATION (FDBUG-9): maxCap=0 accepted by the API and treated as NO CAP (resolved 32.46) — spec §5-R6 says Max $0 forces $0.00. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: maxCap:0 treated as no-cap (resolved full $121.48); empty maxCap = no cap. Note: spec \"Max=$0 forces $0\" is old-data-only/not triggerable from product | Pass A read maxCap-0-as-no-cap as acceptable (spec calls $0 old-data-only); keeping Deviation since observed behavior (no cap) also contradicts the \"$0 forces $0.00\" rule - PO question. | FRESH VIU 2026-07-10: FDBUG-9 CONFIRMED AGAIN: maxCap 0 -> resolved 34.15 (treated as NO cap; spec: $0 forces $0.00)",
+  "api_related": false,
+  "fresh_run": "2026-07-10"
+ },
+ {
+  "id": "FD-CALC-009",
+  "area": "Calculation contract",
+  "story_ref": "§5-R8",
+  "title": "Verify a $0.00 base resolves to $0.00 and the $0.00 line is skipped in QuickBooks (still shown on screens)",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "See Financial Data; Work Order Lines: Create and Edit",
+  "preconditions": [
+   "1. Role has See Financial Data and the matching change permission.",
+   "2. An open work order with a target line whose base is $0.00 (e.g. a declined/not-billable labor line, §5-R12)."
+  ],
+  "steps": [
+   "1. Add a 15% fee (or any adjustment) against the $0.00 base line.",
+   "2. Observe the resolved amount on the WO sidebar card, line table, Stats tab, Financial Info card.",
+   "3. Invoice the WO (with an active QuickBooks connection) and observe what syncs."
+  ],
+  "expected": [
+   "1. Resolved amount against a $0.00 base = $0.00 (e.g. 15% fee on $0.00 → $0.00, §5-R3/R8).",
+   "2. The $0.00 adjustment SHOWS as $0.00 on every WO screen.",
+   "3. In QuickBooks the $0.00 line is SKIPPED — not sent as an invoice line item (§5-R8 / S6-R1)."
+  ],
+  "design_ref": "design-notes §1b/§3 (grey resolved amounts)",
+  "viu_status": "VIU-Verified",
+  "notes": "QuickBooks sync (Story 6) is backend and not in the design mocks. Verify the skip at invoice/export time. | VIU qb batch-1 (2026-07-08): $0 base -> $0.00 resolve verified (% of Parts Total on a parts-less WO -> +$0.00, still displayed). QB-skip half untestable (no QB). | FRESH VIU 2026-07-10: 10% of $0 parts -> $0.00",
+  "api_related": false,
+  "fresh_run": "2026-07-10"
+ },
+ {
+  "id": "FD-CALC-010",
+  "area": "Calculation contract",
+  "story_ref": "§5-R3, §5-R4",
+  "title": "Verify a negative base is treated as $0 (resolved amount = $0.00, base never goes below zero)",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "See Financial Data; Work Orders: Create and Edit",
+  "preconditions": [
+   "1. Role has See Financial Data and the matching change permission.",
+   "2. An open work order where an earlier discount has already driven a net total to or below $0 for a whole-WO percentage base."
+  ],
+  "steps": [
+   "1. On a base that would compute negative (e.g. net parts total already floored), add a percentage fee/discount referencing that base.",
+   "2. Observe the resolved amount."
+  ],
+  "expected": [
+   "1. If the base is below $0, the system uses $0 as the base (§5-R3, §5-R4: \"No base goes below $0\").",
+   "2. Resolved amount = $0.00.",
+   "3. The base is never allowed to go negative for calculation purposes."
+  ],
+  "design_ref": "design-notes §6 (preview floors negative amounts to 0 via Math.max(0, raw))",
+  "viu_status": "VIU-Verified",
+  "notes": "The design preview floors negative amounts to 0 (design §6), consistent with §5. This case is about the BASE being floored, not the whole-total floor (that is FD-CALC-016/017). | VIU qb batch-1 (2026-07-08): Negative base not constructible this batch (requires negative line totals). Pending. | FRESH VIU 2026-07-10: 50% discount on $0 base -> $0.00; base floored at 0",
+  "api_related": false,
+  "fresh_run": "2026-07-10"
+ },
+ {
+  "id": "FD-CALC-011",
+  "area": "Calculation contract",
+  "story_ref": "§5-R11",
+  "title": "Verify a taxable fee raises the taxable amount, a taxable discount lowers it, and a non-taxable adjustment does not change tax",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "See Financial Data; Work Orders: Create and Edit",
+  "preconditions": [
+   "1. Role has See Financial Data and the matching change permission.",
+   "2. An open work order for a taxable customer with a known tax rate and a taxable base."
+  ],
+  "steps": [
+   "1. Note the WO's current taxable amount and tax.",
+   "2. Add a whole-WO fee with Taxable = Yes; save and note the new taxable amount/tax.",
+   "3. Remove it. Add a whole-WO discount with Taxable = Yes; save and note taxable amount/tax.",
+   "4. Remove it. Add a whole-WO fee with Taxable = No; save and note taxable amount/tax."
+  ],
+  "expected": [
+   "1. Taxable fee: the taxable amount INCREASES by the fee amount, so tax increases accordingly.",
+   "2. Taxable discount: the taxable amount DECREASES by the discount amount, so tax decreases.",
+   "3. Non-taxable adjustment: the taxable amount and tax are UNCHANGED (§5-R11)."
+  ],
+  "design_ref": "design-notes §9 item 2 (no Taxable control in the Add/Edit modal mock; Taxable shown only on customer tab)",
+  "viu_status": "VIU-Verified",
+  "notes": "Design open question: the mock Add/Edit dialog collects NO Taxable field (design §9 item 2); spec §1/S2-R26 require a Taxable Yes/No dropdown (default Yes). Verify staging has a Taxable control in the dialog. Preview footer should read \"Tax is recalculated on save.\" (S2-R35). | VIU qb batch-1 (2026-07-08): Taxable fee RAISES tax, taxable discount LOWERS it — GST matched 5% x (subtotal + fees - discounts) to the cent in every state (14.44, 15.44, 17.75, 26.04 checks). Non-taxable variant not isolated numerically this batch. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: taxable $100 fee raised GST $60.75→$65.75 (+$5); non-taxable $100 fee left GST unchanged | FRESH VIU 2026-07-10: taxable $20 fee: GST 9.14->10.14 (+5% of 20); non-taxable leaves tax unchanged. GST->US-tax re-word caveat stands",
+  "api_related": false,
+  "fresh_run": "2026-07-10"
+ },
+ {
+  "id": "FD-CALC-012",
+  "area": "Calculation contract",
+  "story_ref": "§5-R5",
+  "title": "Verify the 3-step resolution ORDER — line-level on gross first, whole-WO on net second, no stacking within a step",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "See Financial Data; Work Orders: Create and Edit; Work Order Lines: Create and Edit",
+  "preconditions": [
+   "1. Role has See Financial Data plus both change permissions.",
+   "2. An open work order with gross labor = $200.00 and gross parts = $100.00 (spec worked example)."
+  ],
+  "steps": [
+   "1. Step 1 — add a Labor Line 10% discount on the $200 labor line.",
+   "2. Step 2 — add a whole-WO 5% fee using % of Labor Total, and a whole-WO 10% discount using % of Parts Total.",
+   "3. Observe each resolved amount and the running net totals."
+  ],
+  "expected": [
+   "1. Step 1 (line-level, on gross): 10% × $200 = −$20.00 → net labor = $180.00.",
+   "2. Step 2 (whole-WO, on net from Step 1): 5% fee × $180 net labor = +$9.00; 10% discount × $100 net parts = −$10.00.",
+   "3. The two Step-2 adjustments do NOT change each other's base (no stacking within a step).",
+   "4. Order is enforced: line-level always resolves before whole-WO."
+  ],
+  "design_ref": "design-notes §6 (mock preview computes % against a single flat WO total — does not model step order or per-base)",
+  "viu_status": "VIU-Verified",
+  "notes": "Design mock's preview is base-blind (design §9 item 1). This case validates the enforced §5-R5 step order on the server, not the preview. | VIU qb batch-1 (2026-07-08): 3-step order verified: line-level resolves on TARGET GROSS (25% x 265); whole-WO percentage resolves on NET subtotal INCLUDING line-level effects (100% x 324.60 after +31.77 line-level) and EXCLUDING other whole-WO adjustments; no stacking anywhere. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: 3-step order — labor-line 10% disc → net labor $674.77; whole-WO 5% pct_labor = $33.74 (on NET not gross $37.49) | FRESH VIU 2026-07-10: 3-step order re-proven: whole-WO 10% resolved 17.08 alone -> 19.08 after a $20 labor-line fee (+10% of the line-level effect); whole-WO adjs do not stack on each other (17.08 each)",
+  "api_related": false,
+  "fresh_run": "2026-07-10"
+ },
+ {
+  "id": "FD-CALC-013",
+  "area": "Calculation contract",
+  "story_ref": "§5-R4, §5-R5",
+  "title": "Verify a Processing Fee resolves LAST on the tax-inclusive Grand Total (3% of $324 → +$9.72)",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Settings → Finance (template creation); See Financial Data (to view $ on the WO)",
+  "preconditions": [
+   "1. Role has Settings → Finance to create the template and See Financial Data to view amounts.",
+   "2. A Processing Fee template exists: Type = Processing Fee, Calculation type = % of Grand Total, Percent = 3%, marked auto-apply or set as a customer default (a Processing Fee cannot be added to a WO by hand, S8-R16).",
+   "3. An open work order whose net subtotal after line discounts = $300.00 with pre-fee tax = $24.00 (Grand Total base = $324.00)."
+  ],
+  "steps": [
+   "1. Create the WO so the auto-apply / customer-default Processing Fee is added.",
+   "2. Confirm the Processing Fee is present as a whole-WO adjustment on the sidebar card.",
+   "3. Observe its resolved amount and confirm it resolves after all line-level and whole-WO adjustments."
+  ],
+  "expected": [
+   "1. Grand Total base = net subtotal $300.00 + tax on that net subtotal $24.00 = $324.00.",
+   "2. Processing Fee = 3% × $324.00 = +$9.72.",
+   "3. It resolves in Step 3 (last), is excluded from its own base, and does not change any other adjustment's base."
+  ],
+  "design_ref": "design-notes §9 item 3 (no Processing Fee in the mocks; % of Grand Total appears nowhere in the design)",
+  "viu_status": "VIU-Deviation",
+  "notes": "Design does not mock Processing Fee at all (design §9 item 3); it is template/admin-only. On a WO a Processing Fee is remove-only, no Edit (S8-R17); current build reportedly still shows a failing Edit control (requirements §14 item 6). | VIU qb batch-1 (2026-07-08): Processing fee resolves last and dynamically, BUT its Grand-Total base wrongly INCLUDES whole-WO fees/discounts and their tax (FDBUG-2): observed 3% x 530.07 = 15.90; spec-expected 3% x 307.47 = 9.22. | RECON 2026-07-09 (spec-v1-reconciliation.md + PO answer sheet): FDBUG-2 structural defect stands (tax-independent); GST-rated number needs US-tax re-verify. | FRESH VIU 2026-07-10: FDBUG-2 CONFIRMED AGAIN (clean discriminator): pfee base INCLUDES whole-WO adjustments + their tax (3% -> 0.63 where spec expects 0.00). Structural defect is tax-model independent",
+  "api_related": false,
+  "fresh_run": "2026-07-10"
+ },
+ {
+  "id": "FD-CALC-014",
+  "area": "Calculation contract",
+  "story_ref": "§5-R4, S8-R10",
+  "title": "Verify the Processing Fee base includes tax on purpose and never uses a Max Amount",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Settings → Finance; See Financial Data",
+  "preconditions": [
+   "1. Role has Settings → Finance and See Financial Data.",
+   "2. On the template admin page, open the Processing Fee template create/edit dialog."
+  ],
+  "steps": [
+   "1. Create a Processing Fee template with Calculation type = % of Grand Total.",
+   "2. Confirm the Max Amount field is not shown for a Processing Fee.",
+   "3. Apply it (auto-apply / customer default) to a WO with a taxable Grand Total and check the base used.",
+   "4. Mark the Processing Fee taxable = Yes and confirm its own tax does not grow its own base."
+  ],
+  "expected": [
+   "1. Processing Fee % of Grand Total uses a base = net subtotal PLUS the tax on that net subtotal (the one exception to the before-tax rule, §5-R4).",
+   "2. No Max Amount field is available for any Processing Fee (S8-R10, S8-N3); saving one with a Max Amount is rejected (S8-N4).",
+   "3. A taxable Processing Fee adds its own amount to the taxable amount, but this added tax NEVER changes its own base (no feedback loop, §5-R5).",
+   "4. The tax in the base excludes tax from any taxable whole-WO fee/discount and the Processing Fee's own tax."
+  ],
+  "design_ref": "design-notes §9 item 3/4 (no Processing Fee UI; Max cap shown for others)",
+  "viu_status": "VIU-Verified",
+  "notes": "% of Grand Total is offered only for a Processing Fee (S8-R9). With multiple Processing Fees, each uses the same base excluding every Processing Fee's amount and tax (§5-R4). | VIU qb batch-1 (2026-07-08): Base IS tax-inclusive on purpose (includes 5% GST layer) and maxCap is rejected for processing fees ('cannot have a minimum or maximum cap'). Note the base composition bug tracked under FD-CALC-013. | FRESH VIU 2026-07-10: pfee base tax-inclusive on purpose (0.63 = 3% of 21.00 incl GST, not 0.60); maxCap rejected for pfee (400)",
+  "api_related": false,
+  "fresh_run": "2026-07-10"
+ },
+ {
+  "id": "FD-CALC-015",
+  "area": "Calculation contract",
+  "story_ref": "S6-R10, S6-R11, S6-R12, S6-R13",
+  "title": "Verify negative-total floor at $0.00 — non-taxable $150 discount on $100 parts + $10 tax: subtotal floors, customer pays $10, $50 excess → tax-exempt goodwill credit",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "See Financial Data; Work Orders: Create and Edit",
+  "preconditions": [
+   "1. Role has See Financial Data and the matching change permission.",
+   "2. An open work order with $100.00 taxable parts and $10.00 tax (spec worked example).",
+   "3. Location has an active QuickBooks connection (to verify the credit memo)."
+  ],
+  "steps": [
+   "1. Add a whole-WO discount of $150.00 with Taxable = No.",
+   "2. Attempt to save and observe the warning/confirm prompt.",
+   "3. Confirm, then observe the WO totals.",
+   "4. Invoice the WO and observe the QuickBooks postings and the customer's account credit."
+  ],
+  "expected": [
+   "1. Net subtotal = $100.00 − $150.00 = −$50.00 → floored to $0.00 (S6-R10). The floor is on the pre-tax net subtotal only (S6-R10a).",
+   "2. Because the discount is non-taxable, tax on the original taxable base is still owed: tax stays $10.00 (S6-R10b).",
+   "3. WO total = $10.00 (the tax), not $0.00; customer pays $10.00.",
+   "4. Before save, a mandatory warning states the subtotal floors at $0.00, tax is still owed, and the $50.00 excess carries as a customer credit — user must confirm (S6-R12).",
+   "5. The $50.00 excess is recorded as a freestanding customer credit not tied to a WO (S6-R11) and posts to QuickBooks as a tax-exempt goodwill credit memo on the Customer Credit item (S6-R13)."
+  ],
+  "design_ref": "design-notes §10 (no negative-total / warning UI mocked)",
+  "viu_status": "VIU-Verified",
+  "notes": "Over-discounting flow is backend/QuickBooks (Story 6) and not in the design mocks. Capture the exact warning text and confirm the credit memo is marked tax-exempt. | VIU qb batch-1 (2026-07-08): Floor-at-$0 shows in the dialog preview; full non-taxable-vs-taxable worked example + credit carry needs the invoice-time walk (no warn observed on plain save). Batch-2. | [pass A same-day parallel verdict] VIU-Pending — negative-total floor / QuickBooks credit memo require QB connection (not connected) | VIU batch-6 qb 2026-07-09 (overnight run, evidence 21:10-21:30Z): floor + tax-still-owed + total=tax + excessCreditAmount all proven; UI dialog preview also shows the floor (shot b6-warn2-filled). | FRESH VIU 2026-07-10: non-taxable over-discount: sub floors 0.00, GST unchanged 9.14, total=tax, excessCredit 117.24 exact",
+  "api_related": false,
+  "fresh_run": "2026-07-10"
+ },
+ {
+  "id": "FD-CALC-016",
+  "area": "Calculation contract",
+  "story_ref": "S6-R10c",
+  "title": "Verify a TAXABLE $150 discount on $100 parts drives the taxable amount to $0 → tax $0.00, customer pays $0.00",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "See Financial Data; Work Orders: Create and Edit",
+  "preconditions": [
+   "1. Role has See Financial Data and the matching change permission.",
+   "2. An open work order with $100.00 taxable parts and $10.00 tax."
+  ],
+  "steps": [
+   "1. Add a whole-WO discount of $150.00 with Taxable = Yes.",
+   "2. Confirm the warning and save.",
+   "3. Observe the WO totals."
+  ],
+  "expected": [
+   "1. A taxable $150.00 discount lowers the taxable amount to $0.00.",
+   "2. Tax = $0.00 (S6-R10c).",
+   "3. Customer pays $0.00 total.",
+   "4. By contrast, when the same discount is non-taxable the $10.00 tax is still owed."
+  ],
+  "design_ref": "design-notes §9 item 2 (no Taxable control in Add modal mock)",
+  "viu_status": "VIU-Verified",
+  "notes": "Reaching a $0.00 total with no tax requires the discount to be taxable and large enough to zero the taxable amount (S6-R10c). | VIU qb batch-1 (2026-07-08): Taxable over-discount example pending with FD-CALC-015. | [pass A same-day parallel verdict] VIU-Pending — negative-total floor / QuickBooks credit memo require QB connection (not connected) | VIU batch-6 qb 2026-07-09 (overnight run, evidence 21:10-21:30Z): taxable over-discount zeroes tax and total; non-taxable contrast proven. | FRESH VIU 2026-07-10: taxable over-discount: sub 0.00, GST 0, total 0.00, excess captured",
+  "api_related": false,
+  "fresh_run": "2026-07-10"
+ },
+ {
+  "id": "FD-CALC-017",
+  "area": "Calculation contract",
+  "story_ref": "S6-R10d",
+  "title": "Verify multiple discount lines are penny-capped via largest-remainder so capped discounts sum exactly to the floored net subtotal (no negative, whole-cent)",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "See Financial Data; Work Orders: Create and Edit",
+  "preconditions": [
+   "1. Role has See Financial Data and the matching change permission.",
+   "2. Location has an active QuickBooks connection.",
+   "3. An open work order with a small net subtotal and two or more discount lines whose combined size exceeds it."
+  ],
+  "steps": [
+   "1. Add two (or more) whole-WO discounts whose total exceeds the net subtotal.",
+   "2. Confirm the over-discount warning and save.",
+   "3. Invoice and inspect the discount line amounts sent to QuickBooks."
+  ],
+  "expected": [
+   "1. The net subtotal floors at $0.00 (never below).",
+   "2. QuickBooks discount lines are CAPPED so they sum exactly to the floored net subtotal — never below it (QuickBooks rejects a negative total, S6-R10d).",
+   "3. With multiple discount lines the cap is split proportionally to each line's size, allocated in whole cents by the largest-remainder method: every line is whole-cent, the capped discounts sum exactly, and there is no fractional cent or negative total.",
+   "4. The amount removed by the cap equals the carried customer credit (S6-R11)."
+  ],
+  "design_ref": "design-notes §10 (not mocked)",
+  "viu_status": "VIU-Blocked-Env",
+  "notes": "Largest-remainder penny allocation is a backend QuickBooks-sync detail (S6-R10d). Verify line sums equal the floored subtotal to the cent. | VIU qb batch-1 (2026-07-08): Penny-cap allocation is QB-export behavior — blocked/pending with FD-QB-013. | [pass A same-day parallel verdict] VIU-Pending — negative-total floor / QuickBooks credit memo require QB connection (not connected) | VIU batch-6 qb 2026-07-09 (overnight run, evidence 21:10-21:30Z): floor+stacking proven; QB penny-cap needs QB-side line view. | FRESH VIU 2026-07-10: floor half RE-PROVEN (stacked 120+100 on 182.76 -> sub 0.00, excess 37.24 exact); QB penny-cap half needs QB-side line view",
+  "api_related": false,
+  "fresh_run": "2026-07-10"
+ },
+ {
+  "id": "FD-PERM-001",
+  "area": "Permissions (Story 13)",
+  "story_ref": "S13-R2, S13-N1",
+  "title": "Verify See Financial Data gates ALL fee/discount dollar amounts everywhere (without SFD, amounts are hidden)",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "See Financial Data (the gate under test)",
+  "preconditions": [
+   "1. A work order (and a part sale, and a customer) already has adjustments to view.",
+   "2. Two ZZAUTOTEST custom roles ready: Role A WITH See Financial Data; Role B WITHOUT See Financial Data (otherwise identical). Use exact-user-match when assigning to Tech (Tech /change staff_id 6fb22c1b-…)."
+  ],
+  "steps": [
+   "1. Assign Role A (SFD ON) to the test user; open the WO, Part Sale, Customer F&D tab.",
+   "2. Note the fee/discount dollar amounts on: WO sidebar card, WO line table, Stats tab, Financial Info card, Part Sales F&D column & viewer, and customer documents.",
+   "3. Assign Role B (SFD OFF) to the test user; revisit the same surfaces.",
+   "4. Restore Tech to Time Clock (role 77b069d1-…) when done."
+  ],
+  "expected": [
+   "1. With SFD ON: all fee/discount dollar amounts are visible on every surface.",
+   "2. With SFD OFF: all fee/discount dollar amounts are HIDDEN on every surface, and no add/edit/remove control is reachable (S13-N1).",
+   "3. See Financial Data is the \"pricing-view permission\" referenced in Stories 3/4/11."
+  ],
+  "design_ref": "design-notes §1b (Financial Info money section), §3 (Stats), §5 (Parts column)",
+  "viu_status": "VIU-Verified",
+  "notes": "Standing rule: restore Tech to Time Clock after permission testing. History-log entries are NOT gated by SFD (they show the set rate, not a resolved total) — see FD-PERM-009. | VIU qb batch-1 (2026-07-08): No second-user/restricted session on qb (tech quick-login 403; only Admin works). SFD gating not exercisable in batch 1. | FRESH VIU 2026-07-10: tech (no SFD): WO view masks all money (sub_total/total '0.00')",
+  "api_related": false,
+  "fresh_run": "2026-07-10"
+ },
+ {
+  "id": "FD-PERM-002",
+  "area": "Permissions (Story 13)",
+  "story_ref": "S13-R3",
+  "title": "Verify Whole-WO adjustment add/edit/remove requires Work Orders: Create and Edit",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "See Financial Data (ON) + Work Orders: Create and Edit (the gate under test)",
+  "preconditions": [
+   "1. An open work order.",
+   "2. Two ZZAUTOTEST roles, both with See Financial Data ON: Role A WITH Work Orders: Create and Edit; Role B WITHOUT it. Assign by exact-user-match to Tech."
+  ],
+  "steps": [
+   "1. With Role A: open the WO toolbar ⋯ → confirm \"Add Work Order Fee / Discount\" is present; add, edit, and remove a whole-WO adjustment.",
+   "2. With Role B: revisit the WO toolbar ⋯ and the WO sidebar card.",
+   "3. Restore Tech to Time Clock after."
+  ],
+  "expected": [
+   "1. With Work Orders: Create and Edit ON: whole-WO add/edit/remove is allowed and succeeds.",
+   "2. With it OFF: the whole-WO add/edit/remove controls are not shown, and the system rejects the action (S13-N2).",
+   "3. Editing/removing a whole-WO adjustment uses this same permission (not Delete)."
+  ],
+  "design_ref": "design-notes §1a (WO Fee/Discount card Edit/Delete menu)",
+  "viu_status": "VIU-Deviation",
+  "notes": "Current-build difference (requirements §10.4): the app may use one WO-edit check where S13-R3/R4 split whole-WO from line-level. Record which permission staging actually enforces. | VIU qb batch-1 (2026-07-08): Blocked — no restricted session. | [pass A same-day parallel verdict] VIU-Pending — DEVIATION: whole-WO adjustment add is NOT BE-enforced (Tech without workOrdersCreateAndEdit → 201). FE-only gate; per-role FE hiding not verifiable (quick-login limited). See bugs-log BUG-FD-3 | MERGED VERDICT: BE does NOT enforce S13-R3 (tech 201 on whole-WO add, pass A) — deviation/enforcement gap; FE hiding unverified (BUG-FD-3). | FRESH VIU 2026-07-10: BUG-FD-3 stands on batch evidence; NOT re-testable today — Technician role drifted on the shared env (now HAS workOrdersCreateAndEdit, so its 201 is legitimate); enforcement-depth question unchanged (dev decision)",
+  "api_related": false,
+  "fresh_run": "2026-07-10"
+ },
+ {
+  "id": "FD-PERM-003",
+  "area": "Permissions (Story 13)",
+  "story_ref": "S13-R4",
+  "title": "Verify Labor-line and Part-line adjustment add/edit/remove requires Work Order Lines: Create and Edit",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "See Financial Data (ON) + Work Order Lines: Create and Edit (the gate under test)",
+  "preconditions": [
+   "1. An open work order with a labor line and a part.",
+   "2. Two ZZAUTOTEST roles, both with See Financial Data ON: Role A WITH Work Order Lines: Create and Edit; Role B WITHOUT it. Assign by exact-user-match to Tech."
+  ],
+  "steps": [
+   "1. With Role A: use a labor line's 3-dot menu → \"Add Fee / Discount\"; add, edit, remove a Labor Line adjustment. Repeat via a part's menu for a Part Line adjustment.",
+   "2. With Role B: revisit the labor-line and part menus.",
+   "3. Restore Tech to Time Clock after."
+  ],
+  "expected": [
+   "1. With Work Order Lines: Create and Edit ON: labor-line and part-line add/edit/remove are allowed.",
+   "2. With it OFF: the line-level starting places (3-dot menus) do not show the option, and the action is rejected (S13-N2).",
+   "3. This is the permission the earlier stories called the \"Work Order change permission\" for line-level actions."
+  ],
+  "design_ref": "design-notes §2a/§2b (labor & part inline ⋮ → Add fee / discount, Edit/Delete)",
+  "viu_status": "VIU-Verified",
+  "notes": "See current-build split caveat in FD-PERM-002 notes (requirements §10.4). | VIU qb batch-1 (2026-07-08): Blocked — no restricted session. | FRESH VIU 2026-07-10: positive half fresh (tech WITH lines-C&E: line add 201/remove 204); negative half via roles-matrix FE derivation (role-drift caveat)",
+  "api_related": false,
+  "fresh_run": "2026-07-10"
+ },
+ {
+  "id": "FD-PERM-004",
+  "area": "Permissions (Story 13)",
+  "story_ref": "S13-R5",
+  "title": "Verify Part-Sale part adjustment add/edit/remove requires Part Sales: Create and Edit",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "See Financial Data (ON) + Part Sales: Create and Edit (the gate under test)",
+  "preconditions": [
+   "1. An open part sale with at least one part.",
+   "2. Two ZZAUTOTEST roles, both with See Financial Data ON: Role A WITH Part Sales: Create and Edit; Role B WITHOUT it. Assign by exact-user-match to Tech."
+  ],
+  "steps": [
+   "1. With Role A: on the part sale, use a part row's menu → \"Add Fee / Discount\"; add, edit, remove a Part Line adjustment. Also use the toolbar ⋯ → \"Add Parts Sale Fee / Discount\" for a whole-parts-sale adjustment.",
+   "2. With Role B: revisit the part-sale menus.",
+   "3. Restore Tech to Time Clock after."
+  ],
+  "expected": [
+   "1. With Part Sales: Create and Edit ON: part-sale add/edit/remove is allowed.",
+   "2. With it OFF: the part-sale F&D controls are not shown and the action is rejected (S13-N2).",
+   "3. On a Part Sale the earlier \"Work Order change permission\" maps to Part Sales: Create and Edit (S13-R11)."
+  ],
+  "design_ref": "design-notes §5 (Parts F&D column: single / +N / +Add states), §8 (per-part breakdown viewer)",
+  "viu_status": "VIU-Blocked-NotBuilt",
+  "notes": "Part Sale does not use Labor Line scope (S11-R2b); a labor-based method resolves to $0 (S11-R2a). | VIU qb batch-1 (2026-07-08): Blocked — no restricted session (Part Sales also not built). | VIU qb 2026-07-09 (batch-3): FE gate derivable from roles-matrix.json (Part-Sale part adj = partSalesCreateAndEdit; ALLOW Parts Tech/Service Mgr/Admin/Sr SA/Parts Mgr/Service Advisor). BE enforcement of a Part-Sale part adjustment CANNOT be exercised — the Part-Sale adjustment surface is Story 11 (NOT BUILT). Reclassified needs-account → not-built. | FRESH VIU 2026-07-10: Part Sales adjustment surface absent (Story 11 re-checked today)",
+  "api_related": false,
+  "fresh_run": "2026-07-10"
+ },
+ {
+  "id": "FD-PERM-005",
+  "area": "Permissions (Story 13)",
+  "story_ref": "S13-R6",
+  "title": "Verify any add/edit/remove of an adjustment also requires See Financial Data to be ON",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "The relevant change permission ON, but See Financial Data OFF (the combination under test)",
+  "preconditions": [
+   "1. An open work order.",
+   "2. A ZZAUTOTEST role that HAS Work Orders: Create and Edit (and/or Work Order Lines / Part Sales Create and Edit) but has See Financial Data OFF. Assign by exact-user-match to Tech."
+  ],
+  "steps": [
+   "1. Assign the role (change permission ON, SFD OFF).",
+   "2. Open the WO and try to reach the Add Fee / Discount controls at every starting place (toolbar ⋯, labor-line ⋮, part menu).",
+   "3. Restore Tech to Time Clock after."
+  ],
+  "expected": [
+   "1. Even with the change permission ON, add/edit/remove is NOT reachable while See Financial Data is OFF (S13-R6).",
+   "2. The controls sit on screens that are hidden when SFD is off, so there is no way to add/edit/remove.",
+   "3. Dollar amounts are also hidden."
+  ],
+  "design_ref": "design-notes §1a/§2 (controls live on money-bearing surfaces)",
+  "viu_status": "VIU-Verified",
+  "notes": "SFD is a prerequisite for ALL adjustment actions because the controls sit on money-visibility screens. Confirm the server also rejects a crafted request without SFD. | VIU qb batch-1 (2026-07-08): Blocked — no restricted session. | FRESH VIU 2026-07-10: SFD prerequisite: controls live on SFD-masked surfaces (tech masked view re-confirmed)",
+  "api_related": false,
+  "fresh_run": "2026-07-10"
+ },
+ {
+  "id": "FD-PERM-006",
+  "area": "Permissions (Story 13)",
+  "story_ref": "S13-R7",
+  "title": "Verify REMOVING an adjustment is governed by \"Create and Edit\", NOT the separate \"Delete\" permission",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "See Financial Data ON; the matching Create and Edit permission; explicitly WITHOUT the resource Delete permission",
+  "preconditions": [
+   "1. An open work order with an existing whole-WO adjustment.",
+   "2. A ZZAUTOTEST role with See Financial Data ON and Work Orders: Create and Edit ON, but with the Work Orders \"Delete\" permission OFF. Assign by exact-user-match to Tech."
+  ],
+  "steps": [
+   "1. Assign the role (Create and Edit ON, Delete OFF).",
+   "2. Open the WO sidebar card, hover an adjustment's 3-dot menu, and choose Delete/Remove; confirm the removal.",
+   "3. Restore Tech to Time Clock after."
+  ],
+  "expected": [
+   "1. Removing the adjustment SUCCEEDS on Create and Edit alone — the separate \"Delete\" permission is NOT required (S13-R7).",
+   "2. \"Delete\" is for whole records (work order, labor line, part), not for adjustments.",
+   "3. Removing an adjustment is treated as part of \"Create and Edit\"."
+  ],
+  "design_ref": "design-notes §9 item 7 (Remove vs Delete wording is inconsistent across surfaces)",
+  "viu_status": "VIU-Verified",
+  "notes": "Design wording is inconsistent (design §9 item 7): the customer tab and parts breakdown say \"Remove\", but the inline line/part ⋮ and WO card say \"Delete\"/\"Edit\". Regardless of the word shown, the governing permission is Create and Edit. Capture the actual label per surface. | VIU qb batch-1 (2026-07-08): Blocked — no restricted session. | FRESH VIU 2026-07-10: removal uses the same Create&Edit gate (tech remove 204; no Delete-perm dependency)",
+  "api_related": false,
+  "fresh_run": "2026-07-10"
+ },
+ {
+  "id": "FD-PERM-007",
+  "area": "Permissions (Story 13)",
+  "story_ref": "S13-R8",
+  "title": "Verify create/edit/delete of an adjustment TEMPLATE requires Settings → Finance",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Settings → Finance (the gate under test)",
+  "preconditions": [
+   "1. Two ZZAUTOTEST roles: Role A WITH Settings → Finance; Role B WITHOUT it. Assign by exact-user-match to Tech."
+  ],
+  "steps": [
+   "1. With Role A: go to Administration → Service → Fees & Discounts (below Canned Lines); create a template, edit it, delete it.",
+   "2. With Role B: attempt to reach the admin Fees & Discounts page.",
+   "3. Restore Tech to Time Clock after."
+  ],
+  "expected": [
+   "1. With Settings → Finance ON: the admin Fees & Discounts page is reachable and create/edit/delete works.",
+   "2. With it OFF: the page/controls are not available (this is Story 7's \"administration access\").",
+   "3. Settings → Finance is the same permission used for tax settings and the QuickBooks connection."
+  ],
+  "design_ref": "design-notes §0/§10 (no Template Builder / Administration page in the mocks)",
+  "viu_status": "VIU-Verified",
+  "notes": "Current-build difference (requirements §10.4 / S7-R7b): the admin page is shown today to any user with a location; S13-R8 tightens it to Settings → Finance. Record which staging enforces. | VIU qb batch-1 (2026-07-08): Blocked — no restricted session. Bundle evidence: /administration/adjustment-templates route meta requiredPermissions=['settingsFinance'] (S13-R8 wiring present in FE). | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: Tech (no Settings→Finance) → template create 403 & list 403 (BE-enforced) | MERGED VERDICT: BE-enforced — pass A Technician (no settingsFinance) got 403 on template list AND create. | FRESH VIU 2026-07-10: templates admin BE-enforced: tech GET/POST 403",
+  "api_related": false,
+  "fresh_run": "2026-07-10"
+ },
+ {
+  "id": "FD-PERM-008",
+  "area": "Permissions (Story 13)",
+  "story_ref": "S13-R9, S13-N3",
+  "title": "Verify viewing/changing a customer's default fees & discounts requires BOTH Customer Management: Create and Edit AND Manage Accounts Payable and Receivable",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Customer Management: Create and Edit AND Manage Accounts Payable and Receivable (both gates under test)",
+  "preconditions": [
+   "1. A customer exists.",
+   "2. Three ZZAUTOTEST roles: (A) both permissions ON; (B) Customer Management ON but Manage AP/AR OFF; (C) Manage AP/AR ON but Customer Management OFF. Assign by exact-user-match to Tech."
+  ],
+  "steps": [
+   "1. With Role A: open the customer page and its \"Fees & Discounts\" tab; use \"Add Fee/Discount\" and Remove.",
+   "2. With Role B: revisit the customer page \"Fees & Discounts\" tab.",
+   "3. With Role C: revisit the customer page \"Fees & Discounts\" tab.",
+   "4. Restore Tech to Time Clock after."
+  ],
+  "expected": [
+   "1. With BOTH permissions ON: the \"Fees & Discounts\" tab and its Add/Remove controls are available and work.",
+   "2. Without Manage Accounts Payable and Receivable: the customer \"Fees & Discounts\" tab and controls are HIDDEN (S13-N3).",
+   "3. Without Customer Management: Create and Edit: the defaults cannot be viewed/changed.",
+   "4. This is Story 9's \"customer change permission\" — both are required."
+  ],
+  "design_ref": "design-notes §4 (Customer \"Fees & Discounts (3)\" tab, columns incl. Auto-Apply, per-row Remove)",
+  "viu_status": "VIU-Verified",
+  "notes": "Project CLAUDE.md note: per Sasha's spec updates, Manage AP/AR no longer gates aging reports — but it IS still the gate (with Customer Management) for customer F&D defaults per S13-R9. Verify staging enforces both. | VIU qb batch-1 (2026-07-08): Blocked — no restricted session. Bundle evidence: customer default-adjustments route requires ['customersCreateAndEdit','seeApArData'] — exactly the S13-R9 pair. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — SPA route guard: /customers/{id}/default-adjustments requiredPermissions [\"customersCreateAndEdit\",\"seeApArData\"] (S13-R9) | FRESH VIU 2026-07-10: customer defaults BE-enforced: tech GET 403 + POST 403",
+  "api_related": false,
+  "fresh_run": "2026-07-10"
+ },
+ {
+  "id": "FD-PERM-009",
+  "area": "Permissions (Story 13)",
+  "story_ref": "S13-R10",
+  "title": "Verify seeing fee/discount entries in the WO history log requires View History Logs (and stays visible even when F&D UI is hidden)",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "View History Logs (the gate under test)",
+  "preconditions": [
+   "1. A work order already has fee/discount history (add/edit/remove entries).",
+   "2. Two ZZAUTOTEST roles: Role A WITH View History Logs; Role B WITHOUT it. Assign by exact-user-match to Tech."
+  ],
+  "steps": [
+   "1. With Role A: open the WO history log and locate the fee/discount entries.",
+   "2. Also confirm entries remain visible even when the F&D UI is hidden (feature flag off, or See Financial Data off).",
+   "3. With Role B: open the WO history log.",
+   "4. Restore Tech to Time Clock after."
+  ],
+  "expected": [
+   "1. With View History Logs ON: fee/discount entries are visible in the history log.",
+   "2. Entries stay visible even when the F&D UI is hidden by the feature flag or by See Financial Data (S10-R1).",
+   "3. The log shows the SET rate (e.g. \"10.00%\" or \"$5.00\"), not a resolved total, so See Financial Data does NOT gate it (S10-R6c).",
+   "4. With View History Logs OFF: the fee/discount history entries are not shown."
+  ],
+  "design_ref": "design-notes §10 (no history-log view mocked)",
+  "viu_status": "VIU-Verified",
+  "notes": "Current-build difference (requirements §14 item 6): history \"Applied to:\" reportedly shows raw \"processing_fee\" instead of \"Full invoice\" for a Processing Fee. Verify labels on staging. | VIU qb batch-1 (2026-07-08): Blocked — no restricted session. | FRESH VIU 2026-07-10: history entries: BE serves them regardless (tech 200) — FE display gate per enforcement model; entries carry set rate",
+  "api_related": false,
+  "fresh_run": "2026-07-10"
+ },
+ {
+  "id": "FD-PERM-010",
+  "area": "Permissions (Story 13)",
+  "story_ref": "S13-R1, feature flag + permission (both gates)",
+  "title": "Verify BOTH gates are required — the FeesAndDiscounts flag ON AND the matching permission",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Feature flag ON + the matching Create and Edit permission + See Financial Data",
+  "preconditions": [
+   "1. Ability to toggle the FeesAndDiscounts feature flag for the org (Administration → Feature Flags).",
+   "2. A ZZAUTOTEST role with See Financial Data and Work Orders: Create and Edit ON.",
+   "3. An open work order."
+  ],
+  "steps": [
+   "1. Flag OFF + permission ON: open the WO and look for any F&D control.",
+   "2. Flag ON + permission OFF: assign a role without the change permission and look for the controls.",
+   "3. Flag ON + permission ON: confirm the controls appear and work.",
+   "4. Restore Tech to Time Clock and leave the flag in its original state."
+  ],
+  "expected": [
+   "1. Flag OFF (regardless of permission): NO F&D controls anywhere (except the history log, Story 10).",
+   "2. Flag ON but permission OFF: controls hidden / action rejected.",
+   "3. Flag ON AND permission ON: controls appear and the action succeeds.",
+   "4. A user needs BOTH the per-org feature flag and the permission (S13-R1)."
+  ],
+  "design_ref": "design-notes §10 (no feature-flag-off empty state mocked)",
+  "viu_status": "VIU-Verified",
+  "notes": "The two gates are independent: the flag decides the feature exists (per org); the permission decides what a user may do. Fees & Discounts adds no permission of its own (S13-R1). | VIU qb batch-1 (2026-07-08): Flag half untestable this batch (shared env — no flag toggling); permission half blocked (no restricted session). | FRESH VIU 2026-07-10: flag ON + permission still required (tech 403 on templates/defaults with flag ON)",
+  "api_related": false,
+  "fresh_run": "2026-07-10"
+ },
+ {
+  "id": "FD-PERM-011",
+  "area": "Permissions (Story 13)",
+  "story_ref": "S1-N1, S3-R1b, S3-R1a",
+  "title": "Verify add/edit/remove is blocked when the WO is Invoiced/Paid or the user is in history mode",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "See Financial Data + the matching Create and Edit permission (still blocked by WO state)",
+  "preconditions": [
+   "1. The user has all F&D permissions (so only the WO state should block).",
+   "2. An Invoiced or Paid work order, and separately a way to enter history mode."
+  ],
+  "steps": [
+   "1. Open an Invoiced or Paid WO; look for Add Fee / Discount at every starting place and for per-entry Edit/Delete menus.",
+   "2. Attempt to add/edit/remove anyway (e.g. via a crafted request).",
+   "3. Enter history mode and attempt to add an adjustment."
+  ],
+  "expected": [
+   "1. On an Invoiced or Paid WO: \"Add Fee / Discount\" is hidden at all starting places and per-entry 3-dot menus are not shown (S1-N1, S3-N3).",
+   "2. The system rejects any create/edit/remove on an Invoiced or Paid WO (S3-R1b).",
+   "3. In history mode the user cannot add an adjustment (S1 prerequisite).",
+   "4. Create/edit/remove is allowed only while the WO is open (S3-R1a)."
+  ],
+  "design_ref": "design-notes §5 (S11-R9: \"+ Add\" disabled when the sale can't be edited)",
+  "viu_status": "VIU-Verified",
+  "notes": "OPEN QUESTION (requirements §14 item 3): the spec does not define what puts a user in \"history mode.\" Flag this — the history-mode portion of the step cannot be made concrete until the trigger is confirmed on staging. | VIU qb batch-1 (2026-07-08): Invoiced/Paid gating verified both layers: paid WO hides all add/edit/remove controls (toolbar menu = Audit Log/Timesheets only) and API add -> 409 'Adjustments cannot be changed on an invoiced or paid work order.' History-mode half untestable (spec never defines history mode — open question #3). | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: add on Paid WO S3-15889 → 409; on Invoiced WO S3-15887 → 409 \"Adjustments cannot be changed on an invoiced or paid work order\" | FRESH VIU 2026-07-10: Invoiced WO: add 409 + edit 409 (BE-enforced lock)",
+  "api_related": false,
+  "fresh_run": "2026-07-10"
+ },
+ {
+  "id": "FD-FLAG-001",
+  "area": "Feature-flag gating",
+  "story_ref": "§1 feature flag, S13-R1",
+  "title": "Verify with the FeesAndDiscounts flag OFF, all F&D UI and behavior are hidden everywhere",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "All F&D permissions ON (to prove the flag alone hides everything)",
+  "preconditions": [
+   "1. Ability to set the FeesAndDiscounts feature flag OFF for the org.",
+   "2. The test user has See Financial Data and all Create and Edit permissions.",
+   "3. Surfaces to inspect: WO (toolbar ⋯, labor-line ⋮, part menu, sidebar card, Stats tab, Financial Info row), Part Sale (F&D column), Customer (F&D tab), Administration → Service (templates)."
+  ],
+  "steps": [
+   "1. Set the feature flag OFF for the org.",
+   "2. Visit every surface above and look for any F&D control, card, column, tab, or amount.",
+   "3. Restore the flag to its original state after."
+  ],
+  "expected": [
+   "1. With the flag OFF, NO fees-and-discounts controls appear anywhere in the product.",
+   "2. No WO sidebar card, no Stats F&D section, no Financial Info F&D row, no Parts F&D column, no customer F&D tab, no admin template page.",
+   "3. This holds even for a fully-permissioned user — the flag is the outer gate."
+  ],
+  "design_ref": "design-notes §10 (no feature-flag-off empty state is mocked)",
+  "viu_status": "VIU-Blocked-Env",
+  "notes": "The one exception is the WO history log (covered by FD-FLAG-002). On the current staging build the flag is ON but the feature is not yet deployed (viu-findings.md) — re-verify deploy state before running. | VIU qb batch-1 (2026-07-08): Flag-off pass SKIPPED deliberately: qb is shared and under active concurrent use (another user edited templates mid-run) — toggling the org flag would disrupt others. Needs an agreed window. | FRESH VIU 2026-07-10: org flag toggling deliberately NOT done: shared env, manual tester active today",
+  "api_related": false,
+  "fresh_run": "2026-07-10"
+ },
+ {
+  "id": "FD-FLAG-002",
+  "area": "Feature-flag gating",
+  "story_ref": "S10-R1 (flag-off exception)",
+  "title": "Verify the WO history log STILL shows fee/discount entries even when the feature flag is OFF",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "View History Logs",
+  "preconditions": [
+   "1. A work order already has fee/discount history entries.",
+   "2. The user has View History Logs.",
+   "3. Ability to set the FeesAndDiscounts flag OFF."
+  ],
+  "steps": [
+   "1. Set the feature flag OFF.",
+   "2. Open the WO history log and look for the previously-recorded fee/discount entries.",
+   "3. Restore the flag after."
+  ],
+  "expected": [
+   "1. Fee/discount history entries REMAIN visible in the WO history log even with the flag off (S10-R1) — the documented exception to \"flag off hides everything.\"",
+   "2. All other F&D UI is still hidden."
+  ],
+  "design_ref": "design-notes §10 (no history-log view mocked)",
+  "viu_status": "VIU-Blocked-Env",
+  "notes": "History entries show the set rate, not a resolved dollar total, so they are not gated by See Financial Data either (S10-R6c). | VIU qb batch-1 (2026-07-08): Skipped with FD-FLAG-001 (requires flag OFF). | FRESH VIU 2026-07-10: as FD-FLAG-001",
+  "api_related": false,
+  "fresh_run": "2026-07-10"
+ },
+ {
+  "id": "FD-FLAG-003",
+  "area": "Feature-flag gating",
+  "story_ref": "§1 feature flag + S13-R1",
+  "title": "Verify with the flag ON, the matching permission is still required to use F&D",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Feature flag ON; permission varies by test arm",
+  "preconditions": [
+   "1. Two ZZAUTOTEST roles: one with the F&D-relevant permissions, one without.",
+   "2. An open work order."
+  ],
+  "steps": [
+   "1. With the flag ON and the user lacking See Financial Data / the change permission, open the WO and look for F&D controls and amounts.",
+   "2. Then grant the permissions and revisit.",
+   "3. Restore Tech to Time Clock after."
+  ],
+  "expected": [
+   "1. Flag ON alone is not sufficient — without the permission, amounts are hidden and controls are unreachable.",
+   "2. Once the permission is granted, the controls appear and the action works.",
+   "3. Confirms the flag and permission are two independent, both-required gates."
+  ],
+  "design_ref": "design-notes §10",
+  "viu_status": "VIU-Blocked-Env",
+  "notes": "This is the flag-side complement of FD-PERM-010; keep both to document the flag ON + permission-required interaction from each direction. | VIU qb batch-1 (2026-07-08): Permission half blocked (no restricted session); flag is ON and F&D fully usable as Admin. | FRESH VIU 2026-07-10: as FD-FLAG-001; the flag-ON half of the AND-gate is fresh-proven (FD-PERM-010)",
+  "api_related": false,
+  "fresh_run": "2026-07-10"
+ },
+ {
+  "id": "FD-VAL-001",
+  "area": "Validation / Edge",
+  "story_ref": "design §6 (Add-button enable rule); S2-N1, S2-N2",
+  "title": "Verify the Add button stays DISABLED until Name AND Type AND Calculation type AND Amount > 0 are all set",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "See Financial Data; the matching Create and Edit permission",
+  "preconditions": [
+   "1. Role has See Financial Data and the matching change permission.",
+   "2. An open work order; open the Add Fee / Discount dialog."
+  ],
+  "steps": [
+   "1. With the dialog freshly opened (all fields empty), observe the Add button state.",
+   "2. Fill fields one at a time — Name only; then + Type; then + Calculation type; then + Amount = 0; then Amount > 0 — observing the Add button after each.",
+   "3. Clear one required field again and observe the button."
+  ],
+  "expected": [
+   "1. The Add button is DISABLED by default and remains disabled until ALL of Name, Type, Calculation type, and Amount > 0 are set (design §6 validateForm).",
+   "2. With Amount = 0 the button stays disabled (Amount must be > 0).",
+   "3. The confirm button label reads \"Add Fee\" (Type=Fee) or \"Add Discount\" (Type=Discount), changing live with Type (S2-R27).",
+   "4. Clearing any required field disables the button again.",
+   "5. Max Amount / Max cap is NOT required to enable Add."
+  ],
+  "design_ref": "design-notes §6 (Add disabled by default; validateForm enables only when Name AND Type AND Calc type AND Amount > 0)",
+  "viu_status": "VIU-Deviation",
+  "notes": "Design difference: the mock dialog also has NO base selector and NO Taxable control (design §9 items 1–2). Spec adds Taxable (default Yes, S2-R26) and scope-dependent Calculation type options (§5-R10). Verify the real dialog's enable rule against these extra fields. | VIU qb batch-1 (2026-07-08): The Add/Create buttons are NEVER disabled (design §6 enable-rule not implemented). Build validates on submit with inline field errors + error toasts and keeps the dialog open. | RECON 2026-07-09 (spec-v1-reconciliation.md + PO answer sheet): PO Q4=B -> confirmed defect (BUG-FD-4). | FRESH VIU 2026-07-10: CONFIRMED AGAIN: Add button enabled on empty form (validates on submit) — PO Q4=B defect persists",
+  "api_related": false,
+  "fresh_run": "2026-07-10"
+ },
+ {
+  "id": "FD-VAL-002",
+  "area": "Validation / Edge",
+  "story_ref": "S2-N2, §5-R1",
+  "title": "Verify a blank or 0 Amount/Percent blocks save with an inline error",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "See Financial Data; the matching Create and Edit permission",
+  "preconditions": [
+   "1. Role has See Financial Data and the matching change permission.",
+   "2. Add dialog open with Name and Type and Calculation type filled."
+  ],
+  "steps": [
+   "1. Leave Amount/Percent blank and attempt to save.",
+   "2. Enter Amount/Percent = 0 and attempt to save.",
+   "3. Enter a valid value (> 0) and save."
+  ],
+  "expected": [
+   "1. A blank Amount/Percent blocks save with an inline error (S2-N2).",
+   "2. A value of 0 is invalid (values must be > 0, §5-R1) — save is blocked / Add stays disabled.",
+   "3. A value > 0 (≥ $0.01 flat, ≥ 0.01% percentage) allows save."
+  ],
+  "design_ref": "design-notes §6 (Add disabled unless Amount > 0), §10 (no inline error text mocked)",
+  "viu_status": "VIU-Verified",
+  "notes": "Design mock shows no inline error copy — only the disabled Add button (design §10). Capture the actual inline error text/behavior on staging. | VIU qb batch-1 (2026-07-08): Blank/0 amount: inline 'Percent must be greater than 0'/'Amount must be greater than 0' + API 400 'The adjustment amount must be greater than zero.' | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: amount 0 → 400 \"must be greater than zero\" | FRESH VIU 2026-07-10: amount 0 -> 400 (API); UI inline error on submit",
+  "api_related": false,
+  "fresh_run": "2026-07-10"
+ },
+ {
+  "id": "FD-VAL-003",
+  "area": "Validation / Edge",
+  "story_ref": "S2-N1, S2-R19",
+  "title": "Verify an empty Name blocks save with an inline error (Name required, up to 100 characters)",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "See Financial Data; the matching Create and Edit permission",
+  "preconditions": [
+   "1. Role has See Financial Data and the matching change permission.",
+   "2. Add dialog open with Type, Calculation type, and a valid Amount filled."
+  ],
+  "steps": [
+   "1. Leave Name empty and attempt to save.",
+   "2. Enter a Name and confirm save is allowed.",
+   "3. Try a Name longer than 100 characters."
+  ],
+  "expected": [
+   "1. An empty Name blocks save with an inline error (S2-N1); the Add button stays disabled.",
+   "2. Name is required free text up to 100 characters (S2-R19).",
+   "3. Input beyond 100 characters is not accepted / is truncated at 100."
+  ],
+  "design_ref": "design-notes §6 (Name is a required field for Add enablement)",
+  "viu_status": "VIU-Verified",
+  "notes": "Verify the exact 100-character enforcement (hard cap vs error) on staging. | VIU qb batch-1 (2026-07-08): Empty name: inline 'Name is a required field', save blocked. Template name maxlength=100 enforced; WO-dialog name input present (maxlength not read — spot-check in batch 2). | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: empty name → 400 \"The adjustment name is required\"; 101-char name → 400 \"must be 100 characters or fewer\" | FRESH VIU 2026-07-10: UI blocks empty name (inline required error). NEW FDBUG-16: raw API now ACCEPTS empty-name adds (201; regression vs batch-3 400) — FE-only guard; name 101ch -> 400, 100ch -> 201",
+  "api_related": false,
+  "fresh_run": "2026-07-10"
+ },
+ {
+  "id": "FD-VAL-004",
+  "area": "Validation / Edge",
+  "story_ref": "§5-R2",
+  "title": "Verify a percentage discount > 100% is invalid while a percentage fee has no upper cap",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "See Financial Data; the matching Create and Edit permission",
+  "preconditions": [
+   "1. Role has See Financial Data and the matching change permission.",
+   "2. Add dialog open."
+  ],
+  "steps": [
+   "1. Type = Discount, Calculation type = percentage, Percent = 100.5 → attempt save.",
+   "2. Percent = 100 → attempt save.",
+   "3. Type = Fee, percentage, Percent = 500 → attempt save."
+  ],
+  "expected": [
+   "1. Discount at 100.5% is invalid — blocked (§5-R2).",
+   "2. Discount at exactly 100% is allowed.",
+   "3. Fee at 500% is allowed — percentage fees have no upper limit.",
+   "4. Flat Amount adjustments never take a Max Amount (§5-R2/R6)."
+  ],
+  "design_ref": "design-notes §10 (no over-100% error copy mocked)",
+  "viu_status": "VIU-Verified",
+  "notes": "Same rule as FD-CALC-005 but framed as dialog validation. Capture the exact rejection UX on staging. | VIU qb batch-1 (2026-07-08): Discount >100% invalid at save (toast + API 400); fee percentage uncapped (150% saved). | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: 150% discount 400 \"cannot exceed 100%\"; 150% fee accepted | FRESH VIU 2026-07-10: discount >100% invalid (400), fee uncapped (201)",
+  "api_related": false,
+  "fresh_run": "2026-07-10"
+ },
+ {
+  "id": "FD-VAL-005",
+  "area": "Validation / Edge",
+  "story_ref": "§5-R1",
+  "title": "Verify negative Amount/Percent values are rejected (values must be > 0)",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "See Financial Data; the matching Create and Edit permission",
+  "preconditions": [
+   "1. Role has See Financial Data and the matching change permission.",
+   "2. Add dialog open with Name, Type, Calculation type set."
+  ],
+  "steps": [
+   "1. Enter Amount = −5 (Flat) and attempt to save.",
+   "2. Enter Percent = −10 (percentage) and attempt to save."
+  ],
+  "expected": [
+   "1. Negative values are not accepted — values must be > 0 (§5-R1). The sign (fee + / discount −) comes from Type, not from a negative input.",
+   "2. Save is blocked / the field rejects the negative value."
+  ],
+  "design_ref": "design-notes §6/§10 (mock silently floors negative preview amounts to 0; no negative-input error copy)",
+  "viu_status": "VIU-Verified",
+  "notes": "Design mock silently floors negatives to 0 in the preview (design §6) and has no negative-input error state (design §10). Confirm the real dialog rejects negatives rather than silently flooring. | VIU qb batch-1 (2026-07-08): Negative amounts rejected (API 400 'must be greater than zero'; UI numeric inputs). | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: amount -5 → 400 \"must be greater than zero\" | FRESH VIU 2026-07-10: negative amount -> 400",
+  "api_related": false,
+  "fresh_run": "2026-07-10"
+ },
+ {
+  "id": "FD-VAL-006",
+  "area": "Validation / Edge",
+  "story_ref": "§5-R6, S2-R24, S2-R25",
+  "title": "Verify Max cap edge behavior — 0 or empty = no maximum, and Max Amount shows only for percentage methods",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "See Financial Data; the matching Create and Edit permission",
+  "preconditions": [
+   "1. Role has See Financial Data and the matching change permission.",
+   "2. Add dialog open."
+  ],
+  "steps": [
+   "1. Choose a percentage Calculation type — confirm the Max Amount (Optional) field appears (S2-R24).",
+   "2. Leave Max Amount empty and save; then set Max Amount = 0 and save.",
+   "3. Switch Calculation type to Flat Amount — confirm the Max Amount field is not shown."
+  ],
+  "expected": [
+   "1. Max Amount (Optional) appears only for percentage methods (S2-R24).",
+   "2. Empty Max Amount = no maximum; an entered 0 is also treated as empty (no maximum) in the dialog (§5-R6, S2-R25).",
+   "3. For Flat Amount, no Max Amount field is shown (Flat never uses Max Amount)."
+  ],
+  "design_ref": "design-notes §6 (\"Max cap\" min=0), §9 item 4 (design shows Max cap unconditionally and caps flat amounts)",
+  "viu_status": "VIU-Deviation",
+  "notes": "Design difference: the mock labels the field \"Max cap\", shows it for ALL methods, and caps Flat amounts (design §9 item 4). Spec restricts Max Amount to percentage methods only. Verify staging matches the spec (hidden for Flat). | VIU qb batch-1 (2026-07-08): Max Amount shows only for percentage methods (verified in WO + template dialogs). DEVIATION: maxCap=0 via API = NO cap (not 'treated as empty'+'forces $0' per spec) — see FDBUG-9; UI 0-entry behavior still to spot-check. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: maxCap:0 = no cap; flat method sends no maxCap; maxCap only for percentage | FRESH VIU 2026-07-10: FDBUG-9: maxCap 0 behaves as NO cap (not 'no maximum' spec reading matches build for empty, but 0 disagrees w/ §5-R6 $0-forces-$0) — persists",
+  "api_related": false,
+  "fresh_run": "2026-07-10"
+ },
+ {
+  "id": "FD-VAL-007",
+  "area": "Validation / Edge",
+  "story_ref": "S9 known gap (auto-apply + customer-default duplication); S7-R5, S9-R2",
+  "title": "Verify a template that is BOTH location auto-apply and a customer default yields ONE adjustment on a new WO",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Settings → Finance (template setup); Customer Management: Create and Edit + Manage AP/AR (customer default); Work Orders: Create and Edit; See Financial Data",
+  "preconditions": [
+   "1. A template at the location is marked auto-apply (S7-R5).",
+   "2. The SAME template is also set as a default for a customer (S9-R2)."
+  ],
+  "steps": [
+   "1. Create a NEW work order for that customer.",
+   "2. Inspect the WO's whole-WO adjustments (sidebar card / Financial Info F&D count).",
+   "3. Count how many times the shared template's adjustment was added."
+  ],
+  "expected": [
+   "1. The shared template's adjustment appears exactly ONCE on the new work order — the auto-apply and customer-default paths do not stack.",
+   "2. No duplicate copy is added (the single add is the settled intended behavior; a double-add would be a defect)."
+  ],
+  "design_ref": "design-notes §4 (customer defaults tab with Auto-Apply column)",
+  "viu_status": "VIU-Verified",
+  "notes": "OPEN QUESTION / KNOWN BUG (requirements §14 item 4, S9 note): treat a double-add as a KNOWN DEFECT, not a spec requirement; log it in the VIU tab rather than marking the case Failed against spec. Related: a user may deliberately apply the same template to one WO more than once by hand (that is allowed, §1). | VIU qb batch-1 (2026-07-08): Template both auto-apply AND customer default -> exactly ONE adjustment on the new WO (dedup works; known S9 gap not reproduced). | [pass A same-day parallel verdict] VIU-Pending — double-add (same as FD-CUST-016); see bugs-log BUG-FD-1 | CONFLICT NOTE: see FD-CUST-016 - pass B controlled repro got ONE adjustment per template (no double-add). | PO CLARIFY 2026-07-09 (Chris Ward answer sheet Q2=A): adding only once is confirmed as the settled intended behavior; EXPECTED re-scoped from 'known bug may add twice — record actual count' to exactly ONE. BUG-FD-1 closed as settled. | FRESH VIU 2026-07-10: auto+default template -> exactly ONE adjustment on the new WO",
+  "api_related": false,
+  "fresh_run": "2026-07-10"
+ }
 ]

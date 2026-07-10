@@ -3,7 +3,9 @@
 > **THIS IS THE CANONICAL STATE DOC for the Fees & Discounts (F&D V1) project.** It
 > is a single authoritative snapshot so the project can be resumed with zero
 > re-discovery.
-> **Last updated:** 2026-07-10 (after VIU **batch 6**, the 2026-07-09 overnight live run).
+> **Last updated:** 2026-07-10 (after the **FRESH FULL VIU PASS 2026-07-10** — all 182 cases
+> re-adjudicated live in one day-run; raw probe results in `fresh-viu-2026-07-10/`;
+> tester-facing workbook `FeesDiscounts_FreshVIU_2026-07-10.xlsx`).
 > **Source of truth for per-case status:** the case JSONs `build/fees-discounts/cases/*.json`
 > (`viu_status`), tallied by `build/fees-discounts/FeesDiscounts_Blockers_Tracker.md`/`.xlsx`
 > (regenerate with `python3 build/fees-discounts/gen_blockers.py`). All counts below
@@ -44,31 +46,38 @@ is unnecessary). **The env also SLEEPS**: 302s to `sleep.qa.shopview.com`; wake 
 {action:'wake',env:'sv7387'}` then poll the API root `/` for 200 (~60s).
 Full env/access map: `viu-recon.md`.
 
-**Overall status:** **FEATURE LIVE on qb; cases authored (182) and adjudicated;
-Deep-VIU batch 1–6 DONE.** After **batch 6** (2026-07-09 overnight live run: floor
-contract, processing fees, invoice→QB export attempt, over-discount UI) the case JSONs
-stand at **113 VIU-Verified** / **36 VIU-Deviation** / **2 VIU-Pending** / **12
-Blocked-NotBuilt** / **19 Blocked-Env** (of 182). Batch 6 flipped 5 → Verified
-(FD-CALC-015/016 floor+tax, FD-PROC-013 shared pfee base, FD-PROC-014 min-stripped,
-FD-QB-012 worked-example behavior) and 2 → Deviation (FD-HIST-007 = FDBUG-3 extension,
-auto-added pfee not logged; **FD-QB-014 = NEW FDBUG-15: over-discount saves with NO
-warn/confirm — the excess credit is carried SILENTLY, violating S6-R12**), and moved
-FD-CALC-017 → Blocked-Env (floor half proven; QB penny-cap needs QB-side line view).
-Earlier on 2026-07-09: 6 PO-flagged pending cases were adjudicated to firm deviations
-from the PO answer sheet and FDBUG-1/2 were GST-scoped per `spec-v1-reconciliation.md`.
-**Only 2 VIU-Pending remain: FD-PART-005** (receive-transition; line-create broken) and
-**FD-QB-015** (over-discount invoice → customer credit + QB goodwill memo; run was
-terminated mid-flow). **More FDBUG-1 counter-evidence:** batch-6 saw adjustments
-INCLUDED in sub_total (line-less WO: sub 5.00 = +10 −5; S-15895: 182.76→187.76 after
-+10/−5) — FDBUG-1 looks fixed on the current build. **New env bugs:** work-order line
-creation 500s env-wide (plain + canned, any WO — blocks fresh invoiceable WOs);
-QB invoice export of re-invoiced WOs fails on duplicate document numbers. Remaining work
-is gated on: **dev** (Stories 6/8/11 + code-bug deviations + the line-create env bug),
-**PO** (3 PO-question deviations), **QA** (fresh cookies → FD-PART-005, FD-QB-015, the
-QB mapping-guard cycle FD-QB-004..009, flag-off cases, **and the batch-6 leftover
-cleanup — see §6**), and **QB-side invoice-line inspection** (FD-QB line cases). **Do
-NOT write to TestRail without explicit user permission** (the 2026-07-09 user
-authorization covered the VIU sync runs of that day only).
+**Overall status:** **FEATURE LIVE on qb; FRESH FULL VIU PASS DONE 2026-07-10** (all 182
+cases re-adjudicated live the day the manual tester started; every `viu_status` now
+carries `fresh_run: 2026-07-10` + a fresh evidence note). Tally: **114 VIU-Verified /
+35 VIU-Deviation / 12 Blocked-NotBuilt / 20 Blocked-Env / 1 VIU-Pending (FD-PART-005)**.
+Fresh-pass deltas vs batch-6: **FD-DOC-011 → Verified** (FDBUG-1 NOT reproduced for the
+3rd consecutive pass — doc Subtotal/GST/Total include adjustments and match the API
+exactly; treat FDBUG-1 as fixed, residual = GST→US-tax re-word); **FD-QB-015 →
+Blocked-Env with its in-app half VERIFIED** (invoicing an over-discounted WO recorded a
+customer credit of exactly the excess −117.24; the QB goodwill-memo half is unobservable
+— export fails on the duplicate-doc-number env bug and there is no QB read API).
+**Re-confirmed live today:** FDBUG-2 (pfee base includes whole-WO adjustments — clean
+discriminator: 3% pfee = 0.63 on a WO whose only money is a $20 whole-WO fee),
+FDBUG-3 (+FD-HIST-007) auto-applied adjustments write no history, FDBUG-9 (maxCap 0 = no
+cap), FDBUG-10 (0.005% coerced to 0.01%), FDBUG-15 (over-discount saves silently, no
+warn/confirm), BUG-FD-4 (Add/Create buttons enabled on empty forms), BUG-FD-5 (no
+Show-N-more), FDBUG-6 (Stats aggregate), Story 8 builder UI still missing (Type options =
+Fee|Discount only), Story 11 Part Sales still absent (fresh part sale created + checked).
+**NEW today: FDBUG-16** — the raw API now ACCEPTS an empty-name adjustment (201;
+regression vs batch-3's 400) while the UI still blocks it (FE-only guard, low sev).
+**FIXED today: FDBUG-12** — API-created customers now DO inherit auto-apply defaults.
+**Env bugs persisting 2026-07-10:** WO line-create 500s env-wide (4 requestIds captured;
+blocks fresh invoiceable WOs, FD-PART-005 and part-flow re-seeding); QB export of
+re-invoiced WOs fails on duplicate document numbers; NEW: `PUT /api/bookkeeping/settings
+{settings:{feeItemId:null}}` 500s → the mapping-guard cycle (FD-QB-004..008) cannot be
+driven (unmap impossible). Technician role DRIFTED on the shared env (now has
+workOrdersCreateAndEdit + workOrdersDelete; roles-matrix.json derivations need a re-pull
+before reuse; BUG-FD-3 not re-testable). Remaining gates: **dev** (Stories 8/11 +
+code-bug FDBUGs + line-create + duplicate-number export + unmap 500), **PO** (3
+PO-question deviations), **QB-side UI inspection** (13 QB line cases + memo half +
+penny-cap half), **flag-off window** (not taken — tester active on the shared env).
+**TestRail:** the 2026-07-10 fresh-run master-case sync was explicitly authorized and
+executed (see `testrail-viu-sync-log.md`); **any further write needs new permission.**
 
 ---
 
@@ -90,33 +99,36 @@ Blockers Tracker).
 
 | State / bucket | Count | Meaning |
 |---|---:|---|
-| **VIU-Verified (READY)** | **113** | Exercised on the build and matches spec — uploadable now (batch-6: 108→113) |
-| **VIU-Deviation** | **36** | Built but deviates from spec (batch-6 added FD-HIST-007 + FD-QB-014/FDBUG-15; 2026-07-09 recon pass firmed 6 PO-flagged pendings) |
-| **Blocked — DEV NOT BUILT** | **12** | Surface absent: Story 8 Processing-Fee builder UI (4) + Story 11 Part Sales (8) |
-| **Blocked — ENV** | **19** | Story 6 QuickBooks (13, incl. FD-CALC-017's QB half) + flag-off / shared-env (5) + FD-CALC-017 |
-| **VIU-Pending** | **2** | FD-PART-005 (receive-transition; line-create env bug) + FD-QB-015 (over-discount invoice → credit memo; run terminated mid-flow) |
-| **TOTAL** | **182** | 113 verified + 69 not-yet-verified |
+| **VIU-Verified (READY)** | **114** | Fresh-pass 2026-07-10: exercised (or evidence re-validated) and matches spec (FD-DOC-011 flipped in — FDBUG-1 not reproduced) |
+| **VIU-Deviation** | **35** | Built but deviates from spec — all re-confirmed or carried with fresh notes 2026-07-10 |
+| **Blocked — DEV NOT BUILT** | **12** | RE-CHECKED 2026-07-10: Story 8 Processing-Fee builder UI (4) + Story 11 Part Sales (7) + FD-PERM-004 |
+| **Blocked — ENV** | **20** | QuickBooks internals/unmap-500 (14 incl. FD-QB-015's memo half + FD-CALC-017's QB half) + flag-off/shared-env (6: FD-FLAG-001/002/003, FD-HIST-004, FD-TMPL-012) |
+| **VIU-Pending** | **1** | FD-PART-005 (receive-transition; line-create 500 persists + completed-line lock) |
+| **TOTAL** | **182** | 114 verified + 68 not-yet-verified |
 
-**VIU-Deviation (27) sub-split** (bug-vs-PO-question):
+**VIU-Deviation (35) sub-split — fresh pass 2026-07-10** (tallied by the Blockers
+Tracker: 6 code-bug + 3 PO-question + 26 case-update):
 
 | Sub-bucket | Count | Cases |
 |---|---:|---|
-| **code-bug** (needs a dev fix) | 7 | FD-DOC-011 (FDBUG-1), FD-PROC-009 + FD-CALC-013 (FDBUG-2), FD-HIST-001 (FDBUG-3), FD-CALC-006 (FDBUG-10), FD-CALC-008 + FD-VAL-006 (FDBUG-9) |
-| **PO-question** (needs a product ruling) | 3 | FD-STATS-001 (Stats layout, BUG-FD-2), FD-PERM-002 + FD-WO-013 (whole-WO FE-vs-BE enforcement, BUG-FD-3) |
-| **case-update** (label/copy/UX drift — update case text once build confirmed intended) | 17 | FD-WO-001, FD-LABOR-001, FD-FIN-004, FD-REMOVE-001, FD-CUST-003/004/006/007, FD-TMPL-001/003/004/006/008/010/011, FD-PROC-008, FD-HIST-002 |
+| **code-bug** (needs a dev fix) | 6 | FD-PROC-009 + FD-CALC-013 (FDBUG-2), FD-HIST-001 (FDBUG-3), FD-CALC-006 (FDBUG-10), FD-CALC-008 + FD-VAL-006 (FDBUG-9). (FD-DOC-011/FDBUG-1 dropped — not reproduced, now Verified.) Plus new low-sev **FDBUG-16** (empty-name accepted by the raw API only) noted on Verified cases FD-WO-008/FD-VAL-003. |
+| **PO-question** (needs a product ruling) | 3 | FD-STATS-001 (Stats layout, BUG-FD-2), FD-PERM-002 + FD-WO-013 (whole-WO FE-vs-BE enforcement, BUG-FD-3 — not re-testable, Technician role drifted) |
+| **case-update** (label/copy/UX drift + PO-accepted behaviors) | 26 | FD-WO-001/005, FD-VAL-001, FD-LABOR-001, FD-PART-001 (FDBUG-14), FD-INLINE-003, FD-STATS-002/004, FD-FIN-004, FD-REMOVE-001, FD-CUST-003/004/005/006/007, FD-TMPL-001/003/004/006/008/010/011, FD-PROC-008, FD-HIST-002/007, FD-QB-014 (FDBUG-15) |
 
-**Not-Built (11) by story:** Story 8 (Processing-Fee builder UI) = FD-PROC-001..004;
-Story 11 (Part Sales fees/discounts) = FD-PCOL-001..007.
+**Not-Built (12) by story — re-checked live 2026-07-10:** Story 8 (Processing-Fee
+builder UI; Type options are still only Fee|Discount) = FD-PROC-001..004; Story 11
+(Part Sales; fresh part sale created — no F&D column/API surface) = FD-PCOL-001..007 +
+FD-PERM-004.
 
-**ENV (18) by sub-bucket:** QuickBooks (Story 6) = FD-QB-001..011, 013, 016 (13) — **now
-env-reachable (QB connected 2026-07-09); retest gated only on env availability** (behavior VIU
-still pending after the 2026-07-09 backend 500 incident); flag-off / shared-env =
-FD-FLAG-001/002/003, FD-HIST-004, FD-TMPL-012 (5).
+**ENV (20) by sub-bucket:** QuickBooks = FD-QB-001..011, 013, 016 + FD-QB-015 (memo
+half; in-app credit half VERIFIED) + FD-CALC-017 (QB penny-cap half; floor half
+VERIFIED) — line internals need a QB-UI eyeball; the mapping-guard cycle is blocked by
+the unmap 500; export currently fails on duplicate doc numbers. Flag-off / shared-env =
+FD-FLAG-001/002/003, FD-HIST-004, FD-TMPL-012 (not taken while the manual tester is
+active).
 
-**VIU-Pending (34):** 28 generic QA-pending (parts UI flows, invoice-time walk, misc
-retests) + **6 PO-flagged deviations** batch-2 recorded but did not rewrite:
-FD-WO-005 + FD-VAL-001 (BUG-FD-4), FD-INLINE-003 (BUG-FD-5), FD-STATS-002 + FD-STATS-004
-(BUG-FD-2), FD-CUST-005 (NOTE-FD-5).
+**VIU-Pending (1):** FD-PART-005 (requested→received transition — blocked by the
+line-create 500 + the completed-line part-request lock).
 
 ---
 
@@ -236,22 +248,19 @@ FD-INLINE-003, FD-STATS-002, FD-STATS-004, FD-CUST-005 — see §2.)
 
 ## 6. Open threads / what unblocks what
 
-- **BATCH-6 LEFTOVER CLEANUP (do FIRST on next fresh cookies)** — the overnight run
-  was cut by a session limit mid-cycle and then the cookies expired, leaving on qb:
-  (1) **WO S-15895 (`75f19d9c-6afc-47f3-9b0b-24f9cec75b12`) is INVOICED** (invoice
-  `b99ec25e-3443-4211-8977-3d735dd705b7`) carrying 2 ZZAUTOTEST adjustments
-  ("ZZAUTOTEST Hazmat Disposal Fee" +$10 taxable, "ZZAUTOTEST Loyalty Discount" −$5
-  non-taxable) — reverse via `POST /api/invoices/reverse-invoice`, remove both
-  adjustments, restore status `complete` (baseline: sub 182.76 / GST 9.14 / total
-  191.90, adjs ["Flat fee"]); (2) its failed QB export sits in
-  `bookkeeping/unexported-items` ("Invoice S3-15895 already exists on QuickBooks") —
-  `POST …/unexported-items/{id}/mark-done`; (3) **4 line-less ZZAUTOTEST estimate WOs
-  to delete**: `b7c9e9a5-c1f9-4f5d-9f3f-f45111321bfd` (walked to Complete),
-  `529a8526-fd23-4b5b-b88c-a1e2e9232768`, `202fc9ca-46c8-44b3-b906-aed9622fd736`,
-  `38a84055-67c2-484f-b339-c298cc86692e`. A ready script exists at
-  `/tmp/fdcln/fd6-resume-clean.mjs` (rebuild from this list if /tmp was wiped). No
-  settings/mapping/flag/role changes were left un-restored (WO S3-15513 verified back
-  to baseline; templates all deleted 204).
+- **BATCH-6 LEFTOVER CLEANUP — DONE 2026-07-10 (fresh-pass step 1).** S-15895
+  reverse-invoiced (200), both ZZAUTOTEST adjustments removed (204), baseline verified
+  (sub 182.76 / GST 9.14 / total 191.90, adjs ["Flat fee"], status Complete — re-verified
+  after EVERY probe batch of the fresh pass); failed-export + my credit-memo unexported
+  entries marked done; 3 of the 4 line-less WOs deleted (201). **Known residue (harmless,
+  ZZ-tagged):** (1) WO **S-15947** `b7c9e9a5…` could NOT be deleted — it was walked to
+  Complete and the API refuses both delete ("Completed work order cannot be deleted") and
+  any status change back; it is now stripped to 0 lines / 0 adjustments / $0. (2) Customer
+  **"ZZAUTOTEST FD Fresh710"** (`b881540e…`) holds one orphan contact whose id is not
+  retrievable via any discovered API (no contacts-list endpoint; UI tab makes no list
+  call), so `customers/delete` 400s ("Company with a customer") — empty shell, no WOs/
+  defaults/financials. (3) The 3 pre-existing unexported entries (S3-15929, S3-15889 ×2)
+  belong to OTHER testers — left untouched.
 
 - **Fresh qb cookies → resume VIU.** Unblocks the **34 VIU-Pending** (parts UI flows,
   invoice-time walk incl. FDBUG-1 on a real invoice + over-discount floor/credit,

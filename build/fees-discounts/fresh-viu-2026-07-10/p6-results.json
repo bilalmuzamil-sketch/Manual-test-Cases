@@ -1,0 +1,92 @@
+[
+ {
+  "id": "FD-TMPL-001",
+  "verdict": "EVID",
+  "detail": "admin page loads at /administration/adjustment-templates; body head: Work Orders Schedule Customers Parts Reports Search Ctrl+K timer Clock In notifications Staging Lethbridge - 4310 AS DEV TOOLS info flag Feature Flags SETTINGS info Settings superv"
+ },
+ {
+  "id": "FD-PROC-001",
+  "verdict": "NOT-BUILT",
+  "detail": "template builder Type options: [check Fee|check Discount] (Processing Fee present=false)"
+ },
+ {
+  "id": "FD-TMPL-014",
+  "verdict": "EVID",
+  "detail": "Calc options: [check Flat Amount|check % of Labor Total|check % of Parts Total|check % of Subtotal]; dialog fields: New Fee / Discount close Name Type Fee arrow_drop_down Calculation Type Flat Amount arrow_drop_down $ Default Amount Taxable Yes Auto-apply to new work orders No Description (Optional) Cancel Create"
+ },
+ {
+  "id": "FD-TMPL-003",
+  "verdict": "EVID",
+  "detail": "create dialog confirm button label='Create' disabled-on-empty=false"
+ },
+ {
+  "id": "FD-PCOL-001",
+  "verdict": "NO-DATA",
+  "detail": "no part sales in list"
+ },
+ {
+  "id": "FD-FIN-004",
+  "verdict": "EVID",
+  "detail": "WO page sidebar: 'Work Order Fee'/'Fees & Discounts' text present=true; snippet: Work Orders Schedule Customers Parts Reports Search Ctrl+K timer Clock In notifications Staging Lethbridge - 4310 AS S3-"
+ },
+ {
+  "id": "FD-WO-001",
+  "verdict": "EVID",
+  "detail": "WO toolbar (⋯) menu items: Edit | Remove"
+ },
+ {
+  "id": "FD-INLINE-001",
+  "verdict": "CHECK",
+  "detail": "labor-line inline row visible=false"
+ },
+ {
+  "id": "FD-INLINE-002",
+  "verdict": "CHECK",
+  "detail": "part-line inline row visible=false"
+ },
+ {
+  "id": "FD-INLINE-003",
+  "verdict": "DEVIATION-persists",
+  "detail": "2 part adjustments: 'Show N more' collapse present=false (PO Q5=B expects collapse)"
+ },
+ {
+  "id": "FD-FIN-001",
+  "verdict": "PASS",
+  "detail": "Financial Info 'Fees & Discounts (N)' row: Fees & Discounts (5)"
+ },
+ {
+  "id": "FD-FIN-004b",
+  "verdict": "EVID",
+  "detail": "sidebar card region: WO Fees & Discounts Flat fee $12.00 +$12.00 more_vert ZZAUTOTEST UIfee $10.00 +$10.00 more_vert Lines Parts (1) Notes Stats Fin"
+ },
+ {
+  "id": "FD-STATS-001",
+  "verdict": "EVID",
+  "detail": "Stats F&D section: 'Fees & Discounts (5) $25.00 WO Fees & Discounts Flat fee $12.00 +$12.00 more_vert ZZAUTOTEST UIfee $10.00 +$10.00 more_vert Lines (1) Parts (1) Notes Stats Finance more_vert Hours expand_less Tech hou' (aggregate rows = FDBUG-6/PO Q1=B defect; per-row names shown=true)"
+ },
+ {
+  "id": "FD-CUST-001",
+  "verdict": "EVID",
+  "detail": "customer tab label: Fees & Discounts (0)"
+ },
+ {
+  "id": "FD-CUST-002",
+  "verdict": "EVID",
+  "detail": "defaults card: Default Fees & Discounts These fees & discounts auto-apply to every new work order for this customer. They can still be edited or removed on individual work orders without changing the defaults here. Add "
+ },
+ {
+  "id": "CONTACT-HUNT",
+  "verdict": "FOUND",
+  "detail": "orphan contact id=b881540e-4df1-45f7-b8c4-61fda5455c14"
+ },
+ {
+  "id": "ZZ-CUSTOMER-CLEANUP",
+  "verdict": "STILL-BLOCKED",
+  "detail": "contact delete 400; customer delete 400"
+ },
+ {
+  "id": "RESTORE-S15895-P6",
+  "verdict": "MISMATCH",
+  "detail": "sub 185.76 adjs Flat fee"
+ }
+]
