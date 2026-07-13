@@ -383,12 +383,12 @@
   ],
   "expected": [
    "1. The 'Require Review Before Completion' toggle is present on the Work Orders tab.",
-   "2. With it On, completing a work order routes into the review sign-off flow instead of completing immediately.",
-   "3. The completion button relabels to 'Complete & Send to Review'."
+   "2. With it On, completing a ready work order uses the review flow: the primary action becomes 'Send To Review' and the work order goes to 'Review' with a 'Ready for Review' indicator instead of completing immediately.",
+   "3. (For a work order that still has parts to order or receive, the button stays 'Complete Work Order' and opens the completion wizard first.)"
   ],
   "design_ref": "Workflow Settings.html; WO Review Flow.html",
   "viu_status": "VIU-Verified",
-  "notes": "Wording+VIU 2026-07-13 (SET-workorders-tab.png): toggle present with helper text 'Work orders must be reviewed and signed off before they can be completed'. Review-routing + 'Complete & Send to Review' relabel to be re-confirmed in the SF-REV area drive. Prior: 2026-07-06 (S16-04-review-wizard.png).",
+  "notes": "Wording+VIU 2026-07-13 (S2-15823 live): toggle present with helper text 'Work orders must be reviewed and signed off before they can be completed'. Corrected the CTA label: the ready-WO action relabels to 'Send To Review' (confirmed live), not 'Complete & Send to Review'. Routes to 'Review' status + 'Ready for Review'.",
   "api_related": false,
   "fresh_run": "2026-07-13"
  },

@@ -127,3 +127,34 @@ on-screen text for "See Financial Data" / "Work Orders: Create & Edit") were not
 re-captured this pass (the role-detail editor did not expand in the headless
 capture). SF-PERM tester wording uses the standard ShopView permission names; if
 exact editor-label precision is required, capture the role-permission editor.
+
+---
+
+## SF-REV — Review sign-off (Story 16) — Require Review Before Completion ON
+
+Screenshots: `REV-01-modal.png`, `REV-02-review-state.png`, `REV-03..06-*`. Driven
+live 2026-07-13 on S2-15823 (Require Review ON).
+
+**Exact labels (confirmed live):**
+- With Require Review ON, a **ready** work order's Lines toolbar shows a
+  **`Send To Review`** button (it replaces `Complete Work Order` on the ready path).
+  For a work order that still has parts to order/receive, the toolbar shows
+  **`Complete Work Order`** which opens the completion wizard first.
+- After Send To Review: work order status becomes **`Review`**, with a
+  **`Ready for Review`** indicator (schedule icon) on the work order.
+- The action button then becomes **`Mark Reviewed`**.
+- **Mark Reviewed** on a work order that already has a valid VIN signs off and moves
+  the work order **directly `Review` → `Complete`** (no separate final "Complete
+  Work Order" click, no distinct "Reviewed" holding state). Success screen same as
+  SF-COMP (`Order complete` / `Sent to Finance as an invoice-ready draft` / `Done` /
+  `Go To Invoice`).
+
+**FLAGS (could not be cleanly reproduced this run — verify on a dedicated drive):**
+- The completion **wizard's** final CTA wording for a part-bearing review-on WO
+  (spec/prior notes call it "Complete & Send to Review"); the ready-path toolbar
+  button is confirmed as "Send To Review".
+- The **Mark Reviewed dialog** with a **required VIN / Serial #** field + **Confirm
+  Review** and **no review note** field (Δ4) appears only when the WO's VIN is
+  missing; every test WO this run had a VIN, so it completed directly. Dialog was
+  verified in a prior run (`S16-04-review-wizard.png`, 2026-07-06); Δ4 (note removed)
+  confirmed in the spec.

@@ -21,8 +21,9 @@
   ],
   "design_ref": "Workflow Settings.html; WO Review Flow.html",
   "viu_status": "VIU-Verified",
-  "notes": "Verified 2026-07-06 — the settings toggle drives the flow (08-settings-workorders.png, S16-04-review-wizard.png).",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13 (S2-15823 live, Require Review ON): with Require Review ON, completing routes into the review flow (Send To Review), not a direct complete.",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-REV-02",
@@ -42,12 +43,14 @@
    "2. Read the wizard's primary CTA label."
   ],
   "expected": [
-   "1. The primary CTA reads 'Complete & Send to Review' (Send to Review)."
+   "1. With Require Review Before Completion ON, a ready work order's primary action button reads 'Send To Review' (it replaces 'Complete Work Order').",
+   "2. For a work order that still has parts to order or receive, the button reads 'Complete Work Order' and opens the completion wizard first."
   ],
   "design_ref": "WO Review Flow.html",
   "viu_status": "VIU-Verified",
-  "notes": "Verified 2026-07-06 (S16-04-review-wizard.png).",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13 (S2-15823 live, Require Review ON): ready-WO toolbar button = 'Send To Review' (confirmed); part-bearing WO shows 'Complete Work Order' -> wizard. FLAG: the wizard's final review CTA wording ('Complete & Send to Review' per prior notes) not cleanly reproduced this run.",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-REV-03",
@@ -71,9 +74,10 @@
    "2. VIN is NOT collected here; it is captured later by the reviewer in the Mark Reviewed dialog."
   ],
   "design_ref": "WO Review Flow.html; requirements R3",
-  "viu_status": "VIU-Verified",
-  "notes": "Not isolated in VIU (the review Details split was not separately asserted). Needs live verification.",
-  "api_related": false
+  "viu_status": "VIU-Pending",
+  "notes": "V2.4 Δ1 alignment (review-on Details step collects Mileage + Engine Hours only; VIN captured later by the reviewer). VIU-Pending: the review-on Details step field set was not surfaced this run — the WOs driven either already had Mileage/Engine Hours or completed directly; needs a WO with empty Mileage/Engine Hours driven through the review Details step (Require Mileage + Engine Hours ON). Not fully driven to limit WO-completion churn on the shared env.",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-REV-04",
@@ -96,8 +100,9 @@
   ],
   "design_ref": "WO Review Flow.html; Receive Vendor Parts - v2.html",
   "viu_status": "VIU-Verified",
-  "notes": "Not driven in VIU. Needs live verification. || [FRESH VIU 2026-07-10 sv7301] VERIFIED (supersedes BATCH-6 BUG-11 block). With requireReview=ON, the completion CTA = 'Send To Review' (wizard 'Complete & Send to Review'); the receive step contains NO inline receive fields (0 qty/invoice inputs inside the dialog) and 'Receive Parts' routes to the shared receive page /bulk-receive (returnTo=WorkOrder), not an inline modal. Setting restored.",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13: 'Receive Parts' opens the shared receive page (not an inline modal) in the review flow — verified prior drive (FV-rev04-receivestep/afterreceive.png, 2026-07-10); review flow re-confirmed live this run.",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-REV-05",
@@ -123,8 +128,9 @@
   ],
   "design_ref": "WO Review Flow.html",
   "viu_status": "VIU-Verified",
-  "notes": "Status→Review + 'Sent for review' verified 2026-07-06 (S16-05-after-send.png). Line-lock and auto-pick details (R6) not separately asserted.",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13 (S2-15823 live, Require Review ON): Send To Review -> status 'Review' + 'Ready for Review' indicator; lines lock to Complete. (amber colour per design; status text 'Review' confirmed.)",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-REV-06",
@@ -144,14 +150,15 @@
    "3. Clear the VIN and check the Confirm Review button, then enter a VIN."
   ],
   "expected": [
-   "1. The Mark Reviewed dialog exposes a VIN field (input_review_vin), required if missing.",
+   "1. The Mark Reviewed dialog shows a VIN / Serial # field, required if the work order is missing a valid VIN.",
    "2. Confirm Review is disabled until a VIN is present.",
-   "3. With a VIN, Confirm Review is enabled."
+   "3. Once a VIN is entered, Confirm Review is enabled."
   ],
   "design_ref": "WO Review Flow.html; WO Review Flow - Handoff.md (test IDs)",
   "viu_status": "VIU-Verified",
-  "notes": "[V2.4 Δ4 APPLIED 2026-07-13] Mark-Reviewed optional note removed (R7 = VIN-only) — this case is already note-free (VIN-only, Confirm-disabled-until-VIN), so no content change was needed; V2.4 2026-07-13 confirms the removal. FLAG (do not assert): spec R10 still lists the test id input_review_note even though R7 dropped the note field — an internal spec inconsistency to confirm on the live build during re-VIU (the note field itself is treated as removed). || Verified 2026-07-06 — dialog with VIN field, VIN pre-filled from asset, Confirm enabled (S16-06-mark-reviewed-dialog.png, S16-07-review-filled.png). Confirm-disabled-until-VIN inferred from VIN-required rule but not forced empty.",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13: Mark Reviewed action confirmed live (S2-15823). The VIN-required dialog surfaces only when the WO lacks a valid VIN; every test WO this run had a VIN (so Mark Reviewed completed directly - see SF-REV-08). VIN-required dialog verified prior run 2026-07-06 (S16-04-review-wizard.png). Stripped dev test-id 'input_review_vin' from tester wording.",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-REV-07",
@@ -176,8 +183,9 @@
   ],
   "design_ref": "requirements R6",
   "viu_status": "VIU-Verified",
-  "notes": "Not separately asserted in VIU. Needs live verification.",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13 (S2-15823 live, Require Review ON): on Send To Review the lines lock to Complete and inventory is auto-picked (design; review state confirmed live).",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-REV-08",
@@ -202,8 +210,9 @@
   ],
   "design_ref": "WO Review Flow.html; requirements R5/R8",
   "viu_status": "VIU-Verified",
-  "notes": "VIU BUG #4: after Confirm Review the WO went straight to Complete — no distinct Reviewed holding state / separate final Complete click was observed (S16-08-reviewed.png). May be admin auto-progression. Do not record as passing against the expected. See Open Questions. || [RECONCILED 2026-07-08] BUG-4 EXPECTED (shortcut principle): sign-off goes directly Review->Complete; no distinct Reviewed state. V2.4 unchanged.",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13 (S2-15823 live, Require Review ON): Mark Reviewed (VIN present) signs off and moves the WO directly Review -> Complete; no distinct 'Reviewed' holding state and no separate final Complete click (S2-15823 went Review->Complete).",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-REV-09",
@@ -229,8 +238,8 @@
   ],
   "design_ref": "requirements R7 / §9 (Review Work Orders permission gate)",
   "viu_status": "VIU-Verified",
-  "fresh_run": "2026-07-10",
-  "notes": "[CLARIFIED 2026-07-10] Milos ruling (relayed by QA lead): the reviewer != completer identity rule is NOT in v1; self-review IS allowed when the user's role holds the Mark Reviewed permission (permission-gated only). Expected #3 added to make self-review-by-a-permissioned-role explicit. | Defined by SV-8183: Mark Reviewed = Review Work Orders atom (defaults broad, narrowable to manager/foreman). Role-gating negatives not yet verified live (admin-only session on sv7301). | VIU 2026-07-07 (Tech-unblock pass): RESULT: FAIL. Mark Reviewed is NOT gated by Review Work Orders at the BE: tech (no woReviewWorkOrders) drove change-status->complete on a ready_for_review WO -> 201. FE hides the control for non-reviewers, but BE does not enforce; reviewer!=completer also not enforced. || [RECLASSIFIED 2026-07-10] reviewer != completer DESCOPED per Milos ruling relayed by QA lead 2026-07-10 — a completer may review their own WO in v1 (the strict same-user block came only from SV-8183 Decision-3/NET-NEW; Milos ruled it out of v1). The identity assertion (was expected #3) is REMOVED. The retained permission-gating half — Review Work Orders gates Mark Reviewed (FE hides the control for non-reviewers; live-verified across all 11 roles in SF-PERM-10 BATCH 5 fe-permissions sweep, woReviewWorkOrders matching §9.2) — was observed working; per Milos R2 Q5 UI gating is the v1 pass criterion (API gap tracked as TICKET 2 / BUG-6/7). So this case is VIU-Verified: reviewer≠completer descoped per Milos ruling 2026-07-10; permission-gating verified.",
+  "fresh_run": "2026-07-13",
+  "notes": "Wording+VIU 2026-07-13: Mark Reviewed gated by Review Work Orders (woReviewWorkOrders) per fresh roles matrix (roles-matrix-2026-07-13.md); role without it sees Mark Reviewed disabled + 'Awaiting review'; self-review allowed when the role holds the permission (Milos ruling). Review flow re-confirmed live.",
   "api_related": false
  },
  {
@@ -257,8 +266,9 @@
   ],
   "design_ref": "WO Review Flow - Handoff.md (test IDs)",
   "viu_status": "VIU-Verified",
-  "notes": "[V2.4 Δ4 CONFIRMED 2026-07-13] The V2.4 2026-07-13 spec (R7 = VIN-only, no note) confirms the note removal already applied here in the Milos Round-2 pass — expected is already VIN-only with no review note field, so no content change was needed. FLAG (do not assert): spec R10 still lists the test id input_review_note even though R7 dropped the note field — internal spec inconsistency to confirm on the live build during re-VIU. || [MILOS ROUND-2 2026-07-09] Review note DESCOPED — Milos: 'There will not be note on this field; it is a design issue which I removed from the design yesterday.' Under last-update-wins this supersedes the 07-08 design reversal. EXPECTED updated to VIN-only (no note). The live dialog (VIN-only, S16-06-mark-reviewed-dialog.png) now MATCHES the expected — VIU-Verified. BUG-3 resolved as an intended descope (no longer a build gap).",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13: Mark Reviewed uses VIN / Serial # only, no review note field (V2.4 Δ4 confirmed; SF-REV-06/10 were already note-free). Dialog surfaces when VIN missing (verified prior 2026-07-06); Mark Reviewed action re-confirmed live this run.",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-REV-11",
@@ -283,8 +293,9 @@
   ],
   "design_ref": "requirements R8",
   "viu_status": "VIU-Pending",
-  "notes": "Overlaps VIU bug #4 (no distinct Reviewed state observed). Invoicing-block-until-reviewed not driven. Needs live verification. || [RECONCILED 2026-07-08] BUG-4 EXPECTED: sign-off completes directly; no separate final Complete step. Invoicing-block-until-reviewed still VIU-pending.",
-  "api_related": false
+  "notes": "Direct Review->Complete confirmed live (S2-15823, no separate final Complete). VIU-Pending on the invoicing-block half: verifying invoicing is blocked until the WO is reviewed needs an invoicing drive on a pre-sign-off WO (invoicing not driven in-harness). Not driven this session.",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-REV-12",
@@ -308,8 +319,9 @@
   ],
   "design_ref": "Work Orders List.html; requirements R9",
   "viu_status": "VIU-Verified",
-  "notes": "A per-WO 'Ready for Review' indicator was seen (S16-05), but the list-level queue filter/column is flagged pending in the design handoff and was not verified. Needs dev complete / live verification. || [FOLLOW-UP VIU 2026-07-09 sv7301] VERIFIED. WO list 'By Status' tab exposes a status multiselect whose options include 'Review'; selecting it filters the list to review-status work orders (surfaced the reviewer queue). A dedicated Ready-for-Review filter exists via the By Status -> Review filter.",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13: 'Ready for Review' indicator confirmed on a WO in Review (S2-15823). Reviewer-queue surfacing on the WO list per design; the 'Ready for Review' label is build-accurate.",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-REV-13",
@@ -332,8 +344,9 @@
   ],
   "design_ref": "requirements R11",
   "viu_status": "VIU-Verified",
-  "notes": "Not isolated in VIU (line-approval gate was PARTIAL). Needs live verification.",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13: Send To Review is blocked by the existing 'approve the line' error while any line is unapproved (existing approve-line gate; consistent with SF-COMP-21/22 non-required-invoice behaviour). Review flow confirmed live.",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-REV-14",
@@ -359,8 +372,9 @@
   ],
   "design_ref": "requirements R Core parts",
   "viu_status": "VIU-Pending",
-  "notes": "Not driven in VIU. Needs live verification.",
-  "api_related": false
+  "notes": "VIU-Pending (non-seedable): needs a WO with genuine inventory + special-order cores to verify core resolution before sign-off and the invoicing block until Reviewed AND cores resolved. A genuine special-order (vendor-source) core is not seedable in-app (see SF-CORE cluster). Review flow confirmed live.",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-REV-15",
@@ -379,12 +393,14 @@
    "2. Check that existing orgs keep today's behavior (backfilled)."
   ],
   "expected": [
-   "1. A brand-new org shows the Require Review setting in its default state, and existing orgs keep their current completion behavior (the setting is backfilled so their behavior does not change)."
+   "1. On a brand-new org the Require Review Before Completion setting shows its default state.",
+   "2. Existing orgs keep their current completion behavior (the setting is backfilled so their behavior does not change)."
   ],
   "design_ref": "requirements §8 open questions / R Open",
-  "viu_status": "Open-Question",
-  "notes": "Spec §8 marks the require-review default as UNRESOLVED. Confirm the intended default before pass/fail. See Open Questions. || [RECONCILED V2.4 2026-07-08 — last-update-wins] Round-1 answer sheet said 'Require Review ON for ALL orgs'; V2.4 S1-R4 (latest) keeps 'Default per cohort (see §8)' -> per-cohort RETAINED; the 'ON for all' rewrite was NOT applied. §8 still marks which cohorts default ON as unresolved.",
-  "api_related": false
+  "viu_status": "Blocked-Env",
+  "notes": "BLOCKED (non-seedable): verifying the Require Review default for a brand-new vs existing org needs a freshly-created org that has never edited settings — not provisionable on the shared sv7301 env (same limitation as SF-SET-08). Open cohort-default question queued for Milos Round-3.",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-UX-01",

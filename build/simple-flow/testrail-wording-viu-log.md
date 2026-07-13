@@ -101,3 +101,35 @@ all 200/OK, 0 errors.** All role expectations match the fresh 2026-07-13 roles
 matrix; SF-PERM-06 backend-enum jargon cleaned to layman/API-appropriate wording.
 FLAG: exact per-permission editor labels (inside a role's detail) not re-captured
 this pass — wording uses standard ShopView permission names. **TESTER-READY.**
+
+---
+
+## Area SF-REV — Review sign-off (Story 16) — TESTER-READY ✅ · 3 pending (non-seedable/invoicing)
+
+Drove S2-15823 live 2026-07-13 with Require Review ON (flipped then RESTORED
+byte-identical). Confirmed: ready-WO toolbar button **`Send To Review`** (replaces
+`Complete Work Order`); status → **`Review`** + **`Ready for Review`** indicator;
+**`Mark Reviewed`** button; Mark Reviewed with VIN present → **Review → Complete
+directly** (no holding state). Part-bearing WOs keep `Complete Work Order` → wizard.
+
+**Notable build correction:** SF-REV-02 CTA corrected to the confirmed **`Send To
+Review`** (was "Complete & Send to Review"); **SF-SET-14 (C29288) re-pushed** with the
+same correction. SF-REV-06 stripped the dev test-id `input_review_vin`.
+
+| SF-ID | C# | viu_status | note |
+|---|---|---|---|
+| SF-REV-01/05/07/08 | C29386/90/92/93 | VIU-Verified | Send To Review flow confirmed live |
+| SF-REV-02 | C29387 | VIU-Verified | CTA corrected to 'Send To Review' |
+| SF-REV-04 | C29389 | VIU-Verified | Receive Parts → shared page (prior FV-rev04) |
+| SF-REV-06/10 | C29391/95 | VIU-Verified | Mark Reviewed VIN required, no note (Δ4); dialog on missing-VIN |
+| SF-REV-09 | C29394 | VIU-Verified | gated by Review Work Orders (matrix) |
+| SF-REV-12/13 | C29397/98 | VIU-Verified | Ready for Review indicator; approve-line gate |
+| SF-REV-03 | C29388 | **VIU-Pending** | review-on Details field set not surfaced (needs mileage/hours-empty WO) |
+| SF-REV-11 | C29396 | **VIU-Pending** | invoicing-block half needs an invoicing drive |
+| SF-REV-14 | C29399 | **VIU-Pending** | needs genuine inventory+special-order cores (non-seedable) |
+| SF-REV-15 | C29400 | **Blocked-Env** | brand-new-org cohort default not provisionable |
+
+**SF-REV summary:** 15 cases · VIU-Verified 11 · VIU-Pending 3 · Blocked-Env 1.
+TestRail: **15 updated, 0 no-op, 200/OK, 0 errors** (+ SF-SET-14 re-push).
+Settings restored byte-identical. Completed disposable WOs S2-15823/S2-15813 (+ the
+earlier S2-15795/S2-15825) during drives. **TESTER-READY.**
