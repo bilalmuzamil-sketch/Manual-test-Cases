@@ -11,8 +11,8 @@ chromium at `/opt/pw-browsers/chromium-1194` through `$HTTPS_PROXY`. Tooling com
 resides in `/tmp/custom-roles/beh0713/` (adm.mjs, boot2.mjs, drive.mjs, click.mjs,
 cascade.mjs, capture.mjs, setstatus.mjs). Screenshots:
 `screenshots/behavioral-viu-2026-07-13/`.
-- **Behavioral tally (252 core, after round 5): VIU-Verified 172 · Blocked-UI 69 · Deviation/Finding 11.**
-  Round 5 (§3539 Invoicing): verified C26420 (Finance tab view-only), C26421 (Create Invoice), C26425 (SFD-off -> invoicing inaccessible), C26426 (Invoicing-view-off -> pricing shown, Finance hidden), C26428 (Add Deposit gated by Invoicing C&E). 6 blocked-precise (payment delete/void, Send-to-Terminal + C29434 in payment dialog, C29438 Financial-Info edit on a paid WO, C27871 return delete) — need seeded open-invoice/payment/return state.
+- **Behavioral tally (252 core, after round 6): VIU-Verified 186 · Blocked-UI 55 · Deviation/Finding 11.**
+  Round 6: §3535 WO-lines (6 verified: lines-visible/read-only/Build-Lines/add), §3542 Settings sub-pages (8 verified: App/Service/Parts/Finance/Integrations/DataImport groups + sub-toggle independence + Integrations-gated-by-own-toggle). Blocked-precise added: line delete/core/set-status seeding (3535), and the Edit-Staff-Member profile editor is a confirmed harness limitation (C26356/C26450/C26490/C26491 — needs a real browser).
 - **Round-2 new deviations:** C26459 & C26464 — labor rate is NOT hidden by tech view when
   See Financial Data is ON (Rate/Margin/Total + labor $ shown); labor-rate visibility
   follows SFD, not view mode (caveat: test role also had WO Create&Edit — dev to confirm).
