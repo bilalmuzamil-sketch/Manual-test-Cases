@@ -1263,9 +1263,9 @@
   ],
   "design_ref": "requirements.md §6.2 (S5-R1); design-notes.md §10 (no estimate/invoice mockup — confirm live)",
   "viu_status": "VIU-Verified",
-  "notes": "No customer estimate/invoice view exists in the HTML mockups — verify layout live. | VIU qb batch-1 (2026-07-08): ESTIMATE rendering verified in the WO Finance tab (adjustments present). Invoice not created this batch (kept the env clean); same-layout claim needs an invoice walk. | FRESH VIU 2026-07-10: estimate rendered via the invoice template (header 'Invoice', shared layout), Adjustments block present",
+  "notes": "No customer estimate/invoice view exists in the HTML mockups — verify layout live. | VIU qb batch-1 (2026-07-08): ESTIMATE rendering verified in the WO Finance tab (adjustments present). Invoice not created this batch (kept the env clean); same-layout claim needs an invoice walk. | FRESH VIU 2026-07-10: estimate rendered via the invoice template (header 'Invoice', shared layout), Adjustments block present | WORDING+VIU 2026-07-13: Estimate rendering confirmed live (est-15960.html); invoice uses the same layout (carried).",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "FD-DOC-002",
@@ -1289,9 +1289,9 @@
   ],
   "design_ref": "requirements.md §6.2 (S5-R2/R3/R4); §11 (S12-R3/R7)",
   "viu_status": "VIU-Verified",
-  "notes": "VIU qb batch-1 (2026-07-08): Labor-line adjustment on the estimate: indented '↳ ZZAUTOTEST line fee (% of labor) $66.25' under its labor line — arrow, phrase and fee format all exact. Shot s14b. | FRESH VIU 2026-07-10: labor-line pct renders '↳ ZZAUTOTEST LabPct (% of labor) $0.00' (phrase present)",
+  "notes": "VIU qb batch-1 (2026-07-08): Labor-line adjustment on the estimate: indented '↳ ZZAUTOTEST line fee (% of labor) $66.25' under its labor line — arrow, phrase and fee format all exact. Shot s14b. | FRESH VIU 2026-07-10: labor-line pct renders '↳ ZZAUTOTEST LabPct (% of labor) $0.00' (phrase present) | WORDING+VIU 2026-07-13: Amount format + '(% of ...)' phrase confirmed live; per-line ↳ rendering carried from prior VIU. Tax shown as 'GST (5%)' on this env.",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "FD-DOC-003",
@@ -1314,9 +1314,9 @@
   ],
   "design_ref": "requirements.md §6.2 (S5-R2/R3)",
   "viu_status": "VIU-Verified",
-  "notes": "VIU qb batch-1 (2026-07-08): Part-line phrase pending (no part seeded). | FRESH VIU 2026-07-10: part pct 'ZZAUTOTEST PartPct (% of parts) ($17.08)'; part flat 'ZZAUTOTEST PartFlat $8.00' (no phrase)",
+  "notes": "VIU qb batch-1 (2026-07-08): Part-line phrase pending (no part seeded). | FRESH VIU 2026-07-10: part pct 'ZZAUTOTEST PartPct (% of parts) ($17.08)'; part flat 'ZZAUTOTEST PartFlat $8.00' (no phrase) | WORDING+VIU 2026-07-13: '(% of parts)' phrase pattern confirmed (build shows '(% of <method>)'); Flat Amount shows no phrase (confirmed).",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "FD-DOC-004",
@@ -1340,9 +1340,9 @@
   ],
   "design_ref": "requirements.md §6.2 (S5-R4/R9); §11 (S12-R7)",
   "viu_status": "VIU-Verified",
-  "notes": "Note this differs from WO screens, which use a signed minus (e.g. \"−$26.08\") in plain grey. | VIU qb batch-1 (2026-07-08): Fee shows '$11.00'; discount shows '($15.00)' — round brackets, two decimals, no minus (S5-R4/S12-R7). Estimate doc capture s14b. | FRESH VIU 2026-07-10: fee '$10.00' vs discount accounting '($5.00)' formats confirmed",
+  "notes": "Note this differs from WO screens, which use a signed minus (e.g. \"−$26.08\") in plain grey. | VIU qb batch-1 (2026-07-08): Fee shows '$11.00'; discount shows '($15.00)' — round brackets, two decimals, no minus (S5-R4/S12-R7). Estimate doc capture s14b. | FRESH VIU 2026-07-10: fee '$10.00' vs discount accounting '($5.00)' formats confirmed | WORDING+VIU 2026-07-13: CONFIRMED live: fee '$X.XX', discount '($X.XX)' in round brackets (est-15960.html: 'Flat fee $21,474,836.47' vs 'Falt discount ($21,474,836.47)').",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "FD-DOC-005",
@@ -1366,9 +1366,9 @@
   ],
   "design_ref": "requirements.md §6.2 (S5-R5/R6)",
   "viu_status": "VIU-Verified",
-  "notes": "VIU qb batch-1 (2026-07-08): Bottom 'Adjustments' block lists whole-WO adjustments one per row in creation order ('ZZAUTOTEST fee flat $11.00' then 'ZZAUTOTEST disc pct (% of subtotal) ($15.00)') with percentage phrases; flat has no phrase. | FRESH VIU 2026-07-10: bottom Adjustments block lists whole-WO adjustments in creation order (Flat fee -> WFee -> WDisc)",
+  "notes": "VIU qb batch-1 (2026-07-08): Bottom 'Adjustments' block lists whole-WO adjustments one per row in creation order ('ZZAUTOTEST fee flat $11.00' then 'ZZAUTOTEST disc pct (% of subtotal) ($15.00)') with percentage phrases; flat has no phrase. | FRESH VIU 2026-07-10: bottom Adjustments block lists whole-WO adjustments in creation order (Flat fee -> WFee -> WDisc) | WORDING+VIU 2026-07-13: CONFIRMED live: bottom 'Adjustments' block lists items in creation order; percentage items show '(% of subtotal)'. NOTE: this build lists line-level items in the same block too.",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "FD-DOC-006",
@@ -1387,13 +1387,13 @@
   ],
   "expected": [
    "1. The three same-named line-level fees are grouped into ONE row reading \"Shop Supply Fee (×3)\" with the total resolved amount.",
-   "2. Each of the three ALSO still shows inline under its own target line (S5-R8)."
+   "2. Each of the three ALSO still shows inline under its own target line."
   ],
   "design_ref": "requirements.md §6.2 (S5-R7/R8)",
   "viu_status": "VIU-Verified",
-  "notes": "Grouping is ONLY on the customer document; WO line table lists each one by one (Story 3). | VIU qb batch-1 (2026-07-08): Line-level adjustment DOES also appear in the bottom block as its own row (S5-R8 half verified); grouping with '(xN)' count needs >1 same-name line-level adjustments — pending. | FRESH VIU 2026-07-10: 3 same-name+type line fees grouped as '(×3) $24.00' in the bottom block AND shown inline per target",
+  "notes": "Grouping is ONLY on the customer document; WO line table lists each one by one (Story 3). | VIU qb batch-1 (2026-07-08): Line-level adjustment DOES also appear in the bottom block as its own row (S5-R8 half verified); grouping with '(xN)' count needs >1 same-name line-level adjustments — pending. | FRESH VIU 2026-07-10: 3 same-name+type line fees grouped as '(×3) $24.00' in the bottom block AND shown inline per target | WORDING+VIU 2026-07-13: Grouped '(×N)' rendering carried from prior VIU (single-item sample this run).",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "FD-DOC-007",
@@ -1414,9 +1414,9 @@
   ],
   "design_ref": "requirements.md §6.2 (S5-R6); §9.2 (S8-R22)",
   "viu_status": "VIU-Verified",
-  "notes": "VIU qb batch-1 (2026-07-08): Processing fee row on the estimate reads 'ZZAUTOTEST pfee (% of grand total) $6.68' — exact S8-R22 phrase. Shot s15-01. | FRESH VIU 2026-07-10: '(% of grand total)' phrase per batch evidence; pfee not seedable onto a money-bearing WO today (line-create 500 blocks a fresh WO with lines)",
+  "notes": "VIU qb batch-1 (2026-07-08): Processing fee row on the estimate reads 'ZZAUTOTEST pfee (% of grand total) $6.68' — exact S8-R22 phrase. Shot s15-01. | FRESH VIU 2026-07-10: '(% of grand total)' phrase per batch evidence; pfee not seedable onto a money-bearing WO today (line-create 500 blocks a fresh WO with lines) | WORDING+VIU 2026-07-13: '% of grand total' phrase carried (no live pfee on the sample WO).",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "FD-DOC-008",
@@ -1440,9 +1440,9 @@
   ],
   "design_ref": "requirements.md §6.3 (S14-R1)",
   "viu_status": "VIU-Verified",
-  "notes": "VIU qb batch-1 (2026-07-08): WO with $0.00 shop supplies: the estimate shows NO 'Shop supplies' row at all (Labor/Parts/Adjustments only) — S14-R1 on the estimate. Financial-tab/invoice variants pending. Shot s15-01. | FRESH VIU 2026-07-10: Shop Supplies section HIDDEN on the estimate when total is $0.00 (baseline S-15895)",
+  "notes": "VIU qb batch-1 (2026-07-08): WO with $0.00 shop supplies: the estimate shows NO 'Shop supplies' row at all (Labor/Parts/Adjustments only) — S14-R1 on the estimate. Financial-tab/invoice variants pending. Shot s15-01. | FRESH VIU 2026-07-10: Shop Supplies section HIDDEN on the estimate when total is $0.00 (baseline S-15895) | WORDING+VIU 2026-07-13: CONFIRMED live: Shop Supplies absent from the estimate when its total is $0.00 (est-15960.html has no Shop Supplies section).",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "FD-DOC-009",
@@ -1464,9 +1464,9 @@
   ],
   "design_ref": "requirements.md §6.3 (S14-R2)",
   "viu_status": "VIU-Verified",
-  "notes": "VIU qb batch-1 (2026-07-08): WO with shop supplies $27.83: 'Shop supplies $27.83' row IS rendered on the estimate (visible-when->0 behavior). | FRESH VIU 2026-07-10: prior (>0 reappears) stands; today's probe inert — parts-only WO computes shop supplies on labor, stayed $0",
+  "notes": "VIU qb batch-1 (2026-07-08): WO with shop supplies $27.83: 'Shop supplies $27.83' row IS rendered on the estimate (visible-when->0 behavior). | FRESH VIU 2026-07-10: prior (>0 reappears) stands; today's probe inert — parts-only WO computes shop supplies on labor, stayed $0 | WORDING+VIU 2026-07-13: Shop-Supplies-reappears carried from prior VIU.",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "FD-DOC-010",
@@ -1489,9 +1489,9 @@
   ],
   "design_ref": "requirements.md §7 (§5-R12)",
   "viu_status": "VIU-Verified",
-  "notes": "VIU qb batch-1 (2026-07-08): Declined-line $0.00 doc row pending (declined $0 resolution itself verified via API). | FRESH VIU 2026-07-10: prior batch-4 declined-line $0-render stands; decline flip blocked today (staged-parts lock)",
+  "notes": "VIU qb batch-1 (2026-07-08): Declined-line $0.00 doc row pending (declined $0 resolution itself verified via API). | FRESH VIU 2026-07-10: prior batch-4 declined-line $0-render stands; decline flip blocked today (staged-parts lock) | WORDING+VIU 2026-07-13: Declined-line $0-but-shows carried.",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "FD-DOC-011",
@@ -1512,9 +1512,9 @@
   ],
   "design_ref": "requirements.md §6.2 (S5-R5)",
   "viu_status": "VIU-Verified",
-  "notes": "VIU qb batch-1 (2026-07-08): Adjustments block position ok (after Labor/Parts/Shop supplies, before Subtotal -> GST -> Total). DEVIATION/BUG (FDBUG-1): Subtotal and Total do NOT include the adjustment amounts while GST DOES include their tax — estimate showed Subtotal $292.83 / GST $17.75 / Total $310.58 with +$62.25 net adjustments missing from the total; a fees-only WO showed 'Total $10.93' = tax alone. Customer-facing money is wrong. | RECON 2026-07-09 (spec-v1-reconciliation.md + PO answer sheet): FDBUG-1 GST-artifact-re-eval: batch-4 non-repro on estimates + GST framing -> needs US-tax repro. | FRESH VIU 2026-07-10: FDBUG-1 NOT REPRODUCED (3rd consecutive pass): document bottom block reads Subtotal $202.68 / GST (5%) $9.14 / Total $211.82 = EXACTLY the API values incl. all adjustments; block sits before Subtotal. Residual: re-word GST example to US sales tax (v1 scope)",
+  "notes": "VIU qb batch-1 (2026-07-08): Adjustments block position ok (after Labor/Parts/Shop supplies, before Subtotal -> GST -> Total). DEVIATION/BUG (FDBUG-1): Subtotal and Total do NOT include the adjustment amounts while GST DOES include their tax — estimate showed Subtotal $292.83 / GST $17.75 / Total $310.58 with +$62.25 net adjustments missing from the total; a fees-only WO showed 'Total $10.93' = tax alone. Customer-facing money is wrong. | RECON 2026-07-09 (spec-v1-reconciliation.md + PO answer sheet): FDBUG-1 GST-artifact-re-eval: batch-4 non-repro on estimates + GST framing -> needs US-tax repro. | FRESH VIU 2026-07-10: FDBUG-1 NOT REPRODUCED (3rd consecutive pass): document bottom block reads Subtotal $202.68 / GST (5%) $9.14 / Total $211.82 = EXACTLY the API values incl. all adjustments; block sits before Subtotal. Residual: re-word GST example to US sales tax (v1 scope) | WORDING+VIU 2026-07-13: CONFIRMED live: layout order is Labor → Parts → (Shop Supplies) → Adjustments → Subtotal → GST → Total; Subtotal INCLUDES the adjustments (FDBUG-1 not reproduced: Parts $396 + net adj $96,637,566.11 = Subtotal $96,637,962.11).",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "FD-QB-001",

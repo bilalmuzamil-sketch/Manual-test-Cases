@@ -312,3 +312,14 @@ whole-WO adjustments).
 | FD-PROC-014 | [C28532](https://shopview.testrail.io/index.php?/cases/view/28532) | VIU-Verified |
 
 **Push totals:** 14 updated · 0 no-op · 0 error.
+
+## Area: FD-DOC (Customer estimate/invoice) — 11 cases — TESTER-READY
+
+**VIU (fresh 2026-07-13):** generated the S3-15960 estimate live (POST /api/work-orders/
+invoices/estimate). CONFIRMED: amount format **fee '$X.XX' / discount '($X.XX)'** (round
+brackets, no minus); bottom **'Adjustments'** block in creation order with **'(% of subtotal)'**
+phrase on percentage items; **Shop Supplies hidden when $0.00**; layout **Labor → Parts →
+(Shop Supplies) → Adjustments → Subtotal → GST (5%) → Total**; **Subtotal INCLUDES adjustments**
+(FDBUG-1 not reproduced — Parts $396 + net adj $96,637,566.11 = Subtotal $96,637,962.11).
+Per-line ↳ rendering + '(×N)' grouping + '% of grand total' phrase carried from prior VIU.
+Stripped spec-ref jargon. All 11 VIU-Verified. Push: 11 updated · 0 error.
