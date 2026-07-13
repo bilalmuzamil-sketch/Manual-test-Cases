@@ -18,7 +18,7 @@
       "expected": "The edit control is shown and usable, because Invoicing & payments Create & Edit grants it even without Work orders Create & Edit."
     }
   ],
-  "viu_status": "Blocked-UI: the WO Financial Info card is present but no edit control was detected for either an Invoicing-C&E role or a view-only role on a PAID WO (balance $0, editing locked). Needs an open/unpaid WO with a balance to observe the C&E edit control.",
+  "viu_status": "Blocked-UI: on an open WO the Financial Info card shows an edit affordance, but the same generic WO-header edit affordance appears for BOTH an invoicing-C&E role and a WO-C&E-only (no invoicing) role — the invoicing-specific Financial Info edit control could not be isolated from general WO-edit affordances in the harness. Needs a real browser to confirm the invoicing-gated edit control specifically.",
   "evidence": "Reworded; element-id/SV jargon stripped.",
   "fresh_run": "2026-07-13",
   "behavioral_run": "2026-07-13"
