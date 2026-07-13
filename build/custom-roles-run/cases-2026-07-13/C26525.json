@@ -5,7 +5,8 @@
   "custom_preconds": "<ol>\n<li>A user is logged in.</li>\n<li>An administrator changes that user's role.</li>\n</ol>",
   "custom_steps": "<ol>\n<li>With the user logged in, change their role (as an administrator).</li>\n<li>Watch the user's session.</li>\n</ol>",
   "custom_expected": "<p>Changing the user's role logs the user out.</p>\n<p>The user must log in again, and the new role takes effect at the next login.</p>\n",
-  "viu_status": "Blocked-UI (needs two independent live sessions)",
-  "evidence": "Forced re-auth needs two live sessions; SSO makes single-browser isolation hard.",
-  "fresh_run": "2026-07-13"
+  "viu_status": "VIU-Verified",
+  "evidence": "UI/API: after an admin changed the Tech user role, the user existing session returned 409 \"Session has expired.\" on the next call — the role change logs the user out and forces re-login.",
+  "fresh_run": "2026-07-13",
+  "behavioral_run": "2026-07-13"
 }

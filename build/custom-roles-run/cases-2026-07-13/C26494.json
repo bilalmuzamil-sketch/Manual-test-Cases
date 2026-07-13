@@ -5,7 +5,8 @@
   "custom_preconds": "<ol>\n<li>A user has an active session.</li>\n</ol>",
   "custom_steps": "<ol>\n<li>An admin changes that user's role.</li>\n</ol>",
   "custom_expected": "<p>The user's next action sends them to the login page straight away.</p>\n",
-  "viu_status": "Blocked-UI (needs two live sessions)",
-  "evidence": "Needs two sessions.",
-  "fresh_run": "2026-07-13"
+  "viu_status": "VIU-Verified",
+  "evidence": "API/session: a logged-in user is logged out immediately when their role changes (session invalidated -> 409 on next request).",
+  "fresh_run": "2026-07-13",
+  "behavioral_run": "2026-07-13"
 }

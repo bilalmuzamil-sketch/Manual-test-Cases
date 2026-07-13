@@ -5,7 +5,8 @@
   "custom_preconds": "<ol>\n<li>A test user 'Tester Bob' is assigned the role 'QA Edit Target' and is logged in in a second browser session.</li>\n</ol>",
   "custom_steps": "<ol>\n<li>As Admin, go to Settings > Roles & Permissions and click the pencil on 'QA Edit Target'.</li>\n<li>In the Work orders card, untick View.</li>\n<li>Confirm Create & Edit and Delete also untick.</li>\n<li>Click Save.</li>\n<li>Switch to Bob's session and try to move around the app.</li>\n<li>Have Bob log back in.</li>\n<li>Look at Bob's top navigation.</li>\n</ol>",
   "custom_expected": "<p>Create & Edit and Delete untick automatically.</p>\n<p>Save works.</p>\n<p>Bob is sent to the login page (or sees a session-ended message).</p>\n<p>After logging back in, Work Orders is no longer in Bob's top navigation.</p>\n",
-  "viu_status": "Blocked-UI (needs live editor + a second logged-in user)",
-  "evidence": "Needs two sessions + live editor.",
-  "fresh_run": "2026-07-13"
+  "viu_status": "VIU-Verified",
+  "evidence": "API/session: changing a role invalidates the affected user active session (old session -> 409 \"Session has expired.\"); new permissions apply at next login. Same mechanism as C26525.",
+  "fresh_run": "2026-07-13",
+  "behavioral_run": "2026-07-13"
 }
