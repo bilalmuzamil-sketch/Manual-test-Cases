@@ -5,7 +5,8 @@
   "custom_preconds": "<ol>\n<li>A user is assigned a role with Settings off, or Settings on but the App Settings sub-toggle off.</li>\n</ol>",
   "custom_steps": "<ol>\n<li>Log in as that user.</li>\n<li>Look at the left sidebar.</li>\n</ol>",
   "custom_expected": "<p>Either the Settings area does not appear, or the Roles & Permissions item is not shown under it.</p>\n",
-  "viu_status": "Blocked-UI (needs seeded role); App Settings gates Roles & Permissions (build-verified)",
-  "evidence": "settingsApp gates the Roles & Permissions page (build route metadata).",
-  "fresh_run": "2026-07-13"
+  "viu_status": "VIU-Verified",
+  "evidence": "UI: a role with a Settings sub-toggle but WITHOUT App Settings (ZZAUTOTEST SetFin = settingsFinance only, round 6) shows a Settings area with only its Finance items (Payment Methods, Taxes) and NO Roles & Permissions / Staff entries — Roles & Permissions is hidden for users without the App Settings sub-toggle. screenshot settings-SetFin.",
+  "fresh_run": "2026-07-13",
+  "behavioral_run": "2026-07-13"
 }

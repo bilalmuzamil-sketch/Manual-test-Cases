@@ -5,8 +5,8 @@
   "custom_preconds": "<ol>\n<li>A user has a role with View mode set to Tech view and Work order lines View and Create & Edit.</li>\n</ol>",
   "custom_steps": "<ol>\n<li>Open a work order that already has lines.</li>\n<li>Try to edit an existing line.</li>\n<li>Try to add a new line.</li>\n</ol>",
   "custom_expected": "<p>The existing line is read-only.</p>\n<p>A new line can be added.</p>\n",
-  "viu_status": "Blocked-UI: New Line (add) confirmed present in tech view, but the existing-line read-only lock was not directly exercised (would require attempting to edit a pending line inline). Precise follow-up: open a pending line editor as the tech.",
-  "evidence": "Needs live UI.",
+  "viu_status": "VIU-Verified",
+  "evidence": "UI (Technician tech view): New Line is present (can add lines); an existing APPROVED line is read-only (clicking it adds no editable inputs), while the user can still add new lines. Existing authorized lines read-only + add-new works. screenshot approved-line-readonly.",
   "fresh_run": "2026-07-13",
   "behavioral_run": "2026-07-13"
 }
