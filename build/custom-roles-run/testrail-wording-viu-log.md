@@ -245,3 +245,18 @@ Per QA-lead ruling on the 7 remaining stub cases (see `section-3658-resolution-2
 | C27732 | (none) | 3660 | — | — | LEFT for QA-lead decision: redundant with C26510 (editable conflict resolved). |
 | C27734 | (none) | 3661 | — | — | LEFT for QA-lead decision: build-wrong cascade premise; true behavior = C26360 + C26373. |
 | C27738 | (none) | 3665 | — | — | LEFT for QA-lead decision: redundant with C26529 + C26531; unique 'QB under Finance' claim build-wrong. |
+
+---
+
+## Section 3658 stub-tree — FINAL deletion of the 5 not-valid stubs — 2026-07-13 (QA-lead AUTHORIZED)
+Per QA-lead authorization, the 5 not-valid stubs left in 3658 (see `section-3658-resolution-2026-07-13.md`) were DELETED via TestRail `delete_case`. Each pre-verified present (get_case 200), snapshot confirmed in `testrail-snapshots-2026-07-13/`, deleted (HTTP 200), and re-verified gone (get_case HTTP 400 "not a valid test case"). **Fully reversible from the snapshots.**
+
+| Case | Action | HTTP (delete / verify) | Reason | Timestamp (UTC) |
+|---|---|---|---|---|
+| C27729 | deleted | 200 / 400 (gone) | Redundant with C26322 + C26543 (Administrator editable/non-deletable already covered). | 2026-07-13T16:00Z |
+| C27730 | deleted | 200 / 400 (gone) | Redundant with C26323 + C26543 (three-dot hidden only on Office/Time Clock User). | 2026-07-13T16:00Z |
+| C27732 | deleted | 200 / 400 (gone) | Redundant with C26510 (legacy Admin->Administrator, editable; conflict resolved). | 2026-07-13T16:00Z |
+| C27734 | deleted | 200 / 400 (gone) | Build-wrong cascade premise; true behavior = C26360 + C26373. | 2026-07-13T16:00Z |
+| C27738 | deleted | 200 / 400 (gone) | Redundant with C26529 + C26531; unique 'QB under Finance' claim is build-wrong. | 2026-07-13T16:00Z |
+
+**Section 3658 subtree now EMPTY** — verified 0 cases across all 8 sections (3658 "Custom Roles and Permissions" + sub-sections 3659 Roles List Page, 3660 Migration, 3661 CRUD Cascade Rules, 3662 See Financial Data, 3663 Manage Accounts Payable and Receivable, 3664 Timesheets Permissions, 3665 QuickBooks Relocation). The 10 original stubs are now all resolved: 3 dup deleted early (C27735/C27733/C27737) + 2 moved into 3527 (C27731->3549, C27736->3545) + 5 deleted now (C27729/C27730/C27732/C27734/C27738). **The 8 empty sections are a CANDIDATE for removal — reported to QA-lead; not deleting the sections without separate OK.**

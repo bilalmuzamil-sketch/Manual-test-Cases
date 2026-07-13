@@ -20,14 +20,29 @@ This workspace/chat serves **THREE separate projects**. Keep their memory
 genuinely helpful** (e.g. the staging access method + testing harness apply to
 all).
 
-1. **Custom Roles project** — Custom Roles & Permissions (ShopView).
-   **CANONICAL RUN-331 RESUME DOC (read first to resume the run-331 re-test):**
-   `build/custom-roles-run/RUN331-STATE.md` — the single authoritative snapshot of
-   the run 331 ("Nightly Test Run - Jul 9 2026", 160 cases vs the 09-Jul spec) effort
-   (final tally 96P/4F/10B/50R/0U; 3 master-case edits + 16 flagged; findings; retest/
-   blocked resume detail; env/endpoints; how-to-resume). Existing memory: this
-   CLAUDE.md's detail sections, `build/TESTING-RUNBOOK.md`,
-   `build/APP-ACTIONS-PLAYBOOK.md`, `build/custom-roles-run/*`,
+1. **Custom Roles project** — Custom Roles & Permissions (ShopView), Epic
+   **SV-7388**, STAGING. **CANONICAL WORDING+VIU RESUME DOC (read first to resume the
+   wording/VIU effort):** `build/custom-roles-run/WORDING-VIU-STATE-2026-07-13.md` —
+   the single authoritative snapshot of the 2026-07-13 build-accurate wording + VIU
+   pass (final tally, 38–39 manual/2nd-user residue, 11 dev deviations, deliverables
+   index, env/access, how-to-resume). **STATUS: DONE 2026-07-13 — full build-accurate
+   WORDING pass pushed to TestRail (252 update_case on the core suite, all 200/200) +
+   boot2 behavioral VIU across 8 rounds (RUN331 headless blocker overcome) +
+   section-3658 stub tree FULLY RESOLVED (3 dup deleted early + 2 moved into 3527
+   [C27731→3549, C27736→3545] + 5 stubs deleted [C27729/30/32/34/38, QA-lead
+   authorized]; section 3658 subtree 3658–3665 now EMPTY = candidate for section
+   removal, not deleted).** Final tally (254 cases): **VIU-Verified 204 / Blocked-UI
+   39 / Deviation 11.** Local case source now exists (first time for Custom Roles):
+   `build/custom-roles-run/cases-2026-07-13/*.json` (254 bodies, carry
+   `viu_status`/`section_id`; NO testrail-id-map.csv — filename = C<id>). Env note:
+   staging org is SHARED and **Tech is currently DRIFTED on Technician — reset to Time
+   Clock User `a0359055-3dfb-4e9c-9e11-2fbea21585c2` before any negative retest**
+   (old `77b069d1-...` is wrong). **CANONICAL RUN-331 RESUME DOC (for the earlier
+   run-331 re-test):** `build/custom-roles-run/RUN331-STATE.md` (final tally
+   96P/4F/10B/50R/0U). Existing memory: this CLAUDE.md's detail sections,
+   `build/TESTING-RUNBOOK.md`, `build/APP-ACTIONS-PLAYBOOK.md`,
+   `build/custom-roles-run/*` (WORDING-VIU-STATE / Blockers Tracker / WordingVIU
+   workbook / section-3658-resolution / testrail-wording-viu-log),
    `build/custom-roles-spec-update/*`, TestRail section **3527** / runs **312** & **331**.
 2. **Fees and Discount project** — Fees & Discounts V1 (ShopView). **CANONICAL
    STATE DOC (read first for resume):** `build/fees-discounts/PROJECT-STATE.md` —

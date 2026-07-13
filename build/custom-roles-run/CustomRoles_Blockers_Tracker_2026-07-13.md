@@ -2,9 +2,9 @@
 
 Per-case status source: `cases-2026-07-13/*.json`. Workbook: `CustomRoles_WordingVIU_2026-07-13.xlsx` (Case ID + clickable TestRail Link, Rule 8).
 
-## FINAL TALLY (252 core cases): VIU-Verified 203 · Blocked-UI 38 · Deviation/Finding 11
+## FINAL TALLY (254 cases = 252 core sections 3528–3553 + 2 moved-in stubs): VIU-Verified 204 · Blocked-UI 39 · Deviation/Finding 11
 
-Behavioral VIU driven headless via boot2 across 8 rounds. Of the original 214 Blocked-UI (wording already done + pushed to TestRail), 176 resolved (Verified/Deviation); 38 remain as genuine harness/environment residue for manual or second-real-user coverage. **No TestRail writes in the behavioral pass.**
+Behavioral VIU driven headless via boot2 across 8 rounds. Of the original 214 Blocked-UI (wording already done + pushed to TestRail), 176 resolved (Verified/Deviation); 38 remain as genuine harness/environment residue for manual or second-real-user coverage (39 incl. the moved-in C27731). **No TestRail writes in the behavioral pass.** The 2 stubs moved into 3527 (C27731 Blocked-UI, C27736 VIU-Verified) are folded into this tally (203+1=204 Verified via C27736; 38+1=39 Blocked-UI via C27731).
 
 ## Deviations / build-findings (route to dev / product)
 
@@ -100,8 +100,8 @@ Per-case precise reason is in each `cases-2026-07-13/C*.json` `viu_status`. Grou
 - `/tmp/custom-roles/beh0713/` (adm/boot2/assign/mkrole-api/setstatus + permmap.json). Assign Tech via /api/staff/{6fb22c1b-...}/change; boot2('tech'); restore Time Clock a0359055-....
 - GOTCHAs: /parts/part-sales direct-goto redirect (use in-app nav-click); /roles-permissions/{id}/edit route unguarded (FE-gap).
 
-## Section 3658 resolution — 2 stubs moved into 3527 sub-sections (2026-07-13)
-Per QA-lead ruling: valid stubs moved into the right 3527 sub-section + reworded build-accurate + pushed. 5 left in 3658 for QA-lead decision (see section-3658-resolution-2026-07-13.md).
+## Section 3658 resolution — FULLY RESOLVED (2026-07-13)
+Per QA-lead ruling: valid stubs moved into the right 3527 sub-section + reworded build-accurate + pushed. **The 5 not-valid stubs (C27729, C27730, C27732, C27734, C27738) were DELETED via delete_case (QA-lead authorized) — each verified gone (get_case HTTP 400), snapshots retained in testrail-snapshots-2026-07-13/ (reversible).** Section 3658 subtree (3658–3665) is now EMPTY (0 cases) — candidate for section removal (reported to QA-lead; sections not deleted). Original 10 stubs = 3 dup deleted early + 2 moved + 5 deleted now. See section-3658-resolution-2026-07-13.md.
 
 | Case | Link | Moved to | Bucket | Note |
 |---|---|---|---|---|

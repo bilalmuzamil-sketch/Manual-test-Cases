@@ -10,11 +10,19 @@ no real steps / fully redundant / build-wrong) in 3658 and report it for a decis
 
 ## Outcome summary
 - **MOVED + reworded + pushed (VALID): 2** — C27731 -> 3549, C27736 -> 3545.
-- **LEFT in 3658 for QA-lead decision (NOT valid): 5** — C27729, C27730, C27732,
-  C27734, C27738.
-- **TestRail status:** 2 `move_cases_to_section` (HTTP 200, sections re-verified),
-  2 `update_case` (HTTP 200, re-verified 200/200). No case deleted. The 5 left-behind
-  cases were **not touched** in TestRail.
+- **DELETED (NOT valid, QA-lead AUTHORIZED 2026-07-13): 5** — C27729, C27730,
+  C27732, C27734, C27738. Each pre-verified present (get_case 200), snapshot
+  confirmed, deleted via `delete_case` (HTTP 200), re-verified gone (get_case HTTP
+  400). Reversible from `testrail-snapshots-2026-07-13/`.
+- **TestRail status:** 2 `move_cases_to_section` (HTTP 200) + 2 `update_case` (HTTP
+  200, re-verified 200/200) + 5 `delete_case` (HTTP 200, each verified gone).
+- **Section 3658 subtree (3658 "Custom Roles and Permissions" + sub-sections
+  3659–3665) is now EMPTY** (0 cases across all 8 sections) — CANDIDATE for section
+  removal; reported to QA-lead, sections NOT deleted without separate OK.
+
+> UPDATE 2026-07-13: The "LEFT in 3658 for QA-lead decision" section below was the
+> pre-authorization state. All 5 have since been DELETED per QA-lead authorization
+> (see the audit log `testrail-wording-viu-log.md`). Retained below for rationale.
 
 ---
 

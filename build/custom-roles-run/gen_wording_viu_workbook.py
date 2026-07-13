@@ -56,10 +56,9 @@ for r in rows: by_area[r['area']][r['bucket']]+=1
 # Summary
 ws=wb.active; ws.title='Summary'
 ws.append(['Custom Roles — Build-Accurate Wording + VIU — 2026-07-13']); ws['A1'].font=Font(bold=True,size=14)
-ws.append([]); ws.append(['TestRail push: all 252 core cases (sections 3528–3553) updated via update_case, 200/200, 0 errors (wording pass).'])
+ws.append([]); ws.append(['TestRail push: all 252 core cases (sections 3528–3553) updated via update_case, 200/200, 0 errors (wording pass); + 2 valid stubs moved into 3527 and reworded/pushed = 254 cases total in this workbook.'])
 ws.append(['BEHAVIORAL VIU PASS 2026-07-13: role editor SPA driven headless via boot2 — CRUD cascades, all confirm dialogs, roles list, create/edit/delete flows verified live. No TestRail writes in the behavioral pass (local viu_status/evidence only).'])
-ws.append(['Section 3658 dedupe: 3 duplicates deleted (C27735, C27733, C27737).'])
-ws.append(['Section 3658 resolution 2026-07-13: 2 valid stubs MOVED into 3527 sub-sections + reworded/pushed (C27731->3549 Migration, C27736->3545 View and Manage AP/AR Data); 5 left in 3658 for QA-lead decision (C27729, C27730, C27732, C27734, C27738 - redundant or build-wrong). See section-3658-resolution-2026-07-13.md.'])
+ws.append(['Section 3658 stub tree FULLY RESOLVED 2026-07-13: original 10 stubs = 3 duplicates deleted early (C27735, C27733, C27737) + 2 valid stubs MOVED into 3527 sub-sections + reworded/pushed (C27731->3549 Migration, C27736->3545 View and Manage AP/AR Data) + 5 not-valid stubs DELETED (C27729, C27730, C27732, C27734, C27738 - redundant or build-wrong, QA-lead authorized). Section 3658 subtree (3658–3665) now EMPTY. See section-3658-resolution-2026-07-13.md.'])
 ws.append([])
 ws.append(['Bucket','Count']); 
 for c in ws[ws.max_row]: c.fill=hdr_fill; c.font=hdr_font
