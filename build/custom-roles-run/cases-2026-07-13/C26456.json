@@ -5,7 +5,8 @@
   "custom_preconds": "<ol>\n<li>A user has a role with View mode set to Tech view and Work order lines View and Create & Edit.</li>\n</ol>",
   "custom_steps": "<ol>\n<li>Open a work order and click into a line to edit.</li>\n<li>Look for a tech time input field.</li>\n</ol>",
   "custom_expected": "<p>No tech time input field is shown on the lines for this user.</p>\n",
-  "viu_status": "Blocked-UI (needs seeded Tech-view role)",
-  "evidence": "Needs live UI.",
-  "fresh_run": "2026-07-13"
+  "viu_status": "VIU-Verified",
+  "evidence": "UI (tech view): no tech-time input field rendered on the WO lines for this user (0 tech-time inputs found).",
+  "fresh_run": "2026-07-13",
+  "behavioral_run": "2026-07-13"
 }

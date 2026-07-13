@@ -4,8 +4,9 @@
   "title": "Tech view: the 'Send to Portal' button is hidden",
   "custom_preconds": "<ol>\n<li>A user has a role with View mode set to Tech view, the Customer portal toggle ON, and Review work orders ON.</li>\n</ol>",
   "custom_steps": "<ol>\n<li>Log in as that user.</li>\n<li>Open a work order that has a line eligible to send to the portal.</li>\n<li>Look for a Send to Portal button on the work order and on the line.</li>\n<li>Check the work order header, the action menu, and the line-level actions.</li>\n</ol>",
-  "custom_expected": "<p>The Send to Portal button is not shown anywhere on the work order \u2014 not in the header, on the line, or in the action menus.</p>\n",
-  "viu_status": "Blocked-UI (needs seeded Tech-view role)",
-  "evidence": "Send-to-Portal gating by view mode needs live UI.",
-  "fresh_run": "2026-07-13"
+  "custom_expected": "<p>The Send to Portal button is not shown anywhere on the work order — not in the header, on the line, or in the action menus.</p>\n",
+  "viu_status": "VIU-Verified",
+  "evidence": "UI (tech view): the Send to Portal button is not shown anywhere on the work order (header, line, or action menus).",
+  "fresh_run": "2026-07-13",
+  "behavioral_run": "2026-07-13"
 }

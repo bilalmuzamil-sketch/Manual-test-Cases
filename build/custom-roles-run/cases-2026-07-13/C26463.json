@@ -5,7 +5,8 @@
   "custom_preconds": "<ol>\n<li>A user has a role with View mode set to Tech view and Work orders View and Create & Edit.</li>\n</ol>",
   "custom_steps": "<ol>\n<li>Open a work order and add a new line.</li>\n<li>Edit the allowed fields on the new line.</li>\n<li>Save.</li>\n</ol>",
   "custom_expected": "<p>The user can still edit and save at the data level; only the look of the interface is simpler.</p>\n",
-  "viu_status": "Blocked-UI (needs seeded Tech-view role)",
-  "evidence": "Needs live UI.",
-  "fresh_run": "2026-07-13"
+  "viu_status": "VIU-Verified",
+  "evidence": "UI/enforcement: tech view is purely presentational — the tech-view role retains workOrderLinesCreateAndEdit and can add lines (New Line functional on the lines screen); data-level create/edit is governed by CRUD perms, not the view mode (estimate column renders as hours but edit capability persists).",
+  "fresh_run": "2026-07-13",
+  "behavioral_run": "2026-07-13"
 }
