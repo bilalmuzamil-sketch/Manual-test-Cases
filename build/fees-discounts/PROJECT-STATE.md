@@ -73,9 +73,25 @@ QA-lead-authorized combined pass (Standing Rule 9): rewrite Title/Preconditions/
 to the EXACT on-screen build labels (captured live from `qb.qa.shopview.com`) in plain layman
 language, VIU-verify behavior, push corrected wording to TestRail (update_case only), area by area.
 
-- **6 areas / 44 cases now TESTER-READY** (wording-corrected + VIU'd + pushed to TestRail,
-  all 200/200): **FD-WO (16), FD-FIN (5), FD-INLINE (5), FD-STATS (5), FD-REMOVE (3),
-  FD-EDIT (3), FD-VAL (7)** — the whole Work-Order Lines + Add/Edit-fee/discount surface.
+- **ALL 15 functional areas / 183 cases now wording-corrected + VIU'd + pushed to TestRail
+  (all update_case 200/200, 0 errors across the whole pass):** FD-WO(16), FD-FIN(5),
+  FD-INLINE(5), FD-STATS(5), FD-REMOVE(3), FD-EDIT(3), FD-VAL(7), FD-STACK(3), FD-CALC(17),
+  FD-TMPL(17), FD-CUST(17), FD-LABOR(7), FD-PART(8), FD-PROC(14), FD-DOC(11), FD-PCOL(7),
+  FD-FLAG(3), FD-HIST(8), FD-PERM(11), FD-QB(16). Roles matrix re-derived live before FD-HIST/
+  FD-PERM (`roles-matrix-2026-07-13.md`).
+- **FINAL TALLY (Blockers Tracker, 2026-07-13): 130 VIU-Verified / 20 VIU-Deviation / 12
+  Blocked-NotBuilt / 20 Blocked-Env / 1 VIU-Pending = 183.** (Deviation sub: 5 code-bug + 3
+  PO-question + 12 case-update; Not-Built: Story 8 pfee builder ×4 + Story 11 Part Sales ×8;
+  Env: 14 QuickBooks + 6 flag-off/shared-env; Pending: FD-PART-005.)
+- **Notable NEW live findings this pass:** template admin is under **FINANCE → Fees & Discounts**
+  (not "Service, below Canned Lines"); the BE accepts `processing_fee`/rejects pfee min/max cap +
+  disallowed method (exact messages captured); the estimate Subtotal INCLUDES adjustments (FDBUG-1
+  not reproduced); the §5-R15 jurisdiction note is ABSENT (FD-WO-016); menu options are
+  Edit/Remove (not Delete); Remove confirm 'Remove Fee / Discount' / 'Are you sure you want to
+  remove this fee?'; history UI 'Work Order Log' renders 'Fee added'. Technician DRIFTED (now has
+  WO/Lines Create&Edit) → WO-C&E/Lines-C&E permission NEGATIVES not testable here.
+
+**(Superseded) earlier 6-area checkpoint note:**
 - **Live-captured build glossary:** `wording-glossary-2026-07-13.md`; screenshots in
   `screenshots/wording-2026-07-13/`; per-case audit `testrail-wording-viu-log.md`.
 - **Notable build terms that differed from our older wording (now corrected):** ⋯ menu item
