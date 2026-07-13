@@ -67,6 +67,40 @@ V1_2 edits were applied to the **LOCAL case files** (`cases/*.json`) and require
 - **TestRail push for this V1_2 batch:** authorized by the QA lead on 2026-07-13 — see the
   per-case audit log `testrail-v1_2-push-log.md`.
 
+### 0.0a WORDING+VIU PASS 2026-07-13 (newest event — build-accurate + layman for a new manual tester)
+
+QA-lead-authorized combined pass (Standing Rule 9): rewrite Title/Preconditions/Steps/Expected
+to the EXACT on-screen build labels (captured live from `qb.qa.shopview.com`) in plain layman
+language, VIU-verify behavior, push corrected wording to TestRail (update_case only), area by area.
+
+- **6 areas / 44 cases now TESTER-READY** (wording-corrected + VIU'd + pushed to TestRail,
+  all 200/200): **FD-WO (16), FD-FIN (5), FD-INLINE (5), FD-STATS (5), FD-REMOVE (3),
+  FD-EDIT (3), FD-VAL (7)** — the whole Work-Order Lines + Add/Edit-fee/discount surface.
+- **Live-captured build glossary:** `wording-glossary-2026-07-13.md`; screenshots in
+  `screenshots/wording-2026-07-13/`; per-case audit `testrail-wording-viu-log.md`.
+- **Notable build terms that differed from our older wording (now corrected):** ⋯ menu item
+  **'Add Fee/Discount'** (was "Add Work Order Fee / Discount"); dialog **'Add new fee/discount'**
+  (was "New Fee / Discount"); **'Apply From Template'**; Calculation Type options are exactly
+  **Flat Amount / % of Labor Total / % of Parts Total / % of Subtotal** (no "Percentage", no
+  "% of Grand Total"); amount field **'$ Amount'** vs **'Percent %'**; **'$ Max Amount (Optional)'**
+  (% only); **'Taxable' is a toggle** (not a dropdown); sidebar card **'WO Fees & Discounts'**
+  (was "Work Order Fee / Discount"); ⋮ menu options **'Edit' / 'Remove'** (was "Edit/Delete");
+  Remove confirm **'Remove Fee / Discount' / 'Are you sure you want to remove this fee?'**;
+  Edit dialog **'Edit Fee / Discount'** with Type + Calculation Type **locked** and a **'Save'**
+  button; preview empty prompt **'Enter an amount to see the impact.'**
+- **New/confirmed findings this pass:** FD-WO-016 — the §5-R15 tax-jurisdiction note is **NOT
+  shown** below the Taxable toggle (checked Flat Amount + % of Subtotal) → flipped to
+  VIU-Deviation. Re-confirmed live: BUG-FD-4 (Add button enabled on empty form; FD-WO-005 /
+  FD-VAL-001). Flipped to Verified after wording match: FD-WO-001, FD-FIN-004, FD-REMOVE-001.
+- **Tally after this pass (from the Blockers Tracker / cases):** **112 VIU-Verified / 30
+  VIU-Deviation / 12 Blocked-NotBuilt / 18 Blocked-Env / 11 VIU-Pending = 183.** Deliverables
+  regenerated (`gen_blockers.py`, `gen_import.py`, `gen_fresh_viu_workbook.py`).
+- **REMAINING areas for the wording+VIU pass (not yet done — need their own screen captures /
+  a re-derived roles matrix):** FD-LABOR, FD-PART, FD-CALC, FD-TMPL, FD-CUST, FD-PROC, FD-DOC,
+  FD-HIST, FD-PERM, FD-FLAG, FD-QB, FD-PCOL. Resume checkpoint = the committed `cases/*.json`
+  `fresh_run:2026-07-13` + `testrail-wording-viu-log.md` (skip areas already logged tester-ready).
+- **Chris Ward's Round-2 answers STILL BLANK** — §0.1 action map unchanged.
+
 ### 0.1 Waiting on: Chris Ward's answers to `PO-Questions-Round2.xlsx` (4 questions)
 
 - **What was sent:** `build/fees-discounts/PO-Questions-Round2.xlsx` (+ `.md`;
