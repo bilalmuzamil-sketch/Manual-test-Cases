@@ -222,3 +222,37 @@ no-op, 200/OK, 0 errors.** **TESTER-READY.**
 **Summary:** 16 cases · VIU-Verified 5 · VIU-Pending 4 · Blocked-Env 6 ·
 Open-Question 1. TestRail: **14 updated + 1 no-op, 200/OK, 0 errors** (SF-QB-09
 skipped — no C-ID). **SF-VMIS tester-ready; SF-QB QB-internals genuinely blocked.**
+
+---
+
+## Relevance-fix re-VIU (2026-07-13) — the 3 missed "Complete & Send to Review" label cases
+
+Spec-relevance audit (`spec-relevance-audit-2026-07-13.md`) flagged 3 cases still
+carrying the stale CTA label **"Complete & Send to Review"**. Re-VIU'd LIVE on
+sv7301 (admin; Require Review ON; WOs S2-15827 [part-bearing, all lines approved],
+S2-15783 [part-bearing, one unapproved line], S2-15823). No settings change (review
+was already ON); Tech never switched. Evidence in
+`screenshots/relevance-fix-2026-07-13/`.
+
+**Build-accurate CTA labels captured live:**
+- The primary action button (Require Review ON) = **"Send To Review"** on BOTH ready
+  and part-bearing work orders — it replaces "Complete Work Order".
+- For a part-bearing WO, clicking "Send To Review" opens a dialog **HEADED
+  "Complete & Send to Review"** (exact header text confirmed), body "N part waiting to
+  receive / Clicking 'Receive Parts' will take you to the purchase order page",
+  buttons **Cancel / Receive Parts / Send To Review**. So "Complete & Send to Review"
+  is the review-dialog HEADER, not the button; the clickable CTA is **"Send To Review"**.
+- With an unapproved line, the **"Send To Review" button is DISABLED** (isDisabled=true)
+  until every line is approved.
+
+**Cases corrected + pushed (update_case, GET→diff→update→re-verify):**
+- **SF-REV-02 (C29387)** — title retitled to "Send To Review"; steps reworded; expected #2
+  corrected (part-bearing WO does NOT read "Complete Work Order" — it opens the
+  "Complete & Send to Review" dialog). UPDATED [title, custom_steps, custom_expected] verify=200/OK.
+- **SF-REV-05 (C29390)** — step 1 "Click Complete & Send to Review" → "Click Send To Review";
+  precondition clarified. UPDATED [custom_preconds, custom_steps] verify=200/OK.
+- **SF-REV-13 (C29398)** — step 1 label corrected; title + expected made build-accurate
+  (the "Send To Review" button is DISABLED while a line is unapproved). UPDATED
+  [title, custom_steps, custom_expected] verify=200/OK.
+
+**Summary:** 3 cases · TestRail **3 updated / 0 no-op / 0 failed, all verify 200/OK.**

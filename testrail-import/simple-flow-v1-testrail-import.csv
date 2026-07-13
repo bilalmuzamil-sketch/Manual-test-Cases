@@ -649,11 +649,11 @@ Verify the Require Review setting drives the review flow when turned on,Review O
 2. Require Review Before Completion is ON and saved.","1. Open a work order with approved lines.
 2. Start completion.
 3. Observe that the review flow is used.","1. With Require Review ON, completing routes into the review flow rather than completing directly.",SV-7870 (R1),,
-Verify the completion CTA relabels to 'Complete & Send to Review' when review is on,Review ON (Story 16),Functional,High,"1. Signed in as Admin.
+Verify the completion action reads 'Send To Review' when Require Review is on,Review ON (Story 16),Functional,High,"1. Signed in as Admin.
 2. Require Review is ON.
-3. A work order with approved lines is ready to complete.","1. Click Complete Work Order.
-2. Read the wizard's primary CTA label.","1. With Require Review Before Completion ON, a ready work order's primary action button reads 'Send To Review' (it replaces 'Complete Work Order').
-2. For a work order that still has parts to order or receive, the button reads 'Complete Work Order' and opens the completion wizard first.",SV-7870 (R2),,
+3. A work order with approved lines is ready to complete.","1. Open a work order that is ready to complete, with Require Review Before Completion turned on.
+2. Read the primary action button on the work order (and, for a work order that still has parts to receive, the heading of the dialog that opens).","1. With Require Review Before Completion ON, a ready work order's primary action button reads 'Send To Review' (it replaces 'Complete Work Order').
+2. For a work order that still has parts waiting to receive, clicking 'Send To Review' opens a dialog headed 'Complete & Send to Review' that shows how many parts are waiting to receive and offers 'Receive Parts' and 'Send To Review'.",SV-7870 (R2),,
 Verify the Details step collects only mileage and engine hours when review is on (VIN captured later by reviewer),Review ON (Story 16),Functional,Medium,"1. Signed in as Admin.
 2. Require Review is ON.
 3. A work order missing mileage/hours/VIN is ready to complete.","1. Start completion and reach the Details step.
@@ -663,7 +663,7 @@ Verify 'Receive Parts' routes to the shared receive page (no inline modal) in th
 2. Require Review is ON with a part-bearing work order.","1. Start completion and click Receive Parts.
 2. Observe the destination.",1. Receive Parts opens the shared receive page (not an inline modal).,SV-7870 (R4),,
 Verify Send to Review moves the WO to Review (amber) with a 'Ready for Review' banner and locks lines to Complete,Review ON (Story 16),Functional,Critical,"1. Signed in as Admin.
-2. Require Review is ON and a work order with approved lines is in the completion wizard.","1. Click Complete & Send to Review.
+2. Require Review is ON and a work order with approved lines is ready to send to review (for a work order with parts still to receive, the 'Complete & Send to Review' dialog is open).","1. Click Send To Review (the primary action button, or the 'Send To Review' button in the 'Complete & Send to Review' dialog for a part-bearing work order).
 2. Observe the work order status and banner.
 3. Check the lines state and inventory pick state.","1. The work order status becomes Review (amber).
 2. A 'Ready for Review' / 'Sent for review' indication is shown.
@@ -683,7 +683,7 @@ Verify Confirm Review signs off and completes the work order directly (no distin
 2. A work order is in Review with the Mark Reviewed dialog filled (VIN present).","1. Click Confirm Review.
 2. Observe the resulting work order state.
 3. Look for a separate final 'Complete Work Order' action.","1. After Confirm Review the sign-off completes and the work order moves directly Review -> Complete.
-2. There is no distinct 'Reviewed' holding state and no separate final 'Complete Work Order' click.",SV-7870 (R5 / R8 (distinct Reviewed state)),,
+2. There is no distinct 'Reviewed' holding state and no separate final 'Complete Work Order' click.","SV-7870 (R5 / R8 (direct sign-off, no separate Complete))",,
 Verify Mark Reviewed is gated by the Review Work Orders permission and disabled for a role without it,Review ON (Story 16),Functional,High,"1. A role with Review Work Orders and a role without it both exist.
 2. A work order is in Review state, sent to review by a known user.","1. Sign in as a role without Review Work Orders and open the work order in Review.
 2. Confirm Mark Reviewed is disabled with 'Awaiting review'.
@@ -705,9 +705,9 @@ Verify a 'Ready for Review' list filter/column surfaces the reviewer queue,Revie
 2. At least one work order is in Review state.","1. Open the Work Orders list.
 2. Look for a 'Ready for Review' filter or column.
 3. Confirm work orders in Review appear in it.",1. A 'Ready for Review' filter/column lists work orders awaiting review.,SV-7870 (R9),,
-Verify all lines must be approved to Send to Review (existing approve-line error),Review ON (Story 16),Functional,Medium,"1. Signed in as Admin.
-2. Require Review is ON and a work order has one unapproved line.","1. Click Complete & Send to Review.
-2. Attempt to send with an unapproved line.",1. Send to Review is blocked with the existing approve-line error while any line is unapproved.,SV-7870 (R11),,
+Verify all lines must be approved before Send To Review (the 'Send To Review' action is disabled until every line is approved),Review ON (Story 16),Functional,Medium,"1. Signed in as Admin.
+2. Require Review is ON and a work order has one unapproved line.","1. Open the work order and locate the 'Send To Review' action while a line is still unapproved.
+2. Attempt to use Send To Review with the unapproved line.",1. The 'Send To Review' action cannot be used while any line is unapproved - the 'Send To Review' button is disabled until every line has been approved.,SV-7870 (R11),,
 Verify cores are resolved per rules before sign-off and invoicing is blocked until both Reviewed and all cores resolved,Review ON (Story 16),Functional,Medium,"1. Signed in as Admin.
 2. Require Review is ON and a work order has inventory and special-order cores.","1. Resolve inventory cores in the completion modal (after Pick) before Send to Review.
 2. For required-invoice, resolve special-order cores after the Receive round-trip before Send to Review; for optional-invoice, resolve at the Create Invoice gate after sign-off.

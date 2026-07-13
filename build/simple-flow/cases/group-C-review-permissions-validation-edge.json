@@ -29,7 +29,7 @@
   "id": "SF-REV-02",
   "area": "Review ON (Story 16)",
   "story_ref": "R2",
-  "title": "Verify the completion CTA relabels to 'Complete & Send to Review' when review is on",
+  "title": "Verify the completion action reads 'Send To Review' when Require Review is on",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "Work Order edit access.",
@@ -39,16 +39,16 @@
    "3. A work order with approved lines is ready to complete."
   ],
   "steps": [
-   "1. Click Complete Work Order.",
-   "2. Read the wizard's primary CTA label."
+   "1. Open a work order that is ready to complete, with Require Review Before Completion turned on.",
+   "2. Read the primary action button on the work order (and, for a work order that still has parts to receive, the heading of the dialog that opens)."
   ],
   "expected": [
    "1. With Require Review Before Completion ON, a ready work order's primary action button reads 'Send To Review' (it replaces 'Complete Work Order').",
-   "2. For a work order that still has parts to order or receive, the button reads 'Complete Work Order' and opens the completion wizard first."
+   "2. For a work order that still has parts waiting to receive, clicking 'Send To Review' opens a dialog headed 'Complete & Send to Review' that shows how many parts are waiting to receive and offers 'Receive Parts' and 'Send To Review'."
   ],
   "design_ref": "WO Review Flow.html",
   "viu_status": "VIU-Verified",
-  "notes": "Wording+VIU 2026-07-13 (S2-15823 live, Require Review ON): ready-WO toolbar button = 'Send To Review' (confirmed); part-bearing WO shows 'Complete Work Order' -> wizard. FLAG: the wizard's final review CTA wording ('Complete & Send to Review' per prior notes) not cleanly reproduced this run.",
+  "notes": "Wording+VIU 2026-07-13 + relevance-fix re-VIU 2026-07-13 (S2-15827/S2-15783 live, Require Review ON): the primary action button = 'Send To Review' on BOTH ready and part-bearing WOs (it replaces 'Complete Work Order'). For a part-bearing WO, clicking 'Send To Review' opens a dialog HEADED 'Complete & Send to Review' (body 'N part waiting to receive'; buttons Cancel / Receive Parts / Send To Review). So 'Complete & Send to Review' is the review-dialog HEADER, not the button; the clickable CTA is 'Send To Review'. Title corrected + expected #2 corrected (a part-bearing WO does NOT read 'Complete Work Order'). Evidence: screenshots/relevance-fix-2026-07-13/.",
   "api_related": false,
   "fresh_run": "2026-07-13"
  },
@@ -114,10 +114,10 @@
   "permissions_required": "Work Order edit access.",
   "preconditions": [
    "1. Signed in as Admin.",
-   "2. Require Review is ON and a work order with approved lines is in the completion wizard."
+   "2. Require Review is ON and a work order with approved lines is ready to send to review (for a work order with parts still to receive, the 'Complete & Send to Review' dialog is open)."
   ],
   "steps": [
-   "1. Click Complete & Send to Review.",
+   "1. Click Send To Review (the primary action button, or the 'Send To Review' button in the 'Complete & Send to Review' dialog for a part-bearing work order).",
    "2. Observe the work order status and banner.",
    "3. Check the lines state and inventory pick state."
   ],
@@ -128,7 +128,7 @@
   ],
   "design_ref": "WO Review Flow.html",
   "viu_status": "VIU-Verified",
-  "notes": "Wording+VIU 2026-07-13 (S2-15823 live, Require Review ON): Send To Review -> status 'Review' + 'Ready for Review' indicator; lines lock to Complete. (amber colour per design; status text 'Review' confirmed.)",
+  "notes": "Wording+VIU 2026-07-13 + relevance-fix re-VIU 2026-07-13 (S2-15823/S2-15827 live, Require Review ON): the confirm button is 'Send To Review' (NOT 'Complete & Send to Review' - that is the dialog HEADER for a part-bearing WO). Send To Review -> status 'Review' + 'Ready for Review' indicator; lines lock to Complete. (amber colour per design; status text 'Review' confirmed.) Step 1 label corrected. Evidence: screenshots/relevance-fix-2026-07-13/.",
   "api_related": false,
   "fresh_run": "2026-07-13"
  },
@@ -190,7 +190,7 @@
  {
   "id": "SF-REV-08",
   "area": "Review ON (Story 16)",
-  "story_ref": "R5 / R8 (distinct Reviewed state)",
+  "story_ref": "R5 / R8 (direct sign-off, no separate Complete)",
   "title": "Verify Confirm Review signs off and completes the work order directly (no distinct Reviewed holding state)",
   "priority": "High",
   "type": "Functional",
@@ -327,7 +327,7 @@
   "id": "SF-REV-13",
   "area": "Review ON (Story 16)",
   "story_ref": "R11",
-  "title": "Verify all lines must be approved to Send to Review (existing approve-line error)",
+  "title": "Verify all lines must be approved before Send To Review (the 'Send To Review' action is disabled until every line is approved)",
   "priority": "Medium",
   "type": "Negative",
   "permissions_required": "Work Order edit access.",
@@ -336,15 +336,15 @@
    "2. Require Review is ON and a work order has one unapproved line."
   ],
   "steps": [
-   "1. Click Complete & Send to Review.",
-   "2. Attempt to send with an unapproved line."
+   "1. Open the work order and locate the 'Send To Review' action while a line is still unapproved.",
+   "2. Attempt to use Send To Review with the unapproved line."
   ],
   "expected": [
-   "1. Send to Review is blocked with the existing approve-line error while any line is unapproved."
+   "1. The 'Send To Review' action cannot be used while any line is unapproved - the 'Send To Review' button is disabled until every line has been approved."
   ],
   "design_ref": "requirements R11",
   "viu_status": "VIU-Verified",
-  "notes": "Wording+VIU 2026-07-13: Send To Review is blocked by the existing 'approve the line' error while any line is unapproved (existing approve-line gate; consistent with SF-COMP-21/22 non-required-invoice behaviour). Review flow confirmed live.",
+  "notes": "Wording+VIU 2026-07-13 + relevance-fix re-VIU 2026-07-13 (S2-15783 live, Require Review ON, one unapproved line): the 'Send To Review' button is DISABLED (isDisabled=true) while a line is unapproved; it becomes usable only after every line is approved. Step label corrected ('Complete & Send to Review' -> 'Send To Review'; the clickable action is 'Send To Review') and expected made build-accurate (the button is disabled rather than showing an error message). Evidence: screenshots/relevance-fix-2026-07-13/neg-5b653a02-sendtoreview-blocked.png.",
   "api_related": false,
   "fresh_run": "2026-07-13"
  },

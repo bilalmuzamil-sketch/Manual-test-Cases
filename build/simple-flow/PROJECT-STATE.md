@@ -65,6 +65,49 @@ flips restored byte-identical (verified); Tech still Technician.
 
 ---
 
+## 0-B. SPEC-RELEVANCE AUDIT + FIX (2026-07-13)
+
+A spec-relevance / obsolescence audit (`spec-relevance-audit-2026-07-13.md`) was run
+over all 163 cases. **Result: 0 truly-obsolete cases, 0 cases contradicting a resolved
+ruling.** The genuine gaps were narrow and are now CLOSED:
+
+- **FIX 1 — 3 missed stale-label cases corrected + re-VIU'd LIVE and pushed to
+  TestRail (200/OK):** SF-REV-02 (C29387), SF-REV-05 (C29390), SF-REV-13 (C29398)
+  carried the old label "Complete & Send to Review". **Live re-VIU (Require Review ON,
+  WOs S2-15827 / S2-15783; admin only, Tech not switched, no settings change)
+  established the build-accurate labels:** the clickable primary action button =
+  **"Send To Review"** (both ready and part-bearing WOs; replaces "Complete Work
+  Order"); for a part-bearing WO clicking it opens a dialog **HEADED "Complete & Send
+  to Review"** (body "N part waiting to receive"; buttons Cancel / Receive Parts /
+  Send To Review); with an unapproved line the **"Send To Review" button is DISABLED**.
+  So "Complete & Send to Review" IS a real build string — the review-dialog HEADER, not
+  the button. Cases reworded accordingly and pushed (3 update_case, all verify 200/OK;
+  audit `testrail-wording-viu-log.md`). Evidence:
+  `screenshots/relevance-fix-2026-07-13/`.
+- **FIX 2 — ALL downstream deliverables regenerated from the current `cases/*.json`**
+  (they had lagged the delta + wording passes): `testrail-id-map.csv` (27 stale titles
+  refreshed; SF-QB-09 still unmapped), `testrail-import/simple-flow-v1-testrail-import.csv`
+  + `.xlsx` (via `gen_import.py`; VIU-word-free, flag-free), `simple-flow-UPDATE.xml`
+  (full 162-case current-wording update), `simple-flow-v2.4-update.xml` (regenerated to
+  current wording + marked SUPERSEDED/dated), `SimpleFlow_Blockers_Tracker.md`/`.xlsx`,
+  `SimpleFlow_Results.xlsx`/`.csv`. Also fixed two stale internal-metadata leaks:
+  SF-REV-08 `story_ref` ("distinct Reviewed state" → "direct sign-off, no separate
+  Complete") and the `gen_blockers.py` Milos-Q descriptor (dropped the `input_review_note`
+  test-id). **Grep-clean:** the audit's stale phrases (input_review_note, "mileage, VIN,
+  engine hours", "distinct Reviewed state", "optional review note" as an assertion,
+  Story-4 "error toast") = ZERO in current-wording deliverables. Remaining "Complete &
+  Send to Review" strings are the live-verified build dialog HEADER (build-accurate), and
+  the single "optional review note" in the Results Deviation/Bugs tab correctly documents
+  the note's REMOVAL.
+
+**PROCESS RULE (now standing):** deliverable-regeneration is part of closing ANY
+spec-delta or wording pass — after editing `cases/*.json`, always re-run
+`gen_import.py` + `gen_update.py` + `gen_blockers.py` + `build_results_workbook.py`
+and refresh `testrail-id-map.csv` titles, so no downstream artifact silently shows
+superseded wording.
+
+---
+
 ## 0. CURRENT STATE AT A GLANCE (read this first)
 
 **FINAL tally (2026-07-13 — after the full build-accurate wording + VIU pass; see

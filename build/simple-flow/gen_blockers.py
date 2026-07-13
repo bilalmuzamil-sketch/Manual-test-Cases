@@ -57,7 +57,7 @@ MILOS = {
     #   live-verified (on-hand 6->5 on pick, persisted through simple-complete). Now VIU-Verified -> READY.
     "SF-TECH-08": ("Q9, Q4", "Tech-story placement: Story 17 (inline + gate-modal) vs S15-R2 (line-only)."),
     "SF-REV-08":  ("Q8, Q4", "Distinct 'Reviewed' state before final Complete — expected or single-step?"),
-    "SF-REV-10":  ("Q7", "Optional review-note field (input_review_note) absent — descope or bug?"),
+    "SF-REV-10":  ("Q7", "Optional review-note field absent — descope or bug?"),
     "SF-REV-11":  ("Q8", "Invoicing-blocked-until-reviewed depends on the Reviewed-state ruling (Q8)."),
     "SF-REV-15":  ("Q1", "Require-review default cohort rule + new-org preset."),
     "SF-UX-04":   ("Q10", "Close-vs-cancel confirm modal — design 'still to be added'."),
