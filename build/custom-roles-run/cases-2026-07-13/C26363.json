@@ -5,7 +5,8 @@
   "custom_preconds": "<ol>\n<li>In the Work orders card, View, Create & Edit and Delete are all ticked.</li>\n</ol>",
   "custom_steps": "<ol>\n<li>Untick the Create & Edit box on Work orders.</li>\n<li>Look at View, Create & Edit and Delete.</li>\n</ol>",
   "custom_expected": "<p>Delete unticks automatically.</p>\n<p>View stays ticked.</p>\n<p>Create & Edit is unticked.</p>\n",
-  "viu_status": "Blocked-UI (needs live role editor); labels/structure build-verified",
-  "evidence": "Auto-untick needs live editor.",
-  "fresh_run": "2026-07-13"
+  "viu_status": "VIU-Verified",
+  "evidence": "UI: unticking Work orders Create & Edit clears Delete but keeps View ON.",
+  "fresh_run": "2026-07-13",
+  "behavioral_run": "2026-07-13"
 }

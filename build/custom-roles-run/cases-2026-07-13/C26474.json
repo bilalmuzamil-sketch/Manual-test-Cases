@@ -5,7 +5,8 @@
   "custom_preconds": "<ol>\n<li>Open Create Role (or edit a custom role) with See Financial Data OFF.</li>\n</ol>",
   "custom_steps": "<ol>\n<li>Tick the Invoicing & payments Create & Edit box.</li>\n</ol>",
   "custom_expected": "<p>The same dialog titled 'Enable See Financial Data?' appears, with Cancel and Enable buttons.</p>\n<p>It explains that Invoicing & payments needs See Financial Data; only the area name differs from the Part sales version.</p>\n",
-  "viu_status": "Blocked-UI behavior; modal title+buttons build-verified",
-  "evidence": "Same 'Enable See Financial Data?' modal confirmed in build. Tick behavior needs live role editor.",
-  "fresh_run": "2026-07-13"
+  "viu_status": "VIU-Verified",
+  "evidence": "UI dialog: ticking Invoicing & payments while SFD off shows \"Enable See Financial Data? — Invoicing & Payments requires See Financial Data...\" [Cancel|Enable]; Enable -> SFD ON + Invoicing View+C&E ON.",
+  "fresh_run": "2026-07-13",
+  "behavioral_run": "2026-07-13"
 }

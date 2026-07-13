@@ -5,7 +5,8 @@
   "custom_preconds": "<ol>\n<li>Open Create Role and choose to start from scratch.</li>\n<li>In the Work orders card, View, Create & Edit and Delete are all unticked.</li>\n</ol>",
   "custom_steps": "<ol>\n<li>Find the Work orders card.</li>\n<li>Tick the Create & Edit box.</li>\n<li>Look at View, Create & Edit and Delete.</li>\n</ol>",
   "custom_expected": "<p>View ticks automatically.</p>\n<p>Create & Edit is ticked.</p>\n<p>Delete stays unticked.</p>\n",
-  "viu_status": "Blocked-UI (needs live role editor); labels/structure build-verified",
-  "evidence": "Card 'Work orders' + columns View/Create & Edit/Delete build-verified; auto-tick needs live editor.",
-  "fresh_run": "2026-07-13"
+  "viu_status": "VIU-Verified",
+  "evidence": "UI: on blank Create Role form, ticking Work orders Create & Edit auto-ticks View (aria-checked View ON, C&E ON). screenshot cascade-final.",
+  "fresh_run": "2026-07-13",
+  "behavioral_run": "2026-07-13"
 }

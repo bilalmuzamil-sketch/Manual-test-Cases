@@ -5,7 +5,8 @@
   "custom_preconds": "<ol>\n<li>Open Create Role (or edit a custom role) with View and Manage AP/AR Data OFF.</li>\n</ol>",
   "custom_steps": "<ol>\n<li>In the Invoicing & payments card, tick the Delete box while View and Manage AP/AR Data is off.</li>\n</ol>",
   "custom_expected": "<p>The system prompts you to turn on View and Manage AP/AR Data.</p>\n",
-  "viu_status": "Blocked-UI behavior; AP/AR label corrected to build 'View and Manage AP/AR Data'",
-  "evidence": "Build AP/AR label is 'View and Manage AP/AR Data' (not 'Manage Accounts Payable and Receivable'). Prompt behavior needs live editor.",
-  "fresh_run": "2026-07-13"
+  "viu_status": "Deviation",
+  "evidence": "UI: ticking Invoicing & payments Delete/Reverse while View and Manage AP/AR Data is OFF shows NO prompt — invoicing Delete just turns ON and AP/AR stays off. The build gates Invoicing on See Financial Data (per the SFD-disable dialog), not on AP/AR. Case premise (AP/AR prompt) is stale/not implemented.",
+  "fresh_run": "2026-07-13",
+  "behavioral_run": "2026-07-13"
 }
