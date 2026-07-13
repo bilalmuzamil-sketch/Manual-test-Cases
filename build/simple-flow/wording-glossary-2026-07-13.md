@@ -58,3 +58,39 @@ autoApproveLines, requireVendorInvoiceNumber, requireReview`. **No** `operatingM
 **no** `requireVin`, **no** `createPurchaseOrders`. Save endpoint
 `POST /api/organizations/settings/change` (full object). Org baseline this run: all
 requires OFF except `requireVehicleIdentifier:true` (`vehicleIdentifier:"vin"`).
+
+---
+
+## SF-COMP — Work Order Completion (`/workorders/{id}/lines`)
+
+Screenshots: `COMP-A-01-lines.png` (WO Lines page), `COMP-A-02-modal.png`
+(Complete Work Order modal → Success screen for a no-receive WO).
+
+**WO Lines page toolbar (exact buttons):** `New Line` · `Complete Work Order`
+(sit together in the top-right toolbar). Line rows carry a per-line `more_vert`
+menu and a line-level **`Receive`** button on part rows.
+
+**Vehicle header (exact labels):** `VIN/Serial #` · `Mileage` · `Engine Hours` ·
+`License Plate`; a **`Valid VIN Required`** chip appears when the VIN is not valid.
+
+**Financial panel (exact labels):** `Parts` · `Labor` · `Shop Supplies` ·
+`Subtotal` · `GST` · `Total` · `Balance`. Line tabs: `Lines` · `Parts` · `Notes`
+· `Stats` · `Finance`.
+
+**Complete Work Order modal:** title `Complete Work Order` with a `close` (X)
+control; header shows the WO number + customer (e.g. `S2-15795 · Jessica Kim`).
+
+**Success screen (exact text — for a WO needing no receive):**
+`task_alt` icon, heading **`Order complete`**, sub-line **`Sent to Finance as an
+invoice-ready draft`**, then `Work order S2-15795 Inv…` (WO number + invoice total).
+Buttons: **`Done`** and **`Go To Invoice`**.
+
+**Part row statuses seen (exact):** `Awaiting Receive`, `Returned`, `Requested`
+(the receive wizard shows an "N parts waiting to receive" count and
+`Receive Parts` / `Complete Without Receiving` / `Cancel` actions for the
+optional-invoice flow — verified with screenshots in prior runs `FV-comp13-*`,
+`FV-comp19-*`; not re-driven this pass).
+
+Build-accuracy note: the SF-COMP case wording already matches these live labels
+(Complete Work Order, Order complete, Sent to Finance as an invoice-ready draft,
+Done, Go To Invoice, line Receive) — no label corrections were needed for SF-COMP.

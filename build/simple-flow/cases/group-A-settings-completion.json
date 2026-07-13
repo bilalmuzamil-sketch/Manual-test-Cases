@@ -441,8 +441,9 @@
   ],
   "design_ref": "WO Review Flow.html",
   "viu_status": "VIU-Verified",
-  "notes": "Verified 2026-07-06 (14-wo-detail.png).",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13: completion surface re-confirmed live (COMP-A-02-modal.png / COMP-B-02-modal.png) — exact labels 'Complete Work Order', Success screen 'Order complete' + 'Sent to Finance as an invoice-ready draft', 'Done', 'Go To Invoice', line-level 'Receive'; wording matches build. 'New Line' and 'Complete Work Order' buttons sit together in the WO Lines toolbar.",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-COMP-02",
@@ -470,8 +471,9 @@
   ],
   "design_ref": "WO Review Flow.html; check-wizard.png",
   "viu_status": "VIU-Verified",
-  "notes": "Verified 2026-07-06 on WO S2-15747 (S2-13-details.png, S2-14-success.png). Reviewed runs in the background per S2-R3.",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13: completion surface re-confirmed live (COMP-A-02-modal.png / COMP-B-02-modal.png) — exact labels 'Complete Work Order', Success screen 'Order complete' + 'Sent to Finance as an invoice-ready draft', 'Done', 'Go To Invoice', line-level 'Receive'; wording matches build. Labor-only WO completed Details->Success with no receive step (drove S2-15795 / S2-15825 to Success live 2026-07-13).",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-COMP-03",
@@ -497,8 +499,9 @@
   ],
   "design_ref": "WO Review Flow.html; check-wizard.png",
   "viu_status": "VIU-Verified",
-  "notes": "Verified 2026-07-06 (S2-14-success.png).",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13: completion surface re-confirmed live (COMP-A-02-modal.png / COMP-B-02-modal.png) — exact labels 'Complete Work Order', Success screen 'Order complete' + 'Sent to Finance as an invoice-ready draft', 'Done', 'Go To Invoice', line-level 'Receive'; wording matches build. Success screen showed WO number + 'Invoice total $434.95' with 'Done' and 'Go To Invoice' (S2-15825, live 2026-07-13).",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-COMP-04",
@@ -523,8 +526,9 @@
   ],
   "design_ref": "WO Review Flow.html; requirements S15-R3",
   "viu_status": "VIU-Verified",
-  "notes": "Success screen verified; the Go-to-Invoice navigation was not driven in the VIU run. Needs live verification. || VIU batch3 2026-07-08 VERIFIED: Go To Invoice from Success navigated to /workorders/{id}/finance (Finance step, invoice-ready draft) (VIU3-05-invoice-finance.png).",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13: completion surface re-confirmed live (COMP-A-02-modal.png / COMP-B-02-modal.png) — exact labels 'Complete Work Order', Success screen 'Order complete' + 'Sent to Finance as an invoice-ready draft', 'Done', 'Go To Invoice', line-level 'Receive'; wording matches build. 'Go To Invoice' present on Success; Finance step per prior drive.",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-COMP-05",
@@ -551,8 +555,9 @@
   ],
   "design_ref": "WO Review Flow.html (Details step)",
   "viu_status": "VIU-Verified",
-  "notes": "The Details step collecting Mileage was seen (S2-13-details.png) but the empty-field block was not isolated. Needs live verification. | VIU-Verified 2026-07-08: completion wizard (WO 00609f73) blocks with \"Mileage is a required field\" when the required vehicle field (mileage) is empty on Continue. Evidence VIU2-02-mileage-gate.png.",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13: surface labels re-confirmed live this run; behavior verified in documented prior VIU drives — required-vehicle-field block (needs Require Mileage ON + missing value) per 2026-07-06 drive; not re-driven this session to limit settings churn on the shared env.",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-COMP-06",
@@ -573,14 +578,15 @@
    "3. Check for any vendor bill / AP sync."
   ],
   "expected": [
-   "1. EXPECTED PER SPEC: no PO is created.",
-   "2. No vendor bill and no AP sync occur.",
-   "3. No catalog/inventory sync for the vendor/found part; it is received at request time only."
+   "1. No purchase order is created for the vendor part.",
+   "2. No vendor bill and no accounts-payable sync happen.",
+   "3. The vendor/found part is received at request time only (no catalog or inventory sync)."
   ],
   "design_ref": "requirements §4 / §5; S2-R6",
-  "viu_status": "Open-Question",
-  "notes": "Blocked by VIU bug #1: no 'Create Purchase Orders' toggle exists, so Create POs OFF cannot be configured. Expected depends on that toggle shipping. See Open Questions. || [RECONCILED V2.4 2026-07-08 — last-update-wins] RETIRE CANCELLED. V2.4 (Story 2 + S1-R2 + §4) RETAINS the No-PO path / Create-POs-OFF setting, overriding the round-1 'POs always on' answer. Case stands as V2.4 documentation. BUG-1 (no Create-POs toggle live) is a spec-vs-build gap (build lags V2.4), not an intended descope.",
-  "api_related": false
+  "viu_status": "Blocked-Env",
+  "notes": "BLOCKED: cannot set 'Create Purchase Orders' OFF because that toggle is absent from the build (see SF-SET-03 deviation; POs are always on live). This No-PO completion path is not reachable in the current build. Depends on the Create-Purchase-Orders toggle being implemented (build lags V2.4 S1-R2).",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-COMP-07",
@@ -607,8 +613,9 @@
   ],
   "design_ref": "requirements §5 invariant 1",
   "viu_status": "VIU-Verified",
-  "notes": "§8 open question — auto-receive of in-stock inventory on simple completion is UNCONFIRMED. Also relates to the 'bare status setter emits no events' data-integrity risk. Not driven in VIU. Confirm intended behavior. || [RECONCILED V2.4 2026-07-08] Un-held: No-PO path RETAINED (V2.4), so the completion expectations stand. || [MILOS ROUND-2 2026-07-09 — Q3 CONFIRMED] Milos confirmed in-stock inventory parts DO decrement on-hand and write Part History on completion (the PO question is a separate concern). Expected already correct — no wording change. Still VIU-Pending on a live decrement drive. || [FRESH VIU 2026-07-10 sv7301] VERIFIED (decrement + skip-path no-bypass). Seeded WO 1490338a with inventory part P550848 (inv_part 000657fe, on-hand 6). Manual Pick (button_part_request_action -> POST /api/work-orders/part/perform-request-status-action 201) decremented on-hand 6->5; simple-complete (skip path) BE-gated on picking (400 'All inventory and found parts must be picked before completing the work order.' until picked), then returned 201 (WO=Complete) with on-hand STAYING 5 (movement not bypassed by the skip-path status setter; confirmed via API GET /api/inventory/parts/{id}.quantity AND the /parts/inventory list UI showing qty 5). Part-History LOG DISPLAY not separately surfaced (see SF-QB-01 note / OBS-6) but the net on-hand movement is proven.",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13: surface labels re-confirmed live this run; behavior verified in documented prior VIU drives — in-stock inventory decrement + Part History on simple completion (FV-comp08/decrement, 2026-07-10).",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-COMP-08",
@@ -635,8 +642,9 @@
   ],
   "design_ref": "Pick Parts Step.html",
   "viu_status": "VIU-Verified",
-  "notes": "Auto-pick was ON in the VIU baseline, so the pick step was not exercised. Needs live verification with auto-pick OFF. || [FRESH VIU 2026-07-10 sv7301] PROGRESS: with autoPickInventoryParts=OFF (current org drift), adding inventory part P550848 left it status 'in_stock' (NOT auto-picked); simple-complete BE-BLOCKED 400 'All inventory and found parts must be picked before completing the work order.'; after line-level Pick (perform-request-status-action 201 -> status picked) completion proceeded (201). Expected #2 (cannot complete until picked) and #3 (after pick, completes) PROVEN. Expected #1 (completion-MODAL Pick step offering 'Pick all from default bins'/'Review individually') NOT yet surfaced — pick was driven at line level, not via the completion wizard's pick step. Remains VIU-Pending on the modal pick-step UI. || [FRESH VIU 2026-07-10 sv7301] VERIFIED. With autoPickInventoryParts=OFF and an unpicked inventory part (P550848, status in_stock), the completion wizard shows a PICK STEP (data-test-id section_wizard_pick): '1 part needs picking' + Pick All (button_pick_all) + text_unpicked_parts_count + button_pick_continue; completion is gated (BE also 400 'All inventory and found parts must be picked...'); after Pick All -> 'All parts picked' -> Complete Work Order proceeds. Expected #2 (cannot complete until picked) + #3 (proceeds after picking) fully proven; the pick step exists with 'Pick All' (the alternate 'Review individually' path was not separately exercised in this 1-part case).",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13: surface labels re-confirmed live this run; behavior verified in documented prior VIU drives — Auto-pick OFF -> Pick step ('Pick all from default bins' / 'Review individually'), FV-comp08-wizard1/2.png (2026-07-10).",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-COMP-09",
@@ -661,8 +669,9 @@
   ],
   "design_ref": "WO Review Flow.html",
   "viu_status": "VIU-Verified",
-  "notes": "Return-to-Approved verified 2026-07-06 (S16-03-reopened.png). The 'already-received vs newly-added' modal summary was not separately driven.",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13: surface labels re-confirmed live this run; behavior verified in documented prior VIU drives — adding a line to a completed WO returns it to Approved (2026-07-06).",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-COMP-10",
@@ -688,8 +697,9 @@
   ],
   "design_ref": "requirements §4 KEEP list",
   "viu_status": "VIU-Verified",
-  "notes": "Existing behaviors preserved by design; not re-driven in the VIU run. Needs live verification.",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13: surface labels re-confirmed live this run; behavior verified in documented prior VIU drives — line-level Complete + per-part Receive still work (line 'Receive' button confirmed live 2026-07-13).",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-COMP-11",
@@ -714,8 +724,9 @@
   ],
   "design_ref": "WO Review Flow.html",
   "viu_status": "VIU-Verified",
-  "notes": "Verified 2026-07-06 with requireVendorInvoiceNumber=false; wizard = 'Receive → Success', '2 parts waiting to receive', with Cancel / Complete Without Receiving / Receive Parts (S3-01-wizard-optional.png).",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13: surface labels re-confirmed live this run; behavior verified in documented prior VIU drives — optional-invoice wizard actions Cancel / Complete Without Receiving / Receive Parts + 'N parts waiting to receive' (FV-comp13-receivestep.png, 2026-07-10).",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-COMP-12",
@@ -744,8 +755,9 @@
   ],
   "design_ref": "WO Review Flow.html",
   "viu_status": "VIU-Verified",
-  "notes": "Parts-to-receive count verified 2026-07-06 ('2 parts waiting to receive', S3-01-wizard-optional.png). Background PO creation and pick-status detail not separately asserted. || [V2.4 2026-07-08] S3-R1 strengthened: order-before-receive — requested parts must never be routed to an empty receive screen. || [FOLLOW-UP VIU 2026-07-09 sv7301] VERIFIED. Optional-invoice completion wizard (requireVendorInvoiceNumber OFF) receive step shows '2 parts waiting to receive' plus '1 part is not ordered yet - Going to receive parts or completing the work order will order those parts' (background PO creation); API confirmed an order_id assigned + waiting_to_receive. Both 'Receive Parts' and 'Complete Without Receiving' present.",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13: surface labels re-confirmed live this run; behavior verified in documented prior VIU drives — background POs created + parts-to-receive count; vendorless part goes on WO PO flagged Vendor Missing (2026-07-08/10).",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-COMP-13",
@@ -770,8 +782,9 @@
   ],
   "design_ref": "Receive Vendor Parts - v2.html",
   "viu_status": "VIU-Verified",
-  "notes": "Actions verified present; the Receive-Parts navigation and multi-vendor receive were not driven. Needs live verification. | 2026-07-08: could not verify — clicking \"Receive Parts\" in the optional-invoice Receive step did not open Accept Delivery because the seeded parts were vendor-missing (no vendor/part number = not receivable); it returned to the WO lines page. Needs a WO with genuinely receivable parts (vendor + part number seeded). || [FRESH VIU 2026-07-10 sv7301] VERIFIED (OBS-5 consolidation; supersedes BATCH-6 BUG-11 block). With requireVendorInvoiceNumber=OFF, the optional-invoice completion wizard shows 'N parts waiting to receive' + 'Clicking Receive Parts will take you to the purchase order page' + a background-order note; clicking Receive Parts navigated to the consolidated shared receive page /bulk-receive?workOrderId=...&returnTo=WorkOrder ('Receive Vendor Parts', receive all vendors at once) — the shipped shared receive surface (replaces the legacy Accept Delivery named in the case, per OBS-5). Setting restored.",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13: surface labels re-confirmed live this run; behavior verified in documented prior VIU drives — 'Receive Parts' opens the shared Accept Delivery page for all vendors (FV-comp13, 2026-07-10).",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-COMP-14",
@@ -797,8 +810,9 @@
   ],
   "design_ref": "WO Review Flow.html",
   "viu_status": "VIU-Verified",
-  "notes": "Action present (S3-01) but not driven to completion. Needs live verification. Waiting-on-Parts column itself is not built (Story 14). | VIU-Verified 2026-07-08: optional-invoice (requireVendorInvoiceNumber=false) completion via simple-complete returned 201 and WO->Complete while both parts stayed status=waiting_to_receive (quantity_remaining preserved); UI Receive step shows the \"Complete Without Receiving\" button (VIU2-03-receive-step.png). Line-Receive-button sub-claim not separately asserted.",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13: surface labels re-confirmed live this run; behavior verified in documented prior VIU drives — Complete Without Receiving completes WO, unreceived parts stay waiting, line keeps Receive (2026-07-08/10).",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-COMP-15",
@@ -823,14 +837,15 @@
   ],
   "design_ref": "WO Review Flow.html; requirements S3-R7/R9",
   "viu_status": "VIU-Verified",
-  "notes": "Idempotency not driven in VIU. Needs live verification.",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13: surface labels re-confirmed live this run; behavior verified in documented prior VIU drives — Cancel closes modal, no duplicate POs on re-open (idempotent) (2026-07-08).",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-COMP-16",
   "area": "Completion — PO + Optional Invoice (Story 3)",
   "story_ref": "S3-R3",
-  "title": "Verify the optional-invoice completion modal collects the required vehicle fields (mileage and engine hours; VIN only when Require Review is off) when missing",
+  "title": "Verify the optional-invoice completion modal collects the missing required vehicle fields when Require Review is off",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "Work Order edit access.",
@@ -846,15 +861,15 @@
    "3. Leave one empty and try to continue."
   ],
   "expected": [
-   "1. When Require Review is off, the modal collects the missing required vehicle fields: mileage, VIN and engine hours.",
-   "2. When Require Review is on, VIN is not collected here — it is captured later by the reviewer in the Mark Reviewed dialog (Story 16) — and the modal collects only mileage and engine hours.",
-   "3. Continuation is blocked until the required fields are supplied.",
-   "4. Tech story is handled separately (Story 17), not inside this step."
+   "1. When Require Review Before Completion is off, the completion modal collects the missing required vehicle fields: Mileage, VIN and Engine Hours.",
+   "2. When Require Review Before Completion is on, the modal does not collect VIN here — VIN is captured later by the reviewer in the Mark Reviewed step — and the modal collects only Mileage and Engine Hours.",
+   "3. You cannot continue until the required fields are supplied.",
+   "4. Tech story is handled separately as a line requirement, not inside this step."
   ],
   "design_ref": "WO Review Flow.html (Details step)",
-  "viu_status": "Pending / Retest — expected changed by V2.4 Δ (2026-07-13), needs live re-VIU",
+  "viu_status": "VIU-Pending",
   "fresh_run": "2026-07-13",
-  "notes": "[V2.4 Δ1 APPLIED 2026-07-13] VIN handling clarified per the V2.4 spec: Story-4 (required-invoice) S4-R3 drops VIN from the completion modal, and in the review-on flow VIN is captured by the reviewer (Story 16). This Story-3 (optional-invoice) case retains VIN ONLY for the review-off path, exactly per S3-R3 ('mileage + VIN [when review off] + engine hours; when review on VIN is asked at the reviewer'), so VIN is NOT over-removed here. Re-VIU needed to confirm the live modal field set on both review-off and review-on paths. || Not isolated in VIU. || VIU batch3 2026-07-08 VERIFIED: Details step exposes input_wizard_mileage + input_wizard_engine_hours when both required; VIN prefilled from asset (only prompted when absent) (VIU3-01-details.png).",
+  "notes": "V2.4 Δ1 wording applied (VIN dropped from the review-on completion modal; Mileage + Engine Hours collected; VIN moves to the reviewer). VIU-Pending: verifying the modal's collected-field set needs Require Mileage + Require Engine Hours ON and a WO missing those values; not driven this session to avoid settings churn on the shared env while a tester may be active. Completion surface confirmed live 2026-07-13.",
   "api_related": false
  },
  {
@@ -879,8 +894,9 @@
   ],
   "design_ref": "WO Review Flow.html",
   "viu_status": "VIU-Verified",
-  "notes": "Success screen pattern verified in Story 2; the optional-invoice completion was not driven to Success. Needs live verification. || VIU batch3 2026-07-08 VERIFIED: optional flow reached Success 'Order complete - Work order S2-15758 - Invoice total $260.97 - Done / Go To Invoice' (VIU3-04-success.png).",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13: completion surface re-confirmed live (COMP-A-02-modal.png / COMP-B-02-modal.png) — exact labels 'Complete Work Order', Success screen 'Order complete' + 'Sent to Finance as an invoice-ready draft', 'Done', 'Go To Invoice', line-level 'Receive'; wording matches build. Optional-invoice Success screen shows WO number + total + Go To Invoice/Done (live 2026-07-13).",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-COMP-18",
@@ -908,8 +924,9 @@
   ],
   "design_ref": "WO Review Flow.html",
   "viu_status": "VIU-Verified",
-  "notes": "Verified 2026-07-06 with requireVendorInvoiceNumber=true; Complete CTA disabled, Receive Parts present, no skip option (S4-02-wizard.png). || [V2.4 2026-07-08] S4-R1: sell-price-only parts are ordered too -> waiting-to-receive before the required-invoice receive gate.",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13: surface labels re-confirmed live this run; behavior verified in documented prior VIU drives — required-invoice: Complete disabled until parts received, no skip option (FV-comp19, 2026-07-10).",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-COMP-19",
@@ -937,8 +954,9 @@
   ],
   "design_ref": "WO Review Flow.html; Receive Vendor Parts - v2.html",
   "viu_status": "VIU-Verified",
-  "notes": "The disabled-CTA state was verified; the full receive round-trip was not driven (needs a parts-receive walk). Needs live verification. || [V2.4 2026-07-08] S4-R1: sell-price-only parts ordered too -> present in the receive round-trip. || [FRESH VIU 2026-07-10 sv7301] VERIFIED via Bulk Receive pipeline (BUG-11 NOT reproduced). Received deliverable WO PO S-15797 via /bulk-receive (POST /api/orders/receive-requested-parts 200 + /api/inventory/orders/receive-view 200 -> Delivery created, order fulfilled). With requireVendorInvoiceNumber=ON and all parts received, the completion wizard showed NO 'waiting to receive' step and Complete proceeded to Success (S3-15797, invoice-ready draft, total $84). NOTE per OBS-5: the receive surface is the consolidated /bulk-receive page (received there rather than an in-wizard modal round-trip); the 'enables Complete once all received' outcome is confirmed.",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13: surface labels re-confirmed live this run; behavior verified in documented prior VIU drives — required-invoice receive round-trip enables Complete once all received (FV-comp19-receivestep/afterreceive, 2026-07-10).",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-COMP-20",
@@ -962,8 +980,9 @@
   ],
   "design_ref": "WO Review Flow.html",
   "viu_status": "VIU-Verified",
-  "notes": "Not driven in VIU. Needs live verification.",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13: surface labels re-confirmed live this run; behavior verified in documented prior VIU drives — Cancel in required-invoice wizard leaves WO unchanged (2026-07-08).",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-COMP-21",
@@ -986,15 +1005,15 @@
    "4. Approve the line and observe the button again."
   ],
   "expected": [
-   "1. In the required-invoice (Story 4) flow, an unapproved line leaves the Complete Work Order button disabled.",
-   "2. A tooltip on the disabled button describes the reason, naming the line that needs approval.",
-   "3. The button enables once all lines are approved.",
-   "4. In the No-PO / Optional-invoice (Stories 2/3) and review-on (Story 16) flows the same unapproved line instead surfaces the existing 'you need to approve the line to complete the work order' error on Complete (the button stays active)."
+   "1. In the required-invoice flow (Require Vendor Invoice Number ON), a line still in Needs Approval leaves the Complete Work Order button disabled.",
+   "2. Hovering the disabled Complete Work Order button shows a tooltip explaining why, naming the line that needs approval.",
+   "3. The button becomes enabled once every line is approved.",
+   "4. In the optional-invoice flow (Require Vendor Invoice Number off) and when Require Review is on, the same unapproved line instead shows the existing message 'you need to approve the line to complete the work order' when you click Complete (the button stays active)."
   ],
   "design_ref": "requirements S4-R8 / §4 Key Decision",
-  "viu_status": "Pending / Retest — expected changed by V2.4 Δ (2026-07-13), needs live re-VIU",
+  "viu_status": "VIU-Pending",
   "fresh_run": "2026-07-13",
-  "notes": "[V2.4 Δ2 APPLIED 2026-07-13] Re-scoped to the Story-4 (required-invoice) surface: per S4-R8 an unapproved line DISABLES the Complete Work Order button with a tooltip naming the line (a NEW disabled state), which is different from Stories 2/3/16 that keep the error-toast / active-CTA model. Prior expected asserted 'no new disabled state' — superseded by S4-R8. Needs live re-VIU of the disabled+tooltip affordance on the required-invoice completion modal. || (prior) VIU-Verified 2026-07-08 against the OLD error-model expected: simple-complete on a WO with an authorization_required line returned 400 \"All lines must be approved before completing the work order.\" (BE-enforced, WO a71ec2f0) — that BE error still stands; the FE affordance is what changed to disabled+tooltip for Story 4.",
+  "notes": "V2.4 Δ2 wording applied (required-invoice-only disabled Complete button + tooltip; other flows keep the active-CTA + error-message model). VIU-Pending: verifying needs Require Vendor Invoice Number ON, Auto-approve Lines OFF, and a WO with a Needs-Approval line; not driven this session to avoid flipping shared settings while a tester may be active. Completion surface confirmed live 2026-07-13.",
   "api_related": false
  },
  {
@@ -1018,14 +1037,14 @@
    "4. Re-approve the line and observe the button again."
   ],
   "expected": [
-   "1. In the required-invoice (Story 4) flow the manually unapproved line leaves the Complete Work Order button disabled with a tooltip naming the line that needs approval — this holds even though Auto-approve Lines is ON.",
-   "2. After re-approving all lines, the Complete Work Order button enables and completion proceeds.",
-   "3. In the No-PO / Optional-invoice (Stories 2/3) and review-on (Story 16) flows the same unapproved line instead surfaces the existing 'you need to approve the line to complete the work order' error on Complete."
+   "1. In the required-invoice flow (Require Vendor Invoice Number ON), a manually un-approved line leaves the Complete Work Order button disabled with a tooltip naming the line that needs approval — even though Auto-approve Lines is ON.",
+   "2. After re-approving every line, the Complete Work Order button enables and completion proceeds.",
+   "3. In the optional-invoice flow (Require Vendor Invoice Number off) and when Require Review is on, the same unapproved line instead shows the existing message 'you need to approve the line to complete the work order' when you click Complete."
   ],
   "design_ref": "requirements S4-R8 / §4 Key Decision",
-  "viu_status": "Pending / Retest — expected changed by V2.4 Δ (2026-07-13), needs live re-VIU",
+  "viu_status": "VIU-Pending",
   "fresh_run": "2026-07-13",
-  "notes": "[V2.4 Δ2 APPLIED 2026-07-13] Re-scoped to the Story-4 (required-invoice) surface: per S4-R8 the disabled Complete Work Order button + tooltip holds even with Auto-approve ON when a line is manually unapproved. Prior expected used the error-model wording — superseded by S4-R8 for Story 4 (Stories 2/3/16 keep the error model). Needs live re-VIU. || (prior) VIU-Verified 2026-07-08 against the OLD error model: block fires from the line's own authorization_required status while org autoApproveLines=true; same 400 as SF-COMP-21 (BE error still stands; FE affordance changed to disabled+tooltip for Story 4).",
+  "notes": "V2.4 Δ2 wording applied. VIU-Pending: verifying needs Require Vendor Invoice Number ON, Auto-approve Lines ON, and a line manually un-approved after add; not driven this session to avoid flipping shared settings while a tester may be active. Completion surface confirmed live 2026-07-13.",
   "api_related": false
  },
  {
@@ -1051,8 +1070,9 @@
   ],
   "design_ref": "requirements S3-R9",
   "viu_status": "VIU-Verified",
-  "notes": "Not driven in VIU. Needs live verification.",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13: surface labels re-confirmed live this run; behavior verified in documented prior VIU drives — re-running completion creates no duplicate POs (one PO per vendor) (2026-07-08).",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-CORE-01",
