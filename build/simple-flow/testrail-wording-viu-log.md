@@ -174,3 +174,24 @@ on Parts column) per prior VIU (case 29384) — 'EXPECTED PER SPEC' jargon strip
 
 **Summary:** 7 cases · VIU-Verified 6 · VIU-Pending 1. TestRail: **7 updated,
 200/OK, 0 errors.** **TESTER-READY.**
+
+---
+
+## Receive cluster — SF-POSEL(6) SF-BULK(10) SF-INV(3) SF-RCV(10) SF-VEND(6) SF-PNFIX(6) SF-VPART(7) — TESTER-READY (wording) ✅
+
+Surfaces confirmed live 2026-07-13 (`RCV-po-list.png`, `RCV-bulk-receive.png`): PO
+list `Purchase Orders`/`Receive`; Bulk Receive `Receive Vendor Parts` /
+`Back To Purchase Orders` / VENDOR groups / `Apply to selected POs` / `Invoice Date`
+/ `Tax` / `Receive All` / `COST TOTAL` / `PARTS SELECTED` / `POS SELECTED`.
+
+**Build corrections:** "Back to Purchase Orders"→**Back To Purchase Orders**;
+"Apply invoice to selected POs"→**Apply to selected POs**; "Receive all"→**Receive All**.
+
+- **VIU-Verified (33):** SF-POSEL-01..06, SF-BULK-01..09, SF-INV-01..03, SF-RCV-01/02/03/04/09/10, SF-VEND-01, SF-PNFIX-01, SF-VPART-01..07. (SF-BULK-09 FLAG: QuickBooks-side AP internals need a human in QB.)
+- **VIU-Pending — need seeded vendor-missing PO (incl. Δ3 deltas):** SF-VEND-04, SF-VEND-06, SF-RCV-06, SF-PNFIX-05, SF-RCV-05, SF-RCV-07. All PO stock this run had vendors (vendorMissing:false); seeding the vendor-missing flow (New Part Request Source=Vendor, free-text PN, no vendor → complete WO) not done this session.
+- **VIU-Pending — non-seedable/other:** SF-BULK-10 (core), SF-VEND-02/03 (merge collision), SF-VEND-05 (invoiced WO), SF-PNFIX-02/03/06 (OBS-6 Part-History 500), SF-PNFIX-04 (invoiced WO).
+- **Blocked-Env:** SF-RCV-08 (per-vendor QuickBooks bill/AP — needs human in QB).
+
+**Cluster summary:** 48 cases · VIU-Verified 33 · VIU-Pending 14 · Blocked-Env 1.
+TestRail: **47 updated + 1 no-op, 200/OK, 0 errors** (SF-VEND-06 = C29442 confirmed
+present). **TESTER-READY (wording).**

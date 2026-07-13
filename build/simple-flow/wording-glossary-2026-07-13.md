@@ -199,3 +199,35 @@ re-confirm the exact selector label).
 (`Complete Work Order` with Mileage + Engine Hours — see SF-VAL); tech story is a
 separate line-level flow (not in this modal). Success screen + `Done` / `Go To
 Invoice` (invoice number on the Finance step) — see SF-COMP glossary.
+
+---
+
+## Receive cluster — PO list, PO multi-select, Bulk Receive, Accept Delivery
+
+Screenshots: `RCV-po-list.png`, `RCV-bulk-receive.png`.
+
+**PO list (`/parts/orders`):** heading **`Purchase Orders`**; **`New PO`** button;
+columns **`Work Order`** · **`Purchase Order Number`** · **`Vendor`** · **`Order
+Status`** · **`Created On`** · **`Ordered By`** · **`Total Price`** · **`Note`**;
+per-row **`Receive`** action. Order Status values seen: **`Ordered`**, **`Partial
+Delivery`**. Left nav (SUPPLY CHAIN): Returns, Purchase Orders, Vendor Invoices,
+Vendors.
+
+**Bulk Receive (`/bulk-receive?ids=…`):** heading **`Receive Vendor Parts`** +
+vendor count ("3 vendors"); **`Back To Purchase Orders`** link (arrow_back). Grouped
+by **`VENDOR`** (storefront icon) with "N parts · M PO"; per-vendor **`Expand All`**,
+**`Apply to selected POs`** (edit icon), **`Invoice Date`** (event icon), **`Tax`**
+($ icon), "N of M selected", **`Clear`**. PO rows: "PO S-15822 WO S-15822 · 2 parts",
+**`Delivery note for selected POs`**. Footer: **`COST TOTAL`** · **`PARTS
+SELECTED`** · **`POS SELECTED`** · **`Receive All`** (inventory_2 icon).
+
+Build-accuracy corrections vs old case wording: "Back to Purchase Orders" →
+**`Back To Purchase Orders`**; "Apply invoice to selected POs" → **`Apply to
+selected POs`**; "Receive all" → **`Receive All`**.
+
+**Vendor-missing group / receive-time gates (Δ3):** all POs available this run had a
+vendor (`vendorMissing:false`), so the vendor-missing group (with
+`select_assign_vendor_{poId}` + `input_part_number_{partId}` per prior VIU) and the
+new part#/cost-sell receive gates were **not surfaced** — seeding a vendor-missing PO
+(New Part Request Source=Vendor, free-text PN, no vendor → complete WO) is required
+to drive SF-VEND-04/06, SF-RCV-06, SF-PNFIX-05, SF-VAL-06.
