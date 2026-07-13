@@ -117,3 +117,32 @@ behavior = Blocked-UI (needs live editor).
 button with the verbatim tooltip **"This role is assigned to N user(s). Reassign them
 to another role before deleting."** (both strings confirmed in the shipped build).
 Delete flows = Blocked-UI (need live Roles list + seeded role/user).
+
+---
+
+## Section 3540 — Timesheets Permissions (7 cases) — pushed 2026-07-13
+**Result: 7 UPDATED (6 tmpl1 + 1 Steps-Separated C27394) · 0 no-op · 0 failed · 200/200.**
+C26429 corrected: Timesheets card short description is build **"Track and review
+technician labor hours and time entries."** (was "View and manage timesheets from work
+orders."); no Delete column (build-verified); removed the "file a UI bug/CRP-FE-03"
+conditional. Behavior cases = Blocked-UI (need seeded roles).
+
+## Section 3551 — QuickBooks Relocation (3 cases) — pushed 2026-07-13
+**Result: 3 UPDATED · 0 no-op · 0 failed · 200/200.**
+**MAJOR BUILD FINDING:** the live build keeps **QuickBooks under Integrations**
+(Integrations sub-toggle gates IBS/Open API/QuickBooks); Finance gates only Payment
+Methods/Taxes. So the old "QuickBooks moved to Finance / Integrations removed" premise
+is STALE — **C26529** (QB under Finance), **C26530** (gated by Finance) and **C26531**
+(Integrations removed) were rewritten to build reality (QB under Integrations, gated by
+the Integrations sub-toggle; Integrations section present). Flagged as
+Deviation-vs-old-case. This matches the 09-Jul spec fact "Integrations hosts
+QuickBooks/IBS/Open API" and the 3658 stub C27738.
+
+## Section 3549 — Migration (12 cases) — pushed 2026-07-13
+**Result: 12 UPDATED · 0 no-op · 0 failed · 200/200.**
+Role names corrected to the live roles list (**Office User**, **Parts Technician**,
+Time Clock User, etc.). **C26510 corrected:** Administrator is **EDITABLE** (live API
+editable=true) — only **Office User** and **Time Clock User** are non-editable (was
+"Administrator non-editable"). Per-role permission sets are live-verified (roles matrix);
+the migration-of-legacy-users step = Blocked-UI (needs seeded legacy accounts). Stripped
+legacy-mapping-page ids and SV-refs.

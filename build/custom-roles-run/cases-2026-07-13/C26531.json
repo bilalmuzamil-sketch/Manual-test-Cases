@@ -1,0 +1,11 @@
+{
+  "case_id": 26531,
+  "section_id": 3551,
+  "title": "The Integrations settings section is present and hosts QuickBooks, IBS and Open API",
+  "custom_preconds": "<ol>\n<li>Log in as an Administrator with all Settings sub-toggles ON.</li>\n</ol>",
+  "custom_steps": "<ol>\n<li>Look through the Settings area.</li>\n<li>Find the Integrations section.</li>\n<li>Look at what is inside it.</li>\n</ol>",
+  "custom_expected": "<p>The Integrations section is present.</p>\n<p>It contains QuickBooks, IBS and Open API.</p>\n<p>Note: this reverses the old 'Integrations removed / QuickBooks moved to Finance' expectation \u2014 the live build keeps the Integrations section with QuickBooks inside it.</p>\n",
+  "viu_status": "Deviation-vs-old-case: Integrations IS present in build (old case said removed)",
+  "evidence": "settingsIntegrations gates IBS/Open API/QuickBooks; the Settings 'Integrations' sub-toggle exists. Integrations is present in the build.",
+  "fresh_run": "2026-07-13"
+}

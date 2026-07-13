@@ -1,0 +1,11 @@
+{
+  "case_id": 26433,
+  "section_id": 3540,
+  "title": "Timesheets View OFF with Reports ON: the timesheet activities report is still available",
+  "custom_preconds": "<ol>\n<li>A user has a role with Timesheets View OFF, Create & Edit OFF, and Reports ON.</li>\n</ol>",
+  "custom_steps": "<ol>\n<li>Log in.</li>\n<li>Open Reports.</li>\n<li>Find the Timesheet activities report.</li>\n<li>Open it.</li>\n</ol>",
+  "custom_expected": "<p>The Timesheet activities report is listed and opens, even though Timesheets View is off (this report follows the Reports page access).</p>\n",
+  "viu_status": "Blocked-UI (needs seeded role)",
+  "evidence": "Report access needs live UI.",
+  "fresh_run": "2026-07-13"
+}

@@ -1,0 +1,11 @@
+{
+  "case_id": 26529,
+  "section_id": 3551,
+  "title": "QuickBooks settings appear under Integrations when the Integrations sub-toggle is ON",
+  "custom_preconds": "<ol>\n<li>Log in as an Administrator with Settings > Integrations ON.</li>\n</ol>",
+  "custom_steps": "<ol>\n<li>Open the Settings area.</li>\n<li>Find the Integrations pages.</li>\n<li>Look for QuickBooks.</li>\n<li>Open it and confirm the QuickBooks configuration page loads.</li>\n</ol>",
+  "custom_expected": "<p>QuickBooks is shown under Integrations (alongside IBS and Open API).</p>\n<p>The QuickBooks page loads (connection status, sync settings, mappings).</p>\n<p>Build finding: the live build keeps QuickBooks under the Integrations settings (gated by the Integrations sub-toggle) \u2014 the 'move QuickBooks to Finance / remove Integrations' premise is not in the build and is stale versus the current spec.</p>\n",
+  "viu_status": "Deviation-vs-old-case: build has QuickBooks under Integrations, not Finance",
+  "evidence": "Route metadata: Integrations gates IBS/Open API/QuickBooks; Finance gates Payment Methods/Taxes (no QuickBooks). QuickBooks is under Integrations in the build.",
+  "fresh_run": "2026-07-13"
+}

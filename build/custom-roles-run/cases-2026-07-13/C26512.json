@@ -1,0 +1,11 @@
+{
+  "case_id": 26512,
+  "section_id": 3549,
+  "title": "Legacy 'Time Clock' users become 'Time Clock User' after migration",
+  "custom_preconds": "<ol>\n<li>Migration to the new roles is complete.</li>\n<li>At least one existing 'Time Clock' user is present.</li>\n</ol>",
+  "custom_steps": "<ol>\n<li>Go to Settings > Staff and find a 'Time Clock' user.</li>\n<li>Check the user's assigned role.</li>\n<li>Go to Settings > Roles & Permissions and find that role's row.</li>\n<li>Look at the role's read-only Permission Summary (eye icon).</li>\n</ol>",
+  "custom_expected": "<p>The user's role is 'Time Clock User'.</p>\n<p>The role's permissions match the expected set for that role.</p>\n<p>The 'Time Clock User' role cannot be edited (it shows a lock and only the eye icon).</p>\n<p>The role shows as 'Time Clock User' (renamed from 'Time Clock').</p>\n<p>Logged in as this user, only clock in / out is reachable; every top-navigation item is hidden or refused.</p>\n",
+  "viu_status": "Blocked-UI (needs migrated legacy users); role name/editability build-verified",
+  "evidence": "Role 'Time Clock User' + editability confirmed in live roles list. Migration of legacy users needs seeded legacy accounts.",
+  "fresh_run": "2026-07-13"
+}

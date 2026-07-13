@@ -1,0 +1,11 @@
+{
+  "case_id": 26432,
+  "section_id": 3540,
+  "title": "Clock in / clock out is always available, whatever the Timesheets permission",
+  "custom_preconds": "<ol>\n<li>A user has a role with both Timesheets boxes off.</li>\n<li>The user is not on the Time Clock User role.</li>\n</ol>",
+  "custom_steps": "<ol>\n<li>Log in as that user.</li>\n<li>Find the clock in / out control.</li>\n<li>Clock in.</li>\n<li>Clock out.</li>\n</ol>",
+  "custom_expected": "<p>The clock in / out control is always available.</p>\n<p>Both actions record an attendance event, regardless of the Timesheets permission.</p>\n",
+  "viu_status": "Blocked-UI (needs seeded role)",
+  "evidence": "Clock behavior needs live UI.",
+  "fresh_run": "2026-07-13"
+}

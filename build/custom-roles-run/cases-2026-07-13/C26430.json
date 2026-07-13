@@ -1,0 +1,11 @@
+{
+  "case_id": 26430,
+  "section_id": 3540,
+  "title": "Timesheets View only: timesheet entries are read-only",
+  "custom_preconds": "<ol>\n<li>A user has a role with Timesheets View ON and Create & Edit OFF, and Reports ON.</li>\n<li>The user appears on the technician schedule.</li>\n</ol>",
+  "custom_steps": "<ol>\n<li>Log in and open a work order's timesheet section, or open the timesheet activities report from Reports.</li>\n<li>Look at the timesheet entries.</li>\n<li>Look for any way to edit an entry.</li>\n</ol>",
+  "custom_expected": "<p>The timesheet entries are shown.</p>\n<p>There is no way to edit them (read-only).</p>\n",
+  "viu_status": "Blocked-UI (needs seeded role)",
+  "evidence": "Read-only behavior needs live UI.",
+  "fresh_run": "2026-07-13"
+}
