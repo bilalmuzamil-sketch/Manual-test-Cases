@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Receive Vendor Parts</title>
+  <link rel="stylesheet" href="colors_and_type.css">
+  <style>
+    body { margin: 0; background: var(--sv-bg-app); }
+
+    /* ── Top nav (matches Purchase Orders List) ── */
+    .app-header {
+      height: 64px;
+      background: var(--sv-white);
+      border-bottom: 1px solid var(--sv-border-strong);
+      display: flex;
+      align-items: center;
+      padding: 0 var(--sv-space-6);
+      gap: var(--sv-space-8);
+    }
+    .logo {
+      width: 36px; height: 36px;
+      background: var(--sv-brand-blue);
+      border-radius: var(--sv-radius-md);
+      display: flex; align-items: center; justify-content: center;
+      color: white; flex-shrink: 0;
+    }
+    .nav { display: flex; gap: var(--sv-space-2); flex: 1; }
+    .nav-link {
+      font-size: 15px; font-weight: 500; color: var(--sv-grey-700);
+      text-decoration: none; padding: 8px 14px; border-radius: var(--sv-radius-md);
+    }
+    .nav-link:hover { background: var(--sv-grey-50); text-decoration: none; }
+    .nav-link.active { background: var(--sv-grey-100); color: var(--sv-grey-800); font-weight: 600; }
+    .search-bar {
+      width: 440px; height: 44px;
+      border: 1px solid var(--sv-border-strong); border-radius: var(--sv-radius-md);
+      padding: 0 14px; font-size: 15px; font-family: var(--sv-font-ui);
+      background: var(--sv-white); display: flex; align-items: center; gap: 10px;
+    }
+    .search-bar input {
+      border: 0; outline: 0; flex: 1; font-size: 15px; font-family: inherit;
+      color: var(--sv-fg-primary); background: transparent;
+    }
+    .kbd {
+      font-size: 12px; color: var(--sv-fg-tertiary);
+      border: 1px solid var(--sv-border-strong); border-radius: var(--sv-radius-xs);
+      padding: 1px 6px; font-family: var(--sv-font-ui);
+    }
+    .header-right { display: flex; align-items: center; gap: var(--sv-space-5); }
+    .user-chip {
+      display: flex; align-items: center; gap: 10px;
+      border: 1px solid var(--sv-border-strong); border-radius: var(--sv-radius-pill);
+      padding: 4px 4px 4px 16px; font-size: 15px; font-weight: 500; color: var(--sv-grey-700);
+    }
+    .avatar {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: var(--sv-grey-800); color: white;
+      display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 13px;
+    }
+
+    /* ── Page ── */
+    .main-content { max-width: 1280px; margin: 0 auto; padding: var(--sv-space-6) var(--sv-space-8) var(--sv-space-16); }
+
+    .back-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      color: var(--sv-brand-blue); font-size: 14px; font-weight: 500;
+      margin-bottom: var(--sv-space-5); text-decoration: none;
+    }
+    .back-link:hover { text-decoration: underline; }
+
+    .page-head {
+      display: flex; align-items: flex-end; justify-content: space-between;
+      margin-bottom: var(--sv-space-5);
+    }
+    .page-title { font-size: 26px; font-weight: 700; color: var(--sv-grey-800); margin: 0 0 2px; }
+    .page-sub { font-size: 14px; color: var(--sv-fg-secondary); }
+
+    /* Expand/collapse-all toggle */
+    .collapse-toggle {
+      display: inline-flex; align-items: center; gap: 7px;
+      background: none; border: none; cursor: pointer; font-family: inherit;
+      font-size: 14px; font-weight: 600; color: var(--sv-brand-blue); padding: 6px 4px;
+    }
+    .collapse-toggle:hover { text-decoration: underline; }
+    .collapse-toggle svg { transition: transform 150ms ease; }
+
+    /* ── Vendor card ── */
+    .vendor-card {
+      background: var(--sv-white);
+      border: 1px solid var(--sv-border-strong);
+      border-radius: var(--sv-radius-lg);
+      box-shadow: var(--sv-shadow-xs);
+      margin-bottom: var(--sv-space-5);
+      overflow: hidden;
+    }
+    .vendor-card-header {
+      padding: var(--sv-space-5) var(--sv-space-6);
+      display: flex; align-items: center; justify-content: space-between;
+      border-bottom: 1px solid var(--sv-border);
+    }
+    .vendor-info { display: flex; align-items: center; gap: var(--sv-space-4); }
+    .vendor-icon {
+      width: 44px; height: 44px; background: var(--sv-grey-100);
+      border-radius: var(--sv-radius-md); display: flex; align-items: center;
+      justify-content: center; color: var(--sv-grey-600); flex-shrink: 0;
+    }
+    .vendor-eyebrow {
+      font-size: 11px; font-weight: 600; letter-spacing: 0.06em;
+      text-transform: uppercase; color: var(--sv-fg-tertiary); margin-bottom: 3px;
+    }
+    .vendor-name { font-size: 18px; font-weight: 700; color: var(--sv-grey-800); }
+    .vendor-name.missing { color: var(--sv-warning-700); }
+    .vendor-icon.missing { background: var(--sv-warning-50); color: var(--sv-warning-600); }
+    .vendor-header-right { display: flex; align-items: center; gap: var(--sv-space-5); }
+    .vendor-stats { font-size: 14px; color: var(--sv-fg-secondary); display: flex; gap: 10px; align-items: center; }
+    .vendor-stats .dot { color: var(--sv-grey-300); }
+
+    /* ── Bulk action — SINGLE LINE ── */
+    .bulk-bar {
+      display: flex; align-items: center; gap: var(--sv-space-3);
+      padding: 12px var(--sv-space-6);
+      background: var(--sv-primary-25);
+      border-bottom: 1px solid var(--sv-primary-100);
+    }
+    .bulk-bar-icon { color: var(--sv-brand-blue); display: flex; flex-shrink: 0; }
+    .bulk-bar-label { font-size: 14px; font-weight: 600; color: var(--sv-grey-700); white-space: nowrap; }
+    .bulk-bar-input {
+      width: 240px; height: 38px;
+      border: 1px solid var(--sv-grey-300); border-radius: var(--sv-radius-md);
+      padding: 0 12px; font-size: 14px; font-family: var(--sv-font-ui); background: var(--sv-white);
+    }
+    .bulk-bar-input:focus { outline: none; border: 1.5px solid var(--sv-brand-blue); box-shadow: var(--sv-focus-ring); }
+    .bulk-bar-apply {
+      height: 38px; padding: 0 16px; border-radius: var(--sv-radius-md);
+      background: var(--sv-brand-blue); color: #fff; border: none; cursor: pointer;
+      font-family: inherit; font-size: 14px; font-weight: 600; white-space: nowrap;
+    }
+    .bulk-bar-apply:hover { background: var(--sv-primary-700); }
+    .bulk-bar-apply:disabled { background: var(--sv-grey-200); color: var(--sv-grey-400); cursor: not-allowed; }
+    .bulk-bar-status { margin-left: auto; display: flex; align-items: center; gap: var(--sv-space-3); white-space: nowrap; }
+    .bulk-bar-count { font-size: 14px; color: var(--sv-fg-secondary); }
+    .bulk-bar-count b { color: var(--sv-grey-800); font-weight: 700; }
+    .bulk-bar-clear {
+      background: none; border: none; cursor: pointer; font-family: inherit;
+      font-size: 14px; font-weight: 600; color: var(--sv-brand-blue); padding: 4px;
+    }
+    .bulk-bar-clear:hover { text-decoration: underline; }
+    .bulk-bar-clear:disabled { color: var(--sv-grey-300); cursor: not-allowed; text-decoration: none; }
+
+    /* ── PO rows ── */
+    .po-list { padding: var(--sv-space-5) var(--sv-space-6); display: flex; flex-direction: column; gap: var(--sv-space-4); }
+
+    .po-section {
+      border: 1px solid var(--sv-border-strong);
+      border-radius: var(--sv-radius-lg);
+      overflow: hidden;
+      transition: border-color 120ms, box-shadow 120ms;
+    }
+    .po-section.has-selection { border-color: var(--sv-primary-300); }
+
+    .po-header {
+      padding: 14px var(--sv-space-5);
+      background: var(--sv-white);
+      display: flex; align-items: center; gap: var(--sv-space-4);
+    }
+    .po-header.expanded { border-bottom: 1px solid var(--sv-border); }
+    .po-expand-hit {
+      flex: 1; display: flex; align-items: center; gap: var(--sv-space-3);
+      cursor: pointer; background: none; border: none; font-family: inherit; padding: 0; text-align: left;
+    }
+    .po-title { font-size: 16px; font-weight: 600; color: var(--sv-grey-800); }
+    .po-meta { font-size: 14px; color: var(--sv-fg-secondary); }
+    .chevron { color: var(--sv-grey-500); transition: transform 150ms ease; flex-shrink: 0; }
+    .chevron.open { transform: rotate(90deg); }
+    .po-invoiced-tag {
+      display: inline-flex; align-items: center; gap: 5px;
+      font-size: 12px; font-weight: 600; color: var(--sv-success-700);
+      background: var(--sv-success-50); border: 1px solid var(--sv-success-200);
+      padding: 3px 10px; border-radius: var(--sv-radius-pill);
+    }
+
+    /* PO body — darker surface for stronger container contrast (#3) */
+    .po-body { background: var(--sv-grey-100); padding: var(--sv-space-5); }
+
+    /* Per-PO invoice + receive row — high-contrast container (#3) */
+    .po-invoice-row {
+      display: flex; align-items: center; gap: var(--sv-space-4);
+      background: var(--sv-white);
+      border: 1px solid var(--sv-grey-300);
+      border-radius: var(--sv-radius-md);
+      box-shadow: var(--sv-shadow-sm);
+      padding: var(--sv-space-4) var(--sv-space-5);
+      margin-bottom: var(--sv-space-4);
+    }
+    .po-invoice-label { font-size: 14px; font-weight: 600; color: var(--sv-grey-700); white-space: nowrap; }
+    .po-invoice-input {
+      flex: 1; max-width: 320px; height: 42px;
+      border: 1px solid var(--sv-grey-300); border-radius: var(--sv-radius-md);
+      padding: 0 12px; font-size: 15px; font-family: var(--sv-font-ui); background: var(--sv-white);
+    }
+    .po-invoice-input:focus { outline: none; border: 1.5px solid var(--sv-brand-blue); box-shadow: var(--sv-focus-ring); }
+
+    /* Bigger CTA (#4) */
+    .receive-btn {
+      margin-left: auto; height: 46px; padding: 0 24px;
+      border-radius: var(--sv-radius-md);
+      background: var(--sv-brand-blue); color: #fff; border: none;
+      font-family: inherit; font-size: 15px; font-weight: 600; cursor: pointer;
+      display: inline-flex; align-items: center; gap: 8px; white-space: nowrap;
+    }
+    .receive-btn:hover { background: var(--sv-primary-700); }
+    .receive-btn:disabled { background: var(--sv-grey-200); color: var(--sv-grey-400); cursor: not-allowed; }
+
+    /* Parts table */
+    .parts-card { background: var(--sv-white); border: 1px solid var(--sv-grey-300); border-radius: var(--sv-radius-md); box-shadow: var(--sv-shadow-sm); overflow: hidden; }
+    .parts-table { width: 100%; border-collapse: collapse; }
+    .parts-table thead th {
+      text-align: left; padding: 11px var(--sv-space-5);
+      font-size: 12px; font-weight: 600; letter-spacing: 0.03em; text-transform: uppercase;
+      color: var(--sv-fg-secondary); background: var(--sv-grey-50);
+      border-bottom: 1px solid var(--sv-border-strong);
+    }
+    .parts-table td {
+      padding: 14px var(--sv-space-5); border-bottom: 1px solid var(--sv-border);
+      font-size: 14px; color: var(--sv-fg-primary); vertical-align: middle;
+    }
+    .parts-table tbody tr:last-child td { border-bottom: none; }
+    .part-name { font-weight: 600; color: var(--sv-grey-800); margin-bottom: 2px; }
+    .part-number { font-size: 12px; color: var(--sv-fg-secondary); font-family: var(--sv-font-mono); }
+
+    .qty-input {
+      width: 76px; height: 38px; border: 1px solid var(--sv-grey-300);
+      border-radius: var(--sv-radius-md); padding: 0 10px; font-size: 14px;
+      font-family: var(--sv-font-ui); text-align: center; background: var(--sv-grey-50); color: var(--sv-grey-600);
+    }
+
+    .price-inputs { display: flex; gap: 14px; align-items: flex-start; justify-content: flex-end; }
+    .price-field { display: flex; flex-direction: column; gap: 4px; }
+    .price-label { font-size: 11px; color: var(--sv-fg-secondary); font-weight: 600; text-transform: uppercase; letter-spacing: 0.03em; }
+    .price-input-wrap { position: relative; display: flex; align-items: center; }
+    .price-input-wrap .cur { position: absolute; left: 10px; font-size: 14px; color: var(--sv-fg-tertiary); pointer-events: none; }
+    .price-input {
+      width: 104px; height: 38px; border: 1px solid var(--sv-grey-300);
+      border-radius: var(--sv-radius-md); padding: 0 10px 0 24px; font-size: 14px;
+      font-family: var(--sv-font-ui); text-align: right; background: var(--sv-white);
+      font-variant-numeric: tabular-nums;
+    }
+    .price-input:focus { outline: none; border: 1.5px solid var(--sv-brand-blue); box-shadow: var(--sv-focus-ring); }
+    /* locked sell price (#7) */
+    .price-input.locked { background: var(--sv-grey-100); color: var(--sv-grey-500); border-color: var(--sv-grey-200); padding-right: 30px; cursor: not-allowed; }
+    .lock-icon { position: absolute; right: 9px; color: var(--sv-grey-400); pointer-events: none; }
+
+    /* Checkbox (tri-state) */
+    .cbx {
+      width: 22px; height: 22px; border-radius: var(--sv-radius-sm);
+      border: 1.5px solid var(--sv-grey-300); background: var(--sv-white);
+      display: inline-flex; align-items: center; justify-content: center;
+      cursor: pointer; flex-shrink: 0; transition: background 100ms, border-color 100ms;
+    }
+    .cbx.checked, .cbx.some { background: var(--sv-brand-blue); border-color: var(--sv-brand-blue); }
+    .cbx:hover { border-color: var(--sv-brand-blue); }
+
+    /* Summary footer */
+    .summary-footer {
+      background: var(--sv-white); border: 1px solid var(--sv-border-strong);
+      border-radius: var(--sv-radius-lg); box-shadow: var(--sv-shadow-sm);
+      padding: var(--sv-space-5) var(--sv-space-6);
+      display: flex; align-items: center; justify-content: space-between;
+      position: sticky; bottom: var(--sv-space-5);
+      margin-top: var(--sv-space-6);
+    }
+    .summary-stats { display: flex; gap: var(--sv-space-10); }
+    .summary-item { display: flex; flex-direction: column; gap: 3px; }
+    .summary-label { font-size: 12px; color: var(--sv-fg-secondary); font-weight: 500; text-transform: uppercase; letter-spacing: 0.03em; }
+    .summary-value { font-size: 22px; font-weight: 700; color: var(--sv-grey-800); font-variant-numeric: tabular-nums; }
+    .receive-all-btn {
+      height: 52px; padding: 0 32px; border-radius: var(--sv-radius-md);
+      background: var(--sv-brand-blue); color: #fff; border: none; cursor: pointer;
+      font-family: inherit; font-size: 16px; font-weight: 700;
+      display: inline-flex; align-items: center; gap: 10px;
+    }
+    .receive-all-btn:hover { background: var(--sv-primary-700); }
+    .receive-all-btn:disabled { background: var(--sv-grey-200); color: var(--sv-grey-400); cursor: not-allowed; }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+  <script type="text/babel" src="components.jsx"></script>
+  <script type="text/babel">
+    const { useState } = React;
+    const { createRoot } = ReactDOM;
+    const { Icon } = window;
+
+    // ── Mock data ─────────────────────────────────────────────
+    // `invoiced: true` on a part = already invoiced → Sell price locked (#7)
+    // `missing: true` on a vendor = unassigned vendor group (assign vendor before invoicing)
+    const VENDORS = [
+      {
+        id: 'missing', name: 'Vendor Missing — assign vendor below', missing: true,
+        pos: [
+          { id: 'S-15733', name: 'WO S2-15733', invoice: '', parts: [
+            { name: 'Front Brake Pads', number: 'MKD785FM', qty: 2, cost: 0, sell: 125.00, selected: false },
+            { name: 'Brake Pad Wear Sensor', number: 'W0133-2187823', qty: 1, cost: 0, sell: 45.00, selected: false },
+            { name: 'Brake Rotor', number: 'BR-900142', qty: 2, cost: 0, sell: 88.00, selected: false },
+          ]},
+          { id: 'S-15734', name: 'WO S2-15734', invoice: '', parts: [
+            { name: 'Cabin Air Filter', number: 'CF-10374', qty: 1, cost: 0, sell: 37.50, selected: false },
+          ]},
+          { id: 'S-15736', name: 'WO S2-15736', invoice: '', parts: [
+            { name: 'Engine Oil (15W-40, 10 qt)', number: 'T5 5500A5347', qty: 1, cost: 0, sell: 89.99, selected: false },
+            { name: 'Oil Filter', number: 'LF9009', qty: 1, cost: 0, sell: 32.00, selected: false },
+          ]},
+          { id: 'S-15738', name: 'WO S2-15738', invoice: '', parts: [
+            { name: 'Wiper Blades Set', number: '602418', qty: 1, cost: 0, sell: 65.99, selected: false },
+          ]},
+          { id: 'S-15739', name: 'WO S2-15739', invoice: '', parts: [
+            { name: 'Coolant (1 Gallon)', number: 'FLEETGUARD ES', qty: 2, cost: 0, sell: 37.98, selected: false },
+            { name: 'Radiator Cap', number: 'RC-45', qty: 1, cost: 0, sell: 17.00, selected: false },
+          ]},
+          { id: 'S-15740', name: 'WO S2-15740', invoice: '', parts: [
+            { name: 'Air Filter', number: 'AF-2222', qty: 1, cost: 0, sell: 48.00, selected: false },
+            { name: 'Fuel Filter', number: 'FF-5421', qty: 2, cost: 0, sell: 29.50, selected: false },
+            { name: 'Serpentine Belt', number: 'SB-7741', qty: 1, cost: 0, sell: 54.25, selected: false },
+          ]},
+          { id: 'S-15741', name: 'WO S2-15741', invoice: '', parts: [
+            { name: 'Spark Plugs (Set of 4)', number: '7092', qty: 1, cost: 0, sell: 56.00, selected: false },
+            { name: 'Ignition Coil', number: 'IC-3380', qty: 2, cost: 0, sell: 72.00, selected: false },
+            { name: 'PCV Valve', number: 'PCV-118', qty: 1, cost: 0, sell: 14.50, selected: false },
+          ]},
+        ]
+      },
+      {
+        id: 'achester', name: 'Achester Landscaping',
+        pos: [
+          { id: 'S-15735', name: 'WO S2-15735', invoice: '', parts: [
+            { name: 'Hydraulic Fluid (5 gal)', number: 'HYD-500', qty: 1, cost: 0, sell: 96.00, selected: false },
+            { name: 'Mower Blade Set', number: 'MB-2240', qty: 2, cost: 0, sell: 41.00, selected: false },
+            { name: 'Fuel Stabilizer', number: 'FS-118', qty: 1, cost: 0, sell: 12.75, selected: false },
+          ]},
+        ]
+      },
+      {
+        id: 'quimill', name: 'Quimill Equipment',
+        pos: [
+          { id: 'S-15614', name: 'WO S2-15614', invoice: '', parts: [
+            { name: 'Drive Coupler', number: 'DC-9981', qty: 1, cost: 0, sell: 64.00, selected: false },
+          ]},
+          { id: 'S-15673', name: 'WO S2-15673', invoice: 'QML-2207', parts: [
+            // Already invoiced → sell locked (#7)
+            { name: 'Bearing Assembly', number: 'BA-3320', qty: 2, cost: 24.00, sell: 56.00, selected: false, invoiced: true },
+            { name: 'Seal Kit', number: 'SK-1140', qty: 1, cost: 9.50, sell: 22.00, selected: false, invoiced: true },
+          ]},
+        ]
+      },
+    ];
+
+    function LockGlyph() {
+      return (
+        <svg className="lock-icon" width="13" height="13" viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
+          <rect x="4" y="11" width="16" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/>
+        </svg>
+      );
+    }
+
+    // Tri-state checkbox (#5): state = true | false | 'some'
+    function TriCheckbox({ state, onClick }) {
+      const cls = state === true ? 'checked' : state === 'some' ? 'some' : '';
+      return (
+        <span className={`cbx ${cls}`} role="checkbox"
+              aria-checked={state === 'some' ? 'mixed' : state}
+              onClick={(e) => { e.stopPropagation(); onClick(); }}>
+          {state === true && <Icon name="check" size={14} stroke={3} style={{ color: '#fff' }} />}
+          {state === 'some' && <span style={{ width: 11, height: 2.5, background: '#fff', borderRadius: 1 }} />}
+        </span>
+      );
+    }
+
+    function App() {
+      const [vendors, setVendors] = useState(VENDORS);
+      // #1 collapsed by default
+      const [expanded, setExpanded] = useState(new Set());
+      const [bulkInvoice, setBulkInvoice] = useState('');
+
+      const allPOIds = vendors.flatMap(v => v.pos.map(p => `${v.id}/${p.id}`));
+      const allExpanded = allPOIds.every(id => expanded.has(id));
+
+      const toggleExpanded = (key) => {
+        const next = new Set(expanded);
+        next.has(key) ? next.delete(key) : next.add(key);
+        setExpanded(next);
+      };
+      const toggleAllExpanded = () => {
+        setExpanded(allExpanded ? new Set() : new Set(allPOIds));
+      };
+
+      // per-vendor expand/collapse (only affects that vendor's POs)
+      const vendorPOKeys = (v) => v.pos.map(p => `${v.id}/${p.id}`);
+      const vendorAllExpanded = (v) => vendorPOKeys(v).every(k => expanded.has(k));
+      const toggleVendorExpanded = (v) => {
+        const next = new Set(expanded);
+        const keys = vendorPOKeys(v);
+        if (vendorAllExpanded(v)) keys.forEach(k => next.delete(k));
+        else keys.forEach(k => next.add(k));
+        setExpanded(next);
+      };
+
+      // selection helpers
+      const poState = (po) => {
+        const sel = po.parts.filter(p => p.selected).length;
+        if (sel === 0) return false;
+        if (sel === po.parts.length) return true;
+        return 'some';
+      };
+
+      const mutate = (fn) => setVendors(vs => fn(vs.map(v => ({ ...v, pos: v.pos.map(p => ({ ...p, parts: p.parts.map(pt => ({ ...pt })) })) }))));
+
+      const togglePO = (vId, poId) => mutate(vs => {
+        const po = vs.find(v => v.id === vId).pos.find(p => p.id === poId);
+        const target = poState(po) === true ? false : true;
+        po.parts.forEach(pt => pt.selected = target);
+        return vs;
+      });
+
+      const togglePart = (vId, poId, idx) => mutate(vs => {
+        const po = vs.find(v => v.id === vId).pos.find(p => p.id === poId);
+        po.parts[idx].selected = !po.parts[idx].selected;
+        return vs;
+      });
+
+      const updateInvoice = (vId, poId, val) => mutate(vs => {
+        vs.find(v => v.id === vId).pos.find(p => p.id === poId).invoice = val;
+        return vs;
+      });
+
+      const updatePrice = (vId, poId, idx, field, val) => mutate(vs => {
+        vs.find(v => v.id === vId).pos.find(p => p.id === poId).parts[idx][field] = val;
+        return vs;
+      });
+
+      // bulk: count POs with at least one selected part (per vendor)
+      const selectedPOCount = (v) => v.pos.filter(p => poState(p) !== false).length;
+      const totalSelectedPOs = vendors.reduce((n, v) => n + selectedPOCount(v), 0);
+
+      const applyBulk = (vId) => {
+        if (!bulkInvoice.trim()) return;
+        mutate(vs => {
+          vs.find(v => v.id === vId).pos.forEach(po => {
+            if (poState(po) !== false && !po.parts.some(pt => pt.invoiced)) po.invoice = bulkInvoice;
+          });
+          return vs;
+        });
+      };
+
+      const clearVendor = (vId) => mutate(vs => {
+        vs.find(v => v.id === vId).pos.forEach(po => po.parts.forEach(pt => pt.selected = false));
+        return vs;
+      });
+
+      // summary
+      const allParts = vendors.flatMap(v => v.pos.flatMap(p => p.parts));
+      const selParts = allParts.filter(p => p.selected);
+      const total = selParts.reduce((s, p) => s + (Number(p.cost) || 0) * p.qty, 0);
+
+      return (
+        <div>
+          <header className="app-header">
+            <div className="logo">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
+              </svg>
+            </div>
+            <nav className="nav">
+              <a href="#" className="nav-link">Work Orders</a>
+              <a href="#" className="nav-link">Schedule</a>
+              <a href="#" className="nav-link">Customers</a>
+              <a href="#" className="nav-link active">Parts</a>
+              <a href="#" className="nav-link">Reports</a>
+            </nav>
+            <div className="search-bar">
+              <Icon name="search" size={18} style={{ color: 'var(--sv-fg-tertiary)' }} />
+              <input type="text" placeholder="Search" />
+              <span className="kbd">⌘K</span>
+            </div>
+            <div className="header-right">
+              <Icon name="bell" size={22} style={{ color: 'var(--sv-grey-600)' }} />
+              <div className="user-chip">QA Testing<span className="avatar">OD</span></div>
+            </div>
+          </header>
+
+          <div className="main-content">
+            <a href="Purchase Orders List.html" className="back-link">
+              <Icon name="chevron-right" size={16} style={{ transform: 'rotate(180deg)' }} /> Back to Purchase Orders
+            </a>
+
+            <div className="page-head">
+              <div>
+                <h1 className="page-title">Receive Vendor Parts</h1>
+                <div className="page-sub">{vendors.length} vendors</div>
+              </div>
+            </div>
+
+            {vendors.map(vendor => {
+              const selCount = selectedPOCount(vendor);
+              return (
+                <div className="vendor-card" key={vendor.id}>
+                  <div className="vendor-card-header">
+                    <div className="vendor-info">
+                      <div className={`vendor-icon ${vendor.missing ? 'missing' : ''}`}>
+                        <Icon name={vendor.missing ? 'help-circle' : 'store'} size={22} />
+                      </div>
+                      <div>
+                        <div className="vendor-eyebrow">Vendor</div>
+                        <div className={`vendor-name ${vendor.missing ? 'missing' : ''}`}>{vendor.name}</div>
+                      </div>
+                    </div>
+                    <div className="vendor-header-right">
+                      <div className="vendor-stats">
+                        <span>{vendor.pos.reduce((n, p) => n + p.parts.length, 0)} parts</span>
+                        <span className="dot">•</span>
+                        <span>{vendor.pos.length} POs</span>
+                      </div>
+                      <button className="collapse-toggle" onClick={() => toggleVendorExpanded(vendor)}>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"
+                             style={{ transform: vendorAllExpanded(vendor) ? 'rotate(180deg)' : 'none' }}>
+                          <polyline points="6 9 12 15 18 9"/>
+                        </svg>
+                        {vendorAllExpanded(vendor) ? 'Collapse all' : 'Expand all'}
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* #2 — bulk action as a single line (hidden until a vendor is assigned) */}
+                  {!vendor.missing && (
+                  <div className="bulk-bar">
+                    <span className="bulk-bar-icon"><Icon name="file-text" size={18} /></span>
+                    <span className="bulk-bar-label">Apply invoice to selected POs</span>
+                    <input className="bulk-bar-input" placeholder="Vendor invoice number"
+                           value={bulkInvoice} onChange={e => setBulkInvoice(e.target.value)} />
+                    <button className="bulk-bar-apply" disabled={!bulkInvoice.trim() || selCount === 0}
+                            onClick={() => applyBulk(vendor.id)}>Apply</button>
+                    <div className="bulk-bar-status">
+                      <span className="bulk-bar-count"><b>{selCount}</b> of {vendor.pos.length} selected</span>
+                      <button className="bulk-bar-clear" disabled={selCount === 0} onClick={() => clearVendor(vendor.id)}>Clear</button>
+                    </div>
+                  </div>
+                  )}
+
+                  <div className="po-list">
+                    {vendor.pos.map(po => {
+                      const key = `${vendor.id}/${po.id}`;
+                      const isOpen = expanded.has(key);
+                      const st = poState(po);
+                      const selParts = po.parts.filter(p => p.selected);
+                      const hasInvoicedParts = po.parts.some(p => p.invoiced);
+                      return (
+                        <div className={`po-section ${st !== false ? 'has-selection' : ''}`} key={po.id}>
+                          <div className={`po-header ${isOpen ? 'expanded' : ''}`}>
+                            <TriCheckbox state={st} onClick={() => togglePO(vendor.id, po.id)} />
+                            <button className="po-expand-hit" onClick={() => toggleExpanded(key)}>
+                              <span className="po-title">PO {po.id} — {po.name}</span>
+                              <span className="po-meta">({po.parts.length} {po.parts.length === 1 ? 'part' : 'parts'})</span>
+                              {hasInvoicedParts && (
+                                <span className="po-invoiced-tag"><Icon name="check" size={12} stroke={3} /> Invoiced</span>
+                              )}
+                              <Icon name="chevron-right" size={20} className={`chevron ${isOpen ? 'open' : ''}`} style={{ marginLeft: 'auto' }} />
+                            </button>
+                          </div>
+
+                          {isOpen && (
+                            <div className="po-body">
+                              {/* #3 — high-contrast invoice container, #4 — bigger CTA */}
+                              <div className="po-invoice-row">
+                                <span className="po-invoice-label">Vendor invoice #</span>
+                                <input className="po-invoice-input" placeholder="Enter invoice number"
+                                       value={po.invoice} onChange={e => updateInvoice(vendor.id, po.id, e.target.value)} />
+                                <button className="receive-btn" disabled={selParts.length === 0}>
+                                  <Icon name="box" size={18} /> Receive parts ({selParts.length})
+                                </button>
+                              </div>
+
+                              <div className="parts-card">
+                                <table className="parts-table">
+                                  <thead>
+                                    <tr>
+                                      <th style={{ width: 44 }}></th>
+                                      <th>Part name &amp; number</th>
+                                      <th style={{ width: 110, textAlign: 'center' }}>Qty</th>
+                                      <th style={{ width: 280, textAlign: 'right' }}>Pricing</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    {po.parts.map((part, idx) => {
+                                      const sellLocked = !!part.invoiced;
+                                      return (
+                                        <tr key={idx}>
+                                          <td><TriCheckbox state={part.selected} onClick={() => togglePart(vendor.id, po.id, idx)} /></td>
+                                          <td>
+                                            <div className="part-name">{part.name}</div>
+                                            {part.number && <div className="part-number">{part.number}</div>}
+                                          </td>
+                                          <td style={{ textAlign: 'center' }}>
+                                            <input className="qty-input" value={part.qty} readOnly />
+                                          </td>
+                                          <td>
+                                            <div className="price-inputs">
+                                              <div className="price-field">
+                                                <span className="price-label">Cost</span>
+                                                <div className="price-input-wrap">
+                                                  <span className="cur">$</span>
+                                                  <input type="number" step="0.01" className="price-input"
+                                                         value={part.cost}
+                                                         onChange={e => updatePrice(vendor.id, po.id, idx, 'cost', e.target.value)} />
+                                                </div>
+                                              </div>
+                                              <div className="price-field">
+                                                <span className="price-label">Sell</span>
+                                                <div className="price-input-wrap">
+                                                  <span className="cur">$</span>
+                                                  <input type="number" step="0.01"
+                                                         className={`price-input ${sellLocked ? 'locked' : ''}`}
+                                                         value={part.sell} readOnly={sellLocked}
+                                                         title={sellLocked ? 'Locked — this part is already invoiced' : ''}
+                                                         onChange={e => !sellLocked && updatePrice(vendor.id, po.id, idx, 'sell', e.target.value)} />
+                                                  {sellLocked && <LockGlyph />}
+                                                </div>
+                                              </div>
+                                            </div>
+                                          </td>
+                                        </tr>
+                                      );
+                                    })}
+                                  </tbody>
+                                </table>
+                              </div>
+                            </div>
+                          )}
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              );
+            })}
+
+            <div className="summary-footer">
+              <div className="summary-stats">
+                <div className="summary-item">
+                  <span className="summary-label">Cost total</span>
+                  <span className="summary-value">${total.toFixed(2)}</span>
+                </div>
+                <div className="summary-item">
+                  <span className="summary-label">Parts selected</span>
+                  <span className="summary-value">{selParts.length}</span>
+                </div>
+                <div className="summary-item">
+                  <span className="summary-label">POs selected</span>
+                  <span className="summary-value">{totalSelectedPOs}</span>
+                </div>
+              </div>
+              <button className="receive-all-btn" disabled={selParts.length === 0}>
+                <Icon name="box" size={20} /> Receive {selParts.length} selected parts
+              </button>
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    createRoot(document.getElementById('root')).render(<App />);
+  </script>
+</body>
+</html>

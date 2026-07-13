@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Work Orders — Completed</title>
+<link rel="stylesheet" href="colors_and_type.css">
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+  body { margin: 0; background: var(--sv-white); }
+  .app-shell { display: flex; flex-direction: column; min-height: 100vh; }
+
+  /* ── Top nav ── */
+  .app-header { height: 64px; flex-shrink: 0; background: var(--sv-white);
+    border-bottom: 1px solid var(--sv-border-strong); display: flex; align-items: center;
+    padding: 0 var(--sv-space-6); gap: var(--sv-space-6); }
+  .logo { width: 36px; height: 36px; background: var(--sv-brand-blue); border-radius: var(--sv-radius-md);
+    display: flex; align-items: center; justify-content: center; color: #fff; flex-shrink: 0; }
+  .nav { display: flex; gap: 2px; flex: 1; }
+  .nav-link { font-size: 15px; font-weight: 500; color: var(--sv-grey-700); text-decoration: none;
+    padding: 8px 14px; border-radius: var(--sv-radius-md); }
+  .nav-link:hover { background: var(--sv-grey-50); }
+  .nav-link.active { background: var(--sv-grey-100); color: var(--sv-grey-800); font-weight: 600; }
+  .search-bar { width: 300px; height: 40px; border: 1px solid var(--sv-border-strong);
+    border-radius: var(--sv-radius-md); padding: 0 12px; background: var(--sv-grey-50);
+    display: flex; align-items: center; gap: 9px; }
+  .search-bar input { border: 0; outline: 0; flex: 1; font-size: 14px; font-family: inherit;
+    color: var(--sv-fg-primary); background: transparent; }
+  .search-bar [data-lucide] { width: 17px; height: 17px; color: var(--sv-fg-tertiary); }
+  .kbd { font-size: 12px; color: var(--sv-fg-tertiary); border: 1px solid var(--sv-border-strong);
+    border-radius: var(--sv-radius-xs); padding: 1px 6px; }
+  .header-right { display: flex; align-items: center; gap: var(--sv-space-5); }
+  .clock-in { display: flex; align-items: center; gap: 7px; font-size: 14px; font-weight: 500; color: var(--sv-grey-600); }
+  .clock-in [data-lucide] { width: 18px; height: 18px; }
+  .bell { width: 20px; height: 20px; color: var(--sv-grey-500); }
+  .user-chip { display: flex; align-items: center; gap: 10px; border: 1px solid var(--sv-border-strong);
+    border-radius: var(--sv-radius-pill); padding: 4px 5px 4px 14px; font-size: 14px; font-weight: 500; color: var(--sv-grey-700); }
+  .avatar { width: 30px; height: 30px; border-radius: 50%; background: var(--sv-grey-700); color: #fff;
+    display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600; }
+
+  /* ── Tab bar ── */
+  .tabbar { display: flex; align-items: center; padding: 0 var(--sv-space-6); height: 56px;
+    border-bottom: 1px solid var(--sv-border); gap: var(--sv-space-6); }
+  .tabs { display: flex; gap: var(--sv-space-6); flex: 1; }
+  .tab { font-size: 15px; font-weight: 500; color: var(--sv-fg-secondary); text-decoration: none;
+    padding: 17px 0; border-bottom: 2px solid transparent; margin-bottom: -1px; cursor: pointer; }
+  .tab:hover { color: var(--sv-grey-700); }
+  .tab.active { color: var(--sv-brand-blue); border-bottom-color: var(--sv-brand-blue); font-weight: 600; }
+  .tabbar-right { display: flex; align-items: center; gap: var(--sv-space-5); }
+
+  /* toggle */
+  .tg { display: inline-flex; align-items: center; gap: 9px; font-size: 14px; font-weight: 500; color: var(--sv-grey-700); }
+  .switch { position: relative; width: 38px; height: 21px; flex-shrink: 0; }
+  .switch input { opacity: 0; width: 0; height: 0; }
+  .slider { position: absolute; inset: 0; background: var(--sv-grey-300); border-radius: 11px; transition: .16s; }
+  .slider:before { content: ''; position: absolute; width: 15px; height: 15px; left: 3px; top: 3px;
+    background: #fff; border-radius: 50%; transition: .16s; box-shadow: 0 1px 2px rgba(0,0,0,.2); }
+  .switch input:checked + .slider { background: var(--sv-brand-blue); }
+  .switch input:checked + .slider:before { transform: translateX(17px); }
+  .icon-btn { width: 34px; height: 34px; border: 1px solid var(--sv-border-strong); border-radius: var(--sv-radius-md);
+    background: #fff; display: flex; align-items: center; justify-content: center; color: var(--sv-grey-500); cursor: pointer; }
+  .icon-btn [data-lucide] { width: 18px; height: 18px; }
+  .btn-primary { height: 40px; padding: 0 18px; border: 0; border-radius: var(--sv-radius-md);
+    background: var(--sv-brand-blue); color: #fff; font-size: 14px; font-weight: 600; font-family: inherit;
+    cursor: pointer; box-shadow: var(--sv-shadow-xs); }
+  .btn-primary:hover { background: var(--sv-primary-700); }
+
+  /* ── Table ── */
+  .table-wrap { padding: 0 var(--sv-space-6); }
+  table.wo { width: 100%; border-collapse: collapse; }
+  table.wo thead th { font-size: 13px; font-weight: 600; color: var(--sv-grey-600); text-align: left;
+    padding: 16px 14px; border-bottom: 1px solid var(--sv-border-strong); white-space: nowrap; }
+  table.wo thead th.r { text-align: right; }
+  .th-sort { display: inline-flex; align-items: center; gap: 5px; }
+  .th-sort [data-lucide] { width: 13px; height: 13px; color: var(--sv-fg-tertiary); }
+  table.wo tbody td { padding: 13px 14px; font-size: 14px; color: var(--sv-grey-700);
+    border-bottom: 1px solid var(--sv-border); white-space: nowrap; }
+  table.wo tbody tr:hover td { background: var(--sv-grey-25); }
+  td.r { text-align: right; font-variant-numeric: tabular-nums; }
+  .pin { color: var(--sv-success-500); width: 19px; height: 19px; }
+  .pill { display: inline-flex; align-items: center; height: 24px; padding: 0 11px; border-radius: var(--sv-radius-pill);
+    font-size: 12px; font-weight: 600; background: var(--sv-warning-50); color: var(--sv-warning-700);
+    border: 1px solid var(--sv-warning-200); }
+  .num-cell { font-weight: 500; color: var(--sv-grey-800); }
+  .vin { font-variant-numeric: tabular-nums; }
+  .vin b { color: var(--sv-grey-900); font-weight: 700; }
+  .copy { width: 14px; height: 14px; color: var(--sv-fg-tertiary); margin-left: 6px; cursor: pointer; vertical-align: middle; }
+  .progress { display: inline-flex; align-items: center; justify-content: center; min-width: 48px; height: 22px;
+    padding: 0 8px; border-radius: var(--sv-radius-pill); background: var(--sv-grey-100); color: var(--sv-fg-secondary);
+    font-size: 12px; font-weight: 600; }
+  .waiting { color: var(--sv-brand-blue); font-weight: 500; cursor: pointer; }
+  .waiting:hover { text-decoration: underline; }
+  .grand-total { text-align: right; padding: 18px var(--sv-space-6) 28px; font-size: 15px; font-weight: 700; color: var(--sv-grey-800); }
+
+  /* support widget */
+  .support { position: fixed; right: 22px; bottom: 22px; width: 48px; height: 48px; border-radius: 50%;
+    background: var(--sv-grey-100); display: flex; align-items: center; justify-content: center; color: var(--sv-grey-600);
+    box-shadow: var(--sv-shadow-md); }
+  .support [data-lucide] { width: 22px; height: 22px; }
+  .support .dot { position: absolute; top: -2px; right: -2px; width: 18px; height: 18px; border-radius: 50%;
+    background: var(--sv-brand-blue); color: #fff; font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; }
+</style>
+</head>
+<body>
+<div class="app-shell">
+  <!-- Header -->
+  <header class="app-header">
+    <div class="logo">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    </div>
+    <nav class="nav">
+      <a href="#" class="nav-link active">Work Orders</a>
+      <a href="#" class="nav-link">Schedule</a>
+      <a href="#" class="nav-link">Customers</a>
+      <a href="#" class="nav-link">Parts</a>
+      <a href="#" class="nav-link">Reports</a>
+    </nav>
+    <div class="search-bar"><i data-lucide="search"></i><input placeholder="Search"><span class="kbd">⌘K</span></div>
+    <div class="header-right">
+      <span class="clock-in"><i data-lucide="timer"></i> Clock In</span>
+      <i data-lucide="bell" class="bell"></i>
+      <div class="user-chip">Staging Heavy Duty - 9919 <span class="avatar">AS</span></div>
+    </div>
+  </header>
+
+  <!-- Tab bar -->
+  <div class="tabbar">
+    <div class="tabs">
+      <span class="tab">Estimates</span>
+      <span class="tab">Work Orders</span>
+      <span class="tab active">Completed</span>
+      <span class="tab">By Status</span>
+    </div>
+    <div class="tabbar-right">
+      <label class="tg"><span class="switch"><input type="checkbox" checked><span class="slider"></span></span> My Work Orders</label>
+      <label class="tg"><span class="switch"><input type="checkbox"><span class="slider"></span></span> Asset Here?</label>
+      <div class="icon-btn"><i data-lucide="columns-3"></i></div>
+      <button class="btn-primary">Create Work Order</button>
+    </div>
+  </div>
+
+  <!-- Table -->
+  <div class="table-wrap">
+    <table class="wo">
+      <thead>
+        <tr>
+          <th>On Site</th>
+          <th>Status</th>
+          <th>Number</th>
+          <th>Customer</th>
+          <th>Asset</th>
+          <th>Unit</th>
+          <th>VIN/Serial #</th>
+          <th>Progress</th>
+          <th>Lines</th>
+          <th class="r">Total Price</th>
+          <th>Created On</th>
+          <th><span class="th-sort">Waiting On Parts <i data-lucide="chevron-up"></i></span></th>
+        </tr>
+      </thead>
+      <tbody id="rows"></tbody>
+    </table>
+  </div>
+  <div class="grand-total">$60,667.54</div>
+</div>
+
+<div class="support"><i data-lucide="message-circle"></i><span class="dot">1</span></div>
+
+<script>
+  const rows = [
+    { num: 'S2-15743', cust: 'Aabrook Supply',     asset: 'Freightliner Cascadia', unit: '600',    vinA: 'GCDJ457SB', vinB: '0HG9AK8A', copy: true,  price: '$199.82',    created: 'Yesterday',   wait: '1 Parts Waiting' },
+    { num: 'S2-15736', cust: 'Aaborough Foods',    asset: 'Gmc Sierra',            unit: '38',     vinA: 'YKY4UEHHP', vinB: 'M3DLD0H4', copy: false, price: '$448.49',    created: 'Jun 12, 2026', wait: '3 Parts Waiting' },
+    { num: 'S2-15741', cust: 'Aaborough Foods',    asset: 'Gmc Sierra',            unit: '38',     vinA: 'YKY4UEHHP', vinB: 'M3DLD0H4', copy: true,  price: '$262.50',    created: 'Jun 18, 2026', wait: '4 Parts Waiting' },
+    { num: 'S2-15735', cust: 'Aaborough Foods',    asset: 'Ram 1500',              unit: '-',      vinA: 'XCBX9LNZ9', vinB: 'BK63TCB3', copy: false, price: '$420.47',    created: 'Jun 11, 2026', wait: '3 Parts Waiting' },
+    { num: 'S2-15738', cust: 'Aabridge Beverages', asset: 'VANGUARD NATIONAL TRAILER CORPORATION (V..', unit: 'R11091', vinA: 'RAEVSH72V', vinB: 'K5XPNKX5', copy: true,  price: '$365.98',    created: 'Jun 12, 2026', wait: '1 Parts Waiting' },
+    { num: 'S2-15739', cust: 'Aabridge Beverages', asset: 'VANGUARD NATIONAL TRAILER CORPORATION (V..', unit: 'R11120', vinA: 'BKA4VLZ1U', vinB: '1H56C8ZC', copy: false, price: '$260.98',    created: 'Jun 15, 2026', wait: '2 Parts Waiting' },
+    { num: 'S2-15733', cust: 'Aabridge Beverages', asset: 'VANGUARD NATIONAL TRAILER CORPORATION (V..', unit: 'R11120', vinA: 'BKA4VLZ1U', vinB: '1H56C8ZC', copy: true,  price: '$260.98',    created: 'Jun 11, 2026', wait: '3 Parts Waiting' },
+    { num: 'S2-15740', cust: 'Aaborough Foods',    asset: 'Gmc Sierra',            unit: '38',     vinA: 'YKY4UEHHP', vinB: 'M3DLD0H4', copy: true,  price: '$47,002.09', created: 'Jun 15, 2026', wait: '5 Parts Waiting' },
+    { num: 'S2-15742', cust: 'Aabrook Supply',     asset: 'Freightliner Cascadia', unit: '600',    vinA: 'GCDJ457SB', vinB: '0HG9AK8A', copy: true,  price: '$424.30',    created: 'Yesterday',   wait: '3 Parts Waiting' },
+    { num: 'S2-15734', cust: 'Aabridge Beverages', asset: 'VANGUARD NATIONAL TRAILER CORPORATION (V..', unit: 'R11120', vinA: 'BKA4VLZ1U', vinB: '1H56C8ZC', copy: false, price: '$11,021.93', created: 'Jun 11, 2026', wait: '1 Parts Waiting' }
+  ];
+  document.getElementById('rows').innerHTML = rows.map(r => `
+    <tr>
+      <td><i data-lucide="map-pin" class="pin"></i></td>
+      <td><span class="pill">Complete</span></td>
+      <td class="num-cell">${r.num}</td>
+      <td>${r.cust}</td>
+      <td>${r.asset}</td>
+      <td>${r.unit}</td>
+      <td class="vin">${r.vinA}<b>${r.vinB}</b>${r.copy ? '<i data-lucide="copy" class="copy"></i>' : ''}</td>
+      <td><span class="progress">0%</span></td>
+      <td>1</td>
+      <td class="r">${r.price}</td>
+      <td>${r.created}</td>
+      <td><span class="waiting">${r.wait}</span></td>
+    </tr>`).join('');
+  lucide.createIcons();
+</script>
+</body>
+</html>

@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simple Flow Design — ShopView</title>
+  <link rel="stylesheet" href="colors_and_type.css">
+  <link rel="stylesheet" href="po-details.css">
+  <style>
+    html, body { margin: 0; height: 100%; }
+    /* Each screen frame is the positioning context for any contained modal. */
+    .screen-frame { position: relative; background: var(--sv-bg-app); min-height: 100%; }
+    .screen-frame .app-header { border-radius: 0; }
+    /* Iframe artboards: fill the card exactly, no chrome. */
+    .frame-embed { width: 100%; height: 100%; border: 0; display: block; background: var(--sv-bg-app); }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+  <script type="text/babel" src="components.jsx"></script>
+  <script type="text/babel" src="po-data.jsx"></script>
+  <script type="text/babel" src="PODetails.jsx"></script>
+  <script type="text/babel" src="design-canvas.jsx"></script>
+  <script type="text/babel">
+    const { createRoot } = ReactDOM;
+    const { Icon, PODetails, DesignCanvas, DCSection, DCArtboard } = window;
+
+    // Shared app header used by the inline PO screens (mirrors the staging shell).
+    function Header() {
+      return (
+        <header className="app-header">
+          <div className="logo">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
+            </svg>
+          </div>
+          <nav className="nav">
+            <a href="#" className="nav-link">Work Orders</a>
+            <a href="#" className="nav-link">Schedule</a>
+            <a href="#" className="nav-link">Customers</a>
+            <a href="#" className="nav-link active">Parts</a>
+            <a href="#" className="nav-link">Reports</a>
+          </nav>
+          <div className="search-bar">
+            <Icon name="search" size={18} style={{ color: 'var(--sv-fg-tertiary)' }} />
+            <input type="text" placeholder="Search" />
+            <span className="kbd">⌘K</span>
+          </div>
+          <div className="header-right">
+            <div className="clock-in"><Icon name="clock" size={20} style={{ color: 'var(--sv-grey-600)' }} /> Clock In</div>
+            <Icon name="bell" size={22} style={{ color: 'var(--sv-grey-600)' }} />
+            <div className="user-chip">Staging Heavy Duty - 9919<span className="avatar">AS</span></div>
+          </div>
+        </header>
+      );
+    }
+
+    // A full PO screen: header + receiving flow, used inside each artboard.
+    function Screen(props) {
+      return (
+        <div className="screen-frame">
+          <Header />
+          <PODetails {...props} />
+        </div>
+      );
+    }
+
+    // An embedded live screen (kept interactive for QA/dev reference).
+    function Frame({ src }) {
+      return <iframe className="frame-embed" src={src} loading="lazy" />;
+    }
+
+    const W = 1360;
+
+    function App() {
+      return (
+        <DesignCanvas>
+
+          {/* ── 0. Workflow Settings (origin of the flow) ── */}
+          <DCSection id="settings" title="Settings — Workflow"
+                     subtitle="Origin of the flow · toggles here drive review, PO creation, vendor invoice & required fields downstream">
+            <DCArtboard id="workflow-settings" label="Workflow settings (interactive)" width={W} height={900}>
+              <Frame src="Workflow Settings.html" />
+            </DCArtboard>
+          </DCSection>
+
+          {/* ── 1. Work Orders list (interactive) ── */}
+          <DCSection id="wo-list" title="Work Orders — List"
+                     subtitle="Story 14 · &quot;Waiting on Parts&quot; column + receive shortcut — populates for any WO with ordered-but-unreceived parts (active or completed), not just the Completed tab">
+            <DCArtboard id="wo-list-completed" label="Work Orders list — Waiting on Parts column" width={W} height={900}>
+              <Frame src="Work Orders List.html" />
+            </DCArtboard>
+          </DCSection>
+
+          {/* ── 2. Work Order — review + completion, as discrete screens ── */}
+          <DCSection id="wo" title="Work Order — Review &amp; Completion Flow"
+                     subtitle="Stories 2, 3, 4, 15, 16 · Each state as its own screen (no live panel)">
+            <DCArtboard id="wo-active" label="1 · Active — Complete Work Order (review off)" width={W} height={1040}>
+              <Frame src="WO Review Flow.html?screen=active" />
+            </DCArtboard>
+            <DCArtboard id="wo-wiz-techstory" label="2 · Completion — Tech story (per line)" width={W} height={1040}>
+              <Frame src="WO Review Flow.html?screen=wiz-techstory" />
+            </DCArtboard>
+            <DCArtboard id="wo-wiz-details" label="3 · Completion — VIN / mileage / engine hours" width={W} height={1040}>
+              <Frame src="WO Review Flow.html?screen=wiz-details" />
+            </DCArtboard>
+            <DCArtboard id="wo-wiz-parts-opt" label="4 · Completion — Receive parts (invoice optional)" width={W} height={1040}>
+              <Frame src="WO Review Flow.html?screen=wiz-parts-optional" />
+            </DCArtboard>
+            <DCArtboard id="wo-wiz-parts-req" label="5 · Completion — Required invoice (must receive)" width={W} height={1040}>
+              <Frame src="WO Review Flow.html?screen=wiz-parts-required" />
+            </DCArtboard>
+            <DCArtboard id="wo-success-complete" label="6 · Success — Completed / Go to Invoice" width={W} height={1040}>
+              <Frame src="WO Review Flow.html?screen=success-complete" />
+            </DCArtboard>
+            <DCArtboard id="wo-review-pending" label="7 · Ready for Review — Advisor (awaiting review)" width={W} height={1040}>
+              <Frame src="WO Review Flow.html?screen=review-pending" />
+            </DCArtboard>
+            <DCArtboard id="wo-review-manager" label="8 · Ready for Review — Manager (can sign off)" width={W} height={1040}>
+              <Frame src="WO Review Flow.html?screen=review-manager" />
+            </DCArtboard>
+            <DCArtboard id="wo-review-dialog" label="9 · Review — Confirm sign-off dialog" width={W} height={1040}>
+              <Frame src="WO Review Flow.html?screen=review-dialog" />
+            </DCArtboard>
+            <DCArtboard id="wo-success-review" label="10 · Success — Sent for review" width={W} height={1040}>
+              <Frame src="WO Review Flow.html?screen=success-review" />
+            </DCArtboard>
+            <DCArtboard id="wo-reviewed" label="11 · Reviewed — Complete Work Order returns" width={W} height={1040}>
+              <Frame src="WO Review Flow.html?screen=reviewed" />
+            </DCArtboard>
+            <DCArtboard id="wo-completed" label="12 · Completed — invoice-ready" width={W} height={1040}>
+              <Frame src="WO Review Flow.html?screen=completed" />
+            </DCArtboard>
+          </DCSection>
+
+          {/* ── 2b. Resolve Cores — completion-flow step ── */}
+          <DCSection id="cores" title="Resolve Cores in Completion — Required-Invoice (Mandatory) Flow"
+                     subtitle="When the vendor invoice number is required, parts must be received before completing. Order: Details → Pick parts → Receive → Resolve cores → Complete. Cores are resolved right after Receive — a special-order core can only be settled once its part is in hand.">
+            <DCArtboard id="pick-default" label="1 · Pick parts — auto-pick off (Pick all / Review individually)" width={W} height={900}>
+              <Frame src="Resolve Cores Flow.html?screen=pick-default" />
+            </DCArtboard>
+            <DCArtboard id="pick-review" label="2 · Pick parts — review individually, one by one" width={W} height={900}>
+              <Frame src="Resolve Cores Flow.html?screen=pick-review" />
+            </DCArtboard>
+            <DCArtboard id="cores-wo" label="3 · Work order — unresolved cores, inline OK / Not OK on the line" width={W} height={900}>
+              <Frame src="Resolve Cores Flow.html?screen=wo-cores" />
+            </DCArtboard>
+            <DCArtboard id="cores-unresolved" label="4 · Resolve cores step — unresolved (Continue blocked)" width={W} height={900}>
+              <Frame src="Resolve Cores Flow.html?screen=cores-unresolved" />
+            </DCArtboard>
+            <DCArtboard id="cores-partial" label="5 · Partially resolved — still blocked" width={W} height={900}>
+              <Frame src="Resolve Cores Flow.html?screen=cores-partial" />
+            </DCArtboard>
+            <DCArtboard id="cores-resolved" label="6 · All resolved (mix OK / Not OK) — Continue enabled" width={W} height={900}>
+              <Frame src="Resolve Cores Flow.html?screen=cores-resolved" />
+            </DCArtboard>
+            <DCArtboard id="cores-inventory" label="7 · Inventory cores only" width={W} height={900}>
+              <Frame src="Resolve Cores Flow.html?screen=cores-inventory" />
+            </DCArtboard>
+            <DCArtboard id="cores-special" label="8 · Special-order core only" width={W} height={900}>
+              <Frame src="Resolve Cores Flow.html?screen=cores-special" />
+            </DCArtboard>
+            <DCArtboard id="cores-receive-before" label="9 · Receive step — parts awaiting; cores resolved in the next step" width={W} height={900}>
+              <Frame src="Resolve Cores Flow.html?screen=receive-before-cores" />
+            </DCArtboard>
+            <DCArtboard id="cores-none" label="10 · No cores — step skipped entirely" width={W} height={900}>
+              <Frame src="Resolve Cores Flow.html?screen=none-skipped" />
+            </DCArtboard>
+            <DCArtboard id="cores-success" label="11 · Success — core charge on the invoice-ready draft" width={W} height={900}>
+              <Frame src="Resolve Cores Flow.html?screen=success" />
+            </DCArtboard>
+            <DCArtboard id="cores-interactive" label="12 · Interactive — full flow with scenario panel" width={W} height={900}>
+              <Frame src="Resolve Cores Flow.html" />
+            </DCArtboard>
+          </DCSection>
+
+          {/* ── 2c. Resolve Cores to Invoice — optional-reimbursement gate ── */}
+          <DCSection id="cores-invoice" title="Resolve Cores to Invoice — Optional-Reimbursement Gate"
+                     subtitle="When a WO is completed without receiving, special-order cores can't be resolved yet (part not in hand). Completion is NOT blocked — only the INVOICE is held. A special-order core must be received before it can be settled.">
+            <DCArtboard id="ci-entry" label="1 · Completed, un-invoiced — “Cores pending, can't invoice yet”" width={W} height={900}>
+              <Frame src="Resolve Cores to Invoice.html?screen=entry" />
+            </DCArtboard>
+            <DCArtboard id="ci-blocked" label="2 · Blocked — Resolve cores to invoice modal (Create Invoice disabled)" width={W} height={900}>
+              <Frame src="Resolve Cores to Invoice.html?screen=blocked" />
+            </DCArtboard>
+            <DCArtboard id="ci-receive" label="3 · Receive one cored line → becomes resolvable" width={W} height={900}>
+              <Frame src="Resolve Cores to Invoice.html?screen=receive" />
+            </DCArtboard>
+            <DCArtboard id="ci-partial" label="4 · Partial — one resolved, one still pending (1 of 2)" width={W} height={900}>
+              <Frame src="Resolve Cores to Invoice.html?screen=partial" />
+            </DCArtboard>
+            <DCArtboard id="ci-resolved" label="5 · All resolved (Return + Keep) — Create Invoice enabled" width={W} height={900}>
+              <Frame src="Resolve Cores to Invoice.html?screen=resolved" />
+            </DCArtboard>
+            <DCArtboard id="ci-invoiced" label="6 · Invoiced — kept core charge billed, pending state cleared" width={W} height={900}>
+              <Frame src="Resolve Cores to Invoice.html?screen=invoiced" />
+            </DCArtboard>
+            <DCArtboard id="ci-interactive" label="7 · Interactive — full gate with frame + inventory-core panel" width={W} height={900}>
+              <Frame src="Resolve Cores to Invoice.html" />
+            </DCArtboard>
+          </DCSection>
+
+          {/* ── 3. Purchase Orders list (interactive) ── */}
+          <DCSection id="po-list" title="Purchase Orders — List"
+                     subtitle="Stories 7, 11 · Entry point — select POs to receive, or open one for details">
+            <DCArtboard id="list" label="Purchase Orders list (interactive)" width={W} height={900}>
+              <Frame src="Purchase Orders List.html" />
+            </DCArtboard>
+          </DCSection>
+
+          {/* ── 3. Purchase Order Details — receiving flow ── */}
+          <DCSection id="po-details" title="Purchase Order Details — Receiving Flow"
+                     subtitle="Stories 6, 11, 12 · Core screens + edge cases">
+            <DCArtboard id="multi" label="Multiple vendors + one Vendor Missing" width={W} height={1480}>
+              <Screen data={window.PO_SCENARIOS.multi} />
+            </DCArtboard>
+            <DCArtboard id="single" label="Single vendor" width={W} height={760}>
+              <Screen data={window.PO_SCENARIOS.single} />
+            </DCArtboard>
+            <DCArtboard id="missing-only" label="Vendor Missing only (no named vendor)" width={W} height={820}>
+              <Screen data={window.PO_SCENARIOS.missingOnly} />
+            </DCArtboard>
+            <DCArtboard id="po-interactive" label="Interactive — assign / receive" width={W} height={1040}>
+              <Frame src="Purchase Order Details.html" />
+            </DCArtboard>
+          </DCSection>
+
+          {/* ── 4. Assigning a vendor ── */}
+          <DCSection id="assign" title="Assigning a Vendor"
+                     subtitle="Story 13 · Select vendor → merge or keep separate">
+            <DCArtboard id="picker" label="Select Vendor — picker open" width={W} height={1480}>
+              <Screen data={window.PO_SCENARIOS.multi} openDropdownVendorId="vm" />
+            </DCArtboard>
+            <DCArtboard id="merge-prompt" label="Merge prompt — vendor already on PO" width={W} height={1480}>
+              <Screen data={window.PO_SCENARIOS.multi} contained
+                      forceMerge={{ fromId: 'vm', targetName: 'Achester Landscaping' }} />
+            </DCArtboard>
+            <DCArtboard id="merged" label="Outcome — Yes, Merge (items combined)" width={W} height={1060}>
+              <Screen data={window.PO_SCENARIOS.merged} />
+            </DCArtboard>
+            <DCArtboard id="separate" label="Outcome — No, Keep Separate (own invoice)" width={W} height={1520}>
+              <Screen data={window.PO_SCENARIOS.separate} />
+            </DCArtboard>
+          </DCSection>
+
+          {/* ── 5. Bulk receive ── */}
+          <DCSection id="bulk" title="Bulk Receive Vendor Parts"
+                     subtitle="Stories 8, 9, 10 · Reached from selecting multiple POs in the list">
+            <DCArtboard id="bulk-recv" label="Receive Vendor Parts (interactive)" width={W} height={1000}>
+              <Frame src="Receive Vendor Parts - v2.html" />
+            </DCArtboard>
+          </DCSection>
+
+        </DesignCanvas>
+      );
+    }
+
+    createRoot(document.getElementById('root')).render(<App />);
+  </script>
+</body>
+</html>
