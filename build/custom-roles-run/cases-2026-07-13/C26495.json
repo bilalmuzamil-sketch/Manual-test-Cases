@@ -1,0 +1,11 @@
+{
+  "case_id": 26495,
+  "section_id": 3548,
+  "title": "Administrator: role permissions match the expected set",
+  "custom_preconds": "<ol>\n<li>A user is assigned the Administrator role.</li>\n</ol>",
+  "custom_steps": "<ol>\n<li>Open the Administrator role's Permission Summary (eye icon on the Roles list).</li>\n<li>Check the add/edit/delete areas, the Page Access toggles, the Work orders sub-settings, the View mode and the Cross-Cutting Toggles.</li>\n<li>Optionally log in as the user and spot-check a few of the role's typical tasks.</li>\n</ol>",
+  "custom_expected": "<p>The Administrator permissions match the expected set: every add/edit/delete area full, all Page Access toggles on, all Settings sub-toggles on, See Financial Data on, View and Manage AP/AR Data on, View History Logs on, View mode Full View. Administrator is the single full-access role (Owner is merged into it) and is editable.</p>\n",
+  "viu_status": "Roles-API-Verified (permission set matches the live role); workflow spot-checks Blocked-UI",
+  "evidence": "Administrator permission set confirmed live via GET /api/roles/{id} (roles-matrix-2026-07-13).",
+  "fresh_run": "2026-07-13"
+}

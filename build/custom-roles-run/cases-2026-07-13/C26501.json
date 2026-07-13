@@ -1,0 +1,11 @@
+{
+  "case_id": 26501,
+  "section_id": 3548,
+  "title": "Parts Manager: role permissions match the expected set",
+  "custom_preconds": "<ol>\n<li>A user is assigned the Parts Manager role.</li>\n</ol>",
+  "custom_steps": "<ol>\n<li>Open the Parts Manager role's Permission Summary (eye icon on the Roles list).</li>\n<li>Check the add/edit/delete areas, the Page Access toggles, the Work orders sub-settings, the View mode and the Cross-Cutting Toggles.</li>\n<li>Optionally log in as the user and spot-check a few of the role's typical tasks.</li>\n</ol>",
+  "custom_expected": "<p>The Parts Manager permissions match the expected set: Work orders View/Create & Edit (no Delete); Work order lines Create & Edit (no Delete); Schedule View only; Customers full; Part sales full; Catalog and Inventory full; Vendor and order management full; Invoicing & payments full; Reports on; Customer portal on; See Financial Data on; View and Manage AP/AR Data on; Settings limited to Parts, Finance and Data Import; View mode Full View.</p>\n",
+  "viu_status": "Roles-API-Verified (permission set matches the live role); workflow spot-checks Blocked-UI",
+  "evidence": "Parts Manager permission set confirmed live via GET /api/roles/{id} (roles-matrix-2026-07-13).",
+  "fresh_run": "2026-07-13"
+}

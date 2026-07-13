@@ -1,0 +1,11 @@
+{
+  "case_id": 26333,
+  "section_id": 3529,
+  "title": "A blank Role name blocks Create with an inline message",
+  "custom_preconds": "<ol>\n<li>You are on the Create Role page.</li>\n</ol>",
+  "custom_steps": "<ol>\n<li>Leave Role name blank (or clear it after typing).</li>\n<li>Look at the Create button and the field.</li>\n</ol>",
+  "custom_expected": "<p>With Role name empty the Create button is disabled.</p>\n<p>Touching then clearing the field shows 'Role name is a required field' under the label.</p>\n",
+  "viu_status": "Blocked-UI behavior; required-field message build-verified",
+  "evidence": "Required-field message build-verified.",
+  "fresh_run": "2026-07-13"
+}

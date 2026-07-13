@@ -1,0 +1,11 @@
+{
+  "case_id": 26317,
+  "section_id": 3528,
+  "title": "Roles & Permissions is hidden for users without the App Settings sub-toggle",
+  "custom_preconds": "<ol>\n<li>A user is assigned a role with Settings off, or Settings on but the App Settings sub-toggle off.</li>\n</ol>",
+  "custom_steps": "<ol>\n<li>Log in as that user.</li>\n<li>Look at the left sidebar.</li>\n</ol>",
+  "custom_expected": "<p>Either the Settings area does not appear, or the Roles & Permissions item is not shown under it.</p>\n",
+  "viu_status": "Blocked-UI (needs seeded role); App Settings gates Roles & Permissions (build-verified)",
+  "evidence": "settingsApp gates the Roles & Permissions page (build route metadata).",
+  "fresh_run": "2026-07-13"
+}

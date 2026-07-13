@@ -1,0 +1,11 @@
+{
+  "case_id": 26542,
+  "section_id": 3553,
+  "title": "A system role cannot be deleted",
+  "custom_preconds": "<ol>\n<li>You are on the Roles & Permissions list with at least one system role (for example Service Manager) visible.</li>\n</ol>",
+  "custom_steps": "<ol>\n<li>Find the Service Manager row.</li>\n<li>Look at the Actions column.</li>\n<li>If there is a three-dot menu, open it and look for Delete.</li>\n</ol>",
+  "custom_expected": "<p>A system role cannot be deleted: either it shows only the eye icon (no three-dot menu), or the menu has no Delete, or Delete is disabled.</p>\n",
+  "viu_status": "Roles-API-Verified (all system roles deletable=false)",
+  "evidence": "deletable=false for all system roles (live roles API).",
+  "fresh_run": "2026-07-13"
+}

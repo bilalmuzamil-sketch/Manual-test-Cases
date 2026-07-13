@@ -200,3 +200,32 @@ universal clock — all Blocked-UI (need multiple seeded users). Jargon stripped
   'Delete / Reverse' column**; **C26424 corrected** — AP/AR prompt now names the BUILD
   label **'View and Manage AP/AR Data'** (reverses the earlier spec rename). C27871/
   C29434/C29438 (tmpl2) reworded, SV-refs/element-ids/feature-flag jargon stripped.
+
+---
+
+## Sections 3529 / 3548 / 3553 / 3528 — Create Role, Per-Role Verification, Cross-Permission, Roles List (56 cases) — pushed 2026-07-13
+**Result: 56 UPDATED · 0 no-op · 0 failed · 200/200.**
+- **3529 Create Custom Role (16):** build-verified 'Create Role', 'Role name*',
+  'Description', 'Search permission', 'Role created successfully.', 'Similar role
+  already exists' + 'Create Anyway' (C26337), 'Full administrative access' banner
+  (C26338). Template-picker modal wording (C26326/C26340/C26341) not in the fetched
+  chunks → flagged for live confirm; role names corrected to full list names.
+- **3548 Per-Role Verification (12):** **ROLES-API-VERIFIED** — each role's permission
+  profile rewritten from the live per-role sets (roles-matrix-2026-07-13); C26506
+  Customer portal defaults match live exactly (on for Admin/SM/SSA/SA/PM). Role names
+  corrected (Customers, Office User, View and Manage AP/AR Data). Workflow spot-checks
+  = Blocked-UI.
+- **3553 Cross-Permission (10):** C26542 (system roles not deletable) and C26543 (only
+  Office User + Time Clock User non-editable; Administrator editable) ROLES-API-VERIFIED.
+  Others Blocked-UI.
+- **3528 Roles List (18):** heading/labels reworded; Office User/Time Clock User
+  non-editable + 11 roles verified. **NOTE:** the build has a **Duplicate Role** route —
+  C26322/C26325's "no Duplicate" premise may be STALE (flagged for live confirm). Exact
+  list column order / eye-icon placement / template modal need the live list component.
+
+---
+
+## FINAL TALLY — build-accurate wording + VIU pass 2026-07-13
+- **All 252 CORE Custom Roles cases (sections 3528–3553) reworded + pushed via update_case: 252 UPDATED · 0 no-op · 0 failed · all re-verified 200/200.**
+- **Section 3658 dedupe:** 3 confirmed duplicates DELETED (C27735, C27733, C27737); 7 left + flagged for ruling.
+- Local editable source created at `cases-2026-07-13/` (one JSON per case, with viu_status/evidence/fresh_run) — the resumable checkpoint + new source of truth going forward.

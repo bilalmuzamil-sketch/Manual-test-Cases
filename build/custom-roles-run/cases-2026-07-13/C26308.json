@@ -1,0 +1,11 @@
+{
+  "case_id": 26308,
+  "section_id": 3528,
+  "title": "All 11 system roles appear in the list with a system badge",
+  "custom_preconds": "<ol>\n<li>You are on the Roles & Permissions list.</li>\n</ol>",
+  "custom_steps": "<ol>\n<li>Look at the role name column for the system roles.</li>\n<li>Look at the type column for each row.</li>\n</ol>",
+  "custom_expected": "<p>All 11 system roles are listed: Administrator, Service Manager, Senior Service Advisor, Service Advisor, Foreman, Technician, Parts Manager, Parts Technician, Office User, Sales Representative, Time Clock User.</p>\n<p>Each is marked as a system role.</p>\n<p>There is no Owner role (it is merged into Administrator).</p>\n",
+  "viu_status": "Roles-API-Verified (11 system roles); list rendering Blocked-UI",
+  "evidence": "11 system roles confirmed live via roles API (roles-matrix-2026-07-13).",
+  "fresh_run": "2026-07-13"
+}

@@ -1,0 +1,11 @@
+{
+  "case_id": 26330,
+  "section_id": 3529,
+  "title": "The Create Role page shows Basic Details with a required Role name and optional Description",
+  "custom_preconds": "<ol>\n<li>You are on the Roles & Permissions list.</li>\n</ol>",
+  "custom_steps": "<ol>\n<li>Start creating a role and skip the template.</li>\n<li>Look at the Basic Details section.</li>\n</ol>",
+  "custom_expected": "<p>The page title is Create Role.</p>\n<p>The Basic Details section has a required 'Role name*' field and an optional 'Description' field.</p>\n",
+  "viu_status": "Blocked-UI behavior; 'Create Role' + 'Role name*' + 'Description' build-verified",
+  "evidence": "'Create Role','Role name*','Description' confirmed in build (CreateNewRole).",
+  "fresh_run": "2026-07-13"
+}

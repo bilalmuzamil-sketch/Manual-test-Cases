@@ -1,0 +1,11 @@
+{
+  "case_id": 26549,
+  "section_id": 3553,
+  "title": "AP/AR OFF hides the sensitive customer fields on both the Edit Customer window and the customer overview",
+  "custom_preconds": "<ol>\n<li>A user has a role with View and Manage AP/AR Data OFF and Customers View and Create & Edit.</li>\n</ol>",
+  "custom_steps": "<ol>\n<li>Open a customer's Edit Customer window.</li>\n<li>Open the customer detail page's overview panel.</li>\n</ol>",
+  "custom_expected": "<p>With AP/AR off, the sensitive customer fields (Credit terms, Credit limit, Default Labor rate, Default Shop Supplies, Min and Max, Taxes, PO is required) are hidden on the Edit Customer window.</p>\n<p>They should also be hidden on the customer overview panel \u2014 confirm this live (a prior run flagged the overview panel as needing a re-check).</p>\n",
+  "viu_status": "Blocked-UI (needs seeded role); overview-panel hiding needs live re-check",
+  "evidence": "Modal hiding expected; overview-panel behavior flagged for live re-check (build-vs-spec note in original).",
+  "fresh_run": "2026-07-13"
+}

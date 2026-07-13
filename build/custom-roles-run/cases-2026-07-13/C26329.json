@@ -1,0 +1,11 @@
+{
+  "case_id": 26329,
+  "section_id": 3529,
+  "title": "Skipping the template starts a blank role with all permissions off",
+  "custom_preconds": "<ol>\n<li>The template picker is open with no template selected.</li>\n</ol>",
+  "custom_steps": "<ol>\n<li>Skip the template.</li>\n<li>Look at the page that opens.</li>\n<li>Scroll to the permissions.</li>\n<li>Check every card.</li>\n<li>Check the Page Access section.</li>\n<li>Check the Cross-Cutting Toggles.</li>\n</ol>",
+  "custom_expected": "<p>The Create Role page opens.</p>\n<p>Every card box is unticked.</p>\n<p>Every Page Access toggle and every Cross-Cutting Toggle is off; the Parts Department card is off.</p>\n",
+  "viu_status": "Blocked-UI (needs live role editor); template-picker labels not re-confirmed this pass",
+  "evidence": "Needs live editor.",
+  "fresh_run": "2026-07-13"
+}
