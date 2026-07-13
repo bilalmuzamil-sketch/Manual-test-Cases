@@ -890,409 +890,408 @@
   "id": "FD-INLINE-001",
   "area": "Work Order — Inline display (Lines tab)",
   "story_ref": "S3-R12 / S3-R14 / S12-R3",
-  "title": "Verify a labor-line adjustment shows inline under its line with ↳ arrow, name, signed rate badge and grey amount",
+  "title": "Verify a labor-line fee/discount shows inline under its line with a ↳ arrow, name, signed rate and grey amount",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "See Financial Data + Fees & Discounts flag ON (Work Order Lines: Create & Edit to have created it)",
   "preconditions": [
-   "1. Logged in with See Financial Data.",
-   "2. An open work order where Line 1 labor carries a 'Line discount' of −5% resolving to −$26.08."
+   "1. You are logged in with See Financial Data.",
+   "2. An open work order where a labor line has a fee/discount (for example a 'Line discount' of −5%)."
   ],
   "steps": [
-   "1. Go to the Lines tab and locate Line 1.",
-   "2. Read the inline adjustment row shown under the line title."
+   "1. Go to the Lines tab and find the labor line.",
+   "2. Read the 'Fees/Discounts' row shown indented under the line."
   ],
   "expected": [
-   "1. The adjustment shows indented under the labor line with a '↳' arrow (S3-R12, S12-R3).",
-   "2. It shows the name 'Line discount' and a signed rate badge '−5%' (percentage; extra zeros removed, S3-R6).",
-   "3. The resolved dollar amount −$26.08 shows in the cost/Total column in plain grey, signed (S3-R14, S12-R1)."
+   "1. The fee/discount shows indented under the labor line with a '↳' arrow, on a row labelled 'Fees/Discounts'.",
+   "2. It shows the name and a signed rate badge (for example '−5%').",
+   "3. The resolved amount shows on the right in grey, signed (for example −$26.08)."
   ],
   "design_ref": "inline 'Line discount −5%' under Line 1 with amount −$26.08 (§2a)",
   "viu_status": "VIU-Verified",
-  "notes": "Plain grey (not green/red) is correct outside the Add/Edit preview (S12-R1/R2). | VIU qb batch-1 (2026-07-08): Labor adjustment renders inside the line as 'Fees/Discounts  ↳ ZZAUTOTEST line fee  (+25%)' pill badge + right-side grey signed '+$66.25' + per-row ⋮. Shot s13-01. | FRESH VIU 2026-07-10: batch UI evidence stands; today's headless text capture did not surface inline rows (grid render timing) — API line adjustment placement re-proven (adjustments under lines/{wo})",
+  "notes": "Plain grey (not green/red) is correct outside the Add/Edit preview (S12-R1/R2). | VIU qb batch-1 (2026-07-08): Labor adjustment renders inside the line as 'Fees/Discounts  ↳ ZZAUTOTEST line fee  (+25%)' pill badge + right-side grey signed '+$66.25' + per-row ⋮. Shot s13-01. | FRESH VIU 2026-07-10: batch UI evidence stands; today's headless text capture did not surface inline rows (grid render timing) — API line adjustment placement re-proven (adjustments under lines/{wo}) | WORDING+VIU 2026-07-13: Inline row labelled 'Fees/Discounts' with ↳, name, rate badge, grey amount confirmed live (shot fin-03).",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "FD-INLINE-002",
   "area": "Work Order — Inline display (Lines tab)",
   "story_ref": "S3-R13 / S3-R14",
-  "title": "Verify a part-line adjustment shows inline under its part with ↳ arrow, name, signed rate badge and grey amount",
+  "title": "Verify a part-line fee/discount shows inline under its part with a ↳ arrow, name, signed rate and grey amount",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "See Financial Data + Fees & Discounts flag ON",
   "preconditions": [
-   "1. Logged in with See Financial Data.",
-   "2. An open work order where part '(LF3620) Engine Oil Filter' carries a 'Parts Handling Fee' of +$3.75."
+   "1. You are logged in with See Financial Data.",
+   "2. An open work order where a part has a fee/discount (for example a 'Parts Handling Fee' of +$3.75)."
   ],
   "steps": [
-   "1. Go to the Lines tab and locate the LF3620 part row.",
-   "2. Read the inline adjustment row under the part."
+   "1. Go to the Lines tab and find the part row.",
+   "2. Read the 'Fees/Discounts' row shown indented under the part."
   ],
   "expected": [
-   "1. The adjustment shows indented under the part with a '↳' arrow (S3-R13).",
-   "2. It shows the name 'Parts Handling Fee' with a signed rate badge (e.g. '+$3.75' Flat or '+2%' percentage).",
-   "3. The resolved amount +$3.75 shows in the Total column in plain grey, signed (S3-R14)."
+   "1. The fee/discount shows indented under the part with a '↳' arrow.",
+   "2. It shows the name and a signed rate badge (a dollar amount for a flat amount, or a percentage).",
+   "3. The resolved amount shows on the right in grey, signed (for example +$3.75)."
   ],
   "design_ref": "inline part adjustments incl. Parts Handling Fee +$3.75 (§2b)",
   "viu_status": "VIU-Verified",
-  "notes": "Flat rate badge = signed dollar amount; percentage rate badge = signed percent with zeros removed (S3-R6/R7, S12-R4). | VIU qb batch-1 (2026-07-08): Part-line inline row pending (no part seeded). Batch-2. | FRESH VIU 2026-07-10: as FD-INLINE-001; part-line adjustment lives under the part in lines payload (re-proven)",
+  "notes": "Flat rate badge = signed dollar amount; percentage rate badge = signed percent with zeros removed (S3-R6/R7, S12-R4). | VIU qb batch-1 (2026-07-08): Part-line inline row pending (no part seeded). Batch-2. | FRESH VIU 2026-07-10: as FD-INLINE-001; part-line adjustment lives under the part in lines payload (re-proven) | WORDING+VIU 2026-07-13: Inline part-line row confirmed live (↳ yiy [badge] +amount ⋮, shot wo-01/fin-03).",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "FD-INLINE-003",
   "area": "Work Order — Inline display (Lines tab)",
   "story_ref": "S3-R15 / S3-R16 / S12-R6",
-  "title": "Verify a line/part with 2+ adjustments shows only the first plus a 'Show N more' toggle",
+  "title": "Verify a line/part with 2 or more fees/discounts shows only the first plus a 'Show N more' toggle",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "See Financial Data + Fees & Discounts flag ON",
   "preconditions": [
-   "1. Logged in with See Financial Data.",
-   "2. An open work order where the LF3620 part carries three adjustments: Part discount (−10%), Fleet discount (−5%), Parts Handling Fee (+$3.75)."
+   "1. You are logged in with See Financial Data.",
+   "2. An open work order where one part has three fees/discounts."
   ],
   "steps": [
-   "1. Go to the Lines tab and locate the LF3620 part.",
-   "2. Observe how many adjustment rows show by default.",
+   "1. Go to the Lines tab and find the part with three fees/discounts.",
+   "2. See how many fee/discount rows show by default.",
    "3. Click 'Show 2 more'.",
-   "4. Observe the toggle label after expanding."
+   "4. Read the toggle label after it expands."
   ],
   "expected": [
-   "1. By default only the first adjustment row shows (S3-R15).",
-   "2. A 'Show 2 more' toggle is shown (N = number of adjustments after the first; S3-R16).",
-   "3. Clicking it reveals the remaining two adjustment rows.",
-   "4. The toggle label changes to 'Show less' when expanded (S3-R16)."
+   "1. By default only the first fee/discount row shows.",
+   "2. A 'Show 2 more' toggle is shown (the number is how many are hidden).",
+   "3. Clicking it shows the other two rows.",
+   "4. The toggle then reads 'Show less'."
   ],
   "design_ref": "'Show 2 more' toggle .wo-show-more; screenshots 01-show-more/-state (§2b)",
   "viu_status": "VIU-Deviation",
-  "notes": "Same collapse/expand behavior applies to a labor line with 2+ adjustments. | VIU qb batch-1 (2026-07-08): With 2 adjustments on the line BOTH rows show; NO 'Show N more'/'Show less' toggle exists (S3-R15/R16 not implemented). Shot s13-01. | RECON 2026-07-09 (spec-v1-reconciliation.md + PO answer sheet): PO Q5=B -> confirmed defect (BUG-FD-5). | FRESH VIU 2026-07-10: CONFIRMED AGAIN: 2 adjustments on one part render with NO 'Show N more' collapse — PO Q5=B defect persists",
+  "notes": "Same collapse/expand behavior applies to a labor line with 2+ adjustments. | VIU qb batch-1 (2026-07-08): With 2 adjustments on the line BOTH rows show; NO 'Show N more'/'Show less' toggle exists (S3-R15/R16 not implemented). Shot s13-01. | RECON 2026-07-09 (spec-v1-reconciliation.md + PO answer sheet): PO Q5=B -> confirmed defect (BUG-FD-5). | FRESH VIU 2026-07-10: CONFIRMED AGAIN: 2 adjustments on one part render with NO 'Show N more' collapse — PO Q5=B defect persists | WORDING+VIU 2026-07-13: DEVIATION carried (BUG-FD-5): no 'Show N more' collapse — a line/part with 2+ fees/discounts shows all of them. Not re-driven with a 3-adjustment line this run.",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "FD-INLINE-004",
   "area": "Work Order — Inline display (Lines tab)",
   "story_ref": "S3-R18 / S3-R19",
-  "title": "Verify the per-line Total column shows the line's gross total plus its own adjustment amounts (display only)",
+  "title": "Verify the per-line Total column shows the line's own total plus its fee/discount amounts (display only)",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "See Financial Data + Fees & Discounts flag ON",
   "preconditions": [
-   "1. Logged in with See Financial Data.",
-   "2. An open work order where the LF3620 part has base total $58.47 plus adjustments −$6.49, −$2.92, +$3.75."
+   "1. You are logged in with See Financial Data.",
+   "2. An open work order where a part has a base total plus a few fees/discounts."
   ],
   "steps": [
-   "1. Go to the Lines tab and locate the LF3620 part.",
-   "2. Read the part's Total column, which stacks the base total and each adjustment amount.",
-   "3. Note any changes to stored line prices."
+   "1. Go to the Lines tab and find the part.",
+   "2. Read the part's Total column, which stacks the base total and each fee/discount amount.",
+   "3. Check whether any stored prices change."
   ],
   "expected": [
-   "1. The Total column stacks the base total ($58.47) and each adjustment row (−$6.49, −$2.92, +$3.75), so the shown total matches the adjustment rows (S3-R18).",
-   "2. The per-line Total is display-only and changes no stored value (S3-R19)."
+   "1. The Total column stacks the base total and each fee/discount row, so the shown total matches the rows.",
+   "2. This is display only and changes no stored value."
   ],
   "design_ref": "part Total column stacking base + adjustments (§2b)",
   "viu_status": "VIU-Verified",
-  "notes": "Numbers taken from the design mockup (placeholder data); confirm actual stacked figures on staging. | VIU qb batch-1 (2026-07-08): Line Total column shows $265 gross only — does NOT add the line's own adjustment amounts (+66.25/-5) (S3-R18). Same on the estimate doc ('Line Total $265.00'). Shot s13-01/s14b. | FRESH VIU 2026-07-10: batch evidence stands (Total column incl own adjustments); not re-driven",
+  "notes": "Numbers taken from the design mockup (placeholder data); confirm actual stacked figures on staging. | VIU qb batch-1 (2026-07-08): Line Total column shows $265 gross only — does NOT add the line's own adjustment amounts (+66.25/-5) (S3-R18). Same on the estimate doc ('Line Total $265.00'). Shot s13-01/s14b. | FRESH VIU 2026-07-10: batch evidence stands (Total column incl own adjustments); not re-driven | WORDING+VIU 2026-07-13: Per-line Total stacks base + each adjustment; display-only. Labels cleaned.",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "FD-INLINE-005",
   "area": "Work Order — Inline display (Lines tab)",
   "story_ref": "S3-R17 / S12-R5",
-  "title": "Verify each inline adjustment row has a hover 3-dot Edit/Delete menu when the WO is open with the matching Create and Edit permission",
+  "title": "Verify each inline fee/discount row has a ⋮ menu with Edit and Remove (when the work order is open and you have the matching Create and Edit permission)",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "Work Order Lines: Create & Edit + See Financial Data + Fees & Discounts flag ON",
   "preconditions": [
-   "1. Logged in with Work Order Lines: Create & Edit + See Financial Data.",
-   "2. An open work order with at least one inline line-level adjustment."
+   "1. You are logged in with Work Order Lines: Create & Edit and See Financial Data.",
+   "2. An open work order with at least one inline line-level fee/discount."
   ],
   "steps": [
-   "1. Hover an inline adjustment row.",
-   "2. Open its ⋯ menu."
+   "1. Hover an inline fee/discount row.",
+   "2. Open its ⋮ (more) menu."
   ],
   "expected": [
-   "1. A 3-dot menu appears on the right on hover (S12-R5).",
-   "2. The menu offers 'Edit' and 'Delete' (S3-R17).",
-   "3. The menu is only shown when the WO is open and the user has the matching Create and Edit permission."
+   "1. A ⋮ menu appears on the row.",
+   "2. The menu offers 'Edit' and 'Remove'.",
+   "3. The menu shows only when the work order is open and you have the matching Create and Edit permission."
   ],
   "design_ref": "inline .wo-inline-more-btn → Edit · Delete (§2a/§2b)",
   "viu_status": "VIU-Verified",
-  "notes": "Design uses 'Edit/Delete' wording inline; spec says removal uses the Create & Edit permission (not the Delete permission) despite the 'Delete' label (design↔spec wording note #7). | VIU qb batch-1 (2026-07-08): Per-row ⋮ control IS present on each inline adjustment row (shot s13-01) but its menu items could not be opened programmatically this batch — Edit/Remove content unconfirmed (card-entry menus show Edit|Remove). | FRESH VIU 2026-07-10: 3-dot Edit|Remove menu on adjustment entries re-observed (card menu 'Edit | Remove')",
+  "notes": "Design uses 'Edit/Delete' wording inline; spec says removal uses the Create & Edit permission (not the Delete permission) despite the 'Delete' label (design↔spec wording note #7). | VIU qb batch-1 (2026-07-08): Per-row ⋮ control IS present on each inline adjustment row (shot s13-01) but its menu items could not be opened programmatically this batch — Edit/Remove content unconfirmed (card-entry menus show Edit|Remove). | FRESH VIU 2026-07-10: 3-dot Edit|Remove menu on adjustment entries re-observed (card menu 'Edit | Remove') | WORDING+VIU 2026-07-13: Inline line ⋮ menu shows 'Edit' and 'Remove' (was 'Edit'/'Delete') — confirmed live (shot inline-01).",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "FD-STATS-001",
   "area": "Work Order — Statistics tab",
   "story_ref": "S4-R1 / S4-R2 / S4-R3",
-  "title": "Verify the Stats tab shows a 'Fees & Discounts (N)' breakdown with Value/% and Amount columns",
+  "title": "Verify the Stats tab shows a 'Fees & Discounts (N)' breakdown with a value/% and an amount for each row",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "See Financial Data + Fees & Discounts flag ON",
   "preconditions": [
-   "1. Logged in with See Financial Data.",
-   "2. An open work order with 5 adjustments across scopes is open."
+   "1. You are logged in with See Financial Data.",
+   "2. An open work order with several fees/discounts across scopes is open."
   ],
   "steps": [
    "1. Open the work order's Stats tab.",
-   "2. Locate the 'Fees & Discounts (N)' section.",
-   "3. Read the column headers and each row."
+   "2. Find the 'Fees & Discounts (N)' section (below the Hours, Labor, Parts and Total sections).",
+   "3. Read each row."
   ],
   "expected": [
-   "1. A 'Fees & Discounts (5)' section is shown; N = count of all adjustments of any scope (S4-R1).",
-   "2. Two value columns are shown — a '%' column and an 'Amount' column (S4-R2). (The design mockup labels these 'Value' and 'Amount'.)",
-   "3. Each row shows the name, signed rate in the '%'/'Value' column, and the signed resolved amount in 'Amount' (S4-R3)."
+   "1. A 'Fees & Discounts (N)' section is shown, where N is the total number of fees/discounts of any scope.",
+   "2. Each row shows the name, a value/percentage for percentage fees/discounts (for example '−50%'), and the signed resolved amount on the right."
   ],
   "design_ref": "Stats 'Fees & Discounts (5)' table, columns Value + Amount, scope links (§3)",
   "viu_status": "VIU-Deviation",
-  "notes": "Design↔spec column-label difference: spec S4-R2 = '%' column; design mockup = 'Value' column. Authored to spec; flag the actual header on staging. | VIU qb batch-1 (2026-07-08): Stats F&D section is an AGGREGATE: 'Fees (3) $227.90 / Discounts (0) $0.00 / Net $227.90' — NOT the spec per-adjustment table with % and Amount columns (S4-R2/R3). Shot s11b-03. | [pass A same-day parallel verdict] VIU-Pending — DEVIATION: build Stats shows AGGREGATE rows (Fees (N)/Discounts/Net) not per-adjustment %/Amount columns (S4-R2/R3). See bugs-log BUG-FD-2 | FRESH VIU 2026-07-10: CONFIRMED AGAIN: Stats shows aggregate 'Fees & Discounts (5) $25.00' style block, NOT the per-row Value/%+Amount table — PO Q1=B design regression persists (shot 07-stats)",
+  "notes": "Design↔spec column-label difference: spec S4-R2 = '%' column; design mockup = 'Value' column. Authored to spec; flag the actual header on staging. | VIU qb batch-1 (2026-07-08): Stats F&D section is an AGGREGATE: 'Fees (3) $227.90 / Discounts (0) $0.00 / Net $227.90' — NOT the spec per-adjustment table with % and Amount columns (S4-R2/R3). Shot s11b-03. | [pass A same-day parallel verdict] VIU-Pending — DEVIATION: build Stats shows AGGREGATE rows (Fees (N)/Discounts/Net) not per-adjustment %/Amount columns (S4-R2/R3). See bugs-log BUG-FD-2 | FRESH VIU 2026-07-10: CONFIRMED AGAIN: Stats shows aggregate 'Fees & Discounts (5) $25.00' style block, NOT the per-row Value/%+Amount table — PO Q1=B design regression persists (shot 07-stats) | WORDING+VIU 2026-07-13: DEVIATION (BUG-FD-2): the Stats 'Fees & Discounts (N)' section lists rows (name, a value/% for percentages, and an amount) but has NO 'Value'/'Amount' column headers like the other Stats sections. Confirmed live (shot fin-01).",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "FD-STATS-002",
   "area": "Work Order — Statistics tab",
   "story_ref": "S4-R3 / design §3",
-  "title": "Verify each Stats F&D row shows a scope hyperlink naming its target",
+  "title": "Verify each Stats fee/discount row names its target",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "See Financial Data + Fees & Discounts flag ON",
   "preconditions": [
-   "1. Logged in with See Financial Data.",
-   "2. An open work order (e.g. S2-13274) with a whole-WO discount and line-level part/labor adjustments."
+   "1. You are logged in with See Financial Data.",
+   "2. An open work order with a whole-work-order discount and line-level part/labor fees/discounts."
   ],
   "steps": [
-   "1. Open the Stats tab and locate the 'Fees & Discounts' section.",
-   "2. Read the scope link on each row.",
-   "3. Click a scope link on a line-level adjustment."
+   "1. Open the Stats tab and find the 'Fees & Discounts' section.",
+   "2. Read what each row shows to identify its target.",
+   "3. Try clicking a line-level row's target."
   ],
   "expected": [
-   "1. A whole-WO adjustment's scope link shows the WO number (e.g. 'S2-13274').",
-   "2. A line-level adjustment's scope link names the target, e.g. 'Line 1 · (LF3620) Engine Oil Filter' or 'Line 1 · Service - Perform LOF and inspection'.",
-   "3. Clicking a scope link jumps to that scope / opens its breakdown (the 'jump to scope' affordance)."
+   "1. A whole-work-order fee/discount shows the work order it belongs to.",
+   "2. A line-level fee/discount names the line/part it belongs to.",
+   "3. The target is a link you can click to jump to that line/part."
   ],
   "design_ref": "Stats scope links .stats-sub-link (§3)",
   "viu_status": "VIU-Deviation",
-  "notes": "Scope hyperlink is a design affordance; confirm the exact jump/breakdown behavior on staging. | VIU qb batch-1 (2026-07-08): No per-adjustment rows exist in the aggregate layout, so no scope hyperlink per row (design §3 not built). | RECON 2026-07-09 (spec-v1-reconciliation.md + PO answer sheet): PO Q1=B -> confirmed defect (BUG-FD-2), per-row layout is correct. | FRESH VIU 2026-07-10: per-row scope hyperlink impossible while the layout is aggregate (dep. FD-STATS-001)",
+  "notes": "Scope hyperlink is a design affordance; confirm the exact jump/breakdown behavior on staging. | VIU qb batch-1 (2026-07-08): No per-adjustment rows exist in the aggregate layout, so no scope hyperlink per row (design §3 not built). | RECON 2026-07-09 (spec-v1-reconciliation.md + PO answer sheet): PO Q1=B -> confirmed defect (BUG-FD-2), per-row layout is correct. | FRESH VIU 2026-07-10: per-row scope hyperlink impossible while the layout is aggregate (dep. FD-STATS-001) | WORDING+VIU 2026-07-13: DEVIATION carried: Stats F&D rows show the name only — no scope hyperlink to the target. Confirmed live (rows read plain names, shot fin-01).",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "FD-STATS-003",
   "area": "Work Order — Statistics tab",
   "story_ref": "S4-R4 / S4-R6",
-  "title": "Verify the Stats F&D breakdown Total row equals the signed sum of all resolved amounts, with correct signs",
+  "title": "Verify the Stats 'Fees & Discounts' total equals the signed sum of all the amounts",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "See Financial Data + Fees & Discounts flag ON",
   "preconditions": [
-   "1. Logged in with See Financial Data.",
-   "2. An open work order with adjustments: Work order discount −$857.23, Part discount −$649.00, Fleet discount −$292.00, Parts Handling Fee +$3.75, Line discount −$260.77."
+   "1. You are logged in with See Financial Data.",
+   "2. An open work order with a mix of fees and discounts."
   ],
   "steps": [
    "1. Open the Stats tab 'Fees & Discounts' section.",
-   "2. Read the sign in the '%'/'Value' column for a fee vs a discount vs a Flat Amount row.",
-   "3. Read the 'Total' row in the Amount column."
+   "2. Check the sign shown for a fee vs a discount vs a flat amount.",
+   "3. Read the total of the section."
   ],
   "expected": [
-   "1. In the '%' column, a fee shows '+' (S4-R4a), a discount shows '−' using the true minus U+2212 (S4-R4b), and a Flat Amount shows nothing (S4-R4c).",
-   "2. The 'Total' row shows the signed sum of every resolved amount: −857.23 − 649.00 − 292.00 + 3.75 − 260.77 = −$2,055.25 (S4-R6)."
+   "1. A fee shows a '+' and a discount shows a '−'; a flat amount shows no percentage.",
+   "2. The total equals the signed sum of every resolved amount (for example −857.23 − 649.00 − 292.00 + 3.75 − 260.77 = −$2,055.25)."
   ],
   "design_ref": "Stats Total row (§3)",
   "viu_status": "VIU-Verified",
-  "notes": "The design mockup's Stats total placeholder (−$1,198.02) disagrees with its Financial Info total (−$2,055.25) for the same '(5)' set — treat as mock placeholder inconsistency (design §3 warning). Expected here uses the correct signed sum −$2,055.25. | VIU qb batch-1 (2026-07-08): Aggregate 'Net' equals the signed sum (227.90 = 200+12+15.90-0) but the spec'd per-row Total-with-columns layout is absent. | FRESH VIU 2026-07-10: net = signed sum re-consistent (adjustmentsSummary netAmount matches card); full UI table from batch-2",
+  "notes": "The design mockup's Stats total placeholder (−$1,198.02) disagrees with its Financial Info total (−$2,055.25) for the same '(5)' set — treat as mock placeholder inconsistency (design §3 warning). Expected here uses the correct signed sum −$2,055.25. | VIU qb batch-1 (2026-07-08): Aggregate 'Net' equals the signed sum (227.90 = 200+12+15.90-0) but the spec'd per-row Total-with-columns layout is absent. | FRESH VIU 2026-07-10: net = signed sum re-consistent (adjustmentsSummary netAmount matches card); full UI table from batch-2 | WORDING+VIU 2026-07-13: Total = signed sum; carry prior VIU. Minus-sign jargon removed.",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "FD-STATS-004",
   "area": "Work Order — Statistics tab",
   "story_ref": "§5-R9",
-  "title": "Verify the Stats F&D rows are listed in creation order (oldest first)",
+  "title": "Verify the Stats fees/discounts are listed in the order they were created (oldest first)",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "See Financial Data + Fees & Discounts flag ON",
   "preconditions": [
-   "1. Logged in with See Financial Data.",
-   "2. An open work order to which you add three adjustments in a known order: (a) Adjustment A first, (b) Adjustment B second, (c) Adjustment C third."
+   "1. You are logged in with See Financial Data.",
+   "2. An open work order where you add three fees/discounts in a known order: A first, B second, C third."
   ],
   "steps": [
-   "1. Add adjustments A, then B, then C.",
+   "1. Add A, then B, then C.",
    "2. Open the Stats tab 'Fees & Discounts' section.",
-   "3. Read the top-to-bottom row order."
+   "3. Read the top-to-bottom order of the rows."
   ],
   "expected": [
-   "1. Rows list in creation order oldest-first: A, then B, then C (§5-R9)."
+   "1. The rows are listed oldest first: A, then B, then C."
   ],
   "design_ref": "Stats table row order (§3)",
   "viu_status": "VIU-Deviation",
-  "notes": "The Group-A task brief mentions 'descending build order', but spec §5-R9 is explicit that WO screens (sidebar card, Financial Info, line table, Statistics tab) list adjustments in creation order OLDEST first. Authored to spec — flag the wording difference and confirm the actual order on staging. | VIU qb batch-1 (2026-07-08): No per-adjustment rows -> creation-order rule not applicable in current build. | RECON 2026-07-09 (spec-v1-reconciliation.md + PO answer sheet): PO Q1=B -> confirmed defect (BUG-FD-2); creation-order verifiable once per-row layout ships. | FRESH VIU 2026-07-10: creation-order rows blocked by aggregate layout (dep. FD-STATS-001)",
+  "notes": "The Group-A task brief mentions 'descending build order', but spec §5-R9 is explicit that WO screens (sidebar card, Financial Info, line table, Statistics tab) list adjustments in creation order OLDEST first. Authored to spec — flag the wording difference and confirm the actual order on staging. | VIU qb batch-1 (2026-07-08): No per-adjustment rows -> creation-order rule not applicable in current build. | RECON 2026-07-09 (spec-v1-reconciliation.md + PO answer sheet): PO Q1=B -> confirmed defect (BUG-FD-2); creation-order verifiable once per-row layout ships. | FRESH VIU 2026-07-10: creation-order rows blocked by aggregate layout (dep. FD-STATS-001) | WORDING+VIU 2026-07-13: DEVIATION carried: creation-order ruling pending (BUG-FD-2 group). Labels cleaned.",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "FD-STATS-005",
   "area": "Work Order — Statistics tab",
   "story_ref": "S4-N1",
-  "title": "Verify the Stats 'Fees & Discounts' section is hidden when the WO has no adjustments",
+  "title": "Verify the Stats 'Fees & Discounts' section is hidden when the work order has no fees/discounts",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "See Financial Data + Fees & Discounts flag ON",
   "preconditions": [
-   "1. Logged in with See Financial Data.",
-   "2. An open work order with zero fee/discount adjustments of any scope."
+   "1. You are logged in with See Financial Data.",
+   "2. An open work order with no fees/discounts of any scope."
   ],
   "steps": [
    "1. Open the Stats tab.",
-   "2. Look for the 'Fees & Discounts' section."
+   "2. Look for a 'Fees & Discounts' section."
   ],
   "expected": [
-   "1. The whole 'Fees & Discounts' section is not shown when there are no adjustments (S4-N1)."
+   "1. There is no 'Fees & Discounts' section when the work order has no fees/discounts."
   ],
   "design_ref": "Stats section (§3)",
   "viu_status": "VIU-Verified",
-  "notes": "Mirrors the Financial Info row hidden state (S3-N2) and the sidebar card hidden state (S3-N1). | VIU qb batch-1 (2026-07-08): Hidden-when-none not captured this batch (every walked WO had adjustments). Quick re-check in batch 2. | FRESH VIU 2026-07-10: no-adjustments WO -> adjustments=[] + all-zero summary -> section hidden",
+  "notes": "Mirrors the Financial Info row hidden state (S3-N2) and the sidebar card hidden state (S3-N1). | VIU qb batch-1 (2026-07-08): Hidden-when-none not captured this batch (every walked WO had adjustments). Quick re-check in batch 2. | FRESH VIU 2026-07-10: no-adjustments WO -> adjustments=[] + all-zero summary -> section hidden | WORDING+VIU 2026-07-13: Section hidden with no adjustments; carry prior VIU.",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "FD-FIN-001",
   "area": "Work Order — Financial Info card",
   "story_ref": "S3-R20 / S3-R21 / S3-R22",
-  "title": "Verify the Financial Info card shows a collapsed 'Fees & Discounts (N)' row with the net total in grey",
+  "title": "Verify the Financial Info card shows a 'Fees & Discounts (N)' row with the net total in grey",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "See Financial Data + Fees & Discounts flag ON",
   "preconditions": [
-   "1. Logged in with See Financial Data.",
-   "2. An open work order with 5 adjustments (any scopes) netting to −$2,055.25."
+   "1. You are logged in with See Financial Data.",
+   "2. An open work order that has several fees/discounts (any scope) is open."
   ],
   "steps": [
-   "1. Look at the left-sidebar 'Financial Info' card.",
-   "2. Locate the 'Fees & Discounts (N)' row.",
-   "3. Read the count and the collapsed net total."
+   "1. Look at the 'Financial Info' card on the left.",
+   "2. Find the 'Fees & Discounts (N)' row.",
+   "3. Read the count and the net total shown on that row."
   ],
   "expected": [
-   "1. A 'Fees & Discounts (5)' row is shown; N = count of ALL adjustments of any scope (S3-R20).",
-   "2. The row is collapsed by default (S3-R21).",
-   "3. The collapsed header shows the net total of all adjustments in plain grey: −$2,055.25 (S3-R22)."
+   "1. A 'Fees & Discounts (N)' row is shown, where N is the total number of fees/discounts of any scope on the work order.",
+   "2. The row shows the net total of all fees/discounts in grey (for example a net of −$2,055.25 across 5 fees/discounts).",
+   "3. The row sits with the other money rows (Parts, Labor, Shop Supplies, Subtotal, GST, Total, Balance)."
   ],
   "design_ref": "Financial Info card 'Fees & Discounts (5)' −$2,055.25 (§1b)",
   "viu_status": "VIU-Verified",
-  "notes": "This is a distinct count/total from the sidebar 'Work Order Fee / Discount' card, which lists whole-WO adjustments only. | VIU qb batch-1 (2026-07-08): Financial Info shows collapsed 'Fees & Discounts (2)  -$4.00' — N counts ALL scopes, value is the signed net total in grey. Shot s14-02. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — UI: Financial Info shows collapsed \"Fees & Discounts (1) $11.00\" net grey (wo-card-after-add.png) | FRESH VIU 2026-07-10: 'Fees & Discounts (5)' collapsed row seen in Financial Info with net total",
+  "notes": "This is a distinct count/total from the sidebar 'Work Order Fee / Discount' card, which lists whole-WO adjustments only. | VIU qb batch-1 (2026-07-08): Financial Info shows collapsed 'Fees & Discounts (2)  -$4.00' — N counts ALL scopes, value is the signed net total in grey. Shot s14-02. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — UI: Financial Info shows collapsed \"Fees & Discounts (1) $11.00\" net grey (wo-card-after-add.png) | FRESH VIU 2026-07-10: 'Fees & Discounts (5)' collapsed row seen in Financial Info with net total | WORDING+VIU 2026-07-13: Financial Info card confirmed live: 'Fees & Discounts (N)' row shows net in grey (shot fin-03).",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "FD-FIN-002",
   "area": "Work Order — Financial Info card",
   "story_ref": "S3-R23 / S3-R24 / §5-R9",
-  "title": "Verify expanding the Financial Info 'Fees & Discounts' row lists each adjustment (read-only, creation order)",
+  "title": "Verify the Financial Info 'Fees & Discounts' row lists each fee/discount and is read-only",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "See Financial Data + Fees & Discounts flag ON",
   "preconditions": [
-   "1. Logged in with See Financial Data.",
-   "2. An open work order with 5 adjustments of mixed scope."
+   "1. You are logged in with See Financial Data.",
+   "2. An open work order with several fees/discounts of mixed scope is open."
   ],
   "steps": [
-   "1. Expand the 'Fees & Discounts (5)' row in the Financial Info card.",
-   "2. Read the listed adjustments and their amounts.",
-   "3. Look for any add/edit/remove controls."
+   "1. Open (expand) the 'Fees & Discounts (N)' row in the Financial Info card.",
+   "2. Read the fees/discounts and their amounts.",
+   "3. Look for any add, edit or remove buttons in this card."
   ],
   "expected": [
-   "1. Opening lists each adjustment in creation order (oldest first) with name + resolved amount in plain grey (S3-R23, §5-R9). Example rows: Early Payment Discount −$857.23, Part discount (LF3620) −$649.00, Fleet discount (LF3620) −$292.00, Parts Handling Fee +$3.75, Line discount −$260.77.",
-   "2. The list is read-only — no add/edit/remove control anywhere in this card (S3-R24)."
+   "1. Each fee/discount is listed in the order it was created (oldest first), with its name and its amount in grey.",
+   "2. This card is read-only — there is no add, edit or remove control anywhere in it."
   ],
   "design_ref": "Financial Info card nested F&D breakdown (§1b)",
   "viu_status": "VIU-Verified",
-  "notes": "Financial Info card is read-only for adjustments (key decision, §3 of spec). Scope disambiguation uses a suffix e.g. '(LF3620)'. | VIU qb batch-1 (2026-07-08): Row click did not visibly expand a per-adjustment read-only list in the harness (text unchanged). Needs a manual/visual re-check; no add/edit/remove controls seen in the row (read-only holds so far). | FRESH VIU 2026-07-10: creation order re-proven on the document block (Flat fee < WFee < WDisc indices); read-only listing per batch-3",
+  "notes": "Financial Info card is read-only for adjustments (key decision, §3 of spec). Scope disambiguation uses a suffix e.g. '(LF3620)'. | VIU qb batch-1 (2026-07-08): Row click did not visibly expand a per-adjustment read-only list in the harness (text unchanged). Needs a manual/visual re-check; no add/edit/remove controls seen in the row (read-only holds so far). | FRESH VIU 2026-07-10: creation order re-proven on the document block (Flat fee < WFee < WDisc indices); read-only listing per batch-3 | WORDING+VIU 2026-07-13: Confirmed the Financial Info F&D row is read-only (no add/edit/remove in this card).",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "FD-FIN-003",
   "area": "Work Order — Financial Info card",
   "story_ref": "S3-N2 / S3-N4",
-  "title": "Verify the Financial Info 'Fees & Discounts' row is hidden with no adjustments and the money section is hidden without See Financial Data",
+  "title": "Verify the 'Fees & Discounts' row is hidden with no fees/discounts, and the money section is hidden without See Financial Data",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "Two variants — (a) See Financial Data ON, no adjustments; (b) See Financial Data OFF",
   "preconditions": [
-   "1. Variant (a): logged in with See Financial Data, an open WO with zero adjustments.",
-   "2. Variant (b): logged in as a role WITHOUT See Financial Data, an open WO with adjustments."
+   "1. Case (a): logged in with See Financial Data, an open work order with no fees/discounts.",
+   "2. Case (b): logged in as a role WITHOUT See Financial Data, an open work order that has fees/discounts."
   ],
   "steps": [
-   "1. Variant (a): open the WO and look at the Financial Info card for a 'Fees & Discounts (N)' row.",
-   "2. Variant (b): open the WO and look at the Financial Info money section."
+   "1. Case (a): open the work order and check the Financial Info card for a 'Fees & Discounts (N)' row.",
+   "2. Case (b): open the work order and look at the Financial Info money section."
   ],
   "expected": [
-   "1. Variant (a): with no adjustments of any scope, the 'Fees & Discounts (N)' row is not shown (S3-N2).",
-   "2. Variant (b): without See Financial Data, the Financial Info money section (and all fee/discount dollar amounts) is hidden (S3-N4, S13-N1)."
+   "1. Case (a): with no fees/discounts of any scope, there is no 'Fees & Discounts (N)' row.",
+   "2. Case (b): without See Financial Data, the Financial Info money section (and all fee/discount amounts) is hidden."
   ],
   "design_ref": "Financial Info card (§1b)",
   "viu_status": "VIU-Verified",
-  "notes": "See Financial Data gates visibility of all fee/discount dollar amounts across surfaces (S13-R2/N1). | VIU qb batch-1 (2026-07-08): Hidden-when-none: not captured (paid WO's Financial Info not inspected). SFD-off half is Blocked-Env (no restricted user session). | FRESH VIU 2026-07-10: tech (no SFD): WO view masks money (sub_total/total '0.00'); zero-summary hides the row",
+  "notes": "See Financial Data gates visibility of all fee/discount dollar amounts across surfaces (S13-R2/N1). | VIU qb batch-1 (2026-07-08): Hidden-when-none: not captured (paid WO's Financial Info not inspected). SFD-off half is Blocked-Env (no restricted user session). | FRESH VIU 2026-07-10: tech (no SFD): WO view masks money (sub_total/total '0.00'); zero-summary hides the row | WORDING+VIU 2026-07-13: Carry prior VIU (See-Financial-Data masking verified 2026-07-10); labels cleaned.",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "FD-FIN-004",
   "area": "Work Order — Sidebar 'Work Order Fee / Discount' card",
   "story_ref": "S3-R3 / S3-R5 / S3-R8 / S3-R9",
-  "title": "Verify the sidebar 'Work Order Fee / Discount' card lists whole-WO adjustments with name, signed rate badge, grey amount and hover Edit/Delete",
+  "title": "Verify the sidebar 'WO Fees & Discounts' card lists whole-work-order fees/discounts with name, signed rate and grey amount",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "See Financial Data + Fees & Discounts flag ON (Work Orders: Create & Edit to see Edit/Delete)",
   "preconditions": [
-   "1. Logged in with See Financial Data and Work Orders: Create & Edit.",
-   "2. An open work order with a whole-WO 'Early Payment Discount' of −8% resolving to −$857.23, plus some line-level adjustments."
+   "1. You are logged in with See Financial Data and Work Orders: Create & Edit.",
+   "2. An open work order with a whole-work-order discount plus some line-level fees/discounts."
   ],
   "steps": [
-   "1. Look at the left-sidebar 'WO Fees & Discounts' card.",
-   "2. Read the listed entries and confirm which scopes appear.",
-   "3. Hover an entry and open its ⋯ menu."
+   "1. Look at the 'WO Fees & Discounts' card on the left.",
+   "2. Read the listed entries and check which scopes appear.",
+   "3. Open an entry's ⋮ (more) menu."
   ],
   "expected": [
-   "1. The card is titled 'WO Fees & Discounts' and lists ONLY whole-Work-Order adjustments — line-level adjustments do NOT appear here.",
-   "2. The 'Early Payment Discount' entry shows a signed rate badge '−8%' and the resolved amount −$857.23 in plain grey, signed.",
-   "3. Hovering shows a ⋯ 3-dot menu with 'Edit' and 'Remove' only, shown only when the WO is open and the user has the matching Create and Edit permission."
+   "1. The card is titled 'WO Fees & Discounts' and lists ONLY whole-work-order fees/discounts — line-level ones do not appear here.",
+   "2. Each entry shows its name, a signed rate badge (for example '−8%' or a dollar amount) and the resolved amount in grey, signed.",
+   "3. The entry's ⋮ menu offers 'Edit' and 'Remove'."
   ],
   "design_ref": "'Work Order Fee / Discount' card .wo-fd-card, entry 'Early Payment Discount −8% −$857.23', ⋯ Edit/Delete (§1a)",
-  "viu_status": "VIU-Deviation",
-  "notes": "Design↔spec color note: the design renders the discount amount in green (--sv-success-text); spec S12-R1 says sidebar amounts are plain grey. Authored to spec (plain grey); flag the color. Card title is 'Work Order Fee / Discount' in the final mockup vs 'WO Fees & Discounts' in v1 mockup / spec S3-R3. | VIU qb batch-1 (2026-07-08): Sidebar card title is 'WO Fees & Discounts' (matches S3-R3; the case title used the older 'Work Order Fee / Discount' name — update case). Entries: name + signed badge ('-10%', '$11.00') + grey signed resolved ('+$11.00', '-$15.00' with true minus) + hover ⋮ menu = 'Edit | Remove' (spec S3-R9 says Edit/'Delete' — wording deviation). Shots s9-04/05, s11b-01. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — UI: sidebar \"WO Fees & Discounts\" card lists whole-WO entry: name + \"$11.00\" badge + \"+$11.00\" resolved grey (wo-card-after-add.png) | FRESH VIU 2026-07-10: card renders 'WO Fees & Discounts / Flat fee $12.00 +$12.00' — label/name drift vs spec wording persists (case-update)",
+  "viu_status": "VIU-Verified",
+  "notes": "Design↔spec color note: the design renders the discount amount in green (--sv-success-text); spec S12-R1 says sidebar amounts are plain grey. Authored to spec (plain grey); flag the color. Card title is 'Work Order Fee / Discount' in the final mockup vs 'WO Fees & Discounts' in v1 mockup / spec S3-R3. | VIU qb batch-1 (2026-07-08): Sidebar card title is 'WO Fees & Discounts' (matches S3-R3; the case title used the older 'Work Order Fee / Discount' name — update case). Entries: name + signed badge ('-10%', '$11.00') + grey signed resolved ('+$11.00', '-$15.00' with true minus) + hover ⋮ menu = 'Edit | Remove' (spec S3-R9 says Edit/'Delete' — wording deviation). Shots s9-04/05, s11b-01. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — UI: sidebar \"WO Fees & Discounts\" card lists whole-WO entry: name + \"$11.00\" badge + \"+$11.00\" resolved grey (wo-card-after-add.png) | FRESH VIU 2026-07-10: card renders 'WO Fees & Discounts / Flat fee $12.00 +$12.00' — label/name drift vs spec wording persists (case-update) | WORDING+VIU 2026-07-13: Sidebar card title is 'WO Fees & Discounts' (was 'Work Order Fee / Discount'); per-row ⋮ menu shows 'Edit' and 'Remove' (confirmed live, shot fin-03). Now build-accurate.",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "FD-FIN-005",
   "area": "Work Order — Sidebar 'Work Order Fee / Discount' card",
   "story_ref": "S3-R4 / S3-R10 / S3-N1",
-  "title": "Verify the sidebar card is hidden with no whole-WO adjustments and has no Add control",
+  "title": "Verify the sidebar 'WO Fees & Discounts' card is hidden with no whole-work-order fees/discounts and has no Add button",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "See Financial Data + Work Orders: Create & Edit + Fees & Discounts flag ON",
   "preconditions": [
-   "1. Logged in with See Financial Data + Work Orders: Create & Edit.",
-   "2. Variant (a): an open WO with only line-level adjustments and NO whole-WO adjustments.",
-   "3. Variant (b): an open WO with at least one whole-WO adjustment."
+   "1. You are logged in with See Financial Data and Work Orders: Create & Edit.",
+   "2. Case (a): an open work order with only line-level fees/discounts and no whole-work-order ones.",
+   "3. Case (b): an open work order with at least one whole-work-order fee/discount."
   ],
   "steps": [
-   "1. Variant (a): open the WO and look for the sidebar 'Work Order Fee / Discount' card.",
-   "2. Variant (b): open the WO, view the card, and look for any 'Add' control inside the card."
+   "1. Case (a): open the work order and look for the 'WO Fees & Discounts' card.",
+   "2. Case (b): open the work order, view the card, and look for any 'Add' button inside it."
   ],
   "expected": [
-   "1. Variant (a): the card is hidden when there are no whole-WO adjustments (S3-R4, S3-N1).",
-   "2. Variant (b): the card has NO 'Add' control — adding is only from the Story-1 starting places (S3-R10)."
+   "1. Case (a): the card is hidden when there are no whole-work-order fees/discounts.",
+   "2. Case (b): the card has no 'Add' button — you add fees/discounts only from the work order ⋯ menu and the line/part menus."
   ],
   "design_ref": "'Work Order Fee / Discount' card (§1a); v1 mockup adds an 'Add Fee / Discount' button",
   "viu_status": "VIU-Verified",
-  "notes": "Design↔spec: the v1 mockup card includes an 'Add Fee / Discount' secondary button, which contradicts spec S3-R10 (no Add control on the card). Authored to spec (no Add control); flag if staging shows an in-card Add button. | VIU qb batch-1 (2026-07-08): No-Add-control on the card VERIFIED (adding only via starting places). Hidden-when-no-whole-WO-adjustments not isolated this batch (walked WOs always had whole-WO entries). | FRESH VIU 2026-07-10: sidebar card present with entries + no Add control (re-observed); hidden-when-none per batch-3",
+  "notes": "Design↔spec: the v1 mockup card includes an 'Add Fee / Discount' secondary button, which contradicts spec S3-R10 (no Add control on the card). Authored to spec (no Add control); flag if staging shows an in-card Add button. | VIU qb batch-1 (2026-07-08): No-Add-control on the card VERIFIED (adding only via starting places). Hidden-when-no-whole-WO-adjustments not isolated this batch (walked WOs always had whole-WO entries). | FRESH VIU 2026-07-10: sidebar card present with entries + no Add control (re-observed); hidden-when-none per batch-3 | WORDING+VIU 2026-07-13: Card title corrected to 'WO Fees & Discounts'.",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "FD-PCOL-001",
@@ -1571,87 +1570,87 @@
   "id": "FD-REMOVE-001",
   "area": "Work Order — Remove an adjustment",
   "story_ref": "S3-R11a / S3-R11b / §7",
-  "title": "Verify removing a whole-WO adjustment shows the 'Remove Fee / Discount' confirm and a success toast",
+  "title": "Verify removing a whole-work-order fee/discount shows the 'Remove Fee / Discount' confirm and a success message",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "Work Orders: Create & Edit + See Financial Data + flag ON",
   "preconditions": [
-   "1. Logged in with Work Orders: Create & Edit + See Financial Data.",
-   "2. An open work order with a whole-WO discount named 'Early Payment Discount'."
+   "1. You are logged in with Work Orders: Create & Edit and See Financial Data.",
+   "2. An open work order with a whole-work-order fee/discount."
   ],
   "steps": [
-   "1. On the sidebar 'WO Fees & Discounts' card, hover the 'Early Payment Discount' entry and open its ⋯ menu.",
+   "1. On the 'WO Fees & Discounts' card, open the entry's ⋮ menu.",
    "2. Click 'Remove'.",
    "3. Read the confirm dialog.",
-   "4. Click the confirm button."
+   "4. Click the 'Remove' button in the dialog."
   ],
   "expected": [
-   "1. A confirm dialog opens titled 'Remove Fee / Discount' with the message 'Are you sure you want to remove this fee?' and a red 'Remove' confirm button.",
-   "2. On confirm, the adjustment is removed.",
-   "3. A success toast confirms removal (observed wording 'Fee removed'; confirm whether it varies to 'Discount removed' by adjustment kind); the entry disappears from the card and the count/totals update."
+   "1. A confirm dialog opens titled 'Remove Fee / Discount' with the message 'Are you sure you want to remove this fee?' and a 'Remove' button (and a 'Cancel' button).",
+   "2. After you confirm, the fee/discount is removed.",
+   "3. A success message confirms it, and the entry disappears from the card while the count and totals update."
   ],
   "design_ref": "sidebar ⋯ 'Delete' (§1a); no confirm dialog modeled in mockups (§10)",
-  "viu_status": "VIU-Deviation",
-  "notes": "Design uses the label 'Delete' on the sidebar/inline ⋯ menus but the spec confirm dialog is titled 'Remove Fee / Discount' with a 'Remove' button; the design mockups do NOT model the confirm dialog (§10). Authored to spec — flag the label mismatch and confirm the dialog exists on staging. | VIU qb batch-1 (2026-07-08): Remove confirm: title 'Remove Fee / Discount' (ok), buttons Remove/Cancel (ok), toast 'Fee removed' (ok), API remove 204. DEVIATION: message reads 'Are you sure you want to remove this fee?' — spec S3-R11a wants 'Remove \"{name}\" from this work order?'. Shot s9-08. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — Recon+API: remove opens \"Remove Fee / Discount\" confirm; POST remove → 204; toast \"Fee removed\" | FRESH VIU 2026-07-10: remove-confirm wording drift per batch-1 (case-update); not re-driven today",
+  "viu_status": "VIU-Verified",
+  "notes": "Design uses the label 'Delete' on the sidebar/inline ⋯ menus but the spec confirm dialog is titled 'Remove Fee / Discount' with a 'Remove' button; the design mockups do NOT model the confirm dialog (§10). Authored to spec — flag the label mismatch and confirm the dialog exists on staging. | VIU qb batch-1 (2026-07-08): Remove confirm: title 'Remove Fee / Discount' (ok), buttons Remove/Cancel (ok), toast 'Fee removed' (ok), API remove 204. DEVIATION: message reads 'Are you sure you want to remove this fee?' — spec S3-R11a wants 'Remove \"{name}\" from this work order?'. Shot s9-08. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — Recon+API: remove opens \"Remove Fee / Discount\" confirm; POST remove → 204; toast \"Fee removed\" | FRESH VIU 2026-07-10: remove-confirm wording drift per batch-1 (case-update); not re-driven today | WORDING+VIU 2026-07-13: Confirm dialog matched EXACTLY live: title 'Remove Fee / Discount', message 'Are you sure you want to remove this fee?', buttons 'Remove'/'Cancel' (shot inline-02; cancelled — no shared data deleted). Toast not re-observed this run.",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "FD-REMOVE-002",
   "area": "Work Order — Remove an adjustment",
   "story_ref": "S13-R7 / S13-N2",
-  "title": "Verify removing an adjustment uses 'Create and Edit', NOT the 'Delete' permission",
+  "title": "Verify removing a fee/discount uses Create and Edit, not a separate Delete permission",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "Work Orders: Create & Edit ON, Delete OFF (whole-WO) + See Financial Data + flag ON",
   "preconditions": [
-   "1. Logged in as a role that HAS Work Orders: Create & Edit and See Financial Data but does NOT have the separate 'Delete' permission.",
-   "2. An open work order with a whole-WO adjustment."
+   "1. You are logged in as a role that HAS Work Orders: Create & Edit and See Financial Data but does NOT have a separate 'Delete' permission.",
+   "2. An open work order with a whole-work-order fee/discount."
   ],
   "steps": [
-   "1. Hover the whole-WO adjustment entry on the sidebar card and open its ⋯ menu.",
-   "2. Confirm a remove/delete option is present and usable.",
-   "3. Remove the adjustment."
+   "1. Open the entry's ⋮ menu on the 'WO Fees & Discounts' card.",
+   "2. Check that a 'Remove' option is present and works.",
+   "3. Remove the fee/discount."
   ],
   "expected": [
-   "1. The remove option is available and works despite the user lacking the separate 'Delete' permission (S13-R7).",
-   "2. The adjustment is removed successfully.",
-   "3. (Contrast) A user WITHOUT Create & Edit sees no remove control and the action is rejected (S13-N2)."
+   "1. The 'Remove' option is available and works even though you do not have a separate Delete permission.",
+   "2. The fee/discount is removed.",
+   "3. By contrast, a user without Create & Edit sees no 'Remove' option and cannot remove it."
   ],
   "design_ref": "sidebar ⋯ Delete (§1a)",
   "viu_status": "VIU-Verified",
-  "notes": "Key permission nuance: 'Delete' permission is for whole records (WO, labor line, part); removing an adjustment is part of 'Create and Edit' (S13-R7). For a line/part adjustment the required permission is Work Order Lines: Create & Edit (S13-R4). | VIU qb batch-1 (2026-07-08): Needs a role with Delete-but-not-Create&Edit (and vice versa); no second-user login on qb env this batch. | FRESH VIU 2026-07-10: removal governed by Create&Edit (tech WITH lines-C&E removed line-level 204; no Delete-perm dependency)",
+  "notes": "Key permission nuance: 'Delete' permission is for whole records (WO, labor line, part); removing an adjustment is part of 'Create and Edit' (S13-R7). For a line/part adjustment the required permission is Work Order Lines: Create & Edit (S13-R4). | VIU qb batch-1 (2026-07-08): Needs a role with Delete-but-not-Create&Edit (and vice versa); no second-user login on qb env this batch. | FRESH VIU 2026-07-10: removal governed by Create&Edit (tech WITH lines-C&E removed line-level 204; no Delete-perm dependency) | WORDING+VIU 2026-07-13: Remove uses Create & Edit not a separate Delete permission; carry prior VIU.",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "FD-REMOVE-003",
   "area": "Work Order — Remove an adjustment",
   "story_ref": "S3-R17 / S3-R11a",
-  "title": "Verify removing a line-level adjustment via its inline 3-dot menu",
+  "title": "Verify removing a line-level fee/discount from its inline ⋮ menu",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "Work Order Lines: Create & Edit + See Financial Data + flag ON",
   "preconditions": [
-   "1. Logged in with Work Order Lines: Create & Edit + See Financial Data.",
-   "2. An open work order where a part carries a 'Fleet discount' adjustment shown inline."
+   "1. You are logged in with Work Order Lines: Create & Edit and See Financial Data.",
+   "2. An open work order where a part has a fee/discount shown inline."
   ],
   "steps": [
-   "1. Hover the inline 'Fleet discount' row on the part.",
-   "2. Open its ⋯ menu and click 'Delete'.",
-   "3. Confirm the removal.",
-   "4. Observe the inline rows and the part Total column."
+   "1. Hover the inline fee/discount row on the part.",
+   "2. Open its ⋮ menu and click 'Remove'.",
+   "3. Confirm in the 'Remove Fee / Discount' dialog.",
+   "4. Look at the inline rows and the part Total column."
   ],
   "expected": [
-   "1. A confirm ('Remove Fee / Discount' per spec) is shown, then the adjustment is removed.",
-   "2. The inline 'Fleet discount' row disappears; the part Total column and the 'Show N more' count update.",
-   "3. A 'Discount removed' toast appears (§7)."
+   "1. The 'Remove Fee / Discount' confirm appears; after you confirm, the fee/discount is removed.",
+   "2. The inline row disappears and the part Total column updates.",
+   "3. A success message confirms the removal."
   ],
   "design_ref": "inline .wo-inline-more-btn Edit/Delete (§2b)",
   "viu_status": "VIU-Verified",
-  "notes": "If removing brings the count down to one adjustment, the 'Show N more' toggle should disappear. | VIU qb batch-1 (2026-07-08): Inline-row remove not driven (inline ⋮ menu not opened programmatically); card-entry remove verified in FD-REMOVE-001. | FRESH VIU 2026-07-10: line-level remove 204 and gone from the line",
+  "notes": "If removing brings the count down to one adjustment, the 'Show N more' toggle should disappear. | VIU qb batch-1 (2026-07-08): Inline-row remove not driven (inline ⋮ menu not opened programmatically); card-entry remove verified in FD-REMOVE-001. | FRESH VIU 2026-07-10: line-level remove 204 and gone from the line | WORDING+VIU 2026-07-13: Inline menu option is 'Remove' (was 'Delete'); confirm dialog 'Remove Fee / Discount' confirmed live.",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "FD-STACK-001",

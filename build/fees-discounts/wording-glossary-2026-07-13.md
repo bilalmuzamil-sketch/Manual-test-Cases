@@ -56,3 +56,23 @@ per-row **⋮ (more_vert)** menu.
 
 **Tax label on this env:** **`GST`** (Canadian test org "Staging Foothills Group Inc" /
 Staging Lethbridge - 4310).
+
+## FD-FIN / FD-INLINE / FD-STATS / FD-REMOVE (same WO Lines surface)
+
+- **Financial Info card** header: `Item` / `Cost`; money rows `Parts`, `Labor`,
+  `Shop Supplies`, `Subtotal`, `GST`, `Total`, `Balance`, plus a **`Fees & Discounts (N)`**
+  row showing the net in grey (shot `fin-03`).
+- **Sidebar card** for whole-WO adjustments: title **`WO Fees & Discounts`**; each row =
+  name + signed rate badge + grey amount + a **⋮** menu. The ⋮ menu options are exactly
+  **`Edit`** and **`Remove`** (shot `fin-03`).
+- **Inline line adjustment** (Lines tab): row labelled **`Fees/Discounts`** with a `↳`
+  arrow, name, rate badge, right-aligned grey amount and a per-row **⋮** menu whose options
+  are **`Edit`** / **`Remove`** (shot `inline-01`).
+- **Remove confirm dialog:** title **`Remove Fee / Discount`**, message
+  **`Are you sure you want to remove this fee?`**, buttons **`Remove`** and **`Cancel`**
+  (shot `inline-02`).
+- **Stats tab** (`/statistics`): sections `Hours`, `Labor`, `Parts`, `Total` (each with
+  column headers), then a **`Fees & Discounts (N)`** section that lists each fee/discount as
+  `name … [value/% for percentages] … signed amount`. This section has **no** `Value`/
+  `Amount` column headers (unlike the other sections) and shows **no scope hyperlink** on
+  the rows (shot `fin-01`) — BUG-FD-2 deviation.

@@ -51,3 +51,48 @@ from tester-facing fields.
 | FD-WO-016 | [C29441](https://shopview.testrail.io/index.php?/cases/view/29441) | VIU-Deviation | updated title+preconds+steps+expected 200/200 |
 
 **FD-WO push totals:** 16 updated · 0 no-op · 0 error.
+
+## Area: FD-FIN / FD-INLINE / FD-STATS / FD-REMOVE (WO Lines surface) — 18 cases — TESTER-READY
+
+**Build terms corrected (notable):** sidebar card title **'WO Fees & Discounts'** (was
+"Work Order Fee / Discount"); per-row and inline ⋮ menu options are **'Edit' / 'Remove'**
+(was "Edit/Delete"); the Remove confirm dialog is exactly **title 'Remove Fee / Discount',
+message 'Are you sure you want to remove this fee?', buttons 'Remove'/'Cancel'**; inline
+fee/discount row is labelled **'Fees/Discounts'** with a ↳ arrow; Financial Info shows a
+**'Fees & Discounts (N)'** row (net in grey); Stats shows a **'Fees & Discounts (N)'**
+section below Hours/Labor/Parts/Total. Removed spec-ref jargon (S3-Rxx, S4-Rxx, U+2212).
+
+**VIU (fresh_run 2026-07-13) — confirmed live (WO S3-15960):** Financial Info net row
+(shot fin-03); sidebar 'WO Fees & Discounts' card + Edit/Remove menu (fin-03); inline
+'Fees/Discounts' rows (wo-01/fin-03); inline ⋮ Edit/Remove (inline-01); Remove confirm
+dialog exact text (inline-02, cancelled — no shared data deleted); Stats 'Fees & Discounts
+(N)' section layout (fin-01).
+
+**Kept as DEVIATIONS (unchanged, PO/dev-owned):** FD-INLINE-003 (no 'Show N more'
+collapse, BUG-FD-5); FD-STATS-001 (no Value/Amount column headers, BUG-FD-2),
+FD-STATS-002 (no scope hyperlink), FD-STATS-004 (creation-order ruling pending).
+**Flipped to Verified after wording match:** FD-FIN-004 (card title now 'WO Fees &
+Discounts'), FD-REMOVE-001 (confirm dialog matched exactly).
+
+| FD-ID | TestRail | viu_status | push |
+|---|---|---|---|
+| FD-FIN-001 | [C28464](https://shopview.testrail.io/index.php?/cases/view/28464) | VIU-Verified | title+preconds+steps+expected 200/200 |
+| FD-FIN-002 | [C28465](https://shopview.testrail.io/index.php?/cases/view/28465) | VIU-Verified | title+preconds+steps+expected 200/200 |
+| FD-FIN-003 | [C28466](https://shopview.testrail.io/index.php?/cases/view/28466) | VIU-Verified | title+preconds+steps+expected 200/200 |
+| FD-FIN-004 | [C28467](https://shopview.testrail.io/index.php?/cases/view/28467) | VIU-Verified | title+preconds+steps+expected 200/200 |
+| FD-FIN-005 | [C28468](https://shopview.testrail.io/index.php?/cases/view/28468) | VIU-Verified | title+preconds+steps+expected 200/200 |
+| FD-INLINE-001 | [C28454](https://shopview.testrail.io/index.php?/cases/view/28454) | VIU-Verified | title+preconds+steps+expected 200/200 |
+| FD-INLINE-002 | [C28455](https://shopview.testrail.io/index.php?/cases/view/28455) | VIU-Verified | title+preconds+steps+expected 200/200 |
+| FD-INLINE-003 | [C28456](https://shopview.testrail.io/index.php?/cases/view/28456) | VIU-Deviation | title+preconds+steps+expected 200/200 |
+| FD-INLINE-004 | [C28457](https://shopview.testrail.io/index.php?/cases/view/28457) | VIU-Verified | title+preconds+steps+expected 200/200 |
+| FD-INLINE-005 | [C28458](https://shopview.testrail.io/index.php?/cases/view/28458) | VIU-Verified | title+preconds+steps+expected 200/200 |
+| FD-STATS-001 | [C28459](https://shopview.testrail.io/index.php?/cases/view/28459) | VIU-Deviation | title+preconds+steps+expected 200/200 |
+| FD-STATS-002 | [C28460](https://shopview.testrail.io/index.php?/cases/view/28460) | VIU-Deviation | title+preconds+steps+expected 200/200 |
+| FD-STATS-003 | [C28461](https://shopview.testrail.io/index.php?/cases/view/28461) | VIU-Verified | title+preconds+steps+expected 200/200 |
+| FD-STATS-004 | [C28462](https://shopview.testrail.io/index.php?/cases/view/28462) | VIU-Deviation | title+preconds+steps+expected 200/200 |
+| FD-STATS-005 | [C28463](https://shopview.testrail.io/index.php?/cases/view/28463) | VIU-Verified | title+preconds+steps+expected 200/200 |
+| FD-REMOVE-001 | [C28479](https://shopview.testrail.io/index.php?/cases/view/28479) | VIU-Verified | title+preconds+steps+expected 200/200 |
+| FD-REMOVE-002 | [C28480](https://shopview.testrail.io/index.php?/cases/view/28480) | VIU-Verified | title+preconds+steps+expected 200/200 |
+| FD-REMOVE-003 | [C28481](https://shopview.testrail.io/index.php?/cases/view/28481) | VIU-Verified | title+preconds+steps+expected 200/200 |
+
+**Push totals:** 18 updated · 0 no-op · 0 error.
