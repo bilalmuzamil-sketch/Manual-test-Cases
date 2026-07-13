@@ -74,34 +74,40 @@ all).
 3. **Simple flow project** — Simple Mode / Streamlined Work Order Completion &
    Receiving (ShopView), Epic **SV-7301**. **CANONICAL STATE DOC (read first for
    resume):** `build/simple-flow/PROJECT-STATE.md` — the single authoritative
-   snapshot (case inventory 162 + VIU breakdown, TestRail state, deliverables
+   snapshot (case inventory 163 + VIU breakdown, TestRail state, deliverables
    index, open threads, env/access facts, how-to-resume). Memory:
    `build/simple-flow/*`
    (`requirements.md` = COMPLETE spec, 17 stories SV-7696..SV-7710 + SV-7870 +
    SV-7876 + §9/§10 SV-8183 permissions; `design-notes.md`; `viu-findings.md`;
-   `cases/*.json` = 162 authored cases with `SF-` IDs; `SimpleFlow_V1_TestCases.xlsx/.csv`;
-   `build_workbook.py` + `gen_cases.py`). All 162 cases imported to TestRail
-   (interim); no execution run exists.
-   **STATUS: FRESH FULL VIU DONE 2026-07-10.** Tally: **VIU-Verified 121 /
-   VIU-Pending 36 / Open-Question 5 = 162**; blockers READY 118 / VIU-PENDING(QA)
-   31 / MILOS 13 / BUG-RULING 0 / DEV-NOT-BUILT 0. Stories 7/8/9/14 CONFIRMED
-   BUILT (DEV-NOT-BUILT=0). **reviewer≠completer DESCOPED** (Milos ruling —
-   self-review allowed when the role holds the Mark Reviewed permission;
-   permission-gated only; BUG-5 dropped; 4 cases corrected + pushed to TestRail).
-   **4 UNAPPLIED V2.4 spec deltas PENDING** (2026-07-10 silent revision,
-   `spec-diff-2026-07-10.md`: Δ1 VIN dropped from Story-4 modal; Δ2 Story-4
-   unapproved-line=disabled Complete+tooltip; Δ3 new receive-time gates
-   S13-R6/R7 part#/cost-sell; Δ4 Mark-Reviewed note removed) — top next task;
-   2026-07-10 design bundle = byte-identical re-delivery (no impact). **WAITING ON:**
-   Milos Round-3 answers (13 MILOS cases; 3 deliverables ready to send:
+   `cases/*.json` = 163 authored cases with `SF-` IDs; `SimpleFlow_V1_TestCases.xlsx/.csv`;
+   `build_workbook.py` + `gen_cases.py`). All 163 cases in TestRail EXCEPT SF-QB-09
+   (no C-ID, Open-Question); no execution run exists.
+   **STATUS: FRESH FULL VIU-PROCESS DONE 2026-07-13** (build-accurate wording + VIU
+   per rule 10 over ALL 163 cases; ~171 `update_case` pushes ALL verified 200/200, 0
+   errors). Prior 2026-07-13 work: `_2` spec doc + `Design_3.zip` = byte-identical
+   re-deliveries (no new work); V2.4 Δ1-Δ4 APPLIED (9 cases + new SF-VEND-06=C29442)
+   + pushed (10 writes, 200/200); roles matrix re-derived — **Technician NOT drifted
+   on sv7301**. **Tally: VIU-Verified 116 / VIU-Pending 35 / Blocked-Env 10 /
+   Deviation 1 (SF-SET-03) / Open-Question 1 (SF-QB-09) = 163;** blockers READY 112 /
+   VIU-PENDING(QA) 38 / MILOS 13 / BUG-RULING 0 / DEV-NOT-BUILT 0. Stories 7/8/9/14
+   CONFIRMED BUILT. **reviewer≠completer DESCOPED** (Milos ruling — self-review
+   allowed when the role holds the Mark Reviewed permission; BUG-5 dropped).
+   Headline findings: SF-SET-03 Deviation (no Create Purchase Orders toggle, lags
+   V2.4 → blocks No-PO path SF-COMP-06/SF-QB-02); completion modal has NO VIN even
+   review-off (corrected SF-COMP-16/SF-VAL-02/SF-REV-03/SF-UX-02); OBS-6 Part-History
+   500 re-confirmed; SF-PERM-06 app-blocks/backend-allows gap. **WAITING ON:** Milos
+   Round-3 answers (13 MILOS cases; 3 deliverables ready to send:
    PO-Questions-Round3.xlsx, SimpleFlow_Bugs-for-Milos-Confirm.xlsx,
-   SimpleFlow_Bug-Drafts.xlsx) + fresh sv7301 cookies for VIU. 4 active bug drafts
-   (TICKET 2-5) unfiled (no Atlassian in this env); new OBS-6 (Part-History surface
-   500 + part-detail crash) for dev. **qb/sv7301 env is SHARED — re-read settings
-   before runs, restore after.** All detail (deltas, blockers, env, how-to-resume)
-   in PROJECT-STATE.md = canonical resume doc.
+   SimpleFlow_Bug-Drafts.xlsx). 38 VIU-PENDING(QA) genuinely blocked on non-seedable
+   data (vendor-missing PO, Needs-Approval line, cores, invoiced/paid WO, VIN-less
+   asset, OBS-6, QuickBooks-needs-a-human, brand-new-org defaults). 4 active bug
+   drafts (TICKET 2-5) unfiled (no Atlassian in this env); OBS-6 for dev. SF-QB-09
+   unmapped in testrail-id-map.csv (Open-Question, not in TestRail) — follow-up.
+   **qb/sv7301 env is SHARED — re-read settings before runs, restore byte-identical
+   after** (node-fetch-ignores-proxy gotcha → use undici ProxyAgent). All detail
+   (deltas, blockers, env, how-to-resume) in PROJECT-STATE.md = canonical resume doc.
    *TestRail import (INTERIM):* `testrail-import/simple-flow-v1-testrail-import.csv`
-   (+ `.xlsx`), all 162 cases via `build/simple-flow/gen_import.py`; **VIU-word-free
+   (+ `.xlsx`), all 163 cases via `build/simple-flow/gen_import.py`; **VIU-word-free
    and feature-flag-free by user rule** (settings-driven, so settings preconditions
    are kept); INTERIM pending post-VIU + dev-answer finalization (see
    `build/simple-flow/RESUME-STRATEGY.md`). Permissions: REQUIRES definition (no role
@@ -180,6 +186,18 @@ all).
    method for this (capture labels → rewrite → VIU → push → deliverables) is
    `build/BUILD-ACCURATE-WORDING-VIU-PROCESS.md`; apply it to a given project WHEN THE
    USER ASKS.**
+10. **"VIU" = the full BUILD-ACCURATE-WORDING-VIU-PROCESS (all projects, default
+    meaning):** When the user says **"VIU the test cases"** (or "do the VIU"), it
+    means **run `build/BUILD-ACCURATE-WORDING-VIU-PROCESS.md` END-TO-END** (this is
+    the rule-9 method): capture the EXACT on-screen labels LIVE from the build →
+    rewrite every case Title/Preconditions/Steps/Expected into build-accurate,
+    layman, non-technical wording (never invented; flag anything unconfirmable) →
+    VIU-verify behavior → checkpoint-commit → push to TestRail via `update_case`
+    with a per-case audit log (subject to that project's TestRail authorization) →
+    regenerate deliverables (Blockers Tracker + Results workbook + import, with
+    TestRail Case ID + Link columns) → report each area tester-ready and **ALWAYS
+    state the TestRail update status explicitly.** This is the default meaning of
+    "VIU" for EVERY project going forward.
 
 ## Project purpose (Custom Roles project)
 Manual test-case authoring + live staging (Verify-in-UI) verification + TestRail
