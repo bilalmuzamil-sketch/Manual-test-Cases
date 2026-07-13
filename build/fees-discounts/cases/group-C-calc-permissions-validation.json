@@ -905,196 +905,196 @@
   "id": "FD-VAL-001",
   "area": "Validation / Edge",
   "story_ref": "design §6 (Add-button enable rule); S2-N1, S2-N2",
-  "title": "Verify the Add button stays DISABLED until Name AND Type AND Calculation type AND Amount > 0 are all set",
+  "title": "Verify the Add button stays disabled until Name, Type, Calculation Type and an Amount above 0 are all set",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "See Financial Data; the matching Create and Edit permission",
   "preconditions": [
-   "1. Role has See Financial Data and the matching Create and Edit permission.",
-   "2. An open work order; open the Add Fee / Discount dialog."
+   "1. You are logged in with See Financial Data and the matching Create and Edit permission.",
+   "2. An open work order with the 'Add new fee/discount' dialog open."
   ],
   "steps": [
-   "1. With the dialog freshly opened (all fields empty), observe the Add button state.",
-   "2. Fill fields one at a time — Name only; then + Type; then + Calculation type; then + Amount = 0; then Amount > 0 — observing the Add button after each.",
-   "3. Clear one required field again and observe the button."
+   "1. With the dialog freshly opened (all fields empty), look at the confirm button.",
+   "2. Fill the fields one at a time — Name only; then Type; then Calculation Type; then Amount 0; then Amount above 0 — checking the button after each.",
+   "3. Clear one required field again and check the button."
   ],
   "expected": [
-   "1. The Add button is DISABLED by default and remains disabled until ALL of Name, Type, Calculation type, and Amount > 0 are set (design §6 validateForm).",
-   "2. With Amount = 0 the button stays disabled (Amount must be > 0).",
-   "3. The confirm button label reads \"Add Fee\" (Type=Fee) or \"Add Discount\" (Type=Discount), changing live with Type (S2-R27).",
-   "4. Clearing any required field disables the button again.",
-   "5. Max Amount / Max cap is NOT required to enable Add."
+   "1. The confirm button is greyed out until Name, Type, Calculation Type and an Amount above 0 are all set.",
+   "2. With the Amount at 0 the button stays greyed out (the amount must be above 0).",
+   "3. The confirm button reads 'Add Fee' (Type Fee) or 'Add Discount' (Type Discount), changing as you change Type.",
+   "4. Clearing any required field greys the button out again.",
+   "5. Max Amount is not needed to enable the button."
   ],
   "design_ref": "design-notes §6 (Add disabled by default; validateForm enables only when Name AND Type AND Calc type AND Amount > 0)",
   "viu_status": "VIU-Deviation",
-  "notes": "Design difference: the mock dialog also has NO base selector and NO Taxable control (design §9 items 1–2). Spec adds Taxable (default Yes, S2-R26) and scope-dependent Calculation type options (§5-R10). Verify the real dialog's enable rule against these extra fields. | VIU qb batch-1 (2026-07-08): The Add/Create buttons are NEVER disabled (design §6 enable-rule not implemented). Build validates on submit with inline field errors + error toasts and keeps the dialog open. | RECON 2026-07-09 (spec-v1-reconciliation.md + PO answer sheet): PO Q4=B -> confirmed defect (BUG-FD-4). | FRESH VIU 2026-07-10: CONFIRMED AGAIN: Add button enabled on empty form (validates on submit) — PO Q4=B defect persists",
+  "notes": "Design difference: the mock dialog also has NO base selector and NO Taxable control (design §9 items 1–2). Spec adds Taxable (default Yes, S2-R26) and scope-dependent Calculation type options (§5-R10). Verify the real dialog's enable rule against these extra fields. | VIU qb batch-1 (2026-07-08): The Add/Create buttons are NEVER disabled (design §6 enable-rule not implemented). Build validates on submit with inline field errors + error toasts and keeps the dialog open. | RECON 2026-07-09 (spec-v1-reconciliation.md + PO answer sheet): PO Q4=B -> confirmed defect (BUG-FD-4). | FRESH VIU 2026-07-10: CONFIRMED AGAIN: Add button enabled on empty form (validates on submit) — PO Q4=B defect persists | WORDING+VIU 2026-07-13: DEVIATION re-confirmed 2026-07-13 (BUG-FD-4): the 'Add Fee' button is ENABLED on an empty form (validates on submit). Labels build-accurate (Add Fee/Add Discount, Calculation Type, Max Amount).",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "FD-VAL-002",
   "area": "Validation / Edge",
   "story_ref": "S2-N2, §5-R1",
-  "title": "Verify a blank or 0 Amount/Percent blocks save with an inline error",
+  "title": "Verify a blank or 0 amount blocks saving, with an error",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "See Financial Data; the matching Create and Edit permission",
   "preconditions": [
-   "1. Role has See Financial Data and the matching Create and Edit permission.",
-   "2. Add dialog open with Name and Type and Calculation type filled."
+   "1. You are logged in with See Financial Data and the matching Create and Edit permission.",
+   "2. The 'Add new fee/discount' dialog is open with Name, Type and Calculation Type filled."
   ],
   "steps": [
-   "1. Leave Amount/Percent blank and attempt to save.",
-   "2. Enter Amount/Percent = 0 and attempt to save.",
-   "3. Enter a valid value (> 0) and save."
+   "1. Leave the amount blank and try to save.",
+   "2. Enter 0 in the amount and try to save.",
+   "3. Enter a value above 0 and save."
   ],
   "expected": [
-   "1. A blank Amount/Percent blocks save with an inline error (S2-N2).",
-   "2. A value of 0 is invalid (values must be > 0, §5-R1) — save is blocked / Add stays disabled.",
-   "3. A value > 0 (≥ $0.01 flat, ≥ 0.01% percentage) allows save."
+   "1. A blank amount blocks the save and shows an error.",
+   "2. An amount of 0 is not allowed (the value must be above 0) — the save is blocked.",
+   "3. A value above 0 (at least $0.01 for a flat amount, at least 0.01% for a percentage) can be saved."
   ],
   "design_ref": "design-notes §6 (Add disabled unless Amount > 0), §10 (no inline error text mocked)",
   "viu_status": "VIU-Verified",
-  "notes": "Design mock shows no inline error copy — only the disabled Add button (design §10). Capture the actual inline error text/behavior on staging. | VIU qb batch-1 (2026-07-08): Blank/0 amount: inline 'Percent must be greater than 0'/'Amount must be greater than 0' + API 400 'The adjustment amount must be greater than zero.' | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: amount 0 → 400 \"must be greater than zero\" | FRESH VIU 2026-07-10: amount 0 -> 400 (API); UI inline error on submit",
+  "notes": "Design mock shows no inline error copy — only the disabled Add button (design §10). Capture the actual inline error text/behavior on staging. | VIU qb batch-1 (2026-07-08): Blank/0 amount: inline 'Percent must be greater than 0'/'Amount must be greater than 0' + API 400 'The adjustment amount must be greater than zero.' | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: amount 0 → 400 \"must be greater than zero\" | FRESH VIU 2026-07-10: amount 0 -> 400 (API); UI inline error on submit | WORDING+VIU 2026-07-13: Blank/0 amount blocked; carry prior VIU. Labels cleaned.",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "FD-VAL-003",
   "area": "Validation / Edge",
   "story_ref": "S2-N1, S2-R19",
-  "title": "Verify an empty Name blocks save with an inline error (Name required, up to 100 characters)",
+  "title": "Verify an empty Name blocks saving, with an error (Name required, up to 100 characters)",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "See Financial Data; the matching Create and Edit permission",
   "preconditions": [
-   "1. Role has See Financial Data and the matching Create and Edit permission.",
-   "2. Add dialog open with Type, Calculation type, and a valid Amount filled."
+   "1. You are logged in with See Financial Data and the matching Create and Edit permission.",
+   "2. The 'Add new fee/discount' dialog is open with Type, Calculation Type and a valid amount filled."
   ],
   "steps": [
-   "1. Leave Name empty and attempt to save.",
-   "2. Enter a Name and confirm save is allowed.",
+   "1. Leave the Name empty and try to save.",
+   "2. Enter a Name and confirm the save is allowed.",
    "3. Try a Name longer than 100 characters."
   ],
   "expected": [
-   "1. An empty Name blocks save with an inline error (S2-N1); the Add button stays disabled.",
-   "2. Name is required free text up to 100 characters (S2-R19).",
-   "3. Input beyond 100 characters is not accepted / is truncated at 100."
+   "1. An empty Name blocks the save and shows an error.",
+   "2. Name is required and can be up to 100 characters.",
+   "3. Anything beyond 100 characters is not accepted."
   ],
   "design_ref": "design-notes §6 (Name is a required field for Add enablement)",
   "viu_status": "VIU-Verified",
-  "notes": "Verify the exact 100-character enforcement (hard cap vs error) on staging. | VIU qb batch-1 (2026-07-08): Empty name: inline 'Name is a required field', save blocked. Template name maxlength=100 enforced; WO-dialog name input present (maxlength not read — spot-check in batch 2). | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: empty name → 400 \"The adjustment name is required\"; 101-char name → 400 \"must be 100 characters or fewer\" | FRESH VIU 2026-07-10: UI blocks empty name (inline required error). NEW FDBUG-16: raw API now ACCEPTS empty-name adds (201; regression vs batch-3 400) — FE-only guard; name 101ch -> 400, 100ch -> 201",
+  "notes": "Verify the exact 100-character enforcement (hard cap vs error) on staging. | VIU qb batch-1 (2026-07-08): Empty name: inline 'Name is a required field', save blocked. Template name maxlength=100 enforced; WO-dialog name input present (maxlength not read — spot-check in batch 2). | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: empty name → 400 \"The adjustment name is required\"; 101-char name → 400 \"must be 100 characters or fewer\" | FRESH VIU 2026-07-10: UI blocks empty name (inline required error). NEW FDBUG-16: raw API now ACCEPTS empty-name adds (201; regression vs batch-3 400) — FE-only guard; name 101ch -> 400, 100ch -> 201 | WORDING+VIU 2026-07-13: Empty name blocked in UI; 100-char limit. (Raw back-end accepts empty name — FDBUG-16 — but the dialog blocks it.)",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "FD-VAL-004",
   "area": "Validation / Edge",
   "story_ref": "§5-R2",
-  "title": "Verify a percentage discount > 100% is invalid while a percentage fee has no upper cap",
+  "title": "Verify a percentage discount over 100% is invalid while a percentage fee has no upper cap",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "See Financial Data; the matching Create and Edit permission",
   "preconditions": [
-   "1. Role has See Financial Data and the matching Create and Edit permission.",
-   "2. Add dialog open."
+   "1. You are logged in with See Financial Data and the matching Create and Edit permission.",
+   "2. The 'Add new fee/discount' dialog is open."
   ],
   "steps": [
-   "1. Type = Discount, Calculation type = percentage, Percent = 100.5 → attempt save.",
-   "2. Percent = 100 → attempt save.",
-   "3. Type = Fee, percentage, Percent = 500 → attempt save."
+   "1. Set Type Discount, a percentage Calculation Type, Percent 100.5, and try to save.",
+   "2. Set Percent to 100 and try to save.",
+   "3. Set Type Fee, a percentage method, Percent 500, and try to save."
   ],
   "expected": [
-   "1. Discount at 100.5% is invalid — blocked (§5-R2).",
-   "2. Discount at exactly 100% is allowed.",
-   "3. Fee at 500% is allowed — percentage fees have no upper limit.",
-   "4. Flat Amount adjustments never take a Max Amount (§5-R2/R6)."
+   "1. A 100.5% discount is invalid and is blocked.",
+   "2. A discount of exactly 100% is allowed.",
+   "3. A 500% fee is allowed — percentage fees have no upper limit.",
+   "4. Flat-amount fees/discounts never use a Max Amount."
   ],
   "design_ref": "design-notes §10 (no over-100% error copy mocked)",
   "viu_status": "VIU-Verified",
-  "notes": "Same rule as FD-CALC-005 but framed as dialog validation. Capture the exact rejection UX on staging. | VIU qb batch-1 (2026-07-08): Discount >100% invalid at save (toast + API 400); fee percentage uncapped (150% saved). | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: 150% discount 400 \"cannot exceed 100%\"; 150% fee accepted | FRESH VIU 2026-07-10: discount >100% invalid (400), fee uncapped (201)",
+  "notes": "Same rule as FD-CALC-005 but framed as dialog validation. Capture the exact rejection UX on staging. | VIU qb batch-1 (2026-07-08): Discount >100% invalid at save (toast + API 400); fee percentage uncapped (150% saved). | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: 150% discount 400 \"cannot exceed 100%\"; 150% fee accepted | FRESH VIU 2026-07-10: discount >100% invalid (400), fee uncapped (201) | WORDING+VIU 2026-07-13: %>100 discount invalid, fee uncapped; carry prior VIU. Labels cleaned.",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "FD-VAL-005",
   "area": "Validation / Edge",
   "story_ref": "§5-R1",
-  "title": "Verify negative Amount/Percent values are rejected (values must be > 0)",
+  "title": "Verify negative amounts are rejected (values must be above 0)",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "See Financial Data; the matching Create and Edit permission",
   "preconditions": [
-   "1. Role has See Financial Data and the matching Create and Edit permission.",
-   "2. Add dialog open with Name, Type, Calculation type set."
+   "1. You are logged in with See Financial Data and the matching Create and Edit permission.",
+   "2. The 'Add new fee/discount' dialog is open with Name, Type and Calculation Type set."
   ],
   "steps": [
-   "1. Enter Amount = −5 (Flat) and attempt to save.",
-   "2. Enter Percent = −10 (percentage) and attempt to save."
+   "1. Enter −5 in the '$ Amount' field (flat amount) and try to save.",
+   "2. Enter −10 in the 'Percent %' field (percentage) and try to save."
   ],
   "expected": [
-   "1. Negative values are not accepted — values must be > 0 (§5-R1). The sign (fee + / discount −) comes from Type, not from a negative input.",
-   "2. Save is blocked / the field rejects the negative value."
+   "1. Negative values are not accepted — the value must be above 0. Whether it counts as a fee (+) or a discount (−) comes from the Type, not from a minus sign.",
+   "2. The save is blocked / the field rejects the negative value."
   ],
   "design_ref": "design-notes §6/§10 (mock silently floors negative preview amounts to 0; no negative-input error copy)",
   "viu_status": "VIU-Verified",
-  "notes": "Design mock silently floors negatives to 0 in the preview (design §6) and has no negative-input error state (design §10). Confirm the real dialog rejects negatives rather than silently flooring. | VIU qb batch-1 (2026-07-08): Negative amounts rejected (API 400 'must be greater than zero'; UI numeric inputs). | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: amount -5 → 400 \"must be greater than zero\" | FRESH VIU 2026-07-10: negative amount -> 400",
+  "notes": "Design mock silently floors negatives to 0 in the preview (design §6) and has no negative-input error state (design §10). Confirm the real dialog rejects negatives rather than silently flooring. | VIU qb batch-1 (2026-07-08): Negative amounts rejected (API 400 'must be greater than zero'; UI numeric inputs). | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: amount -5 → 400 \"must be greater than zero\" | FRESH VIU 2026-07-10: negative amount -> 400 | WORDING+VIU 2026-07-13: Negatives rejected; carry prior VIU.",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "FD-VAL-006",
   "area": "Validation / Edge",
   "story_ref": "§5-R6, S2-R24, S2-R25",
-  "title": "Verify Max cap edge behavior — 0 or empty = no maximum, and Max Amount shows only for percentage methods",
+  "title": "Verify the Max Amount field shows only for percentage methods and how 0 or empty behaves",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "See Financial Data; the matching Create and Edit permission",
   "preconditions": [
-   "1. Role has See Financial Data and the matching Create and Edit permission.",
-   "2. Add dialog open."
+   "1. You are logged in with See Financial Data and the matching Create and Edit permission.",
+   "2. The 'Add new fee/discount' dialog is open."
   ],
   "steps": [
-   "1. Choose a percentage Calculation type — confirm the Max Amount (Optional) field appears (S2-R24).",
-   "2. Leave Max Amount empty and save; then set Max Amount = 0 and save.",
-   "3. Switch Calculation type to Flat Amount — confirm the Max Amount field is not shown."
+   "1. Choose a percentage Calculation Type and check that the '$ Max Amount (Optional)' field appears.",
+   "2. Leave Max Amount empty and save; then set Max Amount to 0 and save.",
+   "3. Switch Calculation Type to 'Flat Amount' and check that the Max Amount field disappears."
   ],
   "expected": [
-   "1. Max Amount (Optional) appears only for percentage methods (S2-R24).",
-   "2. Empty Max Amount = no maximum; an entered 0 is also treated as empty (no maximum) in the dialog (§5-R6, S2-R25).",
-   "3. For Flat Amount, no Max Amount field is shown (Flat never uses Max Amount)."
+   "1. The '$ Max Amount (Optional)' field appears only for percentage methods.",
+   "2. An empty Max Amount means no cap; a Max Amount of 0 is currently also treated as no cap.",
+   "3. For 'Flat Amount' there is no Max Amount field (a flat amount never uses one)."
   ],
   "design_ref": "design-notes §6 (\"Max cap\" min=0), §9 item 4 (design shows Max cap unconditionally and caps flat amounts)",
   "viu_status": "VIU-Deviation",
-  "notes": "Design difference: the mock labels the field \"Max cap\", shows it for ALL methods, and caps Flat amounts (design §9 item 4). Spec restricts Max Amount to percentage methods only. Verify staging matches the spec (hidden for Flat). | VIU qb batch-1 (2026-07-08): Max Amount shows only for percentage methods (verified in WO + template dialogs). DEVIATION: maxCap=0 via API = NO cap (not 'treated as empty'+'forces $0' per spec) — see FDBUG-9; UI 0-entry behavior still to spot-check. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: maxCap:0 = no cap; flat method sends no maxCap; maxCap only for percentage | FRESH VIU 2026-07-10: FDBUG-9: maxCap 0 behaves as NO cap (not 'no maximum' spec reading matches build for empty, but 0 disagrees w/ §5-R6 $0-forces-$0) — persists",
+  "notes": "Design difference: the mock labels the field \"Max cap\", shows it for ALL methods, and caps Flat amounts (design §9 item 4). Spec restricts Max Amount to percentage methods only. Verify staging matches the spec (hidden for Flat). | VIU qb batch-1 (2026-07-08): Max Amount shows only for percentage methods (verified in WO + template dialogs). DEVIATION: maxCap=0 via API = NO cap (not 'treated as empty'+'forces $0' per spec) — see FDBUG-9; UI 0-entry behavior still to spot-check. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: maxCap:0 = no cap; flat method sends no maxCap; maxCap only for percentage | FRESH VIU 2026-07-10: FDBUG-9: maxCap 0 behaves as NO cap (not 'no maximum' spec reading matches build for empty, but 0 disagrees w/ §5-R6 $0-forces-$0) — persists | WORDING+VIU 2026-07-13: Confirmed live: '$ Max Amount (Optional)' appears only for percentage methods (hidden for Flat Amount, shots wo-03/wo-05). DEVIATION (FDBUG-9 / PO Q2 pending): whether a Max Amount of 0 means 'no cap' or 'cap at $0.00' is a pending product decision — expected kept as current build behavior.",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "FD-VAL-007",
   "area": "Validation / Edge",
   "story_ref": "S9 known gap (auto-apply + customer-default duplication); S7-R5, S9-R2",
-  "title": "Verify a template that is BOTH location auto-apply and a customer default yields ONE adjustment on a new WO",
+  "title": "Verify a template that is both auto-apply at the location and a customer default is added only ONCE to a new work order",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "Settings → Finance (template setup); Customer Management: Create and Edit + Manage AP/AR (customer default); Work Orders: Create and Edit; See Financial Data",
   "preconditions": [
-   "1. A template at the location is marked auto-apply (S7-R5).",
-   "2. The SAME template is also set as a default for a customer (S9-R2)."
+   "1. A template at the location is set to auto-apply.",
+   "2. The same template is also set as a default for a customer."
   ],
   "steps": [
-   "1. Create a NEW work order for that customer.",
-   "2. Inspect the WO's whole-WO adjustments (sidebar card / Financial Info F&D count).",
-   "3. Count how many times the shared template's adjustment was added."
+   "1. Create a new work order for that customer.",
+   "2. Look at the work order's whole-work-order fees/discounts (the 'WO Fees & Discounts' card and the Financial Info count).",
+   "3. Count how many times the shared template's fee/discount was added."
   ],
   "expected": [
-   "1. The shared template's adjustment appears exactly ONCE on the new work order — the auto-apply and customer-default paths do not stack.",
-   "2. No duplicate copy is added (the single add is the settled intended behavior; a double-add would be a defect)."
+   "1. The shared template's fee/discount appears exactly once on the new work order.",
+   "2. No duplicate copy is added."
   ],
   "design_ref": "design-notes §4 (customer defaults tab with Auto-Apply column)",
   "viu_status": "VIU-Verified",
-  "notes": "OPEN QUESTION / KNOWN BUG (requirements §14 item 4, S9 note): treat a double-add as a KNOWN DEFECT, not a spec requirement; log it in the VIU tab rather than marking the case Failed against spec. Related: a user may deliberately apply the same template to one WO more than once by hand (that is allowed, §1). | VIU qb batch-1 (2026-07-08): Template both auto-apply AND customer default -> exactly ONE adjustment on the new WO (dedup works; known S9 gap not reproduced). | [pass A same-day parallel verdict] VIU-Pending — double-add (same as FD-CUST-016); see bugs-log BUG-FD-1 | CONFLICT NOTE: see FD-CUST-016 - pass B controlled repro got ONE adjustment per template (no double-add). | PO CLARIFY 2026-07-09 (Chris Ward answer sheet Q2=A): adding only once is confirmed as the settled intended behavior; EXPECTED re-scoped from 'known bug may add twice — record actual count' to exactly ONE. BUG-FD-1 closed as settled. | FRESH VIU 2026-07-10: auto+default template -> exactly ONE adjustment on the new WO",
+  "notes": "OPEN QUESTION / KNOWN BUG (requirements §14 item 4, S9 note): treat a double-add as a KNOWN DEFECT, not a spec requirement; log it in the VIU tab rather than marking the case Failed against spec. Related: a user may deliberately apply the same template to one WO more than once by hand (that is allowed, §1). | VIU qb batch-1 (2026-07-08): Template both auto-apply AND customer default -> exactly ONE adjustment on the new WO (dedup works; known S9 gap not reproduced). | [pass A same-day parallel verdict] VIU-Pending — double-add (same as FD-CUST-016); see bugs-log BUG-FD-1 | CONFLICT NOTE: see FD-CUST-016 - pass B controlled repro got ONE adjustment per template (no double-add). | PO CLARIFY 2026-07-09 (Chris Ward answer sheet Q2=A): adding only once is confirmed as the settled intended behavior; EXPECTED re-scoped from 'known bug may add twice — record actual count' to exactly ONE. BUG-FD-1 closed as settled. | FRESH VIU 2026-07-10: auto+default template -> exactly ONE adjustment on the new WO | WORDING+VIU 2026-07-13: Double-add does not stack (one adjustment); carry prior VIU.",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13"
  }
 ]

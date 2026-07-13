@@ -1483,88 +1483,88 @@
   "id": "FD-EDIT-001",
   "area": "Work Order — Edit an adjustment",
   "story_ref": "S2-R4 / S2-R5 / S2-R8",
-  "title": "Verify editing an adjustment allows Name/Value/Max Amount/Taxable but locks Type, Calculation type, and Scope",
+  "title": "Verify editing a fee/discount allows Name, amount, Max Amount and Taxable but locks Type, Calculation Type and Scope",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "Work Orders: Create & Edit (whole-WO) / Work Order Lines: Create & Edit (line-level) + See Financial Data + flag ON",
   "preconditions": [
-   "1. Logged in with the matching Create and Edit permission + See Financial Data.",
-   "2. An open work order with an existing whole-WO percentage discount adjustment."
+   "1. You are logged in with the matching Create and Edit permission and See Financial Data.",
+   "2. An open work order with an existing whole-work-order percentage discount."
   ],
   "steps": [
-   "1. On the sidebar 'Work Order Fee / Discount' card, hover the entry and choose 'Edit'.",
-   "2. Inspect which fields are editable vs disabled.",
-   "3. Change the Name and the Percent value, then Save."
+   "1. On the 'WO Fees & Discounts' card, open the entry's ⋮ menu and click 'Edit'.",
+   "2. Check which fields you can change and which are greyed out.",
+   "3. Change the Name and the Percent value, then click 'Save'."
   ],
   "expected": [
-   "1. The dialog title reads 'Edit Fee / Discount' (S2-R9).",
-   "2. Name, the value (Amount or Percent), Max Amount, and Taxable are editable (S2-R4).",
-   "3. Type and Calculation type are shown but cannot be changed (S2-R5).",
-   "4. Scope and target are locked (S2-R8).",
-   "5. The changes save successfully and a 'Fee updated' / 'Discount updated' toast appears (§7)."
+   "1. The dialog title reads 'Edit Fee / Discount'.",
+   "2. Name, the amount (or Percent), Max Amount and the Taxable toggle can be changed.",
+   "3. Type and Calculation Type are shown but greyed out and cannot be changed.",
+   "4. The scope (whole work order) cannot be changed.",
+   "5. The change saves and a success message confirms it."
   ],
   "design_ref": "No standalone Edit modal in mockups — 'Edit' is a menu item only (design §10); Add modal presumably reused",
   "viu_status": "VIU-Verified",
-  "notes": "Design open item #10: the mockups contain NO Edit-dialog markup and do not show which fields are locked. Authored strictly to spec S2-R4/R5/R8; verify locked-field behavior on staging. Confirm button label on edit = 'Save' (S2-R28). | VIU qb batch-1 (2026-07-08): Edit dialog: Name/Amount/Max/Taxable editable; Type + Calculation Type rendered DISABLED (locked). Backend contract matches: change endpoint takes only {adjustmentId,name,amount,maxCap,taxable} and ignores kind/calculationType fields. Shot s9-06. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: change edits name/amount/taxable & re-resolves; Type/Calc lock is FE per S2-R5 | FRESH VIU 2026-07-10: change accepts name/amount/maxCap/taxable only; kind/calc unchanged after edit (200)",
+  "notes": "Design open item #10: the mockups contain NO Edit-dialog markup and do not show which fields are locked. Authored strictly to spec S2-R4/R5/R8; verify locked-field behavior on staging. Confirm button label on edit = 'Save' (S2-R28). | VIU qb batch-1 (2026-07-08): Edit dialog: Name/Amount/Max/Taxable editable; Type + Calculation Type rendered DISABLED (locked). Backend contract matches: change endpoint takes only {adjustmentId,name,amount,maxCap,taxable} and ignores kind/calculationType fields. Shot s9-06. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: change edits name/amount/taxable & re-resolves; Type/Calc lock is FE per S2-R5 | FRESH VIU 2026-07-10: change accepts name/amount/maxCap/taxable only; kind/calc unchanged after edit (200) | WORDING+VIU 2026-07-13: Edit dialog confirmed live (shot edit-01): title 'Edit Fee / Discount'; Type + Calculation Type greyed/locked; Name/Amount/Taxable editable; opened from sidebar 'WO Fees & Discounts' ⋮ > Edit.",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "FD-EDIT-002",
   "area": "Work Order — Edit an adjustment",
   "story_ref": "S2-R6 / S2-R7 / S2-R18 / S2-R28",
-  "title": "Verify editing re-resolves the adjustment against current totals, hides the template picker, and uses a 'Save' button",
+  "title": "Verify editing re-works the amount against the current totals, hides the template picker, and uses a 'Save' button",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "Work Orders: Create & Edit / Work Order Lines: Create & Edit + See Financial Data + flag ON",
   "preconditions": [
-   "1. Logged in with the matching Create and Edit permission + See Financial Data.",
-   "2. An open work order with an existing percentage adjustment whose base total has since changed (e.g. a line was added)."
+   "1. You are logged in with the matching Create and Edit permission and See Financial Data.",
+   "2. An open work order with an existing percentage fee/discount whose base total has since changed (for example a line was added)."
   ],
   "steps": [
-   "1. Open the adjustment's Edit dialog.",
-   "2. Confirm the 'Apply from template' picker is not shown.",
-   "3. Change the Percent value and click the confirm button.",
-   "4. Read the resolved amount and the tax after save."
+   "1. Open the fee/discount's Edit dialog.",
+   "2. Check that there is no 'Apply From Template' dropdown.",
+   "3. Change the Percent value and click 'Save'.",
+   "4. Read the resolved amount and the tax after saving."
   ],
   "expected": [
-   "1. The 'Apply from template' picker is hidden in edit mode (S2-R18).",
-   "2. The confirm button reads 'Save' (S2-R28).",
-   "3. On save the adjustment resolves again against the WO's current totals (S2-R6).",
-   "4. Both the resolved amount and the tax update (S2-R7)."
+   "1. There is no 'Apply From Template' dropdown in the Edit dialog.",
+   "2. The confirm button reads 'Save'.",
+   "3. When you save, the fee/discount is worked out again against the work order's current totals.",
+   "4. Both the resolved amount and the tax update."
   ],
   "design_ref": "template picker add-mode only (§6); no Edit modal markup (§10)",
   "viu_status": "VIU-Verified",
-  "notes": "Verify re-resolution uses current (not original) totals. | VIU qb batch-1 (2026-07-08): Edit $12->$20: re-resolved against current totals (resolved 20; GST recomputed 15.44 = 5% x (292.83+11-15+20) exactly); template picker HIDDEN in edit mode; confirm button 'Save'; toast 'Fee updated'. Shot s9-07. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: change re-resolves against current totals; history logs \"adjustment.updated\" | FRESH VIU 2026-07-10: edit 10%->20% re-resolved 34.15 against current totals; GST->US-tax re-word caveat stands",
+  "notes": "Verify re-resolution uses current (not original) totals. | VIU qb batch-1 (2026-07-08): Edit $12->$20: re-resolved against current totals (resolved 20; GST recomputed 15.44 = 5% x (292.83+11-15+20) exactly); template picker HIDDEN in edit mode; confirm button 'Save'; toast 'Fee updated'. Shot s9-07. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: change re-resolves against current totals; history logs \"adjustment.updated\" | FRESH VIU 2026-07-10: edit 10%->20% re-resolved 34.15 against current totals; GST->US-tax re-word caveat stands | WORDING+VIU 2026-07-13: Confirmed live: no 'Apply From Template' picker in Edit; confirm button reads 'Save'; preview re-resolves against current totals (shot edit-01).",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "FD-EDIT-003",
   "area": "Work Order — Edit an adjustment",
   "story_ref": "S2-R30",
-  "title": "Verify a save failure keeps the Edit dialog open and shows the returned error",
+  "title": "Verify a failed save keeps the Edit dialog open and shows the error",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "Work Orders: Create & Edit / Work Order Lines: Create & Edit + See Financial Data + flag ON",
   "preconditions": [
-   "1. Logged in with the matching Create and Edit permission + See Financial Data.",
-   "2. An open work order with an existing adjustment; a condition that forces a save failure can be simulated (e.g. server error)."
+   "1. You are logged in with the matching Create and Edit permission and See Financial Data.",
+   "2. An open work order with an existing fee/discount, and a way to make the save fail (for example a server error)."
   ],
   "steps": [
-   "1. Open the adjustment's Edit dialog and change a field.",
-   "2. Trigger a save that the server rejects.",
-   "3. Observe the dialog and any error message."
+   "1. Open the fee/discount's Edit dialog and change a field.",
+   "2. Save in a way the server rejects.",
+   "3. Look at the dialog and any error message."
   ],
   "expected": [
-   "1. The dialog stays open (S2-R30).",
-   "2. The returned error is shown as an error toast (no custom string; §7)."
+   "1. The dialog stays open.",
+   "2. An error message tells you the save did not work."
   ],
   "design_ref": "no error/toast UI in mockups (§10)",
   "viu_status": "VIU-Verified",
-  "notes": "The design mockups model no error/toast states; this is spec-driven (S2-R30, §7 toast table). | VIU qb batch-1 (2026-07-08): Edit-mode save failure not inducible this batch. ADD-mode failure (150% discount) kept dialog open + showed error toast (S2-R30 shape verified in add mode). | FRESH VIU 2026-07-10: invalid edit (empty name + amount 0) -> 400, original left intact",
+  "notes": "The design mockups model no error/toast states; this is spec-driven (S2-R30, §7 toast table). | VIU qb batch-1 (2026-07-08): Edit-mode save failure not inducible this batch. ADD-mode failure (150% discount) kept dialog open + showed error toast (S2-R30 shape verified in add mode). | FRESH VIU 2026-07-10: invalid edit (empty name + amount 0) -> 400, original left intact | WORDING+VIU 2026-07-13: Behavior (dialog stays open on save error + error message) carried from prior VIU — not force-failed this run.",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "FD-REMOVE-001",

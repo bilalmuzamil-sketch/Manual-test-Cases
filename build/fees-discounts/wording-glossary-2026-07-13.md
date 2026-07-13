@@ -76,3 +76,13 @@ Staging Lethbridge - 4310).
   `name … [value/% for percentages] … signed amount`. This section has **no** `Value`/
   `Amount` column headers (unlike the other sections) and shows **no scope hyperlink** on
   the rows (shot `fin-01`) — BUG-FD-2 deviation.
+
+## FD-EDIT (Edit fee/discount dialog)
+
+- Title **`Edit Fee / Discount`** (shot `edit-01`); opened from a ⋮ menu > **`Edit`**.
+- **`Type`** and **`Calculation Type`** are shown **greyed out / locked**; **`Name`**, the
+  amount, **`$ Max Amount (Optional)`** (% only) and the **`Taxable`** toggle are editable.
+- **No `Apply From Template` dropdown** in Edit (the template picker is hidden).
+- Preview rows: **`Work-order subtotal`** / **`Fee`** or **`Discount`** (signed) /
+  **`New work-order subtotal`** / **`Tax is recalculated on save.`**
+- Buttons: **`Cancel`** / **`Save`**.

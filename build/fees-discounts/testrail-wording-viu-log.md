@@ -96,3 +96,31 @@ Discounts'), FD-REMOVE-001 (confirm dialog matched exactly).
 | FD-REMOVE-003 | [C28481](https://shopview.testrail.io/index.php?/cases/view/28481) | VIU-Verified | title+preconds+steps+expected 200/200 |
 
 **Push totals:** 18 updated · 0 no-op · 0 error.
+
+## Area: FD-EDIT / FD-VAL (Edit dialog + Add-dialog validation) — 10 cases — TESTER-READY
+
+**Build terms confirmed live (shot edit-01):** Edit dialog title **'Edit Fee / Discount'**;
+**Type and Calculation Type are greyed/locked**, Name / amount / Max Amount / Taxable
+editable; **no 'Apply From Template' dropdown** in Edit; confirm button **'Save'**; preview
+rows **'Work-order subtotal' / 'Discount' (or Fee) / 'New work-order subtotal' / 'Tax is
+recalculated on save.'**. FD-VAL reuses the confirmed Add-dialog labels ('Add Fee'/'Add
+Discount', 'Calculation Type', '$ Max Amount (Optional)' only on % methods). Removed
+design-ref jargon (S2-Rxx, "validateForm").
+
+**Deviations kept:** FD-VAL-001 (Add button enabled on empty form, BUG-FD-4 — re-confirmed
+live); FD-VAL-006 (Max Amount 0 = no cap vs cap-at-$0 is PO Q2 — pending).
+
+| FD-ID | TestRail | viu_status | push |
+|---|---|---|---|
+| FD-EDIT-001 | [C28476](https://shopview.testrail.io/index.php?/cases/view/28476) | VIU-Verified | title+preconds+steps+expected 200/200 |
+| FD-EDIT-002 | [C28477](https://shopview.testrail.io/index.php?/cases/view/28477) | VIU-Verified | title+preconds+steps+expected 200/200 |
+| FD-EDIT-003 | [C28478](https://shopview.testrail.io/index.php?/cases/view/28478) | VIU-Verified | title+preconds+steps+expected 200/200 |
+| FD-VAL-001 | [C28599](https://shopview.testrail.io/index.php?/cases/view/28599) | VIU-Deviation | title+preconds+steps+expected 200/200 |
+| FD-VAL-002 | [C28600](https://shopview.testrail.io/index.php?/cases/view/28600) | VIU-Verified | title+preconds+steps+expected 200/200 |
+| FD-VAL-003 | [C28601](https://shopview.testrail.io/index.php?/cases/view/28601) | VIU-Verified | title+preconds+steps+expected 200/200 |
+| FD-VAL-004 | [C28602](https://shopview.testrail.io/index.php?/cases/view/28602) | VIU-Verified | title+preconds+steps+expected 200/200 |
+| FD-VAL-005 | [C28603](https://shopview.testrail.io/index.php?/cases/view/28603) | VIU-Verified | title+preconds+steps+expected 200/200 |
+| FD-VAL-006 | [C28604](https://shopview.testrail.io/index.php?/cases/view/28604) | VIU-Deviation | title+preconds+steps+expected 200/200 |
+| FD-VAL-007 | [C28605](https://shopview.testrail.io/index.php?/cases/view/28605) | VIU-Verified | title+preconds+steps+expected 200/200 |
+
+**Push totals:** 10 updated · 0 no-op · 0 error.
