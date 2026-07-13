@@ -209,7 +209,7 @@
 
   <div class="eyebrow">📋 Per-person activity — Yesterday vs Today (PKT)</div>
   <div class="card">
-    <p class="note">What each QA person did <b>yesterday (9 Jul)</b> and <b>today (10 Jul)</b>, Pakistan time.
+    <p class="note">What each QA person did <b>yesterday (<span id="act-yest"></span>)</b> and <b>today (<span id="act-today"></span>)</b>, Pakistan time.
     <b>Created</b> = new bugs/defects filed · <b>Commented</b> = tickets they left a comment on (testing notes)
     · <b>Rejected</b> = sent back to dev · <b>Done</b> = moved to Done/Ready&nbsp;for&nbsp;Production ·
     <b>Reassigned</b> = changed the assignee. Independent of the date filter above.
@@ -587,7 +587,10 @@ function renderInprog(){
 }
 
 function renderActivity(){
-  if (!ACT){ $("activity").innerHTML = ""; return; }
+  const yEl=$("act-yest"), tEl=$("act-today");
+  if (yEl) yEl.textContent = fmtShort(daysAgo(1));
+  if (tEl) tEl.textContent = fmtShort(ASOF);
+  if (!ACT){ $("activity").innerHTML = `<tr><td class="ep" style="color:var(--muted)">Activity capture not refreshed for this snapshot.</td></tr>`; return; }
   const COLS = [["created","Created"],["commented","Commented"],["rejected","Rejected"],
     ["done","Moved to Done"],["reassigned","Reassigned"]];
   const names = Object.keys(ACT.people).filter(p => !state.q || p===state.q);
