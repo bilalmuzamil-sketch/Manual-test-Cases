@@ -3,10 +3,13 @@
 > **THIS IS THE CANONICAL STATE DOC for the Fees & Discounts (F&D V1) project.** It
 > is a single authoritative snapshot so the project can be resumed with zero
 > re-discovery.
-> **Last updated:** 2026-07-10 (PAUSE SNAPSHOT — after the **FRESH FULL VIU PASS
-> 2026-07-10** [all 182 cases re-adjudicated live in one day-run; raw probe results in
-> `fresh-viu-2026-07-10/`; tester-facing workbook `FeesDiscounts_FreshVIU_2026-07-10.xlsx`]
-> and after sending the **Round-2 PO question sheet** to Chris Ward).
+> **Last updated:** 2026-07-13 (PAUSE SNAPSHOT — after **V1_2 spec applied** [43 case
+> updates + new FD-WO-016=C29441, all pushed] AND a **FRESH FULL build-accurate WORDING +
+> VIU PASS over ALL 183 cases** [live-captured build labels; every case re-adjudicated;
+> **ALL 183 pushed to TestRail via update_case, 200/200, 0 errors**]. Still PAUSED on
+> Chris Ward's Round-2 answers [STILL BLANK]).
+> **Final tally 2026-07-13: 130 VIU-Verified / 20 VIU-Deviation / 12 Blocked-NotBuilt /
+> 20 Blocked-Env / 1 VIU-Pending = 183** (source: `FeesDiscounts_Blockers_Tracker`).
 > **⏸️ THE PROJECT IS PAUSED — see §0 below for what we're waiting on and the exact
 > resume procedure.**
 > **Source of truth for per-case status:** the case JSONs `build/fees-discounts/cases/*.json`
@@ -52,16 +55,15 @@ V1_2 edits were applied to the **LOCAL case files** (`cases/*.json`) and require
   exact string; S13-R10 history flip; exact SV-7388 names for Stories 1/3/4/9/10/11;
   S13-R4/R5/R6/N2; S13-R11 table retired / §10.2 superseded). V1_1 body kept for
   traceability (last-update-wins: §16 governs).
-- **Re-VIU-PENDING set (needs a live re-VIU; viu_status = "Pending …"):** the 10 history
-  cases above **+ FD-WO-016** = 11 cases, plus the whole **FD-PERM-* permission suite**
-  should be re-run once a clean qb roles matrix is re-derived (**Technician role DRIFTED
-  on the shared qb env** — re-derive before any permission/history retest).
+- **Re-VIU-PENDING set (now DONE):** the 10 history cases + FD-WO-016 + the whole FD-PERM-*
+  suite were all re-run live in the §0.0a wording+VIU pass (roles matrix re-derived first —
+  `roles-matrix-2026-07-13.md`). Only remaining Pending = FD-PART-005 (line-create 500).
 - **Chris Ward's Round-2 answers are STILL BLANK** — §0.1 action map unchanged / not applied.
-- **Deliverables regenerated (INTERIM):** `testrail-import/fees-discounts-v1-testrail-import.csv`/`.xlsx`
-  (183 cases; VIU=0, feature-flag=0), `FeesDiscounts_Blockers_Tracker.md`/`.xlsx`
-  (now carries TestRail Case ID + Link columns; **109 Ready / 32 Deviation / 12 VIU-Pending
-  / 12 Not-Built / 18 Env = 183**), `FeesDiscounts_FreshVIU_2026-07-10.xlsx`/`.csv`
-  (normalized; Pending bucket folds the V1_2 re-VIU set). **NOTE:** the master authoring
+- **Deliverables regenerated (INTERIM) — final counts after the §0.0a pass:**
+  `testrail-import/fees-discounts-v1-testrail-import.csv`/`.xlsx` (183 cases; VIU=0,
+  feature-flag=0), `FeesDiscounts_Blockers_Tracker.md`/`.xlsx` (carries TestRail Case ID +
+  Link columns; **130 Ready / 20 Deviation / 12 Not-Built / 20 Env / 1 VIU-Pending = 183**),
+  `FeesDiscounts_FreshVIU_2026-07-10.xlsx`/`.csv` (normalized). **NOTE:** the master authoring
   workbook `FeesDiscounts_V1_TestCases.xlsx` (build_workbook.py) was NOT regenerated — it
   carries hardcoded "182 / 62-verified" narrative; a manual pass is a follow-up.
 - **TestRail push for this V1_2 batch:** authorized by the QA lead on 2026-07-13 — see the
@@ -136,12 +138,14 @@ language, VIU-verify behavior, push corrected wording to TestRail (update_case o
 | **Q3** | Below-minimum percent silently coerced up to 0.01% (**FDBUG-10** → FD-CALC-006; **held draft = TICKET 5**) | **A (rounding fine):** case-update FD-CALC-006 to expect coercion; **DROP TICKET 5**; flip to Verified; update C28573. **B (store exact):** revise TICKET 5 to a store-exact dev change (likely new precision spec); case gets exact-value expected. **C (reject):** **FILE TICKET 5 as drafted**; case keeps spec expected (Deviation until fix). | [C28573](https://shopview.testrail.io/index.php?/cases/view/28573) |
 | **Q4** | Processing-fee minimum silently stripped on create (no FDBUG — §8 no-minimum invariant holds; deviation = silent-ignore vs explicit reject → FD-PROC-014, currently Verified with a standing wording note) | **A (support pfee minimums):** spec/data-model change — annotate `requirements.md`, author NEW pfee-minimum cases, update C28532 expected. **B (don't support, but make clear):** case-update FD-PROC-014 to expect explicit reject / absent field (vs today's silent strip); update C28532; optionally a low-sev dev tweak ticket for the silent strip. | [C28532](https://shopview.testrail.io/index.php?/cases/view/28532) |
 
-### 0.2 Current fresh-pass state (2026-07-10)
+### 0.2 Fresh-pass state — CURRENT = 2026-07-13 (§0.0a); prior = 2026-07-10
 
-- **Tally (all 182 cases re-adjudicated live in one run): 114 VIU-Verified / 35
-  VIU-Deviation / 12 Blocked-NotBuilt / 20 Blocked-Env / 1 VIU-Pending
-  (FD-PART-005).** Every case in `cases/*.json` carries `fresh_run: 2026-07-10` +
-  a fresh evidence note. Detail: §2 below.
+- **CURRENT authoritative tally (2026-07-13, all 183 cases wording-corrected + VIU'd +
+  pushed): 130 VIU-Verified / 20 VIU-Deviation / 12 Blocked-NotBuilt / 20 Blocked-Env /
+  1 VIU-Pending (FD-PART-005) = 183.** Every case in `cases/*.json` carries
+  `fresh_run: 2026-07-13` + evidence. See §0.0a for detail.
+- **Prior pass (2026-07-10, 182 cases): 114 / 35 / 12 / 20 / 1** — historical; superseded
+  by the 2026-07-13 final above. Detail (deliverables paths) below.
 - **Deliverables at pause** (paths relative to repo root):
   - `build/fees-discounts/FeesDiscounts_FreshVIU_2026-07-10.xlsx` / `.csv` —
     tester-facing fresh-pass workbook (generator `gen_fresh_viu_workbook.py`).
@@ -158,7 +162,16 @@ language, VIU-verify behavior, push corrected wording to TestRail (update_case o
     templates baseline; the 4 line-create-500 requestIds live here).
   - Audit logs: `testrail-po-clarify-log.md`, `testrail-caseupdate-log.md`,
     `section-rename-log.md`, `testrail-fd-api-section-move-log.md`.
-  - `build/fees-discounts/testrail-id-map.csv` — all 182 FD-ID→C# mappings.
+  - `build/fees-discounts/testrail-id-map.csv` — all FD-ID→C# mappings.
+- **2026-07-13 deliverables (V1_2 + wording+VIU pass):**
+  - `build/fees-discounts/wording-glossary-2026-07-13.md` — live-captured exact build labels.
+  - `build/fees-discounts/testrail-wording-viu-log.md` — per-case audit for the wording+VIU
+    push (all 15 areas / 183 cases; every area logged `N updated · 0 error`).
+  - `build/fees-discounts/testrail-v1_2-push-log.md` — per-case audit for the V1_2 batch
+    (43 updates + new FD-WO-016=C29441).
+  - `build/fees-discounts/roles-matrix-2026-07-13.md` — freshly re-derived roles matrix
+    (records the Technician drift).
+  - `build/fees-discounts/screenshots/wording-2026-07-13/` — build screenshots for the pass.
 
 ### 0.3 Other open threads at pause
 
@@ -226,6 +239,12 @@ language, VIU-verify behavior, push corrected wording to TestRail (update_case o
 
 ### 0.5 How to resume (ordered checklist)
 
+0. **Re-ping Chris Ward** — his Round-2 answers (`PO-Questions-Round2.xlsx`, 4 Qs) are
+   STILL BLANK; that filled file is the primary resume trigger. **6 cases are on hold**
+   pending his answers (per §0.1 map): **FD-QB-014 / FD-QB-012 / FD-QB-015** (Q1),
+   **FD-CALC-008 / FD-VAL-006 / FD-TMPL-011** (Q2), **FD-CALC-006** (Q3), **FD-PROC-014**
+   (Q4). Also note: the wording+VIU pass + V1_2 batch are already DONE and pushed — no
+   TestRail catch-up is outstanding for those.
 1. **Ingest Chris's filled `PO-Questions-Round2.xlsx`** (the user will share it).
 2. **Apply the §0.1 action map:** edit `cases/*.json` expecteds + `viu_status`
    flips per answer; release / drop / revise the held Jira drafts (TICKET 4,
@@ -237,11 +256,16 @@ language, VIU-verify behavior, push corrected wording to TestRail (update_case o
 5. **Regenerate deliverables:** `gen_blockers.py` → `gen_fresh_viu_workbook.py`
    → `gen_import.py` + `build_workbook.py` (two-phase finalization per
    `RESUME-STRATEGY.md`).
-6. **Then the remaining VIU backlog if the env allows:** 20 Blocked-Env (needs
-   the unmap-500 fix for FD-QB-004..008, a human QB-UI eyeball for the ~14 QB
-   checks, and a flag-off window for the 6 shared-env cases) + 1 Pending
-   FD-PART-005 (needs the line-create-500 fix). **Re-derive the roles matrix
-   first** before touching any permission case.
+6. **Reset the drifted Technician role + re-derive the roles matrix** (Technician on the
+   shared qb env now has WO/Lines Create&Edit + Delete → WO/Lines permission NEGATIVES
+   are not testable until reset; `roles-matrix-2026-07-13.md` records the drift). Do this
+   BEFORE any permission/history retest.
+7. **Then the remaining VIU backlog if the env allows:** 20 Blocked-Env (needs
+   the unmap-500 fix for FD-QB-004..009, a human QB-UI eyeball for the 14 QB
+   checks, and a flag-off/tester-free window for the 6 shared-env cases) + 1 Pending
+   FD-PART-005 (needs the line-create-500 fix). Also §5-R15 disclaimer / FD-WO-016
+   (deviation until dev implements the tax-jurisdiction note), Story 8 pfee builder +
+   Story 11 Part Sales (Not-Built) retest when dev ships.
 
 ---
 
@@ -275,11 +299,13 @@ is unnecessary). **The env also SLEEPS**: 302s to `sleep.qa.shopview.com`; wake 
 {action:'wake',env:'sv7387'}` then poll the API root `/` for 200 (~60s).
 Full env/access map: `viu-recon.md`.
 
-**Overall status:** **PAUSED 2026-07-10 awaiting Chris Ward's Round-2 answers (§0).**
-**FEATURE LIVE on qb; FRESH FULL VIU PASS DONE 2026-07-10** (all 182
-cases re-adjudicated live the day the manual tester started; every `viu_status` now
-carries `fresh_run: 2026-07-10` + a fresh evidence note). Tally: **114 VIU-Verified /
-35 VIU-Deviation / 12 Blocked-NotBuilt / 20 Blocked-Env / 1 VIU-Pending (FD-PART-005)**.
+**Overall status:** **PAUSED awaiting Chris Ward's Round-2 answers (§0) — STILL BLANK.**
+**FEATURE LIVE on qb; V1_2 SPEC APPLIED + FRESH FULL build-accurate WORDING + VIU PASS
+DONE 2026-07-13** (all 183 cases re-adjudicated live with live-captured build labels;
+every `viu_status` carries `fresh_run: 2026-07-13` + evidence; **ALL 183 pushed to
+TestRail via update_case, 200/200, 0 errors**). Current tally: **130 VIU-Verified / 20
+VIU-Deviation / 12 Blocked-NotBuilt / 20 Blocked-Env / 1 VIU-Pending (FD-PART-005) = 183.**
+(The 2026-07-10 pass tally 114/35/12/20/1 over 182 is historical — superseded.)
 Fresh-pass deltas vs batch-6: **FD-DOC-011 → Verified** (FDBUG-1 NOT reproduced for the
 3rd consecutive pass — doc Subtotal/GST/Total include adjustments and match the API
 exactly; treat FDBUG-1 as fixed, residual = GST→US-tax re-word); **FD-QB-015 →
@@ -306,49 +332,53 @@ before reuse; BUG-FD-3 not re-testable). Remaining gates: **dev** (Stories 8/11 
 code-bug FDBUGs + line-create + duplicate-number export + unmap 500), **PO** (3
 PO-question deviations), **QB-side UI inspection** (13 QB line cases + memo half +
 penny-cap half), **flag-off window** (not taken — tester active on the shared env).
-**TestRail:** the 2026-07-10 fresh-run master-case sync was explicitly authorized and
-executed (see `testrail-viu-sync-log.md`); **any further write needs new permission.**
+**TestRail:** on **2026-07-13** the V1_2 batch (43 updates + new FD-WO-016=C29441) AND the
+full build-accurate wording+VIU pass (all 183 cases) were explicitly authorized and pushed
+via `update_case` — **200/200, 0 errors** (audits: `testrail-v1_2-push-log.md`,
+`testrail-wording-viu-log.md`). Prior: the 2026-07-10 fresh-run master-case sync
+(`testrail-viu-sync-log.md`). **Any further write needs new one-day permission.**
 
 ---
 
 ## 2. Case inventory
 
-**Total authored cases: 182** (source: the three `cases/*.json` files; tallied by the
-Blockers Tracker).
+**Total authored cases: 183** (source: the three `cases/*.json` files; tallied by the
+Blockers Tracker). +1 vs the 2026-07-10 pass = new **FD-WO-016** (§5-R15 tax-jurisdiction
+note, added in the V1_2 batch; C29441).
 
 **By authoring group (`cases/*.json`):**
 
 | Group file | Count | Scope |
 |---|---:|---|
-| `group-A-wo-parts.json` | 61 | WO whole-WO / labor-line / part-line adjustments, inline display, Stats, Financial Info card, Parts-page column + breakdown modal, edit/remove/stacking |
+| `group-A-wo-parts.json` | 62 | WO whole-WO / labor-line / part-line adjustments, inline display, Stats, Financial Info card, Parts-page column + breakdown modal, edit/remove/stacking (incl. new FD-WO-016) |
 | `group-B-customer-admin-finance.json` | 83 | Customer Fees&Discounts tab + defaults lifecycle, Template admin (create/edit/delete/scoping/validation), Processing Fee, customer documents (estimate/invoice, Shop Supplies), QuickBooks, History log |
 | `group-C-calc-permissions-validation.json` | 38 | §5 calculation contract, Story-13 permissions, feature-flag gating, validation / edge |
-| **TOTAL** | **182** | |
+| **TOTAL** | **183** | |
 
-**By delivery state (Task-1 classification of every case, from the Blockers Tracker):**
+**By delivery state (from the Blockers Tracker, 2026-07-13 final):**
 
 | State / bucket | Count | Meaning |
 |---|---:|---|
-| **VIU-Verified (READY)** | **114** | Fresh-pass 2026-07-10: exercised (or evidence re-validated) and matches spec (FD-DOC-011 flipped in — FDBUG-1 not reproduced) |
-| **VIU-Deviation** | **35** | Built but deviates from spec — all re-confirmed or carried with fresh notes 2026-07-10 |
-| **Blocked — DEV NOT BUILT** | **12** | RE-CHECKED 2026-07-10: Story 8 Processing-Fee builder UI (4) + Story 11 Part Sales (7) + FD-PERM-004 |
+| **VIU-Verified (READY)** | **130** | 2026-07-13 wording+VIU pass: exercised (or evidence re-validated) with build-accurate wording; matches spec |
+| **VIU-Deviation** | **20** | Built but deviates from spec (5 code-bug + 3 PO-question + 12 case-update) |
+| **Blocked — DEV NOT BUILT** | **12** | Story 8 Processing-Fee builder UI (4) + Story 11 Part Sales (8) |
 | **Blocked — ENV** | **20** | QuickBooks internals/unmap-500 (14 incl. FD-QB-015's memo half + FD-CALC-017's QB half) + flag-off/shared-env (6: FD-FLAG-001/002/003, FD-HIST-004, FD-TMPL-012) |
 | **VIU-Pending** | **1** | FD-PART-005 (receive-transition; line-create 500 persists + completed-line lock) |
-| **TOTAL** | **182** | 114 verified + 68 not-yet-verified |
+| **TOTAL** | **183** | 130 verified + 53 not-yet-verified |
 
-**VIU-Deviation (35) sub-split — fresh pass 2026-07-10** (tallied by the Blockers
-Tracker: 6 code-bug + 3 PO-question + 26 case-update):
+**VIU-Deviation (20) sub-split — 2026-07-13** (tallied by the Blockers Tracker: 5 code-bug
++ 3 PO-question + 12 case-update; the per-case assignments are authoritative in
+`FeesDiscounts_Blockers_Tracker.md`):
 
-| Sub-bucket | Count | Cases |
+| Sub-bucket | Count | Notes |
 |---|---:|---|
-| **code-bug** (needs a dev fix) | 6 | FD-PROC-009 + FD-CALC-013 (FDBUG-2), FD-HIST-001 (FDBUG-3), FD-CALC-006 (FDBUG-10), FD-CALC-008 + FD-VAL-006 (FDBUG-9). (FD-DOC-011/FDBUG-1 dropped — not reproduced, now Verified.) Plus new low-sev **FDBUG-16** (empty-name accepted by the raw API only) noted on Verified cases FD-WO-008/FD-VAL-003. |
-| **PO-question** (needs a product ruling) | 3 | FD-STATS-001 (Stats layout, BUG-FD-2), FD-PERM-002 + FD-WO-013 (whole-WO FE-vs-BE enforcement, BUG-FD-3 — not re-testable, Technician role drifted) |
-| **case-update** (label/copy/UX drift + PO-accepted behaviors) | 26 | FD-WO-001/005, FD-VAL-001, FD-LABOR-001, FD-PART-001 (FDBUG-14), FD-INLINE-003, FD-STATS-002/004, FD-FIN-004, FD-REMOVE-001, FD-CUST-003/004/005/006/007, FD-TMPL-001/003/004/006/008/010/011, FD-PROC-008, FD-HIST-002/007, FD-QB-014 (FDBUG-15) |
+| **code-bug** (needs a dev fix) | 5 | FDBUG-2 (pfee base), FDBUG-3 (auto-apply no history), FDBUG-9 (maxCap 0), FDBUG-10 (percent coerce), FDBUG-15 (over-discount silent). (FDBUG-1/FD-DOC-011 dropped — Verified; FDBUG-16 low-sev noted on Verified cases.) |
+| **PO-question** (needs a product ruling) | 3 | FD-STATS-001 (Stats layout, BUG-FD-2); FD-PERM-002 + FD-WO-013 (whole-WO FE-vs-BE enforcement, BUG-FD-3 — not re-testable, Technician drifted). |
+| **case-update** (label/copy/UX drift + PO-accepted behaviors) | 12 | Incl. **FD-WO-016** (§5-R15 jurisdiction note not implemented — new this batch) + label/copy drifts; see Blockers Tracker for the full list. |
 
-**Not-Built (12) by story — re-checked live 2026-07-10:** Story 8 (Processing-Fee
-builder UI; Type options are still only Fee|Discount) = FD-PROC-001..004; Story 11
-(Part Sales; fresh part sale created — no F&D column/API surface) = FD-PCOL-001..007 +
-FD-PERM-004.
+**Not-Built (12) by story — re-checked live 2026-07-13:** Story 8 (Processing-Fee
+builder UI; Type options are still only Fee|Discount) = FD-PROC-001..004 (4); Story 11
+(Part Sales; no F&D column/API surface) = FD-PCOL-001..007 + FD-PERM-004 (8).
 
 **ENV (20) by sub-bucket:** QuickBooks = FD-QB-001..011, 013, 016 + FD-QB-015 (memo
 half; in-app credit half VERIFIED) + FD-CALC-017 (QB penny-cap half; floor half
@@ -374,9 +404,10 @@ line-create 500 + the completed-line part-request lock).
   **`API — Customer Fees & Discounts tab — negative` (section 4087)** = FD-CUST-017
   (case 28501) and **`API — Processing Fee — negative` (section 4088)** = FD-PROC-010
   (case 28528). Audit: `testrail-fd-api-section-move-log.md`.
-- **F&D Case-ID map:** **BUILT 2026-07-09** → `build/fees-discounts/testrail-id-map.csv`
-  (columns `ID,fd_id,title,section`; all **182** cases mapped read-only against the live
-  suite under parent 3894). **178** matched on exact (normalized) title; the remaining
+- **F&D Case-ID map:** **BUILT 2026-07-09; now 183** → `build/fees-discounts/testrail-id-map.csv`
+  (columns `ID,fd_id,title,section`; all **183** cases mapped, incl. new **FD-WO-016→C29441**,
+  against the live suite under parent 3894). **178** originally matched on exact (normalized)
+  title; the remaining
   **4** matched via the documented feature-flag-free rename ("feature flag" /
   "FeesAndDiscounts flag" → "Fees & Discounts feature"), each an unambiguous 1:1 pairing:
   FD-HIST-004→28563, FD-PERM-010→28594, FD-FLAG-001→28596, FD-FLAG-002→28597. The 2 API
@@ -384,8 +415,10 @@ line-create 500 + the completed-line part-request lock).
   any ID-matched TestRail update loop. **Never write to TestRail without explicit user
   permission.**
 - **Import files remain INTERIM** (`testrail-import/fees-discounts-v1-testrail-import.csv`
-  / `.xlsx`, all 182; VIU-word-free + feature-flag-free per user rule) pending
+  / `.xlsx`, all 183; VIU-word-free + feature-flag-free per user rule) pending
   post-VIU + dev/PO-answer finalization (two-phase plan in `RESUME-STRATEGY.md`).
+  **NOTE: TestRail already carries the corrected wording** for all 183 cases (pushed live
+  via update_case 2026-07-13, 200/200, 0 errors — see `testrail-wording-viu-log.md`).
 - **Never write to TestRail without explicit user permission.**
 
 ---
@@ -393,7 +426,7 @@ line-create 500 + the completed-line part-request lock).
 ## 4. Deliverables index (paths relative to repo root `/home/user/Manual-test-Cases/`)
 
 **Test cases (authored source):**
-- `build/fees-discounts/cases/group-A-wo-parts.json` — 61 cases.
+- `build/fees-discounts/cases/group-A-wo-parts.json` — 62 cases (incl. FD-WO-016).
 - `build/fees-discounts/cases/group-B-customer-admin-finance.json` — 83 cases.
 - `build/fees-discounts/cases/group-C-calc-permissions-validation.json` — 38 cases.
 
@@ -403,7 +436,7 @@ line-create 500 + the completed-line part-request lock).
 
 **TestRail import artifacts:**
 - `testrail-import/fees-discounts-v1-testrail-import.csv` / `.xlsx` — full-suite
-  import (all 182; VIU-word-free, feature-flag-free; leaf sections; API-titled
+  import (all 183; VIU-word-free, feature-flag-free; leaf sections; API-titled
   sections for the 2 API cases), built by `build/fees-discounts/gen_import.py`.
 
 **Tracking / status:**
@@ -424,11 +457,20 @@ line-create 500 + the completed-line part-request lock).
 - `build/fees-discounts/section-rename-log.md` — TestRail section rename audit.
 - `build/fees-discounts/testrail-fd-api-section-move-log.md` — API-section move audit (sections 4087/4088).
 - `build/PERMISSIONS-ASSESSMENT.md` — cross-project permissions assessment (F&D permissions = DEFINED / reuse-only).
+- **2026-07-13 pass artifacts:**
+  - `build/fees-discounts/wording-glossary-2026-07-13.md` — live-captured exact build labels.
+  - `build/fees-discounts/testrail-wording-viu-log.md` — per-case audit, wording+VIU push (183/183, 0 errors).
+  - `build/fees-discounts/testrail-v1_2-push-log.md` — per-case audit, V1_2 batch (43 + FD-WO-016).
+  - `build/fees-discounts/roles-matrix-2026-07-13.md` — re-derived roles matrix (records Technician drift).
+  - `build/fees-discounts/screenshots/wording-2026-07-13/` — build screenshots for the pass.
+- **Reusable process:** `build/BUILD-ACCURATE-WORDING-VIU-PROCESS.md` — the repeatable method used for the 2026-07-13 pass.
 
 **Generators (Python):**
 - `build/fees-discounts/gen_import.py` — rebuilds the TestRail import CSV/XLSX.
 - `build/fees-discounts/build_workbook.py` — rebuilds the human-readable workbook.
 - `build/fees-discounts/gen_blockers.py` — rebuilds the Blockers Tracker (`.md` + `.xlsx`).
+- `build/fees-discounts/gen_fresh_viu_workbook.py` — rebuilds the Fresh-VIU results workbook.
+- `build/fees-discounts/testrail_viu_sync.py` — idempotent TestRail update_case sync (needs day-authorization).
 
 ---
 
@@ -612,7 +654,7 @@ QB-connected env → the 13 QB cases; the 7 code-bug deviations retest after fix
 + `testrail-po-clarify-log.md`.)
 
 **Before any TestRail update loop:** the **F&D Case-ID map is BUILT**
-(`testrail-id-map.csv`, all 182) — use it for ID-matched updates. **Ask the user
+(`testrail-id-map.csv`, all 183) — use it for ID-matched updates. **Ask the user
 before any TestRail write (fresh one-day authorization each time).**
 
 **Two-phase finalization** (`RESUME-STRATEGY.md`): the current import files are

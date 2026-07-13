@@ -4,6 +4,8 @@
 > That runbook holds the full, proven method; this file is a concise index +
 > durable memory. **No secrets in this repo — ever** (secrets live in `/tmp`).
 > - App action recipes (how to do each thing in ShopView): build/APP-ACTIONS-PLAYBOOK.md
+> - Reusable build-accurate wording + VIU + TestRail-sync method (Standing Rule 9):
+>   build/BUILD-ACCURATE-WORDING-VIU-PROCESS.md — **apply to any project WHEN THE USER ASKS.**
 > - Keep the books current: After each task, append ONLY success-proven learnings
 >   (working navigation paths, action recipes, endpoints, the specific unblock that
 >   worked) to build/APP-ACTIONS-PLAYBOOK.md; update build/TESTING-RUNBOOK.md when the
@@ -40,27 +42,30 @@ all).
    `bugs-log.md` + `viu-evidence/` (API-heavy, Admin+Tech); pass B =
    `viu-qb-findings.md` + `screenshots/viu-qb/` (UI-deep) — pass B's doc holds
    the merged scoreboard + reconciliation + FDBUG register + API map).
-   **STATUS: ⏸️ PAUSED 2026-07-10 — WAITING ON Chris Ward's answers to the
-   Round-2 PO sheet** (`PO-Questions-Round2.xlsx`, 4 questions; user will share
-   the filled file). **Resume = PROJECT-STATE.md §0** (pre-decided per-answer
-   action map incl. which held Jira drafts release/drop and which TestRail cases
-   get expected-result updates — TestRail edits need fresh one-day authorization
-   then). FEATURE LIVE on `qb.qa.shopview.com` / API `sv7387api.qa.shopview.com`
-   (flag ON); **FRESH FULL VIU PASS DONE 2026-07-10** (all 182 cases
-   re-adjudicated live; every case carries `fresh_run: 2026-07-10` + evidence;
-   workbook `FeesDiscounts_FreshVIU_2026-07-10.xlsx`). **Tally: 114 VIU-Verified /
-   35 Deviation / 12 Blocked-NotBuilt / 20 Blocked-Env / 1 Pending.** Headlines:
-   FDBUG-1 NOT reproduced (3rd clean pass — treat fixed; FD-DOC-011 Verified);
-   FDBUG-12 FIXED; NEW FDBUG-16 (API accepts empty-name adjustment, FE-only
-   guard); Jira drafts ready to file except TICKET 4/5 held on Round-2; env bugs
-   for dev: WO line-create 500, QB duplicate-doc-number export failure,
-   bookkeeping unmap 500; **Technician role DRIFTED on qb — re-derive
-   roles-matrix before any permission retest**. **qb env is SHARED** (never
-   assume env state) and **tech quick-login is FLAKY** — retest each run. All
-   detail (FDBUG register, open threads, env/access, how-to-resume) lives in
-   PROJECT-STATE.md.
+   **STATUS: ⏸️ PAUSED 2026-07-13 — WAITING ON Chris Ward's answers to the
+   Round-2 PO sheet** (`PO-Questions-Round2.xlsx`, 4 questions, STILL BLANK; user
+   will share the filled file). **Resume = PROJECT-STATE.md §0** (pre-decided
+   per-answer action map incl. which held Jira drafts release/drop and which
+   TestRail cases get expected-result updates — TestRail edits need fresh one-day
+   authorization then). FEATURE LIVE on `qb.qa.shopview.com` / API
+   `sv7387api.qa.shopview.com` (flag ON). **DONE 2026-07-13: V1_2 spec applied (43
+   case updates + new FD-WO-016=C29441) AND a FRESH FULL build-accurate WORDING +
+   VIU PASS over ALL 183 cases** with live-captured build labels — **ALL 183
+   pushed to TestRail via update_case, 200/200, 0 errors.** **Tally: 130
+   VIU-Verified / 20 Deviation / 12 Blocked-NotBuilt / 20 Blocked-Env / 1 Pending
+   = 183.** Headlines: FDBUG-1 not reproduced (treat fixed; FD-DOC-011 Verified);
+   §5-R15 tax-jurisdiction note NOT implemented (FD-WO-016 Deviation); 6 cases
+   held on Chris's Round-2 answers; 14 QB line-item cases need a human in
+   QuickBooks; 6 flag-off cases need a tester-free window; env bugs for dev: WO
+   line-create 500, QB duplicate-doc-number export failure, bookkeeping unmap PUT
+   500; **Technician role DRIFTED on qb (now has WO/Lines Create&Edit + Delete →
+   WO permission negatives not testable) — reset Tech + re-derive roles-matrix
+   before any permission retest**. **qb env is SHARED** (never assume env state)
+   and **tech quick-login is FLAKY** — retest each run. **PROJECT-STATE.md =
+   canonical resume doc** (full detail: FDBUG register, open threads, env/access,
+   how-to-resume).
    *TestRail import (INTERIM):* `testrail-import/fees-discounts-v1-testrail-import.csv`
-   (+ `.xlsx`), all 182 cases via `build/fees-discounts/gen_import.py`; **VIU-word-free
+   (+ `.xlsx`), all 183 cases via `build/fees-discounts/gen_import.py`; **VIU-word-free
    and feature-flag-free by user rule**; INTERIM pending post-VIU + dev-answer
    finalization (see `build/fees-discounts/RESUME-STRATEGY.md`). Permissions: DEFINED
    / reuse-only — see `build/PERMISSIONS-ASSESSMENT.md`.
@@ -171,7 +176,10 @@ all).
    build and correct the case wording (title/preconds/steps/expected) to match them.
    If a term cannot be confirmed from the build, flag it rather than invent it. This
    applies to every project (Fees & Discounts, Simple Flow, Custom Roles, and any
-   future project) and to every TestRail import/update going forward.
+   future project) and to every TestRail import/update going forward. **The repeatable
+   method for this (capture labels → rewrite → VIU → push → deliverables) is
+   `build/BUILD-ACCURATE-WORDING-VIU-PROCESS.md`; apply it to a given project WHEN THE
+   USER ASKS.**
 
 ## Project purpose (Custom Roles project)
 Manual test-case authoring + live staging (Verify-in-UI) verification + TestRail
