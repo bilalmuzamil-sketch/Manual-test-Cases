@@ -354,3 +354,14 @@ FD-PERM-001/003/005/006/007/008/009/010/011 → Verified; FD-PERM-002 Deviation 
 FE-only, negative not re-testable — Tech drifted); FD-PERM-004 Blocked-NotBuilt (Story 11).
 **Note:** WO-C&E / Lines-C&E NEGATIVE cases not testable here (Tech now has those perms; only
 admin/tech can log in). Push: FD-HIST 8 + FD-PERM 11 = 19 updated · 0 error.
+
+## Area: FD-QB (QuickBooks sync) — 16 cases — wording-corrected (honest blockers)
+
+**Observable today (live):** adjustment-item-mapping-status = QuickBooks connected + Fee item
+mapped + Discount item mapped; Unexported Items list reachable; non-auto-apply template create
+always allowed. **Blocked-Env (precise reasons):** QB invoice line-item internals need a human
+logged into QuickBooks (no QB read API; re-invoiced WOs fail to export on duplicate document
+numbers) — FD-QB-001/002/003/010/011/013/015/016; the mapping-guard block can't be driven (items
+mapped + unmap PUT 500s) — FD-QB-004..009. **FD-QB-012 Verified** (in-app $0 floor). **FD-QB-014
+Deviation** (FDBUG-15 over-discount saves silently, PO Q1). Wording made layman, no HTTP codes in
+tester-facing fields (stays out of API sections). Push: 16 updated · 0 error.

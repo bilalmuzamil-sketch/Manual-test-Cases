@@ -1520,7 +1520,7 @@
   "id": "FD-QB-001",
   "area": "QuickBooks sync",
   "story_ref": "S6-R1",
-  "title": "Verify each fee/discount exports to QuickBooks as its own invoice line item (fee +, discount −)",
+  "title": "Verify each fee/discount exports to QuickBooks as its own invoice line item (fee adds, discount subtracts)",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "See Financial Data + flag ON + active QuickBooks connection",
@@ -1539,15 +1539,15 @@
   ],
   "design_ref": "requirements.md §7.1 (S6-R1)",
   "viu_status": "VIU-Blocked-Env",
-  "notes": "QuickBooks sync is backend; verify via the QuickBooks side or the sync payload. | VIU qb batch-1 (2026-07-08): No QuickBooks settings UI on qb env (INTEGRATIONS shows IBS only) and no QB account to sync into; invoiced-sync not exercisable. NOTE: GET /api/bookkeeping/adjustment-item-mapping-status EXISTS -> {quickBooksConnected:true, feeItemMapped:true, discountItemMapped:true} (the app polls it before every add). | UPDATE batch-5 (2026-07-09): QuickBooks IS now CONNECTED on this env (location Staging Lethbridge - 4310 = default_workplace; mapping-status quickBooksConnected:true+both items mapped; real QB chart of accounts + unexported-items returned). Batch-1 'no QB' blocker SUPERSEDED. Live behavior VIU still pending: the sv7387api backend was in a sustained 500 incident (all endpoints incl. quick-login) for the whole 2026-07-09 window, so mapping/sync/floor could not be exercised. Retest plan in viu-findings.md Batch-5. | FRESH VIU 2026-07-10: QB invoice line internals unobservable (no read API; export of re-invoiced WOs fails on duplicate doc numbers) — needs QB-UI eyeball of a cleanly synced invoice",
+  "notes": "QuickBooks sync is backend; verify via the QuickBooks side or the sync payload. | VIU qb batch-1 (2026-07-08): No QuickBooks settings UI on qb env (INTEGRATIONS shows IBS only) and no QB account to sync into; invoiced-sync not exercisable. NOTE: GET /api/bookkeeping/adjustment-item-mapping-status EXISTS -> {quickBooksConnected:true, feeItemMapped:true, discountItemMapped:true} (the app polls it before every add). | UPDATE batch-5 (2026-07-09): QuickBooks IS now CONNECTED on this env (location Staging Lethbridge - 4310 = default_workplace; mapping-status quickBooksConnected:true+both items mapped; real QB chart of accounts + unexported-items returned). Batch-1 'no QB' blocker SUPERSEDED. Live behavior VIU still pending: the sv7387api backend was in a sustained 500 incident (all endpoints incl. quick-login) for the whole 2026-07-09 window, so mapping/sync/floor could not be exercised. Retest plan in viu-findings.md Batch-5. | FRESH VIU 2026-07-10: QB invoice line internals unobservable (no read API; export of re-invoiced WOs fails on duplicate doc numbers) — needs QB-UI eyeball of a cleanly synced invoice | WORDING+VIU 2026-07-13:  BLOCKED-ENV: the QuickBooks invoice line-item internals are only visible inside QuickBooks (no QB read API; and re-invoiced work orders currently fail to export on duplicate document numbers) — a human logged into QuickBooks is needed to confirm. Observable today: adjustment-item-mapping-status = QuickBooks connected + Fee item mapped + Discount item mapped (checked live).",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "FD-QB-002",
   "area": "QuickBooks sync",
   "story_ref": "S6-R3, S6-R5",
-  "title": "Verify the QuickBooks line description equals the adjustment name and the item is the mapped Fee/Discount item",
+  "title": "Verify the QuickBooks line description equals the fee/discount name and uses the mapped Fee/Discount item",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "See Financial Data + flag ON + active QuickBooks connection with mapped items",
@@ -1565,15 +1565,15 @@
   ],
   "design_ref": "requirements.md §7.1 (S6-R3/R4/R5)",
   "viu_status": "VIU-Blocked-Env",
-  "notes": "VIU qb batch-1 (2026-07-08): Blocked with FD-QB-001 (no QB sync surface). | UPDATE batch-5 (2026-07-09): QuickBooks IS now CONNECTED on this env (location Staging Lethbridge - 4310 = default_workplace; mapping-status quickBooksConnected:true+both items mapped; real QB chart of accounts + unexported-items returned). Batch-1 'no QB' blocker SUPERSEDED. Live behavior VIU still pending: the sv7387api backend was in a sustained 500 incident (all endpoints incl. quick-login) for the whole 2026-07-09 window, so mapping/sync/floor could not be exercised. Retest plan in viu-findings.md Batch-5. | FRESH VIU 2026-07-10: as FD-QB-001 — needs QB UI (generic Fee/Discount item + description=name)",
+  "notes": "VIU qb batch-1 (2026-07-08): Blocked with FD-QB-001 (no QB sync surface). | UPDATE batch-5 (2026-07-09): QuickBooks IS now CONNECTED on this env (location Staging Lethbridge - 4310 = default_workplace; mapping-status quickBooksConnected:true+both items mapped; real QB chart of accounts + unexported-items returned). Batch-1 'no QB' blocker SUPERSEDED. Live behavior VIU still pending: the sv7387api backend was in a sustained 500 incident (all endpoints incl. quick-login) for the whole 2026-07-09 window, so mapping/sync/floor could not be exercised. Retest plan in viu-findings.md Batch-5. | FRESH VIU 2026-07-10: as FD-QB-001 — needs QB UI (generic Fee/Discount item + description=name) | WORDING+VIU 2026-07-13:  BLOCKED-ENV: the QuickBooks invoice line-item internals are only visible inside QuickBooks (no QB read API; and re-invoiced work orders currently fail to export on duplicate document numbers) — a human logged into QuickBooks is needed to confirm. Observable today: adjustment-item-mapping-status = QuickBooks connected + Fee item mapped + Discount item mapped (checked live).",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "FD-QB-003",
   "area": "QuickBooks sync — edge",
   "story_ref": "S6-R1, §5-R8",
-  "title": "Verify a $0.00 resolved adjustment is skipped when sent to QuickBooks",
+  "title": "Verify a $0.00 fee/discount is skipped when sent to QuickBooks",
   "priority": "Medium",
   "type": "Edge",
   "permissions_required": "See Financial Data + flag ON + active QuickBooks connection with mapped items",
@@ -1590,15 +1590,15 @@
   ],
   "design_ref": "requirements.md §7.1 (S6-R1); §7 (§5-R8)",
   "viu_status": "VIU-Blocked-Env",
-  "notes": "VIU qb batch-1 (2026-07-08): Blocked with FD-QB-001. $0.00 resolve itself verified (§5-R8) — only the QB skip is untestable. | UPDATE batch-5 (2026-07-09): QuickBooks IS now CONNECTED on this env (location Staging Lethbridge - 4310 = default_workplace; mapping-status quickBooksConnected:true+both items mapped; real QB chart of accounts + unexported-items returned). Batch-1 'no QB' blocker SUPERSEDED. Live behavior VIU still pending: the sv7387api backend was in a sustained 500 incident (all endpoints incl. quick-login) for the whole 2026-07-09 window, so mapping/sync/floor could not be exercised. Retest plan in viu-findings.md Batch-5. | FRESH VIU 2026-07-10: as FD-QB-001 — $0-line skip only visible QB-side",
+  "notes": "VIU qb batch-1 (2026-07-08): Blocked with FD-QB-001. $0.00 resolve itself verified (§5-R8) — only the QB skip is untestable. | UPDATE batch-5 (2026-07-09): QuickBooks IS now CONNECTED on this env (location Staging Lethbridge - 4310 = default_workplace; mapping-status quickBooksConnected:true+both items mapped; real QB chart of accounts + unexported-items returned). Batch-1 'no QB' blocker SUPERSEDED. Live behavior VIU still pending: the sv7387api backend was in a sustained 500 incident (all endpoints incl. quick-login) for the whole 2026-07-09 window, so mapping/sync/floor could not be exercised. Retest plan in viu-findings.md Batch-5. | FRESH VIU 2026-07-10: as FD-QB-001 — $0-line skip only visible QB-side | WORDING+VIU 2026-07-13:  BLOCKED-ENV: the QuickBooks invoice line-item internals are only visible inside QuickBooks (no QB read API; and re-invoiced work orders currently fail to export on duplicate document numbers) — a human logged into QuickBooks is needed to confirm. Observable today: adjustment-item-mapping-status = QuickBooks connected + Fee item mapped + Discount item mapped (checked live).",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "FD-QB-004",
   "area": "QuickBooks — mapping guard",
   "story_ref": "S6-R6, S6-R6a, S6-R6d",
-  "title": "Verify adding a fee is blocked when the Fee item is unmapped (exact message)",
+  "title": "Verify adding a fee is blocked when the Fee item is not mapped to QuickBooks",
   "priority": "High",
   "type": "Negative",
   "permissions_required": "Work Orders: Create & Edit + See Financial Data + flag ON + QuickBooks connected, Fee item UNMAPPED",
@@ -1617,15 +1617,15 @@
   ],
   "design_ref": "requirements.md §7.1 (S6-R6/R6a/R6d)",
   "viu_status": "VIU-Blocked-Env",
-  "notes": "VIU qb batch-1 (2026-07-08): Mapping guard not triggerable: mapping-status reports both items MAPPED and there is no QB settings page to unmap on this env. The guard endpoint exists and is called before every add dialog. | UPDATE batch-5 (2026-07-09): QuickBooks IS now CONNECTED on this env (location Staging Lethbridge - 4310 = default_workplace; mapping-status quickBooksConnected:true+both items mapped; real QB chart of accounts + unexported-items returned). Batch-1 'no QB' blocker SUPERSEDED. Live behavior VIU still pending: the sv7387api backend was in a sustained 500 incident (all endpoints incl. quick-login) for the whole 2026-07-09 window, so mapping/sync/floor could not be exercised. Retest plan in viu-findings.md Batch-5. | FRESH VIU 2026-07-10: unmap not achievable today: PUT bookkeeping/settings {settings:{feeItemId:null}} -> 500 (requestId 4bd14847); flat payload -> 400 'settings missing'. Mapping stayed connected+mapped (verified). Guard cycle needs a working unmap (dev/QB-side)",
+  "notes": "VIU qb batch-1 (2026-07-08): Mapping guard not triggerable: mapping-status reports both items MAPPED and there is no QB settings page to unmap on this env. The guard endpoint exists and is called before every add dialog. | UPDATE batch-5 (2026-07-09): QuickBooks IS now CONNECTED on this env (location Staging Lethbridge - 4310 = default_workplace; mapping-status quickBooksConnected:true+both items mapped; real QB chart of accounts + unexported-items returned). Batch-1 'no QB' blocker SUPERSEDED. Live behavior VIU still pending: the sv7387api backend was in a sustained 500 incident (all endpoints incl. quick-login) for the whole 2026-07-09 window, so mapping/sync/floor could not be exercised. Retest plan in viu-findings.md Batch-5. | FRESH VIU 2026-07-10: unmap not achievable today: PUT bookkeeping/settings {settings:{feeItemId:null}} -> 500 (requestId 4bd14847); flat payload -> 400 'settings missing'. Mapping stayed connected+mapped (verified). Guard cycle needs a working unmap (dev/QB-side) | WORDING+VIU 2026-07-13:  BLOCKED-ENV: the mapping-guard block cannot be driven — the two items are currently mapped and the unmap call (PUT /api/bookkeeping/settings) 500s on this env, so an unmapped state can't be created. The guard's data source (connected/feeItemMapped/discountItemMapped) is observable and all true.",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "FD-QB-005",
   "area": "QuickBooks — mapping guard",
   "story_ref": "S6-R6, S6-R6d",
-  "title": "Verify adding a discount is blocked when the Discount item is unmapped (exact message)",
+  "title": "Verify adding a discount is blocked when the Discount item is not mapped to QuickBooks",
   "priority": "High",
   "type": "Negative",
   "permissions_required": "Work Orders: Create & Edit + See Financial Data + flag ON + QuickBooks connected, Discount item UNMAPPED",
@@ -1643,15 +1643,15 @@
   ],
   "design_ref": "requirements.md §7.1 (S6-R6/R6d)",
   "viu_status": "VIU-Blocked-Env",
-  "notes": "VIU qb batch-1 (2026-07-08): Blocked with FD-QB-004. | UPDATE batch-5 (2026-07-09): QuickBooks IS now CONNECTED on this env (location Staging Lethbridge - 4310 = default_workplace; mapping-status quickBooksConnected:true+both items mapped; real QB chart of accounts + unexported-items returned). Batch-1 'no QB' blocker SUPERSEDED. Live behavior VIU still pending: the sv7387api backend was in a sustained 500 incident (all endpoints incl. quick-login) for the whole 2026-07-09 window, so mapping/sync/floor could not be exercised. Retest plan in viu-findings.md Batch-5. | FRESH VIU 2026-07-10: as FD-QB-004 (unmap 500)",
+  "notes": "VIU qb batch-1 (2026-07-08): Blocked with FD-QB-004. | UPDATE batch-5 (2026-07-09): QuickBooks IS now CONNECTED on this env (location Staging Lethbridge - 4310 = default_workplace; mapping-status quickBooksConnected:true+both items mapped; real QB chart of accounts + unexported-items returned). Batch-1 'no QB' blocker SUPERSEDED. Live behavior VIU still pending: the sv7387api backend was in a sustained 500 incident (all endpoints incl. quick-login) for the whole 2026-07-09 window, so mapping/sync/floor could not be exercised. Retest plan in viu-findings.md Batch-5. | FRESH VIU 2026-07-10: as FD-QB-004 (unmap 500) | WORDING+VIU 2026-07-13:  BLOCKED-ENV: the mapping-guard block cannot be driven — the two items are currently mapped and the unmap call (PUT /api/bookkeeping/settings) 500s on this env, so an unmapped state can't be created. The guard's data source (connected/feeItemMapped/discountItemMapped) is observable and all true.",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "FD-QB-006",
   "area": "QuickBooks — mapping guard scope",
   "story_ref": "S6-R6a",
-  "title": "Verify the mapping guard blocks adds on every add surface (WO, labor line, part, part sale, template-apply)",
+  "title": "Verify the mapping block applies on every add place (work order, labor line, part, part sale, apply-from-template)",
   "priority": "Medium",
   "type": "Negative",
   "permissions_required": "Work Orders + Work Order Lines + Part Sales: Create & Edit + See Financial Data + flag ON + QuickBooks Fee item UNMAPPED",
@@ -1666,15 +1666,15 @@
   ],
   "design_ref": "requirements.md §7.1 (S6-R6a)",
   "viu_status": "VIU-Blocked-Env",
-  "notes": "Some of these surfaces (labor/part/part-sale) are primarily Group A scope; this case covers the guard breadth. | VIU qb batch-1 (2026-07-08): Blocked with FD-QB-004. | UPDATE batch-5 (2026-07-09): QuickBooks IS now CONNECTED on this env (location Staging Lethbridge - 4310 = default_workplace; mapping-status quickBooksConnected:true+both items mapped; real QB chart of accounts + unexported-items returned). Batch-1 'no QB' blocker SUPERSEDED. Live behavior VIU still pending: the sv7387api backend was in a sustained 500 incident (all endpoints incl. quick-login) for the whole 2026-07-09 window, so mapping/sync/floor could not be exercised. Retest plan in viu-findings.md Batch-5. | FRESH VIU 2026-07-10: as FD-QB-004 (unmap 500)",
+  "notes": "Some of these surfaces (labor/part/part-sale) are primarily Group A scope; this case covers the guard breadth. | VIU qb batch-1 (2026-07-08): Blocked with FD-QB-004. | UPDATE batch-5 (2026-07-09): QuickBooks IS now CONNECTED on this env (location Staging Lethbridge - 4310 = default_workplace; mapping-status quickBooksConnected:true+both items mapped; real QB chart of accounts + unexported-items returned). Batch-1 'no QB' blocker SUPERSEDED. Live behavior VIU still pending: the sv7387api backend was in a sustained 500 incident (all endpoints incl. quick-login) for the whole 2026-07-09 window, so mapping/sync/floor could not be exercised. Retest plan in viu-findings.md Batch-5. | FRESH VIU 2026-07-10: as FD-QB-004 (unmap 500) | WORDING+VIU 2026-07-13:  BLOCKED-ENV: the mapping-guard block cannot be driven — the two items are currently mapped and the unmap call (PUT /api/bookkeeping/settings) 500s on this env, so an unmapped state can't be created. The guard's data source (connected/feeItemMapped/discountItemMapped) is observable and all true.",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "FD-QB-007",
   "area": "QuickBooks — mapping guard (auto-apply)",
   "story_ref": "S6-R6b",
-  "title": "Verify an auto-apply default cannot be saved while the matching QuickBooks item is unmapped",
+  "title": "Verify an auto-apply template cannot be saved while the matching QuickBooks item is not mapped",
   "priority": "Medium",
   "type": "Negative",
   "permissions_required": "Settings → Finance + Customer Management: Create & Edit + Manage AP/AR + flag ON + QuickBooks connected, Fee item UNMAPPED",
@@ -1691,15 +1691,15 @@
   ],
   "design_ref": "requirements.md §7.1 (S6-R6b)",
   "viu_status": "VIU-Blocked-Env",
-  "notes": "VIU qb batch-1 (2026-07-08): Blocked with FD-QB-004. | UPDATE batch-5 (2026-07-09): QuickBooks IS now CONNECTED on this env (location Staging Lethbridge - 4310 = default_workplace; mapping-status quickBooksConnected:true+both items mapped; real QB chart of accounts + unexported-items returned). Batch-1 'no QB' blocker SUPERSEDED. Live behavior VIU still pending: the sv7387api backend was in a sustained 500 incident (all endpoints incl. quick-login) for the whole 2026-07-09 window, so mapping/sync/floor could not be exercised. Retest plan in viu-findings.md Batch-5. | FRESH VIU 2026-07-10: as FD-QB-004 (unmap 500)",
+  "notes": "VIU qb batch-1 (2026-07-08): Blocked with FD-QB-004. | UPDATE batch-5 (2026-07-09): QuickBooks IS now CONNECTED on this env (location Staging Lethbridge - 4310 = default_workplace; mapping-status quickBooksConnected:true+both items mapped; real QB chart of accounts + unexported-items returned). Batch-1 'no QB' blocker SUPERSEDED. Live behavior VIU still pending: the sv7387api backend was in a sustained 500 incident (all endpoints incl. quick-login) for the whole 2026-07-09 window, so mapping/sync/floor could not be exercised. Retest plan in viu-findings.md Batch-5. | FRESH VIU 2026-07-10: as FD-QB-004 (unmap 500) | WORDING+VIU 2026-07-13:  BLOCKED-ENV: the mapping-guard block cannot be driven — the two items are currently mapped and the unmap call (PUT /api/bookkeeping/settings) 500s on this env, so an unmapped state can't be created. The guard's data source (connected/feeItemMapped/discountItemMapped) is observable and all true.",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "FD-QB-008",
   "area": "QuickBooks — mapping guard exceptions",
   "story_ref": "S6-R6c",
-  "title": "Verify creating/editing a non-auto-apply template is always allowed and no block exists when QuickBooks is not connected",
+  "title": "Verify creating/editing a non-auto-apply template is always allowed, with no block when QuickBooks is not connected",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "Settings → Finance + flag ON",
@@ -1716,15 +1716,15 @@
   ],
   "design_ref": "requirements.md §7.1 (S6-R6c)",
   "viu_status": "VIU-Blocked-Env",
-  "notes": "VIU qb batch-1 (2026-07-08): Half-verified: with items mapped/connected (per mapping-status) adds are never blocked anywhere (dozens of adds succeeded). Not-connected/unmapped variants untestable on this env. | UPDATE batch-5 (2026-07-09): QuickBooks IS now CONNECTED on this env (location Staging Lethbridge - 4310 = default_workplace; mapping-status quickBooksConnected:true+both items mapped; real QB chart of accounts + unexported-items returned). Batch-1 'no QB' blocker SUPERSEDED. Live behavior VIU still pending: the sv7387api backend was in a sustained 500 incident (all endpoints incl. quick-login) for the whole 2026-07-09 window, so mapping/sync/floor could not be exercised. Retest plan in viu-findings.md Batch-5. | FRESH VIU 2026-07-10: as FD-QB-004; positive half (template create while MAPPED) works throughout",
+  "notes": "VIU qb batch-1 (2026-07-08): Half-verified: with items mapped/connected (per mapping-status) adds are never blocked anywhere (dozens of adds succeeded). Not-connected/unmapped variants untestable on this env. | UPDATE batch-5 (2026-07-09): QuickBooks IS now CONNECTED on this env (location Staging Lethbridge - 4310 = default_workplace; mapping-status quickBooksConnected:true+both items mapped; real QB chart of accounts + unexported-items returned). Batch-1 'no QB' blocker SUPERSEDED. Live behavior VIU still pending: the sv7387api backend was in a sustained 500 incident (all endpoints incl. quick-login) for the whole 2026-07-09 window, so mapping/sync/floor could not be exercised. Retest plan in viu-findings.md Batch-5. | FRESH VIU 2026-07-10: as FD-QB-004; positive half (template create while MAPPED) works throughout | WORDING+VIU 2026-07-13: Observable half CONFIRMED live: creating a non-auto-apply template is always allowed (template create 201). The 'no block when QuickBooks not connected' half is Blocked-Env — QuickBooks is connected here and cannot be disconnected on the shared env.",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "FD-QB-009",
   "area": "QuickBooks — unmap recovery",
   "story_ref": "S6-R7, S6-R7a",
-  "title": "Verify unmapping an in-use item routes affected invoices to Unexported Items (recoverable, no data lost)",
+  "title": "Verify unmapping an in-use item sends affected invoices to Unexported Items (recoverable, no data lost)",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "See Financial Data + flag ON + active QuickBooks connection",
@@ -1743,15 +1743,15 @@
   ],
   "design_ref": "requirements.md §7.1 (S6-R7/R7a)",
   "viu_status": "VIU-Blocked-Env",
-  "notes": "VIU qb batch-1 (2026-07-08): Unexported-items recovery untestable (no QB). | UPDATE batch-5 (2026-07-09): QuickBooks IS now CONNECTED on this env (location Staging Lethbridge - 4310 = default_workplace; mapping-status quickBooksConnected:true+both items mapped; real QB chart of accounts + unexported-items returned). Batch-1 'no QB' blocker SUPERSEDED. Live behavior VIU still pending: the sv7387api backend was in a sustained 500 incident (all endpoints incl. quick-login) for the whole 2026-07-09 window, so mapping/sync/floor could not be exercised. Retest plan in viu-findings.md Batch-5. | FRESH VIU 2026-07-10: unexported-items list + retry + mark-done endpoints re-exercised (mark-done 200 on my entries); the unmap-in-flight repro blocked by the unmap 500",
+  "notes": "VIU qb batch-1 (2026-07-08): Unexported-items recovery untestable (no QB). | UPDATE batch-5 (2026-07-09): QuickBooks IS now CONNECTED on this env (location Staging Lethbridge - 4310 = default_workplace; mapping-status quickBooksConnected:true+both items mapped; real QB chart of accounts + unexported-items returned). Batch-1 'no QB' blocker SUPERSEDED. Live behavior VIU still pending: the sv7387api backend was in a sustained 500 incident (all endpoints incl. quick-login) for the whole 2026-07-09 window, so mapping/sync/floor could not be exercised. Retest plan in viu-findings.md Batch-5. | FRESH VIU 2026-07-10: unexported-items list + retry + mark-done endpoints re-exercised (mark-done 200 on my entries); the unmap-in-flight repro blocked by the unmap 500 | WORDING+VIU 2026-07-13:  BLOCKED-ENV: cannot unmap an in-use item — the unmap call 500s on this env — so the route-to-Unexported-Items behavior can't be driven. (The Unexported Items list itself is reachable and returns data.)",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "FD-QB-010",
   "area": "QuickBooks — Class",
   "story_ref": "S6-R8",
-  "title": "Verify a single QuickBooks Class applies to every synced line including fee/discount lines",
+  "title": "Verify a single QuickBooks Class applies to every synced line, including fee/discount lines",
   "priority": "Low",
   "type": "Functional",
   "permissions_required": "See Financial Data + flag ON + active QuickBooks connection with a Class set",
@@ -1767,15 +1767,15 @@
   ],
   "design_ref": "requirements.md §7.1 (S6-R8)",
   "viu_status": "VIU-Blocked-Env",
-  "notes": "Per-class allocation is out of scope for V1. | VIU qb batch-1 (2026-07-08): Class propagation untestable (no QB). | UPDATE batch-5 (2026-07-09): QuickBooks IS now CONNECTED on this env (location Staging Lethbridge - 4310 = default_workplace; mapping-status quickBooksConnected:true+both items mapped; real QB chart of accounts + unexported-items returned). Batch-1 'no QB' blocker SUPERSEDED. Live behavior VIU still pending: the sv7387api backend was in a sustained 500 incident (all endpoints incl. quick-login) for the whole 2026-07-09 window, so mapping/sync/floor could not be exercised. Retest plan in viu-findings.md Batch-5. | FRESH VIU 2026-07-10: Class application only visible QB-side",
+  "notes": "Per-class allocation is out of scope for V1. | VIU qb batch-1 (2026-07-08): Class propagation untestable (no QB). | UPDATE batch-5 (2026-07-09): QuickBooks IS now CONNECTED on this env (location Staging Lethbridge - 4310 = default_workplace; mapping-status quickBooksConnected:true+both items mapped; real QB chart of accounts + unexported-items returned). Batch-1 'no QB' blocker SUPERSEDED. Live behavior VIU still pending: the sv7387api backend was in a sustained 500 incident (all endpoints incl. quick-login) for the whole 2026-07-09 window, so mapping/sync/floor could not be exercised. Retest plan in viu-findings.md Batch-5. | FRESH VIU 2026-07-10: Class application only visible QB-side | WORDING+VIU 2026-07-13:  BLOCKED-ENV: the QuickBooks invoice line-item internals are only visible inside QuickBooks (no QB read API; and re-invoiced work orders currently fail to export on duplicate document numbers) — a human logged into QuickBooks is needed to confirm. Observable today: adjustment-item-mapping-status = QuickBooks connected + Fee item mapped + Discount item mapped (checked live).",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "FD-QB-011",
   "area": "QuickBooks — Class validation",
   "story_ref": "S6-R9",
-  "title": "Verify a deleted/deactivated Class aborts the entire invoice sync (no substitution)",
+  "title": "Verify a deleted/deactivated QuickBooks Class stops the whole invoice sync (no substitution)",
   "priority": "Low",
   "type": "Negative",
   "permissions_required": "See Financial Data + flag ON + active QuickBooks connection",
@@ -1791,15 +1791,15 @@
   ],
   "design_ref": "requirements.md §7.1 (S6-R9)",
   "viu_status": "VIU-Blocked-Env",
-  "notes": "VIU qb batch-1 (2026-07-08): Class validation untestable (no QB). | UPDATE batch-5 (2026-07-09): QuickBooks IS now CONNECTED on this env (location Staging Lethbridge - 4310 = default_workplace; mapping-status quickBooksConnected:true+both items mapped; real QB chart of accounts + unexported-items returned). Batch-1 'no QB' blocker SUPERSEDED. Live behavior VIU still pending: the sv7387api backend was in a sustained 500 incident (all endpoints incl. quick-login) for the whole 2026-07-09 window, so mapping/sync/floor could not be exercised. Retest plan in viu-findings.md Batch-5. | FRESH VIU 2026-07-10: stale-Class abort only reproducible QB-side",
+  "notes": "VIU qb batch-1 (2026-07-08): Class validation untestable (no QB). | UPDATE batch-5 (2026-07-09): QuickBooks IS now CONNECTED on this env (location Staging Lethbridge - 4310 = default_workplace; mapping-status quickBooksConnected:true+both items mapped; real QB chart of accounts + unexported-items returned). Batch-1 'no QB' blocker SUPERSEDED. Live behavior VIU still pending: the sv7387api backend was in a sustained 500 incident (all endpoints incl. quick-login) for the whole 2026-07-09 window, so mapping/sync/floor could not be exercised. Retest plan in viu-findings.md Batch-5. | FRESH VIU 2026-07-10: stale-Class abort only reproducible QB-side | WORDING+VIU 2026-07-13:  BLOCKED-ENV: the QuickBooks invoice line-item internals are only visible inside QuickBooks (no QB read API; and re-invoiced work orders currently fail to export on duplicate document numbers) — a human logged into QuickBooks is needed to confirm. Observable today: adjustment-item-mapping-status = QuickBooks connected + Fee item mapped + Discount item mapped (checked live).",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "FD-QB-012",
   "area": "QuickBooks — negative totals",
   "story_ref": "S6-R10, S6-R10a, S6-R10b, S6-R10c",
-  "title": "Verify the net subtotal floors at $0.00 with the $100/$10/$150 worked example (non-taxable vs taxable discount)",
+  "title": "Verify the net subtotal floors at $0.00 ($100 parts + $10 tax, $150 discount: non-taxable vs taxable)",
   "priority": "High",
   "type": "Edge",
   "permissions_required": "See Financial Data + Work Orders: Create & Edit + flag ON + active QuickBooks connection",
@@ -1817,15 +1817,15 @@
   ],
   "design_ref": "requirements.md §7.1 (S6-R10/R10a/R10b/R10c worked example)",
   "viu_status": "VIU-Verified",
-  "notes": "Uses the spec's exact $100/$10/$150 worked example. | VIU qb batch-1 (2026-07-08): QB export untestable, but floor evidence exists: the add-dialog preview floors 'New work-order subtotal' at $0.00 for an over-100% discount, and adjustmentsSummary carries an 'excessCreditAmount' field (0 so far). Full worked-example (tax-still-owed) needs an invoice-time walk — batch 2. | UPDATE batch-5 (2026-07-09): QuickBooks IS now CONNECTED on this env (location Staging Lethbridge - 4310 = default_workplace; mapping-status quickBooksConnected:true+both items mapped; real QB chart of accounts + unexported-items returned). Batch-1 'no QB' blocker SUPERSEDED. Live behavior VIU still pending: the sv7387api backend was in a sustained 500 incident (all endpoints incl. quick-login) for the whole 2026-07-09 window, so mapping/sync/floor could not be exercised. Retest plan in viu-findings.md Batch-5. | VIU batch-6 qb 2026-07-09 (overnight run, evidence 21:10-21:30Z): both halves of the worked example proven structurally at WO level (see FD-CALC-015/016). | FRESH VIU 2026-07-10: floor worked-example halves re-proven at WO level: non-taxable over-discount -> sub 0.00, tax UNCHANGED (9.14), total=tax, excess 117.24; taxable variant -> tax 0.00, total 0.00",
+  "notes": "Uses the spec's exact $100/$10/$150 worked example. | VIU qb batch-1 (2026-07-08): QB export untestable, but floor evidence exists: the add-dialog preview floors 'New work-order subtotal' at $0.00 for an over-100% discount, and adjustmentsSummary carries an 'excessCreditAmount' field (0 so far). Full worked-example (tax-still-owed) needs an invoice-time walk — batch 2. | UPDATE batch-5 (2026-07-09): QuickBooks IS now CONNECTED on this env (location Staging Lethbridge - 4310 = default_workplace; mapping-status quickBooksConnected:true+both items mapped; real QB chart of accounts + unexported-items returned). Batch-1 'no QB' blocker SUPERSEDED. Live behavior VIU still pending: the sv7387api backend was in a sustained 500 incident (all endpoints incl. quick-login) for the whole 2026-07-09 window, so mapping/sync/floor could not be exercised. Retest plan in viu-findings.md Batch-5. | VIU batch-6 qb 2026-07-09 (overnight run, evidence 21:10-21:30Z): both halves of the worked example proven structurally at WO level (see FD-CALC-015/016). | FRESH VIU 2026-07-10: floor worked-example halves re-proven at WO level: non-taxable over-discount -> sub 0.00, tax UNCHANGED (9.14), total=tax, excess 117.24; taxable variant -> tax 0.00, total 0.00 | WORDING+VIU 2026-07-13: In-app floor VERIFIED (same worked example as FD-CALC-015, confirmed 2026-07-10); the customer pays the tax only.",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "FD-QB-013",
   "area": "QuickBooks — negative totals",
   "story_ref": "S6-R10d",
-  "title": "Verify discount lines to QuickBooks are capped with largest-remainder whole-cent penny allocation",
+  "title": "Verify discount lines to QuickBooks are capped in whole cents (largest-remainder) so they sum exactly to the floored subtotal",
   "priority": "Medium",
   "type": "Edge",
   "permissions_required": "See Financial Data + flag ON + active QuickBooks connection",
@@ -1843,15 +1843,15 @@
   ],
   "design_ref": "requirements.md §7.1 (S6-R10d)",
   "viu_status": "VIU-Blocked-Env",
-  "notes": "VIU qb batch-1 (2026-07-08): Penny-cap allocation is QB-export-side — untestable without QB. | UPDATE batch-5 (2026-07-09): QuickBooks IS now CONNECTED on this env (location Staging Lethbridge - 4310 = default_workplace; mapping-status quickBooksConnected:true+both items mapped; real QB chart of accounts + unexported-items returned). Batch-1 'no QB' blocker SUPERSEDED. Live behavior VIU still pending: the sv7387api backend was in a sustained 500 incident (all endpoints incl. quick-login) for the whole 2026-07-09 window, so mapping/sync/floor could not be exercised. Retest plan in viu-findings.md Batch-5. | FRESH VIU 2026-07-10: penny-cap allocation of discount LINES only visible on QB invoice lines",
+  "notes": "VIU qb batch-1 (2026-07-08): Penny-cap allocation is QB-export-side — untestable without QB. | UPDATE batch-5 (2026-07-09): QuickBooks IS now CONNECTED on this env (location Staging Lethbridge - 4310 = default_workplace; mapping-status quickBooksConnected:true+both items mapped; real QB chart of accounts + unexported-items returned). Batch-1 'no QB' blocker SUPERSEDED. Live behavior VIU still pending: the sv7387api backend was in a sustained 500 incident (all endpoints incl. quick-login) for the whole 2026-07-09 window, so mapping/sync/floor could not be exercised. Retest plan in viu-findings.md Batch-5. | FRESH VIU 2026-07-10: penny-cap allocation of discount LINES only visible on QB invoice lines | WORDING+VIU 2026-07-13:  BLOCKED-ENV: the largest-remainder penny allocation on the QuickBooks discount lines is only visible inside QuickBooks (same as FD-CALC-017). The in-app $0.00 floor half is verified.",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "FD-QB-014",
   "area": "QuickBooks — negative totals",
   "story_ref": "S6-R12",
-  "title": "Verify a mandatory warn/confirm before saving when discounts exceed the net subtotal",
+  "title": "Verify a mandatory warning/confirmation before saving when discounts are bigger than the net subtotal",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "See Financial Data + Work Orders: Create & Edit + flag ON",
@@ -1868,15 +1868,15 @@
   ],
   "design_ref": "requirements.md §7.1 (S6-R12)",
   "viu_status": "VIU-Deviation",
-  "notes": "VIU qb batch-1 (2026-07-08): No warn/confirm was shown when saving a 100% discount via API/UI on an open WO — the S6-R12 warning presumably belongs to the invoice/save flow; needs an invoicing walk. excessCreditAmount field exists. | UPDATE batch-5 (2026-07-09): QuickBooks IS now CONNECTED on this env (location Staging Lethbridge - 4310 = default_workplace; mapping-status quickBooksConnected:true+both items mapped; real QB chart of accounts + unexported-items returned). Batch-1 'no QB' blocker SUPERSEDED. Live behavior VIU still pending: the sv7387api backend was in a sustained 500 incident (all endpoints incl. quick-login) for the whole 2026-07-09 window, so mapping/sync/floor could not be exercised. Retest plan in viu-findings.md Batch-5. | VIU batch-6 qb 2026-07-09 (overnight run, evidence 21:10-21:30Z): over-discount saves with no warn/confirm; excess carried silently = FDBUG-15 (S6-R12). | FRESH VIU 2026-07-10: FDBUG-15 CONFIRMED AGAIN (API half): over-discount saves 201 with NO warning payload; excess carried silently (117.24). Batch-6 UI shots show no warn/confirm dialog. Violates S6-R12",
+  "notes": "VIU qb batch-1 (2026-07-08): No warn/confirm was shown when saving a 100% discount via API/UI on an open WO — the S6-R12 warning presumably belongs to the invoice/save flow; needs an invoicing walk. excessCreditAmount field exists. | UPDATE batch-5 (2026-07-09): QuickBooks IS now CONNECTED on this env (location Staging Lethbridge - 4310 = default_workplace; mapping-status quickBooksConnected:true+both items mapped; real QB chart of accounts + unexported-items returned). Batch-1 'no QB' blocker SUPERSEDED. Live behavior VIU still pending: the sv7387api backend was in a sustained 500 incident (all endpoints incl. quick-login) for the whole 2026-07-09 window, so mapping/sync/floor could not be exercised. Retest plan in viu-findings.md Batch-5. | VIU batch-6 qb 2026-07-09 (overnight run, evidence 21:10-21:30Z): over-discount saves with no warn/confirm; excess carried silently = FDBUG-15 (S6-R12). | FRESH VIU 2026-07-10: FDBUG-15 CONFIRMED AGAIN (API half): over-discount saves 201 with NO warning payload; excess carried silently (117.24). Batch-6 UI shots show no warn/confirm dialog. Violates S6-R12 | WORDING+VIU 2026-07-13: DEVIATION carried (FDBUG-15 / PO Q1 pending): an over-discount currently saves SILENTLY — no mandatory warn/confirm before saving. Expected kept as the spec requirement.",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "FD-QB-015",
   "area": "QuickBooks — negative totals",
   "story_ref": "S6-R11, S6-R13",
-  "title": "Verify the excess is recorded as a customer credit and posts to QuickBooks as a tax-exempt goodwill credit memo",
+  "title": "Verify the excess is recorded as a customer credit and posts to QuickBooks as a tax-exempt goodwill credit",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "See Financial Data + flag ON + active QuickBooks connection",
@@ -1894,15 +1894,15 @@
   ],
   "design_ref": "requirements.md §7.1 (S6-R11/R13)",
   "viu_status": "VIU-Blocked-Env",
-  "notes": "VIU qb batch-1 (2026-07-08): Customer-credit carry needs the invoicing walk (Deposits & Credits check) — batch 2. | UPDATE batch-5 (2026-07-09): QuickBooks IS now CONNECTED on this env (location Staging Lethbridge - 4310 = default_workplace; mapping-status quickBooksConnected:true+both items mapped; real QB chart of accounts + unexported-items returned). Batch-1 'no QB' blocker SUPERSEDED. Live behavior VIU still pending: the sv7387api backend was in a sustained 500 incident (all endpoints incl. quick-login) for the whole 2026-07-09 window, so mapping/sync/floor could not be exercised. Retest plan in viu-findings.md Batch-5. | FRESH VIU 2026-07-10: IN-APP HALF VERIFIED TODAY: invoicing the over-discounted WO recorded a CUSTOMER CREDIT (unpaid-transactions 2->4; 'current' bucket -11.63 -> -119.73 = +9.14 invoice & -117.24 credit exactly). QB goodwill-memo half unobservable: invoice export fails on the duplicate-doc-number env bug, no credit_memo export fired, no QB read API — needs QB UI on a cleanly synced org",
+  "notes": "VIU qb batch-1 (2026-07-08): Customer-credit carry needs the invoicing walk (Deposits & Credits check) — batch 2. | UPDATE batch-5 (2026-07-09): QuickBooks IS now CONNECTED on this env (location Staging Lethbridge - 4310 = default_workplace; mapping-status quickBooksConnected:true+both items mapped; real QB chart of accounts + unexported-items returned). Batch-1 'no QB' blocker SUPERSEDED. Live behavior VIU still pending: the sv7387api backend was in a sustained 500 incident (all endpoints incl. quick-login) for the whole 2026-07-09 window, so mapping/sync/floor could not be exercised. Retest plan in viu-findings.md Batch-5. | FRESH VIU 2026-07-10: IN-APP HALF VERIFIED TODAY: invoicing the over-discounted WO recorded a CUSTOMER CREDIT (unpaid-transactions 2->4; 'current' bucket -11.63 -> -119.73 = +9.14 invoice & -117.24 credit exactly). QB goodwill-memo half unobservable: invoice export fails on the duplicate-doc-number env bug, no credit_memo export fired, no QB read API — needs QB UI on a cleanly synced org | WORDING+VIU 2026-07-13: In-app customer-credit half VERIFIED 2026-07-10 (invoicing an over-discounted WO recorded a customer credit of exactly the excess). BLOCKED-ENV: the QuickBooks tax-exempt goodwill credit-memo half needs a human in QuickBooks (export fails on duplicate document numbers; no QB read API).",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "FD-QB-016",
   "area": "QuickBooks sync — tax",
   "story_ref": "S6-R2, §5-R11",
-  "title": "Verify a synced line's tax follows the adjustment's taxable setting",
+  "title": "Verify a synced line's tax follows the fee/discount's Taxable setting",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "See Financial Data + flag ON + active QuickBooks connection with mapped items",
@@ -1918,9 +1918,9 @@
   ],
   "design_ref": "requirements.md §7.1 (S6-R2); §7 (§5-R11)",
   "viu_status": "VIU-Blocked-Env",
-  "notes": "VIU qb batch-1 (2026-07-08): Line-tax on synced lines untestable (no QB). In-app tax behavior itself verified under §5-R11. | UPDATE batch-5 (2026-07-09): QuickBooks IS now CONNECTED on this env (location Staging Lethbridge - 4310 = default_workplace; mapping-status quickBooksConnected:true+both items mapped; real QB chart of accounts + unexported-items returned). Batch-1 'no QB' blocker SUPERSEDED. Live behavior VIU still pending: the sv7387api backend was in a sustained 500 incident (all endpoints incl. quick-login) for the whole 2026-07-09 window, so mapping/sync/floor could not be exercised. Retest plan in viu-findings.md Batch-5. | FRESH VIU 2026-07-10: tax code on the QB line unobservable in-app; in-app taxable base shifts re-proven (FD-CALC-011)",
+  "notes": "VIU qb batch-1 (2026-07-08): Line-tax on synced lines untestable (no QB). In-app tax behavior itself verified under §5-R11. | UPDATE batch-5 (2026-07-09): QuickBooks IS now CONNECTED on this env (location Staging Lethbridge - 4310 = default_workplace; mapping-status quickBooksConnected:true+both items mapped; real QB chart of accounts + unexported-items returned). Batch-1 'no QB' blocker SUPERSEDED. Live behavior VIU still pending: the sv7387api backend was in a sustained 500 incident (all endpoints incl. quick-login) for the whole 2026-07-09 window, so mapping/sync/floor could not be exercised. Retest plan in viu-findings.md Batch-5. | FRESH VIU 2026-07-10: tax code on the QB line unobservable in-app; in-app taxable base shifts re-proven (FD-CALC-011) | WORDING+VIU 2026-07-13:  BLOCKED-ENV: the QuickBooks invoice line-item internals are only visible inside QuickBooks (no QB read API; and re-invoiced work orders currently fail to export on duplicate document numbers) — a human logged into QuickBooks is needed to confirm. Observable today: adjustment-item-mapping-status = QuickBooks connected + Fee item mapped + Discount item mapped (checked live).",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "FD-HIST-001",
