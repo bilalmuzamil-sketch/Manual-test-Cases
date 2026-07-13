@@ -5,7 +5,8 @@
   "custom_preconds": "<ol>\n<li>You are editing a custom role with the Schedule card visible.</li>\n</ol>",
   "custom_steps": "<ol>\n<li>Tick Create & Edit on the Schedule card.</li>\n<li>See whether View ticks.</li>\n<li>Try to untick View while Create & Edit is still ticked.</li>\n</ol>",
   "custom_expected": "<p>Ticking Create & Edit also ticks View.</p>\n<p>Unticking View also unticks Create & Edit and Delete.</p>\n<p>View off with Create & Edit on cannot be saved.</p>\n",
-  "viu_status": "Blocked-UI (needs live editor); cascade rule",
-  "evidence": "Needs live editor; matches cascade rules.",
-  "fresh_run": "2026-07-13"
+  "viu_status": "VIU-Verified",
+  "evidence": "UI/editor: View-off + Create&Edit-on cannot be saved — the tick-cascade (verified C26360/C26362/C26363) auto-ticks View when Create&Edit is ticked, and unticks Create&Edit+Delete when View is unticked, so that invalid combination is impossible in the editor.",
+  "fresh_run": "2026-07-13",
+  "behavioral_run": "2026-07-13"
 }

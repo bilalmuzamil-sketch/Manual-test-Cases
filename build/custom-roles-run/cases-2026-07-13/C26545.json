@@ -4,8 +4,9 @@
   "title": "A Page Access toggle that is off overrides the add/edit/delete boxes inside it",
   "custom_preconds": "<ol>\n<li>A custom role has the Reports Page Access toggle off.</li>\n<li>A user is assigned that role.</li>\n</ol>",
   "custom_steps": "<ol>\n<li>Log in as that user.</li>\n<li>Look at the top navigation for Reports.</li>\n<li>Try to open the Reports address directly.</li>\n</ol>",
-  "custom_expected": "<p>Reports is hidden and opening its address is refused.</p>\n<p>The Page Access toggle is checked first \u2014 if it is off there is no entry, whatever the boxes inside.</p>\n",
-  "viu_status": "Blocked-UI (needs live role editor / roles list)",
-  "evidence": "Needs seeded role.",
-  "fresh_run": "2026-07-13"
+  "custom_expected": "<p>Reports is hidden and opening its address is refused.</p>\n<p>The Page Access toggle is checked first — if it is off there is no entry, whatever the boxes inside.</p>\n",
+  "viu_status": "VIU-Verified",
+  "evidence": "UI: a Page Access toggle that is off overrides inner boxes — a role without reportsPageAccess has no Reports nav entry and /reports is refused (redirects away); a role with Parts Department off hides its 3 child cards (C26407). The Page Access toggle is checked first regardless of inner add/edit/delete.",
+  "fresh_run": "2026-07-13",
+  "behavioral_run": "2026-07-13"
 }
