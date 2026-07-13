@@ -1,0 +1,61 @@
+{
+  "ai_automated_test": null,
+  "created_by": 1,
+  "created_on": 1783446474,
+  "custom_ai_model": null,
+  "custom_ai_type": null,
+  "custom_atmstatus": 1,
+  "custom_automation_type": null,
+  "custom_expected": null,
+  "custom_goals": null,
+  "custom_mission": null,
+  "custom_preconds": "Staging org (custom-role browser login is unsupported on local).\nCustom role A: Settings > App Settings ON (to reach /administration) + Settings > Integrations ON.\nCustom role B: Settings > Finance ON + Settings > Integrations OFF.\nBoth roles provisioned via API with a confirmed user each.",
+  "custom_steps": null,
+  "custom_steps_separated": [
+    {
+      "additional_info": "",
+      "content": "Log in as role A and open /administration.",
+      "expected": "The Administration page renders (settingsApp granted).",
+      "markdown_editor_id": null,
+      "refs": ""
+    },
+    {
+      "additional_info": "",
+      "content": "Observe the left-nav Integrations group.",
+      "expected": "The Integrations group header and the IBS sidebar item (link_ibs_tab) are visible.",
+      "markdown_editor_id": null,
+      "refs": ""
+    },
+    {
+      "additional_info": "",
+      "content": "Log in as role B (settingsFinance, no settingsIntegrations) and open /administration.",
+      "expected": "Administration renders and Payment Methods (link_payment_methods_tab) is visible.",
+      "markdown_editor_id": null,
+      "refs": ""
+    },
+    {
+      "additional_info": "",
+      "content": "Observe the left-nav for the Integrations group.",
+      "expected": "The Integrations group / IBS item (link_ibs_tab) is ABSENT.",
+      "markdown_editor_id": null,
+      "refs": ""
+    }
+  ],
+  "custom_testrail_bdd_scenario": null,
+  "display_order": 13,
+  "estimate": null,
+  "estimate_forecast": "25sec",
+  "id": 29273,
+  "is_deleted": 0,
+  "labels": [],
+  "milestone_id": null,
+  "priority_id": 3,
+  "refs": null,
+  "section_id": 3542,
+  "suite_id": 1,
+  "template_id": 2,
+  "title": "Integrations admin section is gated on settingsIntegrations, independent of settingsFinance",
+  "type_id": 7,
+  "updated_by": 1,
+  "updated_on": 1783446474
+}

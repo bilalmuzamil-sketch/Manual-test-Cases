@@ -1,0 +1,68 @@
+{
+  "ai_automated_test": null,
+  "created_by": 1,
+  "created_on": 1783505772,
+  "custom_ai_model": null,
+  "custom_ai_type": null,
+  "custom_atmstatus": 1,
+  "custom_automation_type": null,
+  "custom_expected": null,
+  "custom_goals": null,
+  "custom_mission": null,
+  "custom_preconds": "Custom role provisioned: Work Orders = View (Create & Edit OFF, Delete OFF), Work Order Lines = View only, Pick Parts sub-toggle = ON.\nA confirmed staff user is assigned that role.\nA Work Order exists (admin-seeded) with one authorized-to-repair line and one inventory-sourced part request in in_stock status.\nThe regression assertion also provisions a second role with Work Orders = View and Pick Parts / Order Parts / WO Lines Create & Edit all OFF.",
+  "custom_steps": null,
+  "custom_steps_separated": [
+    {
+      "additional_info": "",
+      "content": "Log the Pick-Parts custom-role user into the app and open the seeded Work Order.",
+      "expected": "Work Order detail renders (status badge visible).",
+      "markdown_editor_id": null,
+      "refs": ""
+    },
+    {
+      "additional_info": "",
+      "content": "Switch to the Part Requests tab and expand the line.",
+      "expected": "The part request row and its Quantity cell (input_quantity_<id>) are visible.",
+      "markdown_editor_id": null,
+      "refs": ""
+    },
+    {
+      "additional_info": "",
+      "content": "Read the Quantity input's disabled state.",
+      "expected": "The Quantity input is ENABLED (editable) for the Pick-Parts role despite Work Orders Create & Edit being OFF.",
+      "markdown_editor_id": null,
+      "refs": ""
+    },
+    {
+      "additional_info": "",
+      "content": "Change the quantity to a new value, blur to trigger auto-save, then reload and re-open the Part Requests tab.",
+      "expected": "The new quantity persists (change-request saved server-side).",
+      "markdown_editor_id": null,
+      "refs": ""
+    },
+    {
+      "additional_info": "",
+      "content": "Regression: log in the View-only role with no part sub-toggles, open the same Work Order's Part Requests tab, and read the Quantity input.",
+      "expected": "The Quantity input is DISABLED for a role holding none of {Work Orders Create & Edit, WO Lines Create & Edit, Pick Parts, Order Parts}.",
+      "markdown_editor_id": null,
+      "refs": ""
+    }
+  ],
+  "custom_testrail_bdd_scenario": null,
+  "display_order": 18,
+  "estimate": null,
+  "estimate_forecast": null,
+  "id": 29435,
+  "is_deleted": 0,
+  "labels": [],
+  "milestone_id": null,
+  "priority_id": 3,
+  "refs": null,
+  "section_id": 3534,
+  "suite_id": 1,
+  "template_id": 2,
+  "title": "Part Requests tab Quantity editable for Pick/Order Parts custom role",
+  "type_id": 7,
+  "updated_by": 1,
+  "updated_on": 1783505772
+}

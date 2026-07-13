@@ -1,0 +1,54 @@
+{
+  "ai_automated_test": null,
+  "created_by": 1,
+  "created_on": 1783503957,
+  "custom_ai_model": null,
+  "custom_ai_type": null,
+  "custom_atmstatus": 3,
+  "custom_automation_type": null,
+  "custom_expected": null,
+  "custom_goals": null,
+  "custom_mission": null,
+  "custom_preconds": "ShopPay feature enabled on the org AND a workplace with a terminal reader configured (has_terminal_readers). If absent, the test self-annotates/skips the terminal comparison.\nAn invoiced, unpaid Work Order with a contact exists (seeded via API).\nTwo confirmed custom-role users provisioned via API:\n- Control: Invoicing & Payments Create&Edit, See Financial ON, Customer Portal page-access ON.\n- Leak: Invoicing & Payments Create&Edit, See Financial ON, Customer Portal page-access OFF.",
+  "custom_steps": null,
+  "custom_steps_separated": [
+    {
+      "additional_info": "",
+      "content": "Log in as the Control user; open the WO Finance tab and click New Payment",
+      "expected": "The payment dialog opens (title_new_payment) and button_send_to_terminal is visible (both required atoms present). If not visible, terminal infra is absent -> annotate/skip remaining terminal steps.",
+      "markdown_editor_id": null,
+      "refs": ""
+    },
+    {
+      "additional_info": "",
+      "content": "Log in as the Leak user; open the same WO Finance tab",
+      "expected": "button_new_payment is present (Create&Edit grants payment entry, so the dialog is reachable).",
+      "markdown_editor_id": null,
+      "refs": ""
+    },
+    {
+      "additional_info": "",
+      "content": "As the Leak user, click New Payment to open the dialog",
+      "expected": "button_send_to_terminal is NOT present, because Customer Portal is OFF (SV-8087 gate).",
+      "markdown_editor_id": null,
+      "refs": ""
+    }
+  ],
+  "custom_testrail_bdd_scenario": null,
+  "display_order": 12,
+  "estimate": null,
+  "estimate_forecast": "35sec",
+  "id": 29434,
+  "is_deleted": 0,
+  "labels": [],
+  "milestone_id": null,
+  "priority_id": 4,
+  "refs": null,
+  "section_id": 3539,
+  "suite_id": 1,
+  "template_id": 2,
+  "title": "Send to Terminal requires Invoicing Create&Edit AND Customer Portal ON (SV-8087 leak guard)",
+  "type_id": 7,
+  "updated_by": 1,
+  "updated_on": 1783509080
+}
