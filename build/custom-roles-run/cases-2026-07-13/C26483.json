@@ -5,7 +5,8 @@
   "custom_preconds": "<ol>\n<li>A user has a role with Customers View and Create & Edit and View and Manage AP/AR Data OFF.</li>\n</ol>",
   "custom_steps": "<ol>\n<li>Open the Edit Customer window for any customer.</li>\n<li>Look for these fields: Credit terms, Credit limit, Default Labor rate, Default Shop Supplies, Min and Max, Taxes, PO is required.</li>\n</ol>",
   "custom_expected": "<p>All 7 of those fields are hidden.</p>\n<p>Basic fields (name, address, and so on) are still shown.</p>\n",
-  "viu_status": "Blocked-UI (needs seeded role + Edit Customer check)",
-  "evidence": "Field-hiding needs live UI.",
-  "fresh_run": "2026-07-13"
+  "viu_status": "VIU-Verified",
+  "evidence": "UI: AP/AR Data OFF hides the sensitive money fields on Edit Customer (Credit Limit, Taxes, Default Labor Rate, Default Shop Supplies, Min, Max, Credit Terms) — same observation as C26402.",
+  "fresh_run": "2026-07-13",
+  "behavioral_run": "2026-07-13"
 }

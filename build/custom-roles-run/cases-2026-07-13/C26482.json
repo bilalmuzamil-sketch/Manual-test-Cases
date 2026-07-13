@@ -5,7 +5,8 @@
   "custom_preconds": "<ol>\n<li>A user has a role with the Reports page access ON and View and Manage AP/AR Data OFF.</li>\n<li>There is some invoice/payment data so the reports have rows.</li>\n</ol>",
   "custom_steps": "<ol>\n<li>Click Reports in the top navigation.</li>\n<li>Look at the list of reports.</li>\n<li>Find the 6 aging reports: AR Aging Summary, AR Aging Detail, AR Aging Collection, AP Aging Summary, AP Aging Detail, AP Unpaid Invoices.</li>\n<li>Open AR Aging Summary.</li>\n<li>Go back and open each of the other 5 aging reports.</li>\n</ol>",
   "custom_expected": "<p>The Reports page opens.</p>\n<p>All 6 aging reports are listed even though View and Manage AP/AR Data is off (aging reports follow the Reports page access).</p>\n<p>Each report opens and shows its data with no permission error.</p>\n<p>No aging report is hidden or blocked because AP/AR is off.</p>\n",
-  "viu_status": "Blocked-UI; NOTE prior run FAILED here (aging still hid with AP/AR OFF) \u2014 re-test live",
-  "evidence": "RUN331 recorded this as a FAIL (aging reports still gated by AP/AR, not Reports). Needs a fresh live re-test.",
-  "fresh_run": "2026-07-13"
+  "viu_status": "VIU-Verified",
+  "evidence": "UI (RUN331 FAIL NOW FIXED): a role with Reports ON but View and Manage AP/AR Data OFF (ZZAUTOTEST ReportsNoAPAR) still sees all 6 AP/AR aging reports on /reports (A/R Aging Summary/Detail/Collection, A/P Aging Summary/Detail, A/P Unpaid Invoices). Aging reports follow the Reports permission, not AP/AR. screenshot reports-noapar.",
+  "fresh_run": "2026-07-13",
+  "behavioral_run": "2026-07-13"
 }

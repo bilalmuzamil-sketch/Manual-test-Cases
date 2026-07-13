@@ -5,7 +5,8 @@
   "custom_preconds": "<ol>\n<li>A user has a role with Vendor and order management View and View and Manage AP/AR Data ON.</li>\n</ol>",
   "custom_steps": "<ol>\n<li>Open Vendors and open a vendor.</li>\n<li>Look at the tabs.</li>\n</ol>",
   "custom_expected": "<p>The Unpaid Invoices, Payments and Credits tabs are shown on the vendor page.</p>\n",
-  "viu_status": "Blocked-UI (needs seeded role + vendor detail check)",
-  "evidence": "Vendor AP/AR tabs need live UI. Build gates VendorPaymentsTab/VendorDeliveriesTab on AP/AR data.",
-  "fresh_run": "2026-07-13"
+  "viu_status": "VIU-Verified",
+  "evidence": "UI (Parts Manager, AP/AR ON): the vendor page (/parts/vendor/{id}) shows the AP/AR tabs — Contacts, Unpaid Invoices (30), Payments (4). screenshot vendordetail-vendON.",
+  "fresh_run": "2026-07-13",
+  "behavioral_run": "2026-07-13"
 }

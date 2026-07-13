@@ -5,7 +5,8 @@
   "custom_preconds": "<ol>\n<li>A user has a role with Customers View and View and Manage AP/AR Data OFF.</li>\n</ol>",
   "custom_steps": "<ol>\n<li>Open a customer.</li>\n<li>Look at the tabs.</li>\n</ol>",
   "custom_expected": "<p>The Unpaid Invoices, Payments and Credits tabs are not shown.</p>\n",
-  "viu_status": "Blocked-UI (needs seeded role + customer detail check)",
-  "evidence": "Tab-hidden behavior needs live UI.",
-  "fresh_run": "2026-07-13"
+  "viu_status": "VIU-Verified",
+  "evidence": "UI: AP/AR Data OFF (Service Advisor) — the customer page shows only Work Orders/Part Sales/Contacts/Assets/Notes; the Invoices/Payments/Deposits tabs are hidden.",
+  "fresh_run": "2026-07-13",
+  "behavioral_run": "2026-07-13"
 }

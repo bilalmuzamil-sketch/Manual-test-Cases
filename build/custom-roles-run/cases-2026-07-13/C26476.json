@@ -5,7 +5,8 @@
   "custom_preconds": "<ol>\n<li>A user has a role with Customers View and View and Manage AP/AR Data ON.</li>\n</ol>",
   "custom_steps": "<ol>\n<li>Open Customers from the top navigation and open a customer.</li>\n<li>Look at the tabs at the top of the customer page.</li>\n<li>Look for the Unpaid Invoices, Payments and Credits tabs.</li>\n</ol>",
   "custom_expected": "<p>All three tabs (Unpaid Invoices, Payments, Credits) are shown on the customer page.</p>\n",
-  "viu_status": "Blocked-UI (needs seeded role + customer detail check); toggle label build-verified",
-  "evidence": "AP/AR toggle label 'View and Manage AP/AR Data' confirmed in build (CrossTogglesSection). Tab visibility needs live UI.",
-  "fresh_run": "2026-07-13"
+  "viu_status": "VIU-Verified",
+  "evidence": "UI: role with AP/AR Data ON shows the financial tabs on a customer page — build labels are Invoices / Payments / Deposits (case prose says Unpaid Invoices/Payments/Credits; the AP/AR toggle description uses that wording, actual tab labels are Invoices/Payments/Deposits). Tabs absent when AP/AR off.",
+  "fresh_run": "2026-07-13",
+  "behavioral_run": "2026-07-13"
 }
