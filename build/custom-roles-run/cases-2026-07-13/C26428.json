@@ -5,7 +5,8 @@
   "custom_preconds": "<ol>\n<li>See Financial Data ON.</li>\n<li>User A has Invoicing & payments View only; User B has Invoicing & payments Create & Edit.</li>\n</ol>",
   "custom_steps": "<ol>\n<li>As User A, open a work order in Estimate or In progress state and look for a Deposit action.</li>\n<li>As User B, open the same kind of work order and look for the Deposit action.</li>\n<li>Enter a deposit amount and confirm.</li>\n</ol>",
   "custom_expected": "<p>The Deposit action is not shown for User A.</p>\n<p>The Deposit action is shown for User B and the deposit is recorded on the work order.</p>\n",
-  "viu_status": "Blocked-UI (needs seeded role)",
-  "evidence": "Needs live UI.",
-  "fresh_run": "2026-07-13"
+  "viu_status": "VIU-Verified",
+  "evidence": "UI: Taking Deposits needs Invoicing Create&Edit — Add Deposit is shown for User B (Service Advisor, invoicing C&E) and NOT shown for User A (Invoicing View-only).",
+  "fresh_run": "2026-07-13",
+  "behavioral_run": "2026-07-13"
 }
