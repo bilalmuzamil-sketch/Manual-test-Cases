@@ -359,6 +359,14 @@ document.getElementById("foot-asof").innerHTML =
 const TESTING = new Set(["TESTING QA","TESTING STAGE"]);
 const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const epShort = k => !k ? "No epic" : (EPICS[k]||k).replace(/^\[ARCHIVED\]\s*/,"");
+// Hover tooltip: composition of a ticket list by issue type
+// e.g. "70 total · 30 Story Defect, 20 Task, 20 Story"
+function typeBreak(list){
+  if(!list || !list.length) return "0 tickets";
+  const c={}; list.forEach(t=>{ const k=t.ty||"(no type)"; c[k]=(c[k]||0)+1; });
+  const parts=Object.entries(c).sort((a,b)=>b[1]-a[1]||a[0].localeCompare(b[0])).map(([k,v])=>`${v} ${k}`);
+  return `${list.length} total · ${parts.join(", ")}`;
+}
 
 // attribution: completion credit = label people if any, else QA Assignee
 T.forEach(t => {
@@ -398,25 +406,24 @@ function matchBase(t){           // person + epic + type (time applied per-metri
   if (state.y && t.ty!==state.y) return false;
   return true;
 }
-function personsOf(list){        // count per person incl. unattributed bucket
-  const c = {}; QA.forEach(p=>c[p]=0); c["(unattributed)"]=0;
-  list.forEach(([t,who]) => {
-    const ps = who.length?who:["(unattributed)"];
-    ps.forEach(p => { if(!(p in c)) c[p]=0; c[p]++; });
+function groupTix(pairs){        // pairs = [[ticket, whoArray], ...] -> {person: [tickets]}
+  const g = {}; QA.forEach(p=>g[p]=[]); g["(unattributed)"]=[];
+  pairs.forEach(([t,who]) => {
+    (who.length?who:["(unattributed)"]).forEach(p => { (g[p]=g[p]||[]).push(t); });
   });
-  return c;
+  return g;
 }
-function bars(el, counts, cls, dimKeys){
-  let entries = Object.entries(counts).filter(([k,v]) => v>0 || QA.includes(k));
+function bars(el, groups, cls){   // groups = {label: [tickets]} — row count = list length, tooltip = type breakdown
+  let entries = Object.entries(groups).filter(([k,v]) => v.length>0 || QA.includes(k));
   if (state.q) entries = entries.filter(([k]) => k===state.q);
-  entries.sort((a,b)=> b[1]-a[1] || a[0].localeCompare(b[0]));
-  const max = Math.max(1, ...entries.map(e=>e[1]));
-  el.innerHTML = entries.map(([k,v]) => `
-    <div class="row" title="${esc(k)}: ${v}">
+  entries.sort((a,b)=> b[1].length-a[1].length || a[0].localeCompare(b[0]));
+  const max = Math.max(1, ...entries.map(e=>e[1].length));
+  el.innerHTML = entries.map(([k,arr]) => { const v=arr.length; return `
+    <div class="row" title="${esc(k)} — ${esc(typeBreak(arr))}">
       <span class="name ${QA.includes(k)?"":"dim"}">${esc(k)}</span>
       <span class="track">${v?`<span class="fill ${QA.includes(k)?cls:"dim"}" style="width:${(v/max*100).toFixed(1)}%"></span>`:""}</span>
       <span class="val">${v}</span>
-    </div>`).join("") || `<p class="note">Nothing in this selection.</p>`;
+    </div>`; }).join("") || `<p class="note">Nothing in this selection.</p>`;
 }
 
 const METRICS = {
@@ -451,23 +458,24 @@ function render(){
   const done = base.filter(t=>t.dn&&inPeriod(t.dn));
   const bugs = base.filter(t=>(t.ty==="Bug"||t.ty==="Story Defect")&&inPeriod(t.cr));
 
+  // hover any KPI number for its issue-type composition
   $("kpis").innerHTML = [
-    ["Waiting for QA", waiting.length, "status Ready for QA"],
-    ["In testing now", testing.length, "TESTING QA + STAGE"],
-    ["Awaiting staging check", staging.length, "Merged to Staging"],
-    [`QA completed ${pLabel}`, done.length, "reached Done category"],
-    ["Rejected (current)", rejected.length, "REJECTED FROM TESTING"],
-    [`Bugs reported ${pLabel}`, bugs.length, "by reporter, created date"],
-  ].map(([l,v,h])=>`<div class="card stat"><div class="label">${l}</div><div class="value">${v}</div><div class="hint">${h}</div></div>`).join("");
+    ["Waiting for QA", waiting, "status Ready for QA"],
+    ["In testing now", testing, "TESTING QA + STAGE"],
+    ["Awaiting staging check", staging, "Merged to Staging"],
+    [`QA completed ${pLabel}`, done, "reached Done category"],
+    ["Rejected (current)", rejected, "REJECTED FROM TESTING"],
+    [`Bugs reported ${pLabel}`, bugs, "by reporter, created date"],
+  ].map(([l,arr,h])=>`<div class="card stat" title="${esc(l)} — ${esc(typeBreak(arr))}"><div class="label">${l}</div><div class="value">${arr.length}</div><div class="hint">${h}</div></div>`).join("");
 
   $("cdone-note").textContent = `${done.length} tickets reached Done ${pLabel} — credit: QAComplete label, else QA Assignee`;
-  bars($("cdone"), personsOf(done.map(t=>[t,t.credit])), "b");
-  bars($("ctest"), personsOf(testing.map(t=>[t,[...new Set([...t.qa,...t.lip])]])), "a");
+  bars($("cdone"), groupTix(done.map(t=>[t,t.credit])), "b");
+  bars($("ctest"), groupTix(testing.map(t=>[t,[...new Set([...t.qa,...t.lip])]])), "a");
   $("cbugs-note").textContent = `${bugs.length} bugs / story defects created ${pLabel}, by reporter`;
-  bars($("cbugs"), personsOf(bugs.map(t=>[t,[t.rep].filter(Boolean)])), "b");
-  const queueMix = {};
-  waiting.forEach(t=>{ (t.people.length?t.people:["(queue — nobody yet)"]).forEach(p=>queueMix[p]=(queueMix[p]||0)+1); });
-  rejected.forEach(t=>{ (t.people.length?t.people:["(unattributed)"]).forEach(p=>queueMix["⚠ rejected: "+p]=(queueMix["⚠ rejected: "+p]||0)+1); });
+  bars($("cbugs"), groupTix(bugs.map(t=>[t,[t.rep].filter(Boolean)])), "b");
+  const queueMix = {}; const pushQ = (k,t)=>{ (queueMix[k]=queueMix[k]||[]).push(t); };
+  waiting.forEach(t=>{ (t.people.length?t.people:["(queue — nobody yet)"]).forEach(p=>pushQ(p,t)); });
+  rejected.forEach(t=>{ (t.people.length?t.people:["(unattributed)"]).forEach(p=>pushQ("⚠ rejected: "+p,t)); });
   bars($("cqueue"), queueMix, "b");
 
   renderProgress(); renderStoryProgress(); renderInprog(); renderNeeds(); renderQueue(); renderActivity(); renderPrimary(); renderMatrix(); renderTable();
@@ -548,6 +556,7 @@ function renderProgress(){
   const label = state.e ? epShort(state.e==="NONE"?null:state.e) : (state.q || "all QA tickets");
   const span = state.from===state.to ? fmtShort(state.from) : `${fmtShort(state.from)} – ${fmtShort(state.to)}`;
   $("prog-pct").textContent = pct + "%";
+  $("prog-pct").title = `Reported defect pool — ${typeBreak(scope)}  ·  finished ${done}, remaining ${remaining}`;
   $("prog-fill").style.width = pct + "%";
   $("prog-note").innerHTML = `<b>${done}</b> of <b>${total}</b> bugs/defects (Bug + Story Defect + QA-raised Tasks) `
     + `for <b>${esc(label)}</b> (${span}) have finished QA (reached Done, incl. Obsolete/Duplicate). ${remaining} still in the pipeline.`;
@@ -565,6 +574,7 @@ function renderStoryProgress(){
   const pct = total ? Math.round(done/total*100) : 0;
   const label = state.e ? epShort(state.e==="NONE"?null:state.e) : (state.q || "this selection");
   $("story-pct").textContent = pct + "%";
+  $("story-pct").title = `${total} stories · ${done} Done, ${total-done} open`;
   $("story-fill").style.width = pct + "%";
   $("story-note").innerHTML = total
     ? `<b>${done}</b> of <b>${total}</b> stories in <b>${esc(label)}</b> are Done. ${total-done} still open.`
@@ -675,13 +685,13 @@ function renderLead(){
     (!state.e || (t.ep||"NONE")===state.e));
   const REF = [["Today",PRESETS.today],["Wk",PRESETS.week],
     ["Mo",PRESETS.month],["Until today",PRESETS.last62]];
-  const by = {};   // person -> {sel, ref:[..]}
+  const by = {};   // person -> {sel, ref:[..], tix:[]}
   bugs.forEach(t => {
-    by[t.rep] = by[t.rep] || {sel:0, ref:[0,0,0,0]};
-    if (inPeriod(t.cr)) by[t.rep].sel++;
+    by[t.rep] = by[t.rep] || {sel:0, ref:[0,0,0,0], tix:[]};
+    if (inPeriod(t.cr)) { by[t.rep].sel++; by[t.rep].tix.push(t); }
     REF.forEach(([,r],i) => { if (inRange(t.cr,r)) by[t.rep].ref[i]++; });
   });
-  QA.forEach(p => { by[p] = by[p] || {sel:0, ref:[0,0,0,0]}; });
+  QA.forEach(p => { by[p] = by[p] || {sel:0, ref:[0,0,0,0], tix:[]}; });
   let rows = Object.entries(by).filter(([p,v]) => v.sel>0 || v.ref[3]>0 || QA.includes(p));
   if (state.q) rows = rows.filter(([p]) => p===state.q);
   rows.sort((a,b) => b[1].sel-a[1].sel || b[1].ref[3]-a[1].ref[3]);
@@ -697,7 +707,7 @@ function renderLead(){
     h += `<tr${i===0&&lead?' style="font-weight:650"':''}>
       <td class="ep" style="max-width:34px">${lead?medal(i):"·"}</td>
       <td class="ep" style="${QA.includes(p)?"":"font-style:italic;color:var(--muted)"}">${esc(p)}</td>
-      <td class="tot">${v.sel||"·"}</td>
+      <td class="tot"${v.sel?` title="${esc(p+" — "+typeBreak(v.tix))}"`:""}>${v.sel||"·"}</td>
       <td><span class="track" style="display:block"><span class="fill b" style="width:${(v.sel/max*100).toFixed(1)}%"></span></span></td>
       ${v.ref.map(n=>`<td style="color:var(--muted)">${n||"·"}</td>`).join("")}</tr>`;
   });
@@ -709,31 +719,33 @@ function renderMatrix(){
     `<button class="mtab" aria-pressed="${state.metric===k}" data-m="${k}">${m.label}</button>`).join("");
   $("mtabs").querySelectorAll(".mtab").forEach(b=>b.onclick=()=>{state.metric=b.dataset.m; renderMatrix();});
   const M = METRICS[state.metric];
-  const rows = {};
+  const rows = {};   // epic -> {col: [tickets]}
   T.filter(M.pick).forEach(t => {
     const ek = t.ep||"NONE";
     rows[ek] = rows[ek] || {};
     const ps = M.who(t); (ps.length?ps:["(unattributed)"]).forEach(p=>{
       const col = QA.includes(p)?p:"(unattributed)";
-      rows[ek][col]=(rows[ek][col]||0)+1;
+      (rows[ek][col]=rows[ek][col]||[]).push(t);
     });
   });
   const cols = [...QA, "(unattributed)"];
-  const eks = Object.keys(rows).sort((a,b)=>{
-    const s=o=>Object.values(rows[o]).reduce((x,y)=>x+y,0); return s(b)-s(a);
-  });
-  let max=1; eks.forEach(e=>cols.forEach(c=>{max=Math.max(max,rows[e][c]||0);}));
+  const cnt = o => Object.values(rows[o]).reduce((x,y)=>x+y.length,0);
+  const eks = Object.keys(rows).sort((a,b)=> cnt(b)-cnt(a));
+  let max=1; eks.forEach(e=>cols.forEach(c=>{max=Math.max(max,(rows[e][c]||[]).length);}));
   const short = p => p==="(unattributed)"?"Unattrib.":p.split(" ")[0];
   let h = `<tr><th>Epic</th>${cols.map(c=>`<th title="${esc(c)}">${esc(short(c))}</th>`).join("")}<th class="tot">Total</th></tr>`;
   eks.forEach(e=>{
-    const tot = Object.values(rows[e]).reduce((x,y)=>x+y,0);
+    const rowAll = Object.values(rows[e]).flat();
+    const tot = rowAll.length;
+    const eLabel = e==="NONE"?"No epic":epShort(e);
     h += `<tr><td class="ep" title="${esc(e==="NONE"?"No epic":e+" — "+epShort(e))}">${esc(epShort(e==="NONE"?null:e))}</td>`;
     h += cols.map(c=>{
-      const v=rows[e][c]||0;
+      const arr=rows[e][c]||[]; const v=arr.length;
       const op=v? (0.12+0.55*v/max).toFixed(2) : 0;
-      return `<td><span class="cell" style="background:rgba(var(--cellmax),${op})">${v||"·"}</span></td>`;
+      const tip = v? `${short(c)} · ${eLabel} — ${typeBreak(arr)}` : "";
+      return `<td><span class="cell"${v?` title="${esc(tip)}"`:""} style="background:rgba(var(--cellmax),${op})">${v||"·"}</span></td>`;
     }).join("");
-    h += `<td class="tot">${tot}</td></tr>`;
+    h += `<td class="tot" title="${esc(eLabel+" — "+typeBreak(rowAll))}">${tot}</td></tr>`;
   });
   if(!eks.length) h += `<tr><td class="ep">Nothing in this selection.</td></tr>`;
   $("matrix").innerHTML = h;
