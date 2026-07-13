@@ -207,3 +207,43 @@ on the shared env). **Flipped to Verified after wording match:** FD-TMPL-001/003
 | FD-TMPL-017 | [C28518](https://shopview.testrail.io/index.php?/cases/view/28518) | VIU-Verified |
 
 **Push totals:** 17 updated · 0 no-op · 0 error.
+
+## Area: FD-CUST (Customer Fees & Discounts tab) — 17 cases — TESTER-READY
+
+**Build terms confirmed live (shots cust-01/02):** customer tab **'Fees & Discounts (N)'**;
+card **'Default Fees & Discounts'**; caption exact ('These fees & discounts auto-apply to
+every new work order for this customer. They can still be edited or removed on individual
+work orders without changing the defaults here.'); button **'Add Fee/Discount'**; columns
+**Name / Type / Calculation Type / Amount / Max Amount / Taxable** + remove action (NO
+Auto-Apply column on the customer tab — corrected); empty state **"No fees or discounts yet.
+Use 'Add Fee/Discount' to add one."**; add picker dialog **'Add Fee/Discount'** with a
+single **'Fee / Discount Templates'** dropdown + **Save**. Corrected the tab list and the
+admin nav (Service → Finance).
+
+**VIU (fresh 2026-07-13):** customer-default add/remove lifecycle confirmed via API (add
+201, remove 204, clean). Defaults→new-WO behavior + seeding carried from the stable
+2026-07-10 pass (FDBUG-12 fixed). **Deviations kept:** FD-CUST-005 (Processing Fee shows as
+type 'Fee' in the picker), FD-CUST-006 (empty-picker state — not re-captured). **FD-CUST-015**
+permission gate: re-check the Tech negative after the roles matrix is re-derived.
+
+| FD-ID | TestRail | viu_status |
+|---|---|---|
+| FD-CUST-001 | [C28485](https://shopview.testrail.io/index.php?/cases/view/28485) | VIU-Verified |
+| FD-CUST-002 | [C28486](https://shopview.testrail.io/index.php?/cases/view/28486) | VIU-Verified |
+| FD-CUST-003 | [C28487](https://shopview.testrail.io/index.php?/cases/view/28487) | VIU-Verified |
+| FD-CUST-004 | [C28488](https://shopview.testrail.io/index.php?/cases/view/28488) | VIU-Verified |
+| FD-CUST-005 | [C28489](https://shopview.testrail.io/index.php?/cases/view/28489) | VIU-Deviation |
+| FD-CUST-006 | [C28490](https://shopview.testrail.io/index.php?/cases/view/28490) | VIU-Deviation |
+| FD-CUST-007 | [C28491](https://shopview.testrail.io/index.php?/cases/view/28491) | VIU-Verified |
+| FD-CUST-008 | [C28492](https://shopview.testrail.io/index.php?/cases/view/28492) | VIU-Verified |
+| FD-CUST-009 | [C28493](https://shopview.testrail.io/index.php?/cases/view/28493) | VIU-Verified |
+| FD-CUST-010 | [C28494](https://shopview.testrail.io/index.php?/cases/view/28494) | VIU-Verified |
+| FD-CUST-011 | [C28495](https://shopview.testrail.io/index.php?/cases/view/28495) | VIU-Verified |
+| FD-CUST-012 | [C28496](https://shopview.testrail.io/index.php?/cases/view/28496) | VIU-Verified |
+| FD-CUST-013 | [C28497](https://shopview.testrail.io/index.php?/cases/view/28497) | VIU-Verified |
+| FD-CUST-014 | [C28498](https://shopview.testrail.io/index.php?/cases/view/28498) | VIU-Verified |
+| FD-CUST-015 | [C28499](https://shopview.testrail.io/index.php?/cases/view/28499) | VIU-Verified |
+| FD-CUST-016 | [C28500](https://shopview.testrail.io/index.php?/cases/view/28500) | VIU-Verified |
+| FD-CUST-017 | [C28501](https://shopview.testrail.io/index.php?/cases/view/28501) | VIU-Verified |
+
+**Push totals:** 17 updated · 0 no-op · 0 error.

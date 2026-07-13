@@ -103,3 +103,16 @@ Staging Lethbridge - 4310).
 - Delete confirm title **`Delete Template`**; when the template is a customer default it adds
   **`This template is set as a default for N customer(s). Deleting it will remove it from them.`**;
   buttons **`Cancel`** / red **`Delete`** (shot tmpl-03).
+
+## FD-CUST (Customer Fees & Discounts tab)
+
+- Customer tab: **`Fees & Discounts (N)`** (in the row Work Orders / Part Sales / Contacts /
+  Assets / Notes / Invoices / Payments / Deposits / Fees & Discounts).
+- Card title **`Default Fees & Discounts`**; caption **"These fees & discounts auto-apply to
+  every new work order for this customer. They can still be edited or removed on individual
+  work orders without changing the defaults here."**; button **`Add Fee/Discount`**.
+- Table columns: **`Name` / `Type` / `Calculation Type` / `Amount` / `Max Amount` /
+  `Taxable`** + a remove action (no Auto-Apply column here).
+- Empty state: **"No fees or discounts yet. Use 'Add Fee/Discount' to add one."**
+- Add picker dialog **`Add Fee/Discount`** with a single **`Fee / Discount Templates`**
+  dropdown; buttons **`Cancel`** / **`Save`** (shot cust-02).
