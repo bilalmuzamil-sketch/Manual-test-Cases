@@ -1,0 +1,11 @@
+{
+  "case_id": 26472,
+  "section_id": 3544,
+  "title": "'Enable See Financial Data?' dialog \u2014 Enable: turns See Financial Data on and keeps the box ticked",
+  "custom_preconds": "<ol>\n<li>The 'Enable See Financial Data?' dialog is open (opened by ticking Part sales while See Financial Data is OFF).</li>\n</ol>",
+  "custom_steps": "<ol>\n<li>Click Enable.</li>\n<li>Look at the Part sales View box and the See Financial Data toggle.</li>\n</ol>",
+  "custom_expected": "<p>The dialog closes.</p>\n<p>See Financial Data is now ON.</p>\n<p>The Part sales View box stays ticked.</p>\n",
+  "viu_status": "Blocked-UI behavior; modal title+Enable button build-verified",
+  "evidence": "Enable button confirmed in build. Confirming resulting state needs the role editor driven live.",
+  "fresh_run": "2026-07-13"
+}

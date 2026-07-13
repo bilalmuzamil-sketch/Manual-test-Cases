@@ -1,0 +1,11 @@
+{
+  "case_id": 27869,
+  "section_id": 3544,
+  "title": "Turning on Order parts while See Financial Data is OFF asks you to also turn on See Financial Data",
+  "custom_preconds": "<ol>\n<li>Open Create Role (or edit a custom role).</li>\n<li>In that role, See Financial Data is OFF and Order parts is OFF.</li>\n</ol>",
+  "custom_steps": "<ol>\n<li>Turn ON the Order parts toggle while See Financial Data is still OFF.</li>\n<li>Look at the prompt that appears.</li>\n<li>Accept the prompt.</li>\n<li>Save the role.</li>\n</ol>",
+  "custom_expected": "<p>Turning on Order parts shows a prompt that See Financial Data must also be turned on (Order parts needs See Financial Data).</p>\n<p>Accepting turns See Financial Data on automatically.</p>\n<p>The role saves with both Order parts and See Financial Data on.</p>\n<p>You cannot end up with Order parts on while See Financial Data is off.</p>\n",
+  "viu_status": "Blocked-UI behavior; modal family build-verified",
+  "evidence": "Order parts toggle + See-Financial-Data enable modal confirmed in build. Enable-on-save behavior needs the role editor driven live.",
+  "fresh_run": "2026-07-13"
+}

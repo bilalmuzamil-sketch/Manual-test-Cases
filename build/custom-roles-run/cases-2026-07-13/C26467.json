@@ -1,0 +1,11 @@
+{
+  "case_id": 26467,
+  "section_id": 3544,
+  "title": "See Financial Data toggle appears in the Cross-Cutting Toggles card",
+  "custom_preconds": "<ol>\n<li>Log in as an Administrator.</li>\n<li>Open Roles & Permissions and start Create Role (or edit a custom role).</li>\n</ol>",
+  "custom_steps": "<ol>\n<li>Scroll to the bottom of the permissions area.</li>\n<li>Find the card titled Cross-Cutting Toggles.</li>\n<li>Read the first toggle's name.</li>\n<li>Find its on/off switch.</li>\n</ol>",
+  "custom_expected": "<p>A card titled Cross-Cutting Toggles is shown.</p>\n<p>The first toggle is named See Financial Data.</p>\n<p>The toggle has an on/off switch on the right.</p>\n<p>Note: the small grey text under this toggle currently repeats the Work orders description ('Manage work orders the core operational records in ShopView.') \u2014 this looks like a leftover placeholder and should be flagged to the team.</p>\n",
+  "viu_status": "Verified-Label (build); subtitle placeholder flagged",
+  "evidence": "Card 'Cross-Cutting Toggles' + toggle 'See Financial Data' confirmed in shipped build (CrossTogglesSection chunk). Reused subtitle string flagged.",
+  "fresh_run": "2026-07-13"
+}

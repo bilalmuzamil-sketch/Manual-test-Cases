@@ -1,0 +1,11 @@
+{
+  "case_id": 26469,
+  "section_id": 3544,
+  "title": "See Financial Data OFF: money amounts, rates, costs and margins are hidden",
+  "custom_preconds": "<ol>\n<li>A user is assigned a role that has See Financial Data OFF.</li>\n</ol>",
+  "custom_steps": "<ol>\n<li>Log in as that user and open a work order; look for any money amount.</li>\n<li>Open Customers and look.</li>\n<li>Open Parts and look.</li>\n<li>Open Vendors and look.</li>\n<li>Open Reports and look.</li>\n</ol>",
+  "custom_expected": "<p>No money amounts are shown on any page.</p>\n<p>The user can still do their normal add/edit actions, but all pricing fields are hidden.</p>\n",
+  "viu_status": "Blocked-UI (needs a live user with SFD OFF + manual page sweep)",
+  "evidence": "App-wide hidden-pricing sweep needs a seeded SFD-off role + manual UI pass.",
+  "fresh_run": "2026-07-13"
+}
