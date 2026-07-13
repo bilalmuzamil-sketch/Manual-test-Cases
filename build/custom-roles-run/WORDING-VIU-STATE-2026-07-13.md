@@ -11,8 +11,27 @@ chromium at `/opt/pw-browsers/chromium-1194` through `$HTTPS_PROXY`. Tooling com
 resides in `/tmp/custom-roles/beh0713/` (adm.mjs, boot2.mjs, drive.mjs, click.mjs,
 cascade.mjs, capture.mjs, setstatus.mjs). Screenshots:
 `screenshots/behavioral-viu-2026-07-13/`.
-- **Behavioral tally (252 core): VIU-Verified 104 · Blocked-UI 139 · Deviation/Finding 9.**
-  (Started this pass at 30 Verified / 214 Blocked; **~80 Blocked-UI cases flipped**.)
+- **Behavioral tally (252 core): VIU-Verified 138 · Blocked-UI 103 · Deviation/Finding 11.**
+  (Started the whole effort at 30 Verified / 214 Blocked; **~116 Blocked-UI cases flipped**
+  across two behavioral rounds. Round 2 added: §3549 Migration destination-state (11,
+  via live roles API), forced-logout via session invalidation (C26525/C26345/C26492/
+  C26494), Tech-view WO screen §3543 (8 verified + 2 deviation), SFD money §3544
+  (C26468/9/70), Reports §3541 (C26435), universal Clock In §3540/§3553
+  (C26432/C26528/C26551), and View-gives-access pages via a broad Viewer role — Schedule
+  C26394, Customers C26398, Catalogue C26413, POs C26416/C27876, Customers-off-hides-nav
+  C26404.)
+- **Round-2 new deviations:** C26459 & C26464 — labor rate is NOT hidden by tech view when
+  See Financial Data is ON (Rate/Margin/Total + labor $ shown); labor-rate visibility
+  follows SFD, not view mode (caveat: test role also had WO Create&Edit — dev to confirm).
+- **Still Blocked-UI (103):** the remaining deep app-behavior cases — WO create/delete/
+  review actions & customer notes (3534), WO-lines edit rules (3535), Schedule edit/delete
+  (3536), Customer records/AP-AR fields (3537), Parts create/delete + part-sales route
+  (3538), Invoicing/payments actions (3539), Timesheets read-only/My-Timesheets (3540),
+  portals (3541), Settings sub-page access (3542), tech-view parts-form/edit-lock/Send-to-
+  Portal location (3543 remainder), AP/AR tabs on customer/vendor (3545), History logs
+  (3546), Edit-Staff-Member role selector (3547 C26356/C26490/C26491/C26493), staff record
+  settings (3550), cross-permission end-to-end (3553). See the Blockers Tracker for the
+  by-section list + per-case precise reasons and the resume method.
 - **What was behaviorally verified live:** the whole role-editor surface — roles list
   (columns, Create Custom Role, search, 3-dot menus, eye/lock, Users-count link),
   template picker (11 templates, checkmark, Apply prefill, Skip blank), Create/Edit/
