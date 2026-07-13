@@ -253,6 +253,21 @@ def section_for(c):
 
 def main():
     cases = load_cases()
+    # TestRail Case-ID map (Standing Rule 8: every case-listing deliverable carries
+    # the C##### + a clickable TestRail link). Appended as the last two columns so
+    # existing r[0..10] index references stay valid.
+    import csv as _csv, os as _os
+    _idmap = {}
+    _mp = _os.path.join(_os.path.dirname(__file__), "testrail-id-map.csv")
+    if _os.path.exists(_mp):
+        for _r in _csv.DictReader(open(_mp)):
+            _idmap[_r["sf_id"]] = _r["ID"]
+
+    def _trlink(cid):
+        tid = _idmap.get(cid, "")
+        return (("C" + tid) if tid else "",
+                ("https://shopview.testrail.io/index.php?/cases/view/" + tid) if tid else "")
+
     rows = []
     for c in cases:
         cls = classify(c)
@@ -260,10 +275,11 @@ def main():
             sb, sbnote = SUBBUCKET.get(c["id"], ("reachable-now", _REACHABLE))
         else:
             sb, sbnote = "—", ""
+        _trid, _link = _trlink(c["id"])
         rows.append([
             c["id"], section_for(c), c["title"].strip(), c.get("viu_status", ""),
             cls["state"], cls["category"], cls["owner"], cls["needs"], cls["related"],
-            sb, sbnote,
+            sb, sbnote, _trid, _link,
         ])
 
     from collections import Counter, OrderedDict
@@ -289,7 +305,7 @@ def main():
     HEADER = ["Case ID", "Area", "Title", "Current VIU status", "State",
               "Blocker category", "Who unblocks", "What's needed to unblock",
               "Related story/question", "VIU sub-bucket",
-              "VIU sub-bucket detail (QA-pending only)"]
+              "VIU sub-bucket detail (QA-pending only)", "TestRail ID", "TestRail Link"]
 
     # ---- What to send next (batches) ----
     n_milos = disp_counts["BLOCKED — MILOS ANSWER"]
@@ -519,17 +535,19 @@ def main():
     lines.append("## Full per-case tracker")
     lines.append("")
     lines.append("| Case ID | Area | Title | VIU status | State | Blocker category | "
-                 "Who unblocks | What's needed | Related | VIU sub-bucket | Sub-bucket detail |")
-    lines.append("|---|---|---|---|---|---|---|---|---|---|---|")
+                 "Who unblocks | What's needed | Related | VIU sub-bucket | Sub-bucket detail | "
+                 "TestRail ID | TestRail Link |")
+    lines.append("|---|---|---|---|---|---|---|---|---|---|---|---|---|")
     for r in rows:
         cat_disp = {"READY (VIU-Verified)": "READY (VIU-Verified)",
                     "DEV NOT BUILT": "BLOCKED — DEV NOT BUILT",
                     "VIU PENDING (QA)": "BLOCKED — VIU PENDING (QA)",
                     "MILOS ANSWER": "BLOCKED — MILOS ANSWER",
                     "BUG/RULING": "BLOCKED — BUG/RULING"}[r[5]]
-        lines.append("| {} | {} | {} | {} | {} | {} | {} | {} | {} | {} | {} |".format(
+        _lnk = ("[{}]({})".format(r[11], r[12]) if r[11] else "")
+        lines.append("| {} | {} | {} | {} | {} | {} | {} | {} | {} | {} | {} | {} | {} |".format(
             r[0], md_esc(r[1]), md_esc(r[2]), md_esc(r[3]), r[4], cat_disp,
-            md_esc(r[6]), md_esc(r[7]), md_esc(r[8]), r[9], md_esc(r[10])))
+            md_esc(r[6]), md_esc(r[7]), md_esc(r[8]), r[9], md_esc(r[10]), r[11], _lnk))
     lines.append("")
     open(OUT_MD, "w").write("\n".join(lines))
     print("Wrote", OUT_MD)
