@@ -845,7 +845,7 @@
   "id": "SF-COMP-16",
   "area": "Completion — PO + Optional Invoice (Story 3)",
   "story_ref": "S3-R3",
-  "title": "Verify the optional-invoice completion modal collects the missing required vehicle fields when Require Review is off",
+  "title": "Verify the completion modal collects the missing required vehicle fields (Mileage and Engine Hours; no VIN field in the modal)",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "Work Order edit access.",
@@ -861,15 +861,15 @@
    "3. Leave one empty and try to continue."
   ],
   "expected": [
-   "1. When Require Review Before Completion is off, the completion modal collects the missing required vehicle fields: Mileage, VIN and Engine Hours.",
-   "2. When Require Review Before Completion is on, the modal does not collect VIN here — VIN is captured later by the reviewer in the Mark Reviewed step — and the modal collects only Mileage and Engine Hours.",
-   "3. You cannot continue until the required fields are supplied.",
+   "1. When required vehicle fields are missing, the completion Details modal collects Mileage and Engine Hours.",
+   "2. There is no VIN field in the completion modal (VIN validity is shown by the 'Valid VIN Required' chip on the work order header; for a review-on work order the VIN is captured later by the reviewer in the Mark Reviewed dialog).",
+   "3. You cannot continue until the required fields are supplied (an empty required field shows a 'required field' error).",
    "4. Tech story is handled separately as a line requirement, not inside this step."
   ],
   "design_ref": "WO Review Flow.html (Details step)",
-  "viu_status": "VIU-Pending",
+  "viu_status": "VIU-Verified",
   "fresh_run": "2026-07-13",
-  "notes": "V2.4 Δ1 wording applied (VIN dropped from the review-on completion modal; Mileage + Engine Hours collected; VIN moves to the reviewer). VIU-Pending: verifying the modal's collected-field set needs Require Mileage + Require Engine Hours ON and a WO missing those values; not driven this session to avoid settings churn on the shared env while a tester may be active. Completion surface confirmed live 2026-07-13.",
+  "notes": "Wording+VIU 2026-07-13 (S2-15827 / S2-15783 live, Require Mileage + Engine Hours ON, Require Review off): the completion Details modal ('Complete Work Order') shows Mileage + Engine Hours fields and NO VIN field; empty -> 'required field' block. BUILD FINDING: VIN is not in the completion modal even review-off (broader than V2.4 Δ1). Corrected expected accordingly. Settings restored byte-identical.",
   "api_related": false
  },
  {

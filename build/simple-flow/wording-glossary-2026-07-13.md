@@ -158,3 +158,23 @@ live 2026-07-13 on S2-15823 (Require Review ON).
   missing; every test WO this run had a VIN, so it completed directly. Dialog was
   verified in a prior run (`S16-04-review-wizard.png`, 2026-07-06); Δ4 (note removed)
   confirmed in the spec.
+
+---
+
+## SF-VAL — Completion / receive validation gates
+
+Screenshots: `VAL-details-mileage-modal.png`, `VAL-block-empty.png`. Driven live
+2026-07-13 (Require Mileage + Engine Hours ON, then RESTORED byte-identical).
+
+**Completion Details modal (exact, review OFF):** title **`Complete Work Order`**;
+fields **`Mileage`** and **`Engine Hours`** only — **no VIN field in the modal**;
+buttons **`Cancel`** and **`Complete Work Order`** (with a forward arrow). Leaving a
+required field empty and pressing Complete Work Order shows a **`required field`**
+error and completion does **not** proceed (verified on S2-15783).
+
+**KEY BUILD FINDING (VIN):** VIN is **not** collected in the completion Details
+modal, even when Require Review is OFF (the modal shows only Mileage + Engine Hours).
+VIN validity surfaces via the WO-header **`Valid VIN Required`** chip; for review-on
+it is captured in the Mark Reviewed dialog. This is broader than V2.4 Δ1 (which
+described VIN dropping from the review-on modal) — the build has no VIN field in the
+completion modal at all. Affects SF-COMP-16 / SF-VAL-02 (corrected/flagged).

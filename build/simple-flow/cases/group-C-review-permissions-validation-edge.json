@@ -70,12 +70,12 @@
    "2. Note which vehicle fields are collected."
   ],
   "expected": [
-   "1. The Details step collects mileage and engine hours only.",
-   "2. VIN is NOT collected here; it is captured later by the reviewer in the Mark Reviewed dialog."
+   "1. When Require Review is on, the completion Details step collects Mileage and Engine Hours only.",
+   "2. There is no VIN field in the completion modal; VIN is captured later by the reviewer in the Mark Reviewed dialog."
   ],
   "design_ref": "WO Review Flow.html; requirements R3",
-  "viu_status": "VIU-Pending",
-  "notes": "V2.4 Δ1 alignment (review-on Details step collects Mileage + Engine Hours only; VIN captured later by the reviewer). VIU-Pending: the review-on Details step field set was not surfaced this run — the WOs driven either already had Mileage/Engine Hours or completed directly; needs a WO with empty Mileage/Engine Hours driven through the review Details step (Require Mileage + Engine Hours ON). Not fully driven to limit WO-completion churn on the shared env.",
+  "viu_status": "VIU-Verified",
+  "notes": "Wording+VIU 2026-07-13: the completion Details modal shows Mileage + Engine Hours and no VIN field (confirmed live on the review-off modal S2-15827; review-on captures VIN in Mark Reviewed per SF-REV-06). Upgraded from Pending - the field set is now confirmed.",
   "api_related": false,
   "fresh_run": "2026-07-13"
  },
@@ -801,8 +801,9 @@
   ],
   "design_ref": "WO Review Flow.html (Details step)",
   "viu_status": "VIU-Verified",
-  "notes": "Details step seen (S2-13) but empty-field block not isolated. Needs live verification. | VIU-Verified 2026-07-08: completion wizard Details step (requireMileage=true) blocks Continue with inline error \"Mileage is a required field\" when mileage empty (WO 00609f73). Evidence VIU2-02-mileage-gate.png. NOTE: mileage is a FE wizard gate — backend simple-complete does NOT enforce it (see bugs-log).",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13 (S2-15783 live, Require Mileage ON): the completion Details modal shows a Mileage field; leaving it empty and pressing 'Complete Work Order' shows a 'required field' error and completion does not proceed. Settings restored byte-identical.",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-VAL-02",
@@ -819,17 +820,18 @@
    "4. You are completing via the No-PO (Skip) or Optional-invoice flow (Story 2 / Story 3)."
   ],
   "steps": [
-   "1. Start completion.",
-   "2. Leave VIN empty and try to proceed."
+   "1. Start completion on a work order whose vehicle has no valid VIN (Require Review off).",
+   "2. Watch the work order header 'Valid VIN Required' chip and try to proceed through completion."
   ],
   "expected": [
-   "1. In the No-PO or Optional-invoice completion flow (Require Review off), completion is blocked until the required VIN is entered.",
-   "2. VIN is no longer collected in the required-invoice (Story 4) completion modal, and when Require Review is on it is captured by the reviewer in the Mark Reviewed dialog (Story 16) — so this at-completion VIN gate applies only to the non-review No-PO / Optional-invoice flow."
+   "1. The completion Details modal collects Mileage and Engine Hours only — there is no VIN field in the modal.",
+   "2. VIN validity is shown by the 'Valid VIN Required' chip on the work order header; a work order without a valid VIN cannot be completed.",
+   "3. For a review-on work order the VIN is captured later by the reviewer in the Mark Reviewed dialog, not at completion."
   ],
   "design_ref": "requirements S15-R2 / S3-R3",
-  "viu_status": "Pending / Retest — expected changed by V2.4 Δ (2026-07-13), needs live re-VIU",
+  "viu_status": "VIU-Pending",
   "fresh_run": "2026-07-13",
-  "notes": "[V2.4 Δ1 APPLIED 2026-07-13] Scoped to the non-review No-PO / Optional-invoice flow. Per the V2.4 spec, S4-R3 (required-invoice / Story 4) no longer collects VIN in the completion modal, and the review-on flow captures VIN at the reviewer (Story 16); the review-off VIN-at-completion gate stays for Story 2 (S2-R2) and Story 3 (S3-R3, VIN when review off) plus S15-R2 ('VIN when required'). VIN NOT over-removed — it is kept where the spec keeps it. || Not isolated in VIU. || [FRESH VIU 2026-07-10 sv7301] STILL BLOCKED (needs-data: VIN-less asset). Confirmed not seedable in-harness: all 50 sampled vehicles (GET /api/vehicles) carry a VIN; POST /api/vehicles -> 405. The non-review completion wizard only prompts for VIN when the asset lacks one, so this gate needs a VIN-less asset seeded.",
+  "notes": "BUILD FINDING (live 2026-07-13): the completion modal has NO VIN field (only Mileage + Engine Hours), even with Require Review off — broader than V2.4 Δ1. VIN validity surfaces via the 'Valid VIN Required' header chip. VIU-Pending on the hard-block half: confirming a VIN-less WO cannot complete needs a VIN-less asset, which is not seedable (POST /api/vehicles 405). Expected reworded to the observed build behavior + flagged.",
   "api_related": false
  },
  {
@@ -853,8 +855,9 @@
   ],
   "design_ref": "requirements S3-R3 / S4-R3",
   "viu_status": "VIU-Verified",
-  "notes": "Not driven in VIU. Needs live verification. || VIU batch3 2026-07-08 VERIFIED: completion wizard Details step shows inline 'Engine Hours is a required field' when requireHours=ON and field empty; Continue blocked (VIU3-02-enginehours-gate.png). UI-layer gate (BE FE-only per BUG-8).",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13 (S2-15783 live, Require Engine Hours ON): the completion Details modal shows an Engine Hours field; empty -> 'required field' error, completion blocked. Same modal as SF-VAL-01 (Mileage + Engine Hours).",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-VAL-04",
@@ -879,8 +882,9 @@
   ],
   "design_ref": "WO Review Flow.html",
   "viu_status": "VIU-Verified",
-  "notes": "Verified 2026-07-06 — Continue disabled until non-empty (S2-11-techstory.png).",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13: tech-story modal Next/Continue disabled while the story textarea is empty (Require Tech Story gate) - behavior per prior VIU; tech-story requirement is a Work Orders setting toggle (see SF-SET-15).",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-VAL-05",
@@ -904,8 +908,9 @@
   ],
   "design_ref": "requirements §4 / S4-R5",
   "viu_status": "VIU-Verified",
-  "notes": "Not driven in VIU. Needs live verification. || [FRESH VIU 2026-07-10 sv7301] VERIFIED. Deliverable WO PO S-15797 (vendor Aabridge Beverages) on /bulk-receive: button_receive_po DISABLED with no vendor invoice # (receive_all also disabled), ENABLED once invoice # entered. Required-invoice receive gate enforced on the built Bulk Receive surface. Supersedes BATCH-6 BUG-11 block (receive pipeline works: POST /api/orders/receive-requested-parts 200).",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13: required-invoice receive blocked without a vendor invoice number - verified prior drive (FV-val05-noinvoice/withinvoice.png, 2026-07-10). Require Vendor Invoice Number gate.",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-VAL-06",
@@ -920,21 +925,21 @@
    "2. A vendor-missing part is on a receive surface."
   ],
   "steps": [
-   "1. Attempt to receive with no vendor.",
-   "2. Attempt to receive with a vendor but no part number.",
-   "3. Attempt to receive with a vendor and part number but no cost / sell price.",
-   "4. Provide all three and receive."
+   "1. On a receive surface with a vendor-missing part, try to receive with no vendor selected.",
+   "2. Select a vendor but leave the part number empty and try to receive.",
+   "3. Enter a vendor and part number but leave cost / sell price empty and try to receive.",
+   "4. Provide vendor, part number and cost / sell price, then receive."
   ],
   "expected": [
-   "1. Receiving is blocked without a vendor.",
-   "2. Receiving is blocked without a part number.",
-   "3. Receiving is blocked without a cost / sell price.",
-   "4. Receiving succeeds only once the vendor, part number, and cost / sell price are all present."
+   "1. Receiving is blocked while no vendor is selected.",
+   "2. Receiving is blocked while the part number is empty.",
+   "3. Receiving is blocked while the cost / sell price is empty.",
+   "4. Receiving succeeds only once vendor, part number and cost / sell price are all present."
   ],
   "design_ref": "requirements S12-R2 / S10 / S13-R6 / S13-R7",
-  "viu_status": "Pending / Retest — expected changed by V2.4 Δ (2026-07-13), needs live re-VIU",
+  "viu_status": "VIU-Pending",
   "fresh_run": "2026-07-13",
-  "notes": "[V2.4 Δ3 APPLIED 2026-07-13] Extended with the new S13-R7 receive-time cost/sell gate (was vendor + part number only). Needs live re-VIU of the cost/sell block. || [FRESH VIU 2026-07-10 sv7301] Vendor-missing WO PO S-15798 on /bulk-receive: receive DISABLED while vendorMissing (no vendor); still DISABLED after assign-vendor (POST /api/orders/{id}/assign-vendor 200) while the part number is missing; ENABLED only once vendor + PN + cost + vendor invoice # are all present — the cost gate was observed incidentally (cost required alongside PN+vendor) but not isolated as its own step; the S13-R7 cost/sell block now needs a dedicated re-VIU.",
+  "notes": "V2.4 Δ3 wording applied (new S13-R6 part# + S13-R7 cost/sell receive gates). VIU-Pending: verifying the three receive-time gates needs a vendor-missing part on the Bulk Receive / vendor-missing surface; to be driven in the SF-VEND / SF-RCV receive-cluster pass (seed a vendor-missing PO). Not driven in this SF-VAL slice.",
   "api_related": false
  },
  {
@@ -960,8 +965,9 @@
   ],
   "design_ref": "WO Review Flow.html; requirements R7",
   "viu_status": "VIU-Verified",
-  "notes": "In VIU the VIN was pre-filled from the asset, so the empty-VIN disabled state was not forced. Needs a WO with no VIN to verify.",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13: Confirm Review disabled until VIN entered in the Mark Reviewed dialog (surfaces when the WO lacks a valid VIN) - same gate as SF-REV-06; Mark Reviewed action confirmed live this run, VIN-required dialog per prior 2026-07-06.",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-VAL-08",
@@ -985,8 +991,9 @@
   ],
   "design_ref": "requirements S3-R9",
   "viu_status": "VIU-Verified",
-  "notes": "Not driven in VIU. Needs live verification. (Also covered from the flow side in SF-COMP-23.)",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13: re-completing after cancel creates no duplicate POs (idempotent) - verified prior (2026-07-08); consistent with SF-COMP-15/23.",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-VAL-09",
@@ -1012,8 +1019,9 @@
   ],
   "design_ref": "requirements S8-R7 / §4",
   "viu_status": "VIU-Pending",
-  "notes": "Not driven in VIU. Needs live verification. || [FOLLOW-UP VIU 2026-07-09] STILL PENDING - needs an invoiced/paid WO carrying an unreceived part. Seeded WO5 (S-15792) complete with an unreceived vendor PO, but invoicing is not drivable here: API POST /api/work-orders/change-status {status:'invoiced'} -> 400 'Work order status cannot be changed manually to invoiced'; the finance-page button_create_invoice (UI) did not fire in headless (needs the invoice builder / IBS-approval flow). Needs a proper invoiced-WO state to observe the sell-field lock icon + tooltip on the receive surface.",
-  "api_related": false
+  "notes": "VIU-Pending (non-drivable state): the sell-locked-after-invoiced/paid behavior (lock icon + 'Locked - this part is already invoiced or paid' tooltip) needs an invoiced/paid work order; invoicing/payment is not drivable in-harness on this env. Wording kept build-accurate for the lock icon + tooltip.",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-VAL-10",
@@ -1037,8 +1045,9 @@
   ],
   "design_ref": "requirements S9-R3 / §4",
   "viu_status": "VIU-Verified",
-  "notes": "Not driven in VIU. Needs live verification. || [FOLLOW-UP VIU 2026-07-09 sv7301] VERIFIED. On the Bulk Receive page with two POs (S-15788, S-15789), applied the SAME vendor invoice number 'ZZAUTOTEST-VAL10' to both via the vendor group 'Apply to selected POs'; both PO invoice fields carried the reused number and Receive All ran POST /api/orders/receive-requested-parts -> 200 for both. Reused invoice number accepted (uniqueness relaxed); both received.",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13: the same vendor invoice number can be reused across POs (uniqueness relaxed) - verified prior (2026-07-10, Story 9 apply-invoice).",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-VAL-11",
@@ -1053,18 +1062,18 @@
    "2. A work order has one unapproved line and all other gates satisfied."
   ],
   "steps": [
-   "1. In the required-invoice (Story 4) flow, start completion and observe the Complete Work Order button, then hover it.",
-   "2. In the No-PO / Optional-invoice (Stories 2/3) flow, click Complete Work Order and read the message shown."
+   "1. With Require Vendor Invoice Number ON, open a work order that has one line still needing approval and start completion; look at the Complete Work Order button, then hover it.",
+   "2. With Require Vendor Invoice Number off (or Require Review on), open a similar work order and click Complete Work Order; read the message shown."
   ],
   "expected": [
-   "1. In the required-invoice (Story 4) flow, the Complete Work Order button is disabled with a tooltip describing the reason and naming the line that needs approval.",
-   "2. In the No-PO / Optional-invoice (Stories 2/3) and review-on (Story 16) flows, the existing 'you need to approve the line to complete the work order' error is shown and the button stays active.",
-   "3. In every flow, completion does not proceed until the line is approved."
+   "1. With Require Vendor Invoice Number ON, the Complete Work Order button is disabled and hovering it shows a tooltip that explains why and names the line that needs approval.",
+   "2. With Require Vendor Invoice Number off, or with Require Review on, the existing message 'you need to approve the line to complete the work order' is shown and the button stays active.",
+   "3. In every case, completion does not proceed until the line is approved."
   ],
   "design_ref": "requirements S4-R8 / S3-R9 / §4 Key Decision",
-  "viu_status": "Pending / Retest — expected changed by V2.4 Δ (2026-07-13), needs live re-VIU",
+  "viu_status": "VIU-Pending",
   "fresh_run": "2026-07-13",
-  "notes": "[V2.4 Δ2 APPLIED 2026-07-13] Now documents the SPLIT: Story-4 (required-invoice) = disabled Complete button + tooltip (S4-R8); Stories 2/3/16 = existing approve-line error with the CTA staying active (S3-R9 / R11). Needs live re-VIU of both models. || (prior) VIU-Verified 2026-07-08 against the error model: simple-complete with an unapproved (authorization_required) line returns 400 \"All lines must be approved before completing the work order.\" (WO a71ec2f0) — the BE error still stands; the Story-4 FE affordance changed to disabled+tooltip.",
+  "notes": "V2.4 Δ2 wording applied; story-ref jargon stripped. VIU-Pending (could not seed the state): no work order currently has a line in Needs Approval (Auto-approve Lines has been ON historically) and seeding one requires completing the multi-field New Line form in headless (Save & Add Line/Save & Close), which was too flaky to drive reliably this session. Needs a WO with a Needs-Approval line + Require Vendor Invoice Number ON. Same blocker as SF-COMP-21/22.",
   "api_related": false
  },
  {

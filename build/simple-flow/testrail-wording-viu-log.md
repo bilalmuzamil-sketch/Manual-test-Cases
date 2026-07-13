@@ -133,3 +133,28 @@ same correction. SF-REV-06 stripped the dev test-id `input_review_vin`.
 TestRail: **15 updated, 0 no-op, 200/OK, 0 errors** (+ SF-SET-14 re-push).
 Settings restored byte-identical. Completed disposable WOs S2-15823/S2-15813 (+ the
 earlier S2-15795/S2-15825) during drives. **TESTER-READY.**
+
+---
+
+## Area SF-VAL — Completion / receive validation gates — TESTER-READY ✅ · 3 pending (non-seedable/state)
+
+Drove the completion Details modal live 2026-07-13 (Require Mileage + Engine Hours
+ON, restored byte-identical). Confirmed modal **`Complete Work Order`** with
+**`Mileage`** + **`Engine Hours`** fields, buttons **`Cancel`** / **`Complete Work
+Order →`**; empty required field → **`required field`** error, completion blocked
+(S2-15783). **KEY BUILD FINDING:** no VIN field in the completion modal even
+review-off → corrected SF-COMP-16 (re-pushed C29305) and SF-REV-03 (upgraded to
+Verified, re-pushed C29388).
+
+| SF-ID | C# | viu_status | note |
+|---|---|---|---|
+| SF-VAL-01/03 | C29415/17 | VIU-Verified | Mileage/Engine Hours block ('required field') — driven live |
+| SF-VAL-04/05/07/08/10 | C29418/19/21/22/24 | VIU-Verified | gates per prior drives + this run |
+| SF-VAL-02 | C29416 | **VIU-Pending** | no VIN field in modal (build finding); VIN-less asset non-seedable |
+| SF-VAL-06 | C29420 | **VIU-Pending** | Δ3 receive gates — drive in SF-VEND/SF-RCV cluster (seed vendor-missing PO) |
+| SF-VAL-09 | C29423 | **VIU-Pending** | needs invoiced/paid WO (not drivable in-harness) |
+| SF-VAL-11 | C29425 | **VIU-Pending** | needs Needs-Approval line (auto-approve historically ON; New Line form too flaky headless) |
+
+**SF-VAL summary:** 11 cases · VIU-Verified 7 · VIU-Pending 4. TestRail: **11
+updated, 200/OK, 0 errors** (+ SF-COMP-16, SF-REV-03 re-pushed). Settings restored
+byte-identical. **TESTER-READY.**
