@@ -282,3 +282,33 @@ FD-LABOR-007 permission negative: re-check after the roles matrix is re-derived.
 | FD-PART-008 | [C28453](https://shopview.testrail.io/index.php?/cases/view/28453) | VIU-Verified |
 
 **Push totals:** 15 updated · 0 no-op · 0 error.
+
+## Area: FD-PROC (Processing Fee) — 14 cases — TESTER-READY
+
+**Build:** the template Type dropdown offers only Fee/Discount → **FD-PROC-001..004 stay
+Blocked-NotBuilt** (Story-8 builder UI not shipped; BE accepts kind=processing_fee via API).
+Behavior cases use build labels ('Add Fee/Discount', 'Apply From Template', ⋮ 'Remove').
+**VIU (fresh 2026-07-13, API):** Processing Fee + Max/min cap → 400 'A processing fee cannot
+have a minimum or maximum cap.'; disallowed method → 400 'Calculation type "pct_subtotal" is
+not allowed for a processing_fee.' → confirms FD-PROC-010 AND FD-PROC-014. **Deviations
+kept:** FD-PROC-008 (Edit shown but inert for a pfee), FD-PROC-009 (FDBUG-2 base includes
+whole-WO adjustments).
+
+| FD-ID | TestRail | viu_status |
+|---|---|---|
+| FD-PROC-001 | [C28519](https://shopview.testrail.io/index.php?/cases/view/28519) | VIU-Blocked-NotBuilt |
+| FD-PROC-002 | [C28520](https://shopview.testrail.io/index.php?/cases/view/28520) | VIU-Blocked-NotBuilt |
+| FD-PROC-003 | [C28521](https://shopview.testrail.io/index.php?/cases/view/28521) | VIU-Blocked-NotBuilt |
+| FD-PROC-004 | [C28522](https://shopview.testrail.io/index.php?/cases/view/28522) | VIU-Blocked-NotBuilt |
+| FD-PROC-005 | [C28523](https://shopview.testrail.io/index.php?/cases/view/28523) | VIU-Verified |
+| FD-PROC-006 | [C28524](https://shopview.testrail.io/index.php?/cases/view/28524) | VIU-Verified |
+| FD-PROC-007 | [C28525](https://shopview.testrail.io/index.php?/cases/view/28525) | VIU-Verified |
+| FD-PROC-008 | [C28526](https://shopview.testrail.io/index.php?/cases/view/28526) | VIU-Deviation |
+| FD-PROC-009 | [C28527](https://shopview.testrail.io/index.php?/cases/view/28527) | VIU-Deviation |
+| FD-PROC-010 | [C28528](https://shopview.testrail.io/index.php?/cases/view/28528) | VIU-Verified |
+| FD-PROC-011 | [C28529](https://shopview.testrail.io/index.php?/cases/view/28529) | VIU-Verified |
+| FD-PROC-012 | [C28530](https://shopview.testrail.io/index.php?/cases/view/28530) | VIU-Verified |
+| FD-PROC-013 | [C28531](https://shopview.testrail.io/index.php?/cases/view/28531) | VIU-Verified |
+| FD-PROC-014 | [C28532](https://shopview.testrail.io/index.php?/cases/view/28532) | VIU-Verified |
+
+**Push totals:** 14 updated · 0 no-op · 0 error.

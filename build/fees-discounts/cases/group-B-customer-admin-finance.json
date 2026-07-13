@@ -893,7 +893,7 @@
   "id": "FD-PROC-001",
   "area": "Processing Fee — template builder",
   "story_ref": "S8-R1, S8-R3, S7-R12a",
-  "title": "Verify \"Processing Fee\" is a third type in the template builder (template-only)",
+  "title": "Verify 'Processing Fee' is a third Type in the template builder",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "Settings → Finance + flag ON",
@@ -904,20 +904,20 @@
    "1. Open the Type dropdown in the template create dialog."
   ],
   "expected": [
-   "1. The Type dropdown offers three options: \"Fee\", \"Discount\", and \"Processing Fee\".",
-   "2. Processing Fee can be created only here (as a template)."
+   "1. The Type dropdown offers 'Fee', 'Discount' and 'Processing Fee'.",
+   "2. A Processing Fee can be created only here (as a template)."
   ],
   "design_ref": "requirements.md §2, §9.2 (S8-R1/R3); design-notes.md §9 item 3 (Processing Fee absent from mockups)",
   "viu_status": "VIU-Blocked-NotBuilt",
-  "notes": "Processing Fee UI is absent from the HTML mockups — verify live. | VIU qb batch-1 (2026-07-08): 'Processing Fee' third type ABSENT from the template-builder Type dropdown (Fee/Discount only). Backend DOES support kind 'processing_fee' (template created via API); admin LIST then shows its Type as 'Fee' (mislabel) while the customer tab shows 'Processing fee'. Shots s2-01, s11-01/02. | FRESH VIU 2026-07-10: RE-CHECKED TODAY: template-builder Type options are exactly [Fee, Discount] — Processing Fee STILL MISSING from the builder UI (PO Q3=B says in-scope; FDBUG-8; shot 02-template-dialog)",
+  "notes": "Processing Fee UI is absent from the HTML mockups — verify live. | VIU qb batch-1 (2026-07-08): 'Processing Fee' third type ABSENT from the template-builder Type dropdown (Fee/Discount only). Backend DOES support kind 'processing_fee' (template created via API); admin LIST then shows its Type as 'Fee' (mislabel) while the customer tab shows 'Processing fee'. Shots s2-01, s11-01/02. | FRESH VIU 2026-07-10: RE-CHECKED TODAY: template-builder Type options are exactly [Fee, Discount] — Processing Fee STILL MISSING from the builder UI (PO Q3=B says in-scope; FDBUG-8; shot 02-template-dialog) | WORDING+VIU 2026-07-13: Confirmed live: Type dropdown = Fee/Discount only. NOT BUILT: the template Type dropdown offers only Fee/Discount (no 'Processing Fee'); the Story-8 Processing-Fee builder UI has not shipped. The back-end DOES accept kind=processing_fee via API (201). Re-test when the builder ships.",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "FD-PROC-002",
   "area": "Processing Fee — methods",
   "story_ref": "S8-R5, S8-R6, S8-R9, §5-R4, §5-R10",
-  "title": "Verify a Processing Fee offers only Flat Amount (default) and % of Grand Total, with a tax-inclusive base",
+  "title": "Verify a Processing Fee offers only Flat Amount and % of Grand Total",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "Settings → Finance + flag ON",
@@ -925,25 +925,25 @@
    "1. On the admin Fees & Discounts create dialog with Type = \"Processing Fee\"."
   ],
   "steps": [
-   "1. Open the Calculation type dropdown while Type = Processing Fee.",
-   "2. For comparison, switch Type back to Fee and open the dropdown."
+   "1. With Type set to 'Processing Fee', open the Calculation Type dropdown.",
+   "2. For comparison, switch Type back to 'Fee' and open the dropdown."
   ],
   "expected": [
-   "1. With Type = Processing Fee, Calculation type offers only \"Flat Amount\" (default) and \"% of Grand Total\".",
-   "2. \"% of Grand Total\" is offered ONLY for a Processing Fee (it does not appear for Fee/Discount).",
-   "3. Per §5-R4, \"% of Grand Total\" uses a base that includes tax on purpose (net subtotal + tax on that net subtotal) — the one exception to the before-tax rule."
+   "1. For a Processing Fee, Calculation Type offers only 'Flat Amount' (default) and '% of Grand Total'.",
+   "2. '% of Grand Total' is offered only for a Processing Fee.",
+   "3. '% of Grand Total' uses a base that includes tax (net subtotal + tax on it)."
   ],
   "design_ref": "requirements.md §2, §7 (§5-R4/R10), §9.2 (S8-R5/R6/R9)",
   "viu_status": "VIU-Blocked-NotBuilt",
-  "notes": "VIU qb batch-1 (2026-07-08): UI not built. BACKEND verified: processing_fee allows pct_grand_total and flat ONLY (pct_subtotal -> 400 'Calculation type \"pct_subtotal\" is not allowed for a processing_fee'). | FRESH VIU 2026-07-10: builder UI absent (re-checked today); BE method constraint re-proven separately (pct_labor rejected for processing_fee)",
+  "notes": "VIU qb batch-1 (2026-07-08): UI not built. BACKEND verified: processing_fee allows pct_grand_total and flat ONLY (pct_subtotal -> 400 'Calculation type \"pct_subtotal\" is not allowed for a processing_fee'). | FRESH VIU 2026-07-10: builder UI absent (re-checked today); BE method constraint re-proven separately (pct_labor rejected for processing_fee) | WORDING+VIU 2026-07-13: Builder not shipped. NOT BUILT: the template Type dropdown offers only Fee/Discount (no 'Processing Fee'); the Story-8 Processing-Fee builder UI has not shipped. The back-end DOES accept kind=processing_fee via API (201). Re-test when the builder ships.",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "FD-PROC-003",
   "area": "Processing Fee — no Max Amount",
   "story_ref": "S8-R10, S8-N3, S7-R12e",
-  "title": "Verify the Max Amount field is hidden for every Processing Fee (both methods)",
+  "title": "Verify the Max Amount field is hidden for a Processing Fee (both methods)",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "Settings → Finance + flag ON",
@@ -951,23 +951,23 @@
    "1. On the admin create dialog with Type = Processing Fee."
   ],
   "steps": [
-   "1. Set Calculation type = Flat Amount and check for a Max Amount field.",
-   "2. Set Calculation type = % of Grand Total and check again."
+   "1. With Type 'Processing Fee' and Calculation Type 'Flat Amount', check for a Max Amount field.",
+   "2. Switch to '% of Grand Total' and check again."
   ],
   "expected": [
-   "1. No \"Max Amount (Optional)\" field is shown for a Processing Fee under either method."
+   "1. No Max Amount field is shown for a Processing Fee under either method."
   ],
   "design_ref": "requirements.md §2, §9.2 (S8-R10, S8-N3)",
   "viu_status": "VIU-Blocked-NotBuilt",
-  "notes": "VIU qb batch-1 (2026-07-08): UI not built. BACKEND verified: maxCap on processing fee -> 400 'A processing fee cannot have a minimum or maximum cap.' | FRESH VIU 2026-07-10: builder UI absent (re-checked today); BE rejects pfee maxCap (400)",
+  "notes": "VIU qb batch-1 (2026-07-08): UI not built. BACKEND verified: maxCap on processing fee -> 400 'A processing fee cannot have a minimum or maximum cap.' | FRESH VIU 2026-07-10: builder UI absent (re-checked today); BE rejects pfee maxCap (400) | WORDING+VIU 2026-07-13: Builder not shipped. NOT BUILT: the template Type dropdown offers only Fee/Discount (no 'Processing Fee'); the Story-8 Processing-Fee builder UI has not shipped. The back-end DOES accept kind=processing_fee via API (201). Re-test when the builder ships.",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "FD-PROC-004",
   "area": "Processing Fee — taxable + jurisdiction note",
   "story_ref": "S8-R11, S8-R12, S8-R13, §5-R15",
-  "title": "Verify the Processing Fee Taxable control defaults Yes and shows the §5-R15 jurisdiction note",
+  "title": "Verify the Processing Fee Taxable defaults to Yes and shows the tax-jurisdiction note",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "Settings → Finance + flag ON",
@@ -975,20 +975,19 @@
    "1. On the admin create dialog with Type = Processing Fee."
   ],
   "steps": [
-   "1. Observe the Taxable control default value.",
-   "2. Read the advisory text rendered below the Taxable setting.",
-   "3. Capture the literal wording (screenshot)."
+   "1. Look at the Taxable control's default value.",
+   "2. Read any note shown below the Taxable setting."
   ],
   "expected": [
-   "1. Taxable is a Yes/No dropdown defaulting to \"Yes\".",
-   "2. Directly below the Taxable setting, this exact advisory text shows: \"Tax treatment varies by jurisdiction — confirm your local requirements before saving.\"",
-   "3. The note is a plain advisory to the shop — it is not a UI instruction and not a legal-compliance statement."
+   "1. Taxable defaults to 'Yes'.",
+   "2. Directly below Taxable this note shows: 'Tax treatment varies by jurisdiction — confirm your local requirements before saving.'",
+   "3. The note is plain advice to the shop, not a system instruction or a legal statement."
   ],
   "design_ref": "requirements.md §5-R15; §9.2 (S8-R11/R12/R13)",
-  "viu_status": "VIU-Blocked-NotBuilt (expected rewritten to §5-R15 jurisdiction note per S8-R13; re-check when Story-8 builder ships)",
-  "notes": "V1_2 (2026-07-13): REWRITTEN — the old Processing-Fee legal-disclosure block (\"render exactly / no auto-translate without legal sign-off\") is REMOVED in S8-R13; expected now asserts the new §5-R15 taxable jurisdiction note (exact string). This case folds in the Processing Fee dialog §5-R15 check (S8-R13), so no separate Processing-Fee §5-R15 case was authored. Story-8 builder UI is still Not-Built on qb — re-check the note when it ships. | OPEN QUESTION (§14 item 5): the disclosure's literal text is NOT in the exported spec — capture the exact wording from the live dialog before asserting it. Spec copy says \"toggle\" but the control is the Yes/No dropdown. | VIU qb batch-1 (2026-07-08): UI not built; taxable default + legal disclosure unverifiable (disclosure text also absent from spec extract — open question #5). | FRESH VIU 2026-07-10: builder UI absent (re-checked today)",
+  "viu_status": "VIU-Blocked-NotBuilt",
+  "notes": "V1_2 (2026-07-13): REWRITTEN — the old Processing-Fee legal-disclosure block (\"render exactly / no auto-translate without legal sign-off\") is REMOVED in S8-R13; expected now asserts the new §5-R15 taxable jurisdiction note (exact string). This case folds in the Processing Fee dialog §5-R15 check (S8-R13), so no separate Processing-Fee §5-R15 case was authored. Story-8 builder UI is still Not-Built on qb — re-check the note when it ships. | OPEN QUESTION (§14 item 5): the disclosure's literal text is NOT in the exported spec — capture the exact wording from the live dialog before asserting it. Spec copy says \"toggle\" but the control is the Yes/No dropdown. | VIU qb batch-1 (2026-07-08): UI not built; taxable default + legal disclosure unverifiable (disclosure text also absent from spec extract — open question #5). | FRESH VIU 2026-07-10: builder UI absent (re-checked today) | WORDING+VIU 2026-07-13: Builder not shipped; when it ships, also check the §5-R15 note (currently absent in the whole-WO dialog per FD-WO-016). NOT BUILT: the template Type dropdown offers only Fee/Discount (no 'Processing Fee'); the Story-8 Processing-Fee builder UI has not shipped. The back-end DOES accept kind=processing_fee via API (201). Re-test when the builder ships.",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "FD-PROC-005",
@@ -1003,18 +1002,18 @@
    "2. An open work order is available."
   ],
   "steps": [
-   "1. On the WO toolbar ⋯ menu, choose \"Add Work Order Fee / Discount\" and open the Type dropdown.",
-   "2. Open the \"Apply from template (optional)\" picker in the same dialog and from a labor line and a part dialog."
+   "1. On the work order ⋯ menu click 'Add Fee/Discount' and open the Type dropdown.",
+   "2. Open the 'Apply From Template' dropdown here and from a labor line and a part dialog."
   ],
   "expected": [
-   "1. The WO Add dialog Type dropdown does NOT list \"Processing Fee\" (only Fee and Discount).",
-   "2. The template picker does NOT list any Processing Fee template from any starting place (WO, labor line, part)."
+   "1. The work order Add dialog Type dropdown does not list 'Processing Fee' (only Fee and Discount).",
+   "2. The 'Apply From Template' dropdown does not list any Processing Fee template from any starting place."
   ],
   "design_ref": "requirements.md §2, §9.2 (S8-R16, S8-N1, S8-N2)",
   "viu_status": "VIU-Verified",
-  "notes": "Processing Fee reaches a WO only via auto-apply (S8-R14) or a customer default (S8-R15). | VIU qb batch-1 (2026-07-08): Cannot be added to a WO by hand: WO dialog Type offers only Fee/Discount (S8-N1) and API kind=processing_fee -> 400 'A processing fee cannot be added manually.' (S8-R16). NOTE: whole-WO template-picker exclusion of pfee templates (S8-N2) not explicitly captured. | FRESH VIU 2026-07-10: manual pfee add -> 400 'A processing fee cannot be added manually.'; manual pct_grand_total fee also rejected for scope",
+  "notes": "Processing Fee reaches a WO only via auto-apply (S8-R14) or a customer default (S8-R15). | VIU qb batch-1 (2026-07-08): Cannot be added to a WO by hand: WO dialog Type offers only Fee/Discount (S8-N1) and API kind=processing_fee -> 400 'A processing fee cannot be added manually.' (S8-R16). NOTE: whole-WO template-picker exclusion of pfee templates (S8-N2) not explicitly captured. | FRESH VIU 2026-07-10: manual pfee add -> 400 'A processing fee cannot be added manually.'; manual pct_grand_total fee also rejected for scope | WORDING+VIU 2026-07-13: Confirmed: WO Add Type dropdown = Fee/Discord only (no Processing Fee); build labels ('Add Fee/Discount', 'Apply From Template').",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "FD-PROC-006",
@@ -1028,18 +1027,18 @@
    "1. A Processing Fee template \"ZZAUTOTEST Proc Fee\" (Flat Amount $5.00, taxable Yes) is marked auto-apply."
   ],
   "steps": [
-   "1. Create a NEW work order at that location.",
-   "2. Open the WO Fees & Discounts card."
+   "1. Create a new work order at that location.",
+   "2. Open the 'WO Fees & Discounts' card."
   ],
   "expected": [
-   "1. The new WO carries a whole-WO Processing Fee \"ZZAUTOTEST Proc Fee\" = +$5.00.",
-   "2. The card entry offers \"Delete\" only (no \"Edit\") for the Processing Fee."
+   "1. The new work order carries a whole-work-order Processing Fee.",
+   "2. In its ⋮ menu, 'Remove' works but 'Edit' does nothing for a Processing Fee."
   ],
   "design_ref": "requirements.md §2, §9.2 (S8-R14); §8.1 (S3-R9)",
   "viu_status": "VIU-Verified",
-  "notes": "VIU qb batch-1 (2026-07-08): Auto-apply path not tested with a processing-fee template (test pfee had autoApply=false). Customer-default path verified instead (FD-PROC-007). | FRESH VIU 2026-07-10: auto-apply pfee template landed on a fresh WO (kind=processing_fee, appliedBy=auto)",
+  "notes": "VIU qb batch-1 (2026-07-08): Auto-apply path not tested with a processing-fee template (test pfee had autoApply=false). Customer-default path verified instead (FD-PROC-007). | FRESH VIU 2026-07-10: auto-apply pfee template landed on a fresh WO (kind=processing_fee, appliedBy=auto) | WORDING+VIU 2026-07-13: Reaches WO via auto-apply (pfee accepted by BE); build labels. Menu option is 'Remove' (Edit inert for a pfee).",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "FD-PROC-007",
@@ -1053,24 +1052,24 @@
    "1. A Processing Fee template is set as a default on the test customer."
   ],
   "steps": [
-   "1. Create a NEW work order for that customer.",
-   "2. Open the WO Fees & Discounts card."
+   "1. Create a new work order for that customer.",
+   "2. Open the 'WO Fees & Discounts' card."
   ],
   "expected": [
-   "1. The new WO carries the Processing Fee as a whole-WO adjustment (independent copy).",
-   "2. On the WO it offers Delete only (no Edit)."
+   "1. The new work order carries the Processing Fee as its own whole-work-order fee (an independent copy).",
+   "2. In its ⋮ menu, 'Remove' works but 'Edit' does nothing for a Processing Fee."
   ],
   "design_ref": "requirements.md §2, §9.2 (S8-R15)",
   "viu_status": "VIU-Verified",
-  "notes": "VIU qb batch-1 (2026-07-08): Processing-fee template linked as a customer default WAS auto-added to the customer's new WO (kind processing_fee, scope whole_wo, appliedBy customer_default, resolved on grand total). | FRESH VIU 2026-07-10: customer-default pfee landed on a fresh WO (kind=processing_fee, appliedBy=customer_default, amount 2.5)",
+  "notes": "VIU qb batch-1 (2026-07-08): Processing-fee template linked as a customer default WAS auto-added to the customer's new WO (kind processing_fee, scope whole_wo, appliedBy customer_default, resolved on grand total). | FRESH VIU 2026-07-10: customer-default pfee landed on a fresh WO (kind=processing_fee, appliedBy=customer_default, amount 2.5) | WORDING+VIU 2026-07-13: Reaches WO via customer default; build labels.",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "FD-PROC-008",
   "area": "Processing Fee — WO behavior",
   "story_ref": "S8-R17, S8-N5, S3-R9",
-  "title": "Verify a Processing Fee on a WO can be removed but not edited",
+  "title": "Verify a Processing Fee on a work order can be removed but not edited",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "Work Orders: Create & Edit + See Financial Data + flag ON",
@@ -1078,25 +1077,25 @@
    "1. An open WO carries a Processing Fee (via auto-apply or customer default)."
   ],
   "steps": [
-   "1. Hover the Processing Fee entry in the WO Fees & Discounts card and open its 3-dot menu.",
-   "2. Note the available actions, then attempt to remove it."
+   "1. Open the Processing Fee entry's ⋮ menu in the 'WO Fees & Discounts' card.",
+   "2. Note the options, then remove it."
   ],
   "expected": [
-   "1. The entry's menu shows \"Edit\" and \"Remove\"; the Edit control is inert for a Processing Fee — attempting to edit it is rejected by the system (a Processing Fee cannot be edited on the WO instance).",
-   "2. Removing it works normally (opens the \"Remove Fee / Discount\" confirm and removes on confirm).",
-   "3. To change amount/method/taxable you must edit the TEMPLATE, not the WO instance."
+   "1. The menu shows 'Edit' and 'Remove'; 'Edit' does nothing for a Processing Fee (it cannot be edited on the work order).",
+   "2. 'Remove' opens the 'Remove Fee / Discount' confirm and removes it on confirm.",
+   "3. To change the amount/method/taxable you edit the template, not the work-order copy."
   ],
   "design_ref": "requirements.md §2, §9.2 (S8-R17, S8-N5)",
   "viu_status": "VIU-Deviation",
-  "notes": "CURRENT-BUILD DIFFERENCE (§14 item 6): the current build may still show an Edit control that fails (S8-R17). Record actual behavior. | VIU qb batch-1 (2026-07-08): Backend enforces remove-only: change endpoint -> 409 'A processing fee cannot be edited through this endpoint.' DEVIATION: the WO card ⋮ menu still offers 'Edit | Remove' for the processing fee (S8-N5 wants Delete-only) — matches the spec §14 documented current-build gap. Shot s11b-02. | FRESH VIU 2026-07-10: BE re-proven: pfee change -> 409 'cannot be edited through this endpoint', remove -> 204; card still offers Edit per batch-1 (S8-N5 UI drift)",
+  "notes": "CURRENT-BUILD DIFFERENCE (§14 item 6): the current build may still show an Edit control that fails (S8-R17). Record actual behavior. | VIU qb batch-1 (2026-07-08): Backend enforces remove-only: change endpoint -> 409 'A processing fee cannot be edited through this endpoint.' DEVIATION: the WO card ⋮ menu still offers 'Edit | Remove' for the processing fee (S8-N5 wants Delete-only) — matches the spec §14 documented current-build gap. Shot s11b-02. | FRESH VIU 2026-07-10: BE re-proven: pfee change -> 409 'cannot be edited through this endpoint', remove -> 204; card still offers Edit per batch-1 (S8-N5 UI drift) | WORDING+VIU 2026-07-13: DEVIATION carried: the ⋮ menu still shows 'Edit' for a Processing Fee but it is inert (cannot edit a pfee on the WO); 'Remove' works. Build labels ('Remove Fee / Discount' confirm).",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "FD-PROC-009",
   "area": "Processing Fee — calculation",
   "story_ref": "S8-R5, §5-R4, §5-R5 (Step 3)",
-  "title": "Verify a % of Grand Total Processing Fee resolves last on a tax-inclusive base (3% of $324 → +$9.72)",
+  "title": "Verify a % of Grand Total Processing Fee works out last on the tax-included grand total (3% of $324 → +$9.72)",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "Settings → Finance + Work Orders: Create & Edit + See Financial Data + flag ON",
@@ -1105,19 +1104,19 @@
    "2. A work order exists whose net subtotal (after line-level adjustments) = $300.00 and pre-fee tax = $24.00 (so Grand Total base = $324.00)."
   ],
   "steps": [
-   "1. Open the work order and read the Processing Fee resolved amount.",
-   "2. Check the resolve order relative to other adjustments."
+   "1. Open the work order and read the Processing Fee amount.",
+   "2. Check it works out after all other fees/discounts."
   ],
   "expected": [
-   "1. The Processing Fee resolves to +$9.72 (3% × $324.00).",
-   "2. It resolves LAST (Step 3), excluded from its own base and from every other Processing Fee's base.",
-   "3. If taxable, its $9.72 is added to the taxable amount (final tax grows by tax on $9.72) but the $324.00 base does NOT change (no feedback loop)."
+   "1. The Processing Fee is +$9.72 (3% of $324.00).",
+   "2. It works out last, left out of its own base and every other Processing Fee's base.",
+   "3. If taxable, its $9.72 is added to the taxable amount but its own base does not change."
   ],
   "design_ref": "requirements.md §7 (§5-R4/R5 worked example: 3% Processing Fee on $324 = +$9.72)",
   "viu_status": "VIU-Deviation",
-  "notes": "Uses the spec's worked example directly. | VIU qb batch-1 (2026-07-08): Resolves LAST and re-resolves dynamically, BUT THE BASE IS WRONG (FDBUG-2): 3% pfee resolved $15.90 = 3% x $530.07 where $530.07 = (subtotal 292.83 + whole-WO fees 212) x 1.05 — the base INCLUDES whole-WO fees AND their tax. Spec §5-R4 excludes every whole-WO fee/discount: expected 3% x (292.83 + 14.64) = $9.22. | FRESH VIU 2026-07-10: FDBUG-2 CONFIRMED AGAIN with a clean discriminator: on a WO whose ONLY money is a whole-WO $20 taxable fee, 3% pfee resolved 0.63 (=3% of 21.00 incl the whole-WO fee + its tax); spec base must EXCLUDE whole-WO adjustments -> expected 0.00",
+  "notes": "Uses the spec's worked example directly. | VIU qb batch-1 (2026-07-08): Resolves LAST and re-resolves dynamically, BUT THE BASE IS WRONG (FDBUG-2): 3% pfee resolved $15.90 = 3% x $530.07 where $530.07 = (subtotal 292.83 + whole-WO fees 212) x 1.05 — the base INCLUDES whole-WO fees AND their tax. Spec §5-R4 excludes every whole-WO fee/discount: expected 3% x (292.83 + 14.64) = $9.22. | FRESH VIU 2026-07-10: FDBUG-2 CONFIRMED AGAIN with a clean discriminator: on a WO whose ONLY money is a whole-WO $20 taxable fee, 3% pfee resolved 0.63 (=3% of 21.00 incl the whole-WO fee + its tax); spec base must EXCLUDE whole-WO adjustments -> expected 0.00 | WORDING+VIU 2026-07-13: DEVIATION carried (FDBUG-2): the Processing Fee base wrongly includes whole-WO fees/discounts + their tax (should exclude them).",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "FD-PROC-010",
@@ -1131,18 +1130,18 @@
    "1. Ability to submit template data (via UI edge case or API) for a Processing Fee carrying a Max Amount, or a method other than Flat Amount / % of Grand Total."
   ],
   "steps": [
-   "1. Attempt to save a Processing Fee template that carries a Max Amount.",
-   "2. Attempt to save a Processing Fee with a method other than Flat Amount or % of Grand Total (e.g. % of Subtotal)."
+   "1. Try to save a Processing Fee template that has a Max Amount.",
+   "2. Try to save a Processing Fee with a method other than Flat Amount or % of Grand Total (for example % of Subtotal)."
   ],
   "expected": [
-   "1. Both attempts are REJECTED by the system.",
-   "2. A Processing Fee may only be Flat Amount or % of Grand Total and never carries a Max Amount."
+   "1. Both are rejected.",
+   "2. A Processing Fee can only be Flat Amount or % of Grand Total and never has a Max Amount."
   ],
   "design_ref": "requirements.md §9.2 (S8-N4)",
   "viu_status": "VIU-Verified",
-  "notes": "The UI hides these options; this guards data sent from outside the product. | VIU qb batch-1 (2026-07-08): API rejects processing fee with maxCap and with any method other than flat/pct_grand_total (exact 400 messages captured). | FRESH VIU 2026-07-10: pfee template with maxCap -> 400; pfee with pct_labor -> 400 'not allowed for a processing_fee'",
+  "notes": "The UI hides these options; this guards data sent from outside the product. | VIU qb batch-1 (2026-07-08): API rejects processing fee with maxCap and with any method other than flat/pct_grand_total (exact 400 messages captured). | FRESH VIU 2026-07-10: pfee template with maxCap -> 400; pfee with pct_labor -> 400 'not allowed for a processing_fee' | WORDING+VIU 2026-07-13: Confirmed live 2026-07-13 via API: Max cap → 400 'A processing fee cannot have a minimum or maximum cap.'; disallowed method → 400 'Calculation type \"pct_subtotal\" is not allowed for a processing_fee.' Lives in an API-titled section.",
   "api_related": true,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "FD-PROC-011",
@@ -1156,24 +1155,24 @@
    "1. A Processing Fee template exists and is on a WO."
   ],
   "steps": [
-   "1. On the admin dialog, confirm there is no way to make a Processing Fee a discount.",
-   "2. On the WO, confirm the resolved amount carries a plus (+) sign."
+   "1. In the template dialog, confirm there is no way to make a Processing Fee a discount.",
+   "2. On the work order, confirm the amount has a plus (+) sign."
   ],
   "expected": [
-   "1. A Processing Fee always resolves to a plus (+) amount; it can never be a discount.",
-   "2. There is no \"Processing Discount\" type."
+   "1. A Processing Fee always works out to a plus (+) amount; it can never be a discount.",
+   "2. There is no 'Processing Discount' type."
   ],
   "design_ref": "requirements.md §2, §3, §9.2 (S8-R2)",
   "viu_status": "VIU-Verified",
-  "notes": "VIU qb batch-1 (2026-07-08): Processing fee is fee-only and always adds: kind is 'processing_fee' (no discount variant); resolved amounts positive; taxable pfee ADDS its own amount to the taxable base (tax grew by 5% of the fee) without growing its own base. | FRESH VIU 2026-07-10: pfees resolve as positive fees only (kind=processing_fee, amounts >= 0)",
+  "notes": "VIU qb batch-1 (2026-07-08): Processing fee is fee-only and always adds: kind is 'processing_fee' (no discount variant); resolved amounts positive; taxable pfee ADDS its own amount to the taxable base (tax grew by 5% of the fee) without growing its own base. | FRESH VIU 2026-07-10: pfees resolve as positive fees only (kind=processing_fee, amounts >= 0) | WORDING+VIU 2026-07-13: Always a plus; carried.",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "FD-PROC-012",
   "area": "Processing Fee — template edit independence",
   "story_ref": "S8-R18, S8-R19",
-  "title": "Verify editing a Processing Fee template does not change Processing Fees already on existing WOs",
+  "title": "Verify editing a Processing Fee template does not change Processing Fees already on existing work orders",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "Settings → Finance + Work Orders: Create & Edit + See Financial Data + flag ON",
@@ -1182,23 +1181,23 @@
   ],
   "steps": [
    "1. Edit the Processing Fee template amount from $5.00 to $8.00 and save.",
-   "2. Open the existing work order and read the Processing Fee amount."
+   "2. Open an existing work order and read its Processing Fee amount."
   ],
   "expected": [
-   "1. The existing WO's Processing Fee STILL shows $5.00 (unchanged).",
-   "2. Only NEW work orders created after the edit pick up the $8.00 value."
+   "1. The existing work order's Processing Fee still shows $5.00 (unchanged).",
+   "2. Only new work orders created after the edit use the $8.00 value."
   ],
   "design_ref": "requirements.md §2, §9.2 (S8-R18/R19)",
   "viu_status": "VIU-Verified",
-  "notes": "VIU qb batch-1 (2026-07-08): Edited the pfee TEMPLATE amount 3% -> 4%: the pfee already on the WO kept amount=3 (unchanged), S8-R19. | FRESH VIU 2026-07-10: template amount 3->9 (200) left the existing WO pfee at 3 (values copied at apply time)",
+  "notes": "VIU qb batch-1 (2026-07-08): Edited the pfee TEMPLATE amount 3% -> 4%: the pfee already on the WO kept amount=3 (unchanged), S8-R19. | FRESH VIU 2026-07-10: template amount 3->9 (200) left the existing WO pfee at 3 (values copied at apply time) | WORDING+VIU 2026-07-13: Template edit independence; carried.",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "FD-PROC-013",
   "area": "Processing Fee — calculation edge",
   "story_ref": "§5-R4 (multiple Processing Fees)",
-  "title": "Verify multiple Processing Fees each exclude ALL Processing Fees' amounts and tax from the shared base",
+  "title": "Verify multiple Processing Fees each leave out all Processing Fees' amounts and tax from the shared base",
   "priority": "Low",
   "type": "Edge",
   "permissions_required": "Settings → Finance + Work Orders: Create & Edit + See Financial Data + flag ON",
@@ -1207,24 +1206,24 @@
    "2. Net subtotal $300.00, pre-fee tax $24.00 → Grand Total base $324.00."
   ],
   "steps": [
-   "1. Create a new WO so both Processing Fees apply.",
-   "2. Read each Processing Fee's resolved amount."
+   "1. Create a new work order so two Processing Fees apply.",
+   "2. Read each Processing Fee's amount."
   ],
   "expected": [
-   "1. Both Processing Fees resolve against the SAME $324.00 base (which excludes every Processing Fee's amount and tax).",
+   "1. Both Processing Fees work out against the same base (which excludes every Processing Fee's amount and tax).",
    "2. Neither Processing Fee grows the other's base."
   ],
   "design_ref": "requirements.md §7 (§5-R4, §5-R5 Step 3)",
   "viu_status": "VIU-Verified",
-  "notes": "VIU qb batch-1 (2026-07-08): Multiple simultaneous processing fees not tested (single pfee only). Batch-2. | VIU batch-6 qb 2026-07-09 (overnight run, evidence 21:10-21:30Z): both pfees share one base excluding every pfee's amount+tax; FDBUG-2 base composition unchanged. | FRESH VIU 2026-07-10: two auto pfees (3%+2%) resolved 0.63/0.42 = exact 3:2 ratio -> same base, pfees exclude each other",
+  "notes": "VIU qb batch-1 (2026-07-08): Multiple simultaneous processing fees not tested (single pfee only). Batch-2. | VIU batch-6 qb 2026-07-09 (overnight run, evidence 21:10-21:30Z): both pfees share one base excluding every pfee's amount+tax; FDBUG-2 base composition unchanged. | FRESH VIU 2026-07-10: two auto pfees (3%+2%) resolved 0.63/0.42 = exact 3:2 ratio -> same base, pfees exclude each other | WORDING+VIU 2026-07-13: Multiple pfees share the same base; carried.",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "FD-PROC-014",
   "area": "Processing Fee — negative",
   "story_ref": "S8-N6",
-  "title": "Verify the system rejects a Processing Fee carrying a minimum amount",
+  "title": "Verify the system rejects a Processing Fee that carries a minimum amount",
   "priority": "Low",
   "type": "Negative",
   "permissions_required": "Settings → Finance + flag ON",
@@ -1232,16 +1231,16 @@
    "1. Ability to submit a Processing Fee with a non-empty minimum amount (no UI control exists; guard for external data)."
   ],
   "steps": [
-   "1. Submit a Processing Fee template that carries a minimum amount value."
+   "1. Try to save a Processing Fee template that carries a minimum amount."
   ],
   "expected": [
    "1. The system rejects it (a Processing Fee must not carry a minimum amount)."
   ],
   "design_ref": "requirements.md §9.2 (S8-N6); §7 (§5-R6 Min Amount data-model note)",
   "viu_status": "VIU-Verified",
-  "notes": "Min Amount exists only in the data model; both dialogs always send it empty (null). | VIU qb batch-1 (2026-07-08): Min-amount payload guard (S8-N6) not probed. Batch-2 API probe (minCap field). | VIU batch-6 qb 2026-07-09 (overnight run, evidence 21:10-21:30Z): min fields silently stripped; invariant enforced; note ignore-vs-reject semantics. | FRESH VIU 2026-07-10: pfee minimum silently STRIPPED on create (201, no min field persisted) — §8 invariant holds; silent-ignore wording note stands",
+  "notes": "Min Amount exists only in the data model; both dialogs always send it empty (null). | VIU qb batch-1 (2026-07-08): Min-amount payload guard (S8-N6) not probed. Batch-2 API probe (minCap field). | VIU batch-6 qb 2026-07-09 (overnight run, evidence 21:10-21:30Z): min fields silently stripped; invariant enforced; note ignore-vs-reject semantics. | FRESH VIU 2026-07-10: pfee minimum silently STRIPPED on create (201, no min field persisted) — §8 invariant holds; silent-ignore wording note stands | WORDING+VIU 2026-07-13: Confirmed live 2026-07-13: BE rejects a min/max cap on a Processing Fee (400 'A processing fee cannot have a minimum or maximum cap.'). PO Q4 (whether pfee minimums should be supported at all) still pending.",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "FD-DOC-001",
