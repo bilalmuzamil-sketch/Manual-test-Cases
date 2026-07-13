@@ -25,7 +25,10 @@ genuinely helpful** (e.g. the staging access method + testing harness apply to
 all).
 
 1. **Custom Roles project** — Custom Roles & Permissions (ShopView), Epic
-   **SV-7388**, STAGING. **CANONICAL WORDING+VIU RESUME DOC (read first to resume the
+   **SV-7388**, STAGING. **Canonical spec (Confluence):**
+   https://shopview.atlassian.net/wiki/spaces/PM/pages/565116952/Custom+Roles+and+Permissions
+   (Atlassian-SSO login-walled — reference pointer only; export/paste content to
+   ingest, do NOT fetch). **CANONICAL WORDING+VIU RESUME DOC (read first to resume the
    wording/VIU effort):** `build/custom-roles-run/WORDING-VIU-STATE-2026-07-13.md` —
    the single authoritative snapshot of the 2026-07-13 build-accurate wording + VIU
    pass (final tally, 38–39 manual/2nd-user residue, 11 dev deviations, deliverables
@@ -48,7 +51,11 @@ all).
    `build/custom-roles-run/*` (WORDING-VIU-STATE / Blockers Tracker / WordingVIU
    workbook / section-3658-resolution / testrail-wording-viu-log),
    `build/custom-roles-spec-update/*`, TestRail section **3527** / runs **312** & **331**.
-2. **Fees and Discount project** — Fees & Discounts V1 (ShopView). **CANONICAL
+2. **Fees and Discount project** — Fees & Discounts V1 (ShopView). **Canonical
+   spec (Confluence):**
+   https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/622297094/Fees+Discounts+V1
+   (Atlassian-SSO login-walled — reference pointer only; export/paste content to
+   ingest, do NOT fetch). **CANONICAL
    STATE DOC (read first for resume):** `build/fees-discounts/PROJECT-STATE.md` —
    the single authoritative snapshot (case inventory 182 + VIU breakdown, TestRail
    state, deliverables index, FDBUG register, open threads, env/access facts,
@@ -91,7 +98,10 @@ all).
    **PO for Fees & Discounts = Chris Ward; PO for Simple Flow = Milos — never mix
    attributions.**
 3. **Simple flow project** — Simple Mode / Streamlined Work Order Completion &
-   Receiving (ShopView), Epic **SV-7301**. **CANONICAL STATE DOC (read first for
+   Receiving (ShopView), Epic **SV-7301**. **Canonical spec (Confluence):**
+   https://shopview.atlassian.net/wiki/spaces/PM/pages/646021121/Simple+Mode+Streamlined+Work+Order+Completion+Bulk+Receiving
+   (Atlassian-SSO login-walled — reference pointer only; export/paste content to
+   ingest, do NOT fetch). **CANONICAL STATE DOC (read first for
    resume):** `build/simple-flow/PROJECT-STATE.md` — the single authoritative
    snapshot (case inventory 163 + VIU breakdown, TestRail state, deliverables
    index, open threads, env/access facts, how-to-resume). Memory:

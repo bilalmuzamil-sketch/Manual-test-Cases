@@ -7,6 +7,9 @@
 > `build/BUILD-ACCURATE-WORDING-VIU-PROCESS.md` (Standing Rule 10). Companion:
 > `RUN331-STATE.md` (the earlier run-331 re-test snapshot). Custom Roles = STAGING,
 > Epic **SV-7388**. **Never mix with Fees & Discounts or Simple Flow.**
+>
+> **Canonical spec (Confluence):** https://shopview.atlassian.net/wiki/spaces/PM/pages/565116952/Custom+Roles+and+Permissions
+> (Atlassian-SSO login-walled — reference pointer only; content must be exported/pasted to ingest, do NOT fetch the URL.)
 
 ---
 

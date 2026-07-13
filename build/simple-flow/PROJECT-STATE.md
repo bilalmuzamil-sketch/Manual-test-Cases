@@ -9,6 +9,9 @@
 > `python3 build/simple-flow/gen_blockers.py`). All counts below are cited from
 > that tracker — re-read it if in doubt, never invent numbers.
 >
+> **Canonical spec (Confluence):** https://shopview.atlassian.net/wiki/spaces/PM/pages/646021121/Simple+Mode+Streamlined+Work+Order+Completion+Bulk+Receiving
+> (Atlassian-SSO login-walled — reference pointer only; content must be exported/pasted to ingest, do NOT fetch the URL.)
+>
 > **Last updated:** 2026-07-13.
 
 ---

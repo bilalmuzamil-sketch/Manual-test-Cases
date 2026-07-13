@@ -3,6 +3,8 @@
 > **THIS IS THE CANONICAL STATE DOC for the Fees & Discounts (F&D V1) project.** It
 > is a single authoritative snapshot so the project can be resumed with zero
 > re-discovery.
+> **Canonical spec (Confluence):** https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/622297094/Fees+Discounts+V1
+> (Atlassian-SSO login-walled — reference pointer only; content must be exported/pasted to ingest, do NOT fetch the URL.)
 > **Last updated:** 2026-07-13 (PAUSE SNAPSHOT — after **V1_2 spec applied** [43 case
 > updates + new FD-WO-016=C29441, all pushed] AND a **FRESH FULL build-accurate WORDING +
 > VIU PASS over ALL 183 cases** [live-captured build labels; every case re-adjudicated;
