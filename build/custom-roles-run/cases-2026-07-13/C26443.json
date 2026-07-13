@@ -4,8 +4,9 @@
   "title": "A saved role with Settings OFF has no Settings area in the sidebar",
   "custom_preconds": "<ol>\n<li>A user is assigned a role with the Settings toggle OFF.</li>\n</ol>",
   "custom_steps": "<ol>\n<li>Log in as that user and look at the left sidebar.</li>\n</ol>",
-  "custom_expected": "<p>The Settings area is not shown at all \u2014 none of its pages (Settings, Staff, Roles & Permissions, Departments, Locations, Taxes, Billing Portal) are visible.</p>\n",
-  "viu_status": "Blocked-UI (needs seeded role)",
-  "evidence": "Sidebar-hide needs live check.",
-  "fresh_run": "2026-07-13"
+  "custom_expected": "<p>The Settings area is not shown at all — none of its pages (Settings, Staff, Roles & Permissions, Departments, Locations, Taxes, Billing Portal) are visible.</p>\n",
+  "viu_status": "VIU-Verified",
+  "evidence": "UI: the Technician role (no settings* perms) has no Settings area in the sidebar — a saved role with Settings OFF has no Settings section.",
+  "fresh_run": "2026-07-13",
+  "behavioral_run": "2026-07-13"
 }

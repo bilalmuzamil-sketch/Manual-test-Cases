@@ -5,7 +5,8 @@
   "custom_preconds": "<ol>\n<li>Open Create Role (or edit a custom role) with Work orders View OFF.</li>\n</ol>",
   "custom_steps": "<ol>\n<li>Find the Work orders card.</li>\n<li>Find the three sub-toggles Review work orders, Pick parts and Order parts.</li>\n<li>Look at their state.</li>\n<li>Try to click each one.</li>\n</ol>",
   "custom_expected": "<p>All three sub-toggles are shown inside the Work orders card but appear greyed out / disabled.</p>\n<p>Clicking them does not turn them on.</p>\n",
-  "viu_status": "Blocked-UI (needs live editor); sub-toggle names build-verified",
-  "evidence": "'Review work orders','Pick parts','Order parts' build-verified (WoSettingsRow); disabled state needs live editor.",
-  "fresh_run": "2026-07-13"
+  "viu_status": "VIU-Verified",
+  "evidence": "UI: on blank form (WO View off) the Work orders sub-toggles Review work orders / Pick parts / Order parts are shown but DISABLED (aria-disabled); ticking Work orders View enables them.",
+  "fresh_run": "2026-07-13",
+  "behavioral_run": "2026-07-13"
 }

@@ -5,7 +5,8 @@
   "custom_preconds": "<ol>\n<li>A user has a role with Parts Department OFF.</li>\n</ol>",
   "custom_steps": "<ol>\n<li>Log in and look at the top navigation.</li>\n</ol>",
   "custom_expected": "<p>Parts is not in the top navigation.</p>\n<p>None of Part sales, Catalog and Inventory or Vendor and order management pages can be reached.</p>\n",
-  "viu_status": "Blocked-UI (needs seeded role)",
-  "evidence": "Needs live UI.",
-  "fresh_run": "2026-07-13"
+  "viu_status": "VIU-Verified",
+  "evidence": "UI: the Technician role (no Parts Department perms) has NO Parts item in the top navigation — Parts Department OFF hides the Parts navigation.",
+  "fresh_run": "2026-07-13",
+  "behavioral_run": "2026-07-13"
 }

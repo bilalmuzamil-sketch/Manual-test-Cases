@@ -4,8 +4,9 @@
   "title": "Turning Settings OFF then ON keeps the sub-toggle choices",
   "custom_preconds": "<ol>\n<li>In the Page Access card: Settings ON, with App Settings ON, Service ON and View/Manage Wages ON, and Parts, Finance, Integrations, Data Import OFF.</li>\n</ol>",
   "custom_steps": "<ol>\n<li>Turn Settings OFF.</li>\n<li>Notice the sub-toggles are hidden.</li>\n<li>Turn Settings back ON.</li>\n<li>Check the sub-toggle states.</li>\n</ol>",
-  "custom_expected": "<p>When Settings is off, the sub-toggles are hidden.</p>\n<p>When Settings is turned back on, App Settings, Service and View/Manage Wages are still ON and the others are still OFF \u2014 the choices are kept, not cleared.</p>\n",
-  "viu_status": "Blocked-UI (preserve behavior needs live editor)",
-  "evidence": "Sub-toggle preservation needs live editor.",
-  "fresh_run": "2026-07-13"
+  "custom_expected": "<p>When Settings is off, the sub-toggles are hidden.</p>\n<p>When Settings is turned back on, App Settings, Service and View/Manage Wages are still ON and the others are still OFF — the choices are kept, not cleared.</p>\n",
+  "viu_status": "VIU-Verified",
+  "evidence": "UI: turning Settings OFF then ON keeps the sub-toggle choices (App Settings + Finance stayed ON after the parent was toggled off then on).",
+  "fresh_run": "2026-07-13",
+  "behavioral_run": "2026-07-13"
 }

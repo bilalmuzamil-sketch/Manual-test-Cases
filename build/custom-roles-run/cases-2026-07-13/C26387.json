@@ -4,8 +4,9 @@
   "title": "The 'Add Customer' button in the New Work Order flow when Customers Create & Edit is OFF",
   "custom_preconds": "<ol>\n<li>A user has a role with Work orders Create & Edit ON, Customers View ON and Customers Create & Edit OFF.</li>\n</ol>",
   "custom_steps": "<ol>\n<li>Log in and click New Work Order.</li>\n<li>Go to the customer selection step.</li>\n<li>Look for an Add Customer button in the customer picker.</li>\n</ol>",
-  "custom_expected": "<p>The Add Customer button is not shown in the customer picker; the user can still pick an existing customer but cannot create a new one.</p>\n<p>(Known deviation: a prior run found this button still appearing when Customers Create & Edit is off \u2014 recommend a live re-check.)</p>\n",
-  "viu_status": "Blocked-UI; prior run FAILED here (button still shown) \u2014 re-test live",
-  "evidence": "RUN331 recorded C26387 as a FAILED deviation (Add Customer still shown with Customers C&E off).",
-  "fresh_run": "2026-07-13"
+  "custom_expected": "<p>The Add Customer button is not shown in the customer picker; the user can still pick an existing customer but cannot create a new one.</p>\n<p>(Known deviation: a prior run found this button still appearing when Customers Create & Edit is off — recommend a live re-check.)</p>\n",
+  "viu_status": "Deviation",
+  "evidence": "UI (RUN331 FAIL PERSISTS): assigned Tech a custom role with Work Orders Create&Edit + Customers View but NO Customers Create&Edit. In the New Work Order modal the \"Add\" (new customer) affordance next to the Customer field is SHOWN and ENABLED. Expected: hidden/blocked when Customers Create&Edit is OFF. The permission gate is not applied. screenshot newwo-modal-addbuttons/newwo-custselected-addasset.",
+  "fresh_run": "2026-07-13",
+  "behavioral_run": "2026-07-13"
 }

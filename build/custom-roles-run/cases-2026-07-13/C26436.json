@@ -5,7 +5,8 @@
   "custom_preconds": "<ol>\n<li>A user has a role with the Reports toggle OFF.</li>\n</ol>",
   "custom_steps": "<ol>\n<li>Log in and look at the top navigation.</li>\n<li>Try to open a Reports page by typing its web address.</li>\n</ol>",
   "custom_expected": "<p>Reports is not in the top navigation.</p>\n<p>Opening a Reports address directly is refused.</p>\n",
-  "viu_status": "Blocked-UI (needs seeded role)",
-  "evidence": "Nav-hide needs live check.",
-  "fresh_run": "2026-07-13"
+  "viu_status": "VIU-Verified",
+  "evidence": "UI: the Technician role (no reportsPageAccess) has NO Reports item in the top navigation — Reports OFF removes Reports from nav.",
+  "fresh_run": "2026-07-13",
+  "behavioral_run": "2026-07-13"
 }
