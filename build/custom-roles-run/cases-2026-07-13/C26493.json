@@ -1,0 +1,11 @@
+{
+  "case_id": 26493,
+  "section_id": 3547,
+  "title": "If a role change fails, the user keeps their previous role",
+  "custom_preconds": "<ol>\n<li>A custom role is assigned to exactly one user.</li>\n</ol>",
+  "custom_steps": "<ol>\n<li>Start changing the user's role.</li>\n<li>Cause or observe a failed save.</li>\n<li>Check the user's role again.</li>\n</ol>",
+  "custom_expected": "<p>The previous role is kept \u2014 the user still has their original role and the custom role still shows one assigned user.</p>\n",
+  "viu_status": "Blocked-UI (needs live Staff page)",
+  "evidence": "Failed-save path needs live UI.",
+  "fresh_run": "2026-07-13"
+}

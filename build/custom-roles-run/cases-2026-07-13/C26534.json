@@ -1,0 +1,11 @@
+{
+  "case_id": 26534,
+  "section_id": 3552,
+  "title": "Deleting a custom role with 0 users shows a confirmation dialog",
+  "custom_preconds": "<ol>\n<li>A custom role named 'Copy Test Role 1' has 0 users assigned.</li>\n</ol>",
+  "custom_steps": "<ol>\n<li>On the Roles list, click the three-dot menu on 'Copy Test Role 1'.</li>\n<li>Click Delete.</li>\n<li>Look at the confirmation dialog.</li>\n<li>Read its title, message and the two buttons.</li>\n</ol>",
+  "custom_expected": "<p>A confirmation dialog opens asking you to confirm deleting the role.</p>\n<p>On confirming, a 'Role deleted successfully.' message appears and the role is removed.</p>\n",
+  "viu_status": "Blocked-UI (needs live Roles list); 'Role deleted successfully.' build-verified",
+  "evidence": "'Role deleted successfully.' confirmed in build. Exact dialog copy needs live capture.",
+  "fresh_run": "2026-07-13"
+}

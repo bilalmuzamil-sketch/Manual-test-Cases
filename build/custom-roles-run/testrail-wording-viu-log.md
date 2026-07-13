@@ -146,3 +146,27 @@ editable=true) — only **Office User** and **Time Clock User** are non-editable
 "Administrator non-editable"). Per-role permission sets are live-verified (roles matrix);
 the migration-of-legacy-users step = Blocked-UI (needs seeded legacy accounts). Stripped
 legacy-mapping-page ids and SV-refs.
+
+---
+
+## Section 3546 — View History Logs (2 cases) — pushed 2026-07-13
+**Result: 2 UPDATED · 200/200.** Toggle label 'View History Logs' build-verified; it
+also gates the 'Part History' page under Parts (route metadata). Behavior = Blocked-UI.
+
+## Section 3552 — User Feedback Strings (8 cases) — pushed 2026-07-13
+**Result: 8 UPDATED · 200/200.** Build-verified strings: 'Role created successfully.',
+'Role updated successfully.', 'Role deleted successfully.', 'Enable See Financial Data?'
+(Cancel/Enable), disabled-Delete tooltip, 'Role name*' + required-field message.
+**C26538 corrected:** the build's warning is a **similar-role / identical-permissions**
+soft warning ('Similar role already exists', 'with identical permissions already
+exists.', **Create anyway**) — not a hard duplicate-NAME block; reworded accordingly.
+C26539 billing note = Blocked-UI (EditStaffMember chunk not fetched).
+
+## Section 3547 — Staff Page Role Assignment (5 cases) — pushed 2026-07-13
+**Result: 5 UPDATED · 200/200.** C26490 corrected to **11 system roles** (was "12").
+'View Permissions' label build-verified; forced-logout/failed-save = Blocked-UI (need
+live Staff page / two sessions). Role name 'Parts Tech' → 'Parts Technician'.
+
+## Section 3550 — Staff Record Settings (3 cases) — pushed 2026-07-13
+**Result: 3 UPDATED · 200/200.** Department-gated scheduling, per-staff Time Clock,
+universal clock — all Blocked-UI (need multiple seeded users). Jargon stripped.

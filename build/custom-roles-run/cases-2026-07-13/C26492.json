@@ -1,0 +1,11 @@
+{
+  "case_id": 26492,
+  "section_id": 3547,
+  "title": "Changing a user's role logs them out immediately",
+  "custom_preconds": "<ol>\n<li>A test user 'Tester Bob' is on the Service Advisor role and is logged in in a second session.</li>\n</ol>",
+  "custom_steps": "<ol>\n<li>As an admin, change Bob's role to Parts Technician.</li>\n<li>Save.</li>\n<li>Switch to Bob's session and try any action.</li>\n<li>Have Bob log back in.</li>\n</ol>",
+  "custom_expected": "<p>Bob is sent to the login page straight away.</p>\n<p>After logging back in, the Parts Technician permissions apply.</p>\n",
+  "viu_status": "Blocked-UI (needs two live sessions)",
+  "evidence": "Needs two sessions.",
+  "fresh_run": "2026-07-13"
+}

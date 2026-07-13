@@ -1,0 +1,11 @@
+{
+  "case_id": 26539,
+  "section_id": 3552,
+  "title": "Reassigning a staff member's role updates the row with no success message (billing note in the window)",
+  "custom_preconds": "<ol>\n<li>You are on the Staff page changing a user's role via Edit Staff Member.</li>\n</ol>",
+  "custom_steps": "<ol>\n<li>Open Edit Staff Member for a user.</li>\n<li>Choose a new Role and click Save & Close.</li>\n</ol>",
+  "custom_expected": "<p>The Edit Staff Member window shows the Role dropdown with a note beneath it that role changes may impact billing.</p>\n<p>On Save & Close the window closes and the Staff row shows the new role.</p>\n<p>No success message appears for the reassignment (unlike creating or updating a role, which show 'Role created/updated successfully.').</p>\n",
+  "viu_status": "Blocked-UI (needs live Staff page); billing note not re-captured this pass",
+  "evidence": "No-toast-on-reassign + billing note need live Staff page (EditStaffMember chunk not fetched).",
+  "fresh_run": "2026-07-13"
+}

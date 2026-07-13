@@ -1,0 +1,11 @@
+{
+  "case_id": 26490,
+  "section_id": 3547,
+  "title": "The Staff role dropdown groups roles into System Roles and Custom Roles",
+  "custom_preconds": "<ol>\n<li>At least one custom role exists.</li>\n<li>You are logged in as an admin on the Staff page.</li>\n</ol>",
+  "custom_steps": "<ol>\n<li>Go to Settings > Staff.</li>\n<li>Find a user row and open their role selector.</li>\n<li>Look at the dropdown.</li>\n</ol>",
+  "custom_expected": "<p>The dropdown has two groups: System Roles (the 11 built-in roles) and Custom Roles (the admin-created roles).</p>\n",
+  "viu_status": "Blocked-UI (needs live Staff page); 11 system roles verified",
+  "evidence": "11 system roles confirmed in live roles list (was '12'). Grouping labels need live Staff page.",
+  "fresh_run": "2026-07-13"
+}

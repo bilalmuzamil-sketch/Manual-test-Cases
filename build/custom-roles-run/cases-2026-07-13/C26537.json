@@ -1,0 +1,11 @@
+{
+  "case_id": 26537,
+  "section_id": 3552,
+  "title": "Creating a role with no name is blocked with a required-field error",
+  "custom_preconds": "<ol>\n<li>You are on the Create Role page and the Role name field is blank.</li>\n</ol>",
+  "custom_steps": "<ol>\n<li>Leave the Role name field blank.</li>\n<li>Optionally type a description.</li>\n<li>Click Create.</li>\n<li>Look at the error.</li>\n</ol>",
+  "custom_expected": "<p>Creating is blocked.</p>\n<p>A 'Role name is a required field' message appears under the 'Role name*' label.</p>\n",
+  "viu_status": "Blocked-UI behavior; 'Role name*' + required-field message build-verified",
+  "evidence": "'Role name*' and required-field message confirmed in build.",
+  "fresh_run": "2026-07-13"
+}

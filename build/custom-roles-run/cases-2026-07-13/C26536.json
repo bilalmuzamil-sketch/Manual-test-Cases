@@ -1,0 +1,11 @@
+{
+  "case_id": 26536,
+  "section_id": 3552,
+  "title": "Turning See Financial Data on shows a confirmation dialog",
+  "custom_preconds": "<ol>\n<li>You are editing a custom role and See Financial Data is currently OFF.</li>\n</ol>",
+  "custom_steps": "<ol>\n<li>Scroll to the Cross-Cutting Toggles card.</li>\n<li>Turn the See Financial Data toggle ON.</li>\n<li>Look at the dialog.</li>\n<li>Read its title and buttons.</li>\n</ol>",
+  "custom_expected": "<p>A dialog titled 'Enable See Financial Data?' appears with Cancel and Enable buttons.</p>\n",
+  "viu_status": "Verified-Label (build)",
+  "evidence": "'Enable See Financial Data?' + Cancel/Enable confirmed in build (FinancialDataConfirmModal).",
+  "fresh_run": "2026-07-13"
+}
