@@ -29,6 +29,32 @@ question sheet.** This section is the complete pause snapshot: what we're waitin
 on, the pre-decided per-answer action map, everything else open at pause, and the
 ordered resume checklist. The rest of this doc holds the standing detail.
 
+### 0.-1 SPEC-RELEVANCE / OBSOLESCENCE AUDIT — 2026-07-13 (NEWEST event)
+
+Ran `build/SPEC-RELEVANCE-RECONCILIATION-PROCESS.md` END-TO-END over all **183**
+cases (audit doc: `spec-relevance-audit-2026-07-13.md`).
+- **Case suite is CLEAN of stale spec-wording** — 0 OBSOLETE, 0 MISSED
+  NEEDS-UPDATE, 0 CONTRADICTS; 181 RELEVANT; **1 DUPLICATE/OVERLAP pair**
+  (FD-CUST-016 / FD-VAL-007) flagged as RETIRE candidates (snapshotted to
+  `testrail-snapshots-relevance-2026-07-13/`, needs QA-lead ruling — NOT deleted).
+  The removed "% of Labor + Parts" method, the old legal-disclosure block, and
+  per-template QB mapping are correctly ABSENT / asserted-as-absent (see audit doc).
+- **The gap was in DELIVERABLES, not cases** (the exact failure this process
+  catches): `testrail-id-map.csv` carried **156 stale (pre-wording-pass) titles**
+  and one TestRail section (**3928**) was still named "Processing Fee — taxable +
+  **legal disclosure**". **FIXED:** id-map titles + section column regenerated from
+  the current case source; **TestRail section 3928 renamed** to "…jurisdiction note"
+  via `update_section` (200/200, verified).
+- **Deliverables regenerated** from current cases (`gen_import.py`, `gen_blockers.py`,
+  `gen_fresh_viu_workbook.py`) and **grep-verified stale-clean** (0 hits on
+  pricing-view/WO-change/customer-change/generic-change/history permission
+  euphemisms, legal-disclosure/sign-off/auto-translate; import CSV/xlsx also 0
+  "feature flag"/"VIU"). Allowed residual = dated evidence-column history notes +
+  legitimate flag-gating refs + status values (see audit doc §Grep-verify).
+- **TestRail this pass:** 1 `update_section` (200/200) + 2 read-only `get_case`
+  snapshots; **0 `update_case`** (case content already current from the wording
+  pass); 0 moves/deletes/results. Log: `testrail-relevance-audit-log-2026-07-13.md`.
+
 ### 0.0 V1_2 spec applied to LOCAL cases — 2026-07-13 (newest event)
 
 The V1_2 spec doc (`spec-source-2026-07-10.md`, Change-Log 2026-07-12) was ingested

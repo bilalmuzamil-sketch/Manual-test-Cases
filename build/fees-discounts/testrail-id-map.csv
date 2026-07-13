@@ -1,38 +1,38 @@
 ID,fd_id,title,section
-28568,FD-CALC-001,Verify a percentage adjustment resolves as base × percent (10% fee on $150.00 → +$15.00),Calculation contract
-28569,FD-CALC-002,Verify percentage rounding — half a cent or more rounds UP (5% discount on $33.33 → $1.6665 → −$1.67),Calculation contract
-28570,FD-CALC-003,Verify a Flat Amount on Whole-WO or Labor Line resolves to the set amount exactly (no quantity multiplier),Calculation contract
-28571,FD-CALC-004,Verify a Flat Amount on a Part Line is PER ITEM (amount × quantity: $5.00 × qty 3 → −$15.00; qty 1 → −$5.00),Calculation contract
-28572,FD-CALC-005,Verify a percentage discount cannot exceed 100% (fee percentages have no upper limit),Calculation contract
-28573,FD-CALC-006,"Verify minimum values — Flat Amount smallest is $0.01, Percentage smallest is 0.01%",Calculation contract
-28574,FD-CALC-007,Verify Max Amount clamps a percentage result (20% fee on $100 → $20 → Max $15 → +$15.00),Calculation contract
-28575,FD-CALC-008,"Verify Max Amount = $0 forces resolve to $0.00, while blank/empty Max Amount means no cap",Calculation contract
-28576,FD-CALC-009,Verify a $0.00 base resolves to $0.00 and the $0.00 line is skipped in QuickBooks (still shown on screens),Calculation contract
-28577,FD-CALC-010,"Verify a negative base is treated as $0 (resolved amount = $0.00, base never goes below zero)",Calculation contract
-28578,FD-CALC-011,"Verify a taxable fee raises the taxable amount, a taxable discount lowers it, and a non-taxable adjustment does not change tax",Calculation contract
-28579,FD-CALC-012,"Verify the 3-step resolution ORDER — line-level on gross first, whole-WO on net second, no stacking within a step",Calculation contract
-28580,FD-CALC-013,Verify a Processing Fee resolves LAST on the tax-inclusive Grand Total (3% of $324 → +$9.72),Calculation contract
+28568,FD-CALC-001,Verify a percentage fee/discount works out as base x percent (10% fee on $150.00 → +$15.00),Calculation contract
+28569,FD-CALC-002,Verify percentage rounding — half a cent or more rounds up (5% discount on $33.33 → −$1.67),Calculation contract
+28570,FD-CALC-003,Verify a flat amount on a whole work order or a labor line is the exact amount (no quantity multiplier),Calculation contract
+28571,FD-CALC-004,Verify a flat amount on a part line is charged per item (amount x quantity: $5.00 x 3 → −$15.00; x1 → −$5.00),Calculation contract
+28572,FD-CALC-005,Verify a percentage discount cannot go over 100% (percentage fees have no upper limit),Calculation contract
+28573,FD-CALC-006,"Verify the smallest allowed values — flat amount $0.01, percentage 0.01%",Calculation contract
+28574,FD-CALC-007,Verify Max Amount caps a percentage result (20% fee on $100 → $20 → Max Amount $15 → +$15.00),Calculation contract
+28575,FD-CALC-008,Verify how Max Amount behaves at 0 vs empty (empty means no cap),Calculation contract
+28576,FD-CALC-009,"Verify a $0.00 base works out to $0.00 (shown on screen, skipped in QuickBooks)",Calculation contract
+28577,FD-CALC-010,Verify a negative base is treated as $0 (the result is $0.00; the base never goes below zero),Calculation contract
+28578,FD-CALC-011,"Verify a taxable fee raises the taxable amount, a taxable discount lowers it, and a non-taxable one does not change tax",Calculation contract
+28579,FD-CALC-012,"Verify the order fees/discounts are worked out — line-level first (on the line total), then whole-work-order (on the new totals), with no stacking within a step",Calculation contract
+28580,FD-CALC-013,Verify a Processing Fee works out last on the tax-included grand total (3% of $324 → +$9.72),Calculation contract
 28581,FD-CALC-014,Verify the Processing Fee base includes tax on purpose and never uses a Max Amount,Calculation contract
-28582,FD-CALC-015,"Verify negative-total floor at $0.00 — non-taxable $150 discount on $100 parts + $10 tax: subtotal floors, customer pays $10, $50 excess → tax-exempt goodwill credit",Calculation contract
-28583,FD-CALC-016,"Verify a TAXABLE $150 discount on $100 parts drives the taxable amount to $0 → tax $0.00, customer pays $0.00",Calculation contract
-28584,FD-CALC-017,"Verify multiple discount lines are penny-capped via largest-remainder so capped discounts sum exactly to the floored net subtotal (no negative, whole-cent)",Calculation contract
-28485,FD-CUST-001,"Verify the customer ""Fees & Discounts (N)"" tab shows the correct default count",Customer Fees & Discounts tab
-28486,FD-CUST-002,"Verify the ""Default Fees & Discounts"" card header, caption, and table columns",Customer Fees & Discounts tab
+28582,FD-CALC-015,"Verify the subtotal floors at $0.00 — a non-taxable $150 discount on $100 parts + $10 tax: customer pays $10, the $50 excess becomes a customer credit",Calculation contract
+28583,FD-CALC-016,"Verify a taxable $150 discount on $100 parts drives the taxable amount to $0 → tax $0.00, customer pays $0.00",Calculation contract
+28584,FD-CALC-017,"Verify multiple discount lines are penny-capped so the capped discounts add up exactly to the floored net subtotal (whole cents, never negative)",Calculation contract
+28485,FD-CUST-001,Verify the customer 'Fees & Discounts (N)' tab shows the correct default count,Customer Fees & Discounts tab
+28486,FD-CUST-002,"Verify the 'Default Fees & Discounts' card header, caption and table columns",Customer Fees & Discounts tab
 28487,FD-CUST-003,Verify adding a single template as a customer default via the picker,Customer Fees & Discounts tab
 28488,FD-CUST-004,Verify several templates are added as customer defaults one at a time (no multi-select),Customer Fees & Discounts tab
-28489,FD-CUST-005,"Verify the picker lists only unlinked templates and shows Processing Fee templates as type ""Fee""",Customer Fees & Discounts tab
-28490,FD-CUST-006,Verify the empty picker message when there are no templates left to add,Customer Fees & Discounts tab
-28491,FD-CUST-007,Verify removing a customer default via the row's remove action needs no confirm and toasts,Customer Fees & Discounts tab
+28489,FD-CUST-005,Verify the picker lists only not-yet-added templates and shows a Processing Fee template as type 'Fee',Customer Fees & Discounts tab
+28490,FD-CUST-006,Verify the picker message when there are no templates left to add,Customer Fees & Discounts tab
+28491,FD-CUST-007,Verify removing a customer default from the row needs no confirmation,Customer Fees & Discounts tab
 28492,FD-CUST-008,Verify the empty-state text on the Default Fees & Discounts card,Customer Fees & Discounts tab
-28493,FD-CUST-009,Verify a customer default is added as an independent adjustment on every NEW work order,Customer defaults → new work order
-28494,FD-CUST-010,"Verify a percentage customer default re-resolves per work order (keeps percent, not a fixed dollar)",Customer defaults → new work order
-28495,FD-CUST-011,Verify removing a customer default does NOT change adjustments already on existing work orders,Customer defaults lifecycle
-28496,FD-CUST-012,Verify deleting a template that is a customer default drops the default link but keeps existing WO adjustments,Customer defaults lifecycle
+28493,FD-CUST-009,Verify a customer default is added as its own fee/discount on every new work order,Customer defaults → new work order
+28494,FD-CUST-010,"Verify a percentage customer default re-works per work order (keeps the percent, not a fixed dollar)",Customer defaults → new work order
+28495,FD-CUST-011,Verify removing a customer default does not change fees/discounts already on existing work orders,Customer defaults lifecycle
+28496,FD-CUST-012,Verify deleting a template that is a customer default drops the default link but keeps existing work-order fees/discounts,Customer defaults lifecycle
 28497,FD-CUST-013,Verify deleting a customer removes that customer's default links,Customer defaults lifecycle
-28498,FD-CUST-014,Verify a newly created customer inherits every auto-apply location template as a default,Customer defaults seeding
-28499,FD-CUST-015,Verify the customer Fees & Discounts tab and controls are hidden without the required permissions,Customer Fees & Discounts tab — permissions
-28500,FD-CUST-016,Verify a template that is both location auto-apply AND a customer default is added only ONCE to a new WO,Customer defaults — known bug
-28501,FD-CUST-017,Verify add/remove/load failure on customer defaults shows the standard error notification,API — Customer Fees & Discounts tab — negative
+28498,FD-CUST-014,Verify a brand-new customer inherits every auto-apply location template as a default,Customer defaults seeding
+28499,FD-CUST-015,Verify the customer Fees & Discounts tab and its controls are hidden without the required permissions,Customer Fees & Discounts tab — permissions
+28500,FD-CUST-016,Verify a template that is both location auto-apply AND a customer default is added only once to a new work order,Customer defaults — known bug
+28501,FD-CUST-017,Verify an add/remove/load failure on customer defaults shows the standard error notification,API — Customer Fees & Discounts tab — negative
 28533,FD-DOC-001,Verify one layout renders adjustments on both the estimate and the invoice,Customer document (estimate/invoice)
 28534,FD-DOC-002,"Verify a labor-line percentage adjustment renders indented with ↳, the ""(% of labor)"" phrase, and correct amount sign",Customer document — per-line adjustments
 28535,FD-DOC-003,"Verify a part-line adjustment renders with ""(% of parts)"" (percentage) and no phrase for Flat Amount",Customer document — per-line adjustments
@@ -44,141 +44,141 @@ ID,fd_id,title,section
 28541,FD-DOC-009,Verify Shop Supplies reappears on the customer views when its total becomes greater than $0.00,Customer document — Shop Supplies (S14)
 28542,FD-DOC-010,Verify a line-level adjustment on a not-billable (declined) line resolves to $0.00 but still shows,Customer document — line-level $0 target
 28543,FD-DOC-011,Verify the Adjustments block sits after Labor/Parts/Shop Supplies and before Subtotal → Tax → Total,Customer document — layout
-28476,FD-EDIT-001,"Verify editing an adjustment allows Name/Value/Max Amount/Taxable but locks Type, Calculation type, and Scope",Work Order — Edit an adjustment
-28477,FD-EDIT-002,"Verify editing re-resolves the adjustment against current totals, hides the template picker, and uses a 'Save' button",Work Order — Edit an adjustment
-28478,FD-EDIT-003,Verify a save failure keeps the Edit dialog open and shows the returned error,Work Order — Edit an adjustment
-28464,FD-FIN-001,Verify the Financial Info card shows a collapsed 'Fees & Discounts (N)' row with the net total in grey,Work Order — Financial Info card
-28465,FD-FIN-002,"Verify expanding the Financial Info 'Fees & Discounts' row lists each adjustment (read-only, creation order)",Work Order — Financial Info card
-28466,FD-FIN-003,Verify the Financial Info 'Fees & Discounts' row is hidden with no adjustments and the money section is hidden without See Financial Data,Work Order — Financial Info card
-28467,FD-FIN-004,"Verify the sidebar 'Work Order Fee / Discount' card lists whole-WO adjustments with name, signed rate badge, grey amount and hover Edit/Delete",Work Order — Sidebar 'Work Order Fee / Discount' card
-28468,FD-FIN-005,Verify the sidebar card is hidden with no whole-WO adjustments and has no Add control,Work Order — Sidebar 'Work Order Fee / Discount' card
-28596,FD-FLAG-001,"Verify with the FeesAndDiscounts flag OFF, all F&D UI and behavior are hidden everywhere",Feature-flag gating
-28597,FD-FLAG-002,Verify the WO history log STILL shows fee/discount entries even when the feature flag is OFF,Feature-flag gating
-28598,FD-FLAG-003,"Verify with the flag ON, the matching permission is still required to use F&D",Feature-flag gating
+28476,FD-EDIT-001,"Verify editing a fee/discount allows Name, amount, Max Amount and Taxable but locks Type, Calculation Type and Scope",Work Order — Edit an adjustment
+28477,FD-EDIT-002,"Verify editing re-works the amount against the current totals, hides the template picker, and uses a 'Save' button",Work Order — Edit an adjustment
+28478,FD-EDIT-003,Verify a failed save keeps the Edit dialog open and shows the error,Work Order — Edit an adjustment
+28464,FD-FIN-001,Verify the Financial Info card shows a 'Fees & Discounts (N)' row with the net total in grey,Work Order — Financial Info card
+28465,FD-FIN-002,Verify the Financial Info 'Fees & Discounts' row lists each fee/discount and is read-only,Work Order — Financial Info card
+28466,FD-FIN-003,"Verify the 'Fees & Discounts' row is hidden with no fees/discounts, and the money section is hidden without See Financial Data",Work Order — Financial Info card
+28467,FD-FIN-004,"Verify the sidebar 'WO Fees & Discounts' card lists whole-work-order fees/discounts with name, signed rate and grey amount",Work Order — Sidebar 'Work Order Fee / Discount' card
+28468,FD-FIN-005,Verify the sidebar 'WO Fees & Discounts' card is hidden with no whole-work-order fees/discounts and has no Add button,Work Order — Sidebar 'Work Order Fee / Discount' card
+28596,FD-FLAG-001,"Verify that with the Fees & Discounts feature turned off, all fee/discount screens are hidden everywhere",Feature-flag gating
+28597,FD-FLAG-002,Verify the work-order history still shows fee/discount entries even when the Fees & Discounts feature is off,Feature-flag gating
+28598,FD-FLAG-003,"Verify that even with the feature on, the matching permission is still needed to use fees/discounts",Feature-flag gating
 28560,FD-HIST-001,Verify one history entry per add/edit/remove with the correct bold event labels,History log
-28561,FD-HIST-002,"Verify the history detail block shows Name, Type, Amount (set rate), and Applied-to label",History log
-28562,FD-HIST-003,"Verify an adjustment entry leaves the saved-state icon empty and the Line column shows ""−""",History log
-28563,FD-HIST-004,Verify fee/discount history stays visible when the F&D UI is hidden by the feature flag,History log — visibility
-28564,FD-HIST-005,Verify F&D history stays visible when the F&D UI is hidden by See Financial Data being off,History log — visibility
+28561,FD-HIST-002,"Verify the history Details show Name, Amount (the set rate) and what it was applied to",History log
+28562,FD-HIST-003,Verify the Line column and saved-state icon on a fee/discount history entry,History log
+28563,FD-HIST-004,Verify fee/discount history stays visible when the fee/discount screens are hidden by the feature being off,History log — visibility
+28564,FD-HIST-005,Verify fee/discount history stays visible when amounts are hidden by See Financial Data being off,History log — visibility
 28565,FD-HIST-006,Verify fee/discount history entries are gated by Work Orders: Create and Edit (line history by Work Order Lines: Create and Edit),History log — permission
-28566,FD-HIST-007,"Verify a Processing Fee is logged as a fee with ""Full invoice"" applied-to and no ""updated"" entry",History log — Processing Fee
+28566,FD-HIST-007,"Verify a Processing Fee is logged as a fee applied to the full invoice, with no 'updated' entry",History log — Processing Fee
 28567,FD-HIST-008,Verify an edit that changes the rate records the new set rate (not the resolved total),History log — edit entry
-28454,FD-INLINE-001,"Verify a labor-line adjustment shows inline under its line with ↳ arrow, name, signed rate badge and grey amount",Work Order — Inline display (Lines tab)
-28455,FD-INLINE-002,"Verify a part-line adjustment shows inline under its part with ↳ arrow, name, signed rate badge and grey amount",Work Order — Inline display (Lines tab)
-28456,FD-INLINE-003,Verify a line/part with 2+ adjustments shows only the first plus a 'Show N more' toggle,Work Order — Inline display (Lines tab)
-28457,FD-INLINE-004,Verify the per-line Total column shows the line's gross total plus its own adjustment amounts (display only),Work Order — Inline display (Lines tab)
-28458,FD-INLINE-005,Verify each inline adjustment row has a hover 3-dot Edit/Delete menu when the WO is open with the matching Create and Edit permission,Work Order — Inline display (Lines tab)
-28439,FD-LABOR-001,Verify a labor line's 3-dot menu opens the Add dialog locked to that Labor Line scope,Work Order — Labor-line Fee/Discount
-28440,FD-LABOR-002,Verify a labor-line % of Labor Total fee resolves against the line's gross labor price (10% of $150.00 → +$15.00),Work Order — Labor-line Fee/Discount
-28441,FD-LABOR-003,Verify each labor line row exposes its own 3-dot menu on hover,Work Order — Labor-line Fee/Discount
-28442,FD-LABOR-004,Verify a labor-line Flat Amount resolves to the exact amount with no quantity multiplier,Work Order — Labor-line Fee/Discount
-28443,FD-LABOR-005,Verify a labor-line adjustment resolves to $0.00 when its line is not billable (declined),Work Order — Labor-line Fee/Discount
-28444,FD-LABOR-006,Verify deleting a labor line removes any adjustment pointing to it,Work Order — Labor-line Fee/Discount
-28445,FD-LABOR-007,Verify labor-line 'Add fee / discount' is hidden without Work Order Lines: Create & Edit,Work Order — Labor-line Fee/Discount
-28446,FD-PART-001,Verify a part's menu opens the Add dialog locked to that Part Line scope,Work Order / Parts — Part-line Fee/Discount
-28447,FD-PART-002,Verify a part-line Flat Amount is charged PER ITEM (amount × quantity): $5.00 × qty 3 → −$15.00,Work Order / Parts — Part-line Fee/Discount
-28448,FD-PART-003,Verify a fee/discount can be added to a requested (not-yet-received) part and shows before pick,Work Order / Parts — Part-line Fee/Discount
-28449,FD-PART-004,Verify a part-line % of Parts Total resolves against quantity × sell price (gross),Work Order / Parts — Part-line Fee/Discount
-28450,FD-PART-005,Verify a part-line adjustment stays attached when the part changes from requested to received,Work Order / Parts — Part-line Fee/Discount
-28451,FD-PART-006,Verify a part-line adjustment resolves to $0.00 when the part is declined or returned with no quantity left,Work Order / Parts — Part-line Fee/Discount
-28452,FD-PART-007,Verify deleting a part removes any adjustment pointing to it,Work Order / Parts — Part-line Fee/Discount
-28453,FD-PART-008,Verify per-item Flat Amount edge: quantity 1 resolves to the base amount (−$5.00),Work Order / Parts — Part-line Fee/Discount
-28469,FD-PCOL-001,Verify the Parts page 'Fees & Discounts' column shows a single adjustment's name and rate,Parts page — 'FEES & DISCOUNTS' column
-28470,FD-PCOL-002,Verify the 'Fees & Discounts' column shows a '+N' badge when a part has multiple adjustments,Parts page — 'FEES & DISCOUNTS' column
-28471,FD-PCOL-003,Verify the 'Fees & Discounts' column shows a '+ Add' button on a part with no adjustments,Parts page — 'FEES & DISCOUNTS' column
-28472,FD-PCOL-004,Verify clicking a populated 'Fees & Discounts' cell opens the per-part breakdown modal with the correct columns,Parts page — breakdown modal
-28473,FD-PCOL-005,Verify the breakdown modal 'Net adjustment' row equals the signed sum of the part's adjustments,Parts page — breakdown modal
-28474,FD-PCOL-006,Verify a per-row Remove (trash) on the breakdown modal removes the adjustment and closes the modal when the last is removed,Parts page — breakdown modal
-28475,FD-PCOL-007,Verify the '+ Add' button is disabled on a part when the sale/WO cannot be edited,Parts page — 'FEES & DISCOUNTS' column
-28585,FD-PERM-001,"Verify See Financial Data gates ALL fee/discount dollar amounts everywhere (without SFD, amounts are hidden)",Permissions (Story 13)
-28586,FD-PERM-002,Verify Whole-WO adjustment add/edit/remove requires Work Orders: Create and Edit,Permissions (Story 13)
-28587,FD-PERM-003,Verify Labor-line and Part-line adjustment add/edit/remove requires Work Order Lines: Create and Edit,Permissions (Story 13)
-28588,FD-PERM-004,Verify Part-Sale adjustment add/edit/remove (whole sale or part line) requires Part Sales: Create and Edit + See Financial Data,Permissions (Story 13)
-28589,FD-PERM-005,Verify any add/edit/remove of an adjustment also requires See Financial Data to be ON,Permissions (Story 13)
-28590,FD-PERM-006,"Verify REMOVING an adjustment is governed by ""Create and Edit"", NOT the separate ""Delete"" permission",Permissions (Story 13)
-28591,FD-PERM-007,Verify create/edit/delete of an adjustment TEMPLATE requires Settings → Finance,Permissions (Story 13)
-28592,FD-PERM-008,Verify viewing/changing a customer's default fees & discounts requires BOTH Customer Management: Create and Edit AND Manage Accounts Payable and Receivable,Permissions (Story 13)
-28593,FD-PERM-009,Verify seeing fee/discount entries in the WO history log requires Work Orders: Create and Edit (line history requires Work Order Lines: Create and Edit),Permissions (Story 13)
-28594,FD-PERM-010,Verify BOTH gates are required — the FeesAndDiscounts flag ON AND the matching permission,Permissions (Story 13)
-28595,FD-PERM-011,Verify add/edit/remove is blocked when the WO is Invoiced/Paid or the user is in history mode,Permissions (Story 13)
-28519,FD-PROC-001,"Verify ""Processing Fee"" is a third type in the template builder (template-only)",Processing Fee — template builder
-28520,FD-PROC-002,"Verify a Processing Fee offers only Flat Amount (default) and % of Grand Total, with a tax-inclusive base",Processing Fee — methods
-28521,FD-PROC-003,Verify the Max Amount field is hidden for every Processing Fee (both methods),Processing Fee — no Max Amount
-28522,FD-PROC-004,Verify the Processing Fee Taxable control defaults Yes and shows the §5-R15 jurisdiction note,Processing Fee — taxable + legal disclosure
+28454,FD-INLINE-001,"Verify a labor-line fee/discount shows inline under its line with a ↳ arrow, name, signed rate and grey amount",Work Order — Inline display (Lines tab)
+28455,FD-INLINE-002,"Verify a part-line fee/discount shows inline under its part with a ↳ arrow, name, signed rate and grey amount",Work Order — Inline display (Lines tab)
+28456,FD-INLINE-003,Verify a line/part with 2 or more fees/discounts shows only the first plus a 'Show N more' toggle,Work Order — Inline display (Lines tab)
+28457,FD-INLINE-004,Verify the per-line Total column shows the line's own total plus its fee/discount amounts (display only),Work Order — Inline display (Lines tab)
+28458,FD-INLINE-005,Verify each inline fee/discount row has a ⋮ menu with Edit and Remove (when the work order is open and you have the matching Create and Edit permission),Work Order — Inline display (Lines tab)
+28439,FD-LABOR-001,Verify a labor line's ⋮ menu opens the Add Fee/Discount dialog locked to that labor line,Work Order — Labor-line Fee/Discount
+28440,FD-LABOR-002,Verify a labor-line '% of Labor Total' fee works out against the line's labor price (10% of $150.00 → +$15.00),Work Order — Labor-line Fee/Discount
+28441,FD-LABOR-003,Verify each labor line row shows its own ⋮ menu on hover,Work Order — Labor-line Fee/Discount
+28442,FD-LABOR-004,Verify a labor-line flat amount is the exact amount with no quantity multiplier,Work Order — Labor-line Fee/Discount
+28443,FD-LABOR-005,Verify a labor-line fee/discount works out to $0.00 when its line is not billable (declined),Work Order — Labor-line Fee/Discount
+28444,FD-LABOR-006,Verify deleting a labor line removes any fee/discount pointing to it,Work Order — Labor-line Fee/Discount
+28445,FD-LABOR-007,Verify the labor-line 'Add Fee/Discount' is hidden without Work Order Lines: Create & Edit,Work Order — Labor-line Fee/Discount
+28446,FD-PART-001,Verify a part's ⋮ menu opens the Add Fee/Discount dialog locked to that part,Work Order / Parts — Part-line Fee/Discount
+28447,FD-PART-002,Verify a part-line flat amount is charged per item (amount x quantity): $5.00 x 3 → −$15.00,Work Order / Parts — Part-line Fee/Discount
+28448,FD-PART-003,Verify a fee/discount can be added to a requested (not-yet-received) part and shows before it is picked,Work Order / Parts — Part-line Fee/Discount
+28449,FD-PART-004,Verify a part-line '% of Parts Total' works out against quantity x sell price,Work Order / Parts — Part-line Fee/Discount
+28450,FD-PART-005,Verify a part-line fee/discount stays attached when the part changes from requested to received,Work Order / Parts — Part-line Fee/Discount
+28451,FD-PART-006,Verify a part-line fee/discount works out to $0.00 when the part is declined or returned with no quantity left,Work Order / Parts — Part-line Fee/Discount
+28452,FD-PART-007,Verify deleting a part removes any fee/discount pointing to it,Work Order / Parts — Part-line Fee/Discount
+28453,FD-PART-008,Verify the per-item flat amount edge: quantity 1 is the base amount (−$5.00),Work Order / Parts — Part-line Fee/Discount
+28469,FD-PCOL-001,Verify the Parts page 'Fees & Discounts' column shows a single fee/discount's name and rate,Parts page — 'FEES & DISCOUNTS' column
+28470,FD-PCOL-002,Verify the 'Fees & Discounts' column shows a '+N' badge when a part has several fees/discounts,Parts page — 'FEES & DISCOUNTS' column
+28471,FD-PCOL-003,Verify the 'Fees & Discounts' column shows a '+ Add' button on a part with no fees/discounts,Parts page — 'FEES & DISCOUNTS' column
+28472,FD-PCOL-004,Verify clicking a filled 'Fees & Discounts' cell opens the per-part breakdown with the right columns,Parts page — breakdown modal
+28473,FD-PCOL-005,Verify the breakdown 'Net adjustment' row equals the signed sum of the part's fees/discounts,Parts page — breakdown modal
+28474,FD-PCOL-006,Verify a per-row Remove on the breakdown removes the fee/discount and closes when the last one is removed,Parts page — breakdown modal
+28475,FD-PCOL-007,Verify the '+ Add' button is disabled when the sale/work order cannot be edited,Parts page — 'FEES & DISCOUNTS' column
+28585,FD-PERM-001,"Verify See Financial Data controls all fee/discount dollar amounts (without it, amounts are hidden)",Permissions (Story 13)
+28586,FD-PERM-002,Verify whole-work-order add/edit/remove requires Work Orders: Create and Edit,Permissions (Story 13)
+28587,FD-PERM-003,Verify labor-line and part-line add/edit/remove requires Work Order Lines: Create and Edit,Permissions (Story 13)
+28588,FD-PERM-004,Verify part-sale add/edit/remove requires Part Sales: Create and Edit plus See Financial Data,Permissions (Story 13)
+28589,FD-PERM-005,Verify any add/edit/remove of a fee/discount also needs See Financial Data on,Permissions (Story 13)
+28590,FD-PERM-006,"Verify removing a fee/discount uses Create and Edit, not the separate Delete permission",Permissions (Story 13)
+28591,FD-PERM-007,Verify create/edit/delete of a fee/discount template needs Settings → Finance,Permissions (Story 13)
+28592,FD-PERM-008,Verify viewing/changing a customer's default fees & discounts needs BOTH Customer Management: Create and Edit AND Manage Accounts Payable and Receivable,Permissions (Story 13)
+28593,FD-PERM-009,Verify seeing fee/discount entries in the work-order history needs Work Orders: Create and Edit (line history needs Work Order Lines: Create and Edit),Permissions (Story 13)
+28594,FD-PERM-010,Verify both are required — the Fees & Discounts feature on AND the matching permission,Permissions (Story 13)
+28595,FD-PERM-011,Verify add/edit/remove is blocked when the work order is Invoiced/Paid or you are viewing history,Permissions (Story 13)
+28519,FD-PROC-001,Verify 'Processing Fee' is a third Type in the template builder,Processing Fee — template builder
+28520,FD-PROC-002,Verify a Processing Fee offers only Flat Amount and % of Grand Total,Processing Fee — methods
+28521,FD-PROC-003,Verify the Max Amount field is hidden for a Processing Fee (both methods),Processing Fee — no Max Amount
+28522,FD-PROC-004,Verify the Processing Fee Taxable defaults to Yes and shows the tax-jurisdiction note,Processing Fee — taxable + jurisdiction note
 28523,FD-PROC-005,Verify a Processing Fee cannot be added to a work order by hand,Processing Fee — no manual add
 28524,FD-PROC-006,Verify a Processing Fee reaches a new work order via location auto-apply,Processing Fee — auto-apply
 28525,FD-PROC-007,Verify a Processing Fee reaches a new work order via a customer default,Processing Fee — customer default
-28526,FD-PROC-008,Verify a Processing Fee on a WO can be removed but not edited,Processing Fee — WO behavior
-28527,FD-PROC-009,Verify a % of Grand Total Processing Fee resolves last on a tax-inclusive base (3% of $324 → +$9.72),Processing Fee — calculation
+28526,FD-PROC-008,Verify a Processing Fee on a work order can be removed but not edited,Processing Fee — WO behavior
+28527,FD-PROC-009,Verify a % of Grand Total Processing Fee works out last on the tax-included grand total (3% of $324 → +$9.72),Processing Fee — calculation
 28528,FD-PROC-010,Verify a Processing Fee with a Max Amount or a disallowed method is rejected,API — Processing Fee — negative
 28529,FD-PROC-011,Verify a Processing Fee always adds to the total (never a discount),Processing Fee — sign
-28530,FD-PROC-012,Verify editing a Processing Fee template does not change Processing Fees already on existing WOs,Processing Fee — template edit independence
-28531,FD-PROC-013,Verify multiple Processing Fees each exclude ALL Processing Fees' amounts and tax from the shared base,Processing Fee — calculation edge
-28532,FD-PROC-014,Verify the system rejects a Processing Fee carrying a minimum amount,Processing Fee — negative
-28544,FD-QB-001,"Verify each fee/discount exports to QuickBooks as its own invoice line item (fee +, discount −)",QuickBooks sync
-28545,FD-QB-002,Verify the QuickBooks line description equals the adjustment name and the item is the mapped Fee/Discount item,QuickBooks sync
-28546,FD-QB-003,Verify a $0.00 resolved adjustment is skipped when sent to QuickBooks,QuickBooks sync — edge
-28547,FD-QB-004,Verify adding a fee is blocked when the Fee item is unmapped (exact message),QuickBooks — mapping guard
-28548,FD-QB-005,Verify adding a discount is blocked when the Discount item is unmapped (exact message),QuickBooks — mapping guard
-28549,FD-QB-006,"Verify the mapping guard blocks adds on every add surface (WO, labor line, part, part sale, template-apply)",QuickBooks — mapping guard scope
-28550,FD-QB-007,Verify an auto-apply default cannot be saved while the matching QuickBooks item is unmapped,QuickBooks — mapping guard (auto-apply)
-28551,FD-QB-008,Verify creating/editing a non-auto-apply template is always allowed and no block exists when QuickBooks is not connected,QuickBooks — mapping guard exceptions
-28552,FD-QB-009,"Verify unmapping an in-use item routes affected invoices to Unexported Items (recoverable, no data lost)",QuickBooks — unmap recovery
-28553,FD-QB-010,Verify a single QuickBooks Class applies to every synced line including fee/discount lines,QuickBooks — Class
-28554,FD-QB-011,Verify a deleted/deactivated Class aborts the entire invoice sync (no substitution),QuickBooks — Class validation
-28555,FD-QB-012,Verify the net subtotal floors at $0.00 with the $100/$10/$150 worked example (non-taxable vs taxable discount),QuickBooks — negative totals
-28556,FD-QB-013,Verify discount lines to QuickBooks are capped with largest-remainder whole-cent penny allocation,QuickBooks — negative totals
-28557,FD-QB-014,Verify a mandatory warn/confirm before saving when discounts exceed the net subtotal,QuickBooks — negative totals
-28558,FD-QB-015,Verify the excess is recorded as a customer credit and posts to QuickBooks as a tax-exempt goodwill credit memo,QuickBooks — negative totals
-28559,FD-QB-016,Verify a synced line's tax follows the adjustment's taxable setting,QuickBooks sync — tax
-28479,FD-REMOVE-001,Verify removing a whole-WO adjustment shows the 'Remove Fee / Discount' confirm and a success toast,Work Order — Remove an adjustment
-28480,FD-REMOVE-002,"Verify removing an adjustment uses 'Create and Edit', NOT the 'Delete' permission",Work Order — Remove an adjustment
-28481,FD-REMOVE-003,Verify removing a line-level adjustment via its inline 3-dot menu,Work Order — Remove an adjustment
-28482,FD-STACK-001,Verify multiple adjustments on one part each resolve on the part's own base (do not compound) and net correctly,Work Order — Multiple adjustments (stacking / netting)
-28483,FD-STACK-002,Verify two whole-WO percentage adjustments resolve against the same net totals and do not change each other's base,Work Order — Multiple adjustments (stacking / netting)
+28530,FD-PROC-012,Verify editing a Processing Fee template does not change Processing Fees already on existing work orders,Processing Fee — template edit independence
+28531,FD-PROC-013,Verify multiple Processing Fees each leave out all Processing Fees' amounts and tax from the shared base,Processing Fee — calculation edge
+28532,FD-PROC-014,Verify the system rejects a Processing Fee that carries a minimum amount,Processing Fee — negative
+28544,FD-QB-001,"Verify each fee/discount exports to QuickBooks as its own invoice line item (fee adds, discount subtracts)",QuickBooks sync
+28545,FD-QB-002,Verify the QuickBooks line description equals the fee/discount name and uses the mapped Fee/Discount item,QuickBooks sync
+28546,FD-QB-003,Verify a $0.00 fee/discount is skipped when sent to QuickBooks,QuickBooks sync — edge
+28547,FD-QB-004,Verify adding a fee is blocked when the Fee item is not mapped to QuickBooks,QuickBooks — mapping guard
+28548,FD-QB-005,Verify adding a discount is blocked when the Discount item is not mapped to QuickBooks,QuickBooks — mapping guard
+28549,FD-QB-006,"Verify the mapping block applies on every add place (work order, labor line, part, part sale, apply-from-template)",QuickBooks — mapping guard scope
+28550,FD-QB-007,Verify an auto-apply template cannot be saved while the matching QuickBooks item is not mapped,QuickBooks — mapping guard (auto-apply)
+28551,FD-QB-008,"Verify creating/editing a non-auto-apply template is always allowed, with no block when QuickBooks is not connected",QuickBooks — mapping guard exceptions
+28552,FD-QB-009,"Verify unmapping an in-use item sends affected invoices to Unexported Items (recoverable, no data lost)",QuickBooks — unmap recovery
+28553,FD-QB-010,"Verify a single QuickBooks Class applies to every synced line, including fee/discount lines",QuickBooks — Class
+28554,FD-QB-011,Verify a deleted/deactivated QuickBooks Class stops the whole invoice sync (no substitution),QuickBooks — Class validation
+28555,FD-QB-012,"Verify the net subtotal floors at $0.00 ($100 parts + $10 tax, $150 discount: non-taxable vs taxable)",QuickBooks — negative totals
+28556,FD-QB-013,Verify discount lines to QuickBooks are capped in whole cents (largest-remainder) so they sum exactly to the floored subtotal,QuickBooks — negative totals
+28557,FD-QB-014,Verify a mandatory warning/confirmation before saving when discounts are bigger than the net subtotal,QuickBooks — negative totals
+28558,FD-QB-015,Verify the excess is recorded as a customer credit and posts to QuickBooks as a tax-exempt goodwill credit,QuickBooks — negative totals
+28559,FD-QB-016,Verify a synced line's tax follows the fee/discount's Taxable setting,QuickBooks sync — tax
+28479,FD-REMOVE-001,Verify removing a whole-work-order fee/discount shows the 'Remove Fee / Discount' confirm and a success message,Work Order — Remove an adjustment
+28480,FD-REMOVE-002,"Verify removing a fee/discount uses Create and Edit, not a separate Delete permission",Work Order — Remove an adjustment
+28481,FD-REMOVE-003,Verify removing a line-level fee/discount from its inline ⋮ menu,Work Order — Remove an adjustment
+28482,FD-STACK-001,Verify multiple fees/discounts on one part each work out on the part's own total (they do not compound),Work Order — Multiple adjustments (stacking / netting)
+28483,FD-STACK-002,Verify two whole-work-order percentage fees/discounts use the same totals and do not change each other's base,Work Order — Multiple adjustments (stacking / netting)
 28484,FD-STACK-003,Verify the same template can be applied to one work order more than once by hand,Work Order — Multiple adjustments (stacking / netting)
-28459,FD-STATS-001,Verify the Stats tab shows a 'Fees & Discounts (N)' breakdown with Value/% and Amount columns,Work Order — Statistics tab
-28460,FD-STATS-002,Verify each Stats F&D row shows a scope hyperlink naming its target,Work Order — Statistics tab
-28461,FD-STATS-003,"Verify the Stats F&D breakdown Total row equals the signed sum of all resolved amounts, with correct signs",Work Order — Statistics tab
-28462,FD-STATS-004,Verify the Stats F&D rows are listed in creation order (oldest first),Work Order — Statistics tab
-28463,FD-STATS-005,Verify the Stats 'Fees & Discounts' section is hidden when the WO has no adjustments,Work Order — Statistics tab
-28502,FD-TMPL-001,"Verify the location template library lives at Administration → Service → Fees & Discounts, below Canned Lines",Template admin — location
-28503,FD-TMPL-002,Verify the template list columns and the delete action,Template admin — list
-28504,FD-TMPL-003,"Verify creating a Fee template (dialog fields, confirm button, success toast)",Template admin — create
-28505,FD-TMPL-004,"Verify creating a Discount template shows the ""Discount added"" toast",Template admin — create
-28506,FD-TMPL-005,Verify the auto-apply checkbox adds the template to every new WO at that location,Template admin — auto-apply
-28507,FD-TMPL-006,"Verify editing a template (open by row click, ""Save"" button, update toast)",Template admin — edit
-28508,FD-TMPL-007,Verify the template delete confirm dialog copy and buttons,Template admin — delete
-28509,FD-TMPL-008,Verify the delete confirm adds a warning when the template is a default for one or more customers,Template admin — delete
-28510,FD-TMPL-009,Verify deleting a template leaves work-order adjustments made from it unchanged,Template admin — delete
-28511,FD-TMPL-010,"Verify template scoping — labour-method templates only appear in labour modals, parts-method only in parts modals",Template admin — scoping
-28512,FD-TMPL-011,Verify Max Amount appears only for percentage methods and 0 is treated as empty,Template admin — dialog fields
+28459,FD-STATS-001,Verify the Stats tab shows a 'Fees & Discounts (N)' breakdown with a value/% and an amount for each row,Work Order — Statistics tab
+28460,FD-STATS-002,Verify each Stats fee/discount row names its target,Work Order — Statistics tab
+28461,FD-STATS-003,Verify the Stats 'Fees & Discounts' total equals the signed sum of all the amounts,Work Order — Statistics tab
+28462,FD-STATS-004,Verify the Stats fees/discounts are listed in the order they were created (oldest first),Work Order — Statistics tab
+28463,FD-STATS-005,Verify the Stats 'Fees & Discounts' section is hidden when the work order has no fees/discounts,Work Order — Statistics tab
+28502,FD-TMPL-001,Verify the fee/discount template library is at Administration → Finance → Fees & Discounts (below Payment Methods),Template admin — location
+28503,FD-TMPL-002,Verify the template list columns and the edit/delete actions,Template admin — list
+28504,FD-TMPL-003,Verify creating a Fee template (dialog fields and the Create button),Template admin — create
+28505,FD-TMPL-004,Verify creating a Discount template,Template admin — create
+28506,FD-TMPL-005,Verify the 'Auto-apply to new work orders' toggle adds the template to every new work order at that location,Template admin — auto-apply
+28507,FD-TMPL-006,"Verify editing a template (Edit Fee / Discount dialog, 'Save' button)",Template admin — edit
+28508,FD-TMPL-007,Verify the template delete confirm dialog and buttons,Template admin — delete
+28509,FD-TMPL-008,Verify the delete confirm adds a warning when the template is a customer default,Template admin — delete
+28510,FD-TMPL-009,Verify deleting a template leaves work-order fees/discounts made from it unchanged,Template admin — delete
+28511,FD-TMPL-010,"Verify template scoping — labour-method templates only show in labour pickers, parts-method only in parts pickers",Template admin — scoping
+28512,FD-TMPL-011,Verify Max Amount shows only for percentage methods and how 0 behaves,Template admin — dialog fields
 28513,FD-TMPL-012,Verify the template list empty-state message,Template admin — list
-28514,FD-TMPL-013,Verify a percentage-discount template is capped at 100% while a percentage-fee template is uncapped,Template admin — validation
-28515,FD-TMPL-014,Verify a Fee/Discount template offers the four whole-WO methods and no scope field,Template admin — dialog fields
-28516,FD-TMPL-015,Verify the template save-failure toast,Template admin — negative
-28517,FD-TMPL-016,Verify the admin Fees & Discounts page is gated by Settings → Finance,Template admin — permissions
-28518,FD-TMPL-017,Verify template Name enforces the 100-character limit,Template admin — dialog fields
-28599,FD-VAL-001,Verify the Add button stays DISABLED until Name AND Type AND Calculation type AND Amount > 0 are all set,Validation / Edge
-28600,FD-VAL-002,Verify a blank or 0 Amount/Percent blocks save with an inline error,Validation / Edge
-28601,FD-VAL-003,"Verify an empty Name blocks save with an inline error (Name required, up to 100 characters)",Validation / Edge
-28602,FD-VAL-004,Verify a percentage discount > 100% is invalid while a percentage fee has no upper cap,Validation / Edge
-28603,FD-VAL-005,Verify negative Amount/Percent values are rejected (values must be > 0),Validation / Edge
-28604,FD-VAL-006,"Verify Max cap edge behavior — 0 or empty = no maximum, and Max Amount shows only for percentage methods",Validation / Edge
-28605,FD-VAL-007,Verify a template that is BOTH location auto-apply and a customer default yields ONE adjustment on a new WO,Validation / Edge
-28424,FD-WO-001,Verify the whole-work-order Add dialog opens from the WO toolbar more (⋯) menu at Whole Work Order scope,Work Order — Whole-WO Fee/Discount
-28425,FD-WO-002,Verify adding a whole-WO Flat Amount fee saves and shows the success toast,Work Order — Whole-WO Fee/Discount
-28426,FD-WO-003,"Verify the live preview computes and displays a whole-WO percentage discount (8% of $10,715.39 → −$857.23)",Work Order — Whole-WO Fee/Discount
-28427,FD-WO-004,Verify 'Apply from template' auto-fills the dialog fields with the template's values,Work Order — Whole-WO Fee/Discount
-28428,FD-WO-005,"Verify the Add button is disabled until Name, Type, Calculation type and Amount>0 are all set",Work Order — Whole-WO Fee/Discount
-28429,FD-WO-006,Verify Max Amount (Max cap) caps a percentage adjustment (20% fee on $100 → +$15 with Max $15),Work Order — Whole-WO Fee/Discount
-28430,FD-WO-007,Verify the add confirm button label follows the Type (Add Fee vs Add Discount),Work Order — Whole-WO Fee/Discount
-28431,FD-WO-008,Verify an empty Name blocks saving a whole-WO adjustment,Work Order — Whole-WO Fee/Discount
-28432,FD-WO-009,Verify an empty or zero Amount blocks saving a whole-WO adjustment,Work Order — Whole-WO Fee/Discount
+28514,FD-TMPL-013,Verify a percentage-discount template cannot go over 100% while a percentage-fee template has no cap,Template admin — validation
+28515,FD-TMPL-014,Verify a Fee/Discount template offers the four whole-work-order methods and no scope field,Template admin — dialog fields
+28516,FD-TMPL-015,Verify the template save-failure message,Template admin — negative
+28517,FD-TMPL-016,Verify the admin Fees & Discounts page needs the Settings → Finance permission,Template admin — permissions
+28518,FD-TMPL-017,Verify the template Name is limited to 100 characters,Template admin — dialog fields
+28599,FD-VAL-001,"Verify the Add button stays disabled until Name, Type, Calculation Type and an Amount above 0 are all set",Validation / Edge
+28600,FD-VAL-002,"Verify a blank or 0 amount blocks saving, with an error",Validation / Edge
+28601,FD-VAL-003,"Verify an empty Name blocks saving, with an error (Name required, up to 100 characters)",Validation / Edge
+28602,FD-VAL-004,Verify a percentage discount over 100% is invalid while a percentage fee has no upper cap,Validation / Edge
+28603,FD-VAL-005,Verify negative amounts are rejected (values must be above 0),Validation / Edge
+28604,FD-VAL-006,Verify the Max Amount field shows only for percentage methods and how 0 or empty behaves,Validation / Edge
+28605,FD-VAL-007,Verify a template that is both auto-apply at the location and a customer default is added only ONCE to a new work order,Validation / Edge
+28424,FD-WO-001,Verify the whole-work-order Add Fee/Discount dialog opens from the work order more (⋯) menu,Work Order — Whole-WO Fee/Discount
+28425,FD-WO-002,Verify adding a whole-work-order flat-amount fee saves and shows a success message,Work Order — Whole-WO Fee/Discount
+28426,FD-WO-003,Verify the live preview shows a whole-work-order percentage discount before you save,Work Order — Whole-WO Fee/Discount
+28427,FD-WO-004,Verify 'Apply From Template' fills the dialog with a template's values,Work Order — Whole-WO Fee/Discount
+28428,FD-WO-005,"Verify the Add button stays disabled until Name, Type, Calculation Type and an Amount above 0 are all filled in",Work Order — Whole-WO Fee/Discount
+28429,FD-WO-006,Verify Max Amount caps a percentage fee (20% on a $100 base with Max Amount $15 → +$15.00),Work Order — Whole-WO Fee/Discount
+28430,FD-WO-007,Verify the confirm button label follows the Type (Add Fee vs Add Discount),Work Order — Whole-WO Fee/Discount
+28431,FD-WO-008,Verify an empty Name blocks saving a whole-work-order fee/discount,Work Order — Whole-WO Fee/Discount
+28432,FD-WO-009,Verify an empty or zero amount blocks saving a whole-work-order fee/discount,Work Order — Whole-WO Fee/Discount
 28433,FD-WO-010,Verify a percentage discount over 100% is rejected while a percentage fee has no upper limit,Work Order — Whole-WO Fee/Discount
-28434,FD-WO-011,Verify whole-WO percentage methods resolve against the correct base (% of Subtotal example),Work Order — Whole-WO Fee/Discount
-28435,FD-WO-012,Verify 'Add Fee / Discount' is hidden and rejected on an Invoiced or Paid work order,Work Order — Whole-WO Fee/Discount
-28436,FD-WO-013,Verify whole-WO starting places are hidden without Work Orders: Create & Edit,Work Order — Whole-WO Fee/Discount
-28437,FD-WO-014,Verify the live preview shows the empty-amount prompt before an amount is entered,Work Order — Whole-WO Fee/Discount
-28438,FD-WO-015,Verify the preview adjustment row is signed and colored (fee vs discount),Work Order — Whole-WO Fee/Discount
-29441,FD-WO-016,Verify the Add/Edit fee-or-discount dialog shows the §5-R15 taxable jurisdiction note below the Taxable dropdown,Work Order — Whole-WO Fee/Discount
+28434,FD-WO-011,Verify a whole-work-order percentage method uses the correct base (% of Subtotal example),Work Order — Whole-WO Fee/Discount
+28435,FD-WO-012,Verify Add Fee/Discount is hidden and blocked on an Invoiced or Paid work order,Work Order — Whole-WO Fee/Discount
+28436,FD-WO-013,Verify the whole-work-order Add Fee/Discount option is hidden without Work Orders: Create & Edit,Work Order — Whole-WO Fee/Discount
+28437,FD-WO-014,Verify the preview shows the empty-amount prompt before an amount is entered,Work Order — Whole-WO Fee/Discount
+28438,FD-WO-015,Verify the preview amount is signed for a fee (+) vs a discount (−),Work Order — Whole-WO Fee/Discount
+29441,FD-WO-016,Verify the Add/Edit fee-or-discount dialog shows the tax-jurisdiction note below the Taxable toggle,Work Order — Whole-WO Fee/Discount
