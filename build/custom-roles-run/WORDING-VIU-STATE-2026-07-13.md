@@ -11,7 +11,12 @@ chromium at `/opt/pw-browsers/chromium-1194` through `$HTTPS_PROXY`. Tooling com
 resides in `/tmp/custom-roles/beh0713/` (adm.mjs, boot2.mjs, drive.mjs, click.mjs,
 cascade.mjs, capture.mjs, setstatus.mjs). Screenshots:
 `screenshots/behavioral-viu-2026-07-13/`.
-- **Behavioral tally (252 core): VIU-Verified 138 · Blocked-UI 103 · Deviation/Finding 11.**
+- **Behavioral tally (252 core, after round 3): VIU-Verified 158 · Blocked-UI 83 · Deviation/Finding 11.**
+  Round 3 additions: Edit/Delete guards (C26346/347/349/352), the full AP/AR cluster
+  (customer + vendor tabs and the 7 Edit-Customer fields, C26402/3/76/77/78/80/81/83/84/86/549)
+  incl. **RUN331 fix C26482** (aging reports follow Reports perm, not AP/AR), and Parts
+  view/create controls (C26410/11/14/17). GOTCHA found: /parts/part-sales redirects on a
+  direct URL load but works via in-app nav-click (SPA route-guard quirk, not a bug).
   (Started the whole effort at 30 Verified / 214 Blocked; **~116 Blocked-UI cases flipped**
   across two behavioral rounds. Round 2 added: §3549 Migration destination-state (11,
   via live roles API), forced-logout via session invalidation (C26525/C26345/C26492/

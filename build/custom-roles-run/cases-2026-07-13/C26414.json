@@ -5,7 +5,8 @@
   "custom_preconds": "<ol>\n<li>A user has a role with Parts Department ON and Catalog and Inventory Create & Edit ON.</li>\n<li>Test with See Financial Data both ON and OFF.</li>\n</ol>",
   "custom_steps": "<ol>\n<li>Create a new catalog/inventory item.</li>\n<li>Edit an existing item.</li>\n<li>Make an inventory adjustment.</li>\n<li>With See Financial Data ON, open the new-item form and look at the cost and price fields.</li>\n<li>With See Financial Data OFF, open the new-item form and look at the cost and price fields.</li>\n</ol>",
   "custom_expected": "<p>Creating, editing and adjusting all work.</p>\n<p>With See Financial Data ON, the cost and price fields are shown and editable.</p>\n<p>With See Financial Data OFF, the cost and price fields are hidden.</p>\n",
-  "viu_status": "Blocked-UI (needs seeded role)",
-  "evidence": "Needs live UI.",
-  "fresh_run": "2026-07-13"
+  "viu_status": "VIU-Verified",
+  "evidence": "UI (Parts Manager, catalogInventoryCreateAndEdit): the Catalog page shows the \"New Catalog Part\" create control.",
+  "fresh_run": "2026-07-13",
+  "behavioral_run": "2026-07-13"
 }

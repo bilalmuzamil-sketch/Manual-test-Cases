@@ -5,7 +5,8 @@
   "custom_preconds": "<ol>\n<li>A user has a role with Parts Department ON, See Financial Data ON and Part sales View, Create & Edit and Delete.</li>\n</ol>",
   "custom_steps": "<ol>\n<li>Log in and open a part sale, then delete it.</li>\n<li>Open a part sales invoice and reverse it.</li>\n</ol>",
   "custom_expected": "<p>The part sale is deleted.</p>\n<p>The part sales invoice is reversed.</p>\n<p>Reversing a part sales invoice is controlled by Part sales Delete, not by Invoicing & payments Delete.</p>\n",
-  "viu_status": "Blocked-UI (needs seeded role)",
+  "viu_status": "Blocked-UI: Part sales Delete affordance (delete/reverse a part sale) not located in this pass — the part-sale row menu did not open in the harness; needs the part-sale detail-page delete control with a with/without partSalesDelete contrast.",
   "evidence": "Needs live UI.",
-  "fresh_run": "2026-07-13"
+  "fresh_run": "2026-07-13",
+  "behavioral_run": "2026-07-13"
 }

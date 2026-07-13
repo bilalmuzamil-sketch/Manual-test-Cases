@@ -5,7 +5,8 @@
   "custom_preconds": "<ol>\n<li>A user has a role with Parts Department ON and Vendor and order management View, Create & Edit and Delete.</li>\n</ol>",
   "custom_steps": "<ol>\n<li>Log in and delete a vendor and a purchase order.</li>\n<li>Reverse a vendor transaction from the vendor's Unpaid Invoices / Payments tab.</li>\n</ol>",
   "custom_expected": "<p>The vendor and the purchase order are deleted.</p>\n<p>The vendor transaction is reversed.</p>\n<p>Note: the reverse action lives inside the vendor Payments tab, which also needs View and Manage AP/AR Data on to reach it.</p>\n",
-  "viu_status": "Blocked-UI (needs seeded role)",
+  "viu_status": "Blocked-UI: Vendor/PO Delete affordance (delete vendor/PO, reverse vendor txn) not located this pass; needs the vendor/PO detail delete control with/without vendorOrderManagementDelete.",
   "evidence": "Needs live UI; AP/AR dependency on the vendor Payments tab is build-observed.",
-  "fresh_run": "2026-07-13"
+  "fresh_run": "2026-07-13",
+  "behavioral_run": "2026-07-13"
 }
