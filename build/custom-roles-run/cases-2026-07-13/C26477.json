@@ -1,0 +1,11 @@
+{
+  "case_id": 26477,
+  "section_id": 3545,
+  "title": "View and Manage AP/AR Data ON shows the same three tabs on a vendor",
+  "custom_preconds": "<ol>\n<li>A user has a role with Vendor and order management View and View and Manage AP/AR Data ON.</li>\n</ol>",
+  "custom_steps": "<ol>\n<li>Open Vendors and open a vendor.</li>\n<li>Look at the tabs.</li>\n</ol>",
+  "custom_expected": "<p>The Unpaid Invoices, Payments and Credits tabs are shown on the vendor page.</p>\n",
+  "viu_status": "Blocked-UI (needs seeded role + vendor detail check)",
+  "evidence": "Vendor AP/AR tabs need live UI. Build gates VendorPaymentsTab/VendorDeliveriesTab on AP/AR data.",
+  "fresh_run": "2026-07-13"
+}

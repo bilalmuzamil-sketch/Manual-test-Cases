@@ -1,0 +1,11 @@
+{
+  "case_id": 26478,
+  "section_id": 3545,
+  "title": "With Reports ON, all 6 AP/AR aging reports are listed (whether or not AP/AR is on)",
+  "custom_preconds": "<ol>\n<li>A user has a role with the Reports page access ON and View and Manage AP/AR Data ON.</li>\n<li>There is some invoice/payment data so the reports have rows.</li>\n</ol>",
+  "custom_steps": "<ol>\n<li>Click Reports in the top navigation.</li>\n<li>Look at the list of reports.</li>\n<li>Find the 6 aging reports: AR Aging Summary, AR Aging Detail, AR Aging Collection, AP Aging Summary, AP Aging Detail, AP Unpaid Invoices.</li>\n<li>Open each of the 6 reports one at a time.</li>\n</ol>",
+  "custom_expected": "<p>The Reports page opens.</p>\n<p>All 6 aging reports are listed because Reports access is on (aging reports follow the Reports page access, not AP/AR).</p>\n<p>Each report opens and shows its data with no permission error.</p>\n<p>Whether View and Manage AP/AR Data is on or off does not change which aging reports are listed.</p>\n",
+  "viu_status": "Blocked-UI (needs seeded role + Reports check)",
+  "evidence": "Aging-report gating needs live check; report page names not re-confirmed from build this pass.",
+  "fresh_run": "2026-07-13"
+}

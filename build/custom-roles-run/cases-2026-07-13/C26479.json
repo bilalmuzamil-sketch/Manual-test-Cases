@@ -1,0 +1,11 @@
+{
+  "case_id": 26479,
+  "section_id": 3545,
+  "title": "View and Manage AP/AR Data ON allows paying several invoices at once from the Unpaid Invoices tab",
+  "custom_preconds": "<ol>\n<li>A user has a role with Invoicing & payments View and Create & Edit and View and Manage AP/AR Data ON.</li>\n<li>A customer has several unpaid invoices.</li>\n</ol>",
+  "custom_steps": "<ol>\n<li>Open the customer and click the Unpaid Invoices tab.</li>\n<li>Find the option to pay several invoices at once (select multiple, then Pay).</li>\n<li>Make a payment across several invoices.</li>\n</ol>",
+  "custom_expected": "<p>The pay-several-at-once option is available and the payment goes through.</p>\n",
+  "viu_status": "Blocked-UI (needs seeded role + live payment)",
+  "evidence": "Bulk payment needs live UI + payment (create-customer-payment 500s intermittently per prior run).",
+  "fresh_run": "2026-07-13"
+}

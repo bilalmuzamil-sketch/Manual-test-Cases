@@ -46,3 +46,17 @@ SFD-disable dependent-prompt (C26475), a FAILED deviation in RUN331 as "not
 implemented", appears to have since been BUILT. Recommend a live re-test to confirm
 the dependent-clear behavior and the exact dependent list.
 </content>
+
+---
+
+## Section 3545 — View and Manage AP/AR Data (11 cases) — pushed 2026-07-13
+**Result: 11 UPDATED · 0 no-op · 0 failed · all re-verified 200/200.**
+Key change: every case's tester-facing text now uses the BUILD toggle label
+**"View and Manage AP/AR Data"** (was the spec name "Manage Accounts Payable and
+Receivable"); "Invoicing and Payments" → "Invoicing & payments"; "Customer
+Management" concept mapped to the Customers card; jargon stripped.
+All behavior VIU = Blocked-UI (needs a seeded role + customer/vendor/reports UI check;
+some need live payments — create-customer-payment 500s intermittently).
+**C26482 NOTE:** RUN331 recorded this as a FAILED deviation (aging reports still
+hid when AP/AR was OFF, i.e. spec "aging follows Reports" was not live) — flagged for
+a fresh live re-test.
