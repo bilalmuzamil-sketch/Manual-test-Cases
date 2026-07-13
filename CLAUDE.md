@@ -6,6 +6,10 @@
 > - App action recipes (how to do each thing in ShopView): build/APP-ACTIONS-PLAYBOOK.md
 > - Reusable build-accurate wording + VIU + TestRail-sync method (Standing Rule 9):
 >   build/BUILD-ACCURATE-WORDING-VIU-PROCESS.md — **apply to any project WHEN THE USER ASKS.**
+> - Reusable spec-relevance/obsolescence reconciliation method (keep the WHOLE case
+>   suite + all deliverables honest to a NEW/UPDATED spec, not just named deltas;
+>   complements the VIU wording process — Standing Rules 9/10/11):
+>   build/SPEC-RELEVANCE-RECONCILIATION-PROCESS.md — **apply to any project WHEN THE USER ASKS.**
 > - Keep the books current: After each task, append ONLY success-proven learnings
 >   (working navigation paths, action recipes, endpoints, the specific unblock that
 >   worked) to build/APP-ACTIONS-PLAYBOOK.md; update build/TESTING-RUNBOOK.md when the
@@ -213,6 +217,18 @@ all).
     TestRail Case ID + Link columns) → report each area tester-ready and **ALWAYS
     state the TestRail update status explicitly.** This is the default meaning of
     "VIU" for EVERY project going forward.
+11. **ALWAYS ASK which process to run on a new/updated spec OR a VIU request (all
+    projects):** Whenever the user provides a spec (new or updated) OR asks to VIU,
+    ALWAYS ASK the user first whether they want (1)
+    `build/BUILD-ACCURATE-WORDING-VIU-PROCESS.md` (per-case build-accurate wording +
+    behavior VIU) and/or (2)
+    `build/SPEC-RELEVANCE-RECONCILIATION-PROCESS.md` (whole-suite
+    relevance/obsolescence audit + regenerate ALL deliverables) run — **do not
+    assume; confirm which one(s) before proceeding.** Ties directly to Standing
+    Rules 9 and 10 (they define the two methods; this rule governs when to invoke
+    each). The two are complementary: rule-9/10 wording+VIU handles each case's
+    words/behavior; the reconciliation process handles which cases should exist and
+    keeps every downstream deliverable honest to the current spec.
 
 ## Project purpose (Custom Roles project)
 Manual test-case authoring + live staging (Verify-in-UI) verification + TestRail
