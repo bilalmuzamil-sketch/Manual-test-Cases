@@ -212,7 +212,8 @@
     <p class="note">What each QA person did <b>yesterday (<span id="act-yest"></span>)</b> and <b>today (<span id="act-today"></span>)</b>, Pakistan time.
     <b>Created</b> = new bugs/defects filed · <b>Commented</b> = tickets they left a comment on (testing notes)
     · <b>Rejected</b> = sent back to dev · <b>Done</b> = moved to Done/Ready&nbsp;for&nbsp;Production ·
-    <b>Reassigned</b> = changed the assignee. Independent of the date filter above.
+    <b>Reassigned</b> = changed the assignee. Fixed to yesterday/today (independent of the date filter),
+    but <b>scoped to the selected epic</b> — pick an epic and it shows only that epic's activity.
     <b>Hover any number ≤ 10</b> to see the exact ticket keys (e.g. SV-5505).</p>
     <div class="mwrap"><table class="matrix" id="activity"></table></div>
   </div>
@@ -245,11 +246,12 @@
     </div>
   </div>
 
-  <div class="eyebrow">Primary epic per QA member — what each person mainly works on</div>
-  <div class="card">
+  <div class="eyebrow" id="primary-eyebrow">Primary epic per QA member — what each person mainly works on</div>
+  <div class="card" id="primary-card">
     <p class="note">Each person's <b>main epic</b> = the epic they touched on the most tickets
     <b>within the selected date range</b> (tickets active in that window). "Focus" = what share of their
-    range work sits in that one epic. Change the calendar and this re-ranks with everything else.</p>
+    range work sits in that one epic. Change the calendar and this re-ranks with everything else.
+    <b>Only shown in the "All epics" view</b> — it's a cross-epic comparison, so picking a single epic hides it.</p>
     <div class="mwrap"><table class="matrix" id="primary"></table></div>
   </div>
 
@@ -363,6 +365,11 @@ T.forEach(t => {
   t.credit = t.lc.length ? t.lc : t.qa;
   t.people = [...new Set([...t.qa, ...t.lc, ...t.lip])];
 });
+// ticket-key → epic (for epic-scoping the in-progress + activity sections, which
+// aren't in the main ticket-filter path). Unknown keys map to null (excluded when
+// a specific epic is selected).
+const KEP = {}; T.forEach(t => { KEP[t.k] = t.ep || "NONE"; });
+const inEpic = k => !state.e || KEP[k] === state.e;
 
 const $ = id => document.getElementById(id);
 const state = { q:"", e:"", from:PRESETS.week[0], to:PRESETS.week[1], y:"", s:"",
@@ -568,7 +575,7 @@ function renderStoryProgress(){
 }
 
 function renderInprog(){
-  let rows = INPROG.filter(r => !state.q || r.people.includes(state.q));
+  let rows = INPROG.filter(r => (!state.q || r.people.includes(state.q)) && inEpic(r.k));
   let h = `<tr><th style="text-align:left">Ticket</th><th style="text-align:left">Summary</th>
     <th style="text-align:left">In progress with</th><th style="text-align:left">Since (PKT)</th>
     <th style="text-align:left">Days</th><th style="text-align:left">Ticket status</th></tr>`;
@@ -597,9 +604,10 @@ function renderActivity(){
   let h = `<tr><th style="text-align:left" rowspan="2">QA member</th>`
     + COLS.map(([,l])=>`<th colspan="2" style="text-align:center">${l}</th>`).join("")
     + `</tr><tr>` + COLS.map(()=>`<th>Yest</th><th>Today</th>`).join("") + `</tr>`;
-  // each cell is a list of ticket keys → count = length; tooltip shows keys when count ≤ 10
-  const len = v => Array.isArray(v) ? v.length : (v||0);
-  const keysOf = v => Array.isArray(v) ? v : [];
+  // each cell is a list of ticket keys → count = length; tooltip shows keys when count ≤ 10.
+  // Keys are scoped to the selected epic (via inEpic), so activity follows the epic filter too.
+  const keysOf = v => Array.isArray(v) ? v.filter(inEpic) : [];
+  const len = v => keysOf(v).length;
   const mx = {}; COLS.forEach(([k])=>{ mx[k]=Math.max(1,...names.map(p=>Math.max(len(ACT.people[p][k]?.[0]),len(ACT.people[p][k]?.[1])))); });
   names.forEach(p => {
     h += `<tr><td class="ep" style="${QA.includes(p)?"":"color:var(--muted)"}">${esc(p)}</td>`;
@@ -621,6 +629,11 @@ function renderActivity(){
 }
 
 function renderPrimary(){
+  // Cross-epic comparison: which epic each person mostly works on. Meaningless when a
+  // single epic is already selected (it would trivially be that epic), so hide it then.
+  const eb = $("primary-eyebrow"), card = $("primary-card");
+  if (state.e){ if(eb) eb.style.display="none"; if(card) card.style.display="none"; return; }
+  if (eb) eb.style.display=""; if (card) card.style.display="";
   // per person: count involvement per epic across tickets ACTIVE in the selected range
   // (updated within from..to). Follows the calendar like everything else.
   const by = {};   // person -> {epic -> count}, plus _total
