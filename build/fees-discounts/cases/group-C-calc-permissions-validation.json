@@ -70,7 +70,7 @@
   "type": "Functional",
   "permissions_required": "See Financial Data; Work Orders: Create and Edit (whole-WO); Work Order Lines: Create and Edit (labor line)",
   "preconditions": [
-   "1. Role has See Financial Data plus the matching change permission.",
+   "1. Role has See Financial Data plus the matching Create and Edit permission.",
    "2. An open work order with at least one labor line."
   ],
   "steps": [
@@ -127,7 +127,7 @@
   "type": "Functional",
   "permissions_required": "See Financial Data; Work Orders: Create and Edit",
   "preconditions": [
-   "1. Role has See Financial Data and the matching change permission.",
+   "1. Role has See Financial Data and the matching Create and Edit permission.",
    "2. An open work order."
   ],
   "steps": [
@@ -157,7 +157,7 @@
   "type": "Functional",
   "permissions_required": "See Financial Data; Work Orders: Create and Edit",
   "preconditions": [
-   "1. Role has See Financial Data and the matching change permission.",
+   "1. Role has See Financial Data and the matching Create and Edit permission.",
    "2. An open work order."
   ],
   "steps": [
@@ -185,7 +185,7 @@
   "type": "Functional",
   "permissions_required": "See Financial Data; Work Orders: Create and Edit",
   "preconditions": [
-   "1. Role has See Financial Data and the matching change permission.",
+   "1. Role has See Financial Data and the matching Create and Edit permission.",
    "2. An open work order whose target base = $100.00."
   ],
   "steps": [
@@ -215,7 +215,7 @@
   "type": "Functional",
   "permissions_required": "See Financial Data; Work Orders: Create and Edit",
   "preconditions": [
-   "1. Role has See Financial Data and the matching change permission.",
+   "1. Role has See Financial Data and the matching Create and Edit permission.",
    "2. An open work order whose target base = $100.00.",
    "3. Note: a $0 Max Amount can normally only come from old data — an entered 0 is treated as empty in the current dialogs (S2-R25)."
   ],
@@ -244,7 +244,7 @@
   "type": "Functional",
   "permissions_required": "See Financial Data; Work Order Lines: Create and Edit",
   "preconditions": [
-   "1. Role has See Financial Data and the matching change permission.",
+   "1. Role has See Financial Data and the matching Create and Edit permission.",
    "2. An open work order with a target line whose base is $0.00 (e.g. a declined/not-billable labor line, §5-R12)."
   ],
   "steps": [
@@ -272,7 +272,7 @@
   "type": "Functional",
   "permissions_required": "See Financial Data; Work Orders: Create and Edit",
   "preconditions": [
-   "1. Role has See Financial Data and the matching change permission.",
+   "1. Role has See Financial Data and the matching Create and Edit permission.",
    "2. An open work order where an earlier discount has already driven a net total to or below $0 for a whole-WO percentage base."
   ],
   "steps": [
@@ -299,7 +299,7 @@
   "type": "Functional",
   "permissions_required": "See Financial Data; Work Orders: Create and Edit",
   "preconditions": [
-   "1. Role has See Financial Data and the matching change permission.",
+   "1. Role has See Financial Data and the matching Create and Edit permission.",
    "2. An open work order for a taxable customer with a known tax rate and a taxable base."
   ],
   "steps": [
@@ -328,7 +328,7 @@
   "type": "Functional",
   "permissions_required": "See Financial Data; Work Orders: Create and Edit; Work Order Lines: Create and Edit",
   "preconditions": [
-   "1. Role has See Financial Data plus both change permissions.",
+   "1. Role has See Financial Data plus both Create and Edit permissions.",
    "2. An open work order with gross labor = $200.00 and gross parts = $100.00 (spec worked example)."
   ],
   "steps": [
@@ -416,7 +416,7 @@
   "type": "Functional",
   "permissions_required": "See Financial Data; Work Orders: Create and Edit",
   "preconditions": [
-   "1. Role has See Financial Data and the matching change permission.",
+   "1. Role has See Financial Data and the matching Create and Edit permission.",
    "2. An open work order with $100.00 taxable parts and $10.00 tax (spec worked example).",
    "3. Location has an active QuickBooks connection (to verify the credit memo)."
   ],
@@ -448,7 +448,7 @@
   "type": "Functional",
   "permissions_required": "See Financial Data; Work Orders: Create and Edit",
   "preconditions": [
-   "1. Role has See Financial Data and the matching change permission.",
+   "1. Role has See Financial Data and the matching Create and Edit permission.",
    "2. An open work order with $100.00 taxable parts and $10.00 tax."
   ],
   "steps": [
@@ -477,7 +477,7 @@
   "type": "Functional",
   "permissions_required": "See Financial Data; Work Orders: Create and Edit",
   "preconditions": [
-   "1. Role has See Financial Data and the matching change permission.",
+   "1. Role has See Financial Data and the matching Create and Edit permission.",
    "2. Location has an active QuickBooks connection.",
    "3. An open work order with a small net subtotal and two or more discount lines whose combined size exceeds it."
   ],
@@ -519,7 +519,7 @@
   "expected": [
    "1. With SFD ON: all fee/discount dollar amounts are visible on every surface.",
    "2. With SFD OFF: all fee/discount dollar amounts are HIDDEN on every surface, and no add/edit/remove control is reachable (S13-N1).",
-   "3. See Financial Data is the \"pricing-view permission\" referenced in Stories 3/4/11."
+   "3. See Financial Data (the Custom Roles / SV-7388 permission) is the single permission that controls visibility of all fee/discount money values across Stories 3, 4, and 11."
   ],
   "design_ref": "design-notes §1b (Financial Info money section), §3 (Stats), §5 (Parts column)",
   "viu_status": "VIU-Verified",
@@ -575,7 +575,7 @@
   "expected": [
    "1. With Work Order Lines: Create and Edit ON: labor-line and part-line add/edit/remove are allowed.",
    "2. With it OFF: the line-level starting places (3-dot menus) do not show the option, and the action is rejected (S13-N2).",
-   "3. This is the permission the earlier stories called the \"Work Order change permission\" for line-level actions."
+   "3. This gate is Work Order Lines: Create and Edit (SV-7388); it governs every line-level (labor-line and part-line) adjustment add/edit/remove action (S13-R4)."
   ],
   "design_ref": "design-notes §2a/§2b (labor & part inline ⋮ → Add fee / discount, Edit/Delete)",
   "viu_status": "VIU-Verified",
@@ -587,7 +587,7 @@
   "id": "FD-PERM-004",
   "area": "Permissions (Story 13)",
   "story_ref": "S13-R5",
-  "title": "Verify Part-Sale part adjustment add/edit/remove requires Part Sales: Create and Edit",
+  "title": "Verify Part-Sale adjustment add/edit/remove (whole sale or part line) requires Part Sales: Create and Edit + See Financial Data",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "See Financial Data (ON) + Part Sales: Create and Edit (the gate under test)",
@@ -603,7 +603,7 @@
   "expected": [
    "1. With Part Sales: Create and Edit ON: part-sale add/edit/remove is allowed.",
    "2. With it OFF: the part-sale F&D controls are not shown and the action is rejected (S13-N2).",
-   "3. On a Part Sale the earlier \"Work Order change permission\" maps to Part Sales: Create and Edit (S13-R11)."
+   "3. A Part-Sale adjustment — on the whole sale or on a part line — requires Part Sales: Create and Edit plus See Financial Data (S13-R5). Part-sale adjustments use no Work Order permission."
   ],
   "design_ref": "design-notes §5 (Parts F&D column: single / +N / +Add states), §8 (per-part breakdown viewer)",
   "viu_status": "VIU-Blocked-NotBuilt",
@@ -618,18 +618,18 @@
   "title": "Verify any add/edit/remove of an adjustment also requires See Financial Data to be ON",
   "priority": "High",
   "type": "Functional",
-  "permissions_required": "The relevant change permission ON, but See Financial Data OFF (the combination under test)",
+  "permissions_required": "The matching Create and Edit permission ON, but See Financial Data OFF (the combination under test)",
   "preconditions": [
    "1. An open work order.",
    "2. A ZZAUTOTEST role that HAS Work Orders: Create and Edit (and/or Work Order Lines / Part Sales Create and Edit) but has See Financial Data OFF. Assign by exact-user-match to Tech."
   ],
   "steps": [
-   "1. Assign the role (change permission ON, SFD OFF).",
+   "1. Assign the role (matching Create and Edit permission ON, SFD OFF).",
    "2. Open the WO and try to reach the Add Fee / Discount controls at every starting place (toolbar ⋯, labor-line ⋮, part menu).",
    "3. Restore Tech to Time Clock after."
   ],
   "expected": [
-   "1. Even with the change permission ON, add/edit/remove is NOT reachable while See Financial Data is OFF (S13-R6).",
+   "1. Even with the matching Create and Edit permission ON, add/edit/remove is NOT reachable while See Financial Data is OFF (S13-R6).",
    "2. The controls sit on screens that are hidden when SFD is off, so there is no way to add/edit/remove.",
    "3. Dollar amounts are also hidden."
   ],
@@ -716,7 +716,7 @@
    "1. With BOTH permissions ON: the \"Fees & Discounts\" tab and its Add/Remove controls are available and work.",
    "2. Without Manage Accounts Payable and Receivable: the customer \"Fees & Discounts\" tab and controls are HIDDEN (S13-N3).",
    "3. Without Customer Management: Create and Edit: the defaults cannot be viewed/changed.",
-   "4. This is Story 9's \"customer change permission\" — both are required."
+   "4. Story 9's customer default fees & discounts require BOTH Customer Management: Create and Edit AND Manage Accounts Payable and Receivable (S13-R9)."
   ],
   "design_ref": "design-notes §4 (Customer \"Fees & Discounts (3)\" tab, columns incl. Auto-Apply, per-row Remove)",
   "viu_status": "VIU-Verified",
@@ -728,29 +728,31 @@
   "id": "FD-PERM-009",
   "area": "Permissions (Story 13)",
   "story_ref": "S13-R10",
-  "title": "Verify seeing fee/discount entries in the WO history log requires View History Logs (and stays visible even when F&D UI is hidden)",
+  "title": "Verify seeing fee/discount entries in the WO history log requires Work Orders: Create and Edit (line history requires Work Order Lines: Create and Edit)",
   "priority": "Medium",
   "type": "Functional",
-  "permissions_required": "View History Logs (the gate under test)",
+  "permissions_required": "Work Orders: Create and Edit (WO history log) / Work Order Lines: Create and Edit (line history) — the gates under test",
   "preconditions": [
    "1. A work order already has fee/discount history (add/edit/remove entries).",
-   "2. Two ZZAUTOTEST roles: Role A WITH View History Logs; Role B WITHOUT it. Assign by exact-user-match to Tech."
+   "2. Two ZZAUTOTEST roles: Role A WITH Work Orders: Create and Edit; Role B WITHOUT it. For line-level history, add a role WITH / WITHOUT Work Order Lines: Create and Edit. Assign by exact-user-match to Tech."
   ],
   "steps": [
-   "1. With Role A: open the WO history log and locate the fee/discount entries.",
+   "1. With Role A (Work Orders: Create and Edit ON): open the WO history log and locate the fee/discount entries.",
    "2. Also confirm entries remain visible even when the F&D UI is hidden (feature flag off, or See Financial Data off).",
-   "3. With Role B: open the WO history log.",
-   "4. Restore Tech to Time Clock after."
+   "3. With Role B (Work Orders: Create and Edit OFF): open the WO history log.",
+   "4. To check line-level history, repeat with a role that has, then lacks, Work Order Lines: Create and Edit.",
+   "5. Restore Tech to Time Clock after."
   ],
   "expected": [
-   "1. With View History Logs ON: fee/discount entries are visible in the history log.",
-   "2. Entries stay visible even when the F&D UI is hidden by the feature flag or by See Financial Data (S10-R1).",
-   "3. The log shows the SET rate (e.g. \"10.00%\" or \"$5.00\"), not a resolved total, so See Financial Data does NOT gate it (S10-R6c).",
-   "4. With View History Logs OFF: the fee/discount history entries are not shown."
+   "1. With Work Orders: Create and Edit ON: fee/discount entries are visible in the WO history log.",
+   "2. Viewing an individual labor-line or part-line history requires Work Order Lines: Create and Edit.",
+   "3. Entries stay visible even when the F&D UI is hidden by the feature flag or by See Financial Data (S10-R1).",
+   "4. The log shows the SET rate (e.g. \"10.00%\" or \"$5.00\"), not a resolved total, so See Financial Data does NOT gate it (S10-R6c).",
+   "5. Without Work Orders: Create and Edit, the work-order history log (including fee/discount entries) is not shown."
   ],
   "design_ref": "design-notes §10 (no history-log view mocked)",
-  "viu_status": "VIU-Verified",
-  "notes": "Current-build difference (requirements §14 item 6): history \"Applied to:\" reportedly shows raw \"processing_fee\" instead of \"Full invoice\" for a Processing Fee. Verify labels on staging. | VIU qb batch-1 (2026-07-08): Blocked — no restricted session. | FRESH VIU 2026-07-10: history entries: BE serves them regardless (tech 200) — FE display gate per enforcement model; entries carry set rate",
+  "viu_status": "Pending / Retest — expected changed by V1_2 S13-R10, needs live re-VIU",
+  "notes": "Current-build difference (requirements §14 item 6): history \"Applied to:\" reportedly shows raw \"processing_fee\" instead of \"Full invoice\" for a Processing Fee. Verify labels on staging. | VIU qb batch-1 (2026-07-08): Blocked — no restricted session. | FRESH VIU 2026-07-10: history entries: BE serves them regardless (tech 200) — FE display gate per enforcement model; entries carry set rate | V1_2 (2026-07-13): history-log gate updated per S13-R10 — WO-level history requires Work Orders: Create and Edit; line-level history requires Work Order Lines: Create and Edit (was View History Logs). Expected/preconditions updated; needs live re-VIU. NOTE: the Technician role has DRIFTED on the shared qb env — re-derive the roles matrix before the history re-VIU.",
   "api_related": false,
   "fresh_run": "2026-07-10"
  },
@@ -769,7 +771,7 @@
   ],
   "steps": [
    "1. Flag OFF + permission ON: open the WO and look for any F&D control.",
-   "2. Flag ON + permission OFF: assign a role without the change permission and look for the controls.",
+   "2. Flag ON + permission OFF: assign a role without the matching Create and Edit permission and look for the controls.",
    "3. Flag ON + permission ON: confirm the controls appear and work.",
    "4. Restore Tech to Time Clock and leave the flag in its original state."
   ],
@@ -850,10 +852,10 @@
   "title": "Verify the WO history log STILL shows fee/discount entries even when the feature flag is OFF",
   "priority": "Medium",
   "type": "Functional",
-  "permissions_required": "View History Logs",
+  "permissions_required": "Work Orders: Create and Edit (to view the work-order history log)",
   "preconditions": [
    "1. A work order already has fee/discount history entries.",
-   "2. The user has View History Logs.",
+   "2. The user has Work Orders: Create and Edit (to view the work-order history log).",
    "3. Ability to set the FeesAndDiscounts flag OFF."
   ],
   "steps": [
@@ -866,8 +868,8 @@
    "2. All other F&D UI is still hidden."
   ],
   "design_ref": "design-notes §10 (no history-log view mocked)",
-  "viu_status": "VIU-Blocked-Env",
-  "notes": "History entries show the set rate, not a resolved dollar total, so they are not gated by See Financial Data either (S10-R6c). | VIU qb batch-1 (2026-07-08): Skipped with FD-FLAG-001 (requires flag OFF). | FRESH VIU 2026-07-10: as FD-FLAG-001",
+  "viu_status": "Pending / Retest — expected changed by V1_2 S13-R10, needs live re-VIU",
+  "notes": "History entries show the set rate, not a resolved dollar total, so they are not gated by See Financial Data either (S10-R6c). | VIU qb batch-1 (2026-07-08): Skipped with FD-FLAG-001 (requires flag OFF). | FRESH VIU 2026-07-10: as FD-FLAG-001 | V1_2 (2026-07-13): history-log gate updated per S13-R10 — WO-level history requires Work Orders: Create and Edit; line-level history requires Work Order Lines: Create and Edit (was View History Logs). Expected/preconditions updated; needs live re-VIU. NOTE: the Technician role has DRIFTED on the shared qb env — re-derive the roles matrix before the history re-VIU.",
   "api_related": false,
   "fresh_run": "2026-07-10"
  },
@@ -884,7 +886,7 @@
    "2. An open work order."
   ],
   "steps": [
-   "1. With the flag ON and the user lacking See Financial Data / the change permission, open the WO and look for F&D controls and amounts.",
+   "1. With the flag ON and the user lacking See Financial Data / the matching Create and Edit permission, open the WO and look for F&D controls and amounts.",
    "2. Then grant the permissions and revisit.",
    "3. Restore Tech to Time Clock after."
   ],
@@ -908,7 +910,7 @@
   "type": "Functional",
   "permissions_required": "See Financial Data; the matching Create and Edit permission",
   "preconditions": [
-   "1. Role has See Financial Data and the matching change permission.",
+   "1. Role has See Financial Data and the matching Create and Edit permission.",
    "2. An open work order; open the Add Fee / Discount dialog."
   ],
   "steps": [
@@ -938,7 +940,7 @@
   "type": "Functional",
   "permissions_required": "See Financial Data; the matching Create and Edit permission",
   "preconditions": [
-   "1. Role has See Financial Data and the matching change permission.",
+   "1. Role has See Financial Data and the matching Create and Edit permission.",
    "2. Add dialog open with Name and Type and Calculation type filled."
   ],
   "steps": [
@@ -966,7 +968,7 @@
   "type": "Functional",
   "permissions_required": "See Financial Data; the matching Create and Edit permission",
   "preconditions": [
-   "1. Role has See Financial Data and the matching change permission.",
+   "1. Role has See Financial Data and the matching Create and Edit permission.",
    "2. Add dialog open with Type, Calculation type, and a valid Amount filled."
   ],
   "steps": [
@@ -994,7 +996,7 @@
   "type": "Functional",
   "permissions_required": "See Financial Data; the matching Create and Edit permission",
   "preconditions": [
-   "1. Role has See Financial Data and the matching change permission.",
+   "1. Role has See Financial Data and the matching Create and Edit permission.",
    "2. Add dialog open."
   ],
   "steps": [
@@ -1023,7 +1025,7 @@
   "type": "Functional",
   "permissions_required": "See Financial Data; the matching Create and Edit permission",
   "preconditions": [
-   "1. Role has See Financial Data and the matching change permission.",
+   "1. Role has See Financial Data and the matching Create and Edit permission.",
    "2. Add dialog open with Name, Type, Calculation type set."
   ],
   "steps": [
@@ -1049,7 +1051,7 @@
   "type": "Functional",
   "permissions_required": "See Financial Data; the matching Create and Edit permission",
   "preconditions": [
-   "1. Role has See Financial Data and the matching change permission.",
+   "1. Role has See Financial Data and the matching Create and Edit permission.",
    "2. Add dialog open."
   ],
   "steps": [

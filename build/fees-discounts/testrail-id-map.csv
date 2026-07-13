@@ -19,10 +19,10 @@ ID,fd_id,title,section
 28485,FD-CUST-001,"Verify the customer ""Fees & Discounts (N)"" tab shows the correct default count",Customer Fees & Discounts tab
 28486,FD-CUST-002,"Verify the ""Default Fees & Discounts"" card header, caption, and table columns",Customer Fees & Discounts tab
 28487,FD-CUST-003,Verify adding a single template as a customer default via the picker,Customer Fees & Discounts tab
-28488,FD-CUST-004,Verify multi-select adding of several templates at once shows the plural toast,Customer Fees & Discounts tab
+28488,FD-CUST-004,Verify several templates are added as customer defaults one at a time (no multi-select),Customer Fees & Discounts tab
 28489,FD-CUST-005,"Verify the picker lists only unlinked templates and shows Processing Fee templates as type ""Fee""",Customer Fees & Discounts tab
 28490,FD-CUST-006,Verify the empty picker message when there are no templates left to add,Customer Fees & Discounts tab
-28491,FD-CUST-007,Verify removing a customer default via the row menu needs no confirm and toasts,Customer Fees & Discounts tab
+28491,FD-CUST-007,Verify removing a customer default via the row's remove action needs no confirm and toasts,Customer Fees & Discounts tab
 28492,FD-CUST-008,Verify the empty-state text on the Default Fees & Discounts card,Customer Fees & Discounts tab
 28493,FD-CUST-009,Verify a customer default is added as an independent adjustment on every NEW work order,Customer defaults → new work order
 28494,FD-CUST-010,"Verify a percentage customer default re-resolves per work order (keeps percent, not a fixed dollar)",Customer defaults → new work order
@@ -52,22 +52,22 @@ ID,fd_id,title,section
 28466,FD-FIN-003,Verify the Financial Info 'Fees & Discounts' row is hidden with no adjustments and the money section is hidden without See Financial Data,Work Order — Financial Info card
 28467,FD-FIN-004,"Verify the sidebar 'Work Order Fee / Discount' card lists whole-WO adjustments with name, signed rate badge, grey amount and hover Edit/Delete",Work Order — Sidebar 'Work Order Fee / Discount' card
 28468,FD-FIN-005,Verify the sidebar card is hidden with no whole-WO adjustments and has no Add control,Work Order — Sidebar 'Work Order Fee / Discount' card
-28596,FD-FLAG-001,"Verify with the Fees & Discounts feature OFF, all F&D UI and behavior are hidden everywhere",Feature-flag gating
-28597,FD-FLAG-002,Verify the WO history log STILL shows fee/discount entries even when the Fees & Discounts feature is OFF,Feature-flag gating
+28596,FD-FLAG-001,"Verify with the FeesAndDiscounts flag OFF, all F&D UI and behavior are hidden everywhere",Feature-flag gating
+28597,FD-FLAG-002,Verify the WO history log STILL shows fee/discount entries even when the feature flag is OFF,Feature-flag gating
 28598,FD-FLAG-003,"Verify with the flag ON, the matching permission is still required to use F&D",Feature-flag gating
 28560,FD-HIST-001,Verify one history entry per add/edit/remove with the correct bold event labels,History log
 28561,FD-HIST-002,"Verify the history detail block shows Name, Type, Amount (set rate), and Applied-to label",History log
 28562,FD-HIST-003,"Verify an adjustment entry leaves the saved-state icon empty and the Line column shows ""−""",History log
-28563,FD-HIST-004,Verify fee/discount history stays visible when the F&D UI is hidden by the Fees & Discounts feature,History log — visibility
+28563,FD-HIST-004,Verify fee/discount history stays visible when the F&D UI is hidden by the feature flag,History log — visibility
 28564,FD-HIST-005,Verify F&D history stays visible when the F&D UI is hidden by See Financial Data being off,History log — visibility
-28565,FD-HIST-006,Verify fee/discount history entries are gated by the View History Logs permission,History log — permission
+28565,FD-HIST-006,Verify fee/discount history entries are gated by Work Orders: Create and Edit (line history by Work Order Lines: Create and Edit),History log — permission
 28566,FD-HIST-007,"Verify a Processing Fee is logged as a fee with ""Full invoice"" applied-to and no ""updated"" entry",History log — Processing Fee
 28567,FD-HIST-008,Verify an edit that changes the rate records the new set rate (not the resolved total),History log — edit entry
 28454,FD-INLINE-001,"Verify a labor-line adjustment shows inline under its line with ↳ arrow, name, signed rate badge and grey amount",Work Order — Inline display (Lines tab)
 28455,FD-INLINE-002,"Verify a part-line adjustment shows inline under its part with ↳ arrow, name, signed rate badge and grey amount",Work Order — Inline display (Lines tab)
 28456,FD-INLINE-003,Verify a line/part with 2+ adjustments shows only the first plus a 'Show N more' toggle,Work Order — Inline display (Lines tab)
 28457,FD-INLINE-004,Verify the per-line Total column shows the line's gross total plus its own adjustment amounts (display only),Work Order — Inline display (Lines tab)
-28458,FD-INLINE-005,Verify each inline adjustment row has a hover 3-dot Edit/Delete menu when the WO is open with change permission,Work Order — Inline display (Lines tab)
+28458,FD-INLINE-005,Verify each inline adjustment row has a hover 3-dot Edit/Delete menu when the WO is open with the matching Create and Edit permission,Work Order — Inline display (Lines tab)
 28439,FD-LABOR-001,Verify a labor line's 3-dot menu opens the Add dialog locked to that Labor Line scope,Work Order — Labor-line Fee/Discount
 28440,FD-LABOR-002,Verify a labor-line % of Labor Total fee resolves against the line's gross labor price (10% of $150.00 → +$15.00),Work Order — Labor-line Fee/Discount
 28441,FD-LABOR-003,Verify each labor line row exposes its own 3-dot menu on hover,Work Order — Labor-line Fee/Discount
@@ -93,18 +93,18 @@ ID,fd_id,title,section
 28585,FD-PERM-001,"Verify See Financial Data gates ALL fee/discount dollar amounts everywhere (without SFD, amounts are hidden)",Permissions (Story 13)
 28586,FD-PERM-002,Verify Whole-WO adjustment add/edit/remove requires Work Orders: Create and Edit,Permissions (Story 13)
 28587,FD-PERM-003,Verify Labor-line and Part-line adjustment add/edit/remove requires Work Order Lines: Create and Edit,Permissions (Story 13)
-28588,FD-PERM-004,Verify Part-Sale part adjustment add/edit/remove requires Part Sales: Create and Edit,Permissions (Story 13)
+28588,FD-PERM-004,Verify Part-Sale adjustment add/edit/remove (whole sale or part line) requires Part Sales: Create and Edit + See Financial Data,Permissions (Story 13)
 28589,FD-PERM-005,Verify any add/edit/remove of an adjustment also requires See Financial Data to be ON,Permissions (Story 13)
 28590,FD-PERM-006,"Verify REMOVING an adjustment is governed by ""Create and Edit"", NOT the separate ""Delete"" permission",Permissions (Story 13)
 28591,FD-PERM-007,Verify create/edit/delete of an adjustment TEMPLATE requires Settings → Finance,Permissions (Story 13)
 28592,FD-PERM-008,Verify viewing/changing a customer's default fees & discounts requires BOTH Customer Management: Create and Edit AND Manage Accounts Payable and Receivable,Permissions (Story 13)
-28593,FD-PERM-009,Verify seeing fee/discount entries in the WO history log requires View History Logs (and stays visible even when F&D UI is hidden),Permissions (Story 13)
-28594,FD-PERM-010,Verify BOTH gates are required — the Fees & Discounts feature ON AND the matching permission,Permissions (Story 13)
+28593,FD-PERM-009,Verify seeing fee/discount entries in the WO history log requires Work Orders: Create and Edit (line history requires Work Order Lines: Create and Edit),Permissions (Story 13)
+28594,FD-PERM-010,Verify BOTH gates are required — the FeesAndDiscounts flag ON AND the matching permission,Permissions (Story 13)
 28595,FD-PERM-011,Verify add/edit/remove is blocked when the WO is Invoiced/Paid or the user is in history mode,Permissions (Story 13)
 28519,FD-PROC-001,"Verify ""Processing Fee"" is a third type in the template builder (template-only)",Processing Fee — template builder
 28520,FD-PROC-002,"Verify a Processing Fee offers only Flat Amount (default) and % of Grand Total, with a tax-inclusive base",Processing Fee — methods
 28521,FD-PROC-003,Verify the Max Amount field is hidden for every Processing Fee (both methods),Processing Fee — no Max Amount
-28522,FD-PROC-004,Verify the Processing Fee Taxable control defaults Yes and renders the legal disclosure,Processing Fee — taxable + legal disclosure
+28522,FD-PROC-004,Verify the Processing Fee Taxable control defaults Yes and shows the §5-R15 jurisdiction note,Processing Fee — taxable + legal disclosure
 28523,FD-PROC-005,Verify a Processing Fee cannot be added to a work order by hand,Processing Fee — no manual add
 28524,FD-PROC-006,Verify a Processing Fee reaches a new work order via location auto-apply,Processing Fee — auto-apply
 28525,FD-PROC-007,Verify a Processing Fee reaches a new work order via a customer default,Processing Fee — customer default
@@ -165,7 +165,7 @@ ID,fd_id,title,section
 28602,FD-VAL-004,Verify a percentage discount > 100% is invalid while a percentage fee has no upper cap,Validation / Edge
 28603,FD-VAL-005,Verify negative Amount/Percent values are rejected (values must be > 0),Validation / Edge
 28604,FD-VAL-006,"Verify Max cap edge behavior — 0 or empty = no maximum, and Max Amount shows only for percentage methods",Validation / Edge
-28605,FD-VAL-007,Verify a template that is BOTH location auto-apply and a customer default yields ONE adjustment on a new WO (known double-add bug),Validation / Edge
+28605,FD-VAL-007,Verify a template that is BOTH location auto-apply and a customer default yields ONE adjustment on a new WO,Validation / Edge
 28424,FD-WO-001,Verify the whole-work-order Add dialog opens from the WO toolbar more (⋯) menu at Whole Work Order scope,Work Order — Whole-WO Fee/Discount
 28425,FD-WO-002,Verify adding a whole-WO Flat Amount fee saves and shows the success toast,Work Order — Whole-WO Fee/Discount
 28426,FD-WO-003,"Verify the live preview computes and displays a whole-WO percentage discount (8% of $10,715.39 → −$857.23)",Work Order — Whole-WO Fee/Discount
@@ -181,3 +181,4 @@ ID,fd_id,title,section
 28436,FD-WO-013,Verify whole-WO starting places are hidden without Work Orders: Create & Edit,Work Order — Whole-WO Fee/Discount
 28437,FD-WO-014,Verify the live preview shows the empty-amount prompt before an amount is entered,Work Order — Whole-WO Fee/Discount
 28438,FD-WO-015,Verify the preview adjustment row is signed and colored (fee vs discount),Work Order — Whole-WO Fee/Discount
+pending-create,FD-WO-016,Verify the Add/Edit fee-or-discount dialog shows the §5-R15 taxable jurisdiction note below the Taxable dropdown,Work Order — Whole-WO Fee/Discount

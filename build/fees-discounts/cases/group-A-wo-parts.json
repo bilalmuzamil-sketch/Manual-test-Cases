@@ -428,6 +428,33 @@
   "fresh_run": "2026-07-10"
  },
  {
+  "id": "FD-WO-016",
+  "area": "Work Order — Whole-WO Fee/Discount",
+  "story_ref": "S2-R26, S2-R26a, §5-R15",
+  "title": "Verify the Add/Edit fee-or-discount dialog shows the §5-R15 taxable jurisdiction note below the Taxable dropdown",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "See Financial Data + Work Orders: Create and Edit + flag ON",
+  "preconditions": [
+   "1. An open work order (not Invoiced/Paid, not in history mode). Mark any throwaway data ZZAUTOTEST.",
+   "2. You can add an adjustment (Work Orders: Create and Edit + See Financial Data)."
+  ],
+  "steps": [
+   "1. From the work-order toolbar's more (⋯) menu, choose \"Add Fee / Discount\" to open the New Fee / Discount dialog.",
+   "2. Find the Taxable Yes/No dropdown and read the text shown directly below it.",
+   "3. Open an existing adjustment's Edit dialog and check the same place below the Taxable dropdown."
+  ],
+  "expected": [
+   "1. Directly below the Taxable dropdown, this exact advisory text shows: \"Tax treatment varies by jurisdiction — confirm your local requirements before saving.\"",
+   "2. The same note shows in both the Add (New Fee / Discount) and the Edit (Edit Fee / Discount) dialog.",
+   "3. The note is a plain advisory to the shop — it is not a UI instruction and not a legal-compliance statement."
+  ],
+  "design_ref": "requirements.md §5-R15 (S2-R26a)",
+  "viu_status": "Pending — new case (V1_2 §5-R15 / S2-R26a); not yet checked live",
+  "notes": "NEW 2026-07-13 for V1_2 §5-R15 / S2-R26a. UI string check (advisory) — belongs in a FUNCTIONAL section, NOT an API section (standing rule 4). Assert the exact string verbatim.",
+  "api_related": false
+ },
+ {
   "id": "FD-LABOR-001",
   "area": "Work Order — Labor-line Fee/Discount",
   "story_ref": "S1-R3 / S2-R10",
@@ -957,7 +984,7 @@
   "id": "FD-INLINE-005",
   "area": "Work Order — Inline display (Lines tab)",
   "story_ref": "S3-R17 / S12-R5",
-  "title": "Verify each inline adjustment row has a hover 3-dot Edit/Delete menu when the WO is open with change permission",
+  "title": "Verify each inline adjustment row has a hover 3-dot Edit/Delete menu when the WO is open with the matching Create and Edit permission",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "Work Order Lines: Create & Edit + See Financial Data + Fees & Discounts flag ON",
@@ -972,7 +999,7 @@
   "expected": [
    "1. A 3-dot menu appears on the right on hover (S12-R5).",
    "2. The menu offers 'Edit' and 'Delete' (S3-R17).",
-   "3. The menu is only shown when the WO is open and the user has the change permission."
+   "3. The menu is only shown when the WO is open and the user has the matching Create and Edit permission."
   ],
   "design_ref": "inline .wo-inline-more-btn → Edit · Delete (§2a/§2b)",
   "viu_status": "VIU-Verified",
@@ -1215,7 +1242,7 @@
   "expected": [
    "1. The card is titled 'WO Fees & Discounts' and lists ONLY whole-Work-Order adjustments — line-level adjustments do NOT appear here.",
    "2. The 'Early Payment Discount' entry shows a signed rate badge '−8%' and the resolved amount −$857.23 in plain grey, signed.",
-   "3. Hovering shows a ⋯ 3-dot menu with 'Edit' and 'Remove' only, shown only when the WO is open and the user has the change permission."
+   "3. Hovering shows a ⋯ 3-dot menu with 'Edit' and 'Remove' only, shown only when the WO is open and the user has the matching Create and Edit permission."
   ],
   "design_ref": "'Work Order Fee / Discount' card .wo-fd-card, entry 'Early Payment Discount −8% −$857.23', ⋯ Edit/Delete (§1a)",
   "viu_status": "VIU-Deviation",
@@ -1311,7 +1338,7 @@
   "type": "Functional",
   "permissions_required": "See Financial Data + Work Order Lines: Create & Edit (or Part Sales: Create & Edit on a Part Sale) + flag ON",
   "preconditions": [
-   "1. Logged in with See Financial Data and the relevant change permission.",
+   "1. Logged in with See Financial Data and the matching Create and Edit permission.",
    "2. Parts page open with part '#28439 Fleetguard FF5421' carrying no adjustments, on an editable sale/WO."
   ],
   "steps": [
@@ -1391,7 +1418,7 @@
   "type": "Functional",
   "permissions_required": "Work Order Lines: Create & Edit (or Part Sales: Create & Edit) + See Financial Data + flag ON",
   "preconditions": [
-   "1. Logged in with the relevant change permission + See Financial Data.",
+   "1. Logged in with the matching Create and Edit permission + See Financial Data.",
    "2. Parts page open with part #37346 carrying exactly ONE adjustment; the editable breakdown modal is open."
   ],
   "steps": [
@@ -1445,7 +1472,7 @@
   "type": "Functional",
   "permissions_required": "Work Orders: Create & Edit (whole-WO) / Work Order Lines: Create & Edit (line-level) + See Financial Data + flag ON",
   "preconditions": [
-   "1. Logged in with the relevant change permission + See Financial Data.",
+   "1. Logged in with the matching Create and Edit permission + See Financial Data.",
    "2. An open work order with an existing whole-WO percentage discount adjustment."
   ],
   "steps": [
@@ -1475,7 +1502,7 @@
   "type": "Functional",
   "permissions_required": "Work Orders: Create & Edit / Work Order Lines: Create & Edit + See Financial Data + flag ON",
   "preconditions": [
-   "1. Logged in with the relevant change permission + See Financial Data.",
+   "1. Logged in with the matching Create and Edit permission + See Financial Data.",
    "2. An open work order with an existing percentage adjustment whose base total has since changed (e.g. a line was added)."
   ],
   "steps": [
@@ -1505,7 +1532,7 @@
   "type": "Functional",
   "permissions_required": "Work Orders: Create & Edit / Work Order Lines: Create & Edit + See Financial Data + flag ON",
   "preconditions": [
-   "1. Logged in with the relevant change permission + See Financial Data.",
+   "1. Logged in with the matching Create and Edit permission + See Financial Data.",
    "2. An open work order with an existing adjustment; a condition that forces a save failure can be simulated (e.g. server error)."
   ],
   "steps": [
