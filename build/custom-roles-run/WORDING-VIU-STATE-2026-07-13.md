@@ -11,8 +11,8 @@ chromium at `/opt/pw-browsers/chromium-1194` through `$HTTPS_PROXY`. Tooling com
 resides in `/tmp/custom-roles/beh0713/` (adm.mjs, boot2.mjs, drive.mjs, click.mjs,
 cascade.mjs, capture.mjs, setstatus.mjs). Screenshots:
 `screenshots/behavioral-viu-2026-07-13/`.
-- **Behavioral tally (252 core, after round 4): VIU-Verified 167 · Blocked-UI 74 · Deviation/Finding 11.**
-  Round 4 (§3534 Work Orders): verified C26375/76/77/81/83/84/85/86, C27868 (WO Create&Edit shows New + no Delete; WO Delete shows "Delete Work Order"; WO View off hides WO nav (Sales Rep); Order parts controls the Parts tab; create WO works + customer name shows with Customers View off). 4 left blocked-precise (C26379 Review action needs seeded authorization state; C26380 Pick needs pickable part-request; C27873 needs a note by another user; C29435 qty-edit interaction not triggerable in harness).
+- **Behavioral tally (252 core, after round 5): VIU-Verified 172 · Blocked-UI 69 · Deviation/Finding 11.**
+  Round 5 (§3539 Invoicing): verified C26420 (Finance tab view-only), C26421 (Create Invoice), C26425 (SFD-off -> invoicing inaccessible), C26426 (Invoicing-view-off -> pricing shown, Finance hidden), C26428 (Add Deposit gated by Invoicing C&E). 6 blocked-precise (payment delete/void, Send-to-Terminal + C29434 in payment dialog, C29438 Financial-Info edit on a paid WO, C27871 return delete) — need seeded open-invoice/payment/return state.
 - **Round-2 new deviations:** C26459 & C26464 — labor rate is NOT hidden by tech view when
   See Financial Data is ON (Rate/Margin/Total + labor $ shown); labor-rate visibility
   follows SFD, not view mode (caveat: test role also had WO Create&Edit — dev to confirm).

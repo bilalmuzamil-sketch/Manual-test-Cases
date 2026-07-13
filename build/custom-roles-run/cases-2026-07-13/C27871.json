@@ -22,7 +22,8 @@
       "expected": "The Delete return option is not shown (role B lacks Invoicing & payments Delete)."
     }
   ],
-  "viu_status": "Blocked-UI (needs seeded roles + returns)",
+  "viu_status": "Blocked-UI: deleting/cancelling a return (gated by Invoicing Delete) needs a part return seeded first (create return via admin) then observe the delete/cancel gate; return flow not seeded this pass.",
   "evidence": "Reworded; SV-ref/element-id jargon stripped.",
-  "fresh_run": "2026-07-13"
+  "fresh_run": "2026-07-13",
+  "behavioral_run": "2026-07-13"
 }

@@ -5,7 +5,8 @@
   "custom_preconds": "<ol>\n<li>See Financial Data ON.</li>\n<li>User A has Invoicing & payments View only; User B has Invoicing & payments Create & Edit.</li>\n</ol>",
   "custom_steps": "<ol>\n<li>As User A, open an unpaid invoice on a work order and look for a Send to Terminal action.</li>\n<li>As User B, open the same kind of unpaid invoice and look for Send to Terminal.</li>\n<li>Click it and confirm the terminal flow starts.</li>\n</ol>",
   "custom_expected": "<p>Send to Terminal is not shown for User A (View only).</p>\n<p>Send to Terminal is shown for User B and starts the terminal payment flow.</p>\n",
-  "viu_status": "Blocked-UI (needs seeded role)",
+  "viu_status": "Blocked-UI: Send to Terminal was not shown at the WO Finance-tab level even for a role with Invoicing C&E + Customer Portal (Service Advisor); it appears within the take-payment flow on an open invoice — needs seeding an open invoice + entering the payment dialog.",
   "evidence": "Needs live UI.",
-  "fresh_run": "2026-07-13"
+  "fresh_run": "2026-07-13",
+  "behavioral_run": "2026-07-13"
 }

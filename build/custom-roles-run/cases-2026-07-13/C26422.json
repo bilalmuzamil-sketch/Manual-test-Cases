@@ -4,8 +4,9 @@
   "title": "Invoicing & payments Delete lets the user delete payments and void transactions (but not reverse invoices)",
   "custom_preconds": "<ol>\n<li>See Financial Data ON and View and Manage AP/AR Data ON.</li>\n<li>A user has a role with Invoicing & payments View, Create & Edit and Delete.</li>\n</ol>",
   "custom_steps": "<ol>\n<li>Log in and delete a customer payment.</li>\n<li>Void a transaction.</li>\n<li>Try to reverse a work order invoice and a part sales invoice.</li>\n</ol>",
-  "custom_expected": "<p>The per-payment delete option is available and deleting a payment and voiding a transaction work.</p>\n<p>Reversing a work order invoice is controlled by Work orders Delete, and reversing a part sales invoice by Part sales Delete \u2014 not by Invoicing & payments Delete.</p>\n",
-  "viu_status": "Blocked-UI (needs seeded role)",
+  "custom_expected": "<p>The per-payment delete option is available and deleting a payment and voiding a transaction work.</p>\n<p>Reversing a work order invoice is controlled by Work orders Delete, and reversing a part sales invoice by Part sales Delete — not by Invoicing & payments Delete.</p>\n",
+  "viu_status": "Blocked-UI: per-payment delete/void affordance not located on the WO Finance tab in the harness (payment rows/menus did not expose a delete/void control); needs the invoice->payment detail view with a with/without invoicingPaymentsDelete contrast.",
   "evidence": "Needs live UI.",
-  "fresh_run": "2026-07-13"
+  "fresh_run": "2026-07-13",
+  "behavioral_run": "2026-07-13"
 }
