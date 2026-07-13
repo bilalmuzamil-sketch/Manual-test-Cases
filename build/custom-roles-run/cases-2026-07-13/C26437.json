@@ -5,7 +5,8 @@
   "custom_preconds": "<ol>\n<li>A user has a role with the Customer portal toggle (under Page Access) ON.</li>\n</ol>",
   "custom_steps": "<ol>\n<li>Log in and open Customer portal.</li>\n<li>Change a portal setting.</li>\n<li>Save.</li>\n</ol>",
   "custom_expected": "<p>Customer portal can be opened and edited.</p>\n<p>The saved change sticks.</p>\n",
-  "viu_status": "Blocked-UI (needs seeded role); toggle label 'Customer portal' build-verified",
+  "viu_status": "Blocked-UI: the Customer Portal management surface is not exposed in the app nav/sidebar/customer-detail even for Admin (who has customerPortalPageAccess). The portal page-access toggle exists in the role editor but no managed Customer Portal page is reachable in this environment — cannot verify manage/edit. Needs the portal feature surfaced (real browser / env with portal enabled).",
   "evidence": "Toggle 'Customer portal' confirmed in build. Manage behavior needs live check.",
-  "fresh_run": "2026-07-13"
+  "fresh_run": "2026-07-13",
+  "behavioral_run": "2026-07-13"
 }
