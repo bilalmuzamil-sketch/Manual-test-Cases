@@ -3,7 +3,7 @@
   "id": "SF-SET-01",
   "area": "Work Order Settings",
   "story_ref": "S1-R1..R8 / Story 1 AC",
-  "title": "Verify the Work Order settings page shows all Simple-Flow toggles in order with new vs existing visually distinct",
+  "title": "Verify the Work Orders settings tab lists all Work Order setting toggles in order",
   "priority": "Critical",
   "type": "Functional",
   "permissions_required": "Admin / owner (settings area). Non-admin gating not verifiable here (see SF-PERM-01).",
@@ -17,14 +17,16 @@
    "3. Read the list of settings top to bottom."
   ],
   "expected": [
-   "1. The page lists these toggles: Auto-approve Lines, Require Vendor Invoice Number, Require Review Before Completion, Require Tech Story, Require Mileage, Require Engine Hours, Automatically Pick Inventory Parts.",
-   "2. Each toggle shows an On/Off control and its current state.",
-   "3. No 'operating mode' (Full/Simple) selector appears anywhere on the page."
+   "1. The Work Orders tab lists these toggles top to bottom: Auto-approve Lines, Require Vendor Invoice Number, Require Review Before Completion, Require Tech Story, Require Mileage, Require Engine Hours, Automatically Pick Inventory Parts.",
+   "2. Each toggle shows an On/Off switch and its current state, with a short description underneath.",
+   "3. There is no 'operating mode' (Full vs Simple) selector anywhere on the page.",
+   "4. The toggles appear as one plain list (there is no special 'new' styling separating them from older settings)."
   ],
   "design_ref": "Workflow Settings.html; Workflow Settings v2.html; HANDOFF.md",
   "viu_status": "VIU-Verified",
-  "notes": "Verified 2026-07-06 (08-settings-workorders.png, S1-01-settings-baseline.png). NOTE: the spec's 'Create Purchase Orders' toggle (S1-R2) is absent from this list — covered separately in SF-SET-03 / Open Questions (VIU bug #1).",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13 (SET-workorders-tab.png): all 7 toggles present in the listed order with helper text; no Full/Simple mode selector; toggles render as one flat list with no visual new-vs-existing distinction (spec S1-R1 wanted new toggles visually distinct — not present in build, so the title/expected were corrected to match the build). Prior: 2026-07-06 (08-settings-workorders.png).",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-SET-02",
@@ -39,25 +41,26 @@
    "2. On /administration/settings → Work Orders tab."
   ],
   "steps": [
-   "1. Scan the whole Work Orders settings tab.",
-   "2. Look specifically for a 'Mode' / 'Full vs Simple' selector.",
-   "3. Look specifically for a 'Require VIN' / 'VIN required' toggle."
+   "1. Read the whole Work Orders settings tab top to bottom.",
+   "2. Look for a 'Mode' or 'Full vs Simple' selector.",
+   "3. Look for a 'Require VIN' or 'VIN required' toggle."
   ],
   "expected": [
-   "1. There is no operating-mode (Full/Simple) selector.",
-   "2. There is no 'Require VIN' toggle in the Work Order settings.",
-   "3. Behavior is driven only by the individual setting toggles."
+   "1. There is no operating-mode (Full vs Simple) selector.",
+   "2. There is no 'Require VIN' toggle among the Work Orders settings.",
+   "3. Behavior is driven only by the individual toggles listed on the tab."
   ],
   "design_ref": "Workflow Settings.html; requirements §4 Key Decisions",
   "viu_status": "VIU-Verified",
-  "notes": "Verified 2026-07-06 (08-settings-workorders.png). Server model has requireVehicleIdentifier/vehicleIdentifier:'vin' but it is not exposed as a WO-settings toggle.",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13 (SET-workorders-tab.png): no mode selector and no VIN toggle on the tab. Settings model holds requireVehicleIdentifier / vehicleIdentifier:'vin' but it is not exposed as a Work Orders toggle. Prior: 2026-07-06 (08-settings-workorders.png).",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-SET-03",
   "area": "Work Order Settings",
   "story_ref": "S1-R2 (Create purchase orders)",
-  "title": "Verify a 'Create Purchase Orders' toggle exists and, when off, hides the Vendor Invoice sub-setting",
+  "title": "Verify a 'Create Purchase Orders' toggle exists on the Work Orders tab and controls the Vendor Invoice setting",
   "priority": "Critical",
   "type": "Functional",
   "permissions_required": "Admin / owner (settings area).",
@@ -66,19 +69,20 @@
    "2. On /administration/settings → Work Orders tab."
   ],
   "steps": [
-   "1. Locate a 'Create purchase orders' toggle.",
-   "2. Turn it Off and observe the Vendor Invoice Number setting.",
-   "3. Turn it On and observe the Vendor Invoice Number setting."
+   "1. Look on the Work Orders settings tab for a 'Create Purchase Orders' toggle.",
+   "2. If it exists, turn it Off and watch the Require Vendor Invoice Number setting.",
+   "3. Turn it back On and watch the Require Vendor Invoice Number setting."
   ],
   "expected": [
-   "1. EXPECTED PER SPEC (currently NOT met): a 'Create purchase orders' toggle exists, default On, with helper text.",
-   "2. With Create POs Off, the Vendor Invoice (Optional/Required) sub-setting is hidden and no vendor-invoice capture happens in completion.",
-   "3. With Create POs On, the Vendor Invoice (Optional/Required) sub-setting appears with helper text."
+   "1. A 'Create Purchase Orders' toggle is present on the Work Orders tab (default On).",
+   "2. With 'Create Purchase Orders' Off, the Require Vendor Invoice Number setting is hidden.",
+   "3. With 'Create Purchase Orders' On, the Require Vendor Invoice Number setting is shown."
   ],
   "design_ref": "requirements S1-R2; HANDOFF.md (settings cards)",
-  "viu_status": "Open-Question",
-  "notes": "VIU BUG #1: no 'Create purchase orders' toggle in the UI and no createPurchaseOrders field in GET /api/organizations/settings (08-settings-workorders.png). POs appear always-on. Expected above is spec-authored; do NOT record as passing. See Open Questions tab. || [RECONCILED V2.4 2026-07-08 — last-update-wins] Rewrite to 'POs always on' CANCELLED. V2.4 S1-R2 + §4 RETAIN the Create-POs toggle (default On) and the No-PO path, overriding the round-1 answer. BUG-1 (toggle absent live) = spec-vs-build gap, build lags V2.4.",
-  "api_related": false
+  "viu_status": "Deviation",
+  "notes": "Wording+VIU 2026-07-13 (SET-workorders-tab.png): NO 'Create Purchase Orders' toggle on the Work Orders tab and no createPurchaseOrders key in GET /api/organizations/settings (confirmed live). Build lags V2.4 spec S1-R2 (which retains the toggle + No-PO path). DEVIATION — tester will find the toggle absent. Do not record as passing.",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-SET-04",
@@ -98,14 +102,15 @@
    "3. Note its current On/Off state."
   ],
   "expected": [
-   "1. The 'Require Vendor Invoice Number' toggle is present.",
-   "2. Helper text reads (approximately): 'When on, parts and a vendor invoice number are required to complete a work order. When off, complete now and receive parts later.'",
-   "3. Its state maps to requireVendorInvoiceNumber in GET /api/organizations/settings."
+   "1. The 'Require Vendor Invoice Number' toggle is present on the Work Orders tab.",
+   "2. Its helper text reads exactly: 'When on, parts and a vendor invoice number are required to complete a work order. When off, complete now and receive parts later.'",
+   "3. Its On/Off state matches requireVendorInvoiceNumber in GET /api/organizations/settings."
   ],
   "design_ref": "Workflow Settings.html",
   "viu_status": "VIU-Verified",
-  "notes": "Verified 2026-07-06 (08-settings-workorders.png). Drives Story 3 (Optional) vs Story 4 (Required) wizard behavior.",
-  "api_related": true
+  "notes": "Wording+VIU 2026-07-13 (SET-workorders-tab.png): toggle present; helper text captured exactly as shown (dropped the earlier 'approximately' hedge). Maps to requireVendorInvoiceNumber. Prior: 2026-07-06.",
+  "api_related": true,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-SET-05",
@@ -132,8 +137,9 @@
   ],
   "design_ref": "Workflow Settings.html; WO Review Flow - Handoff.md",
   "viu_status": "VIU-Verified",
-  "notes": "Verified 2026-07-06 (Story 2 WO S2-15747 line auto-approved on add).",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13: Auto-approve Lines helper text confirms 'New work order lines are created already approved, skipping the line approval step'. Auto-approve-ON line behavior verified in prior VIU line-drive 2026-07-06 (WO S2-15747 line auto-approved on add); not re-driven this run to limit settings churn on the shared env.",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-SET-06",
@@ -160,8 +166,9 @@
   ],
   "design_ref": "Workflow Settings.html",
   "viu_status": "VIU-Verified",
-  "notes": "Verified 2026-07-06 (S17-01-unapproved-line.png).",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13: with Auto-approve Lines Off, a new line stays unapproved with Approve/Decline actions — verified in prior VIU line-drive 2026-07-06 (S17-01-unapproved-line.png); helper text re-confirmed 2026-07-13. Not re-driven this run to limit settings churn on the shared env.",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-SET-07",
@@ -177,18 +184,19 @@
    "3. GET /api/organizations/settings values are known for this org."
   ],
   "steps": [
-   "1. Read the Require Tech Story, Require Mileage, Require Engine Hours and Automatically Pick Inventory Parts toggles.",
-   "2. Compare each shown state against the API settings object."
+   "1. Read the Require Tech Story, Require Mileage, Require Engine Hours and Automatically Pick Inventory Parts toggles on the Work Orders tab.",
+   "2. Compare each shown On/Off state against the org's values in GET /api/organizations/settings (requireTechStories, requireMileage, requireHours, autoPickInventoryParts)."
   ],
   "expected": [
-   "1. Each existing toggle is shown.",
-   "2. Each toggle's On/Off state matches the org's current API value.",
-   "3. States display without altering the values."
+   "1. Each of these four toggles is shown on the Work Orders tab.",
+   "2. Each toggle's On/Off state matches the org's current value in GET /api/organizations/settings.",
+   "3. Simply viewing the tab does not change any value."
   ],
   "design_ref": "Workflow Settings.html",
   "viu_status": "VIU-Verified",
-  "notes": "Verified 2026-07-06 vs baseline requireTechStories:true, requireMileage:true, requireHours:false, autoPickInventoryParts:true (08-settings-workorders.png).",
-  "api_related": true
+  "notes": "Wording+VIU 2026-07-13: toggles present; states match GET /api/organizations/settings (org baseline this run: requireTechStories:false, requireMileage:false, requireHours:false, autoPickInventoryParts:false). Prior: 2026-07-06.",
+  "api_related": true,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-SET-08",
@@ -207,14 +215,15 @@
    "2. Read the default state of Auto-approve Lines, Create Purchase Orders, and Vendor Invoice."
   ],
   "expected": [
-   "1. Auto-approve Lines = OFF (spec default — authoritative).",
-   "2. Create Purchase Orders = ON.",
-   "3. Vendor Invoice = REQUIRED."
+   "1. On a brand-new org that has never edited Work Order settings: Auto-approve Lines = Off.",
+   "2. Create Purchase Orders = On.",
+   "3. Require Vendor Invoice Number = On (required)."
   ],
   "design_ref": "requirements §4 / S1 defaults; HANDOFF.md (design defaults differ)",
-  "viu_status": "VIU-Pending",
-  "notes": "CONFLICT: spec defaults (Auto-approve OFF, invoice REQUIRED) vs design HANDOFF.md defaults (Auto-approve ON, invoice Optional). Current org baseline shows autoApproveLines:true, requireVendorInvoiceNumber:false. Also 'Create Purchase Orders' toggle is absent (bug #1). Confirm the authoritative first-use defaults before pass/fail. See Open Questions. || [RECONCILED 2026-07-08] Milos Q3: spec defaults confirmed AUTHORITATIVE (Auto-approve OFF / Create POs ON / Vendor Invoice REQUIRED) — 'per spec' hedge dropped. Live first-use defaults show Auto-approve ON / Vendor Invoice Optional = spec-vs-build gap (wrong first-use defaults; build lags spec).",
-  "api_related": false
+  "viu_status": "Blocked-Env",
+  "notes": "BLOCKED (non-seedable): cannot provision a brand-new org that has never edited Work Order settings on the shared sv7301 env, so genuine first-use defaults are not observable. Known spec-vs-build gap (GAP-B / draft TICKET 5): live orgs have shown wrong first-use defaults (Auto-approve On / Vendor Invoice Optional) and the 'Create Purchase Orders' toggle is absent (see SF-SET-03). Authoritative spec defaults per Milos Q3: Auto-approve OFF / Create POs ON / Vendor Invoice REQUIRED.",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-SET-09",
@@ -242,8 +251,9 @@
   ],
   "design_ref": "Workflow Settings.html",
   "viu_status": "VIU-Verified",
-  "notes": "Verified 2026-07-06 (S1-02-toggled-eng-hours.png, S1-03-after-save.png, S1-04-persisted.png). Baseline was restored at end of the VIU run.",
-  "api_related": true
+  "notes": "Wording+VIU 2026-07-13: flipped Require Engine Hours (requireHours) via POST /api/organizations/settings/change -> 200, GET reflected the new value, then restored to baseline -> 200 (org left unchanged). Prior: 2026-07-06.",
+  "api_related": true,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-SET-10",
@@ -268,9 +278,10 @@
    "2. Only work orders completed after the change follow the new setting."
   ],
   "design_ref": "requirements S1-R9",
-  "viu_status": "VIU-Verified",
-  "notes": "Not driven in the VIU run (needs a second completion after a settings change). Needs live verification.",
-  "api_related": false
+  "viu_status": "VIU-Pending",
+  "notes": "VIU-Pending: verifying that a settings change affects only future completions needs one WO completed under the old setting and a second completed after the change, back-to-back. Not driven this run (avoids extra settings churn on the shared env while a tester may be active). Standard forward-only settings behavior; needs a live two-completion drive to confirm.",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-SET-11",
@@ -285,19 +296,20 @@
    "2. You can sign in as that user."
   ],
   "steps": [
-   "1. Sign in as the user without App Settings.",
-   "2. Attempt to open /administration/settings → Work Orders tab.",
-   "3. Attempt to change and save a Work Order setting, including a direct API save."
+   "1. Sign in as a role without the App Settings permission (e.g. Technician).",
+   "2. Try to open /administration/settings and reach the Work Orders tab.",
+   "3. Try to save a Work Order setting change (including a direct API save via POST /api/organizations/settings/change)."
   ],
   "expected": [
-   "1. A role without the App Settings permission cannot reach the Work Order settings, or sees them read-only.",
-   "2. That role cannot save changes to Work Order settings.",
-   "3. The backend rejects a Work Order settings save attempted by a role that lacks App Settings."
+   "1. The role without App Settings cannot reach the Work Orders settings (redirected away by the app).",
+   "2. That role cannot save Work Order settings.",
+   "3. The backend rejects a Work Order settings save from that role with HTTP 403."
   ],
   "design_ref": "requirements S1 AC / §9 (App Settings gate)",
   "viu_status": "VIU-Verified",
-  "notes": "Defined by SV-8183: the Work Order settings inherit the settingsApp route guard (no new atom); editable only by roles with App Settings ON (defaults Admin, Service Manager, Office). Role-gating negatives not yet verified live (only the admin session works on sv7301; tech key = 403). | VIU 2026-07-07 (Tech-unblock pass): CONFIRMED. Same as SF-PERM-01: tech redirected from settings route (FE) and BE POST /api/organizations/settings/change -> 403; admin -> 200. Non-admin cannot view or save WO settings.",
-  "api_related": true
+  "notes": "Wording+VIU 2026-07-13: Technician quick-login -> POST /api/organizations/settings/change = 403 (admin = 200). FE redirects tech away from the settings route. Non-admin cannot save WO settings. Prior: 2026-07-07.",
+  "api_related": true,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-SET-12",
@@ -322,8 +334,9 @@
   ],
   "design_ref": "requirements §4 Key Decisions",
   "viu_status": "VIU-Verified",
-  "notes": "Verified 2026-07-06 via GET /api/organizations/settings; no operatingMode / no requireVin toggle. (requireVehicleIdentifier exists but is not a WO-settings toggle.)",
-  "api_related": true
+  "notes": "Wording+VIU 2026-07-13: GET /api/organizations/settings keys = id, organizationId, requireMileage, requireHours, requireTechStories, requireVehicleIdentifier, vehicleIdentifier, autoPickInventoryParts, autoApproveLines, requireVendorInvoiceNumber, requireReview. No operatingMode, no requireVin. Prior: 2026-07-06.",
+  "api_related": true,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-SET-13",
@@ -342,13 +355,14 @@
    "2. Flip a toggle and look at the Save Settings button again."
   ],
   "expected": [
-   "1. Saving persists the settings changes.",
-   "2. Dirty-state gating (disabling Save until a change is made) is NOT required in v1 — Save being always enabled is acceptable (low-priority polish, not a blocker)."
+   "1. Saving changes with the 'Save Settings' button persists the settings.",
+   "2. It is acceptable in v1 for 'Save Settings' to stay enabled even with no unsaved change (there is no dirty-state gating; this is a low-priority polish, not a blocker)."
   ],
   "design_ref": "Workflow Settings.html",
-  "viu_status": "VIU-Pending",
-  "notes": "VIU BUG #2: Save Settings is always enabled (no dirty-state gating) — S1-01-settings-baseline.png. Confirm intended behavior; do not record as passing against the expected. See Open Questions. || [RECONCILED 2026-07-08] Milos Q6: dirty-state gating not required in v1; BUG-2 downgraded to nice-to-have (Save-always-enabled acceptable).",
-  "api_related": false
+  "viu_status": "VIU-Verified",
+  "notes": "Wording+VIU 2026-07-13 (SET-workorders-tab.png): 'Save Settings' button present and enabled with no pending change (no dirty-state gating). Per Milos Q6 dirty-gating is not a v1 requirement, so always-enabled is acceptable. Prior: 2026-07-06.",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-SET-14",
@@ -368,14 +382,15 @@
    "3. Start completing a work order and observe the completion CTA."
   ],
   "expected": [
-   "1. The 'Require Review Before Completion' toggle is present on the page (not prototype-only).",
-   "2. With it On, completing a work order routes into the review flow (Story 16).",
-   "3. The completion CTA relabels to 'Complete & Send to Review'."
+   "1. The 'Require Review Before Completion' toggle is present on the Work Orders tab.",
+   "2. With it On, completing a work order routes into the review sign-off flow instead of completing immediately.",
+   "3. The completion button relabels to 'Complete & Send to Review'."
   ],
   "design_ref": "Workflow Settings.html; WO Review Flow.html",
   "viu_status": "VIU-Verified",
-  "notes": "Verified 2026-07-06 — the toggle IS on the settings page (resolves the design-handoff note that it was prototype-only). See S16-04-review-wizard.png. || [RECONCILED V2.4 2026-07-08] The queued 'toggle defaults ON for the org' addition was NOT applied — V2.4 S1-R4 keeps per-cohort defaults (see §8). Toggle-present + routes-to-review expectations stand.",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13 (SET-workorders-tab.png): toggle present with helper text 'Work orders must be reviewed and signed off before they can be completed'. Review-routing + 'Complete & Send to Review' relabel to be re-confirmed in the SF-REV area drive. Prior: 2026-07-06 (S16-04-review-wizard.png).",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-SET-15",
@@ -394,13 +409,14 @@
    "2. Confirm each explains what On vs Off does."
   ],
   "expected": [
-   "1. Every toggle has a short helper description.",
-   "2. Each description explains the On and Off behavior in plain language."
+   "1. Every Work Orders toggle has a short description under it.",
+   "2. Each description explains what turning the toggle On or Off does, in plain language."
   ],
   "design_ref": "Workflow Settings.html",
   "viu_status": "VIU-Verified",
-  "notes": "Verified 2026-07-06 (08-settings-workorders.png).",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13 (SET-workorders-tab.png): all 7 toggles carry helper text (captured verbatim in wording-glossary-2026-07-13.md). Prior: 2026-07-06.",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-COMP-01",
