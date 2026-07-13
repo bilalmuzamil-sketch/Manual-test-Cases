@@ -780,22 +780,24 @@
  {
   "id": "SF-VAL-02",
   "area": "Validation / Edge",
-  "story_ref": "S15-R2 / S3-R3",
-  "title": "Verify completion is blocked when a required VIN is missing (non-review flow)",
+  "story_ref": "S4-R3 (VIN removed from completion; captured at Mark Reviewed)",
+  "title": "Verify VIN is NOT required at completion in the non-review flow (only mileage and engine hours, when missing)",
   "priority": "Medium",
   "type": "Negative",
   "permissions_required": "Work Order edit access.",
   "preconditions": [
    "1. Signed in as Admin.",
-   "2. VIN is required for this org's completion and the work order has no VIN.",
-   "3. Require Review is OFF (VIN is collected at completion in the non-review flow)."
+   "2. Require Review is OFF.",
+   "3. A work order is missing VIN but has mileage and engine hours present."
   ],
   "steps": [
-   "1. Start completion.",
-   "2. Leave VIN empty and try to proceed."
+   "1. Start completion and reach the Details step.",
+   "2. Note which vehicle fields are required, then complete with VIN still empty."
   ],
   "expected": [
-   "1. Completion is blocked until the VIN is entered."
+   "1. The completion Details step collects only mileage and engine hours (when missing) — VIN is NOT a required completion field (S4-R3).",
+   "2. Completion is NOT blocked by a missing VIN; the work order completes.",
+   "3. VIN is captured later only if Require Review is on, in the Mark Reviewed dialog (Story 16)."
   ],
   "design_ref": "requirements S15-R2",
   "viu_status": "VIU-Pending",
@@ -1020,12 +1022,12 @@
    "2. A work order has one unapproved line and all other gates satisfied."
   ],
   "steps": [
-   "1. Click Complete Work Order.",
-   "2. Read the error shown at the final confirm."
+   "1. Open a work order with one unapproved line and all other gates satisfied.",
+   "2. Look at the Complete Work Order button and its tooltip."
   ],
   "expected": [
-   "1. The existing 'you need to approve the line to complete the work order' error is shown.",
-   "2. Completion does not proceed until the line is approved."
+   "1. The Complete Work Order button is disabled with a tooltip describing which line needs approval.",
+   "2. Completion does not proceed until the line is approved; the button enables once all lines are approved."
   ],
   "design_ref": "requirements §4 Key Decision",
   "viu_status": "VIU-Verified",
@@ -1061,24 +1063,25 @@
  {
   "id": "SF-QB-02",
   "area": "QuickBooks / Inventory Integrity",
-  "story_ref": "§5 / §4 (Create POs OFF)",
-  "title": "Verify Create POs OFF produces no PO, vendor bill or AP sync and no catalog/inventory sync",
+  "story_ref": "§4/§5 (POs always on — no Create-POs-OFF bypass)",
+  "title": "Verify there is no Create-POs-OFF bypass — a vendor part always generates a PO and QuickBooks sync on completion",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "Admin / owner (settings) + Work Order edit access + QuickBooks visibility.",
   "preconditions": [
    "1. Signed in as Admin.",
-   "2. Create Purchase Orders is OFF (see SF-SET-03).",
-   "3. A work order with a vendor/found part exists."
+   "2. A work order with a vendor/found part exists.",
+   "3. There is no Create Purchase Orders setting to turn off — POs are always on."
   ],
   "steps": [
-   "1. Complete the work order with Create POs OFF.",
-   "2. Check for any PO, vendor bill, AP sync.",
-   "3. Check for any catalog/inventory sync of the vendor/found part."
+   "1. Complete the work order that has a vendor/found part (receiving as required).",
+   "2. Check that a PO was created for the vendor part.",
+   "3. Check the vendor bill / AP sync and the catalog/inventory sync."
   ],
   "expected": [
-   "1. EXPECTED PER SPEC: no PO, no vendor bill, no AP sync.",
-   "2. No catalog/inventory sync (part is received at request time only)."
+   "1. A PO is created for the vendor part — no setting suppresses PO creation.",
+   "2. The vendor bill / AP sync occurs per the normal pipeline once received.",
+   "3. Catalog/inventory sync happens per the normal receive pipeline."
   ],
   "design_ref": "requirements §4 / §5",
   "viu_status": "Open-Question",
@@ -1095,7 +1098,7 @@
   "permissions_required": "receive access + QuickBooks visibility.",
   "preconditions": [
    "1. Signed in as Admin.",
-   "2. Create POs is on and a work order has a receivable vendor part."
+   "2. A work order has a receivable vendor part (purchase orders are always on)."
   ],
   "steps": [
    "1. Receive the part via Accept Delivery.",

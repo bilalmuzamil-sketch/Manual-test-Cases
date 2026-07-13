@@ -11,12 +11,10 @@ C29276,https://shopview.testrail.io/index.php?/cases/view/29276,Verify there is 
 3. Look specifically for a 'Require VIN' / 'VIN required' toggle.","1. There is no operating-mode (Full/Simple) selector.
 2. There is no 'Require VIN' toggle in the Work Order settings.
 3. Behavior is driven only by the individual setting toggles.",SV-7696 (S1 AC / Key Decision (no operatingMode)),,
-C29277,https://shopview.testrail.io/index.php?/cases/view/29277,"Verify a 'Create Purchase Orders' toggle exists and, when off, hides the Vendor Invoice sub-setting",Work Order Settings,Functional,Critical,"1. Signed in as Admin.
-2. On /administration/settings → Work Orders tab.","1. Locate a 'Create purchase orders' toggle.
-2. Turn it Off and observe the Vendor Invoice Number setting.
-3. Turn it On and observe the Vendor Invoice Number setting.","1. EXPECTED PER SPEC (currently NOT met): a 'Create purchase orders' toggle exists, default On, with helper text.
-2. With Create POs Off, the Vendor Invoice (Optional/Required) sub-setting is hidden and no vendor-invoice capture happens in completion.
-3. With Create POs On, the Vendor Invoice (Optional/Required) sub-setting appears with helper text.",SV-7696 (S1-R2 (Create purchase orders)),,
+C29277,https://shopview.testrail.io/index.php?/cases/view/29277,Verify there is no 'Create Purchase Orders' toggle and the Vendor Invoice sub-setting always shows (POs always on),Work Order Settings,Functional,Critical,"1. Signed in as Admin.
+2. On /administration/settings → Work Orders tab.","1. Look for a 'Create purchase orders' toggle in the Work Orders settings.
+2. Locate the Vendor Invoice (Optional/Required) setting.","1. There is no 'Create purchase orders' toggle — purchase orders are always created for vendor parts (the Create-POs setting and the No-PO/Skip flow were retired).
+2. The Vendor Invoice (Optional/Required) sub-setting always shows with its helper text.",SV-7696 (Story 1 / §4 (Create-POs setting retired — POs always on)),,
 C29278,https://shopview.testrail.io/index.php?/cases/view/29278,Verify the Require Vendor Invoice Number toggle is present with helper text and drives Optional vs Required completion,API — Work Order Settings,Functional,Critical,"1. Signed in as Admin.
 2. On /administration/settings → Work Orders tab.","1. Locate the 'Require Vendor Invoice Number' toggle.
 2. Read its helper text.
@@ -43,10 +41,10 @@ C29281,https://shopview.testrail.io/index.php?/cases/view/29281,"Verify existing
 2. Compare each shown state against the API settings object.","1. Each existing toggle is shown.
 2. Each toggle's On/Off state matches the org's current API value.
 3. States display without altering the values.",SV-7696 (S1-R5..R8 (existing settings surfaced)),,
-C29282,https://shopview.testrail.io/index.php?/cases/view/29282,"Verify first-use defaults on a brand-new org (auto-approve OFF, create POs ON, vendor invoice REQUIRED)",Work Order Settings,Functional,High,"1. A brand-new organization that has never edited Work Order settings is available.
+C29282,https://shopview.testrail.io/index.php?/cases/view/29282,"Verify first-use defaults on a brand-new org (auto-approve OFF, vendor invoice REQUIRED; no Create-POs setting)",Work Order Settings,Functional,High,"1. A brand-new organization that has never edited Work Order settings is available.
 2. Signed in as that org's Admin.","1. Open /administration/settings → Work Orders tab for the new org.
-2. Read the default state of Auto-approve Lines, Create Purchase Orders, and Vendor Invoice.","1. Auto-approve Lines = OFF (spec default — authoritative).
-2. Create Purchase Orders = ON.
+2. Read the default state of Auto-approve Lines and Vendor Invoice.","1. Auto-approve Lines = OFF (spec default — authoritative).
+2. There is no Create Purchase Orders setting — purchase orders are always on.
 3. Vendor Invoice = REQUIRED.",SV-7696 (S1 first-use defaults / §4),,
 C29283,https://shopview.testrail.io/index.php?/cases/view/29283,Verify saving a settings change persists after page reload,API — Work Order Settings,Functional,High,"1. Signed in as Admin.
 2. On /administration/settings → Work Orders tab.
@@ -87,69 +85,69 @@ C29289,https://shopview.testrail.io/index.php?/cases/view/29289,Verify every Wor
 2. On /administration/settings → Work Orders tab.","1. Read each toggle's supporting description text.
 2. Confirm each explains what On vs Off does.","1. Every toggle has a short helper description.
 2. Each description explains the On and Off behavior in plain language.",SV-7696 (S1 AC (helper text per toggle)),,
-C29290,https://shopview.testrail.io/index.php?/cases/view/29290,Verify a Complete Work Order button appears next to New Line on the work order,Completion — No-PO / Skip (Story 2),Functional,Critical,"1. Signed in as Admin.
+C29290,https://shopview.testrail.io/index.php?/cases/view/29290,Verify a Complete Work Order button appears next to New Line on the work order,Completion — Simple (Stories 3/4),Functional,Critical,"1. Signed in as Admin.
 2. An open work order with at least one approved line is on its Lines tab.","1. Look at the work order Lines toolbar.
 2. Locate the New Line button.
 3. Locate the Complete Work Order button.","1. A 'Complete Work Order' button is present.
-2. It sits near the New Line action on the work order.",SV-7697 (S2-R1),,
-C29291,https://shopview.testrail.io/index.php?/cases/view/29291,Verify a work order with no parts completes in one confirm and reaches the Success screen,Completion — No-PO / Skip (Story 2),Functional,Critical,"1. Signed in as Admin.
+2. It sits near the New Line action on the work order.","SV-7698, SV-7699 (Story 3/4 (streamlined completion — Complete button placement))",,
+C29291,https://shopview.testrail.io/index.php?/cases/view/29291,Verify a work order with no parts completes in one confirm and reaches the Success screen,Completion — Simple (Stories 3/4),Functional,Critical,"1. Signed in as Admin.
 2. An open work order with a single labor-only, approved line exists (no parts).
 3. Required-field settings for this org are known (e.g. Require Mileage ON).","1. On the work order Lines tab, click Complete Work Order.
 2. If a tech-story modal appears first, enter a story and click Continue.
 3. In the Details step, enter any required fields (e.g. Mileage).
 4. Click Complete Work Order in the wizard.","1. There is no PO / receive / invoice step for a no-parts work order (wizard = Details → Success).
 2. The Success screen appears reading 'Order complete' and 'Sent to Finance as an invoice-ready draft'.
-3. All lines move to Completed and the work order status becomes Complete.",SV-7697 (S2-R2 / S2-R3 / S2-R4),,
-C29292,https://shopview.testrail.io/index.php?/cases/view/29292,Verify the Success screen shows the work order number and total with Done and Go to Invoice actions,Completion — No-PO / Skip (Story 2),Functional,High,"1. Signed in as Admin.
+3. All lines move to Completed and the work order status becomes Complete.","SV-7698, SV-7699 (Story 3/4 (streamlined completion — no-parts WO one-confirm))",,
+C29292,https://shopview.testrail.io/index.php?/cases/view/29292,Verify the Success screen shows the work order number and total with Done and Go to Invoice actions,Completion — Simple (Stories 3/4),Functional,High,"1. Signed in as Admin.
 2. You have just completed a work order and are on the Success screen.","1. Read the work order number on the Success screen.
 2. Read the total shown.
 3. Identify the Done and Go To Invoice buttons.","1. The Success screen shows the work order number (e.g. S2-15747).
 2. It shows the invoice total (e.g. $382.77).
-3. Both a Done and a Go To Invoice button are present.","SV-7697, SV-7710 (S2-R4 / S2-R5 / S15-R3)",,
-C29293,https://shopview.testrail.io/index.php?/cases/view/29293,Verify Go to Invoice from the Success screen opens the Finance step where the invoice number is shown,Completion — No-PO / Skip (Story 2),Functional,Medium,"1. Signed in as Admin.
+3. Both a Done and a Go To Invoice button are present.","SV-7698, SV-7699, SV-7710 (Story 3/4 (streamlined completion — Success screen) / S15-R3)",,
+C29293,https://shopview.testrail.io/index.php?/cases/view/29293,Verify Go to Invoice from the Success screen opens the Finance step where the invoice number is shown,Completion — Simple (Stories 3/4),Functional,Medium,"1. Signed in as Admin.
 2. You are on the Success screen of a just-completed work order.","1. Click Go To Invoice.
 2. Observe the destination screen.
 3. Look for the invoice number.","1. You are taken to the Finance / invoice step for that work order.
-2. The invoice number is shown on the Finance step (not on the Success screen).","SV-7697, SV-7710 (S2-R5 / S15-R3)",,
-C29294,https://shopview.testrail.io/index.php?/cases/view/29294,Verify completion is blocked when a required vehicle field is missing,Completion — No-PO / Skip (Story 2),Functional,High,"1. Signed in as Admin.
+2. The invoice number is shown on the Finance step (not on the Success screen).","SV-7698, SV-7699, SV-7710 (Story 3/4 (streamlined completion — Go to Invoice) / S15-R3)",,
+C29294,https://shopview.testrail.io/index.php?/cases/view/29294,Verify completion is blocked when a required vehicle field is missing,Completion — Simple (Stories 3/4),Functional,High,"1. Signed in as Admin.
 2. Require Mileage (or another required field) is ON.
 3. An open work order with an approved line and NO mileage recorded is ready to complete.","1. Click Complete Work Order.
 2. In the Details step, leave the required field (e.g. Mileage) empty.
 3. Attempt to confirm completion.","1. Completion is blocked while the required field is empty.
 2. The user is prompted to supply the missing required field.
-3. Completion proceeds only after the required field is filled.",SV-7697 (S2-R2 / S2 AC (missing required fields blocked)),,
-C29295,https://shopview.testrail.io/index.php?/cases/view/29295,"Verify with Create POs OFF a work order with vendor parts completes with no PO, no vendor bill and no AP sync",Completion — No-PO / Skip (Story 2),Functional,High,"1. Signed in as Admin.
-2. Create Purchase Orders is set to OFF.
-3. An open work order with an approved vendor-part line exists.","1. Complete the work order in one confirm.
-2. Check whether any PO was created.
-3. Check for any vendor bill / AP sync.","1. No PO is created.
-2. No vendor bill and no AP sync occur.
-3. No catalog/inventory sync for the vendor/found part; it is received at request time only.",SV-7697 (S2-R6 / S2 AC (Create POs off ⇒ no PO)),,
-C29296,https://shopview.testrail.io/index.php?/cases/view/29296,Verify in-stock inventory parts decrement inventory and write Part History on simple completion,Completion — No-PO / Skip (Story 2),Functional,High,"1. Signed in as Admin.
+3. Completion proceeds only after the required field is filled.","SV-7698, SV-7699 (Story 3/4 (streamlined completion — missing required fields blocked))",,
+C29295,https://shopview.testrail.io/index.php?/cases/view/29295,Verify a work order with a vendor part creates a PO on completion and routes through the receive step (POs always on),Completion — Simple (Stories 3/4),Functional,High,"1. Signed in as Admin.
+2. An open work order with an approved vendor-part line exists.
+3. POs are always on — there is no Create-POs setting to turn off.","1. Start completion of the work order.
+2. Observe whether a PO / background order is created for the vendor part and whether receiving is required.
+3. Complete after receiving and check the vendor bill / AP sync.","1. A PO (background order) is created for the vendor part; Complete Work Order stays disabled until the part is received (S4-R1/R4).
+2. After receiving, completion proceeds and the vendor bill / AP sync occur per the normal pipeline.
+3. There is no skip/no-PO path — the former Create-POs-OFF flow was retired.","SV-7698, SV-7699 (Story 3/4 (POs always on — former Create-POs-OFF flow retired))",,
+C29296,https://shopview.testrail.io/index.php?/cases/view/29296,Verify in-stock inventory parts decrement inventory and write Part History on simple completion,Completion — Simple (Stories 3/4),Functional,High,"1. Signed in as Admin.
 2. An open work order has an approved in-stock inventory part line.
 3. Note the part's current on-hand quantity.","1. Complete the work order via the simple (skip) flow.
 2. Check the inventory on-hand quantity for that part.
 3. Check the part's Part History.","1. The in-stock part's on-hand quantity decrements by the used amount.
 2. A Part History entry is written for the movement.
-3. The skip path does not bypass inventory movement / Part History.",SV-7697 (S2-R6 / §5 invariant 1),,
-C29297,https://shopview.testrail.io/index.php?/cases/view/29297,Verify with Auto-pick Inventory OFF the completion modal requires picking parts before Complete,Completion — No-PO / Skip (Story 2),Functional,Medium,"1. Signed in as Admin.
+3. The skip path does not bypass inventory movement / Part History.","SV-7698, SV-7699 (Story 3/4 (streamlined completion — inventory movement) / §5 invariant 1)",,
+C29297,https://shopview.testrail.io/index.php?/cases/view/29297,Verify with Auto-pick Inventory OFF the completion modal requires picking parts before Complete,Completion — Simple (Stories 3/4),Functional,Medium,"1. Signed in as Admin.
 2. Automatically Pick Inventory Parts is OFF and saved.
 3. An open work order with an approved inventory-part line exists.","1. Click Complete Work Order.
 2. Observe the Pick step in the completion modal.
 3. Try to continue without picking, then pick and continue.","1. A Pick step appears offering 'Pick all from default bins' and 'Review individually'.
 2. You cannot complete until inventory parts are picked.
-3. After picking, completion can proceed.",SV-7697 (S2-R2 / S2 AC (auto-pick off ⇒ pick in modal)),,
-C29298,https://shopview.testrail.io/index.php?/cases/view/29298,Verify adding a new line to a completed work order returns it to Approved,Completion — No-PO / Skip (Story 2),Functional,Medium,"1. Signed in as Admin.
+3. After picking, completion can proceed.","SV-7698, SV-7699 (Story 3/4 (streamlined completion — auto-pick off ⇒ pick in modal))",,
+C29298,https://shopview.testrail.io/index.php?/cases/view/29298,Verify adding a new line to a completed work order returns it to Approved,Completion — Simple (Stories 3/4),Functional,Medium,"1. Signed in as Admin.
 2. A work order is in Complete status.","1. Open the completed work order.
 2. Add a New Line.
 3. Observe the work order status.","1. The work order status returns to Approved.
-2. On the next completion, the modal summarizes already-received vs newly-added parts.",SV-7697 (S2-R6 / S2 AC (re-open returns to Approved)),,
-C29299,https://shopview.testrail.io/index.php?/cases/view/29299,Verify individual-line Complete and per-part receive actions still work alongside Simple completion,Completion — No-PO / Skip (Story 2),Functional,Medium,"1. Signed in as Admin.
+2. On the next completion, the modal summarizes already-received vs newly-added parts.","SV-7698, SV-7699 (Story 3/4 (streamlined completion — re-open returns to Approved))",,
+C29299,https://shopview.testrail.io/index.php?/cases/view/29299,Verify individual-line Complete and per-part receive actions still work alongside Simple completion,Completion — Simple (Stories 3/4),Functional,Medium,"1. Signed in as Admin.
 2. An open work order with multiple lines and a receivable part exists.","1. Complete one individual line on the work order.
 2. Perform a per-part receive action on a line's part.
 3. Confirm the line-level Receive button is present.","1. An individual line can still be completed on its own.
 2. The existing per-part receive action still works.
-3. A line-level Receive button remains available.",SV-7697 (S2 AC (individual-line Complete + per-part receive kept)),,
+3. A line-level Receive button remains available.","SV-7698, SV-7699 (Story 3/4 (streamlined completion — individual-line Complete + per-part receive))",,
 C29300,https://shopview.testrail.io/index.php?/cases/view/29300,"Verify the optional-invoice completion wizard offers Receive Parts, Complete Without Receiving and Cancel",Completion — PO + Optional Invoice (Story 3),Functional,Critical,"1. Signed in as Admin.
 2. Require Vendor Invoice Number is OFF (Optional).
 3. An open work order with an approved part-bearing line exists.","1. Click Complete Work Order.
@@ -213,17 +211,17 @@ C29309,https://shopview.testrail.io/index.php?/cases/view/29309,Verify Cancel in
 2. The work order is unchanged (still not completed).",SV-7699 (S4-R6),,
 C29310,https://shopview.testrail.io/index.php?/cases/view/29310,Verify completing a work order with an unapproved line shows the approve-line error and does not complete,Completion — Line approval gate,Functional,High,"1. Signed in as Admin.
 2. Auto-approve Lines is OFF.
-3. A work order has one line still in Needs Approval and all other gates satisfied (tech story present, required fields present).","1. Click Complete Work Order.
-2. Proceed through any tech-story / details gates.
-3. Attempt the final Complete confirm.","1. The existing 'you need to approve the line to complete the work order' error appears.
-2. The work order does not complete while a line is unapproved.
-3. There is no new disabled state — the error surfaces on Complete.","SV-7698, SV-7699 (Key Decision (all lines approved) / S3-R9 / S4-R8)",,
+3. A work order has one line still in Needs Approval and all other gates satisfied (tech story present, required fields present).","1. Open the work order with one line in Needs Approval and all other gates satisfied.
+2. Look at the Complete Work Order button and hover it for any tooltip.
+3. Approve the remaining line and re-check the button.","1. The Complete Work Order button is disabled while any line is unapproved.
+2. A tooltip on the disabled button describes the reason (which line needs approval).
+3. The button enables and completion proceeds once all lines are approved (S4-R8).","SV-7698, SV-7699 (Key Decision (all lines approved) / S3-R9 / S4-R8)",,
 C29311,https://shopview.testrail.io/index.php?/cases/view/29311,Verify a manually unapproved line still blocks completion even when Auto-approve is ON,Completion — Line approval gate,Functional,Medium,"1. Signed in as Admin.
 2. Auto-approve Lines is ON.
-3. A work order has a line that was manually un-approved after being added.","1. Confirm one line is unapproved.
-2. Click Complete Work Order and attempt to complete.
-3. Re-approve the line and retry.","1. With the line unapproved, completion is blocked with the approve-line error.
-2. After re-approving all lines, completion proceeds.",Key Decision (holds regardless of Auto-approve),,
+3. A work order has a line that was manually un-approved after being added.","1. Confirm one line is unapproved (manually un-approved after being added, Auto-approve ON).
+2. Look at the Complete Work Order button (disabled) and its tooltip.
+3. Re-approve the line and retry.","1. With the line unapproved, the Complete Work Order button is disabled with a tooltip describing the reason.
+2. After re-approving all lines, the button enables and completion proceeds (holds regardless of Auto-approve).",Key Decision (holds regardless of Auto-approve),,
 C29312,https://shopview.testrail.io/index.php?/cases/view/29312,Verify re-running completion after a prior attempt does not create duplicate POs,Completion — Idempotency,Functional,Medium,"1. Signed in as Admin.
 2. A part-bearing work order already had completion started once (POs created).","1. Cancel or exit the first completion attempt.
 2. Start completion again.
@@ -370,7 +368,7 @@ C29337,https://shopview.testrail.io/index.php?/cases/view/29337,Verify a vendorl
 2. Receiving is blocked while the vendor is missing.
 3. Receiving is enabled only after both a part number and a vendor are provided.",SV-7700 (S5-R4 / S5 AC (receive gate)),,
 C29338,https://shopview.testrail.io/index.php?/cases/view/29338,Verify a vendorless vendor-part goes onto the work order's normal PO with no separate dummy PO,Vendor Missing on WO PO (Story 6),Functional,High,"1. Signed in as Admin.
-2. A work order has a vendor part with no vendor assigned and Create POs is on.
+2. A work order has a vendor part with no vendor assigned (purchase orders are always on).
 3. The work order has been completed so POs are generated.","1. Open the PO list at /parts/orders.
 2. Find the PO for this work order.
 3. Confirm the vendorless part is on that PO.","1. The vendorless part is placed on the work order's normal PO.
@@ -565,10 +563,12 @@ C29373,https://shopview.testrail.io/index.php?/cases/view/29373,"Verify new vend
 C29374,https://shopview.testrail.io/index.php?/cases/view/29374,"Verify Accept Delivery receive gates: vendor set, missing part number entered, vendor invoice # captured",Accept Delivery (Story 12),Functional,High,"1. Signed in as Admin.
 2. A vendor-missing / no-PN part is in an Accept Delivery group.","1. Attempt to receive without a vendor set.
 2. Attempt to receive without a part number.
-3. Attempt to receive without a vendor invoice number.","1. Receiving is gated until a vendor is set.
-2. Receiving is gated until the missing part number is entered.
-3. Receiving is gated until a vendor invoice number is captured.
-4. On Accept Delivery, cost is editable when $0 or missing (parity with Bulk Receive); the sell-price lock rule is unchanged.",SV-7707 (S12-R2),,
+3. Attempt to receive with the cost / sell price missing.
+4. Attempt to receive without a vendor invoice number.","1. Receiving is gated until a vendor is set.
+2. Receiving is gated until the missing part number is entered (S13-R6).
+3. Receiving is gated until a missing cost / sell price is entered (S13-R7).
+4. Receiving is gated until a vendor invoice number is captured.
+5. On Accept Delivery, cost is editable when $0 or missing (parity with Bulk Receive); the sell-price lock rule is unchanged.","SV-7707, SV-7708 (S12-R2 / S13-R6 / S13-R7)",,
 C29375,https://shopview.testrail.io/index.php?/cases/view/29375,Verify Accept Delivery shows a '+N' vendor indicator and leads with the vendor-missing group,Accept Delivery (Story 12),Functional,Low,"1. Signed in as Admin.
 2. A multi-vendor delivery with a vendor-missing group exists.","1. Open Accept Delivery.
 2. Confirm the '+N' vendor indicator.
@@ -624,7 +624,7 @@ C29384,https://shopview.testrail.io/index.php?/cases/view/29384,Verify clicking 
 2. Observe the destination.","1. EXPECTED (built): clicking the count opens the receiving surface for the work order's first unreceived PO. In the current build this is the consolidated Bulk Receive page (/bulk-receive), which supersedes the legacy Accept Delivery screen for work-order POs.
 2. Receiving behaves as it does from the Bulk Receive page from there.",SV-7709 (S14-R2),,
 C29385,https://shopview.testrail.io/index.php?/cases/view/29385,Verify a work order with nothing to receive shows '—' with no link in the Waiting on Parts column,Waiting on Parts Column (Story 14),Functional,Low,"1. Signed in as Admin.
-2. A WO with nothing to receive (or POs off) is in the list with the column enabled.","1. Find a WO with nothing waiting to receive.
+2. A WO with nothing to receive is in the list with the column enabled.","1. Find a WO with nothing waiting to receive.
 2. Read its Waiting on Parts cell.",1. The cell shows '—' with no clickable link.,SV-7709 (S14-R3),,
 C29386,https://shopview.testrail.io/index.php?/cases/view/29386,Verify the Require Review setting drives the review flow when turned on,Review ON (Story 16),Functional,High,"1. Signed in as Admin at https://sv7301.qa.shopview.com.
 2. Require Review Before Completion is ON and saved.","1. Open a work order with approved lines.
@@ -774,10 +774,12 @@ C29414,https://shopview.testrail.io/index.php?/cases/view/29414,Verify the Compl
 C29415,https://shopview.testrail.io/index.php?/cases/view/29415,Verify completion is blocked when required mileage is missing,Validation / Edge,Functional,High,"1. Signed in as Admin.
 2. Require Mileage is ON and the work order has no mileage.","1. Start completion.
 2. Leave mileage empty and try to proceed.",1. Completion is blocked until mileage is entered.,"SV-7697, SV-7698, SV-7699 (S2-R2 / S3-R3 / S4-R3)",,
-C29416,https://shopview.testrail.io/index.php?/cases/view/29416,Verify completion is blocked when a required VIN is missing (non-review flow),Validation / Edge,Functional,Medium,"1. Signed in as Admin.
-2. VIN is required for this org's completion and the work order has no VIN.
-3. Require Review is OFF (VIN is collected at completion in the non-review flow).","1. Start completion.
-2. Leave VIN empty and try to proceed.",1. Completion is blocked until the VIN is entered.,"SV-7698, SV-7710 (S15-R2 / S3-R3)",,
+C29416,https://shopview.testrail.io/index.php?/cases/view/29416,"Verify VIN is NOT required at completion in the non-review flow (only mileage and engine hours, when missing)",Validation / Edge,Functional,Medium,"1. Signed in as Admin.
+2. Require Review is OFF.
+3. A work order is missing VIN but has mileage and engine hours present.","1. Start completion and reach the Details step.
+2. Note which vehicle fields are required, then complete with VIN still empty.","1. The completion Details step collects only mileage and engine hours (when missing) — VIN is NOT a required completion field (S4-R3).
+2. Completion is NOT blocked by a missing VIN; the work order completes.
+3. VIN is captured later only if Require Review is on, in the Mark Reviewed dialog (Story 16).",SV-7699 (S4-R3 (VIN removed from completion; captured at Mark Reviewed)),,
 C29417,https://shopview.testrail.io/index.php?/cases/view/29417,Verify completion is blocked when required engine hours are missing,Validation / Edge,Functional,Medium,"1. Signed in as Admin.
 2. Require Engine Hours is ON and the work order has no engine hours.","1. Start completion.
 2. Leave engine hours empty and try to proceed.",1. Completion is blocked until engine hours are entered.,"SV-7698, SV-7699 (S3-R3 / S4-R3)",,
@@ -816,22 +818,23 @@ C29424,https://shopview.testrail.io/index.php?/cases/view/29424,Verify the same 
 2. Receive both.","1. The reused invoice number is accepted (uniqueness is relaxed).
 2. Both POs receive successfully.",SV-7704 (S9-R3 / §4 (uniqueness relaxed)),,
 C29425,https://shopview.testrail.io/index.php?/cases/view/29425,Verify the approve-line error text appears when completing with an unapproved line,Validation / Edge,Functional,Medium,"1. Signed in as Admin.
-2. A work order has one unapproved line and all other gates satisfied.","1. Click Complete Work Order.
-2. Read the error shown at the final confirm.","1. The existing 'you need to approve the line to complete the work order' error is shown.
-2. Completion does not proceed until the line is approved.",Key Decision (line approval),,
+2. A work order has one unapproved line and all other gates satisfied.","1. Open a work order with one unapproved line and all other gates satisfied.
+2. Look at the Complete Work Order button and its tooltip.","1. The Complete Work Order button is disabled with a tooltip describing which line needs approval.
+2. Completion does not proceed until the line is approved; the button enables once all lines are approved.",Key Decision (line approval),,
 C29426,https://shopview.testrail.io/index.php?/cases/view/29426,Verify in-stock parts decrement inventory and write Part History on simple completion (skip path still runs lifecycle),QuickBooks / Inventory Integrity,Functional,High,"1. Signed in as Admin.
 2. A work order has an in-stock inventory part; its on-hand quantity is noted.","1. Complete the work order via the simple (skip) path.
 2. Check the part's on-hand quantity and Part History.","1. The in-stock part's on-hand quantity decrements.
 2. A Part History entry is written.
 3. The skip path's status setter does not bypass inventory movement / Part History / catalog / delivery.",§5 invariant 1,,
-C29427,https://shopview.testrail.io/index.php?/cases/view/29427,"Verify Create POs OFF produces no PO, vendor bill or AP sync and no catalog/inventory sync",QuickBooks / Inventory Integrity,Functional,High,"1. Signed in as Admin.
-2. Create Purchase Orders is OFF.
-3. A work order with a vendor/found part exists.","1. Complete the work order with Create POs OFF.
-2. Check for any PO, vendor bill, AP sync.
-3. Check for any catalog/inventory sync of the vendor/found part.","1. No PO, no vendor bill, no AP sync.
-2. No catalog/inventory sync (part is received at request time only).",§5 / §4 (Create POs OFF),,
+C29427,https://shopview.testrail.io/index.php?/cases/view/29427,Verify there is no Create-POs-OFF bypass — a vendor part always generates a PO and QuickBooks sync on completion,QuickBooks / Inventory Integrity,Functional,High,"1. Signed in as Admin.
+2. A work order with a vendor/found part exists.
+3. There is no Create Purchase Orders setting to turn off — POs are always on.","1. Complete the work order that has a vendor/found part (receiving as required).
+2. Check that a PO was created for the vendor part.
+3. Check the vendor bill / AP sync and the catalog/inventory sync.","1. A PO is created for the vendor part — no setting suppresses PO creation.
+2. The vendor bill / AP sync occurs per the normal pipeline once received.
+3. Catalog/inventory sync happens per the normal receive pipeline.",§4/§5 (POs always on — no Create-POs-OFF bypass),,
 C29428,https://shopview.testrail.io/index.php?/cases/view/29428,Verify POs ON plus receiving runs the full pipeline: receive → Delivery → Vendor Bill → QuickBooks (both surfaces sync),QuickBooks / Inventory Integrity,Functional,High,"1. Signed in as Admin.
-2. Create POs is on and a work order has a receivable vendor part.","1. Receive the part via Accept Delivery.
+2. A work order has a receivable vendor part (purchase orders are always on).","1. Receive the part via Accept Delivery.
 2. Check that a Delivery, then a Vendor Bill, then a QuickBooks sync occur.
 3. Repeat via the Bulk Receive surface (once built) and confirm it also syncs.","1. Receiving creates a Delivery, then a Vendor Bill, then syncs to QuickBooks.
 2. Both receive surfaces sync the vendor bill (only complete-simple bypasses this).",§5 invariant 2,,

@@ -196,7 +196,7 @@
   "permissions_required": "Work Order edit access.",
   "preconditions": [
    "1. Signed in as Admin.",
-   "2. A work order has a vendor part with no vendor assigned and Create POs is on.",
+   "2. A work order has a vendor part with no vendor assigned (purchase orders are always on).",
    "3. The work order has been completed so POs are generated."
   ],
   "steps": [
@@ -1159,7 +1159,7 @@
  {
   "id": "SF-RCV-06",
   "area": "Accept Delivery (Story 12)",
-  "story_ref": "S12-R2",
+  "story_ref": "S12-R2 / S13-R6 / S13-R7",
   "title": "Verify Accept Delivery receive gates: vendor set, missing part number entered, vendor invoice # captured",
   "priority": "High",
   "type": "Negative",
@@ -1171,13 +1171,15 @@
   "steps": [
    "1. Attempt to receive without a vendor set.",
    "2. Attempt to receive without a part number.",
-   "3. Attempt to receive without a vendor invoice number."
+   "3. Attempt to receive with the cost / sell price missing.",
+   "4. Attempt to receive without a vendor invoice number."
   ],
   "expected": [
    "1. Receiving is gated until a vendor is set.",
-   "2. Receiving is gated until the missing part number is entered.",
-   "3. Receiving is gated until a vendor invoice number is captured.",
-   "4. On Accept Delivery, cost is editable when $0 or missing (parity with Bulk Receive); the sell-price lock rule is unchanged."
+   "2. Receiving is gated until the missing part number is entered (S13-R6).",
+   "3. Receiving is gated until a missing cost / sell price is entered (S13-R7).",
+   "4. Receiving is gated until a vendor invoice number is captured.",
+   "5. On Accept Delivery, cost is editable when $0 or missing (parity with Bulk Receive); the sell-price lock rule is unchanged."
   ],
   "design_ref": "requirements S12-R2",
   "viu_status": "VIU-Verified",
@@ -1479,14 +1481,14 @@
   "permissions_required": "WO list visibility.",
   "preconditions": [
    "1. Signed in as Admin.",
-   "2. A WO with nothing to receive (or POs off) is in the list with the column enabled."
+   "2. A WO with nothing to receive is in the list with the column enabled."
   ],
   "steps": [
    "1. Find a WO with nothing waiting to receive.",
    "2. Read its Waiting on Parts cell."
   ],
   "expected": [
-   "1. EXPECTED PER SPEC: the cell shows '—' with no clickable link."
+   "1. The cell shows '—' with no clickable link."
   ],
   "design_ref": "requirements S14-R3",
   "viu_status": "VIU-Verified",

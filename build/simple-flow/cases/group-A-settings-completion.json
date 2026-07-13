@@ -56,8 +56,8 @@
  {
   "id": "SF-SET-03",
   "area": "Work Order Settings",
-  "story_ref": "S1-R2 (Create purchase orders)",
-  "title": "Verify a 'Create Purchase Orders' toggle exists and, when off, hides the Vendor Invoice sub-setting",
+  "story_ref": "Story 1 / §4 (Create-POs setting retired — POs always on)",
+  "title": "Verify there is no 'Create Purchase Orders' toggle and the Vendor Invoice sub-setting always shows (POs always on)",
   "priority": "Critical",
   "type": "Functional",
   "permissions_required": "Admin / owner (settings area).",
@@ -66,14 +66,12 @@
    "2. On /administration/settings → Work Orders tab."
   ],
   "steps": [
-   "1. Locate a 'Create purchase orders' toggle.",
-   "2. Turn it Off and observe the Vendor Invoice Number setting.",
-   "3. Turn it On and observe the Vendor Invoice Number setting."
+   "1. Look for a 'Create purchase orders' toggle in the Work Orders settings.",
+   "2. Locate the Vendor Invoice (Optional/Required) setting."
   ],
   "expected": [
-   "1. EXPECTED PER SPEC (currently NOT met): a 'Create purchase orders' toggle exists, default On, with helper text.",
-   "2. With Create POs Off, the Vendor Invoice (Optional/Required) sub-setting is hidden and no vendor-invoice capture happens in completion.",
-   "3. With Create POs On, the Vendor Invoice (Optional/Required) sub-setting appears with helper text."
+   "1. There is no 'Create purchase orders' toggle — purchase orders are always created for vendor parts (the Create-POs setting and the No-PO/Skip flow were retired).",
+   "2. The Vendor Invoice (Optional/Required) sub-setting always shows with its helper text."
   ],
   "design_ref": "requirements S1-R2; HANDOFF.md (settings cards)",
   "viu_status": "Open-Question",
@@ -194,7 +192,7 @@
   "id": "SF-SET-08",
   "area": "Work Order Settings",
   "story_ref": "S1 first-use defaults / §4",
-  "title": "Verify first-use defaults on a brand-new org (auto-approve OFF, create POs ON, vendor invoice REQUIRED)",
+  "title": "Verify first-use defaults on a brand-new org (auto-approve OFF, vendor invoice REQUIRED; no Create-POs setting)",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "Admin / owner of a newly-created org.",
@@ -204,11 +202,11 @@
   ],
   "steps": [
    "1. Open /administration/settings → Work Orders tab for the new org.",
-   "2. Read the default state of Auto-approve Lines, Create Purchase Orders, and Vendor Invoice."
+   "2. Read the default state of Auto-approve Lines and Vendor Invoice."
   ],
   "expected": [
    "1. Auto-approve Lines = OFF (spec default — authoritative).",
-   "2. Create Purchase Orders = ON.",
+   "2. There is no Create Purchase Orders setting — purchase orders are always on.",
    "3. Vendor Invoice = REQUIRED."
   ],
   "design_ref": "requirements §4 / S1 defaults; HANDOFF.md (design defaults differ)",
@@ -404,8 +402,8 @@
  },
  {
   "id": "SF-COMP-01",
-  "area": "Completion — No-PO / Skip (Story 2)",
-  "story_ref": "S2-R1",
+  "area": "Completion — Simple (Stories 3/4)",
+  "story_ref": "Story 3/4 (streamlined completion — Complete button placement)",
   "title": "Verify a Complete Work Order button appears next to New Line on the work order",
   "priority": "Critical",
   "type": "Functional",
@@ -430,8 +428,8 @@
  },
  {
   "id": "SF-COMP-02",
-  "area": "Completion — No-PO / Skip (Story 2)",
-  "story_ref": "S2-R2 / S2-R3 / S2-R4",
+  "area": "Completion — Simple (Stories 3/4)",
+  "story_ref": "Story 3/4 (streamlined completion — no-parts WO one-confirm)",
   "title": "Verify a work order with no parts completes in one confirm and reaches the Success screen",
   "priority": "Critical",
   "type": "Functional",
@@ -459,8 +457,8 @@
  },
  {
   "id": "SF-COMP-03",
-  "area": "Completion — No-PO / Skip (Story 2)",
-  "story_ref": "S2-R4 / S2-R5 / S15-R3",
+  "area": "Completion — Simple (Stories 3/4)",
+  "story_ref": "Story 3/4 (streamlined completion — Success screen) / S15-R3",
   "title": "Verify the Success screen shows the work order number and total with Done and Go to Invoice actions",
   "priority": "High",
   "type": "Functional",
@@ -486,8 +484,8 @@
  },
  {
   "id": "SF-COMP-04",
-  "area": "Completion — No-PO / Skip (Story 2)",
-  "story_ref": "S2-R5 / S15-R3",
+  "area": "Completion — Simple (Stories 3/4)",
+  "story_ref": "Story 3/4 (streamlined completion — Go to Invoice) / S15-R3",
   "title": "Verify Go to Invoice from the Success screen opens the Finance step where the invoice number is shown",
   "priority": "Medium",
   "type": "Functional",
@@ -512,8 +510,8 @@
  },
  {
   "id": "SF-COMP-05",
-  "area": "Completion — No-PO / Skip (Story 2)",
-  "story_ref": "S2-R2 / S2 AC (missing required fields blocked)",
+  "area": "Completion — Simple (Stories 3/4)",
+  "story_ref": "Story 3/4 (streamlined completion — missing required fields blocked)",
   "title": "Verify completion is blocked when a required vehicle field is missing",
   "priority": "High",
   "type": "Negative",
@@ -540,26 +538,26 @@
  },
  {
   "id": "SF-COMP-06",
-  "area": "Completion — No-PO / Skip (Story 2)",
-  "story_ref": "S2-R6 / S2 AC (Create POs off ⇒ no PO)",
-  "title": "Verify with Create POs OFF a work order with vendor parts completes with no PO, no vendor bill and no AP sync",
+  "area": "Completion — Simple (Stories 3/4)",
+  "story_ref": "Story 3/4 (POs always on — former Create-POs-OFF flow retired)",
+  "title": "Verify a work order with a vendor part creates a PO on completion and routes through the receive step (POs always on)",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "Admin / owner (settings) + Work Order edit access.",
   "preconditions": [
    "1. Signed in as Admin.",
-   "2. Create Purchase Orders is set to OFF (see SF-SET-03).",
-   "3. An open work order with an approved vendor-part line exists."
+   "2. An open work order with an approved vendor-part line exists.",
+   "3. POs are always on — there is no Create-POs setting to turn off."
   ],
   "steps": [
-   "1. Complete the work order in one confirm.",
-   "2. Check whether any PO was created.",
-   "3. Check for any vendor bill / AP sync."
+   "1. Start completion of the work order.",
+   "2. Observe whether a PO / background order is created for the vendor part and whether receiving is required.",
+   "3. Complete after receiving and check the vendor bill / AP sync."
   ],
   "expected": [
-   "1. EXPECTED PER SPEC: no PO is created.",
-   "2. No vendor bill and no AP sync occur.",
-   "3. No catalog/inventory sync for the vendor/found part; it is received at request time only."
+   "1. A PO (background order) is created for the vendor part; Complete Work Order stays disabled until the part is received (S4-R1/R4).",
+   "2. After receiving, completion proceeds and the vendor bill / AP sync occur per the normal pipeline.",
+   "3. There is no skip/no-PO path — the former Create-POs-OFF flow was retired."
   ],
   "design_ref": "requirements §4 / §5; S2-R6",
   "viu_status": "Open-Question",
@@ -568,8 +566,8 @@
  },
  {
   "id": "SF-COMP-07",
-  "area": "Completion — No-PO / Skip (Story 2)",
-  "story_ref": "S2-R6 / §5 invariant 1",
+  "area": "Completion — Simple (Stories 3/4)",
+  "story_ref": "Story 3/4 (streamlined completion — inventory movement) / §5 invariant 1",
   "title": "Verify in-stock inventory parts decrement inventory and write Part History on simple completion",
   "priority": "High",
   "type": "Functional",
@@ -596,8 +594,8 @@
  },
  {
   "id": "SF-COMP-08",
-  "area": "Completion — No-PO / Skip (Story 2)",
-  "story_ref": "S2-R2 / S2 AC (auto-pick off ⇒ pick in modal)",
+  "area": "Completion — Simple (Stories 3/4)",
+  "story_ref": "Story 3/4 (streamlined completion — auto-pick off ⇒ pick in modal)",
   "title": "Verify with Auto-pick Inventory OFF the completion modal requires picking parts before Complete",
   "priority": "Medium",
   "type": "Functional",
@@ -624,8 +622,8 @@
  },
  {
   "id": "SF-COMP-09",
-  "area": "Completion — No-PO / Skip (Story 2)",
-  "story_ref": "S2-R6 / S2 AC (re-open returns to Approved)",
+  "area": "Completion — Simple (Stories 3/4)",
+  "story_ref": "Story 3/4 (streamlined completion — re-open returns to Approved)",
   "title": "Verify adding a new line to a completed work order returns it to Approved",
   "priority": "Medium",
   "type": "Functional",
@@ -650,8 +648,8 @@
  },
  {
   "id": "SF-COMP-10",
-  "area": "Completion — No-PO / Skip (Story 2)",
-  "story_ref": "S2 AC (individual-line Complete + per-part receive kept)",
+  "area": "Completion — Simple (Stories 3/4)",
+  "story_ref": "Story 3/4 (streamlined completion — individual-line Complete + per-part receive)",
   "title": "Verify individual-line Complete and per-part receive actions still work alongside Simple completion",
   "priority": "Medium",
   "type": "Functional",
@@ -960,14 +958,14 @@
    "3. A work order has one line still in Needs Approval and all other gates satisfied (tech story present, required fields present)."
   ],
   "steps": [
-   "1. Click Complete Work Order.",
-   "2. Proceed through any tech-story / details gates.",
-   "3. Attempt the final Complete confirm."
+   "1. Open the work order with one line in Needs Approval and all other gates satisfied.",
+   "2. Look at the Complete Work Order button and hover it for any tooltip.",
+   "3. Approve the remaining line and re-check the button."
   ],
   "expected": [
-   "1. The existing 'you need to approve the line to complete the work order' error appears.",
-   "2. The work order does not complete while a line is unapproved.",
-   "3. There is no new disabled state — the error surfaces on Complete."
+   "1. The Complete Work Order button is disabled while any line is unapproved.",
+   "2. A tooltip on the disabled button describes the reason (which line needs approval).",
+   "3. The button enables and completion proceeds once all lines are approved (S4-R8)."
   ],
   "design_ref": "requirements §4 Key Decision / S3-R9",
   "viu_status": "VIU-Verified",
@@ -988,13 +986,13 @@
    "3. A work order has a line that was manually un-approved after being added."
   ],
   "steps": [
-   "1. Confirm one line is unapproved.",
-   "2. Click Complete Work Order and attempt to complete.",
+   "1. Confirm one line is unapproved (manually un-approved after being added, Auto-approve ON).",
+   "2. Look at the Complete Work Order button (disabled) and its tooltip.",
    "3. Re-approve the line and retry."
   ],
   "expected": [
-   "1. With the line unapproved, completion is blocked with the approve-line error.",
-   "2. After re-approving all lines, completion proceeds."
+   "1. With the line unapproved, the Complete Work Order button is disabled with a tooltip describing the reason.",
+   "2. After re-approving all lines, the button enables and completion proceeds (holds regardless of Auto-approve)."
   ],
   "design_ref": "requirements §4 Key Decision",
   "viu_status": "VIU-Verified",

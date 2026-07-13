@@ -1090,6 +1090,39 @@
       </cases>
     </section>
     <section>
+      <name>Taxable jurisdiction note (§5-R15)</name>
+      <cases>
+        <case>
+          <title>Verify the taxable jurisdiction note shows below the Taxable control in the Add / Edit fee-or-discount dialog</title>
+          <type>Functional</type>
+          <priority>Medium</priority>
+          <references>S5-R15 / S2-R26a</references>
+          <custom>
+            <preconds>1. You are logged in with Work Orders: Create and Edit and See Financial Data; the Fees &amp; Discounts feature is on.
+2. An open work order is available and you open the Add / Edit fee-or-discount dialog (any scope).</preconds>
+            <steps>1. Open the Add / Edit fee-or-discount dialog and locate the Taxable Yes/No control (S2-R26).
+2. Read the text shown directly below the Taxable control.</steps>
+            <expected>1. Directly below the Taxable control this exact text shows: "Tax treatment varies by jurisdiction — confirm your local requirements before saving." (S2-R26a)
+2. It renders as a plain advisory — not a UI instruction and not a legal-compliance statement — and does not block saving.</expected>
+          </custom>
+        </case>
+        <case>
+          <title>Verify the taxable jurisdiction note shows below the Taxable setting in the Processing Fee dialog</title>
+          <type>Functional</type>
+          <priority>Medium</priority>
+          <references>S5-R15 / S8-R13</references>
+          <custom>
+            <preconds>1. You are logged in with access to configure a Processing Fee; the Fees &amp; Discounts feature is on.
+2. You open the Processing Fee dialog (the S8-R11 Taxable setting is present).</preconds>
+            <steps>1. Open the Processing Fee dialog and locate the Taxable Yes/No setting (S8-R11).
+2. Read the text shown directly below the Taxable setting.</steps>
+            <expected>1. Directly below the Taxable setting this exact text shows: "Tax treatment varies by jurisdiction — confirm your local requirements before saving." (S8-R13)
+2. It is a plain advisory; the former legal-disclosure context note is no longer shown.</expected>
+          </custom>
+        </case>
+      </cases>
+    </section>
+    <section>
       <name>Customer Fees &amp; Discounts tab</name>
       <cases>
         <case>
@@ -2454,7 +2487,7 @@
           <priority>High</priority>
           <references>S10-R2, S10-R4a, S10-R4b, S10-R4c</references>
           <custom>
-            <preconds>1. You have View History Logs and can add/edit/remove adjustments on an open WO.</preconds>
+            <preconds>1. You have Work Orders: Create and Edit and can add/edit/remove adjustments on an open WO.</preconds>
             <steps>1. Add a Fee to the WO, then edit it, then remove it.
 2. Add a Discount to the WO, then edit it, then remove it.
 3. Open the WO history log.</steps>
@@ -2520,7 +2553,7 @@
           <references>S10-R1, S10-R6c, S13-R10</references>
           <custom>
             <preconds>1. A WO has fee/discount history entries.
-2. A ZZAUTOTEST role is assigned to Tech with View History Logs ON but See Financial Data OFF (exact-user-match).</preconds>
+2. A ZZAUTOTEST role is assigned to Tech with Work Orders: Create and Edit ON but See Financial Data OFF (exact-user-match).</preconds>
             <steps>1. Log in as Tech and open the WO — confirm dollar amounts are hidden on the F&amp;D surfaces.
 2. Open the WO history log.
 3. Restore Tech to Time Clock afterward.</steps>
@@ -2535,16 +2568,16 @@
       <cases>
         <case>
           <id>C28565</id>
-          <title>Verify fee/discount history entries are gated by the View History Logs permission</title>
+          <title>Verify fee/discount history entries are gated by Work Orders: Create and Edit (WO log) and Work Order Lines: Create and Edit (line history)</title>
           <type>Functional</type>
           <priority>High</priority>
           <references>S13-R10</references>
           <custom>
             <preconds>1. A WO has fee/discount history.
-2. A ZZAUTOTEST role is assigned to Tech WITHOUT View History Logs (exact-user-match).</preconds>
-            <steps>1. Log in as Tech and attempt to view the WO history log.
+2. A ZZAUTOTEST role is assigned to Tech WITHOUT Work Orders: Create and Edit and WITHOUT Work Order Lines: Create and Edit (exact-user-match).</preconds>
+            <steps>1. Log in as Tech and attempt to view the WO history log and an individual labor-line / part-line history.
 2. Restore Tech to Time Clock afterward.</steps>
-            <expected>1. Without View History Logs, the history log (including fee/discount entries) is not accessible.</expected>
+            <expected>1. Without Work Orders: Create and Edit, the WO history log (including fee/discount entries) is not accessible; viewing an individual labor-line or part-line history requires Work Order Lines: Create and Edit.</expected>
           </custom>
         </case>
       </cases>
@@ -2973,7 +3006,7 @@
 3. Restore Tech to Time Clock after.</steps>
             <expected>1. With Part Sales: Create and Edit ON: part-sale add/edit/remove is allowed.
 2. With it OFF: the part-sale F&amp;D controls are not shown and the action is rejected (S13-N2).
-3. On a Part Sale the earlier "Work Order change permission" maps to Part Sales: Create and Edit (S13-R11).</expected>
+3. Part-sale adjustments — on the whole sale or on a part line — require Part Sales: Create and Edit plus See Financial Data, and do not use any Work Order permission (S13-R5).</expected>
           </custom>
         </case>
         <case>
@@ -3047,21 +3080,21 @@
         </case>
         <case>
           <id>C28593</id>
-          <title>Verify seeing fee/discount entries in the WO history log requires View History Logs (and stays visible even when F&amp;D UI is hidden)</title>
+          <title>Verify seeing fee/discount entries in the WO history log requires Work Orders: Create and Edit (line history requires Work Order Lines: Create and Edit) and stays visible even when F&amp;D UI is hidden</title>
           <type>Functional</type>
           <priority>Medium</priority>
           <references>S13-R10</references>
           <custom>
             <preconds>1. A work order already has fee/discount history (add/edit/remove entries).
-2. Two ZZAUTOTEST roles: Role A WITH View History Logs; Role B WITHOUT it. Assign by exact-user-match to Tech.</preconds>
-            <steps>1. With Role A: open the WO history log and locate the fee/discount entries.
-2. Also confirm entries remain visible even when the F&amp;D UI is hidden (Fees &amp; Discounts feature off, or See Financial Data off).
-3. With Role B: open the WO history log.
+2. Two ZZAUTOTEST roles: Role A WITH Work Orders: Create and Edit (and, for line history, Work Order Lines: Create and Edit); Role B WITHOUT those. Assign by exact-user-match to Tech.</preconds>
+            <steps>1. With Role A: open the WO history log and locate the fee/discount entries; also open an individual labor-line / part-line history.
+2. Confirm entries remain visible even when the F&amp;D UI is hidden (Fees &amp; Discounts feature off, or See Financial Data off).
+3. With Role B (lacking Work Orders: Create and Edit / Work Order Lines: Create and Edit): open the WO history log and a line history.
 4. Restore Tech to Time Clock after.</steps>
-            <expected>1. With View History Logs ON: fee/discount entries are visible in the history log.
+            <expected>1. With Work Orders: Create and Edit: the WO history log and its fee/discount entries are visible. Viewing an individual labor-line or part-line history requires Work Order Lines: Create and Edit.
 2. Entries stay visible even when the F&amp;D UI is hidden by the Fees &amp; Discounts feature or by See Financial Data (S10-R1).
 3. The log shows the SET rate (e.g. "10.00%" or "$5.00"), not a resolved total, so See Financial Data does NOT gate it (S10-R6c).
-4. With View History Logs OFF: the fee/discount history entries are not shown.</expected>
+4. Without Work Orders: Create and Edit the WO history log (including fee/discount entries) is not accessible; without Work Order Lines: Create and Edit the labor-line/part-line history is not accessible.</expected>
           </custom>
         </case>
         <case>
@@ -3133,7 +3166,7 @@
           <references>S10-R1 (flag-off exception)</references>
           <custom>
             <preconds>1. A work order already has fee/discount history entries.
-2. The user has View History Logs.
+2. The user has Work Orders: Create and Edit.
 3. Ability to set the Fees &amp; Discounts feature OFF.</preconds>
             <steps>1. Set the Fees &amp; Discounts feature OFF.
 2. Open the WO history log and look for the previously-recorded fee/discount entries.

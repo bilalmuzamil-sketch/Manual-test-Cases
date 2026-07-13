@@ -41,19 +41,17 @@
         </case>
         <case>
           <id>C29277</id>
-          <title>Verify a 'Create Purchase Orders' toggle exists and, when off, hides the Vendor Invoice sub-setting</title>
+          <title>Verify there is no 'Create Purchase Orders' toggle and the Vendor Invoice sub-setting always shows (POs always on)</title>
           <type>Functional</type>
           <priority>Critical</priority>
-          <references>SV-7696 (S1-R2 (Create purchase orders))</references>
+          <references>SV-7696 (Story 1 / §4 (Create-POs setting retired — POs always on))</references>
           <custom>
             <preconds>1. Signed in as Admin.
 2. On /administration/settings → Work Orders tab.</preconds>
-            <steps>1. Locate a 'Create purchase orders' toggle.
-2. Turn it Off and observe the Vendor Invoice Number setting.
-3. Turn it On and observe the Vendor Invoice Number setting.</steps>
-            <expected>1. EXPECTED PER SPEC (currently NOT met): a 'Create purchase orders' toggle exists, default On, with helper text.
-2. With Create POs Off, the Vendor Invoice (Optional/Required) sub-setting is hidden and no vendor-invoice capture happens in completion.
-3. With Create POs On, the Vendor Invoice (Optional/Required) sub-setting appears with helper text.</expected>
+            <steps>1. Look for a 'Create purchase orders' toggle in the Work Orders settings.
+2. Locate the Vendor Invoice (Optional/Required) setting.</steps>
+            <expected>1. There is no 'Create purchase orders' toggle — purchase orders are always created for vendor parts (the Create-POs setting and the No-PO/Skip flow were retired).
+2. The Vendor Invoice (Optional/Required) sub-setting always shows with its helper text.</expected>
           </custom>
         </case>
         <case>
@@ -94,7 +92,7 @@
         </case>
         <case>
           <id>C29282</id>
-          <title>Verify first-use defaults on a brand-new org (auto-approve OFF, create POs ON, vendor invoice REQUIRED)</title>
+          <title>Verify first-use defaults on a brand-new org (auto-approve OFF, vendor invoice REQUIRED; no Create-POs setting)</title>
           <type>Functional</type>
           <priority>High</priority>
           <references>SV-7696 (S1 first-use defaults / §4)</references>
@@ -102,9 +100,9 @@
             <preconds>1. A brand-new organization that has never edited Work Order settings is available.
 2. Signed in as that org's Admin.</preconds>
             <steps>1. Open /administration/settings → Work Orders tab for the new org.
-2. Read the default state of Auto-approve Lines, Create Purchase Orders, and Vendor Invoice.</steps>
+2. Read the default state of Auto-approve Lines and Vendor Invoice.</steps>
             <expected>1. Auto-approve Lines = OFF (spec default — authoritative).
-2. Create Purchase Orders = ON.
+2. There is no Create Purchase Orders setting — purchase orders are always on.
 3. Vendor Invoice = REQUIRED.</expected>
           </custom>
         </case>
@@ -266,14 +264,14 @@
       </cases>
     </section>
     <section>
-      <name>Completion — No-PO / Skip (Story 2)</name>
+      <name>Completion — Simple (Stories 3/4)</name>
       <cases>
         <case>
           <id>C29290</id>
           <title>Verify a Complete Work Order button appears next to New Line on the work order</title>
           <type>Functional</type>
           <priority>Critical</priority>
-          <references>SV-7697 (S2-R1)</references>
+          <references>SV-7698, SV-7699 (Story 3/4 (streamlined completion — Complete button placement))</references>
           <custom>
             <preconds>1. Signed in as Admin.
 2. An open work order with at least one approved line is on its Lines tab.</preconds>
@@ -289,7 +287,7 @@
           <title>Verify a work order with no parts completes in one confirm and reaches the Success screen</title>
           <type>Functional</type>
           <priority>Critical</priority>
-          <references>SV-7697 (S2-R2 / S2-R3 / S2-R4)</references>
+          <references>SV-7698, SV-7699 (Story 3/4 (streamlined completion — no-parts WO one-confirm))</references>
           <custom>
             <preconds>1. Signed in as Admin.
 2. An open work order with a single labor-only, approved line exists (no parts).
@@ -308,7 +306,7 @@
           <title>Verify the Success screen shows the work order number and total with Done and Go to Invoice actions</title>
           <type>Functional</type>
           <priority>High</priority>
-          <references>SV-7697, SV-7710 (S2-R4 / S2-R5 / S15-R3)</references>
+          <references>SV-7698, SV-7699, SV-7710 (Story 3/4 (streamlined completion — Success screen) / S15-R3)</references>
           <custom>
             <preconds>1. Signed in as Admin.
 2. You have just completed a work order and are on the Success screen.</preconds>
@@ -325,7 +323,7 @@
           <title>Verify Go to Invoice from the Success screen opens the Finance step where the invoice number is shown</title>
           <type>Functional</type>
           <priority>Medium</priority>
-          <references>SV-7697, SV-7710 (S2-R5 / S15-R3)</references>
+          <references>SV-7698, SV-7699, SV-7710 (Story 3/4 (streamlined completion — Go to Invoice) / S15-R3)</references>
           <custom>
             <preconds>1. Signed in as Admin.
 2. You are on the Success screen of a just-completed work order.</preconds>
@@ -341,7 +339,7 @@
           <title>Verify completion is blocked when a required vehicle field is missing</title>
           <type>Functional</type>
           <priority>High</priority>
-          <references>SV-7697 (S2-R2 / S2 AC (missing required fields blocked))</references>
+          <references>SV-7698, SV-7699 (Story 3/4 (streamlined completion — missing required fields blocked))</references>
           <custom>
             <preconds>1. Signed in as Admin.
 2. Require Mileage (or another required field) is ON.
@@ -356,20 +354,20 @@
         </case>
         <case>
           <id>C29295</id>
-          <title>Verify with Create POs OFF a work order with vendor parts completes with no PO, no vendor bill and no AP sync</title>
+          <title>Verify a work order with a vendor part creates a PO on completion and routes through the receive step (POs always on)</title>
           <type>Functional</type>
           <priority>High</priority>
-          <references>SV-7697 (S2-R6 / S2 AC (Create POs off ⇒ no PO))</references>
+          <references>SV-7698, SV-7699 (Story 3/4 (POs always on — former Create-POs-OFF flow retired))</references>
           <custom>
             <preconds>1. Signed in as Admin.
-2. Create Purchase Orders is set to OFF.
-3. An open work order with an approved vendor-part line exists.</preconds>
-            <steps>1. Complete the work order in one confirm.
-2. Check whether any PO was created.
-3. Check for any vendor bill / AP sync.</steps>
-            <expected>1. No PO is created.
-2. No vendor bill and no AP sync occur.
-3. No catalog/inventory sync for the vendor/found part; it is received at request time only.</expected>
+2. An open work order with an approved vendor-part line exists.
+3. POs are always on — there is no Create-POs setting to turn off.</preconds>
+            <steps>1. Start completion of the work order.
+2. Observe whether a PO / background order is created for the vendor part and whether receiving is required.
+3. Complete after receiving and check the vendor bill / AP sync.</steps>
+            <expected>1. A PO (background order) is created for the vendor part; Complete Work Order stays disabled until the part is received (S4-R1/R4).
+2. After receiving, completion proceeds and the vendor bill / AP sync occur per the normal pipeline.
+3. There is no skip/no-PO path — the former Create-POs-OFF flow was retired.</expected>
           </custom>
         </case>
         <case>
@@ -377,7 +375,7 @@
           <title>Verify in-stock inventory parts decrement inventory and write Part History on simple completion</title>
           <type>Functional</type>
           <priority>High</priority>
-          <references>SV-7697 (S2-R6 / §5 invariant 1)</references>
+          <references>SV-7698, SV-7699 (Story 3/4 (streamlined completion — inventory movement) / §5 invariant 1)</references>
           <custom>
             <preconds>1. Signed in as Admin.
 2. An open work order has an approved in-stock inventory part line.
@@ -395,7 +393,7 @@
           <title>Verify with Auto-pick Inventory OFF the completion modal requires picking parts before Complete</title>
           <type>Functional</type>
           <priority>Medium</priority>
-          <references>SV-7697 (S2-R2 / S2 AC (auto-pick off ⇒ pick in modal))</references>
+          <references>SV-7698, SV-7699 (Story 3/4 (streamlined completion — auto-pick off ⇒ pick in modal))</references>
           <custom>
             <preconds>1. Signed in as Admin.
 2. Automatically Pick Inventory Parts is OFF and saved.
@@ -413,7 +411,7 @@
           <title>Verify adding a new line to a completed work order returns it to Approved</title>
           <type>Functional</type>
           <priority>Medium</priority>
-          <references>SV-7697 (S2-R6 / S2 AC (re-open returns to Approved))</references>
+          <references>SV-7698, SV-7699 (Story 3/4 (streamlined completion — re-open returns to Approved))</references>
           <custom>
             <preconds>1. Signed in as Admin.
 2. A work order is in Complete status.</preconds>
@@ -429,7 +427,7 @@
           <title>Verify individual-line Complete and per-part receive actions still work alongside Simple completion</title>
           <type>Functional</type>
           <priority>Medium</priority>
-          <references>SV-7697 (S2 AC (individual-line Complete + per-part receive kept))</references>
+          <references>SV-7698, SV-7699 (Story 3/4 (streamlined completion — individual-line Complete + per-part receive))</references>
           <custom>
             <preconds>1. Signed in as Admin.
 2. An open work order with multiple lines and a receivable part exists.</preconds>
@@ -637,12 +635,12 @@
             <preconds>1. Signed in as Admin.
 2. Auto-approve Lines is OFF.
 3. A work order has one line still in Needs Approval and all other gates satisfied (tech story present, required fields present).</preconds>
-            <steps>1. Click Complete Work Order.
-2. Proceed through any tech-story / details gates.
-3. Attempt the final Complete confirm.</steps>
-            <expected>1. The existing 'you need to approve the line to complete the work order' error appears.
-2. The work order does not complete while a line is unapproved.
-3. There is no new disabled state — the error surfaces on Complete.</expected>
+            <steps>1. Open the work order with one line in Needs Approval and all other gates satisfied.
+2. Look at the Complete Work Order button and hover it for any tooltip.
+3. Approve the remaining line and re-check the button.</steps>
+            <expected>1. The Complete Work Order button is disabled while any line is unapproved.
+2. A tooltip on the disabled button describes the reason (which line needs approval).
+3. The button enables and completion proceeds once all lines are approved (S4-R8).</expected>
           </custom>
         </case>
         <case>
@@ -655,11 +653,11 @@
             <preconds>1. Signed in as Admin.
 2. Auto-approve Lines is ON.
 3. A work order has a line that was manually un-approved after being added.</preconds>
-            <steps>1. Confirm one line is unapproved.
-2. Click Complete Work Order and attempt to complete.
+            <steps>1. Confirm one line is unapproved (manually un-approved after being added, Auto-approve ON).
+2. Look at the Complete Work Order button (disabled) and its tooltip.
 3. Re-approve the line and retry.</steps>
-            <expected>1. With the line unapproved, completion is blocked with the approve-line error.
-2. After re-approving all lines, completion proceeds.</expected>
+            <expected>1. With the line unapproved, the Complete Work Order button is disabled with a tooltip describing the reason.
+2. After re-approving all lines, the button enables and completion proceeds (holds regardless of Auto-approve).</expected>
           </custom>
         </case>
       </cases>
@@ -1151,7 +1149,7 @@
           <references>SV-7701 (S6-R1)</references>
           <custom>
             <preconds>1. Signed in as Admin.
-2. A work order has a vendor part with no vendor assigned and Create POs is on.
+2. A work order has a vendor part with no vendor assigned (purchase orders are always on).
 3. The work order has been completed so POs are generated.</preconds>
             <steps>1. Open the PO list at /parts/orders.
 2. Find the PO for this work order.
@@ -1778,17 +1776,19 @@
           <title>Verify Accept Delivery receive gates: vendor set, missing part number entered, vendor invoice # captured</title>
           <type>Functional</type>
           <priority>High</priority>
-          <references>SV-7707 (S12-R2)</references>
+          <references>SV-7707, SV-7708 (S12-R2 / S13-R6 / S13-R7)</references>
           <custom>
             <preconds>1. Signed in as Admin.
 2. A vendor-missing / no-PN part is in an Accept Delivery group.</preconds>
             <steps>1. Attempt to receive without a vendor set.
 2. Attempt to receive without a part number.
-3. Attempt to receive without a vendor invoice number.</steps>
+3. Attempt to receive with the cost / sell price missing.
+4. Attempt to receive without a vendor invoice number.</steps>
             <expected>1. Receiving is gated until a vendor is set.
-2. Receiving is gated until the missing part number is entered.
-3. Receiving is gated until a vendor invoice number is captured.
-4. On Accept Delivery, cost is editable when $0 or missing (parity with Bulk Receive); the sell-price lock rule is unchanged.</expected>
+2. Receiving is gated until the missing part number is entered (S13-R6).
+3. Receiving is gated until a missing cost / sell price is entered (S13-R7).
+4. Receiving is gated until a vendor invoice number is captured.
+5. On Accept Delivery, cost is editable when $0 or missing (parity with Bulk Receive); the sell-price lock rule is unchanged.</expected>
           </custom>
         </case>
         <case>
@@ -1984,7 +1984,7 @@
           <references>SV-7709 (S14-R3)</references>
           <custom>
             <preconds>1. Signed in as Admin.
-2. A WO with nothing to receive (or POs off) is in the list with the column enabled.</preconds>
+2. A WO with nothing to receive is in the list with the column enabled.</preconds>
             <steps>1. Find a WO with nothing waiting to receive.
 2. Read its Waiting on Parts cell.</steps>
             <expected>1. The cell shows '—' with no clickable link.</expected>
@@ -2495,17 +2495,19 @@
         </case>
         <case>
           <id>C29416</id>
-          <title>Verify completion is blocked when a required VIN is missing (non-review flow)</title>
+          <title>Verify VIN is NOT required at completion in the non-review flow (only mileage and engine hours, when missing)</title>
           <type>Functional</type>
           <priority>Medium</priority>
-          <references>SV-7698, SV-7710 (S15-R2 / S3-R3)</references>
+          <references>SV-7699 (S4-R3 (VIN removed from completion; captured at Mark Reviewed))</references>
           <custom>
             <preconds>1. Signed in as Admin.
-2. VIN is required for this org's completion and the work order has no VIN.
-3. Require Review is OFF (VIN is collected at completion in the non-review flow).</preconds>
-            <steps>1. Start completion.
-2. Leave VIN empty and try to proceed.</steps>
-            <expected>1. Completion is blocked until the VIN is entered.</expected>
+2. Require Review is OFF.
+3. A work order is missing VIN but has mileage and engine hours present.</preconds>
+            <steps>1. Start completion and reach the Details step.
+2. Note which vehicle fields are required, then complete with VIN still empty.</steps>
+            <expected>1. The completion Details step collects only mileage and engine hours (when missing) — VIN is NOT a required completion field (S4-R3).
+2. Completion is NOT blocked by a missing VIN; the work order completes.
+3. VIN is captured later only if Require Review is on, in the Mark Reviewed dialog (Story 16).</expected>
           </custom>
         </case>
         <case>
@@ -2642,10 +2644,10 @@
           <custom>
             <preconds>1. Signed in as Admin.
 2. A work order has one unapproved line and all other gates satisfied.</preconds>
-            <steps>1. Click Complete Work Order.
-2. Read the error shown at the final confirm.</steps>
-            <expected>1. The existing 'you need to approve the line to complete the work order' error is shown.
-2. Completion does not proceed until the line is approved.</expected>
+            <steps>1. Open a work order with one unapproved line and all other gates satisfied.
+2. Look at the Complete Work Order button and its tooltip.</steps>
+            <expected>1. The Complete Work Order button is disabled with a tooltip describing which line needs approval.
+2. Completion does not proceed until the line is approved; the button enables once all lines are approved.</expected>
           </custom>
         </case>
       </cases>
@@ -2671,19 +2673,20 @@
         </case>
         <case>
           <id>C29427</id>
-          <title>Verify Create POs OFF produces no PO, vendor bill or AP sync and no catalog/inventory sync</title>
+          <title>Verify there is no Create-POs-OFF bypass — a vendor part always generates a PO and QuickBooks sync on completion</title>
           <type>Functional</type>
           <priority>High</priority>
-          <references>§5 / §4 (Create POs OFF)</references>
+          <references>§4/§5 (POs always on — no Create-POs-OFF bypass)</references>
           <custom>
             <preconds>1. Signed in as Admin.
-2. Create Purchase Orders is OFF.
-3. A work order with a vendor/found part exists.</preconds>
-            <steps>1. Complete the work order with Create POs OFF.
-2. Check for any PO, vendor bill, AP sync.
-3. Check for any catalog/inventory sync of the vendor/found part.</steps>
-            <expected>1. No PO, no vendor bill, no AP sync.
-2. No catalog/inventory sync (part is received at request time only).</expected>
+2. A work order with a vendor/found part exists.
+3. There is no Create Purchase Orders setting to turn off — POs are always on.</preconds>
+            <steps>1. Complete the work order that has a vendor/found part (receiving as required).
+2. Check that a PO was created for the vendor part.
+3. Check the vendor bill / AP sync and the catalog/inventory sync.</steps>
+            <expected>1. A PO is created for the vendor part — no setting suppresses PO creation.
+2. The vendor bill / AP sync occurs per the normal pipeline once received.
+3. Catalog/inventory sync happens per the normal receive pipeline.</expected>
           </custom>
         </case>
         <case>
@@ -2694,7 +2697,7 @@
           <references>§5 invariant 2</references>
           <custom>
             <preconds>1. Signed in as Admin.
-2. Create POs is on and a work order has a receivable vendor part.</preconds>
+2. A work order has a receivable vendor part (purchase orders are always on).</preconds>
             <steps>1. Receive the part via Accept Delivery.
 2. Check that a Delivery, then a Vendor Bill, then a QuickBooks sync occur.
 3. Repeat via the Bulk Receive surface (once built) and confirm it also syncs.</steps>

@@ -603,7 +603,7 @@
   "expected": [
    "1. With Part Sales: Create and Edit ON: part-sale add/edit/remove is allowed.",
    "2. With it OFF: the part-sale F&D controls are not shown and the action is rejected (S13-N2).",
-   "3. On a Part Sale the earlier \"Work Order change permission\" maps to Part Sales: Create and Edit (S13-R11)."
+   "3. Part-sale adjustments — on the whole sale or on a part line — require Part Sales: Create and Edit plus See Financial Data, and do not use any Work Order permission (S13-R5)."
   ],
   "design_ref": "design-notes §5 (Parts F&D column: single / +N / +Add states), §8 (per-part breakdown viewer)",
   "viu_status": "VIU-Blocked-NotBuilt",
@@ -728,25 +728,25 @@
   "id": "FD-PERM-009",
   "area": "Permissions (Story 13)",
   "story_ref": "S13-R10",
-  "title": "Verify seeing fee/discount entries in the WO history log requires View History Logs (and stays visible even when F&D UI is hidden)",
+  "title": "Verify seeing fee/discount entries in the WO history log requires Work Orders: Create and Edit (line history requires Work Order Lines: Create and Edit) and stays visible even when F&D UI is hidden",
   "priority": "Medium",
   "type": "Functional",
-  "permissions_required": "View History Logs (the gate under test)",
+  "permissions_required": "Work Orders: Create and Edit (WO history log) / Work Order Lines: Create and Edit (line history) — the gate under test",
   "preconditions": [
    "1. A work order already has fee/discount history (add/edit/remove entries).",
-   "2. Two ZZAUTOTEST roles: Role A WITH View History Logs; Role B WITHOUT it. Assign by exact-user-match to Tech."
+   "2. Two ZZAUTOTEST roles: Role A WITH Work Orders: Create and Edit (and, for line history, Work Order Lines: Create and Edit); Role B WITHOUT those. Assign by exact-user-match to Tech."
   ],
   "steps": [
-   "1. With Role A: open the WO history log and locate the fee/discount entries.",
-   "2. Also confirm entries remain visible even when the F&D UI is hidden (feature flag off, or See Financial Data off).",
-   "3. With Role B: open the WO history log.",
+   "1. With Role A: open the WO history log and locate the fee/discount entries; also open an individual labor-line / part-line history.",
+   "2. Confirm entries remain visible even when the F&D UI is hidden (feature flag off, or See Financial Data off).",
+   "3. With Role B (lacking Work Orders: Create and Edit / Work Order Lines: Create and Edit): open the WO history log and a line history.",
    "4. Restore Tech to Time Clock after."
   ],
   "expected": [
-   "1. With View History Logs ON: fee/discount entries are visible in the history log.",
+   "1. With Work Orders: Create and Edit: the WO history log and its fee/discount entries are visible. Viewing an individual labor-line or part-line history requires Work Order Lines: Create and Edit.",
    "2. Entries stay visible even when the F&D UI is hidden by the feature flag or by See Financial Data (S10-R1).",
    "3. The log shows the SET rate (e.g. \"10.00%\" or \"$5.00\"), not a resolved total, so See Financial Data does NOT gate it (S10-R6c).",
-   "4. With View History Logs OFF: the fee/discount history entries are not shown."
+   "4. Without Work Orders: Create and Edit the WO history log (including fee/discount entries) is not accessible; without Work Order Lines: Create and Edit the labor-line/part-line history is not accessible."
   ],
   "design_ref": "design-notes §10 (no history-log view mocked)",
   "viu_status": "VIU-Verified",
@@ -853,7 +853,7 @@
   "permissions_required": "View History Logs",
   "preconditions": [
    "1. A work order already has fee/discount history entries.",
-   "2. The user has View History Logs.",
+   "2. The user has Work Orders: Create and Edit.",
    "3. Ability to set the FeesAndDiscounts flag OFF."
   ],
   "steps": [

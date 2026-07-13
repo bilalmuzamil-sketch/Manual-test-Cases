@@ -1933,7 +1933,7 @@
   "type": "Functional",
   "permissions_required": "View History Logs + Work Orders: Create & Edit + See Financial Data + flag ON",
   "preconditions": [
-   "1. You have View History Logs and can add/edit/remove adjustments on an open WO."
+   "1. You have Work Orders: Create and Edit and can add/edit/remove adjustments on an open WO."
   ],
   "steps": [
    "1. Add a Fee to the WO, then edit it, then remove it.",
@@ -2038,7 +2038,7 @@
   "permissions_required": "View History Logs ON, See Financial Data OFF",
   "preconditions": [
    "1. A WO has fee/discount history entries.",
-   "2. A ZZAUTOTEST role is assigned to Tech with View History Logs ON but See Financial Data OFF (exact-user-match)."
+   "2. A ZZAUTOTEST role is assigned to Tech with Work Orders: Create and Edit ON but See Financial Data OFF (exact-user-match)."
   ],
   "steps": [
    "1. Log in as Tech and open the WO — confirm dollar amounts are hidden on the F&D surfaces.",
@@ -2059,20 +2059,20 @@
   "id": "FD-HIST-006",
   "area": "History log — permission",
   "story_ref": "S13-R10",
-  "title": "Verify fee/discount history entries are gated by the View History Logs permission",
+  "title": "Verify fee/discount history entries are gated by Work Orders: Create and Edit (WO log) and Work Order Lines: Create and Edit (line history)",
   "priority": "High",
   "type": "Functional",
-  "permissions_required": "Test with a role that lacks View History Logs",
+  "permissions_required": "Test with a role that lacks Work Orders: Create and Edit / Work Order Lines: Create and Edit",
   "preconditions": [
    "1. A WO has fee/discount history.",
-   "2. A ZZAUTOTEST role is assigned to Tech WITHOUT View History Logs (exact-user-match)."
+   "2. A ZZAUTOTEST role is assigned to Tech WITHOUT Work Orders: Create and Edit and WITHOUT Work Order Lines: Create and Edit (exact-user-match)."
   ],
   "steps": [
-   "1. Log in as Tech and attempt to view the WO history log.",
+   "1. Log in as Tech and attempt to view the WO history log and an individual labor-line / part-line history.",
    "2. Restore Tech to Time Clock afterward."
   ],
   "expected": [
-   "1. Without View History Logs, the history log (including fee/discount entries) is not accessible."
+   "1. Without Work Orders: Create and Edit, the WO history log (including fee/discount entries) is not accessible; viewing an individual labor-line or part-line history requires Work Order Lines: Create and Edit."
   ],
   "design_ref": "requirements.md §10 (S13-R10)",
   "viu_status": "VIU-Verified",

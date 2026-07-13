@@ -1696,5 +1696,47 @@
   "notes": "This is intentional manual re-application, distinct from the auto-apply + customer-default DOUBLE-ADD bug (requirements open question #4), which is a known defect, not a spec requirement. | VIU qb batch-1 (2026-07-08): Same template applied twice by hand: two 'Flat fee' template adds -> both 201, two adjustments on WO; the WO dialog's template picker still lists an already-applied template. | FRESH VIU 2026-07-10: 'Flat fee' template applied twice by hand -> 201/201, two distinct adjustments",
   "api_related": false,
   "fresh_run": "2026-07-10"
+ },
+ {
+  "id": "FD-TAXN-001",
+  "area": "Taxable jurisdiction note (§5-R15)",
+  "story_ref": "S5-R15 / S2-R26a",
+  "title": "Verify the taxable jurisdiction note shows below the Taxable control in the Add / Edit fee-or-discount dialog",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Work Orders: Create and Edit + See Financial Data + Fees & Discounts feature on",
+  "preconditions": [
+   "1. You are logged in with Work Orders: Create and Edit and See Financial Data; the Fees & Discounts feature is on.",
+   "2. An open work order is available and you open the Add / Edit fee-or-discount dialog (any scope)."
+  ],
+  "steps": [
+   "1. Open the Add / Edit fee-or-discount dialog and locate the Taxable Yes/No control (S2-R26).",
+   "2. Read the text shown directly below the Taxable control."
+  ],
+  "expected": [
+   "1. Directly below the Taxable control this exact text shows: \"Tax treatment varies by jurisdiction — confirm your local requirements before saving.\" (S2-R26a)",
+   "2. It renders as a plain advisory — not a UI instruction and not a legal-compliance statement — and does not block saving."
+  ]
+ },
+ {
+  "id": "FD-TAXN-002",
+  "area": "Taxable jurisdiction note (§5-R15)",
+  "story_ref": "S5-R15 / S8-R13",
+  "title": "Verify the taxable jurisdiction note shows below the Taxable setting in the Processing Fee dialog",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Access to configure a Processing Fee + Fees & Discounts feature on",
+  "preconditions": [
+   "1. You are logged in with access to configure a Processing Fee; the Fees & Discounts feature is on.",
+   "2. You open the Processing Fee dialog (the S8-R11 Taxable setting is present)."
+  ],
+  "steps": [
+   "1. Open the Processing Fee dialog and locate the Taxable Yes/No setting (S8-R11).",
+   "2. Read the text shown directly below the Taxable setting."
+  ],
+  "expected": [
+   "1. Directly below the Taxable setting this exact text shows: \"Tax treatment varies by jurisdiction — confirm your local requirements before saving.\" (S8-R13)",
+   "2. It is a plain advisory; the former legal-disclosure context note is no longer shown."
+  ]
  }
 ]
