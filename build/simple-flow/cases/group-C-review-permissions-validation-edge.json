@@ -1103,8 +1103,9 @@
   ],
   "design_ref": "requirements §5 invariant 1",
   "viu_status": "VIU-Pending",
-  "notes": "§8 open question: auto-receive of in-stock inventory on simple completion is unconfirmed, and the spec flags the bare status setter as an integrity risk. Not driven in VIU. See Open Questions. || [RECONCILED V2.4 2026-07-08] Un-held: No-PO path RETAINED (V2.4). || [MILOS ROUND-2 2026-07-09 — Q3 CONFIRMED] Milos confirmed the invariant: in-stock inventory parts DO decrement on-hand and write Part History on completion (his PO note is separate from this data-integrity invariant). Expected already correct — no wording change. Still VIU-Pending on a live decrement drive. || [FRESH VIU 2026-07-10 sv7301] PARTIAL: decrement half PROVEN (P550848 on-hand 6->5 on pick, persisted 5 through simple-complete 201, WO 1490338a; skip-path did NOT bypass inventory movement). Part-History LOG surface BLOCKED-ENV (not fake-able): GET /api/inventory/parts/history -> 500 (requestId 8d752c7...); /parts/inventory/{id} detail route CRASHES ('this page is totaled'); /api/inventory/parts/{id}/history + /api/reports/part-history -> 404; POST .../history -> 405. QuickBooks-integrity leg still needs QB access. Stays VIU-Pending on the Part-History/QB display surface (OBS-6 flags the 500/crash as a possible env/build defect).",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13: the inventory-decrement half is verified (SF-COMP-07, live 2026-07-10). The Part History half is blocked by OBS-6 (GET /api/inventory/parts/history returns 500; part-detail page crashes) - VIU-Pending until the Part-History surface is fixed.",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-QB-02",
@@ -1125,13 +1126,14 @@
    "3. Check for any catalog/inventory sync of the vendor/found part."
   ],
   "expected": [
-   "1. EXPECTED PER SPEC: no PO, no vendor bill, no AP sync.",
-   "2. No catalog/inventory sync (part is received at request time only)."
+   "1. No purchase order, vendor bill or accounts-payable sync is produced.",
+   "2. No catalog or inventory sync happens (the part is received at request time only)."
   ],
   "design_ref": "requirements §4 / §5",
-  "viu_status": "Open-Question",
-  "notes": "Blocked by VIU bug #1: no 'Create Purchase Orders' toggle exists, so Create POs OFF cannot be configured. See Open Questions. || [RECONCILED V2.4 2026-07-08 — last-update-wins] RETIRE CANCELLED. V2.4 (§4/§5 + Story 2) RETAINS the Create-POs-OFF / No-PO path, overriding the round-1 answer. Case stands as V2.4 documentation. BUG-1 = spec-vs-build gap, not a descope.",
-  "api_related": false
+  "viu_status": "Blocked-Env",
+  "notes": "BLOCKED: the No-PO path is unreachable - the 'Create Purchase Orders' toggle is absent from the build (see SF-SET-03), so Create POs cannot be set OFF. Stripped 'EXPECTED PER SPEC' jargon.",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-QB-03",
@@ -1155,9 +1157,10 @@
    "2. Both receive surfaces sync the vendor bill (only complete-simple bypasses this)."
   ],
   "design_ref": "requirements §5 invariant 2",
-  "viu_status": "VIU-Pending",
-  "notes": "Not driven in VIU; needs QuickBooks inspection. Bulk Receive surface not yet built. Needs live verification.",
-  "api_related": false
+  "viu_status": "Blocked-Env",
+  "notes": "BLOCKED (QuickBooks): needs a human logged into a QuickBooks-connected company to verify the QB-side records (no QB read API in this env). The receive -> Delivery -> Vendor Bill chain is observable in-app; the QuickBooks sync itself needs a QB human.",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-QB-04",
@@ -1181,8 +1184,9 @@
   ],
   "design_ref": "requirements §5",
   "viu_status": "VIU-Pending",
-  "notes": "Not driven in VIU. Needs live verification.",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13: a vendorless / no-PN part having zero inventory interaction until a vendor/PN is added is partly observable, but confirming 'no item, no history' is blocked by OBS-6 (Part-History surface 500). VIU-Pending.",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-QB-05",
@@ -1205,9 +1209,10 @@
    "2. Once both are provided, it becomes eligible for QuickBooks."
   ],
   "design_ref": "requirements §5 / S6-R3",
-  "viu_status": "VIU-Pending",
-  "notes": "Not driven in VIU. Needs live verification.",
-  "api_related": false
+  "viu_status": "Blocked-Env",
+  "notes": "BLOCKED (QuickBooks): needs a human logged into a QuickBooks-connected company to verify the QB-side records (no QB read API in this env). Vendor-Missing PO exclusion from QuickBooks until vendor+PN provided - same as SF-VMIS-03.",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-QB-06",
@@ -1230,9 +1235,10 @@
    "2. For vendorless / no-part-number parts the mandatory sell price is captured at add time behind the See Financial Data gate, so a completing user has a sell figure and $0-cost margins are avoided."
   ],
   "design_ref": "requirements §9 (See Financial Data gate on vendorless sell)",
-  "viu_status": "VIU-Pending",
-  "notes": "Resolved by SV-8183 (Decision 4): the cost-at-completion concern is addressed by requiring See Financial Data to enter the mandatory sell on a vendorless add. Money figures still need live verification.",
-  "api_related": false
+  "viu_status": "Blocked-Env",
+  "notes": "BLOCKED (QuickBooks): needs a human logged into a QuickBooks-connected company to verify the QB-side records (no QB read API in this env). cost/margin values sent to QuickBooks at completion (avoiding $0-cost margins) need QB inspection. The sell-price-at-add gate (See Financial Data) is verified via SF-PERM-09/SF-VPART.",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-QB-07",
@@ -1255,9 +1261,10 @@
    "2. This sync is not dependent on a PO existing."
   ],
   "design_ref": "requirements §5",
-  "viu_status": "VIU-Pending",
-  "notes": "Not driven in VIU; needs QuickBooks inspection. Needs live verification.",
-  "api_related": false
+  "viu_status": "Blocked-Env",
+  "notes": "BLOCKED (QuickBooks): needs a human logged into a QuickBooks-connected company to verify the QB-side records (no QB read API in this env). the Journal Entry / Inventory sync firing on invoice creation needs a QB human + invoicing (not drivable in-harness).",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-QB-08",
@@ -1280,8 +1287,9 @@
   ],
   "design_ref": "requirements §5 invariant 3",
   "viu_status": "VIU-Pending",
-  "notes": "Not driven in VIU. Needs live verification.",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13: Part History preservation for an inventory-tracked part is blocked by OBS-6 (Part-History surface GET /api/inventory/parts/history returns 500). VIU-Pending.",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-QB-09",
@@ -1302,7 +1310,8 @@
   ],
   "design_ref": "requirements §8 (Part Sales impact investigation)",
   "viu_status": "Open-Question",
-  "notes": "NEW V2.4 §8 open question (D9). Placeholder only — do NOT fabricate expected. The shared order/status logic (requested -> orderable/waiting-to-receive; PO-on-order without vendor/cost) may touch Part Sales; confirm with dev and report. Excluded from the TestRail XML update batch until scoped.",
-  "api_related": false
+  "notes": "NEW V2.4 §8 open question (D9). Placeholder only — do NOT fabricate expected. The shared order/status logic (requested -> orderable/waiting-to-receive; PO-on-order without vendor/cost) may touch Part Sales; confirm with dev and report. Excluded from the TestRail XML update batch until scoped. | 2026-07-13: NOT in testrail-id-map.csv (no C-ID) - Open-Question / dev-investigation case, not created in TestRail. Follow-up: assign a C-ID only if/when it is imported after dev confirmation.",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  }
 ]

@@ -208,3 +208,17 @@ on WO lines this run; inventory-core line-level Ok/Not-OK per prior VIU.
 
 **Summary:** 18 cases · VIU-Verified 11 · VIU-Pending 7. TestRail: **13 updated + 5
 no-op, 200/OK, 0 errors.** **TESTER-READY.**
+
+---
+
+## Areas SF-VMIS (7) + SF-QB (9) — SF-VMIS wording TESTER-READY ✅ · SF-QB QB-blocked (last)
+
+- **SF-VMIS:** VIU-Verified 01/02/04/05/07 (vendor-missing-on-WO-PO per prior VIU + Bulk Receive vendor grouping confirmed live; story-refs stripped from SF-VMIS-04); **Blocked-Env SF-VMIS-03** (QB-exclusion half needs QB human); **VIU-Pending SF-VMIS-06** (reports 'needs vendor', needs seeded vendor-missing PO). TestRail: 6 updated + 1 no-op.
+- **SF-QB (QuickBooks internals — done LAST, need a human in QuickBooks):**
+  - **Blocked-Env:** SF-QB-02 (No-PO path — Create POs toggle absent), SF-QB-03/05/06/07 (QuickBooks sync / vendor bill / AP / journal entry — no QB read API).
+  - **VIU-Pending:** SF-QB-01/04/08 (Part-History half blocked by OBS-6: GET /api/inventory/parts/history 500; decrement half of SF-QB-01 verified prior).
+  - **SF-QB-09** — Open-Question, **not in id-map (no C-ID)**, not created in TestRail (dev-investigation). Skipped on push (no-testrail-id, expected). TestRail: 8 updated + 0 no-op (+1 skipped no-id).
+
+**Summary:** 16 cases · VIU-Verified 5 · VIU-Pending 4 · Blocked-Env 6 ·
+Open-Question 1. TestRail: **14 updated + 1 no-op, 200/OK, 0 errors** (SF-QB-09
+skipped — no C-ID). **SF-VMIS tester-ready; SF-QB QB-internals genuinely blocked.**

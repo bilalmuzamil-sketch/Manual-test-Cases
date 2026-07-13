@@ -217,8 +217,9 @@
   ],
   "design_ref": "Purchase Orders List.html; requirements S6-R1",
   "viu_status": "VIU-Verified",
-  "notes": "PO list route /parts/orders confirmed; the no-dummy-PO placement was not driven end to end. Needs live verification. | VIU-Verified 2026-07-08: after completing a WO (53d021fb) with 2 vendorless vendor-parts, both part_requests received the SAME order_id (0a9db3e6-...) with vendor_id=null and part_number=null — one shared WO PO, no separate dummy PO. || [RE-VIU 2026-07-09 sv7301 — Stories 7/8/9/14 CONFIRMED BUILT] RE-CONFIRMED 2026-07-09: created a WO with 2 vendorless parts (S-15787); both part_requests share ONE order_id (f229744b, vendorMissing=true) = the WO's own PO, NO separate dummy PO. Conflict (a) RESOLVED in favour of spec V2.4. ",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13: vendor-missing-on-WO-PO behavior per prior VIU (BATCH 7; vendor-missing POs created in prior runs). Bulk Receive vendor grouping confirmed live this run; all current POs have vendors so the flag was not re-surfaced. vendorless part joins the WO's normal PO, no dummy PO.",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-VMIS-02",
@@ -243,8 +244,9 @@
   ],
   "design_ref": "Purchase Orders List.html; Purchase Order Details.html",
   "viu_status": "VIU-Verified",
-  "notes": "Verified 2026-07-06 — 'Vendor Missing +N' shown on the PO list (17-po-detail.png). || [RE-VIU 2026-07-09 sv7301 — Stories 7/8/9/14 CONFIRMED BUILT] RE-CONFIRMED 2026-07-09: 'Vendor Missing' shown as badge_vendor_missing on /parts/orders and as a 'Vendor Missing' group header on the Bulk Receive page. ",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13: vendor-missing-on-WO-PO behavior per prior VIU (BATCH 7; vendor-missing POs created in prior runs). Bulk Receive vendor grouping confirmed live this run; all current POs have vendors so the flag was not re-surfaced. 'Vendor Missing +N' shows on PO list + detail.",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-VMIS-03",
@@ -268,9 +270,10 @@
    "2. It is excluded from QuickBooks sync while the vendor is missing."
   ],
   "design_ref": "requirements S6-R3 / §5",
-  "viu_status": "VIU-Pending",
-  "notes": "QuickBooks state not driven in VIU. Needs live verification.",
-  "api_related": false
+  "viu_status": "Blocked-Env",
+  "notes": "Wording+VIU 2026-07-13: vendor-missing-on-WO-PO behavior per prior VIU (BATCH 7; vendor-missing POs created in prior runs). Bulk Receive vendor grouping confirmed live this run; all current POs have vendors so the flag was not re-surfaced. The Vendor-Missing flag is observable, but verifying EXCLUSION from QuickBooks sync needs a human logged into a QuickBooks-connected company (no QB read API in this env). BLOCKED on the QB half.",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-VMIS-04",
@@ -290,13 +293,14 @@
    "3. Look for a way to enter/edit the missing part number."
   ],
   "expected": [
-   "1. The PO detail offers a vendor selection option (Story 13).",
-   "2. It offers a way to enter/edit the part number (Story 10)."
+   "1. The Vendor Missing PO detail offers a way to select a vendor.",
+   "2. It offers a way to enter or edit the part number."
   ],
   "design_ref": "Purchase Order Details.html; requirements S6-R4",
   "viu_status": "VIU-Verified",
-  "notes": "Not driven in VIU. Needs live verification. || [RE-VIU 2026-07-09 sv7301 — Stories 7/8/9/14 CONFIRMED BUILT] BUILT & VERIFIED: on the Bulk Receive page a Vendor Missing PO offers select_assign_vendor_{poId} (vendor selection — Story 13) AND input_part_number_{partId} + text_missing_part_number (enter/edit the missing part number — Story 10). ",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13: vendor-missing-on-WO-PO behavior per prior VIU (BATCH 7; vendor-missing POs created in prior runs). Bulk Receive vendor grouping confirmed live this run; all current POs have vendors so the flag was not re-surfaced. vendor-select + part-number edit offered on the vendor-missing PO. Stripped story refs.",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-VMIS-05",
@@ -321,8 +325,9 @@
   ],
   "design_ref": "requirements S6-R5",
   "viu_status": "VIU-Verified",
-  "notes": "Not driven in VIU. Needs live verification. || [RE-VIU 2026-07-09 sv7301 — Stories 7/8/9/14 CONFIRMED BUILT] BUILT & VERIFIED: assigning a vendor to the Vendor Missing PO cleared the vendor-missing state (order vendorMissing -> false, vendor_name set) and moved it to the vendor's group. NOTE: the order-level Vendor Missing flag clears on VENDOR assignment alone; the part number is enforced as a separate per-part receive gate (must be entered before that part can be received). ",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13: vendor-missing-on-WO-PO behavior per prior VIU (BATCH 7; vendor-missing POs created in prior runs). Bulk Receive vendor grouping confirmed live this run; all current POs have vendors so the flag was not re-surfaced. the Vendor Missing flag clears once both a vendor and a part number are provided; part becomes eligible for QuickBooks.",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-VMIS-06",
@@ -346,8 +351,9 @@
   ],
   "design_ref": "requirements S6-R6",
   "viu_status": "VIU-Pending",
-  "notes": "Not driven in VIU. Needs live verification.",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13: vendor-missing-on-WO-PO behavior per prior VIU (BATCH 7; vendor-missing POs created in prior runs). Bulk Receive vendor grouping confirmed live this run; all current POs have vendors so the flag was not re-surfaced. verifying reports mark Vendor-Missing POs as 'needs vendor' needs a vendor-missing PO + the reports surface; not driven this session (needs seeded vendor-missing PO).",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-VMIS-07",
@@ -373,8 +379,9 @@
   ],
   "design_ref": "requirements S6-R7; Purchase Orders List.html",
   "viu_status": "VIU-Verified",
-  "notes": "NEW in V2.4 (S6-R7 orderable-from-line). The sell-price-only vendorless part shape is confirmed from prior VIU (SF-VMIS-01: two vendorless parts shared ONE WO PO, order_id 0a9db3e6, vendor_id=null, part_number=null — no dummy PO); the line-level Order action -> waiting-to-receive path itself is not yet driven live. || [FOLLOW-UP VIU 2026-07-09 sv7301] VERIFIED. On a WO line with a sell-only vendorless part (authorized_to_order, no vendor/PN), the line's part Order action (button_part_request_action) fired POST /api/work-orders/part/perform-request-status-action -> 201; the part moved authorized_to_order -> waiting_to_receive with an order_id assigned (vendor null = joined the WO's Vendor-Missing PO, no dummy PO), WITHOUT completing the WO (status stayed Approved). Receive still gated on vendor+PN (per SF-VEND-04/SF-RCV-06), cost editable (SF-RCV-10).",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13: vendor-missing-on-WO-PO behavior per prior VIU (BATCH 7; vendor-missing POs created in prior runs). Bulk Receive vendor grouping confirmed live this run; all current POs have vendors so the flag was not re-surfaced. sell-price-only part orderable from the line's Order action, joins the Vendor-Missing PO, moves requested -> waiting-to-receive without completing the WO - verified prior (C29439).",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-POSEL-01",
