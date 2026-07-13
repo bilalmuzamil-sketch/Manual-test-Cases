@@ -161,6 +161,17 @@ all).
    can locate each case in TestRail. Show it alongside any internal (SF-/FD-/etc.)
    ID. Source it from the per-project testrail-id-map.csv. Bake this into every
    workbook generator going forward.
+9. **Build-accurate, layman-friendly wording (all projects):** Every test case's
+   Title, Preconditions, Steps, and Expected Results MUST use the EXACT words,
+   button/label/feature/function/screen names as they actually appear in the
+   build/UI — taken DIRECTLY from the build, never invented, paraphrased, or
+   guessed. Wording must be understandable by a NEW, NON-TECHNICAL manual tester
+   (plain layman language; if a UI term is unavoidable, use the term exactly as the
+   build shows it). During any VIU pass, capture the real on-screen labels from the
+   build and correct the case wording (title/preconds/steps/expected) to match them.
+   If a term cannot be confirmed from the build, flag it rather than invent it. This
+   applies to every project (Fees & Discounts, Simple Flow, Custom Roles, and any
+   future project) and to every TestRail import/update going forward.
 
 ## Project purpose (Custom Roles project)
 Manual test-case authoring + live staging (Verify-in-UI) verification + TestRail
