@@ -1,0 +1,11 @@
+{
+  "case_id": 26383,
+  "section_id": 3534,
+  "title": "Without Create & Edit, create/edit options are hidden on work orders",
+  "custom_preconds": "<ol>\n<li>A user has a role with Work orders View only.</li>\n</ol>",
+  "custom_steps": "<ol>\n<li>Log in and open the work order list.</li>\n<li>Look for any New work order/Create button.</li>\n<li>Open a work order and try to edit a header field.</li>\n</ol>",
+  "custom_expected": "<p>There is no create button.</p>\n<p>The work order header fields are read-only.</p>\n",
+  "viu_status": "Blocked-UI (needs seeded role)",
+  "evidence": "Needs live UI.",
+  "fresh_run": "2026-07-13"
+}

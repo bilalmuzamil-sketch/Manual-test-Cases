@@ -1,0 +1,11 @@
+{
+  "case_id": 26380,
+  "section_id": 3534,
+  "title": "Pick parts needs only Work orders View, not Create & Edit",
+  "custom_preconds": "<ol>\n<li>A user has a role with Work orders View only (Create & Edit and Delete OFF), Pick parts ON and the Parts Department card ON.</li>\n</ol>",
+  "custom_steps": "<ol>\n<li>Log in and open a work order.</li>\n<li>Find a Pick parts action.</li>\n<li>Pick parts from inventory onto a line.</li>\n<li>Save.</li>\n<li>Move a part from one line to another on the same work order.</li>\n<li>Move a part between two different work orders.</li>\n</ol>",
+  "custom_expected": "<p>The Pick parts action is available even without Create & Edit on Work orders.</p>\n<p>The pick and the moves all work.</p>\n",
+  "viu_status": "Blocked-UI (needs seeded role)",
+  "evidence": "Needs live UI.",
+  "fresh_run": "2026-07-13"
+}

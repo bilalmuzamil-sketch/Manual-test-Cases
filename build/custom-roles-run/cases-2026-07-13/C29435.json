@@ -1,0 +1,24 @@
+{
+  "case_id": 29435,
+  "section_id": 3534,
+  "template_id": 2,
+  "title": "A Pick/Order Parts role can edit the Quantity on the Part Requests tab",
+  "custom_preconds": "<ol>\n<li>A custom role has Work orders View (Create & Edit and Delete OFF), Work order lines View only, and Pick parts ON, with a user assigned.</li>\n<li>A work order has an authorized line and an inventory-sourced part request.</li>\n</ol>",
+  "custom_steps_separated": [
+    {
+      "content": "Log in as the Pick-Parts user and open the work order.",
+      "expected": "The work order opens."
+    },
+    {
+      "content": "Go to the Part Requests tab and expand the line.",
+      "expected": "The part request row and its Quantity field are shown."
+    },
+    {
+      "content": "Check whether the Quantity field can be edited.",
+      "expected": "The Quantity field is editable for the Pick-Parts role, even without Work orders Create & Edit."
+    }
+  ],
+  "viu_status": "Blocked-UI (needs seeded role + WO)",
+  "evidence": "Reworded; element-id jargon stripped.",
+  "fresh_run": "2026-07-13"
+}

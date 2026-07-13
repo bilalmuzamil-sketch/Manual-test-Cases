@@ -1,0 +1,11 @@
+{
+  "case_id": 26376,
+  "section_id": 3534,
+  "title": "Work orders Delete lets the user delete work orders",
+  "custom_preconds": "<ol>\n<li>A user has a role with Work orders View, Create & Edit and Delete.</li>\n</ol>",
+  "custom_steps": "<ol>\n<li>Log in and open a non-critical work order.</li>\n<li>Click the Delete action.</li>\n<li>Confirm.</li>\n<li>Return to the list.</li>\n</ol>",
+  "custom_expected": "<p>The Delete action is shown.</p>\n<p>A confirmation dialog appears.</p>\n<p>The deleted work order is gone from the list.</p>\n",
+  "viu_status": "Blocked-UI (needs seeded role)",
+  "evidence": "Needs live UI.",
+  "fresh_run": "2026-07-13"
+}

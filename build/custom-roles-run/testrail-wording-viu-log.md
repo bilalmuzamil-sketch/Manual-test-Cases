@@ -183,3 +183,20 @@ universal clock — all Blocked-UI (need multiple seeded users). Jargon stripped
 - **3535 WO Lines (9):** card 'Work order lines' (no View column — View comes from Work
   orders View); C27271/C27272/C27866 (tmpl2) reworded, ShopCoach element-ids / SV-refs /
   URLs / 403 jargon stripped. Behavior = Blocked-UI.
+
+---
+
+## Sections 3534 / 3538 / 3539 — Work Orders, Parts Department, Invoicing & Payments (46 cases) — pushed 2026-07-13
+**Result: 46 UPDATED (39 tmpl1 + 7 Steps-Separated) · 0 no-op · 0 failed · 200/200.**
+- **3534 Work Orders (18):** card 'Work orders'; sub-toggles **Review work orders /
+  Pick parts / Order parts** build-verified; 'Customer Management' → 'Customers'.
+  **C26387/C26388** flagged: prior run FAILED (Add Customer/Add Asset still shown with
+  Customers C&E off) — re-test live. C27873/C29435 (tmpl2) reworded, API/element jargon
+  stripped.
+- **3538 Parts Department (15):** parent 'Parts Department' + children **Part sales /
+  Catalog and Inventory / Vendor and order management** with build descriptions
+  (C26406 build-verified). C27876 (tmpl2) reworded.
+- **3539 Invoicing & Payments (13):** card 'Invoicing & payments'; **C27740 build-verified
+  'Delete / Reverse' column**; **C26424 corrected** — AP/AR prompt now names the BUILD
+  label **'View and Manage AP/AR Data'** (reverses the earlier spec rename). C27871/
+  C29434/C29438 (tmpl2) reworded, SV-refs/element-ids/feature-flag jargon stripped.

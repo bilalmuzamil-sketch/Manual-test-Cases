@@ -1,0 +1,11 @@
+{
+  "case_id": 26418,
+  "section_id": 3538,
+  "title": "Vendor and order management Delete lets the user delete vendors and purchase orders and reverse vendor transactions",
+  "custom_preconds": "<ol>\n<li>A user has a role with Parts Department ON and Vendor and order management View, Create & Edit and Delete.</li>\n</ol>",
+  "custom_steps": "<ol>\n<li>Log in and delete a vendor and a purchase order.</li>\n<li>Reverse a vendor transaction from the vendor's Unpaid Invoices / Payments tab.</li>\n</ol>",
+  "custom_expected": "<p>The vendor and the purchase order are deleted.</p>\n<p>The vendor transaction is reversed.</p>\n<p>Note: the reverse action lives inside the vendor Payments tab, which also needs View and Manage AP/AR Data on to reach it.</p>\n",
+  "viu_status": "Blocked-UI (needs seeded role)",
+  "evidence": "Needs live UI; AP/AR dependency on the vendor Payments tab is build-observed.",
+  "fresh_run": "2026-07-13"
+}

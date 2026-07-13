@@ -1,0 +1,11 @@
+{
+  "case_id": 26424,
+  "section_id": 3539,
+  "title": "Ticking Invoicing & payments Delete while View and Manage AP/AR Data is OFF prompts to turn it on",
+  "custom_preconds": "<ol>\n<li>Open Create Role (or edit a custom role) with View and Manage AP/AR Data OFF.</li>\n</ol>",
+  "custom_steps": "<ol>\n<li>In the Invoicing & payments card, tick the Delete box while View and Manage AP/AR Data is off.</li>\n</ol>",
+  "custom_expected": "<p>The system prompts you to turn on View and Manage AP/AR Data.</p>\n",
+  "viu_status": "Blocked-UI behavior; AP/AR label corrected to build 'View and Manage AP/AR Data'",
+  "evidence": "Build AP/AR label is 'View and Manage AP/AR Data' (not 'Manage Accounts Payable and Receivable'). Prompt behavior needs live editor.",
+  "fresh_run": "2026-07-13"
+}

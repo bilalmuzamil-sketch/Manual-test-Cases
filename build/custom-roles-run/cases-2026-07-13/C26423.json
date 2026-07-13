@@ -1,0 +1,11 @@
+{
+  "case_id": 26423,
+  "section_id": 3539,
+  "title": "Deleting a customer payment needs Invoicing & payments Delete, not Customers Delete",
+  "custom_preconds": "<ol>\n<li>User A has Customers View/Create & Edit/Delete and Invoicing & payments View and Create & Edit (no Delete).</li>\n<li>User B has Customers View and Create & Edit and Invoicing & payments View/Create & Edit/Delete.</li>\n</ol>",
+  "custom_steps": "<ol>\n<li>As User A, open a customer with payments, open a payment and try to delete it.</li>\n<li>As User B, open the same payment and try to delete it.</li>\n</ol>",
+  "custom_expected": "<p>User A cannot delete the payment (no delete option).</p>\n<p>User B can delete the payment even without Customers Delete.</p>\n",
+  "viu_status": "Blocked-UI (needs seeded role)",
+  "evidence": "Needs live UI.",
+  "fresh_run": "2026-07-13"
+}

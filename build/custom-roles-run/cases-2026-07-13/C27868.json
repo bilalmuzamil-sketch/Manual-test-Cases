@@ -1,0 +1,11 @@
+{
+  "case_id": 27868,
+  "section_id": 3534,
+  "title": "Order parts controls the work order Parts tab (on shows it, off hides it)",
+  "custom_preconds": "<ol>\n<li>You can configure a custom role.</li>\n<li>A work order with at least one part line exists.</li>\n</ol>",
+  "custom_steps": "<ol>\n<li>In a custom role, turn Order parts ON (with See Financial Data ON, which it needs) and save.</li>\n<li>Log in as a user with that role and open a work order.</li>\n<li>Look for the Parts tab.</li>\n<li>Now turn Order parts OFF in the role and save.</li>\n<li>Log back in as that user and open a work order.</li>\n<li>Look for the Parts tab.</li>\n</ol>",
+  "custom_expected": "<p>With Order parts on, the work order Parts tab is shown and can be opened.</p>\n<p>With Order parts off, the Parts tab is hidden.</p>\n<p>The Parts tab visibility is controlled by Order parts.</p>\n",
+  "viu_status": "Blocked-UI (needs seeded role)",
+  "evidence": "Consistent with build (Order parts gates WO Parts tab). Needs live UI.",
+  "fresh_run": "2026-07-13"
+}

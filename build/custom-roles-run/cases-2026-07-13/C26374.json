@@ -1,0 +1,11 @@
+{
+  "case_id": 26374,
+  "section_id": 3534,
+  "title": "Work orders View gives access to the work order list and detail",
+  "custom_preconds": "<ol>\n<li>A user has a role with Work orders View only (no Create & Edit, no Delete).</li>\n</ol>",
+  "custom_steps": "<ol>\n<li>Log in as that user and look at the top navigation.</li>\n<li>Click Work Orders.</li>\n<li>Open a work order by clicking a row.</li>\n<li>Look for any create, edit or delete options.</li>\n</ol>",
+  "custom_expected": "<p>Work Orders is in the top navigation.</p>\n<p>The work order list opens.</p>\n<p>The work order detail opens.</p>\n<p>There is no New work order/Create button; fields are read-only; there is no delete option.</p>\n",
+  "viu_status": "Blocked-UI (needs seeded role)",
+  "evidence": "'Work orders' card build-verified; behavior needs live UI.",
+  "fresh_run": "2026-07-13"
+}

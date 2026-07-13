@@ -1,0 +1,11 @@
+{
+  "case_id": 26388,
+  "section_id": 3534,
+  "title": "The 'Add Asset' button is hidden in the New Work Order flow when Customers Create & Edit is OFF",
+  "custom_preconds": "<ol>\n<li>A user has a role with Work orders Create & Edit ON, Customers View ON and Customers Create & Edit OFF.</li>\n</ol>",
+  "custom_steps": "<ol>\n<li>Log in and click New Work Order.</li>\n<li>Select an existing customer.</li>\n<li>Go to the asset/vehicle step.</li>\n<li>Look for an Add Asset button in the asset picker.</li>\n</ol>",
+  "custom_expected": "<p>The Add Asset button is not shown; the user can pick an existing asset but cannot create a new one.</p>\n<p>(Known deviation: a prior run found this button still appearing when Customers Create & Edit is off \u2014 recommend a live re-check.)</p>\n",
+  "viu_status": "Blocked-UI; prior run FAILED here (button still shown) \u2014 re-test live",
+  "evidence": "RUN331 recorded C26388 as a FAILED deviation.",
+  "fresh_run": "2026-07-13"
+}
