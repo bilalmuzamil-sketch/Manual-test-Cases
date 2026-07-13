@@ -73,14 +73,30 @@ all).
    index, open threads, env/access facts, how-to-resume). Memory:
    `build/simple-flow/*`
    (`requirements.md` = COMPLETE spec, 17 stories SV-7696..SV-7710 + SV-7870 +
-   SV-7876; `design-notes.md`; `viu-findings.md`; `cases/*.json` = 156 authored
-   cases with `SF-` IDs; `SimpleFlow_V1_TestCases.xlsx/.csv`;
-   `build_workbook.py` + `gen_cases.py`). TestRail = later (not yet imported).
-   **STATUS: cases authored; VIU PARTIAL** — feature under development, so Stories
-   **7/8/9/14 are NOT built** and role-gating negatives are unverified. 14 open
-   questions consolidated in the workbook's Open Questions tab.
+   SV-7876 + §9/§10 SV-8183 permissions; `design-notes.md`; `viu-findings.md`;
+   `cases/*.json` = 162 authored cases with `SF-` IDs; `SimpleFlow_V1_TestCases.xlsx/.csv`;
+   `build_workbook.py` + `gen_cases.py`). All 162 cases imported to TestRail
+   (interim); no execution run exists.
+   **STATUS: FRESH FULL VIU DONE 2026-07-10.** Tally: **VIU-Verified 121 /
+   VIU-Pending 36 / Open-Question 5 = 162**; blockers READY 118 / VIU-PENDING(QA)
+   31 / MILOS 13 / BUG-RULING 0 / DEV-NOT-BUILT 0. Stories 7/8/9/14 CONFIRMED
+   BUILT (DEV-NOT-BUILT=0). **reviewer≠completer DESCOPED** (Milos ruling —
+   self-review allowed when the role holds the Mark Reviewed permission;
+   permission-gated only; BUG-5 dropped; 4 cases corrected + pushed to TestRail).
+   **4 UNAPPLIED V2.4 spec deltas PENDING** (2026-07-10 silent revision,
+   `spec-diff-2026-07-10.md`: Δ1 VIN dropped from Story-4 modal; Δ2 Story-4
+   unapproved-line=disabled Complete+tooltip; Δ3 new receive-time gates
+   S13-R6/R7 part#/cost-sell; Δ4 Mark-Reviewed note removed) — top next task;
+   2026-07-10 design bundle = byte-identical re-delivery (no impact). **WAITING ON:**
+   Milos Round-3 answers (13 MILOS cases; 3 deliverables ready to send:
+   PO-Questions-Round3.xlsx, SimpleFlow_Bugs-for-Milos-Confirm.xlsx,
+   SimpleFlow_Bug-Drafts.xlsx) + fresh sv7301 cookies for VIU. 4 active bug drafts
+   (TICKET 2-5) unfiled (no Atlassian in this env); new OBS-6 (Part-History surface
+   500 + part-detail crash) for dev. **qb/sv7301 env is SHARED — re-read settings
+   before runs, restore after.** All detail (deltas, blockers, env, how-to-resume)
+   in PROJECT-STATE.md = canonical resume doc.
    *TestRail import (INTERIM):* `testrail-import/simple-flow-v1-testrail-import.csv`
-   (+ `.xlsx`), all 156 cases via `build/simple-flow/gen_import.py`; **VIU-word-free
+   (+ `.xlsx`), all 162 cases via `build/simple-flow/gen_import.py`; **VIU-word-free
    and feature-flag-free by user rule** (settings-driven, so settings preconditions
    are kept); INTERIM pending post-VIU + dev-answer finalization (see
    `build/simple-flow/RESUME-STRATEGY.md`). Permissions: REQUIRES definition (no role
