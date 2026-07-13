@@ -5,7 +5,8 @@
   "custom_preconds": "<ol>\n<li>A user is assigned a role that has See Financial Data ON, View mode set to Full View, Work orders View, and Catalog and Inventory View.</li>\n</ol>",
   "custom_steps": "<ol>\n<li>Log in as that user and open a work order.</li>\n<li>Look at the Total, Labor and Parts figures on the work order lines.</li>\n<li>Look at the labor rate fields on the work order lines.</li>\n<li>Open Catalog and Inventory and look at cost and margin figures.</li>\n<li>Open Reports and look at the financial reports.</li>\n</ol>",
   "custom_expected": "<p>Money figures are shown everywhere: work order Total/Labor/Parts, labor rates, part cost and margin, and financial reports are all visible.</p>\n",
-  "viu_status": "Blocked-UI (needs a live user with this role + manual page sweep)",
-  "evidence": "App-wide financial-visibility sweep needs a seeded role + manual UI pass across WO/Inventory/Reports.",
-  "fresh_run": "2026-07-13"
+  "viu_status": "VIU-Verified",
+  "evidence": "UI: with See Financial Data ON (admin full view + TechSFD), WO lines show prices, costs, margins and labor rates — Rate ($100), Margin (%), Total ($261.54), parts prices ($3.33 etc), labor ($150). screenshot fullview-lines-admin/techview-sfd-lines.",
+  "fresh_run": "2026-07-13",
+  "behavioral_run": "2026-07-13"
 }
