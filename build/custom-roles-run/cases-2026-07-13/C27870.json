@@ -5,7 +5,8 @@
   "custom_preconds": "<ol>\n<li>A user has a role with Work order lines Create & Edit ON.</li>\n<li>A work order has a line with a core-bearing part that has been received and is awaiting a core inspection (OK / Not OK).</li>\n</ol>",
   "custom_steps": "<ol>\n<li>Open the work order and go to the line with the core part.</li>\n<li>Find the core inspection control (OK / Not OK) on that line.</li>\n<li>Mark the core OK (or Not OK).</li>\n<li>On the same line, add a line history note about the work done.</li>\n<li>Save.</li>\n</ol>",
   "custom_expected": "<p>The core OK / Not OK control is available to this role and saves.</p>\n<p>The line history note can be added and saves.</p>\n<p>Both marking the core and adding line history are controlled by Work order lines Create & Edit.</p>\n",
-  "viu_status": "Blocked-UI (needs seeded role + core part)",
+  "viu_status": "Blocked-UI: needs a work order line with a cored part to expose the core OK/Not-OK control; no cored-part line was present on the test WOs. Requires seeding a core part on a line (New Part Request with a cored catalog PN) then observe the core control + line history for a WOL C&E role.",
   "evidence": "Needs live UI with a cored part.",
-  "fresh_run": "2026-07-13"
+  "fresh_run": "2026-07-13",
+  "behavioral_run": "2026-07-13"
 }

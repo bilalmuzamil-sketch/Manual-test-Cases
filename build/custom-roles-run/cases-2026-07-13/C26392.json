@@ -5,7 +5,8 @@
   "custom_preconds": "<ol>\n<li>A user has a role with Work orders View OFF.</li>\n</ol>",
   "custom_steps": "<ol>\n<li>Log in and look at the top navigation.</li>\n</ol>",
   "custom_expected": "<p>Work Orders is hidden, so there is no way to reach any work order and therefore no way to reach work order lines.</p>\n",
-  "viu_status": "Blocked-UI (needs seeded role)",
-  "evidence": "Needs live UI.",
-  "fresh_run": "2026-07-13"
+  "viu_status": "VIU-Verified",
+  "evidence": "UI (Sales Rep = no workOrdersView): Work Orders is hidden from nav and /workorders redirects to /reports, so no work order (and therefore no work order lines) is reachable. WO View OFF makes WO lines unreachable.",
+  "fresh_run": "2026-07-13",
+  "behavioral_run": "2026-07-13"
 }
