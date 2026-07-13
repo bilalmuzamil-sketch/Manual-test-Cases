@@ -463,10 +463,11 @@ off), that top-level navigation item simply is not there for them.
 - **Create and Edit:** create WOs; edit WO fields (customer details / change
   customer, asset, service advisor, lead technician, status, on-site status
   of asset). Can view WO-level and line-level audit logs.
-- **Delete:** delete WOs; **reverse invoices** (for WOs and Part Sales —
-  reversal moved here from Invoicing Delete) as long as validation passes
-  (e.g. no payments made); delete ANY note including other users'. NOT enough
-  to delete payments (that's Invoicing: Delete).
+- **Delete:** delete WOs; **reverse a work order's invoice** (reversal moved
+  here from Invoicing Delete) as long as validation passes (e.g. no payments
+  made); delete ANY note including other users'. NOT enough to delete payments
+  (that's Invoicing: Delete). Note: reversing a *part sale* invoice is under
+  Part Sales: Delete, not here.
 
 **Work Order sub-settings** (always visible in role editor; greyed out when
 WO View is OFF; they require only WO **View**, not Edit):
