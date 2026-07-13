@@ -94,3 +94,36 @@ optional-invoice flow — verified with screenshots in prior runs `FV-comp13-*`,
 Build-accuracy note: the SF-COMP case wording already matches these live labels
 (Complete Work Order, Order complete, Sent to Finance as an invoice-ready draft,
 Done, Go To Invoice, line Receive) — no label corrections were needed for SF-COMP.
+
+---
+
+## SF-PERM — Permissions (`/administration/roles-permissions`)
+
+Screenshots: `PERM-roles-list.png`, `PERM-role-detail.png`. Nav: Administration →
+**Roles & Permissions** (route `/administration/roles-permissions`).
+
+**Roles list columns (exact):** `Role Name` · `Description` · `Template` ·
+`Role Type` · `Users` · `Action`. Button **`Create Custom Role`**; **`Search Role`**
+box. Role Type shows `System` for the 11 built-in roles.
+
+**Exact system-role descriptions (build):** Time Clock = "Clock in/out only";
+Technician = "Assigned work orders and time tracking (Tech View)"; Service Advisor
+= "Work order and customer management with invoicing access"; Senior Service Advisor
+= "Work order and customer management with expanded access"; Foreman = "Oversees
+technicians and work orders"; Parts (Manager/Tech) = "Parts operations and vendor
+management"; Sales Representative = "Reports and financial data access only".
+
+**Permission gates (verified live via the fresh roles matrix
+`roles-matrix-2026-07-13.md` — API `GET /api/roles/{id}` + `GET /api/auth/me/fe-permissions`):**
+Complete Work Order = `workOrdersCreateAndEdit`; Mark Reviewed =
+`woReviewWorkOrders`; PO Receive = `woOrderParts` (Order Parts); Bulk Receive =
+`vendorOrderManagementCreateAndEdit` + `seeFinancialData`; vendorless part add =
+`seeFinancialData`; WO settings = `settingsApp` (App Settings). No system-role drift
+(2026-07-13). Backend enforces the settings atom (tech settings save → 403) but not
+the WO-completion / review atoms (documented UI-pass / API-gap).
+
+FLAG: the per-permission editor labels inside a role's detail (e.g. the exact
+on-screen text for "See Financial Data" / "Work Orders: Create & Edit") were not
+re-captured this pass (the role-detail editor did not expand in the headless
+capture). SF-PERM tester wording uses the standard ShopView permission names; if
+exact editor-label precision is required, capture the role-permission editor.

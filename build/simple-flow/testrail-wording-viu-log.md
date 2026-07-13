@@ -71,3 +71,33 @@ settings-managed drive on a confirmed-idle shared env.
 **Shared-env note:** completed disposable approved WOs S2-15795 and S2-15825 during
 surface capture (labor-only; harmless — reopenable by adding a line). Require Vendor
 Invoice Number toggled ON then RESTORED to OFF (baseline verified).
+
+---
+
+## Area SF-PERM — Permissions — TESTER-READY ✅
+
+Roles & Permissions page captured live 2026-07-13 (`PERM-roles-list.png`): route
+`/administration/roles-permissions`; columns Role Name / Description / Template /
+Role Type / Users / Action; `Create Custom Role` button; exact system-role
+descriptions recorded in the glossary. All per-role expectations re-verified against
+the fresh live roles matrix `roles-matrix-2026-07-13.md` (no system-role drift);
+settings BE atom re-driven live (Technician settings save 403, Admin 200).
+
+| SF-ID | C# | viu_status | Note | TestRail push |
+|---|---|---|---|---|
+| SF-PERM-01 | C29405 | VIU-Verified | settings gate 403/200 re-driven live | no-op |
+| SF-PERM-02 | C29406 | VIU-Verified | complete-WO role set vs matrix | updated 200/OK |
+| SF-PERM-03 | C29407 | VIU-Verified | Bulk Receive role set vs matrix | updated 200/OK |
+| SF-PERM-04 | C29408 | VIU-Verified | Mark Reviewed gate + self-review allowed | updated 200/OK |
+| SF-PERM-05 | C29409 | VIU-Verified | PO Receive = Order Parts; Office none | updated 200/OK |
+| SF-PERM-06 | C29410 | VIU-Verified | stripped backend enum jargon; 'app blocks / backend allows' plainized | updated 200/OK |
+| SF-PERM-07 | C29411 | VIU-Verified | review sign-off gate + self-review | updated 200/OK |
+| SF-PERM-08 | C29412 | VIU-Verified | positive self-review case | updated 200/OK |
+| SF-PERM-09 | C29413 | VIU-Verified | Tech lacks See Financial Data | updated 200/OK |
+| SF-PERM-10 | C29414 | VIU-Verified | 11-role completion matrix = matrix exactly | updated 200/OK |
+
+**SF-PERM summary:** 10 cases · all VIU-Verified. TestRail: **9 updated + 1 no-op,
+all 200/OK, 0 errors.** All role expectations match the fresh 2026-07-13 roles
+matrix; SF-PERM-06 backend-enum jargon cleaned to layman/API-appropriate wording.
+FLAG: exact per-permission editor labels (inside a role's detail) not re-captured
+this pass — wording uses standard ShopView permission names. **TESTER-READY.**
