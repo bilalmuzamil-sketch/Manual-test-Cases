@@ -124,3 +124,40 @@ live); FD-VAL-006 (Max Amount 0 = no cap vs cap-at-$0 is PO Q2 — pending).
 | FD-VAL-007 | [C28605](https://shopview.testrail.io/index.php?/cases/view/28605) | VIU-Verified | title+preconds+steps+expected 200/200 |
 
 **Push totals:** 10 updated · 0 no-op · 0 error.
+
+## Area: FD-CALC (Calculation contract) — 17 cases — TESTER-READY
+
+**Build terms:** reuses the confirmed Add/Edit dialog glossary ('Add Fee/Discount',
+'Calculation Type' with % of Labor Total / % of Parts Total / % of Subtotal, '$ Amount',
+'Percent %', '$ Max Amount (Optional)', 'Taxable' toggle). Stripped §5/S2/S6/S8 spec-ref
+jargon; layman rewrite. **VIU:** resolution engine re-confirmed live 2026-07-13 via API —
+flat $25 → +$25.00; 20% capped at $15 → +$15.00; 150% discount rejected with exact message
+'A percentage discount cannot exceed 100%'. Remaining arithmetic carried from the stable
+2026-07-10 API pass.
+
+**Deviations kept (dev/PO-owned):** FD-CALC-006 (FDBUG-10, below-min % coerced up, PO Q3),
+FD-CALC-008 (FDBUG-9, Max 0 = no cap, PO Q2), FD-CALC-013 (FDBUG-2, pfee base includes
+whole-WO adjustments). **Blocked-Env:** FD-CALC-017 (QuickBooks penny-cap allocation needs a
+human in QuickBooks). FD-CALC-009/015 carry a QuickBooks-side note (in-app halves verified).
+
+| FD-ID | TestRail | viu_status | push |
+|---|---|---|---|
+| FD-CALC-001 | [C28568](https://shopview.testrail.io/index.php?/cases/view/28568) | VIU-Verified | title+preconds+steps+expected 200/200 |
+| FD-CALC-002 | [C28569](https://shopview.testrail.io/index.php?/cases/view/28569) | VIU-Verified | 200/200 |
+| FD-CALC-003 | [C28570](https://shopview.testrail.io/index.php?/cases/view/28570) | VIU-Verified | 200/200 |
+| FD-CALC-004 | [C28571](https://shopview.testrail.io/index.php?/cases/view/28571) | VIU-Verified | 200/200 |
+| FD-CALC-005 | [C28572](https://shopview.testrail.io/index.php?/cases/view/28572) | VIU-Verified | 200/200 |
+| FD-CALC-006 | [C28573](https://shopview.testrail.io/index.php?/cases/view/28573) | VIU-Deviation | 200/200 |
+| FD-CALC-007 | [C28574](https://shopview.testrail.io/index.php?/cases/view/28574) | VIU-Verified | 200/200 |
+| FD-CALC-008 | [C28575](https://shopview.testrail.io/index.php?/cases/view/28575) | VIU-Deviation | 200/200 |
+| FD-CALC-009 | [C28576](https://shopview.testrail.io/index.php?/cases/view/28576) | VIU-Verified | 200/200 |
+| FD-CALC-010 | [C28577](https://shopview.testrail.io/index.php?/cases/view/28577) | VIU-Verified | 200/200 |
+| FD-CALC-011 | [C28578](https://shopview.testrail.io/index.php?/cases/view/28578) | VIU-Verified | 200/200 |
+| FD-CALC-012 | [C28579](https://shopview.testrail.io/index.php?/cases/view/28579) | VIU-Verified | 200/200 |
+| FD-CALC-013 | [C28580](https://shopview.testrail.io/index.php?/cases/view/28580) | VIU-Deviation | 200/200 |
+| FD-CALC-014 | [C28581](https://shopview.testrail.io/index.php?/cases/view/28581) | VIU-Verified | 200/200 |
+| FD-CALC-015 | [C28582](https://shopview.testrail.io/index.php?/cases/view/28582) | VIU-Verified | 200/200 |
+| FD-CALC-016 | [C28583](https://shopview.testrail.io/index.php?/cases/view/28583) | VIU-Verified | 200/200 |
+| FD-CALC-017 | [C28584](https://shopview.testrail.io/index.php?/cases/view/28584) | VIU-Blocked-Env | 200/200 |
+
+**Push totals:** 17 updated · 0 no-op · 0 error.
