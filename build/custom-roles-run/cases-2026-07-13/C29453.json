@@ -1,0 +1,13 @@
+{
+  "case_id": 29453,
+  "section_id": 4091,
+  "title": "Time Clock user is blocked from the Integrations API",
+  "custom_preconds": "<ol>\n<li>A user is signed in with the system <strong>Time Clock</strong> role (Work Orders View, Schedule View, Timesheets View; View Mode none; every other permission OFF; read-only, can clock in/out).</li>\n<li>You have a way to send API requests to the backend (api.staging.shopview.com) as that signed-in Time Clock user.</li>\n</ol>",
+  "custom_steps": "<ol>\n<li>Send GET /api/ibs/settings.</li>\n</ol>",
+  "custom_expected": "<p>The request returns <strong>403 Forbidden</strong>.</p>\n<p>Reason: the Time Clock role has no Integrations / Settings access.</p>\n",
+  "viu_status": "VIU-Verified",
+  "evidence": "API live-probe 2026-07-13 (STAGING) as Time Clock role (be58f381): GET /api/ibs/settings -> expected 403, actual 403 => Correctly blocked.",
+  "fresh_run": "2026-07-13",
+  "behavioral_run": "2026-07-13",
+  "source": "API \u2014 Time Clock Role Enforcement probe (Jira: BE Time Clock Role Permissions Not Properly Enforced)"
+}

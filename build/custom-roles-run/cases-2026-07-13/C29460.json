@@ -1,0 +1,13 @@
+{
+  "case_id": 29460,
+  "section_id": 4091,
+  "title": "BUG: Time Clock user's Work Order create is not blocked with 403 (should be blocked)",
+  "custom_preconds": "<ol>\n<li>A user is signed in with the system <strong>Time Clock</strong> role (Work Orders View, Schedule View, Timesheets View; View Mode none; every other permission OFF; read-only, can clock in/out).</li>\n<li>You have a way to send API requests to the backend (api.staging.shopview.com) as that signed-in Time Clock user.</li>\n</ol>",
+  "custom_steps": "<ol>\n<li>Send POST /api/work-orders/create (with and without a valid company_id).</li>\n</ol>",
+  "custom_expected": "<p>EXPECTED: the request should return <strong>403 Forbidden</strong> because the Time Clock role does not have Work Orders Create & Edit.</p>\n<p>ACTUAL (2026-07-13, staging): it never returns 403 \u2014 it returns <strong>400</strong> (\"company_id Missing required parameter\") with a minimal body, and <strong>500</strong> with a valid company_id, i.e. the request is processed PAST the permission gate. No work order persisted in this probe, but the create endpoint is missing the permission gate.</p>\n<p>Linked to the Jira bug: \"BE \u2014 Time Clock Role Permissions Not Properly Enforced\".</p>\n",
+  "viu_status": "Deviation",
+  "evidence": "API live-probe 2026-07-13 (STAGING) as Time Clock role (be58f381): POST /api/work-orders/create -> expected 403, actual 400/500 (never 403) => LEAK-bug.",
+  "fresh_run": "2026-07-13",
+  "behavioral_run": "2026-07-13",
+  "source": "API \u2014 Time Clock Role Enforcement probe (Jira: BE Time Clock Role Permissions Not Properly Enforced)"
+}

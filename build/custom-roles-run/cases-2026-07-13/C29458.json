@@ -1,0 +1,13 @@
+{
+  "case_id": 29458,
+  "section_id": 4091,
+  "title": "BUG: Time Clock user CAN read Taxes / Finance data via API (should be blocked)",
+  "custom_preconds": "<ol>\n<li>A user is signed in with the system <strong>Time Clock</strong> role (Work Orders View, Schedule View, Timesheets View; View Mode none; every other permission OFF; read-only, can clock in/out).</li>\n<li>You have a way to send API requests to the backend (api.staging.shopview.com) as that signed-in Time Clock user.</li>\n</ol>",
+  "custom_steps": "<ol>\n<li>Send GET /api/taxes.</li>\n</ol>",
+  "custom_expected": "<p>EXPECTED: the request should return <strong>403 Forbidden</strong> because the Time Clock role has no Finance / See Financial Data access.</p>\n<p>ACTUAL (2026-07-13, staging): the request returns <strong>200 OK</strong> with the tax list \u2014 a permission LEAK.</p>\n<p>Linked to the Jira bug: \"BE \u2014 Time Clock Role Permissions Not Properly Enforced\".</p>\n",
+  "viu_status": "Deviation",
+  "evidence": "API live-probe 2026-07-13 (STAGING) as Time Clock role (be58f381): GET /api/taxes -> expected 403, actual 200 => LEAK-bug.",
+  "fresh_run": "2026-07-13",
+  "behavioral_run": "2026-07-13",
+  "source": "API \u2014 Time Clock Role Enforcement probe (Jira: BE Time Clock Role Permissions Not Properly Enforced)"
+}

@@ -1,0 +1,31 @@
+{
+  "run_date": "2026-07-13",
+  "env": "STAGING app.staging.shopview.com / api.staging.shopview.com",
+  "org": "d55bc308-e61a-438d-b5f1-c7a73c89d49f",
+  "role_under_test": "Time Clock User",
+  "role_id_used": "be58f381-52fd-4958-9961-2d207bd1f09c",
+  "role_id_note": "Shared staging org roles were RESEEDED; the stale CLAUDE.md/matrix Time-Clock id a0359055 no longer exists (invalid role_id -> 500). Current Time Clock User = be58f381-52fd-4958-9961-2d207bd1f09c.",
+  "fe_permissions_confirmed": ["scheduleView", "timesheetsView", "workOrdersView"],
+  "view_mode": null,
+  "cross_toggles": {"seeFinancialData": false, "seeApArData": false, "viewHistoryLogs": false},
+  "results": [
+    {"area":"Work Orders","endpoint":"/api/work-orders?page=1","method":"GET","expect":"200","tech":"200","admin":"200","verdict":"Correct (allowed)","note":"Time Clock has Work Orders View"},
+    {"area":"Work Orders","endpoint":"/api/work-orders/view/{id}","method":"GET","expect":"200","tech":"200","admin":"200","verdict":"Correct (allowed)","note":"WO detail readable"},
+    {"area":"Schedule","endpoint":"/api/calendar?date=..&end_date=..","method":"GET","expect":"200","tech":"200","admin":"200","verdict":"Correct (allowed)","note":"Time Clock has Schedule View"},
+    {"area":"Timesheets","endpoint":"(timesheet-view API not identified; candidates 404)","method":"GET","expect":"200","tech":"INCONCLUSIVE","admin":"404","verdict":"Inconclusive","note":"No timesheet list endpoint located; Timesheets View likely FE-surfaced. /api/staff/clocked was 403(tech)/500(admin)"},
+    {"area":"Inventory/Parts","endpoint":"/api/inventory/parts?page=1","method":"GET","expect":"403","tech":"403","admin":"200","verdict":"Correctly blocked","note":""},
+    {"area":"POs/Orders","endpoint":"/api/inventory/orders?page=1","method":"GET","expect":"403","tech":"403","admin":"200","verdict":"Correctly blocked","note":""},
+    {"area":"Customers","endpoint":"/api/customers?page=1","method":"GET","expect":"403","tech":"403","admin":"200","verdict":"Correctly blocked","note":"Customer VIEW enforced"},
+    {"area":"Reports (AP Aging)","endpoint":"/api/reporting/account-payable/unpaid-invoices-report","method":"GET","expect":"403","tech":"403","admin":"400","verdict":"Correctly blocked","note":"tech blocked before validation; admin 400=needs params"},
+    {"area":"Staff / Roles","endpoint":"/api/organizations/{org}/roles","method":"GET","expect":"403","tech":"403","admin":"200","verdict":"Correctly blocked","note":""},
+    {"area":"Staff","endpoint":"/api/staff?page=1","method":"GET","expect":"403","tech":"403","admin":"200","verdict":"Correctly blocked","note":""},
+    {"area":"Integrations (IBS)","endpoint":"/api/ibs/settings","method":"GET","expect":"403","tech":"403","admin":"200","verdict":"Correctly blocked","note":""},
+    {"area":"Departments","endpoint":"/api/departments","method":"GET","expect":"403","tech":"403","admin":"200","verdict":"Correctly blocked","note":""},
+    {"area":"Settings","endpoint":"/api/organizations/settings","method":"GET","expect":"403","tech":"200","admin":"200","verdict":"LEAK-bug","note":"READ leak: WO/org settings returned to Time Clock user lacking any Settings access (likely-benign shared config, but a restricted-area read that does not 403)"},
+    {"area":"Taxes (Finance)","endpoint":"/api/taxes","method":"GET","expect":"403","tech":"200","admin":"200","verdict":"LEAK-bug","note":"READ leak: tax/finance reference data returned to Time Clock user lacking See Financial Data / Finance settings"},
+    {"area":"Settings (write)","endpoint":"/api/organizations/settings/change","method":"POST","expect":"403","tech":"403","admin":"200","verdict":"Correctly blocked","note":"Response: 'Access denied.'"},
+    {"area":"Customers (delete)","endpoint":"/api/customers/delete","method":"POST","expect":"403","tech":"403","admin":"201","verdict":"Correctly blocked","note":"Response: 'Access denied.' Customer DELETE enforced"},
+    {"area":"Customers (create)","endpoint":"/api/customers/create","method":"POST","expect":"403","tech":"201","admin":"201","verdict":"LEAK-bug","note":"CRITICAL: created a real customer as Time Clock user lacking Customers Create&Edit AND Customers View. Two ZZAUTOTEST customers created + deleted. Create endpoint missing the permission gate that VIEW/DELETE have."},
+    {"area":"Work Orders (create)","endpoint":"/api/work-orders/create","method":"POST","expect":"403","tech":"400/500","admin":"n/a","verdict":"LEAK-bug","note":"Never returns 403: 400 'company_id Missing' with minimal body; 500 with valid company_id -> request processed PAST the permission gate (no WO persisted). WO create endpoint lacks the workOrdersCreateAndEdit gate."}
+  ]
+}
