@@ -161,3 +161,49 @@ human in QuickBooks). FD-CALC-009/015 carry a QuickBooks-side note (in-app halve
 | FD-CALC-017 | [C28584](https://shopview.testrail.io/index.php?/cases/view/28584) | VIU-Blocked-Env | 200/200 |
 
 **Push totals:** 17 updated · 0 no-op · 0 error.
+
+## Area: FD-TMPL (Template admin) — 17 cases — TESTER-READY
+
+**Build terms corrected (notable):** templates admin is at **Administration → FINANCE →
+'Fees & Discounts'** (below **'Payment Methods'**) — the case's "Service, below Canned Lines"
+was WRONG (Canned Lines is under SERVICE). List heading **'Fees & Discounts'**; button
+**'New Fee / Discount'**; columns **Name / Type / Calculation Type / Amount / Max Amount /
+Taxable / Auto-Apply To Work Orders** + pencil(edit) + red-trash(delete). Create dialog
+**'New Fee / Discount'** with **Name / Type / Calculation Type / '$ Default Amount' /
+Taxable toggle / 'Auto-apply to new work orders' toggle / 'Description (Optional)' / Create**.
+Edit dialog **'Edit Fee / Discount'** with **Save**. Delete confirm **'Delete Template'**
+with the customer-default warning **'This template is set as a default for N customer(s).
+Deleting it will remove it from them.'** (confirmed live). **Type offers only Fee/Discount**
+(the builder does NOT expose Processing Fee — Story 8 not built; the BE still accepts
+`processing_fee` via API, 201).
+
+**VIU (fresh 2026-07-13):** list + create dialog + delete confirm captured live (shots
+tmpl-01/02/03); create/edit/delete lifecycle exercised via API (create 201, delete 204,
+delete-precondition returns affectedCustomerCount); %>100 discount rejected. Toast texts
+(created/updated/save-failure) and the empty-state carried/blocked as noted.
+
+**Deviations kept:** FD-TMPL-010 (scoping/hint — needs the line picker), FD-TMPL-011 (Max 0
+= no cap, PO Q2). **Blocked-Env:** FD-TMPL-012 (empty-state unobservable — list never empty
+on the shared env). **Flipped to Verified after wording match:** FD-TMPL-001/003/004/006/008.
+
+| FD-ID | TestRail | viu_status |
+|---|---|---|
+| FD-TMPL-001 | [C28502](https://shopview.testrail.io/index.php?/cases/view/28502) | VIU-Verified |
+| FD-TMPL-002 | [C28503](https://shopview.testrail.io/index.php?/cases/view/28503) | VIU-Verified |
+| FD-TMPL-003 | [C28504](https://shopview.testrail.io/index.php?/cases/view/28504) | VIU-Verified |
+| FD-TMPL-004 | [C28505](https://shopview.testrail.io/index.php?/cases/view/28505) | VIU-Verified |
+| FD-TMPL-005 | [C28506](https://shopview.testrail.io/index.php?/cases/view/28506) | VIU-Verified |
+| FD-TMPL-006 | [C28507](https://shopview.testrail.io/index.php?/cases/view/28507) | VIU-Verified |
+| FD-TMPL-007 | [C28508](https://shopview.testrail.io/index.php?/cases/view/28508) | VIU-Verified |
+| FD-TMPL-008 | [C28509](https://shopview.testrail.io/index.php?/cases/view/28509) | VIU-Verified |
+| FD-TMPL-009 | [C28510](https://shopview.testrail.io/index.php?/cases/view/28510) | VIU-Verified |
+| FD-TMPL-010 | [C28511](https://shopview.testrail.io/index.php?/cases/view/28511) | VIU-Deviation |
+| FD-TMPL-011 | [C28512](https://shopview.testrail.io/index.php?/cases/view/28512) | VIU-Deviation |
+| FD-TMPL-012 | [C28513](https://shopview.testrail.io/index.php?/cases/view/28513) | VIU-Blocked-Env |
+| FD-TMPL-013 | [C28514](https://shopview.testrail.io/index.php?/cases/view/28514) | VIU-Verified |
+| FD-TMPL-014 | [C28515](https://shopview.testrail.io/index.php?/cases/view/28515) | VIU-Verified |
+| FD-TMPL-015 | [C28516](https://shopview.testrail.io/index.php?/cases/view/28516) | VIU-Verified |
+| FD-TMPL-016 | [C28517](https://shopview.testrail.io/index.php?/cases/view/28517) | VIU-Verified |
+| FD-TMPL-017 | [C28518](https://shopview.testrail.io/index.php?/cases/view/28518) | VIU-Verified |
+
+**Push totals:** 17 updated · 0 no-op · 0 error.

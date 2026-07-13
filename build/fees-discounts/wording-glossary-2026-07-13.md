@@ -86,3 +86,20 @@ Staging Lethbridge - 4310).
 - Preview rows: **`Work-order subtotal`** / **`Fee`** or **`Discount`** (signed) /
   **`New work-order subtotal`** / **`Tax is recalculated on save.`**
 - Buttons: **`Cancel`** / **`Save`**.
+
+## FD-TMPL (Template admin — Administration → FINANCE → Fees & Discounts)
+
+- Left-nav location: **FINANCE → `Fees & Discounts`** (directly below `Payment Methods`;
+  route `/administration/adjustment-templates`). Canned Lines is under SERVICE — NOT here.
+- Page heading **`Fees & Discounts`**; button **`New Fee / Discount`**.
+- List columns: **`Name` / `Type` / `Calculation Type` / `Amount` / `Max Amount` /
+  `Taxable` / `Auto-Apply To Work Orders`**; row actions = pencil (edit) + red trash (delete).
+- Create dialog title **`New Fee / Discount`**; fields **`Name`**, **`Type`** (Fee/Discount
+  only — no Processing Fee in the builder), **`Calculation Type`** (Flat Amount / % of Labor
+  Total / % of Parts Total / % of Subtotal), **`$ Default Amount`** (or Percent), **Max
+  Amount (Optional)** (% only), **`Taxable`** toggle, **`Auto-apply to new work orders`**
+  toggle, **`Description (Optional)`**; buttons **`Cancel`** / **`Create`** (shot tmpl-02).
+- Edit dialog title **`Edit Fee / Discount`**, button **`Save`** (Type + Calculation Type locked).
+- Delete confirm title **`Delete Template`**; when the template is a customer default it adds
+  **`This template is set as a default for N customer(s). Deleting it will remove it from them.`**;
+  buttons **`Cancel`** / red **`Delete`** (shot tmpl-03).

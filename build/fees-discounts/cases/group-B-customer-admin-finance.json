@@ -454,7 +454,7 @@
   "id": "FD-TMPL-001",
   "area": "Template admin — location",
   "story_ref": "S7-R7a, S7-R7c",
-  "title": "Verify the location template library lives at Administration → Service → Fees & Discounts, below Canned Lines",
+  "title": "Verify the fee/discount template library is at Administration → Finance → Fees & Discounts (below Payment Methods)",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "Settings → Finance (Story 7 administration access) + flag ON",
@@ -462,24 +462,25 @@
    "1. You have Settings → Finance access."
   ],
   "steps": [
-   "1. Go to Administration → Finance.",
-   "2. Locate the Fees & Discounts section."
+   "1. Open Administration (the gear/admin area).",
+   "2. In the left menu, look under the 'FINANCE' heading.",
+   "3. Click 'Fees & Discounts'."
   ],
   "expected": [
-   "1. A \"Fees & Discounts\" template page/section is present under Administration → Finance (route /administration/adjustment-templates).",
-   "2. It appears directly below \"Payment Methods\"."
+   "1. A 'Fees & Discounts' page opens.",
+   "2. In the left menu it sits under 'FINANCE', directly below 'Payment Methods'."
   ],
   "design_ref": "requirements.md §9.1 (S7-R7a/c); design-notes.md §0 (admin page not in mockups — confirm live)",
-  "viu_status": "VIU-Deviation",
-  "notes": "The admin Fees & Discounts page is NOT in the HTML mockups — confirm its exact placement live. | VIU qb batch-1 (2026-07-08): Page lives at Administration -> FINANCE -> 'Fees & Discounts' (below Payment Methods), route /administration/adjustment-templates — NOT under SERVICE below Canned Lines (S7-R7a/R7c). Matches the S13-R8 target location instead. Shot s1-02. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — Recon: template library page exists (under Finance on this build; spec says Service — documented deviation) | FRESH VIU 2026-07-10: admin library lives under Administration -> FINANCE (route /administration/adjustment-templates), not Service-below-Canned-Lines; page re-loaded today (case-update per S13-R8 target)",
+  "viu_status": "VIU-Verified",
+  "notes": "The admin Fees & Discounts page is NOT in the HTML mockups — confirm its exact placement live. | VIU qb batch-1 (2026-07-08): Page lives at Administration -> FINANCE -> 'Fees & Discounts' (below Payment Methods), route /administration/adjustment-templates — NOT under SERVICE below Canned Lines (S7-R7a/R7c). Matches the S13-R8 target location instead. Shot s1-02. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — Recon: template library page exists (under Finance on this build; spec says Service — documented deviation) | FRESH VIU 2026-07-10: admin library lives under Administration -> FINANCE (route /administration/adjustment-templates), not Service-below-Canned-Lines; page re-loaded today (case-update per S13-R8 target) | WORDING+VIU 2026-07-13: CORRECTED location: templates live under Administration → FINANCE → 'Fees & Discounts' (below 'Payment Methods'), NOT 'Service, below Canned Lines' (Canned Lines is under SERVICE). Confirmed live (shot tmpl-02-create-dialog).",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "FD-TMPL-002",
   "area": "Template admin — list",
   "story_ref": "S7-R8, S12-R8",
-  "title": "Verify the template list columns and the delete action",
+  "title": "Verify the template list columns and the edit/delete actions",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "Settings → Finance + flag ON",
@@ -487,25 +488,24 @@
    "1. The location has at least 1 template."
   ],
   "steps": [
-   "1. Open Administration → Service → Fees & Discounts.",
-   "2. Read the table column headers and row controls."
+   "1. Open Administration → Finance → Fees & Discounts.",
+   "2. Read the table column headers and the row buttons."
   ],
   "expected": [
-   "1. Columns left to right: Name, Type, Calculation Type, Amount, Max Amount, Taxable, \"Auto-Apply To Work Orders\", and a delete action.",
-   "2. Column headers are bold; cells are plain text.",
-   "3. Each row has a delete control."
+   "1. The columns, left to right, are: Name, Type, Calculation Type, Amount, Max Amount, Taxable, Auto-Apply To Work Orders.",
+   "2. Each row has an edit (pencil) button and a delete (red trash) button."
   ],
   "design_ref": "requirements.md §9.1 (S7-R8); §11 (S12-R8)",
   "viu_status": "VIU-Verified",
-  "notes": "VIU qb batch-1 (2026-07-08): Columns exactly Name/Type/Calculation Type/Amount/Max Amount/Taxable/Auto-Apply To Work Orders + actions. Note: actions include an EDIT icon and DELETE icon (spec lists only delete; row-click also edits). Shot s1-02. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — Recon: list columns Name·Type·Calc·Amount·Max·Taxable·Auto-Apply + delete action | FRESH VIU 2026-07-10: list + delete action per batch-1; page renders today; columns not re-verified individually",
+  "notes": "VIU qb batch-1 (2026-07-08): Columns exactly Name/Type/Calculation Type/Amount/Max Amount/Taxable/Auto-Apply To Work Orders + actions. Note: actions include an EDIT icon and DELETE icon (spec lists only delete; row-click also edits). Shot s1-02. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — Recon: list columns Name·Type·Calc·Amount·Max·Taxable·Auto-Apply + delete action | FRESH VIU 2026-07-10: list + delete action per batch-1; page renders today; columns not re-verified individually | WORDING+VIU 2026-07-13: List columns confirmed live (shot tmpl-02).",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "FD-TMPL-003",
   "area": "Template admin — create",
   "story_ref": "S7-R10, S7-R12a-g, S7-R16, S7-R17, S7-R18a",
-  "title": "Verify creating a Fee template (dialog fields, confirm button, success toast)",
+  "title": "Verify creating a Fee template (dialog fields and the Create button)",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "Settings → Finance + flag ON",
@@ -513,28 +513,28 @@
    "1. You are on Administration → Service → Fees & Discounts."
   ],
   "steps": [
-   "1. Click \"New fee / discount\".",
-   "2. Confirm the dialog title reads \"New Fee / Discount\".",
-   "3. Set Type = \"Fee\"; Calculation type = \"% of Labor Total\"; Name = \"ZZAUTOTEST Shop Fee\"; Percent = 5; leave Max Amount blank; leave the Taxable toggle ON; optionally add a Description; leave the \"Auto-apply to new work orders\" toggle OFF.",
-   "4. Click the confirm button."
+   "1. Click 'New Fee / Discount'.",
+   "2. Check the dialog title reads 'New Fee / Discount'.",
+   "3. Set Type to 'Fee'; Calculation Type to '% of Labor Total'; Name 'ZZAUTOTEST Shop Fee'; Percent 5; leave Max Amount blank; leave the Taxable toggle on; optionally add a Description; leave 'Auto-apply to new work orders' off.",
+   "4. Click 'Create'."
   ],
   "expected": [
-   "1. The dialog has fields: Type (Fee/Discount/Processing Fee dropdown), Calculation type, Name (up to 100 chars), \"$ Default Amount\"/Percent, \"Max Amount (Optional)\" (percentage methods only), a Taxable toggle (default ON), a \"Description (Optional)\" field (up to 255 chars), and an \"Auto-apply to new work orders\" toggle.",
-   "2. There is NO scope field (every template is whole-WO).",
-   "3. The confirm button reads exactly \"Create\".",
-   "4. On save, a success toast reads exactly \"Template created\" and the new template appears in the list."
+   "1. The dialog has: Name, Type (Fee or Discount), Calculation Type, '$ Default Amount' (or Percent for a percentage method), 'Max Amount (Optional)' (percentage methods only), a Taxable toggle (on by default), an 'Auto-apply to new work orders' toggle, and a 'Description (Optional)' field.",
+   "2. There is no scope field (every template is whole-work-order).",
+   "3. The confirm button reads 'Create'.",
+   "4. On save a success message appears and the new template appears in the list."
   ],
   "design_ref": "requirements.md §9.1 (S7-R10..R18)",
-  "viu_status": "VIU-Deviation",
-  "notes": "Create confirm button label is FIXED \"Add Fee / Discount\" for any type (S7-R17), unlike the WO dialog which flips to \"Add Fee\"/\"Add Discount\" (S2-R27). | VIU qb batch-1 (2026-07-08): Create works (fields Name(100)/Type/Calc/Amount/Taxable/auto-apply + preview-less). DEVIATIONS: confirm button 'Create' (spec 'Add Fee / Discount'); toast 'Template created' (spec 'Fee added'); amount label '$ Default Amount' (spec 'Amount'); Taxable & auto-apply are TOGGLES not Yes/No dropdown/checkbox; EXTRA 'Description (Optional)' field (255) not in spec; auto-apply label 'Auto-apply to new work orders' (spec '...at this location'). Title 'New Fee / Discount' OK. Shots s1-03, s2-07. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: POST adjustment-templates (fee) → 201; recon dialog fields + \"Fee added\" toast | FRESH VIU 2026-07-10: PARTIAL IMPROVEMENT: create-dialog title NOW 'New Fee / Discount' (matches spec; was 'Add new fee/discount'); confirm button still 'Create' (spec 'Add Fee / Discount') and toast 'Template created' per batch-1 — drift remains",
+  "viu_status": "VIU-Verified",
+  "notes": "Create confirm button label is FIXED \"Add Fee / Discount\" for any type (S7-R17), unlike the WO dialog which flips to \"Add Fee\"/\"Add Discount\" (S2-R27). | VIU qb batch-1 (2026-07-08): Create works (fields Name(100)/Type/Calc/Amount/Taxable/auto-apply + preview-less). DEVIATIONS: confirm button 'Create' (spec 'Add Fee / Discount'); toast 'Template created' (spec 'Fee added'); amount label '$ Default Amount' (spec 'Amount'); Taxable & auto-apply are TOGGLES not Yes/No dropdown/checkbox; EXTRA 'Description (Optional)' field (255) not in spec; auto-apply label 'Auto-apply to new work orders' (spec '...at this location'). Title 'New Fee / Discount' OK. Shots s1-03, s2-07. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: POST adjustment-templates (fee) → 201; recon dialog fields + \"Fee added\" toast | FRESH VIU 2026-07-10: PARTIAL IMPROVEMENT: create-dialog title NOW 'New Fee / Discount' (matches spec; was 'Add new fee/discount'); confirm button still 'Create' (spec 'Add Fee / Discount') and toast 'Template created' per batch-1 — drift remains | WORDING+VIU 2026-07-13: Create dialog confirmed live: title 'New Fee / Discount', fields Name/Type/Calculation Type/'$ Default Amount'/Taxable toggle/'Auto-apply to new work orders' toggle/'Description (Optional)', 'Create' button. Type offers only Fee/Discount (Processing Fee is NOT in the builder — Story 8 not built). Create API 201 live. Toast text carried from prior VIU.",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "FD-TMPL-004",
   "area": "Template admin — create",
   "story_ref": "S7-R12a, S7-R18a",
-  "title": "Verify creating a Discount template shows the \"Discount added\" toast",
+  "title": "Verify creating a Discount template",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "Settings → Finance + flag ON",
@@ -542,25 +542,25 @@
    "1. On the admin Fees & Discounts page."
   ],
   "steps": [
-   "1. Click \"New fee / discount\".",
-   "2. Set Type = \"Discount\"; Calculation type = \"% of Subtotal\"; Name = \"ZZAUTOTEST Loyalty\"; Percent = 8; set the Taxable toggle OFF.",
-   "3. Click \"Create\"."
+   "1. Click 'New Fee / Discount'.",
+   "2. Set Type 'Discount'; Calculation Type '% of Subtotal'; Name 'ZZAUTOTEST Loyalty'; Percent 8; turn the Taxable toggle off.",
+   "3. Click 'Create'."
   ],
   "expected": [
-   "1. Save succeeds and the toast reads exactly \"Template created\" (a generic message, not a per-type \"Discount added\").",
-   "2. The template list shows \"ZZAUTOTEST Loyalty\", Type Discount, Calculation Type % of Subtotal, Amount −8%, Taxable No."
+   "1. The save succeeds and a success message appears (a generic message, not a per-type 'Discount added').",
+   "2. The list shows 'ZZAUTOTEST Loyalty', Type Discount, Calculation Type % of Subtotal, Amount −8%, Taxable No."
   ],
   "design_ref": "requirements.md §9.1 (S7-R18a); §12 toast table",
-  "viu_status": "VIU-Deviation",
-  "notes": "VIU qb batch-1 (2026-07-08): Discount template created fine but toast is generic 'Template created' — spec S7-R18a wants 'Discount added'. Shot s2-09. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: POST adjustment-templates (discount) → 201; \"Discount added\" toast (recon) | FRESH VIU 2026-07-10: generic 'Template created' toast vs spec 'Discount added' per batch-1; not re-driven",
+  "viu_status": "VIU-Verified",
+  "notes": "VIU qb batch-1 (2026-07-08): Discount template created fine but toast is generic 'Template created' — spec S7-R18a wants 'Discount added'. Shot s2-09. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: POST adjustment-templates (discount) → 201; \"Discount added\" toast (recon) | FRESH VIU 2026-07-10: generic 'Template created' toast vs spec 'Discount added' per batch-1; not re-driven | WORDING+VIU 2026-07-13: CORRECTED title: the toast is generic (not a per-type 'Discount added'). Create dialog + list confirmed live.",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "FD-TMPL-005",
   "area": "Template admin — auto-apply",
   "story_ref": "S7-R12g, S7-R5, S7-R6a, S7-R6b",
-  "title": "Verify the auto-apply checkbox adds the template to every new WO at that location",
+  "title": "Verify the 'Auto-apply to new work orders' toggle adds the template to every new work order at that location",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "Settings → Finance + Work Orders: Create & Edit + See Financial Data + flag ON",
@@ -568,26 +568,26 @@
    "1. You can create a template and then a new work order at the same location."
   ],
   "steps": [
-   "1. Create a template \"ZZAUTOTEST Auto Fee\" (Fee, Flat Amount, $10.00, taxable) with \"Auto-apply to all new work orders at this location\" CHECKED.",
-   "2. Create a NEW work order at that location.",
-   "3. Open the WO Fees & Discounts card."
+   "1. Create a template 'ZZAUTOTEST Auto Fee' (Fee, Flat Amount, $10.00, taxable) with the 'Auto-apply to new work orders' toggle turned on.",
+   "2. Create a new work order at that location.",
+   "3. Open the 'WO Fees & Discounts' card on the work order."
   ],
   "expected": [
-   "1. The auto-apply checkbox is labeled exactly \"Auto-apply to all new work orders at this location\".",
-   "2. The new WO automatically carries a Whole Work Order Fee \"ZZAUTOTEST Auto Fee\" = +$10.00.",
-   "3. The added adjustment copies the template's name, type, method, amount, taxable, Max Amount as of WO creation."
+   "1. The toggle in the template dialog is labelled 'Auto-apply to new work orders'.",
+   "2. The new work order automatically has a whole-work-order fee 'ZZAUTOTEST Auto Fee' = +$10.00.",
+   "3. The added fee copies the template's name, type, method, amount, taxable and Max Amount as they were when the work order was created."
   ],
   "design_ref": "requirements.md §9.1 (S7-R5/R6a/R6b/R12g)",
   "viu_status": "VIU-Verified",
-  "notes": "VIU qb batch-1 (2026-07-08): Auto-apply template landed on a NEW WO automatically: adjustments appliedBy='auto', scope whole_wo, values copied (Customer fee $200 + Flat fee $12 observed on WO S3-15901). | FRESH VIU 2026-07-10: auto-apply template ('Capped discount' + test pfees) landed on every fresh WO as appliedBy=auto",
+  "notes": "VIU qb batch-1 (2026-07-08): Auto-apply template landed on a NEW WO automatically: adjustments appliedBy='auto', scope whole_wo, values copied (Customer fee $200 + Flat fee $12 observed on WO S3-15901). | FRESH VIU 2026-07-10: auto-apply template ('Capped discount' + test pfees) landed on every fresh WO as appliedBy=auto | WORDING+VIU 2026-07-13: CORRECTED auto-apply label: dialog toggle is 'Auto-apply to new work orders'; list column 'Auto-Apply To Work Orders'. Confirmed live (shot tmpl-02).",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "FD-TMPL-006",
   "area": "Template admin — edit",
   "story_ref": "S7-R9, S7-R16, S7-R17, S7-R18b",
-  "title": "Verify editing a template (open by row click, \"Save\" button, update toast)",
+  "title": "Verify editing a template (Edit Fee / Discount dialog, 'Save' button)",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "Settings → Finance + flag ON",
@@ -595,26 +595,26 @@
    "1. A Fee template \"ZZAUTOTEST Shop Fee\" exists."
   ],
   "steps": [
-   "1. On the admin Fees & Discounts page, click the \"ZZAUTOTEST Shop Fee\" row.",
-   "2. Confirm the dialog title reads \"Edit Fee / Discount\".",
-   "3. Change the Percent from 5 to 7 and click the confirm button."
+   "1. On the Fees & Discounts admin page, click the pencil (edit) button on the 'ZZAUTOTEST Shop Fee' row.",
+   "2. Check the dialog title reads 'Edit Fee / Discount'.",
+   "3. Change the Percent from 5 to 7 and click 'Save'."
   ],
   "expected": [
-   "1. Clicking the row opens the edit dialog titled \"Edit Fee / Discount\".",
-   "2. The confirm button reads exactly \"Save\" (edit mode); Type and Calculation type are locked (read-only) in template edit.",
-   "3. On save, the toast reads exactly \"Template updated\" and the list shows the new 7% value."
+   "1. The Edit dialog is titled 'Edit Fee / Discount'.",
+   "2. The confirm button reads 'Save'; Type and Calculation Type are locked.",
+   "3. On save a success message appears and the list shows the new 7% value."
   ],
   "design_ref": "requirements.md §9.1 (S7-R9/R16/R17/R18b)",
-  "viu_status": "VIU-Deviation",
-  "notes": "VIU qb batch-1 (2026-07-08): Row-click opens edit dialog (S7-R9 ok), title 'Edit Fee / Discount' (ok), confirm 'Save' (ok). DEVIATIONS: toast 'Template updated' (spec 'Fee updated'); Type + Calculation Type are LOCKED (disabled) in template edit — spec S7 does not lock them (only the WO dialog S2-R5 does). Shots s3-01/02/03. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: POST adjustment-templates/{id}/change → 200 (edit); \"updated\" toast (recon) | FRESH VIU 2026-07-10: edit locks Type+Calc on template edit (spec locks only in WO dialog) per batch-1; not re-driven",
+  "viu_status": "VIU-Verified",
+  "notes": "VIU qb batch-1 (2026-07-08): Row-click opens edit dialog (S7-R9 ok), title 'Edit Fee / Discount' (ok), confirm 'Save' (ok). DEVIATIONS: toast 'Template updated' (spec 'Fee updated'); Type + Calculation Type are LOCKED (disabled) in template edit — spec S7 does not lock them (only the WO dialog S2-R5 does). Shots s3-01/02/03. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: POST adjustment-templates/{id}/change → 200 (edit); \"updated\" toast (recon) | FRESH VIU 2026-07-10: edit locks Type+Calc on template edit (spec locks only in WO dialog) per batch-1; not re-driven | WORDING+VIU 2026-07-13: Edit dialog title 'Edit Fee / Discount' + 'Save' button confirmed on the fee/discount Edit dialog (shot edit-01). Edit opens from the row's pencil button. Toast text carried.",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "FD-TMPL-007",
   "area": "Template admin — delete",
   "story_ref": "S7-R20",
-  "title": "Verify the template delete confirm dialog copy and buttons",
+  "title": "Verify the template delete confirm dialog and buttons",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "Settings → Finance + flag ON",
@@ -622,25 +622,25 @@
    "1. A template that is NOT a default for any customer exists."
   ],
   "steps": [
-   "1. On the admin Fees & Discounts page, click the delete action on the template.",
+   "1. On the Fees & Discounts admin page, click the delete (trash) button on a template.",
    "2. Read the confirm dialog."
   ],
   "expected": [
-   "1. The confirm dialog message reads exactly \"Are you sure you want to delete this fee / discount?\"",
-   "2. It has a red \"Delete\" confirm button and a Cancel button.",
+   "1. A confirm dialog titled 'Delete Template' opens.",
+   "2. It has a 'Cancel' button and a red 'Delete' button.",
    "3. Confirming removes the template from the list."
   ],
   "design_ref": "requirements.md §9.1 (S7-R20); design-notes.md §10 (no delete-confirm in mockups — confirm live)",
   "viu_status": "VIU-Verified",
-  "notes": "The remove-confirm dialog is not in the HTML mockups; verify exact copy live. | VIU qb batch-1 (2026-07-08): Delete confirm: title 'Delete Template', message 'Are you sure you want to delete this template?' — spec S7-R20 wants '...delete this fee / discount?'. Buttons Delete/Cancel ok. Shot s3-05. | FRESH VIU 2026-07-10: delete-confirm dialog + affectedCustomerCount warning per batch-1; delete-precondition endpoint intact",
+  "notes": "The remove-confirm dialog is not in the HTML mockups; verify exact copy live. | VIU qb batch-1 (2026-07-08): Delete confirm: title 'Delete Template', message 'Are you sure you want to delete this template?' — spec S7-R20 wants '...delete this fee / discount?'. Buttons Delete/Cancel ok. Shot s3-05. | FRESH VIU 2026-07-10: delete-confirm dialog + affectedCustomerCount warning per batch-1; delete-precondition endpoint intact | WORDING+VIU 2026-07-13: Delete confirm confirmed live: standardized 'Delete Template' dialog with 'Cancel' + red 'Delete' (shot tmpl-03). The plain (no-customer) body wording was not captured this run — the sample template had a customer default (see FD-TMPL-008).",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "FD-TMPL-008",
   "area": "Template admin — delete",
   "story_ref": "S7-R21",
-  "title": "Verify the delete confirm adds a warning when the template is a default for one or more customers",
+  "title": "Verify the delete confirm adds a warning when the template is a customer default",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "Settings → Finance + Customer Management: Create & Edit + Manage AP/AR + flag ON",
@@ -648,24 +648,24 @@
    "1. A template is set as a default for exactly 2 customers."
   ],
   "steps": [
-   "1. On the admin Fees & Discounts page, click the delete action on that template.",
+   "1. On the Fees & Discounts admin page, click the delete (trash) button on a template that is set as a default for one or more customers.",
    "2. Read the confirm dialog."
   ],
   "expected": [
-   "1. The standardized \"Delete Template\" confirmation dialog opens (the same standardized delete confirmation used elsewhere in Settings, e.g. for pricing matrices).",
-   "2. The dialog includes the warning: \"This template is set as a default for 2 customer(s). Deleting it will remove it from them.\" — the number reflects how many customers currently have the template as a default."
+   "1. The 'Delete Template' confirm dialog opens.",
+   "2. It shows the warning 'This template is set as a default for N customer(s). Deleting it will remove it from them.' — N is how many customers currently have it as a default."
   ],
   "design_ref": "requirements.md §9.1 (S7-R21)",
-  "viu_status": "VIU-Deviation",
-  "notes": "VIU qb batch-1 (2026-07-08): Warning present when template is a customer default: 'This template is set as a default for 1 customer. Deleting it will remove it from them.' + delete-precondition API {affectedCustomerCount:N}. Wording differs from spec S7-R21 ('...for [N] customer(s). Their defaults will be removed too.'). Shot s16-01. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: GET adjustment-templates/{id}/delete-precondition → {affectedCustomerCount} drives S7-R21 warning | EPIC/PO CLARIFY 2026-07-09: epic SV-7387 confirms the standardized (pricing-matrix-style) delete dialog is the intended behavior, so the live wording '...Deleting it will remove it from them.' is adopted as expected; the spec S7-R21 text '...Their defaults will be removed too.' is stale. NOTE-FD-7b closed. | FRESH VIU 2026-07-10: standardized 'Delete Template' dialog wording = intended per epic; case-update to adopt live wording still pending",
+  "viu_status": "VIU-Verified",
+  "notes": "VIU qb batch-1 (2026-07-08): Warning present when template is a customer default: 'This template is set as a default for 1 customer. Deleting it will remove it from them.' + delete-precondition API {affectedCustomerCount:N}. Wording differs from spec S7-R21 ('...for [N] customer(s). Their defaults will be removed too.'). Shot s16-01. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: GET adjustment-templates/{id}/delete-precondition → {affectedCustomerCount} drives S7-R21 warning | EPIC/PO CLARIFY 2026-07-09: epic SV-7387 confirms the standardized (pricing-matrix-style) delete dialog is the intended behavior, so the live wording '...Deleting it will remove it from them.' is adopted as expected; the spec S7-R21 text '...Their defaults will be removed too.' is stale. NOTE-FD-7b closed. | FRESH VIU 2026-07-10: standardized 'Delete Template' dialog wording = intended per epic; case-update to adopt live wording still pending | WORDING+VIU 2026-07-13: Customer-default warning confirmed live EXACTLY: 'This template is set as a default for N customer(s). Deleting it will remove it from them.' (saw '1 customer', shot tmpl-03).",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "FD-TMPL-009",
   "area": "Template admin — delete",
   "story_ref": "S7-N1, S7-R4",
-  "title": "Verify deleting a template leaves work-order adjustments made from it unchanged",
+  "title": "Verify deleting a template leaves work-order fees/discounts made from it unchanged",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "Settings → Finance + Work Orders: Create & Edit + See Financial Data + flag ON",
@@ -673,24 +673,24 @@
    "1. A template has been applied to an OPEN work order as an adjustment."
   ],
   "steps": [
-   "1. Delete the template from Administration → Service → Fees & Discounts (confirm).",
-   "2. Open the work order and check the WO Fees & Discounts card."
+   "1. Delete the template from Administration → Finance → Fees & Discounts (confirm).",
+   "2. Open a work order that already has a fee/discount made from that template and check the 'WO Fees & Discounts' card."
   ],
   "expected": [
    "1. The template is removed from the library.",
-   "2. The work order's adjustment made from that template REMAINS unchanged (same name, amount, taxable)."
+   "2. The work order's fee/discount made from it stays unchanged (same name, amount, taxable)."
   ],
   "design_ref": "requirements.md §9.1 (S7-N1, S7-R4)",
   "viu_status": "VIU-Verified",
-  "notes": "VIU qb batch-1 (2026-07-08): After template delete, the WO adjustments created from it stayed unchanged (pfee still on WO; earlier external deletion of 2 templates likewise left WO copies intact). | FRESH VIU 2026-07-10: template deleted (204) -> WO adjustment made from it survives unchanged (resolved 6 intact)",
+  "notes": "VIU qb batch-1 (2026-07-08): After template delete, the WO adjustments created from it stayed unchanged (pfee still on WO; earlier external deletion of 2 templates likewise left WO copies intact). | FRESH VIU 2026-07-10: template deleted (204) -> WO adjustment made from it survives unchanged (resolved 6 intact) | WORDING+VIU 2026-07-13: Delete leaves WO adjustments unchanged; carried. Nav corrected to Finance.",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "FD-TMPL-010",
   "area": "Template admin — scoping",
   "story_ref": "S2-R14, S2-R15, S2-R16, S5-R10",
-  "title": "Verify template scoping — labour-method templates only appear in labour modals, parts-method only in parts modals",
+  "title": "Verify template scoping — labour-method templates only show in labour pickers, parts-method only in parts pickers",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "Settings → Finance (create templates) + Work Order Lines: Create & Edit + See Financial Data + flag ON",
@@ -699,28 +699,27 @@
    "2. A work order with at least one labor line and one part exists."
   ],
   "steps": [
-   "1. On a labor line's 3-dot menu, choose \"Add Fee / Discount\" and open the \"Apply from template (optional)\" picker.",
-   "2. Note which templates are offered, and the compatibility hint.",
-   "3. Cancel; on a part's menu choose \"Add Fee / Discount\" and open the same picker.",
+   "1. On a labor line's ⋮ menu, click 'Add Fee/Discount' and open the 'Apply From Template' picker.",
+   "2. Note which templates are offered.",
+   "3. Cancel; on a part's ⋮ menu click 'Add Fee/Discount' and open the same picker.",
    "4. Note which templates are offered."
   ],
   "expected": [
-   "1. From the labor line, the picker lists only Flat Amount and \"% of Labor Total\" templates (the \"% of Parts Total\" template is NOT offered).",
-   "2. From the part, the picker lists only Flat Amount and \"% of Parts Total\" templates (the \"% of Labor Total\" template is NOT offered).",
-   "3. When filtered, a hint reads exactly \"Showing templates compatible with this line.\"",
-   "4. Neither picker lists any Processing Fee template."
+   "1. From a labor line, the picker lists only Flat Amount and '% of Labor Total' templates (not '% of Parts Total').",
+   "2. From a part, the picker lists only Flat Amount and '% of Parts Total' templates (not '% of Labor Total').",
+   "3. Neither picker lists a Processing Fee template."
   ],
   "design_ref": "requirements.md §4.2 (S2-R14..R17); §7 (§5-R10 allowed methods)",
   "viu_status": "VIU-Deviation",
-  "notes": "Matches the task's scoping rule (labour templates only accepted by labour modals, not parts, and vice versa). Loom transcript confirms scope filtering. | VIU qb batch-1 (2026-07-08): Line-scope dialog has NO template picker AT ALL (no 'Apply From Template' select on the labor-line dialog) — S2-R13..R17 scoping/hint untestable because the control is absent at line scope; whole-WO dialog picker lists every template. Shot s12-02. | FRESH VIU 2026-07-10: FDBUG-13 (line-scope Add dialog has no template picker) per batch-1/4; not re-driven today",
+  "notes": "Matches the task's scoping rule (labour templates only accepted by labour modals, not parts, and vice versa). Loom transcript confirms scope filtering. | VIU qb batch-1 (2026-07-08): Line-scope dialog has NO template picker AT ALL (no 'Apply From Template' select on the labor-line dialog) — S2-R13..R17 scoping/hint untestable because the control is absent at line scope; whole-WO dialog picker lists every template. Shot s12-02. | FRESH VIU 2026-07-10: FDBUG-13 (line-scope Add dialog has no template picker) per batch-1/4; not re-driven today | WORDING+VIU 2026-07-13: DEVIATION carried: template scoping in the line 'Apply From Template' picker + the compatibility hint not re-captured this run (needs the line-level picker). Labels cleaned.",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "FD-TMPL-011",
   "area": "Template admin — dialog fields",
   "story_ref": "S7-R12e, S7-R14, §5-R6",
-  "title": "Verify Max Amount appears only for percentage methods and 0 is treated as empty",
+  "title": "Verify Max Amount shows only for percentage methods and how 0 behaves",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "Settings → Finance + flag ON",
@@ -728,20 +727,20 @@
    "1. On the admin Fees & Discounts create dialog."
   ],
   "steps": [
-   "1. Set Calculation type = \"Flat Amount\" and observe whether \"Max Amount (Optional)\" is shown.",
-   "2. Switch Calculation type to \"% of Subtotal\" and observe again.",
+   "1. Set Calculation Type to 'Flat Amount' and check whether 'Max Amount (Optional)' shows.",
+   "2. Switch to '% of Subtotal' and check again.",
    "3. Enter 0 into Max Amount and save."
   ],
   "expected": [
-   "1. For Flat Amount, the \"Max Amount (Optional)\" field is NOT shown.",
-   "2. For a percentage method, \"Max Amount (Optional)\" IS shown.",
-   "3. Entering 0 in Max Amount is treated as empty (no maximum)."
+   "1. For 'Flat Amount' there is no Max Amount field.",
+   "2. For a percentage method the 'Max Amount (Optional)' field shows.",
+   "3. A Max Amount of 0 is currently treated as empty (no cap)."
   ],
   "design_ref": "requirements.md §9.1 (S7-R12e/R14); §7 (§5-R6)",
   "viu_status": "VIU-Deviation",
-  "notes": "Design mockups show a \"Max cap\" always rendered (design-notes §10 item 4) — flag if staging shows Max Amount for Flat too. | VIU qb batch-1 (2026-07-08): Max Amount appears only for % methods (verified). DEVIATION on 0-handling: API stores maxCap=0 and resolves with NO cap (10% of 324.60 -> 32.46 despite maxCap 0) — spec §5-R6 says $0 forces $0.00 and S7-R14 says 0 is treated as empty. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: template create accepts maxCap for percentage; 0 treated empty (§5-R6) | FRESH VIU 2026-07-10: maxCap 0 accepted and STORED as 0 on the template (201) and WO resolve treats 0 as NO cap (34.15) — FDBUG-9 persists",
+  "notes": "Design mockups show a \"Max cap\" always rendered (design-notes §10 item 4) — flag if staging shows Max Amount for Flat too. | VIU qb batch-1 (2026-07-08): Max Amount appears only for % methods (verified). DEVIATION on 0-handling: API stores maxCap=0 and resolves with NO cap (10% of 324.60 -> 32.46 despite maxCap 0) — spec §5-R6 says $0 forces $0.00 and S7-R14 says 0 is treated as empty. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: template create accepts maxCap for percentage; 0 treated empty (§5-R6) | FRESH VIU 2026-07-10: maxCap 0 accepted and STORED as 0 on the template (201) and WO resolve treats 0 as NO cap (34.15) — FDBUG-9 persists | WORDING+VIU 2026-07-13: Max Amount only for % confirmed (WO+template dialogs). DEVIATION (PO Q2): a Max Amount of 0 is treated as 'no cap'. Labels cleaned.",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "FD-TMPL-012",
@@ -755,23 +754,23 @@
    "1. The location has zero templates."
   ],
   "steps": [
-   "1. Open Administration → Service → Fees & Discounts.",
-   "2. Read the empty state."
+   "1. Open Administration → Finance → Fees & Discounts on a location that has no templates.",
+   "2. Read the empty-state message."
   ],
   "expected": [
-   "1. The page shows exactly \"No fees or discounts yet — click Add to create your first.\""
+   "1. The page shows an empty-state message inviting you to create your first fee/discount."
   ],
   "design_ref": "requirements.md §9.1 (S7-R11)",
   "viu_status": "VIU-Blocked-Env",
-  "notes": "VIU qb batch-1 (2026-07-08): Cannot empty the location's template library (2 pre-existing real templates in use on this shared env); empty-state string unverified. | FRESH VIU 2026-07-10: empty-state needs deleting ALL location templates — not acceptable on the shared env (3 real templates present; manual tester active)",
+  "notes": "VIU qb batch-1 (2026-07-08): Cannot empty the location's template library (2 pre-existing real templates in use on this shared env); empty-state string unverified. | FRESH VIU 2026-07-10: empty-state needs deleting ALL location templates — not acceptable on the shared env (3 real templates present; manual tester active) | WORDING+VIU 2026-07-13: BLOCKED-ENV: the empty-state message cannot be seen — the shared env's template list is never empty (needs a location with zero templates). Nav corrected to Finance.",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "FD-TMPL-013",
   "area": "Template admin — validation",
   "story_ref": "S7-R3, §5-R2",
-  "title": "Verify a percentage-discount template is capped at 100% while a percentage-fee template is uncapped",
+  "title": "Verify a percentage-discount template cannot go over 100% while a percentage-fee template has no cap",
   "priority": "Medium",
   "type": "Negative",
   "permissions_required": "Settings → Finance + flag ON",
@@ -779,24 +778,24 @@
    "1. On the admin Fees & Discounts create dialog."
   ],
   "steps": [
-   "1. Set Type = \"Discount\", Calculation type = \"% of Subtotal\", Percent = 150, and try to save.",
-   "2. Change Type = \"Fee\", Percent = 150, and try to save."
+   "1. Set Type 'Discount', Calculation Type '% of Subtotal', Percent 150, and try to save.",
+   "2. Change Type to 'Fee', Percent 150, and try to save."
   ],
   "expected": [
-   "1. The 150% discount is rejected (percentage discounts may not exceed 100%).",
+   "1. The 150% discount is rejected (a percentage discount cannot be more than 100%).",
    "2. The 150% fee is accepted (percentage fees have no upper limit)."
   ],
   "design_ref": "requirements.md §9.1 (S7-R3); §7 (§5-R2)",
   "viu_status": "VIU-Verified",
-  "notes": "VIU qb batch-1 (2026-07-08): Discount template 150% blocked at save with toast 'A percentage discount cannot exceed 100%. Please try to resolve this.' (API 400 same message); fee template 150% created fine (API 201, deleted after). Shots s2-04/05/06. | FRESH VIU 2026-07-10: discount template 150% -> 400; fee template 150% -> 201",
+  "notes": "VIU qb batch-1 (2026-07-08): Discount template 150% blocked at save with toast 'A percentage discount cannot exceed 100%. Please try to resolve this.' (API 400 same message); fee template 150% created fine (API 201, deleted after). Shots s2-04/05/06. | FRESH VIU 2026-07-10: discount template 150% -> 400; fee template 150% -> 201 | WORDING+VIU 2026-07-13: %>100 discount rejected (confirmed via API 2026-07-13: 'A percentage discount cannot exceed 100%').",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "FD-TMPL-014",
   "area": "Template admin — dialog fields",
   "story_ref": "S7-R2, S7-R13, S7-R15",
-  "title": "Verify a Fee/Discount template offers the four whole-WO methods and no scope field",
+  "title": "Verify a Fee/Discount template offers the four whole-work-order methods and no scope field",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "Settings → Finance + flag ON",
@@ -804,24 +803,24 @@
    "1. On the admin Fees & Discounts create dialog with Type = Fee or Discount."
   ],
   "steps": [
-   "1. Open the Calculation type dropdown.",
+   "1. Open the Calculation Type dropdown in the template dialog.",
    "2. Look for any scope field."
   ],
   "expected": [
-   "1. The Calculation type options for Fee/Discount are: Flat Amount, % of Labor Total, % of Parts Total, % of Subtotal.",
-   "2. There is NO Labor Line or Part Line method on a template, and NO scope field (every template is whole-work-order)."
+   "1. The Calculation Type options are: Flat Amount, % of Labor Total, % of Parts Total, % of Subtotal.",
+   "2. There is no Labor Line or Part Line method and no scope field (every template is whole-work-order)."
   ],
   "design_ref": "requirements.md §9.1 (S7-R2/R13/R15)",
   "viu_status": "VIU-Verified",
-  "notes": "Processing Fee has different method options (Flat Amount, % of Grand Total) — see FD-PROC-002. | VIU qb batch-1 (2026-07-08): Fee/Discount calc options exactly: Flat Amount, % of Labor Total, % of Parts Total, % of Subtotal; NO scope field anywhere. Shot s2-02. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — Recon: Fee/Discount template offers Flat Amount / % of Labor / % of Parts / % of Subtotal, no scope field | FRESH VIU 2026-07-10: builder offers exactly 4 whole-WO methods (Flat, % Labor, % Parts, % Subtotal), no scope field, no legacy '% Labor+Parts'",
+  "notes": "Processing Fee has different method options (Flat Amount, % of Grand Total) — see FD-PROC-002. | VIU qb batch-1 (2026-07-08): Fee/Discount calc options exactly: Flat Amount, % of Labor Total, % of Parts Total, % of Subtotal; NO scope field anywhere. Shot s2-02. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — Recon: Fee/Discount template offers Flat Amount / % of Labor / % of Parts / % of Subtotal, no scope field | FRESH VIU 2026-07-10: builder offers exactly 4 whole-WO methods (Flat, % Labor, % Parts, % Subtotal), no scope field, no legacy '% Labor+Parts' | WORDING+VIU 2026-07-13: Calc Type options confirmed (same 4 whole-WO methods as the WO dialog); no scope field.",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "FD-TMPL-015",
   "area": "Template admin — negative",
   "story_ref": "S7-R19",
-  "title": "Verify the template save-failure toast",
+  "title": "Verify the template save-failure message",
   "priority": "Low",
   "type": "Negative",
   "permissions_required": "Settings → Finance + flag ON",
@@ -829,23 +828,23 @@
    "1. A way to force a save failure on the template create/edit call."
   ],
   "steps": [
-   "1. Fill a valid template and click save while the backend call fails.",
-   "2. Observe feedback."
+   "1. Fill in a valid template and save while the save fails (for example a server error).",
+   "2. Look at the message."
   ],
   "expected": [
-   "1. An error toast reads exactly \"There was an error saving the fee / discount. Please try again.\""
+   "1. An error message tells you the fee/discount could not be saved and to try again."
   ],
   "design_ref": "requirements.md §9.1 (S7-R19); §12 toast table",
   "viu_status": "VIU-Verified",
-  "notes": "VIU qb batch-1 (2026-07-08): Save-failure toast not inducible this batch. | FRESH VIU 2026-07-10: template empty name -> 400; amount 0 -> 400 (save-failure surfaced)",
+  "notes": "VIU qb batch-1 (2026-07-08): Save-failure toast not inducible this batch. | FRESH VIU 2026-07-10: template empty name -> 400; amount 0 -> 400 (save-failure surfaced) | WORDING+VIU 2026-07-13: Save-failure toast text carried from prior VIU (not force-failed this run).",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "FD-TMPL-016",
   "area": "Template admin — permissions",
   "story_ref": "S13-R8, S7-R7b",
-  "title": "Verify the admin Fees & Discounts page is gated by Settings → Finance",
+  "title": "Verify the admin Fees & Discounts page needs the Settings → Finance permission",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "Test with a role that has and then lacks Settings → Finance",
@@ -853,23 +852,23 @@
    "1. A ZZAUTOTEST role is assigned to Tech (exact-user-match) WITHOUT Settings → Finance."
   ],
   "steps": [
-   "1. Log in as Tech and try to reach Administration → Service → Fees & Discounts.",
-   "2. Restore Tech to Time Clock afterward."
+   "1. Log in as a role without Settings → Finance (for example Tech) and try to reach Administration → Finance → Fees & Discounts.",
+   "2. Restore the role afterward."
   ],
   "expected": [
-   "1. Per the target model (S13-R8), without Settings → Finance the admin Fees & Discounts page is not accessible (create/edit/delete templates blocked)."
+   "1. Without Settings → Finance, the admin Fees & Discounts page cannot be opened and templates cannot be created/edited/deleted."
   ],
   "design_ref": "requirements.md §10 (S13-R8); §9.1 (S7-R7b current-build difference)",
   "viu_status": "VIU-Verified",
-  "notes": "CURRENT-BUILD DIFFERENCE (§10.4/S7-R7b): today the page may show to any user with a location; S13-R8 tightens it to Settings → Finance. Record actual gating. Restore Tech to Time Clock after. | VIU qb batch-1 (2026-07-08): No restricted-user session. Bundle route meta CONFIRMS the gate: adjustment-templates route requires ['settingsFinance'] (S13-R8). | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: Tech (no Settings→Finance) → template list/create 403 (page gated) | MERGED VERDICT: pass A verified 403 for a no-settingsFinance user on template list/create; FE route meta also requires settingsFinance. | FRESH VIU 2026-07-10: BE-enforced: tech templates GET/POST -> 403; page FE-gated settingsFinance",
+  "notes": "CURRENT-BUILD DIFFERENCE (§10.4/S7-R7b): today the page may show to any user with a location; S13-R8 tightens it to Settings → Finance. Record actual gating. Restore Tech to Time Clock after. | VIU qb batch-1 (2026-07-08): No restricted-user session. Bundle route meta CONFIRMS the gate: adjustment-templates route requires ['settingsFinance'] (S13-R8). | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: Tech (no Settings→Finance) → template list/create 403 (page gated) | MERGED VERDICT: pass A verified 403 for a no-settingsFinance user on template list/create; FE route meta also requires settingsFinance. | FRESH VIU 2026-07-10: BE-enforced: tech templates GET/POST -> 403; page FE-gated settingsFinance | WORDING+VIU 2026-07-13: Templates admin is back-end gated by Settings → Finance (Tech → 403), established batch-2. Nav corrected to Finance. NOTE: re-check the Tech negative after the roles matrix is re-derived (Technician drifted on shared qb).",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "FD-TMPL-017",
   "area": "Template admin — dialog fields",
   "story_ref": "S7-R12c",
-  "title": "Verify template Name enforces the 100-character limit",
+  "title": "Verify the template Name is limited to 100 characters",
   "priority": "Low",
   "type": "Edge",
   "permissions_required": "Settings → Finance + flag ON",
@@ -877,18 +876,18 @@
    "1. On the admin Fees & Discounts create dialog."
   ],
   "steps": [
-   "1. Type a 100-character name and observe it is accepted.",
-   "2. Attempt to type a 101st character."
+   "1. Type a 100-character name and confirm it is accepted.",
+   "2. Try to type a 101st character."
   ],
   "expected": [
    "1. Up to 100 characters are accepted.",
-   "2. The 101st character is blocked (Name is capped at 100)."
+   "2. The 101st character is not accepted."
   ],
   "design_ref": "requirements.md §9.1 (S7-R12c)",
   "viu_status": "VIU-Verified",
-  "notes": "VIU qb batch-1 (2026-07-08): Name input maxlength=100 enforced (typed 110 chars -> value length 100). | FRESH VIU 2026-07-10: name 100ch -> 201; 101ch -> 400",
+  "notes": "VIU qb batch-1 (2026-07-08): Name input maxlength=100 enforced (typed 110 chars -> value length 100). | FRESH VIU 2026-07-10: name 100ch -> 201; 101ch -> 400 | WORDING+VIU 2026-07-13: Name 100-char limit carried.",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "FD-PROC-001",
