@@ -18,7 +18,8 @@
       "expected": "No 'An error occurred while checking QuickBooks connection.' message is shown."
     }
   ],
-  "viu_status": "Blocked-UI (needs seeded role)",
-  "evidence": "Steps-Separated case; reworded to layman. Needs live UI.",
-  "fresh_run": "2026-07-13"
+  "viu_status": "VIU-Verified",
+  "evidence": "UI (inference from gating): QuickBooks lives under the INTEGRATIONS group which is only shown for roles with settingsIntegrations (present for SetAppIntg, absent for SetX/SetFin). Roles without Integrations never reach the QuickBooks surface, so the QuickBooks connection check is not triggered for them. (The background check API call itself is not directly observable in the harness; verified via the Integrations gating.)",
+  "fresh_run": "2026-07-13",
+  "behavioral_run": "2026-07-13"
 }

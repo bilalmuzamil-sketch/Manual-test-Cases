@@ -4,8 +4,9 @@
   "title": "The Settings sub-toggles work independently (Service on, Finance off)",
   "custom_preconds": "<ol>\n<li>A user is assigned a role with Settings ON, the Service sub-toggle ON and the Finance sub-toggle OFF.</li>\n</ol>",
   "custom_steps": "<ol>\n<li>Log in as that user.</li>\n<li>Confirm the Service pages are shown.</li>\n<li>Confirm the Finance pages are not shown.</li>\n</ol>",
-  "custom_expected": "<p>The Service pages are shown and the Finance pages are hidden \u2014 the sub-toggles work independently.</p>\n",
-  "viu_status": "Blocked-UI (needs seeded role)",
-  "evidence": "Needs live check.",
-  "fresh_run": "2026-07-13"
+  "custom_expected": "<p>The Service pages are shown and the Finance pages are hidden — the sub-toggles work independently.</p>\n",
+  "viu_status": "VIU-Verified",
+  "evidence": "UI (role with Service ON, Finance OFF = SetX): the SERVICE pages show and there is NO FINANCE group — the Settings sub-toggles work independently.",
+  "fresh_run": "2026-07-13",
+  "behavioral_run": "2026-07-13"
 }

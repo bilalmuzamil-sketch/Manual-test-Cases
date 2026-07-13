@@ -5,7 +5,8 @@
   "custom_preconds": "<ol>\n<li>A user is assigned a role with Settings ON and the View/Manage Wages sub-toggle ON.</li>\n</ol>",
   "custom_steps": "<ol>\n<li>Log in as that user.</li>\n<li>Go to the Staff or a wages page.</li>\n<li>Look at the wage rate fields.</li>\n</ol>",
   "custom_expected": "<p>Wage rate fields are shown and can be edited.</p>\n",
-  "viu_status": "Blocked-UI (needs seeded role); toggle label 'View/Manage Wages' build-verified",
+  "viu_status": "Blocked-UI: wage rate fields live on the Edit Staff Member profile, which is not reachable in this harness (the staff row action opens Manage-staff-enrollments, not the profile/wage editor — same limitation as C26356/C26490/C26491). Role has settingsWages; needs the staff profile editor opened (real browser) to confirm wage fields shown/editable.",
   "evidence": "Toggle 'View/Manage Wages' confirmed in build. Wage editing needs live check.",
-  "fresh_run": "2026-07-13"
+  "fresh_run": "2026-07-13",
+  "behavioral_run": "2026-07-13"
 }
