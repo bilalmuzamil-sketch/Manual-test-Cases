@@ -247,3 +247,38 @@ permission gate: re-check the Tech negative after the roles matrix is re-derived
 | FD-CUST-017 | [C28501](https://shopview.testrail.io/index.php?/cases/view/28501) | VIU-Verified |
 
 **Push totals:** 17 updated · 0 no-op · 0 error.
+
+## Area: FD-LABOR + FD-PART (line-level fees/discounts) — 15 cases — TESTER-READY
+
+**Build terms confirmed live (part flow, shots line-01/02):** the line ⋮ menu item is
+**'Add Fee/Discount'** (was "Add fee / discount"); the line-scope dialog is **'Add new
+fee/discount'** with a grey subtitle **'Applying to: <line/part name>'** (just the name — NO
+'Line N Part/Labor —' prefix, so the old spec subtitle text was wrong); part scope defaults
+Calculation Type to **'% Of Parts Total'** (labor scope → '% of Labor Total' by symmetry).
+Part ⋮ menu = **'Move' / 'Add Fee/Discount'**.
+
+**VIU (fresh 2026-07-13):** part-line menu + scope dialog captured live; labor-line menu not
+re-captured (symmetry + prior VIU — noted). Arithmetic/behavior carried from 2026-07-10.
+**Flipped to Verified after wording match:** FD-LABOR-001, FD-PART-001. **Pending:**
+FD-PART-005 (requested→received blocked by the env WO line-create 500 + completed-line lock).
+FD-LABOR-007 permission negative: re-check after the roles matrix is re-derived.
+
+| FD-ID | TestRail | viu_status |
+|---|---|---|
+| FD-LABOR-001 | [C28439](https://shopview.testrail.io/index.php?/cases/view/28439) | VIU-Verified |
+| FD-LABOR-002 | [C28440](https://shopview.testrail.io/index.php?/cases/view/28440) | VIU-Verified |
+| FD-LABOR-003 | [C28441](https://shopview.testrail.io/index.php?/cases/view/28441) | VIU-Verified |
+| FD-LABOR-004 | [C28442](https://shopview.testrail.io/index.php?/cases/view/28442) | VIU-Verified |
+| FD-LABOR-005 | [C28443](https://shopview.testrail.io/index.php?/cases/view/28443) | VIU-Verified |
+| FD-LABOR-006 | [C28444](https://shopview.testrail.io/index.php?/cases/view/28444) | VIU-Verified |
+| FD-LABOR-007 | [C28445](https://shopview.testrail.io/index.php?/cases/view/28445) | VIU-Verified |
+| FD-PART-001 | [C28446](https://shopview.testrail.io/index.php?/cases/view/28446) | VIU-Verified |
+| FD-PART-002 | [C28447](https://shopview.testrail.io/index.php?/cases/view/28447) | VIU-Verified |
+| FD-PART-003 | [C28448](https://shopview.testrail.io/index.php?/cases/view/28448) | VIU-Verified |
+| FD-PART-004 | [C28449](https://shopview.testrail.io/index.php?/cases/view/28449) | VIU-Verified |
+| FD-PART-005 | [C28450](https://shopview.testrail.io/index.php?/cases/view/28450) | VIU-Pending |
+| FD-PART-006 | [C28451](https://shopview.testrail.io/index.php?/cases/view/28451) | VIU-Verified |
+| FD-PART-007 | [C28452](https://shopview.testrail.io/index.php?/cases/view/28452) | VIU-Verified |
+| FD-PART-008 | [C28453](https://shopview.testrail.io/index.php?/cases/view/28453) | VIU-Verified |
+
+**Push totals:** 15 updated · 0 no-op · 0 error.

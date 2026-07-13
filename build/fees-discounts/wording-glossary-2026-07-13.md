@@ -116,3 +116,11 @@ Staging Lethbridge - 4310).
 - Empty state: **"No fees or discounts yet. Use 'Add Fee/Discount' to add one."**
 - Add picker dialog **`Add Fee/Discount`** with a single **`Fee / Discount Templates`**
   dropdown; buttons **`Cancel`** / **`Save`** (shot cust-02).
+
+## FD-LABOR / FD-PART (line-level fees/discounts)
+
+- Line ⋮ menu item: **`Add Fee/Discount`** (part ⋮ menu = `Move` / `Add Fee/Discount`).
+- Line-scope dialog: **`Add new fee/discount`** with grey subtitle **`Applying to: <name>`**
+  (just the line/part name — no "Line N …" prefix; shot line-02).
+- Part scope: Calculation Type defaults to **`% Of Parts Total`**; methods = Flat Amount +
+  % of Parts Total. Labor scope → `% of Labor Total` (+ Flat Amount).

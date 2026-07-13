@@ -475,7 +475,7 @@
   "id": "FD-LABOR-001",
   "area": "Work Order — Labor-line Fee/Discount",
   "story_ref": "S1-R3 / S2-R10",
-  "title": "Verify a labor line's 3-dot menu opens the Add dialog locked to that Labor Line scope",
+  "title": "Verify a labor line's ⋮ menu opens the Add Fee/Discount dialog locked to that labor line",
   "priority": "Critical",
   "type": "Functional",
   "permissions_required": "Work Order Lines: Create & Edit + See Financial Data + Fees & Discounts flag ON",
@@ -484,26 +484,26 @@
    "2. An open work order with a labor line, e.g. Line 1 'Service - Perform LOF and inspection', is open on the Lines tab."
   ],
   "steps": [
-   "1. Hover the labor line row (or its Labor sub-row) to reveal the ⋯ (More actions) button.",
-   "2. Click the ⋯ button and click 'Add fee / discount'.",
+   "1. Hover the labor line row to show its ⋮ (more) button.",
+   "2. Click the ⋮ button and click 'Add Fee/Discount'.",
    "3. Read the dialog title and subtitle."
   ],
   "expected": [
-   "1. The dialog opens locked to Labor Line scope for that specific line.",
-   "2. A grey subtitle reads 'Applying to: {line name}' (e.g. 'Applying to: Service - Perform LOF and inspection'); it does NOT include a 'Line {N} Labor —' prefix.",
-   "3. Scope/target cannot be changed inside the dialog."
+   "1. The dialog 'Add new fee/discount' opens, locked to that labor line.",
+   "2. A grey subtitle reads 'Applying to: <line name>' (just the line name, no 'Line N Labor' prefix).",
+   "3. The scope cannot be changed inside the dialog."
   ],
   "design_ref": "labor line ⋯ menu items incl. 'Add fee / discount' (§2, §2a)",
-  "viu_status": "VIU-Deviation",
-  "notes": "Line-level add/edit/remove maps to Work Order Lines: Create & Edit (S13-R4). Design mockup subtitle format is a scope link; spec exact string is 'Applying to: Line {N} Labor — {name}'. | VIU qb batch-1 (2026-07-08): Line 3-dot menu 'Add Fee/Discount' opens dialog locked to Labor Line with grey subtitle 'Applying to: (L) CVIP - Light Duty Truck - Wheels On'. DEVIATION: subtitle omits the spec 'Line {N} Labor —' prefix (S2-R10). Calc locked to labor methods. Shots s12-01/02. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — Recon+UI: labor-line ⋯ opens dialog scope-locked \"Applying to: {line}\", Calc default \"% Of Labor Total\" | FRESH VIU 2026-07-10: label drift (subtitle 'Applying to: {line}' without 'Line {N} Labor —' prefix) per batch-1; not re-driven today",
+  "viu_status": "VIU-Verified",
+  "notes": "Line-level add/edit/remove maps to Work Order Lines: Create & Edit (S13-R4). Design mockup subtitle format is a scope link; spec exact string is 'Applying to: Line {N} Labor — {name}'. | VIU qb batch-1 (2026-07-08): Line 3-dot menu 'Add Fee/Discount' opens dialog locked to Labor Line with grey subtitle 'Applying to: (L) CVIP - Light Duty Truck - Wheels On'. DEVIATION: subtitle omits the spec 'Line {N} Labor —' prefix (S2-R10). Calc locked to labor methods. Shots s12-01/02. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — Recon+UI: labor-line ⋯ opens dialog scope-locked \"Applying to: {line}\", Calc default \"% Of Labor Total\" | FRESH VIU 2026-07-10: label drift (subtitle 'Applying to: {line}' without 'Line {N} Labor —' prefix) per batch-1; not re-driven today | WORDING+VIU 2026-07-13: Menu item is 'Add Fee/Discount'; dialog subtitle 'Applying to: <line name>' (no 'Line N Labor —' prefix) — matches build. Labor-line ⋮ menu not re-captured this run; confirmed by symmetry with the part-line flow (⋮ = 'Move' / 'Add Fee/Discount', dialog 'Applying to: <name>') + prior 2026-07-10 VIU.",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "FD-LABOR-002",
   "area": "Work Order — Labor-line Fee/Discount",
   "story_ref": "§5-R4 / §5-R3 / S2-R22",
-  "title": "Verify a labor-line % of Labor Total fee resolves against the line's gross labor price (10% of $150.00 → +$15.00)",
+  "title": "Verify a labor-line '% of Labor Total' fee works out against the line's labor price (10% of $150.00 → +$15.00)",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "Work Order Lines: Create & Edit + See Financial Data + Fees & Discounts flag ON",
@@ -512,28 +512,28 @@
    "2. An open work order with a labor line whose gross labor price is exactly $150.00, no existing adjustments on that line."
   ],
   "steps": [
-   "1. Open the labor line's ⋯ menu and click 'Add fee / discount'.",
-   "2. Confirm the default Calculation type is '% of Labor Total' (labor line default per S2-R22).",
-   "3. Set Type = 'Fee', Amount = 10.",
-   "4. Read the preview, then Save."
+   "1. Open the labor line's ⋮ menu and click 'Add Fee/Discount'.",
+   "2. Confirm the Calculation Type defaults to '% of Labor Total'.",
+   "3. Set Type 'Fee', 'Percent %' 10.",
+   "4. Read the preview, then save with 'Add Fee'."
   ],
   "expected": [
-   "1. The available methods are only Flat Amount and % of Labor Total (§5-R10).",
-   "2. The base is the target labor line price (gross) = $150.00 (§5-R4).",
-   "3. 10% × $150.00 = +$15.00; the resolved amount is +$15.00 (§5-R3).",
-   "4. The preview labels read 'Line labor total → New line labor total' (S2-R36a)."
+   "1. The only methods offered are 'Flat Amount' and '% of Labor Total'.",
+   "2. The base is the labor line price = $150.00.",
+   "3. 10% of $150.00 = +$15.00.",
+   "4. The preview shows the line's labor total and the new line labor total."
   ],
   "design_ref": "labor sub-row ⋯ 'Add fee / discount' (§2a); breakdown 'Calculation' shows base-aware phrasing (§8)",
   "viu_status": "VIU-Verified",
-  "notes": "Default method for a labor line = % of Labor Total (S2-R22). Note the design Add modal lacks base-aware calc options (open question #1). | VIU qb batch-1 (2026-07-08): % of Labor Total resolves on the line's gross labor price: API 10% of $265 = $26.50; UI preview 25% -> 'Line labor total $265.00 / Fee · 25% +$66.25 / New line labor total $331.25' (exact S2-R36a labels). Shot s12-04. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: labor_line pct_labor 10% resolves on gross line labor $749.75 → $74.98 | FRESH VIU 2026-07-10: pct_labor resolves against the line's LABOR total: on a 0-labor (parts-only) line 10% -> $0.00 (correct base); $265-line evidence from batch-1 stands",
+  "notes": "Default method for a labor line = % of Labor Total (S2-R22). Note the design Add modal lacks base-aware calc options (open question #1). | VIU qb batch-1 (2026-07-08): % of Labor Total resolves on the line's gross labor price: API 10% of $265 = $26.50; UI preview 25% -> 'Line labor total $265.00 / Fee · 25% +$66.25 / New line labor total $331.25' (exact S2-R36a labels). Shot s12-04. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: labor_line pct_labor 10% resolves on gross line labor $749.75 → $74.98 | FRESH VIU 2026-07-10: pct_labor resolves against the line's LABOR total: on a 0-labor (parts-only) line 10% -> $0.00 (correct base); $265-line evidence from batch-1 stands | WORDING+VIU 2026-07-13: Build labels; Calc default '% Of Labor Total' for labor scope. Labor-line ⋮ menu not re-captured this run; confirmed by symmetry with the part-line flow (⋮ = 'Move' / 'Add Fee/Discount', dialog 'Applying to: <name>') + prior 2026-07-10 VIU.",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "FD-LABOR-003",
   "area": "Work Order — Labor-line Fee/Discount",
   "story_ref": "S1-R2",
-  "title": "Verify each labor line row exposes its own 3-dot menu on hover",
+  "title": "Verify each labor line row shows its own ⋮ menu on hover",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "Work Order Lines: Create & Edit + See Financial Data + Fees & Discounts flag ON",
@@ -542,24 +542,24 @@
    "2. An open work order with two or more labor lines is open on the Lines tab."
   ],
   "steps": [
-   "1. Hover over the first labor line row.",
-   "2. Hover over the second labor line row."
+   "1. Hover the first labor line row.",
+   "2. Hover the second labor line row."
   ],
   "expected": [
-   "1. Each labor line row reveals its own ⋯ (More actions) button on hover (S1-R2).",
-   "2. Each menu includes an 'Add fee / discount' item scoped to that specific line."
+   "1. Each labor line row shows its own ⋮ (more) button on hover.",
+   "2. Each menu has an 'Add Fee/Discount' item for that specific line."
   ],
   "design_ref": "line ⋯ dropdown: Uncomplete/Add line note/Save line/Story history/Audit log/Add fee / discount (§2)",
   "viu_status": "VIU-Verified",
-  "notes": "'Add fee / discount' is NOT on the work-order line's right-click menu — it is the row 3-dot menu (S1 context note). | VIU qb batch-1 (2026-07-08): Line row exposes its own menu (revealed on row hover, opens with Request part | Add line note | Add Fee/Discount | Save as canned line | Story history | Audit log | Add inspection | Edit labor). Single-line WO verified. Shot s12-01. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — Recon: each labor line row exposes its own 3-dot menu with Add Fee/Discount | FRESH VIU 2026-07-10: not re-driven (cosmetic hover menu); line-level add path re-proven via API",
+  "notes": "'Add fee / discount' is NOT on the work-order line's right-click menu — it is the row 3-dot menu (S1 context note). | VIU qb batch-1 (2026-07-08): Line row exposes its own menu (revealed on row hover, opens with Request part | Add line note | Add Fee/Discount | Save as canned line | Story history | Audit log | Add inspection | Edit labor). Single-line WO verified. Shot s12-01. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — Recon: each labor line row exposes its own 3-dot menu with Add Fee/Discount | FRESH VIU 2026-07-10: not re-driven (cosmetic hover menu); line-level add path re-proven via API | WORDING+VIU 2026-07-13: Per-line ⋮ on hover; carried. Labor-line ⋮ menu not re-captured this run; confirmed by symmetry with the part-line flow (⋮ = 'Move' / 'Add Fee/Discount', dialog 'Applying to: <name>') + prior 2026-07-10 VIU.",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "FD-LABOR-004",
   "area": "Work Order — Labor-line Fee/Discount",
   "story_ref": "§5-R14 / S2-R23",
-  "title": "Verify a labor-line Flat Amount resolves to the exact amount with no quantity multiplier",
+  "title": "Verify a labor-line flat amount is the exact amount with no quantity multiplier",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "Work Order Lines: Create & Edit + See Financial Data + Fees & Discounts flag ON",
@@ -568,25 +568,25 @@
    "2. An open work order with a labor line (any quantity/hours) is open."
   ],
   "steps": [
-   "1. Open the labor line's ⋯ menu and click 'Add fee / discount'.",
-   "2. Set Type = 'Fee', Calculation type = 'Flat amount', Amount = 50.",
+   "1. Open the labor line's ⋮ menu and click 'Add Fee/Discount'.",
+   "2. Set Type 'Fee', Calculation Type 'Flat Amount', '$ Amount' 50.",
    "3. Save."
   ],
   "expected": [
-   "1. The resolved amount is exactly +$50.00 regardless of hours/quantity (Labor Line Flat Amount has no quantity part; §5-R14).",
-   "2. Max Amount is not available for a Flat Amount method (§5-R6)."
+   "1. The result is exactly +$50.00 regardless of hours/quantity.",
+   "2. There is no Max Amount field for a flat amount."
   ],
   "design_ref": "Add modal Flat amount (§6)",
   "viu_status": "VIU-Verified",
-  "notes": "Contrast with Part Line Flat Amount, which IS per-item × quantity (see FD-PART-002). | VIU qb batch-1 (2026-07-08): Labor-line Flat $5 resolved exactly $5.00 (no quantity multiplier), API-verified. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: labor_line flat $10 → +$10.00 exact (no quantity) | FRESH VIU 2026-07-10: labor-line flat 9.99 -> resolved 9.99 exactly, no quantity multiplier",
+  "notes": "Contrast with Part Line Flat Amount, which IS per-item × quantity (see FD-PART-002). | VIU qb batch-1 (2026-07-08): Labor-line Flat $5 resolved exactly $5.00 (no quantity multiplier), API-verified. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: labor_line flat $10 → +$10.00 exact (no quantity) | FRESH VIU 2026-07-10: labor-line flat 9.99 -> resolved 9.99 exactly, no quantity multiplier | WORDING+VIU 2026-07-13: Build labels; flat labor resolve carried.",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "FD-LABOR-005",
   "area": "Work Order — Labor-line Fee/Discount",
   "story_ref": "§5-R12",
-  "title": "Verify a labor-line adjustment resolves to $0.00 when its line is not billable (declined)",
+  "title": "Verify a labor-line fee/discount works out to $0.00 when its line is not billable (declined)",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "Work Order Lines: Create & Edit + See Financial Data + Fees & Discounts flag ON",
@@ -595,26 +595,26 @@
    "2. An open work order with a labor line that carries a 10% fee adjustment resolving to a non-zero amount."
   ],
   "steps": [
-   "1. Mark / set the labor line to Declined (not billable).",
-   "2. Observe the labor-line adjustment's resolved amount.",
-   "3. Re-authorize / make the line billable again.",
-   "4. Observe the resolved amount again."
+   "1. Set the labor line to Declined (not billable).",
+   "2. Look at the labor-line fee/discount's amount.",
+   "3. Make the line billable again.",
+   "4. Look at the amount again."
   ],
   "expected": [
-   "1. While the line is declined/not billable, the adjustment resolves to $0.00 but still shows (§5-R12).",
-   "2. Once the line becomes billable/authorized, the adjustment resolves to its non-zero amount again."
+   "1. While the line is declined, the fee/discount works out to $0.00 but still shows.",
+   "2. Once the line is billable again, it works out to its non-zero amount."
   ],
   "design_ref": "inline line adjustment rows (§2a)",
   "viu_status": "VIU-Verified",
-  "notes": "Line-level adjustments show wherever their target shows, including a Needs Approval estimate (§5-R12). | VIU qb batch-1 (2026-07-08): Line status -> authorization_declined: both line adjustments resolved to $0; restore to authorized -> $66.25 / -$5 again. §5-R12 verified end-to-end via API. | FRESH VIU 2026-07-10: prior decline->$0 evidence stands; today's decline flip blocked ('Can`t change status while there are staged parts' on S-15895's completed line; no fresh WO possible — line-create 500)",
+  "notes": "Line-level adjustments show wherever their target shows, including a Needs Approval estimate (§5-R12). | VIU qb batch-1 (2026-07-08): Line status -> authorization_declined: both line adjustments resolved to $0; restore to authorized -> $66.25 / -$5 again. §5-R12 verified end-to-end via API. | FRESH VIU 2026-07-10: prior decline->$0 evidence stands; today's decline flip blocked ('Can`t change status while there are staged parts' on S-15895's completed line; no fresh WO possible — line-create 500) | WORDING+VIU 2026-07-13: Declined-line $0 carried.",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "FD-LABOR-006",
   "area": "Work Order — Labor-line Fee/Discount",
   "story_ref": "S3-R2",
-  "title": "Verify deleting a labor line removes any adjustment pointing to it",
+  "title": "Verify deleting a labor line removes any fee/discount pointing to it",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "Work Order Lines: Create & Edit + See Financial Data + Fees & Discounts flag ON",
@@ -623,25 +623,25 @@
    "2. An open work order with a labor line that carries at least one fee/discount adjustment."
   ],
   "steps": [
-   "1. Delete the labor line (via its ⋯ / delete action).",
-   "2. Check the sidebar card, Financial Info 'Fees & Discounts (N)' count, and Stats breakdown."
+   "1. Delete the labor line (via its ⋮ / delete action).",
+   "2. Check the 'WO Fees & Discounts' card, the Financial Info 'Fees & Discounts (N)' count, and the Stats breakdown."
   ],
   "expected": [
    "1. The labor line is removed.",
-   "2. Any adjustment that pointed to that line is also removed (S3-R2).",
-   "3. The Financial Info 'Fees & Discounts (N)' count and the Stats/Financial totals drop by the removed adjustment(s)."
+   "2. Any fee/discount that pointed to that line is also removed.",
+   "3. The Financial Info count and the Stats/Financial totals drop by the removed amount(s)."
   ],
   "design_ref": "line table (§2)",
   "viu_status": "VIU-Verified",
-  "notes": "Deleting a line/part removes its adjustments even though removal normally uses the Create & Edit permission (this is a whole-record delete). | VIU qb batch-1 (2026-07-08): work-orders/lines/delete removed the line AND both adjustments pointing to it; WO summary recomputed (S3-R2). | FRESH VIU 2026-07-10: prior (line delete removes its adjustment); not re-seedable today (line-create 500 env-wide)",
+  "notes": "Deleting a line/part removes its adjustments even though removal normally uses the Create & Edit permission (this is a whole-record delete). | VIU qb batch-1 (2026-07-08): work-orders/lines/delete removed the line AND both adjustments pointing to it; WO summary recomputed (S3-R2). | FRESH VIU 2026-07-10: prior (line delete removes its adjustment); not re-seedable today (line-create 500 env-wide) | WORDING+VIU 2026-07-13: Delete-line cascades; carried; build labels.",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "FD-LABOR-007",
   "area": "Work Order — Labor-line Fee/Discount",
   "story_ref": "S13-R4 / S13-N2",
-  "title": "Verify labor-line 'Add fee / discount' is hidden without Work Order Lines: Create & Edit",
+  "title": "Verify the labor-line 'Add Fee/Discount' is hidden without Work Order Lines: Create & Edit",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "See Financial Data ON but Work Order Lines: Create & Edit OFF; Fees & Discounts flag ON",
@@ -650,24 +650,24 @@
    "2. An open work order with a labor line is open."
   ],
   "steps": [
-   "1. Hover the labor line and open its ⋯ menu.",
-   "2. Look for 'Add fee / discount' and Edit/Delete on any existing line adjustment."
+   "1. As a role without Work Order Lines: Create & Edit, hover the labor line and open its ⋮ menu.",
+   "2. Look for 'Add Fee/Discount' and for Edit/Remove on any existing line fee/discount."
   ],
   "expected": [
-   "1. 'Add fee / discount' is not shown for the labor line (S13-N2).",
-   "2. Existing line adjustment amounts are still visible (SFD on) but have no Edit/Delete controls."
+   "1. 'Add Fee/Discount' is not shown for the labor line.",
+   "2. Existing line fee/discount amounts are still visible (See Financial Data on) but have no Edit/Remove controls."
   ],
   "design_ref": "labor ⋯ menu (§2a)",
   "viu_status": "VIU-Verified",
-  "notes": "Labor/part-line actions require Work Order Lines: Create & Edit (S13-R4), distinct from the whole-WO permission (S13-R3). | VIU qb batch-1 (2026-07-08): No second-user login on qb env; WO-Lines-C&E gating not exercisable this batch. | FRESH VIU 2026-07-10: FE gate per roles-matrix derivation; CAVEAT: shared-env Technician role drifted (now has more perms) — re-derive matrix before relying on per-role negatives",
+  "notes": "Labor/part-line actions require Work Order Lines: Create & Edit (S13-R4), distinct from the whole-WO permission (S13-R3). | VIU qb batch-1 (2026-07-08): No second-user login on qb env; WO-Lines-C&E gating not exercisable this batch. | FRESH VIU 2026-07-10: FE gate per roles-matrix derivation; CAVEAT: shared-env Technician role drifted (now has more perms) — re-derive matrix before relying on per-role negatives | WORDING+VIU 2026-07-13: Line-add gated by Work Order Lines: Create & Edit. NOTE: re-check the negative after the roles matrix is re-derived.",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "FD-PART-001",
   "area": "Work Order / Parts — Part-line Fee/Discount",
   "story_ref": "S1-R4 / S1-R5 / S2-R11",
-  "title": "Verify a part's menu opens the Add dialog locked to that Part Line scope",
+  "title": "Verify a part's ⋮ menu opens the Add Fee/Discount dialog locked to that part",
   "priority": "Critical",
   "type": "Functional",
   "permissions_required": "Work Order Lines: Create & Edit + See Financial Data + Fees & Discounts flag ON",
@@ -676,26 +676,26 @@
    "2. An open work order with a part, e.g. '(LF3620) Engine Oil Filter', is open on the Lines or Parts tab."
   ],
   "steps": [
-   "1. Hover the part row to reveal its ⋯ menu.",
-   "2. Click 'Add fee / discount'.",
-   "3. Read the dialog subtitle."
+   "1. Hover the part row to show its ⋮ menu.",
+   "2. Click 'Add Fee/Discount'.",
+   "3. Read the dialog subtitle and the Calculation Type options."
   ],
   "expected": [
-   "1. The dialog opens locked to Part Line scope for that part (S1-R5).",
-   "2. The grey subtitle reads 'Applying to: Line {N} Part — (LF3620) Engine Oil Filter' (S2-R11), with the part number omitted when the part has none.",
-   "3. The available Calculation methods are Flat Amount and % of Parts Total only (§5-R10)."
+   "1. The dialog 'Add new fee/discount' opens, locked to that part.",
+   "2. A grey subtitle reads 'Applying to: <part name>' (just the part name).",
+   "3. The Calculation Type options are 'Flat Amount' and '% of Parts Total' only."
   ],
   "design_ref": "part ⋯ 'Add fee / discount' (§2b); Add modal Part-scope subtitle 'Line 2 · S2-13274' (§6)",
-  "viu_status": "VIU-Deviation",
-  "notes": "Default method for a part = % of Parts Total (S2-R22). Design subtitle is a scope link; spec exact string is 'Applying to: Line {N} Part — ({part number}) {description}'. | VIU qb batch-1 (2026-07-08): Not driven in batch 1 — no part staged on the throwaway WO (part-request seeding flow not automated yet). API scope 'part_line' exists. Batch-2: seed a part request, drive the part-row menu. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — Recon: part row ⋯ menu offers Add Fee/Discount → part_line scope | FRESH VIU 2026-07-10: FDBUG-14 label defects (missing 'Line {N} Part —' prefix, raw enum 'Pct_parts', part-% option mislabeled '% of Labor Total') per batch-4; part dialog not re-driven today",
+  "viu_status": "VIU-Verified",
+  "notes": "Default method for a part = % of Parts Total (S2-R22). Design subtitle is a scope link; spec exact string is 'Applying to: Line {N} Part — ({part number}) {description}'. | VIU qb batch-1 (2026-07-08): Not driven in batch 1 — no part staged on the throwaway WO (part-request seeding flow not automated yet). API scope 'part_line' exists. Batch-2: seed a part request, drive the part-row menu. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — Recon: part row ⋯ menu offers Add Fee/Discount → part_line scope | FRESH VIU 2026-07-10: FDBUG-14 label defects (missing 'Line {N} Part —' prefix, raw enum 'Pct_parts', part-% option mislabeled '% of Labor Total') per batch-4; part dialog not re-driven today | WORDING+VIU 2026-07-13: CONFIRMED live: part ⋮ = 'Move' / 'Add Fee/Discount'; dialog 'Add new fee/discount' with subtitle 'Applying to: <part name>' (NO 'Line N Part —' prefix — build differs from the old spec text); Calc default '% Of Parts Total' (shots line-01/02). Now build-accurate.",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "FD-PART-002",
   "area": "Work Order / Parts — Part-line Fee/Discount",
   "story_ref": "§5-R14",
-  "title": "Verify a part-line Flat Amount is charged PER ITEM (amount × quantity): $5.00 × qty 3 → −$15.00",
+  "title": "Verify a part-line flat amount is charged per item (amount x quantity): $5.00 x 3 → −$15.00",
   "priority": "Critical",
   "type": "Functional",
   "permissions_required": "Work Order Lines: Create & Edit + See Financial Data + Fees & Discounts flag ON",
@@ -704,27 +704,27 @@
    "2. An open work order with a part of quantity 3."
   ],
   "steps": [
-   "1. Open the part's ⋯ menu and click 'Add fee / discount'.",
-   "2. Set Type = 'Discount', Calculation type = 'Flat amount', Amount = 5.",
+   "1. Open the part's ⋮ menu and click 'Add Fee/Discount'.",
+   "2. Set Type 'Discount', Calculation Type 'Flat Amount', '$ Amount' 5.",
    "3. Save.",
-   "4. Read the resolved amount on the inline part row."
+   "4. Read the amount on the inline part row."
   ],
   "expected": [
-   "1. The resolved discount is −$15.00 ($5.00 per item × quantity 3; §5-R14).",
-   "2. The inline part row shows the discount name with a −$5.00 flat rate badge and a resolved amount of −$15.00.",
-   "3. The Add modal Amount label indicates a per-item rate for a Part Line Flat Amount (S2-R23)."
+   "1. The discount is −$15.00 ($5.00 per item x quantity 3).",
+   "2. The inline part row shows the name with a −$5.00 flat rate badge and a resolved amount of −$15.00.",
+   "3. For a part-line flat amount, the amount is per item."
   ],
   "design_ref": "part inline adjustment rows (§2b); Add modal Flat amount (§6)",
   "viu_status": "VIU-Verified",
-  "notes": "Key edge behavior — Part Line Flat Amount is the only Flat Amount scope that multiplies by quantity. See FD-PART-008 for the qty=1 edge (−$5.00). | VIU qb batch-1 (2026-07-08): Per-item flat (amount x qty) not verified — needs a real part target with qty>1. Batch-2. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: part_line flat $5 × qty 2 = $10.00 (per-item) | FRESH VIU 2026-07-10: per-item flat re-proven: $2.00 x qty 4 -> $8.00 on S-15895's received part (estimate row 'ZZAUTOTEST PartFlat $8.00')",
+  "notes": "Key edge behavior — Part Line Flat Amount is the only Flat Amount scope that multiplies by quantity. See FD-PART-008 for the qty=1 edge (−$5.00). | VIU qb batch-1 (2026-07-08): Per-item flat (amount x qty) not verified — needs a real part target with qty>1. Batch-2. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: part_line flat $5 × qty 2 = $10.00 (per-item) | FRESH VIU 2026-07-10: per-item flat re-proven: $2.00 x qty 4 -> $8.00 on S-15895's received part (estimate row 'ZZAUTOTEST PartFlat $8.00') | WORDING+VIU 2026-07-13: Per-item flat carried; build labels.",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "FD-PART-003",
   "area": "Work Order / Parts — Part-line Fee/Discount",
   "story_ref": "S1-R4 / §5-R13",
-  "title": "Verify a fee/discount can be added to a requested (not-yet-received) part and shows before pick",
+  "title": "Verify a fee/discount can be added to a requested (not-yet-received) part and shows before it is picked",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "Work Order Lines: Create & Edit + See Financial Data + Fees & Discounts flag ON",
@@ -733,27 +733,27 @@
    "2. An open work order with a requested (pending / not yet picked) part of quantity 2 at sell price $20.00 each."
   ],
   "steps": [
-   "1. Open the requested part's ⋯ menu and click 'Add fee / discount'.",
-   "2. Set Type = 'Discount', Calculation type = '% of Parts Total', Amount = 10.",
+   "1. Open the requested part's ⋮ menu and click 'Add Fee/Discount'.",
+   "2. Set Type 'Discount', Calculation Type '% of Parts Total', 'Percent %' 10.",
    "3. Save.",
-   "4. Observe the adjustment on the requested part before it is picked/received."
+   "4. Look at the fee/discount on the requested part before it is picked."
   ],
   "expected": [
-   "1. The part's menu offered 'Add fee / discount' for the requested part (S1-R4).",
-   "2. The adjustment shows on the requested part before it is picked (§5-R13).",
-   "3. It resolves against quantity × sell price = 2 × $20.00 = $40.00 → 10% = −$4.00."
+   "1. The requested part's menu offers 'Add Fee/Discount'.",
+   "2. The fee/discount shows on the requested part before it is picked.",
+   "3. It works out against quantity x sell price (for example 2 x $20.00 = $40.00 → 10% = −$4.00)."
   ],
   "design_ref": "part row ⋯ (§2b); part-requests 'Fees & Discounts' column (§5)",
   "viu_status": "VIU-Verified",
-  "notes": "The part menu offers 'Add fee / discount' for both staged and requested parts (S1-R4). See FD-PART-005 for requested→received persistence. | VIU qb batch-1 (2026-07-08): Requested-part adjustment not driven (no part seeded). Batch-2. | FRESH VIU 2026-07-10: prior batch-4 requested-state evidence stands; not re-seedable today (make-request -> 400 'Part requests can`t be modified on completed line', line-create 500)",
+  "notes": "The part menu offers 'Add fee / discount' for both staged and requested parts (S1-R4). See FD-PART-005 for requested→received persistence. | VIU qb batch-1 (2026-07-08): Requested-part adjustment not driven (no part seeded). Batch-2. | FRESH VIU 2026-07-10: prior batch-4 requested-state evidence stands; not re-seedable today (make-request -> 400 'Part requests can`t be modified on completed line', line-create 500) | WORDING+VIU 2026-07-13: Add-to-requested-part carried; build labels.",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "FD-PART-004",
   "area": "Work Order / Parts — Part-line Fee/Discount",
   "story_ref": "§5-R4 / §5-R10 / §5-R3",
-  "title": "Verify a part-line % of Parts Total resolves against quantity × sell price (gross)",
+  "title": "Verify a part-line '% of Parts Total' works out against quantity x sell price",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "Work Order Lines: Create & Edit + See Financial Data + Fees & Discounts flag ON",
@@ -762,26 +762,26 @@
    "2. An open work order with a part of quantity 3 at sell price $20.00 each (gross part total $60.00)."
   ],
   "steps": [
-   "1. Open the part's ⋯ menu and click 'Add fee / discount'.",
-   "2. Set Type = 'Discount', Calculation type = '% of Parts Total', Amount = 10.",
-   "3. Read the preview, then Save."
+   "1. Open the part's ⋮ menu and click 'Add Fee/Discount'.",
+   "2. Set Type 'Discount', Calculation Type '% of Parts Total', 'Percent %' 10.",
+   "3. Read the preview, then save."
   ],
   "expected": [
-   "1. The base is quantity × sell price (gross) = 3 × $20.00 = $60.00 (§5-R4).",
-   "2. 10% × $60.00 = −$6.00; the resolved amount is −$6.00 (§5-R3).",
-   "3. The preview shows a 'Part cost' row (unit cost × quantity) and labels 'Part total → New part total' (S2-R40, S2-R36b)."
+   "1. The base is quantity x sell price = 3 x $20.00 = $60.00.",
+   "2. 10% of $60.00 = −$6.00.",
+   "3. The preview shows the part total and the new part total."
   ],
   "design_ref": "part inline rows (§2b); breakdown 'Calculation' base-aware phrasing (§8)",
   "viu_status": "VIU-Verified",
-  "notes": "Part Line percentage base uses the target's gross part total (before whole-WO nets). | VIU qb batch-1 (2026-07-08): Not driven; % of Parts Total preview at whole-WO scope showed 'Base · Parts total $0.00 -> +$0.00' ($0-base rule ok). Real part-line base check pending. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: part_line pct_parts 10% on qty×sell (2×$116.34=$232.68) → $23.27 | FRESH VIU 2026-07-10: pct_parts re-proven: 10% of qty4 x 42.69 = 170.76 -> $17.08",
+  "notes": "Part Line percentage base uses the target's gross part total (before whole-WO nets). | VIU qb batch-1 (2026-07-08): Not driven; % of Parts Total preview at whole-WO scope showed 'Base · Parts total $0.00 -> +$0.00' ($0-base rule ok). Real part-line base check pending. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: part_line pct_parts 10% on qty×sell (2×$116.34=$232.68) → $23.27 | FRESH VIU 2026-07-10: pct_parts re-proven: 10% of qty4 x 42.69 = 170.76 -> $17.08 | WORDING+VIU 2026-07-13: %-of-parts base carried; build labels.",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "FD-PART-005",
   "area": "Work Order / Parts — Part-line Fee/Discount",
   "story_ref": "§5-R13",
-  "title": "Verify a part-line adjustment stays attached when the part changes from requested to received",
+  "title": "Verify a part-line fee/discount stays attached when the part changes from requested to received",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "Work Order Lines: Create & Edit + See Financial Data + Fees & Discounts flag ON",
@@ -791,24 +791,24 @@
   ],
   "steps": [
    "1. Pick / receive the requested part so it becomes a received part.",
-   "2. Observe the adjustment on the now-received part."
+   "2. Look at the fee/discount on the now-received part."
   ],
   "expected": [
-   "1. The adjustment stays attached to the part after requested → received (§5-R13).",
-   "2. It continues to resolve against quantity × sell price.",
-   "3. A received part cannot be re-pointed back to a request (§5-R13)."
+   "1. The fee/discount stays attached to the part after it goes from requested to received.",
+   "2. It keeps working out against quantity x sell price.",
+   "3. A received part cannot be pointed back to a request."
   ],
   "design_ref": "part row / Fees & Discounts column (§5)",
   "viu_status": "VIU-Pending",
-  "notes": "Companion to FD-PART-003 (adding to a requested part). | VIU qb batch-1 (2026-07-08): Requested->received attachment not driven. Batch-2. | FRESH VIU 2026-07-10: STILL PENDING: requested->received transition unreachable — line-create 500s env-wide, make-request rejected on completed lines, receiving subsystem needs a fresh order",
+  "notes": "Companion to FD-PART-003 (adding to a requested part). | VIU qb batch-1 (2026-07-08): Requested->received attachment not driven. Batch-2. | FRESH VIU 2026-07-10: STILL PENDING: requested->received transition unreachable — line-create 500s env-wide, make-request rejected on completed lines, receiving subsystem needs a fresh order | WORDING+VIU 2026-07-13: BLOCKED/PENDING: requested→received transition blocked by the env-wide WO line-create 500 + completed-line part-request lock — cannot drive the transition. Build labels applied.",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "FD-PART-006",
   "area": "Work Order / Parts — Part-line Fee/Discount",
   "story_ref": "§5-R12",
-  "title": "Verify a part-line adjustment resolves to $0.00 when the part is declined or returned with no quantity left",
+  "title": "Verify a part-line fee/discount works out to $0.00 when the part is declined or returned with no quantity left",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "Work Order Lines: Create & Edit + See Financial Data + Fees & Discounts flag ON",
@@ -818,25 +818,25 @@
   ],
   "steps": [
    "1. Decline the part (or return it so no quantity is left).",
-   "2. Observe the adjustment's resolved amount.",
-   "3. Re-authorize the part (make it billable again).",
-   "4. Observe the resolved amount again."
+   "2. Look at the fee/discount's amount.",
+   "3. Make the part billable again.",
+   "4. Look at the amount again."
   ],
   "expected": [
-   "1. While the part is not billable, the adjustment resolves to $0.00 but stays visible (§5-R12).",
-   "2. When the part becomes billable (authorized, not declined, quantity left) it resolves to its non-zero amount again."
+   "1. While the part is not billable, the fee/discount works out to $0.00 but stays visible.",
+   "2. When the part is billable again (authorized, not declined, quantity left) it works out to its non-zero amount."
   ],
   "design_ref": "part inline rows (§2b)",
   "viu_status": "VIU-Verified",
-  "notes": "A part is billable when authorized, not declined, and still has quantity left (§5-R12). | VIU qb batch-1 (2026-07-08): Declined/returned-part $0 resolve not driven (labor-line analogue verified). Batch-2. | FRESH VIU 2026-07-10: prior decline->$0 (batch-4) stands; decline flip blocked today (staged-parts lock)",
+  "notes": "A part is billable when authorized, not declined, and still has quantity left (§5-R12). | VIU qb batch-1 (2026-07-08): Declined/returned-part $0 resolve not driven (labor-line analogue verified). Batch-2. | FRESH VIU 2026-07-10: prior decline->$0 (batch-4) stands; decline flip blocked today (staged-parts lock) | WORDING+VIU 2026-07-13: Declined/returned part $0 carried.",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "FD-PART-007",
   "area": "Work Order / Parts — Part-line Fee/Discount",
   "story_ref": "S3-R2",
-  "title": "Verify deleting a part removes any adjustment pointing to it",
+  "title": "Verify deleting a part removes any fee/discount pointing to it",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "Work Order Lines: Create & Edit + See Financial Data + Fees & Discounts flag ON",
@@ -850,20 +850,20 @@
   ],
   "expected": [
    "1. The part is removed.",
-   "2. Any adjustment pointing to that part is also removed (S3-R2).",
-   "3. The 'Fees & Discounts (N)' count and totals decrease accordingly."
+   "2. Any fee/discount pointing to that part is also removed.",
+   "3. The 'Fees & Discounts (N)' count and totals go down accordingly."
   ],
   "design_ref": "part row (§2b)",
   "viu_status": "VIU-Verified",
-  "notes": "Same delete-cascade behavior as labor lines (FD-LABOR-006). | VIU qb batch-1 (2026-07-08): Part deletion cascade not driven (line-delete cascade verified for labor). Batch-2. | FRESH VIU 2026-07-10: prior delete-cascade (batch-4) stands; not re-seedable today",
+  "notes": "Same delete-cascade behavior as labor lines (FD-LABOR-006). | VIU qb batch-1 (2026-07-08): Part deletion cascade not driven (line-delete cascade verified for labor). Batch-2. | FRESH VIU 2026-07-10: prior delete-cascade (batch-4) stands; not re-seedable today | WORDING+VIU 2026-07-13: Delete-part cascades; carried; build labels.",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "FD-PART-008",
   "area": "Work Order / Parts — Part-line Fee/Discount",
   "story_ref": "§5-R14",
-  "title": "Verify per-item Flat Amount edge: quantity 1 resolves to the base amount (−$5.00)",
+  "title": "Verify the per-item flat amount edge: quantity 1 is the base amount (−$5.00)",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "Work Order Lines: Create & Edit + See Financial Data + Fees & Discounts flag ON",
@@ -872,19 +872,19 @@
    "2. An open work order with a part of quantity 1."
   ],
   "steps": [
-   "1. Open the part's ⋯ menu and add a Flat Amount discount of $5.00.",
-   "2. Save and read the resolved amount.",
-   "3. Change the part quantity from 1 to 4 and re-check the resolved amount."
+   "1. Open the part's ⋮ menu and add a flat-amount discount of $5.00.",
+   "2. Save and read the amount.",
+   "3. Change the part quantity from 1 to 4 and re-check the amount."
   ],
   "expected": [
-   "1. At quantity 1 the resolved discount is −$5.00 ($5.00 × 1; §5-R14).",
-   "2. After changing the quantity to 4 the adjustment re-resolves to −$20.00 ($5.00 × 4)."
+   "1. At quantity 1 the discount is −$5.00 ($5.00 x 1).",
+   "2. After the quantity changes to 4 it re-works to −$20.00 ($5.00 x 4)."
   ],
   "design_ref": "part inline rows (§2b)",
   "viu_status": "VIU-Verified",
-  "notes": "Confirms quantity changes re-resolve a Part Line Flat Amount adjustment (§5-R14). | VIU qb batch-1 (2026-07-08): Qty-1 per-item edge pending with FD-PART-002. | FRESH VIU 2026-07-10: qty-1 flat = base amount (batch); per-item semantics re-proven today at qty 4",
+  "notes": "Confirms quantity changes re-resolve a Part Line Flat Amount adjustment (§5-R14). | VIU qb batch-1 (2026-07-08): Qty-1 per-item edge pending with FD-PART-002. | FRESH VIU 2026-07-10: qty-1 flat = base amount (batch); per-item semantics re-proven today at qty 4 | WORDING+VIU 2026-07-13: Per-item edge carried; build labels.",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "FD-INLINE-001",
