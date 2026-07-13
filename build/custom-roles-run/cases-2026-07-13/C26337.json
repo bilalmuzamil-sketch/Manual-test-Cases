@@ -5,7 +5,8 @@
   "custom_preconds": "<ol>\n<li>You are on the Create Role page and a role with the same name and identical permissions already exists.</li>\n</ol>",
   "custom_steps": "<ol>\n<li>Enter the same name and identical permissions as the existing role.</li>\n<li>Click Create.</li>\n</ol>",
   "custom_expected": "<p>Instead of an error, a confirmation appears: 'Similar role already exists', explaining a role with identical permissions already exists, with Cancel and Create Anyway buttons.</p>\n<p>Your entered name and selections are kept.</p>\n",
-  "viu_status": "Blocked-UI behavior; 'Similar role already exists' + 'Create Anyway' build-verified",
-  "evidence": "SimilarRoleWarningModal strings + 'Create anyway' confirmed in build.",
-  "fresh_run": "2026-07-13"
+  "viu_status": "VIU-Verified",
+  "evidence": "UI: creating a role with the same name+permissions shows dialog \"Similar role already exists — A role \\\"ZZAUTOTEST RoleA\\\" with identical permissions already exists. You can reuse the existing role or create a new one anyway.\" [Cancel | Create Anyway]. screenshot similar-role-warning.",
+  "fresh_run": "2026-07-13",
+  "behavioral_run": "2026-07-13"
 }

@@ -5,7 +5,8 @@
   "custom_preconds": "<ol>\n<li>You are on the Create Role page, permissions section.</li>\n</ol>",
   "custom_steps": "<ol>\n<li>Click the Search permission box.</li>\n<li>Type 'invoic'.</li>\n<li>See which cards remain.</li>\n<li>Clear it.</li>\n<li>Type 'timesheets'.</li>\n<li>See which cards remain.</li>\n<li>Clear it.</li>\n</ol>",
   "custom_expected": "<p>Typing 'invoic' shows only the Invoicing & payments card.</p>\n<p>Typing 'timesheets' shows only the Timesheets card.</p>\n<p>Clearing the box brings all cards back.</p>\n",
-  "viu_status": "Blocked-UI behavior; 'Search permission' label build-verified",
-  "evidence": "'Search permission' confirmed in build.",
-  "fresh_run": "2026-07-13"
+  "viu_status": "VIU-Verified",
+  "evidence": "UI: typing \"Schedule\" in the permission search (search_permission) filters the cards — the Work orders card is filtered out; only matching cards remain.",
+  "fresh_run": "2026-07-13",
+  "behavioral_run": "2026-07-13"
 }

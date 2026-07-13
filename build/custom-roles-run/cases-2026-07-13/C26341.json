@@ -4,8 +4,9 @@
   "title": "The template picker descriptions differ from the Roles list descriptions",
   "custom_preconds": "<ol>\n<li>You are on the Roles list and open the template picker.</li>\n</ol>",
   "custom_steps": "<ol>\n<li>For each template, read the description under the name.</li>\n<li>Compare with the Description shown for the same role on the Roles list.</li>\n</ol>",
-  "custom_expected": "<p>Each template shows a short, action-oriented description.</p>\n<p>These short descriptions differ from the fuller sentences in the Roles list Description column \u2014 they come from two different copy sources.</p>\n<p>(Confirm the exact picker description text live.)</p>\n",
-  "viu_status": "Blocked-UI (needs live template picker); picker text not re-confirmed this pass",
-  "evidence": "Two copy sources (picker short vs list sentence). Exact picker strings need live confirm.",
-  "fresh_run": "2026-07-13"
+  "custom_expected": "<p>Each template shows a short, action-oriented description.</p>\n<p>These short descriptions differ from the fuller sentences in the Roles list Description column — they come from two different copy sources.</p>\n<p>(Confirm the exact picker description text live.)</p>\n",
+  "viu_status": "Deviation",
+  "evidence": "UI: the template picker descriptions are IDENTICAL to the Roles list descriptions (e.g. Admin \"Full system access\", Foreman \"Oversees technicians and work orders\") — they do not differ. Premise stale.",
+  "fresh_run": "2026-07-13",
+  "behavioral_run": "2026-07-13"
 }

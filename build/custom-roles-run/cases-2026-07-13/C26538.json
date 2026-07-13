@@ -5,7 +5,8 @@
   "custom_preconds": "<ol>\n<li>A custom role already exists.</li>\n</ol>",
   "custom_steps": "<ol>\n<li>Start creating a new role.</li>\n<li>Give it the same permissions as the existing role.</li>\n<li>Click Create.</li>\n<li>Look at the warning.</li>\n</ol>",
   "custom_expected": "<p>A warning appears that a similar role with identical permissions already exists.</p>\n<p>You can still continue with the Create anyway button, or cancel.</p>\n<p>Note: the build warns about identical permissions (a soft warning you can override), not about a duplicate role name; a hard duplicate-name block was not seen in the build.</p>\n",
-  "viu_status": "Blocked-UI behavior; 'similar role ... identical permissions' + 'Create anyway' build-verified",
-  "evidence": "SimilarRoleWarningModal strings ('Similar role already exists', 'with identical permissions already exists.', 'Create anyway') confirmed in build. Original 'duplicate name' premise corrected.",
-  "fresh_run": "2026-07-13"
+  "viu_status": "VIU-Verified",
+  "evidence": "UI: creating a role with the same permissions as an existing role shows \"Similar role already exists\" warning with \"Create Anyway\" (SimilarRoleWarningModal, keyed on identical permissions).",
+  "fresh_run": "2026-07-13",
+  "behavioral_run": "2026-07-13"
 }

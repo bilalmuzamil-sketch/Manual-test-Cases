@@ -5,7 +5,8 @@
   "custom_preconds": "<ol>\n<li>You are on the Roles & Permissions list.</li>\n</ol>",
   "custom_steps": "<ol>\n<li>Find the Time Clock User row.</li>\n<li>Look at the role name column.</li>\n<li>Look at the Actions column.</li>\n<li>Click the eye icon.</li>\n</ol>",
   "custom_expected": "<p>A lock icon shows next to Time Clock User.</p>\n<p>The Actions column has only the eye icon.</p>\n<p>The eye opens a read-only Permission Summary.</p>\n",
-  "viu_status": "Blocked-UI (needs live list); Time Clock User editable=false verified",
-  "evidence": "Time Clock User editable=false (live API).",
-  "fresh_run": "2026-07-13"
+  "viu_status": "VIU-Verified",
+  "evidence": "UI: Time Clock User row shows lock icon and only the visibility (eye) icon — non-editable.",
+  "fresh_run": "2026-07-13",
+  "behavioral_run": "2026-07-13"
 }

@@ -5,7 +5,8 @@
   "custom_preconds": "<ol>\n<li>You are on the Create Role page with a valid Role name entered.</li>\n</ol>",
   "custom_steps": "<ol>\n<li>Leave all permissions off.</li>\n<li>Look at the Create button.</li>\n<li>Turn on one permission.</li>\n</ol>",
   "custom_expected": "<p>With no permissions on, the Create button is disabled and no message is shown.</p>\n<p>Turning on at least one permission enables Create.</p>\n",
-  "viu_status": "Blocked-UI (needs live role editor / roles list)",
-  "evidence": "Needs live editor.",
-  "fresh_run": "2026-07-13"
+  "viu_status": "VIU-Verified",
+  "evidence": "UI: with zero permissions (and/or blank name) the Create button (submit_create_role) is DISABLED, no inline message.",
+  "fresh_run": "2026-07-13",
+  "behavioral_run": "2026-07-13"
 }

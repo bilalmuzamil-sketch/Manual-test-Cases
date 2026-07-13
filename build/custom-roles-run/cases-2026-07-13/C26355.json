@@ -5,7 +5,8 @@
   "custom_preconds": "<ol>\n<li>You are on the Roles & Permissions list.</li>\n<li>The Senior Service Advisor row is visible.</li>\n</ol>",
   "custom_steps": "<ol>\n<li>Find the Senior Service Advisor row.</li>\n<li>Click the eye icon in the Actions column.</li>\n<li>Look at the window that opens.</li>\n<li>Scroll through every part of it.</li>\n<li>Try to click any checkbox or toggle inside it.</li>\n<li>Close the window.</li>\n</ol>",
   "custom_expected": "<p>A window opens.</p>\n<p>It shows the add/edit/delete areas, the Page Access toggles, the Settings sub-toggles, the Work orders sub-settings (View mode, Review work orders, Pick parts, Order parts), and the Cross-Cutting Toggles (See Financial Data, View and Manage AP/AR Data, View History Logs) for Senior Service Advisor.</p>\n<p>Everything in the window is read-only; clicking does nothing.</p>\n<p>The window closes when you close it.</p>\n",
-  "viu_status": "Blocked-UI (needs live Roles list); summary groups build-verified",
-  "evidence": "Read-only Permission Summary groups confirmed from build role-editor structure. Eye-icon click needs live Roles list.",
-  "fresh_run": "2026-07-13"
+  "viu_status": "VIU-Verified",
+  "evidence": "UI: the eye (visibility) icon opens the read-only Permission Summary (\"View Permissions\") at /roles-permissions/{id}/summary — no Save/Delete/edit controls.",
+  "fresh_run": "2026-07-13",
+  "behavioral_run": "2026-07-13"
 }

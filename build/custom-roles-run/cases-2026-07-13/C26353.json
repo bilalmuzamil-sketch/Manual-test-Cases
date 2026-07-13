@@ -5,7 +5,8 @@
   "custom_preconds": "<ol>\n<li>You are on the Roles & Permissions list.</li>\n</ol>",
   "custom_steps": "<ol>\n<li>For each of the 11 system roles, look at the Actions column.</li>\n<li>For the editable system roles that have a three-dot menu (for example Service Manager, Foreman), open the menu.</li>\n<li>Look at the menu options.</li>\n</ol>",
   "custom_expected": "<p>Administrator, Office User and Time Clock User show only the eye icon (no three-dot menu).</p>\n<p>The other editable system roles show a pencil, an eye and a three-dot menu.</p>\n<p>None of the three-dot menus has a Delete option.</p>\n",
-  "viu_status": "Blocked-UI (needs live Roles list)",
-  "evidence": "System-role deletability=false confirmed in roles API; menu contents need live list.",
-  "fresh_run": "2026-07-13"
+  "viu_status": "VIU-Verified",
+  "evidence": "UI: editable system role 3-dot shows only View Permissions (no Delete); non-editable system roles have no 3-dot at all. No Delete anywhere for system roles.",
+  "fresh_run": "2026-07-13",
+  "behavioral_run": "2026-07-13"
 }

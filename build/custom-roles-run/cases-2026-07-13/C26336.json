@@ -5,7 +5,8 @@
   "custom_preconds": "<ol>\n<li>You are on the Create Role page with a valid name and at least one permission.</li>\n</ol>",
   "custom_steps": "<ol>\n<li>Click Create.</li>\n</ol>",
   "custom_expected": "<p>A success message 'Role created successfully.' appears, the app returns to the Roles & Permissions list, and the new role appears with type Custom and 0 users.</p>\n",
-  "viu_status": "Blocked-UI behavior; 'Role created successfully.' build-verified",
-  "evidence": "Toast build-verified.",
-  "fresh_run": "2026-07-13"
+  "viu_status": "VIU-Verified",
+  "evidence": "UI: creating ZZAUTOTEST RoleA (name + 1 perm) shows toast \"Role created successfully.\" and returns to the Roles & Permissions list.",
+  "fresh_run": "2026-07-13",
+  "behavioral_run": "2026-07-13"
 }

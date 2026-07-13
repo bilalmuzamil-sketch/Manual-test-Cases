@@ -4,8 +4,9 @@
   "title": "Deletion and duplication behavior on the roles list",
   "custom_preconds": "<ol>\n<li>You are on the Roles & Permissions list with both system and custom roles.</li>\n</ol>",
   "custom_steps": "<ol>\n<li>Open the three-dot menu on a system role.</li>\n<li>Open the three-dot menu on a custom role.</li>\n<li>Look for Delete and for a Duplicate option in each.</li>\n</ol>",
-  "custom_expected": "<p>System roles cannot be deleted (no Delete in their menu).</p>\n<p>Custom roles with 0 users can be deleted.</p>\n<p>The build has a Duplicate Role feature \u2014 confirm live where Duplicate appears; the older 'no Duplicate action exists anywhere' expectation may be out of date.</p>\n",
-  "viu_status": "Blocked-UI; NOTE build has a Duplicate Role route \u2014 original 'no Duplicate' premise may be stale",
-  "evidence": "RolesPermissionsDuplicate route exists in the build. System roles deletable=false (live API).",
-  "fresh_run": "2026-07-13"
+  "custom_expected": "<p>System roles cannot be deleted (no Delete in their menu).</p>\n<p>Custom roles with 0 users can be deleted.</p>\n<p>The build has a Duplicate Role feature — confirm live where Duplicate appears; the older 'no Duplicate action exists anywhere' expectation may be out of date.</p>\n",
+  "viu_status": "VIU-Verified",
+  "evidence": "UI: list supports deletion (Delete in custom-role 3-dot -> Confirmation dialog) and duplication (roles-permissions/:id/duplicate route reachable, opens Create Role prefilled).",
+  "fresh_run": "2026-07-13",
+  "behavioral_run": "2026-07-13"
 }
