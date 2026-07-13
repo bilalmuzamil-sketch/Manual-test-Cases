@@ -1,54 +1,101 @@
-# Custom Roles — Wording + Behavioral VIU Blockers & Findings Tracker — 2026-07-13
+# Custom Roles — Behavioral VIU FINAL Blockers & Findings — 2026-07-13
 
-Per-case status source: `cases-2026-07-13/*.json`. Workbook: `CustomRoles_WordingVIU_2026-07-13.xlsx` (Case ID + TestRail Link, Rule 8).
+Per-case status source: `cases-2026-07-13/*.json`. Workbook: `CustomRoles_WordingVIU_2026-07-13.xlsx` (Case ID + clickable TestRail Link, Rule 8).
 
-**Tally (252 core):** VIU-Verified 197 · Blocked-UI 44 · Deviation/Finding 11. Behavioral pass = boot2 headless; no TestRail writes.
+## FINAL TALLY (252 core cases): VIU-Verified 203 · Blocked-UI 38 · Deviation/Finding 11
 
-## Deviations / build-findings
+Behavioral VIU driven headless via boot2 across 8 rounds. Of the original 214 Blocked-UI (wording already done + pushed to TestRail), 176 resolved (Verified/Deviation); 38 remain as genuine harness/environment residue for manual or second-real-user coverage. **No TestRail writes in the behavioral pass.**
+
+## Deviations / build-findings (route to dev / product)
 
 | Case | Link | Finding |
 |---|---|---|
-| C26339 | [link](https://shopview.testrail.io/index.php?/cases/view/26339) | UI: the build does NOT strictly enforce a unique role name — the duplicate-detection dialog keys on IDENTICAL PERMISSIONS ("identical permissions already exists") and offers "Create Anyway" to override. Name uniqueness is not enforced as the case premise state |
+| C26339 | [link](https://shopview.testrail.io/index.php?/cases/view/26339) | UI: the build does NOT strictly enforce a unique role name — the duplicate-detection dialog keys on IDENTICAL PERMISSIONS ("identical permissions already exists") and offers "Create Anyway" to override. Name uniqueness is not enforced as th |
 | C26340 | [link](https://shopview.testrail.io/index.php?/cases/view/26340) | UI: the template picker uses the SAME role names as the Roles list (Admin, Foreman, Office User, ...) — not shorter names. Premise stale. |
 | C26341 | [link](https://shopview.testrail.io/index.php?/cases/view/26341) | UI: the template picker descriptions are IDENTICAL to the Roles list descriptions (e.g. Admin "Full system access", Foreman "Oversees technicians and work orders") — they do not differ. Premise stale. |
-| C26387 | [link](https://shopview.testrail.io/index.php?/cases/view/26387) | UI (RUN331 FAIL PERSISTS): assigned Tech a custom role with Work Orders Create&Edit + Customers View but NO Customers Create&Edit. In the New Work Order modal the "Add" (new customer) affordance next to the Customer field is SHOWN and ENABLED. Expected: hidden |
-| C26388 | [link](https://shopview.testrail.io/index.php?/cases/view/26388) | UI (RUN331 FAIL PERSISTS): same role (Customers Create&Edit OFF). In the New Work Order modal, once a customer is selected, the "Add" (new asset) affordance next to the Asset field is SHOWN and ENABLED. (Before selecting a customer it is disabled only due to t |
-| C26424 | [link](https://shopview.testrail.io/index.php?/cases/view/26424) | UI: ticking Invoicing & payments Delete/Reverse while View and Manage AP/AR Data is OFF shows NO prompt — invoicing Delete just turns ON and AP/AR stays off. The build gates Invoicing on See Financial Data (per the SFD-disable dialog), not on AP/AR. Case premi |
-| C26459 | [link](https://shopview.testrail.io/index.php?/cases/view/26459) | UI: with a tech-view role that also has See Financial Data ON (ZZAUTOTEST TechSFD), the WO lines screen SHOWS the Rate ($100), Margin, Total columns and labor $150 — labor rate is NOT hidden by tech view. With plain Technician (SFD off) money+rate are hidden.  |
-| C26464 | [link](https://shopview.testrail.io/index.php?/cases/view/26464) | UI: money-by-SFD principle HOLDS (User A = plain Technician, SFD off -> no $/prices anywhere; User B = TechSFD, SFD on -> parts pricing + totals shown). BUT the sub-claim that labor rate columns/fields stay hidden in tech view with SFD on is NOT supported — Us |
+| C26387 | [link](https://shopview.testrail.io/index.php?/cases/view/26387) | UI (RUN331 FAIL PERSISTS): assigned Tech a custom role with Work Orders Create&Edit + Customers View but NO Customers Create&Edit. In the New Work Order modal the "Add" (new customer) affordance next to the Customer field is SHOWN and ENABL |
+| C26388 | [link](https://shopview.testrail.io/index.php?/cases/view/26388) | UI (RUN331 FAIL PERSISTS): same role (Customers Create&Edit OFF). In the New Work Order modal, once a customer is selected, the "Add" (new asset) affordance next to the Asset field is SHOWN and ENABLED. (Before selecting a customer it is di |
+| C26424 | [link](https://shopview.testrail.io/index.php?/cases/view/26424) | UI: ticking Invoicing & payments Delete/Reverse while View and Manage AP/AR Data is OFF shows NO prompt — invoicing Delete just turns ON and AP/AR stays off. The build gates Invoicing on See Financial Data (per the SFD-disable dialog), not  |
+| C26459 | [link](https://shopview.testrail.io/index.php?/cases/view/26459) | UI: with a tech-view role that also has See Financial Data ON (ZZAUTOTEST TechSFD), the WO lines screen SHOWS the Rate ($100), Margin, Total columns and labor $150 — labor rate is NOT hidden by tech view. With plain Technician (SFD off) mon |
+| C26464 | [link](https://shopview.testrail.io/index.php?/cases/view/26464) | UI: money-by-SFD principle HOLDS (User A = plain Technician, SFD off -> no $/prices anywhere; User B = TechSFD, SFD on -> parts pricing + totals shown). BUT the sub-claim that labor rate columns/fields stay hidden in tech view with SFD on i |
 | C26529 | [link](https://shopview.testrail.io/index.php?/cases/view/26529) | Route metadata: Integrations gates IBS/Open API/QuickBooks; Finance gates Payment Methods/Taxes (no QuickBooks). QuickBooks is under Integrations in the build. |
 | C26530 | [link](https://shopview.testrail.io/index.php?/cases/view/26530) | QuickBooks gated by settingsIntegrations in the build. |
 | C26531 | [link](https://shopview.testrail.io/index.php?/cases/view/26531) | settingsIntegrations gates IBS/Open API/QuickBooks; the Settings 'Integrations' sub-toggle exists. Integrations is present in the build. |
 
-## Still Blocked-UI — by section (precise reason per case in its JSON)
+## Genuinely-blocked residue — MANUAL / SECOND-ACCOUNT coverage
 
-| Section | Area | Count | Cases |
-|---|---|---:|---|
-| 3528 | Roles List | 1 | C26317 |
-| 3532 | Permission Summary | 1 | C26356 |
-| 3534 | Work Orders | 4 | C26379 C26380 C27873 C29435 |
-| 3535 | WO Lines | 3 | C26391 C27866 C27870 |
-| 3536 | Schedule | 3 | C26395 C26396 C27867 |
-| 3537 | Customer Mgmt | 4 | C26399 C26400 C26401 C26405 |
-| 3538 | Parts Dept | 4 | C26412 C26415 C26418 C26419 |
-| 3539 | Invoicing & Payments | 6 | C26422 C26423 C26427 C27871 C29434 C29438 |
-| 3540 | Timesheets | 1 | C26431 |
-| 3541 | Page Access | 4 | C26437 C26438 C26439 C26440 |
-| 3542 | Settings Access | 1 | C26450 |
-| 3543 | View Mode | 4 | C26460 C26461 C26462 C26466 |
-| 3545 | AP/AR Data | 1 | C26479 |
-| 3547 | Staff Role Assign | 3 | C26490 C26491 C26493 |
-| 3550 | Staff Record Settings | 2 | C26526 C26527 |
-| 3552 | User Feedback | 1 | C26539 |
-| 3553 | Cross-Permission | 1 | C26550 |
+Per-case precise reason is in each `cases-2026-07-13/C*.json` `viu_status`. Grouped by root cause:
 
-## Known harness limitations (manual / real-browser residue)
-- **Edit Staff Member profile editor** not openable headless (C26356/C26450/C26490/C26491).
-- **Schedule calendar** drag/slot create/edit/delete not triggerable headless (C26395/C26396/C27867).
-- **Payment/return/terminal & timesheet-entry editors** require deep in-page dialogs not reachable (C26422/C26423/C26427/C29434/C29438/C27871/C26431/C26391/C27866/C27870/C29435).
-- **Last-Administrator guard** can't be tested (89 admins on shared org) (C26550).
+### Staff-editor / staff-record — needs real browser or 2nd real user account — 9
+| Case | Link | Title |
+|---|---|---|
+| C26356 | [link](https://shopview.testrail.io/index.php?/cases/view/26356) | You can view a role's Permission Summary from Edit Staff Member using th |
+| C26450 | [link](https://shopview.testrail.io/index.php?/cases/view/26450) | View/Manage Wages ON lets the user manage wages |
+| C26490 | [link](https://shopview.testrail.io/index.php?/cases/view/26490) | The Staff role dropdown groups roles into System Roles and Custom Roles |
+| C26491 | [link](https://shopview.testrail.io/index.php?/cases/view/26491) | The View Permissions button next to the role selector opens the Permissi |
+| C26493 | [link](https://shopview.testrail.io/index.php?/cases/view/26493) | If a role change fails, the user keeps their previous role |
+| C26526 | [link](https://shopview.testrail.io/index.php?/cases/view/26526) | Whether a technician can be scheduled depends on their department, not t |
+| C26527 | [link](https://shopview.testrail.io/index.php?/cases/view/26527) | Clocking in on a work order line depends on the per-staff Time Clock set |
+| C26539 | [link](https://shopview.testrail.io/index.php?/cases/view/26539) | Reassigning a staff member's role updates the row with no success messag |
+| C27873 | [link](https://shopview.testrail.io/index.php?/cases/view/27873) | Edit/delete options on another user's customer note are hidden without t |
 
-## Resume conditions
-- Tooling `/tmp/custom-roles/beh0713/` (mkrole-api.mjs + permmap.json); assign Tech via /api/staff/{6fb22c1b-...}/change; boot2('tech'); restore Time Clock a0359055-....
-- SEEDER TACTIC: admin as second identity to seed state, then observe gate.
-- GOTCHAs: /parts/part-sales direct-goto redirect (nav-click); /roles-permissions/{id}/edit route unguarded.
+### Calendar drag/slot — needs real browser — 3
+| Case | Link | Title |
+|---|---|---|
+| C26395 | [link](https://shopview.testrail.io/index.php?/cases/view/26395) | Schedule Create & Edit allows creating, changing and dragging appointmen |
+| C26396 | [link](https://shopview.testrail.io/index.php?/cases/view/26396) | Schedule Delete allows removing appointments |
+| C27867 | [link](https://shopview.testrail.io/index.php?/cases/view/27867) | A Schedule Create & Edit only role can open 'Assign existing work order' |
+
+### In-page payment / terminal / return / financial / timesheet-entry editors — needs real browser — 9
+| Case | Link | Title |
+|---|---|---|
+| C26401 | [link](https://shopview.testrail.io/index.php?/cases/view/26401) | Customers Delete does NOT let the user delete customer payments (that ne |
+| C26422 | [link](https://shopview.testrail.io/index.php?/cases/view/26422) | Invoicing & payments Delete lets the user delete payments and void trans |
+| C26423 | [link](https://shopview.testrail.io/index.php?/cases/view/26423) | Deleting a customer payment needs Invoicing & payments Delete, not Custo |
+| C26427 | [link](https://shopview.testrail.io/index.php?/cases/view/26427) | The Send to Terminal action needs Invoicing & payments Create & Edit |
+| C27871 | [link](https://shopview.testrail.io/index.php?/cases/view/27871) | Deleting or cancelling a return is controlled by Invoicing & payments De |
+| C29434 | [link](https://shopview.testrail.io/index.php?/cases/view/29434) | Send to Terminal needs Invoicing & payments Create & Edit AND Customer p |
+| C29438 | [link](https://shopview.testrail.io/index.php?/cases/view/29438) | Invoicing & payments Create & Edit gives the edit control on the work or |
+| C26479 | [link](https://shopview.testrail.io/index.php?/cases/view/26479) | View and Manage AP/AR Data ON allows paying several invoices at once fro |
+| C26431 | [link](https://shopview.testrail.io/index.php?/cases/view/26431) | Timesheets Create & Edit lets the user edit entries |
+
+### Portal / Send-to-Portal surfaces not exposed in this environment — 5
+| Case | Link | Title |
+|---|---|---|
+| C26437 | [link](https://shopview.testrail.io/index.php?/cases/view/26437) | Customer portal ON lets the user manage the customer portal |
+| C26438 | [link](https://shopview.testrail.io/index.php?/cases/view/26438) | Customer portal OFF hides the customer portal from navigation |
+| C26439 | [link](https://shopview.testrail.io/index.php?/cases/view/26439) | Billing Portal ON lets the user manage the billing portal |
+| C26440 | [link](https://shopview.testrail.io/index.php?/cases/view/26440) | Billing Portal OFF hides the Billing Portal item in the Settings area |
+| C26466 | [link](https://shopview.testrail.io/index.php?/cases/view/26466) | Full View: a user who can approve lines sees the 'Send to Portal' button |
+
+### Parts delete/restock detail-page affordance not reachable in harness — 4
+| Case | Link | Title |
+|---|---|---|
+| C26412 | [link](https://shopview.testrail.io/index.php?/cases/view/26412) | Part sales Delete lets the user delete part sales and reverse part sales |
+| C26415 | [link](https://shopview.testrail.io/index.php?/cases/view/26415) | Catalog and Inventory Delete removes catalog parts |
+| C26418 | [link](https://shopview.testrail.io/index.php?/cases/view/26418) | Vendor and order management Delete lets the user delete vendors and purc |
+| C26419 | [link](https://shopview.testrail.io/index.php?/cases/view/26419) | Returning a part to inventory (restocking) is controlled by Vendor and o |
+
+### Seeded line-state ops (review-authorization / pick-state / core / set-line-status / WOL delete / qty) — 6
+| Case | Link | Title |
+|---|---|---|
+| C26379 | [link](https://shopview.testrail.io/index.php?/cases/view/26379) | The Review work orders sub-toggle controls the Review action on work ord |
+| C26380 | [link](https://shopview.testrail.io/index.php?/cases/view/26380) | Pick parts needs only Work orders View, not Create & Edit |
+| C26391 | [link](https://shopview.testrail.io/index.php?/cases/view/26391) | Work order lines Delete allows removing lines |
+| C27866 | [link](https://shopview.testrail.io/index.php?/cases/view/27866) | A default Technician (with Work order lines Create & Edit) can bulk-comp |
+| C27870 | [link](https://shopview.testrail.io/index.php?/cases/view/27870) | Work order lines Create & Edit lets the user mark a core OK/Not-OK and a |
+| C29435 | [link](https://shopview.testrail.io/index.php?/cases/view/29435) | A Pick/Order Parts role can edit the Quantity on the Part Requests tab |
+
+### Tech-view parts-request form field-count — needs real browser — 1
+| Case | Link | Title |
+|---|---|---|
+| C26460 | [link](https://shopview.testrail.io/index.php?/cases/view/26460) | Tech view: the parts request form shows fewer fields |
+
+### Last-Administrator guard — 89 admins on shared org, cannot create last-admin state — 1
+| Case | Link | Title |
+|---|---|---|
+| C26550 | [link](https://shopview.testrail.io/index.php?/cases/view/26550) | The last Administrator cannot be left with zero users |
+
+## Tooling / resume
+- `/tmp/custom-roles/beh0713/` (adm/boot2/assign/mkrole-api/setstatus + permmap.json). Assign Tech via /api/staff/{6fb22c1b-...}/change; boot2('tech'); restore Time Clock a0359055-....
+- GOTCHAs: /parts/part-sales direct-goto redirect (use in-app nav-click); /roles-permissions/{id}/edit route unguarded (FE-gap).

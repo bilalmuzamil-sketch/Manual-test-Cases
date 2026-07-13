@@ -11,8 +11,16 @@ chromium at `/opt/pw-browsers/chromium-1194` through `$HTTPS_PROXY`. Tooling com
 resides in `/tmp/custom-roles/beh0713/` (adm.mjs, boot2.mjs, drive.mjs, click.mjs,
 cascade.mjs, capture.mjs, setstatus.mjs). Screenshots:
 `screenshots/behavioral-viu-2026-07-13/`.
-- **Behavioral tally (252 core, after round 7): VIU-Verified 197 · Blocked-UI 44 · Deviation/Finding 11.**
-  Round 7: §3553 cross-permission (5 verified: all-off/all-on/customer-pick/page-access-override/cascade; C26550 last-admin blocked=89 admins), §3546 History Logs (2: gated by viewHistoryLogs), §3540 Timesheets (4: read-only view / activities report / no-nav / My-Timesheets for clockable), §3536 Schedule (3 blocked: calendar drag not headless). Residue is now mostly known harness limitations (staff-editor, calendar drag, in-page payment/return/timesheet-entry editors, last-admin guard).
+- **FINAL behavioral tally (252 core, after 8 rounds): VIU-Verified 203 · Blocked-UI 38 · Deviation/Finding 11.**
+  Of the original 214 Blocked-UI (wording done + pushed), 176 resolved (Verified/Deviation); 38 remain as
+  genuine harness/environment residue for MANUAL or SECOND-REAL-USER coverage. Full categorized residue list +
+  per-case reasons in `CustomRoles_Blockers_Tracker_2026-07-13.md`. Residue root causes: staff-editor/staff-record
+  not openable headless (9), calendar drag/slot (3), in-page payment/terminal/return/financial/timesheet-entry
+  editors (9), portal/Send-to-Portal surfaces not exposed in this env (5), parts delete/restock detail-page (4),
+  seeded line-state ops review-auth/pick/core/set-line-status/WOL-delete/qty (6), tech-view parts-request form (1),
+  last-Administrator guard 89-admins (1). **No TestRail writes in the entire behavioral pass.**
+  Round 8: Customer create/delete (C26399/400/405), App-Settings-gates-Roles&Perms (C26317), tech-view line
+  edit rules (C26461/C26462); portals + Financial-Info-edit + payment-delete marked residue.
 - **Round-2 new deviations:** C26459 & C26464 — labor rate is NOT hidden by tech view when
   See Financial Data is ON (Rate/Margin/Total + labor $ shown); labor-rate visibility
   follows SFD, not view mode (caveat: test role also had WO Create&Edit — dev to confirm).
