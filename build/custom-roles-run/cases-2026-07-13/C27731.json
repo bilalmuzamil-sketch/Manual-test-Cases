@@ -1,0 +1,12 @@
+{
+  "case_id": 27731,
+  "section_id": 3549,
+  "title": "Legacy 'Owner' users become 'Administrator' after migration (Owner merged into Admin)",
+  "custom_preconds": "<ol>\n<li>Migration to the new roles is complete.</li>\n<li>At least one existing user who had the legacy 'Owner' role is present.</li>\n</ol>",
+  "custom_steps": "<ol>\n<li>Go to Settings &gt; Staff and find a user who previously had the 'Owner' role.</li>\n<li>Check the user's assigned role.</li>\n<li>Go to Settings &gt; Roles &amp; Permissions and open the Administrator role.</li>\n</ol>",
+  "custom_expected": "<p>The user's role is 'Administrator'. There is no separate 'Owner' role - Owner is merged into Administrator.</p>\n<p>The Administrator role is editable (it has a pencil icon), except it cannot be changed to lose access to the admin pages.</p>\n<p>Only Office User and Time Clock User are fully non-editable.</p>",
+  "viu_status": "Blocked-UI",
+  "evidence": "Moved from stub section 3660 into 3549 Migration (was distinct: core 3549 had no legacy-Owner case; Owner is merged into Administrator). Migration LANDING outcome not drivable in this env - needs a real pre-migration 'Owner' user and a migration run (not seedable). Partial confirmation (roles-API): there is NO 'Owner' system role among the 11 shipped system roles, and the Administrator role is editable (roles-matrix-2026-07-13). Full behavior = manual/second-real-user.",
+  "fresh_run": "2026-07-13",
+  "moved_from_section": 3658
+}

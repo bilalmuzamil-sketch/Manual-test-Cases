@@ -99,3 +99,11 @@ Per-case precise reason is in each `cases-2026-07-13/C*.json` `viu_status`. Grou
 ## Tooling / resume
 - `/tmp/custom-roles/beh0713/` (adm/boot2/assign/mkrole-api/setstatus + permmap.json). Assign Tech via /api/staff/{6fb22c1b-...}/change; boot2('tech'); restore Time Clock a0359055-....
 - GOTCHAs: /parts/part-sales direct-goto redirect (use in-app nav-click); /roles-permissions/{id}/edit route unguarded (FE-gap).
+
+## Section 3658 resolution — 2 stubs moved into 3527 sub-sections (2026-07-13)
+Per QA-lead ruling: valid stubs moved into the right 3527 sub-section + reworded build-accurate + pushed. 5 left in 3658 for QA-lead decision (see section-3658-resolution-2026-07-13.md).
+
+| Case | Link | Moved to | Bucket | Note |
+|---|---|---|---|---|
+| C27731 | [link](https://shopview.testrail.io/index.php?/cases/view/27731) | 3549 Migration | Blocked-UI | Legacy Owner -> Administrator. Migration landing not drivable (needs a real pre-migration Owner user); partial roles-API confirm: no 'Owner' system role, Administrator editable. |
+| C27736 | [link](https://shopview.testrail.io/index.php?/cases/view/27736) | 3545 View and Manage AP/AR Data | VIU-Verified | AP/AR cross-cutting toggle label. Stub's 'Manage Accounts Payable and Receivable' was BUILD-WRONG; corrected to build label 'View and Manage AP/AR Data' (verified from CrossTogglesSection build chunk). |

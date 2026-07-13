@@ -229,3 +229,19 @@ universal clock — all Blocked-UI (need multiple seeded users). Jargon stripped
 - **All 252 CORE Custom Roles cases (sections 3528–3553) reworded + pushed via update_case: 252 UPDATED · 0 no-op · 0 failed · all re-verified 200/200.**
 - **Section 3658 dedupe:** 3 confirmed duplicates DELETED (C27735, C27733, C27737); 7 left + flagged for ruling.
 - Local editable source created at `cases-2026-07-13/` (one JSON per case, with viu_status/evidence/fresh_run) — the resumable checkpoint + new source of truth going forward.
+
+---
+
+## Section 3658 stub-tree resolution — 2026-07-13 (moves + updates)
+Per QA-lead ruling on the 7 remaining stub cases (see `section-3658-resolution-2026-07-13.md`).
+**Result: 2 move_cases_to_section (HTTP 200) + 2 update_case (HTTP 200), all re-verified 200/200. 5 left untouched in 3658. No deletions.**
+
+| Case | Op | From | To | HTTP | Notes |
+|---|---|---|---|---|---|
+| C27731 | move_cases_to_section + update_case | 3660 | 3549 (Migration) | 200 / 200 | Legacy Owner->Administrator. Reworded build-accurate. viu_status Blocked-UI (migration landing not drivable; roles-API partial). |
+| C27736 | move_cases_to_section + update_case | 3663 | 3545 (View and Manage AP/AR Data) | 200 / 200 | AP/AR toggle label. Corrected build-wrong 'Manage Accounts Payable and Receivable' -> build label 'View and Manage AP/AR Data'. viu_status VIU-Verified (CrossTogglesSection chunk). |
+| C27729 | (none) | 3659 | — | — | LEFT for QA-lead decision: redundant with C26322 + C26543. |
+| C27730 | (none) | 3659 | — | — | LEFT for QA-lead decision: redundant with C26323 + C26543. |
+| C27732 | (none) | 3660 | — | — | LEFT for QA-lead decision: redundant with C26510 (editable conflict resolved). |
+| C27734 | (none) | 3661 | — | — | LEFT for QA-lead decision: build-wrong cascade premise; true behavior = C26360 + C26373. |
+| C27738 | (none) | 3665 | — | — | LEFT for QA-lead decision: redundant with C26529 + C26531; unique 'QB under Finance' claim build-wrong. |

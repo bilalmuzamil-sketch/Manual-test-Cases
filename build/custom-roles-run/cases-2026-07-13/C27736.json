@@ -1,0 +1,12 @@
+{
+  "case_id": 27736,
+  "section_id": 3545,
+  "title": "The AP/AR cross-cutting toggle is labeled 'View and Manage AP/AR Data'",
+  "custom_preconds": "<ol>\n<li>You are logged in as an admin on Settings &gt; Roles &amp; Permissions.</li>\n<li>Open Create Role (or edit a custom role) so the permission cards are shown.</li>\n</ol>",
+  "custom_steps": "<ol>\n<li>Scroll to the Cross-Cutting Toggles card.</li>\n<li>Find the AP/AR toggle.</li>\n<li>Read its label.</li>\n</ol>",
+  "custom_expected": "<p>The Cross-Cutting Toggles card shows a toggle labeled 'View and Manage AP/AR Data'.</p>\n<p>It sits alongside the 'See Financial Data' and 'View History Logs' toggles in the same card.</p>\n<p>When ON, it controls the Unpaid Invoices, Payments and Credits tabs on customers and vendors, and the sensitive money fields on Edit Customer.</p>",
+  "viu_status": "VIU-Verified",
+  "evidence": "Moved from stub section 3663 into 3545 (distinct structural check: 3545 had no toggle-label case; parallels the SFD toggle-exists case). Original stub claimed the label 'Manage Accounts Payable and Receivable' - BUILD-WRONG; corrected to the live build label. LABEL VIU-VERIFIED from the shipped build chunk CrossTogglesSection.ChT56hCk.js: 'Cross-Cutting Toggles' card contains 'See Financial Data', 'View and Manage AP/AR Data' (seeApArData), 'View History Logs'.",
+  "fresh_run": "2026-07-13",
+  "moved_from_section": 3658
+}
