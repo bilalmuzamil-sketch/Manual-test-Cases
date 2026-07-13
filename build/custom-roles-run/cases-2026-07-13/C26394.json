@@ -1,0 +1,11 @@
+{
+  "case_id": 26394,
+  "section_id": 3536,
+  "title": "Schedule View shows the calendar with all technicians",
+  "custom_preconds": "<ol>\n<li>A user has a role with Schedule View only.</li>\n</ol>",
+  "custom_steps": "<ol>\n<li>Log in and open Schedule from the top navigation.</li>\n<li>Look at the appointments on the calendar.</li>\n</ol>",
+  "custom_expected": "<p>The Schedule page opens.</p>\n<p>Appointments for all technicians are shown, not just the user's own.</p>\n<p>There are no create, edit or delete options on the appointments.</p>\n",
+  "viu_status": "Blocked-UI (needs seeded role); 'Schedule' card build-verified",
+  "evidence": "Schedule card build-verified; behavior needs live UI.",
+  "fresh_run": "2026-07-13"
+}

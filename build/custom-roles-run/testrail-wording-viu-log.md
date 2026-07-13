@@ -170,3 +170,16 @@ live Staff page / two sessions). Role name 'Parts Tech' → 'Parts Technician'.
 ## Section 3550 — Staff Record Settings (3 cases) — pushed 2026-07-13
 **Result: 3 UPDATED · 200/200.** Department-gated scheduling, per-staff Time Clock,
 universal clock — all Blocked-UI (need multiple seeded users). Jargon stripped.
+
+---
+
+## Sections 3536 / 3537 / 3535 — Schedule, Customer Management, WO Lines (22 cases) — pushed 2026-07-13
+**Result: 22 UPDATED (18 tmpl1 + 4 Steps-Separated) · 0 no-op · 0 failed · 200/200.**
+- **3536 Schedule (5):** card 'Schedule' build-verified; C27867 (tmpl2) reworded,
+  API endpoint jargon (GET /api/…) stripped. Behavior = Blocked-UI (need seeded roles).
+- **3537 Customer Management (8):** all wording moved to the build card name **'Customers'**
+  (was 'Customer Management'); AP/AR → **'View and Manage AP/AR Data'**; Invoicing →
+  'Invoicing & payments'. Behavior = Blocked-UI.
+- **3535 WO Lines (9):** card 'Work order lines' (no View column — View comes from Work
+  orders View); C27271/C27272/C27866 (tmpl2) reworded, ShopCoach element-ids / SV-refs /
+  URLs / 403 jargon stripped. Behavior = Blocked-UI.

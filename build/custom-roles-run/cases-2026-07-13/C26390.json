@@ -1,0 +1,11 @@
+{
+  "case_id": 26390,
+  "section_id": 3535,
+  "title": "Work order lines Create & Edit allows adding, editing, moving parts, authorizing and managing part requests",
+  "custom_preconds": "<ol>\n<li>A user has a role with Work orders View, Work order lines Create & Edit (Delete OFF), and View mode Full View.</li>\n</ol>",
+  "custom_steps": "<ol>\n<li>Open a work order and add a new line.</li>\n<li>Edit line details (labor hours, parts, notes).</li>\n<li>Move a part from one line to another on the same work order.</li>\n<li>Authorize a line.</li>\n<li>Manage a parts request on a line.</li>\n</ol>",
+  "custom_expected": "<p>All of these actions work and the lines are saved.</p>\n",
+  "viu_status": "Blocked-UI (needs seeded role)",
+  "evidence": "Needs live UI.",
+  "fresh_run": "2026-07-13"
+}

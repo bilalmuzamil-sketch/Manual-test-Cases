@@ -1,0 +1,11 @@
+{
+  "case_id": 26405,
+  "section_id": 3537,
+  "title": "Customer names still show on work orders and invoices even when Customers is hidden",
+  "custom_preconds": "<ol>\n<li>A user has a role with Customers View OFF, Work orders View ON, Invoicing & payments View ON and See Financial Data ON.</li>\n</ol>",
+  "custom_steps": "<ol>\n<li>Log in and confirm Customers is not in the top navigation.</li>\n<li>Open Work Orders and open a work order for a known customer.</li>\n<li>Look at the work order header for the customer name.</li>\n<li>Open the invoice for that work order.</li>\n<li>Look at the customer name on the invoice.</li>\n</ol>",
+  "custom_expected": "<p>The customer name shows on the work order header.</p>\n<p>The customer name shows on the invoice.</p>\n<p>The customer's own page cannot be opened, but customer names still appear on records the user can see.</p>\n",
+  "viu_status": "Blocked-UI (needs seeded role)",
+  "evidence": "Needs live UI.",
+  "fresh_run": "2026-07-13"
+}

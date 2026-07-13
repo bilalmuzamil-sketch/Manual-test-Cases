@@ -1,0 +1,11 @@
+{
+  "case_id": 27870,
+  "section_id": 3535,
+  "title": "Work order lines Create & Edit lets the user mark a core OK/Not-OK and add line history",
+  "custom_preconds": "<ol>\n<li>A user has a role with Work order lines Create & Edit ON.</li>\n<li>A work order has a line with a core-bearing part that has been received and is awaiting a core inspection (OK / Not OK).</li>\n</ol>",
+  "custom_steps": "<ol>\n<li>Open the work order and go to the line with the core part.</li>\n<li>Find the core inspection control (OK / Not OK) on that line.</li>\n<li>Mark the core OK (or Not OK).</li>\n<li>On the same line, add a line history note about the work done.</li>\n<li>Save.</li>\n</ol>",
+  "custom_expected": "<p>The core OK / Not OK control is available to this role and saves.</p>\n<p>The line history note can be added and saves.</p>\n<p>Both marking the core and adding line history are controlled by Work order lines Create & Edit.</p>\n",
+  "viu_status": "Blocked-UI (needs seeded role + core part)",
+  "evidence": "Needs live UI with a cored part.",
+  "fresh_run": "2026-07-13"
+}

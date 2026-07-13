@@ -1,0 +1,11 @@
+{
+  "case_id": 26393,
+  "section_id": 3535,
+  "title": "Work order lines are read-only when Create & Edit is OFF",
+  "custom_preconds": "<ol>\n<li>A user has a role with Work orders View and Work order lines Create & Edit OFF.</li>\n</ol>",
+  "custom_steps": "<ol>\n<li>Open a work order.</li>\n<li>Look at the lines; try to edit fields and to add a new line.</li>\n</ol>",
+  "custom_expected": "<p>There is no Add line option.</p>\n<p>Existing line fields are read-only.</p>\n",
+  "viu_status": "Blocked-UI (needs seeded role)",
+  "evidence": "Needs live UI.",
+  "fresh_run": "2026-07-13"
+}

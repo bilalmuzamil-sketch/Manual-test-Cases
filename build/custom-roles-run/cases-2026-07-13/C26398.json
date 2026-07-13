@@ -1,0 +1,11 @@
+{
+  "case_id": 26398,
+  "section_id": 3537,
+  "title": "Customers View gives access to customer records, contacts, vehicles and history",
+  "custom_preconds": "<ol>\n<li>A user has a role with Customers View only.</li>\n</ol>",
+  "custom_steps": "<ol>\n<li>Log in and open Customers from the top navigation.</li>\n<li>Open a customer.</li>\n<li>Look at the tabs/sections for contacts, vehicles and vehicle history.</li>\n<li>Look for any create, edit or delete options.</li>\n</ol>",
+  "custom_expected": "<p>Customers is in the navigation.</p>\n<p>The customer opens.</p>\n<p>Contacts, vehicles and history can all be viewed.</p>\n<p>There are no create, edit or delete options.</p>\n",
+  "viu_status": "Blocked-UI (needs seeded role); 'Customers' card build-verified",
+  "evidence": "Build card is 'Customers' (was 'Customer Management'). Behavior needs live UI.",
+  "fresh_run": "2026-07-13"
+}
