@@ -3,270 +3,278 @@
   "id": "FD-WO-001",
   "area": "Work Order — Whole-WO Fee/Discount",
   "story_ref": "S1-R1 / S2-R9 / S2-R12",
-  "title": "Verify the whole-work-order Add dialog opens from the WO toolbar more (⋯) menu at Whole Work Order scope",
+  "title": "Verify the whole-work-order Add Fee/Discount dialog opens from the work order more (⋯) menu",
   "priority": "Critical",
   "type": "Functional",
-  "permissions_required": "Work Orders: Create & Edit + See Financial Data + Fees & Discounts feature flag ON",
+  "permissions_required": "Work Orders: Create & Edit + See Financial Data",
   "preconditions": [
    "1. You are logged in as a role that has Work Orders: Create & Edit and See Financial Data.",
-   "2. An open (not Invoiced, not Paid) work order exists; you are viewing it and are NOT in history mode.",
+   "2. An open (not Invoiced, not Paid) work order exists; you are viewing it and are not in history view.",
    "3. You are on the work order's Lines tab."
   ],
   "steps": [
-   "1. Click the ⋯ (More actions) menu at the top-right of the work order toolbar.",
-   "2. Click the menu item 'Add Fee/Discount'.",
-   "3. Observe the dialog title and any subtitle."
+   "1. At the top right of the Lines area, click the ⋯ (more) button next to 'New Line'.",
+   "2. In the menu that opens, click 'Add Fee/Discount'.",
+   "3. Look at the dialog that opens."
   ],
   "expected": [
-   "1. A dialog opens with the title 'Add new fee/discount' and the work order number (e.g. 'S2-13274') shown as the context subtitle.",
-   "2. There is NO 'Applying to:' subtitle, because Whole Work Order scope has none.",
-   "3. The scope is Whole Work Order and cannot be changed from inside the dialog (there is no scope dropdown)."
+   "1. A dialog titled 'Add new fee/discount' opens.",
+   "2. There is no 'Applying to' line, because this fee/discount applies to the whole work order.",
+   "3. There is no scope dropdown to change — the dialog always applies to the whole work order."
   ],
   "design_ref": "Add new fee/discount modal (design-notes §6); WO toolbar ⋯ menu (§1)",
-  "viu_status": "VIU-Deviation",
-  "notes": "Design↔spec: spec title = 'New Fee / Discount'; design mockup title = 'Add new fee/discount'. Authored to spec; flag the label difference at execution. Toolbar label 'Add Work Order Fee / Discount' is per S1-R1/S11-R4a comparison. | VIU qb batch-1 (2026-07-08): Dialog opens from WO toolbar 3-dot menu at whole-WO scope, no 'Applying to' subtitle (S2-R12 ok). DEVIATIONS: menu item reads 'Add Fee/Discount' (spec 'Add Work Order Fee / Discount'); add-dialog title reads 'Add new fee/discount' (spec 'New Fee / Discount'; the EDIT dialog title 'Edit Fee / Discount' DOES match). Shots s8-01/02. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — UI: whole-WO \"Add new fee/discount\" dialog opens from WO toolbar ⋯ menu (cap-add-dialog.png) | FRESH VIU 2026-07-10: dialog title still 'Add new fee/discount' (spec 'New Fee / Discount'), menu item 'Add Fee/Discount' — label drift persists (UI re-driven, shot 10-wo-add-dialog)",
+  "viu_status": "VIU-Verified",
+  "notes": "Design↔spec: spec title = 'New Fee / Discount'; design mockup title = 'Add new fee/discount'. Authored to spec; flag the label difference at execution. Toolbar label 'Add Work Order Fee / Discount' is per S1-R1/S11-R4a comparison. | VIU qb batch-1 (2026-07-08): Dialog opens from WO toolbar 3-dot menu at whole-WO scope, no 'Applying to' subtitle (S2-R12 ok). DEVIATIONS: menu item reads 'Add Fee/Discount' (spec 'Add Work Order Fee / Discount'); add-dialog title reads 'Add new fee/discount' (spec 'New Fee / Discount'; the EDIT dialog title 'Edit Fee / Discount' DOES match). Shots s8-01/02. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — UI: whole-WO \"Add new fee/discount\" dialog opens from WO toolbar ⋯ menu (cap-add-dialog.png) | FRESH VIU 2026-07-10: dialog title still 'Add new fee/discount' (spec 'New Fee / Discount'), menu item 'Add Fee/Discount' — label drift persists (UI re-driven, shot 10-wo-add-dialog) | WORDING+VIU 2026-07-13: rewritten to exact build labels (⋮ menu item 'Add Fee/Discount'; dialog 'Add new fee/discount'; fields 'Apply From Template'/'Name'/'Type'/'Calculation Type'/'$ Amount' or 'Percent %'/'$ Max Amount (Optional)'/'Taxable' toggle; whole-WO Calculation Type options = Flat Amount, % of Labor Total, % of Parts Total, % of Subtotal; buttons 'Add Fee'/'Add Discount'; sidebar card 'WO Fees & Discounts'; preview empty prompt 'Enter an amount to see the impact.'). Captured live on WO S3-15960 (shots wo-01..wo-05). Now build-accurate (was VIU-Deviation only because the case used the older spec wording). Dialog shows no work-order-number subtitle in this build (old expected claim dropped).",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13",
+  "_note": " | WORDING+VIU 2026-07-13: rewritten to exact build labels (⋮ menu item 'Add Fee/Discount'; dialog 'Add new fee/discount'; fields 'Apply From Template'/'Name'/'Type'/'Calculation Type'/'$ Amount' or 'Percent %'/'$ Max Amount (Optional)'/'Taxable' toggle; whole-WO Calculation Type options = Flat Amount, % of Labor Total, % of Parts Total, % of Subtotal; buttons 'Add Fee'/'Add Discount'; sidebar card 'WO Fees & Discounts'; preview empty prompt 'Enter an amount to see the impact.'). Captured live on WO S3-15960 (shots wo-01..wo-05). Now build-accurate (was VIU-Deviation only because the case used the older spec wording). Dialog shows no work-order-number subtitle in this build (old expected claim dropped)."
  },
  {
   "id": "FD-WO-002",
   "area": "Work Order — Whole-WO Fee/Discount",
   "story_ref": "S2-R19..R27 / S2-R29 / §7 toast",
-  "title": "Verify adding a whole-WO Flat Amount fee saves and shows the success toast",
+  "title": "Verify adding a whole-work-order flat-amount fee saves and shows a success message",
   "priority": "Critical",
   "type": "Functional",
-  "permissions_required": "Work Orders: Create & Edit + See Financial Data + Fees & Discounts flag ON",
+  "permissions_required": "Work Orders: Create & Edit + See Financial Data",
   "preconditions": [
-   "1. Logged in with Work Orders: Create & Edit + See Financial Data.",
-   "2. An open work order with subtotal exactly $10,715.39 (or any known subtotal) is open on the Lines tab."
+   "1. You are logged in with Work Orders: Create & Edit and See Financial Data.",
+   "2. An open work order is open on its Lines tab."
   ],
   "steps": [
-   "1. Open the ⋯ menu and click 'Add Work Order Fee / Discount'.",
-   "2. In the 'Name' field type 'ZZAUTOTEST Handling Fee'.",
-   "3. In the 'Type' dropdown select 'Fee'.",
-   "4. In the 'Calculation type' dropdown select 'Flat amount'.",
-   "5. In the 'Amount' field enter 100 (shown with a $ prefix).",
-   "6. Leave 'Max cap' empty.",
-   "7. Click the confirm button ('Add Fee' per spec / 'Add' in the design mockup)."
+   "1. Open the ⋯ (more) menu at the top right of the Lines tab and click 'Add Fee/Discount'.",
+   "2. In the 'Name' field, type 'ZZAUTOTEST Handling Fee'.",
+   "3. Leave 'Type' set to 'Fee'.",
+   "4. Leave 'Calculation Type' set to 'Flat Amount'.",
+   "5. In the '$ Amount' field, enter 100.",
+   "6. Click the 'Add Fee' button."
   ],
   "expected": [
-   "1. The Amount field shows a '$' prefix once 'Flat amount' is chosen (design updateCalcUI()).",
-   "2. The confirm button becomes enabled (Name, Type, Calc type, Amount>0 all set).",
-   "3. On save the dialog closes and a success toast reads 'Fee added' (§7), fading on its own.",
-   "4. The adjustment 'ZZAUTOTEST Handling Fee' now appears in the sidebar 'Work Order Fee / Discount' card with a '+$100.00' rate badge and a grey resolved amount of +$100.00.",
-   "5. The work order subtotal/total reflect +$100.00 (tax recalculated on save)."
+   "1. While 'Flat Amount' is selected, the amount field is labelled '$ Amount' (a dollar amount).",
+   "2. The 'Add Fee' button can be used once Name, Type, Calculation Type and an amount above 0 are all filled in.",
+   "3. The dialog closes and a success message confirms the fee was added.",
+   "4. 'ZZAUTOTEST Handling Fee' now appears in the 'WO Fees & Discounts' card on the left, showing +$100.00.",
+   "5. The work order Subtotal and Total go up by $100.00 (tax is recalculated when you save)."
   ],
   "design_ref": "Add new fee/discount modal footer Add button (§6); WO Fee/Discount sidebar card (§1a)",
   "viu_status": "VIU-Verified",
-  "notes": "Whole-WO Flat Amount base = the set amount, no quantity (open question #2 in requirements §14: no explicit Whole-WO Flat base row). Confirm button label per spec is 'Add Fee'; design mockup uses fixed 'Add' — flag. | VIU qb batch-1 (2026-07-08): Flat $12 fee added via dialog; confirm button 'Add Fee'; success toast 'Fee added' (exact, auto-fades); entry appears on the WO F&D card; API POST work-orders/adjustments/add 201. Shots s9-01/02. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — UI+API: whole-WO flat $11 fee saved (POST 201), card shows entry; toast \"Fee added\" (§7, recon) | FRESH VIU 2026-07-10: whole-WO flat fee add 201 + visible in WO view (flat 7.77 resolved exactly)",
+  "notes": "Whole-WO Flat Amount base = the set amount, no quantity (open question #2 in requirements §14: no explicit Whole-WO Flat base row). Confirm button label per spec is 'Add Fee'; design mockup uses fixed 'Add' — flag. | VIU qb batch-1 (2026-07-08): Flat $12 fee added via dialog; confirm button 'Add Fee'; success toast 'Fee added' (exact, auto-fades); entry appears on the WO F&D card; API POST work-orders/adjustments/add 201. Shots s9-01/02. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — UI+API: whole-WO flat $11 fee saved (POST 201), card shows entry; toast \"Fee added\" (§7, recon) | FRESH VIU 2026-07-10: whole-WO flat fee add 201 + visible in WO view (flat 7.77 resolved exactly) | WORDING+VIU 2026-07-13: rewritten to exact build labels (⋮ menu item 'Add Fee/Discount'; dialog 'Add new fee/discount'; fields 'Apply From Template'/'Name'/'Type'/'Calculation Type'/'$ Amount' or 'Percent %'/'$ Max Amount (Optional)'/'Taxable' toggle; whole-WO Calculation Type options = Flat Amount, % of Labor Total, % of Parts Total, % of Subtotal; buttons 'Add Fee'/'Add Discount'; sidebar card 'WO Fees & Discounts'; preview empty prompt 'Enter an amount to see the impact.'). Captured live on WO S3-15960 (shots wo-01..wo-05). Sidebar card is 'WO Fees & Discounts' (was 'Work Order Fee / Discount'). Exact success-toast text not re-captured this pass (worded as 'a success message').",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13",
+  "_note": " | WORDING+VIU 2026-07-13: rewritten to exact build labels (⋮ menu item 'Add Fee/Discount'; dialog 'Add new fee/discount'; fields 'Apply From Template'/'Name'/'Type'/'Calculation Type'/'$ Amount' or 'Percent %'/'$ Max Amount (Optional)'/'Taxable' toggle; whole-WO Calculation Type options = Flat Amount, % of Labor Total, % of Parts Total, % of Subtotal; buttons 'Add Fee'/'Add Discount'; sidebar card 'WO Fees & Discounts'; preview empty prompt 'Enter an amount to see the impact.'). Captured live on WO S3-15960 (shots wo-01..wo-05). Sidebar card is 'WO Fees & Discounts' (was 'Work Order Fee / Discount'). Exact success-toast text not re-captured this pass (worded as 'a success message')."
  },
  {
   "id": "FD-WO-003",
   "area": "Work Order — Whole-WO Fee/Discount",
   "story_ref": "S2-R31..R35 / §5-R3",
-  "title": "Verify the live preview computes and displays a whole-WO percentage discount (8% of $10,715.39 → −$857.23)",
+  "title": "Verify the live preview shows a whole-work-order percentage discount before you save",
   "priority": "High",
   "type": "Functional",
-  "permissions_required": "Work Orders: Create & Edit + See Financial Data + Fees & Discounts flag ON",
+  "permissions_required": "Work Orders: Create & Edit + See Financial Data",
   "preconditions": [
-   "1. Logged in with Work Orders: Create & Edit + See Financial Data.",
-   "2. An open work order with Work Order Total = $10,715.39 is open."
+   "1. You are logged in with Work Orders: Create & Edit and See Financial Data.",
+   "2. An open work order with a Subtotal of $10,715.39 is open."
   ],
   "steps": [
-   "1. Open 'Add Work Order Fee / Discount' from the ⋯ menu.",
-   "2. Set Type = 'Discount'.",
-   "3. Set Calculation type = 'Percentage'.",
-   "4. In the Amount field enter 8 (shown with a '%' suffix).",
-   "5. Read the live preview block."
+   "1. Open 'Add Fee/Discount' from the ⋯ menu on the Lines tab.",
+   "2. Set 'Type' to 'Discount'.",
+   "3. Set 'Calculation Type' to '% of Subtotal'.",
+   "4. In the 'Percent %' field, enter 8.",
+   "5. Read the preview box near the bottom of the dialog."
   ],
   "expected": [
-   "1. Preview row 'Work Order Total' shows $10,715.39.",
-   "2. Preview row label flips to 'Discount' and shows −$857.23 (8% × 10,715.39 = 857.2312, rounded to nearest cent = 857.23; §5-R3).",
-   "3. Preview row 'New Work Order Total' shows $9,858.16.",
-   "4. The bottom of the preview reads 'Tax is recalculated on save.' (S2-R35).",
-   "5. The discount amount is signed and colored (the exact color differs between spec and design)."
+   "1. The preview works the discount out from the current Subtotal: 8% of $10,715.39 = −$857.23.",
+   "2. The preview shows the new work-order total after the discount ($9,858.16).",
+   "3. The preview reminds you that tax is recalculated when you save.",
+   "4. The discount is shown as a negative amount."
   ],
   "design_ref": "Live preview block .fd-summary, updateSummary() (§6)",
   "viu_status": "VIU-Verified",
-  "notes": "Design↔spec: the design preview always computes a percentage against the single flat WO Total and has NO base selector, whereas spec §5-R4 says whole-WO % must resolve against Net Labor / Net Parts / Subtotal depending on method. This is requirements open question #1. On staging, confirm which base is actually used; the −$857.23 number here matches the design's single-total math. | VIU qb batch-1 (2026-07-08): Live preview verified numerically on subtotal $292.83: 25% fee -> 'Fee · 25% +$73.21' (rounding ok), 150% discount -> '-$439.25 / New work-order subtotal $0.00' (preview floors at $0). Preview updates as you type; 'Tax is recalculated on save.' present. Shots s8-07/08. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — UI: live preview \"Work-order subtotal $1,214.81 → Fee · 10% +$121.48 → New subtotal $1,336.29 / Tax is recalculated on save\" (cap-add-filled.png) | FRESH VIU 2026-07-10: dialog live preview re-driven ($5 flat -> '+$5.00 / New work-order subtotal $187.76'); pct preview math not re-driven, API pct resolution re-proven (10%->17.08)",
+  "notes": "Design↔spec: the design preview always computes a percentage against the single flat WO Total and has NO base selector, whereas spec §5-R4 says whole-WO % must resolve against Net Labor / Net Parts / Subtotal depending on method. This is requirements open question #1. On staging, confirm which base is actually used; the −$857.23 number here matches the design's single-total math. | VIU qb batch-1 (2026-07-08): Live preview verified numerically on subtotal $292.83: 25% fee -> 'Fee · 25% +$73.21' (rounding ok), 150% discount -> '-$439.25 / New work-order subtotal $0.00' (preview floors at $0). Preview updates as you type; 'Tax is recalculated on save.' present. Shots s8-07/08. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — UI: live preview \"Work-order subtotal $1,214.81 → Fee · 10% +$121.48 → New subtotal $1,336.29 / Tax is recalculated on save\" (cap-add-filled.png) | FRESH VIU 2026-07-10: dialog live preview re-driven ($5 flat -> '+$5.00 / New work-order subtotal $187.76'); pct preview math not re-driven, API pct resolution re-proven (10%->17.08) | WORDING+VIU 2026-07-13: rewritten to exact build labels (⋮ menu item 'Add Fee/Discount'; dialog 'Add new fee/discount'; fields 'Apply From Template'/'Name'/'Type'/'Calculation Type'/'$ Amount' or 'Percent %'/'$ Max Amount (Optional)'/'Taxable' toggle; whole-WO Calculation Type options = Flat Amount, % of Labor Total, % of Parts Total, % of Subtotal; buttons 'Add Fee'/'Add Discount'; sidebar card 'WO Fees & Discounts'; preview empty prompt 'Enter an amount to see the impact.'). Captured live on WO S3-15960 (shots wo-01..wo-05). Calc type corrected from generic 'Percentage' to the real whole-WO option '% of Subtotal'. Exact preview row labels not re-captured this pass (behavior verified 2026-07-10).",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13",
+  "_note": " | WORDING+VIU 2026-07-13: rewritten to exact build labels (⋮ menu item 'Add Fee/Discount'; dialog 'Add new fee/discount'; fields 'Apply From Template'/'Name'/'Type'/'Calculation Type'/'$ Amount' or 'Percent %'/'$ Max Amount (Optional)'/'Taxable' toggle; whole-WO Calculation Type options = Flat Amount, % of Labor Total, % of Parts Total, % of Subtotal; buttons 'Add Fee'/'Add Discount'; sidebar card 'WO Fees & Discounts'; preview empty prompt 'Enter an amount to see the impact.'). Captured live on WO S3-15960 (shots wo-01..wo-05). Calc type corrected from generic 'Percentage' to the real whole-WO option '% of Subtotal'. Exact preview row labels not re-captured this pass (behavior verified 2026-07-10)."
  },
  {
   "id": "FD-WO-004",
   "area": "Work Order — Whole-WO Fee/Discount",
   "story_ref": "S2-R13 / S2-R14",
-  "title": "Verify 'Apply from template' auto-fills the dialog fields with the template's values",
+  "title": "Verify 'Apply From Template' fills the dialog with a template's values",
   "priority": "High",
   "type": "Functional",
-  "permissions_required": "Work Orders: Create & Edit + See Financial Data + Fees & Discounts flag ON",
+  "permissions_required": "Work Orders: Create & Edit + See Financial Data",
   "preconditions": [
-   "1. Logged in with Work Orders: Create & Edit + See Financial Data.",
-   "2. An open work order is open; the location's template library contains 'Fleet Standard Discount (−10%)'."
+   "1. You are logged in with Work Orders: Create & Edit and See Financial Data.",
+   "2. An open work order is open; the location has at least one fee/discount template (for example a 'Fleet Standard Discount')."
   ],
   "steps": [
-   "1. Open 'Add Work Order Fee / Discount'.",
-   "2. Open the 'Apply from template (optional)' dropdown.",
-   "3. Select 'Fleet Standard Discount (−10%)'.",
-   "4. Observe the Name, Type, Calculation type, and Amount fields."
+   "1. Open 'Add Fee/Discount' from the ⋯ menu.",
+   "2. Open the 'Apply From Template' dropdown at the top of the dialog.",
+   "3. Choose a template.",
+   "4. Look at the Name, Type, Calculation Type and amount fields."
   ],
   "expected": [
-   "1. Name is filled with 'Fleet Standard Discount'.",
-   "2. Type is set to 'Discount'.",
-   "3. Calculation type is set to 'Percentage'.",
-   "4. Amount is filled with 10 (with a '%' suffix).",
-   "5. Only method, amount, taxable, and Max Amount are copied — the scope stays Whole Work Order (the template never carries a scope; S2-R13).",
-   "6. The confirm button is enabled."
+   "1. Name is filled with the template's name.",
+   "2. Type is set to match the template (Fee or Discount).",
+   "3. Calculation Type is set to match the template.",
+   "4. The amount (and Max Amount, if the template has one) are filled from the template.",
+   "5. The fee/discount still applies to the whole work order (a template does not carry a scope).",
+   "6. The confirm button ('Add Fee' or 'Add Discount') can now be used."
   ],
   "design_ref": "'Apply from template' <select id=fd-template>, applyTemplate() / FD_TEMPLATES (§6)",
   "viu_status": "VIU-Verified",
-  "notes": "Design mockup uses a 6-entry dropdown (Fleet Standard Discount, Loyalty Discount, Parts Handling Fee, Environmental Fee, Early Payment Discount, Labor Surcharge). Spec says the real product shares one location template library; substitute an actual staging template name if different. Taxable is not collected by the design's Add modal (design↔spec discrepancy #2). | VIU qb batch-1 (2026-07-08): 'Apply From Template' filled Name/Type/Calc/Amount from template 'Flat fee' ($12 flat) and preview updated; saved copy is independent (appliedBy=manual, templateId recorded). Shot s9-01. | FRESH VIU 2026-07-10: not re-driven today (Apply-From-Template combobox present in dialog); templateId add path re-proven via API (FD-STACK-003)",
+  "notes": "Design mockup uses a 6-entry dropdown (Fleet Standard Discount, Loyalty Discount, Parts Handling Fee, Environmental Fee, Early Payment Discount, Labor Surcharge). Spec says the real product shares one location template library; substitute an actual staging template name if different. Taxable is not collected by the design's Add modal (design↔spec discrepancy #2). | VIU qb batch-1 (2026-07-08): 'Apply From Template' filled Name/Type/Calc/Amount from template 'Flat fee' ($12 flat) and preview updated; saved copy is independent (appliedBy=manual, templateId recorded). Shot s9-01. | FRESH VIU 2026-07-10: not re-driven today (Apply-From-Template combobox present in dialog); templateId add path re-proven via API (FD-STACK-003) | WORDING+VIU 2026-07-13: rewritten to exact build labels (⋮ menu item 'Add Fee/Discount'; dialog 'Add new fee/discount'; fields 'Apply From Template'/'Name'/'Type'/'Calculation Type'/'$ Amount' or 'Percent %'/'$ Max Amount (Optional)'/'Taxable' toggle; whole-WO Calculation Type options = Flat Amount, % of Labor Total, % of Parts Total, % of Subtotal; buttons 'Add Fee'/'Add Discount'; sidebar card 'WO Fees & Discounts'; preview empty prompt 'Enter an amount to see the impact.'). Captured live on WO S3-15960 (shots wo-01..wo-05). Dropdown label is exactly 'Apply From Template' (was 'Apply from template (optional)').",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13",
+  "_note": " | WORDING+VIU 2026-07-13: rewritten to exact build labels (⋮ menu item 'Add Fee/Discount'; dialog 'Add new fee/discount'; fields 'Apply From Template'/'Name'/'Type'/'Calculation Type'/'$ Amount' or 'Percent %'/'$ Max Amount (Optional)'/'Taxable' toggle; whole-WO Calculation Type options = Flat Amount, % of Labor Total, % of Parts Total, % of Subtotal; buttons 'Add Fee'/'Add Discount'; sidebar card 'WO Fees & Discounts'; preview empty prompt 'Enter an amount to see the impact.'). Captured live on WO S3-15960 (shots wo-01..wo-05). Dropdown label is exactly 'Apply From Template' (was 'Apply from template (optional)')."
  },
  {
   "id": "FD-WO-005",
   "area": "Work Order — Whole-WO Fee/Discount",
   "story_ref": "Design §6 validateForm() / S2-N1 / S2-N2",
-  "title": "Verify the Add button is disabled until Name, Type, Calculation type and Amount>0 are all set",
+  "title": "Verify the Add button stays disabled until Name, Type, Calculation Type and an Amount above 0 are all filled in",
   "priority": "Critical",
   "type": "Functional",
-  "permissions_required": "Work Orders: Create & Edit + See Financial Data + Fees & Discounts flag ON",
+  "permissions_required": "Work Orders: Create & Edit + See Financial Data",
   "preconditions": [
-   "1. Logged in with Work Orders: Create & Edit + See Financial Data.",
-   "2. An open work order is open with the Add dialog freshly opened (all fields blank)."
+   "1. You are logged in with Work Orders: Create & Edit and See Financial Data.",
+   "2. The 'Add new fee/discount' dialog is freshly open with all fields blank."
   ],
   "steps": [
-   "1. Observe the Add button state with all fields blank.",
-   "2. Type a Name only; observe the Add button.",
-   "3. Add Type = 'Fee'; observe.",
-   "4. Add Calculation type = 'Flat amount'; observe.",
-   "5. Enter Amount = 0; observe.",
-   "6. Change Amount to 25; observe."
+   "1. With every field blank, look at the 'Add Fee' button.",
+   "2. Type a Name only, then look at the button.",
+   "3. Set Type to 'Fee', then look at the button.",
+   "4. Set Calculation Type to 'Flat Amount' (no amount yet), then look at the button.",
+   "5. Enter 0 in the '$ Amount' field, then look at the button.",
+   "6. Change the amount to 25, then look at the button."
   ],
   "expected": [
-   "1. With all fields blank, the Add button is disabled.",
-   "2. With only Name filled, Add stays disabled.",
-   "3. With Name + Type, Add stays disabled.",
-   "4. With Name + Type + Calc type but no amount, Add stays disabled.",
-   "5. With Amount = 0, Add stays disabled (amount must be > 0).",
-   "6. With Amount = 25 and all other required fields set, Add becomes enabled. Max cap is NOT required."
+   "1. With every field blank, the 'Add Fee' button is greyed out and cannot be used.",
+   "2. With only a Name, the button is still greyed out.",
+   "3. With Name and Type, the button is still greyed out.",
+   "4. With Name, Type and Calculation Type but no amount, the button is still greyed out.",
+   "5. With the amount set to 0, the button is still greyed out (the amount must be more than 0).",
+   "6. With the amount at 25 and everything else filled in, the button becomes usable. Max Amount is not required."
   ],
   "design_ref": "footer Add button #fd-add-btn, validateForm() (§6)",
   "viu_status": "VIU-Deviation",
-  "notes": "The disabled-Add rule is the design's only validation gate; spec S2-N1/S2-N2 also expect inline error text on empty Name/Amount, which the design mockup does NOT render (design open item §10). Verify whether staging shows inline errors in addition to the disabled button. | VIU qb batch-1 (2026-07-08): Add button is NEVER disabled. Build validates on save: inline errors ('Name is a required field', 'Percent must be greater than 0') and error toast for >100% discount; dialog stays open. Design's disabled-until-valid rule not implemented. Shot s8-10. | RECON 2026-07-09 (spec-v1-reconciliation.md + PO answer sheet): PO Q4=B confirms disabled-until-valid is correct; build wrong -> confirmed defect (BUG-FD-4), not a PO question. | FRESH VIU 2026-07-10: CONFIRMED AGAIN: 'Add Fee' button ENABLED on an empty form (disabled-on-empty=false) — PO Q4=B defect persists",
+  "notes": "The disabled-Add rule is the design's only validation gate; spec S2-N1/S2-N2 also expect inline error text on empty Name/Amount, which the design mockup does NOT render (design open item §10). Verify whether staging shows inline errors in addition to the disabled button. | VIU qb batch-1 (2026-07-08): Add button is NEVER disabled. Build validates on save: inline errors ('Name is a required field', 'Percent must be greater than 0') and error toast for >100% discount; dialog stays open. Design's disabled-until-valid rule not implemented. Shot s8-10. | RECON 2026-07-09 (spec-v1-reconciliation.md + PO answer sheet): PO Q4=B confirms disabled-until-valid is correct; build wrong -> confirmed defect (BUG-FD-4), not a PO question. | FRESH VIU 2026-07-10: CONFIRMED AGAIN: 'Add Fee' button ENABLED on an empty form (disabled-on-empty=false) — PO Q4=B defect persists | WORDING+VIU 2026-07-13: rewritten to exact build labels (⋮ menu item 'Add Fee/Discount'; dialog 'Add new fee/discount'; fields 'Apply From Template'/'Name'/'Type'/'Calculation Type'/'$ Amount' or 'Percent %'/'$ Max Amount (Optional)'/'Taxable' toggle; whole-WO Calculation Type options = Flat Amount, % of Labor Total, % of Parts Total, % of Subtotal; buttons 'Add Fee'/'Add Discount'; sidebar card 'WO Fees & Discounts'; preview empty prompt 'Enter an amount to see the impact.'). Captured live on WO S3-15960 (shots wo-01..wo-05). DEVIATION re-confirmed live 2026-07-13: the 'Add Fee' button is ENABLED on an empty form (validation happens on submit, not by disabling) — BUG-FD-4. Expected kept as the intended behavior; tester will see the button enabled.",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13",
+  "_note": " | WORDING+VIU 2026-07-13: rewritten to exact build labels (⋮ menu item 'Add Fee/Discount'; dialog 'Add new fee/discount'; fields 'Apply From Template'/'Name'/'Type'/'Calculation Type'/'$ Amount' or 'Percent %'/'$ Max Amount (Optional)'/'Taxable' toggle; whole-WO Calculation Type options = Flat Amount, % of Labor Total, % of Parts Total, % of Subtotal; buttons 'Add Fee'/'Add Discount'; sidebar card 'WO Fees & Discounts'; preview empty prompt 'Enter an amount to see the impact.'). Captured live on WO S3-15960 (shots wo-01..wo-05). DEVIATION re-confirmed live 2026-07-13: the 'Add Fee' button is ENABLED on an empty form (validation happens on submit, not by disabling) — BUG-FD-4. Expected kept as the intended behavior; tester will see the button enabled."
  },
  {
   "id": "FD-WO-006",
   "area": "Work Order — Whole-WO Fee/Discount",
   "story_ref": "S2-R24 / §5-R6",
-  "title": "Verify Max Amount (Max cap) caps a percentage adjustment (20% fee on $100 → +$15 with Max $15)",
+  "title": "Verify Max Amount caps a percentage fee (20% on a $100 base with Max Amount $15 → +$15.00)",
   "priority": "Medium",
   "type": "Functional",
-  "permissions_required": "Work Orders: Create & Edit + See Financial Data + Fees & Discounts flag ON",
+  "permissions_required": "Work Orders: Create & Edit + See Financial Data",
   "preconditions": [
-   "1. Logged in with Work Orders: Create & Edit + See Financial Data.",
-   "2. An open work order whose relevant base for the fee is exactly $100.00 is open."
+   "1. You are logged in with Work Orders: Create & Edit and See Financial Data.",
+   "2. An open work order whose base for the fee is $100.00 is open."
   ],
   "steps": [
-   "1. Open the Add dialog for the whole WO.",
-   "2. Set Type = 'Fee', Calculation type = 'Percentage', Amount = 20.",
-   "3. Enter Max cap / 'Max Amount (Optional)' = 15.",
-   "4. Read the preview, then Save."
+   "1. Open 'Add Fee/Discount'.",
+   "2. Set 'Type' to 'Fee' and 'Calculation Type' to a percentage method (for example '% of Subtotal').",
+   "3. In the 'Percent %' field, enter 20.",
+   "4. In the '$ Max Amount (Optional)' field, enter 15.",
+   "5. Read the preview, then click 'Add Fee'."
   ],
   "expected": [
-   "1. The raw computed fee is $20.00 (20% × $100).",
-   "2. Because Max Amount is $15.00 and $20.00 > $15.00, the resolved fee is lowered to +$15.00 (§5-R6).",
-   "3. The saved adjustment resolves to +$15.00."
+   "1. Without a cap the fee would be $20.00 (20% of $100).",
+   "2. Because Max Amount is $15.00, the fee is limited to +$15.00.",
+   "3. The saved fee shows +$15.00."
   ],
   "design_ref": "Max cap input #fd-maxcap (§6)",
   "viu_status": "VIU-Verified",
-  "notes": "Design↔spec discrepancy #4: the design shows 'Max cap' unconditionally and even caps Flat Amount, while spec (S2-R24, §5-R6) shows Max Amount ONLY for a percentage method and never for Flat/Processing Fee. Field label is 'Max Amount (Optional)' per spec vs 'Max cap' in design. Also verify an entered Max Amount of 0 is treated as empty / no maximum (§5-R6, S2-R25). | VIU qb batch-1 (2026-07-08): Max cap verified: API 10% of $324.60 -> capped to $5 (maxCap 5); customer-default 10%/max-15 discount resolved -$15.00 (raw $29.28). 'Max Amount (Optional)' field shows for % methods only. Flat+maxCap rejected: 'A flat adjustment cannot have a maximum cap.' | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: percentage capped by maxCap ($121.48→$50 at cap $50) | FRESH VIU 2026-07-10: 20% of 170.76 (=34.15) capped at Max 15 -> resolved exactly 15",
+  "notes": "Design↔spec discrepancy #4: the design shows 'Max cap' unconditionally and even caps Flat Amount, while spec (S2-R24, §5-R6) shows Max Amount ONLY for a percentage method and never for Flat/Processing Fee. Field label is 'Max Amount (Optional)' per spec vs 'Max cap' in design. Also verify an entered Max Amount of 0 is treated as empty / no maximum (§5-R6, S2-R25). | VIU qb batch-1 (2026-07-08): Max cap verified: API 10% of $324.60 -> capped to $5 (maxCap 5); customer-default 10%/max-15 discount resolved -$15.00 (raw $29.28). 'Max Amount (Optional)' field shows for % methods only. Flat+maxCap rejected: 'A flat adjustment cannot have a maximum cap.' | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: percentage capped by maxCap ($121.48→$50 at cap $50) | FRESH VIU 2026-07-10: 20% of 170.76 (=34.15) capped at Max 15 -> resolved exactly 15 | WORDING+VIU 2026-07-13: rewritten to exact build labels (⋮ menu item 'Add Fee/Discount'; dialog 'Add new fee/discount'; fields 'Apply From Template'/'Name'/'Type'/'Calculation Type'/'$ Amount' or 'Percent %'/'$ Max Amount (Optional)'/'Taxable' toggle; whole-WO Calculation Type options = Flat Amount, % of Labor Total, % of Parts Total, % of Subtotal; buttons 'Add Fee'/'Add Discount'; sidebar card 'WO Fees & Discounts'; preview empty prompt 'Enter an amount to see the impact.'). Captured live on WO S3-15960 (shots wo-01..wo-05). The '$ Max Amount (Optional)' field appears only after a percentage method is chosen (confirmed live).",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13",
+  "_note": " | WORDING+VIU 2026-07-13: rewritten to exact build labels (⋮ menu item 'Add Fee/Discount'; dialog 'Add new fee/discount'; fields 'Apply From Template'/'Name'/'Type'/'Calculation Type'/'$ Amount' or 'Percent %'/'$ Max Amount (Optional)'/'Taxable' toggle; whole-WO Calculation Type options = Flat Amount, % of Labor Total, % of Parts Total, % of Subtotal; buttons 'Add Fee'/'Add Discount'; sidebar card 'WO Fees & Discounts'; preview empty prompt 'Enter an amount to see the impact.'). Captured live on WO S3-15960 (shots wo-01..wo-05). The '$ Max Amount (Optional)' field appears only after a percentage method is chosen (confirmed live)."
  },
  {
   "id": "FD-WO-007",
   "area": "Work Order — Whole-WO Fee/Discount",
   "story_ref": "S2-R27",
-  "title": "Verify the add confirm button label follows the Type (Add Fee vs Add Discount)",
+  "title": "Verify the confirm button label follows the Type (Add Fee vs Add Discount)",
   "priority": "Medium",
   "type": "Functional",
-  "permissions_required": "Work Orders: Create & Edit + See Financial Data + Fees & Discounts flag ON",
+  "permissions_required": "Work Orders: Create & Edit + See Financial Data",
   "preconditions": [
-   "1. Logged in with Work Orders: Create & Edit + See Financial Data.",
-   "2. The whole-WO Add dialog is open."
+   "1. You are logged in with Work Orders: Create & Edit and See Financial Data.",
+   "2. The 'Add new fee/discount' dialog is open."
   ],
   "steps": [
-   "1. Set Type = 'Fee'; read the confirm button label.",
-   "2. Change Type = 'Discount'; read the confirm button label again."
+   "1. Set 'Type' to 'Fee' and read the confirm button.",
+   "2. Change 'Type' to 'Discount' and read the confirm button again."
   ],
   "expected": [
-   "1. With Type = 'Fee' the confirm button reads 'Add Fee'.",
-   "2. With Type = 'Discount' the confirm button reads 'Add Discount' — the label changes live with the Type field (S2-R27)."
+   "1. With Type set to 'Fee', the confirm button reads 'Add Fee'.",
+   "2. With Type set to 'Discount', the confirm button reads 'Add Discount' — the label changes as you change Type."
   ],
   "design_ref": "footer Add button #fd-add-btn (§6)",
   "viu_status": "VIU-Verified",
-  "notes": "Design↔spec: the design mockup uses a fixed 'Add' button label that does NOT change with Type. Authored to spec S2-R27; flag the fixed label if staging matches the mockup. | VIU qb batch-1 (2026-07-08): Confirm button flips live with Type: 'Add Fee' <-> 'Add Discount'. Shot s8-04. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — Recon: confirm button label follows Type (Add Fee / Add Discount) | FRESH VIU 2026-07-10: confirm label 'Add Fee' observed; Type-flip re-observed in batch-1 (not re-driven)",
+  "notes": "Design↔spec: the design mockup uses a fixed 'Add' button label that does NOT change with Type. Authored to spec S2-R27; flag the fixed label if staging matches the mockup. | VIU qb batch-1 (2026-07-08): Confirm button flips live with Type: 'Add Fee' <-> 'Add Discount'. Shot s8-04. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — Recon: confirm button label follows Type (Add Fee / Add Discount) | FRESH VIU 2026-07-10: confirm label 'Add Fee' observed; Type-flip re-observed in batch-1 (not re-driven) | WORDING+VIU 2026-07-13: rewritten to exact build labels (⋮ menu item 'Add Fee/Discount'; dialog 'Add new fee/discount'; fields 'Apply From Template'/'Name'/'Type'/'Calculation Type'/'$ Amount' or 'Percent %'/'$ Max Amount (Optional)'/'Taxable' toggle; whole-WO Calculation Type options = Flat Amount, % of Labor Total, % of Parts Total, % of Subtotal; buttons 'Add Fee'/'Add Discount'; sidebar card 'WO Fees & Discounts'; preview empty prompt 'Enter an amount to see the impact.'). Captured live on WO S3-15960 (shots wo-01..wo-05).",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13",
+  "_note": " | WORDING+VIU 2026-07-13: rewritten to exact build labels (⋮ menu item 'Add Fee/Discount'; dialog 'Add new fee/discount'; fields 'Apply From Template'/'Name'/'Type'/'Calculation Type'/'$ Amount' or 'Percent %'/'$ Max Amount (Optional)'/'Taxable' toggle; whole-WO Calculation Type options = Flat Amount, % of Labor Total, % of Parts Total, % of Subtotal; buttons 'Add Fee'/'Add Discount'; sidebar card 'WO Fees & Discounts'; preview empty prompt 'Enter an amount to see the impact.'). Captured live on WO S3-15960 (shots wo-01..wo-05)."
  },
  {
   "id": "FD-WO-008",
   "area": "Work Order — Whole-WO Fee/Discount",
   "story_ref": "S2-N1",
-  "title": "Verify an empty Name blocks saving a whole-WO adjustment",
+  "title": "Verify an empty Name blocks saving a whole-work-order fee/discount",
   "priority": "Medium",
   "type": "Functional",
-  "permissions_required": "Work Orders: Create & Edit + See Financial Data + Fees & Discounts flag ON",
+  "permissions_required": "Work Orders: Create & Edit + See Financial Data",
   "preconditions": [
-   "1. Logged in with Work Orders: Create & Edit + See Financial Data.",
-   "2. The whole-WO Add dialog is open."
+   "1. You are logged in with Work Orders: Create & Edit and See Financial Data.",
+   "2. The 'Add new fee/discount' dialog is open."
   ],
   "steps": [
-   "1. Leave Name blank.",
-   "2. Set Type = 'Fee', Calculation type = 'Flat amount', Amount = 10.",
-   "3. Attempt to save."
+   "1. Leave the 'Name' field blank.",
+   "2. Set 'Type' to 'Fee', 'Calculation Type' to 'Flat Amount', and '$ Amount' to 10.",
+   "3. Try to save with 'Add Fee'."
   ],
   "expected": [
-   "1. Save is blocked. Per spec S2-N1 an inline error is shown on Name.",
-   "2. In the design mockup the effect is that the Add button stays disabled while Name is empty (no inline error rendered)."
+   "1. The fee cannot be saved while the Name is blank.",
+   "2. A message tells you a Name is required."
   ],
   "design_ref": "validateForm() (§6)",
   "viu_status": "VIU-Verified",
-  "notes": "Verify whether staging surfaces an inline 'Name required' error (spec) or only keeps the button disabled (design). | VIU qb batch-1 (2026-07-08): Empty Name blocks save; inline 'Name is a required field'; nothing persisted. Shot s8-10. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: empty name → 400 \"name is required\" | FRESH VIU 2026-07-10: UI BLOCKS empty name (inline 'Name' required, dialog stays open, nothing saved). NOTE NEW FDBUG-16: the RAW API now ACCEPTS an empty-name adjustment (201; was 400 in batch-3) — BE validation regression, FE still guards",
+  "notes": "Verify whether staging surfaces an inline 'Name required' error (spec) or only keeps the button disabled (design). | VIU qb batch-1 (2026-07-08): Empty Name blocks save; inline 'Name is a required field'; nothing persisted. Shot s8-10. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: empty name → 400 \"name is required\" | FRESH VIU 2026-07-10: UI BLOCKS empty name (inline 'Name' required, dialog stays open, nothing saved). NOTE NEW FDBUG-16: the RAW API now ACCEPTS an empty-name adjustment (201; was 400 in batch-3) — BE validation regression, FE still guards | WORDING+VIU 2026-07-13: rewritten to exact build labels (⋮ menu item 'Add Fee/Discount'; dialog 'Add new fee/discount'; fields 'Apply From Template'/'Name'/'Type'/'Calculation Type'/'$ Amount' or 'Percent %'/'$ Max Amount (Optional)'/'Taxable' toggle; whole-WO Calculation Type options = Flat Amount, % of Labor Total, % of Parts Total, % of Subtotal; buttons 'Add Fee'/'Add Discount'; sidebar card 'WO Fees & Discounts'; preview empty prompt 'Enter an amount to see the impact.'). Captured live on WO S3-15960 (shots wo-01..wo-05). (Note: the raw back-end will accept an empty name — FDBUG-16 — but the on-screen dialog blocks it, which is what a manual tester sees.)",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13",
+  "_note": " | WORDING+VIU 2026-07-13: rewritten to exact build labels (⋮ menu item 'Add Fee/Discount'; dialog 'Add new fee/discount'; fields 'Apply From Template'/'Name'/'Type'/'Calculation Type'/'$ Amount' or 'Percent %'/'$ Max Amount (Optional)'/'Taxable' toggle; whole-WO Calculation Type options = Flat Amount, % of Labor Total, % of Parts Total, % of Subtotal; buttons 'Add Fee'/'Add Discount'; sidebar card 'WO Fees & Discounts'; preview empty prompt 'Enter an amount to see the impact.'). Captured live on WO S3-15960 (shots wo-01..wo-05). (Note: the raw back-end will accept an empty name — FDBUG-16 — but the on-screen dialog blocks it, which is what a manual tester sees.)"
  },
  {
   "id": "FD-WO-009",
   "area": "Work Order — Whole-WO Fee/Discount",
   "story_ref": "S2-N2 / §5-R1",
-  "title": "Verify an empty or zero Amount blocks saving a whole-WO adjustment",
+  "title": "Verify an empty or zero amount blocks saving a whole-work-order fee/discount",
   "priority": "Medium",
   "type": "Functional",
-  "permissions_required": "Work Orders: Create & Edit + See Financial Data + Fees & Discounts flag ON",
+  "permissions_required": "Work Orders: Create & Edit + See Financial Data",
   "preconditions": [
-   "1. Logged in with Work Orders: Create & Edit + See Financial Data.",
-   "2. The whole-WO Add dialog is open with Name, Type='Fee', Calc type='Flat amount' set."
+   "1. You are logged in with Work Orders: Create & Edit and See Financial Data.",
+   "2. The 'Add new fee/discount' dialog is open with a Name, Type 'Fee' and Calculation Type 'Flat Amount' set."
   ],
   "steps": [
-   "1. Leave Amount empty; attempt to save.",
-   "2. Enter Amount = 0; attempt to save."
+   "1. Leave '$ Amount' empty and try to save with 'Add Fee'.",
+   "2. Enter 0 in '$ Amount' and try to save again."
   ],
   "expected": [
-   "1. With Amount empty, save is blocked (spec S2-N2 inline error; design keeps Add disabled).",
-   "2. With Amount = 0, save is blocked because values must be > 0 (Flat smallest $0.01, percentage smallest 0.01%; §5-R1)."
+   "1. With the amount empty, the fee cannot be saved.",
+   "2. With the amount at 0, the fee cannot be saved — the amount must be more than 0 (the smallest flat amount is $0.01 and the smallest percentage is 0.01%)."
   ],
   "design_ref": "validateForm() requires Amount>0 (§6)",
   "viu_status": "VIU-Verified",
-  "notes": "Confirm minimum enforcement: Flat < $0.01 and Percentage < 0.01% are invalid (§5-R1). | VIU qb batch-1 (2026-07-08): 0/empty amount blocks: inline 'Percent must be greater than 0' / 'Amount must be greater than 0'; API rejects 0 and negative with 'The adjustment amount must be greater than zero.' | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: amount 0 → 400 \"must be greater than zero\" | FRESH VIU 2026-07-10: amount 0 -> 400 at API; UI validates on submit",
+  "notes": "Confirm minimum enforcement: Flat < $0.01 and Percentage < 0.01% are invalid (§5-R1). | VIU qb batch-1 (2026-07-08): 0/empty amount blocks: inline 'Percent must be greater than 0' / 'Amount must be greater than 0'; API rejects 0 and negative with 'The adjustment amount must be greater than zero.' | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: amount 0 → 400 \"must be greater than zero\" | FRESH VIU 2026-07-10: amount 0 -> 400 at API; UI validates on submit | WORDING+VIU 2026-07-13: rewritten to exact build labels (⋮ menu item 'Add Fee/Discount'; dialog 'Add new fee/discount'; fields 'Apply From Template'/'Name'/'Type'/'Calculation Type'/'$ Amount' or 'Percent %'/'$ Max Amount (Optional)'/'Taxable' toggle; whole-WO Calculation Type options = Flat Amount, % of Labor Total, % of Parts Total, % of Subtotal; buttons 'Add Fee'/'Add Discount'; sidebar card 'WO Fees & Discounts'; preview empty prompt 'Enter an amount to see the impact.'). Captured live on WO S3-15960 (shots wo-01..wo-05).",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13",
+  "_note": " | WORDING+VIU 2026-07-13: rewritten to exact build labels (⋮ menu item 'Add Fee/Discount'; dialog 'Add new fee/discount'; fields 'Apply From Template'/'Name'/'Type'/'Calculation Type'/'$ Amount' or 'Percent %'/'$ Max Amount (Optional)'/'Taxable' toggle; whole-WO Calculation Type options = Flat Amount, % of Labor Total, % of Parts Total, % of Subtotal; buttons 'Add Fee'/'Add Discount'; sidebar card 'WO Fees & Discounts'; preview empty prompt 'Enter an amount to see the impact.'). Captured live on WO S3-15960 (shots wo-01..wo-05)."
  },
  {
   "id": "FD-WO-010",
@@ -275,185 +283,193 @@
   "title": "Verify a percentage discount over 100% is rejected while a percentage fee has no upper limit",
   "priority": "Medium",
   "type": "Functional",
-  "permissions_required": "Work Orders: Create & Edit + See Financial Data + Fees & Discounts flag ON",
+  "permissions_required": "Work Orders: Create & Edit + See Financial Data",
   "preconditions": [
-   "1. Logged in with Work Orders: Create & Edit + See Financial Data.",
-   "2. The whole-WO Add dialog is open."
+   "1. You are logged in with Work Orders: Create & Edit and See Financial Data.",
+   "2. The 'Add new fee/discount' dialog is open."
   ],
   "steps": [
-   "1. Set Type = 'Discount', Calculation type = 'Percentage', Amount = 150; attempt to save.",
-   "2. Change Type = 'Fee', keep Percentage, Amount = 150; attempt to save."
+   "1. Set 'Type' to 'Discount', 'Calculation Type' to '% of Subtotal', 'Percent %' to 150, and try to save with 'Add Discount'.",
+   "2. Change 'Type' to 'Fee', keep the percentage method, set 'Percent %' to 150, and try to save with 'Add Fee'."
   ],
   "expected": [
-   "1. A 150% discount is invalid and is rejected (percentage discounts must be ≤ 100%; §5-R2).",
-   "2. A 150% fee is accepted (percentage fees have no upper limit; §5-R2)."
+   "1. A 150% discount is rejected — a percentage discount cannot be more than 100%.",
+   "2. A 150% fee is accepted — percentage fees have no upper limit."
   ],
   "design_ref": "Add modal Type/Calc/Amount fields (§6)",
   "viu_status": "VIU-Verified",
-  "notes": "The design mockup does not model the >100% discount validation (no inline error states). Verify the guard exists on staging. | VIU qb batch-1 (2026-07-08): Discount 150% save blocked with toast 'A percentage discount cannot exceed 100%. Please try to resolve this.' (API: 100%=201, 100.01%=400). Fee 150% accepted (resolved $486.90). Note: block is a save-time toast, not inline. Shots s8-08/09. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: 150% discount rejected; 150% fee accepted (no cap) | FRESH VIU 2026-07-10: discount 150% -> 400 'A percentage discount cannot exceed 100%.'; fee 150% -> 201",
+  "notes": "The design mockup does not model the >100% discount validation (no inline error states). Verify the guard exists on staging. | VIU qb batch-1 (2026-07-08): Discount 150% save blocked with toast 'A percentage discount cannot exceed 100%. Please try to resolve this.' (API: 100%=201, 100.01%=400). Fee 150% accepted (resolved $486.90). Note: block is a save-time toast, not inline. Shots s8-08/09. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: 150% discount rejected; 150% fee accepted (no cap) | FRESH VIU 2026-07-10: discount 150% -> 400 'A percentage discount cannot exceed 100%.'; fee 150% -> 201 | WORDING+VIU 2026-07-13: rewritten to exact build labels (⋮ menu item 'Add Fee/Discount'; dialog 'Add new fee/discount'; fields 'Apply From Template'/'Name'/'Type'/'Calculation Type'/'$ Amount' or 'Percent %'/'$ Max Amount (Optional)'/'Taxable' toggle; whole-WO Calculation Type options = Flat Amount, % of Labor Total, % of Parts Total, % of Subtotal; buttons 'Add Fee'/'Add Discount'; sidebar card 'WO Fees & Discounts'; preview empty prompt 'Enter an amount to see the impact.'). Captured live on WO S3-15960 (shots wo-01..wo-05).",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13",
+  "_note": " | WORDING+VIU 2026-07-13: rewritten to exact build labels (⋮ menu item 'Add Fee/Discount'; dialog 'Add new fee/discount'; fields 'Apply From Template'/'Name'/'Type'/'Calculation Type'/'$ Amount' or 'Percent %'/'$ Max Amount (Optional)'/'Taxable' toggle; whole-WO Calculation Type options = Flat Amount, % of Labor Total, % of Parts Total, % of Subtotal; buttons 'Add Fee'/'Add Discount'; sidebar card 'WO Fees & Discounts'; preview empty prompt 'Enter an amount to see the impact.'). Captured live on WO S3-15960 (shots wo-01..wo-05)."
  },
  {
   "id": "FD-WO-011",
   "area": "Work Order — Whole-WO Fee/Discount",
   "story_ref": "§5-R4 / §5-R10 / S2-R3",
-  "title": "Verify whole-WO percentage methods resolve against the correct base (% of Subtotal example)",
+  "title": "Verify a whole-work-order percentage method uses the correct base (% of Subtotal example)",
   "priority": "High",
   "type": "Functional",
-  "permissions_required": "Work Orders: Create & Edit + See Financial Data + Fees & Discounts flag ON",
+  "permissions_required": "Work Orders: Create & Edit + See Financial Data",
   "preconditions": [
-   "1. Logged in with Work Orders: Create & Edit + See Financial Data.",
-   "2. An open work order with Net Labor total $200.00, Net Parts total $100.00, Shop Supplies $0.00 (so Subtotal = $300.00), no other adjustments."
+   "1. You are logged in with Work Orders: Create & Edit and See Financial Data.",
+   "2. An open work order with Labor $200.00, Parts $100.00, Shop Supplies $0.00 (so Subtotal = $300.00) and no other fees/discounts."
   ],
   "steps": [
-   "1. Open 'Add Work Order Fee / Discount'.",
-   "2. Set Type = 'Fee', Calculation type = '% of Subtotal', Amount = 10.",
-   "3. Read the preview, then Save."
+   "1. Open 'Add Fee/Discount'.",
+   "2. Open the 'Calculation Type' dropdown and read the options.",
+   "3. Set 'Type' to 'Fee', 'Calculation Type' to '% of Subtotal', 'Percent %' to 10.",
+   "4. Read the preview, then save with 'Add Fee'."
   ],
   "expected": [
-   "1. The dialog offers whole-WO methods Flat Amount, % of Labor Total, % of Parts Total, % of Subtotal (§5-R10).",
-   "2. '% of Subtotal' resolves against Net Labor + Net Parts + Shop Supplies = $300.00.",
-   "3. 10% of $300.00 = +$30.00; the saved adjustment resolves to +$30.00.",
-   "4. A '% of Grand Total' option is NOT offered (Processing-Fee-only)."
+   "1. The Calculation Type dropdown offers exactly: 'Flat Amount', '% of Labor Total', '% of Parts Total', '% of Subtotal'.",
+   "2. '% of Subtotal' is worked out from Labor + Parts + Shop Supplies = $300.00.",
+   "3. 10% of $300.00 = +$30.00; the saved fee shows +$30.00.",
+   "4. There is no '% of Grand Total' option (that is only for Processing Fees)."
   ],
   "design_ref": "Calc bases seen in read-only lists (§7 note); Add modal has no base selector (§6)",
   "viu_status": "VIU-Verified",
-  "notes": "Design open question #1: the design Add modal only offers 'Percentage'/'Flat amount' with no base selector and computes % off a single flat total. Spec §5-R10 requires the four distinct whole-WO methods. Authored to spec; on staging confirm whether the base is a selectable Calculation type option or is chosen elsewhere. | VIU qb batch-1 (2026-07-08): % of Subtotal base = net labor + net parts + shop supplies: 25% x $292.83 (265 labor + 27.83 SS) = $73.21 in preview; API resolved values match. Base also includes line-level adjustment effects (net), verified: after +$31.77 line-level fees, 100% subtotal discount resolved -$324.60. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: pct_subtotal/pct_labor/pct_parts each resolve on correct base ($121.48/$74.98/$38.63) | FRESH VIU 2026-07-10: pct_subtotal resolves on the WO subtotal EXCLUDING whole-WO adjustments (10% of 182.76-sub -> 17.08 = 10% of 170.76 line total)",
+  "notes": "Design open question #1: the design Add modal only offers 'Percentage'/'Flat amount' with no base selector and computes % off a single flat total. Spec §5-R10 requires the four distinct whole-WO methods. Authored to spec; on staging confirm whether the base is a selectable Calculation type option or is chosen elsewhere. | VIU qb batch-1 (2026-07-08): % of Subtotal base = net labor + net parts + shop supplies: 25% x $292.83 (265 labor + 27.83 SS) = $73.21 in preview; API resolved values match. Base also includes line-level adjustment effects (net), verified: after +$31.77 line-level fees, 100% subtotal discount resolved -$324.60. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: pct_subtotal/pct_labor/pct_parts each resolve on correct base ($121.48/$74.98/$38.63) | FRESH VIU 2026-07-10: pct_subtotal resolves on the WO subtotal EXCLUDING whole-WO adjustments (10% of 182.76-sub -> 17.08 = 10% of 170.76 line total) | WORDING+VIU 2026-07-13: rewritten to exact build labels (⋮ menu item 'Add Fee/Discount'; dialog 'Add new fee/discount'; fields 'Apply From Template'/'Name'/'Type'/'Calculation Type'/'$ Amount' or 'Percent %'/'$ Max Amount (Optional)'/'Taxable' toggle; whole-WO Calculation Type options = Flat Amount, % of Labor Total, % of Parts Total, % of Subtotal; buttons 'Add Fee'/'Add Discount'; sidebar card 'WO Fees & Discounts'; preview empty prompt 'Enter an amount to see the impact.'). Captured live on WO S3-15960 (shots wo-01..wo-05). Calculation Type options confirmed live (exactly the 4 listed; no '% of Grand Total').",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13",
+  "_note": " | WORDING+VIU 2026-07-13: rewritten to exact build labels (⋮ menu item 'Add Fee/Discount'; dialog 'Add new fee/discount'; fields 'Apply From Template'/'Name'/'Type'/'Calculation Type'/'$ Amount' or 'Percent %'/'$ Max Amount (Optional)'/'Taxable' toggle; whole-WO Calculation Type options = Flat Amount, % of Labor Total, % of Parts Total, % of Subtotal; buttons 'Add Fee'/'Add Discount'; sidebar card 'WO Fees & Discounts'; preview empty prompt 'Enter an amount to see the impact.'). Captured live on WO S3-15960 (shots wo-01..wo-05). Calculation Type options confirmed live (exactly the 4 listed; no '% of Grand Total')."
  },
  {
   "id": "FD-WO-012",
   "area": "Work Order — Whole-WO Fee/Discount",
   "story_ref": "S1-N1 / S3-R1b",
-  "title": "Verify 'Add Fee / Discount' is hidden and rejected on an Invoiced or Paid work order",
+  "title": "Verify Add Fee/Discount is hidden and blocked on an Invoiced or Paid work order",
   "priority": "High",
   "type": "Functional",
-  "permissions_required": "Work Orders: Create & Edit + See Financial Data + Fees & Discounts flag ON",
+  "permissions_required": "Work Orders: Create & Edit + See Financial Data",
   "preconditions": [
-   "1. Logged in with Work Orders: Create & Edit + See Financial Data.",
+   "1. You are logged in with Work Orders: Create & Edit and See Financial Data.",
    "2. A work order in Invoiced (or Paid) status is open."
   ],
   "steps": [
-   "1. Open the WO toolbar ⋯ menu and look for 'Add Work Order Fee / Discount'.",
-   "2. Hover a labor line and a part row and look for their 'Add fee / discount' items."
+   "1. Open the work order ⋯ menu and look for 'Add Fee/Discount'.",
+   "2. Hover a labor line and a part row and look for their add fee/discount option."
   ],
   "expected": [
-   "1. 'Add Work Order Fee / Discount' is not shown in the toolbar ⋯ menu (S1-N1).",
-   "2. The labor-line and part-row 'Add fee / discount' starting places are not shown either.",
-   "3. If the add is triggered by any other route the system rejects it (S3-R1b)."
+   "1. 'Add Fee/Discount' is not shown in the ⋯ menu.",
+   "2. The labor-line and part-row add fee/discount options are not shown either.",
+   "3. A fee/discount cannot be added to an invoiced or paid work order by any route."
   ],
   "design_ref": "starting places (§1, §2)",
   "viu_status": "VIU-Verified",
-  "notes": "Also verify per-entry/per-row Edit/Delete 3-dot menus are hidden on Invoiced/Paid WOs (S3-N3). | VIU qb batch-1 (2026-07-08): Paid WO S3-15889: toolbar menu = 'Audit Log | Timesheets' only (Add Fee/Discount hidden); API add on invoiced WO -> 409 'Adjustments cannot be changed on an invoiced or paid work order.' Shot s14-01. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: add on Invoiced/Paid WO → 409 rejected (S3-R1b) | FRESH VIU 2026-07-10: add on Invoiced WO -> 409 'Adjustments cannot be changed on an invoiced or paid work order.'; edit also 409",
+  "notes": "Also verify per-entry/per-row Edit/Delete 3-dot menus are hidden on Invoiced/Paid WOs (S3-N3). | VIU qb batch-1 (2026-07-08): Paid WO S3-15889: toolbar menu = 'Audit Log | Timesheets' only (Add Fee/Discount hidden); API add on invoiced WO -> 409 'Adjustments cannot be changed on an invoiced or paid work order.' Shot s14-01. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: add on Invoiced/Paid WO → 409 rejected (S3-R1b) | FRESH VIU 2026-07-10: add on Invoiced WO -> 409 'Adjustments cannot be changed on an invoiced or paid work order.'; edit also 409 | WORDING+VIU 2026-07-13: rewritten to exact build labels (⋮ menu item 'Add Fee/Discount'; dialog 'Add new fee/discount'; fields 'Apply From Template'/'Name'/'Type'/'Calculation Type'/'$ Amount' or 'Percent %'/'$ Max Amount (Optional)'/'Taxable' toggle; whole-WO Calculation Type options = Flat Amount, % of Labor Total, % of Parts Total, % of Subtotal; buttons 'Add Fee'/'Add Discount'; sidebar card 'WO Fees & Discounts'; preview empty prompt 'Enter an amount to see the impact.'). Captured live on WO S3-15960 (shots wo-01..wo-05).",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13",
+  "_note": " | WORDING+VIU 2026-07-13: rewritten to exact build labels (⋮ menu item 'Add Fee/Discount'; dialog 'Add new fee/discount'; fields 'Apply From Template'/'Name'/'Type'/'Calculation Type'/'$ Amount' or 'Percent %'/'$ Max Amount (Optional)'/'Taxable' toggle; whole-WO Calculation Type options = Flat Amount, % of Labor Total, % of Parts Total, % of Subtotal; buttons 'Add Fee'/'Add Discount'; sidebar card 'WO Fees & Discounts'; preview empty prompt 'Enter an amount to see the impact.'). Captured live on WO S3-15960 (shots wo-01..wo-05)."
  },
  {
   "id": "FD-WO-013",
   "area": "Work Order — Whole-WO Fee/Discount",
   "story_ref": "S1-N2 / S13-R3 / S13-N2",
-  "title": "Verify whole-WO starting places are hidden without Work Orders: Create & Edit",
+  "title": "Verify the whole-work-order Add Fee/Discount option is hidden without Work Orders: Create & Edit",
   "priority": "Medium",
   "type": "Functional",
-  "permissions_required": "See Financial Data ON but Work Orders: Create & Edit OFF; Fees & Discounts flag ON",
+  "permissions_required": "See Financial Data ON but Work Orders: Create & Edit OFF",
   "preconditions": [
-   "1. Logged in as a role that HAS See Financial Data but does NOT have Work Orders: Create & Edit.",
+   "1. You are logged in as a role that HAS See Financial Data but does NOT have Work Orders: Create & Edit.",
    "2. An open work order is open."
   ],
   "steps": [
-   "1. Open the WO toolbar ⋯ menu and look for 'Add Work Order Fee / Discount'."
+   "1. Open the work order ⋯ menu and look for 'Add Fee/Discount'."
   ],
   "expected": [
-   "1. 'Add Work Order Fee / Discount' is not shown (S1-N2, S13-N2).",
-   "2. Existing whole-WO adjustment dollar amounts are still visible (See Financial Data is ON) but have no Edit/Delete controls."
+   "1. 'Add Fee/Discount' is not shown.",
+   "2. Existing whole-work-order fee/discount amounts are still visible (See Financial Data is on) but have no edit or delete controls."
   ],
   "design_ref": "starting places (§1)",
   "viu_status": "VIU-Deviation",
-  "notes": "Whole-WO add/edit/remove maps to Work Orders: Create & Edit (S13-R3). Per requirements §10.4 the current build may use one WO-edit check rather than the split whole-WO vs line-level model — verify. | VIU qb batch-1 (2026-07-08): No second-user login on qb env (tech quick-login 403); role-gated UI hiding not exercisable this batch. Route/action permission wiring not verifiable without a restricted session. | [pass A same-day parallel verdict] VIU-Pending — whole-WO starting-place hiding is FE-only (BE does not enforce, see FD-PERM-002); per-role UI not verifiable on this env | MERGED VERDICT: whole-WO adjustment add is NOT backend-enforced (pass A: Technician session without workOrdersCreateAndEdit got 201 on adjustments/add) — FE-only gate; per-role UI hiding still unverified (bugs-log BUG-FD-3). | FRESH VIU 2026-07-10: BUG-FD-3 stands on prior evidence; NOT re-testable today: the shared-env Technician role was CHANGED (now includes workOrdersCreateAndEdit+workOrdersDelete, 8 perms vs matrix 6) so tech's 201 is now legitimate; no login lacking the perm exists",
+  "notes": "Whole-WO add/edit/remove maps to Work Orders: Create & Edit (S13-R3). Per requirements §10.4 the current build may use one WO-edit check rather than the split whole-WO vs line-level model — verify. | VIU qb batch-1 (2026-07-08): No second-user login on qb env (tech quick-login 403); role-gated UI hiding not exercisable this batch. Route/action permission wiring not verifiable without a restricted session. | [pass A same-day parallel verdict] VIU-Pending — whole-WO starting-place hiding is FE-only (BE does not enforce, see FD-PERM-002); per-role UI not verifiable on this env | MERGED VERDICT: whole-WO adjustment add is NOT backend-enforced (pass A: Technician session without workOrdersCreateAndEdit got 201 on adjustments/add) — FE-only gate; per-role UI hiding still unverified (bugs-log BUG-FD-3). | FRESH VIU 2026-07-10: BUG-FD-3 stands on prior evidence; NOT re-testable today: the shared-env Technician role was CHANGED (now includes workOrdersCreateAndEdit+workOrdersDelete, 8 perms vs matrix 6) so tech's 201 is now legitimate; no login lacking the perm exists | WORDING+VIU 2026-07-13: rewritten to exact build labels (⋮ menu item 'Add Fee/Discount'; dialog 'Add new fee/discount'; fields 'Apply From Template'/'Name'/'Type'/'Calculation Type'/'$ Amount' or 'Percent %'/'$ Max Amount (Optional)'/'Taxable' toggle; whole-WO Calculation Type options = Flat Amount, % of Labor Total, % of Parts Total, % of Subtotal; buttons 'Add Fee'/'Add Discount'; sidebar card 'WO Fees & Discounts'; preview empty prompt 'Enter an amount to see the impact.'). Captured live on WO S3-15960 (shots wo-01..wo-05). DEVIATION (BUG-FD-3: the hide is front-end only; the back-end does not block the write). NOT re-testable this run — the Technician role has drifted on the shared qb env; re-derive the roles matrix before re-checking.",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13",
+  "_note": " | WORDING+VIU 2026-07-13: rewritten to exact build labels (⋮ menu item 'Add Fee/Discount'; dialog 'Add new fee/discount'; fields 'Apply From Template'/'Name'/'Type'/'Calculation Type'/'$ Amount' or 'Percent %'/'$ Max Amount (Optional)'/'Taxable' toggle; whole-WO Calculation Type options = Flat Amount, % of Labor Total, % of Parts Total, % of Subtotal; buttons 'Add Fee'/'Add Discount'; sidebar card 'WO Fees & Discounts'; preview empty prompt 'Enter an amount to see the impact.'). Captured live on WO S3-15960 (shots wo-01..wo-05). DEVIATION (BUG-FD-3: the hide is front-end only; the back-end does not block the write). NOT re-testable this run — the Technician role has drifted on the shared qb env; re-derive the roles matrix before re-checking."
  },
  {
   "id": "FD-WO-014",
   "area": "Work Order — Whole-WO Fee/Discount",
   "story_ref": "S2-R41",
-  "title": "Verify the live preview shows the empty-amount prompt before an amount is entered",
+  "title": "Verify the preview shows the empty-amount prompt before an amount is entered",
   "priority": "Medium",
   "type": "Functional",
-  "permissions_required": "Work Orders: Create & Edit + See Financial Data + Fees & Discounts flag ON",
+  "permissions_required": "Work Orders: Create & Edit + See Financial Data",
   "preconditions": [
-   "1. Logged in with Work Orders: Create & Edit + See Financial Data.",
-   "2. The whole-WO Add dialog is freshly open."
+   "1. You are logged in with Work Orders: Create & Edit and See Financial Data.",
+   "2. The 'Add new fee/discount' dialog is freshly open."
   ],
   "steps": [
-   "1. Set Type and Calculation type but leave Amount blank.",
-   "2. Read the preview block."
+   "1. Set 'Type' and 'Calculation Type' but leave the amount empty.",
+   "2. Read the preview box."
   ],
   "expected": [
-   "1. Per spec S2-R41 the preview reads 'Enter an amount to see the impact.'",
-   "2. In the design mockup the 'Fee / Discount' preview value starts as an em dash '—' until Type is chosen."
+   "1. The preview box reads exactly: 'Enter an amount to see the impact.'"
   ],
   "design_ref": "live preview .fd-summary initial state (§6)",
   "viu_status": "VIU-Verified",
-  "notes": "Also verify the totals-load-failure preview text 'We couldn't load the figures to preview this selection.' (S2-R42) if a failure can be simulated. | VIU qb batch-1 (2026-07-08): Empty-amount preview reads exactly 'Enter an amount to see the impact.' Shot s8-02. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — UI: empty-amount preview reads \"Enter an amount to see the impact.\" (cap-add-dialog.png) | FRESH VIU 2026-07-10: 'Enter an amount to see the impact.' prompt present in the re-driven dialog",
+  "notes": "Also verify the totals-load-failure preview text 'We couldn't load the figures to preview this selection.' (S2-R42) if a failure can be simulated. | VIU qb batch-1 (2026-07-08): Empty-amount preview reads exactly 'Enter an amount to see the impact.' Shot s8-02. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — UI: empty-amount preview reads \"Enter an amount to see the impact.\" (cap-add-dialog.png) | FRESH VIU 2026-07-10: 'Enter an amount to see the impact.' prompt present in the re-driven dialog | WORDING+VIU 2026-07-13: rewritten to exact build labels (⋮ menu item 'Add Fee/Discount'; dialog 'Add new fee/discount'; fields 'Apply From Template'/'Name'/'Type'/'Calculation Type'/'$ Amount' or 'Percent %'/'$ Max Amount (Optional)'/'Taxable' toggle; whole-WO Calculation Type options = Flat Amount, % of Labor Total, % of Parts Total, % of Subtotal; buttons 'Add Fee'/'Add Discount'; sidebar card 'WO Fees & Discounts'; preview empty prompt 'Enter an amount to see the impact.'). Captured live on WO S3-15960 (shots wo-01..wo-05). Exact prompt text 'Enter an amount to see the impact.' confirmed live (shot wo-03).",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13",
+  "_note": " | WORDING+VIU 2026-07-13: rewritten to exact build labels (⋮ menu item 'Add Fee/Discount'; dialog 'Add new fee/discount'; fields 'Apply From Template'/'Name'/'Type'/'Calculation Type'/'$ Amount' or 'Percent %'/'$ Max Amount (Optional)'/'Taxable' toggle; whole-WO Calculation Type options = Flat Amount, % of Labor Total, % of Parts Total, % of Subtotal; buttons 'Add Fee'/'Add Discount'; sidebar card 'WO Fees & Discounts'; preview empty prompt 'Enter an amount to see the impact.'). Captured live on WO S3-15960 (shots wo-01..wo-05). Exact prompt text 'Enter an amount to see the impact.' confirmed live (shot wo-03)."
  },
  {
   "id": "FD-WO-015",
   "area": "Work Order — Whole-WO Fee/Discount",
   "story_ref": "S2-R33 / S12-R2",
-  "title": "Verify the preview adjustment row is signed and colored (fee vs discount)",
+  "title": "Verify the preview amount is signed for a fee (+) vs a discount (−)",
   "priority": "Medium",
   "type": "Functional",
-  "permissions_required": "Work Orders: Create & Edit + See Financial Data + Fees & Discounts flag ON",
+  "permissions_required": "Work Orders: Create & Edit + See Financial Data",
   "preconditions": [
-   "1. Logged in with Work Orders: Create & Edit + See Financial Data.",
-   "2. The whole-WO Add dialog is open."
+   "1. You are logged in with Work Orders: Create & Edit and See Financial Data.",
+   "2. The 'Add new fee/discount' dialog is open."
   ],
   "steps": [
-   "1. Set Type = 'Fee', Calculation type = 'Flat amount', Amount = 50; read the preview color/sign.",
-   "2. Change Type = 'Discount'; read the preview color/sign again."
+   "1. Set 'Type' to 'Fee', 'Calculation Type' to 'Flat Amount', '$ Amount' to 50, and look at the preview amount.",
+   "2. Change 'Type' to 'Discount' and look at the preview amount again."
   ],
   "expected": [
-   "1. Per spec S2-R33 the fee amount shows in green with a '+' sign and the discount amount shows in red with a '−' sign; this is the only place green/red are used (S12-R2).",
-   "2. Preview is signed (+ for fee, − for discount) and updates live."
+   "1. A fee shows as a positive amount with a '+' sign.",
+   "2. A discount shows as a negative amount with a '−' sign; the preview updates as you change the Type."
   ],
   "design_ref": "live preview color logic updateSummary() (§6, §1a)",
   "viu_status": "VIU-Verified",
-  "notes": "Design↔spec color conflict: the design mockup renders DISCOUNT amounts in green (--sv-success-text) and FEE amounts in amber/warning (--sv-warning-text), the OPPOSITE of spec S2-R33 (fee green, discount red). Authored the expected to spec; flag the mismatch and confirm the actual color on staging. | VIU qb batch-1 (2026-07-08): Preview row signed+colored: fee 'Fee · 25% +$66.25' GREEN rgb(33,186,69) (computed style); discount 'Discount · 150% -$439.25' RED (shot s8-08). Only place green/red used, consistent with S12-R2. | FRESH VIU 2026-07-10: preview row '+$5.00' with new-subtotal line re-observed; color/sign convention from batch-1 (not re-checked)",
+  "notes": "Design↔spec color conflict: the design mockup renders DISCOUNT amounts in green (--sv-success-text) and FEE amounts in amber/warning (--sv-warning-text), the OPPOSITE of spec S2-R33 (fee green, discount red). Authored the expected to spec; flag the mismatch and confirm the actual color on staging. | VIU qb batch-1 (2026-07-08): Preview row signed+colored: fee 'Fee · 25% +$66.25' GREEN rgb(33,186,69) (computed style); discount 'Discount · 150% -$439.25' RED (shot s8-08). Only place green/red used, consistent with S12-R2. | FRESH VIU 2026-07-10: preview row '+$5.00' with new-subtotal line re-observed; color/sign convention from batch-1 (not re-checked) | WORDING+VIU 2026-07-13: rewritten to exact build labels (⋮ menu item 'Add Fee/Discount'; dialog 'Add new fee/discount'; fields 'Apply From Template'/'Name'/'Type'/'Calculation Type'/'$ Amount' or 'Percent %'/'$ Max Amount (Optional)'/'Taxable' toggle; whole-WO Calculation Type options = Flat Amount, % of Labor Total, % of Parts Total, % of Subtotal; buttons 'Add Fee'/'Add Discount'; sidebar card 'WO Fees & Discounts'; preview empty prompt 'Enter an amount to see the impact.'). Captured live on WO S3-15960 (shots wo-01..wo-05). Kept to sign only; the exact fee/discount colours were not re-captured this pass.",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13",
+  "_note": " | WORDING+VIU 2026-07-13: rewritten to exact build labels (⋮ menu item 'Add Fee/Discount'; dialog 'Add new fee/discount'; fields 'Apply From Template'/'Name'/'Type'/'Calculation Type'/'$ Amount' or 'Percent %'/'$ Max Amount (Optional)'/'Taxable' toggle; whole-WO Calculation Type options = Flat Amount, % of Labor Total, % of Parts Total, % of Subtotal; buttons 'Add Fee'/'Add Discount'; sidebar card 'WO Fees & Discounts'; preview empty prompt 'Enter an amount to see the impact.'). Captured live on WO S3-15960 (shots wo-01..wo-05). Kept to sign only; the exact fee/discount colours were not re-captured this pass."
  },
  {
   "id": "FD-WO-016",
   "area": "Work Order — Whole-WO Fee/Discount",
   "story_ref": "S2-R26, S2-R26a, §5-R15",
-  "title": "Verify the Add/Edit fee-or-discount dialog shows the §5-R15 taxable jurisdiction note below the Taxable dropdown",
+  "title": "Verify the Add/Edit fee-or-discount dialog shows the tax-jurisdiction note below the Taxable toggle",
   "priority": "Medium",
   "type": "Functional",
-  "permissions_required": "See Financial Data + Work Orders: Create and Edit + flag ON",
+  "permissions_required": "Work Orders: Create & Edit + See Financial Data",
   "preconditions": [
-   "1. An open work order (not Invoiced/Paid, not in history mode). Mark any throwaway data ZZAUTOTEST.",
-   "2. You can add an adjustment (Work Orders: Create and Edit + See Financial Data)."
+   "1. An open work order (not Invoiced/Paid, not in history view). Mark any throwaway data ZZAUTOTEST.",
+   "2. You can add a fee/discount (Work Orders: Create & Edit and See Financial Data)."
   ],
   "steps": [
-   "1. From the work-order toolbar's more (⋯) menu, choose \"Add Fee / Discount\" to open the New Fee / Discount dialog.",
-   "2. Find the Taxable Yes/No dropdown and read the text shown directly below it.",
-   "3. Open an existing adjustment's Edit dialog and check the same place below the Taxable dropdown."
+   "1. Open 'Add Fee/Discount' from the work order ⋯ menu.",
+   "2. Look directly below the 'Taxable' Yes/No toggle for a note.",
+   "3. Open an existing fee/discount's Edit dialog and check the same place below the Taxable toggle."
   ],
   "expected": [
-   "1. Directly below the Taxable dropdown, this exact advisory text shows: \"Tax treatment varies by jurisdiction — confirm your local requirements before saving.\"",
-   "2. The same note shows in both the Add (New Fee / Discount) and the Edit (Edit Fee / Discount) dialog.",
-   "3. The note is a plain advisory to the shop — it is not a UI instruction and not a legal-compliance statement."
+   "1. Directly below the Taxable toggle this note is shown: 'Tax treatment varies by jurisdiction — confirm your local requirements before saving.'",
+   "2. The same note shows in both the Add and the Edit dialog.",
+   "3. The note is plain advice to the shop, not a system instruction and not a legal statement."
   ],
   "design_ref": "requirements.md §5-R15 (S2-R26a)",
-  "viu_status": "Pending — new case (V1_2 §5-R15 / S2-R26a); not yet checked live",
-  "notes": "NEW 2026-07-13 for V1_2 §5-R15 / S2-R26a. UI string check (advisory) — belongs in a FUNCTIONAL section, NOT an API section (standing rule 4). Assert the exact string verbatim.",
+  "viu_status": "VIU-Deviation",
+  "notes": "NEW 2026-07-13 for V1_2 §5-R15 / S2-R26a. UI string check (advisory) — belongs in a FUNCTIONAL section, NOT an API section (standing rule 4). Assert the exact string verbatim. | WORDING+VIU 2026-07-13: 'Taxable' is a Yes/No TOGGLE (not a dropdown) — corrected. DEVIATION: the §5-R15 jurisdiction note is NOT shown below the Taxable toggle in this build (checked the whole-WO Add dialog with both Flat Amount and % of Subtotal; no note present — shots wo-03/wo-05). Expected kept as the spec requirement; currently a gap.",
   "api_related": false,
-  "testrail_id": 29441
+  "testrail_id": 29441,
+  "_note": " | WORDING+VIU 2026-07-13: 'Taxable' is a Yes/No TOGGLE (not a dropdown) — corrected. DEVIATION: the §5-R15 jurisdiction note is NOT shown below the Taxable toggle in this build (checked the whole-WO Add dialog with both Flat Amount and % of Subtotal; no note present — shots wo-03/wo-05). Expected kept as the spec requirement; currently a gap.",
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "FD-LABOR-001",
