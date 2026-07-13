@@ -1,0 +1,28 @@
+{
+  "case_id": 29273,
+  "section_id": 3542,
+  "template_id": 2,
+  "title": "The Integrations admin pages depend on the Integrations sub-toggle, not on Finance",
+  "custom_preconds": "<ol>\n<li>Two custom roles are set up, each with a user:</li>\n<li>Role A: Settings > App Settings ON and Settings > Integrations ON.</li>\n<li>Role B: Settings > Finance ON and Settings > Integrations OFF.</li>\n</ol>",
+  "custom_steps_separated": [
+    {
+      "content": "Log in as the Role A user and open the Settings area.",
+      "expected": "The Settings area opens."
+    },
+    {
+      "content": "Look for the Integrations pages (for example IBS).",
+      "expected": "The Integrations pages, including IBS, are shown."
+    },
+    {
+      "content": "Log in as the Role B user (Finance on, Integrations off) and open the Settings area.",
+      "expected": "The Settings area opens and Payment Methods is shown."
+    },
+    {
+      "content": "Look for the Integrations pages.",
+      "expected": "The Integrations pages, including IBS, are not shown \u2014 having Finance on does not unlock Integrations."
+    }
+  ],
+  "viu_status": "Blocked-UI (needs two seeded roles)",
+  "evidence": "Steps-Separated case; reworded to layman, stripped element-id/URL jargon. Needs live UI.",
+  "fresh_run": "2026-07-13"
+}

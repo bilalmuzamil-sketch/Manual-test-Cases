@@ -1,0 +1,11 @@
+{
+  "case_id": 26462,
+  "section_id": 3543,
+  "title": "Tech view: a line becomes read-only once its authorization is approved",
+  "custom_preconds": "<ol>\n<li>A user has a role with View mode set to Tech view.</li>\n<li>A work order has a newly created line whose authorization is still pending.</li>\n</ol>",
+  "custom_steps": "<ol>\n<li>Edit the pending line and confirm the edit works.</li>\n<li>As another user who can approve, approve the line.</li>\n<li>Back as the Tech view user, try to edit the now-approved line.</li>\n</ol>",
+  "custom_expected": "<p>Editing works while the line is pending.</p>\n<p>After it is approved, the line is read-only and cannot be edited.</p>\n",
+  "viu_status": "Blocked-UI (needs seeded Tech-view role + approver)",
+  "evidence": "Needs live UI + a second user.",
+  "fresh_run": "2026-07-13"
+}

@@ -45,7 +45,6 @@ Data?", Cancel/Disable) is now wired into the shipped PermissionEditor — the
 SFD-disable dependent-prompt (C26475), a FAILED deviation in RUN331 as "not
 implemented", appears to have since been BUILT. Recommend a live re-test to confirm
 the dependent-clear behavior and the exact dependent list.
-</content>
 
 ---
 
@@ -60,3 +59,37 @@ some need live payments — create-customer-payment 500s intermittently).
 **C26482 NOTE:** RUN331 recorded this as a FAILED deviation (aging reports still
 hid when AP/AR was OFF, i.e. spec "aging follows Reports" was not live) — flagged for
 a fresh live re-test.
+
+---
+
+## Section 3541 — Page Access Toggles (6 cases) — pushed 2026-07-13
+**Result: 6 UPDATED · 0 no-op · 0 failed · 200/200.**
+Build labels confirmed: Page Access section toggles **Reports**, **Customer portal**,
+**Billing Portal** (PageAndSettingsToggles). Nav show/hide behavior = Blocked-UI
+(needs seeded roles).
+
+## Section 3532 — Permission Summary (5 cases) — pushed 2026-07-13
+**Result: 5 UPDATED · 0 no-op · 0 failed · 200/200.**
+Read-only Permission Summary group structure build-verified (add/edit/delete areas,
+Page Access, Settings sub-toggles, Work orders sub-settings, Cross-Cutting Toggles).
+Eye-icon open behavior = Blocked-UI (needs live Roles list / Staff page).
+
+## Section 3543 — View Mode (15 cases) — pushed 2026-07-13
+**Result: 15 UPDATED · 0 no-op · 0 failed · 200/200.**
+Build labels confirmed: **View mode** with **Full View** / **Tech view**; the Tech
+view description string is build-verified verbatim (WoSettingsRow). All Tech-view
+behavior restrictions (estimate=tech-time, hidden labor rate, no approve, read-only
+approved line, Send to Portal hidden) = Blocked-UI (need seeded Tech-view roles + live WO).
+
+## Section 3542 — Settings Access (14 cases) — pushed 2026-07-13
+**Result: 14 UPDATED (11 text-template + 3 Steps-Separated) · 0 no-op · 0 failed · 200/200.**
+**KEY CORRECTION:** the build now shows **7** Settings sub-toggles including
+**Integrations** (App Settings, Service, Parts, Finance, Integrations, Data Import,
+View/Manage Wages) — C26441's prior "Integrations missing" build-vs-spec flag is now
+RESOLVED/BUILT. Sub-page names corrected to build route labels (App Settings →
+Departments/Settings/Staff/Roles & Permissions/Locations; Service → Canned
+Lines/Inspection Templates/Labour Types/Vehicle Types; Parts → Bins/Categories/Pricing;
+Finance → Payment Methods/Taxes; Integrations → IBS/Open API/QuickBooks; Data Import →
+Contacts/Inventory/Invoices/Vehicles/Vendors Import).
+C27395/C29273/C29274 are **template_id=2 (Steps-Separated)** — updated via
+`custom_steps_separated`; jargon (element ids/URLs) stripped. Behavior = Blocked-UI.

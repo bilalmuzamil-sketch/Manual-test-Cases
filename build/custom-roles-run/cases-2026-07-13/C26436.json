@@ -1,0 +1,11 @@
+{
+  "case_id": 26436,
+  "section_id": 3541,
+  "title": "Reports OFF removes Reports from the top navigation",
+  "custom_preconds": "<ol>\n<li>A user has a role with the Reports toggle OFF.</li>\n</ol>",
+  "custom_steps": "<ol>\n<li>Log in and look at the top navigation.</li>\n<li>Try to open a Reports page by typing its web address.</li>\n</ol>",
+  "custom_expected": "<p>Reports is not in the top navigation.</p>\n<p>Opening a Reports address directly is refused.</p>\n",
+  "viu_status": "Blocked-UI (needs seeded role)",
+  "evidence": "Nav-hide needs live check.",
+  "fresh_run": "2026-07-13"
+}

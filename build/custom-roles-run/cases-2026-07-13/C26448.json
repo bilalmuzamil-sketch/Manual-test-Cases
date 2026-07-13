@@ -1,0 +1,11 @@
+{
+  "case_id": 26448,
+  "section_id": 3542,
+  "title": "Finance ON shows the Finance pages, and Integrations ON shows QuickBooks, IBS and Open API",
+  "custom_preconds": "<ol>\n<li>A user has a role with Settings ON, App Settings ON, and both Finance and Integrations sub-toggles ON.</li>\n</ol>",
+  "custom_steps": "<ol>\n<li>Log in as that user and open the Settings area.</li>\n<li>Look at the Finance pages.</li>\n<li>Look at the Integrations pages.</li>\n</ol>",
+  "custom_expected": "<p>The Finance pages are shown, including Payment Methods and Taxes.</p>\n<p>The Integrations pages are shown: QuickBooks, IBS and Open API.</p>\n",
+  "viu_status": "Blocked-UI (needs seeded role); page names build-verified",
+  "evidence": "Finance gates Payment Methods/Taxes; Integrations gates IBS/Open API/QuickBooks (build route metadata).",
+  "fresh_run": "2026-07-13"
+}

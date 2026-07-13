@@ -1,0 +1,11 @@
+{
+  "case_id": 26461,
+  "section_id": 3543,
+  "title": "Tech view: the user can add new work order lines but cannot edit existing ones",
+  "custom_preconds": "<ol>\n<li>A user has a role with View mode set to Tech view and Work order lines View and Create & Edit.</li>\n</ol>",
+  "custom_steps": "<ol>\n<li>Open a work order that already has lines.</li>\n<li>Try to edit an existing line.</li>\n<li>Try to add a new line.</li>\n</ol>",
+  "custom_expected": "<p>The existing line is read-only.</p>\n<p>A new line can be added.</p>\n",
+  "viu_status": "Blocked-UI (needs seeded Tech-view role)",
+  "evidence": "Needs live UI.",
+  "fresh_run": "2026-07-13"
+}

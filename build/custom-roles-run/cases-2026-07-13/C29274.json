@@ -1,0 +1,24 @@
+{
+  "case_id": 29274,
+  "section_id": 3542,
+  "template_id": 2,
+  "title": "The QuickBooks connection check does not run for roles without Integrations",
+  "custom_preconds": "<ol>\n<li>A custom role is set up with Settings > Parts ON and Settings > Integrations OFF, with a user to log in as.</li>\n<li>QuickBooks is connected for the organization.</li>\n</ol>",
+  "custom_steps_separated": [
+    {
+      "content": "Log in as that user and open Parts > Categories.",
+      "expected": "The Categories list is shown."
+    },
+    {
+      "content": "Wait for the page to finish loading.",
+      "expected": "No 'Checking QuickBooks connection...' row appears."
+    },
+    {
+      "content": "Watch for any messages during and after loading.",
+      "expected": "No 'An error occurred while checking QuickBooks connection.' message is shown."
+    }
+  ],
+  "viu_status": "Blocked-UI (needs seeded role)",
+  "evidence": "Steps-Separated case; reworded to layman. Needs live UI.",
+  "fresh_run": "2026-07-13"
+}

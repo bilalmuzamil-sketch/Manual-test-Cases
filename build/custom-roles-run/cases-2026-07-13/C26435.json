@@ -1,0 +1,11 @@
+{
+  "case_id": 26435,
+  "section_id": 3541,
+  "title": "Reports ON gives access to the Reports page with all reports (no per-report on/off)",
+  "custom_preconds": "<ol>\n<li>A user has a role with the Reports toggle (under Page Access) ON.</li>\n</ol>",
+  "custom_steps": "<ol>\n<li>Log in as that user and look at the top navigation.</li>\n<li>Click Reports in the top navigation.</li>\n<li>Look at the list of reports.</li>\n</ol>",
+  "custom_expected": "<p>Reports is shown in the top navigation.</p>\n<p>All reports are listed together.</p>\n<p>There is no way to switch individual reports on or off; Reports is all-or-nothing.</p>\n",
+  "viu_status": "Blocked-UI (needs seeded role); toggle label 'Reports' build-verified",
+  "evidence": "Page Access toggle 'Reports' confirmed in build (PageAndSettingsToggles). Report list needs live check.",
+  "fresh_run": "2026-07-13"
+}

@@ -1,0 +1,11 @@
+{
+  "case_id": 26454,
+  "section_id": 3543,
+  "title": "The Tech view description, and Tech view stays disabled until a Work orders permission is on",
+  "custom_preconds": "<ol>\n<li>Open Create Role (or edit a custom role).</li>\n</ol>",
+  "custom_steps": "<ol>\n<li>In a blank editor, note whether the Tech view option can be selected.</li>\n<li>Turn on a Work orders permission (for example View).</li>\n<li>Select Tech view and read its description.</li>\n</ol>",
+  "custom_expected": "<p>In a blank editor the Tech view option is disabled until a Work orders permission is turned on.</p>\n<p>After turning on Work orders View, Tech view can be selected and shows the description: 'Simplified interface focused on the technician workflow. Non-essential fields are hidden to reduce clutter, and only the actions a technician needs day-to-day are shown.'</p>\n",
+  "viu_status": "Verified-Label (Tech view text build-verified); disabled-state needs live check",
+  "evidence": "Tech view description string confirmed verbatim in build (WoSettingsRow). Disabled-until-WO-perm needs live editor.",
+  "fresh_run": "2026-07-13"
+}

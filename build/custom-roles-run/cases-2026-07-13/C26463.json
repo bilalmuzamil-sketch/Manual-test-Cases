@@ -1,0 +1,11 @@
+{
+  "case_id": 26463,
+  "section_id": 3543,
+  "title": "View mode only changes the look, not what the user is allowed to do",
+  "custom_preconds": "<ol>\n<li>A user has a role with View mode set to Tech view and Work orders View and Create & Edit.</li>\n</ol>",
+  "custom_steps": "<ol>\n<li>Open a work order and add a new line.</li>\n<li>Edit the allowed fields on the new line.</li>\n<li>Save.</li>\n</ol>",
+  "custom_expected": "<p>The user can still edit and save at the data level; only the look of the interface is simpler.</p>\n",
+  "viu_status": "Blocked-UI (needs seeded Tech-view role)",
+  "evidence": "Needs live UI.",
+  "fresh_run": "2026-07-13"
+}

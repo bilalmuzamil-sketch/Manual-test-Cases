@@ -1,0 +1,11 @@
+{
+  "case_id": 26455,
+  "section_id": 3543,
+  "title": "Tech view: the Estimate column shows the Tech Time value",
+  "custom_preconds": "<ol>\n<li>A user has a role with View mode set to Tech view.</li>\n<li>A test work order has an Estimate value and a different Tech Time value.</li>\n</ol>",
+  "custom_steps": "<ol>\n<li>Log in as that user and open Work Orders.</li>\n<li>Open the test work order.</li>\n<li>Look at the Estimate column on the lines.</li>\n<li>Compare with what a Full View user sees.</li>\n</ol>",
+  "custom_expected": "<p>The Estimate column shows the Tech Time value, not the money estimate value.</p>\n",
+  "viu_status": "Blocked-UI (needs seeded Tech-view role + live WO)",
+  "evidence": "Tech-view line rendering needs live UI.",
+  "fresh_run": "2026-07-13"
+}

@@ -1,0 +1,11 @@
+{
+  "case_id": 26459,
+  "section_id": 3543,
+  "title": "Tech view: labor rate columns and fields are hidden on work order lines",
+  "custom_preconds": "<ol>\n<li>A user has a role with View mode set to Tech view and See Financial Data ON.</li>\n</ol>",
+  "custom_steps": "<ol>\n<li>Open a work order and look at the line columns.</li>\n<li>Look for any labor rate column or field.</li>\n</ol>",
+  "custom_expected": "<p>Labor rate columns and fields are hidden, even though See Financial Data is on \u2014 the hiding comes from Tech view, not from See Financial Data.</p>\n",
+  "viu_status": "Blocked-UI (needs seeded Tech-view role)",
+  "evidence": "Needs live UI.",
+  "fresh_run": "2026-07-13"
+}
