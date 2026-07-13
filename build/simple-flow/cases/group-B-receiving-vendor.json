@@ -1474,13 +1474,14 @@
    "3. Read the column values across statuses."
   ],
   "expected": [
-   "1. EXPECTED PER SPEC: a 'Waiting on Parts' column is offered in the column selector (off by default).",
-   "2. It shows the count of unreceived parts per work order across all statuses."
+   "1. The Work Orders list column selector offers a 'Waiting on Parts' column (off by default).",
+   "2. When enabled, it shows the count of unreceived parts per work order across all statuses."
   ],
   "design_ref": "Work Orders List.html",
   "viu_status": "VIU-Verified",
-  "notes": "NOT BUILT — 'Waiting on Parts' is absent from the WO-list column selector (16-wo-columns.png lists Asset, VIN/Serial#, Progress, Service Advisor, Lead Technician, Clocked In, Lines, Total price, Created on, Invoiced Date, Days open, Parts, Returns). Needs dev complete. || [RE-VIU 2026-07-09 sv7301 — Stories 7/8/9/14 CONFIRMED BUILT] BUILT & VERIFIED: the WO-list column selector (button_column_selection) offers a 'Waiting On Parts' column, OFF by default (toggle_column_unreceivedPartRequestsCount, aria-checked=false). It counts unreceived part requests (backing field unreceivedPartRequestsCount on GET /api/work-orders). Column renders when enabled. Resolves conflict (b): the shipped LABEL is 'Waiting On Parts' (NOT the Epic's 'Waiting on Receive') — our wording is correct. ",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13: 'Waiting on Parts' column is off by default (toggle_column_unreceivedPartRequestsCount), enabled from the column selector - Story 14 built, verified prior runs (BATCH 7). Stripped 'EXPECTED PER SPEC' jargon. FLAG: exact column-selector label not re-surfaced this run (width_normal control did not open the selector panel).",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-WOP-02",
@@ -1499,13 +1500,14 @@
    "2. Observe the destination."
   ],
   "expected": [
-   "1. EXPECTED (built): clicking the count opens the receiving surface for the work order's first unreceived PO. In the current build this is the consolidated Bulk Receive page (/bulk-receive), which supersedes the legacy Accept Delivery screen for work-order POs.",
-   "2. Receiving behaves as it does from the Bulk Receive page from there."
+   "1. Clicking the count opens the receiving surface for the work order's first unreceived purchase order. In the current build this is the consolidated Bulk Receive page (/bulk-receive), which supersedes the legacy Accept Delivery screen for work-order POs.",
+   "2. Receiving from there behaves as it does on the Bulk Receive page."
   ],
   "design_ref": "requirements S14-R2",
   "viu_status": "VIU-Verified",
-  "notes": "NOT BUILT (depends on S14-R1). Needs dev complete. || [RE-VIU 2026-07-09 sv7301 — Stories 7/8/9/14 CONFIRMED BUILT] Column + count BUILT (see SF-WOP-01) but the click-count->Accept Delivery navigation was NOT driven this pass — harness column-persistence flakiness + no non-zero cell surfaced in the sampled page. reachable-now: needs a stable WO row with a non-zero unreceived count.  || [FOLLOW-UP VIU 2026-07-09 sv7301] VERIFIED. Enabled the 'Waiting On Parts' column (via storedColumns), clicked a WO's '2 Parts Waiting' count -> navigated to the built receive surface /bulk-receive?ids=<poId> (Receive Vendor Parts) for that WO's unreceived PO. DEVIATION (wording only): the count opens the NEW consolidated Bulk Receive page, not the legacy 'Accept Delivery' named in the original expected; same end-state (receive the WO's first unreceived PO). Expected refined; TestRail push pending user approval.",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13: clicking the Waiting on Parts count opens the Bulk Receive page for the WO's first unreceived PO - verified prior (case 29384 pushed 2026-07-09/10).",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-WOP-03",
@@ -1524,11 +1526,12 @@
    "2. Read its Waiting on Parts cell."
   ],
   "expected": [
-   "1. EXPECTED PER SPEC: the cell shows '—' with no clickable link."
+   "1. A work order with nothing to receive shows an em dash ('—') in the Waiting on Parts column, with no clickable link."
   ],
   "design_ref": "requirements S14-R3",
   "viu_status": "VIU-Verified",
-  "notes": "NOT BUILT. Needs dev complete. || [RE-VIU 2026-07-09 sv7301 — Stories 7/8/9/14 CONFIRMED BUILT] BUILT & VERIFIED: with the column enabled, WOs with nothing to receive show '—' with no clickable link (12/12 sampled rows). ",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13: WO with nothing to receive shows '—' (no link) - verified prior (BATCH 7). Stripped 'EXPECTED PER SPEC' jargon.",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  }
 ]

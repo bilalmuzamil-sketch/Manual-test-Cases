@@ -423,8 +423,9 @@
   ],
   "design_ref": "Work Orders List.html; requirements S15-R1",
   "viu_status": "VIU-Verified",
-  "notes": "Create flow verified during Story 2 setup (S2-01-create-form.png).",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13 (UX-workorders-list.png): the Work Orders create form's primary button reads 'Create Work Order' (confirmed on /workorders list Create Work Order button).",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-UX-02",
@@ -444,13 +445,14 @@
    "3. Confirm the tech story is handled by its own flow, not inside this modal."
   ],
   "expected": [
-   "1. Required fields (mileage / VIN when required) are collected in a centralized center modal.",
-   "2. The tech story is NOT part of this modal (Story 17 handles it separately)."
+   "1. The required vehicle fields (Mileage and Engine Hours) are collected in a centralized center modal titled 'Complete Work Order'.",
+   "2. The tech story is NOT part of this modal (it is handled by its own line-level flow)."
   ],
   "design_ref": "WO Review Flow.html; requirements S15-R2",
   "viu_status": "VIU-Verified",
-  "notes": "Centralized Details modal verified (S2-13-details.png); tech story ran as its own gate before the wizard (S2-11-techstory.png).",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13: required fields collected in the centralized 'Complete Work Order' modal (Mileage + Engine Hours; no VIN field in the modal - see SF-COMP-16/SF-VAL-02 build finding); tech story handled separately.",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-UX-03",
@@ -475,8 +477,9 @@
   ],
   "design_ref": "WO Review Flow.html; requirements S15-R3",
   "viu_status": "VIU-Verified",
-  "notes": "Success screen verified (S2-14-success.png). Finance-step invoice-number location not separately driven.",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13: success screen shows WO number + total with 'Done' and 'Go To Invoice'; invoice number appears on the Finance step (confirmed live via SF-COMP drives S2-15825 'Invoice total $434.95').",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-UX-04",
@@ -502,8 +505,9 @@
   ],
   "design_ref": "requirements S15-R4 (design pending)",
   "viu_status": "VIU-Pending",
-  "notes": "S15-R4 close-confirm design is explicitly pending ('Figma still to be added') — no design surface to test yet. Confirm before authoring expected. See Open Questions. || [RECONCILED 2026-07-08] Milos Q10 (S15-R4): behavior defined — Close = modal-only / no discard; Cancel = returns to previous screen. Un-blocked (was pending design).",
-  "api_related": false
+  "notes": "VIU-Pending: the close-confirmation dialog (Close = closes modal only; Cancel text-link = closes + returns) needs a completion modal with a discardable in-progress state to trigger it; the labor-only WOs available complete directly without that state. Wording kept build-accurate; needs a part-bearing in-progress completion to drive.",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-PERM-01",

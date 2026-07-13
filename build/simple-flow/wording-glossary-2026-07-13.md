@@ -178,3 +178,24 @@ VIN validity surfaces via the WO-header **`Valid VIN Required`** chip; for revie
 it is captured in the Mark Reviewed dialog. This is broader than V2.4 Δ1 (which
 described VIN dropping from the review-on modal) — the build has no VIN field in the
 completion modal at all. Affects SF-COMP-16 / SF-VAL-02 (corrected/flagged).
+
+---
+
+## SF-UX / SF-WOP — Work Orders list + completion UX
+
+Screenshots: `UX-workorders-list.png`, `WOP-column-selector.png`.
+
+**Work Orders list (exact):** tabs `Estimates` · `Work Orders` · `Completed` ·
+`By Status` · `My Work Orders`; **`Create Work Order`** primary button. Default
+columns: `On Site` · `Status` · `Number` · `Customer` · `Asset` · `Unit` ·
+`VIN/Serial #` · `Progress` · `Service Advisor` · `Lead Technician` · `Clocked In`
+· `Lines` · `Total Price` · `Created On`. The **Waiting on Parts** column is OFF by
+default (enabled via the column selector; `toggle_column_unreceivedPartRequestsCount`,
+per prior VIU / Story 14 — the column selector panel did not surface via the
+`width_normal` control this run; label carried from prior verification, FLAG to
+re-confirm the exact selector label).
+
+**Completion UX:** the required-fields modal is the centralized center modal
+(`Complete Work Order` with Mileage + Engine Hours — see SF-VAL); tech story is a
+separate line-level flow (not in this modal). Success screen + `Done` / `Go To
+Invoice` (invoice number on the Finance step) — see SF-COMP glossary.

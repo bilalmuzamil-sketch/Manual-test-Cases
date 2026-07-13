@@ -158,3 +158,19 @@ Verified, re-pushed C29388).
 **SF-VAL summary:** 11 cases · VIU-Verified 7 · VIU-Pending 4. TestRail: **11
 updated, 200/OK, 0 errors** (+ SF-COMP-16, SF-REV-03 re-pushed). Settings restored
 byte-identical. **TESTER-READY.**
+
+---
+
+## Areas SF-UX (4) + SF-WOP (3) — TESTER-READY ✅
+
+Confirmed live 2026-07-13 (`UX-workorders-list.png`): **`Create Work Order`** button;
+WO list columns; completion required-fields collected in the centralized **`Complete
+Work Order`** modal (Mileage + Engine Hours, no VIN; tech story separate); success
+screen `Done` / `Go To Invoice` (invoice on Finance step). SF-WOP (Story 14 Waiting
+on Parts column) per prior VIU (case 29384) — 'EXPECTED PER SPEC' jargon stripped.
+
+- SF-UX-01/02/03 (C29401/02/03) VIU-Verified; **SF-UX-04 (C29404) VIU-Pending** (close-confirmation dialog needs a discardable in-progress completion).
+- SF-WOP-01/02/03 (C29383/84/85) VIU-Verified (SF-WOP-01 FLAG: exact column-selector label not re-surfaced this run).
+
+**Summary:** 7 cases · VIU-Verified 6 · VIU-Pending 1. TestRail: **7 updated,
+200/OK, 0 errors.** **TESTER-READY.**
