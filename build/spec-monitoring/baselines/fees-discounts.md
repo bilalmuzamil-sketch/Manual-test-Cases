@@ -303,6 +303,10 @@ Examples:
 
 Whole Work Order and Labor Line Flat Amount adjustments have no quantity part. They always resolve to the set amount exactly.
 
+### 5-R15 (taxable jurisdiction note)
+
+Below every Taxable control — the Add / Edit fee-or-discount dialog (S2-R26) and the Processing Fee dialog (S8-R11) — this exact text shows: _Tax treatment varies by jurisdiction — confirm your local requirements before saving._ It is a plain advisory to the shop; it is not a UI instruction and not a legal-compliance statement.
+
 ---
 
 ## 6. Requirements
@@ -318,11 +322,12 @@ _Where a user starts adding an adjustment, and which scope each starting place s
 * The Fees & Discounts feature flag is on.
 * The work order is not Invoiced or Paid.
 * The user is not in history mode.
-* The user has the Work Order change permission.
+* The user has **Work Orders: Create and Edit**.
+* The user has **See Financial Data**.
 
 **Requirements:**
 
-* **S1-R1:** Selecting "Add Fee / Discount" from the work-order toolbar's â¯ (more) menu opens the dialog at Whole Work Order scope.
+* **S1-R1:** Selecting "Add Fee / Discount" from the work-order toolbar's âÂ¯ (more) menu opens the dialog at Whole Work Order scope.
 * **S1-R2:** Each labor line row shows its own 3-dot menu button on hover.
 * **S1-R3:** Selecting "Add Fee / Discount" from a labor line's 3-dot menu opens the dialog locked to Labor Line scope for that line.
 * **S1-R4:** Each part's menu offers "Add Fee / Discount" for both staged parts and requested parts.
@@ -333,7 +338,7 @@ _Where a user starts adding an adjustment, and which scope each starting place s
 **Negative cases:**
 
 * **S1-N1:** On an Invoiced or Paid work order, "Add Fee / Discount" is hidden at all starting places, and the system rejects the action (S3-R1b).
-* **S1-N2:** Without the Work Order change permission, these starting places are not shown.
+* **S1-N2:** Without **Work Orders: Create and Edit**, these starting places are not shown.
 
 ---
 
@@ -393,6 +398,7 @@ _The guided form for setting an adjustment._
 * **S2-R24:** **Max Amount** — a currency input labeled "Max Amount (Optional)", shown only for a percentage method.
 * **S2-R25:** An empty Max Amount means no maximum. An entered 0 is treated the same as empty — also no maximum (§5-R6).
 * **S2-R26:** **Taxable** — a Yes/No dropdown labeled "Taxable", default "Yes".
+* **S2-R26a:** The Taxable jurisdiction note (§5-R15) shows below the Taxable dropdown.
 
 **Requirements — submission:**
 
@@ -438,8 +444,8 @@ _The "WO Fees & Discounts" sidebar card, the inline rows on the work-order line 
 **Prerequisites:**
 
 * The Fees & Discounts feature flag is on.
-* The user has the Work Order pricing-view permission to see any money values.
-* The user has the Work Order change permission to edit or remove an adjustment.
+* The user has **See Financial Data** to see any money values.
+* The user has **Work Orders: Create and Edit** (whole-work-order adjustments) or **Work Order Lines: Create and Edit** (labor-line and part-line adjustments) to add, edit, or remove an adjustment.
 
 **Requirements — general:**
 
@@ -455,7 +461,7 @@ _The "WO Fees & Discounts" sidebar card, the inline rows on the work-order line 
 * **S3-R6:** For a percentage method, the rate badge shows the signed percent with extra zeros removed (for example, "−8%", "+3%").
 * **S3-R7:** For a Flat Amount, the rate badge shows the signed set dollar amount (for example, "$15.00" for a fee, "−$15.00" for a discount).
 * **S3-R8:** Below the name and rate badge, each entry shows the resolved dollar amount in plain grey, signed.
-* **S3-R9:** Each entry has a 3-dot menu on hover, with "Edit" and "Delete." It shows only when the work order is open and the user has the change permission.
+* **S3-R9:** Each entry has a 3-dot menu on hover, with "Edit" and "Delete." It shows only when the work order is open and the user has **Work Orders: Create and Edit**.
 
 > _\* Context note: a Processing Fee entry is the exception — its menu shows "Delete" only, no "Edit" (S8-R17, S8-N5)._
 
@@ -465,12 +471,12 @@ _The "WO Fees & Discounts" sidebar card, the inline rows on the work-order line 
 
 **Requirements — work-order (lines) table:**
 
-* **S3-R12:** A labor-line adjustment shows inside that labor line's row: an indented down-right arrow ("â³"), the name, and a signed rate badge.
+* **S3-R12:** A labor-line adjustment shows inside that labor line's row: an indented down-right arrow ("âÂ³"), the name, and a signed rate badge.
 * **S3-R13:** A part-line adjustment shows inside that part's row, with the same arrow, name, and signed rate badge.
 * **S3-R14:** For each line-level adjustment, the resolved dollar amount shows in the cost column in plain grey, signed.
 * **S3-R15:** When a labor line or a part has two or more adjustments, only the first adjustment row shows by default.
 * **S3-R16:** A toggle labeled "Show N more" (N is the hidden count) shows the rest; when open it reads "Show less."
-* **S3-R17:** Each line-level adjustment row has a 3-dot menu on hover, with "Edit" and "Delete", shown only when the work order is open and the user has the change permission.
+* **S3-R17:** Each line-level adjustment row has a 3-dot menu on hover, with "Edit" and "Delete", shown only when the work order is open and the user has **Work Order Lines: Create and Edit**.
 * **S3-R18:** The per-line Total column shows the line's gross total plus that line's own adjustment amounts. So the shown total matches the adjustment rows below it.
 * **S3-R19:** The per-line Total is a display value only; it changes no stored value.
 
@@ -487,7 +493,7 @@ _The "WO Fees & Discounts" sidebar card, the inline rows on the work-order line 
 * **S3-N1:** With no Whole Work Order adjustments, the "WO Fees & Discounts" sidebar card is not shown.
 * **S3-N2:** With no adjustments of any scope, the "Fees & Discounts (N)" row is not shown on the Financial Info card.
 * **S3-N3:** On an Invoiced or Paid work order, the per-entry and per-row 3-dot menus are not shown.
-* **S3-N4:** Without the Work Order pricing-view permission, the Financial Info card's money section is hidden.
+* **S3-N4:** Without **See Financial Data**, the Financial Info card's money section is hidden.
 
 ---
 
@@ -501,7 +507,7 @@ _The fees & discounts section on the work order's Statistics tab._
 
 * The Fees & Discounts feature flag is on.
 * The work order has at least one fee or discount.
-* The user has the Work Order pricing-view permission.
+* The user has **See Financial Data**.
 
 **Requirements:**
 
@@ -535,7 +541,7 @@ _How adjustments show on customer estimates and invoices._
 
 **Requirements — per-line adjustments (Labor Line, Part Line scope):**
 
-* **S5-R2:** A per-line adjustment shows indented under the labor line or part it points to, with a "â³" arrow in front of the name.
+* **S5-R2:** A per-line adjustment shows indented under the labor line or part it points to, with a "âÂ³" arrow in front of the name.
 * **S5-R3:** For a percentage method, a short phrase in brackets follows the name: "% of labor" (Labor Line) or "% of parts" (Part Line). A Flat Amount shows no phrase.
 
 > _\* Context note: the text in brackets is a phrase, not a number. A percent-of-labor fee named "Shop Supply Fee" shows as "Shop Supply Fee (% of labor)", not "Shop Supply Fee (10%)"._
@@ -722,8 +728,7 @@ _A processing fee is an extra fee a shop passes on to a customer to cover card-p
 
 * **S8-R11:** The Taxable Yes/No setting is shown for a Processing Fee. The default is Yes.
 * **S8-R12:** Taxable behavior follows §5-R11: a taxable Processing Fee adds to the taxable amount; a non-taxable one does not change the tax.
-
-> _\* Context note: the disclosure shows below the Taxable setting in the dialog. Render its text exactly as written; do not simplify, paraphrase, or auto-translate it without legal sign-off. The text says "toggle", but the on-screen control is the Yes/No "Taxable" dropdown (S8-R11); the word "toggle" in the legal copy is not a UI instruction._
+* **S8-R13:** The Taxable jurisdiction note (§5-R15) shows below the Taxable setting.
 
 **Requirements — how a Processing Fee reaches a work order:**
 
@@ -806,7 +811,7 @@ _Templates linked to a customer that are added to that customer's new work order
 
 * **S9-R11:** The customer page has a "Fees & Discounts" tab. The tab label shows a count "(N)", where N is the number of defaults on the customer. It shows "0" when there are none.
 * **S9-R12:** The tab panel holds a "Default Fees & Discounts" card.
-* **S9-R13:** The card header shows the title "Default Fees & Discounts" and an "Add Fee/Discount" button. The button shows only to a user with the customer change permission.
+* **S9-R13:** The card header shows the title "Default Fees & Discounts" and an "Add Fee/Discount" button. The button shows only to a user with **Customer Management: Create and Edit** and **Manage Accounts Payable and Receivable**.
 * **S9-R14:** Below the header, a caption reads: "These fees & discounts auto-apply to every new work order for this customer. They can still be edited or removed on individual work orders without changing the defaults here."
 * **S9-R15:** The card lists the customer's defaults in a table with columns, left to right: Name, Type, Calculation Type, Amount, Max Amount, Taxable, and an actions column.
 * **S9-R16:** Each row's actions column has a 3-dot menu with one item, "Remove." The card has no inline edit.
@@ -843,7 +848,7 @@ _Every adjustment change is recorded in the work-order history log._
 
 **Design:** See Story 12  **Jira:** TBD
 
-**Prerequisites:** The user has the work-order history permission.
+**Prerequisites:** To view a work order's history log, the user has **Work Orders: Create and Edit**. To view an individual labor-line or part-line history, the user has **Work Order Lines: Create and Edit**.
 
 **Requirements:**
 
@@ -879,7 +884,7 @@ _Fees & discounts in the Part Sales (counter-sale) workflow._
 
 **Design:** See Story 12  **Jira:** TBD
 
-**Prerequisites:** Same as Story 1 — the part sale is open, the flag is on, and the user has the Work Order change permission.
+**Prerequisites:** The part sale is open, the Fees & Discounts feature flag is on, the user has **Part Sales: Create and Edit**, and the user has **See Financial Data**.
 
 **Requirements:**
 
@@ -887,7 +892,7 @@ _Fees & discounts in the Part Sales (counter-sale) workflow._
 * **S11-R2a:** A part sale has no labor, so a labor-based calculation method resolves to $0.
 * **S11-R2b:** A part sale does not use Labor Line scope.
 * **S11-R3:** The Add / Edit dialog is the same as the work-order dialog (Story 2), with one difference: on a Whole Parts Sale adjustment, "% of Labor Total" is not offered. The offered methods are Flat Amount, % of Parts Total, and % of Subtotal.
-* **S11-R4a:** The part-sale toolbar's â¯ (more) menu has "Add Parts Sale Fee / Discount", which opens at Whole Parts Sale scope. (Spacing and capitalization match the work order toolbar's "Add Work Order Fee / Discount".)
+* **S11-R4a:** The part-sale toolbar's âÂ¯ (more) menu has "Add Parts Sale Fee / Discount", which opens at Whole Parts Sale scope. (Spacing and capitalization match the work order toolbar's "Add Work Order Fee / Discount".)
 * **S11-R4b:** Each part row's menu has "Add Fee / Discount", which opens at Part Line scope for that part (staged or requested, per Story 1 and §5-R13).
 * **S11-R5:** The Statistics tab Fees & Discounts section is the same as Story 4. A part sale's Statistics tab shows only this section and the Total — it has no labor or hours tables.
 * **S11-R6a:** For a per-part adjustment, the dialog subtitle reads "Applying to: Part — ({part number}) {description}" (no line number; the part number is left out when there is none).
@@ -936,7 +941,7 @@ _The visual rules for every fees-and-discounts screen. QA checks each screen aga
 
 * **S12-R1:** On screen, the sidebar card, the line table, the Statistics tab, and the Financial Info card show resolved amounts in plain grey.
 * **S12-R2:** Green and red are used only inside the Add / Edit dialog's live preview (S2-R33).
-* **S12-R3:** A line-level adjustment is shown indented under its target, with a "â³" arrow in front (S3-R12, S3-R13, S5-R2).
+* **S12-R3:** A line-level adjustment is shown indented under its target, with a "âÂ³" arrow in front (S3-R12, S3-R13, S5-R2).
 * **S12-R4:** A percentage rate badge shows the signed percent with extra zeros removed (for example, "−8%", "+3%"). A Flat Amount rate badge shows the signed dollar amount.
 * **S12-R5:** On the "WO Fees & Discounts" sidebar card and on each line-level adjustment row, the Edit / Delete control is a 3-dot menu on the right of the row, shown only on hover.
 * **S12-R6:** When a labor line or part has two or more adjustments, only the first shows, with a "Show N more" / "Show less" toggle for the rest (S3-R15, S3-R16).
@@ -967,30 +972,20 @@ A user needs both: the flag on, and the permission.
 **Requirements:**
 
 * **S13-R1:** Fees and discounts add no permission setting of their own. Every action in this story maps to a permission that already exists.
-* **S13-R2 (see money values):** A user sees fee and discount dollar amounts — on the "WO Fees & Discounts" sidebar card, the work-order line table, the Statistics tab, the Financial Info card, the Part Sales "Fees & Discounts" column and viewer, and customer documents — only when **See Financial Data** is on. When it is off, these amounts are hidden, the same as every other money value in the product. This is the "pricing-view permission" named in Stories 3, 4, and 11.
+* **S13-R2 (see money values):** A user sees fee and discount dollar amounts — on the "WO Fees & Discounts" sidebar card, the work-order line table, the Statistics tab, the Financial Info card, the Part Sales "Fees & Discounts" column and viewer, and customer documents — only when **See Financial Data** is on. When it is off, these amounts are hidden, the same as every other money value in the product.
 * **S13-R3 (whole-work-order adjustment):** Adding, editing, or removing a Whole Work Order adjustment requires **Work Orders: Create and Edit**.
-* **S13-R4 (line-level adjustment):** Adding, editing, or removing a Labor Line or Part Line adjustment requires **Work Order Lines: Create and Edit**.
-* **S13-R5 (Part Sale adjustment):** Adding, editing, or removing a part adjustment on a Part Sale requires **Part Sales: Create and Edit**.
+* **S13-R4 (line-level adjustment):** Adding, editing, or removing a Labor Line or Part Line adjustment requires **Work Order Lines: Create and Edit**. This is intentional: a user who can create a work-order line and has See Financial Data can add a line-level adjustment.
+* **S13-R5 (Part Sale adjustment):** Adding, editing, or removing an adjustment on a Part Sale — on the whole sale or on a part line — requires **Part Sales: Create and Edit** (plus **See Financial Data**, S13-R6). Part-sale adjustments do not use any Work Order permission.
 * **S13-R6 (money visibility is needed to change an adjustment):** To add, edit, or remove any adjustment, the user must also have **See Financial Data** on. The controls that add, edit, and remove adjustments sit on screens that are hidden when See Financial Data is off (S13-R2), so a user without it never reaches them.
 * **S13-R7 (remove uses "Create and Edit", not "Delete"):** Removing an adjustment from a work order is part of the "Create and Edit" permission (S13-R3 to S13-R5). It does not need the separate "Delete" permission. "Delete" controls removing whole records — a work order, a labor line, a part — not removing an adjustment from one.
-* **S13-R8 (manage templates):** Creating, editing, or deleting an adjustment template — the administration "Fees & Discounts" page (Story 7) — requires **Settings → Finance**. This is the same permission that controls tax settings and the QuickBooks connection. This is the "administration access" named in Story 7.
-* **S13-R9 (customer defaults):** Viewing and changing a customer's default fees and discounts — the customer "Fees & Discounts" tab (Story 9) — requires **Customer Management: Create and Edit** and **Manage Accounts Payable and Receivable**. A customer's default fees and discounts are financially sensitive customer settings, in the same group as Default Labor Rate and Default Shop Supplies, which **Manage Accounts Payable and Receivable** already controls. When that permission is off, the tab and its controls are hidden. This is the "customer change permission" named in Story 9.
-* **S13-R10 (history log):** Seeing fee and discount entries in the work-order history log requires **View History Logs**. Per S10-R1, these entries stay visible even when the fees-and-discounts UI is hidden by the feature flag or by See Financial Data; the history log is governed only by View History Logs. (The history log shows the set rate, not a resolved dollar total — S10-R6c — so See Financial Data does not gate it.)
-* **S13-R11 (what the story prerequisites mean):** The earlier stories use short permission phrases. Each one means exactly one permission from this story:
-
-| Phrase used in earlier stories | Exact permission |
-| --- | --- |
-| "Work Order change permission" (Stories 1, 3) | Work Orders: Create and Edit for whole-work-order actions (S13-R3); Work Order Lines: Create and Edit for labor-line and part-line actions (S13-R4) |
-| "Work Order change permission" on a Part Sale (Story 11) | Part Sales: Create and Edit (S13-R5) |
-| "Work Order pricing-view permission" (Stories 3, 4, 11) | See Financial Data (S13-R2) |
-| "administration access" (Story 7) | Settings → Finance (S13-R8) |
-| "customer change permission" (Story 9) | Customer Management: Create and Edit + Manage Accounts Payable and Receivable (S13-R9) |
-| "work-order history permission" (Story 10) | View History Logs (S13-R10) |
+* **S13-R8 (manage templates):** Creating, editing, or deleting an adjustment template — the administration "Fees & Discounts" page (Story 7) — requires **Settings → Finance**. This is the same permission that controls tax settings and the QuickBooks connection.
+* **S13-R9 (customer defaults):** Viewing and changing a customer's default fees and discounts — the customer "Fees & Discounts" tab (Story 9) — requires **Customer Management: Create and Edit** and **Manage Accounts Payable and Receivable**. A customer's default fees and discounts are financially sensitive customer settings, in the same group as Default Labor Rate and Default Shop Supplies, which **Manage Accounts Payable and Receivable** already controls. When that permission is off, the tab and its controls are hidden.
+* **S13-R10 (history log):** Viewing a work order's history log, where fee and discount entries appear, requires **Work Orders: Create and Edit**. Viewing an individual labor-line or part-line history requires **Work Order Lines: Create and Edit**. Per S10-R1, these entries stay visible even when the fees-and-discounts UI is hidden by the feature flag or by See Financial Data. The history log shows the set rate, not a resolved dollar total (S10-R6c), so See Financial Data does not gate it.
 
 **Negative cases:**
 
 * **S13-N1:** Without **See Financial Data**, all fee and discount dollar amounts are hidden, and no add, edit, or remove control is reachable (S13-R2, S13-R6).
-* **S13-N2:** Without the matching change permission (S13-R3 to S13-R5), the add, edit, and remove controls are not shown, and the system rejects the action.
+* **S13-N2:** Without the matching Create and Edit permission (S13-R3 to S13-R5), the add, edit, and remove controls are not shown, and the system rejects the action.
 * **S13-N3:** Without **Manage Accounts Payable and Receivable**, the customer "Fees & Discounts" tab and its controls are hidden (S13-R9).
 
 > _\* Context note: this story is the target permission model from Custom Roles and Permissions (Jira SV-7388), which is not yet released. Until it ships, the feature uses the matching existing role checks; the behavior is the same and only the setting names change._
@@ -1042,4 +1037,5 @@ _End-customer facing areas_
 | 2026-06-24 | @chris | Revised S6-R10 negative-total handling: the $0.00 floor now applies to the pre-tax net subtotal, not the tax-inclusive total. Tax on the taxable base stays owed because a non-taxable discount never reduces tax (§5-R11). Added S6-R10a/b/c and a worked example. Added the taxable-discount path for a true $0.00 total with no tax. | Tax-compliance correction for both the US and Canada: a non-taxable discount cannot zero out tax that is still remittable. |
 | 2026-06-25 | @chris | Set v1 as the source of truth and answered the QuickBooks specialist's questions. Marked Advanced per-template QuickBooks item mapping and per-class allocation of fees & discounts Out of Scope (§2). Removed Tier 2 (former S6-R6), the deferred class-allocation flag, and the "Under Construction" notes; simplified the item resolution order to Fee/Discount default → "Other" default → fail. Flipped the carried-credit rule (S6-R13): the over-discount credit now syncs to QuickBooks as a tax-exempt goodwill credit memo, instead of being held in ShopView only. Added S6-R10d: when several discount lines must be capped, the cap is split proportionally with largest-remainder penny allocation so the QuickBooks line items sum exactly to the floored subtotal. Renumbered Story 6 (former R7–R17 → R6–R13) and Story 13 (removed the QuickBooks-mapping permission; former R10–R12 → R9–R11).    | v1 is what we are building this round; the carried credit must stay in sync with QuickBooks so a later credit application does not drift. |
 | 2026-06-26 | @chris | Replaced the QuickBooks item fallback with a mapping guard. Fees and discounts now require a mapped Fee item and Discount item when QuickBooks is connected; adding a fee or discount of a kind is blocked until that kind's item is mapped, with a link to Settings → QuickBooks (S6-R5, S6-R6, S6-R6a–d). Removed the old "Other"/shop-supplies fallback, the " (general)" description suffix (S6-R3), and the sync-failure path (former S6-R7). The reverse edge — unmapping an item still in use, or connecting QuickBooks after fees or discounts already exist — is not hard-blocked: affected invoices wait in Unexported Items and export on remap and re-export, and the QuickBooks settings page prompts for the Fee and Discount items like it does for Credit and Deposit (new S6-R7, S6-R7a). The guard covers part-sale fees and discounts. Updated S8-R23d (Processing Fee follows the same guard). | A production check found only about 30% of QuickBooks shops map shop supplies, so the fallback would have broken most syncs. The team (Sasha, Sinisa, Chris Amani, Chris Ward) chose a configuration requirement — map the items first — over silently failing syncs or auto-creating items inside the customer's QuickBooks. The rare self-inflicted unmap stays recoverable through Unexported Items rather than a hard block, consistent with the other QuickBooks item fields. |
+| 2026-07-12 | @chris / @claude | Permissions pass (Story 13 + Stories 1, 3, 4, 9, 10, 11): replaced the euphemistic permission names with the exact Custom Roles (SV-7388) names inline in every story and removed the S13-R11 translation table. History-log viewing now maps to **Work Orders: Create and Edit** (work-order log) and **Work Order Lines: Create and Edit** (line history), replacing View History Logs. Clarified that Part Sale adjustments — whole-sale and part-line — both require Part Sales: Create and Edit plus See Financial Data, and that See Financial Data is required to add an adjustment, not only to edit or remove one. Added §5-R15 taxable jurisdiction note shown below every Taxable control; restored S8-R13 to reference it and removed the obsolete legal-disclosure context note. | Resolves Sasha's 2026-07-12 review comments. |
 

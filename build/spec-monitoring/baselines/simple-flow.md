@@ -3,7 +3,7 @@
 | **Epic** | [SV-7301](https://shopview.atlassian.net/browse/SV-7301) |
 | **Owner** | @Milos Vasic |
 | **Design** | [Simple Flow Design (Claude Design)](https://claude.ai/design/p/39d552c4-db76-4c3c-8dcd-c6ec7dc2b5c5?file=Simple+Flow+Design.html) · [QA env — sv7301](https://sv7301.qa.shopview.com/dashboard) (POC) |
-| **Status** | Draft for build — V2.4 (line approval = all must be approved; sell-price mandatory at save + orderable-from-line; editable cost on Accept-Delivery; core resolution in Stories 3/4/8/10/16; in sync with Jira SV-7696…SV-7710 + SV-7870 + SV-7876) |
+| **Status** | Draft for build — V2.4 (line approval = all must be approved; sell-price mandatory at save + orderable-from-line; editable cost on Accept-Delivery; core resolution in Stories 3/4/8/10/16; in sync with Jira SV-7696…SV-7710 + SV-7870 + SV-7876 + SV-8183) |
 
 # Simple Mode — Product Specification
 
@@ -226,12 +226,12 @@ We are going to cover all scenarios here , with the Tech story ON/Off, Mileage O
 
 * **S4-R1 — Background order + POs** (vendorless on the WO's PO, flagged Vendor Missing — Story 6). A **sell-price-only part (missing vendor and/or cost) is ordered too** → waiting-to-receive (Story 6, S6-R7); parts must not remain in "requested" with nothing to receive.
 * **S4-R2 — Parts + pick status** in the modal (auto-pick-off → pick here).
-* **S4-R3 — Required vehicle fields** (mileage + VIN + engine hours); tech story separate (Story 17).
+* **S4-R3 — Required vehicle fields** (mileage + engine hours, when missing); tech story separate (Story 17).
 * **S4-R4 — Actions + gated CTA.** **Receive parts** + **Cancel**. The primary CTA is **"Complete Work Order"**, **disabled until all parts are received**. **No "Complete without receiving"** in this flow.
 * **S4-R5 — Receive parts (round-trip).** Routes to the **shared Accept Delivery page** (receive all vendors at once; qty, tax, date, note, invoice # per vendor). When receiving finishes — **or** the user clicks **"Back to Work Order"** on the Accept Delivery page — they **return to this modal**; once everything is received, **Complete Work Order** enables.
 * **S4-R6 — Cancel.** No change.
 * **S4-R7 — Complete Work Order** (enabled once all received) → success screen (WO# + total; Done / Go to Invoice).
-* **S4-R8 — All lines must be approved to complete.** The work order **cannot be completed until every line is approved** (replaces partial/mixed-approval). Holds regardless of Auto-approve: OFF → manual approval; ON → approved on add, but a **manually unapproved** line must be re-approved. Any unapproved line when the user clicks **Complete Work Order** → the modal **reuses the existing "you need to approve the line to complete the work order" error**; the CTA stays active. Proceeds once all lines are approved. _(Separate from the required-invoice receive gate in S4-R4/R5.)_
+* **S4-R8 — All lines must be approved to complete.** The work order **cannot be completed until every line is approved** (replaces partial/mixed-approval). Holds regardless of Auto-approve: OFF → manual approval; ON → approved on add, but a **manually unapproved** line must be re-approved. Any unapproved line → the **Complete Work Order** button is **disabled**, with a tooltip describing the reason (which line needs approval); it enables once all lines are approved. _(Separate from the required-invoice receive gate in S4-R4/R5.)_
 
 **Acceptance Criteria**
 
@@ -241,7 +241,7 @@ We are going to cover all scenarios here , with the Tech story ON/Off, Mileage O
 - [ ] Receive parts → shared Accept Delivery page (all vendors at once); finishing or "Back to Work Order" returns to the modal; CTA enables when all received.
 - [ ] No "Complete without receiving" in this flow.
 - [ ] Cancel → no change; completion → success screen (WO# + total).
-- [ ] Any unapproved line (never approved, or manually unapproved when auto-approve is ON) → clicking Complete Work Order shows the existing "you need to approve the line to complete the work order" error; the WO does not complete.
+- [ ] Any unapproved line (never approved, or manually unapproved when auto-approve is ON) → the Complete Work Order button is disabled with a tooltip describing the reason; the WO does not complete.
 - [ ] Approving all lines → completion proceeds (subject to the required-invoice receive gate).
 
 **Core parts.** Core resolution (existing **Ok = Return → no charge** / **Not OK = Keep → charge added**) is folded in. **No change to the core engine** — only _where_ resolution happens.
@@ -512,6 +512,8 @@ We are going to cover all scenarios here , with the Tech story ON/Off, Mileage O
 * **S13-R3** — Vendor on **another PO for the same work order** → prompt to **merge the POs** (move items to the target, remove the emptied source, redirect to the target).
 * **S13-R4** — Different vendor, no collision → auto-assign + **clear the QuickBooks flag**.
 * **S13-R5** — After assignment, the group's **Receive** action enables.
+* **S13-R6 — Part number required.** If a part number is missing, the user gets an indication to enter one; receiving is blocked until it's filled.
+* **S13-R7 — Cost / sell price required.** If cost / sell price is missing, the user gets an indication to enter one; receiving is blocked until it's filled.
 
 **Acceptance Criteria**
 
@@ -520,6 +522,8 @@ We are going to cover all scenarios here , with the Tech story ON/Off, Mileage O
 - [ ] Cross-PO same-WO → merge POs + redirect to target.
 - [ ] New vendor → assign + clear QB flag.
 - [ ] Receiving blocked when the WO is invoiced/paid.
+- [ ] If the part number is empty, the user must enter one before receiving.
+- [ ] If the cost / sell price is empty, the user must enter one before receiving.
 
 **Technical guardrails.** Match vendors by **ID, not name**; use a **targeted backend lookup** for the cross-PO match (not a capped list scan); **surface errors** on assign/merge failures. Merge scope = same work order.
 
@@ -587,7 +591,7 @@ We are going to cover all scenarios here , with the Tech story ON/Off, Mileage O
 * **R4** — "Receive Parts" **routes to the shared receive page** — no inline modal.
 * **R5** — States: `Active(Approved) → [Send to Review] → Review (amber) → [Mark Reviewed] → Reviewed (green) → [Complete Work Order] → Complete`; status banners (amber "Ready for Review", blue "sign-off complete").
 * **R6** — On Send to Review: lines lock to Complete; inventory auto-picked.
-* **R7** — **Mark Reviewed** = manager/foreman only; dialog captures **VIN (required if missing) + optional note**; Confirm disabled until VIN. Advisor → disabled + "Awaiting review".
+* **R7** — **Mark Reviewed** = manager/foreman only; dialog captures **VIN (required if missing)** ; Confirm disabled until VIN. Advisor → disabled + "Awaiting review".
 * **R8** — After sign-off → Reviewed; final Complete Work Order (any role) → Complete (invoice-ready). Invoicing blocked until reviewed.
 * **R9** — **Ready for Review** list filter/column (reviewer queue).
 * **R10** — Test ids: `button_mark_reviewed`, `input_review_vin`, `input_review_note`, `button_confirm_review`.
@@ -600,7 +604,7 @@ We are going to cover all scenarios here , with the Tech story ON/Off, Mileage O
 - [ ] Receive Parts → shared receive page (no inline modal).
 - [ ] Send to Review → state Review (badge + banner); lines locked; inventory auto-picked.
 - [ ] Advisor → Mark Reviewed disabled with "Awaiting review".
-- [ ] Manager → Mark Reviewed dialog requires VIN (if missing) + optional note; Confirm disabled until VIN.
+- [ ] Manager → Mark Reviewed dialog requires VIN (if missing)  Confirm disabled until VIN.
 - [ ] After sign-off → Reviewed; Complete Work Order → Complete + invoice-ready.
 - [ ] WO cannot be invoiced until reviewed; reviewers can filter the list to "Ready for Review".
 - [ ] Any unapproved line (never approved, or manually unapproved when auto-approve is ON) → clicking Send to Review shows the existing "approve the line to complete the work order" error; it proceeds once all lines are approved.
@@ -641,6 +645,60 @@ We are going to cover all scenarios here , with the Tech story ON/Off, Mileage O
 **UI/UX.** [Simple Flow Design](https://claude.ai/design/p/39d552c4-db76-4c3c-8dcd-c6ec7dc2b5c5?file=Simple+Flow+Design.html)
 
 ---
+
+## Permissions — Enforcement Mapping (SV-8183)
+
+Simple Flow needs **no new permission atom** — every action maps to an existing atom in the Custom Roles model (SV-7388). This section documents that mapping and resolves the permission open questions in §8. Source: [SV-8183](https://shopview.atlassian.net/browse/SV-8183).
+
+**Core rule — Simple-Flow action → gating atom**
+
+| Simple-Flow action | Story | Gated by (existing atom) |
+| --- | --- | --- |
+| See/edit the WO Settings page | 1 | Settings › App Settings (`settingsApp`) — inherits the existing `settings` route guard; no new gating |
+| Run completion — change WO status | 2/3/4/16 | Work Orders: Create & Edit |
+| Approve all lines (hard gate to complete) | all | WO Lines: Create & Edit + Full View (Tech View hides Approve) → BE `ROLE_WORK_ORDER::VIEW + CREATE_AND_EDIT` |
+| Enter mileage / VIN / engine hours in completion modal | 2/3/4 | WO Lines: Create & Edit |
+| Tech story per line | 17 | WO Lines: Create & Edit |
+| Resolve inventory / special-order cores (Ok / Not OK) | 3/4/16 | WO Lines: Create & Edit |
+| Add a vendorless / no-part-number part (manual sell) | 5 | WO Lines: Create & Edit + See Financial Data (`seeFinancialData`) |
+| Pick inventory parts in completion modal (auto-pick off) | 2/3/4 | Pick Parts (`woPickParts`) |
+| Background order + create POs on completion | 3/4/6 | Order Parts (`woOrderParts`) → requires See Financial Data |
+| Receive on the WO (line Receive button, completion "Receive parts") | 3/4/11/12 | FE: Order Parts. BE (`ReceiveRequestedParts`): OR of `ROLE_DELIVERY_CREATE_AND_EDIT`, `ROLE_WORK_ORDER_PART_CREATE`, `ROLE_WORK_ORDER_CREATE_AND_EDIT` |
+| Bulk Receive page (accountant, PO-list driven) | 7/8/9 | Vendor & Order Mgmt: Create & Edit (`hasPartsPermissions`) + See Financial Data |
+| Assign vendor to a vendor-missing PO / merge / keep-separate | 6/13 | Vendor & Order Mgmt: Create & Edit |
+| Inline part-number fix → first-class inventory/catalog part | 10 | Catalog & Inventory: Create & Edit |
+| Cost/sell fields on receive screens (field locking) | 8/10 | See Financial Data; sell auto-locks once WO invoiced/paid (state gate) |
+| Mark Reviewed / sign-off; VIN captured by reviewer | 16 | Review Work Orders (`woReviewWorkOrders`) + reviewer ≠ completer (NET-NEW hard rule); VIN entry → WO Lines: Create & Edit |
+| Waiting-on-Parts column (visibility) | 14 | Work Orders: View; click-through suppressed without the receive gate |
+| Go to Invoice / Create Invoice | 2/3/4 | Invoicing & Payments: Create & Edit + See Financial Data |
+
+**Key consequences**
+
+* Completion follows WO edit + line approval (Full View); receiving-on-a-WO follows Order Parts; the accountant Bulk Receive page follows Vendor & Order Mgmt.
+* BE atom collapse: `woOrderParts`, `workOrderLinesCreateAndEdit`, `woFullViewMode`, `woTechViewMode`, `workOrdersCreateAndEdit` all resolve to `ROLE_WORK_ORDER::VIEW + CREATE_AND_EDIT` server-side — so any role with WO Create & Edit can receive onto a WO (a deliberate low-privilege trade-off, SV-7864). FE distinctions are conveniences, not BE-enforceable boundaries.
+* NET-NEW hard rule: reviewer ≠ completer — stamp `sentToReviewBy` / `completedBy` and block Mark Reviewed for that user. This is not an atom and must be built.
+
+**Per-role behavior (from the system-role matrix)**
+
+| Role | Edit WO settings | Complete WO | Pick | Order/PO | Receive on WO | Bulk Receive | Assign vendor | Fix part # | Add vendorless part | Mark Reviewed |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Admin | Yes | Yes | Yes | Yes | Yes | Yes | Yes | Yes | Yes | Yes |
+| Service Manager | Yes | Yes | Yes | Yes | Yes | Yes | Yes | Yes | Yes | Yes |
+| Senior SA | No | Yes | Yes | Yes | Yes | Yes | Yes | Yes | Yes | Yes |
+| Service Advisor | No | Yes | Yes | Yes | Yes | Yes | Yes | Yes | Yes | Yes |
+| Foreman | No | Yes | Yes | Yes | Yes | Yes | Yes | Yes | Yes | Yes |
+| Technician | No | No (1) | Yes | No | No | No | No | No | No | No (2) |
+| Parts Manager | No | Yes | Yes | Yes | Yes | Yes | Yes | Yes | Yes | Yes |
+| Parts Tech | No | No (1) | Yes | Yes | Yes | Yes | Yes | Yes | No | No |
+| Office | Yes | No (3) | No | No | No | No (4) | No | No | No | No |
+| Sales Rep | No | No | No | No | No | No | No | No | No | No |
+| Time Clock | No | No | No | No | No | No | No | No | No | No |
+
+(1) No completion = Tech View can’t approve lines and/or no WO Create & Edit; Technician can still pick, Parts Tech is a receiver not a completer. (2) Technician has WOL Create & Edit but no See Financial Data → cannot enter the mandatory sell price → cannot add a vendorless part. (3) Office has WO View only → configures Simple Flow but cannot operate it. (4) Office has Vendor & Order Mgmt View only → can open Bulk Receive but cannot receive.
+
+Custom roles combine these atoms freely (e.g. grant a Technician Order Parts + Vendor & Order Mgmt: C&E for a "tech who also receives").
+
+_Resolves the §8 open questions on completion / bulk-receive / settings / review roles, cost at completion, and BE enforcement. Inline role-wording cleanup across §4/§7/§8 (SV-8183 AC #11) is deferred and tracked on SV-8183._
 
 ## 8. Open Questions
 
