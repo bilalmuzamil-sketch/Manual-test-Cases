@@ -1,0 +1,380 @@
+<title>QA Team Dashboard — Jira Build Guide</title>
+<style>
+:root{
+  --bg:#f6f8fb; --surface:#ffffff; --surface2:#f2f5fa; --ink:#14213a; --muted:#5b6b86;
+  --line:#e2e8f2; --accent:#2a6fdb; --accent2:#12a074; --ok:#1a8f5a; --okbg:#e7f6ee;
+  --warn:#b7791f; --warnbg:#fbf1dd; --code-bg:#f2f5fa; --code-ink:#1d2b45; --chip:#eef3fb;
+  --shadow:0 1px 2px rgba(20,33,58,.06),0 6px 20px rgba(20,33,58,.05);
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --bg:#0e1420; --surface:#151d2b; --surface2:#101827; --ink:#e7edf7; --muted:#93a1b8;
+    --line:#26324a; --accent:#4d92f0; --accent2:#2bc48f; --ok:#35c98a; --okbg:#123026;
+    --warn:#e0a94a; --warnbg:#2e2410; --code-bg:#0f1826; --code-ink:#cdd9ec; --chip:#1c2740;
+    --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.28);
+  }
+}
+:root[data-theme="light"]{
+  --bg:#f6f8fb; --surface:#ffffff; --surface2:#f2f5fa; --ink:#14213a; --muted:#5b6b86;
+  --line:#e2e8f2; --accent:#2a6fdb; --accent2:#12a074; --ok:#1a8f5a; --okbg:#e7f6ee;
+  --warn:#b7791f; --warnbg:#fbf1dd; --code-bg:#f2f5fa; --code-ink:#1d2b45; --chip:#eef3fb;
+  --shadow:0 1px 2px rgba(20,33,58,.06),0 6px 20px rgba(20,33,58,.05);
+}
+:root[data-theme="dark"]{
+  --bg:#0e1420; --surface:#151d2b; --surface2:#101827; --ink:#e7edf7; --muted:#93a1b8;
+  --line:#26324a; --accent:#4d92f0; --accent2:#2bc48f; --ok:#35c98a; --okbg:#123026;
+  --warn:#e0a94a; --warnbg:#2e2410; --code-bg:#0f1826; --code-ink:#cdd9ec; --chip:#1c2740;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.28);
+}
+*{box-sizing:border-box}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  font-size:16px; line-height:1.6; -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:920px; margin:0 auto; padding:0 22px 96px}
+.mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace}
+a{color:var(--accent); text-decoration:none} a:hover{text-decoration:underline}
+
+/* Header */
+header{padding:56px 0 30px; border-bottom:1px solid var(--line); margin-bottom:38px}
+.eyebrow{font-size:12px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--accent)}
+h1{font-size:clamp(30px,5vw,42px); line-height:1.08; letter-spacing:-.025em; margin:.32em 0 .1em; text-wrap:balance; font-weight:800}
+.lede{font-size:18px; color:var(--muted); max-width:60ch; margin:.4em 0 0}
+.meta{display:flex; flex-wrap:wrap; gap:8px 10px; margin-top:22px}
+.meta span{font-size:12.5px; color:var(--muted); background:var(--chip); border:1px solid var(--line); border-radius:999px; padding:4px 11px}
+.meta b{color:var(--ink); font-weight:650}
+
+/* Callout */
+.callout{background:var(--surface); border:1px solid var(--line); border-left:4px solid var(--accent);
+  border-radius:12px; padding:18px 20px; box-shadow:var(--shadow); margin:26px 0}
+.callout h3{margin:.1em 0 .5em; font-size:16px; letter-spacing:-.01em}
+.callout p{margin:.4em 0}
+.legend{display:flex; flex-wrap:wrap; gap:14px; margin-top:14px; font-size:14px}
+.tag{display:inline-flex; align-items:center; gap:7px; font-weight:650}
+.dot{width:10px; height:10px; border-radius:3px; display:inline-block}
+.dot.ok{background:var(--ok)} .dot.warn{background:var(--warn)}
+
+/* Section */
+section{margin:44px 0 0}
+.sec-head{display:flex; align-items:baseline; gap:14px; border-bottom:2px solid var(--line); padding-bottom:10px; margin-bottom:22px}
+.sec-head .n{font-size:13px; font-weight:800; color:#fff; background:var(--accent); width:30px; height:30px; min-width:30px;
+  border-radius:8px; display:grid; place-items:center; letter-spacing:0; transform:translateY(-2px)}
+.sec-head h2{font-size:23px; letter-spacing:-.02em; margin:0; font-weight:750}
+.sec-head .sub{color:var(--muted); font-size:14px; margin-left:auto; text-align:right}
+h3.grp{font-size:13px; text-transform:uppercase; letter-spacing:.1em; color:var(--muted); margin:30px 0 12px; font-weight:700}
+
+/* Filter card */
+.filter{background:var(--surface); border:1px solid var(--line); border-radius:12px; margin:12px 0; box-shadow:var(--shadow); overflow:hidden}
+.filter-hd{display:flex; align-items:center; gap:10px; padding:13px 16px 11px; flex-wrap:wrap}
+.fid{font-family:ui-monospace,monospace; font-size:12px; font-weight:700; color:var(--accent); background:var(--chip);
+  border:1px solid var(--line); border-radius:6px; padding:2px 8px}
+.fname{font-weight:700; font-size:15px}
+.fpurpose{color:var(--muted); font-size:13.5px; flex-basis:100%; margin-top:-2px}
+.codewrap{position:relative; border-top:1px solid var(--line); background:var(--code-bg)}
+pre{margin:0; padding:14px 52px 14px 16px; overflow-x:auto; color:var(--code-ink); font-size:13.5px; line-height:1.55}
+pre code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; white-space:pre}
+.copy{position:absolute; top:9px; right:9px; border:1px solid var(--line); background:var(--surface); color:var(--muted);
+  font-size:11px; font-weight:650; padding:5px 9px; border-radius:7px; cursor:pointer; font-family:inherit; transition:.15s}
+.copy:hover{color:var(--accent); border-color:var(--accent)}
+.copy.done{color:var(--ok); border-color:var(--ok)}
+
+/* Steps */
+ol.steps{list-style:none; counter-reset:s; padding:0; margin:0}
+ol.steps>li{counter-increment:s; position:relative; padding:2px 0 22px 46px; border-left:2px solid var(--line); margin-left:14px}
+ol.steps>li:last-child{border-left-color:transparent}
+ol.steps>li::before{content:counter(s); position:absolute; left:-15px; top:-2px; width:28px; height:28px; border-radius:50%;
+  background:var(--surface); border:2px solid var(--accent); color:var(--accent); font-weight:750; font-size:13px; display:grid; place-items:center}
+ol.steps>li b{font-weight:700}
+ol.steps .st-t{font-weight:700; font-size:16px; margin-bottom:2px}
+
+kbd{font-family:inherit; font-size:12.5px; background:var(--chip); border:1px solid var(--line); border-bottom-width:2px;
+  border-radius:5px; padding:1px 6px; font-weight:600; white-space:nowrap}
+code.inl{font-family:ui-monospace,monospace; font-size:13px; background:var(--chip); border:1px solid var(--line); border-radius:5px; padding:1px 6px}
+
+/* Table */
+.tablewrap{overflow-x:auto; border:1px solid var(--line); border-radius:12px; box-shadow:var(--shadow); margin:16px 0}
+table{border-collapse:collapse; width:100%; font-size:14px; background:var(--surface)}
+th,td{text-align:left; padding:11px 14px; border-bottom:1px solid var(--line); vertical-align:top}
+th{background:var(--surface2); font-size:12px; text-transform:uppercase; letter-spacing:.06em; color:var(--muted); font-weight:700}
+tr:last-child td{border-bottom:none}
+td .badge{font-size:11px; font-weight:700; padding:2px 8px; border-radius:999px; white-space:nowrap}
+.badge.ok{background:var(--okbg); color:var(--ok)} .badge.warn{background:var(--warnbg); color:var(--warn)}
+.gwrap{font-weight:650}
+
+/* Layout diagram */
+.dash{border:1px solid var(--line); border-radius:12px; background:var(--surface2); padding:14px; margin:16px 0; box-shadow:var(--shadow)}
+.drow{display:grid; gap:10px; margin-bottom:10px} .drow:last-child{margin-bottom:0}
+.r2{grid-template-columns:1fr 1fr} .r4{grid-template-columns:repeat(4,1fr)} .r3{grid-template-columns:repeat(3,1fr)}
+.cell{background:var(--surface); border:1px solid var(--line); border-radius:9px; padding:11px 13px; font-size:13px}
+.cell .k{font-size:10.5px; font-weight:700; letter-spacing:.05em; text-transform:uppercase; color:var(--accent)}
+.cell .g{color:var(--muted); font-size:11.5px; margin-top:2px}
+.cell.big{grid-column:auto} .num{font-size:20px; font-weight:800; margin-top:2px}
+@media(max-width:640px){.r2,.r4,.r3{grid-template-columns:1fr 1fr} .meta{gap:6px}}
+
+p.note{color:var(--muted); font-size:14px}
+.foot{margin-top:56px; padding-top:22px; border-top:1px solid var(--line); color:var(--muted); font-size:13px}
+strong.ink{color:var(--ink)}
+ul.tight{margin:.4em 0; padding-left:1.2em} ul.tight li{margin:.25em 0}
+</style>
+
+<div class="wrap">
+<header>
+  <div class="eyebrow">ShopView · Jira Cloud · Project SV</div>
+  <h1>QA Team Dashboard — Jira Build Guide</h1>
+  <p class="lede">A copy-paste recipe to assemble the management QA dashboard directly in Jira,
+  using only built-in gadgets. About 15 minutes end to end.</p>
+  <div class="meta">
+    <span>Site <b>shopview.atlassian.net</b></span>
+    <span>Prepared <b>13 Jul 2026</b></span>
+    <span>Owner <b>Bilal Muzamil</b></span>
+    <span>QA field <b>QA Assignee</b> (customfield_10385)</span>
+  </div>
+</header>
+
+<div class="callout">
+  <h3>Before you start — what this guide builds, and its one honest limit</h3>
+  <p>Jira dashboards are assembled from <b>gadgets</b>, and every gadget reads from a <b>saved filter</b>.
+  So the build is always: <b>create the filters first, then drop gadgets on top of them.</b> Everything here
+  uses stock Jira Cloud gadgets — no paid apps.</p>
+  <p>Most of the live HTML dashboard reproduces cleanly. A few visual pieces — the ranked bug-hunting
+  leaderboard, the coverage / story % bars, and "since when" / yesterday-vs-today — have no native gadget;
+  the same <em>data</em> is still reachable as a list or a count, just not as that exact visual. Those are
+  flagged throughout.</p>
+  <div class="legend">
+    <span class="tag"><span class="dot ok"></span>Native gadget — build it today</span>
+    <span class="tag"><span class="dot warn"></span>Needs a Marketplace app for the exact visual</span>
+  </div>
+</div>
+
+<!-- STEP GROUP 1: FILTERS -->
+<section>
+  <div class="sec-head"><span class="n">1</span><h2>Create the saved filters</h2>
+  <span class="sub"><kbd>Filters</kbd> → <kbd>View all filters</kbd> → <kbd>Create filter</kbd></span></div>
+  <p class="note">Paste each JQL below, run it, then <kbd>Save as</kbd> with the name shown. <strong class="ink">Share every
+  filter</strong> with your management group + the QA team — a dashboard renders filters using the <em>viewer's</em>
+  permissions, so an unshared filter shows up as an error for your managers.</p>
+
+  <h3 class="grp">Reference — the QA team list (reused in many filters)</h3>
+  <div class="filter">
+    <div class="filter-hd"><span class="fid">TEAM</span><span class="fname">QA members</span>
+    <span class="fpurpose">Paste this member list wherever a filter groups or filters by QA person. Edit in one place when the team changes.</span></div>
+    <div class="codewrap"><pre><code>"Bilal Muzamil", "Ayesha Khan", "Mudassir Qamar", "Viktoria Videnovic", "Nebojsa Glavinic", "Ahtasham Amjad"</code></pre><button class="copy">Copy</button></div>
+  </div>
+
+  <h3 class="grp">Core filters (F1–F13)</h3>
+
+  <div class="filter"><div class="filter-hd"><span class="fid">F1</span><span class="fname">QA Queue (pending)</span>
+    <span class="fpurpose">Tickets waiting in the QA queue — nobody testing yet.</span></div>
+    <div class="codewrap"><pre><code>project = SV AND status = "Ready for QA" ORDER BY created ASC</code></pre><button class="copy">Copy</button></div></div>
+
+  <div class="filter"><div class="filter-hd"><span class="fid">F2</span><span class="fname">Pending staging verification</span>
+    <span class="fpurpose">Passed QA-env, now waiting on the staging check.</span></div>
+    <div class="codewrap"><pre><code>project = SV AND status = "Merged to Staging" ORDER BY updated ASC</code></pre><button class="copy">Copy</button></div></div>
+
+  <div class="filter"><div class="filter-hd"><span class="fid">F3</span><span class="fname">In testing now</span>
+    <span class="fpurpose">Actively being tested (QA env + staging).</span></div>
+    <div class="codewrap"><pre><code>project = SV AND status in ("TESTING QA", "TESTING STAGE")</code></pre><button class="copy">Copy</button></div></div>
+
+  <div class="filter"><div class="filter-hd"><span class="fid">F3b</span><span class="fname">In progress — held by a QA engineer</span>
+    <span class="fpurpose">A ticket is "in progress" for a QA engineer when its <b>QA Assignee</b> is that person and its status is <b>TESTING STAGE</b>. No label needed — the field + status defines it.</span></div>
+    <div class="codewrap"><pre><code>project = SV AND "QA Assignee" is not EMPTY AND status = "TESTING STAGE"</code></pre><button class="copy">Copy</button></div></div>
+
+  <div class="filter"><div class="filter-hd"><span class="fid">F4</span><span class="fname">QA completed — this month</span>
+    <span class="fpurpose">Left the TESTING statuses into Ready for Production / Done = QA passed it.</span></div>
+    <div class="codewrap"><pre><code>project = SV AND "QA Assignee" is not EMPTY AND status CHANGED FROM ("TESTING QA", "TESTING STAGE") TO ("Ready for Production", "Done") AFTER startOfMonth()</code></pre><button class="copy">Copy</button></div></div>
+
+  <div class="filter"><div class="filter-hd"><span class="fid">F5</span><span class="fname">QA completed — TODAY</span>
+    <span class="fpurpose">Same as F4 with a daily window.</span></div>
+    <div class="codewrap"><pre><code>project = SV AND "QA Assignee" is not EMPTY AND status CHANGED FROM ("TESTING QA", "TESTING STAGE") TO ("Ready for Production", "Done") AFTER startOfDay()</code></pre><button class="copy">Copy</button></div></div>
+
+  <div class="filter"><div class="filter-hd"><span class="fid">F6</span><span class="fname">QA completed — THIS WEEK</span>
+    <span class="fpurpose">Same as F4 with a weekly window.</span></div>
+    <div class="codewrap"><pre><code>project = SV AND "QA Assignee" is not EMPTY AND status CHANGED FROM ("TESTING QA", "TESTING STAGE") TO ("Ready for Production", "Done") AFTER startOfWeek()</code></pre><button class="copy">Copy</button></div></div>
+
+  <div class="filter"><div class="filter-hd"><span class="fid">F7</span><span class="fname">Rejected — this week</span>
+    <span class="fpurpose">Tickets QA bounced back to dev. The team's "defects caught" headline.</span></div>
+    <div class="codewrap"><pre><code>project = SV AND status CHANGED TO "REJECTED FROM TESTING" AFTER startOfWeek()</code></pre><button class="copy">Copy</button></div></div>
+
+  <div class="filter"><div class="filter-hd"><span class="fid">F8</span><span class="fname">Stuck in queue &gt; 3 days</span>
+    <span class="fpurpose">Aging red-flag list for the pending queue.</span></div>
+    <div class="codewrap"><pre><code>project = SV AND status = "Ready for QA" AND NOT status CHANGED AFTER -3d</code></pre><button class="copy">Copy</button></div></div>
+
+  <div class="filter"><div class="filter-hd"><span class="fid">F9</span><span class="fname">Bugs raised by QA — this month</span>
+    <span class="fpurpose">Each tester's find-rate. Group by Reporter for the leaderboard's data.</span></div>
+    <div class="codewrap"><pre><code>project = SV AND issuetype in (Bug, "Story Defect") AND reporter in ("Bilal Muzamil", "Ayesha Khan", "Mudassir Qamar", "Viktoria Videnovic", "Nebojsa Glavinic", "Ahtasham Amjad") AND created >= startOfMonth()</code></pre><button class="copy">Copy</button></div></div>
+
+  <div class="filter"><div class="filter-hd"><span class="fid">F10</span><span class="fname">Open bugs by priority</span>
+    <span class="fpurpose">Pie source — "how many criticals are open".</span></div>
+    <div class="codewrap"><pre><code>project = SV AND issuetype in (Bug, "Story Defect") AND statusCategory != Done ORDER BY priority DESC</code></pre><button class="copy">Copy</button></div></div>
+
+  <div class="filter"><div class="filter-hd"><span class="fid">F11</span><span class="fname">Blocked</span>
+    <span class="fpurpose">Blockers management can actually clear for you.</span></div>
+    <div class="codewrap"><pre><code>project = SV AND status = Blocked</code></pre><button class="copy">Copy</button></div></div>
+
+  <div class="filter"><div class="filter-hd"><span class="fid">F12</span><span class="fname">Pending with no QA Assignee</span>
+    <span class="fpurpose">Catches tickets nobody has picked up. Keeps the whole board honest.</span></div>
+    <div class="codewrap"><pre><code>project = SV AND status = "Ready for QA" AND "QA Assignee" is EMPTY</code></pre><button class="copy">Copy</button></div></div>
+
+  <div class="filter"><div class="filter-hd"><span class="fid">F13</span><span class="fname">QA needs to respond</span>
+    <span class="fpurpose">Not-Done tickets whose Assignee is a QA member — a query is waiting on QA. (The HTML "🙋" table.)</span></div>
+    <div class="codewrap"><pre><code>project = SV AND assignee in ("Bilal Muzamil", "Ayesha Khan", "Mudassir Qamar", "Viktoria Videnovic", "Nebojsa Glavinic", "Ahtasham Amjad") AND statusCategory != Done ORDER BY updated DESC</code></pre><button class="copy">Copy</button></div></div>
+
+  <div class="filter"><div class="filter-hd"><span class="fid">F14</span><span class="fname">In a QA member's queue</span>
+    <span class="fpurpose">Not-Done tickets whose QA Assignee is a QA member — open testing workload. (The HTML "🧾" table.)</span></div>
+    <div class="codewrap"><pre><code>project = SV AND "QA Assignee" is not EMPTY AND statusCategory != Done ORDER BY updated DESC</code></pre><button class="copy">Copy</button></div></div>
+
+  <h3 class="grp">Per-epic filters (drop-in for any epic-scoped gadget)</h3>
+  <p class="note"><code class="inl">parentEpic</code> covers an epic's stories <em>and</em> their story-defects in one go.
+  Current active epics — make one saved filter each, named <span class="mono">Epic – &lt;name&gt;</span>:</p>
+  <div class="filter"><div class="filter-hd"><span class="fid">E1</span><span class="fname">Custom Roles and Permissions · 370 tickets</span></div>
+    <div class="codewrap"><pre><code>project = SV AND parentEpic = SV-7388</code></pre><button class="copy">Copy</button></div></div>
+  <div class="filter"><div class="filter-hd"><span class="fid">E2</span><span class="fname">Simple Mode — Streamlined WO Completion · 24</span></div>
+    <div class="codewrap"><pre><code>project = SV AND parentEpic = SV-7301</code></pre><button class="copy">Copy</button></div></div>
+  <div class="filter"><div class="filter-hd"><span class="fid">E3</span><span class="fname">Fees &amp; Discounts · 12</span></div>
+    <div class="codewrap"><pre><code>project = SV AND parentEpic = SV-7387</code></pre><button class="copy">Copy</button></div></div>
+  <div class="filter"><div class="filter-hd"><span class="fid">E4</span><span class="fname">Digital Inspections · 45</span></div>
+    <div class="codewrap"><pre><code>project = SV AND parentEpic = SV-7426</code></pre><button class="copy">Copy</button></div></div>
+
+  <h3 class="grp">Per-member variants (Plan B — see Step 5)</h3>
+  <p class="note">Only needed if the Two-Dimensional gadget can't group by QA Assignee. For each member <code class="inl">X</code>,
+  make an "In testing" and a "Done this week" filter:</p>
+  <div class="filter"><div class="filter-hd"><span class="fid">F3x</span><span class="fname">In testing — X</span></div>
+    <div class="codewrap"><pre><code>project = SV AND status in ("TESTING QA", "TESTING STAGE") AND "QA Assignee" = "Bilal Muzamil"</code></pre><button class="copy">Copy</button></div></div>
+  <div class="filter"><div class="filter-hd"><span class="fid">F6x</span><span class="fname">Done this week — X</span></div>
+    <div class="codewrap"><pre><code>project = SV AND "QA Assignee" = "Bilal Muzamil" AND status CHANGED FROM ("TESTING QA", "TESTING STAGE") TO ("Ready for Production", "Done") AFTER startOfWeek()</code></pre><button class="copy">Copy</button></div></div>
+  <p class="note">Swap the name for each of the six members. Jira autocompletes display names to account IDs as you type — accept the suggestion.</p>
+</section>
+
+<!-- STEP 2 -->
+<section>
+  <div class="sec-head"><span class="n">2</span><h2>Create the dashboard</h2></div>
+  <ol class="steps">
+    <li><div class="st-t">Open Dashboards → Create dashboard</div>Top nav <kbd>Dashboards</kbd> → <kbd>Create dashboard</kbd>.</li>
+    <li><div class="st-t">Name it</div>Call it <b>QA Team Dashboard</b>. Add a short description so managers know what they're looking at.</li>
+    <li><div class="st-t">Share it</div>Under <kbd>Viewers</kbd>, add your management group and the QA team (or the whole SV project). Editors: just you. <b>Save.</b></li>
+    <li><div class="st-t">Pick a two-column layout</div><kbd>⋯</kbd> → <kbd>Edit layout</kbd> → the <b>two-column</b> option matches the layout in Step 4.</li>
+  </ol>
+</section>
+
+<!-- STEP 3 -->
+<section>
+  <div class="sec-head"><span class="n">3</span><h2>Add the gadgets</h2>
+  <span class="sub"><kbd>Add gadget</kbd> → pick → <kbd>Add</kbd> → configure → <kbd>Save</kbd></span></div>
+  <p class="note">For each gadget: choose the type, point it at its filter, set the grouping field, save. The gadget → filter →
+  config mapping:</p>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Widget</th><th>Gadget</th><th>Filter</th><th>Config</th><th>Native?</th></tr></thead>
+    <tbody>
+      <tr><td class="gwrap">Pending / staging / blocked / no-owner</td><td>Filter Results <span class="note">(or Filter Counter)</span></td><td>F1, F2, F11, F12</td><td>One per number; show <em>count</em> only</td><td><span class="badge ok">Native</span></td></tr>
+      <tr><td class="gwrap">Who's testing what</td><td>Two Dimensional Filter Statistics</td><td>F3</td><td>X = QA Assignee · Y = Status</td><td><span class="badge ok">Native</span></td></tr>
+      <tr><td class="gwrap">In progress by QA engineer</td><td>Two Dimensional <span class="note">(or Issue Statistics)</span></td><td>F3b</td><td>X = QA Assignee · Y = Status — each TESTING STAGE ticket sits under its owner</td><td><span class="badge ok">Native</span></td></tr>
+      <tr><td class="gwrap">Completed per QA — this month</td><td>Two Dimensional Filter Statistics</td><td>F4</td><td>X = QA Assignee · Y = Status</td><td><span class="badge ok">Native</span></td></tr>
+      <tr><td class="gwrap">Throughput: today / week / month</td><td>Issue Statistics ×3</td><td>F5 · F6 · F4</td><td>Group each by QA Assignee, side by side</td><td><span class="badge ok">Native</span></td></tr>
+      <tr><td class="gwrap">Bugs raised per QA (find-rate)</td><td>Issue Statistics</td><td>F9</td><td>Group by <b>Reporter</b></td><td><span class="badge ok">Native</span></td></tr>
+      <tr><td class="gwrap">Open bugs by priority</td><td>Pie Chart</td><td>F10</td><td>Statistic type = Priority (or QA Severity)</td><td><span class="badge ok">Native</span></td></tr>
+      <tr><td class="gwrap">Rejected this week</td><td>Filter Results</td><td>F7</td><td>List; columns Key, Summary, QA Assignee</td><td><span class="badge ok">Native</span></td></tr>
+      <tr><td class="gwrap">Queue aging</td><td>Average Age + Filter Results</td><td>F1 · F8</td><td>Average Age on F1; list on F8</td><td><span class="badge ok">Native</span></td></tr>
+      <tr><td class="gwrap">Created vs Resolved trend</td><td>Created vs Resolved Chart</td><td>F10 base</td><td>Period = Weekly, cumulative off</td><td><span class="badge ok">Native</span></td></tr>
+      <tr><td class="gwrap">QA needs to respond</td><td>Filter Results</td><td>F13</td><td>Columns: Key, Summary, Assignee, Status</td><td><span class="badge ok">Native</span></td></tr>
+      <tr><td class="gwrap">In a QA member's queue</td><td>Filter Results</td><td>F14</td><td>Columns: Key, Summary, QA Assignee, Status</td><td><span class="badge ok">Native</span></td></tr>
+      <tr><td class="gwrap">Per-epic scoping</td><td>any gadget above</td><td>E1–E4</td><td>Duplicate a key gadget onto an epic filter</td><td><span class="badge ok">Native</span></td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<!-- STEP 4 -->
+<section>
+  <div class="sec-head"><span class="n">4</span><h2>Arrange it — top to bottom</h2></div>
+  <p class="note">Drag gadgets to match this. Managers read it top-left first, so the headline numbers lead.</p>
+  <div class="dash">
+    <div class="drow r4">
+      <div class="cell"><div class="k">F1</div><div class="num">Pending</div><div class="g">Filter Counter</div></div>
+      <div class="cell"><div class="k">F2</div><div class="num">Staging</div><div class="g">Filter Counter</div></div>
+      <div class="cell"><div class="k">F11</div><div class="num">Blocked</div><div class="g">Filter Counter</div></div>
+      <div class="cell"><div class="k">F12</div><div class="num">No owner</div><div class="g">Filter Counter</div></div>
+    </div>
+    <div class="drow r3">
+      <div class="cell"><div class="k">F3b · Two-Dimensional</div><div class="g">In progress by QA engineer (TESTING STAGE)</div></div>
+      <div class="cell"><div class="k">F3 · Two-Dimensional</div><div class="g">Who's testing what — QA Assignee × Status</div></div>
+      <div class="cell"><div class="k">F4 · Two-Dimensional</div><div class="g">Completed this month per QA</div></div>
+    </div>
+    <div class="drow r3">
+      <div class="cell"><div class="k">F5 · Issue Stats</div><div class="g">Done today</div></div>
+      <div class="cell"><div class="k">F6 · Issue Stats</div><div class="g">Done this week</div></div>
+      <div class="cell"><div class="k">F4 · Issue Stats</div><div class="g">Done this month</div></div>
+    </div>
+    <div class="drow r2">
+      <div class="cell"><div class="k">F10 · Pie</div><div class="g">Open bugs by priority</div></div>
+      <div class="cell"><div class="k">F9 · Issue Stats</div><div class="g">Bugs raised per QA (by Reporter)</div></div>
+    </div>
+    <div class="drow r2">
+      <div class="cell"><div class="k">F13 · Filter Results</div><div class="g">QA needs to respond</div></div>
+      <div class="cell"><div class="k">F14 · Filter Results</div><div class="g">In a QA member's queue</div></div>
+    </div>
+    <div class="drow r2">
+      <div class="cell"><div class="k">F8 · Filter Results</div><div class="g">Stuck &gt; 3 days</div></div>
+      <div class="cell"><div class="k">F7 · Filter Results</div><div class="g">Rejected this week + Created vs Resolved</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- STEP 5 -->
+<section>
+  <div class="sec-head"><span class="n">5</span><h2>Finish &amp; the one team rule</h2></div>
+  <ol class="steps">
+    <li><div class="st-t">Test the Two-Dimensional gadget first</div>Set its axis to <b>QA Assignee</b>. If that field is missing from the
+    dropdown (Jira Cloud sometimes can't group by a multi-user picker), switch rows 2–3 to <b>Plan B</b>: a row of six
+    <em>Filter Counter</em> gadgets using the per-member <code class="inl">F3x</code> / <code class="inl">F6x</code> filters. Six small counters read just as well.</li>
+    <li><div class="st-t">Set refresh</div>On each chart gadget, set auto-refresh to <b>15 minutes</b>.</li>
+    <li><div class="st-t">Re-check sharing</div>Open the dashboard in an incognito window as a manager would — any gadget showing
+    a filter error means that filter isn't shared. Fix in <kbd>Filters</kbd> → the filter → <kbd>Details</kbd> → <kbd>Edit permissions</kbd>.</li>
+    <li><div class="st-t">Brief the team on the keystone rule</div>Every ticket a QA picks up must have that person in the
+    <b>QA Assignee</b> field. The whole dashboard keys off it — and <code class="inl">F12</code> catches anyone who forgets.</li>
+  </ol>
+</section>
+
+<!-- GAPS -->
+<section>
+  <div class="sec-head"><span class="n">6</span><h2>What native Jira can't reproduce</h2></div>
+  <p class="note">These live on the HTML dashboard because no built-in gadget does them. The underlying data is still
+  reachable (column shows how); only the <em>visual</em> needs a Marketplace app.</p>
+  <div class="tablewrap"><table>
+    <thead><tr><th>HTML widget</th><th>Why not native</th><th>Closest native stand-in</th></tr></thead>
+    <tbody>
+      <tr><td class="gwrap">🏆 Bug-hunting leaderboard (ranked, medals)</td><td>Gadgets don't rank or medal rows</td><td>F9 Issue Statistics by Reporter — same counts, sorted, no medals <span class="badge warn">app for ranking</span></td></tr>
+      <tr><td class="gwrap">QA Testing Coverage % bar</td><td>No "% of defects Done" meter</td><td>Issue Statistics on the epic's defects, Done vs not — read the ratio <span class="badge warn">app for the bar</span></td></tr>
+      <tr><td class="gwrap">Story Completion % bar</td><td>Same — no completion meter</td><td>Two-Dimensional: epic stories × statusCategory <span class="badge warn">app for the bar</span></td></tr>
+      <tr><td class="gwrap">In-progress "since when" + days held</td><td>The in-progress list itself is native now (F3b); only the days-held duration isn't</td><td>F3b shows who holds each TESTING STAGE ticket; the "since when" needs Time-in-Status <span class="badge warn">app for duration</span></td></tr>
+      <tr><td class="gwrap">Yesterday-vs-Today activity split</td><td>No per-actor per-day gadget</td><td>Dashboards can't; needs the HTML view or an app <span class="badge warn">app-only</span></td></tr>
+      <tr><td class="gwrap">Pakistan-time day buckets</td><td>Gadgets use the viewer's timezone</td><td>Set each viewer's Jira profile timezone to PKT <span class="badge warn">app-only exact</span></td></tr>
+      <tr><td class="gwrap">Auto epic date-range</td><td>Filters can't self-adjust dates per epic</td><td>Fixed windows (startOfMonth, -30d) per gadget <span class="badge ok">Native workaround</span></td></tr>
+    </tbody>
+  </table></div>
+  <div class="callout" style="border-left-color:var(--warn)">
+    <h3>If you want the full HTML dashboard reproduced natively in Jira</h3>
+    <p>One Marketplace app covers the gaps above: <b>eazyBI</b> (best for the % bars, ranked leaderboard, and true
+    time-in-status trends) or <b>Dashboard Hub / Great Gadgets</b> (lighter, good for gauges and richer tables).
+    Feed either the same filters F1–F14 — the JQL doesn't change. Say the word and I'll write the eazyBI measures.</p>
+  </div>
+</section>
+
+<div class="foot">
+  <p>Facts verified against the live SV project on 13 Jul 2026 · 870 QA-relevant tickets · workflow statuses:
+  Ready for QA · TESTING QA · TESTING STAGE · REJECTED FROM TESTING · Merged to Staging · Ready for Production · Done · OBSOLETE.</p>
+  <p>The interactive HTML dashboard remains the richer, always-current view; this Jira build is the in-tool companion
+  for managers who live in Jira. Update the QA-team list in the filters whenever the team changes.</p>
+</div>
+</div>
+
+<script>
+document.querySelectorAll(".copy").forEach(function(btn){
+  btn.addEventListener("click", function(){
+    var code = btn.parentElement.querySelector("code").innerText;
+    navigator.clipboard.writeText(code).then(function(){
+      var old = btn.textContent; btn.textContent = "Copied ✓"; btn.classList.add("done");
+      setTimeout(function(){ btn.textContent = old; btn.classList.remove("done"); }, 1400);
+    }).catch(function(){ btn.textContent = "Ctrl+C"; });
+  });
+});
+</script>
