@@ -26,6 +26,47 @@ question sheet.** This section is the complete pause snapshot: what we're waitin
 on, the pre-decided per-answer action map, everything else open at pause, and the
 ordered resume checklist. The rest of this doc holds the standing detail.
 
+### 0.0 V1_2 spec applied to LOCAL cases — 2026-07-13 (newest event)
+
+The V1_2 spec doc (`spec-source-2026-07-10.md`, Change-Log 2026-07-12) was ingested
+and reconciled in `spec-v2-reconciliation.md`. On **2026-07-13** the QA-lead-authorized
+V1_2 edits were applied to the **LOCAL case files** (`cases/*.json`) and requirements:
+
+- **43 existing cases updated + 1 new case (FD-WO-016):**
+  - **A — 5 firm permission rewrites:** FD-PERM-001 (See Financial Data; drop pricing-view
+    euphemism), FD-PERM-003 (Work Order Lines: Create and Edit), FD-PERM-004 (Part Sales:
+    Create and Edit + See Financial Data; whole-sale AND part-line per S13-R5; still
+    Not-Built), FD-PERM-008 (Customer Management: C&E + Manage AP/AR), FD-PROC-004
+    (expected rewritten to the §5-R15 jurisdiction note per S8-R13; old legal-disclosure
+    block removed; folds in the Processing-Fee §5-R15 check).
+  - **B — 10 history-log gating cases flipped per S13-R10** (WO-level history →
+    **Work Orders: Create and Edit**; line history → **Work Order Lines: Create and Edit**;
+    was View History Logs): FD-PERM-009 + FD-HIST-006 (full flips); FD-HIST-001/002/003/004/005/007/008
+    + FD-FLAG-002 (prereq/gate-name; independence assertions kept).
+  - **D — 28 cosmetic wording-sweep** ("change permission" → "matching Create and Edit
+    permission", S13-N2) in preconditions/steps; behavior + viu_status unchanged.
+  - **C — 1 new case FD-WO-016** (§5-R15 taxable jurisdiction note in the Add/Edit dialog,
+    S2-R26a; FUNCTIONAL section, not API). The Processing-Fee dialog §5-R15 check was
+    **folded into FD-PROC-004** (so 1 new case, not 2).
+- **requirements.md:** appended dated **§16 "V1_2 update (2026-07-13)"** delta (§5-R15
+  exact string; S13-R10 history flip; exact SV-7388 names for Stories 1/3/4/9/10/11;
+  S13-R4/R5/R6/N2; S13-R11 table retired / §10.2 superseded). V1_1 body kept for
+  traceability (last-update-wins: §16 governs).
+- **Re-VIU-PENDING set (needs a live re-VIU; viu_status = "Pending …"):** the 10 history
+  cases above **+ FD-WO-016** = 11 cases, plus the whole **FD-PERM-* permission suite**
+  should be re-run once a clean qb roles matrix is re-derived (**Technician role DRIFTED
+  on the shared qb env** — re-derive before any permission/history retest).
+- **Chris Ward's Round-2 answers are STILL BLANK** — §0.1 action map unchanged / not applied.
+- **Deliverables regenerated (INTERIM):** `testrail-import/fees-discounts-v1-testrail-import.csv`/`.xlsx`
+  (183 cases; VIU=0, feature-flag=0), `FeesDiscounts_Blockers_Tracker.md`/`.xlsx`
+  (now carries TestRail Case ID + Link columns; **109 Ready / 32 Deviation / 12 VIU-Pending
+  / 12 Not-Built / 18 Env = 183**), `FeesDiscounts_FreshVIU_2026-07-10.xlsx`/`.csv`
+  (normalized; Pending bucket folds the V1_2 re-VIU set). **NOTE:** the master authoring
+  workbook `FeesDiscounts_V1_TestCases.xlsx` (build_workbook.py) was NOT regenerated — it
+  carries hardcoded "182 / 62-verified" narrative; a manual pass is a follow-up.
+- **TestRail push for this V1_2 batch:** authorized by the QA lead on 2026-07-13 — see the
+  per-case audit log `testrail-v1_2-push-log.md`.
+
 ### 0.1 Waiting on: Chris Ward's answers to `PO-Questions-Round2.xlsx` (4 questions)
 
 - **What was sent:** `build/fees-discounts/PO-Questions-Round2.xlsx` (+ `.md`;
