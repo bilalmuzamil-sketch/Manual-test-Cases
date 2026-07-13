@@ -5,7 +5,8 @@
   "custom_preconds": "<ol>\n<li>A user has a role with Parts Department ON and Catalog and Inventory View only.</li>\n</ol>",
   "custom_steps": "<ol>\n<li>Open Catalog and Inventory.</li>\n<li>Browse catalog entries.</li>\n<li>View inventory levels.</li>\n<li>View part history.</li>\n</ol>",
   "custom_expected": "<p>All of these views open.</p>\n<p>There are no edit or delete options.</p>\n",
-  "viu_status": "Blocked-UI (needs seeded role)",
-  "evidence": "Needs live UI.",
-  "fresh_run": "2026-07-13"
+  "viu_status": "VIU-Verified",
+  "evidence": "UI: a role with Catalog and Inventory View opens /parts/parts-catalogue and the catalogue renders (read access to the catalog).",
+  "fresh_run": "2026-07-13",
+  "behavioral_run": "2026-07-13"
 }
