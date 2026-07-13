@@ -5,7 +5,8 @@
   "custom_preconds": "<ol>\n<li>A user has a role with Timesheets View and Create & Edit ON, and Reports ON.</li>\n</ol>",
   "custom_steps": "<ol>\n<li>Log in and open the timesheet activities report from Reports.</li>\n<li>Edit an entry.</li>\n</ol>",
   "custom_expected": "<p>The edit works.</p>\n",
-  "viu_status": "Blocked-UI (needs seeded role)",
+  "viu_status": "Blocked-UI: the timesheet entry EDIT affordance was not reachable in the harness for a timesheetsCreateAndEdit role — the WO Timesheets tab is a summary (no edit for view or C&E) and the /timesheets page exposed no per-row edit control/dialog/menu on click. Needs the timesheet entry editor (real browser) to confirm edit works; view-only read-only is confirmed (C26430).",
   "evidence": "Edit behavior needs live UI.",
-  "fresh_run": "2026-07-13"
+  "fresh_run": "2026-07-13",
+  "behavioral_run": "2026-07-13"
 }

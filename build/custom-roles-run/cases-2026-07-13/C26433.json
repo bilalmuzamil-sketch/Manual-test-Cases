@@ -5,7 +5,8 @@
   "custom_preconds": "<ol>\n<li>A user has a role with Timesheets View OFF, Create & Edit OFF, and Reports ON.</li>\n</ol>",
   "custom_steps": "<ol>\n<li>Log in.</li>\n<li>Open Reports.</li>\n<li>Find the Timesheet activities report.</li>\n<li>Open it.</li>\n</ol>",
   "custom_expected": "<p>The Timesheet activities report is listed and opens, even though Timesheets View is off (this report follows the Reports page access).</p>\n",
-  "viu_status": "Blocked-UI (needs seeded role)",
-  "evidence": "Report access needs live UI.",
-  "fresh_run": "2026-07-13"
+  "viu_status": "VIU-Verified",
+  "evidence": "UI: a Reports-on role without Timesheets View (ZZAUTOTEST ReportsNoAPAR, round 5) still shows the Timesheet Activities report under LABOR on /reports — the timesheet activities report follows the Reports permission, available even with Timesheets View off. screenshot reports-noapar.",
+  "fresh_run": "2026-07-13",
+  "behavioral_run": "2026-07-13"
 }
