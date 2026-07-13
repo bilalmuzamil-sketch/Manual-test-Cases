@@ -11,20 +11,8 @@ chromium at `/opt/pw-browsers/chromium-1194` through `$HTTPS_PROXY`. Tooling com
 resides in `/tmp/custom-roles/beh0713/` (adm.mjs, boot2.mjs, drive.mjs, click.mjs,
 cascade.mjs, capture.mjs, setstatus.mjs). Screenshots:
 `screenshots/behavioral-viu-2026-07-13/`.
-- **Behavioral tally (252 core, after round 3): VIU-Verified 158 · Blocked-UI 83 · Deviation/Finding 11.**
-  Round 3 additions: Edit/Delete guards (C26346/347/349/352), the full AP/AR cluster
-  (customer + vendor tabs and the 7 Edit-Customer fields, C26402/3/76/77/78/80/81/83/84/86/549)
-  incl. **RUN331 fix C26482** (aging reports follow Reports perm, not AP/AR), and Parts
-  view/create controls (C26410/11/14/17). GOTCHA found: /parts/part-sales redirects on a
-  direct URL load but works via in-app nav-click (SPA route-guard quirk, not a bug).
-  (Started the whole effort at 30 Verified / 214 Blocked; **~116 Blocked-UI cases flipped**
-  across two behavioral rounds. Round 2 added: §3549 Migration destination-state (11,
-  via live roles API), forced-logout via session invalidation (C26525/C26345/C26492/
-  C26494), Tech-view WO screen §3543 (8 verified + 2 deviation), SFD money §3544
-  (C26468/9/70), Reports §3541 (C26435), universal Clock In §3540/§3553
-  (C26432/C26528/C26551), and View-gives-access pages via a broad Viewer role — Schedule
-  C26394, Customers C26398, Catalogue C26413, POs C26416/C27876, Customers-off-hides-nav
-  C26404.)
+- **Behavioral tally (252 core, after round 4): VIU-Verified 167 · Blocked-UI 74 · Deviation/Finding 11.**
+  Round 4 (§3534 Work Orders): verified C26375/76/77/81/83/84/85/86, C27868 (WO Create&Edit shows New + no Delete; WO Delete shows "Delete Work Order"; WO View off hides WO nav (Sales Rep); Order parts controls the Parts tab; create WO works + customer name shows with Customers View off). 4 left blocked-precise (C26379 Review action needs seeded authorization state; C26380 Pick needs pickable part-request; C27873 needs a note by another user; C29435 qty-edit interaction not triggerable in harness).
 - **Round-2 new deviations:** C26459 & C26464 — labor rate is NOT hidden by tech view when
   See Financial Data is ON (Rate/Margin/Total + labor $ shown); labor-rate visibility
   follows SFD, not view mode (caveat: test role also had WO Create&Edit — dev to confirm).
