@@ -221,7 +221,9 @@ regression / bug-fix re-testing.
 - **IDs (non-secret):**
   - Tech `/change` **staff_id `6fb22c1b-...`** (the staff-list id `a7fd0a88-...`
     **404s on `/change`** — never use it there).
-  - workplace `b3c8c820-...`; Time Clock role `77b069d1-...` (restore target);
+  - workplace `b3c8c820-...`; **Time Clock (User) restore role id (STAGING) =
+    `a0359055-3dfb-4e9c-9e11-2fbea21585c2`** (restore target). NOTE: the old
+    `77b069d1-...` does **NOT** exist on staging — do not use it.
     org `d55bc308-...`.
   - Tech email `tech@shopview.com`.
 - **TestRail:** project **1** / single suite **1 "Master"**; API v2, Basic auth.
