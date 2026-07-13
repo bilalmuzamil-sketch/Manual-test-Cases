@@ -4,6 +4,41 @@
 > **core Custom Roles cases** (TestRail section 3527 subtree, sections **3528–3553**),
 > following `build/BUILD-ACCURATE-WORDING-VIU-PROCESS.md`. Companion to `RUN331-STATE.md`.
 
+## 0. BEHAVIORAL VIU PASS — 2026-07-13 (UPDATE — the RUN331 "undrivable" blocker is RESOLVED)
+The role-editor SPA **IS now drivable headless** via the boot2 hydration pattern
+(seed cookies + localStorage user/fe_permissions/token, then navigate) + Playwright
+chromium at `/opt/pw-browsers/chromium-1194` through `$HTTPS_PROXY`. Tooling committed
+resides in `/tmp/custom-roles/beh0713/` (adm.mjs, boot2.mjs, drive.mjs, click.mjs,
+cascade.mjs, capture.mjs, setstatus.mjs). Screenshots:
+`screenshots/behavioral-viu-2026-07-13/`.
+- **Behavioral tally (252 core): VIU-Verified 104 · Blocked-UI 139 · Deviation/Finding 9.**
+  (Started this pass at 30 Verified / 214 Blocked; **~80 Blocked-UI cases flipped**.)
+- **What was behaviorally verified live:** the whole role-editor surface — roles list
+  (columns, Create Custom Role, search, 3-dot menus, eye/lock, Users-count link),
+  template picker (11 templates, checkmark, Apply prefill, Skip blank), Create/Edit/
+  Delete flows (success toasts, required-field, disabled Create, similar-role warning,
+  reset-to-template, delete confirm), Permission Summary on/off, and **all CRUD cascade
+  + confirm-dialog behaviors** (WO/Schedule/Customers/Parts cascades; the "Enable See
+  Financial Data?" / "Enable Work Orders: View?" / "Disable See Financial Data?" dialog
+  family; Parts Department child show/hide; Settings sub-toggle collapse).
+- **RUN331 fails re-tested:** **C26475 SFD-disable prompt = NOW FIXED** (Disable See
+  Financial Data confirm modal present). **C26387 / C26388 = STILL FAIL (Deviation)** —
+  in the New Work Order modal the "Add" (new customer) and "Add" (new asset) affordances
+  are shown+enabled even with Customers Create&Edit OFF (gate not applied).
+- **Other deviations found:** C26424 (Invoicing Delete does NOT prompt for AP/AR — it
+  depends on See Financial Data); C26339 (role NAME not strictly unique — the warning
+  keys on identical PERMISSIONS + "Create Anyway"); C26340/C26341 (template picker names
+  & descriptions are IDENTICAL to the Roles list, not shorter/different).
+- **Still Blocked-UI (139):** genuine downstream APP-behavior cases needing deep per-role
+  navigation of product screens (WO detail/lines tech-view, Customer edit AP/AR tabs,
+  Parts pages, Invoicing/payments, Timesheets, Settings sub-pages) or historical
+  migration (3549). The editor is drivable; these are the next tranche — see
+  `CustomRoles_Blockers_Tracker_2026-07-13.md` for the by-section list + resume method.
+- **Env hygiene:** Tech was found DRIFTED on Technician; role-switched to a throwaway
+  `ZZAUTOTEST WOCust` for C26387/C26388, then **RESTORED to Time Clock User
+  `a0359055-3dfb-4e9c-9e11-2fbea21585c2` (verified live)**; both ZZAUTOTEST roles deleted
+  (204). **No TestRail writes in the behavioral pass** (local viu_status/evidence only).
+
 ## 1. What was done (COMPLETE)
 - **All 252 CORE cases (26 sections 3528–3553) reworded to build-accurate, layman,
   jargon-free wording and pushed to TestRail via `update_case`: 252 UPDATED · 0 no-op ·

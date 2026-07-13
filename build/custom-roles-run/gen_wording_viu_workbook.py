@@ -16,10 +16,11 @@ AREAS={3528:'Roles List Page',3529:'Create Custom Role',3530:'Edit Role',3531:'D
  3548:'Per-Role Verification',3549:'Migration',3550:'Staff Record Settings',3551:'QuickBooks Relocation',
  3552:'User Feedback Strings',3553:'Cross-Permission Combinations'}
 def bucket(v):
-    v=(v or '').lower()
-    if v.startswith('verified') or 'roles-api-verified' in v: return 'VIU-Verified'
-    if 'deviation' in v or 'stale' in v or 'failed' in v or 'was run331' in v or 'prior run failed' in v: return 'Deviation/Finding'
+    v=(v or '').lower().strip()
+    if v.startswith('deviation'): return 'Deviation/Finding'
+    if v.startswith('viu-verified') or v.startswith('verified') or 'roles-api-verified' in v or 'verified-label' in v: return 'VIU-Verified'
     if 'blocked' in v: return 'Blocked-UI'
+    if 'deviation' in v or 'stale' in v or 'failed' in v: return 'Deviation/Finding'
     return 'Other'
 rows=[]
 for f in sorted(glob.glob(os.path.join(CASEDIR,'C*.json'))):
@@ -55,7 +56,8 @@ for r in rows: by_area[r['area']][r['bucket']]+=1
 # Summary
 ws=wb.active; ws.title='Summary'
 ws.append(['Custom Roles — Build-Accurate Wording + VIU — 2026-07-13']); ws['A1'].font=Font(bold=True,size=14)
-ws.append([]); ws.append(['TestRail push: all 252 core cases (sections 3528–3553) updated via update_case, 200/200, 0 errors.'])
+ws.append([]); ws.append(['TestRail push: all 252 core cases (sections 3528–3553) updated via update_case, 200/200, 0 errors (wording pass).'])
+ws.append(['BEHAVIORAL VIU PASS 2026-07-13: role editor SPA driven headless via boot2 — CRUD cascades, all confirm dialogs, roles list, create/edit/delete flows verified live. No TestRail writes in the behavioral pass (local viu_status/evidence only).'])
 ws.append(['Section 3658 dedupe: 3 duplicates deleted (C27735, C27733, C27737); 7 flagged for ruling.'])
 ws.append([])
 ws.append(['Bucket','Count']); 
