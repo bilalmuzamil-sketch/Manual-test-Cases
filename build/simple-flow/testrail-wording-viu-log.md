@@ -195,3 +195,16 @@ list `Purchase Orders`/`Receive`; Bulk Receive `Receive Vendor Parts` /
 **Cluster summary:** 48 cases · VIU-Verified 33 · VIU-Pending 14 · Blocked-Env 1.
 TestRail: **47 updated + 1 no-op, 200/OK, 0 errors** (SF-VEND-06 = C29442 confirmed
 present). **TESTER-READY (wording).**
+
+---
+
+## Areas SF-CORE (10) + SF-TECH (8) — TESTER-READY ✅
+
+Tech-story inline sub-row (`Story` / `Add tech story for this line`) confirmed live
+on WO lines this run; inventory-core line-level Ok/Not-OK per prior VIU.
+
+- **SF-CORE:** VIU-Verified SF-CORE-01/02/10 (line-level Ok/Not-OK + no-core direct completion confirmed live); **VIU-Pending SF-CORE-03..09** (need a genuine special-order vendor-source core — not seedable; several also need invoicing).
+- **SF-TECH:** all 8 VIU-Verified. **SF-TECH-07 reworded** from the dev-only `input_tech_story` test-id to a tester-meaningful text-box check.
+
+**Summary:** 18 cases · VIU-Verified 11 · VIU-Pending 7. TestRail: **13 updated + 5
+no-op, 200/OK, 0 errors.** **TESTER-READY.**

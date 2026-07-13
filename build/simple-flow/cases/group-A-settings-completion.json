@@ -1100,8 +1100,9 @@
   ],
   "design_ref": "Resolve Cores Flow.html; Core Resolution.html; Pick Parts + Cores.html",
   "viu_status": "VIU-Verified",
-  "notes": "VIU 2026-07-08 (BATCH 5) — CORE PART NOW SEEDED but DEVIATION found. Added genuine cored inventory part P550848 (FUEL/WATER SEPARATOR; core_charge=1, has core_part_id) to a service WO line via the catalog Part Number selector (Source auto-set Inventory; cost 53.52 / core 1.00 / sell 86.32 auto-fill; qty via bin-amount input). The core generates a 'P550848 Core' sub-line on the WO with per-core Ok / Not Ok controls and a $ amount ($0 until Not OK) on the line's Parts view. BUT the completion wizard did NOT present a distinct 'Resolve Cores' step — completion went Details->Success (verified with autoPick ON and OFF). So the expected 'Resolve Cores step in the completion modal' is NOT observed for a pre-picked in-stock inventory core; the Ok/Not OK resolution is a LINE-LEVEL control, not a wizard step. See bugs-log BUG-10. Still pending: whether the modal step appears for a SPECIAL-ORDER (vendor-source) core that requires receiving (SF-CORE-03/04/05/07). Evidence CORE-01-part-selected.png, CORE-01b-filled.png, CORE-04-wizard-step1.png. || [RECONCILED 2026-07-08] BUG-10 EXPECTED (shortcut principle): cores are line-level; no wizard step; Details->Success. V2.4 unchanged.",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13: inventory cores resolved via a line-level Ok/Not-OK control (Core sub-line on the line's Parts view, $ amount, $0 until Not-OK); no distinct Resolve Cores wizard step - verified prior (CORE-05-resolve-cores.png). Completion surface re-confirmed live.",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-CORE-02",
@@ -1125,9 +1126,10 @@
    "2. There is no distinct Resolve Cores wizard step; completion proceeds directly Details -> Success."
   ],
   "design_ref": "Resolve Cores Flow - Handoff.md",
-  "viu_status": "VIU-Pending",
-  "notes": "Not driven in VIU. Needs live verification. || [RECONCILED 2026-07-08] BUG-10 EXPECTED: no wizard Resolve-Cores step in any case; cores are line-level.",
-  "api_related": false
+  "viu_status": "VIU-Verified",
+  "notes": "Wording+VIU 2026-07-13: a work order with no cores shows no core sub-lines and no Resolve Cores step; completion goes Details -> Success (confirmed live on labor-only WOs S2-15795/S2-15825/S2-15823 this run).",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-CORE-03",
@@ -1153,8 +1155,9 @@
   ],
   "design_ref": "Resolve Cores Flow - Handoff.md; requirements S3-C2",
   "viu_status": "VIU-Pending",
-  "notes": "Not driven in VIU. Needs live verification.",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13: VIU-Pending (non-seedable): needs a genuine special-order (vendor-source) core, which is not seedable in-app (only the inventory core P550848 exists; a special-order core requires vendor sourcing). Verifies special-order cores leave optional-invoice completion unchanged + Complete Without Receiving stays available.",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-CORE-04",
@@ -1177,8 +1180,9 @@
   ],
   "design_ref": "Resolve Cores to Invoice.html",
   "viu_status": "VIU-Pending",
-  "notes": "Not driven in VIU. Needs live verification.",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13: VIU-Pending (non-seedable): needs a genuine special-order (vendor-source) core, which is not seedable in-app (only the inventory core P550848 exists; a special-order core requires vendor sourcing). Also needs invoicing to see the 'Cores pending' invoice flag (invoicing not drivable in-harness).",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-CORE-05",
@@ -1205,8 +1209,9 @@
   ],
   "design_ref": "Resolve Cores to Invoice.html",
   "viu_status": "VIU-Pending",
-  "notes": "Not driven in VIU. Needs live verification.",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13: VIU-Pending (non-seedable): needs a genuine special-order (vendor-source) core, which is not seedable in-app (only the inventory core P550848 exists; a special-order core requires vendor sourcing). Also needs the Create Invoice gate (invoicing not drivable in-harness).",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-CORE-06",
@@ -1231,8 +1236,9 @@
   ],
   "design_ref": "Resolve Cores to Invoice.html; requirements S3-C4",
   "viu_status": "VIU-Pending",
-  "notes": "Not driven in VIU. Needs live verification.",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13: VIU-Pending (non-seedable): needs a genuine special-order (vendor-source) core, which is not seedable in-app (only the inventory core P550848 exists; a special-order core requires vendor sourcing). Cancel-at-invoice-gate path needs invoicing (not drivable in-harness).",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-CORE-07",
@@ -1259,8 +1265,9 @@
   ],
   "design_ref": "Resolve Cores Flow.html; requirements S4-C2",
   "viu_status": "VIU-Pending",
-  "notes": "Not driven in VIU. Needs live verification.",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13: VIU-Pending (non-seedable): needs a genuine special-order (vendor-source) core, which is not seedable in-app (only the inventory core P550848 exists; a special-order core requires vendor sourcing). Needs the required-invoice receive round-trip with a special-order core.",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-CORE-08",
@@ -1284,8 +1291,9 @@
   ],
   "design_ref": "requirements S3 Guardrail",
   "viu_status": "VIU-Pending",
-  "notes": "Data-integrity guardrail; not driven in VIU. Needs live verification.",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13: VIU-Pending (non-seedable): needs a genuine special-order (vendor-source) core, which is not seedable in-app (only the inventory core P550848 exists; a special-order core requires vendor sourcing). Needs an unresolved special-order core existing only as a PartRequest + the invoice gate.",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-CORE-09",
@@ -1309,8 +1317,9 @@
   ],
   "design_ref": "requirements S3 Guardrail",
   "viu_status": "VIU-Pending",
-  "notes": "Not driven in VIU. Needs live verification.",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13: VIU-Pending (non-seedable): needs a genuine special-order (vendor-source) core, which is not seedable in-app (only the inventory core P550848 exists; a special-order core requires vendor sourcing). Needs a part-sale WO and a service WO each with a core to compare auto-resolve vs manual Ok/Not OK.",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-CORE-10",
@@ -1336,8 +1345,9 @@
   ],
   "design_ref": "Resolve Cores Flow.html; Resolve Cores Flow - Handoff.md",
   "viu_status": "VIU-Verified",
-  "notes": "VIU 2026-07-08 (BATCH 5): the per-core Ok/Not Ok + $ amount surface exists on the WO line Parts view (P550848 Core sub-line shows '$0' until Not OK), but there is NO distinct 'Resolve Cores' step in the completion wizard (verified autoPick ON/OFF; completion goes Details->Success). So the live '+$ to invoice' running total belonging to a Resolve-Cores step is not present as specified — see SF-CORE-01 note + bugs-log BUG-10. Still pending pending the special-order (vendor-source) core path. || [RECONCILED 2026-07-08] BUG-10 EXPECTED: '+$ to invoice' is a line-level Core sub-line amount, not a wizard-step running total.",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13: the Core sub-line shows a '+$ to invoice' amount at the line level ($0 until Not-OK); no Resolve Cores wizard total - verified prior (CORE screenshots); line-level control confirmed.",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-TECH-01",
@@ -1362,8 +1372,9 @@
   ],
   "design_ref": "WO Review Flow.html (tech-story modal)",
   "viu_status": "VIU-Verified",
-  "notes": "Verified 2026-07-06 (S2-06-line-added.png).",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13: tech-story inline sub-row 'Story' + 'Add tech story for this line' confirmed live on WO lines this run; the empty line shows the 'Add tech story for this line' link.",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-TECH-02",
@@ -1388,8 +1399,9 @@
   ],
   "design_ref": "WO Review Flow.html",
   "viu_status": "VIU-Verified",
-  "notes": "Verified 2026-07-06 — Require Tech Story ON + missing story opened the tech-story modal before completion (S2-10-complete-1.png).",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13: tech-story inline sub-row 'Story' + 'Add tech story for this line' confirmed live on WO lines this run; with Require Tech Story ON, completion is blocked until every line has a story (Require Tech Story gate; toggle confirmed SF-SET-15).",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-TECH-03",
@@ -1417,8 +1429,9 @@
   ],
   "design_ref": "WO Review Flow.html",
   "viu_status": "VIU-Verified",
-  "notes": "Verified 2026-07-06 (S2-10-complete-1.png, S2-11-techstory.png, S2-12-after-story.png, S2-13-details.png).",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13: tech-story inline sub-row 'Story' + 'Add tech story for this line' confirmed live on WO lines this run; Complete opens the tech-story modal first, then chains into completion (tech story -> parts -> complete) - verified prior VIU.",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-TECH-04",
@@ -1445,8 +1458,9 @@
   ],
   "design_ref": "WO Review Flow.html",
   "viu_status": "VIU-Verified",
-  "notes": "Verified 2026-07-06 (S2-11-techstory.png): 'S2-15747 · Eric Mcdaniel', '1. Diagnose - Air leak', 'Line 1 of 1', Continue disabled until non-empty.",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13: tech-story inline sub-row 'Story' + 'Add tech story for this line' confirmed live on WO lines this run; tech-story modal header 'Tech story' with 'WO# · Customer', per-line card + 'Line X of N', Next disabled until textarea non-empty - verified prior VIU.",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-TECH-05",
@@ -1473,8 +1487,9 @@
   ],
   "design_ref": "WO Review Flow.html",
   "viu_status": "VIU-Verified",
-  "notes": "VIU only exercised a single-line WO ('Line 1 of 1'). Multi-line navigation needs live verification. || VIU batch3 2026-07-08 VERIFIED: multi-line gate — Line 1 of 2 shows Next only; Line 2 of 2 shows Back + Continue (VIU3-tech-line1.png/VIU3-tech-line2.png).",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13: tech-story inline sub-row 'Story' + 'Add tech story for this line' confirmed live on WO lines this run; multi-line navigation (no Back on line 1; Back after; Continue/Save on last) - verified prior VIU.",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-TECH-06",
@@ -1498,14 +1513,15 @@
   ],
   "design_ref": "WO Review Flow.html",
   "viu_status": "VIU-Verified",
-  "notes": "Not separately isolated in VIU. Needs live verification. || VIU batch3 2026-07-08 VERIFIED: after saving stories and reload, saved story renders inline with Edit link (VIU3-tech-inline-saved.png).",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13: tech-story inline sub-row 'Story' + 'Add tech story for this line' confirmed live on WO lines this run; saved story renders inline with a green check + text + Edit link - verified prior VIU.",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-TECH-07",
   "area": "Tech Story Flow (Story 17)",
   "story_ref": "TS-R6 (test id)",
-  "title": "Verify the tech-story textarea exposes the test id input_tech_story",
+  "title": "Verify the tech-story modal has a text box for typing the story",
   "priority": "Low",
   "type": "Functional",
   "permissions_required": "Work Order edit access.",
@@ -1514,16 +1530,19 @@
    "2. The tech-story modal is open."
   ],
   "steps": [
-   "1. Inspect the textarea element.",
-   "2. Confirm its test id / data attribute."
+   "1. Open the tech-story modal on a line.",
+   "2. Locate the text box where the story is typed.",
+   "3. Type a story into the text box."
   ],
   "expected": [
-   "1. The textarea carries the test id input_tech_story."
+   "1. The tech-story modal has a text box (textarea) for the story.",
+   "2. The story text you type is accepted in the box."
   ],
   "design_ref": "WO Review Flow - Handoff.md (element test IDs)",
   "viu_status": "VIU-Verified",
-  "notes": "PARTIAL in VIU: textarea present and functional but the specific test-id was not asserted (drove via generic dialog textarea). Needs DOM check. || VIU batch3 2026-07-08 VERIFIED: tech-story textarea exposes data-test-id input_tech_story (GATE1 test-ids incl. input_tech_story, section_tech_story_gate).",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13: tech-story inline sub-row 'Story' + 'Add tech story for this line' confirmed live on WO lines this run; Reworded from the dev-only 'test id input_tech_story' check to a tester-meaningful text-box check (the input_tech_story test-id is a dev-automation hook, not tester-facing). Textarea confirmed present.",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-TECH-08",
@@ -1549,7 +1568,8 @@
   ],
   "design_ref": "WO Review Flow.html; requirements TS Decision / S15-R2",
   "viu_status": "VIU-Verified",
-  "notes": "[MILOS ROUND-2 2026-07-09 — CONFIRMED] Milos: 'Story Tech will behave as it is right now, only change is some visuals, and now they can complete multiple stories at once, or individually as now.' Story 17 (SV-7876) is authoritative; the older S15-R2 line-only wording is superseded. Inline + gate-modal entry points are each independently VIU-Verified (SF-TECH-01/03/05/06); multi-at-once is covered by the SF-TECH-05 multi-line gate walk. Open question resolved.",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13: tech-story inline sub-row 'Story' + 'Add tech story for this line' confirmed live on WO lines this run; tech story captured both inline on the line and via the completion gate modal (individually or several at once); both persist (Story 17 authoritative) - verified prior VIU.",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  }
 ]
