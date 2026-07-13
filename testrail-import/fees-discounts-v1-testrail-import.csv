@@ -97,6 +97,12 @@ Verify the preview adjustment row is signed and colored (fee vs discount),Work O
 2. The whole-WO Add dialog is open.","1. Set Type = 'Fee', Calculation type = 'Flat amount', Amount = 50; read the preview color/sign.
 2. Change Type = 'Discount'; read the preview color/sign again.","1. Per spec S2-R33 the fee amount shows in green with a '+' sign and the discount amount shows in red with a '−' sign; this is the only place green/red are used (S12-R2).
 2. Preview is signed (+ for fee, − for discount) and updates live.",S2-R33 / S12-R2,,
+Verify the Add/Edit fee-or-discount dialog shows the §5-R15 taxable jurisdiction note below the Taxable dropdown,Work Order — Whole-WO Fee/Discount,Functional,Medium,"1. An open work order (not Invoiced/Paid, not in history mode). Mark any throwaway data ZZAUTOTEST.
+2. You can add an adjustment (Work Orders: Create and Edit + See Financial Data).","1. From the work-order toolbar's more (⋯) menu, choose ""Add Fee / Discount"" to open the New Fee / Discount dialog.
+2. Find the Taxable Yes/No dropdown and read the text shown directly below it.
+3. Open an existing adjustment's Edit dialog and check the same place below the Taxable dropdown.","1. Directly below the Taxable dropdown, this exact advisory text shows: ""Tax treatment varies by jurisdiction — confirm your local requirements before saving.""
+2. The same note shows in both the Add (New Fee / Discount) and the Edit (Edit Fee / Discount) dialog.
+3. The note is a plain advisory to the shop — it is not a UI instruction and not a legal-compliance statement.","S2-R26, S2-R26a, §5-R15",,
 Verify a labor line's 3-dot menu opens the Add dialog locked to that Labor Line scope,Work Order — Labor-line Fee/Discount,Functional,Critical,"1. Logged in with Work Order Lines: Create & Edit and See Financial Data.
 2. An open work order with a labor line, e.g. Line 1 'Service - Perform LOF and inspection', is open on the Lines tab.","1. Hover the labor line row (or its Labor sub-row) to reveal the ⋯ (More actions) button.
 2. Click the ⋯ button and click 'Add fee / discount'.
@@ -205,11 +211,11 @@ Verify the per-line Total column shows the line's gross total plus its own adjus
 2. Read the part's Total column, which stacks the base total and each adjustment amount.
 3. Note any changes to stored line prices.","1. The Total column stacks the base total ($58.47) and each adjustment row (−$6.49, −$2.92, +$3.75), so the shown total matches the adjustment rows (S3-R18).
 2. The per-line Total is display-only and changes no stored value (S3-R19).",S3-R18 / S3-R19,,
-Verify each inline adjustment row has a hover 3-dot Edit/Delete menu when the WO is open with change permission,Work Order — Inline display (Lines tab),Functional,Medium,"1. Logged in with Work Order Lines: Create & Edit + See Financial Data.
+Verify each inline adjustment row has a hover 3-dot Edit/Delete menu when the WO is open with the matching Create and Edit permission,Work Order — Inline display (Lines tab),Functional,Medium,"1. Logged in with Work Order Lines: Create & Edit + See Financial Data.
 2. An open work order with at least one inline line-level adjustment.","1. Hover an inline adjustment row.
 2. Open its ⋯ menu.","1. A 3-dot menu appears on the right on hover (S12-R5).
 2. The menu offers 'Edit' and 'Delete' (S3-R17).
-3. The menu is only shown when the WO is open and the user has the change permission.",S3-R17 / S12-R5,,
+3. The menu is only shown when the WO is open and the user has the matching Create and Edit permission.",S3-R17 / S12-R5,,
 Verify the Stats tab shows a 'Fees & Discounts (N)' breakdown with Value/% and Amount columns,Work Order — Statistics tab,Functional,High,"1. Logged in with See Financial Data.
 2. An open work order with 5 adjustments across scopes is open.","1. Open the work order's Stats tab.
 2. Locate the 'Fees & Discounts (N)' section.
@@ -254,7 +260,7 @@ Verify the Financial Info 'Fees & Discounts' row is hidden with no adjustments a
 2. Read the listed entries and confirm which scopes appear.
 3. Hover an entry and open its ⋯ menu.","1. The card is titled 'WO Fees & Discounts' and lists ONLY whole-Work-Order adjustments — line-level adjustments do NOT appear here.
 2. The 'Early Payment Discount' entry shows a signed rate badge '−8%' and the resolved amount −$857.23 in plain grey, signed.
-3. Hovering shows a ⋯ 3-dot menu with 'Edit' and 'Remove' only, shown only when the WO is open and the user has the change permission.",S3-R3 / S3-R5 / S3-R8 / S3-R9,,
+3. Hovering shows a ⋯ 3-dot menu with 'Edit' and 'Remove' only, shown only when the WO is open and the user has the matching Create and Edit permission.",S3-R3 / S3-R5 / S3-R8 / S3-R9,,
 Verify the sidebar card is hidden with no whole-WO adjustments and has no Add control,Work Order — Sidebar 'Work Order Fee / Discount' card,Functional,Medium,"1. Logged in with See Financial Data + Work Orders: Create & Edit.
 2. Variant (a): an open WO with only line-level adjustments and NO whole-WO adjustments.
 3. Variant (b): an open WO with at least one whole-WO adjustment.","1. Variant (a): open the WO and look for the sidebar 'Work Order Fee / Discount' card.
@@ -268,7 +274,7 @@ Verify the 'Fees & Discounts' column shows a '+N' badge when a part has multiple
 2. Parts page open with part '#55073 Mobil 1 5W20' carrying three adjustments (first = 'Parts Handling Fee' 2%).","1. Locate part #55073 in the parts table.
 2. Read its 'Fees & Discounts' column cell.","1. The cell shows the first adjustment 'Parts Handling Fee 2%' followed by a '+2' badge (N = the two extras after the first; S11-R10b).
 2. The cell tooltip reads 'View fees & discounts'.",S11-R10b / design §5,,
-Verify the 'Fees & Discounts' column shows a '+ Add' button on a part with no adjustments,Parts page — 'FEES & DISCOUNTS' column,Functional,Medium,"1. Logged in with See Financial Data and the relevant change permission.
+Verify the 'Fees & Discounts' column shows a '+ Add' button on a part with no adjustments,Parts page — 'FEES & DISCOUNTS' column,Functional,Medium,"1. Logged in with See Financial Data and the matching Create and Edit permission.
 2. Parts page open with part '#28439 Fleetguard FF5421' carrying no adjustments, on an editable sale/WO.","1. Locate part #28439.
 2. Read its 'Fees & Discounts' column cell.
 3. Click the '+ Add' button.","1. The cell shows a '+ Add' button (tooltip 'Add fee / discount'; S11-R9).
@@ -282,7 +288,7 @@ Verify clicking a populated 'Fees & Discounts' cell opens the per-part breakdown
 4. The modal has a 'Close' button (S11-R16).",S11-R11 / S11-R12 / S11-R13 / S11-R16,,
 Verify the breakdown modal 'Net adjustment' row equals the signed sum of the part's adjustments,Parts page — breakdown modal,Functional,Medium,"1. Logged in with See Financial Data.
 2. The #55073 breakdown modal is open (Parts Handling Fee +$1.43, Military Discount −$3.31, Early Payment Discount −$0.99).",1. Read the 'Net adjustment' row at the bottom of the modal.,1. 'Net adjustment' shows the signed sum: +1.43 − 3.31 − 0.99 = −$2.87 (S11-R15).,S11-R15,,
-Verify a per-row Remove (trash) on the breakdown modal removes the adjustment and closes the modal when the last is removed,Parts page — breakdown modal,Functional,High,"1. Logged in with the relevant change permission + See Financial Data.
+Verify a per-row Remove (trash) on the breakdown modal removes the adjustment and closes the modal when the last is removed,Parts page — breakdown modal,Functional,High,"1. Logged in with the matching Create and Edit permission + See Financial Data.
 2. Parts page open with part #37346 carrying exactly ONE adjustment; the editable breakdown modal is open.","1. Confirm each row shows a 🗑 (Remove) control (only shown when the sale can be edited; S11-R14).
 2. Click the trash / Remove control on the single adjustment row.
 3. Observe the modal and the part's 'Fees & Discounts' cell afterwards.","1. The adjustment is removed.
@@ -292,7 +298,7 @@ Verify the '+ Add' button is disabled on a part when the sale/WO cannot be edite
 2. Parts page open for an Invoiced/Paid (non-editable) sale/WO with a part that has no adjustments.","1. Locate the part with no adjustments.
 2. Inspect its 'Fees & Discounts' column '+ Add' button.","1. The '+ Add' button is disabled because the sale/WO cannot be edited (S11-R9).
 2. Populated cells still open the read-only breakdown but per-row trash controls are not shown (S11-R14, S3-N3).",S11-R9 / S3-R1b,,
-"Verify editing an adjustment allows Name/Value/Max Amount/Taxable but locks Type, Calculation type, and Scope",Work Order — Edit an adjustment,Functional,High,"1. Logged in with the relevant change permission + See Financial Data.
+"Verify editing an adjustment allows Name/Value/Max Amount/Taxable but locks Type, Calculation type, and Scope",Work Order — Edit an adjustment,Functional,High,"1. Logged in with the matching Create and Edit permission + See Financial Data.
 2. An open work order with an existing whole-WO percentage discount adjustment.","1. On the sidebar 'Work Order Fee / Discount' card, hover the entry and choose 'Edit'.
 2. Inspect which fields are editable vs disabled.
 3. Change the Name and the Percent value, then Save.","1. The dialog title reads 'Edit Fee / Discount' (S2-R9).
@@ -300,7 +306,7 @@ Verify the '+ Add' button is disabled on a part when the sale/WO cannot be edite
 3. Type and Calculation type are shown but cannot be changed (S2-R5).
 4. Scope and target are locked (S2-R8).
 5. The changes save successfully and a 'Fee updated' / 'Discount updated' toast appears (§7).",S2-R4 / S2-R5 / S2-R8,,
-"Verify editing re-resolves the adjustment against current totals, hides the template picker, and uses a 'Save' button",Work Order — Edit an adjustment,Functional,Medium,"1. Logged in with the relevant change permission + See Financial Data.
+"Verify editing re-resolves the adjustment against current totals, hides the template picker, and uses a 'Save' button",Work Order — Edit an adjustment,Functional,Medium,"1. Logged in with the matching Create and Edit permission + See Financial Data.
 2. An open work order with an existing percentage adjustment whose base total has since changed (e.g. a line was added).","1. Open the adjustment's Edit dialog.
 2. Confirm the 'Apply from template' picker is not shown.
 3. Change the Percent value and click the confirm button.
@@ -308,7 +314,7 @@ Verify the '+ Add' button is disabled on a part when the sale/WO cannot be edite
 2. The confirm button reads 'Save' (S2-R28).
 3. On save the adjustment resolves again against the WO's current totals (S2-R6).
 4. Both the resolved amount and the tax update (S2-R7).",S2-R6 / S2-R7 / S2-R18 / S2-R28,,
-Verify a save failure keeps the Edit dialog open and shows the returned error,Work Order — Edit an adjustment,Functional,Medium,"1. Logged in with the relevant change permission + See Financial Data.
+Verify a save failure keeps the Edit dialog open and shows the returned error,Work Order — Edit an adjustment,Functional,Medium,"1. Logged in with the matching Create and Edit permission + See Financial Data.
 2. An open work order with an existing adjustment; a condition that forces a save failure can be simulated (e.g. server error).","1. Open the adjustment's Edit dialog and change a field.
 2. Trigger a save that the server rejects.
 3. Observe the dialog and any error message.","1. The dialog stays open (S2-R30).
@@ -369,27 +375,28 @@ Verify the same template can be applied to one work order more than once by hand
 5. Column headers are bold; cell text is plain.","S9-R12, S9-R13, S9-R14, S9-R15, S12-R8",,
 Verify adding a single template as a customer default via the picker,Customer Fees & Discounts tab,Functional,High,"1. A location template named ""ZZAUTOTEST Fleet Discount"" (Discount, % of Subtotal, 10%) exists and is NOT yet linked to the test customer.
 2. You have Customer Management: Create & Edit + Manage AP/AR.","1. Open the customer, go to the Fees & Discounts tab, click ""Add Fee/Discount"".
-2. In the picker titled ""Add Fee/Discount"" with caption ""Select a fee or discount template to add to this customer."", tick the checkbox for ""ZZAUTOTEST Fleet Discount"".
-3. Click ""Add"".","1. The picker lists each available template as a row with a checkbox plus Name, Type, Calculation Type, Amount.
-2. After clicking Add, the picker closes and a success toast reads exactly ""Fee / discount added."" (fades on its own).
+2. In the picker, open the ""Fee / Discount Templates"" dropdown and select ""ZZAUTOTEST Fleet Discount"" (templates are added one at a time).
+3. Click ""Save"".","1. The picker is a single-select dropdown listing the available templates — one template is picked and added at a time (adding one at a time is the intended behavior).
+2. After clicking Save, the picker closes and a success toast reads exactly ""Fee / discount added."" (fades on its own).
 3. ""ZZAUTOTEST Fleet Discount"" now appears as a row in the Default Fees & Discounts table and the tab count increases by 1.
 4. The added default's columns match the template: Type Discount, Calculation Type % of Subtotal, Amount −10%.","S9-R18, S9-R19, S9-R20, S9-R21, S9-R23a",,
-Verify multi-select adding of several templates at once shows the plural toast,Customer Fees & Discounts tab,Functional,Medium,"1. At least 3 templates exist that are NOT yet linked to the test customer.
+Verify several templates are added as customer defaults one at a time (no multi-select),Customer Fees & Discounts tab,Functional,Medium,"1. At least 3 templates exist that are NOT yet linked to the test customer.
 2. You have Customer Management: Create & Edit + Manage AP/AR.","1. Open the customer, Fees & Discounts tab, click ""Add Fee/Discount"".
-2. Tick the checkboxes for 3 templates.
-3. Click ""Add"".","1. All 3 selected templates are linked in one action.
-2. A success toast reads exactly ""3 fees / discounts added."" (the [N] is the number selected).
-3. All 3 appear in the Default Fees & Discounts table; the tab count increases by 3.","S9-R20, S9-R21, S9-R23b",,
+2. Select the first template from the dropdown and click ""Save"".
+3. Repeat the add for the second and third templates, one at a time.","1. The picker allows only ONE template per add — there is no way to tick several at once (adding one at a time is the intended behavior, so a user cannot accidentally add multiples).
+2. Each add closes the picker and shows its own success toast ""Fee / discount added.""
+3. After the three adds, all 3 templates appear in the Default Fees & Discounts table and the tab count increases by 3.","S9-R20, S9-R21, S9-R23a",,
 "Verify the picker lists only unlinked templates and shows Processing Fee templates as type ""Fee""",Customer Fees & Discounts tab,Functional,Medium,"1. The location has: (a) a template already linked to this customer, (b) an unlinked Fee/Discount template, and (c) an unlinked Processing Fee template.
 2. You have Customer Management: Create & Edit + Manage AP/AR.","1. Open the customer, Fees & Discounts tab, click ""Add Fee/Discount"".
-2. Review the list of templates offered.","1. The already-linked template (a) does NOT appear in the picker.
-2. The unlinked Fee/Discount template (b) appears.
-3. The Processing Fee template (c) DOES appear (a Processing Fee can be a customer default), and in the current build its Type column shows ""Fee"".","S9-R19, S8-R15, S9-R... (Processing Fee shows as ""Fee"")",,
+2. Open the ""Fee / Discount Templates"" dropdown and review the list of templates offered.","1. The picker is a single-select dropdown — templates are added one at a time (this is the intended behavior).
+2. The already-linked template (a) does NOT appear in the picker.
+3. The unlinked Fee/Discount template (b) appears.
+4. The Processing Fee template (c) DOES appear (a Processing Fee can be a customer default), and in the current build its Type column shows ""Fee"".","S9-R19, S8-R15, S9-R... (Processing Fee shows as ""Fee"")",,
 Verify the empty picker message when there are no templates left to add,Customer Fees & Discounts tab,Functional,Low,1. Every location template is already linked to the test customer (or the location has no templates).,"1. Open the customer, Fees & Discounts tab, click ""Add Fee/Discount"".
-2. Read the picker body.","1. The picker shows exactly ""No templates available to add."" and no selectable rows.",S9-R22,,
-Verify removing a customer default via the row menu needs no confirm and toasts,Customer Fees & Discounts tab,Functional,High,1. The customer has at least 1 default fee/discount.,"1. Open the customer, Fees & Discounts tab.
-2. On a default row, open the 3-dot (⋮) actions menu.
-3. Click ""Remove"".","1. The row menu offers only one item, ""Remove"" (no inline Edit, no ""Delete"").
+2. Read the picker body.","1. The picker's template dropdown shows the ""No results"" empty state and offers no selectable templates to add.",S9-R22,,
+Verify removing a customer default via the row's remove action needs no confirm and toasts,Customer Fees & Discounts tab,Functional,High,1. The customer has at least 1 default fee/discount.,"1. Open the customer, Fees & Discounts tab.
+2. On a default row, locate the remove (trash) action.
+3. Click the remove (trash) icon.","1. Each default row offers a direct remove (trash) action only (no inline Edit, no separate ""Delete"").
 2. No confirmation dialog appears; the default is removed immediately.
 3. A success toast reads exactly ""Fee / discount removed.""
 4. The row disappears and the tab count decreases by 1.","S9-R16, S9-R24",,
@@ -426,8 +433,8 @@ Verify the customer Fees & Discounts tab and controls are hidden without the req
 3. Restore Tech to the Time Clock role afterward.","1. Without Manage AP/AR, the customer ""Fees & Discounts"" tab and its controls are hidden entirely.
 2. Both Customer Management: Create & Edit AND Manage AP/AR are required to view/change customer defaults; missing either hides the tab/controls.","S13-R9, S13-N3",,
 Verify a template that is both location auto-apply AND a customer default is added only ONCE to a new WO,Customer defaults — known bug,Functional,Medium,"1. A template ""ZZAUTOTEST Env Fee"" is marked auto-apply at the location AND is a default on the test customer.","1. Create a NEW work order for the customer.
-2. Open the WO Fees & Discounts card and count how many ""ZZAUTOTEST Env Fee"" adjustments appear.","1. Intended result: exactly ONE ""ZZAUTOTEST Env Fee"" adjustment on the WO.
-2. Known bug: it may be added TWICE depending on internal order — record actual count.",S9 known gap (§14 item 4),,
+2. Open the WO Fees & Discounts card and count how many ""ZZAUTOTEST Env Fee"" adjustments appear.","1. Exactly ONE ""ZZAUTOTEST Env Fee"" adjustment appears on the new work order.
+2. No second copy of the same template's adjustment is added — the single add is the settled intended behavior (a duplicate would be a defect).",S9 known gap (§14 item 4),,
 Verify add/remove/load failure on customer defaults shows the standard error notification,API — Customer Fees & Discounts tab — negative,Functional,Low,"1. A way to force a server error (e.g., simulate a network/API failure) on the add or remove call.","1. On the customer Fees & Discounts tab, trigger an add or remove while the backend call fails.
 2. Observe the feedback.","1. The system shows its STANDARD error notification (no custom per-action string).
 2. The default list is not corrupted (the failed action is not partially applied).",S9-N1,,
@@ -464,7 +471,8 @@ Verify the template delete confirm dialog copy and buttons,Template admin — de
 2. It has a red ""Delete"" confirm button and a Cancel button.
 3. Confirming removes the template from the list.",S7-R20,,
 Verify the delete confirm adds a warning when the template is a default for one or more customers,Template admin — delete,Functional,Medium,1. A template is set as a default for exactly 2 customers.,"1. On the admin Fees & Discounts page, click the delete action on that template.
-2. Read the confirm dialog.","1. In addition to the standard message, the dialog adds exactly: ""This template is set as a default for 2 customer(s). Deleting it will remove it from them."" (N reflects the actual number of customers).",S7-R21,,
+2. Read the confirm dialog.","1. The standardized ""Delete Template"" confirmation dialog opens (the same standardized delete confirmation used elsewhere in Settings, e.g. for pricing matrices).
+2. The dialog includes the warning: ""This template is set as a default for 2 customer(s). Deleting it will remove it from them."" — the number reflects how many customers currently have the template as a default.",S7-R21,,
 Verify deleting a template leaves work-order adjustments made from it unchanged,Template admin — delete,Functional,High,1. A template has been applied to an OPEN work order as an adjustment.,"1. Delete the template from Administration → Service → Fees & Discounts (confirm).
 2. Open the work order and check the WO Fees & Discounts card.","1. The template is removed from the library.
 2. The work order's adjustment made from that template REMAINS unchanged (same name, amount, taxable).","S7-N1, S7-R4",,
@@ -504,11 +512,11 @@ Verify template Name enforces the 100-character limit,Template admin — dialog 
 3. Per §5-R4, ""% of Grand Total"" uses a base that includes tax on purpose (net subtotal + tax on that net subtotal) — the one exception to the before-tax rule.","S8-R5, S8-R6, S8-R9, §5-R4, §5-R10",,
 Verify the Max Amount field is hidden for every Processing Fee (both methods),Processing Fee — no Max Amount,Functional,Medium,1. On the admin create dialog with Type = Processing Fee.,"1. Set Calculation type = Flat Amount and check for a Max Amount field.
 2. Set Calculation type = % of Grand Total and check again.","1. No ""Max Amount (Optional)"" field is shown for a Processing Fee under either method.","S8-R10, S8-N3, S7-R12e",,
-Verify the Processing Fee Taxable control defaults Yes and renders the legal disclosure,Processing Fee — taxable + legal disclosure,Functional,High,1. On the admin create dialog with Type = Processing Fee.,"1. Observe the Taxable control default value.
-2. Read the disclosure text rendered below the Taxable setting.
-3. Capture the literal disclosure wording (screenshot).","1. Taxable is a Yes/No dropdown defaulting to ""Yes"".
-2. A legal disclosure renders below the Taxable setting.
-3. The disclosure text must render EXACTLY as written (no paraphrase / auto-translate without legal sign-off).","S8-R11, S8-R12",,
+Verify the Processing Fee Taxable control defaults Yes and shows the §5-R15 jurisdiction note,Processing Fee — taxable + jurisdiction note,Functional,High,1. On the admin create dialog with Type = Processing Fee.,"1. Observe the Taxable control default value.
+2. Read the advisory text rendered below the Taxable setting.
+3. Capture the literal wording (screenshot).","1. Taxable is a Yes/No dropdown defaulting to ""Yes"".
+2. Directly below the Taxable setting, this exact advisory text shows: ""Tax treatment varies by jurisdiction — confirm your local requirements before saving.""
+3. The note is a plain advisory to the shop — it is not a UI instruction and not a legal-compliance statement.","S8-R11, S8-R12, S8-R13, §5-R15",,
 Verify a Processing Fee cannot be added to a work order by hand,Processing Fee — no manual add,Functional,High,"1. A Processing Fee template exists.
 2. An open work order is available.","1. On the WO toolbar ⋯ menu, choose ""Add Work Order Fee / Discount"" and open the Type dropdown.
 2. Open the ""Apply from template (optional)"" picker in the same dialog and from a labor line and a part dialog.","1. The WO Add dialog Type dropdown does NOT list ""Processing Fee"" (only Fee and Discount).
@@ -628,7 +636,7 @@ Verify the excess is recorded as a customer credit and posts to QuickBooks as a 
 3. It is NOT a QuickBooks payment (no cash received).","S6-R11, S6-R13",,
 Verify a synced line's tax follows the adjustment's taxable setting,QuickBooks sync — tax,Functional,Medium,1. QuickBooks connected; a WO has one taxable fee and one non-taxable fee; the WO is invoiced.,1. Inspect the synced QuickBooks lines for both fees.,"1. The taxable fee's line carries the invoice's active tax.
 2. The non-taxable fee's line carries zero tax.","S6-R2, §5-R11",,
-Verify one history entry per add/edit/remove with the correct bold event labels,History log,Functional,High,1. You have View History Logs and can add/edit/remove adjustments on an open WO.,"1. Add a Fee to the WO, then edit it, then remove it.
+Verify one history entry per add/edit/remove with the correct bold event labels,History log,Functional,High,1. You can view the work-order history log (Work Orders: Create and Edit) and can add/edit/remove adjustments on an open WO.,"1. Add a Fee to the WO, then edit it, then remove it.
 2. Add a Discount to the WO, then edit it, then remove it.
 3. Open the WO history log.","1. Each add, each edit, and each remove records exactly ONE entry.
 2. Fee events read (bold): ""Fee added"", ""Fee updated"", ""Fee removed"".
@@ -645,13 +653,14 @@ Verify fee/discount history stays visible when the F&D UI is hidden by the Fees 
 2. Open the WO history log.","1. All F&D controls are hidden (flag off).
 2. The previously recorded fee/discount history entries STILL show in the history log.",S10-R1,,
 Verify F&D history stays visible when the F&D UI is hidden by See Financial Data being off,History log — visibility,Functional,Medium,"1. A WO has fee/discount history entries.
-2. A ZZAUTOTEST role is assigned to Tech with View History Logs ON but See Financial Data OFF (exact-user-match).","1. Log in as Tech and open the WO — confirm dollar amounts are hidden on the F&D surfaces.
+2. A ZZAUTOTEST role is assigned to Tech with Work Orders: Create and Edit ON but See Financial Data OFF (exact-user-match).","1. Log in as Tech and open the WO — confirm dollar amounts are hidden on the F&D surfaces.
 2. Open the WO history log.
 3. Restore Tech to Time Clock afterward.","1. Fee/discount dollar amounts are hidden on the normal F&D surfaces (SFD off).
 2. The fee/discount history entries STILL show in the history log (the log shows the SET rate, not a resolved total, so SFD does not gate it).","S10-R1, S10-R6c, S13-R10",,
-Verify fee/discount history entries are gated by the View History Logs permission,History log — permission,Functional,High,"1. A WO has fee/discount history.
-2. A ZZAUTOTEST role is assigned to Tech WITHOUT View History Logs (exact-user-match).","1. Log in as Tech and attempt to view the WO history log.
-2. Restore Tech to Time Clock afterward.","1. Without View History Logs, the history log (including fee/discount entries) is not accessible.",S13-R10,,
+Verify fee/discount history entries are gated by Work Orders: Create and Edit (line history by Work Order Lines: Create and Edit),History log — permission,Functional,High,"1. A WO has fee/discount history.
+2. A ZZAUTOTEST role is assigned to Tech WITHOUT Work Orders: Create and Edit (exact-user-match); for line history, a role WITHOUT Work Order Lines: Create and Edit.","1. Log in as Tech and attempt to view the WO history log (and an individual labor-line / part-line history).
+2. Restore Tech to Time Clock afterward.","1. Without Work Orders: Create and Edit, the work-order history log (including fee/discount entries) is not accessible.
+2. Without Work Order Lines: Create and Edit, an individual labor-line or part-line history is not accessible.",S13-R10,,
 "Verify a Processing Fee is logged as a fee with ""Full invoice"" applied-to and no ""updated"" entry",History log — Processing Fee,Functional,Medium,1. A WO carries a Processing Fee (via auto-apply or customer default).,"1. Confirm the Processing Fee was added (auto) and then remove it from the WO.
 2. Open the WO history log and read the Processing Fee entries.","1. The add logs event ""Fee added"" and the remove logs ""Fee removed"" (Type shown as ""Fee"").
 2. Applied to shows ""Full invoice"".
@@ -676,7 +685,7 @@ Verify percentage rounding — half a cent or more rounds UP (5% discount on $33
 2. Raw = $33.33 × 0.05 = $1.6665.
 3. Because the third decimal is ≥ half a cent, it rounds UP: resolved = −$1.67 (not −$1.66).
 4. Sign is minus (discount).",§5-R3,,
-Verify a Flat Amount on Whole-WO or Labor Line resolves to the set amount exactly (no quantity multiplier),Calculation contract,Functional,Medium,"1. Role has See Financial Data plus the matching change permission.
+Verify a Flat Amount on Whole-WO or Labor Line resolves to the set amount exactly (no quantity multiplier),Calculation contract,Functional,Medium,"1. Role has See Financial Data plus the matching Create and Edit permission.
 2. An open work order with at least one labor line.","1. Open the work order.
 2. Add a Whole-WO fee: toolbar ⋯ → Add Work Order Fee / Discount, Type = Fee, Calculation type = Flat Amount, Amount = $25.00, save.
 3. Add a Labor Line discount: on a labor line's 3-dot menu → Add Fee / Discount, Type = Discount, Calculation type = Flat Amount, Amount = $10.00, save.","1. Whole-WO Flat fee resolves to exactly +$25.00 (no quantity part).
@@ -689,7 +698,7 @@ Verify a Flat Amount on a Part Line is PER ITEM (amount × quantity: $5.00 × qt
 4. Change the part quantity from 3 to 1 and observe the adjustment re-resolve.","1. Input: Flat $5.00 discount on a part with qty 3.
 2. Resolved = $5.00 × 3 = −$15.00.
 3. After quantity changes to 1, resolved re-computes to −$5.00 ($5.00 × 1).",§5-R14,,
-Verify a percentage discount cannot exceed 100% (fee percentages have no upper limit),Calculation contract,Functional,High,"1. Role has See Financial Data and the matching change permission.
+Verify a percentage discount cannot exceed 100% (fee percentages have no upper limit),Calculation contract,Functional,High,"1. Role has See Financial Data and the matching Create and Edit permission.
 2. An open work order.","1. Open the Add Fee / Discount dialog at any scope.
 2. Set Type = Discount, Calculation type = a percentage method.
 3. Enter Percent = 101 and attempt to save.
@@ -697,13 +706,13 @@ Verify a percentage discount cannot exceed 100% (fee percentages have no upper l
 5. Repeat with Type = Fee and Percent = 150; save.","1. Discount at 101% is rejected (invalid) — a percentage discount may not exceed 100% (§5-R2).
 2. Discount at exactly 100% is allowed.
 3. Fee at 150% is allowed — percentage fees have no upper limit.",§5-R2,,
-"Verify minimum values — Flat Amount smallest is $0.01, Percentage smallest is 0.01%",Calculation contract,Functional,Medium,"1. Role has See Financial Data and the matching change permission.
+"Verify minimum values — Flat Amount smallest is $0.01, Percentage smallest is 0.01%",Calculation contract,Functional,Medium,"1. Role has See Financial Data and the matching Create and Edit permission.
 2. An open work order.","1. Open the Add Fee / Discount dialog.
 2. With Calculation type = Flat Amount, try Amount = $0.00 (blocked), then Amount = $0.01 (allowed); save.
 3. With Calculation type = a percentage method, try Percent = 0 (blocked), then Percent = 0.01 (allowed); save.","1. Values must be greater than 0 (§5-R1).
 2. Flat Amount below $0.01 is invalid; $0.01 is the smallest accepted.
 3. Percentage below 0.01% is invalid; 0.01% is the smallest accepted.",§5-R1,,
-Verify Max Amount clamps a percentage result (20% fee on $100 → $20 → Max $15 → +$15.00),Calculation contract,Functional,High,"1. Role has See Financial Data and the matching change permission.
+Verify Max Amount clamps a percentage result (20% fee on $100 → $20 → Max $15 → +$15.00),Calculation contract,Functional,High,"1. Role has See Financial Data and the matching Create and Edit permission.
 2. An open work order whose target base = $100.00.","1. Open the Add Fee / Discount dialog on the $100.00 base.
 2. Set Type = Fee, Calculation type = a percentage method.
 3. Enter Percent = 20.
@@ -711,32 +720,32 @@ Verify Max Amount clamps a percentage result (20% fee on $100 → $20 → Max $1
 5. Save.","1. Uncapped result would be $100.00 × 20% = $20.00.
 2. $20.00 exceeds the $15.00 cap, so it is lowered to the cap: resolved = +$15.00.
 3. Max Amount only shows for percentage methods (never Flat Amount, never Processing Fee).",§5-R6,,
-"Verify Max Amount = $0 forces resolve to $0.00, while blank/empty Max Amount means no cap",Calculation contract,Functional,Medium,"1. Role has See Financial Data and the matching change permission.
+"Verify Max Amount = $0 forces resolve to $0.00, while blank/empty Max Amount means no cap",Calculation contract,Functional,Medium,"1. Role has See Financial Data and the matching Create and Edit permission.
 2. An open work order whose target base = $100.00.
 3. Note: a $0 Max Amount can normally only come from old data — an entered 0 is treated as empty in the current dialogs (S2-R25).","1. Open the Add dialog, Type = Fee, percentage method, Percent = 50 on the $100.00 base.
 2. Leave Max Amount blank; save. Observe resolved amount.
 3. (Old-data / negative case) With a Max Amount of $0 present, observe resolved amount.","1. Blank Max Amount = no maximum → resolved = +$50.00 ($100 × 50%).
 2. An entered 0 in Max Amount is treated as empty (no maximum) in the dialog (§5-R6, S2-R25) — so it does NOT force $0 when typed in the UI.
 3. A genuine Max Amount = $0 (only possible from old data) forces the resolve to $0.00 (§5-R6 example: 50% fee on $100 → $50 → Max $0 → $0.00).",§5-R6,,
-Verify a $0.00 base resolves to $0.00 and the $0.00 line is skipped in QuickBooks (still shown on screens),Calculation contract,Functional,Medium,"1. Role has See Financial Data and the matching change permission.
+Verify a $0.00 base resolves to $0.00 and the $0.00 line is skipped in QuickBooks (still shown on screens),Calculation contract,Functional,Medium,"1. Role has See Financial Data and the matching Create and Edit permission.
 2. An open work order with a target line whose base is $0.00 (e.g. a declined/not-billable labor line, §5-R12).","1. Add a 15% fee (or any adjustment) against the $0.00 base line.
 2. Observe the resolved amount on the WO sidebar card, line table, Stats tab, Financial Info card.
 3. Invoice the WO (with an active QuickBooks connection) and observe what syncs.","1. Resolved amount against a $0.00 base = $0.00 (e.g. 15% fee on $0.00 → $0.00, §5-R3/R8).
 2. The $0.00 adjustment SHOWS as $0.00 on every WO screen.
 3. In QuickBooks the $0.00 line is SKIPPED — not sent as an invoice line item (§5-R8 / S6-R1).",§5-R8,,
-"Verify a negative base is treated as $0 (resolved amount = $0.00, base never goes below zero)",Calculation contract,Functional,Medium,"1. Role has See Financial Data and the matching change permission.
+"Verify a negative base is treated as $0 (resolved amount = $0.00, base never goes below zero)",Calculation contract,Functional,Medium,"1. Role has See Financial Data and the matching Create and Edit permission.
 2. An open work order where an earlier discount has already driven a net total to or below $0 for a whole-WO percentage base.","1. On a base that would compute negative (e.g. net parts total already floored), add a percentage fee/discount referencing that base.
 2. Observe the resolved amount.","1. If the base is below $0, the system uses $0 as the base (§5-R3, §5-R4: ""No base goes below $0"").
 2. Resolved amount = $0.00.
 3. The base is never allowed to go negative for calculation purposes.","§5-R3, §5-R4",,
-"Verify a taxable fee raises the taxable amount, a taxable discount lowers it, and a non-taxable adjustment does not change tax",Calculation contract,Functional,High,"1. Role has See Financial Data and the matching change permission.
+"Verify a taxable fee raises the taxable amount, a taxable discount lowers it, and a non-taxable adjustment does not change tax",Calculation contract,Functional,High,"1. Role has See Financial Data and the matching Create and Edit permission.
 2. An open work order for a taxable customer with a known tax rate and a taxable base.","1. Note the WO's current taxable amount and tax.
 2. Add a whole-WO fee with Taxable = Yes; save and note the new taxable amount/tax.
 3. Remove it. Add a whole-WO discount with Taxable = Yes; save and note taxable amount/tax.
 4. Remove it. Add a whole-WO fee with Taxable = No; save and note taxable amount/tax.","1. Taxable fee: the taxable amount INCREASES by the fee amount, so tax increases accordingly.
 2. Taxable discount: the taxable amount DECREASES by the discount amount, so tax decreases.
 3. Non-taxable adjustment: the taxable amount and tax are UNCHANGED (§5-R11).",§5-R11,,
-"Verify the 3-step resolution ORDER — line-level on gross first, whole-WO on net second, no stacking within a step",Calculation contract,Functional,High,"1. Role has See Financial Data plus both change permissions.
+"Verify the 3-step resolution ORDER — line-level on gross first, whole-WO on net second, no stacking within a step",Calculation contract,Functional,High,"1. Role has See Financial Data plus both Create and Edit permissions.
 2. An open work order with gross labor = $200.00 and gross parts = $100.00 (spec worked example).","1. Step 1 — add a Labor Line 10% discount on the $200 labor line.
 2. Step 2 — add a whole-WO 5% fee using % of Labor Total, and a whole-WO 10% discount using % of Parts Total.
 3. Observe each resolved amount and the running net totals.","1. Step 1 (line-level, on gross): 10% × $200 = −$20.00 → net labor = $180.00.
@@ -758,7 +767,7 @@ Verify the Processing Fee base includes tax on purpose and never uses a Max Amou
 2. No Max Amount field is available for any Processing Fee (S8-R10, S8-N3); saving one with a Max Amount is rejected (S8-N4).
 3. A taxable Processing Fee adds its own amount to the taxable amount, but this added tax NEVER changes its own base (no feedback loop, §5-R5).
 4. The tax in the base excludes tax from any taxable whole-WO fee/discount and the Processing Fee's own tax.","§5-R4, S8-R10",,
-"Verify negative-total floor at $0.00 — non-taxable $150 discount on $100 parts + $10 tax: subtotal floors, customer pays $10, $50 excess → tax-exempt goodwill credit",Calculation contract,Functional,High,"1. Role has See Financial Data and the matching change permission.
+"Verify negative-total floor at $0.00 — non-taxable $150 discount on $100 parts + $10 tax: subtotal floors, customer pays $10, $50 excess → tax-exempt goodwill credit",Calculation contract,Functional,High,"1. Role has See Financial Data and the matching Create and Edit permission.
 2. An open work order with $100.00 taxable parts and $10.00 tax (spec worked example).
 3. Location has an active QuickBooks connection (to verify the credit memo).","1. Add a whole-WO discount of $150.00 with Taxable = No.
 2. Attempt to save and observe the warning/confirm prompt.
@@ -768,14 +777,14 @@ Verify the Processing Fee base includes tax on purpose and never uses a Max Amou
 3. WO total = $10.00 (the tax), not $0.00; customer pays $10.00.
 4. Before save, a mandatory warning states the subtotal floors at $0.00, tax is still owed, and the $50.00 excess carries as a customer credit — user must confirm (S6-R12).
 5. The $50.00 excess is recorded as a freestanding customer credit not tied to a WO (S6-R11) and posts to QuickBooks as a tax-exempt goodwill credit memo on the Customer Credit item (S6-R13).","S6-R10, S6-R11, S6-R12, S6-R13",,
-"Verify a TAXABLE $150 discount on $100 parts drives the taxable amount to $0 → tax $0.00, customer pays $0.00",Calculation contract,Functional,Medium,"1. Role has See Financial Data and the matching change permission.
+"Verify a TAXABLE $150 discount on $100 parts drives the taxable amount to $0 → tax $0.00, customer pays $0.00",Calculation contract,Functional,Medium,"1. Role has See Financial Data and the matching Create and Edit permission.
 2. An open work order with $100.00 taxable parts and $10.00 tax.","1. Add a whole-WO discount of $150.00 with Taxable = Yes.
 2. Confirm the warning and save.
 3. Observe the WO totals.","1. A taxable $150.00 discount lowers the taxable amount to $0.00.
 2. Tax = $0.00 (S6-R10c).
 3. Customer pays $0.00 total.
 4. By contrast, when the same discount is non-taxable the $10.00 tax is still owed.",S6-R10c,,
-"Verify multiple discount lines are penny-capped via largest-remainder so capped discounts sum exactly to the floored net subtotal (no negative, whole-cent)",Calculation contract,Functional,Medium,"1. Role has See Financial Data and the matching change permission.
+"Verify multiple discount lines are penny-capped via largest-remainder so capped discounts sum exactly to the floored net subtotal (no negative, whole-cent)",Calculation contract,Functional,Medium,"1. Role has See Financial Data and the matching Create and Edit permission.
 2. Location has an active QuickBooks connection.
 3. An open work order with a small net subtotal and two or more discount lines whose combined size exceeds it.","1. Add two (or more) whole-WO discounts whose total exceeds the net subtotal.
 2. Confirm the over-discount warning and save.
@@ -789,7 +798,7 @@ Verify the Processing Fee base includes tax on purpose and never uses a Max Amou
 3. Assign Role B (SFD OFF) to the test user; revisit the same surfaces.
 4. Restore Tech to Time Clock (role 77b069d1-…) when done.","1. With SFD ON: all fee/discount dollar amounts are visible on every surface.
 2. With SFD OFF: all fee/discount dollar amounts are HIDDEN on every surface, and no add/edit/remove control is reachable (S13-N1).
-3. See Financial Data is the ""pricing-view permission"" referenced in Stories 3/4/11.","S13-R2, S13-N1",,
+3. See Financial Data (the Custom Roles / SV-7388 permission) is the single permission that controls visibility of all fee/discount money values across Stories 3, 4, and 11.","S13-R2, S13-N1",,
 Verify Whole-WO adjustment add/edit/remove requires Work Orders: Create and Edit,Permissions (Story 13),Functional,High,"1. An open work order.
 2. Two ZZAUTOTEST roles, both with See Financial Data ON: Role A WITH Work Orders: Create and Edit; Role B WITHOUT it. Assign by exact-user-match to Tech.","1. With Role A: open the WO toolbar ⋯ → confirm ""Add Work Order Fee / Discount"" is present; add, edit, and remove a whole-WO adjustment.
 2. With Role B: revisit the WO toolbar ⋯ and the WO sidebar card.
@@ -801,17 +810,17 @@ Verify Labor-line and Part-line adjustment add/edit/remove requires Work Order L
 2. With Role B: revisit the labor-line and part menus.
 3. Restore Tech to Time Clock after.","1. With Work Order Lines: Create and Edit ON: labor-line and part-line add/edit/remove are allowed.
 2. With it OFF: the line-level starting places (3-dot menus) do not show the option, and the action is rejected (S13-N2).
-3. This is the permission the earlier stories called the ""Work Order change permission"" for line-level actions.",S13-R4,,
-Verify Part-Sale part adjustment add/edit/remove requires Part Sales: Create and Edit,Permissions (Story 13),Functional,High,"1. An open part sale with at least one part.
+3. This gate is Work Order Lines: Create and Edit (SV-7388); it governs every line-level (labor-line and part-line) adjustment add/edit/remove action (S13-R4).",S13-R4,,
+Verify Part-Sale adjustment add/edit/remove (whole sale or part line) requires Part Sales: Create and Edit + See Financial Data,Permissions (Story 13),Functional,High,"1. An open part sale with at least one part.
 2. Two ZZAUTOTEST roles, both with See Financial Data ON: Role A WITH Part Sales: Create and Edit; Role B WITHOUT it. Assign by exact-user-match to Tech.","1. With Role A: on the part sale, use a part row's menu → ""Add Fee / Discount""; add, edit, remove a Part Line adjustment. Also use the toolbar ⋯ → ""Add Parts Sale Fee / Discount"" for a whole-parts-sale adjustment.
 2. With Role B: revisit the part-sale menus.
 3. Restore Tech to Time Clock after.","1. With Part Sales: Create and Edit ON: part-sale add/edit/remove is allowed.
 2. With it OFF: the part-sale F&D controls are not shown and the action is rejected (S13-N2).
-3. On a Part Sale the earlier ""Work Order change permission"" maps to Part Sales: Create and Edit (S13-R11).",S13-R5,,
+3. A Part-Sale adjustment — on the whole sale or on a part line — requires Part Sales: Create and Edit plus See Financial Data (S13-R5). Part-sale adjustments use no Work Order permission.",S13-R5,,
 Verify any add/edit/remove of an adjustment also requires See Financial Data to be ON,Permissions (Story 13),Functional,High,"1. An open work order.
-2. A ZZAUTOTEST role that HAS Work Orders: Create and Edit (and/or Work Order Lines / Part Sales Create and Edit) but has See Financial Data OFF. Assign by exact-user-match to Tech.","1. Assign the role (change permission ON, SFD OFF).
+2. A ZZAUTOTEST role that HAS Work Orders: Create and Edit (and/or Work Order Lines / Part Sales Create and Edit) but has See Financial Data OFF. Assign by exact-user-match to Tech.","1. Assign the role (matching Create and Edit permission ON, SFD OFF).
 2. Open the WO and try to reach the Add Fee / Discount controls at every starting place (toolbar ⋯, labor-line ⋮, part menu).
-3. Restore Tech to Time Clock after.","1. Even with the change permission ON, add/edit/remove is NOT reachable while See Financial Data is OFF (S13-R6).
+3. Restore Tech to Time Clock after.","1. Even with the matching Create and Edit permission ON, add/edit/remove is NOT reachable while See Financial Data is OFF (S13-R6).
 2. The controls sit on screens that are hidden when SFD is off, so there is no way to add/edit/remove.
 3. Dollar amounts are also hidden.",S13-R6,,
 "Verify REMOVING an adjustment is governed by ""Create and Edit"", NOT the separate ""Delete"" permission",Permissions (Story 13),Functional,High,"1. An open work order with an existing whole-WO adjustment.
@@ -832,19 +841,21 @@ Verify viewing/changing a customer's default fees & discounts requires BOTH Cust
 4. Restore Tech to Time Clock after.","1. With BOTH permissions ON: the ""Fees & Discounts"" tab and its Add/Remove controls are available and work.
 2. Without Manage Accounts Payable and Receivable: the customer ""Fees & Discounts"" tab and controls are HIDDEN (S13-N3).
 3. Without Customer Management: Create and Edit: the defaults cannot be viewed/changed.
-4. This is Story 9's ""customer change permission"" — both are required.","S13-R9, S13-N3",,
-Verify seeing fee/discount entries in the WO history log requires View History Logs (and stays visible even when F&D UI is hidden),Permissions (Story 13),Functional,Medium,"1. A work order already has fee/discount history (add/edit/remove entries).
-2. Two ZZAUTOTEST roles: Role A WITH View History Logs; Role B WITHOUT it. Assign by exact-user-match to Tech.","1. With Role A: open the WO history log and locate the fee/discount entries.
+4. Story 9's customer default fees & discounts require BOTH Customer Management: Create and Edit AND Manage Accounts Payable and Receivable (S13-R9).","S13-R9, S13-N3",,
+Verify seeing fee/discount entries in the WO history log requires Work Orders: Create and Edit (line history requires Work Order Lines: Create and Edit),Permissions (Story 13),Functional,Medium,"1. A work order already has fee/discount history (add/edit/remove entries).
+2. Two ZZAUTOTEST roles: Role A WITH Work Orders: Create and Edit; Role B WITHOUT it. For line-level history, add a role WITH / WITHOUT Work Order Lines: Create and Edit. Assign by exact-user-match to Tech.","1. With Role A (Work Orders: Create and Edit ON): open the WO history log and locate the fee/discount entries.
 2. Also confirm entries remain visible even when the F&D UI is hidden (Fees & Discounts feature off, or See Financial Data off).
-3. With Role B: open the WO history log.
-4. Restore Tech to Time Clock after.","1. With View History Logs ON: fee/discount entries are visible in the history log.
-2. Entries stay visible even when the F&D UI is hidden by the Fees & Discounts feature or by See Financial Data (S10-R1).
-3. The log shows the SET rate (e.g. ""10.00%"" or ""$5.00""), not a resolved total, so See Financial Data does NOT gate it (S10-R6c).
-4. With View History Logs OFF: the fee/discount history entries are not shown.",S13-R10,,
+3. With Role B (Work Orders: Create and Edit OFF): open the WO history log.
+4. To check line-level history, repeat with a role that has, then lacks, Work Order Lines: Create and Edit.
+5. Restore Tech to Time Clock after.","1. With Work Orders: Create and Edit ON: fee/discount entries are visible in the WO history log.
+2. Viewing an individual labor-line or part-line history requires Work Order Lines: Create and Edit.
+3. Entries stay visible even when the F&D UI is hidden by the Fees & Discounts feature or by See Financial Data (S10-R1).
+4. The log shows the SET rate (e.g. ""10.00%"" or ""$5.00""), not a resolved total, so See Financial Data does NOT gate it (S10-R6c).
+5. Without Work Orders: Create and Edit, the work-order history log (including fee/discount entries) is not shown.",S13-R10,,
 Verify BOTH gates are required — the Fees & Discounts feature ON AND the matching permission,Permissions (Story 13),Functional,High,"1. Ability to toggle the Fees & Discounts feature for the org.
 2. A ZZAUTOTEST role with See Financial Data and Work Orders: Create and Edit ON.
 3. An open work order.","1. Flag OFF + permission ON: open the WO and look for any F&D control.
-2. Flag ON + permission OFF: assign a role without the change permission and look for the controls.
+2. Flag ON + permission OFF: assign a role without the matching Create and Edit permission and look for the controls.
 3. Flag ON + permission ON: confirm the controls appear and work.
 4. Restore Tech to Time Clock and leave the flag in its original state.","1. Flag OFF (regardless of permission): NO F&D controls anywhere (except the history log, Story 10).
 2. Flag ON but permission OFF: controls hidden / action rejected.
@@ -865,18 +876,18 @@ Verify add/edit/remove is blocked when the WO is Invoiced/Paid or the user is in
 2. No WO sidebar card, no Stats F&D section, no Financial Info F&D row, no Parts F&D column, no customer F&D tab, no admin template page.
 3. This holds even for a fully-permissioned user — the flag is the outer gate.","§1 Fees & Discounts feature, S13-R1",,
 Verify the WO history log STILL shows fee/discount entries even when the Fees & Discounts feature is OFF,Feature-flag gating,Functional,Medium,"1. A work order already has fee/discount history entries.
-2. The user has View History Logs.
+2. The user has Work Orders: Create and Edit (to view the work-order history log).
 3. Ability to set the Fees & Discounts feature OFF.","1. Set the Fees & Discounts feature OFF.
 2. Open the WO history log and look for the previously-recorded fee/discount entries.
 3. Restore the flag after.","1. Fee/discount history entries REMAIN visible in the WO history log even with the flag off (S10-R1) — the documented exception to ""flag off hides everything.""
 2. All other F&D UI is still hidden.",S10-R1 (flag-off exception),,
 "Verify with the flag ON, the matching permission is still required to use F&D",Feature-flag gating,Functional,Medium,"1. Two ZZAUTOTEST roles: one with the F&D-relevant permissions, one without.
-2. An open work order.","1. With the flag ON and the user lacking See Financial Data / the change permission, open the WO and look for F&D controls and amounts.
+2. An open work order.","1. With the flag ON and the user lacking See Financial Data / the matching Create and Edit permission, open the WO and look for F&D controls and amounts.
 2. Then grant the permissions and revisit.
 3. Restore Tech to Time Clock after.","1. Flag ON alone is not sufficient — without the permission, amounts are hidden and controls are unreachable.
 2. Once the permission is granted, the controls appear and the action works.
 3. Confirms the flag and permission are two independent, both-required gates.",§1 Fees & Discounts feature + S13-R1,,
-Verify the Add button stays DISABLED until Name AND Type AND Calculation type AND Amount > 0 are all set,Validation / Edge,Functional,High,"1. Role has See Financial Data and the matching change permission.
+Verify the Add button stays DISABLED until Name AND Type AND Calculation type AND Amount > 0 are all set,Validation / Edge,Functional,High,"1. Role has See Financial Data and the matching Create and Edit permission.
 2. An open work order; open the Add Fee / Discount dialog.","1. With the dialog freshly opened (all fields empty), observe the Add button state.
 2. Fill fields one at a time — Name only; then + Type; then + Calculation type; then + Amount = 0; then Amount > 0 — observing the Add button after each.
 3. Clear one required field again and observe the button.","1. The Add button is DISABLED by default and remains disabled until ALL of Name, Type, Calculation type, and Amount > 0 are set (design §6 validateForm).
@@ -884,37 +895,37 @@ Verify the Add button stays DISABLED until Name AND Type AND Calculation type AN
 3. The confirm button label reads ""Add Fee"" (Type=Fee) or ""Add Discount"" (Type=Discount), changing live with Type (S2-R27).
 4. Clearing any required field disables the button again.
 5. Max Amount / Max cap is NOT required to enable Add.","design §6 (Add-button enable rule); S2-N1, S2-N2",,
-Verify a blank or 0 Amount/Percent blocks save with an inline error,Validation / Edge,Functional,High,"1. Role has See Financial Data and the matching change permission.
+Verify a blank or 0 Amount/Percent blocks save with an inline error,Validation / Edge,Functional,High,"1. Role has See Financial Data and the matching Create and Edit permission.
 2. Add dialog open with Name and Type and Calculation type filled.","1. Leave Amount/Percent blank and attempt to save.
 2. Enter Amount/Percent = 0 and attempt to save.
 3. Enter a valid value (> 0) and save.","1. A blank Amount/Percent blocks save with an inline error (S2-N2).
 2. A value of 0 is invalid (values must be > 0, §5-R1) — save is blocked / Add stays disabled.
 3. A value > 0 (≥ $0.01 flat, ≥ 0.01% percentage) allows save.","S2-N2, §5-R1",,
-"Verify an empty Name blocks save with an inline error (Name required, up to 100 characters)",Validation / Edge,Functional,Medium,"1. Role has See Financial Data and the matching change permission.
+"Verify an empty Name blocks save with an inline error (Name required, up to 100 characters)",Validation / Edge,Functional,Medium,"1. Role has See Financial Data and the matching Create and Edit permission.
 2. Add dialog open with Type, Calculation type, and a valid Amount filled.","1. Leave Name empty and attempt to save.
 2. Enter a Name and confirm save is allowed.
 3. Try a Name longer than 100 characters.","1. An empty Name blocks save with an inline error (S2-N1); the Add button stays disabled.
 2. Name is required free text up to 100 characters (S2-R19).
 3. Input beyond 100 characters is not accepted / is truncated at 100.","S2-N1, S2-R19",,
-Verify a percentage discount > 100% is invalid while a percentage fee has no upper cap,Validation / Edge,Functional,High,"1. Role has See Financial Data and the matching change permission.
+Verify a percentage discount > 100% is invalid while a percentage fee has no upper cap,Validation / Edge,Functional,High,"1. Role has See Financial Data and the matching Create and Edit permission.
 2. Add dialog open.","1. Type = Discount, Calculation type = percentage, Percent = 100.5 → attempt save.
 2. Percent = 100 → attempt save.
 3. Type = Fee, percentage, Percent = 500 → attempt save.","1. Discount at 100.5% is invalid — blocked (§5-R2).
 2. Discount at exactly 100% is allowed.
 3. Fee at 500% is allowed — percentage fees have no upper limit.
 4. Flat Amount adjustments never take a Max Amount (§5-R2/R6).",§5-R2,,
-Verify negative Amount/Percent values are rejected (values must be > 0),Validation / Edge,Functional,Medium,"1. Role has See Financial Data and the matching change permission.
+Verify negative Amount/Percent values are rejected (values must be > 0),Validation / Edge,Functional,Medium,"1. Role has See Financial Data and the matching Create and Edit permission.
 2. Add dialog open with Name, Type, Calculation type set.","1. Enter Amount = −5 (Flat) and attempt to save.
 2. Enter Percent = −10 (percentage) and attempt to save.","1. Negative values are not accepted — values must be > 0 (§5-R1). The sign (fee + / discount −) comes from Type, not from a negative input.
 2. Save is blocked / the field rejects the negative value.",§5-R1,,
-"Verify Max cap edge behavior — 0 or empty = no maximum, and Max Amount shows only for percentage methods",Validation / Edge,Functional,Medium,"1. Role has See Financial Data and the matching change permission.
+"Verify Max cap edge behavior — 0 or empty = no maximum, and Max Amount shows only for percentage methods",Validation / Edge,Functional,Medium,"1. Role has See Financial Data and the matching Create and Edit permission.
 2. Add dialog open.","1. Choose a percentage Calculation type — confirm the Max Amount (Optional) field appears (S2-R24).
 2. Leave Max Amount empty and save; then set Max Amount = 0 and save.
 3. Switch Calculation type to Flat Amount — confirm the Max Amount field is not shown.","1. Max Amount (Optional) appears only for percentage methods (S2-R24).
 2. Empty Max Amount = no maximum; an entered 0 is also treated as empty (no maximum) in the dialog (§5-R6, S2-R25).
 3. For Flat Amount, no Max Amount field is shown (Flat never uses Max Amount).","§5-R6, S2-R24, S2-R25",,
-Verify a template that is BOTH location auto-apply and a customer default yields ONE adjustment on a new WO (known double-add bug),Validation / Edge,Functional,Medium,"1. A template at the location is marked auto-apply (S7-R5).
+Verify a template that is BOTH location auto-apply and a customer default yields ONE adjustment on a new WO,Validation / Edge,Functional,Medium,"1. A template at the location is marked auto-apply (S7-R5).
 2. The SAME template is also set as a default for a customer (S9-R2).","1. Create a NEW work order for that customer.
 2. Inspect the WO's whole-WO adjustments (sidebar card / Financial Info F&D count).
-3. Count how many times the shared template's adjustment was added.","1. Intended result: the adjustment appears exactly ONCE on the new WO (§14 item 4 / S9 known gap).
-2. Known bug: the current build may add it TWICE depending on internal order — record the actual count.","S9 known gap (auto-apply + customer-default duplication); S7-R5, S9-R2",,
+3. Count how many times the shared template's adjustment was added.","1. The shared template's adjustment appears exactly ONCE on the new work order — the auto-apply and customer-default paths do not stack.
+2. No duplicate copy is added (the single add is the settled intended behavior; a double-add would be a defect).","S9 known gap (auto-apply + customer-default duplication); S7-R5, S9-R2",,

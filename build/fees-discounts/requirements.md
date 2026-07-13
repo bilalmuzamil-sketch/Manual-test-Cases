@@ -1041,3 +1041,77 @@ The full spec is now available (Stories 1–14). The remaining genuinely-unclear
 - **Completeness:** Stories 1–14 present, plus §1–§5 (business case, overview, key
   decisions, terminology, calculation contract), §6 requirements (the stories), §7 User
   Feedback Summary, §8 Change Log. **No story ids missing.**
+
+## 16. V1_2 update (2026-07-13) — spec delta applied to cases
+
+> Ingested from `spec-source-2026-07-10.md` (successor `FeesDiscountsV1_2.doc`,
+> Change-Log 2026-07-12) and reconciled in `spec-v2-reconciliation.md`. This section
+> records the deltas as a dated addendum for traceability; the §1–§15 body above is
+> the V1_1 baseline and is superseded by this section wherever they disagree.
+> The §5 calculation contract (R1–R14) is UNCHANGED; §5-R15 is the only calc addition.
+
+### 16.1 NEW §5-R15 — taxable jurisdiction note (advisory)
+Below **every** Taxable control — the Add / Edit fee-or-discount dialog (S2-R26a)
+and the Processing Fee dialog (S8-R13) — this EXACT text shows:
+
+> **"Tax treatment varies by jurisdiction — confirm your local requirements before saving."**
+
+It is a plain advisory to the shop; it is **not** a UI instruction and **not** a
+legal-compliance statement.
+- **S2-R26a (NEW):** the §5-R15 note shows below the Taxable dropdown in the Add/Edit dialog.
+- **S8-R13 (REWRITTEN):** was a heavy "render exactly / no auto-translate without legal
+  sign-off" legal-disclosure note on the Processing Fee; now simply references §5-R15.
+  **The old legal-disclosure block is removed.**
+- Cases: **FD-WO-016** (NEW — Add/Edit dialog); **FD-PROC-004** (rewritten — Processing
+  Fee dialog §5-R15 folded in). This supersedes §14 open-question item 5 (the disclosure
+  text is now defined in-spec).
+
+### 16.2 BEHAVIOR CHANGE — history-log gating (Story 10 / S13-R10)
+Supersedes §8.3 prereq line and the §10.1 history-log row:
+- **Viewing a work order's history log requires Work Orders: Create and Edit** (was
+  **View History Logs**).
+- **Viewing an individual labor-line or part-line history requires Work Order Lines:
+  Create and Edit.**
+- Per S10-R1 the entries stay visible even when the F&D UI is hidden by the feature flag
+  or by See Financial Data; the log shows the SET rate not a resolved total (S10-R6c) so
+  See Financial Data does **not** gate it.
+- Cases flipped + set Pending / Retest (needs live re-VIU): **FD-PERM-009, FD-HIST-006**
+  (full flips) and **FD-HIST-001/002/003/004/005/007/008, FD-FLAG-002** (prereq/gate-name).
+
+### 16.3 Exact SV-7388 permission names inline (Stories 1/3/4/9/10/11 + S13)
+The V1_2 doc inlines the exact Custom Roles (SV-7388) names in every story and
+**DELETES the S13-R11 translation table** (§10.2 above is now retired). Bindings:
+- **Story 1** prereqs: **Work Orders: Create and Edit** AND (NEW) **See Financial Data**.
+  S1-N2 → "Without **Work Orders: Create and Edit** …".
+- **Story 3** prereqs: see money values = **See Financial Data**; add/edit/remove =
+  **Work Orders: Create and Edit** (whole-WO) or **Work Order Lines: Create and Edit**
+  (labor/part line). S3-R9 → **Work Orders: Create and Edit**; S3-R17 → **Work Order
+  Lines: Create and Edit**; S3-N4 → **See Financial Data**.
+- **Story 4** (Statistics) prereq: **See Financial Data**.
+- **Story 9** (customer defaults, S9-R13 button): **Customer Management: Create and Edit**
+  AND **Manage Accounts Payable and Receivable**.
+- **Story 11** (Part Sale) prereqs: **Part Sales: Create and Edit** AND **See Financial
+  Data** — **no Work Order permission**.
+- **S13-R2:** trailing "pricing-view permission" sentence removed (the permission is just
+  **See Financial Data**).
+- **S13-R4 (line-level):** = **Work Order Lines: Create and Edit**; intentional note — a
+  user who can create a work-order line and has See Financial Data can add a line-level
+  adjustment.
+- **S13-R5 (Part Sale):** EXPANDED — an adjustment on a Part Sale **on the whole sale OR
+  on a part line** requires **Part Sales: Create and Edit** (plus **See Financial Data**,
+  S13-R6). Part-sale adjustments use no Work Order permission.
+- **S13-R6 (SFD required to ADD):** now explicit — **See Financial Data is required to
+  ADD, edit, or remove** any adjustment (not only edit/remove).
+- **S13-R11 translation table:** **DELETED** (§10.2 retired).
+- **S13-N2 (N2 wording):** "Without the matching **Create and Edit** permission …".
+- Cases: **FD-PERM-001** (See Financial Data), **FD-PERM-003** (Work Order Lines: Create
+  and Edit), **FD-PERM-004** (Part Sales: Create and Edit + See Financial Data, whole-sale
+  + part-line), **FD-PERM-008** (Customer Management: C&E + Manage AP/AR); wording sweep of
+  28 cases "change permission" → "matching Create and Edit permission" (S13-N2).
+
+### 16.4 Not applied here / still pending
+- **§10.2 table + §8.3/§10.1 body lines** are superseded by §16 but left in place above
+  for V1_1 traceability (last-update-wins: §16 governs).
+- Chris Ward's Round-2 answers remain BLANK — no §0.1 action taken.
+- All history + FD-PERM cases need a **live re-VIU** once a clean qb roles matrix is
+  re-derived (Technician role drifted on the shared env).

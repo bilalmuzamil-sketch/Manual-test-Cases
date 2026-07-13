@@ -44,9 +44,25 @@ STATUSES = [
     ('VIU-Deviation', 'Deviations'),
     ('VIU-Blocked-NotBuilt', 'Blocked - Not Built'),
     ('VIU-Blocked-Env', 'Blocked - Environment'),
-    ('VIU-Pending', 'Pending'),
+    ('VIU-Pending', 'Pending (Re-VIU)'),
 ]
-by_status = {s: [c for c in cases if c['viu_status'] == s] for s, _ in STATUSES}
+_ENUMS = [s for s, _ in STATUSES]
+
+
+def norm_status(v):
+    """Collapse annotated/V1_2 statuses to their base enum. V1_2 (2026-07-13):
+    the history-gating re-VIU cases + the new §5-R15 case carry a 'Pending ...'
+    status -> Pending; annotated 'VIU-Blocked-NotBuilt (...)' -> its enum."""
+    v = (v or '').strip()
+    for e in _ENUMS:
+        if v.startswith(e):
+            return e
+    if v.startswith('Pending'):
+        return 'VIU-Pending'
+    return v
+
+
+by_status = {s: [c for c in cases if norm_status(c['viu_status']) == s] for s, _ in STATUSES}
 
 # ---- Known Deviations & Blocked Areas (plain layman English, one row per issue) ----
 DEVIATIONS_PLAIN = [
@@ -130,8 +146,9 @@ HEAD = ['FD ID', 'TestRail Case ID', 'TestRail Link', 'Area', 'Title', 'Priority
 
 def row_for(c):
     tid = idmap.get(c['id'], '')
-    return [c['id'], f'C{tid}' if tid else '(unmapped)',
-            TR_URL.format(tid) if tid else '', c.get('area', ''), c['title'],
+    mapped = tid.isdigit()
+    return [c['id'], f'C{tid}' if mapped else '(pending-create)',
+            TR_URL.format(tid) if mapped else '', c.get('area', ''), c['title'],
             c.get('priority', ''), c['viu_status'], fresh_note(c)]
 
 wb = Workbook()
@@ -140,7 +157,7 @@ fill = PatternFill('solid', fgColor='DDDDDD')
 
 # Summary tab
 ws = wb.active; ws.title = 'Summary'
-ws.append([f'Fees & Discounts V1 — FRESH full VIU pass, {FRESH} (all 182 cases re-adjudicated)'])
+ws.append([f'Fees & Discounts V1 — FRESH full VIU pass, {FRESH} (all {len(cases)} cases; V1_2 spec overlay applied 2026-07-13)'])
 ws['A1'].font = Font(bold=True, size=13)
 ws.append([])
 ws.append(['Status', 'Count', 'Meaning'])
@@ -150,7 +167,7 @@ MEAN = {
     'VIU-Deviation': 'Built but differs from the spec — see the Known Deviations tab',
     'VIU-Blocked-NotBuilt': 'The screen/feature does not exist yet (Story 8 builder UI, Story 11 Part Sales)',
     'VIU-Blocked-Env': 'Cannot be tested on this environment (QuickBooks internals, flag-off window, broken unmap)',
-    'VIU-Pending': 'Not yet verifiable (blocked by the line-create environment bug)',
+    'VIU-Pending': 'Needs a live re-VIU — includes the V1_2 (2026-07-13) re-VIU-pending set (history-gating flip S13-R10 + new §5-R15 case) plus the pre-existing line-create env-bug case',
 }
 for s, label in STATUSES:
     ws.append([label, len(by_status[s]), MEAN[s]])
