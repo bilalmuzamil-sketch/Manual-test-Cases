@@ -1,0 +1,11 @@
+{
+  "case_id": 26351,
+  "section_id": 3531,
+  "title": "A custom role with 1 or more users cannot be deleted",
+  "custom_preconds": "<ol>\n<li>A custom role is assigned to at least 1 user.</li>\n</ol>",
+  "custom_steps": "<ol>\n<li>Try to delete the role from the list three-dot menu.</li>\n<li>Open the role editor and look at the Delete role control.</li>\n</ol>",
+  "custom_expected": "<p>Deletion is prevented in two ways: (1) the list three-dot menu hides the Delete option when the role has users (it shows only View Permissions); (2) in the editor the Delete role button is disabled, with the tooltip 'This role is assigned to 1 user(s). Reassign them to another role before deleting.'</p>\n<p>Note: there is no separate 'Cannot Delete' pop-up \u2014 the block is the hidden menu item plus the disabled button and tooltip.</p>\n",
+  "viu_status": "Blocked-UI behavior; disabled-button tooltip text build-verified",
+  "evidence": "Tooltip 'This role is assigned to N user(s). Reassign them to another role before deleting.' + 'Delete role' button confirmed verbatim in build (EditRole). Confirms no 'Cannot Delete' modal.",
+  "fresh_run": "2026-07-13"
+}

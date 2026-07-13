@@ -1,0 +1,11 @@
+{
+  "case_id": 26367,
+  "section_id": 3533,
+  "title": "Cascade works on the Catalog and Inventory card",
+  "custom_preconds": "<ol>\n<li>The Parts Department card is on.</li>\n<li>In the Catalog and Inventory card, View, Create & Edit and Delete are all unticked.</li>\n</ol>",
+  "custom_steps": "<ol>\n<li>Tick Create & Edit on Catalog and Inventory and look.</li>\n<li>Tick Delete and look.</li>\n<li>Untick View and look.</li>\n</ol>",
+  "custom_expected": "<p>After Create & Edit: View and Create & Edit are ticked.</p>\n<p>After Delete: all three are ticked.</p>\n<p>After unticking View: all three untick.</p>\n",
+  "viu_status": "Blocked-UI (needs live role editor); labels/structure build-verified",
+  "evidence": "Card 'Catalog and Inventory' build-verified; cascade needs live editor.",
+  "fresh_run": "2026-07-13"
+}

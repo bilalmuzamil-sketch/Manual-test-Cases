@@ -93,3 +93,27 @@ Finance → Payment Methods/Taxes; Integrations → IBS/Open API/QuickBooks; Dat
 Contacts/Inventory/Invoices/Vehicles/Vendors Import).
 C27395/C29273/C29274 are **template_id=2 (Steps-Separated)** — updated via
 `custom_steps_separated`; jargon (element ids/URLs) stripped. Behavior = Blocked-UI.
+
+---
+
+## Section 3533 — CRUD Cascade Rules (14 cases) — pushed 2026-07-13
+**Result: 14 UPDATED · 0 no-op · 0 failed · 200/200.**
+Card names corrected to build sentence-case (Work orders, Schedule, **Customers**
+[was "Customer Management"], Part sales, Catalog and Inventory, Vendor and order
+management, **Invoicing & payments** with **Delete / Reverse** column). Structure
+build-verified: Work order lines has no View column; Timesheets has no Delete.
+Auto-tick/untick cascade behavior = Blocked-UI (needs live role editor).
+
+## Section 3530 — Edit Role (8 cases) — pushed 2026-07-13
+**Result: 8 UPDATED · 0 no-op · 0 failed · 200/200.**
+Build strings verified: **'Role updated successfully.'** toast, **'Reset to template'**,
+**'Role name*'** + **'… is a required field'**. Confirm-dialog / save-enable / pre-fill
+behavior = Blocked-UI (needs live editor).
+
+## Section 3531 — Delete Role (5 cases) — pushed 2026-07-13
+**Result: 5 UPDATED · 0 no-op · 0 failed · 200/200.**
+**C26351 build finding CONFIRMED:** there is no "Cannot Delete" modal — the block is
+(1) the three-dot menu hiding Delete when users>0 and (2) a disabled **Delete role**
+button with the verbatim tooltip **"This role is assigned to N user(s). Reassign them
+to another role before deleting."** (both strings confirmed in the shipped build).
+Delete flows = Blocked-UI (need live Roles list + seeded role/user).

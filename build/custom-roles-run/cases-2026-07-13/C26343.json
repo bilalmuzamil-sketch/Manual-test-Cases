@@ -1,0 +1,11 @@
+{
+  "case_id": 26343,
+  "section_id": 3530,
+  "title": "Saving an edited role shows 'Role updated successfully.' after a confirmation dialog",
+  "custom_preconds": "<ol>\n<li>You are editing an existing custom role.</li>\n</ol>",
+  "custom_steps": "<ol>\n<li>Change one or more permissions.</li>\n<li>Click Save.</li>\n<li>Confirm in the dialog.</li>\n</ol>",
+  "custom_expected": "<p>A confirmation dialog appears listing the added and removed permissions, with a 'don't show this again' option and Cancel/Confirm buttons.</p>\n<p>After confirming, a green success message 'Role updated successfully.' appears and you return to the roles list.</p>\n",
+  "viu_status": "Blocked-UI behavior; 'Role updated successfully.' toast build-verified",
+  "evidence": "Toast 'Role updated successfully.' confirmed in build (EditRole). Confirm-dialog flow needs live editor.",
+  "fresh_run": "2026-07-13"
+}

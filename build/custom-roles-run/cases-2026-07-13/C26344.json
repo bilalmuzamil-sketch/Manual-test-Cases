@@ -1,0 +1,11 @@
+{
+  "case_id": 26344,
+  "section_id": 3530,
+  "title": "Reset to template restores template defaults; Save is only enabled if something changed",
+  "custom_preconds": "<ol>\n<li>Log in as a user who can edit roles.</li>\n<li>At least one custom role (created from a template) exists.</li>\n</ol>",
+  "custom_steps": "<ol>\n<li>Go to Settings > Roles & Permissions.</li>\n<li>Open the custom role with the pencil (Edit) icon.</li>\n<li>Click Reset to template.</li>\n<li>Look at the Save button.</li>\n</ol>",
+  "custom_expected": "<p>If the role's permissions had been changed from the template defaults: Reset to template puts them back to the defaults and enables Save; clicking Save keeps the reset.</p>\n<p>If the role still matched the template defaults: Reset to template changes nothing and Save stays disabled.</p>\n",
+  "viu_status": "Blocked-UI behavior; 'Reset to template' label build-verified",
+  "evidence": "'Reset to template' confirmed in build. Save-enable logic needs live editor.",
+  "fresh_run": "2026-07-13"
+}

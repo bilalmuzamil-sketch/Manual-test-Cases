@@ -1,0 +1,11 @@
+{
+  "case_id": 26346,
+  "section_id": 3530,
+  "title": "The Office User system role cannot be edited (lock icon, eye only)",
+  "custom_preconds": "<ol>\n<li>You are on the Roles & Permissions list.</li>\n</ol>",
+  "custom_steps": "<ol>\n<li>Find the Office User row.</li>\n<li>Look at the Actions column.</li>\n<li>Click the eye icon.</li>\n</ol>",
+  "custom_expected": "<p>There is no pencil icon; only the eye icon.</p>\n<p>A read-only Permission Summary opens for Office User.</p>\n",
+  "viu_status": "Blocked-UI (needs live Roles list)",
+  "evidence": "Office User editable=false confirmed in roles API; eye-only needs live list.",
+  "fresh_run": "2026-07-13"
+}

@@ -1,0 +1,11 @@
+{
+  "case_id": 26349,
+  "section_id": 3530,
+  "title": "Editing: at least one permission must be turned on to save",
+  "custom_preconds": "<ol>\n<li>You are editing an editable role.</li>\n</ol>",
+  "custom_steps": "<ol>\n<li>Untick every box in every card.</li>\n<li>Turn off every Page Access toggle, Settings sub-toggle, Parts Department card and Cross-Cutting Toggle.</li>\n<li>Click Save.</li>\n</ol>",
+  "custom_expected": "<p>Save is blocked and a message tells you at least one permission must be turned on.</p>\n",
+  "viu_status": "Blocked-UI (needs live editor)",
+  "evidence": "Save-block-on-empty needs live editor; exact message not re-captured this pass.",
+  "fresh_run": "2026-07-13"
+}

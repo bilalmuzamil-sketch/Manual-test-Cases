@@ -1,0 +1,11 @@
+{
+  "case_id": 26352,
+  "section_id": 3531,
+  "title": "After moving the assigned users to another role, the role can be deleted",
+  "custom_preconds": "<ol>\n<li>A custom role 'QA Delete Blocked' has exactly 1 user assigned.</li>\n</ol>",
+  "custom_steps": "<ol>\n<li>Go to Settings > Staff and find the user assigned to 'QA Delete Blocked'.</li>\n<li>Open the user's role dropdown.</li>\n<li>Change the user's role to a different one (for example Technician).</li>\n<li>Save.</li>\n<li>Go back to Settings > Roles & Permissions.</li>\n<li>Check the Users count on 'QA Delete Blocked' now reads 0.</li>\n<li>Open the three-dot menu, click Delete and confirm.</li>\n</ol>",
+  "custom_expected": "<p>The reassignment works.</p>\n<p>The Users count shows 0.</p>\n<p>A confirmation dialog appears; after confirming, the role is deleted.</p>\n",
+  "viu_status": "Blocked-UI (needs live Staff + Roles list)",
+  "evidence": "Needs live UI + seeded role/user.",
+  "fresh_run": "2026-07-13"
+}

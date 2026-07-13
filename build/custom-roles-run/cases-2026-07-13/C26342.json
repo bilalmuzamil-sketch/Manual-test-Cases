@@ -1,0 +1,11 @@
+{
+  "case_id": 26342,
+  "section_id": 3530,
+  "title": "Edit opens the role editor pre-filled with the role's current settings",
+  "custom_preconds": "<ol>\n<li>A custom role named 'QA Edit Target' exists with known settings (Work orders View + Create & Edit, Schedule View, Reports ON, See Financial Data OFF, everything else off).</li>\n</ol>",
+  "custom_steps": "<ol>\n<li>Go to Settings > Roles & Permissions.</li>\n<li>Find the 'QA Edit Target' row.</li>\n<li>Click the pencil icon in the Actions column.</li>\n<li>Look at the page that opens.</li>\n<li>Look at the Role name and Description fields.</li>\n<li>Look at every card and toggle.</li>\n</ol>",
+  "custom_expected": "<p>The role editor opens.</p>\n<p>Role name and Description are pre-filled with the role's current values.</p>\n<p>Every setting matches the saved role: Work orders View on, Create & Edit on, Delete off; Schedule View on; Reports on; See Financial Data off; everything else off.</p>\n",
+  "viu_status": "Blocked-UI (needs live editor + seeded role)",
+  "evidence": "Pre-fill needs live editor.",
+  "fresh_run": "2026-07-13"
+}
