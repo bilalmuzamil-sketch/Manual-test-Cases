@@ -1297,7 +1297,7 @@
   "id": "FD-PCOL-001",
   "area": "Parts page — 'FEES & DISCOUNTS' column",
   "story_ref": "S11-R10a / design §5",
-  "title": "Verify the Parts page 'Fees & Discounts' column shows a single adjustment's name and rate",
+  "title": "Verify the Parts page 'Fees & Discounts' column shows a single fee/discount's name and rate",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "See Financial Data + Fees & Discounts flag ON",
@@ -1306,24 +1306,24 @@
    "2. A Parts page / WO parts view is open with part '#37346 Mobil 1 5W20' carrying exactly one adjustment 'Military Discount' −10%."
   ],
   "steps": [
-   "1. Locate part #37346 in the parts table.",
+   "1. Find a part in the parts table that has one fee/discount.",
    "2. Read its 'Fees & Discounts' column cell."
   ],
   "expected": [
-   "1. The cell shows the first (only) adjustment's name and rate: 'Military Discount −10%' (S11-R10a).",
-   "2. The cell tooltip reads 'View Military Discount' and clicking it opens the breakdown viewer."
+   "1. The cell shows the fee/discount's name and rate (for example 'Military Discount −10%').",
+   "2. Clicking the cell opens the breakdown view."
   ],
   "design_ref": "Parts table 'Fees & Discounts' column .pt-fd-cell; #37346 single state (§5)",
   "viu_status": "VIU-Blocked-NotBuilt",
-  "notes": "The 'Fees & Discounts' column shows only on a part sale / parts view when the flag is on (S11-R7). Core-charge rows have an empty column (S11-R8). | VIU qb batch-1 (2026-07-08): Story 11 Part Sales F&D NOT BUILT on qb (recon: no F&D column, no menu item, no card on a part sale). | FRESH VIU 2026-07-10: RE-CHECKED TODAY on a freshly created part sale (P3-127): NO 'Fees & Discounts' column on the part-sale page; API add against a part-sale id -> 400 needs-target (no part-sale adjustment surface). Story 11 still NOT BUILT (shot 12-part-sale)",
+  "notes": "The 'Fees & Discounts' column shows only on a part sale / parts view when the flag is on (S11-R7). Core-charge rows have an empty column (S11-R8). | VIU qb batch-1 (2026-07-08): Story 11 Part Sales F&D NOT BUILT on qb (recon: no F&D column, no menu item, no card on a part sale). | FRESH VIU 2026-07-10: RE-CHECKED TODAY on a freshly created part sale (P3-127): NO 'Fees & Discounts' column on the part-sale page; API add against a part-sale id -> 400 needs-target (no part-sale adjustment surface). Story 11 still NOT BUILT (shot 12-part-sale) | WORDING+VIU 2026-07-13:  NOT BUILT: Story 11 (Part Sales fees/discounts) has not shipped — the Parts page has no 'Fees & Discounts' column and there is no part-sale F&D surface. Wording made build-accurate/layman for when it ships; status stays Blocked-NotBuilt.",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "FD-PCOL-002",
   "area": "Parts page — 'FEES & DISCOUNTS' column",
   "story_ref": "S11-R10b / design §5",
-  "title": "Verify the 'Fees & Discounts' column shows a '+N' badge when a part has multiple adjustments",
+  "title": "Verify the 'Fees & Discounts' column shows a '+N' badge when a part has several fees/discounts",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "See Financial Data + Fees & Discounts flag ON",
@@ -1332,24 +1332,23 @@
    "2. Parts page open with part '#55073 Mobil 1 5W20' carrying three adjustments (first = 'Parts Handling Fee' 2%)."
   ],
   "steps": [
-   "1. Locate part #55073 in the parts table.",
+   "1. Find a part that has more than one fee/discount.",
    "2. Read its 'Fees & Discounts' column cell."
   ],
   "expected": [
-   "1. The cell shows the first adjustment 'Parts Handling Fee 2%' followed by a '+2' badge (N = the two extras after the first; S11-R10b).",
-   "2. The cell tooltip reads 'View fees & discounts'."
+   "1. The cell shows the first fee/discount followed by a '+N' badge (N = how many more there are)."
   ],
   "design_ref": "#55073 'Parts Handling Fee 2% +2' badge (§5)",
   "viu_status": "VIU-Blocked-NotBuilt",
-  "notes": "Badge count N is the number of adjustments AFTER the first (so 3 total → '+2'). | VIU qb batch-1 (2026-07-08): Not built (see FD-PCOL-001). | FRESH VIU 2026-07-10: Story 11 surface absent (re-checked today)",
+  "notes": "Badge count N is the number of adjustments AFTER the first (so 3 total → '+2'). | VIU qb batch-1 (2026-07-08): Not built (see FD-PCOL-001). | FRESH VIU 2026-07-10: Story 11 surface absent (re-checked today) | WORDING+VIU 2026-07-13:  NOT BUILT: Story 11 (Part Sales fees/discounts) has not shipped — the Parts page has no 'Fees & Discounts' column and there is no part-sale F&D surface. Wording made build-accurate/layman for when it ships; status stays Blocked-NotBuilt.",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "FD-PCOL-003",
   "area": "Parts page — 'FEES & DISCOUNTS' column",
   "story_ref": "S11-R9 / design §5",
-  "title": "Verify the 'Fees & Discounts' column shows a '+ Add' button on a part with no adjustments",
+  "title": "Verify the 'Fees & Discounts' column shows a '+ Add' button on a part with no fees/discounts",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "See Financial Data + Work Order Lines: Create & Edit (or Part Sales: Create & Edit on a Part Sale) + flag ON",
@@ -1358,25 +1357,25 @@
    "2. Parts page open with part '#28439 Fleetguard FF5421' carrying no adjustments, on an editable sale/WO."
   ],
   "steps": [
-   "1. Locate part #28439.",
+   "1. Find a part with no fees/discounts.",
    "2. Read its 'Fees & Discounts' column cell.",
    "3. Click the '+ Add' button."
   ],
   "expected": [
-   "1. The cell shows a '+ Add' button (tooltip 'Add fee / discount'; S11-R9).",
-   "2. Clicking it opens the Add new fee/discount dialog locked to that Part Line scope."
+   "1. The cell shows a '+ Add' button.",
+   "2. Clicking it opens the Add fee/discount dialog locked to that part."
   ],
   "design_ref": "#28439 empty state .pt-fd-add-btn (§5)",
   "viu_status": "VIU-Blocked-NotBuilt",
-  "notes": "The '+ Add' button is disabled when the sale/WO cannot be edited (see FD-PCOL-008). | VIU qb batch-1 (2026-07-08): Not built (see FD-PCOL-001). | FRESH VIU 2026-07-10: Story 11 surface absent (re-checked today)",
+  "notes": "The '+ Add' button is disabled when the sale/WO cannot be edited (see FD-PCOL-008). | VIU qb batch-1 (2026-07-08): Not built (see FD-PCOL-001). | FRESH VIU 2026-07-10: Story 11 surface absent (re-checked today) | WORDING+VIU 2026-07-13:  NOT BUILT: Story 11 (Part Sales fees/discounts) has not shipped — the Parts page has no 'Fees & Discounts' column and there is no part-sale F&D surface. Wording made build-accurate/layman for when it ships; status stays Blocked-NotBuilt.",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "FD-PCOL-004",
   "area": "Parts page — breakdown modal",
   "story_ref": "S11-R11 / S11-R12 / S11-R13 / S11-R16",
-  "title": "Verify clicking a populated 'Fees & Discounts' cell opens the per-part breakdown modal with the correct columns",
+  "title": "Verify clicking a filled 'Fees & Discounts' cell opens the per-part breakdown with the right columns",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "See Financial Data + Fees & Discounts flag ON",
@@ -1385,27 +1384,27 @@
    "2. Parts page open with part '#55073 Mobil 1 5W20' carrying three adjustments (Parts Handling Fee +$1.43, Military Discount −$3.31, Early Payment Discount −$0.99)."
   ],
   "steps": [
-   "1. Click part #55073's 'Fees & Discounts' cell.",
-   "2. Read the modal title, subtitle, and column headers.",
-   "3. Read each adjustment row."
+   "1. Click a part's filled 'Fees & Discounts' cell.",
+   "2. Read the title and column headers.",
+   "3. Read each row."
   ],
   "expected": [
-   "1. A modal titled 'Fees & Discounts' opens with the subtitle naming the part, e.g. 'Mobil 1 5W20 Synthetic Engine Oil · #55073' (S11-R11).",
-   "2. The grid columns are Name, Type, Calculation, Amount, Max Amount and a per-row remove control (S11-R12).",
-   "3. Rows show base-aware Calculation phrasing and signed resolved Amounts, e.g. 'Parts Handling Fee · Fee · 2% of Labor Total · +$1.43 · $50.00', 'Military Discount · Discount · 10% of Subtotal · −$3.31 · —', 'Early Payment Discount · Discount · 3% of Parts Total · −$0.99 · —' (S11-R13: Max Amount shows '$X.XX' or '—').",
-   "4. The modal has a 'Close' button (S11-R16)."
+   "1. A 'Fees & Discounts' view opens, named for the part.",
+   "2. The columns are Name, Type, Calculation, Amount, Max Amount, and a remove control.",
+   "3. Each row shows the calculation phrasing and a signed amount.",
+   "4. There is a 'Close' button."
   ],
   "design_ref": "per-part breakdown modal, Parts-page editable variant with Max Amount + 🗑 (§8)",
   "viu_status": "VIU-Blocked-NotBuilt",
-  "notes": "The WO-line/customer variant of this breakdown omits the Max Amount column and the per-row trash (read-only); the Parts-page variant adds both (design §8). | VIU qb batch-1 (2026-07-08): Not built (see FD-PCOL-001). | FRESH VIU 2026-07-10: Story 11 surface absent (re-checked today)",
+  "notes": "The WO-line/customer variant of this breakdown omits the Max Amount column and the per-row trash (read-only); the Parts-page variant adds both (design §8). | VIU qb batch-1 (2026-07-08): Not built (see FD-PCOL-001). | FRESH VIU 2026-07-10: Story 11 surface absent (re-checked today) | WORDING+VIU 2026-07-13:  NOT BUILT: Story 11 (Part Sales fees/discounts) has not shipped — the Parts page has no 'Fees & Discounts' column and there is no part-sale F&D surface. Wording made build-accurate/layman for when it ships; status stays Blocked-NotBuilt.",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "FD-PCOL-005",
   "area": "Parts page — breakdown modal",
   "story_ref": "S11-R15",
-  "title": "Verify the breakdown modal 'Net adjustment' row equals the signed sum of the part's adjustments",
+  "title": "Verify the breakdown 'Net adjustment' row equals the signed sum of the part's fees/discounts",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "See Financial Data + Fees & Discounts flag ON",
@@ -1414,22 +1413,22 @@
    "2. The #55073 breakdown modal is open (Parts Handling Fee +$1.43, Military Discount −$3.31, Early Payment Discount −$0.99)."
   ],
   "steps": [
-   "1. Read the 'Net adjustment' row at the bottom of the modal."
+   "1. Read the 'Net adjustment' row at the bottom of the breakdown."
   ],
   "expected": [
-   "1. 'Net adjustment' shows the signed sum: +1.43 − 3.31 − 0.99 = −$2.87 (S11-R15)."
+   "1. 'Net adjustment' shows the signed sum of all the part's fees/discounts."
   ],
   "design_ref": "breakdown modal 'Net adjustment −$2.87' (§8)",
   "viu_status": "VIU-Blocked-NotBuilt",
-  "notes": "For a single-adjustment part (#37346 Military Discount −$6.53) the Net adjustment equals that one amount (−$6.53). | VIU qb batch-1 (2026-07-08): Not built (see FD-PCOL-001). | FRESH VIU 2026-07-10: Story 11 surface absent (re-checked today)",
+  "notes": "For a single-adjustment part (#37346 Military Discount −$6.53) the Net adjustment equals that one amount (−$6.53). | VIU qb batch-1 (2026-07-08): Not built (see FD-PCOL-001). | FRESH VIU 2026-07-10: Story 11 surface absent (re-checked today) | WORDING+VIU 2026-07-13:  NOT BUILT: Story 11 (Part Sales fees/discounts) has not shipped — the Parts page has no 'Fees & Discounts' column and there is no part-sale F&D surface. Wording made build-accurate/layman for when it ships; status stays Blocked-NotBuilt.",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "FD-PCOL-006",
   "area": "Parts page — breakdown modal",
   "story_ref": "S11-R14 / S11-R17",
-  "title": "Verify a per-row Remove (trash) on the breakdown modal removes the adjustment and closes the modal when the last is removed",
+  "title": "Verify a per-row Remove on the breakdown removes the fee/discount and closes when the last one is removed",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "Work Order Lines: Create & Edit (or Part Sales: Create & Edit) + See Financial Data + flag ON",
@@ -1438,26 +1437,26 @@
    "2. Parts page open with part #37346 carrying exactly ONE adjustment; the editable breakdown modal is open."
   ],
   "steps": [
-   "1. Confirm each row shows a 🗑 (Remove) control (only shown when the sale can be edited; S11-R14).",
-   "2. Click the trash / Remove control on the single adjustment row.",
-   "3. Observe the modal and the part's 'Fees & Discounts' cell afterwards."
+   "1. Confirm each row has a remove (trash) control.",
+   "2. Click remove on the only fee/discount.",
+   "3. Look at the view and the part's 'Fees & Discounts' cell afterwards."
   ],
   "expected": [
-   "1. The adjustment is removed.",
-   "2. Because it was the last adjustment, the viewer closes automatically (S11-R17).",
-   "3. The part's 'Fees & Discounts' cell reverts to the '+ Add' empty state."
+   "1. The fee/discount is removed.",
+   "2. Because it was the last one, the view closes on its own.",
+   "3. The part's cell goes back to the '+ Add' empty state."
   ],
   "design_ref": "breakdown modal per-row .pfd-trash-btn 'Remove' (§8)",
   "viu_status": "VIU-Blocked-NotBuilt",
-  "notes": "Removal uses the Create & Edit permission, NOT the Delete permission (S13-R7). Per-row remove is shown only when the sale/WO can be edited (S11-R14). | VIU qb batch-1 (2026-07-08): Not built (see FD-PCOL-001). | FRESH VIU 2026-07-10: Story 11 surface absent (re-checked today)",
+  "notes": "Removal uses the Create & Edit permission, NOT the Delete permission (S13-R7). Per-row remove is shown only when the sale/WO can be edited (S11-R14). | VIU qb batch-1 (2026-07-08): Not built (see FD-PCOL-001). | FRESH VIU 2026-07-10: Story 11 surface absent (re-checked today) | WORDING+VIU 2026-07-13:  NOT BUILT: Story 11 (Part Sales fees/discounts) has not shipped — the Parts page has no 'Fees & Discounts' column and there is no part-sale F&D surface. Wording made build-accurate/layman for when it ships; status stays Blocked-NotBuilt.",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "FD-PCOL-007",
   "area": "Parts page — 'FEES & DISCOUNTS' column",
   "story_ref": "S11-R9 / S3-R1b",
-  "title": "Verify the '+ Add' button is disabled on a part when the sale/WO cannot be edited",
+  "title": "Verify the '+ Add' button is disabled when the sale/work order cannot be edited",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "See Financial Data + Fees & Discounts flag ON",
@@ -1466,18 +1465,18 @@
    "2. Parts page open for an Invoiced/Paid (non-editable) sale/WO with a part that has no adjustments."
   ],
   "steps": [
-   "1. Locate the part with no adjustments.",
-   "2. Inspect its 'Fees & Discounts' column '+ Add' button."
+   "1. Find a part with no fees/discounts on a sale/work order that cannot be edited.",
+   "2. Look at its '+ Add' button."
   ],
   "expected": [
-   "1. The '+ Add' button is disabled because the sale/WO cannot be edited (S11-R9).",
-   "2. Populated cells still open the read-only breakdown but per-row trash controls are not shown (S11-R14, S3-N3)."
+   "1. The '+ Add' button is disabled because the sale/work order cannot be edited.",
+   "2. Filled cells still open a read-only breakdown, but the per-row remove controls are not shown."
   ],
   "design_ref": "empty-state '+ Add' button disabled behavior (§5)",
   "viu_status": "VIU-Blocked-NotBuilt",
-  "notes": "Ties to the Invoiced/Paid lifecycle gate (S1-N1, S3-R1b). | VIU qb batch-1 (2026-07-08): Not built (see FD-PCOL-001). | FRESH VIU 2026-07-10: Story 11 surface absent (re-checked today)",
+  "notes": "Ties to the Invoiced/Paid lifecycle gate (S1-N1, S3-R1b). | VIU qb batch-1 (2026-07-08): Not built (see FD-PCOL-001). | FRESH VIU 2026-07-10: Story 11 surface absent (re-checked today) | WORDING+VIU 2026-07-13:  NOT BUILT: Story 11 (Part Sales fees/discounts) has not shipped — the Parts page has no 'Fees & Discounts' column and there is no part-sale F&D surface. Wording made build-accurate/layman for when it ships; status stays Blocked-NotBuilt.",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "FD-EDIT-001",

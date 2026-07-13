@@ -814,7 +814,7 @@
   "id": "FD-FLAG-001",
   "area": "Feature-flag gating",
   "story_ref": "§1 feature flag, S13-R1",
-  "title": "Verify with the FeesAndDiscounts flag OFF, all F&D UI and behavior are hidden everywhere",
+  "title": "Verify that with the Fees & Discounts feature turned off, all fee/discount screens are hidden everywhere",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "All F&D permissions ON (to prove the flag alone hides everything)",
@@ -824,26 +824,26 @@
    "3. Surfaces to inspect: WO (toolbar ⋯, labor-line ⋮, part menu, sidebar card, Stats tab, Financial Info row), Part Sale (F&D column), Customer (F&D tab), Administration → Service (templates)."
   ],
   "steps": [
-   "1. Set the feature flag OFF for the org.",
-   "2. Visit every surface above and look for any F&D control, card, column, tab, or amount.",
-   "3. Restore the flag to its original state after."
+   "1. In Administration, turn the Fees & Discounts feature off for the org.",
+   "2. Visit the work orders, parts, customer and admin screens and look for any fee/discount control, card, column, tab or amount.",
+   "3. Turn the feature back on afterwards."
   ],
   "expected": [
-   "1. With the flag OFF, NO fees-and-discounts controls appear anywhere in the product.",
-   "2. No WO sidebar card, no Stats F&D section, no Financial Info F&D row, no Parts F&D column, no customer F&D tab, no admin template page.",
-   "3. This holds even for a fully-permissioned user — the flag is the outer gate."
+   "1. With the feature off, no fee/discount controls appear anywhere.",
+   "2. No work-order card, no Stats section, no Financial Info row, no Parts column, no customer tab, no admin templates page.",
+   "3. This holds even for a fully-permissioned user — the feature is the outer switch."
   ],
   "design_ref": "design-notes §10 (no feature-flag-off empty state is mocked)",
   "viu_status": "VIU-Blocked-Env",
-  "notes": "The one exception is the WO history log (covered by FD-FLAG-002). On the current staging build the flag is ON but the feature is not yet deployed (viu-findings.md) — re-verify deploy state before running. | VIU qb batch-1 (2026-07-08): Flag-off pass SKIPPED deliberately: qb is shared and under active concurrent use (another user edited templates mid-run) — toggling the org flag would disrupt others. Needs an agreed window. | FRESH VIU 2026-07-10: org flag toggling deliberately NOT done: shared env, manual tester active today",
+  "notes": "The one exception is the WO history log (covered by FD-FLAG-002). On the current staging build the flag is ON but the feature is not yet deployed (viu-findings.md) — re-verify deploy state before running. | VIU qb batch-1 (2026-07-08): Flag-off pass SKIPPED deliberately: qb is shared and under active concurrent use (another user edited templates mid-run) — toggling the org flag would disrupt others. Needs an agreed window. | FRESH VIU 2026-07-10: org flag toggling deliberately NOT done: shared env, manual tester active today | WORDING+VIU 2026-07-13: BLOCKED-ENV: cannot take a feature-off window on the shared qb env while a manual tester is active. Wording made layman.",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "FD-FLAG-002",
   "area": "Feature-flag gating",
   "story_ref": "S10-R1 (flag-off exception)",
-  "title": "Verify the WO history log STILL shows fee/discount entries even when the feature flag is OFF",
+  "title": "Verify the work-order history still shows fee/discount entries even when the Fees & Discounts feature is off",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "Work Orders: Create and Edit (to view the work-order history log)",
@@ -853,25 +853,25 @@
    "3. Ability to set the FeesAndDiscounts flag OFF."
   ],
   "steps": [
-   "1. Set the feature flag OFF.",
-   "2. Open the WO history log and look for the previously-recorded fee/discount entries.",
-   "3. Restore the flag after."
+   "1. In Administration, turn the Fees & Discounts feature off.",
+   "2. Open a work order's history and look for the fee/discount entries recorded earlier.",
+   "3. Turn the feature back on afterwards."
   ],
   "expected": [
-   "1. Fee/discount history entries REMAIN visible in the WO history log even with the flag off (S10-R1) — the documented exception to \"flag off hides everything.\"",
-   "2. All other F&D UI is still hidden."
+   "1. Fee/discount history entries stay visible in the work-order history even with the feature off (the one exception to 'feature off hides everything').",
+   "2. All other fee/discount screens are still hidden."
   ],
   "design_ref": "design-notes §10 (no history-log view mocked)",
-  "viu_status": "Pending / Retest — expected changed by V1_2 S13-R10, needs live re-VIU",
-  "notes": "History entries show the set rate, not a resolved dollar total, so they are not gated by See Financial Data either (S10-R6c). | VIU qb batch-1 (2026-07-08): Skipped with FD-FLAG-001 (requires flag OFF). | FRESH VIU 2026-07-10: as FD-FLAG-001 | V1_2 (2026-07-13): history-log gate updated per S13-R10 — WO-level history requires Work Orders: Create and Edit; line-level history requires Work Order Lines: Create and Edit (was View History Logs). Expected/preconditions updated; needs live re-VIU. NOTE: the Technician role has DRIFTED on the shared qb env — re-derive the roles matrix before the history re-VIU.",
+  "viu_status": "VIU-Blocked-Env",
+  "notes": "History entries show the set rate, not a resolved dollar total, so they are not gated by See Financial Data either (S10-R6c). | VIU qb batch-1 (2026-07-08): Skipped with FD-FLAG-001 (requires flag OFF). | FRESH VIU 2026-07-10: as FD-FLAG-001 | V1_2 (2026-07-13): history-log gate updated per S13-R10 — WO-level history requires Work Orders: Create and Edit; line-level history requires Work Order Lines: Create and Edit (was View History Logs). Expected/preconditions updated; needs live re-VIU. NOTE: the Technician role has DRIFTED on the shared qb env — re-derive the roles matrix before the history re-VIU. | WORDING+VIU 2026-07-13: BLOCKED-ENV + V1_2 re-VIU pending: needs a feature-off window (not takeable on the shared env) to confirm history entries stay visible. Wording made layman.",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "FD-FLAG-003",
   "area": "Feature-flag gating",
   "story_ref": "§1 feature flag + S13-R1",
-  "title": "Verify with the flag ON, the matching permission is still required to use F&D",
+  "title": "Verify that even with the feature on, the matching permission is still needed to use fees/discounts",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "Feature flag ON; permission varies by test arm",
@@ -880,20 +880,20 @@
    "2. An open work order."
   ],
   "steps": [
-   "1. With the flag ON and the user lacking See Financial Data / the matching Create and Edit permission, open the WO and look for F&D controls and amounts.",
-   "2. Then grant the permissions and revisit.",
-   "3. Restore Tech to Time Clock after."
+   "1. With the feature on and the user lacking See Financial Data / the matching Create and Edit permission, open a work order and look for fee/discount controls and amounts.",
+   "2. Grant the permissions and look again.",
+   "3. Restore the role afterwards."
   ],
   "expected": [
-   "1. Flag ON alone is not sufficient — without the permission, amounts are hidden and controls are unreachable.",
+   "1. The feature being on is not enough — without the permission, amounts are hidden and controls cannot be used.",
    "2. Once the permission is granted, the controls appear and the action works.",
-   "3. Confirms the flag and permission are two independent, both-required gates."
+   "3. The feature and the permission are two separate switches, both required."
   ],
   "design_ref": "design-notes §10",
   "viu_status": "VIU-Blocked-Env",
-  "notes": "This is the flag-side complement of FD-PERM-010; keep both to document the flag ON + permission-required interaction from each direction. | VIU qb batch-1 (2026-07-08): Permission half blocked (no restricted session); flag is ON and F&D fully usable as Admin. | FRESH VIU 2026-07-10: as FD-FLAG-001; the flag-ON half of the AND-gate is fresh-proven (FD-PERM-010)",
+  "notes": "This is the flag-side complement of FD-PERM-010; keep both to document the flag ON + permission-required interaction from each direction. | VIU qb batch-1 (2026-07-08): Permission half blocked (no restricted session); flag is ON and F&D fully usable as Admin. | FRESH VIU 2026-07-10: as FD-FLAG-001; the flag-ON half of the AND-gate is fresh-proven (FD-PERM-010) | WORDING+VIU 2026-07-13: BLOCKED-ENV (permission half): the See-Financial-Data masking half is established, but the full both-gates check needs a restricted-role login — re-run after the roles matrix is re-derived. Wording made layman.",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "FD-VAL-001",

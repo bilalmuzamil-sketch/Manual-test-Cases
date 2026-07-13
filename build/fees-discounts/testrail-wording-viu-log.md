@@ -323,3 +323,18 @@ phrase on percentage items; **Shop Supplies hidden when $0.00**; layout **Labor 
 (FDBUG-1 not reproduced — Parts $396 + net adj $96,637,566.11 = Subtotal $96,637,962.11).
 Per-line ↳ rendering + '(×N)' grouping + '% of grand total' phrase carried from prior VIU.
 Stripped spec-ref jargon. All 11 VIU-Verified. Push: 11 updated · 0 error.
+
+## Area: FD-PCOL (7) + FD-FLAG (3) — 10 cases — wording-corrected (honest blockers)
+
+**FD-PCOL (7) — Blocked-NotBuilt:** Story 11 Part Sales fees/discounts not shipped (Parts
+page has no 'Fees & Discounts' column). Wording made layman/build-plausible for when it ships.
+**FD-FLAG (3) — Blocked-Env:** cannot take a feature-off window on the shared qb env while a
+manual tester is active (FD-FLAG-001/002); FD-FLAG-003 permission half needs a restricted-role
+login (after roles re-derivation). Wording made layman (feature-flag-free). Push: 10 updated · 0 error.
+
+| FD-ID | TestRail | viu_status |
+|---|---|---|
+| FD-PCOL-001..007 | C28469–C28475 | VIU-Blocked-NotBuilt |
+| FD-FLAG-001 | [C28596](https://shopview.testrail.io/index.php?/cases/view/28596) | VIU-Blocked-Env |
+| FD-FLAG-002 | [C28597](https://shopview.testrail.io/index.php?/cases/view/28597) | VIU-Blocked-Env |
+| FD-FLAG-003 | [C28598](https://shopview.testrail.io/index.php?/cases/view/28598) | VIU-Blocked-Env |
