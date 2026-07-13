@@ -365,3 +365,12 @@ numbers) — FD-QB-001/002/003/010/011/013/015/016; the mapping-guard block can'
 mapped + unmap PUT 500s) — FD-QB-004..009. **FD-QB-012 Verified** (in-app $0 floor). **FD-QB-014
 Deviation** (FDBUG-15 over-discount saves silently, PO Q1). Wording made layman, no HTTP codes in
 tester-facing fields (stays out of API sections). Push: 16 updated · 0 error.
+
+## Area: FD-STACK (stacking / netting) — 3 cases — TESTER-READY
+
+Build labels applied ('Add Fee/Discount', 'Apply From Template', 'WO Fees & Discounts',
+'% of Parts/Labor Total'); netting/stacking behavior carried from prior VIU. All 3
+VIU-Verified. Push: 3 updated · 0 error.
+
+---
+## RESUME-2 PASS COMPLETE — all 15 functional areas processed (183/183 cases)
