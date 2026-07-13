@@ -382,8 +382,9 @@ all parts received (invoice # captured).
 **Requirements**
 - **S4-R1** Background order + POs (vendorless → WO's PO, Vendor Missing).
 - **S4-R2** Parts + pick status in modal (auto-pick-off → pick here).
-- **S4-R3** Required vehicle fields (mileage + VIN + engine hours); tech story
-  Story 17.
+- **S4-R3** Required vehicle fields (mileage + engine hours, when missing); tech
+  story Story 17. *(V2.4 Δ1, applied 2026-07-13: VIN dropped from the required-invoice
+  completion modal — VIN is captured by the reviewer in Story 16.)*
 - **S4-R4** Actions + gated CTA: Receive parts + Cancel. Primary CTA "Complete
   Work Order" **disabled until all parts received.** No "Complete without
   receiving."
@@ -521,6 +522,12 @@ multiple vendors summarized with an indicator.
   items to target, remove emptied source, redirect to target).
 - **S13-R4** Different vendor, no collision → auto-assign + clear QB flag.
 - **S13-R5** After assignment, group's Receive enables.
+- **S13-R6** *(V2.4 Δ3, added 2026-07-13)* Part number required. If a part number is
+  missing, the user gets an indication to enter one; receiving is blocked until it's
+  filled.
+- **S13-R7** *(V2.4 Δ3, added 2026-07-13)* Cost / sell price required. If cost / sell
+  price is missing, the user gets an indication to enter one; receiving is blocked
+  until it's filled.
 - **Technical guardrails:** match vendors by ID not name; targeted backend lookup
   for cross-PO match; surface errors; merge scope = same work order. Receiving
   blocked when WO invoiced/paid.
@@ -558,8 +565,10 @@ person (manager/foreman) signs off before invoicing. PO/invoice combos unchanged
   (amber "Ready for Review", blue "sign-off complete").
 - **R6** On Send to Review: lines lock to Complete; inventory auto-picked.
 - **R7** Mark Reviewed = manager/foreman only; dialog captures VIN (required if
-  missing) + optional note; Confirm disabled until VIN. Advisor → disabled +
-  "Awaiting review".
+  missing); Confirm disabled until VIN. Advisor → disabled + "Awaiting review".
+  *(V2.4 Δ4, applied 2026-07-13: the "optional note" was removed — dialog is VIN-only.
+  FLAG: R10 below still lists the test id `input_review_note` — an internal spec
+  inconsistency to confirm on the live build; do not assert the note field exists.)*
 - **R8** After sign-off → Reviewed; final Complete Work Order (any role) →
   Complete (invoice-ready). Invoicing blocked until reviewed.
 - **R9** Ready for Review list filter/column (reviewer queue).
@@ -897,3 +906,32 @@ Google-sheet answers):**
 
 **Round-2 questions after V2.4:** only **Q4** partially resolved (sell price now
 mandatory at save; Category half still open). Q1, Q2, Q3, Q5 remain open.
+
+---
+
+## Δ1–Δ4 applied 2026-07-13 (previously recorded as pending)
+
+The four V2.4 deltas catalogued in `spec-diff-2026-07-13.md` (a byte-identical
+re-delivery of the 2026-07-10 silent V2.4 revision) are now **APPLIED** to this
+spec body and to `cases/*.json`, and pushed to TestRail:
+
+- **Δ1 — VIN dropped from the Story-4 completion modal (S4-R3).** S4-R3 above now
+  reads "mileage + engine hours (when missing)"; VIN is captured by the reviewer
+  (Story 16). Story 3 (S3-R3) and Story 15 (S15-R2) **retain** VIN for the review-off
+  completion modal — VIN was not over-removed. Cases: SF-COMP-16, SF-VAL-02
+  (SF-UX-02 / SF-REV-03 already spec-accurate, no change).
+- **Δ2 — Story-4 unapproved line = Complete button DISABLED + tooltip (S4-R8),
+  Story 4 ONLY.** Stories 2/3 (S3-R9) and Story 16 (R11) keep the error-toast /
+  active-CTA model. Cases: SF-COMP-21, SF-COMP-22, SF-VAL-11 (SF-REV-13 unchanged).
+- **Δ3 — new receive-time gates S13-R6 (part number) + S13-R7 (cost / sell price)**
+  added to Story 13 above. Cases: SF-VEND-04, SF-VAL-06, SF-RCV-06, SF-PNFIX-05 +
+  **new case SF-VEND-06** (dedicated S13-R7 cost/sell receive gate).
+- **Δ4 — Mark-Reviewed "optional note" removed (R7).** R7 above is now VIN-only.
+  Cases SF-REV-06 / SF-REV-10 were already note-free (Milos Round-2, 2026-07-09) so
+  no case-content change was needed — V2.4 2026-07-13 confirms the removal. **FLAG:**
+  R10 still lists the test id `input_review_note` — internal spec inconsistency,
+  recorded as a case flag, not asserted; confirm on the live build during re-VIU.
+
+Every case whose expected behaviour changed carries
+`viu_status: "Pending / Retest — expected changed by V2.4 Δ (2026-07-13), needs
+live re-VIU"` + `fresh_run: 2026-07-13`; the wording + VIU pass is the next task.

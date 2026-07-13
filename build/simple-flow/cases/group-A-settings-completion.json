@@ -814,14 +814,15 @@
   "id": "SF-COMP-16",
   "area": "Completion — PO + Optional Invoice (Story 3)",
   "story_ref": "S3-R3",
-  "title": "Verify the optional-invoice modal collects required vehicle fields (mileage, VIN, engine hours) when missing",
+  "title": "Verify the optional-invoice completion modal collects the required vehicle fields (mileage and engine hours; VIN only when Require Review is off) when missing",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "Work Order edit access.",
   "preconditions": [
    "1. Signed in as Admin.",
    "2. Require Mileage / Engine Hours are ON and the work order is missing those values.",
-   "3. You are completing a part-bearing work order with invoice Optional."
+   "3. You are completing a part-bearing work order with invoice Optional.",
+   "4. Require Review Before Completion is off (so VIN is collected at completion, not by the reviewer)."
   ],
   "steps": [
    "1. Start completion.",
@@ -829,13 +830,15 @@
    "3. Leave one empty and try to continue."
   ],
   "expected": [
-   "1. The modal collects the required vehicle fields that are missing.",
-   "2. Continuation is blocked until required fields are supplied.",
-   "3. Tech story is handled separately (Story 17), not inside this step."
+   "1. When Require Review is off, the modal collects the missing required vehicle fields: mileage, VIN and engine hours.",
+   "2. When Require Review is on, VIN is not collected here — it is captured later by the reviewer in the Mark Reviewed dialog (Story 16) — and the modal collects only mileage and engine hours.",
+   "3. Continuation is blocked until the required fields are supplied.",
+   "4. Tech story is handled separately (Story 17), not inside this step."
   ],
   "design_ref": "WO Review Flow.html (Details step)",
-  "viu_status": "VIU-Verified",
-  "notes": "Not isolated in VIU. Needs live verification. || VIU batch3 2026-07-08 VERIFIED: Details step exposes input_wizard_mileage + input_wizard_engine_hours when both required; VIN prefilled from asset (only prompted when absent) (VIU3-01-details.png).",
+  "viu_status": "Pending / Retest — expected changed by V2.4 Δ (2026-07-13), needs live re-VIU",
+  "fresh_run": "2026-07-13",
+  "notes": "[V2.4 Δ1 APPLIED 2026-07-13] VIN handling clarified per the V2.4 spec: Story-4 (required-invoice) S4-R3 drops VIN from the completion modal, and in the review-on flow VIN is captured by the reviewer (Story 16). This Story-3 (optional-invoice) case retains VIN ONLY for the review-off path, exactly per S3-R3 ('mileage + VIN [when review off] + engine hours; when review on VIN is asked at the reviewer'), so VIN is NOT over-removed here. Re-VIU needed to confirm the live modal field set on both review-off and review-on paths. || Not isolated in VIU. || VIU batch3 2026-07-08 VERIFIED: Details step exposes input_wizard_mileage + input_wizard_engine_hours when both required; VIN prefilled from asset (only prompted when absent) (VIU3-01-details.png).",
   "api_related": false
  },
  {
@@ -949,56 +952,64 @@
  {
   "id": "SF-COMP-21",
   "area": "Completion — Line approval gate",
-  "story_ref": "Key Decision (all lines approved) / S3-R9 / S4-R8",
-  "title": "Verify completing a work order with an unapproved line shows the approve-line error and does not complete",
+  "story_ref": "S4-R8 / Key Decision (all lines approved) / S3-R9",
+  "title": "Verify on a required-invoice work order an unapproved line disables the Complete Work Order button with a tooltip",
   "priority": "High",
   "type": "Negative",
   "permissions_required": "Work Order edit access.",
   "preconditions": [
    "1. Signed in as Admin.",
-   "2. Auto-approve Lines is OFF.",
-   "3. A work order has one line still in Needs Approval and all other gates satisfied (tech story present, required fields present)."
+   "2. Require Vendor Invoice Number is ON (required-invoice / Story 4 flow).",
+   "3. Auto-approve Lines is OFF.",
+   "4. A work order has one line still in Needs Approval and all other gates satisfied (tech story present, required fields present)."
   ],
   "steps": [
-   "1. Click Complete Work Order.",
-   "2. Proceed through any tech-story / details gates.",
-   "3. Attempt the final Complete confirm."
+   "1. Open the required-invoice work order and start completion.",
+   "2. Observe the Complete Work Order button while a line is unapproved.",
+   "3. Hover the disabled Complete Work Order button.",
+   "4. Approve the line and observe the button again."
   ],
   "expected": [
-   "1. The existing 'you need to approve the line to complete the work order' error appears.",
-   "2. The work order does not complete while a line is unapproved.",
-   "3. There is no new disabled state — the error surfaces on Complete."
+   "1. In the required-invoice (Story 4) flow, an unapproved line leaves the Complete Work Order button disabled.",
+   "2. A tooltip on the disabled button describes the reason, naming the line that needs approval.",
+   "3. The button enables once all lines are approved.",
+   "4. In the No-PO / Optional-invoice (Stories 2/3) and review-on (Story 16) flows the same unapproved line instead surfaces the existing 'you need to approve the line to complete the work order' error on Complete (the button stays active)."
   ],
-  "design_ref": "requirements §4 Key Decision / S3-R9",
-  "viu_status": "VIU-Verified",
-  "notes": "PARTIAL in VIU: the Needs-Approval state was seen (S17-01) but the final 'cannot complete unapproved' block was not cleanly isolated (tech-story/parts gates dominated). Needs a targeted WO whose ONLY blocker is an unapproved line (S17-02-approval-error.png context). | VIU-Verified 2026-07-08: simple-complete on a WO with an authorization_required line returned 400 \"All lines must be approved before completing the work order.\" (BE-enforced). WO a71ec2f0.",
+  "design_ref": "requirements S4-R8 / §4 Key Decision",
+  "viu_status": "Pending / Retest — expected changed by V2.4 Δ (2026-07-13), needs live re-VIU",
+  "fresh_run": "2026-07-13",
+  "notes": "[V2.4 Δ2 APPLIED 2026-07-13] Re-scoped to the Story-4 (required-invoice) surface: per S4-R8 an unapproved line DISABLES the Complete Work Order button with a tooltip naming the line (a NEW disabled state), which is different from Stories 2/3/16 that keep the error-toast / active-CTA model. Prior expected asserted 'no new disabled state' — superseded by S4-R8. Needs live re-VIU of the disabled+tooltip affordance on the required-invoice completion modal. || (prior) VIU-Verified 2026-07-08 against the OLD error-model expected: simple-complete on a WO with an authorization_required line returned 400 \"All lines must be approved before completing the work order.\" (BE-enforced, WO a71ec2f0) — that BE error still stands; the FE affordance is what changed to disabled+tooltip for Story 4.",
   "api_related": false
  },
  {
   "id": "SF-COMP-22",
   "area": "Completion — Line approval gate",
-  "story_ref": "Key Decision (holds regardless of Auto-approve)",
-  "title": "Verify a manually unapproved line still blocks completion even when Auto-approve is ON",
+  "story_ref": "S4-R8 / Key Decision (holds regardless of Auto-approve)",
+  "title": "Verify a manually unapproved line disables the required-invoice Complete Work Order button with a tooltip even when Auto-approve is ON",
   "priority": "Medium",
   "type": "Negative",
   "permissions_required": "Work Order edit access.",
   "preconditions": [
    "1. Signed in as Admin.",
-   "2. Auto-approve Lines is ON.",
-   "3. A work order has a line that was manually un-approved after being added."
+   "2. Require Vendor Invoice Number is ON (required-invoice / Story 4 flow).",
+   "3. Auto-approve Lines is ON.",
+   "4. A work order has a line that was manually un-approved after being added."
   ],
   "steps": [
    "1. Confirm one line is unapproved.",
-   "2. Click Complete Work Order and attempt to complete.",
-   "3. Re-approve the line and retry."
+   "2. Start completion and observe the Complete Work Order button.",
+   "3. Hover the disabled Complete Work Order button.",
+   "4. Re-approve the line and observe the button again."
   ],
   "expected": [
-   "1. With the line unapproved, completion is blocked with the approve-line error.",
-   "2. After re-approving all lines, completion proceeds."
+   "1. In the required-invoice (Story 4) flow the manually unapproved line leaves the Complete Work Order button disabled with a tooltip naming the line that needs approval — this holds even though Auto-approve Lines is ON.",
+   "2. After re-approving all lines, the Complete Work Order button enables and completion proceeds.",
+   "3. In the No-PO / Optional-invoice (Stories 2/3) and review-on (Story 16) flows the same unapproved line instead surfaces the existing 'you need to approve the line to complete the work order' error on Complete."
   ],
-  "design_ref": "requirements §4 Key Decision",
-  "viu_status": "VIU-Verified",
-  "notes": "Not driven in VIU. Needs live verification. | VIU-Verified 2026-07-08: block fires from the line's own authorization_required status while org autoApproveLines=true (unchanged), i.e. holds regardless of Auto-approve. Same 400 as SF-COMP-21.",
+  "design_ref": "requirements S4-R8 / §4 Key Decision",
+  "viu_status": "Pending / Retest — expected changed by V2.4 Δ (2026-07-13), needs live re-VIU",
+  "fresh_run": "2026-07-13",
+  "notes": "[V2.4 Δ2 APPLIED 2026-07-13] Re-scoped to the Story-4 (required-invoice) surface: per S4-R8 the disabled Complete Work Order button + tooltip holds even with Auto-approve ON when a line is manually unapproved. Prior expected used the error-model wording — superseded by S4-R8 for Story 4 (Stories 2/3/16 keep the error model). Needs live re-VIU. || (prior) VIU-Verified 2026-07-08 against the OLD error model: block fires from the line's own authorization_required status while org autoApproveLines=true; same 400 as SF-COMP-21 (BE error still stands; FE affordance changed to disabled+tooltip for Story 4).",
   "api_related": false
  },
  {

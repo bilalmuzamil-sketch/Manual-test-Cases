@@ -148,14 +148,17 @@ def blocker_for(c):
 
 def main():
     cases = load_cases()
-    assert len(cases) == 162, "expected 162 cases, got %d" % len(cases)
+    assert len(cases) == 163, "expected 163 cases, got %d" % len(cases)
 
     tr_map = load_testrail_map()
     tr_blanks = [c["id"] for c in cases if c["id"] not in tr_map]
     n_mapped = len(cases) - len(tr_blanks)
 
     # ---- recompute counts ----
-    viu_counts = Counter(c.get("viu_status", "?") for c in cases)
+    def viu_bucket(vs):
+        # Fold the V2.4 Δ (2026-07-13) retest strings into one "Pending / Retest" bucket.
+        return "Pending / Retest" if (vs or "").startswith("Pending / Retest") else (vs or "?")
+    viu_counts = Counter(viu_bucket(c.get("viu_status", "")) for c in cases)
     cat_counts = Counter()
     sub_counts = Counter()
     per_case = []
@@ -247,12 +250,13 @@ def main():
         "VIU-Verified": "Behavior confirmed live in the UI on sv7301.",
         "VIU-Pending": "Not yet driven / needs seed data, an account, or a bug fix (see VIU-Pending tab).",
         "Open-Question": "Behavior depends on a Product Owner (Milos) decision (see Open-Question tab).",
+        "Pending / Retest": "Expected behavior changed by the V2.4 deltas (2026-07-13); needs a live re-VIU (see Pending / Retest tab).",
     }
-    for st in ["VIU-Verified", "VIU-Pending", "Open-Question"]:
+    for st in ["VIU-Verified", "VIU-Pending", "Open-Question", "Pending / Retest"]:
         ss.cell(row=r, column=1, value=st)
         ss.cell(row=r, column=2, value=viu_counts.get(st, 0))
         ss.cell(row=r, column=3, value=VIU_MEAN[st])
-        fill = PatternFill("solid", fgColor=VIU_FILL[st])
+        fill = PatternFill("solid", fgColor=VIU_FILL.get(st, "FCE4D6"))
         for c in range(1, 4):
             ss.cell(row=r, column=c).fill = fill
         r += 1
@@ -264,8 +268,12 @@ def main():
     ss.cell(row=r, column=2, value=n_dev).font = Font(bold=True)
     ss.cell(row=r, column=3, value="Cross-cut metric (not a VIU status) — see the Deviation / Bugs tab.")
     r += 1
-    ss.cell(row=r, column=1, value="Current headline tally: VIU-Verified 112 / VIU-Pending 45 / Open-Question 5. "
-                                   "DEV-NOT-BUILT is now 0 (Stories 7/8/9/14 confirmed built & VIU-verified).")
+    ss.cell(row=r, column=1, value="Current headline tally (2026-07-13): VIU-Verified %d / VIU-Pending %d / "
+                                   "Open-Question %d / Pending-Retest %d = %d. Pending-Retest = the V2.4 Δ1-Δ4 "
+                                   "cases (expected changed 2026-07-13) awaiting a live re-VIU. DEV-NOT-BUILT is 0."
+                                   % (viu_counts.get("VIU-Verified", 0), viu_counts.get("VIU-Pending", 0),
+                                      viu_counts.get("Open-Question", 0), viu_counts.get("Pending / Retest", 0),
+                                      sum(viu_counts.values())))
     ss.cell(row=r, column=1).font = Font(italic=True)
     r += 2
 
@@ -439,6 +447,10 @@ def main():
     status_tab("Open-Question", openq,
                extra_col=("Open Question / decision needed", lambda pc: pc["needs"]))
 
+    # ========= 4b. Pending / Retest (V2.4 Δ 2026-07-13) =========
+    retest = [pc for pc in per_case if (pc["viu"] or "").startswith("Pending / Retest")]
+    status_tab("Pending _ Retest", retest)
+
     # ================= 5. Deviation / Bugs =================
     ws = wb.create_sheet("Deviation _ Bugs")
     ws.cell(row=1, column=1, value="Cases tied to a bug or deviation (from bugs-log.md)")
@@ -609,8 +621,8 @@ def main():
         print("  BLANK (no TestRail ID):", ", ".join(tr_blanks))
     print("  spot-check SF-VMIS-07 ->", tr_map.get("SF-VMIS-07"),
           "| SF-RCV-10 ->", tr_map.get("SF-RCV-10"))
-    assert sum(viu_counts.values()) == 162
-    assert sum(cat_counts.values()) == 162
+    assert sum(viu_counts.values()) == 163
+    assert sum(cat_counts.values()) == 163
 
 
 if __name__ == "__main__":

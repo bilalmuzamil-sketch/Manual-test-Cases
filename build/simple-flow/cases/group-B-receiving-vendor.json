@@ -976,8 +976,8 @@
  {
   "id": "SF-PNFIX-05",
   "area": "Inline Part-Number Fix (Story 10)",
-  "story_ref": "S10 Negative",
-  "title": "Verify a part cannot be received without a part number (and a vendor for vendor-missing) even on an invoiced/paid WO",
+  "story_ref": "S10 Negative / S13-R6 / S13-R7",
+  "title": "Verify a part cannot be received without a part number, a vendor (for vendor-missing) and a cost / sell price, even on an invoiced/paid WO",
   "priority": "High",
   "type": "Negative",
   "permissions_required": "receive access.",
@@ -987,16 +987,19 @@
   ],
   "steps": [
    "1. Attempt to receive the part with no part number.",
-   "2. For a vendor-missing part, attempt to receive with no vendor."
+   "2. For a vendor-missing part, attempt to receive with no vendor.",
+   "3. Attempt to receive with no cost / sell price entered."
   ],
   "expected": [
    "1. Receiving is blocked without a part number.",
    "2. For vendor-missing, receiving is also blocked without a vendor.",
-   "3. On an invoiced/paid WO, sell stays locked and cost stays editable while the block applies."
+   "3. Receiving is blocked until a missing cost / sell price is entered.",
+   "4. On an invoiced/paid WO, sell stays locked and cost stays editable while the block applies."
   ],
-  "design_ref": "requirements S10 Negative",
-  "viu_status": "VIU-Pending",
-  "notes": "Not driven in VIU. Needs live verification.",
+  "design_ref": "requirements S10 Negative / S13-R6 / S13-R7",
+  "viu_status": "Pending / Retest — expected changed by V2.4 Δ (2026-07-13), needs live re-VIU",
+  "fresh_run": "2026-07-13",
+  "notes": "[V2.4 Δ3 APPLIED 2026-07-13] Aligned to the S13-R6 part-number receive gate and extended with the new S13-R7 cost/sell receive gate (was part-number + vendor only). Needs live re-VIU of the cost/sell block. || Not driven in VIU.",
   "api_related": false
  },
  {
@@ -1159,8 +1162,8 @@
  {
   "id": "SF-RCV-06",
   "area": "Accept Delivery (Story 12)",
-  "story_ref": "S12-R2",
-  "title": "Verify Accept Delivery receive gates: vendor set, missing part number entered, vendor invoice # captured",
+  "story_ref": "S12-R2 / S13-R6 / S13-R7",
+  "title": "Verify Accept Delivery receive gates: vendor set, part number entered, cost / sell price entered, vendor invoice # captured",
   "priority": "High",
   "type": "Negative",
   "permissions_required": "receive access.",
@@ -1171,17 +1174,20 @@
   "steps": [
    "1. Attempt to receive without a vendor set.",
    "2. Attempt to receive without a part number.",
-   "3. Attempt to receive without a vendor invoice number."
+   "3. Attempt to receive without a cost / sell price.",
+   "4. Attempt to receive without a vendor invoice number."
   ],
   "expected": [
    "1. Receiving is gated until a vendor is set.",
    "2. Receiving is gated until the missing part number is entered.",
-   "3. Receiving is gated until a vendor invoice number is captured.",
-   "4. On Accept Delivery, cost is editable when $0 or missing (parity with Bulk Receive); the sell-price lock rule is unchanged."
+   "3. Receiving is gated until a missing cost / sell price is entered.",
+   "4. Receiving is gated until a vendor invoice number is captured.",
+   "5. On Accept Delivery, cost is editable when $0 or missing (parity with Bulk Receive); the sell-price lock rule is unchanged."
   ],
-  "design_ref": "requirements S12-R2",
-  "viu_status": "VIU-Verified",
-  "notes": "VIU 2026-07-08 (BATCH 5): drove the Accept Delivery happy path on PO 93fb82e9 (vendor set = Aabridge Beverages, PN present, invoice # field 'invoice-number' captured, Invoice Date default) -> Receive POST /api/inventory/orders/accept 201. The POSITIVE gates (vendor set, invoice captured) confirmed. Still pending: the NEGATIVE sub-gates (receive blocked with vendor unset / missing PN) need a vendor-missing item on an Accept Delivery group (this PO already had vendor+PN). reachable-now. || [V2.4 2026-07-08] S12-R5: editable-cost parity on Accept Delivery; sell-lock unchanged. || [FOLLOW-UP VIU 2026-07-09 sv7301] VERIFIED on the built receive surface (Bulk Receive). Receive gates confirmed: (1) vendor-missing PO blocks receive (button_receive_po disabled=true) until a vendor is assigned; (2) missing part number required (text_missing_part_number; per SF-BULK-07 entering PN enables receive); (3) vendor invoice # required (per SF-BULK-05 receive disabled until invoice). Cost editable when $0 (SF-RCV-10).",
+  "design_ref": "requirements S12-R2 / S13-R6 / S13-R7",
+  "viu_status": "Pending / Retest — expected changed by V2.4 Δ (2026-07-13), needs live re-VIU",
+  "fresh_run": "2026-07-13",
+  "notes": "[V2.4 Δ3 APPLIED 2026-07-13] Added the new S13-R7 cost/sell receive gate to the Accept Delivery gate list (was vendor + part number + invoice). Needs live re-VIU of the cost/sell block. || VIU 2026-07-08 (BATCH 5): drove the Accept Delivery happy path on PO 93fb82e9 (vendor set = Aabridge Beverages, PN present, invoice # field 'invoice-number' captured, Invoice Date default) -> Receive POST /api/inventory/orders/accept 201. The POSITIVE gates (vendor set, invoice captured) confirmed. Still pending: the NEGATIVE sub-gates (receive blocked with vendor unset / missing PN / missing cost-sell) need a vendor-missing item on an Accept Delivery group. || [V2.4 2026-07-08] S12-R5: editable-cost parity on Accept Delivery; sell-lock unchanged. || [FOLLOW-UP VIU 2026-07-09 sv7301] VERIFIED on the built receive surface (Bulk Receive). Receive gates confirmed: (1) vendor-missing PO blocks receive (button_receive_po disabled=true) until a vendor is assigned; (2) missing part number required (text_missing_part_number; per SF-BULK-07 entering PN enables receive); (3) vendor invoice # required (per SF-BULK-05 receive disabled until invoice). Cost editable when $0 (SF-RCV-10).",
   "api_related": false
  },
  {
@@ -1368,27 +1374,30 @@
  {
   "id": "SF-VEND-04",
   "area": "Assign Vendor + Merge (Story 13)",
-  "story_ref": "S13-R4 / S13-R5",
-  "title": "Verify assigning a different vendor with no collision auto-assigns, clears the QB flag and enables Receive",
+  "story_ref": "S13-R4 / S13-R5 / S13-R6 / S13-R7",
+  "title": "Verify assigning a different vendor with no collision auto-assigns and clears the QB flag, and Receive enables only once the part number and cost / sell price are also present",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "receive access + PO edit.",
   "preconditions": [
    "1. Signed in as Admin.",
-   "2. A vendor-missing group with a valid part number is being assigned a brand-new vendor (no collision)."
+   "2. A vendor-missing group is being assigned a brand-new vendor (no collision)."
   ],
   "steps": [
    "1. Assign a different vendor that is not already on any PO for this WO.",
-   "2. Observe the QuickBooks flag and the group's Receive action."
+   "2. Observe the QuickBooks flag.",
+   "3. Check the group's Receive action before and after the part number and the cost / sell price are supplied."
   ],
   "expected": [
    "1. The vendor auto-assigns with no prompt.",
    "2. The QuickBooks 'vendor missing' flag clears.",
-   "3. The group's Receive action becomes enabled."
+   "3. Assigning the vendor alone does not enable Receive — the part number and the cost / sell price are still required.",
+   "4. Receiving becomes enabled only once the vendor, the part number, and the cost / sell price are all present (plus the vendor invoice number)."
   ],
-  "design_ref": "requirements S13-R4 / S13-R5",
-  "viu_status": "VIU-Verified",
-  "notes": "Not driven in VIU. Needs live verification. || [RE-VIU 2026-07-09 sv7301 — Stories 7/8/9/14 CONFIRMED BUILT] PARTIAL: no-collision auto-assign confirmed (assigning a brand-new vendor applied with NO merge prompt and cleared vendorMissing). QB-flag-clear and full Receive-enable (also needs PN + invoice) not separately confirmed. Remains VIU-Pending for the QB/receive-enable sub-clauses.  || [FOLLOW-UP VIU 2026-07-09 sv7301] VERIFIED. On the Bulk Receive Vendor-Missing group, assigned a different vendor (Aacastle Apparel) to a vendor-missing PO (89378cf0/S-15790): NO merge/keep-separate prompt (auto-assigned), POST /api/orders/{id}/assign-vendor -> 200, vendorMissing flag cleared (true->false), and the PO left the Vendor-Missing group into the vendor's group (Receive enabled once PN+invoice supplied).",
+  "design_ref": "requirements S13-R4 / S13-R5 / S13-R6 / S13-R7",
+  "viu_status": "Pending / Retest — expected changed by V2.4 Δ (2026-07-13), needs live re-VIU",
+  "fresh_run": "2026-07-13",
+  "notes": "[V2.4 Δ3 APPLIED 2026-07-13] Added the new S13-R6 (part number) + S13-R7 (cost/sell) receive-enable conditions — assigning the vendor no longer enables Receive on its own. Needs live re-VIU of the part#/cost-sell gates alongside vendor assignment. || [FOLLOW-UP VIU 2026-07-09 sv7301] Auto-assign + QB-flag-clear VERIFIED: on the Bulk Receive Vendor-Missing group, assigned a different vendor (Aacastle Apparel) to a vendor-missing PO (89378cf0/S-15790): NO merge/keep-separate prompt (auto-assigned), POST /api/orders/{id}/assign-vendor -> 200, vendorMissing flag cleared (true->false), PO left the Vendor-Missing group into the vendor's group. Receive-enable-only-with-PN+cost/sell now needs a dedicated re-VIU.",
   "api_related": false
  },
  {
@@ -1416,6 +1425,35 @@
   "design_ref": "requirements S13 Technical guardrails",
   "viu_status": "VIU-Pending",
   "notes": "Not driven in VIU. Needs live verification (likely partly backend). || [FOLLOW-UP VIU 2026-07-09] STILL PENDING - the 'receiving blocked when WO invoiced/paid' guardrail depends on the invoiced/paid WO state (same blocker as SF-VAL-09: invoicing not drivable in-harness). Match-by-ID + merge-scoped-to-WO also need the multi-PO merge collision state (SF-VEND-02/03).",
+  "api_related": false
+ },
+ {
+  "id": "SF-VEND-06",
+  "testrail_case_id": "29442",
+  "area": "Assign Vendor + Merge (Story 13)",
+  "story_ref": "S13-R7",
+  "title": "Verify a part cannot be received until a missing cost / sell price is entered",
+  "priority": "High",
+  "type": "Negative",
+  "permissions_required": "receive access + PO edit.",
+  "preconditions": [
+   "1. Signed in as Admin at https://sv7301.qa.shopview.com.",
+   "2. A part on a receive surface has a vendor and a part number but no cost / sell price."
+  ],
+  "steps": [
+   "1. Open the receive surface for the part.",
+   "2. Leave the cost / sell price empty and check the Receive action.",
+   "3. Enter a cost / sell price and check the Receive action again."
+  ],
+  "expected": [
+   "1. While the cost / sell price is missing, the user gets an indication to enter one.",
+   "2. Receiving is blocked while the cost / sell price is missing.",
+   "3. Receiving becomes enabled once the cost / sell price is entered (with the vendor, part number and vendor invoice number also present)."
+  ],
+  "design_ref": "requirements S13-R7",
+  "viu_status": "Pending / Retest — new case for V2.4 Δ3 (2026-07-13), needs live re-VIU",
+  "fresh_run": "2026-07-13",
+  "notes": "NEW case authored 2026-07-13 to cover the V2.4 Δ3 receive-time cost/sell gate (S13-R7), which was not cleanly covered by extending SF-VAL-06 / SF-RCV-06. UI-affordance gate (indication shown + Receive button disabled) — kept in the functional Assign Vendor + Merge (Story 13) section per CLAUDE.md rule 4 (no HTTP-status assertion). Needs live VIU on sv7301.",
   "api_related": false
  },
  {

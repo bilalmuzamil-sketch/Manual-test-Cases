@@ -150,7 +150,7 @@
   ],
   "design_ref": "WO Review Flow.html; WO Review Flow - Handoff.md (test IDs)",
   "viu_status": "VIU-Verified",
-  "notes": "Verified 2026-07-06 — dialog with VIN field, VIN pre-filled from asset, Confirm enabled (S16-06-mark-reviewed-dialog.png, S16-07-review-filled.png). Confirm-disabled-until-VIN inferred from VIN-required rule but not forced empty.",
+  "notes": "[V2.4 Δ4 APPLIED 2026-07-13] Mark-Reviewed optional note removed (R7 = VIN-only) — this case is already note-free (VIN-only, Confirm-disabled-until-VIN), so no content change was needed; V2.4 2026-07-13 confirms the removal. FLAG (do not assert): spec R10 still lists the test id input_review_note even though R7 dropped the note field — an internal spec inconsistency to confirm on the live build during re-VIU (the note field itself is treated as removed). || Verified 2026-07-06 — dialog with VIN field, VIN pre-filled from asset, Confirm enabled (S16-06-mark-reviewed-dialog.png, S16-07-review-filled.png). Confirm-disabled-until-VIN inferred from VIN-required rule but not forced empty.",
   "api_related": false
  },
  {
@@ -257,7 +257,7 @@
   ],
   "design_ref": "WO Review Flow - Handoff.md (test IDs)",
   "viu_status": "VIU-Verified",
-  "notes": "[MILOS ROUND-2 2026-07-09] Review note DESCOPED — Milos: 'There will not be note on this field; it is a design issue which I removed from the design yesterday.' Under last-update-wins this supersedes the 07-08 design reversal. EXPECTED updated to VIN-only (no note). The live dialog (VIN-only, S16-06-mark-reviewed-dialog.png) now MATCHES the expected — VIU-Verified. BUG-3 resolved as an intended descope (no longer a build gap).",
+  "notes": "[V2.4 Δ4 CONFIRMED 2026-07-13] The V2.4 2026-07-13 spec (R7 = VIN-only, no note) confirms the note removal already applied here in the Milos Round-2 pass — expected is already VIN-only with no review note field, so no content change was needed. FLAG (do not assert): spec R10 still lists the test id input_review_note even though R7 dropped the note field — internal spec inconsistency to confirm on the live build during re-VIU. || [MILOS ROUND-2 2026-07-09] Review note DESCOPED — Milos: 'There will not be note on this field; it is a design issue which I removed from the design yesterday.' Under last-update-wins this supersedes the 07-08 design reversal. EXPECTED updated to VIN-only (no note). The live dialog (VIN-only, S16-06-mark-reviewed-dialog.png) now MATCHES the expected — VIU-Verified. BUG-3 resolved as an intended descope (no longer a build gap).",
   "api_related": false
  },
  {
@@ -784,26 +784,29 @@
  {
   "id": "SF-VAL-02",
   "area": "Validation / Edge",
-  "story_ref": "S15-R2 / S3-R3",
-  "title": "Verify completion is blocked when a required VIN is missing (non-review flow)",
+  "story_ref": "S15-R2 / S3-R3 / S4-R3",
+  "title": "Verify completion is blocked when a required VIN is missing (non-review No-PO / Optional-invoice flow)",
   "priority": "Medium",
   "type": "Negative",
   "permissions_required": "Work Order edit access.",
   "preconditions": [
    "1. Signed in as Admin.",
    "2. VIN is required for this org's completion and the work order has no VIN.",
-   "3. Require Review is OFF (VIN is collected at completion in the non-review flow)."
+   "3. Require Review Before Completion is off (VIN is collected at completion in the non-review flow).",
+   "4. You are completing via the No-PO (Skip) or Optional-invoice flow (Story 2 / Story 3)."
   ],
   "steps": [
    "1. Start completion.",
    "2. Leave VIN empty and try to proceed."
   ],
   "expected": [
-   "1. Completion is blocked until the VIN is entered."
+   "1. In the No-PO or Optional-invoice completion flow (Require Review off), completion is blocked until the required VIN is entered.",
+   "2. VIN is no longer collected in the required-invoice (Story 4) completion modal, and when Require Review is on it is captured by the reviewer in the Mark Reviewed dialog (Story 16) — so this at-completion VIN gate applies only to the non-review No-PO / Optional-invoice flow."
   ],
-  "design_ref": "requirements S15-R2",
-  "viu_status": "VIU-Pending",
-  "notes": "Not isolated in VIU. Needs live verification. (In review flow, VIN is captured at Mark Reviewed — see SF-REV-06.) || [FRESH VIU 2026-07-10 sv7301] STILL BLOCKED (needs-data: VIN-less asset). Confirmed not seedable in-harness: all 50 sampled vehicles (GET /api/vehicles) carry a VIN; POST /api/vehicles -> 405 (GET-only, no API create route found). The non-review completion wizard only prompts for VIN when the asset lacks one, so this gate needs a VIN-less asset seeded (or an existing vehicle's VIN cleared, which would modify shared data).",
+  "design_ref": "requirements S15-R2 / S3-R3",
+  "viu_status": "Pending / Retest — expected changed by V2.4 Δ (2026-07-13), needs live re-VIU",
+  "fresh_run": "2026-07-13",
+  "notes": "[V2.4 Δ1 APPLIED 2026-07-13] Scoped to the non-review No-PO / Optional-invoice flow. Per the V2.4 spec, S4-R3 (required-invoice / Story 4) no longer collects VIN in the completion modal, and the review-on flow captures VIN at the reviewer (Story 16); the review-off VIN-at-completion gate stays for Story 2 (S2-R2) and Story 3 (S3-R3, VIN when review off) plus S15-R2 ('VIN when required'). VIN NOT over-removed — it is kept where the spec keeps it. || Not isolated in VIU. || [FRESH VIU 2026-07-10 sv7301] STILL BLOCKED (needs-data: VIN-less asset). Confirmed not seedable in-harness: all 50 sampled vehicles (GET /api/vehicles) carry a VIN; POST /api/vehicles -> 405. The non-review completion wizard only prompts for VIN when the asset lacks one, so this gate needs a VIN-less asset seeded.",
   "api_related": false
  },
  {
@@ -884,8 +887,8 @@
  {
   "id": "SF-VAL-06",
   "area": "Validation / Edge",
-  "story_ref": "S10 / S12-R2 / S13",
-  "title": "Verify a vendor-missing part cannot be received without both a vendor and a part number",
+  "story_ref": "S10 / S12-R2 / S13-R6 / S13-R7",
+  "title": "Verify a vendor-missing part cannot be received without a vendor, a part number, and a cost / sell price",
   "priority": "High",
   "type": "Negative",
   "permissions_required": "receive access.",
@@ -896,16 +899,19 @@
   "steps": [
    "1. Attempt to receive with no vendor.",
    "2. Attempt to receive with a vendor but no part number.",
-   "3. Provide both and receive."
+   "3. Attempt to receive with a vendor and part number but no cost / sell price.",
+   "4. Provide all three and receive."
   ],
   "expected": [
    "1. Receiving is blocked without a vendor.",
    "2. Receiving is blocked without a part number.",
-   "3. Receiving succeeds only with both."
+   "3. Receiving is blocked without a cost / sell price.",
+   "4. Receiving succeeds only once the vendor, part number, and cost / sell price are all present."
   ],
-  "design_ref": "requirements S12-R2 / S10",
-  "viu_status": "VIU-Verified",
-  "notes": "Not driven in VIU. Needs live verification. || [FRESH VIU 2026-07-10 sv7301] VERIFIED. Vendor-missing WO PO S-15798 on /bulk-receive: receive DISABLED while vendorMissing (no vendor); still DISABLED after assign-vendor (POST /api/orders/{id}/assign-vendor 200) while the part number is missing; ENABLED only once vendor + PN + cost + vendor invoice # are all present. Cannot receive without BOTH a vendor and a part number.",
+  "design_ref": "requirements S12-R2 / S10 / S13-R6 / S13-R7",
+  "viu_status": "Pending / Retest — expected changed by V2.4 Δ (2026-07-13), needs live re-VIU",
+  "fresh_run": "2026-07-13",
+  "notes": "[V2.4 Δ3 APPLIED 2026-07-13] Extended with the new S13-R7 receive-time cost/sell gate (was vendor + part number only). Needs live re-VIU of the cost/sell block. || [FRESH VIU 2026-07-10 sv7301] Vendor-missing WO PO S-15798 on /bulk-receive: receive DISABLED while vendorMissing (no vendor); still DISABLED after assign-vendor (POST /api/orders/{id}/assign-vendor 200) while the part number is missing; ENABLED only once vendor + PN + cost + vendor invoice # are all present — the cost gate was observed incidentally (cost required alongside PN+vendor) but not isolated as its own step; the S13-R7 cost/sell block now needs a dedicated re-VIU.",
   "api_related": false
  },
  {
@@ -1014,8 +1020,8 @@
  {
   "id": "SF-VAL-11",
   "area": "Validation / Edge",
-  "story_ref": "Key Decision (line approval)",
-  "title": "Verify the approve-line error text appears when completing with an unapproved line",
+  "story_ref": "S4-R8 / S3-R9 / Key Decision (line approval)",
+  "title": "Verify an unapproved line blocks completion — required-invoice shows a disabled Complete button with a tooltip; other flows show the approve-line error",
   "priority": "Medium",
   "type": "Negative",
   "permissions_required": "Work Order edit access.",
@@ -1024,16 +1030,18 @@
    "2. A work order has one unapproved line and all other gates satisfied."
   ],
   "steps": [
-   "1. Click Complete Work Order.",
-   "2. Read the error shown at the final confirm."
+   "1. In the required-invoice (Story 4) flow, start completion and observe the Complete Work Order button, then hover it.",
+   "2. In the No-PO / Optional-invoice (Stories 2/3) flow, click Complete Work Order and read the message shown."
   ],
   "expected": [
-   "1. The existing 'you need to approve the line to complete the work order' error is shown.",
-   "2. Completion does not proceed until the line is approved."
+   "1. In the required-invoice (Story 4) flow, the Complete Work Order button is disabled with a tooltip describing the reason and naming the line that needs approval.",
+   "2. In the No-PO / Optional-invoice (Stories 2/3) and review-on (Story 16) flows, the existing 'you need to approve the line to complete the work order' error is shown and the button stays active.",
+   "3. In every flow, completion does not proceed until the line is approved."
   ],
-  "design_ref": "requirements §4 Key Decision",
-  "viu_status": "VIU-Verified",
-  "notes": "PARTIAL in VIU — error not cleanly isolated (S17-02-approval-error.png). Needs a WO whose only blocker is the unapproved line. | VIU-Verified 2026-07-08: simple-complete with an unapproved (authorization_required) line returns 400 with text \"All lines must be approved before completing the work order.\" (WO a71ec2f0).",
+  "design_ref": "requirements S4-R8 / S3-R9 / §4 Key Decision",
+  "viu_status": "Pending / Retest — expected changed by V2.4 Δ (2026-07-13), needs live re-VIU",
+  "fresh_run": "2026-07-13",
+  "notes": "[V2.4 Δ2 APPLIED 2026-07-13] Now documents the SPLIT: Story-4 (required-invoice) = disabled Complete button + tooltip (S4-R8); Stories 2/3/16 = existing approve-line error with the CTA staying active (S3-R9 / R11). Needs live re-VIU of both models. || (prior) VIU-Verified 2026-07-08 against the error model: simple-complete with an unapproved (authorization_required) line returns 400 \"All lines must be approved before completing the work order.\" (WO a71ec2f0) — the BE error still stands; the Story-4 FE affordance changed to disabled+tooltip.",
   "api_related": false
  },
  {
