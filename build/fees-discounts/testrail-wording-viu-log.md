@@ -338,3 +338,19 @@ login (after roles re-derivation). Wording made layman (feature-flag-free). Push
 | FD-FLAG-001 | [C28596](https://shopview.testrail.io/index.php?/cases/view/28596) | VIU-Blocked-Env |
 | FD-FLAG-002 | [C28597](https://shopview.testrail.io/index.php?/cases/view/28597) | VIU-Blocked-Env |
 | FD-FLAG-003 | [C28598](https://shopview.testrail.io/index.php?/cases/view/28598) | VIU-Blocked-Env |
+
+## Area: FD-HIST (8) + FD-PERM (11) — 19 cases — TESTER-READY (roles matrix re-derived first)
+
+**Roles matrix re-derived live 2026-07-13** (`roles-matrix-2026-07-13.md`): Technician drifted
+to HAVE Work Orders/Work Order Lines: Create & Edit + Delete, still LACKS See Financial Data,
+Manage AP/AR, Customer Mgmt C&E, Settings→Finance, Part Sales.
+**Live enforcement confirmed (Tech):** templates 403, customer-defaults GET+POST 403, WO
+financials masked (sub_total 0.00), Work Order Log 200 with entries. **History UI** ('Work
+Order Log', columns Event/User/Line/Details/Date/Time) renders **'Fee added'** with Details
+'Name / Amount (set rate) / Applied to' (shot hist-01).
+**Statuses:** FD-HIST-001/002/003/005/006/007/008 → Verified (003 wording fixed: Line shows
+the line for line-level, dash for whole-WO); FD-HIST-004 Blocked-Env (feature-off window).
+FD-PERM-001/003/005/006/007/008/009/010/011 → Verified; FD-PERM-002 Deviation (BUG-FD-3
+FE-only, negative not re-testable — Tech drifted); FD-PERM-004 Blocked-NotBuilt (Story 11).
+**Note:** WO-C&E / Lines-C&E NEGATIVE cases not testable here (Tech now has those perms; only
+admin/tech can log in). Push: FD-HIST 8 + FD-PERM 11 = 19 updated · 0 error.

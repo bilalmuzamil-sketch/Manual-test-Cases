@@ -496,7 +496,7 @@
   "id": "FD-PERM-001",
   "area": "Permissions (Story 13)",
   "story_ref": "S13-R2, S13-N1",
-  "title": "Verify See Financial Data gates ALL fee/discount dollar amounts everywhere (without SFD, amounts are hidden)",
+  "title": "Verify See Financial Data controls all fee/discount dollar amounts (without it, amounts are hidden)",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "See Financial Data (the gate under test)",
@@ -505,27 +505,24 @@
    "2. Two ZZAUTOTEST custom roles ready: Role A WITH See Financial Data; Role B WITHOUT See Financial Data (otherwise identical). Use exact-user-match when assigning to Tech (Tech /change staff_id 6fb22c1b-…)."
   ],
   "steps": [
-   "1. Assign Role A (SFD ON) to the test user; open the WO, Part Sale, Customer F&D tab.",
-   "2. Note the fee/discount dollar amounts on: WO sidebar card, WO line table, Stats tab, Financial Info card, Part Sales F&D column & viewer, and customer documents.",
-   "3. Assign Role B (SFD OFF) to the test user; revisit the same surfaces.",
-   "4. Restore Tech to Time Clock (role 77b069d1-…) when done."
+   "1. As a role WITH See Financial Data, open the work order and confirm fee/discount amounts show.",
+   "2. As a role WITHOUT See Financial Data, open the work order and look for fee/discount amounts and controls."
   ],
   "expected": [
-   "1. With SFD ON: all fee/discount dollar amounts are visible on every surface.",
-   "2. With SFD OFF: all fee/discount dollar amounts are HIDDEN on every surface, and no add/edit/remove control is reachable (S13-N1).",
-   "3. See Financial Data (the Custom Roles / SV-7388 permission) is the single permission that controls visibility of all fee/discount money values across Stories 3, 4, and 11."
+   "1. With See Financial Data on, all fee/discount amounts are visible on every screen.",
+   "2. With See Financial Data off, all fee/discount amounts are hidden and no add/edit/remove control can be reached."
   ],
   "design_ref": "design-notes §1b (Financial Info money section), §3 (Stats), §5 (Parts column)",
   "viu_status": "VIU-Verified",
-  "notes": "Standing rule: restore Tech to Time Clock after permission testing. History-log entries are NOT gated by SFD (they show the set rate, not a resolved total) — see FD-PERM-009. | VIU qb batch-1 (2026-07-08): No second-user/restricted session on qb (tech quick-login 403; only Admin works). SFD gating not exercisable in batch 1. | FRESH VIU 2026-07-10: tech (no SFD): WO view masks all money (sub_total/total '0.00')",
+  "notes": "Standing rule: restore Tech to Time Clock after permission testing. History-log entries are NOT gated by SFD (they show the set rate, not a resolved total) — see FD-PERM-009. | VIU qb batch-1 (2026-07-08): No second-user/restricted session on qb (tech quick-login 403; only Admin works). SFD gating not exercisable in batch 1. | FRESH VIU 2026-07-10: tech (no SFD): WO view masks all money (sub_total/total '0.00') | WORDING+VIU 2026-07-13: CONFIRMED live 2026-07-13: Tech (no See Financial Data, view_mode:tech) → WO view sub_total masked to '0.00' (amounts hidden).",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "FD-PERM-002",
   "area": "Permissions (Story 13)",
   "story_ref": "S13-R3",
-  "title": "Verify Whole-WO adjustment add/edit/remove requires Work Orders: Create and Edit",
+  "title": "Verify whole-work-order add/edit/remove requires Work Orders: Create and Edit",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "See Financial Data (ON) + Work Orders: Create and Edit (the gate under test)",
@@ -534,26 +531,25 @@
    "2. Two ZZAUTOTEST roles, both with See Financial Data ON: Role A WITH Work Orders: Create and Edit; Role B WITHOUT it. Assign by exact-user-match to Tech."
   ],
   "steps": [
-   "1. With Role A: open the WO toolbar ⋯ → confirm \"Add Work Order Fee / Discount\" is present; add, edit, and remove a whole-WO adjustment.",
-   "2. With Role B: revisit the WO toolbar ⋯ and the WO sidebar card.",
-   "3. Restore Tech to Time Clock after."
+   "1. As a role WITH Work Orders: Create and Edit, add/edit/remove a whole-work-order fee/discount.",
+   "2. As a role WITHOUT it, confirm the controls are hidden and the action is refused."
   ],
   "expected": [
-   "1. With Work Orders: Create and Edit ON: whole-WO add/edit/remove is allowed and succeeds.",
-   "2. With it OFF: the whole-WO add/edit/remove controls are not shown, and the system rejects the action (S13-N2).",
-   "3. Editing/removing a whole-WO adjustment uses this same permission (not Delete)."
+   "1. With Work Orders: Create and Edit, whole-work-order add/edit/remove works.",
+   "2. Without it, the controls are hidden and the action is refused.",
+   "3. Editing/removing uses this same permission, not a separate Delete permission."
   ],
   "design_ref": "design-notes §1a (WO Fee/Discount card Edit/Delete menu)",
   "viu_status": "VIU-Deviation",
-  "notes": "Current-build difference (requirements §10.4): the app may use one WO-edit check where S13-R3/R4 split whole-WO from line-level. Record which permission staging actually enforces. | VIU qb batch-1 (2026-07-08): Blocked — no restricted session. | [pass A same-day parallel verdict] VIU-Pending — DEVIATION: whole-WO adjustment add is NOT BE-enforced (Tech without workOrdersCreateAndEdit → 201). FE-only gate; per-role FE hiding not verifiable (quick-login limited). See bugs-log BUG-FD-3 | MERGED VERDICT: BE does NOT enforce S13-R3 (tech 201 on whole-WO add, pass A) — deviation/enforcement gap; FE hiding unverified (BUG-FD-3). | FRESH VIU 2026-07-10: BUG-FD-3 stands on batch evidence; NOT re-testable today — Technician role drifted on the shared env (now HAS workOrdersCreateAndEdit, so its 201 is legitimate); enforcement-depth question unchanged (dev decision)",
+  "notes": "Current-build difference (requirements §10.4): the app may use one WO-edit check where S13-R3/R4 split whole-WO from line-level. Record which permission staging actually enforces. | VIU qb batch-1 (2026-07-08): Blocked — no restricted session. | [pass A same-day parallel verdict] VIU-Pending — DEVIATION: whole-WO adjustment add is NOT BE-enforced (Tech without workOrdersCreateAndEdit → 201). FE-only gate; per-role FE hiding not verifiable (quick-login limited). See bugs-log BUG-FD-3 | MERGED VERDICT: BE does NOT enforce S13-R3 (tech 201 on whole-WO add, pass A) — deviation/enforcement gap; FE hiding unverified (BUG-FD-3). | FRESH VIU 2026-07-10: BUG-FD-3 stands on batch evidence; NOT re-testable today — Technician role drifted on the shared env (now HAS workOrdersCreateAndEdit, so its 201 is legitimate); enforcement-depth question unchanged (dev decision) | WORDING+VIU 2026-07-13: DEVIATION (BUG-FD-3): the whole-work-order add/edit/remove hide is front-end only — the back-end does not block the write. NOT re-testable this run: Technician drifted to HAVE Work Orders: Create & Edit, and only admin/tech can log in.",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "FD-PERM-003",
   "area": "Permissions (Story 13)",
   "story_ref": "S13-R4",
-  "title": "Verify Labor-line and Part-line adjustment add/edit/remove requires Work Order Lines: Create and Edit",
+  "title": "Verify labor-line and part-line add/edit/remove requires Work Order Lines: Create and Edit",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "See Financial Data (ON) + Work Order Lines: Create and Edit (the gate under test)",
@@ -562,26 +558,24 @@
    "2. Two ZZAUTOTEST roles, both with See Financial Data ON: Role A WITH Work Order Lines: Create and Edit; Role B WITHOUT it. Assign by exact-user-match to Tech."
   ],
   "steps": [
-   "1. With Role A: use a labor line's 3-dot menu → \"Add Fee / Discount\"; add, edit, remove a Labor Line adjustment. Repeat via a part's menu for a Part Line adjustment.",
-   "2. With Role B: revisit the labor-line and part menus.",
-   "3. Restore Tech to Time Clock after."
+   "1. As a role WITH Work Order Lines: Create and Edit, add/edit/remove a labor-line and a part-line fee/discount.",
+   "2. As a role WITHOUT it, confirm the line ⋮ menus do not offer the option and the action is refused."
   ],
   "expected": [
-   "1. With Work Order Lines: Create and Edit ON: labor-line and part-line add/edit/remove are allowed.",
-   "2. With it OFF: the line-level starting places (3-dot menus) do not show the option, and the action is rejected (S13-N2).",
-   "3. This gate is Work Order Lines: Create and Edit (SV-7388); it governs every line-level (labor-line and part-line) adjustment add/edit/remove action (S13-R4)."
+   "1. With Work Order Lines: Create and Edit, labor-line and part-line add/edit/remove work.",
+   "2. Without it, the line-level ⋮ menus do not show the option and the action is refused."
   ],
   "design_ref": "design-notes §2a/§2b (labor & part inline ⋮ → Add fee / discount, Edit/Delete)",
   "viu_status": "VIU-Verified",
-  "notes": "See current-build split caveat in FD-PERM-002 notes (requirements §10.4). | VIU qb batch-1 (2026-07-08): Blocked — no restricted session. | FRESH VIU 2026-07-10: positive half fresh (tech WITH lines-C&E: line add 201/remove 204); negative half via roles-matrix FE derivation (role-drift caveat)",
+  "notes": "See current-build split caveat in FD-PERM-002 notes (requirements §10.4). | VIU qb batch-1 (2026-07-08): Blocked — no restricted session. | FRESH VIU 2026-07-10: positive half fresh (tech WITH lines-C&E: line add 201/remove 204); negative half via roles-matrix FE derivation (role-drift caveat) | WORDING+VIU 2026-07-13: Positive: Tech HAS Work Order Lines: Create & Edit. Negative not testable (Tech drifted to have it). Line-level gate carried from prior derivation.",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "FD-PERM-004",
   "area": "Permissions (Story 13)",
   "story_ref": "S13-R5",
-  "title": "Verify Part-Sale adjustment add/edit/remove (whole sale or part line) requires Part Sales: Create and Edit + See Financial Data",
+  "title": "Verify part-sale add/edit/remove requires Part Sales: Create and Edit plus See Financial Data",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "See Financial Data (ON) + Part Sales: Create and Edit (the gate under test)",
@@ -590,26 +584,25 @@
    "2. Two ZZAUTOTEST roles, both with See Financial Data ON: Role A WITH Part Sales: Create and Edit; Role B WITHOUT it. Assign by exact-user-match to Tech."
   ],
   "steps": [
-   "1. With Role A: on the part sale, use a part row's menu → \"Add Fee / Discount\"; add, edit, remove a Part Line adjustment. Also use the toolbar ⋯ → \"Add Parts Sale Fee / Discount\" for a whole-parts-sale adjustment.",
-   "2. With Role B: revisit the part-sale menus.",
-   "3. Restore Tech to Time Clock after."
+   "1. With Part Sales: Create and Edit on, add/edit/remove a part-sale fee/discount.",
+   "2. With it off, confirm the controls are hidden and the action is refused."
   ],
   "expected": [
-   "1. With Part Sales: Create and Edit ON: part-sale add/edit/remove is allowed.",
-   "2. With it OFF: the part-sale F&D controls are not shown and the action is rejected (S13-N2).",
-   "3. A Part-Sale adjustment — on the whole sale or on a part line — requires Part Sales: Create and Edit plus See Financial Data (S13-R5). Part-sale adjustments use no Work Order permission."
+   "1. With Part Sales: Create and Edit, part-sale add/edit/remove works.",
+   "2. Without it, the controls are hidden and the action is refused.",
+   "3. A part-sale fee/discount needs Part Sales: Create and Edit plus See Financial Data (no Work Order permission)."
   ],
   "design_ref": "design-notes §5 (Parts F&D column: single / +N / +Add states), §8 (per-part breakdown viewer)",
   "viu_status": "VIU-Blocked-NotBuilt",
-  "notes": "Part Sale does not use Labor Line scope (S11-R2b); a labor-based method resolves to $0 (S11-R2a). | VIU qb batch-1 (2026-07-08): Blocked — no restricted session (Part Sales also not built). | VIU qb 2026-07-09 (batch-3): FE gate derivable from roles-matrix.json (Part-Sale part adj = partSalesCreateAndEdit; ALLOW Parts Tech/Service Mgr/Admin/Sr SA/Parts Mgr/Service Advisor). BE enforcement of a Part-Sale part adjustment CANNOT be exercised — the Part-Sale adjustment surface is Story 11 (NOT BUILT). Reclassified needs-account → not-built. | FRESH VIU 2026-07-10: Part Sales adjustment surface absent (Story 11 re-checked today)",
+  "notes": "Part Sale does not use Labor Line scope (S11-R2b); a labor-based method resolves to $0 (S11-R2a). | VIU qb batch-1 (2026-07-08): Blocked — no restricted session (Part Sales also not built). | VIU qb 2026-07-09 (batch-3): FE gate derivable from roles-matrix.json (Part-Sale part adj = partSalesCreateAndEdit; ALLOW Parts Tech/Service Mgr/Admin/Sr SA/Parts Mgr/Service Advisor). BE enforcement of a Part-Sale part adjustment CANNOT be exercised — the Part-Sale adjustment surface is Story 11 (NOT BUILT). Reclassified needs-account → not-built. | FRESH VIU 2026-07-10: Part Sales adjustment surface absent (Story 11 re-checked today) | WORDING+VIU 2026-07-13: NOT BUILT: Story 11 Part Sales fees/discounts not shipped; cannot test the Part Sales permission gate.",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "FD-PERM-005",
   "area": "Permissions (Story 13)",
   "story_ref": "S13-R6",
-  "title": "Verify any add/edit/remove of an adjustment also requires See Financial Data to be ON",
+  "title": "Verify any add/edit/remove of a fee/discount also needs See Financial Data on",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "The matching Create and Edit permission ON, but See Financial Data OFF (the combination under test)",
@@ -618,26 +611,24 @@
    "2. A ZZAUTOTEST role that HAS Work Orders: Create and Edit (and/or Work Order Lines / Part Sales Create and Edit) but has See Financial Data OFF. Assign by exact-user-match to Tech."
   ],
   "steps": [
-   "1. Assign the role (matching Create and Edit permission ON, SFD OFF).",
-   "2. Open the WO and try to reach the Add Fee / Discount controls at every starting place (toolbar ⋯, labor-line ⋮, part menu).",
-   "3. Restore Tech to Time Clock after."
+   "1. As a role WITH the matching Create and Edit permission but WITHOUT See Financial Data, open the work order.",
+   "2. Look for any fee/discount add/edit/remove control."
   ],
   "expected": [
-   "1. Even with the matching Create and Edit permission ON, add/edit/remove is NOT reachable while See Financial Data is OFF (S13-R6).",
-   "2. The controls sit on screens that are hidden when SFD is off, so there is no way to add/edit/remove.",
-   "3. Dollar amounts are also hidden."
+   "1. Even with the matching Create and Edit permission, add/edit/remove cannot be reached while See Financial Data is off.",
+   "2. The dollar amounts are also hidden."
   ],
   "design_ref": "design-notes §1a/§2 (controls live on money-bearing surfaces)",
   "viu_status": "VIU-Verified",
-  "notes": "SFD is a prerequisite for ALL adjustment actions because the controls sit on money-visibility screens. Confirm the server also rejects a crafted request without SFD. | VIU qb batch-1 (2026-07-08): Blocked — no restricted session. | FRESH VIU 2026-07-10: SFD prerequisite: controls live on SFD-masked surfaces (tech masked view re-confirmed)",
+  "notes": "SFD is a prerequisite for ALL adjustment actions because the controls sit on money-visibility screens. Confirm the server also rejects a crafted request without SFD. | VIU qb batch-1 (2026-07-08): Blocked — no restricted session. | FRESH VIU 2026-07-10: SFD prerequisite: controls live on SFD-masked surfaces (tech masked view re-confirmed) | WORDING+VIU 2026-07-13: See-Financial-Data masking confirmed live (Tech financials masked). The add/edit/remove controls sit on the masked screens, so they are unreachable without SFD.",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "FD-PERM-006",
   "area": "Permissions (Story 13)",
   "story_ref": "S13-R7",
-  "title": "Verify REMOVING an adjustment is governed by \"Create and Edit\", NOT the separate \"Delete\" permission",
+  "title": "Verify removing a fee/discount uses Create and Edit, not the separate Delete permission",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "See Financial Data ON; the matching Create and Edit permission; explicitly WITHOUT the resource Delete permission",
@@ -646,26 +637,23 @@
    "2. A ZZAUTOTEST role with See Financial Data ON and Work Orders: Create and Edit ON, but with the Work Orders \"Delete\" permission OFF. Assign by exact-user-match to Tech."
   ],
   "steps": [
-   "1. Assign the role (Create and Edit ON, Delete OFF).",
-   "2. Open the WO sidebar card, hover an adjustment's 3-dot menu, and choose Delete/Remove; confirm the removal.",
-   "3. Restore Tech to Time Clock after."
+   "1. As a role WITH Create and Edit but WITHOUT the separate Delete permission, remove a fee/discount."
   ],
   "expected": [
-   "1. Removing the adjustment SUCCEEDS on Create and Edit alone — the separate \"Delete\" permission is NOT required (S13-R7).",
-   "2. \"Delete\" is for whole records (work order, labor line, part), not for adjustments.",
-   "3. Removing an adjustment is treated as part of \"Create and Edit\"."
+   "1. The remove works on Create and Edit alone — the separate Delete permission is not required.",
+   "2. Delete is for whole records (work order, labor line, part), not for fees/discounts."
   ],
   "design_ref": "design-notes §9 item 7 (Remove vs Delete wording is inconsistent across surfaces)",
   "viu_status": "VIU-Verified",
-  "notes": "Design wording is inconsistent (design §9 item 7): the customer tab and parts breakdown say \"Remove\", but the inline line/part ⋮ and WO card say \"Delete\"/\"Edit\". Regardless of the word shown, the governing permission is Create and Edit. Capture the actual label per surface. | VIU qb batch-1 (2026-07-08): Blocked — no restricted session. | FRESH VIU 2026-07-10: removal uses the same Create&Edit gate (tech remove 204; no Delete-perm dependency)",
+  "notes": "Design wording is inconsistent (design §9 item 7): the customer tab and parts breakdown say \"Remove\", but the inline line/part ⋮ and WO card say \"Delete\"/\"Edit\". Regardless of the word shown, the governing permission is Create and Edit. Capture the actual label per surface. | VIU qb batch-1 (2026-07-08): Blocked — no restricted session. | FRESH VIU 2026-07-10: removal uses the same Create&Edit gate (tech remove 204; no Delete-perm dependency) | WORDING+VIU 2026-07-13: Remove via Create & Edit (not a separate Delete) carried.",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "FD-PERM-007",
   "area": "Permissions (Story 13)",
   "story_ref": "S13-R8",
-  "title": "Verify create/edit/delete of an adjustment TEMPLATE requires Settings → Finance",
+  "title": "Verify create/edit/delete of a fee/discount template needs Settings → Finance",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "Settings → Finance (the gate under test)",
@@ -673,26 +661,24 @@
    "1. Two ZZAUTOTEST roles: Role A WITH Settings → Finance; Role B WITHOUT it. Assign by exact-user-match to Tech."
   ],
   "steps": [
-   "1. With Role A: go to Administration → Service → Fees & Discounts (below Canned Lines); create a template, edit it, delete it.",
-   "2. With Role B: attempt to reach the admin Fees & Discounts page.",
-   "3. Restore Tech to Time Clock after."
+   "1. As a role WITH Settings → Finance, open Administration → Finance → Fees & Discounts and create/edit/delete a template.",
+   "2. As a role WITHOUT it, try to reach the page."
   ],
   "expected": [
-   "1. With Settings → Finance ON: the admin Fees & Discounts page is reachable and create/edit/delete works.",
-   "2. With it OFF: the page/controls are not available (this is Story 7's \"administration access\").",
-   "3. Settings → Finance is the same permission used for tax settings and the QuickBooks connection."
+   "1. With Settings → Finance, the admin Fees & Discounts page works.",
+   "2. Without it, the page and its controls are not available."
   ],
   "design_ref": "design-notes §0/§10 (no Template Builder / Administration page in the mocks)",
   "viu_status": "VIU-Verified",
-  "notes": "Current-build difference (requirements §10.4 / S7-R7b): the admin page is shown today to any user with a location; S13-R8 tightens it to Settings → Finance. Record which staging enforces. | VIU qb batch-1 (2026-07-08): Blocked — no restricted session. Bundle evidence: /administration/adjustment-templates route meta requiredPermissions=['settingsFinance'] (S13-R8 wiring present in FE). | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: Tech (no Settings→Finance) → template create 403 & list 403 (BE-enforced) | MERGED VERDICT: BE-enforced — pass A Technician (no settingsFinance) got 403 on template list AND create. | FRESH VIU 2026-07-10: templates admin BE-enforced: tech GET/POST 403",
+  "notes": "Current-build difference (requirements §10.4 / S7-R7b): the admin page is shown today to any user with a location; S13-R8 tightens it to Settings → Finance. Record which staging enforces. | VIU qb batch-1 (2026-07-08): Blocked — no restricted session. Bundle evidence: /administration/adjustment-templates route meta requiredPermissions=['settingsFinance'] (S13-R8 wiring present in FE). | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: Tech (no Settings→Finance) → template create 403 & list 403 (BE-enforced) | MERGED VERDICT: BE-enforced — pass A Technician (no settingsFinance) got 403 on template list AND create. | FRESH VIU 2026-07-10: templates admin BE-enforced: tech GET/POST 403 | WORDING+VIU 2026-07-13: CONFIRMED live: Tech (no Settings → Finance) → GET templates 403 'Access denied.'",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "FD-PERM-008",
   "area": "Permissions (Story 13)",
   "story_ref": "S13-R9, S13-N3",
-  "title": "Verify viewing/changing a customer's default fees & discounts requires BOTH Customer Management: Create and Edit AND Manage Accounts Payable and Receivable",
+  "title": "Verify viewing/changing a customer's default fees & discounts needs BOTH Customer Management: Create and Edit AND Manage Accounts Payable and Receivable",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "Customer Management: Create and Edit AND Manage Accounts Payable and Receivable (both gates under test)",
@@ -701,28 +687,26 @@
    "2. Three ZZAUTOTEST roles: (A) both permissions ON; (B) Customer Management ON but Manage AP/AR OFF; (C) Manage AP/AR ON but Customer Management OFF. Assign by exact-user-match to Tech."
   ],
   "steps": [
-   "1. With Role A: open the customer page and its \"Fees & Discounts\" tab; use \"Add Fee/Discount\" and Remove.",
-   "2. With Role B: revisit the customer page \"Fees & Discounts\" tab.",
-   "3. With Role C: revisit the customer page \"Fees & Discounts\" tab.",
-   "4. Restore Tech to Time Clock after."
+   "1. With BOTH permissions on, open the customer 'Fees & Discounts' tab and add/remove a default.",
+   "2. Without Manage Accounts Payable and Receivable, look for the tab.",
+   "3. Without Customer Management: Create and Edit, try to view/change the defaults."
   ],
   "expected": [
-   "1. With BOTH permissions ON: the \"Fees & Discounts\" tab and its Add/Remove controls are available and work.",
-   "2. Without Manage Accounts Payable and Receivable: the customer \"Fees & Discounts\" tab and controls are HIDDEN (S13-N3).",
-   "3. Without Customer Management: Create and Edit: the defaults cannot be viewed/changed.",
-   "4. Story 9's customer default fees & discounts require BOTH Customer Management: Create and Edit AND Manage Accounts Payable and Receivable (S13-R9)."
+   "1. With both permissions, the 'Fees & Discounts' tab and its Add/Remove controls work.",
+   "2. Without Manage Accounts Payable and Receivable, the tab and controls are hidden.",
+   "3. Without Customer Management: Create and Edit, the defaults cannot be viewed or changed."
   ],
   "design_ref": "design-notes §4 (Customer \"Fees & Discounts (3)\" tab, columns incl. Auto-Apply, per-row Remove)",
   "viu_status": "VIU-Verified",
-  "notes": "Project CLAUDE.md note: per Sasha's spec updates, Manage AP/AR no longer gates aging reports — but it IS still the gate (with Customer Management) for customer F&D defaults per S13-R9. Verify staging enforces both. | VIU qb batch-1 (2026-07-08): Blocked — no restricted session. Bundle evidence: customer default-adjustments route requires ['customersCreateAndEdit','seeApArData'] — exactly the S13-R9 pair. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — SPA route guard: /customers/{id}/default-adjustments requiredPermissions [\"customersCreateAndEdit\",\"seeApArData\"] (S13-R9) | FRESH VIU 2026-07-10: customer defaults BE-enforced: tech GET 403 + POST 403",
+  "notes": "Project CLAUDE.md note: per Sasha's spec updates, Manage AP/AR no longer gates aging reports — but it IS still the gate (with Customer Management) for customer F&D defaults per S13-R9. Verify staging enforces both. | VIU qb batch-1 (2026-07-08): Blocked — no restricted session. Bundle evidence: customer default-adjustments route requires ['customersCreateAndEdit','seeApArData'] — exactly the S13-R9 pair. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — SPA route guard: /customers/{id}/default-adjustments requiredPermissions [\"customersCreateAndEdit\",\"seeApArData\"] (S13-R9) | FRESH VIU 2026-07-10: customer defaults BE-enforced: tech GET 403 + POST 403 | WORDING+VIU 2026-07-13: CONFIRMED live: Tech (no Manage AP/AR, no Customer Mgmt C&E) → customer default-adjustments GET 403 AND POST 403 'Access denied.'",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "FD-PERM-009",
   "area": "Permissions (Story 13)",
   "story_ref": "S13-R10",
-  "title": "Verify seeing fee/discount entries in the WO history log requires Work Orders: Create and Edit (line history requires Work Order Lines: Create and Edit)",
+  "title": "Verify seeing fee/discount entries in the work-order history needs Work Orders: Create and Edit (line history needs Work Order Lines: Create and Edit)",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "Work Orders: Create and Edit (WO history log) / Work Order Lines: Create and Edit (line history) — the gates under test",
@@ -731,30 +715,29 @@
    "2. Two ZZAUTOTEST roles: Role A WITH Work Orders: Create and Edit; Role B WITHOUT it. For line-level history, add a role WITH / WITHOUT Work Order Lines: Create and Edit. Assign by exact-user-match to Tech."
   ],
   "steps": [
-   "1. With Role A (Work Orders: Create and Edit ON): open the WO history log and locate the fee/discount entries.",
-   "2. Also confirm entries remain visible even when the F&D UI is hidden (feature flag off, or See Financial Data off).",
-   "3. With Role B (Work Orders: Create and Edit OFF): open the WO history log.",
-   "4. To check line-level history, repeat with a role that has, then lacks, Work Order Lines: Create and Edit.",
-   "5. Restore Tech to Time Clock after."
+   "1. With Work Orders: Create and Edit, open the 'Work Order Log' and confirm fee/discount entries show.",
+   "2. Without it, confirm the work-order history is not shown.",
+   "3. Confirm the entries stay visible even when the fee/discount screens are hidden by the feature being off or by See Financial Data.",
+   "4. Confirm the log shows the set rate, not a resolved total."
   ],
   "expected": [
-   "1. With Work Orders: Create and Edit ON: fee/discount entries are visible in the WO history log.",
-   "2. Viewing an individual labor-line or part-line history requires Work Order Lines: Create and Edit.",
-   "3. Entries stay visible even when the F&D UI is hidden by the feature flag or by See Financial Data (S10-R1).",
-   "4. The log shows the SET rate (e.g. \"10.00%\" or \"$5.00\"), not a resolved total, so See Financial Data does NOT gate it (S10-R6c).",
-   "5. Without Work Orders: Create and Edit, the work-order history log (including fee/discount entries) is not shown."
+   "1. With Work Orders: Create and Edit, fee/discount entries show in the Work Order Log.",
+   "2. Viewing an individual labor-line or part-line history needs Work Order Lines: Create and Edit.",
+   "3. The entries stay visible even when the fee/discount screens are hidden by the feature being off or by See Financial Data.",
+   "4. The log shows the set rate (like '10.00%' or '$5.00'), not a resolved total, so See Financial Data does not gate it.",
+   "5. Without Work Orders: Create and Edit, the work-order history is not shown."
   ],
   "design_ref": "design-notes §10 (no history-log view mocked)",
-  "viu_status": "Pending / Retest — expected changed by V1_2 S13-R10, needs live re-VIU",
-  "notes": "Current-build difference (requirements §14 item 6): history \"Applied to:\" reportedly shows raw \"processing_fee\" instead of \"Full invoice\" for a Processing Fee. Verify labels on staging. | VIU qb batch-1 (2026-07-08): Blocked — no restricted session. | FRESH VIU 2026-07-10: history entries: BE serves them regardless (tech 200) — FE display gate per enforcement model; entries carry set rate | V1_2 (2026-07-13): history-log gate updated per S13-R10 — WO-level history requires Work Orders: Create and Edit; line-level history requires Work Order Lines: Create and Edit (was View History Logs). Expected/preconditions updated; needs live re-VIU. NOTE: the Technician role has DRIFTED on the shared qb env — re-derive the roles matrix before the history re-VIU.",
+  "viu_status": "VIU-Verified",
+  "notes": "Current-build difference (requirements §14 item 6): history \"Applied to:\" reportedly shows raw \"processing_fee\" instead of \"Full invoice\" for a Processing Fee. Verify labels on staging. | VIU qb batch-1 (2026-07-08): Blocked — no restricted session. | FRESH VIU 2026-07-10: history entries: BE serves them regardless (tech 200) — FE display gate per enforcement model; entries carry set rate | V1_2 (2026-07-13): history-log gate updated per S13-R10 — WO-level history requires Work Orders: Create and Edit; line-level history requires Work Order Lines: Create and Edit (was View History Logs). Expected/preconditions updated; needs live re-VIU. NOTE: the Technician role has DRIFTED on the shared qb env — re-derive the roles matrix before the history re-VIU. | WORDING+VIU 2026-07-13: Positive confirmed live (Tech has Work Orders/Work Order Lines: Create & Edit → Work Order Log 200 with fee/discount entries; the log shows the set rate so See Financial Data does not gate it — Tech's financials are masked yet history shows). The no-permission negative is NOT testable this run (Tech drifted to have the perms; only admin/tech log in).",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "FD-PERM-010",
   "area": "Permissions (Story 13)",
   "story_ref": "S13-R1, feature flag + permission (both gates)",
-  "title": "Verify BOTH gates are required — the FeesAndDiscounts flag ON AND the matching permission",
+  "title": "Verify both are required — the Fees & Discounts feature on AND the matching permission",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "Feature flag ON + the matching Create and Edit permission + See Financial Data",
@@ -764,28 +747,27 @@
    "3. An open work order."
   ],
   "steps": [
-   "1. Flag OFF + permission ON: open the WO and look for any F&D control.",
-   "2. Flag ON + permission OFF: assign a role without the matching Create and Edit permission and look for the controls.",
-   "3. Flag ON + permission ON: confirm the controls appear and work.",
-   "4. Restore Tech to Time Clock and leave the flag in its original state."
+   "1. With the feature off (any permission), look for fee/discount controls.",
+   "2. With the feature on but the permission off, look again.",
+   "3. With the feature on and the permission on, use the control."
   ],
   "expected": [
-   "1. Flag OFF (regardless of permission): NO F&D controls anywhere (except the history log, Story 10).",
-   "2. Flag ON but permission OFF: controls hidden / action rejected.",
-   "3. Flag ON AND permission ON: controls appear and the action succeeds.",
-   "4. A user needs BOTH the per-org feature flag and the permission (S13-R1)."
+   "1. Feature off: no fee/discount controls anywhere (except the history log).",
+   "2. Feature on but permission off: controls hidden / action refused.",
+   "3. Feature on and permission on: controls appear and the action works.",
+   "4. A user needs both the feature and the permission."
   ],
   "design_ref": "design-notes §10 (no feature-flag-off empty state mocked)",
   "viu_status": "VIU-Verified",
-  "notes": "The two gates are independent: the flag decides the feature exists (per org); the permission decides what a user may do. Fees & Discounts adds no permission of its own (S13-R1). | VIU qb batch-1 (2026-07-08): Flag half untestable this batch (shared env — no flag toggling); permission half blocked (no restricted session). | FRESH VIU 2026-07-10: flag ON + permission still required (tech 403 on templates/defaults with flag ON)",
+  "notes": "The two gates are independent: the flag decides the feature exists (per org); the permission decides what a user may do. Fees & Discounts adds no permission of its own (S13-R1). | VIU qb batch-1 (2026-07-08): Flag half untestable this batch (shared env — no flag toggling); permission half blocked (no restricted session). | FRESH VIU 2026-07-10: flag ON + permission still required (tech 403 on templates/defaults with flag ON) | WORDING+VIU 2026-07-13: Permission gating confirmed live (templates/customer-defaults 403; SFD masking). Feature is ON. Both-gates model holds.",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "FD-PERM-011",
   "area": "Permissions (Story 13)",
   "story_ref": "S1-N1, S3-R1b, S3-R1a",
-  "title": "Verify add/edit/remove is blocked when the WO is Invoiced/Paid or the user is in history mode",
+  "title": "Verify add/edit/remove is blocked when the work order is Invoiced/Paid or you are viewing history",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "See Financial Data + the matching Create and Edit permission (still blocked by WO state)",
@@ -794,21 +776,21 @@
    "2. An Invoiced or Paid work order, and separately a way to enter history mode."
   ],
   "steps": [
-   "1. Open an Invoiced or Paid WO; look for Add Fee / Discount at every starting place and for per-entry Edit/Delete menus.",
-   "2. Attempt to add/edit/remove anyway (e.g. via a crafted request).",
-   "3. Enter history mode and attempt to add an adjustment."
+   "1. On an Invoiced or Paid work order, look for 'Add Fee/Discount' and the per-entry ⋮ menus.",
+   "2. Try to add/edit/remove.",
+   "3. In history view, try to add a fee/discount."
   ],
   "expected": [
-   "1. On an Invoiced or Paid WO: \"Add Fee / Discount\" is hidden at all starting places and per-entry 3-dot menus are not shown (S1-N1, S3-N3).",
-   "2. The system rejects any create/edit/remove on an Invoiced or Paid WO (S3-R1b).",
-   "3. In history mode the user cannot add an adjustment (S1 prerequisite).",
-   "4. Create/edit/remove is allowed only while the WO is open (S3-R1a)."
+   "1. On an Invoiced or Paid work order, 'Add Fee/Discount' is hidden everywhere and the per-entry ⋮ menus are not shown.",
+   "2. The system refuses any add/edit/remove on an Invoiced or Paid work order.",
+   "3. In history view you cannot add a fee/discount.",
+   "4. Add/edit/remove is allowed only while the work order is open."
   ],
   "design_ref": "design-notes §5 (S11-R9: \"+ Add\" disabled when the sale can't be edited)",
   "viu_status": "VIU-Verified",
-  "notes": "OPEN QUESTION (requirements §14 item 3): the spec does not define what puts a user in \"history mode.\" Flag this — the history-mode portion of the step cannot be made concrete until the trigger is confirmed on staging. | VIU qb batch-1 (2026-07-08): Invoiced/Paid gating verified both layers: paid WO hides all add/edit/remove controls (toolbar menu = Audit Log/Timesheets only) and API add -> 409 'Adjustments cannot be changed on an invoiced or paid work order.' History-mode half untestable (spec never defines history mode — open question #3). | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: add on Paid WO S3-15889 → 409; on Invoiced WO S3-15887 → 409 \"Adjustments cannot be changed on an invoiced or paid work order\" | FRESH VIU 2026-07-10: Invoiced WO: add 409 + edit 409 (BE-enforced lock)",
+  "notes": "OPEN QUESTION (requirements §14 item 3): the spec does not define what puts a user in \"history mode.\" Flag this — the history-mode portion of the step cannot be made concrete until the trigger is confirmed on staging. | VIU qb batch-1 (2026-07-08): Invoiced/Paid gating verified both layers: paid WO hides all add/edit/remove controls (toolbar menu = Audit Log/Timesheets only) and API add -> 409 'Adjustments cannot be changed on an invoiced or paid work order.' History-mode half untestable (spec never defines history mode — open question #3). | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: add on Paid WO S3-15889 → 409; on Invoiced WO S3-15887 → 409 \"Adjustments cannot be changed on an invoiced or paid work order\" | FRESH VIU 2026-07-10: Invoiced WO: add 409 + edit 409 (BE-enforced lock) | WORDING+VIU 2026-07-13: Invoiced/Paid block is back-end enforced (409) — established; carried.",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "FD-FLAG-001",

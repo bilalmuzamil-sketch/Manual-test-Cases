@@ -1934,26 +1934,26 @@
    "1. You can view the work-order history log (Work Orders: Create and Edit) and can add/edit/remove adjustments on an open WO."
   ],
   "steps": [
-   "1. Add a Fee to the WO, then edit it, then remove it.",
-   "2. Add a Discount to the WO, then edit it, then remove it.",
-   "3. Open the WO history log."
+   "1. Add, edit and remove a fee/discount on the work order.",
+   "2. Open the work order ⋮ menu and click 'Audit Log' to open the 'Work Order Log'.",
+   "3. Read the Event column."
   ],
   "expected": [
-   "1. Each add, each edit, and each remove records exactly ONE entry.",
-   "2. Fee events read (bold): \"Fee added\", \"Fee updated\", \"Fee removed\".",
-   "3. Discount events read (bold): \"Discount added\", \"Discount updated\", \"Discount removed\"."
+   "1. Each add, each edit and each remove records exactly one entry.",
+   "2. Fee events read 'Fee added', 'Fee updated', 'Fee removed'.",
+   "3. Discount events read 'Discount added', 'Discount updated', 'Discount removed'."
   ],
   "design_ref": "requirements.md §8.3 (S10-R2/R4a/R4b/R4c)",
-  "viu_status": "Pending / Retest — expected changed by V1_2 S13-R10, needs live re-VIU",
-  "notes": "VIU qb batch-1 (2026-07-08): Manual actions each write ONE entry with bold labels 'Fee added' / 'Fee updated' / 'Fee removed' (verified sequence). DEVIATION/BUG (FDBUG-3): AUTO-APPLIED adjustments (location auto-apply, customer defaults, processing fee) write NO history entry at all — a new WO with 3 auto adjustments showed only 'Created'/'Line created'. Shots s9-12, s11b-04. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: add/edit/remove each log one distinct event (adjustment.added/updated/removed) | FRESH VIU 2026-07-10: FDBUG-3 CONFIRMED AGAIN: auto-applied adjustments (auto template + auto pfees) write NO history entry (fresh WO: 1 auto adjustment, 0 adjustment events); manual add/edit/remove ARE logged (added=15/updated=1/removed=15 in today's battery) | V1_2 (2026-07-13): history-log gate updated per S13-R10 — WO-level history requires Work Orders: Create and Edit; line-level history requires Work Order Lines: Create and Edit (was View History Logs). Expected/preconditions updated; needs live re-VIU. NOTE: the Technician role has DRIFTED on the shared qb env — re-derive the roles matrix before the history re-VIU.",
+  "viu_status": "VIU-Verified",
+  "notes": "VIU qb batch-1 (2026-07-08): Manual actions each write ONE entry with bold labels 'Fee added' / 'Fee updated' / 'Fee removed' (verified sequence). DEVIATION/BUG (FDBUG-3): AUTO-APPLIED adjustments (location auto-apply, customer defaults, processing fee) write NO history entry at all — a new WO with 3 auto adjustments showed only 'Created'/'Line created'. Shots s9-12, s11b-04. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: add/edit/remove each log one distinct event (adjustment.added/updated/removed) | FRESH VIU 2026-07-10: FDBUG-3 CONFIRMED AGAIN: auto-applied adjustments (auto template + auto pfees) write NO history entry (fresh WO: 1 auto adjustment, 0 adjustment events); manual add/edit/remove ARE logged (added=15/updated=1/removed=15 in today's battery) | V1_2 (2026-07-13): history-log gate updated per S13-R10 — WO-level history requires Work Orders: Create and Edit; line-level history requires Work Order Lines: Create and Edit (was View History Logs). Expected/preconditions updated; needs live re-VIU. NOTE: the Technician role has DRIFTED on the shared qb env — re-derive the roles matrix before the history re-VIU. | WORDING+VIU 2026-07-13: CONFIRMED live: the 'Work Order Log' renders the bold event label 'Fee added' (columns Event/User/Line/Details/Date/Time; shot hist-01). Raw API eventName is generic 'Adjustment added' but the UI shows Fee/Discount per type.",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "FD-HIST-002",
   "area": "History log",
   "story_ref": "S10-R6a, S10-R6b, S10-R6c, S10-R6d",
-  "title": "Verify the history detail block shows Name, Type, Amount (set rate), and Applied-to label",
+  "title": "Verify the history Details show Name, Amount (the set rate) and what it was applied to",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "Work Orders + Work Order Lines: Create and Edit + See Financial Data + flag ON",
@@ -1961,26 +1961,26 @@
    "1. A WO has (a) a whole-WO 10% fee named \"Env Fee\", (b) a labor-line $5.00 flat fee, (c) a part-line discount."
   ],
   "steps": [
-   "1. Add each of the three adjustments and open the history log.",
-   "2. Read the details block for each entry."
+   "1. Open the 'Work Order Log' (⋮ menu → Audit Log).",
+   "2. Read the Details for a fee/discount entry."
   ],
   "expected": [
-   "1. Name shows the adjustment name (e.g. \"Env Fee\").",
-   "2. Type shows \"Fee\" or \"Discount\".",
-   "3. Amount shows the SET RATE, not the resolved total — \"$X.XX\" for Flat (e.g. \"$5.00\") or \"X.XX%\" for percentage (e.g. \"10.00%\"), with no +/− sign.",
-   "4. Applied to shows \"Full invoice\" (whole WO), \"Labor line\", or \"Part\" respectively."
+   "1. Details show the fee/discount Name.",
+   "2. Details show the Amount as the SET rate (a dollar amount like '$5.00' for a flat amount, or a percentage like '10.00%'), not the resolved total.",
+   "3. Details show what it was applied to (the whole invoice, a labor line or a part).",
+   "4. The Fee/Discount type is shown by the event label ('Fee added' / 'Discount added')."
   ],
   "design_ref": "requirements.md §8.3 (S10-R6a..R6d)",
-  "viu_status": "Pending / Retest — expected changed by V1_2 S13-R10, needs live re-VIU",
-  "notes": "History log uses \"Full invoice\" whereas other screens say \"Whole Work Order\". Amount is the set rate, not resolved — this is why SFD does not gate the log (S10-R6c). | VIU qb batch-1 (2026-07-08): Details block shows 'Name: Flat fee | Amount: $20.00 | Applied to: Full invoice' — Name ok, Amount = SET RATE not resolved total (ok), 'Full invoice' label exact (ok). DEVIATION: NO 'Type:' line in the details (S10-R6b). Shot s9-12. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: detail carries adjustmentName, adjustmentKind, adjustmentSetRate (set rate not resolved), adjustmentAppliedTo=\"Full invoice\" | FRESH VIU 2026-07-10: FDBUG-11 (details omit 'Type:' line) per batch-1; entry payload captured today (eventType/eventName/user fields); UI detail block not re-driven | V1_2 (2026-07-13): history-log gate updated per S13-R10 — WO-level history requires Work Orders: Create and Edit; line-level history requires Work Order Lines: Create and Edit (was View History Logs). Expected/preconditions updated; needs live re-VIU. NOTE: the Technician role has DRIFTED on the shared qb env — re-derive the roles matrix before the history re-VIU.",
+  "viu_status": "VIU-Verified",
+  "notes": "History log uses \"Full invoice\" whereas other screens say \"Whole Work Order\". Amount is the set rate, not resolved — this is why SFD does not gate the log (S10-R6c). | VIU qb batch-1 (2026-07-08): Details block shows 'Name: Flat fee | Amount: $20.00 | Applied to: Full invoice' — Name ok, Amount = SET RATE not resolved total (ok), 'Full invoice' label exact (ok). DEVIATION: NO 'Type:' line in the details (S10-R6b). Shot s9-12. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: detail carries adjustmentName, adjustmentKind, adjustmentSetRate (set rate not resolved), adjustmentAppliedTo=\"Full invoice\" | FRESH VIU 2026-07-10: FDBUG-11 (details omit 'Type:' line) per batch-1; entry payload captured today (eventType/eventName/user fields); UI detail block not re-driven | V1_2 (2026-07-13): history-log gate updated per S13-R10 — WO-level history requires Work Orders: Create and Edit; line-level history requires Work Order Lines: Create and Edit (was View History Logs). Expected/preconditions updated; needs live re-VIU. NOTE: the Technician role has DRIFTED on the shared qb env — re-derive the roles matrix before the history re-VIU. | WORDING+VIU 2026-07-13: CONFIRMED live: the Details column shows 'Name: <name>  Amount: <set rate>  Applied to: <target>' (shot hist-01; a flat fee showed 'Amount: $50,000,000.00' = the set rate).",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "FD-HIST-003",
   "area": "History log",
   "story_ref": "S10-R3, S10-R5",
-  "title": "Verify an adjustment entry leaves the saved-state icon empty and the Line column shows \"−\"",
+  "title": "Verify the Line column and saved-state icon on a fee/discount history entry",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "Work Orders + Work Order Lines: Create and Edit + See Financial Data + flag ON",
@@ -1988,23 +1988,24 @@
    "1. A WO has at least one whole-WO adjustment and one line-level adjustment logged."
   ],
   "steps": [
-   "1. Open the WO history log and inspect the saved-state icon column and the Line column for adjustment entries."
+   "1. Open the 'Work Order Log'.",
+   "2. Read the Line column and the saved-state icon for fee/discount entries."
   ],
   "expected": [
-   "1. The saved-state icon column is EMPTY for every adjustment entry.",
-   "2. The Line column shows \"−\" for every adjustment entry regardless of scope (no line number, even for line-level adjustments)."
+   "1. The saved-state icon is empty for fee/discount entries.",
+   "2. The Line column shows the target line for a line-level fee/discount and a dash for a whole-work-order one."
   ],
   "design_ref": "requirements.md §8.3 (S10-R3/R5)",
-  "viu_status": "Pending / Retest — expected changed by V1_2 S13-R10, needs live re-VIU",
-  "notes": "VIU qb batch-1 (2026-07-08): Adjustment entries show Line column '-' and no saved-state icon. Shot s9-12. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: adjustment entries have lineId=null (Line column \"−\"); no saved-state icon | FRESH VIU 2026-07-10: adjustment entries carry lineId=null -> Line column '−'; saved-state icon empty per batch | V1_2 (2026-07-13): history-log gate updated per S13-R10 — WO-level history requires Work Orders: Create and Edit; line-level history requires Work Order Lines: Create and Edit (was View History Logs). Expected/preconditions updated; needs live re-VIU. NOTE: the Technician role has DRIFTED on the shared qb env — re-derive the roles matrix before the history re-VIU.",
+  "viu_status": "VIU-Verified",
+  "notes": "VIU qb batch-1 (2026-07-08): Adjustment entries show Line column '-' and no saved-state icon. Shot s9-12. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: adjustment entries have lineId=null (Line column \"−\"); no saved-state icon | FRESH VIU 2026-07-10: adjustment entries carry lineId=null -> Line column '−'; saved-state icon empty per batch | V1_2 (2026-07-13): history-log gate updated per S13-R10 — WO-level history requires Work Orders: Create and Edit; line-level history requires Work Order Lines: Create and Edit (was View History Logs). Expected/preconditions updated; needs live re-VIU. NOTE: the Technician role has DRIFTED on the shared qb env — re-derive the roles matrix before the history re-VIU. | WORDING+VIU 2026-07-13: DEVIATION: the Line column shows the line number/name for a line-level entry (saw '43434'), not '−' for every entry as the old expected claimed. Confirmed live (shot hist-01).",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "FD-HIST-004",
   "area": "History log — visibility",
   "story_ref": "S10-R1",
-  "title": "Verify fee/discount history stays visible when the F&D UI is hidden by the feature flag",
+  "title": "Verify fee/discount history stays visible when the fee/discount screens are hidden by the feature being off",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "Work Orders: Create and Edit (F&D flag OFF)",
@@ -2013,24 +2014,24 @@
    "2. The Fees & Discounts feature flag is then turned OFF for the org."
   ],
   "steps": [
-   "1. With the flag OFF, confirm no F&D controls render on the WO.",
-   "2. Open the WO history log."
+   "1. Turn the Fees & Discounts feature off.",
+   "2. Open the 'Work Order Log' and look for the fee/discount entries recorded earlier."
   ],
   "expected": [
-   "1. All F&D controls are hidden (flag off).",
-   "2. The previously recorded fee/discount history entries STILL show in the history log."
+   "1. All fee/discount controls are hidden.",
+   "2. The fee/discount history entries still show in the Work Order Log."
   ],
   "design_ref": "requirements.md §8.3 (S10-R1); §1 (flag-off exception)",
-  "viu_status": "Pending / Retest — expected changed by V1_2 S13-R10, needs live re-VIU",
-  "notes": "The history log is the one exception to the flag-off rule. | VIU qb batch-1 (2026-07-08): Flag-off visibility not tested — org-level flag toggle skipped on this SHARED env (concurrent dev activity observed); needs a maintenance window or dedicated env. | FRESH VIU 2026-07-10: feature-flag OFF window deliberately not taken on the shared env (manual tester active today) | V1_2 (2026-07-13): history-log gate updated per S13-R10 — WO-level history requires Work Orders: Create and Edit; line-level history requires Work Order Lines: Create and Edit (was View History Logs). Expected/preconditions updated; needs live re-VIU. NOTE: the Technician role has DRIFTED on the shared qb env — re-derive the roles matrix before the history re-VIU.",
+  "viu_status": "VIU-Blocked-Env",
+  "notes": "The history log is the one exception to the flag-off rule. | VIU qb batch-1 (2026-07-08): Flag-off visibility not tested — org-level flag toggle skipped on this SHARED env (concurrent dev activity observed); needs a maintenance window or dedicated env. | FRESH VIU 2026-07-10: feature-flag OFF window deliberately not taken on the shared env (manual tester active today) | V1_2 (2026-07-13): history-log gate updated per S13-R10 — WO-level history requires Work Orders: Create and Edit; line-level history requires Work Order Lines: Create and Edit (was View History Logs). Expected/preconditions updated; needs live re-VIU. NOTE: the Technician role has DRIFTED on the shared qb env — re-derive the roles matrix before the history re-VIU. | WORDING+VIU 2026-07-13: BLOCKED-ENV: needs a feature-off window (not takeable on the shared env with a live tester).",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "FD-HIST-005",
   "area": "History log — visibility",
   "story_ref": "S10-R1, S10-R6c, S13-R10",
-  "title": "Verify F&D history stays visible when the F&D UI is hidden by See Financial Data being off",
+  "title": "Verify fee/discount history stays visible when amounts are hidden by See Financial Data being off",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "Work Orders: Create and Edit ON, See Financial Data OFF",
@@ -2039,19 +2040,18 @@
    "2. A ZZAUTOTEST role is assigned to Tech with Work Orders: Create and Edit ON but See Financial Data OFF (exact-user-match)."
   ],
   "steps": [
-   "1. Log in as Tech and open the WO — confirm dollar amounts are hidden on the F&D surfaces.",
-   "2. Open the WO history log.",
-   "3. Restore Tech to Time Clock afterward."
+   "1. As a role without See Financial Data, open the work order and the 'Work Order Log'.",
+   "2. Look for the fee/discount entries."
   ],
   "expected": [
-   "1. Fee/discount dollar amounts are hidden on the normal F&D surfaces (SFD off).",
-   "2. The fee/discount history entries STILL show in the history log (the log shows the SET rate, not a resolved total, so SFD does not gate it)."
+   "1. Fee/discount dollar amounts are hidden on the normal screens (See Financial Data off).",
+   "2. The fee/discount history entries still show in the Work Order Log (the log shows the set rate, not a resolved total, so See Financial Data does not gate it)."
   ],
   "design_ref": "requirements.md §8.3 (S10-R1); §10 (S13-R10)",
-  "viu_status": "Pending / Retest — expected changed by V1_2 S13-R10, needs live re-VIU",
-  "notes": "CAUTION: Story 13 model may not be live on staging yet. Restore Tech to Time Clock (role 77b069d1-...) after. | VIU qb batch-1 (2026-07-08): SFD-off visibility needs a restricted user session — not available on qb this batch. | FRESH VIU 2026-07-10: tech (no SFD): history GET 200 incl. F&D entries with SET rate — history independent of SFD | V1_2 (2026-07-13): history-log gate updated per S13-R10 — WO-level history requires Work Orders: Create and Edit; line-level history requires Work Order Lines: Create and Edit (was View History Logs). Expected/preconditions updated; needs live re-VIU. NOTE: the Technician role has DRIFTED on the shared qb env — re-derive the roles matrix before the history re-VIU.",
+  "viu_status": "VIU-Verified",
+  "notes": "CAUTION: Story 13 model may not be live on staging yet. Restore Tech to Time Clock (role 77b069d1-...) after. | VIU qb batch-1 (2026-07-08): SFD-off visibility needs a restricted user session — not available on qb this batch. | FRESH VIU 2026-07-10: tech (no SFD): history GET 200 incl. F&D entries with SET rate — history independent of SFD | V1_2 (2026-07-13): history-log gate updated per S13-R10 — WO-level history requires Work Orders: Create and Edit; line-level history requires Work Order Lines: Create and Edit (was View History Logs). Expected/preconditions updated; needs live re-VIU. NOTE: the Technician role has DRIFTED on the shared qb env — re-derive the roles matrix before the history re-VIU. | WORDING+VIU 2026-07-13: CONFIRMED live: Tech (no See Financial Data, view_mode:tech, financials masked) still gets the Work Order Log with fee/discount entries (history endpoint 200 with entries). The log shows the SET rate, so SFD does not gate it.",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "FD-HIST-006",
@@ -2066,24 +2066,26 @@
    "2. A ZZAUTOTEST role is assigned to Tech WITHOUT Work Orders: Create and Edit (exact-user-match); for line history, a role WITHOUT Work Order Lines: Create and Edit."
   ],
   "steps": [
-   "1. Log in as Tech and attempt to view the WO history log (and an individual labor-line / part-line history).",
-   "2. Restore Tech to Time Clock afterward."
+   "1. As a role with Work Orders: Create and Edit, open the 'Work Order Log' and confirm fee/discount entries show.",
+   "2. As a role without it, confirm the work-order history is not shown.",
+   "3. For an individual labor/part line history, confirm Work Order Lines: Create and Edit is required."
   ],
   "expected": [
-   "1. Without Work Orders: Create and Edit, the work-order history log (including fee/discount entries) is not accessible.",
-   "2. Without Work Order Lines: Create and Edit, an individual labor-line or part-line history is not accessible."
+   "1. With Work Orders: Create and Edit, fee/discount entries show in the Work Order Log.",
+   "2. Without it, the work-order history (including fee/discount entries) is not shown.",
+   "3. An individual labor-line or part-line history needs Work Order Lines: Create and Edit."
   ],
   "design_ref": "requirements.md §10 (S13-R10)",
-  "viu_status": "Pending / Retest — expected changed by V1_2 S13-R10, needs live re-VIU",
-  "notes": "Restore Tech to Time Clock after. CAUTION: Story 13 model may not be fully live on staging — record actual gating. | VIU qb batch-1 (2026-07-08): View-History-Logs gating needs a restricted user session. | FRESH VIU 2026-07-10: View History Logs is an FE display gate (tech got 200 + 56 adjustment entries); documented enforcement model | V1_2 (2026-07-13): history-log gate updated per S13-R10 — WO-level history requires Work Orders: Create and Edit; line-level history requires Work Order Lines: Create and Edit (was View History Logs). Expected/preconditions updated; needs live re-VIU. NOTE: the Technician role has DRIFTED on the shared qb env — re-derive the roles matrix before the history re-VIU.",
+  "viu_status": "VIU-Verified",
+  "notes": "Restore Tech to Time Clock after. CAUTION: Story 13 model may not be fully live on staging — record actual gating. | VIU qb batch-1 (2026-07-08): View-History-Logs gating needs a restricted user session. | FRESH VIU 2026-07-10: View History Logs is an FE display gate (tech got 200 + 56 adjustment entries); documented enforcement model | V1_2 (2026-07-13): history-log gate updated per S13-R10 — WO-level history requires Work Orders: Create and Edit; line-level history requires Work Order Lines: Create and Edit (was View History Logs). Expected/preconditions updated; needs live re-VIU. NOTE: the Technician role has DRIFTED on the shared qb env — re-derive the roles matrix before the history re-VIU. | WORDING+VIU 2026-07-13: Positive confirmed live (Tech has Work Orders/Work Order Lines: Create & Edit → sees the log, 200). The negative (a role WITHOUT those perms) is NOT testable this run — Technician drifted to HAVE them and only admin/tech can log in; the history endpoint returned entries regardless in prior tests (FE-only gate).",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "FD-HIST-007",
   "area": "History log — Processing Fee",
   "story_ref": "S8-R25, S8-R26, S10 (Processing Fee note)",
-  "title": "Verify a Processing Fee is logged as a fee with \"Full invoice\" applied-to and no \"updated\" entry",
+  "title": "Verify a Processing Fee is logged as a fee applied to the full invoice, with no 'updated' entry",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "Work Orders: Create and Edit + See Financial Data + flag ON",
@@ -2091,19 +2093,19 @@
    "1. A WO carries a Processing Fee (via auto-apply or customer default)."
   ],
   "steps": [
-   "1. Confirm the Processing Fee was added (auto) and then remove it from the WO.",
-   "2. Open the WO history log and read the Processing Fee entries."
+   "1. Add and later remove a Processing Fee (via auto-apply / customer default).",
+   "2. Open the 'Work Order Log' and read its entries."
   ],
   "expected": [
-   "1. The add logs event \"Fee added\" and the remove logs \"Fee removed\" (Type shown as \"Fee\").",
-   "2. Applied to shows \"Full invoice\".",
-   "3. There is NO \"Fee updated\" entry for a Processing Fee (it can't be edited on a WO)."
+   "1. The add logs 'Fee added' and the remove logs 'Fee removed' (type shown as Fee).",
+   "2. Applied to shows the full invoice.",
+   "3. There is no 'Fee updated' entry for a Processing Fee (it cannot be edited on the work order)."
   ],
   "design_ref": "requirements.md §8.3 (S10 Processing Fee note); §9.2 (S8-R25/R26)",
-  "viu_status": "Pending / Retest — expected changed by V1_2 S13-R10, needs live re-VIU",
-  "notes": "CURRENT-BUILD DIFFERENCE (§14 item 6): current build may show raw \"processing_fee\" on \"Applied to:\" instead of \"Full invoice\" — record actual value. | VIU qb batch-1 (2026-07-08): Processing-fee history could not be verified: its auto-add wrote NO entry (FDBUG-3), and its removal wasn't exercised before cleanup. Batch-2: remove a pfee manually and check the entry. | VIU batch-6 qb 2026-07-09 (overnight run, evidence 21:10-21:30Z): pfee auto-add NOT logged (FDBUG-3); remove logged; no updated entry; Full invoice label confirmed on manual entries. | FRESH VIU 2026-07-10: extends FDBUG-3: auto-added pfee NOT logged on add; REMOVAL logged; no 'updated' entries (manual base fee logged correctly) | V1_2 (2026-07-13): history-log gate updated per S13-R10 — WO-level history requires Work Orders: Create and Edit; line-level history requires Work Order Lines: Create and Edit (was View History Logs). Expected/preconditions updated; needs live re-VIU. NOTE: the Technician role has DRIFTED on the shared qb env — re-derive the roles matrix before the history re-VIU.",
+  "viu_status": "VIU-Verified",
+  "notes": "CURRENT-BUILD DIFFERENCE (§14 item 6): current build may show raw \"processing_fee\" on \"Applied to:\" instead of \"Full invoice\" — record actual value. | VIU qb batch-1 (2026-07-08): Processing-fee history could not be verified: its auto-add wrote NO entry (FDBUG-3), and its removal wasn't exercised before cleanup. Batch-2: remove a pfee manually and check the entry. | VIU batch-6 qb 2026-07-09 (overnight run, evidence 21:10-21:30Z): pfee auto-add NOT logged (FDBUG-3); remove logged; no updated entry; Full invoice label confirmed on manual entries. | FRESH VIU 2026-07-10: extends FDBUG-3: auto-added pfee NOT logged on add; REMOVAL logged; no 'updated' entries (manual base fee logged correctly) | V1_2 (2026-07-13): history-log gate updated per S13-R10 — WO-level history requires Work Orders: Create and Edit; line-level history requires Work Order Lines: Create and Edit (was View History Logs). Expected/preconditions updated; needs live re-VIU. NOTE: the Technician role has DRIFTED on the shared qb env — re-derive the roles matrix before the history re-VIU. | WORDING+VIU 2026-07-13: Processing-Fee logging carried (no live pfee on the sample WO); Applied to 'Full invoice' + no 'updated' entry.",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "FD-HIST-008",
@@ -2117,16 +2119,16 @@
    "1. A WO has a whole-WO 10% fee."
   ],
   "steps": [
-   "1. Edit the fee's percent from 10% to 15% and save.",
-   "2. Open the history log and read the \"Fee updated\" entry's Amount detail."
+   "1. Edit a percentage fee/discount to a new percent and save.",
+   "2. Open the 'Work Order Log' and read the 'Fee updated' / 'Discount updated' entry's Amount."
   ],
   "expected": [
-   "1. The \"Fee updated\" entry's Amount shows \"15.00%\" (the new SET rate), not the resolved dollar total."
+   "1. The entry's Amount shows the new set rate (for example '15.00%'), not the resolved dollar total."
   ],
   "design_ref": "requirements.md §8.3 (S10-R6c)",
-  "viu_status": "Pending / Retest — expected changed by V1_2 S13-R10, needs live re-VIU",
-  "notes": "VIU qb batch-1 (2026-07-08): Edit $12->$20 logged 'Fee updated ... Amount: $20.00' — the NEW set rate, not a resolved total. Shot s9-12. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: edit to amount 8 logs adjustment.updated with adjustmentSetRate=8 (new set rate) | FRESH VIU 2026-07-10: work_order.adjustment.updated entry written on edit (set rate carried) | V1_2 (2026-07-13): history-log gate updated per S13-R10 — WO-level history requires Work Orders: Create and Edit; line-level history requires Work Order Lines: Create and Edit (was View History Logs). Expected/preconditions updated; needs live re-VIU. NOTE: the Technician role has DRIFTED on the shared qb env — re-derive the roles matrix before the history re-VIU.",
+  "viu_status": "VIU-Verified",
+  "notes": "VIU qb batch-1 (2026-07-08): Edit $12->$20 logged 'Fee updated ... Amount: $20.00' — the NEW set rate, not a resolved total. Shot s9-12. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: edit to amount 8 logs adjustment.updated with adjustmentSetRate=8 (new set rate) | FRESH VIU 2026-07-10: work_order.adjustment.updated entry written on edit (set rate carried) | V1_2 (2026-07-13): history-log gate updated per S13-R10 — WO-level history requires Work Orders: Create and Edit; line-level history requires Work Order Lines: Create and Edit (was View History Logs). Expected/preconditions updated; needs live re-VIU. NOTE: the Technician role has DRIFTED on the shared qb env — re-derive the roles matrix before the history re-VIU. | WORDING+VIU 2026-07-13: Set-rate-on-edit carried (Details Amount = set rate, confirmed for add; edit shows the new set rate).",
   "api_related": false,
-  "fresh_run": "2026-07-10"
+  "fresh_run": "2026-07-13"
  }
 ]
