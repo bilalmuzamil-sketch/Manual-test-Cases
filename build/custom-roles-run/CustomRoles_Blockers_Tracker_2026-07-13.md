@@ -2,7 +2,7 @@
 
 Per-case status source: `cases-2026-07-13/*.json`. Workbook: `CustomRoles_WordingVIU_2026-07-13.xlsx` (Case ID + TestRail Link, Rule 8).
 
-**Tally (252 core):** VIU-Verified 186 · Blocked-UI 55 · Deviation/Finding 11. Behavioral pass = boot2 headless; no TestRail writes.
+**Tally (252 core):** VIU-Verified 197 · Blocked-UI 44 · Deviation/Finding 11. Behavioral pass = boot2 headless; no TestRail writes.
 
 ## Deviations / build-findings
 
@@ -32,21 +32,23 @@ Per-case status source: `cases-2026-07-13/*.json`. Workbook: `CustomRoles_Wordin
 | 3537 | Customer Mgmt | 4 | C26399 C26400 C26401 C26405 |
 | 3538 | Parts Dept | 4 | C26412 C26415 C26418 C26419 |
 | 3539 | Invoicing & Payments | 6 | C26422 C26423 C26427 C27871 C29434 C29438 |
-| 3540 | Timesheets | 5 | C26430 C26431 C26433 C26434 C27394 |
+| 3540 | Timesheets | 1 | C26431 |
 | 3541 | Page Access | 4 | C26437 C26438 C26439 C26440 |
 | 3542 | Settings Access | 1 | C26450 |
 | 3543 | View Mode | 4 | C26460 C26461 C26462 C26466 |
 | 3545 | AP/AR Data | 1 | C26479 |
-| 3546 | View History Logs | 2 | C26488 C26489 |
 | 3547 | Staff Role Assign | 3 | C26490 C26491 C26493 |
 | 3550 | Staff Record Settings | 2 | C26526 C26527 |
 | 3552 | User Feedback | 1 | C26539 |
-| 3553 | Cross-Permission | 6 | C26540 C26541 C26544 C26545 C26548 C26550 |
+| 3553 | Cross-Permission | 1 | C26550 |
 
-## Known harness limitation (for the QA lead / real browser)
-- The **Edit Staff Member profile editor** is not reachable in this headless harness (the staff-row action opens Manage-staff-enrollments). Affects C26356, C26490, C26491, C26450 (and staff-role-dropdown cases). Needs a real browser or second user account.
+## Known harness limitations (manual / real-browser residue)
+- **Edit Staff Member profile editor** not openable headless (C26356/C26450/C26490/C26491).
+- **Schedule calendar** drag/slot create/edit/delete not triggerable headless (C26395/C26396/C27867).
+- **Payment/return/terminal & timesheet-entry editors** require deep in-page dialogs not reachable (C26422/C26423/C26427/C29434/C29438/C27871/C26431/C26391/C27866/C27870/C29435).
+- **Last-Administrator guard** can't be tested (89 admins on shared org) (C26550).
 
 ## Resume conditions
 - Tooling `/tmp/custom-roles/beh0713/` (mkrole-api.mjs + permmap.json); assign Tech via /api/staff/{6fb22c1b-...}/change; boot2('tech'); restore Time Clock a0359055-....
-- SEEDER TACTIC: admin as second identity to seed state (notes, submitted authorizations, pickable requests, invoices/payments, returns) then observe gate.
-- GOTCHAs: /parts/part-sales direct-goto redirect (use in-app nav-click); /roles-permissions/{id}/edit route unguarded (FE-gap).
+- SEEDER TACTIC: admin as second identity to seed state, then observe gate.
+- GOTCHAs: /parts/part-sales direct-goto redirect (nav-click); /roles-permissions/{id}/edit route unguarded.

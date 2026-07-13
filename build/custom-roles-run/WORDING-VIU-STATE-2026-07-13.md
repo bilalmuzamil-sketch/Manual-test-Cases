@@ -11,8 +11,8 @@ chromium at `/opt/pw-browsers/chromium-1194` through `$HTTPS_PROXY`. Tooling com
 resides in `/tmp/custom-roles/beh0713/` (adm.mjs, boot2.mjs, drive.mjs, click.mjs,
 cascade.mjs, capture.mjs, setstatus.mjs). Screenshots:
 `screenshots/behavioral-viu-2026-07-13/`.
-- **Behavioral tally (252 core, after round 6): VIU-Verified 186 · Blocked-UI 55 · Deviation/Finding 11.**
-  Round 6: §3535 WO-lines (6 verified: lines-visible/read-only/Build-Lines/add), §3542 Settings sub-pages (8 verified: App/Service/Parts/Finance/Integrations/DataImport groups + sub-toggle independence + Integrations-gated-by-own-toggle). Blocked-precise added: line delete/core/set-status seeding (3535), and the Edit-Staff-Member profile editor is a confirmed harness limitation (C26356/C26450/C26490/C26491 — needs a real browser).
+- **Behavioral tally (252 core, after round 7): VIU-Verified 197 · Blocked-UI 44 · Deviation/Finding 11.**
+  Round 7: §3553 cross-permission (5 verified: all-off/all-on/customer-pick/page-access-override/cascade; C26550 last-admin blocked=89 admins), §3546 History Logs (2: gated by viewHistoryLogs), §3540 Timesheets (4: read-only view / activities report / no-nav / My-Timesheets for clockable), §3536 Schedule (3 blocked: calendar drag not headless). Residue is now mostly known harness limitations (staff-editor, calendar drag, in-page payment/return/timesheet-entry editors, last-admin guard).
 - **Round-2 new deviations:** C26459 & C26464 — labor rate is NOT hidden by tech view when
   See Financial Data is ON (Rate/Margin/Total + labor $ shown); labor-rate visibility
   follows SFD, not view mode (caveat: test role also had WO Create&Edit — dev to confirm).
