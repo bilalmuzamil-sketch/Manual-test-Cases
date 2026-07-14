@@ -121,27 +121,33 @@ all).
    unexplained → need live re-VIU; SF-VPART-01/02 likely stale-7/7-baseline tied to
    known BUG-9) + ingest Jira **SV-8303** (Ayesha's SF-SET-10 note flags a coming
    spec change).
-   **STATUS: FRESH FULL VIU-PROCESS DONE 2026-07-13** (build-accurate wording + VIU
-   per rule 10 over ALL 163 cases; ~171 `update_case` pushes ALL verified 200/200, 0
-   errors). Prior 2026-07-13 work: `_2` spec doc + `Design_3.zip` = byte-identical
-   re-deliveries (no new work); V2.4 Δ1-Δ4 APPLIED (9 cases + new SF-VEND-06=C29442)
-   + pushed (10 writes, 200/200); roles matrix re-derived — **Technician NOT drifted
-   on sv7301**. **Tally: VIU-Verified 116 / VIU-Pending 35 / Blocked-Env 10 /
-   Deviation 1 (SF-SET-03) / Open-Question 1 (SF-QB-09) = 163;** blockers READY 112 /
-   VIU-PENDING(QA) 38 / MILOS 13 / BUG-RULING 0 / DEV-NOT-BUILT 0. Stories 7/8/9/14
-   CONFIRMED BUILT. **reviewer≠completer DESCOPED** (Milos ruling — self-review
-   allowed when the role holds the Mark Reviewed permission; BUG-5 dropped).
-   Headline findings: SF-SET-03 Deviation (no Create Purchase Orders toggle, lags
-   V2.4 → blocks No-PO path SF-COMP-06/SF-QB-02); completion modal has NO VIN even
-   review-off (corrected SF-COMP-16/SF-VAL-02/SF-REV-03/SF-UX-02); OBS-6 Part-History
-   500 re-confirmed; SF-PERM-06 app-blocks/backend-allows gap. **WAITING ON:** Milos
-   Round-3 answers (13 MILOS cases; 3 deliverables ready to send:
+   **STATUS: VIU-PROCESS COMPLETE + ALL VIU-PENDING DRIVEN TO A VERDICT (through
+   2026-07-14).** PROJECT-STATE.md is the canonical resume doc — read it first.
+   Full build-accurate wording+VIU pass (all 163, pushed 200/200) + V2.4 Δ1-Δ4
+   applied (+ new SF-VEND-06=C29442) + reviewer≠completer DESCOPED (self-review
+   allowed when role holds Mark Reviewed; BUG-5 dropped) + spec-relevance
+   reconciliation (0 obsolete, 3 label cases fixed, deliverables grep-clean) +
+   run-325 (Ayesha) reconciled (3 disputed fails reaffirmed Verified, SF-COMP-21/22
+   flipped Verified) + the 2026-07-14 VIU grind (7 flipped Verified, 8
+   awaiting-Milos, SF-VMIS-06 new Deviation, 17→Blocked-Env). Roles matrix
+   re-derived — **Technician NOT drifted on sv7301.** **Final tally (163):
+   VIU-Verified 125 / VIU-observed-awaiting-Milos 8 / Blocked-Env 27 / Deviation 2 /
+   Open-Question 1; VIU-Pending = 0.** Stories 7/8/9/14 CONFIRMED BUILT; DEV-NOT-BUILT
+   = 0. **162/163 current in TestRail** (SF-QB-09 unmapped, no C-ID). **Deviations
+   (2):** SF-SET-03 (no Create Purchase Orders toggle) + SF-VMIS-06 (no Vendor-Missing
+   "needs vendor" report). Build findings OBS-6 (Part-History 500) + OBS-7 (universal
+   disabled-Complete gate on unapproved line, expected). **WAITING ON:** Milos
+   Round-3 answers (the 8 awaiting-Milos: SF-SET-08/COMP-06/RCV-05/RCV-07/REV-11/
+   REV-15/UX-04/QB-02, + the earlier MILOS set; 3 deliverables ready to send:
    PO-Questions-Round3.xlsx, SimpleFlow_Bugs-for-Milos-Confirm.xlsx,
-   SimpleFlow_Bug-Drafts.xlsx). 38 VIU-PENDING(QA) genuinely blocked on non-seedable
-   data (vendor-missing PO, Needs-Approval line, cores, invoiced/paid WO, VIN-less
-   asset, OBS-6, QuickBooks-needs-a-human, brand-new-org defaults). 4 active bug
-   drafts (TICKET 2-5) unfiled (no Atlassian in this env); OBS-6 for dev. SF-QB-09
-   unmapped in testrail-id-map.csv (Open-Question, not in TestRail) — follow-up.
+   SimpleFlow_Bug-Drafts.xlsx); Jira SV-8303 (coming spec change flagged by Ayesha on
+   SF-SET-10 — ingest next spec round). **27 Blocked-Env** with precise reasons
+   (§0-ZZ): QuickBooks not connected (9, needs QB-connected company + human in QB),
+   special-order vendor cores not creatable (9), invoiced/paid WO not drivable (3),
+   inline-PN/OBS-6 (3), merge auto-consolidates (2), VIN-less asset (1). 4 active bug
+   drafts (TICKET 2-5) unfiled (no Atlassian in this env); OBS-6 + SF-VMIS-06 gap for
+   dev. SF-QB-09 unmapped in testrail-id-map.csv (Open-Question, not in TestRail) —
+   follow-up.
    **qb/sv7301 env is SHARED — re-read settings before runs, restore byte-identical
    after** (node-fetch-ignores-proxy gotcha → use undici ProxyAgent). All detail
    (deltas, blockers, env, how-to-resume) in PROJECT-STATE.md = canonical resume doc.
