@@ -1,0 +1,25 @@
+{
+  "_comment": "Change-detection state for the spec monitor. body_sha256 = SHA-256 of the page markdown body as returned by getConfluencePage(contentFormat=markdown) and written to the baseline file via `jq -r '.content.nodes[0].body'`. The scheduled run recomputes the hash the same way and compares; identical hash => no change => stay silent.",
+  "cloudId": "shopview.atlassian.net",
+  "last_synced": "2026-07-13",
+  "pages": {
+    "fees-discounts": {
+      "label": "Fees & Discounts V1",
+      "pageId": "622297094",
+      "baseline_file": "baselines/fees-discounts.md",
+      "body_sha256": "8415b325be115630458455a890e08eb8d341afc5c00372566d7ea8f11cf1d0f1",
+      "body_bytes": 79526,
+      "page_last_modified": "2026-07-12 (11:55 PM) — Chris Ward",
+      "latest_changelog_entry": "2026-07-12 | @chris / @claude | Permissions pass (Story 13 + Stories 1, 3, 4, 9, 10, 11)"
+    },
+    "simple-flow": {
+      "label": "Simple Mode — Streamlined Work Order Completion & Bulk Receiving",
+      "pageId": "646021121",
+      "baseline_file": "baselines/simple-flow.md",
+      "body_sha256": "014a2f0563d25cef35cb48a21fc63e6f9d3b8d7966994247c4fff6c942895568",
+      "body_bytes": 64678,
+      "page_last_modified": "2026-07-10 — Milos Vasic",
+      "latest_changelog_entry": "2026-07-08 | @Milos Vasic | Sell price mandatory at save (Story 5); sell-price-only parts orderable from the line (NOTE: the in-doc change log is not always updated — the SV-8183 permissions section was added 2026-07-10 without a log entry)"
+    }
+  }
+}
