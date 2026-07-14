@@ -110,7 +110,17 @@ all).
    SV-7876 + §9/§10 SV-8183 permissions; `design-notes.md`; `viu-findings.md`;
    `cases/*.json` = 163 authored cases with `SF-` IDs; `SimpleFlow_V1_TestCases.xlsx/.csv`;
    `build_workbook.py` + `gen_cases.py`). All 163 cases in TestRail EXCEPT SF-QB-09
-   (no C-ID, Open-Question); no execution run exists.
+   (no C-ID, Open-Question). **A QA execution run EXISTS — run 325 "Simple Flow -
+   Ayesha Khan -> Specs 7/7/2026"** (project 1/suite 1; snapshot 48 Passed / 6 Failed
+   / 13 Blocked / 89 Untested; results logged by Ayesha 2026-07-13). It was **NOT
+   created by us** — it is Ayesha's/QA's run; **never write results to it without
+   explicit permission** (corrects the earlier "no execution run exists" note).
+   Reconciliation vs our findings:
+   `build/simple-flow/run325-reconciliation-2026-07-13.md` — priority follow-ups = 5
+   "she-FAILED / we-VIU-Verified" cases (SF-COMP-02, SF-TECH-02, SF-VPART-06
+   unexplained → need live re-VIU; SF-VPART-01/02 likely stale-7/7-baseline tied to
+   known BUG-9) + ingest Jira **SV-8303** (Ayesha's SF-SET-10 note flags a coming
+   spec change).
    **STATUS: FRESH FULL VIU-PROCESS DONE 2026-07-13** (build-accurate wording + VIU
    per rule 10 over ALL 163 cases; ~171 `update_case` pushes ALL verified 200/200, 0
    errors). Prior 2026-07-13 work: `_2` spec doc + `Design_3.zip` = byte-identical

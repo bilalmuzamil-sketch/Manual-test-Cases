@@ -222,8 +222,16 @@ Tech never swapped (still Technician).
    `testrail-id-map.csv` (no C-ID)** — deliberately not created in TestRail; assign a
    C-ID only if imported after dev confirmation. Follow-up.
 6. TestRail import files remain **INTERIM** (two-phase finalization; finalize after
-   Round-3 + the remaining blocked VIU clear); **no execution run exists** so VIU
-   pass/fail is not logged as a TestRail run.
+   Round-3 + the remaining blocked VIU clear). **A QA execution run DOES exist —
+   run 325 "Simple Flow - Ayesha Khan -> Specs 7/7/2026"** (project 1 / suite 1;
+   snapshot **48 Passed / 6 Failed / 13 Blocked / 89 Untested**; results logged by
+   Ayesha 2026-07-13). It was **NOT created by us** — it is Ayesha's/QA's run; **we
+   do not write results to it without explicit permission.** (Corrects the earlier
+   "no execution run exists" note.) Reconciliation of run 325 vs our findings:
+   `run325-reconciliation-2026-07-13.md`. Priority follow-ups = the 5 "she-FAILED /
+   we-VIU-Verified" cases (SF-COMP-02, SF-TECH-02, SF-VPART-06 unexplained → live
+   re-VIU; SF-VPART-01/02 likely stale-7/7-baseline / known BUG-9) + ingest Jira
+   **SV-8303** (Ayesha's SF-SET-10 note, spec change coming).
 
 ---
 
@@ -330,9 +338,16 @@ SF-RCV-08, SF-VMIS-03); brand-new-org cohort defaults (SF-SET-08, SF-REV-15).
   `testrail-wording-viu-log.md`.
 - **ALL 163 cases are in TestRail EXCEPT SF-QB-09** (no C-ID; Open-Question, not
   created). Nothing is proposal-only / unpushed as of 2026-07-13.
-- **No execution run** exists → VIU pass/fail is **NOT** logged as a TestRail run;
-  per-case VIU status lives only in `cases/*.json` + `SimpleFlow_Blockers_Tracker.*`
-  + `SimpleFlow_Results.*`.
+- **QA execution run 325 EXISTS** — **"Simple Flow - Ayesha Khan -> Specs 7/7/2026"**
+  (project 1 / suite 1; created by another user 2026-07-07, results logged by Ayesha
+  Khan 2026-07-13). Snapshot **48 Passed / 6 Failed / 13 Blocked / 89 Untested**.
+  **NOT our run** — Ayesha's/QA's; **do not write to it without explicit permission.**
+  Our own per-case VIU status still lives in `cases/*.json` +
+  `SimpleFlow_Blockers_Tracker.*` + `SimpleFlow_Results.*` (we do not log VIU pass/fail
+  into a TestRail run of our own). Run-325 reconciliation vs our findings:
+  `run325-reconciliation-2026-07-13.md` (6 failed + 13 blocked mapped; priority
+  "she-failed / we-verified" set called out; no case status changed — needs a verified
+  live re-check).
 - Import files (`testrail-import/simple-flow-v1-testrail-import.csv`/`.xlsx`) are the
   full-suite upload; `simple-flow-v2.4-update.xml` / `simple-flow-UPDATE.xml` are
   update-only artifacts. **Import files remain INTERIM** pending post-VIU +
@@ -379,6 +394,9 @@ SF-RCV-08, SF-VMIS-03); brand-new-org cohort defaults (SF-SET-08, SF-REV-15).
 - `build/simple-flow/design-notes.md` — design catalog; `design-change-diff.md` (07-08 refresh); `design-latest-catalog.md` (07-09); `design-diff-2026-07-10.md` — **07-10 bundle = byte-identical re-delivery, no impact**; preserved copy `design2-2026-07-10/`.
 - `build/simple-flow/contradiction-resolution.md` — last-update-wins conflict log (C1–C3 + the 2026-07-10 reviewer≠completer descope ruling).
 - `build/simple-flow/finding-reclassification.md` — shortcut-principle reclassification.
+- `build/simple-flow/run325-reconciliation-2026-07-13.md` — **reconciliation of QA
+  run 325 (Ayesha Khan) vs our findings** (6 failed + 13 blocked mapped to SF-IDs /
+  our status; priority "she-failed / we-verified" set; read-only, no status changed).
 - `build/simple-flow/bugs-log.md` — all VIU bugs/deviations (BUG-1..BUG-11, GAP-A/B, OBS-1..6).
 - `build/simple-flow/viu-findings.md` — full VIU evidence + endpoints; `viu-evidence/` — screenshots.
 - `build/simple-flow/jira-bug-drafts.md` — **4 active** ready-to-file Jira tickets (TICKET 2–5); BUG-5/TICKET 1 dropped.
