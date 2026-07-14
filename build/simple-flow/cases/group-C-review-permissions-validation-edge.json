@@ -941,9 +941,9 @@
    "4. Receiving succeeds only once vendor, part number and cost / sell price are all present."
   ],
   "design_ref": "requirements S12-R2 / S10 / S13-R6 / S13-R7",
-  "viu_status": "VIU-Pending",
-  "fresh_run": "2026-07-13",
-  "notes": "V2.4 Δ3 wording applied (new S13-R6 part# + S13-R7 cost/sell receive gates). VIU-Pending: verifying the three receive-time gates needs a vendor-missing part on the Bulk Receive / vendor-missing surface; to be driven in the SF-VEND / SF-RCV receive-cluster pass (seed a vendor-missing PO). Not driven in this SF-VAL slice.",
+  "viu_status": "VIU-Verified",
+  "fresh_run": "2026-07-14",
+  "notes": "VIU-Verified live 2026-07-14 on the Bulk Receive page (/bulk-receive) with a freshly seeded vendor-missing WO PO (S-15845, order 0ee75c5f, part 'Gear oil' no PN/no vendor/cost=sell=0). Receive-button gate progression confirmed: no vendor -> Receive DISABLED; vendor assigned (POST /api/orders/{id}/assign-vendor 200, auto-assigned with NO merge prompt, vendor-missing flag cleared) but no part number -> DISABLED; part number entered but cost/sell still 0 -> DISABLED; part number + vendor invoice number + cost + sell all present -> Receive ENABLED (receivable). Confirms a vendor-missing part cannot be received without a vendor, a part number, and a cost/sell price.",
   "api_related": false
  },
  {
