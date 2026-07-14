@@ -2,7 +2,7 @@
   "_comment": "Change-detection state for the spec monitor. body_sha256 = SHA-256 of the page markdown body as returned by getConfluencePage(contentFormat=markdown) and written to the baseline file via `jq -r '.content.nodes[0].body'`. The scheduled run recomputes the hash the same way and compares; identical hash => no change => stay silent.",
   "cloudId": "shopview.atlassian.net",
   "routine_trigger_id": "trig_016nNEbfmmTGbNSWZKPHawJX",
-  "schedule": "cron 7 * * * * UTC = hourly at :07 (every hour)",
+  "schedule": "cron 7 */5 * * * UTC = every 5 hours at :07 (00/05/10/15/20 UTC)",
   "last_synced": "2026-07-13",
   "pages": {
     "fees-discounts": {
