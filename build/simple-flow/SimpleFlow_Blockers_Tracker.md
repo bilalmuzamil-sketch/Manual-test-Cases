@@ -9,9 +9,9 @@
 
 | Blocker category | Count | Owner |
 |---|---:|---|
-| READY (VIU-Verified) | 112 | — (ready to upload) |
+| READY (VIU-Verified) | 114 | — (ready to upload) |
 | BLOCKED — DEV NOT BUILT | 0 | Dev team |
-| BLOCKED — VIU PENDING (QA) | 38 | QA |
+| BLOCKED — VIU PENDING (QA) | 36 | QA |
 | BLOCKED — MILOS ANSWER | 13 | Milos (PO) |
 | BLOCKED — BUG/RULING | 0 | Dev / PO ruling |
 | **TOTAL** | **163** | |
@@ -25,15 +25,15 @@
 
 | VIU sub-bucket | Count | Meaning |
 |---|---:|---|
-| reachable-now | 6 | admin+tech + normal data; just needs another VIU pass (no new inputs). |
+| reachable-now | 4 | admin+tech + normal data; just needs another VIU pass (no new inputs). |
 | needs-data | 32 | needs a data state not seedable via the app (see per-case detail). |
 | needs-account | 0 | needs a role account we don't have (see per-case detail). |
-| **TOTAL VIU PENDING (QA)** | **38** | |
+| **TOTAL VIU PENDING (QA)** | **36** | |
 
 ## WHAT TO SEND ME NEXT (to unblock each batch)
 
 - **Milos's answers to the 11 Open Questions** → unblocks 13 cases (all the MILOS-ANSWER rows). Send the filled-in OpenQuestions-for-Milos sheet.
-- **Fresh QA cookies for sv7301 (admin + tech) + seeded test data** → unblocks the bulk of the 38 VIU-PENDING (QA) cases (cores, receiving, vendor, validation round-trips).
+- **Fresh QA cookies for sv7301 (admin + tech) + seeded test data** → unblocks the bulk of the 36 VIU-PENDING (QA) cases (cores, receiving, vendor, validation round-trips).
 - **A 2nd/3rd role account (Office, Service Manager, Foreman) — some WITHOUT 'See Financial Data'** → unblocks SF-PERM-09 and SF-PERM-10 (per-role completion + vendorless-add gate).
 - **A dev/PO ruling on FE-only BE enforcement + the missing reviewer!=completer rule (resolve SV-8183 'BE enforces' vs SV-7864 atom-collapse)** → finalizes the 0 BUG/RULING cases.
 
@@ -76,8 +76,8 @@
 | SF-COMP-18 | Completion — PO + Required Invoice (Story 4) | Verify the required-invoice wizard disables Complete until parts are received and offers no skip option | VIU-Verified | READY | READY (VIU-Verified) | — | None — VIU-verified; uploadable now. | S4-R4 | — |  | C29307 | [C29307](https://shopview.testrail.io/index.php?/cases/view/29307) |
 | SF-COMP-19 | Completion — PO + Required Invoice (Story 4) | Verify the required-invoice receive round-trip returns to the modal and enables Complete once all received | VIU-Verified | READY | READY (VIU-Verified) | — | None — VIU-verified; uploadable now. | S4-R5 / S4-R7 | — |  | C29308 | [C29308](https://shopview.testrail.io/index.php?/cases/view/29308) |
 | SF-COMP-20 | Completion — PO + Required Invoice (Story 4) | Verify Cancel in the required-invoice wizard makes no change to the work order | VIU-Verified | READY | READY (VIU-Verified) | — | None — VIU-verified; uploadable now. | S4-R6 | — |  | C29309 | [C29309](https://shopview.testrail.io/index.php?/cases/view/29309) |
-| SF-COMP-21 | Completion — Line approval gate | Verify on a required-invoice work order an unapproved line disables the Complete Work Order button with a tooltip | VIU-Pending | BLOCKED | BLOCKED — VIU PENDING (QA) | QA (needs cookies+seed data) | QA VIU: seed the specific completion configuration and drive the wizard to Success. | S4-R8 / Key Decision (all lines approved) / S3-R9 | reachable-now | admin+tech + normal WO data; needs another VIU pass (no new inputs). | C29310 | [C29310](https://shopview.testrail.io/index.php?/cases/view/29310) |
-| SF-COMP-22 | Completion — Line approval gate | Verify a manually unapproved line disables the required-invoice Complete Work Order button with a tooltip even when Auto-approve is ON | VIU-Pending | BLOCKED | BLOCKED — VIU PENDING (QA) | QA (needs cookies+seed data) | QA VIU: seed the specific completion configuration and drive the wizard to Success. | S4-R8 / Key Decision (holds regardless of Auto-approve) | reachable-now | admin+tech + normal WO data; needs another VIU pass (no new inputs). | C29311 | [C29311](https://shopview.testrail.io/index.php?/cases/view/29311) |
+| SF-COMP-21 | Completion — Line approval gate | Verify on a required-invoice work order an unapproved line disables the Complete Work Order button with a tooltip | VIU-Verified | READY | READY (VIU-Verified) | — | None — VIU-verified; uploadable now. | S4-R8 / Key Decision (all lines approved) / S3-R9 | — |  | C29310 | [C29310](https://shopview.testrail.io/index.php?/cases/view/29310) |
+| SF-COMP-22 | Completion — Line approval gate | Verify a manually unapproved line disables the required-invoice Complete Work Order button with a tooltip even when Auto-approve is ON | VIU-Verified | READY | READY (VIU-Verified) | — | None — VIU-verified; uploadable now. | S4-R8 / Key Decision (holds regardless of Auto-approve) | — |  | C29311 | [C29311](https://shopview.testrail.io/index.php?/cases/view/29311) |
 | SF-COMP-23 | Completion — Idempotency | Verify re-running completion after a prior attempt does not create duplicate POs | VIU-Verified | READY | READY (VIU-Verified) | — | None — VIU-verified; uploadable now. | S3-R9 (no duplicate POs on re-Complete) | — |  | C29312 | [C29312](https://shopview.testrail.io/index.php?/cases/view/29312) |
 | SF-CORE-01 | Core parts — Completion modal (Stories 3/4/16) | Verify inventory cores are resolved via a line-level Ok/Not-OK control (no distinct Resolve-Cores wizard step) | VIU-Verified | READY | READY (VIU-Verified) | — | None — VIU-verified; uploadable now. | S3-C1 / S4-C1 / Resolve Cores handoff | — |  | C29313 | [C29313](https://shopview.testrail.io/index.php?/cases/view/29313) |
 | SF-CORE-02 | Core parts — Completion modal | Verify a work order with no cores completes with no core sub-lines and no Resolve-Cores wizard step | VIU-Verified | READY | READY (VIU-Verified) | — | None — VIU-verified; uploadable now. | S3-C1 (skipped if none) | — |  | C29314 | [C29314](https://shopview.testrail.io/index.php?/cases/view/29314) |

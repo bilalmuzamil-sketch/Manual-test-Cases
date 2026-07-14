@@ -4,6 +4,13 @@
 > **Scope:** READ-ONLY on TestRail. Nothing was written to TestRail. No case `viu_status` changed.
 > Reconciliation is report-only; any status flip needs a separate, verified live pass.
 
+> **UPDATE 2026-07-14 — 5 cases RESOLVED via a verified live re-VIU pass.** See the new
+> **§7 Resolution** at the bottom. Priority-A 3 unexplained fails (SF-COMP-02 / SF-TECH-02 /
+> SF-VPART-06) all **REAFFIRMED VIU-Verified** (Ayesha's fails were FALSE/STALE); Priority-B
+> 2 she-passed cases (SF-COMP-21 / SF-COMP-22) **FLIPPED VIU-Pending → VIU-Verified** with a
+> tooltip wording fix pushed to TestRail (2 `update_case`, 200/OK). Settings restored
+> byte-identical; Tech untouched.
+
 ---
 
 ## 0. What run 325 is
@@ -120,3 +127,43 @@ cases; SF-SET-03 Deviation is Untested in run 325.)*
 
 **No TestRail writes were made. No case `viu_status` was changed.** All conclusions above are
 report-only and any status change is deferred to a separate, verified live pass.
+
+---
+
+## 7. RESOLUTION (verified live re-VIU pass, 2026-07-14)
+
+Live re-VIU on sv7301 (admin, boot2 hydration). Per-case settings flipped as needed then
+**restored byte-identical to the 2026-07-13 baseline** (verified). Tech role NOT modified
+(admin-only). Screenshots: `screenshots/run325-reverify-2026-07-13/`.
+
+### 7.1 Priority A — the 3 unexplained "she-failed / we-verified" fails
+
+| C-ID | SF-ID | Live verdict | Ayesha's Fail was | Evidence |
+|---|---|---|---|---|
+| C29291 | **SF-COMP-02** | **VIU-Verified REAFFIRMED** — labor-only approved-line WO (S-15839) completed in ONE confirm straight to the Success screen ('Order complete' + 'Sent to Finance as an invoice-ready draft', Done / Go To Invoice); single `POST /simple-complete → 201`; WO → Complete, line → complete. No PO/receive step. | **FALSE / STALE** (no real bug) | COMP02-01-open.png |
+| C29324 | **SF-TECH-02** | **VIU-Verified REAFFIRMED** — Require Tech Stories ON: `simple-complete → 400 "Line can not be completed without a tech story"`; UI routes to a **"Tech story"** modal (Line 1 of 1 / Tech Story field / Continue) forcing the story first. | **FALSE / STALE** — most likely Require Tech Story was OFF on the shared env when she ran | TECH02-01-storygate.png |
+| C29336 | **SF-VPART-06** | **VIU-Verified REAFFIRMED** — vendorless part (pn/vendor/order null) → edit to add PN 'ZZPN-TRANS1' + vendor 'Aabridge Beverages' (`part/change-request → 200`) → part carries both = no longer vendorless. QB-eligibility half remains QB-blocked (no QB-connected company). | **FALSE / STALE** (transition confirmed; her fail likely the QB-eligibility half or vendor-flag not clearing in her data) | VPART06-01-edit-open.png / VPART06-02-filled.png |
+
+**No new bug found. All three build behaviors match our (already-current) case wording, so
+NO TestRail write was needed for these three.**
+
+### 7.2 Priority B — the 2 she-passed / we-pending cases → FLIPPED
+
+| C-ID | SF-ID | Live verdict | Flip |
+|---|---|---|---|
+| C29310 | **SF-COMP-21** | Require Vendor Invoice Number **ON** + Auto-approve **OFF**: a Needs-Approval line (status `authorization_required`) leaves the **"Complete Work Order" button DISABLED** (aria-disabled=true, disabled class); hover tooltip = **"Every line must be approved or declined in order to complete the work order."**; approving the line re-enables the button. | **VIU-Pending → VIU-Verified** |
+| C29311 | **SF-COMP-22** | Require Vendor Invoice Number **ON** + Auto-approve **ON**: a line auto-approved on add, then manually un-approved, drives the **same DISABLED button + same tooltip** (gate holds with Auto-approve ON); re-approving re-enables. | **VIU-Pending → VIU-Verified** |
+
+**Wording fix (build-accurate, Rule 9):** the live build tooltip is **generic** —
+"Every line must be approved or declined in order to complete the work order." — it does
+**NOT name the specific line** as our old expected wording claimed. SF-COMP-21 expected #2/#3
+and SF-COMP-22 expected #1 were corrected to the exact build tooltip and **pushed to TestRail
+via `update_case` (custom_expected only), 2 updated / 0 failed, verify 200/OK.**
+
+### 7.3 TestRail + env
+
+- **TestRail writes:** ONLY 2 `update_case` (C29310, C29311 — wording fix), 200/OK verified.
+  The 3 reaffirmed cases had no wording change → no write. **Nothing written to run 325** (QA's).
+- **Env restore:** Work Order settings restored **byte-identical** to the 2026-07-13 baseline
+  (verified true). Tech role never changed (admin-only session).
+- **New tally impact:** +2 VIU-Verified / −2 VIU-Pending (see PROJECT-STATE.md).

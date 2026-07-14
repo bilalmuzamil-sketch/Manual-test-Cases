@@ -256,3 +256,36 @@ was already ON); Tech never switched. Evidence in
   [title, custom_steps, custom_expected] verify=200/OK.
 
 **Summary:** 3 cases · TestRail **3 updated / 0 no-op / 0 failed, all verify 200/OK.**
+
+---
+
+## Run-325 re-verify (2026-07-14) — 5 cases settled against Ayesha's run 325
+
+Live re-VIU on sv7301 (admin, boot2 hydration). Settings flipped per case then
+**restored byte-identical to baseline** (verified). Tech role NOT modified (admin-only).
+
+**Live verdicts:**
+- **SF-COMP-02 (C29291)** — VIU-Verified REAFFIRMED. Labor-only approved-line WO (S-15839)
+  completed in ONE confirm to the Success screen ('Order complete' + 'Sent to Finance as
+  an invoice-ready draft', Done / Go To Invoice); single simple-complete -> 201; WO ->
+  Complete, line -> complete. Ayesha's Fail = FALSE/STALE. **No wording change -> no TestRail write.**
+- **SF-TECH-02 (C29324)** — VIU-Verified REAFFIRMED. Require Tech Stories ON: simple-complete
+  -> 400 'Line can not be completed without a tech story'; UI routes to a 'Tech story' modal
+  (Line 1 of 1 / Tech Story field / Continue). Ayesha's Fail = FALSE/STALE (likely toggle OFF
+  at her run). **No wording change -> no TestRail write.**
+- **SF-VPART-06 (C29336)** — VIU-Verified REAFFIRMED. Vendorless part (pn/vendor null) -> add
+  PN + vendor (change-request -> 200) -> part carries both = no longer vendorless. QB-eligibility
+  half remains QB-blocked. Ayesha's Fail = FALSE/STALE. **No wording change -> no TestRail write.**
+- **SF-COMP-21 (C29310)** — FLIPPED VIU-Pending -> VIU-Verified. Require Vendor Invoice Number
+  ON + Auto-approve OFF: Needs-Approval line -> 'Complete Work Order' button DISABLED
+  (aria-disabled=true) with tooltip 'Every line must be approved or declined in order to
+  complete the work order.'; approving re-enables. **WORDING FIX:** expected #2/#3 corrected —
+  tooltip is GENERIC and does NOT name the line. UPDATED [custom_expected] verify=200/OK.
+- **SF-COMP-22 (C29311)** — FLIPPED VIU-Pending -> VIU-Verified. Require Vendor Invoice Number
+  ON + Auto-approve ON: line auto-approved then manually un-approved -> button DISABLED + same
+  generic tooltip (gate holds with Auto-approve ON); re-approve re-enables. **WORDING FIX:**
+  expected #1 corrected to the exact build tooltip. UPDATED [custom_expected] verify=200/OK.
+
+**Summary:** 5 cases settled · 3 REAFFIRMED (no writes) · 2 FLIPPED to VIU-Verified with
+wording fixes. TestRail **2 updated / 0 no-op / 0 failed, all verify 200/OK.** No results
+written to run 325 (QA's run). Screenshots: build/simple-flow/screenshots/run325-reverify-2026-07-13/.
