@@ -57,6 +57,21 @@ questions = [
                  "before it saves.\n"
                  "B) Silent is fine - no warning needed, as long as the credited "
                  "amount is exact (which it is today)."),
+        "answer": ("A (Chris Ward, 2026-07-14): \"A - already resolved: the warning "
+                   "exists and is spec-required (S6-R12, 'the carry is never "
+                   "silent'). It shows before invoicing and before marking the WO "
+                   "reviewed/complete, stating the $0.00 floor, that tax on the "
+                   "taxable base is still owed, and the exact credit amount, and "
+                   "requires confirmation. It intentionally doesn't fire when the "
+                   "adjustment is merely added (nothing committed yet; the add "
+                   "dialog's preview shows the resulting totals). No change "
+                   "needed.\""),
+        "action": ("Warning is required and (per PO) already exists at commit "
+                   "points. FDBUG-15 reclassified NOT-A-DEFECT (our add-time "
+                   "observation was the wrong trigger point); no dev ticket "
+                   "created. FD-QB-014 (C28557) expected reworded to the commit-"
+                   "point warning; status -> VIU-Pending (needs a commit-time "
+                   "re-VIU). Staged for TestRail push (awaiting authorization)."),
     },
     {
         "topic": "Typing 0 as a fee's maximum removes the limit instead of applying it",
@@ -73,6 +88,16 @@ questions = [
                  "(charge nothing).\n"
                  "C) Don't allow it - the app should refuse 0 in the maximum box and "
                  "ask for a real amount (or an empty box)."),
+        "answer": ("A (Chris Ward, 2026-07-14): \"A - already resolved by spec: "
+                   "S2-R25 says an entered 0 is treated the same as empty, i.e. no "
+                   "maximum. Working as designed; a true $0 cap can only come from "
+                   "legacy data (S5-R6 note), never from the UI. No change "
+                   "needed.\""),
+        "action": ("0 = 'no limit' is working as designed. FDBUG-9 closed as "
+                   "accepted; TICKET 4 DROPPED. FD-CALC-008 (C28575), FD-VAL-006 "
+                   "(C28604), FD-TMPL-011 (C28512) expecteds reworded to affirm "
+                   "0 = no cap; all flipped to VIU-Verified. Staged for TestRail "
+                   "push (awaiting authorization)."),
     },
     {
         "topic": "Very small percentages are quietly rounded up",
@@ -89,6 +114,13 @@ questions = [
                  "was typed (for example 0.005%).\n"
                  "C) Refuse it - the app should reject anything smaller than 0.01% "
                  "with a clear message, so the user knowingly picks a valid value."),
+        "answer": ("A (Chris Ward, 2026-07-14): \"A -- fully anticipated and "
+                   "expected.\""),
+        "action": ("Quietly rounding tiny percentages up to the 0.01% minimum is "
+                   "expected. FDBUG-10 closed as accepted; TICKET 5 DROPPED. "
+                   "FD-CALC-006 (C28573) expected reworded to expect the round-up-"
+                   "to-minimum coercion; flipped to VIU-Verified. Staged for "
+                   "TestRail push (awaiting authorization)."),
     },
     {
         "topic": "A processing fee's \"minimum amount\" is quietly thrown away",
@@ -105,6 +137,18 @@ questions = [
                  "B) Don't support it - but make that clear: remove/disable the box "
                  "for processing fees (or show a message) so nothing a user types is "
                  "ever silently thrown away."),
+        "answer": ("B (Chris Ward, 2026-07-14): \"B - already resolved by spec: "
+                   "S8-N6 forbids a Processing Fee minimum. Premise doesn't "
+                   "reproduce: there is no minimum-amount field anywhere in the UI, "
+                   "and the API rejects a Processing Fee minimum with an explicit "
+                   "error ('A processing fee cannot have a minimum or maximum cap') "
+                   "- nothing is silently dropped. No change needed.\""),
+        "action": ("Processing fees don't support a minimum and the app already "
+                   "makes that clear (no field + explicit API reject - matches the "
+                   "live 2026-07-13 finding). FD-PROC-014 (C28532) expected reworded "
+                   "to the explicit-reject + no-field behavior; stays VIU-Verified. "
+                   "No dev ticket. Staged for TestRail push (awaiting "
+                   "authorization)."),
     },
 ]
 
@@ -130,7 +174,11 @@ internal_map = [
      "discount saves 201 with no warning payload; batch-6 UI shots show no "
      "warn/confirm dialog). Currently bucketed case-update pending this PO "
      "ruling. A=defect ticket + keep spec expected; B=case-update FD-QB-014 to "
-     "silent-carry expected."),
+     "silent-carry expected. ANSWERED 2026-07-14 = A (warning exists at commit "
+     "points; add-time silent is intentional). Applied: FDBUG-15 reclassified "
+     "NOT-A-DEFECT (no ticket); FD-QB-014 expected reworded to the commit-point "
+     "warning; status -> VIU-Pending (commit-time re-VIU outstanding). Staged for "
+     "TestRail push."),
     (2,
      "FDBUG-9 (maxCap 0 accepted as \"no cap\"). Cases FD-CALC-008 (0 must force "
      "$0.00), FD-VAL-006 (0/empty edge behavior), FD-TMPL-011 (template dialog "
@@ -143,7 +191,10 @@ internal_map = [
      "FD-CALC-008 / FD-VAL-006 / FD-TMPL-011 = VIU-Deviation (FDBUG-9 CONFIRMED "
      "AGAIN 2026-07-10: maxCap 0 stored, 10% resolved 34.15 = uncapped). "
      "A=case-update all 3 to \"0 = no cap\" + drop TICKET 4; B=file TICKET 4 as "
-     "drafted (§5-R6); C=new validation requirement + case updates."),
+     "drafted (§5-R6); C=new validation requirement + case updates. ANSWERED "
+     "2026-07-14 = A (0 = no limit, WAD, S2-R25). Applied: all 3 expecteds "
+     "reworded to affirm 0 = no cap; flipped VIU-Verified; TICKET 4 DROPPED; "
+     "FDBUG-9 closed accepted. Staged for TestRail push."),
     (3,
      "FDBUG-10 (below-minimum percent silently rounded up, not rejected). Case "
      "FD-CALC-006. Jira draft exists: jira-bug-drafts.md TICKET 5 (not filed).",
@@ -153,7 +204,11 @@ internal_map = [
      "FD-CALC-006 = VIU-Deviation (FDBUG-10 CONFIRMED AGAIN 2026-07-10: pct "
      "0.005 accepted 201 and coerced to 0.01, resolved 0.02; flat 0.005 stored "
      "as 0.01). A=case-update to expect coercion + drop TICKET 5; B=dev change "
-     "(store exact, likely new precision spec); C=file TICKET 5 as drafted."),
+     "(store exact, likely new precision spec); C=file TICKET 5 as drafted. "
+     "ANSWERED 2026-07-14 = A (rounding fine/expected). Applied: FD-CALC-006 "
+     "expected reworded to expect the round-up-to-minimum coercion; flipped "
+     "VIU-Verified; TICKET 5 DROPPED; FDBUG-10 closed accepted. Staged for "
+     "TestRail push."),
     (4,
      "FD-PROC-014 (Processing Fee minimum-amount rejection). No FDBUG - the §8 "
      "no-minimum invariant holds; the deviation is silent-ignore vs explicit "
@@ -167,7 +222,12 @@ internal_map = [
      "2026-07-10: pfee minimum silently STRIPPED on create - 201, no min field "
      "persisted). A=spec/data-model change + new cases for pfee minimums; "
      "B=case-update FD-PROC-014 to expect explicit reject/absent field vs "
-     "today's silent strip (minor dev tweak or accepted-behavior wording)."),
+     "today's silent strip (minor dev tweak or accepted-behavior wording). "
+     "ANSWERED 2026-07-14 = B (don't support, make clear). Applied: FD-PROC-014 "
+     "expected reworded to the explicit-reject + no-field behavior (matches the "
+     "live 2026-07-13 finding: 400 'A processing fee cannot have a minimum or "
+     "maximum cap.'; older silent-strip reading superseded); stays VIU-Verified. "
+     "No dev ticket. Staged for TestRail push."),
 ]
 
 # ---------------------------------------------------------------------------
@@ -205,7 +265,9 @@ ws.freeze_panes = "A5"
 
 for i, item in enumerate(questions, start=1):
     row = HDR_ROW + i
-    vals = [i, item["topic"], item["now"], item["q"], item["opts"], ""]
+    answer_cell = ("ANSWER: " + item["answer"] + "\n\nRESULTING ACTION: "
+                   + item["action"]) if item.get("answer") else ""
+    vals = [i, item["topic"], item["now"], item["q"], item["opts"], answer_cell]
     for c, v in enumerate(vals, start=1):
         cell = ws.cell(row=row, column=c, value=v)
         cell.alignment = WRAP_CENTER if c == 1 else WRAP
@@ -259,10 +321,12 @@ wi.cell(row=note_row, column=1, value=(
     "(FeesDiscounts_FreshVIU_2026-07-10.xlsx). TestRail IDs sourced from "
     "testrail-id-map.csv (standing rule 8). Round-1 (6 questions) was answered by "
     "Chris Ward 2026-07-09 - see PO-Questions-SIMPLE.md / spec-v1-reconciliation.md. "
-    "Related unfiled Jira drafts: jira-bug-drafts.md TICKET 4 (maxCap 0) and "
-    "TICKET 5 (tiny-percent rounding) - hold both until these rulings land. "
+    "ANSWERS RETURNED 2026-07-14 (Chris Ward): Q1=A, Q2=A, Q3=A, Q4=B - source "
+    "chris-round2-answers-source.xlsx/.csv; action map applied to local artifacts "
+    "(6 cases staged for TestRail push; jira drafts TICKET 4 (maxCap 0) + TICKET 5 "
+    "(tiny-percent rounding) DROPPED as WAD/expected; no new tickets). "
     "Bugs/defects stay OUT of the PO-facing tab (standing rule 7); these 4 items "
-    "are genuine product decisions (which behavior is intended), not defect "
+    "were genuine product decisions (which behavior is intended), not defect "
     "reports.")).alignment = WRAP
 wi.merge_cells(start_row=note_row, start_column=1, end_row=note_row, end_column=7)
 wi.row_dimensions[note_row].height = 75
@@ -298,7 +362,12 @@ for i, item in enumerate(questions, start=1):
     for line in item["opts"].split("\n"):
         md.append(f"- {line}")
     md.append("")
-    md.append("**Your answer:** ______________________________________________")
+    if item.get("answer"):
+        md.append(f"**Your answer:** {item['answer']}")
+        md.append("")
+        md.append(f"**Resulting action:** {item['action']}")
+    else:
+        md.append("**Your answer:** ______________________________________________")
     md.append("")
     md.append("---")
 md.append("")

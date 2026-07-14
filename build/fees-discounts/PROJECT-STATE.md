@@ -8,8 +8,11 @@
 > **Last updated:** 2026-07-13 (PAUSE SNAPSHOT — after **V1_2 spec applied** [43 case
 > updates + new FD-WO-016=C29441, all pushed] AND a **FRESH FULL build-accurate WORDING +
 > VIU PASS over ALL 183 cases** [live-captured build labels; every case re-adjudicated;
-> **ALL 183 pushed to TestRail via update_case, 200/200, 0 errors**]. Still PAUSED on
-> Chris Ward's Round-2 answers [STILL BLANK]).
+> **ALL 183 pushed to TestRail via update_case, 200/200, 0 errors**].
+> **UPDATE 2026-07-14: Chris Ward's Round-2 answers RETURNED (Q1=A, Q2=A, Q3=A, Q4=B)
+> and the §0.1 action map was APPLIED to local artifacts — see §0.0c. 6 cases are now
+> STAGED for a TestRail push awaiting fresh one-day authorization; TICKET 4 + TICKET 5
+> DROPPED.**).
 > **Final tally 2026-07-13: 130 VIU-Verified / 20 VIU-Deviation / 12 Blocked-NotBuilt /
 > 20 Blocked-Env / 1 VIU-Pending = 183** (source: `FeesDiscounts_Blockers_Tracker`).
 > **⏸️ THE PROJECT IS PAUSED — see §0 below for what we're waiting on and the exact
@@ -30,6 +33,61 @@
 question sheet.** This section is the complete pause snapshot: what we're waiting
 on, the pre-decided per-answer action map, everything else open at pause, and the
 ordered resume checklist. The rest of this doc holds the standing detail.
+
+### 0.0c CHRIS WARD ROUND-2 ANSWERS RETURNED + APPLIED — 2026-07-14 (NEWEST event)
+
+**Chris Ward returned the filled Round-2 sheet** (source saved verbatim to
+`chris-round2-answers-source.xlsx` / `.csv`). **Answers: Q1=A, Q2=A, Q3=A, Q4=B.**
+The §0.1 pre-decided action map was applied to **LOCAL artifacts only — NO TestRail
+writes** (TestRail case edits still need FRESH one-day authorization; 6 cases are
+staged and listed below).
+
+Per-question outcome (verbatim answers in `PO-Questions-Round2.md` + full quotes in
+`jira-bug-drafts.md` / `reconciliation-actions.md`):
+
+- **Q1 = A** (over-sized discount / FDBUG-15): PO says the warn/confirm is required
+  AND already exists — it fires **before invoicing and before mark-reviewed/complete**,
+  NOT when the adjustment is merely added (add is uncommitted; the Add dialog preview
+  shows resulting totals). Our FDBUG-15 "silent save" was observed at **add time = the
+  wrong trigger point**. **FDBUG-15 reclassified NOT-A-DEFECT; NO dev ticket created**
+  (the potential "new Q1 ticket" is NOT created). **FD-QB-014 (C28557)** expected
+  reworded to the commit-point warning; **status VIU-Deviation → VIU-Pending** (the
+  invoice/complete warning still needs a live commit-time re-VIU). FD-QB-012 / FD-QB-015
+  unchanged.
+- **Q2 = A** (maxCap 0 / FDBUG-9): 0 = "no limit" is working as designed (S2-R25; a true
+  $0 cap only from legacy data). **FDBUG-9 closed accepted; jira draft TICKET 4 DROPPED.**
+  **FD-CALC-008 (C28575), FD-VAL-006 (C28604), FD-TMPL-011 (C28512)** expecteds reworded
+  to affirm 0 = no cap; **all flipped VIU-Deviation → VIU-Verified.**
+- **Q3 = A** (tiny-% rounding / FDBUG-10): quiet round-up to the 0.01% minimum is
+  fine/expected. **FDBUG-10 closed accepted; jira draft TICKET 5 DROPPED.** **FD-CALC-006
+  (C28573)** expected reworded to expect the coercion; **flipped VIU-Deviation →
+  VIU-Verified.**
+- **Q4 = B** (pfee minimum / FD-PROC-014): processing fees do not support a minimum and
+  the app already makes that clear — no minimum field in the UI + the API rejects a pfee
+  minimum with an explicit error ("A processing fee cannot have a minimum or maximum
+  cap"), matching the live 2026-07-13 finding (older 2026-07-10 "silent strip" reading
+  superseded, last-update-wins). **FD-PROC-014 (C28532)** expected reworded to the
+  explicit-reject + no-field behavior; **stays VIU-Verified.** No dev ticket.
+
+**Cases STAGED for the TestRail push (6, awaiting fresh one-day authorization)** — each
+carries `fresh_run: 2026-07-14` + a "pending TestRail push (awaiting authorization)"
+note: **FD-QB-014 (C28557), FD-CALC-008 (C28575), FD-VAL-006 (C28604), FD-TMPL-011
+(C28512), FD-CALC-006 (C28573), FD-PROC-014 (C28532).**
+
+**Tickets:** TICKET 4 (Q2) + TICKET 5 (Q3) **DROPPED** (WAD/expected per PO; annotated
+in `jira-bug-drafts.md`); **no new tickets** created (Q1 warning exists per PO; Q4 no
+defect). Previously-cleared ready-to-file drafts are unchanged: TICKETS 2, 3, 6, 7,
+8, 9, 10, 11 remain **ready to file**; TICKET 1 stays **ON HOLD** (US-tax re-repro).
+
+**Tally impact (local cases; Blockers Tracker not yet regenerated in this pass):** 4
+cases flipped Deviation → Verified (Q2×3 + Q3×1) and 1 Deviation → Pending (Q1). Net:
+VIU-Deviation 20 → 15, VIU-Verified 130 → 134, VIU-Pending 1 → 2. (FD-PROC-014 was
+already Verified; its expected changed only.) Regenerate `gen_blockers.py` /
+`gen_import.py` / `gen_fresh_viu_workbook.py` at finalization to reflect this.
+
+**Remaining before finalization:** (1) fresh one-day TestRail authorization → push the 6
+staged cases via `update_case` (+ audit log); (2) regenerate the downstream deliverables;
+(3) the standing env/VIU backlog (§0.5 steps 6–7) is unchanged by these answers.
 
 ### 0.-1 SPEC-RELEVANCE / OBSOLESCENCE AUDIT — 2026-07-13 (NEWEST event)
 
@@ -147,7 +205,7 @@ language, VIU-verify behavior, push corrected wording to TestRail (update_case o
   `fresh_run:2026-07-13` + `testrail-wording-viu-log.md` (skip areas already logged tester-ready).
 - **Chris Ward's Round-2 answers STILL BLANK** — §0.1 action map unchanged.
 
-### 0.1 Waiting on: Chris Ward's answers to `PO-Questions-Round2.xlsx` (4 questions)
+### 0.1 Waiting on: Chris Ward's answers to `PO-Questions-Round2.xlsx` (4 questions) — **ANSWERED + APPLIED 2026-07-14 (see §0.0c); map below retained for traceability**
 
 - **What was sent:** `build/fees-discounts/PO-Questions-Round2.xlsx` (+ `.md`;
   generator `gen_po_questions_round2.py`) — 4 plain-language product decisions

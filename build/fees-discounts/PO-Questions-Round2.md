@@ -22,7 +22,9 @@ Should the app warn the user and ask them to confirm before saving a discount bi
 - A) Add the warning - the user must see what will happen (total becomes $0.00, the extra becomes a customer credit) and confirm before it saves.
 - B) Silent is fine - no warning needed, as long as the credited amount is exact (which it is today).
 
-**Your answer:** ______________________________________________
+**Your answer:** A (Chris Ward, 2026-07-14): "A - already resolved: the warning exists and is spec-required (S6-R12, 'the carry is never silent'). It shows before invoicing and before marking the WO reviewed/complete, stating the $0.00 floor, that tax on the taxable base is still owed, and the exact credit amount, and requires confirmation. It intentionally doesn't fire when the adjustment is merely added (nothing committed yet; the add dialog's preview shows the resulting totals). No change needed."
+
+**Resulting action:** Warning is required and (per PO) already exists at commit points. FDBUG-15 reclassified NOT-A-DEFECT (our add-time observation was the wrong trigger point); no dev ticket created. FD-QB-014 (C28557) expected reworded to the commit-point warning; status -> VIU-Pending (needs a commit-time re-VIU). Staged for TestRail push (awaiting authorization).
 
 ---
 
@@ -39,7 +41,9 @@ What should typing 0 into the maximum box mean: no limit (as it works today), a 
 - B) 0 means "cap at zero" - the fee/discount amount becomes $0.00 (charge nothing).
 - C) Don't allow it - the app should refuse 0 in the maximum box and ask for a real amount (or an empty box).
 
-**Your answer:** ______________________________________________
+**Your answer:** A (Chris Ward, 2026-07-14): "A - already resolved by spec: S2-R25 says an entered 0 is treated the same as empty, i.e. no maximum. Working as designed; a true $0 cap can only come from legacy data (S5-R6 note), never from the UI. No change needed."
+
+**Resulting action:** 0 = 'no limit' is working as designed. FDBUG-9 closed as accepted; TICKET 4 DROPPED. FD-CALC-008 (C28575), FD-VAL-006 (C28604), FD-TMPL-011 (C28512) expecteds reworded to affirm 0 = no cap; all flipped to VIU-Verified. Staged for TestRail push (awaiting authorization).
 
 ---
 
@@ -56,7 +60,9 @@ Is quietly rounding tiny percentages up to 0.01% acceptable, or should the app k
 - B) Keep the exact value - the app should save and use exactly what was typed (for example 0.005%).
 - C) Refuse it - the app should reject anything smaller than 0.01% with a clear message, so the user knowingly picks a valid value.
 
-**Your answer:** ______________________________________________
+**Your answer:** A (Chris Ward, 2026-07-14): "A -- fully anticipated and expected."
+
+**Resulting action:** Quietly rounding tiny percentages up to the 0.01% minimum is expected. FDBUG-10 closed as accepted; TICKET 5 DROPPED. FD-CALC-006 (C28573) expected reworded to expect the round-up-to-minimum coercion; flipped to VIU-Verified. Staged for TestRail push (awaiting authorization).
 
 ---
 
@@ -72,7 +78,9 @@ Should processing fees support a minimum amount, or - if they shouldn't - should
 - A) Support it - a processing fee should be able to have a minimum amount, and the app should honor it.
 - B) Don't support it - but make that clear: remove/disable the box for processing fees (or show a message) so nothing a user types is ever silently thrown away.
 
-**Your answer:** ______________________________________________
+**Your answer:** B (Chris Ward, 2026-07-14): "B - already resolved by spec: S8-N6 forbids a Processing Fee minimum. Premise doesn't reproduce: there is no minimum-amount field anywhere in the UI, and the API rejects a Processing Fee minimum with an explicit error ('A processing fee cannot have a minimum or maximum cap') - nothing is silently dropped. No change needed."
+
+**Resulting action:** Processing fees don't support a minimum and the app already makes that clear (no field + explicit API reject - matches the live 2026-07-13 finding). FD-PROC-014 (C28532) expected reworded to the explicit-reject + no-field behavior; stays VIU-Verified. No dev ticket. Staged for TestRail push (awaiting authorization).
 
 ---
 
@@ -100,7 +108,7 @@ in it) in the PO-facing copy or the "Questions for PO" tab.**
   - FD-QB-012 — [C28555](https://shopview.testrail.io/index.php?/cases/view/28555)
   - FD-QB-015 — [C28558](https://shopview.testrail.io/index.php?/cases/view/28558)
 - **Spec refs:** requirements.md §7.1: S6-R12 (mandatory warn/confirm before saving when discounts exceed the net subtotal); context S6-R10 (subtotal floors at $0.00) + S6-R11/R13 (excess recorded as customer credit / QB tax-exempt goodwill credit memo).
-- **Current status:** FD-QB-014 = VIU-Deviation (FDBUG-15 CONFIRMED AGAIN 2026-07-10: over-discount saves 201 with no warning payload; batch-6 UI shots show no warn/confirm dialog). Currently bucketed case-update pending this PO ruling. A=defect ticket + keep spec expected; B=case-update FD-QB-014 to silent-carry expected.
+- **Current status:** FD-QB-014 = VIU-Deviation (FDBUG-15 CONFIRMED AGAIN 2026-07-10: over-discount saves 201 with no warning payload; batch-6 UI shots show no warn/confirm dialog). Currently bucketed case-update pending this PO ruling. A=defect ticket + keep spec expected; B=case-update FD-QB-014 to silent-carry expected. ANSWERED 2026-07-14 = A (warning exists at commit points; add-time silent is intentional). Applied: FDBUG-15 reclassified NOT-A-DEFECT (no ticket); FD-QB-014 expected reworded to the commit-point warning; status -> VIU-Pending (commit-time re-VIU outstanding). Staged for TestRail push.
 
 ### Q2
 
@@ -110,7 +118,7 @@ in it) in the PO-facing copy or the "Questions for PO" tab.**
   - FD-VAL-006 — [C28604](https://shopview.testrail.io/index.php?/cases/view/28604)
   - FD-TMPL-011 — [C28512](https://shopview.testrail.io/index.php?/cases/view/28512)
 - **Spec refs:** Spec contradiction the PO answer settles: §5-R6 (Max $0 forces resolve to $0.00) vs S7-R12e/R14 (0 treated as empty / never sent; design-notes §6 "Max cap min=0"). Live build matches NEITHER reading for 0 (0 = unlimited).
-- **Current status:** FD-CALC-008 / FD-VAL-006 / FD-TMPL-011 = VIU-Deviation (FDBUG-9 CONFIRMED AGAIN 2026-07-10: maxCap 0 stored, 10% resolved 34.15 = uncapped). A=case-update all 3 to "0 = no cap" + drop TICKET 4; B=file TICKET 4 as drafted (§5-R6); C=new validation requirement + case updates.
+- **Current status:** FD-CALC-008 / FD-VAL-006 / FD-TMPL-011 = VIU-Deviation (FDBUG-9 CONFIRMED AGAIN 2026-07-10: maxCap 0 stored, 10% resolved 34.15 = uncapped). A=case-update all 3 to "0 = no cap" + drop TICKET 4; B=file TICKET 4 as drafted (§5-R6); C=new validation requirement + case updates. ANSWERED 2026-07-14 = A (0 = no limit, WAD, S2-R25). Applied: all 3 expecteds reworded to affirm 0 = no cap; flipped VIU-Verified; TICKET 4 DROPPED; FDBUG-9 closed accepted. Staged for TestRail push.
 
 ### Q3
 
@@ -118,7 +126,7 @@ in it) in the PO-facing copy or the "Questions for PO" tab.**
 - **TestRail cases:**
   - FD-CALC-006 — [C28573](https://shopview.testrail.io/index.php?/cases/view/28573)
 - **Spec refs:** requirements.md §7: §5-R1 (minimums - Flat $0.01 / Percentage 0.01%; below-minimum input is rejected, expected HTTP 400).
-- **Current status:** FD-CALC-006 = VIU-Deviation (FDBUG-10 CONFIRMED AGAIN 2026-07-10: pct 0.005 accepted 201 and coerced to 0.01, resolved 0.02; flat 0.005 stored as 0.01). A=case-update to expect coercion + drop TICKET 5; B=dev change (store exact, likely new precision spec); C=file TICKET 5 as drafted.
+- **Current status:** FD-CALC-006 = VIU-Deviation (FDBUG-10 CONFIRMED AGAIN 2026-07-10: pct 0.005 accepted 201 and coerced to 0.01, resolved 0.02; flat 0.005 stored as 0.01). A=case-update to expect coercion + drop TICKET 5; B=dev change (store exact, likely new precision spec); C=file TICKET 5 as drafted. ANSWERED 2026-07-14 = A (rounding fine/expected). Applied: FD-CALC-006 expected reworded to expect the round-up-to-minimum coercion; flipped VIU-Verified; TICKET 5 DROPPED; FDBUG-10 closed accepted. Staged for TestRail push.
 
 ### Q4
 
@@ -126,7 +134,7 @@ in it) in the PO-facing copy or the "Questions for PO" tab.**
 - **TestRail cases:**
   - FD-PROC-014 — [C28532](https://shopview.testrail.io/index.php?/cases/view/28532)
 - **Spec refs:** requirements.md §9.2: S8-N6 (system rejects a Processing Fee carrying a minimum amount) + §5-R6 Min Amount data-model note (min supported for fee/discount kinds, not processing fees).
-- **Current status:** FD-PROC-014 = VIU-Verified with a standing wording note (fresh pass 2026-07-10: pfee minimum silently STRIPPED on create - 201, no min field persisted). A=spec/data-model change + new cases for pfee minimums; B=case-update FD-PROC-014 to expect explicit reject/absent field vs today's silent strip (minor dev tweak or accepted-behavior wording).
+- **Current status:** FD-PROC-014 = VIU-Verified with a standing wording note (fresh pass 2026-07-10: pfee minimum silently STRIPPED on create - 201, no min field persisted). A=spec/data-model change + new cases for pfee minimums; B=case-update FD-PROC-014 to expect explicit reject/absent field vs today's silent strip (minor dev tweak or accepted-behavior wording). ANSWERED 2026-07-14 = B (don't support, make clear). Applied: FD-PROC-014 expected reworded to the explicit-reject + no-field behavior (matches the live 2026-07-13 finding: 400 'A processing fee cannot have a minimum or maximum cap.'; older silent-strip reading superseded); stays VIU-Verified. No dev ticket. Staged for TestRail push.
 
 **Notes:** Round-2 questions raised after the FRESH FULL VIU PASS
 2026-07-10 (`FeesDiscounts_FreshVIU_2026-07-10.xlsx`). TestRail IDs

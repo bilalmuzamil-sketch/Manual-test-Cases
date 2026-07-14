@@ -734,13 +734,13 @@
   "expected": [
    "1. For 'Flat Amount' there is no Max Amount field.",
    "2. For a percentage method the 'Max Amount (Optional)' field shows.",
-   "3. A Max Amount of 0 is currently treated as empty (no cap)."
+   "3. A Max Amount of 0 is treated exactly the same as leaving it empty = no cap (working as designed per S2-R25)."
   ],
   "design_ref": "requirements.md §9.1 (S7-R12e/R14); §7 (§5-R6)",
-  "viu_status": "VIU-Deviation",
-  "notes": "Design mockups show a \"Max cap\" always rendered (design-notes §10 item 4) — flag if staging shows Max Amount for Flat too. | VIU qb batch-1 (2026-07-08): Max Amount appears only for % methods (verified). DEVIATION on 0-handling: API stores maxCap=0 and resolves with NO cap (10% of 324.60 -> 32.46 despite maxCap 0) — spec §5-R6 says $0 forces $0.00 and S7-R14 says 0 is treated as empty. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: template create accepts maxCap for percentage; 0 treated empty (§5-R6) | FRESH VIU 2026-07-10: maxCap 0 accepted and STORED as 0 on the template (201) and WO resolve treats 0 as NO cap (34.15) — FDBUG-9 persists | WORDING+VIU 2026-07-13: Max Amount only for % confirmed (WO+template dialogs). DEVIATION (PO Q2): a Max Amount of 0 is treated as 'no cap'. Labels cleaned.",
+  "viu_status": "VIU-Verified",
+  "notes": "Design mockups show a \"Max cap\" always rendered (design-notes §10 item 4) — flag if staging shows Max Amount for Flat too. | VIU qb batch-1 (2026-07-08): Max Amount appears only for % methods (verified). DEVIATION on 0-handling: API stores maxCap=0 and resolves with NO cap (10% of 324.60 -> 32.46 despite maxCap 0) — spec §5-R6 says $0 forces $0.00 and S7-R14 says 0 is treated as empty. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: template create accepts maxCap for percentage; 0 treated empty (§5-R6) | FRESH VIU 2026-07-10: maxCap 0 accepted and STORED as 0 on the template (201) and WO resolve treats 0 as NO cap (34.15) — FDBUG-9 persists | WORDING+VIU 2026-07-13: Max Amount only for % confirmed (WO+template dialogs). DEVIATION (PO Q2): a Max Amount of 0 is treated as 'no cap'. Labels cleaned. | CHRIS WARD ROUND-2 ANSWER APPLIED 2026-07-14(Q2=A): PO ruled a typed 0 in Max Amount = 'no limit' (WAD, S2-R25). 0-handling no longer a deviation; FDBUG-9 closed as accepted; jira draft TICKET 4 DROPPED. Expected reworded to affirm 0=no-cap. Pending TestRail push (awaiting authorization).",
   "api_related": false,
-  "fresh_run": "2026-07-13"
+  "fresh_run": "2026-07-14"
  },
  {
   "id": "FD-TMPL-012",
@@ -1234,13 +1234,14 @@
    "1. Try to save a Processing Fee template that carries a minimum amount."
   ],
   "expected": [
-   "1. The system rejects it (a Processing Fee must not carry a minimum amount)."
+   "1. A Processing Fee does not support a minimum amount, and this is made clear rather than silently dropped: there is no minimum-amount field for a Processing Fee anywhere in the UI.",
+   "2. If a minimum (or maximum) amount is sent for a Processing Fee, the system rejects it with the explicit message 'A processing fee cannot have a minimum or maximum cap.'"
   ],
   "design_ref": "requirements.md §9.2 (S8-N6); §7 (§5-R6 Min Amount data-model note)",
   "viu_status": "VIU-Verified",
-  "notes": "Min Amount exists only in the data model; both dialogs always send it empty (null). | VIU qb batch-1 (2026-07-08): Min-amount payload guard (S8-N6) not probed. Batch-2 API probe (minCap field). | VIU batch-6 qb 2026-07-09 (overnight run, evidence 21:10-21:30Z): min fields silently stripped; invariant enforced; note ignore-vs-reject semantics. | FRESH VIU 2026-07-10: pfee minimum silently STRIPPED on create (201, no min field persisted) — §8 invariant holds; silent-ignore wording note stands | WORDING+VIU 2026-07-13: Confirmed live 2026-07-13: BE rejects a min/max cap on a Processing Fee (400 'A processing fee cannot have a minimum or maximum cap.'). PO Q4 (whether pfee minimums should be supported at all) still pending.",
+  "notes": "Min Amount exists only in the data model; both dialogs always send it empty (null). | VIU qb batch-1 (2026-07-08): Min-amount payload guard (S8-N6) not probed. Batch-2 API probe (minCap field). | VIU batch-6 qb 2026-07-09 (overnight run, evidence 21:10-21:30Z): min fields silently stripped; invariant enforced; note ignore-vs-reject semantics. | FRESH VIU 2026-07-10: pfee minimum silently STRIPPED on create (201, no min field persisted) — §8 invariant holds; silent-ignore wording note stands | WORDING+VIU 2026-07-13: Confirmed live 2026-07-13: BE rejects a min/max cap on a Processing Fee (400 'A processing fee cannot have a minimum or maximum cap.'). PO Q4 (whether pfee minimums should be supported at all) still pending. | CHRIS WARD ROUND-2 ANSWER APPLIED 2026-07-14(Q4=B): PO ruled Processing Fees do NOT support a minimum and the app must make that clear (do not silently drop). Premise confirmed WAD: no minimum field in the UI and the API rejects a pfee minimum with an explicit error (matches the live 2026-07-13 finding: 400 'A processing fee cannot have a minimum or maximum cap.'). Older 2026-07-10 'silent strip' reading superseded (last-update-wins). Expected reworded to the explicit-reject + no-field behavior. Pending TestRail push (awaiting authorization).",
   "api_related": false,
-  "fresh_run": "2026-07-13"
+  "fresh_run": "2026-07-14"
  },
  {
   "id": "FD-DOC-001",
@@ -1863,14 +1864,15 @@
    "2. Attempt to save the WO."
   ],
   "expected": [
-   "1. Before the WO can be saved, the user is WARNED that the net subtotal will floor at $0.00, tax on the taxable base is still owed, and the excess (shown as a dollar amount) will be carried as a customer credit.",
-   "2. The user must CONFIRM; the carry is never silent."
+   "1. Adding an over-sized discount to a work order does NOT warn at the moment it is added (nothing is committed yet; the Add dialog's preview shows the resulting totals).",
+   "2. Before the work order is invoiced, and before it is marked reviewed/completed, the user is WARNED that the net subtotal will floor at $0.00, that tax on the taxable base is still owed, and that the exact excess amount (shown as a dollar figure) will be carried as a customer credit.",
+   "3. The user must CONFIRM at those points; the carry is never silent."
   ],
   "design_ref": "requirements.md §7.1 (S6-R12)",
-  "viu_status": "VIU-Deviation",
-  "notes": "VIU qb batch-1 (2026-07-08): No warn/confirm was shown when saving a 100% discount via API/UI on an open WO — the S6-R12 warning presumably belongs to the invoice/save flow; needs an invoicing walk. excessCreditAmount field exists. | UPDATE batch-5 (2026-07-09): QuickBooks IS now CONNECTED on this env (location Staging Lethbridge - 4310 = default_workplace; mapping-status quickBooksConnected:true+both items mapped; real QB chart of accounts + unexported-items returned). Batch-1 'no QB' blocker SUPERSEDED. Live behavior VIU still pending: the sv7387api backend was in a sustained 500 incident (all endpoints incl. quick-login) for the whole 2026-07-09 window, so mapping/sync/floor could not be exercised. Retest plan in viu-findings.md Batch-5. | VIU batch-6 qb 2026-07-09 (overnight run, evidence 21:10-21:30Z): over-discount saves with no warn/confirm; excess carried silently = FDBUG-15 (S6-R12). | FRESH VIU 2026-07-10: FDBUG-15 CONFIRMED AGAIN (API half): over-discount saves 201 with NO warning payload; excess carried silently (117.24). Batch-6 UI shots show no warn/confirm dialog. Violates S6-R12 | WORDING+VIU 2026-07-13: DEVIATION carried (FDBUG-15 / PO Q1 pending): an over-discount currently saves SILENTLY — no mandatory warn/confirm before saving. Expected kept as the spec requirement.",
+  "viu_status": "VIU-Pending",
+  "notes": "VIU qb batch-1 (2026-07-08): No warn/confirm was shown when saving a 100% discount via API/UI on an open WO — the S6-R12 warning presumably belongs to the invoice/save flow; needs an invoicing walk. excessCreditAmount field exists. | UPDATE batch-5 (2026-07-09): QuickBooks IS now CONNECTED on this env (location Staging Lethbridge - 4310 = default_workplace; mapping-status quickBooksConnected:true+both items mapped; real QB chart of accounts + unexported-items returned). Batch-1 'no QB' blocker SUPERSEDED. Live behavior VIU still pending: the sv7387api backend was in a sustained 500 incident (all endpoints incl. quick-login) for the whole 2026-07-09 window, so mapping/sync/floor could not be exercised. Retest plan in viu-findings.md Batch-5. | VIU batch-6 qb 2026-07-09 (overnight run, evidence 21:10-21:30Z): over-discount saves with no warn/confirm; excess carried silently = FDBUG-15 (S6-R12). | FRESH VIU 2026-07-10: FDBUG-15 CONFIRMED AGAIN (API half): over-discount saves 201 with NO warning payload; excess carried silently (117.24). Batch-6 UI shots show no warn/confirm dialog. Violates S6-R12 | WORDING+VIU 2026-07-13: DEVIATION carried (FDBUG-15 / PO Q1 pending): an over-discount currently saves SILENTLY — no mandatory warn/confirm before saving. Expected kept as the spec requirement. | CHRIS WARD ROUND-2 ANSWER APPLIED 2026-07-14(Q1=A): PO ruled the warn/confirm is required AND already exists per spec (S6-R12) — it fires before invoicing and before marking the WO reviewed/complete, NOT when the adjustment is merely added (add is uncommitted; the Add dialog preview shows the resulting totals). Our FDBUG-15 'silent save' was observed at ADD time = the wrong trigger point; PO says that is intentional. FDBUG-15 reclassified NOT-A-DEFECT (no dev ticket released). Expected reworded to the commit-point warning. Status -> VIU-Pending: the invoice/mark-reviewed/complete warning has not yet been observed live and needs a commit-time re-VIU. Pending TestRail push (awaiting authorization).",
   "api_related": false,
-  "fresh_run": "2026-07-13"
+  "fresh_run": "2026-07-14"
  },
  {
   "id": "FD-QB-015",
