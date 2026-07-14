@@ -14,9 +14,19 @@
 > cases were PUSHED TO TESTRAIL 2026-07-14 (update_case, 6/6 updated, all verify
 > 200/200 MATCH; audit `testrail-round2-push-log.md`); TICKET 4 + TICKET 5 DROPPED.
 > FD-QB-014 left VIU-Pending — its commit-time re-VIU is blocked on EXPIRED qb cookies.**).
-> **NEW TALLY 2026-07-14: 134 VIU-Verified / 15 VIU-Deviation / 12 Blocked-NotBuilt /
-> 20 Blocked-Env / 2 VIU-Pending = 183** (source: `FeesDiscounts_Blockers_Tracker`;
-> supersedes the 2026-07-13 130/20/12/20/1 below).
+> **UPDATE 2026-07-14 (later, fresh qb cookies): FD-QB-014 commit-time re-VIU SETTLED =
+> VIU-Verified.** The over-discount warn/confirm IS built and fires at BOTH commit points
+> (Create Invoice + Mark-Reviewed/Complete), never at add time — matches Chris Q1=A exactly.
+> Evidence: live FE component `OverDiscountWarningDialog` (title "Discount exceeds subtotal";
+> floor to $0.00 + tax on taxable base still owed + exact excess as customer credit +
+> Continue/Cancel confirm), wired in the Invoice component's Create-Invoice + Complete/Review
+> handlers behind the `adjustmentsSummary.excessCreditAmount>0` gate; plus a live reversible
+> check on WO S-15970 (over-discount → sub_total floored $0.00, excessCreditAmount=9522.26>0,
+> WO restored byte-identical). NO TestRail write (expected already build-accurate; status flip
+> local only). See §0.0c.
+> **NEW TALLY 2026-07-14: 135 VIU-Verified / 15 VIU-Deviation / 12 Blocked-NotBuilt /
+> 20 Blocked-Env / 1 VIU-Pending (FD-PART-005) = 183** (source: `FeesDiscounts_Blockers_Tracker`;
+> supersedes the earlier same-day 134/15/12/20/2 and the 2026-07-13 130/20/12/20/1 below).
 > **Final tally 2026-07-13: 130 VIU-Verified / 20 VIU-Deviation / 12 Blocked-NotBuilt /
 > 20 Blocked-Env / 1 VIU-Pending = 183** (source: `FeesDiscounts_Blockers_Tracker`).
 > **⏸️ THE PROJECT IS PAUSED — see §0 below for what we're waiting on and the exact
@@ -55,9 +65,9 @@ Per-question outcome (verbatim answers in `PO-Questions-Round2.md` + full quotes
   shows resulting totals). Our FDBUG-15 "silent save" was observed at **add time = the
   wrong trigger point**. **FDBUG-15 reclassified NOT-A-DEFECT; NO dev ticket created**
   (the potential "new Q1 ticket" is NOT created). **FD-QB-014 (C28557)** expected
-  reworded to the commit-point warning; **status VIU-Deviation → VIU-Pending** (the
-  invoice/complete warning still needs a live commit-time re-VIU). FD-QB-012 / FD-QB-015
-  unchanged.
+  reworded to the commit-point warning; **status VIU-Deviation → VIU-Pending → VIU-Verified
+  (settled 2026-07-14, fresh qb cookies — the invoice/complete warn/confirm is BUILT and firing;
+  see the SETTLED note below).** FD-QB-012 / FD-QB-015 unchanged.
 - **Q2 = A** (maxCap 0 / FDBUG-9): 0 = "no limit" is working as designed (S2-R25; a true
   $0 cap only from legacy data). **FDBUG-9 closed accepted; jira draft TICKET 4 DROPPED.**
   **FD-CALC-008 (C28575), FD-VAL-006 (C28604), FD-TMPL-011 (C28512)** expecteds reworded
@@ -79,14 +89,32 @@ each carries `fresh_run: 2026-07-14`: **FD-QB-014 (C28557), FD-CALC-008 (C28575)
 FD-VAL-006 (C28604), FD-TMPL-011 (C28512), FD-CALC-006 (C28573), FD-PROC-014 (C28532).**
 (All 6 differed in custom_preconds/steps/expected → updated; title/refs no-op.)
 
-**FD-QB-014 commit-time re-VIU (Step 2) — NOT settled; still VIU-Pending.** The
-invoice / mark-reviewed / complete warning that Chris (Q1=A) describes still needs a
-LIVE commit-time observation. Attempted 2026-07-14 but BOTH qb cookie sets
-(`cookies-viu.env` 2026-07-13, `cookies-fresh.env` 2026-07-10) return **401
-sso_required** on quick-login (env woken, API root 200) — cookies EXPIRED. **Needs
-fresh qb cookies** to drive an over-discounted ZZAUTOTEST WO to a commit point and
-confirm the warning fires; leave VIU-Pending until then. (The TestRail wording push
-above is correct either way — the reworded commit-point expected stands.)
+**FD-QB-014 commit-time re-VIU (Step 2) — SETTLED 2026-07-14 (fresh qb cookies) = VIU-Verified.**
+Chris's Q1=A commit-point warn/confirm is CONFIRMED BUILT and firing. Method (no browser in
+env, and the warn/confirm is a FE modal that gates the commit API call, so API-only can't reveal
+it): captured the live FE bundle from `qb.qa.shopview.com` and did a live reversible API check.
+- **ADD-TIME SILENT (expected #1 ✓):** the Add/Edit dialog component `AdjustmentDialog.S8gN6cAn.js`
+  has NO over-discount warning and does not import the warning dialog (only an unrelated
+  "A percentage discount cannot exceed 100%" per-field check) → adding an over-sized discount is silent.
+- **COMMIT-TIME WARN/CONFIRM BUILT (expected #2 & #3 ✓):** dedicated component
+  `OverDiscountWarningDialog.BCmTBE33.js` — title **"Discount exceeds subtotal"**; body: *"The total
+  discount exceeds this work order's subtotal. The subtotal will be reduced to $0.00, but any tax on
+  the taxable base is still owed. The remaining $<excess> will be carried as a customer credit.
+  Continue?"*; buttons **Continue / Cancel** (emits confirm/cancel). It is imported + wired in
+  `Invoice.Ny62BJnd.js`: the Create-Invoice handler (`Lt`→`_a`) AND the mark-reviewed/Complete
+  handler (`Vt`→`ga`, posts `status:'complete'`) BOTH intercept when the gate is true
+  (`FeesAndDiscounts` flag ON && not partSale && `adjustmentsSummary.excessCreditAmount>0`), open the
+  dialog, and only run the commit on **Continue** / abort on **Cancel** → mandatory confirm at BOTH
+  commit points, never silent.
+- **LIVE DATA CONDITION:** on WO **S-15970** added a $9,999 whole-WO flat discount (reversible
+  ZZAUTOTEST, removed after) → `sub_total` floored to **$0.00**, `adjustmentsSummary.excessCreditAmount`
+  = **9522.26** (>0) ⇒ the gate evaluates TRUE, so the dialog fires at the commit points. WO restored
+  byte-identical to baseline.
+- **Verdict: VIU-Verified.** FDBUG-15 stays NOT-A-DEFECT. **NO TestRail write** — the commit-point
+  expected pushed 2026-07-14 is already build-accurate (floor $0.00 + tax on taxable base still owed +
+  exact excess as customer credit + must confirm); it does NOT differ from the built dialog, so the
+  status flip is local only. (Exact on-screen labels now captured for the record: dialog "Discount
+  exceeds subtotal", buttons "Continue"/"Cancel".)
 
 **Tickets:** TICKET 4 (Q2) + TICKET 5 (Q3) **DROPPED** (WAD/expected per PO; annotated
 in `jira-bug-drafts.md`); **no new tickets** created (Q1 warning exists per PO; Q4 no
@@ -96,15 +124,18 @@ defect). Previously-cleared ready-to-file drafts are unchanged: TICKETS 2, 3, 6,
 **Tally impact — APPLIED + deliverables regenerated 2026-07-14:** 4 cases flipped
 Deviation → Verified (Q2×3 + Q3×1) and 1 Deviation → Pending (Q1). Net: VIU-Deviation
 20 → 15, VIU-Verified 130 → 134, VIU-Pending 1 → 2. (FD-PROC-014 was already Verified;
-its expected changed only.) **Confirmed tally 134/15/12/20/2 = 183** (Blockers Tracker
-regenerated; Deviation sub now 10 case-update + 3 PO-question + 2 code-bug).
-`gen_blockers.py` / `gen_import.py` / `gen_fresh_viu_workbook.py` all re-run.
+its expected changed only.) Interim tally 134/15/12/20/2 = 183. **THEN (later same day) the
+FD-QB-014 commit-time re-VIU was SETTLED = Verified (Pending → Verified): final tally
+135 VIU-Verified / 15 VIU-Deviation / 12 Blocked-NotBuilt / 20 Blocked-Env / 1 VIU-Pending
+(FD-PART-005) = 183** (Blockers Tracker regenerated; Deviation sub 10 case-update + 3
+PO-question + 2 code-bug). `gen_blockers.py` / `gen_import.py` / `gen_fresh_viu_workbook.py`
+all re-run.
 
 **Remaining before finalization:** (1) ~~fresh one-day TestRail authorization → push the 6
 staged cases~~ **DONE 2026-07-14 (6/6, 200/200)**; (2) ~~regenerate the downstream
-deliverables~~ **DONE 2026-07-14**; (3) FD-QB-014 commit-time re-VIU needs fresh qb
-cookies (both sets expired 2026-07-14); (4) the standing env/VIU backlog (§0.5 steps 6–7)
-is unchanged by these answers.
+deliverables~~ **DONE 2026-07-14**; (3) ~~FD-QB-014 commit-time re-VIU needs fresh qb
+cookies~~ **DONE 2026-07-14 (later, fresh cookies) — SETTLED VIU-Verified**; (4) the
+standing env/VIU backlog (§0.5 steps 6–7) is unchanged by these answers.
 
 ### 0.-1 SPEC-RELEVANCE / OBSOLESCENCE AUDIT — 2026-07-13 (NEWEST event)
 
@@ -244,9 +275,10 @@ language, VIU-verify behavior, push corrected wording to TestRail (update_case o
 ### 0.2 Fresh-pass state — CURRENT = 2026-07-13 (§0.0a); prior = 2026-07-10
 
 - **CURRENT authoritative tally (2026-07-14, after Chris's Round-2 answers applied +
-  the 6 Round-2 cases pushed to TestRail): 134 VIU-Verified / 15 VIU-Deviation / 12
-  Blocked-NotBuilt / 20 Blocked-Env / 2 VIU-Pending (FD-PART-005, FD-QB-014) = 183.**
-  (Supersedes the 2026-07-13 130/20/12/20/1.) See §0.0c for detail.
+  the 6 Round-2 cases pushed to TestRail + FD-QB-014 commit-time re-VIU SETTLED): 135
+  VIU-Verified / 15 VIU-Deviation / 12 Blocked-NotBuilt / 20 Blocked-Env / 1 VIU-Pending
+  (FD-PART-005) = 183.** (Supersedes the interim same-day 134/15/12/20/2 and the 2026-07-13
+  130/20/12/20/1.) See §0.0c for detail.
 - **Prior pass (2026-07-10, 182 cases): 114 / 35 / 12 / 20 / 1** — historical; superseded
   by the 2026-07-13 final above. Detail (deliverables paths) below.
 - **Deliverables at pause** (paths relative to repo root):
