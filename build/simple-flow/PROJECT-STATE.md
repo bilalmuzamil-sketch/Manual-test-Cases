@@ -16,6 +16,78 @@
 
 ---
 
+## 0-ZZ. VIU GRIND — ALL VIU-PENDING DRIVEN TO A VERDICT (2026-07-14)
+
+Full re-VIU grind over the 33 remaining VIU-Pending cases (plus the Blocked-Env/Milos
+residue). **Every case now has a definitive disposition — VIU-Pending = 0.** Admin-only
+(Tech never role-swapped; only quick-login used); settings toggled during the run then
+**restored BYTE-IDENTICAL** to baseline (verified); cookies `/tmp/simple-flow/cookies.env`
+(session f191f2a…) valid throughout; fresh MITM bridge per run.
+
+**NEW TALLY (from `cases/*.json` viu_status; authoritative):**
+**VIU-Verified 125 · VIU-observed-awaiting-Milos 8 · Blocked-Env 27 · Deviation 2 ·
+Open-Question 1 = 163.** (Was 118 / 33 VIU-Pending / 10 Blocked-Env / 1 Deviation / 1
+Open-Question.) 49 cases carry `fresh_run:2026-07-14`.
+
+**Flipped VIU-Pending → VIU-Verified (7):**
+- **SF-VAL-11** — unapproved (Needs Approval) line disables the **Complete Work Order**
+  button with the GENERIC tooltip "Every line must be approved or declined in order to
+  complete the work order." — confirmed identical with Require Vendor Invoice Number ON
+  and OFF; approving the line re-enables it. **Build-vs-spec: the disabled-button gate is
+  UNIVERSAL, not Story-4-only** (OBS-7; expected, not a defect). Wording error corrected +
+  **pushed to TestRail (C29425, update_case, verify 200/OK — the ONLY TestRail write this
+  session).**
+- **SF-SET-10** — completed WO (S2-15844) not retroactively re-gated after flipping
+  Require Vendor Invoice + Require Review ON (future completions only).
+- **SF-VEND-06, SF-VEND-04, SF-VAL-06, SF-RCV-06, SF-PNFIX-05** — vendor-missing receive
+  gates on the Bulk Receive page (seeded vendor-missing PO S-15845): no vendor → Receive
+  disabled; vendor auto-assigned (POST assign-vendor 200, NO merge prompt, QB flag cleared)
+  + no PN → disabled; PN + cost/sell=0 → disabled; PN + invoice + cost + sell → receivable.
+
+**VIU-observed-awaiting-Milos (8) — current build behavior recorded, NO pass/fail on the
+undecided policy:** SF-SET-08 (first-use defaults — brand-new-org only; no createPurchaseOrders
+field), SF-COMP-06 (Create-POs toggle absent, POs always-on), SF-RCV-05 / SF-RCV-07
+(Vendor-Missing group renders TOP on Bulk Receive — Q11 ordering), SF-REV-11 (direct sign-off
+confirmed; invoicing-block leg = Q8), SF-REV-15 (require-review cohort default — brand-new-org),
+SF-UX-04 (close/cancel modal "still to be added"), SF-QB-02 (toggle absent + QB not connected).
+
+**Deviation +1:** **SF-VMIS-06** — the Reports area has NO Vendor-Missing/"needs vendor" PO
+report (only PO list/detail flag exists, SF-VMIS-02). Spec S6-R6 not implemented as a report.
+
+**RESIDUE — genuinely NOT VIU-able here (27 Blocked-Env, all precise; the definitive list):**
+- **Special-order (vendor-sourced) cores not creatable (9):** SF-CORE-03..09, SF-BULK-10,
+  SF-REV-14. Reconfirmed live: a `make-request` with `source=vendor` for the core catalog
+  part P550848 returns `is_core=false / core_charge=0` (core attribute only attaches on the
+  inventory-source path). Inventory-core resolution stays verified (SF-CORE-01/02/10).
+- **Invoiced/paid WO not drivable (3):** SF-VAL-09, SF-VEND-05, SF-PNFIX-04. Finance
+  "Create Invoice" / Estimate-Invoice toggle only fires an estimate recompute (is_invoice_created
+  stays false); invoice-create APIs 404; marking paid needs a payment step.
+- **Inline-PN inventory/Part-History not verifiable (3):** SF-PNFIX-02/03/06. Receive with a
+  new PN succeeds (200) but the PN doesn't surface in inventory search and the Part-History/
+  part-detail surfaces are OBS-6-blocked (500/crash). Flag for dev.
+- **QuickBooks not connected on sv7301 (9):** SF-QB-01 (QB leg; decrement half proven,
+  Part-History OBS-6), SF-QB-03/04/05/06/07/08, SF-VMIS-03, SF-RCV-08. No QB in the Admin menu,
+  QB APIs 404, no integrations page, invoice_shop_id=null. Needs a QB-connected company + a
+  human in QuickBooks.
+- **Merge/Keep-Separate collision not reachable (2):** SF-VEND-02/03. Build auto-consolidates
+  same-WO vendor-missing parts into ONE PO; assign-vendor auto-assigns with no prompt.
+- **VIN-less asset not seedable (1):** SF-VAL-02. Asset-create API 404/405; new-asset UI
+  requires a VIN; all existing assets carry a VIN.
+
+**Open-Question (1):** SF-QB-09 — dev BE investigation, not UI-observable, still unmapped in
+`testrail-id-map.csv` (no C-ID).
+
+**New log entries:** bugs-log.md OBS-7 (universal unapproved-line gate) + QB-not-connected note;
+testrail-wording-viu-log.md (SF-VAL-11 C29425 push). Deliverables regenerated
+(`SimpleFlow_Blockers_Tracker.*`, `SimpleFlow_Results.*`) with TestRail ID + Link columns.
+
+**Shared-env residue (harmless, disposable):** throwaway ZZAUTOTEST WOs created/completed this
+run (S2-15844/45, S-15846/49/50) with 2 irreversible received deliveries (POs 0ee75c5f, d931d7ec
+— received deliveries are not reversible in-app). Settings restored byte-identical (verified);
+Tech still Technician.
+
+---
+
 ## 0-Z. RUN-325 RE-VERIFY — 5 cases settled (2026-07-14)
 
 Verified live re-VIU pass to settle the 5 run-325 discrepancies (see

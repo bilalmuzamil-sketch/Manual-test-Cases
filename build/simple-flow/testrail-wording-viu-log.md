@@ -289,3 +289,14 @@ Live re-VIU on sv7301 (admin, boot2 hydration). Settings flipped per case then
 **Summary:** 5 cases settled · 3 REAFFIRMED (no writes) · 2 FLIPPED to VIU-Verified with
 wording fixes. TestRail **2 updated / 0 no-op / 0 failed, all verify 200/OK.** No results
 written to run 325 (QA's run). Screenshots: build/simple-flow/screenshots/run325-reverify-2026-07-13/.
+
+## 2026-07-14 VIU grind — wording fix push
+- **SF-VAL-11 (C29425)** — `update_case` title + custom_preconds + custom_steps +
+  custom_expected, GET->diff->update->verify **200/OK**. Reason: the prior expected
+  contained a factual wording error — it claimed the unapproved-line tooltip "names
+  the line" and that with Require Vendor Invoice OFF the button "stays active" with an
+  error toast. Live VIU (WO S2-15844) proved the tooltip is GENERIC ("Every line must
+  be approved or declined in order to complete the work order.") and the Complete Work
+  Order button is DISABLED regardless of the invoice setting. Corrected to build-accurate
+  wording. (Only 1 TestRail write this session; all other grind verdicts are local
+  viu_status/notes changes with no tester-facing wording error.)
