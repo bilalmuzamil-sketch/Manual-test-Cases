@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resolve Cores to Invoice</title>
+<link rel="stylesheet" href="colors_and_type.css">
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--sv-bg-app); font-family: var(--sv-font-ui); color: var(--sv-grey-700); }
+
+  /* ─── Header ─────────────────────────────────────────── */
+  .header { background: #fff; border-bottom: 1px solid var(--sv-border-strong); height: 56px;
+    display: flex; align-items: center; gap: var(--sv-space-4); padding: 0 var(--sv-space-5); position: sticky; top: 0; z-index: 40; }
+  .header .brand { width: 36px; height: 36px; border-radius: 8px; background: var(--sv-brand-blue);
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .header .brand img { width: 22px; height: 22px; filter: brightness(0) invert(1); }
+  .top-nav { display: flex; align-items: center; gap: 2px; }
+  .top-nav a { font-size: 14px; font-weight: 500; color: var(--sv-grey-600); padding: 7px 14px; border-radius: 8px; text-decoration: none; }
+  .top-nav a.active { background: var(--sv-grey-100); color: var(--sv-grey-800); font-weight: 600; }
+  .search { flex: 1; max-width: 240px; position: relative; margin-left: var(--sv-space-2); }
+  .search input { width: 100%; height: 38px; border: 1px solid var(--sv-border-strong); border-radius: 8px;
+    background: var(--sv-grey-50); padding: 0 12px 0 36px; font-size: 14px; font-family: inherit; color: var(--sv-grey-700); }
+  .search [data-lucide] { position: absolute; left: 11px; top: 50%; transform: translateY(-50%); width: 16px; height: 16px; color: var(--sv-fg-tertiary); }
+  .header-spacer { flex: 1; }
+  .header-right { display: flex; align-items: center; gap: var(--sv-space-4); }
+  .clockin { display: flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 500; color: var(--sv-grey-600); }
+  .clockin [data-lucide] { width: 17px; height: 17px; }
+  .bell { width: 19px; height: 19px; color: var(--sv-grey-500); }
+  .org-pill { display: flex; align-items: center; gap: 10px; background: var(--sv-grey-50); border: 1px solid var(--sv-border-strong);
+    border-radius: var(--sv-radius-pill); padding: 5px 6px 5px 14px; font-size: 14px; font-weight: 500; color: var(--sv-grey-700); }
+  .avatar { width: 30px; height: 30px; border-radius: 50%; background: var(--sv-grey-700); color: #fff;
+    display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600; }
+
+  /* ─── Layout ─────────────────────────────────────────── */
+  .shell { display: grid; grid-template-columns: 264px 1fr; gap: var(--sv-space-5); padding: var(--sv-space-5); align-items: start; }
+  .sidebar { display: flex; flex-direction: column; gap: var(--sv-space-4); }
+  .card { background: #fff; border: 1px solid var(--sv-border-strong); border-radius: var(--sv-radius-lg); }
+  .side-card { padding: var(--sv-space-5); }
+  .wo-id { font-size: 22px; font-weight: 700; color: var(--sv-grey-800); letter-spacing: -0.01em; }
+  .badge-row { display: flex; gap: 6px; margin-top: 10px; flex-wrap: wrap; }
+  .pill { display: inline-flex; align-items: center; gap: 5px; height: 22px; padding: 0 9px; border-radius: var(--sv-radius-pill);
+    font-size: 12px; font-weight: 600; line-height: 1; }
+  .pill-blue   { background: var(--sv-primary-50); color: var(--sv-primary-700); border: 1px solid var(--sv-primary-200); }
+  .pill-amber  { background: var(--sv-warning-50); color: var(--sv-warning-700); border: 1px solid var(--sv-warning-200); }
+  .pill-green  { background: var(--sv-success-50); color: var(--sv-success-700); border: 1px solid var(--sv-success-200); }
+  .pill-red    { background: var(--sv-error-50); color: var(--sv-error-700); border: 1px solid var(--sv-error-200); }
+  .pill-violet { background: var(--sv-violet-50); color: var(--sv-violet-700); border: 1px solid var(--sv-violet-200); }
+  .meta-list { margin-top: var(--sv-space-4); display: flex; flex-direction: column; gap: 10px; }
+  .meta-line { display: flex; align-items: center; justify-content: space-between; font-size: 13px; }
+  .meta-line .k { color: var(--sv-fg-secondary); }
+  .meta-line .v { color: var(--sv-grey-700); font-weight: 500; }
+  .divider { border: 0; border-top: 1px solid var(--sv-border); margin: var(--sv-space-4) 0; }
+  .field-label { font-size: 11px; font-weight: 600; letter-spacing: 0.03em; text-transform: uppercase; color: var(--sv-fg-tertiary); margin-bottom: 2px; }
+  .field-value { font-size: 14px; font-weight: 600; color: var(--sv-grey-700); }
+  .stacked { display: flex; flex-direction: column; gap: 14px; }
+  .cust-name { font-size: 17px; font-weight: 700; color: var(--sv-grey-800); }
+  .veh-title { font-size: 16px; font-weight: 700; color: var(--sv-brand-blue); line-height: 1.3; }
+
+  .fin-card { padding: var(--sv-space-5); }
+  .fin-title { font-size: 16px; font-weight: 700; color: var(--sv-grey-800); margin-bottom: 12px; }
+  .fin-table { width: 100%; border-collapse: collapse; }
+  .fin-table th { text-align: left; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.03em;
+    color: var(--sv-fg-tertiary); padding-bottom: 8px; border-bottom: 1px solid var(--sv-border); }
+  .fin-table th:last-child { text-align: right; }
+  .fin-table td { font-size: 13px; color: var(--sv-grey-700); padding: 7px 0; }
+  .fin-table td:last-child { text-align: right; font-variant-numeric: tabular-nums; }
+  .fin-table tr.core-line td { color: var(--sv-violet-700); font-weight: 600; }
+  .fin-table tr.pending-line td { color: var(--sv-warning-700); font-weight: 600; }
+  .fin-table tr.total td { font-weight: 700; color: var(--sv-grey-800); border-top: 1px solid var(--sv-border); padding-top: 10px; }
+
+  /* ─── Main / Finance ─────────────────────────────────── */
+  .main { display: flex; flex-direction: column; gap: var(--sv-space-4); min-width: 0; }
+  .main-top { display: flex; align-items: center; gap: var(--sv-space-5); }
+  .tabs { display: flex; align-items: center; gap: var(--sv-space-5); }
+  .tab { font-size: 14px; font-weight: 500; color: var(--sv-fg-secondary); padding: 6px 0; border-bottom: 2px solid transparent; }
+  .tab.active { color: var(--sv-brand-blue); border-bottom-color: var(--sv-brand-blue); font-weight: 600; }
+  .main-top-spacer { flex: 1; }
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 7px; height: 38px; padding: 0 16px;
+    border-radius: 8px; font-size: 14px; font-weight: 600; font-family: inherit; cursor: pointer; border: 1px solid transparent;
+    white-space: nowrap; transition: background 120ms ease-out, box-shadow 120ms ease-out, border-color 120ms ease-out; }
+  .btn [data-lucide] { width: 16px; height: 16px; }
+  .btn-secondary { background: #fff; border-color: var(--sv-border-strong); color: var(--sv-grey-700); box-shadow: var(--sv-shadow-xs); }
+  .btn-secondary:hover { background: var(--sv-grey-50); border-color: var(--sv-grey-400); }
+  .btn-primary { background: var(--sv-brand-blue); color: #fff; box-shadow: var(--sv-shadow-xs); }
+  .btn-primary:hover { background: var(--sv-primary-700); }
+  .btn[disabled] { background: var(--sv-grey-100); color: var(--sv-fg-tertiary); border-color: var(--sv-border-strong); box-shadow: none; cursor: not-allowed; }
+  .actions { display: flex; align-items: center; gap: var(--sv-space-3); }
+  .icon-btn { width: 34px; height: 34px; border-radius: 8px; border: 0; background: none; color: var(--sv-primary-500);
+    display: inline-flex; align-items: center; justify-content: center; cursor: pointer; }
+  .icon-btn [data-lucide] { width: 18px; height: 18px; }
+  .cust-po { height: 38px; width: 168px; border: 1px solid var(--sv-border-strong); border-radius: 8px; padding: 0 12px;
+    font-size: 13px; font-family: inherit; color: var(--sv-grey-700); }
+
+  /* Cores-pending banner above the invoice */
+  .pending-banner { display: flex; align-items: center; gap: 11px; padding: 13px 16px; border-radius: var(--sv-radius-md);
+    background: var(--sv-warning-50); border: 1px solid var(--sv-warning-200); }
+  .pending-banner [data-lucide] { width: 19px; height: 19px; color: var(--sv-warning-600); flex-shrink: 0; }
+  .pending-banner .pb-text { font-size: 14px; color: var(--sv-warning-800); }
+  .pending-banner .pb-text b { font-weight: 700; }
+  .pending-banner .pb-count { margin-left: auto; font-size: 12px; font-weight: 700; color: var(--sv-warning-700);
+    background: #fff; border: 1px solid var(--sv-warning-200); border-radius: var(--sv-radius-pill); padding: 3px 10px; }
+  .resolved-banner { display: none; align-items: center; gap: 11px; padding: 13px 16px; border-radius: var(--sv-radius-md);
+    background: var(--sv-success-50); border: 1px solid var(--sv-success-200); }
+  .resolved-banner [data-lucide] { width: 19px; height: 19px; color: var(--sv-success-600); }
+  .resolved-banner .pb-text { font-size: 14px; color: var(--sv-success-800); font-weight: 500; }
+
+  /* Invoice preview */
+  .invoice { background: #fff; border: 1px solid var(--sv-border-strong); border-radius: var(--sv-radius-lg); padding: 30px 34px; }
+  .inv-toggle { display: flex; align-items: center; justify-content: center; gap: 9px; font-size: 13px; color: var(--sv-fg-secondary); margin-bottom: 18px; }
+  .switch { width: 34px; height: 20px; border-radius: 999px; background: var(--sv-grey-300); position: relative; }
+  .switch::after { content:''; position: absolute; top: 2px; left: 2px; width: 16px; height: 16px; border-radius: 50%; background: #fff; }
+  .inv-head { display: flex; align-items: flex-start; justify-content: space-between; }
+  .inv-org .on { font-size: 17px; font-weight: 700; color: var(--sv-grey-800); }
+  .inv-org .ln { font-size: 13px; color: var(--sv-fg-secondary); margin-top: 3px; }
+  .inv-logo { width: 74px; height: 74px; border-radius: 50%; background: var(--sv-warning-400); display: flex; align-items: center; justify-content: center; }
+  .inv-logo [data-lucide] { width: 40px; height: 40px; color: #fff; }
+  .inv-num { text-align: right; }
+  .inv-num .t { font-size: 17px; font-weight: 700; color: var(--sv-grey-800); }
+  .inv-num .ln { font-size: 12px; color: var(--sv-fg-secondary); margin-top: 3px; }
+  .inv-parties { display: flex; justify-content: space-between; margin-top: 26px; }
+  .inv-parties .lbl { font-size: 15px; font-weight: 700; color: var(--sv-grey-800); }
+  .inv-parties .txt { font-size: 13px; color: var(--sv-fg-secondary); margin-top: 5px; line-height: 1.5; }
+  .inv-parties .r { text-align: right; }
+  .inv-lines { width: 100%; border-collapse: collapse; margin-top: 26px; }
+  .inv-lines thead th { text-align: left; font-size: 12px; font-weight: 700; color: var(--sv-grey-800);
+    padding: 10px 8px; border-bottom: 1.5px solid var(--sv-grey-300); }
+  .inv-lines thead th.r { text-align: right; }
+  .inv-lines td { font-size: 12.5px; color: var(--sv-grey-700); padding: 9px 8px; vertical-align: top; }
+  .inv-lines td.r { text-align: right; font-variant-numeric: tabular-nums; }
+  .inv-lines tbody tr { border-bottom: 1px solid var(--sv-border); }
+  .inv-lines .kind { color: var(--sv-fg-tertiary); width: 46px; }
+  .inv-lines .core-cell { color: var(--sv-violet-700); font-weight: 600; }
+  .inv-lines .core-hold { color: var(--sv-warning-700); font-weight: 600; }
+  .inv-tot { margin-top: 14px; margin-left: auto; width: 300px; }
+  .inv-tot .tr { display: flex; justify-content: space-between; font-size: 13px; padding: 4px 0; color: var(--sv-grey-700); }
+  .inv-tot .tr.core { color: var(--sv-warning-700); font-weight: 600; }
+  .inv-tot .tr.grand { border-top: 1.5px solid var(--sv-grey-300); margin-top: 6px; padding-top: 10px; font-weight: 700; font-size: 15px; color: var(--sv-grey-800); }
+
+  /* ─── Modal ──────────────────────────────────────────── */
+  .overlay { position: fixed; inset: 0; background: var(--sv-overlay); display: none; align-items: center; justify-content: center; z-index: 60; }
+  .overlay.open { display: flex; }
+  .dialog { width: 560px; max-width: calc(100vw - 32px); background: #fff; border-radius: var(--sv-radius-lg); box-shadow: var(--sv-shadow-lg); overflow: hidden; }
+  .m-head { padding: var(--sv-space-5) var(--sv-space-5) 0; }
+  .m-titlerow { display: flex; align-items: flex-start; justify-content: space-between; }
+  .m-title { font-size: 19px; font-weight: 700; color: var(--sv-grey-800); display: flex; align-items: center; gap: 9px; }
+  .m-title .n-un { font-size: 12px; font-weight: 700; color: var(--sv-warning-700); background: var(--sv-warning-50);
+    border: 1px solid var(--sv-warning-200); border-radius: var(--sv-radius-pill); padding: 2px 10px; }
+  .m-title .n-un.done { color: var(--sv-success-700); background: var(--sv-success-50); border-color: var(--sv-success-200); }
+  .m-close { color: var(--sv-fg-tertiary); cursor: pointer; background: none; border: 0; padding: 2px; display: flex; }
+  .m-close [data-lucide] { width: 19px; height: 19px; }
+  .m-sub { font-size: 13px; color: var(--sv-fg-secondary); margin-top: 3px; }
+  .m-body { padding: var(--sv-space-5); max-height: 62vh; overflow-y: auto; }
+  .m-intro { font-size: 13px; color: var(--sv-fg-secondary); line-height: 1.45; margin-bottom: 14px; }
+  .m-intro b { color: var(--sv-grey-800); font-weight: 700; }
+
+  .core-progress { display: flex; align-items: center; gap: 10px; padding: 11px 14px; border-radius: var(--sv-radius-md);
+    background: var(--sv-grey-25); border: 1px solid var(--sv-border-strong); margin-bottom: 16px; font-size: 13px; }
+  .core-progress .cp-count { font-weight: 700; color: var(--sv-grey-800); white-space: nowrap; }
+  .core-progress .cp-track { flex: 1; height: 6px; border-radius: 4px; background: var(--sv-grey-200); overflow: hidden; }
+  .core-progress .cp-fill { height: 100%; background: var(--sv-brand-blue); transition: width 220ms ease-out; }
+  .core-progress .cp-add { font-weight: 600; color: var(--sv-warning-700); white-space: nowrap; }
+
+  .core-list { border: 1px solid var(--sv-border-strong); border-radius: var(--sv-radius-md); overflow: hidden; margin-bottom: 14px; }
+  .core-group-hd { padding: 9px 14px; background: var(--sv-grey-50); border-bottom: 1px solid var(--sv-border);
+    font-size: 11px; font-weight: 700; letter-spacing: 0.03em; text-transform: uppercase; color: var(--sv-fg-secondary);
+    display: flex; align-items: center; gap: 7px; }
+  .core-group-hd [data-lucide] { width: 13px; height: 13px; }
+  .core-group-hd .hint { margin-left: auto; text-transform: none; letter-spacing: 0; font-weight: 500; color: var(--sv-fg-tertiary); font-size: 11px; }
+  .core-row { padding: 13px 14px; border-bottom: 1px solid var(--sv-border); }
+  .core-row:last-child { border-bottom: 0; }
+  .core-row.notok { background: var(--sv-warning-25, #FFFCF5); }
+  .core-row.ok { background: var(--sv-success-25, #F3FBF6); }
+  .cr-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+  .cr-name { font-size: 13px; font-weight: 600; color: var(--sv-grey-800); }
+  .cr-sub { font-size: 12px; color: var(--sv-fg-secondary); margin-top: 2px; }
+  .cr-charge { font-size: 12px; font-weight: 600; color: var(--sv-fg-secondary); white-space: nowrap; font-variant-numeric: tabular-nums; text-align: right; }
+  .cr-charge.amber { color: var(--sv-warning-700); }
+  .cr-charge.green { color: var(--sv-success-700); }
+  .cr-charge .added { display: block; font-size: 11px; font-weight: 600; margin-top: 1px; }
+
+  .core-toggle { display: inline-flex; margin-top: 11px; border: 1px solid var(--sv-border-strong); border-radius: 8px; overflow: hidden; }
+  .core-opt { height: 34px; padding: 0 15px; display: inline-flex; align-items: center; gap: 6px; white-space: nowrap;
+    font-size: 12.5px; font-weight: 600; color: var(--sv-fg-secondary); background: #fff; cursor: pointer; border: 0; font-family: inherit; }
+  .core-opt + .core-opt { border-left: 1px solid var(--sv-border-strong); }
+  .core-opt [data-lucide] { width: 14px; height: 14px; }
+  .core-opt.ok.sel { background: var(--sv-success-50); color: var(--sv-success-700); box-shadow: inset 0 0 0 1.5px var(--sv-success-400); }
+  .core-opt.notok.sel { background: var(--sv-warning-50); color: var(--sv-warning-700); box-shadow: inset 0 0 0 1.5px var(--sv-warning-400); }
+
+  /* Special-order core awaiting receipt */
+  .await { margin-top: 11px; display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 8px;
+    background: var(--sv-primary-25, #F5F8FE); border: 1px solid var(--sv-primary-100); }
+  .await .info { display: flex; align-items: center; gap: 7px; font-size: 12px; color: var(--sv-primary-700); flex: 1; line-height: 1.4; }
+  .await .info [data-lucide] { width: 14px; height: 14px; flex-shrink: 0; color: var(--sv-primary-500); }
+  .btn-sm { height: 32px; padding: 0 13px; border-radius: 7px; font-size: 12.5px; font-weight: 600; font-family: inherit;
+    cursor: pointer; display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; border: 1px solid var(--sv-primary-300);
+    background: #fff; color: var(--sv-primary-700); }
+  .btn-sm:hover { background: var(--sv-primary-50); }
+  .btn-sm [data-lucide] { width: 14px; height: 14px; }
+
+  .m-note { font-size: 12px; color: var(--sv-fg-secondary); margin-top: 4px; display: flex; align-items: flex-start; gap: 7px; line-height: 1.45; }
+  .m-note [data-lucide] { width: 14px; height: 14px; color: var(--sv-primary-500); flex-shrink: 0; margin-top: 1px; }
+  .m-foot { display: flex; align-items: center; gap: var(--sv-space-3); padding: var(--sv-space-4) var(--sv-space-5);
+    border-top: 1px solid var(--sv-border); background: var(--sv-grey-25); }
+  .m-foot .spacer { flex: 1; }
+  .btn-link { background: none; border: 0; color: var(--sv-primary-700); font-size: 14px; font-weight: 600; font-family: inherit; cursor: pointer; padding: 0 4px; }
+  .btn-link:hover { text-decoration: underline; }
+
+  /* Receive-one-line screen */
+  .rcv-screen { display: none; position: fixed; inset: 0; background: var(--sv-bg-app); z-index: 70; padding: 40px; overflow-y: auto; }
+  .rcv-screen.open { display: block; }
+  .rcv-card { max-width: 560px; margin: 0 auto; background: #fff; border: 1px solid var(--sv-border-strong); border-radius: var(--sv-radius-lg); overflow: hidden; }
+  .rcv-top { padding: var(--sv-space-5); border-bottom: 1px solid var(--sv-border); }
+  .rcv-back { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; color: var(--sv-primary-700);
+    background: none; border: 0; font-family: inherit; cursor: pointer; margin-bottom: 12px; }
+  .rcv-back [data-lucide] { width: 15px; height: 15px; }
+  .rcv-title { font-size: 19px; font-weight: 700; color: var(--sv-grey-800); }
+  .rcv-sub { font-size: 13px; color: var(--sv-fg-secondary); margin-top: 3px; }
+  .rcv-body { padding: var(--sv-space-5); display: flex; flex-direction: column; gap: var(--sv-space-4); }
+  .rcv-line { display: flex; align-items: center; gap: 12px; padding: 13px 14px; border: 1px solid var(--sv-border-strong); border-radius: var(--sv-radius-md); }
+  .rcv-line .rl-icon { width: 36px; height: 36px; border-radius: 8px; background: var(--sv-primary-50); color: var(--sv-primary-600);
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .rcv-line .rl-icon [data-lucide] { width: 18px; height: 18px; }
+  .rcv-line .rl-name { font-size: 13px; font-weight: 600; color: var(--sv-grey-800); }
+  .rcv-line .rl-sub { font-size: 12px; color: var(--sv-fg-secondary); margin-top: 2px; }
+  .rcv-field label { display: block; font-size: 13px; font-weight: 600; color: var(--sv-grey-700); margin-bottom: 6px; }
+  .rcv-field input { width: 100%; height: 42px; border: 1px solid var(--sv-border-strong); border-radius: 8px; padding: 0 14px; font-size: 14px; font-family: inherit; color: var(--sv-grey-700); }
+  .rcv-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--sv-space-4); }
+  .rcv-foot { display: flex; gap: var(--sv-space-3); padding: var(--sv-space-4) var(--sv-space-5); border-top: 1px solid var(--sv-border); background: var(--sv-grey-25); }
+  .rcv-core-note { display: flex; align-items: center; gap: 8px; font-size: 12.5px; color: var(--sv-violet-700);
+    background: var(--sv-violet-50); border: 1px solid var(--sv-violet-200); border-radius: 8px; padding: 10px 12px; }
+  .rcv-core-note [data-lucide] { width: 15px; height: 15px; }
+
+  /* Toast */
+  .toast { position: fixed; left: 50%; bottom: 28px; transform: translateX(-50%) translateY(20px); z-index: 90;
+    background: var(--sv-grey-900); color: #fff; font-size: 13px; font-weight: 500; padding: 11px 18px; border-radius: 10px;
+    box-shadow: var(--sv-shadow-lg); display: flex; align-items: center; gap: 9px; opacity: 0; pointer-events: none; transition: opacity 200ms, transform 200ms; }
+  .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+  .toast [data-lucide] { width: 16px; height: 16px; color: var(--sv-success-400); }
+
+  /* Prototype control */
+  .proto { position: fixed; right: 18px; bottom: 18px; z-index: 50; width: 250px; background: var(--sv-grey-900); color: #fff;
+    border-radius: var(--sv-radius-lg); box-shadow: var(--sv-shadow-lg); font-size: 13px; overflow: hidden; }
+  .proto-head { display: flex; align-items: center; gap: 8px; padding: 12px 14px; border-bottom: 1px solid rgba(255,255,255,.1); }
+  .proto-head [data-lucide] { width: 15px; height: 15px; color: var(--sv-primary-300); }
+  .proto-head .t { font-weight: 700; font-size: 12px; letter-spacing: 0.04em; text-transform: uppercase; }
+  .proto-head .x { margin-left: auto; cursor: pointer; color: rgba(255,255,255,.5); }
+  .proto-head .x [data-lucide] { width: 15px; height: 15px; color: inherit; }
+  .proto-body { padding: 14px; display: flex; flex-direction: column; gap: 12px; }
+  .proto-group .pg-label { font-size: 11px; font-weight: 600; letter-spacing: 0.03em; text-transform: uppercase; color: rgba(255,255,255,.5); margin-bottom: 7px; }
+  .seg.vert { display: flex; flex-direction: column; background: rgba(255,255,255,.08); border-radius: 8px; padding: 3px; gap: 3px; }
+  .seg.vert button { height: 30px; border: 0; background: transparent; color: rgba(255,255,255,.7); font-size: 12px; font-weight: 600; font-family: inherit; border-radius: 6px; cursor: pointer; text-align: left; padding: 0 10px; }
+  .seg.vert button.on { background: var(--sv-brand-blue); color: #fff; }
+  .proto-note { font-size: 11px; line-height: 1.45; color: rgba(255,255,255,.55); }
+  .proto-reset { display: flex; align-items: center; justify-content: center; gap: 6px; height: 32px; border-radius: 7px;
+    background: rgba(255,255,255,.1); color: #fff; border: 0; font-family: inherit; font-size: 12px; font-weight: 600; cursor: pointer; }
+  .proto-reset [data-lucide] { width: 13px; height: 13px; }
+  .proto-collapsed .proto-body { display: none; }
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="brand"><img src="assets/symbol-primary.svg" alt="ShopView"></div>
+  <nav class="top-nav">
+    <a href="#" class="active">Work Orders</a>
+    <a href="#">Schedule</a>
+    <a href="#">Customers</a>
+    <a href="#">Parts</a>
+    <a href="#">Reports</a>
+  </nav>
+  <div class="search"><i data-lucide="search"></i><input type="text" placeholder="Search"></div>
+  <div class="header-spacer"></div>
+  <div class="header-right">
+    <span class="clockin"><i data-lucide="timer"></i>Clock In</span>
+    <i data-lucide="bell" class="bell"></i>
+    <div class="org-pill">QB Location <span class="avatar">AS</span></div>
+  </div>
+</header>
+
+<div class="shell">
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="card side-card">
+      <span class="wo-id">S10-2491</span>
+      <div class="badge-row">
+        <span class="pill pill-amber">Complete</span>
+        <span class="pill pill-red" id="unInvPill">Un-invoiced</span>
+      </div>
+      <div class="meta-list">
+        <div class="meta-line"><span class="k">Completed:</span><span class="v">Jul 3, 2026</span></div>
+        <div class="meta-line"><span class="k">Total Hours:</span><span class="v">3.0 hrs</span></div>
+      </div>
+      <hr class="divider">
+      <div class="stacked">
+        <div><div class="field-label">Service Advisor</div><div class="field-value">Mudassir Qamar</div></div>
+      </div>
+    </div>
+
+    <div class="card side-card">
+      <div class="cust-name">A-maze-ing-Laughter</div>
+      <hr class="divider">
+      <div class="stacked">
+        <div><div class="field-label">Contact</div><div class="field-value">Vikt Vid</div></div>
+        <div><div class="field-label">Phone</div><div class="field-value">(555) 555 - 5555</div></div>
+      </div>
+    </div>
+
+    <div class="card fin-card">
+      <div class="fin-title">Financial Info</div>
+      <table class="fin-table">
+        <tbody id="fin-body">
+          <tr><td>Parts</td><td>$540.50</td></tr>
+          <tr><td>Labor</td><td>$405.00</td></tr>
+          <tr><td>Shop Supplies</td><td>$23.00</td></tr>
+          <tr class="pending-line" id="fin-pending"><td>Cores pending</td><td id="fin-pending-val">2</td></tr>
+          <tr class="core-line" id="fin-core-row" style="display:none"><td>Core charges</td><td id="fin-core-val">$0.00</td></tr>
+          <tr class="total"><td>Total</td><td id="fin-total">$968.50</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </aside>
+
+  <!-- Main / Finance -->
+  <main class="main">
+    <div class="main-top">
+      <div class="tabs">
+        <span class="tab">Lines (3)</span>
+        <span class="tab">Parts (4)</span>
+        <span class="tab">Notes</span>
+        <span class="tab">Stats</span>
+        <span class="tab active">Finance</span>
+      </div>
+      <div class="main-top-spacer"></div>
+      <div class="actions">
+        <input class="cust-po" placeholder="Customer PO">
+        <button class="icon-btn"><i data-lucide="download"></i></button>
+        <button class="icon-btn"><i data-lucide="printer"></i></button>
+        <button class="btn btn-secondary"><i data-lucide="plus"></i> Add Deposit</button>
+        <button class="btn btn-primary" id="invoiceBtn" onclick="openModal()">Create Invoice</button>
+      </div>
+    </div>
+
+    <!-- Frame 1 · cores-pending indicator -->
+    <div class="pending-banner" id="pendingBanner">
+      <i data-lucide="rotate-ccw"></i>
+      <span class="pb-text"><b>Cores pending — can't invoice yet.</b> Core charges must be resolved before this work order can be invoiced.</span>
+      <span class="pb-count" id="pendingCount">2 unresolved</span>
+    </div>
+    <div class="resolved-banner" id="resolvedBanner">
+      <i data-lucide="check-circle-2"></i>
+      <span class="pb-text">All cores resolved — ready to invoice.</span>
+    </div>
+
+    <!-- Invoice preview -->
+    <div class="invoice">
+      <div class="inv-toggle"><span class="switch"></span> Estimate / Invoice</div>
+      <div class="inv-head">
+        <div class="inv-org"><div class="on">QB Location</div><div class="ln">120 Bremner Boulevard<br>Toronto, Ontario, M5J 0A8<br>(344) 353 - 4543</div></div>
+        <div class="inv-logo"><i data-lucide="truck"></i></div>
+        <div class="inv-num"><div class="t">Draft: INV-S10-2491</div><div class="ln">Invoice Date: Jul 6, 2026<br>Due date: Jul 6, 2026</div></div>
+      </div>
+      <div class="inv-parties">
+        <div><div class="lbl">Bill To</div><div class="txt">A-maze-ing-Laughter<br>Morton avenue<br>Vancouver, British Columbia, V5Y 3Z5</div></div>
+        <div class="r"><div class="lbl">Remit payment to</div><div class="txt">QB Location<br>120 Bremner Boulevard<br>Toronto, Ontario, M5J 0A8</div></div>
+      </div>
+      <table class="inv-lines">
+        <thead><tr><th></th><th>Description</th><th class="r">Qty</th><th class="r">Rate</th><th class="r">Amount</th></tr></thead>
+        <tbody id="inv-body"><!-- rendered --></tbody>
+      </table>
+      <div class="inv-tot" id="inv-tot"><!-- rendered --></div>
+    </div>
+  </main>
+</div>
+
+<!-- Resolve-cores-to-invoice modal -->
+<div class="overlay" id="modalOverlay">
+  <div class="dialog" role="dialog" aria-modal="true">
+    <div class="m-head">
+      <div class="m-titlerow">
+        <div class="m-title">Resolve cores to invoice <span class="n-un" id="mUn">2 unresolved</span></div>
+        <button class="m-close" onclick="closeModal()"><i data-lucide="x"></i></button>
+      </div>
+      <div class="m-sub">S10-2491 · A-maze-ing-Laughter · completed without receiving</div>
+    </div>
+    <div class="m-body" id="mBody"><!-- rendered --></div>
+    <div class="m-foot">
+      <button class="btn-link" onclick="closeModal()">Cancel</button>
+      <span class="spacer"></span>
+      <button class="btn btn-primary" id="mCreate" onclick="createInvoice()" disabled>Create Invoice</button>
+    </div>
+  </div>
+</div>
+
+<!-- Receive-one-line screen -->
+<div class="rcv-screen" id="rcvScreen">
+  <div class="rcv-card">
+    <div class="rcv-top">
+      <button class="rcv-back" onclick="cancelReceive()"><i data-lucide="arrow-left"></i> Back to resolve cores</button>
+      <div class="rcv-title">Receive part</div>
+      <div class="rcv-sub" id="rcvSub">Receiving one cored line so its core can be settled</div>
+    </div>
+    <div class="rcv-body">
+      <div class="rcv-line">
+        <div class="rl-icon"><i data-lucide="package"></i></div>
+        <div><div class="rl-name" id="rcvName">—</div><div class="rl-sub" id="rcvPart">—</div></div>
+      </div>
+      <div class="rcv-grid">
+        <div class="rcv-field"><label>Qty received</label><input value="1" inputmode="numeric"></div>
+        <div class="rcv-field"><label>Vendor invoice #</label><input placeholder="Optional"></div>
+      </div>
+      <div class="rcv-core-note"><i data-lucide="rotate-ccw"></i> This part carries a core charge. Once received, you'll set Return / Keep back on the resolve-cores list.</div>
+    </div>
+    <div class="rcv-foot">
+      <button class="btn btn-secondary" onclick="cancelReceive()">Cancel</button>
+      <span class="spacer" style="flex:1"></span>
+      <button class="btn btn-primary" onclick="confirmReceive()"><i data-lucide="box"></i> Receive &amp; return</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"><i data-lucide="check"></i><span id="toastMsg"></span></div>
+
+<!-- Prototype control -->
+<div class="proto" id="proto">
+  <div class="proto-head">
+    <i data-lucide="sliders-horizontal"></i>
+    <span class="t">Prototype</span>
+    <span class="x" onclick="toggleProto()"><i data-lucide="chevron-down" id="protoChevron"></i></span>
+  </div>
+  <div class="proto-body">
+    <div class="proto-group">
+      <div class="pg-label">Jump to frame</div>
+      <div class="seg vert">
+        <button onclick="goFrame('entry')" id="frEntry" class="on">1 · Cores pending (entry)</button>
+        <button onclick="goFrame('blocked')" id="frBlocked">2 · Blocked modal</button>
+        <button onclick="goFrame('receive')" id="frReceive">3 · Receive one line</button>
+        <button onclick="goFrame('partial')" id="frPartial">4 · Partial (1 of 2)</button>
+        <button onclick="goFrame('resolved')" id="frResolved">5 · All resolved</button>
+        <button onclick="goFrame('invoiced')" id="frInvoiced">6 · Invoiced</button>
+      </div>
+    </div>
+    <div class="proto-group">
+      <div class="pg-label">Inventory core group</div>
+      <div class="seg vert">
+        <button onclick="setInv(false)" id="invOff" class="on">Special-order only</button>
+        <button onclick="setInv(true)" id="invOn">+ inventory core ($40)</button>
+      </div>
+    </div>
+    <div class="proto-note" id="protoNote"></div>
+    <button class="proto-reset" onclick="resetAll()"><i data-lucide="rotate-ccw"></i> Reset</button>
+  </div>
+</div>
+
+<script>
+  const $ = id => document.getElementById(id);
+
+  // ── Core model. status: 'held' (needs receiving) | 'ready' (received, resolvable) | 'ok' | 'notok'
+  //    source: 'special' | 'inventory'
+  function baseCores() {
+    const c = [
+      { id:'brake', name:'Brake chamber', partNo:'SP-BRK-8841', line:2, charge:76, source:'special', status:'held' },
+      { id:'hose',  name:'Hydraulic hose', partNo:'SP-HYD-2290', line:4, charge:45, source:'special', status:'held' }
+    ];
+    if (state.inventoryCore) c.push({ id:'starter', name:'Starter motor — reman', partNo:'4--STR-6620', line:5, charge:40, source:'inventory', status:'ready' });
+    return c;
+  }
+  // Non-core special parts (context on the invoice)
+  const OTHER_PARTS = [
+    { kind:'Part', desc:'Brass fog nozzle — 1½"', qty:1, rate:58.93, line:3 },
+    { kind:'Part', desc:'Field attachable coupling', qty:2, rate:26.80, line:3 }
+  ];
+
+  const state = { frame:'entry', inventoryCore:false, invoiced:false };
+  let cores = [];
+
+  function resolvable(c) { return c.status === 'ready' || c.status === 'ok' || c.status === 'notok'; }
+  function resolved(c) { return c.status === 'ok' || c.status === 'notok'; }
+  function unresolvedCount() { return cores.filter(c => !resolved(c)).length; }
+  function allResolved() { return cores.every(resolved); }
+  function chargeAdded() { return cores.filter(c => c.status === 'notok').reduce((s,c)=>s+c.charge, 0); }
+
+  function seed() { cores = baseCores(); }
+
+  // ─── Page render ─────────────────────────────────────
+  function renderPage() {
+    const pending = unresolvedCount();
+    const done = allResolved();
+    $('pendingBanner').style.display = (!state.invoiced && !done) ? 'flex' : 'none';
+    $('resolvedBanner').style.display = (!state.invoiced && done) ? 'flex' : 'none';
+    $('pendingCount').textContent = pending + ' unresolved';
+    $('invoiceBtn').textContent = state.invoiced ? 'View Invoice' : 'Create Invoice';
+    $('unInvPill').style.display = state.invoiced ? 'none' : '';
+
+    // sidebar financials
+    $('fin-pending').style.display = (!state.invoiced && pending>0) ? '' : 'none';
+    $('fin-pending-val').textContent = pending;
+    const added = chargeAdded();
+    $('fin-core-row').style.display = (added>0) ? '' : 'none';
+    $('fin-core-val').textContent = '$'+added.toFixed(2);
+    $('fin-total').textContent = '$'+(968.50 + added).toFixed(2);
+
+    renderInvoice();
+    lucide.createIcons();
+  }
+
+  function renderInvoice() {
+    let rows = `
+      <tr><td class="kind">Labor</td><td>Service labor — 3.0 hrs</td><td class="r">1</td><td class="r">$135.00</td><td class="r">$405.00</td></tr>`;
+    OTHER_PARTS.forEach(p => {
+      rows += `<tr><td class="kind">${p.kind}</td><td>${p.desc}</td><td class="r">${p.qty}</td><td class="r">$${p.rate.toFixed(2)}</td><td class="r">$${(p.qty*p.rate).toFixed(2)}</td></tr>`;
+    });
+    cores.forEach(c => {
+      let amt, cls;
+      if (c.status === 'notok') { amt = '$'+c.charge.toFixed(2); cls='core-cell'; }
+      else if (c.status === 'ok') { amt = '$0.00'; cls='core-cell'; }
+      else { amt = 'On hold'; cls='core-hold'; }
+      const sub = c.status==='notok' ? 'core kept — charged' : c.status==='ok' ? 'core returned — no charge' : 'core unresolved';
+      rows += `<tr><td class="kind">Core</td><td>${c.name} <span class="${cls}">· ${sub}</span></td><td class="r">1</td><td class="r">$${c.charge.toFixed(2)}</td><td class="r ${cls}">${amt}</td></tr>`;
+    });
+    $('inv-body').innerHTML = rows;
+
+    const added = chargeAdded();
+    const pending = unresolvedCount();
+    $('inv-tot').innerHTML = `
+      <div class="tr"><span>Subtotal</span><span>$540.50</span></div>
+      <div class="tr"><span>Shop supplies</span><span>$23.00</span></div>
+      ${added>0 ? `<div class="tr core"><span>Core charges (kept)</span><span>$${added.toFixed(2)}</span></div>` : ''}
+      ${pending>0 ? `<div class="tr core"><span>Cores on hold</span><span>${pending} unresolved</span></div>` : ''}
+      <div class="tr"><span>HST (13%)</span><span>$${(70.27+added*0.13).toFixed(2)}</span></div>
+      <div class="tr grand"><span>Total</span><span>$${(968.50+added+added*0.13).toFixed(2)}</span></div>`;
+  }
+
+  // ─── Modal ───────────────────────────────────────────
+  function openModal() { if (state.invoiced) return; $('modalOverlay').classList.add('open'); renderModal(); }
+  function closeModal() { $('modalOverlay').classList.remove('open'); renderPage(); }
+
+  function renderModal() {
+    const total = cores.length, doneN = cores.filter(resolved).length;
+    const pct = total ? Math.round(doneN/total*100) : 0;
+    const added = chargeAdded();
+
+    const groups = [
+      { key:'inventory', label:'Inventory cores', icon:'package', hint:'resolve now' },
+      { key:'special',   label:'Special-order cores', icon:'store', hint:'receive to settle' }
+    ];
+    let lists = '';
+    groups.forEach(g => {
+      const set = cores.filter(c => c.source === g.key);
+      if (!set.length) return;
+      let rows = ''; set.forEach(c => rows += coreRow(c));
+      lists += `<div class="core-list">
+        <div class="core-group-hd"><i data-lucide="${g.icon}"></i> ${g.label} · ${set.length}<span class="hint">${g.hint}</span></div>
+        ${rows}</div>`;
+    });
+
+    $('mBody').innerHTML = `
+      <div class="m-intro">Receiving was optional at completion. A core charge can't be settled until its part is back — receive each one below, then mark <b>Return</b> or <b>Keep</b> to invoice.</div>
+      <div class="core-progress">
+        <span class="cp-count">${doneN} of ${total} resolved</span>
+        <div class="cp-track"><div class="cp-fill" style="width:${pct}%"></div></div>
+        ${added>0 ? `<span class="cp-add">+$${added.toFixed(2)} to invoice</span>` : ''}
+      </div>
+      ${lists}
+      <div class="m-note"><i data-lucide="info"></i> Return = old unit came back, no charge. Keep = customer keeps it, core charge added to the invoice.</div>`;
+
+    $('mUn').textContent = allResolved() ? 'all resolved' : unresolvedCount()+' unresolved';
+    $('mUn').classList.toggle('done', allResolved());
+    $('mCreate').disabled = !allResolved();
+    lucide.createIcons();
+  }
+
+  function coreRow(c) {
+    let charge, control;
+    if (c.status === 'notok') charge = `<div class="cr-charge amber">Core $${c.charge.toFixed(2)}<span class="added">added to invoice</span></div>`;
+    else if (c.status === 'ok') charge = `<div class="cr-charge green">Core $${c.charge.toFixed(2)}<span class="added">no charge</span></div>`;
+    else charge = `<div class="cr-charge">Core $${c.charge.toFixed(2)}</div>`;
+
+    if (resolvable(c)) {
+      control = `<div class="core-toggle">
+        <button class="core-opt ok ${c.status==='ok'?'sel':''}" onclick="setCore('${c.id}','ok')"><i data-lucide="rotate-ccw"></i> Return</button>
+        <button class="core-opt notok ${c.status==='notok'?'sel':''}" onclick="setCore('${c.id}','notok')">Keep +$${c.charge.toFixed(2)}</button>
+      </div>`;
+    } else {
+      control = `<div class="await">
+        <span class="info"><i data-lucide="info"></i> Not received yet — receive this part to settle its core.</span>
+        <button class="btn-sm" onclick="startReceive('${c.id}')"><i data-lucide="box"></i> Receive part</button>
+      </div>`;
+    }
+    return `<div class="core-row ${c.status==='ok'?'ok':c.status==='notok'?'notok':''}">
+      <div class="cr-top">
+        <div><div class="cr-name">${c.name}</div><div class="cr-sub">${c.partNo} · Line ${c.line} · ${c.source==='special'?'special order':'inventory'}</div></div>
+        ${charge}
+      </div>
+      ${control}
+    </div>`;
+  }
+
+  function setCore(id, val) { const c = cores.find(x=>x.id===id); c.status = val; renderModal(); }
+
+  // ─── Receive one line ────────────────────────────────
+  let receivingId = null;
+  function startReceive(id) {
+    receivingId = id; const c = cores.find(x=>x.id===id);
+    $('rcvName').textContent = c.name;
+    $('rcvPart').textContent = `${c.partNo} · Line ${c.line} · special order`;
+    $('modalOverlay').classList.remove('open');
+    $('rcvScreen').classList.add('open');
+    lucide.createIcons();
+  }
+  function cancelReceive() { $('rcvScreen').classList.remove('open'); $('modalOverlay').classList.add('open'); renderModal(); }
+  function confirmReceive() {
+    const c = cores.find(x=>x.id===receivingId);
+    if (c) c.status = 'ready';
+    $('rcvScreen').classList.remove('open');
+    $('modalOverlay').classList.add('open');
+    renderModal();
+    showToast(`${c ? c.name : 'Part'} received — now resolvable`);
+  }
+
+  function createInvoice() {
+    if (!allResolved()) return;
+    state.invoiced = true;
+    closeModal();
+    showToast('Invoice created');
+    renderPage();
+  }
+
+  let toastT;
+  function showToast(msg) {
+    $('toastMsg').textContent = msg; $('toast').classList.add('show');
+    clearTimeout(toastT); toastT = setTimeout(()=>$('toast').classList.remove('show'), 2200);
+  }
+
+  // ─── Prototype / frames ──────────────────────────────
+  const FRAME_IDS = { entry:'frEntry', blocked:'frBlocked', receive:'frReceive', partial:'frPartial', resolved:'frResolved', invoiced:'frInvoiced' };
+  const FRAME_NOTES = {
+    entry: 'Completed WO, not yet invoiced. Amber indicator warns cores are pending before the user clicks Create Invoice.',
+    blocked: 'Create Invoice opens the modal. Cores grouped by what they need. Special-order cores show "Receive part"; Create Invoice is disabled.',
+    receive: 'Receiving one cored line (core-only partial receive). On return, that core flips to resolvable.',
+    partial: 'One core resolved, one still needs receiving. Create Invoice stays disabled — 1 of 2.',
+    resolved: 'Both cores resolved (mix of Return and Keep). Running total shows kept charge. Create Invoice enabled.',
+    invoiced: 'Invoice created. Kept core charges are billed; WO drops the un-invoiced / pending state.'
+  };
+  function goFrame(f) {
+    state.frame = f;
+    Object.values(FRAME_IDS).forEach(id => $(id).classList.remove('on'));
+    $(FRAME_IDS[f]).classList.add('on');
+    applyFrame(f);
+    $('protoNote').textContent = FRAME_NOTES[f];
+  }
+  function applyFrame(f) {
+    // reset base state, then set up the target frame
+    state.invoiced = false; seed();
+    $('rcvScreen').classList.remove('open'); $('modalOverlay').classList.remove('open');
+
+    if (f === 'entry') { renderPage(); }
+    else if (f === 'blocked') { renderPage(); openModal(); }
+    else if (f === 'receive') { renderPage(); openModal(); startReceive('brake'); }
+    else if (f === 'partial') { cores.find(c=>c.id==='brake').status='ready'; cores.find(c=>c.id==='brake').status='ok'; renderPage(); openModal(); }
+    else if (f === 'resolved') { cores.forEach((c,i)=> c.status = i===0?'notok':'ok'); renderPage(); openModal(); }
+    else if (f === 'invoiced') { cores.forEach((c,i)=> c.status = i===0?'notok':'ok'); state.invoiced = true; renderPage(); }
+  }
+  function setInv(v) { state.inventoryCore = v; $('invOn').classList.toggle('on', v); $('invOff').classList.toggle('on', !v); applyFrame(state.frame); }
+  function resetAll() { goFrame('entry'); }
+  function toggleProto() {
+    const p = $('proto'); p.classList.toggle('proto-collapsed');
+    $('protoChevron').setAttribute('data-lucide', p.classList.contains('proto-collapsed')?'chevron-up':'chevron-down');
+    lucide.createIcons();
+  }
+
+  // ─── Deep links ──────────────────────────────────────
+  function applyScreen() {
+    seed();
+    const p = new URLSearchParams(location.search).get('screen');
+    if (!p) { renderPage(); return; }
+    $('proto').style.display = 'none';
+    const map = { entry:'entry', blocked:'blocked', receive:'receive', partial:'partial', resolved:'resolved', invoiced:'invoiced' };
+    if (map[p]) { applyFrame(map[p]); } else { renderPage(); }
+    lucide.createIcons();
+  }
+
+  lucide.createIcons();
+  applyScreen();
+</script>
+</body>
+</html>
