@@ -57,7 +57,7 @@ all).
    (Atlassian-SSO login-walled — reference pointer only; export/paste content to
    ingest, do NOT fetch). **CANONICAL
    STATE DOC (read first for resume):** `build/fees-discounts/PROJECT-STATE.md` —
-   the single authoritative snapshot (case inventory 182 + VIU breakdown, TestRail
+   the single authoritative snapshot (case inventory 183 + VIU breakdown, TestRail
    state, deliverables index, FDBUG register, open threads, env/access facts,
    how-to-resume). Per-case status tallied by
    `build/fees-discounts/FeesDiscounts_Blockers_Tracker.md`/`.xlsx` (regenerate with
@@ -68,20 +68,23 @@ all).
    `bugs-log.md` + `viu-evidence/` (API-heavy, Admin+Tech); pass B =
    `viu-qb-findings.md` + `screenshots/viu-qb/` (UI-deep) — pass B's doc holds
    the merged scoreboard + reconciliation + FDBUG register + API map).
-   **STATUS: ⏸️ PAUSED 2026-07-13 — WAITING ON Chris Ward's answers to the
-   Round-2 PO sheet** (`PO-Questions-Round2.xlsx`, 4 questions, STILL BLANK; user
-   will share the filled file). **Resume = PROJECT-STATE.md §0** (pre-decided
-   per-answer action map incl. which held Jira drafts release/drop and which
-   TestRail cases get expected-result updates — TestRail edits need fresh one-day
-   authorization then). FEATURE LIVE on `qb.qa.shopview.com` / API
-   `sv7387api.qa.shopview.com` (flag ON). **DONE 2026-07-13: V1_2 spec applied (43
-   case updates + new FD-WO-016=C29441) AND a FRESH FULL build-accurate WORDING +
-   VIU PASS over ALL 183 cases** with live-captured build labels — **ALL 183
-   pushed to TestRail via update_case, 200/200, 0 errors.** **Tally: 130
-   VIU-Verified / 20 Deviation / 12 Blocked-NotBuilt / 20 Blocked-Env / 1 Pending
-   = 183.** Headlines: FDBUG-1 not reproduced (treat fixed; FD-DOC-011 Verified);
-   §5-R15 tax-jurisdiction note NOT implemented (FD-WO-016 Deviation); 6 cases
-   held on Chris's Round-2 answers; 14 QB line-item cases need a human in
+   **STATUS: 2026-07-14 — CHRIS WARD'S ROUND-2 ANSWERS (Q1=A/Q2=A/Q3=A/Q4=B)
+   APPLIED + the 6 Round-2 cases PUSHED TO TESTRAIL (6/6, 200/200); FD-QB-014
+   (C28557) VIU-Verified (commit-time over-discount warn/confirm "Discount exceeds
+   subtotal" dialog confirmed BUILT at Create-Invoice + Mark-Reviewed/Complete).**
+   Final tally: **135 VIU-Verified / 15 VIU-Deviation / 12 Blocked-NotBuilt / 20
+   Blocked-Env / 1 VIU-Pending (FD-PART-005) = 183.** No longer PO-blocked; **WAITING
+   ON: the FD-CUST-016/FD-VAL-007 DUPLICATE-PAIR QA-lead keep/retire ruling + filing
+   the ready bug drafts (TICKETS 2/3/6/7/8/9/10/11; TICKET 1 on hold, 4 & 5 dropped,
+   FDBUG-15 dropped) + the env/VIU backlog.** **Resume = PROJECT-STATE.md §0/§0.5**
+   (TestRail edits need fresh one-day authorization). FEATURE LIVE on
+   `qb.qa.shopview.com` / API `sv7387api.qa.shopview.com` (flag ON). **DONE 2026-07-13:
+   V1_2 spec applied (43 case updates + new FD-WO-016=C29441) AND a FRESH FULL
+   build-accurate WORDING + VIU PASS over ALL 183 cases** with live-captured build
+   labels — **ALL 183 pushed to TestRail via update_case, 200/200, 0 errors.**
+   Headlines: FDBUG-1 not reproduced (treat fixed; FD-DOC-011 Verified);
+   §5-R15 tax-jurisdiction note NOT implemented (FD-WO-016 Deviation); 14 QB
+   line-item cases need a human in
    QuickBooks; 6 flag-off cases need a tester-free window; env bugs for dev: WO
    line-create 500, QB duplicate-doc-number export failure, bookkeeping unmap PUT
    500; **Technician role DRIFTED on qb (now has WO/Lines Create&Edit + Delete →
