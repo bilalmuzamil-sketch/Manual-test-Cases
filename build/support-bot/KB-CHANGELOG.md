@@ -5,6 +5,33 @@ change to the Confluence spec (page 565116952). Newest first.
 
 ---
 
+## 2026-07-14 — Notes permission rules added (from SV-8003, Sasha Grosman)
+
+Added the full Notes permission model, requested by the user and sourced from
+Jira SV-8003 (Sasha's Jul 8 clarification, "spec updated accordingly"; the
+authoritative last-word version, confirmed by Viktoria's Jul 13 test comment).
+
+**New KB section §3k "Notes across the app"** plus updates to §3d (Customers)
+and the §12 quick table, and FAQ C18–C20:
+
+- Notes are NOT their own permission; each surface follows a governing area's
+  CRUD. WO notes → Work Orders; **Customer notes AND Asset notes → Customer**
+  (Asset has no separate permission).
+- **Notes tab:** View = create + edit anyone's + delete own; Delete = also
+  delete other people's. Edit/Delete/Attach on others' notes are HIDDEN (not a
+  403) for roles without Delete; everyone can always manage their own notes.
+- **Notes field** (Edit Customer/Asset/WO modal) follows normal field CRUD:
+  View to see, Create&Edit to change.
+- **Notifications** = everyone (no gate); **Reports > Notes** = Reports toggle.
+- Recorded the known Customer/Asset enforcement gap (others'-notes edit/delete
+  may still 403) as an escalate-if-hit item.
+
+**Files touched:** `knowledge-base.md`, `faq.md`, `launcher.html`.
+**Support impact:** meaningful — Notes tickets ("why can't this user edit that
+note / why did the option vanish") are now answerable. Re-upload BOTH
+`knowledge-base.md` and `faq.md` to the claude.ai Project (or, if the Confluence
+connector is enabled, the bot already reads the updated spec live).
+
 ## 2026-07-14 — spec clarifications (labels + invoice reversal)
 
 Confluence spec edited 2026-07-13. Changes were clarifications, not new

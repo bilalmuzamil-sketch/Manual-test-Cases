@@ -533,8 +533,9 @@ View is ON.
 
 ### 3d. Customer Management (`customers`)
 
-- **View:** see customers, contacts, vehicles, vehicle history. Notes tab:
-  create notes, edit anyone's notes, delete own notes. If OFF, nav hidden.
+- **View:** see customers, contacts, vehicles, vehicle history. Notes tab (on
+  both Customer AND Asset — see §3k): create notes, edit anyone's notes, delete
+  own notes. If OFF, nav hidden.
 - **Create and Edit:** create/edit customers (incl. the Notes field), manage
   contacts and vehicles. Also enables creating a customer inside the New WO
   flow. Sensitive fields are hidden unless "Manage AP/AR" is on (see §7b).
@@ -602,6 +603,54 @@ AP/AR** (enabling Delete while AP/AR is off prompts to enable it).
 - **No Delete level exists for Timesheets.**
 - **Everyone can always clock in/out** regardless of this setting, and anyone
   who can clock in/out can see "My Timesheets".
+
+### 3k. Notes across the app (WO, Customer, Asset, Reports, Notifications)
+
+Notes appear in several places and are **not their own permission** — each notes
+surface follows the CRUD of a governing area (ruling per SV-8003, Sasha
+Grosman, spec-updated). There are two different things called "notes": the
+**Notes tab** and the **Notes field**.
+
+**Notes TAB** (Work Order > Notes incl. line notes; Customer > Notes; Asset >
+Notes). Governing area:
+- Work Order notes → **Work Orders** CRUD.
+- **Customer notes AND Asset notes → Customer Management CRUD** (Asset has no
+  separate permission; it rides on Customer).
+
+Rules on a notes tab:
+- **View** (of the governing area): create notes; **edit anyone's notes**;
+  delete **only your own** notes.
+- **Delete** (of the governing area): additionally **delete other people's
+  notes**.
+- So: WO View / Customer View = create + edit-any + delete-own; WO Delete /
+  Customer Delete = also delete-others.
+
+**Important UI behavior:** for a user WITHOUT the governing Delete permission,
+the Edit / Delete / Attach-files options on **other people's** notes are
+**hidden** (not shown-then-403). Every user can always create, edit, and delete
+**their own** notes. So "the edit/delete option disappeared on someone else's
+note" is expected for a role without Delete — not a bug.
+
+**Notes FIELD** (the Notes box on the Edit Customer and Edit Asset modals, and
+the equivalent on WO). This follows the **same CRUD as the other fields on that
+modal**, NOT the tab rules above:
+- **View** of the governing area = see the field's value.
+- **Create and Edit** of the governing area = open the edit modal and change the
+  field.
+- (Customer/Asset field → Customer CRUD; WO field → Work Orders CRUD.)
+
+**Other notes surfaces:**
+- **Notifications** (personal reminders/notes, the icon by the profile menu) —
+  available to **everyone**, not behind any permission.
+- **Reports > Notes** page (and Reminders) — covered by the **Reports** toggle;
+  Reports ON grants access to everything on Reports, including Notes.
+
+**Known enforcement gap (escalate if hit):** as of the latest testing, the
+Customer/Asset side of "edit or delete other people's notes" may still return an
+Access-restricted (403) error on save/delete even when the role has Customer
+View/Delete — the fix was in progress. If a customer reports this specific 403,
+treat it as a known issue and escalate; don't tell them it's their
+configuration.
 
 ---
 
@@ -914,8 +963,12 @@ Inspection abilities derive from existing permissions:
 | See "My Timesheets" | Everyone who can clock in/out |
 | Mark core Ok / Not Ok | Work Orders: View |
 | Return a part from a WO line | No permission gate (needs WO View to see it) |
-| Create/edit any note on a WO or Customer | View on that area |
-| Delete someone else's note | Delete on that area |
+| Create a note, or edit ANYONE's note (WO / Customer / Asset tab) | View on the governing area (WO notes → Work Orders; Customer + Asset notes → Customer) |
+| Delete your OWN note | View on the governing area (everyone can manage own) |
+| Delete someone else's note | Delete on the governing area |
+| See/edit the Notes FIELD on Edit Customer/Asset/WO modal | View to see it; Create and Edit to change it (governing area) |
+| Notifications (reminders/notes by profile menu) | Everyone — no permission |
+| Reports > Notes page | Reports toggle ON |
 | See WO/line audit logs | Work Orders: Create and Edit |
 | See line story history | WO View (line story requires WOL view, which follows WO View) |
 | Reverse an invoice (WO or Part Sale) | Work Orders: Delete / Part Sales: Delete (+ validation, e.g. no payments) |
@@ -936,8 +989,7 @@ Inspection abilities derive from existing permissions:
 - **Reset to Template** — requirements not yet defined in the spec. Escalate
   any question about resetting a role to its original template.
 - **Rename "Role" to "Profile"** — a future consideration only; not decided,
-  not in this release.
-</script>
+  not in this release.</script>
 <script type="text/plain" id="file-faq"># FAQ — Custom Roles and Permissions (pre-approved support answers)
 
 Draft answers for the questions this release is expected to generate. Written
@@ -1140,6 +1192,35 @@ separate future capability — we can log your interest as feedback.
 No — Reports is all-or-nothing. A role either sees all reports or none.
 (This includes the AR/AP aging reports.)
 
+**C18. A user can't edit or delete a note that someone else created — the
+option isn't even there.**
+That's expected. Notes follow the CRUD of the area they live in:
+- Work Order notes follow Work Orders permissions; Customer notes and Asset
+  notes follow Customer permissions.
+- Anyone with **View** of that area can create notes, edit anyone's notes, and
+  delete their **own** notes.
+- Deleting **someone else's** note requires **Delete** on that area.
+
+For a user without Delete, the edit/delete/attach options on other people's
+notes are hidden on purpose (they used to show an error — now they're just
+hidden). If they need to manage others' notes, give them Delete on the relevant
+area (Work Orders for WO notes; Customer for customer/asset notes).
+
+**C19. What's the difference between the Notes tab and the Notes field?**
+Two separate things:
+- The **Notes tab** (on a Work Order, Customer, or Asset) is the collaborative
+  list of notes — governed by the rules in C18.
+- The **Notes field** on the Edit Customer / Edit Asset / Work Order screen is
+  just a regular field — you need **View** of that area to see it and **Create
+  and Edit** to change it, same as the other fields on that screen.
+
+**C20. Who can see the personal Notifications, and the Notes on the Reports
+page?**
+The Notifications area (reminders/notes by the profile menu) is available to
+everyone — no permission needed. The Notes on the Reports page come with the
+Reports permission: if a role has Reports turned on, it can see everything
+there, including Notes and Reminders.
+
 ---
 
 ## D. Role editor behavior
@@ -1186,8 +1267,7 @@ Delete. Deleting an inspection that isn't finished yet only needs Work Order
 Lines: Create and Edit.
 
 **E3. Who can create inspection templates?**
-Roles with Settings access plus the Service sub-section enabled.
-</script>
+Roles with Settings access plus the Service sub-section enabled.</script>
 
 <script>
 // ---------------- FAQ data ----------------
@@ -1222,6 +1302,9 @@ const FAQ = [
  {c:2,q:"A user doesn't appear on the technician schedule.",k:"schedule dispatch board missing technician not showing",a:["That's not a role permission. Appearing on the dispatch board is controlled by the user's DEPARTMENT on their staff record — anyone in a schedule-visible department appears.","Similarly, clocking into work order line tasks is controlled by the \"Time Clock\" setting on the staff record."]},
  {c:2,q:"Can someone see only THEIR OWN work orders or appointments?",k:"own records only filter scope my work orders",a:["Not in this release. Permissions control access to features, not which records are visible: a user with Work Orders View sees all work orders, and the schedule always shows all technicians.","\"Only my records\" is a separate future capability — log the customer's interest as feedback."],e:1},
  {c:2,q:"Can I give someone just ONE report instead of all reports?",k:"single report granular reports access one",a:["No — Reports is all-or-nothing. A role either sees all reports or none (including the AR/AP aging reports)."]},
+ {c:2,q:"A user can't edit or delete a note someone else created — the option isn't even there.",k:"note edit delete other people notes missing option hidden attach collaborate",a:["That's expected. Notes follow the permissions of the area they live in: Work Order notes follow Work Orders; Customer notes and Asset notes follow Customer.","Anyone with View of that area can create notes, edit anyone's notes, and delete their OWN notes. Deleting SOMEONE ELSE'S note requires Delete on that area.","For a user without Delete, the edit/delete/attach options on other people's notes are hidden on purpose (they used to show an error). Give them Delete on the relevant area if they need to manage others' notes."]},
+ {c:2,q:"What's the difference between the Notes tab and the Notes field?",k:"notes tab vs field difference customer asset work order",a:["The Notes TAB (on a Work Order, Customer, or Asset) is the collaborative list of notes — governed by the note rules (View = create/edit-any/delete-own; Delete = delete others').","The Notes FIELD on the Edit Customer / Edit Asset / Work Order screen is a regular field — you need View of that area to see it and Create and Edit to change it, same as the other fields."]},
+ {c:2,q:"Who can see Notifications and the Notes on the Reports page?",k:"notifications reminders reports notes page who access",a:["Notifications (reminders/notes by the profile menu) are available to everyone — no permission needed.","The Notes on the Reports page come with the Reports permission: a role with Reports on sees everything there, including Notes and Reminders."]},
 
  {c:3,q:"A user can see prices but can't open invoices.",k:"invoice cannot open see prices",a:["Seeing prices is \"See Financial Data\"; opening invoices is the separate \"Invoicing and Payments: View\" permission. Enable Invoicing View on their role.","They also need access to the place they open invoices from — work orders, part sales, or customers."]},
  {c:3,q:"Unpaid Invoices / Payments / Credits tabs are missing on a customer or vendor page.",k:"unpaid invoices payments credits tabs missing ap ar",a:["Those tabs are controlled by \"Manage Accounts Payable and Receivable\". When it's off, the tabs are hidden, along with sensitive fields like credit terms and limits.","Enable it on the role if the user should see them (it also requires \"See Financial Data\")."]},

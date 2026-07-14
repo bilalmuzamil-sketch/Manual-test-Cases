@@ -138,8 +138,9 @@ View is ON.
 
 ### 3d. Customer Management (`customers`)
 
-- **View:** see customers, contacts, vehicles, vehicle history. Notes tab:
-  create notes, edit anyone's notes, delete own notes. If OFF, nav hidden.
+- **View:** see customers, contacts, vehicles, vehicle history. Notes tab (on
+  both Customer AND Asset — see §3k): create notes, edit anyone's notes, delete
+  own notes. If OFF, nav hidden.
 - **Create and Edit:** create/edit customers (incl. the Notes field), manage
   contacts and vehicles. Also enables creating a customer inside the New WO
   flow. Sensitive fields are hidden unless "Manage AP/AR" is on (see §7b).
@@ -207,6 +208,54 @@ AP/AR** (enabling Delete while AP/AR is off prompts to enable it).
 - **No Delete level exists for Timesheets.**
 - **Everyone can always clock in/out** regardless of this setting, and anyone
   who can clock in/out can see "My Timesheets".
+
+### 3k. Notes across the app (WO, Customer, Asset, Reports, Notifications)
+
+Notes appear in several places and are **not their own permission** — each notes
+surface follows the CRUD of a governing area (ruling per SV-8003, Sasha
+Grosman, spec-updated). There are two different things called "notes": the
+**Notes tab** and the **Notes field**.
+
+**Notes TAB** (Work Order > Notes incl. line notes; Customer > Notes; Asset >
+Notes). Governing area:
+- Work Order notes → **Work Orders** CRUD.
+- **Customer notes AND Asset notes → Customer Management CRUD** (Asset has no
+  separate permission; it rides on Customer).
+
+Rules on a notes tab:
+- **View** (of the governing area): create notes; **edit anyone's notes**;
+  delete **only your own** notes.
+- **Delete** (of the governing area): additionally **delete other people's
+  notes**.
+- So: WO View / Customer View = create + edit-any + delete-own; WO Delete /
+  Customer Delete = also delete-others.
+
+**Important UI behavior:** for a user WITHOUT the governing Delete permission,
+the Edit / Delete / Attach-files options on **other people's** notes are
+**hidden** (not shown-then-403). Every user can always create, edit, and delete
+**their own** notes. So "the edit/delete option disappeared on someone else's
+note" is expected for a role without Delete — not a bug.
+
+**Notes FIELD** (the Notes box on the Edit Customer and Edit Asset modals, and
+the equivalent on WO). This follows the **same CRUD as the other fields on that
+modal**, NOT the tab rules above:
+- **View** of the governing area = see the field's value.
+- **Create and Edit** of the governing area = open the edit modal and change the
+  field.
+- (Customer/Asset field → Customer CRUD; WO field → Work Orders CRUD.)
+
+**Other notes surfaces:**
+- **Notifications** (personal reminders/notes, the icon by the profile menu) —
+  available to **everyone**, not behind any permission.
+- **Reports > Notes** page (and Reminders) — covered by the **Reports** toggle;
+  Reports ON grants access to everything on Reports, including Notes.
+
+**Known enforcement gap (escalate if hit):** as of the latest testing, the
+Customer/Asset side of "edit or delete other people's notes" may still return an
+Access-restricted (403) error on save/delete even when the role has Customer
+View/Delete — the fix was in progress. If a customer reports this specific 403,
+treat it as a known issue and escalate; don't tell them it's their
+configuration.
 
 ---
 
@@ -519,8 +568,12 @@ Inspection abilities derive from existing permissions:
 | See "My Timesheets" | Everyone who can clock in/out |
 | Mark core Ok / Not Ok | Work Orders: View |
 | Return a part from a WO line | No permission gate (needs WO View to see it) |
-| Create/edit any note on a WO or Customer | View on that area |
-| Delete someone else's note | Delete on that area |
+| Create a note, or edit ANYONE's note (WO / Customer / Asset tab) | View on the governing area (WO notes → Work Orders; Customer + Asset notes → Customer) |
+| Delete your OWN note | View on the governing area (everyone can manage own) |
+| Delete someone else's note | Delete on the governing area |
+| See/edit the Notes FIELD on Edit Customer/Asset/WO modal | View to see it; Create and Edit to change it (governing area) |
+| Notifications (reminders/notes by profile menu) | Everyone — no permission |
+| Reports > Notes page | Reports toggle ON |
 | See WO/line audit logs | Work Orders: Create and Edit |
 | See line story history | WO View (line story requires WOL view, which follows WO View) |
 | Reverse an invoice (WO or Part Sale) | Work Orders: Delete / Part Sales: Delete (+ validation, e.g. no payments) |

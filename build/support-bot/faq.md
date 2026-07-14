@@ -200,6 +200,35 @@ separate future capability — we can log your interest as feedback.
 No — Reports is all-or-nothing. A role either sees all reports or none.
 (This includes the AR/AP aging reports.)
 
+**C18. A user can't edit or delete a note that someone else created — the
+option isn't even there.**
+That's expected. Notes follow the CRUD of the area they live in:
+- Work Order notes follow Work Orders permissions; Customer notes and Asset
+  notes follow Customer permissions.
+- Anyone with **View** of that area can create notes, edit anyone's notes, and
+  delete their **own** notes.
+- Deleting **someone else's** note requires **Delete** on that area.
+
+For a user without Delete, the edit/delete/attach options on other people's
+notes are hidden on purpose (they used to show an error — now they're just
+hidden). If they need to manage others' notes, give them Delete on the relevant
+area (Work Orders for WO notes; Customer for customer/asset notes).
+
+**C19. What's the difference between the Notes tab and the Notes field?**
+Two separate things:
+- The **Notes tab** (on a Work Order, Customer, or Asset) is the collaborative
+  list of notes — governed by the rules in C18.
+- The **Notes field** on the Edit Customer / Edit Asset / Work Order screen is
+  just a regular field — you need **View** of that area to see it and **Create
+  and Edit** to change it, same as the other fields on that screen.
+
+**C20. Who can see the personal Notifications, and the Notes on the Reports
+page?**
+The Notifications area (reminders/notes by the profile menu) is available to
+everyone — no permission needed. The Notes on the Reports page come with the
+Reports permission: if a role has Reports turned on, it can see everything
+there, including Notes and Reminders.
+
 ---
 
 ## D. Role editor behavior
