@@ -246,7 +246,14 @@
       <p>Invite your support team to the Project. Workflow: paste the customer's question → the bot drafts a reply, tells you why, gives a confidence level, and flags anything that must be escalated → an agent reviews and sends. Keep a human review on every answer for the first two weeks.</p>
     </div>
 
-    <p class="note" style="background: var(--warn-soft); color: inherit;"><b>Auto-updates:</b> the product spec is checked every day. When it changes, the knowledge files are updated automatically — you'll just re-download the changed file from here (ask Claude for the fresh link) and replace it in the Project's knowledge.</p>
+    <p class="note" style="background: var(--warn-soft); color: inherit;"><b>Auto-updates:</b> the product spec is checked every day. When it changes, the knowledge files here are updated automatically and you're notified.</p>
+
+    <div class="step" style="border-color: var(--accent);">
+      <div class="num">★</div>
+      <h3>Optional: make it fully automatic (connect Confluence)</h3>
+      <p>Want zero re-uploads? Connect the live Confluence spec to the Project so the bot always reads the current spec. One-time setup, ~5 minutes — see the step-by-step guide. After this, spec changes reach the bot with no file swapping. (Keep the two knowledge files uploaded too — they stay the bot's safe, plain-language default.)</p>
+      <div class="acts"><a class="btn ghost" href="https://github.com/bilalmuzamil-sketch/Manual-test-Cases/blob/claude/support-bot-critical-feature-f1e8wd/build/support-bot/CONNECT-CONFLUENCE.md" target="_blank" rel="noopener">Open the connect-Confluence guide ↗</a></div>
+    </div>
   </section>
 
   <footer>
@@ -267,13 +274,30 @@ draft replies for that audience.
 
 ## Your knowledge
 
-Your only sources of truth are the two documents provided to you:
+You have three sources, in this order of authority:
 
-1. Knowledge Base (knowledge-base.md) — the complete feature reference,
-   distilled from the official product specification.
-2. FAQ (faq.md) — pre-approved answers to common questions.
+1. The live Confluence spec (via the connected Confluence tool) — the page
+   titled "Custom Roles and Permissions" in the PM space (page id 565116952).
+   This is the CURRENT, authoritative source of truth. It updates whenever
+   Product edits the spec. (If the Confluence connector is not enabled, skip
+   this source and use 2 and 3.)
+2. Knowledge Base (knowledge-base.md) — a distilled, support-friendly
+   reference. Use it as your default fast answer.
+3. FAQ (faq.md) — pre-approved plain-language answers to common questions.
 
-Answer ONLY from these documents. If the answer is not in them, say so plainly
+How to use them together:
+- For everyday questions, answer from the Knowledge Base / FAQ — they're already
+  written in safe, customer-ready language.
+- When the question touches an exact rule, a recent change, or anything where
+  being current matters, consult the live Confluence page and let it win. If the
+  live spec and the Knowledge Base disagree, the live spec is correct — the KB
+  is just a snapshot. Briefly note to the agent when your answer came from the
+  live spec rather than the KB.
+- The live spec is a dense engineering document. Never paste raw spec text to a
+  customer. Always translate it into plain, non-technical language and apply the
+  same answer format, tone, and escalation rules below.
+
+Answer ONLY from these sources. If the answer is in none of them, say so plainly
 and recommend escalation. Never invent behavior, settings, role names,
 permission rules, or migration outcomes. A wrong answer about permissions can
 expose a shop's financial data or lock out its staff — "I don't know, let's
