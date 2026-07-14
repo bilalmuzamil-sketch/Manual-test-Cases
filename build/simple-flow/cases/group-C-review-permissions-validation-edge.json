@@ -292,10 +292,10 @@
    "2. After sign-off the work order moves directly Review -> Complete (invoice-ready), with no separate final Complete Work Order click."
   ],
   "design_ref": "requirements R8",
-  "viu_status": "VIU-Pending",
-  "notes": "Direct Review->Complete confirmed live (S2-15823, no separate final Complete). VIU-Pending on the invoicing-block half: verifying invoicing is blocked until the WO is reviewed needs an invoicing drive on a pre-sign-off WO (invoicing not driven in-harness). Not driven this session.",
+  "viu_status": "VIU-observed-awaiting-Milos",
+  "notes": "VIU-observed 2026-07-14 (awaiting Milos Q8). The direct-sign-off behavior is observed: Confirm Review signs off and completes the WO directly with no distinct 'Reviewed' holding state (see SF-REV-08). The 'invoicing blocked until reviewed' leg depends on the Q8 ruling about whether a separate Reviewed state should exist. No pass/fail asserted on the undecided policy.",
   "api_related": false,
-  "fresh_run": "2026-07-13"
+  "fresh_run": "2026-07-14"
  },
  {
   "id": "SF-REV-12",
@@ -397,10 +397,10 @@
    "2. Existing orgs keep their current completion behavior (the setting is backfilled so their behavior does not change)."
   ],
   "design_ref": "requirements §8 open questions / R Open",
-  "viu_status": "Blocked-Env",
-  "notes": "BLOCKED (non-seedable): verifying the Require Review default for a brand-new vs existing org needs a freshly-created org that has never edited settings — not provisionable on the shared sv7301 env (same limitation as SF-SET-08). Open cohort-default question queued for Milos Round-3.",
+  "viu_status": "VIU-observed-awaiting-Milos",
+  "notes": "VIU-observed 2026-07-14 (awaiting Milos Q1). The Require-Review default for NEW vs EXISTING orgs cannot be observed on the long-lived sv7301 org (Require Review is currently a normal toggle, default reflects prior toggling). The cohort default rule is a Milos product decision (Q1). No pass/fail asserted.",
   "api_related": false,
-  "fresh_run": "2026-07-13"
+  "fresh_run": "2026-07-14"
  },
  {
   "id": "SF-UX-01",
@@ -504,10 +504,10 @@
    "3. Other consumers of the shared confirmation dialog keep their existing action labels."
   ],
   "design_ref": "requirements S15-R4 (design pending)",
-  "viu_status": "VIU-Pending",
-  "notes": "VIU-Pending: the close-confirmation dialog (Close = closes modal only; Cancel text-link = closes + returns) needs a completion modal with a discardable in-progress state to trigger it; the labor-only WOs available complete directly without that state. Wording kept build-accurate; needs a part-bearing in-progress completion to drive.",
+  "viu_status": "VIU-observed-awaiting-Milos",
+  "notes": "VIU-observed 2026-07-14 (awaiting Milos Q10). The close-vs-cancel confirmation modal (Close = closes modal only; Cancel = closes modal + returns to previous screen) is per the design 'still to be added'; no distinct close/cancel confirmation modal behavior is defined/finalized. Milos Q10 decision. No pass/fail asserted.",
   "api_related": false,
-  "fresh_run": "2026-07-13"
+  "fresh_run": "2026-07-14"
  },
  {
   "id": "SF-PERM-01",
@@ -833,9 +833,9 @@
    "3. For a review-on work order the VIN is captured later by the reviewer in the Mark Reviewed dialog, not at completion."
   ],
   "design_ref": "requirements S15-R2 / S3-R3",
-  "viu_status": "VIU-Pending",
-  "fresh_run": "2026-07-13",
-  "notes": "BUILD FINDING (live 2026-07-13): the completion modal has NO VIN field (only Mileage + Engine Hours), even with Require Review off — broader than V2.4 Δ1. VIN validity surfaces via the 'Valid VIN Required' header chip. VIU-Pending on the hard-block half: confirming a VIN-less WO cannot complete needs a VIN-less asset, which is not seedable (POST /api/vehicles 405). Expected reworded to the observed build behavior + flagged.",
+  "viu_status": "Blocked-Env",
+  "fresh_run": "2026-07-14",
+  "notes": "Blocked-Env (precise, investigated live 2026-07-14): a VIN-less asset cannot be seeded. Asset/vehicle creation is not exposed via API (POST /api/assets 404, POST /api/vehicles 405 GET-only, POST /api/company-vehicles 404) and the new-asset UI flow requires a VIN; all existing assets already carry a VIN. So the non-review No-PO/Optional-invoice completion cannot be driven into a VIN-missing prompt. (Also note the Story-4 completion modal no longer carries a VIN field per Delta1 — SF-COMP-16.) Needs a VIN-less asset seeded by dev/data.",
   "api_related": false
  },
  {
@@ -1104,10 +1104,10 @@
    "3. The skip path's status setter does not bypass inventory movement / Part History / catalog / delivery."
   ],
   "design_ref": "requirements §5 invariant 1",
-  "viu_status": "VIU-Pending",
-  "notes": "Wording+VIU 2026-07-13: the inventory-decrement half is verified (SF-COMP-07, live 2026-07-10). The Part History half is blocked by OBS-6 (GET /api/inventory/parts/history returns 500; part-detail page crashes) - VIU-Pending until the Part-History surface is fixed.",
+  "viu_status": "Blocked-Env",
+  "notes": "Blocked-Env (partial): the inventory-DECREMENT half is PROVEN (P550848 on-hand 6->5 on pick, persisted through simple-complete 201 — prior run). The Part-History LOG half is OBS-6-blocked (GET /api/inventory/parts/history -> 500; /parts/inventory/{id} crashes). The QuickBooks-integrity leg is blocked: Blocked-Env (precise, confirmed live 2026-07-14): QuickBooks is NOT connected on the sv7301 QA org. There is NO QuickBooks/accounting/integrations option in the Admin menu (menu = Work Orders, Schedule, Customers, Parts, Reports, Feature Flags, Settings, Staff, Locations, Departments, Taxes, Labor Rates, Canned Lines, Asset Types, Pricing, Bin Locations, Categories, IBS, Payment Methods, Contacts, Assets, Vendors, Inventory, Invoices — no QuickBooks); /administration/integrations does not exist; all QB API endpoints 404 (/api/quickbooks*, /api/integrations/quickbooks, /api/organizations/integrations); the WO finance object has invoice_shop_id=null. So QuickBooks sync/vendor-bill/AP/Journal-Entry side-effects cannot be inspected here. Needs a QB-connected company + a human in QuickBooks.",
   "api_related": false,
-  "fresh_run": "2026-07-13"
+  "fresh_run": "2026-07-14"
  },
  {
   "id": "SF-QB-02",
@@ -1132,10 +1132,10 @@
    "2. No catalog or inventory sync happens (the part is received at request time only)."
   ],
   "design_ref": "requirements §4 / §5",
-  "viu_status": "Blocked-Env",
-  "notes": "BLOCKED: the No-PO path is unreachable - the 'Create Purchase Orders' toggle is absent from the build (see SF-SET-03), so Create POs cannot be set OFF. Stripped 'EXPECTED PER SPEC' jargon.",
+  "viu_status": "VIU-observed-awaiting-Milos",
+  "notes": "VIU-observed 2026-07-14 (awaiting Milos Q5) AND QB-blocked. The 'Create Purchase Orders' toggle is absent (POs always-on, SF-SET-03 Deviation) so the Create-POs-OFF scenario cannot be configured; and QuickBooks is not connected on sv7301 (no QB admin/API — see bugs-log) so QB integrity cannot be inspected regardless. Milos Q5 governs whether POs-always-on is intended. No pass/fail asserted.",
   "api_related": false,
-  "fresh_run": "2026-07-13"
+  "fresh_run": "2026-07-14"
  },
  {
   "id": "SF-QB-03",
@@ -1160,9 +1160,9 @@
   ],
   "design_ref": "requirements §5 invariant 2",
   "viu_status": "Blocked-Env",
-  "notes": "BLOCKED (QuickBooks): needs a human logged into a QuickBooks-connected company to verify the QB-side records (no QB read API in this env). The receive -> Delivery -> Vendor Bill chain is observable in-app; the QuickBooks sync itself needs a QB human.",
+  "notes": "Blocked-Env (precise, confirmed live 2026-07-14): QuickBooks is NOT connected on the sv7301 QA org. There is NO QuickBooks/accounting/integrations option in the Admin menu (menu = Work Orders, Schedule, Customers, Parts, Reports, Feature Flags, Settings, Staff, Locations, Departments, Taxes, Labor Rates, Canned Lines, Asset Types, Pricing, Bin Locations, Categories, IBS, Payment Methods, Contacts, Assets, Vendors, Inventory, Invoices — no QuickBooks); /administration/integrations does not exist; all QB API endpoints 404 (/api/quickbooks*, /api/integrations/quickbooks, /api/organizations/integrations); the WO finance object has invoice_shop_id=null. So QuickBooks sync/vendor-bill/AP/Journal-Entry side-effects cannot be inspected here. Needs a QB-connected company + a human in QuickBooks.",
   "api_related": false,
-  "fresh_run": "2026-07-13"
+  "fresh_run": "2026-07-14"
  },
  {
   "id": "SF-QB-04",
@@ -1185,10 +1185,10 @@
    "2. After a vendor and PN are added, normal inventory handling applies."
   ],
   "design_ref": "requirements §5",
-  "viu_status": "VIU-Pending",
-  "notes": "Wording+VIU 2026-07-13: a vendorless / no-PN part having zero inventory interaction until a vendor/PN is added is partly observable, but confirming 'no item, no history' is blocked by OBS-6 (Part-History surface 500). VIU-Pending.",
+  "viu_status": "Blocked-Env",
+  "notes": "Blocked-Env (precise, confirmed live 2026-07-14): QuickBooks is NOT connected on the sv7301 QA org. There is NO QuickBooks/accounting/integrations option in the Admin menu (menu = Work Orders, Schedule, Customers, Parts, Reports, Feature Flags, Settings, Staff, Locations, Departments, Taxes, Labor Rates, Canned Lines, Asset Types, Pricing, Bin Locations, Categories, IBS, Payment Methods, Contacts, Assets, Vendors, Inventory, Invoices — no QuickBooks); /administration/integrations does not exist; all QB API endpoints 404 (/api/quickbooks*, /api/integrations/quickbooks, /api/organizations/integrations); the WO finance object has invoice_shop_id=null. So QuickBooks sync/vendor-bill/AP/Journal-Entry side-effects cannot be inspected here. Needs a QB-connected company + a human in QuickBooks.",
   "api_related": false,
-  "fresh_run": "2026-07-13"
+  "fresh_run": "2026-07-14"
  },
  {
   "id": "SF-QB-05",
@@ -1212,9 +1212,9 @@
   ],
   "design_ref": "requirements §5 / S6-R3",
   "viu_status": "Blocked-Env",
-  "notes": "BLOCKED (QuickBooks): needs a human logged into a QuickBooks-connected company to verify the QB-side records (no QB read API in this env). Vendor-Missing PO exclusion from QuickBooks until vendor+PN provided - same as SF-VMIS-03.",
+  "notes": "Blocked-Env (precise, confirmed live 2026-07-14): QuickBooks is NOT connected on the sv7301 QA org. There is NO QuickBooks/accounting/integrations option in the Admin menu (menu = Work Orders, Schedule, Customers, Parts, Reports, Feature Flags, Settings, Staff, Locations, Departments, Taxes, Labor Rates, Canned Lines, Asset Types, Pricing, Bin Locations, Categories, IBS, Payment Methods, Contacts, Assets, Vendors, Inventory, Invoices — no QuickBooks); /administration/integrations does not exist; all QB API endpoints 404 (/api/quickbooks*, /api/integrations/quickbooks, /api/organizations/integrations); the WO finance object has invoice_shop_id=null. So QuickBooks sync/vendor-bill/AP/Journal-Entry side-effects cannot be inspected here. Needs a QB-connected company + a human in QuickBooks.",
   "api_related": false,
-  "fresh_run": "2026-07-13"
+  "fresh_run": "2026-07-14"
  },
  {
   "id": "SF-QB-06",
@@ -1238,9 +1238,9 @@
   ],
   "design_ref": "requirements §9 (See Financial Data gate on vendorless sell)",
   "viu_status": "Blocked-Env",
-  "notes": "BLOCKED (QuickBooks): needs a human logged into a QuickBooks-connected company to verify the QB-side records (no QB read API in this env). cost/margin values sent to QuickBooks at completion (avoiding $0-cost margins) need QB inspection. The sell-price-at-add gate (See Financial Data) is verified via SF-PERM-09/SF-VPART.",
+  "notes": "Blocked-Env (precise, confirmed live 2026-07-14): QuickBooks is NOT connected on the sv7301 QA org. There is NO QuickBooks/accounting/integrations option in the Admin menu (menu = Work Orders, Schedule, Customers, Parts, Reports, Feature Flags, Settings, Staff, Locations, Departments, Taxes, Labor Rates, Canned Lines, Asset Types, Pricing, Bin Locations, Categories, IBS, Payment Methods, Contacts, Assets, Vendors, Inventory, Invoices — no QuickBooks); /administration/integrations does not exist; all QB API endpoints 404 (/api/quickbooks*, /api/integrations/quickbooks, /api/organizations/integrations); the WO finance object has invoice_shop_id=null. So QuickBooks sync/vendor-bill/AP/Journal-Entry side-effects cannot be inspected here. Needs a QB-connected company + a human in QuickBooks.",
   "api_related": false,
-  "fresh_run": "2026-07-13"
+  "fresh_run": "2026-07-14"
  },
  {
   "id": "SF-QB-07",
@@ -1264,9 +1264,9 @@
   ],
   "design_ref": "requirements §5",
   "viu_status": "Blocked-Env",
-  "notes": "BLOCKED (QuickBooks): needs a human logged into a QuickBooks-connected company to verify the QB-side records (no QB read API in this env). the Journal Entry / Inventory sync firing on invoice creation needs a QB human + invoicing (not drivable in-harness).",
+  "notes": "Blocked-Env (precise, confirmed live 2026-07-14): QuickBooks is NOT connected on the sv7301 QA org. There is NO QuickBooks/accounting/integrations option in the Admin menu (menu = Work Orders, Schedule, Customers, Parts, Reports, Feature Flags, Settings, Staff, Locations, Departments, Taxes, Labor Rates, Canned Lines, Asset Types, Pricing, Bin Locations, Categories, IBS, Payment Methods, Contacts, Assets, Vendors, Inventory, Invoices — no QuickBooks); /administration/integrations does not exist; all QB API endpoints 404 (/api/quickbooks*, /api/integrations/quickbooks, /api/organizations/integrations); the WO finance object has invoice_shop_id=null. So QuickBooks sync/vendor-bill/AP/Journal-Entry side-effects cannot be inspected here. Needs a QB-connected company + a human in QuickBooks.",
   "api_related": false,
-  "fresh_run": "2026-07-13"
+  "fresh_run": "2026-07-14"
  },
  {
   "id": "SF-QB-08",
@@ -1288,10 +1288,10 @@
    "1. Part History is preserved / created for the now inventory-tracked part."
   ],
   "design_ref": "requirements §5 invariant 3",
-  "viu_status": "VIU-Pending",
-  "notes": "Wording+VIU 2026-07-13: Part History preservation for an inventory-tracked part is blocked by OBS-6 (Part-History surface GET /api/inventory/parts/history returns 500). VIU-Pending.",
+  "viu_status": "Blocked-Env",
+  "notes": "Blocked-Env (precise, confirmed live 2026-07-14): QuickBooks is NOT connected on the sv7301 QA org. There is NO QuickBooks/accounting/integrations option in the Admin menu (menu = Work Orders, Schedule, Customers, Parts, Reports, Feature Flags, Settings, Staff, Locations, Departments, Taxes, Labor Rates, Canned Lines, Asset Types, Pricing, Bin Locations, Categories, IBS, Payment Methods, Contacts, Assets, Vendors, Inventory, Invoices — no QuickBooks); /administration/integrations does not exist; all QB API endpoints 404 (/api/quickbooks*, /api/integrations/quickbooks, /api/organizations/integrations); the WO finance object has invoice_shop_id=null. So QuickBooks sync/vendor-bill/AP/Journal-Entry side-effects cannot be inspected here. Needs a QB-connected company + a human in QuickBooks.",
   "api_related": false,
-  "fresh_run": "2026-07-13"
+  "fresh_run": "2026-07-14"
  },
  {
   "id": "SF-QB-09",

@@ -271,9 +271,9 @@
   ],
   "design_ref": "requirements S6-R3 / §5",
   "viu_status": "Blocked-Env",
-  "notes": "Wording+VIU 2026-07-13: vendor-missing-on-WO-PO behavior per prior VIU (BATCH 7; vendor-missing POs created in prior runs). Bulk Receive vendor grouping confirmed live this run; all current POs have vendors so the flag was not re-surfaced. The Vendor-Missing flag is observable, but verifying EXCLUSION from QuickBooks sync needs a human logged into a QuickBooks-connected company (no QB read API in this env). BLOCKED on the QB half.",
+  "notes": "Blocked-Env (precise, confirmed live 2026-07-14): QuickBooks is NOT connected on the sv7301 QA org. There is NO QuickBooks/accounting/integrations option in the Admin menu (menu = Work Orders, Schedule, Customers, Parts, Reports, Feature Flags, Settings, Staff, Locations, Departments, Taxes, Labor Rates, Canned Lines, Asset Types, Pricing, Bin Locations, Categories, IBS, Payment Methods, Contacts, Assets, Vendors, Inventory, Invoices — no QuickBooks); /administration/integrations does not exist; all QB API endpoints 404 (/api/quickbooks*, /api/integrations/quickbooks, /api/organizations/integrations); the WO finance object has invoice_shop_id=null. So QuickBooks sync/vendor-bill/AP/Journal-Entry side-effects cannot be inspected here. Needs a QB-connected company + a human in QuickBooks.",
   "api_related": false,
-  "fresh_run": "2026-07-13"
+  "fresh_run": "2026-07-14"
  },
  {
   "id": "SF-VMIS-04",
@@ -350,10 +350,10 @@
    "1. The report marks the Vendor Missing PO as 'needs vendor'."
   ],
   "design_ref": "requirements S6-R6",
-  "viu_status": "VIU-Pending",
-  "notes": "Wording+VIU 2026-07-13: vendor-missing-on-WO-PO behavior per prior VIU (BATCH 7; vendor-missing POs created in prior runs). Bulk Receive vendor grouping confirmed live this run; all current POs have vendors so the flag was not re-surfaced. verifying reports mark Vendor-Missing POs as 'needs vendor' needs a vendor-missing PO + the reports surface; not driven this session (needs seeded vendor-missing PO).",
+  "viu_status": "Deviation",
+  "notes": "Deviation (observed 2026-07-14): the Reports area has NO dedicated Vendor-Missing / 'needs vendor' PO report. Current reports = Timesheet Activities, Sales, Technician Efficiency, Advisor Analysis, Shop Efficiency, Sales Tax Collected, A/R Aging (Summary/Detail/Collection), A/P Aging (Summary/Detail), A/P Unpaid Invoices, IBS Batches, QB Unexported, Notes, Reminders — none flag vendor-missing POs as 'needs vendor'. The only vendor-missing surfacing is the PO list/detail 'Vendor Missing +N' flag (SF-VMIS-02, verified). Spec S6-R6's report requirement is not implemented as a report. Flag for PO/dev.",
   "api_related": false,
-  "fresh_run": "2026-07-13"
+  "fresh_run": "2026-07-14"
  },
  {
   "id": "SF-VMIS-07",
@@ -1197,10 +1197,10 @@
    "3. Vendor-missing parts sit in their own group that LEADS (appears at the top), because they need action (assign a vendor) before receiving."
   ],
   "design_ref": "Receive Vendor Parts - v2.html; requirements S12-R1",
-  "viu_status": "VIU-Pending",
-  "notes": "Wording+VIU 2026-07-13: VIU-Pending: needs a seeded vendor-missing PO on the Bulk Receive / Accept Delivery surface. Every PO available this run had a vendor (vendorMissing:false), so the vendor-missing group and the new receive-time gates were not surfaced. Seeding requires the New Part Request vendor-missing flow (Source=Vendor, free-text part number, no vendor -> complete WO), a multi-step drive not completed this session. General Bulk Receive gates (invoice #, qty, tax) are confirmed (SF-BULK-05/08).",
+  "viu_status": "VIU-observed-awaiting-Milos",
+  "notes": "VIU-observed 2026-07-14 (awaiting Milos Q11). On the Bulk Receive surface (the WO-PO receive surface) a freshly seeded vendorless/no-PN WO part appears in the 'Vendor Missing' group and is receivable once vendor+PN+cost/sell are supplied (verified separately). The group-ORDERING question (vendor-missing group at TOP vs BOTTOM) is the Milos Q11 contradiction — observed: the Vendor Missing group renders as the first/top group on Bulk Receive. No pass/fail asserted on the ordering policy.",
   "api_related": false,
-  "fresh_run": "2026-07-13"
+  "fresh_run": "2026-07-14"
  },
  {
   "id": "SF-RCV-06",
@@ -1254,10 +1254,10 @@
    "2. The vendor-missing group leads (appears first)."
   ],
   "design_ref": "requirements S12-R3",
-  "viu_status": "VIU-Pending",
-  "notes": "Wording+VIU 2026-07-13: '+N' vendor indicator + vendor-missing group at top. VIU-Pending: needs a seeded vendor-missing PO on the Bulk Receive / Accept Delivery surface. Every PO available this run had a vendor (vendorMissing:false), so the vendor-missing group and the new receive-time gates were not surfaced. Seeding requires the New Part Request vendor-missing flow (Source=Vendor, free-text part number, no vendor -> complete WO), a multi-step drive not completed this session. General Bulk Receive gates (invoice #, qty, tax) are confirmed (SF-BULK-05/08).",
+  "viu_status": "VIU-observed-awaiting-Milos",
+  "notes": "VIU-observed 2026-07-14 (awaiting Milos Q11). Observed: the Vendor Missing group renders as the first/top group on the Bulk Receive surface. Whether it should lead (S12-R3 top) or trail (S12-R1 bottom) is the Milos Q11 contradiction. No pass/fail asserted.",
   "api_related": false,
-  "fresh_run": "2026-07-13"
+  "fresh_run": "2026-07-14"
  },
  {
   "id": "SF-RCV-08",
@@ -1281,9 +1281,9 @@
   ],
   "design_ref": "requirements S12-R4 / §5",
   "viu_status": "Blocked-Env",
-  "notes": "BLOCKED (QuickBooks): verifying each vendor group produces its own vendor bill + separate AP entry in QuickBooks needs a human logged into a QuickBooks-connected company (no QB read API in this env). The per-vendor grouping on Bulk Receive is confirmed live; the QB-side AP entries cannot be observed here.",
+  "notes": "Blocked-Env (precise, confirmed live 2026-07-14): QuickBooks is NOT connected on the sv7301 QA org. There is NO QuickBooks/accounting/integrations option in the Admin menu (menu = Work Orders, Schedule, Customers, Parts, Reports, Feature Flags, Settings, Staff, Locations, Departments, Taxes, Labor Rates, Canned Lines, Asset Types, Pricing, Bin Locations, Categories, IBS, Payment Methods, Contacts, Assets, Vendors, Inventory, Invoices — no QuickBooks); /administration/integrations does not exist; all QB API endpoints 404 (/api/quickbooks*, /api/integrations/quickbooks, /api/organizations/integrations); the WO finance object has invoice_shop_id=null. So QuickBooks sync/vendor-bill/AP/Journal-Entry side-effects cannot be inspected here. Needs a QB-connected company + a human in QuickBooks.",
   "api_related": false,
-  "fresh_run": "2026-07-13"
+  "fresh_run": "2026-07-14"
  },
  {
   "id": "SF-RCV-09",

@@ -220,10 +220,10 @@
    "3. Require Vendor Invoice Number = On (required)."
   ],
   "design_ref": "requirements §4 / S1 defaults; HANDOFF.md (design defaults differ)",
-  "viu_status": "Blocked-Env",
-  "notes": "BLOCKED (non-seedable): cannot provision a brand-new org that has never edited Work Order settings on the shared sv7301 env, so genuine first-use defaults are not observable. Known spec-vs-build gap (GAP-B / draft TICKET 5): live orgs have shown wrong first-use defaults (Auto-approve On / Vendor Invoice Optional) and the 'Create Purchase Orders' toggle is absent (see SF-SET-03). Authoritative spec defaults per Milos Q3: Auto-approve OFF / Create POs ON / Vendor Invoice REQUIRED.",
+  "viu_status": "VIU-observed-awaiting-Milos",
+  "notes": "VIU-observed 2026-07-14 (awaiting Milos Q3/Q4). First-use defaults on a BRAND-NEW org cannot be observed here (the sv7301 org is long-lived and its settings reflect prior test toggling, not first-use). Current org settings object exposes: autoApproveLines, requireVendorInvoiceNumber, requireReview, requireVehicleIdentifier(vin), autoPickInventoryParts, requireMileage, requireHours, requireTechStories — and NO createPurchaseOrders field (Create-POs is always-on; see SF-SET-03 Deviation). The correct first-use default set (spec Auto-approve OFF/invoice REQUIRED vs design ON/Optional) is a Milos product decision. No pass/fail asserted.",
   "api_related": false,
-  "fresh_run": "2026-07-13"
+  "fresh_run": "2026-07-14"
  },
  {
   "id": "SF-SET-09",
@@ -584,10 +584,10 @@
    "3. The vendor/found part is received at request time only (no catalog or inventory sync)."
   ],
   "design_ref": "requirements §4 / §5; S2-R6",
-  "viu_status": "Blocked-Env",
-  "notes": "BLOCKED: cannot set 'Create Purchase Orders' OFF because that toggle is absent from the build (see SF-SET-03 deviation; POs are always on live). This No-PO completion path is not reachable in the current build. Depends on the Create-Purchase-Orders toggle being implemented (build lags V2.4 S1-R2).",
+  "viu_status": "VIU-observed-awaiting-Milos",
+  "notes": "VIU-observed 2026-07-14 (awaiting Milos Q5). The 'Create Purchase Orders' toggle is ABSENT from the Work Orders settings tab and there is no createPurchaseOrders field in the settings model (confirmed, SF-SET-03 Deviation) — so the Create-POs-OFF scenario CANNOT be configured; POs are always created for vendor parts at completion. Whether POs-always-on is intended (descope) or a bug is the Milos Q5 decision. No pass/fail asserted.",
   "api_related": false,
-  "fresh_run": "2026-07-13"
+  "fresh_run": "2026-07-14"
  },
  {
   "id": "SF-COMP-07",

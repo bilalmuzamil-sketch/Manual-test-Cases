@@ -415,3 +415,13 @@ filing-grade defects (no error/corruption).
   state) → per the Simple-Flow shortcut principle this is EXPECTED, NOT a defect.
   SF-VAL-11 (and the family SF-COMP-21/22) ruled VIU-Verified against the build with
   build-accurate wording; the generic tooltip does NOT name the specific line.
+
+### NOTE — QuickBooks NOT connected on sv7301 (confirmed 2026-07-14)
+- The sv7301 QA org has NO QuickBooks integration: no QuickBooks/accounting/integrations
+  entry in the Admin menu (only IBS), /administration/integrations 404s, all QB API
+  endpoints 404 (/api/quickbooks*, /api/integrations/quickbooks,
+  /api/organizations/integrations), and the WO finance object carries invoice_shop_id=null.
+- Impact: the QuickBooks-integrity cases (SF-QB-01 QB-leg, SF-QB-03..08, SF-VMIS-03,
+  SF-RCV-08) are genuinely Blocked-Env — they need a QB-connected company + a human in
+  QuickBooks. This is the precise, definitive reason (supersedes the earlier
+  "likely needs dev/QB access" wording).
