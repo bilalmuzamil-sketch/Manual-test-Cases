@@ -949,10 +949,10 @@
    "3. A Part History entry is written."
   ],
   "design_ref": "requirements S10 AC",
-  "viu_status": "VIU-Pending",
-  "notes": "Wording+VIU 2026-07-13: entering a NEW part number should create inventory/catalog stock + Part History on receive - blocked by OBS-6 (Part-History surface GET /api/inventory/parts/history returns 500; part-detail page crashes) + needs a vendor-missing/no-PN part to receive.",
+  "viu_status": "Blocked-Env",
+  "notes": "Blocked-Env (precise, investigated live 2026-07-14): the receive-with-part-number action itself works (POST /api/orders/receive-requested-parts 200 on a freshly seeded vendor-missing PO S-15849 after entering a NEW part number + cost + sell + invoice), but the downstream 'creates/links a real inventory or catalog part with stock and writes Part History' assertion cannot be verified in-harness: the new part number does NOT surface in the inventory-parts search (GET /api/inventory/parts?search=<newPN> -> 0 results) after receive, and the authoritative Part-History / part-detail surfaces are OBS-6-blocked (GET /api/inventory/parts/history -> 500; /parts/inventory/{id} detail page crashes). So whether the PN created a new inventory item vs was stored only on the WO part cannot be distinguished here. FLAG for dev: verify inline-PN receive creates the inventory/catalog record + Part History. Needs the OBS-6 surface fixed or a dev/DB inspection.",
   "api_related": false,
-  "fresh_run": "2026-07-13"
+  "fresh_run": "2026-07-14"
  },
  {
   "id": "SF-PNFIX-03",
@@ -977,10 +977,10 @@
    "3. The item's existing description and category are NOT overwritten."
   ],
   "design_ref": "requirements S10 AC",
-  "viu_status": "VIU-Pending",
-  "notes": "Wording+VIU 2026-07-13: entering an EXISTING part number should link + update stock/cost/history without overwriting description/category - blocked by OBS-6 (Part-History 500) + needs a no-PN part to receive.",
+  "viu_status": "Blocked-Env",
+  "notes": "Blocked-Env (precise, investigated live 2026-07-14): the receive-with-part-number action itself works (POST /api/orders/receive-requested-parts 200 on a freshly seeded vendor-missing PO S-15849 after entering a NEW part number + cost + sell + invoice), but the downstream 'creates/links a real inventory or catalog part with stock and writes Part History' assertion cannot be verified in-harness: the new part number does NOT surface in the inventory-parts search (GET /api/inventory/parts?search=<newPN> -> 0 results) after receive, and the authoritative Part-History / part-detail surfaces are OBS-6-blocked (GET /api/inventory/parts/history -> 500; /parts/inventory/{id} detail page crashes). So whether the PN created a new inventory item vs was stored only on the WO part cannot be distinguished here. FLAG for dev: verify inline-PN receive creates the inventory/catalog record + Part History. Needs the OBS-6 surface fixed or a dev/DB inspection.",
   "api_related": false,
-  "fresh_run": "2026-07-13"
+  "fresh_run": "2026-07-14"
  },
  {
   "id": "SF-PNFIX-04",
@@ -1062,10 +1062,10 @@
    "3. Part History is written; the flow does not rely on the complete-simple bypass to create inventory."
   ],
   "design_ref": "requirements S10 Technical guardrails / §5",
-  "viu_status": "VIU-Pending",
-  "notes": "Wording+VIU 2026-07-13: inline part-number save should drive real catalog creation/linking + inventory + Part History - blocked by OBS-6 (Part-History 500).",
+  "viu_status": "Blocked-Env",
+  "notes": "Blocked-Env (precise, investigated live 2026-07-14): the receive-with-part-number action itself works (POST /api/orders/receive-requested-parts 200 on a freshly seeded vendor-missing PO S-15849 after entering a NEW part number + cost + sell + invoice), but the downstream 'creates/links a real inventory or catalog part with stock and writes Part History' assertion cannot be verified in-harness: the new part number does NOT surface in the inventory-parts search (GET /api/inventory/parts?search=<newPN> -> 0 results) after receive, and the authoritative Part-History / part-detail surfaces are OBS-6-blocked (GET /api/inventory/parts/history -> 500; /parts/inventory/{id} detail page crashes). So whether the PN created a new inventory item vs was stored only on the WO part cannot be distinguished here. FLAG for dev: verify inline-PN receive creates the inventory/catalog record + Part History. Needs the OBS-6 surface fixed or a dev/DB inspection.",
   "api_related": false,
-  "fresh_run": "2026-07-13"
+  "fresh_run": "2026-07-14"
  },
  {
   "id": "SF-RCV-01",
