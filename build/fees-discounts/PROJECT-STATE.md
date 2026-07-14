@@ -10,9 +10,13 @@
 > VIU PASS over ALL 183 cases** [live-captured build labels; every case re-adjudicated;
 > **ALL 183 pushed to TestRail via update_case, 200/200, 0 errors**].
 > **UPDATE 2026-07-14: Chris Ward's Round-2 answers RETURNED (Q1=A, Q2=A, Q3=A, Q4=B)
-> and the §0.1 action map was APPLIED to local artifacts — see §0.0c. 6 cases are now
-> STAGED for a TestRail push awaiting fresh one-day authorization; TICKET 4 + TICKET 5
-> DROPPED.**).
+> and the §0.1 action map was APPLIED to local artifacts — see §0.0c. The 6 Round-2
+> cases were PUSHED TO TESTRAIL 2026-07-14 (update_case, 6/6 updated, all verify
+> 200/200 MATCH; audit `testrail-round2-push-log.md`); TICKET 4 + TICKET 5 DROPPED.
+> FD-QB-014 left VIU-Pending — its commit-time re-VIU is blocked on EXPIRED qb cookies.**).
+> **NEW TALLY 2026-07-14: 134 VIU-Verified / 15 VIU-Deviation / 12 Blocked-NotBuilt /
+> 20 Blocked-Env / 2 VIU-Pending = 183** (source: `FeesDiscounts_Blockers_Tracker`;
+> supersedes the 2026-07-13 130/20/12/20/1 below).
 > **Final tally 2026-07-13: 130 VIU-Verified / 20 VIU-Deviation / 12 Blocked-NotBuilt /
 > 20 Blocked-Env / 1 VIU-Pending = 183** (source: `FeesDiscounts_Blockers_Tracker`).
 > **⏸️ THE PROJECT IS PAUSED — see §0 below for what we're waiting on and the exact
@@ -69,25 +73,38 @@ Per-question outcome (verbatim answers in `PO-Questions-Round2.md` + full quotes
   superseded, last-update-wins). **FD-PROC-014 (C28532)** expected reworded to the
   explicit-reject + no-field behavior; **stays VIU-Verified.** No dev ticket.
 
-**Cases STAGED for the TestRail push (6, awaiting fresh one-day authorization)** — each
-carries `fresh_run: 2026-07-14` + a "pending TestRail push (awaiting authorization)"
-note: **FD-QB-014 (C28557), FD-CALC-008 (C28575), FD-VAL-006 (C28604), FD-TMPL-011
-(C28512), FD-CALC-006 (C28573), FD-PROC-014 (C28532).**
+**Cases PUSHED to TestRail 2026-07-14 (6/6, QA-lead one-day authorization; update_case
+ONLY; each update 200 / re-verify 200 MATCH; audit `testrail-round2-push-log.md`)** —
+each carries `fresh_run: 2026-07-14`: **FD-QB-014 (C28557), FD-CALC-008 (C28575),
+FD-VAL-006 (C28604), FD-TMPL-011 (C28512), FD-CALC-006 (C28573), FD-PROC-014 (C28532).**
+(All 6 differed in custom_preconds/steps/expected → updated; title/refs no-op.)
+
+**FD-QB-014 commit-time re-VIU (Step 2) — NOT settled; still VIU-Pending.** The
+invoice / mark-reviewed / complete warning that Chris (Q1=A) describes still needs a
+LIVE commit-time observation. Attempted 2026-07-14 but BOTH qb cookie sets
+(`cookies-viu.env` 2026-07-13, `cookies-fresh.env` 2026-07-10) return **401
+sso_required** on quick-login (env woken, API root 200) — cookies EXPIRED. **Needs
+fresh qb cookies** to drive an over-discounted ZZAUTOTEST WO to a commit point and
+confirm the warning fires; leave VIU-Pending until then. (The TestRail wording push
+above is correct either way — the reworded commit-point expected stands.)
 
 **Tickets:** TICKET 4 (Q2) + TICKET 5 (Q3) **DROPPED** (WAD/expected per PO; annotated
 in `jira-bug-drafts.md`); **no new tickets** created (Q1 warning exists per PO; Q4 no
 defect). Previously-cleared ready-to-file drafts are unchanged: TICKETS 2, 3, 6, 7,
 8, 9, 10, 11 remain **ready to file**; TICKET 1 stays **ON HOLD** (US-tax re-repro).
 
-**Tally impact (local cases; Blockers Tracker not yet regenerated in this pass):** 4
-cases flipped Deviation → Verified (Q2×3 + Q3×1) and 1 Deviation → Pending (Q1). Net:
-VIU-Deviation 20 → 15, VIU-Verified 130 → 134, VIU-Pending 1 → 2. (FD-PROC-014 was
-already Verified; its expected changed only.) Regenerate `gen_blockers.py` /
-`gen_import.py` / `gen_fresh_viu_workbook.py` at finalization to reflect this.
+**Tally impact — APPLIED + deliverables regenerated 2026-07-14:** 4 cases flipped
+Deviation → Verified (Q2×3 + Q3×1) and 1 Deviation → Pending (Q1). Net: VIU-Deviation
+20 → 15, VIU-Verified 130 → 134, VIU-Pending 1 → 2. (FD-PROC-014 was already Verified;
+its expected changed only.) **Confirmed tally 134/15/12/20/2 = 183** (Blockers Tracker
+regenerated; Deviation sub now 10 case-update + 3 PO-question + 2 code-bug).
+`gen_blockers.py` / `gen_import.py` / `gen_fresh_viu_workbook.py` all re-run.
 
-**Remaining before finalization:** (1) fresh one-day TestRail authorization → push the 6
-staged cases via `update_case` (+ audit log); (2) regenerate the downstream deliverables;
-(3) the standing env/VIU backlog (§0.5 steps 6–7) is unchanged by these answers.
+**Remaining before finalization:** (1) ~~fresh one-day TestRail authorization → push the 6
+staged cases~~ **DONE 2026-07-14 (6/6, 200/200)**; (2) ~~regenerate the downstream
+deliverables~~ **DONE 2026-07-14**; (3) FD-QB-014 commit-time re-VIU needs fresh qb
+cookies (both sets expired 2026-07-14); (4) the standing env/VIU backlog (§0.5 steps 6–7)
+is unchanged by these answers.
 
 ### 0.-1 SPEC-RELEVANCE / OBSOLESCENCE AUDIT — 2026-07-13 (NEWEST event)
 
@@ -226,10 +243,10 @@ language, VIU-verify behavior, push corrected wording to TestRail (update_case o
 
 ### 0.2 Fresh-pass state — CURRENT = 2026-07-13 (§0.0a); prior = 2026-07-10
 
-- **CURRENT authoritative tally (2026-07-13, all 183 cases wording-corrected + VIU'd +
-  pushed): 130 VIU-Verified / 20 VIU-Deviation / 12 Blocked-NotBuilt / 20 Blocked-Env /
-  1 VIU-Pending (FD-PART-005) = 183.** Every case in `cases/*.json` carries
-  `fresh_run: 2026-07-13` + evidence. See §0.0a for detail.
+- **CURRENT authoritative tally (2026-07-14, after Chris's Round-2 answers applied +
+  the 6 Round-2 cases pushed to TestRail): 134 VIU-Verified / 15 VIU-Deviation / 12
+  Blocked-NotBuilt / 20 Blocked-Env / 2 VIU-Pending (FD-PART-005, FD-QB-014) = 183.**
+  (Supersedes the 2026-07-13 130/20/12/20/1.) See §0.0c for detail.
 - **Prior pass (2026-07-10, 182 cases): 114 / 35 / 12 / 20 / 1** — historical; superseded
   by the 2026-07-13 final above. Detail (deliverables paths) below.
 - **Deliverables at pause** (paths relative to repo root):

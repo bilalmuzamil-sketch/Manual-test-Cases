@@ -484,7 +484,7 @@ Verify Max Amount shows only for percentage methods and how 0 behaves,Template a
 2. Switch to '% of Subtotal' and check again.
 3. Enter 0 into Max Amount and save.","1. For 'Flat Amount' there is no Max Amount field.
 2. For a percentage method the 'Max Amount (Optional)' field shows.
-3. A Max Amount of 0 is currently treated as empty (no cap).","S7-R12e, S7-R14, §5-R6",,
+3. A Max Amount of 0 is treated exactly the same as leaving it empty = no cap (working as designed per S2-R25).","S7-R12e, S7-R14, §5-R6",,
 Verify the template list empty-state message,Template admin — list,Functional,Low,1. The location has zero templates.,"1. Open Administration → Finance → Fees & Discounts on a location that has no templates.
 2. Read the empty-state message.",1. The page shows an empty-state message inviting you to create your first fee/discount.,S7-R11,,
 Verify a percentage-discount template cannot go over 100% while a percentage-fee template has no cap,Template admin — validation,Functional,Medium,1. On the admin Fees & Discounts create dialog.,"1. Set Type 'Discount', Calculation Type '% of Subtotal', Percent 150, and try to save.
@@ -544,7 +544,8 @@ Verify multiple Processing Fees each leave out all Processing Fees' amounts and 
 2. Net subtotal $300.00, pre-fee tax $24.00 → Grand Total base $324.00.","1. Create a new work order so two Processing Fees apply.
 2. Read each Processing Fee's amount.","1. Both Processing Fees work out against the same base (which excludes every Processing Fee's amount and tax).
 2. Neither Processing Fee grows the other's base.",§5-R4 (multiple Processing Fees),,
-Verify the system rejects a Processing Fee that carries a minimum amount,Processing Fee — negative,Functional,Low,1. Ability to submit a Processing Fee with a non-empty minimum amount (no UI control exists; guard for external data).,1. Try to save a Processing Fee template that carries a minimum amount.,1. The system rejects it (a Processing Fee must not carry a minimum amount).,S8-N6,,
+Verify the system rejects a Processing Fee that carries a minimum amount,Processing Fee — negative,Functional,Low,1. Ability to submit a Processing Fee with a non-empty minimum amount (no UI control exists; guard for external data).,1. Try to save a Processing Fee template that carries a minimum amount.,"1. A Processing Fee does not support a minimum amount, and this is made clear rather than silently dropped: there is no minimum-amount field for a Processing Fee anywhere in the UI.
+2. If a minimum (or maximum) amount is sent for a Processing Fee, the system rejects it with the explicit message 'A processing fee cannot have a minimum or maximum cap.'",S8-N6,,
 Verify one layout renders adjustments on both the estimate and the invoice,Customer document (estimate/invoice),Functional,High,1. A work order has whole-WO and line-level adjustments and can produce both an estimate and an invoice.,"1. View the customer ESTIMATE for the WO and note the adjustment rendering.
 2. Invoice the WO and view the customer INVOICE.","1. Both the estimate and the invoice show the same adjustment layout.
 2. Adjustments appear on both whenever present.",S5-R1,,
@@ -623,8 +624,9 @@ Verify discount lines to QuickBooks are capped in whole cents (largest-remainder
 2. With multiple discount lines, the cap is split proportionally to each line's size, allocated in WHOLE cents via the largest-remainder method (no fractional cent, no negative total).
 3. The amount removed by the cap becomes the carried customer credit.",S6-R10d,,
 Verify a mandatory warning/confirmation before saving when discounts are bigger than the net subtotal,QuickBooks — negative totals,Functional,High,1. A WO where discounts will exceed the net subtotal.,"1. Add discounts that push the net subtotal below $0.00.
-2. Attempt to save the WO.","1. Before the WO can be saved, the user is WARNED that the net subtotal will floor at $0.00, tax on the taxable base is still owed, and the excess (shown as a dollar amount) will be carried as a customer credit.
-2. The user must CONFIRM; the carry is never silent.",S6-R12,,
+2. Attempt to save the WO.","1. Adding an over-sized discount to a work order does NOT warn at the moment it is added (nothing is committed yet; the Add dialog's preview shows the resulting totals).
+2. Before the work order is invoiced, and before it is marked reviewed/completed, the user is WARNED that the net subtotal will floor at $0.00, that tax on the taxable base is still owed, and that the exact excess amount (shown as a dollar figure) will be carried as a customer credit.
+3. The user must CONFIRM at those points; the carry is never silent.",S6-R12,,
 Verify the excess is recorded as a customer credit and posts to QuickBooks as a tax-exempt goodwill credit,QuickBooks — negative totals,Functional,Medium,1. QuickBooks connected; a WO where the floor applied (with a $50.00 excess carried as credit).,"1. After confirming the over-discount, check the customer's Deposits & Credits.
 2. Inspect the QuickBooks posting for the carried credit.","1. The floored-off amount ($50.00 in the worked example) is recorded as a freestanding customer credit not tied to a WO; it carries forward and is applied to the customer's next invoice.
 2. In QuickBooks it posts as a goodwill credit memo on the location's Customer Credit item, marked tax-exempt.
@@ -702,9 +704,9 @@ Verify a percentage discount cannot go over 100% (percentage fees have no upper 
 "Verify the smallest allowed values — flat amount $0.01, percentage 0.01%",Calculation contract,Functional,Medium,"1. You are signed in with See Financial Data and the matching Create and Edit permission.
 2. An open work order.","1. Open 'Add Fee/Discount'.
 2. With Calculation Type 'Flat Amount', try '$ Amount' 0.00 (should be blocked), then 0.01 (should be allowed); save.
-3. With a percentage Calculation Type, try 'Percent %' 0 (should be blocked), then 0.01 (should be allowed); save.","1. Values must be above 0.
-2. A flat amount below $0.01 is not allowed; $0.01 is the smallest accepted.
-3. A percentage below 0.01% is not allowed; 0.01% is the smallest accepted.",§5-R1,,
+3. With a percentage Calculation Type, try 'Percent %' 0 (should be blocked), then 0.01 (should be allowed); save.","1. Values must be above 0 (a 0 or negative amount is rejected — 'must be greater than zero').
+2. For a flat amount, $0.01 is the smallest that saves as typed; anything below $0.01 is quietly rounded up to $0.01.
+3. For a percentage, 0.01% is the smallest that saves as typed; anything below 0.01% (for example 0.005%) is quietly rounded up to 0.01%. This rounding is expected/acceptable behavior.",§5-R1,,
 Verify Max Amount caps a percentage result (20% fee on $100 → $20 → Max Amount $15 → +$15.00),Calculation contract,Functional,High,"1. You are signed in with See Financial Data and the matching Create and Edit permission.
 2. An open work order whose target base is $100.00.","1. Open 'Add Fee/Discount' on the $100.00 base.
 2. Set Type 'Fee' and a percentage Calculation Type.
@@ -716,8 +718,8 @@ Verify Max Amount caps a percentage result (20% fee on $100 → $20 → Max Amou
 Verify how Max Amount behaves at 0 vs empty (empty means no cap),Calculation contract,Functional,Medium,"1. You are signed in with See Financial Data and the matching Create and Edit permission.
 2. An open work order whose target base is $100.00.","1. Open 'Add Fee/Discount', Type 'Fee', a percentage method, 'Percent %' 50 on the $100.00 base.
 2. Leave Max Amount empty and save; note the result.
-3. Set Max Amount to 0 and save; note the result.","1. Empty Max Amount means no cap → the fee is +$50.00 ($100 x 50%).
-2. A Max Amount of 0 is currently treated the same as empty (no cap), so it does not force the result to $0.00.",§5-R6,,
+3. Set Max Amount to 0 and save; note the result.","1. An empty Max Amount means no cap, so the fee is +$50.00 ($100 x 50%).
+2. A Max Amount of 0 is treated exactly the same as leaving it empty = no cap (working as designed per S2-R25); it does NOT force the result to $0.00. A true $0 cap can only come from legacy data, never from the UI.",§5-R6,,
 "Verify a $0.00 base works out to $0.00 (shown on screen, skipped in QuickBooks)",Calculation contract,Functional,Medium,"1. You are signed in with See Financial Data and the matching Create and Edit permission.
 2. An open work order with a target line whose base is $0.00 (for example a declined/not-billable labor line).","1. Add a 15% fee (or any fee/discount) against the $0.00 base line.
 2. Look at the result on the 'WO Fees & Discounts' card, the line, the Stats tab and the Financial Info card.
@@ -895,7 +897,7 @@ Verify the Max Amount field shows only for percentage methods and how 0 or empty
 2. The 'Add new fee/discount' dialog is open.","1. Choose a percentage Calculation Type and check that the '$ Max Amount (Optional)' field appears.
 2. Leave Max Amount empty and save; then set Max Amount to 0 and save.
 3. Switch Calculation Type to 'Flat Amount' and check that the Max Amount field disappears.","1. The '$ Max Amount (Optional)' field appears only for percentage methods.
-2. An empty Max Amount means no cap; a Max Amount of 0 is currently also treated as no cap.
+2. An empty Max Amount means no cap; a Max Amount of 0 is treated exactly the same as empty = no cap (working as designed per S2-R25).
 3. For 'Flat Amount' there is no Max Amount field (a flat amount never uses one).","§5-R6, S2-R24, S2-R25",,
 Verify a template that is both auto-apply at the location and a customer default is added only ONCE to a new work order,Validation / Edge,Functional,Medium,"1. A template at the location is set to auto-apply.
 2. The same template is also set as a default for a customer.","1. Create a new work order for that customer.
