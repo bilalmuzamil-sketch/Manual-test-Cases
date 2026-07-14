@@ -2,7 +2,7 @@
  {
   "id": "SF-REV-01",
   "area": "Review ON (Story 16)",
-  "story_ref": "R1",
+  "story_ref": "R1 + S16-R12",
   "title": "Verify the Require Review setting drives the review flow when turned on",
   "priority": "High",
   "type": "Functional",
@@ -17,13 +17,14 @@
    "3. Observe that the review flow is used."
   ],
   "expected": [
-   "1. With Require Review ON, completing routes into the review flow rather than completing directly."
+   "1. With Require Review ON, completing routes into the review flow rather than completing directly.",
+   "2. When the last open line is resolved (by any path) while Require Review is on, the work order routes to Ready for Review — it never auto-completes."
   ],
   "design_ref": "Workflow Settings.html; WO Review Flow.html",
   "viu_status": "VIU-Verified",
-  "notes": "Wording+VIU 2026-07-13 (S2-15823 live, Require Review ON): with Require Review ON, completing routes into the review flow (Send To Review), not a direct complete.",
+  "notes": "Wording+VIU 2026-07-13 (S2-15823 live, Require Review ON): with Require Review ON, completing routes into the review flow (Send To Review), not a direct complete. | Δ5/R12 sanity clause added 2026-07-14 (review-ON last-line-resolve -> Ready for Review; auto-complete trigger verified in SF-AUTO-05).",
   "api_related": false,
-  "fresh_run": "2026-07-13"
+  "fresh_run": "2026-07-14"
  },
  {
   "id": "SF-REV-02",
@@ -107,7 +108,7 @@
  {
   "id": "SF-REV-05",
   "area": "Review ON (Story 16)",
-  "story_ref": "R5 / R6",
+  "story_ref": "R5 / R6 + S16-R12",
   "title": "Verify Send to Review moves the WO to Review (amber) with a 'Ready for Review' banner and locks lines to Complete",
   "priority": "Critical",
   "type": "Functional",
@@ -124,13 +125,14 @@
   "expected": [
    "1. The work order status becomes Review (amber).",
    "2. A 'Ready for Review' / 'Sent for review' indication is shown.",
-   "3. Lines lock to Complete and inventory is auto-picked."
+   "3. Lines lock to Complete and inventory is auto-picked.",
+   "4. The same Review / Ready-for-Review end state is reached when the last open line auto-resolves under Require Review on, not only when Send To Review is clicked explicitly."
   ],
   "design_ref": "WO Review Flow.html",
   "viu_status": "VIU-Verified",
-  "notes": "Wording+VIU 2026-07-13 + relevance-fix re-VIU 2026-07-13 (S2-15823/S2-15827 live, Require Review ON): the confirm button is 'Send To Review' (NOT 'Complete & Send to Review' - that is the dialog HEADER for a part-bearing WO). Send To Review -> status 'Review' + 'Ready for Review' indicator; lines lock to Complete. (amber colour per design; status text 'Review' confirmed.) Step 1 label corrected. Evidence: screenshots/relevance-fix-2026-07-13/.",
+  "notes": "Wording+VIU 2026-07-13 + relevance-fix re-VIU 2026-07-13 (S2-15823/S2-15827 live, Require Review ON): the confirm button is 'Send To Review' (NOT 'Complete & Send to Review' - that is the dialog HEADER for a part-bearing WO). Send To Review -> status 'Review' + 'Ready for Review' indicator; lines lock to Complete. (amber colour per design; status text 'Review' confirmed.) Step 1 label corrected. Evidence: screenshots/relevance-fix-2026-07-13/. | Δ5/R12 sanity clause added 2026-07-14 (review-ON last-line-resolve -> Ready for Review; auto-complete trigger verified in SF-AUTO-05).",
   "api_related": false,
-  "fresh_run": "2026-07-13"
+  "fresh_run": "2026-07-14"
  },
  {
   "id": "SF-REV-06",
@@ -190,7 +192,7 @@
  {
   "id": "SF-REV-08",
   "area": "Review ON (Story 16)",
-  "story_ref": "R5 / R8 (direct sign-off, no separate Complete)",
+  "story_ref": "R5 / R8 (direct sign-off, no separate Complete) + S16-R12",
   "title": "Verify Confirm Review signs off and completes the work order directly (no distinct Reviewed holding state)",
   "priority": "High",
   "type": "Functional",
@@ -206,13 +208,14 @@
   ],
   "expected": [
    "1. After Confirm Review the sign-off completes and the work order moves directly Review -> Complete.",
-   "2. There is no distinct 'Reviewed' holding state and no separate final 'Complete Work Order' click."
+   "2. There is no distinct 'Reviewed' holding state and no separate final 'Complete Work Order' click.",
+   "3. Note: with Require Review on, resolving the last open line first routes the work order to Ready for Review; sign-off (Confirm Review) then moves it to Complete."
   ],
   "design_ref": "WO Review Flow.html; requirements R5/R8",
   "viu_status": "VIU-Verified",
-  "notes": "Wording+VIU 2026-07-13 (S2-15823 live, Require Review ON): Mark Reviewed (VIN present) signs off and moves the WO directly Review -> Complete; no distinct 'Reviewed' holding state and no separate final Complete click (S2-15823 went Review->Complete).",
+  "notes": "Wording+VIU 2026-07-13 (S2-15823 live, Require Review ON): Mark Reviewed (VIN present) signs off and moves the WO directly Review -> Complete; no distinct 'Reviewed' holding state and no separate final Complete click (S2-15823 went Review->Complete). | Δ5/R12 sanity clause added 2026-07-14 (review-ON last-line-resolve -> Ready for Review; auto-complete trigger verified in SF-AUTO-05).",
   "api_related": false,
-  "fresh_run": "2026-07-13"
+  "fresh_run": "2026-07-14"
  },
  {
   "id": "SF-REV-09",
@@ -273,7 +276,7 @@
  {
   "id": "SF-REV-11",
   "area": "Review ON (Story 16)",
-  "story_ref": "R8",
+  "story_ref": "R8 + S16-R12",
   "title": "Verify sign-off completes the work order directly (no separate final Complete) and invoicing is blocked until reviewed",
   "priority": "High",
   "type": "Functional",
@@ -289,11 +292,12 @@
   ],
   "expected": [
    "1. Invoicing is blocked until the work order is reviewed.",
-   "2. After sign-off the work order moves directly Review -> Complete (invoice-ready), with no separate final Complete Work Order click."
+   "2. After sign-off the work order moves directly Review -> Complete (invoice-ready), with no separate final Complete Work Order click.",
+   "3. With Require Review on the work order never auto-completes on last-line-resolve; it routes to Ready for Review and invoicing stays blocked until it is reviewed."
   ],
   "design_ref": "requirements R8",
   "viu_status": "VIU-observed-awaiting-Milos",
-  "notes": "VIU-observed 2026-07-14 (awaiting Milos Q8). The direct-sign-off behavior is observed: Confirm Review signs off and completes the WO directly with no distinct 'Reviewed' holding state (see SF-REV-08). The 'invoicing blocked until reviewed' leg depends on the Q8 ruling about whether a separate Reviewed state should exist. No pass/fail asserted on the undecided policy.",
+  "notes": "VIU-observed 2026-07-14 (awaiting Milos Q8). The direct-sign-off behavior is observed: Confirm Review signs off and completes the WO directly with no distinct 'Reviewed' holding state (see SF-REV-08). The 'invoicing blocked until reviewed' leg depends on the Q8 ruling about whether a separate Reviewed state should exist. No pass/fail asserted on the undecided policy. | Δ5/R12 sanity clause added 2026-07-14 (review-ON last-line-resolve -> Ready for Review; auto-complete trigger verified in SF-AUTO-05).",
   "api_related": false,
   "fresh_run": "2026-07-14"
  },
@@ -368,11 +372,12 @@
   "expected": [
    "1. Inventory cores are resolved before Send to Review.",
    "2. Special-order cores follow the vendor-invoice rules.",
-   "3. Invoicing is blocked until the WO is Reviewed AND all cores are resolved."
+   "3. Invoicing is blocked until the WO is Reviewed AND all cores are resolved.",
+   "4. In the review flow too, a waiting special-order core cannot be skipped: Send to Review / completion is blocked until the core is received and resolved, and invoicing stays blocked until both Reviewed and all cores resolved."
   ],
   "design_ref": "requirements R Core parts",
   "viu_status": "Blocked-Env",
-  "notes": "Blocked-Env (precise, reconfirmed live 2026-07-14): a SPECIAL-ORDER (vendor-sourced) core cannot be created in this build. The genuine cored catalog part P550848 (core_charge=1, catalogue_part_id 4b4753e0) carries its core attribute ONLY when added via the inventory-source catalog path (select_part forces Source=Inventory). A vendor-sourced part request for the SAME part (POST /api/work-orders/part/make-request with part_source_type='vendor' + inventory_part_id of P550848) returns 201 but the resulting part request has is_core=false and core_charge=0 — the core charge is dropped. Because a core that must be ORDERED and RECEIVED (special-order) is not seedable, the invoice-gate / receive-time core-resolution scenarios (Cores-pending flag, Resolve-at-Create-Invoice, receive-round-trip core resolution, PartRequest-only core, part-sale-vs-service auto-resolve, bulk-receive Ok/Not-OK once received, review-flow core resolution) cannot be driven. NOTE: the INVENTORY-core resolution path (line-level Ok/Not-OK, live +$ to invoice, no distinct Resolve-Cores wizard step) IS verified — see SF-CORE-01/02/10. Needs a hand-seeded special-order/vendor core part (dev/data).",
+  "notes": "Aligned 2026-07-14 to design #4 un-skippable core (review flow). Blocked-Env (reconfirmed live 2026-07-14): a SPECIAL-ORDER (vendor-sourced) core cannot be created in this build — the genuine cored catalog part P550848 (core_charge=1) is stored is_core=0 and a vendor-sourced part request for it drops the core attribute, so a core that must be ORDERED and RECEIVED is not seedable. Needs a hand-seeded (dev/data) special-order core to drive the un-skippable-core completion behavior. Wording updated to the design #4 core-block behavior. design4 tooltip \"Receive the core part first — its core charge must be settled before you can complete.\"; waiting-card \"N parts waiting to receive — includes a core charge.\" + \"Receive it to settle the core (OK / Not OK) before completing this work order.\" (WO Review Flow.html). Copy is per design #4 — not yet live-confirmed because a special-order (vendor-sourced) core is not seedable in this build.",
   "api_related": false,
   "fresh_run": "2026-07-14"
  },
@@ -1271,25 +1276,26 @@
  {
   "id": "SF-QB-08",
   "area": "QuickBooks / Inventory Integrity",
-  "story_ref": "§5 invariant 3",
-  "title": "Verify Inventory Part History is preserved for any part that becomes inventory-tracked",
+  "story_ref": "§5 invariant 3 (rescoped after S10-R2 strike)",
+  "title": "Verify Part History is preserved for a part that is genuinely inventory-tracked",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "Inventory visibility.",
   "preconditions": [
    "1. Signed in as Admin.",
-   "2. A part transitions to inventory-tracked (e.g. a part number is added and it is received)."
+   "2. A genuinely inventory-tracked part exists (an inventory item with stock)."
   ],
   "steps": [
-   "1. Add a part number to a previously untracked part and receive it.",
-   "2. Open the item's Part History."
+   "1. Use / receive a genuinely inventory-tracked part on a work order and complete it.",
+   "2. Open that part's Part History (Parts > Inventory, the clock icon on the part row)."
   ],
   "expected": [
-   "1. Part History is preserved / created for the now inventory-tracked part."
+   "1. For a part that is genuinely inventory-tracked, its Part History is preserved / written.",
+   "2. Simply entering a part number on a previously untracked part is not required to turn it into an inventory-tracked part in v1, so no Part History needs to be created from that entry alone."
   ],
   "design_ref": "requirements §5 invariant 3",
-  "viu_status": "Blocked-Env",
-  "notes": "Blocked-Env (precise, confirmed live 2026-07-14): QuickBooks is NOT connected on the sv7301 QA org. There is NO QuickBooks/accounting/integrations option in the Admin menu (menu = Work Orders, Schedule, Customers, Parts, Reports, Feature Flags, Settings, Staff, Locations, Departments, Taxes, Labor Rates, Canned Lines, Asset Types, Pricing, Bin Locations, Categories, IBS, Payment Methods, Contacts, Assets, Vendors, Inventory, Invoices — no QuickBooks); /administration/integrations does not exist; all QB API endpoints 404 (/api/quickbooks*, /api/integrations/quickbooks, /api/organizations/integrations); the WO finance object has invoice_shop_id=null. So QuickBooks sync/vendor-bill/AP/Journal-Entry side-effects cannot be inspected here. Needs a QB-connected company + a human in QuickBooks.",
+  "viu_status": "VIU-Verified",
+  "notes": "Rescoped 2026-07-14 for the S10-R2 deprecation (spec _3, last-update-wins). Previously Blocked-Env on QuickBooks; the QB dependency is not needed for this assertion. Part History for a genuinely inventory-tracked part is a native in-app feature (Parts > Inventory clock icon) and inventory decrement + Part History on simple completion is verified elsewhere (SF-COMP-07 Passed). Since a plain part-number add no longer makes a part inventory-tracked (S10-R2 struck), the invariant now only claims Part History for parts that ARE inventory-tracked — which holds.",
   "api_related": false,
   "fresh_run": "2026-07-14"
  },
@@ -1315,5 +1321,203 @@
   "notes": "NEW V2.4 §8 open question (D9). Placeholder only — do NOT fabricate expected. The shared order/status logic (requested -> orderable/waiting-to-receive; PO-on-order without vendor/cost) may touch Part Sales; confirm with dev and report. Excluded from the TestRail XML update batch until scoped. | 2026-07-13: NOT in testrail-id-map.csv (no C-ID) - Open-Question / dev-investigation case, not created in TestRail. Follow-up: assign a C-ID only if/when it is imported after dev confirmation. | 2026-07-14 grind: remains an Open-Question / dev BE-investigation. The claim (Part Sales unaffected by the shared requested->orderable/waiting-to-receive order-status logic) is a back-end code-path question that is NOT meaningfully UI-observable from the app; confirming it requires dev to trace whether the shared order/status logic touches the Part Sales flow. Still unmapped in testrail-id-map.csv (no C-ID) — assign a C-ID only if imported after dev confirmation. Kept Open-Question.",
   "api_related": false,
   "fresh_run": "2026-07-14"
+ },
+ {
+  "id": "SF-AUTO-01",
+  "area": "Auto-Complete Trigger (Story 16 R12/R13)",
+  "story_ref": "S16-R12 (a) single line",
+  "title": "Verify resolving the last open line by completing a single line auto-completes the work order when Require Review is off",
+  "priority": "Critical",
+  "type": "Functional",
+  "permissions_required": "Admin / a role that can complete work orders.",
+  "preconditions": [
+   "1. Signed in as Admin at https://sv7301.qa.shopview.com.",
+   "2. Require Review Before Completion is OFF (in the Work Orders settings tab).",
+   "3. A work order is in Approved status with two or more open (not-yet-completed) lines."
+  ],
+  "steps": [
+   "1. Open the work order and complete one line at a time using the per-line Complete action.",
+   "2. After completing the first line (while at least one other line is still open), check the work order status.",
+   "3. Complete the last remaining open line.",
+   "4. Check the work order status again."
+  ],
+  "expected": [
+   "1. While at least one line is still open, the work order stays in Approved.",
+   "2. The moment the last open line is completed, the work order moves to Complete on its own (invoice-ready).",
+   "3. You do not have to click Complete Work Order separately for the work order to reach Complete."
+  ],
+  "design_ref": "WO Review Flow.html; Simple Mode spec §16 R12/R13",
+  "viu_status": "VIU-Verified",
+  "api_related": false,
+  "fresh_run": "2026-07-14",
+  "notes": "Wording+VIU 2026-07-14 (S-15838 live, Require Review OFF): two authorized lines; completing line 1 left the WO 'Approved'; completing the last line auto-flipped the WO to 'Complete' with no separate Complete Work Order step (WO status read via GET /api/work-orders/view/{id})."
+ },
+ {
+  "id": "SF-AUTO-02",
+  "area": "Auto-Complete Trigger (Story 16 R12/R13)",
+  "story_ref": "S16-R12 (b) bulk",
+  "title": "Verify resolving the last open lines in bulk (several at once) auto-completes the work order when Require Review is off",
+  "priority": "Critical",
+  "type": "Functional",
+  "permissions_required": "Admin / a role that can complete work orders.",
+  "preconditions": [
+   "1. Signed in as Admin.",
+   "2. Require Review Before Completion is OFF.",
+   "3. A work order is in Approved status with several open lines and nothing left to receive on those lines."
+  ],
+  "steps": [
+   "1. Open the work order and select all the open lines.",
+   "2. From the bulk actions menu choose Set line status and set the selected lines to Complete (resolving them all at once).",
+   "3. Check the work order status."
+  ],
+  "expected": [
+   "1. All selected lines become Complete in one action.",
+   "2. Because that resolves the last open lines, the work order moves to Complete on its own (invoice-ready).",
+   "3. No separate Complete Work Order step is needed."
+  ],
+  "design_ref": "WO Review Flow.html; Simple Mode spec §16 R12/R13",
+  "viu_status": "VIU-Verified",
+  "api_related": false,
+  "fresh_run": "2026-07-14",
+  "notes": "Wording+VIU 2026-07-14 (S-15824 / 446c1cd6 live, Require Review OFF): 3 authorized labor lines resolved in one bulk call (POST /api/work-orders/lines/change-lines {field:'status',value:'complete',lines:[...]} -> 201); the WO auto-flipped 'Approved' -> 'Complete' with no separate Complete step."
+ },
+ {
+  "id": "SF-AUTO-03",
+  "area": "Auto-Complete Trigger (Story 16 R12/R13)",
+  "story_ref": "S16-R12 (c) split",
+  "title": "Verify a split that leaves a work order fully resolved auto-completes that work order when Require Review is off",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Admin / a role that can complete work orders and split.",
+  "preconditions": [
+   "1. Signed in as Admin.",
+   "2. Require Review Before Completion is OFF.",
+   "3. A work order has several lines; some are already completed and at least one line is still open."
+  ],
+  "steps": [
+   "1. Open the work order and complete all but one line, leaving one line still open (the work order stays Approved).",
+   "2. Select the remaining open line and use the bulk actions menu Split work order to move it to a new work order.",
+   "3. Check the status of the original work order after the split."
+  ],
+  "expected": [
+   "1. The open line moves to a new work order.",
+   "2. The original work order is now fully resolved (all its remaining lines are complete), so it moves to Complete on its own.",
+   "3. No separate Complete Work Order step is needed on the original work order."
+  ],
+  "design_ref": "WO Review Flow.html; Simple Mode spec §16 R12/R13",
+  "viu_status": "VIU-Verified",
+  "api_related": false,
+  "fresh_run": "2026-07-14",
+  "notes": "Wording+VIU 2026-07-14 (S-15822 / a8fb8d3f live, Require Review OFF): completed 2 of 3 lines (WO stayed 'Approved'), then split the still-open line to a new WO (POST /api/work-orders/split -> 201, new WO id returned); the original WO, now fully resolved, auto-flipped to 'Complete'. New split WO cleaned up (deleted)."
+ },
+ {
+  "id": "SF-AUTO-04",
+  "area": "Auto-Complete Trigger (Story 16 R12/R13)",
+  "story_ref": "S16-R12 (d) delete line",
+  "title": "Verify deleting a line so the remaining lines are all resolved auto-completes the work order when Require Review is off",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Admin / a role that can complete work orders and delete lines.",
+  "preconditions": [
+   "1. Signed in as Admin.",
+   "2. Require Review Before Completion is OFF.",
+   "3. A work order has some completed lines and one remaining open line."
+  ],
+  "steps": [
+   "1. Open the work order (its other lines are already complete; one line is still open).",
+   "2. Select the open line and use the bulk actions menu Delete lines to remove it.",
+   "3. Check the work order status."
+  ],
+  "expected": [
+   "1. The open line is removed.",
+   "2. Because the remaining lines are all complete, the work order moves to Complete on its own.",
+   "3. No separate Complete Work Order step is needed."
+  ],
+  "design_ref": "WO Review Flow.html; Simple Mode spec §16 R12/R13",
+  "viu_status": "Blocked-Env",
+  "api_related": false,
+  "fresh_run": "2026-07-14",
+  "notes": "Wording per spec §16 R12(d)+design. VIU Blocked-Env 2026-07-14: the delete-a-line action could not be driven in this environment — POST /api/work-orders/lines/delete-lines returns HTTP 500 even for a delete that leaves the work order still open (requestId 768518b...), so it is a generic delete-lines failure in this env, not the auto-complete leg; and no browser (Chromium/Playwright) harness is available here to drive the UI 'Delete lines' bulk action. The auto-complete-on-last-line-resolve mechanism itself IS verified on the single, bulk and split paths (SF-AUTO-01/02/03) — the same backend recompute applies. Needs the delete-lines endpoint healthy (or a UI session) to confirm the delete-line trigger directly."
+ },
+ {
+  "id": "SF-AUTO-05",
+  "area": "Auto-Complete Trigger (Story 16 R12/R13)",
+  "story_ref": "S16-R12 review ON",
+  "title": "Verify that with Require Review on, resolving the last open line routes the work order to Ready for Review instead of auto-completing",
+  "priority": "Critical",
+  "type": "Functional",
+  "permissions_required": "Admin / a role that can complete work orders.",
+  "preconditions": [
+   "1. Signed in as Admin.",
+   "2. Require Review Before Completion is ON and saved.",
+   "3. A work order is in Approved status with two or more open lines."
+  ],
+  "steps": [
+   "1. Open the work order and complete the lines one at a time (or in bulk).",
+   "2. After the last open line is resolved, check the work order status.",
+   "3. Confirm whether the work order went straight to Complete or to review."
+  ],
+  "expected": [
+   "1. When the last open line is resolved, the work order moves to Ready for Review (Review) — it does NOT auto-complete.",
+   "2. The work order must be signed off in the review step before it can reach Complete."
+  ],
+  "design_ref": "WO Review Flow.html; Simple Mode spec §16 R12/R13",
+  "viu_status": "VIU-Verified",
+  "api_related": false,
+  "fresh_run": "2026-07-14",
+  "notes": "Wording+VIU 2026-07-14 (S-15813 / 73d150d3 live): flipped Require Review ON (POST /api/organizations/settings/change requireReview:true); completing line 1 left the WO 'Approved'; resolving the last line routed the WO to 'Review' (Ready for Review), NOT 'Complete'. Settings restored byte-identical to baseline afterward."
+ },
+ {
+  "id": "SF-AUTO-06",
+  "area": "Auto-Complete Trigger (Story 16 R12/R13)",
+  "story_ref": "S16-R13 clock-out exception",
+  "title": "Verify a clock-out that finishes the last line routes the work order to Ready for Review even when Require Review is off",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Technician (clocked into the line) / Admin to observe.",
+  "preconditions": [
+   "1. Signed in as a Technician who is clocked into the work on the work order.",
+   "2. Require Review Before Completion is OFF.",
+   "3. The work order has one remaining open line that the technician is working on."
+  ],
+  "steps": [
+   "1. As the technician, finish the last open line by clocking out of it.",
+   "2. Check the work order status."
+  ],
+  "expected": [
+   "1. Even though Require Review is off, the work order routes to Ready for Review (not straight to Complete).",
+   "2. This is the one path that does not auto-complete when review is off (a technician may not be allowed to complete a work order)."
+  ],
+  "design_ref": "WO Review Flow.html; Simple Mode spec §16 R12/R13",
+  "viu_status": "Blocked-Env",
+  "api_related": false,
+  "fresh_run": "2026-07-14",
+  "notes": "Wording per spec §16 R13 (intentional clock-out exception). VIU Blocked-Env 2026-07-14: the per-line technician clock-out that finishes a line is not drivable through the available API (GET /api/technician-tasks returns 404; /api/technician-tasks/department-clock-* is a shop-time punch clock, not the per-line 'finish the line' timer), and no browser (Chromium/Playwright) harness is available here to drive the timer/clock-out UI. The auto-complete-vs-review routing is otherwise verified (SF-AUTO-01/05). Needs a technician time-clock UI session (or the per-line clock-out endpoint) to confirm the R13 exception directly."
+ },
+ {
+  "id": "SF-AUTO-07",
+  "area": "Auto-Complete Trigger (Story 16 R12/R13)",
+  "story_ref": "S16-R12 backend status transition",
+  "title": "Verify the work order status transitions on the backend when the last open line is resolved (auto-Complete when review off, Ready for Review when review on)",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Admin.",
+  "preconditions": [
+   "1. Signed in as Admin.",
+   "2. A work order is in Approved status with two or more open lines."
+  ],
+  "steps": [
+   "1. With Require Review off, resolve the last open line and read the work order record.",
+   "2. Turn Require Review on, and on another work order resolve the last open line and read the work order record."
+  ],
+  "expected": [
+   "1. With Require Review off, after the last open line resolves the work order record status becomes Complete (the resolve action returns success).",
+   "2. With Require Review on, after the last open line resolves the work order record status becomes Ready for Review (Review), not Complete."
+  ],
+  "design_ref": "WO Review Flow.html; Simple Mode spec §16 R12/R13",
+  "viu_status": "VIU-Verified",
+  "api_related": true,
+  "fresh_run": "2026-07-14",
+  "notes": "Wording+VIU 2026-07-14: verified the backend status transition directly. Resolve action POST /api/work-orders/lines/change-status {status:'complete'} returns 200; GET /api/work-orders/view/{id} then shows work_order.status = 'Complete' when Require Review was OFF (S-15838/S-15824), and status = 'Review' (Ready for Review) when Require Review was ON (S-15813). Placed in an API-titled section per Standing Rule 4 (asserts a backend status transition)."
  }
 ]

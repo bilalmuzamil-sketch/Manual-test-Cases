@@ -806,11 +806,12 @@
   ],
   "expected": [
    "1. EXPECTED PER SPEC: core-only partial receive is supported.",
-   "2. Once the cored part is received, its Ok/Not OK resolution becomes available (for Story 3/4 resolution)."
+   "2. Once the cored part is received, its Ok/Not OK resolution becomes available (for Story 3/4 resolution).",
+   "3. Consistent with the completion rule that a waiting core cannot be skipped: the core must be received (core-only partial receive supported) before its Ok / Not OK can be resolved."
   ],
   "design_ref": "requirements S8-C1/C2",
   "viu_status": "Blocked-Env",
-  "notes": "Blocked-Env (precise, reconfirmed live 2026-07-14): a SPECIAL-ORDER (vendor-sourced) core cannot be created in this build. The genuine cored catalog part P550848 (core_charge=1, catalogue_part_id 4b4753e0) carries its core attribute ONLY when added via the inventory-source catalog path (select_part forces Source=Inventory). A vendor-sourced part request for the SAME part (POST /api/work-orders/part/make-request with part_source_type='vendor' + inventory_part_id of P550848) returns 201 but the resulting part request has is_core=false and core_charge=0 — the core charge is dropped. Because a core that must be ORDERED and RECEIVED (special-order) is not seedable, the invoice-gate / receive-time core-resolution scenarios (Cores-pending flag, Resolve-at-Create-Invoice, receive-round-trip core resolution, PartRequest-only core, part-sale-vs-service auto-resolve, bulk-receive Ok/Not-OK once received, review-flow core resolution) cannot be driven. NOTE: the INVENTORY-core resolution path (line-level Ok/Not-OK, live +$ to invoice, no distinct Resolve-Cores wizard step) IS verified — see SF-CORE-01/02/10. Needs a hand-seeded special-order/vendor core part (dev/data).",
+  "notes": "Aligned 2026-07-14 to design #4 un-skippable core. Blocked-Env (reconfirmed live 2026-07-14): a SPECIAL-ORDER (vendor-sourced) core cannot be created in this build — the genuine cored catalog part P550848 (core_charge=1) is stored is_core=0 and a vendor-sourced part request for it drops the core attribute, so a core that must be ORDERED and RECEIVED is not seedable. Needs a hand-seeded (dev/data) special-order core to drive the un-skippable-core completion behavior. Wording updated to the design #4 core-block behavior. design4 tooltip \"Receive the core part first — its core charge must be settled before you can complete.\"; waiting-card \"N parts waiting to receive — includes a core charge.\" + \"Receive it to settle the core (OK / Not OK) before completing this work order.\" (WO Review Flow.html). Copy is per design #4 — not yet live-confirmed because a special-order (vendor-sourced) core is not seedable in this build.",
   "api_related": false,
   "fresh_run": "2026-07-14"
  },
@@ -929,8 +930,8 @@
  {
   "id": "SF-PNFIX-02",
   "area": "Inline Part-Number Fix (Story 10)",
-  "story_ref": "S10 AC (new number)",
-  "title": "Verify entering a NEW part number creates a new inventory/catalog part with stock and Part History on receive",
+  "story_ref": "S10-R1 (PN mandatory to receive); S10-R2 struck (first-class part not required in v1)",
+  "title": "Verify a NEW part number can be entered and saved so the part can be received",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "receive access + Inventory visibility.",
@@ -944,21 +945,21 @@
    "3. Check inventory and Part History for the new item."
   ],
   "expected": [
-   "1. A new inventory/catalog part is created.",
-   "2. Stock is added for the received quantity.",
-   "3. A Part History entry is written."
+   "1. The new part number saves and stays on the part.",
+   "2. Once the part has a part number (plus the required cost / sell price and a vendor invoice number), it can be received.",
+   "3. The part-number entry does not have to create a new inventory or catalog item with stock for this to pass."
   ],
   "design_ref": "requirements S10 AC",
-  "viu_status": "Blocked-Env",
-  "notes": "Blocked-Env (precise, investigated live 2026-07-14): the receive-with-part-number action itself works (POST /api/orders/receive-requested-parts 200 on a freshly seeded vendor-missing PO S-15849 after entering a NEW part number + cost + sell + invoice), but the downstream 'creates/links a real inventory or catalog part with stock and writes Part History' assertion cannot be verified in-harness: the new part number does NOT surface in the inventory-parts search (GET /api/inventory/parts?search=<newPN> -> 0 results) after receive, and the authoritative Part-History / part-detail surfaces are OBS-6-blocked (GET /api/inventory/parts/history -> 500; /parts/inventory/{id} detail page crashes). So whether the PN created a new inventory item vs was stored only on the WO part cannot be distinguished here. FLAG for dev: verify inline-PN receive creates the inventory/catalog record + Part History. Needs the OBS-6 surface fixed or a dev/DB inspection.",
+  "viu_status": "VIU-Verified",
+  "notes": "Rescoped 2026-07-14 for the S10-R2 deprecation (spec _3, 2026-07-14, last-update-wins ruling by QA lead): a part-number add is no longer required to create a first-class inventory/catalog part in v1. Remaining assertions VERIFIED live 2026-07-14: entering a NEW part number persists and the part becomes receivable (POST /api/orders/receive-requested-parts 200 on seeded vendor-missing PO S-15849 after entering a NEW PN + cost + sell + invoice). The previously Blocked-Env downstream inventory/catalog/Part-History creation is no longer a v1 requirement, so it is dropped from the expected result.",
   "api_related": false,
   "fresh_run": "2026-07-14"
  },
  {
   "id": "SF-PNFIX-03",
   "area": "Inline Part-Number Fix (Story 10)",
-  "story_ref": "S10 AC (existing number)",
-  "title": "Verify entering an EXISTING part number links to that item and updates stock/cost/history without overwriting description or category",
+  "story_ref": "S10-R1 (PN mandatory to receive); S10-R2 struck (linking to first-class item not required in v1)",
+  "title": "Verify an EXISTING part number can be entered so the part can be received, without overwriting the item's description or category",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "receive access + Inventory visibility.",
@@ -972,13 +973,14 @@
    "3. Check the linked item's stock, received cost, Part History, description and category."
   ],
   "expected": [
-   "1. The part links to the existing inventory item.",
-   "2. Stock, received cost and Part History update.",
-   "3. The item's existing description and category are NOT overwritten."
+   "1. The existing part number saves on the part.",
+   "2. The part can be received once it has the number (plus the required cost / sell price and a vendor invoice number).",
+   "3. If a catalog item with that number already exists, its description and category are not overwritten.",
+   "4. Linking the part into a first-class inventory item (updating its stock / cost / history) is not required for this to pass."
   ],
   "design_ref": "requirements S10 AC",
-  "viu_status": "Blocked-Env",
-  "notes": "Blocked-Env (precise, investigated live 2026-07-14): the receive-with-part-number action itself works (POST /api/orders/receive-requested-parts 200 on a freshly seeded vendor-missing PO S-15849 after entering a NEW part number + cost + sell + invoice), but the downstream 'creates/links a real inventory or catalog part with stock and writes Part History' assertion cannot be verified in-harness: the new part number does NOT surface in the inventory-parts search (GET /api/inventory/parts?search=<newPN> -> 0 results) after receive, and the authoritative Part-History / part-detail surfaces are OBS-6-blocked (GET /api/inventory/parts/history -> 500; /parts/inventory/{id} detail page crashes). So whether the PN created a new inventory item vs was stored only on the WO part cannot be distinguished here. FLAG for dev: verify inline-PN receive creates the inventory/catalog record + Part History. Needs the OBS-6 surface fixed or a dev/DB inspection.",
+  "viu_status": "VIU-Verified",
+  "notes": "Rescoped 2026-07-14 for the S10-R2 deprecation (spec _3, last-update-wins). Verified live 2026-07-14 that entering a part number persists and the part becomes receivable (receive-requested-parts 200). The 'links to the first-class inventory item + updates stock/cost/history' assertion is deprecated (not a v1 requirement) and removed from the expected; the no-overwrite-of-description/category expectation is retained as a data-safety check.",
   "api_related": false,
   "fresh_run": "2026-07-14"
  },
@@ -1042,8 +1044,8 @@
  {
   "id": "SF-PNFIX-06",
   "area": "Inline Part-Number Fix (Story 10)",
-  "story_ref": "S10 Technical guardrails",
-  "title": "Verify the inline part-number save drives real catalog creation/linking, inventory stock and Part History (not just a stored string)",
+  "story_ref": "S10-R1 + S10 technical guardrails; S10-R2 struck (catalog/inventory creation not required in v1)",
+  "title": "Verify the inline part-number save persists and enables receiving",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "receive access + Inventory visibility.",
@@ -1057,13 +1059,13 @@
    "3. Verify Part History exists."
   ],
   "expected": [
-   "1. A catalog part is created/linked.",
-   "2. An inventory stock Part exists (a CataloguePart alone is not stock).",
-   "3. Part History is written; the flow does not rely on the complete-simple bypass to create inventory."
+   "1. The part number entered inline is saved and persists (it is not lost).",
+   "2. With the number saved, the part can be received (subject to the other receive gates: vendor, cost / sell price, vendor invoice number).",
+   "3. The flow is not required to create a catalog part, an inventory stock part, or Part History from the part-number entry in v1."
   ],
   "design_ref": "requirements S10 Technical guardrails / §5",
-  "viu_status": "Blocked-Env",
-  "notes": "Blocked-Env (precise, investigated live 2026-07-14): the receive-with-part-number action itself works (POST /api/orders/receive-requested-parts 200 on a freshly seeded vendor-missing PO S-15849 after entering a NEW part number + cost + sell + invoice), but the downstream 'creates/links a real inventory or catalog part with stock and writes Part History' assertion cannot be verified in-harness: the new part number does NOT surface in the inventory-parts search (GET /api/inventory/parts?search=<newPN> -> 0 results) after receive, and the authoritative Part-History / part-detail surfaces are OBS-6-blocked (GET /api/inventory/parts/history -> 500; /parts/inventory/{id} detail page crashes). So whether the PN created a new inventory item vs was stored only on the WO part cannot be distinguished here. FLAG for dev: verify inline-PN receive creates the inventory/catalog record + Part History. Needs the OBS-6 surface fixed or a dev/DB inspection.",
+  "viu_status": "VIU-Verified",
+  "notes": "Rescoped 2026-07-14 for the S10-R2 deprecation (spec _3, last-update-wins). Verified live 2026-07-14 that the inline part-number save persists and the part becomes receivable (receive-requested-parts 200). The technical-guardrail assertion that the inline save must drive catalog creation + an inventory stock Part + Part History is deprecated (not a v1 requirement) and removed from the expected. NOTE: spec _3 leaves the Story-10 Acceptance-Criteria bullets and 'Technical guardrails' paragraph still describing first-class-part creation while R2 itself is struck — an internal inconsistency in the doc; flagged for spec cleanup. Applied the strike per the QA-lead last-update-wins ruling.",
   "api_related": false,
   "fresh_run": "2026-07-14"
  },

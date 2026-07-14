@@ -258,8 +258,8 @@
  {
   "id": "SF-SET-10",
   "area": "Work Order Settings",
-  "story_ref": "S1-R9 (future completions only, never retroactive)",
-  "title": "Verify a settings change applies to future completions only and not to already-completed work orders",
+  "story_ref": "S1-R9 (future completions + apply on reopen; never retroactive to WOs left completed)",
+  "title": "Verify a settings change applies to future completions and to a completed work order when it is reopened, but not retroactively to work orders left completed",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "Admin / owner (settings area) + Work Order edit access.",
@@ -270,17 +270,19 @@
   ],
   "steps": [
    "1. Complete a work order under the current Work Order settings so it reaches Complete.",
-   "2. Go to the Work Orders settings tab, change a relevant setting (e.g. turn Require Vendor Invoice Number ON and Require Review Before Completion ON) and Save.",
-   "3. Reopen the already-completed work order and inspect its status and whether any new gate now applies to it."
+   "2. Go to the Work Orders settings tab, change a relevant setting (for example turn Require Review Before Completion ON) and Save.",
+   "3. First, without touching the completed work order, check its status.",
+   "4. Then reopen the completed work order (for example add a New Line, which returns it to Approved) and complete it again.",
+   "5. Observe whether the new setting now applies to the reopened work order."
   ],
   "expected": [
-   "1. The already-completed work order still shows Complete and is not reverted or re-gated by the new settings.",
-   "2. No new invoice-number requirement or review step is applied retroactively to the completed work order.",
-   "3. Only work orders completed after the change follow the new settings (future completions only)."
+   "1. While it is left completed, the already-completed work order still shows Complete and is not changed by the new settings (the change is not applied retroactively to work orders that stay completed).",
+   "2. Only work orders completed after the change follow the new settings for their first completion.",
+   "3. When the completed work order is reopened, the new settings now apply to it: re-completing it must satisfy the new gate (for example it now routes through the review step / Ready for Review instead of completing directly)."
   ],
   "design_ref": "requirements S1-R9",
   "viu_status": "VIU-Verified",
-  "notes": "VIU-Verified live 2026-07-14. Completed WO S2-15844 (4448308d, labor-only, invoice $130.48) under invoice-OFF/review-OFF settings; then flipped Require Vendor Invoice Number ON + Require Review Before Completion ON and saved. Reopened WO still shows 'S2-15844 Complete' with no retroactive invoice-number prompt and no revert to Review — settings apply to future completions only, confirming non-retroactive behavior.",
+  "notes": "Wording+VIU 2026-07-14 (Δ6/S1-R9). Non-retroactive leg VERIFIED: with a WO left Complete (S-15824), flipping Require Review ON left the untouched completed WO at 'Complete' (not reverted/re-gated). Apply-on-reopen leg OBSERVED: re-triggering the last-line-resolve on a completed WO while Require Review was ON routed it 'Complete' -> 'Review' (Ready for Review), showing the new setting governs the WO once its completion is re-triggered rather than being locked to the old settings. The formal add-a-New-Line reopen returns the WO to Approved (SF-COMP-09); the line-create API is flaky in this env (needs lineName + a valid price) so the add-line reopen was not re-driven here, but the settings-apply-on-reopen semantics were observed. Settings restored byte-identical to baseline.",
   "api_related": false,
   "fresh_run": "2026-07-14"
  },
@@ -650,7 +652,7 @@
  {
   "id": "SF-COMP-09",
   "area": "Completion — No-PO / Skip (Story 2)",
-  "story_ref": "S2-R6 / S2 AC (re-open returns to Approved)",
+  "story_ref": "S2-R6 / S2 AC (re-open returns to Approved); S16-R12 (auto-complete on re-resolve)",
   "title": "Verify adding a new line to a completed work order returns it to Approved",
   "priority": "Medium",
   "type": "Functional",
@@ -666,13 +668,14 @@
   ],
   "expected": [
    "1. The work order status returns to Approved.",
-   "2. On the next completion, the modal summarizes already-received vs newly-added parts."
+   "2. On the next completion, the modal summarizes already-received vs newly-added parts.",
+   "3. When you resolve the last open line again, the work order follows the current settings: with Require Review off it moves to Complete on its own; with Require Review on it moves to Ready for Review."
   ],
   "design_ref": "WO Review Flow.html",
   "viu_status": "VIU-Verified",
-  "notes": "Wording+VIU 2026-07-13: surface labels re-confirmed live this run; behavior verified in documented prior VIU drives — adding a line to a completed WO returns it to Approved (2026-07-06).",
+  "notes": "Wording+VIU 2026-07-13: surface labels re-confirmed live this run; behavior verified in documented prior VIU drives — adding a line to a completed WO returns it to Approved (2026-07-06). | Δ5/R12 clause added 2026-07-14: after reopen, re-resolving the last open line auto-Completes (review OFF) or routes to Ready for Review (review ON) — same auto-complete trigger verified in SF-AUTO-01/05.",
   "api_related": false,
-  "fresh_run": "2026-07-13"
+  "fresh_run": "2026-07-14"
  },
  {
   "id": "SF-COMP-10",
@@ -721,13 +724,14 @@
   ],
   "expected": [
    "1. The wizard shows a Receive step (e.g. 'N parts waiting to receive').",
-   "2. The actions are Cancel, Complete Without Receiving, and Receive Parts."
+   "2. The actions are Cancel, Complete Without Receiving, and Receive Parts.",
+   "3. If one of the waiting parts is a special-order core, Complete Without Receiving is disabled (with a tooltip) until that core is received; for non-core parts it stays available."
   ],
   "design_ref": "WO Review Flow.html",
   "viu_status": "VIU-Verified",
-  "notes": "Wording+VIU 2026-07-13: surface labels re-confirmed live this run; behavior verified in documented prior VIU drives — optional-invoice wizard actions Cancel / Complete Without Receiving / Receive Parts + 'N parts waiting to receive' (FV-comp13-receivestep.png, 2026-07-10).",
+  "notes": "Wording+VIU 2026-07-13: surface labels re-confirmed live this run; behavior verified in documented prior VIU drives — optional-invoice wizard actions Cancel / Complete Without Receiving / Receive Parts + 'N parts waiting to receive' (FV-comp13-receivestep.png, 2026-07-10). | Δ core-block caveat added 2026-07-14 (design #4): when a waiting part is a special-order core, Complete Without Receiving is disabled until received (see SF-CORE-03). The base actions Cancel / Complete Without Receiving / Receive Parts for a normal part-bearing WO remain VIU-Verified; the core-waiting disabled state is design-sourced and Blocked-Env (special-order core not seedable).",
   "api_related": false,
-  "fresh_run": "2026-07-13"
+  "fresh_run": "2026-07-14"
  },
  {
   "id": "SF-COMP-12",
@@ -807,13 +811,14 @@
   "expected": [
    "1. The work order completes and the Success screen appears.",
    "2. Unreceived parts remain in a waiting-to-receive state (would show in the Waiting on Parts column).",
-   "3. The line still shows a Receive button."
+   "3. The line still shows a Receive button.",
+   "4. Note: Complete Without Receiving is only available when no special-order core is waiting; if a core is waiting it is disabled and the core must be received first (see SF-CORE-03)."
   ],
   "design_ref": "WO Review Flow.html",
   "viu_status": "VIU-Verified",
-  "notes": "Wording+VIU 2026-07-13: surface labels re-confirmed live this run; behavior verified in documented prior VIU drives — Complete Without Receiving completes WO, unreceived parts stay waiting, line keeps Receive (2026-07-08/10).",
+  "notes": "Wording+VIU 2026-07-13: surface labels re-confirmed live this run; behavior verified in documented prior VIU drives — Complete Without Receiving completes WO, unreceived parts stay waiting, line keeps Receive (2026-07-08/10). | Δ core-block caveat added 2026-07-14 (design #4): Complete Without Receiving is not available while a special-order core is waiting (core must be received first). Base behavior (non-core unreceived parts) remains VIU-Verified.",
   "api_related": false,
-  "fresh_run": "2026-07-13"
+  "fresh_run": "2026-07-14"
  },
  {
   "id": "SF-COMP-15",
@@ -1135,28 +1140,30 @@
  {
   "id": "SF-CORE-03",
   "area": "Core parts — Completion modal",
-  "story_ref": "S3-C2",
-  "title": "Verify special-order cores leave the optional-invoice completion unchanged and Complete Without Receiving stays available",
+  "story_ref": "S3-C2 (updated per design #4 core-block)",
+  "title": "Verify a waiting special-order core disables Complete Without Receiving (with a tooltip) and offers Receive Parts",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "Work Order edit access.",
   "preconditions": [
    "1. Signed in as Admin.",
    "2. Require Vendor Invoice Number is OFF (Optional).",
-   "3. A work order has a special-order (vendor) cored part not yet received."
+   "3. A work order has a special-order (vendor) cored part that has not been received yet."
   ],
   "steps": [
    "1. Click Complete Work Order.",
-   "2. Observe whether a core-resolution step appears.",
-   "3. Confirm Complete Without Receiving is still available."
+   "2. In the completion wizard receive step, look at the actions while the core part is still not received.",
+   "3. Hover the Complete Without Receiving action and try to use it."
   ],
   "expected": [
-   "1. There is nothing to resolve yet for special-order cores in the completion modal.",
-   "2. Complete Without Receiving remains available."
+   "1. The receive step shows the parts still to receive and indicates that a core charge is among them.",
+   "2. Complete Without Receiving is disabled (greyed out); hovering it shows a tooltip saying the core part must be received first before you can complete.",
+   "3. A Receive Parts button is offered so the core can be received.",
+   "4. Complete Without Receiving only becomes available once the waiting core has been received."
   ],
   "design_ref": "Resolve Cores Flow - Handoff.md; requirements S3-C2",
   "viu_status": "Blocked-Env",
-  "notes": "Blocked-Env (precise, reconfirmed live 2026-07-14): a SPECIAL-ORDER (vendor-sourced) core cannot be created in this build. The genuine cored catalog part P550848 (core_charge=1, catalogue_part_id 4b4753e0) carries its core attribute ONLY when added via the inventory-source catalog path (select_part forces Source=Inventory). A vendor-sourced part request for the SAME part (POST /api/work-orders/part/make-request with part_source_type='vendor' + inventory_part_id of P550848) returns 201 but the resulting part request has is_core=false and core_charge=0 — the core charge is dropped. Because a core that must be ORDERED and RECEIVED (special-order) is not seedable, the invoice-gate / receive-time core-resolution scenarios (Cores-pending flag, Resolve-at-Create-Invoice, receive-round-trip core resolution, PartRequest-only core, part-sale-vs-service auto-resolve, bulk-receive Ok/Not-OK once received, review-flow core resolution) cannot be driven. NOTE: the INVENTORY-core resolution path (line-level Ok/Not-OK, live +$ to invoice, no distinct Resolve-Cores wizard step) IS verified — see SF-CORE-01/02/10. Needs a hand-seeded special-order/vendor core part (dev/data).",
+  "notes": "FLIPPED 2026-07-14 per design #4: a waiting special-order core now makes Complete Without Receiving UN-available (was 'stays available'). Blocked-Env (reconfirmed live 2026-07-14): a SPECIAL-ORDER (vendor-sourced) core cannot be created in this build — the genuine cored catalog part P550848 (core_charge=1) is stored is_core=0 and a vendor-sourced part request for it drops the core attribute, so a core that must be ORDERED and RECEIVED is not seedable. Needs a hand-seeded (dev/data) special-order core to drive the un-skippable-core completion behavior. Wording updated to the design #4 core-block behavior. design4 tooltip \"Receive the core part first — its core charge must be settled before you can complete.\"; waiting-card \"N parts waiting to receive — includes a core charge.\" + \"Receive it to settle the core (OK / Not OK) before completing this work order.\" (WO Review Flow.html). Copy is per design #4 — not yet live-confirmed because a special-order (vendor-sourced) core is not seedable in this build.",
   "api_related": false,
   "fresh_run": "2026-07-14"
  },
@@ -1206,11 +1213,12 @@
   "expected": [
    "1. The Create Invoice gate opens a resolve module for the unresolved cores.",
    "2. It routes to receive the cored line(s) (core-only partial receive supported).",
-   "3. After resolving Ok/Not OK the invoice proceeds."
+   "3. After resolving Ok/Not OK the invoice proceeds.",
+   "4. Because a waiting core cannot be skipped, the core line must be received before completion; receiving it settles the core so invoicing can proceed."
   ],
   "design_ref": "Resolve Cores to Invoice.html",
   "viu_status": "Blocked-Env",
-  "notes": "Blocked-Env (precise, reconfirmed live 2026-07-14): a SPECIAL-ORDER (vendor-sourced) core cannot be created in this build. The genuine cored catalog part P550848 (core_charge=1, catalogue_part_id 4b4753e0) carries its core attribute ONLY when added via the inventory-source catalog path (select_part forces Source=Inventory). A vendor-sourced part request for the SAME part (POST /api/work-orders/part/make-request with part_source_type='vendor' + inventory_part_id of P550848) returns 201 but the resulting part request has is_core=false and core_charge=0 — the core charge is dropped. Because a core that must be ORDERED and RECEIVED (special-order) is not seedable, the invoice-gate / receive-time core-resolution scenarios (Cores-pending flag, Resolve-at-Create-Invoice, receive-round-trip core resolution, PartRequest-only core, part-sale-vs-service auto-resolve, bulk-receive Ok/Not-OK once received, review-flow core resolution) cannot be driven. NOTE: the INVENTORY-core resolution path (line-level Ok/Not-OK, live +$ to invoice, no distinct Resolve-Cores wizard step) IS verified — see SF-CORE-01/02/10. Needs a hand-seeded special-order/vendor core part (dev/data).",
+  "notes": "Aligned 2026-07-14 to design #4 un-skippable core: the cored line must be received first (Complete Without Receiving / Skip is disabled while the core is waiting). Blocked-Env (reconfirmed live 2026-07-14): a SPECIAL-ORDER (vendor-sourced) core cannot be created in this build — the genuine cored catalog part P550848 (core_charge=1) is stored is_core=0 and a vendor-sourced part request for it drops the core attribute, so a core that must be ORDERED and RECEIVED is not seedable. Needs a hand-seeded (dev/data) special-order core to drive the un-skippable-core completion behavior. Wording updated to the design #4 core-block behavior. design4 tooltip \"Receive the core part first — its core charge must be settled before you can complete.\"; waiting-card \"N parts waiting to receive — includes a core charge.\" + \"Receive it to settle the core (OK / Not OK) before completing this work order.\" (WO Review Flow.html). Copy is per design #4 — not yet live-confirmed because a special-order (vendor-sourced) core is not seedable in this build.",
   "api_related": false,
   "fresh_run": "2026-07-14"
  },
@@ -1233,11 +1241,12 @@
   "expected": [
    "1. The work order remains Completed.",
    "2. It remains un-invoiced.",
-   "3. Cores remain pending."
+   "3. Cores remain pending.",
+   "4. Note: because the core cannot be skipped at completion, this cancel path applies after completion at the Create Invoice gate; the core stays pending and the work order stays un-invoiced until it is received and resolved."
   ],
   "design_ref": "Resolve Cores to Invoice.html; requirements S3-C4",
   "viu_status": "Blocked-Env",
-  "notes": "Blocked-Env (precise, reconfirmed live 2026-07-14): a SPECIAL-ORDER (vendor-sourced) core cannot be created in this build. The genuine cored catalog part P550848 (core_charge=1, catalogue_part_id 4b4753e0) carries its core attribute ONLY when added via the inventory-source catalog path (select_part forces Source=Inventory). A vendor-sourced part request for the SAME part (POST /api/work-orders/part/make-request with part_source_type='vendor' + inventory_part_id of P550848) returns 201 but the resulting part request has is_core=false and core_charge=0 — the core charge is dropped. Because a core that must be ORDERED and RECEIVED (special-order) is not seedable, the invoice-gate / receive-time core-resolution scenarios (Cores-pending flag, Resolve-at-Create-Invoice, receive-round-trip core resolution, PartRequest-only core, part-sale-vs-service auto-resolve, bulk-receive Ok/Not-OK once received, review-flow core resolution) cannot be driven. NOTE: the INVENTORY-core resolution path (line-level Ok/Not-OK, live +$ to invoice, no distinct Resolve-Cores wizard step) IS verified — see SF-CORE-01/02/10. Needs a hand-seeded special-order/vendor core part (dev/data).",
+  "notes": "Aligned 2026-07-14 to design #4 un-skippable core. Blocked-Env (reconfirmed live 2026-07-14): a SPECIAL-ORDER (vendor-sourced) core cannot be created in this build — the genuine cored catalog part P550848 (core_charge=1) is stored is_core=0 and a vendor-sourced part request for it drops the core attribute, so a core that must be ORDERED and RECEIVED is not seedable. Needs a hand-seeded (dev/data) special-order core to drive the un-skippable-core completion behavior. Wording updated to the design #4 core-block behavior. design4 tooltip \"Receive the core part first — its core charge must be settled before you can complete.\"; waiting-card \"N parts waiting to receive — includes a core charge.\" + \"Receive it to settle the core (OK / Not OK) before completing this work order.\" (WO Review Flow.html). Copy is per design #4 — not yet live-confirmed because a special-order (vendor-sourced) core is not seedable in this build.",
   "api_related": false,
   "fresh_run": "2026-07-14"
  },
@@ -1262,11 +1271,12 @@
   "expected": [
    "1. After the receive round-trip a gated Resolve-cores modal appears.",
    "2. Cores can be resolved (part is always received, so always resolvable).",
-   "3. After resolving, Complete succeeds to the Success screen."
+   "3. After resolving, Complete succeeds to the Success screen.",
+   "4. Consistent with the un-skippable-core rule: the required-invoice flow already forces the Receive round-trip, so the core is always received before Complete."
   ],
   "design_ref": "Resolve Cores Flow.html; requirements S4-C2",
   "viu_status": "Blocked-Env",
-  "notes": "Blocked-Env (precise, reconfirmed live 2026-07-14): a SPECIAL-ORDER (vendor-sourced) core cannot be created in this build. The genuine cored catalog part P550848 (core_charge=1, catalogue_part_id 4b4753e0) carries its core attribute ONLY when added via the inventory-source catalog path (select_part forces Source=Inventory). A vendor-sourced part request for the SAME part (POST /api/work-orders/part/make-request with part_source_type='vendor' + inventory_part_id of P550848) returns 201 but the resulting part request has is_core=false and core_charge=0 — the core charge is dropped. Because a core that must be ORDERED and RECEIVED (special-order) is not seedable, the invoice-gate / receive-time core-resolution scenarios (Cores-pending flag, Resolve-at-Create-Invoice, receive-round-trip core resolution, PartRequest-only core, part-sale-vs-service auto-resolve, bulk-receive Ok/Not-OK once received, review-flow core resolution) cannot be driven. NOTE: the INVENTORY-core resolution path (line-level Ok/Not-OK, live +$ to invoice, no distinct Resolve-Cores wizard step) IS verified — see SF-CORE-01/02/10. Needs a hand-seeded special-order/vendor core part (dev/data).",
+  "notes": "Aligned 2026-07-14 to design #4 un-skippable core (required-invoice path already receive-first). Blocked-Env (reconfirmed live 2026-07-14): a SPECIAL-ORDER (vendor-sourced) core cannot be created in this build — the genuine cored catalog part P550848 (core_charge=1) is stored is_core=0 and a vendor-sourced part request for it drops the core attribute, so a core that must be ORDERED and RECEIVED is not seedable. Needs a hand-seeded (dev/data) special-order core to drive the un-skippable-core completion behavior. Wording updated to the design #4 core-block behavior. design4 tooltip \"Receive the core part first — its core charge must be settled before you can complete.\"; waiting-card \"N parts waiting to receive — includes a core charge.\" + \"Receive it to settle the core (OK / Not OK) before completing this work order.\" (WO Review Flow.html). Copy is per design #4 — not yet live-confirmed because a special-order (vendor-sourced) core is not seedable in this build.",
   "api_related": false,
   "fresh_run": "2026-07-14"
  },
