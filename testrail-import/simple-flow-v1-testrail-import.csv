@@ -57,12 +57,15 @@ Verify saving a settings change persists after page reload,API — Work Order Se
 4. Re-read the toggle. (Restore it afterward to leave the org unchanged.)","1. Save Settings completes without error (POST /api/organizations/settings/change).
 2. After reload the toggle keeps the new state.
 3. GET /api/organizations/settings reflects the new value.",SV-7696 (S1-R9 (Save persists org-wide)),,
-Verify a settings change applies to future completions only and not to already-completed work orders,Work Order Settings,Functional,Medium,"1. Signed in as Admin.
+"Verify a settings change applies to future completions and to a completed work order when it is reopened, but not retroactively to work orders left completed",Work Order Settings,Functional,Medium,"1. Signed in as Admin.
 2. A work order was already completed under the previous settings.
-3. You can change a Work Order setting.","1. Complete a work order under the current settings.
-2. Change a relevant Work Order setting (e.g. Require Vendor Invoice Number) and Save.
-3. Reopen the already-completed work order and inspect it.","1. The already-completed work order is not retroactively changed by the new setting.
-2. Only work orders completed after the change follow the new setting.","SV-7696 (S1-R9 (future completions only, never retroactive))",,
+3. You can change a Work Order setting.","1. Complete a work order under the current Work Order settings so it reaches Complete.
+2. Go to the Work Orders settings tab, change a relevant setting (for example turn Require Review Before Completion ON) and Save.
+3. First, without touching the completed work order, check its status.
+4. Then reopen the completed work order (for example add a New Line, which returns it to Approved) and complete it again.
+5. Observe whether the new setting now applies to the reopened work order.","1. While it is left completed, the already-completed work order still shows Complete and is not changed by the new settings (the change is not applied retroactively to work orders that stay completed).
+2. Only work orders completed after the change follow the new settings for their first completion.
+3. When the completed work order is reopened, the new settings now apply to it: re-completing it must satisfy the new gate (for example it now routes through the review step / Ready for Review instead of completing directly).",SV-7696 (S1-R9 (future completions + apply on reopen; never retroactive to WOs left completed)),,
 Verify a non-admin user cannot see or modify the Work Order settings,API — Work Order Settings,Functional,High,"1. A user without the App Settings permission (e.g. Service Advisor or Technician) exists for this org.
 2. You can sign in as that user.","1. Sign in as a role without the App Settings permission (e.g. Technician).
 2. Try to open /administration/settings and reach the Work Orders tab.
@@ -144,7 +147,8 @@ Verify adding a new line to a completed work order returns it to Approved,Comple
 2. A work order is in Complete status.","1. Open the completed work order.
 2. Add a New Line.
 3. Observe the work order status.","1. The work order status returns to Approved.
-2. On the next completion, the modal summarizes already-received vs newly-added parts.",SV-7697 (S2-R6 / S2 AC (re-open returns to Approved)),,
+2. On the next completion, the modal summarizes already-received vs newly-added parts.
+3. When you resolve the last open line again, the work order follows the current settings: with Require Review off it moves to Complete on its own; with Require Review on it moves to Ready for Review.","SV-7697, SV-7870 (S2-R6 / S2 AC (re-open returns to Approved); S16-R12 (auto-complete on re-resolve))",,
 Verify individual-line Complete and per-part receive actions still work alongside Simple completion,Completion — No-PO / Skip (Story 2),Functional,Medium,"1. Signed in as Admin.
 2. An open work order with multiple lines and a receivable part exists.","1. Complete one individual line on the work order.
 2. Perform a per-part receive action on a line's part.
@@ -155,7 +159,8 @@ Verify individual-line Complete and per-part receive actions still work alongsid
 2. Require Vendor Invoice Number is OFF (Optional).
 3. An open work order with an approved part-bearing line exists.","1. Click Complete Work Order.
 2. Observe the wizard actions.","1. The wizard shows a Receive step (e.g. 'N parts waiting to receive').
-2. The actions are Cancel, Complete Without Receiving, and Receive Parts.",SV-7698 (S3-R4),,
+2. The actions are Cancel, Complete Without Receiving, and Receive Parts.
+3. If one of the waiting parts is a special-order core, Complete Without Receiving is disabled (with a tooltip) until that core is received; for non-core parts it stays available.",SV-7698 (S3-R4),,
 Verify the optional-invoice modal creates POs in the background and shows the count of parts to receive,Completion — PO + Optional Invoice (Story 3),Functional,High,"1. Signed in as Admin.
 2. Require Vendor Invoice Number is OFF (Optional).
 3. An open work order with two approved vendor-part lines exists.","1. Click Complete Work Order.
@@ -175,7 +180,8 @@ Verify Receive Parts opens the shared Accept Delivery page to receive all vendor
 2. Observe the work order status and the Success screen.
 3. Reopen the work order and check the unreceived part lines.","1. The work order completes and the Success screen appears.
 2. Unreceived parts remain in a waiting-to-receive state (would show in the Waiting on Parts column).
-3. The line still shows a Receive button.",SV-7698 (S3-R6),,
+3. The line still shows a Receive button.
+4. Note: Complete Without Receiving is only available when no special-order core is waiting; if a core is waiting it is disabled and the core must be received first.",SV-7698 (S3-R6),,
 Verify Cancel closes the completion modal with no change and no duplicate POs on re-open,Completion — PO + Optional Invoice (Story 3),Functional,Medium,"1. Signed in as Admin.
 2. You are in the optional-invoice completion wizard (POs already created in the background).","1. Click Cancel.
 2. Reopen the completion wizard by clicking Complete Work Order again.
@@ -221,8 +227,8 @@ Verify on a required-invoice work order an unapproved line disables the Complete
 2. Observe the Complete Work Order button while a line is unapproved.
 3. Hover the disabled Complete Work Order button.
 4. Approve the line and observe the button again.","1. In the required-invoice flow (Require Vendor Invoice Number ON), a line still in Needs Approval leaves the Complete Work Order button disabled.
-2. Hovering the disabled Complete Work Order button shows a tooltip explaining why, naming the line that needs approval.
-3. The button becomes enabled once every line is approved.
+2. Hovering the disabled Complete Work Order button shows the tooltip 'Every line must be approved or declined in order to complete the work order.'
+3. The button becomes enabled once every line is approved or declined.
 4. In the optional-invoice flow (Require Vendor Invoice Number off) and when Require Review is on, the same unapproved line instead shows the existing message 'you need to approve the line to complete the work order' when you click Complete (the button stays active).","SV-7698, SV-7699 (S4-R8 / Key Decision (all lines approved) / S3-R9)",,
 Verify a manually unapproved line disables the required-invoice Complete Work Order button with a tooltip even when Auto-approve is ON,Completion — Line approval gate,Functional,Medium,"1. Signed in as Admin.
 2. Require Vendor Invoice Number is ON (required-invoice / Story 4 flow).
@@ -230,7 +236,7 @@ Verify a manually unapproved line disables the required-invoice Complete Work Or
 4. A work order has a line that was manually un-approved after being added.","1. Confirm one line is unapproved.
 2. Start completion and observe the Complete Work Order button.
 3. Hover the disabled Complete Work Order button.
-4. Re-approve the line and observe the button again.","1. In the required-invoice flow (Require Vendor Invoice Number ON), a manually un-approved line leaves the Complete Work Order button disabled with a tooltip naming the line that needs approval — even though Auto-approve Lines is ON.
+4. Re-approve the line and observe the button again.","1. In the required-invoice flow (Require Vendor Invoice Number ON), a manually un-approved line leaves the Complete Work Order button disabled with the tooltip 'Every line must be approved or declined in order to complete the work order.' — even though Auto-approve Lines is ON.
 2. After re-approving every line, the Complete Work Order button enables and completion proceeds.
 3. In the optional-invoice flow (Require Vendor Invoice Number off) and when Require Review is on, the same unapproved line instead shows the existing message 'you need to approve the line to complete the work order' when you click Complete.",SV-7699 (S4-R8 / Key Decision (holds regardless of Auto-approve)),,
 Verify re-running completion after a prior attempt does not create duplicate POs,Completion — Idempotency,Functional,Medium,"1. Signed in as Admin.
@@ -251,12 +257,14 @@ Verify a work order with no cores completes with no core sub-lines and no Resolv
 2. Step through the completion wizard.
 3. Watch for a Resolve Cores step.","1. No core sub-lines appear (the work order has no cores).
 2. There is no distinct Resolve Cores wizard step; completion proceeds directly Details -> Success.",SV-7698 (S3-C1 (skipped if none)),,
-Verify special-order cores leave the optional-invoice completion unchanged and Complete Without Receiving stays available,Core parts — Completion modal,Functional,Medium,"1. Signed in as Admin.
+Verify a waiting special-order core disables Complete Without Receiving (with a tooltip) and offers Receive Parts,Core parts — Completion modal,Functional,Medium,"1. Signed in as Admin.
 2. Require Vendor Invoice Number is OFF (Optional).
-3. A work order has a special-order (vendor) cored part not yet received.","1. Click Complete Work Order.
-2. Observe whether a core-resolution step appears.
-3. Confirm Complete Without Receiving is still available.","1. There is nothing to resolve yet for special-order cores in the completion modal.
-2. Complete Without Receiving remains available.",SV-7698 (S3-C2),,
+3. A work order has a special-order (vendor) cored part that has not been received yet.","1. Click Complete Work Order.
+2. In the completion wizard receive step, look at the actions while the core part is still not received.
+3. Hover the Complete Without Receiving action and try to use it.","1. The receive step shows the parts still to receive and indicates that a core charge is among them.
+2. Complete Without Receiving is disabled (greyed out); hovering it shows a tooltip saying the core part must be received first before you can complete.
+3. A Receive Parts button is offered so the core can be received.
+4. Complete Without Receiving only becomes available once the waiting core has been received.",SV-7698 (S3-C2 (updated per design #4 core-block)),,
 Verify the invoice shows a 'Cores pending' flag when unresolved special-order cores exist,Core parts — Invoice gate,Functional,Medium,"1. Signed in as Admin.
 2. A completed (optional-invoice) work order has an unresolved special-order core.","1. Open the work order's invoice / Finance view.
 2. Look for a cores indicator.",1. The invoice shows a 'Cores pending' flag while special-order cores are unresolved.,SV-7698 (S3-C3),,
@@ -266,19 +274,22 @@ Verify resolving cores at the Create Invoice gate routes to receive the cored li
 3. Resolve each core Ok / Not OK.
 4. Continue to invoice.","1. The Create Invoice gate opens a resolve module for the unresolved cores.
 2. It routes to receive the cored line(s) (core-only partial receive supported).
-3. After resolving Ok/Not OK the invoice proceeds.",SV-7698 (S3-C4),,
+3. After resolving Ok/Not OK the invoice proceeds.
+4. Because a waiting core cannot be skipped, the core line must be received before completion; receiving it settles the core so invoicing can proceed.",SV-7698 (S3-C4),,
 "Verify cancelling the invoice-gate core resolution leaves the WO completed, un-invoiced and cores-pending",Core parts — Invoice gate,Functional,Medium,"1. Signed in as Admin.
 2. A completed work order has an unresolved special-order core and you are in the invoice-gate resolve module.","1. Cancel the resolve module.
 2. Inspect the work order and invoice state.","1. The work order remains Completed.
 2. It remains un-invoiced.
-3. Cores remain pending.",SV-7698 (S3-C4 (cancel path)),,
+3. Cores remain pending.
+4. Note: because the core cannot be skipped at completion, this cancel path applies after completion at the Create Invoice gate; the core stays pending and the work order stays un-invoiced until it is received and resolved.",SV-7698 (S3-C4 (cancel path)),,
 Verify special-order cores are resolved after the required-invoice Receive round-trip before Complete,Core parts — Required invoice (Story 4),Functional,High,"1. Signed in as Admin.
 2. Require Vendor Invoice Number is ON (Required).
 3. A work order has a special-order cored part.","1. Complete Work Order → Receive Parts and receive the cored part.
 2. On return, observe the Resolve-cores modal.
 3. Resolve each core Ok / Not OK, then Complete.","1. After the receive round-trip a gated Resolve-cores modal appears.
 2. Cores can be resolved (part is always received, so always resolvable).
-3. After resolving, Complete succeeds to the Success screen.",SV-7699 (S4-C2),,
+3. After resolving, Complete succeeds to the Success screen.
+4. Consistent with the un-skippable-core rule: the required-invoice flow already forces the Receive round-trip, so the core is always received before Complete.",SV-7699 (S4-C2),,
 Verify the invoice gate detects an unresolved special-order core that exists only as a PartRequest,Core parts — Guardrail,Functional,Medium,"1. Signed in as Admin.
 2. A completed work order has a special-order cored part that exists only as a PartRequest (no WorkOrderPart yet).","1. Click Create Invoice.
 2. Observe whether the unresolved core is detected.","1. The invoice gate detects the unresolved core even though it is only a PartRequest.
@@ -494,7 +505,8 @@ Verify Bulk Receive uses the same pipeline as single-PO receive (Delivery → Ve
 "Verify a cored part's Ok/Not OK resolution becomes available once received, and core-only partial receive is supported",PO Bulk Receive Page (Story 8),Functional,Medium,"1. Signed in as Admin.
 2. A PO on the Bulk Receive page holds a cored part.","1. Receive only the cored line (core-only partial receive).
 2. Confirm an Ok/Not OK resolution becomes available for the core.","1. Core-only partial receive is supported.
-2. Once the cored part is received, its Ok/Not OK resolution becomes available (for Story 3/4 resolution).",SV-7703 (S8-C1 / S8-C2),,
+2. Once the cored part is received, its Ok/Not OK resolution becomes available (for Story 3/4 resolution).
+3. Consistent with the completion rule that a waiting core cannot be skipped: the core must be received (core-only partial receive supported) before its Ok / Not OK can be resolved.",SV-7703 (S8-C1 / S8-C2),,
 Verify each vendor group has an 'Apply to selected POs' control enabled only with an invoice # and ≥1 PO selected,Apply Invoice to Selected POs (Story 9),Functional,High,"1. Signed in as Admin.
 2. The Bulk Receive page has a vendor group with multiple POs.","1. Locate the 'Apply to selected POs' control under the vendor name.
 2. With no invoice # and no PO selected, confirm it is disabled.
@@ -519,18 +531,19 @@ Verify a no-number part shows 'Missing part number' with Edit → enter → save
 3. Save and reload.","1. The part shows 'Missing part number' with an Edit action.
 2. Entering and saving a part number persists it immediately.
 3. A part number is mandatory to receive.",SV-7705 (S10-R1),,
-Verify entering a NEW part number creates a new inventory/catalog part with stock and Part History on receive,Inline Part-Number Fix (Story 10),Functional,High,"1. Signed in as Admin.
+Verify a NEW part number can be entered and saved so the part can be received,Inline Part-Number Fix (Story 10),Functional,High,"1. Signed in as Admin.
 2. A part with a newly-entered part number (not matching any existing item) is ready to receive with a vendor assigned.","1. Enter a brand-new part number and save.
 2. Receive the part.
-3. Check inventory and Part History for the new item.","1. A new inventory/catalog part is created.
-2. Stock is added for the received quantity.
-3. A Part History entry is written.",SV-7705 (S10 AC (new number)),,
-Verify entering an EXISTING part number links to that item and updates stock/cost/history without overwriting description or category,Inline Part-Number Fix (Story 10),Functional,High,"1. Signed in as Admin.
+3. Check inventory and Part History for the new item.","1. The new part number saves and stays on the part.
+2. Once the part has a part number (plus the required cost / sell price and a vendor invoice number), it can be received.
+3. The part-number entry does not have to create a new inventory or catalog item with stock for this to pass.",SV-7705 (S10-R1 (PN mandatory to receive); S10-R2 struck (first-class part not required in v1)),,
+"Verify an EXISTING part number can be entered so the part can be received, without overwriting the item's description or category",Inline Part-Number Fix (Story 10),Functional,High,"1. Signed in as Admin.
 2. An inventory item with a known part number exists; a part on a PO can be given that number.","1. Enter the existing part number on the part and save.
 2. Receive the part.
-3. Check the linked item's stock, received cost, Part History, description and category.","1. The part links to the existing inventory item.
-2. Stock, received cost and Part History update.
-3. The item's existing description and category are NOT overwritten.",SV-7705 (S10 AC (existing number)),,
+3. Check the linked item's stock, received cost, Part History, description and category.","1. The existing part number saves on the part.
+2. The part can be received once it has the number (plus the required cost / sell price and a vendor invoice number).
+3. If a catalog item with that number already exists, its description and category are not overwritten.
+4. Linking the part into a first-class inventory item (updating its stock / cost / history) is not required for this to pass.",SV-7705 (S10-R1 (PN mandatory to receive); S10-R2 struck (linking to first-class item not required in v1)),,
 Verify inline part-number field-locking rules match the receive-screen rules (sell locks after invoiced/paid),Inline Part-Number Fix (Story 10),Functional,Medium,"1. Signed in as Admin.
 2. A part on an invoiced/paid WO and a part on an open WO are available.","1. On the open WO part, confirm qty/cost/sell are editable.
 2. On the invoiced/paid WO part, confirm sell is locked and cost is editable.","1. Open work order: quantity, cost and sell are editable.
@@ -544,12 +557,12 @@ Verify inline part-number field-locking rules match the receive-screen rules (se
 2. A vendor-missing part cannot be received without a vendor.
 3. A part cannot be received without a cost / sell price.
 4. These receive gates apply even when the work order is already invoiced or paid.","SV-7705, SV-7708 (S10 Negative / S13-R6 / S13-R7)",,
-"Verify the inline part-number save drives real catalog creation/linking, inventory stock and Part History (not just a stored string)",Inline Part-Number Fix (Story 10),Functional,Medium,"1. Signed in as Admin.
+Verify the inline part-number save persists and enables receiving,Inline Part-Number Fix (Story 10),Functional,Medium,"1. Signed in as Admin.
 2. A default part category exists and a vendor is assigned to the part.","1. Enter a part number inline and receive.
 2. Verify a CataloguePart and an inventory stock Part were created (not just a string on the request).
-3. Verify Part History exists.","1. A catalog part is created/linked.
-2. An inventory stock Part exists (a CataloguePart alone is not stock).
-3. Part History is written; the flow does not rely on the complete-simple bypass to create inventory.",SV-7705 (S10 Technical guardrails),,
+3. Verify Part History exists.","1. The part number entered inline is saved and persists (it is not lost).
+2. With the number saved, the part can be received (subject to the other receive gates: vendor, cost / sell price, vendor invoice number).
+3. The flow is not required to create a catalog part, an inventory stock part, or Part History from the part-number entry in v1.",SV-7705 (S10-R1 + S10 technical guardrails; S10-R2 struck (catalog/inventory creation not required in v1)),,
 Verify a Receive action appears on WO-originated POs in both the PO list and the PO detail card,Receive Button on WO POs (Story 11),Functional,High,"1. Signed in as Admin.
 2. A WO-originated PO exists.","1. Open /parts/orders and find the WO-originated PO.
 2. Confirm a Receive action on the PO row.
@@ -648,7 +661,8 @@ Verify a work order with nothing to receive shows '—' with no link in the Wait
 Verify the Require Review setting drives the review flow when turned on,Review ON (Story 16),Functional,High,"1. Signed in as Admin at https://sv7301.qa.shopview.com.
 2. Require Review Before Completion is ON and saved.","1. Open a work order with approved lines.
 2. Start completion.
-3. Observe that the review flow is used.","1. With Require Review ON, completing routes into the review flow rather than completing directly.",SV-7870 (R1),,
+3. Observe that the review flow is used.","1. With Require Review ON, completing routes into the review flow rather than completing directly.
+2. When the last open line is resolved (by any path) while Require Review is on, the work order routes to Ready for Review — it never auto-completes.",SV-7870 (R1 + S16-R12),,
 Verify the completion action reads 'Send To Review' when Require Review is on,Review ON (Story 16),Functional,High,"1. Signed in as Admin.
 2. Require Review is ON.
 3. A work order with approved lines is ready to complete.","1. Open a work order that is ready to complete, with Require Review Before Completion turned on.
@@ -667,7 +681,8 @@ Verify Send to Review moves the WO to Review (amber) with a 'Ready for Review' b
 2. Observe the work order status and banner.
 3. Check the lines state and inventory pick state.","1. The work order status becomes Review (amber).
 2. A 'Ready for Review' / 'Sent for review' indication is shown.
-3. Lines lock to Complete and inventory is auto-picked.",SV-7870 (R5 / R6),,
+3. Lines lock to Complete and inventory is auto-picked.
+4. The same Review / Ready-for-Review end state is reached when the last open line auto-resolves under Require Review on, not only when Send To Review is clicked explicitly.",SV-7870 (R5 / R6 + S16-R12),,
 Verify the Mark Reviewed dialog captures VIN (required) and disables Confirm until VIN is entered,Review ON (Story 16),Functional,Critical,"1. Signed in as Admin.
 2. A work order is in Review state.","1. Click Mark Reviewed.
 2. Observe the VIN field.
@@ -683,7 +698,8 @@ Verify Confirm Review signs off and completes the work order directly (no distin
 2. A work order is in Review with the Mark Reviewed dialog filled (VIN present).","1. Click Confirm Review.
 2. Observe the resulting work order state.
 3. Look for a separate final 'Complete Work Order' action.","1. After Confirm Review the sign-off completes and the work order moves directly Review -> Complete.
-2. There is no distinct 'Reviewed' holding state and no separate final 'Complete Work Order' click.","SV-7870 (R5 / R8 (direct sign-off, no separate Complete))",,
+2. There is no distinct 'Reviewed' holding state and no separate final 'Complete Work Order' click.
+3. Note: with Require Review on, resolving the last open line first routes the work order to Ready for Review; sign-off (Confirm Review) then moves it to Complete.","SV-7870 (R5 / R8 (direct sign-off, no separate Complete) + S16-R12)",,
 Verify Mark Reviewed is gated by the Review Work Orders permission and disabled for a role without it,Review ON (Story 16),Functional,High,"1. A role with Review Work Orders and a role without it both exist.
 2. A work order is in Review state, sent to review by a known user.","1. Sign in as a role without Review Work Orders and open the work order in Review.
 2. Confirm Mark Reviewed is disabled with 'Awaiting review'.
@@ -700,7 +716,8 @@ Verify sign-off completes the work order directly (no separate final Complete) a
 2. A work order is in Reviewed state (or a Review state before sign-off for the invoicing-block check).","1. Before sign-off, attempt to invoice the work order.
 2. Complete the review sign-off (Confirm Review).
 3. Confirm the work order becomes Complete (invoice-ready).","1. Invoicing is blocked until the work order is reviewed.
-2. After sign-off the work order moves directly Review -> Complete (invoice-ready), with no separate final Complete Work Order click.",SV-7870 (R8),,
+2. After sign-off the work order moves directly Review -> Complete (invoice-ready), with no separate final Complete Work Order click.
+3. With Require Review on the work order never auto-completes on last-line-resolve; it routes to Ready for Review and invoicing stays blocked until it is reviewed.",SV-7870 (R8 + S16-R12),,
 Verify a 'Ready for Review' list filter/column surfaces the reviewer queue,Review ON (Story 16),Functional,Medium,"1. Signed in as Admin.
 2. At least one work order is in Review state.","1. Open the Work Orders list.
 2. Look for a 'Ready for Review' filter or column.
@@ -713,7 +730,8 @@ Verify cores are resolved per rules before sign-off and invoicing is blocked unt
 2. For required-invoice, resolve special-order cores after the Receive round-trip before Send to Review; for optional-invoice, resolve at the Create Invoice gate after sign-off.
 3. Attempt to invoice before both Reviewed and cores are resolved.","1. Inventory cores are resolved before Send to Review.
 2. Special-order cores follow the vendor-invoice rules.
-3. Invoicing is blocked until the WO is Reviewed AND all cores are resolved.",SV-7870 (R Core parts / invoicing block),,
+3. Invoicing is blocked until the WO is Reviewed AND all cores are resolved.
+4. In the review flow too, a waiting special-order core cannot be skipped: Send to Review / completion is blocked until the core is received and resolved, and invoicing stays blocked until both Reviewed and all cores resolved.",SV-7870 (R Core parts / invoicing block),,
 Verify the Require Review default for new vs existing orgs matches the agreed cohort rule,Review ON (Story 16),Functional,Low,"1. A newly-created org and an existing org are available.
 2. Signed in as Admin for each.","1. Check the Require Review default on a brand-new org.
 2. Check that existing orgs keep today's behavior (backfilled).","1. On a brand-new org the Require Review Before Completion setting shows its default state.
@@ -841,11 +859,13 @@ Verify the same vendor invoice number can be reused across POs (uniqueness relax
 2. Two POs for the same vendor are being received.","1. Enter the same invoice number on both POs.
 2. Receive both.","1. The reused invoice number is accepted (uniqueness is relaxed).
 2. Both POs receive successfully.",SV-7704 (S9-R3 / §4 (uniqueness relaxed)),,
-Verify an unapproved line blocks completion — required-invoice shows a disabled Complete button with a tooltip; other flows show the approve-line error,Validation / Edge,Functional,Medium,"1. Signed in as Admin.
-2. A work order has one unapproved line and all other gates satisfied.","1. With Require Vendor Invoice Number ON, open a work order that has one line still needing approval and start completion; look at the Complete Work Order button, then hover it.
-2. With Require Vendor Invoice Number off (or Require Review on), open a similar work order and click Complete Work Order; read the message shown.","1. With Require Vendor Invoice Number ON, the Complete Work Order button is disabled and hovering it shows a tooltip that explains why and names the line that needs approval.
-2. With Require Vendor Invoice Number off, or with Require Review on, the existing message 'you need to approve the line to complete the work order' is shown and the button stays active.
-3. In every case, completion does not proceed until the line is approved.","SV-7698, SV-7699 (S4-R8 / S3-R9 / Key Decision (line approval))",,
+Verify an unapproved line disables the Complete Work Order button with a tooltip (regardless of the Require Vendor Invoice Number setting),Validation / Edge,Functional,Medium,"1. Signed in as Admin at https://sv7301.qa.shopview.com.
+2. Auto-approve Lines is OFF so a newly added line lands in Needs Approval.
+3. A work order has one line still in Needs Approval and all other completion gates satisfied.","1. With Require Vendor Invoice Number ON, open a work order that has one line still in Needs Approval; look at the Complete Work Order button, then hover it.
+2. Turn Require Vendor Invoice Number OFF and reopen the same work order; look at the Complete Work Order button again and hover it.
+3. Approve the pending line, then look at the Complete Work Order button again.","1. With Require Vendor Invoice Number ON, the Complete Work Order button is disabled; hovering it shows the tooltip 'Every line must be approved or declined in order to complete the work order.' (the tooltip is generic and does not name the specific line).
+2. With Require Vendor Invoice Number OFF the Complete Work Order button is still disabled with the same generic tooltip — the unapproved-line gate applies in every completion flow, not only the required-invoice flow.
+3. Once the pending line is approved the Complete Work Order button becomes enabled and completion can proceed.","SV-7698, SV-7699 (S4-R8 / S3-R9 / Key Decision (line approval))",,
 Verify in-stock parts decrement inventory and write Part History on simple completion (skip path still runs lifecycle),QuickBooks / Inventory Integrity,Functional,High,"1. Signed in as Admin.
 2. A work order has an in-stock inventory part; its on-hand quantity is noted.","1. Complete the work order via the simple (skip) path.
 2. Check the part's on-hand quantity and Part History.","1. The in-stock part's on-hand quantity decrements.
@@ -878,7 +898,52 @@ Verify the Journal Entry / Inventory sync to QuickBooks fires on invoice creatio
 2. A completed work order is ready to invoice.","1. Create the invoice.
 2. Check for the Journal Entry / Inventory sync to QuickBooks.","1. The Journal Entry / Inventory sync to QuickBooks fires on invoice creation.
 2. This sync is not dependent on a PO existing.",§5 (Journal Entry / Inventory → QBO),,
-Verify Inventory Part History is preserved for any part that becomes inventory-tracked,QuickBooks / Inventory Integrity,Functional,Medium,"1. Signed in as Admin.
-2. A part transitions to inventory-tracked (e.g. a part number is added and it is received).","1. Add a part number to a previously untracked part and receive it.
-2. Open the item's Part History.",1. Part History is preserved / created for the now inventory-tracked part.,§5 invariant 3,,
+Verify Part History is preserved for a part that is genuinely inventory-tracked,QuickBooks / Inventory Integrity,Functional,Medium,"1. Signed in as Admin.
+2. A genuinely inventory-tracked part exists (an inventory item with stock).","1. Use / receive a genuinely inventory-tracked part on a work order and complete it.
+2. Open that part's Part History (Parts > Inventory, the clock icon on the part row).","1. For a part that is genuinely inventory-tracked, its Part History is preserved / written.
+2. Simply entering a part number on a previously untracked part is not required to turn it into an inventory-tracked part in v1, so no Part History needs to be created from that entry alone.",SV-7705 (§5 invariant 3 (rescoped after S10-R2 strike)),,
 Investigate: Part Sales unaffected by the shared order/status logic (requested -> orderable/waiting-to-receive),QuickBooks / Inventory Integrity,Functional,Low,1. PLACEHOLDER for a new V2.4 §8 open question (needs BE investigation).,1. Investigation pending — steps to be defined once dev confirms whether the shared order/status logic touches Part Sales.,1. OPEN / NEEDS INVESTIGATION — expected result to be defined after dev confirmation. Keep Part Sales unchanged unless the shared logic forces a change (V2.4 §8).,§8 open question (Part Sales impact — BE investigation),,
+Verify resolving the last open line by completing a single line auto-completes the work order when Require Review is off,Auto-Complete Trigger (Story 16 R12/R13),Functional,Critical,"1. Signed in as Admin at https://sv7301.qa.shopview.com.
+2. Require Review Before Completion is OFF (in the Work Orders settings tab).
+3. A work order is in Approved status with two or more open (not-yet-completed) lines.","1. Open the work order and complete one line at a time using the per-line Complete action.
+2. After completing the first line (while at least one other line is still open), check the work order status.
+3. Complete the last remaining open line.
+4. Check the work order status again.","1. While at least one line is still open, the work order stays in Approved.
+2. The moment the last open line is completed, the work order moves to Complete on its own (invoice-ready).
+3. You do not have to click Complete Work Order separately for the work order to reach Complete.",SV-7870 (S16-R12 (a) single line),,
+Verify resolving the last open lines in bulk (several at once) auto-completes the work order when Require Review is off,Auto-Complete Trigger (Story 16 R12/R13),Functional,Critical,"1. Signed in as Admin.
+2. Require Review Before Completion is OFF.
+3. A work order is in Approved status with several open lines and nothing left to receive on those lines.","1. Open the work order and select all the open lines.
+2. From the bulk actions menu choose Set line status and set the selected lines to Complete (resolving them all at once).
+3. Check the work order status.","1. All selected lines become Complete in one action.
+2. Because that resolves the last open lines, the work order moves to Complete on its own (invoice-ready).
+3. No separate Complete Work Order step is needed.",SV-7870 (S16-R12 (b) bulk),,
+Verify a split that leaves a work order fully resolved auto-completes that work order when Require Review is off,Auto-Complete Trigger (Story 16 R12/R13),Functional,High,"1. Signed in as Admin.
+2. Require Review Before Completion is OFF.
+3. A work order has several lines; some are already completed and at least one line is still open.","1. Open the work order and complete all but one line, leaving one line still open (the work order stays Approved).
+2. Select the remaining open line and use the bulk actions menu Split work order to move it to a new work order.
+3. Check the status of the original work order after the split.","1. The open line moves to a new work order.
+2. The original work order is now fully resolved (all its remaining lines are complete), so it moves to Complete on its own.
+3. No separate Complete Work Order step is needed on the original work order.",SV-7870 (S16-R12 (c) split),,
+Verify deleting a line so the remaining lines are all resolved auto-completes the work order when Require Review is off,Auto-Complete Trigger (Story 16 R12/R13),Functional,High,"1. Signed in as Admin.
+2. Require Review Before Completion is OFF.
+3. A work order has some completed lines and one remaining open line.","1. Open the work order (its other lines are already complete; one line is still open).
+2. Select the open line and use the bulk actions menu Delete lines to remove it.
+3. Check the work order status.","1. The open line is removed.
+2. Because the remaining lines are all complete, the work order moves to Complete on its own.
+3. No separate Complete Work Order step is needed.",SV-7870 (S16-R12 (d) delete line),,
+"Verify that with Require Review on, resolving the last open line routes the work order to Ready for Review instead of auto-completing",Auto-Complete Trigger (Story 16 R12/R13),Functional,Critical,"1. Signed in as Admin.
+2. Require Review Before Completion is ON and saved.
+3. A work order is in Approved status with two or more open lines.","1. Open the work order and complete the lines one at a time (or in bulk).
+2. After the last open line is resolved, check the work order status.
+3. Confirm whether the work order went straight to Complete or to review.","1. When the last open line is resolved, the work order moves to Ready for Review (Review) — it does NOT auto-complete.
+2. The work order must be signed off in the review step before it can reach Complete.",SV-7870 (S16-R12 review ON),,
+Verify a clock-out that finishes the last line routes the work order to Ready for Review even when Require Review is off,Auto-Complete Trigger (Story 16 R12/R13),Functional,Medium,"1. Signed in as a Technician who is clocked into the work on the work order.
+2. Require Review Before Completion is OFF.
+3. The work order has one remaining open line that the technician is working on.","1. As the technician, finish the last open line by clocking out of it.
+2. Check the work order status.","1. Even though Require Review is off, the work order routes to Ready for Review (not straight to Complete).
+2. This is the one path that does not auto-complete when review is off (a technician may not be allowed to complete a work order).",SV-7870 (S16-R13 clock-out exception),,
+"Verify the work order status transitions on the backend when the last open line is resolved (auto-Complete when review off, Ready for Review when review on)",API — Auto-Complete Trigger (Story 16 R12/R13),Functional,High,"1. Signed in as Admin.
+2. A work order is in Approved status with two or more open lines.","1. With Require Review off, resolve the last open line and read the work order record.
+2. Turn Require Review on, and on another work order resolve the last open line and read the work order record.","1. With Require Review off, after the last open line resolves the work order record status becomes Complete (the resolve action returns success).
+2. With Require Review on, after the last open line resolves the work order record status becomes Ready for Review (Review), not Complete.",SV-7870 (S16-R12 backend status transition),,

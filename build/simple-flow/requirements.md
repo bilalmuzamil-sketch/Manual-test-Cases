@@ -870,10 +870,18 @@ with Jira SV-7696…SV-7710 + SV-7870 + SV-7876).*
    — Story 10). (New AC bullet.)
 
 6. **Story 10 (restructured).** S10-R1 unchanged (PN mandatory to receive).
-   **NEW S10-R2 (promoted from AC to requirement):** when a PN is added the part
-   becomes a **first-class inventory/catalog part** — an **existing** number
-   **links** to the item (updates stock + received cost + Part History without
-   overwriting description/category); a **new** number **creates** a new item.
+   **~~NEW S10-R2 (promoted from AC to requirement)~~ — REVERSED/DEPRECATED per spec
+   `_3` (2026-07-14, last-update-wins; QA-lead ruling 2026-07-14):** the earlier V2.4
+   promotion of "when a PN is added the part becomes a **first-class
+   inventory/catalog part** (existing number links / new number creates)" is
+   **struck through in spec `_3` and is NO LONGER a v1 requirement.** Only S10-R1 (PN
+   mandatory to receive) and S10-R3 (field rules) remain in force. Cases rescoped
+   accordingly: SF-PNFIX-02 (C29364), SF-PNFIX-03 (C29365), SF-PNFIX-06 (C29368),
+   SF-QB-08 (C29433) — the first-class-part / catalog-inventory-creation assertions
+   were removed; PN-persists + part-becomes-receivable retained. *(Doc inconsistency
+   flagged: `_3` leaves the Story-10 AC bullets + "Technical guardrails" paragraph
+   still describing first-class-part creation while R2 itself is struck — flagged for
+   spec cleanup.)*
    **S10-R3 (UPDATED):** field rules apply on **BOTH the Bulk Receive page AND the
    single / Accept-Delivery receive screen — parity**; cost is **editable when
    $0 / missing on either receive surface**; sell editable until WO invoiced/paid

@@ -189,3 +189,30 @@ Rebuild every artifact from the updated `cases/*.json`, then grep-verify zero st
 ## 7. Readiness statement
 
 The reconciliation is complete and the execution plan is ready. **Once fresh `sv7301` cookies arrive** (and, for the core-block cases, a **hand-seeded special-order core** from dev/data), the cookie-gated steps (§5c, Δ5/Δ6/Δ7 VIU, core-block re-VIU) can run, after which the offline drafting + deliverable regeneration can be finalized. Two items gate parts of the plan independent of cookies: the **Δ7 reversal decision** (QA-lead/Milos, §5d) and **fresh explicit TestRail authorization** (§5f). No changes have been made to any case, deliverable, requirements body, or TestRail by this pass.
+
+---
+
+## 8. EXECUTION RESULT (2026-07-14, LATER) — plan EXECUTED, both procedures run
+
+The plan above was executed end-to-end (build-accurate wording+VIU + reconciliation).
+**TestRail authorized this pass.** Cookies `cookies-0714.env`; settings restored byte-identical.
+
+**TestRail: 18 `update_case` (all verify 200/OK) + 7 `add_case` (SF-AUTO-01..07 = C29461..C29467)
++ 2 `add_section` (4092 UI, 4093 API). 0 failed. No writes to run 325.**
+
+| Cluster | Cases | Verdict |
+|---|---|---|
+| Δ5 NEW auto-complete | SF-AUTO-01 C29461 / -02 C29462 / -03 C29463 / -05 C29465 / -07 C29467 | **VIU-Verified** (single/bulk/split/review-ON/API all driven live) |
+| Δ5 NEW auto-complete | SF-AUTO-04 C29464 (delete-line) / -06 C29466 (clock-out) | **Blocked-Env** (delete-lines API 500 / per-line clock-out not exposed; no Chromium) |
+| Δ5 sanity | SF-COMP-09 C29298, SF-REV-01/05/08/11 C29386/90/93/96 | updated (R12 clause) |
+| Δ6 reopen | SF-SET-10 C29284 | **VIU-Verified** — resolves SV-8303 thread |
+| Δ7 deprecation (APPLIED) | SF-PNFIX-02 C29364 / -03 C29365 / -06 C29368 / SF-QB-08 C29433 | **Blocked-Env → VIU-Verified** (rescoped); req.md note #6 marked reversed |
+| Design core-block | SF-CORE-03 C29315 (FLIP) + SF-COMP-11/14, SF-CORE-05/06/07, SF-BULK-10, SF-REV-14 | wording flipped/aligned; core VIU **Blocked-Env** (special-order core non-seedable) |
+
+**No Δ7 cases were held** — the QA-lead ruled APPLY (last-update-wins); all 4 executed.
+
+**Final tally (170 cases):** VIU-Verified **134** · VIU-observed-awaiting-Milos **8** ·
+Blocked-Env **25** · Deviation **2** · Open-Question **1**. (Was 163; +7 SF-AUTO, +4 Δ7 flips
+out of Blocked-Env.) Deliverables regenerated (Blockers Tracker, import CSV/XLSX, cases
+workbook, results workbook — all carry C-ID + link columns; SF-QB-09 remains the sole unmapped
+case). Audit detail: `testrail-wording-viu-log.md` (2026-07-14 spec `_3` section).

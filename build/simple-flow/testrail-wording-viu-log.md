@@ -300,3 +300,46 @@ written to run 325 (QA's run). Screenshots: build/simple-flow/screenshots/run325
   Order button is DISABLED regardless of the invoice setting. Corrected to build-accurate
   wording. (Only 1 TestRail write this session; all other grind verdicts are local
   viu_status/notes changes with no tester-facing wording error.)
+
+## 2026-07-14 — spec _3 (de-facto V2.5) + design _4 pass (Δ5 / Δ6 / Δ7 + design core-block)
+Ran BOTH procedures (build-accurate wording+VIU + spec-relevance reconciliation) per
+`spec-relevance-audit-2026-07-14.md`. TestRail authorized this pass.
+Env: sv7301 (cookies-0714, admin+tech quick-login 200). Settings baseline captured
+(settings-baseline-0714.json) and restored **byte-identical** after every flip.
+
+**TestRail push: 18 update_case (all GET->diff->update->verify 200/OK) + 7 add_case
+(SF-AUTO-01..07 = C29461..C29467) + 2 add_section (4092 UI, 4093 API). 0 failed.**
+
+### Δ5 — Story 16 R12/R13 auto-complete (NEW cases + sanity)
+- NEW **SF-AUTO-01 C29461** (single-line, review OFF) — VIU-Verified. Live S-15838: line1->Approved, last line->Complete (auto, no separate Complete step). Ayesha: not in run 325 (new case).
+- NEW **SF-AUTO-02 C29462** (bulk, review OFF) — VIU-Verified. Live S-15824/446c1cd6: 3 lines bulk change-lines -> WO auto-Complete. New case.
+- NEW **SF-AUTO-03 C29463** (split, review OFF) — VIU-Verified. Live S-15822: complete 2/3, split open line out -> original fully resolved -> auto-Complete. Split WO cleaned up. New case.
+- NEW **SF-AUTO-04 C29464** (delete-line, review OFF) — Blocked-Env. delete-lines API 500 (requestId 768518b…) even when leaving WO open; no Chromium harness. Mechanism verified on other 3 paths. New case.
+- NEW **SF-AUTO-05 C29465** (any path, review ON) — VIU-Verified. Live S-15813 review ON: last line -> Review (Ready for Review), NOT Complete. New case.
+- NEW **SF-AUTO-06 C29466** (clock-out exception, review OFF) — Blocked-Env. Per-line technician clock-out not API-exposed (technician-tasks 404; department-clock is shop-time punch); no Chromium harness. New case.
+- NEW **SF-AUTO-07 C29467** (API — backend status transition) — VIU-Verified. API GET view/{id} showed status Complete (review OFF) / Review (review ON) after last-line-resolve. Placed in API section 4093 (Rule 4). New case.
+- **SF-COMP-09 C29298** — update_case custom_expected (R12 clause on re-resolve). Ayesha marked C29298 Passed — no remark.
+- **SF-REV-01 C29386** — update_case custom_expected (review-ON last-line-resolve -> Ready for Review). Ayesha marked C29386 Untested.
+- **SF-REV-05 C29390** — update_case custom_expected. Ayesha marked C29390 Untested.
+- **SF-REV-08 C29393** — update_case custom_expected. Ayesha marked C29393 Untested.
+- **SF-REV-11 C29396** — update_case custom_expected. Ayesha marked C29396 Untested.
+
+### Δ6 — S1-R9 settings apply on reopen
+- **SF-SET-10 C29284** — update_case title + custom_steps + custom_expected. VIU-Verified: non-retroactive-to-left-completed leg confirmed (untouched completed WO stayed Complete after flipping review ON); apply-on-reopen leg observed (re-triggering the completed WO's last-line-resolve under review ON routed it Complete->Review). Ayesha marked C29284 **Failed** — remark "As discussed with Milos. The specs will be updated. SV-8303" — this spec update is exactly that change; resolved.
+
+### Δ7 — S10-R2 first-class-part deprecation (APPLY, QA-lead last-update-wins)
+- **SF-PNFIX-02 C29364** — update_case title + custom_expected; rescoped to PN-persists + receivable (VIU-Verified live: receive-requested-parts 200). Ayesha marked C29364 Untested.
+- **SF-PNFIX-03 C29365** — update_case title + custom_expected; rescoped, no-overwrite retained. VIU-Verified. Ayesha marked C29365 Untested.
+- **SF-PNFIX-06 C29368** — update_case title + custom_expected; rescoped (catalog/inventory/Part-History creation not v1). VIU-Verified. Ayesha marked C29368 Untested.
+- **SF-QB-08 C29433** — update_case title + preconds + steps + expected; rescoped to Part-History for genuinely inventory-tracked parts. VIU-Verified. Ayesha marked C29433 Untested.
+- requirements.md V2.4 note #6 marked REVERSED/deprecated (dated).
+
+### Design _4 — waiting special-order core is un-skippable at completion
+- **SF-CORE-03 C29315** — FLIPPED: Complete Without Receiving now DISABLED + tooltip + Receive Parts while a core waits (was "stays available"). update_case title+preconds+steps+expected. Blocked-Env (special-order core non-seedable; design #4 copy pending live confirm). Ayesha marked C29315 **Blocked** — "Core parts still have issues…".
+- **SF-COMP-11 C29300** — update_case custom_expected (core-waiting disabled caveat). Stays VIU-Verified for base actions. Ayesha marked C29300 Passed.
+- **SF-COMP-14 C29303** — update_case custom_expected (not available while core waiting). Stays VIU-Verified for base. Ayesha marked C29303 Passed.
+- **SF-CORE-05 C29317** / **SF-CORE-06 C29318** / **SF-CORE-07 C29319** — update_case custom_expected aligned to un-skippable core. Blocked-Env. Ayesha marked each **Blocked** — "Core parts still have issues…".
+- **SF-BULK-10 C29359** — update_case custom_expected aligned. Blocked-Env. Ayesha marked C29359 Untested.
+- **SF-REV-14 C29399** — update_case custom_expected aligned (review-flow core). Blocked-Env. Ayesha marked C29399 Untested.
+
+No results written to run 325 (Ayesha's/QA's run).

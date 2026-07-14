@@ -16,6 +16,61 @@
 
 ---
 
+## 0-AA. SPEC `_3` (de-facto V2.5) + DESIGN `_4` PASS — Δ5 / Δ6 / Δ7 + core-block (2026-07-14, LATER)
+
+Ran **BOTH** procedures (build-accurate wording+VIU + spec-relevance reconciliation) on the
+2026-07-14 uploads per `spec-relevance-audit-2026-07-14.md` + `spec-diff-2026-07-14.md`.
+**TestRail authorized this pass. Cookies `/tmp/simple-flow/cookies-0714.env` (admin+tech
+quick-login 200). Settings baseline `settings-baseline-0714.json` captured + restored
+BYTE-IDENTICAL after every flip. Admin-only (Tech never role-swapped).**
+
+**TestRail push: 18 `update_case` (all GET→diff→update→verify 200/OK) + 7 `add_case`
+(SF-AUTO-01..07 = C29461..C29467) + 2 `add_section` (4092 UI "Auto-Complete Trigger (Story
+16 R12/R13)", 4093 "API — Auto-Complete Trigger (Story 16)"). 0 failed. No writes to run 325.**
+
+**NEW TALLY (from `cases/*.json` viu_status; authoritative) — 170 cases:**
+**VIU-Verified 134 · VIU-observed-awaiting-Milos 8 · Blocked-Env 25 · Deviation 2 ·
+Open-Question 1 = 170.** (Was 163: +7 SF-AUTO [5 Verified, 2 Blocked-Env]; +4 Verified from
+the Δ7 rescope of SF-PNFIX-02/03/06 + SF-QB-08 out of Blocked-Env.)
+
+**Δ5 — Story 16 R12/R13 auto-complete (NEW):** authored **SF-AUTO-01..07**. VIU-Verified live
+(review OFF): single-line (S-15838), bulk (S-15824), split (S-15822) all auto-Complete the WO
+on last-line-resolve; review ON (S-15813) → Ready for Review (Review), not Complete; API case
+verified the backend status transition (view/{id} status flip). **Blocked-Env:** SF-AUTO-04
+(delete-line — delete-lines API 500 in this env, requestId 768518b…, + no Chromium harness),
+SF-AUTO-06 (clock-out — per-line clock-out not API-exposed + no Chromium). Sanity clauses added
+to SF-COMP-09 + SF-REV-01/05/08/11.
+
+**Δ6 — S1-R9 settings apply on reopen:** **SF-SET-10 (C29284)** VIU-Verified — non-retroactive
+to WOs left completed CONFIRMED (untouched completed WO stayed Complete after flipping review
+ON); apply-on-reopen OBSERVED (re-triggering the completed WO's last-line-resolve under review
+ON routed it Complete→Review). **This resolves the SV-8303 / SF-SET-10 open thread** (Ayesha's
+Failed remark cited exactly this coming spec change).
+
+**Δ7 — S10-R2 first-class-part deprecation (APPLIED, QA-lead last-update-wins ruling):**
+SF-PNFIX-02/03/06 + SF-QB-08 rescoped (first-class inventory/catalog creation dropped; PN
+persists + part-becomes-receivable retained) → all 4 flipped **Blocked-Env → VIU-Verified**.
+`requirements.md` V2.4 note #6 marked **REVERSED/deprecated** (dated). *Doc inconsistency
+flagged: `_3` strikes R2 but leaves the Story-10 AC bullets + Technical-guardrails paragraph
+still describing first-class-part creation — flagged for spec cleanup.*
+
+**Design `_4` — waiting special-order core un-skippable at completion:** **SF-CORE-03 (C29315)
+FLIPPED** (Complete Without Receiving now DISABLED + tooltip + Receive Parts while a core waits;
+was "stays available"); knock-on caveats/alignment to SF-COMP-11/14 + SF-CORE-05/06/07 +
+SF-BULK-10 + SF-REV-14. Wording set to design #4 copy. **The core-behavior VIU stays Blocked-Env
+— a special-order (vendor-sourced) core is NOT seedable in this build (P550848 is_core=0;
+vendor-sourced request drops the core attribute); needs a dev-seeded special-order core.** The
+design #4 tooltip/card copy is pending live confirm.
+
+**Env residue:** 3 pre-existing QA test WOs (S-15838, S-15824, S-15822) were completed during the
+Δ5 drive and could not be uncompleted via API (needs the UI three-dot Uncomplete); low-impact,
+reversible in-app. The split-created throwaway WO was deleted. Settings restored byte-identical.
+
+**New/changed C-IDs:** SF-AUTO-01=C29461, -02=C29462, -03=C29463, -04=C29464, -05=C29465,
+-06=C29466, -07=C29467 (in `testrail-id-map.csv`).
+
+---
+
 ## 0-ZZ. VIU GRIND — ALL VIU-PENDING DRIVEN TO A VERDICT (2026-07-14)
 
 Full re-VIU grind over the 33 remaining VIU-Pending cases (plus the Blocked-Env/Milos
