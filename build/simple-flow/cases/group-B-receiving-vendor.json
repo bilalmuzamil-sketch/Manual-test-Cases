@@ -1005,10 +1005,10 @@
    "4. Cost is editable when $0 or missing on either receive surface."
   ],
   "design_ref": "requirements S10-R2 / S8-R7",
-  "viu_status": "VIU-Pending",
-  "notes": "Wording+VIU 2026-07-13: inline part-number field-locking (sell locks after invoiced/paid) - needs an invoiced/paid WO (not drivable in-harness).",
+  "viu_status": "Blocked-Env",
+  "notes": "Blocked-Env (precise, investigated live 2026-07-14): a true invoiced/paid WO state is not drivable in this harness. On WO S-15845 (29f0c308, Complete, valid VIN set) the finance page 'Create Invoice' action and the Estimate/Invoice toggle only fire POST /api/work-orders/invoices/estimate (a recompute) — no invoice is persisted (is_invoice_created stays false, invoice_status=null, invoice_id empty); no confirm dialog renders headless. Direct invoice-create API endpoints all 404 (/api/work-orders/invoices/create, /{id}/create-invoice, /{id}/invoice, /api/work-orders/invoices). Marking the WO PAID would additionally require a payment step. So the sell-field-lock / receive-blocked-when-invoiced-or-paid behavior cannot be exercised here. Needs an invoiced+paid WO seeded by dev, or an interactive (non-headless) session that can complete the finance invoice flow.",
   "api_related": false,
-  "fresh_run": "2026-07-13"
+  "fresh_run": "2026-07-14"
  },
  {
   "id": "SF-PNFIX-05",
@@ -1470,10 +1470,10 @@
    "3. Receiving is blocked when the WO is invoiced/paid."
   ],
   "design_ref": "requirements S13 Technical guardrails",
-  "viu_status": "VIU-Pending",
-  "notes": "Wording+VIU 2026-07-13: vendor matched by ID (not name) + merge scoped to same WO + receiving blocked when WO invoiced/paid - the invoiced/paid block needs an invoiced/paid WO (not drivable in-harness).",
+  "viu_status": "Blocked-Env",
+  "notes": "Blocked-Env (precise, investigated live 2026-07-14): a true invoiced/paid WO state is not drivable in this harness. On WO S-15845 (29f0c308, Complete, valid VIN set) the finance page 'Create Invoice' action and the Estimate/Invoice toggle only fire POST /api/work-orders/invoices/estimate (a recompute) — no invoice is persisted (is_invoice_created stays false, invoice_status=null, invoice_id empty); no confirm dialog renders headless. Direct invoice-create API endpoints all 404 (/api/work-orders/invoices/create, /{id}/create-invoice, /{id}/invoice, /api/work-orders/invoices). Marking the WO PAID would additionally require a payment step. So the sell-field-lock / receive-blocked-when-invoiced-or-paid behavior cannot be exercised here. Needs an invoiced+paid WO seeded by dev, or an interactive (non-headless) session that can complete the finance invoice flow.",
   "api_related": false,
-  "fresh_run": "2026-07-13"
+  "fresh_run": "2026-07-14"
  },
  {
   "id": "SF-VEND-06",

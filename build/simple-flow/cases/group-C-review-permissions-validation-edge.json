@@ -1022,10 +1022,10 @@
    "3. Only cost remains editable."
   ],
   "design_ref": "requirements S8-R7 / §4",
-  "viu_status": "VIU-Pending",
-  "notes": "VIU-Pending (non-drivable state): the sell-locked-after-invoiced/paid behavior (lock icon + 'Locked - this part is already invoiced or paid' tooltip) needs an invoiced/paid work order; invoicing/payment is not drivable in-harness on this env. Wording kept build-accurate for the lock icon + tooltip.",
+  "viu_status": "Blocked-Env",
+  "notes": "Blocked-Env (precise, investigated live 2026-07-14): a true invoiced/paid WO state is not drivable in this harness. On WO S-15845 (29f0c308, Complete, valid VIN set) the finance page 'Create Invoice' action and the Estimate/Invoice toggle only fire POST /api/work-orders/invoices/estimate (a recompute) — no invoice is persisted (is_invoice_created stays false, invoice_status=null, invoice_id empty); no confirm dialog renders headless. Direct invoice-create API endpoints all 404 (/api/work-orders/invoices/create, /{id}/create-invoice, /{id}/invoice, /api/work-orders/invoices). Marking the WO PAID would additionally require a payment step. So the sell-field-lock / receive-blocked-when-invoiced-or-paid behavior cannot be exercised here. Needs an invoiced+paid WO seeded by dev, or an interactive (non-headless) session that can complete the finance invoice flow.",
   "api_related": false,
-  "fresh_run": "2026-07-13"
+  "fresh_run": "2026-07-14"
  },
  {
   "id": "SF-VAL-10",
