@@ -1,7 +1,6 @@
 # Spec Change Monitor — Runbook (hash-based)
 
-**Schedule:** twice daily at **08:07 and 20:07 Pakistan time (PKT, UTC+5)** =
-cron `7 3,15 * * *` UTC. Routine id is recorded in `spec-sync-state.json` note / the Routines UI.
+**Schedule:** **hourly** at **:07 past every hour** = cron `7 * * * *` UTC. Routine id is recorded in `spec-sync-state.json` note / the Routines UI.
 
 **Purpose:** Detect changes to two Confluence spec pages, and when one changes,
 alert Bilal (bilal.muzamil@shopview.com) with a plain-English **before → after**,
