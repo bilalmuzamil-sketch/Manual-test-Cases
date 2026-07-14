@@ -809,10 +809,10 @@
    "2. Once the cored part is received, its Ok/Not OK resolution becomes available (for Story 3/4 resolution)."
   ],
   "design_ref": "requirements S8-C1/C2",
-  "viu_status": "VIU-Pending",
-  "notes": "Wording+VIU 2026-07-13: needs a genuine cored part on a PO to verify the Ok/Not OK resolution after receive + core-only partial receive. A genuine special-order (vendor-source) core is not seedable in-app (see SF-CORE cluster). Bulk Receive surface confirmed live.",
+  "viu_status": "Blocked-Env",
+  "notes": "Blocked-Env (precise, reconfirmed live 2026-07-14): a SPECIAL-ORDER (vendor-sourced) core cannot be created in this build. The genuine cored catalog part P550848 (core_charge=1, catalogue_part_id 4b4753e0) carries its core attribute ONLY when added via the inventory-source catalog path (select_part forces Source=Inventory). A vendor-sourced part request for the SAME part (POST /api/work-orders/part/make-request with part_source_type='vendor' + inventory_part_id of P550848) returns 201 but the resulting part request has is_core=false and core_charge=0 — the core charge is dropped. Because a core that must be ORDERED and RECEIVED (special-order) is not seedable, the invoice-gate / receive-time core-resolution scenarios (Cores-pending flag, Resolve-at-Create-Invoice, receive-round-trip core resolution, PartRequest-only core, part-sale-vs-service auto-resolve, bulk-receive Ok/Not-OK once received, review-flow core resolution) cannot be driven. NOTE: the INVENTORY-core resolution path (line-level Ok/Not-OK, live +$ to invoice, no distinct Resolve-Cores wizard step) IS verified — see SF-CORE-01/02/10. Needs a hand-seeded special-order/vendor core part (dev/data).",
   "api_related": false,
-  "fresh_run": "2026-07-13"
+  "fresh_run": "2026-07-14"
  },
  {
   "id": "SF-INV-01",
