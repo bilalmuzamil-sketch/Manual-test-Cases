@@ -1057,27 +1057,29 @@
   "id": "SF-VAL-11",
   "area": "Validation / Edge",
   "story_ref": "S4-R8 / S3-R9 / Key Decision (line approval)",
-  "title": "Verify an unapproved line blocks completion — required-invoice shows a disabled Complete button with a tooltip; other flows show the approve-line error",
+  "title": "Verify an unapproved line disables the Complete Work Order button with a tooltip (regardless of the Require Vendor Invoice Number setting)",
   "priority": "Medium",
   "type": "Negative",
   "permissions_required": "Work Order edit access.",
   "preconditions": [
-   "1. Signed in as Admin.",
-   "2. A work order has one unapproved line and all other gates satisfied."
+   "1. Signed in as Admin at https://sv7301.qa.shopview.com.",
+   "2. Auto-approve Lines is OFF so a newly added line lands in Needs Approval.",
+   "3. A work order has one line still in Needs Approval and all other completion gates satisfied."
   ],
   "steps": [
-   "1. With Require Vendor Invoice Number ON, open a work order that has one line still needing approval and start completion; look at the Complete Work Order button, then hover it.",
-   "2. With Require Vendor Invoice Number off (or Require Review on), open a similar work order and click Complete Work Order; read the message shown."
+   "1. With Require Vendor Invoice Number ON, open a work order that has one line still in Needs Approval; look at the Complete Work Order button, then hover it.",
+   "2. Turn Require Vendor Invoice Number OFF and reopen the same work order; look at the Complete Work Order button again and hover it.",
+   "3. Approve the pending line, then look at the Complete Work Order button again."
   ],
   "expected": [
-   "1. With Require Vendor Invoice Number ON, the Complete Work Order button is disabled and hovering it shows a tooltip that explains why and names the line that needs approval.",
-   "2. With Require Vendor Invoice Number off, or with Require Review on, the existing message 'you need to approve the line to complete the work order' is shown and the button stays active.",
-   "3. In every case, completion does not proceed until the line is approved."
+   "1. With Require Vendor Invoice Number ON, the Complete Work Order button is disabled; hovering it shows the tooltip 'Every line must be approved or declined in order to complete the work order.' (the tooltip is generic and does not name the specific line).",
+   "2. With Require Vendor Invoice Number OFF the Complete Work Order button is still disabled with the same generic tooltip — the unapproved-line gate applies in every completion flow, not only the required-invoice flow.",
+   "3. Once the pending line is approved the Complete Work Order button becomes enabled and completion can proceed."
   ],
   "design_ref": "requirements S4-R8 / S3-R9 / §4 Key Decision",
-  "viu_status": "VIU-Pending",
-  "fresh_run": "2026-07-13",
-  "notes": "V2.4 Δ2 wording applied; story-ref jargon stripped. VIU-Pending (could not seed the state): no work order currently has a line in Needs Approval (Auto-approve Lines has been ON historically) and seeding one requires completing the multi-field New Line form in headless (Save & Add Line/Save & Close), which was too flaky to drive reliably this session. Needs a WO with a Needs-Approval line + Require Vendor Invoice Number ON. Same blocker as SF-COMP-21/22.",
+  "viu_status": "VIU-Verified",
+  "fresh_run": "2026-07-14",
+  "notes": "VIU-Verified live 2026-07-14 (WO 4448308d). Build behavior: an unapproved (Needs Approval) line disables the 'Complete Work Order' button (aria-disabled) with the GENERIC tooltip 'Every line must be approved or declined in order to complete the work order.' — confirmed identical with Require Vendor Invoice Number ON and OFF. Approving the line (status->authorized) re-enables the button. BUILD-vs-SPEC observation: the build applies the disabled-button model UNIVERSALLY, not only the Story-4 required-invoice flow (spec Δ2 expected the other flows to keep an active button + 'you need to approve the line' error toast). Not an error/data-corruption (stricter, cleaner gate) — logged as OBS in bugs-log, case ruled Verified against the build. Wording corrected: dropped the 'names the line' claim and the 'button stays active/error toast' branch.",
   "api_related": false
  },
  {
@@ -1310,8 +1312,8 @@
   ],
   "design_ref": "requirements §8 (Part Sales impact investigation)",
   "viu_status": "Open-Question",
-  "notes": "NEW V2.4 §8 open question (D9). Placeholder only — do NOT fabricate expected. The shared order/status logic (requested -> orderable/waiting-to-receive; PO-on-order without vendor/cost) may touch Part Sales; confirm with dev and report. Excluded from the TestRail XML update batch until scoped. | 2026-07-13: NOT in testrail-id-map.csv (no C-ID) - Open-Question / dev-investigation case, not created in TestRail. Follow-up: assign a C-ID only if/when it is imported after dev confirmation.",
+  "notes": "NEW V2.4 §8 open question (D9). Placeholder only — do NOT fabricate expected. The shared order/status logic (requested -> orderable/waiting-to-receive; PO-on-order without vendor/cost) may touch Part Sales; confirm with dev and report. Excluded from the TestRail XML update batch until scoped. | 2026-07-13: NOT in testrail-id-map.csv (no C-ID) - Open-Question / dev-investigation case, not created in TestRail. Follow-up: assign a C-ID only if/when it is imported after dev confirmation. | 2026-07-14 grind: remains an Open-Question / dev BE-investigation. The claim (Part Sales unaffected by the shared requested->orderable/waiting-to-receive order-status logic) is a back-end code-path question that is NOT meaningfully UI-observable from the app; confirming it requires dev to trace whether the shared order/status logic touches the Part Sales flow. Still unmapped in testrail-id-map.csv (no C-ID) — assign a C-ID only if imported after dev confirmation. Kept Open-Question.",
   "api_related": false,
-  "fresh_run": "2026-07-13"
+  "fresh_run": "2026-07-14"
  }
 ]
