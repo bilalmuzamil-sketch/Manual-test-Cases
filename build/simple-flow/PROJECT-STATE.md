@@ -258,29 +258,34 @@ superseded wording.
 
 ## 0. CURRENT STATE AT A GLANCE (read this first)
 
-**FINAL tally (2026-07-14 — after the full VIU grind that drove ALL VIU-Pending to a
-verdict; see §0-ZZ; authoritative — verified identical in both `cases/*.json`
-`viu_status` AND the per-row VIU-status column of `SimpleFlow_Blockers_Tracker.md`):**
+**FINAL tally (2026-07-14 — after the spec `_3` (de-facto V2.5) + design `_4` pass
+that added the 7 SF-AUTO cases and applied the Δ7 rescope; see §0-AA; authoritative —
+counted directly from `cases/*.json` `viu_status`, 170 case bodies):**
 
 | VIU status field (`cases/*.json`) | Count |
 |---|---:|
-| VIU-Verified | **125** |
+| VIU-Verified | **134** |
 | VIU-observed-awaiting-Milos | **8** |
-| Blocked-Env | **27** |
+| Blocked-Env | **25** |
 | Deviation (SF-SET-03, SF-VMIS-06) | **2** |
 | Open-Question (SF-QB-09) | **1** |
-| **TOTAL** | **163** |
+| **TOTAL** | **170** |
 
-**VIU-Pending = 0** (every case now carries a definitive disposition). Total is 163:
-162 authored + the new case SF-VEND-06 = C29442. **All 162 mapped cases are current
-in TestRail; SF-QB-09 (Open-Question, no C-ID) is deliberately not in TestRail.**
+**VIU-Pending = 0** (every case now carries a definitive disposition). Total is 170:
+163 (162 authored + SF-VEND-06 = C29442) + the 7 new SF-AUTO cases (C29461–C29467).
+**All 169 mapped cases are current in TestRail; SF-QB-09 (Open-Question, no C-ID) is
+deliberately not in TestRail.** (Prior 2026-07-14 grind tally was 163 = 125/8/27/2/1;
+the spec `_3`/design `_4` pass then added +7 SF-AUTO [5 Verified, 2 Blocked-Env] and
+flipped +4 from Blocked-Env→Verified via the Δ7 rescope of SF-PNFIX-02/03/06 +
+SF-QB-08 → 134 Verified / 25 Blocked-Env; see §0-AA.)
 
 The blocker-category axis in `SimpleFlow_Blockers_Tracker.md` (READY / VIU-PENDING /
 MILOS-ANSWER) is a SEPARATE grouping from `viu_status` and is not a duplicate of the
 above — use the `viu_status` tally as the canonical status count.
 
-**✅ DONE (through 2026-07-14) — full VIU-process pass complete, all VIU-Pending
-driven to a verdict, everything mapped is current in TestRail.** In order:
+**✅ DONE (through 2026-07-14) — full VIU-process pass complete, spec `_3`/design `_4`
+ingested and BOTH procedures run, all VIU-Pending driven to a verdict, everything
+mapped is current in TestRail.** In order:
 (a) full **build-accurate wording + VIU pass over ALL 163 cases** per
 `build/BUILD-ACCURATE-WORDING-VIU-PROCESS.md` — pushed to TestRail earlier (all
 200/200, only SF-QB-09 skipped: no C-ID; §0-A); (b) **V2.4 deltas Δ1-Δ4 APPLIED**
@@ -292,10 +297,19 @@ regenerated and grep-clean (§0-B); (e) **run-325 (Ayesha Khan) reconciled** —
 disputed fails REAFFIRMED VIU-Verified (SF-COMP-02/TECH-02/VPART-06), SF-COMP-21/22
 flipped VIU-Verified (§0-Z); (f) the **2026-07-14 VIU grind** drove the remaining
 VIU-Pending to a verdict — 7 flipped VIU-Verified, 8 recorded VIU-observed-awaiting-
-Milos, SF-VMIS-06 became a new Deviation, 17 settled to Blocked-Env (§0-ZZ). Roles
-matrix re-derived fresh — **Technician NOT drifted on sv7301**. **Final tally 125
-Verified / 8 awaiting-Milos / 27 Blocked-Env / 2 Deviation / 1 Open-Question = 163;
-VIU-Pending = 0.**
+Milos, SF-VMIS-06 became a new Deviation, 17 settled to Blocked-Env (§0-ZZ);
+(g) the **spec `_3` (de-facto V2.5) + design `_4` pass (§0-AA, LATER 2026-07-14)** —
+BOTH procedures run (relevance reconciliation + build-accurate wording+VIU): Δ5
+auto-complete (Story 16 R12/R13 = SV-8303) authored **7 new SF-AUTO cases**
+(C29461–C29467; SF-AUTO-01/02/03/05/07 Verified, 04 + 06 Blocked-Env), Δ6 settings-
+apply-on-reopen flipped **SF-SET-10** Verified (resolves the SV-8303 / Ayesha run-325
+Failed thread), Δ7 S10-R2 first-class-part DEPRECATION rescoped SF-PNFIX-02/03/06 +
+SF-QB-08 → Verified, and design `_4` flipped **SF-CORE-03** (special-order core
+un-skippable at completion — but core BEHAVIOR still Blocked-Env: no seedable
+vendor-sourced core). TestRail: **18 update_case + 7 add_case + 2 add_section, all
+200/200, 0 fail; no writes to run 325.** Roles matrix re-derived fresh — **Technician
+NOT drifted on sv7301**. **Final tally 134 Verified / 8 awaiting-Milos / 25
+Blocked-Env / 2 Deviation / 1 Open-Question = 170; VIU-Pending = 0.**
 
 **Build findings for dev:** **OBS-6** — Part-History surface HTTP 500
 (`GET /api/inventory/parts/history`) + part-detail page crash (`/parts/inventory/{id}`);
@@ -373,12 +387,15 @@ Tech never swapped (still Technician).
    (no pass/fail on the undecided leg): SF-SET-08, SF-COMP-06, SF-RCV-05, SF-RCV-07,
    SF-REV-11, SF-REV-15, SF-UX-04, SF-QB-02. These + the earlier MILOS set gate on
    Milos Round-3 answers.
-2. **27 Blocked-Env** — genuinely NOT VIU-able in this harness, each with a precise
-   reason (see §0-ZZ): QuickBooks not connected on sv7301 (9: SF-QB-01/03/04/05/06/07/08,
-   SF-VMIS-03, SF-RCV-08 — needs a QB-connected company + a human in QB); special-order
-   vendor cores not creatable (9); invoiced/paid WO not drivable (3); inline-PN
-   inventory/Part-History OBS-6 (3); merge/keep-separate auto-consolidates (2); VIN-less
-   asset not seedable (1).
+2. **25 Blocked-Env** — genuinely NOT VIU-able in this harness, each with a precise
+   reason (see §0-ZZ / §0-AA): QuickBooks not connected on sv7301 (9:
+   SF-QB-01/03/04/05/06/07, SF-VMIS-03, SF-RCV-08 — needs a QB-connected company + a
+   human in QB; NOTE SF-QB-08 rescoped out via Δ7); special-order vendor-sourced cores
+   not creatable — needs a dev-seeded core (SF-CORE-03..09, SF-BULK-10, SF-REV-14);
+   invoiced/paid WO not drivable (3); merge/keep-separate auto-consolidates (2);
+   VIN-less asset not seedable (1); **SF-AUTO-04 (delete-lines API 500) + SF-AUTO-06
+   (UI clock-out not drivable)** (2). (Was 27; the Δ7 rescope moved SF-PNFIX-02/03/06 +
+   SF-QB-08 to Verified, and +2 SF-AUTO Blocked-Env were added → 25.)
 3. **3 Milos deliverables READY TO SEND:** `PO-Questions-Round3.xlsx`,
    `SimpleFlow_Bugs-for-Milos-Confirm.xlsx`, `SimpleFlow_Bug-Drafts.xlsx`.
 4. **4 active Jira bug drafts (TICKET 2–5) UNFILED** — no Atlassian MCP in this env;
@@ -411,58 +428,63 @@ completion wizard, bulk PO receiving, vendorless / no-PN parts, inline part-numb
 fix, and an optional review sign-off gate. Behavior is **settings-driven** (the
 Work Orders settings tab), **not** feature-flag-gated.
 
-**Spec version:** **V2.4** — "Draft for build". 17 stories: S1–S15 =
-SV-7696..SV-7710, S16 = SV-7870, S17 = SV-7876. Authoritative inputs = the **V2.4
-spec doc** + the **2026-07-08 design bundle** (last-update-wins over the earlier
-round-1 Milos answer sheet). **The 2026-07-10 spec upload is a silent V2.4 revision
-carrying 4 unapplied deltas (see §0 / §5.E)** — future uploads under the same label
-may also carry uncatalogued edits, so always diff, never trust the version string.
+**Spec version:** **V2.4** → de-facto **V2.5** via the 2026-07-14 spec `_3` upload
+(Δ5/Δ6/Δ7) + design `_4`. 17 stories: S1–S15 = SV-7696..SV-7710, S16 = SV-7870
+(now incl. R12/R13 auto-complete = SV-8303), S17 = SV-7876. Authoritative inputs =
+the **V2.4 spec doc + spec `_3` deltas** + the **2026-07-14 design `_4`** (last-update-
+wins over the earlier round-1 Milos answer sheet + the reversed V2.4 note #6). Future
+uploads under the same label may carry uncatalogued edits, so always diff, never trust
+the version string.
 
-**Overall status:** Cases **authored (163)**, permissions applied (SV-8183), V2.4
-Δ1-Δ4 applied, **full build-accurate wording + VIU pass DONE** (§0-A), spec-relevance
-reconciliation done (§0-B), run-325 reconciled (§0-Z), and the **2026-07-14 VIU grind
-drove ALL VIU-Pending to a verdict** (§0-ZZ). Deliverables regenerated (workbook,
-interim TestRail import, blockers tracker). VIU tally now **125 VIU-Verified / 8
-VIU-observed-awaiting-Milos / 27 Blocked-Env / 2 Deviation / 1 Open-Question = 163;
-VIU-Pending = 0**. Stories 7/8/9/14 confirmed BUILT & live-verified (DEV-NOT-BUILT =
-0). **All 162 mapped cases are current in TestRail** (SV-8183 batch, V2.4
-reconciliation batch, Milos Round-2 batch, reviewer-descope batch, the 10 Δ1-Δ4
-writes, and the full wording+VIU pass — all pushed & verified 200/200); only SF-QB-09
-(no C-ID) is not in TestRail. Remaining work is the 8 awaiting-Milos + the earlier
-MILOS set (Round-3 answers) + the 27 Blocked-Env (non-seedable data / QuickBooks /
-invoiced-paid WO) + filing the 4 bug drafts + Phase-2 import finalization. **Do NOT
-write to TestRail without explicit user permission.**
+**Overall status:** Cases **authored (170)** = 163 (162 + SF-VEND-06) + 7 new SF-AUTO,
+permissions applied (SV-8183), V2.4 Δ1-Δ4 + spec `_3` Δ5/Δ6/Δ7 + design `_4` applied,
+**full build-accurate wording + VIU pass DONE** (§0-A), spec-relevance reconciliation
+done (§0-B, re-run 2026-07-14 in §0-AA), run-325 reconciled (§0-Z), the **2026-07-14
+VIU grind drove ALL VIU-Pending to a verdict** (§0-ZZ), and the **spec `_3`/design `_4`
+pass ran BOTH procedures** (§0-AA). Deliverables regenerated (workbook, interim
+TestRail import, blockers tracker). VIU tally now **134 VIU-Verified / 8
+VIU-observed-awaiting-Milos / 25 Blocked-Env / 2 Deviation / 1 Open-Question = 170;
+VIU-Pending = 0**. Stories 7/8/9/14/16-auto confirmed BUILT & live-verified
+(DEV-NOT-BUILT = 0). **All 169 mapped cases are current in TestRail** (SV-8183 batch,
+V2.4 reconciliation batch, Milos Round-2 batch, reviewer-descope batch, the 10 Δ1-Δ4
+writes, the full wording+VIU pass, and the spec `_3`/design `_4` push = 18 update_case
++ 7 add_case + 2 add_section — all pushed & verified 200/200); only SF-QB-09 (no C-ID)
+is not in TestRail. Remaining work is the 8 awaiting-Milos + the earlier MILOS set
+(Round-3 answers) + the 25 Blocked-Env (non-seedable data / QuickBooks / invoiced-paid
+WO / dev-seeded special-order core / SF-AUTO-04 API-500 + SF-AUTO-06 UI clock-out) +
+filing the bug drafts + Phase-2 import finalization. **Do NOT write to TestRail without
+explicit user permission.**
 
 ---
 
 ## 2. Case inventory
 
-**Total authored cases: 163** (source: Blockers Tracker header; 162 authored + new
-SF-VEND-06).
+**Total authored cases: 170** (source: Blockers Tracker header; 163 [162 + SF-VEND-06]
++ 7 new SF-AUTO C29461–C29467).
 
 **By authoring group (`cases/*.json`):**
 
 | Group file | Scope |
 |---|---|
-| `group-A-settings-completion.json` | Settings, Completion (Stories 1–4), Cores, Tech story |
+| `group-A-settings-completion.json` | Settings, Completion (Stories 1–4), Cores, Tech story, **Auto-Complete Trigger (Story 16 R12/R13 = SF-AUTO)** |
 | `group-B-receiving-vendor.json` | Vendorless parts, Vendor-missing PO, PO multi-select, Bulk receive, apply-invoice, PN-fix, Receive/Accept-Delivery (incl. new SF-VEND-06) |
-| `group-C-review-permissions-validation-edge.json` | Review (Story 16), UX, Permissions, Validation/Edge, QuickBooks/Inventory integrity |
+| `group-C-review-permissions-validation-edge.json` | Review (Story 16), UX, Permissions, Validation/Edge, QuickBooks/Inventory integrity, **SF-AUTO-07 (API auto-complete)** |
 
 **By blocker category (Blockers Tracker "Summary — counts per category"):**
 
 | Blocker category | Count | Owner |
 |---|---:|---|
-| READY (VIU-Verified, uploadable now) | 112 | — |
-| BLOCKED — DEV NOT BUILT | 0 | Dev team (Stories 7/8/9/14 built) |
-| BLOCKED — VIU PENDING (QA) | 38 | QA |
+| READY (VIU-Verified, uploadable now) | 130 | — |
+| BLOCKED — DEV NOT BUILT | 0 | Dev team (Stories 7/8/9/14/16-auto built) |
+| BLOCKED — VIU PENDING (QA) | 27 | QA |
 | BLOCKED — MILOS ANSWER | 13 | Milos (PO) |
 | BLOCKED — BUG/RULING | 0 | — |
-| **TOTAL** | **163** | |
+| **TOTAL** | **170** | |
 
-**VIU status field tally across the case JSONs (authoritative; verified identical in
-the tracker's per-row VIU-status column, 2026-07-14):** VIU-Verified **125** ·
-VIU-observed-awaiting-Milos **8** · Blocked-Env **27** · Deviation **2** (SF-SET-03,
-SF-VMIS-06) · Open-Question **1** (SF-QB-09) (= 163). **VIU-Pending = 0.** The
+**VIU status field tally across the case JSONs (authoritative; counted directly from
+`cases/*.json`, 2026-07-14 after the spec `_3`/design `_4` pass):** VIU-Verified **134**
+· VIU-observed-awaiting-Milos **8** · Blocked-Env **25** · Deviation **2** (SF-SET-03,
+SF-VMIS-06) · Open-Question **1** (SF-QB-09) (= 170). **VIU-Pending = 0.** The
 blocker-category table above uses a separate grouping axis (READY / VIU-PENDING /
 MILOS-ANSWER) and does not map 1:1 to `viu_status`. **BUG/RULING is 0** and
 **DEV-NOT-BUILT is 0.**
@@ -491,22 +513,26 @@ SF-RCV-08, SF-VMIS-03); brand-new-org cohort defaults (SF-SET-08, SF-REV-15).
 
 - **Project 1 · Suite 1 "Master"** on `https://shopview.testrail.io`.
 - Cases imported under **parent section 4058** (leaf sections per functional area).
-- **API sections** (STANDING RULE 4): **`API — Work Order Settings` (section 4089)**
-  and **`API — Permissions` (section 4090)** — 7 cases: SF-SET-04/07/09/11/12,
-  SF-PERM-01/06.
+- **API sections** (STANDING RULE 4): **`API — Work Order Settings` (section 4089)**,
+  **`API — Permissions` (section 4090)**, and the NEW **`API — Auto-Complete Trigger
+  (Story 16)` (section 4093)** — plus the new UI leaf **`Auto-Complete Trigger (Story
+  16 R12/R13)` (section 4092)**. API cases: SF-SET-04/07/09/11/12, SF-PERM-01/06,
+  **SF-AUTO-07**.
 - **Case-ID map:** `build/simple-flow/testrail-id-map.csv` — `sf_id,title,section` +
-  C-ID rows. New case SF-VEND-06 = **C29442**. **SF-QB-09 remains unmapped (no
-  C-ID)** — Open-Question, deliberately not in TestRail. `gen_update.py` uses the map
-  to produce ID-matched update files.
+  C-ID rows. New cases SF-VEND-06 = **C29442**; **SF-AUTO-01..07 = C29461..C29467**.
+  **SF-QB-09 remains unmapped (no C-ID)** — Open-Question, deliberately not in
+  TestRail. `gen_update.py` uses the map to produce ID-matched update files.
 - **What's synced (all pushed & re-fetch-verified, 200/200):** the **SV-8183
   permissions batch**; the **V2.4 reconciliation batch** (18 updates + 2 adds); the
   **Milos Round-2 batch**; the **SF-WOP-02 refinement**; the **reviewer-descope
   batch (2026-07-10)**; the **V2.4 Δ1-Δ4 batch (2026-07-13)** — 9 update_case + 1
-  add_case (SF-VEND-06 = C29442), audit `testrail-delta-push-0713-log.md`; and the
+  add_case (SF-VEND-06 = C29442), audit `testrail-delta-push-0713-log.md`; the
   **FULL build-accurate wording + VIU pass (2026-07-13)** — **~171 update_case
   calls across all 18 areas, every one verified 200/200, 0 errors**, audit
-  `testrail-wording-viu-log.md`.
-- **All mapped cases are current in TestRail — 162/163** (SF-QB-09 unmapped, no
+  `testrail-wording-viu-log.md`; and the **spec `_3` (V2.5) + design `_4` pass
+  (2026-07-14, §0-AA)** — **18 update_case + 7 add_case (SF-AUTO-01..07) + 2
+  add_section (4092, 4093), all 200/200, 0 fail, no writes to run 325**.
+- **All mapped cases are current in TestRail — 169/170** (SF-QB-09 unmapped, no
   C-ID; Open-Question, not created). Nothing is proposal-only / unpushed as of
   2026-07-14.
 - **QA execution run 325 EXISTS** — **"Simple Flow - Ayesha Khan -> Specs 7/7/2026"**
@@ -518,7 +544,10 @@ SF-RCV-08, SF-VMIS-03); brand-new-org cohort defaults (SF-SET-08, SF-REV-15).
   into a TestRail run of our own). Run-325 reconciliation vs our findings:
   `run325-reconciliation-2026-07-13.md` (6 failed + 13 blocked mapped; priority
   "she-failed / we-verified" set called out; no case status changed — needs a verified
-  live re-check).
+  live re-check). **Per-case Ayesha status is cross-referenced in
+  `run325-status-map-2026-07-14.md`** (used by the 2026-07-14 audit + wording logs);
+  SF-SET-10 was flipped Verified, which resolves Ayesha's SF-SET-10 Failed / SV-8303
+  remark.
 - Import files (`testrail-import/simple-flow-v1-testrail-import.csv`/`.xlsx`) are the
   full-suite upload; `simple-flow-v2.4-update.xml` / `simple-flow-UPDATE.xml` are
   update-only artifacts. **Import files remain INTERIM** pending post-VIU +
@@ -530,8 +559,8 @@ SF-RCV-08, SF-VMIS-03); brand-new-org cohort defaults (SF-SET-08, SF-REV-15).
 
 **Test cases (authored source):**
 - `build/simple-flow/cases/group-A-settings-completion.json` — 56 cases.
-- `build/simple-flow/cases/group-B-receiving-vendor.json` — 57 cases.
-- `build/simple-flow/cases/group-C-review-permissions-validation-edge.json` — 49 cases.
+- `build/simple-flow/cases/group-B-receiving-vendor.json` — 58 cases.
+- `build/simple-flow/cases/group-C-review-permissions-validation-edge.json` — 56 cases (incl. the SF-AUTO Story-16 R12/R13 auto-complete set = 170 total).
 
 **Human-readable workbooks / CSVs:**
 - `build/simple-flow/SimpleFlow_V1_TestCases.xlsx` / `.csv` — full test-case workbook (tab-per-area + Open Questions).
@@ -539,9 +568,9 @@ SF-RCV-08, SF-VMIS-03); brand-new-org cohort defaults (SF-SET-08, SF-REV-15).
 - `build/simple-flow/SimpleFlow_Settings_QuickReference.xlsx` — settings quick-ref.
 
 **TestRail import / update artifacts:**
-- `testrail-import/simple-flow-v1-testrail-import.csv` / `.xlsx` — full-suite import (all 162; VIU-word-free, feature-flag-free; leaf + API-titled sections).
+- `testrail-import/simple-flow-v1-testrail-import.csv` / `.xlsx` — full-suite import (all 169 mapped; VIU-word-free, feature-flag-free; leaf + API-titled sections).
 - `testrail-import/simple-flow-v2.4-update.xml` and `testrail-import/simple-flow-UPDATE.xml` — update-only ID-matched files.
-- `build/simple-flow/testrail-id-map.csv` — sf_id ↔ TestRail Case-ID map (161 rows).
+- `build/simple-flow/testrail-id-map.csv` — sf_id ↔ TestRail Case-ID map (169 mapped rows; SF-QB-09 unmapped).
 
 **Tracking / status:**
 - `build/simple-flow/SimpleFlow_Blockers_Tracker.md` / `.xlsx` — **source of truth** for per-case state + blocker + owner + what's-needed.
@@ -556,6 +585,12 @@ SF-RCV-08, SF-VMIS-03); brand-new-org cohort defaults (SF-SET-08, SF-REV-15).
 - `build/simple-flow/spec-current-source.md` — readable V2.4 spec source; `spec-change-diff.md` — V2.4-vs-V2.3 diff.
 - `build/simple-flow/spec-diff-2026-07-10.md` — the 4 V2.4-silent-revision deltas (Δ1–Δ4) + Round-3 impact analysis (now APPLIED).
 - `build/simple-flow/spec-diff-2026-07-13.md` — **2026-07-13 spec (`_2` doc) + design (`Design_3.zip`) ingest** = byte-identical re-deliveries, Δ1-Δ4 re-confirmed, no new work.
+- **Spec `_3` (de-facto V2.5) + design `_4` (2026-07-14) deliverables:**
+  `build/simple-flow/spec-source-2026-07-14.md` (readable spec `_3` source);
+  `build/simple-flow/spec-diff-2026-07-14.md` (Δ5 auto-complete/SV-8303, Δ6 settings-on-reopen, Δ7 S10-R2 first-class-part DEPRECATED);
+  `build/simple-flow/spec-relevance-audit-2026-07-14.md` (whole-suite relevance/obsolescence audit + execution plan);
+  `build/simple-flow/design4-2026-07-14/` (design `_4` bundle — special-order core un-skippable at completion);
+  `build/simple-flow/run325-status-map-2026-07-14.md` (per-case Ayesha run-325 status cross-reference).
 - **Build-accurate wording + VIU pass (2026-07-13) deliverables:**
   `build/simple-flow/wording-glossary-2026-07-13.md` (live-captured on-screen labels);
   `build/simple-flow/testrail-wording-viu-log.md` (per-case wording+VIU audit, ~171 pushes 200/200);
@@ -758,16 +793,21 @@ net 6→4. All reversible throwaway data deleted. **Shared env — re-read
 **Confirm the project first** (this workspace holds 3 projects) — the instruction
 must target **Simple Flow**.
 
-**>>> DONE (through 2026-07-14):** Stories 7/8/9/14 built & live (DEV-NOT-BUILT = 0);
-spec-vs-Epic conflicts resolved; BUG-11 downgraded & not reproduced;
+**>>> DONE (through 2026-07-14):** Stories 7/8/9/14/16-auto built & live (DEV-NOT-BUILT
+= 0); spec-vs-Epic conflicts resolved; BUG-11 downgraded & not reproduced;
 reviewer≠completer descoped (BUG-5 dropped); per-role matrix re-added; OBS-6/OBS-7
 logged. V2.4 Δ1-Δ4 APPLIED (9 cases + new SF-VEND-06 = C29442, pushed 200/200); a
 **FULL build-accurate wording + VIU pass over ALL 163 cases** (§0-A, all 200/200);
 **spec-relevance reconciliation** (§0-B, 0 obsolete, 3 label cases fixed, deliverables
-grep-clean); **run-325 reconciled** (§0-Z); and the **2026-07-14 VIU grind drove ALL
-VIU-Pending to a verdict** (§0-ZZ). Roles matrix re-derived (Technician NOT drifted).
-**Final tally 125 Verified / 8 awaiting-Milos / 27 Blocked-Env / 2 Deviation / 1
-Open-Question = 163; VIU-Pending = 0. 162/163 current in TestRail (SF-QB-09 unmapped).**
+grep-clean); **run-325 reconciled** (§0-Z); the **2026-07-14 VIU grind drove ALL
+VIU-Pending to a verdict** (§0-ZZ); and the **spec `_3` (de-facto V2.5) + design `_4`
+pass** (§0-AA) — BOTH procedures run, Δ5 auto-complete authored 7 new SF-AUTO cases
+(C29461–C29467), Δ6 flipped SF-SET-10 Verified (resolves SV-8303/run-325), Δ7 S10-R2
+DEPRECATION rescoped SF-PNFIX-02/03/06 + SF-QB-08 → Verified, design `_4` flipped
+SF-CORE-03 (core BEHAVIOR still Blocked-Env), TestRail 18 update + 7 add + 2 section
+all 200/200. Roles matrix re-derived (Technician NOT drifted). **Final tally 134
+Verified / 8 awaiting-Milos / 25 Blocked-Env / 2 Deviation / 1 Open-Question = 170;
+VIU-Pending = 0. 169/170 current in TestRail (SF-QB-09 unmapped).**
 
 **>>> NEXT ACTIONS (priority order):**
 1. **Send Milos Round-3 + the bug-confirm sheets** — `PO-Questions-Round3.xlsx`,
@@ -777,17 +817,23 @@ Open-Question = 163; VIU-Pending = 0. 162/163 current in TestRail (SF-QB-09 unma
    VIU-observed-awaiting-Milos cases (SF-SET-08, SF-COMP-06, SF-RCV-05, SF-RCV-07,
    SF-REV-11, SF-REV-15, SF-UX-04, SF-QB-02) + the earlier MILOS set, re-run
    generators, emit an ID-matched update file, ask before pushing.
-3. **Clear the 27 Blocked-Env** as data/access allows — get fresh sv7301 cookies
+3. **Clear the 25 Blocked-Env** as data/access allows — get fresh sv7301 cookies
    (admin + tech) into `/tmp` + rebuild the MITM bridge; the definitive per-case data
-   need is in §0-ZZ (QuickBooks-connected company + a human in QB for the 9 QB cases;
-   special-order vendor cores non-seedable; invoiced/paid WO; inline-PN/OBS-6;
-   merge-collision auto-consolidates; VIN-less asset).
-4. **File the 4 active Jira bug drafts** (TICKET 2–5, `jira-bug-drafts.md`) from the
-   chat app where Atlassian is connected; raise **OBS-6** (Part-History 500) and the
-   **SF-VMIS-06** report gap with dev.
-5. **Resolve SF-QB-09** with dev; assign a C-ID + import only after confirmation.
-6. **Ingest Jira SV-8303** (coming spec change flagged by Ayesha on SF-SET-10) in the
-   next spec round — ALWAYS ask which process to run (Standing Rule 11).
+   need is in §0-ZZ / §0-AA (QuickBooks-connected company + a human in QB for the 9 QB
+   cases; **dev-seeded special-order (vendor-sourced) core** for the core-block cases
+   incl. SF-CORE-03; invoiced/paid WO; inline-PN/OBS-6; merge-collision
+   auto-consolidates; VIN-less asset; **SF-AUTO-04 needs the delete-lines API-500 fix,
+   SF-AUTO-06 needs live UI clock-out driving**).
+4. **File the active Jira bug drafts** (TICKET 2–5, `jira-bug-drafts.md`) from the
+   chat app where Atlassian is connected; raise **OBS-6** (Part-History 500), the
+   **SF-VMIS-06** report gap, and the **SF-AUTO-04 delete-lines API 500** with dev.
+5. **Resolve SF-QB-09** with dev; assign a C-ID + import only after confirmation
+   (still unmapped in `testrail-id-map.csv`, no C-ID).
+6. **SV-8303 ingested** (spec `_3` Δ5, §0-AA) — but **flag the doc self-contradiction
+   for Milos:** `_3` strikes S10-R2 (Δ7) yet the Story-10 AC bullets + technical
+   guardrails paragraph still describe first-class-part creation. Raise for spec
+   cleanup. For any further spec upload, ALWAYS ask which process to run (Standing
+   Rule 11).
 7. **Finalize the TestRail import (Phase 2)** once Round-3 + the remaining Blocked-Env
    clear (`RESUME-STRATEGY.md` two-phase plan); create an execution run only if the
    user wants VIU pass/fail logged. **Never write to TestRail without explicit user

@@ -18,11 +18,33 @@
 >   (verify) items to confirmed only after actually succeeding. Reuse the books for
 >   anything done before; research only genuinely new things.
 
-## Projects in this workspace (three projects, one chat)
-This workspace/chat serves **THREE separate projects**. Keep their memory
-**SEPARATE** (don't mix facts/scope), but **reuse knowledge across them when
-genuinely helpful** (e.g. the staging access method + testing harness apply to
-all).
+## Projects in this workspace (three projects now, MANY more incoming)
+This workspace/chat serves **THREE separate projects today** (Custom Roles, Fees &
+Discounts, Simple Flow) but **will SCALE TO MANY** — the QA lead has flagged that
+**~10+ more new projects are coming**. Keep each project's memory **SEPARATE** (don't
+mix facts/scope/cases), but **reuse shared infrastructure across all of them** (the
+staging/QA access method, the harness scripts, the TestRail API patterns, and the two
+process docs — `build/BUILD-ACCURATE-WORDING-VIU-PROCESS.md` +
+`build/SPEC-RELEVANCE-RECONCILIATION-PROCESS.md`).
+
+**New-project onboarding convention (apply when each new spec arrives — do NOT invent
+project details ahead of time):** for each new project create a
+`build/<project-slug>/` folder with its own:
+- `PROJECT-STATE.md` — the canonical cold-resume doc (single authoritative snapshot:
+  case inventory + VIU breakdown, TestRail state, deliverables index, open threads,
+  env/access facts, ordered how-to-resume).
+- `requirements.md` — the COMPLETE spec, built from the spec the user provides
+  (Confluence pages are Atlassian-SSO login-walled → the user must export/paste the
+  content; do NOT fetch the URL — keep the canonical Confluence URL as a reference
+  pointer only).
+- `cases/` — the authored test-case source (per-project `<PREFIX>-<AREA>-NN` IDs).
+- `testrail-id-map.csv` — the internal-ID ↔ TestRail Case-ID map (Standing Rule 8).
+- Record the project's **canonical spec URL + PO name** (never mix PO attributions
+  across projects).
+Then add a **per-project CLAUDE.md entry** with a concise STATUS line that points at
+that project's `PROJECT-STATE.md` as the canonical resume doc. Per **Standing Rule
+11**, whenever a new/updated spec arrives OR a VIU is requested, ALWAYS ASK which
+process(es) to run before proceeding.
 
 1. **Custom Roles project** — Custom Roles & Permissions (ShopView), Epic
    **SV-7388**, STAGING. **Canonical spec (Confluence):**
@@ -106,13 +128,14 @@ all).
    (Atlassian-SSO login-walled — reference pointer only; export/paste content to
    ingest, do NOT fetch). **CANONICAL STATE DOC (read first for
    resume):** `build/simple-flow/PROJECT-STATE.md` — the single authoritative
-   snapshot (case inventory 163 + VIU breakdown, TestRail state, deliverables
+   snapshot (case inventory 170 + VIU breakdown, TestRail state, deliverables
    index, open threads, env/access facts, how-to-resume). Memory:
    `build/simple-flow/*`
-   (`requirements.md` = COMPLETE spec, 17 stories SV-7696..SV-7710 + SV-7870 +
-   SV-7876 + §9/§10 SV-8183 permissions; `design-notes.md`; `viu-findings.md`;
-   `cases/*.json` = 163 authored cases with `SF-` IDs; `SimpleFlow_V1_TestCases.xlsx/.csv`;
-   `build_workbook.py` + `gen_cases.py`). All 163 cases in TestRail EXCEPT SF-QB-09
+   (`requirements.md` = COMPLETE spec, 17 stories SV-7696..SV-7710 + SV-7870
+   [incl. R12/R13 auto-complete = SV-8303] + SV-7876 + §9/§10 SV-8183 permissions;
+   `design-notes.md`; `viu-findings.md`;
+   `cases/*.json` = 170 authored cases with `SF-` IDs; `SimpleFlow_V1_TestCases.xlsx/.csv`;
+   `build_workbook.py` + `gen_cases.py`). 169/170 cases in TestRail EXCEPT SF-QB-09
    (no C-ID, Open-Question). **A QA execution run EXISTS — run 325 "Simple Flow -
    Ayesha Khan -> Specs 7/7/2026"** (project 1/suite 1; snapshot 48 Passed / 6 Failed
    / 13 Blocked / 89 Untested; results logged by Ayesha 2026-07-13). It was **NOT
@@ -124,46 +147,55 @@ all).
    unexplained → need live re-VIU; SF-VPART-01/02 likely stale-7/7-baseline tied to
    known BUG-9) + ingest Jira **SV-8303** (Ayesha's SF-SET-10 note flags a coming
    spec change).
-   **STATUS: VIU-PROCESS COMPLETE + ALL VIU-PENDING DRIVEN TO A VERDICT (through
-   2026-07-14).** PROJECT-STATE.md is the canonical resume doc — read it first.
-   Full build-accurate wording+VIU pass (all 163, pushed 200/200) + V2.4 Δ1-Δ4
-   applied (+ new SF-VEND-06=C29442) + reviewer≠completer DESCOPED (self-review
-   allowed when role holds Mark Reviewed; BUG-5 dropped) + spec-relevance
-   reconciliation (0 obsolete, 3 label cases fixed, deliverables grep-clean) +
-   run-325 (Ayesha) reconciled (3 disputed fails reaffirmed Verified, SF-COMP-21/22
-   flipped Verified) + the 2026-07-14 VIU grind (7 flipped Verified, 8
-   awaiting-Milos, SF-VMIS-06 new Deviation, 17→Blocked-Env). Roles matrix
-   re-derived — **Technician NOT drifted on sv7301.** **Final tally (163):
-   VIU-Verified 125 / VIU-observed-awaiting-Milos 8 / Blocked-Env 27 / Deviation 2 /
-   Open-Question 1; VIU-Pending = 0.** Stories 7/8/9/14 CONFIRMED BUILT; DEV-NOT-BUILT
-   = 0. **162/163 current in TestRail** (SF-QB-09 unmapped, no C-ID). **Deviations
-   (2):** SF-SET-03 (no Create Purchase Orders toggle) + SF-VMIS-06 (no Vendor-Missing
-   "needs vendor" report). Build findings OBS-6 (Part-History 500) + OBS-7 (universal
-   disabled-Complete gate on unapproved line, expected). **WAITING ON:** Milos
-   Round-3 answers (the 8 awaiting-Milos: SF-SET-08/COMP-06/RCV-05/RCV-07/REV-11/
-   REV-15/UX-04/QB-02, + the earlier MILOS set; 3 deliverables ready to send:
-   PO-Questions-Round3.xlsx, SimpleFlow_Bugs-for-Milos-Confirm.xlsx,
-   SimpleFlow_Bug-Drafts.xlsx); Jira SV-8303 (coming spec change flagged by Ayesha on
-   SF-SET-10 — ingest next spec round). **27 Blocked-Env** with precise reasons
-   (§0-ZZ): QuickBooks not connected (9, needs QB-connected company + human in QB),
-   special-order vendor cores not creatable (9), invoiced/paid WO not drivable (3),
-   inline-PN/OBS-6 (3), merge auto-consolidates (2), VIN-less asset (1). 4 active bug
-   drafts (TICKET 2-5) unfiled (no Atlassian in this env); OBS-6 + SF-VMIS-06 gap for
-   dev. SF-QB-09 unmapped in testrail-id-map.csv (Open-Question, not in TestRail) —
-   follow-up.
+   **STATUS: VIU-PROCESS COMPLETE + spec `_3` (de-facto V2.5) / design `_4` APPLIED +
+   IN TESTRAIL; ALL VIU-PENDING = 0 (through 2026-07-14). 170 cases: VIU-Verified 134 /
+   VIU-observed-awaiting-Milos 8 / Blocked-Env 25 / Deviation 2 / Open-Question 1.
+   Waiting on Milos Round-3 + QB-connected env + a dev-seeded special-order core.
+   PROJECT-STATE.md = canonical resume doc (read first).** Detail: full build-accurate
+   wording+VIU pass (all 163, 200/200) + V2.4 Δ1-Δ4 (+ SF-VEND-06=C29442) +
+   reviewer≠completer DESCOPED (self-review allowed when role holds Mark Reviewed; BUG-5
+   dropped) + spec-relevance reconciliation + run-325 (Ayesha) reconciled + the
+   2026-07-14 VIU grind (drove VIU-Pending to 0) + the **spec `_3`/design `_4` pass**:
+   Δ5 auto-complete (Story 16 R12/R13 = SV-8303) authored **7 new SF-AUTO cases
+   C29461–C29467** (sections 4092 UI / 4093 API; 01/02/03/05/07 Verified, 04
+   [delete-lines API 500] + 06 [UI clock-out] Blocked-Env), Δ6 flipped SF-SET-10
+   Verified (resolves SV-8303/run-325), Δ7 S10-R2 first-class-part DEPRECATED
+   (SF-PNFIX-02/03/06 + SF-QB-08 rescoped → Verified), design `_4` flipped SF-CORE-03
+   (core un-skippable at completion; core BEHAVIOR still Blocked-Env — needs a
+   dev-seeded vendor-sourced core). **TestRail push: 18 update_case + 7 add_case + 2
+   add_section, all 200/200, no writes to run 325.** Roles matrix re-derived —
+   **Technician NOT drifted on sv7301.** Stories 7/8/9/14/16-auto CONFIRMED BUILT;
+   DEV-NOT-BUILT = 0. **169/170 current in TestRail** (SF-QB-09 unmapped, no C-ID).
+   **Deviations (2):** SF-SET-03 (no Create Purchase Orders toggle) + SF-VMIS-06 (no
+   Vendor-Missing "needs vendor" report). Build findings OBS-6 (Part-History 500) +
+   OBS-7 (universal disabled-Complete gate on unapproved line, expected). **WAITING
+   ON:** Milos Round-3 (8 awaiting-Milos: SF-SET-08/COMP-06/RCV-05/RCV-07/REV-11/
+   REV-15/UX-04/QB-02 + earlier MILOS set; deliverables ready: PO-Questions-Round3.xlsx,
+   SimpleFlow_Bugs-for-Milos-Confirm.xlsx, SimpleFlow_Bug-Drafts.xlsx); **25 Blocked-Env**
+   (§0-ZZ/§0-AA): QuickBooks not connected (9, needs QB-connected company + human in QB),
+   special-order vendor-sourced cores not creatable — needs dev-seeded core (SF-CORE
+   set), invoiced/paid WO not drivable (3), merge auto-consolidates (2), VIN-less asset
+   (1), SF-AUTO-04 (API-500 fix) + SF-AUTO-06 (UI clock-out) (2). Run-325 Ayesha status
+   cross-referenced in `run325-status-map-2026-07-14.md`. **Doc self-contradiction to
+   flag for Milos:** spec `_3` strikes S10-R2 but Story-10 AC bullets + technical
+   guardrails still describe first-class-part creation. Bug drafts (TICKET 2-5) unfiled
+   (no Atlassian in this env); OBS-6 + SF-VMIS-06 + SF-AUTO-04 API-500 for dev. SF-QB-09
+   unmapped in testrail-id-map.csv (Open-Question, not in TestRail) — follow-up.
+   Pre-existing residue: 3 QA WOs left Complete (reversible in-app only).
    **qb/sv7301 env is SHARED — re-read settings before runs, restore byte-identical
    after** (node-fetch-ignores-proxy gotcha → use undici ProxyAgent). All detail
    (deltas, blockers, env, how-to-resume) in PROJECT-STATE.md = canonical resume doc.
    *TestRail import (INTERIM):* `testrail-import/simple-flow-v1-testrail-import.csv`
-   (+ `.xlsx`), all 163 cases via `build/simple-flow/gen_import.py`; **VIU-word-free
+   (+ `.xlsx`), all 169 mapped cases via `build/simple-flow/gen_import.py`; **VIU-word-free
    and feature-flag-free by user rule** (settings-driven, so settings preconditions
    are kept); INTERIM pending post-VIU + dev-answer finalization (see
    `build/simple-flow/RESUME-STRATEGY.md`). Permissions: REQUIRES definition (no role
    matrix) — see `build/PERMISSIONS-ASSESSMENT.md`.
    **Simple Flow contradiction rule:** when two inputs conflict (spec doc vs answer
    sheet vs design), the MOST RECENT update is authoritative (last-update-wins). The
-   V2.4 spec doc + 2026-07-08 design bundle are the latest and override the earlier
-   round-1 answer sheet where they disagree.
+   spec `_3` (de-facto V2.5) doc + 2026-07-14 design `_4` bundle are the latest and
+   override the earlier V2.4 doc / round-1 answer sheet where they disagree (e.g. the
+   V2.4 note #6 first-class-part requirement was REVERSED by spec `_3` Δ7).
 
 **STANDING RULES (apply to all projects):**
 1. **Never proceed without the complete set of information needed.** If
