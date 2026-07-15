@@ -65,9 +65,21 @@ Update Title / Preconditions / Steps / Expected of every case in the area:
 - **Never invent** — if a term cannot be confirmed from the build, **FLAG it** rather than
   guess.
 
-**(3) VIU the behavior.**
-Exercise the case live. Set `viu_status` on the case JSON (Verified / Deviation /
-Blocked-* / Pending) + a **one-line evidence note** + the `fresh_run: <date>` stamp.
+**(3) VIU the behavior — LIVE UI-OBSERVED, with evidence, never inferred.**
+Exercise the case **live in the UI** and capture evidence **that run** (a screenshot
+and/or the captured API response). For **permission/role** cases this means actually
+logging in / driving the UI **AS the actual role** and **OBSERVING the control**, PER
+role, PER environment — **never** inferred from role definitions, `fe_permissions`,
+atoms, prior data, or source code. Set `viu_status` on the case JSON (Verified /
+Deviation / Blocked-* / Pending) + a **one-line evidence note** + the
+`fresh_run: <date>` stamp. A case is **Verified ONLY when its behavior was directly
+observed live with evidence**; anything not directly observed is **Blocked / NOT
+VERIFIED** with the reason stated — never silently derived and passed off as done. If
+a live check cannot be completed (session/cookie expired, screen unreachable, env
+down), **STOP** and report plainly what could not be verified and what is needed
+(e.g. fresh cookies); do NOT substitute inference to appear complete. (This is
+Standing Rule 12 — verified means observed, never inferred; it governs this step
+absolutely.)
 
 **(4) Commit the area, then push it to TestRail.**
 - **Commit by explicit pathspec** (only the files you changed — rebase-safe; never

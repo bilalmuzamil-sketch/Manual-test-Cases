@@ -284,12 +284,20 @@ process(es) to run before proceeding.
     the rule-9 method): capture the EXACT on-screen labels LIVE from the build →
     rewrite every case Title/Preconditions/Steps/Expected into build-accurate,
     layman, non-technical wording (never invented; flag anything unconfirmable) →
-    VIU-verify behavior → checkpoint-commit → push to TestRail via `update_case`
+    VIU-verify behavior **LIVE with evidence** → checkpoint-commit → push to TestRail via `update_case`
     with a per-case audit log (subject to that project's TestRail authorization) →
     regenerate deliverables (Blockers Tracker + Results workbook + import, with
     TestRail Case ID + Link columns) → report each area tester-ready and **ALWAYS
     state the TestRail update status explicitly.** This is the default meaning of
-    "VIU" for EVERY project going forward.
+    "VIU" for EVERY project going forward. **The behavior-verification step MUST be
+    LIVE UI-OBSERVED with evidence captured that run (screenshot / captured API
+    response) — never inferred.** For permission/role cases this means actually
+    logging in / driving the UI AS the actual role and OBSERVING the control, PER
+    role, PER environment — never derived from role definitions, `fe_permissions`,
+    atoms, or source code. A case is only **VIU-Verified** when its behavior was
+    directly observed live with evidence; otherwise it is **Blocked / NOT VERIFIED**
+    with the reason stated. (See Standing Rule 12 — verified means observed, never
+    inferred; it governs this step absolutely.)
 11. **ALWAYS ASK which process to run on a new/updated spec OR a VIU request (all
     projects):** Whenever the user provides a spec (new or updated) OR asks to VIU,
     ALWAYS ASK the user first whether they want (1)
@@ -302,6 +310,24 @@ process(es) to run before proceeding.
     each). The two are complementary: rule-9/10 wording+VIU handles each case's
     words/behavior; the reconciliation process handles which cases should exist and
     keeps every downstream deliverable honest to the current spec.
+12. **Verified means OBSERVED, never inferred (trust rule):** When the user asks
+    for a real/live check — or ANY verification — only mark something Verified /
+    Pass / Fail / grants / blocks / present / absent if it was ACTUALLY observed
+    live in the environment with evidence (screenshot / API response captured that
+    run). NEVER fill a gap with inference from the spec, the source code, role
+    definitions, or prior data and present it as a verified result. Anything not
+    directly observed MUST be labeled explicitly 'NOT VERIFIED' (or
+    Blocked-with-reason) in the deliverable — never silently derived and passed off
+    as done. If a live check cannot be completed (session/cookie expired, screen
+    unreachable, env down), STOP and tell the user plainly what could not be
+    verified and what is needed (e.g. fresh cookies) — do NOT substitute inference
+    to appear complete. Every deliverable must clearly separate LIVE-OBSERVED
+    results from INFERRED/derived ones, with a per-item confidence/source. This is
+    absolute for release-critical and production work. Rationale: on 2026-07-14 a
+    prod-vs-staging permission comparison presented FE-gated capabilities (Send to
+    Portal/Terminal etc.) as results when they were inferred from role
+    definitions/code rather than UI-observed, and the session had expired mid-run —
+    this broke user trust and must never recur.
 
 ## Project purpose (Custom Roles project)
 Manual test-case authoring + live staging (Verify-in-UI) verification + TestRail
