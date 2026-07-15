@@ -1,3 +1,12 @@
+> # ⚠️ SUPERSEDED — DO NOT RELY ON THIS FILE (2026-07-15)
+> This deliverable presented FE-gated capabilities (Send to Portal/Terminal, etc.) as
+> results that were **INFERRED** from role definitions / source code rather than
+> observed live in the UI, and its production values were captured in a session that
+> later expired. It is **SUPERSEDED** by the observed-only rebuild
+> **`Prod-vs-Staging-LIVE-VERIFIED-2026-07-14.xlsx` / `.md`** (Standing Rules 10 & 12).
+> Notably, live observation shows **Foreman DOES show "Send to Portal"** — contradicting
+> this file's inference. Kept for history only.
+
 # Custom Roles (SV-7388) — PRODUCTION vs STAGING Permission Gaps (LIVE, VERIFIED)
 
 **Date:** 2026-07-15 · **Epic:** SV-7388 Custom Roles & Permissions · **PO:** Sasha Grosman
