@@ -96,6 +96,38 @@ Sales Representative 0767df32 / Technician 10fdbeaa / Time Clock User 36462edb
   task, commit ee7b7e9 — NOT this task). A live credential is in the repo. Recommend redacting it across
   the ingested tickets. Left untouched by this task (out of scope; verbatim ticket content).
 
+## RESIDUAL CAPS — precise status + blockers (as of commit 93594f7, matrix 14 caps x 11 roles = 95%)
+Tractable (observable with light seeding; partially explored):
+- **Approve/Decline line:** STAGING DONE (estimate WO S9-25050 had a pending line — Admin/SM/SeniorSA/
+  ServiceAdvisor/Foreman/PartsMgr SHOWN; Technician/Office/PartsTech/SalesRep/TimeClock hidden).
+  PROD needs a WO with a PENDING (unapproved) line — the prod estimate S1-720 line was already approved.
+  UNBLOCK: create a fresh prod estimate WO (New-WO flow) → its line is pending → observe per role.
+- **Assign Vendor / Fix Part #:** OBSERVABLE on the WO **Parts tab** (per-part Vendor dropdown = Assign Vendor;
+  editable Part Number field = Fix Part #; both present for Admin, screenshot staging/Admin/parts.png).
+  Needs a per-role field-enabled check on a WO with part requests. TRACTABLE next.
+- **Create customer/asset from New WO:** the New-WO creation modal (route /workorders/new redirects; opens via
+  the "New" button wizard). Needs the wizard driven per role. TRACTABLE next.
+- **See AP/AR detail:** gated by seeApArData cross-toggle; lives in a Reports/Accounts area (route not yet
+  located). Needs route discovery + per-role nav. TRACTABLE next.
+- **Invoicing create + delete/reverse:** Finance tab on an invoiced WO. New Payment (take payment) already
+  observed per role; invoice create/void/reverse actions live in the Finance ⋮ / invoice view. Partially observable.
+
+HARD blockers (need full PO/inventory lifecycle seeding — Parts MODULE at /parts/orders + /parts/deliveries,
+NOT the WO Parts tab):
+- **Order Parts action, Pick, Receive, Bulk Receive:** require a seeded Purchase Order + delivery in each env's
+  test org, then driving /parts/orders + /parts/deliveries per role. BLOCKER: no PO/delivery seeded; WO-create
+  and PO-create API endpoints not mapped this session. UNBLOCK: seed one PO + one delivery per env (ZZAUTOTEST),
+  then observe the module actions per role (or sample representative roles).
+- **Core OK/Not-OK:** needs a cored inventory part picked onto a WO line (staging cored PN P550848 per CLAUDE.md).
+  BLOCKER: no picked-core line seeded. UNBLOCK: add a core part to a WO line, then observe the line-level Ok/Not-Ok control.
+- **Part Return (approve/complete):** needs a returnable PICKED part + the return flow (line "Return" entry is
+  present on staging; complete/approve is deeper). BLOCKER: no picked-returnable part seeded.
+- **Set Line Status:** needs a line in an editable state exposing the status control. BLOCKER: line-state dependent.
+
+Efficient unblock recommendation: pre-seed ONE reference state per env (a WO with a pending line + a part request +
+a cored picked line; one PO with a delivery; one invoiced WO), tagged ZZAUTOTEST, then the observer can drive all
+roles against those fixed reference WOs — avoids re-seeding per role. Alternatively accept representative-role sampling.
+
 ## Cleanup checklist (do at very end)
 - [ ] Restore prod test staff to Office User (d238a892)
 - [ ] Restore staging tech to Technician (10fdbeaa)
