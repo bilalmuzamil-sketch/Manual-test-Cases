@@ -1,0 +1,12 @@
+{
+  "case_id": 26350,
+  "section_id": 3531,
+  "title": "A custom role with 0 users can be deleted from the three-dot menu",
+  "custom_preconds": "<ol>\n<li>A custom role named 'QA Delete OK' exists and its Users count is 0.</li>\n</ol>",
+  "custom_steps": "<ol>\n<li>Go to Settings > Roles & Permissions.</li>\n<li>Find the 'QA Delete OK' row.</li>\n<li>Click the three-dot menu in the Actions column.</li>\n<li>Click Delete.</li>\n<li>Look at the confirmation dialog.</li>\n<li>Confirm the delete.</li>\n<li>Look at the list and any message.</li>\n</ol>",
+  "custom_expected": "<p>The three-dot menu shows a Delete option.</p>\n<p>A confirmation dialog appears.</p>\n<p>After confirming, the 'QA Delete OK' row is gone from the list.</p>\n",
+  "viu_status": "VIU-Verified",
+  "evidence": "UI: Bilal - Cus (0 users) 3-dot menu shows Delete -> \"Confirmation\" dialog to delete.",
+  "fresh_run": "2026-07-13",
+  "behavioral_run": "2026-07-13"
+}

@@ -1,0 +1,25 @@
+{
+ "data": {
+  "role_code": "ROLE_TIME_CLOCK_USER",
+  "roles": [
+   "ROLE_TIME_CLOCK_USER",
+   "ROLE_USER"
+  ],
+  "permissions": [
+   {
+    "resource_name": "work_order",
+    "action_name": "view",
+    "limits": [],
+    "exclusions": []
+   },
+   {
+    "resource_name": "schedule",
+    "action_name": "view",
+    "limits": [
+     "users_only"
+    ],
+    "exclusions": []
+   }
+  ]
+ }
+}

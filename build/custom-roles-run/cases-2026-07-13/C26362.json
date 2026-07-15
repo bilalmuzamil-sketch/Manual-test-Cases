@@ -1,0 +1,12 @@
+{
+  "case_id": 26362,
+  "section_id": 3533,
+  "title": "Unticking View on Work orders also unticks Create & Edit and Delete",
+  "custom_preconds": "<ol>\n<li>In the Work orders card, View, Create & Edit and Delete are all ticked.</li>\n</ol>",
+  "custom_steps": "<ol>\n<li>Untick the View box on Work orders.</li>\n<li>Look at View, Create & Edit and Delete.</li>\n</ol>",
+  "custom_expected": "<p>Create & Edit unticks automatically.</p>\n<p>Delete unticks automatically.</p>\n<p>View is unticked.</p>\n",
+  "viu_status": "VIU-Verified",
+  "evidence": "UI: unticking Work orders View clears Create & Edit and Delete (all off).",
+  "fresh_run": "2026-07-13",
+  "behavioral_run": "2026-07-13"
+}

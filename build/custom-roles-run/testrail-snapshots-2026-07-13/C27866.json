@@ -1,0 +1,68 @@
+{
+  "ai_automated_test": null,
+  "created_by": 1,
+  "created_on": 1783153225,
+  "custom_ai_model": null,
+  "custom_ai_type": null,
+  "custom_atmstatus": 3,
+  "custom_automation_type": null,
+  "custom_expected": null,
+  "custom_goals": null,
+  "custom_mission": null,
+  "custom_preconds": "Org seeded with the default Technician-template role holding the workOrderLinesCreateAndEdit permission. A staff user enrolled in that DEFAULT Technician role (not a custom role \u2014 the own-data restriction only applies to the default Technician template). A work order exists with a line in Authorized status that is assigned to a DIFFERENT technician (or unassigned).",
+  "custom_steps": null,
+  "custom_steps_separated": [
+    {
+      "additional_info": "",
+      "content": "Log in as the default-role Technician",
+      "expected": "Work orders list is accessible",
+      "markdown_editor_id": null,
+      "refs": ""
+    },
+    {
+      "additional_info": "",
+      "content": "Open the work order detail page (/workorders/{id}) containing the authorized line assigned to another tech",
+      "expected": "Lines tab renders; the line row is visible with status badge Authorized",
+      "markdown_editor_id": null,
+      "refs": ""
+    },
+    {
+      "additional_info": "",
+      "content": "Select the line via its row checkbox",
+      "expected": "Bulk actions three-dot button becomes enabled",
+      "markdown_editor_id": null,
+      "refs": ""
+    },
+    {
+      "additional_info": "",
+      "content": "Open the three-dot bulk actions menu and click Set Line Status",
+      "expected": "Status submenu opens; Complete option is visible (only Complete for technicians)",
+      "markdown_editor_id": null,
+      "refs": ""
+    },
+    {
+      "additional_info": "",
+      "content": "Click Complete",
+      "expected": "No 403 / Access Restricted error; the line status badge updates to Complete",
+      "markdown_editor_id": null,
+      "refs": ""
+    }
+  ],
+  "custom_testrail_bdd_scenario": null,
+  "display_order": 8,
+  "estimate": null,
+  "estimate_forecast": "16sec",
+  "id": 27866,
+  "is_deleted": 0,
+  "labels": [],
+  "milestone_id": null,
+  "priority_id": 3,
+  "refs": null,
+  "section_id": 3535,
+  "suite_id": 1,
+  "template_id": 2,
+  "title": "Technician (default role, WO-Lines Create & Edit) can bulk-complete another tech's line via Set Line Status (SV-8042)",
+  "type_id": 7,
+  "updated_by": 1,
+  "updated_on": 1783155557
+}

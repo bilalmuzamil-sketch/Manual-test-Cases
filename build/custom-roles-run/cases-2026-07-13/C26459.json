@@ -1,0 +1,12 @@
+{
+  "case_id": 26459,
+  "section_id": 3543,
+  "title": "Tech view: labor rate columns and fields are hidden on work order lines",
+  "custom_preconds": "<ol>\n<li>A user has a role with View mode set to Tech view and See Financial Data ON.</li>\n</ol>",
+  "custom_steps": "<ol>\n<li>Open a work order and look at the line columns.</li>\n<li>Look for any labor rate column or field.</li>\n</ol>",
+  "custom_expected": "<p>Labor rate columns and fields are hidden, even though See Financial Data is on — the hiding comes from Tech view, not from See Financial Data.</p>\n",
+  "viu_status": "Deviation",
+  "evidence": "UI: with a tech-view role that also has See Financial Data ON (ZZAUTOTEST TechSFD), the WO lines screen SHOWS the Rate ($100), Margin, Total columns and labor $150 — labor rate is NOT hidden by tech view. With plain Technician (SFD off) money+rate are hidden. So labor-rate visibility follows See Financial Data, contradicting the case premise that tech view hides labor rate even when SFD is on. (Caveat for dev: the test role also had Work Orders Create&Edit.) screenshot techview-sfd-lines.",
+  "fresh_run": "2026-07-13",
+  "behavioral_run": "2026-07-13"
+}

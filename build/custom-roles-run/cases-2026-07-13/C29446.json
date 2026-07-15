@@ -1,0 +1,13 @@
+{
+  "case_id": 29446,
+  "section_id": 4091,
+  "title": "Time Clock user CAN read Work Orders via API",
+  "custom_preconds": "<ol>\n<li>A user is signed in with the system <strong>Time Clock</strong> role (Work Orders View, Schedule View, Timesheets View; View Mode none; every other permission OFF; read-only, can clock in/out).</li>\n<li>You have a way to send API requests to the backend (api.staging.shopview.com) as that signed-in Time Clock user.</li>\n</ol>",
+  "custom_steps": "<ol>\n<li>Send GET /api/work-orders?page=1.</li>\n<li>Send GET /api/work-orders/view/{workOrderId} for any work order.</li>\n</ol>",
+  "custom_expected": "<p>Both requests return <strong>200 OK</strong> with the work-order data.</p>\n<p>Reason: the Time Clock role has Work Orders View, so reading work orders is allowed.</p>\n",
+  "viu_status": "VIU-Verified",
+  "evidence": "API live-probe 2026-07-13 (STAGING) as Time Clock role (be58f381): GET /api/work-orders , /api/work-orders/view/{id} -> expected 200, actual 200 => Correct (allowed).",
+  "fresh_run": "2026-07-13",
+  "behavioral_run": "2026-07-13",
+  "source": "API \u2014 Time Clock Role Enforcement probe (Jira: BE Time Clock Role Permissions Not Properly Enforced)"
+}

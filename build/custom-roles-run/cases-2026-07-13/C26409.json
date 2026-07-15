@@ -1,0 +1,12 @@
+{
+  "case_id": 26409,
+  "section_id": 3538,
+  "title": "Turning Parts Department OFF then ON keeps the 3 child card choices",
+  "custom_preconds": "<ol>\n<li>In the role editor: Parts Department ON, with Part sales View + Create & Edit, Catalog and Inventory View, and Vendor and order management View/Create & Edit/Delete.</li>\n</ol>",
+  "custom_steps": "<ol>\n<li>Turn Parts Department OFF.</li>\n<li>Notice the 3 child cards are hidden.</li>\n<li>Turn Parts Department ON again.</li>\n<li>Look at the child card boxes.</li>\n</ol>",
+  "custom_expected": "<p>The child cards hide when Parts Department is off.</p>\n<p>When turned back on, all the previous box choices are kept, not reset.</p>\n",
+  "viu_status": "VIU-Verified",
+  "evidence": "UI: Parts Department OFF hides 3 children then ON again retains prior child choices (Part sales Delete + Catalog Delete stayed ON).",
+  "fresh_run": "2026-07-13",
+  "behavioral_run": "2026-07-13"
+}

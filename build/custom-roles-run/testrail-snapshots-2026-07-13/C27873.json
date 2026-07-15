@@ -1,0 +1,61 @@
+{
+  "ai_automated_test": null,
+  "created_by": 1,
+  "created_on": 1783328222,
+  "custom_ai_model": null,
+  "custom_ai_type": null,
+  "custom_atmstatus": 3,
+  "custom_automation_type": null,
+  "custom_expected": null,
+  "custom_goals": null,
+  "custom_mission": null,
+  "custom_preconds": "Feature deployed to the custom-roles enforcement env (sv5319/stage).\nA seeded Customer exists (fixture-state baseCustomerId) with its Notes tab reachable.\nA Customer note authored by the ADMIN user exists on that customer (seeded via POST /api/note/create as admin).\nTwo custom roles are provisioned via the enforcement harness: (A) Customers View + Work Orders View, NO Work Orders Delete; (B) same as A plus Work Orders Delete. Each has a dedicated confirmed user.",
+  "custom_steps": null,
+  "custom_steps_separated": [
+    {
+      "additional_info": "",
+      "content": "Log in as the role-A user (Customers View + WO View, no WO Delete) and open the seeded customer's Notes tab",
+      "expected": "The Notes tab renders and the admin-authored note card is visible",
+      "markdown_editor_id": null,
+      "refs": ""
+    },
+    {
+      "additional_info": "",
+      "content": "Locate the admin-authored note card and check its actions kebab",
+      "expected": "button_note_actions is ABSENT on another user's note (no Edit/Delete/Attach options)",
+      "markdown_editor_id": null,
+      "refs": ""
+    },
+    {
+      "additional_info": "",
+      "content": "As the role-A user, create an own note on the same customer, then check that note's card",
+      "expected": "button_note_actions IS present on the user's own note (positive control)",
+      "markdown_editor_id": null,
+      "refs": ""
+    },
+    {
+      "additional_info": "",
+      "content": "Log in as the role-B user (adds Work Orders Delete) and open the same admin-authored note card",
+      "expected": "button_note_actions is present and menu_item_delete_note is reachable",
+      "markdown_editor_id": null,
+      "refs": ""
+    }
+  ],
+  "custom_testrail_bdd_scenario": null,
+  "display_order": 17,
+  "estimate": null,
+  "estimate_forecast": "49sec",
+  "id": 27873,
+  "is_deleted": 0,
+  "labels": [],
+  "milestone_id": null,
+  "priority_id": 2,
+  "refs": null,
+  "section_id": 3534,
+  "suite_id": 1,
+  "template_id": 2,
+  "title": "Notes - modify actions on another user's note hidden without Work Order Delete (non-WO note types)",
+  "type_id": 7,
+  "updated_by": 1,
+  "updated_on": 1783329214
+}

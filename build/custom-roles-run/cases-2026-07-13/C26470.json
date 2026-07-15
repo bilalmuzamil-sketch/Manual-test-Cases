@@ -1,0 +1,12 @@
+{
+  "case_id": 26470,
+  "section_id": 3544,
+  "title": "With See Financial Data OFF, Part sales and Invoicing & payments stay inaccessible even with View, Create & Edit and Delete on",
+  "custom_preconds": "<ol>\n<li>A user is assigned a role that has Part sales set to View, Create & Edit and Delete, and Invoicing & payments set to View, Create & Edit and Delete, but See Financial Data is OFF.</li>\n</ol>",
+  "custom_steps": "<ol>\n<li>Log in as that user and try to open Part sales.</li>\n<li>Try to use the invoicing actions on a work order.</li>\n</ol>",
+  "custom_expected": "<p>Both Part sales and Invoicing & payments stay inaccessible even though their permissions are on.</p>\n<p>See Financial Data being OFF overrides those permissions.</p>\n",
+  "viu_status": "VIU-Verified",
+  "evidence": "UI/editor enforcement: a role cannot hold Part sales or Invoicing & payments with See Financial Data OFF — ticking either forces the \"Enable See Financial Data?\" dialog (C26471/C26474). So SFD OFF makes Part sales and Invoicing & payments unreachable even if View/Create&Edit/Delete were desired; the combination is prevented at save time.",
+  "fresh_run": "2026-07-13",
+  "behavioral_run": "2026-07-13"
+}

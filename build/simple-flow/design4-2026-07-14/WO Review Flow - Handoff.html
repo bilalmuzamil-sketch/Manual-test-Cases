@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WO Review &amp; Completion Flow — Developer Handoff</title>
+<link rel="stylesheet" href="colors_and_type.css">
+<style>
+  body { background: var(--sv-bg-app); color: var(--sv-grey-700); margin: 0; font-family: var(--sv-font-ui); -webkit-font-smoothing: antialiased; }
+  .page { max-width: 940px; margin: 0 auto; background: #fff; padding: 56px 64px 80px;
+    box-shadow: var(--sv-shadow-sm); }
+  .eyebrow { font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--sv-brand-blue); }
+  h1 { font-size: 30px; font-weight: 700; color: var(--sv-grey-800); letter-spacing: -0.01em; margin: 8px 0 10px; }
+  .lede { font-size: 15px; line-height: 1.6; color: var(--sv-fg-secondary); max-width: 720px; }
+  .meta { font-size: 13px; color: var(--sv-fg-tertiary); margin-top: 14px; display: flex; gap: 18px; flex-wrap: wrap; }
+  .meta b { color: var(--sv-grey-700); font-weight: 600; }
+
+  h2 { font-size: 19px; font-weight: 700; color: var(--sv-grey-800); margin: 44px 0 6px;
+    padding-top: 22px; border-top: 1px solid var(--sv-border); }
+  h2 .n { color: var(--sv-brand-blue); font-variant-numeric: tabular-nums; }
+  h3 { font-size: 15px; font-weight: 700; color: var(--sv-grey-800); margin: 24px 0 8px; }
+  p { font-size: 14px; line-height: 1.65; margin: 0 0 12px; }
+  ul, ol { font-size: 14px; line-height: 1.65; margin: 0 0 12px; padding-left: 22px; }
+  li { margin-bottom: 5px; }
+  code { font-family: var(--sv-font-mono); font-size: 12.5px; background: var(--sv-grey-100);
+    padding: 1px 6px; border-radius: 4px; color: var(--sv-grey-800); }
+  strong { color: var(--sv-grey-800); }
+
+  .tag { display: inline-flex; align-items: center; gap: 5px; padding: 2px 9px; border-radius: var(--sv-radius-pill);
+    font-size: 11px; font-weight: 700; border: 1px solid; vertical-align: middle; }
+  .tag.green { background: var(--sv-success-50); color: var(--sv-success-700); border-color: var(--sv-success-200); }
+  .tag.amber { background: var(--sv-warning-50); color: var(--sv-warning-700); border-color: var(--sv-warning-200); }
+  .tag.blue  { background: var(--sv-primary-50); color: var(--sv-primary-700); border-color: var(--sv-primary-200); }
+  .tag.grey  { background: var(--sv-grey-100); color: var(--sv-grey-600); border-color: var(--sv-grey-200); }
+
+  table { width: 100%; border-collapse: collapse; margin: 8px 0 16px; font-size: 13.5px; }
+  th { text-align: left; font-weight: 700; color: var(--sv-fg-secondary); font-size: 12px; text-transform: uppercase;
+    letter-spacing: 0.03em; padding: 9px 12px; border-bottom: 2px solid var(--sv-border-strong); }
+  td { padding: 10px 12px; border-bottom: 1px solid var(--sv-border); vertical-align: top; line-height: 1.5; }
+  td code { white-space: nowrap; }
+
+  .flow { background: var(--sv-grey-25); border: 1px solid var(--sv-border-strong); border-radius: var(--sv-radius-lg);
+    padding: 16px 18px; margin: 12px 0 18px; font-family: var(--sv-font-mono); font-size: 13px; line-height: 1.9; color: var(--sv-grey-700); }
+  .flow .ar { color: var(--sv-brand-blue); font-weight: 700; }
+
+  .note { border-left: 3px solid var(--sv-brand-blue); background: var(--sv-primary-25); padding: 12px 16px;
+    border-radius: 0 var(--sv-radius-md) var(--sv-radius-md) 0; margin: 14px 0; font-size: 13.5px; line-height: 1.6; }
+  .note.warn { border-left-color: var(--sv-warning-500); background: var(--sv-warning-50); }
+  .note.warn b { color: var(--sv-warning-800); }
+
+  .pillrow { display: flex; gap: 8px; flex-wrap: wrap; margin: 4px 0 14px; }
+
+  .toc { background: var(--sv-grey-25); border: 1px solid var(--sv-border); border-radius: var(--sv-radius-lg);
+    padding: 18px 22px; margin: 28px 0 8px; }
+  .toc ol { margin: 0; columns: 2; column-gap: 40px; }
+  .toc a { color: var(--sv-grey-700); text-decoration: none; font-weight: 500; }
+  .toc a:hover { color: var(--sv-brand-blue); }
+
+  @media print {
+    body { background: #fff; }
+    .page { box-shadow: none; max-width: none; padding: 0; }
+    h2 { break-after: avoid; }
+    table, .flow, .note { break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="eyebrow">Developer Handoff · ShopView Simple Mode</div>
+  <h1>Work Order — Review &amp; Completion Flow</h1>
+  <p class="lede">This document specifies the behavior built in the <code>WO Review Flow</code> prototype: the completion wizard, the optional review gate, the separate tech-story flow, and parts receiving. It is the source of truth for finishing implementation against the Jira stories. Every state, branch, and edge case shown in the prototype is listed here.</p>
+  <div class="meta">
+    <span><b>Prototype:</b> WO Review Flow.html</span>
+    <span><b>Epic:</b> SV-7301 (Simple Mode)</span>
+    <span><b>Stories:</b> SV-7697/98/99 · SV-7710 · SV-7870</span>
+    <span><b>Spec:</b> Simple Mode V1.4</span>
+  </div>
+
+  <div class="toc">
+    <ol>
+      <li><a href="#settings">Org settings that drive the flow</a></li>
+      <li><a href="#states">Work order states &amp; badges</a></li>
+      <li><a href="#story">Tech story (separate flow)</a></li>
+      <li><a href="#complete">Completion wizard</a></li>
+      <li><a href="#details">Details step (VIN / mileage / hrs)</a></li>
+      <li><a href="#parts">Parts &amp; receiving step</a></li>
+      <li><a href="#review">Review gate &amp; sign-off</a></li>
+      <li><a href="#matrix">Full case matrix</a></li>
+      <li><a href="#testids">Element test IDs</a></li>
+      <li><a href="#open">Open items / not built</a></li>
+    </ol>
+  </div>
+
+  <!-- 1 -->
+  <h2 id="settings"><span class="n">1.</span> Org settings that drive the flow</h2>
+  <p>Six org-level settings change how completion behaves. In the prototype these are the toggles in the bottom-right Prototype panel; in production they come from Workflow Settings.</p>
+  <table>
+    <thead><tr><th>Setting</th><th>Values</th><th>Effect</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Require review before completion</strong></td><td>On / Off</td><td>On → completing sends the WO to <span class="tag amber">Review</span> instead of <span class="tag amber">Complete</span>. Final CTA becomes "Send to Review".</td></tr>
+      <tr><td><strong>Create purchase orders</strong></td><td>On / Off</td><td>On → vendor parts generate POs; the receiving step appears. Off → no receiving step.</td></tr>
+      <tr><td><strong>Vendor invoice number</strong></td><td>Optional / Required</td><td>Sub-setting of Create POs. Required → WO cannot complete until parts are received (invoice # captured on the receiving page). Optional → user may "Complete Without Receiving".</td></tr>
+      <tr><td><strong>Require tech story</strong></td><td>On / Off</td><td>On → every line needs a tech story before completion; the tech-story flow gates the completion modal.</td></tr>
+      <tr><td><strong>Require VIN / mileage / engine hours</strong></td><td>On file / Missing</td><td>Missing → the Details step is shown to capture them. (See §5 for the review-mode split.)</td></tr>
+      <tr><td><strong>Current user role</strong></td><td>Advisor / Manager</td><td>Only a Manager (foreman/owner) can sign off review. Advisors see a disabled "Mark Reviewed" with an "Awaiting review" tooltip.</td></tr>
+    </tbody>
+  </table>
+
+  <!-- 2 -->
+  <h2 id="states"><span class="n">2.</span> Work order states &amp; badges</h2>
+  <p>The WO summary badge reflects the lifecycle. Review adds two intermediate states between Approved and Complete.</p>
+  <div class="flow">
+    Active <span class="ar">→</span> [complete] <span class="ar">→</span> <b>Review</b> <span class="ar">→</span> [mark reviewed] <span class="ar">→</span> <b>Reviewed</b> <span class="ar">→</span> [complete WO] <span class="ar">→</span> <b>Complete</b><br>
+    <span style="color:var(--sv-fg-tertiary)">— with review OFF, Active → [complete] → Complete directly —</span>
+  </div>
+  <table>
+    <thead><tr><th>State</th><th>Badge</th><th>Primary action shown</th></tr></thead>
+    <tbody>
+      <tr><td>Active (in progress)</td><td><span class="tag green">Approved</span></td><td>Complete Work Order</td></tr>
+      <tr><td>Sent for review</td><td><span class="tag amber">Review</span></td><td>Mark Reviewed <span class="tag grey">manager only</span> · Advisor sees disabled + "Awaiting review"</td></tr>
+      <tr><td>Reviewed (signed off)</td><td><span class="tag green">Reviewed</span></td><td>Complete Work Order (returns, any role)</td></tr>
+      <tr><td>Completed</td><td><span class="tag amber">Complete</span></td><td>—  (invoice-ready; success screen offers "Go To Invoice")</td></tr>
+    </tbody>
+  </table>
+  <div class="note">A status banner appears under the action bar for the <strong>Review</strong> (amber, "Ready for Review") and <strong>Reviewed</strong> (blue, "sign-off complete") states to explain what's blocking invoicing.</div>
+
+  <!-- 3 -->
+  <h2 id="story"><span class="n">3.</span> Tech story — separate flow <span class="tag blue">per line</span></h2>
+  <p>Tech story is <strong>not</strong> a step inside the completion modal. It is its own modal, because some shops have a different person enter stories than the one completing the WO.</p>
+  <h3>Entry points</h3>
+  <ul>
+    <li><strong>Inline</strong> — each line has a <strong>Story</strong> sub-row. Empty shows an "Add tech story for this line" link; clicking opens the tech-story modal at that line.</li>
+    <li><strong>As a gate</strong> — clicking <strong>Complete Work Order</strong> while "Require tech story" is on and any line is missing a story opens the tech-story modal first; on finish it chains directly into the completion modal.</li>
+  </ul>
+  <h3>Modal behavior</h3>
+  <ul>
+    <li>Header: "Tech story" + <code>WO# · Customer</code>.</li>
+    <li>Per-line card shows line number, line name, and <strong>Technician: {name}</strong>; counter reads "Line X of N".</li>
+    <li>Required textarea per line. <strong>Next</strong> is disabled until non-empty. <strong>Back</strong> appears after line 1.</li>
+    <li>Last-line button: <strong>Continue</strong> when chained into completion, otherwise <strong>Save</strong> (closes back to the WO).</li>
+    <li>Saved stories render inline: green check + the story text + an <strong>Edit</strong> link.</li>
+  </ul>
+  <div class="note warn"><b>Spec divergence to confirm (Story 15 / S15-R2):</b> V1.4 says tech story stays <b>on the line, not in a modal</b> — only mileage + VIN belong in the completion modal. Our build collects it in a dedicated modal. Decide whether to keep the modal or move story entry to the line before finalizing.</div>
+
+  <!-- 4 -->
+  <h2 id="complete"><span class="n">4.</span> Completion wizard</h2>
+  <p>Triggered by <strong>Complete Work Order</strong>. Steps are assembled dynamically — only the steps that apply are shown, with a step-pill header. Title is "Complete Work Order" (or "Complete &amp; Send to Review" in review mode).</p>
+  <table>
+    <thead><tr><th>Step</th><th>Shown when</th><th>Order</th></tr></thead>
+    <tbody>
+      <tr><td>Details (VIN / mileage / hrs)</td><td>fields missing</td><td>1st</td></tr>
+      <tr><td>Receive parts &amp; invoice</td><td>Create POs on AND parts waiting</td><td>2nd</td></tr>
+      <tr><td>Success screen</td><td>always (terminal)</td><td>last</td></tr>
+    </tbody>
+  </table>
+  <p>If no steps apply, completion goes straight to the success screen. <strong>Cancel</strong> closes the modal without changing the WO. The final CTA label is <strong>Complete Work Order</strong> or, in review mode, <strong>Send to Review</strong>.</p>
+  <h3>Success screen</h3>
+  <ul>
+    <li><strong>Complete:</strong> green check, "Work order complete", invoice total, buttons <em>Done</em> + <em>Go To Invoice</em>.</li>
+    <li><strong>Review:</strong> amber clipboard, "Sent for review", note that a manager must review before invoicing. Button <em>Done</em>.</li>
+  </ul>
+
+  <!-- 5 -->
+  <h2 id="details"><span class="n">5.</span> Details step — VIN / mileage / engine hours</h2>
+  <p>All three are required inputs; <strong>Continue</strong> is disabled until valid. On continue, values write to the vehicle sidebar.</p>
+  <div class="note warn"><b>Review-mode split (key rule):</b> when review is <b>on</b>, the Details step in "Complete &amp; Send to Review" shows <b>only Mileage + Engine Hours</b>. <b>VIN is collected later</b>, by the reviewer, in the "Mark Reviewed" dialog (required there). Rationale: the completer is not necessarily the technician, and VIN sign-off belongs to the reviewer. When review is <b>off</b>, all three are asked together in the completion modal as normal.</div>
+
+  <!-- 6 -->
+  <h2 id="parts"><span class="n">6.</span> Parts &amp; receiving step</h2>
+  <p>Only when Create POs is on and parts are waiting. Behavior depends on the Vendor-invoice setting.</p>
+  <h3>Optional vendor invoice</h3>
+  <ul>
+    <li>Modal shows "N parts waiting to receive" + note that inventory parts are auto-picked on completion.</li>
+    <li>Two actions: <strong>Receive Parts</strong> (opens the receiving page) or <strong>Complete Without Receiving</strong> / <strong>Send to Review</strong> (skip).</li>
+  </ul>
+  <h3>Required vendor invoice</h3>
+  <ul>
+    <li>Modal lists each vendor + the part(s) to receive. The completion CTA is <strong>disabled</strong> until all are received.</li>
+    <li><strong>Receive Parts</strong> opens the full receiving page; receiving captures qty, tax, date, delivery note, and the invoice number per vendor.</li>
+    <li>Each vendor receives independently; when all vendors are received the page auto-returns to the modal (~1s) with the CTA enabled.</li>
+  </ul>
+  <div class="note">The receiving page is reached <strong>identically</strong> for optional and required — "Receive Parts" always routes to the same Accept-Delivery page (supports partial qty, tax, dates). The only difference is whether skipping is allowed.</div>
+
+  <!-- 7 -->
+  <h2 id="review"><span class="n">7.</span> Review gate &amp; sign-off</h2>
+  <ol>
+    <li>Completer runs the wizard; final CTA <strong>Send to Review</strong>. WO → <span class="tag amber">Review</span>; all lines lock to <strong>Complete</strong>; inventory parts auto-picked.</li>
+    <li>A <strong>Manager</strong> clicks <strong>Mark Reviewed</strong> → confirm dialog: <strong>VIN (required, if missing)</strong> + optional review note. Confirm is disabled until VIN entered.</li>
+    <li>An <strong>Advisor</strong> cannot sign off — the button is disabled with an "Awaiting review" tooltip.</li>
+    <li>On confirm → WO completes and the invoice-ready success screen appears (Go To Invoice).</li>
+  </ol>
+
+  <!-- 8 -->
+  <h2 id="matrix"><span class="n">8.</span> Full case matrix</h2>
+  <p>Every combination the prototype demonstrates (review × PO × invoice × fields × story).</p>
+  <table>
+    <thead><tr><th>#</th><th>Settings</th><th>Path</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>Review off · PO off</td><td>Complete → (Details if missing) → success "Complete" → Go To Invoice</td></tr>
+      <tr><td>2</td><td>Review off · PO on · invoice optional</td><td>Complete → Details → Parts(optional): Receive or Complete Without Receiving → success</td></tr>
+      <tr><td>3</td><td>Review off · PO on · invoice required</td><td>Complete → Details → Parts(required): must receive all → success</td></tr>
+      <tr><td>4</td><td>Require tech story on</td><td>Complete → tech-story modal (per line) → chains into completion wizard</td></tr>
+      <tr><td>5</td><td>Review on (any PO/invoice)</td><td>Complete &amp; Send to Review → Details (<strong>mileage + hrs only</strong>) → Parts → "Send to Review" → state Review</td></tr>
+      <tr><td>6</td><td>Review on · role Advisor</td><td>Mark Reviewed disabled ("Awaiting review")</td></tr>
+      <tr><td>7</td><td>Review on · role Manager</td><td>Mark Reviewed → VIN + note dialog → Confirm → Completed → Go To Invoice</td></tr>
+      <tr><td>8</td><td>Fields on file</td><td>Details step skipped entirely</td></tr>
+      <tr><td>9</td><td>Tech story added inline first</td><td>Story rows show check + text; completion no longer gated by story</td></tr>
+    </tbody>
+  </table>
+
+  <!-- 9 -->
+  <h2 id="testids"><span class="n">9.</span> Element test IDs</h2>
+  <p>Stable hooks already in the prototype for QA automation:</p>
+  <table>
+    <thead><tr><th>Test ID</th><th>Element</th></tr></thead>
+    <tbody>
+      <tr><td><code>input_tech_story</code></td><td>Tech story textarea (per line)</td></tr>
+      <tr><td><code>button_mark_reviewed</code></td><td>Mark Reviewed action (role-gated)</td></tr>
+      <tr><td><code>input_review_vin</code></td><td>VIN field in the Mark Reviewed dialog</td></tr>
+      <tr><td><code>input_review_note</code></td><td>Optional review note</td></tr>
+      <tr><td><code>button_confirm_review</code></td><td>Confirm Reviewed</td></tr>
+    </tbody>
+  </table>
+
+  <!-- 10 -->
+  <h2 id="open"><span class="n">10.</span> Open items / not yet built</h2>
+  <ul>
+    <li><span class="tag amber">Confirm</span> <strong>Tech story placement</strong> — modal (built) vs. on-the-line (spec S15-R2).</li>
+    <li><span class="tag grey">Story 15</span> <strong>Close-vs-Cancel confirmation</strong> when leaving the completion flow mid-way (design pending in spec).</li>
+    <li><span class="tag grey">Story 4</span> <strong>Inline invoice entry inside the required-invoice modal</strong> + delete-line-from-modal — we currently route to the receiving page instead.</li>
+    <li><span class="tag grey">Story 1</span> Surface <strong>Require-review</strong> &amp; <strong>VIN-required</strong> toggles in Workflow Settings (today review lives only in the prototype panel; settings ship Mileage/Engine Hours).</li>
+    <li><span class="tag grey">Story 16</span> <strong>"Ready for Review" queue</strong> — list filter/column for reviewers.</li>
+  </ul>
+  <p style="margin-top:24px; font-size:12.5px; color:var(--sv-fg-tertiary);">Pair this with the interactive prototype (WO Review Flow.html) — drive each row of the case matrix from the Prototype panel to see the exact UI. Hand both to Claude Code to finalize against the Jira acceptance criteria.</p>
+
+</div>
+</body>
+</html>

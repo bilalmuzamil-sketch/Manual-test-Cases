@@ -1,0 +1,12 @@
+{
+  "case_id": 26464,
+  "section_id": 3543,
+  "title": "Money columns are controlled by See Financial Data, not by View mode",
+  "custom_preconds": "<ol>\n<li>User A has View mode Full View and See Financial Data OFF.</li>\n<li>User B has View mode Tech view and See Financial Data ON.</li>\n</ol>",
+  "custom_steps": "<ol>\n<li>User A opens a work order and looks at pricing columns.</li>\n<li>User B opens a work order and looks at parts pricing and labor rate fields.</li>\n</ol>",
+  "custom_expected": "<p>User A sees no money data (pricing is hidden everywhere).</p>\n<p>User B sees parts pricing and totals (See Financial Data is on), but labor rate columns and fields are still hidden because Tech view hides them separately.</p>\n",
+  "viu_status": "Deviation",
+  "evidence": "UI: money-by-SFD principle HOLDS (User A = plain Technician, SFD off -> no $/prices anywhere; User B = TechSFD, SFD on -> parts pricing + totals shown). BUT the sub-claim that labor rate columns/fields stay hidden in tech view with SFD on is NOT supported — User B saw the Rate/Margin/Total columns and labor $150. Route to dev/PO.",
+  "fresh_run": "2026-07-13",
+  "behavioral_run": "2026-07-13"
+}

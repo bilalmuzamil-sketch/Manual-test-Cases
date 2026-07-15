@@ -1,5 +1,17 @@
 # Custom Roles — RUN 331 STATE (canonical resume snapshot)
 
+> **2026-07-13 UPDATE:** A separate **build-accurate wording + VIU pass** was run over
+> ALL 252 core Custom Roles cases (sections 3528–3553): all reworded to build-accurate
+> layman wording and pushed to TestRail via `update_case` (252/252, 200/200). Section
+> 3658 stub tree deduped (3 deleted, 7 flagged). See
+> **`WORDING-VIU-STATE-2026-07-13.md`** (canonical for that effort) +
+> `testrail-wording-viu-log.md`, `wording-glossary-2026-07-13.md`,
+> `cases-2026-07-13/` (new local editable source), `section-3658-dedupe-2026-07-13.md`,
+> `CustomRoles_WordingVIU_2026-07-13.xlsx`. Several build findings surfaced (AP/AR label
+> = "View and Manage AP/AR Data"; QuickBooks stays under Integrations; Administrator
+> editable; Integrations sub-toggle built; SFD-disable prompt now built).
+
+
 > **THIS IS THE CANONICAL STATE DOC for the Custom Roles "run 331" re-test effort.**
 > A single authoritative snapshot so the effort can be picked up later with **zero
 > re-discovery**. **Last updated:** 2026-07-09.

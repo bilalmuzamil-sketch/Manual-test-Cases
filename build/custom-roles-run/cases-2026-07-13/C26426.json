@@ -1,0 +1,12 @@
+{
+  "case_id": 26426,
+  "section_id": 3539,
+  "title": "Invoicing & payments View OFF with See Financial Data ON: prices show but invoices are not reachable",
+  "custom_preconds": "<ol>\n<li>See Financial Data ON.</li>\n<li>A user has a role with Invoicing & payments View, Create & Edit and Delete all OFF.</li>\n</ol>",
+  "custom_steps": "<ol>\n<li>Open a work order.</li>\n<li>Look at the pricing columns.</li>\n<li>Look for the Finance tab.</li>\n</ol>",
+  "custom_expected": "<p>Pricing (totals, parts, labor cost) is shown.</p>\n<p>The Finance tab is hidden and invoices cannot be reached.</p>\n",
+  "viu_status": "VIU-Verified",
+  "evidence": "UI (role SFD ON + WO C&E, NO Invoicing View): the WO shows pricing/totals (SFD on) but the tabs are Lines/Notes/Stats — the Finance tab is hidden and invoices cannot be reached. screenshot inv-sfdNoInv.",
+  "fresh_run": "2026-07-13",
+  "behavioral_run": "2026-07-13"
+}

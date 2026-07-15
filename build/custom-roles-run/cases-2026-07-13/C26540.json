@@ -1,0 +1,12 @@
+{
+  "case_id": 26540,
+  "section_id": 3553,
+  "title": "A role with all permissions off blocks the user from every feature",
+  "custom_preconds": "<ol>\n<li>A custom role 'Zero Permissions' has every box and toggle off.</li>\n<li>A user is assigned that role.</li>\n</ol>",
+  "custom_steps": "<ol>\n<li>Log in as that user.</li>\n<li>Look at the landing page.</li>\n<li>Look at the top navigation and the sidebar.</li>\n<li>Try to open Work Orders, Schedule, Customers, Parts and Reports.</li>\n<li>Try opening several feature addresses directly.</li>\n</ol>",
+  "custom_expected": "<p>The landing page is minimal (for example just a profile and clock in/out).</p>\n<p>No feature navigation is available.</p>\n<p>All attempts to reach features are refused.</p>\n",
+  "viu_status": "VIU-Verified",
+  "evidence": "UI: a near-minimal custom role (only scheduleView) shows a minimal nav (just Schedule + Clock In); navigating to /reports or /administration/staff is refused and redirects to /schedule. (A truly all-off role cannot be saved — Create is disabled at zero perms, C26335 — so the practical minimum is one feature perm; that user is blocked from every other feature.) screenshot xperm-MinRole.",
+  "fresh_run": "2026-07-13",
+  "behavioral_run": "2026-07-13"
+}

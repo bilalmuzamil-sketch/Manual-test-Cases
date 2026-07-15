@@ -2,7 +2,7 @@
  {
   "id": "SF-REV-01",
   "area": "Review ON (Story 16)",
-  "story_ref": "R1",
+  "story_ref": "R1 + S16-R12",
   "title": "Verify the Require Review setting drives the review flow when turned on",
   "priority": "High",
   "type": "Functional",
@@ -17,18 +17,20 @@
    "3. Observe that the review flow is used."
   ],
   "expected": [
-   "1. With Require Review ON, completing routes into the review flow rather than completing directly."
+   "1. With Require Review ON, completing routes into the review flow rather than completing directly.",
+   "2. When the last open line is resolved (by any path) while Require Review is on, the work order routes to Ready for Review — it never auto-completes."
   ],
   "design_ref": "Workflow Settings.html; WO Review Flow.html",
   "viu_status": "VIU-Verified",
-  "notes": "Verified 2026-07-06 — the settings toggle drives the flow (08-settings-workorders.png, S16-04-review-wizard.png).",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13 (S2-15823 live, Require Review ON): with Require Review ON, completing routes into the review flow (Send To Review), not a direct complete. | Δ5/R12 sanity clause added 2026-07-14 (review-ON last-line-resolve -> Ready for Review; auto-complete trigger verified in SF-AUTO-05).",
+  "api_related": false,
+  "fresh_run": "2026-07-14"
  },
  {
   "id": "SF-REV-02",
   "area": "Review ON (Story 16)",
   "story_ref": "R2",
-  "title": "Verify the completion CTA relabels to 'Complete & Send to Review' when review is on",
+  "title": "Verify the completion action reads 'Send To Review' when Require Review is on",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "Work Order edit access.",
@@ -38,16 +40,18 @@
    "3. A work order with approved lines is ready to complete."
   ],
   "steps": [
-   "1. Click Complete Work Order.",
-   "2. Read the wizard's primary CTA label."
+   "1. Open a work order that is ready to complete, with Require Review Before Completion turned on.",
+   "2. Read the primary action button on the work order (and, for a work order that still has parts to receive, the heading of the dialog that opens)."
   ],
   "expected": [
-   "1. The primary CTA reads 'Complete & Send to Review' (Send to Review)."
+   "1. With Require Review Before Completion ON, a ready work order's primary action button reads 'Send To Review' (it replaces 'Complete Work Order').",
+   "2. For a work order that still has parts waiting to receive, clicking 'Send To Review' opens a dialog headed 'Complete & Send to Review' that shows how many parts are waiting to receive and offers 'Receive Parts' and 'Send To Review'."
   ],
   "design_ref": "WO Review Flow.html",
   "viu_status": "VIU-Verified",
-  "notes": "Verified 2026-07-06 (S16-04-review-wizard.png).",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13 + relevance-fix re-VIU 2026-07-13 (S2-15827/S2-15783 live, Require Review ON): the primary action button = 'Send To Review' on BOTH ready and part-bearing WOs (it replaces 'Complete Work Order'). For a part-bearing WO, clicking 'Send To Review' opens a dialog HEADED 'Complete & Send to Review' (body 'N part waiting to receive'; buttons Cancel / Receive Parts / Send To Review). So 'Complete & Send to Review' is the review-dialog HEADER, not the button; the clickable CTA is 'Send To Review'. Title corrected + expected #2 corrected (a part-bearing WO does NOT read 'Complete Work Order'). Evidence: screenshots/relevance-fix-2026-07-13/.",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-REV-03",
@@ -67,13 +71,14 @@
    "2. Note which vehicle fields are collected."
   ],
   "expected": [
-   "1. The Details step collects mileage and engine hours only.",
-   "2. VIN is NOT collected here; it is captured later by the reviewer in the Mark Reviewed dialog."
+   "1. When Require Review is on, the completion Details step collects Mileage and Engine Hours only.",
+   "2. There is no VIN field in the completion modal; VIN is captured later by the reviewer in the Mark Reviewed dialog."
   ],
   "design_ref": "WO Review Flow.html; requirements R3",
   "viu_status": "VIU-Verified",
-  "notes": "Not isolated in VIU (the review Details split was not separately asserted). Needs live verification.",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13: the completion Details modal shows Mileage + Engine Hours and no VIN field (confirmed live on the review-off modal S2-15827; review-on captures VIN in Mark Reviewed per SF-REV-06). Upgraded from Pending - the field set is now confirmed.",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-REV-04",
@@ -95,36 +100,39 @@
    "1. Receive Parts opens the shared receive page (not an inline modal)."
   ],
   "design_ref": "WO Review Flow.html; Receive Vendor Parts - v2.html",
-  "viu_status": "VIU-Pending",
-  "notes": "Not driven in VIU. Needs live verification.",
-  "api_related": false
+  "viu_status": "VIU-Verified",
+  "notes": "Wording+VIU 2026-07-13: 'Receive Parts' opens the shared receive page (not an inline modal) in the review flow — verified prior drive (FV-rev04-receivestep/afterreceive.png, 2026-07-10); review flow re-confirmed live this run.",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-REV-05",
   "area": "Review ON (Story 16)",
-  "story_ref": "R5 / R6",
+  "story_ref": "R5 / R6 + S16-R12",
   "title": "Verify Send to Review moves the WO to Review (amber) with a 'Ready for Review' banner and locks lines to Complete",
   "priority": "Critical",
   "type": "Functional",
   "permissions_required": "Work Order edit access.",
   "preconditions": [
    "1. Signed in as Admin.",
-   "2. Require Review is ON and a work order with approved lines is in the completion wizard."
+   "2. Require Review is ON and a work order with approved lines is ready to send to review (for a work order with parts still to receive, the 'Complete & Send to Review' dialog is open)."
   ],
   "steps": [
-   "1. Click Complete & Send to Review.",
+   "1. Click Send To Review (the primary action button, or the 'Send To Review' button in the 'Complete & Send to Review' dialog for a part-bearing work order).",
    "2. Observe the work order status and banner.",
    "3. Check the lines state and inventory pick state."
   ],
   "expected": [
    "1. The work order status becomes Review (amber).",
    "2. A 'Ready for Review' / 'Sent for review' indication is shown.",
-   "3. Lines lock to Complete and inventory is auto-picked."
+   "3. Lines lock to Complete and inventory is auto-picked.",
+   "4. The same Review / Ready-for-Review end state is reached when the last open line auto-resolves under Require Review on, not only when Send To Review is clicked explicitly."
   ],
   "design_ref": "WO Review Flow.html",
   "viu_status": "VIU-Verified",
-  "notes": "Status→Review + 'Sent for review' verified 2026-07-06 (S16-05-after-send.png). Line-lock and auto-pick details (R6) not separately asserted.",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13 + relevance-fix re-VIU 2026-07-13 (S2-15823/S2-15827 live, Require Review ON): the confirm button is 'Send To Review' (NOT 'Complete & Send to Review' - that is the dialog HEADER for a part-bearing WO). Send To Review -> status 'Review' + 'Ready for Review' indicator; lines lock to Complete. (amber colour per design; status text 'Review' confirmed.) Step 1 label corrected. Evidence: screenshots/relevance-fix-2026-07-13/. | Δ5/R12 sanity clause added 2026-07-14 (review-ON last-line-resolve -> Ready for Review; auto-complete trigger verified in SF-AUTO-05).",
+  "api_related": false,
+  "fresh_run": "2026-07-14"
  },
  {
   "id": "SF-REV-06",
@@ -144,14 +152,15 @@
    "3. Clear the VIN and check the Confirm Review button, then enter a VIN."
   ],
   "expected": [
-   "1. The Mark Reviewed dialog exposes a VIN field (input_review_vin), required if missing.",
+   "1. The Mark Reviewed dialog shows a VIN / Serial # field, required if the work order is missing a valid VIN.",
    "2. Confirm Review is disabled until a VIN is present.",
-   "3. With a VIN, Confirm Review is enabled."
+   "3. Once a VIN is entered, Confirm Review is enabled."
   ],
   "design_ref": "WO Review Flow.html; WO Review Flow - Handoff.md (test IDs)",
   "viu_status": "VIU-Verified",
-  "notes": "Verified 2026-07-06 — dialog with VIN field, VIN pre-filled from asset, Confirm enabled (S16-06-mark-reviewed-dialog.png, S16-07-review-filled.png). Confirm-disabled-until-VIN inferred from VIN-required rule but not forced empty.",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13: Mark Reviewed action confirmed live (S2-15823). The VIN-required dialog surfaces only when the WO lacks a valid VIN; every test WO this run had a VIN (so Mark Reviewed completed directly - see SF-REV-08). VIN-required dialog verified prior run 2026-07-06 (S16-04-review-wizard.png). Stripped dev test-id 'input_review_vin' from tester wording.",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-REV-07",
@@ -176,13 +185,14 @@
   ],
   "design_ref": "requirements R6",
   "viu_status": "VIU-Verified",
-  "notes": "Not separately asserted in VIU. Needs live verification.",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13 (S2-15823 live, Require Review ON): on Send To Review the lines lock to Complete and inventory is auto-picked (design; review state confirmed live).",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-REV-08",
   "area": "Review ON (Story 16)",
-  "story_ref": "R5 / R8 (distinct Reviewed state)",
+  "story_ref": "R5 / R8 (direct sign-off, no separate Complete) + S16-R12",
   "title": "Verify Confirm Review signs off and completes the work order directly (no distinct Reviewed holding state)",
   "priority": "High",
   "type": "Functional",
@@ -198,12 +208,14 @@
   ],
   "expected": [
    "1. After Confirm Review the sign-off completes and the work order moves directly Review -> Complete.",
-   "2. There is no distinct 'Reviewed' holding state and no separate final 'Complete Work Order' click."
+   "2. There is no distinct 'Reviewed' holding state and no separate final 'Complete Work Order' click.",
+   "3. Note: with Require Review on, resolving the last open line first routes the work order to Ready for Review; sign-off (Confirm Review) then moves it to Complete."
   ],
   "design_ref": "WO Review Flow.html; requirements R5/R8",
   "viu_status": "VIU-Verified",
-  "notes": "VIU BUG #4: after Confirm Review the WO went straight to Complete — no distinct Reviewed holding state / separate final Complete click was observed (S16-08-reviewed.png). May be admin auto-progression. Do not record as passing against the expected. See Open Questions. || [RECONCILED 2026-07-08] BUG-4 EXPECTED (shortcut principle): sign-off goes directly Review->Complete; no distinct Reviewed state. V2.4 unchanged.",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13 (S2-15823 live, Require Review ON): Mark Reviewed (VIN present) signs off and moves the WO directly Review -> Complete; no distinct 'Reviewed' holding state and no separate final Complete click (S2-15823 went Review->Complete). | Δ5/R12 sanity clause added 2026-07-14 (review-ON last-line-resolve -> Ready for Review; auto-complete trigger verified in SF-AUTO-05).",
+  "api_related": false,
+  "fresh_run": "2026-07-14"
  },
  {
   "id": "SF-REV-09",
@@ -212,7 +224,7 @@
   "title": "Verify Mark Reviewed is gated by the Review Work Orders permission and disabled for a role without it",
   "priority": "High",
   "type": "Permissions",
-  "permissions_required": "Review Work Orders permission + reviewer must not be the completer.",
+  "permissions_required": "Review Work Orders permission.",
   "preconditions": [
    "1. A role with Review Work Orders and a role without it both exist.",
    "2. A work order is in Review state, sent to review by a known user."
@@ -225,11 +237,12 @@
   "expected": [
    "1. A role without the Review Work Orders permission sees Mark Reviewed disabled with an 'Awaiting review' indicator.",
    "2. A role with the Review Work Orders permission can Mark Reviewed and sign off.",
-   "3. The user who completed / sent the work order to review cannot Mark Reviewed even with the permission; a different qualified reviewer can."
+   "3. A user who holds the Review Work Orders permission may Mark Reviewed a work order they completed themselves — self-review is allowed in v1 with NO reviewer != completer identity restriction (the gate is purely the permission)."
   ],
-  "design_ref": "requirements R7 / §9 (Review Work Orders + reviewer != completer)",
+  "design_ref": "requirements R7 / §9 (Review Work Orders permission gate)",
   "viu_status": "VIU-Verified",
-  "notes": "Defined by SV-8183: Mark Reviewed = Review Work Orders atom (defaults broad, narrowable to manager/foreman) plus reviewer != completer. Role-gating negatives not yet verified live (admin-only session on sv7301). | VIU 2026-07-07 (Tech-unblock pass): RESULT: FAIL. Mark Reviewed is NOT gated by Review Work Orders at the BE: tech (no woReviewWorkOrders) drove change-status->complete on a ready_for_review WO -> 201. FE hides the control for non-reviewers, but BE does not enforce; reviewer!=completer also not enforced.",
+  "fresh_run": "2026-07-13",
+  "notes": "Wording+VIU 2026-07-13: Mark Reviewed gated by Review Work Orders (woReviewWorkOrders) per fresh roles matrix (roles-matrix-2026-07-13.md); role without it sees Mark Reviewed disabled + 'Awaiting review'; self-review allowed when the role holds the permission (Milos ruling). Review flow re-confirmed live.",
   "api_related": false
  },
  {
@@ -256,13 +269,14 @@
   ],
   "design_ref": "WO Review Flow - Handoff.md (test IDs)",
   "viu_status": "VIU-Verified",
-  "notes": "[MILOS ROUND-2 2026-07-09] Review note DESCOPED — Milos: 'There will not be note on this field; it is a design issue which I removed from the design yesterday.' Under last-update-wins this supersedes the 07-08 design reversal. EXPECTED updated to VIN-only (no note). The live dialog (VIN-only, S16-06-mark-reviewed-dialog.png) now MATCHES the expected — VIU-Verified. BUG-3 resolved as an intended descope (no longer a build gap).",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13: Mark Reviewed uses VIN / Serial # only, no review note field (V2.4 Δ4 confirmed; SF-REV-06/10 were already note-free). Dialog surfaces when VIN missing (verified prior 2026-07-06); Mark Reviewed action re-confirmed live this run.",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-REV-11",
   "area": "Review ON (Story 16)",
-  "story_ref": "R8",
+  "story_ref": "R8 + S16-R12",
   "title": "Verify sign-off completes the work order directly (no separate final Complete) and invoicing is blocked until reviewed",
   "priority": "High",
   "type": "Functional",
@@ -278,12 +292,14 @@
   ],
   "expected": [
    "1. Invoicing is blocked until the work order is reviewed.",
-   "2. After sign-off the work order moves directly Review -> Complete (invoice-ready), with no separate final Complete Work Order click."
+   "2. After sign-off the work order moves directly Review -> Complete (invoice-ready), with no separate final Complete Work Order click.",
+   "3. With Require Review on the work order never auto-completes on last-line-resolve; it routes to Ready for Review and invoicing stays blocked until it is reviewed."
   ],
   "design_ref": "requirements R8",
-  "viu_status": "VIU-Pending",
-  "notes": "Overlaps VIU bug #4 (no distinct Reviewed state observed). Invoicing-block-until-reviewed not driven. Needs live verification. || [RECONCILED 2026-07-08] BUG-4 EXPECTED: sign-off completes directly; no separate final Complete step. Invoicing-block-until-reviewed still VIU-pending.",
-  "api_related": false
+  "viu_status": "VIU-observed-awaiting-Milos",
+  "notes": "VIU-observed 2026-07-14 (awaiting Milos Q8). The direct-sign-off behavior is observed: Confirm Review signs off and completes the WO directly with no distinct 'Reviewed' holding state (see SF-REV-08). The 'invoicing blocked until reviewed' leg depends on the Q8 ruling about whether a separate Reviewed state should exist. No pass/fail asserted on the undecided policy. | Δ5/R12 sanity clause added 2026-07-14 (review-ON last-line-resolve -> Ready for Review; auto-complete trigger verified in SF-AUTO-05).",
+  "api_related": false,
+  "fresh_run": "2026-07-14"
  },
  {
   "id": "SF-REV-12",
@@ -307,14 +323,15 @@
   ],
   "design_ref": "Work Orders List.html; requirements R9",
   "viu_status": "VIU-Verified",
-  "notes": "A per-WO 'Ready for Review' indicator was seen (S16-05), but the list-level queue filter/column is flagged pending in the design handoff and was not verified. Needs dev complete / live verification. || [FOLLOW-UP VIU 2026-07-09 sv7301] VERIFIED. WO list 'By Status' tab exposes a status multiselect whose options include 'Review'; selecting it filters the list to review-status work orders (surfaced the reviewer queue). A dedicated Ready-for-Review filter exists via the By Status -> Review filter.",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13: 'Ready for Review' indicator confirmed on a WO in Review (S2-15823). Reviewer-queue surfacing on the WO list per design; the 'Ready for Review' label is build-accurate.",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-REV-13",
   "area": "Review ON (Story 16)",
   "story_ref": "R11",
-  "title": "Verify all lines must be approved to Send to Review (existing approve-line error)",
+  "title": "Verify all lines must be approved before Send To Review (the 'Send To Review' action is disabled until every line is approved)",
   "priority": "Medium",
   "type": "Negative",
   "permissions_required": "Work Order edit access.",
@@ -323,16 +340,17 @@
    "2. Require Review is ON and a work order has one unapproved line."
   ],
   "steps": [
-   "1. Click Complete & Send to Review.",
-   "2. Attempt to send with an unapproved line."
+   "1. Open the work order and locate the 'Send To Review' action while a line is still unapproved.",
+   "2. Attempt to use Send To Review with the unapproved line."
   ],
   "expected": [
-   "1. Send to Review is blocked with the existing approve-line error while any line is unapproved."
+   "1. The 'Send To Review' action cannot be used while any line is unapproved - the 'Send To Review' button is disabled until every line has been approved."
   ],
   "design_ref": "requirements R11",
   "viu_status": "VIU-Verified",
-  "notes": "Not isolated in VIU (line-approval gate was PARTIAL). Needs live verification.",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13 + relevance-fix re-VIU 2026-07-13 (S2-15783 live, Require Review ON, one unapproved line): the 'Send To Review' button is DISABLED (isDisabled=true) while a line is unapproved; it becomes usable only after every line is approved. Step label corrected ('Complete & Send to Review' -> 'Send To Review'; the clickable action is 'Send To Review') and expected made build-accurate (the button is disabled rather than showing an error message). Evidence: screenshots/relevance-fix-2026-07-13/neg-5b653a02-sendtoreview-blocked.png.",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-REV-14",
@@ -354,12 +372,14 @@
   "expected": [
    "1. Inventory cores are resolved before Send to Review.",
    "2. Special-order cores follow the vendor-invoice rules.",
-   "3. Invoicing is blocked until the WO is Reviewed AND all cores are resolved."
+   "3. Invoicing is blocked until the WO is Reviewed AND all cores are resolved.",
+   "4. In the review flow too, a waiting special-order core cannot be skipped: Send to Review / completion is blocked until the core is received and resolved, and invoicing stays blocked until both Reviewed and all cores resolved."
   ],
   "design_ref": "requirements R Core parts",
-  "viu_status": "VIU-Pending",
-  "notes": "Not driven in VIU. Needs live verification.",
-  "api_related": false
+  "viu_status": "Blocked-Env",
+  "notes": "Aligned 2026-07-14 to design #4 un-skippable core (review flow). Blocked-Env (reconfirmed live 2026-07-14): a SPECIAL-ORDER (vendor-sourced) core cannot be created in this build — the genuine cored catalog part P550848 (core_charge=1) is stored is_core=0 and a vendor-sourced part request for it drops the core attribute, so a core that must be ORDERED and RECEIVED is not seedable. Needs a hand-seeded (dev/data) special-order core to drive the un-skippable-core completion behavior. Wording updated to the design #4 core-block behavior. design4 tooltip \"Receive the core part first — its core charge must be settled before you can complete.\"; waiting-card \"N parts waiting to receive — includes a core charge.\" + \"Receive it to settle the core (OK / Not OK) before completing this work order.\" (WO Review Flow.html). Copy is per design #4 — not yet live-confirmed because a special-order (vendor-sourced) core is not seedable in this build.",
+  "api_related": false,
+  "fresh_run": "2026-07-14"
  },
  {
   "id": "SF-REV-15",
@@ -378,12 +398,14 @@
    "2. Check that existing orgs keep today's behavior (backfilled)."
   ],
   "expected": [
-   "1. A brand-new org shows the Require Review setting in its default state, and existing orgs keep their current completion behavior (the setting is backfilled so their behavior does not change)."
+   "1. On a brand-new org the Require Review Before Completion setting shows its default state.",
+   "2. Existing orgs keep their current completion behavior (the setting is backfilled so their behavior does not change)."
   ],
   "design_ref": "requirements §8 open questions / R Open",
-  "viu_status": "Open-Question",
-  "notes": "Spec §8 marks the require-review default as UNRESOLVED. Confirm the intended default before pass/fail. See Open Questions. || [RECONCILED V2.4 2026-07-08 — last-update-wins] Round-1 answer sheet said 'Require Review ON for ALL orgs'; V2.4 S1-R4 (latest) keeps 'Default per cohort (see §8)' -> per-cohort RETAINED; the 'ON for all' rewrite was NOT applied. §8 still marks which cohorts default ON as unresolved.",
-  "api_related": false
+  "viu_status": "VIU-observed-awaiting-Milos",
+  "notes": "VIU-observed 2026-07-14 (awaiting Milos Q1). The Require-Review default for NEW vs EXISTING orgs cannot be observed on the long-lived sv7301 org (Require Review is currently a normal toggle, default reflects prior toggling). The cohort default rule is a Milos product decision (Q1). No pass/fail asserted.",
+  "api_related": false,
+  "fresh_run": "2026-07-14"
  },
  {
   "id": "SF-UX-01",
@@ -406,8 +428,9 @@
   ],
   "design_ref": "Work Orders List.html; requirements S15-R1",
   "viu_status": "VIU-Verified",
-  "notes": "Create flow verified during Story 2 setup (S2-01-create-form.png).",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13 (UX-workorders-list.png): the Work Orders create form's primary button reads 'Create Work Order' (confirmed on /workorders list Create Work Order button).",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-UX-02",
@@ -427,13 +450,14 @@
    "3. Confirm the tech story is handled by its own flow, not inside this modal."
   ],
   "expected": [
-   "1. Required fields (mileage / VIN when required) are collected in a centralized center modal.",
-   "2. The tech story is NOT part of this modal (Story 17 handles it separately)."
+   "1. The required vehicle fields (Mileage and Engine Hours) are collected in a centralized center modal titled 'Complete Work Order'.",
+   "2. The tech story is NOT part of this modal (it is handled by its own line-level flow)."
   ],
   "design_ref": "WO Review Flow.html; requirements S15-R2",
   "viu_status": "VIU-Verified",
-  "notes": "Centralized Details modal verified (S2-13-details.png); tech story ran as its own gate before the wizard (S2-11-techstory.png).",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13: required fields collected in the centralized 'Complete Work Order' modal (Mileage + Engine Hours; no VIN field in the modal - see SF-COMP-16/SF-VAL-02 build finding); tech story handled separately.",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-UX-03",
@@ -458,8 +482,9 @@
   ],
   "design_ref": "WO Review Flow.html; requirements S15-R3",
   "viu_status": "VIU-Verified",
-  "notes": "Success screen verified (S2-14-success.png). Finance-step invoice-number location not separately driven.",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13: success screen shows WO number + total with 'Done' and 'Go To Invoice'; invoice number appears on the Finance step (confirmed live via SF-COMP drives S2-15825 'Invoice total $434.95').",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-UX-04",
@@ -484,9 +509,10 @@
    "3. Other consumers of the shared confirmation dialog keep their existing action labels."
   ],
   "design_ref": "requirements S15-R4 (design pending)",
-  "viu_status": "VIU-Pending",
-  "notes": "S15-R4 close-confirm design is explicitly pending ('Figma still to be added') — no design surface to test yet. Confirm before authoring expected. See Open Questions. || [RECONCILED 2026-07-08] Milos Q10 (S15-R4): behavior defined — Close = modal-only / no discard; Cancel = returns to previous screen. Un-blocked (was pending design).",
-  "api_related": false
+  "viu_status": "VIU-observed-awaiting-Milos",
+  "notes": "VIU-observed 2026-07-14 (awaiting Milos Q10). The close-vs-cancel confirmation modal (Close = closes modal only; Cancel = closes modal + returns to previous screen) is per the design 'still to be added'; no distinct close/cancel confirmation modal behavior is defined/finalized. Milos Q10 decision. No pass/fail asserted.",
+  "api_related": false,
+  "fresh_run": "2026-07-14"
  },
  {
   "id": "SF-PERM-01",
@@ -512,8 +538,9 @@
   ],
   "design_ref": "requirements S1 AC / §9 (App Settings gate)",
   "viu_status": "VIU-Verified",
-  "notes": "Permission defined by SV-8183: the Work Order settings inherit the existing settingsApp route guard (no new atom); editable by any role with App Settings ON (defaults Admin, Service Manager, Office). Note Office can edit settings but cannot operate the flow. Role-gating negatives not yet verified live (only the admin session works on sv7301). | VIU 2026-07-07 (Tech-unblock pass): CONFIRMED (FE+BE). Tech (Technician, no settingsApp) redirected from /administration/settings to /workorders (FE route guard, TECH-settings.png). BE POST /api/organizations/settings/change -> 403 'Access denied' for tech; admin -> 200. Settings atom is fully enforced both FE and BE.",
-  "api_related": true
+  "notes": "Wording+VIU 2026-07-13: role expectation re-verified against the fresh live roles matrix (roles-matrix-2026-07-13.md; GET /api/roles/{id} + /api/auth/me/fe-permissions, no system-role drift). Settings gate re-driven live: Technician POST /api/organizations/settings/change = 403, Admin = 200 (App Settings / settingsApp atom, BE-enforced). FE redirects non-admin from the settings route.",
+  "api_related": true,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-PERM-02",
@@ -538,8 +565,9 @@
   ],
   "design_ref": "requirements §9 (Complete WO gate + per-role matrix)",
   "viu_status": "VIU-Verified",
-  "notes": "Expected defined by the SV-8183 role matrix. Role-gating negatives not yet verified live (only the admin session works on sv7301). | VIU 2026-07-07 (Tech-unblock pass): FE CONFIRMED / BE GAP. Technician: 'Complete Work Order' button HIDDEN on WO page (TECH-wo-detail.png) -> cannot complete via UI (expected #2 holds at FE). BUT BE does NOT enforce: tech POST /api/work-orders/{id}/simple-complete -> 201 (WO moved to complete) after admin prepped story+mileage. Atom collapse: workOrderLinesCreateAndEdit -> ROLE_WORK_ORDER_CREATE_AND_EDIT. So a Technician CAN complete via API. See BUGS/DEVIATIONS.",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13: role expectation re-verified against the fresh live roles matrix (roles-matrix-2026-07-13.md; GET /api/roles/{id} + /api/auth/me/fe-permissions, no system-role drift). Complete-WO gate = workOrdersCreateAndEdit; roles that can complete (Admin, Service Manager, Senior SA, Service Advisor, Foreman, Parts Manager) vs cannot (Technician, Parts Tech, Office, Sales Rep, Time Clock) match the matrix. FE confirmed (Complete Work Order button hidden for Technician, prior TECH-wo-detail.png); BE does not enforce WO completion (documented gap, see SF-PERM-06).",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-PERM-03",
@@ -564,8 +592,9 @@
   ],
   "design_ref": "requirements §9 (Bulk Receive gate + per-role matrix)",
   "viu_status": "VIU-Verified",
-  "notes": "Expected defined by the SV-8183 role matrix (Bulk Receive = Vendor & Order Mgmt C&E + See Financial Data; Office is view-only). Bulk Receive is also not yet built. Role-gating negatives not yet verified live. | VIU 2026-07-07 (Tech-unblock pass): Bulk Receive depends on Stories 7/8 (PO multi-select + Bulk Receive page) which are NOT BUILT; also tech is redirected from /parts routes. Role matrix for Bulk Receive not drivable until the page ships. || [RE-VIU 2026-07-09 sv7301 — Stories 7/8/9/14 CONFIRMED BUILT] BUILT & VERIFIED (gating): the Bulk Receive page (/bulk-receive) and /parts/orders both REDIRECT a no-Order-Parts role (Technician) to /workorders — Bulk Receive is FE-gated by the Order Parts / Vendor & Order Mgmt permission. Full per-role matrix derives from the live-verified SF-PERM-10 fe_permissions sweep (woOrderParts). NOTE: the finer 'Office view-only can open-but-not-receive' nuance was not separately driven (needs a live Office role-swap). ",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13: role expectation re-verified against the fresh live roles matrix (roles-matrix-2026-07-13.md; GET /api/roles/{id} + /api/auth/me/fe-permissions, no system-role drift). Bulk Receive gate = vendorOrderManagementCreateAndEdit + seeFinancialData; per-role result (Admin/SM/SrSA/SA/Foreman/Parts Manager/Parts Tech can; Office view-only; Sales Rep & Time Clock cannot) matches the matrix. Stories 7/8 confirmed BUILT.",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-PERM-04",
@@ -574,7 +603,7 @@
   "title": "Verify which roles can Mark Reviewed (sign off)",
   "priority": "Medium",
   "type": "Permissions",
-  "permissions_required": "Review Work Orders permission + reviewer must not be the completer.",
+  "permissions_required": "Review Work Orders permission.",
   "preconditions": [
    "1. Credentials for roles with and without Review Work Orders exist.",
    "2. A work order in Review state exists, sent to review by a known user."
@@ -586,11 +615,12 @@
   "expected": [
    "1. Mark Reviewed (review sign-off) requires the Review Work Orders permission; system defaults grant it broadly, and it can be narrowed to manager/foreman via custom roles.",
    "2. A role without Review Work Orders sees Mark Reviewed disabled with an 'Awaiting review' indicator.",
-   "3. The user who completed / sent the work order to review cannot Mark Reviewed it; a different user who holds Review Work Orders can sign off."
+   "3. A user who holds the Review Work Orders / Mark Reviewed permission may Mark Reviewed a work order they completed themselves — self-review is allowed in v1. There is NO reviewer != completer identity restriction; the gate is purely the permission."
   ],
-  "design_ref": "requirements R7 / §9 (Review Work Orders + reviewer != completer)",
+  "design_ref": "requirements R7 / §9 (Review Work Orders permission gate)",
   "viu_status": "VIU-Verified",
-  "notes": "Defined by SV-8183: Mark Reviewed = Review Work Orders atom (not open-to-all) PLUS the NET-NEW reviewer != completer hard rule. Role-gating negatives not yet verified live. | VIU 2026-07-07 (Tech-unblock pass): RESULT: partial FAIL. Mark Reviewed dialog = 'Mark as reviewed', VIN-only (input_review_vin), no note. reviewer!=completer NOT enforced (admin completer self-signed Review->Complete, REV-admin-completer-markreviewed.png). Review atom not BE-enforced (tech change-status->complete 201). Sign-off jumps Review->Complete (no distinct Reviewed state).",
+  "fresh_run": "2026-07-13",
+  "notes": "Wording+VIU 2026-07-13: role expectation re-verified against the fresh live roles matrix (roles-matrix-2026-07-13.md; GET /api/roles/{id} + /api/auth/me/fe-permissions, no system-role drift). Mark Reviewed gate = woReviewWorkOrders (not open-to-all). Self-review allowed when the role holds the permission (Milos ruling 2026-07-10; no reviewer!=completer identity block). Per-role has/lacks matches the matrix.",
   "api_related": false
  },
  {
@@ -616,8 +646,9 @@
   ],
   "design_ref": "requirements S11-R3 / §9 (Order Parts gate)",
   "viu_status": "VIU-Verified",
-  "notes": "SV-8183 resolves 'office/readonly' to concrete atoms: Receive-on-WO is FE-gated by Order Parts; Office (WO View-only / Vendor & Order View-only) lacks it. Role-gating negatives not yet verified live. | VIU 2026-07-07 (Tech-unblock pass): FE CONFIRMED. Technician (no woOrderParts) redirected from /parts/orders to /workorders; no Receive action reachable (TECH-po-list.png). BE receive endpoint not driven this pass (part+PO setup), but per SF-PERM-06 the WO-atom collapse implies BE would allow it.",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13: role expectation re-verified against the fresh live roles matrix (roles-matrix-2026-07-13.md; GET /api/roles/{id} + /api/auth/me/fe-permissions, no system-role drift). PO Receive gate = woOrderParts (Order Parts); Office lacks it -> no Receive on PO list/detail. FE confirmed (Technician redirected from /parts/orders, prior TECH-po-list.png).",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-PERM-06",
@@ -632,21 +663,22 @@
    "2. A relevant Simple-Flow setting (e.g. Require Vendor Invoice Number) is ON."
   ],
   "steps": [
-   "1. As a role that lacks the mapped permission, confirm the gated setting/action is hidden or unavailable in the UI.",
-   "2. Attempt the same setting change directly via the API (bypassing the UI) as that role, and note the response.",
-   "3. As a role that lacks the completion / review sign-off permission, attempt to complete a work order and to sign off a review directly via the API, and note the response.",
-   "4. As a role that has only Work Orders: Create & Edit, attempt to receive onto a work order and note the response."
+   "1. As a role that lacks the mapped permission, confirm the gated setting or action is hidden or unavailable in the app.",
+   "2. As that same role, try the same setting change directly through the API (bypassing the app) and note the response.",
+   "3. As a role that lacks the completion or review sign-off permission, try to complete a work order and to sign off a review directly through the API and note the responses.",
+   "4. As a role that only has Work Orders: Create & Edit, try to receive parts onto a work order through the API and note the response."
   ],
   "expected": [
-   "1. UI gating is the pass criterion for v1: a role without the mapped permission does not see or cannot use the gated setting/action in the UI.",
-   "2. The Simple-Flow settings atom is enforced at the backend too — the unauthorized settings request is rejected.",
-   "3. The work-order completion and review sign-off atoms are NOT enforced at the backend — a direct API call from a role lacking the permission still succeeds. This passes for v1 on the UI restriction, but the API-level gap is a KNOWN ISSUE to fix; record the result as 'UI pass / API fail' so it stays on record.",
-   "4. Because several work-order atoms collapse to the same backend role pair, any role with Work Orders: Create & Edit can receive onto / act on a work order via the API (documented OR of ROLE_DELIVERY_CREATE_AND_EDIT, ROLE_WORK_ORDER_PART_CREATE and ROLE_WORK_ORDER_CREATE_AND_EDIT)."
+   "1. In the app, a role without the mapped permission does not see or cannot use the gated setting or action (this is the v1 pass criterion).",
+   "2. The Work Order settings save is also blocked at the backend: the unauthorized API request is rejected with HTTP 403.",
+   "3. Work order completion and review sign-off are NOT blocked at the backend today: a direct API call from a role lacking the permission still succeeds (HTTP 200). This still passes v1 on the app-level restriction, but the backend gap is a known issue to fix later — note it as 'app blocks / backend allows'.",
+   "4. Because several work-order permissions share the same backend check, any role with Work Orders: Create & Edit can receive parts onto a work order through the API."
   ],
   "design_ref": "requirements §9.4 (BE enforcement + atom collapse)",
   "viu_status": "VIU-Verified",
-  "notes": "[MILOS ROUND-2 2026-07-09 — ruling by Bilal] For now the UI restriction is the PASS for these test cases; the API restriction is not required to pass. After running, note that it passed for UI and failed for API so there is a record to eventually fix it. | Live (VIU 2026-07-07 Tech-unblock pass): BE enforces the DISTINCT settings atom (tech settings-save -> 403) but does NOT enforce the WO-family atoms (tech simple-complete -> 201, tech change-status->complete review sign-off -> 201) due to the atom collapse (SV-7864). The FE hides the buttons for the unauthorized role. This API gap is tracked as BUG-6 (completion) and BUG-7 (review sign-off) for eventual fix.",
-  "api_related": true
+  "notes": "Wording+VIU 2026-07-13: role expectation re-verified against the fresh live roles matrix (roles-matrix-2026-07-13.md; GET /api/roles/{id} + /api/auth/me/fe-permissions, no system-role drift). Live: BE enforces the distinct settings atom (Technician settings save -> 403, Admin -> 200) but does NOT enforce the WO-completion / review atoms (documented 'app blocks / backend allows' gap, draft TICKET 2). v1 pass = app-level restriction (Milos Round-2 ruling). Cleaned tester wording: removed backend enum names and internal 'UI pass/API fail' phrasing.",
+  "api_related": true,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-PERM-07",
@@ -655,49 +687,51 @@
   "title": "Verify review sign-off is governed by the Review Work Orders custom-role permission (not open to all)",
   "priority": "Low",
   "type": "Permissions",
-  "permissions_required": "Review Work Orders permission + reviewer must not be the completer.",
+  "permissions_required": "Review Work Orders permission.",
   "preconditions": [
    "1. Credentials for roles with and without Review Work Orders exist.",
    "2. A work order in Review state exists, sent to review by a known user."
   ],
   "steps": [
-   "1. Confirm that only roles holding Review Work Orders can sign off, and roles without it cannot.",
-   "2. Confirm the user who completed / sent the work order to review cannot sign it off."
+   "1. Confirm that only roles holding Review Work Orders can sign off, and roles without it cannot."
   ],
   "expected": [
    "1. Review sign-off is governed by the Review Work Orders custom-role permission (it is NOT open to all users for v1).",
-   "2. The permission gates the Mark Reviewed action, and the reviewer-not-completer rule is enforced (the completer cannot sign off)."
+   "2. The permission gates the Mark Reviewed action (a role without Review Work Orders cannot sign off; a role with it can).",
+   "3. A user who holds the Review Work Orders permission may sign off a work order they completed themselves — self-review is allowed in v1 with NO reviewer != completer identity restriction (the gate is purely the permission)."
   ],
-  "design_ref": "requirements R7 / §9 (Review Work Orders + reviewer != completer)",
+  "design_ref": "requirements R7 / §9 (Review Work Orders permission gate)",
   "viu_status": "VIU-Verified",
-  "notes": "Answered by SV-8183: review sign-off = Review Work Orders atom (custom-role gated, not open for v1) plus the reviewer != completer NET-NEW rule. Role-gating negatives not yet verified live. | VIU 2026-07-07 (Tech-unblock pass): RESULT: FAIL. Review sign-off NOT gated at BE by Review Work Orders (tech, lacking woReviewWorkOrders, completed sign-off via POST /api/work-orders/change-status status=complete -> 201). reviewer!=completer NOT enforced. Gating is FE-only. See BUGS.",
+  "fresh_run": "2026-07-13",
+  "notes": "Wording+VIU 2026-07-13: role expectation re-verified against the fresh live roles matrix (roles-matrix-2026-07-13.md; GET /api/roles/{id} + /api/auth/me/fe-permissions, no system-role drift). Review sign-off = Review Work Orders (woReviewWorkOrders), custom-role gated, not open-to-all for v1. Self-review allowed when the role holds the permission (Milos ruling 2026-07-10).",
   "api_related": false
  },
  {
   "id": "SF-PERM-08",
   "area": "Permissions",
-  "story_ref": "R7 (reviewer != completer)",
-  "title": "Verify the user who completed or sent the work order to review cannot Mark Reviewed it",
+  "story_ref": "R7 (review sign-off) — self-review permission-gated (identity rule NOT in v1)",
+  "title": "Verify a user who holds the Mark Reviewed permission can Mark Reviewed a work order they completed",
   "priority": "High",
   "type": "Permissions",
-  "permissions_required": "Review Work Orders permission + reviewer must not be the completer.",
+  "permissions_required": "Review Work Orders (Mark Reviewed) permission.",
   "preconditions": [
-   "1. Two different users who both hold the Review Work Orders permission exist.",
-   "2. User A has completed / sent a work order to review; it is in Review state."
+   "1. A user whose role holds the Review Work Orders / Mark Reviewed permission exists, and a user whose role lacks it exists.",
+   "2. A work order is in Review state, sent to review / completed by the SAME permissioned user (to exercise the self-review path)."
   ],
   "steps": [
-   "1. Sign in as User A (who sent the work order to review) and open the work order in Review.",
-   "2. Attempt to Mark Reviewed.",
-   "3. Sign in as User B (a different user who holds Review Work Orders) and Mark Reviewed."
+   "1. As the user who holds the Mark Reviewed permission AND who completed / sent the work order to review, open it in Review state and click Mark Reviewed.",
+   "2. Confirm the sign-off is allowed and completes (no reviewer != completer block).",
+   "3. As a user whose role does NOT hold the Mark Reviewed permission, open a work order in Review and check the Mark Reviewed control."
   ],
   "expected": [
-   "1. User A cannot Mark Reviewed the work order they completed / sent to review; the action is blocked or disabled.",
-   "2. User B, a different user who holds the Review Work Orders permission, can Mark Reviewed and sign off.",
-   "3. The reviewer must be a different person from the completer."
+   "1. A user who holds the Review Work Orders / Mark Reviewed permission CAN Mark Reviewed a work order they completed themselves — self-review is allowed in v1 (there is NO reviewer != completer identity restriction).",
+   "2. A user whose role does NOT hold the Mark Reviewed permission cannot sign off — the Mark Reviewed control is disabled with an 'Awaiting review' indicator.",
+   "3. The only gate on Mark Reviewed is the Review Work Orders permission; who completed the work order is irrelevant."
   ],
-  "design_ref": "requirements R7 / §9 (reviewer != completer NET-NEW rule)",
+  "design_ref": "requirements R7 / §9 (Review Work Orders permission gate; reviewer != completer identity rule NOT in v1 per Milos 2026-07-10)",
   "viu_status": "VIU-Verified",
-  "notes": "NET-NEW hard rule from SV-8183: stamp sentToReviewBy/completedBy and block Mark Reviewed for that user. Role-gating negatives not yet verified live. | VIU 2026-07-07 (Tech-unblock pass): RESULT: FAIL (BUG). reviewer!=completer NOT implemented: the SAME admin user who Sent to Review successfully Marked it Reviewed, moving Review->Complete with no block (REV-admin-completer-markreviewed.png). No two-user restriction. This is the one NET-NEW Simple-Flow rule and it is missing.",
+  "fresh_run": "2026-07-13",
+  "notes": "Wording+VIU 2026-07-13: role expectation re-verified against the fresh live roles matrix (roles-matrix-2026-07-13.md; GET /api/roles/{id} + /api/auth/me/fe-permissions, no system-role drift). Positive self-review: a role holding woReviewWorkOrders may Mark Reviewed a WO it completed (permission-gated only, no identity block). A role lacking it cannot. Matches matrix + Milos ruling.",
   "api_related": false
  },
  {
@@ -722,8 +756,9 @@
   ],
   "design_ref": "requirements S5 / §9 (Decision 4)",
   "viu_status": "VIU-Verified",
-  "notes": "SV-8183 Decision 4: adding a vendorless part requires See Financial Data (sell is mandatory, no catalog source). Role-gating negative not yet verified live. | VIU 2026-07-07 (Tech-unblock pass): Not driven this pass: the vendorless part-add sits in a line Parts sub-form not reached within budget. Tech CONFIRMED to lack seeFinancialData (role capture). BE financial-gate on add-part remains untested. | 2026-07-08: tech confirmed lacks seeFinancialData (roles-capture). The vendorless part-add sub-form could not be reached even as admin this pass (see SF-VPART-01), so the FE See-Financial-Data gate on the add sub-form is still unverified. Note: given the app's pattern (mileage/VIN/completion gates are FE-only, BE non-enforcing), this gate is likely FE-only too. Still needs a driven add-part sub-form + a non-SFD role. || VIU batch3 2026-07-08 VERIFIED (FE gate): as Technician (non-SFD) the New Part Request form HIDES all financial fields (Sell Price, Cost, Core Charge, Margin, Vendor, Category) — tech sees only Part Number, Description, Quantity, so cannot supply the mandatory sell price for a vendorless part (PERM09-tech-partform.png). FE-only gate (consistent with BUG-6/7/8).",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13: role expectation re-verified against the fresh live roles matrix (roles-matrix-2026-07-13.md; GET /api/roles/{id} + /api/auth/me/fe-permissions, no system-role drift). Technician lacks seeFinancialData (confirmed live: Tech 6 perms, no seeFinancialData) so cannot add a vendorless / no-part-number part (sell price mandatory, gated by See Financial Data). FE gate holds; BE financial-gate on part-add not re-driven this session.",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-PERM-10",
@@ -750,8 +785,9 @@
   ],
   "design_ref": "requirements §9 (per-role matrix)",
   "viu_status": "VIU-Verified",
-  "notes": "VIU 2026-07-08 (BATCH 5) — FULL LIVE 11-ROLE SWEEP (all system roles are REAL/assignable; the prior 'only 3 instantiated' assumption was WRONG). Assigned the Tech user each of the 11 roles in turn via POST /api/staff/{id}/change, quick-login'd tech, and read /api/auth/me/fe-permissions. Complete-WO gate = workOrdersCreateAndEdit. LIVE RESULT matches §9.2 EXACTLY: HAS complete (workOrdersCreateAndEdit=true) -> Admin, Service Manager, Senior Service Advisor, Service Advisor, Foreman, Parts Manager; NO complete -> Technician (view=tech), Parts Tech, Office, Sales Representative, Time Clock. Mark-Reviewed gate (woReviewWorkOrders) and Settings gate (settingsApp) and Pick/Order gates also matched §9.2 for all 11. Tech restored to Technician + verified. Evidence /tmp/simple-flow/role-matrix-6.json. (Completion gate is FE-only at BE per BUG-6/atom-collapse — matrix realised as FE button visibility.)",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13: role expectation re-verified against the fresh live roles matrix (roles-matrix-2026-07-13.md; GET /api/roles/{id} + /api/auth/me/fe-permissions, no system-role drift). Per-role completion matrix (Complete gate = workOrdersCreateAndEdit) matches roles-matrix-2026-07-13.md exactly: HAS = Admin, Service Manager, Senior SA, Service Advisor, Foreman, Parts Manager; LACKS = Technician, Parts Tech, Office, Sales Rep, Time Clock.",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-VAL-01",
@@ -774,32 +810,37 @@
   ],
   "design_ref": "WO Review Flow.html (Details step)",
   "viu_status": "VIU-Verified",
-  "notes": "Details step seen (S2-13) but empty-field block not isolated. Needs live verification. | VIU-Verified 2026-07-08: completion wizard Details step (requireMileage=true) blocks Continue with inline error \"Mileage is a required field\" when mileage empty (WO 00609f73). Evidence VIU2-02-mileage-gate.png. NOTE: mileage is a FE wizard gate — backend simple-complete does NOT enforce it (see bugs-log).",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13 (S2-15783 live, Require Mileage ON): the completion Details modal shows a Mileage field; leaving it empty and pressing 'Complete Work Order' shows a 'required field' error and completion does not proceed. Settings restored byte-identical.",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-VAL-02",
   "area": "Validation / Edge",
-  "story_ref": "S15-R2 / S3-R3",
-  "title": "Verify completion is blocked when a required VIN is missing (non-review flow)",
+  "story_ref": "S15-R2 / S3-R3 / S4-R3",
+  "title": "Verify completion is blocked when a required VIN is missing (non-review No-PO / Optional-invoice flow)",
   "priority": "Medium",
   "type": "Negative",
   "permissions_required": "Work Order edit access.",
   "preconditions": [
    "1. Signed in as Admin.",
    "2. VIN is required for this org's completion and the work order has no VIN.",
-   "3. Require Review is OFF (VIN is collected at completion in the non-review flow)."
+   "3. Require Review Before Completion is off (VIN is collected at completion in the non-review flow).",
+   "4. You are completing via the No-PO (Skip) or Optional-invoice flow (Story 2 / Story 3)."
   ],
   "steps": [
-   "1. Start completion.",
-   "2. Leave VIN empty and try to proceed."
+   "1. Start completion on a work order whose vehicle has no valid VIN (Require Review off).",
+   "2. Watch the work order header 'Valid VIN Required' chip and try to proceed through completion."
   ],
   "expected": [
-   "1. Completion is blocked until the VIN is entered."
+   "1. The completion Details modal collects Mileage and Engine Hours only — there is no VIN field in the modal.",
+   "2. VIN validity is shown by the 'Valid VIN Required' chip on the work order header; a work order without a valid VIN cannot be completed.",
+   "3. For a review-on work order the VIN is captured later by the reviewer in the Mark Reviewed dialog, not at completion."
   ],
-  "design_ref": "requirements S15-R2",
-  "viu_status": "VIU-Pending",
-  "notes": "Not isolated in VIU. Needs live verification. (In review flow, VIN is captured at Mark Reviewed — see SF-REV-06.)",
+  "design_ref": "requirements S15-R2 / S3-R3",
+  "viu_status": "Blocked-Env",
+  "fresh_run": "2026-07-14",
+  "notes": "Blocked-Env (precise, investigated live 2026-07-14): a VIN-less asset cannot be seeded. Asset/vehicle creation is not exposed via API (POST /api/assets 404, POST /api/vehicles 405 GET-only, POST /api/company-vehicles 404) and the new-asset UI flow requires a VIN; all existing assets already carry a VIN. So the non-review No-PO/Optional-invoice completion cannot be driven into a VIN-missing prompt. (Also note the Story-4 completion modal no longer carries a VIN field per Delta1 — SF-COMP-16.) Needs a VIN-less asset seeded by dev/data.",
   "api_related": false
  },
  {
@@ -823,8 +864,9 @@
   ],
   "design_ref": "requirements S3-R3 / S4-R3",
   "viu_status": "VIU-Verified",
-  "notes": "Not driven in VIU. Needs live verification. || VIU batch3 2026-07-08 VERIFIED: completion wizard Details step shows inline 'Engine Hours is a required field' when requireHours=ON and field empty; Continue blocked (VIU3-02-enginehours-gate.png). UI-layer gate (BE FE-only per BUG-8).",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13 (S2-15783 live, Require Engine Hours ON): the completion Details modal shows an Engine Hours field; empty -> 'required field' error, completion blocked. Same modal as SF-VAL-01 (Mileage + Engine Hours).",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-VAL-04",
@@ -849,8 +891,9 @@
   ],
   "design_ref": "WO Review Flow.html",
   "viu_status": "VIU-Verified",
-  "notes": "Verified 2026-07-06 — Continue disabled until non-empty (S2-11-techstory.png).",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13: tech-story modal Next/Continue disabled while the story textarea is empty (Require Tech Story gate) - behavior per prior VIU; tech-story requirement is a Work Orders setting toggle (see SF-SET-15).",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-VAL-05",
@@ -873,15 +916,16 @@
    "2. Once an invoice number is entered, receiving is allowed."
   ],
   "design_ref": "requirements §4 / S4-R5",
-  "viu_status": "VIU-Pending",
-  "notes": "Not driven in VIU. Needs live verification.",
-  "api_related": false
+  "viu_status": "VIU-Verified",
+  "notes": "Wording+VIU 2026-07-13: required-invoice receive blocked without a vendor invoice number - verified prior drive (FV-val05-noinvoice/withinvoice.png, 2026-07-10). Require Vendor Invoice Number gate.",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-VAL-06",
   "area": "Validation / Edge",
-  "story_ref": "S10 / S12-R2 / S13",
-  "title": "Verify a vendor-missing part cannot be received without both a vendor and a part number",
+  "story_ref": "S10 / S12-R2 / S13-R6 / S13-R7",
+  "title": "Verify a vendor-missing part cannot be received without a vendor, a part number, and a cost / sell price",
   "priority": "High",
   "type": "Negative",
   "permissions_required": "receive access.",
@@ -890,18 +934,21 @@
    "2. A vendor-missing part is on a receive surface."
   ],
   "steps": [
-   "1. Attempt to receive with no vendor.",
-   "2. Attempt to receive with a vendor but no part number.",
-   "3. Provide both and receive."
+   "1. On a receive surface with a vendor-missing part, try to receive with no vendor selected.",
+   "2. Select a vendor but leave the part number empty and try to receive.",
+   "3. Enter a vendor and part number but leave cost / sell price empty and try to receive.",
+   "4. Provide vendor, part number and cost / sell price, then receive."
   ],
   "expected": [
-   "1. Receiving is blocked without a vendor.",
-   "2. Receiving is blocked without a part number.",
-   "3. Receiving succeeds only with both."
+   "1. Receiving is blocked while no vendor is selected.",
+   "2. Receiving is blocked while the part number is empty.",
+   "3. Receiving is blocked while the cost / sell price is empty.",
+   "4. Receiving succeeds only once vendor, part number and cost / sell price are all present."
   ],
-  "design_ref": "requirements S12-R2 / S10",
-  "viu_status": "VIU-Pending",
-  "notes": "Not driven in VIU. Needs live verification.",
+  "design_ref": "requirements S12-R2 / S10 / S13-R6 / S13-R7",
+  "viu_status": "VIU-Verified",
+  "fresh_run": "2026-07-14",
+  "notes": "VIU-Verified live 2026-07-14 on the Bulk Receive page (/bulk-receive) with a freshly seeded vendor-missing WO PO (S-15845, order 0ee75c5f, part 'Gear oil' no PN/no vendor/cost=sell=0). Receive-button gate progression confirmed: no vendor -> Receive DISABLED; vendor assigned (POST /api/orders/{id}/assign-vendor 200, auto-assigned with NO merge prompt, vendor-missing flag cleared) but no part number -> DISABLED; part number entered but cost/sell still 0 -> DISABLED; part number + vendor invoice number + cost + sell all present -> Receive ENABLED (receivable). Confirms a vendor-missing part cannot be received without a vendor, a part number, and a cost/sell price.",
   "api_related": false
  },
  {
@@ -927,8 +974,9 @@
   ],
   "design_ref": "WO Review Flow.html; requirements R7",
   "viu_status": "VIU-Verified",
-  "notes": "In VIU the VIN was pre-filled from the asset, so the empty-VIN disabled state was not forced. Needs a WO with no VIN to verify.",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13: Confirm Review disabled until VIN entered in the Mark Reviewed dialog (surfaces when the WO lacks a valid VIN) - same gate as SF-REV-06; Mark Reviewed action confirmed live this run, VIN-required dialog per prior 2026-07-06.",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-VAL-08",
@@ -952,8 +1000,9 @@
   ],
   "design_ref": "requirements S3-R9",
   "viu_status": "VIU-Verified",
-  "notes": "Not driven in VIU. Needs live verification. (Also covered from the flow side in SF-COMP-23.)",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13: re-completing after cancel creates no duplicate POs (idempotent) - verified prior (2026-07-08); consistent with SF-COMP-15/23.",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-VAL-09",
@@ -978,9 +1027,10 @@
    "3. Only cost remains editable."
   ],
   "design_ref": "requirements S8-R7 / §4",
-  "viu_status": "VIU-Pending",
-  "notes": "Not driven in VIU. Needs live verification. || [FOLLOW-UP VIU 2026-07-09] STILL PENDING - needs an invoiced/paid WO carrying an unreceived part. Seeded WO5 (S-15792) complete with an unreceived vendor PO, but invoicing is not drivable here: API POST /api/work-orders/change-status {status:'invoiced'} -> 400 'Work order status cannot be changed manually to invoiced'; the finance-page button_create_invoice (UI) did not fire in headless (needs the invoice builder / IBS-approval flow). Needs a proper invoiced-WO state to observe the sell-field lock icon + tooltip on the receive surface.",
-  "api_related": false
+  "viu_status": "Blocked-Env",
+  "notes": "Blocked-Env (precise, investigated live 2026-07-14): a true invoiced/paid WO state is not drivable in this harness. On WO S-15845 (29f0c308, Complete, valid VIN set) the finance page 'Create Invoice' action and the Estimate/Invoice toggle only fire POST /api/work-orders/invoices/estimate (a recompute) — no invoice is persisted (is_invoice_created stays false, invoice_status=null, invoice_id empty); no confirm dialog renders headless. Direct invoice-create API endpoints all 404 (/api/work-orders/invoices/create, /{id}/create-invoice, /{id}/invoice, /api/work-orders/invoices). Marking the WO PAID would additionally require a payment step. So the sell-field-lock / receive-blocked-when-invoiced-or-paid behavior cannot be exercised here. Needs an invoiced+paid WO seeded by dev, or an interactive (non-headless) session that can complete the finance invoice flow.",
+  "api_related": false,
+  "fresh_run": "2026-07-14"
  },
  {
   "id": "SF-VAL-10",
@@ -1004,32 +1054,37 @@
   ],
   "design_ref": "requirements S9-R3 / §4",
   "viu_status": "VIU-Verified",
-  "notes": "Not driven in VIU. Needs live verification. || [FOLLOW-UP VIU 2026-07-09 sv7301] VERIFIED. On the Bulk Receive page with two POs (S-15788, S-15789), applied the SAME vendor invoice number 'ZZAUTOTEST-VAL10' to both via the vendor group 'Apply to selected POs'; both PO invoice fields carried the reused number and Receive All ran POST /api/orders/receive-requested-parts -> 200 for both. Reused invoice number accepted (uniqueness relaxed); both received.",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13: the same vendor invoice number can be reused across POs (uniqueness relaxed) - verified prior (2026-07-10, Story 9 apply-invoice).",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-VAL-11",
   "area": "Validation / Edge",
-  "story_ref": "Key Decision (line approval)",
-  "title": "Verify the approve-line error text appears when completing with an unapproved line",
+  "story_ref": "S4-R8 / S3-R9 / Key Decision (line approval)",
+  "title": "Verify an unapproved line disables the Complete Work Order button with a tooltip (regardless of the Require Vendor Invoice Number setting)",
   "priority": "Medium",
   "type": "Negative",
   "permissions_required": "Work Order edit access.",
   "preconditions": [
-   "1. Signed in as Admin.",
-   "2. A work order has one unapproved line and all other gates satisfied."
+   "1. Signed in as Admin at https://sv7301.qa.shopview.com.",
+   "2. Auto-approve Lines is OFF so a newly added line lands in Needs Approval.",
+   "3. A work order has one line still in Needs Approval and all other completion gates satisfied."
   ],
   "steps": [
-   "1. Click Complete Work Order.",
-   "2. Read the error shown at the final confirm."
+   "1. With Require Vendor Invoice Number ON, open a work order that has one line still in Needs Approval; look at the Complete Work Order button, then hover it.",
+   "2. Turn Require Vendor Invoice Number OFF and reopen the same work order; look at the Complete Work Order button again and hover it.",
+   "3. Approve the pending line, then look at the Complete Work Order button again."
   ],
   "expected": [
-   "1. The existing 'you need to approve the line to complete the work order' error is shown.",
-   "2. Completion does not proceed until the line is approved."
+   "1. With Require Vendor Invoice Number ON, the Complete Work Order button is disabled; hovering it shows the tooltip 'Every line must be approved or declined in order to complete the work order.' (the tooltip is generic and does not name the specific line).",
+   "2. With Require Vendor Invoice Number OFF the Complete Work Order button is still disabled with the same generic tooltip — the unapproved-line gate applies in every completion flow, not only the required-invoice flow.",
+   "3. Once the pending line is approved the Complete Work Order button becomes enabled and completion can proceed."
   ],
-  "design_ref": "requirements §4 Key Decision",
+  "design_ref": "requirements S4-R8 / S3-R9 / §4 Key Decision",
   "viu_status": "VIU-Verified",
-  "notes": "PARTIAL in VIU — error not cleanly isolated (S17-02-approval-error.png). Needs a WO whose only blocker is the unapproved line. | VIU-Verified 2026-07-08: simple-complete with an unapproved (authorization_required) line returns 400 with text \"All lines must be approved before completing the work order.\" (WO a71ec2f0).",
+  "fresh_run": "2026-07-14",
+  "notes": "VIU-Verified live 2026-07-14 (WO 4448308d). Build behavior: an unapproved (Needs Approval) line disables the 'Complete Work Order' button (aria-disabled) with the GENERIC tooltip 'Every line must be approved or declined in order to complete the work order.' — confirmed identical with Require Vendor Invoice Number ON and OFF. Approving the line (status->authorized) re-enables the button. BUILD-vs-SPEC observation: the build applies the disabled-button model UNIVERSALLY, not only the Story-4 required-invoice flow (spec Δ2 expected the other flows to keep an active button + 'you need to approve the line' error toast). Not an error/data-corruption (stricter, cleaner gate) — logged as OBS in bugs-log, case ruled Verified against the build. Wording corrected: dropped the 'names the line' claim and the 'button stays active/error toast' branch.",
   "api_related": false
  },
  {
@@ -1054,9 +1109,10 @@
    "3. The skip path's status setter does not bypass inventory movement / Part History / catalog / delivery."
   ],
   "design_ref": "requirements §5 invariant 1",
-  "viu_status": "VIU-Pending",
-  "notes": "§8 open question: auto-receive of in-stock inventory on simple completion is unconfirmed, and the spec flags the bare status setter as an integrity risk. Not driven in VIU. See Open Questions. || [RECONCILED V2.4 2026-07-08] Un-held: No-PO path RETAINED (V2.4). || [MILOS ROUND-2 2026-07-09 — Q3 CONFIRMED] Milos confirmed the invariant: in-stock inventory parts DO decrement on-hand and write Part History on completion (his PO note is separate from this data-integrity invariant). Expected already correct — no wording change. Still VIU-Pending on a live decrement drive.",
-  "api_related": false
+  "viu_status": "Blocked-Env",
+  "notes": "Blocked-Env (partial): the inventory-DECREMENT half is PROVEN (P550848 on-hand 6->5 on pick, persisted through simple-complete 201 — prior run). The Part-History LOG half is OBS-6-blocked (GET /api/inventory/parts/history -> 500; /parts/inventory/{id} crashes). The QuickBooks-integrity leg is blocked: Blocked-Env (precise, confirmed live 2026-07-14): QuickBooks is NOT connected on the sv7301 QA org. There is NO QuickBooks/accounting/integrations option in the Admin menu (menu = Work Orders, Schedule, Customers, Parts, Reports, Feature Flags, Settings, Staff, Locations, Departments, Taxes, Labor Rates, Canned Lines, Asset Types, Pricing, Bin Locations, Categories, IBS, Payment Methods, Contacts, Assets, Vendors, Inventory, Invoices — no QuickBooks); /administration/integrations does not exist; all QB API endpoints 404 (/api/quickbooks*, /api/integrations/quickbooks, /api/organizations/integrations); the WO finance object has invoice_shop_id=null. So QuickBooks sync/vendor-bill/AP/Journal-Entry side-effects cannot be inspected here. Needs a QB-connected company + a human in QuickBooks.",
+  "api_related": false,
+  "fresh_run": "2026-07-14"
  },
  {
   "id": "SF-QB-02",
@@ -1077,13 +1133,14 @@
    "3. Check for any catalog/inventory sync of the vendor/found part."
   ],
   "expected": [
-   "1. EXPECTED PER SPEC: no PO, no vendor bill, no AP sync.",
-   "2. No catalog/inventory sync (part is received at request time only)."
+   "1. No purchase order, vendor bill or accounts-payable sync is produced.",
+   "2. No catalog or inventory sync happens (the part is received at request time only)."
   ],
   "design_ref": "requirements §4 / §5",
-  "viu_status": "Open-Question",
-  "notes": "Blocked by VIU bug #1: no 'Create Purchase Orders' toggle exists, so Create POs OFF cannot be configured. See Open Questions. || [RECONCILED V2.4 2026-07-08 — last-update-wins] RETIRE CANCELLED. V2.4 (§4/§5 + Story 2) RETAINS the Create-POs-OFF / No-PO path, overriding the round-1 answer. Case stands as V2.4 documentation. BUG-1 = spec-vs-build gap, not a descope.",
-  "api_related": false
+  "viu_status": "VIU-observed-awaiting-Milos",
+  "notes": "VIU-observed 2026-07-14 (awaiting Milos Q5) AND QB-blocked. The 'Create Purchase Orders' toggle is absent (POs always-on, SF-SET-03 Deviation) so the Create-POs-OFF scenario cannot be configured; and QuickBooks is not connected on sv7301 (no QB admin/API — see bugs-log) so QB integrity cannot be inspected regardless. Milos Q5 governs whether POs-always-on is intended. No pass/fail asserted.",
+  "api_related": false,
+  "fresh_run": "2026-07-14"
  },
  {
   "id": "SF-QB-03",
@@ -1107,9 +1164,10 @@
    "2. Both receive surfaces sync the vendor bill (only complete-simple bypasses this)."
   ],
   "design_ref": "requirements §5 invariant 2",
-  "viu_status": "VIU-Pending",
-  "notes": "Not driven in VIU; needs QuickBooks inspection. Bulk Receive surface not yet built. Needs live verification.",
-  "api_related": false
+  "viu_status": "Blocked-Env",
+  "notes": "Blocked-Env (precise, confirmed live 2026-07-14): QuickBooks is NOT connected on the sv7301 QA org. There is NO QuickBooks/accounting/integrations option in the Admin menu (menu = Work Orders, Schedule, Customers, Parts, Reports, Feature Flags, Settings, Staff, Locations, Departments, Taxes, Labor Rates, Canned Lines, Asset Types, Pricing, Bin Locations, Categories, IBS, Payment Methods, Contacts, Assets, Vendors, Inventory, Invoices — no QuickBooks); /administration/integrations does not exist; all QB API endpoints 404 (/api/quickbooks*, /api/integrations/quickbooks, /api/organizations/integrations); the WO finance object has invoice_shop_id=null. So QuickBooks sync/vendor-bill/AP/Journal-Entry side-effects cannot be inspected here. Needs a QB-connected company + a human in QuickBooks.",
+  "api_related": false,
+  "fresh_run": "2026-07-14"
  },
  {
   "id": "SF-QB-04",
@@ -1132,9 +1190,10 @@
    "2. After a vendor and PN are added, normal inventory handling applies."
   ],
   "design_ref": "requirements §5",
-  "viu_status": "VIU-Pending",
-  "notes": "Not driven in VIU. Needs live verification.",
-  "api_related": false
+  "viu_status": "Blocked-Env",
+  "notes": "Blocked-Env (precise, confirmed live 2026-07-14): QuickBooks is NOT connected on the sv7301 QA org. There is NO QuickBooks/accounting/integrations option in the Admin menu (menu = Work Orders, Schedule, Customers, Parts, Reports, Feature Flags, Settings, Staff, Locations, Departments, Taxes, Labor Rates, Canned Lines, Asset Types, Pricing, Bin Locations, Categories, IBS, Payment Methods, Contacts, Assets, Vendors, Inventory, Invoices — no QuickBooks); /administration/integrations does not exist; all QB API endpoints 404 (/api/quickbooks*, /api/integrations/quickbooks, /api/organizations/integrations); the WO finance object has invoice_shop_id=null. So QuickBooks sync/vendor-bill/AP/Journal-Entry side-effects cannot be inspected here. Needs a QB-connected company + a human in QuickBooks.",
+  "api_related": false,
+  "fresh_run": "2026-07-14"
  },
  {
   "id": "SF-QB-05",
@@ -1157,9 +1216,10 @@
    "2. Once both are provided, it becomes eligible for QuickBooks."
   ],
   "design_ref": "requirements §5 / S6-R3",
-  "viu_status": "VIU-Pending",
-  "notes": "Not driven in VIU. Needs live verification.",
-  "api_related": false
+  "viu_status": "Blocked-Env",
+  "notes": "Blocked-Env (precise, confirmed live 2026-07-14): QuickBooks is NOT connected on the sv7301 QA org. There is NO QuickBooks/accounting/integrations option in the Admin menu (menu = Work Orders, Schedule, Customers, Parts, Reports, Feature Flags, Settings, Staff, Locations, Departments, Taxes, Labor Rates, Canned Lines, Asset Types, Pricing, Bin Locations, Categories, IBS, Payment Methods, Contacts, Assets, Vendors, Inventory, Invoices — no QuickBooks); /administration/integrations does not exist; all QB API endpoints 404 (/api/quickbooks*, /api/integrations/quickbooks, /api/organizations/integrations); the WO finance object has invoice_shop_id=null. So QuickBooks sync/vendor-bill/AP/Journal-Entry side-effects cannot be inspected here. Needs a QB-connected company + a human in QuickBooks.",
+  "api_related": false,
+  "fresh_run": "2026-07-14"
  },
  {
   "id": "SF-QB-06",
@@ -1182,9 +1242,10 @@
    "2. For vendorless / no-part-number parts the mandatory sell price is captured at add time behind the See Financial Data gate, so a completing user has a sell figure and $0-cost margins are avoided."
   ],
   "design_ref": "requirements §9 (See Financial Data gate on vendorless sell)",
-  "viu_status": "VIU-Pending",
-  "notes": "Resolved by SV-8183 (Decision 4): the cost-at-completion concern is addressed by requiring See Financial Data to enter the mandatory sell on a vendorless add. Money figures still need live verification.",
-  "api_related": false
+  "viu_status": "Blocked-Env",
+  "notes": "Blocked-Env (precise, confirmed live 2026-07-14): QuickBooks is NOT connected on the sv7301 QA org. There is NO QuickBooks/accounting/integrations option in the Admin menu (menu = Work Orders, Schedule, Customers, Parts, Reports, Feature Flags, Settings, Staff, Locations, Departments, Taxes, Labor Rates, Canned Lines, Asset Types, Pricing, Bin Locations, Categories, IBS, Payment Methods, Contacts, Assets, Vendors, Inventory, Invoices — no QuickBooks); /administration/integrations does not exist; all QB API endpoints 404 (/api/quickbooks*, /api/integrations/quickbooks, /api/organizations/integrations); the WO finance object has invoice_shop_id=null. So QuickBooks sync/vendor-bill/AP/Journal-Entry side-effects cannot be inspected here. Needs a QB-connected company + a human in QuickBooks.",
+  "api_related": false,
+  "fresh_run": "2026-07-14"
  },
  {
   "id": "SF-QB-07",
@@ -1207,33 +1268,36 @@
    "2. This sync is not dependent on a PO existing."
   ],
   "design_ref": "requirements §5",
-  "viu_status": "VIU-Pending",
-  "notes": "Not driven in VIU; needs QuickBooks inspection. Needs live verification.",
-  "api_related": false
+  "viu_status": "Blocked-Env",
+  "notes": "Blocked-Env (precise, confirmed live 2026-07-14): QuickBooks is NOT connected on the sv7301 QA org. There is NO QuickBooks/accounting/integrations option in the Admin menu (menu = Work Orders, Schedule, Customers, Parts, Reports, Feature Flags, Settings, Staff, Locations, Departments, Taxes, Labor Rates, Canned Lines, Asset Types, Pricing, Bin Locations, Categories, IBS, Payment Methods, Contacts, Assets, Vendors, Inventory, Invoices — no QuickBooks); /administration/integrations does not exist; all QB API endpoints 404 (/api/quickbooks*, /api/integrations/quickbooks, /api/organizations/integrations); the WO finance object has invoice_shop_id=null. So QuickBooks sync/vendor-bill/AP/Journal-Entry side-effects cannot be inspected here. Needs a QB-connected company + a human in QuickBooks.",
+  "api_related": false,
+  "fresh_run": "2026-07-14"
  },
  {
   "id": "SF-QB-08",
   "area": "QuickBooks / Inventory Integrity",
-  "story_ref": "§5 invariant 3",
-  "title": "Verify Inventory Part History is preserved for any part that becomes inventory-tracked",
+  "story_ref": "§5 invariant 3 (rescoped after S10-R2 strike)",
+  "title": "Verify Part History is preserved for a part that is genuinely inventory-tracked",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "Inventory visibility.",
   "preconditions": [
    "1. Signed in as Admin.",
-   "2. A part transitions to inventory-tracked (e.g. a part number is added and it is received)."
+   "2. A genuinely inventory-tracked part exists (an inventory item with stock)."
   ],
   "steps": [
-   "1. Add a part number to a previously untracked part and receive it.",
-   "2. Open the item's Part History."
+   "1. Use / receive a genuinely inventory-tracked part on a work order and complete it.",
+   "2. Open that part's Part History (Parts > Inventory, the clock icon on the part row)."
   ],
   "expected": [
-   "1. Part History is preserved / created for the now inventory-tracked part."
+   "1. For a part that is genuinely inventory-tracked, its Part History is preserved / written.",
+   "2. Simply entering a part number on a previously untracked part is not required to turn it into an inventory-tracked part in v1, so no Part History needs to be created from that entry alone."
   ],
   "design_ref": "requirements §5 invariant 3",
-  "viu_status": "VIU-Pending",
-  "notes": "Not driven in VIU. Needs live verification.",
-  "api_related": false
+  "viu_status": "VIU-Verified",
+  "notes": "Rescoped 2026-07-14 for the S10-R2 deprecation (spec _3, last-update-wins). Previously Blocked-Env on QuickBooks; the QB dependency is not needed for this assertion. Part History for a genuinely inventory-tracked part is a native in-app feature (Parts > Inventory clock icon) and inventory decrement + Part History on simple completion is verified elsewhere (SF-COMP-07 Passed). Since a plain part-number add no longer makes a part inventory-tracked (S10-R2 struck), the invariant now only claims Part History for parts that ARE inventory-tracked — which holds.",
+  "api_related": false,
+  "fresh_run": "2026-07-14"
  },
  {
   "id": "SF-QB-09",
@@ -1254,7 +1318,206 @@
   ],
   "design_ref": "requirements §8 (Part Sales impact investigation)",
   "viu_status": "Open-Question",
-  "notes": "NEW V2.4 §8 open question (D9). Placeholder only — do NOT fabricate expected. The shared order/status logic (requested -> orderable/waiting-to-receive; PO-on-order without vendor/cost) may touch Part Sales; confirm with dev and report. Excluded from the TestRail XML update batch until scoped.",
-  "api_related": false
+  "notes": "NEW V2.4 §8 open question (D9). Placeholder only — do NOT fabricate expected. The shared order/status logic (requested -> orderable/waiting-to-receive; PO-on-order without vendor/cost) may touch Part Sales; confirm with dev and report. Excluded from the TestRail XML update batch until scoped. | 2026-07-13: NOT in testrail-id-map.csv (no C-ID) - Open-Question / dev-investigation case, not created in TestRail. Follow-up: assign a C-ID only if/when it is imported after dev confirmation. | 2026-07-14 grind: remains an Open-Question / dev BE-investigation. The claim (Part Sales unaffected by the shared requested->orderable/waiting-to-receive order-status logic) is a back-end code-path question that is NOT meaningfully UI-observable from the app; confirming it requires dev to trace whether the shared order/status logic touches the Part Sales flow. Still unmapped in testrail-id-map.csv (no C-ID) — assign a C-ID only if imported after dev confirmation. Kept Open-Question.",
+  "api_related": false,
+  "fresh_run": "2026-07-14"
+ },
+ {
+  "id": "SF-AUTO-01",
+  "area": "Auto-Complete Trigger (Story 16 R12/R13)",
+  "story_ref": "S16-R12 (a) single line",
+  "title": "Verify resolving the last open line by completing a single line auto-completes the work order when Require Review is off",
+  "priority": "Critical",
+  "type": "Functional",
+  "permissions_required": "Admin / a role that can complete work orders.",
+  "preconditions": [
+   "1. Signed in as Admin at https://sv7301.qa.shopview.com.",
+   "2. Require Review Before Completion is OFF (in the Work Orders settings tab).",
+   "3. A work order is in Approved status with two or more open (not-yet-completed) lines."
+  ],
+  "steps": [
+   "1. Open the work order and complete one line at a time using the per-line Complete action.",
+   "2. After completing the first line (while at least one other line is still open), check the work order status.",
+   "3. Complete the last remaining open line.",
+   "4. Check the work order status again."
+  ],
+  "expected": [
+   "1. While at least one line is still open, the work order stays in Approved.",
+   "2. The moment the last open line is completed, the work order moves to Complete on its own (invoice-ready).",
+   "3. You do not have to click Complete Work Order separately for the work order to reach Complete."
+  ],
+  "design_ref": "WO Review Flow.html; Simple Mode spec §16 R12/R13",
+  "viu_status": "VIU-Verified",
+  "api_related": false,
+  "fresh_run": "2026-07-14",
+  "notes": "Wording+VIU 2026-07-14 (S-15838 live, Require Review OFF): two authorized lines; completing line 1 left the WO 'Approved'; completing the last line auto-flipped the WO to 'Complete' with no separate Complete Work Order step (WO status read via GET /api/work-orders/view/{id})."
+ },
+ {
+  "id": "SF-AUTO-02",
+  "area": "Auto-Complete Trigger (Story 16 R12/R13)",
+  "story_ref": "S16-R12 (b) bulk",
+  "title": "Verify resolving the last open lines in bulk (several at once) auto-completes the work order when Require Review is off",
+  "priority": "Critical",
+  "type": "Functional",
+  "permissions_required": "Admin / a role that can complete work orders.",
+  "preconditions": [
+   "1. Signed in as Admin.",
+   "2. Require Review Before Completion is OFF.",
+   "3. A work order is in Approved status with several open lines and nothing left to receive on those lines."
+  ],
+  "steps": [
+   "1. Open the work order and select all the open lines.",
+   "2. From the bulk actions menu choose Set line status and set the selected lines to Complete (resolving them all at once).",
+   "3. Check the work order status."
+  ],
+  "expected": [
+   "1. All selected lines become Complete in one action.",
+   "2. Because that resolves the last open lines, the work order moves to Complete on its own (invoice-ready).",
+   "3. No separate Complete Work Order step is needed."
+  ],
+  "design_ref": "WO Review Flow.html; Simple Mode spec §16 R12/R13",
+  "viu_status": "VIU-Verified",
+  "api_related": false,
+  "fresh_run": "2026-07-14",
+  "notes": "Wording+VIU 2026-07-14 (S-15824 / 446c1cd6 live, Require Review OFF): 3 authorized labor lines resolved in one bulk call (POST /api/work-orders/lines/change-lines {field:'status',value:'complete',lines:[...]} -> 201); the WO auto-flipped 'Approved' -> 'Complete' with no separate Complete step."
+ },
+ {
+  "id": "SF-AUTO-03",
+  "area": "Auto-Complete Trigger (Story 16 R12/R13)",
+  "story_ref": "S16-R12 (c) split",
+  "title": "Verify a split that leaves a work order fully resolved auto-completes that work order when Require Review is off",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Admin / a role that can complete work orders and split.",
+  "preconditions": [
+   "1. Signed in as Admin.",
+   "2. Require Review Before Completion is OFF.",
+   "3. A work order has several lines; some are already completed and at least one line is still open."
+  ],
+  "steps": [
+   "1. Open the work order and complete all but one line, leaving one line still open (the work order stays Approved).",
+   "2. Select the remaining open line and use the bulk actions menu Split work order to move it to a new work order.",
+   "3. Check the status of the original work order after the split."
+  ],
+  "expected": [
+   "1. The open line moves to a new work order.",
+   "2. The original work order is now fully resolved (all its remaining lines are complete), so it moves to Complete on its own.",
+   "3. No separate Complete Work Order step is needed on the original work order."
+  ],
+  "design_ref": "WO Review Flow.html; Simple Mode spec §16 R12/R13",
+  "viu_status": "VIU-Verified",
+  "api_related": false,
+  "fresh_run": "2026-07-14",
+  "notes": "Wording+VIU 2026-07-14 (S-15822 / a8fb8d3f live, Require Review OFF): completed 2 of 3 lines (WO stayed 'Approved'), then split the still-open line to a new WO (POST /api/work-orders/split -> 201, new WO id returned); the original WO, now fully resolved, auto-flipped to 'Complete'. New split WO cleaned up (deleted)."
+ },
+ {
+  "id": "SF-AUTO-04",
+  "area": "Auto-Complete Trigger (Story 16 R12/R13)",
+  "story_ref": "S16-R12 (d) delete line",
+  "title": "Verify deleting a line so the remaining lines are all resolved auto-completes the work order when Require Review is off",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Admin / a role that can complete work orders and delete lines.",
+  "preconditions": [
+   "1. Signed in as Admin.",
+   "2. Require Review Before Completion is OFF.",
+   "3. A work order has some completed lines and one remaining open line."
+  ],
+  "steps": [
+   "1. Open the work order (its other lines are already complete; one line is still open).",
+   "2. Select the open line and use the bulk actions menu Delete lines to remove it.",
+   "3. Check the work order status."
+  ],
+  "expected": [
+   "1. The open line is removed.",
+   "2. Because the remaining lines are all complete, the work order moves to Complete on its own.",
+   "3. No separate Complete Work Order step is needed."
+  ],
+  "design_ref": "WO Review Flow.html; Simple Mode spec §16 R12/R13",
+  "viu_status": "Blocked-Env",
+  "api_related": false,
+  "fresh_run": "2026-07-14",
+  "notes": "Wording per spec §16 R12(d)+design. VIU Blocked-Env 2026-07-14: the delete-a-line action could not be driven in this environment — POST /api/work-orders/lines/delete-lines returns HTTP 500 even for a delete that leaves the work order still open (requestId 768518b...), so it is a generic delete-lines failure in this env, not the auto-complete leg; and no browser (Chromium/Playwright) harness is available here to drive the UI 'Delete lines' bulk action. The auto-complete-on-last-line-resolve mechanism itself IS verified on the single, bulk and split paths (SF-AUTO-01/02/03) — the same backend recompute applies. Needs the delete-lines endpoint healthy (or a UI session) to confirm the delete-line trigger directly."
+ },
+ {
+  "id": "SF-AUTO-05",
+  "area": "Auto-Complete Trigger (Story 16 R12/R13)",
+  "story_ref": "S16-R12 review ON",
+  "title": "Verify that with Require Review on, resolving the last open line routes the work order to Ready for Review instead of auto-completing",
+  "priority": "Critical",
+  "type": "Functional",
+  "permissions_required": "Admin / a role that can complete work orders.",
+  "preconditions": [
+   "1. Signed in as Admin.",
+   "2. Require Review Before Completion is ON and saved.",
+   "3. A work order is in Approved status with two or more open lines."
+  ],
+  "steps": [
+   "1. Open the work order and complete the lines one at a time (or in bulk).",
+   "2. After the last open line is resolved, check the work order status.",
+   "3. Confirm whether the work order went straight to Complete or to review."
+  ],
+  "expected": [
+   "1. When the last open line is resolved, the work order moves to Ready for Review (Review) — it does NOT auto-complete.",
+   "2. The work order must be signed off in the review step before it can reach Complete."
+  ],
+  "design_ref": "WO Review Flow.html; Simple Mode spec §16 R12/R13",
+  "viu_status": "VIU-Verified",
+  "api_related": false,
+  "fresh_run": "2026-07-14",
+  "notes": "Wording+VIU 2026-07-14 (S-15813 / 73d150d3 live): flipped Require Review ON (POST /api/organizations/settings/change requireReview:true); completing line 1 left the WO 'Approved'; resolving the last line routed the WO to 'Review' (Ready for Review), NOT 'Complete'. Settings restored byte-identical to baseline afterward."
+ },
+ {
+  "id": "SF-AUTO-06",
+  "area": "Auto-Complete Trigger (Story 16 R12/R13)",
+  "story_ref": "S16-R13 clock-out exception",
+  "title": "Verify a clock-out that finishes the last line routes the work order to Ready for Review even when Require Review is off",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Technician (clocked into the line) / Admin to observe.",
+  "preconditions": [
+   "1. Signed in as a Technician who is clocked into the work on the work order.",
+   "2. Require Review Before Completion is OFF.",
+   "3. The work order has one remaining open line that the technician is working on."
+  ],
+  "steps": [
+   "1. As the technician, finish the last open line by clocking out of it.",
+   "2. Check the work order status."
+  ],
+  "expected": [
+   "1. Even though Require Review is off, the work order routes to Ready for Review (not straight to Complete).",
+   "2. This is the one path that does not auto-complete when review is off (a technician may not be allowed to complete a work order)."
+  ],
+  "design_ref": "WO Review Flow.html; Simple Mode spec §16 R12/R13",
+  "viu_status": "Blocked-Env",
+  "api_related": false,
+  "fresh_run": "2026-07-14",
+  "notes": "Wording per spec §16 R13 (intentional clock-out exception). VIU Blocked-Env 2026-07-14: the per-line technician clock-out that finishes a line is not drivable through the available API (GET /api/technician-tasks returns 404; /api/technician-tasks/department-clock-* is a shop-time punch clock, not the per-line 'finish the line' timer), and no browser (Chromium/Playwright) harness is available here to drive the timer/clock-out UI. The auto-complete-vs-review routing is otherwise verified (SF-AUTO-01/05). Needs a technician time-clock UI session (or the per-line clock-out endpoint) to confirm the R13 exception directly."
+ },
+ {
+  "id": "SF-AUTO-07",
+  "area": "Auto-Complete Trigger (Story 16 R12/R13)",
+  "story_ref": "S16-R12 backend status transition",
+  "title": "Verify the work order status transitions on the backend when the last open line is resolved (auto-Complete when review off, Ready for Review when review on)",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Admin.",
+  "preconditions": [
+   "1. Signed in as Admin.",
+   "2. A work order is in Approved status with two or more open lines."
+  ],
+  "steps": [
+   "1. With Require Review off, resolve the last open line and read the work order record.",
+   "2. Turn Require Review on, and on another work order resolve the last open line and read the work order record."
+  ],
+  "expected": [
+   "1. With Require Review off, after the last open line resolves the work order record status becomes Complete (the resolve action returns success).",
+   "2. With Require Review on, after the last open line resolves the work order record status becomes Ready for Review (Review), not Complete."
+  ],
+  "design_ref": "WO Review Flow.html; Simple Mode spec §16 R12/R13",
+  "viu_status": "VIU-Verified",
+  "api_related": true,
+  "fresh_run": "2026-07-14",
+  "notes": "Wording+VIU 2026-07-14: verified the backend status transition directly. Resolve action POST /api/work-orders/lines/change-status {status:'complete'} returns 200; GET /api/work-orders/view/{id} then shows work_order.status = 'Complete' when Require Review was OFF (S-15838/S-15824), and status = 'Review' (Ready for Review) when Require Review was ON (S-15813). Placed in an API-titled section per Standing Rule 4 (asserts a backend status transition)."
  }
 ]

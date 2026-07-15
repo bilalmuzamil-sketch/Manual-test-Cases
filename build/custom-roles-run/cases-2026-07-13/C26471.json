@@ -1,0 +1,12 @@
+{
+  "case_id": 26471,
+  "section_id": 3544,
+  "title": "Ticking Part sales while See Financial Data is OFF asks you to turn See Financial Data on",
+  "custom_preconds": "<ol>\n<li>Open Create Role (or edit a custom role) with See Financial Data OFF and the Parts Department card expanded.</li>\n</ol>",
+  "custom_steps": "<ol>\n<li>Tick the Part sales View box.</li>\n<li>Tick the Part sales Create & Edit box.</li>\n</ol>",
+  "custom_expected": "<p>A dialog titled 'Enable See Financial Data?' appears, with Cancel and Enable buttons.</p>\n<p>The dialog explains that Part sales needs See Financial Data.</p>\n<p>Choosing Enable turns See Financial Data on and keeps the box ticked; choosing Cancel unticks the box.</p>\n",
+  "viu_status": "VIU-Verified",
+  "evidence": "UI dialog: ticking Part sales while SFD off shows \"Enable See Financial Data? — Part Sales requires See Financial Data. Enable it to grant this permission?\" [Cancel|Enable].",
+  "fresh_run": "2026-07-13",
+  "behavioral_run": "2026-07-13"
+}

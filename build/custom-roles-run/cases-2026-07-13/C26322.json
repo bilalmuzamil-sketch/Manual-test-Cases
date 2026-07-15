@@ -1,0 +1,12 @@
+{
+  "case_id": 26322,
+  "section_id": 3528,
+  "title": "An editable system role's three-dot menu shows View Permissions and no Delete",
+  "custom_preconds": "<ol>\n<li>You are on the Roles & Permissions list.</li>\n</ol>",
+  "custom_steps": "<ol>\n<li>Open the three-dot menu on an editable system role (for example Administrator or Service Manager).</li>\n<li>List the menu options.</li>\n</ol>",
+  "custom_expected": "<p>The menu has no Delete option (system roles cannot be deleted).</p>\n<p>(Note: the build has a Duplicate Role feature — confirm live whether Duplicate appears in this menu; the older 'no Duplicate' expectation may be out of date.)</p>\n",
+  "viu_status": "VIU-Verified",
+  "evidence": "UI: 3-dot menu on Admin (editable system role) shows only \"View Permissions\" (no Delete).",
+  "fresh_run": "2026-07-13",
+  "behavioral_run": "2026-07-13"
+}

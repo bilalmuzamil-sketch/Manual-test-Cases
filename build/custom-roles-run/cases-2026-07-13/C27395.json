@@ -1,0 +1,21 @@
+{
+  "case_id": 27395,
+  "section_id": 3542,
+  "template_id": 2,
+  "title": "Turning off the last Settings sub-toggle collapses the Settings section",
+  "custom_preconds": "<ol>\n<li>Open Create Role (or edit a custom role).</li>\n</ol>",
+  "custom_steps_separated": [
+    {
+      "content": "Turn the Settings toggle ON, then turn App Settings ON.",
+      "expected": "The seven Settings sub-toggles are shown and App Settings reads ON."
+    },
+    {
+      "content": "Turn App Settings OFF (it is the only sub-toggle still on).",
+      "expected": "With no sub-toggle on, the section collapses: the Settings toggle reads OFF and the sub-toggles are removed."
+    }
+  ],
+  "viu_status": "VIU-Verified",
+  "evidence": "UI: turning off the last remaining Settings sub-toggle (App Settings) collapses the Settings section — the parent Settings toggle goes off and the sub-toggles disappear.",
+  "fresh_run": "2026-07-13",
+  "behavioral_run": "2026-07-13"
+}

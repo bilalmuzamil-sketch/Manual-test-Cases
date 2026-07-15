@@ -1,0 +1,12 @@
+{
+  "case_id": 26401,
+  "section_id": 3537,
+  "title": "Customers Delete does NOT let the user delete customer payments (that needs Invoicing & payments Delete)",
+  "custom_preconds": "<ol>\n<li>A user has a role with Customers View, Create & Edit and Delete, Invoicing & payments Delete OFF, See Financial Data ON and View and Manage AP/AR Data ON.</li>\n</ol>",
+  "custom_steps": "<ol>\n<li>Open a customer that has past payments.</li>\n<li>Go to the customer's Payments tab.</li>\n<li>Look for a Delete option on a payment.</li>\n<li>Try to delete a payment.</li>\n</ol>",
+  "custom_expected": "<p>There is no Delete option on payments.</p>\n<p>The user cannot delete the payment — deleting payments needs Invoicing & payments Delete, not Customers Delete.</p>\n",
+  "viu_status": "Blocked-UI: verifying that Customers Delete does NOT delete payments needs a role with customersDelete + AP/AR (to see the customer Payments tab) but WITHOUT invoicingPaymentsDelete, on a customer with payments, to observe no payment-delete option. The payment-delete UI affordance was not reachable in the harness (same limitation as C26422/C26423). Customer-delete itself is verified (C26400); payment delete is gated by invoicingPaymentsDelete per the perm model.",
+  "evidence": "Needs live UI.",
+  "fresh_run": "2026-07-13",
+  "behavioral_run": "2026-07-13"
+}

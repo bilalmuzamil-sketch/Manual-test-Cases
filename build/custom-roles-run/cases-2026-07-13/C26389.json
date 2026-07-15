@@ -1,0 +1,12 @@
+{
+  "case_id": 26389,
+  "section_id": 3535,
+  "title": "Work order lines are visible whenever Work orders View is ON",
+  "custom_preconds": "<ol>\n<li>A user has a role with Work orders View ON and Work order lines Create & Edit and Delete OFF.</li>\n</ol>",
+  "custom_steps": "<ol>\n<li>Log in and open a work order that has lines.</li>\n<li>Look at the lines area.</li>\n<li>Try to edit a line.</li>\n<li>Try to add a new line.</li>\n</ol>",
+  "custom_expected": "<p>The lines are visible (line items, labor, parts).</p>\n<p>The user cannot edit a line.</p>\n<p>There is no Add line option.</p>\n",
+  "viu_status": "VIU-Verified",
+  "evidence": "UI (Time Clock User = WO View only): work order lines are visible (line items/labor/parts) but there is no New Line/add option and no edit controls — lines visible whenever WO View is on. screenshot wol-tcuLines.",
+  "fresh_run": "2026-07-13",
+  "behavioral_run": "2026-07-13"
+}

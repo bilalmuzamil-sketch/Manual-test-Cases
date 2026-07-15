@@ -1,0 +1,12 @@
+{
+  "case_id": 26314,
+  "section_id": 3528,
+  "title": "The Time Clock User system role is non-editable (lock icon, eye only)",
+  "custom_preconds": "<ol>\n<li>You are on the Roles & Permissions list.</li>\n</ol>",
+  "custom_steps": "<ol>\n<li>Find the Time Clock User row.</li>\n<li>Look at the role name column.</li>\n<li>Look at the Actions column.</li>\n<li>Click the eye icon.</li>\n</ol>",
+  "custom_expected": "<p>A lock icon shows next to Time Clock User.</p>\n<p>The Actions column has only the eye icon.</p>\n<p>The eye opens a read-only Permission Summary.</p>\n",
+  "viu_status": "VIU-Verified",
+  "evidence": "UI: Time Clock User row shows lock icon and only the visibility (eye) icon — non-editable.",
+  "fresh_run": "2026-07-13",
+  "behavioral_run": "2026-07-13"
+}

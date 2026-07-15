@@ -1,0 +1,12 @@
+{
+  "case_id": 26360,
+  "section_id": 3533,
+  "title": "Ticking Create & Edit on Work orders also ticks View",
+  "custom_preconds": "<ol>\n<li>Open Create Role and choose to start from scratch.</li>\n<li>In the Work orders card, View, Create & Edit and Delete are all unticked.</li>\n</ol>",
+  "custom_steps": "<ol>\n<li>Find the Work orders card.</li>\n<li>Tick the Create & Edit box.</li>\n<li>Look at View, Create & Edit and Delete.</li>\n</ol>",
+  "custom_expected": "<p>View ticks automatically.</p>\n<p>Create & Edit is ticked.</p>\n<p>Delete stays unticked.</p>\n",
+  "viu_status": "VIU-Verified",
+  "evidence": "UI: on blank Create Role form, ticking Work orders Create & Edit auto-ticks View (aria-checked View ON, C&E ON). screenshot cascade-final.",
+  "fresh_run": "2026-07-13",
+  "behavioral_run": "2026-07-13"
+}

@@ -1,0 +1,12 @@
+{
+  "case_id": 26349,
+  "section_id": 3530,
+  "title": "Editing: at least one permission must be turned on to save",
+  "custom_preconds": "<ol>\n<li>You are editing an editable role.</li>\n</ol>",
+  "custom_steps": "<ol>\n<li>Untick every box in every card.</li>\n<li>Turn off every Page Access toggle, Settings sub-toggle, Parts Department card and Cross-Cutting Toggle.</li>\n<li>Click Save.</li>\n</ol>",
+  "custom_expected": "<p>Save is blocked and a message tells you at least one permission must be turned on.</p>\n",
+  "viu_status": "VIU-Verified",
+  "evidence": "UI: editing a role down to zero permissions -> Save opens \"Confirm Permission Updates\" (Removed permissions listed) -> Confirm shows toast \"At least one permission is required. Please try to resolve this.\" and the role is NOT saved (stays on edit). Submit-time validation enforces at least one permission. screenshot edit-zero-perm.",
+  "fresh_run": "2026-07-13",
+  "behavioral_run": "2026-07-13"
+}

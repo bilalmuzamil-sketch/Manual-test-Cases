@@ -1,0 +1,12 @@
+{
+  "case_id": 26485,
+  "section_id": 3545,
+  "title": "View and Manage AP/AR Data works independently of See Financial Data",
+  "custom_preconds": "<ol>\n<li>A user has a role with See Financial Data ON and View and Manage AP/AR Data OFF (like the Service Advisor role).</li>\n</ol>",
+  "custom_steps": "<ol>\n<li>Open a work order and check whether prices are shown.</li>\n<li>Open a customer and check for the AP/AR tabs.</li>\n</ol>",
+  "custom_expected": "<p>Prices are shown on the work order.</p>\n<p>The AP/AR tabs are hidden on the customer.</p>\n<p>The two toggles work independently.</p>\n",
+  "viu_status": "VIU-Verified",
+  "evidence": "UI: See Financial Data and View and Manage AP/AR Data are separate Cross-Cutting Toggles (both present independently alongside View History Logs); AP/AR is not tied to SFD in the editor.",
+  "fresh_run": "2026-07-13",
+  "behavioral_run": "2026-07-13"
+}

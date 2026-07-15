@@ -1,0 +1,12 @@
+{
+  "case_id": 26419,
+  "section_id": 3538,
+  "title": "Returning a part to inventory (restocking) is controlled by Vendor and order management",
+  "custom_preconds": "<ol>\n<li>A user has a role with Parts Department ON.</li>\n<li>Test with Vendor and order management at View only, then at Create & Edit.</li>\n</ol>",
+  "custom_steps": "<ol>\n<li>Log in as the Create & Edit user and open a part return eligible for return to inventory.</li>\n<li>Find the Return to Inventory action, click it and confirm.</li>\n<li>Check the quantity is added back to stock.</li>\n<li>Log in as the View-only user and open the same kind of part return.</li>\n<li>Look for the Return to Inventory action.</li>\n</ol>",
+  "custom_expected": "<p>With Vendor and order management Create & Edit, the Return to Inventory action works and stock goes up.</p>\n<p>With Vendor and order management View only, the return is not possible.</p>\n",
+  "viu_status": "Blocked-UI: restocking (return part to inventory) control not reached — needs a WO/PO with a picked part to exercise the return-to-inventory action gated by Vendor and order management.",
+  "evidence": "Needs live UI.",
+  "fresh_run": "2026-07-13",
+  "behavioral_run": "2026-07-13"
+}

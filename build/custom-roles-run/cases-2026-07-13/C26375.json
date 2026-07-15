@@ -1,0 +1,12 @@
+{
+  "case_id": 26375,
+  "section_id": 3534,
+  "title": "Work orders Create & Edit lets the user create and change work orders",
+  "custom_preconds": "<ol>\n<li>A user has a role with Work orders View and Create & Edit (no Delete).</li>\n</ol>",
+  "custom_steps": "<ol>\n<li>Log in and open Work Orders.</li>\n<li>Click the create-new button.</li>\n<li>Fill the required fields (customer, asset).</li>\n<li>Save.</li>\n<li>Open the saved work order and change the status, lead technician and service advisor.</li>\n<li>Save.</li>\n<li>Look for a delete option.</li>\n</ol>",
+  "custom_expected": "<p>The Create button is shown.</p>\n<p>The new work order is created.</p>\n<p>The edits are saved.</p>\n<p>There is no delete option.</p>\n",
+  "viu_status": "VIU-Verified",
+  "evidence": "UI (role WO Create&Edit, no Delete): the WO list shows the New (create) button; a WO can be created/edited; the WO detail has no Delete option. screenshot wo-ce-nodelete.",
+  "fresh_run": "2026-07-13",
+  "behavioral_run": "2026-07-13"
+}

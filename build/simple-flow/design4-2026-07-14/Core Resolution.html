@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="design_doc_mode" content="canvas">
+<title>Core Resolution — ShopView Simple Mode</title>
+<link rel="stylesheet" href="colors_and_type.css">
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: var(--sv-font-ui); color: var(--sv-grey-700); }
+
+  /* ── Canvas scaffolding ───────────────────────────────── */
+  .frame { position: absolute; }
+  .frame-label { display: flex; align-items: baseline; gap: 10px; margin-bottom: 14px; }
+  .frame-label .tag { padding: 0 9px; height: 24px; border-radius: 7px; background: var(--sv-grey-800);
+    color: #fff; font-size: 12px; font-weight: 700; display: flex; align-items: center; flex-shrink: 0; letter-spacing: 0.02em; }
+  .frame-label .t { font-size: 16px; font-weight: 700; color: var(--sv-grey-800); letter-spacing: -0.01em; }
+  .frame-label .d { font-size: 13px; color: var(--sv-fg-secondary); }
+
+  .section-head { position: absolute; }
+  .section-head .eye { font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--sv-primary-600); margin-bottom: 5px; }
+  .section-head .st { font-size: 23px; font-weight: 700; color: var(--sv-grey-800); letter-spacing: -0.01em; }
+  .section-head .ss { font-size: 13px; color: var(--sv-fg-secondary); margin-top: 4px; max-width: 620px; line-height: 1.5; }
+
+  /* blocking-rule note strip */
+  .rule-note { display: inline-flex; align-items: center; gap: 9px; padding: 11px 15px;
+    background: var(--sv-bg-tint-warm); border: 1px solid var(--sv-warning-200); border-radius: var(--sv-radius-md);
+    font-size: 13px; color: var(--sv-warning-800); font-weight: 500; }
+  .rule-note [data-lucide] { width: 16px; height: 16px; color: var(--sv-warning-600); flex-shrink: 0; }
+  .rule-note b { font-weight: 700; }
+
+  /* ── Modal chrome (Simple Flow completion wizard) ─────── */
+  .modal { width: 520px; background: #fff; border-radius: var(--sv-radius-lg);
+    box-shadow: var(--sv-shadow-lg); border: 1px solid var(--sv-border-strong); overflow: hidden; display: flex; flex-direction: column; }
+  .wiz-head { padding: var(--sv-space-5) var(--sv-space-5) 0; }
+  .wiz-titlerow { display: flex; align-items: flex-start; justify-content: space-between; }
+  .wiz-title { font-size: 19px; font-weight: 700; color: var(--sv-grey-800); }
+  .wiz-close { color: var(--sv-fg-tertiary); cursor: pointer; background: none; border: 0; padding: 2px; display: flex; }
+  .wiz-close [data-lucide] { width: 19px; height: 19px; }
+  .wiz-sub { font-size: 13px; color: var(--sv-fg-secondary); margin-top: 3px; }
+  .wiz-steps { display: flex; align-items: center; gap: 8px; margin: 14px 0 2px; }
+  .wiz-pill { display: inline-flex; align-items: center; gap: 6px; height: 26px; padding: 0 12px;
+    border-radius: var(--sv-radius-pill); font-size: 12px; font-weight: 600; line-height: 1; }
+  .wiz-pill.active { background: var(--sv-primary-600); color: #fff; }
+  .wiz-pill.done { background: var(--sv-success-100); color: var(--sv-success-700); }
+  .wiz-pill.pending { background: var(--sv-grey-100); color: var(--sv-fg-secondary); }
+  .wiz-pill [data-lucide] { width: 13px; height: 13px; }
+  .wiz-sep { color: var(--sv-grey-300); font-size: 13px; }
+  .wiz-body { padding: var(--sv-space-5); }
+  .wiz-intro { font-size: 13px; color: var(--sv-fg-secondary); line-height: 1.45; margin-bottom: 14px; }
+  .wiz-note { font-size: 12px; color: var(--sv-fg-secondary); margin-top: 12px; display: flex; align-items: flex-start; gap: 7px; line-height: 1.45; }
+  .wiz-note [data-lucide] { width: 14px; height: 14px; color: var(--sv-primary-500); flex-shrink: 0; margin-top: 1px; }
+  .wiz-foot { display: flex; align-items: center; gap: var(--sv-space-3); padding: var(--sv-space-4) var(--sv-space-5);
+    border-top: 1px solid var(--sv-border); background: var(--sv-grey-25); }
+  .wiz-foot .spacer { flex: 1; }
+
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 7px; height: 38px; padding: 0 16px;
+    border-radius: 8px; font-size: 14px; font-weight: 600; font-family: inherit; cursor: pointer; border: 1px solid transparent; white-space: nowrap; }
+  .btn [data-lucide] { width: 16px; height: 16px; }
+  .btn-secondary { background: #fff; border-color: var(--sv-border-strong); color: var(--sv-grey-700); box-shadow: var(--sv-shadow-xs); }
+  .btn-primary { background: var(--sv-brand-blue); color: #fff; box-shadow: var(--sv-shadow-xs); }
+  .btn[disabled] { background: var(--sv-grey-100); color: var(--sv-fg-tertiary); border-color: var(--sv-border-strong); box-shadow: none; cursor: not-allowed; }
+  .btn-link { background: none; border: 0; color: var(--sv-primary-700); font-size: 14px; font-weight: 600; font-family: inherit; cursor: pointer; padding: 0 4px; display: inline-flex; align-items: center; gap: 5px; }
+  .btn-link [data-lucide] { width: 15px; height: 15px; }
+
+  /* ── Core list (inventory cores, in modal) ────────────── */
+  .core-list { border: 1px solid var(--sv-border-strong); border-radius: var(--sv-radius-md); overflow: hidden; }
+  .core-row { padding: 12px 14px; border-bottom: 1px solid var(--sv-border); }
+  .core-row:last-child { border-bottom: 0; }
+  .core-row.notok { background: var(--sv-warning-25, #FFFCF5); }
+  .cr-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+  .cr-name { font-size: 13px; font-weight: 600; color: var(--sv-grey-800); }
+  .cr-sub { font-size: 12px; color: var(--sv-fg-secondary); margin-top: 2px; }
+  .cr-charge { font-size: 12px; font-weight: 600; color: var(--sv-fg-secondary); white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .cr-charge.amber { color: var(--sv-warning-700); }
+  .cr-charge .added { display: block; font-size: 11px; font-weight: 600; margin-top: 1px; }
+
+  /* two-option core control */
+  .core-toggle { display: inline-flex; margin-top: 11px; border: 1px solid var(--sv-border-strong);
+    border-radius: 8px; overflow: hidden; flex-shrink: 0; }
+  .core-opt { height: 34px; padding: 0 14px; display: inline-flex; align-items: center; gap: 6px; white-space: nowrap;
+    font-size: 12.5px; font-weight: 600; color: var(--sv-fg-secondary); background: #fff; cursor: pointer; border: 0; font-family: inherit; }
+  .core-opt + .core-opt { border-left: 1px solid var(--sv-border-strong); }
+  .core-opt [data-lucide] { width: 14px; height: 14px; }
+  .core-opt.ok.sel { background: var(--sv-success-50); color: var(--sv-success-700); box-shadow: inset 0 0 0 1.5px var(--sv-success-400); }
+  .core-opt.notok.sel { background: var(--sv-warning-50); color: var(--sv-warning-700); box-shadow: inset 0 0 0 1.5px var(--sv-warning-400); }
+
+  /* resolved collapsed summary */
+  .resolved-row { display: flex; align-items: center; gap: 12px; padding: 13px 16px;
+    background: var(--sv-success-50); border: 1px solid var(--sv-success-200); border-radius: var(--sv-radius-md); }
+  .resolved-row > [data-lucide] { width: 20px; height: 20px; color: var(--sv-success-600); flex-shrink: 0; }
+  .resolved-row .msg { flex: 1; }
+  .resolved-row .msg .m1 { font-size: 14px; font-weight: 600; color: var(--sv-success-800); }
+  .resolved-row .msg .m2 { font-size: 12px; color: var(--sv-warning-700); font-weight: 600; margin-top: 2px; display: flex; align-items: center; gap: 5px; }
+  .resolved-row .msg .m2 [data-lucide] { width: 13px; height: 13px; }
+  .resolved-row .edit { background: none; border: 0; color: var(--sv-success-700); font-size: 13px; font-weight: 600; font-family: inherit; cursor: pointer; text-decoration: underline; }
+
+  /* ── Receive card (special-order cores, receive page) ─── */
+  .recv-card { width: 560px; background: var(--sv-white); border: 1px solid var(--sv-border-strong);
+    border-radius: var(--sv-radius-lg); box-shadow: var(--sv-shadow-sm); overflow: hidden; }
+  .recv-head { display: flex; align-items: center; gap: 12px; padding: 14px 18px; border-bottom: 1px solid var(--sv-border); }
+  .recv-head .vic { width: 38px; height: 38px; border-radius: 9px; background: var(--sv-grey-100); color: var(--sv-grey-600);
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .recv-head .vic [data-lucide] { width: 20px; height: 20px; }
+  .recv-head .vt { font-size: 15px; font-weight: 700; color: var(--sv-grey-800); }
+  .recv-head .vm { font-size: 12px; color: var(--sv-fg-secondary); margin-top: 1px; }
+  .recv-head .rcv-pill { margin-left: auto; display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 700;
+    color: var(--sv-success-700); background: var(--sv-success-50); border: 1px solid var(--sv-success-200); padding: 4px 11px; border-radius: var(--sv-radius-pill); }
+  .recv-head .rcv-pill [data-lucide] { width: 14px; height: 14px; }
+
+  .recv-invrow { display: flex; align-items: center; gap: 12px; padding: 12px 18px; background: var(--sv-grey-25); border-bottom: 1px solid var(--sv-border); }
+  .recv-invrow .lbl { font-size: 13px; font-weight: 600; color: var(--sv-grey-700); }
+  .recv-invrow input { flex: 1; max-width: 220px; height: 38px; border: 1px solid var(--sv-border-strong); border-radius: 8px;
+    padding: 0 12px; font-size: 14px; font-family: inherit; color: var(--sv-grey-700); background: #fff; }
+  .recv-invrow input:focus { outline: none; border-color: var(--sv-brand-blue); box-shadow: var(--sv-focus-ring); }
+  .recv-invrow .recv-btn { margin-left: auto; height: 40px; padding: 0 18px; border-radius: 8px; background: var(--sv-brand-blue);
+    color: #fff; border: 0; font-family: inherit; font-size: 14px; font-weight: 600; cursor: pointer; display: inline-flex; align-items: center; gap: 7px; }
+  .recv-invrow .recv-btn [data-lucide] { width: 16px; height: 16px; }
+  .recv-invrow .recv-btn[disabled] { background: var(--sv-grey-200); color: var(--sv-grey-400); cursor: not-allowed; }
+
+  .recv-table { width: 100%; border-collapse: collapse; }
+  .recv-table th { text-align: left; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.03em;
+    color: var(--sv-fg-secondary); padding: 10px 18px; background: var(--sv-grey-50); border-bottom: 1px solid var(--sv-border-strong); }
+  .recv-table th.r { text-align: right; }
+  .recv-table td { padding: 13px 18px; font-size: 13px; color: var(--sv-grey-700); border-bottom: 1px solid var(--sv-border); vertical-align: middle; }
+  .recv-table td.r { text-align: right; font-variant-numeric: tabular-nums; }
+  .recv-table tr.core-part td { border-bottom: 0; padding-bottom: 8px; }
+  .rp-name { font-weight: 600; color: var(--sv-grey-800); display: flex; align-items: center; gap: 8px; }
+  .rp-num { font-size: 12px; color: var(--sv-fg-secondary); font-family: var(--sv-font-mono); margin-top: 2px; }
+  .core-tag { display: inline-flex; align-items: center; gap: 4px; font-size: 10px; font-weight: 700; letter-spacing: 0.04em;
+    color: var(--sv-violet-700); background: var(--sv-violet-50); border: 1px solid var(--sv-violet-200); padding: 2px 7px; border-radius: var(--sv-radius-pill); }
+  .core-tag [data-lucide] { width: 11px; height: 11px; }
+  .rcv-cb { width: 20px; height: 20px; border-radius: 5px; border: 1.5px solid var(--sv-grey-300); background: #fff;
+    display: inline-flex; align-items: center; justify-content: center; }
+  .rcv-cb.on { background: var(--sv-brand-blue); border-color: var(--sv-brand-blue); }
+  .rcv-cb [data-lucide] { width: 13px; height: 13px; color: #fff; }
+  .rcv-cb.off [data-lucide] { display: none; }
+
+  /* core sub-row within receive table */
+  .core-subrow td { padding: 0 18px 14px; }
+  .core-sub { display: flex; align-items: center; gap: 12px; padding: 11px 13px; border-radius: 8px;
+    border: 1px solid var(--sv-border-strong); background: var(--sv-grey-25); margin-left: 38px; }
+  .core-sub.unresolved { background: var(--sv-warning-50); border-color: var(--sv-warning-200); }
+  .core-sub.resolved { background: var(--sv-success-50); border-color: var(--sv-success-200); }
+  .core-sub .cs-left { display: flex; align-items: center; gap: 8px; min-width: 0; flex-wrap: wrap; }
+  .core-sub .cs-left > [data-lucide] { width: 16px; height: 16px; flex-shrink: 0; }
+  .core-sub.unresolved .cs-left > [data-lucide] { color: var(--sv-warning-600); }
+  .core-sub.resolved .cs-left > [data-lucide] { color: var(--sv-success-600); }
+  .core-sub .cs-title { font-size: 12.5px; font-weight: 600; color: var(--sv-grey-800); }
+  .core-sub .cs-status { font-size: 12px; font-weight: 600; }
+  .core-sub.unresolved .cs-status { color: var(--sv-warning-700); }
+  .core-sub.resolved .cs-status { color: var(--sv-success-700); }
+  .core-sub .spacer { flex: 1; }
+  .core-sub .core-toggle { margin-top: 0; }
+
+  .recv-total { display: flex; justify-content: flex-end; gap: 40px; padding: 12px 18px; font-size: 13px; }
+  .recv-total .lbl { color: var(--sv-fg-secondary); }
+  .recv-total .val { font-weight: 700; color: var(--sv-grey-800); font-variant-numeric: tabular-nums; }
+  .recv-card.received .recv-table, .recv-card.received .recv-total { opacity: 0.6; }
+</style>
+</head>
+<body>
+
+<!-- ══════════════ PLACEMENT 1 ══════════════ -->
+<div class="section-head" style="left:80px; top:44px;">
+  <div class="eye">Placement 1 · Complete Work Order modal</div>
+  <div class="st">Resolve cores — inventory parts</div>
+  <div class="ss">A gate step that appears when any inventory part on the WO carries an unresolved core. OK = old unit returned (charge dropped). Not OK = customer keeps it (charge stays on the invoice).</div>
+</div>
+
+<!-- 1a · The step (unresolved) -->
+<div class="frame" style="left:80px; top:150px;">
+  <div class="frame-label"><span class="tag">1A</span><span class="t">The step — unresolved</span><span class="d">Continue disabled until every core is set</span></div>
+  <div class="modal">
+    <div class="wiz-head">
+      <div class="wiz-titlerow">
+        <div class="wiz-title">Complete Work Order</div>
+        <button class="wiz-close"><i data-lucide="x"></i></button>
+      </div>
+      <div class="wiz-sub">S2-15691 · Qaisland Paving</div>
+      <div class="wiz-steps">
+        <span class="wiz-pill done"><i data-lucide="check"></i>Details</span>
+        <span class="wiz-sep">→</span>
+        <span class="wiz-pill active">Resolve cores</span>
+        <span class="wiz-sep">→</span>
+        <span class="wiz-pill pending">Receive parts</span>
+      </div>
+    </div>
+    <div class="wiz-body">
+      <div class="wiz-intro">2 core parts need resolving. Mark whether the old unit was returned.</div>
+      <div class="core-list">
+        <div class="core-row">
+          <div class="cr-top">
+            <div><div class="cr-name">Alternator — reman</div><div class="cr-sub">4--ALT-7720 · Line 3</div></div>
+            <div class="cr-charge">Core $85.00</div>
+          </div>
+          <div class="core-toggle">
+            <button class="core-opt ok"><i data-lucide="rotate-ccw"></i> OK · returned</button>
+            <button class="core-opt notok">Not OK · keep + charge</button>
+          </div>
+        </div>
+        <div class="core-row">
+          <div class="cr-top">
+            <div><div class="cr-name">Brake caliper — front left</div><div class="cr-sub">4--CAL-2214 · Line 5</div></div>
+            <div class="cr-charge">Core $45.00</div>
+          </div>
+          <div class="core-toggle">
+            <button class="core-opt ok"><i data-lucide="rotate-ccw"></i> OK · returned</button>
+            <button class="core-opt notok">Not OK · keep + charge</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="wiz-foot">
+      <button class="btn-link"><i data-lucide="arrow-left"></i> Back</button>
+      <span class="spacer"></span>
+      <button class="btn" disabled>Continue</button>
+    </div>
+  </div>
+</div>
+
+<!-- 1b · Selections made (OK green / Not OK amber) -->
+<div class="frame" style="left:720px; top:150px;">
+  <div class="frame-label"><span class="tag">1B</span><span class="t">Both set — control states</span><span class="d">OK = green · Not OK = amber, charge surfaced</span></div>
+  <div class="modal">
+    <div class="wiz-head">
+      <div class="wiz-titlerow">
+        <div class="wiz-title">Complete Work Order</div>
+        <button class="wiz-close"><i data-lucide="x"></i></button>
+      </div>
+      <div class="wiz-sub">S2-15691 · Qaisland Paving</div>
+      <div class="wiz-steps">
+        <span class="wiz-pill done"><i data-lucide="check"></i>Details</span>
+        <span class="wiz-sep">→</span>
+        <span class="wiz-pill active">Resolve cores</span>
+        <span class="wiz-sep">→</span>
+        <span class="wiz-pill pending">Receive parts</span>
+      </div>
+    </div>
+    <div class="wiz-body">
+      <div class="wiz-intro">2 core parts need resolving. Mark whether the old unit was returned.</div>
+      <div class="core-list">
+        <div class="core-row">
+          <div class="cr-top">
+            <div><div class="cr-name">Alternator — reman</div><div class="cr-sub">4--ALT-7720 · Line 3</div></div>
+            <div class="cr-charge">Core $85.00</div>
+          </div>
+          <div class="core-toggle">
+            <button class="core-opt ok sel"><i data-lucide="check"></i> OK · returned</button>
+            <button class="core-opt notok">Not OK · keep + charge</button>
+          </div>
+        </div>
+        <div class="core-row notok">
+          <div class="cr-top">
+            <div><div class="cr-name">Brake caliper — front left</div><div class="cr-sub">4--CAL-2214 · Line 5</div></div>
+            <div class="cr-charge amber">Core $45.00<span class="added">added to invoice</span></div>
+          </div>
+          <div class="core-toggle">
+            <button class="core-opt ok"><i data-lucide="rotate-ccw"></i> OK · returned</button>
+            <button class="core-opt notok sel">Not OK · keep + charge</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="wiz-foot">
+      <button class="btn-link"><i data-lucide="arrow-left"></i> Back</button>
+      <span class="spacer"></span>
+      <button class="btn btn-primary">Continue</button>
+    </div>
+  </div>
+</div>
+
+<!-- 1c · Resolved collapsed summary -->
+<div class="frame" style="left:1360px; top:150px;">
+  <div class="frame-label"><span class="tag">1C</span><span class="t">Resolved — collapsed</span><span class="d">summarised · Continue enabled</span></div>
+  <div class="modal">
+    <div class="wiz-head">
+      <div class="wiz-titlerow">
+        <div class="wiz-title">Complete Work Order</div>
+        <button class="wiz-close"><i data-lucide="x"></i></button>
+      </div>
+      <div class="wiz-sub">S2-15691 · Qaisland Paving</div>
+      <div class="wiz-steps">
+        <span class="wiz-pill done"><i data-lucide="check"></i>Details</span>
+        <span class="wiz-sep">→</span>
+        <span class="wiz-pill active">Resolve cores</span>
+        <span class="wiz-sep">→</span>
+        <span class="wiz-pill pending">Receive parts</span>
+      </div>
+    </div>
+    <div class="wiz-body">
+      <div class="resolved-row">
+        <i data-lucide="check-circle-2"></i>
+        <div class="msg">
+          <div class="m1">2 cores resolved</div>
+          <div class="m2"><i data-lucide="dollar-sign"></i> 1 core charge ($45.00) added to invoice</div>
+        </div>
+        <button class="edit">Edit</button>
+      </div>
+      <div class="wiz-note"><i data-lucide="info"></i> When there are many cores, only this summary shows — expand to review or change any one.</div>
+    </div>
+    <div class="wiz-foot">
+      <button class="btn-link"><i data-lucide="arrow-left"></i> Back</button>
+      <span class="spacer"></span>
+      <button class="btn btn-primary">Continue</button>
+    </div>
+  </div>
+</div>
+
+<!-- P1 blocking rule -->
+<div class="frame" style="left:80px; top:700px;">
+  <div class="rule-note"><i data-lucide="lock"></i> <span><b>Completion blocked:</b> the Continue / Complete CTA stays disabled until every core on the step is marked OK or Not OK.</span></div>
+</div>
+
+<!-- ══════════════ PLACEMENT 2 ══════════════ -->
+<div class="section-head" style="left:80px; top:800px;">
+  <div class="eye">Placement 2 · Parts receive page</div>
+  <div class="st">Resolve cores — special-order parts</div>
+  <div class="ss">A vendor part flagged as a core shows the same OK / Not OK control inline, as a sub-row under its receive line. The part can't be received until the core is resolved.</div>
+</div>
+
+<!-- 2a · Unresolved -->
+<div class="frame" style="left:80px; top:906px;">
+  <div class="frame-label"><span class="tag">2A</span><span class="t">Core unresolved</span><span class="d">amber · Receive disabled</span></div>
+  <div class="recv-card">
+    <div class="recv-head">
+      <div class="vic"><i data-lucide="store"></i></div>
+      <div><div class="vt">Napa Auto Parts</div><div class="vm">PO S2-15733 · 2 parts</div></div>
+    </div>
+    <div class="recv-invrow">
+      <span class="lbl">Vendor invoice #</span>
+      <input placeholder="Enter invoice number" value="INV-44821">
+      <button class="recv-btn" disabled><i data-lucide="box"></i> Receive parts</button>
+    </div>
+    <table class="recv-table">
+      <thead><tr><th style="width:44px;"></th><th>Part name &amp; number</th><th class="r" style="width:70px;">Qty</th><th class="r" style="width:110px;">Cost</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><span class="rcv-cb on"><i data-lucide="check"></i></span></td>
+          <td><div class="rp-name">Front brake pads</div><div class="rp-num">MKD785FM</div></td>
+          <td class="r">2</td><td class="r">$62.00</td>
+        </tr>
+        <tr class="core-part">
+          <td><span class="rcv-cb off"></span></td>
+          <td><div class="rp-name">Alternator — reman <span class="core-tag"><i data-lucide="rotate-ccw"></i> CORE</span></div><div class="rp-num">4--ALT-7720</div></td>
+          <td class="r">1</td><td class="r">$210.00</td>
+        </tr>
+        <tr class="core-subrow">
+          <td colspan="4">
+            <div class="core-sub unresolved">
+              <div class="cs-left">
+                <i data-lucide="alert-triangle"></i>
+                <span class="cs-title">Core charge $85.00</span>
+                <span class="cs-status">· core unresolved — resolve to receive</span>
+              </div>
+              <div class="spacer"></div>
+              <div class="core-toggle">
+                <button class="core-opt ok"><i data-lucide="rotate-ccw"></i> OK · returned</button>
+                <button class="core-opt notok">Not OK · keep + charge</button>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="recv-total"><span class="lbl">Cost total</span><span class="val">$334.00</span></div>
+  </div>
+</div>
+
+<!-- 2b · Resolved -->
+<div class="frame" style="left:720px; top:906px;">
+  <div class="frame-label"><span class="tag">2B</span><span class="t">Core resolved</span><span class="d">green check · Receive enabled</span></div>
+  <div class="recv-card">
+    <div class="recv-head">
+      <div class="vic"><i data-lucide="store"></i></div>
+      <div><div class="vt">Napa Auto Parts</div><div class="vm">PO S2-15733 · 2 parts</div></div>
+    </div>
+    <div class="recv-invrow">
+      <span class="lbl">Vendor invoice #</span>
+      <input placeholder="Enter invoice number" value="INV-44821">
+      <button class="recv-btn"><i data-lucide="box"></i> Receive parts</button>
+    </div>
+    <table class="recv-table">
+      <thead><tr><th style="width:44px;"></th><th>Part name &amp; number</th><th class="r" style="width:70px;">Qty</th><th class="r" style="width:110px;">Cost</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><span class="rcv-cb on"><i data-lucide="check"></i></span></td>
+          <td><div class="rp-name">Front brake pads</div><div class="rp-num">MKD785FM</div></td>
+          <td class="r">2</td><td class="r">$62.00</td>
+        </tr>
+        <tr class="core-part">
+          <td><span class="rcv-cb on"><i data-lucide="check"></i></span></td>
+          <td><div class="rp-name">Alternator — reman <span class="core-tag"><i data-lucide="rotate-ccw"></i> CORE</span></div><div class="rp-num">4--ALT-7720</div></td>
+          <td class="r">1</td><td class="r">$210.00</td>
+        </tr>
+        <tr class="core-subrow">
+          <td colspan="4">
+            <div class="core-sub resolved">
+              <div class="cs-left">
+                <i data-lucide="check-circle-2"></i>
+                <span class="cs-title">Core charge $85.00</span>
+                <span class="cs-status">· old unit returned — OK</span>
+              </div>
+              <div class="spacer"></div>
+              <div class="core-toggle">
+                <button class="core-opt ok sel"><i data-lucide="check"></i> OK · returned</button>
+                <button class="core-opt notok">Not OK · keep + charge</button>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="recv-total"><span class="lbl">Cost total</span><span class="val">$334.00</span></div>
+  </div>
+</div>
+
+<!-- 2c · Received -->
+<div class="frame" style="left:1360px; top:906px;">
+  <div class="frame-label"><span class="tag">2C</span><span class="t">Received</span><span class="d">core settled · row locked</span></div>
+  <div class="recv-card received">
+    <div class="recv-head">
+      <div class="vic"><i data-lucide="store"></i></div>
+      <div><div class="vt">Napa Auto Parts</div><div class="vm">PO S2-15733 · 2 parts</div></div>
+      <span class="rcv-pill"><i data-lucide="check-circle-2"></i> Received</span>
+    </div>
+    <table class="recv-table">
+      <thead><tr><th style="width:44px;"></th><th>Part name &amp; number</th><th class="r" style="width:70px;">Qty</th><th class="r" style="width:110px;">Cost</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><span class="rcv-cb on"><i data-lucide="check"></i></span></td>
+          <td><div class="rp-name">Front brake pads</div><div class="rp-num">MKD785FM</div></td>
+          <td class="r">2</td><td class="r">$62.00</td>
+        </tr>
+        <tr class="core-part">
+          <td><span class="rcv-cb on"><i data-lucide="check"></i></span></td>
+          <td><div class="rp-name">Alternator — reman <span class="core-tag"><i data-lucide="rotate-ccw"></i> CORE</span></div><div class="rp-num">4--ALT-7720</div></td>
+          <td class="r">1</td><td class="r">$210.00</td>
+        </tr>
+        <tr class="core-subrow">
+          <td colspan="4">
+            <div class="core-sub resolved">
+              <div class="cs-left">
+                <i data-lucide="check-circle-2"></i>
+                <span class="cs-title">Core charge $85.00</span>
+                <span class="cs-status">· returned — OK, no charge</span>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="recv-total"><span class="lbl">Cost total</span><span class="val">$334.00</span></div>
+  </div>
+</div>
+
+<!-- P2 blocking rule -->
+<div class="frame" style="left:80px; top:1360px;">
+  <div class="rule-note"><i data-lucide="lock"></i> <span><b>Receive blocked:</b> a core part can't be checked or received until its OK / Not OK sub-row is resolved.</span></div>
+</div>
+
+<script> lucide.createIcons(); </script>
+</body>
+</html>

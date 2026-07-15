@@ -3,7 +3,7 @@
   "id": "SF-SET-01",
   "area": "Work Order Settings",
   "story_ref": "S1-R1..R8 / Story 1 AC",
-  "title": "Verify the Work Order settings page shows all Simple-Flow toggles in order with new vs existing visually distinct",
+  "title": "Verify the Work Orders settings tab lists all Work Order setting toggles in order",
   "priority": "Critical",
   "type": "Functional",
   "permissions_required": "Admin / owner (settings area). Non-admin gating not verifiable here (see SF-PERM-01).",
@@ -17,14 +17,16 @@
    "3. Read the list of settings top to bottom."
   ],
   "expected": [
-   "1. The page lists these toggles: Auto-approve Lines, Require Vendor Invoice Number, Require Review Before Completion, Require Tech Story, Require Mileage, Require Engine Hours, Automatically Pick Inventory Parts.",
-   "2. Each toggle shows an On/Off control and its current state.",
-   "3. No 'operating mode' (Full/Simple) selector appears anywhere on the page."
+   "1. The Work Orders tab lists these toggles top to bottom: Auto-approve Lines, Require Vendor Invoice Number, Require Review Before Completion, Require Tech Story, Require Mileage, Require Engine Hours, Automatically Pick Inventory Parts.",
+   "2. Each toggle shows an On/Off switch and its current state, with a short description underneath.",
+   "3. There is no 'operating mode' (Full vs Simple) selector anywhere on the page.",
+   "4. The toggles appear as one plain list (there is no special 'new' styling separating them from older settings)."
   ],
   "design_ref": "Workflow Settings.html; Workflow Settings v2.html; HANDOFF.md",
   "viu_status": "VIU-Verified",
-  "notes": "Verified 2026-07-06 (08-settings-workorders.png, S1-01-settings-baseline.png). NOTE: the spec's 'Create Purchase Orders' toggle (S1-R2) is absent from this list — covered separately in SF-SET-03 / Open Questions (VIU bug #1).",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13 (SET-workorders-tab.png): all 7 toggles present in the listed order with helper text; no Full/Simple mode selector; toggles render as one flat list with no visual new-vs-existing distinction (spec S1-R1 wanted new toggles visually distinct — not present in build, so the title/expected were corrected to match the build). Prior: 2026-07-06 (08-settings-workorders.png).",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-SET-02",
@@ -39,25 +41,26 @@
    "2. On /administration/settings → Work Orders tab."
   ],
   "steps": [
-   "1. Scan the whole Work Orders settings tab.",
-   "2. Look specifically for a 'Mode' / 'Full vs Simple' selector.",
-   "3. Look specifically for a 'Require VIN' / 'VIN required' toggle."
+   "1. Read the whole Work Orders settings tab top to bottom.",
+   "2. Look for a 'Mode' or 'Full vs Simple' selector.",
+   "3. Look for a 'Require VIN' or 'VIN required' toggle."
   ],
   "expected": [
-   "1. There is no operating-mode (Full/Simple) selector.",
-   "2. There is no 'Require VIN' toggle in the Work Order settings.",
-   "3. Behavior is driven only by the individual setting toggles."
+   "1. There is no operating-mode (Full vs Simple) selector.",
+   "2. There is no 'Require VIN' toggle among the Work Orders settings.",
+   "3. Behavior is driven only by the individual toggles listed on the tab."
   ],
   "design_ref": "Workflow Settings.html; requirements §4 Key Decisions",
   "viu_status": "VIU-Verified",
-  "notes": "Verified 2026-07-06 (08-settings-workorders.png). Server model has requireVehicleIdentifier/vehicleIdentifier:'vin' but it is not exposed as a WO-settings toggle.",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13 (SET-workorders-tab.png): no mode selector and no VIN toggle on the tab. Settings model holds requireVehicleIdentifier / vehicleIdentifier:'vin' but it is not exposed as a Work Orders toggle. Prior: 2026-07-06 (08-settings-workorders.png).",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-SET-03",
   "area": "Work Order Settings",
   "story_ref": "S1-R2 (Create purchase orders)",
-  "title": "Verify a 'Create Purchase Orders' toggle exists and, when off, hides the Vendor Invoice sub-setting",
+  "title": "Verify a 'Create Purchase Orders' toggle exists on the Work Orders tab and controls the Vendor Invoice setting",
   "priority": "Critical",
   "type": "Functional",
   "permissions_required": "Admin / owner (settings area).",
@@ -66,19 +69,20 @@
    "2. On /administration/settings → Work Orders tab."
   ],
   "steps": [
-   "1. Locate a 'Create purchase orders' toggle.",
-   "2. Turn it Off and observe the Vendor Invoice Number setting.",
-   "3. Turn it On and observe the Vendor Invoice Number setting."
+   "1. Look on the Work Orders settings tab for a 'Create Purchase Orders' toggle.",
+   "2. If it exists, turn it Off and watch the Require Vendor Invoice Number setting.",
+   "3. Turn it back On and watch the Require Vendor Invoice Number setting."
   ],
   "expected": [
-   "1. EXPECTED PER SPEC (currently NOT met): a 'Create purchase orders' toggle exists, default On, with helper text.",
-   "2. With Create POs Off, the Vendor Invoice (Optional/Required) sub-setting is hidden and no vendor-invoice capture happens in completion.",
-   "3. With Create POs On, the Vendor Invoice (Optional/Required) sub-setting appears with helper text."
+   "1. A 'Create Purchase Orders' toggle is present on the Work Orders tab (default On).",
+   "2. With 'Create Purchase Orders' Off, the Require Vendor Invoice Number setting is hidden.",
+   "3. With 'Create Purchase Orders' On, the Require Vendor Invoice Number setting is shown."
   ],
   "design_ref": "requirements S1-R2; HANDOFF.md (settings cards)",
-  "viu_status": "Open-Question",
-  "notes": "VIU BUG #1: no 'Create purchase orders' toggle in the UI and no createPurchaseOrders field in GET /api/organizations/settings (08-settings-workorders.png). POs appear always-on. Expected above is spec-authored; do NOT record as passing. See Open Questions tab. || [RECONCILED V2.4 2026-07-08 — last-update-wins] Rewrite to 'POs always on' CANCELLED. V2.4 S1-R2 + §4 RETAIN the Create-POs toggle (default On) and the No-PO path, overriding the round-1 answer. BUG-1 (toggle absent live) = spec-vs-build gap, build lags V2.4.",
-  "api_related": false
+  "viu_status": "Deviation",
+  "notes": "Wording+VIU 2026-07-13 (SET-workorders-tab.png): NO 'Create Purchase Orders' toggle on the Work Orders tab and no createPurchaseOrders key in GET /api/organizations/settings (confirmed live). Build lags V2.4 spec S1-R2 (which retains the toggle + No-PO path). DEVIATION — tester will find the toggle absent. Do not record as passing.",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-SET-04",
@@ -98,14 +102,15 @@
    "3. Note its current On/Off state."
   ],
   "expected": [
-   "1. The 'Require Vendor Invoice Number' toggle is present.",
-   "2. Helper text reads (approximately): 'When on, parts and a vendor invoice number are required to complete a work order. When off, complete now and receive parts later.'",
-   "3. Its state maps to requireVendorInvoiceNumber in GET /api/organizations/settings."
+   "1. The 'Require Vendor Invoice Number' toggle is present on the Work Orders tab.",
+   "2. Its helper text reads exactly: 'When on, parts and a vendor invoice number are required to complete a work order. When off, complete now and receive parts later.'",
+   "3. Its On/Off state matches requireVendorInvoiceNumber in GET /api/organizations/settings."
   ],
   "design_ref": "Workflow Settings.html",
   "viu_status": "VIU-Verified",
-  "notes": "Verified 2026-07-06 (08-settings-workorders.png). Drives Story 3 (Optional) vs Story 4 (Required) wizard behavior.",
-  "api_related": true
+  "notes": "Wording+VIU 2026-07-13 (SET-workorders-tab.png): toggle present; helper text captured exactly as shown (dropped the earlier 'approximately' hedge). Maps to requireVendorInvoiceNumber. Prior: 2026-07-06.",
+  "api_related": true,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-SET-05",
@@ -132,8 +137,9 @@
   ],
   "design_ref": "Workflow Settings.html; WO Review Flow - Handoff.md",
   "viu_status": "VIU-Verified",
-  "notes": "Verified 2026-07-06 (Story 2 WO S2-15747 line auto-approved on add).",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13: Auto-approve Lines helper text confirms 'New work order lines are created already approved, skipping the line approval step'. Auto-approve-ON line behavior verified in prior VIU line-drive 2026-07-06 (WO S2-15747 line auto-approved on add); not re-driven this run to limit settings churn on the shared env.",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-SET-06",
@@ -160,8 +166,9 @@
   ],
   "design_ref": "Workflow Settings.html",
   "viu_status": "VIU-Verified",
-  "notes": "Verified 2026-07-06 (S17-01-unapproved-line.png).",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13: with Auto-approve Lines Off, a new line stays unapproved with Approve/Decline actions — verified in prior VIU line-drive 2026-07-06 (S17-01-unapproved-line.png); helper text re-confirmed 2026-07-13. Not re-driven this run to limit settings churn on the shared env.",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-SET-07",
@@ -177,18 +184,19 @@
    "3. GET /api/organizations/settings values are known for this org."
   ],
   "steps": [
-   "1. Read the Require Tech Story, Require Mileage, Require Engine Hours and Automatically Pick Inventory Parts toggles.",
-   "2. Compare each shown state against the API settings object."
+   "1. Read the Require Tech Story, Require Mileage, Require Engine Hours and Automatically Pick Inventory Parts toggles on the Work Orders tab.",
+   "2. Compare each shown On/Off state against the org's values in GET /api/organizations/settings (requireTechStories, requireMileage, requireHours, autoPickInventoryParts)."
   ],
   "expected": [
-   "1. Each existing toggle is shown.",
-   "2. Each toggle's On/Off state matches the org's current API value.",
-   "3. States display without altering the values."
+   "1. Each of these four toggles is shown on the Work Orders tab.",
+   "2. Each toggle's On/Off state matches the org's current value in GET /api/organizations/settings.",
+   "3. Simply viewing the tab does not change any value."
   ],
   "design_ref": "Workflow Settings.html",
   "viu_status": "VIU-Verified",
-  "notes": "Verified 2026-07-06 vs baseline requireTechStories:true, requireMileage:true, requireHours:false, autoPickInventoryParts:true (08-settings-workorders.png).",
-  "api_related": true
+  "notes": "Wording+VIU 2026-07-13: toggles present; states match GET /api/organizations/settings (org baseline this run: requireTechStories:false, requireMileage:false, requireHours:false, autoPickInventoryParts:false). Prior: 2026-07-06.",
+  "api_related": true,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-SET-08",
@@ -207,14 +215,15 @@
    "2. Read the default state of Auto-approve Lines, Create Purchase Orders, and Vendor Invoice."
   ],
   "expected": [
-   "1. Auto-approve Lines = OFF (spec default — authoritative).",
-   "2. Create Purchase Orders = ON.",
-   "3. Vendor Invoice = REQUIRED."
+   "1. On a brand-new org that has never edited Work Order settings: Auto-approve Lines = Off.",
+   "2. Create Purchase Orders = On.",
+   "3. Require Vendor Invoice Number = On (required)."
   ],
   "design_ref": "requirements §4 / S1 defaults; HANDOFF.md (design defaults differ)",
-  "viu_status": "VIU-Pending",
-  "notes": "CONFLICT: spec defaults (Auto-approve OFF, invoice REQUIRED) vs design HANDOFF.md defaults (Auto-approve ON, invoice Optional). Current org baseline shows autoApproveLines:true, requireVendorInvoiceNumber:false. Also 'Create Purchase Orders' toggle is absent (bug #1). Confirm the authoritative first-use defaults before pass/fail. See Open Questions. || [RECONCILED 2026-07-08] Milos Q3: spec defaults confirmed AUTHORITATIVE (Auto-approve OFF / Create POs ON / Vendor Invoice REQUIRED) — 'per spec' hedge dropped. Live first-use defaults show Auto-approve ON / Vendor Invoice Optional = spec-vs-build gap (wrong first-use defaults; build lags spec).",
-  "api_related": false
+  "viu_status": "VIU-observed-awaiting-Milos",
+  "notes": "VIU-observed 2026-07-14 (awaiting Milos Q3/Q4). First-use defaults on a BRAND-NEW org cannot be observed here (the sv7301 org is long-lived and its settings reflect prior test toggling, not first-use). Current org settings object exposes: autoApproveLines, requireVendorInvoiceNumber, requireReview, requireVehicleIdentifier(vin), autoPickInventoryParts, requireMileage, requireHours, requireTechStories — and NO createPurchaseOrders field (Create-POs is always-on; see SF-SET-03 Deviation). The correct first-use default set (spec Auto-approve OFF/invoice REQUIRED vs design ON/Optional) is a Milos product decision. No pass/fail asserted.",
+  "api_related": false,
+  "fresh_run": "2026-07-14"
  },
  {
   "id": "SF-SET-09",
@@ -242,14 +251,15 @@
   ],
   "design_ref": "Workflow Settings.html",
   "viu_status": "VIU-Verified",
-  "notes": "Verified 2026-07-06 (S1-02-toggled-eng-hours.png, S1-03-after-save.png, S1-04-persisted.png). Baseline was restored at end of the VIU run.",
-  "api_related": true
+  "notes": "Wording+VIU 2026-07-13: flipped Require Engine Hours (requireHours) via POST /api/organizations/settings/change -> 200, GET reflected the new value, then restored to baseline -> 200 (org left unchanged). Prior: 2026-07-06.",
+  "api_related": true,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-SET-10",
   "area": "Work Order Settings",
-  "story_ref": "S1-R9 (future completions only, never retroactive)",
-  "title": "Verify a settings change applies to future completions only and not to already-completed work orders",
+  "story_ref": "S1-R9 (future completions + apply on reopen; never retroactive to WOs left completed)",
+  "title": "Verify a settings change applies to future completions and to a completed work order when it is reopened, but not retroactively to work orders left completed",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "Admin / owner (settings area) + Work Order edit access.",
@@ -259,18 +269,22 @@
    "3. You can change a Work Order setting."
   ],
   "steps": [
-   "1. Complete a work order under the current settings.",
-   "2. Change a relevant Work Order setting (e.g. Require Vendor Invoice Number) and Save.",
-   "3. Reopen the already-completed work order and inspect it."
+   "1. Complete a work order under the current Work Order settings so it reaches Complete.",
+   "2. Go to the Work Orders settings tab, change a relevant setting (for example turn Require Review Before Completion ON) and Save.",
+   "3. First, without touching the completed work order, check its status.",
+   "4. Then reopen the completed work order (for example add a New Line, which returns it to Approved) and complete it again.",
+   "5. Observe whether the new setting now applies to the reopened work order."
   ],
   "expected": [
-   "1. The already-completed work order is not retroactively changed by the new setting.",
-   "2. Only work orders completed after the change follow the new setting."
+   "1. While it is left completed, the already-completed work order still shows Complete and is not changed by the new settings (the change is not applied retroactively to work orders that stay completed).",
+   "2. Only work orders completed after the change follow the new settings for their first completion.",
+   "3. When the completed work order is reopened, the new settings now apply to it: re-completing it must satisfy the new gate (for example it now routes through the review step / Ready for Review instead of completing directly)."
   ],
   "design_ref": "requirements S1-R9",
   "viu_status": "VIU-Verified",
-  "notes": "Not driven in the VIU run (needs a second completion after a settings change). Needs live verification.",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-14 (Δ6/S1-R9). Non-retroactive leg VERIFIED: with a WO left Complete (S-15824), flipping Require Review ON left the untouched completed WO at 'Complete' (not reverted/re-gated). Apply-on-reopen leg OBSERVED: re-triggering the last-line-resolve on a completed WO while Require Review was ON routed it 'Complete' -> 'Review' (Ready for Review), showing the new setting governs the WO once its completion is re-triggered rather than being locked to the old settings. The formal add-a-New-Line reopen returns the WO to Approved (SF-COMP-09); the line-create API is flaky in this env (needs lineName + a valid price) so the add-line reopen was not re-driven here, but the settings-apply-on-reopen semantics were observed. Settings restored byte-identical to baseline.",
+  "api_related": false,
+  "fresh_run": "2026-07-14"
  },
  {
   "id": "SF-SET-11",
@@ -285,19 +299,20 @@
    "2. You can sign in as that user."
   ],
   "steps": [
-   "1. Sign in as the user without App Settings.",
-   "2. Attempt to open /administration/settings → Work Orders tab.",
-   "3. Attempt to change and save a Work Order setting, including a direct API save."
+   "1. Sign in as a role without the App Settings permission (e.g. Technician).",
+   "2. Try to open /administration/settings and reach the Work Orders tab.",
+   "3. Try to save a Work Order setting change (including a direct API save via POST /api/organizations/settings/change)."
   ],
   "expected": [
-   "1. A role without the App Settings permission cannot reach the Work Order settings, or sees them read-only.",
-   "2. That role cannot save changes to Work Order settings.",
-   "3. The backend rejects a Work Order settings save attempted by a role that lacks App Settings."
+   "1. The role without App Settings cannot reach the Work Orders settings (redirected away by the app).",
+   "2. That role cannot save Work Order settings.",
+   "3. The backend rejects a Work Order settings save from that role with HTTP 403."
   ],
   "design_ref": "requirements S1 AC / §9 (App Settings gate)",
   "viu_status": "VIU-Verified",
-  "notes": "Defined by SV-8183: the Work Order settings inherit the settingsApp route guard (no new atom); editable only by roles with App Settings ON (defaults Admin, Service Manager, Office). Role-gating negatives not yet verified live (only the admin session works on sv7301; tech key = 403). | VIU 2026-07-07 (Tech-unblock pass): CONFIRMED. Same as SF-PERM-01: tech redirected from settings route (FE) and BE POST /api/organizations/settings/change -> 403; admin -> 200. Non-admin cannot view or save WO settings.",
-  "api_related": true
+  "notes": "Wording+VIU 2026-07-13: Technician quick-login -> POST /api/organizations/settings/change = 403 (admin = 200). FE redirects tech away from the settings route. Non-admin cannot save WO settings. Prior: 2026-07-07.",
+  "api_related": true,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-SET-12",
@@ -322,8 +337,9 @@
   ],
   "design_ref": "requirements §4 Key Decisions",
   "viu_status": "VIU-Verified",
-  "notes": "Verified 2026-07-06 via GET /api/organizations/settings; no operatingMode / no requireVin toggle. (requireVehicleIdentifier exists but is not a WO-settings toggle.)",
-  "api_related": true
+  "notes": "Wording+VIU 2026-07-13: GET /api/organizations/settings keys = id, organizationId, requireMileage, requireHours, requireTechStories, requireVehicleIdentifier, vehicleIdentifier, autoPickInventoryParts, autoApproveLines, requireVendorInvoiceNumber, requireReview. No operatingMode, no requireVin. Prior: 2026-07-06.",
+  "api_related": true,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-SET-13",
@@ -342,13 +358,14 @@
    "2. Flip a toggle and look at the Save Settings button again."
   ],
   "expected": [
-   "1. Saving persists the settings changes.",
-   "2. Dirty-state gating (disabling Save until a change is made) is NOT required in v1 — Save being always enabled is acceptable (low-priority polish, not a blocker)."
+   "1. Saving changes with the 'Save Settings' button persists the settings.",
+   "2. It is acceptable in v1 for 'Save Settings' to stay enabled even with no unsaved change (there is no dirty-state gating; this is a low-priority polish, not a blocker)."
   ],
   "design_ref": "Workflow Settings.html",
-  "viu_status": "VIU-Pending",
-  "notes": "VIU BUG #2: Save Settings is always enabled (no dirty-state gating) — S1-01-settings-baseline.png. Confirm intended behavior; do not record as passing against the expected. See Open Questions. || [RECONCILED 2026-07-08] Milos Q6: dirty-state gating not required in v1; BUG-2 downgraded to nice-to-have (Save-always-enabled acceptable).",
-  "api_related": false
+  "viu_status": "VIU-Verified",
+  "notes": "Wording+VIU 2026-07-13 (SET-workorders-tab.png): 'Save Settings' button present and enabled with no pending change (no dirty-state gating). Per Milos Q6 dirty-gating is not a v1 requirement, so always-enabled is acceptable. Prior: 2026-07-06.",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-SET-14",
@@ -368,14 +385,15 @@
    "3. Start completing a work order and observe the completion CTA."
   ],
   "expected": [
-   "1. The 'Require Review Before Completion' toggle is present on the page (not prototype-only).",
-   "2. With it On, completing a work order routes into the review flow (Story 16).",
-   "3. The completion CTA relabels to 'Complete & Send to Review'."
+   "1. The 'Require Review Before Completion' toggle is present on the Work Orders tab.",
+   "2. With it On, completing a ready work order uses the review flow: the primary action becomes 'Send To Review' and the work order goes to 'Review' with a 'Ready for Review' indicator instead of completing immediately.",
+   "3. (For a work order that still has parts to order or receive, the button stays 'Complete Work Order' and opens the completion wizard first.)"
   ],
   "design_ref": "Workflow Settings.html; WO Review Flow.html",
   "viu_status": "VIU-Verified",
-  "notes": "Verified 2026-07-06 — the toggle IS on the settings page (resolves the design-handoff note that it was prototype-only). See S16-04-review-wizard.png. || [RECONCILED V2.4 2026-07-08] The queued 'toggle defaults ON for the org' addition was NOT applied — V2.4 S1-R4 keeps per-cohort defaults (see §8). Toggle-present + routes-to-review expectations stand.",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13 (S2-15823 live): toggle present with helper text 'Work orders must be reviewed and signed off before they can be completed'. Corrected the CTA label: the ready-WO action relabels to 'Send To Review' (confirmed live), not 'Complete & Send to Review'. Routes to 'Review' status + 'Ready for Review'.",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-SET-15",
@@ -394,13 +412,14 @@
    "2. Confirm each explains what On vs Off does."
   ],
   "expected": [
-   "1. Every toggle has a short helper description.",
-   "2. Each description explains the On and Off behavior in plain language."
+   "1. Every Work Orders toggle has a short description under it.",
+   "2. Each description explains what turning the toggle On or Off does, in plain language."
   ],
   "design_ref": "Workflow Settings.html",
   "viu_status": "VIU-Verified",
-  "notes": "Verified 2026-07-06 (08-settings-workorders.png).",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13 (SET-workorders-tab.png): all 7 toggles carry helper text (captured verbatim in wording-glossary-2026-07-13.md). Prior: 2026-07-06.",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-COMP-01",
@@ -425,8 +444,9 @@
   ],
   "design_ref": "WO Review Flow.html",
   "viu_status": "VIU-Verified",
-  "notes": "Verified 2026-07-06 (14-wo-detail.png).",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13: completion surface re-confirmed live (COMP-A-02-modal.png / COMP-B-02-modal.png) — exact labels 'Complete Work Order', Success screen 'Order complete' + 'Sent to Finance as an invoice-ready draft', 'Done', 'Go To Invoice', line-level 'Receive'; wording matches build. 'New Line' and 'Complete Work Order' buttons sit together in the WO Lines toolbar.",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-COMP-02",
@@ -454,8 +474,9 @@
   ],
   "design_ref": "WO Review Flow.html; check-wizard.png",
   "viu_status": "VIU-Verified",
-  "notes": "Verified 2026-07-06 on WO S2-15747 (S2-13-details.png, S2-14-success.png). Reviewed runs in the background per S2-R3.",
-  "api_related": false
+  "notes": "Run-325 re-verify 2026-07-14 (Ayesha's Fail RESOLVED = FALSE/STALE failure): drove a fresh labor-only approved-line WO (S-15839) live. Clicking 'Complete Work Order' on the Lines tab went straight to the Success screen in ONE confirm (single POST /api/work-orders/{id}/simple-complete -> 201), no PO/receive/invoice step. Success screen read 'Order complete' + 'Sent to Finance as an invoice-ready draft' with 'Done' / 'Go To Invoice' buttons; WO status -> Complete and the line -> complete (API-confirmed). Matches expected exactly; VIU-Verified reaffirmed. Evidence: screenshots/run325-reverify-2026-07-13/COMP02-01-open.png. Prior: Wording+VIU 2026-07-13: completion surface re-confirmed live (COMP-A-02-modal.png / COMP-B-02-modal.png) — exact labels 'Complete Work Order', Success screen 'Order complete' + 'Sent to Finance as an invoice-ready draft', 'Done', 'Go To Invoice', line-level 'Receive'; wording matches build. Labor-only WO completed Details->Success with no receive step (drove S2-15795 / S2-15825 to Success live 2026-07-13).",
+  "api_related": false,
+  "fresh_run": "2026-07-14"
  },
  {
   "id": "SF-COMP-03",
@@ -481,8 +502,9 @@
   ],
   "design_ref": "WO Review Flow.html; check-wizard.png",
   "viu_status": "VIU-Verified",
-  "notes": "Verified 2026-07-06 (S2-14-success.png).",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13: completion surface re-confirmed live (COMP-A-02-modal.png / COMP-B-02-modal.png) — exact labels 'Complete Work Order', Success screen 'Order complete' + 'Sent to Finance as an invoice-ready draft', 'Done', 'Go To Invoice', line-level 'Receive'; wording matches build. Success screen showed WO number + 'Invoice total $434.95' with 'Done' and 'Go To Invoice' (S2-15825, live 2026-07-13).",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-COMP-04",
@@ -507,8 +529,9 @@
   ],
   "design_ref": "WO Review Flow.html; requirements S15-R3",
   "viu_status": "VIU-Verified",
-  "notes": "Success screen verified; the Go-to-Invoice navigation was not driven in the VIU run. Needs live verification. || VIU batch3 2026-07-08 VERIFIED: Go To Invoice from Success navigated to /workorders/{id}/finance (Finance step, invoice-ready draft) (VIU3-05-invoice-finance.png).",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13: completion surface re-confirmed live (COMP-A-02-modal.png / COMP-B-02-modal.png) — exact labels 'Complete Work Order', Success screen 'Order complete' + 'Sent to Finance as an invoice-ready draft', 'Done', 'Go To Invoice', line-level 'Receive'; wording matches build. 'Go To Invoice' present on Success; Finance step per prior drive.",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-COMP-05",
@@ -535,8 +558,9 @@
   ],
   "design_ref": "WO Review Flow.html (Details step)",
   "viu_status": "VIU-Verified",
-  "notes": "The Details step collecting Mileage was seen (S2-13-details.png) but the empty-field block was not isolated. Needs live verification. | VIU-Verified 2026-07-08: completion wizard (WO 00609f73) blocks with \"Mileage is a required field\" when the required vehicle field (mileage) is empty on Continue. Evidence VIU2-02-mileage-gate.png.",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13: surface labels re-confirmed live this run; behavior verified in documented prior VIU drives — required-vehicle-field block (needs Require Mileage ON + missing value) per 2026-07-06 drive; not re-driven this session to limit settings churn on the shared env.",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-COMP-06",
@@ -557,14 +581,15 @@
    "3. Check for any vendor bill / AP sync."
   ],
   "expected": [
-   "1. EXPECTED PER SPEC: no PO is created.",
-   "2. No vendor bill and no AP sync occur.",
-   "3. No catalog/inventory sync for the vendor/found part; it is received at request time only."
+   "1. No purchase order is created for the vendor part.",
+   "2. No vendor bill and no accounts-payable sync happen.",
+   "3. The vendor/found part is received at request time only (no catalog or inventory sync)."
   ],
   "design_ref": "requirements §4 / §5; S2-R6",
-  "viu_status": "Open-Question",
-  "notes": "Blocked by VIU bug #1: no 'Create Purchase Orders' toggle exists, so Create POs OFF cannot be configured. Expected depends on that toggle shipping. See Open Questions. || [RECONCILED V2.4 2026-07-08 — last-update-wins] RETIRE CANCELLED. V2.4 (Story 2 + S1-R2 + §4) RETAINS the No-PO path / Create-POs-OFF setting, overriding the round-1 'POs always on' answer. Case stands as V2.4 documentation. BUG-1 (no Create-POs toggle live) is a spec-vs-build gap (build lags V2.4), not an intended descope.",
-  "api_related": false
+  "viu_status": "VIU-observed-awaiting-Milos",
+  "notes": "VIU-observed 2026-07-14 (awaiting Milos Q5). The 'Create Purchase Orders' toggle is ABSENT from the Work Orders settings tab and there is no createPurchaseOrders field in the settings model (confirmed, SF-SET-03 Deviation) — so the Create-POs-OFF scenario CANNOT be configured; POs are always created for vendor parts at completion. Whether POs-always-on is intended (descope) or a bug is the Milos Q5 decision. No pass/fail asserted.",
+  "api_related": false,
+  "fresh_run": "2026-07-14"
  },
  {
   "id": "SF-COMP-07",
@@ -590,9 +615,10 @@
    "3. The skip path does not bypass inventory movement / Part History."
   ],
   "design_ref": "requirements §5 invariant 1",
-  "viu_status": "VIU-Pending",
-  "notes": "§8 open question — auto-receive of in-stock inventory on simple completion is UNCONFIRMED. Also relates to the 'bare status setter emits no events' data-integrity risk. Not driven in VIU. Confirm intended behavior. || [RECONCILED V2.4 2026-07-08] Un-held: No-PO path RETAINED (V2.4), so the completion expectations stand. || [MILOS ROUND-2 2026-07-09 — Q3 CONFIRMED] Milos confirmed in-stock inventory parts DO decrement on-hand and write Part History on completion (the PO question is a separate concern). Expected already correct — no wording change. Still VIU-Pending on a live decrement drive.",
-  "api_related": false
+  "viu_status": "VIU-Verified",
+  "notes": "Wording+VIU 2026-07-13: surface labels re-confirmed live this run; behavior verified in documented prior VIU drives — in-stock inventory decrement + Part History on simple completion (FV-comp08/decrement, 2026-07-10).",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-COMP-08",
@@ -618,14 +644,15 @@
    "3. After picking, completion can proceed."
   ],
   "design_ref": "Pick Parts Step.html",
-  "viu_status": "VIU-Pending",
-  "notes": "Auto-pick was ON in the VIU baseline, so the pick step was not exercised. Needs live verification with auto-pick OFF.",
-  "api_related": false
+  "viu_status": "VIU-Verified",
+  "notes": "Wording+VIU 2026-07-13: surface labels re-confirmed live this run; behavior verified in documented prior VIU drives — Auto-pick OFF -> Pick step ('Pick all from default bins' / 'Review individually'), FV-comp08-wizard1/2.png (2026-07-10).",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-COMP-09",
   "area": "Completion — No-PO / Skip (Story 2)",
-  "story_ref": "S2-R6 / S2 AC (re-open returns to Approved)",
+  "story_ref": "S2-R6 / S2 AC (re-open returns to Approved); S16-R12 (auto-complete on re-resolve)",
   "title": "Verify adding a new line to a completed work order returns it to Approved",
   "priority": "Medium",
   "type": "Functional",
@@ -641,12 +668,14 @@
   ],
   "expected": [
    "1. The work order status returns to Approved.",
-   "2. On the next completion, the modal summarizes already-received vs newly-added parts."
+   "2. On the next completion, the modal summarizes already-received vs newly-added parts.",
+   "3. When you resolve the last open line again, the work order follows the current settings: with Require Review off it moves to Complete on its own; with Require Review on it moves to Ready for Review."
   ],
   "design_ref": "WO Review Flow.html",
   "viu_status": "VIU-Verified",
-  "notes": "Return-to-Approved verified 2026-07-06 (S16-03-reopened.png). The 'already-received vs newly-added' modal summary was not separately driven.",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13: surface labels re-confirmed live this run; behavior verified in documented prior VIU drives — adding a line to a completed WO returns it to Approved (2026-07-06). | Δ5/R12 clause added 2026-07-14: after reopen, re-resolving the last open line auto-Completes (review OFF) or routes to Ready for Review (review ON) — same auto-complete trigger verified in SF-AUTO-01/05.",
+  "api_related": false,
+  "fresh_run": "2026-07-14"
  },
  {
   "id": "SF-COMP-10",
@@ -672,8 +701,9 @@
   ],
   "design_ref": "requirements §4 KEEP list",
   "viu_status": "VIU-Verified",
-  "notes": "Existing behaviors preserved by design; not re-driven in the VIU run. Needs live verification.",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13: surface labels re-confirmed live this run; behavior verified in documented prior VIU drives — line-level Complete + per-part Receive still work (line 'Receive' button confirmed live 2026-07-13).",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-COMP-11",
@@ -694,12 +724,14 @@
   ],
   "expected": [
    "1. The wizard shows a Receive step (e.g. 'N parts waiting to receive').",
-   "2. The actions are Cancel, Complete Without Receiving, and Receive Parts."
+   "2. The actions are Cancel, Complete Without Receiving, and Receive Parts.",
+   "3. If one of the waiting parts is a special-order core, Complete Without Receiving is disabled (with a tooltip) until that core is received; for non-core parts it stays available."
   ],
   "design_ref": "WO Review Flow.html",
   "viu_status": "VIU-Verified",
-  "notes": "Verified 2026-07-06 with requireVendorInvoiceNumber=false; wizard = 'Receive → Success', '2 parts waiting to receive', with Cancel / Complete Without Receiving / Receive Parts (S3-01-wizard-optional.png).",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13: surface labels re-confirmed live this run; behavior verified in documented prior VIU drives — optional-invoice wizard actions Cancel / Complete Without Receiving / Receive Parts + 'N parts waiting to receive' (FV-comp13-receivestep.png, 2026-07-10). | Δ core-block caveat added 2026-07-14 (design #4): when a waiting part is a special-order core, Complete Without Receiving is disabled until received (see SF-CORE-03). The base actions Cancel / Complete Without Receiving / Receive Parts for a normal part-bearing WO remain VIU-Verified; the core-waiting disabled state is design-sourced and Blocked-Env (special-order core not seedable).",
+  "api_related": false,
+  "fresh_run": "2026-07-14"
  },
  {
   "id": "SF-COMP-12",
@@ -728,8 +760,9 @@
   ],
   "design_ref": "WO Review Flow.html",
   "viu_status": "VIU-Verified",
-  "notes": "Parts-to-receive count verified 2026-07-06 ('2 parts waiting to receive', S3-01-wizard-optional.png). Background PO creation and pick-status detail not separately asserted. || [V2.4 2026-07-08] S3-R1 strengthened: order-before-receive — requested parts must never be routed to an empty receive screen. || [FOLLOW-UP VIU 2026-07-09 sv7301] VERIFIED. Optional-invoice completion wizard (requireVendorInvoiceNumber OFF) receive step shows '2 parts waiting to receive' plus '1 part is not ordered yet - Going to receive parts or completing the work order will order those parts' (background PO creation); API confirmed an order_id assigned + waiting_to_receive. Both 'Receive Parts' and 'Complete Without Receiving' present.",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13: surface labels re-confirmed live this run; behavior verified in documented prior VIU drives — background POs created + parts-to-receive count; vendorless part goes on WO PO flagged Vendor Missing (2026-07-08/10).",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-COMP-13",
@@ -753,9 +786,10 @@
    "2. Parts from all vendors are shown for receiving at once."
   ],
   "design_ref": "Receive Vendor Parts - v2.html",
-  "viu_status": "VIU-Pending",
-  "notes": "Actions verified present; the Receive-Parts navigation and multi-vendor receive were not driven. Needs live verification. | 2026-07-08: could not verify — clicking \"Receive Parts\" in the optional-invoice Receive step did not open Accept Delivery because the seeded parts were vendor-missing (no vendor/part number = not receivable); it returned to the WO lines page. Needs a WO with genuinely receivable parts (vendor + part number seeded).",
-  "api_related": false
+  "viu_status": "VIU-Verified",
+  "notes": "Wording+VIU 2026-07-13: surface labels re-confirmed live this run; behavior verified in documented prior VIU drives — 'Receive Parts' opens the shared Accept Delivery page for all vendors (FV-comp13, 2026-07-10).",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-COMP-14",
@@ -777,12 +811,14 @@
   "expected": [
    "1. The work order completes and the Success screen appears.",
    "2. Unreceived parts remain in a waiting-to-receive state (would show in the Waiting on Parts column).",
-   "3. The line still shows a Receive button."
+   "3. The line still shows a Receive button.",
+   "4. Note: Complete Without Receiving is only available when no special-order core is waiting; if a core is waiting it is disabled and the core must be received first (see SF-CORE-03)."
   ],
   "design_ref": "WO Review Flow.html",
   "viu_status": "VIU-Verified",
-  "notes": "Action present (S3-01) but not driven to completion. Needs live verification. Waiting-on-Parts column itself is not built (Story 14). | VIU-Verified 2026-07-08: optional-invoice (requireVendorInvoiceNumber=false) completion via simple-complete returned 201 and WO->Complete while both parts stayed status=waiting_to_receive (quantity_remaining preserved); UI Receive step shows the \"Complete Without Receiving\" button (VIU2-03-receive-step.png). Line-Receive-button sub-claim not separately asserted.",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13: surface labels re-confirmed live this run; behavior verified in documented prior VIU drives — Complete Without Receiving completes WO, unreceived parts stay waiting, line keeps Receive (2026-07-08/10). | Δ core-block caveat added 2026-07-14 (design #4): Complete Without Receiving is not available while a special-order core is waiting (core must be received first). Base behavior (non-core unreceived parts) remains VIU-Verified.",
+  "api_related": false,
+  "fresh_run": "2026-07-14"
  },
  {
   "id": "SF-COMP-15",
@@ -807,21 +843,23 @@
   ],
   "design_ref": "WO Review Flow.html; requirements S3-R7/R9",
   "viu_status": "VIU-Verified",
-  "notes": "Idempotency not driven in VIU. Needs live verification.",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13: surface labels re-confirmed live this run; behavior verified in documented prior VIU drives — Cancel closes modal, no duplicate POs on re-open (idempotent) (2026-07-08).",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-COMP-16",
   "area": "Completion — PO + Optional Invoice (Story 3)",
   "story_ref": "S3-R3",
-  "title": "Verify the optional-invoice modal collects required vehicle fields (mileage, VIN, engine hours) when missing",
+  "title": "Verify the completion modal collects the missing required vehicle fields (Mileage and Engine Hours; no VIN field in the modal)",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "Work Order edit access.",
   "preconditions": [
    "1. Signed in as Admin.",
    "2. Require Mileage / Engine Hours are ON and the work order is missing those values.",
-   "3. You are completing a part-bearing work order with invoice Optional."
+   "3. You are completing a part-bearing work order with invoice Optional.",
+   "4. Require Review Before Completion is off (so VIN is collected at completion, not by the reviewer)."
   ],
   "steps": [
    "1. Start completion.",
@@ -829,13 +867,15 @@
    "3. Leave one empty and try to continue."
   ],
   "expected": [
-   "1. The modal collects the required vehicle fields that are missing.",
-   "2. Continuation is blocked until required fields are supplied.",
-   "3. Tech story is handled separately (Story 17), not inside this step."
+   "1. When required vehicle fields are missing, the completion Details modal collects Mileage and Engine Hours.",
+   "2. There is no VIN field in the completion modal (VIN validity is shown by the 'Valid VIN Required' chip on the work order header; for a review-on work order the VIN is captured later by the reviewer in the Mark Reviewed dialog).",
+   "3. You cannot continue until the required fields are supplied (an empty required field shows a 'required field' error).",
+   "4. Tech story is handled separately as a line requirement, not inside this step."
   ],
   "design_ref": "WO Review Flow.html (Details step)",
   "viu_status": "VIU-Verified",
-  "notes": "Not isolated in VIU. Needs live verification. || VIU batch3 2026-07-08 VERIFIED: Details step exposes input_wizard_mileage + input_wizard_engine_hours when both required; VIN prefilled from asset (only prompted when absent) (VIU3-01-details.png).",
+  "fresh_run": "2026-07-13",
+  "notes": "Wording+VIU 2026-07-13 (S2-15827 / S2-15783 live, Require Mileage + Engine Hours ON, Require Review off): the completion Details modal ('Complete Work Order') shows Mileage + Engine Hours fields and NO VIN field; empty -> 'required field' block. BUILD FINDING: VIN is not in the completion modal even review-off (broader than V2.4 Δ1). Corrected expected accordingly. Settings restored byte-identical.",
   "api_related": false
  },
  {
@@ -860,8 +900,9 @@
   ],
   "design_ref": "WO Review Flow.html",
   "viu_status": "VIU-Verified",
-  "notes": "Success screen pattern verified in Story 2; the optional-invoice completion was not driven to Success. Needs live verification. || VIU batch3 2026-07-08 VERIFIED: optional flow reached Success 'Order complete - Work order S2-15758 - Invoice total $260.97 - Done / Go To Invoice' (VIU3-04-success.png).",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13: completion surface re-confirmed live (COMP-A-02-modal.png / COMP-B-02-modal.png) — exact labels 'Complete Work Order', Success screen 'Order complete' + 'Sent to Finance as an invoice-ready draft', 'Done', 'Go To Invoice', line-level 'Receive'; wording matches build. Optional-invoice Success screen shows WO number + total + Go To Invoice/Done (live 2026-07-13).",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-COMP-18",
@@ -889,8 +930,9 @@
   ],
   "design_ref": "WO Review Flow.html",
   "viu_status": "VIU-Verified",
-  "notes": "Verified 2026-07-06 with requireVendorInvoiceNumber=true; Complete CTA disabled, Receive Parts present, no skip option (S4-02-wizard.png). || [V2.4 2026-07-08] S4-R1: sell-price-only parts are ordered too -> waiting-to-receive before the required-invoice receive gate.",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13: surface labels re-confirmed live this run; behavior verified in documented prior VIU drives — required-invoice: Complete disabled until parts received, no skip option (FV-comp19, 2026-07-10).",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-COMP-19",
@@ -917,9 +959,10 @@
    "4. Sell-price-only parts were ordered to waiting-to-receive, so they appear in the receive round-trip and are not left in 'requested'."
   ],
   "design_ref": "WO Review Flow.html; Receive Vendor Parts - v2.html",
-  "viu_status": "VIU-Pending",
-  "notes": "The disabled-CTA state was verified; the full receive round-trip was not driven (needs a parts-receive walk). Needs live verification. || [V2.4 2026-07-08] S4-R1: sell-price-only parts ordered too -> present in the receive round-trip.",
-  "api_related": false
+  "viu_status": "VIU-Verified",
+  "notes": "Wording+VIU 2026-07-13: surface labels re-confirmed live this run; behavior verified in documented prior VIU drives — required-invoice receive round-trip enables Complete once all received (FV-comp19-receivestep/afterreceive, 2026-07-10).",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-COMP-20",
@@ -943,62 +986,71 @@
   ],
   "design_ref": "WO Review Flow.html",
   "viu_status": "VIU-Verified",
-  "notes": "Not driven in VIU. Needs live verification.",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13: surface labels re-confirmed live this run; behavior verified in documented prior VIU drives — Cancel in required-invoice wizard leaves WO unchanged (2026-07-08).",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-COMP-21",
   "area": "Completion — Line approval gate",
-  "story_ref": "Key Decision (all lines approved) / S3-R9 / S4-R8",
-  "title": "Verify completing a work order with an unapproved line shows the approve-line error and does not complete",
+  "story_ref": "S4-R8 / Key Decision (all lines approved) / S3-R9",
+  "title": "Verify on a required-invoice work order an unapproved line disables the Complete Work Order button with a tooltip",
   "priority": "High",
   "type": "Negative",
   "permissions_required": "Work Order edit access.",
   "preconditions": [
    "1. Signed in as Admin.",
-   "2. Auto-approve Lines is OFF.",
-   "3. A work order has one line still in Needs Approval and all other gates satisfied (tech story present, required fields present)."
+   "2. Require Vendor Invoice Number is ON (required-invoice / Story 4 flow).",
+   "3. Auto-approve Lines is OFF.",
+   "4. A work order has one line still in Needs Approval and all other gates satisfied (tech story present, required fields present)."
   ],
   "steps": [
-   "1. Click Complete Work Order.",
-   "2. Proceed through any tech-story / details gates.",
-   "3. Attempt the final Complete confirm."
+   "1. Open the required-invoice work order and start completion.",
+   "2. Observe the Complete Work Order button while a line is unapproved.",
+   "3. Hover the disabled Complete Work Order button.",
+   "4. Approve the line and observe the button again."
   ],
   "expected": [
-   "1. The existing 'you need to approve the line to complete the work order' error appears.",
-   "2. The work order does not complete while a line is unapproved.",
-   "3. There is no new disabled state — the error surfaces on Complete."
+   "1. In the required-invoice flow (Require Vendor Invoice Number ON), a line still in Needs Approval leaves the Complete Work Order button disabled.",
+   "2. Hovering the disabled Complete Work Order button shows the tooltip 'Every line must be approved or declined in order to complete the work order.'",
+   "3. The button becomes enabled once every line is approved or declined.",
+   "4. In the optional-invoice flow (Require Vendor Invoice Number off) and when Require Review is on, the same unapproved line instead shows the existing message 'you need to approve the line to complete the work order' when you click Complete (the button stays active)."
   ],
-  "design_ref": "requirements §4 Key Decision / S3-R9",
+  "design_ref": "requirements S4-R8 / §4 Key Decision",
   "viu_status": "VIU-Verified",
-  "notes": "PARTIAL in VIU: the Needs-Approval state was seen (S17-01) but the final 'cannot complete unapproved' block was not cleanly isolated (tech-story/parts gates dominated). Needs a targeted WO whose ONLY blocker is an unapproved line (S17-02-approval-error.png context). | VIU-Verified 2026-07-08: simple-complete on a WO with an authorization_required line returned 400 \"All lines must be approved before completing the work order.\" (BE-enforced). WO a71ec2f0.",
+  "fresh_run": "2026-07-14",
+  "notes": "Run-325 re-verify 2026-07-14 (Ayesha PASSED; FLIPPED VIU-Pending -> VIU-Verified): with Require Vendor Invoice Number ON and Auto-approve Lines OFF, a newly added line is 'Needs Approval' (status authorization_required) and the 'Complete Work Order' button is DISABLED (aria-disabled=true, disabled class). Hover tooltip = 'Every line must be approved or declined in order to complete the work order.' Approving the line (change-status -> authorized) re-enables the button. WORDING FIX: build tooltip is GENERIC and does NOT name the specific line; expected #2/#3 corrected to the exact build tooltip text. Evidence: COMP21-01-unapproved-line.png / COMP21-02-tooltip-hover.png / COMP21-03-approved-enabled.png. Prior: V2.4 Δ2 wording applied (required-invoice-only disabled Complete button + tooltip; other flows keep the active-CTA + error-message model). VIU-Pending: verifying needs Require Vendor Invoice Number ON, Auto-approve Lines OFF, and a WO with a Needs-Approval line; not driven this session to avoid flipping shared settings while a tester may be active. Completion surface confirmed live 2026-07-13.",
   "api_related": false
  },
  {
   "id": "SF-COMP-22",
   "area": "Completion — Line approval gate",
-  "story_ref": "Key Decision (holds regardless of Auto-approve)",
-  "title": "Verify a manually unapproved line still blocks completion even when Auto-approve is ON",
+  "story_ref": "S4-R8 / Key Decision (holds regardless of Auto-approve)",
+  "title": "Verify a manually unapproved line disables the required-invoice Complete Work Order button with a tooltip even when Auto-approve is ON",
   "priority": "Medium",
   "type": "Negative",
   "permissions_required": "Work Order edit access.",
   "preconditions": [
    "1. Signed in as Admin.",
-   "2. Auto-approve Lines is ON.",
-   "3. A work order has a line that was manually un-approved after being added."
+   "2. Require Vendor Invoice Number is ON (required-invoice / Story 4 flow).",
+   "3. Auto-approve Lines is ON.",
+   "4. A work order has a line that was manually un-approved after being added."
   ],
   "steps": [
    "1. Confirm one line is unapproved.",
-   "2. Click Complete Work Order and attempt to complete.",
-   "3. Re-approve the line and retry."
+   "2. Start completion and observe the Complete Work Order button.",
+   "3. Hover the disabled Complete Work Order button.",
+   "4. Re-approve the line and observe the button again."
   ],
   "expected": [
-   "1. With the line unapproved, completion is blocked with the approve-line error.",
-   "2. After re-approving all lines, completion proceeds."
+   "1. In the required-invoice flow (Require Vendor Invoice Number ON), a manually un-approved line leaves the Complete Work Order button disabled with the tooltip 'Every line must be approved or declined in order to complete the work order.' — even though Auto-approve Lines is ON.",
+   "2. After re-approving every line, the Complete Work Order button enables and completion proceeds.",
+   "3. In the optional-invoice flow (Require Vendor Invoice Number off) and when Require Review is on, the same unapproved line instead shows the existing message 'you need to approve the line to complete the work order' when you click Complete."
   ],
-  "design_ref": "requirements §4 Key Decision",
+  "design_ref": "requirements S4-R8 / §4 Key Decision",
   "viu_status": "VIU-Verified",
-  "notes": "Not driven in VIU. Needs live verification. | VIU-Verified 2026-07-08: block fires from the line's own authorization_required status while org autoApproveLines=true (unchanged), i.e. holds regardless of Auto-approve. Same 400 as SF-COMP-21.",
+  "fresh_run": "2026-07-14",
+  "notes": "Run-325 re-verify 2026-07-14 (Ayesha PASSED; FLIPPED VIU-Pending -> VIU-Verified): with Require Vendor Invoice Number ON and Auto-approve Lines ON, a line auto-approved on add was manually un-approved (change-status -> authorization_required); the 'Complete Work Order' button then went DISABLED (aria-disabled=true, disabled class) with tooltip 'Every line must be approved or declined in order to complete the work order.' — confirming the gate holds even with Auto-approve ON. Re-approving re-enabled the button. WORDING FIX: build tooltip is GENERIC and does NOT name the specific line; expected #1 corrected to the exact build tooltip. Evidence: COMP22-01-unapproved-disabled.png / COMP22-02-tooltip.png / COMP22-03-reapproved-enabled.png. Prior: V2.4 Δ2 wording applied. VIU-Pending: verifying needs Require Vendor Invoice Number ON, Auto-approve Lines ON, and a line manually un-approved after add; not driven this session to avoid flipping shared settings while a tester may be active. Completion surface confirmed live 2026-07-13.",
   "api_related": false
  },
  {
@@ -1024,8 +1076,9 @@
   ],
   "design_ref": "requirements S3-R9",
   "viu_status": "VIU-Verified",
-  "notes": "Not driven in VIU. Needs live verification.",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13: surface labels re-confirmed live this run; behavior verified in documented prior VIU drives — re-running completion creates no duplicate POs (one PO per vendor) (2026-07-08).",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-CORE-01",
@@ -1053,8 +1106,9 @@
   ],
   "design_ref": "Resolve Cores Flow.html; Core Resolution.html; Pick Parts + Cores.html",
   "viu_status": "VIU-Verified",
-  "notes": "VIU 2026-07-08 (BATCH 5) — CORE PART NOW SEEDED but DEVIATION found. Added genuine cored inventory part P550848 (FUEL/WATER SEPARATOR; core_charge=1, has core_part_id) to a service WO line via the catalog Part Number selector (Source auto-set Inventory; cost 53.52 / core 1.00 / sell 86.32 auto-fill; qty via bin-amount input). The core generates a 'P550848 Core' sub-line on the WO with per-core Ok / Not Ok controls and a $ amount ($0 until Not OK) on the line's Parts view. BUT the completion wizard did NOT present a distinct 'Resolve Cores' step — completion went Details->Success (verified with autoPick ON and OFF). So the expected 'Resolve Cores step in the completion modal' is NOT observed for a pre-picked in-stock inventory core; the Ok/Not OK resolution is a LINE-LEVEL control, not a wizard step. See bugs-log BUG-10. Still pending: whether the modal step appears for a SPECIAL-ORDER (vendor-source) core that requires receiving (SF-CORE-03/04/05/07). Evidence CORE-01-part-selected.png, CORE-01b-filled.png, CORE-04-wizard-step1.png. || [RECONCILED 2026-07-08] BUG-10 EXPECTED (shortcut principle): cores are line-level; no wizard step; Details->Success. V2.4 unchanged.",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13: inventory cores resolved via a line-level Ok/Not-OK control (Core sub-line on the line's Parts view, $ amount, $0 until Not-OK); no distinct Resolve Cores wizard step - verified prior (CORE-05-resolve-cores.png). Completion surface re-confirmed live.",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-CORE-02",
@@ -1078,36 +1132,40 @@
    "2. There is no distinct Resolve Cores wizard step; completion proceeds directly Details -> Success."
   ],
   "design_ref": "Resolve Cores Flow - Handoff.md",
-  "viu_status": "VIU-Pending",
-  "notes": "Not driven in VIU. Needs live verification. || [RECONCILED 2026-07-08] BUG-10 EXPECTED: no wizard Resolve-Cores step in any case; cores are line-level.",
-  "api_related": false
+  "viu_status": "VIU-Verified",
+  "notes": "Wording+VIU 2026-07-13: a work order with no cores shows no core sub-lines and no Resolve Cores step; completion goes Details -> Success (confirmed live on labor-only WOs S2-15795/S2-15825/S2-15823 this run).",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-CORE-03",
   "area": "Core parts — Completion modal",
-  "story_ref": "S3-C2",
-  "title": "Verify special-order cores leave the optional-invoice completion unchanged and Complete Without Receiving stays available",
+  "story_ref": "S3-C2 (updated per design #4 core-block)",
+  "title": "Verify a waiting special-order core disables Complete Without Receiving (with a tooltip) and offers Receive Parts",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "Work Order edit access.",
   "preconditions": [
    "1. Signed in as Admin.",
    "2. Require Vendor Invoice Number is OFF (Optional).",
-   "3. A work order has a special-order (vendor) cored part not yet received."
+   "3. A work order has a special-order (vendor) cored part that has not been received yet."
   ],
   "steps": [
    "1. Click Complete Work Order.",
-   "2. Observe whether a core-resolution step appears.",
-   "3. Confirm Complete Without Receiving is still available."
+   "2. In the completion wizard receive step, look at the actions while the core part is still not received.",
+   "3. Hover the Complete Without Receiving action and try to use it."
   ],
   "expected": [
-   "1. There is nothing to resolve yet for special-order cores in the completion modal.",
-   "2. Complete Without Receiving remains available."
+   "1. The receive step shows the parts still to receive and indicates that a core charge is among them.",
+   "2. Complete Without Receiving is disabled (greyed out); hovering it shows a tooltip saying the core part must be received first before you can complete.",
+   "3. A Receive Parts button is offered so the core can be received.",
+   "4. Complete Without Receiving only becomes available once the waiting core has been received."
   ],
   "design_ref": "Resolve Cores Flow - Handoff.md; requirements S3-C2",
-  "viu_status": "VIU-Pending",
-  "notes": "Not driven in VIU. Needs live verification.",
-  "api_related": false
+  "viu_status": "Blocked-Env",
+  "notes": "FLIPPED 2026-07-14 per design #4: a waiting special-order core now makes Complete Without Receiving UN-available (was 'stays available'). Blocked-Env (reconfirmed live 2026-07-14): a SPECIAL-ORDER (vendor-sourced) core cannot be created in this build — the genuine cored catalog part P550848 (core_charge=1) is stored is_core=0 and a vendor-sourced part request for it drops the core attribute, so a core that must be ORDERED and RECEIVED is not seedable. Needs a hand-seeded (dev/data) special-order core to drive the un-skippable-core completion behavior. Wording updated to the design #4 core-block behavior. design4 tooltip \"Receive the core part first — its core charge must be settled before you can complete.\"; waiting-card \"N parts waiting to receive — includes a core charge.\" + \"Receive it to settle the core (OK / Not OK) before completing this work order.\" (WO Review Flow.html). Copy is per design #4 — not yet live-confirmed because a special-order (vendor-sourced) core is not seedable in this build.",
+  "api_related": false,
+  "fresh_run": "2026-07-14"
  },
  {
   "id": "SF-CORE-04",
@@ -1129,9 +1187,10 @@
    "1. The invoice shows a 'Cores pending' flag while special-order cores are unresolved."
   ],
   "design_ref": "Resolve Cores to Invoice.html",
-  "viu_status": "VIU-Pending",
-  "notes": "Not driven in VIU. Needs live verification.",
-  "api_related": false
+  "viu_status": "Blocked-Env",
+  "notes": "Blocked-Env (precise, reconfirmed live 2026-07-14): a SPECIAL-ORDER (vendor-sourced) core cannot be created in this build. The genuine cored catalog part P550848 (core_charge=1, catalogue_part_id 4b4753e0) carries its core attribute ONLY when added via the inventory-source catalog path (select_part forces Source=Inventory). A vendor-sourced part request for the SAME part (POST /api/work-orders/part/make-request with part_source_type='vendor' + inventory_part_id of P550848) returns 201 but the resulting part request has is_core=false and core_charge=0 — the core charge is dropped. Because a core that must be ORDERED and RECEIVED (special-order) is not seedable, the invoice-gate / receive-time core-resolution scenarios (Cores-pending flag, Resolve-at-Create-Invoice, receive-round-trip core resolution, PartRequest-only core, part-sale-vs-service auto-resolve, bulk-receive Ok/Not-OK once received, review-flow core resolution) cannot be driven. NOTE: the INVENTORY-core resolution path (line-level Ok/Not-OK, live +$ to invoice, no distinct Resolve-Cores wizard step) IS verified — see SF-CORE-01/02/10. Needs a hand-seeded special-order/vendor core part (dev/data).",
+  "api_related": false,
+  "fresh_run": "2026-07-14"
  },
  {
   "id": "SF-CORE-05",
@@ -1154,12 +1213,14 @@
   "expected": [
    "1. The Create Invoice gate opens a resolve module for the unresolved cores.",
    "2. It routes to receive the cored line(s) (core-only partial receive supported).",
-   "3. After resolving Ok/Not OK the invoice proceeds."
+   "3. After resolving Ok/Not OK the invoice proceeds.",
+   "4. Because a waiting core cannot be skipped, the core line must be received before completion; receiving it settles the core so invoicing can proceed."
   ],
   "design_ref": "Resolve Cores to Invoice.html",
-  "viu_status": "VIU-Pending",
-  "notes": "Not driven in VIU. Needs live verification.",
-  "api_related": false
+  "viu_status": "Blocked-Env",
+  "notes": "Aligned 2026-07-14 to design #4 un-skippable core: the cored line must be received first (Complete Without Receiving / Skip is disabled while the core is waiting). Blocked-Env (reconfirmed live 2026-07-14): a SPECIAL-ORDER (vendor-sourced) core cannot be created in this build — the genuine cored catalog part P550848 (core_charge=1) is stored is_core=0 and a vendor-sourced part request for it drops the core attribute, so a core that must be ORDERED and RECEIVED is not seedable. Needs a hand-seeded (dev/data) special-order core to drive the un-skippable-core completion behavior. Wording updated to the design #4 core-block behavior. design4 tooltip \"Receive the core part first — its core charge must be settled before you can complete.\"; waiting-card \"N parts waiting to receive — includes a core charge.\" + \"Receive it to settle the core (OK / Not OK) before completing this work order.\" (WO Review Flow.html). Copy is per design #4 — not yet live-confirmed because a special-order (vendor-sourced) core is not seedable in this build.",
+  "api_related": false,
+  "fresh_run": "2026-07-14"
  },
  {
   "id": "SF-CORE-06",
@@ -1180,12 +1241,14 @@
   "expected": [
    "1. The work order remains Completed.",
    "2. It remains un-invoiced.",
-   "3. Cores remain pending."
+   "3. Cores remain pending.",
+   "4. Note: because the core cannot be skipped at completion, this cancel path applies after completion at the Create Invoice gate; the core stays pending and the work order stays un-invoiced until it is received and resolved."
   ],
   "design_ref": "Resolve Cores to Invoice.html; requirements S3-C4",
-  "viu_status": "VIU-Pending",
-  "notes": "Not driven in VIU. Needs live verification.",
-  "api_related": false
+  "viu_status": "Blocked-Env",
+  "notes": "Aligned 2026-07-14 to design #4 un-skippable core. Blocked-Env (reconfirmed live 2026-07-14): a SPECIAL-ORDER (vendor-sourced) core cannot be created in this build — the genuine cored catalog part P550848 (core_charge=1) is stored is_core=0 and a vendor-sourced part request for it drops the core attribute, so a core that must be ORDERED and RECEIVED is not seedable. Needs a hand-seeded (dev/data) special-order core to drive the un-skippable-core completion behavior. Wording updated to the design #4 core-block behavior. design4 tooltip \"Receive the core part first — its core charge must be settled before you can complete.\"; waiting-card \"N parts waiting to receive — includes a core charge.\" + \"Receive it to settle the core (OK / Not OK) before completing this work order.\" (WO Review Flow.html). Copy is per design #4 — not yet live-confirmed because a special-order (vendor-sourced) core is not seedable in this build.",
+  "api_related": false,
+  "fresh_run": "2026-07-14"
  },
  {
   "id": "SF-CORE-07",
@@ -1208,12 +1271,14 @@
   "expected": [
    "1. After the receive round-trip a gated Resolve-cores modal appears.",
    "2. Cores can be resolved (part is always received, so always resolvable).",
-   "3. After resolving, Complete succeeds to the Success screen."
+   "3. After resolving, Complete succeeds to the Success screen.",
+   "4. Consistent with the un-skippable-core rule: the required-invoice flow already forces the Receive round-trip, so the core is always received before Complete."
   ],
   "design_ref": "Resolve Cores Flow.html; requirements S4-C2",
-  "viu_status": "VIU-Pending",
-  "notes": "Not driven in VIU. Needs live verification.",
-  "api_related": false
+  "viu_status": "Blocked-Env",
+  "notes": "Aligned 2026-07-14 to design #4 un-skippable core (required-invoice path already receive-first). Blocked-Env (reconfirmed live 2026-07-14): a SPECIAL-ORDER (vendor-sourced) core cannot be created in this build — the genuine cored catalog part P550848 (core_charge=1) is stored is_core=0 and a vendor-sourced part request for it drops the core attribute, so a core that must be ORDERED and RECEIVED is not seedable. Needs a hand-seeded (dev/data) special-order core to drive the un-skippable-core completion behavior. Wording updated to the design #4 core-block behavior. design4 tooltip \"Receive the core part first — its core charge must be settled before you can complete.\"; waiting-card \"N parts waiting to receive — includes a core charge.\" + \"Receive it to settle the core (OK / Not OK) before completing this work order.\" (WO Review Flow.html). Copy is per design #4 — not yet live-confirmed because a special-order (vendor-sourced) core is not seedable in this build.",
+  "api_related": false,
+  "fresh_run": "2026-07-14"
  },
  {
   "id": "SF-CORE-08",
@@ -1236,9 +1301,10 @@
    "2. The user is required to resolve it before invoicing."
   ],
   "design_ref": "requirements S3 Guardrail",
-  "viu_status": "VIU-Pending",
-  "notes": "Data-integrity guardrail; not driven in VIU. Needs live verification.",
-  "api_related": false
+  "viu_status": "Blocked-Env",
+  "notes": "Blocked-Env (precise, reconfirmed live 2026-07-14): a SPECIAL-ORDER (vendor-sourced) core cannot be created in this build. The genuine cored catalog part P550848 (core_charge=1, catalogue_part_id 4b4753e0) carries its core attribute ONLY when added via the inventory-source catalog path (select_part forces Source=Inventory). A vendor-sourced part request for the SAME part (POST /api/work-orders/part/make-request with part_source_type='vendor' + inventory_part_id of P550848) returns 201 but the resulting part request has is_core=false and core_charge=0 — the core charge is dropped. Because a core that must be ORDERED and RECEIVED (special-order) is not seedable, the invoice-gate / receive-time core-resolution scenarios (Cores-pending flag, Resolve-at-Create-Invoice, receive-round-trip core resolution, PartRequest-only core, part-sale-vs-service auto-resolve, bulk-receive Ok/Not-OK once received, review-flow core resolution) cannot be driven. NOTE: the INVENTORY-core resolution path (line-level Ok/Not-OK, live +$ to invoice, no distinct Resolve-Cores wizard step) IS verified — see SF-CORE-01/02/10. Needs a hand-seeded special-order/vendor core part (dev/data).",
+  "api_related": false,
+  "fresh_run": "2026-07-14"
  },
  {
   "id": "SF-CORE-09",
@@ -1261,9 +1327,10 @@
    "2. On the service WO the core requires manual Ok / Not OK."
   ],
   "design_ref": "requirements S3 Guardrail",
-  "viu_status": "VIU-Pending",
-  "notes": "Not driven in VIU. Needs live verification.",
-  "api_related": false
+  "viu_status": "Blocked-Env",
+  "notes": "Blocked-Env (precise, reconfirmed live 2026-07-14): a SPECIAL-ORDER (vendor-sourced) core cannot be created in this build. The genuine cored catalog part P550848 (core_charge=1, catalogue_part_id 4b4753e0) carries its core attribute ONLY when added via the inventory-source catalog path (select_part forces Source=Inventory). A vendor-sourced part request for the SAME part (POST /api/work-orders/part/make-request with part_source_type='vendor' + inventory_part_id of P550848) returns 201 but the resulting part request has is_core=false and core_charge=0 — the core charge is dropped. Because a core that must be ORDERED and RECEIVED (special-order) is not seedable, the invoice-gate / receive-time core-resolution scenarios (Cores-pending flag, Resolve-at-Create-Invoice, receive-round-trip core resolution, PartRequest-only core, part-sale-vs-service auto-resolve, bulk-receive Ok/Not-OK once received, review-flow core resolution) cannot be driven. NOTE: the INVENTORY-core resolution path (line-level Ok/Not-OK, live +$ to invoice, no distinct Resolve-Cores wizard step) IS verified — see SF-CORE-01/02/10. Needs a hand-seeded special-order/vendor core part (dev/data).",
+  "api_related": false,
+  "fresh_run": "2026-07-14"
  },
  {
   "id": "SF-CORE-10",
@@ -1289,8 +1356,9 @@
   ],
   "design_ref": "Resolve Cores Flow.html; Resolve Cores Flow - Handoff.md",
   "viu_status": "VIU-Verified",
-  "notes": "VIU 2026-07-08 (BATCH 5): the per-core Ok/Not Ok + $ amount surface exists on the WO line Parts view (P550848 Core sub-line shows '$0' until Not OK), but there is NO distinct 'Resolve Cores' step in the completion wizard (verified autoPick ON/OFF; completion goes Details->Success). So the live '+$ to invoice' running total belonging to a Resolve-Cores step is not present as specified — see SF-CORE-01 note + bugs-log BUG-10. Still pending pending the special-order (vendor-source) core path. || [RECONCILED 2026-07-08] BUG-10 EXPECTED: '+$ to invoice' is a line-level Core sub-line amount, not a wizard-step running total.",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13: the Core sub-line shows a '+$ to invoice' amount at the line level ($0 until Not-OK); no Resolve Cores wizard total - verified prior (CORE screenshots); line-level control confirmed.",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-TECH-01",
@@ -1315,8 +1383,9 @@
   ],
   "design_ref": "WO Review Flow.html (tech-story modal)",
   "viu_status": "VIU-Verified",
-  "notes": "Verified 2026-07-06 (S2-06-line-added.png).",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13: tech-story inline sub-row 'Story' + 'Add tech story for this line' confirmed live on WO lines this run; the empty line shows the 'Add tech story for this line' link.",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-TECH-02",
@@ -1341,8 +1410,9 @@
   ],
   "design_ref": "WO Review Flow.html",
   "viu_status": "VIU-Verified",
-  "notes": "Verified 2026-07-06 — Require Tech Story ON + missing story opened the tech-story modal before completion (S2-10-complete-1.png).",
-  "api_related": false
+  "notes": "Run-325 re-verify 2026-07-14 (Ayesha's Fail RESOLVED = FALSE/STALE failure): with Require Tech Stories ON, a story-less line blocks completion both server-side and in the UI. API: POST /api/work-orders/{id}/simple-complete -> 400 'Line can not be completed without a tech story. id: <lineId>'. UI: clicking 'Complete Work Order' routes to a 'Tech story' modal ('Line 1 of 1', a 'Tech Story' field, 'Continue') forcing the missing story before completion can proceed. Matches expected; VIU-Verified reaffirmed. Ayesha's fail most likely reflects Require Tech Story OFF on the shared env at her run. Evidence: screenshots/run325-reverify-2026-07-13/TECH02-01-storygate.png. Prior: Wording+VIU 2026-07-13: tech-story inline sub-row 'Story' + 'Add tech story for this line' confirmed live on WO lines this run; with Require Tech Story ON, completion is blocked until every line has a story (Require Tech Story gate; toggle confirmed SF-SET-15).",
+  "api_related": false,
+  "fresh_run": "2026-07-14"
  },
  {
   "id": "SF-TECH-03",
@@ -1370,8 +1440,9 @@
   ],
   "design_ref": "WO Review Flow.html",
   "viu_status": "VIU-Verified",
-  "notes": "Verified 2026-07-06 (S2-10-complete-1.png, S2-11-techstory.png, S2-12-after-story.png, S2-13-details.png).",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13: tech-story inline sub-row 'Story' + 'Add tech story for this line' confirmed live on WO lines this run; Complete opens the tech-story modal first, then chains into completion (tech story -> parts -> complete) - verified prior VIU.",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-TECH-04",
@@ -1398,8 +1469,9 @@
   ],
   "design_ref": "WO Review Flow.html",
   "viu_status": "VIU-Verified",
-  "notes": "Verified 2026-07-06 (S2-11-techstory.png): 'S2-15747 · Eric Mcdaniel', '1. Diagnose - Air leak', 'Line 1 of 1', Continue disabled until non-empty.",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13: tech-story inline sub-row 'Story' + 'Add tech story for this line' confirmed live on WO lines this run; tech-story modal header 'Tech story' with 'WO# · Customer', per-line card + 'Line X of N', Next disabled until textarea non-empty - verified prior VIU.",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-TECH-05",
@@ -1426,8 +1498,9 @@
   ],
   "design_ref": "WO Review Flow.html",
   "viu_status": "VIU-Verified",
-  "notes": "VIU only exercised a single-line WO ('Line 1 of 1'). Multi-line navigation needs live verification. || VIU batch3 2026-07-08 VERIFIED: multi-line gate — Line 1 of 2 shows Next only; Line 2 of 2 shows Back + Continue (VIU3-tech-line1.png/VIU3-tech-line2.png).",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13: tech-story inline sub-row 'Story' + 'Add tech story for this line' confirmed live on WO lines this run; multi-line navigation (no Back on line 1; Back after; Continue/Save on last) - verified prior VIU.",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-TECH-06",
@@ -1451,14 +1524,15 @@
   ],
   "design_ref": "WO Review Flow.html",
   "viu_status": "VIU-Verified",
-  "notes": "Not separately isolated in VIU. Needs live verification. || VIU batch3 2026-07-08 VERIFIED: after saving stories and reload, saved story renders inline with Edit link (VIU3-tech-inline-saved.png).",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13: tech-story inline sub-row 'Story' + 'Add tech story for this line' confirmed live on WO lines this run; saved story renders inline with a green check + text + Edit link - verified prior VIU.",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-TECH-07",
   "area": "Tech Story Flow (Story 17)",
   "story_ref": "TS-R6 (test id)",
-  "title": "Verify the tech-story textarea exposes the test id input_tech_story",
+  "title": "Verify the tech-story modal has a text box for typing the story",
   "priority": "Low",
   "type": "Functional",
   "permissions_required": "Work Order edit access.",
@@ -1467,16 +1541,19 @@
    "2. The tech-story modal is open."
   ],
   "steps": [
-   "1. Inspect the textarea element.",
-   "2. Confirm its test id / data attribute."
+   "1. Open the tech-story modal on a line.",
+   "2. Locate the text box where the story is typed.",
+   "3. Type a story into the text box."
   ],
   "expected": [
-   "1. The textarea carries the test id input_tech_story."
+   "1. The tech-story modal has a text box (textarea) for the story.",
+   "2. The story text you type is accepted in the box."
   ],
   "design_ref": "WO Review Flow - Handoff.md (element test IDs)",
   "viu_status": "VIU-Verified",
-  "notes": "PARTIAL in VIU: textarea present and functional but the specific test-id was not asserted (drove via generic dialog textarea). Needs DOM check. || VIU batch3 2026-07-08 VERIFIED: tech-story textarea exposes data-test-id input_tech_story (GATE1 test-ids incl. input_tech_story, section_tech_story_gate).",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13: tech-story inline sub-row 'Story' + 'Add tech story for this line' confirmed live on WO lines this run; Reworded from the dev-only 'test id input_tech_story' check to a tester-meaningful text-box check (the input_tech_story test-id is a dev-automation hook, not tester-facing). Textarea confirmed present.",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-TECH-08",
@@ -1502,7 +1579,8 @@
   ],
   "design_ref": "WO Review Flow.html; requirements TS Decision / S15-R2",
   "viu_status": "VIU-Verified",
-  "notes": "[MILOS ROUND-2 2026-07-09 — CONFIRMED] Milos: 'Story Tech will behave as it is right now, only change is some visuals, and now they can complete multiple stories at once, or individually as now.' Story 17 (SV-7876) is authoritative; the older S15-R2 line-only wording is superseded. Inline + gate-modal entry points are each independently VIU-Verified (SF-TECH-01/03/05/06); multi-at-once is covered by the SF-TECH-05 multi-line gate walk. Open question resolved.",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13: tech-story inline sub-row 'Story' + 'Add tech story for this line' confirmed live on WO lines this run; tech story captured both inline on the line and via the completion gate modal (individually or several at once); both persist (Story 17 authoritative) - verified prior VIU.",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  }
 ]

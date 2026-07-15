@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="design_doc_mode" content="canvas">
+<title>Pick parts + cores — Combined inventory step</title>
+<link rel="stylesheet" href="colors_and_type.css">
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: var(--sv-font-ui); color: var(--sv-grey-700); }
+
+  /* ── Canvas scaffolding ───────────────────────────────── */
+  .frame { position: absolute; }
+  .frame-label { display: flex; align-items: baseline; gap: 10px; margin-bottom: 14px; }
+  .frame-label .tag { padding: 0 9px; height: 24px; border-radius: 7px; background: var(--sv-grey-800);
+    color: #fff; font-size: 12px; font-weight: 700; display: flex; align-items: center; flex-shrink: 0; letter-spacing: 0.02em; }
+  .frame-label .t { font-size: 16px; font-weight: 700; color: var(--sv-grey-800); letter-spacing: -0.01em; }
+  .frame-label .d { font-size: 13px; color: var(--sv-fg-secondary); }
+  .section-head { position: absolute; }
+  .section-head .eye { font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--sv-primary-600); margin-bottom: 5px; }
+  .section-head .st { font-size: 23px; font-weight: 700; color: var(--sv-grey-800); letter-spacing: -0.01em; }
+  .section-head .ss { font-size: 13px; color: var(--sv-fg-secondary); margin-top: 4px; max-width: 660px; line-height: 1.5; }
+
+  /* ── Modal chrome ─────────────────────────────────────── */
+  .modal { width: 520px; background: #fff; border-radius: var(--sv-radius-lg);
+    box-shadow: var(--sv-shadow-lg); border: 1px solid var(--sv-border-strong); overflow: hidden; display: flex; flex-direction: column; }
+  .wiz-head { padding: var(--sv-space-5) var(--sv-space-5) 0; }
+  .wiz-titlerow { display: flex; align-items: flex-start; justify-content: space-between; }
+  .wiz-title { font-size: 19px; font-weight: 700; color: var(--sv-grey-800); }
+  .wiz-close { color: var(--sv-fg-tertiary); cursor: pointer; background: none; border: 0; padding: 2px; display: flex; }
+  .wiz-close [data-lucide] { width: 19px; height: 19px; }
+  .wiz-sub { font-size: 13px; color: var(--sv-fg-secondary); margin-top: 3px; }
+  .wiz-steps { display: flex; align-items: center; gap: 8px; margin: 14px 0 2px; }
+  .wiz-pill { display: inline-flex; align-items: center; gap: 6px; height: 26px; padding: 0 12px;
+    border-radius: var(--sv-radius-pill); font-size: 12px; font-weight: 600; line-height: 1; }
+  .wiz-pill.active { background: var(--sv-primary-600); color: #fff; }
+  .wiz-pill.done { background: var(--sv-success-100); color: var(--sv-success-700); }
+  .wiz-pill.pending { background: var(--sv-grey-100); color: var(--sv-fg-secondary); }
+  .wiz-pill [data-lucide] { width: 13px; height: 13px; }
+  .wiz-sep { color: var(--sv-grey-300); font-size: 13px; }
+  .wiz-body { padding: var(--sv-space-5); display: flex; flex-direction: column; gap: 12px; }
+  .wiz-note { font-size: 12px; color: var(--sv-fg-secondary); display: flex; align-items: flex-start; gap: 7px; line-height: 1.45; }
+  .wiz-note [data-lucide] { width: 14px; height: 14px; color: var(--sv-primary-500); flex-shrink: 0; margin-top: 1px; }
+  .wiz-foot { display: flex; align-items: center; gap: var(--sv-space-3); padding: var(--sv-space-4) var(--sv-space-5);
+    border-top: 1px solid var(--sv-border); background: var(--sv-grey-25); }
+  .wiz-foot .spacer { flex: 1; }
+
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 7px; height: 38px; padding: 0 16px;
+    border-radius: 8px; font-size: 14px; font-weight: 600; font-family: inherit; cursor: pointer; border: 1px solid transparent; white-space: nowrap; }
+  .btn [data-lucide] { width: 16px; height: 16px; }
+  .btn-secondary { background: #fff; border-color: var(--sv-border-strong); color: var(--sv-grey-700); box-shadow: var(--sv-shadow-xs); }
+  .btn-primary { background: var(--sv-brand-blue); color: #fff; box-shadow: var(--sv-shadow-xs); }
+  .btn[disabled] { background: var(--sv-grey-100); color: var(--sv-fg-tertiary); border-color: var(--sv-border-strong); box-shadow: none; cursor: not-allowed; }
+  .btn-link { background: none; border: 0; color: var(--sv-primary-700); font-size: 14px; font-weight: 600; font-family: inherit; cursor: pointer; padding: 0 4px; display: inline-flex; align-items: center; gap: 5px; }
+  .btn-link [data-lucide] { width: 15px; height: 15px; }
+
+  /* info card */
+  .wiz-info { display: flex; gap: 12px; padding: 14px; background: var(--sv-grey-25);
+    border: 1px solid var(--sv-border-strong); border-radius: var(--sv-radius-md); }
+  .wiz-info > [data-lucide] { width: 18px; height: 18px; color: var(--sv-fg-secondary); flex-shrink: 0; margin-top: 1px; }
+  .wiz-info .wi-title { font-size: 14px; font-weight: 600; color: var(--sv-grey-800); }
+  .wiz-info .wi-desc { font-size: 13px; color: var(--sv-fg-secondary); margin-top: 2px; line-height: 1.45; }
+
+  /* status rows */
+  .status-row { display: flex; align-items: center; gap: 12px; padding: 12px 15px; border-radius: var(--sv-radius-md); }
+  .status-row > [data-lucide] { width: 19px; height: 19px; flex-shrink: 0; }
+  .status-row .msg { flex: 1; font-size: 14px; font-weight: 600; }
+  .status-row .act { background: none; border: 0; font-size: 13px; font-weight: 600; font-family: inherit; cursor: pointer; text-decoration: underline; }
+  .status-row.green { background: var(--sv-success-50); border: 1px solid var(--sv-success-200); }
+  .status-row.green > [data-lucide] { color: var(--sv-success-600); }
+  .status-row.green .msg { color: var(--sv-success-800); }
+  .status-row.green .act { color: var(--sv-success-700); }
+  .status-row.amber { background: var(--sv-warning-50); border: 1px solid var(--sv-warning-200); }
+  .status-row.amber > [data-lucide] { color: var(--sv-warning-600); }
+  .status-row.amber .msg { color: var(--sv-warning-800); }
+  .status-row .sub2 { display: block; font-size: 12px; font-weight: 600; color: var(--sv-warning-700); margin-top: 2px; }
+
+  /* cores block (post-pick, needs resolving) */
+  .cores-block { border: 1px solid var(--sv-border-strong); border-radius: var(--sv-radius-md); overflow: hidden; }
+  .cores-head { padding: 9px 14px; background: var(--sv-grey-50); border-bottom: 1px solid var(--sv-border);
+    font-size: 12px; font-weight: 700; color: var(--sv-grey-700); letter-spacing: 0.02em; }
+  .core-row { padding: 12px 14px; border-bottom: 1px solid var(--sv-border); }
+  .core-row:last-child { border-bottom: 0; }
+  .core-row.notok { background: #FFFCF5; }
+  .cr-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+  .cr-name { font-size: 13px; font-weight: 600; color: var(--sv-grey-800); }
+  .cr-sub { font-size: 12px; color: var(--sv-fg-secondary); margin-top: 2px; }
+  .cr-charge { font-size: 12px; font-weight: 600; color: var(--sv-fg-secondary); white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .cr-charge.amber { color: var(--sv-warning-700); }
+  .cr-charge .added { display: block; font-size: 11px; font-weight: 600; margin-top: 1px; }
+
+  /* two-option core control */
+  .core-toggle { display: inline-flex; margin-top: 11px; border: 1px solid var(--sv-border-strong);
+    border-radius: 8px; overflow: hidden; flex-shrink: 0; }
+  .core-toggle.tight { margin-top: 0; }
+  .core-opt { height: 32px; padding: 0 13px; display: inline-flex; align-items: center; gap: 6px; white-space: nowrap;
+    font-size: 12.5px; font-weight: 600; color: var(--sv-fg-secondary); background: #fff; cursor: pointer; border: 0; font-family: inherit; }
+  .core-opt + .core-opt { border-left: 1px solid var(--sv-border-strong); }
+  .core-opt [data-lucide] { width: 14px; height: 14px; }
+  .core-opt.ok.sel { background: var(--sv-success-50); color: var(--sv-success-700); box-shadow: inset 0 0 0 1.5px var(--sv-success-400); }
+  .core-opt.notok.sel { background: var(--sv-warning-50); color: var(--sv-warning-700); box-shadow: inset 0 0 0 1.5px var(--sv-warning-400); }
+
+  .core-tag { display: inline-flex; align-items: center; gap: 4px; font-size: 10px; font-weight: 700; letter-spacing: 0.04em;
+    color: var(--sv-violet-700); background: var(--sv-violet-50); border: 1px solid var(--sv-violet-200); padding: 2px 7px; border-radius: var(--sv-radius-pill); }
+  .core-tag [data-lucide] { width: 11px; height: 11px; }
+
+  /* ── review-individually list ─────────────────────────── */
+  .list-toolbar { display: flex; align-items: center; justify-content: space-between; gap: 10px;
+    padding: 11px 14px; background: var(--sv-grey-50); border: 1px solid var(--sv-border-strong);
+    border-bottom: 0; border-radius: var(--sv-radius-md) var(--sv-radius-md) 0 0; }
+  .list-toolbar .lt-title { font-size: 13px; font-weight: 700; color: var(--sv-grey-800); }
+  .pick-all { height: 30px; padding: 0 13px; border: 0; border-radius: 7px; background: var(--sv-brand-blue);
+    color: #fff; font-size: 12px; font-weight: 600; font-family: inherit; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; }
+  .pick-all [data-lucide] { width: 14px; height: 14px; }
+  .list-scroll { border: 1px solid var(--sv-border-strong); border-radius: 0 0 var(--sv-radius-md) var(--sv-radius-md); max-height: 360px; overflow-y: auto; }
+  .part-row { display: grid; grid-template-columns: 1fr 128px 78px; align-items: center; gap: 12px; padding: 11px 14px; border-bottom: 1px solid var(--sv-border); }
+  .part-group { border-bottom: 1px solid var(--sv-border); }
+  .part-group:last-child { border-bottom: 0; }
+  .part-group .part-row { border-bottom: 0; padding-bottom: 6px; }
+  .list-scroll > .part-row:last-child { border-bottom: 0; }
+  .pr-main { min-width: 0; }
+  .pr-name { font-size: 13px; font-weight: 600; color: var(--sv-grey-800); display: flex; align-items: center; gap: 7px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .pr-line { font-size: 12px; color: var(--sv-fg-secondary); margin-top: 2px; }
+  .bin-select { width: 100%; height: 34px; border: 1px solid var(--sv-border-strong); border-radius: 7px; padding: 0 8px; font-size: 13px; font-family: inherit; color: var(--sv-grey-700); background: #fff; }
+  .bin-select:focus { outline: none; border-color: var(--sv-brand-blue); box-shadow: var(--sv-focus-ring); }
+  .pick-toggle { display: inline-flex; align-items: center; gap: 6px; justify-content: flex-end; }
+  .pick-cb { width: 18px; height: 18px; border-radius: 5px; border: 1.5px solid var(--sv-grey-300); display: inline-flex; align-items: center; justify-content: center; background: #fff; flex-shrink: 0; }
+  .pick-cb.on { background: var(--sv-success-500); border-color: var(--sv-success-500); }
+  .pick-cb [data-lucide] { width: 12px; height: 12px; color: #fff; }
+  .pick-cb.off [data-lucide] { display: none; }
+  .pick-lbl { font-size: 12px; font-weight: 600; color: var(--sv-fg-secondary); }
+  .pick-lbl.on { color: var(--sv-success-700); }
+
+  /* core sub-line inside review list */
+  .core-subline { display: flex; align-items: center; gap: 10px; margin: 0 14px 11px; padding: 9px 12px;
+    border-radius: 8px; border: 1px solid var(--sv-warning-200); background: var(--sv-warning-50); }
+  .core-subline.done { border-color: var(--sv-success-200); background: var(--sv-success-50); }
+  .core-subline > [data-lucide] { width: 15px; height: 15px; color: var(--sv-warning-600); flex-shrink: 0; }
+  .core-subline.done > [data-lucide] { color: var(--sv-success-600); }
+  .core-subline .csl-txt { font-size: 12px; font-weight: 600; color: var(--sv-warning-800); }
+  .core-subline.done .csl-txt { color: var(--sv-success-800); }
+  .core-subline .spacer { flex: 1; }
+
+  /* ── flow note ────────────────────────────────────────── */
+  .flow-card { width: 400px; background: var(--sv-grey-900); color: #fff; border-radius: var(--sv-radius-lg); box-shadow: var(--sv-shadow-lg); padding: 22px 24px; }
+  .flow-card h3 { font-size: 15px; font-weight: 700; letter-spacing: 0.02em; margin-bottom: 4px; }
+  .flow-card .sub { font-size: 12px; color: rgba(255,255,255,.55); margin-bottom: 18px; }
+  .flow-step { display: flex; gap: 12px; padding: 11px 0; border-top: 1px solid rgba(255,255,255,.1); }
+  .flow-step .num { width: 22px; height: 22px; border-radius: 6px; background: rgba(255,255,255,.1); color: #fff; font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .flow-step .body { font-size: 12.5px; line-height: 1.5; color: rgba(255,255,255,.82); }
+  .flow-step .body b { color: #fff; font-weight: 700; }
+  .flow-step .body .arrow { color: var(--sv-primary-300); font-weight: 700; }
+  .flow-card .kick { margin-top: 16px; padding-top: 14px; border-top: 1px solid rgba(255,255,255,.1); font-size: 12px; line-height: 1.5; color: rgba(255,255,255,.62); }
+  .flow-card .kick b { color: var(--sv-primary-300); }
+</style>
+</head>
+<body>
+
+<div class="section-head" style="left:80px; top:44px;">
+  <div class="eye">Complete Work Order · inventory parts</div>
+  <div class="st">Pick parts + cores — one combined step</div>
+  <div class="ss">Cores live on inventory parts you already pick, so they fold into the Pick parts step instead of a separate gate. Pick collapses the routine work; the returnable cores are the only thing left needing a human decision. One step, one Continue gate.</div>
+</div>
+
+<!-- 1 · Default -->
+<div class="frame" style="left:80px; top:150px;">
+  <div class="frame-label"><span class="tag">1</span><span class="t">Default</span><span class="d">count + core flag · one screen tall</span></div>
+  <div class="modal">
+    <div class="wiz-head">
+      <div class="wiz-titlerow"><div class="wiz-title">Complete Work Order</div><button class="wiz-close"><i data-lucide="x"></i></button></div>
+      <div class="wiz-sub">S2-15691 · Qaisland Paving</div>
+      <div class="wiz-steps">
+        <span class="wiz-pill done"><i data-lucide="check"></i>Details</span>
+        <span class="wiz-sep">→</span>
+        <span class="wiz-pill active">Pick parts</span>
+        <span class="wiz-sep">→</span>
+        <span class="wiz-pill pending">Receive parts</span>
+      </div>
+    </div>
+    <div class="wiz-body">
+      <div class="wiz-info">
+        <i data-lucide="package-search"></i>
+        <div>
+          <div class="wi-title">Auto-pick is off</div>
+          <div class="wi-desc">10 parts across 8 lines need picking from inventory — 2 include a returnable core.</div>
+        </div>
+      </div>
+      <div class="wiz-note"><i data-lucide="info"></i> Pick all from default bins first; you’ll then confirm the 2 cores. Review individually to do both per part.</div>
+    </div>
+    <div class="wiz-foot">
+      <button class="btn-link"><i data-lucide="arrow-left"></i> Back</button>
+      <span class="spacer"></span>
+      <button class="btn btn-secondary">Review individually</button>
+      <button class="btn btn-primary"><i data-lucide="package-check"></i> Pick all from default bins</button>
+    </div>
+  </div>
+</div>
+
+<!-- 2 · Picked — cores remain -->
+<div class="frame" style="left:720px; top:150px;">
+  <div class="frame-label"><span class="tag">2</span><span class="t">Picked — cores remain</span><span class="d">routine collapses · cores expand · Continue blocked</span></div>
+  <div class="modal">
+    <div class="wiz-head">
+      <div class="wiz-titlerow"><div class="wiz-title">Complete Work Order</div><button class="wiz-close"><i data-lucide="x"></i></button></div>
+      <div class="wiz-sub">S2-15691 · Qaisland Paving</div>
+      <div class="wiz-steps">
+        <span class="wiz-pill done"><i data-lucide="check"></i>Details</span>
+        <span class="wiz-sep">→</span>
+        <span class="wiz-pill active">Pick parts</span>
+        <span class="wiz-sep">→</span>
+        <span class="wiz-pill pending">Receive parts</span>
+      </div>
+    </div>
+    <div class="wiz-body">
+      <div class="status-row green">
+        <i data-lucide="check-circle-2"></i>
+        <div class="msg">10 parts picked from default bins</div>
+        <button class="act">Undo</button>
+      </div>
+      <div class="status-row amber">
+        <i data-lucide="rotate-ccw"></i>
+        <div class="msg">2 cores need resolving</div>
+      </div>
+      <div class="cores-block">
+        <div class="cores-head">RETURNABLE CORES</div>
+        <div class="core-row">
+          <div class="cr-top">
+            <div><div class="cr-name">Alternator — reman</div><div class="cr-sub">4--ALT-7720 · Line 3 · picked from A-14</div></div>
+            <div class="cr-charge">Core $85.00</div>
+          </div>
+          <div class="core-toggle">
+            <button class="core-opt ok"><i data-lucide="rotate-ccw"></i> OK · returned</button>
+            <button class="core-opt notok">Not OK · keep + charge</button>
+          </div>
+        </div>
+        <div class="core-row">
+          <div class="cr-top">
+            <div><div class="cr-name">Brake caliper — front left</div><div class="cr-sub">4--CAL-2214 · Line 5 · picked from C-07</div></div>
+            <div class="cr-charge">Core $45.00</div>
+          </div>
+          <div class="core-toggle">
+            <button class="core-opt ok"><i data-lucide="rotate-ccw"></i> OK · returned</button>
+            <button class="core-opt notok">Not OK · keep + charge</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="wiz-foot">
+      <button class="btn-link"><i data-lucide="arrow-left"></i> Back</button>
+      <span class="spacer"></span>
+      <button class="btn" disabled>Continue</button>
+    </div>
+  </div>
+</div>
+
+<!-- 3 · All done -->
+<div class="frame" style="left:1360px; top:150px;">
+  <div class="frame-label"><span class="tag">3</span><span class="t">All done</span><span class="d">picked + cores resolved · Continue enabled</span></div>
+  <div class="modal">
+    <div class="wiz-head">
+      <div class="wiz-titlerow"><div class="wiz-title">Complete Work Order</div><button class="wiz-close"><i data-lucide="x"></i></button></div>
+      <div class="wiz-sub">S2-15691 · Qaisland Paving</div>
+      <div class="wiz-steps">
+        <span class="wiz-pill done"><i data-lucide="check"></i>Details</span>
+        <span class="wiz-sep">→</span>
+        <span class="wiz-pill active">Pick parts</span>
+        <span class="wiz-sep">→</span>
+        <span class="wiz-pill pending">Receive parts</span>
+      </div>
+    </div>
+    <div class="wiz-body">
+      <div class="status-row green">
+        <i data-lucide="check-circle-2"></i>
+        <div class="msg">10 parts picked from default bins</div>
+        <button class="act">Undo</button>
+      </div>
+      <div class="status-row green">
+        <i data-lucide="check-circle-2"></i>
+        <div class="msg">2 cores resolved<span class="sub2">1 core charge ($45.00) added to invoice</span></div>
+        <button class="act">Edit</button>
+      </div>
+      <div class="wiz-note"><i data-lucide="info"></i> When there are many parts or cores, only these summaries show — expand to review or change any one.</div>
+    </div>
+    <div class="wiz-foot">
+      <button class="btn-link"><i data-lucide="arrow-left"></i> Back</button>
+      <span class="spacer"></span>
+      <button class="btn btn-primary">Continue</button>
+    </div>
+  </div>
+</div>
+
+<!-- 4 · Review individually (combined list) -->
+<div class="frame" style="left:80px; top:760px;">
+  <div class="frame-label"><span class="tag">4</span><span class="t">Review individually</span><span class="d">bin pick + core control per part · list scrolls</span></div>
+  <div class="modal">
+    <div class="wiz-head">
+      <div class="wiz-titlerow"><div class="wiz-title">Complete Work Order</div><button class="wiz-close"><i data-lucide="x"></i></button></div>
+      <div class="wiz-sub">S2-15691 · Qaisland Paving</div>
+      <div class="wiz-steps">
+        <span class="wiz-pill done"><i data-lucide="check"></i>Details</span>
+        <span class="wiz-sep">→</span>
+        <span class="wiz-pill active">Pick parts</span>
+        <span class="wiz-sep">→</span>
+        <span class="wiz-pill pending">Receive parts</span>
+      </div>
+    </div>
+    <div class="wiz-body">
+      <div>
+        <div class="list-toolbar">
+          <span class="lt-title">10 parts · 2 cores</span>
+          <button class="pick-all"><i data-lucide="package-check"></i> Pick all from default bins</button>
+        </div>
+        <div class="list-scroll" id="reviewList"></div>
+      </div>
+    </div>
+    <div class="wiz-foot">
+      <button class="btn-link"><i data-lucide="arrow-left"></i> Back</button>
+      <span class="spacer"></span>
+      <button class="btn" disabled>Continue</button>
+    </div>
+  </div>
+</div>
+
+<!-- flow note -->
+<div class="frame" style="left:720px; top:760px;">
+  <div class="frame-label"><span class="tag">FLOW</span><span class="t">How it plays</span></div>
+  <div class="flow-card">
+    <h3>Picking and cores in one step</h3>
+    <div class="sub">Both are inventory-part actions, so they share the Pick parts gate</div>
+    <div class="flow-step">
+      <span class="num">1</span>
+      <div class="body">Summary counts everything and flags how many carry a core — still one screen tall for any part count.</div>
+    </div>
+    <div class="flow-step">
+      <span class="num">2</span>
+      <div class="body"><b>Pick all from default bins</b> <span class="arrow">→</span> the routine pick collapses to a green line. The <b>cores</b> are the exception, so only those rows stay open with OK / Not OK.</div>
+    </div>
+    <div class="flow-step">
+      <span class="num">3</span>
+      <div class="body">Resolve each core <span class="arrow">→</span> collapses to a second green line; any Not OK notes the charge added to the invoice. Continue enables.</div>
+    </div>
+    <div class="flow-step">
+      <span class="num">4</span>
+      <div class="body"><b>Review individually</b> shows one list: every part has a bin + pick, and core parts add a core control beneath the row.</div>
+    </div>
+    <div class="kick"><b>Why combine:</b> a core is a property of a part you’re already picking — splitting it into its own step would make an advisor touch the same part twice.</div>
+  </div>
+</div>
+
+<script>
+  const BINS = ['A-12','A-14','B-03','B-19','C-04','C-07','D-11','D-22','E-05','E-09'];
+  const PARTS = [
+    { name:'Alternator — reman',        no:'4--ALT-7720', line:3, bin:'A-14', core:85.00 },
+    { name:'Brake pad set — front',     no:'4--BP-2100',  line:1, bin:'A-12' },
+    { name:'Engine oil filter',         no:'4--OF-2201',  line:1, bin:'A-14' },
+    { name:'Brake caliper — front left',no:'4--CAL-2214', line:5, bin:'C-07', core:45.00 },
+    { name:'Air filter element',        no:'4--AF-3305',  line:2, bin:'B-03' },
+    { name:'Serpentine belt',           no:'4--SB-7788',  line:3, bin:'B-19' },
+    { name:'Wiper blade set',           no:'4--WB-1180',  line:4, bin:'C-04' },
+    { name:'Cabin air filter',          no:'4--CF-9002',  line:5, bin:'D-11' },
+    { name:'Spark plug (set of 4)',     no:'4--SP-0455',  line:6, bin:'D-22' },
+    { name:'Coolant — 1 gal',           no:'4--CO-5010',  line:7, bin:'E-05' },
+  ];
+  function binSelect(sel) {
+    const opts = ['<option value="">Select bin…</option>'].concat(BINS.map(b => `<option ${b===sel?'selected':''}>Bin ${b}</option>`)).join('');
+    return `<select class="bin-select">${opts}</select>`;
+  }
+  function row(p) {
+    const tag = p.core ? ' <span class="core-tag"><i data-lucide="rotate-ccw"></i> CORE</span>' : '';
+    const main = `
+      <div class="part-row">
+        <div class="pr-main">
+          <div class="pr-name">${p.name}${tag}</div>
+          <div class="pr-line">${p.no} · Line ${p.line}</div>
+        </div>
+        ${binSelect(p.bin)}
+        <div class="pick-toggle"><span class="pick-cb off"></span><span class="pick-lbl">Pick</span></div>
+      </div>`;
+    if (!p.core) return main;
+    const coreLine = `
+      <div class="core-subline">
+        <i data-lucide="rotate-ccw"></i>
+        <span class="csl-txt">Core $${p.core.toFixed(2)} — resolve</span>
+        <span class="spacer"></span>
+        <div class="core-toggle tight">
+          <button class="core-opt ok">OK · returned</button>
+          <button class="core-opt notok">Not OK · keep</button>
+        </div>
+      </div>`;
+    return `<div class="part-group">${main}${coreLine}</div>`;
+  }
+  document.getElementById('reviewList').innerHTML = PARTS.map(row).join('');
+  lucide.createIcons();
+</script>
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Inventory & Cores — Full Overview</title>
+<link rel="stylesheet" href="colors_and_type.css">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { background: var(--sv-bg-canvas, #f2efe9); }
+  body { font-family: var(--sv-font-ui); color: var(--sv-grey-700); padding: 64px 40px 120px; }
+
+  .page { max-width: 1200px; margin: 0 auto; }
+
+  /* Master title */
+  .cover { max-width: 720px; }
+  .cover .kicker { display: inline-flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 700;
+    letter-spacing: 0.06em; text-transform: uppercase; color: var(--sv-primary-600);
+    background: var(--sv-primary-50); border: 1px solid var(--sv-primary-200); padding: 5px 12px; border-radius: var(--sv-radius-pill); }
+  .cover h1 { font-size: 40px; font-weight: 700; color: var(--sv-grey-900); letter-spacing: -0.02em; margin-top: 16px; line-height: 1.1; }
+  .cover p { font-size: 15px; line-height: 1.55; color: var(--sv-fg-secondary); margin-top: 12px; max-width: 640px; }
+  .cover .toc { display: flex; gap: 10px; margin-top: 22px; flex-wrap: wrap; }
+  .cover .toc a { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600;
+    color: var(--sv-grey-700); background: #fff; border: 1px solid var(--sv-border-strong);
+    border-radius: var(--sv-radius-pill); padding: 8px 14px; text-decoration: none; box-shadow: var(--sv-shadow-xs); }
+  .cover .toc a .n { width: 20px; height: 20px; border-radius: 6px; background: var(--sv-grey-800); color: #fff;
+    font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; }
+
+  /* Chapter header above each embedded deliverable */
+  .chapter { margin-top: 72px; }
+  .chapter-bar { display: flex; align-items: center; gap: 14px; margin-bottom: 18px; }
+  .chapter-bar .num { width: 38px; height: 38px; border-radius: 10px; background: var(--sv-grey-900); color: #fff;
+    font-size: 18px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .chapter-bar .txt .t { font-size: 22px; font-weight: 700; color: var(--sv-grey-900); letter-spacing: -0.01em; }
+  .chapter-bar .txt .d { font-size: 13px; color: var(--sv-fg-secondary); margin-top: 2px; }
+
+  /* Scaled screen embed — the source files are ~2000px wide canvases;
+     we shrink them to fit the column so the whole thing is visible by scrolling. */
+  .screen-wrap { border: 1px solid var(--sv-border-strong); border-radius: var(--sv-radius-xl);
+    background: #fff; box-shadow: var(--sv-shadow-md); overflow: hidden; }
+  .screen-wrap iframe { border: 0; display: block; transform-origin: top left; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ── Cover ── -->
+  <div class="cover">
+    <span class="kicker"><span>ShopView · Simple Mode</span></span>
+    <h1>Inventory &amp; Cores — completing a work order</h1>
+    <p>Every screen from the two flows in one place: picking inventory parts from bins when auto-pick is off, resolving returnable cores in both the completion modal and the receive page, and how the two combine into a single inventory step.</p>
+    <div class="toc">
+      <a href="#c1"><span class="n">1</span> Pick parts</a>
+      <a href="#c2"><span class="n">2</span> Resolve cores</a>
+      <a href="#c3"><span class="n">3</span> Pick + cores combined</a>
+    </div>
+  </div>
+
+  <!-- ── Chapter 1 · Pick parts ── -->
+  <div class="chapter" id="c1">
+    <div class="chapter-bar">
+      <div class="num">1</div>
+      <div class="txt">
+        <div class="t">Pick parts — inventory</div>
+        <div class="d">Auto-pick off · summary + review states, plus alternative ways to handle “Pick all”</div>
+      </div>
+    </div>
+    <div class="screen-wrap" style="width:1120px; height:1243px;">
+      <iframe src="Pick Parts Step.html" width="2000" height="2220" scrolling="no" loading="lazy" style="transform:scale(0.56);"></iframe>
+    </div>
+  </div>
+
+  <!-- ── Chapter 2 · Resolve cores ── -->
+  <div class="chapter" id="c2">
+    <div class="chapter-bar">
+      <div class="num">2</div>
+      <div class="txt">
+        <div class="t">Resolve cores</div>
+        <div class="d">Returnable parts · in the Complete Work Order modal (inventory) and on the receive page (special-order)</div>
+      </div>
+    </div>
+    <div class="screen-wrap" style="width:1142px; height:840px;">
+      <iframe src="Core Resolution.html" width="2040" height="1500" scrolling="no" loading="lazy" style="transform:scale(0.56);"></iframe>
+    </div>
+  </div>
+
+  <!-- ── Chapter 3 · Combined ── -->
+  <div class="chapter" id="c3">
+    <div class="chapter-bar">
+      <div class="num">3</div>
+      <div class="txt">
+        <div class="t">Pick parts + cores combined</div>
+        <div class="d">How cores fold into the inventory Pick parts step — one step, one Continue gate</div>
+      </div>
+    </div>
+    <div class="screen-wrap" style="width:1120px; height:862px;">
+      <iframe src="Pick Parts + Cores.html" width="2000" height="1540" scrolling="no" loading="lazy" style="transform:scale(0.56);"></iframe>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

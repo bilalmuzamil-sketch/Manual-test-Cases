@@ -1,0 +1,12 @@
+{
+  "case_id": 26535,
+  "section_id": 3552,
+  "title": "Deleting a custom role that has users is blocked",
+  "custom_preconds": "<ol>\n<li>A custom role named 'Copy Test Role 2' has at least one user assigned.</li>\n</ol>",
+  "custom_steps": "<ol>\n<li>On the Roles list, look at the three-dot menu on 'Copy Test Role 2'.</li>\n<li>Try to delete it.</li>\n</ol>",
+  "custom_expected": "<p>Deletion is blocked: the three-dot menu hides the Delete option when the role has users, and in the editor the Delete role button is disabled with the tooltip 'This role is assigned to N user(s). Reassign them to another role before deleting.'</p>\n",
+  "viu_status": "VIU-Verified",
+  "evidence": "UI: a custom role with users (Parth Cust1, 1 user) has no Delete option in its 3-dot menu — deletion is blocked.",
+  "fresh_run": "2026-07-13",
+  "behavioral_run": "2026-07-13"
+}

@@ -28,22 +28,24 @@ FILES = [
 
 # --- Classification inputs ---------------------------------------------------
 
-# Cases whose PASS/FAIL verdict now hangs on a product/dev ruling (new VIU bugs).
-BUG_RULING = {
-    "SF-PERM-08": "reviewer != completer rule NOT implemented (a user can sign off "
-                  "their own WO). Ruling: enforce the rule (currently FAIL) or descope?",
-    "SF-PERM-06": "WO completion permission is FE-only at the BE (Technician completed "
-                  "via simple-complete API = 201). Ruling: SV-8183 says 'BE enforces' "
-                  "but SV-7864 atom-collapse lets any WO C&E role act. Which governs?",
-    "SF-PERM-02": "WO-completion role-gating is FE-only (button hidden for Tech, but BE "
-                  "allows it). Verdict depends on the same FE-vs-BE ruling as SF-PERM-06.",
-    "SF-PERM-07": "Review sign-off permission (woReviewWorkOrders) is FE-only at the BE "
-                  "(Technician drove change-status = 201). Same FE-vs-BE ruling.",
-    "SF-PERM-04": "Role-gating of Mark-Reviewed depends on reviewer!=completer (missing) "
-                  "and the FE-vs-BE ruling.",
-    "SF-REV-09": "Review role-gating expected depends on reviewer!=completer (missing) "
-                  "and the FE-vs-BE ruling.",
-}
+# Cases whose PASS/FAIL verdict still hangs on a product/dev ruling.
+# NOTE 2026-07-10: user ruled on the FE-vs-API enforcement gap ("If the front end is
+# blocking it and just not blocked from the API then mark them as passed"). This resolves
+# the cases whose ONLY gap is "UI blocks it, API does not" (BUG-6/BUG-7 = fix ticket T2):
+#   SF-PERM-02 (WO-completion FE gate) and SF-PERM-06 (settings/WO-action FE gate) were
+#   REMOVED from BUG_RULING; they now fall through to READY (viu_status already VIU-Verified)
+#   with a PASS note applied in the case JSON.
+# UPDATE 2026-07-10 (PO ruling, Milos, relayed by QA lead): the reviewer != completer hard
+# rule is DESCOPED from v1 — a completer reviewing their own WO is EXPECTED, not a defect
+# (origin: SV-8183 Decision-3/NET-NEW; Story 16/SV-7870 only ever needed a different ROLE).
+# The four cases that were held on BUG-5 (SF-PERM-04, SF-PERM-07, SF-PERM-08, SF-REV-09) had
+# the identity assertion removed and were re-adjudicated to VIU-Verified (permission-gating
+# retained & verified). They now fall through to READY. SF-PERM-08 (the dedicated same-user
+# case) is marked OBSOLETE / covered-by SF-PERM-04+07 in the case JSON (kept VIU-Verified so
+# it exits BUG/RULING; flagged for the QA lead to retire in TestRail). BUG-5 / TICKET 1 dropped
+# as expected. NOTE: these 4 cases' TestRail push is PENDING QA-lead authorization.
+# BUG_RULING is now empty.
+BUG_RULING = {}
 
 # Open-Question / Milos-owned cases -> the specific Open Question number(s).
 MILOS = {
@@ -51,14 +53,16 @@ MILOS = {
     "SF-SET-08":  ("Q3, Q4", "First-use defaults: spec (Auto-approve OFF / invoice REQUIRED) vs design (ON / Optional)."),
     "SF-SET-13":  ("Q6", "Save Settings always enabled (no dirty-state gating) — intended or bug?"),
     "SF-COMP-06": ("Q5", "Create-POs-OFF => no PO config not possible (toggle absent)."),
-    "SF-COMP-07": ("Q2", "Auto-receive of in-stock parts on simple completion — intended behaviour?"),
+    # SF-COMP-07 removed from MILOS 2026-07-10: Q2/R2-Q3 answered (decrement confirmed) AND
+    #   live-verified (on-hand 6->5 on pick, persisted through simple-complete). Now VIU-Verified -> READY.
     "SF-TECH-08": ("Q9, Q4", "Tech-story placement: Story 17 (inline + gate-modal) vs S15-R2 (line-only)."),
     "SF-REV-08":  ("Q8, Q4", "Distinct 'Reviewed' state before final Complete — expected or single-step?"),
-    "SF-REV-10":  ("Q7", "Optional review-note field (input_review_note) absent — descope or bug?"),
+    "SF-REV-10":  ("Q7", "Optional review-note field absent — descope or bug?"),
     "SF-REV-11":  ("Q8", "Invoicing-blocked-until-reviewed depends on the Reviewed-state ruling (Q8)."),
     "SF-REV-15":  ("Q1", "Require-review default cohort rule + new-org preset."),
     "SF-UX-04":   ("Q10", "Close-vs-cancel confirm modal — design 'still to be added'."),
-    "SF-QB-01":   ("Q2", "Inventory decrement / Part History on skip-path completion."),
+    # SF-QB-01 removed from MILOS 2026-07-10: Q2/R2-Q3 answered; decrement half now live-proven,
+    #   remaining Part-History LOG surface is an env/QA blocker (see SUBBUCKET) -> VIU PENDING (QA).
     "SF-QB-02":   ("Q5", "QuickBooks integrity when Create-POs is OFF (toggle absent)."),
     "SF-RCV-05":  ("Q11", "Vendor-missing group ordering on Accept Delivery — spec contradicts itself."),
     "SF-RCV-07":  ("Q11", "Vendor-missing group ordering (S12-R1 bottom vs S12-R3 top)."),
@@ -82,7 +86,8 @@ _REACHABLE = "admin+tech + normal WO data; needs another VIU pass (no new inputs
 SUBBUCKET = {
     # ---- reachable-now (19) ----
     "SF-SET-10":   ("reachable-now", _REACHABLE),
-    "SF-COMP-08":  ("needs-data", "BATCH 6: with autoPickInventoryParts OFF, adding a catalog inventory part (P550848) still picks it via the bin-quantity input (status in_stock) so no Pick step appears. Needs an UNPICKED inventory part at completion (not seedable via the current add-part form)."),
+    "SF-COMP-08":  ("reachable-now", "FRESH VIU 2026-07-10: with autoPickInventoryParts=OFF, an added inventory part stays 'in_stock' and simple-complete is BE-BLOCKED (400 'All inventory and found parts must be picked...'); after line-level Pick it completes (201) — expected #2/#3 PROVEN. Remaining: surface the completion-WIZARD Pick step UI ('Pick all from default bins'/'Review individually') for expected #1 (drive the completion modal, not line-level pick)."),
+    "SF-QB-01":    ("needs-data", "FRESH VIU 2026-07-10: decrement half PROVEN (P550848 on-hand 6->5 on pick, persisted through simple-complete 201). Part-History LOG surface BLOCKED-ENV: GET /api/inventory/parts/history -> 500; /parts/inventory/{id} detail page crashes ('page is totaled'); other history endpoints 404/405 (see bugs-log OBS-6). QuickBooks-integrity leg needs QB access."),
     "SF-COMP-10":  ("reachable-now", _REACHABLE),
     "SF-COMP-15":  ("reachable-now", "drive optional-flow Cancel and re-open; check no duplicate POs."),
     "SF-COMP-20":  ("reachable-now", "required-invoice flow (requireVendorInvoiceNumber=ON) + part-bearing WO; Cancel = no change."),
@@ -248,6 +253,21 @@ def section_for(c):
 
 def main():
     cases = load_cases()
+    # TestRail Case-ID map (Standing Rule 8: every case-listing deliverable carries
+    # the C##### + a clickable TestRail link). Appended as the last two columns so
+    # existing r[0..10] index references stay valid.
+    import csv as _csv, os as _os
+    _idmap = {}
+    _mp = _os.path.join(_os.path.dirname(__file__), "testrail-id-map.csv")
+    if _os.path.exists(_mp):
+        for _r in _csv.DictReader(open(_mp)):
+            _idmap[_r["sf_id"]] = _r["ID"]
+
+    def _trlink(cid):
+        tid = _idmap.get(cid, "")
+        return (("C" + tid) if tid else "",
+                ("https://shopview.testrail.io/index.php?/cases/view/" + tid) if tid else "")
+
     rows = []
     for c in cases:
         cls = classify(c)
@@ -255,10 +275,11 @@ def main():
             sb, sbnote = SUBBUCKET.get(c["id"], ("reachable-now", _REACHABLE))
         else:
             sb, sbnote = "—", ""
+        _trid, _link = _trlink(c["id"])
         rows.append([
             c["id"], section_for(c), c["title"].strip(), c.get("viu_status", ""),
             cls["state"], cls["category"], cls["owner"], cls["needs"], cls["related"],
-            sb, sbnote,
+            sb, sbnote, _trid, _link,
         ])
 
     from collections import Counter, OrderedDict
@@ -284,7 +305,7 @@ def main():
     HEADER = ["Case ID", "Area", "Title", "Current VIU status", "State",
               "Blocker category", "Who unblocks", "What's needed to unblock",
               "Related story/question", "VIU sub-bucket",
-              "VIU sub-bucket detail (QA-pending only)"]
+              "VIU sub-bucket detail (QA-pending only)", "TestRail ID", "TestRail Link"]
 
     # ---- What to send next (batches) ----
     n_milos = disp_counts["BLOCKED — MILOS ANSWER"]
@@ -514,24 +535,26 @@ def main():
     lines.append("## Full per-case tracker")
     lines.append("")
     lines.append("| Case ID | Area | Title | VIU status | State | Blocker category | "
-                 "Who unblocks | What's needed | Related | VIU sub-bucket | Sub-bucket detail |")
-    lines.append("|---|---|---|---|---|---|---|---|---|---|---|")
+                 "Who unblocks | What's needed | Related | VIU sub-bucket | Sub-bucket detail | "
+                 "TestRail ID | TestRail Link |")
+    lines.append("|---|---|---|---|---|---|---|---|---|---|---|---|---|")
     for r in rows:
         cat_disp = {"READY (VIU-Verified)": "READY (VIU-Verified)",
                     "DEV NOT BUILT": "BLOCKED — DEV NOT BUILT",
                     "VIU PENDING (QA)": "BLOCKED — VIU PENDING (QA)",
                     "MILOS ANSWER": "BLOCKED — MILOS ANSWER",
                     "BUG/RULING": "BLOCKED — BUG/RULING"}[r[5]]
-        lines.append("| {} | {} | {} | {} | {} | {} | {} | {} | {} | {} | {} |".format(
+        _lnk = ("[{}]({})".format(r[11], r[12]) if r[11] else "")
+        lines.append("| {} | {} | {} | {} | {} | {} | {} | {} | {} | {} | {} | {} | {} |".format(
             r[0], md_esc(r[1]), md_esc(r[2]), md_esc(r[3]), r[4], cat_disp,
-            md_esc(r[6]), md_esc(r[7]), md_esc(r[8]), r[9], md_esc(r[10])))
+            md_esc(r[6]), md_esc(r[7]), md_esc(r[8]), r[9], md_esc(r[10]), r[11], _lnk))
     lines.append("")
     open(OUT_MD, "w").write("\n".join(lines))
     print("Wrote", OUT_MD)
 
     print("\nState counts:", dict(state_counts))
     print("Category counts:", dict(disp_counts))
-    assert sum(disp_counts.values()) == len(rows) == 162
+    assert sum(disp_counts.values()) == len(rows) == 170
 
 
 if __name__ == "__main__":

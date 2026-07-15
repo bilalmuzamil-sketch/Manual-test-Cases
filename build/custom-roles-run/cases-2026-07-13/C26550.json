@@ -1,0 +1,12 @@
+{
+  "case_id": 26550,
+  "section_id": 3553,
+  "title": "The last Administrator cannot be left with zero users",
+  "custom_preconds": "<ol>\n<li>The organization has exactly one user on the Administrator role.</li>\n</ol>",
+  "custom_steps": "<ol>\n<li>Log in as that sole Administrator.</li>\n<li>Go to Settings > Staff and open your own record.</li>\n<li>Try to change your role away from Administrator.</li>\n<li>Try to save.</li>\n</ol>",
+  "custom_expected": "<p>Saving is blocked (the organization must keep at least one Administrator).</p>\n<p>If no such rule exists, raise it as a finding for the product team.</p>\n",
+  "viu_status": "Blocked-UI: cannot test the last-Administrator guard on shared staging — the org has 89 users on the Admin role, so the single-last-admin state cannot be created without mass-reassigning real users (destructive/irreversible on a shared env). Product rule; needs an isolated org or DB-level setup. Route to product team to confirm the rule exists.",
+  "evidence": "Needs live UI; invariant to confirm.",
+  "fresh_run": "2026-07-13",
+  "behavioral_run": "2026-07-13"
+}

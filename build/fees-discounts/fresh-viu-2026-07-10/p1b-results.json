@@ -1,0 +1,202 @@
+[
+ {
+  "id": "FD-CALC-001",
+  "verdict": "EVID",
+  "detail": "10% pct_subtotal on baseline sub 182.76 -> resolved 17.08; sub now 199.84 (delta 17.08)"
+ },
+ {
+  "id": "FD-WO-011",
+  "verdict": "EVID",
+  "detail": "same probe: base used = 170.80"
+ },
+ {
+  "id": "FD-WO-002",
+  "verdict": "PASS",
+  "detail": "whole-WO adjustment add on existing WO -> 201, visible in view"
+ },
+ {
+  "id": "FD-CALC-003",
+  "verdict": "PASS",
+  "detail": "flat 7.77 -> resolved 7.77; sub 190.53 (delta 7.77)"
+ },
+ {
+  "id": "FD-CALC-002",
+  "verdict": "EVID",
+  "detail": "0.25% of ~182.76 = 0.4569 -> resolved 0.43 (rounding direction evidence)"
+ },
+ {
+  "id": "FD-CALC-005",
+  "verdict": "PASS",
+  "detail": "disc 150% -> 400 {\"errors\":[{\"error\":\"A percentage discount cannot exceed 100%.\"}]}; fee 150% -> 201"
+ },
+ {
+  "id": "FD-WO-010",
+  "verdict": "PASS-if-above",
+  "detail": "same probe"
+ },
+ {
+  "id": "FD-VAL-004",
+  "verdict": "PASS-if-above",
+  "detail": "same probe"
+ },
+ {
+  "id": "FD-CALC-006",
+  "verdict": "DEVIATION-persists",
+  "detail": "pct 0.005% -> 201 stored=0.01 resolved=0.02 ; flat 0.005 -> 201 stored=0.01 resolved=0.01"
+ },
+ {
+  "id": "FD-CALC-007",
+  "verdict": "PASS",
+  "detail": "20% (~36.55) capped 15 -> 15"
+ },
+ {
+  "id": "FD-WO-006",
+  "verdict": "PASS-if-above",
+  "detail": "same probe"
+ },
+ {
+  "id": "FD-CALC-008",
+  "verdict": "DEVIATION-persists",
+  "detail": "maxCap:0 -> resolved 34.15 (spec forces $0.00; FDBUG-9 was no-cap)"
+ },
+ {
+  "id": "FD-VAL-006",
+  "verdict": "SAME",
+  "detail": "same probe"
+ },
+ {
+  "id": "FD-VAL-002",
+  "verdict": "PASS",
+  "detail": "amount 0 -> 400"
+ },
+ {
+  "id": "FD-VAL-003",
+  "verdict": "FAIL",
+  "detail": "empty name -> 201"
+ },
+ {
+  "id": "FD-VAL-005",
+  "verdict": "PASS",
+  "detail": "amount -5 -> 400"
+ },
+ {
+  "id": "FD-VAL-003b",
+  "verdict": "EVID",
+  "detail": "name 100ch -> 201; 101ch -> 400"
+ },
+ {
+  "id": "FD-CALC-011",
+  "verdict": "PASS",
+  "detail": "taxable $20 fee: tax 9.14->10.14 (expect +1.00 @5% GST; US-tax re-word caveat)"
+ },
+ {
+  "id": "FDBUG-1-recheck",
+  "verdict": "NOT-REPRODUCED",
+  "detail": "sub 182.76->202.76 (incl adj), total 212.9 = sub+tax 212.90"
+ },
+ {
+  "id": "FD-CALC-011b",
+  "verdict": "EVID",
+  "detail": "NON-taxable $20 fee: tax 9.14->9.14 (expect unchanged)"
+ },
+ {
+  "id": "FD-EDIT-001",
+  "verdict": "PASS",
+  "detail": "change -> 200; name=ZZAUTOTEST edit2 amount=20 kind=fee calc=pct_subtotal (change API only accepts name/amount/maxCap/taxable)"
+ },
+ {
+  "id": "FD-EDIT-002",
+  "verdict": "EVID",
+  "detail": "edited 20% re-resolved 34.15 (was 10% 18.28-ish)"
+ },
+ {
+  "id": "FD-EDIT-003",
+  "verdict": "PASS",
+  "detail": "invalid edit -> 400; original intact"
+ },
+ {
+  "id": "FD-HIST-008",
+  "verdict": "EVID",
+  "detail": "updated entry fields: {\"id\":\"0c74437c-7ea7-40c0-a909-413ec8672b86\",\"eventType\":\"work_order.adjustment.updated\",\"eventName\":\"Adjustment updated\",\"workOrderId\":\"75f19d9c-6afc-47f3-9b0b-24f9cec75b12\",\"workOrderNumber\":\"75f19d9c-6afc-47f3-9b0b-24f9cec75b12\",\"userId\":\"0eabf741-019e-4b02"
+ },
+ {
+  "id": "FD-HIST-001",
+  "verdict": "PASS-manual",
+  "detail": "manual events logged: added=15 updated=1 removed=15 (this run added many)"
+ },
+ {
+  "id": "FD-HIST-002",
+  "verdict": "EVID",
+  "detail": "add entry: {\"id\":\"9118ba3b-8e48-4b48-8a31-a1c0b0ee7e57\",\"eventType\":\"work_order.adjustment.added\",\"eventName\":\"Adjustment added\",\"workOrderId\":\"75f19d9c-6afc-47f3-9b0b-24f9cec75b12\",\"workOrderNumber\":\"75f19d9c-6afc-47f3-9b0b-24f9cec75b12\",\"userId\":\"0eabf741-019e-4b02-84ce-66097c140b3a\",\"userName\":\"Admin ShopVi"
+ },
+ {
+  "id": "FD-HIST-003",
+  "verdict": "EVID",
+  "detail": "lineId on adjustment entries: null (Line column \"-\")"
+ },
+ {
+  "id": "FD-STACK-002",
+  "verdict": "PASS",
+  "detail": "two 10% whole-WO fees resolve 17.08 & 17.08 (same base, no compounding)"
+ },
+ {
+  "id": "FD-STACK-003",
+  "verdict": "PASS",
+  "detail": "same template applied twice -> 201/201"
+ },
+ {
+  "id": "FD-LABOR-002",
+  "verdict": "EVID",
+  "detail": "labor-line 10% pct_labor on line (labour total undefined) -> resolved 0"
+ },
+ {
+  "id": "FD-REMOVE-003",
+  "verdict": "PENDING-RM",
+  "detail": ""
+ },
+ {
+  "id": "FD-REMOVE-003",
+  "verdict": "PASS",
+  "detail": "line-level remove -> 204, gone=true"
+ },
+ {
+  "id": "FD-LABOR-004",
+  "verdict": "PASS",
+  "detail": "labor-line flat 9.99 -> 9.99"
+ },
+ {
+  "id": "FD-PROC-005b",
+  "verdict": "EVID",
+  "detail": "manual whole-WO pct_grand_total fee -> 400 [{\"calculationType\":\"The calculation type is not allowed for this scope.\"}]"
+ },
+ {
+  "id": "FD-PROC-005",
+  "verdict": "PASS",
+  "detail": "manual processing_fee add -> 400 [{\"kind\":\"A processing fee cannot be added manually.\"},{\"calculationType\":\"The calculation type is not allowed for this "
+ },
+ {
+  "id": "FD-CALC-015",
+  "verdict": "PASS",
+  "detail": "non-taxable $300 disc on sub 182.76: sub 0 tax 9.14(was 9.14) tot 9.14 excess 117.24"
+ },
+ {
+  "id": "FD-QB-012",
+  "verdict": "PASS-if-above",
+  "detail": "WO-level floor halves proven (QB-side line view still unobservable)"
+ },
+ {
+  "id": "FD-CALC-016",
+  "verdict": "PASS",
+  "detail": "TAXABLE $300 disc: sub 0 tax 0 tot 0 excess 117.24"
+ },
+ {
+  "id": "FD-CALC-017",
+  "verdict": "EVID",
+  "detail": "stacked 120+100 disc on ~182.76: sub 0 excess 37.24 (expect 37.24); QB penny-cap half unobservable (no QB line read API)"
+ },
+ {
+  "id": "RESTORE-S15895",
+  "verdict": "OK",
+  "detail": "final sub 182.76 tax 9.14 tot 191.9 adjs Flat fee vs baseline {\"sub\":182.76,\"tax\":9.14,\"tot\":191.9,\"adjNames\":[\"Flat fee\"]}"
+ }
+]

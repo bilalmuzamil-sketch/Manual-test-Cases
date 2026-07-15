@@ -1,0 +1,12 @@
+{
+  "case_id": 26315,
+  "section_id": 3528,
+  "title": "The Users column shows a clickable count that links to the filtered Staff page",
+  "custom_preconds": "<ol>\n<li>You are on the Roles & Permissions list.</li>\n</ol>",
+  "custom_steps": "<ol>\n<li>Look at the Users column for a role that has one or more users.</li>\n<li>Click the count.</li>\n<li>Look at the Users column for a role with zero users.</li>\n</ol>",
+  "custom_expected": "<p>A non-zero count is a clickable link.</p>\n<p>Clicking it opens the Staff page filtered to that role.</p>\n<p>A zero count is shown as a non-clickable '0'.</p>\n",
+  "viu_status": "VIU-Verified",
+  "evidence": "UI: clicking the Users count on the Foreman row navigates to /administration/staff?roleName=Foreman (filtered Staff page).",
+  "fresh_run": "2026-07-13",
+  "behavioral_run": "2026-07-13"
+}

@@ -49,6 +49,25 @@
 - ✅ `PO-Questions-SIMPLE.md` + `.xlsx` (+ generator) updated — all 6 questions
   marked ANSWERED with Chris Ward's answer + one-sentence resulting action.
 
+## Round-2 PO answers applied (2026-07-14 — Chris Ward, F&D PO)
+
+Chris Ward returned the filled `PO-Questions-Round2` sheet
+(`chris-round2-answers-source.xlsx/.csv`). Answers: **Q1=A, Q2=A, Q3=A, Q4=B.**
+The §0.1 pre-decided action map was applied to LOCAL artifacts only (NO TestRail
+writes — TestRail push staged pending fresh one-day authorization).
+
+| Q | Chris's answer | Action taken (local) | Cases (C-IDs) → status | Ticket |
+|---|---|---|---|---|
+| **Q1** — over-sized discount silent save (FDBUG-15) | **A** — warn/confirm required AND already exists (fires at invoice + mark-reviewed/complete, NOT at mere add) | ✅ FDBUG-15 reclassified NOT-A-DEFECT; FD-QB-014 expected reworded to the commit-point warning | FD-QB-014 **C28557** → VIU-Deviation ⟶ **VIU-Pending** (needs commit-time re-VIU). FD-QB-012/FD-QB-015 unchanged | **No ticket** (none created) |
+| **Q2** — Max Amount 0 (FDBUG-9, TICKET 4) | **A** — 0 = no limit (WAD, S2-R25) | ✅ FDBUG-9 closed accepted; expecteds reworded to affirm 0 = no cap; flipped Verified; **TICKET 4 DROPPED** | FD-CALC-008 **C28575**, FD-VAL-006 **C28604**, FD-TMPL-011 **C28512** → all **VIU-Verified** | **TICKET 4 DROPPED** |
+| **Q3** — tiny-% rounding (FDBUG-10, TICKET 5) | **A** — rounding fine/expected | ✅ FDBUG-10 closed accepted; expected reworded to expect the round-up-to-minimum; flipped Verified; **TICKET 5 DROPPED** | FD-CALC-006 **C28573** → **VIU-Verified** | **TICKET 5 DROPPED** |
+| **Q4** — pfee minimum (FD-PROC-014) | **B** — don't support, make clear (no field + explicit API reject; premise doesn't reproduce) | ✅ Expected reworded to explicit-reject + no-field (matches live 2026-07-13); stays Verified | FD-PROC-014 **C28532** → **VIU-Verified** (expected changed) | No ticket |
+
+**Staged for TestRail push (6 cases, awaiting fresh one-day authorization):**
+FD-QB-014 (C28557), FD-CALC-008 (C28575), FD-VAL-006 (C28604), FD-TMPL-011 (C28512),
+FD-CALC-006 (C28573), FD-PROC-014 (C28532). Each case JSON carries `fresh_run:
+2026-07-14` + a "pending TestRail push (awaiting authorization)" note.
+
 ## Left entirely to the finalization pass (not started)
 
 - 🧑/⏳ `requirements.md` annotations from the reconciliation's "Spec update"

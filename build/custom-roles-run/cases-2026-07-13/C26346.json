@@ -1,0 +1,12 @@
+{
+  "case_id": 26346,
+  "section_id": 3530,
+  "title": "The Office User system role cannot be edited (lock icon, eye only)",
+  "custom_preconds": "<ol>\n<li>You are on the Roles & Permissions list.</li>\n</ol>",
+  "custom_steps": "<ol>\n<li>Find the Office User row.</li>\n<li>Look at the Actions column.</li>\n<li>Click the eye icon.</li>\n</ol>",
+  "custom_expected": "<p>There is no pencil icon; only the eye icon.</p>\n<p>A read-only Permission Summary opens for Office User.</p>\n",
+  "viu_status": "VIU-Verified",
+  "evidence": "UI: on the Roles list the Office User row shows a lock and only the eye (visibility) icon — no pencil; the eye opens the read-only Permission Summary (View Permissions). NOTE for dev: the direct /roles-permissions/{id}/edit URL still loads an editable form (FE route not guarded) — list-level gating is correct.",
+  "fresh_run": "2026-07-13",
+  "behavioral_run": "2026-07-13"
+}

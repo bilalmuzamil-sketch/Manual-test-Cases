@@ -1,0 +1,61 @@
+{
+  "ai_automated_test": null,
+  "created_by": 1,
+  "created_on": 1782819223,
+  "custom_ai_model": null,
+  "custom_ai_type": null,
+  "custom_atmstatus": 3,
+  "custom_automation_type": null,
+  "custom_expected": null,
+  "custom_goals": null,
+  "custom_mission": null,
+  "custom_preconds": "A custom role exists that is clock-capable but lacks the timesheetsView permission (built via the custom-role API harness).\nA staff user is assigned that role and confirmed.",
+  "custom_steps": null,
+  "custom_steps_separated": [
+    {
+      "additional_info": "",
+      "content": "Log in as the clock-capable, non-timesheetsView user",
+      "expected": "Lands on a permitted page; the profile menu is reachable.",
+      "markdown_editor_id": null,
+      "refs": ""
+    },
+    {
+      "additional_info": "",
+      "content": "Open the desktop profile menu",
+      "expected": "The My Timesheets item (profile_menu_timesheets) is visible.",
+      "markdown_editor_id": null,
+      "refs": ""
+    },
+    {
+      "additional_info": "",
+      "content": "Click My Timesheets",
+      "expected": "The app navigates to /timesheets (route Timesheets) without bouncing to login or an unauthorized page.",
+      "markdown_editor_id": null,
+      "refs": ""
+    },
+    {
+      "additional_info": "",
+      "content": "Switch to a mobile viewport and open the mobile menu",
+      "expected": "The My Timesheets item (mobile_menu_timesheets) is visible.",
+      "markdown_editor_id": null,
+      "refs": ""
+    }
+  ],
+  "custom_testrail_bdd_scenario": null,
+  "display_order": 7,
+  "estimate": null,
+  "estimate_forecast": null,
+  "id": 27394,
+  "is_deleted": 0,
+  "labels": [],
+  "milestone_id": null,
+  "priority_id": 2,
+  "refs": null,
+  "section_id": 3540,
+  "suite_id": 1,
+  "template_id": 2,
+  "title": "Clock-capable role without timesheetsView can see and open My Timesheets",
+  "type_id": 7,
+  "updated_by": 1,
+  "updated_on": 1782820092
+}

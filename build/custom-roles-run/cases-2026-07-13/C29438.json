@@ -1,0 +1,25 @@
+{
+  "case_id": 29438,
+  "section_id": 3539,
+  "template_id": 2,
+  "title": "Invoicing & payments Create & Edit gives the edit control on the work order Financial Info card",
+  "custom_preconds": "<ol>\n<li>A custom role has Work orders View ON, Invoicing & payments Create & Edit ON and See Financial Data ON, but Work orders Create & Edit OFF, with a user assigned.</li>\n<li>A work order in an editable (not invoiced, not paid) status exists.</li>\n</ol>",
+  "custom_steps_separated": [
+    {
+      "content": "Log in as that user and open a work order.",
+      "expected": "The work order opens."
+    },
+    {
+      "content": "Open the work order detail; the left section shows the Financial Info card.",
+      "expected": "The Financial Info card is shown (See Financial Data is on)."
+    },
+    {
+      "content": "Find the edit (pencil) control on the Financial Info card.",
+      "expected": "The edit control is shown and usable, because Invoicing & payments Create & Edit grants it even without Work orders Create & Edit."
+    }
+  ],
+  "viu_status": "Blocked-UI: on an open WO the Financial Info card shows an edit affordance, but the same generic WO-header edit affordance appears for BOTH an invoicing-C&E role and a WO-C&E-only (no invoicing) role — the invoicing-specific Financial Info edit control could not be isolated from general WO-edit affordances in the harness. Needs a real browser to confirm the invoicing-gated edit control specifically.",
+  "evidence": "Reworded; element-id/SV jargon stripped.",
+  "fresh_run": "2026-07-13",
+  "behavioral_run": "2026-07-13"
+}

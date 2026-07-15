@@ -1,0 +1,12 @@
+{
+  "case_id": 26366,
+  "section_id": 3533,
+  "title": "Cascade works on Part sales with no See-Financial dialog when See Financial Data is already ON",
+  "custom_preconds": "<ol>\n<li>See Financial Data is ON.</li>\n</ol>",
+  "custom_steps": "<ol>\n<li>Turn on the Parts Department card.</li>\n<li>Tick Delete on Part sales.</li>\n</ol>",
+  "custom_expected": "<p>The three Part sales boxes all tick.</p>\n<p>No 'Enable See Financial Data?' dialog appears, because See Financial Data is already on.</p>\n",
+  "viu_status": "VIU-Verified",
+  "evidence": "UI: with See Financial Data already ON, Part sales tick Delete cascades View+C&E with NO dialog.",
+  "fresh_run": "2026-07-13",
+  "behavioral_run": "2026-07-13"
+}

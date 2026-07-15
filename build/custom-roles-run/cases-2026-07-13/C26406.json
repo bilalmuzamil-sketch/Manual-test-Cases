@@ -1,0 +1,11 @@
+{
+  "case_id": 26406,
+  "section_id": 3538,
+  "title": "Turning Parts Department ON shows exactly 3 child cards",
+  "custom_preconds": "<ol>\n<li>Open Create Role (or edit a custom role).</li>\n</ol>",
+  "custom_steps": "<ol>\n<li>Turn the Parts Department card ON.</li>\n<li>Look at the child cards.</li>\n</ol>",
+  "custom_expected": "<p>Exactly 3 child cards appear, each with View, Create & Edit and Delete: Part sales ('Manage part sales, returns and related transactions.'), Catalog and Inventory ('Manage the parts catalog and inventory levels.') and Vendor and order management ('Manage vendors, purchase orders, deliveries and part returns.').</p>\n",
+  "viu_status": "Verified-Label (build)",
+  "evidence": "Parts Department children + descriptions build-verified (PermissionGrid).",
+  "fresh_run": "2026-07-13"
+}

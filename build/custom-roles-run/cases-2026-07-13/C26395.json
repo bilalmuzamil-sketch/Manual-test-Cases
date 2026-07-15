@@ -1,0 +1,12 @@
+{
+  "case_id": 26395,
+  "section_id": 3536,
+  "title": "Schedule Create & Edit allows creating, changing and dragging appointments",
+  "custom_preconds": "<ol>\n<li>A user has a role with Schedule View and Create & Edit.</li>\n</ol>",
+  "custom_steps": "<ol>\n<li>Open Schedule.</li>\n<li>Create a new appointment.</li>\n<li>Assign a technician.</li>\n<li>Drag the appointment to a different time slot.</li>\n<li>Save.</li>\n</ol>",
+  "custom_expected": "<p>All of these actions work.</p>\n",
+  "viu_status": "Blocked-UI: the Schedule calendar renders for a scheduleCreateAndEdit role, but creating/dragging/editing an appointment requires real calendar drag/slot mouse interaction that does not trigger headless (Schedule button + calendar-cell clicks opened no create dialog); appointment CRUD API endpoint not exposed at standard paths. Needs a real browser.",
+  "evidence": "Needs live UI.",
+  "fresh_run": "2026-07-13",
+  "behavioral_run": "2026-07-13"
+}

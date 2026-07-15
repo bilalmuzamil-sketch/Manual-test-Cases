@@ -1,0 +1,12 @@
+{
+  "case_id": 26407,
+  "section_id": 3538,
+  "title": "Turning Parts Department OFF hides the 3 child cards",
+  "custom_preconds": "<ol>\n<li>In the role editor, Parts Department is ON with the child cards configured (for example Part sales View + Create & Edit, Catalog and Inventory View, Vendor and order management View/Create & Edit/Delete).</li>\n</ol>",
+  "custom_steps": "<ol>\n<li>Turn Parts Department OFF.</li>\n<li>Look at the Parts Department card.</li>\n</ol>",
+  "custom_expected": "<p>The 3 child cards are no longer shown inside the Parts Department card.</p>\n",
+  "viu_status": "VIU-Verified",
+  "evidence": "UI: on blank form the 3 child cards (Part sales/Catalog and Inventory/Vendor and order management) are absent; toggling Parts Department ON reveals all 3.",
+  "fresh_run": "2026-07-13",
+  "behavioral_run": "2026-07-13"
+}

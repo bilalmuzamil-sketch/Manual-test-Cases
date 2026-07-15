@@ -1,0 +1,12 @@
+{
+  "case_id": 26541,
+  "section_id": 3553,
+  "title": "A role with all permissions on behaves like Administrator but is still a custom role",
+  "custom_preconds": "<ol>\n<li>A custom role 'Max Permissions' has every box and toggle on.</li>\n<li>A user is assigned that role.</li>\n</ol>",
+  "custom_steps": "<ol>\n<li>Log in as that user.</li>\n<li>Check access to every navigation item, sidebar group and settings page.</li>\n<li>Do an add/edit/delete on a work order, customer, invoice, part sale and vendor.</li>\n<li>Open the See Financial Data areas.</li>\n<li>View AP/AR data and customer credit fields.</li>\n<li>Open history.</li>\n<li>Open Roles & Permissions.</li>\n</ol>",
+  "custom_expected": "<p>Everything works — the same as Administrator.</p>\n<p>The user can open Roles & Permissions if App Settings is on, but the role itself is a custom role (editable and deletable) and the user cannot grant themselves anything the role does not already include.</p>\n",
+  "viu_status": "VIU-Verified",
+  "evidence": "UI: an all-permissions custom role (42 perms, all cross-toggles on, type Custom) behaves like Administrator — full nav (Work Orders/Schedule/Customers/Parts/Reports), /reports and /administration/staff accessible — yet it is a Custom role (created via Create Custom Role). screenshot xperm-AllOn.",
+  "fresh_run": "2026-07-13",
+  "behavioral_run": "2026-07-13"
+}

@@ -1,0 +1,112 @@
+[
+ {
+  "id": "FD-TMPL-013",
+  "verdict": "PASS",
+  "detail": "disc-tmpl 150% -> 400; fee-tmpl 150% -> 201"
+ },
+ {
+  "id": "FD-TMPL-015",
+  "verdict": "PASS",
+  "detail": "tmpl empty name -> 400; amount 0 -> 400"
+ },
+ {
+  "id": "FD-TMPL-017",
+  "verdict": "PASS",
+  "detail": "name 100ch -> 201; 101ch -> 400"
+ },
+ {
+  "id": "FD-TMPL-011",
+  "verdict": "EVID",
+  "detail": "tmpl maxCap 0 -> 201 stored defaultMaxCap=0 (spec: 0 treated as empty/no cap)"
+ },
+ {
+  "id": "FD-PROC-010",
+  "verdict": "EVID",
+  "detail": "pfee with maxCap -> 400 ; pfee pct_labor -> 400 [{\"error\":\"Calculation type \\\"pct_labor\\\" is not allowed for a processing_fee.\"}]"
+ },
+ {
+  "id": "FD-PROC-014",
+  "verdict": "PASS-silent-strip",
+  "detail": "pfee min fields -> 201; stored keys w/ min: none"
+ },
+ {
+  "id": "FD-TMPL-009",
+  "verdict": "PASS",
+  "detail": "template deleted (204); WO adjustment survives=true resolved=6"
+ },
+ {
+  "id": "FD-CUST-014",
+  "verdict": "EVID",
+  "detail": "API-created customer initial defaults: [{\"id\":\"71be9937-2292-4460-b4e8-44fa6762ee2d\",\"customerId\":\"b881540e-4df1-45f7-b8c4-61fda5455c14\",\"templateId\":\"e4968f75-0606-447a-b472-3c9b50009474\", (FDBUG-12: API-created get none; auto-apply tmpls exist: Capped discount)"
+ },
+ {
+  "id": "FD-CUST-003",
+  "verdict": "CHECK",
+  "detail": "add 2 defaults (array) -> 201; list len 3"
+ },
+ {
+  "id": "FD-CUST-017",
+  "verdict": "PASS",
+  "detail": "bad template add -> 400; bad customer load -> 404; bad remove -> 404"
+ },
+ {
+  "id": "FD-CUST-007",
+  "verdict": "CHECK",
+  "detail": "remove default -> 204; remaining 2"
+ },
+ {
+  "id": "FD-CUST-012",
+  "verdict": "CHECK",
+  "detail": "template delete -> 204; defaults now 1"
+ },
+ {
+  "id": "FD-PROC-006",
+  "verdict": "PASS",
+  "detail": "auto-apply pfee landed on new WO: ZZAUTOTEST pf2/auto,ZZAUTOTEST pf3/auto"
+ },
+ {
+  "id": "FD-CALC-013",
+  "verdict": "DEVIATION-persists(FDBUG-2)",
+  "detail": "pfee 3% resolved 0.63 & 2% 0.42 with ONLY a whole-WO $20 taxable fee on the WO (spec base excludes whole-WO adj -> expect 0.00; FDBUG-2 -> 0.63/0.42)"
+ },
+ {
+  "id": "FD-PROC-009",
+  "verdict": "SAME",
+  "detail": "same probe"
+ },
+ {
+  "id": "FD-PROC-013",
+  "verdict": "PASS-shared-base",
+  "detail": "3%:0.63 vs 2%:0.42 — ratio 3:2 => same base, pfees exclude each other"
+ },
+ {
+  "id": "FD-CALC-014",
+  "verdict": "EVID",
+  "detail": "pfee base incl tax: resolved 0.63 vs 3% of pre-tax 20 = 0.60 (0.63 => tax-inclusive)"
+ },
+ {
+  "id": "FD-PROC-011",
+  "verdict": "PASS",
+  "detail": "pfee kind=processing_fee, positive amounts only"
+ },
+ {
+  "id": "FD-PROC-008",
+  "verdict": "PASS-API",
+  "detail": "pfee change -> 409 [{\"error\":\"A processing fee cannot be edited through this endpoint.\"}]"
+ },
+ {
+  "id": "FD-PROC-012",
+  "verdict": "PASS",
+  "detail": "template amount 3->9 (200); WO pfee amount still 3"
+ },
+ {
+  "id": "FD-HIST-007",
+  "verdict": "EVID",
+  "detail": "pfee remove -> 204; history: added-events=1 (auto pfees logged? expect 0 if FDBUG-3 persists — 1 manual base20 add), removed=3"
+ },
+ {
+  "id": "FD-CUST-013",
+  "verdict": "CHECK",
+  "detail": "customer delete -> 400; defaults endpoint after -> 200"
+ }
+]

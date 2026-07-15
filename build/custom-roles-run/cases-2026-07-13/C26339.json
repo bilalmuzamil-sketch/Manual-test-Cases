@@ -1,0 +1,12 @@
+{
+  "case_id": 26339,
+  "section_id": 3529,
+  "title": "A role name must be unique",
+  "custom_preconds": "<ol>\n<li>A role named 'QA Unique Test Role' already exists.</li>\n</ol>",
+  "custom_steps": "<ol>\n<li>Start creating a role, pick any template and apply it.</li>\n<li>Type 'QA Unique Test Role' as the Role name.</li>\n<li>Click Create.</li>\n</ol>",
+  "custom_expected": "<p>Saving is blocked because the name is already used.</p>\n",
+  "viu_status": "Deviation",
+  "evidence": "UI: the build does NOT strictly enforce a unique role name — the duplicate-detection dialog keys on IDENTICAL PERMISSIONS (\"identical permissions already exists\") and offers \"Create Anyway\" to override. Name uniqueness is not enforced as the case premise states; verified via SimilarRoleWarningModal.",
+  "fresh_run": "2026-07-13",
+  "behavioral_run": "2026-07-13"
+}

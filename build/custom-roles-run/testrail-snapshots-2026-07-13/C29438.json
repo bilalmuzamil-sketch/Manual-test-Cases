@@ -1,0 +1,54 @@
+{
+  "ai_automated_test": null,
+  "created_by": 1,
+  "created_on": 1783526134,
+  "custom_ai_model": null,
+  "custom_ai_type": null,
+  "custom_atmstatus": 1,
+  "custom_automation_type": null,
+  "custom_expected": null,
+  "custom_goals": null,
+  "custom_mission": null,
+  "custom_preconds": "Custom role with Work Orders: View ON, Invoicing & Payments: Create & Edit ON, and See Financial Data ON \u2014 but Work Orders: Create & Edit OFF. A work order in an editable (non-invoiced, non-paid) status exists.",
+  "custom_steps": null,
+  "custom_steps_separated": [
+    {
+      "additional_info": "",
+      "content": "Log in as the custom-role user described in preconditions.",
+      "expected": "User reaches the app and can open a work order.",
+      "markdown_editor_id": null,
+      "refs": ""
+    },
+    {
+      "additional_info": "",
+      "content": "Open a work order detail (left section shows the Financial Info card).",
+      "expected": "The Financial Info card renders (See Financial Data ON).",
+      "markdown_editor_id": null,
+      "refs": ""
+    },
+    {
+      "additional_info": "",
+      "content": "Locate the Financial Info card edit (pencil) control.",
+      "expected": "The edit control (button_edit_financial_info) is visible and usable \u2014 Invoicing: Create & Edit grants \"manage invoice fields\" (spec \u00a71h), so shop-supplies charge + tax are editable even without Work Orders: Create & Edit.",
+      "markdown_editor_id": null,
+      "refs": ""
+    }
+  ],
+  "custom_testrail_bdd_scenario": null,
+  "display_order": 13,
+  "estimate": null,
+  "estimate_forecast": null,
+  "id": 29438,
+  "is_deleted": 0,
+  "labels": [],
+  "milestone_id": null,
+  "priority_id": 3,
+  "refs": null,
+  "section_id": 3539,
+  "suite_id": 1,
+  "template_id": 2,
+  "title": "Invoicing: Create & Edit grants the Financial Info edit control on a WO (SV-8086)",
+  "type_id": 7,
+  "updated_by": 1,
+  "updated_on": 1783526134
+}

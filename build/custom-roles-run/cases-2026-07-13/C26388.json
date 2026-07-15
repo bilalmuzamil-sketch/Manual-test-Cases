@@ -1,0 +1,12 @@
+{
+  "case_id": 26388,
+  "section_id": 3534,
+  "title": "The 'Add Asset' button is hidden in the New Work Order flow when Customers Create & Edit is OFF",
+  "custom_preconds": "<ol>\n<li>A user has a role with Work orders Create & Edit ON, Customers View ON and Customers Create & Edit OFF.</li>\n</ol>",
+  "custom_steps": "<ol>\n<li>Log in and click New Work Order.</li>\n<li>Select an existing customer.</li>\n<li>Go to the asset/vehicle step.</li>\n<li>Look for an Add Asset button in the asset picker.</li>\n</ol>",
+  "custom_expected": "<p>The Add Asset button is not shown; the user can pick an existing asset but cannot create a new one.</p>\n<p>(Known deviation: a prior run found this button still appearing when Customers Create & Edit is off — recommend a live re-check.)</p>\n",
+  "viu_status": "Deviation",
+  "evidence": "UI (RUN331 FAIL PERSISTS): same role (Customers Create&Edit OFF). In the New Work Order modal, once a customer is selected, the \"Add\" (new asset) affordance next to the Asset field is SHOWN and ENABLED. (Before selecting a customer it is disabled only due to the customer-required dependency.) Expected: hidden when Customers Create&Edit is OFF. Gate not applied.",
+  "fresh_run": "2026-07-13",
+  "behavioral_run": "2026-07-13"
+}

@@ -188,7 +188,16 @@ same as when someone adds one by hand.
 
 ---
 
-## TICKET 4 — Priority: Medium
+## TICKET 4 — **DROPPED 2026-07-14 (DO NOT FILE) — PO ruled this is working as designed**
+
+> **DROPPED — do not file.** Chris Ward (F&D PO) answered Round-2 Q2 = **A**
+> (2026-07-14), verbatim: *"A — already resolved by spec: S2-R25 says an entered 0
+> is treated the same as empty, i.e. no maximum. Working as designed; a true $0 cap
+> can only come from legacy data (§5-R6 note), never from the UI. No change needed."*
+> A typed 0 in Max Amount = "no limit" is the intended behavior. FDBUG-9 closed as
+> accepted; cases FD-CALC-008 (C28575), FD-VAL-006 (C28604), FD-TMPL-011 (C28512)
+> reworded to affirm 0 = no cap and flipped to VIU-Verified. This draft is retained
+> below for history only.
 
 **Title:** Setting a fee/discount's maximum amount to 0 removes the limit instead of applying it
 
@@ -226,7 +235,14 @@ as "no value entered" — not as "unlimited".
 
 ---
 
-## TICKET 5 — Priority: Medium
+## TICKET 5 — **DROPPED 2026-07-14 (DO NOT FILE) — PO ruled this is expected**
+
+> **DROPPED — do not file.** Chris Ward (F&D PO) answered Round-2 Q3 = **A**
+> (2026-07-14), verbatim: *"A -- fully anticipated and expected."* Quietly rounding
+> a below-minimum percentage up to the 0.01% minimum is acceptable/expected. FDBUG-10
+> closed as accepted; case FD-CALC-006 (C28573) reworded to expect the round-up-to-
+> minimum coercion and flipped to VIU-Verified. This draft is retained below for
+> history only.
 
 **Title:** A percentage that's too small is quietly changed instead of being rejected
 
@@ -519,6 +535,32 @@ created, edited, and used like the design describes.
 ---
 
 ## Dropped — recorded here so it isn't re-raised
+
+- **Over-sized discount saves "silently" (FDBUG-15).** NOT a defect per the PO.
+  Chris Ward answered Round-2 Q1 = **A** (2026-07-14), verbatim: *"A — already
+  resolved: the warning exists and is spec-required (S6-R12, 'the carry is never
+  silent'). It shows before invoicing and before marking the WO reviewed/complete,
+  stating the $0.00 floor, that tax on the taxable base is still owed, and the exact
+  credit amount, and requires confirmation. It intentionally doesn't fire when the
+  adjustment is merely added (nothing committed yet; the add dialog's preview shows
+  the resulting totals). No change needed."* Our FDBUG-15 "silent save" was observed
+  at ADD time = the wrong trigger point; the PO says that is intentional. **NO dev
+  ticket released.** FDBUG-15 reclassified NOT-A-DEFECT; case FD-QB-014 (C28557)
+  reworded to the commit-point warning and moved to **VIU-Pending** (the invoice /
+  mark-reviewed / complete warning still needs a live commit-time re-VIU). *(QA
+  internal: the potential "new Q1 ticket" flagged in PROJECT-STATE §0.1 is NOT
+  created.)*
+
+- **Processing Fee minimum amount (FD-PROC-014, Round-2 Q4).** No ticket needed.
+  Chris Ward answered Q4 = **B** (2026-07-14), verbatim: *"B — already resolved by
+  spec: S8-N6 forbids a Processing Fee minimum. Premise doesn't reproduce: there is
+  no minimum-amount field anywhere in the UI, and the API rejects a Processing Fee
+  minimum with an explicit error ('A processing fee cannot have a minimum or maximum
+  cap') — nothing is silently dropped. No change needed."* Processing fees do not
+  support a minimum and the app already makes that clear (no field + explicit API
+  reject — matches the live 2026-07-13 finding). Case FD-PROC-014 (C28532) reworded
+  to the explicit-reject + no-field behavior; stays VIU-Verified. No dev tweak
+  ticket filed (silent-strip premise superseded by the live explicit-reject).
 
 - **Customer defaults are added one at a time from a dropdown (no multi-tick
   checklist).** The Product Owner confirmed this is deliberate — adding one at

@@ -1,0 +1,11 @@
+{
+  "case_id": 26527,
+  "section_id": 3550,
+  "title": "Clocking in on a work order line depends on the per-staff Time Clock setting",
+  "custom_preconds": "<ol>\n<li>User C (Technician) has the per-staff Time Clock setting ON.</li>\n<li>User D (Technician) has the per-staff Time Clock setting OFF.</li>\n</ol>",
+  "custom_steps": "<ol>\n<li>Log in as User C, open an assigned work order and find a labor line.</li>\n<li>Click the clock-in control on that line and see what happens.</li>\n<li>Log in as User D, open an assigned work order and find a labor line.</li>\n<li>Look for the clock-in control on that line.</li>\n</ol>",
+  "custom_expected": "<p>User C can clock in on the line and it starts recording time.</p>\n<p>User D has no clock-in control on labor lines (or it is disabled).</p>\n<p>Same role, different per-staff setting, different behavior.</p>\n",
+  "viu_status": "Blocked-UI (needs two seeded users)",
+  "evidence": "Per-staff Time Clock gating needs live UI.",
+  "fresh_run": "2026-07-13"
+}

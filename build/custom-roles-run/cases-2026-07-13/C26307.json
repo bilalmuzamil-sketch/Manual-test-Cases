@@ -1,0 +1,12 @@
+{
+  "case_id": 26307,
+  "section_id": 3528,
+  "title": "The Roles & Permissions list page loads with its columns and a create button",
+  "custom_preconds": "<ol>\n<li>You are logged in as an admin on Settings > Roles & Permissions.</li>\n</ol>",
+  "custom_steps": "<ol>\n<li>Open Settings > Roles & Permissions.</li>\n<li>Look at the page heading, the table columns and the create button.</li>\n</ol>",
+  "custom_expected": "<p>The page heading reads Roles & Permissions.</p>\n<p>The table shows columns for the role name, description, template, role type, users and an actions column (with a lock icon on system-role rows).</p>\n<p>There is a button to create a new role.</p>\n<p>(Confirm the exact column order and button label live.)</p>\n",
+  "viu_status": "VIU-Verified",
+  "evidence": "UI: /administration/roles-permissions loads. Heading \"Roles & Permissions\"; columns Role Name | Description | Template | Role Type | Users | Action; \"Create Custom Role\" button; \"Search Role\" box. screenshot roles-list-admin/list.",
+  "fresh_run": "2026-07-13",
+  "behavioral_run": "2026-07-13"
+}

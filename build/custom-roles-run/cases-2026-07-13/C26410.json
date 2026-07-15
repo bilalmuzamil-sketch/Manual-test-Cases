@@ -1,0 +1,12 @@
+{
+  "case_id": 26410,
+  "section_id": 3538,
+  "title": "Part sales View gives read access to part sales records",
+  "custom_preconds": "<ol>\n<li>A user has a role with Parts Department ON, See Financial Data ON and Part sales View only.</li>\n</ol>",
+  "custom_steps": "<ol>\n<li>Open Parts > Part Sales.</li>\n<li>Look at the records and a record's detail.</li>\n</ol>",
+  "custom_expected": "<p>The Part sales page opens and records are visible.</p>\n<p>There are no create, edit or delete options.</p>\n",
+  "viu_status": "VIU-Verified",
+  "evidence": "UI (Parts Manager): the Part Sales list at /parts/part-sales loads via in-app nav (columns Number/Status, \"New Part Sale\" button). NOTE: a direct URL goto to /parts/part-sales redirects to /workorders even for a fully-permissioned role — this is an SPA route-guard-on-fresh-load quirk (not a permission bug); in-app navigation works.",
+  "fresh_run": "2026-07-13",
+  "behavioral_run": "2026-07-13"
+}

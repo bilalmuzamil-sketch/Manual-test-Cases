@@ -1,0 +1,21 @@
+{
+  "case_id": 29434,
+  "section_id": 3539,
+  "template_id": 2,
+  "title": "Send to Terminal needs Invoicing & payments Create & Edit AND Customer portal ON",
+  "custom_preconds": "<ol>\n<li>Card terminal payments are set up for the organization with a terminal reader.</li>\n<li>An invoiced, unpaid work order with a contact exists.</li>\n<li>Two custom-role users: a Control user (Invoicing & payments Create & Edit AND Customer portal ON) and a Leak user (Invoicing & payments Create & Edit but Customer portal OFF).</li>\n</ol>",
+  "custom_steps_separated": [
+    {
+      "content": "Log in as the Control user, open the work order Finance tab and click New Payment.",
+      "expected": "The payment dialog opens and the Send to Terminal button is shown."
+    },
+    {
+      "content": "Log in as the Leak user and open the same work order Finance tab and New Payment.",
+      "expected": "The New Payment dialog opens (Create & Edit allows taking payments) but the Send to Terminal button is not shown, because Customer portal is off."
+    }
+  ],
+  "viu_status": "Blocked-UI: same as C26427 — Send to Terminal (needs Invoicing C&E AND Customer Portal) is in the payment dialog, not reached; needs an open invoice + payment flow to observe both-gates.",
+  "evidence": "Reworded; feature-flag/element-id/SV jargon stripped.",
+  "fresh_run": "2026-07-13",
+  "behavioral_run": "2026-07-13"
+}

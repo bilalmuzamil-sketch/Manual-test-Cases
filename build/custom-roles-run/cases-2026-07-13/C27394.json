@@ -1,0 +1,29 @@
+{
+  "case_id": 27394,
+  "section_id": 3540,
+  "template_id": 2,
+  "title": "A clock-capable role without Timesheets View can still see and open My Timesheets",
+  "custom_preconds": "<ol>\n<li>A custom role that can clock in/out but does not have the Timesheets View permission exists, with a user assigned.</li>\n</ol>",
+  "custom_steps_separated": [
+    {
+      "content": "Log in as the clock-capable user who does not have Timesheets View.",
+      "expected": "You land on a page you are allowed to see and can reach the profile menu."
+    },
+    {
+      "content": "Open the profile menu (desktop).",
+      "expected": "The My Timesheets item is shown."
+    },
+    {
+      "content": "Click My Timesheets.",
+      "expected": "The app opens the timesheets page without sending you to login or an unauthorized page."
+    },
+    {
+      "content": "Switch to a mobile-size screen and open the mobile menu.",
+      "expected": "The My Timesheets item is shown there too."
+    }
+  ],
+  "viu_status": "VIU-Verified",
+  "evidence": "UI (Technician = clockable, NO timesheetsView): /timesheets is accessible (not restricted) and shows the user My Timesheets entries — a clock-capable role without Timesheets View can still see and open My Timesheets. screenshot myts-tech.",
+  "fresh_run": "2026-07-13",
+  "behavioral_run": "2026-07-13"
+}

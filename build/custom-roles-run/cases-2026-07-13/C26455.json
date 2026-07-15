@@ -1,0 +1,12 @@
+{
+  "case_id": 26455,
+  "section_id": 3543,
+  "title": "Tech view: the Estimate column shows the Tech Time value",
+  "custom_preconds": "<ol>\n<li>A user has a role with View mode set to Tech view.</li>\n<li>A test work order has an Estimate value and a different Tech Time value.</li>\n</ol>",
+  "custom_steps": "<ol>\n<li>Log in as that user and open Work Orders.</li>\n<li>Open the test work order.</li>\n<li>Look at the Estimate column on the lines.</li>\n<li>Compare with what a Full View user sees.</li>\n</ol>",
+  "custom_expected": "<p>The Estimate column shows the Tech Time value, not the money estimate value.</p>\n",
+  "viu_status": "VIU-Verified",
+  "evidence": "UI (Technician, tech view): WO lines Actual/Estimate column shows tech-time hours (e.g. 0.00 / 1.00, 0.00 / 1.50) and header \"Total Tech Hours\" — not a money estimate. screenshot techview-lines-estimate/approved.",
+  "fresh_run": "2026-07-13",
+  "behavioral_run": "2026-07-13"
+}

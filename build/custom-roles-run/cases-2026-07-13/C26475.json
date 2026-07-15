@@ -1,0 +1,12 @@
+{
+  "case_id": 26475,
+  "section_id": 3544,
+  "title": "Turning See Financial Data OFF asks you to also turn off the settings that depend on it",
+  "custom_preconds": "<ol>\n<li>Open the role editor for a custom role.</li>\n<li>The role has See Financial Data ON.</li>\n<li>The role has Part sales View, Create & Edit and Delete all ON.</li>\n<li>The role has Invoicing & payments View, Create & Edit and Delete all ON.</li>\n</ol>",
+  "custom_steps": "<ol>\n<li>In the Cross-Cutting Toggles card, turn See Financial Data OFF.</li>\n<li>Look at the confirmation dialog that appears.</li>\n<li>Read the list of dependent settings it names.</li>\n<li>Choose to continue, then look at the Part sales and Invoicing & payments boxes and the Order parts toggle.</li>\n</ol>",
+  "custom_expected": "<p>Turning See Financial Data OFF does not silently untick the dependent settings.</p>\n<p>A dialog titled 'Disable See Financial Data?' appears (buttons Cancel and Disable) telling the user the settings that rely on See Financial Data will be turned off.</p>\n<p>It names the dependent settings that are currently on: Invoicing & payments, Part sales, Order parts, and View and Manage AP/AR Data.</p>\n<p>Choosing Disable turns off those dependent settings (Part sales View/Create & Edit/Delete, Invoicing & payments View/Create & Edit/Delete, and Order parts).</p>\n<p>Choosing Cancel leaves See Financial Data ON and changes nothing.</p>\n",
+  "viu_status": "VIU-Verified",
+  "evidence": "UI (RUN331 FAIL NOW FIXED): turning See Financial Data OFF while Invoicing on shows \"Disable See Financial Data? — Disabling See Financial Data will also disable Invoicing & Payments. Continue?\" [Cancel|Disable] (FinancialDataDisableConfirmModal). screenshot sfd-disable-dialog.",
+  "fresh_run": "2026-07-13",
+  "behavioral_run": "2026-07-13"
+}

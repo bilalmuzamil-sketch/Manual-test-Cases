@@ -1,0 +1,12 @@
+{
+  "case_id": 26484,
+  "section_id": 3545,
+  "title": "View and Manage AP/AR Data OFF still lets a user create invoices and take payments if Invoicing & payments allows it",
+  "custom_preconds": "<ol>\n<li>A user has a role with Invoicing & payments View and Create & Edit, See Financial Data ON, and View and Manage AP/AR Data OFF.</li>\n</ol>",
+  "custom_steps": "<ol>\n<li>Open a work order and create an invoice.</li>\n<li>Take a payment.</li>\n</ol>",
+  "custom_expected": "<p>Both work.</p>\n<p>Only the AP/AR-specific views (tabs, reports, sensitive fields) are hidden; invoicing still works.</p>\n",
+  "viu_status": "VIU-Verified",
+  "evidence": "UI/perms: AP/AR Data OFF still allows creating invoices/taking payments when Invoicing allows — Service Advisor has invoicingPaymentsCreateAndEdit+Delete with AP/AR off; invoicing capability is independent of AP/AR.",
+  "fresh_run": "2026-07-13",
+  "behavioral_run": "2026-07-13"
+}

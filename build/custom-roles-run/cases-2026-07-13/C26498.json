@@ -1,0 +1,11 @@
+{
+  "case_id": 26498,
+  "section_id": 3548,
+  "title": "Service Advisor: role permissions match the expected set",
+  "custom_preconds": "<ol>\n<li>A user is assigned the Service Advisor role.</li>\n</ol>",
+  "custom_steps": "<ol>\n<li>Open the Service Advisor role's Permission Summary (eye icon on the Roles list).</li>\n<li>Check the add/edit/delete areas, the Page Access toggles, the Work orders sub-settings, the View mode and the Cross-Cutting Toggles.</li>\n<li>Optionally log in as the user and spot-check a few of the role's typical tasks.</li>\n</ol>",
+  "custom_expected": "<p>The Service Advisor permissions match the expected set: Work orders View/Create & Edit (no Delete); Work order lines Create & Edit/Delete; Schedule full; Customers View/Create & Edit (no Delete); Part sales View/Create & Edit (no Delete); Catalog and Inventory View/Create & Edit; Vendor and order management View/Create & Edit; Invoicing & payments full; Reports off; Customer portal on; See Financial Data on; View and Manage AP/AR Data OFF; View mode Full View.</p>\n",
+  "viu_status": "Roles-API-Verified (permission set matches the live role); workflow spot-checks Blocked-UI",
+  "evidence": "Service Advisor permission set confirmed live via GET /api/roles/{id} (roles-matrix-2026-07-13).",
+  "fresh_run": "2026-07-13"
+}

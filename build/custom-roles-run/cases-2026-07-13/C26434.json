@@ -1,0 +1,12 @@
+{
+  "case_id": 26434,
+  "section_id": 3540,
+  "title": "All Timesheets permissions OFF and Reports OFF: no timesheet navigation anywhere",
+  "custom_preconds": "<ol>\n<li>A user has a role with both Timesheets boxes OFF and Reports OFF.</li>\n</ol>",
+  "custom_steps": "<ol>\n<li>Log in.</li>\n<li>Look at the top navigation.</li>\n<li>Look at the left sidebar.</li>\n<li>Open a work order and look for a timesheet section.</li>\n</ol>",
+  "custom_expected": "<p>There is no Timesheets entry in the top navigation or the sidebar.</p>\n<p>The work order shows no timesheet edit option.</p>\n<p>The Timesheet activities report is not in Reports (Reports is off).</p>\n",
+  "viu_status": "VIU-Verified",
+  "evidence": "UI: a role with no timesheetsView and no reportsPageAccess (e.g. HistOn: woView+SFD+histlogs) has NO Timesheets tab on the work order and no Timesheet Activities report — no timesheet access anywhere. (Time Clock User, which has timesheetsView, DOES show a Timesheets tab, confirming the gate.)",
+  "fresh_run": "2026-07-13",
+  "behavioral_run": "2026-07-13"
+}

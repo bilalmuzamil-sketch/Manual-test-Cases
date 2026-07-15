@@ -1,0 +1,12 @@
+{
+  "case_id": 26361,
+  "section_id": 3533,
+  "title": "Ticking Delete on Work orders also ticks Create & Edit and View",
+  "custom_preconds": "<ol>\n<li>In the Work orders card, View, Create & Edit and Delete are all unticked.</li>\n</ol>",
+  "custom_steps": "<ol>\n<li>Tick the Delete box on Work orders.</li>\n<li>Look at View, Create & Edit and Delete.</li>\n</ol>",
+  "custom_expected": "<p>View ticks automatically.</p>\n<p>Create & Edit ticks automatically.</p>\n<p>Delete is ticked.</p>\n",
+  "viu_status": "VIU-Verified",
+  "evidence": "UI: ticking Work orders Delete auto-ticks Create & Edit and View (all ON).",
+  "fresh_run": "2026-07-13",
+  "behavioral_run": "2026-07-13"
+}

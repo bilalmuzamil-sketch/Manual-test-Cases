@@ -22,11 +22,28 @@ and bugs-log.md):
   BLOCKED — VIU PENDING (QA)   — built surface, not yet driven; needs fresh cookies /
                                  seeded data / another pass. Owner: QA.
 """
-import json, os, re
+import json, os, re, csv
 from collections import Counter
 
 BASE = os.path.dirname(os.path.abspath(__file__))          # build/fees-discounts
 CASES_DIR = os.path.join(BASE, "cases")
+
+# TestRail case-id map (standing rule 8: every case-listing deliverable carries the
+# TestRail Case ID + clickable link). Source: testrail-id-map.csv.
+TR_URL = "https://shopview.testrail.io/index.php?/cases/view/{}"
+IDMAP = {}
+with open(os.path.join(BASE, "testrail-id-map.csv"), encoding="utf-8") as _f:
+    for _r in csv.DictReader(_f):
+        IDMAP[_r["fd_id"]] = _r["ID"]
+
+
+def tr_id(fd):
+    return IDMAP.get(fd, "")
+
+
+def tr_link(fd):
+    v = IDMAP.get(fd, "")
+    return TR_URL.format(v) if v and v.isdigit() else ""
 
 # Batch-2 VIU wrote verbose annotations into some viu_status fields (e.g.
 # "VIU-Verified qb 2026-07-08 — …" or "VIU-Pending — DEVIATION (flagged …)").
@@ -40,6 +57,10 @@ def norm_status(s):
     for e in ENUMS:
         if s.startswith(e):
             return e
+    # V1_2 (2026-07-13): history-gating re-VIU cases + the new §5-R15 case carry a
+    # "Pending ..." status; collapse to VIU-Pending for classification (see RETEST_V12).
+    if s.startswith("Pending"):
+        return "VIU-Pending"
     return s
 OUT_XLSX = os.path.join(BASE, "FeesDiscounts_Blockers_Tracker.xlsx")
 OUT_MD = os.path.join(BASE, "FeesDiscounts_Blockers_Tracker.md")
@@ -107,6 +128,14 @@ PENDING_PO_FLAG = {
     "FD-STATS-002": "BUG-FD-2 — Stats aggregate layout blocks per-adjustment row verification.",
     "FD-STATS-004": "BUG-FD-2 — Stats aggregate blocks creation-order row verification.",
     "FD-CUST-005": "NOTE-FD-5 — customer-default picker is a single-select dropdown, not a multi-select checkbox list.",
+}
+
+# V1_2 (2026-07-13): cases whose EXPECTED changed with the V1_2 spec (history-log
+# gating flip per S13-R10 + the new §5-R15 dialog case) — each needs a live re-VIU.
+RETEST_V12 = {
+    "FD-PERM-009", "FD-HIST-006", "FD-HIST-001", "FD-HIST-002", "FD-HIST-003",
+    "FD-HIST-004", "FD-HIST-005", "FD-HIST-007", "FD-HIST-008", "FD-FLAG-002",
+    "FD-WO-016",
 }
 
 # VIU-Verified cases that still carry a PO confirmation ask (double-add did NOT
@@ -195,6 +224,12 @@ def classify(c):
                     needs="Environment window — " + note, sub="flag-off/env", related=story)
 
     if vs == "VIU-Pending":
+        if cid in RETEST_V12:
+            return dict(state="BLOCKED", category="VIU PENDING (QA)", owner="QA (V1_2 re-VIU)",
+                        needs="V1_2 spec change — EXPECTED updated (S13-R10 history gating / §5-R15 "
+                              "note); needs a live re-VIU (re-derive the qb roles matrix first; "
+                              "tech quick-login flaky).",
+                        sub="v1_2-retest", related=story)
         if cid in PENDING_PO_FLAG:
             return dict(state="BLOCKED", category="VIU PENDING (QA)",
                         owner="QA + PO ruling",
@@ -247,6 +282,7 @@ def main():
             c["id"], c["_group"], section_for(c), c["title"].strip(),
             norm_status(c.get("viu_status", "")), cls["state"], CAT_DISPLAY[cls["category"]],
             cls["owner"], cls["needs"], cls["related"], cls["sub"],
+            tr_id(c["id"]) or "pending-create", tr_link(c["id"]),
         ])
 
     disp_counts = Counter(r[6] for r in rows)
@@ -289,7 +325,7 @@ def main():
 
     HEADER = ["Case ID", "Group", "Area (TestRail section)", "Title", "Current VIU status",
               "State", "Blocker category", "Who unblocks", "What's needed to unblock",
-              "Related story/req", "Sub-bucket"]
+              "Related story/req", "Sub-bucket", "TestRail Case ID", "TestRail Link"]
 
     # ---------------- XLSX ----------------
     from openpyxl import Workbook
@@ -314,7 +350,8 @@ def main():
     widths = {"Case ID": 14, "Group": 12, "Area (TestRail section)": 34, "Title": 55,
               "Current VIU status": 16, "State": 10, "Blocker category": 24,
               "Who unblocks": 28, "What's needed to unblock": 62,
-              "Related story/req": 30, "Sub-bucket": 18}
+              "Related story/req": 30, "Sub-bucket": 18,
+              "TestRail Case ID": 16, "TestRail Link": 52}
     for i, name in enumerate(HEADER, start=1):
         ws.column_dimensions[get_column_letter(i)].width = widths.get(name, 12)
 
@@ -406,7 +443,7 @@ def main():
     L.append("> Source of truth for what every authored F&D case is waiting on and who "
              "unblocks it. Regenerate with `python3 build/fees-discounts/gen_blockers.py`.")
     L.append("> Canonical resume snapshot: `build/fees-discounts/PROJECT-STATE.md`. "
-             "Interim upload file: `testrail-import/fees-discounts-v1-testrail-import.csv` (all 182).")
+             "Interim upload file: `testrail-import/fees-discounts-v1-testrail-import.csv` (all {}).".format(len(rows)))
     L.append("")
     L.append("**Total authored cases: {}**".format(len(rows)))
     L.append("")
@@ -455,12 +492,13 @@ def main():
     L.append("## Full per-case tracker")
     L.append("")
     L.append("| Case ID | Group | Area | Title | VIU status | State | Blocker category | "
-             "Who unblocks | What's needed | Related | Sub-bucket |")
-    L.append("|---|---|---|---|---|---|---|---|---|---|---|")
+             "Who unblocks | What's needed | Related | Sub-bucket | TestRail Case ID | TestRail Link |")
+    L.append("|---|---|---|---|---|---|---|---|---|---|---|---|---|")
     for r in rows:
-        L.append("| {} | {} | {} | {} | {} | {} | {} | {} | {} | {} | {} |".format(
+        trlink = "[C{0}]({1})".format(r[11], r[12]) if r[12] else r[11]
+        L.append("| {} | {} | {} | {} | {} | {} | {} | {} | {} | {} | {} | {} | {} |".format(
             r[0], md(r[1]), md(r[2]), md(r[3]), md(r[4]), r[5], r[6],
-            md(r[7]), md(r[8]), md(r[9]), md(r[10])))
+            md(r[7]), md(r[8]), md(r[9]), md(r[10]), r[11], trlink))
     L.append("")
     open(OUT_MD, "w").write("\n".join(L))
     print("Wrote", OUT_MD)
@@ -469,7 +507,7 @@ def main():
     print("Deviation sub:", dict(dev_sub))
     print("NotBuilt sub:", dict(notbuilt_sub))
     print("Env sub:", dict(env_sub))
-    assert sum(disp_counts.values()) == len(rows) == 182, "count mismatch"
+    assert sum(disp_counts.values()) == len(rows) == 183, "count mismatch"
 
 
 if __name__ == "__main__":

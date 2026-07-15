@@ -1,0 +1,233 @@
+# Simple Flow — Build-Accurate Label Glossary (live sv7301) — 2026-07-13
+
+> Exact on-screen labels captured live from `https://sv7301.qa.shopview.com` during
+> the combined build-accurate-wording + VIU pass (2026-07-13). Used to rewrite the
+> tester-facing case fields (Title / Preconditions / Steps / Expected) to the real
+> build terms in plain layman language. Screenshots in
+> `screenshots/wording-2026-07-13/`. Secrets never here (cookies live in `/tmp`).
+> One section per area, appended as each area is processed.
+
+---
+
+## SF-SET — Work Order Settings (`/administration/settings` → **Work Orders** tab)
+
+Screenshots: `SET-01-settings-workorders.png` (lands on Organization tab),
+`SET-workorders-tab.png` (Work Orders tab, all toggles + helper text).
+
+**Left settings nav (exact section headers):** SETTINGS · SERVICE · PARTS ·
+INTEGRATIONS · FINANCE · IMPORTS. Under SETTINGS: Settings, Staff, Roles &
+Permissions, Locations, Departments, Taxes.
+
+**Settings page top tabs (exact):** `Organization` · `Invoice` · `Work Orders`.
+(The settings page opens on **Organization** by default; click the **Work Orders**
+tab to reach the Simple-Flow toggles.)
+
+**Work Orders tab — exact toggle labels, in the exact top-to-bottom order shown,
+with their exact helper text:**
+
+1. **Auto-approve Lines** — "New work order lines are created already approved,
+   skipping the line approval step"
+2. **Require Vendor Invoice Number** — "When on, parts and a vendor invoice number
+   are required to complete a work order. When off, complete now and receive parts
+   later."
+3. **Require Review Before Completion** — "Work orders must be reviewed and signed
+   off before they can be completed"
+4. **Require Tech Story** — "Tech story will be a required field before a line can be
+   completed on a work order"
+5. **Require Mileage** — "Mileage will be a required field before a line can be
+   completed on a work order"
+6. **Require Engine Hours** — "Engine hours will be a required field before a line
+   can be completed on a work order"
+7. **Automatically Pick Inventory Parts** — "Inventory and found parts will
+   automatically skip the pick step and go straight to staged when authorized"
+
+**Save button (exact):** `Save Settings`.
+
+**Confirmed ABSENT on the Work Orders tab (build facts, 2026-07-13):**
+- No operating-mode / **Full vs Simple** selector anywhere on the page.
+- No **Create Purchase Orders** toggle (spec S1-R2 expects one; build lags — deviation).
+- No **Require VIN** / VIN-required toggle (the model holds `requireVehicleIdentifier`
+  / `vehicleIdentifier:"vin"` but it is **not** exposed as a Work Orders toggle).
+- No visual "new vs existing" distinction between toggles — they render as one flat
+  list (spec S1-R1 wanted new toggles visually distinct; not present in build).
+
+**Settings model (`GET /api/organizations/settings`) exact keys (2026-07-13):**
+`id, organizationId, requireMileage, requireHours, requireTechStories,
+requireVehicleIdentifier, vehicleIdentifier, autoPickInventoryParts,
+autoApproveLines, requireVendorInvoiceNumber, requireReview`. **No** `operatingMode`,
+**no** `requireVin`, **no** `createPurchaseOrders`. Save endpoint
+`POST /api/organizations/settings/change` (full object). Org baseline this run: all
+requires OFF except `requireVehicleIdentifier:true` (`vehicleIdentifier:"vin"`).
+
+---
+
+## SF-COMP — Work Order Completion (`/workorders/{id}/lines`)
+
+Screenshots: `COMP-A-01-lines.png` (WO Lines page), `COMP-A-02-modal.png`
+(Complete Work Order modal → Success screen for a no-receive WO).
+
+**WO Lines page toolbar (exact buttons):** `New Line` · `Complete Work Order`
+(sit together in the top-right toolbar). Line rows carry a per-line `more_vert`
+menu and a line-level **`Receive`** button on part rows.
+
+**Vehicle header (exact labels):** `VIN/Serial #` · `Mileage` · `Engine Hours` ·
+`License Plate`; a **`Valid VIN Required`** chip appears when the VIN is not valid.
+
+**Financial panel (exact labels):** `Parts` · `Labor` · `Shop Supplies` ·
+`Subtotal` · `GST` · `Total` · `Balance`. Line tabs: `Lines` · `Parts` · `Notes`
+· `Stats` · `Finance`.
+
+**Complete Work Order modal:** title `Complete Work Order` with a `close` (X)
+control; header shows the WO number + customer (e.g. `S2-15795 · Jessica Kim`).
+
+**Success screen (exact text — for a WO needing no receive):**
+`task_alt` icon, heading **`Order complete`**, sub-line **`Sent to Finance as an
+invoice-ready draft`**, then `Work order S2-15795 Inv…` (WO number + invoice total).
+Buttons: **`Done`** and **`Go To Invoice`**.
+
+**Part row statuses seen (exact):** `Awaiting Receive`, `Returned`, `Requested`
+(the receive wizard shows an "N parts waiting to receive" count and
+`Receive Parts` / `Complete Without Receiving` / `Cancel` actions for the
+optional-invoice flow — verified with screenshots in prior runs `FV-comp13-*`,
+`FV-comp19-*`; not re-driven this pass).
+
+Build-accuracy note: the SF-COMP case wording already matches these live labels
+(Complete Work Order, Order complete, Sent to Finance as an invoice-ready draft,
+Done, Go To Invoice, line Receive) — no label corrections were needed for SF-COMP.
+
+---
+
+## SF-PERM — Permissions (`/administration/roles-permissions`)
+
+Screenshots: `PERM-roles-list.png`, `PERM-role-detail.png`. Nav: Administration →
+**Roles & Permissions** (route `/administration/roles-permissions`).
+
+**Roles list columns (exact):** `Role Name` · `Description` · `Template` ·
+`Role Type` · `Users` · `Action`. Button **`Create Custom Role`**; **`Search Role`**
+box. Role Type shows `System` for the 11 built-in roles.
+
+**Exact system-role descriptions (build):** Time Clock = "Clock in/out only";
+Technician = "Assigned work orders and time tracking (Tech View)"; Service Advisor
+= "Work order and customer management with invoicing access"; Senior Service Advisor
+= "Work order and customer management with expanded access"; Foreman = "Oversees
+technicians and work orders"; Parts (Manager/Tech) = "Parts operations and vendor
+management"; Sales Representative = "Reports and financial data access only".
+
+**Permission gates (verified live via the fresh roles matrix
+`roles-matrix-2026-07-13.md` — API `GET /api/roles/{id}` + `GET /api/auth/me/fe-permissions`):**
+Complete Work Order = `workOrdersCreateAndEdit`; Mark Reviewed =
+`woReviewWorkOrders`; PO Receive = `woOrderParts` (Order Parts); Bulk Receive =
+`vendorOrderManagementCreateAndEdit` + `seeFinancialData`; vendorless part add =
+`seeFinancialData`; WO settings = `settingsApp` (App Settings). No system-role drift
+(2026-07-13). Backend enforces the settings atom (tech settings save → 403) but not
+the WO-completion / review atoms (documented UI-pass / API-gap).
+
+FLAG: the per-permission editor labels inside a role's detail (e.g. the exact
+on-screen text for "See Financial Data" / "Work Orders: Create & Edit") were not
+re-captured this pass (the role-detail editor did not expand in the headless
+capture). SF-PERM tester wording uses the standard ShopView permission names; if
+exact editor-label precision is required, capture the role-permission editor.
+
+---
+
+## SF-REV — Review sign-off (Story 16) — Require Review Before Completion ON
+
+Screenshots: `REV-01-modal.png`, `REV-02-review-state.png`, `REV-03..06-*`. Driven
+live 2026-07-13 on S2-15823 (Require Review ON).
+
+**Exact labels (confirmed live):**
+- With Require Review ON, a **ready** work order's Lines toolbar shows a
+  **`Send To Review`** button (it replaces `Complete Work Order` on the ready path).
+  For a work order that still has parts to order/receive, the toolbar shows
+  **`Complete Work Order`** which opens the completion wizard first.
+- After Send To Review: work order status becomes **`Review`**, with a
+  **`Ready for Review`** indicator (schedule icon) on the work order.
+- The action button then becomes **`Mark Reviewed`**.
+- **Mark Reviewed** on a work order that already has a valid VIN signs off and moves
+  the work order **directly `Review` → `Complete`** (no separate final "Complete
+  Work Order" click, no distinct "Reviewed" holding state). Success screen same as
+  SF-COMP (`Order complete` / `Sent to Finance as an invoice-ready draft` / `Done` /
+  `Go To Invoice`).
+
+**FLAGS (could not be cleanly reproduced this run — verify on a dedicated drive):**
+- The completion **wizard's** final CTA wording for a part-bearing review-on WO
+  (spec/prior notes call it "Complete & Send to Review"); the ready-path toolbar
+  button is confirmed as "Send To Review".
+- The **Mark Reviewed dialog** with a **required VIN / Serial #** field + **Confirm
+  Review** and **no review note** field (Δ4) appears only when the WO's VIN is
+  missing; every test WO this run had a VIN, so it completed directly. Dialog was
+  verified in a prior run (`S16-04-review-wizard.png`, 2026-07-06); Δ4 (note removed)
+  confirmed in the spec.
+
+---
+
+## SF-VAL — Completion / receive validation gates
+
+Screenshots: `VAL-details-mileage-modal.png`, `VAL-block-empty.png`. Driven live
+2026-07-13 (Require Mileage + Engine Hours ON, then RESTORED byte-identical).
+
+**Completion Details modal (exact, review OFF):** title **`Complete Work Order`**;
+fields **`Mileage`** and **`Engine Hours`** only — **no VIN field in the modal**;
+buttons **`Cancel`** and **`Complete Work Order`** (with a forward arrow). Leaving a
+required field empty and pressing Complete Work Order shows a **`required field`**
+error and completion does **not** proceed (verified on S2-15783).
+
+**KEY BUILD FINDING (VIN):** VIN is **not** collected in the completion Details
+modal, even when Require Review is OFF (the modal shows only Mileage + Engine Hours).
+VIN validity surfaces via the WO-header **`Valid VIN Required`** chip; for review-on
+it is captured in the Mark Reviewed dialog. This is broader than V2.4 Δ1 (which
+described VIN dropping from the review-on modal) — the build has no VIN field in the
+completion modal at all. Affects SF-COMP-16 / SF-VAL-02 (corrected/flagged).
+
+---
+
+## SF-UX / SF-WOP — Work Orders list + completion UX
+
+Screenshots: `UX-workorders-list.png`, `WOP-column-selector.png`.
+
+**Work Orders list (exact):** tabs `Estimates` · `Work Orders` · `Completed` ·
+`By Status` · `My Work Orders`; **`Create Work Order`** primary button. Default
+columns: `On Site` · `Status` · `Number` · `Customer` · `Asset` · `Unit` ·
+`VIN/Serial #` · `Progress` · `Service Advisor` · `Lead Technician` · `Clocked In`
+· `Lines` · `Total Price` · `Created On`. The **Waiting on Parts** column is OFF by
+default (enabled via the column selector; `toggle_column_unreceivedPartRequestsCount`,
+per prior VIU / Story 14 — the column selector panel did not surface via the
+`width_normal` control this run; label carried from prior verification, FLAG to
+re-confirm the exact selector label).
+
+**Completion UX:** the required-fields modal is the centralized center modal
+(`Complete Work Order` with Mileage + Engine Hours — see SF-VAL); tech story is a
+separate line-level flow (not in this modal). Success screen + `Done` / `Go To
+Invoice` (invoice number on the Finance step) — see SF-COMP glossary.
+
+---
+
+## Receive cluster — PO list, PO multi-select, Bulk Receive, Accept Delivery
+
+Screenshots: `RCV-po-list.png`, `RCV-bulk-receive.png`.
+
+**PO list (`/parts/orders`):** heading **`Purchase Orders`**; **`New PO`** button;
+columns **`Work Order`** · **`Purchase Order Number`** · **`Vendor`** · **`Order
+Status`** · **`Created On`** · **`Ordered By`** · **`Total Price`** · **`Note`**;
+per-row **`Receive`** action. Order Status values seen: **`Ordered`**, **`Partial
+Delivery`**. Left nav (SUPPLY CHAIN): Returns, Purchase Orders, Vendor Invoices,
+Vendors.
+
+**Bulk Receive (`/bulk-receive?ids=…`):** heading **`Receive Vendor Parts`** +
+vendor count ("3 vendors"); **`Back To Purchase Orders`** link (arrow_back). Grouped
+by **`VENDOR`** (storefront icon) with "N parts · M PO"; per-vendor **`Expand All`**,
+**`Apply to selected POs`** (edit icon), **`Invoice Date`** (event icon), **`Tax`**
+($ icon), "N of M selected", **`Clear`**. PO rows: "PO S-15822 WO S-15822 · 2 parts",
+**`Delivery note for selected POs`**. Footer: **`COST TOTAL`** · **`PARTS
+SELECTED`** · **`POS SELECTED`** · **`Receive All`** (inventory_2 icon).
+
+Build-accuracy corrections vs old case wording: "Back to Purchase Orders" →
+**`Back To Purchase Orders`**; "Apply invoice to selected POs" → **`Apply to
+selected POs`**; "Receive all" → **`Receive All`**.
+
+**Vendor-missing group / receive-time gates (Δ3):** all POs available this run had a
+vendor (`vendorMissing:false`), so the vendor-missing group (with
+`select_assign_vendor_{poId}` + `input_part_number_{partId}` per prior VIU) and the
+new part#/cost-sell receive gates were **not surfaced** — seeding a vendor-missing PO
+(New Part Request Source=Vendor, free-text PN, no vendor → complete WO) is required
+to drive SF-VEND-04/06, SF-RCV-06, SF-PNFIX-05, SF-VAL-06.

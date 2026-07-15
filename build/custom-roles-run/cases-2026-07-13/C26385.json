@@ -1,0 +1,12 @@
+{
+  "case_id": 26385,
+  "section_id": 3534,
+  "title": "Creating a work order still works when Customers View is OFF",
+  "custom_preconds": "<ol>\n<li>A user has a role with Work orders View and Create & Edit ON and Customers View OFF.</li>\n</ol>",
+  "custom_steps": "<ol>\n<li>Log in and look at the top navigation.</li>\n<li>Open Work Orders and click the create-new button.</li>\n<li>Open the Customer selector in the new work order form.</li>\n<li>Search for or scroll to a customer.</li>\n<li>Select the customer.</li>\n<li>Fill the rest and save.</li>\n</ol>",
+  "custom_expected": "<p>Customers is not in the top navigation.</p>\n<p>The customer selector inside the work order form still opens and lists customers (the data is reachable because it is needed to create a work order).</p>\n<p>The customer can be selected and the work order saves.</p>\n",
+  "viu_status": "VIU-Verified",
+  "evidence": "UI (role WO Create&Edit, no Customers View): Customers is absent from top nav, but the New Work Order modal customer selector still opens and lists all customers (new test, 11 A new Company, A 2 Company, ...) — data reachable.",
+  "fresh_run": "2026-07-13",
+  "behavioral_run": "2026-07-13"
+}

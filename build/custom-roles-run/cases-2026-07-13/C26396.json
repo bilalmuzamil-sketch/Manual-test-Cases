@@ -1,0 +1,12 @@
+{
+  "case_id": 26396,
+  "section_id": 3536,
+  "title": "Schedule Delete allows removing appointments",
+  "custom_preconds": "<ol>\n<li>A user has a role with Schedule View, Create & Edit and Delete.</li>\n</ol>",
+  "custom_steps": "<ol>\n<li>Open Schedule and find a test appointment.</li>\n<li>Delete it.</li>\n<li>Confirm.</li>\n</ol>",
+  "custom_expected": "<p>The appointment is removed.</p>\n",
+  "viu_status": "Blocked-UI: appointment delete requires selecting an existing appointment on the calendar (drag/slot interaction) which is not triggerable headless; same calendar-automation limitation as C26395.",
+  "evidence": "Needs live UI.",
+  "fresh_run": "2026-07-13",
+  "behavioral_run": "2026-07-13"
+}

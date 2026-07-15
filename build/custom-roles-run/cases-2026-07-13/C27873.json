@@ -1,0 +1,25 @@
+{
+  "case_id": 27873,
+  "section_id": 3534,
+  "template_id": 2,
+  "title": "Edit/delete options on another user's customer note are hidden without the right permission",
+  "custom_preconds": "<ol>\n<li>A customer has a note written by an admin, on its Notes tab.</li>\n<li>Two custom roles exist: role A with Customers View and Work orders View but no Work orders Delete.</li>\n</ol>",
+  "custom_steps_separated": [
+    {
+      "content": "Log in as the role-A user and open the customer's Notes tab.",
+      "expected": "The Notes tab opens and the admin-written note is shown."
+    },
+    {
+      "content": "Look at the admin-written note's action menu.",
+      "expected": "There is no action menu (no Edit/Delete/Attach) on another user's note."
+    },
+    {
+      "content": "As the role-A user, create your own note on the same customer and check its actions.",
+      "expected": "On your own note, edit and delete your own note are available."
+    }
+  ],
+  "viu_status": "Blocked-UI: needs a customer note authored by a DIFFERENT user, then observe edit/delete affordance hidden for a role lacking the note permission — requires seeding a note as user A and viewing as user B; not reachable with single Tech identity this pass.",
+  "evidence": "Reworded; customer notes governed by Customers permission (not WO Delete). API/element jargon stripped.",
+  "fresh_run": "2026-07-13",
+  "behavioral_run": "2026-07-13"
+}

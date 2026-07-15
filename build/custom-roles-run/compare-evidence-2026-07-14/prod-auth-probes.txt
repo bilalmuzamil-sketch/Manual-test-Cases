@@ -1,0 +1,52 @@
+PRODUCTION AUTH + CAPTURE RESULTS — 2026-07-15 (UPDATED: prod NOW LIVE)
+
+=== 2026-07-15: FRESH PHPSESSID AUTHENTICATED — full live capture completed ===
+The fresh production PHPSESSID (041fb58...) authenticated successfully. Production is
+NO-SSO: the session is a plain PHPSESSID (there is no sv_sso_session on prod). The earlier
+failures were a stale PHPSESSID, not a Cloudflare/host problem.
+
+Validated (api.shopview.com, cookie = PHPSESSID + cf_clearance):
+  GET /api/organizations                 -> 200 (100 orgs; this is a support/multi-org account)
+  GET /api/staff?page=1                  -> 200 (13 staff)
+  GET /api/organizations/settings        -> 200 -> organizationId 72b2cc90-6964-4429-a207-76e55f946936
+  GET /api/iam/list-roles                -> 200 (14 legacy roles; NO "Owner" role present)
+  GET /api/auth/me , /api/auth/me/fe-permissions -> 404 (routes absent on old model)
+  GET /api/organizations/{org}/roles     -> 404 (new-model route absent on prod/old model)
+  POST /api/quick-login                  -> 500 (dev quick-login not functional on prod)
+
+PROD ORG UUID (compared): 72b2cc90-6964-4429-a207-76e55f946936
+
+OLD-MODEL PERMISSION SHAPE (discovered from prod SPA bundle app.cf2e7ec5....js):
+  Permissions live in the user object as data.permissions = list of
+  {resource_name, action_name, limits, exclusions}. FE gate = action_name matches '*' OR the
+  exact action. iam/list-roles gives the assignable legacy role catalog (id/code/label).
+
+PROD ROLE INVENTORY (14 legacy roles, GET /api/iam/list-roles):
+  ROLE_ADMINISTRATOR, ROLE_SERVICE_MANAGER, ROLE_SERVICE_ADVISOR,
+  ROLE_SERVICE_ADVISOR_TECHNICIAN, ROLE_SERVICE_ADVISOR_NO_REPORTS,
+  ROLE_SERVICE_ADVISOR_LIMITED_VIEW, ROLE_FOREMAN, ROLE_TECHNICIAN, ROLE_PARTS_MANAGER,
+  ROLE_PARTS_TECHNICIAN, ROLE_REPORTING, ROLE_OFFICE_USER, ROLE_SALES_REPRESENTATIVE,
+  ROLE_TIME_CLOCK_USER.   ** NO Owner role in this org (spec assumed 15 legacy). **
+
+PER-ROLE CAPTURE METHOD (prod is a disposable TEST org per task; writes OK, reversible):
+  Effective per-role permissions captured by IMPERSONATION:
+    POST /api/switch-user {user_id} -> response.data.permissions -> POST /api/exit-switch-user
+  7 roles had an existing active user -> impersonated directly.
+  ROLE_SERVICE_ADVISOR's only user was inactive ("Cannot impersonate an inactive user"),
+  and 7 roles had no user. For those 8 roles: temporarily assigned a throwaway ZZ invite-test
+  user (staff_id 13082cd1..., "Invite email Test") that role via POST /api/staff/change
+  (id=staff_id, required fields id/first_name/last_name/email/workplace_id/role_id;
+  departments NOT required and were preserved), impersonated, captured, then RESTORED the user
+  to Technician. Final verify: probe role = ROLE_TECHNICIAN, departments/workplace intact,
+  13 staff total, 0 ZZAUTOTEST users. No production data left modified.
+
+Per-role permission counts (live): Administrator 60, Service Manager 44, Service Advisor 38,
+  SA No Reports 37, SA Limited View 37, Foreman 36, SA Technician 32, Technician 30,
+  Parts Manager 28, Parts Technician 23, Office User 52, Sales Representative 5,
+  Time Clock User 2, Reporting 0 (report-page-only; empty permission array).
+
+Raw sanitized captures: prod-perm-ROLE_*.json (token + PII stripped),
+  prod-capability-matrix.json (consolidated), prod-roles-list.json, prod-staff-role-map.json.
+
+STAGING (control, same day 05:16): 11 system roles captured; role IDs verified consistent
+  (stg-roleids.txt matches staging-capability-matrix.json). Time Clock User = 36462edb...

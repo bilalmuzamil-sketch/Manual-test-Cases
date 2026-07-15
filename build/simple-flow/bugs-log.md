@@ -383,3 +383,45 @@ filing-grade defects (no error/corruption).
   (200); a non-colliding vendor auto-assigns with no Merge/Keep-Separate prompt and
   clears `vendorMissing`. The Story-13 merge/keep-separate prompt (SF-VEND-02/03) only
   surfaces on a same-vendor / same-WO collision, which was not seedable this pass.
+
+### OBS-6 — Part-History display surface errors (env/build defect candidate, FRESH VIU 2026-07-10)
+- While proving SF-COMP-07/SF-QB-01 inventory decrement on sv7301, the **Part-History
+  display surface could not be reached**: `GET /api/inventory/parts/history` (with
+  `part_id`/`inventory_part_id`/`workplace_id` param variants) returns **HTTP 500**
+  ("An error occurred… please try again a bit later", one `requestId: 8d752c7…`);
+  `POST /api/inventory/parts/history` → **405** (method not allowed); the SPA route
+  `/parts/inventory/{id}` (part detail) **crashes to the "this page is totaled 💥"
+  error page** (no detail/History tab renders); `/api/inventory/parts/{id}/history`,
+  `/api/reports/part-history`, `/api/catalogue-parts/history` → **404**.
+- The underlying **inventory movement IS correct** (P550848 on-hand 6→5 on pick,
+  persisted through simple-complete; visible in the `/parts/inventory` list and via
+  `GET /api/inventory/parts/{id}.quantity`). So this is a **display/reporting-surface
+  bug**, not a data-integrity failure. Flagged as a **possible NEW env/build defect for
+  the dev list** (Part-History report 500 + part-detail page crash). It blocks the
+  Part-History-LOG half of SF-QB-01 / SF-QB-08 from independent VIU confirmation.
+
+### OBS-7 — Unapproved-line completion gate is UNIVERSAL, not Story-4-only (VIU 2026-07-14, SF-VAL-11)
+- Live re-VIU (WO 4448308d/S2-15844, Admin) of the unapproved-line completion gate:
+  an unapproved (Needs Approval) line disables the **Complete Work Order** button
+  (aria-disabled) with the GENERIC tooltip **"Every line must be approved or declined
+  in order to complete the work order."** — confirmed IDENTICAL with **Require Vendor
+  Invoice Number ON and OFF**. Approving the line (status→authorized) re-enables the
+  button.
+- Build-vs-spec: spec Δ2 expected the disabled-button model ONLY for the Story-4
+  required-invoice flow, with Stories 2/3/16 keeping an ACTIVE button + a "you need to
+  approve the line to complete the work order" error toast. The current build has
+  CONVERGED on the disabled-button model in EVERY completion flow.
+- Not an error/data-corruption (it is a stricter, clearer gate reaching the same end
+  state) → per the Simple-Flow shortcut principle this is EXPECTED, NOT a defect.
+  SF-VAL-11 (and the family SF-COMP-21/22) ruled VIU-Verified against the build with
+  build-accurate wording; the generic tooltip does NOT name the specific line.
+
+### NOTE — QuickBooks NOT connected on sv7301 (confirmed 2026-07-14)
+- The sv7301 QA org has NO QuickBooks integration: no QuickBooks/accounting/integrations
+  entry in the Admin menu (only IBS), /administration/integrations 404s, all QB API
+  endpoints 404 (/api/quickbooks*, /api/integrations/quickbooks,
+  /api/organizations/integrations), and the WO finance object carries invoice_shop_id=null.
+- Impact: the QuickBooks-integrity cases (SF-QB-01 QB-leg, SF-QB-03..08, SF-VMIS-03,
+  SF-RCV-08) are genuinely Blocked-Env — they need a QB-connected company + a human in
+  QuickBooks. This is the precise, definitive reason (supersedes the earlier
+  "likely needs dev/QB access" wording).

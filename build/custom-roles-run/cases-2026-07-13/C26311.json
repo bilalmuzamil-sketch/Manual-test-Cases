@@ -1,0 +1,12 @@
+{
+  "case_id": 26311,
+  "section_id": 3528,
+  "title": "The eye (View Permissions) icon shows in the Actions column only for Office User and Time Clock User",
+  "custom_preconds": "<ol>\n<li>You are logged in as an admin on Settings > Roles & Permissions.</li>\n</ol>",
+  "custom_steps": "<ol>\n<li>Open Settings > Roles & Permissions.</li>\n<li>Look at the Actions column for the Office User and Time Clock User rows.</li>\n<li>Look at the Actions column for the other roles.</li>\n<li>On one other role, open the three-dot menu and look at the options.</li>\n</ol>",
+  "custom_expected": "<p>A standalone eye icon appears in the Actions column only for Office User and Time Clock User (the non-editable roles).</p>\n<p>Every other role has no standalone eye icon; those rows reach View Permissions through the three-dot menu.</p>\n",
+  "viu_status": "VIU-Verified",
+  "evidence": "UI: only Office User and Time Clock User rows show the visibility (eye) icon in the Action column; all other rows show edit + more_vert.",
+  "fresh_run": "2026-07-13",
+  "behavioral_run": "2026-07-13"
+}

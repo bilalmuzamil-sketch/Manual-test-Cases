@@ -1,0 +1,21 @@
+{
+  "case_id": 27272,
+  "section_id": 3535,
+  "template_id": 2,
+  "title": "The Build Lines entry point is shown for a role with Work order lines Create & Edit",
+  "custom_preconds": "<ol>\n<li>ShopCoach is turned on for the organization.</li>\n<li>A custom role 'WO Full' exists (Work orders and Work order lines Create & Edit ON) with a user.</li>\n<li>At least one work order exists.</li>\n</ol>",
+  "custom_steps_separated": [
+    {
+      "content": "Log in as the WO Full user and open the same work order's Lines tab.",
+      "expected": "The in-page ShopCoach Line Builder panel is shown."
+    },
+    {
+      "content": "Open the New Line dialog.",
+      "expected": "The Build Lines button is shown."
+    }
+  ],
+  "viu_status": "VIU-Verified",
+  "evidence": "UI (role with Work order lines Create&Edit): the Build Lines entry point is shown (Build Lines button present).",
+  "fresh_run": "2026-07-13",
+  "behavioral_run": "2026-07-13"
+}

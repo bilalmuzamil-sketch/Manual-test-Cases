@@ -1,0 +1,11 @@
+{
+  "case_id": 26441,
+  "section_id": 3542,
+  "title": "Turning Settings ON reveals its sub-toggles",
+  "custom_preconds": "<ol>\n<li>Open Create Role (or edit a custom role).</li>\n</ol>",
+  "custom_steps": "<ol>\n<li>Turn the Settings toggle (under Page Access) ON.</li>\n<li>List the sub-toggles that appear.</li>\n</ol>",
+  "custom_expected": "<p>Seven indented sub-toggles appear: App Settings, Service, Parts, Finance, Integrations, Data Import, View/Manage Wages.</p>\n",
+  "viu_status": "Verified-Label (build) \u2014 Integrations sub-toggle now present (was previously flagged missing)",
+  "evidence": "PageAndSettingsToggles build chunk shows 7 Settings sub-toggles incl. Integrations. Prior 'Integrations missing' gap is resolved/built.",
+  "fresh_run": "2026-07-13"
+}

@@ -1,0 +1,11 @@
+{
+  "case_id": 26543,
+  "section_id": 3553,
+  "title": "Only Office User and Time Clock User are non-editable; every other system role (including Administrator) is editable",
+  "custom_preconds": "<ol>\n<li>You are logged in as an admin on the Roles & Permissions list with all system roles visible.</li>\n</ol>",
+  "custom_steps": "<ol>\n<li>Look at the Actions for each system role: Administrator, Service Manager, Senior Service Advisor, Service Advisor, Foreman, Technician, Parts Manager, Parts Technician, Office User, Sales Representative, Time Clock User.</li>\n<li>For Office User and Time Clock User, confirm the lock icon and eye-only action.</li>\n<li>For the others, confirm a pencil (edit) is available.</li>\n</ol>",
+  "custom_expected": "<p>Only Office User and Time Clock User are non-editable (lock icon, eye/View Permissions only).</p>\n<p>Every other system role \u2014 including Administrator \u2014 is editable (pencil available).</p>\n<p>No system role can be deleted.</p>\n",
+  "viu_status": "Roles-API-Verified (editable flags match live)",
+  "evidence": "Live roles API: Office User & Time Clock User editable=false; all others (incl. Administrator) editable=true.",
+  "fresh_run": "2026-07-13"
+}

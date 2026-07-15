@@ -1,0 +1,12 @@
+{
+  "case_id": 26457,
+  "section_id": 3543,
+  "title": "Tech view: the user cannot approve work orders (no Approve button)",
+  "custom_preconds": "<ol>\n<li>A user has a role with View mode set to Tech view and Work orders View and Create & Edit.</li>\n</ol>",
+  "custom_steps": "<ol>\n<li>Open a work order that would normally allow Approve.</li>\n<li>Look for an Approve button.</li>\n</ol>",
+  "custom_expected": "<p>There is no Approve button for the work order.</p>\n",
+  "viu_status": "VIU-Verified",
+  "evidence": "UI (tech view): no Approve button anywhere on the work order (estimate and approved WOs both) — Technician lacks Review Work Orders.",
+  "fresh_run": "2026-07-13",
+  "behavioral_run": "2026-07-13"
+}

@@ -1,0 +1,33 @@
+{
+  "case_id": 27866,
+  "section_id": 3535,
+  "template_id": 2,
+  "title": "A default Technician (with Work order lines Create & Edit) can bulk-complete another tech's line via Set Line Status",
+  "custom_preconds": "<ol>\n<li>A staff user is on the default Technician role, which has the Work order lines Create & Edit permission.</li>\n<li>A work order has a line in Authorized status assigned to a different technician (or unassigned).</li>\n</ol>",
+  "custom_steps_separated": [
+    {
+      "content": "Log in as the default Technician.",
+      "expected": "The work orders list is accessible."
+    },
+    {
+      "content": "Open the work order that has the authorized line assigned to another technician.",
+      "expected": "The Lines tab opens and the line row is shown with an Authorized status badge."
+    },
+    {
+      "content": "Tick the line's row checkbox.",
+      "expected": "The bulk-actions (three-dot) button becomes available."
+    },
+    {
+      "content": "Open the three-dot bulk actions menu and click Set Line Status.",
+      "expected": "The status submenu opens; only the Complete option is shown for technicians."
+    },
+    {
+      "content": "Click Complete.",
+      "expected": "There is no access-restricted error and the line status changes to Complete."
+    }
+  ],
+  "viu_status": "Blocked-UI: needs multiple lines assigned to a DIFFERENT technician plus the Set Line Status bulk control; Set Line Status was not present on the test WO for the Technician role. Requires seeding another tech-s lines + reaching the bulk Set Line Status action.",
+  "evidence": "Reworded; SV-ref/URL/403 jargon stripped. Needs live UI.",
+  "fresh_run": "2026-07-13",
+  "behavioral_run": "2026-07-13"
+}

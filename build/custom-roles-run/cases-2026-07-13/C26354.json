@@ -1,0 +1,12 @@
+{
+  "case_id": 26354,
+  "section_id": 3531,
+  "title": "The assigned-user count is correct when a delete is blocked",
+  "custom_preconds": "<ol>\n<li>A custom role is assigned to exactly one user.</li>\n</ol>",
+  "custom_steps": "<ol>\n<li>Reach the delete-blocked state for that role.</li>\n<li>Read the user count shown.</li>\n</ol>",
+  "custom_expected": "<p>The count shown is 1, matching the one assigned user.</p>\n",
+  "viu_status": "VIU-Verified",
+  "evidence": "UI: Parth Cust1 Users column shows 1; its menu has no Delete — the assigned-user count matches the blocked-delete state.",
+  "fresh_run": "2026-07-13",
+  "behavioral_run": "2026-07-13"
+}

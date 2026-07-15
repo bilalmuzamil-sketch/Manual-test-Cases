@@ -1,0 +1,12 @@
+{
+  "case_id": 26381,
+  "section_id": 3534,
+  "title": "Order parts needs Work orders View and See Financial Data (not Create & Edit)",
+  "custom_preconds": "<ol>\n<li>A user has a role with Work orders View ON (Create & Edit OFF), See Financial Data ON, Order parts ON and the Parts Department card ON.</li>\n</ol>",
+  "custom_steps": "<ol>\n<li>Log in and open a work order.</li>\n<li>Find the Order parts action.</li>\n<li>Start placing a purchase order for parts.</li>\n<li>Save the purchase order.</li>\n<li>Later, receive a parts delivery against the purchase order.</li>\n</ol>",
+  "custom_expected": "<p>The Order parts action is available even without Create & Edit on Work orders (Order parts needs only Work orders View plus See Financial Data).</p>\n<p>Placing and receiving the order work.</p>\n<p>If See Financial Data were off, turning on Order parts would prompt to enable See Financial Data first.</p>\n",
+  "viu_status": "VIU-Verified",
+  "evidence": "UI (role woOrderParts + Work Orders View + See Financial Data, NO Create&Edit): the WO Parts tab is accessible and Order parts works without Work Orders Create&Edit. Order parts needs only WO View + SFD.",
+  "fresh_run": "2026-07-13",
+  "behavioral_run": "2026-07-13"
+}

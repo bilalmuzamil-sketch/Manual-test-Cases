@@ -1,0 +1,25 @@
+{
+  "case_id": 27867,
+  "section_id": 3536,
+  "template_id": 2,
+  "title": "A Schedule Create & Edit only role can open 'Assign existing work order' and the unscheduled work order list loads",
+  "custom_preconds": "<ol>\n<li>A user has a role that grants only Schedule View and Schedule Create & Edit (no Work Orders access).</li>\n<li>The user has a default workplace assigned.</li>\n<li>At least one unscheduled work order exists.</li>\n</ol>",
+  "custom_steps_separated": [
+    {
+      "content": "Log in as that user and open Schedule.",
+      "expected": "The day calendar opens (the date header is shown) and the user is not sent to an access-denied page."
+    },
+    {
+      "content": "Left-click an empty time slot to open the schedule menu.",
+      "expected": "The menu opens and shows 'Assign existing work order' (the create/assign options show because the role has Schedule Create & Edit)."
+    },
+    {
+      "content": "Click 'Assign existing work order'.",
+      "expected": "The Assign dialog opens and its unscheduled-work-order list loads with options; the user stays on Schedule and is not sent to an access-denied page."
+    }
+  ],
+  "viu_status": "Blocked-UI: the Assign existing work order dialog / unscheduled WO list could not be opened headless (Schedule button + calendar clicks opened no dialog); needs the calendar create-entry interaction in a real browser.",
+  "evidence": "Reworded; API endpoint jargon stripped. Needs live UI.",
+  "fresh_run": "2026-07-13",
+  "behavioral_run": "2026-07-13"
+}

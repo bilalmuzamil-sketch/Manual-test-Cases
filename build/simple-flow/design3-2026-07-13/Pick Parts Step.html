@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="design_doc_mode" content="canvas">
+<title>Pick Parts Step — Complete Work Order</title>
+<link rel="stylesheet" href="colors_and_type.css">
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: var(--sv-font-ui); color: var(--sv-grey-700); }
+
+  /* ── Canvas frame wrapper ─────────────────────────────── */
+  .frame { position: absolute; }
+  .frame-label { display: flex; align-items: baseline; gap: 10px; margin-bottom: 14px; }
+  .frame-label .n { width: 24px; height: 24px; border-radius: 7px; background: var(--sv-grey-800);
+    color: #fff; font-size: 13px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .frame-label .tag { padding: 0 9px; height: 24px; border-radius: 7px; background: var(--sv-primary-600);
+    color: #fff; font-size: 12px; font-weight: 700; display: flex; align-items: center; flex-shrink: 0; letter-spacing: 0.02em; }
+  .frame-label .t { font-size: 16px; font-weight: 700; color: var(--sv-grey-800); letter-spacing: -0.01em; }
+  .frame-label .d { font-size: 13px; color: var(--sv-fg-secondary); }
+
+  .section-head { position: absolute; }
+  .section-head .st { font-size: 22px; font-weight: 700; color: var(--sv-grey-800); letter-spacing: -0.01em; }
+  .section-head .ss { font-size: 13px; color: var(--sv-fg-secondary); margin-top: 3px; }
+
+  /* ── Modal chrome (mirrors Simple Flow completion wizard) ── */
+  .modal { width: 520px; background: #fff; border-radius: var(--sv-radius-lg);
+    box-shadow: var(--sv-shadow-lg); border: 1px solid var(--sv-border-strong); overflow: hidden;
+    display: flex; flex-direction: column; }
+
+  .wiz-head { padding: var(--sv-space-5) var(--sv-space-5) 0; }
+  .wiz-titlerow { display: flex; align-items: flex-start; justify-content: space-between; }
+  .wiz-title { font-size: 19px; font-weight: 700; color: var(--sv-grey-800); }
+  .wiz-close { color: var(--sv-fg-tertiary); cursor: pointer; background: none; border: 0; padding: 2px; display: flex; }
+  .wiz-close [data-lucide] { width: 19px; height: 19px; }
+  .wiz-sub { font-size: 13px; color: var(--sv-fg-secondary); margin-top: 3px; }
+  .wiz-steps { display: flex; align-items: center; gap: 8px; margin: 14px 0 2px; }
+  .wiz-pill { display: inline-flex; align-items: center; gap: 6px; height: 26px; padding: 0 12px;
+    border-radius: var(--sv-radius-pill); font-size: 12px; font-weight: 600; line-height: 1; }
+  .wiz-pill.active { background: var(--sv-primary-600); color: #fff; }
+  .wiz-pill.done { background: var(--sv-success-100); color: var(--sv-success-700); }
+  .wiz-pill.pending { background: var(--sv-grey-100); color: var(--sv-fg-secondary); }
+  .wiz-pill [data-lucide] { width: 13px; height: 13px; }
+  .wiz-sep { color: var(--sv-grey-300); font-size: 13px; }
+
+  .wiz-body { padding: var(--sv-space-5); }
+
+  /* info card + note — identical to the live "Receive parts" step */
+  .wiz-info { display: flex; gap: 12px; padding: 14px; background: var(--sv-grey-25);
+    border: 1px solid var(--sv-border-strong); border-radius: var(--sv-radius-md); }
+  .wiz-info > [data-lucide] { width: 18px; height: 18px; color: var(--sv-fg-secondary); flex-shrink: 0; margin-top: 1px; }
+  .wiz-info .wi-title { font-size: 14px; font-weight: 600; color: var(--sv-grey-800); }
+  .wiz-info .wi-desc { font-size: 13px; color: var(--sv-fg-secondary); margin-top: 2px; line-height: 1.45; }
+  .wiz-note { font-size: 12px; color: var(--sv-fg-secondary); margin-top: 12px; display: flex; align-items: flex-start; gap: 7px; line-height: 1.45; }
+  .wiz-note [data-lucide] { width: 14px; height: 14px; color: var(--sv-primary-500); flex-shrink: 0; margin-top: 1px; }
+
+  .wiz-foot { display: flex; align-items: center; gap: var(--sv-space-3); padding: var(--sv-space-4) var(--sv-space-5);
+    border-top: 1px solid var(--sv-border); background: var(--sv-grey-25); }
+  .wiz-foot .spacer { flex: 1; }
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 7px;
+    height: 38px; padding: 0 16px; border-radius: 8px; font-size: 14px; font-weight: 600;
+    font-family: inherit; cursor: pointer; border: 1px solid transparent; white-space: nowrap; }
+  .btn [data-lucide] { width: 16px; height: 16px; }
+  .btn-secondary { background: #fff; border-color: var(--sv-border-strong); color: var(--sv-grey-700); box-shadow: var(--sv-shadow-xs); }
+  .btn-primary { background: var(--sv-brand-blue); color: #fff; box-shadow: var(--sv-shadow-xs); }
+  .btn-success { background: var(--sv-success-600); color: #fff; box-shadow: var(--sv-shadow-xs); }
+  .btn[disabled] { background: var(--sv-grey-100); color: var(--sv-fg-tertiary); border-color: var(--sv-border-strong); box-shadow: none; cursor: not-allowed; }
+  .btn-link { background: none; border: 0; color: var(--sv-primary-700); font-size: 14px; font-weight: 600;
+    font-family: inherit; cursor: pointer; padding: 0 4px; display: inline-flex; align-items: center; gap: 5px; }
+  .btn-link [data-lucide] { width: 15px; height: 15px; }
+
+  /* ── success collapsed row (all picked) ─── */
+  .picked-row { display: flex; align-items: center; gap: 12px; padding: 13px 16px;
+    background: var(--sv-success-50); border: 1px solid var(--sv-success-200); border-radius: var(--sv-radius-md); }
+  .picked-row > [data-lucide] { width: 20px; height: 20px; color: var(--sv-success-600); flex-shrink: 0; }
+  .picked-row .msg { flex: 1; font-size: 14px; font-weight: 600; color: var(--sv-success-800); }
+  .picked-row .undo { background: none; border: 0; color: var(--sv-success-700); font-size: 13px; font-weight: 600;
+    font-family: inherit; cursor: pointer; text-decoration: underline; }
+
+  /* ── per-part list (review individually) ────────────────── */
+  .list-toolbar { display: flex; align-items: center; justify-content: space-between; gap: 10px;
+    padding: 11px 14px; background: var(--sv-grey-50); border: 1px solid var(--sv-border-strong);
+    border-bottom: 0; border-radius: var(--sv-radius-md) var(--sv-radius-md) 0 0; }
+  .list-toolbar .lt-title { font-size: 13px; font-weight: 700; color: var(--sv-grey-800); }
+  .pick-all { height: 30px; padding: 0 13px; border: 0; border-radius: 7px; background: var(--sv-brand-blue);
+    color: #fff; font-size: 12px; font-weight: 600; font-family: inherit; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; }
+  .pick-all [data-lucide] { width: 14px; height: 14px; }
+  .list-scroll { border: 1px solid var(--sv-border-strong); border-radius: 0 0 var(--sv-radius-md) var(--sv-radius-md);
+    max-height: 292px; overflow-y: auto; }
+  .part-row { display: grid; grid-template-columns: 1fr 132px 84px; align-items: center; gap: 12px;
+    padding: 11px 14px; border-bottom: 1px solid var(--sv-border); }
+  .part-row:last-child { border-bottom: 0; }
+  .pr-main { min-width: 0; }
+  .pr-name { font-size: 13px; font-weight: 600; color: var(--sv-grey-800); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .pr-line { font-size: 12px; color: var(--sv-fg-secondary); margin-top: 2px; }
+  .bin-select { width: 100%; height: 34px; border: 1px solid var(--sv-border-strong); border-radius: 7px;
+    padding: 0 8px; font-size: 13px; font-family: inherit; color: var(--sv-grey-700); background: #fff; }
+  .bin-select:focus { outline: none; border-color: var(--sv-brand-blue); box-shadow: var(--sv-focus-ring); }
+  .pick-toggle { display: inline-flex; align-items: center; gap: 6px; justify-content: flex-end; }
+  .pick-cb { width: 18px; height: 18px; border-radius: 5px; border: 1.5px solid var(--sv-grey-300);
+    display: inline-flex; align-items: center; justify-content: center; background: #fff; flex-shrink: 0; }
+  .pick-cb.on { background: var(--sv-success-500); border-color: var(--sv-success-500); }
+  .pick-cb [data-lucide] { width: 12px; height: 12px; color: #fff; }
+  .pick-cb.off [data-lucide] { display: none; }
+  .pick-lbl { font-size: 12px; font-weight: 600; color: var(--sv-fg-secondary); }
+  .pick-lbl.on { color: var(--sv-success-700); }
+
+  /* ── Flow note card ────────────────────────────────────── */
+  .flow-card { width: 360px; background: var(--sv-grey-900); color: #fff; border-radius: var(--sv-radius-lg);
+    box-shadow: var(--sv-shadow-lg); padding: 22px 24px; }
+  .flow-card h3 { font-size: 15px; font-weight: 700; letter-spacing: 0.02em; margin-bottom: 4px; }
+  .flow-card .sub { font-size: 12px; color: rgba(255,255,255,.55); margin-bottom: 18px; }
+  .flow-step { display: flex; gap: 12px; padding: 11px 0; border-top: 1px solid rgba(255,255,255,.1); }
+  .flow-step .num { width: 22px; height: 22px; border-radius: 6px; background: rgba(255,255,255,.1);
+    color: #fff; font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .flow-step .body { font-size: 12.5px; line-height: 1.5; color: rgba(255,255,255,.82); }
+  .flow-step .body b { color: #fff; font-weight: 700; }
+  .flow-step .body .arrow { color: var(--sv-primary-300); font-weight: 700; }
+
+  .alt-note { width: 360px; background: var(--sv-bg-tint-cool); border: 1px solid var(--sv-primary-200);
+    border-radius: var(--sv-radius-lg); padding: 18px 20px; }
+  .alt-note h4 { font-size: 13px; font-weight: 700; color: var(--sv-primary-800); margin-bottom: 6px; }
+  .alt-note p { font-size: 12.5px; line-height: 1.55; color: var(--sv-primary-800); }
+  .alt-note p + p { margin-top: 8px; }
+</style>
+</head>
+<body>
+
+<!-- ══════════ CURRENT APPROACH ══════════ -->
+<div class="section-head" style="left:80px; top:40px;">
+  <div class="st">Current approach — explicit one-click pick</div>
+  <div class="ss">Advisor taps “Pick all from default bins”; the summary collapses to a confirmation. Review individually for per-part control.</div>
+</div>
+
+<!-- STATE 1 · DEFAULT -->
+<div class="frame" style="left:80px; top:130px;">
+  <div class="frame-label"><span class="n">1</span><span class="t">Default</span><span class="d">— one screen tall regardless of part count</span></div>
+  <div class="modal">
+    <div class="wiz-head">
+      <div class="wiz-titlerow">
+        <div class="wiz-title">Complete Work Order</div>
+        <button class="wiz-close"><i data-lucide="x"></i></button>
+      </div>
+      <div class="wiz-sub">S2-15691 · Qaisland Paving</div>
+      <div class="wiz-steps">
+        <span class="wiz-pill done"><i data-lucide="check"></i>Details</span>
+        <span class="wiz-sep">→</span>
+        <span class="wiz-pill active">Pick parts</span>
+        <span class="wiz-sep">→</span>
+        <span class="wiz-pill pending">Receive parts</span>
+      </div>
+    </div>
+    <div class="wiz-body">
+      <div class="wiz-info">
+        <i data-lucide="package-search"></i>
+        <div>
+          <div class="wi-title">Auto-pick is off</div>
+          <div class="wi-desc">10 parts across 8 lines need picking from inventory.</div>
+        </div>
+      </div>
+      <div class="wiz-note"><i data-lucide="info"></i> Picking from default bins is the fastest route. Review individually to change a bin or check stock.</div>
+    </div>
+    <div class="wiz-foot">
+      <button class="btn-link"><i data-lucide="arrow-left"></i> Back</button>
+      <span class="spacer"></span>
+      <button class="btn btn-secondary">Review individually</button>
+      <button class="btn btn-primary"><i data-lucide="package-check"></i> Pick all from default bins</button>
+    </div>
+  </div>
+</div>
+
+<!-- STATE 2 · ALL PICKED -->
+<div class="frame" style="left:720px; top:130px;">
+  <div class="frame-label"><span class="n">2</span><span class="t">All picked</span><span class="d">— collapses to one row · Continue enabled</span></div>
+  <div class="modal">
+    <div class="wiz-head">
+      <div class="wiz-titlerow">
+        <div class="wiz-title">Complete Work Order</div>
+        <button class="wiz-close"><i data-lucide="x"></i></button>
+      </div>
+      <div class="wiz-sub">S2-15691 · Qaisland Paving</div>
+      <div class="wiz-steps">
+        <span class="wiz-pill done"><i data-lucide="check"></i>Details</span>
+        <span class="wiz-sep">→</span>
+        <span class="wiz-pill active">Pick parts</span>
+        <span class="wiz-sep">→</span>
+        <span class="wiz-pill pending">Receive parts</span>
+      </div>
+    </div>
+    <div class="wiz-body">
+      <div class="picked-row">
+        <i data-lucide="check-circle-2"></i>
+        <div class="msg">10 parts picked from default bins</div>
+        <button class="undo">Undo</button>
+      </div>
+    </div>
+    <div class="wiz-foot">
+      <button class="btn-link"><i data-lucide="arrow-left"></i> Back</button>
+      <span class="spacer"></span>
+      <button class="btn btn-primary">Continue</button>
+    </div>
+  </div>
+</div>
+
+<!-- Flow note -->
+<div class="frame" style="left:1360px; top:130px;">
+  <div class="frame-label"><span class="tag">FLOW</span><span class="t">How the states connect</span></div>
+  <div class="flow-card">
+    <h3>Pick parts — current flow</h3>
+    <div class="sub">Step 2 of Complete Work Order · shown only when auto-pick is OFF</div>
+    <div class="flow-step">
+      <span class="num">1</span>
+      <div class="body">Opens on <b>Default</b> — one info card summarising the count, so it stays one screen tall for 1 or 50 parts.</div>
+    </div>
+    <div class="flow-step">
+      <span class="num">2</span>
+      <div class="body"><b>Pick all from default bins</b> <span class="arrow">→</span> collapses to <b>All picked</b>; Continue enables. <b>Undo</b> returns to Default.</div>
+    </div>
+    <div class="flow-step">
+      <span class="num">3</span>
+      <div class="body"><b>Review individually</b> <span class="arrow">→</span> expands the scrollable per-part list. Tick parts or change bins; Continue enables once all are picked.</div>
+    </div>
+  </div>
+</div>
+
+<!-- STATE 3 · REVIEW INDIVIDUALLY -->
+<div class="frame" style="left:80px; top:620px;">
+  <div class="frame-label"><span class="n">3</span><span class="t">Review individually</span><span class="d">— list scrolls internally · modal height fixed</span></div>
+  <div class="modal">
+    <div class="wiz-head">
+      <div class="wiz-titlerow">
+        <div class="wiz-title">Complete Work Order</div>
+        <button class="wiz-close"><i data-lucide="x"></i></button>
+      </div>
+      <div class="wiz-sub">S2-15691 · Qaisland Paving</div>
+      <div class="wiz-steps">
+        <span class="wiz-pill done"><i data-lucide="check"></i>Details</span>
+        <span class="wiz-sep">→</span>
+        <span class="wiz-pill active">Pick parts</span>
+        <span class="wiz-sep">→</span>
+        <span class="wiz-pill pending">Receive parts</span>
+      </div>
+    </div>
+    <div class="wiz-body">
+      <div class="list-toolbar">
+        <span class="lt-title">10 parts · pick from bins</span>
+        <button class="pick-all"><i data-lucide="package-check"></i> Pick all from default bins</button>
+      </div>
+      <div class="list-scroll" id="reviewList"></div>
+    </div>
+    <div class="wiz-foot">
+      <button class="btn-link"><i data-lucide="arrow-left"></i> Back</button>
+      <span class="spacer"></span>
+      <button class="btn" disabled>Continue</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ ALTERNATIVES ══════════ -->
+<div class="section-head" style="left:80px; top:1300px;">
+  <div class="st">Alternatives — other ways to handle “Pick all”</div>
+  <div class="ss">Same chrome, different amount of friction. Which fits depends on why auto-pick is off: control (fewer taps) vs. physical attestation (keep the tap).</div>
+</div>
+
+<!-- OPTION A · Optimistic pre-pick -->
+<div class="frame" style="left:80px; top:1390px;">
+  <div class="frame-label"><span class="tag">A</span><span class="t">Optimistic pre-pick</span><span class="d">— opens already picked · zero taps in the happy path</span></div>
+  <div class="modal">
+    <div class="wiz-head">
+      <div class="wiz-titlerow">
+        <div class="wiz-title">Complete Work Order</div>
+        <button class="wiz-close"><i data-lucide="x"></i></button>
+      </div>
+      <div class="wiz-sub">S2-15691 · Qaisland Paving</div>
+      <div class="wiz-steps">
+        <span class="wiz-pill done"><i data-lucide="check"></i>Details</span>
+        <span class="wiz-sep">→</span>
+        <span class="wiz-pill active">Pick parts</span>
+        <span class="wiz-sep">→</span>
+        <span class="wiz-pill pending">Receive parts</span>
+      </div>
+    </div>
+    <div class="wiz-body">
+      <div class="picked-row">
+        <i data-lucide="check-circle-2"></i>
+        <div class="msg">10 parts picked from default bins</div>
+        <button class="undo">Undo</button>
+      </div>
+      <div class="wiz-note"><i data-lucide="info"></i> Filled from default bins when the step opened. Undo, or <b>Review individually</b> to change a bin. Just tap Continue if it looks right.</div>
+    </div>
+    <div class="wiz-foot">
+      <button class="btn-link"><i data-lucide="arrow-left"></i> Back</button>
+      <span class="spacer"></span>
+      <button class="btn btn-secondary">Review individually</button>
+      <button class="btn btn-primary">Continue</button>
+    </div>
+  </div>
+</div>
+
+<!-- OPTION B · Fold into Continue -->
+<div class="frame" style="left:720px; top:1390px;">
+  <div class="frame-label"><span class="tag">B</span><span class="t">Fold into Continue</span><span class="d">— no separate button; Continue does the pick</span></div>
+  <div class="modal">
+    <div class="wiz-head">
+      <div class="wiz-titlerow">
+        <div class="wiz-title">Complete Work Order</div>
+        <button class="wiz-close"><i data-lucide="x"></i></button>
+      </div>
+      <div class="wiz-sub">S2-15691 · Qaisland Paving</div>
+      <div class="wiz-steps">
+        <span class="wiz-pill done"><i data-lucide="check"></i>Details</span>
+        <span class="wiz-sep">→</span>
+        <span class="wiz-pill active">Pick parts</span>
+        <span class="wiz-sep">→</span>
+        <span class="wiz-pill pending">Receive parts</span>
+      </div>
+    </div>
+    <div class="wiz-body">
+      <div class="wiz-info">
+        <i data-lucide="package-search"></i>
+        <div>
+          <div class="wi-title">Auto-pick is off</div>
+          <div class="wi-desc">10 parts across 8 lines need picking from inventory.</div>
+        </div>
+      </div>
+      <div class="wiz-note"><i data-lucide="info"></i> <b>Pick &amp; Continue</b> pulls all 10 from their default bins, then moves on. Review individually to change a bin first.</div>
+    </div>
+    <div class="wiz-foot">
+      <button class="btn-link"><i data-lucide="arrow-left"></i> Back</button>
+      <span class="spacer"></span>
+      <button class="btn btn-secondary">Review individually</button>
+      <button class="btn btn-primary"><i data-lucide="package-check"></i> Pick &amp; Continue</button>
+    </div>
+  </div>
+</div>
+
+<!-- OPTION C · Explicit confirm (attestation) -->
+<div class="frame" style="left:1360px; top:1390px;">
+  <div class="frame-label"><span class="tag">C</span><span class="t">Confirm (attestation)</span><span class="d">— tap = “I pulled them” · for physical sign-off</span></div>
+  <div class="modal">
+    <div class="wiz-head">
+      <div class="wiz-titlerow">
+        <div class="wiz-title">Complete Work Order</div>
+        <button class="wiz-close"><i data-lucide="x"></i></button>
+      </div>
+      <div class="wiz-sub">S2-15691 · Qaisland Paving</div>
+      <div class="wiz-steps">
+        <span class="wiz-pill done"><i data-lucide="check"></i>Details</span>
+        <span class="wiz-sep">→</span>
+        <span class="wiz-pill active">Pick parts</span>
+        <span class="wiz-sep">→</span>
+        <span class="wiz-pill pending">Receive parts</span>
+      </div>
+    </div>
+    <div class="wiz-body">
+      <div class="wiz-info">
+        <i data-lucide="clipboard-check"></i>
+        <div>
+          <div class="wi-title">Confirm inventory pull</div>
+          <div class="wi-desc">10 parts across 8 lines, from their default bins. Confirm they’ve been physically pulled.</div>
+        </div>
+      </div>
+      <div class="wiz-note"><i data-lucide="info"></i> Review individually to change a bin or flag a shortage before confirming.</div>
+    </div>
+    <div class="wiz-foot">
+      <button class="btn-link"><i data-lucide="arrow-left"></i> Back</button>
+      <span class="spacer"></span>
+      <button class="btn btn-secondary">Review individually</button>
+      <button class="btn btn-success"><i data-lucide="check"></i> Confirm 10 parts pulled</button>
+    </div>
+  </div>
+</div>
+
+<!-- Alternatives explainer -->
+<div class="frame" style="left:80px; top:1930px;">
+  <div class="alt-note">
+    <h4>PICKING THE RIGHT ONE</h4>
+    <p><b>A · Optimistic pre-pick</b> — least friction; advisor confirms rather than initiates. Good when auto-pick is off for cost/bin review, not physical sign-off.</p>
+    <p><b>B · Fold into Continue</b> — fewest controls on screen; the step vanishes into the flow when everything is clean.</p>
+    <p><b>C · Confirm (attestation)</b> — keeps the deliberate tap. Use when a human must vouch that the parts were actually pulled from the shelf.</p>
+  </div>
+</div>
+
+<script>
+  // Parts data: 10 parts across 8 lines.
+  const BINS = ['A-12','A-14','B-03','B-19','C-04','C-07','D-11','D-22','E-05','E-09'];
+  const PARTS = [
+    { name:'Brake pad set — front',        no:'4--BP-2100', line:1, bin:'A-12' },
+    { name:'Engine oil filter',            no:'4--OF-2201', line:1, bin:'A-14' },
+    { name:'Air filter element',           no:'4--AF-3305', line:2, bin:'B-03' },
+    { name:'Serpentine belt',              no:'4--SB-7788', line:3, bin:'B-19' },
+    { name:'Wiper blade set',              no:'4--WB-1180', line:4, bin:'C-04' },
+    { name:'Cabin air filter',             no:'4--CF-9002', line:5, bin:'C-07' },
+    { name:'Spark plug (set of 4)',        no:'4--SP-0455', line:6, bin:'D-11' },
+    { name:'Coolant — 1 gal',              no:'4--CO-5010', line:7, bin:'D-22' },
+    { name:'Fuel filter — inline diesel',  no:'4--FF-6620', line:8, bin:'E-05' },
+    { name:'Glow plug',                    no:'4--GP-3344', line:8, bin:'E-09' },
+  ];
+
+  function binSelect(sel) {
+    const opts = ['<option value="">Select bin…</option>']
+      .concat(BINS.map(b => `<option ${b===sel?'selected':''}>Bin ${b}</option>`)).join('');
+    return `<select class="bin-select">${opts}</select>`;
+  }
+  function partRow(p) {
+    return `
+      <div class="part-row">
+        <div class="pr-main">
+          <div class="pr-name">${p.name}</div>
+          <div class="pr-line">${p.no} · Line ${p.line}</div>
+        </div>
+        ${binSelect(p.bin)}
+        <div class="pick-toggle"><span class="pick-cb off"></span><span class="pick-lbl">Pick</span></div>
+      </div>`;
+  }
+
+  document.getElementById('reviewList').innerHTML = PARTS.map(partRow).join('');
+  lucide.createIcons();
+</script>
+</body>
+</html>

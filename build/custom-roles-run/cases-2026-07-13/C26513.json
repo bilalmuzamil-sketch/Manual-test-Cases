@@ -1,0 +1,12 @@
+{
+  "case_id": 26513,
+  "section_id": 3549,
+  "title": "Legacy 'Service Manager' users become 'Service Manager' after migration",
+  "custom_preconds": "<ol>\n<li>Migration to the new roles is complete.</li>\n<li>At least one existing 'Service Manager' user is present.</li>\n</ol>",
+  "custom_steps": "<ol>\n<li>Go to Settings > Staff and find a 'Service Manager' user.</li>\n<li>Check the user's assigned role.</li>\n<li>Go to Settings > Roles & Permissions and find that role's row.</li>\n<li>Look at the role's read-only Permission Summary (eye icon).</li>\n</ol>",
+  "custom_expected": "<p>The user's role is 'Service Manager'.</p>\n<p>The role's permissions match the expected set for that role.</p>\n<p>The 'Service Manager' role is editable (it has a pencil icon).</p>\n",
+  "viu_status": "VIU-Verified",
+  "evidence": "Live roles API: \"Service Manager\" exists, isEditable=true, 3 users, 35 perms.",
+  "fresh_run": "2026-07-13",
+  "behavioral_run": "2026-07-13"
+}

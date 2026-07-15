@@ -1,0 +1,1537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Work Order — Review Flow</title>
+<link rel="stylesheet" href="colors_and_type.css">
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--sv-bg-app); font-family: var(--sv-font-ui); color: var(--sv-grey-700); }
+
+  /* ─── Header ─────────────────────────────────────────── */
+  .header {
+    background: #fff; border-bottom: 1px solid var(--sv-border-strong);
+    height: 56px; display: flex; align-items: center; gap: var(--sv-space-4);
+    padding: 0 var(--sv-space-5); position: sticky; top: 0; z-index: 40;
+  }
+  .header .brand { width: 36px; height: 36px; border-radius: 8px; background: var(--sv-brand-blue);
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .header .brand img { width: 22px; height: 22px; filter: brightness(0) invert(1); }
+  .top-nav { display: flex; align-items: center; gap: 2px; }
+  .top-nav a { font-size: 14px; font-weight: 500; color: var(--sv-grey-600);
+    padding: 7px 14px; border-radius: 8px; text-decoration: none; }
+  .top-nav a:hover { background: var(--sv-grey-50); }
+  .top-nav a.active { background: var(--sv-grey-100); color: var(--sv-grey-800); font-weight: 600; }
+  .search { flex: 1; max-width: 240px; position: relative; margin-left: var(--sv-space-2); }
+  .search input { width: 100%; height: 38px; border: 1px solid var(--sv-border-strong);
+    border-radius: 8px; background: var(--sv-grey-50); padding: 0 12px 0 36px; font-size: 14px;
+    font-family: inherit; color: var(--sv-grey-700); }
+  .search input::placeholder { color: var(--sv-fg-tertiary); }
+  .search [data-lucide] { position: absolute; left: 11px; top: 50%; transform: translateY(-50%);
+    width: 16px; height: 16px; color: var(--sv-fg-tertiary); }
+  .header-spacer { flex: 1; }
+  .header-right { display: flex; align-items: center; gap: var(--sv-space-4); }
+  .clockin { display: flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 500; color: var(--sv-grey-600); }
+  .clockin [data-lucide] { width: 17px; height: 17px; }
+  .bell { width: 19px; height: 19px; color: var(--sv-grey-500); }
+  .org-pill { display: flex; align-items: center; gap: 10px; background: var(--sv-grey-50);
+    border: 1px solid var(--sv-border-strong); border-radius: var(--sv-radius-pill);
+    padding: 5px 6px 5px 14px; font-size: 14px; font-weight: 500; color: var(--sv-grey-700); }
+  .avatar { width: 30px; height: 30px; border-radius: 50%; background: var(--sv-grey-700);
+    color: #fff; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600; }
+
+  /* ─── Layout ─────────────────────────────────────────── */
+  .shell { display: grid; grid-template-columns: 268px 1fr; gap: var(--sv-space-5);
+    padding: var(--sv-space-5); align-items: start; }
+  .sidebar { display: flex; flex-direction: column; gap: var(--sv-space-4); }
+
+  .card { background: #fff; border: 1px solid var(--sv-border-strong); border-radius: var(--sv-radius-lg); }
+  .side-card { padding: var(--sv-space-5); }
+
+  /* WO summary card */
+  .wo-id-row { display: flex; align-items: center; gap: 10px; }
+  .wo-id { font-size: 22px; font-weight: 700; color: var(--sv-grey-800); letter-spacing: -0.01em; }
+  .badge-row { display: flex; gap: 6px; margin-top: 10px; flex-wrap: wrap; }
+  .pill { display: inline-flex; align-items: center; gap: 5px; height: 22px; padding: 0 9px;
+    border-radius: var(--sv-radius-pill); font-size: 12px; font-weight: 600; line-height: 1; }
+  .pill-blue   { background: var(--sv-primary-50); color: var(--sv-primary-700); border: 1px solid var(--sv-primary-200); }
+  .pill-red    { background: var(--sv-error-50); color: var(--sv-error-700); border: 1px solid var(--sv-error-200); }
+  .pill-amber  { background: var(--sv-warning-50); color: var(--sv-warning-700); border: 1px solid var(--sv-warning-200); }
+  .pill-green  { background: var(--sv-success-50); color: var(--sv-success-700); border: 1px solid var(--sv-success-200); }
+  .pill-grey   { background: var(--sv-grey-100); color: var(--sv-grey-600); border: 1px solid var(--sv-grey-200); }
+
+  .meta-list { margin-top: var(--sv-space-4); display: flex; flex-direction: column; gap: 10px; }
+  .meta-line { display: flex; align-items: center; justify-content: space-between; font-size: 13px; }
+  .meta-line .k { color: var(--sv-fg-secondary); }
+  .meta-line .v { color: var(--sv-grey-700); font-weight: 500; }
+  .progress-row { margin-top: 12px; }
+  .progress-head { display: flex; justify-content: space-between; font-size: 13px; margin-bottom: 6px; }
+  .progress-track { height: 6px; border-radius: 4px; background: var(--sv-grey-100); overflow: hidden; }
+  .progress-fill { height: 100%; background: var(--sv-brand-blue); width: 0%; }
+  .divider { border: 0; border-top: 1px solid var(--sv-border); margin: var(--sv-space-4) 0; }
+  .field-label { font-size: 11px; font-weight: 600; letter-spacing: 0.03em; text-transform: uppercase;
+    color: var(--sv-fg-tertiary); margin-bottom: 2px; }
+  .field-value { font-size: 14px; font-weight: 600; color: var(--sv-grey-700); }
+  .stacked { display: flex; flex-direction: column; gap: 14px; }
+
+  .cust-name { font-size: 17px; font-weight: 700; color: var(--sv-grey-800); }
+  .pinned { margin-top: 10px; }
+  .pinned-head { display: flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 700; color: var(--sv-grey-700); }
+  .pinned-head [data-lucide] { width: 13px; height: 13px; color: var(--sv-warning-600); }
+  .pinned-body { font-size: 13px; color: var(--sv-fg-secondary); line-height: 1.5; margin-top: 5px; }
+
+  .veh-title { font-size: 16px; font-weight: 700; color: var(--sv-brand-blue); line-height: 1.3; }
+  .veh-title a { color: inherit; text-decoration: none; }
+  .vin-copy { display: inline-flex; align-items: center; gap: 5px; }
+  .vin-copy [data-lucide] { width: 13px; height: 13px; color: var(--sv-fg-tertiary); cursor: pointer; }
+  .hl { color: var(--sv-grey-800); font-weight: 700; }
+
+  /* ─── Main ───────────────────────────────────────────── */
+  .main { display: flex; flex-direction: column; gap: var(--sv-space-4); min-width: 0; }
+  .main-top { display: flex; align-items: center; gap: var(--sv-space-5); }
+  .tabs { display: flex; align-items: center; gap: var(--sv-space-5); }
+  .tab { font-size: 14px; font-weight: 500; color: var(--sv-fg-secondary); text-decoration: none;
+    padding: 6px 0; border-bottom: 2px solid transparent; cursor: pointer; }
+  .tab.active { color: var(--sv-brand-blue); border-bottom-color: var(--sv-brand-blue); font-weight: 600; }
+  .main-top-spacer { flex: 1; }
+  .ai-link { display: inline-flex; align-items: center; gap: 7px; font-size: 12px; font-weight: 700;
+    letter-spacing: 0.03em; color: var(--sv-primary-700); text-decoration: none; }
+  .ai-chip { width: 18px; height: 18px; border-radius: 5px; background: var(--sv-primary-600); color: #fff;
+    display: inline-flex; align-items: center; justify-content: center; font-size: 9px; font-weight: 700; }
+  .ai-chip.violet { background: var(--sv-violet-600); }
+  .kebab { width: 30px; height: 30px; display: flex; align-items: center; justify-content: center;
+    border-radius: 7px; color: var(--sv-grey-500); cursor: pointer; }
+  .kebab:hover { background: var(--sv-grey-100); }
+  .kebab [data-lucide] { width: 18px; height: 18px; }
+
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 7px;
+    height: 38px; padding: 0 16px; border-radius: 8px; font-size: 14px; font-weight: 600;
+    font-family: inherit; cursor: pointer; border: 1px solid transparent; white-space: nowrap;
+    transition: background 120ms ease-out, box-shadow 120ms ease-out, border-color 120ms ease-out; }
+  .btn [data-lucide] { width: 16px; height: 16px; }
+  .btn-secondary { background: #fff; border-color: var(--sv-border-strong); color: var(--sv-grey-700); box-shadow: var(--sv-shadow-xs); }
+  .btn-secondary:hover { background: var(--sv-grey-50); border-color: var(--sv-grey-400); }
+  .btn-primary { background: var(--sv-brand-blue); color: #fff; box-shadow: var(--sv-shadow-xs); }
+  .btn-primary:hover { background: var(--sv-primary-700); }
+  .btn-primary:active { background: var(--sv-primary-800); }
+  .btn-success { background: var(--sv-success-600); color: #fff; box-shadow: var(--sv-shadow-xs); }
+  .btn-success:hover { background: var(--sv-success-700); }
+  .btn[disabled] { background: var(--sv-grey-100); color: var(--sv-fg-tertiary); border-color: var(--sv-border-strong);
+    box-shadow: none; cursor: not-allowed; }
+
+  .actions { display: flex; align-items: center; gap: var(--sv-space-3); }
+
+  /* tooltip wrapper */
+  .tip { position: relative; display: inline-flex; }
+  .tip-bubble { position: absolute; bottom: calc(100% + 8px); left: 50%; transform: translateX(-50%);
+    background: var(--sv-grey-800); color: #fff; font-size: 12px; font-weight: 500; line-height: 1.3;
+    padding: 6px 10px; border-radius: 6px; white-space: nowrap; opacity: 0; pointer-events: none;
+    transition: opacity 120ms ease-out; box-shadow: var(--sv-shadow-md); z-index: 20; }
+  .tip-bubble::after { content: ''; position: absolute; top: 100%; left: 50%; transform: translateX(-50%);
+    border: 5px solid transparent; border-top-color: var(--sv-grey-800); }
+  .tip:hover .tip-bubble { opacity: 1; }
+
+  /* ─── Lines table ────────────────────────────────────── */
+  .lines-card { padding: 0; overflow: hidden; }
+  table.lines { width: 100%; border-collapse: collapse; }
+  table.lines thead th { font-size: 12px; font-weight: 600; color: var(--sv-fg-secondary); text-align: left;
+    padding: 13px 14px; border-bottom: 1px solid var(--sv-border-strong); white-space: nowrap; }
+  table.lines thead th.num { text-align: right; }
+  table.lines tbody td { padding: 12px 14px; font-size: 13px; color: var(--sv-grey-700); vertical-align: top; }
+  .line-head td { border-top: 1px solid var(--sv-border); background: #fff; }
+  .lines tbody tr:first-child .line-head td,
+  table.lines tbody tr.line-head:first-child td { border-top: 0; }
+  .sub-row td { background: var(--sv-grey-25); color: var(--sv-fg-secondary); padding-top: 8px; padding-bottom: 8px; }
+  .sub-row .sub-k { color: var(--sv-fg-secondary); font-weight: 600; }
+  .num { text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .ck { width: 16px; height: 16px; border: 1.5px solid var(--sv-grey-300); border-radius: 4px; display: inline-block; vertical-align: middle; }
+  .line-no { width: 26px; height: 26px; border-radius: 6px; background: var(--sv-primary-50);
+    color: var(--sv-primary-700); border: 1px solid var(--sv-primary-200); font-size: 13px; font-weight: 700;
+    display: flex; align-items: center; justify-content: center; }
+  .line-name { font-weight: 600; color: var(--sv-grey-800); }
+  .line-sub { color: var(--sv-fg-secondary); font-size: 12px; margin-top: 2px; }
+  .mini-actions { display: inline-flex; gap: 7px; }
+  .mini-btn { height: 26px; padding: 0 12px; border-radius: 6px; font-size: 12px; font-weight: 600; color: #fff;
+    border: 0; cursor: pointer; font-family: inherit; }
+  .mini-approve { background: var(--sv-success-500); }
+  .mini-approve:hover { background: var(--sv-success-600); }
+  .mini-decline { background: var(--sv-error-500); }
+  .mini-decline:hover { background: var(--sv-error-600); }
+  .mini-complete { background: var(--sv-success-500); }
+  .mini-complete:hover { background: var(--sv-success-600); }
+
+  /* line builder */
+  .builder-card { padding: var(--sv-space-5); }
+  .builder-head { margin-bottom: 12px; }
+  .builder-row { display: flex; gap: var(--sv-space-3); }
+  .builder-row input { flex: 1; height: 42px; border: 1px solid var(--sv-border-strong); border-radius: 8px;
+    padding: 0 14px; font-size: 14px; font-family: inherit; background: #fff; color: var(--sv-grey-700); }
+  .builder-row input::placeholder { color: var(--sv-fg-tertiary); }
+  .btn-muted { background: var(--sv-grey-500); color: #fff; }
+  .btn-muted:hover { background: var(--sv-grey-600); }
+
+  .completed-banner { display: none; align-items: center; gap: 10px; padding: 12px 16px;
+    background: var(--sv-success-50); border: 1px solid var(--sv-success-200); border-radius: var(--sv-radius-md);
+    color: var(--sv-success-700); font-size: 14px; font-weight: 500; }
+  .completed-banner [data-lucide] { width: 18px; height: 18px; }
+  .review-banner { display: none; align-items: center; gap: 10px; padding: 12px 16px;
+    background: var(--sv-warning-50); border: 1px solid var(--sv-warning-200); border-radius: var(--sv-radius-md);
+    color: var(--sv-warning-700); font-size: 14px; font-weight: 500; }
+  .review-banner [data-lucide] { width: 18px; height: 18px; }
+  .reviewed-banner { display: none; align-items: center; gap: 10px; padding: 12px 16px;
+    background: var(--sv-primary-50); border: 1px solid var(--sv-primary-200); border-radius: var(--sv-radius-md);
+    color: var(--sv-primary-700); font-size: 14px; font-weight: 500; }
+  .reviewed-banner [data-lucide] { width: 18px; height: 18px; }
+
+  /* ─── Dialog ─────────────────────────────────────────── */
+  .overlay { position: fixed; inset: 0; background: var(--sv-overlay); display: none;
+    align-items: center; justify-content: center; z-index: 60; }
+  .overlay.open { display: flex; }
+  .dialog { width: 440px; max-width: calc(100vw - 32px); background: #fff; border-radius: var(--sv-radius-lg);
+    box-shadow: var(--sv-shadow-lg); overflow: hidden; }
+  .dialog-head { padding: var(--sv-space-5) var(--sv-space-5) 0; display: flex; align-items: flex-start; gap: 12px; }
+  .dialog-icon { width: 40px; height: 40px; border-radius: 10px; background: var(--sv-primary-50);
+    color: var(--sv-primary-600); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .dialog-icon [data-lucide] { width: 20px; height: 20px; }
+  .dialog-title { font-size: 17px; font-weight: 700; color: var(--sv-grey-800); }
+  .dialog-desc { font-size: 13px; color: var(--sv-fg-secondary); margin-top: 3px; line-height: 1.5; }
+  .dialog-body { padding: var(--sv-space-4) var(--sv-space-5) var(--sv-space-5); }
+  .dialog-body label { display: block; font-size: 13px; font-weight: 600; color: var(--sv-grey-700); margin-bottom: 6px; }
+  .dialog-body textarea { width: 100%; min-height: 84px; border: 1px solid var(--sv-border-strong); border-radius: 8px;
+    padding: 10px 12px; font-size: 14px; font-family: inherit; color: var(--sv-grey-700); resize: vertical; }
+  .dialog-body textarea:focus { outline: none; border-color: var(--sv-brand-blue); box-shadow: var(--sv-focus-ring); }
+  .dialog-body input.dlg-input { width: 100%; height: 42px; border: 1px solid var(--sv-border-strong); border-radius: 8px;
+    padding: 0 12px; font-size: 14px; font-family: inherit; color: var(--sv-grey-700); }
+  .dialog-body input.dlg-input:focus { outline: none; border-color: var(--sv-brand-blue); box-shadow: var(--sv-focus-ring); }
+  .dialog-field { margin-bottom: var(--sv-space-4); }
+  .dialog-foot { display: flex; justify-content: flex-end; gap: var(--sv-space-3);
+    padding: var(--sv-space-4) var(--sv-space-5); border-top: 1px solid var(--sv-border); background: var(--sv-grey-25); }
+
+  /* ─── Completion wizard ──────────────────────────────── */
+  .wiz-head { padding: var(--sv-space-5) var(--sv-space-5) 0; }
+  .wiz-titlerow { display: flex; align-items: flex-start; justify-content: space-between; }
+  .wiz-title { font-size: 19px; font-weight: 700; color: var(--sv-grey-800); }
+  .wiz-close { color: var(--sv-fg-tertiary); cursor: pointer; background: none; border: 0; padding: 2px; }
+  .wiz-close [data-lucide] { width: 19px; height: 19px; }
+  .wiz-sub { font-size: 13px; color: var(--sv-fg-secondary); margin-top: 3px; }
+  .wiz-steps { display: flex; align-items: center; gap: 8px; margin-top: 14px; }
+  .wiz-pill { display: inline-flex; align-items: center; gap: 6px; height: 26px; padding: 0 12px;
+    border-radius: var(--sv-radius-pill); font-size: 12px; font-weight: 600; line-height: 1; }
+  .wiz-pill.active { background: var(--sv-primary-600); color: #fff; }
+  .wiz-pill.done { background: var(--sv-success-100); color: var(--sv-success-700); }
+  .wiz-pill.pending { background: var(--sv-grey-100); color: var(--sv-fg-secondary); }
+  .wiz-pill [data-lucide] { width: 13px; height: 13px; }
+  .wiz-sep { color: var(--sv-grey-300); font-size: 13px; }
+  .wiz-body { padding: var(--sv-space-5); }
+  .wiz-field { margin-bottom: var(--sv-space-4); }
+  .wiz-field:last-child { margin-bottom: 0; }
+  .wiz-field label { display: block; font-size: 13px; font-weight: 600; color: var(--sv-grey-700); margin-bottom: 6px; }
+  .wiz-req { color: var(--sv-error-600); font-size: 11px; font-weight: 700; letter-spacing: 0.03em; }
+  .wiz-input-wrap { position: relative; }
+  .wiz-field input { width: 100%; height: 42px; border: 1px solid var(--sv-border-strong); border-radius: 8px;
+    padding: 0 14px; font-size: 14px; font-family: inherit; color: var(--sv-grey-700); }
+  .wiz-field input:focus { outline: none; border-color: var(--sv-brand-blue); box-shadow: var(--sv-focus-ring); }
+  .wiz-suffix { position: absolute; right: 14px; top: 50%; transform: translateY(-50%); color: var(--sv-fg-tertiary); font-size: 13px; }
+  .wiz-field textarea { width: 100%; min-height: 120px; border: 1px solid var(--sv-border-strong); border-radius: 8px;
+    padding: 11px 14px; font-size: 14px; line-height: 1.5; font-family: inherit; color: var(--sv-grey-700); resize: vertical; }
+  .wiz-field textarea:focus { outline: none; border-color: var(--sv-brand-blue); box-shadow: var(--sv-focus-ring); }
+  .wiz-help { font-size: 12px; color: var(--sv-fg-secondary); margin-top: 6px; }
+  .wiz-linehdr { display: flex; align-items: center; gap: 10px; padding: 11px 13px; background: var(--sv-grey-25);
+    border: 1px solid var(--sv-border); border-radius: 8px; margin-bottom: var(--sv-space-4); }
+  .wiz-linename { font-size: 14px; font-weight: 700; color: var(--sv-grey-800); flex: 1; min-width: 0;
+    overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .wiz-linecount { font-size: 12px; font-weight: 600; color: var(--sv-fg-secondary); white-space: nowrap; }
+  .wiz-linename.block { display: block; white-space: normal; }
+  .wiz-linetech { display: flex; align-items: center; gap: 5px; font-size: 12px; font-weight: 500; color: var(--sv-fg-secondary); margin-top: 3px; }
+  .wiz-linetech [data-lucide] { width: 12px; height: 12px; }
+  /* Tech story — inline line sub-row */
+  .story-add { color: var(--sv-brand-blue); font-weight: 500; cursor: pointer; text-decoration: none; }
+  .story-add:hover { text-decoration: underline; }
+  .story-text { color: var(--sv-grey-700); }
+  .story-done { display: inline-flex; align-items: center; gap: 4px; color: var(--sv-success-600); font-weight: 600; margin-right: 6px; }
+  .story-done [data-lucide] { width: 13px; height: 13px; }
+  .story-edit { color: var(--sv-brand-blue); font-weight: 500; cursor: pointer; margin-left: 8px; text-decoration: none; font-size: 12px; }
+  .story-edit:hover { text-decoration: underline; }
+  .wiz-info { display: flex; gap: 12px; padding: 14px; background: var(--sv-grey-25);
+    border: 1px solid var(--sv-border-strong); border-radius: var(--sv-radius-md); }
+  .wiz-info [data-lucide] { width: 18px; height: 18px; color: var(--sv-fg-secondary); flex-shrink: 0; margin-top: 1px; }
+  .wiz-info .wi-title { font-size: 14px; font-weight: 600; color: var(--sv-grey-800); }
+  .wiz-info .wi-desc { font-size: 13px; color: var(--sv-fg-secondary); margin-top: 2px; line-height: 1.45; }
+  .wiz-note { font-size: 12px; color: var(--sv-fg-secondary); margin-top: 12px; display: flex; align-items: flex-start; gap: 7px; line-height: 1.45; }
+  .wiz-note [data-lucide] { width: 14px; height: 14px; color: var(--sv-primary-500); flex-shrink: 0; margin-top: 1px; }
+  .wiz-note-core { margin-top: 12px; padding: 10px 12px; background: var(--sv-warning-50); border: 1px solid var(--sv-warning-200);
+    border-radius: var(--sv-radius-md); color: var(--sv-warning-700); font-size: 12.5px; line-height: 1.5; }
+  .wiz-note-core [data-lucide] { color: var(--sv-warning-600); width: 15px; height: 15px; }
+  .wiz-note-core strong { color: var(--sv-warning-700); }
+  .sellprice-note { display: flex; align-items: flex-start; gap: 9px; margin-top: 12px; padding: 12px 14px;
+    background: var(--sv-warning-50); border: 1px solid var(--sv-warning-200); border-radius: var(--sv-radius-md); }
+  .sellprice-note > [data-lucide] { width: 16px; height: 16px; color: var(--sv-warning-600); flex-shrink: 0; margin-top: 1px; }
+  .sellprice-note .spn-title { font-size: 13px; font-weight: 600; color: var(--sv-warning-700); }
+  .sellprice-note .spn-desc { font-size: 12.5px; color: var(--sv-fg-secondary); margin-top: 3px; line-height: 1.5; }
+  .sellprice-note .spn-list { margin: 8px 0 0; padding-left: 18px; font-size: 12.5px; color: var(--sv-grey-700); line-height: 1.6; }
+  .wiz-foot { display: flex; align-items: center; gap: var(--sv-space-3); padding: var(--sv-space-4) var(--sv-space-5);
+    border-top: 1px solid var(--sv-border); background: var(--sv-grey-25); flex-wrap: wrap; }
+  .wiz-foot .spacer { flex: 1; }
+  .btn-link { background: none; border: 0; color: var(--sv-primary-700); font-size: 14px; font-weight: 600;
+    font-family: inherit; cursor: pointer; padding: 0 4px; }
+  .btn-link:hover { text-decoration: underline; }
+  .recv-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 0;
+    border-bottom: 1px solid var(--sv-border); }
+  .recv-row:last-child { border-bottom: 0; }
+  .recv-name { font-size: 13px; font-weight: 600; color: var(--sv-grey-800); }
+  .recv-sub { font-size: 12px; color: var(--sv-fg-secondary); margin-top: 2px; }
+  .recv-btn { height: 30px; padding: 0 14px; border-radius: 7px; font-size: 12px; font-weight: 600;
+    border: 1px solid var(--sv-border-strong); background: #fff; color: var(--sv-grey-700); cursor: pointer; font-family: inherit; }
+  .recv-btn:hover { background: var(--sv-grey-50); }
+  .recv-btn.done { background: var(--sv-success-50); color: var(--sv-success-700); border-color: var(--sv-success-200); cursor: default; }
+  .wiz-success { padding: var(--sv-space-6) var(--sv-space-5) var(--sv-space-5); text-align: center; }
+  .wiz-check { width: 64px; height: 64px; border-radius: 50%; background: var(--sv-success-50);
+    display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; }
+  .wiz-check [data-lucide] { width: 32px; height: 32px; color: var(--sv-success-600); }
+  .wiz-success h3 { font-size: 20px; font-weight: 700; color: var(--sv-grey-800); }
+  .wiz-success p { font-size: 13px; color: var(--sv-fg-secondary); margin-top: 6px; }
+  .wiz-total { display: flex; align-items: center; justify-content: space-between; margin-top: 20px;
+    padding: 16px 18px; background: var(--sv-grey-25); border: 1px solid var(--sv-border-strong); border-radius: var(--sv-radius-md); }
+  .wiz-total .lbl { font-size: 11px; font-weight: 700; letter-spacing: 0.05em; color: var(--sv-fg-secondary); }
+  .wiz-total .val { font-size: 22px; font-weight: 700; color: var(--sv-grey-800); font-variant-numeric: tabular-nums; }
+
+  /* Financial Info card */
+  .fin-card { padding: var(--sv-space-5); }
+  .fin-title { font-size: 16px; font-weight: 700; color: var(--sv-grey-800); margin-bottom: 12px; }
+  .fin-table { width: 100%; border-collapse: collapse; }
+  .fin-table th { text-align: left; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.03em;
+    color: var(--sv-fg-tertiary); padding-bottom: 8px; border-bottom: 1px solid var(--sv-border); }
+  .fin-table th:last-child { text-align: right; }
+  .fin-table td { font-size: 13px; color: var(--sv-grey-700); padding: 7px 0; }
+  .fin-table td:last-child { text-align: right; font-variant-numeric: tabular-nums; }
+  .fin-table tr.total td { font-weight: 700; color: var(--sv-grey-800); border-top: 1px solid var(--sv-border); padding-top: 10px; }
+  .req-hint { font-size: 12px; color: var(--sv-error-600); font-weight: 500; margin-top: 3px; }
+
+  /* mandatory vendor cards (modal) */
+  .mv-card { border:1px solid var(--sv-border-strong); border-radius:var(--sv-radius-md); overflow:hidden; margin-bottom:14px; }
+  .mv-head { display:flex; align-items:center; justify-content:space-between; padding:11px 14px; background:var(--sv-grey-50); border-bottom:1px solid var(--sv-border); }
+  .mv-head .nm { display:flex; align-items:center; gap:8px; font-size:14px; font-weight:700; color:var(--sv-grey-800); }
+  .mv-head .nm [data-lucide]{ width:16px;height:16px;color:var(--sv-grey-500);}
+  .mv-head .ct { font-size:12px; color:var(--sv-fg-secondary); }
+  .mv-body { padding:14px; }
+  .mv-invoice { width:100%; height:42px; display:flex; align-items:center; justify-content:space-between; gap:8px; padding:0 12px; border:1px solid var(--sv-border-strong); border-radius:8px; background:#fff; color:var(--sv-fg-tertiary); font-size:14px; font-family:inherit; cursor:pointer; text-align:left; }
+  .mv-invoice:hover { border-color:var(--sv-brand-blue); color:var(--sv-grey-700); }
+  .mv-invoice [data-lucide]{ width:16px;height:16px;color:var(--sv-fg-tertiary);}
+  .mv-invoice.filled { color:var(--sv-grey-800); font-weight:600; border-color:var(--sv-success-300); background:var(--sv-success-25); }
+  .mv-invoice.filled [data-lucide]{ color:var(--sv-success-600); }
+  .mv-part { display:flex; align-items:flex-start; justify-content:space-between; gap:12px; margin-top:12px; font-size:13px; color:var(--sv-grey-700); }
+  .mv-part .pn { font-weight:600; color:var(--sv-grey-800); }
+  .mv-part .ps { font-size:12px; color:var(--sv-fg-secondary); margin-top:2px; }
+  .mv-part [data-lucide]{ width:15px;height:15px;color:var(--sv-fg-tertiary); cursor:pointer; flex-shrink:0; }
+  .wiz-infobar { display:flex; align-items:center; gap:8px; padding:11px 14px; background:var(--sv-primary-50); border:1px solid var(--sv-primary-200); border-radius:var(--sv-radius-md); font-size:13px; color:var(--sv-primary-700); }
+  .wiz-infobar [data-lucide]{ width:16px;height:16px; flex-shrink:0; }
+  /* Inventory pick block (shown when auto-pick is OFF) */
+  .pick-card { border:1px solid var(--sv-border-strong); border-radius:var(--sv-radius-md); overflow:hidden; margin-top:14px; }
+  .pick-head { display:flex; align-items:center; justify-content:space-between; gap:10px; padding:11px 14px;
+    background:var(--sv-grey-25); border-bottom:1px solid var(--sv-border); }
+  .pick-head .ph-title { font-size:13px; font-weight:700; color:var(--sv-grey-800); display:flex; align-items:center; gap:7px; }
+  .pick-head .ph-title [data-lucide]{ width:15px;height:15px; color:var(--sv-fg-secondary); }
+  .pick-all { height:28px; padding:0 12px; border:0; border-radius:6px; background:var(--sv-brand-blue); color:#fff;
+    font-size:12px; font-weight:600; font-family:inherit; cursor:pointer; }
+  .pick-all:hover { background:var(--sv-primary-700); }
+  .pick-all[disabled]{ background:var(--sv-grey-100); color:var(--sv-fg-tertiary); cursor:default; }
+  .pick-row { display:flex; align-items:center; justify-content:space-between; gap:10px; padding:10px 14px; border-bottom:1px solid var(--sv-border); }
+  .pick-row:last-child { border-bottom:0; }
+  .pick-row .pr-name { font-size:13px; font-weight:600; color:var(--sv-grey-800); }
+  .pick-row .pr-sub { font-size:12px; color:var(--sv-fg-secondary); margin-top:2px; }
+  .pick-status { font-size:12px; font-weight:600; }
+  .pick-status.todo { color:var(--sv-warning-700); }
+  .pick-status.done { color:var(--sv-success-600); display:inline-flex; align-items:center; gap:4px; }
+  .pick-status.done [data-lucide]{ width:13px;height:13px; }
+
+  /* receiving page (full screen) */
+  .recv-page { position:fixed; inset:0; background:var(--sv-bg-app); z-index:70; overflow-y:auto; display:none; }
+  .recv-page.open { display:block; }
+  .recv-topbar { display:flex; align-items:center; gap:14px; padding:14px var(--sv-space-5); background:#fff; border-bottom:1px solid var(--sv-border-strong); position:sticky; top:0; z-index:5; }
+  .recv-topbar .rt-title { font-size:16px; font-weight:700; color:var(--sv-grey-800); }
+  .recv-back { display:inline-flex; align-items:center; gap:6px; color:var(--sv-primary-700); font-weight:600; font-size:14px; cursor:pointer; background:none; border:0; font-family:inherit; }
+  .recv-back [data-lucide]{ width:16px;height:16px; }
+  .recv-shell { display:grid; grid-template-columns:280px 1fr; gap:var(--sv-space-5); padding:var(--sv-space-5); align-items:start; max-width:1180px; margin:0 auto; }
+  .recv-pod { background:#fff; border:1px solid var(--sv-border-strong); border-radius:var(--sv-radius-lg); padding:var(--sv-space-5); }
+  .recv-pod .pod-title { font-size:15px; font-weight:700; color:var(--sv-grey-800); margin-bottom:14px; }
+  .recv-pod .pod-row { margin-bottom:13px; }
+  .recv-pod .pod-k { font-size:12px; font-weight:600; color:var(--sv-grey-700); }
+  .recv-pod .pod-v { font-size:13px; color:var(--sv-fg-secondary); margin-top:2px; }
+  .recv-pod .pod-v a { color:var(--sv-brand-blue); font-weight:600; }
+  .recv-main { display:flex; flex-direction:column; gap:var(--sv-space-5); min-width:0; }
+  .po-vendor { background:#fff; border:1px solid var(--sv-border-strong); border-radius:var(--sv-radius-lg); overflow:hidden; }
+  .po-vhead { display:flex; align-items:center; justify-content:space-between; padding:14px 18px; background:var(--sv-grey-50); border-bottom:1px solid var(--sv-border); }
+  .po-vhead .nm { display:flex; align-items:center; gap:9px; font-size:15px; font-weight:700; color:var(--sv-grey-800); }
+  .po-vhead .nm [data-lucide]{ width:18px;height:18px;color:var(--sv-grey-500);}
+  .po-vhead .ct { font-size:12px; color:var(--sv-fg-secondary); }
+  .po-vbody { padding:18px; }
+  .po-inputs { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:18px; }
+  .po-inp { height:42px; border:1px solid var(--sv-border-strong); border-radius:8px; padding:0 12px; font-size:14px; font-family:inherit; color:var(--sv-grey-700); width:100%; }
+  .po-inp:focus { outline:none; border-color:var(--sv-brand-blue); box-shadow:var(--sv-focus-ring); }
+  .po-date { position:relative; }
+  .po-date [data-lucide]{ position:absolute; left:12px; top:50%; transform:translateY(-50%); width:16px;height:16px; color:var(--sv-fg-tertiary); }
+  .po-date .po-inp { padding-left:36px; }
+  .po-subh { font-size:14px; font-weight:700; color:var(--sv-grey-800); margin-bottom:10px; }
+  .po-table { width:100%; border-collapse:collapse; }
+  .po-table th { font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:0.03em; color:var(--sv-fg-secondary); text-align:left; padding:8px 10px; border-bottom:1px solid var(--sv-border); }
+  .po-table th.r, .po-table td.r { text-align:right; }
+  .po-table td { font-size:13px; color:var(--sv-grey-700); padding:12px 10px; vertical-align:middle; }
+  .po-table .pck { width:16px;height:16px; accent-color:var(--sv-brand-blue); }
+  .po-qtyin { width:90px; height:36px; border:1px solid var(--sv-border-strong); border-radius:7px; padding:0 10px; font-size:14px; font-family:inherit; }
+  .po-totrow { display:flex; justify-content:flex-end; align-items:center; gap:40px; padding:10px 10px; font-size:13px; color:var(--sv-grey-700); border-top:1px solid var(--sv-border); }
+  .po-totrow .lbl { color:var(--sv-fg-secondary); font-weight:500; }
+  .po-taxin { width:130px; height:36px; border:1px solid var(--sv-border-strong); border-radius:7px; padding:0 10px; font-size:14px; font-family:inherit; }
+  .po-delivery { margin-top:18px; }
+  .po-delivery textarea { width:100%; min-height:90px; border:1px solid var(--sv-border-strong); border-radius:8px; padding:10px 12px; font-size:14px; font-family:inherit; resize:vertical; color:var(--sv-grey-700); }
+  .po-delivery textarea:focus { outline:none; border-color:var(--sv-brand-blue); box-shadow:var(--sv-focus-ring); }
+  .po-vfoot { display:flex; justify-content:flex-end; align-items:center; gap:14px; padding-top:16px; }
+  .po-vendor.received .po-vbody { opacity:0.5; pointer-events:none; }
+  .recv-done-pill { display:inline-flex; align-items:center; gap:6px; color:var(--sv-success-700); font-size:13px; font-weight:700; }
+  .recv-done-pill [data-lucide]{ width:16px;height:16px; }
+
+  /* ─── Prototype control ──────────────────────────────── */
+  .proto { position: fixed; right: 18px; bottom: 18px; z-index: 50; width: 252px;
+    background: var(--sv-grey-900); color: #fff; border-radius: var(--sv-radius-lg); box-shadow: var(--sv-shadow-lg);
+    font-size: 13px; overflow: hidden; }
+  .proto-head { display: flex; align-items: center; gap: 8px; padding: 12px 14px; border-bottom: 1px solid rgba(255,255,255,.1); }
+  .proto-head [data-lucide] { width: 15px; height: 15px; color: var(--sv-primary-300); }
+  .proto-head .t { font-weight: 700; font-size: 12px; letter-spacing: 0.04em; text-transform: uppercase; }
+  .proto-head .x { margin-left: auto; cursor: pointer; color: rgba(255,255,255,.5); }
+  .proto-head .x [data-lucide] { width: 15px; height: 15px; color: inherit; }
+  .proto-body { padding: 14px; display: flex; flex-direction: column; gap: 14px; }
+  .proto-group .pg-label { font-size: 11px; font-weight: 600; letter-spacing: 0.03em; text-transform: uppercase;
+    color: rgba(255,255,255,.5); margin-bottom: 7px; }
+  .seg { display: flex; background: rgba(255,255,255,.08); border-radius: 8px; padding: 3px; gap: 3px; }
+  .seg button { flex: 1; height: 30px; border: 0; background: transparent; color: rgba(255,255,255,.7);
+    font-size: 12px; font-weight: 600; font-family: inherit; border-radius: 6px; cursor: pointer; }
+  .seg button.on { background: var(--sv-brand-blue); color: #fff; }
+  .proto-note { font-size: 11px; line-height: 1.45; color: rgba(255,255,255,.55); }
+  .proto-reset { display: flex; align-items: center; justify-content: center; gap: 6px; height: 32px;
+    border-radius: 7px; background: rgba(255,255,255,.1); color: #fff; border: 0; font-family: inherit;
+    font-size: 12px; font-weight: 600; cursor: pointer; }
+  .proto-reset:hover { background: rgba(255,255,255,.18); }
+  .proto-reset [data-lucide] { width: 13px; height: 13px; }
+  .proto-collapsed { width: auto; }
+  .proto-collapsed .proto-body, .proto-collapsed .proto-head .t-full { display: none; }
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<header class="header">
+  <div class="brand"><img src="assets/symbol-primary.svg" alt="ShopView"></div>
+  <nav class="top-nav">
+    <a href="#" class="active">Work Orders</a>
+    <a href="#">Schedule</a>
+    <a href="#">Customers</a>
+    <a href="#">Parts</a>
+    <a href="#">Reports</a>
+  </nav>
+  <div class="search">
+    <i data-lucide="search"></i>
+    <input type="text" placeholder="Search">
+  </div>
+  <div class="header-spacer"></div>
+  <div class="header-right">
+    <span class="clockin"><i data-lucide="timer"></i>Clock In</span>
+    <i data-lucide="bell" class="bell"></i>
+    <div class="org-pill">Staging Heavy Duty - 9919 <span class="avatar">AS</span></div>
+  </div>
+</header>
+
+<div class="shell">
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <!-- WO summary -->
+    <div class="card side-card">
+      <div class="wo-id-row">
+        <span class="wo-id">S2-15691</span>
+      </div>
+      <div class="badge-row" id="wo-badges">
+        <span class="pill pill-red">Over Limit</span>
+      </div>
+      <div class="meta-list">
+        <div class="meta-line"><span class="k">Started:</span><span class="v">Jun 5, 2026</span></div>
+        <div class="meta-line"><span class="k">Total Hours:</span><span class="v">1.3 hrs</span></div>
+        <div class="progress-row">
+          <div class="progress-head"><span class="k" style="color:var(--sv-fg-secondary)">Progress</span><span class="v">0%</span></div>
+          <div class="progress-track"><div class="progress-fill"></div></div>
+        </div>
+      </div>
+      <hr class="divider">
+      <div class="stacked">
+        <div><div class="field-label">Lead Technician</div><div class="field-value">Carrie Sanders</div></div>
+        <div><div class="field-label">Service Advisor</div><div class="field-value">Unassigned</div></div>
+      </div>
+    </div>
+
+    <!-- Customer -->
+    <div class="card side-card">
+      <div class="cust-name">Qaisland Paving</div>
+      <div class="pinned">
+        <div class="pinned-head"><i data-lucide="pin"></i> Pinned Notes:</div>
+        <div class="pinned-body">Ducimus dolores consequuntur accusamus ipsam maiores animi. Quaerat sint placeat eaque cum provident.</div>
+      </div>
+      <hr class="divider">
+      <div class="stacked">
+        <div><div class="field-label">Contact</div><div class="field-value">Brittany Taylor</div></div>
+        <div><div class="field-label">Phone</div><div class="field-value">382-975-5028</div></div>
+      </div>
+    </div>
+
+    <!-- Vehicle -->
+    <div class="card side-card">
+      <div class="veh-title"><a href="#">2024 GMC SIERRA<br>10156494</a></div>
+      <hr class="divider">
+      <div class="stacked">
+        <div><div class="field-label">Engine</div><div class="field-value">L3B</div></div>
+        <div><div class="field-label">Unit #</div><div class="field-value">10156494</div></div>
+        <div><div class="field-label">VIN/Serial #</div><div class="field-value vin-copy" id="sb-vin">1GTRUAEK7<span class="hl">RZ344607</span> <i data-lucide="copy"></i></div></div>
+        <div><div class="field-label">Mileage</div><div class="field-value" id="sb-mileage">33,621</div><div class="req-hint" id="sb-mileage-hint" style="display:none">Mileage is a required field</div></div>
+        <div><div class="field-label">Engine Hours</div><div class="field-value" id="sb-hours">1,204</div></div>
+        <div><div class="field-label">License Plate</div><div class="field-value">ODV-0446</div></div>
+      </div>
+    </div>
+
+    <!-- Financial Info -->
+    <div class="card fin-card">
+      <div class="fin-title">Financial Info</div>
+      <table class="fin-table">
+        <thead><tr><th>Item</th><th>Cost</th></tr></thead>
+        <tbody>
+          <tr><td>Parts</td><td>$52.14</td></tr>
+          <tr><td>Labor</td><td>$188.50</td></tr>
+          <tr><td>Shop Supplies</td><td>$23.62</td></tr>
+          <tr><td>Subtotal</td><td>$264.26</td></tr>
+          <tr><td>GST</td><td>$13.21</td></tr>
+          <tr class="total"><td>Total</td><td>$277.47</td></tr>
+          <tr><td>Balance</td><td>$277.47</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </aside>
+
+  <!-- Main -->
+  <main class="main">
+    <div class="main-top">
+      <div class="tabs">
+        <span class="tab active">Lines (2)</span>
+        <span class="tab">Parts (2)</span>
+        <span class="tab">Notes</span>
+        <span class="tab">Stats</span>
+        <span class="tab">Finance</span>
+      </div>
+      <div class="main-top-spacer"></div>
+      <a href="#" class="ai-link"><span class="ai-chip">AI</span> SHOPCOACH ANALYSIS</a>
+      <div class="kebab"><i data-lucide="more-vertical"></i></div>
+      <div class="actions" id="primary-actions">
+        <button class="btn btn-secondary"><i data-lucide="plus"></i> New Line</button>
+        <!-- review-on review banner badge handled in header area below in real product; here shown via status -->
+        <button class="btn btn-primary" id="completeBtn" onclick="onComplete()">Complete Work Order</button>
+      </div>
+    </div>
+
+    <!-- Status banners -->
+    <div class="review-banner" id="reviewBanner">
+      <i data-lucide="clipboard-check"></i>
+      <span>This work order is <strong>Ready for Review</strong>. A foreman or manager must mark it reviewed before it can be completed.</span>
+    </div>
+    <div class="reviewed-banner" id="reviewedBanner">
+      <i data-lucide="badge-check"></i>
+      <span><strong>Reviewed.</strong> Sign-off complete — the work order can now be completed to invoice.</span>
+    </div>
+    <div class="completed-banner" id="completedBanner">
+      <i data-lucide="check-circle-2"></i>
+      <span>Work order <strong>Completed</strong> and ready to invoice.</span>
+    </div>
+
+    <!-- Lines table -->
+    <div class="card lines-card">
+      <table class="lines">
+        <thead>
+          <tr>
+            <th style="width:38px;"><span class="ck"></span></th>
+            <th style="width:30px;"><i data-lucide="chevron-up" style="width:14px;height:14px;color:var(--sv-fg-tertiary)"></i></th>
+            <th>Name/Description</th>
+            <th class="num">Actual/Estimate</th>
+            <th>Progress</th>
+            <th>Status</th>
+            <th>Action</th>
+            <th class="num">Rate</th>
+            <th class="num">Margin</th>
+            <th class="num">Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Line 1 -->
+          <tr class="line-head">
+            <td><span class="ck"></span></td>
+            <td><span class="line-no">1</span></td>
+            <td><div class="line-name">Replace - Drivers front mud flup</div><div class="line-sub">Missing</div></td>
+            <td class="num">0.00 / 0.80</td>
+            <td></td>
+            <td class="line-status"><span class="pill pill-green">Approved</span></td>
+            <td class="line-action"><button class="mini-btn mini-complete">Complete</button></td>
+            <td class="num">$145</td>
+            <td class="num">100%</td>
+            <td class="num" style="font-weight:700;color:var(--sv-grey-800)">$116</td>
+          </tr>
+          <tr class="sub-row story-row">
+            <td></td><td></td>
+            <td><span class="sub-k">Story</span> &nbsp; <span class="story-cell" id="storyCell-0"></span></td>
+            <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+          </tr>
+          <tr class="sub-row">
+            <td></td><td></td>
+            <td><span class="sub-k">Labor</span> &nbsp; Carrie Sanders</td>
+            <td></td><td></td><td></td><td></td><td></td><td></td>
+            <td class="num">$116</td>
+          </tr>
+          <tr class="sub-row">
+            <td></td><td></td>
+            <td><span class="sub-k">Parts</span> &nbsp; (-) front mud flap ( soft )</td>
+            <td class="num">1</td><td></td>
+            <td><span class="pill pill-amber">Requested</span></td>
+            <td></td>
+            <td class="num">$0.00</td><td class="num">100%</td><td class="num">-</td>
+          </tr>
+          <!-- Line 2 -->
+          <tr class="line-head">
+            <td><span class="ck"></span></td>
+            <td><span class="line-no">2</span></td>
+            <td><div class="line-name">Replace - Left side license playe light bulb</div><div class="line-sub">Burnt out.</div></td>
+            <td class="num">0.00 / 0.50</td>
+            <td></td>
+            <td class="line-status"><span class="pill pill-green">Approved</span></td>
+            <td class="line-action"><button class="mini-btn mini-complete">Complete</button></td>
+            <td class="num">$145</td>
+            <td class="num">100%</td>
+            <td class="num" style="font-weight:700;color:var(--sv-grey-800)">$72.5</td>
+          </tr>
+          <tr class="sub-row story-row">
+            <td></td><td></td>
+            <td><span class="sub-k">Story</span> &nbsp; <span class="story-cell" id="storyCell-1"></span></td>
+            <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+          </tr>
+          <tr class="sub-row">
+            <td></td><td></td>
+            <td><span class="sub-k">Labor</span> &nbsp; Carrie Sanders</td>
+            <td></td><td></td><td></td><td></td><td></td><td></td>
+            <td class="num">$72.5</td>
+          </tr>
+          <tr class="sub-row">
+            <td></td><td></td>
+            <td><span class="sub-k">Parts</span> &nbsp; (-) license plate light bulb</td>
+            <td class="num">1</td><td></td>
+            <td><span class="pill pill-amber">Requested</span></td>
+            <td></td>
+            <td class="num">$0.00</td><td class="num">100%</td><td class="num">-</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Line builder -->
+    <div class="card builder-card">
+      <div class="builder-head"><a href="#" class="ai-link"><span class="ai-chip violet">AI</span> SHOPCOACH LINE BUILDER</a></div>
+      <div class="builder-row">
+        <input type="text" placeholder="e.g. Dot Inspection, Oil Change, Check Engine Light">
+        <button class="btn btn-muted">Build Lines</button>
+      </div>
+    </div>
+  </main>
+</div>
+
+<!-- Confirm dialog -->
+<div class="overlay" id="reviewOverlay">
+  <div class="dialog" role="dialog" aria-modal="true" aria-labelledby="dlgTitle">
+    <div class="dialog-head">
+      <div class="dialog-icon"><i data-lucide="clipboard-check"></i></div>
+      <div>
+        <div class="dialog-title" id="dlgTitle">Mark work order reviewed</div>
+        <div class="dialog-desc">Confirm this work order has been reviewed. It will move to Reviewed and can then be completed.</div>
+      </div>
+    </div>
+    <div class="dialog-body">
+      <div class="dialog-field" id="reviewVinField">
+        <label for="reviewVin">VIN / Serial # <span class="wiz-req">REQUIRED</span></label>
+        <input id="reviewVin" class="dlg-input" data-test-id="input_review_vin" oninput="validateReview()" placeholder="Enter VIN or serial number">
+      </div>
+    </div>
+    <div class="dialog-foot">
+      <button class="btn btn-secondary" onclick="closeReview()">Cancel</button>
+      <button class="btn btn-success" id="confirmReviewedBtn" data-test-id="button_confirm_review" onclick="confirmReview()"><i data-lucide="check"></i> Confirm Reviewed</button>
+    </div>
+  </div>
+</div>
+
+<!-- Receiving page (full screen) -->
+<div class="recv-page" id="recvPage">
+  <div class="recv-topbar">
+    <button class="recv-back" onclick="cancelReceiving()"><i data-lucide="arrow-left"></i> Back to work order</button>
+    <span class="rt-title">Receive Parts</span>
+  </div>
+  <div class="recv-shell">
+    <aside class="recv-pod">
+      <div class="pod-title">Purchase Order Details</div>
+      <div class="pod-row"><div class="pod-k">Work Order Number</div><div class="pod-v"><a href="#">S2-15691 ↗</a></div></div>
+      <div class="pod-row"><div class="pod-k">Date Ordered</div><div class="pod-v">Jun 5, 2026</div></div>
+      <div class="pod-row"><div class="pod-k">Vendor</div><div class="pod-v">Multiple vendors</div></div>
+      <div class="pod-row"><div class="pod-k">Ordered By</div><div class="pod-v">Admin ShopView</div></div>
+      <div class="pod-row"><div class="pod-k">Note</div><div class="pod-v">—</div></div>
+    </aside>
+    <main class="recv-main" id="recvMain"></main>
+  </div>
+</div>
+
+<!-- Tech story modal (separate flow, per line) -->
+<div class="overlay" id="storyOverlay">
+  <div class="dialog" role="dialog" aria-modal="true" id="storyModal" style="width:460px;">
+    <div id="storyBody"></div>
+  </div>
+</div>
+
+<!-- Completion wizard -->
+<div class="overlay" id="completeOverlay">
+  <div class="dialog" role="dialog" aria-modal="true" aria-labelledby="wizTitle" id="completeModal" style="width:520px;">
+    <div id="completeBody"></div>
+  </div>
+</div>
+
+<!-- Prototype control -->
+<div class="proto" id="proto">
+  <div class="proto-head">
+    <i data-lucide="sliders-horizontal"></i>
+    <span class="t t-full">Prototype</span>
+    <span class="x" onclick="toggleProto()"><i data-lucide="chevron-down" id="protoChevron"></i></span>
+  </div>
+  <div class="proto-body">
+    <div class="proto-group">
+      <div class="pg-label">Require review before completion</div>
+      <div class="seg" id="segReview">
+        <button onclick="setReview(false)" id="revOff">Off</button>
+        <button onclick="setReview(true)" class="on" id="revOn">On</button>
+      </div>
+    </div>
+    <div class="proto-group">
+      <div class="pg-label">Current user role</div>
+      <div class="seg" id="segRole">
+        <button onclick="setRole('advisor')" class="on" id="roleAdvisor">Advisor</button>
+        <button onclick="setRole('manager')" id="roleManager">Manager</button>
+      </div>
+    </div>
+    <div class="proto-group">
+      <div class="pg-label">Create purchase orders</div>
+      <div class="seg" id="segPO">
+        <button onclick="setPO(false)" id="poOff">Off</button>
+        <button onclick="setPO(true)" class="on" id="poOn">On</button>
+      </div>
+    </div>
+    <div class="proto-group" id="viGroup">
+      <div class="pg-label">Vendor invoice number</div>
+      <div class="seg" id="segVI">
+        <button onclick="setVI('optional')" class="on" id="viOpt">Optional</button>
+        <button onclick="setVI('required')" id="viReq">Required</button>
+      </div>
+    </div>
+    <div class="proto-group">
+      <div class="pg-label">Auto-pick inventory parts</div>
+      <div class="seg" id="segAutoPick">
+        <button onclick="setAutoPick(false)" id="apOff">Off</button>
+        <button onclick="setAutoPick(true)" class="on" id="apOn">On</button>
+      </div>
+    </div>
+    <div class="proto-group">
+      <div class="pg-label">Require tech story</div>
+      <div class="seg" id="segStory">
+        <button onclick="setStory(false)" id="storyOff">Off</button>
+        <button onclick="setStory(true)" class="on" id="storyOn">On</button>
+      </div>
+    </div>
+    <div class="proto-group">
+      <div class="pg-label">VIN / mileage / engine hours</div>
+      <div class="seg" id="segFields">
+        <button onclick="setFields(false)" id="fldPresent">On file</button>
+        <button onclick="setFields(true)" class="on" id="fldMissing">Missing</button>
+      </div>
+    </div>
+    <div class="proto-note" id="protoNote"></div>
+    <button class="proto-reset" onclick="resetFlow()"><i data-lucide="rotate-ccw"></i> Reset work order</button>
+  </div>
+</div>
+
+<script>
+  // ─── State ───────────────────────────────────────────
+  const state = {
+    requireReview: true,   // org setting
+    role: 'advisor',       // advisor | manager
+    createPO: true,        // org setting: create purchase orders
+    requireTechStory: true, // org setting: require tech story per line
+    vendorInvoice: 'optional', // optional | required (sub-setting of createPO)
+    autoPick: true,        // org setting: automatically pick inventory parts on completion
+    fieldsMissing: true,   // VIN / mileage / engine hours missing on the WO
+    wo: 'active'           // active | review | reviewed | completed
+  };
+  const wiz = { steps: [], idx: 0, tsIdx: 0, mode: 'complete', receivedSet: new Set(), picked: false };
+  let entered = null;      // values captured in the Details step
+  const LINES = [
+    { no: 1, name: 'Replace - Drivers front mud flup', tech: 'Carrie Sanders' },
+    { no: 2, name: 'Replace - Left side license playe light bulb', tech: 'Carrie Sanders' }
+  ];
+  let techStories = [];    // per-line tech story text
+  const story = { idx: 0, chain: false };   // standalone tech-story modal state
+
+  // Inventory parts on the WO. Normally auto-picked on completion; when auto-pick is
+  // OFF the user must pick them here (or from the line) before the WO can complete.
+  const INVENTORY_PARTS = [
+    { name:'Engine oil filter', sub:'Part #4--OF-2201 · qty 1 · Line 1 · Bin A-12' },
+    { name:'Wiper blade set',   sub:'Part #4--WB-1180 · qty 1 · Line 2 · Bin C-04' }
+  ];
+  const PARTS_WAITING = 2;
+  const INVOICE_TOTAL = '$277.47';
+  const VIN_HTML = '1GTRUAEK7<span class="hl">RZ344607</span> <i data-lucide="copy"></i>';
+  // Vendors with parts awaiting receiving (grouped purchase orders)
+  const RECV_VENDORS = [
+    { id:'v1', name:'Napa Auto Parts', desc:'(-) front mud flap ( soft )', qty:1, line:1,
+      partNo:'4--PET-10', poDesc:'(SS HOSE CLAMP 3/4" - 1-1/16", 1/2" WIDE)', qtyOrdered:1, invoice:'INV-44821', sellPrice:0 },
+    { id:'v2', name:'Fleet Supply Co', desc:'(-) alternator — reman (core)', qty:1, line:2,
+      partNo:'4--ALT-7720', poDesc:'REMAN ALTERNATOR — CORE RETURNABLE', qtyOrdered:1, invoice:'INV-90233', sellPrice:89.00, core:true },
+  ];
+
+  // Parts on the WO with no sell price set — these will invoice at $0.00 unless updated.
+  function noSellPriceParts() {
+    return RECV_VENDORS.filter(v => !v.sellPrice);
+  }
+  function sellPriceNotice() {
+    const missing = noSellPriceParts();
+    if (!missing.length) return '';
+    const list = missing.map(v => `<li>${v.desc} <span style="color:var(--sv-fg-tertiary)">· Line ${v.line}</span></li>`).join('');
+    const word = missing.length === 1 ? 'part has' : 'parts have';
+    return `
+      <div class="sellprice-note">
+        <i data-lucide="info"></i>
+        <div>
+          <div class="spn-title">${missing.length} ${word} no sell price</div>
+          <div class="spn-desc">These parts will show as $0.00 on the invoice. You can close this and set a sell price from the line items whenever you're ready.</div>
+          <ul class="spn-list">${list}</ul>
+        </div>
+      </div>`;
+  }
+
+  const $ = id => document.getElementById(id);
+
+  function render() {
+    const badges = $('wo-badges');
+    const actions = $('primary-actions');
+    const completeBtn = $('completeBtn');
+
+    // Lines lock to "Complete" status once the WO leaves the active state
+    setLinesComplete(state.wo !== 'active');
+    renderStoryRows();
+
+    // reset dynamic badge (remove any status pill we added)
+    badges.querySelectorAll('[data-status]').forEach(n => n.remove());
+    // remove any injected review button
+    const oldReview = $('reviewActionWrap');
+    if (oldReview) oldReview.remove();
+
+    $('reviewBanner').style.display = 'none';
+    $('reviewedBanner').style.display = 'none';
+    $('completedBanner').style.display = 'none';
+
+    if (state.wo === 'active') {
+      completeBtn.style.display = '';
+      completeBtn.disabled = false;
+      completeBtn.textContent = 'Complete Work Order';
+      const b = document.createElement('span');
+      b.className = 'pill pill-green'; b.dataset.status = '1'; b.textContent = 'Approved';
+      badges.appendChild(b);
+    } else if (state.wo === 'reviewed') {
+      // sign-off done — Complete Work Order returns for whoever closes out the WO
+      completeBtn.style.display = '';
+      completeBtn.disabled = false;
+      completeBtn.textContent = 'Complete Work Order';
+      const b = document.createElement('span');
+      b.className = 'pill pill-green'; b.dataset.status = '1'; b.textContent = 'Reviewed';
+      badges.appendChild(b);
+      $('reviewedBanner').style.display = 'flex';
+    } else if (state.wo === 'review') {
+      completeBtn.style.display = 'none';
+      // status badge
+      const b = document.createElement('span');
+      b.className = 'pill pill-amber'; b.dataset.status = '1'; b.textContent = 'Review';
+      badges.appendChild(b);
+      // banner
+      $('reviewBanner').style.display = 'flex';
+      // mark reviewed button (role-gated)
+      const wrap = document.createElement('div');
+      wrap.id = 'reviewActionWrap';
+      const canReview = state.role === 'manager';
+      if (canReview) {
+        wrap.innerHTML = '<button class="btn btn-primary" data-test-id="button_mark_reviewed" onclick="openReview()"><i data-lucide="clipboard-check"></i> Mark Reviewed</button>';
+      } else {
+        wrap.className = 'tip';
+        wrap.innerHTML = '<button class="btn" data-test-id="button_mark_reviewed" disabled><i data-lucide="clipboard-check"></i> Mark Reviewed</button><span class="tip-bubble">Awaiting review</span>';
+      }
+      actions.appendChild(wrap);
+    } else if (state.wo === 'completed') {
+      completeBtn.style.display = 'none';
+      const b = document.createElement('span');
+      b.className = 'pill pill-amber'; b.dataset.status = '1'; b.textContent = 'Complete';
+      badges.appendChild(b);
+      $('completedBanner').style.display = 'flex';
+    }
+
+    // proto note
+    const notes = {
+      active: state.requireReview
+        ? 'Review is ON. “Ready for Review” locks the lines to Complete and sends the WO for sign-off.'
+        : 'Review is OFF. “Complete Work Order” opens the completion flow (details → receiving → invoice).',
+      review: state.role === 'manager'
+        ? 'Manager role can mark reviewed. Click “Mark Reviewed”.'
+        : 'Advisor role cannot review — button is disabled with an “Awaiting review” tooltip. Switch to Manager.',
+      reviewed: 'Signed off. “Complete Work Order” opens the completion flow to close it out.',
+      completed: 'WO is Completed and invoice-ready.'
+    };
+    $('protoNote').textContent = notes[state.wo];
+
+    updateVehicleFields();
+    lucide.createIcons();
+  }
+
+  // ─── Vehicle fields (sidebar) ────────────────────────
+  function updateVehicleFields() {
+    if (state.fieldsMissing) {
+      $('sb-vin').innerHTML = (entered && entered.vin) ? entered.vin : 'Unknown';
+      $('sb-mileage').textContent = (entered && entered.mi) ? entered.mi : '0';
+      $('sb-hours').textContent = (entered && entered.hr) ? entered.hr : '—';
+      $('sb-mileage-hint').style.display = (entered && entered.mi) ? 'none' : 'block';
+    } else if (entered) {
+      $('sb-vin').textContent = entered.vin;
+      $('sb-mileage').textContent = entered.mi;
+      $('sb-hours').textContent = entered.hr;
+      $('sb-mileage-hint').style.display = 'none';
+    } else {
+      $('sb-vin').innerHTML = VIN_HTML;
+      $('sb-mileage').textContent = '33,621';
+      $('sb-hours').textContent = '1,204';
+      $('sb-mileage-hint').style.display = 'none';
+    }
+  }
+
+  // ─── Line status ─────────────────────────────────────
+  function setLinesComplete(locked) {
+    document.querySelectorAll('.line-head').forEach(row => {
+      const statusTd = row.querySelector('.line-status');
+      const actionTd = row.querySelector('.line-action');
+      if (!statusTd || !actionTd) return;
+      if (locked) {
+        // Move the line to Complete; parts sub-rows keep their own statuses
+        statusTd.innerHTML = '<span class="pill pill-amber">Complete</span>';
+        actionTd.innerHTML = '';
+      } else {
+        statusTd.innerHTML = '<span class="pill pill-green">Approved</span>';
+        actionTd.innerHTML = '<button class="mini-btn mini-complete">Complete</button>';
+      }
+    });
+  }
+
+  // ─── Actions ─────────────────────────────────────────
+  function onComplete() {
+    // Same mandatory steps either way; the mode only changes the final action.
+    wiz.mode = (state.wo === 'active' && state.requireReview) ? 'review' : 'complete';
+    // Tech story is its own flow: if required and any line is missing one,
+    // collect them first, then chain into the completion modal.
+    if (state.requireTechStory && !allStoriesDone()) { openStory(0, true); return; }
+    openWizard();
+  }
+  function allStoriesDone() { return LINES.every((_, i) => (techStories[i] || '').trim()); }
+  function openReview() {
+    // In review mode VIN is captured here (at sign-off), not in the completion step.
+    const needVin = state.fieldsMissing;
+    $('reviewVinField').style.display = needVin ? '' : 'none';
+    $('reviewVin').value = '';
+    validateReview();
+    $('reviewOverlay').classList.add('open');
+    lucide.createIcons();
+  }
+  function validateReview() {
+    const needVin = $('reviewVinField').style.display !== 'none';
+    $('confirmReviewedBtn').disabled = needVin && !$('reviewVin').value.trim();
+  }
+  function closeReview() { $('reviewOverlay').classList.remove('open'); }
+  function confirmReview() {
+    // Capture VIN entered at sign-off, then complete and show the invoice-ready success screen.
+    if (state.fieldsMissing && $('reviewVin').value.trim()) {
+      entered = entered || {};
+      entered.vin = $('reviewVin').value.trim();
+      state.fieldsMissing = false;
+      $('fldMissing').classList.remove('on');
+      $('fldPresent').classList.add('on');
+      updateVehicleFields();
+    }
+    closeReview();
+    wiz.mode = 'complete';
+    wiz.steps = [];
+    wiz.idx = 0;
+    state.wo = 'completed';
+    render();
+    $('completeOverlay').classList.add('open');
+    renderWizard();   // idx 0 ≥ 0 steps → success screen (with Go To Invoice)
+  }
+
+  // ─── Completion wizard ───────────────────────────────
+  function buildSteps() {
+    const steps = [];
+    if (state.fieldsMissing) steps.push('details');               // VIN/mileage/hrs required first
+    if (state.createPO && PARTS_WAITING > 0) steps.push('parts'); // receive parts & invoice
+    return steps;
+  }
+  function openWizard() {
+    wiz.steps = buildSteps();
+    wiz.idx = 0;
+    wiz.tsIdx = 0;
+    wiz.receivedSet = new Set();
+    wiz.picked = false;
+    $('completeOverlay').classList.add('open');
+    if (wiz.steps.length === 0) finishWizard();   // nothing to collect → straight to success
+    else renderWizard();
+  }
+  function closeWizard() { $('completeOverlay').classList.remove('open'); }
+
+  function wizHeader() {
+    const labels = { techstory: 'Tech story', details: 'Details', parts: 'Receive parts &amp; invoice' };
+    let pills = '';
+    wiz.steps.forEach((s, i) => {
+      let cls = i < wiz.idx ? 'done' : (i === wiz.idx ? 'active' : 'pending');
+      const icon = cls === 'done' ? '<i data-lucide="check"></i>' : '';
+      if (i > 0) pills += '<span class="wiz-sep">→</span>';
+      pills += `<span class="wiz-pill ${cls}">${icon}${labels[s]}</span>`;
+    });
+    return `
+      <div class="wiz-head">
+        <div class="wiz-titlerow">
+          <div class="wiz-title" id="wizTitle">${wiz.mode === 'review' ? 'Complete &amp; Send to Review' : 'Complete Work Order'}</div>
+          <button class="wiz-close" onclick="closeWizard()"><i data-lucide="x"></i></button>
+        </div>
+        <div class="wiz-sub">S2-15691 · Qaisland Paving</div>
+        <div class="wiz-steps">${pills}</div>
+      </div>`;
+  }
+
+  function renderWizard() {
+    const body = $('completeBody');
+    if (wiz.idx >= wiz.steps.length) { body.innerHTML = successHTML(); lucide.createIcons(); return; }
+    const step = wiz.steps[wiz.idx];
+    let html = wizHeader();
+    if (step === 'details') {
+      html += detailsBody() + detailsFoot();
+    } else if (step === 'parts') {
+      if (state.vendorInvoice === 'required') html += mandatoryBody() + mandatoryFoot();
+      else html += partsBody() + partsFoot();
+    }
+    body.innerHTML = html;
+    lucide.createIcons();
+    if (step === 'details') validateDetails();
+  }
+
+  // ─── Tech story (separate modal flow, per line) ──────
+  function escapeHtml(s) { return s.replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+  function renderStoryRows() {
+    LINES.forEach((line, i) => {
+      const cell = document.getElementById('storyCell-' + i);
+      if (!cell) return;
+      const txt = (techStories[i] || '').trim();
+      cell.innerHTML = txt
+        ? `<span class="story-done"><i data-lucide="check-circle-2"></i></span><span class="story-text">${escapeHtml(txt)}</span><a class="story-edit" onclick="openStory(${i}); return false;">Edit</a>`
+        : `<a class="story-add" onclick="openStory(${i}); return false;">Add tech story for this line</a>`;
+    });
+    lucide.createIcons();
+  }
+  function openStory(i, chain = false) {
+    story.chain = chain;
+    story.idx = chain ? 0 : i;
+    $('storyOverlay').classList.add('open');
+    renderStory();
+  }
+  function closeStory() { $('storyOverlay').classList.remove('open'); }
+  function renderStory() {
+    const i = story.idx, line = LINES[i], val = techStories[i] || '';
+    const isLast = i === LINES.length - 1;
+    const nextLabel = !isLast
+      ? 'Next <i data-lucide="arrow-right"></i>'
+      : (story.chain ? 'Continue <i data-lucide="arrow-right"></i>' : 'Save');
+    const back = i > 0
+      ? `<button class="btn btn-secondary" onclick="storyPrev()"><i data-lucide="arrow-left"></i> Back</button>`
+      : '';
+    $('storyBody').innerHTML = `
+      <div class="wiz-head">
+        <div class="wiz-titlerow">
+          <div class="wiz-title">Tech story</div>
+          <button class="wiz-close" onclick="closeStory()"><i data-lucide="x"></i></button>
+        </div>
+        <div class="wiz-sub">S2-15691 · Qaisland Paving</div>
+      </div>
+      <div class="wiz-body">
+        <div class="wiz-linehdr">
+          <span class="line-no">${line.no}</span>
+          <div style="flex:1;min-width:0">
+            <span class="wiz-linename block">${line.name}</span>
+            <span class="wiz-linetech"><i data-lucide="user"></i> Technician: ${line.tech}</span>
+          </div>
+          <span class="wiz-linecount">Line ${i + 1} of ${LINES.length}</span>
+        </div>
+        <div class="wiz-field">
+          <label>Tech story <span class="wiz-req">REQUIRED</span></label>
+          <textarea id="storyText" data-test-id="input_tech_story" oninput="validateStoryText()" placeholder="Describe the work performed on this line…">${escapeHtml(val)}</textarea>
+          <div class="wiz-help">A tech story is required for each line before the work order can be completed.</div>
+        </div>
+      </div>
+      <div class="wiz-foot">
+        <button class="btn-link" onclick="closeStory()">Cancel</button>
+        <span class="spacer"></span>
+        ${back}
+        <button class="btn btn-primary" id="storyNextBtn" onclick="storyAdvance()" disabled>${nextLabel}</button>
+      </div>`;
+    lucide.createIcons();
+    validateStoryText();
+  }
+  function validateStoryText() { $('storyNextBtn').disabled = !$('storyText').value.trim(); }
+  function storyPrev() { techStories[story.idx] = $('storyText').value.trim(); story.idx--; renderStory(); }
+  function storyAdvance() {
+    techStories[story.idx] = $('storyText').value.trim();
+    if (story.idx < LINES.length - 1) { story.idx++; renderStory(); return; }
+    renderStoryRows();
+    closeStory();
+    if (story.chain) openWizard();   // tech story done → continue into completion
+  }
+
+  // Step: Details (VIN / mileage / engine hours)
+  function detailsBody() {
+    // In review mode VIN is collected at sign-off (Mark Reviewed), not here.
+    const reviewMode = wiz.mode === 'review';
+    const vinField = reviewMode ? '' : `
+        <div class="wiz-field">
+          <label>VIN / Serial # <span class="wiz-req">REQUIRED</span></label>
+          <div class="wiz-input-wrap"><input id="wizVin" oninput="validateDetails()" placeholder="Enter VIN or serial number"></div>
+        </div>`;
+    return `
+      <div class="wiz-body">${vinField}
+        <div class="wiz-field">
+          <label>Mileage <span class="wiz-req">REQUIRED</span></label>
+          <div class="wiz-input-wrap"><input id="wizMileage" oninput="validateDetails()" placeholder="Enter mileage" inputmode="numeric"><span class="wiz-suffix">mi</span></div>
+        </div>
+        <div class="wiz-field">
+          <label>Engine Hours <span class="wiz-req">REQUIRED</span></label>
+          <div class="wiz-input-wrap"><input id="wizHours" oninput="validateDetails()" placeholder="Enter hours" inputmode="numeric"></div>
+        </div>
+      </div>`;
+  }
+  function detailsFoot() {
+    const isLast = wiz.idx === wiz.steps.length - 1;
+    const label = isLast ? finalCtaLabel() : 'Continue <i data-lucide="arrow-right"></i>';
+    return `
+      <div class="wiz-foot">
+        <button class="btn-link" onclick="closeWizard()">Cancel</button>
+        <span class="spacer"></span>
+        <button class="btn btn-primary" id="wizContinue" onclick="detailsContinue()" disabled>${label}</button>
+      </div>`;
+  }
+  function validateDetails() {
+    const vinOk = wiz.mode === 'review' || ($('wizVin') && $('wizVin').value.trim());
+    const ok = vinOk && $('wizMileage').value.trim() && $('wizHours').value.trim();
+    $('wizContinue').disabled = !ok;
+  }
+  function detailsContinue() {
+    const reviewMode = wiz.mode === 'review';
+    entered = {
+      vin: reviewMode ? ((entered && entered.vin) || '') : $('wizVin').value.trim(),
+      mi: $('wizMileage').value.trim(),
+      hr: $('wizHours').value.trim()
+    };
+    // In review mode keep fieldsMissing=true so VIN is still asked at Mark Reviewed.
+    if (!reviewMode) {
+      state.fieldsMissing = false;
+      $('fldMissing').classList.remove('on');
+      $('fldPresent').classList.add('on');
+    }
+    updateVehicleFields();
+    wiz.idx++;
+    afterStep();
+  }
+
+  // Step: Receive parts & invoice — OPTIONAL vendor invoice
+  function partsBody() {
+    const allDone = RECV_VENDORS.every(v => wiz.receivedSet.has(v.id));
+    if (allDone) {
+      return `
+      <div class="wiz-body">
+        <div class="wiz-infobar" style="background:var(--sv-success-50);border-color:var(--sv-success-200);color:var(--sv-success-700)">
+          <i data-lucide="check-circle-2"></i> All parts received. You can complete the work order.
+        </div>
+      </div>`;
+    }
+    // Inventory pick block — only when auto-pick is OFF and parts aren't picked yet.
+    const needPick = !state.autoPick && !wiz.picked;
+    const pickDone = !state.autoPick && wiz.picked;
+    let pickBlock = '';
+    if (needPick) {
+      let rows = '';
+      INVENTORY_PARTS.forEach(p => {
+        rows += `<div class="pick-row"><div><div class="pr-name">${p.name}</div><div class="pr-sub">${p.sub}</div></div><span class="pick-status todo">To pick</span></div>`;
+      });
+      pickBlock = `
+        <div class="pick-card">
+          <div class="pick-head">
+            <span class="ph-title"><i data-lucide="package-check"></i> ${INVENTORY_PARTS.length} inventory parts to pick</span>
+            <button class="pick-all" onclick="pickAll()">Pick All</button>
+          </div>
+          ${rows}
+        </div>
+        <div class="wiz-note"><i data-lucide="alert-triangle"></i> Auto-pick is off. These inventory parts must be picked before the work order can be completed. You can also pick them from the line.</div>`;
+    } else if (pickDone) {
+      let rows = '';
+      INVENTORY_PARTS.forEach(p => {
+        rows += `<div class="pick-row"><div><div class="pr-name">${p.name}</div><div class="pr-sub">${p.sub}</div></div><span class="pick-status done"><i data-lucide="check-circle-2"></i> Picked</span></div>`;
+      });
+      pickBlock = `<div class="pick-card"><div class="pick-head"><span class="ph-title"><i data-lucide="package-check"></i> Inventory parts picked</span><button class="pick-all" disabled>Pick All</button></div>${rows}</div>`;
+    }
+    const note = state.autoPick
+      ? '<div class="wiz-note"><i data-lucide="info"></i> Inventory parts are picked automatically when the work order is completed.</div>'
+      : '';
+    return `
+      <div class="wiz-body">
+        <div class="wiz-info">
+          <i data-lucide="package"></i>
+          <div>
+            <div class="wi-title">${waitingTitle()}</div>
+            <div class="wi-desc">${waitingDesc()}</div>
+          </div>
+        </div>
+        ${sellPriceNotice()}${note}${pickBlock}
+      </div>`;
+  }
+  // Any returnable core part still awaiting receiving. A core's charge (OK / Not OK)
+  // can only be resolved once the part is in hand, so completing without receiving it
+  // would leave the core charge undecided — receiving is therefore required even when
+  // the vendor invoice number is optional.
+  function coresWaiting() {
+    return RECV_VENDORS.some(v => v.core && !wiz.receivedSet.has(v.id));
+  }
+  const plural = n => n === 1 ? 'part' : 'parts';
+  // Info-card title/description adapt when a core is among the waiting parts.
+  function waitingTitle() {
+    const n = PARTS_WAITING;
+    if (coresWaiting()) {
+      const c = RECV_VENDORS.filter(v => v.core && !wiz.receivedSet.has(v.id)).length;
+      const cores = c === 1 ? 'a core charge' : 'core charges';
+      return `${n} ${plural(n)} waiting to receive — includes ${cores}.`;
+    }
+    return `${n} ${plural(n)} waiting to receive`;
+  }
+  function waitingDesc() {
+    if (coresWaiting()) {
+      const c = RECV_VENDORS.filter(v => v.core && !wiz.receivedSet.has(v.id)).length;
+      return c === 1
+        ? 'Receive it to settle the core (OK / Not OK) before completing this work order.'
+        : 'Receive them to settle the cores (OK / Not OK) before completing this work order.';
+    }
+    return 'You can receive parts later from the purchase orders page.';
+  }
+  function coreNotice() {
+    return '';
+  }
+  function partsFoot() {
+    const allDone = RECV_VENDORS.every(v => wiz.receivedSet.has(v.id));
+    const left = wiz.idx > 0
+      ? '<button class="btn-link" onclick="wizBack()">← Back</button>'
+      : '<button class="btn-link" onclick="closeWizard()">Cancel</button>';
+    if (allDone) {
+      return `
+      <div class="wiz-foot">
+        ${left}
+        <span class="spacer"></span>
+        <button class="btn btn-primary" onclick="finishWizard()">${finalCtaLabel()}</button>
+      </div>`;
+    }
+    const skip = wiz.mode === 'review' ? 'Send to Review' : 'Complete Without Receiving';
+    // A waiting core part cannot be skipped — it must be received to resolve the core charge.
+    if (coresWaiting()) {
+      return `
+      <div class="wiz-foot">
+        ${left}
+        <span class="spacer"></span>
+        <span class="tip"><button class="btn" disabled>${skip}</button><span class="tip-bubble">Receive the core part first — its core charge must be settled before you can complete.</span></span>
+        <button class="btn btn-primary" onclick="openReceiving()">Receive Parts</button>
+      </div>`;
+    }
+    // When auto-pick is OFF, inventory parts must be picked before completing/skipping.
+    const blockSkip = !state.autoPick && !wiz.picked;
+    const skipBtn = blockSkip
+      ? `<span class="tip"><button class="btn btn-primary" disabled>${skip}</button><span class="tip-bubble">Pick inventory parts first</span></span>`
+      : `<button class="btn btn-primary" onclick="finishWizard()">${skip}</button>`;
+    return `
+      <div class="wiz-foot">
+        ${left}
+        <span class="spacer"></span>
+        <button class="btn btn-secondary" onclick="openReceiving()">Receive Parts</button>
+        ${skipBtn}
+      </div>`;
+  }
+
+  // Step: Receive parts & invoice — REQUIRED vendor invoice number
+  // Modal only lists what's being received; receiving (qty, tax, date, invoice #) happens on the receiving page.
+  function mandatoryBody() {
+    let cards = '';
+    RECV_VENDORS.forEach(v => {
+      const done = wiz.receivedSet.has(v.id);
+      cards += `
+        <div class="mv-card">
+          <div class="mv-head">
+            <span class="nm"><i data-lucide="building-2"></i> ${v.name}</span>
+            ${ done ? '<span class="recv-done-pill"><i data-lucide="check-circle-2"></i> Received</span>' : '<span class="ct">1 part</span>' }
+          </div>
+          <div class="mv-body">
+            <div class="mv-part">
+              <div><div class="pn">${v.desc}</div><div class="ps">${v.partNo} · qty ${v.qty} · Line ${v.line}</div></div>
+            </div>
+          </div>
+        </div>`;
+    });
+    const allDone = RECV_VENDORS.every(v => wiz.receivedSet.has(v.id));
+    const info = allDone
+      ? '<div class="wiz-infobar" style="background:var(--sv-success-50);border-color:var(--sv-success-200);color:var(--sv-success-700)"><i data-lucide="check-circle-2"></i> All parts received. You can complete the work order.</div>'
+      : '<div class="wiz-infobar"><i data-lucide="info"></i> These parts must be received before the work order can be completed.</div>';
+    return `<div class="wiz-body">${cards}${sellPriceNotice()}${info}</div>`;
+  }
+  function mandatoryFoot() {
+    const allDone = RECV_VENDORS.every(v => wiz.receivedSet.has(v.id));
+    const left = wiz.idx > 0
+      ? '<button class="btn-link" onclick="wizBack()">← Back</button>'
+      : '<button class="btn-link" onclick="closeWizard()">Cancel</button>';
+    const receiveBtn = allDone ? '' : '<button class="btn btn-secondary" onclick="openReceiving()">Receive Parts</button>';
+    return `
+      <div class="wiz-foot">
+        ${left}
+        <span class="spacer"></span>
+        ${receiveBtn}
+        <button class="btn btn-primary" onclick="finishWizard()" ${allDone ? '' : 'disabled'}>${finalCtaLabel()}</button>
+      </div>`;
+  }
+
+  function finalCtaLabel() {
+    return wiz.mode === 'review' ? 'Send to Review' : 'Complete Work Order';
+  }
+
+  // ─── Receiving page (full-screen Purchase Order Details) ──
+  function openReceiving() {
+    closeWizard();
+    renderReceiving();
+    $('recvPage').classList.add('open');
+    window.scrollTo(0, 0);
+  }
+  function cancelReceiving() {
+    $('recvPage').classList.remove('open');
+    $('completeOverlay').classList.add('open');
+    renderWizard();
+  }
+  function renderReceiving() {
+    $('recvMain').innerHTML = RECV_VENDORS.map(v => {
+      const done = wiz.receivedSet.has(v.id);
+      return `
+        <section class="po-vendor ${done ? 'received' : ''}" data-v="${v.id}">
+          <div class="po-vhead">
+            <span class="nm"><i data-lucide="building-2"></i> ${v.name}</span>
+            <span class="ct">1 parts</span>
+          </div>
+          <div class="po-vbody">
+            <div class="po-inputs">
+              <input class="po-inp" placeholder="Invoice Number" ${done ? `value="${v.invoice}"` : ''}>
+              <div class="po-date"><i data-lucide="calendar"></i><input class="po-inp" value="06/23/2026"></div>
+            </div>
+            <div class="po-subh">Receive Parts</div>
+            <table class="po-table">
+              <thead><tr>
+                <th style="width:30px;"></th><th>Part Number</th><th>Description</th>
+                <th class="r">Cost</th><th class="r">Qty Ordered</th><th>Qty Received</th><th class="r">Total</th>
+              </tr></thead>
+              <tbody><tr>
+                <td><input type="checkbox" class="pck" checked></td>
+                <td>${v.partNo}</td><td>${v.poDesc}</td>
+                <td class="r">$0.00000</td><td class="r">${v.qtyOrdered}</td>
+                <td><input class="po-qtyin" value="${v.qtyOrdered}"></td>
+                <td class="r">$0.00</td>
+              </tr></tbody>
+            </table>
+            <div class="po-totrow"><span class="lbl">Subtotal</span><span>$0.00</span></div>
+            <div class="po-totrow"><span class="lbl">Tax</span><input class="po-taxin" value="0.00"></div>
+            <div class="po-totrow"><span class="lbl">Total</span><span>$0.00</span></div>
+            <div class="po-delivery">
+              <div class="po-subh">Delivery note</div>
+              <textarea placeholder="Delivery Note"></textarea>
+            </div>
+            <div class="po-vfoot">
+              ${ done
+                ? '<span class="recv-done-pill"><i data-lucide="check-circle-2"></i> Received</span>'
+                : `<button class="btn btn-primary" onclick="recvVendor('${v.id}')">Receive</button>` }
+            </div>
+          </div>
+        </section>`;
+    }).join('');
+    lucide.createIcons();
+  }
+  function recvVendor(id) {
+    wiz.receivedSet.add(id);
+    renderReceiving();
+    if (RECV_VENDORS.every(v => wiz.receivedSet.has(v.id))) {
+      setTimeout(() => {
+        $('recvPage').classList.remove('open');
+        $('completeOverlay').classList.add('open');
+        renderWizard();   // back to the modal step; Complete is now enabled
+      }, 1000);
+    }
+  }
+
+  function wizBack() { wiz.receiving = false; if (wiz.idx > 0) wiz.idx--; renderWizard(); }
+  function afterStep() { if (wiz.idx >= wiz.steps.length) finishWizard(); else renderWizard(); }
+
+  function finishWizard() {
+    state.wo = (wiz.mode === 'review') ? 'review' : 'completed';
+    wiz.idx = wiz.steps.length;   // move past last step → success view
+    wiz.receiving = false;
+    render();                     // update the WO behind the modal (badge + lines)
+    renderWizard();               // show success inside the still-open modal
+  }
+  function successHTML() {
+    const close = `
+      <div class="wiz-titlerow" style="padding: var(--sv-space-4) var(--sv-space-4) 0; justify-content:flex-end;">
+        <button class="wiz-close" onclick="closeWizard()"><i data-lucide="x"></i></button>
+      </div>`;
+    if (wiz.mode === 'review') {
+      return `
+      ${close}
+      <div class="wiz-success">
+        <div class="wiz-check" style="background:var(--sv-warning-500)"><i data-lucide="clipboard-check"></i></div>
+        <h3>Sent for review</h3>
+        <p>A foreman or manager must review this work order before it can be invoiced. Inventory parts were picked automatically.</p>
+      </div>
+      <div class="wiz-foot">
+        <span class="spacer"></span>
+        <button class="btn btn-primary" onclick="closeWizard()">Done</button>
+      </div>`;
+    }
+    return `
+      ${close}
+      <div class="wiz-success">
+        <div class="wiz-check"><i data-lucide="check"></i></div>
+        <h3>Work order complete</h3>
+        <p>Sent to Finance as an invoice-ready draft.</p>
+        <div class="wiz-total"><span class="lbl">INVOICE TOTAL</span><span class="val">${INVOICE_TOTAL}</span></div>
+      </div>
+      <div class="wiz-foot">
+        <button class="btn-link" onclick="closeWizard()">Done</button>
+        <span class="spacer"></span>
+        <button class="btn btn-primary" onclick="closeWizard()"><i data-lucide="file-text"></i> Go To Invoice</button>
+      </div>`;
+  }
+
+  // ─── Prototype controls ──────────────────────────────
+  function setReview(v) {
+    state.requireReview = v;
+    $('revOn').classList.toggle('on', v);
+    $('revOff').classList.toggle('on', !v);
+    if (state.wo !== 'active') resetFlow(); else render();
+  }
+  function setRole(r) {
+    state.role = r;
+    $('roleManager').classList.toggle('on', r === 'manager');
+    $('roleAdvisor').classList.toggle('on', r === 'advisor');
+    render();
+  }
+  function setPO(v) {
+    state.createPO = v;
+    $('poOn').classList.toggle('on', v);
+    $('poOff').classList.toggle('on', !v);
+    $('viGroup').style.opacity = v ? '1' : '0.4';
+    $('viGroup').style.pointerEvents = v ? 'auto' : 'none';
+  }
+  function setVI(v) {
+    state.vendorInvoice = v;
+    $('viOpt').classList.toggle('on', v === 'optional');
+    $('viReq').classList.toggle('on', v === 'required');
+  }
+  function setStory(v) {
+    state.requireTechStory = v;
+    $('storyOn').classList.toggle('on', v);
+    $('storyOff').classList.toggle('on', !v);
+    render();
+  }
+  function setAutoPick(v) {
+    state.autoPick = v;
+    $('apOn').classList.toggle('on', v);
+    $('apOff').classList.toggle('on', !v);
+  }
+  function pickAll() { wiz.picked = true; renderWizard(); }
+  function setFields(missing) {
+    state.fieldsMissing = missing;
+    if (missing) entered = null;
+    $('fldMissing').classList.toggle('on', missing);
+    $('fldPresent').classList.toggle('on', !missing);
+    render();
+  }
+  function resetFlow() { state.wo = 'active'; closeWizard(); render(); }
+  function toggleProto() {
+    const p = $('proto');
+    p.classList.toggle('proto-collapsed');
+    $('protoChevron').setAttribute('data-lucide', p.classList.contains('proto-collapsed') ? 'chevron-up' : 'chevron-down');
+    lucide.createIcons();
+  }
+
+  // ─── Deep-link driver — static artboards embed this page with ?screen=… ──
+  // Pins the WO to a specific state (and optionally opens a modal step) and
+  // hides the prototype panel, so each canvas artboard is a discrete screen.
+  function openWizAt(mode) {
+    wiz.mode = mode;
+    wiz.steps = buildSteps();
+    wiz.tsIdx = 0;
+    wiz.idx = 0;
+    wiz.receivedSet = new Set();
+    wiz.picked = false;
+    $('completeOverlay').classList.add('open');
+    renderWizard();
+  }
+  function showSuccess(mode) {
+    wiz.mode = mode; wiz.steps = []; wiz.idx = 0;
+    $('completeOverlay').classList.add('open');
+    finishWizard();
+  }
+  function applyScreen() {
+    const screen = new URLSearchParams(location.search).get('screen');
+    if (!screen) { lucide.createIcons(); render(); return; }
+    const proto = $('proto'); if (proto) proto.style.display = 'none';   // pinned screen → no panel
+
+    switch (screen) {
+      case 'active':          state.requireReview = false; state.wo = 'active';  render(); break;
+      case 'review-pending':  state.requireReview = true;  state.role = 'advisor'; state.wo = 'review'; render(); break;
+      case 'review-manager':  state.requireReview = true;  state.role = 'manager'; state.wo = 'review'; render(); break;
+      case 'review-dialog':   state.requireReview = true;  state.role = 'manager'; state.wo = 'review'; render(); openReview(); break;
+      case 'reviewed':        state.wo = 'reviewed';  render(); break;
+      case 'completed':       state.wo = 'completed'; render(); break;
+      case 'wiz-techstory':   state.requireTechStory = true;  techStories = []; render(); openStory(0, false); break;
+      case 'wiz-details':     state.requireTechStory = false; state.fieldsMissing = true;  render(); openWizAt('complete'); break;
+      case 'wiz-parts-optional': state.requireTechStory = false; state.fieldsMissing = false; state.createPO = true; state.vendorInvoice = 'optional'; render(); openWizAt('complete'); break;
+      case 'wiz-parts-required': state.requireTechStory = false; state.fieldsMissing = false; state.createPO = true; state.vendorInvoice = 'required'; render(); openWizAt('complete'); break;
+      case 'success-complete': state.createPO = false; render(); showSuccess('complete'); break;
+      case 'success-review':   state.createPO = false; render(); showSuccess('review'); break;
+      default: render();
+    }
+    lucide.createIcons();
+  }
+
+  lucide.createIcons();
+  applyScreen();
+</script>
+</body>
+</html>

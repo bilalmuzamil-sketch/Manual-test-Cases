@@ -1,0 +1,12 @@
+{
+  "case_id": 26391,
+  "section_id": 3535,
+  "title": "Work order lines Delete allows removing lines",
+  "custom_preconds": "<ol>\n<li>A user has a role with Work orders View and Work order lines Create & Edit and Delete.</li>\n</ol>",
+  "custom_steps": "<ol>\n<li>Open a work order with several lines.</li>\n<li>Delete a non-critical line.</li>\n<li>Confirm.</li>\n</ol>",
+  "custom_expected": "<p>The line is removed and the work order totals (if shown) update.</p>\n",
+  "viu_status": "Blocked-UI: WOL Delete role shows line-selection checkboxes but no line delete/remove button was exposed (selecting a line revealed no bulk-delete control; no per-line delete icon). Line-delete affordance not reachable in the harness; needs the expanded-line editor delete control or the line-delete endpoint confirmed.",
+  "evidence": "Needs live UI.",
+  "fresh_run": "2026-07-13",
+  "behavioral_run": "2026-07-13"
+}

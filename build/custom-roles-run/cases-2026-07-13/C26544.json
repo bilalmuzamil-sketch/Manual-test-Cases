@@ -1,0 +1,12 @@
+{
+  "case_id": 26544,
+  "section_id": 3553,
+  "title": "Being unable to open Customers does not stop a user from picking a customer when creating a work order",
+  "custom_preconds": "<ol>\n<li>A custom role 'WO Creator No Cust' has Work orders View and Create & Edit on but Customers View off.</li>\n<li>A user is assigned that role.</li>\n</ol>",
+  "custom_steps": "<ol>\n<li>Log in as that user.</li>\n<li>Try to open Customers.</li>\n<li>Open Work Orders and start creating a work order.</li>\n<li>Use the customer picker on the form.</li>\n<li>Select an existing customer.</li>\n<li>Save.</li>\n</ol>",
+  "custom_expected": "<p>Customers cannot be opened (hidden or refused).</p>\n<p>The create work order flow works.</p>\n<p>The customer picker still works and an existing customer can be selected and the work order saved — feature access (opening the Customers page) is separate from data access (using customers where needed).</p>\n",
+  "viu_status": "VIU-Verified",
+  "evidence": "UI: verified via C26385 — a role with Work Orders Create&Edit but NO Customers View cannot open Customers (hidden from nav), yet the New Work Order customer picker still opens and lists existing customers, so a customer can be selected when creating a WO.",
+  "fresh_run": "2026-07-13",
+  "behavioral_run": "2026-07-13"
+}

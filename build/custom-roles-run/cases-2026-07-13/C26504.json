@@ -1,0 +1,11 @@
+{
+  "case_id": 26504,
+  "section_id": 3548,
+  "title": "Sales Representative: role permissions match the expected set",
+  "custom_preconds": "<ol>\n<li>A user is assigned the Sales Representative role.</li>\n</ol>",
+  "custom_steps": "<ol>\n<li>Open the Sales Representative role's Permission Summary (eye icon on the Roles list).</li>\n<li>Check the add/edit/delete areas, the Page Access toggles, the Work orders sub-settings, the View mode and the Cross-Cutting Toggles.</li>\n<li>Optionally log in as the user and spot-check a few of the role's typical tasks.</li>\n</ol>",
+  "custom_expected": "<p>The Sales Representative permissions match the expected set: all add/edit/delete areas off; Reports on; See Financial Data on; View and Manage AP/AR Data on; View History Logs off; all Work orders sub-settings off; View mode Full View. Only the Reports area is reachable; with Reports on the 6 AP/AR aging reports open.</p>\n",
+  "viu_status": "Roles-API-Verified (permission set matches the live role); workflow spot-checks Blocked-UI",
+  "evidence": "Sales Representative permission set confirmed live via GET /api/roles/{id} (roles-matrix-2026-07-13).",
+  "fresh_run": "2026-07-13"
+}

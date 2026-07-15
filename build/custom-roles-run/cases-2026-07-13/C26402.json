@@ -1,0 +1,12 @@
+{
+  "case_id": 26402,
+  "section_id": 3537,
+  "title": "AP/AR OFF hides the 7 sensitive customer fields on Edit Customer",
+  "custom_preconds": "<ol>\n<li>A user has a role with Customers View and Create & Edit and View and Manage AP/AR Data OFF.</li>\n</ol>",
+  "custom_steps": "<ol>\n<li>Open Customers and open a customer.</li>\n<li>Open the Edit Customer window.</li>\n<li>Look for these 7 field labels: Credit terms, Credit limit, Default Labor rate, Default Shop Supplies, Min and Max, Taxes, PO is required.</li>\n<li>Look for the basic fields (name, address, phone, email, contacts, vehicles).</li>\n</ol>",
+  "custom_expected": "<p>All 7 of those fields are hidden.</p>\n<p>The basic fields are shown and can be edited.</p>\n",
+  "viu_status": "VIU-Verified",
+  "evidence": "UI: role with View and Manage AP/AR Data OFF (Service Advisor) — Edit Customer modal has NO sensitive fields (no Credit Limit, Taxes, Default Labor Rate, etc). With AP/AR ON they are present. screenshot customer-aparOFF vs customer-aparON.",
+  "fresh_run": "2026-07-13",
+  "behavioral_run": "2026-07-13"
+}

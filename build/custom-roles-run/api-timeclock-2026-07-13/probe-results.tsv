@@ -1,0 +1,20 @@
+area	method	path	expect	tech_status	snippet
+Work Orders	GET	/api/work-orders?page=1	200	200	{"data":{"pagination":{"sortBy":null,"descending":false,"page":1,"rowsPerPage":100,"totalW
+Work Orders	GET	/api/work-orders/view/bfc5fd96-c70f-4ff2-a763-01bb1d30faca	200	200	{"data":{"work_order":{"deletable":true,"deletable_reason":"There are awaiting parts. Are 
+Schedule	GET	/api/calendar?date=2026-07-01&end_date=2026-07-31	200	200	{"data":{"collection":[{"id":"277aefa7-f8ad-4a1e-9fc1-0c5eff1c979d","label":"Service\/Part
+Timesheets	GET	/api/staff/clocked	200	403	{"errors":[{"error":"Access denied."}]}  
+Inventory/Parts	GET	/api/inventory/parts?page=1	403	403	{"errors":[{"error":"Access denied."}]}  
+POs/Orders	GET	/api/inventory/orders?page=1	403	403	{"errors":[{"error":"Access denied."}]}  
+Customers	GET	/api/customers?page=1	403	403	{"errors":[{"error":"Access denied."}]}  
+Vendors	GET	/api/vendors?page=1	403	404	{"errors":[{"error":"'resource' was not found."}]}  
+Contacts	GET	/api/contacts?page=1	403	404	{"errors":[{"error":"'resource' was not found."}]}  
+Reports (AP Aging)	GET	/api/reporting/account-payable/unpaid-invoices-report	403	403	{"errors":[{"error":"Access denied."}]}  
+Settings	GET	/api/organizations/settings	403	200	{"data":{"id":"a365cd17-7e7c-11f0-8584-06fe7fd94eb4","organizationId":"d55bc308-e61a-438d-
+Staff/Roles	GET	/api/organizations/d55bc308-e61a-438d-b5f1-c7a73c89d49f/roles	403	403	{"errors":[{"error":"Access denied."}]}  
+Staff	GET	/api/staff?page=1	403	403	{"errors":[{"error":"Access denied."}]}  
+Taxes (Finance)	GET	/api/taxes	403	200	{"data":{"collection":[{"id":"c9874e84-acb8-4305-ab31-cc25289effcb","name":"E2E Tax 0pct",
+Integrations (IBS)	GET	/api/ibs/settings	403	403	{"errors":[{"error":"Access denied."}]}  
+QuickBooks (Bookkeeping)	GET	/api/bookkeeping/settings	403	405	{"errors":[{"error":"No route found for "GET http:\/\/api.staging.shopview.com\/api\/
+Departments	GET	/api/departments	403	403	{"errors":[{"error":"Access denied."}]}  
+Create Work Order	POST	/api/work-orders/create	403	400	{"errors":[{"company_id":"Missing required parameter"}]}  
+Create Customer	POST	/api/customers/create	403	201	{"data":{"company_id":"72eb89a9-2c78-46ab-bfaf-6c5d772a515b"}}  

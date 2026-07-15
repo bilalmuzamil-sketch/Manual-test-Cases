@@ -1,0 +1,12 @@
+{
+  "case_id": 26328,
+  "section_id": 3529,
+  "title": "Applying a template opens the Create Role page pre-filled with that template's settings",
+  "custom_preconds": "<ol>\n<li>The template picker is open with the Service Advisor template selected.</li>\n</ol>",
+  "custom_steps": "<ol>\n<li>Apply the selected template.</li>\n<li>Look at the page that opens.</li>\n<li>Scroll to the permissions.</li>\n<li>Check the Work orders card boxes.</li>\n<li>Check the Invoicing & payments card boxes.</li>\n</ol>",
+  "custom_expected": "<p>The Create Role page opens with a Basic Details section and a permissions section.</p>\n<p>The permissions are pre-filled to match the Service Advisor template (for example Work orders View and Create & Edit on, Delete off).</p>\n",
+  "viu_status": "VIU-Verified",
+  "evidence": "UI: Apply opens /roles-permissions/new?template=<foreman id> prefilled with Foreman defaults: WO View ON, WO Delete off, Parts Department ON, See Financial Data ON, AP/AR off, Reports off (matches Foreman role).",
+  "fresh_run": "2026-07-13",
+  "behavioral_run": "2026-07-13"
+}

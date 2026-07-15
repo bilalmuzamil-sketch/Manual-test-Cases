@@ -1,0 +1,12 @@
+{
+  "case_id": 26347,
+  "section_id": 3530,
+  "title": "The Time Clock User system role cannot be edited (lock icon, eye only)",
+  "custom_preconds": "<ol>\n<li>You are on the Roles & Permissions list.</li>\n</ol>",
+  "custom_steps": "<ol>\n<li>Find the Time Clock User row.</li>\n<li>Look at the Actions column.</li>\n<li>Click the eye icon.</li>\n</ol>",
+  "custom_expected": "<p>There is no pencil icon; only the eye icon.</p>\n<p>A read-only Permission Summary opens for Time Clock User.</p>\n",
+  "viu_status": "VIU-Verified",
+  "evidence": "UI: on the Roles list the Time Clock User row shows a lock and only the eye icon — no pencil; the eye opens the read-only Permission Summary. Same /edit-URL FE-gap note as C26346.",
+  "fresh_run": "2026-07-13",
+  "behavioral_run": "2026-07-13"
+}

@@ -382,8 +382,9 @@ all parts received (invoice # captured).
 **Requirements**
 - **S4-R1** Background order + POs (vendorless → WO's PO, Vendor Missing).
 - **S4-R2** Parts + pick status in modal (auto-pick-off → pick here).
-- **S4-R3** Required vehicle fields (mileage + VIN + engine hours); tech story
-  Story 17.
+- **S4-R3** Required vehicle fields (mileage + engine hours, when missing); tech
+  story Story 17. *(V2.4 Δ1, applied 2026-07-13: VIN dropped from the required-invoice
+  completion modal — VIN is captured by the reviewer in Story 16.)*
 - **S4-R4** Actions + gated CTA: Receive parts + Cancel. Primary CTA "Complete
   Work Order" **disabled until all parts received.** No "Complete without
   receiving."
@@ -521,6 +522,12 @@ multiple vendors summarized with an indicator.
   items to target, remove emptied source, redirect to target).
 - **S13-R4** Different vendor, no collision → auto-assign + clear QB flag.
 - **S13-R5** After assignment, group's Receive enables.
+- **S13-R6** *(V2.4 Δ3, added 2026-07-13)* Part number required. If a part number is
+  missing, the user gets an indication to enter one; receiving is blocked until it's
+  filled.
+- **S13-R7** *(V2.4 Δ3, added 2026-07-13)* Cost / sell price required. If cost / sell
+  price is missing, the user gets an indication to enter one; receiving is blocked
+  until it's filled.
 - **Technical guardrails:** match vendors by ID not name; targeted backend lookup
   for cross-PO match; surface errors; merge scope = same work order. Receiving
   blocked when WO invoiced/paid.
@@ -558,8 +565,10 @@ person (manager/foreman) signs off before invoicing. PO/invoice combos unchanged
   (amber "Ready for Review", blue "sign-off complete").
 - **R6** On Send to Review: lines lock to Complete; inventory auto-picked.
 - **R7** Mark Reviewed = manager/foreman only; dialog captures VIN (required if
-  missing) + optional note; Confirm disabled until VIN. Advisor → disabled +
-  "Awaiting review".
+  missing); Confirm disabled until VIN. Advisor → disabled + "Awaiting review".
+  *(V2.4 Δ4, applied 2026-07-13: the "optional note" was removed — dialog is VIN-only.
+  FLAG: R10 below still lists the test id `input_review_note` — an internal spec
+  inconsistency to confirm on the live build; do not assert the note field exists.)*
 - **R8** After sign-off → Reviewed; final Complete Work Order (any role) →
   Complete (invoice-ready). Invoicing blocked until reviewed.
 - **R9** Ready for Review list filter/column (reviewer queue).
@@ -624,6 +633,26 @@ maps to an **existing Custom Roles atom** (SV-7388, merged to develop). The one
 NET-NEW rule is behavioural, not an atom: **reviewer ≠ completer** (must be built;
 see below).
 
+> **⚠️ CLARIFIED FOR v1 — PO ruling (Milos), 2026-07-10 (relayed by the QA lead):**
+> The **reviewer ≠ completer IDENTITY rule is NOT in v1; self-review IS allowed when
+> the user's role holds the Mark Reviewed permission (permission-gated only).** In
+> plain terms: a user **MAY** Mark Reviewed a work order they completed themselves,
+> **provided their role holds the Review Work Orders / Mark Reviewed permission**. Not
+> everyone can review — only roles that hold the permission in the matrix can — so the
+> rule is **purely PERMISSION-gated, with NO identity restriction**. Origin kept for
+> history: the strict same-user identity block came only from **SV-8183**
+> acceptance-criteria ("Decision 3 / NET-NEW must be built"); **Story 16 (SV-7870)**
+> only ever required a role that holds the permission, which the Review Work Orders
+> gate already covers. Milos has now ruled the strict identity block out of v1.
+> **Every "reviewer ≠ completer" mention below (§9.1 Mark-Reviewed row, §9.3 NET-NEW
+> rule, §10 item 3) is DESCOPED for v1** — the Review Work Orders permission-gating
+> stays; only the same-user identity block is dropped. Case impact: SF-PERM-04/07 +
+> SF-REV-09 re-adjudicated (identity assertion removed; self-review-by-a-permissioned-role
+> explicitly allowed; permission-gating retained & VIU-Verified); **SF-PERM-08 RE-PURPOSED**
+> into the POSITIVE case (a permissioned user CAN Mark Reviewed a WO they completed;
+> a user without the permission cannot) — no longer obsolete. Origin bug BUG-5 /
+> TICKET 1 dropped as expected behavior.
+
 ### 9.1 Action → existing atom map
 
 | Simple-Flow action | Story | Gated by (existing atom) |
@@ -673,6 +702,39 @@ see below).
 Custom roles combine atoms freely (e.g. Technician + Order Parts + Vendor & Order
 Mgmt C&E = "tech who also receives"; leave Review Work Orders ON only for
 manager/foreman for a stricter reviewer).
+
+### Resulting per-role behavior (derived from the system-role matrix)
+
+> **Authoritative per-role behavior table** (re-added 2026-07-10 from
+> `SV-8183-permissions-source.md`). Under last-update-wins this is the latest
+> authoritative input for per-role behavior. **Reconciliation vs §9.2:** this table
+> matches §9.2 above cell-for-cell — **no conflicts / no deltas** (both are the same
+> SV-8183 system-role matrix). Kept here under its canonical SV-8183 title for
+> traceability.
+
+| Role | Edit WO settings | Complete WO | Pick | Order/PO | Receive on WO | Bulk Receive | Assign vendor | Fix part # | Add vendorless part | Mark Reviewed |
+|---|---|---|---|---|---|---|---|---|---|---|
+| Admin | Yes | Yes | Yes | Yes | Yes | Yes | Yes | Yes | Yes | Yes |
+| Service Manager | Yes | Yes | Yes | Yes | Yes | Yes | Yes | Yes | Yes | Yes |
+| Senior SA | No | Yes | Yes | Yes | Yes | Yes | Yes | Yes | Yes | Yes |
+| Service Advisor | No | Yes | Yes | Yes | Yes | Yes | Yes | Yes | Yes | Yes |
+| Foreman | No | Yes | Yes | Yes | Yes | Yes | Yes | Yes | Yes | Yes |
+| Technician | No | No (1) | Yes | No | No | No | No | No | No (2) | No |
+| Parts Manager | No | Yes | Yes | Yes | Yes | Yes | Yes | Yes | Yes | Yes |
+| Parts Tech | No | No (1) | Yes | Yes | Yes | Yes | Yes | Yes | No | No |
+| Office | Yes | No (3) | No | No | No | No (4) | No | No | No | No |
+| Sales Rep | No | No | No | No | No | No | No | No | No | No |
+| Time Clock | No | No | No | No | No | No | No | No | No | No |
+
+**Footnote definitions (verbatim from SV-8183):**
+
+1. **No completion** = Tech View can't approve lines and/or no WO: Create & Edit.
+   Technician can still pick; Parts Tech is a receiver, not a completer.
+2. Technician has WOL Create & Edit but **no See Financial Data**, so cannot enter
+   the mandatory sell price → cannot add a vendorless part (**Decision 4**).
+3. Office has **WO: View only** → configures Simple Flow but cannot operate it.
+4. Office has **Vendor & Order Mgmt: View only** → can open Bulk Receive but
+   cannot receive.
 
 ### 9.3 NEW vs REUSED permissions
 
@@ -808,10 +870,18 @@ with Jira SV-7696…SV-7710 + SV-7870 + SV-7876).*
    — Story 10). (New AC bullet.)
 
 6. **Story 10 (restructured).** S10-R1 unchanged (PN mandatory to receive).
-   **NEW S10-R2 (promoted from AC to requirement):** when a PN is added the part
-   becomes a **first-class inventory/catalog part** — an **existing** number
-   **links** to the item (updates stock + received cost + Part History without
-   overwriting description/category); a **new** number **creates** a new item.
+   **~~NEW S10-R2 (promoted from AC to requirement)~~ — REVERSED/DEPRECATED per spec
+   `_3` (2026-07-14, last-update-wins; QA-lead ruling 2026-07-14):** the earlier V2.4
+   promotion of "when a PN is added the part becomes a **first-class
+   inventory/catalog part** (existing number links / new number creates)" is
+   **struck through in spec `_3` and is NO LONGER a v1 requirement.** Only S10-R1 (PN
+   mandatory to receive) and S10-R3 (field rules) remain in force. Cases rescoped
+   accordingly: SF-PNFIX-02 (C29364), SF-PNFIX-03 (C29365), SF-PNFIX-06 (C29368),
+   SF-QB-08 (C29433) — the first-class-part / catalog-inventory-creation assertions
+   were removed; PN-persists + part-becomes-receivable retained. *(Doc inconsistency
+   flagged: `_3` leaves the Story-10 AC bullets + "Technical guardrails" paragraph
+   still describing first-class-part creation while R2 itself is struck — flagged for
+   spec cleanup.)*
    **S10-R3 (UPDATED):** field rules apply on **BOTH the Bulk Receive page AND the
    single / Accept-Delivery receive screen — parity**; cost is **editable when
    $0 / missing on either receive surface**; sell editable until WO invoiced/paid
@@ -844,3 +914,32 @@ Google-sheet answers):**
 
 **Round-2 questions after V2.4:** only **Q4** partially resolved (sell price now
 mandatory at save; Category half still open). Q1, Q2, Q3, Q5 remain open.
+
+---
+
+## Δ1–Δ4 applied 2026-07-13 (previously recorded as pending)
+
+The four V2.4 deltas catalogued in `spec-diff-2026-07-13.md` (a byte-identical
+re-delivery of the 2026-07-10 silent V2.4 revision) are now **APPLIED** to this
+spec body and to `cases/*.json`, and pushed to TestRail:
+
+- **Δ1 — VIN dropped from the Story-4 completion modal (S4-R3).** S4-R3 above now
+  reads "mileage + engine hours (when missing)"; VIN is captured by the reviewer
+  (Story 16). Story 3 (S3-R3) and Story 15 (S15-R2) **retain** VIN for the review-off
+  completion modal — VIN was not over-removed. Cases: SF-COMP-16, SF-VAL-02
+  (SF-UX-02 / SF-REV-03 already spec-accurate, no change).
+- **Δ2 — Story-4 unapproved line = Complete button DISABLED + tooltip (S4-R8),
+  Story 4 ONLY.** Stories 2/3 (S3-R9) and Story 16 (R11) keep the error-toast /
+  active-CTA model. Cases: SF-COMP-21, SF-COMP-22, SF-VAL-11 (SF-REV-13 unchanged).
+- **Δ3 — new receive-time gates S13-R6 (part number) + S13-R7 (cost / sell price)**
+  added to Story 13 above. Cases: SF-VEND-04, SF-VAL-06, SF-RCV-06, SF-PNFIX-05 +
+  **new case SF-VEND-06** (dedicated S13-R7 cost/sell receive gate).
+- **Δ4 — Mark-Reviewed "optional note" removed (R7).** R7 above is now VIN-only.
+  Cases SF-REV-06 / SF-REV-10 were already note-free (Milos Round-2, 2026-07-09) so
+  no case-content change was needed — V2.4 2026-07-13 confirms the removal. **FLAG:**
+  R10 still lists the test id `input_review_note` — internal spec inconsistency,
+  recorded as a case flag, not asserted; confirm on the live build during re-VIU.
+
+Every case whose expected behaviour changed carries
+`viu_status: "Pending / Retest — expected changed by V2.4 Δ (2026-07-13), needs
+live re-VIU"` + `fresh_run: 2026-07-13`; the wording + VIU pass is the next task.

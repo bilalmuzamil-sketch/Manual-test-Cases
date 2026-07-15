@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Workflow Settings - Shopview</title>
+  <link rel="stylesheet" href="colors_and_type.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { background: var(--sv-bg-app); font-family: var(--sv-font-ui); color: var(--sv-fg-primary); }
+
+    /* Header */
+    .header {
+      background: white; border-bottom: 1px solid var(--sv-border); height: 64px;
+      display: flex; align-items: center; padding: 0 var(--sv-space-6); gap: var(--sv-space-8);
+      position: sticky; top: 0; z-index: 100;
+    }
+    .logo img { width: 32px; height: 32px; }
+    .main-nav { display: flex; gap: var(--sv-space-6); flex: 1; }
+    .main-nav a { color: var(--sv-fg-primary); text-decoration: none; font-weight: 500; font-size: 14px; }
+    .main-nav a:hover { color: var(--sv-brand-blue); }
+    .search-bar { position: relative; width: 280px; }
+    .search-bar input {
+      width: 100%; padding: var(--sv-space-2) var(--sv-space-3) var(--sv-space-2) 36px;
+      border: 1px solid var(--sv-border-strong); border-radius: var(--sv-radius-md);
+      font-size: 14px; background: var(--sv-grey-50); font-family: inherit;
+    }
+    .search-bar input::placeholder { color: var(--sv-fg-tertiary); }
+    .search-bar .search-icon { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--sv-fg-tertiary); }
+    .header-actions { display: flex; align-items: center; gap: var(--sv-space-4); }
+    .avatar { width: 40px; height: 40px; border-radius: 50%; background: var(--sv-grey-700); color: white;
+      display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 14px; }
+
+    /* Tabs */
+    .tabs {
+      display: flex; gap: var(--sv-space-6); padding: 0 var(--sv-space-10);
+      border-bottom: 1px solid var(--sv-border); background: white;
+    }
+    .tab {
+      padding: var(--sv-space-4) 0; color: var(--sv-fg-secondary); text-decoration: none;
+      font-size: 14px; font-weight: 500; border-bottom: 2px solid transparent; margin-bottom: -1px;
+      transition: all 120ms ease-out;
+    }
+    .tab:hover { color: var(--sv-fg-primary); }
+    .tab.active { color: var(--sv-brand-blue); border-bottom-color: var(--sv-brand-blue); font-weight: 600; }
+
+    /* Content */
+    .content { max-width: 1120px; margin: 0 auto; padding: var(--sv-space-4) var(--sv-space-10) var(--sv-space-12); }
+
+    /* Setting row (flat, divided) */
+    .setting {
+      display: flex; align-items: center; justify-content: space-between; gap: var(--sv-space-8);
+      padding: var(--sv-space-6) 0; border-bottom: 1px solid var(--sv-border);
+    }
+    .setting-info { flex: 1; min-width: 0; }
+    .setting-title { font-size: 15px; font-weight: 600; color: var(--sv-grey-800); margin-bottom: var(--sv-space-1); }
+    .setting-desc { font-size: 13px; color: var(--sv-fg-secondary); line-height: 1.5; }
+    .setting-control { flex-shrink: 0; display: flex; align-items: center; }
+
+    /* Vendor invoice — nested sub-setting of Create Purchase Orders */
+    .setting.sub {
+      padding-left: var(--sv-space-6);
+      border-left: 2px solid var(--sv-primary-200);
+      margin-left: var(--sv-space-1);
+    }
+    .setting.sub .setting-title { font-size: 14px; }
+
+    /* Toggle Switch */
+    .toggle-switch { position: relative; width: 44px; height: 24px; cursor: pointer; }
+    .toggle-switch input { opacity: 0; width: 0; height: 0; }
+    .toggle-slider { position: absolute; inset: 0; background: var(--sv-grey-300); border-radius: 12px; transition: all 160ms ease-out; }
+    .toggle-slider:before {
+      content: ''; position: absolute; height: 18px; width: 18px; left: 3px; top: 3px;
+      background: white; border-radius: 50%; transition: all 160ms ease-out; box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+    }
+    .toggle-switch input:checked + .toggle-slider { background: var(--sv-brand-blue); }
+    .toggle-switch input:checked + .toggle-slider:before { transform: translateX(20px); }
+    .toggle-switch:hover .toggle-slider { background: var(--sv-grey-400); }
+    .toggle-switch input:checked:hover + .toggle-slider { background: var(--sv-primary-600); }
+
+    /* Inline radio (Optional / Required) */
+    .radio-inline { display: flex; align-items: center; gap: var(--sv-space-6); }
+    .radio-inline label { display: inline-flex; align-items: center; gap: var(--sv-space-2);
+      font-size: 14px; font-weight: 500; color: var(--sv-grey-700); cursor: pointer; }
+    .radio-inline input[type="radio"] { width: 18px; height: 18px; margin: 0; cursor: pointer; accent-color: var(--sv-brand-blue); }
+
+    /* Save button */
+    .actions { display: flex; justify-content: flex-end; padding-top: var(--sv-space-6); }
+    .btn-primary {
+      background: var(--sv-brand-blue); color: white; border: none; border-radius: var(--sv-radius-md);
+      padding: 10px 20px; font-size: 14px; font-weight: 600; cursor: pointer; font-family: inherit;
+      transition: all 120ms ease-out; box-shadow: var(--sv-shadow-xs);
+    }
+    .btn-primary:hover { background: var(--sv-primary-700); box-shadow: var(--sv-shadow-sm); }
+    .btn-primary:active { background: var(--sv-primary-800); box-shadow: none; }
+
+    .hidden { display: none; }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="logo"><img src="assets/symbol-primary.svg" alt="Shopview"></div>
+    <nav class="main-nav">
+      <a href="#">Work Orders</a>
+      <a href="#">Schedule</a>
+      <a href="#">Customers</a>
+      <a href="#">Parts</a>
+      <a href="#">Reports</a>
+    </nav>
+    <div class="search-bar">
+      <i data-lucide="search" class="search-icon" width="16" height="16"></i>
+      <input type="text" placeholder="Search">
+    </div>
+    <div class="header-actions">
+      <i data-lucide="bell" width="20" height="20"></i>
+      <div class="avatar">AS</div>
+    </div>
+  </header>
+
+  <!-- Tabs -->
+  <div class="tabs">
+    <a href="#" class="tab">Organization</a>
+    <a href="#" class="tab">Invoice</a>
+    <a href="#" class="tab active">Work Orders</a>
+  </div>
+
+  <!-- Content -->
+  <main class="content">
+
+    <!-- Auto-approve Lines -->
+    <div class="setting">
+      <div class="setting-info">
+        <div class="setting-title">Auto-approve Lines</div>
+        <div class="setting-desc">New lines are approved automatically instead of requiring manual approval.</div>
+      </div>
+      <div class="setting-control">
+        <label class="toggle-switch">
+          <input type="checkbox" id="auto-approve-toggle" checked>
+          <span class="toggle-slider"></span>
+        </label>
+      </div>
+    </div>
+
+    <!-- Create Purchase Orders -->
+    <div class="setting">
+      <div class="setting-info">
+        <div class="setting-title">Create Purchase Orders</div>
+        <div class="setting-desc">Purchase orders are created when a work order with vendor parts is completed.</div>
+      </div>
+      <div class="setting-control">
+        <label class="toggle-switch">
+          <input type="checkbox" id="po-toggle" checked onchange="handlePOToggle()">
+          <span class="toggle-slider"></span>
+        </label>
+      </div>
+    </div>
+
+    <!-- Vendor Invoice Number — sub-setting of Create Purchase Orders -->
+    <div class="setting sub" id="vendor-invoice-section">
+      <div class="setting-info">
+        <div class="setting-title">Vendor Invoice Number</div>
+        <div class="setting-desc">Choose whether entering a vendor invoice number is optional or required when completing a work order.</div>
+      </div>
+      <div class="setting-control">
+        <div class="radio-inline">
+          <label><input type="radio" name="vendor-invoice" value="optional"> Optional</label>
+          <label><input type="radio" name="vendor-invoice" value="required" checked> Required</label>
+        </div>
+      </div>
+    </div>
+
+    <!-- Require Tech Story -->
+    <div class="setting">
+      <div class="setting-info">
+        <div class="setting-title">Require Tech Story</div>
+        <div class="setting-desc">Tech story will be a required field before a line can be completed on a work order.</div>
+      </div>
+      <div class="setting-control">
+        <label class="toggle-switch">
+          <input type="checkbox" id="tech-story-toggle">
+          <span class="toggle-slider"></span>
+        </label>
+      </div>
+    </div>
+
+    <!-- Require Mileage -->
+    <div class="setting">
+      <div class="setting-info">
+        <div class="setting-title">Require Mileage</div>
+        <div class="setting-desc">Mileage will be a required field before a line can be completed on a work order.</div>
+      </div>
+      <div class="setting-control">
+        <label class="toggle-switch">
+          <input type="checkbox" id="mileage-toggle" checked>
+          <span class="toggle-slider"></span>
+        </label>
+      </div>
+    </div>
+
+    <!-- Require Engine Hours -->
+    <div class="setting">
+      <div class="setting-info">
+        <div class="setting-title">Require Engine Hours</div>
+        <div class="setting-desc">Engine hours will be a required field before a line can be completed on a work order.</div>
+      </div>
+      <div class="setting-control">
+        <label class="toggle-switch">
+          <input type="checkbox" id="engine-hours-toggle" checked>
+          <span class="toggle-slider"></span>
+        </label>
+      </div>
+    </div>
+
+    <!-- Automatically Pick Inventory Parts -->
+    <div class="setting">
+      <div class="setting-info">
+        <div class="setting-title">Automatically Pick Inventory Parts</div>
+        <div class="setting-desc">Inventory and found parts will automatically skip the pick step and go straight to staged when authorized.</div>
+      </div>
+      <div class="setting-control">
+        <label class="toggle-switch">
+          <input type="checkbox" id="auto-pick-toggle">
+          <span class="toggle-slider"></span>
+        </label>
+      </div>
+    </div>
+
+    <!-- Save -->
+    <div class="actions">
+      <button class="btn-primary">Save Settings</button>
+    </div>
+  </main>
+
+  <script>
+    lucide.createIcons();
+
+    // Vendor Invoice Number is only visible when Create Purchase Orders is on.
+    function handlePOToggle() {
+      const on = document.getElementById('po-toggle').checked;
+      document.getElementById('vendor-invoice-section').classList.toggle('hidden', !on);
+    }
+    handlePOToggle();
+  </script>
+</body>
+</html>

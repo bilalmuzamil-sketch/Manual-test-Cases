@@ -1,0 +1,29 @@
+{
+  "case_id": 27871,
+  "section_id": 3539,
+  "template_id": 2,
+  "title": "Deleting or cancelling a return is controlled by Invoicing & payments Delete",
+  "custom_preconds": "<ol>\n<li>Role A has Invoicing & payments Delete and Vendor and order management.</li>\n<li>Role B has Vendor and order management only (no Invoicing & payments Delete).</li>\n</ol>",
+  "custom_steps_separated": [
+    {
+      "content": "Log in as role A and open Parts > Returns.",
+      "expected": "The returns rows are shown."
+    },
+    {
+      "content": "Open the work-order-type return's action menu.",
+      "expected": "A Delete return option is shown."
+    },
+    {
+      "content": "Open the manual return's action menu.",
+      "expected": "A Cancel return option is shown."
+    },
+    {
+      "content": "Log in as role B and open the work-order-type return's action menu.",
+      "expected": "The Delete return option is not shown (role B lacks Invoicing & payments Delete)."
+    }
+  ],
+  "viu_status": "Blocked-UI: deleting/cancelling a return (gated by Invoicing Delete) needs a part return seeded first (create return via admin) then observe the delete/cancel gate; return flow not seeded this pass.",
+  "evidence": "Reworded; SV-ref/element-id jargon stripped.",
+  "fresh_run": "2026-07-13",
+  "behavioral_run": "2026-07-13"
+}

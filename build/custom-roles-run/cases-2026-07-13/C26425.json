@@ -1,0 +1,12 @@
+{
+  "case_id": 26425,
+  "section_id": 3539,
+  "title": "See Financial Data OFF makes Invoicing & payments inaccessible even with View, Create & Edit and Delete",
+  "custom_preconds": "<ol>\n<li>A user has a role with Invoicing & payments View, Create & Edit and Delete but See Financial Data OFF.</li>\n</ol>",
+  "custom_steps": "<ol>\n<li>Log in and open a work order.</li>\n<li>Look for the Finance tab.</li>\n<li>Look for any invoicing option on the work order or a part sale.</li>\n</ol>",
+  "custom_expected": "<p>The Finance tab is not shown.</p>\n<p>There are no invoicing options.</p>\n<p>Invoicing & payments is inaccessible because See Financial Data is off (it overrides the permissions).</p>\n",
+  "viu_status": "VIU-Verified",
+  "evidence": "UI/editor: See Financial Data OFF makes Invoicing & payments inaccessible — SFD-off roles (e.g. Technician) show no Finance tab on the WO, and the editor forces SFD ON before Invoicing can be enabled (C26471/C26474). Invoicing is unreachable without SFD even with View/C&E/Delete.",
+  "fresh_run": "2026-07-13",
+  "behavioral_run": "2026-07-13"
+}

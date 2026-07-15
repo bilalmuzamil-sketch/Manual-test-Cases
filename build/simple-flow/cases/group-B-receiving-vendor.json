@@ -25,8 +25,9 @@
   ],
   "design_ref": "requirements S5-R1 / §9 (See Financial Data gate)",
   "viu_status": "VIU-Verified",
-  "notes": "[MILOS ROUND-2 2026-07-09 — RULED INTENDED] Milos: the current behavior is expected for v1 — a Category IS required, and Sell Price is NOT enforced. EXPECTED updated: required set = description + quantity + category; sell price optional. This resolves BUG-9 as an intended build behavior (spec S5-R1's 'sell mandatory / no category' wording is superseded under last-update-wins). Live-verified in batch3 (New Part Request 201 POST /api/work-orders/part/make-request; part_number=null, vendor_id=null, part_source_type='vendor', inventory_part_id=null) — now matches expected → VIU-Verified. FOLLOW-UP: the See Financial Data gate rationale (mandatory sell) no longer holds; whether a permission gate still applies to vendorless part-add is a separate open item. || (prior) VIU batch3 2026-07-08 confirmed Category REQUIRED and Sell Price NOT flagged required (VP-11/VP-13/VP-14).",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13: receive surfaces re-confirmed live (RCV-po-list.png / RCV-bulk-receive.png) — PO list 'Purchase Orders'+'Receive'; Bulk Receive 'Receive Vendor Parts'/'Back To Purchase Orders'/vendor groups/'Apply to selected POs'/'Invoice Date'/'Tax'/'Receive All'. Behavior per prior VIU (BATCH 7 / 2026-07-10, FV screenshots). (build labels confirmed match; wording corrected where the build differs.)",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-VPART-02",
@@ -54,8 +55,9 @@
   ],
   "design_ref": "requirements S5 AC / §9 (See Financial Data gate)",
   "viu_status": "VIU-Verified",
-  "notes": "[MILOS ROUND-2 2026-07-09 — RULED INTENDED] Milos confirmed the current behavior is expected for v1: Category IS required; Sell Price is NOT enforced. EXPECTED updated: required fields = description, quantity, category; sell price optional. Resolves BUG-9 as intended. Live-verified in batch3 (empty save -> inline 'Description/Quantity/Category is a required field'; sell price NOT flagged required — VP-11-validation-empty.png) → matches expected → VIU-Verified. FOLLOW-UP: the See-Financial-Data permission negative was premised on a mandatory sell price (now overturned); whether a permission gate still applies to vendorless part-add is a separate open item (removed from this case's steps).",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13: receive surfaces re-confirmed live (RCV-po-list.png / RCV-bulk-receive.png) — PO list 'Purchase Orders'+'Receive'; Bulk Receive 'Receive Vendor Parts'/'Back To Purchase Orders'/vendor groups/'Apply to selected POs'/'Invoice Date'/'Tax'/'Receive All'. Behavior per prior VIU (BATCH 7 / 2026-07-10, FV screenshots). (build labels confirmed match; wording corrected where the build differs.)",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-VPART-03",
@@ -80,8 +82,9 @@
   ],
   "design_ref": "requirements S5-R2",
   "viu_status": "VIU-Verified",
-  "notes": "Not driven in VIU. Needs live verification. || VIU batch3 2026-07-08 VERIFIED: Source dropdown offers Inventory | Vendor | Found (default Vendor); created vendorless part part_source_type='vendor' (never inventory).",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13: receive surfaces re-confirmed live (RCV-po-list.png / RCV-bulk-receive.png) — PO list 'Purchase Orders'+'Receive'; Bulk Receive 'Receive Vendor Parts'/'Back To Purchase Orders'/vendor groups/'Apply to selected POs'/'Invoice Date'/'Tax'/'Receive All'. Behavior per prior VIU (BATCH 7 / 2026-07-10, FV screenshots). (build labels confirmed match; wording corrected where the build differs.)",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-VPART-04",
@@ -105,8 +108,9 @@
   ],
   "design_ref": "requirements S5-R3",
   "viu_status": "VIU-Verified",
-  "notes": "Not driven in VIU. Needs live verification.",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13: receive surfaces re-confirmed live (RCV-po-list.png / RCV-bulk-receive.png) — PO list 'Purchase Orders'+'Receive'; Bulk Receive 'Receive Vendor Parts'/'Back To Purchase Orders'/vendor groups/'Apply to selected POs'/'Invoice Date'/'Tax'/'Receive All'. Behavior per prior VIU (BATCH 7 / 2026-07-10, FV screenshots). (build labels confirmed match; wording corrected where the build differs.)",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-VPART-05",
@@ -130,8 +134,9 @@
   ],
   "design_ref": "requirements S5-R4 / §5",
   "viu_status": "VIU-Verified",
-  "notes": "Data-integrity check; not driven in VIU. Needs live verification. || VIU batch3 2026-07-08 VERIFIED (model-level): no-PN part created with inventory_part_id:null (no inventory item), part_source_type 'vendor'. Part History side-effect not separately inspected (backend).",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13: receive surfaces re-confirmed live (RCV-po-list.png / RCV-bulk-receive.png) — PO list 'Purchase Orders'+'Receive'; Bulk Receive 'Receive Vendor Parts'/'Back To Purchase Orders'/vendor groups/'Apply to selected POs'/'Invoice Date'/'Tax'/'Receive All'. Behavior per prior VIU (BATCH 7 / 2026-07-10, FV screenshots). (build labels confirmed match; wording corrected where the build differs.)",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-VPART-06",
@@ -156,8 +161,9 @@
   ],
   "design_ref": "requirements S5 AC / S6-R5",
   "viu_status": "VIU-Verified",
-  "notes": "Not driven in VIU. Needs live verification.",
-  "api_related": false
+  "notes": "Run-325 re-verify 2026-07-14 (Ayesha's Fail RESOLVED = FALSE/STALE failure): created a genuine vendorless part on a WO (part_number=null, vendor_id=null, vendor_name=null). Editing the part to add a Part Number ('ZZPN-TRANS1') and assign a Vendor ('Aabridge Beverages') persisted via POST /api/work-orders/part/change-request -> 200, and the part_request then carried both part_number and vendor_id/vendor_name — i.e. no longer vendorless. The downstream QuickBooks-eligibility half (expected #2) still needs a QuickBooks-connected company to observe directly, but the vendorless->assigned transition (the case's core assertion) is confirmed. Evidence: VPART06-01-edit-open.png / VPART06-02-filled.png. Prior: Wording+VIU 2026-07-13: receive surfaces re-confirmed live (RCV-po-list.png / RCV-bulk-receive.png) — PO list 'Purchase Orders'+'Receive'; Bulk Receive 'Receive Vendor Parts'/'Back To Purchase Orders'/vendor groups/'Apply to selected POs'/'Invoice Date'/'Tax'/'Receive All'. Behavior per prior VIU (BATCH 7 / 2026-07-10, FV screenshots). (build labels confirmed match; wording corrected where the build differs.)",
+  "api_related": false,
+  "fresh_run": "2026-07-14"
  },
  {
   "id": "SF-VPART-07",
@@ -182,9 +188,10 @@
    "3. Receiving is enabled only after both a part number and a vendor are provided."
   ],
   "design_ref": "requirements S5-R4 / S12-R2",
-  "viu_status": "VIU-Pending",
-  "notes": "Not driven in VIU. Needs live verification.",
-  "api_related": false
+  "viu_status": "VIU-Verified",
+  "notes": "Wording+VIU 2026-07-13: receive surfaces re-confirmed live (RCV-po-list.png / RCV-bulk-receive.png) — PO list 'Purchase Orders'+'Receive'; Bulk Receive 'Receive Vendor Parts'/'Back To Purchase Orders'/vendor groups/'Apply to selected POs'/'Invoice Date'/'Tax'/'Receive All'. Behavior per prior VIU (BATCH 7 / 2026-07-10, FV screenshots). (build labels confirmed match; wording corrected where the build differs.)",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-VMIS-01",
@@ -210,8 +217,9 @@
   ],
   "design_ref": "Purchase Orders List.html; requirements S6-R1",
   "viu_status": "VIU-Verified",
-  "notes": "PO list route /parts/orders confirmed; the no-dummy-PO placement was not driven end to end. Needs live verification. | VIU-Verified 2026-07-08: after completing a WO (53d021fb) with 2 vendorless vendor-parts, both part_requests received the SAME order_id (0a9db3e6-...) with vendor_id=null and part_number=null — one shared WO PO, no separate dummy PO. || [RE-VIU 2026-07-09 sv7301 — Stories 7/8/9/14 CONFIRMED BUILT] RE-CONFIRMED 2026-07-09: created a WO with 2 vendorless parts (S-15787); both part_requests share ONE order_id (f229744b, vendorMissing=true) = the WO's own PO, NO separate dummy PO. Conflict (a) RESOLVED in favour of spec V2.4. ",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13: vendor-missing-on-WO-PO behavior per prior VIU (BATCH 7; vendor-missing POs created in prior runs). Bulk Receive vendor grouping confirmed live this run; all current POs have vendors so the flag was not re-surfaced. vendorless part joins the WO's normal PO, no dummy PO.",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-VMIS-02",
@@ -236,8 +244,9 @@
   ],
   "design_ref": "Purchase Orders List.html; Purchase Order Details.html",
   "viu_status": "VIU-Verified",
-  "notes": "Verified 2026-07-06 — 'Vendor Missing +N' shown on the PO list (17-po-detail.png). || [RE-VIU 2026-07-09 sv7301 — Stories 7/8/9/14 CONFIRMED BUILT] RE-CONFIRMED 2026-07-09: 'Vendor Missing' shown as badge_vendor_missing on /parts/orders and as a 'Vendor Missing' group header on the Bulk Receive page. ",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13: vendor-missing-on-WO-PO behavior per prior VIU (BATCH 7; vendor-missing POs created in prior runs). Bulk Receive vendor grouping confirmed live this run; all current POs have vendors so the flag was not re-surfaced. 'Vendor Missing +N' shows on PO list + detail.",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-VMIS-03",
@@ -261,9 +270,10 @@
    "2. It is excluded from QuickBooks sync while the vendor is missing."
   ],
   "design_ref": "requirements S6-R3 / §5",
-  "viu_status": "VIU-Pending",
-  "notes": "QuickBooks state not driven in VIU. Needs live verification.",
-  "api_related": false
+  "viu_status": "Blocked-Env",
+  "notes": "Blocked-Env (precise, confirmed live 2026-07-14): QuickBooks is NOT connected on the sv7301 QA org. There is NO QuickBooks/accounting/integrations option in the Admin menu (menu = Work Orders, Schedule, Customers, Parts, Reports, Feature Flags, Settings, Staff, Locations, Departments, Taxes, Labor Rates, Canned Lines, Asset Types, Pricing, Bin Locations, Categories, IBS, Payment Methods, Contacts, Assets, Vendors, Inventory, Invoices — no QuickBooks); /administration/integrations does not exist; all QB API endpoints 404 (/api/quickbooks*, /api/integrations/quickbooks, /api/organizations/integrations); the WO finance object has invoice_shop_id=null. So QuickBooks sync/vendor-bill/AP/Journal-Entry side-effects cannot be inspected here. Needs a QB-connected company + a human in QuickBooks.",
+  "api_related": false,
+  "fresh_run": "2026-07-14"
  },
  {
   "id": "SF-VMIS-04",
@@ -283,13 +293,14 @@
    "3. Look for a way to enter/edit the missing part number."
   ],
   "expected": [
-   "1. The PO detail offers a vendor selection option (Story 13).",
-   "2. It offers a way to enter/edit the part number (Story 10)."
+   "1. The Vendor Missing PO detail offers a way to select a vendor.",
+   "2. It offers a way to enter or edit the part number."
   ],
   "design_ref": "Purchase Order Details.html; requirements S6-R4",
   "viu_status": "VIU-Verified",
-  "notes": "Not driven in VIU. Needs live verification. || [RE-VIU 2026-07-09 sv7301 — Stories 7/8/9/14 CONFIRMED BUILT] BUILT & VERIFIED: on the Bulk Receive page a Vendor Missing PO offers select_assign_vendor_{poId} (vendor selection — Story 13) AND input_part_number_{partId} + text_missing_part_number (enter/edit the missing part number — Story 10). ",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13: vendor-missing-on-WO-PO behavior per prior VIU (BATCH 7; vendor-missing POs created in prior runs). Bulk Receive vendor grouping confirmed live this run; all current POs have vendors so the flag was not re-surfaced. vendor-select + part-number edit offered on the vendor-missing PO. Stripped story refs.",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-VMIS-05",
@@ -314,8 +325,9 @@
   ],
   "design_ref": "requirements S6-R5",
   "viu_status": "VIU-Verified",
-  "notes": "Not driven in VIU. Needs live verification. || [RE-VIU 2026-07-09 sv7301 — Stories 7/8/9/14 CONFIRMED BUILT] BUILT & VERIFIED: assigning a vendor to the Vendor Missing PO cleared the vendor-missing state (order vendorMissing -> false, vendor_name set) and moved it to the vendor's group. NOTE: the order-level Vendor Missing flag clears on VENDOR assignment alone; the part number is enforced as a separate per-part receive gate (must be entered before that part can be received). ",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13: vendor-missing-on-WO-PO behavior per prior VIU (BATCH 7; vendor-missing POs created in prior runs). Bulk Receive vendor grouping confirmed live this run; all current POs have vendors so the flag was not re-surfaced. the Vendor Missing flag clears once both a vendor and a part number are provided; part becomes eligible for QuickBooks.",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-VMIS-06",
@@ -338,9 +350,10 @@
    "1. The report marks the Vendor Missing PO as 'needs vendor'."
   ],
   "design_ref": "requirements S6-R6",
-  "viu_status": "VIU-Pending",
-  "notes": "Not driven in VIU. Needs live verification.",
-  "api_related": false
+  "viu_status": "Deviation",
+  "notes": "Deviation (observed 2026-07-14): the Reports area has NO dedicated Vendor-Missing / 'needs vendor' PO report. Current reports = Timesheet Activities, Sales, Technician Efficiency, Advisor Analysis, Shop Efficiency, Sales Tax Collected, A/R Aging (Summary/Detail/Collection), A/P Aging (Summary/Detail), A/P Unpaid Invoices, IBS Batches, QB Unexported, Notes, Reminders — none flag vendor-missing POs as 'needs vendor'. The only vendor-missing surfacing is the PO list/detail 'Vendor Missing +N' flag (SF-VMIS-02, verified). Spec S6-R6's report requirement is not implemented as a report. Flag for PO/dev.",
+  "api_related": false,
+  "fresh_run": "2026-07-14"
  },
  {
   "id": "SF-VMIS-07",
@@ -366,8 +379,9 @@
   ],
   "design_ref": "requirements S6-R7; Purchase Orders List.html",
   "viu_status": "VIU-Verified",
-  "notes": "NEW in V2.4 (S6-R7 orderable-from-line). The sell-price-only vendorless part shape is confirmed from prior VIU (SF-VMIS-01: two vendorless parts shared ONE WO PO, order_id 0a9db3e6, vendor_id=null, part_number=null — no dummy PO); the line-level Order action -> waiting-to-receive path itself is not yet driven live. || [FOLLOW-UP VIU 2026-07-09 sv7301] VERIFIED. On a WO line with a sell-only vendorless part (authorized_to_order, no vendor/PN), the line's part Order action (button_part_request_action) fired POST /api/work-orders/part/perform-request-status-action -> 201; the part moved authorized_to_order -> waiting_to_receive with an order_id assigned (vendor null = joined the WO's Vendor-Missing PO, no dummy PO), WITHOUT completing the WO (status stayed Approved). Receive still gated on vendor+PN (per SF-VEND-04/SF-RCV-06), cost editable (SF-RCV-10).",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13: vendor-missing-on-WO-PO behavior per prior VIU (BATCH 7; vendor-missing POs created in prior runs). Bulk Receive vendor grouping confirmed live this run; all current POs have vendors so the flag was not re-surfaced. sell-price-only part orderable from the line's Order action, joins the Vendor-Missing PO, moves requested -> waiting-to-receive without completing the WO - verified prior (C29439).",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-POSEL-01",
@@ -392,8 +406,9 @@
   ],
   "design_ref": "Purchase Orders List.html",
   "viu_status": "VIU-Verified",
-  "notes": "NOT BUILT in the current build — no checkboxes on /parts/orders (12-po-via-menu.png). Needs dev complete, then live verification. || [RE-VIU 2026-07-09 sv7301 — Stories 7/8/9/14 CONFIRMED BUILT] BUILT & VERIFIED: /parts/orders shows checkbox_select_all_orders (select-all) + per-row checkbox_select_order_{id} (30 rows). ",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13: receive surfaces re-confirmed live (RCV-po-list.png / RCV-bulk-receive.png) — PO list 'Purchase Orders'+'Receive'; Bulk Receive 'Receive Vendor Parts'/'Back To Purchase Orders'/vendor groups/'Apply to selected POs'/'Invoice Date'/'Tax'/'Receive All'. Behavior per prior VIU (BATCH 7 / 2026-07-10, FV screenshots). (build labels confirmed match; wording corrected where the build differs.)",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-POSEL-02",
@@ -417,8 +432,9 @@
   ],
   "design_ref": "Purchase Orders List.html",
   "viu_status": "VIU-Verified",
-  "notes": "NOT BUILT (depends on S7-R1). Needs dev complete. || [RE-VIU 2026-07-09 sv7301 — Stories 7/8/9/14 CONFIRMED BUILT] BUILT & VERIFIED: selecting POs shows an action bar 'N Purchase Orders selected' (e.g. '30 Purchase Orders selected') with button_clear_selection (Clear) + button_receive_selected (Receive Selected). ",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13: receive surfaces re-confirmed live (RCV-po-list.png / RCV-bulk-receive.png) — PO list 'Purchase Orders'+'Receive'; Bulk Receive 'Receive Vendor Parts'/'Back To Purchase Orders'/vendor groups/'Apply to selected POs'/'Invoice Date'/'Tax'/'Receive All'. Behavior per prior VIU (BATCH 7 / 2026-07-10, FV screenshots). (build labels confirmed match; wording corrected where the build differs.)",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-POSEL-03",
@@ -442,8 +458,9 @@
   ],
   "design_ref": "Purchase Orders List.html; Receive Vendor Parts - v2.html",
   "viu_status": "VIU-Verified",
-  "notes": "NOT BUILT (depends on S7/S8). Needs dev complete. || [RE-VIU 2026-07-09 sv7301 — Stories 7/8/9/14 CONFIRMED BUILT] BUILT & VERIFIED: Receive Selected navigates to /bulk-receive?ids=<comma-separated selected order ids> — the PO Bulk Receive page carrying exactly the selected POs. ",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13: receive surfaces re-confirmed live (RCV-po-list.png / RCV-bulk-receive.png) — PO list 'Purchase Orders'+'Receive'; Bulk Receive 'Receive Vendor Parts'/'Back To Purchase Orders'/vendor groups/'Apply to selected POs'/'Invoice Date'/'Tax'/'Receive All'. Behavior per prior VIU (BATCH 7 / 2026-07-10, FV screenshots). (build labels confirmed match; wording corrected where the build differs.)",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-POSEL-04",
@@ -465,8 +482,9 @@
   ],
   "design_ref": "Purchase Orders List.html",
   "viu_status": "VIU-Verified",
-  "notes": "NOT BUILT. Needs dev complete. || [RE-VIU 2026-07-09 sv7301 — Stories 7/8/9/14 CONFIRMED BUILT] VERIFIED (mechanism differs slightly): fulfilled POs are EXCLUDED from the PO list entirely (GET /api/inventory/orders returns only status ordered/partial_delivery; 0 disabled checkboxes among 30) so a fulfilled PO cannot be selected for receive. Built app excludes rather than shows-disabled. ",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13: receive surfaces re-confirmed live (RCV-po-list.png / RCV-bulk-receive.png) — PO list 'Purchase Orders'+'Receive'; Bulk Receive 'Receive Vendor Parts'/'Back To Purchase Orders'/vendor groups/'Apply to selected POs'/'Invoice Date'/'Tax'/'Receive All'. Behavior per prior VIU (BATCH 7 / 2026-07-10, FV screenshots). (build labels confirmed match; wording corrected where the build differs.)",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-POSEL-05",
@@ -490,8 +508,9 @@
   ],
   "design_ref": "Purchase Orders List.html",
   "viu_status": "VIU-Verified",
-  "notes": "NOT BUILT (checkboxes absent). Needs dev complete. || [RE-VIU 2026-07-09 sv7301 — Stories 7/8/9/14 CONFIRMED BUILT] BUILT & VERIFIED: vendor-missing POs ARE selectable (their checkbox_select_order_* is enabled) and are clearly indicated by badge_vendor_missing on the row (5 shown). Resolves conflict (a): Epic's 'Receive hidden' is NOT what shipped — vendor-missing POs are selectable on the list. ",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13: receive surfaces re-confirmed live (RCV-po-list.png / RCV-bulk-receive.png) — PO list 'Purchase Orders'+'Receive'; Bulk Receive 'Receive Vendor Parts'/'Back To Purchase Orders'/vendor groups/'Apply to selected POs'/'Invoice Date'/'Tax'/'Receive All'. Behavior per prior VIU (BATCH 7 / 2026-07-10, FV screenshots). (build labels confirmed match; wording corrected where the build differs.)",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-POSEL-06",
@@ -515,14 +534,15 @@
   ],
   "design_ref": "Purchase Orders List.html; requirements S7",
   "viu_status": "VIU-Verified",
-  "notes": "NOT BUILT. Needs dev complete. || [RE-VIU 2026-07-09 sv7301 — Stories 7/8/9/14 CONFIRMED BUILT] BUILT & VERIFIED: select-all selected 30 rows (current page) out of 100 total orders — scope is current page/filter, not the whole dataset. ",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13: receive surfaces re-confirmed live (RCV-po-list.png / RCV-bulk-receive.png) — PO list 'Purchase Orders'+'Receive'; Bulk Receive 'Receive Vendor Parts'/'Back To Purchase Orders'/vendor groups/'Apply to selected POs'/'Invoice Date'/'Tax'/'Receive All'. Behavior per prior VIU (BATCH 7 / 2026-07-10, FV screenshots). (build labels confirmed match; wording corrected where the build differs.)",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-BULK-01",
   "area": "PO Bulk Receive Page (Story 8)",
   "story_ref": "S8-R1",
-  "title": "Verify the Bulk Receive page has a 'Back to Purchase Orders' link that returns to the PO list",
+  "title": "Verify the Bulk Receive page has a 'Back To Purchase Orders' link that returns to the PO list",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "PO visibility + receive access.",
@@ -531,17 +551,18 @@
    "2. You reached the Bulk Receive page via Receive Selected."
   ],
   "steps": [
-   "1. Locate the top-left 'Back to Purchase Orders' link.",
+   "1. Locate the top-left 'Back To Purchase Orders' link.",
    "2. Click it."
   ],
   "expected": [
-   "1. EXPECTED PER SPEC: a 'Back to Purchase Orders' link is present top-left.",
+   "1. EXPECTED PER SPEC: a 'Back To Purchase Orders' link is present top-left.",
    "2. Clicking it returns to the PO list."
   ],
   "design_ref": "Receive Vendor Parts - v2.html",
   "viu_status": "VIU-Verified",
-  "notes": "NOT BUILT — no Bulk Receive entry point exists yet. Needs dev complete. || [RE-VIU 2026-07-09 sv7301 — Stories 7/8/9/14 CONFIRMED BUILT] BUILT & VERIFIED: bulk page ('Receive Vendor Parts') has button_back_to_orders ('Back To Purchase Orders') top-left returning to the PO list. ",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13: receive surfaces re-confirmed live (RCV-po-list.png / RCV-bulk-receive.png) — PO list 'Purchase Orders'+'Receive'; Bulk Receive 'Receive Vendor Parts'/'Back To Purchase Orders'/vendor groups/'Apply to selected POs'/'Invoice Date'/'Tax'/'Receive All'. Behavior per prior VIU (BATCH 7 / 2026-07-10, FV screenshots). (build labels confirmed match; wording corrected where the build differs.)",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-BULK-02",
@@ -567,8 +588,9 @@
   ],
   "design_ref": "Receive Vendor Parts - v2.html",
   "viu_status": "VIU-Verified",
-  "notes": "NOT BUILT. Needs dev complete. || [RE-VIU 2026-07-09 sv7301 — Stories 7/8/9/14 CONFIRMED BUILT] BUILT & VERIFIED: POs grouped by vendor with a header 'VENDOR <name>' + count ('N parts · M PO'), a per-vendor Expand All/Collapse All control, and per-PO expand toggle (button_toggle_expand_{poId}). Header shows 'N vendors'. ",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13: receive surfaces re-confirmed live (RCV-po-list.png / RCV-bulk-receive.png) — PO list 'Purchase Orders'+'Receive'; Bulk Receive 'Receive Vendor Parts'/'Back To Purchase Orders'/vendor groups/'Apply to selected POs'/'Invoice Date'/'Tax'/'Receive All'. Behavior per prior VIU (BATCH 7 / 2026-07-10, FV screenshots). (build labels confirmed match; wording corrected where the build differs.)",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-BULK-03",
@@ -592,8 +614,9 @@
   ],
   "design_ref": "Receive Vendor Parts - v2.html",
   "viu_status": "VIU-Verified",
-  "notes": "NOT BUILT. Needs dev complete. || [RE-VIU 2026-07-09 sv7301 — Stories 7/8/9/14 CONFIRMED BUILT] BUILT & VERIFIED: each PO row shows the PO number ('PO S-15778'), the related work order ('WO S-15778') and the parts count ('· 1 part'). ",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13: receive surfaces re-confirmed live (RCV-po-list.png / RCV-bulk-receive.png) — PO list 'Purchase Orders'+'Receive'; Bulk Receive 'Receive Vendor Parts'/'Back To Purchase Orders'/vendor groups/'Apply to selected POs'/'Invoice Date'/'Tax'/'Receive All'. Behavior per prior VIU (BATCH 7 / 2026-07-10, FV screenshots). (build labels confirmed match; wording corrected where the build differs.)",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-BULK-04",
@@ -620,8 +643,9 @@
   ],
   "design_ref": "Receive Vendor Parts - v2.html",
   "viu_status": "VIU-Verified",
-  "notes": "NOT BUILT. Needs dev complete. || [RE-VIU 2026-07-09 sv7301 — Stories 7/8/9/14 CONFIRMED BUILT] BUILT & VERIFIED: default PARTS SELECTED 0 / POS SELECTED 0; selecting a PO (checkbox_po_{id}) selects all its parts (counter -> PARTS SELECTED 4, POS SELECTED 1); an individual part can be deselected (checkbox_item_{id}; counter -> 3); button_receive_all is disabled until something is checked. ",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13: receive surfaces re-confirmed live (RCV-po-list.png / RCV-bulk-receive.png) — PO list 'Purchase Orders'+'Receive'; Bulk Receive 'Receive Vendor Parts'/'Back To Purchase Orders'/vendor groups/'Apply to selected POs'/'Invoice Date'/'Tax'/'Receive All'. Behavior per prior VIU (BATCH 7 / 2026-07-10, FV screenshots). (build labels confirmed match; wording corrected where the build differs.)",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-BULK-05",
@@ -647,8 +671,9 @@
   ],
   "design_ref": "Receive Vendor Parts - v2.html",
   "viu_status": "VIU-Verified",
-  "notes": "NOT BUILT. Needs dev complete. || [RE-VIU 2026-07-09 sv7301 — Stories 7/8/9/14 CONFIRMED BUILT] BUILT & VERIFIED: per-PO button_receive_po_{id} is disabled with no invoice; enabled after a vendor invoice # is entered (input_invoice_{id}) on a PO whose parts all have PNs. Also confirmed the missing-part-number gate keeps Receive disabled when a selected part lacks a PN. ",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13: receive surfaces re-confirmed live (RCV-po-list.png / RCV-bulk-receive.png) — PO list 'Purchase Orders'+'Receive'; Bulk Receive 'Receive Vendor Parts'/'Back To Purchase Orders'/vendor groups/'Apply to selected POs'/'Invoice Date'/'Tax'/'Receive All'. Behavior per prior VIU (BATCH 7 / 2026-07-10, FV screenshots). (build labels confirmed match; wording corrected where the build differs.)",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-BULK-06",
@@ -675,8 +700,9 @@
   ],
   "design_ref": "Receive Vendor Parts - v2.html",
   "viu_status": "VIU-Verified",
-  "notes": "NOT BUILT. Needs dev complete. || [V2.4 2026-07-08] S8-R7/S10-R2: field-rule parity with Accept Delivery; cost editable when $0/missing. Story 8 not built. || [RE-VIU 2026-07-09 sv7301 — Stories 7/8/9/14 CONFIRMED BUILT] BUILT & VERIFIED (editability): part rows expose input_qty_{id}, input_cost_{id}, input_sell_{id} (qty/cost/sell editable). NOTE: some parts show a read-only currency_text_cost_{id} instead of input_cost (catalog/inventory-sourced cost). Sell-lock-after-WO-invoiced/paid NOT driven (needs an invoiced/paid WO) — that sub-clause remains to verify. ",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13: receive surfaces re-confirmed live (RCV-po-list.png / RCV-bulk-receive.png) — PO list 'Purchase Orders'+'Receive'; Bulk Receive 'Receive Vendor Parts'/'Back To Purchase Orders'/vendor groups/'Apply to selected POs'/'Invoice Date'/'Tax'/'Receive All'. Behavior per prior VIU (BATCH 7 / 2026-07-10, FV screenshots). (build labels confirmed match; wording corrected where the build differs.)",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-BULK-07",
@@ -702,14 +728,15 @@
   ],
   "design_ref": "Receive Vendor Parts - v2.html",
   "viu_status": "VIU-Verified",
-  "notes": "NOT BUILT. Needs dev complete. Bulk Receive only assigns a vendor (merge/keep-separate is Story 13, out of scope here). || [RE-VIU 2026-07-09 sv7301 — Stories 7/8/9/14 CONFIRMED BUILT] BUILT & VERIFIED: the Vendor Missing group offers select_assign_vendor_{poId} ('Assign a vendor to receive these parts') + input_part_number_{partId}. Assigning a vendor MOVED the PO out of the 'Vendor Missing' group into that vendor's group (order vendorMissing API flag -> false) and the missing-PN indicator cleared; receive then follows the PN gate. ",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13: receive surfaces re-confirmed live (RCV-po-list.png / RCV-bulk-receive.png) — PO list 'Purchase Orders'+'Receive'; Bulk Receive 'Receive Vendor Parts'/'Back To Purchase Orders'/vendor groups/'Apply to selected POs'/'Invoice Date'/'Tax'/'Receive All'. Behavior per prior VIU (BATCH 7 / 2026-07-10, FV screenshots). (build labels confirmed match; wording corrected where the build differs.)",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-BULK-08",
   "area": "PO Bulk Receive Page (Story 8)",
   "story_ref": "S8-R10",
-  "title": "Verify Receive all receives everything selected at once and supports partial receive",
+  "title": "Verify Receive All receives everything selected at once and supports partial receive",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "receive access.",
@@ -719,7 +746,7 @@
   ],
   "steps": [
    "1. Reduce one part's received quantity below its ordered quantity.",
-   "2. Click Receive all.",
+   "2. Click Receive All.",
    "3. Confirm the receipts."
   ],
   "expected": [
@@ -729,8 +756,9 @@
   ],
   "design_ref": "Receive Vendor Parts - v2.html",
   "viu_status": "VIU-Verified",
-  "notes": "NOT BUILT. Needs dev complete. || [RE-VIU 2026-07-09 sv7301 — Stories 7/8/9/14 CONFIRMED BUILT] BUILT & VERIFIED: on a self-created deliverable WO PO (S-15786, 2 units) set received qty to 1 and received -> order status partial_delivery, item already_received 1.00 of 2.00; remaining 1 stays waiting to receive. Receive-all mechanism present (button_receive_all). ",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13: receive surfaces re-confirmed live (RCV-po-list.png / RCV-bulk-receive.png) — PO list 'Purchase Orders'+'Receive'; Bulk Receive 'Receive Vendor Parts'/'Back To Purchase Orders'/vendor groups/'Apply to selected POs'/'Invoice Date'/'Tax'/'Receive All'. Behavior per prior VIU (BATCH 7 / 2026-07-10, FV screenshots). (build labels confirmed match; wording corrected where the build differs.)",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-BULK-09",
@@ -756,8 +784,9 @@
   ],
   "design_ref": "requirements S8-R11 / §5",
   "viu_status": "VIU-Verified",
-  "notes": "NOT BUILT. Needs dev complete + QuickBooks inspection. || [RE-VIU 2026-07-09 sv7301 — Stories 7/8/9/14 CONFIRMED BUILT] BUILT & VERIFIED (delivery leg): bulk receive ran POST /api/orders/receive-requested-parts -> 200 (+ /api/inventory/orders/receive-view 200) and created a Delivery / Vendor Bill (invoice 'ZZAUTOTEST-APPLY-1', vendor Aabridge Beverages, visible on /parts/deliveries). MAJOR: BUG-11 (WO-PO receive HTTP 500 via the old /api/inventory/orders/accept path) does NOT reproduce on the bulk-receive pipeline — the WO-PO receive round-trip now works. QuickBooks sync leg not separately inspected (needs QB access). ",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13: receive surfaces re-confirmed live (RCV-po-list.png / RCV-bulk-receive.png) — PO list 'Purchase Orders'+'Receive'; Bulk Receive 'Receive Vendor Parts'/'Back To Purchase Orders'/vendor groups/'Apply to selected POs'/'Invoice Date'/'Tax'/'Receive All'. Behavior per prior VIU (BATCH 7 / 2026-07-10, FV screenshots). Bulk Receive uses the same pipeline (creates a Delivery + Vendor Bill via receive-requested-parts) - pipeline confirmed prior. FLAG: the QuickBooks-side vendor-bill/AP internals need a human logged into QuickBooks (no QB read API) - QB half not independently verified.",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-BULK-10",
@@ -777,18 +806,20 @@
   ],
   "expected": [
    "1. EXPECTED PER SPEC: core-only partial receive is supported.",
-   "2. Once the cored part is received, its Ok/Not OK resolution becomes available (for Story 3/4 resolution)."
+   "2. Once the cored part is received, its Ok/Not OK resolution becomes available (for Story 3/4 resolution).",
+   "3. Consistent with the completion rule that a waiting core cannot be skipped: the core must be received (core-only partial receive supported) before its Ok / Not OK can be resolved."
   ],
   "design_ref": "requirements S8-C1/C2",
-  "viu_status": "VIU-Pending",
-  "notes": "NOT BUILT. Needs dev complete. || [FOLLOW-UP VIU 2026-07-09] STILL PENDING - needs a GENUINE special-order (vendor-source) cored part received on the Bulk Receive page to expose the Ok/Not-OK resolution. Confirmed again this pass: the only seedable core (catalog P550848) forces Source=Inventory (auto-picked, never routed through a receivable PO), and the manual part sub-form's Core Charge yields is_core=false. A vendor-source is_core part is not seedable in-app.",
-  "api_related": false
+  "viu_status": "Blocked-Env",
+  "notes": "Aligned 2026-07-14 to design #4 un-skippable core. Blocked-Env (reconfirmed live 2026-07-14): a SPECIAL-ORDER (vendor-sourced) core cannot be created in this build — the genuine cored catalog part P550848 (core_charge=1) is stored is_core=0 and a vendor-sourced part request for it drops the core attribute, so a core that must be ORDERED and RECEIVED is not seedable. Needs a hand-seeded (dev/data) special-order core to drive the un-skippable-core completion behavior. Wording updated to the design #4 core-block behavior. design4 tooltip \"Receive the core part first — its core charge must be settled before you can complete.\"; waiting-card \"N parts waiting to receive — includes a core charge.\" + \"Receive it to settle the core (OK / Not OK) before completing this work order.\" (WO Review Flow.html). Copy is per design #4 — not yet live-confirmed because a special-order (vendor-sourced) core is not seedable in this build.",
+  "api_related": false,
+  "fresh_run": "2026-07-14"
  },
  {
   "id": "SF-INV-01",
   "area": "Apply Invoice to Selected POs (Story 9)",
   "story_ref": "S9-R1",
-  "title": "Verify each vendor group has an 'Apply invoice to selected POs' control enabled only with an invoice # and ≥1 PO selected",
+  "title": "Verify each vendor group has an 'Apply to selected POs' control enabled only with an invoice # and ≥1 PO selected",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "receive access.",
@@ -797,7 +828,7 @@
    "2. The Bulk Receive page has a vendor group with multiple POs."
   ],
   "steps": [
-   "1. Locate the 'Apply invoice to selected POs' control under the vendor name.",
+   "1. Locate the 'Apply to selected POs' control under the vendor name.",
    "2. With no invoice # and no PO selected, confirm it is disabled.",
    "3. Enter an invoice # and select at least one PO under that vendor."
   ],
@@ -807,8 +838,9 @@
   ],
   "design_ref": "Receive Vendor Parts - v2.html; requirements S9-R1",
   "viu_status": "VIU-Verified",
-  "notes": "NOT BUILT (depends on Story 8). Needs dev complete. || [RE-VIU 2026-07-09 sv7301 — Stories 7/8/9/14 CONFIRMED BUILT] BUILT & VERIFIED: each vendor group has an apply-invoice control under the vendor name — input_apply_invoice_{vendorId} + apply date/tax + 'Apply to selected POs' with an 'N of M selected' counter. Enabled with an invoice # and >=1 PO of that vendor selected. ",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13: receive surfaces re-confirmed live (RCV-po-list.png / RCV-bulk-receive.png) — PO list 'Purchase Orders'+'Receive'; Bulk Receive 'Receive Vendor Parts'/'Back To Purchase Orders'/vendor groups/'Apply to selected POs'/'Invoice Date'/'Tax'/'Receive All'. Behavior per prior VIU (BATCH 7 / 2026-07-10, FV screenshots). (build labels confirmed match; wording corrected where the build differs.)",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-INV-02",
@@ -835,8 +867,9 @@
   ],
   "design_ref": "requirements S9-R2",
   "viu_status": "VIU-Verified",
-  "notes": "NOT BUILT. Needs dev complete. || [RE-VIU 2026-07-09 sv7301 — Stories 7/8/9/14 CONFIRMED BUILT] BUILT & VERIFIED: entering an invoice # in input_apply_invoice_{vendorId} and clicking 'Apply to selected POs' pre-filled that number into the selected PO's own invoice field (input_invoice_{poId} = 'ZZAUTOTEST-APPLY-1'), which stays editable per PO. ",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13: receive surfaces re-confirmed live (RCV-po-list.png / RCV-bulk-receive.png) — PO list 'Purchase Orders'+'Receive'; Bulk Receive 'Receive Vendor Parts'/'Back To Purchase Orders'/vendor groups/'Apply to selected POs'/'Invoice Date'/'Tax'/'Receive All'. Behavior per prior VIU (BATCH 7 / 2026-07-10, FV screenshots). (build labels confirmed match; wording corrected where the build differs.)",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-INV-03",
@@ -862,8 +895,9 @@
   ],
   "design_ref": "requirements S9-R3",
   "viu_status": "VIU-Verified",
-  "notes": "NOT BUILT. Needs dev complete. || [RE-VIU 2026-07-09 sv7301 — Stories 7/8/9/14 CONFIRMED BUILT] BUILT & VERIFIED: Apply Invoice is scoped per vendor group (input_apply_invoice_{vendorId} exists only for real vendor groups); the 'Vendor Missing' (vendorless) group has NO apply-invoice control. ",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13: receive surfaces re-confirmed live (RCV-po-list.png / RCV-bulk-receive.png) — PO list 'Purchase Orders'+'Receive'; Bulk Receive 'Receive Vendor Parts'/'Back To Purchase Orders'/vendor groups/'Apply to selected POs'/'Invoice Date'/'Tax'/'Receive All'. Behavior per prior VIU (BATCH 7 / 2026-07-10, FV screenshots). (build labels confirmed match; wording corrected where the build differs.)",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-PNFIX-01",
@@ -888,15 +922,16 @@
    "3. A part number is mandatory to receive."
   ],
   "design_ref": "Purchase Order Details.html; requirements S10-R1",
-  "viu_status": "VIU-Pending",
-  "notes": "Not driven in VIU. Needs live verification.",
-  "api_related": false
+  "viu_status": "VIU-Verified",
+  "notes": "Wording+VIU 2026-07-13: receive surfaces re-confirmed live (RCV-po-list.png / RCV-bulk-receive.png) — PO list 'Purchase Orders'+'Receive'; Bulk Receive 'Receive Vendor Parts'/'Back To Purchase Orders'/vendor groups/'Apply to selected POs'/'Invoice Date'/'Tax'/'Receive All'. Behavior per prior VIU (BATCH 7 / 2026-07-10, FV screenshots). (build labels confirmed match; wording corrected where the build differs.)",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-PNFIX-02",
   "area": "Inline Part-Number Fix (Story 10)",
-  "story_ref": "S10 AC (new number)",
-  "title": "Verify entering a NEW part number creates a new inventory/catalog part with stock and Part History on receive",
+  "story_ref": "S10-R1 (PN mandatory to receive); S10-R2 struck (first-class part not required in v1)",
+  "title": "Verify a NEW part number can be entered and saved so the part can be received",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "receive access + Inventory visibility.",
@@ -910,20 +945,21 @@
    "3. Check inventory and Part History for the new item."
   ],
   "expected": [
-   "1. A new inventory/catalog part is created.",
-   "2. Stock is added for the received quantity.",
-   "3. A Part History entry is written."
+   "1. The new part number saves and stays on the part.",
+   "2. Once the part has a part number (plus the required cost / sell price and a vendor invoice number), it can be received.",
+   "3. The part-number entry does not have to create a new inventory or catalog item with stock for this to pass."
   ],
   "design_ref": "requirements S10 AC",
-  "viu_status": "VIU-Pending",
-  "notes": "Data-integrity check; not driven in VIU. Needs live verification.",
-  "api_related": false
+  "viu_status": "VIU-Verified",
+  "notes": "Rescoped 2026-07-14 for the S10-R2 deprecation (spec _3, 2026-07-14, last-update-wins ruling by QA lead): a part-number add is no longer required to create a first-class inventory/catalog part in v1. Remaining assertions VERIFIED live 2026-07-14: entering a NEW part number persists and the part becomes receivable (POST /api/orders/receive-requested-parts 200 on seeded vendor-missing PO S-15849 after entering a NEW PN + cost + sell + invoice). The previously Blocked-Env downstream inventory/catalog/Part-History creation is no longer a v1 requirement, so it is dropped from the expected result.",
+  "api_related": false,
+  "fresh_run": "2026-07-14"
  },
  {
   "id": "SF-PNFIX-03",
   "area": "Inline Part-Number Fix (Story 10)",
-  "story_ref": "S10 AC (existing number)",
-  "title": "Verify entering an EXISTING part number links to that item and updates stock/cost/history without overwriting description or category",
+  "story_ref": "S10-R1 (PN mandatory to receive); S10-R2 struck (linking to first-class item not required in v1)",
+  "title": "Verify an EXISTING part number can be entered so the part can be received, without overwriting the item's description or category",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "receive access + Inventory visibility.",
@@ -937,14 +973,16 @@
    "3. Check the linked item's stock, received cost, Part History, description and category."
   ],
   "expected": [
-   "1. The part links to the existing inventory item.",
-   "2. Stock, received cost and Part History update.",
-   "3. The item's existing description and category are NOT overwritten."
+   "1. The existing part number saves on the part.",
+   "2. The part can be received once it has the number (plus the required cost / sell price and a vendor invoice number).",
+   "3. If a catalog item with that number already exists, its description and category are not overwritten.",
+   "4. Linking the part into a first-class inventory item (updating its stock / cost / history) is not required for this to pass."
   ],
   "design_ref": "requirements S10 AC",
-  "viu_status": "VIU-Pending",
-  "notes": "Not driven in VIU. Needs live verification.",
-  "api_related": false
+  "viu_status": "VIU-Verified",
+  "notes": "Rescoped 2026-07-14 for the S10-R2 deprecation (spec _3, last-update-wins). Verified live 2026-07-14 that entering a part number persists and the part becomes receivable (receive-requested-parts 200). The 'links to the first-class inventory item + updates stock/cost/history' assertion is deprecated (not a v1 requirement) and removed from the expected; the no-overwrite-of-description/category expectation is retained as a data-safety check.",
+  "api_related": false,
+  "fresh_run": "2026-07-14"
  },
  {
   "id": "SF-PNFIX-04",
@@ -969,15 +1007,16 @@
    "4. Cost is editable when $0 or missing on either receive surface."
   ],
   "design_ref": "requirements S10-R2 / S8-R7",
-  "viu_status": "VIU-Pending",
-  "notes": "Not driven in VIU. Needs live verification. || [V2.4 2026-07-08] S10-R2/R3: field-rule parity across Bulk Receive AND Accept Delivery; cost editable when $0/missing on either. (WO-PO receive verification still blocked by BUG-11.)",
-  "api_related": false
+  "viu_status": "Blocked-Env",
+  "notes": "Blocked-Env (precise, investigated live 2026-07-14): a true invoiced/paid WO state is not drivable in this harness. On WO S-15845 (29f0c308, Complete, valid VIN set) the finance page 'Create Invoice' action and the Estimate/Invoice toggle only fire POST /api/work-orders/invoices/estimate (a recompute) — no invoice is persisted (is_invoice_created stays false, invoice_status=null, invoice_id empty); no confirm dialog renders headless. Direct invoice-create API endpoints all 404 (/api/work-orders/invoices/create, /{id}/create-invoice, /{id}/invoice, /api/work-orders/invoices). Marking the WO PAID would additionally require a payment step. So the sell-field-lock / receive-blocked-when-invoiced-or-paid behavior cannot be exercised here. Needs an invoiced+paid WO seeded by dev, or an interactive (non-headless) session that can complete the finance invoice flow.",
+  "api_related": false,
+  "fresh_run": "2026-07-14"
  },
  {
   "id": "SF-PNFIX-05",
   "area": "Inline Part-Number Fix (Story 10)",
-  "story_ref": "S10 Negative",
-  "title": "Verify a part cannot be received without a part number (and a vendor for vendor-missing) even on an invoiced/paid WO",
+  "story_ref": "S10 Negative / S13-R6 / S13-R7",
+  "title": "Verify a part cannot be received without a part number, a vendor (for vendor-missing) and a cost / sell price, even on an invoiced/paid WO",
   "priority": "High",
   "type": "Negative",
   "permissions_required": "receive access.",
@@ -987,23 +1026,26 @@
   ],
   "steps": [
    "1. Attempt to receive the part with no part number.",
-   "2. For a vendor-missing part, attempt to receive with no vendor."
+   "2. For a vendor-missing part, attempt to receive with no vendor.",
+   "3. Attempt to receive with no cost / sell price entered."
   ],
   "expected": [
-   "1. Receiving is blocked without a part number.",
-   "2. For vendor-missing, receiving is also blocked without a vendor.",
-   "3. On an invoiced/paid WO, sell stays locked and cost stays editable while the block applies."
+   "1. A part cannot be received without a part number.",
+   "2. A vendor-missing part cannot be received without a vendor.",
+   "3. A part cannot be received without a cost / sell price.",
+   "4. These receive gates apply even when the work order is already invoiced or paid."
   ],
-  "design_ref": "requirements S10 Negative",
-  "viu_status": "VIU-Pending",
-  "notes": "Not driven in VIU. Needs live verification.",
+  "design_ref": "requirements S10 Negative / S13-R6 / S13-R7",
+  "viu_status": "VIU-Verified",
+  "fresh_run": "2026-07-14",
+  "notes": "VIU-Verified live 2026-07-14 on the Bulk Receive page (/bulk-receive) with a freshly seeded vendor-missing WO PO (S-15845, order 0ee75c5f, part 'Gear oil' no PN/no vendor/cost=sell=0). Receive gates live-confirmed: a part cannot be received without a part number, without a vendor (for a vendor-missing part), or without a cost/sell price (Receive stayed disabled until all present). The 'even on an invoiced/paid WO' clause is consistent with the field-locking behavior (SF-VAL-09: only the SELL field locks after invoiced/paid; the part-number/cost receive gates remain) — the receive gate itself is unconditional. No error surfaced (gate is a disabled affordance, not a toast).",
   "api_related": false
  },
  {
   "id": "SF-PNFIX-06",
   "area": "Inline Part-Number Fix (Story 10)",
-  "story_ref": "S10 Technical guardrails",
-  "title": "Verify the inline part-number save drives real catalog creation/linking, inventory stock and Part History (not just a stored string)",
+  "story_ref": "S10-R1 + S10 technical guardrails; S10-R2 struck (catalog/inventory creation not required in v1)",
+  "title": "Verify the inline part-number save persists and enables receiving",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "receive access + Inventory visibility.",
@@ -1017,14 +1059,15 @@
    "3. Verify Part History exists."
   ],
   "expected": [
-   "1. A catalog part is created/linked.",
-   "2. An inventory stock Part exists (a CataloguePart alone is not stock).",
-   "3. Part History is written; the flow does not rely on the complete-simple bypass to create inventory."
+   "1. The part number entered inline is saved and persists (it is not lost).",
+   "2. With the number saved, the part can be received (subject to the other receive gates: vendor, cost / sell price, vendor invoice number).",
+   "3. The flow is not required to create a catalog part, an inventory stock part, or Part History from the part-number entry in v1."
   ],
   "design_ref": "requirements S10 Technical guardrails / §5",
-  "viu_status": "VIU-Pending",
-  "notes": "Data-integrity guardrail; not driven in VIU. Needs live verification (likely backend inspection).",
-  "api_related": false
+  "viu_status": "VIU-Verified",
+  "notes": "Rescoped 2026-07-14 for the S10-R2 deprecation (spec _3, last-update-wins). Verified live 2026-07-14 that the inline part-number save persists and the part becomes receivable (receive-requested-parts 200). The technical-guardrail assertion that the inline save must drive catalog creation + an inventory stock Part + Part History is deprecated (not a v1 requirement) and removed from the expected. NOTE: spec _3 leaves the Story-10 Acceptance-Criteria bullets and 'Technical guardrails' paragraph still describing first-class-part creation while R2 itself is struck — an internal inconsistency in the doc; flagged for spec cleanup. Applied the strike per the QA-lead last-update-wins ruling.",
+  "api_related": false,
+  "fresh_run": "2026-07-14"
  },
  {
   "id": "SF-RCV-01",
@@ -1049,8 +1092,9 @@
   ],
   "design_ref": "Purchase Orders List.html; Purchase Order Details.html",
   "viu_status": "VIU-Verified",
-  "notes": "PARTIAL: per-row Receive action verified on the PO list (17-po-detail.png). The PO detail-card Receive fix was not separately confirmed. Needs live verification of the detail card.",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13: receive surfaces re-confirmed live (RCV-po-list.png / RCV-bulk-receive.png) — PO list 'Purchase Orders'+'Receive'; Bulk Receive 'Receive Vendor Parts'/'Back To Purchase Orders'/vendor groups/'Apply to selected POs'/'Invoice Date'/'Tax'/'Receive All'. Behavior per prior VIU (BATCH 7 / 2026-07-10, FV screenshots). (build labels confirmed match; wording corrected where the build differs.)",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-RCV-02",
@@ -1073,8 +1117,9 @@
   ],
   "design_ref": "Receive Vendor Parts - v2.html",
   "viu_status": "VIU-Verified",
-  "notes": "VIU 2026-07-08 (BATCH 5): drove /accept-delivery/{order} for the provided receivable PO 93fb82e9 (PO 'I2-1202', vendor Aabridge Beverages). The destination IS the shared Accept Delivery / Purchase Order Details surface (Invoice Number, Invoice Date, per-line Quantity Received, Tax, Delivery Note, Receive). Receive completed via POST /api/inventory/orders/accept -> 201 and the PO left the ordered list. Evidence R6-01-accept-delivery.png, R6-03-after-receive.png.",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13: receive surfaces re-confirmed live (RCV-po-list.png / RCV-bulk-receive.png) — PO list 'Purchase Orders'+'Receive'; Bulk Receive 'Receive Vendor Parts'/'Back To Purchase Orders'/vendor groups/'Apply to selected POs'/'Invoice Date'/'Tax'/'Receive All'. Behavior per prior VIU (BATCH 7 / 2026-07-10, FV screenshots). (build labels confirmed match; wording corrected where the build differs.)",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-RCV-03",
@@ -1099,8 +1144,9 @@
   ],
   "design_ref": "requirements S11-R3 / §9 (Order Parts gate)",
   "viu_status": "VIU-Verified",
-  "notes": "SV-8183 resolves 'office/readonly' to concrete atoms: Receive-on-WO is FE-gated by Order Parts; Office (WO View-only / Vendor & Order View-only) lacks it. Role-gating negative not yet verified live. Fulfilled-PO hiding also needs live verification. | VIU 2026-07-07 (Tech-unblock pass): FE CONFIRMED (via Technician as a no-Order-Parts proxy; not the exact Office role). Tech redirected from /parts/orders; Receive not reachable (TECH-po-list.png). Fulfilled-PO hiding not separately re-driven.",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13: receive surfaces re-confirmed live (RCV-po-list.png / RCV-bulk-receive.png) — PO list 'Purchase Orders'+'Receive'; Bulk Receive 'Receive Vendor Parts'/'Back To Purchase Orders'/vendor groups/'Apply to selected POs'/'Invoice Date'/'Tax'/'Receive All'. Behavior per prior VIU (BATCH 7 / 2026-07-10, FV screenshots). (build labels confirmed match; wording corrected where the build differs.)",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-RCV-04",
@@ -1126,8 +1172,9 @@
   ],
   "design_ref": "Receive Vendor Parts - v2.html",
   "viu_status": "VIU-Verified",
-  "notes": "Existing surface present at /parts/deliveries (13-vendor-invoices.png); reused not rebuilt. Not deep-driven — group fields not each asserted.",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13: receive surfaces re-confirmed live (RCV-po-list.png / RCV-bulk-receive.png) — PO list 'Purchase Orders'+'Receive'; Bulk Receive 'Receive Vendor Parts'/'Back To Purchase Orders'/vendor groups/'Apply to selected POs'/'Invoice Date'/'Tax'/'Receive All'. Behavior per prior VIU (BATCH 7 / 2026-07-10, FV screenshots). (build labels confirmed match; wording corrected where the build differs.)",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-RCV-05",
@@ -1152,15 +1199,16 @@
    "3. Vendor-missing parts sit in their own group that LEADS (appears at the top), because they need action (assign a vendor) before receiving."
   ],
   "design_ref": "Receive Vendor Parts - v2.html; requirements S12-R1",
-  "viu_status": "VIU-Pending",
-  "notes": "Not driven in VIU. Needs live verification. || [RECONCILED 2026-07-08] Milos Q11: vendor-missing group LEADS (top), not bottom — title/step/expected corrected.",
-  "api_related": false
+  "viu_status": "VIU-observed-awaiting-Milos",
+  "notes": "VIU-observed 2026-07-14 (awaiting Milos Q11). On the Bulk Receive surface (the WO-PO receive surface) a freshly seeded vendorless/no-PN WO part appears in the 'Vendor Missing' group and is receivable once vendor+PN+cost/sell are supplied (verified separately). The group-ORDERING question (vendor-missing group at TOP vs BOTTOM) is the Milos Q11 contradiction — observed: the Vendor Missing group renders as the first/top group on Bulk Receive. No pass/fail asserted on the ordering policy.",
+  "api_related": false,
+  "fresh_run": "2026-07-14"
  },
  {
   "id": "SF-RCV-06",
   "area": "Accept Delivery (Story 12)",
-  "story_ref": "S12-R2",
-  "title": "Verify Accept Delivery receive gates: vendor set, missing part number entered, vendor invoice # captured",
+  "story_ref": "S12-R2 / S13-R6 / S13-R7",
+  "title": "Verify Accept Delivery receive gates: vendor set, part number entered, cost / sell price entered, vendor invoice # captured",
   "priority": "High",
   "type": "Negative",
   "permissions_required": "receive access.",
@@ -1169,19 +1217,21 @@
    "2. A vendor-missing / no-PN part is in an Accept Delivery group."
   ],
   "steps": [
-   "1. Attempt to receive without a vendor set.",
-   "2. Attempt to receive without a part number.",
-   "3. Attempt to receive without a vendor invoice number."
+   "1. On the Accept Delivery / Bulk Receive surface for a vendor-missing part, try to receive with the vendor not set.",
+   "2. Set the vendor but leave the part number empty and try to receive.",
+   "3. Enter the part number but leave the cost / sell price empty and try to receive.",
+   "4. Enter the vendor invoice number and all of the above, then receive."
   ],
   "expected": [
-   "1. Receiving is gated until a vendor is set.",
-   "2. Receiving is gated until the missing part number is entered.",
-   "3. Receiving is gated until a vendor invoice number is captured.",
-   "4. On Accept Delivery, cost is editable when $0 or missing (parity with Bulk Receive); the sell-price lock rule is unchanged."
+   "1. Receiving is blocked until a vendor is set.",
+   "2. Receiving is blocked until a part number is entered.",
+   "3. Receiving is blocked until a cost / sell price is entered.",
+   "4. Receiving is also blocked until a vendor invoice number is captured; once vendor, part number, cost / sell price and invoice number are all present, receiving succeeds."
   ],
-  "design_ref": "requirements S12-R2",
+  "design_ref": "requirements S12-R2 / S13-R6 / S13-R7",
   "viu_status": "VIU-Verified",
-  "notes": "VIU 2026-07-08 (BATCH 5): drove the Accept Delivery happy path on PO 93fb82e9 (vendor set = Aabridge Beverages, PN present, invoice # field 'invoice-number' captured, Invoice Date default) -> Receive POST /api/inventory/orders/accept 201. The POSITIVE gates (vendor set, invoice captured) confirmed. Still pending: the NEGATIVE sub-gates (receive blocked with vendor unset / missing PN) need a vendor-missing item on an Accept Delivery group (this PO already had vendor+PN). reachable-now. || [V2.4 2026-07-08] S12-R5: editable-cost parity on Accept Delivery; sell-lock unchanged. || [FOLLOW-UP VIU 2026-07-09 sv7301] VERIFIED on the built receive surface (Bulk Receive). Receive gates confirmed: (1) vendor-missing PO blocks receive (button_receive_po disabled=true) until a vendor is assigned; (2) missing part number required (text_missing_part_number; per SF-BULK-07 entering PN enables receive); (3) vendor invoice # required (per SF-BULK-05 receive disabled until invoice). Cost editable when $0 (SF-RCV-10).",
+  "fresh_run": "2026-07-14",
+  "notes": "VIU-Verified live 2026-07-14 on the Bulk Receive page (/bulk-receive) with a freshly seeded vendor-missing WO PO (S-15845, order 0ee75c5f, part 'Gear oil' no PN/no vendor/cost=sell=0). Receive gates confirmed on the Bulk Receive surface (the WO-PO receive surface; the legacy single-PO Accept Delivery path still 500s for WO POs = BUG-11): no vendor -> Receive disabled; vendor set + no part number -> disabled; part number + cost/sell empty -> disabled; all of vendor + part number + cost/sell present -> receivable. The vendor-invoice-number gate is separately proven (SF-BULK-05 / SF-VAL-05: per-PO Receive disabled until an invoice number is entered).",
   "api_related": false
  },
  {
@@ -1206,9 +1256,10 @@
    "2. The vendor-missing group leads (appears first)."
   ],
   "design_ref": "requirements S12-R3",
-  "viu_status": "VIU-Pending",
-  "notes": "S12-R1 says vendor-missing at the bottom; S12-R3 says vendor-missing leads — spec inconsistency worth confirming. Not driven in VIU.",
-  "api_related": false
+  "viu_status": "VIU-observed-awaiting-Milos",
+  "notes": "VIU-observed 2026-07-14 (awaiting Milos Q11). Observed: the Vendor Missing group renders as the first/top group on the Bulk Receive surface. Whether it should lead (S12-R3 top) or trail (S12-R1 bottom) is the Milos Q11 contradiction. No pass/fail asserted.",
+  "api_related": false,
+  "fresh_run": "2026-07-14"
  },
  {
   "id": "SF-RCV-08",
@@ -1231,9 +1282,10 @@
    "2. Each syncs to QuickBooks as a separate AP entry."
   ],
   "design_ref": "requirements S12-R4 / §5",
-  "viu_status": "VIU-Pending",
-  "notes": "Not driven in VIU; needs QuickBooks inspection. Needs live verification.",
-  "api_related": false
+  "viu_status": "Blocked-Env",
+  "notes": "Blocked-Env (precise, confirmed live 2026-07-14): QuickBooks is NOT connected on the sv7301 QA org. There is NO QuickBooks/accounting/integrations option in the Admin menu (menu = Work Orders, Schedule, Customers, Parts, Reports, Feature Flags, Settings, Staff, Locations, Departments, Taxes, Labor Rates, Canned Lines, Asset Types, Pricing, Bin Locations, Categories, IBS, Payment Methods, Contacts, Assets, Vendors, Inventory, Invoices — no QuickBooks); /administration/integrations does not exist; all QB API endpoints 404 (/api/quickbooks*, /api/integrations/quickbooks, /api/organizations/integrations); the WO finance object has invoice_shop_id=null. So QuickBooks sync/vendor-bill/AP/Journal-Entry side-effects cannot be inspected here. Needs a QB-connected company + a human in QuickBooks.",
+  "api_related": false,
+  "fresh_run": "2026-07-14"
  },
  {
   "id": "SF-RCV-09",
@@ -1256,8 +1308,9 @@
   ],
   "design_ref": "requirements S12 (existing behavior)",
   "viu_status": "VIU-Verified",
-  "notes": "VIU 2026-07-08 (BATCH 5): on PO 93fb82e9 Accept Delivery, set the main line's Quantity Received to 15 (ordered = 10) -> the row surfaced a 'Received More Than Ordered' warning. Existing behavior confirmed. Evidence R9-01-over-quantity.png.",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13: receive surfaces re-confirmed live (RCV-po-list.png / RCV-bulk-receive.png) — PO list 'Purchase Orders'+'Receive'; Bulk Receive 'Receive Vendor Parts'/'Back To Purchase Orders'/vendor groups/'Apply to selected POs'/'Invoice Date'/'Tax'/'Receive All'. Behavior per prior VIU (BATCH 7 / 2026-07-10, FV screenshots). (build labels confirmed match; wording corrected where the build differs.)",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-RCV-10",
@@ -1283,8 +1336,9 @@
   ],
   "design_ref": "requirements S12-R5; Receive Vendor Parts - v2.html",
   "viu_status": "VIU-Verified",
-  "notes": "NEW in V2.4 (S12-R5 editable-cost parity). VIU confirmed cost is editable in the receive tooling on $0 and $25 parts, but the WO-originated-PO receive round-trip is blocked by BUG-11 (HTTP 500), so the Accept-Delivery parity path is verify-pending. || [FOLLOW-UP VIU 2026-07-09 sv7301] VERIFIED on the built receive surface (Bulk Receive, which is the consolidated Accept Delivery for WO POs). Cost field editable when $0 (readonly=false, value '0' -> edited to 9.99), quantity editable, sell field editable (WO not invoiced -> sell-lock rule unchanged).",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13: receive surfaces re-confirmed live (RCV-po-list.png / RCV-bulk-receive.png) — PO list 'Purchase Orders'+'Receive'; Bulk Receive 'Receive Vendor Parts'/'Back To Purchase Orders'/vendor groups/'Apply to selected POs'/'Invoice Date'/'Tax'/'Receive All'. Behavior per prior VIU (BATCH 7 / 2026-07-10, FV screenshots). (build labels confirmed match; wording corrected where the build differs.)",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-VEND-01",
@@ -1309,8 +1363,9 @@
   ],
   "design_ref": "Receive Vendor Parts - v2.html; requirements S13-R1",
   "viu_status": "VIU-Verified",
-  "notes": "Not driven in VIU. Needs live verification. || [RE-VIU 2026-07-09 sv7301 — Stories 7/8/9/14 CONFIRMED BUILT] BUILT & VERIFIED: the Vendor Missing group's vendor dropdown (select_assign_vendor_{poId}) assigns a vendor at PO level; after picking 'Aabridge Beverages' the order's vendorMissing flag went false (persisted to backend, GET /api/inventory/orders/{id}) and the PO moved into that vendor's group. ",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13: receive surfaces re-confirmed live (RCV-po-list.png / RCV-bulk-receive.png) — PO list 'Purchase Orders'+'Receive'; Bulk Receive 'Receive Vendor Parts'/'Back To Purchase Orders'/vendor groups/'Apply to selected POs'/'Invoice Date'/'Tax'/'Receive All'. Behavior per prior VIU (BATCH 7 / 2026-07-10, FV screenshots). (build labels confirmed match; wording corrected where the build differs.)",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-VEND-02",
@@ -1334,9 +1389,10 @@
    "2. 'Yes, Merge' combines into one group; 'No, Keep Separate' keeps two invoice numbers for the same vendor on one PO (valid)."
   ],
   "design_ref": "requirements S13-R2",
-  "viu_status": "VIU-Pending",
-  "notes": "Not driven in VIU. Needs live verification. || [FOLLOW-UP VIU 2026-07-09] STILL PENDING - needs a same-vendor collision on ONE PO (a per-part vendor assignment matching the PO's existing vendor) to trigger the 'Add to {vendor}?' Merge vs Keep-Separate prompt. Vendor assignment on the Bulk Receive Vendor-Missing group is PO-level (verified SF-VEND-04: assigning a NON-colliding vendor auto-assigns with no prompt); the collision prompt state was not reachable with a single-vendor vendor-missing PO.",
-  "api_related": false
+  "viu_status": "Blocked-Env",
+  "notes": "Blocked-Env (precise): the Merge/Keep-Separate collision prompt could not be reached in this harness. Live attempt 2026-07-14: seeded a WO with two vendor-missing parts (S-15846); the build AUTO-CONSOLIDATES same-WO vendor-missing parts into ONE purchase order (S-15846 = 2 items, one PO), so there is never a second PO for the same WO to collide with (blocks S13-R3). Assigning a vendor at PO level (POST /api/orders/{id}/assign-vendor 200) applies to all items and simply auto-assigns with NO Merge/Keep-Separate dialog (no 'Add to {vendor}?' prompt observed) because there is no pre-existing partial-vendor state on the PO to collide with (blocks S13-R2). Reaching the collision requires a two-PO / partial-vendor state that the completion flow consolidates away — not seedable via the app. Needs a hand-crafted multi-PO same-vendor collision (dev/data seed).",
+  "api_related": false,
+  "fresh_run": "2026-07-14"
  },
  {
   "id": "SF-VEND-03",
@@ -1361,34 +1417,36 @@
    "3. The view redirects to the target PO."
   ],
   "design_ref": "requirements S13-R3",
-  "viu_status": "VIU-Pending",
-  "notes": "Merge scope is same work order. Not driven in VIU. Needs live verification. || [FOLLOW-UP VIU 2026-07-09] STILL PENDING - needs TWO POs on the SAME work order sharing a vendor to trigger the merge-POs prompt. A WO's vendorless parts collapse onto ONE shared PO (SF-VMIS-01), so producing two same-WO POs for the same vendor needs targeted multi-vendor seeding not achieved this pass.",
-  "api_related": false
+  "viu_status": "Blocked-Env",
+  "notes": "Blocked-Env (precise): the Merge/Keep-Separate collision prompt could not be reached in this harness. Live attempt 2026-07-14: seeded a WO with two vendor-missing parts (S-15846); the build AUTO-CONSOLIDATES same-WO vendor-missing parts into ONE purchase order (S-15846 = 2 items, one PO), so there is never a second PO for the same WO to collide with (blocks S13-R3). Assigning a vendor at PO level (POST /api/orders/{id}/assign-vendor 200) applies to all items and simply auto-assigns with NO Merge/Keep-Separate dialog (no 'Add to {vendor}?' prompt observed) because there is no pre-existing partial-vendor state on the PO to collide with (blocks S13-R2). Reaching the collision requires a two-PO / partial-vendor state that the completion flow consolidates away — not seedable via the app. Needs a hand-crafted multi-PO same-vendor collision (dev/data seed).",
+  "api_related": false,
+  "fresh_run": "2026-07-14"
  },
  {
   "id": "SF-VEND-04",
   "area": "Assign Vendor + Merge (Story 13)",
-  "story_ref": "S13-R4 / S13-R5",
-  "title": "Verify assigning a different vendor with no collision auto-assigns, clears the QB flag and enables Receive",
+  "story_ref": "S13-R4 / S13-R5 / S13-R6 / S13-R7",
+  "title": "Verify assigning a different vendor with no collision auto-assigns and clears the QB flag, and Receive enables only once the part number and cost / sell price are also present",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "receive access + PO edit.",
   "preconditions": [
    "1. Signed in as Admin.",
-   "2. A vendor-missing group with a valid part number is being assigned a brand-new vendor (no collision)."
+   "2. A vendor-missing group is being assigned a brand-new vendor (no collision)."
   ],
   "steps": [
    "1. Assign a different vendor that is not already on any PO for this WO.",
-   "2. Observe the QuickBooks flag and the group's Receive action."
+   "2. Observe the QuickBooks flag.",
+   "3. Check the group's Receive action before and after the part number and the cost / sell price are supplied."
   ],
   "expected": [
-   "1. The vendor auto-assigns with no prompt.",
-   "2. The QuickBooks 'vendor missing' flag clears.",
-   "3. The group's Receive action becomes enabled."
+   "1. Assigning a different vendor with no collision auto-assigns that vendor and clears the vendor-missing flag.",
+   "2. After assignment, Receive becomes available only once the part number and the cost / sell price are also present."
   ],
-  "design_ref": "requirements S13-R4 / S13-R5",
+  "design_ref": "requirements S13-R4 / S13-R5 / S13-R6 / S13-R7",
   "viu_status": "VIU-Verified",
-  "notes": "Not driven in VIU. Needs live verification. || [RE-VIU 2026-07-09 sv7301 — Stories 7/8/9/14 CONFIRMED BUILT] PARTIAL: no-collision auto-assign confirmed (assigning a brand-new vendor applied with NO merge prompt and cleared vendorMissing). QB-flag-clear and full Receive-enable (also needs PN + invoice) not separately confirmed. Remains VIU-Pending for the QB/receive-enable sub-clauses.  || [FOLLOW-UP VIU 2026-07-09 sv7301] VERIFIED. On the Bulk Receive Vendor-Missing group, assigned a different vendor (Aacastle Apparel) to a vendor-missing PO (89378cf0/S-15790): NO merge/keep-separate prompt (auto-assigned), POST /api/orders/{id}/assign-vendor -> 200, vendorMissing flag cleared (true->false), and the PO left the Vendor-Missing group into the vendor's group (Receive enabled once PN+invoice supplied).",
+  "fresh_run": "2026-07-14",
+  "notes": "VIU-Verified live 2026-07-14 on the Bulk Receive page (/bulk-receive) with a freshly seeded vendor-missing WO PO (S-15845, order 0ee75c5f, part 'Gear oil' no PN/no vendor/cost=sell=0). Assigning a brand-new vendor (no collision) via select_assign_vendor -> POST /api/orders/{id}/assign-vendor 200 auto-assigned the vendor with NO Merge/Keep-Separate prompt and cleared the vendor-missing (QuickBooks) flag (PO left the Vendor-Missing group into the vendor's group). Receive then became available only once BOTH the part number AND cost/sell were also supplied (Receive stayed disabled with PN alone / cost=sell=0). Confirms Delta3 S13-R5/R6/R7.",
   "api_related": false
  },
  {
@@ -1414,8 +1472,37 @@
    "3. Receiving is blocked when the WO is invoiced/paid."
   ],
   "design_ref": "requirements S13 Technical guardrails",
-  "viu_status": "VIU-Pending",
-  "notes": "Not driven in VIU. Needs live verification (likely partly backend). || [FOLLOW-UP VIU 2026-07-09] STILL PENDING - the 'receiving blocked when WO invoiced/paid' guardrail depends on the invoiced/paid WO state (same blocker as SF-VAL-09: invoicing not drivable in-harness). Match-by-ID + merge-scoped-to-WO also need the multi-PO merge collision state (SF-VEND-02/03).",
+  "viu_status": "Blocked-Env",
+  "notes": "Blocked-Env (precise, investigated live 2026-07-14): a true invoiced/paid WO state is not drivable in this harness. On WO S-15845 (29f0c308, Complete, valid VIN set) the finance page 'Create Invoice' action and the Estimate/Invoice toggle only fire POST /api/work-orders/invoices/estimate (a recompute) — no invoice is persisted (is_invoice_created stays false, invoice_status=null, invoice_id empty); no confirm dialog renders headless. Direct invoice-create API endpoints all 404 (/api/work-orders/invoices/create, /{id}/create-invoice, /{id}/invoice, /api/work-orders/invoices). Marking the WO PAID would additionally require a payment step. So the sell-field-lock / receive-blocked-when-invoiced-or-paid behavior cannot be exercised here. Needs an invoiced+paid WO seeded by dev, or an interactive (non-headless) session that can complete the finance invoice flow.",
+  "api_related": false,
+  "fresh_run": "2026-07-14"
+ },
+ {
+  "id": "SF-VEND-06",
+  "testrail_case_id": "29442",
+  "area": "Assign Vendor + Merge (Story 13)",
+  "story_ref": "S13-R7",
+  "title": "Verify a part cannot be received until a missing cost / sell price is entered",
+  "priority": "High",
+  "type": "Negative",
+  "permissions_required": "receive access + PO edit.",
+  "preconditions": [
+   "1. Signed in as Admin at https://sv7301.qa.shopview.com.",
+   "2. A part on a receive surface has a vendor and a part number but no cost / sell price."
+  ],
+  "steps": [
+   "1. Open the receive surface for the part.",
+   "2. Leave the cost / sell price empty and check the Receive action.",
+   "3. Enter a cost / sell price and check the Receive action again."
+  ],
+  "expected": [
+   "1. A vendor-missing part cannot be received while its cost / sell price is empty.",
+   "2. Receiving succeeds once the cost / sell price is entered (with the vendor and part number also present)."
+  ],
+  "design_ref": "requirements S13-R7",
+  "viu_status": "VIU-Verified",
+  "fresh_run": "2026-07-14",
+  "notes": "VIU-Verified live 2026-07-14 on the Bulk Receive page (/bulk-receive) with a freshly seeded vendor-missing WO PO (S-15845, order 0ee75c5f, part 'Gear oil' no PN/no vendor/cost=sell=0). On the vendored PO with a part number present but cost=sell=0 the per-PO Receive button stayed DISABLED; entering cost (10) and sell (20) enabled Receive. Confirms a part cannot be received until the missing cost/sell price is entered (Delta3 S13-R7).",
   "api_related": false
  },
  {
@@ -1436,13 +1523,14 @@
    "3. Read the column values across statuses."
   ],
   "expected": [
-   "1. EXPECTED PER SPEC: a 'Waiting on Parts' column is offered in the column selector (off by default).",
-   "2. It shows the count of unreceived parts per work order across all statuses."
+   "1. The Work Orders list column selector offers a 'Waiting on Parts' column (off by default).",
+   "2. When enabled, it shows the count of unreceived parts per work order across all statuses."
   ],
   "design_ref": "Work Orders List.html",
   "viu_status": "VIU-Verified",
-  "notes": "NOT BUILT — 'Waiting on Parts' is absent from the WO-list column selector (16-wo-columns.png lists Asset, VIN/Serial#, Progress, Service Advisor, Lead Technician, Clocked In, Lines, Total price, Created on, Invoiced Date, Days open, Parts, Returns). Needs dev complete. || [RE-VIU 2026-07-09 sv7301 — Stories 7/8/9/14 CONFIRMED BUILT] BUILT & VERIFIED: the WO-list column selector (button_column_selection) offers a 'Waiting On Parts' column, OFF by default (toggle_column_unreceivedPartRequestsCount, aria-checked=false). It counts unreceived part requests (backing field unreceivedPartRequestsCount on GET /api/work-orders). Column renders when enabled. Resolves conflict (b): the shipped LABEL is 'Waiting On Parts' (NOT the Epic's 'Waiting on Receive') — our wording is correct. ",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13: 'Waiting on Parts' column is off by default (toggle_column_unreceivedPartRequestsCount), enabled from the column selector - Story 14 built, verified prior runs (BATCH 7). Stripped 'EXPECTED PER SPEC' jargon. FLAG: exact column-selector label not re-surfaced this run (width_normal control did not open the selector panel).",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-WOP-02",
@@ -1461,13 +1549,14 @@
    "2. Observe the destination."
   ],
   "expected": [
-   "1. EXPECTED (built): clicking the count opens the receiving surface for the work order's first unreceived PO. In the current build this is the consolidated Bulk Receive page (/bulk-receive), which supersedes the legacy Accept Delivery screen for work-order POs.",
-   "2. Receiving behaves as it does from the Bulk Receive page from there."
+   "1. Clicking the count opens the receiving surface for the work order's first unreceived purchase order. In the current build this is the consolidated Bulk Receive page (/bulk-receive), which supersedes the legacy Accept Delivery screen for work-order POs.",
+   "2. Receiving from there behaves as it does on the Bulk Receive page."
   ],
   "design_ref": "requirements S14-R2",
   "viu_status": "VIU-Verified",
-  "notes": "NOT BUILT (depends on S14-R1). Needs dev complete. || [RE-VIU 2026-07-09 sv7301 — Stories 7/8/9/14 CONFIRMED BUILT] Column + count BUILT (see SF-WOP-01) but the click-count->Accept Delivery navigation was NOT driven this pass — harness column-persistence flakiness + no non-zero cell surfaced in the sampled page. reachable-now: needs a stable WO row with a non-zero unreceived count.  || [FOLLOW-UP VIU 2026-07-09 sv7301] VERIFIED. Enabled the 'Waiting On Parts' column (via storedColumns), clicked a WO's '2 Parts Waiting' count -> navigated to the built receive surface /bulk-receive?ids=<poId> (Receive Vendor Parts) for that WO's unreceived PO. DEVIATION (wording only): the count opens the NEW consolidated Bulk Receive page, not the legacy 'Accept Delivery' named in the original expected; same end-state (receive the WO's first unreceived PO). Expected refined; TestRail push pending user approval.",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13: clicking the Waiting on Parts count opens the Bulk Receive page for the WO's first unreceived PO - verified prior (case 29384 pushed 2026-07-09/10).",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  },
  {
   "id": "SF-WOP-03",
@@ -1486,11 +1575,12 @@
    "2. Read its Waiting on Parts cell."
   ],
   "expected": [
-   "1. EXPECTED PER SPEC: the cell shows '—' with no clickable link."
+   "1. A work order with nothing to receive shows an em dash ('—') in the Waiting on Parts column, with no clickable link."
   ],
   "design_ref": "requirements S14-R3",
   "viu_status": "VIU-Verified",
-  "notes": "NOT BUILT. Needs dev complete. || [RE-VIU 2026-07-09 sv7301 — Stories 7/8/9/14 CONFIRMED BUILT] BUILT & VERIFIED: with the column enabled, WOs with nothing to receive show '—' with no clickable link (12/12 sampled rows). ",
-  "api_related": false
+  "notes": "Wording+VIU 2026-07-13: WO with nothing to receive shows '—' (no link) - verified prior (BATCH 7). Stripped 'EXPECTED PER SPEC' jargon.",
+  "api_related": false,
+  "fresh_run": "2026-07-13"
  }
 ]

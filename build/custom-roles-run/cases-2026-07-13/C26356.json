@@ -1,0 +1,12 @@
+{
+  "case_id": 26356,
+  "section_id": 3532,
+  "title": "You can view a role's Permission Summary from Edit Staff Member using the eye icon next to the Role dropdown",
+  "custom_preconds": "<ol>\n<li>Log in as a user who can edit staff (for example an Administrator).</li>\n<li>At least one staff member exists.</li>\n</ol>",
+  "custom_steps": "<ol>\n<li>Go to the Staff page (Settings > Staff).</li>\n<li>Open a staff member to bring up the Edit Staff Member window.</li>\n<li>Find the Role dropdown and the eye icon next to it.</li>\n<li>Click the eye icon.</li>\n</ol>",
+  "custom_expected": "<p>There is an eye icon next to the Role dropdown on the Edit Staff Member window.</p>\n<p>Clicking it opens a read-only Permission Summary for the role currently chosen in the dropdown.</p>\n<p>The summary lists that role's permissions with no way to edit them.</p>\n",
+  "viu_status": "Blocked-UI: needs the Edit Staff Member modal Role selector + its eye (View Permissions) icon; the staff row action reached opens Manage-staff-enrollments (departments/workplaces), not the role editor. Follow-up: open Edit Staff Member via the correct control.",
+  "evidence": "Eye-icon-in-staff-modal needs live UI.",
+  "fresh_run": "2026-07-13",
+  "behavioral_run": "2026-07-13"
+}

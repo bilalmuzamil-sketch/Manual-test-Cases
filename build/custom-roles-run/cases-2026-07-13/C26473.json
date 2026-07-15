@@ -1,0 +1,12 @@
+{
+  "case_id": 26473,
+  "section_id": 3544,
+  "title": "'Enable See Financial Data?' dialog — Cancel: undoes the tick",
+  "custom_preconds": "<ol>\n<li>See Financial Data is OFF and Part sales View, Create & Edit and Delete are unticked.</li>\n<li>Tick Part sales View so the dialog opens.</li>\n</ol>",
+  "custom_steps": "<ol>\n<li>Click Cancel.</li>\n<li>Look at the Part sales View box and the See Financial Data toggle.</li>\n</ol>",
+  "custom_expected": "<p>The dialog closes.</p>\n<p>Part sales View is unticked again.</p>\n<p>See Financial Data stays OFF.</p>\n",
+  "viu_status": "VIU-Verified",
+  "evidence": "UI: Cancel on the SFD dialog undoes the tick (See Financial Data off, Part sales off).",
+  "fresh_run": "2026-07-13",
+  "behavioral_run": "2026-07-13"
+}

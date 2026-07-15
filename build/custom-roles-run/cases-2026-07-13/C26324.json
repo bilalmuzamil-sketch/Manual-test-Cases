@@ -1,0 +1,12 @@
+{
+  "case_id": 26324,
+  "section_id": 3528,
+  "title": "A custom role's three-dot menu shows View Permissions and Delete",
+  "custom_preconds": "<ol>\n<li>You are on the Roles & Permissions list with a custom role that has 0 users.</li>\n</ol>",
+  "custom_steps": "<ol>\n<li>Open the three-dot menu on that custom role row.</li>\n<li>List the menu options.</li>\n</ol>",
+  "custom_expected": "<p>The menu shows View Permissions and Delete (Delete in red with a trash icon).</p>\n<p>Edit is the separate pencil icon, not in the menu.</p>\n<p>(Confirm live whether a Duplicate option also appears, since the build has a Duplicate Role feature.)</p>\n",
+  "viu_status": "VIU-Verified",
+  "evidence": "UI: 3-dot menu on Bilal - Cus (0-user custom role) shows \"View Permissions\" and \"Delete\".",
+  "fresh_run": "2026-07-13",
+  "behavioral_run": "2026-07-13"
+}

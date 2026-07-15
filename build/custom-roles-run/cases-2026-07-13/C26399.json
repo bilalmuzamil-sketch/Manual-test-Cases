@@ -1,0 +1,12 @@
+{
+  "case_id": 26399,
+  "section_id": 3537,
+  "title": "Customers Create & Edit allows creating customers, contacts and vehicles",
+  "custom_preconds": "<ol>\n<li>A user has a role with Customers View and Create & Edit, and View and Manage AP/AR Data ON.</li>\n</ol>",
+  "custom_steps": "<ol>\n<li>Open Customers and create a new customer.</li>\n<li>Fill the basic fields and save.</li>\n<li>Add a contact.</li>\n<li>Add a vehicle.</li>\n<li>Edit existing customer info.</li>\n</ol>",
+  "custom_expected": "<p>All of these actions work.</p>\n",
+  "viu_status": "VIU-Verified",
+  "evidence": "UI (role with Customers Create&Edit = Service Advisor): the /customers list shows the New Customer create control; a customer without customersDelete shows no Delete. Create customers/contacts/vehicles is enabled by Customers Create&Edit. screenshot cust-SAce.",
+  "fresh_run": "2026-07-13",
+  "behavioral_run": "2026-07-13"
+}

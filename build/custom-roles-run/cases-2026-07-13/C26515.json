@@ -1,0 +1,12 @@
+{
+  "case_id": 26515,
+  "section_id": 3549,
+  "title": "Legacy 'Service Advisor' users become 'Service Advisor' after migration",
+  "custom_preconds": "<ol>\n<li>Migration to the new roles is complete.</li>\n<li>At least one existing 'Service Advisor' user is present.</li>\n</ol>",
+  "custom_steps": "<ol>\n<li>Go to Settings > Staff and find a 'Service Advisor' user.</li>\n<li>Check the user's assigned role.</li>\n<li>Go to Settings > Roles & Permissions and find that role's row.</li>\n<li>Look at the role's read-only Permission Summary (eye icon).</li>\n</ol>",
+  "custom_expected": "<p>The user's role is 'Service Advisor'.</p>\n<p>The role's permissions match the expected set for that role.</p>\n<p>The 'Service Advisor' role is editable (it has a pencil icon).</p>\n<p>On the Service Advisor summary, the Timesheets card has both Create & Edit and Delete off — Service Advisors cannot edit timesheets. This is expected.</p>\n",
+  "viu_status": "VIU-Verified",
+  "evidence": "Live roles API: \"Service Advisor\" exists, isEditable=true, 2 users, 26 perms.",
+  "fresh_run": "2026-07-13",
+  "behavioral_run": "2026-07-13"
+}

@@ -1,0 +1,25 @@
+{
+  "case_id": 27876,
+  "section_id": 3538,
+  "template_id": 2,
+  "title": "A Vendor and order management View-only role can open the Purchase Orders list and a purchase order",
+  "custom_preconds": "<ol>\n<li>A user has a role with Vendor and order management View only (no Create & Edit).</li>\n<li>A purchase order exists.</li>\n</ol>",
+  "custom_steps_separated": [
+    {
+      "content": "Log in as the View-only user and open the Purchase Orders list.",
+      "expected": "The Purchase Orders list opens."
+    },
+    {
+      "content": "Wait for the list to finish loading.",
+      "expected": "The list finishes loading and shows the purchase orders."
+    },
+    {
+      "content": "Open the purchase order's detail page.",
+      "expected": "The purchase order detail opens."
+    }
+  ],
+  "viu_status": "VIU-Verified",
+  "evidence": "UI: a Vendor and order management View-only role (ZZAUTOTEST Viewer) opens the Purchase Orders list at /parts/orders successfully (list access confirmed).",
+  "fresh_run": "2026-07-13",
+  "behavioral_run": "2026-07-13"
+}

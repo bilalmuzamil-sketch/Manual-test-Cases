@@ -1,0 +1,1165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resolve Cores — Completion Flow</title>
+<link rel="stylesheet" href="colors_and_type.css">
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--sv-bg-app); font-family: var(--sv-font-ui); color: var(--sv-grey-700); }
+
+  /* ─── Header ─────────────────────────────────────────── */
+  .header { background: #fff; border-bottom: 1px solid var(--sv-border-strong); height: 56px;
+    display: flex; align-items: center; gap: var(--sv-space-4); padding: 0 var(--sv-space-5); position: sticky; top: 0; z-index: 40; }
+  .header .brand { width: 36px; height: 36px; border-radius: 8px; background: var(--sv-brand-blue);
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .header .brand img { width: 22px; height: 22px; filter: brightness(0) invert(1); }
+  .top-nav { display: flex; align-items: center; gap: 2px; }
+  .top-nav a { font-size: 14px; font-weight: 500; color: var(--sv-grey-600); padding: 7px 14px; border-radius: 8px; text-decoration: none; }
+  .top-nav a:hover { background: var(--sv-grey-50); }
+  .top-nav a.active { background: var(--sv-grey-100); color: var(--sv-grey-800); font-weight: 600; }
+  .search { flex: 1; max-width: 240px; position: relative; margin-left: var(--sv-space-2); }
+  .search input { width: 100%; height: 38px; border: 1px solid var(--sv-border-strong); border-radius: 8px;
+    background: var(--sv-grey-50); padding: 0 12px 0 36px; font-size: 14px; font-family: inherit; color: var(--sv-grey-700); }
+  .search [data-lucide] { position: absolute; left: 11px; top: 50%; transform: translateY(-50%); width: 16px; height: 16px; color: var(--sv-fg-tertiary); }
+  .header-spacer { flex: 1; }
+  .header-right { display: flex; align-items: center; gap: var(--sv-space-4); }
+  .clockin { display: flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 500; color: var(--sv-grey-600); }
+  .clockin [data-lucide] { width: 17px; height: 17px; }
+  .bell { width: 19px; height: 19px; color: var(--sv-grey-500); }
+  .org-pill { display: flex; align-items: center; gap: 10px; background: var(--sv-grey-50); border: 1px solid var(--sv-border-strong);
+    border-radius: var(--sv-radius-pill); padding: 5px 6px 5px 14px; font-size: 14px; font-weight: 500; color: var(--sv-grey-700); }
+  .avatar { width: 30px; height: 30px; border-radius: 50%; background: var(--sv-grey-700); color: #fff;
+    display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600; }
+
+  /* ─── Layout ─────────────────────────────────────────── */
+  .shell { display: grid; grid-template-columns: 268px 1fr; gap: var(--sv-space-5); padding: var(--sv-space-5); align-items: start; }
+  .sidebar { display: flex; flex-direction: column; gap: var(--sv-space-4); }
+  .card { background: #fff; border: 1px solid var(--sv-border-strong); border-radius: var(--sv-radius-lg); }
+  .side-card { padding: var(--sv-space-5); }
+  .wo-id { font-size: 22px; font-weight: 700; color: var(--sv-grey-800); letter-spacing: -0.01em; }
+  .badge-row { display: flex; gap: 6px; margin-top: 10px; flex-wrap: wrap; }
+  .pill { display: inline-flex; align-items: center; gap: 5px; height: 22px; padding: 0 9px; border-radius: var(--sv-radius-pill);
+    font-size: 12px; font-weight: 600; line-height: 1; }
+  .pill-blue   { background: var(--sv-primary-50); color: var(--sv-primary-700); border: 1px solid var(--sv-primary-200); }
+  .pill-amber  { background: var(--sv-warning-50); color: var(--sv-warning-700); border: 1px solid var(--sv-warning-200); }
+  .pill-green  { background: var(--sv-success-50); color: var(--sv-success-700); border: 1px solid var(--sv-success-200); }
+  .pill-violet { background: var(--sv-violet-50); color: var(--sv-violet-700); border: 1px solid var(--sv-violet-200); }
+  .meta-list { margin-top: var(--sv-space-4); display: flex; flex-direction: column; gap: 10px; }
+  .meta-line { display: flex; align-items: center; justify-content: space-between; font-size: 13px; }
+  .meta-line .k { color: var(--sv-fg-secondary); }
+  .meta-line .v { color: var(--sv-grey-700); font-weight: 500; }
+  .divider { border: 0; border-top: 1px solid var(--sv-border); margin: var(--sv-space-4) 0; }
+  .field-label { font-size: 11px; font-weight: 600; letter-spacing: 0.03em; text-transform: uppercase; color: var(--sv-fg-tertiary); margin-bottom: 2px; }
+  .field-value { font-size: 14px; font-weight: 600; color: var(--sv-grey-700); }
+  .stacked { display: flex; flex-direction: column; gap: 14px; }
+  .cust-name { font-size: 17px; font-weight: 700; color: var(--sv-grey-800); }
+  .veh-title { font-size: 16px; font-weight: 700; color: var(--sv-brand-blue); line-height: 1.3; }
+
+  /* Financial Info card */
+  .fin-card { padding: var(--sv-space-5); }
+  .fin-title { font-size: 16px; font-weight: 700; color: var(--sv-grey-800); margin-bottom: 12px; }
+  .fin-table { width: 100%; border-collapse: collapse; }
+  .fin-table th { text-align: left; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.03em;
+    color: var(--sv-fg-tertiary); padding-bottom: 8px; border-bottom: 1px solid var(--sv-border); }
+  .fin-table th:last-child { text-align: right; }
+  .fin-table td { font-size: 13px; color: var(--sv-grey-700); padding: 7px 0; }
+  .fin-table td:last-child { text-align: right; font-variant-numeric: tabular-nums; }
+  .fin-table tr.core-line td { color: var(--sv-violet-700); font-weight: 600; }
+  .fin-table tr.total td { font-weight: 700; color: var(--sv-grey-800); border-top: 1px solid var(--sv-border); padding-top: 10px; }
+
+  /* ─── Main ───────────────────────────────────────────── */
+  .main { display: flex; flex-direction: column; gap: var(--sv-space-4); min-width: 0; }
+  .main-top { display: flex; align-items: center; gap: var(--sv-space-5); }
+  .tabs { display: flex; align-items: center; gap: var(--sv-space-5); }
+  .tab { font-size: 14px; font-weight: 500; color: var(--sv-fg-secondary); padding: 6px 0; border-bottom: 2px solid transparent; }
+  .tab.active { color: var(--sv-brand-blue); border-bottom-color: var(--sv-brand-blue); font-weight: 600; }
+  .main-top-spacer { flex: 1; }
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 7px; height: 38px; padding: 0 16px;
+    border-radius: 8px; font-size: 14px; font-weight: 600; font-family: inherit; cursor: pointer; border: 1px solid transparent;
+    white-space: nowrap; transition: background 120ms ease-out, box-shadow 120ms ease-out, border-color 120ms ease-out; }
+  .btn [data-lucide] { width: 16px; height: 16px; }
+  .btn-secondary { background: #fff; border-color: var(--sv-border-strong); color: var(--sv-grey-700); box-shadow: var(--sv-shadow-xs); }
+  .btn-secondary:hover { background: var(--sv-grey-50); border-color: var(--sv-grey-400); }
+  .btn-primary { background: var(--sv-brand-blue); color: #fff; box-shadow: var(--sv-shadow-xs); }
+  .btn-primary:hover { background: var(--sv-primary-700); }
+  .btn[disabled] { background: var(--sv-grey-100); color: var(--sv-fg-tertiary); border-color: var(--sv-border-strong); box-shadow: none; cursor: not-allowed; }
+  .actions { display: flex; align-items: center; gap: var(--sv-space-3); }
+
+  /* ─── Lines table ────────────────────────────────────── */
+  .lines-card { padding: 0; overflow: hidden; }
+  table.lines { width: 100%; border-collapse: collapse; }
+  table.lines thead th { font-size: 12px; font-weight: 600; color: var(--sv-fg-secondary); text-align: left;
+    padding: 13px 14px; border-bottom: 1px solid var(--sv-border-strong); white-space: nowrap; }
+  table.lines thead th.num { text-align: right; }
+  table.lines tbody td { padding: 12px 14px; font-size: 13px; color: var(--sv-grey-700); vertical-align: top; }
+  .line-head td { border-top: 1px solid var(--sv-border); background: #fff; }
+  table.lines tbody tr.line-head:first-child td { border-top: 0; }
+  .sub-row td { background: var(--sv-grey-25); color: var(--sv-fg-secondary); padding-top: 8px; padding-bottom: 8px; }
+  .sub-row .sub-k { color: var(--sv-fg-secondary); font-weight: 600; }
+  .num { text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .line-no { width: 26px; height: 26px; border-radius: 6px; background: var(--sv-primary-50); color: var(--sv-primary-700);
+    border: 1px solid var(--sv-primary-200); font-size: 13px; font-weight: 700; display: flex; align-items: center; justify-content: center; }
+  .line-name { font-weight: 600; color: var(--sv-grey-800); }
+  .part-code { font-weight: 700; color: var(--sv-grey-800); }
+  .core-tag { display: inline-flex; align-items: center; gap: 4px; font-size: 10px; font-weight: 700; letter-spacing: 0.04em;
+    color: var(--sv-violet-700); background: var(--sv-violet-50); border: 1px solid var(--sv-violet-200); padding: 1px 7px; border-radius: var(--sv-radius-pill); margin-left: 4px; }
+  .core-tag [data-lucide] { width: 11px; height: 11px; }
+
+  /* Inline OK / Not OK on a core line (the decision that already exists today) */
+  .line-core { display: inline-flex; margin-left: 12px; border: 1px solid var(--sv-border-strong); border-radius: 7px; overflow: hidden; vertical-align: middle; }
+  .line-core button { height: 24px; padding: 0 10px; border: 0; font-family: inherit; font-size: 11.5px; font-weight: 700; cursor: pointer; background: #fff; color: var(--sv-fg-secondary); }
+  .line-core button + button { border-left: 1px solid var(--sv-border-strong); }
+  .line-core button.ok.sel { background: var(--sv-success-500); color: #fff; }
+  .line-core button.notok.sel { background: var(--sv-error-500); color: #fff; }
+  .core-inline-status { display: inline-flex; align-items: center; gap: 4px; margin-left: 10px; font-size: 12px; font-weight: 600; vertical-align: middle; }
+  .core-inline-status.ok { color: var(--sv-success-700); }
+  .core-inline-status.notok { color: var(--sv-warning-700); }
+  .core-inline-status [data-lucide] { width: 13px; height: 13px; }
+
+  .completed-banner { display: none; align-items: center; gap: 10px; padding: 12px 16px; background: var(--sv-success-50);
+    border: 1px solid var(--sv-success-200); border-radius: var(--sv-radius-md); color: var(--sv-success-700); font-size: 14px; font-weight: 500; }
+  .completed-banner [data-lucide] { width: 18px; height: 18px; }
+  .core-alert { display: flex; align-items: center; gap: 10px; padding: 12px 16px; background: var(--sv-violet-50);
+    border: 1px solid var(--sv-violet-200); border-radius: var(--sv-radius-md); color: var(--sv-violet-700); font-size: 14px; font-weight: 500; }
+  .core-alert [data-lucide] { width: 18px; height: 18px; flex-shrink: 0; }
+  .core-alert b { font-weight: 700; }
+
+  /* ─── Wizard / modal ─────────────────────────────────── */
+  .overlay { position: fixed; inset: 0; background: var(--sv-overlay); display: none; align-items: center; justify-content: center; z-index: 60; }
+  .overlay.open { display: flex; }
+  .dialog { width: 540px; max-width: calc(100vw - 32px); background: #fff; border-radius: var(--sv-radius-lg); box-shadow: var(--sv-shadow-lg); overflow: hidden; }
+  .wiz-head { padding: var(--sv-space-5) var(--sv-space-5) 0; }
+  .wiz-titlerow { display: flex; align-items: flex-start; justify-content: space-between; }
+  .wiz-title { font-size: 19px; font-weight: 700; color: var(--sv-grey-800); }
+  .wiz-close { color: var(--sv-fg-tertiary); cursor: pointer; background: none; border: 0; padding: 2px; display: flex; }
+  .wiz-close [data-lucide] { width: 19px; height: 19px; }
+  .wiz-sub { font-size: 13px; color: var(--sv-fg-secondary); margin-top: 3px; }
+  .wiz-steps { display: flex; align-items: center; gap: 7px; margin: 14px 0 2px; flex-wrap: wrap; }
+  .wiz-pill { display: inline-flex; align-items: center; gap: 6px; height: 26px; padding: 0 11px; border-radius: var(--sv-radius-pill);
+    font-size: 12px; font-weight: 600; line-height: 1; }
+  .wiz-pill.active { background: var(--sv-primary-600); color: #fff; }
+  .wiz-pill.done { background: var(--sv-success-100); color: var(--sv-success-700); }
+  .wiz-pill.pending { background: var(--sv-grey-100); color: var(--sv-fg-secondary); }
+  .wiz-pill [data-lucide] { width: 13px; height: 13px; }
+  .wiz-sep { color: var(--sv-grey-300); font-size: 13px; }
+  .wiz-body { padding: var(--sv-space-5); }
+  .wiz-intro { font-size: 13px; color: var(--sv-fg-secondary); line-height: 1.45; margin-bottom: 14px; }
+  .wiz-intro b { color: var(--sv-grey-800); font-weight: 700; }
+  .wiz-field { margin-bottom: var(--sv-space-4); }
+  .wiz-field:last-child { margin-bottom: 0; }
+  .wiz-field label { display: block; font-size: 13px; font-weight: 600; color: var(--sv-grey-700); margin-bottom: 6px; }
+  .wiz-req { color: var(--sv-error-600); font-size: 11px; font-weight: 700; letter-spacing: 0.03em; }
+  .wiz-input-wrap { position: relative; }
+  .wiz-field input { width: 100%; height: 42px; border: 1px solid var(--sv-border-strong); border-radius: 8px; padding: 0 14px;
+    font-size: 14px; font-family: inherit; color: var(--sv-grey-700); }
+  .wiz-field input:focus { outline: none; border-color: var(--sv-brand-blue); box-shadow: var(--sv-focus-ring); }
+  .wiz-suffix { position: absolute; right: 14px; top: 50%; transform: translateY(-50%); color: var(--sv-fg-tertiary); font-size: 13px; }
+  .wiz-note { font-size: 12px; color: var(--sv-fg-secondary); margin-top: 12px; display: flex; align-items: flex-start; gap: 7px; line-height: 1.45; }
+  .wiz-note [data-lucide] { width: 14px; height: 14px; color: var(--sv-primary-500); flex-shrink: 0; margin-top: 1px; }
+  .wiz-foot { display: flex; align-items: center; gap: var(--sv-space-3); padding: var(--sv-space-4) var(--sv-space-5);
+    border-top: 1px solid var(--sv-border); background: var(--sv-grey-25); flex-wrap: wrap; }
+  .wiz-foot .spacer { flex: 1; }
+  .btn-link { background: none; border: 0; color: var(--sv-primary-700); font-size: 14px; font-weight: 600; font-family: inherit; cursor: pointer;
+    padding: 0 4px; display: inline-flex; align-items: center; gap: 5px; }
+  .btn-link:hover { text-decoration: underline; }
+  .btn-link [data-lucide] { width: 15px; height: 15px; }
+
+  /* Core resolution progress bar in wizard */
+  .core-progress { display: flex; align-items: center; gap: 10px; padding: 11px 14px; border-radius: var(--sv-radius-md);
+    background: var(--sv-grey-25); border: 1px solid var(--sv-border-strong); margin-bottom: 14px; font-size: 13px; }
+  .core-progress .cp-count { font-weight: 700; color: var(--sv-grey-800); }
+  .core-progress .cp-track { flex: 1; height: 6px; border-radius: 4px; background: var(--sv-grey-200); overflow: hidden; }
+  .core-progress .cp-fill { height: 100%; background: var(--sv-brand-blue); transition: width 200ms ease-out; }
+
+  /* Core list rows */
+  .core-list { border: 1px solid var(--sv-border-strong); border-radius: var(--sv-radius-md); overflow: hidden; }
+  .core-group-hd { padding: 8px 14px; background: var(--sv-grey-50); border-bottom: 1px solid var(--sv-border);
+    font-size: 11px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: var(--sv-fg-secondary);
+    display: flex; align-items: center; gap: 6px; }
+  .core-group-hd [data-lucide] { width: 13px; height: 13px; }
+  .core-row { padding: 13px 14px; border-bottom: 1px solid var(--sv-border); }
+  .core-row:last-child { border-bottom: 0; }
+  .core-row.notok { background: var(--sv-warning-25, #FFFCF5); }
+  .cr-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+  .cr-name { font-size: 13px; font-weight: 600; color: var(--sv-grey-800); }
+  .cr-sub { font-size: 12px; color: var(--sv-fg-secondary); margin-top: 2px; }
+  .cr-charge { font-size: 12px; font-weight: 600; color: var(--sv-fg-secondary); white-space: nowrap; font-variant-numeric: tabular-nums; text-align: right; }
+  .cr-charge.amber { color: var(--sv-warning-700); }
+  .cr-charge.green { color: var(--sv-success-700); }
+  .cr-charge .added { display: block; font-size: 11px; font-weight: 600; margin-top: 1px; }
+  .core-toggle { display: inline-flex; margin-top: 11px; border: 1px solid var(--sv-border-strong); border-radius: 8px; overflow: hidden; }
+  .core-opt { height: 34px; padding: 0 14px; display: inline-flex; align-items: center; gap: 6px; white-space: nowrap;
+    font-size: 12.5px; font-weight: 600; color: var(--sv-fg-secondary); background: #fff; cursor: pointer; border: 0; font-family: inherit; }
+  .core-opt + .core-opt { border-left: 1px solid var(--sv-border-strong); }
+  .core-opt [data-lucide] { width: 14px; height: 14px; }
+  .core-opt.ok.sel { background: var(--sv-success-50); color: var(--sv-success-700); box-shadow: inset 0 0 0 1.5px var(--sv-success-400); }
+  .core-opt.notok.sel { background: var(--sv-warning-50); color: var(--sv-warning-700); box-shadow: inset 0 0 0 1.5px var(--sv-warning-400); }
+
+  /* Pick parts step (mirrors the live Pick parts step) */
+  .wiz-info { display: flex; gap: 12px; padding: 14px; background: var(--sv-grey-25);
+    border: 1px solid var(--sv-border-strong); border-radius: var(--sv-radius-md); }
+  .wiz-info > [data-lucide] { width: 18px; height: 18px; color: var(--sv-fg-secondary); flex-shrink: 0; margin-top: 1px; }
+  .wiz-info .wi-title { font-size: 14px; font-weight: 600; color: var(--sv-grey-800); }
+  .wiz-info .wi-desc { font-size: 13px; color: var(--sv-fg-secondary); margin-top: 2px; line-height: 1.45; }
+  .picked-row { display: flex; align-items: center; gap: 12px; padding: 13px 16px;
+    background: var(--sv-success-50); border: 1px solid var(--sv-success-200); border-radius: var(--sv-radius-md); }
+  .picked-row > [data-lucide] { width: 20px; height: 20px; color: var(--sv-success-600); flex-shrink: 0; }
+  .picked-row .msg { flex: 1; font-size: 14px; font-weight: 600; color: var(--sv-success-800); }
+  .picked-row .undo { background: none; border: 0; color: var(--sv-success-700); font-size: 13px; font-weight: 600;
+    font-family: inherit; cursor: pointer; text-decoration: underline; }
+  .list-toolbar { display: flex; align-items: center; justify-content: space-between; gap: 10px;
+    padding: 11px 14px; background: var(--sv-grey-50); border: 1px solid var(--sv-border-strong);
+    border-bottom: 0; border-radius: var(--sv-radius-md) var(--sv-radius-md) 0 0; }
+  .list-toolbar .lt-title { font-size: 13px; font-weight: 700; color: var(--sv-grey-800); }
+  .pick-all { height: 30px; padding: 0 13px; border: 0; border-radius: 7px; background: var(--sv-brand-blue);
+    color: #fff; font-size: 12px; font-weight: 600; font-family: inherit; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; }
+  .pick-all [data-lucide] { width: 14px; height: 14px; }
+  .list-scroll { border: 1px solid var(--sv-border-strong); border-radius: 0 0 var(--sv-radius-md) var(--sv-radius-md);
+    max-height: 262px; overflow-y: auto; }
+  .part-row { display: grid; grid-template-columns: 1fr 128px 84px; align-items: center; gap: 12px;
+    padding: 11px 14px; border-bottom: 1px solid var(--sv-border); }
+  .part-row:last-child { border-bottom: 0; }
+  .pr-main { min-width: 0; }
+  .pr-name { font-size: 13px; font-weight: 600; color: var(--sv-grey-800); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .pr-line { font-size: 12px; color: var(--sv-fg-secondary); margin-top: 2px; }
+  .bin-select { width: 100%; height: 34px; border: 1px solid var(--sv-border-strong); border-radius: 7px;
+    padding: 0 8px; font-size: 13px; font-family: inherit; color: var(--sv-grey-700); background: #fff; }
+  .bin-select:focus { outline: none; border-color: var(--sv-brand-blue); box-shadow: var(--sv-focus-ring); }
+  .pick-toggle { display: inline-flex; align-items: center; gap: 6px; justify-content: flex-end; cursor: pointer; }
+  .pick-cb { width: 18px; height: 18px; border-radius: 5px; border: 1.5px solid var(--sv-grey-300);
+    display: inline-flex; align-items: center; justify-content: center; background: #fff; flex-shrink: 0; }
+  .pick-cb.on { background: var(--sv-success-500); border-color: var(--sv-success-500); }
+  .pick-cb [data-lucide] { width: 12px; height: 12px; color: #fff; }
+  .pick-cb.off [data-lucide] { display: none; }
+  .pick-lbl { font-size: 12px; font-weight: 600; color: var(--sv-fg-secondary); }
+  .pick-lbl.on { color: var(--sv-success-700); }
+
+  /* Success screen */
+  .wiz-success { padding: var(--sv-space-6) var(--sv-space-5) var(--sv-space-5); text-align: center; }
+  .wiz-check { width: 64px; height: 64px; border-radius: 50%; background: var(--sv-success-50); display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; }
+  .wiz-check [data-lucide] { width: 32px; height: 32px; color: var(--sv-success-600); }
+  .wiz-success h3 { font-size: 20px; font-weight: 700; color: var(--sv-grey-800); }
+  .wiz-success p { font-size: 13px; color: var(--sv-fg-secondary); margin-top: 6px; }
+  .wiz-total { margin-top: 20px; padding: 14px 18px; background: var(--sv-grey-25); border: 1px solid var(--sv-border-strong); border-radius: var(--sv-radius-md); }
+  .wiz-total .tr { display: flex; align-items: center; justify-content: space-between; font-size: 13px; padding: 3px 0; }
+  .wiz-total .tr.core { color: var(--sv-violet-700); font-weight: 600; }
+  .wiz-total .tr.grand { border-top: 1px solid var(--sv-border-strong); margin-top: 6px; padding-top: 10px; }
+  .wiz-total .tr.grand .lbl { font-size: 11px; font-weight: 700; letter-spacing: 0.05em; color: var(--sv-fg-secondary); }
+  .wiz-total .tr.grand .val { font-size: 20px; font-weight: 700; color: var(--sv-grey-800); font-variant-numeric: tabular-nums; }
+
+  /* ─── Prototype control ──────────────────────────────── */
+  .proto { position: fixed; right: 18px; bottom: 18px; z-index: 50; width: 256px; background: var(--sv-grey-900); color: #fff;
+    border-radius: var(--sv-radius-lg); box-shadow: var(--sv-shadow-lg); font-size: 13px; overflow: hidden; }
+  .proto-head { display: flex; align-items: center; gap: 8px; padding: 12px 14px; border-bottom: 1px solid rgba(255,255,255,.1); }
+  .proto-head [data-lucide] { width: 15px; height: 15px; color: var(--sv-primary-300); }
+  .proto-head .t { font-weight: 700; font-size: 12px; letter-spacing: 0.04em; text-transform: uppercase; }
+  .proto-head .x { margin-left: auto; cursor: pointer; color: rgba(255,255,255,.5); }
+  .proto-head .x [data-lucide] { width: 15px; height: 15px; color: inherit; }
+  .proto-body { padding: 14px; display: flex; flex-direction: column; gap: 14px; max-height: 74vh; overflow-y: auto; }
+  .proto-group .pg-label { font-size: 11px; font-weight: 600; letter-spacing: 0.03em; text-transform: uppercase; color: rgba(255,255,255,.5); margin-bottom: 7px; }
+  .seg { display: flex; background: rgba(255,255,255,.08); border-radius: 8px; padding: 3px; gap: 3px; }
+  .seg button { flex: 1; height: 30px; border: 0; background: transparent; color: rgba(255,255,255,.7); font-size: 12px; font-weight: 600; font-family: inherit; border-radius: 6px; cursor: pointer; }
+  .seg button.on { background: var(--sv-brand-blue); color: #fff; }
+  .seg.vert { flex-direction: column; }
+  .seg.vert button { height: 30px; }
+  .proto-note { font-size: 11px; line-height: 1.45; color: rgba(255,255,255,.55); }
+  .proto-reset { display: flex; align-items: center; justify-content: center; gap: 6px; height: 32px; border-radius: 7px;
+    background: rgba(255,255,255,.1); color: #fff; border: 0; font-family: inherit; font-size: 12px; font-weight: 600; cursor: pointer; }
+  .proto-reset:hover { background: rgba(255,255,255,.18); }
+  .proto-reset [data-lucide] { width: 13px; height: 13px; }
+  .proto-collapsed { width: auto; }
+  .proto-collapsed .proto-body, .proto-collapsed .proto-head .t-full { display: none; }
+
+  /* ─── Receive Parts screen (WO-scoped) — matches the live Receive Parts page ─── */
+  .rcv2 { display: none; position: fixed; inset: 0; background: var(--sv-bg-app); z-index: 70; overflow-y: auto; }
+  .rcv2.open { display: block; }
+  .rcv2-bar { height: 52px; background: #fff; border-bottom: 1px solid var(--sv-border-strong);
+    display: flex; align-items: center; gap: 16px; padding: 0 22px; position: sticky; top: 0; z-index: 5; }
+  .rcv2-back { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 600; color: var(--sv-primary-700);
+    background: none; border: 0; font-family: inherit; cursor: pointer; }
+  .rcv2-back [data-lucide] { width: 16px; height: 16px; }
+  .rcv2-bar .title { font-size: 15px; font-weight: 700; color: var(--sv-grey-800); }
+  .rcv2-steps { margin-left: auto; display: flex; align-items: center; gap: 7px; }
+  .rcv2-pill { display: inline-flex; align-items: center; gap: 5px; height: 24px; padding: 0 10px; border-radius: var(--sv-radius-pill); font-size: 12px; font-weight: 600; }
+  .rcv2-pill.active { background: var(--sv-primary-600); color: #fff; }
+  .rcv2-pill.done { background: var(--sv-success-100); color: var(--sv-success-700); }
+  .rcv2-pill.pending { background: var(--sv-grey-100); color: var(--sv-fg-secondary); }
+  .rcv2-pill [data-lucide] { width: 12px; height: 12px; }
+  .rcv2-sep { color: var(--sv-grey-300); }
+  .rcv2-wrap { display: grid; grid-template-columns: 260px 1fr; gap: var(--sv-space-5); padding: var(--sv-space-5); max-width: 1160px; margin: 0 auto; align-items: start; }
+  .rcv2-side { background: #fff; border: 1px solid var(--sv-border-strong); border-radius: var(--sv-radius-lg); padding: var(--sv-space-5); }
+  .rcv2-side h3 { font-size: 15px; font-weight: 700; color: var(--sv-grey-800); margin-bottom: 14px; }
+  .rcv2-side .row { margin-bottom: 13px; }
+  .rcv2-side .k { font-size: 11px; font-weight: 600; letter-spacing: 0.03em; text-transform: uppercase; color: var(--sv-fg-tertiary); margin-bottom: 2px; }
+  .rcv2-side .v { font-size: 14px; color: var(--sv-grey-700); font-weight: 500; }
+  .rcv2-side .v.link { color: var(--sv-primary-700); font-weight: 600; }
+  .rcv2-main { display: flex; flex-direction: column; gap: var(--sv-space-4); min-width: 0; }
+  .vcard { background: #fff; border: 1px solid var(--sv-border-strong); border-radius: var(--sv-radius-lg); overflow: hidden; }
+  .vcard.received { border-color: var(--sv-success-300); }
+  .vcard-hd { display: flex; align-items: center; gap: 9px; padding: 14px 18px; border-bottom: 1px solid var(--sv-border); }
+  .vcard-hd [data-lucide] { width: 17px; height: 17px; color: var(--sv-grey-500); }
+  .vcard-hd .vn { font-size: 15px; font-weight: 700; color: var(--sv-grey-800); }
+  .vcard-hd .cnt { margin-left: auto; font-size: 12px; color: var(--sv-fg-tertiary); }
+  .vcard-hd .recd { margin-left: auto; display: inline-flex; align-items: center; gap: 5px; font-size: 12px; font-weight: 600;
+    color: var(--sv-success-700); background: var(--sv-success-50); border: 1px solid var(--sv-success-200); padding: 3px 10px; border-radius: var(--sv-radius-pill); }
+  .vcard-hd .recd [data-lucide] { width: 12px; height: 12px; color: var(--sv-success-600); }
+  .vcard-body { padding: 16px 18px; }
+  .vfields { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px; }
+  .vfield label { display: block; font-size: 12px; font-weight: 600; color: var(--sv-fg-secondary); margin-bottom: 5px; }
+  .vfield input { width: 100%; height: 40px; border: 1px solid var(--sv-border-strong); border-radius: 8px; padding: 0 12px; font-size: 14px; font-family: inherit; color: var(--sv-grey-700); }
+  .vfield input:focus { outline: none; border-color: var(--sv-brand-blue); box-shadow: var(--sv-focus-ring); }
+  .rp-label { font-size: 13px; font-weight: 700; color: var(--sv-grey-800); margin-bottom: 8px; }
+  table.rp { width: 100%; border-collapse: collapse; }
+  table.rp th { text-align: left; font-size: 11px; font-weight: 600; letter-spacing: 0.03em; text-transform: uppercase; color: var(--sv-fg-tertiary); padding: 6px 8px; border-bottom: 1px solid var(--sv-border); }
+  table.rp th.r { text-align: right; }
+  table.rp td { font-size: 13px; color: var(--sv-grey-700); padding: 11px 8px; vertical-align: middle; }
+  table.rp td.r { text-align: right; font-variant-numeric: tabular-nums; }
+  table.rp .pn { font-family: var(--sv-font-mono); font-size: 12px; color: var(--sv-grey-700); }
+  table.rp .pd { color: var(--sv-grey-700); }
+  .rp-check { width: 20px; height: 20px; border-radius: 5px; border: 1.5px solid var(--sv-brand-blue); background: var(--sv-brand-blue);
+    display: inline-flex; align-items: center; justify-content: center; }
+  .rp-check [data-lucide] { width: 13px; height: 13px; color: #fff; }
+  .rp-qty { width: 62px; height: 34px; border: 1px solid var(--sv-border-strong); border-radius: 7px; text-align: center; font-size: 13px; font-family: inherit; color: var(--sv-grey-700); }
+  .core-tag { display: inline-flex; align-items: center; gap: 4px; font-size: 10px; font-weight: 700; letter-spacing: 0.04em;
+    color: var(--sv-violet-700); background: var(--sv-violet-50); border: 1px solid var(--sv-violet-200); padding: 1px 7px; border-radius: var(--sv-radius-pill); margin-left: 6px; }
+  .core-tag [data-lucide] { width: 11px; height: 11px; }
+  .vtot { margin-top: 14px; margin-left: auto; width: 260px; }
+  .vtot .tr { display: flex; align-items: center; justify-content: space-between; font-size: 13px; padding: 4px 0; color: var(--sv-grey-700); }
+  .vtot .tr .tax-in { width: 90px; height: 32px; border: 1px solid var(--sv-border-strong); border-radius: 7px; text-align: right; padding: 0 9px; font-size: 13px; font-family: inherit; }
+  .vtot .tr.total { font-weight: 700; color: var(--sv-grey-800); border-top: 1px solid var(--sv-border); margin-top: 5px; padding-top: 9px; }
+  .vnote { margin-top: 16px; }
+  .vnote label { display: block; font-size: 13px; font-weight: 700; color: var(--sv-grey-800); margin-bottom: 7px; }
+  .vnote textarea { width: 100%; min-height: 68px; border: 1px solid var(--sv-border-strong); border-radius: 8px; padding: 10px 12px; font-size: 13px; font-family: inherit; color: var(--sv-grey-700); resize: vertical; }
+  .vcard-foot { display: flex; justify-content: flex-end; padding: 0 18px 18px; }
+  .rcv2-foot { position: sticky; bottom: 0; background: #fff; border-top: 1px solid var(--sv-border-strong);
+    display: flex; align-items: center; gap: 14px; padding: 14px 22px; margin-top: 8px; }
+  .rcv2-foot .status { font-size: 13px; color: var(--sv-fg-secondary); }
+  .rcv2-foot .status b { color: var(--sv-grey-800); font-weight: 700; }
+  .rcv2-foot .spacer { flex: 1; }
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<header class="header">
+  <div class="brand"><img src="assets/symbol-primary.svg" alt="ShopView"></div>
+  <nav class="top-nav">
+    <a href="#" class="active">Work Orders</a>
+    <a href="#">Schedule</a>
+    <a href="#">Customers</a>
+    <a href="#">Parts</a>
+    <a href="#">Reports</a>
+  </nav>
+  <div class="search"><i data-lucide="search"></i><input type="text" placeholder="Search"></div>
+  <div class="header-spacer"></div>
+  <div class="header-right">
+    <span class="clockin"><i data-lucide="timer"></i>Clock In</span>
+    <i data-lucide="bell" class="bell"></i>
+    <div class="org-pill">Staging Heavy Duty - 9919 <span class="avatar">AS</span></div>
+  </div>
+</header>
+
+<div class="shell">
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="card side-card">
+      <span class="wo-id">S2-15691</span>
+      <div class="badge-row" id="wo-badges"><span class="pill pill-green">Approved</span></div>
+      <div class="meta-list">
+        <div class="meta-line"><span class="k">Started:</span><span class="v">Jun 5, 2026</span></div>
+        <div class="meta-line"><span class="k">Total Hours:</span><span class="v">1.3 hrs</span></div>
+      </div>
+      <hr class="divider">
+      <div class="stacked">
+        <div><div class="field-label">Lead Technician</div><div class="field-value">Carrie Sanders</div></div>
+        <div><div class="field-label">Service Advisor</div><div class="field-value">Unassigned</div></div>
+      </div>
+    </div>
+
+    <div class="card side-card">
+      <div class="cust-name">Qaisland Paving</div>
+      <hr class="divider">
+      <div class="stacked">
+        <div><div class="field-label">Contact</div><div class="field-value">Brittany Taylor</div></div>
+        <div><div class="field-label">Phone</div><div class="field-value">382-975-5028</div></div>
+      </div>
+    </div>
+
+    <div class="card side-card">
+      <div class="veh-title">2024 GMC SIERRA<br>10156494</div>
+      <hr class="divider">
+      <div class="stacked">
+        <div><div class="field-label">Engine</div><div class="field-value">L3B</div></div>
+        <div><div class="field-label">VIN/Serial #</div><div class="field-value" id="sb-vin">Unknown</div></div>
+        <div><div class="field-label">Mileage</div><div class="field-value" id="sb-mileage">0</div></div>
+      </div>
+    </div>
+
+    <!-- Financial Info — core charges surface here once resolved -->
+    <div class="card fin-card">
+      <div class="fin-title">Financial Info</div>
+      <table class="fin-table">
+        <thead><tr><th>Item</th><th>Cost</th></tr></thead>
+        <tbody id="fin-body">
+          <tr><td>Parts</td><td>$412.14</td></tr>
+          <tr><td>Labor</td><td>$188.50</td></tr>
+          <tr class="core-line" id="fin-core-row" style="display:none"><td>Core charges</td><td id="fin-core-val">$0.00</td></tr>
+          <tr class="total"><td>Total</td><td id="fin-total">$600.64</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </aside>
+
+  <!-- Main -->
+  <main class="main">
+    <div class="main-top">
+      <div class="tabs">
+        <span class="tab active">Lines (2)</span>
+        <span class="tab">Parts</span>
+        <span class="tab">Notes</span>
+        <span class="tab">Finance</span>
+      </div>
+      <div class="main-top-spacer"></div>
+      <div class="actions">
+        <button class="btn btn-secondary"><i data-lucide="plus"></i> New Line</button>
+        <button class="btn btn-primary" id="completeBtn" onclick="onComplete()">Complete Work Order</button>
+      </div>
+    </div>
+
+    <div class="completed-banner" id="completedBanner">
+      <i data-lucide="check-circle-2"></i>
+      <span>Work order <strong>Completed</strong> and ready to invoice.</span>
+    </div>
+
+    <!-- Unresolved-core alert on the WO -->
+    <div class="core-alert" id="coreAlert">
+      <i data-lucide="rotate-ccw"></i>
+      <span><b id="coreAlertCount">0 core parts</b> need a return decision. Resolve each as OK (returned, no charge) or Not OK (kept, charge added) — here on the line or during completion.</span>
+    </div>
+
+    <!-- Lines table — cores carry the same OK / Not OK decision inline -->
+    <div class="card lines-card">
+      <table class="lines">
+        <thead>
+          <tr>
+            <th style="width:30px;"></th>
+            <th>Name / Description</th>
+            <th class="num" style="width:80px;">Qty</th>
+            <th style="width:130px;">Status</th>
+            <th class="num" style="width:110px;">Total</th>
+          </tr>
+        </thead>
+        <tbody id="lines-body"><!-- rendered --></tbody>
+      </table>
+    </div>
+  </main>
+</div>
+
+<!-- Completion wizard -->
+<div class="overlay" id="wizOverlay">
+  <div class="dialog" role="dialog" aria-modal="true" id="wizModal">
+    <div id="wizBody"></div>
+  </div>
+</div>
+
+<!-- WO-scoped Receive Parts screen (opened from the Receive step) -->
+<div class="rcv2" id="rcv2">
+  <div class="rcv2-bar">
+    <button class="rcv2-back" onclick="receiveScreenBack()"><i data-lucide="arrow-left"></i> Back to work order</button>
+    <span class="title">Receive Parts</span>
+    <div class="rcv2-steps">
+      <span class="rcv2-pill done"><i data-lucide="check"></i> Pick parts</span>
+      <span class="rcv2-sep">→</span>
+      <span class="rcv2-pill active">Receive</span>
+      <span class="rcv2-sep">→</span>
+      <span class="rcv2-pill pending">Resolve cores</span>
+    </div>
+  </div>
+  <div class="rcv2-wrap">
+    <aside class="rcv2-side">
+      <h3>Purchase Order Details</h3>
+      <div class="row"><div class="k">Work Order Number</div><div class="v link">S2-15691</div></div>
+      <div class="row"><div class="k">Date Ordered</div><div class="v">Jun 5, 2026</div></div>
+      <div class="row"><div class="k">Vendor</div><div class="v">Multiple vendors</div></div>
+      <div class="row"><div class="k">Ordered By</div><div class="v">Admin ShopView</div></div>
+      <div class="row"><div class="k">Note</div><div class="v">—</div></div>
+    </aside>
+    <div class="rcv2-main" id="rcv2Main"><!-- vendor cards rendered --></div>
+  </div>
+  <div class="rcv2-foot">
+    <span class="status" id="rcv2Status">0 of 2 vendors received</span>
+    <span class="spacer"></span>
+    <button class="btn btn-secondary" onclick="receiveScreenBack()">Cancel</button>
+    <button class="btn btn-primary" id="rcv2Continue" onclick="receiveScreenContinue()" disabled>Continue to resolve cores <i data-lucide="arrow-right"></i></button>
+  </div>
+</div>
+
+<!-- Prototype control -->
+<div class="proto" id="proto">
+  <div class="proto-head">
+    <i data-lucide="sliders-horizontal"></i>
+    <span class="t t-full">Prototype</span>
+    <span class="x" onclick="toggleProto()"><i data-lucide="chevron-down" id="protoChevron"></i></span>
+  </div>
+  <div class="proto-body">
+    <div class="proto-group">
+      <div class="pg-label">Cores on this work order</div>
+      <div class="seg vert" id="segCores">
+        <button onclick="setScenario('none')" id="scNone">None — step skipped</button>
+        <button onclick="setScenario('inventory')" id="scInv">Inventory cores only</button>
+        <button onclick="setScenario('special')" id="scSpec">Special-order cores only</button>
+        <button onclick="setScenario('mixed')" class="on" id="scMix">Mixed (inventory + special)</button>
+      </div>
+    </div>
+    <div class="proto-group">
+      <div class="pg-label">Inventory parts to pick</div>
+      <div class="seg" id="segPick">
+        <button onclick="setAutoPick(false)" class="on" id="apOff">Need picking</button>
+        <button onclick="setAutoPick(true)" id="apOn">Auto-picked</button>
+      </div>
+    </div>
+    <div class="proto-group">
+      <div class="pg-label">VIN / mileage</div>
+      <div class="seg" id="segFields">
+        <button onclick="setFields(false)" id="fldPresent">On file</button>
+        <button onclick="setFields(true)" class="on" id="fldMissing">Missing</button>
+      </div>
+    </div>
+    <div class="proto-group">
+      <div class="pg-label">Create purchase orders (receive step)</div>
+      <div class="seg" id="segPO">
+        <button onclick="setPO(false)" id="poOff">Off</button>
+        <button onclick="setPO(true)" class="on" id="poOn">On</button>
+      </div>
+    </div>
+    <div class="proto-note" id="protoNote"></div>
+    <button class="proto-reset" onclick="resetFlow()"><i data-lucide="rotate-ccw"></i> Reset work order</button>
+  </div>
+</div>
+
+<script>
+  const $ = id => document.getElementById(id);
+
+  // ─── State ───────────────────────────────────────────
+  const state = {
+    scenario: 'mixed',   // none | inventory | special | mixed
+    autoPick: false,     // false → Pick parts step present (auto-pick off)
+    fieldsMissing: true, // VIN / mileage missing → Details step
+    createPO: true,       // receive step present
+    wo: 'active'          // active | completed
+  };
+  // Core catalog per scenario. source: 'inventory' | 'special'
+  const CORE_SETS = {
+    none: [],
+    inventory: [
+      { id:'c1', name:'Alternator — reman', partNo:'4--ALT-7720', line:3, charge:85, source:'inventory' },
+      { id:'c2', name:'Brake caliper — front left', partNo:'4--CAL-2214', line:5, charge:45, source:'inventory' }
+    ],
+    special: [
+      { id:'c3', name:'Core for E2E PO Item 1', partNo:'PO-PART-1781689535026-0', line:2, charge:60, source:'special' }
+    ],
+    mixed: [
+      { id:'c1', name:'Alternator — reman', partNo:'4--ALT-7720', line:3, charge:85, source:'inventory' },
+      { id:'c2', name:'Brake caliper — front left', partNo:'4--CAL-2214', line:5, charge:45, source:'inventory' },
+      { id:'c3', name:'Core for E2E PO Item 1', partNo:'PO-PART-1781689535026-0', line:2, charge:60, source:'special' }
+    ]
+  };
+  // Non-core parts shown on the lines table for context
+  const LINES = [
+    { no: 2, name: 'Replace — brake job, front axle', qty: 1, parts: [
+        { code:'SP 001', desc:'SP 001', qty:10, status:'Requested', total:'$222.20' }
+    ]},
+    { no: 3, name: 'Replace — alternator & charging test', qty: 1, parts: [
+        { code:'N82E-150BR', desc:'1-1/2" NPSH brass fog nozzle', qty:10, status:'In Stock', total:'$58.93' }
+    ]}
+  ];
+
+  let cores = [];              // active core list (clone of scenario set)
+  let resolution = {};         // id -> 'ok' | 'notok' | null
+
+  function activeCores() { return CORE_SETS[state.scenario]; }
+  function hasCores() { return activeCores().length > 0; }
+  function allResolved() { return cores.every(c => resolution[c.id]); }
+  function resolvedCount() { return cores.filter(c => resolution[c.id]).length; }
+  function chargeAdded() { return cores.filter(c => resolution[c.id] === 'notok').reduce((s,c)=>s+c.charge, 0); }
+
+  function seedCores() {
+    cores = activeCores().map(c => ({ ...c }));
+    resolution = {};
+    cores.forEach(c => resolution[c.id] = null);
+  }
+
+  // ─── Render WO page ──────────────────────────────────
+  function render() {
+    // badges
+    const badges = $('wo-badges');
+    badges.innerHTML = state.wo === 'completed'
+      ? '<span class="pill pill-amber">Complete</span>'
+      : '<span class="pill pill-green">Approved</span>';
+    if (hasCores()) badges.innerHTML += ` <span class="pill pill-violet"><i data-lucide="rotate-ccw"></i> ${cores.length} core${cores.length>1?'s':''}</span>`;
+
+    $('completeBtn').style.display = state.wo === 'completed' ? 'none' : '';
+    $('completedBanner').style.display = state.wo === 'completed' ? 'flex' : 'none';
+
+    // core alert
+    const unresolved = cores.filter(c => !resolution[c.id]).length;
+    const showAlert = hasCores() && unresolved > 0 && state.wo !== 'completed';
+    $('coreAlert').style.display = showAlert ? 'flex' : 'none';
+    $('coreAlertCount').textContent = `${unresolved} core part${unresolved>1?'s':''}`;
+
+    renderLines();
+    renderFinancials();
+
+    // proto note
+    const notes = {
+      none: 'No returnable cores on this WO — the Resolve cores step is skipped entirely.',
+      inventory: 'Inventory cores only. The step lists them under “Inventory”. All decisions funnel into one place.',
+      special: 'Special-order core only. Same OK / Not OK decision, grouped under “Special order”.',
+      mixed: 'Inventory + special-order cores in one step. Completion is blocked until every core is resolved.'
+    };
+    $('protoNote').textContent = state.wo === 'completed'
+      ? 'Completed. ' + (chargeAdded() > 0 ? `$${chargeAdded().toFixed(2)} of core charges billed.` : 'All cores returned — no core charges.')
+      : notes[state.scenario];
+
+    // sidebar fields
+    $('sb-vin').textContent = state.fieldsMissing && !entered.vin ? 'Unknown' : (entered.vin || '1GTRUAEK7RZ344607');
+    $('sb-mileage').textContent = state.fieldsMissing && !entered.mi ? '0' : (entered.mi || '33,621');
+
+    lucide.createIcons();
+  }
+
+  function renderLines() {
+    const body = $('lines-body');
+    let html = '';
+    LINES.forEach((line, li) => {
+      html += `<tr class="line-head">
+        <td><span class="line-no">${line.no}</span></td>
+        <td><div class="line-name">${line.name}</div></td>
+        <td class="num">${line.qty}</td>
+        <td><span class="pill pill-green">Approved</span></td>
+        <td class="num" style="font-weight:700;color:var(--sv-grey-800)">—</td>
+      </tr>`;
+      // non-core parts
+      line.parts.forEach(p => {
+        html += `<tr class="sub-row">
+          <td></td>
+          <td><span class="sub-k">Parts</span> &nbsp; (<span class="part-code">${p.code}</span>) ${p.desc}</td>
+          <td class="num">${p.qty}</td>
+          <td><span class="pill pill-amber">${p.status}</span></td>
+          <td class="num">${p.total}</td>
+        </tr>`;
+      });
+      // core parts belonging to this line
+      cores.filter(c => c.line === line.no).forEach(c => {
+        html += coreLineRow(c);
+      });
+    });
+    body.innerHTML = html;
+  }
+
+  function coreLineRow(c) {
+    const r = resolution[c.id];
+    let control;
+    if (r === 'ok') {
+      control = `<span class="core-inline-status ok"><i data-lucide="check-circle-2"></i> OK · returned</span>`;
+    } else if (r === 'notok') {
+      control = `<span class="core-inline-status notok"><i data-lucide="alert-triangle"></i> Not OK · +$${c.charge.toFixed(2)}</span>`;
+    } else {
+      control = '';
+    }
+    return `<tr class="sub-row">
+      <td></td>
+      <td>
+        <span class="sub-k">Parts</span> &nbsp; (<span class="part-code">${c.partNo}</span>) ${c.name}
+        <span class="core-tag"><i data-lucide="rotate-ccw"></i> CORE</span>
+        <span class="line-core">
+          <button class="ok ${r==='ok'?'sel':''}" onclick="setLineCore('${c.id}','ok')">Ok</button>
+          <button class="notok ${r==='notok'?'sel':''}" onclick="setLineCore('${c.id}','notok')">Not Ok</button>
+        </span>
+        ${control}
+      </td>
+      <td class="num">1</td>
+      <td><span class="pill pill-violet">Core $${c.charge.toFixed(2)}</span></td>
+      <td class="num">${r==='notok' ? '$'+c.charge.toFixed(2) : '$0.00'}</td>
+    </tr>`;
+  }
+
+  function setLineCore(id, val) {
+    resolution[id] = val;
+    render();
+  }
+
+  function renderFinancials() {
+    const added = chargeAdded();
+    const resolvedAny = cores.some(c => resolution[c.id]);
+    $('fin-core-row').style.display = (hasCores() && added > 0) ? '' : 'none';
+    $('fin-core-val').textContent = '$' + added.toFixed(2);
+    $('fin-total').textContent = '$' + (600.64 + added).toFixed(2);
+  }
+
+  // ─── Completion wizard ───────────────────────────────
+  const wiz = { steps: [], idx: 0 };
+  let entered = { vin:'', mi:'' };
+
+  function buildSteps() {
+    // Required-invoice (mandatory) flow: parts must be received before completing,
+    // and a special-order core can only be settled once its part is in hand — so
+    // Resolve cores comes AFTER Receive.
+    const steps = [];
+    if (state.fieldsMissing) steps.push('details');         // Details — first
+    if (!state.autoPick) steps.push('pick');                 // Pick inventory parts
+    if (state.createPO) steps.push('receive');               // Receive special-order / vendor parts
+    if (hasCores() && !allResolved()) steps.push('cores');   // Resolve cores — after receive
+    return steps;
+  }
+  function onComplete() {
+    seedCoresIfNeeded();
+    resetReceive();
+    wiz.steps = buildSteps();
+    wiz.idx = 0;
+    $('wizOverlay').classList.add('open');
+    if (wiz.steps.length === 0) { finishWizard(); } else { renderWizard(); }
+  }
+  function seedCoresIfNeeded() {
+    // keep any decisions already made on the line; only (re)seed missing ids
+    const ids = new Set(cores.map(c=>c.id));
+    activeCores().forEach(c => { if (!ids.has(c.id)) { cores.push({...c}); resolution[c.id] = resolution[c.id] || null; } });
+  }
+  function closeWizard() { $('wizOverlay').classList.remove('open'); }
+
+  const STEP_LABELS = { details:'Details', pick:'Pick parts', receive:'Receive', cores:'Resolve cores' };  function wizHeader() {
+    let pills = '';
+    wiz.steps.forEach((s, i) => {
+      const cls = i < wiz.idx ? 'done' : (i === wiz.idx ? 'active' : 'pending');
+      const icon = cls === 'done' ? '<i data-lucide="check"></i>' : '';
+      if (i > 0) pills += '<span class="wiz-sep">→</span>';
+      pills += `<span class="wiz-pill ${cls}">${icon}${STEP_LABELS[s]}</span>`;
+    });
+    return `<div class="wiz-head">
+      <div class="wiz-titlerow">
+        <div class="wiz-title">Complete Work Order</div>
+        <button class="wiz-close" onclick="closeWizard()"><i data-lucide="x"></i></button>
+      </div>
+      <div class="wiz-sub">S2-15691 · Qaisland Paving</div>
+      <div class="wiz-steps">${pills}</div>
+    </div>`;
+  }
+
+  function renderWizard() {
+    const body = $('wizBody');
+    if (wiz.idx >= wiz.steps.length) {
+      $('rcv2').classList.remove('open'); $('wizOverlay').classList.add('open');
+      body.innerHTML = successHTML(); lucide.createIcons(); return;
+    }
+    const step = wiz.steps[wiz.idx];
+    if (step === 'receive') { openReceiveScreen(); return; }   // full-page Receive Parts screen
+    $('rcv2').classList.remove('open'); $('wizOverlay').classList.add('open');
+    let html = wizHeader();
+    if (step === 'pick') html += pickBody() + footFor('pick');
+    else if (step === 'details') html += detailsBody() + footFor('details');
+    else if (step === 'cores') html += coresBody() + footFor('cores');
+    body.innerHTML = html;
+    lucide.createIcons();
+    if (step === 'details') validateDetails();
+  }
+
+  // Step · Pick parts — auto-pick off. Pick all from default bins, or review one by one.
+  const PICK_BINS = ['A-12','A-14','B-03','B-19','C-04','C-07'];
+  const PICK_PARTS = [
+    { name:'Brake pad set — front',  no:'SP 001',      line:2, bin:'A-12' },
+    { name:'Fog nozzle — 1½" brass', no:'N82E-150BR',  line:3, bin:'A-14' },
+    { name:'Serpentine belt',        no:'4--SB-7788',  line:3, bin:'B-03' },
+    { name:'Cabin air filter',       no:'4--CF-9002',  line:2, bin:'B-19' }
+  ];
+  const pick = { mode:'default', checked:{} };   // mode: default | review
+  function pickReset() { pick.mode='default'; pick.checked={}; PICK_PARTS.forEach(p=>pick.checked[p.no]=false); }
+  function pickCount() { return PICK_PARTS.filter(p=>pick.checked[p.no]).length; }
+  function pickAllDone() { return pickCount() === PICK_PARTS.length; }
+
+  function pickBody() {
+    const n = PICK_PARTS.length;
+    if (pick.mode === 'review') {
+      let rows = '';
+      PICK_PARTS.forEach((p, i) => {
+        const on = pick.checked[p.no];
+        const opts = ['<option value="">Select bin…</option>']
+          .concat(PICK_BINS.map(b=>`<option ${b===p.bin?'selected':''}>Bin ${b}</option>`)).join('');
+        rows += `<div class="part-row">
+          <div class="pr-main"><div class="pr-name">${p.name}</div><div class="pr-line">${p.no} · Line ${p.line}</div></div>
+          <select class="bin-select">${opts}</select>
+          <div class="pick-toggle" onclick="togglePick('${p.no}')">
+            <span class="pick-cb ${on?'on':'off'}"><i data-lucide="check"></i></span>
+            <span class="pick-lbl ${on?'on':''}">${on?'Picked':'Pick'}</span>
+          </div>
+        </div>`;
+      });
+      return `<div class="wiz-body">
+        <div class="list-toolbar">
+          <span class="lt-title">${n} parts · pick from bins</span>
+          <button class="pick-all" onclick="pickAllContinue()"><i data-lucide="package-check"></i> Pick all from default bins</button>
+        </div>
+        <div class="list-scroll">${rows}</div>
+      </div>`;
+    }
+    if (pickAllDone()) {
+      return `<div class="wiz-body">
+        <div class="picked-row"><i data-lucide="check-circle-2"></i>
+          <div class="msg">${n} parts picked from default bins</div>
+          <button class="undo" onclick="pickUndo()">Undo</button>
+        </div>
+      </div>`;
+    }
+    return `<div class="wiz-body">
+      <div class="wiz-info"><i data-lucide="package-search"></i>
+        <div><div class="wi-title">Auto-pick is off</div>
+        <div class="wi-desc">${n} parts need picking from inventory before this work order can complete.</div></div>
+      </div>
+      <div class="wiz-note"><i data-lucide="info"></i> Picking from default bins is fastest. Review individually to change a bin or check stock.</div>
+    </div>`;
+  }
+  function pickAll() { PICK_PARTS.forEach(p=>pick.checked[p.no]=true); renderWizard(); }
+  function pickAllContinue() { PICK_PARTS.forEach(p=>pick.checked[p.no]=true); pickNext(); }
+  function pickUndo() { pickReset(); renderWizard(); }
+  function togglePick(no) { pick.checked[no]=!pick.checked[no]; renderWizard(); }
+  function pickReview() { pick.mode='review'; renderWizard(); }
+  function pickNext() { if (!pickAllDone()) return; wiz.idx++; afterStep(); }
+
+  // Step · Details
+  function detailsBody() {
+    return `<div class="wiz-body">
+      <div class="wiz-field">
+        <label>VIN / Serial # <span class="wiz-req">REQUIRED</span></label>
+        <div class="wiz-input-wrap"><input id="wizVin" oninput="validateDetails()" placeholder="Enter VIN or serial number"></div>
+      </div>
+      <div class="wiz-field">
+        <label>Mileage <span class="wiz-req">REQUIRED</span></label>
+        <div class="wiz-input-wrap"><input id="wizMi" oninput="validateDetails()" placeholder="Enter mileage" inputmode="numeric"><span class="wiz-suffix">mi</span></div>
+      </div>
+    </div>`;
+  }
+  function validateDetails() { $('wizNext').disabled = !($('wizVin').value.trim() && $('wizMi').value.trim()); }
+
+  // Step · Resolve cores  ── the star
+  function coresBody() {
+    const total = cores.length, done = resolvedCount();
+    const pct = total ? Math.round(done/total*100) : 0;
+    const groups = [
+      { key:'inventory', label:'Inventory cores', icon:'package' },
+      { key:'special',   label:'Special order cores', icon:'store' }
+    ];
+    let lists = '';
+    groups.forEach(g => {
+      const set = cores.filter(c => c.source === g.key);
+      if (!set.length) return;
+      let rows = '';
+      set.forEach(c => rows += coreModalRow(c));
+      lists += `<div class="core-list" style="margin-bottom:12px">
+        <div class="core-group-hd"><i data-lucide="${g.icon}"></i> ${g.label} · ${set.length}</div>
+        ${rows}
+      </div>`;
+    });
+    const added = chargeAdded();
+    return `<div class="wiz-body">
+      <div class="wiz-intro">Parts are received. <b>${total} core part${total>1?'s':''}</b> can now be resolved — mark whether each old unit was returned. This decides whether the core charge is billed.</div>
+      <div class="core-progress">
+        <span class="cp-count">${done} / ${total} resolved</span>
+        <div class="cp-track"><div class="cp-fill" style="width:${pct}%"></div></div>
+        ${added>0 ? `<span style="font-weight:600;color:var(--sv-warning-700);white-space:nowrap">+$${added.toFixed(2)} to invoice</span>` : ''}
+      </div>
+      ${lists}
+      <div class="wiz-note"><i data-lucide="lock"></i> Completion stays blocked until every core is set — the invoice can only bill a core once its return decision is made.</div>
+    </div>`;
+  }
+  function coreModalRow(c) {
+    const r = resolution[c.id];
+    let charge;
+    if (r === 'notok') charge = `<div class="cr-charge amber">Core $${c.charge.toFixed(2)}<span class="added">added to invoice</span></div>`;
+    else if (r === 'ok') charge = `<div class="cr-charge green">Core $${c.charge.toFixed(2)}<span class="added">no charge</span></div>`;
+    else charge = `<div class="cr-charge">Core $${c.charge.toFixed(2)}</div>`;
+    return `<div class="core-row ${r==='notok'?'notok':''}">
+      <div class="cr-top">
+        <div><div class="cr-name">${c.name}</div><div class="cr-sub">${c.partNo} · Line ${c.line}</div></div>
+        ${charge}
+      </div>
+      <div class="core-toggle">
+        <button class="core-opt ok ${r==='ok'?'sel':''}" onclick="setCore('${c.id}','ok')"><i data-lucide="${r==='ok'?'check':'rotate-ccw'}"></i> OK · returned</button>
+        <button class="core-opt notok ${r==='notok'?'sel':''}" onclick="setCore('${c.id}','notok')">Not OK · keep + charge</button>
+      </div>
+    </div>`;
+  }
+  function setCore(id, val) { resolution[id] = val; renderWizard(); updateCoresFoot(); }
+  function updateCoresFoot() {
+    const btn = $('wizNext'); if (!btn) return;
+    btn.disabled = !allResolved();
+  }
+
+  // Step · Receive — required-invoice flow: special-order parts MUST be received before completing.
+  // Cores are resolved in the NEXT step, once the parts are in hand.
+  function receiveBody() {
+    const specialCores = cores.filter(c => c.source === 'special');
+    const nextNote = hasCores() && !allResolved()
+      ? `<div class="wiz-note"><i data-lucide="rotate-ccw"></i> Once received, you'll resolve each core (Return / Keep) in the next step — a core can only be settled with the part in hand.</div>`
+      : `<div class="wiz-note"><i data-lucide="info"></i> Inventory parts are picked automatically when the work order is completed.</div>`;
+    return `<div class="wiz-body">
+      <div class="wiz-info"><i data-lucide="package"></i>
+        <div><div class="wi-title">2 parts waiting to receive</div>
+        <div class="wi-desc">Vendor invoice is required — special-order parts must be received before this work order can complete.</div></div>
+      </div>
+      <div class="core-list">
+        <div class="core-group-hd"><i data-lucide="store"></i> Awaiting receipt · 2</div>
+        <div class="core-row"><div class="cr-top"><div><div class="cr-name">Alternator — reman <span class="core-tag"><i data-lucide="rotate-ccw"></i> CORE</span></div><div class="cr-sub">4--ALT-7720 · Napa Auto Parts · qty 1</div></div><div class="cr-charge">$210.00</div></div></div>
+        <div class="core-row"><div class="cr-top"><div><div class="cr-name">Front brake pads</div><div class="cr-sub">MKD785FM · Napa Auto Parts · qty 2</div></div><div class="cr-charge">$62.00</div></div></div>
+      </div>
+      ${nextNote}
+    </div>`;
+  }
+
+  // ─── Footers ─────────────────────────────────────────
+  function footFor(step) {
+    const isLast = wiz.idx === wiz.steps.length - 1;
+    const back = wiz.idx > 0
+      ? `<button class="btn-link" onclick="wizBack()"><i data-lucide="arrow-left"></i> Back</button>`
+      : `<button class="btn-link" onclick="closeWizard()">Cancel</button>`;
+    if (step === 'pick') {
+      if (pick.mode === 'review') {
+        const dis = pickAllDone() ? '' : 'disabled';
+        return `<div class="wiz-foot">${back}<span class="spacer"></span><button class="btn btn-primary" id="wizNext" onclick="pickNext()" ${dis}>Continue <i data-lucide="arrow-right"></i></button></div>`;
+      }
+      if (pickAllDone()) {
+        return `<div class="wiz-foot">${back}<span class="spacer"></span>
+          <button class="btn btn-secondary" onclick="pickReview()">Review individually</button>
+          <button class="btn btn-primary" id="wizNext" onclick="pickNext()">Continue <i data-lucide="arrow-right"></i></button></div>`;
+      }
+      return `<div class="wiz-foot">${back}<span class="spacer"></span>
+        <button class="btn btn-secondary" onclick="pickReview()">Review individually</button>
+        <button class="btn btn-primary" onclick="pickAllContinue()"><i data-lucide="package-check"></i> Pick all from default bins</button></div>`;
+    }
+    if (step === 'details') {
+      const label = isLast ? 'Complete Work Order' : 'Continue <i data-lucide="arrow-right"></i>';
+      return `<div class="wiz-foot">${back}<span class="spacer"></span><button class="btn btn-primary" id="wizNext" onclick="detailsNext()" disabled>${label}</button></div>`;
+    }
+    if (step === 'cores') {
+      const label = isLast ? 'Complete Work Order' : 'Continue <i data-lucide="arrow-right"></i>';
+      const dis = allResolved() ? '' : 'disabled';
+      return `<div class="wiz-foot">${back}<span class="spacer"></span><button class="btn btn-primary" id="wizNext" onclick="coresNext()" ${dis}>${label}</button></div>`;
+    }
+    if (step === 'receive') {
+      if (isLast) {
+        return `<div class="wiz-foot">${back}<span class="spacer"></span><button class="btn btn-primary" onclick="receiveNext()"><i data-lucide="box"></i> Receive &amp; Complete</button></div>`;
+      }
+      return `<div class="wiz-foot">${back}<span class="spacer"></span><button class="btn btn-primary" onclick="receiveNext()"><i data-lucide="box"></i> Receive &amp; continue <i data-lucide="arrow-right"></i></button></div>`;
+    }
+    return '';
+  }
+
+  function detailsNext() {
+    entered.vin = $('wizVin').value.trim();
+    entered.mi = $('wizMi').value.trim();
+    state.fieldsMissing = false;
+    $('fldMissing').classList.remove('on'); $('fldPresent').classList.add('on');
+    wiz.idx++; afterStep();
+  }
+  function coresNext() { if (!allResolved()) return; wiz.idx++; afterStep(); }
+  function receiveNext() { wiz.idx++; afterStep(); }
+
+  // ── WO-scoped Receive Parts screen (the Receive step routes here) ──
+  const RCV_VENDORS = [
+    { id:'napa',  name:'Napa Auto Parts', parts:[ { pn:'4--ALT-7720', desc:'Alternator — reman', cost:135.00, qtyOrd:1, qtyRec:1, core:true } ] },
+    { id:'fleet', name:'Fleet Supply Co', parts:[ { pn:'MKD785FM', desc:'Front brake pads', cost:48.00, qtyOrd:2, qtyRec:2, core:false } ] }
+  ];
+  let rcvReceived = {};
+  function resetReceive() { rcvReceived = {}; }
+  function openReceiveScreen() {
+    $('wizOverlay').classList.remove('open');
+    $('rcv2').classList.add('open');
+    renderReceiveScreen();
+  }
+  function renderReceiveScreen() {
+    const hasCoresNext = wiz.steps.indexOf('cores') > wiz.idx;
+    let cards = '';
+    RCV_VENDORS.forEach(v => {
+      const done = !!rcvReceived[v.id];
+      let rows = ''; let sub = 0;
+      v.parts.forEach(p => {
+        const tot = p.cost * p.qtyRec; sub += tot;
+        const coreTag = p.core ? '<span class="core-tag"><i data-lucide="rotate-ccw"></i> CORE</span>' : '';
+        rows += `<tr>
+          <td><span class="rp-check"><i data-lucide="check"></i></span></td>
+          <td><span class="pn">${p.pn}</span></td>
+          <td class="pd">${p.desc}${coreTag}</td>
+          <td class="r">$${p.cost.toFixed(2)}</td>
+          <td class="r">${p.qtyOrd}</td>
+          <td class="r"><input class="rp-qty" value="${p.qtyRec}"></td>
+          <td class="r">$${tot.toFixed(2)}</td>
+        </tr>`;
+      });
+      const hd = done
+        ? '<span class="recd"><i data-lucide="check"></i> Received</span>'
+        : `<span class="cnt">${v.parts.length} part${v.parts.length>1?'s':''}</span>`;
+      const invVal = done ? `value="INV-${v.id.toUpperCase()}-0042"` : '';
+      const footBtn = done
+        ? '<button class="btn btn-secondary" disabled><i data-lucide="check"></i> Received</button>'
+        : `<button class="btn btn-primary" onclick="receiveVendor('${v.id}')"><i data-lucide="box"></i> Receive</button>`;
+      cards += `<div class="vcard ${done?'received':''}">
+        <div class="vcard-hd"><i data-lucide="store"></i><span class="vn">${v.name}</span>${hd}</div>
+        <div class="vcard-body">
+          <div class="vfields">
+            <div class="vfield"><label>Invoice Number</label><input placeholder="Invoice Number" ${invVal}></div>
+            <div class="vfield"><label>Date</label><input value="06/23/2026"></div>
+          </div>
+          <div class="rp-label">Receive Parts</div>
+          <table class="rp">
+            <thead><tr><th style="width:34px"></th><th>Part Number</th><th>Description</th><th class="r">Cost</th><th class="r">Qty Ordered</th><th class="r">Qty Received</th><th class="r">Total</th></tr></thead>
+            <tbody>${rows}</tbody>
+          </table>
+          <div class="vtot">
+            <div class="tr"><span>Subtotal</span><span>$${sub.toFixed(2)}</span></div>
+            <div class="tr"><span>Tax</span><input class="tax-in" value="0.00"></div>
+            <div class="tr total"><span>Total</span><span>$${sub.toFixed(2)}</span></div>
+          </div>
+          <div class="vnote"><label>Delivery note</label><textarea placeholder="Delivery Note"></textarea></div>
+        </div>
+        <div class="vcard-foot">${footBtn}</div>
+      </div>`;
+    });
+    $('rcv2Main').innerHTML = cards;
+
+    const recd = Object.values(rcvReceived).filter(Boolean).length;
+    const totalV = RCV_VENDORS.length;
+    $('rcv2Status').innerHTML = `<b>${recd}</b> of ${totalV} vendors received`;
+    const cont = $('rcv2Continue');
+    cont.disabled = recd < totalV;
+    cont.innerHTML = (hasCoresNext ? 'Continue to resolve cores' : 'Continue to complete') + ' <i data-lucide="arrow-right"></i>';
+    lucide.createIcons();
+  }
+  function receiveVendor(id) { rcvReceived[id] = true; renderReceiveScreen(); }
+  function receiveScreenBack() {
+    $('rcv2').classList.remove('open');
+    if (wiz.idx > 0) { wiz.idx--; renderWizard(); } else { closeWizard(); }
+  }
+  function receiveScreenContinue() {
+    $('rcv2').classList.remove('open');
+    wiz.idx++; afterStep();
+  }
+  function wizBack() { if (wiz.idx > 0) wiz.idx--; renderWizard(); }
+  function afterStep() { if (wiz.idx >= wiz.steps.length) finishWizard(); else renderWizard(); }
+
+  function finishWizard() {
+    state.wo = 'completed';
+    wiz.idx = wiz.steps.length;
+    render();
+    renderWizard();
+  }
+  function successHTML() {
+    const added = chargeAdded();
+    const coreRow = cores.length && added > 0
+      ? `<div class="tr core"><span>Core charges (${cores.filter(c=>resolution[c.id]==='notok').length} kept)</span><span>$${added.toFixed(2)}</span></div>`
+      : (cores.length ? `<div class="tr"><span>Core charges</span><span>$0.00 · all returned</span></div>` : '');
+    const grand = (600.64 + added).toFixed(2);
+    return `<div class="wiz-titlerow" style="padding:var(--sv-space-4) var(--sv-space-4) 0;justify-content:flex-end;">
+        <button class="wiz-close" onclick="closeWizard()"><i data-lucide="x"></i></button>
+      </div>
+      <div class="wiz-success">
+        <div class="wiz-check"><i data-lucide="check"></i></div>
+        <h3>Work order complete</h3>
+        <p>Sent to Finance as an invoice-ready draft with every core resolved.</p>
+        <div class="wiz-total">
+          <div class="tr"><span>Parts &amp; labor</span><span>$600.64</span></div>
+          ${coreRow}
+          <div class="tr grand"><span class="lbl">INVOICE TOTAL</span><span class="val">$${grand}</span></div>
+        </div>
+      </div>
+      <div class="wiz-foot">
+        <button class="btn-link" onclick="closeWizard()">Done</button>
+        <span class="spacer"></span>
+        <button class="btn btn-primary" onclick="closeWizard()"><i data-lucide="file-text"></i> Go To Invoice</button>
+      </div>`;
+  }
+
+  // ─── Prototype controls ──────────────────────────────
+  function setScenario(s) {
+    state.scenario = s;
+    ['scNone','scInv','scSpec','scMix'].forEach(id => $(id).classList.remove('on'));
+    ({none:'scNone',inventory:'scInv',special:'scSpec',mixed:'scMix'})[s] && $(({none:'scNone',inventory:'scInv',special:'scSpec',mixed:'scMix'})[s]).classList.add('on');
+    resetFlow();
+  }
+  function setFields(missing) {
+    state.fieldsMissing = missing;
+    if (missing) entered = { vin:'', mi:'' };
+    $('fldMissing').classList.toggle('on', missing); $('fldPresent').classList.toggle('on', !missing);
+    render();
+  }
+  function setPO(v) { state.createPO = v; $('poOn').classList.toggle('on', v); $('poOff').classList.toggle('on', !v); }
+  function setAutoPick(v) { state.autoPick = v; $('apOn').classList.toggle('on', v); $('apOff').classList.toggle('on', !v); pickReset(); }
+  function resetFlow() { state.wo = 'active'; entered = { vin:'', mi:'' }; pickReset(); resetReceive(); seedCores(); closeWizard(); $('rcv2').classList.remove('open'); render(); }
+  function toggleProto() {
+    const p = $('proto'); p.classList.toggle('proto-collapsed');
+    $('protoChevron').setAttribute('data-lucide', p.classList.contains('proto-collapsed') ? 'chevron-up' : 'chevron-down');
+    lucide.createIcons();
+  }
+
+  // ─── Deep-link driver — ?screen= pins a discrete artboard state ──
+  function openWizAtStep(stepName) {
+    wiz.steps = buildSteps();
+    // Pinned artboards may target a step that buildSteps() gates out (e.g. 'cores'
+    // once all resolved). Force-include it so the deep-link lands on that step.
+    if (stepName && wiz.steps.indexOf(stepName) === -1) {
+      const order = ['details','pick','receive','cores'];
+      wiz.steps = order.filter(s => s === stepName || wiz.steps.indexOf(s) !== -1);
+    }
+    wiz.idx = Math.max(0, wiz.steps.indexOf(stepName));
+    $('wizOverlay').classList.add('open');
+    renderWizard();
+  }
+  function applyScreen() {
+    pickReset();
+    resetReceive();
+    const p = new URLSearchParams(location.search).get('screen');
+    if (!p) { seedCores(); render(); return; }
+    $('proto').style.display = 'none';
+
+    // helpers to preset resolutions
+    const resolveAll = (map) => { cores.forEach(c => resolution[c.id] = map[c.id] || 'ok'); };
+
+    switch (p) {
+      case 'pick-default':      // Pick parts step — auto-pick off, nothing picked yet
+        state.scenario='mixed'; seedCores(); render(); openWizAtStep('pick'); break;
+      case 'pick-review':       // Pick parts — review individually list
+        state.scenario='mixed'; seedCores(); pick.mode='review'; render(); openWizAtStep('pick'); break;
+      case 'pick-picked':       // Pick parts — all picked, Continue enabled
+        state.scenario='mixed'; seedCores(); pickAll ? PICK_PARTS.forEach(pp=>pick.checked[pp.no]=true) : null; render(); openWizAtStep('pick'); break;
+      case 'wo-cores':          // WO page with unresolved cores + inline OK/Not OK
+        state.scenario='mixed'; seedCores(); render(); break;
+      case 'wo-line-resolved':  // one core resolved inline on the line
+        state.scenario='mixed'; seedCores(); resolution['c1']='ok'; render(); break;
+      case 'cores-unresolved':  // wizard cores step, nothing chosen
+        state.scenario='mixed'; state.fieldsMissing=false; seedCores(); render(); openWizAtStep('cores'); break;
+      case 'cores-partial':     // one chosen
+        state.scenario='mixed'; state.fieldsMissing=false; seedCores(); resolution['c1']='ok'; render(); openWizAtStep('cores'); break;
+      case 'cores-resolved':    // all chosen (mix), Continue enabled
+        state.scenario='mixed'; state.fieldsMissing=false; seedCores(); resolution['c1']='ok'; resolution['c2']='notok'; resolution['c3']='ok'; render(); openWizAtStep('cores'); break;
+      case 'cores-inventory':   // inventory-only scenario, unresolved
+        state.scenario='inventory'; state.fieldsMissing=false; seedCores(); render(); openWizAtStep('cores'); break;
+      case 'cores-special':     // special-order-only scenario, unresolved
+        state.scenario='special'; state.fieldsMissing=false; seedCores(); render(); openWizAtStep('cores'); break;
+      case 'receive-before-cores': // receive step (mandatory) — parts awaiting receipt, cores resolved next
+      case 'receive-after':     // (legacy alias)
+        state.scenario='mixed'; state.fieldsMissing=false; seedCores(); render(); openWizAtStep('receive'); break;
+      case 'none-skipped':      // no cores → cores step skipped; receive is the last step
+        state.scenario='none'; state.fieldsMissing=false; seedCores(); render(); openWizAtStep('receive'); break;
+      case 'success':           // completed with a core charge billed
+        state.scenario='mixed'; seedCores(); resolution['c1']='ok'; resolution['c2']='notok'; resolution['c3']='ok';
+        wiz.steps=[]; wiz.idx=0; $('wizOverlay').classList.add('open'); finishWizard(); break;
+      default: seedCores(); render();
+    }
+    lucide.createIcons();
+  }
+
+  lucide.createIcons();
+  applyScreen();
+</script>
+</body>
+</html>
