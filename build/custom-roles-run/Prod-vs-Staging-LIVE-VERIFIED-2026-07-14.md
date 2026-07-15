@@ -31,10 +31,28 @@ in "Truck Hill 1" org; staging: tech@shopview.com in "Staging Heavy Duty" org), 
 Send to Portal, New Line, Reviewed, See Financial Data (Rate/Margin), Take Payment (New Payment),
 Send to Terminal, line Return, WO Delete, plus tabs/menus. See the **"Full Dual Matrix"** workbook tab.
 
-**Confirmed migration LOSSES — Send to Portal STAGING-LESS (prod SHOWN → staging hidden):**
-**Technician, Parts Technician, Office User.** (Parts Manager/Foreman/Service Advisor/Senior SA/Admin/
-Service Manager = MATCH SHOWN; Sales Rep/Time Clock = MATCH hidden.) The Technician loss confirms the
-spec's "Technician loses Send to Portal."
+**Coverage: 14 capabilities × 11 roles, 95% observed (294/308 cells), real dual verdicts.**
+
+**Confirmed migration LOSSES (STAGING-LESS — prod SHOWN → staging hidden, both live-observed):**
+- **WO Delete:** Service Advisor, Foreman, Technician, Office User (old model let them delete WOs; new model removes it)
+- **Send to Portal:** Technician, Parts Technician, Office User (Technician loss confirms spec)
+- **WO-level History:** Technician, Parts Technician, Office User
+- **Change Customer / Change Asset on WO:** Technician, Office User
+- **Order Parts area (Parts tab):** Technician, Office User
+- **Timesheets tab:** Technician, Parts Manager
+- **Invoicing/Finance view:** Technician
+- **Create/Edit WO Lines (New Line):** Parts Technician
+
+**New grants (STAGING-MORE — staging SHOWN → prod hidden):**
+- **Take Payment / New Payment:** Service Manager, Senior SA, Foreman, Parts Manager, Parts Technician, Office User (new model grants invoicing-create more broadly)
+- **Send to Terminal:** Admin, Service Advisor (org-terminal caveat)
+- **WO Delete:** Service Manager; **Reviewed:** Parts Manager; **Change Customer/Asset:** Service Manager, Parts Manager
+
+**Still NOT VERIFIED (need targeted seeding, both envs):** Approve/Decline line (needs a pending-unapproved
+line — the estimate WO's line was already approved), Part Return (needs a returnable picked part), Set Line
+Status, Core OK/Not-OK (needs a cored inventory part), plus Parts-module deep flows (Pick, Receive, Bulk
+Receive, Assign Vendor, Fix Part #, vendorless part), Invoicing delete/reverse, part-return complete,
+create customer/asset from the New-WO flow, and AP/AR detail.
 
 **Important org-config caveat:** prod Send to Portal is broadly SHOWN in "Truck Hill 1" because that org
 has customer-portal enabled; the new-model staging role-gating removes it for non-review roles. So the
