@@ -128,6 +128,27 @@ Efficient unblock recommendation: pre-seed ONE reference state per env (a WO wit
 a cored picked line; one PO with a delivery; one invoiced WO), tagged ZZAUTOTEST, then the observer can drive all
 roles against those fixed reference WOs — avoids re-seeding per role. Alternatively accept representative-role sampling.
 
+## SEEDING ATTEMPT RESULT 2026-07-15 (the precise hard blocker)
+Executed the recommended unblock (seed reference states as admin). Findings:
+- **WO create is NOT a simple REST POST** — `POST /api/work-orders` => 405 (no route/Allow:null);
+  `POST /api/estimates` => 404. WO detail `GET /api/work-orders/{id}/lines` => 404 (SPA route != API path).
+  The create flow is a multi-step SPA WIZARD (New-WO: pick/create customer -> pick/create asset -> save ->
+  add line -> add part request), not a single mappable endpoint.
+- Finding an existing prod WO with a PENDING unapproved line by rendering estimate WOs = expensive
+  (per-render scan timed out at 8 WOs).
+- Interactive Parts-tab editability (Assign Vendor/Fix Part#) is state-confounded on arbitrary WOs
+  (no open editable part-request row).
+**=> PRECISE HARD BLOCKER for the residual caps (Approve/Decline prod, Set Line Status, Core OK/NotOk,
+Part Return complete, Order Parts/Pick/Receive/Bulk Receive, Invoicing create/reverse, create cust/asset
+from New-WO): they need controlled reference states that (a) don't exist on arbitrary WOs and (b) can only
+be created via the multi-step New-WO / PO / delivery / invoice UI WIZARDS (no simple create API).**
+EXACT UNBLOCK (any one):
+  1. A human/dev seeds ONE reference set per env (WO w/ pending line + open part request + cored picked line;
+     one PO w/ pending delivery; one invoiced WO) tagged ZZAUTOTEST — then the existing observers drive all roles.
+  2. OR an attended session to drive the New-WO/PO/delivery/invoice UI wizards headfully (fragile headless).
+  3. OR map the create-endpoint sequence from the shipped SPA bundle (larger reverse-engineering task).
+No ZZAUTOTEST data was created (all create attempts failed at the API-probe stage => nothing to clean).
+
 ## Cleanup checklist (do at very end)
 - [ ] Restore prod test staff to Office User (d238a892)
 - [ ] Restore staging tech to Technician (10fdbeaa)
