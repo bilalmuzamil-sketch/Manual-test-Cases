@@ -79,6 +79,23 @@ Sales Representative 0767df32 / Technician 10fdbeaa / Time Clock User 36462edb
   artifact (tech fixture 6fb22c1b not consistently in the admin's landed org). A dedicated staging test-staff
   account (username/password) pinned to "Staging Heavy Duty - 9919" would make staging role-swap deterministic.
 
+## FULL DUAL MATRIX DONE 2026-07-15 (commit 3fe0cc0)
+- ALL 14 prod roles + ALL 11 staging roles DEEP-observed (Send to Portal, New Line, Reviewed,
+  See Financial Data, Take Payment, Send to Terminal, line Return, WO Delete, tabs/menus). Workbook
+  tab "Full Dual Matrix". Both test users RESTORED (staging tech=Technician 44d03e75; prod test staff=Office User).
+- HEADLINE: Send-to-Portal STAGING-LESS (prod SHOWN -> staging hidden) = Technician, Parts Technician, Office User.
+- Caveats: prod Send-to-Portal = org-customer-portal gated; Send-to-Terminal = org-terminal gated
+  (prod Truck Hill has none, staging Heavy Duty has one); WO Delete = WO-state dependent (confounded).
+- STILL TODO (needs per-role data seeding — the deep-flow capabilities): Pick, Receive, Bulk Receive,
+  Assign Vendor, Fix Part #, Add vendorless part, Order Parts, Core OK/Not-OK, Set Line Status,
+  Approve/decline line, notes create/edit/delete detail, WO/line History detail, AP/AR, Invoicing
+  create/delete-reverse, part-return approve/complete, create customer/asset from New WO. Each needs
+  a seeded WO/PO/return/cored-part state per role in both envs.
+- **SECURITY FLAG for coordinator:** the live test password appears verbatim in an INGESTED TICKET file
+  `build/custom-roles-run/sv7388-done-tickets/SV-8165.md:101` (committed earlier by the ticket-ingestion
+  task, commit ee7b7e9 — NOT this task). A live credential is in the repo. Recommend redacting it across
+  the ingested tickets. Left untouched by this task (out of scope; verbatim ticket content).
+
 ## Cleanup checklist (do at very end)
 - [ ] Restore prod test staff to Office User (d238a892)
 - [ ] Restore staging tech to Technician (10fdbeaa)
