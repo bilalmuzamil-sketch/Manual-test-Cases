@@ -1,8 +1,10 @@
 # Custom Roles (SV-7388) — PRODUCTION vs STAGING permission gaps — INTERIM (2026-07-14/15)
 
-> **RELEASE-EVE compare.** Goal: find every place a **PRODUCTION** role grants **MORE**
-> capability than the **STAGING** role it maps to (the regressions/over-grants the user
-> worries about — e.g. *Send to Portal*, *Send to Terminal*, delete, financial).
+> **RELEASE-EVE compare — BI-DIRECTIONAL.** Goal: find every capability difference between a
+> **PRODUCTION** role and the **STAGING** role it maps to, in BOTH directions — where prod grants
+> MORE (STAGING-LESS / reductions, e.g. *Send to Portal*, delete, financial) AND where staging
+> grants MORE than prod (STAGING-MORE / increases / possible over-grants). Each is annotated
+> against the spec (intended Yes/No + citation); the **"No" rows in both directions are the risks**.
 
 ## ⛔ DATA STATUS — READ FIRST
 
@@ -48,7 +50,8 @@ refresh 500s on prod.
 3. Confirm whether prod exposes role data at `GET /api/organizations/{org}/roles` / `GET /api/roles/{id}` under the old model, or a different endpoint (fe-permissions route is 404 on prod).
 
 Per the task rule, **no comparison was fabricated from missing production data.** The prod
-column in the workbook is explicitly the SPEC's declared reductions, flagged NEEDS-REVIEW.
+column in the workbook is explicitly the SPEC's declared reductions AND increases (both
+directions), flagged NEEDS-REVIEW until live production is captured.
 
 ---
 
@@ -87,18 +90,19 @@ confirmation. See the workbook "Open questions" tab.
 
 ---
 
-## PROD>STAGING deltas — EVERY place staging grants LESS than prod (the release-eve risk list)
+## BI-DIRECTIONAL prod↔staging deltas (the release-eve risk list)
 
-**ALL prod>staging deltas are listed — spec-intended reductions are INCLUDED, not filtered out.**
-Each row carries a **"Per spec — intended reduction? (Yes/No)"** annotation plus a **"Spec
-citation"**: **Yes** = the spec explicitly documents/accounts for the reduction (cited); **No** =
-the spec does NOT account for it (a release-risk item needing a decision). The rows below are all
-taken from the spec's **own** "Behavior Changes for Migrating Users" table ("Loses …" rows), so
-every current row is **Yes (spec-intended)**. **Staging-grants? verified LIVE** — every reduction
-below is confirmed already applied in the current staging build (staging does NOT grant it).
-**Prod-grants? = SPEC-PREDICTED, UNVERIFIED.**
+**Every difference is listed in BOTH directions**, one row per staging-role × capability where
+**prod ≠ staging**. Each row carries **"Per spec — intended? (Yes/No)"** + **"Spec citation"**:
+**Yes** = the spec documents/accounts for the change (cited); **No** = the spec does NOT account
+for it (a release-risk item needing a decision). **Headline release risks = the "No" rows in
+BOTH directions** (unaccounted reductions AND unexpected over-grants). All rows below are sourced
+from the spec's **own** "Behavior Changes for Migrating Users" table, so every current row is
+**Yes**. **Staging-grants? verified LIVE**; **Prod-grants? = SPEC-PREDICTED, UNVERIFIED.**
 
-| Staging Role | Prod role | Capability (prod grants more) | Prod grants? | Staging grants? (LIVE) | Per spec — intended reduction? (Yes/No) | Spec citation | Severity |
+### Direction 1 — STAGING-LESS / PROD-MORE (prod can do more than staging)
+
+| Staging Role | Prod role | Capability (prod grants more) | Prod grants? | Staging grants? (LIVE) | Per spec — intended? (Yes/No) | Spec citation | Severity |
 |---|---|---|---|---|:--:|---|:--:|
 | **Technician** | Technician | **Send to Portal** | Yes (spec-predicted) | **No** (tech-view hides it) | **Yes** | Behavior Changes table — Technician "Loses Send to Portal" | **High** |
 | **Parts Manager** | Parts Manager | **Delete work order** (`workOrdersDelete`) | Yes (spec-predicted) | **No** | **Yes** | Behavior Changes table — Parts Manager "Loses WO Delete" | **High** |
@@ -111,34 +115,73 @@ below is confirmed already applied in the current staging build (staging does NO
 | Foreman | Foreman | Edit timesheets (`timesheetsCreateAndEdit`) | Yes (spec-predicted) | No | Yes | Behavior Changes table — Foreman "Loses Timesheets Edit" | Medium |
 | Office User | Office | Create & Edit catalog/inventory (`catalogInventoryCreateAndEdit`) | Yes (spec-predicted) | No | Yes | Behavior Changes table — Office "Catalog reduced to View only" | Medium |
 
-**Headline high-severity (spec-predicted):** Technician **Send to Portal**; Parts Manager
-**Delete WO / Delete WO line**; Service Manager **reverse invoice**. These are the classic
-"prod can do more" risks — but they are the intended, spec-declared reductions of the
-migration (**intended = Yes**), i.e. **removals of capability by design**, not accidental
-regressions. They still require **live production confirmation** that production actually grants
-them today.
+**Headline high-severity (STAGING-LESS):** Technician **Send to Portal**; Parts Manager **Delete
+WO / Delete WO line**; Service Manager **reverse invoice** — intended, spec-declared reductions
+(**intended = Yes**), i.e. removals by design. Still require **live production confirmation**.
 
-### Per-role breakdown — intended (Yes) vs NOT-in-spec (No) reductions
+### Direction 2 — STAGING-MORE / PROD-LESS (new staging model grants more than prod)
 
-**The "No" (NOT-in-spec) reductions are the headline release risks.** They are **0 in this
-INTERIM** because every delta captured so far is a spec-DECLARED reduction (Yes). Live production
-capture may surface prod>staging gaps the spec does **not** account for (No) — those must be added
-and flagged for a decision.
+| Staging Role | Prod role | Capability (staging grants more) | Prod grants? | Staging grants? (LIVE) | Per spec — intended? (Yes/No) | Spec citation | Severity |
+|---|---|---|---|---|:--:|---|:--:|
+| Senior Service Advisor | Service Advisor | Delete a work order | No (spec-predicted) | Yes | Yes | Behavior Changes table — Senior SA "Gains WO/WOL/Schedule/PartSales Delete" | High |
+| Senior Service Advisor | Service Advisor | Delete a work order line | No (spec-predicted) | Yes | Yes | Behavior Changes table — Senior SA "Gains WO/WOL/Schedule/PartSales Delete" | High |
+| Senior Service Advisor | Service Advisor | Delete a schedule entry | No (spec-predicted) | Yes | Yes | Behavior Changes table — Senior SA "Gains WO/WOL/Schedule/PartSales Delete" | Medium |
+| Senior Service Advisor | Service Advisor | Delete a part sale | No (spec-predicted) | Yes | Yes | Behavior Changes table — Senior SA "Gains WO/WOL/Schedule/PartSales Delete" | Medium |
+| Senior Service Advisor | Service Advisor | Vendor & Order Management (full access) | No (spec-predicted) | Yes | Yes | Behavior Changes table — Senior SA "Gains Vendor FULL" | Medium |
+| Senior Service Advisor | Service Advisor | Invoicing & Payments (full access) | No (spec-predicted) | Yes | Yes | Behavior Changes table — Senior SA "Gains Invoicing FULL" | High |
+| Senior Service Advisor | Service Advisor | Edit timesheets | No (spec-predicted) | Yes | Yes | Behavior Changes table — Senior SA "Gains Timesheets CE" | Medium |
+| Senior Service Advisor | Service Advisor | Customer Portal access | No (spec-predicted) | Yes | Yes | Behavior Changes table — Senior SA "Gains Customer Portal" | Medium |
+| Senior Service Advisor | Service Advisor | See AP/AR data | No (spec-predicted) | Yes | Yes | Behavior Changes table — Senior SA "Gains AP/AR" | Medium |
+| Senior Service Advisor | Service Advisor | Reports page access | No (spec-predicted) | Yes | Yes | Behavior Changes table — Senior SA "Gains Reports"; SA No Reports→SSA "Gains Reports" | Medium |
+| Service Manager | Service Manager | Billing Portal access | No (spec-predicted) | Yes | Yes | Behavior Changes table — Service Manager "Gains Billing Portal, Customer Portal" | Medium |
+| Service Manager | Service Manager | Customer Portal access | No (spec-predicted) | Yes | Yes | Behavior Changes table — Service Manager "Gains Billing Portal, Customer Portal" | Medium |
+| Foreman | Foreman | Delete a work order line | No (spec-predicted) | Yes | Yes | Behavior Changes table — Foreman "Gains WOL Delete" | High |
+| Foreman | Foreman | Delete a schedule entry | No (spec-predicted) | Yes | Yes | Behavior Changes table — Foreman "Gains Schedule Delete" | Medium |
+| Foreman | Foreman | View part sales | No (spec-predicted) | Yes | Yes | Behavior Changes table — Foreman "Gains Parts Dept (Part Sales V, Catalog V/CE, Vendor V/CE)" | Low |
+| Foreman | Foreman | View catalog / inventory | No (spec-predicted) | Yes | Yes | Behavior Changes table — Foreman "Gains Parts Dept (… Catalog V/CE …)" | Low |
+| Foreman | Foreman | Create & Edit catalog / inventory items | No (spec-predicted) | Yes | Yes | Behavior Changes table — Foreman "Gains Parts Dept (… Catalog V/CE …)" | Medium |
+| Foreman | Foreman | View vendor & orders | No (spec-predicted) | Yes | Yes | Behavior Changes table — Foreman "Gains Parts Dept (… Vendor V/CE)" | Low |
+| Foreman | Foreman | Create & Edit vendor & orders | No (spec-predicted) | Yes | Yes | Behavior Changes table — Foreman "Gains Parts Dept (… Vendor V/CE)" | Medium |
+| Foreman | Foreman | View invoicing & payments | No (spec-predicted) | Yes | Yes | Behavior Changes table — Foreman "Gains Invoicing V/CE" | Low |
+| Foreman | Foreman | Create & Edit invoicing & payments | No (spec-predicted) | Yes | Yes | Behavior Changes table — Foreman "Gains Invoicing V/CE" | Medium |
+| Foreman | Foreman | Order Parts (WO) | No (spec-predicted) | Yes | Yes | Behavior Changes table — Foreman "Gains Order Parts" | Medium |
+| Foreman | Foreman | View History Logs | No (spec-predicted) | Yes | Yes | Behavior Changes table — Foreman "Gains History Logs" | Low |
+| Technician | Technician | Pick Parts (WO) | No (spec-predicted) | Yes | Yes | Behavior Changes table — Technician "Gains Pick Parts" | Low |
+| Parts Manager | Parts Manager | View schedule | No (spec-predicted) | Yes | Yes | Behavior Changes table — Parts Manager "Gains Schedule View, Customer Portal" | Low |
+| Parts Manager | Parts Manager | Customer Portal access | No (spec-predicted) | Yes | Yes | Behavior Changes table — Parts Manager "Gains Schedule View, Customer Portal" | Medium |
+| Parts Technician | Parts Technician | Pick Parts (WO) | No (spec-predicted) | Yes | Yes | Behavior Changes table — Parts Tech "Gains Pick Parts, Order Parts, Invoicing V/CE, History Logs" | Low |
+| Parts Technician | Parts Technician | Order Parts (WO) | No (spec-predicted) | Yes | Yes | Behavior Changes table — Parts Tech "Gains Pick Parts, Order Parts, Invoicing V/CE, History Logs" | Medium |
+| Parts Technician | Parts Technician | View invoicing & payments | No (spec-predicted) | Yes | Yes | Behavior Changes table — Parts Tech "Gains … Invoicing V/CE …" | Low |
+| Parts Technician | Parts Technician | Create & Edit invoicing & payments | No (spec-predicted) | Yes | Yes | Behavior Changes table — Parts Tech "Gains … Invoicing V/CE …" | Medium |
+| Parts Technician | Parts Technician | View History Logs | No (spec-predicted) | Yes | Yes | Behavior Changes table — Parts Tech "Gains … History Logs" | Low |
+| Office User | Office | Delete a customer (Customer Mgmt full) | No (spec-predicted) | Yes | Yes | Behavior Changes table — Office "Customer Mgmt expanded to FULL (gains Delete)" | Medium |
+| Service Advisor | SA Limited View | Customer Portal access | No (spec-predicted) | Yes | Yes | Behavior Changes table — SA Limited View→Svc Advisor "Gains Customer Portal" | Medium |
 
-| Staging Role | # prod>staging deltas | # intended (Yes) | # NOT-in-spec (No) = RELEASE RISK | Highest severity |
-|---|--:|--:|--:|:--:|
-| Admin | 0 | 0 | 0 | — |
-| Service Manager | 5 | 5 | 0 | High |
-| Senior Service Advisor | 0 | 0 | 0 | — |
-| Service Advisor | 0 | 0 | 0 | — |
-| Foreman | 1 | 1 | 0 | Medium |
-| Technician | 1 | 1 | 0 | High |
-| Parts Manager | 2 | 2 | 0 | High |
-| Parts Technician | 0 | 0 | 0 | — |
-| Office User | 1 | 1 | 0 | Medium |
-| Sales Representative | 0 | 0 | 0 | — |
-| Time Clock User | 0 | 0 | 0 | — |
-| **TOTAL** | **10** | **10** | **0** | High |
+**Headline high-severity (STAGING-MORE):** Senior Service Advisor gains **Delete WO / Delete WO
+line / Invoicing full**; Foreman gains **Delete WO line**. These are intended, spec-declared
+increases (**intended = Yes**), but a live prod capture must confirm prod genuinely lacked them.
+
+### Per-role 2×2 breakdown — intended (Yes) vs NOT-in-spec (No), each direction
+
+**The "No" columns in EITHER direction are the headline release risks** (unaccounted reductions
+AND unexpected over-grants). They are **0 in this INTERIM** because every delta captured so far is
+a spec-DECLARED change (Yes). Live production capture may surface prod≠staging gaps the spec does
+**not** account for (No) — those must be added and flagged for a decision.
+
+| Staging Role | Staging-LESS: Yes | Staging-LESS: No = RISK | Staging-MORE: Yes | Staging-MORE: No = RISK | Highest severity |
+|---|--:|--:|--:|--:|:--:|
+| Admin | 0 | 0 | 0 | 0 | — |
+| Service Manager | 5 | 0 | 2 | 0 | High |
+| Senior Service Advisor | 0 | 0 | 10 | 0 | High |
+| Service Advisor | 0 | 0 | 1 | 0 | Medium |
+| Foreman | 1 | 0 | 11 | 0 | High |
+| Technician | 1 | 0 | 1 | 0 | High |
+| Parts Manager | 2 | 0 | 2 | 0 | High |
+| Parts Technician | 0 | 0 | 5 | 0 | Medium |
+| Office User | 1 | 0 | 1 | 0 | Medium |
+| Sales Representative | 0 | 0 | 0 | 0 | — |
+| Time Clock User | 0 | 0 | 0 | 0 | — |
+| **TOTAL** | **10** | **0** | **33** | **0** | High |
 
 ### Send to Terminal — separately flagged NEEDS-REVIEW
 *Send to Terminal* is **not** on the spec's "Loses" list, so it is not predictable from the

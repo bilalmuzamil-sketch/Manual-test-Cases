@@ -93,6 +93,93 @@ SPEC_PROD_ONLY = [
      "Spec Behavior-Changes: Office 'Catalog reduced to V only' (prod Office had Catalog Create&Edit)",
      "Yes", "Spec 'Behavior Changes for Migrating Users' table - Office: 'Catalog reduced to View only' (prod Office had Catalog Create&Edit)"),
 ]
+STAGING_LESS = SPEC_PROD_ONLY  # Direction = STAGING-LESS / PROD-MORE (staging removes a prod capability)
+
+# Direction = STAGING-MORE / PROD-LESS: the NEW staging model grants the role MORE than the
+# legacy (prod) role had. Sourced from the spec's OWN "Behavior Changes for Migrating Users"
+# table ("Gains ..." / Expansion rows) = all spec-INTENDED increases (intended=Yes).
+# staging_grants verified LIVE (every code below confirmed present on the staging role).
+# An unexpected over-grant found live that the spec does NOT intend must be added with
+# intended="No", spec_citation="not in spec" once real production data is captured.
+# fields: staging_role, prod_role, capability(plain), staging_code, severity, evidence,
+#         intended_increase("Yes"/"No"), spec_citation
+_BC = "Spec 'Behavior Changes for Migrating Users' table"
+STAGING_MORE = [
+    # Senior Service Advisor (legacy Service Advisor + SA Technician + SA No Reports) - Expansion
+    ("Senior Service Advisor", "Service Advisor", "Delete a work order", "workOrdersDelete", "High",
+     "Spec Behavior-Changes: Senior SA 'Gains WO ... Delete'", "Yes", _BC + " - Senior SA: 'Gains WO/WOL/Schedule/PartSales Delete'"),
+    ("Senior Service Advisor", "Service Advisor", "Delete a work order line", "workOrderLinesDelete", "High",
+     "Spec Behavior-Changes: Senior SA 'Gains ... WOL Delete'", "Yes", _BC + " - Senior SA: 'Gains WO/WOL/Schedule/PartSales Delete'"),
+    ("Senior Service Advisor", "Service Advisor", "Delete a schedule entry", "scheduleDelete", "Medium",
+     "Spec Behavior-Changes: Senior SA 'Gains ... Schedule ... Delete'", "Yes", _BC + " - Senior SA: 'Gains WO/WOL/Schedule/PartSales Delete'"),
+    ("Senior Service Advisor", "Service Advisor", "Delete a part sale", "partSalesDelete", "Medium",
+     "Spec Behavior-Changes: Senior SA 'Gains ... PartSales Delete'", "Yes", _BC + " - Senior SA: 'Gains WO/WOL/Schedule/PartSales Delete'"),
+    ("Senior Service Advisor", "Service Advisor", "Vendor & Order Management (full access)", "vendorOrderManagementCreateAndEdit", "Medium",
+     "Spec Behavior-Changes: Senior SA 'Gains Vendor FULL'", "Yes", _BC + " - Senior SA: 'Gains Vendor FULL'"),
+    ("Senior Service Advisor", "Service Advisor", "Invoicing & Payments (full access)", "invoicingPaymentsCreateAndEdit", "High",
+     "Spec Behavior-Changes: Senior SA 'Gains Invoicing FULL'", "Yes", _BC + " - Senior SA: 'Gains Invoicing FULL'"),
+    ("Senior Service Advisor", "Service Advisor", "Edit timesheets", "timesheetsCreateAndEdit", "Medium",
+     "Spec Behavior-Changes: Senior SA 'Gains Timesheets CE'", "Yes", _BC + " - Senior SA: 'Gains Timesheets CE'"),
+    ("Senior Service Advisor", "Service Advisor", "Customer Portal access", "customerPortalPageAccess", "Medium",
+     "Spec Behavior-Changes: Senior SA 'Gains Customer Portal'", "Yes", _BC + " - Senior SA: 'Gains Customer Portal'"),
+    ("Senior Service Advisor", "Service Advisor", "See AP/AR data", "seeApArData", "Medium",
+     "Spec Behavior-Changes: Senior SA 'Gains AP/AR'", "Yes", _BC + " - Senior SA: 'Gains AP/AR'"),
+    ("Senior Service Advisor", "Service Advisor", "Reports page access", "reportsPageAccess", "Medium",
+     "Spec Behavior-Changes: Senior SA 'Gains Reports' (also SA No Reports 'Gains Reports')", "Yes", _BC + " - Senior SA: 'Gains Reports'; SA No Reports->SSA: 'Gains Reports'"),
+    # Service Manager - Mixed (gains)
+    ("Service Manager", "Service Manager", "Billing Portal access", "billingPortalPageAccess", "Medium",
+     "Spec Behavior-Changes: Service Manager 'Gains Billing Portal'", "Yes", _BC + " - Service Manager: 'Gains Billing Portal, Customer Portal'"),
+    ("Service Manager", "Service Manager", "Customer Portal access", "customerPortalPageAccess", "Medium",
+     "Spec Behavior-Changes: Service Manager 'Gains Customer Portal'", "Yes", _BC + " - Service Manager: 'Gains Billing Portal, Customer Portal'"),
+    # Foreman - Expansion
+    ("Foreman", "Foreman", "Delete a work order line", "workOrderLinesDelete", "High",
+     "Spec Behavior-Changes: Foreman 'Gains WOL Delete'", "Yes", _BC + " - Foreman: 'Gains WOL Delete'"),
+    ("Foreman", "Foreman", "Delete a schedule entry", "scheduleDelete", "Medium",
+     "Spec Behavior-Changes: Foreman 'Gains Schedule Delete'", "Yes", _BC + " - Foreman: 'Gains Schedule Delete'"),
+    ("Foreman", "Foreman", "View part sales", "partSalesView", "Low",
+     "Spec Behavior-Changes: Foreman 'Gains Parts Dept (Part Sales V)'", "Yes", _BC + " - Foreman: 'Gains Parts Dept (Part Sales V, Catalog V/CE, Vendor V/CE)'"),
+    ("Foreman", "Foreman", "View catalog / inventory", "catalogInventoryView", "Low",
+     "Spec Behavior-Changes: Foreman 'Gains ... Catalog V'", "Yes", _BC + " - Foreman: 'Gains Parts Dept (... Catalog V/CE ...)'"),
+    ("Foreman", "Foreman", "Create & Edit catalog / inventory items", "catalogInventoryCreateAndEdit", "Medium",
+     "Spec Behavior-Changes: Foreman 'Gains ... Catalog CE'", "Yes", _BC + " - Foreman: 'Gains Parts Dept (... Catalog V/CE ...)'"),
+    ("Foreman", "Foreman", "View vendor & orders", "vendorOrderManagementView", "Low",
+     "Spec Behavior-Changes: Foreman 'Gains ... Vendor V'", "Yes", _BC + " - Foreman: 'Gains Parts Dept (... Vendor V/CE)'"),
+    ("Foreman", "Foreman", "Create & Edit vendor & orders", "vendorOrderManagementCreateAndEdit", "Medium",
+     "Spec Behavior-Changes: Foreman 'Gains ... Vendor CE'", "Yes", _BC + " - Foreman: 'Gains Parts Dept (... Vendor V/CE)'"),
+    ("Foreman", "Foreman", "View invoicing & payments", "invoicingPaymentsView", "Low",
+     "Spec Behavior-Changes: Foreman 'Gains Invoicing V'", "Yes", _BC + " - Foreman: 'Gains Invoicing V/CE'"),
+    ("Foreman", "Foreman", "Create & Edit invoicing & payments", "invoicingPaymentsCreateAndEdit", "Medium",
+     "Spec Behavior-Changes: Foreman 'Gains Invoicing CE'", "Yes", _BC + " - Foreman: 'Gains Invoicing V/CE'"),
+    ("Foreman", "Foreman", "Order Parts (WO)", "woOrderParts", "Medium",
+     "Spec Behavior-Changes: Foreman 'Gains Order Parts'", "Yes", _BC + " - Foreman: 'Gains Order Parts'"),
+    ("Foreman", "Foreman", "View History Logs", "viewHistoryLogs", "Low",
+     "Spec Behavior-Changes: Foreman 'Gains History Logs'", "Yes", _BC + " - Foreman: 'Gains History Logs'"),
+    # Technician - Expansion
+    ("Technician", "Technician", "Pick Parts (WO)", "woPickParts", "Low",
+     "Spec Behavior-Changes: Technician 'Gains Pick Parts'", "Yes", _BC + " - Technician: 'Gains Pick Parts'"),
+    # Parts Manager - Mixed (gains)
+    ("Parts Manager", "Parts Manager", "View schedule", "scheduleView", "Low",
+     "Spec Behavior-Changes: Parts Manager 'Gains Schedule View'", "Yes", _BC + " - Parts Manager: 'Gains Schedule View, Customer Portal'"),
+    ("Parts Manager", "Parts Manager", "Customer Portal access", "customerPortalPageAccess", "Medium",
+     "Spec Behavior-Changes: Parts Manager 'Gains Customer Portal'", "Yes", _BC + " - Parts Manager: 'Gains Schedule View, Customer Portal'"),
+    # Parts Technician - Expansion
+    ("Parts Technician", "Parts Technician", "Pick Parts (WO)", "woPickParts", "Low",
+     "Spec Behavior-Changes: Parts Tech 'Gains Pick Parts'", "Yes", _BC + " - Parts Tech: 'Gains Pick Parts, Order Parts, Invoicing V/CE, History Logs'"),
+    ("Parts Technician", "Parts Technician", "Order Parts (WO)", "woOrderParts", "Medium",
+     "Spec Behavior-Changes: Parts Tech 'Gains Order Parts'", "Yes", _BC + " - Parts Tech: 'Gains Pick Parts, Order Parts, Invoicing V/CE, History Logs'"),
+    ("Parts Technician", "Parts Technician", "View invoicing & payments", "invoicingPaymentsView", "Low",
+     "Spec Behavior-Changes: Parts Tech 'Gains Invoicing V'", "Yes", _BC + " - Parts Tech: 'Gains ... Invoicing V/CE ...'"),
+    ("Parts Technician", "Parts Technician", "Create & Edit invoicing & payments", "invoicingPaymentsCreateAndEdit", "Medium",
+     "Spec Behavior-Changes: Parts Tech 'Gains Invoicing CE'", "Yes", _BC + " - Parts Tech: 'Gains ... Invoicing V/CE ...'"),
+    ("Parts Technician", "Parts Technician", "View History Logs", "viewHistoryLogs", "Low",
+     "Spec Behavior-Changes: Parts Tech 'Gains History Logs'", "Yes", _BC + " - Parts Tech: 'Gains ... History Logs'"),
+    # Office User - Mixed (gains)
+    ("Office User", "Office", "Delete a customer (Customer Mgmt full)", "customersDelete", "Medium",
+     "Spec Behavior-Changes: Office 'Customer Mgmt expanded to FULL (gains Delete)'", "Yes", _BC + " - Office: 'Customer Mgmt expanded to FULL (gains Delete)'"),
+    # Service Advisor (legacy SA Limited View) - Restructured (gains)
+    ("Service Advisor", "SA Limited View", "Customer Portal access", "customerPortalPageAccess", "Medium",
+     "Spec Behavior-Changes: SA Limited View->Svc Advisor 'Gains Customer Portal'", "Yes", _BC + " - SA Limited View->Svc Advisor: 'Gains Customer Portal'"),
+]
 
 # ---- open-questions / needs-review items (from PLAN §1c) ----
 OPEN_Q = [
@@ -116,10 +203,13 @@ OPEN_Q = [
 ]
 
 HDR = ["Staging Role", "Production role(s) mapped", "Capability", "Prod grants?",
-       "Staging grants?", "Delta (PROD-ONLY / match / staging-more)",
-       "Per spec - intended reduction? (Yes/No)", "Spec citation",
+       "Staging grants?", "Direction (STAGING-LESS / STAGING-MORE)",
+       "Per spec - intended? (Yes/No)", "Spec citation",
        "Severity", "Evidence / source",
        "Confidence (live/spec-predicted/NEEDS-REVIEW)"]
+
+# codes that live in the cross-toggle block rather than the fe_permissions array
+CT_CODES = {"seeFinancialData", "seeApArData", "viewHistoryLogs"}
 
 def style_header(ws, ncols):
     fill = PatternFill("solid", fgColor="1F4E78")
@@ -130,7 +220,11 @@ def style_header(ws, ncols):
         cell.alignment = Alignment(vertical="top", wrap_text=True)
 
 def has(role, code):
-    return code in STG[role]["codes"]
+    if code in STG[role]["codes"]:
+        return True
+    if code in CT_CODES:
+        return bool(STG[role].get("ct", {}).get(code))
+    return False
 
 wb = Workbook()
 
@@ -154,11 +248,15 @@ banner = [
     ["TO COMPLETE: obtain a valid production sv_sso_session, capture prod role model"],
     ["live, then re-run gen_prod_vs_staging.py with the prod capture wired in."],
     [""],
-    ["EVERY prod>staging delta is listed (staging has LESS than prod) - spec-intended"],
-    ["reductions are INCLUDED, annotated 'Per spec - intended reduction? (Yes/No)' with a"],
-    ["'Spec citation'. The 'No' rows (reductions NOT accounted for in the spec) are the"],
-    ["headline release risks. All interim deltas are Yes (spec-declared); No's may appear"],
-    ["once live production is captured. See the Summary tab for the per-role Yes/No counts."],
+    ["BI-DIRECTIONAL: the main tab lists EVERY difference in EITHER direction (one row"],
+    ["per staging-role x capability where prod != staging):"],
+    ["  * STAGING-LESS / PROD-MORE - the role can do MORE in prod than in staging."],
+    ["  * STAGING-MORE / PROD-LESS - the new staging model grants MORE than prod has."],
+    ["Each row is annotated 'Per spec - intended? (Yes/No)' + 'Spec citation': Yes = the"],
+    ["spec documents this change (cited); No = the spec does NOT account for it (release"],
+    ["risk). Headline RELEASE RISKS = the 'No' rows in BOTH directions (unaccounted"],
+    ["reductions AND unexpected over-grants). All interim rows are Yes (spec-declared);"],
+    ["No's may appear once live production is captured. Summary tab = per-role 2x2 counts."],
 ]
 for r in banner:
     ws0.append(r)
@@ -167,58 +265,74 @@ ws0["A3"].font = Font(bold=True, color="C00000", size=12)
 ws0["A9"].font = Font(bold=True, color="1F6F1F")
 ws0.column_dimensions["A"].width = 95
 
-# ---- Tab 1: PROD-ONLY Deltas ----
-ws1 = wb.create_sheet("PROD-ONLY Deltas (spec-pred)")
+# ---- Tab 1: Prod vs Staging Deltas (BOTH directions) ----
+ws1 = wb.create_sheet("Prod-vs-Staging Deltas")
 ws1.append(HDR)
 style_header(ws1, len(HDR))
-for srole, prole, cap, code, sev, ev, intended, citation in SPEC_PROD_ONLY:
-    # staging grant: for atom codes, check live; for gated capabilities, note the gate
-    if code in {c for r in STG.values() for c in r["codes"]} or code.startswith(("invoicing","settings","timesheets","workOrders","workOrder","catalog")):
+KNOWN = {c for r in STG.values() for c in r["codes"]} | CT_CODES
+CONF = "spec-predicted / NEEDS REVIEW - prod side unverified (no live prod data)"
+
+# Direction 1: STAGING-LESS / PROD-MORE (prod grants more; staging removed it)
+for srole, prole, cap, code, sev, ev, intended, citation in STAGING_LESS:
+    if code in KNOWN:
         sg = "Yes" if has(srole, code) else "No"
     else:
         sg = "No (view-mode/line gate; hidden in staging for this role)"
     ws1.append([
-        srole, MERGE[srole], cap, "Yes (SPEC-PREDICTED)", sg, "PROD-ONLY",
-        intended, citation, sev, ev,
-        "spec-predicted / NEEDS REVIEW - prod side unverified (no live prod data)"
+        srole, MERGE[srole], cap, "Yes (SPEC-PREDICTED)", sg, "STAGING-LESS",
+        intended, citation, sev, ev, CONF,
     ])
-for col, w in zip("ABCDEFGHIJK", [22, 34, 42, 20, 34, 20, 20, 60, 10, 60, 42]):
+
+# Direction 2: STAGING-MORE / PROD-LESS (new staging model grants more than prod)
+for srole, prole, cap, code, sev, ev, intended, citation in STAGING_MORE:
+    sg = "Yes" if has(srole, code) else "No"  # staging-grants verified LIVE
+    ws1.append([
+        srole, MERGE[srole], cap, "No (SPEC-PREDICTED)", sg, "STAGING-MORE",
+        intended, citation, sev, ev, CONF,
+    ])
+for col, w in zip("ABCDEFGHIJK", [22, 34, 42, 20, 34, 22, 18, 60, 10, 60, 42]):
     ws1.column_dimensions[col].width = w
 
 # ---- Tab 2: Summary per role ----
 ws2 = wb.create_sheet("Summary per role")
 ws2.append(["Staging Role", "Merged?", "Production role(s) mapped",
-            "# prod>staging deltas", "# intended reductions (Yes)",
-            "# NOT-in-spec reductions (No) = RELEASE RISK",
+            "Staging-LESS: Yes (intended reduction)",
+            "Staging-LESS: No (unaccounted reduction = RISK)",
+            "Staging-MORE: Yes (intended increase)",
+            "Staging-MORE: No (unexpected over-grant = RISK)",
             "Highest severity", "Needs-review"])
-style_header(ws2, 8)
+style_header(ws2, 9)
 order = ["Admin", "Service Manager", "Senior Service Advisor", "Service Advisor",
          "Foreman", "Technician", "Parts Manager", "Parts Technician",
          "Office User", "Sales Representative", "Time Clock User"]
 sevrank = {"High": 3, "Medium": 2, "Low": 1}
+def counts(dataset, role, flag):
+    return sum(1 for x in dataset if x[0] == role and x[6] == flag)
 for role in order:
-    items = [x for x in SPEC_PROD_ONLY if x[0] == role]
-    yes_ct = sum(1 for x in items if x[6] == "Yes")
-    no_ct = sum(1 for x in items if x[6] == "No")
+    less_items = [x for x in STAGING_LESS if x[0] == role]
+    more_items = [x for x in STAGING_MORE if x[0] == role]
     merged = "YES" if "+" in MERGE[role] else "no"
-    hs = max([x[4] for x in items], key=lambda s: sevrank[s], default="-")
-    ws2.append([role, merged, MERGE[role], len(items), yes_ct, no_ct, hs,
-                "YES - all prod cells unverified"])
-# totals row
-tot_items = SPEC_PROD_ONLY
-ws2.append(["TOTAL (all roles)", "", "", len(tot_items),
-            sum(1 for x in tot_items if x[6] == "Yes"),
-            sum(1 for x in tot_items if x[6] == "No"), "", ""])
+    sevs = [x[4] for x in (less_items + more_items)]
+    hs = max(sevs, key=lambda s: sevrank[s], default="-")
+    ws2.append([role, merged, MERGE[role],
+                counts(STAGING_LESS, role, "Yes"), counts(STAGING_LESS, role, "No"),
+                counts(STAGING_MORE, role, "Yes"), counts(STAGING_MORE, role, "No"),
+                hs, "YES - all prod cells unverified"])
+# totals row (2x2)
+ws2.append(["TOTAL (all roles)", "", "",
+            sum(1 for x in STAGING_LESS if x[6] == "Yes"),
+            sum(1 for x in STAGING_LESS if x[6] == "No"),
+            sum(1 for x in STAGING_MORE if x[6] == "Yes"),
+            sum(1 for x in STAGING_MORE if x[6] == "No"), "", ""])
 ws2.cell(row=ws2.max_row, column=1).font = Font(bold=True)
-# note: No-count is 0 in this INTERIM (all deltas so far are spec-declared=Yes); live prod
-# capture may surface reductions NOT in the spec (No) which are the headline release risks.
 ws2.append([])
-ws2.append(["NOTE: 'No' (NOT-in-spec) reductions are the headline release risks. They are 0 in "
-            "this INTERIM because every delta captured so far is a spec-DECLARED reduction (Yes). "
-            "Live production capture may reveal prod>staging gaps the spec does NOT account for "
+ws2.append(["NOTE: the headline RELEASE RISKS are the 'No' columns in BOTH directions - "
+            "unaccounted reductions (Staging-LESS No) AND unexpected over-grants (Staging-MORE No). "
+            "Both are 0 in this INTERIM because every delta captured so far is spec-DECLARED (Yes). "
+            "Live production capture may surface prod!=staging gaps the spec does NOT account for "
             "(No) - add them with intended='No', spec_citation='not in spec'."])
 ws2.cell(row=ws2.max_row, column=1).alignment = Alignment(wrap_text=True, vertical="top")
-for col, w in zip("ABCDEFGH", [22, 8, 34, 20, 24, 34, 16, 30]):
+for col, w in zip("ABCDEFGHI", [22, 8, 34, 26, 30, 26, 30, 16, 30]):
     ws2.column_dimensions[col].width = w
 
 # ---- Tab 3: Full staging capability matrix (LIVE) ----
