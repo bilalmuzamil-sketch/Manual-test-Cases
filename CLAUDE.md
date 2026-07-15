@@ -328,6 +328,19 @@ process(es) to run before proceeding.
     Portal/Terminal etc.) as results when they were inferred from role
     definitions/code rather than UI-observed, and the session had expired mid-run —
     this broke user trust and must never recur.
+13. **Live, feature-by-feature testing is the DEFAULT standard (all projects):**
+    Whenever the user asks to TEST / VERIFY / CHECK / CONFIRM anything — any
+    feature, function, permission, or behavior — test it LIVE by going through each
+    feature/function IN THE REAL ENVIRONMENT and OBSERVING it directly with evidence
+    (screenshot / captured response that run), exactly the way the 2026-07-14
+    prod-vs-staging permission comparison was done (log in / drive the actual UI per
+    role / per environment, seed data as needed, observe the real control/behavior).
+    Never assume, never infer from spec, source code, role definitions,
+    fe_permissions, atoms, or prior data. Go feature-by-feature in reality. This
+    live, feature-by-feature, evidence-based method is the required standard for
+    EVERY testing request going forward, not just VIU or release checks. (Extends
+    Rule 12's observed-not-inferred trust rule and Rule 10's live VIU verification
+    step to cover ALL test/verify/check/confirm requests.)
 
 ## Project purpose (Custom Roles project)
 Manual test-case authoring + live staging (Verify-in-UI) verification + TestRail
