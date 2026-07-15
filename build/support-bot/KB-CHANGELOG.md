@@ -5,6 +5,45 @@ change to the Confluence spec (page 565116952). Newest first.
 
 ---
 
+## 2026-07-14 — EXHAUSTIVE defect sweep (all 276 DONE tickets, Epic SV-7388)
+
+Completed the full sweep: read every DONE Bug (160) and Story-Defect (116)
+under the epic via 6 parallel reader agents. Rebuilt KB §14 into an organized
+reference (roles/templates, WO view-vs-edit, New-WO customer creation, parts
+actions, money actions, See Financial Data, Manage AP/AR, schedule/portal,
+clock-in, access control, and two unsettled items). Added FAQ C17c/C17d/C17e.
+
+**Corrections to earlier passes (important):**
+- **New-WO customer creation FLIPPED.** Earlier (from SV-8002's title) the KB
+  said adding a customer in the New WO flow needs Customer Mgmt: Create&Edit.
+  The final, verified ruling (SV-8118/8147/8156/8160/8190/8305) is the opposite:
+  Work Orders: Create&Edit alone lets a user add a customer/contact/asset in the
+  WO flow; Customer Mgmt is not involved there. Fixed §3d and §14.3 + FAQ C17e.
+- **System role count 12 → 11** (SV-8119); spec's "12" is stale (Owner merged
+  into Admin). Fixed §1, §2, §9.
+- **Core OK/Not-OK = WO View** reaffirmed (SV-8130), not WO Lines C&E.
+
+**New consolidated rules added:** parts-action matrix (request/pick/move/qty/
+order/receive/return); reversal & delete matrix (WO invoice→WO Delete, PS
+invoice→PS Delete, payment→Invoicing Delete+AP/AR, PS delete→PS Delete, return
+delete by entry point); Invoicing needs a WO/PS View entry point; full SFD
+visibility rules + exemptions (Settings/Portals) + specific screens; AP/AR tab
+& sensitive-field hiding on customer AND vendor; AR/AP aging follows Reports;
+schedule view-vs-edit; Send-to-Portal / Send-to-Terminal gating; clock-in is a
+staff-record toggle (not a role); access enforced not just nav-hidden; report
+links & search respect permissions; location scoping; Service Advisor
+assignment eligibility; standardized role display names; Service Manager has WO
+Delete (SV-8297).
+
+**Two items left UNSETTLED (bot instructed to escalate):** (1) Tech View + See
+Financial Data ON labor-rate visibility (SV-8107); (2) whether WO View can edit
+OTHER people's notes (SV-8135 staging behavior vs SV-8003/8319 spec). Both
+flagged in §14.11 and raised with the user for a Sasha ruling.
+
+**Coverage:** 276/276 DONE tickets reviewed; ~64 were internal-only fixes with
+no lasting customer rule (skipped by design). This is the provably-complete
+pass. Files: `knowledge-base.md`, `faq.md`, `launcher.html`.
+
 ## 2026-07-14 — Learnings mined from resolved defect tickets (Epic SV-7388)
 
 Reviewed the DONE Bug tickets under Epic SV-7388 (page 1 = 100 tickets triaged

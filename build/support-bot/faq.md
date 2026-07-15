@@ -218,6 +218,27 @@ narrows the list to work orders where they're the lead technician, the service
 advisor, or assigned to a task or line. Turning it off shows the full location
 list again. So it's a convenience filter, not a restriction.
 
+**C17c. A user can't clock in / clock into a job — but their role looks right.**
+Clocking in and out (and clocking into work-order line tasks) is controlled by
+the **"Time Clock" toggle on the person's staff record**, not by their role or
+any permission. If they can't clock in, check that Time Clock is enabled on
+their staff record. (For technicians it's on by default and can't be turned
+off.) Basic clock in/out is available to everyone and should never be blocked —
+if it throws an error, escalate.
+
+**C17d. A user with only "View" on an area can see fields but can't change
+them — is that right?**
+Yes. "View" means read-only: the user can see the work order and its fields
+(mileage, engine hours, license plate, service advisor, etc.) but can't edit
+them. Editing requires "Create and Edit" on that area. Seeing something greyed
+or read-only with View-only access is expected.
+
+**C17e. Who can add a brand-new customer while creating a work order?**
+Anyone with **Work Orders: Create and Edit**. Inside the New Work Order flow, a
+user can add a new customer (and contact and vehicle) even if they don't have
+Customer Management edit rights — the work-order permission covers it. That's
+intended, not a leak.
+
 **C18. A user can't edit or delete a note that someone else created — the
 option isn't even there.**
 That's expected. Notes follow the CRUD of the area they live in:
