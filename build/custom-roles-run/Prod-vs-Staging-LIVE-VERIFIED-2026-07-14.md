@@ -24,6 +24,31 @@
   Technician, SA No Reports, Reporting) were **NOT role-swapped** (prod is a real system on a
   fast-expiring session) → they remain **NOT VERIFIED**.
 
+## 0a. FULL DUAL MATRIX (2026-07-15) — all 14 prod roles + 11 staging roles deep-observed
+
+Both halves were deep-observed live via role-swap of a test staff (prod: bilal.muzamil+…limitedview
+in "Truck Hill 1" org; staging: tech@shopview.com in "Staging Heavy Duty" org), capturing per role:
+Send to Portal, New Line, Reviewed, See Financial Data (Rate/Margin), Take Payment (New Payment),
+Send to Terminal, line Return, WO Delete, plus tabs/menus. See the **"Full Dual Matrix"** workbook tab.
+
+**Confirmed migration LOSSES — Send to Portal STAGING-LESS (prod SHOWN → staging hidden):**
+**Technician, Parts Technician, Office User.** (Parts Manager/Foreman/Service Advisor/Senior SA/Admin/
+Service Manager = MATCH SHOWN; Sales Rep/Time Clock = MATCH hidden.) The Technician loss confirms the
+spec's "Technician loses Send to Portal."
+
+**Important org-config caveat:** prod Send to Portal is broadly SHOWN in "Truck Hill 1" because that org
+has customer-portal enabled; the new-model staging role-gating removes it for non-review roles. So the
+STAGING-LESS is a real role-gating change, modulated by org portal config. (An earlier switch-user prod
+pass in *other* orgs showed Technician hidden — org-dependent; the role-swap dataset here is the
+consistent single-org comparison.)
+
+**Send to Terminal:** ORG-CONFIG gated — prod "Truck Hill 1" has NO terminal (button absent for all prod
+roles); staging "Staging Heavy Duty" HAS one (SHOWN for invoicing roles: Admin/Service Mgr/Senior SA/
+Parts Mgr/Service Advisor). Not a role/build migration risk.
+
+**WO Delete:** WO-state dependent (deletable only without an invoice); the dynamically-picked WO this pass
+was not consistently deletable → flagged with caveat in the matrix rather than asserted per role.
+
 ## 0b. Send to Terminal — MAJOR CORRECTION (staging, live-observed)
 
 The prior workbook claimed **"no Send to Terminal control anywhere in the staging build"**
