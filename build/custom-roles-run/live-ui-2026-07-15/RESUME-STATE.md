@@ -41,8 +41,22 @@ Sales Representative 0767df32 / Technician 10fdbeaa / Time Clock User 36462edb
   retry role-swap when org context allows, or find active users.
 - [BLOCKER] staging org context is VOLATILE (WO ids valid one moment, 404/redirect next; org
   name flips e.g. "Staging Heavy Duty" vs "QB Location"). Re-fetch a renderable WO per session.
-- [ ] Send to Terminal — PROD, per role (use prodlogin + invoiced prod WO w/ balance)
-- [ ] Send to Terminal — staging remaining 4 role-swap roles
+- [done] Send to Terminal — PROD via test-staff role-swap (Administrator/Technician/Service Manager
+  observed). KEY: prod org "Truck Hill 1" has NO terminal configured -> "Send to Terminal" button
+  ABSENT in the New Customer Payment dialog for ALL prod roles (observed live for Admin who CAN reach
+  the dialog). New-Payment reachability is role-gated (Admin yes; Technician/SM no). So Send-to-Terminal
+  is ORG-CONFIG gated, NOT a role/build migration risk. Dual verdict Admin = STAGING-MORE (staging
+  Heavy Duty org has a terminal; prod Truck Hill doesn't). Prod change endpoint = POST /api/staff/change
+  (id in body), NOT /{id}/change. prodlogin.mjs + prod-st.mjs. **Prod test staff RESTORED to Office User (verified).**
+- [ ] Send to Terminal — staging remaining 4 role-swap roles: RETRY with LOCATION PINNING.
+  FIX (from user): keep admin AND test/tech user on the SAME location. Admin currently on
+  "Staging Heavy Duty - 9919". Discover change-location endpoint, pin both to it, then staff/change 403 clears.
+  Locations: QB Location, NEW LOOK WIG & Fascinator, Staging Heavy Duty - 9919, No QB Location, LocAtion, Empty, Staging Lethbridge - 4310.
+- [ ] Remaining ~25 capabilities x roles x both envs (see capability set) — deep per-role observation +
+  data seeding (ZZAUTOTEST): the bulk of the matrix. Menu-gated caps (WO Delete, Remove part, WO Lines
+  Delete, Set Line Status, Core OK/NotOK, notes CRUD, History) + Parts-module caps (Pick/Receive/Bulk
+  Receive/Assign Vendor/Fix Part#/vendorless/Order Parts) + AP/AR + Invoicing view/create/delete-reverse
+  + part-return + create customer/asset from New WO + tech-vs-full.
 - [ ] Deep WO-detail caps (menus): Remove part, WO Delete, WO Lines Delete, Set Line Status,
       Approve/decline line, Core OK/NotOK, notes CRUD, WO+line History, Complete
 - [ ] Parts-module caps: Order Parts, Pick, Receive, Bulk Receive, Assign Vendor, Fix Part#, vendorless part
