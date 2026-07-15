@@ -439,7 +439,7 @@ effect when they log back in.**
 | Parts Manager | `system-pm` | Full parts and inventory control |
 | Parts Tech | `system-pt` | Parts operations and vendor management |
 | Office | `system-office` | Back-office operations and reporting (NOT editable) |
-| Sales Representative | `system-salesrep` | Reports and financial visibility only |
+| Sales Representative | `system-salesrep` | Work Orders + Customers + Part Sales (view), plus Reports and financial visibility. NOT "Reports only" — see §14 (SV-8061). |
 | Time Clock | `system-timeclock` | Clock in/out only (NOT editable; no view mode) |
 
 ### Default matrix highlights (V = View, E = Create+Edit, D = Delete)
@@ -467,7 +467,7 @@ Toggles:
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | Reports | ON | ON | ON | — | — | — | ON | — | ON | ON | — |
 | Customer Portal | ON | ON | ON | ON | — | — | ON | — | — | — | — |
-| Parts Dept | ON | ON | ON | ON | ON | — | ON | ON | ON | — | — |
+| Parts Dept | ON | ON | ON | ON | ON | — | ON | ON | ON | ON | — |
 | Billing Portal | ON | ON | — | — | — | — | — | — | ON | — | — |
 | Settings | ON | ON | — | — | — | — | ON | — | ON | — | — |
 | Review WOs | ON | ON | ON | ON | ON | — | ON | — | — | — | — |
@@ -595,3 +595,72 @@ Inspection abilities derive from existing permissions:
   any question about resetting a role to its original template.
 - **Rename "Role" to "Profile"** — a future consideration only; not decided,
   not in this release.
+
+---
+
+## 14. Behaviors confirmed through defect testing (Epic SV-7388)
+
+These are product-behavior truths established or confirmed while fixing defects
+during the release. They are things a customer might ask about because the
+behavior looks surprising but is intended. (Pure internal bugs — blank pages,
+server errors, cosmetic glitches — were fixed and are not listed; if a customer
+still hits one of those, treat it as a regression and escalate.)
+
+**Sales Rep is not "Reports only" (SV-8061, verified on staging).**
+The Sales Representative role includes Work Orders: View, WO Lines: View
+(inherited), Customers: View + Create & Edit, and Part Sales: View (Parts
+Department ON), plus Reports, See Financial Data, See AP/AR, and Full View —
+everything else off. An earlier build showed Sales Rep with Reports only; that
+was a bug. Migrated Sales Reps keep their Customers and Work Orders access.
+
+**Technicians see ALL work orders for their location, not just their own
+(SV-7942, verified).** Tech View does not filter which work orders a user can
+see. The "My Work Orders" toggle is an optional filter that narrows the list to
+work orders where the user is the header technician, the service advisor, or is
+assigned to a task or a line. So "My Work Orders" is a convenience filter, not a
+permission limit — turning it off shows the full location list.
+
+**Everyone with Work Orders: View can create notes (SV-8018).** A view-only
+work-order role can add notes; it was a bug that "Add note" was blocked. (See
+§3k for the full Notes model from SV-8003.)
+
+**"Add Customer" inside the New Work Order flow needs Customer Management:
+Create & Edit (SV-8002).** A user can build a work order and pick an existing
+customer with only the work-order permissions, but adding a brand-new customer
+mid-flow requires Customer Create & Edit.
+
+**A Customer-only view role still sees the Work Orders / Part Sales tabs on a
+customer's profile, as references (SV-8050).** With Work Orders and Parts off,
+those tabs still appear on the customer record but the individual WO/PS entries
+are not clickable — the user sees that they exist but can't open them. This is
+intended (matches the spec's Q10 ruling).
+
+**Financial data must stay hidden when "See Financial Data" is off, everywhere
+— including parts receiving and vendor screens (SV-7973, SV-7977-area,
+SV-8077/8079).** Costs, totals, core charges, and the cost columns on Receive
+Part / Vendor Invoices / Returns must not show (or be editable) for a role
+without See Financial Data. If a customer reports seeing or editing prices with
+that toggle off, that's a serious issue — escalate.
+
+**Send to Portal / Send to Terminal gating (SV-7799/7801/7902).** Send to
+Portal needs Full View and the ability to approve a work-order line. Send to
+Terminal needs Invoicing & Payments: Create & Edit AND Customer Portal ON.
+(Also in §3i / §6.)
+
+**Digital Inspections gating confirmed (SV-8020/8044/8045).** Reopening or
+deleting a COMPLETED inspection requires Work Order Lines: Delete; filling in /
+submitting an inspection requires Work Order Lines: Create & Edit (it is
+read-only without it). Matches §11.
+
+**Time Clock role is truly restricted (SV-7958).** A Time Clock user cannot
+reach other areas of the app; they clock in/out only.
+
+**"My Timesheets" is available to lower-level users including Technicians
+(SV-7980).** Anyone who can clock in/out can see My Timesheets, regardless of
+the Timesheets permission. (Also in §3j.)
+
+> Coverage note: this section is distilled from the resolved Bug tickets under
+> Epic SV-7388. The majority of those tickets were internal implementation
+> fixes with no lasting customer-facing rule; only the behavior-defining ones
+> are captured here. If Product resolves further defects with new behavior
+> rulings, add them here.

@@ -96,6 +96,16 @@ Yes, in effect: create a custom role starting from the closest system role
 and toggle the differences. Your shop is notified of what changed per role,
 and support can walk you through the specific toggles.
 
+**B9. Our Sales Rep can suddenly only see Reports — they lost Customers and
+Work Orders!**
+That was a bug in an earlier build and it has been fixed. The Sales
+Representative role is meant to include Work Orders (view), Customers (view +
+create/edit), and Part Sales (view), on top of Reports and financial
+visibility. After the fix, Sales Reps keep that access — nobody permanently
+loses Customers or Work Orders. If a Sales Rep still sees Reports only, make
+sure they're on a build that includes the fix, then have them log out and back
+in; if it persists, escalate.
+
 ---
 
 ## C. "User can't see / can't do something"
@@ -199,6 +209,14 @@ separate future capability — we can log your interest as feedback.
 **C17. Can I give someone just ONE report instead of all reports?**
 No — Reports is all-or-nothing. A role either sees all reports or none.
 (This includes the AR/AP aging reports.)
+
+**C17b. Does a technician only see their own work orders? What does the "My
+Work Orders" toggle do?**
+A technician sees ALL work orders for their location — the interface doesn't
+limit them to their own. The "My Work Orders" toggle is an optional filter that
+narrows the list to work orders where they're the lead technician, the service
+advisor, or assigned to a task or line. Turning it off shows the full location
+list again. So it's a convenience filter, not a restriction.
 
 **C18. A user can't edit or delete a note that someone else created — the
 option isn't even there.**
