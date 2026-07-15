@@ -1,0 +1,9 @@
+{
+  "target":"#3 Part Return via in-app WO Parts tab (Admin, prod)",
+  "method":"in-app nav: WO detail -> Parts (2) tab -> scroll to Actions column -> probe per-row action menu. Live-observed with screenshots.",
+  "finding":"The WO Parts-tab 'Actions' column is LIFECYCLE-gated by the part 'Status': Requested => no action; Awaiting => 'Receive' button. 'Return' surfaces only for a RECEIVED/PICKED inventory part. The prod org's WOs only have Requested/Awaiting part-requests (no received+picked inventory part), so 'Return' genuinely does not appear.",
+  "verdict":"Prod Part Return = NOT OBSERVABLE on existing data (not a click-probe miss). This CORRECTS the coordinator hypothesis: the control is lifecycle-gated, not hidden by a headless miss.",
+  "evidence":"Administrator_finrecheck/partreturn_actions_column.png (Actions column shows Receive for Awaiting, none for Requested)",
+  "unblock":"a WORK ORDER with a RECEIVED + PICKED inventory part in a returnable state (would require driving the multi-step Receive + Pick flow, or a dev/human-seeded picked part). Then re-observe the per-role Return action.",
+  "confidence":"OBSERVED-LIVE for the Actions-column behavior; Return control state = NOT-VERIFIED (no returnable part exists)"
+}
