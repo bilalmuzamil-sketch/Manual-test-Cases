@@ -1,0 +1,15 @@
+{
+  "method": "GENUINE switch-user impersonation into REAL prod role-holder accounts (no role-swap); invoice-view API response captured live + UI screenshot per role",
+  "invoice_view_endpoint": "GET /api/invoices/{invoiceId}/view",
+  "roles": {
+    "Administrator": {"holder":"self (bilal.muzamil@shopview.com)","invoice_view":"200 ALLOWED","finance_panel":"RENDERED","newPayment":"SHOWN","reverse":"SHOWN","issueCredit":"SHOWN","confidence":"OBSERVED-LIVE","evidence":"Administrator_finrecheck/fin_menu.png"},
+    "Service Advisor": {"holders":["knowledgeinternee@yahoo.ca","(ayesha+12 switch-user=400)"],"invoice_view":"200 ALLOWED","finance_panel":"CRASH to /no-location under switch-user (location-store not populated in impersonation context; NOT a permission block - view is 200)","newPayment":"NOT VERIFIED","reverse":"NOT VERIFIED","issueCredit":"NOT VERIFIED","confidence":"invoice-view ALLOWED=OBSERVED-LIVE; controls=NOT-VERIFIED (switch-user location-store artifact)","unblock":"real SA-role credentialed login (username/password) or headful attended session","evidence":"Service_Advisor/inapp_finance.png, finance_estimate400_crash.png"},
+    "Office User": {"holders":["bilal.muzamil+serviceadvisornoreports@shopview.com","bilal.muzamil+serviceadvisorlimitedview@shopview.com"],"invoice_view":"403 Insufficient permissions (BOTH holders)","finance_panel":"crashes to /no-location downstream of the 403","newPayment":"NOT ACCESSIBLE (finance/invoice denied)","reverse":"NOT ACCESSIBLE","issueCredit":"NOT ACCESSIBLE","confidence":"OBSERVED-LIVE (403 captured x2 holders + crash screenshot)","verdict":"GENUINE ROLE-LEVEL DENY of invoice view/finance","evidence":"Office_User/finance_403_crash.png"},
+    "Service Manager": {"holder":"NONE on prod org (Truck Hill)","status":"GENUINE BLOCKER - cannot switch-user, no holder; role-swap crashes finance","confidence":"NOT-VERIFIED","unblock":"dev/human seeds a prod Service Manager holder or provides a credentialed login"},
+    "Parts Manager": {"holder":"NONE on prod org","status":"GENUINE BLOCKER - no holder","confidence":"NOT-VERIFIED","unblock":"seed prod Parts Manager holder"},
+    "Parts Technician": {"holder":"NONE on prod org","status":"GENUINE BLOCKER - no holder","confidence":"NOT-VERIFIED","unblock":"seed prod Parts Technician holder"},
+    "Foreman": {"holder":"NONE on prod org","status":"GENUINE BLOCKER - no holder","confidence":"NOT-VERIFIED","unblock":"seed prod Foreman holder"}
+  },
+  "prod_org_roles_with_real_holders": ["Administrator","Office User","Sales Representative","Service Advisor","Technician","Time Clock User"],
+  "key_finding": "The prod finance 'No location' crash is TWO different things: (a) Office User = genuine backend 403 on invoice-view (real DENY); (b) Service Advisor = invoice-view ALLOWED 200 but SPA crashes to /no-location under switch-user because the location store isn't populated in impersonation context (technique artifact, NOT a permission truth)."
+}
