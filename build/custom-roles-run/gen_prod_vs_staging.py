@@ -112,6 +112,72 @@ MIGRATION_TYPE = {
     "Time Clock User": "Direct mapping",
 }
 
+# ---- STAGING role slug / system identifier (LIVE-captured 2026-07-15, staging UI-verify run) ----
+# Source: GET /api/role-templates -> role_templates[].slug, mapped to each role via the role's
+# template_id (GET /api/roles/{id}).  The role object itself has NO slug/system_name/code field
+# (confirmed has_slug_field=False for all 11); the slug is the role TEMPLATE slug (the real API
+# value - NOT hardcoded/guessed).  Raw objects saved to
+# staging-ui-verify-2026-07-14/ (staging-role-templates.json, staging-role-<id>.json,
+# staging-role-slug-map.json).
+STG_SLUG = {
+    "Admin": "administrator",
+    "Service Manager": "service_manager",
+    "Senior Service Advisor": "senior_service_advisor",
+    "Service Advisor": "service_advisor",
+    "Foreman": "foreman",
+    "Technician": "technician",
+    "Parts Manager": "parts_manager",
+    "Parts Technician": "parts_technician",
+    "Office User": "office",
+    "Sales Representative": "sales_representative",
+    "Time Clock User": "time_clock_user",
+}
+
+# ---- STAGING UI / FE-SOURCE VERIFICATION (2026-07-15) — per-capability override of the
+# Verification-confidence for the FE-gated High-severity rows (task: raise MEDIUM->HIGH where
+# observable).  Method: LIVE staging role definitions (GET /api/roles/{id} + cross_toggles +
+# view_mode, 2026-07-15) evaluated against the ACTUAL FE gate predicate read from the shipped
+# staging JS bundle.  Live pixel-screenshots were blocked because the sv_sso_session expired
+# mid-run (quick-login returned 200 but the next API call 409'd "Session has expired"); the
+# verification is therefore FE-source (shipped gate logic) + live role-definition data, which is
+# authoritative for a front-end DISPLAY gate.  Keyed by capability name (applies to every role). ----
+UI_VERIFIED = {
+    "Send to Portal": (
+        "HIGH - FE-source gate + live role-def verified (staging 2026-07-15)",
+        "Staging FE gates Send-to-Portal on Customer Portal access (permission store helper "
+        "userHasCustomerPortalAccess = has('customerPortalPageAccess'); button in WorkOrderNavBar "
+        "off the WO detail). LIVE staging role defs 2026-07-15: the atom is ABSENT for all 6 "
+        "STAGING-LESS roles (Technician/Foreman/Parts Tech/Office/Sales Rep/Time Clock) => HIDDEN, "
+        "and PRESENT for the 5 roles that keep it (Admin/Parts Mgr/Sr SA/Svc Adv/Svc Mgr) => SHOWN "
+        "- internally consistent. Pixel-screenshot blocked by mid-run SSO expiry."),
+    "See AP/AR Data": (
+        "HIGH - FE-source gate + live cross-toggle verified (staging 2026-07-15)",
+        "Staging AP/AR surfaces (Accounts Payable/Receivable, customer/vendor transactions + "
+        "payments tabs) gate on the seeApArData() cross-toggle (FE source: check:()=>seeApArData()). "
+        "LIVE staging cross_toggles 2026-07-15 match: Parts Tech=OFF (HIDDEN), Sales Rep=ON (VISIBLE), "
+        "Service Advisor=OFF (HIDDEN, spec-intended)."),
+    "Send to Terminal (take payment on WO)": (
+        "HIGH - control ABSENT from staging build (FE-source 2026-07-15)",
+        "NO payment-terminal / card-reader / 'Send to Terminal' / 'take payment' control exists "
+        "anywhere in the staging FE bundle (2026-07-15); 'terminal' matches only the Quasar "
+        "framework. Staging has no per-role Send-to-Terminal gate at all - the row reflects a "
+        "build-wide ABSENCE, not a role regression. Confirm prod's actual control name before "
+        "treating as a role-level loss."),
+    "Approve / complete a WO part return": (
+        "MEDIUM / NEEDS-UI-VERIFY - control present, gate not isolated (staging 2026-07-15)",
+        "Part-return controls DO exist in the staging build ('Process Return' / 'Confirm Return' in "
+        "the ConfirmReturn chunk), but the exact permission gate could not be isolated from the "
+        "minified source and the pixel-screenshot was blocked by SSO expiry. Live role atoms recorded."),
+    "Decline a WO part return": (
+        "MEDIUM / NEEDS-UI-VERIFY - control present, gate not isolated (staging 2026-07-15)",
+        "Part-return controls exist in the staging build; exact gate not isolated from minified "
+        "source; pixel-screenshot blocked by SSO expiry."),
+    "Process a WO part return (create)": (
+        "MEDIUM / NEEDS-UI-VERIFY - control present, gate not isolated (staging 2026-07-15)",
+        "Part-return controls exist in the staging build; exact gate not isolated from minified "
+        "source; pixel-screenshot blocked by SSO expiry."),
+}
+
 # ---- OUT-OF-MODEL capabilities (verification 3.3): clock-in + timesheets are STAFF-RECORD
 # controlled per spec 'Staff Record Settings', NOT the role/permission model. These are
 # annotated + EXCLUDED from the risk "No" counts and moved to an informational section. ----
@@ -368,15 +434,21 @@ def prod_grant(role, cap_prod):
     holders = [PLABEL[c] for c in MAP[role] if cap_prod(c)]
     return (len(holders) > 0), holders
 
-def ver_conf(conf):
-    # Verification confidence (compare-VERIFICATION-2026-07-14.md 4): resource/action-mapped
-    # rows = HIGH (independent recompute matched + live-confirmed); FE-gated / no-clean-atom
-    # rows = MEDIUM / NEEDS-UI-VERIFY (role-definition-inferred, not UI-click-verified).
+def ver_conf(cap, conf):
+    # Verification confidence (compare-VERIFICATION-2026-07-14.md 4 + staging UI-verify 2026-07-15):
+    #  - UI_VERIFIED override: FE-gated High rows verified against the shipped FE gate + live role
+    #    defs on 2026-07-15 (Send to Portal / See AP/AR -> HIGH; Send to Terminal -> absent-from-build;
+    #    part-return verbs stay MEDIUM).
+    #  - else resource/action-mapped rows = HIGH; remaining FE-gated rows = MEDIUM / NEEDS-UI-VERIFY.
+    if cap in UI_VERIFIED:
+        return UI_VERIFIED[cap][0]
     if conf == "live":
         return "HIGH (resource/action-mapped; recompute-matched)"
     return "MEDIUM / NEEDS-UI-VERIFY (FE-gated / no clean old-model atom; role-definition-inferred)"
 
-def ver_short(conf):
+def ver_short(cap, conf):
+    if cap in UI_VERIFIED:
+        return UI_VERIFIED[cap][0].split(" ")[0]  # HIGH or MEDIUM
     return "HIGH" if conf == "live" else "MEDIUM / UI-verify"
 
 rows = []
@@ -396,9 +468,10 @@ for role in ORDER:
         else:
             direction = "STAGING-MORE"
         rowconf = conf  # SA/SSA mapping CONFIRMED 2026-07-14 - no mapping-unconfirmed flag; per-capability conf (live/NEEDS-REVIEW) stands
-        rec = dict(role=role, cat=cat, cap=name, mapped=mapped_all, holders=prod_names,
-                   pg="Yes" if pg else "No", sg="Yes" if sg else "No", direction=direction,
-                   sev=sev, conf=rowconf, mig=mig, vconf=ver_conf(conf), vshort=ver_short(conf))
+        rec = dict(role=role, slug=STG_SLUG.get(role, ""), cat=cat, cap=name, mapped=mapped_all,
+                   holders=prod_names, pg="Yes" if pg else "No", sg="Yes" if sg else "No",
+                   direction=direction, sev=sev, conf=rowconf, mig=mig,
+                   vconf=ver_conf(name, conf), vshort=ver_short(name, conf))
         rows.append(rec)
         if direction in ("STAGING-LESS", "STAGING-MORE"):
             ev = f"prod holder: {prod_names} | staging live | old->new map conf={conf}"
@@ -426,8 +499,8 @@ def style_header(ws, ncols, color="1F4E78"):
         cell.alignment = Alignment(vertical="top", wrap_text=True)
 
 RED = Font(color="C00000", bold=True)
-HDR = ["Staging Role", "Production role(s) mapped", "Migration Type", "Capability",
-       "Prod grants?", "Staging grants?", "Direction (STAGING-LESS / STAGING-MORE)",
+HDR = ["Staging Role", "Staging role slug", "Production role(s) mapped", "Migration Type",
+       "Capability", "Prod grants?", "Staging grants?", "Direction (STAGING-LESS / STAGING-MORE)",
        "Per spec - intended? (Yes/No)", "Spec citation", "Severity",
        "Evidence / source", "Confidence", "Verification confidence"]
 
@@ -435,11 +508,11 @@ def write_delta_tab(ws, subset):
     ws.append(HDR)
     style_header(ws, len(HDR))
     for r in subset:
-        ws.append([r["role"], r["mapped"], r["mig"], r["cap"], r["pg"], r["sg"], r["direction"],
-                   r["intended"], r["cit"], r["sev"], r["ev"], r["conf"], r["vconf"]])
+        ws.append([r["role"], r["slug"], r["mapped"], r["mig"], r["cap"], r["pg"], r["sg"],
+                   r["direction"], r["intended"], r["cit"], r["sev"], r["ev"], r["conf"], r["vconf"]])
         if r["intended"] == "No":
-            ws.cell(row=ws.max_row, column=8).font = RED
-    for col, w in zip("ABCDEFGHIJKLM", [22, 34, 30, 42, 11, 12, 22, 16, 52, 9, 50, 22, 34]):
+            ws.cell(row=ws.max_row, column=9).font = RED
+    for col, w in zip("ABCDEFGHIJKLMN", [22, 22, 34, 30, 42, 11, 12, 22, 16, 52, 9, 50, 22, 34]):
         ws.column_dimensions[col].width = w
     for rr in ws.iter_rows(min_row=2):
         for cc in rr:
@@ -448,11 +521,11 @@ def write_delta_tab(ws, subset):
 def summary_tab(ws, subset, oom_subset, title):
     ws.append([title])
     ws["A1"].font = Font(bold=True, size=12)
-    ws.append(["Staging Role", "Merged?", "Prod role(s) mapped", "Migration Type",
+    ws.append(["Staging Role", "Staging role slug", "Merged?", "Prod role(s) mapped", "Migration Type",
                "STAGING-LESS intended (Yes)", "STAGING-LESS NOT-in-spec (No) = RISK",
                "STAGING-MORE intended (Yes)", "STAGING-MORE NOT-in-spec (No) = RISK",
                "Out-of-model (staff-record, excl.)", "Highest severity", "Mapping confirmed?"])
-    for c in range(1, 12):
+    for c in range(1, 13):
         cell = ws.cell(row=2, column=c)
         cell.font = Font(bold=True, color="FFFFFF")
         cell.fill = PatternFill("solid", fgColor="1F4E78")
@@ -470,13 +543,13 @@ def summary_tab(ws, subset, oom_subset, title):
         hs = max([x["sev"] for x in items], key=lambda s: sevrank[s], default="-")
         merged = "YES" if len(MAP[role]) > 1 else "no"
         conf = "confirmed"
-        ws.append([role, merged, " + ".join(PLABEL[c] for c in MAP[role]), MIGRATION_TYPE[role],
-                   lyes, lno, myes, mno, oom, hs, conf])
+        ws.append([role, STG_SLUG.get(role, ""), merged, " + ".join(PLABEL[c] for c in MAP[role]),
+                   MIGRATION_TYPE[role], lyes, lno, myes, mno, oom, hs, conf])
         if lno:
-            ws.cell(row=ws.max_row, column=6).font = RED
+            ws.cell(row=ws.max_row, column=7).font = RED
         if mno:
-            ws.cell(row=ws.max_row, column=8).font = RED
-    for col, w in zip("ABCDEFGHIJK", [22, 8, 36, 30, 22, 30, 22, 30, 24, 14, 16]):
+            ws.cell(row=ws.max_row, column=9).font = RED
+    for col, w in zip("ABCDEFGHIJKL", [22, 22, 8, 36, 30, 22, 30, 22, 30, 24, 14, 16]):
         ws.column_dimensions[col].width = w
 
 wb = Workbook()
@@ -539,6 +612,21 @@ banner = [
     ["  reference / report-view only): workplace, department, vehicle_type, vehicle_history,"],
     ["  shop_billing_efficiency (subsumed under Settings / Reports / vehicle view)."],
     [""],
+    [""],
+    ["*** STAGING UI / FE-SOURCE VERIFICATION (2026-07-15) ***"],
+    ["'Staging role slug' column = the LIVE role identifier from GET /api/role-templates (mapped"],
+    ["  via each role's template_id). The role object itself has NO slug field; the slug is the"],
+    ["  role TEMPLATE slug (real API value, NOT hardcoded). Raw objects in staging-ui-verify-2026-07-14/."],
+    ["FE-gated High rows verified against the SHIPPED FE gate + live role defs (2026-07-15):"],
+    ["  - Send to Portal -> HIGH: gate = Customer Portal access; ABSENT for all 6 STAGING-LESS"],
+    ["    roles (Technician/Foreman/Parts Tech/Office/Sales Rep/Time Clock) = HIDDEN, PRESENT for"],
+    ["    the 5 kept roles = SHOWN (internally consistent)."],
+    ["  - See AP/AR Data -> HIGH: gate = seeApArData() cross-toggle; live values match per role."],
+    ["  - Send to Terminal -> control ABSENT from the staging build (no terminal/take-payment"],
+    ["    control anywhere in the FE bundle) - not a per-role gate."],
+    ["  - Part-return approve/complete/decline -> stay MEDIUM (control exists, exact gate not"],
+    ["    isolated; pixel-screenshot blocked by mid-run SSO session expiry)."],
+    [""],
     ["TABS: 'Deltas - ALL (bi-dir)' whole-app | 'Work Orders - granular' WO-only |"],
     ["  Summary tabs (per-role Yes/No 2x2) | 'Out-of-model (staff-record)' informational |"],
     ["  Full capability matrix | Open questions."],
@@ -562,8 +650,8 @@ summary_tab(wb.create_sheet("Summary per role (WO)"), wo_deltas, oom_wo,
 ws_oom = wb.create_sheet("Out-of-model (staff-record)")
 ws_oom.append(["INFORMATIONAL - staff-record-controlled, NOT permission deltas - EXCLUDED from risk 'No' counts"])
 ws_oom["A1"].font = Font(bold=True, color="7F3F00", size=11)
-OOM_HDR = ["Staging Role", "Migration Type", "Capability", "Direction", "Prod grants?",
-           "Staging grants?", "Why out-of-model", "Severity"]
+OOM_HDR = ["Staging Role", "Staging role slug", "Migration Type", "Capability", "Direction",
+           "Prod grants?", "Staging grants?", "Why out-of-model", "Severity"]
 ws_oom.append(OOM_HDR)
 for c in range(1, len(OOM_HDR) + 1):
     cell = ws_oom.cell(row=2, column=c)
@@ -571,8 +659,8 @@ for c in range(1, len(OOM_HDR) + 1):
     cell.fill = PatternFill("solid", fgColor="1F4E78")
     cell.alignment = Alignment(vertical="top", wrap_text=True)
 for r in oom_rows:
-    ws_oom.append([r["role"], r["mig"], r["cap"], r["direction"], r["pg"], r["sg"], r["cit"], r["sev"]])
-for col, w in zip("ABCDEFGH", [22, 30, 42, 22, 11, 12, 56, 9]):
+    ws_oom.append([r["role"], r["slug"], r["mig"], r["cap"], r["direction"], r["pg"], r["sg"], r["cit"], r["sev"]])
+for col, w in zip("ABCDEFGHI", [22, 22, 30, 42, 22, 11, 12, 56, 9]):
     ws_oom.column_dimensions[col].width = w
 for rr in ws_oom.iter_rows(min_row=3):
     for cc in rr:
@@ -582,6 +670,7 @@ for rr in ws_oom.iter_rows(min_row=3):
 ws5 = wb.create_sheet("Full capability matrix")
 ws5.append(["STAGING grants (live)", ""] + ORDER)
 style_header(ws5, 2 + len(ORDER))
+ws5.append(["role slug (live 2026-07-15)", ""] + [STG_SLUG.get(r, "") for r in ORDER])
 for name, cat, sfn, pfn, sev, conf in CAPS:
     ws5.append([name, cat] + ["Y" if sfn(r) else "" for r in ORDER])
 ws5.append([])
@@ -644,14 +733,21 @@ OPEN_Q = [
      "vehicle_type, vehicle_history, shop_billing_efficiency - all settings/reference/report-view only "
      "(subsumed under Settings/Reports/vehicle view). Note: workplace* is held by SA-Limited-View so "
      "staging Service Advisor has a low-severity uncaptured 'workplace management' reduction."),
-    ("Verification confidence + FE-gated UI-verify backlog",
+    ("Verification confidence + FE-gated UI-verify status (2026-07-15)",
      "HIGH-confidence rows are resource/action-mapped (recompute-matched + prod live-confirmed). "
-     "MEDIUM / NEEDS-UI-VERIFY rows are FE-gated / have no clean old-model atom (Send to Portal, Send "
-     "to Terminal, See AP/AR, part-return verbs, portal-page access) - prod grant uses a proxy mapping "
-     "and the staging side is role-definition-inferred, NOT UI-click-verified. Staging cookie was "
-     "expired during verification, so drive these per role with a fresh staging cookie before go/no-go "
-     "- especially the High-severity Send-to-Portal/Terminal/See-AP-AR set and the Parts-Manager WO "
-     "Create&Edit over-grant."),
+     "STAGING FE-SOURCE VERIFICATION (2026-07-15) raised the priority FE-gated High rows: "
+     "(a) 'Send to Portal' -> HIGH - FE gate is Customer Portal access (customerPortalPageAccess); "
+     "live staging role defs show it ABSENT for all 6 STAGING-LESS roles (HIDDEN) and PRESENT for "
+     "the 5 kept roles (SHOWN). (b) 'See AP/AR Data' -> HIGH - FE gate is seeApArData(); live "
+     "cross-toggles match per role. (c) 'Send to Terminal' -> control ABSENT from the staging build "
+     "entirely (no terminal/take-payment control in the FE bundle) - not a per-role gate; confirm "
+     "prod's control name. (d) Part-return approve/complete/decline stay MEDIUM: controls exist "
+     "('Process Return'/'Confirm Return') but the exact gate was not isolable from the minified "
+     "source. NOTE: live pixel-screenshots were blocked - the sv_sso_session expired mid-run "
+     "(quick-login 200 then next API 409 'Session has expired'); the above is FE-source (shipped "
+     "gate logic) + live role-definition data. To capture pixel screenshots for the residual MEDIUM "
+     "rows, re-run with a fresh staging cookie (boot2 hydration; TLS-1.2-max + disable ECH/PQ/HTTP2/"
+     "QUIC through a local CONNECT-relay bridge - see staging-ui-verify-2026-07-14/)."),
 ]
 for item, detail in OPEN_Q:
     ws6.append([item, detail])
@@ -684,10 +780,10 @@ print(f"OUT-OF-MODEL (excluded from No counts): {len(oom_rows)} rows (WO {len(oo
 SEVRANK = {"High": 3, "Medium": 2, "Low": 1}
 
 def md_rows(subset):
-    lines = ["| Staging role | Capability | Prod role(s) mapped | Severity | Confidence | Verification |",
-             "|---|---|---|---|---|---|"]
+    lines = ["| Staging role | Slug | Capability | Prod role(s) mapped | Severity | Confidence | Verification |",
+             "|---|---|---|---|---|---|---|"]
     for r in sorted(subset, key=lambda x: (-SEVRANK[x["sev"]], x["role"], x["cap"])):
-        lines.append(f"| {r['role']} | {r['cap']} | {r['holders']} | {r['sev']} | {r['conf']} | {r['vshort']} |")
+        lines.append(f"| {r['role']} | {r['slug']} | {r['cap']} | {r['holders']} | {r['sev']} | {r['conf']} | {r['vshort']} |")
     return "\n".join(lines)
 
 def md_intended(subset, direction):
@@ -702,8 +798,8 @@ less_no = [r for r in delta_rows if r["direction"] == "STAGING-LESS" and r["inte
 more_no = [r for r in delta_rows if r["direction"] == "STAGING-MORE" and r["intended"] == "No"]
 
 # per-role summary
-sum_lines = ["| Staging role | Merged? | Migration Type | STG-LESS Yes | **STG-LESS No** | STG-MORE Yes | **STG-MORE No** | Out-of-model (excl.) | Mapping |",
-             "|---|---|---|---|---|---|---|---|---|"]
+sum_lines = ["| Staging role | Slug | Merged? | Migration Type | STG-LESS Yes | **STG-LESS No** | STG-MORE Yes | **STG-MORE No** | Out-of-model (excl.) | Mapping |",
+             "|---|---|---|---|---|---|---|---|---|---|"]
 for role in ORDER:
     items = [x for x in delta_rows if x["role"] == role]
     less = [x for x in items if x["direction"] == "STAGING-LESS"]
@@ -714,7 +810,7 @@ for role in ORDER:
     mno = sum(1 for x in more if x["intended"] == "No")
     oom = sum(1 for x in oom_rows if x["role"] == role)
     merged = "YES" if len(MAP[role]) > 1 else "no"
-    sum_lines.append(f"| {role} | {merged} | {MIGRATION_TYPE[role]} | {lyes} | {lno} | {myes} | {mno} | {oom} | confirmed |")
+    sum_lines.append(f"| {role} | {STG_SLUG.get(role,'')} | {merged} | {MIGRATION_TYPE[role]} | {lyes} | {lno} | {myes} | {mno} | {oom} | confirmed |")
 
 # out-of-model md
 oom_lines = ["| Staging role | Capability | Direction | Prod / Staging | Severity |",
@@ -763,6 +859,36 @@ open questions).
 - **Kept as real "No" risks:** Parts Manager gains WO Create&Edit + WO Lines Create&Edit;
   SM/PM delete + settings over-grants; Sales Rep SFD/AP-AR; all STAGING-LESS regressions
   (Technician Order-Parts / WOL-Delete, Parts-Tech invoice-reverse, etc.).
+
+## Staging UI / FE-source verification of the FE-gated High rows (2026-07-15)
+Live staging role definitions (`GET /api/roles/{{id}}` + cross_toggles + view_mode, plus role
+**slugs** from `GET /api/role-templates`) were evaluated against the ACTUAL front-end gate
+predicate read from the shipped staging JS bundle. (Live pixel-screenshots were blocked: the
+`sv_sso_session` expired mid-run — quick-login returned 200 but the next API call 409'd "Session
+has expired"; the verification is FE-source + live role-definition data, authoritative for a
+front-end DISPLAY gate.) Raw evidence: `staging-ui-verify-2026-07-14/`.
+
+- **Send to Portal → HIGH (verified).** FE gate = Customer Portal access (store helper
+  `userHasCustomerPortalAccess = has("customerPortalPageAccess")`; button in `WorkOrderNavBar`).
+  Live staging: the atom is **ABSENT for all 6 STAGING-LESS roles** (Technician, Foreman, Parts
+  Technician, Office User, Sales Representative, Time Clock User) → **HIDDEN**, and **PRESENT for
+  the 5 roles that keep it** (Admin, Parts Manager, Senior Service Advisor, Service Advisor,
+  Service Manager) → **SHOWN**. Internally consistent → the STAGING-LESS "Send to Portal" rows are
+  CONFIRMED (staging genuinely hides it for those 6). Prod grants it (evidence-derived proxy =
+  `work_order/view`).
+- **See AP/AR Data → HIGH (verified).** FE gate = `seeApArData()` cross-toggle (source:
+  `check:()=>seeApArData()` on the Accounts Payable/Receivable + transactions + payments tabs).
+  Live staging cross_toggles match: Parts Tech OFF (HIDDEN, STAGING-LESS), Sales Rep ON (VISIBLE,
+  STAGING-MORE), Service Advisor OFF (HIDDEN, spec-intended).
+- **Send to Terminal → control ABSENT from the staging build.** No payment-terminal / card-reader
+  / "Send to Terminal" / "take payment" control exists anywhere in the staging FE bundle
+  ("terminal" matches only the Quasar framework). There is **no per-role Send-to-Terminal gate**
+  in staging — the Parts-Tech STAGING-LESS row reflects a build-wide absence, not a role
+  regression. Confirm prod's actual control name before treating it as a role-level loss.
+- **Part-return approve/complete + decline → still MEDIUM / NEEDS-UI-VERIFY.** The controls DO
+  exist in the staging build ("Process Return" / "Confirm Return"), but the exact permission gate
+  could not be isolated from the minified source and the pixel-screenshot was blocked by SSO
+  expiry.
 
 ## Headline totals (corrected, out-of-model excluded)
 | Direction | Intended (Yes, spec/Migration-Type cited) | **NOT in spec (No) = RELEASE RISK** |

@@ -40,6 +40,36 @@ open questions).
   SM/PM delete + settings over-grants; Sales Rep SFD/AP-AR; all STAGING-LESS regressions
   (Technician Order-Parts / WOL-Delete, Parts-Tech invoice-reverse, etc.).
 
+## Staging UI / FE-source verification of the FE-gated High rows (2026-07-15)
+Live staging role definitions (`GET /api/roles/{id}` + cross_toggles + view_mode, plus role
+**slugs** from `GET /api/role-templates`) were evaluated against the ACTUAL front-end gate
+predicate read from the shipped staging JS bundle. (Live pixel-screenshots were blocked: the
+`sv_sso_session` expired mid-run — quick-login returned 200 but the next API call 409'd "Session
+has expired"; the verification is FE-source + live role-definition data, authoritative for a
+front-end DISPLAY gate.) Raw evidence: `staging-ui-verify-2026-07-14/`.
+
+- **Send to Portal → HIGH (verified).** FE gate = Customer Portal access (store helper
+  `userHasCustomerPortalAccess = has("customerPortalPageAccess")`; button in `WorkOrderNavBar`).
+  Live staging: the atom is **ABSENT for all 6 STAGING-LESS roles** (Technician, Foreman, Parts
+  Technician, Office User, Sales Representative, Time Clock User) → **HIDDEN**, and **PRESENT for
+  the 5 roles that keep it** (Admin, Parts Manager, Senior Service Advisor, Service Advisor,
+  Service Manager) → **SHOWN**. Internally consistent → the STAGING-LESS "Send to Portal" rows are
+  CONFIRMED (staging genuinely hides it for those 6). Prod grants it (evidence-derived proxy =
+  `work_order/view`).
+- **See AP/AR Data → HIGH (verified).** FE gate = `seeApArData()` cross-toggle (source:
+  `check:()=>seeApArData()` on the Accounts Payable/Receivable + transactions + payments tabs).
+  Live staging cross_toggles match: Parts Tech OFF (HIDDEN, STAGING-LESS), Sales Rep ON (VISIBLE,
+  STAGING-MORE), Service Advisor OFF (HIDDEN, spec-intended).
+- **Send to Terminal → control ABSENT from the staging build.** No payment-terminal / card-reader
+  / "Send to Terminal" / "take payment" control exists anywhere in the staging FE bundle
+  ("terminal" matches only the Quasar framework). There is **no per-role Send-to-Terminal gate**
+  in staging — the Parts-Tech STAGING-LESS row reflects a build-wide absence, not a role
+  regression. Confirm prod's actual control name before treating it as a role-level loss.
+- **Part-return approve/complete + decline → still MEDIUM / NEEDS-UI-VERIFY.** The controls DO
+  exist in the staging build ("Process Return" / "Confirm Return"), but the exact permission gate
+  could not be isolated from the minified source and the pixel-screenshot was blocked by SSO
+  expiry.
+
 ## Headline totals (corrected, out-of-model excluded)
 | Direction | Intended (Yes, spec/Migration-Type cited) | **NOT in spec (No) = RELEASE RISK** |
 |---|---|---|
@@ -53,100 +83,100 @@ open questions).
 > Mapping is CONFIRMED (QA lead 2026-07-14); Administrator compared 1:1 (Owner N/A).
 
 ## STAGING-LESS · NOT-in-spec (No) — prod can do MORE than staging (regressions / over-in-prod)
-| Staging role | Capability | Prod role(s) mapped | Severity | Confidence | Verification |
-|---|---|---|---|---|---|
-| Foreman | Send to Portal | Foreman | High | NEEDS-REVIEW | MEDIUM / UI-verify |
-| Office User | Send to Portal | Office User | High | NEEDS-REVIEW | MEDIUM / UI-verify |
-| Parts Manager | Remove a WO part | Parts Manager | High | NEEDS-REVIEW | MEDIUM / UI-verify |
-| Parts Technician | Approve / complete a WO part return | Parts Technician | High | NEEDS-REVIEW | MEDIUM / UI-verify |
-| Parts Technician | Invoicing & Payments Delete (reverse/delete invoice) | Parts Technician | High | live | HIGH |
-| Parts Technician | Remove a WO part | Parts Technician | High | NEEDS-REVIEW | MEDIUM / UI-verify |
-| Parts Technician | See AP/AR Data | Parts Technician | High | NEEDS-REVIEW | MEDIUM / UI-verify |
-| Parts Technician | Send to Portal | Parts Technician | High | NEEDS-REVIEW | MEDIUM / UI-verify |
-| Parts Technician | Send to Terminal (take payment on WO) | Parts Technician | High | NEEDS-REVIEW | MEDIUM / UI-verify |
-| Sales Representative | Send to Portal | Sales Representative | High | NEEDS-REVIEW | MEDIUM / UI-verify |
-| Service Advisor | Work Orders Delete | Service Advisor - Limited View | High | live | HIGH |
-| Technician | Order Parts (on WO) | Technician | High | live | HIGH |
-| Technician | Remove a WO part | Technician | High | NEEDS-REVIEW | MEDIUM / UI-verify |
-| Technician | Work Order Lines Delete | Technician | High | live | HIGH |
-| Time Clock User | Send to Portal | Time Clock User | High | NEEDS-REVIEW | MEDIUM / UI-verify |
-| Foreman | Part Sales Create & Edit | Foreman | Medium | NEEDS-REVIEW | MEDIUM / UI-verify |
-| Office User | Assign vendor to a WO part order | Office User | Medium | NEEDS-REVIEW | MEDIUM / UI-verify |
-| Office User | Catalog & Inventory Delete | Office User | Medium | live | HIGH |
-| Office User | Create / edit asset (vehicle) from New WO screen | Office User | Medium | NEEDS-REVIEW | MEDIUM / UI-verify |
-| Office User | Manage picked WO parts (view/change) | Office User | Medium | NEEDS-REVIEW | MEDIUM / UI-verify |
-| Office User | Pick Parts | Office User | Medium | live | HIGH |
-| Office User | Receive / accept a delivery (Bulk Receive) | Office User | Medium | live | HIGH |
-| Office User | Settings: Parts | Office User | Medium | NEEDS-REVIEW | MEDIUM / UI-verify |
-| Office User | Vendor & Order Mgmt Create & Edit | Office User | Medium | live | HIGH |
-| Office User | Vendor & Order Mgmt Delete | Office User | Medium | live | HIGH |
-| Parts Manager | Manage Staff | Parts Manager | Medium | NEEDS-REVIEW | MEDIUM / UI-verify |
-| Parts Manager | Settings: Wages | Parts Manager | Medium | NEEDS-REVIEW | MEDIUM / UI-verify |
-| Parts Technician | Decline a WO part return | Parts Technician | Medium | NEEDS-REVIEW | MEDIUM / UI-verify |
-| Senior Service Advisor | Catalog & Inventory Delete | Service Advisor - No Reports | Medium | live | HIGH |
-| Senior Service Advisor | Customers Delete | Service Advisor - No Reports | Medium | live | HIGH |
-| Senior Service Advisor | Settings: App | Service Advisor - No Reports | Medium | NEEDS-REVIEW | MEDIUM / UI-verify |
-| Senior Service Advisor | Settings: Finance | Service Advisor - No Reports | Medium | NEEDS-REVIEW | MEDIUM / UI-verify |
-| Senior Service Advisor | Settings: Integrations | Service Advisor - No Reports | Medium | NEEDS-REVIEW | MEDIUM / UI-verify |
-| Senior Service Advisor | Settings: Service | Service Advisor - No Reports | Medium | NEEDS-REVIEW | MEDIUM / UI-verify |
-| Service Advisor | Catalog & Inventory Delete | Service Advisor - Limited View | Medium | live | HIGH |
-| Service Advisor | Customers Delete | Service Advisor - Limited View | Medium | live | HIGH |
-| Service Advisor | Part Sales Delete | Service Advisor - Limited View | Medium | NEEDS-REVIEW | MEDIUM / UI-verify |
-| Service Advisor | Settings: App | Service Advisor - Limited View | Medium | NEEDS-REVIEW | MEDIUM / UI-verify |
-| Service Advisor | Settings: Finance | Service Advisor - Limited View | Medium | NEEDS-REVIEW | MEDIUM / UI-verify |
-| Service Advisor | Settings: Integrations | Service Advisor - Limited View | Medium | NEEDS-REVIEW | MEDIUM / UI-verify |
-| Service Advisor | Settings: Service | Service Advisor - Limited View | Medium | NEEDS-REVIEW | MEDIUM / UI-verify |
-| Service Advisor | Vendor & Order Mgmt Delete | Service Advisor - Limited View | Medium | live | HIGH |
-| Technician | Assign vendor to a WO part order | Technician | Medium | NEEDS-REVIEW | MEDIUM / UI-verify |
-| Technician | Create / edit asset (vehicle) from New WO screen | Technician | Medium | NEEDS-REVIEW | MEDIUM / UI-verify |
-| Technician | Part Sales Create & Edit | Technician | Medium | NEEDS-REVIEW | MEDIUM / UI-verify |
-| Office User | Canned lines on WO (add/edit) | Office User | Low | NEEDS-REVIEW | MEDIUM / UI-verify |
-| Senior Service Advisor | Billing Portal Page Access | Service Advisor - No Reports | Low | NEEDS-REVIEW | MEDIUM / UI-verify |
-| Service Advisor | Billing Portal Page Access | Service Advisor - Limited View | Low | NEEDS-REVIEW | MEDIUM / UI-verify |
-| Service Advisor | WO notes - delete | Service Advisor - Limited View | Low | NEEDS-REVIEW | MEDIUM / UI-verify |
-| Technician | Part Sales View | Technician | Low | NEEDS-REVIEW | MEDIUM / UI-verify |
-| Technician | Vendor & Order Mgmt View | Technician | Low | live | HIGH |
+| Staging role | Slug | Capability | Prod role(s) mapped | Severity | Confidence | Verification |
+|---|---|---|---|---|---|---|
+| Foreman | foreman | Send to Portal | Foreman | High | NEEDS-REVIEW | HIGH |
+| Office User | office | Send to Portal | Office User | High | NEEDS-REVIEW | HIGH |
+| Parts Manager | parts_manager | Remove a WO part | Parts Manager | High | NEEDS-REVIEW | MEDIUM / UI-verify |
+| Parts Technician | parts_technician | Approve / complete a WO part return | Parts Technician | High | NEEDS-REVIEW | MEDIUM |
+| Parts Technician | parts_technician | Invoicing & Payments Delete (reverse/delete invoice) | Parts Technician | High | live | HIGH |
+| Parts Technician | parts_technician | Remove a WO part | Parts Technician | High | NEEDS-REVIEW | MEDIUM / UI-verify |
+| Parts Technician | parts_technician | See AP/AR Data | Parts Technician | High | NEEDS-REVIEW | HIGH |
+| Parts Technician | parts_technician | Send to Portal | Parts Technician | High | NEEDS-REVIEW | HIGH |
+| Parts Technician | parts_technician | Send to Terminal (take payment on WO) | Parts Technician | High | NEEDS-REVIEW | HIGH |
+| Sales Representative | sales_representative | Send to Portal | Sales Representative | High | NEEDS-REVIEW | HIGH |
+| Service Advisor | service_advisor | Work Orders Delete | Service Advisor - Limited View | High | live | HIGH |
+| Technician | technician | Order Parts (on WO) | Technician | High | live | HIGH |
+| Technician | technician | Remove a WO part | Technician | High | NEEDS-REVIEW | MEDIUM / UI-verify |
+| Technician | technician | Work Order Lines Delete | Technician | High | live | HIGH |
+| Time Clock User | time_clock_user | Send to Portal | Time Clock User | High | NEEDS-REVIEW | HIGH |
+| Foreman | foreman | Part Sales Create & Edit | Foreman | Medium | NEEDS-REVIEW | MEDIUM / UI-verify |
+| Office User | office | Assign vendor to a WO part order | Office User | Medium | NEEDS-REVIEW | MEDIUM / UI-verify |
+| Office User | office | Catalog & Inventory Delete | Office User | Medium | live | HIGH |
+| Office User | office | Create / edit asset (vehicle) from New WO screen | Office User | Medium | NEEDS-REVIEW | MEDIUM / UI-verify |
+| Office User | office | Manage picked WO parts (view/change) | Office User | Medium | NEEDS-REVIEW | MEDIUM / UI-verify |
+| Office User | office | Pick Parts | Office User | Medium | live | HIGH |
+| Office User | office | Receive / accept a delivery (Bulk Receive) | Office User | Medium | live | HIGH |
+| Office User | office | Settings: Parts | Office User | Medium | NEEDS-REVIEW | MEDIUM / UI-verify |
+| Office User | office | Vendor & Order Mgmt Create & Edit | Office User | Medium | live | HIGH |
+| Office User | office | Vendor & Order Mgmt Delete | Office User | Medium | live | HIGH |
+| Parts Manager | parts_manager | Manage Staff | Parts Manager | Medium | NEEDS-REVIEW | MEDIUM / UI-verify |
+| Parts Manager | parts_manager | Settings: Wages | Parts Manager | Medium | NEEDS-REVIEW | MEDIUM / UI-verify |
+| Parts Technician | parts_technician | Decline a WO part return | Parts Technician | Medium | NEEDS-REVIEW | MEDIUM |
+| Senior Service Advisor | senior_service_advisor | Catalog & Inventory Delete | Service Advisor - No Reports | Medium | live | HIGH |
+| Senior Service Advisor | senior_service_advisor | Customers Delete | Service Advisor - No Reports | Medium | live | HIGH |
+| Senior Service Advisor | senior_service_advisor | Settings: App | Service Advisor - No Reports | Medium | NEEDS-REVIEW | MEDIUM / UI-verify |
+| Senior Service Advisor | senior_service_advisor | Settings: Finance | Service Advisor - No Reports | Medium | NEEDS-REVIEW | MEDIUM / UI-verify |
+| Senior Service Advisor | senior_service_advisor | Settings: Integrations | Service Advisor - No Reports | Medium | NEEDS-REVIEW | MEDIUM / UI-verify |
+| Senior Service Advisor | senior_service_advisor | Settings: Service | Service Advisor - No Reports | Medium | NEEDS-REVIEW | MEDIUM / UI-verify |
+| Service Advisor | service_advisor | Catalog & Inventory Delete | Service Advisor - Limited View | Medium | live | HIGH |
+| Service Advisor | service_advisor | Customers Delete | Service Advisor - Limited View | Medium | live | HIGH |
+| Service Advisor | service_advisor | Part Sales Delete | Service Advisor - Limited View | Medium | NEEDS-REVIEW | MEDIUM / UI-verify |
+| Service Advisor | service_advisor | Settings: App | Service Advisor - Limited View | Medium | NEEDS-REVIEW | MEDIUM / UI-verify |
+| Service Advisor | service_advisor | Settings: Finance | Service Advisor - Limited View | Medium | NEEDS-REVIEW | MEDIUM / UI-verify |
+| Service Advisor | service_advisor | Settings: Integrations | Service Advisor - Limited View | Medium | NEEDS-REVIEW | MEDIUM / UI-verify |
+| Service Advisor | service_advisor | Settings: Service | Service Advisor - Limited View | Medium | NEEDS-REVIEW | MEDIUM / UI-verify |
+| Service Advisor | service_advisor | Vendor & Order Mgmt Delete | Service Advisor - Limited View | Medium | live | HIGH |
+| Technician | technician | Assign vendor to a WO part order | Technician | Medium | NEEDS-REVIEW | MEDIUM / UI-verify |
+| Technician | technician | Create / edit asset (vehicle) from New WO screen | Technician | Medium | NEEDS-REVIEW | MEDIUM / UI-verify |
+| Technician | technician | Part Sales Create & Edit | Technician | Medium | NEEDS-REVIEW | MEDIUM / UI-verify |
+| Office User | office | Canned lines on WO (add/edit) | Office User | Low | NEEDS-REVIEW | MEDIUM / UI-verify |
+| Senior Service Advisor | senior_service_advisor | Billing Portal Page Access | Service Advisor - No Reports | Low | NEEDS-REVIEW | MEDIUM / UI-verify |
+| Service Advisor | service_advisor | Billing Portal Page Access | Service Advisor - Limited View | Low | NEEDS-REVIEW | MEDIUM / UI-verify |
+| Service Advisor | service_advisor | WO notes - delete | Service Advisor - Limited View | Low | NEEDS-REVIEW | MEDIUM / UI-verify |
+| Technician | technician | Part Sales View | Technician | Low | NEEDS-REVIEW | MEDIUM / UI-verify |
+| Technician | technician | Vendor & Order Mgmt View | Technician | Low | live | HIGH |
 
 ## STAGING-MORE · NOT-in-spec (No) — staging grants MORE than prod (unaccounted expansions)
-| Staging role | Capability | Prod role(s) mapped | Severity | Confidence | Verification |
-|---|---|---|---|---|---|
-| Parts Manager | Work Order Lines Create & Edit | (none of mapped) | High | live | HIGH |
-| Parts Manager | Work Orders Create & Edit | (none of mapped) | High | live | HIGH |
-| Sales Representative | See AP/AR Data | (none of mapped) | High | NEEDS-REVIEW | MEDIUM / UI-verify |
-| Sales Representative | See Financial Data on WO (rates/margins/totals) | (none of mapped) | High | NEEDS-REVIEW | MEDIUM / UI-verify |
-| Service Manager | Approve / complete a WO part return | (none of mapped) | High | NEEDS-REVIEW | MEDIUM / UI-verify |
-| Admin | Customer Portal Page Access | (none of mapped) | Medium | NEEDS-REVIEW | MEDIUM / UI-verify |
-| Parts Manager | Approve / decline a WO line | (none of mapped) | Medium | live | HIGH |
-| Parts Manager | Complete a Work Order | (none of mapped) | Medium | live | HIGH |
-| Parts Manager | Create / edit asset (vehicle) from New WO screen | (none of mapped) | Medium | NEEDS-REVIEW | MEDIUM / UI-verify |
-| Parts Manager | Create / edit customer from New WO screen | (none of mapped) | Medium | live | HIGH |
-| Parts Manager | Customers Create & Edit | (none of mapped) | Medium | live | HIGH |
-| Parts Manager | Customers Delete | (none of mapped) | Medium | live | HIGH |
-| Parts Manager | Mark Reviewed / review sign-off | (none of mapped) | Medium | NEEDS-REVIEW | MEDIUM / UI-verify |
-| Parts Manager | Part Sales Create & Edit | (none of mapped) | Medium | NEEDS-REVIEW | MEDIUM / UI-verify |
-| Parts Manager | Part Sales Delete | (none of mapped) | Medium | NEEDS-REVIEW | MEDIUM / UI-verify |
-| Parts Manager | Process a WO part return (create) | (none of mapped) | Medium | NEEDS-REVIEW | MEDIUM / UI-verify |
-| Parts Manager | Settings: Data Import | (none of mapped) | Medium | live | HIGH |
-| Parts Manager | Settings: Finance | (none of mapped) | Medium | NEEDS-REVIEW | MEDIUM / UI-verify |
-| Parts Manager | View History Logs (cross-toggle) | (none of mapped) | Medium | live | HIGH |
-| Parts Manager | WO History / Audit Log (view) | (none of mapped) | Medium | live | HIGH |
-| Service Manager | Catalog & Inventory Create & Edit | (none of mapped) | Medium | live | HIGH |
-| Service Manager | Catalog & Inventory Delete | (none of mapped) | Medium | live | HIGH |
-| Service Manager | Customers Delete | (none of mapped) | Medium | live | HIGH |
-| Service Manager | Decline a WO part return | (none of mapped) | Medium | NEEDS-REVIEW | MEDIUM / UI-verify |
-| Service Manager | Manage Staff | (none of mapped) | Medium | NEEDS-REVIEW | MEDIUM / UI-verify |
-| Service Manager | Part Sales Delete | (none of mapped) | Medium | NEEDS-REVIEW | MEDIUM / UI-verify |
-| Service Manager | Settings: App | (none of mapped) | Medium | NEEDS-REVIEW | MEDIUM / UI-verify |
-| Service Manager | Settings: Wages | (none of mapped) | Medium | NEEDS-REVIEW | MEDIUM / UI-verify |
-| Service Manager | View History Logs (cross-toggle) | (none of mapped) | Medium | live | HIGH |
-| Service Manager | WO History / Audit Log (view) | (none of mapped) | Medium | live | HIGH |
-| Technician | Decline a WO part return | (none of mapped) | Medium | NEEDS-REVIEW | MEDIUM / UI-verify |
-| Parts Manager | Canned lines on WO (add/edit) | (none of mapped) | Low | NEEDS-REVIEW | MEDIUM / UI-verify |
-| Parts Manager | Customers View | (none of mapped) | Low | live | HIGH |
-| Parts Manager | Edit / move WO line tasks | (none of mapped) | Low | NEEDS-REVIEW | MEDIUM / UI-verify |
-| Parts Manager | Set line status (bulk) | (none of mapped) | Low | live | HIGH |
-| Sales Representative | Part Sales View | (none of mapped) | Low | NEEDS-REVIEW | MEDIUM / UI-verify |
-| Service Manager | Canned lines on WO (add/edit) | (none of mapped) | Low | NEEDS-REVIEW | MEDIUM / UI-verify |
+| Staging role | Slug | Capability | Prod role(s) mapped | Severity | Confidence | Verification |
+|---|---|---|---|---|---|---|
+| Parts Manager | parts_manager | Work Order Lines Create & Edit | (none of mapped) | High | live | HIGH |
+| Parts Manager | parts_manager | Work Orders Create & Edit | (none of mapped) | High | live | HIGH |
+| Sales Representative | sales_representative | See AP/AR Data | (none of mapped) | High | NEEDS-REVIEW | HIGH |
+| Sales Representative | sales_representative | See Financial Data on WO (rates/margins/totals) | (none of mapped) | High | NEEDS-REVIEW | MEDIUM / UI-verify |
+| Service Manager | service_manager | Approve / complete a WO part return | (none of mapped) | High | NEEDS-REVIEW | MEDIUM |
+| Admin | administrator | Customer Portal Page Access | (none of mapped) | Medium | NEEDS-REVIEW | MEDIUM / UI-verify |
+| Parts Manager | parts_manager | Approve / decline a WO line | (none of mapped) | Medium | live | HIGH |
+| Parts Manager | parts_manager | Complete a Work Order | (none of mapped) | Medium | live | HIGH |
+| Parts Manager | parts_manager | Create / edit asset (vehicle) from New WO screen | (none of mapped) | Medium | NEEDS-REVIEW | MEDIUM / UI-verify |
+| Parts Manager | parts_manager | Create / edit customer from New WO screen | (none of mapped) | Medium | live | HIGH |
+| Parts Manager | parts_manager | Customers Create & Edit | (none of mapped) | Medium | live | HIGH |
+| Parts Manager | parts_manager | Customers Delete | (none of mapped) | Medium | live | HIGH |
+| Parts Manager | parts_manager | Mark Reviewed / review sign-off | (none of mapped) | Medium | NEEDS-REVIEW | MEDIUM / UI-verify |
+| Parts Manager | parts_manager | Part Sales Create & Edit | (none of mapped) | Medium | NEEDS-REVIEW | MEDIUM / UI-verify |
+| Parts Manager | parts_manager | Part Sales Delete | (none of mapped) | Medium | NEEDS-REVIEW | MEDIUM / UI-verify |
+| Parts Manager | parts_manager | Process a WO part return (create) | (none of mapped) | Medium | NEEDS-REVIEW | MEDIUM |
+| Parts Manager | parts_manager | Settings: Data Import | (none of mapped) | Medium | live | HIGH |
+| Parts Manager | parts_manager | Settings: Finance | (none of mapped) | Medium | NEEDS-REVIEW | MEDIUM / UI-verify |
+| Parts Manager | parts_manager | View History Logs (cross-toggle) | (none of mapped) | Medium | live | HIGH |
+| Parts Manager | parts_manager | WO History / Audit Log (view) | (none of mapped) | Medium | live | HIGH |
+| Service Manager | service_manager | Catalog & Inventory Create & Edit | (none of mapped) | Medium | live | HIGH |
+| Service Manager | service_manager | Catalog & Inventory Delete | (none of mapped) | Medium | live | HIGH |
+| Service Manager | service_manager | Customers Delete | (none of mapped) | Medium | live | HIGH |
+| Service Manager | service_manager | Decline a WO part return | (none of mapped) | Medium | NEEDS-REVIEW | MEDIUM |
+| Service Manager | service_manager | Manage Staff | (none of mapped) | Medium | NEEDS-REVIEW | MEDIUM / UI-verify |
+| Service Manager | service_manager | Part Sales Delete | (none of mapped) | Medium | NEEDS-REVIEW | MEDIUM / UI-verify |
+| Service Manager | service_manager | Settings: App | (none of mapped) | Medium | NEEDS-REVIEW | MEDIUM / UI-verify |
+| Service Manager | service_manager | Settings: Wages | (none of mapped) | Medium | NEEDS-REVIEW | MEDIUM / UI-verify |
+| Service Manager | service_manager | View History Logs (cross-toggle) | (none of mapped) | Medium | live | HIGH |
+| Service Manager | service_manager | WO History / Audit Log (view) | (none of mapped) | Medium | live | HIGH |
+| Technician | technician | Decline a WO part return | (none of mapped) | Medium | NEEDS-REVIEW | MEDIUM |
+| Parts Manager | parts_manager | Canned lines on WO (add/edit) | (none of mapped) | Low | NEEDS-REVIEW | MEDIUM / UI-verify |
+| Parts Manager | parts_manager | Customers View | (none of mapped) | Low | live | HIGH |
+| Parts Manager | parts_manager | Edit / move WO line tasks | (none of mapped) | Low | NEEDS-REVIEW | MEDIUM / UI-verify |
+| Parts Manager | parts_manager | Set line status (bulk) | (none of mapped) | Low | live | HIGH |
+| Sales Representative | sales_representative | Part Sales View | (none of mapped) | Low | NEEDS-REVIEW | MEDIUM / UI-verify |
+| Service Manager | service_manager | Canned lines on WO (add/edit) | (none of mapped) | Low | NEEDS-REVIEW | MEDIUM / UI-verify |
 
 ## STAGING-LESS · intended (Yes, spec-documented reductions)
 | Staging role | Capability | Prod role(s) mapped | Severity | Spec / Migration-Type citation |
@@ -203,19 +233,19 @@ not the role/permission model. These are informational, not release risks:
 | Time Clock User | Timesheets View | STAGING-MORE | No/Yes | Low |
 
 ## Per-role 2×2 summary (whole app, out-of-model excluded)
-| Staging role | Merged? | Migration Type | STG-LESS Yes | **STG-LESS No** | STG-MORE Yes | **STG-MORE No** | Out-of-model (excl.) | Mapping |
-|---|---|---|---|---|---|---|---|---|
-| Admin | no | Direct - Administrator (Owner merge N/A: no Owner in either env) | 0 | 0 | 0 | 1 | 1 | confirmed |
-| Service Manager | no | Direct (with adjustments) | 2 | 0 | 2 | 12 | 1 | confirmed |
-| Senior Service Advisor | YES | Renamed + expanded (merge: Service Advisor + SA Technician + SA No Reports; gains Reports) | 0 | 7 | 2 | 0 | 2 | confirmed |
-| Service Advisor | no | Mapped from SA Limited View (AP/AR OFF preserves core restriction) | 1 | 11 | 1 | 0 | 1 | confirmed |
-| Foreman | no | Direct (with expansions) | 0 | 2 | 9 | 0 | 1 | confirmed |
-| Technician | no | Direct mapping | 1 | 8 | 0 | 1 | 0 | confirmed |
-| Parts Manager | no | Direct (with adjustments) | 0 | 3 | 2 | 20 | 1 | confirmed |
-| Parts Technician | no | Direct (with expansions) | 0 | 7 | 8 | 0 | 1 | confirmed |
-| Office User | no | Direct (with adjustments) | 1 | 11 | 0 | 0 | 1 | confirmed |
-| Sales Representative | YES | Direct (merge: Sales Representative + Reporting) | 0 | 1 | 0 | 3 | 0 | confirmed |
-| Time Clock User | no | Direct mapping | 0 | 1 | 0 | 0 | 1 | confirmed |
+| Staging role | Slug | Merged? | Migration Type | STG-LESS Yes | **STG-LESS No** | STG-MORE Yes | **STG-MORE No** | Out-of-model (excl.) | Mapping |
+|---|---|---|---|---|---|---|---|---|---|
+| Admin | administrator | no | Direct - Administrator (Owner merge N/A: no Owner in either env) | 0 | 0 | 0 | 1 | 1 | confirmed |
+| Service Manager | service_manager | no | Direct (with adjustments) | 2 | 0 | 2 | 12 | 1 | confirmed |
+| Senior Service Advisor | senior_service_advisor | YES | Renamed + expanded (merge: Service Advisor + SA Technician + SA No Reports; gains Reports) | 0 | 7 | 2 | 0 | 2 | confirmed |
+| Service Advisor | service_advisor | no | Mapped from SA Limited View (AP/AR OFF preserves core restriction) | 1 | 11 | 1 | 0 | 1 | confirmed |
+| Foreman | foreman | no | Direct (with expansions) | 0 | 2 | 9 | 0 | 1 | confirmed |
+| Technician | technician | no | Direct mapping | 1 | 8 | 0 | 1 | 0 | confirmed |
+| Parts Manager | parts_manager | no | Direct (with adjustments) | 0 | 3 | 2 | 20 | 1 | confirmed |
+| Parts Technician | parts_technician | no | Direct (with expansions) | 0 | 7 | 8 | 0 | 1 | confirmed |
+| Office User | office | no | Direct (with adjustments) | 1 | 11 | 0 | 0 | 1 | confirmed |
+| Sales Representative | sales_representative | YES | Direct (merge: Sales Representative + Reporting) | 0 | 1 | 0 | 3 | 0 | confirmed |
+| Time Clock User | time_clock_user | no | Direct mapping | 0 | 1 | 0 | 0 | 1 | confirmed |
 
 ## Completeness (independent verification)
 **No release-critical omissions.** All 43 staging atoms + 3 cross-toggles + view_mode are
