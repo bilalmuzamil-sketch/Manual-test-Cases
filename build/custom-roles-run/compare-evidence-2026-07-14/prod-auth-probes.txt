@@ -1,0 +1,25 @@
+PRODUCTION AUTH PROBE RESULTS — 2026-07-14/15 (read-only, no writes)
+Host discovery:
+  https://app.shopview.com        -> HTTP 200 (SPA)
+  https://api.shopview.com        -> HTTP 200 (live Symfony JSON backend; proper /api route errors)
+
+Authenticated probes against api.shopview.com (cookie combos tried):
+  GET /api/auth/me                         -> 404 "No route found" (route absent on prod/old model)
+  GET /api/auth/me/fe-permissions          -> 404 "No route found" (route absent on prod/old model)
+  GET /api/organizations  (prod cookies)   -> 409 "Session has expired."
+  GET /api/staff?page=1   (prod cookies)   -> 409 "Session has expired."
+  POST /api/quick-login {admin}            -> 500 (server error; dev quick-login not functional on prod)
+  POST /api/quick-login {tech}             -> 500
+
+Blocker isolation (GET /api/organizations):
+  NO cookies at all                        -> 409 "Session has expired."   (=> NOT a Cloudflare challenge)
+  cf_clearance only                        -> 409 "Session has expired."
+  PHPSESSID(value1) only                   -> 409 "Session has expired."
+  value1 as sv_sso_session + cf_clearance  -> 409 "Session has expired."
+
+CONCLUSION: production authentication fails due to a MISSING valid production
+sv_sso_session (64-hex). value1 (<prod value1>, 32-hex) authenticates as neither
+PHPSESSID nor sv_sso_session. cf_clearance / Cloudflare is NOT the blocker.
+Host is correct. NO live production role data captured; no fabricated compare.
+
+STAGING (control): quick-login admin 200; GET roles 200 (11 roles); per-role 200. VALID.
