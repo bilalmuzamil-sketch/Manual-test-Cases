@@ -1,0 +1,17 @@
+{
+  "target":"#2 Staging holderless roles finance caps (Service Manager/Foreman/Office User/Parts Technician)",
+  "method":"role-swap ZZAUTOTEST throwaway (staff 0336686b / user 051292ea, wp b3c8c820 Staging Heavy Duty-9919) to each target role (staff/change 201 - prior 500 blocker cleared with fresh session + location pin), then GENUINE switch-user into it, navigate invoiced WO S9-24662 (35cd5c68) -> Finance tab -> observe New Payment + open Finance more_vert -> Reverse/Issue Credit. Live screenshots per role.",
+  "observed": {
+    "Service Manager": {"perms":36,"newPayment":"SHOWN","reverse":"SHOWN","issueCredit":"SHOWN","confidence":"OBSERVED-LIVE"},
+    "Office User": {"perms":25,"newPayment":"SHOWN","reverse":"hidden","issueCredit":"SHOWN","confidence":"OBSERVED-LIVE"},
+    "Foreman": {"perms":23,"newPayment":"SHOWN","reverse":"hidden","issueCredit":"SHOWN","confidence":"OBSERVED-LIVE"},
+    "Parts Technician": {"perms":19,"newPayment":"SHOWN","reverse":"hidden","issueCredit":"SHOWN","confidence":"OBSERVED-LIVE"}
+  },
+  "reconciliation_flag":"CORRECTS earlier deliverable §2 grid which recorded Office User staging Finance tab = hidden. Live re-observation with rendering invoiced WO shows Office User HAS Finance tab + New Payment + Issue Credit. Earlier 'hidden' was a non-rendering-WO artifact.",
+  "dual_verdicts_finance": {
+    "Office User": "PROD invoice-view 403 DENY vs STAGING New Payment+Issue Credit SHOWN => STAGING-MORE (Office User GAINS finance/payment access in migration - potential over-grant, flag)",
+    "Service Manager / Foreman / Parts Technician": "prod side NOT VERIFIED (no prod holder) => staging observed but no dual verdict"
+  },
+  "note":"WO Delete / Set Line Status / Part Return came back empty on the INVOICED WO = WO-state confounds (invoiced WO has no approvable lines, cannot be deleted, parts already consumed) - NOT role results; need a non-invoiced WO with pending line + picked part to observe those per role.",
+  "cleanup":"throwaway RESTORED to Admin (7d1f3fc3, verified 201); tech still Technician; all switch-user exited"
+}
