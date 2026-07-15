@@ -10,15 +10,26 @@
 > Evidence: `live-ui-2026-07-15/staging/<role>/` and `live-ui-2026-07-15/production/<role>/`
 > (full-page WO screenshots + `observation.json` per role).
 
-> **⚠ 2026-07-15b UPDATE — PROD SESSION EXPIRED.** On this remaining-caps pass the
-> supplied **production** cookies were already dead: `GET /api/work-orders` returned
-> **409 `Session has expired.`** Production could **NOT** be observed at all this run,
-> so **every production cell for the remaining caps is `NOT VERIFIED` (fresh prod
-> cookies required)** — nothing was inferred. **Staging session was fully ALIVE** and
-> the staging half of the remaining caps was observed live (see §0e). Rebuild the dual
-> verdicts once fresh prod cookies are supplied. Staging env also drifted: `staff/change`
-> role-swap returned **HTTP 500** on the tech staff (and 404 on the alt throwaway), so
-> the 4 holderless staging roles could not be impersonated for the new caps this run.
+> **✅ 2026-07-15c UPDATE — PROD RE-OBSERVED, DUAL VERDICTS REBUILT.** The expired
+> prod cookies were re-established via the **renewable prod self-login**
+> (`POST /api/login`), so production was observed LIVE this run after all. **All 14
+> prod legacy roles** were driven live via **test-staff role-swap + self-login**
+> (`POST /api/staff/change` → `POST /api/login` as the test staff), controls observed
+> on the real `app.shopview.com` screens with screenshots, and the test staff was
+> **RESTORED to Office User** (verified). See **§0e** for the completed dual verdicts
+> and the **"Remaining-Caps Dual LIVE"** + **"Prod Remaining-Caps (all 14)"** workbook
+> tabs. Remaining NOT-VERIFIED: (a) **Part Return** prod-side (the control does not
+> surface via the headless probe — even Admin didn't render it — so it is honestly
+> NOT VERIFIED, never asserted hidden); (b) **finance caps** (New Payment / Reverse /
+> Issue Credit) for **Service Manager / Service Advisor / Parts Manager / Parts
+> Technician / Office User** because the Finance tab's `GET /api/work-orders/invoices/
+> estimate` returns **HTTP 400** under the role-swap session and crashes the panel to
+> "No location" (a session artifact, not a permission result); (c) **Sales Rep /
+> Reporting / Time Clock** whose WO detail did not render ("No location"); (d) the **4
+> holderless STAGING roles** (Service Manager / Foreman / Office User / Parts
+> Technician) — still **NO live role-holder** and `staff/change` still returns **HTTP
+> 500** (shared-env drift, retried 4×), so their staging remaining-cap cells stay NOT
+> VERIFIED. Nothing inferred.
 
 ## 0. Both environments observed LIVE this run
 
@@ -167,14 +178,65 @@ finding that staging Parts Manager has broader WO/finance reach). All other role
 Evidence: `live-ui-2026-07-15/{staging,production}/<role>/new_wo_dialog.png` (or `new_wo_nobutton.png`)
 + `newwo-obs.json` / `prod-newwo-obs.json`. Workbook tab: **"New-WO Create Dual LIVE"**.
 
-## 0e. REMAINING FE-GATED CAPS — STAGING LIVE observations (2026-07-15b, NEW)
+## 0e. REMAINING FE-GATED CAPS — DUAL LIVE verdicts (2026-07-15c, COMPLETED prod side)
 
-Coordinator remaining-caps pass, **existing data only (no seeding)**: reference WO with picked
-parts = **S9-23636** (`39ace770`), invoiced WO = **S9-25382** (`6883dfc1`). Caps observed live
-on the WO-lines + invoiced-WO Finance surfaces per role. **Method:** Admin = admin quick-login
-(self); Senior SA / Parts Manager / Service Advisor / Sales Representative = genuine `switch-user`
-impersonation of a real role-holder (exit-switch-user 200 each); Technician = `tech` quick-login
-in the shared org (tech view). **PROD side = NOT VERIFIED (session expired) for all of these.**
+Coordinator remaining-caps cluster (Part Return, Set Line Status, WO Delete, New Payment,
+Invoice Reverse, Issue Credit) — now with the **PROD side observed live**.
+
+**PROD method (all 14 legacy roles):** test-staff role-swap (`POST /api/staff/change` as admin) +
+test-staff self-login (`POST /api/login`), then drive the real `app.shopview.com` SPA as that role.
+Reference WOs (existing data, no seeding) in the test-staff org "Truck Hill 1": **S1-476**
+(`a0e2e0e0`, approved, 2 lines incl. a Needs-Approval line + cored part lines) for line/WO-menu
+caps; **S1-518** (`19c185ed`, invoiced) for finance caps. Test staff **RESTORED to Office User**
+after (verified live). Screenshots + `wocaps-obs.json` / `fin-reobs.json` per prod role.
+
+**PROD live results (all 14):** see the **"Prod Remaining-Caps (all 14)"** workbook tab. Highlights:
+- **Set Line Status** SHOWN for every role that rendered the WO; **Technician / Parts Manager /
+  Parts Technician** show **Start/Complete only** (no Approve/Decline); **Office User** shows the
+  line but **no status buttons**. Confirms the prod SPA reflects the swapped role (not a leak).
+- **WO Delete ("Delete Work Order")** appears in the WO ⋮ menu for **every prod role that renders
+  the WO** — including Technician, Parts Manager, Parts Technician, Office User. (Old-model prod
+  shows it broadly.)
+- **Core OK / Not-OK** buttons **SHOWN** live on prod for all rendering roles (bonus — this cap was
+  NOT VERIFIED on staging).
+- **Finance (New Payment / Reverse / Issue Credit):** SHOWN for **Administrator, Service Advisor -
+  No Reports, Service Advisor - Limited View**; **HIDDEN (no Finance tab)** for **SA Technician,
+  Foreman, Technician**; **NOT VERIFIED** for **Service Manager, Service Advisor, Parts Manager,
+  Parts Technician, Office User** (Finance tab present but `invoices/estimate` HTTP 400 → "No
+  location"), and for **Sales Rep, Reporting, Time Clock** (WO didn't render).
+- **Part Return = NOT VERIFIED for all 14 prod roles** — the control does not surface via the
+  headless click-probe (Admin didn't render it either), so it is honestly NOT VERIFIED, never
+  asserted hidden.
+
+**REAL DUAL VERDICTS (both sides live-observed) — see "Remaining-Caps Dual LIVE" tab
+(15 MATCH / 4 STAGING-LESS / 47 NOT VERIFIED):**
+
+| Staging role | Cap | Prod (live) | Staging (live) | Verdict |
+|---|---|---|---|---|
+| **Parts Manager** | **WO Delete** | SHOWN | hidden | **STAGING-LESS** (spec: PM loses WO Delete) |
+| **Service Advisor** | **WO Delete** | SHOWN (SA Limited View) | hidden | **STAGING-LESS** |
+| **Service Advisor** | **Invoice Reverse** | SHOWN (SA Limited View) | hidden (Issue Credit only) | **STAGING-LESS** ← release risk |
+| **Technician** | **WO Delete** | SHOWN | hidden | **STAGING-LESS** |
+| Admin | Invoice Reverse | SHOWN | SHOWN | MATCH |
+| Admin | New Payment / Issue Credit / WO Delete / Set Line Status | SHOWN | SHOWN | MATCH |
+| Technician | New Payment / Reverse / Issue Credit | HIDDEN | hidden | MATCH (no finance either side) |
+| Technician / Parts Mgr / SA / Senior SA | Set Line Status | SHOWN | SHOWN | MATCH |
+| Service Advisor | New Payment / Issue Credit | SHOWN | SHOWN | MATCH |
+
+**KEY finding (Invoice Reverse gated to Admin + Senior SA on staging) — prod side:**
+**Admin Invoice Reverse = MATCH (SHOWN both).** The prod **SA-Limited-View** (→ new staging
+**Service Advisor**) **DID** have Invoice Reverse, and the new staging Service Advisor does **NOT**
+→ **STAGING-LESS** (a real migration removal). Senior SA's prod merge is mixed/partly NV: its
+component **Service Advisor - No Reports** shows Reverse SHOWN live, but the primary **Service
+Advisor** prod component is NOT VERIFIED (estimate-400), so the Senior-SA dual cell is NOT VERIFIED.
+**Parts Manager Invoice Reverse:** staging hidden confirmed; prod NOT VERIFIED (estimate-400).
+
+---
+### 0e-prior. Original 2026-07-15b staging-only observations (retained for the record)
+**Method:** Admin = admin quick-login (self); Senior SA / Parts Manager / Service Advisor /
+Sales Representative = genuine `switch-user` impersonation of a real role-holder (exit-switch-user
+200 each); Technician = `tech` quick-login in the shared org (tech view). Existing data only:
+reference WO with picked parts = **S9-23636** (`39ace770`), invoiced WO = **S9-25382** (`6883dfc1`).
 
 **Control → capability map (captured live from the build):**
 - **Part Return** = the **"Return"** item in a line's **"Part context menu"** (⋮).
@@ -303,4 +365,19 @@ Technician, SA Limited View, SA Technician, SA No Reports, Reporting.)
 
 - All `switch-user` impersonations exited (`exit-switch-user` → 200 each), both envs.
 - Staging tech restored to **Technician** (`10fdbeaa…`, 6 perms, verified).
-- **No prod role-swaps performed**; no throwaway data created; **no TestRail writes**.
+- **PROD (2026-07-15c):** test-staff role-swap used across all 14 legacy roles; test staff
+  **RESTORED to Office User** (`d238a892`, verified via `GET /api/staff`). No throwaway data
+  created on prod; no data mutated (read-only observation of existing WOs). **No TestRail writes.**
+- **Staging (2026-07-15c):** attempted throwaway (`bilal.muzamil+20`) role-swap for the 4
+  holderless roles — `staff/change` still HTTP 500 (4×); throwaway left on its pre-existing role
+  (Admin); no data created. No TestRail writes.
+
+## 7. Remaining-caps coverage (2026-07-15c)
+
+- Remaining-caps cluster cells = 6 caps × 11 staging roles × 2 envs = 132.
+- **Prod remaining-caps observed LIVE:** 10 of 14 legacy roles rendered the WO (Sales Rep,
+  Reporting, Time Clock did not; 4 finance-caps NV via estimate-400). Core OK/Not-OK bonus-observed.
+- **Real dual verdicts (both live): 19** (15 MATCH + 4 STAGING-LESS); NOT VERIFIED: 47 remaining
+  cells (prod Part Return all NV; prod finance estimate-400 roles; the 4 holderless staging roles).
+- **STAGING-LESS release risks (dual-observed):** Parts Manager / Service Advisor / Technician lose
+  **WO Delete**; **Service Advisor loses Invoice Reverse**.
