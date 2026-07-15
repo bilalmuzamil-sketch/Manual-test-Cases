@@ -42,41 +42,56 @@ MERGE = {
     "Time Clock User": "Time Clock",
 }
 
-# SPEC-DECLARED reductions = the spec's OWN "Loses ..." rows in the Behavior Changes
-# table = the PROD-only capabilities the spec itself flags. (staging_has verified live.)
+# PROD>STAGING deltas = every capability where a PRODUCTION role grants MORE than the mapped
+# STAGING role (staging has LESS). Spec-intended reductions are INCLUDED (annotated Yes), NOT
+# filtered out; reductions the spec does NOT account for are annotated No (= release risk).
+# The rows below are the spec's OWN "Loses ..." rows in the Behavior Changes table = all
+# spec-DECLARED (intended=Yes) reductions. (staging_has verified live.) Any prod>staging
+# delta discovered live that is NOT on the spec's list must be added with intended="No" and
+# spec_citation="not in spec" once real production data is captured.
 # fields: staging_role, prod_role_holding_extra, capability(plain), staging_code_or_gate,
-#         severity, spec_evidence
+#         severity, spec_evidence, intended_reduction("Yes"/"No"), spec_citation
 SPEC_PROD_ONLY = [
     ("Service Manager", "Service Manager", "Reverse / delete an invoice (Invoicing Delete)",
      "invoicingPaymentsDelete", "High",
-     "Spec Behavior-Changes: Service Manager 'Loses Invoicing Delete (cannot reverse)'"),
+     "Spec Behavior-Changes: Service Manager 'Loses Invoicing Delete (cannot reverse)'",
+     "Yes", "Spec 'Behavior Changes for Migrating Users' table (updated-spec-source.md) - Service Manager: 'Loses Invoicing Delete (cannot reverse invoices)'"),
     ("Service Manager", "Service Manager", "Change Service settings",
      "settingsService", "Medium",
-     "Spec Behavior-Changes: Service Manager 'Loses Settings: Service'"),
+     "Spec Behavior-Changes: Service Manager 'Loses Settings: Service'",
+     "Yes", "Spec 'Behavior Changes for Migrating Users' table - Service Manager: 'Loses Settings: Service'"),
     ("Service Manager", "Service Manager", "Change Parts settings",
      "settingsParts", "Medium",
-     "Spec Behavior-Changes: Service Manager 'Loses Settings: Parts'"),
+     "Spec Behavior-Changes: Service Manager 'Loses Settings: Parts'",
+     "Yes", "Spec 'Behavior Changes for Migrating Users' table - Service Manager: 'Loses Settings: Parts'"),
     ("Service Manager", "Service Manager", "Change Finance settings",
      "settingsFinance", "Medium",
-     "Spec Behavior-Changes: Service Manager 'Loses Settings: Finance'"),
+     "Spec Behavior-Changes: Service Manager 'Loses Settings: Finance'",
+     "Yes", "Spec 'Behavior Changes for Migrating Users' table - Service Manager: 'Loses Settings: Finance'"),
     ("Service Manager", "Service Manager", "Use Data Import settings",
      "settingsDataImport", "Medium",
-     "Spec Behavior-Changes: Service Manager 'Loses Settings: Data Import'"),
+     "Spec Behavior-Changes: Service Manager 'Loses Settings: Data Import'",
+     "Yes", "Spec 'Behavior Changes for Migrating Users' table - Service Manager: 'Loses Settings: Data Import'"),
     ("Foreman", "Foreman", "Edit timesheets",
      "timesheetsCreateAndEdit", "Medium",
-     "Spec Behavior-Changes: Foreman 'Loses Timesheets Edit'"),
+     "Spec Behavior-Changes: Foreman 'Loses Timesheets Edit'",
+     "Yes", "Spec 'Behavior Changes for Migrating Users' table - Foreman: 'Loses Timesheets Edit'"),
     ("Technician", "Technician", "Send to Portal (send WO to customer portal)",
      "Send to Portal (view-mode + line-review gate; Tech View hides it)", "High",
-     "Spec Behavior-Changes: Technician 'Lose Send to Portal'; staging Technician is tech-view (button hidden)"),
+     "Spec Behavior-Changes: Technician 'Lose Send to Portal'; staging Technician is tech-view (button hidden)",
+     "Yes", "Spec 'Behavior Changes for Migrating Users' table - Technician: 'Loses Send to Portal'"),
     ("Parts Manager", "Parts Manager", "Delete a work order",
      "workOrdersDelete", "High",
-     "Spec Behavior-Changes: Parts Manager 'Loses WO ... Delete'"),
+     "Spec Behavior-Changes: Parts Manager 'Loses WO ... Delete'",
+     "Yes", "Spec 'Behavior Changes for Migrating Users' table - Parts Manager: 'Loses WO Delete'"),
     ("Parts Manager", "Parts Manager", "Delete a work order line",
      "workOrderLinesDelete", "High",
-     "Spec Behavior-Changes: Parts Manager 'Loses ... WOL Delete'"),
+     "Spec Behavior-Changes: Parts Manager 'Loses ... WOL Delete'",
+     "Yes", "Spec 'Behavior Changes for Migrating Users' table - Parts Manager: 'Loses WO Lines Delete'"),
     ("Office User", "Office", "Create & Edit catalog / inventory items",
      "catalogInventoryCreateAndEdit", "Medium",
-     "Spec Behavior-Changes: Office 'Catalog reduced to V only' (prod Office had Catalog Create&Edit)"),
+     "Spec Behavior-Changes: Office 'Catalog reduced to V only' (prod Office had Catalog Create&Edit)",
+     "Yes", "Spec 'Behavior Changes for Migrating Users' table - Office: 'Catalog reduced to View only' (prod Office had Catalog Create&Edit)"),
 ]
 
 # ---- open-questions / needs-review items (from PLAN §1c) ----
@@ -101,7 +116,10 @@ OPEN_Q = [
 ]
 
 HDR = ["Staging Role", "Production role(s) mapped", "Capability", "Prod grants?",
-       "Staging grants?", "Delta", "Severity", "Evidence", "Confidence / Needs-review"]
+       "Staging grants?", "Delta (PROD-ONLY / match / staging-more)",
+       "Per spec - intended reduction? (Yes/No)", "Spec citation",
+       "Severity", "Evidence / source",
+       "Confidence (live/spec-predicted/NEEDS-REVIEW)"]
 
 def style_header(ws, ncols):
     fill = PatternFill("solid", fgColor="1F4E78")
@@ -135,6 +153,12 @@ banner = [
     [""],
     ["TO COMPLETE: obtain a valid production sv_sso_session, capture prod role model"],
     ["live, then re-run gen_prod_vs_staging.py with the prod capture wired in."],
+    [""],
+    ["EVERY prod>staging delta is listed (staging has LESS than prod) - spec-intended"],
+    ["reductions are INCLUDED, annotated 'Per spec - intended reduction? (Yes/No)' with a"],
+    ["'Spec citation'. The 'No' rows (reductions NOT accounted for in the spec) are the"],
+    ["headline release risks. All interim deltas are Yes (spec-declared); No's may appear"],
+    ["once live production is captured. See the Summary tab for the per-role Yes/No counts."],
 ]
 for r in banner:
     ws0.append(r)
@@ -147,35 +171,54 @@ ws0.column_dimensions["A"].width = 95
 ws1 = wb.create_sheet("PROD-ONLY Deltas (spec-pred)")
 ws1.append(HDR)
 style_header(ws1, len(HDR))
-for srole, prole, cap, code, sev, ev in SPEC_PROD_ONLY:
+for srole, prole, cap, code, sev, ev, intended, citation in SPEC_PROD_ONLY:
     # staging grant: for atom codes, check live; for gated capabilities, note the gate
     if code in {c for r in STG.values() for c in r["codes"]} or code.startswith(("invoicing","settings","timesheets","workOrders","workOrder","catalog")):
         sg = "Yes" if has(srole, code) else "No"
     else:
         sg = "No (view-mode/line gate; hidden in staging for this role)"
     ws1.append([
-        srole, MERGE[srole], cap, "Yes (SPEC-PREDICTED)", sg, "PROD-ONLY", sev,
-        ev, "NEEDS REVIEW - prod side unverified (no live prod data)"
+        srole, MERGE[srole], cap, "Yes (SPEC-PREDICTED)", sg, "PROD-ONLY",
+        intended, citation, sev, ev,
+        "spec-predicted / NEEDS REVIEW - prod side unverified (no live prod data)"
     ])
-for col, w in zip("ABCDEFGHI", [22, 34, 42, 20, 34, 12, 10, 60, 42]):
+for col, w in zip("ABCDEFGHIJK", [22, 34, 42, 20, 34, 20, 20, 60, 10, 60, 42]):
     ws1.column_dimensions[col].width = w
 
 # ---- Tab 2: Summary per role ----
 ws2 = wb.create_sheet("Summary per role")
 ws2.append(["Staging Role", "Merged?", "Production role(s) mapped",
-            "# spec-predicted PROD-only", "Highest severity", "Needs-review"])
-style_header(ws2, 6)
+            "# prod>staging deltas", "# intended reductions (Yes)",
+            "# NOT-in-spec reductions (No) = RELEASE RISK",
+            "Highest severity", "Needs-review"])
+style_header(ws2, 8)
 order = ["Admin", "Service Manager", "Senior Service Advisor", "Service Advisor",
          "Foreman", "Technician", "Parts Manager", "Parts Technician",
          "Office User", "Sales Representative", "Time Clock User"]
 sevrank = {"High": 3, "Medium": 2, "Low": 1}
 for role in order:
     items = [x for x in SPEC_PROD_ONLY if x[0] == role]
+    yes_ct = sum(1 for x in items if x[6] == "Yes")
+    no_ct = sum(1 for x in items if x[6] == "No")
     merged = "YES" if "+" in MERGE[role] else "no"
     hs = max([x[4] for x in items], key=lambda s: sevrank[s], default="-")
-    ws2.append([role, merged, MERGE[role], len(items), hs,
+    ws2.append([role, merged, MERGE[role], len(items), yes_ct, no_ct, hs,
                 "YES - all prod cells unverified"])
-for col, w in zip("ABCDEF", [22, 8, 34, 26, 16, 30]):
+# totals row
+tot_items = SPEC_PROD_ONLY
+ws2.append(["TOTAL (all roles)", "", "", len(tot_items),
+            sum(1 for x in tot_items if x[6] == "Yes"),
+            sum(1 for x in tot_items if x[6] == "No"), "", ""])
+ws2.cell(row=ws2.max_row, column=1).font = Font(bold=True)
+# note: No-count is 0 in this INTERIM (all deltas so far are spec-declared=Yes); live prod
+# capture may surface reductions NOT in the spec (No) which are the headline release risks.
+ws2.append([])
+ws2.append(["NOTE: 'No' (NOT-in-spec) reductions are the headline release risks. They are 0 in "
+            "this INTERIM because every delta captured so far is a spec-DECLARED reduction (Yes). "
+            "Live production capture may reveal prod>staging gaps the spec does NOT account for "
+            "(No) - add them with intended='No', spec_citation='not in spec'."])
+ws2.cell(row=ws2.max_row, column=1).alignment = Alignment(wrap_text=True, vertical="top")
+for col, w in zip("ABCDEFGH", [22, 8, 34, 20, 24, 34, 16, 30]):
     ws2.column_dimensions[col].width = w
 
 # ---- Tab 3: Full staging capability matrix (LIVE) ----

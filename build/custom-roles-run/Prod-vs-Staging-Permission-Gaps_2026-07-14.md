@@ -87,30 +87,58 @@ confirmation. See the workbook "Open questions" tab.
 
 ---
 
-## SPEC-PREDICTED PROD-ONLY capabilities (the release-eve risk list)
+## PROD>STAGING deltas — EVERY place staging grants LESS than prod (the release-eve risk list)
 
-Taken from the spec's **own** "Behavior Changes for Migrating Users" table ("Loses …" rows).
-**Staging-grants? verified LIVE** — every reduction below is confirmed already applied in the
-current staging build (staging does NOT grant it). **Prod-grants? = SPEC-PREDICTED, UNVERIFIED.**
+**ALL prod>staging deltas are listed — spec-intended reductions are INCLUDED, not filtered out.**
+Each row carries a **"Per spec — intended reduction? (Yes/No)"** annotation plus a **"Spec
+citation"**: **Yes** = the spec explicitly documents/accounts for the reduction (cited); **No** =
+the spec does NOT account for it (a release-risk item needing a decision). The rows below are all
+taken from the spec's **own** "Behavior Changes for Migrating Users" table ("Loses …" rows), so
+every current row is **Yes (spec-intended)**. **Staging-grants? verified LIVE** — every reduction
+below is confirmed already applied in the current staging build (staging does NOT grant it).
+**Prod-grants? = SPEC-PREDICTED, UNVERIFIED.**
 
-| Staging Role | Prod role | Capability (prod-only per spec) | Prod grants? | Staging grants? (LIVE) | Severity |
-|---|---|---|---|---|:--:|
-| **Technician** | Technician | **Send to Portal** | Yes (spec-predicted) | **No** (tech-view hides it) | **High** |
-| **Parts Manager** | Parts Manager | **Delete work order** (`workOrdersDelete`) | Yes (spec-predicted) | **No** | **High** |
-| **Parts Manager** | Parts Manager | **Delete work order line** (`workOrderLinesDelete`) | Yes (spec-predicted) | **No** | **High** |
-| **Service Manager** | Service Manager | **Reverse/delete invoice** (`invoicingPaymentsDelete`) | Yes (spec-predicted) | **No** | **High** |
-| Service Manager | Service Manager | Change Service settings (`settingsService`) | Yes (spec-predicted) | No | Medium |
-| Service Manager | Service Manager | Change Parts settings (`settingsParts`) | Yes (spec-predicted) | No | Medium |
-| Service Manager | Service Manager | Change Finance settings (`settingsFinance`) | Yes (spec-predicted) | No | Medium |
-| Service Manager | Service Manager | Data Import settings (`settingsDataImport`) | Yes (spec-predicted) | No | Medium |
-| Foreman | Foreman | Edit timesheets (`timesheetsCreateAndEdit`) | Yes (spec-predicted) | No | Medium |
-| Office User | Office | Create & Edit catalog/inventory (`catalogInventoryCreateAndEdit`) | Yes (spec-predicted) | No | Medium |
+| Staging Role | Prod role | Capability (prod grants more) | Prod grants? | Staging grants? (LIVE) | Per spec — intended reduction? (Yes/No) | Spec citation | Severity |
+|---|---|---|---|---|:--:|---|:--:|
+| **Technician** | Technician | **Send to Portal** | Yes (spec-predicted) | **No** (tech-view hides it) | **Yes** | Behavior Changes table — Technician "Loses Send to Portal" | **High** |
+| **Parts Manager** | Parts Manager | **Delete work order** (`workOrdersDelete`) | Yes (spec-predicted) | **No** | **Yes** | Behavior Changes table — Parts Manager "Loses WO Delete" | **High** |
+| **Parts Manager** | Parts Manager | **Delete work order line** (`workOrderLinesDelete`) | Yes (spec-predicted) | **No** | **Yes** | Behavior Changes table — Parts Manager "Loses WO Lines Delete" | **High** |
+| **Service Manager** | Service Manager | **Reverse/delete invoice** (`invoicingPaymentsDelete`) | Yes (spec-predicted) | **No** | **Yes** | Behavior Changes table — Service Manager "Loses Invoicing Delete (cannot reverse invoices)" | **High** |
+| Service Manager | Service Manager | Change Service settings (`settingsService`) | Yes (spec-predicted) | No | Yes | Behavior Changes table — Service Manager "Loses Settings: Service" | Medium |
+| Service Manager | Service Manager | Change Parts settings (`settingsParts`) | Yes (spec-predicted) | No | Yes | Behavior Changes table — Service Manager "Loses Settings: Parts" | Medium |
+| Service Manager | Service Manager | Change Finance settings (`settingsFinance`) | Yes (spec-predicted) | No | Yes | Behavior Changes table — Service Manager "Loses Settings: Finance" | Medium |
+| Service Manager | Service Manager | Data Import settings (`settingsDataImport`) | Yes (spec-predicted) | No | Yes | Behavior Changes table — Service Manager "Loses Settings: Data Import" | Medium |
+| Foreman | Foreman | Edit timesheets (`timesheetsCreateAndEdit`) | Yes (spec-predicted) | No | Yes | Behavior Changes table — Foreman "Loses Timesheets Edit" | Medium |
+| Office User | Office | Create & Edit catalog/inventory (`catalogInventoryCreateAndEdit`) | Yes (spec-predicted) | No | Yes | Behavior Changes table — Office "Catalog reduced to View only" | Medium |
 
 **Headline high-severity (spec-predicted):** Technician **Send to Portal**; Parts Manager
 **Delete WO / Delete WO line**; Service Manager **reverse invoice**. These are the classic
 "prod can do more" risks — but they are the intended, spec-declared reductions of the
-migration, i.e. **removals of capability by design**, not accidental regressions. They still
-require **live production confirmation** that production actually grants them today.
+migration (**intended = Yes**), i.e. **removals of capability by design**, not accidental
+regressions. They still require **live production confirmation** that production actually grants
+them today.
+
+### Per-role breakdown — intended (Yes) vs NOT-in-spec (No) reductions
+
+**The "No" (NOT-in-spec) reductions are the headline release risks.** They are **0 in this
+INTERIM** because every delta captured so far is a spec-DECLARED reduction (Yes). Live production
+capture may surface prod>staging gaps the spec does **not** account for (No) — those must be added
+and flagged for a decision.
+
+| Staging Role | # prod>staging deltas | # intended (Yes) | # NOT-in-spec (No) = RELEASE RISK | Highest severity |
+|---|--:|--:|--:|:--:|
+| Admin | 0 | 0 | 0 | — |
+| Service Manager | 5 | 5 | 0 | High |
+| Senior Service Advisor | 0 | 0 | 0 | — |
+| Service Advisor | 0 | 0 | 0 | — |
+| Foreman | 1 | 1 | 0 | Medium |
+| Technician | 1 | 1 | 0 | High |
+| Parts Manager | 2 | 2 | 0 | High |
+| Parts Technician | 0 | 0 | 0 | — |
+| Office User | 1 | 1 | 0 | Medium |
+| Sales Representative | 0 | 0 | 0 | — |
+| Time Clock User | 0 | 0 | 0 | — |
+| **TOTAL** | **10** | **10** | **0** | High |
 
 ### Send to Terminal — separately flagged NEEDS-REVIEW
 *Send to Terminal* is **not** on the spec's "Loses" list, so it is not predictable from the
