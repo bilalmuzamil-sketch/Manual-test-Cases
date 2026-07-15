@@ -172,6 +172,34 @@ Seeded WOs this session ALL DELETED (7682ebcd, fdf545bd, 8bc3014e — verified g
 NEXT EFFICIENT STEP: map the add-part-request + inventory-pick surfaces once as admin (the gating flow
 for Core/Pick/Receive/Part-Return), then the remaining caps unlock together.
 
+## SESSION 2026-07-15c (fresh cookies) — DEEP-FLOW UNBLOCKED via Simple Flow recipe
+- Fresh staging + prod cookies supplied; BOTH sessions held the whole run. KEY FIX: Node built-in
+  fetch ignores HTTPS_PROXY → run all node with **NODE_USE_ENV_PROXY=1** (node 22.22). Bridge port 44975.
+- Confirmed Simple Flow inventory endpoints exist identically on Custom Roles envs
+  (/api/inventory/orders, /deliveries; cored PN P550848 present). Orgs already hold 100 POs/deliveries
+  → observed Parts-module FE gates on EXISTING data, NO seeding needed.
+- **STAGING role access:** landed org = Foothills Group Inc 123 (d55bc308). Active holders for 7 roles
+  (Admin/Senior SA/Parts Mgr/Service Advisor/Technician/Sales Rep/Time Clock) → switch-user by `id`.
+  4 roles w/o holder (Service Mgr/Foreman/Office/Parts Tech) → role-swapped THROWAWAY
+  **bilal.muzamil+20 (staff 0336686b, user 051292ea, wp b3c8c820 Staging Heavy Duty-9919)**;
+  ORIGINAL role_id **7d1f3fc3** (restored, verified). staff/change 403 fixed by throwaway being on
+  SAME location as admin's landed org. Org roles: Office c0f68bba / SM 8f74d272 / Foreman bf33f7af /
+  Parts Tech 09dec847 (full list in tmp).
+- **PROD role access:** test-staff role-swap POST /api/staff/change (id in body) + self-login, all 14
+  roles; test staff RESTORED to Office User (verified). PO used I-26 6417ae16.
+- **[DONE] Parts-module Order Parts (New PO) + Receive** — ALL 11 staging + 14 prod roles, live
+  screenshots. 22/22 dual cells MATCH (no migration risk). Commits 1a8d5d6/c85e3fc/4b0f7cd.
+- **[DONE] New-WO create Customer/Asset (New button + Add Customer + Add Asset)** — ALL 11 staging +
+  14 prod roles. 30/33 MATCH; **3 STAGING-MORE = Parts Manager gains WO-create + create-customer/asset**
+  (prod Parts Mgr had none). Commits 867872a/ce0fd41.
+- Deliverable: added workbook tabs "Parts-Module Dual LIVE" + "New-WO Create Dual LIVE" + md §0c/§0d.
+  Generators gen_parts_dual.py / gen_newwo_dual.py.
+- STILL NOT VERIFIED (genuine per-cell blockers — need seeded reference states via multi-step SPA
+  wizards, no simple create API): Core OK/Not-OK (needs cored PICKED line), Part Return approve/complete
+  (needs returnable picked part), Set Line Status, Assign Vendor / Fix Part# (PO-detail editable row),
+  Bulk Receive (PO-detail), Invoicing delete/reverse, See AP/AR. Send-to-Terminal already resolved
+  (org-config gated). These remain the deep-seeding backlog.
+
 ## Cleanup checklist (do at very end)
 - [ ] Restore prod test staff to Office User (d238a892)
 - [ ] Restore staging tech to Technician (10fdbeaa)

@@ -121,6 +121,42 @@ Evidence: `live-ui-2026-07-15/staging/<role>/parts_orders.png` + `parts-obs.json
 `live-ui-2026-07-15/production/<role>/parts_orders.png` + `prod-parts-obs.json`.
 Workbook tab: **"Parts-Module Dual LIVE"**.
 
+## 0d. NEW-WO CREATE flow — create Customer / create Asset — LIVE DUAL verdicts (2026-07-15b, NEW)
+
+Previously NOT VERIFIED. Now driven LIVE per role on BOTH envs: open the Work Orders list → click
+**"New"** → observe the **New Work Order** dialog (an **"Add"** button next to Customer =
+create-customer; an **"Add"** next to Asset = create-asset, enabled only after a customer is
+chosen = design gate, so presence is reported). No seeding needed. Same method as §0c (staging
+switch-user + throwaway role-swap; prod test-staff role-swap, both restored).
+
+- **Capabilities:** Create Work Order ("New" button, `workOrdersCreateAndEdit`); Create Customer
+  from New-WO ("Add" next to Customer, `customersCreateAndEdit`); Create Asset control present
+  ("Add" next to Asset, `assetsCreateAndEdit`).
+
+**Result — 30/33 dual cells MATCH; the 3 non-matches are all Parts Manager = STAGING-MORE.**
+
+| Staging role | Prod role | New (WO create) prod/stg | Add Customer prod/stg | Add Asset prod/stg | Verdict |
+|---|---|---|---|---|---|
+| Admin | Administrator | SHOWN/SHOWN | SHOWN/SHOWN | SHOWN/SHOWN | MATCH |
+| Service Manager | Service Manager | SHOWN/SHOWN | SHOWN/SHOWN | SHOWN/SHOWN | MATCH |
+| Senior Service Advisor | Service Advisor *(merge consistent)* | SHOWN/SHOWN | SHOWN/SHOWN | SHOWN/SHOWN | MATCH |
+| **Parts Manager** | **Parts Manager** | **hidden/SHOWN** | **hidden/SHOWN** | **hidden/SHOWN** | **STAGING-MORE** |
+| Service Advisor | SA Limited View | SHOWN/SHOWN | SHOWN/SHOWN | SHOWN/SHOWN | MATCH |
+| Foreman | Foreman | SHOWN/SHOWN | SHOWN/SHOWN | SHOWN/SHOWN | MATCH |
+| Office User | Office User | hidden/hidden | hidden/hidden | hidden/hidden | MATCH |
+| Parts Technician | Parts Technician | hidden/hidden | hidden/hidden | hidden/hidden | MATCH |
+| Sales Representative | Sales Representative *(merge: Reporting consistent)* | hidden/hidden | hidden/hidden | hidden/hidden | MATCH |
+| Technician | Technician | hidden/hidden | hidden/hidden | hidden/hidden | MATCH |
+| Time Clock User | Time Clock User | hidden/hidden | hidden/hidden | hidden/hidden | MATCH |
+
+**Headline (live-proven, both sides):** the new model **grants Parts Manager the ability to
+create a Work Order and to create a Customer/Asset from the New-WO dialog**, which the prod Parts
+Manager did NOT have. This is a real STAGING-MORE grant (consistent with the earlier Full-Dual
+finding that staging Parts Manager has broader WO/finance reach). All other roles map identically.
+
+Evidence: `live-ui-2026-07-15/{staging,production}/<role>/new_wo_dialog.png` (or `new_wo_nobutton.png`)
++ `newwo-obs.json` / `prod-newwo-obs.json`. Workbook tab: **"New-WO Create Dual LIVE"**.
+
 ## 1. REAL dual verdicts — Send to Portal (both sides observed live)
 
 | Staging role | Prod role compared | Prod (live) | Staging (live) | Verdict |
