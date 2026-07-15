@@ -24,6 +24,21 @@
   Technician, SA No Reports, Reporting) were **NOT role-swapped** (prod is a real system on a
   fast-expiring session) → they remain **NOT VERIFIED**.
 
+## 0b. Send to Terminal — MAJOR CORRECTION (staging, live-observed)
+
+The prior workbook claimed **"no Send to Terminal control anywhere in the staging build"**
+(from a source grep). **This is WRONG.** Live, **"Send to Terminal" is a real button** in the
+**New Customer Payment dialog** on an invoiced WO with a balance (Finance tab → New Payment).
+Screenshot: `live-ui-2026-07-15/staging/Admin/SendToTerminal_dialog.png`.
+
+Staging live observations (Send to Terminal): **SHOWN** for Admin, Parts Manager, Senior
+Service Advisor; **hidden** for Technician (tech view, no Finance) and Sales Representative
+(no invoicing-create). Gate = invoicing-create + Finance access (same as the "New Payment"
+button). NOT VERIFIED this session: Office User + Time Clock (invoiced WO did not render for
+them) and Service Manager / Service Advisor / Foreman / Parts Technician (staff/change
+role-swap hit an org-context 403). Prod Send-to-Terminal not driven yet. See the
+"Send to Terminal LIVE" workbook tab.
+
 ## 1. REAL dual verdicts — Send to Portal (both sides observed live)
 
 | Staging role | Prod role compared | Prod (live) | Staging (live) | Verdict |
