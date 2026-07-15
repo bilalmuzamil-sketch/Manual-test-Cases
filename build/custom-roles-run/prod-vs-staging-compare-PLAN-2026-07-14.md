@@ -72,7 +72,17 @@ confirmed `roles-matrix-2026-07-13.md`).
 3. **Sales Representative** ← Sales Representative + Reporting
 4. (**Service Advisor** new ← SA Limited View — 1:1 but a *rename*, so easy to confuse)
 
-### 1c. ⚠️ NAMING TRAP + a documented CONTRADICTION — NEEDS USER CONFIRMATION
+### 1c. ✅ RESOLVED 2026-07-14 — mapping CONFIRMED by QA lead (naming trap + contradiction settled)
+> **CONFIRMED by QA lead 2026-07-14 (spec migration table is authoritative):**
+> staging **Senior Service Advisor** ← legacy Service Advisor + SA Technician + SA No Reports
+> (3 merged); staging **Service Advisor** ← legacy **SA Limited View**. The section-3549 1:1
+> same-name migration cases (C26514/C26515) are **superseded**. **Administrator** is compared
+> **1:1** (prod Administrator ↔ staging Administrator) — the spec's "Owner merged in" is **not
+> applicable** (no Owner role exists in either environment). The delta workbook + `.md` are
+> finalized under this confirmed mapping (Service-Advisor / Senior-SA rows no longer carry the
+> mapping-unconfirmed flag). Original naming-trap analysis retained below for the record.
+
+### 1c-orig. ⚠️ NAMING TRAP + a documented CONTRADICTION (original — now resolved above)
 - **Naming trap:** the PRODUCTION role literally named **"Service Advisor"** maps to the
   STAGING role named **"Senior Service Advisor"** (renamed + expanded). The STAGING role
   named **"Service Advisor"** comes from a DIFFERENT production role (**"SA Limited View"**).

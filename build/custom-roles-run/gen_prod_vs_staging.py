@@ -61,9 +61,12 @@ def s_ct(role, key):
 def s_vm(role):
     return STG[role]["view_mode"]
 
-# ---- PROD -> STAGING merge mapping (spec migration table; NO Owner in this prod org) ----
+# ---- PROD -> STAGING merge mapping (spec migration table; CONFIRMED by QA lead 2026-07-14) ----
+# Administrator compared 1:1 (prod Administrator <-> staging Administrator); the spec's
+# "Owner merged in" is not applicable - no Owner role exists in either environment (N/A,
+# confirmed by QA lead 2026-07-14). SA/SSA merge mapping also CONFIRMED (see SA_SSA_MERGE).
 MAP = {
-    "Admin": ["ROLE_ADMINISTRATOR"],   # Owner would also map here but is ABSENT in this prod org
+    "Admin": ["ROLE_ADMINISTRATOR"],   # 1:1 Administrator<->Administrator; no Owner in either env (N/A)
     "Service Manager": ["ROLE_SERVICE_MANAGER"],
     "Senior Service Advisor": ["ROLE_SERVICE_ADVISOR", "ROLE_SERVICE_ADVISOR_TECHNICIAN", "ROLE_SERVICE_ADVISOR_NO_REPORTS"],
     "Service Advisor": ["ROLE_SERVICE_ADVISOR_LIMITED_VIEW"],
@@ -88,7 +91,11 @@ PLABEL = {
 ORDER = ["Admin", "Service Manager", "Senior Service Advisor", "Service Advisor",
          "Foreman", "Technician", "Parts Manager", "Parts Technician",
          "Office User", "Sales Representative", "Time Clock User"]
-UNCONFIRMED = {"Service Advisor", "Senior Service Advisor"}
+# SA/SSA merge mapping CONFIRMED by QA lead 2026-07-14 (spec migration table authoritative):
+#   Senior Service Advisor <- Service Advisor + SA Technician + SA No Reports (3 merged)
+#   Service Advisor         <- SA Limited View
+# No longer flagged NEEDS-REVIEW (mapping unconfirmed); per-capability NEEDS-REVIEW still stands.
+SA_SSA_MERGE = {"Service Advisor", "Senior Service Advisor"}
 
 # ---- SPEC-DOCUMENTED intended changes (updated-spec-source.md 'Behavior Changes', l.474-485) ----
 SPEC_INTENDED = {
@@ -328,9 +335,7 @@ for role in ORDER:
             direction = "STAGING-LESS"
         else:
             direction = "STAGING-MORE"
-        rowconf = conf
-        if role in UNCONFIRMED:
-            rowconf = conf + " + NEEDS-REVIEW (mapping unconfirmed)"
+        rowconf = conf  # SA/SSA mapping CONFIRMED 2026-07-14 - no mapping-unconfirmed flag; per-capability conf (live/NEEDS-REVIEW) stands
         rec = dict(role=role, cat=cat, cap=name, mapped=mapped_all, holders=prod_names,
                    pg="Yes" if pg else "No", sg="Yes" if sg else "No", direction=direction,
                    sev=sev, conf=rowconf)
@@ -338,8 +343,8 @@ for role in ORDER:
         if direction in ("STAGING-LESS", "STAGING-MORE"):
             intended, cit = intended_for(role, name, direction)
             ev = f"prod holder: {prod_names} | staging live | old->new map conf={conf}"
-            if role in UNCONFIRMED:
-                ev += " | SA<->SSA mapping NOT user-confirmed"
+            if role in SA_SSA_MERGE:
+                ev += " | SA/SSA merge mapping CONFIRMED by QA lead 2026-07-14"
             rec2 = dict(rec)
             rec2.update(intended=intended, cit=cit, ev=ev)
             delta_rows.append(rec2)
@@ -398,7 +403,7 @@ def summary_tab(ws, subset, title):
         mno = sum(1 for x in more if x["intended"] == "No")
         hs = max([x["sev"] for x in items], key=lambda s: sevrank[s], default="-")
         merged = "YES" if len(MAP[role]) > 1 else "no"
-        conf = "NEEDS-REVIEW" if role in UNCONFIRMED else "yes"
+        conf = "confirmed"
         ws.append([role, merged, " + ".join(PLABEL[c] for c in MAP[role]),
                    lyes, lno, myes, mno, hs, conf])
         if lno:
@@ -437,9 +442,14 @@ banner = [
     ["Per spec - intended? Yes = the spec Behavior-Changes/migration text documents it (cited)."],
     ["  No (RED) = the change is NOT accounted for in the spec = HEADLINE RELEASE RISK."],
     [""],
-    ["Service Advisor & Senior Service Advisor rows are flagged NEEDS-REVIEW (mapping"],
-    ["  unconfirmed) per the naming trap: legacy 'Service Advisor' -> staging 'Senior SA';"],
-    ["  staging 'Service Advisor' <- legacy 'SA Limited View'. Computed under the spec map."],
+    ["MAPPING CONFIRMED by QA lead 2026-07-14 (spec migration table is authoritative):"],
+    ["  Senior Service Advisor <- Service Advisor + SA Technician + SA No Reports (3 merged);"],
+    ["  Service Advisor <- SA Limited View. The naming trap is RESOLVED - these rows are FINAL"],
+    ["  (no longer NEEDS-REVIEW for mapping; a per-capability NEEDS-REVIEW may still apply where"],
+    ["  an old-model atom has no clean equivalent / is FE-gated)."],
+    ["Administrator compared 1:1 (prod Administrator <-> staging Administrator); the spec's"],
+    ["  'Owner merged in' is not applicable - no Owner role exists in either environment"],
+    ["  (confirmed by QA lead 2026-07-14). Administrator delta rows stand as computed."],
     [""],
     ["TABS: 'Deltas - ALL (bi-dir)' whole-app | 'Work Orders - granular' WO-only |"],
     ["  Summary tabs (per-role Yes/No 2x2) | Full capability matrix | Open questions."],
@@ -483,16 +493,18 @@ ws6 = wb.create_sheet("Open questions - NEEDS REVIEW")
 ws6.append(["Item", "Detail"])
 style_header(ws6, 2)
 OPEN_Q = [
-    ("Service Advisor / Senior SA mapping UNCONFIRMED",
-     "Naming trap: legacy 'Service Advisor' -> staging 'Senior Service Advisor' (renamed+expanded); "
-     "staging 'Service Advisor' comes from legacy 'SA Limited View'. Section-3549 migration cases "
-     "C26514/C26515 were authored as 1:1 same-name mappings, contradicting the spec migration table. "
-     "All Service-Advisor / Senior-Service-Advisor rows are flagged NEEDS-REVIEW; computed under the "
-     "spec migration table. CONFIRM which authority governs before treating those deltas as final."),
-    ("'Owner' legacy role ABSENT in this prod org",
-     "Spec migration maps Owner+Administrator -> Admin. The compared prod org (72b2cc90-...) has NO "
-     "Owner role in GET /api/iam/list-roles (14 legacy roles, not 15). Admin is diffed against "
-     "Administrator only. If any prod org still has an Owner role, re-run the compare there."),
+    ("Service Advisor / Senior SA mapping CONFIRMED (QA lead 2026-07-14)",
+     "Naming trap RESOLVED by QA lead 2026-07-14 (spec migration table is authoritative): staging "
+     "'Senior Service Advisor' <- legacy Service Advisor + SA Technician + SA No Reports (3 merged); "
+     "staging 'Service Advisor' <- legacy 'SA Limited View'. All Service-Advisor / Senior-Service-Advisor "
+     "rows are FINAL - the mapping-unconfirmed flag is removed. (The section-3549 1:1 same-name migration "
+     "cases C26514/C26515 are superseded by this ruling.) A per-capability NEEDS-REVIEW may still apply "
+     "where an old-model atom has no clean equivalent / is FE-gated."),
+    ("Administrator compared 1:1 (Owner not applicable)",
+     "Administrator compared 1:1 (prod Administrator <-> staging Administrator); the spec's 'Owner "
+     "merged in' is not applicable - no Owner role exists in either environment; confirmed by QA lead "
+     "2026-07-14. The Administrator delta rows stand as computed from the live Administrator-vs-"
+     "Administrator capture (not incomplete)."),
     ("Old->new capability translation - NEEDS-REVIEW rows",
      "Some new-model atoms have no clean old-model resource/action equivalent and/or are FE-gated "
      "(Send to Portal, Send to Terminal, Customer/Billing Portal page access, See Financial Data, "

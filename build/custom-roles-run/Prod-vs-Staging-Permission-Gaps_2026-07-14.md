@@ -1,7 +1,9 @@
 # Custom Roles (SV-7388) — PRODUCTION vs STAGING Permission Gaps (LIVE)
 
 **Date:** 2026-07-15 · **Epic:** SV-7388 Custom Roles & Permissions · **PO:** Sasha Grosman
-**Status:** ✅ BOTH SIDES LIVE-VERIFIED. Replaces the earlier spec-predicted interim.
+**Status:** ✅ BOTH SIDES LIVE-VERIFIED · **MAPPING CONFIRMED by QA lead 2026-07-14** (spec
+migration table authoritative — Service Advisor / Senior Service Advisor rows are now FINAL,
+no longer NEEDS-REVIEW for mapping). Replaces the earlier spec-predicted interim.
 **Workbook:** `Prod-vs-Staging-Permission-Gaps_2026-07-14.xlsx` (11-col bi-directional main tab +
 dedicated **Work Orders — granular** tab + per-role 2×2 summaries + full matrix + open questions).
 
@@ -10,8 +12,10 @@ dedicated **Work Orders — granular** tab + per-role 2×2 summaries + full matr
   + per-role `GET /api/roles/{id}`, org `d55bc308-…`.
 - **Production (old legacy model):** authenticated live on `api.shopview.com` with a fresh
   PHPSESSID (NO SSO). **Prod org UUID `72b2cc90-6964-4429-a207-76e55f946936`.**
-  **14 legacy roles** from `GET /api/iam/list-roles` — **NO "Owner" role exists in this org**
-  (spec assumed 15). Per-role effective permissions captured by **impersonation**
+  **14 legacy roles** from `GET /api/iam/list-roles`. **No "Owner" role exists in either
+  environment**, so Administrator is compared **1:1** (prod Administrator ↔ staging Administrator)
+  and the spec's "Owner merged in" is **not applicable** (confirmed by QA lead 2026-07-14).
+  Per-role effective permissions captured by **impersonation**
   (`POST /api/switch-user` → `data.permissions` → `POST /api/exit-switch-user`); roles without
   an existing active user were captured by temporarily assigning a throwaway ZZ invite-test user
   that role, then restoring to Technician (departments/workplace verified intact). No prod data
@@ -27,9 +31,14 @@ dedicated **Work Orders — granular** tab + per-role 2×2 summaries + full matr
 | **STAGING-MORE** (staging grants, prod didn't) | 18 | **53** |
 
 > The **No** rows in BOTH directions are the release-eve items needing a keep/change decision.
-> Service-Advisor & Senior-Service-Advisor rows are flagged **NEEDS-REVIEW (mapping unconfirmed)**
-> (naming trap: legacy "Service Advisor" → staging "Senior SA"; staging "Service Advisor" ← legacy
-> "SA Limited View"; the section-3549 migration cases contradict the spec table).
+> **Mapping CONFIRMED by QA lead 2026-07-14** (spec migration table authoritative): staging
+> **Senior Service Advisor** ← legacy Service Advisor + SA Technician + SA No Reports (3 merged);
+> staging **Service Advisor** ← legacy **SA Limited View**. The naming trap is RESOLVED — those
+> rows are FINAL (mapping-unconfirmed flag removed; a per-capability `NEEDS-REVIEW` may still
+> apply where an old-model atom has no clean equivalent / is FE-gated).
+> **Administrator** compared **1:1** (prod Administrator ↔ staging Administrator); the spec's
+> "Owner merged in" is **not applicable** — no Owner role exists in either environment (confirmed
+> by QA lead 2026-07-14). The Administrator delta rows stand as computed from the live capture.
 
 ## STAGING-LESS · NOT-in-spec (No) — prod can do MORE than staging (regressions / over-in-prod)
 | Staging role | Capability | Prod role(s) mapped | Severity | Confidence |
@@ -44,8 +53,8 @@ dedicated **Work Orders — granular** tab + per-role 2×2 summaries + full matr
 | Parts Technician | Invoicing & Payments Delete (reverse/delete invoice) | Parts Technician | High | live |
 | Parts Technician | See AP/AR Data | Parts Technician | High | NEEDS-REVIEW |
 | Sales Representative | Send to Portal | Sales Representative + Reporting | High | NEEDS-REVIEW |
-| Service Advisor | Work Orders Delete | Service Advisor - Limited View | High | live + NEEDS-REVIEW (mapping unconfirmed) |
-| Service Advisor | See AP/AR Data | Service Advisor - Limited View | High | NEEDS-REVIEW + NEEDS-REVIEW (mapping unconfirmed) |
+| Service Advisor | Work Orders Delete | Service Advisor - Limited View | High | live |
+| Service Advisor | See AP/AR Data | Service Advisor - Limited View | High | NEEDS-REVIEW |
 | Technician | Work Order Lines Delete | Technician | High | live |
 | Technician | Order Parts (on WO) | Technician | High | live |
 | Technician | Remove a WO part | Technician | High | NEEDS-REVIEW |
@@ -63,27 +72,27 @@ dedicated **Work Orders — granular** tab + per-role 2×2 summaries + full matr
 | Parts Manager | Settings: Wages | Parts Manager | Medium | NEEDS-REVIEW |
 | Parts Manager | Manage Staff | Parts Manager | Medium | NEEDS-REVIEW |
 | Parts Technician | Decline a WO part return | Parts Technician | Medium | NEEDS-REVIEW |
-| Senior Service Advisor | Customers Delete | Service Advisor + Service Advisor Technician + Service Advisor - No Reports | Medium | live + NEEDS-REVIEW (mapping unconfirmed) |
-| Senior Service Advisor | Catalog & Inventory Delete | Service Advisor + Service Advisor Technician + Service Advisor - No Reports | Medium | live + NEEDS-REVIEW (mapping unconfirmed) |
-| Senior Service Advisor | Settings: App | Service Advisor + Service Advisor Technician + Service Advisor - No Reports | Medium | NEEDS-REVIEW + NEEDS-REVIEW (mapping unconfirmed) |
-| Senior Service Advisor | Settings: Service | Service Advisor + Service Advisor Technician + Service Advisor - No Reports | Medium | NEEDS-REVIEW + NEEDS-REVIEW (mapping unconfirmed) |
-| Senior Service Advisor | Settings: Integrations | Service Advisor + Service Advisor Technician + Service Advisor - No Reports | Medium | NEEDS-REVIEW + NEEDS-REVIEW (mapping unconfirmed) |
-| Senior Service Advisor | Settings: Finance | Service Advisor + Service Advisor Technician + Service Advisor - No Reports | Medium | NEEDS-REVIEW + NEEDS-REVIEW (mapping unconfirmed) |
-| Service Advisor | Customers Delete | Service Advisor - Limited View | Medium | live + NEEDS-REVIEW (mapping unconfirmed) |
-| Service Advisor | Catalog & Inventory Delete | Service Advisor - Limited View | Medium | live + NEEDS-REVIEW (mapping unconfirmed) |
-| Service Advisor | Vendor & Order Mgmt Delete | Service Advisor - Limited View | Medium | live + NEEDS-REVIEW (mapping unconfirmed) |
-| Service Advisor | Part Sales Delete | Service Advisor - Limited View | Medium | NEEDS-REVIEW + NEEDS-REVIEW (mapping unconfirmed) |
-| Service Advisor | Settings: App | Service Advisor - Limited View | Medium | NEEDS-REVIEW + NEEDS-REVIEW (mapping unconfirmed) |
-| Service Advisor | Settings: Service | Service Advisor - Limited View | Medium | NEEDS-REVIEW + NEEDS-REVIEW (mapping unconfirmed) |
-| Service Advisor | Settings: Integrations | Service Advisor - Limited View | Medium | NEEDS-REVIEW + NEEDS-REVIEW (mapping unconfirmed) |
-| Service Advisor | Settings: Finance | Service Advisor - Limited View | Medium | NEEDS-REVIEW + NEEDS-REVIEW (mapping unconfirmed) |
+| Senior Service Advisor | Customers Delete | Service Advisor + Service Advisor Technician + Service Advisor - No Reports | Medium | live |
+| Senior Service Advisor | Catalog & Inventory Delete | Service Advisor + Service Advisor Technician + Service Advisor - No Reports | Medium | live |
+| Senior Service Advisor | Settings: App | Service Advisor + Service Advisor Technician + Service Advisor - No Reports | Medium | NEEDS-REVIEW |
+| Senior Service Advisor | Settings: Service | Service Advisor + Service Advisor Technician + Service Advisor - No Reports | Medium | NEEDS-REVIEW |
+| Senior Service Advisor | Settings: Integrations | Service Advisor + Service Advisor Technician + Service Advisor - No Reports | Medium | NEEDS-REVIEW |
+| Senior Service Advisor | Settings: Finance | Service Advisor + Service Advisor Technician + Service Advisor - No Reports | Medium | NEEDS-REVIEW |
+| Service Advisor | Customers Delete | Service Advisor - Limited View | Medium | live |
+| Service Advisor | Catalog & Inventory Delete | Service Advisor - Limited View | Medium | live |
+| Service Advisor | Vendor & Order Mgmt Delete | Service Advisor - Limited View | Medium | live |
+| Service Advisor | Part Sales Delete | Service Advisor - Limited View | Medium | NEEDS-REVIEW |
+| Service Advisor | Settings: App | Service Advisor - Limited View | Medium | NEEDS-REVIEW |
+| Service Advisor | Settings: Service | Service Advisor - Limited View | Medium | NEEDS-REVIEW |
+| Service Advisor | Settings: Integrations | Service Advisor - Limited View | Medium | NEEDS-REVIEW |
+| Service Advisor | Settings: Finance | Service Advisor - Limited View | Medium | NEEDS-REVIEW |
 | Technician | Assign vendor to a WO part order | Technician | Medium | NEEDS-REVIEW |
 | Technician | Create / edit asset (vehicle) from New WO screen | Technician | Medium | NEEDS-REVIEW |
 | Technician | Part Sales Create & Edit | Technician | Medium | NEEDS-REVIEW |
 | Office User | Canned lines on WO (add/edit) | Office User | Low | NEEDS-REVIEW |
-| Senior Service Advisor | Billing Portal Page Access | Service Advisor + Service Advisor Technician + Service Advisor - No Reports | Low | NEEDS-REVIEW + NEEDS-REVIEW (mapping unconfirmed) |
-| Service Advisor | WO notes - delete | Service Advisor - Limited View | Low | NEEDS-REVIEW + NEEDS-REVIEW (mapping unconfirmed) |
-| Service Advisor | Billing Portal Page Access | Service Advisor - Limited View | Low | NEEDS-REVIEW + NEEDS-REVIEW (mapping unconfirmed) |
+| Senior Service Advisor | Billing Portal Page Access | Service Advisor + Service Advisor Technician + Service Advisor - No Reports | Low | NEEDS-REVIEW |
+| Service Advisor | WO notes - delete | Service Advisor - Limited View | Low | NEEDS-REVIEW |
+| Service Advisor | Billing Portal Page Access | Service Advisor - Limited View | Low | NEEDS-REVIEW |
 | Technician | Vendor & Order Mgmt View | Technician | Low | live |
 | Technician | Part Sales View | Technician | Low | NEEDS-REVIEW |
 
@@ -138,8 +147,8 @@ dedicated **Work Orders — granular** tab + per-role 2×2 summaries + full matr
 | Parts Technician | Customers View | Parts Technician | Low | live |
 | Parts Technician | Timesheets View | Parts Technician | Low | NEEDS-REVIEW |
 | Sales Representative | Part Sales View | Sales Representative + Reporting | Low | NEEDS-REVIEW |
-| Senior Service Advisor | Timesheets View | Service Advisor + Service Advisor Technician + Service Advisor - No Reports | Low | NEEDS-REVIEW + NEEDS-REVIEW (mapping unconfirmed) |
-| Service Advisor | Timesheets View | Service Advisor - Limited View | Low | NEEDS-REVIEW + NEEDS-REVIEW (mapping unconfirmed) |
+| Senior Service Advisor | Timesheets View | Service Advisor + Service Advisor Technician + Service Advisor - No Reports | Low | NEEDS-REVIEW |
+| Service Advisor | Timesheets View | Service Advisor - Limited View | Low | NEEDS-REVIEW |
 | Service Manager | Canned lines on WO (add/edit) | Service Manager | Low | NEEDS-REVIEW |
 | Service Manager | Clock in / log time on a WO line task | Service Manager | Low | NEEDS-REVIEW |
 | Time Clock User | Timesheets View | Time Clock User | Low | NEEDS-REVIEW |
@@ -163,7 +172,7 @@ dedicated **Work Orders — granular** tab + per-role 2×2 summaries + full matr
   - **Parts Technician** — Send to Portal (prod: Parts Technician; NEEDS-REVIEW)
   - **Parts Technician** — Send to Terminal (take payment on WO) (prod: Parts Technician; NEEDS-REVIEW)
   - **Sales Representative** — Send to Portal (prod: Sales Representative + Reporting; NEEDS-REVIEW)
-  - **Service Advisor** — Work Orders Delete (prod: Service Advisor - Limited View; live + NEEDS-REVIEW (mapping unconfirmed))
+  - **Service Advisor** — Work Orders Delete (prod: Service Advisor - Limited View; live)
   - **Technician** — Work Order Lines Delete (prod: Technician; live)
   - **Technician** — Order Parts (on WO) (prod: Technician; live)
   - **Technician** — Remove a WO part (prod: Technician; NEEDS-REVIEW)
@@ -174,8 +183,8 @@ dedicated **Work Orders — granular** tab + per-role 2×2 summaries + full matr
 |---|---|---|---|---|---|---|
 | Admin | no | 0 | 0 | 0 | 2 | confirmed |
 | Service Manager | no | 2 | 0 | 2 | 13 | confirmed |
-| Senior Service Advisor | YES | 0 | 7 | 3 | 1 | NEEDS-REVIEW |
-| Service Advisor | no | 0 | 12 | 1 | 1 | NEEDS-REVIEW |
+| Senior Service Advisor | YES | 0 | 7 | 3 | 1 | confirmed |
+| Service Advisor | no | 0 | 12 | 1 | 1 | confirmed |
 | Foreman | no | 0 | 2 | 8 | 2 | confirmed |
 | Technician | no | 1 | 8 | 0 | 1 | confirmed |
 | Parts Manager | no | 0 | 3 | 2 | 21 | confirmed |
@@ -185,10 +194,14 @@ dedicated **Work Orders — granular** tab + per-role 2×2 summaries + full matr
 | Time Clock User | no | 0 | 1 | 0 | 1 | confirmed |
 
 ## Open questions / NEEDS-REVIEW
-1. **Service Advisor / Senior SA mapping UNCONFIRMED** — confirm spec migration table vs the
-   section-3549 1:1 same-name migration cases before treating those rows as final.
-2. **"Owner" legacy role ABSENT** in the compared prod org (14 roles, not 15). Admin diffed
-   against Administrator only. Re-run in any org that still has Owner.
+1. **Service Advisor / Senior SA mapping CONFIRMED (QA lead 2026-07-14)** — spec migration table
+   is authoritative: staging Senior Service Advisor ← Service Advisor + SA Technician + SA No
+   Reports (3 merged); staging Service Advisor ← SA Limited View. Those rows are FINAL; the
+   section-3549 1:1 same-name migration cases C26514/C26515 are superseded by this ruling.
+2. **Administrator compared 1:1 (Owner not applicable)** — Administrator compared 1:1 (prod
+   Administrator ↔ staging Administrator); the spec's "Owner merged in" is not applicable — no
+   Owner role exists in either environment; confirmed by QA lead 2026-07-14. The Administrator
+   delta rows stand as computed (not incomplete).
 3. **FE-gated / no-clean-map rows** (Send to Portal, Send to Terminal, Portal page access,
    See Financial Data, See AP/AR, Settings Service/Parts/Integrations/Wages, Part Sales,
    part-return verbs, line tasks) are `Confidence=NEEDS-REVIEW` — verify in UI per role.

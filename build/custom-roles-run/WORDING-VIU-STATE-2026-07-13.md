@@ -23,6 +23,20 @@ second-real-user cases + 11 dev deviations (both handed off in the Blockers Trac
 
 ---
 
+## 0b. Prod-vs-Staging permission compare — MAPPING CONFIRMED (2026-07-14)
+The prod↔staging role/permission gap deliverable (`Prod-vs-Staging-Permission-Gaps_2026-07-14`
+`.xlsx`/`.md`, generator `gen_prod_vs_staging.py`, evidence `compare-evidence-2026-07-14/`) is
+FINALIZED under the **QA-lead-CONFIRMED mapping (2026-07-14, spec migration table authoritative):**
+Administrator ← Administrator (1:1; "Owner merged in" **N/A** — no Owner role in either env),
+Senior Service Advisor ← Service Advisor + SA Technician + SA No Reports (3 merged), Service
+Advisor ← SA Limited View, Sales Representative ← Sales Representative + Reporting, all others 1:1.
+The Service-Advisor / Senior-SA rows are now FINAL (mapping-unconfirmed flag removed; recompute
+under the confirmed mapping changed **no** rows — it was already computed under this mapping).
+**Finalized headline counts** — ALL: STAGING-LESS No=52 / Yes=4 · STAGING-MORE No=53 / Yes=18;
+WO-granular: STAGING-LESS No=22 · STAGING-MORE No=24. No env/TestRail touched (data already captured).
+
+---
+
 ## 1. What was done (COMPLETE)
 - **Wording pass:** all **252 core cases** (sections 3528–3553) rewritten to
   build-accurate, layman, jargon-free wording (labels captured LIVE from the shipped
