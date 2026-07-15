@@ -91,6 +91,16 @@ Office now has view-only catalog access by default (it gained full customer
 management instead). A custom role based on Office can restore catalog
 editing.
 
+**B7b. Our Office user lost access to Work Orders and Part Sales after the
+latest update.**
+That's intended — the Office role was redefined (July 2026): it no longer
+includes Work Orders or Part Sales access, and instead now has full Invoicing &
+Payments (view, create/edit, delete) so Office staff can handle
+invoicing/payments admin, typically from the Customers area. Note Office still
+cannot *create* new invoices (that button stays disabled for Office by design) —
+they can take and manage payments. If an Office user genuinely needs Work Orders
+or Part Sales access, create a custom role based on Office and turn those on.
+
 **B8. Can we just get our exact old role back?**
 Yes, in effect: create a custom role starting from the closest system role
 and toggle the differences. Your shop is notified of what changed per role,

@@ -441,7 +441,7 @@ effect when they log back in.**
 | Technician | `system-tech` | Assigned work, time tracking, Tech View |
 | Parts Manager | `system-pm` | Full parts and inventory control |
 | Parts Tech | `system-pt` | Parts operations and vendor management |
-| Office | `system-office` | Back-office operations and reporting (NOT editable) |
+| Office | `system-office` | Back-office operations, reporting, customer & invoicing/payments admin (NOT editable). Updated 2026-07-14: no Work Orders or Part Sales access; full Invoicing CRUD (but Create-Invoice button still hard-disabled). See §14.1. |
 | Sales Representative | `system-salesrep` | Work Orders + Customers + Part Sales (view), plus Reports and financial visibility. NOT "Reports only" — see §14 (SV-8061). |
 | Time Clock | `system-timeclock` | Clock in/out only (NOT editable; no view mode) |
 
@@ -451,15 +451,25 @@ CRUD areas:
 
 | Area | Svc Mgr | Sr. SA | Svc Advisor | Foreman | Tech | Parts Mgr | Parts Tech | Office | Sales Rep | Time Clock |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| Work Orders | V/E/D | V/E/D | V/E | V/E | V | V/E | V | V | V | V |
-| WO Lines | V/E/D | V/E/D | V/E/D | V/E/D | V/E | V/E | V | V | V | — |
+| Work Orders | V/E/D | V/E/D | V/E | V/E | V | V/E | V | — | V | V |
+| WO Lines | V/E/D | V/E/D | V/E/D | V/E/D | V/E | V/E | V | (—)† | V | — |
 | Schedule | V/E/D | V/E/D | V/E/D | V/E/D | V | V | V | V | — | V |
 | Customers | V/E/D | V/E | V/E | V/E | V | V/E/D | V/E | V/E/D | V/E | — |
-| Part Sales | V/E/D | V/E/D | V/E | V | — | V/E/D | V/E | V | V | — |
+| Part Sales | V/E/D | V/E/D | V/E | V | — | V/E/D | V/E | — | V | — |
 | Catalog & Inv | V/E/D | V/E | V/E | V/E | — | V/E/D | V/E | V | — | — |
 | Vendor & Order | V/E/D | V/E/D | V/E | V/E | — | V/E/D | V/E/D | V | — | — |
-| Invoicing | V/E | V/E/D | V/E/D | V/E | — | V/E/D | V/E | V | — | — |
+| Invoicing | V/E | V/E/D | V/E/D | V/E | — | V/E/D | V/E | V/E/D | — | — |
 | Timesheets | V/E | V/E | V | V | — | — | V | V/E | — | V |
+
+**† Office role updated 2026-07-14 (SV spec):** Office now has **Work Orders =
+OFF** and **Part Sales = OFF**, and **Invoicing = V/E/D (full)**. Because WO
+Lines View is inherited from Work Orders View, WO Lines is effectively not
+visible to Office now that Work Orders is off (the spec's WO-Lines cell still
+reads "V" but follows the parent). Office keeps Customers V/E/D, Catalog V,
+Vendor V, Schedule V, Timesheets V/E. Even with full Invoicing CRUD, the
+hard-coded rule still **disables the Create-Invoice button for Office** on Work
+Orders and Part Sales — Office can process/edit/delete payments (typically from
+Customers) but cannot create new invoices. See §14.1.
 
 (Admin has full access everywhere; Timesheets Admin = V/E. WO Lines View
 always inherits from Work Orders View.)
@@ -533,7 +543,7 @@ Every existing user is mapped from the old 15 roles to the new 12:
 | Technician | GAINS: Pick Parts. LOSES: Send to Portal |
 | Parts Manager | LOSES: WO/WOL Delete. GAINS: Schedule View, Customer Portal |
 | Parts Tech | GAINS: Pick Parts, Order Parts, Invoicing V/E, Part History |
-| Office | Catalog reduced to View only. Customer Management expanded to full (gains Delete) |
+| Office | Catalog reduced to View only. Customer Management expanded to full (gains Delete). **2026-07-14: loses Work Orders and Part Sales access; gains full Invoicing & Payments CRUD (Create-Invoice button still disabled).** |
 | SA Limited View → Service Advisor | Restructured; AP/AR OFF preserves the core restriction. Gains Customer Portal |
 
 Shops are notified of these changes. If a shop wants the OLD behavior back,
@@ -624,6 +634,17 @@ not listed; if a customer still hits one, treat it as a regression and escalate.
   "Junior Service Advisor"** (SV-7813) — only Service Advisor and Senior SA.
 - **Standardized display names (SV-8178):** shown as "Time Clock User", "Parts
   Technician", "Office User" across the app.
+- **Office role redefined (spec Change Log 2026-07-14).** Office no longer has
+  Work Orders access or Part Sales access, and now has full Invoicing &
+  Payments CRUD (View/Create&Edit/Delete). It keeps Customers (full), Catalog
+  (view), Vendor (view), Schedule (view), Timesheets (view/edit), Reports,
+  Settings (App/Service/Integrations/Finance/Data Import/Wages), See Financial
+  Data, and Manage AP/AR. **Even so, the hard-coded rule still disables the
+  Create-Invoice button for Office** — Office is meant to take/manage payments,
+  not create invoices. In practice Office works invoices/payments from the
+  Customers area (since it no longer has Work Orders or Part Sales). Note: WO
+  Lines follows Work Orders View, so with Work Orders off Office effectively
+  won't see WO Lines even though the spec matrix cell still lists it.
 - **Service Advisor assignment eligibility (SV-8034):** only Admin, Service
   Manager, Senior SA, Service Advisor, or ANY custom role can be selected as the
   Service Advisor on a work order. Technician, Foreman, Office, Sales Rep, Parts

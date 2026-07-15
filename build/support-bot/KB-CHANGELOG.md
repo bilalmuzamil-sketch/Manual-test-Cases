@@ -5,6 +5,25 @@ change to the Confluence spec (page 565116952). Newest first.
 
 ---
 
+## 2026-07-15 — Spec sync: Office role redefined (Change Log 7/14)
+
+Daily sync detected a Confluence change (hash 30f490…, len 54695). Change Log:
+"Updated Office Role definition." Diff to the CRUD matrix (plus an Admin-column
+formatting fix with no semantic change):
+
+- **Office: Work Orders V → OFF**, **Part Sales V → OFF**, **Invoicing V → full
+  V/E/D**. Office keeps Customers (full), Catalog (view), Vendor (view),
+  Schedule (view), Timesheets (view/edit), Reports, Settings, See Financial
+  Data, Manage AP/AR.
+- The hard-coded "Office cannot create invoices" rule is still in the spec, so
+  Office has full Invoicing CRUD but the **Create-Invoice button stays disabled**
+  — Office takes/manages payments (from Customers) but doesn't create invoices.
+- WO Lines follows Work Orders View, so with WO off Office effectively won't see
+  WO Lines (spec matrix cell still shows "V" — noted as inheritance caveat).
+
+Updated §9 matrix + role description, §14.1, §10 migration table; FAQ B7b;
+launcher search entry. `faq.md` + `knowledge-base.md` both changed.
+
 ## 2026-07-14 — EXHAUSTIVE defect sweep (all 276 DONE tickets, Epic SV-7388)
 
 Completed the full sweep: read every DONE Bug (160) and Story-Defect (116)
