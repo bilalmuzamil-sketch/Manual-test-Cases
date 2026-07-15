@@ -32,8 +32,16 @@ Senior Service Advisor ← Service Advisor + SA Technician + SA No Reports (3 me
 Advisor ← SA Limited View, Sales Representative ← Sales Representative + Reporting, all others 1:1.
 The Service-Advisor / Senior-SA rows are now FINAL (mapping-unconfirmed flag removed; recompute
 under the confirmed mapping changed **no** rows — it was already computed under this mapping).
-**Finalized headline counts** — ALL: STAGING-LESS No=52 / Yes=4 · STAGING-MORE No=53 / Yes=18;
-WO-granular: STAGING-LESS No=22 · STAGING-MORE No=24. No env/TestRail touched (data already captured).
+**INDEPENDENT VERIFICATION APPLIED** (`compare-VERIFICATION-2026-07-14.md`): added Migration-Type +
+Verification-confidence columns; corrected Service Advisor See-AP/AR STAGING-LESS → intended=Yes
+(false High risk removed); flipped 7 STAGING-MORE expansion rows (Foreman/Parts-Tech) No→Yes on
+Migration-Type "Direct (with expansions)"; moved 10 clock-in/timesheet rows to an Out-of-model
+(staff-record) tab, EXCLUDED from risk counts. Kept genuine over-grants (Parts Manager WO C&E +
+WO Lines C&E, SM/PM delete+settings, Sales Rep SFD/AP-AR) and all STAGING-LESS regressions as No.
+**Corrected headline counts** — ALL: STAGING-LESS No=**51** / Yes=5 · STAGING-MORE No=**37** / Yes=24
+(+ 10 out-of-model excluded); WO-granular: STAGING-LESS No=**22** · STAGING-MORE No=**18**.
+Verification: NO release-critical omissions; 5 low-severity prod resources (workplace/department/
+vehicle_type/vehicle_history/shop_billing_efficiency) have no explicit row. No env/TestRail touched.
 
 ---
 

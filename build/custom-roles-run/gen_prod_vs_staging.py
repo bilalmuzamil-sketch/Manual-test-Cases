@@ -97,6 +97,32 @@ ORDER = ["Admin", "Service Manager", "Senior Service Advisor", "Service Advisor"
 # No longer flagged NEEDS-REVIEW (mapping unconfirmed); per-capability NEEDS-REVIEW still stands.
 SA_SSA_MERGE = {"Service Advisor", "Senior Service Advisor"}
 
+# ---- QA-lead Migration-Type per staging role (spec Migration Plan table) ----
+MIGRATION_TYPE = {
+    "Admin": "Direct - Administrator (Owner merge N/A: no Owner in either env)",
+    "Service Manager": "Direct (with adjustments)",
+    "Senior Service Advisor": "Renamed + expanded (merge: Service Advisor + SA Technician + SA No Reports; gains Reports)",
+    "Service Advisor": "Mapped from SA Limited View (AP/AR OFF preserves core restriction)",
+    "Foreman": "Direct (with expansions)",
+    "Technician": "Direct mapping",
+    "Parts Manager": "Direct (with adjustments)",
+    "Parts Technician": "Direct (with expansions)",
+    "Office User": "Direct (with adjustments)",
+    "Sales Representative": "Direct (merge: Sales Representative + Reporting)",
+    "Time Clock User": "Direct mapping",
+}
+
+# ---- OUT-OF-MODEL capabilities (verification 3.3): clock-in + timesheets are STAFF-RECORD
+# controlled per spec 'Staff Record Settings', NOT the role/permission model. These are
+# annotated + EXCLUDED from the risk "No" counts and moved to an informational section. ----
+OUT_OF_MODEL = {
+    "Clock in / log time on a WO line task",
+    "Timesheets View",
+    "Timesheets Create & Edit",
+}
+OUT_OF_MODEL_NOTE = ("staff-record-controlled, not a permission delta (spec 'Staff Record "
+                     "Settings') - excluded from risk counts")
+
 # ---- SPEC-DOCUMENTED intended changes (updated-spec-source.md 'Behavior Changes', l.474-485) ----
 SPEC_INTENDED = {
     # intended REDUCTIONS (STAGING-LESS)
@@ -165,6 +191,27 @@ SPEC_INTENDED = {
     ("Service Advisor", "Customer Portal Page Access", "STAGING-MORE"): "Spec l.485: SA Limited View 'Gains Customer Portal'",
     ("Senior Service Advisor", "Customers Delete", "STAGING-MORE"): "Spec l.477 (Senior SA expansion set)",
     ("Senior Service Advisor", "Part Sales Create & Edit", "STAGING-MORE"): "Spec l.477: Senior SA 'Gains ... Vendor FULL/Invoicing FULL' expansion set",
+
+    # ==== VERIFICATION-REPORT CORRECTIONS (compare-VERIFICATION-2026-07-14.md) ====
+    # 3.1 CONFIRMED spec-explicit correction (was mis-flagged No; removes a false High risk)
+    ("Service Advisor", "See AP/AR Data", "STAGING-LESS"):
+        "Spec Behavior-Changes: 'SA Limited View to Svc Advisor - AP/AR OFF preserves core restriction' (intended reduction; verification 3.1)",
+    # 3.2 Migration-Type generic-expansion reclassifications (expansion-typed roles: Foreman / Parts Technician)
+    #     Cite the role Migration Type; flagged as generic-expansion, NOT individually itemized in Behavior-Changes.
+    ("Foreman", "Decline a WO part return", "STAGING-MORE"):
+        "Migration-Type: Foreman = 'Direct (with expansions)' - generic expansion clause (not individually itemized; verification 3.2)",
+    ("Parts Technician", "Process a WO part return (create)", "STAGING-MORE"):
+        "Migration-Type: Parts Technician = 'Direct (with expansions)' - generic expansion clause (not individually itemized; verification 3.2)",
+    ("Parts Technician", "Create / edit customer from New WO screen", "STAGING-MORE"):
+        "Migration-Type: Parts Technician = 'Direct (with expansions)' - generic expansion clause (not individually itemized; verification 3.2)",
+    ("Parts Technician", "Schedule View", "STAGING-MORE"):
+        "Migration-Type: Parts Technician = 'Direct (with expansions)' - generic expansion clause (not individually itemized; verification 3.2)",
+    ("Parts Technician", "Customers View", "STAGING-MORE"):
+        "Migration-Type: Parts Technician = 'Direct (with expansions)' - generic expansion clause (not individually itemized; verification 3.2)",
+    ("Parts Technician", "Customers Create & Edit", "STAGING-MORE"):
+        "Migration-Type: Parts Technician = 'Direct (with expansions)' - generic expansion clause (not individually itemized; verification 3.2)",
+    ("Parts Technician", "Part Sales Create & Edit", "STAGING-MORE"):
+        "Migration-Type: Parts Technician = 'Direct (with expansions)' - generic expansion clause (not individually itemized; verification 3.2)",
 }
 
 # ============================================================================
@@ -321,9 +368,22 @@ def prod_grant(role, cap_prod):
     holders = [PLABEL[c] for c in MAP[role] if cap_prod(c)]
     return (len(holders) > 0), holders
 
+def ver_conf(conf):
+    # Verification confidence (compare-VERIFICATION-2026-07-14.md 4): resource/action-mapped
+    # rows = HIGH (independent recompute matched + live-confirmed); FE-gated / no-clean-atom
+    # rows = MEDIUM / NEEDS-UI-VERIFY (role-definition-inferred, not UI-click-verified).
+    if conf == "live":
+        return "HIGH (resource/action-mapped; recompute-matched)"
+    return "MEDIUM / NEEDS-UI-VERIFY (FE-gated / no clean old-model atom; role-definition-inferred)"
+
+def ver_short(conf):
+    return "HIGH" if conf == "live" else "MEDIUM / UI-verify"
+
 rows = []
 delta_rows = []
+oom_rows = []          # out-of-model (staff-record) informational rows - excluded from risk counts
 for role in ORDER:
+    mig = MIGRATION_TYPE[role]
     for name, cat, sfn, pfn, sev, conf in CAPS:
         sg = bool(sfn(role))
         pg, holders = prod_grant(role, pfn)
@@ -338,16 +398,21 @@ for role in ORDER:
         rowconf = conf  # SA/SSA mapping CONFIRMED 2026-07-14 - no mapping-unconfirmed flag; per-capability conf (live/NEEDS-REVIEW) stands
         rec = dict(role=role, cat=cat, cap=name, mapped=mapped_all, holders=prod_names,
                    pg="Yes" if pg else "No", sg="Yes" if sg else "No", direction=direction,
-                   sev=sev, conf=rowconf)
+                   sev=sev, conf=rowconf, mig=mig, vconf=ver_conf(conf), vshort=ver_short(conf))
         rows.append(rec)
         if direction in ("STAGING-LESS", "STAGING-MORE"):
-            intended, cit = intended_for(role, name, direction)
             ev = f"prod holder: {prod_names} | staging live | old->new map conf={conf}"
             if role in SA_SSA_MERGE:
                 ev += " | SA/SSA merge mapping CONFIRMED by QA lead 2026-07-14"
             rec2 = dict(rec)
-            rec2.update(intended=intended, cit=cit, ev=ev)
-            delta_rows.append(rec2)
+            if name in OUT_OF_MODEL:
+                # verification 3.3 - staff-record-controlled; not a permission delta; excluded from risk counts
+                rec2.update(intended="n/a (out-of-model)", cit=OUT_OF_MODEL_NOTE, ev=ev)
+                oom_rows.append(rec2)
+            else:
+                intended, cit = intended_for(role, name, direction)
+                rec2.update(intended=intended, cit=cit, ev=ev)
+                delta_rows.append(rec2)
 
 # ============================================================================
 # WORKBOOK
@@ -361,33 +426,33 @@ def style_header(ws, ncols, color="1F4E78"):
         cell.alignment = Alignment(vertical="top", wrap_text=True)
 
 RED = Font(color="C00000", bold=True)
-HDR = ["Staging Role", "Production role(s) mapped", "Capability", "Prod grants?",
-       "Staging grants?", "Direction (STAGING-LESS / STAGING-MORE)",
+HDR = ["Staging Role", "Production role(s) mapped", "Migration Type", "Capability",
+       "Prod grants?", "Staging grants?", "Direction (STAGING-LESS / STAGING-MORE)",
        "Per spec - intended? (Yes/No)", "Spec citation", "Severity",
-       "Evidence / source", "Confidence"]
+       "Evidence / source", "Confidence", "Verification confidence"]
 
 def write_delta_tab(ws, subset):
     ws.append(HDR)
     style_header(ws, len(HDR))
     for r in subset:
-        ws.append([r["role"], r["mapped"], r["cap"], r["pg"], r["sg"], r["direction"],
-                   r["intended"], r["cit"], r["sev"], r["ev"], r["conf"]])
+        ws.append([r["role"], r["mapped"], r["mig"], r["cap"], r["pg"], r["sg"], r["direction"],
+                   r["intended"], r["cit"], r["sev"], r["ev"], r["conf"], r["vconf"]])
         if r["intended"] == "No":
-            ws.cell(row=ws.max_row, column=7).font = RED
-    for col, w in zip("ABCDEFGHIJK", [22, 34, 42, 11, 12, 22, 16, 52, 9, 50, 32]):
+            ws.cell(row=ws.max_row, column=8).font = RED
+    for col, w in zip("ABCDEFGHIJKLM", [22, 34, 30, 42, 11, 12, 22, 16, 52, 9, 50, 22, 34]):
         ws.column_dimensions[col].width = w
     for rr in ws.iter_rows(min_row=2):
         for cc in rr:
             cc.alignment = Alignment(wrap_text=True, vertical="top")
 
-def summary_tab(ws, subset, title):
+def summary_tab(ws, subset, oom_subset, title):
     ws.append([title])
     ws["A1"].font = Font(bold=True, size=12)
-    ws.append(["Staging Role", "Merged?", "Prod role(s) mapped",
+    ws.append(["Staging Role", "Merged?", "Prod role(s) mapped", "Migration Type",
                "STAGING-LESS intended (Yes)", "STAGING-LESS NOT-in-spec (No) = RISK",
                "STAGING-MORE intended (Yes)", "STAGING-MORE NOT-in-spec (No) = RISK",
-               "Highest severity", "Mapping confirmed?"])
-    for c in range(1, 10):
+               "Out-of-model (staff-record, excl.)", "Highest severity", "Mapping confirmed?"])
+    for c in range(1, 12):
         cell = ws.cell(row=2, column=c)
         cell.font = Font(bold=True, color="FFFFFF")
         cell.fill = PatternFill("solid", fgColor="1F4E78")
@@ -401,16 +466,17 @@ def summary_tab(ws, subset, title):
         lno = sum(1 for x in less if x["intended"] == "No")
         myes = sum(1 for x in more if x["intended"] == "Yes")
         mno = sum(1 for x in more if x["intended"] == "No")
+        oom = sum(1 for x in oom_subset if x["role"] == role)
         hs = max([x["sev"] for x in items], key=lambda s: sevrank[s], default="-")
         merged = "YES" if len(MAP[role]) > 1 else "no"
         conf = "confirmed"
-        ws.append([role, merged, " + ".join(PLABEL[c] for c in MAP[role]),
-                   lyes, lno, myes, mno, hs, conf])
+        ws.append([role, merged, " + ".join(PLABEL[c] for c in MAP[role]), MIGRATION_TYPE[role],
+                   lyes, lno, myes, mno, oom, hs, conf])
         if lno:
-            ws.cell(row=ws.max_row, column=5).font = RED
+            ws.cell(row=ws.max_row, column=6).font = RED
         if mno:
-            ws.cell(row=ws.max_row, column=7).font = RED
-    for col, w in zip("ABCDEFGHI", [22, 8, 40, 24, 32, 24, 32, 14, 16]):
+            ws.cell(row=ws.max_row, column=8).font = RED
+    for col, w in zip("ABCDEFGHIJK", [22, 8, 36, 30, 22, 30, 22, 30, 24, 14, 16]):
         ws.column_dimensions[col].width = w
 
 wb = Workbook()
@@ -451,8 +517,31 @@ banner = [
     ["  'Owner merged in' is not applicable - no Owner role exists in either environment"],
     ["  (confirmed by QA lead 2026-07-14). Administrator delta rows stand as computed."],
     [""],
+    ["*** INDEPENDENT VERIFICATION APPLIED (compare-VERIFICATION-2026-07-14.md) ***"],
+    ["Migration Type column = the QA-lead spec Migration-Type per staging role (spec intent)."],
+    ["Verification confidence column: HIGH = resource/action-mapped row, independent recompute"],
+    ["  matched + prod live-confirmed; MEDIUM / NEEDS-UI-VERIFY = FE-gated / no clean old-model"],
+    ["  atom (Send to Portal/Terminal, part-return verbs, AP/AR proxies, portal pages) - these"],
+    ["  are role-definition-inferred, NOT UI-click-verified; verify in staging UI per role."],
+    ["Corrections applied: (1) Service Advisor 'See AP/AR Data' STAGING-LESS is now intended=Yes"],
+    ["  (spec: 'AP/AR OFF preserves core restriction') - removed a false High risk. (2) ~7"],
+    ["  STAGING-MORE expansion rows on expansion-typed roles (Foreman, Parts Technician) flipped"],
+    ["  No->Yes citing Migration-Type 'Direct (with expansions)' (generic clause, not itemized)."],
+    ["  (3) Clock-in + Timesheets rows are STAFF-RECORD-controlled (spec 'Staff Record Settings'),"],
+    ["  NOT permission deltas - moved to the 'Out-of-model (staff-record)' tab and EXCLUDED from"],
+    ["  the risk 'No' counts. Genuine over-grants/regressions (e.g. Parts Manager gains WO"],
+    ["  Create&Edit + WO Lines Create&Edit; SM/PM delete+settings; Sales Rep SFD/AP-AR; all"],
+    ["  STAGING-LESS regressions) are KEPT as No."],
+    [""],
+    ["COMPLETENESS (verification): NO release-critical omissions - all 43 staging atoms + 3"],
+    ["  cross-toggles + view_mode represented; all 14 prod roles (no Owner) + 11 staging roles +"],
+    ["  4 merges present. Only 5 LOW-severity prod resources have no explicit row (settings /"],
+    ["  reference / report-view only): workplace, department, vehicle_type, vehicle_history,"],
+    ["  shop_billing_efficiency (subsumed under Settings / Reports / vehicle view)."],
+    [""],
     ["TABS: 'Deltas - ALL (bi-dir)' whole-app | 'Work Orders - granular' WO-only |"],
-    ["  Summary tabs (per-role Yes/No 2x2) | Full capability matrix | Open questions."],
+    ["  Summary tabs (per-role Yes/No 2x2) | 'Out-of-model (staff-record)' informational |"],
+    ["  Full capability matrix | Open questions."],
 ]
 for row in banner:
     ws0.append(row)
@@ -462,11 +551,32 @@ ws0.column_dimensions["A"].width = 100
 
 write_delta_tab(wb.create_sheet("Deltas - ALL (bi-dir)"), delta_rows)
 wo_deltas = [r for r in delta_rows if r["cat"] == "WO"]
+oom_wo = [r for r in oom_rows if r["cat"] == "WO"]
 write_delta_tab(wb.create_sheet("Work Orders - granular"), wo_deltas)
-summary_tab(wb.create_sheet("Summary per role (ALL)"), delta_rows,
-            "Per-role 2x2 summary - WHOLE APP (No = release risk)")
-summary_tab(wb.create_sheet("Summary per role (WO)"), wo_deltas,
-            "Per-role 2x2 summary - WORK ORDERS only (No = release risk)")
+summary_tab(wb.create_sheet("Summary per role (ALL)"), delta_rows, oom_rows,
+            "Per-role 2x2 summary - WHOLE APP (No = release risk; out-of-model excluded)")
+summary_tab(wb.create_sheet("Summary per role (WO)"), wo_deltas, oom_wo,
+            "Per-role 2x2 summary - WORK ORDERS only (No = release risk; out-of-model excluded)")
+
+# ---- Out-of-model (staff-record) informational tab ----
+ws_oom = wb.create_sheet("Out-of-model (staff-record)")
+ws_oom.append(["INFORMATIONAL - staff-record-controlled, NOT permission deltas - EXCLUDED from risk 'No' counts"])
+ws_oom["A1"].font = Font(bold=True, color="7F3F00", size=11)
+OOM_HDR = ["Staging Role", "Migration Type", "Capability", "Direction", "Prod grants?",
+           "Staging grants?", "Why out-of-model", "Severity"]
+ws_oom.append(OOM_HDR)
+for c in range(1, len(OOM_HDR) + 1):
+    cell = ws_oom.cell(row=2, column=c)
+    cell.font = Font(bold=True, color="FFFFFF")
+    cell.fill = PatternFill("solid", fgColor="1F4E78")
+    cell.alignment = Alignment(vertical="top", wrap_text=True)
+for r in oom_rows:
+    ws_oom.append([r["role"], r["mig"], r["cap"], r["direction"], r["pg"], r["sg"], r["cit"], r["sev"]])
+for col, w in zip("ABCDEFGH", [22, 30, 42, 22, 11, 12, 56, 9]):
+    ws_oom.column_dimensions[col].width = w
+for rr in ws_oom.iter_rows(min_row=3):
+    for cc in rr:
+        cc.alignment = Alignment(wrap_text=True, vertical="top")
 
 # ---- Full capability matrix (staging then prod, side by side) ----
 ws5 = wb.create_sheet("Full capability matrix")
@@ -526,6 +636,22 @@ OPEN_Q = [
      "(switch-user/exit-switch-user, fully reversible) and, for userless roles, a temporary role swap "
      "on throwaway user bilal.muzamil+bugstesting (restored to Technician; departments/workplace "
      "verified intact). No production data left modified."),
+    ("Completeness result (independent verification)",
+     "NO release-critical omissions. All 43 staging atoms + 3 cross-toggles + view_mode are "
+     "represented; all 14 prod roles (no Owner) + 11 staging roles + 4 merges present; independent "
+     "recompute matched the workbook 23/23 on critical rows (5 prod roles re-captured LIVE). The only "
+     "gaps are 5 LOW-severity prod resources with no explicit row - workplace, department, "
+     "vehicle_type, vehicle_history, shop_billing_efficiency - all settings/reference/report-view only "
+     "(subsumed under Settings/Reports/vehicle view). Note: workplace* is held by SA-Limited-View so "
+     "staging Service Advisor has a low-severity uncaptured 'workplace management' reduction."),
+    ("Verification confidence + FE-gated UI-verify backlog",
+     "HIGH-confidence rows are resource/action-mapped (recompute-matched + prod live-confirmed). "
+     "MEDIUM / NEEDS-UI-VERIFY rows are FE-gated / have no clean old-model atom (Send to Portal, Send "
+     "to Terminal, See AP/AR, part-return verbs, portal-page access) - prod grant uses a proxy mapping "
+     "and the staging side is role-definition-inferred, NOT UI-click-verified. Staging cookie was "
+     "expired during verification, so drive these per role with a fresh staging cookie before go/no-go "
+     "- especially the High-severity Send-to-Portal/Terminal/See-AP-AR set and the Parts-Manager WO "
+     "Create&Edit over-grant."),
 ]
 for item, detail in OPEN_Q:
     ws6.append([item, detail])
@@ -550,3 +676,151 @@ ln, ly, mn, my = counts(delta_rows)
 print(f"ALL: STAGING-LESS No={len(ln)} Yes={len(ly)} | STAGING-MORE No={len(mn)} Yes={len(my)}")
 wln, wly, wmn, wmy = counts(wo_deltas)
 print(f"WO : STAGING-LESS No={len(wln)} Yes={len(wly)} | STAGING-MORE No={len(wmn)} Yes={len(wmy)}")
+print(f"OUT-OF-MODEL (excluded from No counts): {len(oom_rows)} rows (WO {len(oom_wo)})")
+
+# ============================================================================
+# MARKDOWN companion (kept in sync with the workbook)
+# ============================================================================
+SEVRANK = {"High": 3, "Medium": 2, "Low": 1}
+
+def md_rows(subset):
+    lines = ["| Staging role | Capability | Prod role(s) mapped | Severity | Confidence | Verification |",
+             "|---|---|---|---|---|---|"]
+    for r in sorted(subset, key=lambda x: (-SEVRANK[x["sev"]], x["role"], x["cap"])):
+        lines.append(f"| {r['role']} | {r['cap']} | {r['holders']} | {r['sev']} | {r['conf']} | {r['vshort']} |")
+    return "\n".join(lines)
+
+def md_intended(subset, direction):
+    rs = [r for r in subset if r["direction"] == direction and r["intended"] == "Yes"]
+    lines = ["| Staging role | Capability | Prod role(s) mapped | Severity | Spec / Migration-Type citation |",
+             "|---|---|---|---|---|"]
+    for r in sorted(rs, key=lambda x: (-SEVRANK[x["sev"]], x["role"], x["cap"])):
+        lines.append(f"| {r['role']} | {r['cap']} | {r['holders']} | {r['sev']} | {r['cit']} |")
+    return "\n".join(lines)
+
+less_no = [r for r in delta_rows if r["direction"] == "STAGING-LESS" and r["intended"] == "No"]
+more_no = [r for r in delta_rows if r["direction"] == "STAGING-MORE" and r["intended"] == "No"]
+
+# per-role summary
+sum_lines = ["| Staging role | Merged? | Migration Type | STG-LESS Yes | **STG-LESS No** | STG-MORE Yes | **STG-MORE No** | Out-of-model (excl.) | Mapping |",
+             "|---|---|---|---|---|---|---|---|---|"]
+for role in ORDER:
+    items = [x for x in delta_rows if x["role"] == role]
+    less = [x for x in items if x["direction"] == "STAGING-LESS"]
+    more = [x for x in items if x["direction"] == "STAGING-MORE"]
+    lyes = sum(1 for x in less if x["intended"] == "Yes")
+    lno = sum(1 for x in less if x["intended"] == "No")
+    myes = sum(1 for x in more if x["intended"] == "Yes")
+    mno = sum(1 for x in more if x["intended"] == "No")
+    oom = sum(1 for x in oom_rows if x["role"] == role)
+    merged = "YES" if len(MAP[role]) > 1 else "no"
+    sum_lines.append(f"| {role} | {merged} | {MIGRATION_TYPE[role]} | {lyes} | {lno} | {myes} | {mno} | {oom} | confirmed |")
+
+# out-of-model md
+oom_lines = ["| Staging role | Capability | Direction | Prod / Staging | Severity |",
+             "|---|---|---|---|---|"]
+for r in sorted(oom_rows, key=lambda x: (x["role"], x["cap"])):
+    oom_lines.append(f"| {r['role']} | {r['cap']} | {r['direction']} | {r['pg']}/{r['sg']} | {r['sev']} |")
+
+md = f"""# Custom Roles (SV-7388) — PRODUCTION vs STAGING Permission Gaps (LIVE, VERIFIED)
+
+**Date:** 2026-07-15 · **Epic:** SV-7388 Custom Roles & Permissions · **PO:** Sasha Grosman
+**Status:** ✅ BOTH SIDES LIVE-VERIFIED · **MAPPING CONFIRMED by QA lead 2026-07-14** (spec
+migration table authoritative — Service Advisor / Senior Service Advisor rows are FINAL) ·
+**INDEPENDENT VERIFICATION APPLIED** (`compare-VERIFICATION-2026-07-14.md`).
+**Workbook:** `Prod-vs-Staging-Permission-Gaps_2026-07-14.xlsx` (13-col bi-directional main tab
+with **Migration Type** + **Verification confidence** columns + dedicated **Work Orders —
+granular** tab + per-role 2×2 summaries + **Out-of-model (staff-record)** tab + full matrix +
+open questions).
+
+## Data provenance (live)
+- **Staging (new custom-roles model):** 11 system roles, `GET /api/organizations/{{org}}/roles`
+  + per-role `GET /api/roles/{{id}}`, org `d55bc308-…`.
+- **Production (old legacy model):** authenticated live on `api.shopview.com` (fresh PHPSESSID,
+  no SSO). Prod org UUID `72b2cc90-6964-4429-a207-76e55f946936`. **14 legacy roles** from
+  `GET /api/iam/list-roles`. **No "Owner" role exists in either environment**, so Administrator
+  is compared **1:1** (spec "Owner merged in" not applicable; confirmed QA lead 2026-07-14).
+  Per-role effective permissions captured by **impersonation** (`switch-user` → `data.permissions`
+  → `exit-switch-user`); userless roles via a temporary throwaway-user role swap, restored to
+  Technician. No prod data left modified.
+- **Models:** old = `{{resource_name, action_name}}` pairs (action `*` = ALL incl. delete);
+  new = 41 fe_permission atoms + view_mode + 3 cross-toggles. Capabilities translated old↔new.
+
+## Independent verification applied (compare-VERIFICATION-2026-07-14.md)
+- **Migration Type** column added per staging role (QA-lead spec Migration-Type = spec intent).
+- **Verification confidence** column: **HIGH** = resource/action-mapped (independent recompute
+  matched 23/23 + prod live-confirmed); **MEDIUM / NEEDS-UI-VERIFY** = FE-gated / no clean
+  old-model atom (Send to Portal/Terminal, part-return verbs, AP/AR proxies, portal pages) —
+  role-definition-inferred, **not UI-click-verified** (drive per role with a fresh staging cookie).
+- **Correction 3.1:** *Service Advisor · See AP/AR Data · STAGING-LESS* → **intended = Yes**
+  (spec "AP/AR OFF preserves core restriction") — removed a false **High** release risk.
+- **Correction 3.2:** {len([k for k in SPEC_INTENDED if 'expansions' in SPEC_INTENDED[k].lower()])} STAGING-MORE expansion rows on expansion-typed roles
+  (Foreman, Parts Technician) flipped **No → Yes**, citing Migration-Type "Direct (with
+  expansions)" (generic clause; not individually itemized in Behavior-Changes).
+- **Correction 3.3:** Clock-in + Timesheets rows are **staff-record-controlled** (spec "Staff
+  Record Settings"), NOT permission deltas — moved to the **Out-of-model** section and **excluded
+  from the risk "No" counts** ({len(oom_rows)} rows).
+- **Kept as real "No" risks:** Parts Manager gains WO Create&Edit + WO Lines Create&Edit;
+  SM/PM delete + settings over-grants; Sales Rep SFD/AP-AR; all STAGING-LESS regressions
+  (Technician Order-Parts / WOL-Delete, Parts-Tech invoice-reverse, etc.).
+
+## Headline totals (corrected, out-of-model excluded)
+| Direction | Intended (Yes, spec/Migration-Type cited) | **NOT in spec (No) = RELEASE RISK** |
+|---|---|---|
+| **STAGING-LESS** (prod grants, staging doesn't) | {len(ly)} | **{len(ln)}** |
+| **STAGING-MORE** (staging grants, prod didn't) | {len(my)} | **{len(mn)}** |
+
+- **Work Orders — granular:** STAGING-LESS No = **{len(wln)}** · STAGING-MORE No = **{len(wmn)}**
+- **Out-of-model (staff-record, excluded from No counts):** {len(oom_rows)} rows (WO {len(oom_wo)})
+
+> The **No** rows in BOTH directions are the release-eve items needing a keep/change decision.
+> Mapping is CONFIRMED (QA lead 2026-07-14); Administrator compared 1:1 (Owner N/A).
+
+## STAGING-LESS · NOT-in-spec (No) — prod can do MORE than staging (regressions / over-in-prod)
+{md_rows(less_no)}
+
+## STAGING-MORE · NOT-in-spec (No) — staging grants MORE than prod (unaccounted expansions)
+{md_rows(more_no)}
+
+## STAGING-LESS · intended (Yes, spec-documented reductions)
+{md_intended(delta_rows, "STAGING-LESS")}
+
+## STAGING-MORE · intended (Yes, spec / Migration-Type documented expansions)
+{md_intended(delta_rows, "STAGING-MORE")}
+
+## Out-of-model (staff-record-controlled — NOT permission deltas; excluded from risk counts)
+Per spec "Staff Record Settings", clock-in and timesheet appearance are staff-record controlled,
+not the role/permission model. These are informational, not release risks:
+
+{chr(10).join(oom_lines)}
+
+## Per-role 2×2 summary (whole app, out-of-model excluded)
+{chr(10).join(sum_lines)}
+
+## Completeness (independent verification)
+**No release-critical omissions.** All 43 staging atoms + 3 cross-toggles + view_mode are
+represented; all 14 prod roles (no Owner) + 11 staging roles + 4 merges present; independent
+recompute matched the workbook 23/23 on critical rows (5 prod roles re-captured LIVE). Only **5
+LOW-severity** prod resources have no explicit row — `workplace`, `department`, `vehicle_type`,
+`vehicle_history`, `shop_billing_efficiency` — all settings / reference / report-view only
+(subsumed under Settings / Reports / vehicle view). Note: `workplace*` is held by SA-Limited-View,
+so staging Service Advisor carries a low-severity uncaptured "workplace management" reduction.
+
+## Open questions / NEEDS-REVIEW
+1. **Mapping CONFIRMED (QA lead 2026-07-14)** — spec migration table authoritative; SA / Senior-SA
+   rows FINAL; section-3549 1:1 same-name cases C26514/C26515 superseded.
+2. **Administrator compared 1:1 (Owner not applicable)** — no Owner role in either environment.
+3. **FE-gated / no-clean-map rows** (Send to Portal, Send to Terminal, portal page access, See
+   AP/AR, part-return verbs) are Verification confidence = MEDIUM / NEEDS-UI-VERIFY — drive per
+   role with a fresh staging cookie before go/no-go.
+4. **Reporting** legacy role returns 0 resource permissions (report-page-only); merges into
+   Sales Representative.
+
+*Full detail incl. every match/staging-more row, Migration Type, Verification confidence, and the
+side-by-side capability matrix is in the workbook.*
+"""
+
+out_md = os.path.join(HERE, "Prod-vs-Staging-Permission-Gaps_2026-07-14.md")
+with open(out_md, "w") as f:
+    f.write(md)
+print("wrote", out_md)
