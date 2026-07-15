@@ -64,6 +64,21 @@ Sales Representative 0767df32 / Technician 10fdbeaa / Time Clock User 36462edb
       create customer/asset from New WO, tech-vs-full view
 - [ ] Prod remaining 8 roles via role-swap of test staff
 
+## SESSION STATUS 2026-07-15 (checkpoint 30a4674+)
+- **STAGING SESSION EXPIRED** mid-run (quick-login tech -> 401, fe-permissions -> 409). Needs FRESH
+  staging cookies to continue. Tech last-known role = Technician (Service Advisor run restored it 201;
+  subsequent Foreman/Parts-Tech swaps all 403'd = no change) — could NOT live-verify after expiry.
+  ON RESUME: supply fresh staging cookies, FIRST verify tech is Technician (quick-login tech), restore if not.
+- **PROD ALIVE**, test staff = Office User (verified/restored). Prod role-swap via POST /api/staff/change works reliably.
+- Send-to-Terminal DONE: staging 5 SHOWN (Admin/Parts Mgr/Senior SA/Service Mgr/Service Advisor) + 2 hidden
+  (Technician/Sales Rep); Foreman + Parts Technician = pending (staff/change org-alignment intermittently
+  403 — retry when admin+tech orgs align); Office User + Time Clock = WO didn't render (both lack invoicing anyway).
+  Prod: terminal ABSENT org-wide (Truck Hill has no terminal) -> Send-to-Terminal hidden for all prod roles;
+  observed Admin(reaches dialog,no terminal)/Technician/Service Manager(no New Payment).
+- BLOCKER for user (if it persists): the intermittent staging staff/change 403 is a multi-org shared-env
+  artifact (tech fixture 6fb22c1b not consistently in the admin's landed org). A dedicated staging test-staff
+  account (username/password) pinned to "Staging Heavy Duty - 9919" would make staging role-swap deterministic.
+
 ## Cleanup checklist (do at very end)
 - [ ] Restore prod test staff to Office User (d238a892)
 - [ ] Restore staging tech to Technician (10fdbeaa)
