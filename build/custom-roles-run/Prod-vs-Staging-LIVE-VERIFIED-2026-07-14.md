@@ -381,3 +381,76 @@ Technician, SA Limited View, SA Technician, SA No Reports, Reporting.)
   cells (prod Part Return all NV; prod finance estimate-400 roles; the 4 holderless staging roles).
 - **STAGING-LESS release risks (dual-observed):** Parts Manager / Service Advisor / Technician lose
   **WO Delete**; **Service Advisor loses Invoice Reverse**.
+
+## 8. BETTER-TECHNIQUE PASS (2026-07-15d) — converting technique-artifact NOT-VERIFIEDs
+
+This pass specifically re-attacked the NOT-VERIFIED cells that were technique/env artifacts
+(not permission truths), per the coordinator's four targets. Both sessions held the whole run
+(staging quick-login + prod renewable self-login). Observed-only; per-cell evidence in
+`live-ui-2026-07-15/<env>/<role>/` + the `_*-2026-07-15.json` diagnosis files.
+
+### Target #1 — Prod finance caps via GENUINE switch-user (no role-swap)
+Prod org "Truck Hill 1" has REAL role-holders for only **6 of 14** legacy roles
+(Administrator, Office User, Sales Representative, Service Advisor, Technician, Time Clock User).
+Diagnosis of the "No location" crash (was blamed on role-swap): it is **two different things**,
+both reproduced under genuine switch-user impersonation:
+- **Office User = GENUINE ROLE-LEVEL DENY.** `GET /api/invoices/{id}/view` → **403 "Insufficient
+  permissions"** (confirmed on BOTH Office User holders) → Finance panel crashes to `/no-location`.
+  So prod Office User **cannot view invoice/finance → New Payment / Reverse / Issue Credit NOT
+  ACCESSIBLE.** OBSERVED-LIVE (403 captured ×2 + screenshot `Office_User/finance_403_crash.png`).
+- **Service Advisor = invoice-view ALLOWED (200 observed)** but the Finance panel still crashes to
+  `/no-location` under switch-user because the SPA location store is not populated in the
+  impersonation context (a technique artifact, NOT a permission block). So the SA control-level
+  states (New Payment/Reverse/Issue Credit) remain **NOT VERIFIED** — precise unblock: a real
+  SA-role credentialed login (username/password) or a headful attended session.
+- **Service Manager / Parts Manager / Parts Technician / Foreman (+ SA variants, Reporting)** have
+  **NO real holder on prod** → cannot switch-user → **GENUINE BLOCKER** (role-swap crashes finance).
+  Unblock: seed a prod holder per role, or a dev-provided per-role login.
+- **Administrator (control): New Payment / Reverse / Issue Credit all SHOWN** (re-confirmed live).
+
+### Target #2 — Staging holderless roles finance caps (the staff/change-500 blocker is CLEARED)
+No existing staging staff hold Service Manager / Foreman / Office User / Parts Technician, so a
+ZZAUTOTEST throwaway (staff `0336686b`, user `051292ea`, wp `b3c8c820` Staging Heavy Duty-9919)
+was **role-swapped to each target role — `staff/change` now returns 201** (the earlier HTTP 500 was
+cleared by a fresh session + location-pin), then **GENUINE switch-user** into it, and the invoiced
+WO **S9-24662** Finance tab observed live:
+
+| Staging role | perms | New Payment | Invoice Reverse | Issue Credit | Confidence |
+|---|---|---|---|---|---|
+| Service Manager | 36 | **SHOWN** | **SHOWN** | **SHOWN** | OBSERVED-LIVE |
+| Office User | 25 | **SHOWN** | hidden | **SHOWN** | OBSERVED-LIVE |
+| Foreman | 23 | **SHOWN** | hidden | **SHOWN** | OBSERVED-LIVE |
+| Parts Technician | 19 | **SHOWN** | hidden | **SHOWN** | OBSERVED-LIVE |
+
+- **RECONCILIATION:** this CORRECTS §2's grid which had Office User staging "Finance hidden" — live
+  re-observation on a rendering invoiced WO shows Office User HAS Finance + New Payment + Issue
+  Credit (screenshot `staging/Office_User/caps_finance.png`). The earlier "hidden" was a
+  non-rendering-WO artifact.
+- **DUAL VERDICT — Office User finance = STAGING-MORE:** prod Office User invoice-view **403 DENY**
+  vs staging Office User **New Payment + Issue Credit SHOWN** → Office User **GAINS** finance/payment
+  access in migration (potential over-grant — flag alongside the Send-to-Portal STAGING-LESS).
+- WO Delete / Set Line Status / Part Return returned empty for these 4 on the invoiced WO — those
+  are **WO-state confounds** (invoiced WO has no approvable line, cannot be deleted, parts already
+  consumed), NOT role results.
+
+### Target #3 — Prod Part Return via in-app WO Parts tab
+Reached the Parts tab in-app and scrolled to the **Actions** column. The Actions are **lifecycle-
+gated by the part Status**: `Requested` → no action; `Awaiting` → **Receive** button. **"Return"
+surfaces only for a RECEIVED/PICKED inventory part**, which none of the prod WOs have. So prod Part
+Return is **NOT a click-probe miss** — the control genuinely does not exist for the available part
+states (screenshot `production/Administrator_finrecheck/partreturn_actions_column.png`). Unblock: a
+WO with a received+picked inventory part in a returnable state.
+
+### Target #4 — Staging Core OK/Not-OK
+No existing staging WO with a cored **picked** line was found by UI scan (headless per-WO render is
+slow on the shared env). Remains a **genuine deep-seeding blocker**: needs a cored part (PN
+P550848 / 84-2005 / 58-12) **picked onto a WO line** — the add-arbitrary-part-request + inventory-
+pick flow that has no simple create API. Unblock: dev/human-seeded cored picked line or an attended
+headful session. Prod side was previously bonus-observed; the dual remains pending the staging side.
+
+### Cleanup (this pass)
+- Staging throwaway `bilal.muzamil+20` **RESTORED to Admin** (`7d1f3fc3`, verified 201); staging
+  tech still **Technician**; all `switch-user` exited (200).
+- Prod: genuine `switch-user` into real holders, each **exit-switch-user 200**; prod test staff
+  remains **Office User** (untouched — no prod role-swap used this pass). No data mutated
+  (read-only). **No TestRail writes.**

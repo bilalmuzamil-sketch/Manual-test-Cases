@@ -206,3 +206,30 @@ for Core/Pick/Receive/Part-Return), then the remaining caps unlock together.
 - [ ] Delete all ZZAUTOTEST data (both envs)
 - [ ] Exit all impersonations; confirm base sessions clean
 - [ ] NEVER TestRail; NEVER commit secrets
+
+## SESSION 2026-07-15d (better-technique pass) — CONVERTING technique-artifact NOT-VERIFIEDs
+Both sessions held. Bridge rebuilt (port read live). NODE_USE_ENV_PROXY=1.
+- **Target #1 prod finance (switch-user into REAL holders):** DONE. Prod org has real holders for
+  only 6/14 roles. Office User = invoice-view **403 DENY** (2 holders, real). Service Advisor =
+  invoice-view **200 ALLOWED** but finance panel crashes to /no-location under switch-user
+  (location-store artifact; controls NV). SM/PartsMgr/PartsTech/Foreman = **no prod holder = genuine
+  blocker**. Evidence: production/{Office_User,Service_Advisor,Administrator_finrecheck}/ +
+  _prod-finance-switchuser-2026-07-15.json. Commit 8a24556.
+- **Target #3 prod Part Return:** DONE (characterized). Parts-tab Actions column is lifecycle-gated
+  (Requested=none, Awaiting=Receive); Return needs a received+picked part (none exist). NOT a
+  click-probe miss. _prod-partreturn-2026-07-15.json. Commit 7fe7499.
+- **Target #2 staging holderless finance:** DONE. **staff/change 500 CLEARED** (201) with fresh
+  session + location-pin. Throwaway 0336686b/051292ea role-swapped to each of SM/Office/Foreman/
+  PartsTech → switch-user → invoiced WO S9-24662 finance observed. All 4 = New Payment SHOWN +
+  Issue Credit SHOWN; Reverse only SM. **Office User dual = STAGING-MORE** (prod 403 vs staging
+  New Payment). Corrects §2's "Office finance hidden". _stg-holderless-finance-2026-07-15.json.
+  Commit 4e0f3b3. Throwaway RESTORED to Admin (verified).
+- **Target #4 staging Core OK/Not-OK:** STILL BLOCKED. No existing WO with a cored PICKED line;
+  headless per-WO scan too slow on shared env. Needs a cored part (P550848/84-2005/58-12) picked
+  onto a WO line (no create API) — dev/human-seeded or attended headful. Prod side prev-observed;
+  dual pending.
+- **WO Delete / Set Line Status / Part Return for the 4 staging roles:** WO-state confounded on the
+  invoiced WO (need a non-invoiced WO w/ pending line + picked part per role) — not re-run this pass.
+- **Cleanup verified:** staging throwaway=Admin (7d1f3fc3), staging tech=Technician (44d03e75),
+  prod test staff=Office User, no active impersonation, no throwaway data, NO TestRail writes.
+- Deliverable: appended §8 (better-technique pass) to Prod-vs-Staging-LIVE-VERIFIED-2026-07-14.md.
