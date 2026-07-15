@@ -149,6 +149,29 @@ EXACT UNBLOCK (any one):
   3. OR map the create-endpoint sequence from the shipped SPA bundle (larger reverse-engineering task).
 No ZZAUTOTEST data was created (all create attempts failed at the API-probe stage => nothing to clean).
 
+## FULL-GRIND PROGRESS (2026-07-15, session-limit checkpoint) — RESUME HERE
+Proven & documented: UI WO-create + unapproved-line + part-requests + WO-Delete (playbook).
+Capability grind status:
+- **#1 Core OK/Not-OK — IN PROGRESS, deep-flow blocker found.** Cored parts exist (staging PN
+  **84-2005** core_charge=20 qty11, **58-12** core_charge=20 qty10). WO+line creation works; adding a
+  catalog service auto-adds THAT service's parts as part-requests (Parts tab), but those aren't cored
+  and aren't picked. **Blocker:** the "New Part Request" control to add an ARBITRARY part (the cored
+  84-2005) to a line was NOT located on the Parts tab (only auto-service-parts show; "Save & Add Part"
+  in New Line reopened a blank New Line). And the **inventory PICK flow** (pick core from bin ->
+  Core Ok/NotOk line control appears) is unmapped. UNBLOCK NEEDED: locate the add-part-request control
+  (likely line-expand or a row "+"/⋮) + the pick/accept-delivery surface (`/parts/deliveries`,
+  `/accept-delivery/{orderId}` per simple-flow notes) driven as admin.
+- #2 Approve/Decline: STAGING DONE. PROD needs a pending-line WO (recipe proven — seed on prod test org).
+  Set Line Status: control not yet isolated (line Status column on Lines tab).
+- #3 Order Parts/Pick/Receive/Bulk Receive: need PO + delivery seeded via `/parts/orders` + `/parts/deliveries`. Unmapped.
+- #4 Invoicing create/reverse: need invoice in create/void state on Finance tab. Unmapped.
+- #5 Part Return complete: need a picked returnable part + return flow. Unmapped.
+- #6 create customer/asset from New-WO (the New-WO dialog HAS "Add" buttons next to Customer + Asset =
+  create-customer/create-asset — observable per role, TRACTABLE next) + See AP/AR (route not located).
+Seeded WOs this session ALL DELETED (7682ebcd, fdf545bd, 8bc3014e — verified gone). Tech=Technician; prod test staff=Office User.
+NEXT EFFICIENT STEP: map the add-part-request + inventory-pick surfaces once as admin (the gating flow
+for Core/Pick/Receive/Part-Return), then the remaining caps unlock together.
+
 ## Cleanup checklist (do at very end)
 - [ ] Restore prod test staff to Office User (d238a892)
 - [ ] Restore staging tech to Technician (10fdbeaa)
