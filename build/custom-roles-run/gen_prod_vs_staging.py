@@ -2,22 +2,28 @@
 """
 Custom Roles (SV-7388) — PRODUCTION vs STAGING role/permission gap generator.
 
-STATUS OF DATA (2026-07-14/15):
-  * STAGING side  = LIVE-VERIFIED. Captured read-only from api.staging.shopview.com
-    (GET /api/organizations/{org}/roles + per-role GET /api/roles/{id}), 11 system
-    roles, all HTTP 200. Source: compare-evidence-2026-07-14/staging-capability-matrix.json.
-  * PRODUCTION side = *** SPEC-PREDICTED / UNVERIFIED ***. Production could NOT be
-    authenticated (missing a valid production sv_sso_session; every prod API call
-    returned 409 "Session has expired"; dev quick-login 500s on prod). NO live
-    production role data was captured. The "Prod grants?" column is therefore taken
-    ENTIRELY from the SPEC's own "Behavior Changes for Migrating Users" table
-    (build/custom-roles-spec-update/updated-spec-source.md, "Loses ..." rows) — i.e.
-    the reductions the SPEC ITSELF declares. These are PREDICTIONS of what production
-    grants, NOT observations. Every prod cell is flagged NEEDS-REVIEW.
+STATUS OF DATA (2026-07-15): *** BOTH SIDES NOW LIVE-VERIFIED ***
+  * STAGING (new custom-roles model) = LIVE. GET /api/organizations/{org}/roles +
+    per-role GET /api/roles/{id}. 11 system roles.
+    Source: compare-evidence-2026-07-14/staging-capability-matrix.json
+  * PRODUCTION (old legacy model) = LIVE. Prod authenticated with a fresh PHPSESSID
+    (app.shopview.com / api.shopview.com; NO SSO). Prod org UUID
+    72b2cc90-6964-4429-a207-76e55f946936. Role inventory from GET /api/iam/list-roles
+    (14 legacy roles, NO "Owner" present). Per-role effective permissions captured
+    empirically by impersonation (POST /api/switch-user -> data.permissions
+    [{resource_name,action_name,limits,exclusions}] -> POST /api/exit-switch-user).
+    Roles without an existing active user were captured by temporarily assigning a
+    throwaway ZZ invite-test user (bilal.muzamil+bugstesting) that role via
+    POST /api/staff/change, impersonating, then restoring to Technician
+    (departments/workplace verified preserved). Source:
+    compare-evidence-2026-07-14/prod-capability-matrix.json
 
-DO NOT treat this workbook as a completed prod-vs-staging compare. It is an INTERIM
-scaffold: the staging half is real; the prod half must be re-run against live
-production once a valid production sv_sso_session cookie is supplied.
+Old model = 50 resources x actions {'*','view','create','change','remove', + task/return
+verbs}. '*' = ALL actions on that resource. New model = 41 fe_permission atoms +
+view_mode + 3 cross toggles.
+
+Deliverable: bi-directional 11-column main tab (STAGING-LESS + STAGING-MORE), a dedicated
+"Work Orders - granular" tab, per-role 2x2 summaries, both live matrices, open questions.
 """
 import json, os
 from openpyxl import Workbook
@@ -26,343 +32,509 @@ from openpyxl.styles import Font, PatternFill, Alignment
 HERE = os.path.dirname(os.path.abspath(__file__))
 EV = os.path.join(HERE, "compare-evidence-2026-07-14")
 STG = json.load(open(os.path.join(EV, "staging-capability-matrix.json")))
+PRODJ = json.load(open(os.path.join(EV, "prod-capability-matrix.json")))
 
-# PROD->STAGING merge mapping (from PLAN §1a/§1b, sourced to spec migration table)
-MERGE = {
-    "Admin": "Owner + Administrator",
-    "Service Manager": "Service Manager",
-    "Senior Service Advisor": "Service Advisor + SA Technician + SA No Reports",
-    "Service Advisor": "SA Limited View",
-    "Foreman": "Foreman",
-    "Technician": "Technician",
-    "Parts Manager": "Parts Manager",
-    "Parts Technician": "Parts Technician",
-    "Office User": "Office",
-    "Sales Representative": "Sales Representative + Reporting",
-    "Time Clock User": "Time Clock",
+# ---- prod effective-capability helpers (expand '*') ----
+PROD = {}
+for rc, perms in PRODJ.items():
+    m = {}
+    for p in perms:
+        m.setdefault(p["resource_name"], set()).add(p["action_name"])
+    PROD[rc] = m
+
+def p_has(rc, res, *acts):
+    a = PROD.get(rc, {}).get(res, set())
+    if "*" in a:
+        return True
+    return any(x in a for x in acts)
+
+def p_all(rc, res):
+    return "*" in PROD.get(rc, {}).get(res, set())
+
+# ---- staging helpers ----
+def s_has(role, code):
+    return code in STG[role]["codes"]
+
+def s_ct(role, key):
+    return bool(STG[role]["ct"].get(key))
+
+def s_vm(role):
+    return STG[role]["view_mode"]
+
+# ---- PROD -> STAGING merge mapping (spec migration table; NO Owner in this prod org) ----
+MAP = {
+    "Admin": ["ROLE_ADMINISTRATOR"],   # Owner would also map here but is ABSENT in this prod org
+    "Service Manager": ["ROLE_SERVICE_MANAGER"],
+    "Senior Service Advisor": ["ROLE_SERVICE_ADVISOR", "ROLE_SERVICE_ADVISOR_TECHNICIAN", "ROLE_SERVICE_ADVISOR_NO_REPORTS"],
+    "Service Advisor": ["ROLE_SERVICE_ADVISOR_LIMITED_VIEW"],
+    "Foreman": ["ROLE_FOREMAN"],
+    "Technician": ["ROLE_TECHNICIAN"],
+    "Parts Manager": ["ROLE_PARTS_MANAGER"],
+    "Parts Technician": ["ROLE_PARTS_TECHNICIAN"],
+    "Office User": ["ROLE_OFFICE_USER"],
+    "Sales Representative": ["ROLE_SALES_REPRESENTATIVE", "ROLE_REPORTING"],
+    "Time Clock User": ["ROLE_TIME_CLOCK_USER"],
+}
+PLABEL = {
+    "ROLE_ADMINISTRATOR": "Administrator", "ROLE_SERVICE_MANAGER": "Service Manager",
+    "ROLE_SERVICE_ADVISOR": "Service Advisor", "ROLE_SERVICE_ADVISOR_TECHNICIAN": "Service Advisor Technician",
+    "ROLE_SERVICE_ADVISOR_NO_REPORTS": "Service Advisor - No Reports",
+    "ROLE_SERVICE_ADVISOR_LIMITED_VIEW": "Service Advisor - Limited View",
+    "ROLE_FOREMAN": "Foreman", "ROLE_TECHNICIAN": "Technician",
+    "ROLE_PARTS_MANAGER": "Parts Manager", "ROLE_PARTS_TECHNICIAN": "Parts Technician",
+    "ROLE_OFFICE_USER": "Office User", "ROLE_SALES_REPRESENTATIVE": "Sales Representative",
+    "ROLE_REPORTING": "Reporting", "ROLE_TIME_CLOCK_USER": "Time Clock User",
+}
+ORDER = ["Admin", "Service Manager", "Senior Service Advisor", "Service Advisor",
+         "Foreman", "Technician", "Parts Manager", "Parts Technician",
+         "Office User", "Sales Representative", "Time Clock User"]
+UNCONFIRMED = {"Service Advisor", "Senior Service Advisor"}
+
+# ---- SPEC-DOCUMENTED intended changes (updated-spec-source.md 'Behavior Changes', l.474-485) ----
+SPEC_INTENDED = {
+    # intended REDUCTIONS (STAGING-LESS)
+    ("Service Manager", "Invoicing & Payments Delete (reverse/delete invoice)", "STAGING-LESS"):
+        "Spec Behavior-Changes l.478: Service Manager 'Loses Invoicing Delete (cannot reverse)'",
+    ("Service Manager", "Settings: Service", "STAGING-LESS"):
+        "Spec Behavior-Changes l.478: Service Manager 'Loses Settings: Service'",
+    ("Service Manager", "Settings: Parts", "STAGING-LESS"):
+        "Spec Behavior-Changes l.478: Service Manager 'Loses Settings: Parts'",
+    ("Service Manager", "Settings: Finance", "STAGING-LESS"):
+        "Spec Behavior-Changes l.478: Service Manager 'Loses Settings: Finance'",
+    ("Service Manager", "Settings: Data Import", "STAGING-LESS"):
+        "Spec Behavior-Changes l.478: Service Manager 'Loses Settings: Data Import'",
+    ("Foreman", "Timesheets Create & Edit", "STAGING-LESS"):
+        "Spec Behavior-Changes l.479: Foreman 'Loses Timesheets Edit'",
+    ("Technician", "Send to Portal", "STAGING-LESS"):
+        "Spec Behavior-Changes l.480 + change-log l.565: Technician 'Lose Send to Portal'",
+    ("Parts Manager", "Work Orders Delete", "STAGING-LESS"):
+        "Spec Behavior-Changes l.481: Parts Manager 'Loses WO/WOL Delete'",
+    ("Parts Manager", "Work Order Lines Delete", "STAGING-LESS"):
+        "Spec Behavior-Changes l.481: Parts Manager 'Loses WO/WOL Delete'",
+    ("Office User", "Catalog & Inventory Create & Edit", "STAGING-LESS"):
+        "Spec Behavior-Changes l.483: Office 'Catalog reduced to V only'",
+    # intended EXPANSIONS (STAGING-MORE)
+    ("Senior Service Advisor", "Work Orders Delete", "STAGING-MORE"): "Spec l.477: Senior SA 'Gains WO Delete'",
+    ("Senior Service Advisor", "Work Order Lines Delete", "STAGING-MORE"): "Spec l.477: Senior SA 'Gains WOL Delete'",
+    ("Senior Service Advisor", "Schedule Delete", "STAGING-MORE"): "Spec l.477: Senior SA 'Gains Schedule Delete'",
+    ("Senior Service Advisor", "Part Sales Delete", "STAGING-MORE"): "Spec l.477: Senior SA 'Gains PartSales Delete'",
+    ("Senior Service Advisor", "Invoicing & Payments Delete (reverse/delete invoice)", "STAGING-MORE"): "Spec l.477: Senior SA 'Gains Invoicing FULL'",
+    ("Senior Service Advisor", "Timesheets Create & Edit", "STAGING-MORE"): "Spec l.477: Senior SA 'Gains Timesheets CE'",
+    ("Senior Service Advisor", "Customer Portal Page Access", "STAGING-MORE"): "Spec l.477: Senior SA 'Gains Customer Portal'",
+    ("Senior Service Advisor", "See AP/AR Data", "STAGING-MORE"): "Spec l.477: Senior SA 'Gains AP/AR'",
+    ("Senior Service Advisor", "Reports Page Access", "STAGING-MORE"): "Spec l.477: Senior SA 'Gains Reports'",
+    ("Foreman", "Work Order Lines Delete", "STAGING-MORE"): "Spec l.479: Foreman 'Gains WOL Delete'",
+    ("Foreman", "Schedule Delete", "STAGING-MORE"): "Spec l.479: Foreman 'Gains Schedule Delete'",
+    ("Foreman", "Order Parts (on WO)", "STAGING-MORE"): "Spec l.479: Foreman 'Gains Order Parts'",
+    ("Foreman", "WO History / Audit Log (view)", "STAGING-MORE"): "Spec l.479: Foreman 'Gains History Logs'",
+    ("Foreman", "View History Logs (cross-toggle)", "STAGING-MORE"): "Spec l.479: Foreman 'Gains History Logs'",
+    ("Foreman", "Part Sales View", "STAGING-MORE"): "Spec l.479: Foreman 'Gains Parts Dept (Part Sales V)'",
+    ("Foreman", "Catalog & Inventory View", "STAGING-MORE"): "Spec l.479: Foreman 'Gains Parts Dept (Catalog V/CE)'",
+    ("Foreman", "Catalog & Inventory Create & Edit", "STAGING-MORE"): "Spec l.479: Foreman 'Gains Parts Dept (Catalog V/CE)'",
+    ("Foreman", "Vendor & Order Mgmt View", "STAGING-MORE"): "Spec l.479: Foreman 'Gains Parts Dept (Vendor V/CE)'",
+    ("Foreman", "Vendor & Order Mgmt Create & Edit", "STAGING-MORE"): "Spec l.479: Foreman 'Gains Parts Dept (Vendor V/CE)'",
+    ("Foreman", "Receive / accept a delivery (Bulk Receive)", "STAGING-MORE"): "Spec l.479: Foreman 'Gains Vendor V/CE' (delivery)",
+    ("Foreman", "Assign vendor to a WO part order", "STAGING-MORE"): "Spec l.479: Foreman 'Gains Vendor V/CE + Order Parts'",
+    ("Foreman", "Invoicing & Payments View", "STAGING-MORE"): "Spec l.479: Foreman 'Gains Invoicing V/CE'",
+    ("Foreman", "Invoicing & Payments Create & Edit", "STAGING-MORE"): "Spec l.479: Foreman 'Gains Invoicing V/CE'",
+    ("Foreman", "Create an invoice from a WO (estimate->invoice)", "STAGING-MORE"): "Spec l.479: Foreman 'Gains Invoicing V/CE'",
+    ("Foreman", "See Financial Data on WO (rates/margins/totals)", "STAGING-MORE"): "Spec l.479 Invoicing V/CE + l.572 (SFD required for invoicing)",
+    ("Foreman", "See Financial Data (cross-toggle)", "STAGING-MORE"): "Spec l.479 Invoicing V/CE + l.572 (SFD required for invoicing)",
+    ("Technician", "Pick Parts", "STAGING-MORE"): "Spec l.480: Technician 'Gains Pick Parts'",
+    ("Parts Manager", "Schedule View", "STAGING-MORE"): "Spec l.481: Parts Manager 'Gains Schedule View'",
+    ("Parts Manager", "Customer Portal Page Access", "STAGING-MORE"): "Spec l.481: Parts Manager 'Gains Customer Portal'",
+    ("Parts Technician", "Pick Parts", "STAGING-MORE"): "Spec l.482: Parts Tech 'Gains Pick Parts'",
+    ("Parts Technician", "Order Parts (on WO)", "STAGING-MORE"): "Spec l.482: Parts Tech 'Gains Order Parts'",
+    ("Parts Technician", "Invoicing & Payments Create & Edit", "STAGING-MORE"): "Spec l.482: Parts Tech 'Gains Invoicing V/CE'",
+    ("Parts Technician", "Invoicing & Payments View", "STAGING-MORE"): "Spec l.482: Parts Tech 'Gains Invoicing V/CE'",
+    ("Parts Technician", "WO History / Audit Log (view)", "STAGING-MORE"): "Spec l.482: Parts Tech 'Gains History Logs'",
+    ("Parts Technician", "View History Logs (cross-toggle)", "STAGING-MORE"): "Spec l.482: Parts Tech 'Gains History Logs'",
+    ("Parts Technician", "Create an invoice from a WO (estimate->invoice)", "STAGING-MORE"): "Spec l.482: Parts Tech 'Gains Invoicing V/CE'",
+    ("Parts Technician", "See Financial Data on WO (rates/margins/totals)", "STAGING-MORE"): "Spec l.482 Invoicing V/CE + l.572 (SFD required for invoicing)",
+    ("Parts Technician", "See Financial Data (cross-toggle)", "STAGING-MORE"): "Spec l.482 Invoicing V/CE + l.572 (SFD required for invoicing)",
+    ("Office User", "Customers Delete", "STAGING-MORE"): "Spec l.483: Office 'Customer Mgmt gains Delete'",
+    ("Service Manager", "Customer Portal Page Access", "STAGING-MORE"): "Spec l.478: SM 'Gains Customer Portal'",
+    ("Service Manager", "Billing Portal Page Access", "STAGING-MORE"): "Spec l.478: SM 'Gains Billing Portal'",
+    ("Service Advisor", "Customer Portal Page Access", "STAGING-MORE"): "Spec l.485: SA Limited View 'Gains Customer Portal'",
+    ("Senior Service Advisor", "Customers Delete", "STAGING-MORE"): "Spec l.477 (Senior SA expansion set)",
+    ("Senior Service Advisor", "Part Sales Create & Edit", "STAGING-MORE"): "Spec l.477: Senior SA 'Gains ... Vendor FULL/Invoicing FULL' expansion set",
 }
 
-# PROD>STAGING deltas = every capability where a PRODUCTION role grants MORE than the mapped
-# STAGING role (staging has LESS). Spec-intended reductions are INCLUDED (annotated Yes), NOT
-# filtered out; reductions the spec does NOT account for are annotated No (= release risk).
-# The rows below are the spec's OWN "Loses ..." rows in the Behavior Changes table = all
-# spec-DECLARED (intended=Yes) reductions. (staging_has verified live.) Any prod>staging
-# delta discovered live that is NOT on the spec's list must be added with intended="No" and
-# spec_citation="not in spec" once real production data is captured.
-# fields: staging_role, prod_role_holding_extra, capability(plain), staging_code_or_gate,
-#         severity, spec_evidence, intended_reduction("Yes"/"No"), spec_citation
-SPEC_PROD_ONLY = [
-    ("Service Manager", "Service Manager", "Reverse / delete an invoice (Invoicing Delete)",
-     "invoicingPaymentsDelete", "High",
-     "Spec Behavior-Changes: Service Manager 'Loses Invoicing Delete (cannot reverse)'",
-     "Yes", "Spec 'Behavior Changes for Migrating Users' table (updated-spec-source.md) - Service Manager: 'Loses Invoicing Delete (cannot reverse invoices)'"),
-    ("Service Manager", "Service Manager", "Change Service settings",
-     "settingsService", "Medium",
-     "Spec Behavior-Changes: Service Manager 'Loses Settings: Service'",
-     "Yes", "Spec 'Behavior Changes for Migrating Users' table - Service Manager: 'Loses Settings: Service'"),
-    ("Service Manager", "Service Manager", "Change Parts settings",
-     "settingsParts", "Medium",
-     "Spec Behavior-Changes: Service Manager 'Loses Settings: Parts'",
-     "Yes", "Spec 'Behavior Changes for Migrating Users' table - Service Manager: 'Loses Settings: Parts'"),
-    ("Service Manager", "Service Manager", "Change Finance settings",
-     "settingsFinance", "Medium",
-     "Spec Behavior-Changes: Service Manager 'Loses Settings: Finance'",
-     "Yes", "Spec 'Behavior Changes for Migrating Users' table - Service Manager: 'Loses Settings: Finance'"),
-    ("Service Manager", "Service Manager", "Use Data Import settings",
-     "settingsDataImport", "Medium",
-     "Spec Behavior-Changes: Service Manager 'Loses Settings: Data Import'",
-     "Yes", "Spec 'Behavior Changes for Migrating Users' table - Service Manager: 'Loses Settings: Data Import'"),
-    ("Foreman", "Foreman", "Edit timesheets",
-     "timesheetsCreateAndEdit", "Medium",
-     "Spec Behavior-Changes: Foreman 'Loses Timesheets Edit'",
-     "Yes", "Spec 'Behavior Changes for Migrating Users' table - Foreman: 'Loses Timesheets Edit'"),
-    ("Technician", "Technician", "Send to Portal (send WO to customer portal)",
-     "Send to Portal (view-mode + line-review gate; Tech View hides it)", "High",
-     "Spec Behavior-Changes: Technician 'Lose Send to Portal'; staging Technician is tech-view (button hidden)",
-     "Yes", "Spec 'Behavior Changes for Migrating Users' table - Technician: 'Loses Send to Portal'"),
-    ("Parts Manager", "Parts Manager", "Delete a work order",
-     "workOrdersDelete", "High",
-     "Spec Behavior-Changes: Parts Manager 'Loses WO ... Delete'",
-     "Yes", "Spec 'Behavior Changes for Migrating Users' table - Parts Manager: 'Loses WO Delete'"),
-    ("Parts Manager", "Parts Manager", "Delete a work order line",
-     "workOrderLinesDelete", "High",
-     "Spec Behavior-Changes: Parts Manager 'Loses ... WOL Delete'",
-     "Yes", "Spec 'Behavior Changes for Migrating Users' table - Parts Manager: 'Loses WO Lines Delete'"),
-    ("Office User", "Office", "Create & Edit catalog / inventory items",
-     "catalogInventoryCreateAndEdit", "Medium",
-     "Spec Behavior-Changes: Office 'Catalog reduced to V only' (prod Office had Catalog Create&Edit)",
-     "Yes", "Spec 'Behavior Changes for Migrating Users' table - Office: 'Catalog reduced to View only' (prod Office had Catalog Create&Edit)"),
-]
-STAGING_LESS = SPEC_PROD_ONLY  # Direction = STAGING-LESS / PROD-MORE (staging removes a prod capability)
+# ============================================================================
+# CAPABILITY SPEC TABLE
+# name, cat ('WO'|'GEN'), stg(role)->bool, prod(prodcode)->bool, severity, confidence
+# ============================================================================
+CAPS = [
+    # ---------- WORK ORDERS (granular) ----------
+    ("Work Orders View", "WO", lambda r: s_has(r, "workOrdersView"),
+     lambda c: p_has(c, "work_order", "view"), "Medium", "live"),
+    ("Work Orders Create & Edit", "WO", lambda r: s_has(r, "workOrdersCreateAndEdit"),
+     lambda c: p_has(c, "work_order", "create", "change"), "High", "live"),
+    ("Work Orders Delete", "WO", lambda r: s_has(r, "workOrdersDelete"),
+     lambda c: p_all(c, "work_order"), "High", "live"),
+    ("Work Order Lines Create & Edit", "WO", lambda r: s_has(r, "workOrderLinesCreateAndEdit"),
+     lambda c: p_has(c, "work_order_line", "create", "change"), "High", "live"),
+    ("Work Order Lines Delete", "WO", lambda r: s_has(r, "workOrderLinesDelete"),
+     lambda c: p_has(c, "work_order_line", "remove"), "High", "live"),
+    ("Order Parts (on WO)", "WO", lambda r: s_has(r, "woOrderParts"),
+     lambda c: p_has(c, "work_order_part_request", "create"), "High", "live"),
+    ("Pick Parts", "WO", lambda r: s_has(r, "woPickParts"),
+     lambda c: p_has(c, "work_order_part", "change"), "Medium", "live"),
+    ("Manage picked WO parts (view/change)", "WO", lambda r: s_has(r, "woPickParts") or s_has(r, "workOrderLinesCreateAndEdit"),
+     lambda c: p_has(c, "work_order_part", "view", "change"), "Medium", "NEEDS-REVIEW"),
+    ("Remove a WO part", "WO", lambda r: s_has(r, "workOrderLinesDelete") or s_has(r, "workOrdersDelete"),
+     lambda c: p_has(c, "work_order_part", "remove"), "High", "NEEDS-REVIEW"),
+    ("Add / request a part on WO (part request)", "WO", lambda r: s_has(r, "woOrderParts") or s_has(r, "workOrderLinesCreateAndEdit"),
+     lambda c: p_has(c, "work_order_part_request", "create", "change"), "Medium", "NEEDS-REVIEW"),
+    ("Process a WO part return (create)", "WO", lambda r: s_has(r, "vendorOrderManagementCreateAndEdit") or s_has(r, "workOrderLinesCreateAndEdit"),
+     lambda c: p_has(c, "work_order_part_return", "create", "change"), "Medium", "NEEDS-REVIEW"),
+    ("Approve / complete a WO part return", "WO", lambda r: s_has(r, "invoicingPaymentsDelete") or s_has(r, "workOrdersDelete"),
+     lambda c: p_has(c, "work_order_part_return", "complete"), "High", "NEEDS-REVIEW"),
+    ("Decline a WO part return", "WO", lambda r: s_has(r, "workOrderLinesCreateAndEdit"),
+     lambda c: p_has(c, "work_order_part_return", "decline"), "Medium", "NEEDS-REVIEW"),
+    ("Canned lines on WO (add/edit)", "WO", lambda r: s_has(r, "workOrderLinesCreateAndEdit") or s_has(r, "workOrdersCreateAndEdit"),
+     lambda c: p_has(c, "work_order_canned_line", "create", "change"), "Low", "NEEDS-REVIEW"),
+    ("WO History / Audit Log (view)", "WO", lambda r: s_ct(r, "viewHistoryLogs"),
+     lambda c: p_has(c, "work_order_history", "view"), "Medium", "live"),
+    ("Clock in / log time on a WO line task", "WO", lambda r: (s_vm(r) == "tech" or s_has(r, "workOrderLinesCreateAndEdit")),
+     lambda c: p_has(c, "work_order_line_task", "clock_in"), "Low", "NEEDS-REVIEW"),
+    ("Edit / move WO line tasks", "WO", lambda r: s_has(r, "workOrderLinesCreateAndEdit"),
+     lambda c: p_has(c, "work_order_line_task", "change", "move", "create"), "Low", "NEEDS-REVIEW"),
+    ("Mark Reviewed / review sign-off", "WO", lambda r: s_has(r, "woReviewWorkOrders"),
+     lambda c: p_has(c, "work_order", "change"), "Medium", "NEEDS-REVIEW"),
+    ("Complete a Work Order", "WO", lambda r: s_has(r, "workOrdersCreateAndEdit"),
+     lambda c: p_has(c, "work_order", "create", "change"), "Medium", "live"),
+    ("Approve / decline a WO line", "WO", lambda r: s_has(r, "workOrderLinesCreateAndEdit"),
+     lambda c: p_has(c, "work_order_line", "change"), "Medium", "live"),
+    ("Set line status (bulk)", "WO", lambda r: s_has(r, "workOrderLinesCreateAndEdit"),
+     lambda c: p_has(c, "work_order_line", "change"), "Low", "live"),
+    ("Full WO view mode (vs Tech view)", "WO", lambda r: s_vm(r) == "full",
+     lambda c: c not in ("ROLE_TECHNICIAN", "ROLE_TIME_CLOCK_USER", "ROLE_REPORTING"), "Medium", "NEEDS-REVIEW"),
+    ("See Financial Data on WO (rates/margins/totals)", "WO", lambda r: s_ct(r, "seeFinancialData"),
+     lambda c: p_has(c, "invoice", "view"), "High", "NEEDS-REVIEW"),
+    ("Send to Portal", "WO", lambda r: (s_vm(r) == "full" and s_has(r, "customerPortalPageAccess") and s_has(r, "woReviewWorkOrders")),
+     lambda c: p_has(c, "work_order", "view"), "High", "NEEDS-REVIEW"),
+    ("Send to Terminal (take payment on WO)", "WO", lambda r: (s_has(r, "invoicingPaymentsCreateAndEdit") and s_has(r, "customerPortalPageAccess")),
+     lambda c: p_has(c, "invoice", "create", "change"), "High", "NEEDS-REVIEW"),
+    ("Assign vendor to a WO part order", "WO", lambda r: s_has(r, "vendorOrderManagementCreateAndEdit"),
+     lambda c: p_has(c, "work_order_part_request", "create") or p_has(c, "vendor", "change"), "Medium", "NEEDS-REVIEW"),
+    ("Add a vendorless / manual part on WO", "WO", lambda r: s_has(r, "workOrderLinesCreateAndEdit") or s_has(r, "catalogInventoryCreateAndEdit"),
+     lambda c: p_has(c, "work_order_part_request", "create"), "Low", "NEEDS-REVIEW"),
+    ("Create / edit customer from New WO screen", "WO", lambda r: s_has(r, "customersCreateAndEdit"),
+     lambda c: p_has(c, "customer", "create", "change"), "Medium", "live"),
+    ("Create / edit asset (vehicle) from New WO screen", "WO", lambda r: s_has(r, "workOrdersCreateAndEdit"),
+     lambda c: p_has(c, "vehicle", "create", "change"), "Medium", "NEEDS-REVIEW"),
+    ("Create an invoice from a WO (estimate->invoice)", "WO", lambda r: s_has(r, "invoicingPaymentsCreateAndEdit"),
+     lambda c: p_has(c, "invoice", "create"), "High", "live"),
+    ("WO notes - create / edit", "WO", lambda r: s_has(r, "workOrdersView"),
+     lambda c: p_has(c, "work_order", "view", "change", "create"), "Low", "NEEDS-REVIEW"),
+    ("WO notes - delete", "WO", lambda r: s_has(r, "workOrdersDelete"),
+     lambda c: p_all(c, "work_order"), "Low", "NEEDS-REVIEW"),
 
-# Direction = STAGING-MORE / PROD-LESS: the NEW staging model grants the role MORE than the
-# legacy (prod) role had. Sourced from the spec's OWN "Behavior Changes for Migrating Users"
-# table ("Gains ..." / Expansion rows) = all spec-INTENDED increases (intended=Yes).
-# staging_grants verified LIVE (every code below confirmed present on the staging role).
-# An unexpected over-grant found live that the spec does NOT intend must be added with
-# intended="No", spec_citation="not in spec" once real production data is captured.
-# fields: staging_role, prod_role, capability(plain), staging_code, severity, evidence,
-#         intended_increase("Yes"/"No"), spec_citation
-_BC = "Spec 'Behavior Changes for Migrating Users' table"
-STAGING_MORE = [
-    # Senior Service Advisor (legacy Service Advisor + SA Technician + SA No Reports) - Expansion
-    ("Senior Service Advisor", "Service Advisor", "Delete a work order", "workOrdersDelete", "High",
-     "Spec Behavior-Changes: Senior SA 'Gains WO ... Delete'", "Yes", _BC + " - Senior SA: 'Gains WO/WOL/Schedule/PartSales Delete'"),
-    ("Senior Service Advisor", "Service Advisor", "Delete a work order line", "workOrderLinesDelete", "High",
-     "Spec Behavior-Changes: Senior SA 'Gains ... WOL Delete'", "Yes", _BC + " - Senior SA: 'Gains WO/WOL/Schedule/PartSales Delete'"),
-    ("Senior Service Advisor", "Service Advisor", "Delete a schedule entry", "scheduleDelete", "Medium",
-     "Spec Behavior-Changes: Senior SA 'Gains ... Schedule ... Delete'", "Yes", _BC + " - Senior SA: 'Gains WO/WOL/Schedule/PartSales Delete'"),
-    ("Senior Service Advisor", "Service Advisor", "Delete a part sale", "partSalesDelete", "Medium",
-     "Spec Behavior-Changes: Senior SA 'Gains ... PartSales Delete'", "Yes", _BC + " - Senior SA: 'Gains WO/WOL/Schedule/PartSales Delete'"),
-    ("Senior Service Advisor", "Service Advisor", "Vendor & Order Management (full access)", "vendorOrderManagementCreateAndEdit", "Medium",
-     "Spec Behavior-Changes: Senior SA 'Gains Vendor FULL'", "Yes", _BC + " - Senior SA: 'Gains Vendor FULL'"),
-    ("Senior Service Advisor", "Service Advisor", "Invoicing & Payments (full access)", "invoicingPaymentsCreateAndEdit", "High",
-     "Spec Behavior-Changes: Senior SA 'Gains Invoicing FULL'", "Yes", _BC + " - Senior SA: 'Gains Invoicing FULL'"),
-    ("Senior Service Advisor", "Service Advisor", "Edit timesheets", "timesheetsCreateAndEdit", "Medium",
-     "Spec Behavior-Changes: Senior SA 'Gains Timesheets CE'", "Yes", _BC + " - Senior SA: 'Gains Timesheets CE'"),
-    ("Senior Service Advisor", "Service Advisor", "Customer Portal access", "customerPortalPageAccess", "Medium",
-     "Spec Behavior-Changes: Senior SA 'Gains Customer Portal'", "Yes", _BC + " - Senior SA: 'Gains Customer Portal'"),
-    ("Senior Service Advisor", "Service Advisor", "See AP/AR data", "seeApArData", "Medium",
-     "Spec Behavior-Changes: Senior SA 'Gains AP/AR'", "Yes", _BC + " - Senior SA: 'Gains AP/AR'"),
-    ("Senior Service Advisor", "Service Advisor", "Reports page access", "reportsPageAccess", "Medium",
-     "Spec Behavior-Changes: Senior SA 'Gains Reports' (also SA No Reports 'Gains Reports')", "Yes", _BC + " - Senior SA: 'Gains Reports'; SA No Reports->SSA: 'Gains Reports'"),
-    # Service Manager - Mixed (gains)
-    ("Service Manager", "Service Manager", "Billing Portal access", "billingPortalPageAccess", "Medium",
-     "Spec Behavior-Changes: Service Manager 'Gains Billing Portal'", "Yes", _BC + " - Service Manager: 'Gains Billing Portal, Customer Portal'"),
-    ("Service Manager", "Service Manager", "Customer Portal access", "customerPortalPageAccess", "Medium",
-     "Spec Behavior-Changes: Service Manager 'Gains Customer Portal'", "Yes", _BC + " - Service Manager: 'Gains Billing Portal, Customer Portal'"),
-    # Foreman - Expansion
-    ("Foreman", "Foreman", "Delete a work order line", "workOrderLinesDelete", "High",
-     "Spec Behavior-Changes: Foreman 'Gains WOL Delete'", "Yes", _BC + " - Foreman: 'Gains WOL Delete'"),
-    ("Foreman", "Foreman", "Delete a schedule entry", "scheduleDelete", "Medium",
-     "Spec Behavior-Changes: Foreman 'Gains Schedule Delete'", "Yes", _BC + " - Foreman: 'Gains Schedule Delete'"),
-    ("Foreman", "Foreman", "View part sales", "partSalesView", "Low",
-     "Spec Behavior-Changes: Foreman 'Gains Parts Dept (Part Sales V)'", "Yes", _BC + " - Foreman: 'Gains Parts Dept (Part Sales V, Catalog V/CE, Vendor V/CE)'"),
-    ("Foreman", "Foreman", "View catalog / inventory", "catalogInventoryView", "Low",
-     "Spec Behavior-Changes: Foreman 'Gains ... Catalog V'", "Yes", _BC + " - Foreman: 'Gains Parts Dept (... Catalog V/CE ...)'"),
-    ("Foreman", "Foreman", "Create & Edit catalog / inventory items", "catalogInventoryCreateAndEdit", "Medium",
-     "Spec Behavior-Changes: Foreman 'Gains ... Catalog CE'", "Yes", _BC + " - Foreman: 'Gains Parts Dept (... Catalog V/CE ...)'"),
-    ("Foreman", "Foreman", "View vendor & orders", "vendorOrderManagementView", "Low",
-     "Spec Behavior-Changes: Foreman 'Gains ... Vendor V'", "Yes", _BC + " - Foreman: 'Gains Parts Dept (... Vendor V/CE)'"),
-    ("Foreman", "Foreman", "Create & Edit vendor & orders", "vendorOrderManagementCreateAndEdit", "Medium",
-     "Spec Behavior-Changes: Foreman 'Gains ... Vendor CE'", "Yes", _BC + " - Foreman: 'Gains Parts Dept (... Vendor V/CE)'"),
-    ("Foreman", "Foreman", "View invoicing & payments", "invoicingPaymentsView", "Low",
-     "Spec Behavior-Changes: Foreman 'Gains Invoicing V'", "Yes", _BC + " - Foreman: 'Gains Invoicing V/CE'"),
-    ("Foreman", "Foreman", "Create & Edit invoicing & payments", "invoicingPaymentsCreateAndEdit", "Medium",
-     "Spec Behavior-Changes: Foreman 'Gains Invoicing CE'", "Yes", _BC + " - Foreman: 'Gains Invoicing V/CE'"),
-    ("Foreman", "Foreman", "Order Parts (WO)", "woOrderParts", "Medium",
-     "Spec Behavior-Changes: Foreman 'Gains Order Parts'", "Yes", _BC + " - Foreman: 'Gains Order Parts'"),
-    ("Foreman", "Foreman", "View History Logs", "viewHistoryLogs", "Low",
-     "Spec Behavior-Changes: Foreman 'Gains History Logs'", "Yes", _BC + " - Foreman: 'Gains History Logs'"),
-    # Technician - Expansion
-    ("Technician", "Technician", "Pick Parts (WO)", "woPickParts", "Low",
-     "Spec Behavior-Changes: Technician 'Gains Pick Parts'", "Yes", _BC + " - Technician: 'Gains Pick Parts'"),
-    # Parts Manager - Mixed (gains)
-    ("Parts Manager", "Parts Manager", "View schedule", "scheduleView", "Low",
-     "Spec Behavior-Changes: Parts Manager 'Gains Schedule View'", "Yes", _BC + " - Parts Manager: 'Gains Schedule View, Customer Portal'"),
-    ("Parts Manager", "Parts Manager", "Customer Portal access", "customerPortalPageAccess", "Medium",
-     "Spec Behavior-Changes: Parts Manager 'Gains Customer Portal'", "Yes", _BC + " - Parts Manager: 'Gains Schedule View, Customer Portal'"),
-    # Parts Technician - Expansion
-    ("Parts Technician", "Parts Technician", "Pick Parts (WO)", "woPickParts", "Low",
-     "Spec Behavior-Changes: Parts Tech 'Gains Pick Parts'", "Yes", _BC + " - Parts Tech: 'Gains Pick Parts, Order Parts, Invoicing V/CE, History Logs'"),
-    ("Parts Technician", "Parts Technician", "Order Parts (WO)", "woOrderParts", "Medium",
-     "Spec Behavior-Changes: Parts Tech 'Gains Order Parts'", "Yes", _BC + " - Parts Tech: 'Gains Pick Parts, Order Parts, Invoicing V/CE, History Logs'"),
-    ("Parts Technician", "Parts Technician", "View invoicing & payments", "invoicingPaymentsView", "Low",
-     "Spec Behavior-Changes: Parts Tech 'Gains Invoicing V'", "Yes", _BC + " - Parts Tech: 'Gains ... Invoicing V/CE ...'"),
-    ("Parts Technician", "Parts Technician", "Create & Edit invoicing & payments", "invoicingPaymentsCreateAndEdit", "Medium",
-     "Spec Behavior-Changes: Parts Tech 'Gains Invoicing CE'", "Yes", _BC + " - Parts Tech: 'Gains ... Invoicing V/CE ...'"),
-    ("Parts Technician", "Parts Technician", "View History Logs", "viewHistoryLogs", "Low",
-     "Spec Behavior-Changes: Parts Tech 'Gains History Logs'", "Yes", _BC + " - Parts Tech: 'Gains ... History Logs'"),
-    # Office User - Mixed (gains)
-    ("Office User", "Office", "Delete a customer (Customer Mgmt full)", "customersDelete", "Medium",
-     "Spec Behavior-Changes: Office 'Customer Mgmt expanded to FULL (gains Delete)'", "Yes", _BC + " - Office: 'Customer Mgmt expanded to FULL (gains Delete)'"),
-    # Service Advisor (legacy SA Limited View) - Restructured (gains)
-    ("Service Advisor", "SA Limited View", "Customer Portal access", "customerPortalPageAccess", "Medium",
-     "Spec Behavior-Changes: SA Limited View->Svc Advisor 'Gains Customer Portal'", "Yes", _BC + " - SA Limited View->Svc Advisor: 'Gains Customer Portal'"),
-]
-
-# ---- open-questions / needs-review items (from PLAN §1c) ----
-OPEN_Q = [
-    ("Production data NOT captured", "Production could not be authenticated. Missing a valid "
-     "production sv_sso_session (64-hex). Every prod GET returned 409 'Session has expired'; "
-     "dev quick-login returns 500 on prod. cf_clearance / Cloudflare is NOT the blocker (409 "
-     "returns even with no cookies). Host confirmed: SPA app.shopview.com, API api.shopview.com. "
-     "NEED: a valid production sv_sso_session cookie (and confirmation prod org UUID)."),
-    ("Naming trap", "Legacy 'Service Advisor' -> staging 'Senior Service Advisor' (renamed+expanded); "
-     "staging 'Service Advisor' comes from legacy 'SA Limited View'. Do NOT match on name."),
-    ("Spec vs migration-case contradiction", "Section-3549 migration cases C26514/C26515 were "
-     "authored as 1:1 same-name mappings, contradicting the authoritative spec migration table. "
-     "NEEDS USER CONFIRMATION which is authoritative for the compare (recommend the spec table)."),
-    ("Prod role inventory unknown", "The 15 legacy roles are the program-wide catalog; the target "
-     "prod org may hold a subset and/or shop-specific custom roles. Enumerate live before mapping."),
-    ("Prod permission representation unknown", "Old-model API shape not yet observed (fe-permissions "
-     "route 404s on prod). Discover live: GET /api/roles/{id}, /api/auth/me, /api/staff/{id}."),
-    ("Send-to-Terminal not in spec reduction list", "Send to Terminal (take-payment) is gated in "
-     "staging on invoicingPaymentsCreateAndEdit AND customerPortalPageAccess. Not on the spec's "
-     "'Loses' list; must be diffed live per prod role once prod data is available."),
+    # ---------- GENERAL / whole-app atoms ----------
+    ("Schedule View", "GEN", lambda r: s_has(r, "scheduleView"),
+     lambda c: p_has(c, "schedule", "view"), "Low", "live"),
+    ("Schedule Create & Edit", "GEN", lambda r: s_has(r, "scheduleCreateAndEdit"),
+     lambda c: p_all(c, "schedule"), "Low", "live"),
+    ("Schedule Delete", "GEN", lambda r: s_has(r, "scheduleDelete"),
+     lambda c: p_all(c, "schedule"), "Low", "live"),
+    ("Customers View", "GEN", lambda r: s_has(r, "customersView"),
+     lambda c: p_has(c, "customer", "view"), "Low", "live"),
+    ("Customers Create & Edit", "GEN", lambda r: s_has(r, "customersCreateAndEdit"),
+     lambda c: p_has(c, "customer", "create", "change"), "Medium", "live"),
+    ("Customers Delete", "GEN", lambda r: s_has(r, "customersDelete"),
+     lambda c: p_all(c, "customer"), "Medium", "live"),
+    ("Catalog & Inventory View", "GEN", lambda r: s_has(r, "catalogInventoryView"),
+     lambda c: p_has(c, "inventory", "view") or p_has(c, "catalogue", "view"), "Low", "live"),
+    ("Catalog & Inventory Create & Edit", "GEN", lambda r: s_has(r, "catalogInventoryCreateAndEdit"),
+     lambda c: p_has(c, "inventory", "create", "change") or p_has(c, "catalogue", "create", "change"), "Medium", "live"),
+    ("Catalog & Inventory Delete", "GEN", lambda r: s_has(r, "catalogInventoryDelete"),
+     lambda c: p_all(c, "inventory") or p_all(c, "catalogue"), "Medium", "live"),
+    ("Vendor & Order Mgmt View", "GEN", lambda r: s_has(r, "vendorOrderManagementView"),
+     lambda c: p_has(c, "vendor", "view") or p_has(c, "delivery", "view") or p_has(c, "work_order_part_request", "view"), "Low", "live"),
+    ("Vendor & Order Mgmt Create & Edit", "GEN", lambda r: s_has(r, "vendorOrderManagementCreateAndEdit"),
+     lambda c: p_has(c, "vendor", "create", "change") or p_has(c, "delivery", "create", "change"), "Medium", "live"),
+    ("Vendor & Order Mgmt Delete", "GEN", lambda r: s_has(r, "vendorOrderManagementDelete"),
+     lambda c: p_all(c, "vendor") or p_all(c, "delivery"), "Medium", "live"),
+    ("Receive / accept a delivery (Bulk Receive)", "GEN", lambda r: s_has(r, "vendorOrderManagementCreateAndEdit"),
+     lambda c: p_has(c, "delivery", "create", "change"), "Medium", "live"),
+    ("Part Sales View", "GEN", lambda r: s_has(r, "partSalesView"),
+     lambda c: p_has(c, "manual_part_return", "view"), "Low", "NEEDS-REVIEW"),
+    ("Part Sales Create & Edit", "GEN", lambda r: s_has(r, "partSalesCreateAndEdit"),
+     lambda c: p_has(c, "manual_part_return", "create", "change"), "Medium", "NEEDS-REVIEW"),
+    ("Part Sales Delete", "GEN", lambda r: s_has(r, "partSalesDelete"),
+     lambda c: p_all(c, "manual_part_return"), "Medium", "NEEDS-REVIEW"),
+    ("Invoicing & Payments View", "GEN", lambda r: s_has(r, "invoicingPaymentsView"),
+     lambda c: p_has(c, "invoice", "view"), "Medium", "live"),
+    ("Invoicing & Payments Create & Edit", "GEN", lambda r: s_has(r, "invoicingPaymentsCreateAndEdit"),
+     lambda c: p_has(c, "invoice", "create", "change"), "High", "live"),
+    ("Invoicing & Payments Delete (reverse/delete invoice)", "GEN", lambda r: s_has(r, "invoicingPaymentsDelete"),
+     lambda c: p_all(c, "invoice"), "High", "live"),
+    ("Timesheets View", "GEN", lambda r: s_has(r, "timesheetsView"),
+     lambda c: p_has(c, "timesheet_activities", "change") or p_has(c, "attendance", "view") or p_has(c, "payroll_timesheet_reports", "view"), "Low", "NEEDS-REVIEW"),
+    ("Timesheets Create & Edit", "GEN", lambda r: s_has(r, "timesheetsCreateAndEdit"),
+     lambda c: p_has(c, "timesheet_activities", "change"), "Medium", "NEEDS-REVIEW"),
+    ("Reports Page Access", "GEN", lambda r: s_has(r, "reportsPageAccess"),
+     lambda c: any(res.endswith("_reports") for res in PROD.get(c, {})), "Medium", "live"),
+    ("Customer Portal Page Access", "GEN", lambda r: s_has(r, "customerPortalPageAccess"),
+     lambda c: False, "Medium", "NEEDS-REVIEW"),
+    ("Billing Portal Page Access", "GEN", lambda r: s_has(r, "billingPortalPageAccess"),
+     lambda c: p_all(c, "organization"), "Low", "NEEDS-REVIEW"),
+    ("Settings: App", "GEN", lambda r: s_has(r, "settingsApp"),
+     lambda c: p_all(c, "organization"), "Medium", "NEEDS-REVIEW"),
+    ("Settings: Service", "GEN", lambda r: s_has(r, "settingsService"),
+     lambda c: p_all(c, "labour_type") or p_all(c, "inspection_template") or p_all(c, "bay"), "Medium", "NEEDS-REVIEW"),
+    ("Settings: Parts", "GEN", lambda r: s_has(r, "settingsParts"),
+     lambda c: p_all(c, "pricing_matrix"), "Medium", "NEEDS-REVIEW"),
+    ("Settings: Integrations", "GEN", lambda r: s_has(r, "settingsIntegrations"),
+     lambda c: p_all(c, "organization"), "Medium", "NEEDS-REVIEW"),
+    ("Settings: Finance", "GEN", lambda r: s_has(r, "settingsFinance"),
+     lambda c: p_all(c, "tax") or p_all(c, "payment_method"), "Medium", "NEEDS-REVIEW"),
+    ("Settings: Data Import", "GEN", lambda r: s_has(r, "settingsDataImport"),
+     lambda c: p_all(c, "data_import"), "Medium", "live"),
+    ("Settings: Wages", "GEN", lambda r: s_has(r, "settingsWages"),
+     lambda c: p_all(c, "staff"), "Medium", "NEEDS-REVIEW"),
+    ("See Financial Data (cross-toggle)", "GEN", lambda r: s_ct(r, "seeFinancialData"),
+     lambda c: p_has(c, "invoice", "view") or any(res.endswith("_reports") for res in PROD.get(c, {})), "High", "NEEDS-REVIEW"),
+    ("See AP/AR Data", "GEN", lambda r: s_ct(r, "seeApArData"),
+     lambda c: p_all(c, "invoice") or p_has(c, "customer_transaction") or p_has(c, "vendor_transaction"), "High", "NEEDS-REVIEW"),
+    ("View History Logs (cross-toggle)", "GEN", lambda r: s_ct(r, "viewHistoryLogs"),
+     lambda c: p_has(c, "work_order_history", "view"), "Medium", "live"),
+    ("Manage Staff", "GEN", lambda r: s_has(r, "settingsWages") or s_has(r, "settingsApp"),
+     lambda c: p_all(c, "staff"), "Medium", "NEEDS-REVIEW"),
 ]
 
-HDR = ["Staging Role", "Production role(s) mapped", "Capability", "Prod grants?",
-       "Staging grants?", "Direction (STAGING-LESS / STAGING-MORE)",
-       "Per spec - intended? (Yes/No)", "Spec citation",
-       "Severity", "Evidence / source",
-       "Confidence (live/spec-predicted/NEEDS-REVIEW)"]
+def intended_for(role, cap, direction):
+    cit = SPEC_INTENDED.get((role, cap, direction))
+    if cit:
+        return "Yes", cit
+    return "No", "not in spec (unaccounted change - review before release)"
 
-# codes that live in the cross-toggle block rather than the fe_permissions array
-CT_CODES = {"seeFinancialData", "seeApArData", "viewHistoryLogs"}
+def prod_grant(role, cap_prod):
+    holders = [PLABEL[c] for c in MAP[role] if cap_prod(c)]
+    return (len(holders) > 0), holders
 
-def style_header(ws, ncols):
-    fill = PatternFill("solid", fgColor="1F4E78")
+rows = []
+delta_rows = []
+for role in ORDER:
+    for name, cat, sfn, pfn, sev, conf in CAPS:
+        sg = bool(sfn(role))
+        pg, holders = prod_grant(role, pfn)
+        prod_names = "; ".join(holders) if holders else "(none of mapped)"
+        mapped_all = " + ".join(PLABEL[c] for c in MAP[role])
+        if sg == pg:
+            direction = "match"
+        elif pg and not sg:
+            direction = "STAGING-LESS"
+        else:
+            direction = "STAGING-MORE"
+        rowconf = conf
+        if role in UNCONFIRMED:
+            rowconf = conf + " + NEEDS-REVIEW (mapping unconfirmed)"
+        rec = dict(role=role, cat=cat, cap=name, mapped=mapped_all, holders=prod_names,
+                   pg="Yes" if pg else "No", sg="Yes" if sg else "No", direction=direction,
+                   sev=sev, conf=rowconf)
+        rows.append(rec)
+        if direction in ("STAGING-LESS", "STAGING-MORE"):
+            intended, cit = intended_for(role, name, direction)
+            ev = f"prod holder: {prod_names} | staging live | old->new map conf={conf}"
+            if role in UNCONFIRMED:
+                ev += " | SA<->SSA mapping NOT user-confirmed"
+            rec2 = dict(rec)
+            rec2.update(intended=intended, cit=cit, ev=ev)
+            delta_rows.append(rec2)
+
+# ============================================================================
+# WORKBOOK
+# ============================================================================
+def style_header(ws, ncols, color="1F4E78"):
+    fill = PatternFill("solid", fgColor=color)
     for c in range(1, ncols + 1):
         cell = ws.cell(row=1, column=c)
         cell.font = Font(bold=True, color="FFFFFF")
         cell.fill = fill
         cell.alignment = Alignment(vertical="top", wrap_text=True)
 
-def has(role, code):
-    if code in STG[role]["codes"]:
-        return True
-    if code in CT_CODES:
-        return bool(STG[role].get("ct", {}).get(code))
-    return False
+RED = Font(color="C00000", bold=True)
+HDR = ["Staging Role", "Production role(s) mapped", "Capability", "Prod grants?",
+       "Staging grants?", "Direction (STAGING-LESS / STAGING-MORE)",
+       "Per spec - intended? (Yes/No)", "Spec citation", "Severity",
+       "Evidence / source", "Confidence"]
+
+def write_delta_tab(ws, subset):
+    ws.append(HDR)
+    style_header(ws, len(HDR))
+    for r in subset:
+        ws.append([r["role"], r["mapped"], r["cap"], r["pg"], r["sg"], r["direction"],
+                   r["intended"], r["cit"], r["sev"], r["ev"], r["conf"]])
+        if r["intended"] == "No":
+            ws.cell(row=ws.max_row, column=7).font = RED
+    for col, w in zip("ABCDEFGHIJK", [22, 34, 42, 11, 12, 22, 16, 52, 9, 50, 32]):
+        ws.column_dimensions[col].width = w
+    for rr in ws.iter_rows(min_row=2):
+        for cc in rr:
+            cc.alignment = Alignment(wrap_text=True, vertical="top")
+
+def summary_tab(ws, subset, title):
+    ws.append([title])
+    ws["A1"].font = Font(bold=True, size=12)
+    ws.append(["Staging Role", "Merged?", "Prod role(s) mapped",
+               "STAGING-LESS intended (Yes)", "STAGING-LESS NOT-in-spec (No) = RISK",
+               "STAGING-MORE intended (Yes)", "STAGING-MORE NOT-in-spec (No) = RISK",
+               "Highest severity", "Mapping confirmed?"])
+    for c in range(1, 10):
+        cell = ws.cell(row=2, column=c)
+        cell.font = Font(bold=True, color="FFFFFF")
+        cell.fill = PatternFill("solid", fgColor="1F4E78")
+        cell.alignment = Alignment(vertical="top", wrap_text=True)
+    sevrank = {"High": 3, "Medium": 2, "Low": 1}
+    for role in ORDER:
+        items = [x for x in subset if x["role"] == role]
+        less = [x for x in items if x["direction"] == "STAGING-LESS"]
+        more = [x for x in items if x["direction"] == "STAGING-MORE"]
+        lyes = sum(1 for x in less if x["intended"] == "Yes")
+        lno = sum(1 for x in less if x["intended"] == "No")
+        myes = sum(1 for x in more if x["intended"] == "Yes")
+        mno = sum(1 for x in more if x["intended"] == "No")
+        hs = max([x["sev"] for x in items], key=lambda s: sevrank[s], default="-")
+        merged = "YES" if len(MAP[role]) > 1 else "no"
+        conf = "NEEDS-REVIEW" if role in UNCONFIRMED else "yes"
+        ws.append([role, merged, " + ".join(PLABEL[c] for c in MAP[role]),
+                   lyes, lno, myes, mno, hs, conf])
+        if lno:
+            ws.cell(row=ws.max_row, column=5).font = RED
+        if mno:
+            ws.cell(row=ws.max_row, column=7).font = RED
+    for col, w in zip("ABCDEFGHI", [22, 8, 40, 24, 32, 24, 32, 14, 16]):
+        ws.column_dimensions[col].width = w
 
 wb = Workbook()
 
-# ---- Tab 0: READ ME (data-status banner) ----
+# ---- Tab 0: READ ME ----
 ws0 = wb.active
 ws0.title = "READ ME - DATA STATUS"
 banner = [
-    ["CUSTOM ROLES (SV-7388) - PROD vs STAGING permission gaps - INTERIM 2026-07-14/15"],
+    ["CUSTOM ROLES (SV-7388) - PROD vs STAGING permission compare - LIVE 2026-07-15"],
     [""],
-    ["*** PRODUCTION SIDE IS SPEC-PREDICTED, NOT LIVE-VERIFIED ***"],
-    ["Production could NOT be authenticated. Missing a valid production sv_sso_session."],
-    ["Every prod API call returned 409 'Session has expired'. Dev quick-login 500s on prod."],
-    ["cf_clearance / Cloudflare is NOT the blocker (409 returns even with no cookies)."],
-    ["Host confirmed correct: SPA app.shopview.com / API api.shopview.com."],
+    ["*** BOTH SIDES LIVE-VERIFIED (this is NOT the spec-predicted interim) ***"],
     [""],
-    ["STAGING SIDE = LIVE-VERIFIED (read-only, 11 system roles, all HTTP 200)."],
-    ["The 'Prod grants?' column is taken from the SPEC's own 'Behavior Changes for"],
-    ["Migrating Users' table ('Loses ...' rows) - i.e. reductions the spec DECLARES,"],
-    ["NOT observations of production. Every prod cell is flagged NEEDS-REVIEW."],
+    ["STAGING (new custom-roles model): 11 system roles, GET /api/organizations/{org}/roles"],
+    ["  + per-role GET /api/roles/{id}. Org d55bc308-...  All HTTP 200."],
+    ["PRODUCTION (old legacy model): authenticated live on api.shopview.com with a fresh"],
+    ["  PHPSESSID (no SSO). Prod org UUID 72b2cc90-6964-4429-a207-76e55f946936."],
+    ["  14 legacy roles from GET /api/iam/list-roles (NO 'Owner' role exists in this org)."],
+    ["  Per-role effective permissions captured by impersonation (POST /api/switch-user ->"],
+    ["  data.permissions -> exit-switch-user). Userless roles captured by temporarily"],
+    ["  assigning a throwaway ZZ invite-test user that role, then restoring to Technician."],
     [""],
-    ["TO COMPLETE: obtain a valid production sv_sso_session, capture prod role model"],
-    ["live, then re-run gen_prod_vs_staging.py with the prod capture wired in."],
+    ["OLD model = {resource_name, action_name} pairs; action '*' = ALL actions (incl delete)."],
+    ["NEW model = 41 fe_permission atoms + view_mode + 3 cross-toggles. Capabilities are"],
+    ["translated old<->new (see 'Confidence' col: 'live' = clean resource/action map;"],
+    ["'NEEDS-REVIEW' = old model has no clean equivalent / FE-gated, judged best-effort)."],
     [""],
-    ["BI-DIRECTIONAL: the main tab lists EVERY difference in EITHER direction (one row"],
-    ["per staging-role x capability where prod != staging):"],
-    ["  * STAGING-LESS / PROD-MORE - the role can do MORE in prod than in staging."],
-    ["  * STAGING-MORE / PROD-LESS - the new staging model grants MORE than prod has."],
-    ["Each row is annotated 'Per spec - intended? (Yes/No)' + 'Spec citation': Yes = the"],
-    ["spec documents this change (cited); No = the spec does NOT account for it (release"],
-    ["risk). Headline RELEASE RISKS = the 'No' rows in BOTH directions (unaccounted"],
-    ["reductions AND unexpected over-grants). All interim rows are Yes (spec-declared);"],
-    ["No's may appear once live production is captured. Summary tab = per-role 2x2 counts."],
+    ["BI-DIRECTIONAL: STAGING-LESS = prod grants, staging does not (regression / over-in-prod)."],
+    ["  STAGING-MORE = staging grants, prod did not (new model grants more)."],
+    ["Per spec - intended? Yes = the spec Behavior-Changes/migration text documents it (cited)."],
+    ["  No (RED) = the change is NOT accounted for in the spec = HEADLINE RELEASE RISK."],
+    [""],
+    ["Service Advisor & Senior Service Advisor rows are flagged NEEDS-REVIEW (mapping"],
+    ["  unconfirmed) per the naming trap: legacy 'Service Advisor' -> staging 'Senior SA';"],
+    ["  staging 'Service Advisor' <- legacy 'SA Limited View'. Computed under the spec map."],
+    [""],
+    ["TABS: 'Deltas - ALL (bi-dir)' whole-app | 'Work Orders - granular' WO-only |"],
+    ["  Summary tabs (per-role Yes/No 2x2) | Full capability matrix | Open questions."],
 ]
-for r in banner:
-    ws0.append(r)
+for row in banner:
+    ws0.append(row)
 ws0["A1"].font = Font(bold=True, size=13)
-ws0["A3"].font = Font(bold=True, color="C00000", size=12)
-ws0["A9"].font = Font(bold=True, color="1F6F1F")
-ws0.column_dimensions["A"].width = 95
+ws0["A3"].font = Font(bold=True, color="1F6F1F", size=12)
+ws0.column_dimensions["A"].width = 100
 
-# ---- Tab 1: Prod vs Staging Deltas (BOTH directions) ----
-ws1 = wb.create_sheet("Prod-vs-Staging Deltas")
-ws1.append(HDR)
-style_header(ws1, len(HDR))
-KNOWN = {c for r in STG.values() for c in r["codes"]} | CT_CODES
-CONF = "spec-predicted / NEEDS REVIEW - prod side unverified (no live prod data)"
+write_delta_tab(wb.create_sheet("Deltas - ALL (bi-dir)"), delta_rows)
+wo_deltas = [r for r in delta_rows if r["cat"] == "WO"]
+write_delta_tab(wb.create_sheet("Work Orders - granular"), wo_deltas)
+summary_tab(wb.create_sheet("Summary per role (ALL)"), delta_rows,
+            "Per-role 2x2 summary - WHOLE APP (No = release risk)")
+summary_tab(wb.create_sheet("Summary per role (WO)"), wo_deltas,
+            "Per-role 2x2 summary - WORK ORDERS only (No = release risk)")
 
-# Direction 1: STAGING-LESS / PROD-MORE (prod grants more; staging removed it)
-for srole, prole, cap, code, sev, ev, intended, citation in STAGING_LESS:
-    if code in KNOWN:
-        sg = "Yes" if has(srole, code) else "No"
-    else:
-        sg = "No (view-mode/line gate; hidden in staging for this role)"
-    ws1.append([
-        srole, MERGE[srole], cap, "Yes (SPEC-PREDICTED)", sg, "STAGING-LESS",
-        intended, citation, sev, ev, CONF,
-    ])
+# ---- Full capability matrix (staging then prod, side by side) ----
+ws5 = wb.create_sheet("Full capability matrix")
+ws5.append(["STAGING grants (live)", ""] + ORDER)
+style_header(ws5, 2 + len(ORDER))
+for name, cat, sfn, pfn, sev, conf in CAPS:
+    ws5.append([name, cat] + ["Y" if sfn(r) else "" for r in ORDER])
+ws5.append([])
+hdr2 = ws5.max_row + 1
+ws5.append(["PRODUCTION grants (mapped union, live)", ""] + ORDER)
+for c in range(1, 3 + len(ORDER)):
+    cell = ws5.cell(row=hdr2, column=c)
+    cell.font = Font(bold=True, color="FFFFFF")
+    cell.fill = PatternFill("solid", fgColor="7F3F00")
+for name, cat, sfn, pfn, sev, conf in CAPS:
+    ws5.append([name, cat] + ["Y" if prod_grant(r, pfn)[0] else "" for r in ORDER])
+ws5.column_dimensions["A"].width = 44
+ws5.column_dimensions["B"].width = 6
+for col in "CDEFGHIJKLM":
+    ws5.column_dimensions[col].width = 12
 
-# Direction 2: STAGING-MORE / PROD-LESS (new staging model grants more than prod)
-for srole, prole, cap, code, sev, ev, intended, citation in STAGING_MORE:
-    sg = "Yes" if has(srole, code) else "No"  # staging-grants verified LIVE
-    ws1.append([
-        srole, MERGE[srole], cap, "No (SPEC-PREDICTED)", sg, "STAGING-MORE",
-        intended, citation, sev, ev, CONF,
-    ])
-for col, w in zip("ABCDEFGHIJK", [22, 34, 42, 20, 34, 22, 18, 60, 10, 60, 42]):
-    ws1.column_dimensions[col].width = w
-
-# ---- Tab 2: Summary per role ----
-ws2 = wb.create_sheet("Summary per role")
-ws2.append(["Staging Role", "Merged?", "Production role(s) mapped",
-            "Staging-LESS: Yes (intended reduction)",
-            "Staging-LESS: No (unaccounted reduction = RISK)",
-            "Staging-MORE: Yes (intended increase)",
-            "Staging-MORE: No (unexpected over-grant = RISK)",
-            "Highest severity", "Needs-review"])
-style_header(ws2, 9)
-order = ["Admin", "Service Manager", "Senior Service Advisor", "Service Advisor",
-         "Foreman", "Technician", "Parts Manager", "Parts Technician",
-         "Office User", "Sales Representative", "Time Clock User"]
-sevrank = {"High": 3, "Medium": 2, "Low": 1}
-def counts(dataset, role, flag):
-    return sum(1 for x in dataset if x[0] == role and x[6] == flag)
-for role in order:
-    less_items = [x for x in STAGING_LESS if x[0] == role]
-    more_items = [x for x in STAGING_MORE if x[0] == role]
-    merged = "YES" if "+" in MERGE[role] else "no"
-    sevs = [x[4] for x in (less_items + more_items)]
-    hs = max(sevs, key=lambda s: sevrank[s], default="-")
-    ws2.append([role, merged, MERGE[role],
-                counts(STAGING_LESS, role, "Yes"), counts(STAGING_LESS, role, "No"),
-                counts(STAGING_MORE, role, "Yes"), counts(STAGING_MORE, role, "No"),
-                hs, "YES - all prod cells unverified"])
-# totals row (2x2)
-ws2.append(["TOTAL (all roles)", "", "",
-            sum(1 for x in STAGING_LESS if x[6] == "Yes"),
-            sum(1 for x in STAGING_LESS if x[6] == "No"),
-            sum(1 for x in STAGING_MORE if x[6] == "Yes"),
-            sum(1 for x in STAGING_MORE if x[6] == "No"), "", ""])
-ws2.cell(row=ws2.max_row, column=1).font = Font(bold=True)
-ws2.append([])
-ws2.append(["NOTE: the headline RELEASE RISKS are the 'No' columns in BOTH directions - "
-            "unaccounted reductions (Staging-LESS No) AND unexpected over-grants (Staging-MORE No). "
-            "Both are 0 in this INTERIM because every delta captured so far is spec-DECLARED (Yes). "
-            "Live production capture may surface prod!=staging gaps the spec does NOT account for "
-            "(No) - add them with intended='No', spec_citation='not in spec'."])
-ws2.cell(row=ws2.max_row, column=1).alignment = Alignment(wrap_text=True, vertical="top")
-for col, w in zip("ABCDEFGHI", [22, 8, 34, 26, 30, 26, 30, 16, 30]):
-    ws2.column_dimensions[col].width = w
-
-# ---- Tab 3: Full staging capability matrix (LIVE) ----
-ws3 = wb.create_sheet("Staging capability matrix LIVE")
-allcodes = sorted({c for r in STG.values() for c in r["codes"]})
-ws3.append(["Capability code"] + order)
-style_header(ws3, len(order) + 1)
-extra_rows = [("view_mode", lambda r: STG[r]["view_mode"]),
-              ("seeFinancialData", lambda r: STG[r]["ct"].get("seeFinancialData")),
-              ("seeApArData", lambda r: STG[r]["ct"].get("seeApArData")),
-              ("viewHistoryLogs", lambda r: STG[r]["ct"].get("viewHistoryLogs"))]
-for label, fn in extra_rows:
-    ws3.append([label] + [str(fn(r)) for r in order])
-for code in allcodes:
-    ws3.append([code] + ["Y" if code in STG[r]["codes"] else "" for r in order])
-ws3.column_dimensions["A"].width = 34
-for col in "BCDEFGHIJKL":
-    ws3.column_dimensions[col].width = 10
-
-# ---- Tab 4: Open questions / confirmations ----
-ws4 = wb.create_sheet("Open questions - NEEDS REVIEW")
-ws4.append(["Item", "Detail"])
-style_header(ws4, 2)
+# ---- Open questions ----
+ws6 = wb.create_sheet("Open questions - NEEDS REVIEW")
+ws6.append(["Item", "Detail"])
+style_header(ws6, 2)
+OPEN_Q = [
+    ("Service Advisor / Senior SA mapping UNCONFIRMED",
+     "Naming trap: legacy 'Service Advisor' -> staging 'Senior Service Advisor' (renamed+expanded); "
+     "staging 'Service Advisor' comes from legacy 'SA Limited View'. Section-3549 migration cases "
+     "C26514/C26515 were authored as 1:1 same-name mappings, contradicting the spec migration table. "
+     "All Service-Advisor / Senior-Service-Advisor rows are flagged NEEDS-REVIEW; computed under the "
+     "spec migration table. CONFIRM which authority governs before treating those deltas as final."),
+    ("'Owner' legacy role ABSENT in this prod org",
+     "Spec migration maps Owner+Administrator -> Admin. The compared prod org (72b2cc90-...) has NO "
+     "Owner role in GET /api/iam/list-roles (14 legacy roles, not 15). Admin is diffed against "
+     "Administrator only. If any prod org still has an Owner role, re-run the compare there."),
+    ("Old->new capability translation - NEEDS-REVIEW rows",
+     "Some new-model atoms have no clean old-model resource/action equivalent and/or are FE-gated "
+     "(Send to Portal, Send to Terminal, Customer/Billing Portal page access, See Financial Data, "
+     "See AP/AR, Settings Service/Parts/Integrations/Wages, Part Sales, part-return verbs, line tasks). "
+     "These rows are Confidence=NEEDS-REVIEW and mapped best-effort; verify in UI per role."),
+    ("Customer Portal page access - no prod resource",
+     "The old model exposes no 'customer portal' resource in the permission array; prod grant computed "
+     "as No for all roles. Spec documents several roles GAIN Customer Portal (intended STAGING-MORE=Yes)."),
+    ("Reporting legacy role has 0 resource permissions",
+     "ROLE_REPORTING returns an EMPTY permissions array (report-page-only via role membership, not the "
+     "permission model). It merges into Sales Representative; its report access is represented via the "
+     "Reports Page Access capability."),
+    ("Send to Portal / Send to Terminal are FE-gated",
+     "Both are front-end button gates not enforced by a raw permission atom. Staging: Send to Portal "
+     "needs Full view + Customer Portal + review; Send to Terminal needs Invoicing C&E + Customer Portal. "
+     "Prod grant inferred from work_order/invoice access; verify live in UI per role before release."),
+    ("Prod capture method (disposable TEST org)",
+     "Prod is a disposable TEST org (per task). Per-role perms captured via impersonation "
+     "(switch-user/exit-switch-user, fully reversible) and, for userless roles, a temporary role swap "
+     "on throwaway user bilal.muzamil+bugstesting (restored to Technician; departments/workplace "
+     "verified intact). No production data left modified."),
+]
 for item, detail in OPEN_Q:
-    ws4.append([item, detail])
-ws4.column_dimensions["A"].width = 38
-ws4.column_dimensions["B"].width = 100
-for row in ws4.iter_rows(min_row=2):
+    ws6.append([item, detail])
+ws6.column_dimensions["A"].width = 42
+ws6.column_dimensions["B"].width = 110
+for row in ws6.iter_rows(min_row=2):
     row[1].alignment = Alignment(wrap_text=True, vertical="top")
 
 out_xlsx = os.path.join(HERE, "Prod-vs-Staging-Permission-Gaps_2026-07-14.xlsx")
 wb.save(out_xlsx)
+
+def counts(subset):
+    return (
+        [r for r in subset if r["direction"] == "STAGING-LESS" and r["intended"] == "No"],
+        [r for r in subset if r["direction"] == "STAGING-LESS" and r["intended"] == "Yes"],
+        [r for r in subset if r["direction"] == "STAGING-MORE" and r["intended"] == "No"],
+        [r for r in subset if r["direction"] == "STAGING-MORE" and r["intended"] == "Yes"],
+    )
+
 print("wrote", out_xlsx)
+ln, ly, mn, my = counts(delta_rows)
+print(f"ALL: STAGING-LESS No={len(ln)} Yes={len(ly)} | STAGING-MORE No={len(mn)} Yes={len(my)}")
+wln, wly, wmn, wmy = counts(wo_deltas)
+print(f"WO : STAGING-LESS No={len(wln)} Yes={len(wly)} | STAGING-MORE No={len(wmn)} Yes={len(wmy)}")
