@@ -82,6 +82,45 @@ them) and Service Manager / Service Advisor / Foreman / Parts Technician (staff/
 role-swap hit an org-context 403). Prod Send-to-Terminal not driven yet. See the
 "Send to Terminal LIVE" workbook tab.
 
+## 0c. PARTS-MODULE deep-flow — LIVE DUAL verdicts (2026-07-15b, NEW)
+
+Previously NOT VERIFIED. Now driven LIVE to `/parts/orders` per role on BOTH envs, controls
+observed on-screen with full-page screenshots. Unblocked by reusing the Simple Flow inventory
+recipe (endpoints `/api/inventory/orders`, `/api/inventory/deliveries` exist identically on the
+Custom Roles envs) — the orgs already hold real POs/deliveries so NO seeding was needed; pure
+FE-gate observation on existing data.
+
+- **Method (staging):** genuine `switch-user` impersonation for 7 roles with an active holder;
+  throwaway role-swap of `bilal.muzamil+20` + `switch-user` for the 4 roles without a holder
+  (Service Manager / Foreman / Parts Technician / Office User) — throwaway RESTORED to its
+  original role after.
+- **Method (production):** test-staff role-swap (`POST /api/staff/change`) + self-login for
+  ALL 14 prod roles — test staff RESTORED to Office User (verified).
+- **Capabilities observed:** **Order Parts** = the **"New PO"** button (create purchase order)
+  on `/parts/orders`; **Receive** = the per-PO **"Receive"** button (accept a delivery).
+
+**Result — every one of the 22 dual cells (11 staging roles × 2 caps) is a DUAL LIVE-OBSERVED
+MATCH.** The Parts-module Order-Parts and Receive gates map identically prod↔staging → **NOT a
+migration risk.**
+
+| Staging role | Prod role compared | Order Parts (New PO) prod / stg | Receive prod / stg | Verdict |
+|---|---|---|---|---|
+| Admin | Administrator | SHOWN / SHOWN | SHOWN / SHOWN | MATCH |
+| Service Manager | Service Manager | SHOWN / SHOWN | SHOWN / SHOWN | MATCH |
+| Senior Service Advisor | Service Advisor *(merge: SA Tech + SA No Reports, both consistent)* | SHOWN / SHOWN | SHOWN / SHOWN | MATCH |
+| Parts Manager | Parts Manager | SHOWN / SHOWN | SHOWN / SHOWN | MATCH |
+| Service Advisor | SA Limited View | SHOWN / SHOWN | SHOWN / SHOWN | MATCH |
+| Foreman | Foreman *(prod nav hidden, page reachable)* | SHOWN / SHOWN | SHOWN / SHOWN | MATCH |
+| Office User | Office User | **hidden / hidden** *(page viewable, no create/receive)* | hidden / hidden | MATCH |
+| Parts Technician | Parts Technician | SHOWN / SHOWN | SHOWN / SHOWN | MATCH |
+| Sales Representative | Sales Representative *(merge: Reporting, consistent)* | hidden / hidden | hidden / hidden | MATCH |
+| Technician | Technician | hidden / hidden | hidden / hidden | MATCH |
+| Time Clock User | Time Clock User | hidden / hidden | hidden / hidden | MATCH |
+
+Evidence: `live-ui-2026-07-15/staging/<role>/parts_orders.png` + `parts-obs.json`;
+`live-ui-2026-07-15/production/<role>/parts_orders.png` + `prod-parts-obs.json`.
+Workbook tab: **"Parts-Module Dual LIVE"**.
+
 ## 1. REAL dual verdicts — Send to Portal (both sides observed live)
 
 | Staging role | Prod role compared | Prod (live) | Staging (live) | Verdict |
@@ -147,9 +186,16 @@ Technician, SA Limited View, SA Technician, SA No Reports, Reporting.)
   either env this run (invoiced-WO cold-load redirected to the list on staging; payment
   surface not reached on prod). The prior "no control in the build" was a source grep, not an
   observation — left unverified.
-- **Remove-a-WO-part, WO Delete, WO Lines Delete, Order Parts, part-return approve/complete,
-  Invoicing delete/reverse, See AP/AR**: behind top/line "⋮" menus or other tabs not driven
-  per-role live this run.
+- **Order Parts (New PO) + Receive**: ✅ NOW VERIFIED live for all 11 staging + 14 prod roles
+  (see §0c) — no longer NOT VERIFIED.
+- **Remove-a-WO-part, WO Delete, WO Lines Delete, part-return approve/complete, Core OK/Not-OK,
+  Set Line Status, Assign Vendor / Fix Part# (PO-detail), Bulk Receive, Invoicing delete/reverse,
+  See AP/AR, create customer/asset from New-WO**: behind top/line "⋮" menus, PO-detail rows, the
+  New-WO wizard, or other tabs not driven per-role live this run. These need a per-role controlled
+  reference state (a WO with a cored picked line, a returnable picked part, an invoiced WO, an
+  open editable PO-detail row) — the multi-step SPA create wizards have no simple create API, so
+  each needs either a dev/human-seeded reference state or an attended headful session. Marked
+  NOT VERIFIED — not inferred.
 
 ## 6. Cleanup
 
