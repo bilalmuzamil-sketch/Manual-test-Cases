@@ -10,6 +10,16 @@
 > Evidence: `live-ui-2026-07-15/staging/<role>/` and `live-ui-2026-07-15/production/<role>/`
 > (full-page WO screenshots + `observation.json` per role).
 
+> **⚠ 2026-07-15b UPDATE — PROD SESSION EXPIRED.** On this remaining-caps pass the
+> supplied **production** cookies were already dead: `GET /api/work-orders` returned
+> **409 `Session has expired.`** Production could **NOT** be observed at all this run,
+> so **every production cell for the remaining caps is `NOT VERIFIED` (fresh prod
+> cookies required)** — nothing was inferred. **Staging session was fully ALIVE** and
+> the staging half of the remaining caps was observed live (see §0e). Rebuild the dual
+> verdicts once fresh prod cookies are supplied. Staging env also drifted: `staff/change`
+> role-swap returned **HTTP 500** on the tech staff (and 404 on the alt throwaway), so
+> the 4 holderless staging roles could not be impersonated for the new caps this run.
+
 ## 0. Both environments observed LIVE this run
 
 - **STAGING** (all 11 system roles): rendered in the real SPA via genuine impersonation —
@@ -156,6 +166,62 @@ finding that staging Parts Manager has broader WO/finance reach). All other role
 
 Evidence: `live-ui-2026-07-15/{staging,production}/<role>/new_wo_dialog.png` (or `new_wo_nobutton.png`)
 + `newwo-obs.json` / `prod-newwo-obs.json`. Workbook tab: **"New-WO Create Dual LIVE"**.
+
+## 0e. REMAINING FE-GATED CAPS — STAGING LIVE observations (2026-07-15b, NEW)
+
+Coordinator remaining-caps pass, **existing data only (no seeding)**: reference WO with picked
+parts = **S9-23636** (`39ace770`), invoiced WO = **S9-25382** (`6883dfc1`). Caps observed live
+on the WO-lines + invoiced-WO Finance surfaces per role. **Method:** Admin = admin quick-login
+(self); Senior SA / Parts Manager / Service Advisor / Sales Representative = genuine `switch-user`
+impersonation of a real role-holder (exit-switch-user 200 each); Technician = `tech` quick-login
+in the shared org (tech view). **PROD side = NOT VERIFIED (session expired) for all of these.**
+
+**Control → capability map (captured live from the build):**
+- **Part Return** = the **"Return"** item in a line's **"Part context menu"** (⋮).
+- **Set Line Status** = the per-line **Approve / Start / Complete / Pick** buttons.
+- **WO Delete** = **"Delete Work Order"** in the WO top **more_vert (⋮)** menu.
+- **Invoicing create** = **"New Payment"** on the invoiced-WO **Finance** tab.
+- **Invoice reverse** = **"Reverse"**; credit = **"Issue Credit"** — both in the Finance ⋮ menu.
+
+| Staging role | Method | Part Return | Set Line Status | WO Delete | New Payment | Invoice Reverse | Issue Credit |
+|---|---|---|---|---|---|---|---|
+| Admin | self | SHOWN | SHOWN (Approve/Start/Complete/Pick) | **SHOWN** | SHOWN | **SHOWN** | SHOWN |
+| Senior Service Advisor | switch-user | SHOWN | SHOWN (Approve/Complete) | **SHOWN** | SHOWN | **SHOWN** | SHOWN |
+| Parts Manager | switch-user | SHOWN | SHOWN (Approve/Start/Complete) | hidden | SHOWN | **hidden** | SHOWN |
+| Service Advisor | switch-user | SHOWN | SHOWN (Approve/Start/Complete) | hidden | SHOWN | **hidden** | SHOWN |
+| Sales Representative | switch-user | SHOWN (Return) | partial (Start) | hidden | hidden | hidden | hidden |
+| Technician | tech (tech view) | SHOWN | SHOWN (Complete/Pick) | hidden | hidden | hidden | hidden |
+| Time Clock User | switch-user | NOT VERIFIED | NOT VERIFIED | NOT VERIFIED | NOT VERIFIED | NOT VERIFIED | NOT VERIFIED |
+| Service Manager | role-swap | NOT VERIFIED | NOT VERIFIED | NOT VERIFIED | NOT VERIFIED | NOT VERIFIED | NOT VERIFIED |
+| Foreman | role-swap | NOT VERIFIED | NOT VERIFIED | NOT VERIFIED | NOT VERIFIED | NOT VERIFIED | NOT VERIFIED |
+| Office User | role-swap | NOT VERIFIED | NOT VERIFIED | NOT VERIFIED | NOT VERIFIED | NOT VERIFIED | NOT VERIFIED |
+| Parts Technician | role-swap | NOT VERIFIED | NOT VERIFIED | NOT VERIFIED | NOT VERIFIED | NOT VERIFIED | NOT VERIFIED |
+
+**NOT-VERIFIED reasons:** Time Clock = WO detail did not render (view=null role, no WO-detail
+access — control not reachable, not inferred). Service Manager / Foreman / Office User / Parts
+Technician = **no live role-holder** in the staging staff list AND `staff/change` role-swap
+returned **HTTP 500** today (shared-env drift), so they could not be impersonated for these new
+caps (they WERE observed for New-WO + Parts-module caps in the earlier passes — §0c/§0d).
+
+**Live-observed staging findings (new):**
+- **Invoice "Reverse"** is role-gated: SHOWN for **Admin + Senior Service Advisor**, **hidden**
+  for **Parts Manager + Service Advisor** (they get "Issue Credit" only). A real distinction.
+- **WO Delete ("Delete Work Order")** confirmed SHOWN for Admin + Senior SA; hidden for Parts
+  Manager / Service Advisor / Sales Rep / Technician.
+- **Part Return** is broadly SHOWN (Admin, Senior SA, Parts Manager, Service Advisor, Sales Rep,
+  Technician all show the "Return" line-menu item).
+- **Technician (tech view)** shows Part Return + Set Line Status (Complete/Pick) + New Line, but
+  **no WO Delete, no Finance/New Payment** — consistent with a locked-down tech role.
+
+Evidence: `live-ui-2026-07-15/staging/<role>/wo_lines.png`, `part_menu.png`, `wo_menu.png`,
+`inv_finance.png` + `wocaps-obs.json`. Workbook tab: **"Remaining-Caps Staging LIVE"**.
+
+**Caps still NOT OBSERVABLE on staging this run (both sides NOT VERIFIED):** Assign Vendor /
+Fix Part# (PO-detail `/parts/orders/{id}` renders only the nav shell via direct URL — needs
+in-app navigation from the WO Parts tab), Bulk Receive (`/parts/deliveries` surfaced no
+bulk-receive control via direct URL), Core OK/Not-OK (no existing WO with a cored picked line
+found; needs a cored line seeded), See AP/AR detail (no route reliably isolated). Marked
+NOT VERIFIED — not inferred.
 
 ## 1. REAL dual verdicts — Send to Portal (both sides observed live)
 
