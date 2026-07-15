@@ -1,107 +1,100 @@
-# Prod-vs-Staging Permission Check — LIVE-VERIFIED — 2026-07-15
+# Prod-vs-Staging Permission Compare — LIVE-VERIFIED, DUAL-VERDICT — 2026-07-15
 
-> **TRUST-CRITICAL REBUILD.** Observed-only (Standing Rules 10 & 12). The prior
-> deliverable (`Prod-vs-Staging-Permission-Gaps_2026-07-14.xlsx`) presented FE-gated
-> capabilities as results that were **inferred** from role definitions / source code —
-> it is now **SUPERSEDED**. Here, a cell is a real result **only if the control was
-> rendered on the real screen this run with a screenshot captured**; everything else is
-> **NOT VERIFIED** with the reason. Nothing is inferred from `fe_permissions`, atoms, or
-> source.
+> **TRUST-CRITICAL REBUILD. Observed-only (Standing Rules 10 & 12).** A cell is a real
+> result **only if the control was rendered on the real screen this run with a screenshot
+> captured**; everything else is **NOT VERIFIED** with the reason. Nothing is inferred from
+> role definitions, `fe_permissions`, atoms, or source. The prior deliverable
+> (`Prod-vs-Staging-Permission-Gaps_2026-07-14.xlsx`/`.md`) is **SUPERSEDED**.
 >
-> Companion workbook: `Prod-vs-Staging-LIVE-VERIFIED-2026-07-14.xlsx`.
-> Evidence: `live-ui-2026-07-15/staging/<role>/` (full-page WO screenshots + `observation.json`).
+> Workbook: `Prod-vs-Staging-LIVE-VERIFIED-2026-07-14.xlsx`.
+> Evidence: `live-ui-2026-07-15/staging/<role>/` and `live-ui-2026-07-15/production/<role>/`
+> (full-page WO screenshots + `observation.json` per role).
 
-## 0. Headline
+## 0. Both environments observed LIVE this run
 
-- **PRODUCTION WAS NOT OBSERVABLE THIS RUN.** The supplied prod PHPSESSID returned
-  **HTTP 409 "Session has expired."** on every endpoint at the *start* of the run
-  (`/api/iam/list-roles`, `/api/organizations/settings`, `/api/staff` — all 409).
-  Per the task stop-condition, prod was **STOPPED** and nothing about prod was inferred.
-  **Consequence: every production cell = NOT VERIFIED, so NO row carries a real
-  prod-vs-staging verdict. A fresh prod cookie is required to finish the comparison.**
-- **STAGING was fully observed LIVE.** All 11 staging system roles were rendered in the
-  real SPA via genuine impersonation and their WO-detail controls observed on-screen with
-  screenshots.
-- **KEY LIVE FINDING (corrects the prior inference):** **Foreman SHOWS "Send to Portal"
-  live** even though its role lacks the `customerPortalPageAccess` atom. The prior run
-  *inferred* Foreman hides it (gate = `customerPortalPageAccess`). Live, the Send-to-Portal
-  icon renders for **all 6 roles that can review WOs** and is **absent for the 5 that
-  cannot** — the real gate tracks review capability, not the portal-page atom.
+- **STAGING** (all 11 system roles): rendered in the real SPA via genuine impersonation —
+  `switch-user` for 7 roles with an active user + **tech role-swap** (assign real role →
+  quick-login tech → observe → restore Technician) for the 4 without. WO-detail controls
+  observed on-screen with screenshots.
+- **PRODUCTION**: session came back **ALIVE**. The **6 prod roles that had an active user**
+  were observed live via `switch-user` on the old-model SPA (`app.shopview.com`) —
+  Administrator, Office User, Sales Representative, Service Advisor, Technician, Time Clock
+  User — full-page screenshots, all `exit-switch-user` 200. The **8 prod roles with NO active
+  user** (Service Manager, Foreman, Parts Manager, Parts Technician, SA Limited View, SA
+  Technician, SA No Reports, Reporting) were **NOT role-swapped** (prod is a real system on a
+  fast-expiring session) → they remain **NOT VERIFIED**.
 
-## 1. Method (genuine live impersonation)
+## 1. REAL dual verdicts — Send to Portal (both sides observed live)
 
-- **Staging session** stayed alive the whole run (quick-login → authenticated GETs 200).
-- Browser bridge = the documented recipe (Node CONNECT-relay reading `$HTTPS_PROXY`
-  live + Chromium `--ssl-version-max=tls1.2 --disable-quic --disable-http2`).
-- **Per-role rendering:**
-  - 7 roles with an active user → **`switch-user` impersonation** (login admin →
-    `POST /api/switch-user{user_id}` → the SPA renders with the impersonated user's
-    server-provided `fe_permissions` → observe → `POST /api/exit-switch-user`, all exits 200).
-  - 4 roles with no active user (Service Manager, Service Advisor, Foreman, Parts
-    Technician) → **tech role-swap**: assign the tech fixture user (staff `6fb22c1b…`,
-    exact-email-guarded) the real role via `POST /api/staff/{id}/change` → quick-login tech
-    (session reflects the real assigned role) → observe → **restored to Technician**.
-- **Observation** = presence/visibility of the actual control on the real WO-detail
-  screen (ready_for_review WO `S9-25044` and invoiced WO `S9-25382`), plus a full-page
-  screenshot per role. "Send to Portal" detected by its real `aria-label="Send to Portal"`
-  icon and cross-checked against the captured screenshots as ground truth.
+| Staging role | Prod role compared | Prod (live) | Staging (live) | Verdict |
+|---|---|---|---|---|
+| Admin | Administrator | SHOWN | SHOWN | **MATCH** |
+| Senior Service Advisor | Service Advisor *(merge)* | hidden | SHOWN | **STAGING-MORE** (staging gains it) |
+| Office User | Office User | **SHOWN** | **hidden** | **STAGING-LESS** ← real release risk (Office loses Send to Portal) |
+| Sales Representative | Sales Representative *(merge)* | hidden | hidden | **MATCH** |
+| Technician | Technician | hidden | hidden | **MATCH** |
+| Time Clock User | Time Clock User | hidden | hidden | **MATCH** |
+| Service Manager / Parts Manager / Service Advisor / Foreman | (no active prod user) | NOT VERIFIED | SHOWN/hidden | **NOT VERIFIED** |
+
+**Headline findings (live-proven, both sides):**
+- **Office User** genuinely **loses Send to Portal** in migration (prod SHOWN → staging hidden). This is the one real, both-observed release risk on Send-to-Portal.
+- **Technician does NOT lose Send to Portal.** The spec's Behavior-Changes table says Technician "Loses Send to Portal", but **prod Technician never showed it either** — so it is not a real loss (MATCH, both hidden). This corrects a spec-based expectation.
+- **Senior Service Advisor gains** Send to Portal vs the prod Service Advisor component (STAGING-MORE; merge caveat — the SA Technician + SA No Reports components are NOT VERIFIED).
+- Correcting the earlier inferred workbook: on **staging**, live observation shows **Foreman SHOWS Send to Portal** despite lacking the `customerPortalPageAccess` atom (the prior run inferred it hidden). The real staging gate tracks WO-review capability.
 
 ## 2. Staging LIVE grid (all 11 roles, OBSERVED)
 
-| Staging role | Perms | View | Send to Portal | See Fin Data (Rate/Margin) | New Line (WO Lines C&E) | Reviewed | Line ⋮ menu | Finance tab |
+| Role | Perms | View | Send to Portal | See Fin Data | New Line | Reviewed | Line ⋮ | Finance tab |
 |---|---|---|---|---|---|---|---|---|
-| Admin | 42 | full | **SHOWN** | SHOWN | SHOWN | SHOWN | SHOWN | SHOWN |
-| Service Manager | 36 | full | **SHOWN** | SHOWN | SHOWN | SHOWN | SHOWN | SHOWN |
-| Senior Service Advisor | 32 | full | **SHOWN** | SHOWN | SHOWN | SHOWN | SHOWN | SHOWN |
-| Parts Manager | 31 | full | **SHOWN** | SHOWN | SHOWN | SHOWN | SHOWN | SHOWN |
-| Service Advisor | 26 | full | **SHOWN** | SHOWN | SHOWN | SHOWN | SHOWN | SHOWN |
-| Foreman | 23 | full | **SHOWN** (lacks portal atom!) | SHOWN | SHOWN | SHOWN | SHOWN | SHOWN |
+| Admin | 42 | full | SHOWN | SHOWN | SHOWN | SHOWN | SHOWN | SHOWN |
+| Service Manager | 36 | full | SHOWN | SHOWN | SHOWN | SHOWN | SHOWN | SHOWN |
+| Senior Service Advisor | 32 | full | SHOWN | SHOWN | SHOWN | SHOWN | SHOWN | SHOWN |
+| Parts Manager | 31 | full | SHOWN | SHOWN | SHOWN | SHOWN | SHOWN | SHOWN |
+| Service Advisor | 26 | full | SHOWN | SHOWN | SHOWN | SHOWN | SHOWN | SHOWN |
+| Foreman | 23 | full | SHOWN | SHOWN | SHOWN | SHOWN | SHOWN | SHOWN |
 | Office User | 23 | full | hidden | hidden | hidden | hidden | hidden | hidden |
 | Parts Technician | 19 | full | hidden | SHOWN | hidden | hidden | hidden | SHOWN |
-| Sales Representative | 8 | full | hidden | SHOWN (Rate/Margin) | hidden | hidden | hidden | hidden |
+| Sales Representative | 8 | full | hidden | SHOWN | hidden | hidden | hidden | hidden |
 | Technician | 6 | tech | hidden | hidden | SHOWN | hidden | SHOWN | hidden |
 | Time Clock User | 3 | null | hidden | hidden | hidden | hidden | hidden | hidden |
 
-All values above are **LIVE-OBSERVED** with a screenshot in
-`live-ui-2026-07-15/staging/<role>/WO_ready_for_review.png`.
+## 3. Production LIVE grid (6 roles OBSERVED via switch-user)
 
-## 3. Priority FE-gated / release-critical capabilities — status this run
+| Prod role | Maps to staging | Perms | Send to Portal | See Fin Data | New Line | Reviewed |
+|---|---|---|---|---|---|---|
+| Administrator | Admin | 60 | SHOWN | SHOWN | SHOWN | SHOWN |
+| Service Advisor | Senior Service Advisor *(merge)* | 38 | hidden | SHOWN | SHOWN | SHOWN |
+| Office User | Office User | 52 | **SHOWN** | SHOWN | hidden | hidden |
+| Sales Representative | Sales Representative *(merge)* | 5 | hidden | hidden | hidden | hidden |
+| Technician | Technician | 30 | hidden | hidden | SHOWN | hidden |
+| Time Clock User | Time Clock User | 2 | hidden | hidden | hidden | hidden |
 
-| Capability | Staging (LIVE) | Production | Notes |
-|---|---|---|---|
-| **Send to Portal** | **OBSERVED** (6 SHOWN / 5 hidden — see grid) | NOT VERIFIED | trust archetype; live-confirmed; Foreman correction above |
-| **See Financial Data on WO** (Rate/Margin) | **OBSERVED** | NOT VERIFIED | shown for full-view financial roles; hidden in tech view |
-| **Create/Edit WO Lines** (New Line) | **OBSERVED** | NOT VERIFIED | shown for review roles + Technician(tech view) |
-| **Review Work Orders** (Reviewed) | **OBSERVED** | NOT VERIFIED | tracks the review capability |
-| **WO line/bulk actions ⋮** | **OBSERVED** | NOT VERIFIED | entry to line-level actions |
-| **Send to Terminal** (take payment) | **NOT VERIFIED** | NOT VERIFIED | invoiced-WO Finance/payment dialog not reachable live (cold-load redirected to list). Prior "no control in build" was a source grep, not an observation — left unverified. |
-| **Remove a WO part** | **NOT VERIFIED** | NOT VERIFIED | line "⋮" submenu not opened per-role |
-| **Delete Work Order** | **NOT VERIFIED** | NOT VERIFIED | in the top "⋮" menu; not opened systematically per role |
-| **Delete WO Line** | **NOT VERIFIED** | NOT VERIFIED | line "⋮" submenu not opened per-role |
-| **Order Parts** | **NOT VERIFIED** | NOT VERIFIED | Parts-tab action not driven |
-| **Part-return approve/complete** | **NOT VERIFIED** | NOT VERIFIED | return flow not driven |
-| **Delete/Reverse invoice** | **NOT VERIFIED** | NOT VERIFIED | invoicing delete not driven |
-| **See AP/AR data** | **NOT VERIFIED** | NOT VERIFIED | AP/AR surface not navigated live |
+(NOT VERIFIED prod roles — no active user: Service Manager, Foreman, Parts Manager, Parts
+Technician, SA Limited View, SA Technician, SA No Reports, Reporting.)
 
-## 4. Coverage (capability × role × env cells)
+## 4. Coverage
 
 - Total cells = 14 caps × 11 roles × 2 envs = **308**.
-- **Staging observed LIVE = 66** (6 caps × 11 roles).
-- Staging NOT VERIFIED = 88 (8 caps × 11 roles).
-- **Production observed LIVE = 0** (session expired).
-- Production NOT VERIFIED = 154.
-- **Cells with a dual prod+staging verdict = 0** (prod not observed).
+- Staging observed LIVE = 66 (6 caps × 11 roles).
+- Production observed LIVE = 30 (5 reliable caps × 6 roles).
+- **Cells with a REAL dual verdict = 30** (both sides observed live).
+- Production NOT VERIFIED = 124.
 
-## 5. Cleanup
+## 5. Still NOT VERIFIED (and why)
 
-- All `switch-user` impersonations exited (`exit-switch-user` → 200 each).
-- Tech user restored to **Technician** (role `10fdbeaa…`, 6 perms) and verified.
-- No throwaway data created; production left untouched (no writes were even possible —
-  session dead). No TestRail writes.
+- **Prod roles without an active user** (Service Manager, Foreman, Parts Manager, Parts
+  Technician, SA Limited View→staging Service Advisor, + merge components): not role-swapped
+  on prod for safety/time → dual verdict pending.
+- **Send to Terminal / take payment**: behind the Finance/payment dialog; not driven live on
+  either env this run (invoiced-WO cold-load redirected to the list on staging; payment
+  surface not reached on prod). The prior "no control in the build" was a source grep, not an
+  observation — left unverified.
+- **Remove-a-WO-part, WO Delete, WO Lines Delete, Order Parts, part-return approve/complete,
+  Invoicing delete/reverse, See AP/AR**: behind top/line "⋮" menus or other tabs not driven
+  per-role live this run.
 
-## 6. To finish the comparison
+## 6. Cleanup
 
-Supply a **fresh production cookie** (prod is NO-SSO → plain PHPSESSID, expires fast).
-Then observe prod per-role capabilities live via `switch-user` on the old-model SPA and
-diff against the staging live grid already captured here. Until then, no prod-vs-staging
-verdict can be honestly stated.
+- All `switch-user` impersonations exited (`exit-switch-user` → 200 each), both envs.
+- Staging tech restored to **Technician** (`10fdbeaa…`, 6 perms, verified).
+- **No prod role-swaps performed**; no throwaway data created; **no TestRail writes**.
