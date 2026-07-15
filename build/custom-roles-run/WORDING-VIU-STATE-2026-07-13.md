@@ -23,9 +23,19 @@ second-real-user cases + 11 dev deviations (both handed off in the Blockers Trac
 
 ---
 
-## 0b. Prod-vs-Staging permission compare — MAPPING CONFIRMED (2026-07-14)
+## 0b. Prod-vs-Staging permission compare — DONE 2026-07-14 (final commit `30b35bd`)
+> **CANONICAL RESUME DOC for the prod-vs-staging compare = `PROD-VS-STAGING-STATE-2026-07-14.md`**
+> (single authoritative snapshot: purpose/method, confirmed mapping + slugs, final counts,
+> key findings, confidence, deliverables index, env/access, open items, how-to-resume).
+> Read it first to resume that effort. The concise summary below is retained for continuity.
+
 The prod↔staging role/permission gap deliverable (`Prod-vs-Staging-Permission-Gaps_2026-07-14`
-`.xlsx`/`.md`, generator `gen_prod_vs_staging.py`, evidence `compare-evidence-2026-07-14/`) is
+`.xlsx`/`.md`, generator `gen_prod_vs_staging.py`, evidence `compare-evidence-2026-07-14/`,
+FE-source verify `staging-ui-verify-2026-07-14/`) is DONE (final commit `30b35bd`). Purpose:
+find where prod legacy roles grant more/less than the mapped staging roles pre-release. Method:
+live capture of all 14 prod legacy roles (org `72b2cc90-…`, no Owner) + all 11 staging roles;
+bi-directional capability diff; per-spec Yes/No + Migration-Type annotation; independent
+verification pass; staging FE-gate verification from shipped JS + live role defs.
 FINALIZED under the **QA-lead-CONFIRMED mapping (2026-07-14, spec migration table authoritative):**
 Administrator ← Administrator (1:1; "Owner merged in" **N/A** — no Owner role in either env),
 Senior Service Advisor ← Service Advisor + SA Technician + SA No Reports (3 merged), Service
@@ -150,6 +160,11 @@ exists (RolesPermissionsDuplicate).
 
 ## 6. Deliverables index (all under `build/custom-roles-run/`)
 - `WORDING-VIU-STATE-2026-07-13.md` — **THIS canonical resume doc.**
+- `PROD-VS-STAGING-STATE-2026-07-14.md` — **canonical resume doc for the prod-vs-staging
+  permission compare** (DONE 2026-07-14, commit `30b35bd`; see §0b). Deliverables:
+  `Prod-vs-Staging-Permission-Gaps_2026-07-14.xlsx`/`.md`, `compare-VERIFICATION-2026-07-14.md`,
+  `prod-vs-staging-compare-PLAN-2026-07-14.md`, `gen_prod_vs_staging.py`,
+  `compare-evidence-2026-07-14/`, `staging-ui-verify-2026-07-14/`.
 - `CustomRoles_WordingVIU_2026-07-13.xlsx` / `.csv` — results workbook (tab per bucket
   + Summary + All Cases; Case ID + clickable TestRail Link columns, Rule 8). 254 rows.
   Regenerate: `python3 gen_wording_viu_workbook.py`.

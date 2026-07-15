@@ -61,7 +61,19 @@ process(es) to run before proceeding.
    [C27731→3549, C27736→3545] + 5 stubs deleted [C27729/30/32/34/38, QA-lead
    authorized]; section 3658 subtree 3658–3665 now EMPTY = candidate for section
    removal, not deleted).** Final tally (254 cases): **VIU-Verified 204 / Blocked-UI
-   39 / Deviation 11.** Local case source now exists (first time for Custom Roles):
+   39 / Deviation 11.** **PROD-VS-STAGING PERMISSION COMPARE DONE 2026-07-14 (final
+   commit 30b35bd)** — release-eve bi-directional capability diff of all 14 live prod
+   legacy roles (org 72b2cc90…, no Owner) vs all 11 staging roles + independent
+   verification + staging FE-gate verify; counts (out-of-model excl.): STAGING-LESS
+   No=51/Yes=5, STAGING-MORE No=37/Yes=24 (WO-granular 22/18; out-of-model 10);
+   headline risks = Send-to-Portal prod-only loss (6 roles), Parts-Mgr WO+WOL C&E
+   over-grant, Tech Order-Parts/WOL-Delete + Parts-Tech invoice-reverse/AP-AR + SA
+   WO-Delete regressions; Send-to-Terminal has NO control in the staging build at all.
+   **CANONICAL RESUME DOC: `build/custom-roles-run/PROD-VS-STAGING-STATE-2026-07-14.md`**
+   (deliverables: `Prod-vs-Staging-Permission-Gaps_2026-07-14.xlsx`/`.md`,
+   `compare-VERIFICATION-2026-07-14.md`, `prod-vs-staging-compare-PLAN-2026-07-14.md`,
+   `gen_prod_vs_staging.py`, `compare-evidence-2026-07-14/`,
+   `staging-ui-verify-2026-07-14/`). Local case source now exists (first time for Custom Roles):
    `build/custom-roles-run/cases-2026-07-13/*.json` (254 bodies, carry
    `viu_status`/`section_id`; NO testrail-id-map.csv — filename = C<id>). Env note:
    staging org is SHARED and **Tech is currently DRIFTED on Technician — reset to Time
