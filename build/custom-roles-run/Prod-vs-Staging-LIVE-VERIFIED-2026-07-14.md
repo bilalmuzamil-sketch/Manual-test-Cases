@@ -78,6 +78,49 @@
 
 ---
 
+## 3b. Spec (v2) + Standing-Instruction conformance — two new annotation columns (2026-07-16)
+
+Every role x capability x verdict tab now carries two ADDED columns to the right of the verdict (**Full Dual Matrix, Pass-11, Pass-12, Approve-Decline LIVE, Send to Terminal LIVE, Parts-Module Dual LIVE, New-WO Create Dual LIVE**; the staging-only **Staging Live Grid** carries a pointer note). Observed verdicts are UNCHANGED — the columns only judge the STAGING (new-model) permission against the v2 spec and the standing rules.
+
+- **Per Spec (v2)?** — sources: `spec-conformance/spec-v2-permission-intent.md` (from `CustomRolesandPermissions_2.doc` / `current-spec-2026-07-15.md`, Sasha Grosman, SV-7388). Values: *Per spec — expected reduction* / *expected grant* / *(matches)* | *DEVIATION* | *Spec silent — not addressed* | *Spec inconsistent/ambiguous* | *Org-device config gate*. Each cites the spec gate/section; conformance is NEVER inferred where the spec is silent or inconsistent.
+
+- **Per Standing Instructions?** — sources: `spec-conformance/standing-permission-rules.md` (CLAUDE.md "Sasha's spec updates" + enforcement model). Values: *Consistent with standing rule: <which>* / *Conflicts with standing rule: <which>* / *No standing rule addresses this*.
+
+
+**Tally (297 annotated rows):**
+
+| Bucket | Count | Meaning |
+|---|---|---|
+| Per spec — expected / matches | 276 | STAGING agrees with the spec gate (intended) |
+| DEVIATION | 7 | STAGING is the opposite of what the spec prescribes (incl. gating-model divergence) |
+| Spec silent — not addressed | 11 | Decline/Set Line Status; Issue Credit; remove-a-WO-part atom |
+| Spec inconsistent / ambiguous | 3 | Send to Portal Full-View (§3/§4) vs Open Q6 'can approve a WOL' |
+
+**KEY SIGNAL: the migration is largely SPEC-ACCURATE** — every STAGING-LESS loss and nearly every STAGING-MORE grant maps to an intended spec gate change. The only non-per-spec rows are below.
+
+
+**Release-relevant DEVIATIONS / flags (the only non-per-spec rows):**
+
+| Role | Capability | Direction | Why |
+|---|---|---|---|
+| Foreman | Send to Terminal | MORE | DEVIATION (gating model): spec requires Customer Portal ON (Foreman has it OFF) so the role-gate would withhold Send to Terminal; build shows it via the org-device gate. Org-config, not a role over-grant. |
+| Parts Technician | Send to Terminal | MORE | DEVIATION (gating model): spec requires Customer Portal ON (Parts Technician has it OFF) so the role-gate would withhold Send to Terminal; build shows it via the org-device gate. Org-config, not a role over-grant. |
+| Office User | Send to Terminal | MORE | DEVIATION (gating model): spec requires Customer Portal ON (Office User has it OFF) so the role-gate would withhold Send to Terminal; build shows it via the org-device gate. Org-config, not a role over-grant. |
+| Senior Service Advisor | See AP/AR | MATCH | DEVIATION — spec grants to Senior Service Advisor (gate: Manage AP/AR toggle (tabs/fields, §5b) / AR-AP aging = Reports toggle (all-or-nothing, decoupled 3 Jul)) but staging hides it (both envs hidden). |
+
+**Spec-inconsistent / ambiguous (flagged, not resolved):**
+
+| Role | Capability | Direction | Note |
+|---|---|---|---|
+| Parts Technician | Send to Portal | LESS | Send to Portal: §3/§4 bare Full-View would grant; Open Q6 'can approve a WOL' would withhold (role lacks WOL Create&Edit). Flagged. |
+| Office User | Send to Portal | LESS | Send to Portal: §3/§4 bare Full-View would grant; Open Q6 'can approve a WOL' would withhold (role lacks WOL Create&Edit). Flagged. |
+| Sales Representative | Send to Portal | MATCH | Same §3/§4-vs-Open-Q6 ambiguity; both envs hidden. |
+
+**Spec-silent capabilities** (conformance NOT inferred): Decline line / Set Line Status (11 rows), Issue Credit (inside the 'Finance' cap), remove-a-WO-part as a discrete atom (spec covers only: return = no gate, move = WOL C&E, remove-lines = WOL Delete).
+
+
+---
+
 ## 4. The one org-config verdict (fully characterized)
 
 **Send-to-Terminal on production is an org-device gate.** Prod admin Settings full-nav + the Payment
@@ -104,6 +147,9 @@ API probes.)
   new-WO caps observed.
 - **Pass-11 LIVE / Pass-12 LIVE** — the closing audit passes (AP/AR, Part Return, Approve/Decline,
   Send-to-Terminal).
+- **Spec-Standing Conformance** — summary of the two new annotation columns: the per-bucket tally
+  (Per-spec 276 / DEVIATION 7 / Spec-silent 11 / Spec-inconsistent 3), the release-relevant DEVIATION list,
+  and the spec-inconsistent/ambiguous rows. Every dual tab also carries the two columns inline.
 
 **Tabs removed as superseded (trust rebuild):** `Live Compare DUAL`, `Production Live Grid`,
 `Remaining-Caps Dual LIVE`, `Prod Remaining-Caps (all 14)`, `Pass-9 LIVE`, `Pass-10 LIVE` — the early
