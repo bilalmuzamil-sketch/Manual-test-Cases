@@ -6,9 +6,20 @@
 > role definitions, `fe_permissions`, atoms, or source. The prior deliverable
 > (`Prod-vs-Staging-Permission-Gaps_2026-07-14.xlsx`/`.md`) is **SUPERSEDED**.
 >
-> Workbook: `Prod-vs-Staging-LIVE-VERIFIED-2026-07-14.xlsx` (see the **"Pass-10 LIVE (2026-07-16)"** tab for the latest).
-> Evidence: `live-ui-2026-07-15/staging/<role>/` and `live-ui-2026-07-15/production/<role>/`
-> (full-page WO screenshots + `observation.json` per role).
+> Workbook: `Prod-vs-Staging-LIVE-VERIFIED-2026-07-14.xlsx` (see the **"Pass-11 LIVE (2026-07-16)"** tab for the latest).
+> Evidence: `live-ui-2026-07-15/staging/<role>/`, `live-ui-2026-07-15/production/<role>/`, and
+> `live-ui-2026-07-16/production/<role>/` (full-page screenshots + per-role JSON).
+>
+> **➡️ 2026-07-16 PASS-11 — the two Pass-10 residuals CLOSED; read `live-ui-PASS11-2026-07-16.md`.**
+> (1) **Prod See AP/AR = OBSERVED-LIVE for all 14 legacy roles** (real-holder switch-user + role-swap+
+> switch-user; render path validated by an Administrator CONTROL rendering the A/R+A/P tiles; the whole
+> Reports surface is a single FE all-or-nothing gate). SHOWN: Admin + Office only. **STAGING-MORE:
+> Service Manager, Parts Manager, Sales Representative**; MATCH for the rest. (2) **Prod Part Return =
+> OBSERVED-LIVE for all 13 prod roles** on returnable WO **S1-719** via role-swap + **self-login**
+> (switch-user bounces WO-detail on null location; the "Return" control is in a picked part's
+> `[aria-label="Part context menu"]`). SHOWN for 10 roles; **STAGING-MORE: Sales Representative +
+> Office User** (prod HIDDEN); Time Clock = PARTIAL (staging side still NV). **Only residual left in
+> the entire matrix: staging Time Clock User Part Return** (needs a live staging Time-Clock session).
 >
 > **➡️ 2026-07-16 PASS-10 — Pass-9 residuals CLOSED; read `live-ui-PASS10-2026-07-16.md`.**
 > (1) **Prod finance for Service Manager / Parts Manager / Parts Technician = OBSERVED-LIVE**:
