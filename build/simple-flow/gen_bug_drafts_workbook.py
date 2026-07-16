@@ -20,8 +20,9 @@ Sheets:
 
 Source of truth: build/simple-flow/jira-bug-drafts.md (4 active tickets TICKET 2-5,
 post-Milos-Round-2, updated 2026-07-10 after BUG-5/TICKET 1 was dropped as expected
-behavior). These are DEFECTS (dev tickets), kept OUT of any PO-facing deliverable
-(standing rule 7).
+behavior) PLUS bug 5, a Round-3 deviation (Milos 2026-07-16 decision; live-observed
+2026-07-16, evidence in viu-round3-2026-07-16/). These are DEFECTS (dev tickets),
+kept OUT of any PO-facing deliverable (standing rule 7).
 """
 from openpyxl import Workbook
 from openpyxl.styles import Font, Alignment, PatternFill, Border, Side
@@ -138,6 +139,35 @@ bugs = [
                   "should be OFF and required."),
         "severity": "Medium",
     },
+    {
+        "title": ("On the Receive screen, the \"Vendor Missing\" group of parts shows "
+                  "at the top instead of the bottom"),
+        "now": ("When you open a work order and click the \"Receive\" button, you land "
+                "on the \"Purchase Order Details\" screen, where the parts are grouped "
+                "by supplier. Parts that don't have a supplier assigned yet are put in "
+                "a \"Vendor Missing\" group. On this Receive screen that \"Vendor "
+                "Missing\" group appears at the TOP of the list, above all the "
+                "supplier groups. It has been agreed it should appear at the BOTTOM "
+                "here. (On the separate \"Bulk Receive\" / \"Receive Vendor Parts\" "
+                "page the \"Vendor Missing\" group correctly shows at the top - that "
+                "page is fine and should not change.)"),
+        "should": ("On the Receive (\"Purchase Order Details\") screen reached from a "
+                   "work order's \"Receive\" button, the \"Vendor Missing\" group "
+                   "should appear at the BOTTOM of the list, below the supplier "
+                   "groups. The \"Bulk Receive\" / \"Receive Vendor Parts\" page "
+                   "should keep showing it at the top, unchanged."),
+        "steps": ("1. Open a work order that has some parts with a supplier and at "
+                  "least one part with no supplier assigned yet.\n"
+                  "2. Click the \"Receive\" button on the work order to open the "
+                  "\"Purchase Order Details\" screen.\n"
+                  "3. Look at where the \"Vendor Missing\" group sits in the list.\n"
+                  "4. Notice it is at the TOP, above the supplier groups - it should "
+                  "be at the BOTTOM here.\n"
+                  "5. For comparison, open the \"Bulk Receive\" / \"Receive Vendor "
+                  "Parts\" page and confirm the \"Vendor Missing\" group is at the "
+                  "top there - that one is correct."),
+        "severity": "Low",
+    },
 ]
 
 # ---------------------------------------------------------------------------
@@ -194,6 +224,19 @@ internal_map = [
      "autoApproveLines:true, requireVendorInvoiceNumber:false.",
      "OPEN — CONFIRMED bug, SF-SET-08 expected stays (authoritative spec default). "
      "Medium. Wrong first-use org defaults."),
+    (5,
+     "Round-3 deviation (Milos 2026-07-16 decision). No prior BUG-code; new dev "
+     "ticket draft.",
+     [("SF-RCV-05", 29373), ("SF-RCV-07", 29375)],
+     "SV-7301 / Story 12 (Accept Delivery). Milos 2026-07-16: Vendor Missing group "
+     "should sit at BOTTOM on the WO Receive (Purchase Order Details, grouped-by-vendor) "
+     "surface but at TOP on the Bulk Receive (Receive Vendor Parts) page. Live-observed "
+     "2026-07-16: Vendor Missing renders at TOP on the WO Receive screen (wrong); TOP on "
+     "Bulk Receive (correct). Evidence viu-round3-2026-07-16/ORDER-RECV-S15878-full.png, "
+     "ORDER-RECV-S15878-Aeboro-miss.png (WO Receive) vs BULK-groups-full.png (Bulk "
+     "Receive); observations.json.",
+     "OPEN — CONFIRMED deviation. Low (minor UI ordering per PO decision). SF-RCV-05 + "
+     "SF-RCV-07 now marked Deviation. Bulk Receive surface is correct — no change there."),
 ]
 
 # ---------------------------------------------------------------------------
@@ -210,7 +253,7 @@ for col, w in zip("BCDEF", [40, 60, 48, 58, 12]):
 ws["A1"] = "Simple Mode - Bug Drafts (plain-English)"
 ws["A1"].font = TITLE_FONT
 ws.merge_cells("A1:F1")
-intro = ("Four issues found while testing Simple Mode, written in plain English. "
+intro = ("Five issues found while testing Simple Mode, written in plain English. "
          "Each row explains what happens now, what should happen instead, and simple "
          "steps to see it. (These are defects for the dev team - not questions for "
          "the product owner.)")
@@ -284,14 +327,15 @@ for bno, codes, cases, refs, status in internal_map:
 note_row = r + 1
 wi.cell(row=note_row, column=1, value=(
     "Notes: Source of truth = jira-bug-drafts.md (4 active tickets TICKET 2-5, "
-    "post-Milos-Round-2, updated 2026-07-10). TestRail IDs sourced from "
+    "post-Milos-Round-2, updated 2026-07-10) PLUS bug 5, a Round-3 deviation "
+    "(Milos 2026-07-16 decision; live-observed 2026-07-16). TestRail IDs sourced from "
     "testrail-id-map.csv (standing rule 8). These are DEFECTS for the dev team (Jira "
-    "TICKET 2-5 under epic SV-7301, Product Area Work Orders) - NOT filed yet (no "
-    "Atlassian MCP here; file from the chat app). Kept OUT of any PO-facing "
-    "deliverable (standing rule 7). DROPPED as expected: BUG-5/TICKET 1 (reviewer != "
-    "completer descoped v1, Milos 2026-07-10). CLOSED / not filed: BUG-3 (review-note "
-    "descoped, Milos R2 Q1), BUG-9/GAP-A (vendorless category-req/sell-optional "
-    "intended, Milos R2 Q4), BUG-1/2/4/10.")
+    "TICKET 2-5 + the Round-3 deviation under epic SV-7301, Product Area Work Orders) - "
+    "NOT filed yet (no Atlassian MCP here; file from the chat app). Kept OUT of any "
+    "PO-facing deliverable (standing rule 7). DROPPED as expected: BUG-5/TICKET 1 "
+    "(reviewer != completer descoped v1, Milos 2026-07-10). CLOSED / not filed: BUG-3 "
+    "(review-note descoped, Milos R2 Q1), BUG-9/GAP-A (vendorless category-req/"
+    "sell-optional intended, Milos R2 Q4), BUG-1/2/4/10.")
     ).alignment = WRAP
 wi.merge_cells(start_row=note_row, start_column=1, end_row=note_row, end_column=6)
 wi.row_dimensions[note_row].height = 90
@@ -304,7 +348,7 @@ wb.save(XLSX_OUT)
 md = []
 md.append("# Simple Mode — Bug Drafts (plain-English)")
 md.append("")
-md.append("Four issues found while testing Simple Mode, written in plain English.")
+md.append("Five issues found while testing Simple Mode, written in plain English.")
 md.append("Each entry explains what happens now, what should happen instead, and")
 md.append("simple steps to see it. **These are defects for the dev team — not")
 md.append("questions for the product owner.**")
@@ -345,10 +389,12 @@ for bno, codes, cases, refs, status in internal_map:
     md.append(f"- **Current status:** {status}")
     md.append("")
 md.append("**Notes:** Source of truth = `jira-bug-drafts.md` (4 active tickets")
-md.append("TICKET 2–5, post-Milos-Round-2, updated 2026-07-10). TestRail IDs sourced")
-md.append("from `testrail-id-map.csv` (standing rule 8). These are DEFECTS for the dev")
-md.append("team (Jira TICKET 2–5 under epic SV-7301, Product Area Work Orders) — NOT")
-md.append("filed yet (no Atlassian MCP here; file from the chat app). Kept OUT of any")
+md.append("TICKET 2–5, post-Milos-Round-2, updated 2026-07-10) plus bug 5, a Round-3")
+md.append("deviation (Milos 2026-07-16 decision; live-observed 2026-07-16). TestRail IDs")
+md.append("sourced from `testrail-id-map.csv` (standing rule 8). These are DEFECTS for the")
+md.append("dev team (Jira TICKET 2–5 + the Round-3 deviation under epic SV-7301, Product")
+md.append("Area Work Orders) — NOT filed yet (no Atlassian MCP here; file from the chat")
+md.append("app). Kept OUT of any")
 md.append("PO-facing deliverable (standing rule 7). DROPPED as expected: BUG-5/TICKET 1")
 md.append("(reviewer != completer descoped v1, Milos 2026-07-10). CLOSED / not filed:")
 md.append("BUG-3 (review-note descoped, Milos R2 Q1), BUG-9/GAP-A (vendorless")
