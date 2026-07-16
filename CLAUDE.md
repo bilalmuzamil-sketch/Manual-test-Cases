@@ -347,6 +347,28 @@ process(es) to run before proceeding.
     EVERY testing request going forward, not just VIU or release checks. (Extends
     Rule 12's observed-not-inferred trust rule and Rule 10's live VIU verification
     step to cover ALL test/verify/check/confirm requests.)
+14. **NEVER mark anything NOT-VERIFIED for a missing DATA-STATE — seed it and
+    observe (all projects).** A test/verify/compare cell or case must NEVER be left
+    "NOT VERIFIED" (or Blocked) merely because the required data-state doesn't
+    currently exist in the environment. On the disposable test/staging/QA/prod
+    environments (all are test accounts — writes/deletes authorized per Standing
+    Rule 6), the required state is ALWAYS self-serviceable: SEED it and observe the
+    behavior LIVE with evidence. Reasons like "line already approved — needs a
+    pending-line WO", "no returnable part exists", "no cored picked line", "no
+    invoice in void state", "no PO/delivery", "role has no live holder" are NOT
+    acceptable blockers — UNBLOCK yourself by creating the state (seed a WO with an
+    unapproved line, pick a cored/returnable part, drive an invoice to void, create
+    a PO+delivery, CREATE a fresh staff member per role and clean-self-login, etc.),
+    then observe. The ONLY permissible non-plain-observed cell is a genuine EXTERNAL
+    dependency that cannot be provisioned even with full seeding + fresh-staff
+    creation (e.g. physical payment-terminal hardware / external payment-processor
+    registration) — and even then it must be a FULLY-CHARACTERIZED, evidence-backed
+    LABELED verdict (e.g. "org-device gate — org has no terminal device; not a
+    role/permission difference"), NEVER the bare text "NOT VERIFIED". This extends
+    Standing Rules 5 (self-service test data), 12 (observed not inferred), and 13
+    (live feature-by-feature testing): observed-not-inferred means you must first
+    CREATE the conditions needed to observe, not fall back to NOT-VERIFIED. Applies
+    to every deliverable and every project going forward.
 
 ## Project purpose (Custom Roles project)
 Manual test-case authoring + live staging (Verify-in-UI) verification + TestRail
