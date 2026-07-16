@@ -8,9 +8,12 @@
 ## 0. STATUS / WHAT'S LEFT TO DO — read first (Last updated 2026-07-16)
 
 **STATUS: CASES AUTHORED & REVIEWED — 86 cases / 15 sections (12 API cases in an
-API-titled section, Standing Rule 4); import deliverable ready
-(`GlobalSearch_TestRail-Import.csv` + `.xlsx`, 86 rows, VIU-word-free &
-feature-flag-free); coverage-matrix COMPLETE (zero in-scope gaps);
+API-titled section, Standing Rule 4); import deliverable ready in the CANONICAL
+location + format (`testrail-import/global-search-v2-testrail-import.csv` + `.xlsx`,
+86 rows, VIU-word-free & feature-flag-free; first 8 columns byte-identical to the
+fees-discounts / simple-flow imports, + 3 Rule-8 traceability columns); the old
+bespoke `GlobalSearch_TestRail-Import.csv`/`.xlsx` were SUPERSEDED and removed
+(2026-07-16); coverage-matrix COMPLETE (zero in-scope gaps);
 adversarial-review CLEAN.** The adversarial pass fixed **2 Rule-9 build-accurate
 wording defects** ("Aabridge" typo → "Abridge"; the fuzzy-indicator glyph "≈") and
 **added 2 completeness cases** — **GS-FUZ-11** (Part Sale P-number exact-only, no
@@ -41,7 +44,8 @@ its scope tab shows the empty state). Case count went 84 → 86.
 - **Out of scope (NOT authored):** AI search-all; header-component proposal (both
   Figma-labeled out of scope).
 - **Deliverables index** (see §3): `requirements.md`, `design-notes.md` (10/10 Figma),
-  `cases/` (86), `coverage-matrix.md`, `GlobalSearch_TestRail-Import.csv`/`.xlsx`,
+  `cases/` (86), `coverage-matrix.md`,
+  `testrail-import/global-search-v2-testrail-import.csv`/`.xlsx` (canonical location),
   `gen_import.py`, `testrail-id-map.csv`.
 
 ## 0.1 Status detail
@@ -125,9 +129,15 @@ placeholder but is OUT OF SCOPE for V1 per the Figma.
 - `cases/cases-D-permissions-api.json` (17) — GS-PERM (5) + GS-API (12, API section).
 - `coverage-matrix.md` — every in-scope spec req + Figma state → GS- case(s);
   out-of-scope items + ~20 VIU-confirm placeholders listed.
-- `gen_import.py` — builds the import (VIU-word-free + feature-flag-free; API cases
-  routed to an API-titled section; adds Internal ID + TestRail Case ID + Link cols).
-- `GlobalSearch_TestRail-Import.csv` / `.xlsx` — 86 rows, "pending push" C-ids.
+- `gen_import.py` — builds the import in the CANONICAL format (first 8 columns
+  byte-identical to fees-discounts / simple-flow: Title, Section, Type, Priority,
+  Preconditions, Steps, Expected Result, References; + 3 Rule-8 columns: Internal ID,
+  TestRail Case ID, TestRail Link). VIU-word-free + feature-flag-free; API cases
+  routed to an "API — <leaf>" section (em-dash, matching the other imports). Writes to
+  `testrail-import/global-search-v2-testrail-import.csv`/`.xlsx`.
+- `testrail-import/global-search-v2-testrail-import.csv` / `.xlsx` — 86 rows,
+  "pending push" C-ids. (The old bespoke `build/global-search/GlobalSearch_TestRail-Import.*`
+  was SUPERSEDED and removed 2026-07-16 in favor of this canonical file.)
 - `testrail-id-map.csv` — all 86 internal IDs, BLANK TestRail Case IDs (not pushed).
 - `PROJECT-STATE.md` — this file (canonical resume doc).
 

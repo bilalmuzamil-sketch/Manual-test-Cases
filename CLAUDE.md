@@ -248,9 +248,12 @@ process(es) to run before proceeding.
    whether the placeholder ships in V1). Deliverables: `cases/cases-A..D-*.json` (86),
    `coverage-matrix.md` (every in-scope spec req + Figma state → case IDs, out-of-scope
    items + ~20 VIU-confirm placeholders), `gen_import.py` +
-   `GlobalSearch_TestRail-Import.csv`/`.xlsx` (VIU-word-free + feature-flag-free; API
-   cases in an API-titled section per Rule 4; Internal ID + TestRail Case ID [pending]
-   + Link cols per Rule 8), `testrail-id-map.csv` (all 86 IDs, blank C-ids),
+   `testrail-import/global-search-v2-testrail-import.csv`/`.xlsx` (CANONICAL location +
+   format — first 8 columns byte-identical to the fees-discounts / simple-flow imports;
+   VIU-word-free + feature-flag-free; API cases in an "API — <leaf>" section per Rule 4;
+   + Internal ID + TestRail Case ID [pending] + Link cols per Rule 8; the old bespoke
+   `build/global-search/GlobalSearch_TestRail-Import.*` was superseded/removed 2026-07-16),
+   `testrail-id-map.csv` (all 86 IDs, blank C-ids),
    PROJECT-STATE.md. **No TestRail writes without explicit user permission.** Reuse
    shared infra (BUILD-ACCURATE-WORDING-VIU-PROCESS, SPEC-RELEVANCE-RECONCILIATION,
    TESTING-RUNBOOK, harness/TestRail patterns). Per Standing Rule 11, ASK which

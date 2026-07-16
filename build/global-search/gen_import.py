@@ -1,36 +1,57 @@
 #!/usr/bin/env python3
-"""Generate the Global Search TestRail import file (CSV + XLSX) from the authored
-per-case JSON in build/global-search/cases/.
+"""Generate the Global Search v2 TestRail import file (CSV + XLSX) from the
+authored per-case JSON in build/global-search/cases/.
 
-CONTENT RULES (per the user's standing rules for imports):
-  - VIU-word-free: internal `viu_status`, `notes`, `design_ref` are NOT emitted.
-  - Feature-flag-free: no feature-flag phrasing (Global Search has none in the
-    reader-facing case text; a sanity check confirms 0 occurrences).
-  - Standing Rule 4: any case with api_related=true is routed to a section whose
-    title includes 'API'.
-  - Standing Rule 8: the import carries the internal GS- id, a TestRail Case ID
-    column (blank / 'pending push' until pushed) and a TestRail Link column.
+CANONICAL FORMAT (matches testrail-import/fees-discounts-v1-testrail-import.csv
+and testrail-import/simple-flow-v1-testrail-import.csv exactly):
+  The first EIGHT columns are IDENTICAL in name and order to the other two
+  project imports:
+      Title, Section, Type, Priority, Preconditions, Steps, Expected Result,
+      References
+  The other two imports leave two trailing UNNAMED columns blank. Global Search
+  uses that trailing space for the Standing-Rule-8 traceability trio (the feature
+  is not yet pushed to TestRail, so the Case ID / Link are pending):
+      Internal ID, TestRail Case ID, TestRail Link
+  These three are the only Global-Search-specific columns; the canonical 8 match
+  the other imports 1:1.
 
-Outputs:
-  build/global-search/GlobalSearch_TestRail-Import.csv
-  build/global-search/GlobalSearch_TestRail-Import.xlsx
+CONTENT RULES enforced here (same as the other two generators):
+  1. VIU-word-free: internal `viu_status`, `notes`, `design_ref` are NOT emitted;
+     any "(see GS-...)" internal cross-refs are stripped.
+  2. Feature-flag-free: no feature-flag phrasing survives (Global Search has none
+     in the reader-facing case text; a sanity check confirms 0 occurrences).
+  3. Sections = leaf area names; API-related cases route to an "API — <leaf>"
+     section (STANDING RULE 4) using the same em-dash convention as the other
+     imports.
+  4. References = spec reference only (no internal GS- ids, no VIU text).
+  5/6. Preconditions/Steps/Expected kept as authored (numbered, line-broken),
+     cleaned per rule 1.
+
+Outputs (canonical location + naming, matching the other projects):
+  testrail-import/global-search-v2-testrail-import.csv
+  testrail-import/global-search-v2-testrail-import.xlsx
 """
-import csv, json, glob, os
+import csv, json, glob, os, re
 from collections import Counter
 
-HERE = os.path.dirname(os.path.abspath(__file__))
+HERE = os.path.dirname(os.path.abspath(__file__))          # build/global-search/
+BASE = os.path.dirname(HERE)                               # build/
+ROOT = os.path.dirname(BASE)                               # repo root
 CASES_DIR = os.path.join(HERE, "cases")
-OUT_CSV = os.path.join(HERE, "GlobalSearch_TestRail-Import.csv")
-OUT_XLSX = os.path.join(HERE, "GlobalSearch_TestRail-Import.xlsx")
 MAP_CSV = os.path.join(HERE, "testrail-id-map.csv")
+OUT_CSV = os.path.join(ROOT, "testrail-import", "global-search-v2-testrail-import.csv")
+OUT_XLSX = os.path.join(ROOT, "testrail-import", "global-search-v2-testrail-import.xlsx")
 
+# First 8 columns are byte-identical (name + order) to the fees-discounts and
+# simple-flow imports. The trailing 3 are the Standing-Rule-8 traceability trio
+# (the other imports leave two trailing columns blank instead).
 HEADER = [
-    "Section", "Title", "Type", "Priority",
-    "Preconditions", "Steps", "Expected Result",
-    "References", "Internal ID", "TestRail Case ID", "TestRail Link",
+    "Title", "Section", "Type", "Priority",
+    "Preconditions", "Steps", "Expected Result", "References",
+    "Internal ID", "TestRail Case ID", "TestRail Link",
 ]
 
-# Fixed section order for a tidy import (functional first, API last).
+# Deterministic, tidy section order (functional first, API last).
 SECTION_ORDER = [
     "Palette Open, Close and Keyboard",
     "Scope Tabs",
@@ -46,12 +67,22 @@ SECTION_ORDER = [
     "In-Page Work Orders List Search",
     "Error State",
     "Permissions and Role-Based Scoping",
-    "API - Global Search Endpoint",
+    "API — Global Search Endpoint",
 ]
 
 
+def clean(s):
+    """Strip internal authoring markers; keep functional content (mirrors the
+    other two project generators)."""
+    if not s:
+        return s
+    s = re.sub(r"\s*\(see (?:GS|SF|FD)-[A-Z0-9-]+\)", "", s)
+    s = re.sub(r"feature[ -]flags?", "Global Search feature", s, flags=re.I)
+    return s
+
+
 def joinlines(lst):
-    return "\n".join(x.rstrip() for x in (lst or []))
+    return "\n".join(clean(x.rstrip()) for x in (lst or []))
 
 
 def load_cases():
@@ -73,10 +104,12 @@ def load_map():
 
 
 def section_for(c):
-    """API cases MUST live under an API-titled section (Standing Rule 4)."""
+    """Leaf area name; API-related cases route to an 'API — <leaf>' section
+    (STANDING RULE 4), using the same em-dash convention as the other imports."""
     area = c["area"].strip()
-    if c.get("api_related") and "API" not in area:
-        return "API - " + area
+    if c.get("api_related"):
+        leaf = re.sub(r"^API\s*[—-]\s*", "", area).strip()
+        return "API — " + leaf
     return area
 
 
@@ -88,22 +121,27 @@ def main():
     cases.sort(key=lambda c: (order.get(section_for(c), 999), c["id"]))
 
     rows = []
+    titles = []
     api_sections = set()
+    api_moved = 0
     for c in cases:
+        title = clean(c["title"].strip())
+        titles.append(title)
         section = section_for(c)
         if c.get("api_related"):
             api_sections.add(section)
+            api_moved += 1
         cid = idmap.get(c["id"], "")
         link = ("https://shopview.testrail.io/index.php?/cases/view/" + cid) if cid else ""
         rows.append([
+            title,
             section,
-            c["title"].strip(),
             c.get("type", "Functional"),
             c["priority"].strip(),
             joinlines(c.get("preconditions")),
             joinlines(c.get("steps")),
             joinlines(c.get("expected")),
-            c.get("spec_ref", "").strip(),
+            clean((c.get("spec_ref") or "").strip()),
             c["id"],
             cid if cid else "pending push",
             link,
@@ -115,20 +153,22 @@ def main():
         w.writerows(rows)
     print("Wrote CSV:", OUT_CSV, "rows(data):", len(rows))
 
-    # Sanity checks
-    titles = [r[1] for r in rows]
+    # --- Sanity checks (must be zero / clean) ---
     dupes = [t for t, n in Counter(titles).items() if n > 1]
     print("Duplicate titles:", dupes if dupes else "NONE")
+    ids = [r[8] for r in rows]
+    dupids = [i for i, n in Counter(ids).items() if n > 1]
+    print("Duplicate internal ids:", dupids if dupids else "NONE")
     blob = "\n".join("\t".join(str(x) for x in r) for r in rows).lower()
     print("VIU occurrences:", blob.count("viu"))
     print("'feature flag' occurrences:", blob.count("feature flag"))
-    api_flagged = sum(1 for c in cases if c.get("api_related"))
-    print("API sections:", sorted(api_sections), "| API cases:", api_flagged)
-    non_api_in_api = [r[8] for r in rows if r[0].startswith("API") and "API" not in r[0]]
-    print("API section title check: all API cases under an 'API' section:",
-          "OK" if all("API" in r[0] for r in rows
-                      if r[8].startswith("GS-API")) else "FAIL")
+    print("'flag on' occurrences:", blob.count("flag on"))
+    print("'flag off' occurrences:", blob.count("flag off"))
+    print("API sections created:", sorted(api_sections), "| API cases:", api_moved)
+    empties = [r[8] for r in rows if not (r[4].strip() and r[5].strip() and r[6].strip())]
+    print("Rows missing Preconditions/Steps/Expected:", empties if empties else "NONE")
 
+    # --- xlsx review copy ---
     try:
         from openpyxl import Workbook
         from openpyxl.styles import Font, Alignment, PatternFill
@@ -152,8 +192,8 @@ def main():
         cell.fill = hdr_fill
         cell.alignment = Alignment(vertical="center", horizontal="left")
 
-    widths = {"Section": 34, "Title": 52, "Type": 12, "Priority": 10,
-              "Preconditions": 55, "Steps": 55, "Expected Result": 55,
+    widths = {"Title": 50, "Section": 40, "Type": 12, "Priority": 10,
+              "Preconditions": 60, "Steps": 60, "Expected Result": 60,
               "References": 34, "Internal ID": 14, "TestRail Case ID": 16,
               "TestRail Link": 40}
     for i, name in enumerate(HEADER, start=1):
