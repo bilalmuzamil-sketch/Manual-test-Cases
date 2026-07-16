@@ -6,9 +6,24 @@
 > role definitions, `fe_permissions`, atoms, or source. The prior deliverable
 > (`Prod-vs-Staging-Permission-Gaps_2026-07-14.xlsx`/`.md`) is **SUPERSEDED**.
 >
-> Workbook: `Prod-vs-Staging-LIVE-VERIFIED-2026-07-14.xlsx` (see the **"Pass-9 LIVE (2026-07-16)"** tab for the latest).
+> Workbook: `Prod-vs-Staging-LIVE-VERIFIED-2026-07-14.xlsx` (see the **"Pass-10 LIVE (2026-07-16)"** tab for the latest).
 > Evidence: `live-ui-2026-07-15/staging/<role>/` and `live-ui-2026-07-15/production/<role>/`
 > (full-page WO screenshots + `observation.json` per role).
+>
+> **➡️ 2026-07-16 PASS-10 — Pass-9 residuals CLOSED; read `live-ui-PASS10-2026-07-16.md`.**
+> (1) **Prod finance for Service Manager / Parts Manager / Parts Technician = OBSERVED-LIVE**:
+> the Finance route deterministically bounces these roles to `/no-location` (SA-Limited-View
+> renders via `/api/invoices/preview` 200) while `invoice-view` API = 200 (data readable) —
+> payment controls NOT usable in prod UI → **STAGING-MORE** for all 3. The estimate-400 was a
+> universal "missing parameter" data error (hits SA-LV too), NOT a permission deny.
+> (2) **Staging Core OK/Not-OK + Part Return** for the 4 holderless roles = **all SHOWN** on the
+> existing cored WO S9-25051 (Core OK/Not-OK dual = MATCH x4). (3) **See AP/AR** observed live for
+> **all 11 staging roles** (SHOWN: Admin/Svc Mgr/Parts Mgr/Sales Rep/Office; HIDDEN: Sr SA/Svc
+> Advisor/Foreman/Tech/Parts Tech/Time Clock); prod = Office User SHOWN (MATCH), others route-bounce
+> (NV). **Build findings:** Bulk Receive absent (Simple-Flow feature), Fix Part# no distinct control,
+> Assign Vendor only in New-PO/Order-Parts flow. **Residual NV (precise): prod Part Return per role
+> (no returnable-state part on prod) + prod See-AP/AR for non-Office roles (reports route bounces;
+> FE-gated so API cannot classify).**
 >
 > **➡️ 2026-07-16 PASS-9 ADDENDUM — read `live-ui-PASS9-2026-07-16.md`.** Self-service
 > unblocks: prod finance via role-swap **self-login** (SA-Limited-View New Payment/Reverse/
