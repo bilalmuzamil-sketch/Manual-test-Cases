@@ -177,3 +177,46 @@ Cross-check with a **direct API probe** to distinguish **data-readable** from
 4. Capture evidence per role under `live-ui-<date>/{production,staging}/<role>/`.
 5. Classify each cell (§4 for API bodies; §7 for MATCH/STAGING-LESS/STAGING-MORE).
 6. Regenerate the workbook + narrative; supersede any inference-tainted prior output.
+
+---
+
+## 10. SPEC-CONFORMANCE ANNOTATION (per-spec / per-standing-rules columns)
+
+When the comparison workbook (or any deliverable) carries a **"Per Spec?"** /
+conformance column judging each cell against the spec, the annotations are
+release-critical calls in their own right and get their own method (see Standing
+Rule 15 in CLAUDE.md):
+
+1. **Canonical-doc-only sourcing.** NEVER derive the calls from a prose
+   summary/extract of the spec (a requirements.md digest, a prior pass's notes, a
+   pasted excerpt). Work from the CANONICAL spec document itself — its Permission
+   Matrix / requirement tables, prose sections, change-log, key decisions, and open
+   questions. A prose extract can silently carry a stale column.
+2. **Verbatim truth table, committed.** Before annotating, build a VERBATIM
+   role×gate (or requirement×behavior) TRUTH TABLE straight from the canonical
+   spec's Permission Matrix. Every value carries a citation to its exact table
+   row/section. Apply EVERY change-log entry (latest-wins) so no pre-update column
+   survives. Commit it alongside the deliverable using the
+   `spec-conformance/spec-truth-table.md` pattern so the derivation is auditable.
+3. **Independent re-derivation.** Derive every annotation FROM the truth table —
+   never from memory, a previous pass, or the earlier workbook's own cells.
+4. **Adversarial diff before delivery.** Independently recompute the calls (full
+   population for release-critical work; a sample otherwise) and DIFF against the
+   produced annotations. Ship only after the diff is empty.
+5. **MATCH rows are still judged.** A prod==staging MATCH cell must STILL be
+   checked against the spec — identical behavior in both environments can still be
+   a spec deviation. Never auto-mark MATCH rows conformant.
+6. **Spec-silent / spec-inconsistent handling.** If the spec genuinely says
+   nothing, write "spec silent" — but only after reading the FULL spec (matrix +
+   prose + change-log + key decisions + open questions; e.g. a blanket "Decline
+   line = spec-silent" call missed §1b "authorize lines"). If the spec contradicts
+   itself (e.g. matrix vs migration-table), write "spec inconsistent (flagged)"
+   with BOTH citations — never silently pick a side.
+7. **Incident + corrected-artifact pattern.** 2026-07-16: a "Per Spec (v2)?"
+   annotation pass over this comparison's workbook produced **64 wrong cells out
+   of 297** because it derived from a prose extract carrying a stale pre-7/14
+   Office User column (change-log not applied) and blanket-marked "Decline line"
+   spec-silent. The fix that worked: build the verbatim cited truth table,
+   re-derive every annotation from it, adversarially diff before delivery — and
+   correct at ALL THREE layers (the extract, the generator, and the workbook), so
+   no stale source can regenerate the error.

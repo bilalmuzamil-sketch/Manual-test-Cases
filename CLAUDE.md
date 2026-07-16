@@ -369,6 +369,27 @@ process(es) to run before proceeding.
     (live feature-by-feature testing): observed-not-inferred means you must first
     CREATE the conditions needed to observe, not fall back to NOT-VERIFIED. Applies
     to every deliverable and every project going forward.
+15. **Spec-conformance calls derive from a VERBATIM TRUTH TABLE + adversarial
+    self-audit before delivery (all projects).** Whenever annotating/judging
+    ANYTHING against a spec (per-spec columns, case-vs-spec reconciliation,
+    deviation calls): (1) NEVER derive from a prose summary/extract of the spec —
+    build a VERBATIM role×gate / requirement truth table from the CANONICAL spec
+    document itself, every value cited to its exact table row/section, with ALL
+    change-log entries applied (latest-wins) so no stale column survives; (2)
+    re-derive every judgement from that truth table, not from memory or a previous
+    pass; (3) before delivering, run an ADVERSARIAL SELF-AUDIT diff — independently
+    recompute a sample (or all, for release-critical work) of the calls and diff
+    against what was written; ship only after the diff is empty; (4) MATCH/no-delta
+    rows must STILL be checked against the spec — identical behavior in both envs
+    can still deviate from spec; (5) where the spec is silent or self-contradictory,
+    say "spec silent"/"spec inconsistent (flagged)" explicitly with the conflicting
+    citations — never pick a side silently, and never declare silence without
+    reading the FULL spec (matrix + prose + change-log + key decisions + open
+    questions). Rationale: on 2026-07-16 a per-spec annotation pass produced 64/297
+    wrong cells because it derived from a stale prose extract instead of the
+    canonical spec; the truth-table + adversarial-diff method caught and fixed
+    them. Release-critical deliverables get the full-population re-audit, not a
+    sample.
 
 ## Project purpose (Custom Roles project)
 Manual test-case authoring + live staging (Verify-in-UI) verification + TestRail
