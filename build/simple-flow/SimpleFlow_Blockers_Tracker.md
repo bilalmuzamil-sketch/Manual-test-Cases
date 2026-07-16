@@ -11,9 +11,9 @@
 |---|---:|---|
 | READY (VIU-Verified) | 130 | — (ready to upload) |
 | BLOCKED — DEV NOT BUILT | 0 | Dev team |
-| BLOCKED — VIU PENDING (QA) | 27 | QA |
-| BLOCKED — MILOS ANSWER | 13 | Milos (PO) |
-| BLOCKED — BUG/RULING | 0 | Dev / PO ruling |
+| BLOCKED — VIU PENDING (QA) | 28 | QA |
+| BLOCKED — MILOS ANSWER | 10 | Milos (PO) |
+| BLOCKED — BUG/RULING | 2 | Dev / PO ruling |
 | **TOTAL** | **170** | |
 
 ### DEV NOT BUILT — by story
@@ -26,16 +26,16 @@
 | VIU sub-bucket | Count | Meaning |
 |---|---:|---|
 | reachable-now | 3 | admin+tech + normal data; just needs another VIU pass (no new inputs). |
-| needs-data | 24 | needs a data state not seedable via the app (see per-case detail). |
+| needs-data | 25 | needs a data state not seedable via the app (see per-case detail). |
 | needs-account | 0 | needs a role account we don't have (see per-case detail). |
-| **TOTAL VIU PENDING (QA)** | **27** | |
+| **TOTAL VIU PENDING (QA)** | **28** | |
 
 ## WHAT TO SEND ME NEXT (to unblock each batch)
 
-- **Milos's answers to the 11 Open Questions** → unblocks 13 cases (all the MILOS-ANSWER rows). Send the filled-in OpenQuestions-for-Milos sheet.
-- **Fresh QA cookies for sv7301 (admin + tech) + seeded test data** → unblocks the bulk of the 27 VIU-PENDING (QA) cases (cores, receiving, vendor, validation round-trips).
+- **Milos's answers to the 11 Open Questions** → unblocks 10 cases (all the MILOS-ANSWER rows). Send the filled-in OpenQuestions-for-Milos sheet.
+- **Fresh QA cookies for sv7301 (admin + tech) + seeded test data** → unblocks the bulk of the 28 VIU-PENDING (QA) cases (cores, receiving, vendor, validation round-trips).
 - **A 2nd/3rd role account (Office, Service Manager, Foreman) — some WITHOUT 'See Financial Data'** → unblocks SF-PERM-09 and SF-PERM-10 (per-role completion + vendorless-add gate).
-- **A dev/PO ruling on FE-only BE enforcement + the missing reviewer!=completer rule (resolve SV-8183 'BE enforces' vs SV-7864 atom-collapse)** → finalizes the 0 BUG/RULING cases.
+- **A dev/PO ruling on FE-only BE enforcement + the missing reviewer!=completer rule (resolve SV-8183 'BE enforces' vs SV-7864 atom-collapse)** → finalizes the 2 BUG/RULING cases.
 
 ## Full per-case tracker
 
@@ -140,9 +140,9 @@
 | SF-RCV-02 | Receive Button on WO POs (Story 11) | Verify the Receive action opens the shared Accept Delivery surface | VIU-Verified | READY | READY (VIU-Verified) | — | None — VIU-verified; uploadable now. | S11-R2 | — |  | C29370 | [C29370](https://shopview.testrail.io/index.php?/cases/view/29370) |
 | SF-RCV-03 | Receive Button on WO POs (Story 11) | Verify the Receive action is hidden for office/readonly users and for fulfilled POs | VIU-Verified | READY | READY (VIU-Verified) | — | None — VIU-verified; uploadable now. | S11-R3 | — |  | C29371 | [C29371](https://shopview.testrail.io/index.php?/cases/view/29371) |
 | SF-RCV-04 | Accept Delivery (Story 12) | Verify the existing Accept Delivery screen groups by vendor with per-group invoice #, date, tax, note and Receive | VIU-Verified | READY | READY (VIU-Verified) | — | None — VIU-verified; uploadable now. | S12 (existing multi-vendor) | — |  | C29372 | [C29372](https://shopview.testrail.io/index.php?/cases/view/29372) |
-| SF-RCV-05 | Accept Delivery (Story 12) | Verify new vendorless/no-PN WO parts and WO-originated POs appear and are receivable on Accept Delivery, with the vendor-missing group at the top | VIU-observed-awaiting-Milos | BLOCKED | BLOCKED — MILOS ANSWER | Milos (Product Owner) | Milos answers Open Question Q11 — Vendor-missing group ordering on Accept Delivery — spec contradicts itself. | Q11 \| S12-R1 | — |  | C29373 | [C29373](https://shopview.testrail.io/index.php?/cases/view/29373) |
+| SF-RCV-05 | Accept Delivery (Story 12) | Verify vendorless / no-part-number Work Order parts appear and can be received on the Receive (Accept Delivery) screen, and the Vendor Missing group sits per the agreed rule (top on Bulk Receive, bottom on the Receive screen) | Deviation | BLOCKED | BLOCKED — BUG/RULING | Dev / PO ruling | Dev fix: on the Receive (Accept Delivery) screen the Vendor Missing group must move to the BOTTOM (Milos Round-3 2026-07-16). Live VIU 2026-07-16: it currently leads at the TOP (Bulk Receive top = correct). | S12-R1 (+ Milos Round-3 2026-07-16) | — |  | C29373 | [C29373](https://shopview.testrail.io/index.php?/cases/view/29373) |
 | SF-RCV-06 | Accept Delivery (Story 12) | Verify Accept Delivery receive gates: vendor set, part number entered, cost / sell price entered, vendor invoice # captured | VIU-Verified | READY | READY (VIU-Verified) | — | None — VIU-verified; uploadable now. | S12-R2 / S13-R6 / S13-R7 | — |  | C29374 | [C29374](https://shopview.testrail.io/index.php?/cases/view/29374) |
-| SF-RCV-07 | Accept Delivery (Story 12) | Verify Accept Delivery shows a '+N' vendor indicator and leads with the vendor-missing group | VIU-observed-awaiting-Milos | BLOCKED | BLOCKED — MILOS ANSWER | Milos (Product Owner) | Milos answers Open Question Q11 — Vendor-missing group ordering (S12-R1 bottom vs S12-R3 top). | Q11 \| S12-R3 | — |  | C29375 | [C29375](https://shopview.testrail.io/index.php?/cases/view/29375) |
+| SF-RCV-07 | Accept Delivery (Story 12) | Verify the multi-vendor '+N' indicator and the Vendor Missing group position on the receiving screens | Deviation | BLOCKED | BLOCKED — BUG/RULING | Dev / PO ruling | Dev fix: same Vendor-Missing-group placement deviation as SF-RCV-05 — the Receive (Accept Delivery) screen shows the group at the TOP, should be BOTTOM (Milos Round-3 2026-07-16). '+N' indicator verified on the PO list. | S12-R3 (+ Milos Round-3 2026-07-16) | — |  | C29375 | [C29375](https://shopview.testrail.io/index.php?/cases/view/29375) |
 | SF-RCV-08 | Accept Delivery (Story 12) | Verify each vendor group produces its own vendor bill and separate AP entry in QuickBooks | Blocked-Env | BLOCKED | BLOCKED — VIU PENDING (QA) | QA (needs cookies+seed data) | QA VIU: seed deliverable POs, drive the Receive / Accept-Delivery flow. | S12-R4 | needs-data | QuickBooks inspection (per-vendor vendor bill + separate AP entry) — and WO-PO receive additionally blocked by BUG-11 (500). | C29376 | [C29376](https://shopview.testrail.io/index.php?/cases/view/29376) |
 | SF-RCV-09 | Accept Delivery (Story 12) | Verify a 'received more than ordered' warning appears when received quantity exceeds ordered quantity | VIU-Verified | READY | READY (VIU-Verified) | — | None — VIU-verified; uploadable now. | S12 (existing) received-more-than-ordered | — |  | C29377 | [C29377](https://shopview.testrail.io/index.php?/cases/view/29377) |
 | SF-RCV-10 | Accept Delivery (Story 12) | Verify cost is editable on the Accept Delivery screen when $0 or missing (parity with Bulk Receive) | VIU-Verified | READY | READY (VIU-Verified) | — | None — VIU-verified; uploadable now. | S12-R5 | — |  | C29440 | [C29440](https://shopview.testrail.io/index.php?/cases/view/29440) |
@@ -169,7 +169,7 @@
 | SF-REV-12 | Review ON (Story 16) | Verify a 'Ready for Review' list filter/column surfaces the reviewer queue | VIU-Verified | READY | READY (VIU-Verified) | — | None — VIU-verified; uploadable now. | R9 | — |  | C29397 | [C29397](https://shopview.testrail.io/index.php?/cases/view/29397) |
 | SF-REV-13 | Review ON (Story 16) | Verify all lines must be approved before Send To Review (the 'Send To Review' action is disabled until every line is approved) | VIU-Verified | READY | READY (VIU-Verified) | — | None — VIU-verified; uploadable now. | R11 | — |  | C29398 | [C29398](https://shopview.testrail.io/index.php?/cases/view/29398) |
 | SF-REV-14 | Review ON (Story 16) | Verify cores are resolved per rules before sign-off and invoicing is blocked until both Reviewed and all cores resolved | Blocked-Env | BLOCKED | BLOCKED — VIU PENDING (QA) | QA (needs cookies+seed data) | QA VIU: enable Require Review and drive the review/sign-off round-trip. | R Core parts / invoicing block | needs-data | cores + receiving in the review flow — blocked by BUG-10 (no wizard resolve step) + BUG-11 (WO-PO receive 500) + special-order cores not seedable. | C29399 | [C29399](https://shopview.testrail.io/index.php?/cases/view/29399) |
-| SF-REV-15 | Review ON (Story 16) | Verify the Require Review default for new vs existing orgs matches the agreed cohort rule | VIU-observed-awaiting-Milos | BLOCKED | BLOCKED — MILOS ANSWER | Milos (Product Owner) | Milos answers Open Question Q1 — Require-review default cohort rule + new-org preset. | Q1 \| R Open (default) | — |  | C29400 | [C29400](https://shopview.testrail.io/index.php?/cases/view/29400) |
+| SF-REV-15 | Review ON (Story 16) | Verify Require Review Before Completion starts ON for a brand-new organization, and existing organizations keep today's behavior | Blocked-Env | BLOCKED | BLOCKED — VIU PENDING (QA) | QA (needs cookies+seed data) | Env/provisioning: a freshly-provisioned organization (from backend/admin onboarding) to observe the new-org Require Review Before Completion ON default (Milos Round-3 2026-07-16). Not self-serviceable in shared QA — org-creation endpoints return 405/404; shared org's toggle reflects prior test toggling. | R Open (default) - Milos Round-3 2026-07-16: ON for new orgs | needs-data | Milos Round-3 2026-07-16: Require Review Before Completion starts ON for new orgs. Characterized env blocker (Rule 14 self-serve attempted): a brand-new org cannot be provisioned in shared QA (POST /api/organizations 405, /organizations/create 404, /register 405); shared org's requireReview reflects prior toggling. Needs a freshly-provisioned org from backend/admin onboarding to observe the ON default. | C29400 | [C29400](https://shopview.testrail.io/index.php?/cases/view/29400) |
 | SF-UX-01 | UX Refinements (Story 15) | Verify the work order primary button reads 'Create Work Order' | VIU-Verified | READY | READY (VIU-Verified) | — | None — VIU-verified; uploadable now. | S15-R1 | — |  | C29401 | [C29401](https://shopview.testrail.io/index.php?/cases/view/29401) |
 | SF-UX-02 | UX Refinements (Story 15) | Verify required fields at completion appear in a centralized center modal and the tech story is NOT in that modal | VIU-Verified | READY | READY (VIU-Verified) | — | None — VIU-verified; uploadable now. | S15-R2 | — |  | C29402 | [C29402](https://shopview.testrail.io/index.php?/cases/view/29402) |
 | SF-UX-03 | UX Refinements (Story 15) | Verify the success screen shows WO number and total with Done and Go to Invoice, and the invoice number is on the Finance step | VIU-Verified | READY | READY (VIU-Verified) | — | None — VIU-verified; uploadable now. | S15-R3 | — |  | C29403 | [C29403](https://shopview.testrail.io/index.php?/cases/view/29403) |

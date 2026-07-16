@@ -79,9 +79,9 @@ ID,sf_id,title,section
 29370,SF-RCV-02,Verify the Receive action opens the shared Accept Delivery surface,Receive Button on WO POs (Story 11)
 29371,SF-RCV-03,Verify the Receive action is hidden for office/readonly users and for fulfilled POs,Receive Button on WO POs (Story 11)
 29372,SF-RCV-04,"Verify the existing Accept Delivery screen groups by vendor with per-group invoice #, date, tax, note and Receive",Accept Delivery (Story 12)
-29373,SF-RCV-05,"Verify new vendorless/no-PN WO parts and WO-originated POs appear and are receivable on Accept Delivery, with the vendor-missing group at the top",Accept Delivery (Story 12)
+29373,SF-RCV-05,"Verify vendorless / no-part-number Work Order parts appear and can be received on the Receive (Accept Delivery) screen, and the Vendor Missing group sits per the agreed rule (top on Bulk Receive, bottom on the Receive screen)",Accept Delivery (Story 12)
 29374,SF-RCV-06,"Verify Accept Delivery receive gates: vendor set, part number entered, cost / sell price entered, vendor invoice # captured",Accept Delivery (Story 12)
-29375,SF-RCV-07,Verify Accept Delivery shows a '+N' vendor indicator and leads with the vendor-missing group,Accept Delivery (Story 12)
+29375,SF-RCV-07,Verify the multi-vendor '+N' indicator and the Vendor Missing group position on the receiving screens,Accept Delivery (Story 12)
 29376,SF-RCV-08,Verify each vendor group produces its own vendor bill and separate AP entry in QuickBooks,Accept Delivery (Story 12)
 29377,SF-RCV-09,Verify a 'received more than ordered' warning appears when received quantity exceeds ordered quantity,Accept Delivery (Story 12)
 29386,SF-REV-01,Verify the Require Review setting drives the review flow when turned on,Review ON (Story 16)
@@ -98,7 +98,7 @@ ID,sf_id,title,section
 29397,SF-REV-12,Verify a 'Ready for Review' list filter/column surfaces the reviewer queue,Review ON (Story 16)
 29398,SF-REV-13,Verify all lines must be approved before Send To Review (the 'Send To Review' action is disabled until every line is approved),Review ON (Story 16)
 29399,SF-REV-14,Verify cores are resolved per rules before sign-off and invoicing is blocked until both Reviewed and all cores resolved,Review ON (Story 16)
-29400,SF-REV-15,Verify the Require Review default for new vs existing orgs matches the agreed cohort rule,Review ON (Story 16)
+29400,SF-REV-15,"Verify Require Review Before Completion starts ON for a brand-new organization, and existing organizations keep today's behavior",Review ON (Story 16)
 29275,SF-SET-01,Verify the Work Orders settings tab lists all Work Order setting toggles in order,Work Order Settings
 29276,SF-SET-02,Verify there is no operating-mode selector and no VIN-required setting on the Work Order settings page,Work Order Settings
 29277,SF-SET-03,Verify a 'Create Purchase Orders' toggle exists on the Work Orders tab and controls the Vendor Invoice setting,Work Order Settings

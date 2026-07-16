@@ -384,28 +384,28 @@
  {
   "id": "SF-REV-15",
   "area": "Review ON (Story 16)",
-  "story_ref": "R Open (default)",
-  "title": "Verify the Require Review default for new vs existing orgs matches the agreed cohort rule",
+  "story_ref": "R Open (default) - Milos Round-3 2026-07-16: ON for new orgs",
+  "title": "Verify Require Review Before Completion starts ON for a brand-new organization, and existing organizations keep today's behavior",
   "priority": "Low",
   "type": "Functional",
   "permissions_required": "Admin / owner (settings).",
   "preconditions": [
-   "1. A newly-created org and an existing org are available.",
+   "1. A brand-new organization / account (no settings changed yet) and an existing organization are available.",
    "2. Signed in as Admin for each."
   ],
   "steps": [
-   "1. Check the Require Review default on a brand-new org.",
-   "2. Check that existing orgs keep today's behavior (backfilled)."
+   "1. On a brand-new organization, open Settings > Work Orders and check the Require Review Before Completion setting.",
+   "2. On an existing organization, confirm its completion behavior is unchanged (the setting is backfilled)."
   ],
   "expected": [
-   "1. On a brand-new org the Require Review Before Completion setting shows its default state.",
-   "2. Existing orgs keep their current completion behavior (the setting is backfilled so their behavior does not change)."
+   "1. On a brand-new organization / account, Require Review Before Completion defaults to ON (Milos decision, 2026-07-16: it stays ON for every new organization).",
+   "2. Existing organizations keep their current completion behavior (the setting is backfilled so their behavior does not change)."
   ],
   "design_ref": "requirements §8 open questions / R Open",
-  "viu_status": "VIU-observed-awaiting-Milos",
-  "notes": "VIU-observed 2026-07-14 (awaiting Milos Q1). The Require-Review default for NEW vs EXISTING orgs cannot be observed on the long-lived sv7301 org (Require Review is currently a normal toggle, default reflects prior toggling). The cohort default rule is a Milos product decision (Q1). No pass/fail asserted.",
+  "viu_status": "Blocked-Env",
+  "notes": "Reworded per Milos Round-3 (2026-07-16): the new-org default for Require Review Before Completion is ON (option A, 'Stays ON'; no cohort split). Build-accurate label confirmed live: 'Require Review Before Completion' - 'Work orders must be reviewed and signed off before they can be completed' (Settings > Work Orders; API key requireReview). CHARACTERIZED BLOCKER (Standing Rule 14 self-serve attempted): the new-org ON default cannot be observed on the long-lived shared sv7301 org (its requireReview currently reads false from prior test toggling), and a brand-new organization cannot be provisioned in this shared QA env - org-creation is not exposed to us (POST /api/organizations -> 405, POST /api/organizations/create -> 404, GET /api/register -> 405; GET /api/organizations lists only the existing org). Needs a freshly-provisioned org from backend/admin onboarding to observe the ON default. Evidence SETTINGS-workorders.png + observations.json.",
   "api_related": false,
-  "fresh_run": "2026-07-14"
+  "fresh_run": "2026-07-16"
  },
  {
   "id": "SF-UX-01",

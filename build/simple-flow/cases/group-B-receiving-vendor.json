@@ -1179,30 +1179,31 @@
  {
   "id": "SF-RCV-05",
   "area": "Accept Delivery (Story 12)",
-  "story_ref": "S12-R1",
-  "title": "Verify new vendorless/no-PN WO parts and WO-originated POs appear and are receivable on Accept Delivery, with the vendor-missing group at the top",
+  "story_ref": "S12-R1 (+ Milos Round-3 2026-07-16)",
+  "title": "Verify vendorless / no-part-number Work Order parts appear and can be received on the Receive (Accept Delivery) screen, and the Vendor Missing group sits per the agreed rule (top on Bulk Receive, bottom on the Receive screen)",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "receive access.",
   "preconditions": [
-   "1. Signed in as Admin.",
-   "2. A WO has a vendorless/no-PN part and a WO-originated PO reached via the Receive button."
+   "1. Signed in as Admin (or a role with receiving access).",
+   "2. A Work Order has a part with no vendor and no part number, plus a WO-created Purchase Order that is opened using the Receive button on the Work Order."
   ],
   "steps": [
-   "1. Open Accept Delivery for the WO.",
-   "2. Confirm the vendorless/no-PN parts appear.",
-   "3. Confirm the vendor-missing group is at the top (leading)."
+   "1. On the Work Order, click the Receive button to open the Receive (Accept Delivery) screen (headed Purchase Order Details).",
+   "2. Confirm the vendorless / no-part-number parts are listed and can be received here.",
+   "3. Note where the Vendor Missing group sits on this Receive (Accept Delivery) screen.",
+   "4. Open the Bulk Receive page (headed Receive Vendor Parts) for the same Purchase Orders and note where the Vendor Missing group sits there."
   ],
   "expected": [
-   "1. New vendorless/no-PN WO parts appear and are receivable here.",
-   "2. WO-originated POs reached via the Receive button appear.",
-   "3. Vendor-missing parts sit in their own group that LEADS (appears at the top), because they need action (assign a vendor) before receiving."
+   "1. The vendorless / no-part-number Work Order parts appear in the Vendor Missing group and can be received once a vendor is chosen (Select Vendor) and a Part Number is entered.",
+   "2. WO-created Purchase Orders opened with the Receive button appear on the Receive (Accept Delivery) screen and are receivable.",
+   "3. The Vendor Missing group is positioned per the agreed rule (Milos, 2026-07-16): on the Bulk Receive page (Receive Vendor Parts) it leads at the TOP; on the Receive (Accept Delivery) screen it sits at the BOTTOM."
   ],
   "design_ref": "Receive Vendor Parts - v2.html; requirements S12-R1",
-  "viu_status": "VIU-observed-awaiting-Milos",
-  "notes": "VIU-observed 2026-07-14 (awaiting Milos Q11). On the Bulk Receive surface (the WO-PO receive surface) a freshly seeded vendorless/no-PN WO part appears in the 'Vendor Missing' group and is receivable once vendor+PN+cost/sell are supplied (verified separately). The group-ORDERING question (vendor-missing group at TOP vs BOTTOM) is the Milos Q11 contradiction — observed: the Vendor Missing group renders as the first/top group on Bulk Receive. No pass/fail asserted on the ordering policy.",
+  "viu_status": "Deviation",
+  "notes": "Reworded per Milos Round-3 split ruling (2026-07-16): Bulk Receive = top, Receive/Accept-Delivery = bottom. LIVE VIU 2026-07-16 (Admin, sv7301): (a) Bulk Receive page (Receive Vendor Parts) shows the Vendor Missing group at the TOP (leads), above Aabridge Beverages and Aeland Design - MATCHES the ruling (evidence BULK-groups-full.png). (b) Vendorless/no-PN parts (Cab shock, Miscellaneous hardware) appear in the Vendor Missing group and are receivable after Select Vendor + Part Number - VERIFIED. (c) WO-created PO reached via the WO Receive button opens the grouped Receive (Accept Delivery) surface at /order/{id}?receive=1 - VERIFIED. DEVIATION: on that Receive (Accept Delivery) screen the Vendor Missing group is currently at the TOP (leads), NOT the bottom as ruled - observed on two orders (S-15884 above Aeland Design; S-15878 above Aeboro Motors); evidence ORDER-RECV-S15884-allgroups-full.png, ORDER-RECV-S15878-full.png. Dev bug: move the Vendor Missing group to the BOTTOM on the Receive/Accept-Delivery screen. Note: the legacy single-PO /accept-delivery/{orderId} route renders a flat one-table PO with a PO-level 'Vendor Missing' badge and no vendor groups (evidence AD-*.png).",
   "api_related": false,
-  "fresh_run": "2026-07-14"
+  "fresh_run": "2026-07-16"
  },
  {
   "id": "SF-RCV-06",
@@ -1237,29 +1238,29 @@
  {
   "id": "SF-RCV-07",
   "area": "Accept Delivery (Story 12)",
-  "story_ref": "S12-R3",
-  "title": "Verify Accept Delivery shows a '+N' vendor indicator and leads with the vendor-missing group",
+  "story_ref": "S12-R3 (+ Milos Round-3 2026-07-16)",
+  "title": "Verify the multi-vendor '+N' indicator and the Vendor Missing group position on the receiving screens",
   "priority": "Low",
   "type": "Functional",
   "permissions_required": "receive access.",
   "preconditions": [
-   "1. Signed in as Admin.",
-   "2. A multi-vendor delivery with a vendor-missing group exists."
+   "1. Signed in as Admin (or a role with receiving access).",
+   "2. A multi-vendor Purchase Order that also includes parts with no vendor (a Vendor Missing group) exists."
   ],
   "steps": [
-   "1. Open Accept Delivery.",
-   "2. Confirm the '+N' vendor indicator.",
-   "3. Confirm the ordering of the vendor-missing group."
+   "1. Open the Purchase Orders list (Parts > Purchase Orders) and look at the vendor indicator on a multi-vendor Purchase Order.",
+   "2. Open the Receive (Accept Delivery) screen from the Work Order Receive button and note where the Vendor Missing group sits.",
+   "3. Open the Bulk Receive page (Receive Vendor Parts) and note where the Vendor Missing group sits."
   ],
   "expected": [
-   "1. A '+N' indicator summarizes multiple vendors.",
-   "2. The vendor-missing group leads (appears first)."
+   "1. A multi-vendor Purchase Order shows a '+N' indicator (for example '+1' or '+4') on the Purchase Orders list summarizing the extra vendors. (On the Receive / Accept Delivery screen the vendor names are listed in full instead of a '+N' badge.)",
+   "2. The Vendor Missing group is positioned per the agreed rule (Milos, 2026-07-16): on the Bulk Receive page (Receive Vendor Parts) it leads at the TOP; on the Receive (Accept Delivery) screen it sits at the BOTTOM."
   ],
   "design_ref": "requirements S12-R3",
-  "viu_status": "VIU-observed-awaiting-Milos",
-  "notes": "VIU-observed 2026-07-14 (awaiting Milos Q11). Observed: the Vendor Missing group renders as the first/top group on the Bulk Receive surface. Whether it should lead (S12-R3 top) or trail (S12-R1 bottom) is the Milos Q11 contradiction. No pass/fail asserted.",
+  "viu_status": "Deviation",
+  "notes": "Reworded per Milos Round-3 split ruling (2026-07-16). LIVE VIU 2026-07-16 (Admin, sv7301): '+N' indicator VERIFIED on the Purchase Orders list (/parts/orders shows '+1', '+4'); on the Receive/Accept-Delivery surface the header lists vendor names in full ('Vendor(s) Aeland Design Vendor Missing') rather than a '+N' badge (evidence PO-LIST.png, ORDER-RECV-5vendor.png). Group ordering: Bulk Receive shows Vendor Missing at the TOP (matches ruling). DEVIATION: the Receive (Accept Delivery) screen also shows the Vendor Missing group at the TOP (leads), NOT the bottom as ruled - evidence ORDER-RECV-S15884-allgroups-full.png, ORDER-RECV-S15878-full.png. Same dev bug as SF-RCV-05.",
   "api_related": false,
-  "fresh_run": "2026-07-14"
+  "fresh_run": "2026-07-16"
  },
  {
   "id": "SF-RCV-08",

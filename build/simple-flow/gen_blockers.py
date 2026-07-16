@@ -44,8 +44,19 @@ FILES = [
 # case) is marked OBSOLETE / covered-by SF-PERM-04+07 in the case JSON (kept VIU-Verified so
 # it exits BUG/RULING; flagged for the QA lead to retire in TestRail). BUG-5 / TICKET 1 dropped
 # as expected. NOTE: these 4 cases' TestRail push is PENDING QA-lead authorization.
-# BUG_RULING is now empty.
-BUG_RULING = {}
+# UPDATE 2026-07-16 (Milos Round-3 answers applied): SF-RCV-05 / SF-RCV-07 moved OUT of
+# MILOS (Q11 answered) and INTO BUG_RULING — Milos ruled the vendor-missing group split
+# (Bulk Receive = top, Receive/Accept-Delivery = bottom). LIVE VIU 2026-07-16 confirmed
+# Bulk Receive = top (matches) but the Receive/Accept-Delivery surface (/order/{id}?receive=1)
+# also shows it at the TOP, NOT the bottom => build DEVIATION needing a dev fix.
+BUG_RULING = {
+    "SF-RCV-05": "Dev fix: on the Receive (Accept Delivery) screen the Vendor Missing group "
+                 "must move to the BOTTOM (Milos Round-3 2026-07-16). Live VIU 2026-07-16: it "
+                 "currently leads at the TOP (Bulk Receive top = correct).",
+    "SF-RCV-07": "Dev fix: same Vendor-Missing-group placement deviation as SF-RCV-05 — the "
+                 "Receive (Accept Delivery) screen shows the group at the TOP, should be BOTTOM "
+                 "(Milos Round-3 2026-07-16). '+N' indicator verified on the PO list.",
+}
 
 # Open-Question / Milos-owned cases -> the specific Open Question number(s).
 MILOS = {
@@ -59,13 +70,10 @@ MILOS = {
     "SF-REV-08":  ("Q8, Q4", "Distinct 'Reviewed' state before final Complete — expected or single-step?"),
     "SF-REV-10":  ("Q7", "Optional review-note field absent — descope or bug?"),
     "SF-REV-11":  ("Q8", "Invoicing-blocked-until-reviewed depends on the Reviewed-state ruling (Q8)."),
-    "SF-REV-15":  ("Q1", "Require-review default cohort rule + new-org preset."),
     "SF-UX-04":   ("Q10", "Close-vs-cancel confirm modal — design 'still to be added'."),
     # SF-QB-01 removed from MILOS 2026-07-10: Q2/R2-Q3 answered; decrement half now live-proven,
     #   remaining Part-History LOG surface is an env/QA blocker (see SUBBUCKET) -> VIU PENDING (QA).
     "SF-QB-02":   ("Q5", "QuickBooks integrity when Create-POs is OFF (toggle absent)."),
-    "SF-RCV-05":  ("Q11", "Vendor-missing group ordering on Accept Delivery — spec contradicts itself."),
-    "SF-RCV-07":  ("Q11", "Vendor-missing group ordering (S12-R1 bottom vs S12-R3 top)."),
 }
 
 # Dev-not-built: by area prefix -> (story label). Plus explicit case overrides.
@@ -121,6 +129,7 @@ SUBBUCKET = {
     "SF-VPART-07": ("needs-data", "BATCH 6: deliverable WO PO achievable, but receiving it is blocked by BUG-11 (500), so the cannot-receive-until-PN+vendor proof cannot complete."),
     "SF-VMIS-03":  ("needs-data", "QuickBooks sync inspection (vendor-missing PO excluded from QB)."),
     "SF-VMIS-06":  ("needs-data", "reports data (Vendor Missing POs flagged 'needs vendor')."),
+    "SF-REV-15":   ("needs-data", "Milos Round-3 2026-07-16: Require Review Before Completion starts ON for new orgs. Characterized env blocker (Rule 14 self-serve attempted): a brand-new org cannot be provisioned in shared QA (POST /api/organizations 405, /organizations/create 404, /register 405); shared org's requireReview reflects prior toggling. Needs a freshly-provisioned org from backend/admin onboarding to observe the ON default."),
     "SF-PNFIX-02": ("needs-data", "receiving + inventory/catalog inspection (new PN creates inventory part + stock + Part History on receive)."),
     "SF-PNFIX-03": ("needs-data", "receiving + inventory inspection (existing PN links to item, updates stock/cost/history)."),
     "SF-PNFIX-04": ("needs-data", "a WO in invoiced/paid state (sell-field locking)."),
@@ -162,6 +171,10 @@ QA_OVERRIDE = {
                   "to run the per-role completion matrix (only Technician-negative confirmed).",
     "SF-VPART-02": "QA VIU: drive the vendorless / no-PN add sub-form validation "
                    "(not reached in the last session's budget).",
+    "SF-REV-15": "Env/provisioning: a freshly-provisioned organization (from backend/admin "
+                 "onboarding) to observe the new-org Require Review Before Completion ON default "
+                 "(Milos Round-3 2026-07-16). Not self-serviceable in shared QA — org-creation "
+                 "endpoints return 405/404; shared org's toggle reflects prior test toggling.",
 }
 
 # Area-family default "what's needed" for generic VIU-Pending cases.
@@ -208,7 +221,7 @@ def classify(c):
     # 1) Bug/ruling takes precedence (even over VIU-Verified).
     if cid in BUG_RULING:
         return dict(state="BLOCKED", category="BUG/RULING", owner="Dev / PO ruling",
-                    needs=BUG_RULING[cid], related=story + " | see viu-findings BUGS #5/#6/#7")
+                    needs=BUG_RULING[cid], related=story)
 
     # 2) Dev-not-built.
     dev = DEV_CASE_OVERRIDE.get(cid) or DEV_STORY_BY_PREFIX.get(prefix)

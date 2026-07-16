@@ -29,9 +29,22 @@ BYTE-IDENTICAL after every flip. Admin-only (Tech never role-swapped).**
 16 R12/R13)", 4093 "API — Auto-Complete Trigger (Story 16)"). 0 failed. No writes to run 325.**
 
 **NEW TALLY (from `cases/*.json` viu_status; authoritative) — 170 cases:**
-**VIU-Verified 134 · VIU-observed-awaiting-Milos 8 · Blocked-Env 25 · Deviation 2 ·
-Open-Question 1 = 170.** (Was 163: +7 SF-AUTO [5 Verified, 2 Blocked-Env]; +4 Verified from
-the Δ7 rescope of SF-PNFIX-02/03/06 + SF-QB-08 out of Blocked-Env.)
+**VIU-Verified 134 · VIU-observed-awaiting-Milos 5 · Blocked-Env 26 · Deviation 4 ·
+Open-Question 1 = 170.** (2026-07-16 Milos Round-3 applied: SF-RCV-05/07 awaiting-Milos→**Deviation**
+[live VIU: vendor-missing group leads at TOP on BOTH surfaces; Bulk Receive TOP matches the ruling,
+but the Receive/Accept-Delivery screen should be BOTTOM → dev bug]; SF-REV-15 awaiting-Milos→**Blocked-Env**
+[new-org ON default not provisionable in shared QA]. Prior was 134/8/25/2/1.)
+
+**MILOS ROUND-3 (2026-07-16) — reworded + pushed to TestRail (update_case, 3/3, HTTP 200, re-GET MATCH; no run writes):**
+SF-RCV-05 (C29373), SF-RCV-07 (C29375), SF-REV-15 (C29400). Evidence: `viu-round3-2026-07-16/`
+(observations.json + screenshots); audit: `milos-round3-answers-2026-07-16/testrail-push-log.md`.
+**Q1 split ruling** (Bulk=top, Receive/Accept-Delivery=bottom): LIVE VIU shows Bulk Receive
+(`/bulk-receive`) = Vendor Missing at TOP ✓, but the Receive/Accept-Delivery surface
+(`/order/{id}?receive=1`, WO Receive button) ALSO shows it at TOP → **DEVIATION / dev bug**
+(should be BOTTOM). Legacy `/accept-delivery/{orderId}` is a flat single-PO table (no vendor
+groups). '+N' indicator lives on the PO list. **Q2:** new-org Require Review Before Completion
+default = ON (ruling recorded; not observable in shared QA — org-create returns 405/404).
+**Spec-cleanup flag for Milos:** S12-R1 (bottom) vs S12-R3 (leads) still unscoped in the spec text.
 
 **Δ5 — Story 16 R12/R13 auto-complete (NEW):** authored **SF-AUTO-01..07**. VIU-Verified live
 (review OFF): single-line (S-15838), bulk (S-15824), split (S-15822) all auto-Complete the WO
@@ -308,8 +321,9 @@ SF-QB-08 → Verified, and design `_4` flipped **SF-CORE-03** (special-order cor
 un-skippable at completion — but core BEHAVIOR still Blocked-Env: no seedable
 vendor-sourced core). TestRail: **18 update_case + 7 add_case + 2 add_section, all
 200/200, 0 fail; no writes to run 325.** Roles matrix re-derived fresh — **Technician
-NOT drifted on sv7301**. **Final tally 134 Verified / 8 awaiting-Milos / 25
-Blocked-Env / 2 Deviation / 1 Open-Question = 170; VIU-Pending = 0.**
+NOT drifted on sv7301**. **Final tally (pre-Round-3) 134 Verified / 8 awaiting-Milos / 25
+Blocked-Env / 2 Deviation / 1 Open-Question = 170; VIU-Pending = 0. → After Milos Round-3
+(2026-07-16): 134 Verified / 5 awaiting-Milos / 26 Blocked-Env / 4 Deviation / 1 Open-Question.**
 
 **Build findings for dev:** **OBS-6** — Part-History surface HTTP 500
 (`GET /api/inventory/parts/history`) + part-detail page crash (`/parts/inventory/{id}`);

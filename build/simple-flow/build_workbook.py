@@ -31,6 +31,22 @@ for gf in GROUP_FILES:
     with open(os.path.join(CASES_DIR, gf), encoding="utf-8") as fh:
         cases.extend(json.load(fh))
 
+# ---- TestRail Case ID + link map (Standing Rule 8) ------------------------
+TR_MAP = {}
+_map_path = os.path.join(BASE, "testrail-id-map.csv")
+if os.path.exists(_map_path):
+    with open(_map_path, encoding="utf-8") as fh:
+        for row in csv.DictReader(fh):
+            if row.get("sf_id"):
+                TR_MAP[row["sf_id"].strip()] = (row.get("ID") or "").strip()
+
+def tr_id(sf_id):
+    return TR_MAP.get(sf_id, "")
+
+def tr_link(sf_id):
+    tid = TR_MAP.get(sf_id, "")
+    return ("https://shopview.testrail.io/index.php?/cases/view/" + tid) if tid else ""
+
 # ---------------------------------------------------------------- area buckets
 # (needle-in-area, bucket label). First match wins; order matters.
 BUCKET_RULES = [
@@ -283,6 +299,7 @@ COLS = [
     ("Priority", 12), ("Type", 12), ("Permissions", 32),
     ("Preconditions", 46), ("Steps", 52), ("Expected Result", 52),
     ("Design Ref", 28), ("VIU Status", 16), ("Notes", 48),
+    ("TestRail Case ID", 16), ("TestRail Link", 48),
 ]
 headers = [c[0] for c in COLS]
 tc.append(headers)
@@ -294,6 +311,7 @@ for i, c in enumerate(cases):
         c["id"], c["area"], c["story_ref"], c["title"], c["priority"], c["type"],
         c["permissions_required"], n_join(c["preconditions"]), n_join(c["steps"]),
         n_join(c["expected"]), c["design_ref"], c["viu_status"], c.get("notes", ""),
+        tr_id(c["id"]), tr_link(c["id"]),
     ]
     tc.append(row)
     csv_rows.append(row)

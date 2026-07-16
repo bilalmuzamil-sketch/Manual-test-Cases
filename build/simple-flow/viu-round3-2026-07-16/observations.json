@@ -1,0 +1,53 @@
+{
+  "run_date": "2026-07-16",
+  "env": "sv7301.qa.shopview.com (shared QA org d55bc308-...)",
+  "session_validated": { "quick_login_admin": 200, "fe_permissions": 200, "quick_login_tech": 200 },
+  "role": "Admin",
+  "checks": [
+    {
+      "id": "Q1-bulk-receive-top",
+      "surface": "Bulk Receive page (/bulk-receive?ids=...), title 'Receive Vendor Parts'",
+      "seed": "existing POs: S-15884 (2b2174f2, has vendor-missing items), S-15846 (529da150, Aabridge), S-15874 (ad6b7ecb, Aabridge)",
+      "observed_group_order_top_to_bottom": ["Vendor Missing (y~240)", "Aabridge Beverages (y~406)", "Aeland Design (y~804)"],
+      "verdict": "Vendor Missing group LEADS (TOP). MATCHES Milos ruling (bulk = top).",
+      "evidence": "BULK-groups-full.png",
+      "api": "200 POST /api/inventory/orders/receive-view"
+    },
+    {
+      "id": "Q1-receive-accept-delivery-bottom",
+      "surface": "Receive / Accept Delivery surface (/order/{orderId}?receive=1), reached from the WO 'Receive' button (button_part_request_action); title 'Purchase Order Details', grouped by vendor with own Invoice Number + Receive per group",
+      "seed_orders": ["S-15884 (2b2174f2, Aeland Design + Vendor Missing)", "S-15878 (0a05e906, Aeboro Motors + Vendor Missing)"],
+      "observed_group_order_top_to_bottom_S15884": ["Vendor Missing (Select Vendor dropdown, y~175-411)", "Aeland Design (y~1247-1376)"],
+      "observed_group_order_top_to_bottom_S15878": ["Vendor Missing (3 parts)", "Aeboro Motors (1 part)"],
+      "verdict": "Vendor Missing group LEADS (TOP) on the Receive/Accept-Delivery surface too. DEVIATES from Milos ruling (Receive = bottom). Consistent across two orders; not alphabetical ('V' after 'A' yet Vendor Missing is first => intentional lead placement).",
+      "evidence": ["ORDER-RECV-S15884-allgroups-full.png", "ORDER-RECV-S15878-full.png", "WO-receive-dest.png"],
+      "deviation": "DEV BUG: on the Receive/Accept-Delivery screen the vendor-missing group should sit at the BOTTOM per Milos Round-3 ruling, but the build places it at the TOP (leads)."
+    },
+    {
+      "id": "legacy-accept-delivery-flat",
+      "surface": "Legacy single-PO Accept Delivery (/accept-delivery/{orderId})",
+      "observed": "Flat single-PO table (one Invoice Number, one Receive button, badge_vendor_missing at PO header). NO vendor sub-groups, even for a 5-vendor PO (S-15866). No vendor-missing GROUP concept on this route.",
+      "evidence": ["AD-2b2174f2-full.png", "AD-S-15866-5vend-full.png", "AD-S-15878-1v-miss-full.png"],
+      "note": "This legacy route is NOT the grouped 'Receive' surface. The grouped Accept-Delivery is /order/{id}?receive=1 (WO Receive button)."
+    },
+    {
+      "id": "RCV07-plusN-indicator",
+      "surface": "PO list (/parts/orders) vs Receive surface",
+      "observed": "'+N' vendor indicator (e.g. '+1', '+4') appears on the PO LIST. On the Receive/Accept-Delivery surface the header lists vendor names in full ('Vendor(s) Aeland Design Vendor Missing') rather than a '+N' badge.",
+      "evidence": ["PO-LIST.png", "ORDER-RECV-5vendor.png"]
+    },
+    {
+      "id": "REV15-new-org-default",
+      "setting": "Require Review Before Completion (Settings > Work Orders; description: 'Work orders must be reviewed and signed off before they can be completed'; API key requireReview)",
+      "current_shared_org_value": "requireReview=false (reflects prior test toggling, NOT the new-org default)",
+      "org_creation_attempts": {
+        "POST /api/organizations": 405,
+        "POST /api/organizations/create": 404,
+        "GET /api/register": 405,
+        "GET /api/organizations": "200 (lists only the existing org d55bc308-...)"
+      },
+      "verdict": "CHARACTERIZED BLOCKER: a brand-new organization cannot be provisioned in this shared QA env (no self-serve create-org / signup route exposed to us). The new-org ON default (Milos ruling) is therefore not live-observable here. Needs a freshly-provisioned org from backend/admin onboarding.",
+      "evidence": "SETTINGS-workorders.png"
+    }
+  ]
+}
