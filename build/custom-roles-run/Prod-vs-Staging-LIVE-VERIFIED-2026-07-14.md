@@ -6,9 +6,24 @@
 > role definitions, `fe_permissions`, atoms, or source. The prior deliverable
 > (`Prod-vs-Staging-Permission-Gaps_2026-07-14.xlsx`/`.md`) is **SUPERSEDED**.
 >
-> Workbook: `Prod-vs-Staging-LIVE-VERIFIED-2026-07-14.xlsx` (see the **"Pass-11 LIVE (2026-07-16)"** tab for the latest).
-> Evidence: `live-ui-2026-07-15/staging/<role>/`, `live-ui-2026-07-15/production/<role>/`, and
-> `live-ui-2026-07-16/production/<role>/` (full-page screenshots + per-role JSON).
+> Workbook: `Prod-vs-Staging-LIVE-VERIFIED-2026-07-14.xlsx` (see the **"Pass-12 LIVE (2026-07-16)"** tab for the latest).
+> Evidence: `live-ui-2026-07-15/staging/<role>/`, `live-ui-2026-07-15/production/<role>/`,
+> `live-ui-2026-07-16/production/<role>/`, and `live-ui-2026-07-16/staging/<role>/` (full-page screenshots + per-role JSON).
+>
+> **➡️ 2026-07-16 PASS-12 — the FINAL two residuals CLOSED; read `live-ui-PASS12-2026-07-16.md`. ZERO unexplained NOT-VERIFIED remain.**
+> (1) **Approve/Decline line = OBSERVED-LIVE both envs, all roles** (prod: seeded a genuine
+> `authorization_required` line "SV 8180" on S1-723 via the canned-line typeahead with "Line Approved"
+> unchecked, role-swap+self-login per role, line deleted after; staging: real-holder switch-user on WOs
+> carrying a real pending line + the healthy 2026-07-15 role-swap capture for the 4 holderless roles).
+> SHOWN: Admin/Service Manager/all Service-Advisor tiers/Foreman (both envs) + **Parts Manager = STAGING-MORE**
+> (prod HIDDEN / staging SHOWN); HIDDEN both: Technician/Parts Tech/Office/Sales Rep/Time Clock.
+> (2) **Send to Terminal (prod) = fully-characterized ORG-DEVICE gate** (NOT role/migration gated):
+> prod admin Settings full nav + Payment Methods page show no Terminals/Card-Readers/Devices section,
+> "New Payment Method" makes named methods only, all terminal APIs 404 → no UI path to provision a
+> terminal on prod (needs external hardware/processor registration). Staging org HAS a terminal → SHOWN
+> for invoicing roles. Migrating roles does not change Send-to-Terminal access.
+> *Env note:* staging `staff/change` is currently 500 (role-swap unavailable this window) — worked around
+> with real-holder switch-user.
 >
 > **➡️ 2026-07-16 PASS-11 — the two Pass-10 residuals CLOSED; read `live-ui-PASS11-2026-07-16.md`.**
 > (1) **Prod See AP/AR = OBSERVED-LIVE for all 14 legacy roles** (real-holder switch-user + role-swap+
