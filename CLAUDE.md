@@ -432,6 +432,24 @@ process(es) to run before proceeding.
     canonical spec; the truth-table + adversarial-diff method caught and fixed
     them. Release-critical deliverables get the full-population re-audit, not a
     sample.
+16. **ALWAYS deliver in the format already established/provided (all projects).**
+    Every deliverable (TestRail import CSV/XLSX, results/blockers workbooks,
+    question sheets, exec/QA reports, per-status files, etc.) MUST match the EXACT
+    format of the artifact already given for that deliverable type — same column
+    headers and order, same section/folder naming convention, same file location
+    and filename pattern, same wording/formatting conventions (numbered
+    Preconditions/Steps/Expected, line breaks), same rules (API cases in an
+    'API'-titled section per Rule 4, VIU-word-free + feature-flag-free imports,
+    TestRail Case ID + link columns per Rule 8). Before producing any deliverable,
+    FIRST locate the canonical prior example (e.g.
+    testrail-import/<project>-testrail-import.csv + the project's gen_import.py, or
+    the established workbook generator) and MIRROR its schema 1:1; do NOT invent a
+    new layout. If no prior example exists for that deliverable type, ask or reuse
+    the closest established template. Rationale: on 2026-07-16 the Global Search
+    TestRail import was first produced in a bespoke column layout instead of
+    matching the existing testrail-import/ CSV format used by Fees & Discounts and
+    Simple Flow; deliverables must always mirror the format already in use so they
+    drop into the user's existing process unchanged.
 
 ## Project purpose (Custom Roles project)
 Manual test-case authoring + live staging (Verify-in-UI) verification + TestRail
