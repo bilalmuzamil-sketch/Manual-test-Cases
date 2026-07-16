@@ -250,7 +250,7 @@ add(
     steps=STT_STEPS_T.format(role="Foreman"),
     expected="Per spec the \"Send to Terminal\" button should NOT appear for Foreman (Customer Portal is OFF for that role), even though the org has a card terminal.",
     cases=[29434, 26427],
-    evidence=EV16 + "/ (Pass-12 Send-to-Terminal evidence; SendToTerminal_dialog.png per role)",
+    evidence=EV15 + "/staging (SendToTerminal_dialog.png set — pixel-observed for the invoicing roles; NONE exists for this role: its staging cell is method-derived, see GAP-08) + " + EV16 + "/production/_terminal (Pass-12 prod org-gate captures)",
     owner="PO decision (accept org-device gating or enforce Customer Portal ON) + QA retest on release build",
     sources=[("Full Dual Matrix", "Foreman", "Send to Terminal", "STAGING-MORE")],
 )
@@ -264,7 +264,7 @@ add(
     steps=STT_STEPS_T.format(role="Office User"),
     expected="Per spec the \"Send to Terminal\" button should NOT appear for Office User (Customer Portal is OFF for that role).",
     cases=[29434, 26427],
-    evidence=EV16 + "/ (Pass-12 Send-to-Terminal evidence; SendToTerminal_dialog.png per role)",
+    evidence=EV15 + "/staging (SendToTerminal_dialog.png set — pixel-observed for the invoicing roles; NONE exists for this role: its staging cell is method-derived, see GAP-08) + " + EV16 + "/production/_terminal (Pass-12 prod org-gate captures)",
     owner="PO decision + QA retest on release build",
     sources=[("Full Dual Matrix", "Office User", "Send to Terminal", "STAGING-MORE")],
 )
@@ -278,7 +278,7 @@ add(
     steps=STT_STEPS_T.format(role="Parts Technician"),
     expected="Per spec the \"Send to Terminal\" button should NOT appear for Parts Technician (Customer Portal is OFF for that role).",
     cases=[29434, 26427],
-    evidence=EV16 + "/ (Pass-12 Send-to-Terminal evidence; SendToTerminal_dialog.png per role)",
+    evidence=EV15 + "/staging (SendToTerminal_dialog.png set — pixel-observed for the invoicing roles; NONE exists for this role: its staging cell is method-derived, see GAP-08) + " + EV16 + "/production/_terminal (Pass-12 prod org-gate captures)",
     owner="PO decision + QA retest on release build",
     sources=[("Full Dual Matrix", "Parts Technician", "Send to Terminal", "STAGING-MORE")],
 )
@@ -292,7 +292,7 @@ add(
     steps=AGING_STEPS_T.format(role="Senior Service Advisor"),
     expected="Per spec the A/R Aging and A/P Aging report tiles SHOULD be listed for Senior Service Advisor (Reports is ON for that role; aging follows Reports, all-or-nothing).",
     cases=[26478, 26482],
-    evidence=EV16 + "/staging + /production (Pass-11 AP/AR captures, e.g. production/apar-per-role.json)",
+    evidence=EV16 + "/production (Pass-11 AP/AR captures: apar-DUAL-verdicts.json + per-role clean_apar.png) + " + EV15 + "/staging (per-role apar_reports.png + apar-per-role.json)",
     owner="Dev fix + QA retest on release build",
     sources=[("Pass-11 LIVE (2026-07-16)", "Senior Service Advisor", "See AP/AR", "MATCH")],
 )
@@ -689,7 +689,7 @@ add(
     ],
 )
 add(
-    id="QA-47", priority="P3", category="Spec-contradiction",
+    id="QA-47", priority="P3", category="Spec-silent",
     roles="Service Manager, Parts Manager, Parts Technician, Foreman, Office User (observed holders)",
     capability="\"Issue Credit\" button (Finance tab) — the spec is SILENT on who may issue a credit",
     observed="STAGING: \"Issue Credit\" shows alongside \"New Payment\" for every role that reaches the Finance tab. PROD: Finance tab hidden for these legacy roles.",
@@ -776,7 +776,7 @@ add(
     capability="\"Approve\"/\"Decline\" line parity (MATCH rows) for the 5 approving roles",
     observed="Both envs SHOWN for Admin, Service Manager, Senior Service Advisor, Service Advisor, Foreman; both envs hidden for Technician, Parts Technician, Office User, Sales Representative, Time Clock User. Only delta = Parts Manager (QA-32/33).",
     spec=spec_says("authorize", "spec §1b WO Lines Edit + §4 Tech View approve-block"),
-    why="Smoke-only if time permits: all 11 staging + 13 prod roles observed live 2026-07-16 (Pass-12).",
+    why="Smoke-only if time permits: all 11 staging + 13 prod roles observed live (Pass-12, consolidated 2026-07-16; some staging role cells reuse 2026-07-15 captures — Parts Technician's is flagged for re-observe in GAP-09).",
     steps=APPROVE_STEPS_T.format(role="Foreman (representative approving role)"),
     expected="Green \"Approve\" + red \"Decline\" appear on a Needs-Approval line for the 5 approving roles only.",
     cases=[26390, 26458],
@@ -824,9 +824,9 @@ GAPS = [
          related="QA-07, QA-10", evidence=EV16 + "/ (Pass-11 Finance captures)"),
     dict(id="GAP-08", gtype="Re-observe on release build",
          roles="Foreman, Office User, Parts Technician", capability="Staging \"Send to Terminal\" for these 3 roles — peer-observed method cell",
-         why="The workbook READ ME labels these staging cells as method-derived: \"New Payment reachable (Take Payment observed SHOWN); org-device gate satisfied\" — the button itself was pixel-observed for the invoicing-role set, and derived from the reachable New Payment dialog for these 3. Re-observe directly on the release build.",
+         why="The ground-truth workbook's \"Send to Terminal LIVE\" tab labels these 3 staging cells as method-derived: \"New Payment reachable (Take Payment observed SHOWN); org-device gate satisfied\" — the button itself was pixel-observed only for the invoicing-role set (SendToTerminal_dialog.png exists for Admin/Service Manager/Senior Service Advisor/Service Advisor/Parts Manager, not for these 3), and derived from the reachable New Payment dialog for these 3. Re-observe directly on the release build.",
          action="On the release build, as each of the 3 roles, open Finance > \"New Payment\" on an invoiced WO and pixel-confirm the \"Send to Terminal\" button state.",
-         related="QA-01, QA-02, QA-03", evidence=EV16 + "/ (Pass-12 SendToTerminal_dialog.png set)"),
+         related="QA-01, QA-02, QA-03", evidence=EV15 + "/staging/*/SendToTerminal_dialog.png (pixel-observed roles only) + " + EV16 + "/production/_terminal (Pass-12 org-gate captures)"),
     dict(id="GAP-09", gtype="Re-observe on release build",
          roles="Parts Technician", capability="Staging \"Approve\"/\"Decline\" for Parts Technician — taken from the 2026-07-15 capture",
          why="The Approve-Decline LIVE tab sources the staging Parts Technician verdict from the 2026-07-15 role-swap capture (live-ui-2026-07-15/staging/Parts_Technician/refwo-caps.json) rather than the 2026-07-16 real-holder pass. Re-observe on the release build.",
@@ -956,7 +956,7 @@ def build():
         [],
         ["COUNTS BY CATEGORY"],
     ]
-    for cat in ["Deviation", "Spec-contradiction", "Intended-loss-to-confirm",
+    for cat in ["Deviation", "Spec-contradiction", "Spec-silent", "Intended-loss-to-confirm",
                 "Intended-grant-to-confirm", "Coverage-gap", "Env-config"]:
         rows.append([cat, cat_counts.get(cat, 0)])
     rows += [
