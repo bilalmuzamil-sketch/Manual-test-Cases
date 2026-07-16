@@ -232,9 +232,10 @@ process(es) to run before proceeding.
    **CANONICAL STATE DOC (read first for resume):**
    `build/global-search/PROJECT-STATE.md` — single authoritative snapshot (status,
    case inventory, deliverables index, open questions, env/access TBD, how-to-resume).
-   **STATUS: CASES AUTHORED 2026-07-16 — 84 cases across 15 sections (14 functional +
-   1 API), internal IDs `GS-<AREA>-NN`, all `VIU-Pending`. TestRail push PENDING
-   explicit user permission; VIU PENDING (feature not on any QA env yet).** Spec fully
+   **STATUS: CASES AUTHORED 2026-07-16 (86 cases/15 sections, adversarial-reviewed
+   CLEAN, import ready VIU-word-free/flag-free); TestRail push PENDING permission; VIU
+   pending feature on QA; PO=Branko; Epic key TBD (ask at VIU); OQ-3 open. Canonical
+   resume doc: build/global-search/PROJECT-STATE.md.** Spec fully
    ingested → `build/global-search/requirements.md` (§1–§11: 6 searchable entity types
    [Work Orders, Customers, Assets, Parts, Vendors, Part Sales], ⌘K/K spotlight
    palette, fuzzy match [trigram + Damerau-Levenshtein + Double Metaphone; identifier
@@ -244,12 +245,12 @@ process(es) to run before proceeding.
    screenshots** → `build/global-search/design-notes.md`; **2 states OUT OF SCOPE (NOT
    authored): AI search-all + header-component proposal.** AI/"ask a question"
    placeholder implies AI but AI is OUT OF SCOPE for V1 (OQ-3 still open — confirm
-   whether the placeholder ships in V1). Deliverables: `cases/cases-A..D-*.json` (84),
+   whether the placeholder ships in V1). Deliverables: `cases/cases-A..D-*.json` (86),
    `coverage-matrix.md` (every in-scope spec req + Figma state → case IDs, out-of-scope
    items + ~20 VIU-confirm placeholders), `gen_import.py` +
    `GlobalSearch_TestRail-Import.csv`/`.xlsx` (VIU-word-free + feature-flag-free; API
    cases in an API-titled section per Rule 4; Internal ID + TestRail Case ID [pending]
-   + Link cols per Rule 8), `testrail-id-map.csv` (all 84 IDs, blank C-ids),
+   + Link cols per Rule 8), `testrail-id-map.csv` (all 86 IDs, blank C-ids),
    PROJECT-STATE.md. **No TestRail writes without explicit user permission.** Reuse
    shared infra (BUILD-ACCURATE-WORDING-VIU-PROCESS, SPEC-RELEVANCE-RECONCILIATION,
    TESTING-RUNBOOK, harness/TestRail patterns). Per Standing Rule 11, ASK which

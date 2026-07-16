@@ -5,10 +5,46 @@
 > infrastructure (staging/QA access method, harness scripts, TestRail API patterns,
 > the two process docs) across all projects.
 
-## 0. Status (as of 2026-07-16)
+## 0. STATUS / WHAT'S LEFT TO DO — read first (Last updated 2026-07-16)
 
-**STATUS: CASES AUTHORED (86). TestRail push PENDING explicit user permission. VIU
-PENDING (feature not yet on any QA env).**
+**STATUS: CASES AUTHORED & REVIEWED — 86 cases / 15 sections (12 API cases in an
+API-titled section, Standing Rule 4); import deliverable ready
+(`GlobalSearch_TestRail-Import.csv` + `.xlsx`, 86 rows, VIU-word-free &
+feature-flag-free); coverage-matrix COMPLETE (zero in-scope gaps);
+adversarial-review CLEAN.** The adversarial pass fixed **2 Rule-9 build-accurate
+wording defects** ("Aabridge" typo → "Abridge"; the fuzzy-indicator glyph "≈") and
+**added 2 completeness cases** — **GS-FUZ-11** (Part Sale P-number exact-only, no
+fuzzy typo tolerance) + **GS-PERM-05** (sparse / empty entity type shows no group and
+its scope tab shows the empty state). Case count went 84 → 86.
+
+**NOT DONE / NEXT (all for the VIU stage):**
+1. **TestRail push PENDING explicit user permission** — NOT pushed;
+   `testrail-id-map.csv` C-ids are BLANK. No TestRail writes without explicit user
+   permission (Standing Rule 6).
+2. **VIU PENDING — feature not yet on any QA env.** When VIU begins, run the
+   `build/BUILD-ACCURATE-WORDING-VIU-PROCESS.md` LIVE with evidence (Standing Rules
+   10–14). Per **Standing Rule 11, ASK the user which process(es) to run** (wording+VIU
+   and/or SPEC-RELEVANCE-RECONCILIATION) before proceeding.
+3. **⚠️ ASK THE USER for the Epic / Jira key when VIU starts** — NOT available as of
+   2026-07-16 (OQ-4). Do NOT invent.
+4. **OQ-3 OPEN** — does the "Search or ask a question" placeholder still ship in V1
+   even though AI search is OUT OF SCOPE? Confirm with the PO before/at VIU.
+5. **~20 VIU-confirm placeholders to verify LIVE** — footer legend wording,
+   "Show all N" target, highlight color, full status-badge set, pinned ID-match top
+   row, error banner, API response/error shapes, "Refresh"-link scope, etc. (full list
+   in `coverage-matrix.md` §D).
+6. **QA env + feature-flag status TBD** (OQ-5) — VIU + TestRail push both wait on this.
+
+- **PO = Branko** (confirmed 2026-07-16; full name TBC). **Canonical spec URL
+  recorded** (reference pointer only, Atlassian-SSO login-walled — do NOT fetch;
+  content already ingested from the exported .doc) — see §1.
+- **Out of scope (NOT authored):** AI search-all; header-component proposal (both
+  Figma-labeled out of scope).
+- **Deliverables index** (see §3): `requirements.md`, `design-notes.md` (10/10 Figma),
+  `cases/` (86), `coverage-matrix.md`, `GlobalSearch_TestRail-Import.csv`/`.xlsx`,
+  `gen_import.py`, `testrail-id-map.csv`.
+
+## 0.1 Status detail
 
 - Spec: **INGESTED** (complete) → `requirements.md`. Source doc was a Confluence
   "Export to Word" MHTML/quoted-printable file; decoded with Python
