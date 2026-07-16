@@ -35,6 +35,12 @@ Use "View Permissions" — it's on each role in the Roles and Permissions list,
 and next to the role selector on the Staff page. It shows a read-only summary
 of everything the role can and can't do.
 
+**A5b. I created (or renamed) a role but it doesn't show in the Staff role
+dropdown yet.**
+There can be a short delay (up to about five minutes) before a newly created,
+renamed, or deleted role appears in the Staff role selector and filter. Wait a
+few minutes and refresh. If it still doesn't appear after that, escalate.
+
 **A6. Why can't I delete this custom role?**
 A role that still has users assigned can't be deleted — you'll see a message
 telling you how many users are on it. Reassign those users to another role

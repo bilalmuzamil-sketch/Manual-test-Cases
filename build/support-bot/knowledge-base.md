@@ -746,8 +746,11 @@ a work order. The "Add Customer" button appearing there is intended
 - **Delete a Part Sale** = Part Sales: Delete (type-aware; not WO Delete). A part
   sale with received parts can't be deleted until those parts are returned or
   reassigned (SV-8126/8127).
-- **Delete a return:** from a Part Sale = Invoicing: Delete; from the Returns
-  page = Vendor & Order Management: Delete (SV-7911/7813).
+- **Delete a return** = Vendor & Order Management: Delete (Sasha ruling
+  SV-8324, spec being aligned to the build; supersedes the earlier reading that
+  a Part-Sale return delete used Invoicing: Delete). **Return a part to
+  inventory** = Vendor & Order Management: Create & Edit. Note: Service Advisor
+  lacks Vendor & Order Mgmt Delete, so it cannot delete returns (SV-7911).
 - If the invoice has a payment, the payment must be deleted first before the
   invoice can be reversed (SV-8237).
 
@@ -849,6 +852,21 @@ a work order. The "Add Customer" button appearing there is intended
   but if a customer reports a View-only user being unable to edit someone else's
   note, treat it as this known-open item and escalate rather than calling it
   wrong.
+- **"Office cannot create invoices" — instruction vs ticket conflict.** Per the
+  standing instruction this is treated as DONE/implemented: the Create-Invoice
+  button is disabled for Office regardless of Invoicing CRUD, and the bot
+  answers that way. HOWEVER, Jira **SV-8345 marks that hard rule OBSOLETE**
+  (i.e. dropped, with Office invoicing falling back to normal CRUD). These
+  conflict. The bot follows the instruction (rule active), but this needs a
+  product confirmation — flag if a customer's Office user's invoice-create
+  behavior doesn't match.
+- **Does reversing an invoice / deleting a payment require Manage AP/AR?**
+  The current spec (§3i / §7b) says Invoicing: Delete additionally requires
+  Manage AP/AR, but **SV-7812 (Done) + SV-7913 (obsolete)** indicate that
+  dependency was removed — reversal/payment-deletion gated solely by Invoicing:
+  Delete. The bot answers per the current spec (AP/AR still involved for the
+  Delete entry point), but this is being reconciled — escalate if a role with
+  Invoicing Delete but AP/AR off unexpectedly can or cannot reverse/delete.
 
 > Coverage note: distilled from a full pass over the 276 resolved Bug +
 > Story-Defect tickets under Epic SV-7388. Most were internal fixes with no

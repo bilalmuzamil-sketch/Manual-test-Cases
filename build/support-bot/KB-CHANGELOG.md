@@ -27,9 +27,28 @@ FAQ B10/B11/B12:
   Technician's Time Clock was locked on. Updated §10 and §14.9.
 
 Also recorded a **standing rule** (SYNC.md): ticket-driven "update" checks look
-back **72 hours** only (per user, 2026-07-16). A background sweep of tickets
-updated in the last 72h is running to supplement these deltas; findings will be
-folded in when it returns.
+back **72 hours** only (per user, 2026-07-16).
+
+**72h ticket sweep results folded in:**
+- SV-8324/7911: **delete a return → Vendor & Order Management: Delete** (not
+  Invoicing Delete); return-to-inventory → Vendor & Order Mgmt Create&Edit.
+  Updated §14.5.
+- SV-8351: newly created/renamed/deleted role can take ~5 min to appear in the
+  Staff role dropdown (cache). Added FAQ A5b.
+- Confirmed (already in KB): SV-8297 (SvcMgr WO Delete), SV-8202 (View Part
+  History rename), SV-8095 (inspections via WO Lines CRUD + Settings›Service),
+  SV-8085 (Invoicing view no longer needs WO view), SV-8305 (New-WO
+  contact/asset create).
+- **Flagged as unsettled (§14.11), NOT silently changed:**
+  (1) **SV-8345 marks the "Office cannot create invoices" hard rule OBSOLETE**,
+  which conflicts with the user's standing instruction to treat it as
+  DONE/implemented — bot follows the instruction (rule active) and flags the
+  conflict for product confirmation.
+  (2) SV-7812/7913 indicate invoice reversal / payment deletion no longer
+  require Manage AP/AR, conflicting with current spec §3i/§7b — bot follows the
+  spec and flags for reconciliation.
+- Known bug noted for escalation: SV-8150 (Parts Returns leaks financial data
+  with See Financial Data OFF — Blocked/not yet fixed).
 
 ## 2026-07-16 — Spec sync: Office matrix refined (partial revert of 7/14)
 
