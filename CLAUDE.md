@@ -73,7 +73,13 @@ process(es) to run before proceeding.
    (deliverables: `Prod-vs-Staging-Permission-Gaps_2026-07-14.xlsx`/`.md`,
    `compare-VERIFICATION-2026-07-14.md`, `prod-vs-staging-compare-PLAN-2026-07-14.md`,
    `gen_prod_vs_staging.py`, `compare-evidence-2026-07-14/`,
-   `staging-ui-verify-2026-07-14/`). Local case source now exists (first time for Custom Roles):
+   `staging-ui-verify-2026-07-14/`). **REUSABLE METHOD DOC (new):**
+   `build/PROD-VS-STAGING-COMPARE-METHOD.md` — how to run a 100%-LIVE-OBSERVED
+   two-environment permission/function comparison with **ZERO cells "NOT VERIFIED"**
+   (headless OR headful; seed data as needed since both prod & staging are disposable
+   TEST accounts; create a FRESH staff per holderless role + CLEAN self-login to avoid
+   the role-swap `/no-location` location-store bounce; classify live API error bodies
+   as evidence, not crash-to-/no-location as a verdict). Local case source now exists (first time for Custom Roles):
    `build/custom-roles-run/cases-2026-07-13/*.json` (254 bodies, carry
    `viu_status`/`section_id`; NO testrail-id-map.csv — filename = C<id>). Env note:
    staging org is SHARED and **Tech is currently DRIFTED on Technician — reset to Time
@@ -474,6 +480,8 @@ regression / bug-fix re-testing.
 - Git identity: `noreply@anthropic.com` / `Claude`.
 - The **"Unverified" commit stop-hook is a known false alarm** (signing key not
   registered) — ignore it.
+- **Prod-vs-staging (and any two-env) permission comparisons: 100% LIVE-OBSERVED,
+  ZERO NOT-VERIFIED — see `build/PROD-VS-STAGING-COMPARE-METHOD.md`.**
 
 ## Deliverable conventions the user likes
 - Plain, layman English.
