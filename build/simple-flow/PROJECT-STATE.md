@@ -12,7 +12,50 @@
 > **Canonical spec (Confluence):** https://shopview.atlassian.net/wiki/spaces/PM/pages/646021121/Simple+Mode+Streamlined+Work+Order+Completion+Bulk+Receiving
 > (Atlassian-SSO login-walled — reference pointer only; content must be exported/pasted to ingest, do NOT fetch the URL.)
 >
-> **Last updated:** 2026-07-16 (Milos Round-3 applied — see §0-AA).
+> **Last updated:** 2026-07-16 (Milos Round-3 applied — see §0-AA + the WHAT'S LEFT section below).
+
+---
+
+## ⏭️ WHAT'S LEFT TO DO — read this first (as of 2026-07-16)
+
+**Current tally (post Milos Round-3): VIU-Verified 134 / VIU-observed-awaiting-Milos 5 /
+Blocked-Env 26 / Deviation 4 / Open-Question 1 = 170.** (Consistent with §0's at-a-glance
+table and §0-AA.) The full VIU process is complete and everything mapped is current in
+TestRail; what remains is external/environment/PO-dependent work:
+
+1. **Milos still owes answers on 5 questions.** His 2026-07-16 sheet answered ONLY the 2
+   Round-3 questions (Q1 vendor-missing placement, Q2 new-org Require-Review default). Still
+   unanswered: **SF-SET-08, SF-COMP-06, SF-REV-11, SF-UX-04, SF-QB-02**. The bug-confirm
+   rulings in `SimpleFlow_Bugs-for-Milos-Confirm.xlsx` also remain unconfirmed.
+   → **Action when resuming:** decide whether to re-send just these 5 to Milos (they were
+   deliberately dropped from the Round-3 sheet and routed to dev/self-resolution — confirm
+   that routing or re-ask).
+2. **File the Round-3 dev bug in Jira (SV-7301).** LIVE VIU shows the Receive/Accept-Delivery
+   screen renders the "Vendor Missing" group at the **TOP**; per Milos's ruling it should be
+   at the **BOTTOM** (Bulk Receive at TOP is correct). Draft is ready in
+   `SimpleFlow_Bug-Drafts.xlsx` (bug #5); affects **SF-RCV-05 / C29373** and
+   **SF-RCV-07 / C29375**. Needs Atlassian access (fresh session — no Atlassian in this env).
+3. **Run 325 (Ayesha Khan) has drifted.** It now reads roughly **96 Passed / 15 Failed /
+   17 Blocked / 28 Untested** (was 48/6/13/89); user ID 5 logged Passed results on 07-14/07-15.
+   → **Action:** reconcile our findings against the new run-325 status if the user wants it —
+   **do NOT write results to run 325 without explicit permission** (it is QA's/Ayesha's run).
+4. **SF-REV-15 (C29400) — Blocked-Env.** The new-org "Require Review defaults ON" default is
+   unobservable until a freshly-provisioned org exists (org-create endpoints return 404/405 on
+   the shared QA org). Verify the live ON default once a brand-new org is available; if it is
+   then observed ≠ ON → separate dev bug.
+5. **The other 25 Blocked-Env cases (see §0-ZZ / §0-AA).** QuickBooks not connected (needs a
+   QB-connected company + a human in QuickBooks); special-order vendor-sourced cores not
+   seedable (needs a dev-seeded core); invoiced/paid WO not drivable; merge auto-consolidates;
+   VIN-less asset; etc. Includes **SF-AUTO-04** (delete-lines API 500) and **SF-AUTO-06** (UI
+   clock-out).
+6. **Dev-side observations to route:** **OBS-6** (Part-History HTTP 500 + part-detail crash),
+   **SF-VMIS-06** (no Vendor-Missing "needs vendor" report), **SF-AUTO-04** API-500. Plus two
+   spec-cleanup flags for Milos: (a) the spec self-contradiction — `_3` strikes S10-R2 but the
+   Story-10 AC bullets + Technical-guardrails paragraph still describe first-class-part
+   creation; (b) the Receive-screen spec text **S12-R1 (bottom) vs S12-R3 (leads)** is still
+   unscoped (needs the per-surface qualifiers Milos's Q1 ruling implies).
+7. **SF-QB-09 — unmapped in TestRail** (no C-ID, Open-Question) — follow-up to author/map or
+   formally close.
 
 ---
 

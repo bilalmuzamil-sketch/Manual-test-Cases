@@ -166,10 +166,14 @@ process(es) to run before proceeding.
    unexplained → need live re-VIU; SF-VPART-01/02 likely stale-7/7-baseline tied to
    known BUG-9) + ingest Jira **SV-8303** (Ayesha's SF-SET-10 note flags a coming
    spec change).
+   **RESUME 2026-07-16: read build/simple-flow/PROJECT-STATE.md §'WHAT'S LEFT TO DO' first**
+   — Milos Round-3 applied (SF-RCV-05/07 Deviation, SF-REV-15 Blocked-Env; pushed to TestRail;
+   bug draft #5 filed). Tally 134/5/26/4/1. Outstanding: 5 unanswered Milos Qs, file
+   Receive-screen bug in Jira, run-325 reconcile.
    **STATUS: VIU-PROCESS COMPLETE + spec `_3` (de-facto V2.5) / design `_4` APPLIED +
-   IN TESTRAIL; ALL VIU-PENDING = 0 (through 2026-07-14). 170 cases: VIU-Verified 134 /
-   VIU-observed-awaiting-Milos 8 / Blocked-Env 25 / Deviation 2 / Open-Question 1.
-   Waiting on Milos Round-3 + QB-connected env + a dev-seeded special-order core.
+   IN TESTRAIL; ALL VIU-PENDING = 0. 170 cases (post Milos Round-3 2026-07-16): VIU-Verified 134 /
+   VIU-observed-awaiting-Milos 5 / Blocked-Env 26 / Deviation 4 / Open-Question 1.
+   Waiting on Milos's remaining 5 answers + QB-connected env + a dev-seeded special-order core.
    PROJECT-STATE.md = canonical resume doc (read first).** Detail: full build-accurate
    wording+VIU pass (all 163, 200/200) + V2.4 Δ1-Δ4 (+ SF-VEND-06=C29442) +
    reviewer≠completer DESCOPED (self-review allowed when role holds Mark Reviewed; BUG-5
