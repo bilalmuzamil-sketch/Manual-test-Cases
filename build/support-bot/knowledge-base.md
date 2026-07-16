@@ -434,9 +434,9 @@ effect when they log back in.**
 | Role | ID | Purpose |
 | --- | --- | --- |
 | Admin | `system-admin` | Full system access (cannot be edited to lose Admin-page access) |
-| Service Manager | `system-sm` | Full operational access; limited admin (App Settings + Wages) |
-| Senior Service Advisor | `system-ssa` | WO + customer management, expanded access |
-| Service Advisor | `system-jsa` | WO + customer management with invoicing; no AP/AR |
+| Service Manager | `system-sm` | Full operational access; limited admin (App Settings + Service + Wages); full Invoicing incl. Delete |
+| Senior Service Advisor | `system-ssa` | WO + customer management, expanded access; **Reports OFF** |
+| Service Advisor | `system-jsa` | WO + customer management with invoicing (View/Create&Edit, **no Delete**); no AP/AR |
 | Foreman | `system-foreman` | Oversees technicians and work orders |
 | Technician | `system-tech` | Assigned work, time tracking, Tech View |
 | Parts Manager | `system-pm` | Full parts and inventory control |
@@ -458,7 +458,7 @@ CRUD areas:
 | Part Sales | V/E/D | V/E/D | V/E | V | — | V/E/D | V/E | V | V | — |
 | Catalog & Inv | V/E/D | V/E | V/E | V/E | — | V/E/D | V/E | V | — | — |
 | Vendor & Order | V/E/D | V/E/D | V/E | V/E | — | V/E/D | V/E/D | V | — | — |
-| Invoicing | V/E | V/E/D | V/E/D | V/E | — | V/E/D | V/E | V/E/D | — | — |
+| Invoicing | V/E/D | V/E/D | V/E | V/E | — | V/E/D | V/E | V/E/D | — | — |
 | Timesheets | V/E | V/E | V | V | — | — | V | V/E | — | V |
 
 **† Office role — current state (spec as of 2026-07-15).** The Office
@@ -479,7 +479,7 @@ Toggles:
 
 | Toggle | Admin | Svc Mgr | Sr. SA | Svc Advisor | Foreman | Tech | Parts Mgr | Parts Tech | Office | Sales Rep | Time Clock |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| Reports | ON | ON | ON | — | — | — | ON | — | ON | ON | — |
+| Reports | ON | ON | — | — | — | — | ON | — | ON | ON | — |
 | Customer Portal | ON | ON | ON | ON | — | — | ON | — | — | — | — |
 | Parts Dept | ON | ON | ON | ON | ON | — | ON | ON | ON | ON | — |
 | Billing Portal | ON | ON | — | — | — | — | — | — | ON | — | — |
@@ -497,7 +497,7 @@ Settings sub-toggles (roles with Settings ON):
 | Sub-setting | Admin | Svc Mgr | Parts Mgr | Office |
 | --- | --- | --- | --- | --- |
 | App Settings | ON | ON | — | ON |
-| Service | ON | — | — | ON |
+| Service | ON | ON | — | ON |
 | Parts | ON | — | ON | — |
 | Integrations | ON | — | — | ON |
 | Finance | ON | — | ON | ON |
@@ -514,7 +514,7 @@ hard-coded rule overrides whatever the Invoicing CRUD says.
 
 ## 10. Migration from legacy roles (support hotspot)
 
-Every existing user is mapped from the old 15 roles to the new 12:
+Every existing user is mapped from the old 15 roles to the new 11:
 
 | Legacy role | New role | Note |
 | --- | --- | --- |
@@ -522,8 +522,8 @@ Every existing user is mapped from the old 15 roles to the new 12:
 | Administrator | Admin | Direct |
 | Service Manager | Service Manager | With adjustments |
 | Service Advisor | Senior Service Advisor | Renamed + expanded |
-| SA Technician | Senior Service Advisor | Consolidated (tech schedule/clock-in now via staff record) |
-| SA No Reports | Senior Service Advisor | Consolidated — GAINS Reports |
+| SA Technician | **Service Advisor** | Updated 2026-07-16: maps to Service Advisor (NOT Senior SA) |
+| SA No Reports | Senior Service Advisor | Consolidated |
 | SA Limited View | Service Advisor | AP/AR OFF preserves the old restriction |
 | Foreman | Foreman | With expansions |
 | Technician | Technician | Direct |
@@ -538,8 +538,8 @@ Every existing user is mapped from the old 15 roles to the new 12:
 
 | Role | Change |
 | --- | --- |
-| Senior SA (was Service Advisor / SA Technician / SA No Reports) | GAINS: WO/WOL/Schedule/Part-Sales Delete, full Vendor access, full Invoicing, Timesheets edit, Customer Portal, AP/AR, Reports |
-| Service Manager | LOSES: Invoicing Delete; Settings sections Service/Parts/Finance/Data Import. GAINS: Billing Portal, Customer Portal |
+| Senior SA (was Service Advisor / SA No Reports) | GAINS: WO/WOL/Schedule/Part-Sales Delete, full Vendor access, full Invoicing, Timesheets edit, Customer Portal, AP/AR. **Reports is OFF for Senior SA (updated 2026-07-16).** |
+| Service Manager | GAINS: Invoicing Delete (now full V/E/D), Settings → Service, Billing Portal, Customer Portal. LOSES: Settings sections Parts/Finance/Data Import. (Updated 2026-07-16: Service Manager now HAS Invoicing Delete and Settings → Service.) |
 | Foreman | GAINS: WOL Delete, Schedule Delete, Parts Dept (Part Sales V; Catalog V/E; Vendor V/E), Invoicing V/E, Order Parts, Part History. LOSES: Timesheets Edit |
 | Technician | GAINS: Pick Parts. LOSES: Send to Portal |
 | Parts Manager | LOSES: WO/WOL Delete. GAINS: Schedule View, Customer Portal |
@@ -559,6 +559,17 @@ specific settings.
 - **Clocking into work order line tasks** — controlled by the "Time Clock"
   setting on the staff record (separate from attendance clock in/out, which
   everyone always has).
+
+**Time Clock is NOT touched by migration (ruling 2026-07-16).** Migration must
+not change any staff record's Time Clock value:
+- Users who had Time Clock ENABLED stay enabled; users who had it DISABLED stay
+  disabled.
+- A user's ROLE has zero influence on the staff record's Time Clock value.
+- Time Clock can be turned on/off on any staff record regardless of the role
+  that person holds.
+So if someone's clock-in ability changed after go-live, that's not expected from
+migration — check the staff record and escalate if it looks like migration
+altered it.
 
 ---
 
@@ -621,6 +632,24 @@ from a full review of the resolved Bug and Story-Defect tickets under the epic
 not listed; if a customer still hits one, treat it as a regression and escalate.
 
 ### 14.1 Roles & templates
+
+**Authoritative role decisions — 2026-07-16 (Sasha Grosman, latest word; these
+win over anything older):**
+- **Service Advisor: Invoicing & Payments = View + Create/Edit ONLY — no
+  Delete.** Service Advisor must not have Invoicing Delete.
+- **Senior Service Advisor: Reports = OFF.** Senior SA does not have the Reports
+  page. (So the migration note "SA No Reports gains Reports" no longer applies.)
+- **Service Manager: Invoicing & Payments = full View/Create/Edit/Delete** (was
+  V/E), and **Settings → Service = ON**.
+- **Office: Invoicing & Payments = View + Create/Edit + Delete** (was View only)
+  — but the hard-coded "Office cannot create invoices" rule still applies (the
+  Create-Invoice button is disabled for Office; they take/manage payments, not
+  create invoices). This rule is DONE/implemented.
+- **Migration: legacy "SA Technician" maps to Service Advisor** (NOT Senior
+  Service Advisor).
+- **Migration must not change the staff-record Time Clock value** (see §10 and
+  §14.9): enabled stays enabled, disabled stays disabled; role has no influence;
+  Time Clock is editable on any staff record regardless of role.
 
 - **Sales Rep is NOT "Reports only" (SV-8061, verified).** Includes Work Orders:
   View, WO Lines: View, Customers: View + Create & Edit, Part Sales: View (Parts
@@ -777,8 +806,13 @@ a work order. The "Add Customer" button appearing there is intended
 
 - **All clock in/out** — attendance AND clocking into WO line tasks — is
   governed by the **"Time Clock" toggle on the staff record**, not by any role
-  permission (SV-8141/8022/7946). The Technician role has it ON and locked
-  (SV-8205).
+  permission (SV-8141/8022/7946).
+- **The staff-record Time Clock toggle is independent of role (ruling
+  2026-07-16).** It can be turned on or off on ANY staff record regardless of
+  the person's role, and the role has zero influence on its value. Migration
+  does NOT change it — whoever had it on/off keeps that setting. (This
+  supersedes an earlier note that the Technician role's Time Clock was locked
+  on.)
 - **Clock in/out is universal (spec §1i):** no role/config may block it with a
   403 (SV-8069). The clock-in dialog lists only WOs where the user is assigned
   as line labor (SV-8165).

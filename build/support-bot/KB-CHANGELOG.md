@@ -5,6 +5,32 @@ change to the Confluence spec (page 565116952). Newest first.
 
 ---
 
+## 2026-07-16 — Authoritative role deltas (Sasha, Slack) + standing rules
+
+User relayed Sasha's post-build delta decisions as authoritative (last-word-
+wins). Applied to KB §9 tables, §10 migration, §14.1, role descriptions, and
+FAQ B10/B11/B12:
+
+- **Service Advisor:** Invoicing V/E/D → **V/E** (remove Delete). [release-blocker]
+- **Senior Service Advisor:** Reports ON → **OFF**. [release-blocker]
+- **Service Manager:** Invoicing V/E → **V/E/D**; Settings → **Service ON**.
+  [fast-follow]
+- **Office:** Invoicing → **V/E/D** (already applied); the "Office cannot create
+  invoices" hard rule is treated as DONE/implemented (Create-Invoice button
+  disabled regardless of Invoicing CRUD).
+- **Migration:** legacy "SA Technician" now maps to **Service Advisor** (not
+  Senior SA). [release-blocker] Removed the "SA No Reports gains Reports" note
+  (Senior SA has Reports off).
+- **Time Clock migration rule:** migration must not change any staff record's
+  Time Clock value; role has zero influence on it; it's editable on any staff
+  record regardless of role. This **supersedes** the earlier SV-8205 note that
+  Technician's Time Clock was locked on. Updated §10 and §14.9.
+
+Also recorded a **standing rule** (SYNC.md): ticket-driven "update" checks look
+back **72 hours** only (per user, 2026-07-16). A background sweep of tickets
+updated in the last 72h is running to supplement these deltas; findings will be
+folded in when it returns.
+
 ## 2026-07-16 — Spec sync: Office matrix refined (partial revert of 7/14)
 
 Daily sync detected another Confluence change (hash 0e23f0…, len 54626; no new

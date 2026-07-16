@@ -39,6 +39,13 @@ This depends on which deployment option (README) you chose:
   knowledge files from the GitHub raw URLs at startup (or per request with a
   short cache). Every sync push then updates the live bot with no human step.
 
+## Update window (standing rule)
+
+When asked to "update" the bot from Jira ticket activity, look back **72 hours**
+only (`updated >= -3d`). This is the user's standing instruction (set
+2026-07-16) — do not scan wider than 72h for ticket-driven updates. (The daily
+Confluence spec-sync is separate and always compares the full page hash.)
+
 ## Operational notes
 
 - The sync only ever touches files under `build/support-bot/`.

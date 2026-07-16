@@ -117,6 +117,31 @@ loses Customers or Work Orders. If a Sales Rep still sees Reports only, make
 sure they're on a build that includes the fix, then have them log out and back
 in; if it persists, escalate.
 
+**B10. What are the latest role adjustments (July 2026)?**
+A few role defaults were finalized:
+- **Service Advisor** — can view, create, and edit invoices/payments, but can
+  **no longer delete** them (no Invoicing Delete).
+- **Senior Service Advisor** — **Reports is off** for this role by default.
+- **Service Manager** — now has **full invoicing including delete**, and gains
+  the **Service** settings section.
+- **Office** — now has full invoicing (view/create-edit/delete) but still
+  **cannot create invoices** (that button stays disabled by design); Office
+  takes and manages payments.
+If a shop wants any of these different for a specific person, an admin can build
+a custom role from the matching template and adjust it.
+
+**B11. Will migration change who can clock in/out?**
+No. Migration does **not** touch the "Time Clock" setting on anyone's staff
+record — if it was on it stays on, if it was off it stays off. A person's role
+has no effect on their Time Clock setting, and an admin can turn Time Clock on
+or off for any staff member regardless of their role. If someone's clock-in
+ability changed right after go-live, that's not expected — check their staff
+record and escalate if migration appears to have altered it.
+
+**B12. After migration, which role do our old "SA Technician" users get?**
+They map to **Service Advisor** (not Senior Service Advisor). If any of them
+need the broader Senior Service Advisor access, an admin can reassign them.
+
 ---
 
 ## C. "User can't see / can't do something"
