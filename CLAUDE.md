@@ -91,6 +91,7 @@ process(es) to run before proceeding.
    `build/custom-roles-run/*` (WORDING-VIU-STATE / Blockers Tracker / WordingVIU
    workbook / section-3658-resolution / testrail-wording-viu-log),
    `build/custom-roles-spec-update/*`, TestRail section **3527** / runs **312** & **331**.
+   **SESSION RESUME 2026-07-16 (exec+QA deliverables): read build/custom-roles-run/SESSION-STATE-2026-07-16-EXEC-QA.md first** — exec file DELIVERED (audited CLEAN); QA pre-release checklist IN FLIGHT (build → adversarial audit → deliver).
 2. **Fees and Discount project** — Fees & Discounts V1 (ShopView). **Canonical
    spec (Confluence):**
    https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/622297094/Fees+Discounts+V1
