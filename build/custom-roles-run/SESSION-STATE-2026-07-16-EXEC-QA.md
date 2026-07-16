@@ -11,18 +11,18 @@ If the session/usage limit cuts off, resume EXACTLY from here. Context: user (QA
 5. Memory: Standing Rule 14 (never NOT-VERIFIED for missing data-state — seed & observe, commit 0cec1a2), Standing Rule 15 (spec calls from verbatim truth table + adversarial self-audit, commit 5718f9d), PROD-VS-STAGING-COMPARE-METHOD.md (+§10).
 6. Security: prod password redacted from HEAD (131f5bf) but STILL IN GIT HISTORY commit ee7b7e9 — user must rotate the prod credential (reminded multiple times, still open).
 
-## IN FLIGHT at save time (check and resume these FIRST)
-1. QA PRE-RELEASE CHECKLIST builder (background worker): building build/custom-roles-run/CustomRoles_QA-PreRelease-Checklist_2026-07-16.xlsx + gen_qa_prerelease.py. 5 tabs: Summary / P1 Must-check (6 deviations + 3 contradictions + money-facing intended changes w/ build-accurate check steps) / P2 Should-check (remaining intended deltas) / P3 Monitor / Coverage Gaps (findings w/o TestRail case + the 2 labeled-with-method cells). Every row: TestRail C-id + link mapped from cases-2026-07-13/*.json filenames (Rule 8), spec citation, evidence path. Has mandatory self accuracy-gate, commits by pathspec.
-   → RESUME CHECK: does the file exist + committed? If not, re-run the build with the spec above. If yes:
-2. NEXT STEP AFTER BUILDER: run an INDEPENDENT ADVERSARIAL AUDIT worker on the QA checklist (same pattern as the exec audit: recompute counts, row-match against Full Dual Matrix, verify spec citations in current-spec-2026-07-15.md, verify every C-id exists in cases-2026-07-13/, check steps use build-accurate wording, zero NOT-VERIFIED/placeholders). Fix-and-loop if errors; only then deliver to user with raw GitHub link.
-3. THEN: report to user with raw link + audit verdict.
+## RESOLVED (was "IN FLIGHT at save time") — QA pre-release checklist DONE AND DELIVERED
+The QA pre-release checklist is COMPLETE and DELIVERED:
+1. Built (commit b3cabcd): build/custom-roles-run/CustomRoles_QA-PreRelease-Checklist_2026-07-16.xlsx — 61 items: 12 P1 / 33 P2 / 7 P3 / 9 coverage gaps; 35 TestRail-mapped; WO-Delete losing set confirmed = 4 roles (Service Advisor, Foreman, Technician, Office User), Parts Technician = MATCH.
+2. Independently adversarially audited — 5 errors found & fixed (3 wrong evidence citations, 1 spec-silent miscategorization QA-47, 1 overstated observation date QA-52), re-audited CLEAN, final commit aad5864.
+3. Delivered to user with raw GitHub link.
 
 ## Open threads beyond this task (unchanged)
 - Vlad's Custom Roles spec-recheck vs DONE tickets (blocked: needs Atlassian access in a FRESH session, or user exports tickets).
 - Simple Flow: awaiting Milos Round-3. F&D: FD-CUST-016/FD-VAL-007 dup ruling + bug filing. Prod password rotation (above).
 
-## How to resume (ordered)
+## How to resume (ordered) — TASK COMPLETE, nothing in flight
 1. git pull; read this doc + git log -15.
-2. Check in-flight item 1 (QA checklist) state → complete or audit per above.
-3. Deliver with raw link https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/custom-roles-run/CustomRoles_QA-PreRelease-Checklist_2026-07-16.xlsx after audit CLEAN.
+2. Steps 2/3 of the original plan are COMPLETE. Current state: ALL THREE DELIVERABLES DELIVERED — the LIVE-VERIFIED workbook + the EXEC release-readiness xlsx (audited clean, 86316c7) + the QA pre-release checklist (audited clean, aad5864). Nothing in flight.
+3. Next session: NO pending work on this task. Open threads remain (see section above): Vlad spec-recheck (needs Atlassian fresh session or exported tickets), Milos Round-3 for Simple Flow, F&D FD-CUST-016/FD-VAL-007 dup ruling + bug filing, prod password rotation (ee7b7e9).
 4. Everything user-facing: Excel, layman language, TestRail IDs+links, zero NOT-VERIFIED, build→adversarial-audit chain ALWAYS.
