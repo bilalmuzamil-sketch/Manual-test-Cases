@@ -6,9 +6,19 @@
 > role definitions, `fe_permissions`, atoms, or source. The prior deliverable
 > (`Prod-vs-Staging-Permission-Gaps_2026-07-14.xlsx`/`.md`) is **SUPERSEDED**.
 >
-> Workbook: `Prod-vs-Staging-LIVE-VERIFIED-2026-07-14.xlsx`.
+> Workbook: `Prod-vs-Staging-LIVE-VERIFIED-2026-07-14.xlsx` (see the **"Pass-9 LIVE (2026-07-16)"** tab for the latest).
 > Evidence: `live-ui-2026-07-15/staging/<role>/` and `live-ui-2026-07-15/production/<role>/`
 > (full-page WO screenshots + `observation.json` per role).
+>
+> **➡️ 2026-07-16 PASS-9 ADDENDUM — read `live-ui-PASS9-2026-07-16.md`.** Self-service
+> unblocks: prod finance via role-swap **self-login** (SA-Limited-View New Payment/Reverse/
+> Issue Credit = **all SHOWN**, confirming the **Invoice-Reverse STAGING-LESS** dual on the
+> prod side; Foreman finance HIDDEN → **STAGING-MORE**), + the 4 holderless STAGING roles'
+> **Set Line Status + WO Delete** observed live on a seeded unapproved-line WO
+> (**Foreman/Office User/Parts Technician lose WO Delete = STAGING-LESS**). 14 new
+> OBSERVED-LIVE cells; residual NOT-VERIFIED = prod finance for Service Manager/Parts
+> Manager/Parts Technician (estimate-400 panel crash), staging Core-OK/Part-Return
+> (needs a picked cored line), and Task-C PO-detail/AP-AR nav.
 
 > **✅ 2026-07-15c UPDATE — PROD RE-OBSERVED, DUAL VERDICTS REBUILT.** The expired
 > prod cookies were re-established via the **renewable prod self-login**
