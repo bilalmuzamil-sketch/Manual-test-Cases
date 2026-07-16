@@ -233,11 +233,16 @@
     <div class="step">
       <div class="num">3</div>
       <h3>Upload the bot's knowledge</h3>
-      <p>Download these two files, then drag both into the Project's <b>knowledge</b> area. They contain the complete feature reference and the approved answers.</p>
+      <p>Get these two files and add both to the Project's <b>knowledge</b> area. Click <b>Download</b> — if your browser blocks the download here, click <b>Copy / View</b> instead, then paste the text into the Project as a knowledge item (or save it as a <code>.md</code> file).</p>
       <div class="acts">
-        <button class="btn ghost" data-dl="kb">⬇ knowledge-base.md</button>
-        <button class="btn ghost" data-dl="faq">⬇ faq.md</button>
+        <button class="btn ghost" data-dl="kb">⬇ Download knowledge-base.md</button>
+        <button class="btn ghost" data-view="kb">📋 Copy / View</button>
       </div>
+      <div class="acts" style="margin-top:8px;">
+        <button class="btn ghost" data-dl="faq">⬇ Download faq.md</button>
+        <button class="btn ghost" data-view="faq">📋 Copy / View</button>
+      </div>
+      <div id="fileview" hidden></div>
     </div>
 
     <div class="step">
@@ -1770,15 +1775,57 @@ $("#copyPrompt").onclick = async () => {
   }
   $("#copiedMsg").hidden = false;
 };
+function fileText(id){ return $("#file-" + id).textContent.trim() + "\n"; }
+function fileName(id){ return id === "kb" ? "knowledge-base.md" : "faq.md"; }
+
 document.querySelectorAll("[data-dl]").forEach(btn => {
   btn.onclick = () => {
     const id = btn.getAttribute("data-dl");
-    const text = $("#file-" + id).textContent.trim() + "\n";
-    const name = id === "kb" ? "knowledge-base.md" : "faq.md";
-    const url = URL.createObjectURL(new Blob([text], {type:"text/markdown"}));
-    const a = document.createElement("a");
-    a.href = url; a.download = name; a.click();
-    setTimeout(()=>URL.revokeObjectURL(url), 5000);
+    let ok = false;
+    try {
+      const url = URL.createObjectURL(new Blob([fileText(id)], {type:"text/markdown"}));
+      const a = document.createElement("a");
+      a.href = url; a.download = fileName(id);
+      document.body.appendChild(a); a.click(); a.remove();
+      setTimeout(()=>URL.revokeObjectURL(url), 5000);
+      ok = true;
+    } catch (e) { ok = false; }
+    // Downloads are often blocked inside the embedded page's sandbox; always
+    // reveal the copy/view panel as a reliable fallback.
+    showFile(id, !ok);
   };
 });
+
+document.querySelectorAll("[data-view]").forEach(btn => {
+  btn.onclick = () => showFile(btn.getAttribute("data-view"), false);
+});
+
+function showFile(id, blocked){
+  const host = $("#fileview");
+  host.hidden = false;
+  host.innerHTML = "";
+  const note = document.createElement("p");
+  note.style.cssText = "font-size:13px;color:var(--ink-2);margin:12px 0 6px;";
+  note.textContent = (blocked ? "Download was blocked here. " : "") +
+    "Copy this and paste it into your Project's knowledge as a text item, or save it as " + fileName(id) + ".";
+  const bar = document.createElement("div");
+  bar.className = "acts"; bar.style.marginBottom = "8px";
+  const copyBtn = document.createElement("button");
+  copyBtn.className = "btn primary"; copyBtn.textContent = "Copy " + fileName(id);
+  const okMsg = document.createElement("span");
+  okMsg.className = "done"; okMsg.hidden = true; okMsg.textContent = "Copied ✓";
+  const ta = document.createElement("textarea");
+  ta.readOnly = true; ta.value = fileText(id);
+  ta.style.cssText = "width:100%;height:280px;margin-top:6px;font:12px var(--mono);" +
+    "border:1px solid var(--line);border-radius:8px;padding:10px;background:var(--surface);color:var(--ink);";
+  copyBtn.onclick = async () => {
+    ta.select();
+    try { await navigator.clipboard.writeText(ta.value); }
+    catch (e) { try { document.execCommand("copy"); } catch (e2) {} }
+    okMsg.hidden = false;
+  };
+  bar.appendChild(copyBtn); bar.appendChild(okMsg);
+  host.appendChild(note); host.appendChild(bar); host.appendChild(ta);
+  ta.scrollIntoView({behavior:"smooth", block:"nearest"});
+}
 </script>
