@@ -5,6 +5,17 @@ change to the Confluence spec (page 565116952). Newest first.
 
 ---
 
+## 2026-07-16 — User resolved the two flagged conflicts
+
+- **Office invoices:** confirmed — Office CANNOT create invoices but CAN take
+  payments. The hard rule stays active (overrides SV-8345's "obsolete"). Removed
+  from §14.11; main rules already state it.
+- **Reversal / payment-delete vs Manage AP/AR:** per "follow the newer ruling,"
+  the AP/AR dependency is DROPPED — reversing an invoice / deleting a payment is
+  gated by Invoicing: Delete alone (SV-7812/7913). Manage AP/AR still controls
+  only the consolidated AP/AR tabs' visibility (SV-8100). Updated §3i, §14.5,
+  §12 quick table, FAQ C11; removed from §14.11.
+
 ## 2026-07-16 — Authoritative role deltas (Sasha, Slack) + standing rules
 
 User relayed Sasha's post-build delta decisions as authoritative (last-word-

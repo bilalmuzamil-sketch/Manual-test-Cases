@@ -582,8 +582,12 @@ formerly "View History Logs"; it now controls ONLY part history.)
 
 ### 3i. Invoicing and Payments (`invoicingPayments`)
 
-Requires **See Financial Data**. **Delete additionally requires Manage
-AP/AR** (enabling Delete while AP/AR is off prompts to enable it).
+Requires **See Financial Data**. **Delete does NOT require Manage AP/AR**
+(ruling updated 2026-07-16, following the newer tickets SV-7812/7913 — the old
+AP/AR dependency for reversal/payment-delete was dropped). Note: Manage AP/AR
+still controls the consolidated AP/AR *tabs* (Unpaid Invoices / Payments /
+Credits) on customer & vendor pages — that's separate from being able to
+reverse/delete from a work order or part sale.
 
 - **View:** view invoices from WOs, part sales, or customers (needs access to
   those entry points too). If OFF but See Financial Data is ON: user still
@@ -592,8 +596,9 @@ AP/AR** (enabling Delete while AP/AR is off prompts to enable it).
   sales, manage invoice fields, collect **deposits**, **Send to Terminal**
   (Send to Terminal also requires Customer Portal ON).
 - **Delete:** delete payments (including customer payments), void
-  transactions, delete a part-sale return. (Invoice REVERSAL is NOT here —
-  it moved to Work Orders: Delete / Part Sales: Delete.)
+  transactions, delete a part-sale return — gated by Invoicing: Delete alone.
+  (Invoice REVERSAL is NOT here — it moved to Work Orders: Delete / Part Sales:
+  Delete.)
 
 ### 3j. Timesheets (`timesheets`)
 
@@ -997,7 +1002,7 @@ Inspection abilities derive from existing permissions:
 | See WO/line audit logs | Work Orders: Create and Edit |
 | See line story history | WO View (line story requires WOL view, which follows WO View) |
 | Reverse an invoice (WO or Part Sale) | Work Orders: Delete / Part Sales: Delete (+ validation, e.g. no payments) |
-| Delete a payment | Invoicing: Delete (which also needs Manage AP/AR) |
+| Delete a payment | Invoicing: Delete (does NOT need Manage AP/AR — updated 2026-07-16) |
 | Delete a part-sale return | Invoicing: Delete |
 | Collect deposits / Send to Terminal | Invoicing: Create and Edit (terminal also needs Customer Portal ON) |
 | Send to Portal | Full View + able to approve a WO line |
@@ -1134,10 +1139,12 @@ a work order. The "Add Customer" button appearing there is intended
 - **Reverse a PART SALE invoice** = Part Sales: Delete (NOT Work Orders: Delete
   — the 6/28 change-log line saying WO Delete was wrong and was corrected)
   (SV-8237/8238).
-- **Delete a payment** (customer or vendor) = Invoicing & Payments: Delete, and
-  it depends on Manage AP/AR (the Payments tab that holds the action is hidden
-  when AP/AR is off); enabling Invoicing Delete while AP/AR is off prompts to
-  enable AP/AR (SV-8100/8167/8170/7913).
+- **Delete a payment** (customer or vendor) = Invoicing & Payments: Delete
+  alone — it does NOT require Manage AP/AR (ruling updated 2026-07-16, following
+  newer SV-7812/7913; the earlier AP/AR dependency was dropped). Vendor payment
+  delete is Invoicing: Delete, not Vendor & Order Delete (SV-8167). Manage AP/AR
+  still governs the consolidated AP/AR tabs' visibility (SV-8100), which is a
+  separate concern.
 - **Delete a Part Sale** = Part Sales: Delete (type-aware; not WO Delete). A part
   sale with received parts can't be deleted until those parts are returned or
   reassigned (SV-8126/8127).
@@ -1247,21 +1254,12 @@ a work order. The "Add Customer" button appearing there is intended
   but if a customer reports a View-only user being unable to edit someone else's
   note, treat it as this known-open item and escalate rather than calling it
   wrong.
-- **"Office cannot create invoices" — instruction vs ticket conflict.** Per the
-  standing instruction this is treated as DONE/implemented: the Create-Invoice
-  button is disabled for Office regardless of Invoicing CRUD, and the bot
-  answers that way. HOWEVER, Jira **SV-8345 marks that hard rule OBSOLETE**
-  (i.e. dropped, with Office invoicing falling back to normal CRUD). These
-  conflict. The bot follows the instruction (rule active), but this needs a
-  product confirmation — flag if a customer's Office user's invoice-create
-  behavior doesn't match.
-- **Does reversing an invoice / deleting a payment require Manage AP/AR?**
-  The current spec (§3i / §7b) says Invoicing: Delete additionally requires
-  Manage AP/AR, but **SV-7812 (Done) + SV-7913 (obsolete)** indicate that
-  dependency was removed — reversal/payment-deletion gated solely by Invoicing:
-  Delete. The bot answers per the current spec (AP/AR still involved for the
-  Delete entry point), but this is being reconciled — escalate if a role with
-  Invoicing Delete but AP/AR off unexpectedly can or cannot reverse/delete.
+(Two earlier conflicts here were resolved by the user on 2026-07-16 and moved
+into the main rules: (a) **Office cannot create invoices but can take payments**
+— confirmed, the Create-Invoice button is disabled for Office regardless of
+Invoicing CRUD; (b) **reversing an invoice / deleting a payment does NOT require
+Manage AP/AR** — gated by Invoicing: Delete alone, per "follow the newer
+ruling.")
 
 > Coverage note: distilled from a full pass over the 276 resolved Bug +
 > Story-Defect tickets under Epic SV-7388. Most were internal fixes with no
@@ -1481,9 +1479,10 @@ estimate.
 **C11. A user can't delete a payment even though they can delete work
 orders.**
 Deleting payments is separate from deleting work orders: it requires
-"Invoicing and Payments: Delete" (which in turn requires "Manage Accounts
-Payable and Receivable"). Work Orders: Delete covers deleting WOs and
-reversing invoices, not deleting payments.
+"Invoicing and Payments: Delete". (It does NOT also require "Manage Accounts
+Payable and Receivable" — that requirement was dropped as of July 2026.) Work
+Orders: Delete covers deleting WOs and reversing invoices, not deleting
+payments.
 
 **C12. Who can reverse an invoice?**
 Reversing an invoice on a work order requires Work Orders: Delete; on a part

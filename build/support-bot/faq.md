@@ -212,9 +212,10 @@ estimate.
 **C11. A user can't delete a payment even though they can delete work
 orders.**
 Deleting payments is separate from deleting work orders: it requires
-"Invoicing and Payments: Delete" (which in turn requires "Manage Accounts
-Payable and Receivable"). Work Orders: Delete covers deleting WOs and
-reversing invoices, not deleting payments.
+"Invoicing and Payments: Delete". (It does NOT also require "Manage Accounts
+Payable and Receivable" — that requirement was dropped as of July 2026.) Work
+Orders: Delete covers deleting WOs and reversing invoices, not deleting
+payments.
 
 **C12. Who can reverse an invoice?**
 Reversing an invoice on a work order requires Work Orders: Delete; on a part
