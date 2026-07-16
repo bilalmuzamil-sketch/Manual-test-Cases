@@ -7,7 +7,7 @@
 
 ## 0. Status (as of 2026-07-16)
 
-**STATUS: CASES AUTHORED (84). TestRail push PENDING explicit user permission. VIU
+**STATUS: CASES AUTHORED (86). TestRail push PENDING explicit user permission. VIU
 PENDING (feature not yet on any QA env).**
 
 - Spec: **INGESTED** (complete) → `requirements.md`. Source doc was a Confluence
@@ -20,13 +20,13 @@ PENDING (feature not yet on any QA env).**
   (1) **AI search-all** ("AI search (out of scope)"),
   (2) **Header search component proposal** ("New search component proposal (Out of
   scope)").
-- Cases: **AUTHORED — 84 cases** across **15 sections** (14 functional + 1 API) →
+- Cases: **AUTHORED — 86 cases** across **15 sections** (14 functional + 1 API) →
   `cases/cases-A..D-*.json`. Internal IDs `GS-<AREA>-NN`. All 12 API cases live under
   the API-titled section (Standing Rule 4). All carry `viu_status: "VIU-Pending"`
   (feature not yet VIU-able) + build-accurate wording from `design-notes.md` with
   ~20 explicit VIU-confirm placeholders (see `coverage-matrix.md` §D).
 - Deliverables: **import (CSV+XLSX) + coverage matrix + id-map** built (see §3).
-- TestRail: **NOT pushed** — `testrail-id-map.csv` now lists all 84 internal IDs with
+- TestRail: **NOT pushed** — `testrail-id-map.csv` now lists all 86 internal IDs with
   BLANK TestRail Case IDs; import shows "pending push". **No TestRail writes without
   explicit user permission** (Standing Rule 6).
 - Env/VIU: **NOT available yet** — feature is feature-flagged and not confirmed on
@@ -82,17 +82,17 @@ placeholder but is OUT OF SCOPE for V1 per the Figma.
 - `design-notes.md` — Figma capture, 10/10 screenshots, exact labels; out-of-scope
   states flagged.
 - `cases/cases-A-palette-keyboard-tabs.json` (18) — GS-KEY, GS-TAB.
-- `cases/cases-B-results-entities-fuzzy-ranking.json` (30) — GS-GRP, GS-ENT, GS-FUZ,
+- `cases/cases-B-results-entities-fuzzy-ranking.json` (31) — GS-GRP, GS-ENT, GS-FUZ,
   GS-RANK.
 - `cases/cases-C-states-hover-list-error.json` (20) — GS-EMPTY, GS-REC, GS-PERS,
   GS-NORES, GS-HOVER, GS-LIST, GS-ERR.
-- `cases/cases-D-permissions-api.json` (16) — GS-PERM (4) + GS-API (12, API section).
+- `cases/cases-D-permissions-api.json` (17) — GS-PERM (5) + GS-API (12, API section).
 - `coverage-matrix.md` — every in-scope spec req + Figma state → GS- case(s);
   out-of-scope items + ~20 VIU-confirm placeholders listed.
 - `gen_import.py` — builds the import (VIU-word-free + feature-flag-free; API cases
   routed to an API-titled section; adds Internal ID + TestRail Case ID + Link cols).
-- `GlobalSearch_TestRail-Import.csv` / `.xlsx` — 84 rows, "pending push" C-ids.
-- `testrail-id-map.csv` — all 84 internal IDs, BLANK TestRail Case IDs (not pushed).
+- `GlobalSearch_TestRail-Import.csv` / `.xlsx` — 86 rows, "pending push" C-ids.
+- `testrail-id-map.csv` — all 86 internal IDs, BLANK TestRail Case IDs (not pushed).
 - `PROJECT-STATE.md` — this file (canonical resume doc).
 
 ## 4. Shared infrastructure to reuse (do NOT re-invent)
@@ -145,7 +145,7 @@ placeholder but is OUT OF SCOPE for V1 per the Figma.
 
 1. Read this file, then `requirements.md` (full spec), `design-notes.md` (labels),
    and `coverage-matrix.md` (completeness + VIU-confirm list).
-2. Cases are AUTHORED (84 in `cases/`). Regenerate the import any time with
+2. Cases are AUTHORED (86 in `cases/`). Regenerate the import any time with
    `python3 build/global-search/gen_import.py` (keeps it VIU-word-free + flag-free).
 3. **⚠️ ASK THE USER for the Epic/Jira key (OQ-4)** and confirm OQ-3 (AI placeholder)
    before/at VIU. Get OQ-5 (QA env + flag status) so the feature is VIU-able.

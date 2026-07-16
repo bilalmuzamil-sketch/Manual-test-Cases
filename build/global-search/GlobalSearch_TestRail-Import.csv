@@ -189,6 +189,10 @@ Fuzzy Matching,A soft (fuzzy) match is visually indicated,Functional,Low,"1. The
 2. A record exists that will only match via fuzzy logic (for example type 'Petersn' for a 'Peterson' record).","1. Type a fuzzy query (for example 'Petersn').
 2. Look at how the matched token is shown in the result row.","1. The matched token is highlighted.
 2. A subtle soft-match indicator is shown for fuzzy matches (spec mentions a '≈' symbol or italic treatment).","requirements.md 7 (fuzzy soft-match highlight treatment - design polish, confirm with design)",GS-FUZ-10,pending push,
+Fuzzy Matching,A Part Sale P-number requires an exact match (no fuzzy typo tolerance),Negative,Medium,"1. The palette is open.
+2. A Part Sale 'P2-58' exists and no Part Sale 'P2-59' exists.","1. Type the exact P-number 'P2-58' and read the result.
+2. Clear the input, type a near-miss P-number 'P2-59' (one digit off a real Part Sale), and read the results.","1. The exact P-number 'P2-58' finds the matching Part Sale.
+2. A one-digit-off P-number does NOT return the real Part Sale as a fuzzy match - P-numbers are exact-only identifiers, no typo tolerance (it may show 'No results' if nothing else matches).","requirements.md 7 (What is NOT fuzzy: VIN, WO number, P-number, part number - exact match after normalization)",GS-FUZ-11,pending push,
 Ranking and Prioritization,An exact identifier match is pinned as a single row at the very top,Functional,High,"1. The palette is open.
 2. A Work Order 'S2-15276' exists.","1. Type the exact Work Order number 'S2-15276'.
 2. Look at the top of the results.","1. The exactly-matched Work Order is pinned as a single row at the very top, above the grouped results, labeled with its entity icon.
@@ -319,6 +323,12 @@ Permissions and Role-Based Scoping,Results are limited to the signed-in user's o
 2. Records with the same searchable text exist under a different tenant.","1. Open the palette and type a query.
 2. Read the results.","1. Only records belonging to your own tenant/organization are returned.
 2. No records from any other tenant are shown (tenant isolation is respected).",requirements.md 9 (all result fields respect existing tenant-isolation checks),GS-PERM-04,pending push,
+Permissions and Role-Based Scoping,An entity type with no accessible records shows no group (and its scope tab shows the empty state),Functional,Medium,"1. You are signed in as a user who has zero accessible records of one entity type (for example the tenant has no Part Sales yet, or the user's role scopes an entity type down to no records).
+2. Other entity types do have matching records for the query.","1. Open the palette and type a query on the 'All' tab.
+2. Read the grouped results and confirm the empty entity type has no group.
+3. Open the scope tab for the empty entity type (for example the 'Part Sales' tab).","1. On the 'All' tab, no group appears for the entity type that has zero accessible results (the empty group is simply not shown).
+2. Groups for the entity types that do have matches still appear normally.
+3. The empty entity type's scope tab shows its empty / no-results treatment rather than an error.","requirements.md 9 (must work for a single-tenant dataset where any entity type is empty, e.g. no part sales yet)",GS-PERM-05,pending push,
 API - Global Search Endpoint,GET /api/search returns grouped results for scope=all,Functional,Critical,"1. You can call the backend search endpoint with a valid session.
 2. Test data exists so a query matches multiple entity types.","1. Send GET /api/search with q set to the query and scope set to 'all'.
 2. Inspect the HTTP status and the response body.","1. The response returns HTTP 200.

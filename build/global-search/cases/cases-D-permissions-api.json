@@ -101,6 +101,33 @@
   "api_related": false
  },
  {
+  "id": "GS-PERM-05",
+  "area": "Permissions and Role-Based Scoping",
+  "title": "An entity type with no accessible records shows no group (and its scope tab shows the empty state)",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "A signed-in user whose data set has zero records of at least one entity type (for example a tenant with no Part Sales yet).",
+  "preconditions": [
+   "1. You are signed in as a user who has zero accessible records of one entity type (for example the tenant has no Part Sales yet, or the user's role scopes an entity type down to no records).",
+   "2. Other entity types do have matching records for the query."
+  ],
+  "steps": [
+   "1. Open the palette and type a query on the 'All' tab.",
+   "2. Read the grouped results and confirm the empty entity type has no group.",
+   "3. Open the scope tab for the empty entity type (for example the 'Part Sales' tab)."
+  ],
+  "expected": [
+   "1. On the 'All' tab, no group appears for the entity type that has zero accessible results (the empty group is simply not shown).",
+   "2. Groups for the entity types that do have matches still appear normally.",
+   "3. The empty entity type's scope tab shows its empty / no-results treatment rather than an error."
+  ],
+  "design_ref": "requirements.md 9 (must work for a single-tenant dataset where any entity type is empty)",
+  "spec_ref": "requirements.md 9 (must work for a single-tenant dataset where any entity type is empty, e.g. no part sales yet)",
+  "viu_status": "VIU-Pending",
+  "notes": "Sparse-data / empty-entity coverage. Requires a sparse-data setup at VIU time - use a tenant/user whose data set has zero records of one entity type (for example no Part Sales), or seed the environment to that state (Standing Rule 14). VIU-confirm whether the empty entity type's scope tab is hidden entirely or shows an empty-state message.",
+  "api_related": false
+ },
+ {
   "id": "GS-API-01",
   "area": "API - Global Search Endpoint",
   "title": "GET /api/search returns grouped results for scope=all",

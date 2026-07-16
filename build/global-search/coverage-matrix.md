@@ -5,7 +5,7 @@
 > Cases are authored LOCAL-ONLY (not in TestRail). TestRail Case IDs are "pending
 > push" until the user grants explicit permission (Standing Rule 6).
 >
-> Total cases authored: **84** across **15 sections** (14 functional + 1 API).
+> Total cases authored: **86** across **15 sections** (14 functional + 1 API).
 > API cases (12) all live under the API-titled section (Standing Rule 4).
 
 ## A. Spec requirement coverage (requirements.md)
@@ -55,6 +55,7 @@
 | §7 Identifier exact-only | VIN exact-only | GS-FUZ-06 |
 | §7 Phone normalization | Digits-only phone match | GS-FUZ-07 |
 | §7 Identifier exact-only | Part number exact-only | GS-FUZ-08 |
+| §7 Identifier exact-only | P-number (Part Sale) exact-only, no fuzzy | GS-FUZ-11 |
 | §7 Not fuzzy | Identifier typo → no fuzzy match | GS-FUZ-09, GS-API-05 |
 | §7 Highlighting | Soft-match "≈"/italic indicator (design polish) | GS-FUZ-10 |
 | §8 Open via click/⌘K | (functional summary) | GS-KEY-01, GS-KEY-02 |
@@ -71,7 +72,7 @@
 | §8 Error banner | "Search unavailable, retry" | GS-ERR-01, GS-API-07 |
 | §9 Latency p95 ≤250ms | Perf NFR | GS-API-12 (perf note) |
 | §9 Index refresh ≤30s | Freshness NFR | see note (perf/backend) |
-| §9 Empty entity type OK | Sparse-data tenants | covered implicitly by GS-TAB-08 / GS-NORES-01; VIU sparse-data pass |
+| §9 Empty entity type OK | Sparse-data tenants (empty entity type shows no group; scope tab empty state) | GS-PERM-05 |
 | §9 Tenant isolation | Own-tenant only | GS-PERM-04 |
 | §9 Role-based access | Technician w/o Parts sees no Parts | GS-PERM-01, GS-PERM-02, GS-PERM-03, GS-API-06 |
 | §9 WCAG 2.1 AA | Keyboard operability, focus rings, SR count announce | GS-GRP-07, GS-KEY-06..10 |
@@ -145,6 +146,11 @@ real build during the VIU pass (feature not yet on any QA env):
 - **API response shape / error status codes** — not fully specified in the doc
   (GS-API-01, GS-API-07, GS-API-11).
 - **"Refresh" link** (Figma screenshot 3) — confirm V1 scope (see §C.4).
+- **Exact P-number format** — whether the P-number's dash/space is normalized (like
+  `S2-15276` = `s215276`) as §7 does for WO number/part number/VIN/phone; §7 lists the
+  P-number as exact-only but does not name it in the normalization bullet (GS-FUZ-11).
+- **Empty entity type treatment** — whether the empty entity type's scope tab is hidden
+  entirely or shows an empty-state message (GS-PERM-05).
 
 ## E. Coverage summary
 

@@ -637,6 +637,31 @@
   "api_related": false
  },
  {
+  "id": "GS-FUZ-11",
+  "area": "Fuzzy Matching",
+  "title": "A Part Sale P-number requires an exact match (no fuzzy typo tolerance)",
+  "priority": "Medium",
+  "type": "Negative",
+  "permissions_required": "A user with Part Sales access.",
+  "preconditions": [
+   "1. The palette is open.",
+   "2. A Part Sale 'P2-58' exists and no Part Sale 'P2-59' exists."
+  ],
+  "steps": [
+   "1. Type the exact P-number 'P2-58' and read the result.",
+   "2. Clear the input, type a near-miss P-number 'P2-59' (one digit off a real Part Sale), and read the results."
+  ],
+  "expected": [
+   "1. The exact P-number 'P2-58' finds the matching Part Sale.",
+   "2. A one-digit-off P-number does NOT return the real Part Sale as a fuzzy match - P-numbers are exact-only identifiers, no typo tolerance (it may show 'No results' if nothing else matches)."
+  ],
+  "design_ref": "requirements.md 7 (P-number exact-only, bypasses fuzzy)",
+  "spec_ref": "requirements.md 7 (What is NOT fuzzy: VIN, WO number, P-number, part number - exact match after normalization)",
+  "viu_status": "VIU-Pending",
+  "notes": "P-number is in the exact-only identifier list per requirements.md 7 (alongside WO number, VIN, part number). The section 7 normalization bullet names WO number, part number, VIN and phone explicitly but does NOT explicitly name the P-number, so the exact P-number format (whether the dash/space is normalized like 'S2-15276' = 's215276') is unconfirmed - VIU-confirm the exact P-number format and whether dash/space normalization applies to it on the live build.",
+  "api_related": false
+ },
+ {
   "id": "GS-RANK-01",
   "area": "Ranking and Prioritization",
   "title": "An exact identifier match is pinned as a single row at the very top",

@@ -42,6 +42,7 @@ GS-FUZ-07,,"A telephone number matches on digits only, ignoring formatting",Fuzz
 GS-FUZ-08,,A part number requires an exact match after normalization,Fuzzy Matching
 GS-FUZ-09,,Typos in identifier fields do NOT return fuzzy matches,Fuzzy Matching
 GS-FUZ-10,,A soft (fuzzy) match is visually indicated,Fuzzy Matching
+GS-FUZ-11,,A Part Sale P-number requires an exact match (no fuzzy typo tolerance),Fuzzy Matching
 GS-RANK-01,,An exact identifier match is pinned as a single row at the very top,Ranking and Prioritization
 GS-RANK-02,,"Within a group, more relevant results appear first",Ranking and Prioritization
 GS-RANK-03,,In-stock parts rank above out-of-stock parts (out-of-stock not hidden),Ranking and Prioritization
@@ -71,6 +72,7 @@ GS-PERM-01,,A user WITH Parts access sees Parts results in the palette,Permissio
 GS-PERM-02,,A technician WITHOUT Parts access does NOT see Parts results,Permissions and Role-Based Scoping
 GS-PERM-03,,A user WITHOUT Work Orders access does NOT see Work Order results,Permissions and Role-Based Scoping
 GS-PERM-04,,Results are limited to the signed-in user's own tenant,Permissions and Role-Based Scoping
+GS-PERM-05,,An entity type with no accessible records shows no group (and its scope tab shows the empty state),Permissions and Role-Based Scoping
 GS-API-01,,GET /api/search returns grouped results for scope=all,API - Global Search Endpoint
 GS-API-02,,The scope parameter restricts GET /api/search to a single entity type,API - Global Search Endpoint
 GS-API-03,,GET /api/search caps each group at the limit (default 5) and returns per-group totals,API - Global Search Endpoint
