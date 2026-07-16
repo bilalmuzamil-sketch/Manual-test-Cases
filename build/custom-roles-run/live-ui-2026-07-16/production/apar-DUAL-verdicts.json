@@ -1,0 +1,39 @@
+{
+ "capability": "See AP/AR (A/R + A/P Aging reports under Reports)",
+ "date": "2026-07-16",
+ "method_prod": "REAL role-holder switch-user (6 roles) + role-swap-test-staff+switch-user (holderless); render path validated by test-staff-as-Administrator CONTROL rendering full A/R+A/P tiles; deep-link to ar-aging-summary/ap-aging-summary + proof-of-shell (punch-clock) confirm the whole Reports surface is a single FE all-or-nothing gate.",
+ "method_staging": "Pass-10 throwaway role-swap + switch-user (observed live, 11 roles).",
+ "prod_observed": {
+  "Administrator": "SHOWN (full A/R + A/P Aging tiles rendered)",
+  "Office User": "SHOWN (full A/R + A/P Aging tiles rendered)",
+  "Service Manager": "HIDDEN (whole Reports surface bounces to /workorders; own punch-clock report also bounces)",
+  "Parts Manager": "HIDDEN (Reports surface bounces; punch-clock also bounces)",
+  "Parts Technician": "HIDDEN (deep-link ar/ap bounce)",
+  "Foreman": "HIDDEN (deep-link ar/ap bounce; no Reports nav)",
+  "Sales Representative": "HIDDEN (Reports nav present but click no-ops; deep-link bounces) [real holder]",
+  "Service Advisor Technician": "HIDDEN (Reports nav present, click no-ops) [real holder]",
+  "Service Advisor": "HIDDEN (deep-link ar/ap bounce)",
+  "Service Advisor - No Reports": "HIDDEN (deep-link ar/ap bounce)",
+  "Service Advisor - Limited View": "HIDDEN (deep-link ar bounce)",
+  "Technician": "HIDDEN (no Reports nav; bounce) [real holder]",
+  "Time Clock User": "HIDDEN (no Reports nav; bounce) [real holder]",
+  "Reporting": "OBSERVED-CAVEAT: role-swap yielded perms=0 and session bounced to /no-location (no reports rendered); Reporting merges into Sales Representative whose prod verdict is anchored by the real Sales Rep holder (HIDDEN)"
+ },
+ "staging_observed_pass10": {
+  "Administrator":"SHOWN","Service Manager":"SHOWN","Parts Manager":"SHOWN","Sales Representative":"SHOWN","Office User":"SHOWN",
+  "Senior Service Advisor":"hidden","Service Advisor":"hidden","Foreman":"hidden","Technician":"hidden","Parts Technician":"hidden","Time Clock User":"hidden"
+ },
+ "dual_verdicts_by_staging_role": {
+  "Administrator": "MATCH (prod SHOWN / staging SHOWN)",
+  "Service Manager": "STAGING-MORE (prod HIDDEN / staging SHOWN)",
+  "Senior Service Advisor": "MATCH (prod HIDDEN [SA/SA-Tech/SA-NoReports] / staging hidden)",
+  "Service Advisor": "MATCH (prod HIDDEN [SA-Limited-View] / staging hidden)",
+  "Foreman": "MATCH (prod HIDDEN / staging hidden)",
+  "Technician": "MATCH (prod HIDDEN / staging hidden)",
+  "Parts Manager": "STAGING-MORE (prod HIDDEN / staging SHOWN)",
+  "Parts Technician": "MATCH (prod HIDDEN / staging hidden)",
+  "Sales Representative": "STAGING-MORE (prod HIDDEN [Sales Rep holder] / staging SHOWN)",
+  "Office User": "MATCH (prod SHOWN / staging SHOWN)",
+  "Time Clock User": "MATCH (prod HIDDEN / staging hidden)"
+ }
+}
