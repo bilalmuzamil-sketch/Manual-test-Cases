@@ -6,11 +6,14 @@
 > Product: ShopView App · Feature: **Global Search v2** · Status (per doc): "Ready for engineering".
 > Figma design link (from spec): https://www.figma.com/design/DR4gEODShYgJqkozs3mF5q/Working---ShopView-App?node-id=12053-65992
 >
-> **CANONICAL SPEC URL — TO CONFIRM WITH USER** (the doc is a Confluence export;
-> the live Confluence page URL was NOT included in the export and must be supplied
-> by the user — do NOT invent it).
-> **PO / Product Owner — TO CONFIRM WITH USER** (not stated in the spec doc).
-> **Epic / Jira key — TO CONFIRM WITH USER** (not stated in the spec doc).
+> **CANONICAL SPEC URL (Confluence, confirmed 2026-07-16):**
+> https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/576978945/Global+Search+-+Product+Requirements+Development+Plan
+> (Atlassian-SSO login-walled — REFERENCE POINTER ONLY; do NOT fetch. The spec
+> content is already ingested from the exported .doc into this file.)
+> **PO / Product Owner (confirmed 2026-07-16): Branko** (known as Branko — first
+> name; full name TBC). *(Never mix PO attributions across projects.)*
+> **Epic / Jira key — NOT AVAILABLE YET** (user does not have it as of 2026-07-16;
+> ASK the user for the Epic/Jira key when VIU begins — do NOT invent it).
 
 This document is the COMPLETE, structured spec built verbatim-faithfully from the
 ingested doc. Section numbering mirrors the source doc where practical.
@@ -360,12 +363,13 @@ sequential at the end.
   the corresponding scope tab (spec's recommendation) or navigate to a full-page
   filtered list? To be closed in Phase 0.
 
-### QA onboarding open questions — TO CONFIRM WITH USER
-- **OQ-1 (PO / Product Owner):** Not stated in the doc. Who is the PO for Global
-  Search? (Never mix PO attributions across projects.)
-- **OQ-2 (Canonical spec URL):** The ingested file is a Confluence "Export to Word"
-  MHTML export; the live Confluence page URL is NOT in the export. Need the canonical
-  URL as a reference pointer.
+### QA onboarding open questions
+- **OQ-1 (PO / Product Owner): RESOLVED 2026-07-16 → PO = Branko** (known as Branko;
+  full name TBC). Never mix PO attributions across projects.
+- **OQ-2 (Canonical spec URL): RESOLVED 2026-07-16 →**
+  https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/576978945/Global+Search+-+Product+Requirements+Development+Plan
+  (Atlassian-SSO login-walled; reference pointer only — do NOT fetch; content already
+  ingested from the exported .doc).
 - **OQ-3 (AI / "ask a question" capability):** The empty-state placeholder is
   **"Search or ask a question"** and §8 requires the system to "gracefully degrade
   when the **AI flag** is off" — this strongly implies a natural-language / AI query
@@ -373,8 +377,9 @@ sequential at the end.
   acceptance criteria anywhere else. **Is there an AI/natural-language answer feature
   in v1 scope?** If so, its behavior needs its own spec section before those cases
   can be authored. Currently unspecified beyond the placeholder + flag mention.
-- **OQ-4 (Epic / Jira key):** Not stated in the doc. Need the Jira epic key for
-  traceability.
+- **OQ-4 (Epic / Jira key): STILL OPEN — NOT AVAILABLE YET.** The user does not have
+  the Jira epic key as of 2026-07-16. ⚠️ ASK the user for the Epic/Jira key when VIU
+  begins (needed for traceability). Do NOT invent it.
 - **OQ-5 (Environment / feature flag):** Feature is behind a feature flag and rolled
   out internal → 10% → 50% → 100%. Which QA environment / org will host it, and is
   the flag ON there yet? (Not yet available for VIU — see PROJECT-STATE.md.)

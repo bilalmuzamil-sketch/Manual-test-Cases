@@ -1,0 +1,764 @@
+[
+ {
+  "id": "GS-GRP-01",
+  "area": "Grouped Results and Counts",
+  "title": "Each result group shows a heading with the total match count",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "A user with access to the matching entity types.",
+  "preconditions": [
+   "1. The palette is open.",
+   "2. Test data exists so a query (for example 'Fib') returns several Work Orders and a couple of Customers."
+  ],
+  "steps": [
+   "1. Type the query (for example 'Fib').",
+   "2. Read each group heading."
+  ],
+  "expected": [
+   "1. Each group heading shows the entity name and the total count in parentheses, for example 'Work orders (12)' and 'Customers (2)'.",
+   "2. The count reflects the total number of matches for that entity type, even when only the first few rows are shown."
+  ],
+  "design_ref": "design-notes.md screenshots 2, 3, 9; requirements.md 5.2",
+  "spec_ref": "requirements.md 5.2 State 3 (results grouped by entity type with a count)",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "GS-GRP-02",
+  "area": "Grouped Results and Counts",
+  "title": "A group shows up to five results (raised from three)",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "A user with access to the matching entity type.",
+  "preconditions": [
+   "1. The palette is open.",
+   "2. Test data exists so at least one entity group has more than five matches (for example twelve Work Orders match 'Fib')."
+  ],
+  "steps": [
+   "1. Type the query so a group has many matches.",
+   "2. Count the rows shown under that group heading in the 'All' view."
+  ],
+  "expected": [
+   "1. The group shows at most five result rows.",
+   "2. It does not show six or more rows inline (the old behavior was three - it is now five)."
+  ],
+  "design_ref": "requirements.md 5.2 State 3 (up to 5 results, raised from 3)",
+  "spec_ref": "requirements.md 1 (old = 3 per category); 5.2 State 3 (up to 5 results)",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "GS-GRP-03",
+  "area": "Grouped Results and Counts",
+  "title": "A 'Show all N' link appears when a group has more matches than are shown",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "A user with access to the matching entity type.",
+  "preconditions": [
+   "1. The palette is open.",
+   "2. A query returns more than five Work Order matches (for example twelve)."
+  ],
+  "steps": [
+   "1. Type the query.",
+   "2. Look at the bottom of the Work Orders group."
+  ],
+  "expected": [
+   "1. A link appears at the bottom of the group, worded like 'Show all work orders' (or 'Show all 12 work orders').",
+   "2. The link only appears when there are more matches than the rows shown."
+  ],
+  "design_ref": "design-notes.md screenshot 2 ('Show all work orders'); requirements.md 5.2",
+  "spec_ref": "requirements.md 5.2 State 3 ('Show all N work orders' link)",
+  "viu_status": "VIU-Pending",
+  "notes": "design-notes screenshot 2 shows 'Show all work orders'; spec prose shows 'Show all N work orders' - VIU-confirm whether the count N is included in the on-screen link text.",
+  "api_related": false
+ },
+ {
+  "id": "GS-GRP-04",
+  "area": "Grouped Results and Counts",
+  "title": "Clicking 'Show all N' switches the palette into that entity's scope tab",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "A user with access to the matching entity type.",
+  "preconditions": [
+   "1. The palette is open with a query showing a Work Orders group that has a 'Show all' link."
+  ],
+  "steps": [
+   "1. Click the 'Show all work orders' link.",
+   "2. Watch the palette."
+  ],
+  "expected": [
+   "1. The palette stays open and switches to the 'Work Orders' scope tab.",
+   "2. The full list of matching Work Orders for the current query is shown, scoped to Work Orders only.",
+   "3. The palette does not leave to a separate full page (the recommended behavior is the scoped tab within the modal)."
+  ],
+  "design_ref": "requirements.md 5.2 'Show all link behavior'; 11 OQ-SPEC-1",
+  "spec_ref": "requirements.md 5.2 (Show all switches to the scope tab - recommended); Open Question OQ-SPEC-1",
+  "viu_status": "VIU-Pending",
+  "notes": "Open Question OQ-SPEC-1: the spec RECOMMENDS scoped-tab-within-modal but the final decision (scoped tab vs full-page filtered list) is to be closed in Phase 0. VIU-confirm the shipped behavior; if it navigates to a full page instead, mark deviation-vs-recommendation not a defect.",
+  "api_related": false
+ },
+ {
+  "id": "GS-GRP-05",
+  "area": "Grouped Results and Counts",
+  "title": "Groups appear in the fixed order Work Orders, Customers, Assets, Parts, Vendors, Part Sales",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "A user with access to all six entity types.",
+  "preconditions": [
+   "1. The palette is open.",
+   "2. A query matches all six entity types at once."
+  ],
+  "steps": [
+   "1. Type the query on the 'All' tab.",
+   "2. Read the group headings top to bottom."
+  ],
+  "expected": [
+   "1. The groups appear top to bottom in this order: Work Orders, Customers, Assets, Parts, Vendors, Part Sales.",
+   "2. The order does not change based on how many matches each group has."
+  ],
+  "design_ref": "design-notes.md cross-reference; requirements.md 6.2",
+  "spec_ref": "requirements.md 6.2 (group display order in 'All')",
+  "viu_status": "VIU-Pending",
+  "notes": "Exception: when a single result scores above 0.95 (an exact ID match) it is pinned above all groups - see GS-RANK-01.",
+  "api_related": false
+ },
+ {
+  "id": "GS-GRP-06",
+  "area": "Grouped Results and Counts",
+  "title": "The typed text is highlighted inside each matching result",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "A user with access to the matching entity type.",
+  "preconditions": [
+   "1. The palette is open.",
+   "2. Test data exists such that 'Fib' matches records like 'S1-644 Fibridge Commercial'."
+  ],
+  "steps": [
+   "1. Type 'Fib'.",
+   "2. Look at the matched part of the text in each result row."
+  ],
+  "expected": [
+   "1. The matched substring 'Fib' is visually highlighted (in the captures it is highlighted in yellow) inside the result's primary text.",
+   "2. Only the matched portion is highlighted, not the whole row."
+  ],
+  "design_ref": "design-notes.md screenshots 2, 9 ('highlighted in yellow'); requirements.md 5.3",
+  "spec_ref": "requirements.md 5.3 (matched substring highlighted)",
+  "viu_status": "VIU-Pending",
+  "notes": "Highlight color captured as yellow in Figma - VIU-confirm exact highlight treatment on the build.",
+  "api_related": false
+ },
+ {
+  "id": "GS-GRP-07",
+  "area": "Grouped Results and Counts",
+  "title": "A screen reader announces the results count when it changes",
+  "priority": "Medium",
+  "type": "Accessibility",
+  "permissions_required": "A user with access to the matching entity types.",
+  "preconditions": [
+   "1. A screen reader is turned on.",
+   "2. The palette is open."
+  ],
+  "steps": [
+   "1. Type a query that returns results across several groups.",
+   "2. Listen to the screen reader."
+  ],
+  "expected": [
+   "1. The screen reader announces the total results count when it changes, for example 'X results found across N categories'.",
+   "2. Every interactive element (input, tabs, rows, links) has a visible focus ring when reached by keyboard."
+  ],
+  "design_ref": "requirements.md 9 (WCAG 2.1 AA)",
+  "spec_ref": "requirements.md 9 Non-Functional (screen-reader announcements when results count changes; focus rings)",
+  "viu_status": "VIU-Pending",
+  "notes": "Exact announced wording ('12 results found across 5 categories' is the spec example) - VIU-confirm the actual announced string.",
+  "api_related": false
+ },
+ {
+  "id": "GS-ENT-01",
+  "area": "Per-Entity Result Shape",
+  "title": "A Work Order result shows number, customer, status badge, assignee and date",
+  "priority": "Critical",
+  "type": "Functional",
+  "permissions_required": "A user with Work Orders access.",
+  "preconditions": [
+   "1. The palette is open.",
+   "2. A Work Order exists that matches the query (for example 'S1-644 Fibridge Commercial')."
+  ],
+  "steps": [
+   "1. Type a query that matches a Work Order.",
+   "2. Read the Work Order result row."
+  ],
+  "expected": [
+   "1. The row shows the Work Order number and customer name as the main line (for example 'S1-644 Fibridge Commercial').",
+   "2. A colored status badge is shown (for example Approved, Estimate).",
+   "3. The lead technician / assignee name is shown (for example 'James Smith').",
+   "4. A date is shown (for example 'Apr 27, 2026').",
+   "5. A briefcase / work-order icon is shown on the left of the row."
+  ],
+  "design_ref": "design-notes.md screenshot 2; requirements.md 4 Work Orders, 5.3",
+  "spec_ref": "requirements.md 4 Work Orders (Displayed: WO number + customer, status badge, lead technician, asset/unit, date)",
+  "viu_status": "VIU-Pending",
+  "notes": "Labels captured from design-notes screenshot 2.",
+  "api_related": false
+ },
+ {
+  "id": "GS-ENT-02",
+  "area": "Per-Entity Result Shape",
+  "title": "A Customer result shows name, address and an open work-order count chip",
+  "priority": "Critical",
+  "type": "Functional",
+  "permissions_required": "A user with Customers access.",
+  "preconditions": [
+   "1. The palette is open.",
+   "2. A Customer exists that matches the query (for example 'Fibridge Commercial')."
+  ],
+  "steps": [
+   "1. Type a query that matches a Customer.",
+   "2. Read the Customer result row."
+  ],
+  "expected": [
+   "1. The row shows the customer name as the main line (for example 'Fibridge Commercial').",
+   "2. An address line is shown as the secondary line (for example '923 Ross Islands, X1T 2B1').",
+   "3. A count chip is shown (the open work-order / document count, for example '12').",
+   "4. A person icon is shown on the left of the row."
+  ],
+  "design_ref": "design-notes.md screenshot 2; requirements.md 4 Customers, 5.3",
+  "spec_ref": "requirements.md 4 Customers (Displayed: name, address line, open WO count badge, telephone on hover)",
+  "viu_status": "VIU-Pending",
+  "notes": "Spec describes the chip as an open WO count badge; design-notes calls it a doc-count chip - VIU-confirm what the chip counts.",
+  "api_related": false
+ },
+ {
+  "id": "GS-ENT-03",
+  "area": "Per-Entity Result Shape",
+  "title": "An Asset result shows year/make/model and the owning customer",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "A user with Assets access.",
+  "preconditions": [
+   "1. The palette is open.",
+   "2. An Asset exists that matches the query (for example '2025 Freightliner M2' owned by 'Bryan Smith')."
+  ],
+  "steps": [
+   "1. Type a query that matches an Asset.",
+   "2. Read the Asset result row."
+  ],
+  "expected": [
+   "1. The row shows year, make and model as the main line (for example '2025 Freightliner M2').",
+   "2. The owning customer name is shown as smaller secondary text (for example 'Bryan Smith').",
+   "3. A vehicle icon is shown on the left of the row."
+  ],
+  "design_ref": "design-notes.md screenshots 2, 4; requirements.md 4 Assets, 5.3",
+  "spec_ref": "requirements.md 4 Assets (Displayed: year + make + model primary, customer name secondary)",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "GS-ENT-04",
+  "area": "Per-Entity Result Shape",
+  "title": "A Part result shows description, part number and a quantity chip colored by stock level",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "A user with Parts access.",
+  "preconditions": [
+   "1. The palette is open.",
+   "2. Parts exist matching the query, including at least one in stock (green) and, if possible, one low (orange) and one out (red)."
+  ],
+  "steps": [
+   "1. Type a query that matches parts (for example 'Microfiber' or a part number '65547').",
+   "2. Read the Part result rows and the quantity chip color."
+  ],
+  "expected": [
+   "1. The row shows the part description as the main line (for example 'Microfiber' or 'Rear Shock').",
+   "2. The part number is shown as the secondary line (for example '65547').",
+   "3. A total quantity chip is shown (for example '72').",
+   "4. The quantity chip is colored by stock status: green when in stock, orange when low, red when out of stock.",
+   "5. A tag / part icon is shown on the left of the row."
+  ],
+  "design_ref": "design-notes.md screenshots 2, 4, 10; requirements.md 4 Parts, 5.3",
+  "spec_ref": "requirements.md 4 Parts (Displayed: description, part number, total quantity with stock-status color)",
+  "viu_status": "VIU-Pending",
+  "notes": "Stock-status colors match the existing inventory list pattern per spec. VIU-confirm the orange/red variants (only green captured in Figma).",
+  "api_related": false
+ },
+ {
+  "id": "GS-ENT-05",
+  "area": "Per-Entity Result Shape",
+  "title": "A Vendor result shows the vendor name and address",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "A user with Vendors access.",
+  "preconditions": [
+   "1. The palette is open.",
+   "2. A Vendor exists matching the query (for example 'Fibridge Mining')."
+  ],
+  "steps": [
+   "1. Type a query that matches a Vendor.",
+   "2. Read the Vendor result row."
+  ],
+  "expected": [
+   "1. The row shows the vendor name as the main line (for example 'Fibridge Mining').",
+   "2. An address line is shown as the secondary line.",
+   "3. A building icon is shown on the left of the row."
+  ],
+  "design_ref": "design-notes.md screenshot 2; requirements.md 4 Vendors, 5.3",
+  "spec_ref": "requirements.md 4 Vendors (Displayed: vendor name primary, address line secondary)",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "GS-ENT-06",
+  "area": "Per-Entity Result Shape",
+  "title": "A Part Sale result shows the P-number, customer, status badge, total price and date",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "A user with Part Sales access.",
+  "preconditions": [
+   "1. The palette is open.",
+   "2. A Part Sale exists matching the query (for example 'P2-58' for 'Toboro Industries')."
+  ],
+  "steps": [
+   "1. Type a query that matches a Part Sale (for example 'P2-58').",
+   "2. Read the Part Sale result row."
+  ],
+  "expected": [
+   "1. The row shows the P-number and customer name as the main line (for example 'P2-58 Toboro Industries').",
+   "2. A status badge is shown.",
+   "3. A total price and a created date are shown.",
+   "4. A label icon is shown on the left of the row."
+  ],
+  "design_ref": "design-notes.md screenshots 4, 10; requirements.md 4 Part Sales, 5.3",
+  "spec_ref": "requirements.md 4 Part Sales (Displayed: P-number + customer primary, status badge, total price + created date)",
+  "viu_status": "VIU-Pending",
+  "notes": "Part Sales is a NEW searchable entity. design-notes screenshot 10 also shows a 'P2-58 Toboro Industries' catalog-style row with an 'Add part' hover action - VIU-confirm the exact Part Sale row cluster (price/date/status) once live.",
+  "api_related": false
+ },
+ {
+  "id": "GS-ENT-07",
+  "area": "Per-Entity Result Shape",
+  "title": "A customer or vendor matched on a phone or email shows 'Contact/info match'",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "A user with Customers and Vendors access.",
+  "preconditions": [
+   "1. The palette is open.",
+   "2. A customer exists whose telephone or email contains the query but whose name does not."
+  ],
+  "steps": [
+   "1. Type the customer's phone digits or email (a value that matches a contact field, not the name).",
+   "2. Read the matched customer/vendor row's secondary line."
+  ],
+  "expected": [
+   "1. The customer/vendor still appears in the results.",
+   "2. The secondary line shows 'Contact/info match' to indicate the match was on a contact field (phone/email) rather than the name."
+  ],
+  "design_ref": "requirements.md 4 (Contact-field match affordance)",
+  "spec_ref": "requirements.md 4 (secondary line shows 'Contact/info match')",
+  "viu_status": "VIU-Pending",
+  "notes": "'Contact/info match' text taken verbatim from spec 4 - not seen in the Figma captures; VIU-confirm exact on-screen label.",
+  "api_related": false
+ },
+ {
+  "id": "GS-ENT-08",
+  "area": "Per-Entity Result Shape",
+  "title": "Work Order status badges use the correct colors",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "A user with Work Orders access.",
+  "preconditions": [
+   "1. The palette is open.",
+   "2. Work Orders exist in several statuses (Approved, Estimate, In Progress, Review, Completed, Declined, Invoiced)."
+  ],
+  "steps": [
+   "1. Search so Work Orders in different statuses appear.",
+   "2. Read the status badge colors."
+  ],
+  "expected": [
+   "1. Status badge colors match the Work Order list tokens: Approved green, Estimate blue, Review yellow, In Progress blue, Completed gray, Declined red, Invoiced purple.",
+   "2. Part stock badges use green (available), orange (low), red (out)."
+  ],
+  "design_ref": "design-notes.md screenshots 1, 2, 4 (Approved, Estimate, Declined seen); requirements.md 5.3",
+  "spec_ref": "requirements.md 5.3 (status badge colors, same tokens as the WO list)",
+  "viu_status": "VIU-Pending",
+  "notes": "Only Approved, Estimate, Declined captured in Figma - VIU-confirm the full badge color set (In Progress, Review, Completed, Invoiced) on the build.",
+  "api_related": false
+ },
+ {
+  "id": "GS-FUZ-01",
+  "area": "Fuzzy Matching",
+  "title": "A misspelled name still finds the record - 'Petersn' finds 'Peterson'",
+  "priority": "Critical",
+  "type": "Functional",
+  "permissions_required": "A user with access to the matching entity type.",
+  "preconditions": [
+   "1. The palette is open.",
+   "2. A record whose name contains 'Peterson' exists (for example a customer or vendor)."
+  ],
+  "steps": [
+   "1. Type the misspelled query 'Petersn' (missing the 'o').",
+   "2. Read the results."
+  ],
+  "expected": [
+   "1. The 'Peterson' record is found and shown, despite the typo.",
+   "2. The matched part of the text is highlighted."
+  ],
+  "design_ref": "requirements.md 7 (trigram Jaccard >= 0.35); 10 Phase 5 test queries",
+  "spec_ref": "requirements.md 7 (token n-gram / trigram matching catches Petersn -> Peterson)",
+  "viu_status": "VIU-Pending",
+  "notes": "Spec test query. Fuzzy tolerance is a NEW capability (old search returned 'No results' for typos).",
+  "api_related": false
+ },
+ {
+  "id": "GS-FUZ-02",
+  "area": "Fuzzy Matching",
+  "title": "A misspelled name still finds the record - 'Abrige' finds 'Abridge'",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "A user with access to the matching entity type.",
+  "preconditions": [
+   "1. The palette is open.",
+   "2. A record whose name contains 'Abridge' (for example 'Aabridge') exists."
+  ],
+  "steps": [
+   "1. Type the misspelled query 'Abrige'.",
+   "2. Read the results."
+  ],
+  "expected": [
+   "1. The 'Abridge' / 'Aabridge' record is found and shown, despite the typo."
+  ],
+  "design_ref": "requirements.md 7; 10 Phase 5 test queries; 1 (Abrige vs Aabridge)",
+  "spec_ref": "requirements.md 1 + 10 Phase 5 (fuzzy query 'Abrige')",
+  "viu_status": "VIU-Pending",
+  "notes": "Spec test query. Old search returned 'No results' for 'Abrige'.",
+  "api_related": false
+ },
+ {
+  "id": "GS-FUZ-03",
+  "area": "Fuzzy Matching",
+  "title": "A transposed-letters query still finds the record - 'frieghtliner' finds 'Freightliner'",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "A user with access to the matching entity type.",
+  "preconditions": [
+   "1. The palette is open.",
+   "2. An asset or part whose text contains 'Freightliner' exists (for example '2025 Freightliner M2')."
+  ],
+  "steps": [
+   "1. Type the misspelled query 'frieghtliner' (letters transposed).",
+   "2. Read the results."
+  ],
+  "expected": [
+   "1. The 'Freightliner' record is found and shown, despite the transposed letters."
+  ],
+  "design_ref": "requirements.md 7 (Damerau-Levenshtein handles transpositions); 10 Phase 5",
+  "spec_ref": "requirements.md 7 (Damerau-Levenshtein; freihgtliner -> freightliner)",
+  "viu_status": "VIU-Pending",
+  "notes": "Spec test query for transposition handling.",
+  "api_related": false
+ },
+ {
+  "id": "GS-FUZ-04",
+  "area": "Fuzzy Matching",
+  "title": "A phonetically-similar name still finds the record - 'Filbridge' finds 'Fibridge'",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "A user with access to the matching entity type.",
+  "preconditions": [
+   "1. The palette is open.",
+   "2. A customer/vendor/contact whose name contains 'Fibridge' exists."
+  ],
+  "steps": [
+   "1. Type the phonetically-similar query 'Filbridge'.",
+   "2. Read the results."
+  ],
+  "expected": [
+   "1. The 'Fibridge' record is found and shown (matched by sound, as a last-resort phonetic match), likely lower in the ranking than an exact/near-exact match."
+  ],
+  "design_ref": "requirements.md 7 (Double Metaphone, names only, last resort)",
+  "spec_ref": "requirements.md 7 (phonetic fallback catches Filbridge -> Fibridge)",
+  "viu_status": "VIU-Pending",
+  "notes": "Phonetic fallback applies to names only and is the last resort (reduced score, max +0.20).",
+  "api_related": false
+ },
+ {
+  "id": "GS-FUZ-05",
+  "area": "Fuzzy Matching",
+  "title": "A Work Order number matches exactly with or without the dash or a space",
+  "priority": "Critical",
+  "type": "Functional",
+  "permissions_required": "A user with Work Orders access.",
+  "preconditions": [
+   "1. The palette is open.",
+   "2. A Work Order 'S2-15276' exists."
+  ],
+  "steps": [
+   "1. Type 'S2-15276' and read the result.",
+   "2. Clear the input and type 'S215276' (no dash) and read the result.",
+   "3. Clear the input and type 'S2 15276' (with a space) and read the result."
+  ],
+  "expected": [
+   "1. All three forms find the same Work Order 'S2-15276'.",
+   "2. The Work Order number is treated as an identifier: it is normalized by stripping the dash/space, so 'S2-15276' equals 's215276'.",
+   "3. The match is exact (identifier), not fuzzy."
+  ],
+  "design_ref": "requirements.md 7 (normalization strips non-alphanumerics for identifier fields)",
+  "spec_ref": "requirements.md 7 (S2-15276 = s215276); identifier fields are exact-only",
+  "viu_status": "VIU-Pending",
+  "notes": "Identifier fields bypass fuzzy logic; only normalization (case, diacritics, non-alphanumerics) is applied.",
+  "api_related": false
+ },
+ {
+  "id": "GS-FUZ-06",
+  "area": "Fuzzy Matching",
+  "title": "A VIN / serial number requires an exact match after normalization",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "A user with Assets or Work Orders access.",
+  "preconditions": [
+   "1. The palette is open.",
+   "2. An asset with a known VIN / serial number exists."
+  ],
+  "steps": [
+   "1. Type the asset's exact VIN / serial number and read the result.",
+   "2. Clear the input, type the VIN with one wrong character, and read the result."
+  ],
+  "expected": [
+   "1. The exact VIN (case and spacing normalized) finds the matching asset / work order.",
+   "2. A VIN with a wrong character does NOT return a fuzzy match - VINs are exact-only identifiers, no typo tolerance."
+  ],
+  "design_ref": "requirements.md 7 (VIN is exact-only, bypasses fuzzy)",
+  "spec_ref": "requirements.md 7 (What is NOT fuzzy: VIN, WO number, P-number, part number - exact match after normalization)",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "GS-FUZ-07",
+  "area": "Fuzzy Matching",
+  "title": "A telephone number matches on digits only, ignoring formatting",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "A user with Customers or Vendors access.",
+  "preconditions": [
+   "1. The palette is open.",
+   "2. A customer with telephone '(264) 328-6723' exists."
+  ],
+  "steps": [
+   "1. Type the digits '2643286723' and read the result.",
+   "2. Clear the input, type '(264) 328-6723' with the formatting, and read the result."
+  ],
+  "expected": [
+   "1. Both forms find the same customer.",
+   "2. The phone is normalized to digits only, so '(264) 328-6723' equals '2643286723'.",
+   "3. The matched customer's secondary line shows 'Contact/info match' (matched on a contact field, not the name)."
+  ],
+  "design_ref": "requirements.md 4 (Contact/info match), 7 (phone normalized to digits)",
+  "spec_ref": "requirements.md 7 (phone normalization); 4 (Contact/info match affordance)",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "GS-FUZ-08",
+  "area": "Fuzzy Matching",
+  "title": "A part number requires an exact match after normalization",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "A user with Parts access.",
+  "preconditions": [
+   "1. The palette is open.",
+   "2. A part with a known part number (for example '65547') exists."
+  ],
+  "steps": [
+   "1. Type the exact part number '65547' and read the result.",
+   "2. Clear the input, type a part number with one wrong digit, and read the result."
+  ],
+  "expected": [
+   "1. The exact part number finds the matching part.",
+   "2. A part number with a wrong digit does NOT return a fuzzy match - part numbers are exact-only identifiers."
+  ],
+  "design_ref": "requirements.md 7 (part number exact-only)",
+  "spec_ref": "requirements.md 7 (What is NOT fuzzy: part number)",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "GS-FUZ-09",
+  "area": "Fuzzy Matching",
+  "title": "Typos in identifier fields do NOT return fuzzy matches",
+  "priority": "High",
+  "type": "Negative",
+  "permissions_required": "A user with Work Orders access.",
+  "preconditions": [
+   "1. The palette is open.",
+   "2. A Work Order 'S2-15276' exists and no Work Order 'S2-15286' exists."
+  ],
+  "steps": [
+   "1. Type a near-miss Work Order number, for example 'S2-15286' (one digit off from a real WO).",
+   "2. Read the results."
+  ],
+  "expected": [
+   "1. The real Work Order 'S2-15276' is NOT returned as a fuzzy match.",
+   "2. Because identifier fields are exact-only, a one-digit-off WO number returns no fuzzy identifier match (it may show 'No results' if nothing else matches)."
+  ],
+  "design_ref": "requirements.md 7 (identifiers exact-only, bypass fuzzy)",
+  "spec_ref": "requirements.md 7 (exact identifier fields bypass fuzzy logic)",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "GS-FUZ-10",
+  "area": "Fuzzy Matching",
+  "title": "A soft (fuzzy) match is visually indicated",
+  "priority": "Low",
+  "type": "Functional",
+  "permissions_required": "A user with access to the matching entity type.",
+  "preconditions": [
+   "1. The palette is open.",
+   "2. A record exists that will only match via fuzzy logic (for example type 'Petersn' for a 'Peterson' record)."
+  ],
+  "steps": [
+   "1. Type a fuzzy query (for example 'Petersn').",
+   "2. Look at how the matched token is shown in the result row."
+  ],
+  "expected": [
+   "1. The matched token is highlighted.",
+   "2. A subtle soft-match indicator is shown for fuzzy matches (spec mentions a '~' symbol or italic treatment)."
+  ],
+  "design_ref": "requirements.md 7 (Highlighting: subtle '~' or italicized treatment for soft match - confirm with design)",
+  "spec_ref": "requirements.md 7 (fuzzy soft-match highlight treatment - design polish, confirm with design)",
+  "viu_status": "VIU-Pending",
+  "notes": "The '~'/italic soft-match indicator is explicitly a design-polish item and was NOT confirmed in the Figma captures - VIU-confirm whether it ships; if absent, treat as a design decision not a defect.",
+  "api_related": false
+ },
+ {
+  "id": "GS-RANK-01",
+  "area": "Ranking and Prioritization",
+  "title": "An exact identifier match is pinned as a single row at the very top",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "A user with Work Orders access.",
+  "preconditions": [
+   "1. The palette is open.",
+   "2. A Work Order 'S2-15276' exists."
+  ],
+  "steps": [
+   "1. Type the exact Work Order number 'S2-15276'.",
+   "2. Look at the top of the results."
+  ],
+  "expected": [
+   "1. The exactly-matched Work Order is pinned as a single row at the very top, above the grouped results, labeled with its entity icon.",
+   "2. This gives the 'type the number, jump straight to it' experience."
+  ],
+  "design_ref": "requirements.md 6.2 (top result > 0.95 pinned as a separate single row at the very top)",
+  "spec_ref": "requirements.md 6.2 (ID match > 0.95 pinned at top)",
+  "viu_status": "VIU-Pending",
+  "notes": "The pinned top ID-match row was not captured in the Figma screenshots - VIU-confirm its appearance/placement.",
+  "api_related": false
+ },
+ {
+  "id": "GS-RANK-02",
+  "area": "Ranking and Prioritization",
+  "title": "Within a group, more relevant results appear first",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "A user with Work Orders access.",
+  "preconditions": [
+   "1. The palette is open.",
+   "2. Several Work Orders match the query, some open/active (Approved, In Progress, Review) and recently updated, some old and Completed/Invoiced."
+  ],
+  "steps": [
+   "1. Type a query that matches many Work Orders.",
+   "2. Read the order of the Work Order rows."
+  ],
+  "expected": [
+   "1. Open/active and recently-updated Work Orders rank above old, closed ones.",
+   "2. Work Orders assigned to or recently viewed by the signed-in user are boosted; closed/Invoiced Work Orders older than 90 days are pushed down."
+  ],
+  "design_ref": "requirements.md 6.1 (per-entity ranking signals)",
+  "spec_ref": "requirements.md 6.1 Work Orders signals (open status +0.30, recency, assigned/viewed, old-closed demoted)",
+  "viu_status": "VIU-Pending",
+  "notes": "Exact score weights are backend config (not hardcoded). Test the relative ordering, not the exact scores.",
+  "api_related": false
+ },
+ {
+  "id": "GS-RANK-03",
+  "area": "Ranking and Prioritization",
+  "title": "In-stock parts rank above out-of-stock parts (out-of-stock not hidden)",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "A user with Parts access.",
+  "preconditions": [
+   "1. The palette is open.",
+   "2. Two parts match the query - one in stock, one out of stock."
+  ],
+  "steps": [
+   "1. Type a query that matches both parts.",
+   "2. Read the order of the Part rows."
+  ],
+  "expected": [
+   "1. The in-stock part ranks above the out-of-stock part.",
+   "2. The out-of-stock part is still shown (out-of-stock parts are not demoted below relevance and are not hidden)."
+  ],
+  "design_ref": "requirements.md 6.1 (Parts: in stock +0.20; out-of-stock NOT demoted)",
+  "spec_ref": "requirements.md 6.1 Parts signals",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "GS-RANK-04",
+  "area": "Ranking and Prioritization",
+  "title": "On a Customer page, that customer's assets and work orders are boosted",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "A user with Customers, Assets and Work Orders access.",
+  "preconditions": [
+   "1. You are on a specific Customer's page.",
+   "2. That customer owns some assets and work orders, and other customers have similar-matching assets/work orders."
+  ],
+  "steps": [
+   "1. While on the Customer page, open the palette and type a query that matches assets/work orders belonging to several customers.",
+   "2. Read the ranking of the asset and work-order results."
+  ],
+  "expected": [
+   "1. Assets and Work Orders owned by the customer whose page you are on are boosted (appear higher) compared to the same search run from an unrelated page.",
+   "2. This is a lightweight, single contextual-bias signal."
+  ],
+  "design_ref": "requirements.md 6.3 (contextual bias - Customer page +0.20 for its assets/WOs)",
+  "spec_ref": "requirements.md 6.3 Contextual bias",
+  "viu_status": "VIU-Pending",
+  "notes": "Requires page-context; compare ranking from the Customer page vs an unrelated page.",
+  "api_related": false
+ },
+ {
+  "id": "GS-RANK-05",
+  "area": "Ranking and Prioritization",
+  "title": "On a Work Order page, parts already on that work order are pushed down",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "A user with Work Orders and Parts access.",
+  "preconditions": [
+   "1. You are on a specific Work Order's page.",
+   "2. That work order already has some parts on it, and other similar-matching parts exist that are not on it."
+  ],
+  "steps": [
+   "1. While on the Work Order page, open the palette and search for parts.",
+   "2. Read the ranking of the part results."
+  ],
+  "expected": [
+   "1. Parts already on that work order are pushed down (demoted) relative to other matching parts.",
+   "2. Other parts in the same category as the work order's existing parts get a small boost."
+  ],
+  "design_ref": "requirements.md 6.3 (WO page: parts already on WO -0.10; same-category +0.05)",
+  "spec_ref": "requirements.md 6.3 Contextual bias",
+  "viu_status": "VIU-Pending",
+  "notes": "Requires page-context; compare ranking from the WO page vs an unrelated page.",
+  "api_related": false
+ }
+]

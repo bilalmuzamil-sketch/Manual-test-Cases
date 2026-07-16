@@ -1,0 +1,458 @@
+[
+ {
+  "id": "GS-KEY-01",
+  "area": "Palette Open, Close and Keyboard",
+  "title": "Open the global search palette with the keyboard shortcut (K / Cmd+K)",
+  "priority": "Critical",
+  "type": "Functional",
+  "permissions_required": "Any signed-in user.",
+  "preconditions": [
+   "1. You are signed in to the ShopView App.",
+   "2. You are on any page (for example the Work Orders list).",
+   "3. The persistent search field is visible in the app header and shows the shortcut hint 'Search Cmd+K'."
+  ],
+  "steps": [
+   "1. Without clicking anything, press K together with the Command key (Ctrl+K on Windows), as shown in the header search field.",
+   "2. Watch the screen."
+  ],
+  "expected": [
+   "1. A centered search box (a modal overlay) opens on top of the page.",
+   "2. The page behind the box is dimmed.",
+   "3. The search input is focused so you can type right away.",
+   "4. The placeholder reads 'Search or ask a question'.",
+   "5. The footer keyboard legend is visible: 'Navigate' with up/down arrows, 'Select' with the enter symbol, and 'Close esc'."
+  ],
+  "design_ref": "design-notes.md screenshots 4, 5, 9; requirements.md 5.1",
+  "spec_ref": "requirements.md 5.1 Trigger and Surface; 8 Functional Requirements",
+  "viu_status": "VIU-Pending",
+  "notes": "Wording taken from design-notes (placeholder 'Search or ask a question'; footer legend). Footer legend order differs slightly between Figma captures and spec prose - VIU-confirm exact on-screen footer text once the feature is on a QA env.",
+  "api_related": false
+ },
+ {
+  "id": "GS-KEY-02",
+  "area": "Palette Open, Close and Keyboard",
+  "title": "Open the global search palette by clicking the header search field",
+  "priority": "Critical",
+  "type": "Functional",
+  "permissions_required": "Any signed-in user.",
+  "preconditions": [
+   "1. You are signed in to the ShopView App.",
+   "2. The persistent search field is visible in the app header, showing 'Search Cmd+K'."
+  ],
+  "steps": [
+   "1. Click the search field in the app header.",
+   "2. Watch the screen."
+  ],
+  "expected": [
+   "1. The centered search box (modal overlay) opens, anchored to the header search field.",
+   "2. The page behind is dimmed.",
+   "3. The input is focused and shows the placeholder 'Search or ask a question'.",
+   "4. The footer keyboard legend is visible."
+  ],
+  "design_ref": "design-notes.md screenshots 5, 9; requirements.md 5.1",
+  "spec_ref": "requirements.md 5.1 Trigger and Surface",
+  "viu_status": "VIU-Pending",
+  "notes": "Entry-point placement itself: the header component in design-notes screenshot 8 is labelled OUT OF SCOPE (proposed placement). Confirm the ACTUAL entry-point placement against the shipped build at VIU time.",
+  "api_related": false
+ },
+ {
+  "id": "GS-KEY-03",
+  "area": "Palette Open, Close and Keyboard",
+  "title": "Close the palette with the Esc key",
+  "priority": "Critical",
+  "type": "Functional",
+  "permissions_required": "Any signed-in user.",
+  "preconditions": [
+   "1. The global search palette is open."
+  ],
+  "steps": [
+   "1. Press the Esc key.",
+   "2. Watch the screen."
+  ],
+  "expected": [
+   "1. The search box closes.",
+   "2. The dimming is removed and you are back on the page you were on.",
+   "3. Keyboard focus returns to the page (or the header search field)."
+  ],
+  "design_ref": "design-notes.md footer legend 'Close esc'; requirements.md 5.1, 5.5",
+  "spec_ref": "requirements.md 5.1; 5.5 Keyboard Navigation",
+  "viu_status": "VIU-Pending",
+  "notes": "Spec 5.5 requires focus management: focus trap while open, return-focus on close - VIU-confirm focus returns correctly.",
+  "api_related": false
+ },
+ {
+  "id": "GS-KEY-04",
+  "area": "Palette Open, Close and Keyboard",
+  "title": "Toggle the palette closed by pressing the shortcut again (Cmd+K)",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Any signed-in user.",
+  "preconditions": [
+   "1. The global search palette is open (you opened it with Cmd+K or by clicking the header field)."
+  ],
+  "steps": [
+   "1. Press K together with the Command key (Ctrl+K on Windows) again.",
+   "2. Watch the screen."
+  ],
+  "expected": [
+   "1. The search box closes.",
+   "2. The dimming is removed and you are back on the page."
+  ],
+  "design_ref": "requirements.md 5.1",
+  "spec_ref": "requirements.md 5.1 (Esc, clicking underlay, or Cmd+K again closes it)",
+  "viu_status": "VIU-Pending",
+  "notes": "Cmd+K acts as a toggle (open when closed, close when open).",
+  "api_related": false
+ },
+ {
+  "id": "GS-KEY-05",
+  "area": "Palette Open, Close and Keyboard",
+  "title": "Close the palette by clicking the dimmed page behind it",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Any signed-in user.",
+  "preconditions": [
+   "1. The global search palette is open.",
+   "2. The page behind the box is dimmed."
+  ],
+  "steps": [
+   "1. Click anywhere on the dimmed area of the page (outside the search box).",
+   "2. Watch the screen."
+  ],
+  "expected": [
+   "1. The search box closes.",
+   "2. The dimming is removed and you are back on the page."
+  ],
+  "design_ref": "requirements.md 5.1",
+  "spec_ref": "requirements.md 5.1 (clicking the page underlay closes it)",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "GS-KEY-06",
+  "area": "Palette Open, Close and Keyboard",
+  "title": "Move through result rows with the Up and Down arrow keys, skipping group headers",
+  "priority": "Critical",
+  "type": "Functional",
+  "permissions_required": "Any signed-in user.",
+  "preconditions": [
+   "1. The palette is open and you have typed a query that returns results in more than one group (for example 'Fib' returning Work orders and Customers).",
+   "2. Results are grouped under headings such as 'Work orders (12)' and 'Customers (2)'."
+  ],
+  "steps": [
+   "1. Press the Down arrow key several times.",
+   "2. Then press the Up arrow key several times.",
+   "3. Watch which item is highlighted after each press."
+  ],
+  "expected": [
+   "1. Each Down press moves the highlight to the next result row.",
+   "2. Each Up press moves the highlight to the previous result row.",
+   "3. The highlight moves only across result rows - the group heading lines (for example 'Work orders (12)') are skipped and never get the highlight.",
+   "4. When moving down past the last row of one group, the highlight continues into the first row of the next group."
+  ],
+  "design_ref": "design-notes.md screenshot 2; requirements.md 5.5",
+  "spec_ref": "requirements.md 5.5 (Up/Down moves focus through visible rows, skipping group headers)",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "GS-KEY-07",
+  "area": "Palette Open, Close and Keyboard",
+  "title": "Open the highlighted result in the same tab by pressing Enter",
+  "priority": "Critical",
+  "type": "Functional",
+  "permissions_required": "Any signed-in user.",
+  "preconditions": [
+   "1. The palette is open with results showing.",
+   "2. You have highlighted a result row using the arrow keys."
+  ],
+  "steps": [
+   "1. Press the Enter key.",
+   "2. Watch the screen."
+  ],
+  "expected": [
+   "1. The palette closes and the highlighted record opens in the same browser tab.",
+   "2. You land on that record's page (for example the Work Order detail page)."
+  ],
+  "design_ref": "design-notes.md footer legend 'Select enter'; requirements.md 5.5",
+  "spec_ref": "requirements.md 5.5 (Enter opens the focused row in the same tab)",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "GS-KEY-08",
+  "area": "Palette Open, Close and Keyboard",
+  "title": "Open the highlighted result in a new browser tab with Cmd+Enter (Ctrl+Enter)",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Any signed-in user.",
+  "preconditions": [
+   "1. The palette is open with results showing.",
+   "2. You have highlighted a result row using the arrow keys."
+  ],
+  "steps": [
+   "1. Press Enter together with the Command key (Ctrl+Enter on Windows).",
+   "2. Watch the screen and the browser tabs."
+  ],
+  "expected": [
+   "1. The highlighted record opens in a NEW browser tab.",
+   "2. The page you were on (and, per build behavior, the palette) remains in the original tab."
+  ],
+  "design_ref": "requirements.md 5.5",
+  "spec_ref": "requirements.md 5.5 (Cmd+Enter or Ctrl+Enter opens in a new browser tab)",
+  "viu_status": "VIU-Pending",
+  "notes": "VIU-confirm whether the palette stays open in the original tab or closes.",
+  "api_related": false
+ },
+ {
+  "id": "GS-KEY-09",
+  "area": "Palette Open, Close and Keyboard",
+  "title": "Move focus to the scope tab strip with Tab, then cycle tabs with Left and Right arrows",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Any signed-in user.",
+  "preconditions": [
+   "1. The palette is open with a query typed in.",
+   "2. The scope tab strip is visible under the input: All, Work Orders, Customers, Assets, Parts, Vendors, Part Sales."
+  ],
+  "steps": [
+   "1. Press the Tab key.",
+   "2. Press the Right arrow key a few times.",
+   "3. Press the Left arrow key a few times.",
+   "4. Watch which tab is focused/active."
+  ],
+  "expected": [
+   "1. Pressing Tab moves keyboard focus onto the scope tab strip.",
+   "2. Each Right arrow press moves to the next tab to the right; each Left arrow press moves to the previous tab.",
+   "3. Selecting a tab scopes the results to that entity type.",
+   "4. Focus does not leave the palette (focus stays trapped inside the modal)."
+  ],
+  "design_ref": "design-notes.md screenshots 2, 9; requirements.md 5.5",
+  "spec_ref": "requirements.md 5.5 (Tab moves focus to the scope tab strip; Left/Right cycles tabs when focus is on the tab strip)",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "GS-KEY-10",
+  "area": "Palette Open, Close and Keyboard",
+  "title": "The keyboard shortcut legend stays visible in the footer at all times",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Any signed-in user.",
+  "preconditions": [
+   "1. The palette is open."
+  ],
+  "steps": [
+   "1. Look at the bottom of the search box in the empty state.",
+   "2. Type a query so results appear, then look at the bottom again.",
+   "3. Clear the query and look again."
+  ],
+  "expected": [
+   "1. The footer keyboard legend is visible in every state: 'Navigate' with up/down arrows, 'Select' with the enter symbol, and 'Close esc'.",
+   "2. The legend does not disappear when results are showing or when the input is empty."
+  ],
+  "design_ref": "design-notes.md screenshots 2, 4, 5, 6; requirements.md 5.1, 5.5",
+  "spec_ref": "requirements.md 5.1 (footer always shows the keyboard legend)",
+  "viu_status": "VIU-Pending",
+  "notes": "Exact footer text/order differs between Figma captures ('Navigate up/down, Select enter, Close esc') and spec prose ('up/down Navigate, enter Select, Esc Close') - VIU-confirm exact on-screen wording. Label captured from design-notes.",
+  "api_related": false
+ },
+ {
+  "id": "GS-TAB-01",
+  "area": "Scope Tabs",
+  "title": "The scope tab strip lists All plus the six entity tabs in the exact order",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "A user with access to all six entity types.",
+  "preconditions": [
+   "1. The palette is open with a query typed in that returns results."
+  ],
+  "steps": [
+   "1. Read the horizontal tab strip directly under the search input, left to right."
+  ],
+  "expected": [
+   "1. The tabs read, in this exact left-to-right order: All, Work Orders, Customers, Assets, Parts, Vendors, Part Sales.",
+   "2. The 'All' tab is selected by default."
+  ],
+  "design_ref": "design-notes.md screenshots 2, 9; requirements.md 5.2",
+  "spec_ref": "requirements.md 5.2 State 3 (tab strip); design-notes cross-reference",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "GS-TAB-02",
+  "area": "Scope Tabs",
+  "title": "The 'All' tab shows results from every entity group together",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "A user with access to all six entity types.",
+  "preconditions": [
+   "1. The palette is open.",
+   "2. Test data exists so a single query (for example 'Fib') matches Work Orders, Customers, Assets, Parts and Vendors."
+  ],
+  "steps": [
+   "1. Make sure the 'All' tab is selected.",
+   "2. Type the query (for example 'Fib').",
+   "3. Read the grouped results."
+  ],
+  "expected": [
+   "1. Results from every matching entity type appear, each under its own group heading with a count (for example 'Work orders (12)', 'Customers (2)').",
+   "2. Groups appear in the order Work Orders, Customers, Assets, Parts, Vendors, Part Sales."
+  ],
+  "design_ref": "design-notes.md screenshot 2; requirements.md 5.2, 6.2",
+  "spec_ref": "requirements.md 5.2 State 3; 6.2 group order",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "GS-TAB-03",
+  "area": "Scope Tabs",
+  "title": "The 'Work Orders' tab shows only Work Order results",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "A user with Work Orders access.",
+  "preconditions": [
+   "1. The palette is open with a query typed in that matches more than one entity type."
+  ],
+  "steps": [
+   "1. Click the 'Work Orders' tab.",
+   "2. Read the results."
+  ],
+  "expected": [
+   "1. Only Work Order results are shown; other entity groups (Customers, Assets, Parts, Vendors, Part Sales) are hidden.",
+   "2. The 'Work Orders' tab appears selected/active."
+  ],
+  "design_ref": "design-notes.md screenshots 2, 9; requirements.md 5.2",
+  "spec_ref": "requirements.md 5.2 State 3 (selecting a tab scopes the query to that entity type)",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "GS-TAB-04",
+  "area": "Scope Tabs",
+  "title": "The 'Customers' tab shows only Customer results",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "A user with Customers access.",
+  "preconditions": [
+   "1. The palette is open with a query typed in that matches more than one entity type."
+  ],
+  "steps": [
+   "1. Click the 'Customers' tab.",
+   "2. Read the results."
+  ],
+  "expected": [
+   "1. Only Customer results are shown; other entity groups are hidden.",
+   "2. The 'Customers' tab appears selected/active."
+  ],
+  "design_ref": "design-notes.md screenshot 2; requirements.md 5.2",
+  "spec_ref": "requirements.md 5.2 State 3",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "GS-TAB-05",
+  "area": "Scope Tabs",
+  "title": "The 'Assets' tab shows only Asset (vehicle) results",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "A user with Assets access.",
+  "preconditions": [
+   "1. The palette is open with a query typed in that matches more than one entity type."
+  ],
+  "steps": [
+   "1. Click the 'Assets' tab.",
+   "2. Read the results."
+  ],
+  "expected": [
+   "1. Only Asset results are shown; other entity groups are hidden.",
+   "2. The 'Assets' tab appears selected/active."
+  ],
+  "design_ref": "design-notes.md screenshot 2; requirements.md 5.2",
+  "spec_ref": "requirements.md 5.2 State 3",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "GS-TAB-06",
+  "area": "Scope Tabs",
+  "title": "The 'Parts' tab shows only Part (inventory) results",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "A user with Parts access.",
+  "preconditions": [
+   "1. The palette is open with a query typed in that matches more than one entity type."
+  ],
+  "steps": [
+   "1. Click the 'Parts' tab.",
+   "2. Read the results."
+  ],
+  "expected": [
+   "1. Only Part results are shown; other entity groups are hidden.",
+   "2. The 'Parts' tab appears selected/active."
+  ],
+  "design_ref": "design-notes.md screenshot 2; requirements.md 5.2",
+  "spec_ref": "requirements.md 5.2 State 3",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "GS-TAB-07",
+  "area": "Scope Tabs",
+  "title": "The 'Vendors' tab shows only Vendor results",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "A user with Vendors access.",
+  "preconditions": [
+   "1. The palette is open with a query typed in that matches more than one entity type."
+  ],
+  "steps": [
+   "1. Click the 'Vendors' tab.",
+   "2. Read the results."
+  ],
+  "expected": [
+   "1. Only Vendor results are shown; other entity groups are hidden.",
+   "2. The 'Vendors' tab appears selected/active."
+  ],
+  "design_ref": "design-notes.md screenshot 2; requirements.md 5.2",
+  "spec_ref": "requirements.md 5.2 State 3",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "GS-TAB-08",
+  "area": "Scope Tabs",
+  "title": "The 'Part Sales' tab shows only Part Sales results",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "A user with Part Sales access.",
+  "preconditions": [
+   "1. The palette is open with a query typed in that matches Part Sales records.",
+   "2. At least one Part Sale exists (for example 'P2-58')."
+  ],
+  "steps": [
+   "1. Click the 'Part Sales' tab.",
+   "2. Read the results."
+  ],
+  "expected": [
+   "1. Only Part Sales results are shown; other entity groups are hidden.",
+   "2. The 'Part Sales' tab appears selected/active."
+  ],
+  "design_ref": "design-notes.md screenshots 2, 9; requirements.md 4 Part Sales, 5.2",
+  "spec_ref": "requirements.md 4 (Part Sales is a NEW searchable entity); 5.2 State 3",
+  "viu_status": "VIU-Pending",
+  "notes": "Part Sales is a brand-new searchable entity vs today's global search.",
+  "api_related": false
+ }
+]
