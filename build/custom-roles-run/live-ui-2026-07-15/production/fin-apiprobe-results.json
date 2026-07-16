@@ -1,0 +1,142 @@
+{
+ "Service Manager": {
+  "change": 201,
+  "login": 200,
+  "invoiceView": {
+   "status": 200,
+   "body": "{\"data\":{\"collection\":{\"work_order\":{\"id\":\"19c185ed-21f7-4340-9081-37e68e57e29e\",\"number\":\"S-518\",\"customer_id\":\"77f953d2-80a8-487a-a053-196a82fa3ea6\",\"company_id\":\"01de15df-5651-4704-9450-0b94f4375f6b\",\"purchase_order\":null,\"workplace_id\":\"555206ea-2a33-4ca1-a29a-5431b0f7648c\",\"status\":\"complete\",\""
+  },
+  "invoiceSettings": {
+   "status": 200,
+   "body": "{\"data\":{\"laborRate\":true,\"laborHours\":true,\"laborCost\":true,\"partNumber\":true,\"partQuantity\":true,\"partCost\":true,\"partDescription\":true,\"summarizePartsTotal\":false,\"summarizeLaborTotal\":false,\"disclaimer\":\"Any warranties on the parts and accessories sold hereby are made by the manufacturer. You un"
+  },
+  "estimate_noparam": {
+   "status": 400,
+   "body": "{\"errors\":[{\"work_order_id\":\"Missing required parameter\"},{\"type\":\"Missing required parameter\"},{\"issue_date\":\"Missing required parameter\"},{\"due_date\":\"Missing required parameter\"}]}"
+  },
+  "estimate_withparam": {
+   "status": 400,
+   "body": "{\"errors\":[{\"type\":\"Missing required parameter\"},{\"issue_date\":\"Missing required parameter\"},{\"due_date\":\"Missing required parameter\"}]}"
+  },
+  "invoicePreview": {
+   "status": 404,
+   "body": "{\"errors\":[{\"error\":\"No route found for \\\"GET http://api.shopview.com/api/invoices/19c185ed-21f7-4340-9081-37e68e57e29e/preview\\\" (from \\\"https://app.shopview.com/\\\")\"}]}"
+  },
+  "woInvoice": {
+   "status": 404,
+   "body": "{\"errors\":[{\"error\":\"No route found for \\\"GET http://api.shopview.com/api/work-orders/19c185ed-21f7-4340-9081-37e68e57e29e/invoice\\\" (from \\\"https://app.shopview.com/\\\")\"}]}"
+  }
+ },
+ "Parts Manager": {
+  "change": 201,
+  "login": 200,
+  "invoiceView": {
+   "status": 200,
+   "body": "{\"data\":{\"collection\":{\"work_order\":{\"id\":\"19c185ed-21f7-4340-9081-37e68e57e29e\",\"number\":\"S-518\",\"customer_id\":\"77f953d2-80a8-487a-a053-196a82fa3ea6\",\"company_id\":\"01de15df-5651-4704-9450-0b94f4375f6b\",\"purchase_order\":null,\"workplace_id\":\"555206ea-2a33-4ca1-a29a-5431b0f7648c\",\"status\":\"complete\",\""
+  },
+  "invoiceSettings": {
+   "status": 200,
+   "body": "{\"data\":{\"laborRate\":true,\"laborHours\":true,\"laborCost\":true,\"partNumber\":true,\"partQuantity\":true,\"partCost\":true,\"partDescription\":true,\"summarizePartsTotal\":false,\"summarizeLaborTotal\":false,\"disclaimer\":\"Any warranties on the parts and accessories sold hereby are made by the manufacturer. You un"
+  },
+  "estimate_noparam": {
+   "status": 400,
+   "body": "{\"errors\":[{\"work_order_id\":\"Missing required parameter\"},{\"type\":\"Missing required parameter\"},{\"issue_date\":\"Missing required parameter\"},{\"due_date\":\"Missing required parameter\"}]}"
+  },
+  "estimate_withparam": {
+   "status": 400,
+   "body": "{\"errors\":[{\"type\":\"Missing required parameter\"},{\"issue_date\":\"Missing required parameter\"},{\"due_date\":\"Missing required parameter\"}]}"
+  },
+  "invoicePreview": {
+   "status": 404,
+   "body": "{\"errors\":[{\"error\":\"No route found for \\\"GET http://api.shopview.com/api/invoices/19c185ed-21f7-4340-9081-37e68e57e29e/preview\\\" (from \\\"https://app.shopview.com/\\\")\"}]}"
+  },
+  "woInvoice": {
+   "status": 404,
+   "body": "{\"errors\":[{\"error\":\"No route found for \\\"GET http://api.shopview.com/api/work-orders/19c185ed-21f7-4340-9081-37e68e57e29e/invoice\\\" (from \\\"https://app.shopview.com/\\\")\"}]}"
+  }
+ },
+ "Parts Technician": {
+  "change": 201,
+  "login": 200,
+  "invoiceView": {
+   "status": 200,
+   "body": "{\"data\":{\"collection\":{\"work_order\":{\"id\":\"19c185ed-21f7-4340-9081-37e68e57e29e\",\"number\":\"S-518\",\"customer_id\":\"77f953d2-80a8-487a-a053-196a82fa3ea6\",\"company_id\":\"01de15df-5651-4704-9450-0b94f4375f6b\",\"purchase_order\":null,\"workplace_id\":\"555206ea-2a33-4ca1-a29a-5431b0f7648c\",\"status\":\"complete\",\""
+  },
+  "invoiceSettings": {
+   "status": 200,
+   "body": "{\"data\":{\"laborRate\":true,\"laborHours\":true,\"laborCost\":true,\"partNumber\":true,\"partQuantity\":true,\"partCost\":true,\"partDescription\":true,\"summarizePartsTotal\":false,\"summarizeLaborTotal\":false,\"disclaimer\":\"Any warranties on the parts and accessories sold hereby are made by the manufacturer. You un"
+  },
+  "estimate_noparam": {
+   "status": 400,
+   "body": "{\"errors\":[{\"work_order_id\":\"Missing required parameter\"},{\"type\":\"Missing required parameter\"},{\"issue_date\":\"Missing required parameter\"},{\"due_date\":\"Missing required parameter\"}]}"
+  },
+  "estimate_withparam": {
+   "status": 400,
+   "body": "{\"errors\":[{\"type\":\"Missing required parameter\"},{\"issue_date\":\"Missing required parameter\"},{\"due_date\":\"Missing required parameter\"}]}"
+  },
+  "invoicePreview": {
+   "status": 404,
+   "body": "{\"errors\":[{\"error\":\"No route found for \\\"GET http://api.shopview.com/api/invoices/19c185ed-21f7-4340-9081-37e68e57e29e/preview\\\" (from \\\"https://app.shopview.com/\\\")\"}]}"
+  },
+  "woInvoice": {
+   "status": 404,
+   "body": "{\"errors\":[{\"error\":\"No route found for \\\"GET http://api.shopview.com/api/work-orders/19c185ed-21f7-4340-9081-37e68e57e29e/invoice\\\" (from \\\"https://app.shopview.com/\\\")\"}]}"
+  }
+ },
+ "Service Advisor - Limited View": {
+  "change": 201,
+  "login": 200,
+  "invoiceView": {
+   "status": 200,
+   "body": "{\"data\":{\"collection\":{\"work_order\":{\"id\":\"19c185ed-21f7-4340-9081-37e68e57e29e\",\"number\":\"S-518\",\"customer_id\":\"77f953d2-80a8-487a-a053-196a82fa3ea6\",\"company_id\":\"01de15df-5651-4704-9450-0b94f4375f6b\",\"purchase_order\":null,\"workplace_id\":\"555206ea-2a33-4ca1-a29a-5431b0f7648c\",\"status\":\"complete\",\""
+  },
+  "invoiceSettings": {
+   "status": 200,
+   "body": "{\"data\":{\"laborRate\":true,\"laborHours\":true,\"laborCost\":true,\"partNumber\":true,\"partQuantity\":true,\"partCost\":true,\"partDescription\":true,\"summarizePartsTotal\":false,\"summarizeLaborTotal\":false,\"disclaimer\":\"Any warranties on the parts and accessories sold hereby are made by the manufacturer. You un"
+  },
+  "estimate_noparam": {
+   "status": 400,
+   "body": "{\"errors\":[{\"work_order_id\":\"Missing required parameter\"},{\"type\":\"Missing required parameter\"},{\"issue_date\":\"Missing required parameter\"},{\"due_date\":\"Missing required parameter\"}]}"
+  },
+  "estimate_withparam": {
+   "status": 400,
+   "body": "{\"errors\":[{\"type\":\"Missing required parameter\"},{\"issue_date\":\"Missing required parameter\"},{\"due_date\":\"Missing required parameter\"}]}"
+  },
+  "invoicePreview": {
+   "status": 404,
+   "body": "{\"errors\":[{\"error\":\"No route found for \\\"GET http://api.shopview.com/api/invoices/19c185ed-21f7-4340-9081-37e68e57e29e/preview\\\" (from \\\"https://app.shopview.com/\\\")\"}]}"
+  },
+  "woInvoice": {
+   "status": 404,
+   "body": "{\"errors\":[{\"error\":\"No route found for \\\"GET http://api.shopview.com/api/work-orders/19c185ed-21f7-4340-9081-37e68e57e29e/invoice\\\" (from \\\"https://app.shopview.com/\\\")\"}]}"
+  }
+ },
+ "Office User": {
+  "change": 201,
+  "login": 200,
+  "invoiceView": {
+   "status": 403,
+   "body": "{\"errors\":[{\"error\":\"Insufficient permissions for requested resource or action.\"}]}"
+  },
+  "invoiceSettings": {
+   "status": 200,
+   "body": "{\"data\":{\"laborRate\":true,\"laborHours\":true,\"laborCost\":true,\"partNumber\":true,\"partQuantity\":true,\"partCost\":true,\"partDescription\":true,\"summarizePartsTotal\":false,\"summarizeLaborTotal\":false,\"disclaimer\":\"Any warranties on the parts and accessories sold hereby are made by the manufacturer. You un"
+  },
+  "estimate_noparam": {
+   "status": 400,
+   "body": "{\"errors\":[{\"work_order_id\":\"Missing required parameter\"},{\"type\":\"Missing required parameter\"},{\"issue_date\":\"Missing required parameter\"},{\"due_date\":\"Missing required parameter\"}]}"
+  },
+  "estimate_withparam": {
+   "status": 400,
+   "body": "{\"errors\":[{\"type\":\"Missing required parameter\"},{\"issue_date\":\"Missing required parameter\"},{\"due_date\":\"Missing required parameter\"}]}"
+  },
+  "invoicePreview": {
+   "status": 404,
+   "body": "{\"errors\":[{\"error\":\"No route found for \\\"GET http://api.shopview.com/api/invoices/19c185ed-21f7-4340-9081-37e68e57e29e/preview\\\" (from \\\"https://app.shopview.com/\\\")\"}]}"
+  },
+  "woInvoice": {
+   "status": 404,
+   "body": "{\"errors\":[{\"error\":\"No route found for \\\"GET http://api.shopview.com/api/work-orders/19c185ed-21f7-4340-9081-37e68e57e29e/invoice\\\" (from \\\"https://app.shopview.com/\\\")\"}]}"
+  }
+ }
+}

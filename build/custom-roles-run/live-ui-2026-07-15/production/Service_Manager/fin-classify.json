@@ -1,0 +1,41 @@
+{
+ "role": "Service Manager",
+ "roleId": "7bebaa8c-7792-4122-b01c-ac2246bf5951",
+ "change_status": 201,
+ "login": 200,
+ "urlAfterWO": "https://app.shopview.com/workorders/19c185ed-21f7-4340-9081-37e68e57e29e/lines",
+ "urlAfterFinance": "https://app.shopview.com/no-location",
+ "bodyText": "light_mode\nLight\ndark_mode\nDark\nNo location\nNot existing page.\nLogout\nwarning\nBad request\nClose",
+ "net": [
+  {
+   "status": 200,
+   "method": "GET",
+   "url": "/api/work-orders?pagination%5BrowsPerPage%5D=30&pagination%5Bpage%5D=1&pagination%5BsortBy%5D=companyName&pagination%5Bdescending%5D=false&filters%5B0%5D%5Bfield%5D=status&filters%5B0%5D%5Bvalue%5D=estimate&search=&showMyWorkOrders=0",
+   "body": "{\"data\":{\"pagination\":{\"sortBy\":\"company_name\",\"descending\":false,\"page\":1,\"rowsPerPage\":30,\"totalWorkOrderPrice\":75600},\"work_orders\":[{\"linesCount\":0,\"serviceActionsCount\":0,\"partRequestsCount\":0,\"statusRequestedCount\":0,\"statusAuthToOrderCount\":0,\"statusInStock\":0,\"partReturnRequestsCount\":0,\"progress\":0,\"clockedInTechnicians\":[],\"id\":\"68d87ba2-fa95-4765-a386-6ee9a71330a2\",\"startDate\":\"2026-02-07 00:21:52\",\"number\":\"S1-440\",\"status\":\"estimate\",\"vehicleHere\":true,\"vehicleModelName\":\"F-150\",\"vehicleMakeName\":\"Ford\",\"engineHours\":300,\"mileage\":3500,\"timeEstimate\":0,\"totalPrice\":0,\"vin\":\"1FTFW1"
+  },
+  {
+   "status": 200,
+   "method": "GET",
+   "url": "/api/invoices/c07a4a81-efd2-44af-b481-8d34c2fd2ba4/view",
+   "body": "{\"data\":{\"collection\":{\"work_order\":{\"id\":\"19c185ed-21f7-4340-9081-37e68e57e29e\",\"number\":\"S-518\",\"customer_id\":\"77f953d2-80a8-487a-a053-196a82fa3ea6\",\"company_id\":\"01de15df-5651-4704-9450-0b94f4375f6b\",\"purchase_order\":null,\"workplace_id\":\"555206ea-2a33-4ca1-a29a-5431b0f7648c\",\"status\":\"complete\",\"lines\":[{\"id\":\"f565ff79-ccc2-439e-8d89-f30e6e3846ca\",\"name\":\" WHat are you doing\",\"description\":\"WHy are you doing\",\"tech_story\":\"\",\"total_cost\":136.22,\"parts\":[{\"id\":\"512a46b5-2c19-44be-8ddc-9b6035b4ba06\",\"description\":\"#8 A\\/c oring\",\"quantity\":\"1\",\"cost\":0.22,\"part_number\":\"13\",\"total_cost\":0.22,"
+  },
+  {
+   "status": 200,
+   "method": "GET",
+   "url": "/api/invoices/19c185ed-21f7-4340-9081-37e68e57e29e/settings/view",
+   "body": "{\"data\":{\"laborRate\":true,\"laborHours\":true,\"laborCost\":true,\"partNumber\":true,\"partQuantity\":true,\"partCost\":true,\"partDescription\":true,\"summarizePartsTotal\":false,\"summarizeLaborTotal\":false,\"disclaimer\":\"Any warranties on the parts and accessories sold hereby are made by the manufacturer. You understand and agree that we make no warranties of any kind unless expressed in writing. You hereby authorize us to perform the repair work herein set forth and to purchase the necessary material and parts to perform such repair work. You agree that we are not responsible for loss or damage to your ve"
+  },
+  {
+   "status": 400,
+   "method": "POST",
+   "url": "/api/work-orders/invoices/estimate",
+   "body": "{\"errors\":[{\"work_order_id\":\"Missing required parameter\"}]}"
+  },
+  {
+   "status": 204,
+   "method": "POST",
+   "url": "https://www.google-analytics.com/g/collect?v=2&tid=G-Q8V1RLY7LK&gtm=45je67e0h1v9217041122za200zd9217041122&_p=1784169145198&gcd=13l3l3l3l1l1&npa=0&dma=0&_eu=AEAAAAQ&ae=a&are=1&cid=1185589179.1784169139&frm=0&ngs=1&pscdl=noapi&rcb=5&sr=1500x1000&uaa=x86&uab=64&uafvl=Chromium%3B141.0.7390.37%7CNot%253FA_Brand%3B8.0.0.0&uam=&uamb=0&uap=Linux&uapv=6.18.5&uaw=0&ul=en-us&_s=4&tag_exp=115938466~115938468~117776795~118897920~118897930~119259605~119724321&dl=https%3A%2F%2Fapp.shopview.com%2Fno-location&dr=https%3A%2F%2Fapp.shopview.com%2Fworkorders%2F19c185ed-21f7-4340-9081-37e68e57e29e%2Flines&sid=1784169138&sct=1&seg=1&dt=S1-518%20-%20aqeel%20transport%2056%20-%20Invoice%20%7C%20work%20order%20%7C%20ShopView&uid=511514cf-9f10-49e0-8cfd-2d0f4848ed27&en=page_view&_et=1148&tfd=13733",
+   "body": ""
+  }
+ ]
+}
