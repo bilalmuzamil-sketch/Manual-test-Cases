@@ -5,6 +5,23 @@ change to the Confluence spec (page 565116952). Newest first.
 
 ---
 
+## 2026-07-16 — Spec sync: Office matrix refined (partial revert of 7/14)
+
+Daily sync detected another Confluence change (hash 0e23f0…, len 54626; no new
+Change Log line — matrix edited directly). The 7/14 Office change was partly
+walked back:
+
+- Office **Work Orders** restored to **View** (the interim OFF was reverted).
+- Office **Part Sales** restored to **View** (interim OFF reverted).
+- Office **WO Lines** now **OFF** (new; explicit exception to WO-Lines-inherits-
+  WO-View).
+- Office **Invoicing & Payments** stays **full V/E/D** (Create-Invoice button
+  still hard-disabled).
+
+So current Office = original role + full Invoicing CRUD − WO Lines. Updated §9
+matrix + footnote + role description, §14.1, §10 migration table; FAQ B7b;
+launcher entry; spec-sync-state. Both `knowledge-base.md` and `faq.md` changed.
+
 ## 2026-07-15 — Spec sync: Office role redefined (Change Log 7/14)
 
 Daily sync detected a Confluence change (hash 30f490…, len 54695). Change Log:

@@ -836,7 +836,7 @@ effect when they log back in.**
 | Technician | `system-tech` | Assigned work, time tracking, Tech View |
 | Parts Manager | `system-pm` | Full parts and inventory control |
 | Parts Tech | `system-pt` | Parts operations and vendor management |
-| Office | `system-office` | Back-office operations, reporting, customer & invoicing/payments admin (NOT editable). Updated 2026-07-14: no Work Orders or Part Sales access; full Invoicing CRUD (but Create-Invoice button still hard-disabled). See §14.1. |
+| Office | `system-office` | Back-office operations, reporting, customer & invoicing/payments admin (NOT editable). Current spec: Work Orders View, Part Sales View, full Invoicing CRUD (Create-Invoice button still hard-disabled), Customers full; WO Lines OFF. See §14.1. |
 | Sales Representative | `system-salesrep` | Work Orders + Customers + Part Sales (view), plus Reports and financial visibility. NOT "Reports only" — see §14 (SV-8061). |
 | Time Clock | `system-timeclock` | Clock in/out only (NOT editable; no view mode) |
 
@@ -846,25 +846,26 @@ CRUD areas:
 
 | Area | Svc Mgr | Sr. SA | Svc Advisor | Foreman | Tech | Parts Mgr | Parts Tech | Office | Sales Rep | Time Clock |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| Work Orders | V/E/D | V/E/D | V/E | V/E | V | V/E | V | — | V | V |
-| WO Lines | V/E/D | V/E/D | V/E/D | V/E/D | V/E | V/E | V | (—)† | V | — |
+| Work Orders | V/E/D | V/E/D | V/E | V/E | V | V/E | V | V | V | V |
+| WO Lines | V/E/D | V/E/D | V/E/D | V/E/D | V/E | V/E | V | —† | V | — |
 | Schedule | V/E/D | V/E/D | V/E/D | V/E/D | V | V | V | V | — | V |
 | Customers | V/E/D | V/E | V/E | V/E | V | V/E/D | V/E | V/E/D | V/E | — |
-| Part Sales | V/E/D | V/E/D | V/E | V | — | V/E/D | V/E | — | V | — |
+| Part Sales | V/E/D | V/E/D | V/E | V | — | V/E/D | V/E | V | V | — |
 | Catalog & Inv | V/E/D | V/E | V/E | V/E | — | V/E/D | V/E | V | — | — |
 | Vendor & Order | V/E/D | V/E/D | V/E | V/E | — | V/E/D | V/E/D | V | — | — |
 | Invoicing | V/E | V/E/D | V/E/D | V/E | — | V/E/D | V/E | V/E/D | — | — |
 | Timesheets | V/E | V/E | V | V | — | — | V | V/E | — | V |
 
-**† Office role updated 2026-07-14 (SV spec):** Office now has **Work Orders =
-OFF** and **Part Sales = OFF**, and **Invoicing = V/E/D (full)**. Because WO
-Lines View is inherited from Work Orders View, WO Lines is effectively not
-visible to Office now that Work Orders is off (the spec's WO-Lines cell still
-reads "V" but follows the parent). Office keeps Customers V/E/D, Catalog V,
-Vendor V, Schedule V, Timesheets V/E. Even with full Invoicing CRUD, the
-hard-coded rule still **disables the Create-Invoice button for Office** on Work
-Orders and Part Sales — Office can process/edit/delete payments (typically from
-Customers) but cannot create new invoices. See §14.1.
+**† Office role — current state (spec as of 2026-07-15).** The Office
+definition churned over a couple of days; the CURRENT spec is: Office has **Work
+Orders = View**, **Part Sales = View**, **Invoicing & Payments = V/E/D (full)**,
+Customers V/E/D, Catalog V, Vendor V, Schedule V, Timesheets V/E. Office's **WO
+Lines is set to OFF** in the matrix even though it has Work Orders: View (WO
+Lines normally inherits WO View — this is an explicit spec exception; flag it if
+a customer's Office user unexpectedly can/can't see line-level items). Even with
+full Invoicing CRUD, the hard-coded rule still **disables the Create-Invoice
+button for Office** — Office can process/edit/delete payments but cannot create
+new invoices. See §14.1.
 
 (Admin has full access everywhere; Timesheets Admin = V/E. WO Lines View
 always inherits from Work Orders View.)
@@ -938,7 +939,7 @@ Every existing user is mapped from the old 15 roles to the new 12:
 | Technician | GAINS: Pick Parts. LOSES: Send to Portal |
 | Parts Manager | LOSES: WO/WOL Delete. GAINS: Schedule View, Customer Portal |
 | Parts Tech | GAINS: Pick Parts, Order Parts, Invoicing V/E, Part History |
-| Office | Catalog reduced to View only. Customer Management expanded to full (gains Delete). **2026-07-14: loses Work Orders and Part Sales access; gains full Invoicing & Payments CRUD (Create-Invoice button still disabled).** |
+| Office | Catalog reduced to View only. Customer Management expanded to full (gains Delete). **2026-07: gains full Invoicing & Payments CRUD (Create-Invoice button still disabled) and loses WO Lines access; keeps Work Orders View and Part Sales View.** |
 | SA Limited View → Service Advisor | Restructured; AP/AR OFF preserves the core restriction. Gains Customer Portal |
 
 Shops are notified of these changes. If a shop wants the OLD behavior back,
@@ -1029,17 +1030,18 @@ not listed; if a customer still hits one, treat it as a regression and escalate.
   "Junior Service Advisor"** (SV-7813) — only Service Advisor and Senior SA.
 - **Standardized display names (SV-8178):** shown as "Time Clock User", "Parts
   Technician", "Office User" across the app.
-- **Office role redefined (spec Change Log 2026-07-14).** Office no longer has
-  Work Orders access or Part Sales access, and now has full Invoicing &
-  Payments CRUD (View/Create&Edit/Delete). It keeps Customers (full), Catalog
-  (view), Vendor (view), Schedule (view), Timesheets (view/edit), Reports,
-  Settings (App/Service/Integrations/Finance/Data Import/Wages), See Financial
-  Data, and Manage AP/AR. **Even so, the hard-coded rule still disables the
-  Create-Invoice button for Office** — Office is meant to take/manage payments,
-  not create invoices. In practice Office works invoices/payments from the
-  Customers area (since it no longer has Work Orders or Part Sales). Note: WO
-  Lines follows Work Orders View, so with Work Orders off Office effectively
-  won't see WO Lines even though the spec matrix cell still lists it.
+- **Office role updated (spec Change Log 2026-07-14, matrix refined 2026-07-15).**
+  The Office definition changed over two days; the CURRENT state is: Office keeps
+  **Work Orders: View** and **Part Sales: View**, and gains **full Invoicing &
+  Payments CRUD** (View/Create&Edit/Delete). It also keeps Customers (full),
+  Catalog (view), Vendor (view), Schedule (view), Timesheets (view/edit),
+  Reports, Settings (App/Service/Integrations/Finance/Data Import/Wages), See
+  Financial Data, and Manage AP/AR. What Office **lost is WO Lines access** (set
+  to OFF in the matrix, an explicit exception to the usual "WO Lines inherits WO
+  View"). **The hard-coded rule still disables the Create-Invoice button for
+  Office** — Office takes/edits/deletes payments but cannot create new invoices.
+  (A brief interim spec had removed Office's Work Orders and Part Sales
+  entirely; that was reverted — Office still has both at View.)
 - **Service Advisor assignment eligibility (SV-8034):** only Admin, Service
   Manager, Senior SA, Service Advisor, or ANY custom role can be selected as the
   Service Advisor on a work order. Technician, Foreman, Office, Sales Rep, Parts
@@ -1306,15 +1308,16 @@ Office now has view-only catalog access by default (it gained full customer
 management instead). A custom role based on Office can restore catalog
 editing.
 
-**B7b. Our Office user lost access to Work Orders and Part Sales after the
-latest update.**
-That's intended — the Office role was redefined (July 2026): it no longer
-includes Work Orders or Part Sales access, and instead now has full Invoicing &
-Payments (view, create/edit, delete) so Office staff can handle
-invoicing/payments admin, typically from the Customers area. Note Office still
-cannot *create* new invoices (that button stays disabled for Office by design) —
-they can take and manage payments. If an Office user genuinely needs Work Orders
-or Part Sales access, create a custom role based on Office and turn those on.
+**B7b. What changed for the Office role in the latest update?**
+The Office role was adjusted (July 2026): it now has **full Invoicing &
+Payments** (view, create/edit, delete) so Office staff can handle
+invoicing/payments admin, and it **lost work-order-lines access**. It still
+keeps Work Orders (view) and Part Sales (view), Customers (full), and its
+reporting/settings access. One thing to note: even with full Invoicing, Office
+still **cannot create new invoices** — that button stays disabled for Office by
+design; they take and manage payments. If an Office user needs more (e.g.
+editing work orders or work-order lines), create a custom role based on Office
+and turn those on.
 
 **B8. Can we just get our exact old role back?**
 Yes, in effect: create a custom role starting from the closest system role
@@ -1579,7 +1582,7 @@ const FAQ = [
  {c:2,q:"A View-only user can see fields but can't change them — is that right?",k:"view only read only cannot edit fields mileage engine hours license plate service advisor",a:["Yes — 'View' means read-only. The user can see the work order and its fields (mileage, engine hours, license plate, service advisor, etc.) but can't edit them.","Editing requires 'Create and Edit' on that area. Read-only/greyed fields with View-only access are expected."]},
  {c:2,q:"Who can add a brand-new customer while creating a work order?",k:"add customer new work order flow create customer permission wo create edit",a:["Anyone with Work Orders: Create and Edit. Inside the New Work Order flow a user can add a new customer (and contact and vehicle) even without Customer Management edit rights — the work-order permission covers it.","That's intended, not a permission leak."]},
  {c:1,q:"Our Sales Rep can suddenly only see Reports — they lost Customers and Work Orders!",k:"sales rep reports only lost customers work orders access bug",a:["That was a bug in an earlier build and it's been fixed. The Sales Representative role is meant to include Work Orders (view), Customers (view + create/edit), and Part Sales (view), on top of Reports and financial visibility.","After the fix, Sales Reps keep that access. If one still sees Reports only, make sure they're on a build with the fix, have them log out and back in, and escalate if it persists."]},
- {c:1,q:"Our Office user lost Work Orders and Part Sales access after the latest update.",k:"office role work orders part sales lost invoicing changed redefined july",a:["That's intended — the Office role was redefined (July 2026): no more Work Orders or Part Sales access, and instead full Invoicing & Payments (view, create/edit, delete) so Office can handle invoicing/payments admin, usually from the Customers area.","Office still cannot CREATE new invoices (that button stays disabled for Office by design) — they take and manage payments. If an Office user needs Work Orders or Part Sales, make a custom role based on Office and turn those on."]},
+ {c:1,q:"What changed for the Office role in the latest update?",k:"office role work orders part sales lost invoicing changed july wo lines",a:["The Office role was adjusted (July 2026): it gained full Invoicing & Payments (view, create/edit, delete) and lost work-order-lines access. It still keeps Work Orders (view) and Part Sales (view), plus Customers (full) and its reporting/settings access.","Even with full Invoicing, Office still cannot CREATE new invoices — that button stays disabled for Office by design; they take and manage payments. If an Office user needs more (e.g. editing work orders/lines), make a custom role based on Office and turn those on."]},
  {c:2,q:"A user can't edit or delete a note someone else created — the option isn't even there.",k:"note edit delete other people notes missing option hidden attach collaborate",a:["That's expected. Notes follow the permissions of the area they live in: Work Order notes follow Work Orders; Customer notes and Asset notes follow Customer.","Anyone with View of that area can create notes, edit anyone's notes, and delete their OWN notes. Deleting SOMEONE ELSE'S note requires Delete on that area.","For a user without Delete, the edit/delete/attach options on other people's notes are hidden on purpose (they used to show an error). Give them Delete on the relevant area if they need to manage others' notes."]},
  {c:2,q:"What's the difference between the Notes tab and the Notes field?",k:"notes tab vs field difference customer asset work order",a:["The Notes TAB (on a Work Order, Customer, or Asset) is the collaborative list of notes — governed by the note rules (View = create/edit-any/delete-own; Delete = delete others').","The Notes FIELD on the Edit Customer / Edit Asset / Work Order screen is a regular field — you need View of that area to see it and Create and Edit to change it, same as the other fields."]},
  {c:2,q:"Who can see Notifications and the Notes on the Reports page?",k:"notifications reminders reports notes page who access",a:["Notifications (reminders/notes by the profile menu) are available to everyone — no permission needed.","The Notes on the Reports page come with the Reports permission: a role with Reports on sees everything there, including Notes and Reminders."]},
