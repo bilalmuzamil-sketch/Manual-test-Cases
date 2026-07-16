@@ -1,0 +1,40 @@
+{
+ "date":"2026-07-16",
+ "method":"CLEAN self-login per role = role-swap prod test-staff (Truck Hill 1) + FRESH POST /api/login (populates location store, no mid-session switch-user artifact). AP/AR at /reports; Finance on invoiced WO S1-518 (Truck Hill 1).",
+ "note":"Confirms Pass-11 switch-user AP/AR verdicts EXACTLY (Admin/Office SHOWN, all others HIDDEN). Finance now clean-login observed for all 13 prod roles (no /no-location role-swap artifact doubt: WO detail rendered for most; Finance tab specifically bounces or is absent for the HIDDEN roles).",
+ "prod_AP_AR_clean": {
+  "Administrator":"SHOWN","Office User":"SHOWN",
+  "Service Manager":"HIDDEN","Parts Manager":"HIDDEN","Parts Technician":"HIDDEN","Foreman":"HIDDEN",
+  "Sales Representative":"HIDDEN","Service Advisor Technician":"HIDDEN","Service Advisor":"HIDDEN",
+  "Service Advisor - No Reports":"HIDDEN","Service Advisor - Limited View":"HIDDEN","Technician":"HIDDEN","Time Clock User":"HIDDEN"
+ },
+ "prod_Finance_clean": {
+  "Administrator":"SHOWN (New Payment + Reverse + Issue Credit)",
+  "Service Advisor - No Reports":"SHOWN (NP+Reverse+Credit)",
+  "Service Advisor - Limited View":"SHOWN (NP+Reverse+Credit)",
+  "Service Manager":"HIDDEN (Finance route -> /no-location; WO detail rendered)",
+  "Parts Manager":"HIDDEN (/no-location)",
+  "Parts Technician":"HIDDEN (/no-location)",
+  "Office User":"HIDDEN (/no-location)",
+  "Service Advisor":"HIDDEN (/no-location)",
+  "Sales Representative":"HIDDEN (WO detail not accessible)",
+  "Time Clock User":"HIDDEN (WO detail not accessible)",
+  "Service Advisor Technician":"HIDDEN (Finance tab not present/clickable; stayed on lines)",
+  "Foreman":"HIDDEN (Finance tab not present; stayed on lines)",
+  "Technician":"HIDDEN (Finance tab not present; stayed on lines)"
+ },
+ "staging_Finance_prior": "Admin/SeniorSA=NP+Rev+Cr; PartsMgr/ServiceAdvisor=NP+Cr (Reverse hidden); SM/Foreman/Office/PartsTech=NP+Cr (Reverse only SM); SalesRep/Technician=hidden; TimeClock=NV(staging)",
+ "finance_dual_by_staging_role": {
+  "Administrator":"MATCH (both SHOWN)",
+  "Service Manager":"STAGING-MORE (prod HIDDEN / staging NP+Cr SHOWN)",
+  "Parts Manager":"STAGING-MORE (prod HIDDEN / staging NP+Cr SHOWN)",
+  "Parts Technician":"STAGING-MORE (prod HIDDEN / staging NP+Cr SHOWN)",
+  "Foreman":"STAGING-MORE (prod HIDDEN / staging NP+Cr SHOWN)",
+  "Office User":"STAGING-MORE (prod HIDDEN / staging NP+Cr SHOWN)",
+  "Sales Representative":"MATCH (both hidden)",
+  "Technician":"MATCH (both hidden)",
+  "Senior Service Advisor":"MATCH-ish (staging SHOWN; prod components SA-No-Reports SHOWN [SA + SA-Tech HIDDEN] - the reports-enabled component keeps finance)",
+  "Service Advisor":"prod SA-Limited-View SHOWN / staging Service Advisor NP+Cr SHOWN => MATCH (Reverse: prod SHOWN vs staging hidden = minor STAGING-LESS on Reverse)",
+  "Time Clock User":"prod HIDDEN OBSERVED; staging NV (prior pass)"
+ }
+}
