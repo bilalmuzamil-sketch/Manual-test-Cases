@@ -219,6 +219,32 @@ process(es) to run before proceeding.
    spec `_3` (de-facto V2.5) doc + 2026-07-14 design `_4` bundle are the latest and
    override the earlier V2.4 doc / round-1 answer sheet where they disagree (e.g. the
    V2.4 note #6 first-class-part requirement was REVERSED by spec `_3` Δ7).
+4. **Global Search project** — Global Search v2 (ShopView App). **Canonical spec
+   URL: TO CONFIRM WITH USER** (the spec was ingested from a Confluence "Export to
+   Word" MHTML doc — the live Confluence page URL was NOT embedded; do NOT invent).
+   **Figma:** https://www.figma.com/design/DR4gEODShYgJqkozs3mF5q/Working---ShopView-App?node-id=12053-65992
+   **PO: TO CONFIRM WITH USER** (not stated in the spec). **Epic/Jira key: TO CONFIRM.**
+   **CANONICAL STATE DOC (read first for resume):**
+   `build/global-search/PROJECT-STATE.md` — single authoritative snapshot (status,
+   open questions, deliverables index, env/access TBD, how-to-resume). **STATUS:
+   ONBOARDING (2026-07-16) — scaffold + spec ingest + design notes DONE; case
+   authoring NOT started.** Spec fully ingested → `build/global-search/requirements.md`
+   (§1–§11: 6 searchable entity types [Work Orders, Customers, Assets, Parts, Vendors,
+   Part Sales], ⌘K/K spotlight palette, fuzzy match [trigram + Damerau-Levenshtein +
+   Double Metaphone; identifier fields exact-only], relevance ranking, recent/persisting
+   search, hover quick-actions, keyboard nav, role-based result scoping, `GET /api/search`,
+   5-phase dev plan, feature-flagged rollout). Design capture COMPLETE **10/10 Figma
+   screenshots** → `build/global-search/design-notes.md`; **2 states OUT OF SCOPE (do
+   NOT author cases): AI search-all + header-component proposal.** AI/"ask a question"
+   placeholder implies AI but AI is OUT OF SCOPE for V1 (confirm — OQ-3). Cases to be
+   authored from Figma + spec with build-accurate wording (VIU later, once the feature
+   ships to a QA env — not available yet). `build/global-search/`: requirements.md,
+   design-notes.md, cases/ (empty, README + .gitkeep), testrail-id-map.csv (header
+   only), PROJECT-STATE.md. **No TestRail writes without explicit user permission.**
+   Reuse shared infra (BUILD-ACCURATE-WORDING-VIU-PROCESS, SPEC-RELEVANCE-RECONCILIATION,
+   TESTING-RUNBOOK, harness/TestRail patterns). Per Standing Rule 11, ASK which
+   process(es) to run before authoring/VIU. Open questions (confirm with user): PO
+   name, canonical spec URL, AI-query scope, Jira epic, QA env/flag status.
 
 **STANDING RULES (apply to all projects):**
 1. **Never proceed without the complete set of information needed.** If
