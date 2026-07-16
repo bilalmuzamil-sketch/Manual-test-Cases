@@ -12,7 +12,7 @@
 > **Canonical spec (Confluence):** https://shopview.atlassian.net/wiki/spaces/PM/pages/646021121/Simple+Mode+Streamlined+Work+Order+Completion+Bulk+Receiving
 > (Atlassian-SSO login-walled — reference pointer only; content must be exported/pasted to ingest, do NOT fetch the URL.)
 >
-> **Last updated:** 2026-07-14.
+> **Last updated:** 2026-07-16 (Milos Round-3 applied — see §0-AA).
 
 ---
 
@@ -271,18 +271,22 @@ superseded wording.
 
 ## 0. CURRENT STATE AT A GLANCE (read this first)
 
-**FINAL tally (2026-07-14 — after the spec `_3` (de-facto V2.5) + design `_4` pass
-that added the 7 SF-AUTO cases and applied the Δ7 rescope; see §0-AA; authoritative —
-counted directly from `cases/*.json` `viu_status`, 170 case bodies):**
+**Current tally (2026-07-16 — Milos Round-3 applied on top of the 2026-07-14 spec `_3`
+(de-facto V2.5) + design `_4` pass that added the 7 SF-AUTO cases and applied the Δ7
+rescope; see §0-AA; authoritative — counted directly from `cases/*.json` `viu_status`,
+170 case bodies):**
 
 | VIU status field (`cases/*.json`) | Count |
 |---|---:|
 | VIU-Verified | **134** |
-| VIU-observed-awaiting-Milos | **8** |
-| Blocked-Env | **25** |
-| Deviation (SF-SET-03, SF-VMIS-06) | **2** |
+| VIU-observed-awaiting-Milos | **5** |
+| Blocked-Env | **26** |
+| Deviation (SF-SET-03, SF-VMIS-06, SF-RCV-05, SF-RCV-07) | **4** |
 | Open-Question (SF-QB-09) | **1** |
 | **TOTAL** | **170** |
+
+(Milos Round-3 2026-07-16 moved SF-RCV-05/07 awaiting-Milos→Deviation and SF-REV-15
+awaiting-Milos→Blocked-Env; prior 2026-07-14 tally was 134/8/25/2/1.)
 
 **VIU-Pending = 0** (every case now carries a definitive disposition). Total is 170:
 163 (162 authored + SF-VEND-06 = C29442) + the 7 new SF-AUTO cases (C29461–C29467).
