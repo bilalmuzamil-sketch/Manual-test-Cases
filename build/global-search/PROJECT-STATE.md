@@ -10,8 +10,10 @@
 **STATUS: CASES AUTHORED & REVIEWED — 86 cases / 15 sections (12 API cases in an
 API-titled section, Standing Rule 4); import deliverable ready in the CANONICAL
 location + format (`testrail-import/global-search-v2-testrail-import.csv` + `.xlsx`,
-86 rows, VIU-word-free & feature-flag-free; first 8 columns byte-identical to the
-fees-discounts / simple-flow imports, + 3 Rule-8 traceability columns); the old
+86 rows, VIU-word-free & feature-flag-free; PURE 1:1 format match to the
+fees-discounts / simple-flow imports — the 8 named columns + 2 trailing blank
+columns, header byte-identical; NO extra ID columns, traceability via
+build/global-search/testrail-id-map.csv per Rule 8); the old
 bespoke `GlobalSearch_TestRail-Import.csv`/`.xlsx` were SUPERSEDED and removed
 (2026-07-16); coverage-matrix COMPLETE (zero in-scope gaps);
 adversarial-review CLEAN.** The adversarial pass fixed **2 Rule-9 build-accurate
@@ -66,9 +68,10 @@ its scope tab shows the empty state). Case count went 84 → 86.
   (feature not yet VIU-able) + build-accurate wording from `design-notes.md` with
   ~20 explicit VIU-confirm placeholders (see `coverage-matrix.md` §D).
 - Deliverables: **import (CSV+XLSX) + coverage matrix + id-map** built (see §3).
-- TestRail: **NOT pushed** — `testrail-id-map.csv` now lists all 86 internal IDs with
-  BLANK TestRail Case IDs; import shows "pending push". **No TestRail writes without
-  explicit user permission** (Standing Rule 6).
+- TestRail: **NOT pushed** — `testrail-id-map.csv` lists all 86 internal IDs with
+  BLANK TestRail Case IDs (the sole traceability source, Rule 8; the import file
+  carries no ID columns). **No TestRail writes without explicit user permission**
+  (Standing Rule 6).
 - Env/VIU: **NOT available yet** — feature is feature-flagged and not confirmed on
   any QA env. VIU deferred until it ships to a testable environment.
 - PO: **Branko** (confirmed 2026-07-16; full name TBC). Spec URL: confirmed (§1).
@@ -129,15 +132,19 @@ placeholder but is OUT OF SCOPE for V1 per the Figma.
 - `cases/cases-D-permissions-api.json` (17) — GS-PERM (5) + GS-API (12, API section).
 - `coverage-matrix.md` — every in-scope spec req + Figma state → GS- case(s);
   out-of-scope items + ~20 VIU-confirm placeholders listed.
-- `gen_import.py` — builds the import in the CANONICAL format (first 8 columns
-  byte-identical to fees-discounts / simple-flow: Title, Section, Type, Priority,
-  Preconditions, Steps, Expected Result, References; + 3 Rule-8 columns: Internal ID,
-  TestRail Case ID, TestRail Link). VIU-word-free + feature-flag-free; API cases
-  routed to an "API — <leaf>" section (em-dash, matching the other imports). Writes to
+- `gen_import.py` — builds the import as a PURE 1:1 format match to fees-discounts /
+  simple-flow: the 8 named columns (Title, Section, Type, Priority, Preconditions,
+  Steps, Expected Result, References) + 2 trailing UNNAMED (blank) columns, header
+  byte-identical; NO ID columns (traceability lives in `testrail-id-map.csv`, Rule 8).
+  VIU-word-free + feature-flag-free; API cases routed to an "API — <leaf>" section
+  (em-dash, matching the other imports); CRLF row terminators + LF in cells;
+  deterministic re-run. Writes to
   `testrail-import/global-search-v2-testrail-import.csv`/`.xlsx`.
-- `testrail-import/global-search-v2-testrail-import.csv` / `.xlsx` — 86 rows,
-  "pending push" C-ids. (The old bespoke `build/global-search/GlobalSearch_TestRail-Import.*`
-  was SUPERSEDED and removed 2026-07-16 in favor of this canonical file.)
+- `testrail-import/global-search-v2-testrail-import.csv` / `.xlsx` — 86 rows, 10
+  columns (8 named + 2 blank), header byte-identical to the FD/SF imports; no C-ids in
+  the file (blank C-ids tracked only in `testrail-id-map.csv`). (The old bespoke
+  `build/global-search/GlobalSearch_TestRail-Import.*` was SUPERSEDED and removed
+  2026-07-16 in favor of this canonical file.)
 - `testrail-id-map.csv` — all 86 internal IDs, BLANK TestRail Case IDs (not pushed).
 - `PROJECT-STATE.md` — this file (canonical resume doc).
 

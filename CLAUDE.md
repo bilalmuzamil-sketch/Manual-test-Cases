@@ -249,9 +249,11 @@ process(es) to run before proceeding.
    `coverage-matrix.md` (every in-scope spec req + Figma state → case IDs, out-of-scope
    items + ~20 VIU-confirm placeholders), `gen_import.py` +
    `testrail-import/global-search-v2-testrail-import.csv`/`.xlsx` (CANONICAL location +
-   format — first 8 columns byte-identical to the fees-discounts / simple-flow imports;
+   format — PURE 1:1 match to the fees-discounts / simple-flow imports: 8 named columns
+   + 2 trailing blank columns, header byte-identical, NO ID columns; traceability via
+   `testrail-id-map.csv` per Rule 8, same as the other two projects;
    VIU-word-free + feature-flag-free; API cases in an "API — <leaf>" section per Rule 4;
-   + Internal ID + TestRail Case ID [pending] + Link cols per Rule 8; the old bespoke
+   the old bespoke
    `build/global-search/GlobalSearch_TestRail-Import.*` was superseded/removed 2026-07-16),
    `testrail-id-map.csv` (all 86 IDs, blank C-ids),
    PROJECT-STATE.md. **No TestRail writes without explicit user permission.** Reuse

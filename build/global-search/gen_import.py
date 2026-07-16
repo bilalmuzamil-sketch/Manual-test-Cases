@@ -2,18 +2,17 @@
 """Generate the Global Search v2 TestRail import file (CSV + XLSX) from the
 authored per-case JSON in build/global-search/cases/.
 
-CANONICAL FORMAT (matches testrail-import/fees-discounts-v1-testrail-import.csv
-and testrail-import/simple-flow-v1-testrail-import.csv exactly):
-  The first EIGHT columns are IDENTICAL in name and order to the other two
-  project imports:
+CANONICAL FORMAT — PURE 1:1 MATCH to
+testrail-import/fees-discounts-v1-testrail-import.csv and
+testrail-import/simple-flow-v1-testrail-import.csv:
+  EIGHT named columns, IDENTICAL in name and order to the other two project
+  imports, followed by TWO trailing UNNAMED (blank) columns:
       Title, Section, Type, Priority, Preconditions, Steps, Expected Result,
-      References
-  The other two imports leave two trailing UNNAMED columns blank. Global Search
-  uses that trailing space for the Standing-Rule-8 traceability trio (the feature
-  is not yet pushed to TestRail, so the Case ID / Link are pending):
-      Internal ID, TestRail Case ID, TestRail Link
-  These three are the only Global-Search-specific columns; the canonical 8 match
-  the other imports 1:1.
+      References, "", ""
+  There are NO Global-Search-specific columns. Standing-Rule-8 traceability
+  (internal GS- id <-> TestRail Case ID) lives in
+  build/global-search/testrail-id-map.csv exactly as it does for the other two
+  projects; the import file itself is byte-format-identical to theirs.
 
 CONTENT RULES enforced here (same as the other two generators):
   1. VIU-word-free: internal `viu_status`, `notes`, `design_ref` are NOT emitted;
@@ -38,17 +37,15 @@ HERE = os.path.dirname(os.path.abspath(__file__))          # build/global-search
 BASE = os.path.dirname(HERE)                               # build/
 ROOT = os.path.dirname(BASE)                               # repo root
 CASES_DIR = os.path.join(HERE, "cases")
-MAP_CSV = os.path.join(HERE, "testrail-id-map.csv")
 OUT_CSV = os.path.join(ROOT, "testrail-import", "global-search-v2-testrail-import.csv")
 OUT_XLSX = os.path.join(ROOT, "testrail-import", "global-search-v2-testrail-import.xlsx")
 
-# First 8 columns are byte-identical (name + order) to the fees-discounts and
-# simple-flow imports. The trailing 3 are the Standing-Rule-8 traceability trio
-# (the other imports leave two trailing columns blank instead).
+# Byte-identical (name + order) to the fees-discounts and simple-flow imports:
+# 8 named columns + 2 trailing UNNAMED (blank) columns. No GS-specific columns.
 HEADER = [
     "Title", "Section", "Type", "Priority",
     "Preconditions", "Steps", "Expected Result", "References",
-    "Internal ID", "TestRail Case ID", "TestRail Link",
+    "", "",
 ]
 
 # Deterministic, tidy section order (functional first, API last).
@@ -92,17 +89,6 @@ def load_cases():
     return cases
 
 
-def load_map():
-    """internal_id -> testrail_case_id (blank until pushed)."""
-    m = {}
-    if os.path.exists(MAP_CSV):
-        with open(MAP_CSV, newline="") as f:
-            for row in csv.DictReader(f):
-                if row.get("internal_id"):
-                    m[row["internal_id"].strip()] = (row.get("testrail_case_id") or "").strip()
-    return m
-
-
 def section_for(c):
     """Leaf area name; API-related cases route to an 'API — <leaf>' section
     (STANDING RULE 4), using the same em-dash convention as the other imports."""
@@ -115,24 +101,23 @@ def section_for(c):
 
 def main():
     cases = load_cases()
-    idmap = load_map()
 
     order = {s: i for i, s in enumerate(SECTION_ORDER)}
     cases.sort(key=lambda c: (order.get(section_for(c), 999), c["id"]))
 
     rows = []
     titles = []
+    ids = []                 # parallel internal-id list (for dupe/empty checks only)
     api_sections = set()
     api_moved = 0
     for c in cases:
         title = clean(c["title"].strip())
         titles.append(title)
+        ids.append(c["id"])
         section = section_for(c)
         if c.get("api_related"):
             api_sections.add(section)
             api_moved += 1
-        cid = idmap.get(c["id"], "")
-        link = ("https://shopview.testrail.io/index.php?/cases/view/" + cid) if cid else ""
         rows.append([
             title,
             section,
@@ -142,9 +127,8 @@ def main():
             joinlines(c.get("steps")),
             joinlines(c.get("expected")),
             clean((c.get("spec_ref") or "").strip()),
-            c["id"],
-            cid if cid else "pending push",
-            link,
+            "",
+            "",
         ])
 
     with open(OUT_CSV, "w", newline="") as f:
@@ -156,7 +140,6 @@ def main():
     # --- Sanity checks (must be zero / clean) ---
     dupes = [t for t, n in Counter(titles).items() if n > 1]
     print("Duplicate titles:", dupes if dupes else "NONE")
-    ids = [r[8] for r in rows]
     dupids = [i for i, n in Counter(ids).items() if n > 1]
     print("Duplicate internal ids:", dupids if dupids else "NONE")
     blob = "\n".join("\t".join(str(x) for x in r) for r in rows).lower()
@@ -165,7 +148,8 @@ def main():
     print("'flag on' occurrences:", blob.count("flag on"))
     print("'flag off' occurrences:", blob.count("flag off"))
     print("API sections created:", sorted(api_sections), "| API cases:", api_moved)
-    empties = [r[8] for r in rows if not (r[4].strip() and r[5].strip() and r[6].strip())]
+    empties = [iid for iid, r in zip(ids, rows)
+               if not (r[4].strip() and r[5].strip() and r[6].strip())]
     print("Rows missing Preconditions/Steps/Expected:", empties if empties else "NONE")
 
     # --- xlsx review copy ---
@@ -194,8 +178,7 @@ def main():
 
     widths = {"Title": 50, "Section": 40, "Type": 12, "Priority": 10,
               "Preconditions": 60, "Steps": 60, "Expected Result": 60,
-              "References": 34, "Internal ID": 14, "TestRail Case ID": 16,
-              "TestRail Link": 40}
+              "References": 34}
     for i, name in enumerate(HEADER, start=1):
         ws.column_dimensions[get_column_letter(i)].width = widths.get(name, 12)
 

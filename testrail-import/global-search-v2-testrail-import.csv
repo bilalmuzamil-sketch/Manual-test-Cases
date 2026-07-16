@@ -1,4 +1,4 @@
-Title,Section,Type,Priority,Preconditions,Steps,Expected Result,References,Internal ID,TestRail Case ID,TestRail Link
+Title,Section,Type,Priority,Preconditions,Steps,Expected Result,References,,
 Open the global search palette with the keyboard shortcut (K / Cmd+K),"Palette Open, Close and Keyboard",Functional,Critical,"1. You are signed in to the ShopView App.
 2. You are on any page (for example the Work Orders list).
 3. The persistent search field is visible in the app header and shows the shortcut hint 'Search Cmd+K'.","1. Without clicking anything, press K together with the Command key (Ctrl+K on Windows), as shown in the header search field.
@@ -6,39 +6,39 @@ Open the global search palette with the keyboard shortcut (K / Cmd+K),"Palette O
 2. The page behind the box is dimmed.
 3. The search input is focused so you can type right away.
 4. The placeholder reads 'Search or ask a question'.
-5. The footer keyboard legend is visible: 'Navigate' with up/down arrows, 'Select' with the enter symbol, and 'Close esc'.",requirements.md 5.1 Trigger and Surface; 8 Functional Requirements,GS-KEY-01,pending push,
+5. The footer keyboard legend is visible: 'Navigate' with up/down arrows, 'Select' with the enter symbol, and 'Close esc'.",requirements.md 5.1 Trigger and Surface; 8 Functional Requirements,,
 Open the global search palette by clicking the header search field,"Palette Open, Close and Keyboard",Functional,Critical,"1. You are signed in to the ShopView App.
 2. The persistent search field is visible in the app header, showing 'Search Cmd+K'.","1. Click the search field in the app header.
 2. Watch the screen.","1. The centered search box (modal overlay) opens, anchored to the header search field.
 2. The page behind is dimmed.
 3. The input is focused and shows the placeholder 'Search or ask a question'.
-4. The footer keyboard legend is visible.",requirements.md 5.1 Trigger and Surface,GS-KEY-02,pending push,
+4. The footer keyboard legend is visible.",requirements.md 5.1 Trigger and Surface,,
 Close the palette with the Esc key,"Palette Open, Close and Keyboard",Functional,Critical,1. The global search palette is open.,"1. Press the Esc key.
 2. Watch the screen.","1. The search box closes.
 2. The dimming is removed and you are back on the page you were on.
-3. Keyboard focus returns to the page (or the header search field).",requirements.md 5.1; 5.5 Keyboard Navigation,GS-KEY-03,pending push,
+3. Keyboard focus returns to the page (or the header search field).",requirements.md 5.1; 5.5 Keyboard Navigation,,
 Toggle the palette closed by pressing the shortcut again (Cmd+K),"Palette Open, Close and Keyboard",Functional,High,1. The global search palette is open (you opened it with Cmd+K or by clicking the header field).,"1. Press K together with the Command key (Ctrl+K on Windows) again.
 2. Watch the screen.","1. The search box closes.
-2. The dimming is removed and you are back on the page.","requirements.md 5.1 (Esc, clicking underlay, or Cmd+K again closes it)",GS-KEY-04,pending push,
+2. The dimming is removed and you are back on the page.","requirements.md 5.1 (Esc, clicking underlay, or Cmd+K again closes it)",,
 Close the palette by clicking the dimmed page behind it,"Palette Open, Close and Keyboard",Functional,High,"1. The global search palette is open.
 2. The page behind the box is dimmed.","1. Click anywhere on the dimmed area of the page (outside the search box).
 2. Watch the screen.","1. The search box closes.
-2. The dimming is removed and you are back on the page.",requirements.md 5.1 (clicking the page underlay closes it),GS-KEY-05,pending push,
+2. The dimming is removed and you are back on the page.",requirements.md 5.1 (clicking the page underlay closes it),,
 "Move through result rows with the Up and Down arrow keys, skipping group headers","Palette Open, Close and Keyboard",Functional,Critical,"1. The palette is open and you have typed a query that returns results in more than one group (for example 'Fib' returning Work orders and Customers).
 2. Results are grouped under headings such as 'Work orders (12)' and 'Customers (2)'.","1. Press the Down arrow key several times.
 2. Then press the Up arrow key several times.
 3. Watch which item is highlighted after each press.","1. Each Down press moves the highlight to the next result row.
 2. Each Up press moves the highlight to the previous result row.
 3. The highlight moves only across result rows - the group heading lines (for example 'Work orders (12)') are skipped and never get the highlight.
-4. When moving down past the last row of one group, the highlight continues into the first row of the next group.","requirements.md 5.5 (Up/Down moves focus through visible rows, skipping group headers)",GS-KEY-06,pending push,
+4. When moving down past the last row of one group, the highlight continues into the first row of the next group.","requirements.md 5.5 (Up/Down moves focus through visible rows, skipping group headers)",,
 Open the highlighted result in the same tab by pressing Enter,"Palette Open, Close and Keyboard",Functional,Critical,"1. The palette is open with results showing.
 2. You have highlighted a result row using the arrow keys.","1. Press the Enter key.
 2. Watch the screen.","1. The palette closes and the highlighted record opens in the same browser tab.
-2. You land on that record's page (for example the Work Order detail page).",requirements.md 5.5 (Enter opens the focused row in the same tab),GS-KEY-07,pending push,
+2. You land on that record's page (for example the Work Order detail page).",requirements.md 5.5 (Enter opens the focused row in the same tab),,
 Open the highlighted result in a new browser tab with Cmd+Enter (Ctrl+Enter),"Palette Open, Close and Keyboard",Functional,High,"1. The palette is open with results showing.
 2. You have highlighted a result row using the arrow keys.","1. Press Enter together with the Command key (Ctrl+Enter on Windows).
 2. Watch the screen and the browser tabs.","1. The highlighted record opens in a NEW browser tab.
-2. The page you were on (and, per build behavior, the palette) remains in the original tab.",requirements.md 5.5 (Cmd+Enter or Ctrl+Enter opens in a new browser tab),GS-KEY-08,pending push,
+2. The page you were on (and, per build behavior, the palette) remains in the original tab.",requirements.md 5.5 (Cmd+Enter or Ctrl+Enter opens in a new browser tab),,
 "Move focus to the scope tab strip with Tab, then cycle tabs with Left and Right arrows","Palette Open, Close and Keyboard",Functional,High,"1. The palette is open with a query typed in.
 2. The scope tab strip is visible under the input: All, Work Orders, Customers, Assets, Parts, Vendors, Part Sales.","1. Press the Tab key.
 2. Press the Right arrow key a few times.
@@ -46,352 +46,352 @@ Open the highlighted result in a new browser tab with Cmd+Enter (Ctrl+Enter),"Pa
 4. Watch which tab is focused/active.","1. Pressing Tab moves keyboard focus onto the scope tab strip.
 2. Each Right arrow press moves to the next tab to the right; each Left arrow press moves to the previous tab.
 3. Selecting a tab scopes the results to that entity type.
-4. Focus does not leave the palette (focus stays trapped inside the modal).",requirements.md 5.5 (Tab moves focus to the scope tab strip; Left/Right cycles tabs when focus is on the tab strip),GS-KEY-09,pending push,
+4. Focus does not leave the palette (focus stays trapped inside the modal).",requirements.md 5.5 (Tab moves focus to the scope tab strip; Left/Right cycles tabs when focus is on the tab strip),,
 The keyboard shortcut legend stays visible in the footer at all times,"Palette Open, Close and Keyboard",Functional,Medium,1. The palette is open.,"1. Look at the bottom of the search box in the empty state.
 2. Type a query so results appear, then look at the bottom again.
 3. Clear the query and look again.","1. The footer keyboard legend is visible in every state: 'Navigate' with up/down arrows, 'Select' with the enter symbol, and 'Close esc'.
-2. The legend does not disappear when results are showing or when the input is empty.",requirements.md 5.1 (footer always shows the keyboard legend),GS-KEY-10,pending push,
+2. The legend does not disappear when results are showing or when the input is empty.",requirements.md 5.1 (footer always shows the keyboard legend),,
 The scope tab strip lists All plus the six entity tabs in the exact order,Scope Tabs,Functional,High,1. The palette is open with a query typed in that returns results.,"1. Read the horizontal tab strip directly under the search input, left to right.","1. The tabs read, in this exact left-to-right order: All, Work Orders, Customers, Assets, Parts, Vendors, Part Sales.
-2. The 'All' tab is selected by default.",requirements.md 5.2 State 3 (tab strip); design-notes cross-reference,GS-TAB-01,pending push,
+2. The 'All' tab is selected by default.",requirements.md 5.2 State 3 (tab strip); design-notes cross-reference,,
 The 'All' tab shows results from every entity group together,Scope Tabs,Functional,High,"1. The palette is open.
 2. Test data exists so a single query (for example 'Fib') matches Work Orders, Customers, Assets, Parts and Vendors.","1. Make sure the 'All' tab is selected.
 2. Type the query (for example 'Fib').
 3. Read the grouped results.","1. Results from every matching entity type appear, each under its own group heading with a count (for example 'Work orders (12)', 'Customers (2)').
-2. Groups appear in the order Work Orders, Customers, Assets, Parts, Vendors, Part Sales.",requirements.md 5.2 State 3; 6.2 group order,GS-TAB-02,pending push,
+2. Groups appear in the order Work Orders, Customers, Assets, Parts, Vendors, Part Sales.",requirements.md 5.2 State 3; 6.2 group order,,
 The 'Work Orders' tab shows only Work Order results,Scope Tabs,Functional,High,1. The palette is open with a query typed in that matches more than one entity type.,"1. Click the 'Work Orders' tab.
 2. Read the results.","1. Only Work Order results are shown; other entity groups (Customers, Assets, Parts, Vendors, Part Sales) are hidden.
-2. The 'Work Orders' tab appears selected/active.",requirements.md 5.2 State 3 (selecting a tab scopes the query to that entity type),GS-TAB-03,pending push,
+2. The 'Work Orders' tab appears selected/active.",requirements.md 5.2 State 3 (selecting a tab scopes the query to that entity type),,
 The 'Customers' tab shows only Customer results,Scope Tabs,Functional,High,1. The palette is open with a query typed in that matches more than one entity type.,"1. Click the 'Customers' tab.
 2. Read the results.","1. Only Customer results are shown; other entity groups are hidden.
-2. The 'Customers' tab appears selected/active.",requirements.md 5.2 State 3,GS-TAB-04,pending push,
+2. The 'Customers' tab appears selected/active.",requirements.md 5.2 State 3,,
 The 'Assets' tab shows only Asset (vehicle) results,Scope Tabs,Functional,High,1. The palette is open with a query typed in that matches more than one entity type.,"1. Click the 'Assets' tab.
 2. Read the results.","1. Only Asset results are shown; other entity groups are hidden.
-2. The 'Assets' tab appears selected/active.",requirements.md 5.2 State 3,GS-TAB-05,pending push,
+2. The 'Assets' tab appears selected/active.",requirements.md 5.2 State 3,,
 The 'Parts' tab shows only Part (inventory) results,Scope Tabs,Functional,High,1. The palette is open with a query typed in that matches more than one entity type.,"1. Click the 'Parts' tab.
 2. Read the results.","1. Only Part results are shown; other entity groups are hidden.
-2. The 'Parts' tab appears selected/active.",requirements.md 5.2 State 3,GS-TAB-06,pending push,
+2. The 'Parts' tab appears selected/active.",requirements.md 5.2 State 3,,
 The 'Vendors' tab shows only Vendor results,Scope Tabs,Functional,High,1. The palette is open with a query typed in that matches more than one entity type.,"1. Click the 'Vendors' tab.
 2. Read the results.","1. Only Vendor results are shown; other entity groups are hidden.
-2. The 'Vendors' tab appears selected/active.",requirements.md 5.2 State 3,GS-TAB-07,pending push,
+2. The 'Vendors' tab appears selected/active.",requirements.md 5.2 State 3,,
 The 'Part Sales' tab shows only Part Sales results,Scope Tabs,Functional,High,"1. The palette is open with a query typed in that matches Part Sales records.
 2. At least one Part Sale exists (for example 'P2-58').","1. Click the 'Part Sales' tab.
 2. Read the results.","1. Only Part Sales results are shown; other entity groups are hidden.
-2. The 'Part Sales' tab appears selected/active.",requirements.md 4 (Part Sales is a NEW searchable entity); 5.2 State 3,GS-TAB-08,pending push,
+2. The 'Part Sales' tab appears selected/active.",requirements.md 4 (Part Sales is a NEW searchable entity); 5.2 State 3,,
 Each result group shows a heading with the total match count,Grouped Results and Counts,Functional,High,"1. The palette is open.
 2. Test data exists so a query (for example 'Fib') returns several Work Orders and a couple of Customers.","1. Type the query (for example 'Fib').
 2. Read each group heading.","1. Each group heading shows the entity name and the total count in parentheses, for example 'Work orders (12)' and 'Customers (2)'.
-2. The count reflects the total number of matches for that entity type, even when only the first few rows are shown.",requirements.md 5.2 State 3 (results grouped by entity type with a count),GS-GRP-01,pending push,
+2. The count reflects the total number of matches for that entity type, even when only the first few rows are shown.",requirements.md 5.2 State 3 (results grouped by entity type with a count),,
 A group shows up to five results (raised from three),Grouped Results and Counts,Functional,High,"1. The palette is open.
 2. Test data exists so at least one entity group has more than five matches (for example twelve Work Orders match 'Fib').","1. Type the query so a group has many matches.
 2. Count the rows shown under that group heading in the 'All' view.","1. The group shows at most five result rows.
-2. It does not show six or more rows inline (the old behavior was three - it is now five).",requirements.md 1 (old = 3 per category); 5.2 State 3 (up to 5 results),GS-GRP-02,pending push,
+2. It does not show six or more rows inline (the old behavior was three - it is now five).",requirements.md 1 (old = 3 per category); 5.2 State 3 (up to 5 results),,
 A 'Show all N' link appears when a group has more matches than are shown,Grouped Results and Counts,Functional,High,"1. The palette is open.
 2. A query returns more than five Work Order matches (for example twelve).","1. Type the query.
 2. Look at the bottom of the Work Orders group.","1. A link appears at the bottom of the group, worded like 'Show all work orders' (or 'Show all 12 work orders').
-2. The link only appears when there are more matches than the rows shown.",requirements.md 5.2 State 3 ('Show all N work orders' link),GS-GRP-03,pending push,
+2. The link only appears when there are more matches than the rows shown.",requirements.md 5.2 State 3 ('Show all N work orders' link),,
 Clicking 'Show all N' switches the palette into that entity's scope tab,Grouped Results and Counts,Functional,High,1. The palette is open with a query showing a Work Orders group that has a 'Show all' link.,"1. Click the 'Show all work orders' link.
 2. Watch the palette.","1. The palette stays open and switches to the 'Work Orders' scope tab.
 2. The full list of matching Work Orders for the current query is shown, scoped to Work Orders only.
-3. The palette does not leave to a separate full page (the recommended behavior is the scoped tab within the modal).",requirements.md 5.2 (Show all switches to the scope tab - recommended); Open Question OQ-SPEC-1,GS-GRP-04,pending push,
+3. The palette does not leave to a separate full page (the recommended behavior is the scoped tab within the modal).",requirements.md 5.2 (Show all switches to the scope tab - recommended); Open Question OQ-SPEC-1,,
 "Groups appear in the fixed order Work Orders, Customers, Assets, Parts, Vendors, Part Sales",Grouped Results and Counts,Functional,Medium,"1. The palette is open.
 2. A query matches all six entity types at once.","1. Type the query on the 'All' tab.
 2. Read the group headings top to bottom.","1. The groups appear top to bottom in this order: Work Orders, Customers, Assets, Parts, Vendors, Part Sales.
-2. The order does not change based on how many matches each group has.",requirements.md 6.2 (group display order in 'All'),GS-GRP-05,pending push,
+2. The order does not change based on how many matches each group has.",requirements.md 6.2 (group display order in 'All'),,
 The typed text is highlighted inside each matching result,Grouped Results and Counts,Functional,Medium,"1. The palette is open.
 2. Test data exists such that 'Fib' matches records like 'S1-644 Fibridge Commercial'.","1. Type 'Fib'.
 2. Look at the matched part of the text in each result row.","1. The matched substring 'Fib' is visually highlighted (in the captures it is highlighted in yellow) inside the result's primary text.
-2. Only the matched portion is highlighted, not the whole row.",requirements.md 5.3 (matched substring highlighted),GS-GRP-06,pending push,
+2. Only the matched portion is highlighted, not the whole row.",requirements.md 5.3 (matched substring highlighted),,
 A screen reader announces the results count when it changes,Grouped Results and Counts,Accessibility,Medium,"1. A screen reader is turned on.
 2. The palette is open.","1. Type a query that returns results across several groups.
 2. Listen to the screen reader.","1. The screen reader announces the total results count when it changes, for example 'X results found across N categories'.
-2. Every interactive element (input, tabs, rows, links) has a visible focus ring when reached by keyboard.",requirements.md 9 Non-Functional (screen-reader announcements when results count changes; focus rings),GS-GRP-07,pending push,
+2. Every interactive element (input, tabs, rows, links) has a visible focus ring when reached by keyboard.",requirements.md 9 Non-Functional (screen-reader announcements when results count changes; focus rings),,
 "A Work Order result shows number, customer, status badge, assignee and date",Per-Entity Result Shape,Functional,Critical,"1. The palette is open.
 2. A Work Order exists that matches the query (for example 'S1-644 Fibridge Commercial').","1. Type a query that matches a Work Order.
 2. Read the Work Order result row.","1. The row shows the Work Order number and customer name as the main line (for example 'S1-644 Fibridge Commercial').
 2. A colored status badge is shown (for example Approved, Estimate).
 3. The lead technician / assignee name is shown (for example 'James Smith').
 4. A date is shown (for example 'Apr 27, 2026').
-5. A briefcase / work-order icon is shown on the left of the row.","requirements.md 4 Work Orders (Displayed: WO number + customer, status badge, lead technician, asset/unit, date)",GS-ENT-01,pending push,
+5. A briefcase / work-order icon is shown on the left of the row.","requirements.md 4 Work Orders (Displayed: WO number + customer, status badge, lead technician, asset/unit, date)",,
 "A Customer result shows name, address and an open work-order count chip",Per-Entity Result Shape,Functional,Critical,"1. The palette is open.
 2. A Customer exists that matches the query (for example 'Fibridge Commercial').","1. Type a query that matches a Customer.
 2. Read the Customer result row.","1. The row shows the customer name as the main line (for example 'Fibridge Commercial').
 2. An address line is shown as the secondary line (for example '923 Ross Islands, X1T 2B1').
 3. A count chip is shown (the open work-order / document count, for example '12').
-4. A person icon is shown on the left of the row.","requirements.md 4 Customers (Displayed: name, address line, open WO count badge, telephone on hover)",GS-ENT-02,pending push,
+4. A person icon is shown on the left of the row.","requirements.md 4 Customers (Displayed: name, address line, open WO count badge, telephone on hover)",,
 An Asset result shows year/make/model and the owning customer,Per-Entity Result Shape,Functional,High,"1. The palette is open.
 2. An Asset exists that matches the query (for example '2025 Freightliner M2' owned by 'Bryan Smith').","1. Type a query that matches an Asset.
 2. Read the Asset result row.","1. The row shows year, make and model as the main line (for example '2025 Freightliner M2').
 2. The owning customer name is shown as smaller secondary text (for example 'Bryan Smith').
-3. A vehicle icon is shown on the left of the row.","requirements.md 4 Assets (Displayed: year + make + model primary, customer name secondary)",GS-ENT-03,pending push,
+3. A vehicle icon is shown on the left of the row.","requirements.md 4 Assets (Displayed: year + make + model primary, customer name secondary)",,
 "A Part result shows description, part number and a quantity chip colored by stock level",Per-Entity Result Shape,Functional,High,"1. The palette is open.
 2. Parts exist matching the query, including at least one in stock (green) and, if possible, one low (orange) and one out (red).","1. Type a query that matches parts (for example 'Microfiber' or a part number '65547').
 2. Read the Part result rows and the quantity chip color.","1. The row shows the part description as the main line (for example 'Microfiber' or 'Rear Shock').
 2. The part number is shown as the secondary line (for example '65547').
 3. A total quantity chip is shown (for example '72').
 4. The quantity chip is colored by stock status: green when in stock, orange when low, red when out of stock.
-5. A tag / part icon is shown on the left of the row.","requirements.md 4 Parts (Displayed: description, part number, total quantity with stock-status color)",GS-ENT-04,pending push,
+5. A tag / part icon is shown on the left of the row.","requirements.md 4 Parts (Displayed: description, part number, total quantity with stock-status color)",,
 A Vendor result shows the vendor name and address,Per-Entity Result Shape,Functional,High,"1. The palette is open.
 2. A Vendor exists matching the query (for example 'Fibridge Mining').","1. Type a query that matches a Vendor.
 2. Read the Vendor result row.","1. The row shows the vendor name as the main line (for example 'Fibridge Mining').
 2. An address line is shown as the secondary line.
-3. A building icon is shown on the left of the row.","requirements.md 4 Vendors (Displayed: vendor name primary, address line secondary)",GS-ENT-05,pending push,
+3. A building icon is shown on the left of the row.","requirements.md 4 Vendors (Displayed: vendor name primary, address line secondary)",,
 "A Part Sale result shows the P-number, customer, status badge, total price and date",Per-Entity Result Shape,Functional,High,"1. The palette is open.
 2. A Part Sale exists matching the query (for example 'P2-58' for 'Toboro Industries').","1. Type a query that matches a Part Sale (for example 'P2-58').
 2. Read the Part Sale result row.","1. The row shows the P-number and customer name as the main line (for example 'P2-58 Toboro Industries').
 2. A status badge is shown.
 3. A total price and a created date are shown.
-4. A label icon is shown on the left of the row.","requirements.md 4 Part Sales (Displayed: P-number + customer primary, status badge, total price + created date)",GS-ENT-06,pending push,
+4. A label icon is shown on the left of the row.","requirements.md 4 Part Sales (Displayed: P-number + customer primary, status badge, total price + created date)",,
 A customer or vendor matched on a phone or email shows 'Contact/info match',Per-Entity Result Shape,Functional,Medium,"1. The palette is open.
 2. A customer exists whose telephone or email contains the query but whose name does not.","1. Type the customer's phone digits or email (a value that matches a contact field, not the name).
 2. Read the matched customer/vendor row's secondary line.","1. The customer/vendor still appears in the results.
-2. The secondary line shows 'Contact/info match' to indicate the match was on a contact field (phone/email) rather than the name.",requirements.md 4 (secondary line shows 'Contact/info match'),GS-ENT-07,pending push,
+2. The secondary line shows 'Contact/info match' to indicate the match was on a contact field (phone/email) rather than the name.",requirements.md 4 (secondary line shows 'Contact/info match'),,
 Work Order status badges use the correct colors,Per-Entity Result Shape,Functional,Medium,"1. The palette is open.
 2. Work Orders exist in several statuses (Approved, Estimate, In Progress, Review, Completed, Declined, Invoiced).","1. Search so Work Orders in different statuses appear.
 2. Read the status badge colors.","1. Status badge colors match the Work Order list tokens: Approved green, Estimate blue, Review yellow, In Progress blue, Completed gray, Declined red, Invoiced purple.
-2. Part stock badges use green (available), orange (low), red (out).","requirements.md 5.3 (status badge colors, same tokens as the WO list)",GS-ENT-08,pending push,
+2. Part stock badges use green (available), orange (low), red (out).","requirements.md 5.3 (status badge colors, same tokens as the WO list)",,
 A misspelled name still finds the record - 'Petersn' finds 'Peterson',Fuzzy Matching,Functional,Critical,"1. The palette is open.
 2. A record whose name contains 'Peterson' exists (for example a customer or vendor).","1. Type the misspelled query 'Petersn' (missing the 'o').
 2. Read the results.","1. The 'Peterson' record is found and shown, despite the typo.
-2. The matched part of the text is highlighted.",requirements.md 7 (token n-gram / trigram matching catches Petersn -> Peterson),GS-FUZ-01,pending push,
+2. The matched part of the text is highlighted.",requirements.md 7 (token n-gram / trigram matching catches Petersn -> Peterson),,
 A misspelled name still finds the record - 'Abrige' finds 'Aabridge',Fuzzy Matching,Functional,High,"1. The palette is open.
 2. A record whose name contains 'Aabridge' exists.","1. Type the misspelled query 'Abrige'.
-2. Read the results.","1. The 'Aabridge' record is found and shown, despite the typo.",requirements.md 1 + 10 Phase 5 (fuzzy query 'Abrige'),GS-FUZ-02,pending push,
+2. Read the results.","1. The 'Aabridge' record is found and shown, despite the typo.",requirements.md 1 + 10 Phase 5 (fuzzy query 'Abrige'),,
 A transposed-letters query still finds the record - 'frieghtliner' finds 'Freightliner',Fuzzy Matching,Functional,High,"1. The palette is open.
 2. An asset or part whose text contains 'Freightliner' exists (for example '2025 Freightliner M2').","1. Type the misspelled query 'frieghtliner' (letters transposed).
-2. Read the results.","1. The 'Freightliner' record is found and shown, despite the transposed letters.",requirements.md 7 (Damerau-Levenshtein; freihgtliner -> freightliner),GS-FUZ-03,pending push,
+2. Read the results.","1. The 'Freightliner' record is found and shown, despite the transposed letters.",requirements.md 7 (Damerau-Levenshtein; freihgtliner -> freightliner),,
 A phonetically-similar name still finds the record - 'Filbridge' finds 'Fibridge',Fuzzy Matching,Functional,Medium,"1. The palette is open.
 2. A customer/vendor/contact whose name contains 'Fibridge' exists.","1. Type the phonetically-similar query 'Filbridge'.
-2. Read the results.","1. The 'Fibridge' record is found and shown (matched by sound, as a last-resort phonetic match), likely lower in the ranking than an exact/near-exact match.",requirements.md 7 (phonetic fallback catches Filbridge -> Fibridge),GS-FUZ-04,pending push,
+2. Read the results.","1. The 'Fibridge' record is found and shown (matched by sound, as a last-resort phonetic match), likely lower in the ranking than an exact/near-exact match.",requirements.md 7 (phonetic fallback catches Filbridge -> Fibridge),,
 A Work Order number matches exactly with or without the dash or a space,Fuzzy Matching,Functional,Critical,"1. The palette is open.
 2. A Work Order 'S2-15276' exists.","1. Type 'S2-15276' and read the result.
 2. Clear the input and type 'S215276' (no dash) and read the result.
 3. Clear the input and type 'S2 15276' (with a space) and read the result.","1. All three forms find the same Work Order 'S2-15276'.
 2. The Work Order number is treated as an identifier: it is normalized by stripping the dash/space, so 'S2-15276' equals 's215276'.
-3. The match is exact (identifier), not fuzzy.",requirements.md 7 (S2-15276 = s215276); identifier fields are exact-only,GS-FUZ-05,pending push,
+3. The match is exact (identifier), not fuzzy.",requirements.md 7 (S2-15276 = s215276); identifier fields are exact-only,,
 A VIN / serial number requires an exact match after normalization,Fuzzy Matching,Functional,High,"1. The palette is open.
 2. An asset with a known VIN / serial number exists.","1. Type the asset's exact VIN / serial number and read the result.
 2. Clear the input, type the VIN with one wrong character, and read the result.","1. The exact VIN (case and spacing normalized) finds the matching asset / work order.
-2. A VIN with a wrong character does NOT return a fuzzy match - VINs are exact-only identifiers, no typo tolerance.","requirements.md 7 (What is NOT fuzzy: VIN, WO number, P-number, part number - exact match after normalization)",GS-FUZ-06,pending push,
+2. A VIN with a wrong character does NOT return a fuzzy match - VINs are exact-only identifiers, no typo tolerance.","requirements.md 7 (What is NOT fuzzy: VIN, WO number, P-number, part number - exact match after normalization)",,
 "A telephone number matches on digits only, ignoring formatting",Fuzzy Matching,Functional,Medium,"1. The palette is open.
 2. A customer with telephone '(264) 328-6723' exists.","1. Type the digits '2643286723' and read the result.
 2. Clear the input, type '(264) 328-6723' with the formatting, and read the result.","1. Both forms find the same customer.
 2. The phone is normalized to digits only, so '(264) 328-6723' equals '2643286723'.
-3. The matched customer's secondary line shows 'Contact/info match' (matched on a contact field, not the name).",requirements.md 7 (phone normalization); 4 (Contact/info match affordance),GS-FUZ-07,pending push,
+3. The matched customer's secondary line shows 'Contact/info match' (matched on a contact field, not the name).",requirements.md 7 (phone normalization); 4 (Contact/info match affordance),,
 A part number requires an exact match after normalization,Fuzzy Matching,Functional,Medium,"1. The palette is open.
 2. A part with a known part number (for example '65547') exists.","1. Type the exact part number '65547' and read the result.
 2. Clear the input, type a part number with one wrong digit, and read the result.","1. The exact part number finds the matching part.
-2. A part number with a wrong digit does NOT return a fuzzy match - part numbers are exact-only identifiers.",requirements.md 7 (What is NOT fuzzy: part number),GS-FUZ-08,pending push,
+2. A part number with a wrong digit does NOT return a fuzzy match - part numbers are exact-only identifiers.",requirements.md 7 (What is NOT fuzzy: part number),,
 Typos in identifier fields do NOT return fuzzy matches,Fuzzy Matching,Negative,High,"1. The palette is open.
 2. A Work Order 'S2-15276' exists and no Work Order 'S2-15286' exists.","1. Type a near-miss Work Order number, for example 'S2-15286' (one digit off from a real WO).
 2. Read the results.","1. The real Work Order 'S2-15276' is NOT returned as a fuzzy match.
-2. Because identifier fields are exact-only, a one-digit-off WO number returns no fuzzy identifier match (it may show 'No results' if nothing else matches).",requirements.md 7 (exact identifier fields bypass fuzzy logic),GS-FUZ-09,pending push,
+2. Because identifier fields are exact-only, a one-digit-off WO number returns no fuzzy identifier match (it may show 'No results' if nothing else matches).",requirements.md 7 (exact identifier fields bypass fuzzy logic),,
 A soft (fuzzy) match is visually indicated,Fuzzy Matching,Functional,Low,"1. The palette is open.
 2. A record exists that will only match via fuzzy logic (for example type 'Petersn' for a 'Peterson' record).","1. Type a fuzzy query (for example 'Petersn').
 2. Look at how the matched token is shown in the result row.","1. The matched token is highlighted.
-2. A subtle soft-match indicator is shown for fuzzy matches (spec mentions a '≈' symbol or italic treatment).","requirements.md 7 (fuzzy soft-match highlight treatment - design polish, confirm with design)",GS-FUZ-10,pending push,
+2. A subtle soft-match indicator is shown for fuzzy matches (spec mentions a '≈' symbol or italic treatment).","requirements.md 7 (fuzzy soft-match highlight treatment - design polish, confirm with design)",,
 A Part Sale P-number requires an exact match (no fuzzy typo tolerance),Fuzzy Matching,Negative,Medium,"1. The palette is open.
 2. A Part Sale 'P2-58' exists and no Part Sale 'P2-59' exists.","1. Type the exact P-number 'P2-58' and read the result.
 2. Clear the input, type a near-miss P-number 'P2-59' (one digit off a real Part Sale), and read the results.","1. The exact P-number 'P2-58' finds the matching Part Sale.
-2. A one-digit-off P-number does NOT return the real Part Sale as a fuzzy match - P-numbers are exact-only identifiers, no typo tolerance (it may show 'No results' if nothing else matches).","requirements.md 7 (What is NOT fuzzy: VIN, WO number, P-number, part number - exact match after normalization)",GS-FUZ-11,pending push,
+2. A one-digit-off P-number does NOT return the real Part Sale as a fuzzy match - P-numbers are exact-only identifiers, no typo tolerance (it may show 'No results' if nothing else matches).","requirements.md 7 (What is NOT fuzzy: VIN, WO number, P-number, part number - exact match after normalization)",,
 An exact identifier match is pinned as a single row at the very top,Ranking and Prioritization,Functional,High,"1. The palette is open.
 2. A Work Order 'S2-15276' exists.","1. Type the exact Work Order number 'S2-15276'.
 2. Look at the top of the results.","1. The exactly-matched Work Order is pinned as a single row at the very top, above the grouped results, labeled with its entity icon.
-2. This gives the 'type the number, jump straight to it' experience.",requirements.md 6.2 (ID match > 0.95 pinned at top),GS-RANK-01,pending push,
+2. This gives the 'type the number, jump straight to it' experience.",requirements.md 6.2 (ID match > 0.95 pinned at top),,
 "Within a group, more relevant results appear first",Ranking and Prioritization,Functional,Medium,"1. The palette is open.
 2. Several Work Orders match the query, some open/active (Approved, In Progress, Review) and recently updated, some old and Completed/Invoiced.","1. Type a query that matches many Work Orders.
 2. Read the order of the Work Order rows.","1. Open/active and recently-updated Work Orders rank above old, closed ones.
-2. Work Orders assigned to or recently viewed by the signed-in user are boosted; closed/Invoiced Work Orders older than 90 days are pushed down.","requirements.md 6.1 Work Orders signals (open status +0.30, recency, assigned/viewed, old-closed demoted)",GS-RANK-02,pending push,
+2. Work Orders assigned to or recently viewed by the signed-in user are boosted; closed/Invoiced Work Orders older than 90 days are pushed down.","requirements.md 6.1 Work Orders signals (open status +0.30, recency, assigned/viewed, old-closed demoted)",,
 In-stock parts rank above out-of-stock parts (out-of-stock not hidden),Ranking and Prioritization,Functional,Medium,"1. The palette is open.
 2. Two parts match the query - one in stock, one out of stock.","1. Type a query that matches both parts.
 2. Read the order of the Part rows.","1. The in-stock part ranks above the out-of-stock part.
-2. The out-of-stock part is still shown (out-of-stock parts are not demoted below relevance and are not hidden).",requirements.md 6.1 Parts signals,GS-RANK-03,pending push,
+2. The out-of-stock part is still shown (out-of-stock parts are not demoted below relevance and are not hidden).",requirements.md 6.1 Parts signals,,
 "On a Customer page, that customer's assets and work orders are boosted",Ranking and Prioritization,Functional,Medium,"1. You are on a specific Customer's page.
 2. That customer owns some assets and work orders, and other customers have similar-matching assets/work orders.","1. While on the Customer page, open the palette and type a query that matches assets/work orders belonging to several customers.
 2. Read the ranking of the asset and work-order results.","1. Assets and Work Orders owned by the customer whose page you are on are boosted (appear higher) compared to the same search run from an unrelated page.
-2. This is a lightweight, single contextual-bias signal.",requirements.md 6.3 Contextual bias,GS-RANK-04,pending push,
+2. This is a lightweight, single contextual-bias signal.",requirements.md 6.3 Contextual bias,,
 "On a Work Order page, parts already on that work order are pushed down",Ranking and Prioritization,Functional,Medium,"1. You are on a specific Work Order's page.
 2. That work order already has some parts on it, and other similar-matching parts exist that are not on it.","1. While on the Work Order page, open the palette and search for parts.
 2. Read the ranking of the part results.","1. Parts already on that work order are pushed down (demoted) relative to other matching parts.
-2. Other parts in the same category as the work order's existing parts get a small boost.",requirements.md 6.3 Contextual bias,GS-RANK-05,pending push,
+2. Other parts in the same category as the work order's existing parts get a small boost.",requirements.md 6.3 Contextual bias,,
 "First-time empty state shows the placeholder, helper text and three quick-create buttons",Empty and First-Time State,Functional,High,"1. You are signed in as a user with no recent search activity.
 2. The palette is open and the input is empty.","1. Open the palette without typing anything.
 2. Read the placeholder, the helper text, and the buttons.","1. The input shows the placeholder 'Search or ask a question'.
 2. Helper text below the input reads 'Type to start searching for work orders, parts, customers and more'.
 3. Three quick-create buttons are shown: 'New work order', 'New customer', 'New inventory part'.
-4. The footer keyboard legend is visible.",requirements.md 5.2 State 1 (First-time search),GS-EMPTY-01,pending push,
+4. The footer keyboard legend is visible.",requirements.md 5.2 State 1 (First-time search),,
 The quick-create buttons in the empty state start the matching create flow,Empty and First-Time State,Functional,Medium,1. The palette is open in the empty state showing the three quick-create buttons.,"1. Click 'New work order' and observe.
 2. Reopen the palette, click 'New customer' and observe.
 3. Reopen the palette, click 'New inventory part' and observe.","1. 'New work order' starts the create-work-order flow.
 2. 'New customer' starts the create-customer flow.
 3. 'New inventory part' starts the create-inventory-part flow.
-4. None of the buttons perform a destructive action.",requirements.md 5.2 State 1 (quick-create chips),GS-EMPTY-02,pending push,
+4. None of the buttons perform a destructive action.",requirements.md 5.2 State 1 (quick-create chips),,
 "Recent activity is grouped under Today, Yesterday, Past week and Past 30 days",Recent Activity Default State,Functional,High,"1. You are signed in as a user who has recently opened several records (across different days).
 2. The palette is open and the input is empty.","1. Open the palette without typing anything.
 2. Read the group headings and the rows under them.","1. Instead of the first-time helper text, the palette shows your recent activity.
 2. Rows are grouped under time headings: 'Today', 'Yesterday', 'Past week', 'Past 30 days'.
-3. Each row is a previously opened record (not just a previous search word).",requirements.md 5.2 State 2 (Recent searches grouped by interval); 8 (persist recent-entity-views 30 days),GS-REC-01,pending push,
+3. Each row is a previously opened record (not just a previous search word).",requirements.md 5.2 State 2 (Recent searches grouped by interval); 8 (persist recent-entity-views 30 days),,
 Recent activity mixes different entity types using the same row template,Recent Activity Default State,Functional,Medium,"1. You have recently opened records of different types (work orders, assets, customers, parts, part sales, vendors).
 2. The palette is open and empty.","1. Open the palette without typing.
 2. Read the recent rows across the time groups.","1. Recent rows include a mix of entity types (for example a Work Order, an Asset, a Customer, a Part, a Vendor).
 2. Each recent row uses the same row template as a normal result row (icon, primary line, secondary line, status/quantity cluster).
-3. Example rows: WO 'S1-644 Fisquare Farms' [Approved], Asset '2025 Freightliner M2 - Bryan Smith', Customer 'Adale Transport' with a doc chip, Part 'Rear Shock 65547' [72], Vendor 'Report Beverages'.",requirements.md 5.2 State 2 (same row template as a result row),GS-REC-02,pending push,
+3. Example rows: WO 'S1-644 Fisquare Farms' [Approved], Asset '2025 Freightliner M2 - Bryan Smith', Customer 'Adale Transport' with a doc chip, Part 'Rear Shock 65547' [72], Vendor 'Report Beverages'.",requirements.md 5.2 State 2 (same row template as a result row),,
 Clicking a recent item opens that record,Recent Activity Default State,Functional,Medium,"1. The palette is open and empty, showing recent activity.","1. Click a recent item (for example the Work Order 'S1-644 Fisquare Farms').
 2. Watch the screen.","1. The palette closes and the clicked record opens.
-2. Opening the record refreshes its position in recent activity (it is 'touched').",requirements.md 10 Phase 4 (records a touch on every result click / entity-page visit),GS-REC-03,pending push,
+2. Opening the record refreshes its position in recent activity (it is 'touched').",requirements.md 10 Phase 4 (records a touch on every result click / entity-page visit),,
 The typed query is retained in the header search field after the palette closes,Persisting Query,Functional,High,"1. The palette is open.
 2. You have typed a query (for example 'Fibridge') that returns results.","1. Type 'Fibridge' so results appear.
 2. Close the palette (press Esc or click a result).
 3. Look at the header search field.","1. After closing, the header search field still shows the last query 'Fibridge' as plain text.
-2. A small count badge (for example '1') is shown beside the persisted query.","requirements.md 5.2 State 5 (Persisting search); 8 (persist last query, rehydrate on reopen)",GS-PERS-01,pending push,
+2. A small count badge (for example '1') is shown beside the persisted query.","requirements.md 5.2 State 5 (Persisting search); 8 (persist last query, rehydrate on reopen)",,
 "Reopening the palette restores the last query, scope tab and result list",Persisting Query,Functional,High,"1. You have just searched (for example 'Fibridge'), selected a scope tab, and closed the palette (the query persists in the header field).","1. Click the header search field again (or press Cmd+K).
 2. Look at the input, the scope tab, and the results.","1. The palette reopens with the last query 'Fibridge' already in the input.
 2. The previously selected scope tab is restored.
 3. The result list for that query is shown again.
-4. The query text may appear selected/highlighted in the input so it can be replaced by typing.","requirements.md 5.2 State 5 (Reopening restores the query, the scope tab, and the result list)",GS-PERS-02,pending push,
+4. The query text may appear selected/highlighted in the input so it can be replaced by typing.","requirements.md 5.2 State 5 (Reopening restores the query, the scope tab, and the result list)",,
 The persisted query can be cleared with the clear (x) button,Persisting Query,Functional,Medium,1. The palette is open with a persisted query (for example 'Fibridge') in the input and a clear (x) button at the right of the input.,"1. Click the clear (x) button at the right of the input.
 2. Look at the input and the results.","1. The input is cleared to empty.
 2. The results clear and the palette returns to the empty / recent-activity state (placeholder 'Search or ask a question').
-3. The persisted query is removed from the header field.",requirements.md 5.2 State 5; design-notes screenshot 9 (clearable via the x button),GS-PERS-03,pending push,
+3. The persisted query is removed from the header field.",requirements.md 5.2 State 5; design-notes screenshot 9 (clearable via the x button),,
 No matches shows 'No results for <query>' plus the three quick-create buttons,No-Results State,Functional,High,"1. The palette is open.
 2. You will type a query that matches nothing (for example 'S1- 56438').","1. Type a query with no matches (for example 'S1- 56438').
 2. Read the centered message and the buttons.","1. A centered message reads 'No results for \'S1- 56438\'' (the exact query is echoed in quotes).
 2. The three quick-create buttons are shown: 'New work order', 'New customer', 'New inventory part'.
-3. The footer keyboard legend is still visible.",requirements.md 5.2 State 4 (No results for <query> + quick-create chips),GS-NORES-01,pending push,
+3. The footer keyboard legend is still visible.",requirements.md 5.2 State 4 (No results for <query> + quick-create chips),,
 A quick-create button in the no-results state starts the create flow,No-Results State,Functional,Medium,1. The palette is showing the no-results state with the three quick-create buttons.,"1. Click 'New work order' (or 'New customer' / 'New inventory part').
 2. Watch the screen.","1. The matching create flow starts (create work order / customer / inventory part).
-2. No destructive action occurs.",requirements.md 5.2 State 4,GS-NORES-02,pending push,
+2. No destructive action occurs.",requirements.md 5.2 State 4,,
 Hovering a Work Order result shows an 'Add new line' action,Hover Quick-Actions,Functional,Medium,"1. The palette is open showing at least one Work Order row (in results or in recent activity).
 2. A pointer (mouse) is available.","1. Move the pointer over a Work Order row (for example 'S1-644 Fisquare Farms').
 2. Look at the right side of the row.","1. A right-aligned 'Add new line' button appears on hover.
-2. The action is non-destructive.","requirements.md 5.4 (Work Order -> 'Add new line', only when currently editing a WO elsewhere)",GS-HOVER-01,pending push,
+2. The action is non-destructive.","requirements.md 5.4 (Work Order -> 'Add new line', only when currently editing a WO elsewhere)",,
 Hovering an Asset result shows 'New work order' plus history and checklist icons,Hover Quick-Actions,Functional,Medium,"1. The palette is open showing at least one Asset row.
 2. A pointer is available.","1. Move the pointer over an Asset row (for example '2025 Freightliner M2 - Fisquare Farms').
 2. Look at the right side of the row.","1. A 'New work order' button appears on hover.
 2. Two secondary icon buttons appear: a clock/history icon and a checklist/tasks icon.
-3. The actions are non-destructive.",requirements.md 5.4 (Asset -> 'New work order' + clock (history) and Invoice icons),GS-HOVER-02,pending push,
+3. The actions are non-destructive.",requirements.md 5.4 (Asset -> 'New work order' + clock (history) and Invoice icons),,
 Hovering a Customer result shows 'New work order' (and 'New contact'),Hover Quick-Actions,Functional,Medium,"1. The palette is open showing at least one Customer row.
 2. A pointer is available.","1. Move the pointer over a Customer row (for example 'Adale Transport').
 2. Look at the right side of the row.","1. A 'New work order' button appears on hover.
 2. A 'New contact' action is available for the customer (per spec).
-3. The actions are non-destructive.","requirements.md 5.4 (Customer -> 'New work order', 'New contact')",GS-HOVER-03,pending push,
+3. The actions are non-destructive.","requirements.md 5.4 (Customer -> 'New work order', 'New contact')",,
 Hovering a catalog part result shows 'Add part',Hover Quick-Actions,Functional,Medium,"1. The palette is open showing a catalog part-style row.
 2. You are NOT currently editing a work order.
 3. A pointer is available.","1. Move the pointer over a catalog part row (for example 'P2-58 Toboro Industries').
 2. Look at the right side of the row.","1. An 'Add part' button appears on hover.
-2. The action is non-destructive.",requirements.md 5.4 (Part -> 'Add part' when not currently editing a WO),GS-HOVER-04,pending push,
+2. The action is non-destructive.",requirements.md 5.4 (Part -> 'Add part' when not currently editing a WO),,
 Hovering a Vendor result shows 'Add contact',Hover Quick-Actions,Functional,Medium,"1. The palette is open showing at least one Vendor row.
 2. A pointer is available.","1. Move the pointer over a Vendor row (for example 'Report Beverages').
 2. Look at the right side of the row.","1. An 'Add contact' button appears on hover.
-2. The action is non-destructive.",requirements.md 5.4 (Vendor -> 'Add contact'),GS-HOVER-05,pending push,
+2. The action is non-destructive.",requirements.md 5.4 (Vendor -> 'Add contact'),,
 Hovering an inventory part while editing a work order shows 'Add to work order',Hover Quick-Actions,Functional,Medium,"1. You are currently editing a work order.
 2. The palette is open showing an inventory part row (for example 'Rear Shock 65547' with a '72' quantity chip).
 3. A pointer is available.","1. Move the pointer over an inventory part row.
 2. Look at the right side of the row.","1. An 'Add to work order' button appears on hover.
-2. Using it adds the part to the work order you are editing (an inline add, non-destructive).",requirements.md 5.4 (Part -> 'Add to work order' only when currently editing a WO),GS-HOVER-06,pending push,
+2. Using it adds the part to the work order you are editing (an inline add, non-destructive).",requirements.md 5.4 (Part -> 'Add to work order' only when currently editing a WO),,
 Hover quick-actions never trigger a destructive operation,Hover Quick-Actions,Functional,Medium,1. The palette is open with rows across several entity types.,"1. Hover each entity row type and review the available quick-action buttons.
 2. Note that every quick action is an add/create-style action.","1. No quick action deletes, voids, or otherwise destroys data.
-2. Every action offered by a quick action is also reachable from the entity's full record (hover is non-essential).",requirements.md 5.4 (Quick actions never trigger destructive operations; hover state non-essential),GS-HOVER-07,pending push,
+2. Every action offered by a quick action is also reachable from the entity's full record (hover is non-essential).",requirements.md 5.4 (Quick actions never trigger destructive operations; hover state non-essential),,
 Searching the in-page Work Orders list filters the list and shows a matching banner,In-Page Work Orders List Search,Functional,Medium,"1. You are on the Work Orders list page (not the global search palette).
 2. Work Orders exist whose text contains 'Fib'.","1. Type 'Fib' into the in-page Work Orders list search field.
 2. Read the list and the banner above it.","1. The Work Orders list filters to only rows matching 'Fib'.
 2. A blue banner reads 'Showing 12 work orders matching \'Fib\'' (the count reflects the number of matches).
 3. A 'Clear search' link appears on the right of the banner.
-4. The list columns remain: On Site, Status, Number, Customer, Asset, Unit, VIN/Serial #, Progress, Service Advisor, Lead Technician, Clocked In, Lines, Total Price.",design-notes screenshot 1 (in-page Work Orders list search banner),GS-LIST-01,pending push,
+4. The list columns remain: On Site, Status, Number, Customer, Asset, Unit, VIN/Serial #, Progress, Service Advisor, Lead Technician, Clocked In, Lines, Total Price.",design-notes screenshot 1 (in-page Work Orders list search banner),,
 'Clear search' restores the full in-page Work Orders list,In-Page Work Orders List Search,Functional,Low,1. The Work Orders list is filtered by an in-page search (banner 'Showing N work orders matching <q>' is visible).,"1. Click the 'Clear search' link in the banner.
 2. Read the list and the banner.","1. The filter is removed and the full Work Orders list is shown again.
-2. The 'Showing N work orders matching <q>' banner is removed.",design-notes screenshot 1,GS-LIST-02,pending push,
+2. The 'Showing N work orders matching <q>' banner is removed.",design-notes screenshot 1,,
 "A search failure shows the 'Search unavailable, retry' banner",Error State,Negative,Medium,"1. The palette is open.
 2. A network/backend failure of the search request can be simulated (for example offline the network or block the search endpoint).","1. With the search backend unreachable, type a query.
 2. Read the message shown in the palette.
 3. Restore connectivity and use the retry affordance.","1. An inline banner reads 'Search unavailable, retry'.
 2. The palette degrades gracefully - it does not crash or show a blank screen.
-3. Retrying after connectivity is restored re-runs the search and shows results.","requirements.md 8 (tolerate offline/network failures with an inline 'Search unavailable, retry' banner)",GS-ERR-01,pending push,
+3. Retrying after connectivity is restored re-runs the search and shows results.","requirements.md 8 (tolerate offline/network failures with an inline 'Search unavailable, retry' banner)",,
 A user WITH Parts access sees Parts results in the palette,Permissions and Role-Based Scoping,Functional,High,"1. You are signed in as a user whose role includes Parts access.
 2. Parts exist that match the query.","1. Open the palette and type a query that matches parts.
 2. Read the results (on the 'All' tab and the 'Parts' tab).","1. A 'Parts' group appears with matching part rows.
-2. The 'Parts' scope tab shows the part results.",requirements.md 9 (all result fields respect role-based-access checks),GS-PERM-01,pending push,
+2. The 'Parts' scope tab shows the part results.",requirements.md 9 (all result fields respect role-based-access checks),,
 A technician WITHOUT Parts access does NOT see Parts results,Permissions and Role-Based Scoping,Negative,Critical,"1. You are signed in as a user whose role does NOT include Parts access.
 2. Parts exist that would match the query (verified visible to a Parts-enabled user).","1. Open the palette and type a query that matches parts.
 2. Read the results (on the 'All' tab and check the 'Parts' tab).","1. No 'Parts' group appears and no part rows are shown.
 2. The user cannot see part results they are not permitted to access, even though those parts exist.
-3. Results for entity types the user CAN access still appear normally.",requirements.md 9 (a technician without Parts access does not see Parts results),GS-PERM-02,pending push,
+3. Results for entity types the user CAN access still appear normally.",requirements.md 9 (a technician without Parts access does not see Parts results),,
 A user WITHOUT Work Orders access does NOT see Work Order results,Permissions and Role-Based Scoping,Negative,High,"1. You are signed in as a user whose role does NOT include Work Orders access.
 2. Work Orders exist that would match the query.","1. Open the palette and type a query that matches Work Orders.
 2. Read the results (the 'All' tab and the 'Work Orders' tab).","1. No 'Work orders' group appears and no Work Order rows are shown.
-2. Results for entity types the user CAN access still appear normally.",requirements.md 9 (all result fields respect role-based-access checks),GS-PERM-03,pending push,
+2. Results for entity types the user CAN access still appear normally.",requirements.md 9 (all result fields respect role-based-access checks),,
 Results are limited to the signed-in user's own tenant,Permissions and Role-Based Scoping,Functional,High,"1. You are signed in to one tenant/organization.
 2. Records with the same searchable text exist under a different tenant.","1. Open the palette and type a query.
 2. Read the results.","1. Only records belonging to your own tenant/organization are returned.
-2. No records from any other tenant are shown (tenant isolation is respected).",requirements.md 9 (all result fields respect existing tenant-isolation checks),GS-PERM-04,pending push,
+2. No records from any other tenant are shown (tenant isolation is respected).",requirements.md 9 (all result fields respect existing tenant-isolation checks),,
 An entity type with no accessible records shows no group (and its scope tab shows the empty state),Permissions and Role-Based Scoping,Functional,Medium,"1. You are signed in as a user who has zero accessible records of one entity type (for example the tenant has no Part Sales yet, or the user's role scopes an entity type down to no records).
 2. Other entity types do have matching records for the query.","1. Open the palette and type a query on the 'All' tab.
 2. Read the grouped results and confirm the empty entity type has no group.
 3. Open the scope tab for the empty entity type (for example the 'Part Sales' tab).","1. On the 'All' tab, no group appears for the entity type that has zero accessible results (the empty group is simply not shown).
 2. Groups for the entity types that do have matches still appear normally.
-3. The empty entity type's scope tab shows its empty / no-results treatment rather than an error.","requirements.md 9 (must work for a single-tenant dataset where any entity type is empty, e.g. no part sales yet)",GS-PERM-05,pending push,
+3. The empty entity type's scope tab shows its empty / no-results treatment rather than an error.","requirements.md 9 (must work for a single-tenant dataset where any entity type is empty, e.g. no part sales yet)",,
 GET /api/search returns grouped results for scope=all,API — Global Search Endpoint,Functional,Critical,"1. You can call the backend search endpoint with a valid session.
 2. Test data exists so a query matches multiple entity types.","1. Send GET /api/search with q set to the query and scope set to 'all'.
 2. Inspect the HTTP status and the response body.","1. The response returns HTTP 200.
 2. The body is a grouped, ranked, scored payload containing groups for the matching entity types.
-3. Each group includes the per-item metadata needed to render rows without extra fetches.",requirements.md 10 Phase 1 (GET /api/search; scope=all),GS-API-01,pending push,
+3. Each group includes the per-item metadata needed to render rows without extra fetches.",requirements.md 10 Phase 1 (GET /api/search; scope=all),,
 The scope parameter restricts GET /api/search to a single entity type,API — Global Search Endpoint,Functional,High,"1. You can call the backend search endpoint.
 2. A query matches multiple entity types.","1. Send GET /api/search with q set and scope set to 'work_orders'.
 2. Inspect the response.
 3. Repeat with scope set to each of 'customers', 'assets', 'parts', 'vendors', 'part_sales'.","1. Each call returns HTTP 200.
 2. Each response contains results only for the requested scope's entity type.
-3. The accepted scope values are all, work_orders, customers, assets, parts, vendors, part_sales.",requirements.md 10 Phase 1 (scope parameter),GS-API-02,pending push,
+3. The accepted scope values are all, work_orders, customers, assets, parts, vendors, part_sales.",requirements.md 10 Phase 1 (scope parameter),,
 GET /api/search caps each group at the limit (default 5) and returns per-group totals,API — Global Search Endpoint,Functional,High,"1. You can call the backend search endpoint.
 2. A query matches more than five records of one entity type (for example twelve Work Orders).","1. Send GET /api/search with q set and no limit parameter.
 2. Inspect the number of rows returned for the over-full group and the total field.
 3. Repeat with limit set to a smaller value (for example 3).","1. With no limit, each group returns at most 5 rows (the default per-group cap).
 2. Each group reports its full total count (for example total 12) even though only 5 rows are returned.
-3. Setting limit changes the per-group cap accordingly.",requirements.md 10 Phase 1 (limit default 5; response includes per-group totals),GS-API-03,pending push,
+3. Setting limit changes the per-group cap accordingly.",requirements.md 10 Phase 1 (limit default 5; response includes per-group totals),,
 GET /api/search matches identifier fields exactly after normalization,API — Global Search Endpoint,Functional,High,"1. You can call the backend search endpoint.
 2. A Work Order 'S2-15276' exists.","1. Send GET /api/search with q set to 'S2-15276'.
 2. Send GET /api/search with q set to 's215276' (no dash).
 3. Send GET /api/search with q set to 'S2 15276' (with a space).
 4. Compare the matched Work Order in each response.","1. All three requests return HTTP 200 and match the same Work Order 'S2-15276'.
 2. The identifier is normalized (case, diacritics, non-alphanumerics stripped) before matching.
-3. The exact-match result scores high enough to be flagged as the pinned top match (score above 0.95).",requirements.md 7 (identifier normalization); 6.2 (ID match pinned),GS-API-04,pending push,
+3. The exact-match result scores high enough to be flagged as the pinned top match (score above 0.95).",requirements.md 7 (identifier normalization); 6.2 (ID match pinned),,
 GET /api/search does NOT apply fuzzy matching to identifier fields,API — Global Search Endpoint,Negative,High,"1. You can call the backend search endpoint.
 2. A Work Order 'S2-15276' exists and 'S2-15286' does not.","1. Send GET /api/search with q set to 'S2-15286' (one digit off a real WO number).
 2. Inspect the response for a Work Order match.","1. The real Work Order 'S2-15276' is NOT returned as a fuzzy identifier match.
-2. Identifier fields (VIN, WO number, P-number, part number) require exact match after normalization; fuzzy logic is bypassed for them.",requirements.md 7 (What is NOT fuzzy),GS-API-05,pending push,
+2. Identifier fields (VIN, WO number, P-number, part number) require exact match after normalization; fuzzy logic is bypassed for them.",requirements.md 7 (What is NOT fuzzy),,
 GET /api/search enforces role-based access on the server (no forbidden entity results),API — Global Search Endpoint,Negative,Critical,"1. You can call the backend search endpoint as a user whose role does NOT include Parts access.
 2. Parts exist that match the query.","1. Send GET /api/search with q set to a query that matches parts, and scope set to 'all'.
 2. Inspect the response for a parts group.
 3. Send GET /api/search with scope set to 'parts' as the same restricted user.","1. The response contains no parts results for the restricted user (permission filtering is enforced server-side, not just hidden in the UI).
 2. Scoping directly to 'parts' still returns no forbidden parts (empty or a permission-appropriate response).
-3. Entity types the user is allowed to access are still returned.",requirements.md 9 (results respect role-based-access checks - enforced server-side),GS-API-06,pending push,
+3. Entity types the user is allowed to access are still returned.",requirements.md 9 (results respect role-based-access checks - enforced server-side),,
 GET /api/search returns an error response the UI can degrade on,API — Global Search Endpoint,Negative,Medium,"1. You can call the backend search endpoint.
 2. You can force an error condition (for example an invalid scope value, or a backend/search-infra failure).","1. Send GET /api/search with an invalid parameter (for example an unknown scope value).
 2. Inspect the HTTP status and error body.
 3. Separately, simulate a backend/search failure and observe the response.","1. An invalid request returns an appropriate 4xx status with an error body.
 2. A backend failure returns a 5xx or error payload that the frontend maps to the inline 'Search unavailable, retry' banner.
-3. The endpoint fails gracefully rather than returning malformed data.",requirements.md 8 (offline/network failure handling),GS-API-07,pending push,
+3. The endpoint fails gracefully rather than returning malformed data.",requirements.md 8 (offline/network failure handling),,
 GET /api/search groups results in the fixed group order with ranking metadata,API — Global Search Endpoint,Functional,Medium,"1. You can call the backend search endpoint.
 2. A query matches all six entity types.","1. Send GET /api/search with q set and scope set to 'all'.
 2. Inspect the order of the groups and the per-item score/rank fields in the response.","1. Groups are returned in the order Work Orders, Customers, Assets, Parts, Vendors, Part Sales.
 2. Within each group items are ordered by score descending.
-3. Each item carries the metadata needed to render its row (entity type, primary/secondary fields, status/quantity, score) without extra fetches.",requirements.md 6.2 (group order); 10 Phase 1 (per-item metadata),GS-API-08,pending push,
+3. Each item carries the metadata needed to render its row (entity type, primary/secondary fields, status/quantity, score) without extra fetches.",requirements.md 6.2 (group order); 10 Phase 1 (per-item metadata),,
 GET /api/search supports cursor pagination for a scoped tab,API — Global Search Endpoint,Functional,Medium,"1. You can call the backend search endpoint.
 2. A query matches many records of one entity type (more than one page).","1. Send GET /api/search with q set, scope set to a single entity type, and a limit.
 2. Take the cursor from the response and send GET /api/search again with that cursor.
 3. Compare the two pages of results.","1. The first response returns the first page plus a cursor.
 2. Passing the cursor returns the next page of scoped results (no duplicates, no gaps).
-3. Pagination applies to the scoped-tab view.",requirements.md 10 Phase 1 (cursor parameter),GS-API-09,pending push,
+3. Pagination applies to the scoped-tab view.",requirements.md 10 Phase 1 (cursor parameter),,
 The context parameter biases GET /api/search ranking to the current page,API — Global Search Endpoint,Functional,Medium,"1. You can call the backend search endpoint.
 2. A specific customer owns some assets/work orders; other customers have similar matches.","1. Send GET /api/search with q set and no context, and note the ranking of assets/work orders.
 2. Send GET /api/search with q set and context set to {type: customer, id: <that customer>}.
 3. Compare the rankings.","1. With the customer context, assets and work orders owned by that customer are boosted in the ranking versus the no-context call.
-2. The context parameter takes an optional {type, id} for page-context bias.",requirements.md 6.3 (contextual bias); 10 Phase 1 (context parameter),GS-API-10,pending push,
+2. The context parameter takes an optional {type, id} for page-context bias.",requirements.md 6.3 (contextual bias); 10 Phase 1 (context parameter),,
 Recent-entities endpoints record and return recent activity,API — Global Search Endpoint,Functional,Medium,1. You can call the recent-entities endpoints with a valid session.,"1. Send POST /user/recent-entities/touch for a record (for example a work order you opened).
 2. Send GET /user/recent-entities.
 3. Inspect the returned list and its time bucketing.","1. POST /user/recent-entities/touch records the touch (HTTP 2xx).
 2. GET /user/recent-entities returns the recently touched records, retained for 30 days.
-3. The results support bucketing into Today / Yesterday / Past week / Past 30 days at render time.",requirements.md 8 (persist recent-entity-views 30 days); 10 Phase 4,GS-API-11,pending push,
+3. The results support bucketing into Today / Yesterday / Past week / Past 30 days at render time.",requirements.md 8 (persist recent-entity-views 30 days); 10 Phase 4,,
 Search input is debounced before the backend is queried,API — Global Search Endpoint,Functional,Low,"1. The palette is open.
 2. You can observe outgoing search requests (for example via browser network tools).","1. Type a multi-character query quickly without pausing.
 2. Observe how many GET /api/search calls are sent while typing.
 3. Pause typing and observe.","1. The backend is not queried on every keystroke; input is debounced (about 150ms) so a request fires after a short pause.
-2. Grouped results render quickly once the response arrives (target within about 200ms at p95).",requirements.md 8 (debounce input at 150ms; render within 200ms p95),GS-API-12,pending push,
+2. Grouped results render quickly once the response arrives (target within about 200ms at p95).",requirements.md 8 (debounce input at 150ms; render within 200ms p95),,
