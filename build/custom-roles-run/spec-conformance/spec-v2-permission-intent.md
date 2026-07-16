@@ -6,9 +6,13 @@ quoted-printable HTML). **Owner:** Sasha Grosman. **Epic:** SV-7388.
 `quopri`, then HTML→structured-text with BeautifulSoup (tables preserved).
 antiword/libreoffice/catdoc all FAILED (libreoffice: "source file could not be
 loaded"; antiword/catdoc not installed).
-**Cross-check:** the decoded body is byte-for-byte the same spec as the repo's
-`build/custom-roles-spec-update/current-spec-2026-07-15.md` (same tables, same Change
-Log through 14 Jul 2026). This is the current canonical spec.
+**Cross-check (CORRECTED 2026-07-16):** the decoded body was NOT identical to the repo's
+`build/custom-roles-spec-update/current-spec-2026-07-15.md` — this extract originally carried the
+PRE-7/14 Office column (Work Orders = V, Part Sales = V) plus a WO-Lines slip (Office = —),
+whereas the 7/14 'Updated Office Role definition' set **Office Work Orders V -> —, Part Sales V -> —,
+Invoicing V -> V/E/D** (see spec-diff-2026-07-15.md §2.9). Those cells are fixed below.
+**The canonical source of truth is current-spec-2026-07-15.md; the authoritative re-derived truth
+table is `spec-conformance/spec-truth-table.md` (2026-07-16 re-audit) — prefer it over this file.**
 
 > Rule followed: where the spec does not address a role×capability, it is marked
 > **SPEC SILENT** — nothing inferred.
@@ -53,11 +57,11 @@ lists **11 roles**. The 11 matrix roles (spec IDs from "Role Descriptions"):
 
 | Area | Admin | Svc Mgr | Sr. SA | Svc Adv | Foreman | Tech | Parts Mgr | Parts Tech | Office | Sales Rep | Time Clock |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| Work Orders | V/E/D | V/E/D | V/E/D | V/E | V/E | V | V/E | V | V | V | V |
-| WO Lines | V/E/D | V/E/D | V/E/D | V/E/D | V/E/D | V/E | V/E | V | — | V | — |
+| Work Orders | V/E/D | V/E/D | V/E/D | V/E | V/E | V | V/E | V | — | V | V |
+| WO Lines | V/E/D | V/E/D | V/E/D | V/E/D | V/E/D | V/E | V/E | V | V | V | — |
 | Schedule | V/E/D | V/E/D | V/E/D | V/E/D | V/E/D | V | V | V | V | — | V |
 | Customers | V/E/D | V/E/D | V/E | V/E | V/E | V | V/E/D | V/E | V/E/D | V/E | — |
-| Part Sales | V/E/D | V/E/D | V/E/D | V/E | V | — | V/E/D | V/E | V | V | — |
+| Part Sales | V/E/D | V/E/D | V/E/D | V/E | V | — | V/E/D | V/E | — | V | — |
 | Catalog & Inv | V/E/D | V/E/D | V/E | V/E | V/E | — | V/E/D | V/E | V | — | — |
 | Vendor & Order | V/E/D | V/E/D | V/E/D | V/E | V/E | — | V/E/D | V/E/D | V | — | — |
 | Invoicing | V/E/D | V/E | V/E/D | V/E/D | V/E | — | V/E/D | V/E | V/E/D | — | — |
@@ -191,7 +195,8 @@ spec's exact wording + gate. "Which roles" derived ONLY from the matrix in §B.)
   (§1b Delete "Remove lines from work orders"). Removing/moving parts *between*
   lines = **WO Lines → Create and Edit** ("move parts between lines"). SPEC has no
   distinct "remove a single WO part" atom beyond these.
-- **Roles: return-a-WO-part = ALL (no gate).** WO Lines Delete (remove lines) per
+- **Roles: return-a-WO-part = no gate, but practically needs WO View (§1a) = ALL EXCEPT Office**
+  (7/14 update: Office Work Orders = '—'). [Corrected 2026-07-16.] WO Lines Delete (remove lines) per
   matrix: Admin, Svc Mgr, Sr. SA, Svc Adv, Foreman. NOT: Tech, Parts Mgr, Parts
   Tech, Office, Sales Rep, Time Clock.
 
@@ -217,9 +222,11 @@ spec's exact wording + gate. "Which roles" derived ONLY from the matrix in §B.)
   Edit.
 - **Roles with WO Lines Edit per matrix:** Admin, Svc Mgr, Sr. SA, Svc Adv, Foreman,
   Tech (Tech View — approve hidden), Parts Mgr. **View-only (no Edit):** Parts Tech,
-  Sales Rep. **None:** Office, Time Clock.
-- "Decline line" / "Set Line Status" as named actions = SPEC SILENT (spec uses
-  "authorize lines"); treat as covered by WO Lines Create & Edit.
+  Sales Rep, Office (WOL = V despite WO = '—' — an internal spec contradiction, diff §3.6).
+  **None:** Time Clock. [Corrected 2026-07-16.]
+- "Decline line": **NOT spec-silent (corrected 2026-07-16)** — §1b "authorize lines" (WOL Create &
+  Edit) covers declining a pending line. Only the Tech-View treatment of Decline is unaddressed
+  (§4 blocks Approve only) -> Technician Decline = spec-ambiguous.
 
 ### 9) Core OK / Not-OK
 - **Two distinct spec statements (marking cores appears in BOTH WO View and WOL
@@ -233,8 +240,8 @@ spec's exact wording + gate. "Which roles" derived ONLY from the matrix in §B.)
   - **NOTE FOR DOWNSTREAM:** the spec is internally inconsistent here (WO→View per
     Key Decision/07 Jul vs WOL→Create&Edit per §1b/Jul 3). Latest change-log
     intent = **everyone with WO→View** (Key Decision is the reconciliation).
-- **Roles: WO→View = ALL 11 roles have WO View** → per the latest decision, all can
-  mark cores.
+- **Roles: WO→View = all EXCEPT Office** (7/14: Office Work Orders = '—') → per the latest
+  decision, everyone with WO View can mark cores. [Corrected 2026-07-16.]
 
 ### 10) New-WO create Customer / create Asset
 - **Create Customer (in New WO flow):** **Customer Management → Create and Edit.**
@@ -283,7 +290,7 @@ spec's exact wording + gate. "Which roles" derived ONLY from the matrix in §B.)
   but not edit existing ones.
 - **Roles per matrix:** same as WO Lines Edit — Admin, Svc Mgr, Sr. SA, Svc Adv,
   Foreman, Tech, Parts Mgr. **Cannot:** Parts Tech (View only), Sales Rep (View
-  only), Office (none), Time Clock (none).
+  only), Office (WOL View only — no Edit), Time Clock (none). [Corrected 2026-07-16.]
 
 ### 14) Change Customer / Change Asset on a WO
 - **Gate:** **Work Orders → Create and Edit.** §1a Edit (verbatim): "Edit work order
@@ -336,8 +343,8 @@ spec's exact wording + gate. "Which roles" derived ONLY from the matrix in §B.)
 ## F. CAPABILITIES IN THE COMPARISON TABS WHERE SPEC IS SILENT
 - **Issue Credit** as a discrete action — SPEC SILENT (only Credits-tab *visibility*
   via Manage AP/AR).
-- **"Decline line" / "Set Line Status"** as named actions — SPEC SILENT (spec says
-  "authorize lines" under WOL Create&Edit).
+- **"Decline line"** — NOT silent (corrected 2026-07-16): gated by WOL Create & Edit via §1b
+  "authorize lines"; only its Tech-View treatment is unaddressed (Technician = ambiguous).
 - **"Remove a WO part"** as a distinct single-part atom — SPEC SILENT beyond
   "return a part = no gate", "move parts between lines = WOL C&E", "remove lines =
   WOL Delete".

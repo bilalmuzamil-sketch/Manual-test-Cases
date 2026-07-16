@@ -4,6 +4,27 @@
 # + spec-conformance/standing-permission-rules.md. NOT idempotent (re-running re-appends). The
 # READ ME legend, Staging Live Grid note, and "Spec-Standing Conformance" summary tab were added by
 # a companion one-shot step in the same session. Observed verdicts are never modified.
+#
+# *** SUPERSEDED / DO NOT RE-RUN (2026-07-16 RE-AUDIT) ***
+# The lookup tables below contained ERRORS that were corrected in place by
+# fix_spec_annotations.py (re-derived from the CANONICAL current-spec-2026-07-15.md; truth table =
+# spec-conformance/spec-truth-table.md). The buggy rows were:
+#   * GRANT['notes'] = ALL and GRANT['partreturn'] = ALL  -> WRONG: the 7/14 "Updated Office Role
+#     definition" removed ALL Work Orders access for Office (WO = '—'), so Office has neither the
+#     Notes tab (WO View gate) nor practical Part-Return reachability. Both Office rows are
+#     DEVIATIONs, not per-spec. (Root cause: the extract's §B matrix carried the pre-7/14 Office
+#     column, WO = V.) Corrected sets exclude 'office'.
+#   * 'decline' blanket "SPEC SILENT"  -> WRONG: spec §1b WOL Create & Edit "authorize lines"
+#     addresses declining; grant set = wol_ce; only Technician (Tech View, §4 blocks Approve only)
+#     is spec-ambiguous.
+#   * GRANT['createcust'/'createasset'] = wo_ce with a "spec does not grant" template -> the SET
+#     coincides but the REASON was wrong for Office/Parts Tech/Sales Rep, who DO hold Customer
+#     Management C&E; the control is absent only because the New-WO dialog needs WO C&E.
+#   * GATE['apar'] cited Manage AP/AR first -> the observed Pass-11 surface is the AR/AP AGING
+#     reports, whose operative gate is the Reports toggle (§2a); sets coincide, citation fixed.
+#   * Missed: Service Manager Reverse-Invoice spec self-contradiction (matrix WO V/E/D + 28-Jun
+#     rule vs migration table "Loses Invoicing Delete (cannot reverse)") = spec-inconsistent.
+# Re-running this script would RE-INTRODUCE those errors (and duplicate legend rows).
 import openpyxl
 from openpyxl.styles import Font, Alignment, PatternFill
 

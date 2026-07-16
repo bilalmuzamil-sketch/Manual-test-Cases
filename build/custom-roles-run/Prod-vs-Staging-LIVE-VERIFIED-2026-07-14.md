@@ -82,41 +82,46 @@
 
 Every role x capability x verdict tab now carries two ADDED columns to the right of the verdict (**Full Dual Matrix, Pass-11, Pass-12, Approve-Decline LIVE, Send to Terminal LIVE, Parts-Module Dual LIVE, New-WO Create Dual LIVE**; the staging-only **Staging Live Grid** carries a pointer note). Observed verdicts are UNCHANGED — the columns only judge the STAGING (new-model) permission against the v2 spec and the standing rules.
 
-- **Per Spec (v2)?** — sources: `spec-conformance/spec-v2-permission-intent.md` (from `CustomRolesandPermissions_2.doc` / `current-spec-2026-07-15.md`, Sasha Grosman, SV-7388). Values: *Per spec — expected reduction* / *expected grant* / *(matches)* | *DEVIATION* | *Spec silent — not addressed* | *Spec inconsistent/ambiguous* | *Org-device config gate*. Each cites the spec gate/section; conformance is NEVER inferred where the spec is silent or inconsistent.
+- **Per Spec (v2)?** — source of truth: **`build/custom-roles-spec-update/current-spec-2026-07-15.md`** (canonical spec, Sasha Grosman, SV-7388), re-derived from scratch on **2026-07-16** into `spec-conformance/spec-truth-table.md` (which supersedes the earlier `spec-v2-permission-intent.md` §B matrix where they disagree — the extract carried the pre-7/14 Office column). Values: *Per spec — expected reduction* / *expected grant* / *(matches)* | *DEVIATION* | *Spec silent — not addressed* | *Spec inconsistent/ambiguous* | *Org-device config gate*. Each cites the spec gate/section; conformance is NEVER inferred where the spec is silent or inconsistent.
 
 - **Per Standing Instructions?** — sources: `spec-conformance/standing-permission-rules.md` (CLAUDE.md "Sasha's spec updates" + enforcement model). Values: *Consistent with standing rule: <which>* / *Conflicts with standing rule: <which>* / *No standing rule addresses this*.
 
+> **RE-AUDIT 2026-07-16 (trust-critical correction).** The user reported wrong "Per Spec (v2)?" annotations. Every one of the 297 annotations was re-derived from scratch against the canonical spec; **64 cells were corrected** (5 class changes + 59 citation/reason-text fixes). Root causes: (1) the earlier extract carried the **pre-7/14 Office column** (Work Orders = V instead of "—"), so Office WO-Notes/Part-Return were wrongly "per spec"; (2) **Decline line** was wrongly blanket-labeled "spec silent" — §1b "authorize lines" (WOL Create & Edit) addresses it; (3) the New-WO **Create-Customer/Asset** rows claimed Office/Parts-Tech/Sales-Rep lack Customer Management C&E — the matrix GRANTS it to them (the control is absent only because those roles lack WO C&E to open the New-WO dialog); (4) the **Service Manager Reverse-Invoice** contradiction (matrix+28-Jun vs migration table "cannot reverse") was missed; (5) the **AP/AR-aging** citations led with Manage AP/AR instead of the operative Reports gate (§2a). Full diff + truth table: `spec-conformance/spec-truth-table.md`.
 
-**Tally (297 annotated rows):**
+**Tally (297 annotated rows) — corrected 2026-07-16:**
 
 | Bucket | Count | Meaning |
 |---|---|---|
-| Per spec — expected / matches | 276 | STAGING agrees with the spec gate (intended) |
-| DEVIATION | 7 | STAGING is the opposite of what the spec prescribes (incl. gating-model divergence) |
-| Spec silent — not addressed | 11 | Decline/Set Line Status; Issue Credit; remove-a-WO-part atom |
-| Spec inconsistent / ambiguous | 3 | Send to Portal Full-View (§3/§4) vs Open Q6 'can approve a WOL' |
+| Per spec — expected / matches | 283 | STAGING agrees with the spec gate (intended); includes the 10 Decline rows re-derived via §1b "authorize lines" |
+| DEVIATION | 9 | STAGING is the opposite of what the spec prescribes (incl. gating-model divergence and MATCH rows where BOTH envs disagree with the spec) |
+| Spec silent — not addressed | 0 | Row-level none; Issue Credit stays spec-silent as a *component* inside the Finance rows; remove-a-WO-part atom has no annotated row |
+| Spec inconsistent / ambiguous | 5 | Spec contradicts itself for the role/capability — flagged, never resolved by inference |
 
 **KEY SIGNAL: the migration is largely SPEC-ACCURATE** — every STAGING-LESS loss and nearly every STAGING-MORE grant maps to an intended spec gate change. The only non-per-spec rows are below.
 
 
-**Release-relevant DEVIATIONS / flags (the only non-per-spec rows):**
+**Release-relevant DEVIATIONS (9 rows — corrected 2026-07-16):**
 
 | Role | Capability | Direction | Why |
 |---|---|---|---|
-| Foreman | Send to Terminal | MORE | DEVIATION (gating model): spec requires Customer Portal ON (Foreman has it OFF) so the role-gate would withhold Send to Terminal; build shows it via the org-device gate. Org-config, not a role over-grant. |
-| Parts Technician | Send to Terminal | MORE | DEVIATION (gating model): spec requires Customer Portal ON (Parts Technician has it OFF) so the role-gate would withhold Send to Terminal; build shows it via the org-device gate. Org-config, not a role over-grant. |
-| Office User | Send to Terminal | MORE | DEVIATION (gating model): spec requires Customer Portal ON (Office User has it OFF) so the role-gate would withhold Send to Terminal; build shows it via the org-device gate. Org-config, not a role over-grant. |
-| Senior Service Advisor | See AP/AR | MATCH | DEVIATION — spec grants to Senior Service Advisor (gate: Manage AP/AR toggle (tabs/fields, §5b) / AR-AP aging = Reports toggle (all-or-nothing, decoupled 3 Jul)) but staging hides it (both envs hidden). |
+| Foreman | Send to Terminal | MORE (2 rows: Full Dual Matrix + Send to Terminal LIVE) | DEVIATION (gating model): spec requires Customer Portal ON (Foreman has it OFF) so the role-gate would withhold Send to Terminal; build shows it via the org-device gate. Org-config, not a role over-grant. |
+| Parts Technician | Send to Terminal | MORE (2 rows) | DEVIATION (gating model): spec requires Customer Portal ON (Parts Technician has it OFF) so the role-gate would withhold Send to Terminal; build shows it via the org-device gate. Org-config, not a role over-grant. |
+| Office User | Send to Terminal | MORE (2 rows) | DEVIATION (gating model): spec requires Customer Portal ON (Office User has it OFF) so the role-gate would withhold Send to Terminal; build shows it via the org-device gate. Org-config, not a role over-grant. |
+| Senior Service Advisor | See AP/AR (A/R+A/P aging reports) | MATCH (both hidden) | DEVIATION — spec grants (Reports = ON in the matrix; §2a aging reports follow Reports; Manage AP/AR also ON) but staging hides them — staging does not implement the spec grant. (Re-verified from the matrix 2026-07-16.) |
+| Office User | WO Notes (Notes tab) | MATCH (both SHOWN) | **DEVIATION (corrected 2026-07-16 — was "per spec")** — the 14-Jul "Updated Office Role definition" removed ALL Work Orders access for Office (Work Orders = "—"), so the Notes tab (gated by WO → View, §1a) should be unreachable; BOTH envs still show it. |
+| Office User | Part Return | MORE | **DEVIATION (reachability; corrected 2026-07-16 — was "per spec")** — the Return control is ungated (29 Jun; §1a) but §1a requires WO view in practice, and the 14-Jul matrix gives Office NO Work Orders access; staging shows it. Same root cause as the Office WO Notes deviation. |
 
-**Spec-inconsistent / ambiguous (flagged, not resolved):**
+**Spec-inconsistent / ambiguous (5 rows — flagged, not resolved):**
 
 | Role | Capability | Direction | Note |
 |---|---|---|---|
-| Parts Technician | Send to Portal | LESS | Send to Portal: §3/§4 bare Full-View would grant; Open Q6 'can approve a WOL' would withhold (role lacks WOL Create&Edit). Flagged. |
-| Office User | Send to Portal | LESS | Send to Portal: §3/§4 bare Full-View would grant; Open Q6 'can approve a WOL' would withhold (role lacks WOL Create&Edit). Flagged. |
+| Parts Technician | Send to Portal | LESS | §3/§4 bare Full-View would grant; Open Q6 'can approve a WOL' would withhold (role lacks WOL Create&Edit). Flagged. |
+| Office User | Send to Portal | LESS | §3/§4 bare Full-View would grant; Open Q6 'can approve a WOL' would withhold (role lacks WOL Create&Edit). Flagged. |
 | Sales Representative | Send to Portal | MATCH | Same §3/§4-vs-Open-Q6 ambiguity; both envs hidden. |
+| Technician | Decline line | MATCH (both hidden) | §1b grants Technician WOL Create & Edit ("authorize lines" covers declining) but §4 Tech View blocks only Approve and never mentions Decline — the Tech-View treatment of Decline is unresolvable from the spec. (Re-derived 2026-07-16 — was blanket "spec silent".) |
+| Service Manager | Finance — Reverse Invoice component | MORE (bundle) | Matrix (SM Work Orders V/E/D) + 28-Jun rule (Reverse = WO Delete) say SM CAN reverse; the migration Behavior-Changes table says SM "Loses Invoicing Delete (cannot reverse)"; staging shows New Payment + Issue Credit only (no Reverse) — matches the migration table, contradicts the matrix. (Flagged 2026-07-16.) |
 
-**Spec-silent capabilities** (conformance NOT inferred): Decline line / Set Line Status (11 rows), Issue Credit (inside the 'Finance' cap), remove-a-WO-part as a discrete atom (spec covers only: return = no gate, move = WOL C&E, remove-lines = WOL Delete).
+**Spec-silent components** (conformance NOT inferred): Issue Credit (inside the 'Finance' rows — no issuance gate anywhere in the spec), remove-a-WO-part as a discrete atom (spec covers only: return = no gate, move = WOL C&E, remove-lines = WOL Delete). **"Decline line" is NO LONGER spec-silent** — §1b "authorize lines" addresses it (corrected 2026-07-16).
 
 
 ---
@@ -148,8 +153,9 @@ API probes.)
 - **Pass-11 LIVE / Pass-12 LIVE** — the closing audit passes (AP/AR, Part Return, Approve/Decline,
   Send-to-Terminal).
 - **Spec-Standing Conformance** — summary of the two new annotation columns: the per-bucket tally
-  (Per-spec 276 / DEVIATION 7 / Spec-silent 11 / Spec-inconsistent 3), the release-relevant DEVIATION list,
-  and the spec-inconsistent/ambiguous rows. Every dual tab also carries the two columns inline.
+  (**corrected 2026-07-16: Per-spec 283 / DEVIATION 9 / Spec-silent 0 (row-level) / Spec-inconsistent 5**),
+  the release-relevant DEVIATION list, and the spec-inconsistent/ambiguous rows. Every dual tab also
+  carries the two columns inline. (Re-audit derivation: `spec-conformance/spec-truth-table.md`.)
 
 **Tabs removed as superseded (trust rebuild):** `Live Compare DUAL`, `Production Live Grid`,
 `Remaining-Caps Dual LIVE`, `Prod Remaining-Caps (all 14)`, `Pass-9 LIVE`, `Pass-10 LIVE` — the early
