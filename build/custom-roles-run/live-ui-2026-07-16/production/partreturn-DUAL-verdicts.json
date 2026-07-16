@@ -1,0 +1,38 @@
+{
+ "capability": "Part Return (\"Return\" item in a picked part's \"Part context menu\" on the WO lines view)",
+ "date": "2026-07-16",
+ "reference_WO_prod": "S1-719 (1c63fca0) Truck Hill 1 - existing WO with a picked/received part carrying Move/Core OK/Return/Cancel Return",
+ "method_prod": "role-swap prod test-staff (1e19e572) to each role (workplace=Truck Hill 1) + SELF-LOGIN (self-login has an active location, unlike switch-user which bounces WO-detail to /workorders). Observed the picked-part Part context menu live per role.",
+ "method_staging": "Pass-10 + LIVE-VERIFIED: switch-user real holders / role-swap throwaway; observed line Part context menu.",
+ "prod_observed": {
+  "Administrator": "SHOWN (Move/Core OK/Return/Cancel Return)",
+  "Service Manager": "SHOWN",
+  "Service Advisor Technician": "SHOWN",
+  "Service Advisor": "SHOWN",
+  "Service Advisor - No Reports": "SHOWN",
+  "Service Advisor - Limited View": "SHOWN",
+  "Foreman": "SHOWN",
+  "Technician": "SHOWN",
+  "Parts Manager": "SHOWN",
+  "Parts Technician": "SHOWN",
+  "Office User": "HIDDEN (WO detail renders but the part menu shows only \"Move\" - no Return)",
+  "Sales Representative": "HIDDEN / NOT ACCESSIBLE (WO detail bounces to /workorders - role lacks WO-detail access)",
+  "Time Clock User": "HIDDEN / NOT ACCESSIBLE (WO detail bounces to /workorders)"
+ },
+ "staging_observed": {
+  "Administrator":"SHOWN","Service Manager":"SHOWN","Senior Service Advisor":"SHOWN","Service Advisor":"SHOWN","Foreman":"SHOWN","Technician":"SHOWN","Parts Manager":"SHOWN","Parts Technician":"SHOWN","Sales Representative":"SHOWN","Office User":"SHOWN","Time Clock User":"NOT VERIFIED (staging - prior pass)"
+ },
+ "dual_verdicts_by_staging_role": {
+  "Administrator":"MATCH (both SHOWN)",
+  "Service Manager":"MATCH (both SHOWN)",
+  "Senior Service Advisor":"MATCH (prod SA/SA-Tech/SA-No-Reports SHOWN / staging SHOWN)",
+  "Service Advisor":"MATCH (prod SA-Limited-View SHOWN / staging SHOWN)",
+  "Foreman":"MATCH (both SHOWN)",
+  "Technician":"MATCH (both SHOWN)",
+  "Parts Manager":"MATCH (both SHOWN)",
+  "Parts Technician":"MATCH (both SHOWN)",
+  "Sales Representative":"STAGING-MORE (prod HIDDEN/not-accessible / staging SHOWN)",
+  "Office User":"STAGING-MORE (prod HIDDEN / staging SHOWN)",
+  "Time Clock User":"PARTIAL (prod HIDDEN/not-accessible OBSERVED; staging side still NOT VERIFIED from prior pass)"
+ }
+}
