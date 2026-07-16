@@ -153,9 +153,9 @@ Fuzzy Matching,A misspelled name still finds the record - 'Petersn' finds 'Peter
 2. A record whose name contains 'Peterson' exists (for example a customer or vendor).","1. Type the misspelled query 'Petersn' (missing the 'o').
 2. Read the results.","1. The 'Peterson' record is found and shown, despite the typo.
 2. The matched part of the text is highlighted.",requirements.md 7 (token n-gram / trigram matching catches Petersn -> Peterson),GS-FUZ-01,pending push,
-Fuzzy Matching,A misspelled name still finds the record - 'Abrige' finds 'Abridge',Functional,High,"1. The palette is open.
-2. A record whose name contains 'Abridge' (for example 'Aabridge') exists.","1. Type the misspelled query 'Abrige'.
-2. Read the results.","1. The 'Abridge' / 'Aabridge' record is found and shown, despite the typo.",requirements.md 1 + 10 Phase 5 (fuzzy query 'Abrige'),GS-FUZ-02,pending push,
+Fuzzy Matching,A misspelled name still finds the record - 'Abrige' finds 'Aabridge',Functional,High,"1. The palette is open.
+2. A record whose name contains 'Aabridge' exists.","1. Type the misspelled query 'Abrige'.
+2. Read the results.","1. The 'Aabridge' record is found and shown, despite the typo.",requirements.md 1 + 10 Phase 5 (fuzzy query 'Abrige'),GS-FUZ-02,pending push,
 Fuzzy Matching,A transposed-letters query still finds the record - 'frieghtliner' finds 'Freightliner',Functional,High,"1. The palette is open.
 2. An asset or part whose text contains 'Freightliner' exists (for example '2025 Freightliner M2').","1. Type the misspelled query 'frieghtliner' (letters transposed).
 2. Read the results.","1. The 'Freightliner' record is found and shown, despite the transposed letters.",requirements.md 7 (Damerau-Levenshtein; freihgtliner -> freightliner),GS-FUZ-03,pending push,
@@ -188,7 +188,7 @@ Fuzzy Matching,Typos in identifier fields do NOT return fuzzy matches,Negative,H
 Fuzzy Matching,A soft (fuzzy) match is visually indicated,Functional,Low,"1. The palette is open.
 2. A record exists that will only match via fuzzy logic (for example type 'Petersn' for a 'Peterson' record).","1. Type a fuzzy query (for example 'Petersn').
 2. Look at how the matched token is shown in the result row.","1. The matched token is highlighted.
-2. A subtle soft-match indicator is shown for fuzzy matches (spec mentions a '~' symbol or italic treatment).","requirements.md 7 (fuzzy soft-match highlight treatment - design polish, confirm with design)",GS-FUZ-10,pending push,
+2. A subtle soft-match indicator is shown for fuzzy matches (spec mentions a '≈' symbol or italic treatment).","requirements.md 7 (fuzzy soft-match highlight treatment - design polish, confirm with design)",GS-FUZ-10,pending push,
 Ranking and Prioritization,An exact identifier match is pinned as a single row at the very top,Functional,High,"1. The palette is open.
 2. A Work Order 'S2-15276' exists.","1. Type the exact Work Order number 'S2-15276'.
 2. Look at the top of the results.","1. The exactly-matched Work Order is pinned as a single row at the very top, above the grouped results, labeled with its entity icon.

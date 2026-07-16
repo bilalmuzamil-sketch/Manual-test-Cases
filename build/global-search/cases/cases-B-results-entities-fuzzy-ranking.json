@@ -414,20 +414,20 @@
  {
   "id": "GS-FUZ-02",
   "area": "Fuzzy Matching",
-  "title": "A misspelled name still finds the record - 'Abrige' finds 'Abridge'",
+  "title": "A misspelled name still finds the record - 'Abrige' finds 'Aabridge'",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "A user with access to the matching entity type.",
   "preconditions": [
    "1. The palette is open.",
-   "2. A record whose name contains 'Abridge' (for example 'Aabridge') exists."
+   "2. A record whose name contains 'Aabridge' exists."
   ],
   "steps": [
    "1. Type the misspelled query 'Abrige'.",
    "2. Read the results."
   ],
   "expected": [
-   "1. The 'Abridge' / 'Aabridge' record is found and shown, despite the typo."
+   "1. The 'Aabridge' record is found and shown, despite the typo."
   ],
   "design_ref": "requirements.md 7; 10 Phase 5 test queries; 1 (Abrige vs Aabridge)",
   "spec_ref": "requirements.md 1 + 10 Phase 5 (fuzzy query 'Abrige')",
@@ -628,12 +628,12 @@
   ],
   "expected": [
    "1. The matched token is highlighted.",
-   "2. A subtle soft-match indicator is shown for fuzzy matches (spec mentions a '~' symbol or italic treatment)."
+   "2. A subtle soft-match indicator is shown for fuzzy matches (spec mentions a '≈' symbol or italic treatment)."
   ],
-  "design_ref": "requirements.md 7 (Highlighting: subtle '~' or italicized treatment for soft match - confirm with design)",
+  "design_ref": "requirements.md 7 (Highlighting: subtle '≈' or italicized treatment for soft match - confirm with design)",
   "spec_ref": "requirements.md 7 (fuzzy soft-match highlight treatment - design polish, confirm with design)",
   "viu_status": "VIU-Pending",
-  "notes": "The '~'/italic soft-match indicator is explicitly a design-polish item and was NOT confirmed in the Figma captures - VIU-confirm whether it ships; if absent, treat as a design decision not a defect.",
+  "notes": "The '≈'/italic soft-match indicator is explicitly a design-polish item and was NOT confirmed in the Figma captures - VIU-confirm whether it ships; if absent, treat as a design decision not a defect.",
   "api_related": false
  },
  {

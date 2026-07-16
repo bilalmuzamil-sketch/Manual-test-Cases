@@ -48,7 +48,7 @@
 | §6.3 Contextual bias | Customer page boosts its assets/WOs | GS-RANK-04, GS-API-10 |
 | §6.3 Contextual bias | WO page demotes parts already on WO | GS-RANK-05 |
 | §7 Fuzzy trigram | Petersn → Peterson (Jaccard ≥0.35) | GS-FUZ-01 |
-| §7 Fuzzy | Abrige → Abridge | GS-FUZ-02 |
+| §7 Fuzzy | Abrige → Aabridge | GS-FUZ-02 |
 | §7 Damerau-Levenshtein | frieghtliner → Freightliner (transposition) | GS-FUZ-03 |
 | §7 Double Metaphone | Filbridge → Fibridge (phonetic, last resort) | GS-FUZ-04 |
 | §7 Normalization (identifiers) | WO# with/without dash/space | GS-FUZ-05, GS-API-04 |
