@@ -3,6 +3,11 @@
 > **Source:** Confluence page "Filters", Version 1.0, Status: Complete — ingested
 > 2026-07-17 from the user-provided Confluence "Export to Word" .doc
 > (`18e07e91-Filters_1.doc`, MHTML decoded via python email/quopri + BeautifulSoup).
+> **✅ SPEC CONFIRMED CURRENT (designer, via the user, 2026-07-17):** this ingested
+> Filters spec V1.0 is confirmed the LATEST version. The sections 5–6 numbering gap
+> is a document-numbering artifact, NOT missing content (OQ-1 downgraded to a
+> note). The user's export zip `50219798-Filters.zip` is the FINAL design set
+> matching this spec (see design-notes.md §D/§Z).
 > **Canonical spec URL (Confluence): TO CONFIRM — user provided the exported .doc
 > 2026-07-16; ask for the page URL** (Atlassian-SSO login-walled — reference pointer
 > only when obtained; do NOT fetch).
@@ -477,11 +482,10 @@ Negative Cases:
 
 ## Open Questions (QA-derived — NOT part of the source spec; the spec has no open-questions section)
 
-- **OQ-1 (doc gap):** Source document numbering jumps from "4. Key Decisions" to
-  "7. Requirements" — sections 5 and 6 are missing from the export. Confirm with
-  Branko/the user whether the Confluence page has sections 5–6 (commonly
-  Out-of-Scope / Design or Non-Functional) that did not export, or the numbering
-  is simply a doc artifact.
+- **OQ-1 (doc gap) — RESOLVED/DOWNGRADED 2026-07-17:** the designer (via the
+  user) confirmed the spec is current; the section numbering jump "4. Key
+  Decisions" → "7. Requirements" is a document-numbering ARTIFACT, not missing
+  content. Kept only as a note; no follow-up needed.
 - **OQ-2 (canonical spec URL):** Confluence URL for the "Filters" page not yet
   provided — TO CONFIRM with the user (exported .doc received 2026-07-16/17).
 - **OQ-3 (Epic/Jira):** Every story's Jira field reads "TBD"; the Epic/Jira key is

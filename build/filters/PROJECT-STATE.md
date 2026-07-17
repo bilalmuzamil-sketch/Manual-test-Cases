@@ -4,19 +4,31 @@ Last updated: 2026-07-17 (onboarding).
 
 ## §0 STATUS — ONBOARDING
 
-- **Spec INGESTED 2026-07-17** → `build/filters/requirements.md` (COMPLETE spec,
+- **Spec INGESTED 2026-07-17 and ✅ CONFIRMED CURRENT (designer, via the user,
+  2026-07-17)** → `build/filters/requirements.md` (COMPLETE spec,
   verbatim-structured: Business Case, Feature Overview, JTBD/Goals, Key Decisions,
   Stories 1–12 with every S#-R#/N#/E# requirement). Source = user-provided
   Confluence "Export to Word" .doc (`18e07e91-Filters_1.doc`), MHTML decoded via
-  python email/quopri + BeautifulSoup. Spec Version 1.0, Status "Complete".
-  **Doc gap flagged:** section numbering jumps 4 → 7 (no sections 5–6 in the
-  export; OQ-1). No dev plan / permissions / open-questions sections in the spec.
-- **Design capture IN PROGRESS by a parallel worker** →
-  `build/filters/design-notes.md` + `build/filters/design-screens/` (do not assume
-  complete until present and user-confirmed).
-- **Case authoring NOT STARTED** — deliberately waiting for the user to CONFIRM the
-  complete Figma design set before authoring. `cases/` is empty
-  (`.gitkeep` + README).
+  python email/quopri + BeautifulSoup. Spec Version 1.0, Status "Complete" —
+  confirmed the LATEST version. The 4→7 section-numbering jump is a
+  document-numbering ARTIFACT, not missing content (OQ-1 downgraded to a note).
+  No dev plan / permissions / open-questions sections in the spec.
+- **Design capture ✅ COMPLETE 2026-07-17 per the designer's FINAL-SET ruling** →
+  `build/filters/design-notes.md` + `build/filters/design-screens/` (58 PNGs).
+  **The user's Figma export zip `50219798-Filters.zip` (49 PNGs) IS the final
+  design set**: 49/49 extracted, viewed, described (exact on-screen labels),
+  committed (35 new + 14 already-committed API-2x equivalents, all pairs
+  compared = MATCH); 0 unreadable. Canvas nodes NOT in the zip (WO-14.4
+  exploration, Sorting, Components, page-level frames, desktop dropdown
+  popovers, label strips, QB Journal-Entries tab) = SUPERSEDED, not missing —
+  do not chase. Earlier user-pasted screenshots are IGNORED per the same
+  ruling. Full zip→node→PNG map: design-notes.md §Z; completeness statement §D.
+  Scope note: the final set INCLUDES the Parts (9) and Reports (22) filter-bar
+  screens — they ARE in scope because they are in the zip. "Tehnician" design
+  typo recurs in the final set (WO-list frames; Parts/Reports clean) —
+  design-notes §C.
+- **Case authoring NOT STARTED — now UNBLOCKED** (spec confirmed current +
+  design set final/complete). `cases/` is empty (`.gitkeep` + README).
 - **TestRail: NOTHING pushed; NO writes without explicit user permission**
   (Standing Rule 6 / standing user rule). `testrail-id-map.csv` = header only.
 - **Deliverable format rule (Standing Rule 16):** the TestRail import MUST be pure
@@ -49,8 +61,8 @@ Last updated: 2026-07-17 (onboarding).
 | Artifact | Path | State |
 |---|---|---|
 | Complete spec | `build/filters/requirements.md` | DONE 2026-07-17 |
-| Design notes | `build/filters/design-notes.md` | parallel worker — in progress |
-| Design screenshots | `build/filters/design-screens/` | parallel worker — in progress |
+| Design notes | `build/filters/design-notes.md` | DONE 2026-07-17 — ZIP-authoritative; §Z map + §D completeness |
+| Design screenshots | `build/filters/design-screens/` | DONE 2026-07-17 — 58 PNGs (49-file final ZIP set fully covered; 9 superseded API renders retained as reference) |
 | Case source | `build/filters/cases/` | EMPTY (authoring pending design confirmation) |
 | ID map | `build/filters/testrail-id-map.csv` | header only |
 | TestRail import | `testrail-import/filters-testrail-import.csv`/`.xlsx` | NOT CREATED (after authoring; Rule 16 format) |
@@ -59,7 +71,8 @@ Last updated: 2026-07-17 (onboarding).
 ## §3 Open questions
 
 Full list in `requirements.md` §"Open Questions" (QA-derived; the spec itself has
-no OQ section): **OQ-1** missing spec sections 5–6 (numbering gap), **OQ-2**
+no OQ section): **OQ-1 RESOLVED 2026-07-17** (5–6 numbering gap = document
+artifact, not missing content — designer confirmed spec current), **OQ-2**
 canonical Confluence URL TBC, **OQ-3** Epic/Jira key TBD (ask at VIU), **OQ-4**
 permissions/role behaviour unspecified, **OQ-5** persistence scope
 (session-only vs durable per-user) — spec §2/§4 vs S10-R2 wording tension,
@@ -77,9 +90,9 @@ completion.
 ## §5 HOW TO RESUME (ordered)
 
 1. Read this doc, then `build/filters/requirements.md`.
-2. Check `build/filters/design-notes.md` + `design-screens/` exist (parallel
-   worker) and that the **user has CONFIRMED the full design set** — do not author
-   cases before that confirmation.
+2. Design set is FINAL & COMPLETE (designer ruling 2026-07-17; the export zip =
+   the final set, fully captured — design-notes.md §D/§Z). Spec V1.0 confirmed
+   current. **Authoring is unblocked.**
 3. On go-ahead: author cases (`FLT-<AREA>-NN` JSONs in `cases/`, API cases in an
    "API — <leaf>" section per Rule 4), build `coverage-matrix.md`, adversarial
    self-review (Rule 15), then generate the import via a `gen_import.py`
