@@ -5,6 +5,25 @@ change to the Confluence spec (page 565116952). Newest first.
 
 ---
 
+## 2026-07-17 — Spec sync: SA/SSA deltas landed in spec + asset-edit rule; SvcMgr reverted to current
+
+Daily sync detected a Confluence change (hash 354dff…, len 55112). Change Log
+7/16 (two entries). Reconciled against "follow the newer ruling":
+
+- **Now in the spec (matches what we'd applied):** Service Advisor Invoicing =
+  V/E only; Senior Service Advisor Reports = OFF. No change needed — confirmed.
+- **New rule:** editing and swapping an asset on a work-order line is gated by
+  **Work Order Lines: Create & Edit** (spec §1b). Added to §3b, §14.1, FAQ +
+  launcher.
+- **Service Manager reverted to current spec state.** The spec (newest,
+  authoritative) still shows Service Manager Invoicing = **V/E** and Settings →
+  Service = **OFF**; the "→ V/E/D" and "Settings → Service" items are Sasha's
+  PENDING fast-follows, not yet in spec/build. Reverted my earlier interim edits
+  (had set them as done) and marked them as pending in §9 matrix + role
+  description, §10 migration, §14.1, FAQ B10, launcher.
+
+Both `knowledge-base.md` and `faq.md` changed.
+
 ## 2026-07-16 — User resolved the two flagged conflicts
 
 - **Office invoices:** confirmed — Office CANNOT create invoices but CAN take

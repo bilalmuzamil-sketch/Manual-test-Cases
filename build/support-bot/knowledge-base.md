@@ -124,7 +124,8 @@ View is ON.
 - **Create and Edit:** add lines, edit line details, move parts between
   lines, authorize lines, manage part requests on lines, add inspections to
   lines, delete INCOMPLETE inspections, edit mileage / engine hours / license
-  plate / VIN.
+  plate / VIN, mark a core OK/Not-OK on a line, view a line's story history,
+  and **edit and swap assets on the line** (added 2026-07-16).
 - **Delete:** remove lines; reopen COMPLETED digital inspections; delete
   COMPLETED inspections.
 - Story history at line level requires WOL View (i.e. WO View).
@@ -439,7 +440,7 @@ effect when they log back in.**
 | Role | ID | Purpose |
 | --- | --- | --- |
 | Admin | `system-admin` | Full system access (cannot be edited to lose Admin-page access) |
-| Service Manager | `system-sm` | Full operational access; limited admin (App Settings + Service + Wages); full Invoicing incl. Delete |
+| Service Manager | `system-sm` | Full operational access; limited admin (App Settings + Wages); Invoicing V/E. (Pending fast-follow: Invoicing → V/E/D and Settings → Service.) |
 | Senior Service Advisor | `system-ssa` | WO + customer management, expanded access; **Reports OFF** |
 | Service Advisor | `system-jsa` | WO + customer management with invoicing (View/Create&Edit, **no Delete**); no AP/AR |
 | Foreman | `system-foreman` | Oversees technicians and work orders |
@@ -463,7 +464,7 @@ CRUD areas:
 | Part Sales | V/E/D | V/E/D | V/E | V | — | V/E/D | V/E | V | V | — |
 | Catalog & Inv | V/E/D | V/E | V/E | V/E | — | V/E/D | V/E | V | — | — |
 | Vendor & Order | V/E/D | V/E/D | V/E | V/E | — | V/E/D | V/E/D | V | — | — |
-| Invoicing | V/E/D | V/E/D | V/E | V/E | — | V/E/D | V/E | V/E/D | — | — |
+| Invoicing | V/E | V/E/D | V/E | V/E | — | V/E/D | V/E | V/E/D | — | — |
 | Timesheets | V/E | V/E | V | V | — | — | V | V/E | — | V |
 
 **† Office role — current state (spec as of 2026-07-15).** The Office
@@ -502,7 +503,7 @@ Settings sub-toggles (roles with Settings ON):
 | Sub-setting | Admin | Svc Mgr | Parts Mgr | Office |
 | --- | --- | --- | --- | --- |
 | App Settings | ON | ON | — | ON |
-| Service | ON | ON | — | ON |
+| Service | ON | — | — | ON |
 | Parts | ON | — | ON | — |
 | Integrations | ON | — | — | ON |
 | Finance | ON | — | ON | ON |
@@ -544,7 +545,7 @@ Every existing user is mapped from the old 15 roles to the new 11:
 | Role | Change |
 | --- | --- |
 | Senior SA (was Service Advisor / SA No Reports) | GAINS: WO/WOL/Schedule/Part-Sales Delete, full Vendor access, full Invoicing, Timesheets edit, Customer Portal, AP/AR. **Reports is OFF for Senior SA (updated 2026-07-16).** |
-| Service Manager | GAINS: Invoicing Delete (now full V/E/D), Settings → Service, Billing Portal, Customer Portal. LOSES: Settings sections Parts/Finance/Data Import. (Updated 2026-07-16: Service Manager now HAS Invoicing Delete and Settings → Service.) |
+| Service Manager | GAINS: Billing Portal, Customer Portal. LOSES: Settings sections Service/Parts/Finance/Data Import; Invoicing Delete (currently V/E). PENDING fast-follow: Invoicing → V/E/D and Settings → Service will be added. |
 | Foreman | GAINS: WOL Delete, Schedule Delete, Parts Dept (Part Sales V; Catalog V/E; Vendor V/E), Invoicing V/E, Order Parts, Part History. LOSES: Timesheets Edit |
 | Technician | GAINS: Pick Parts. LOSES: Send to Portal |
 | Parts Manager | LOSES: WO/WOL Delete. GAINS: Schedule View, Customer Portal |
@@ -638,23 +639,28 @@ not listed; if a customer still hits one, treat it as a regression and escalate.
 
 ### 14.1 Roles & templates
 
-**Authoritative role decisions — 2026-07-16 (Sasha Grosman, latest word; these
-win over anything older):**
+**Authoritative role decisions — 2026-07-16 (Sasha Grosman; now reflected in the
+spec except where noted as a pending fast-follow):**
 - **Service Advisor: Invoicing & Payments = View + Create/Edit ONLY — no
-  Delete.** Service Advisor must not have Invoicing Delete.
-- **Senior Service Advisor: Reports = OFF.** Senior SA does not have the Reports
-  page. (So the migration note "SA No Reports gains Reports" no longer applies.)
-- **Service Manager: Invoicing & Payments = full View/Create/Edit/Delete** (was
-  V/E), and **Settings → Service = ON**.
-- **Office: Invoicing & Payments = View + Create/Edit + Delete** (was View only)
-  — but the hard-coded "Office cannot create invoices" rule still applies (the
+  Delete.** In the spec as of 2026-07-16.
+- **Senior Service Advisor: Reports = OFF.** In the spec as of 2026-07-16. (So
+  the old migration note "SA No Reports gains Reports" no longer applies.)
+- **Office: Invoicing & Payments = View + Create/Edit + Delete** — but the
+  hard-coded "Office cannot create invoices" rule still applies (the
   Create-Invoice button is disabled for Office; they take/manage payments, not
-  create invoices). This rule is DONE/implemented.
+  create invoices). DONE/implemented per standing instruction.
 - **Migration: legacy "SA Technician" maps to Service Advisor** (NOT Senior
   Service Advisor).
 - **Migration must not change the staff-record Time Clock value** (see §10 and
   §14.9): enabled stays enabled, disabled stays disabled; role has no influence;
   Time Clock is editable on any staff record regardless of role.
+- **Editing/swapping an asset on a work-order line = Work Order Lines: Create &
+  Edit** (spec 2026-07-16).
+- **Service Manager — two PENDING fast-follows (not yet in the spec/build as of
+  2026-07-16):** (a) Invoicing & Payments will move from V/E to **full V/E/D**;
+  (b) it will gain **Settings → Service**. Until those ship, Service Manager is
+  Invoicing V/E and has no Service settings section. Answer per current state and
+  mention the change is coming if asked.
 
 - **Sales Rep is NOT "Reports only" (SV-8061, verified).** Includes Work Orders:
   View, WO Lines: View, Customers: View + Create & Edit, Part Sales: View (Parts

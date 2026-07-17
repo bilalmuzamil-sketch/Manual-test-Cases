@@ -128,8 +128,9 @@ A few role defaults were finalized:
 - **Service Advisor** — can view, create, and edit invoices/payments, but can
   **no longer delete** them (no Invoicing Delete).
 - **Senior Service Advisor** — **Reports is off** for this role by default.
-- **Service Manager** — now has **full invoicing including delete**, and gains
-  the **Service** settings section.
+- **Service Manager** — currently has invoicing view/create/edit (no delete);
+  two changes are **coming soon** (planned): full invoicing including delete,
+  and access to the **Service** settings section.
 - **Office** — now has full invoicing (view/create-edit/delete) but still
   **cannot create invoices** (that button stays disabled by design); Office
   takes and manages payments.
