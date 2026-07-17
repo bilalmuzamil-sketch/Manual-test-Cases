@@ -1,6 +1,8 @@
 # Filters (Work Order List Filtering) — PROJECT STATE
 **Canonical cold-resume doc. Read this first to resume the Filters project.**
-Last updated: 2026-07-17 (IMPORTED TO TESTRAIL by the user; id-map populated 79/79).
+Last updated: 2026-07-17 (Branko's 4 answers ingested + new design inputs
+[design-system zip + 9 PDFs] reconciled; JE-tab frame captured → final set
+50/50; earlier same day: IMPORTED TO TESTRAIL by the user, id-map 79/79).
 
 ## §0 STATUS / WHAT'S LEFT TO DO — read first
 
@@ -15,30 +17,58 @@ Authoring recap: 79 cases / 14 sections, 81/81 spec lines + 18/18 final WO
 design frames covered, 24 VIU-confirm notes, adversarial audit CLEAN 7/7,
 Rule-16 import delivered at `testrail-import/filters-v1-testrail-import.csv`/`.xlsx`.
 
-**WHAT'S LEFT TO DO (definitive post-import list — recite on resume):**
-1. ✅ **DONE:** spec ingested (V1.0 confirmed current) · design 49/49 final set ·
+**WHAT'S LEFT TO DO (definitive post-import + post-Branko-answers list — recite
+on resume):**
+1. ✅ **DONE:** spec ingested (V1.0 confirmed current) · design final set
+   **50/50 captured** (49 ZIP + the QB Journal-Entries tab 11982:8998
+   captured-from-PDF-export 2026-07-17 — the one known gap, closed) ·
    79 cases authored + adversarial-reviewed CLEAN · Rule-16 import delivered ·
    **imported to TestRail by the user 2026-07-17 (suite 1, group 4110)** ·
-   **id-map populated 79/79 by title-match (read-only)**.
-2. **Branko's 4 PO answers** (`PO-Questions-Filters_2026-07-17.xlsx`):
-   **Q1** Parts/Reports scope — if IN scope → author the additional
-   Parts/Reports case set from the 31 captured screens + push with permission;
-   **Q2** persistence duration → possible update_case tightening of FLT-PERS
-   cases; **Q3** "Tehnician" spelling confirm (flag to designer); **Q4**
-   Estimates-tab chip ruling (cases hold either way — informational). Any
-   resulting TestRail edits need FRESH user authorization + a per-case audit log.
-3. **VIU when the feature reaches a QA env (OQ-7):** ⚠️ ASK the user for the
+   **id-map populated 79/79 by title-match (read-only)** ·
+   **Branko's 4 PO answers INGESTED 2026-07-17**
+   (`branko-answers-2026-07-17/answers-ingested.md` = source of record) ·
+   new design inputs (design-system zip + 9 PDFs) inventoried + reconciled
+   (`new-inputs-inventory-2026-07-17.md`; design-notes §E).
+2. **Apply Branko's answers (consequences, per the ingestion doc):**
+   **Q1=A — Parts/Reports filter screens ARE IN SCOPE** (9 Parts + 22 Reports
+   screens) but authoring is **GATED ON Branko's PRD update** (no spec text
+   yet — Standing Rule 1; est. +30–50 cases; then add_case push = fresh user
+   authorization). **Q2=B — persistence is PERMANENT per user** (survives
+   browser close + logout; resolves OQ-5) → **FLT-PERS-02 (C29614) tightens at
+   VIU** (restart/re-login leg; update_case = fresh authorization).
+   **Q3=A — "Lead Technician" everywhere; NO case changes** (cases already
+   answer-proof; bug only if the build shows "Tehnician" at VIU).
+   **Q4=B — Estimates/Completed Status chip = shown, greyed out, pre-filled,
+   not clickable** → **FLT-TAB-02/03 (C29609/C29610) expected #1 rewrite at
+   VIU** (capture the exact disabled-chip labels live first, esp. the Completed
+   tab's string; update_case = fresh authorization). **⚠️ Spec-stale flags for
+   Branko's PRD update: S2-N1/S2-N2, S9-R2/S9-R3 (chip hidden → superseded by
+   Q4=B) and S10-R2 ("browser session" → superseded by Q2=B).**
+3. **⚠️ NEW OPEN QUESTION (user to confirm — design-notes §E c):** does the
+   2026-07-17 re-share of superseded content (6 of the 9 PDFs: WO-14.4 section,
+   Sorting WIP, older/alternate Mobiles, Customer-v1 checkbox dropdowns) REVISE
+   the "ZIP = final" ruling — specifically Sorting scope and which
+   mobile/dropdown variants win — or was it just a completeness export?
+   **Baseline UNCHANGED until the user rules.**
+4. **Design-system zip anomaly (ask Branko/the designer):** the zip is a
+   Claude-Code skill package + coded Filters prototype = REFERENCE AID only,
+   not authoritative frames; its prototype's status list ends **"Reported"**
+   vs the design's/spec's **"Imported"** — transcription slip to confirm/fix.
+5. **VIU when the feature reaches a QA env (OQ-7):** ⚠️ ASK the user for the
    Epic/Jira key (OQ-3) AND which process(es) to run per Standing Rule 11
    (BUILD-ACCURATE-WORDING-VIU and/or SPEC-RELEVANCE-RECONCILIATION); resolve
-   the 24 VIU-confirm placeholders live with evidence; live-observe everything
-   per Rules 10/12/13/14 (seed data yourself, never NOT-VERIFIED).
-4. **Post-VIU deliverables per house conventions:** Blockers Tracker + results
+   the 24 VIU-confirm placeholders live with evidence + the Q2/Q4 case edits
+   (item 2); live-observe everything per Rules 10/12/13/14 (seed data
+   yourself, never NOT-VERIFIED).
+6. **Post-VIU deliverables per house conventions:** Blockers Tracker + results
    workbook (tab per status + Summary) with TestRail C-ID + link columns
    (Rule 8 — now possible via the populated id-map); bug drafts in layman form
    for any deviations (Rule 7); update the import to final (VIU-word-free stays).
-5. **Housekeeping:** canonical Confluence spec URL still TO CONFIRM (OQ-2);
+7. **Housekeeping:** canonical Confluence spec URL still TO CONFIRM (OQ-2);
    permissions/role behavior unspecified in spec (OQ-4) — ask Branko whether
-   role-based filter visibility matters; env/access facts to record at VIU (OQ-7).
+   role-based filter visibility matters; env/access facts to record at VIU
+   (OQ-7); WAIT on Branko's updated PRD (Parts/Reports sections + the Q2/Q4
+   text corrections).
 
 ⚠️ **id-map protection:** `gen_import.py` REGENERATES `testrail-id-map.csv`
 with BLANK C-ids — the map is now populated, so do NOT rerun gen_import.py
@@ -81,14 +111,15 @@ Last updated 2026-07-17 (post-import). Detail bullets below.
   the 5 FLT-API cases confirmed in section 4124 "API — Work Orders List
   Filtering". ⚠️ gen_import.py regenerates this file with BLANK C-ids — don't
   rerun it without re-merging the C-id column.
-- **PO questions PENDING BRANKO:**
-  `build/filters/PO-Questions-Filters_2026-07-17.xlsx` + `.md` (generator
-  `gen_po_questions.py`; layman-only reader sheet + QA-internal mapping sheet,
-  Standing Rule 7): Q1 Parts/Reports filter screens in the design vs WO-only
-  spec (test now? write-up?), Q2 persistence duration (session-only vs
-  remembered across sessions — OQ-5), Q3 "Lead Tehnician" spelling confirm,
-  Q4 Estimates/Completed tab Status chip: spec says HIDDEN vs design shows a
-  disabled pre-filled "Status: Estimate" chip (design-notes §C.7).
+- **PO questions ANSWERED BY BRANKO 2026-07-17** (were:
+  `build/filters/PO-Questions-Filters_2026-07-17.xlsx` + `.md`, generator
+  `gen_po_questions.py`). Verbatim answers + full consequence map =
+  `build/filters/branko-answers-2026-07-17/answers-ingested.md` (raw export
+  alongside): **Q1=A** Parts/Reports IN SCOPE (gated on his PRD update),
+  **Q2=B** permanent per-user persistence (resolves OQ-5), **Q3=A** "Lead
+  Technician" spelling confirmed, **Q4=B** disabled pre-filled Status chip on
+  Estimates/Completed (supersedes spec S2-N1/N2, S9-R2/R3; S10-R2 superseded
+  by Q2). Case-edit consequences in WHAT'S-LEFT item 2.
 - **TestRail: cases IMPORTED BY THE USER 2026-07-17** (suite 1, group 4110,
   sections 4111–4124). We made NO writes (id-map fetch was read-only GETs).
   **NO TestRail writes without explicit user permission** — any future edit
@@ -121,14 +152,16 @@ Last updated 2026-07-17 (post-import). Detail bullets below.
 | Artifact | Path | State |
 |---|---|---|
 | Complete spec | `build/filters/requirements.md` | DONE 2026-07-17 (V1.0 confirmed current) |
-| Design notes | `build/filters/design-notes.md` | DONE 2026-07-17 — ZIP-authoritative; §Z map + §D completeness |
-| Design screenshots | `build/filters/design-screens/` | DONE — 58 PNGs (49-file final ZIP set + 9 retained superseded API renders) |
+| Design notes | `build/filters/design-notes.md` | DONE 2026-07-17 — ZIP-authoritative; §Z map (50/50) + §D completeness + §E new-inputs section |
+| Design screenshots | `build/filters/design-screens/` | DONE — 59 PNGs (49 ZIP final set + 1 PDF-sourced JE tab + 9 retained superseded API renders) |
+| New-inputs inventory | `build/filters/new-inputs-inventory-2026-07-17.md` | DONE 2026-07-17 — design-system zip + 9-PDF reconciliation verdicts + open questions |
+| Branko answers ingestion | `build/filters/branko-answers-2026-07-17/answers-ingested.md` (+ raw xlsx) | DONE 2026-07-17 — source of record for Q1–Q4 rulings |
 | Case source (79) | `build/filters/cases/cases-A..D-*.json` + `README.md` | DONE 2026-07-17 — all VIU-Pending |
 | Coverage matrix | `build/filters/coverage-matrix.md` | DONE — 81/81 spec lines + 18/18 WO frames mapped; exclusions in §C |
 | ID map | `build/filters/testrail-id-map.csv` | POPULATED 79/79 (2026-07-17, C29557–C29635) |
 | TestRail import | `testrail-import/filters-v1-testrail-import.csv`/`.xlsx` | DELIVERED — IMPORTED BY THE USER 2026-07-17 (suite 1, group 4110) |
 | Import generator | `build/filters/gen_import.py` | DONE (also regenerates the ID map) |
-| PO questions | `build/filters/PO-Questions-Filters_2026-07-17.xlsx`/`.md` (+ `gen_po_questions.py`) | READY — pending Branko |
+| PO questions | `build/filters/PO-Questions-Filters_2026-07-17.xlsx`/`.md` (+ `gen_po_questions.py`) | ANSWERED 2026-07-17 — see branko-answers-2026-07-17/ |
 | This state doc | `build/filters/PROJECT-STATE.md` | current |
 
 ## §3 Open questions
@@ -138,7 +171,8 @@ persistence duration, Q3 spelling, Q4 Estimates/Completed Status chip). QA-side
 OQs live in `requirements.md` §"Open Questions": OQ-1 RESOLVED (numbering
 artifact), **OQ-2** canonical Confluence URL TBC, **OQ-3** Epic/Jira key TBD (ask
 at VIU), **OQ-4** permissions/role behaviour unspecified (no permission cases
-authored — flagged, not invented), **OQ-5** persistence scope (= PO Q2), **OQ-6**
+authored — flagged, not invented), **OQ-5 RESOLVED 2026-07-17 (Branko Q2=B:
+permanent per-user persistence)**, **OQ-6**
 "Asset on Site" data source in the build (FLT-ASSET-02 note), **OQ-7** QA env /
 feature-flag / API surface unknown (FLT-API-01..05 worded generically,
 VIU-confirm), **OQ-8** spec↔Figma reconciliation — DONE via authoring: deltas

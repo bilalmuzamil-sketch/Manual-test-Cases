@@ -291,7 +291,11 @@ process(es) to run before proceeding.
    79/79 populated, C29557–C29635; API cases in section 4124 "API — Work Orders
    List Filtering"; ⚠️ gen_import.py blanks the C-id column — re-merge after any
    rerun); NEXT = Branko answers → VIU at QA (ask Epic key + process). Canonical
-   resume doc: build/filters/PROJECT-STATE.md.** Same rules as all projects: reuse shared infra
+   resume doc: build/filters/PROJECT-STATE.md. Branko answers ingested
+   2026-07-17 (Parts/Reports IN SCOPE pending PRD; persistence permanent;
+   disabled-chip ruling); JE-tab frame captured (final set 50/50);
+   design-system zip = reference prototype; superseded-reshare scope question
+   OPEN.** Same rules as all projects: reuse shared infra
    (BUILD-ACCURATE-WORDING-VIU-PROCESS, SPEC-RELEVANCE-RECONCILIATION,
    TESTING-RUNBOOK, harness/TestRail patterns); per Standing Rule 11 ASK which
    process(es) to run before any VIU pass. Open questions live in

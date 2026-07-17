@@ -12,9 +12,14 @@ same day, PNG scale=1, prefixes `wo20_`/`parts20_`/`reports21_`).
 user's Figma export zip (`50219798-Filters.zip`, 49 PNGs) IS the FINAL design
 set, matching the latest design version.** Figma-canvas nodes NOT represented
 in the zip (the WO-14.4 exploration, Sorting steps, Components, page-level
-frames, desktop dropdown popovers, label strips, the QB Journal-Entries tab
-frame) are SUPERSEDED / not part of the final design — they are NOT counted as
-missing and are NOT to be chased. The earlier user-pasted screenshots (sort
+frames, desktop dropdown popovers, label strips) are SUPERSEDED / not part of
+the final design — they are NOT counted as missing and are NOT to be chased.
+**2026-07-17 update:** the QB Unexported **Journal Entries tab** frame
+(11982:8998) — the one known gap in the ZIP — was CAPTURED the same day from
+the user's full-page Reports PDF export (§B.6 #23, §D, §E); final-set capture
+is now **50/50**. Whether the same-day re-share of superseded content (6 of
+the 9 PDFs) revises this ZIP=final ruling is an OPEN QUESTION for the user
+(§E c) — the baseline stands UNCHANGED until the user rules. The earlier user-pasted screenshots (sort
 dropdown, 2 mobile lists, zoomed-out canvas) are to be IGNORED. Completeness =
 100% of the zip extracted, viewed, described, committed — achieved; see §Z
 (zip→node map) and §D (completeness statement). The 96-node inventory in §A is
@@ -158,7 +163,7 @@ their PNGs now exist, sourced from the zip.
 | 18 | 11974:33068 | IBS Batch Transactions | FRAME | 1512x982 | FINAL (in ZIP 1x) |
 | 19 | 11981:8749 | Quickbooks Unexported Items (Customers tab) | FRAME | 1512x982 | FINAL (in ZIP 1x) |
 | 20 | 11982:8879 | Quickbooks Unexported Items (Vendors tab) | FRAME | 1512x982 | FINAL (in ZIP 1x) |
-| 21 | 11982:8998 | Quickbooks Unexported Items (Journal Entries tab) | FRAME | 1512x982 | SUPERSEDED — not in ZIP, out of final set per ruling (tab label evidenced in the 2 captured QB frames) |
+| 21 | 11982:8998 | Quickbooks Unexported Items (Journal Entries tab) | FRAME | 1512x982 | FINAL — CAPTURED-FROM-PDF-EXPORT 2026-07-17 (not in ZIP; rendered at 150dpi from the user's Reports_Exploarations_21.4.2026.pdf → reports21_QB-Unexported-Journal-Entries_11982-8998.png; was the one known capture gap, now closed) |
 | 22 | 11955:31069 | Technician Efficiency (Completed) | FRAME | 1512x982 | FINAL (in ZIP 1x) |
 | 23 | 11951:30535 | Sales | FRAME | 1512x982 | FINAL (in ZIP 1x) |
 | 24 | 11984:9454 | Labour | SECTION (label strip, empty) | 3172x104 | SUPERSEDED — not in ZIP; label strip, no UI content |
@@ -448,11 +453,13 @@ top bar with **Clock In**, a notification bell, and org **"Staging Heavy Duty -
 The chip-based filter bar propagated to every Reports list screen (23 report
 screens in the Figma section, grouped by label strips: Labour, Accounts
 Receivable, Accounts Payable, Accounting, Communications, Performance,
-Finance). **22 of the 23 frames are in the final ZIP set** (viewed 2026-07-17;
-labels below are the exact on-screen strings). The QB Unexported **Journal
-Entries tab** frame (11982:8998) was not exported — its tab LABEL ("Journal
-Entries (4)") is visible in the two captured QB frames; only that tab's own
-body is uncaptured (out of the final set per the designer ruling).
+Finance). **22 of the 23 frames are in the final ZIP set; the 23rd — the QB
+Unexported "Journal Entries" tab (11982:8998), absent from the ZIP — was
+CAPTURED FROM the user's full-page PDF export on 2026-07-17** (150dpi render of
+`1c9fbf5e-Reports_Exploarations_21.4.2026.pdf` → committed as
+`reports21_QB-Unexported-Journal-Entries_11982-8998.png`), closing the one
+known capture gap. All 23 frames viewed; labels below are the exact on-screen
+strings.
 
 **Shared Reports shell:** top nav **Work Orders | Schedule | Customers | Parts
 | Reports** (Reports active), **Search** + **⌘ K**, org **"Heavy Duty"** +
@@ -582,9 +589,21 @@ frames the design-relevant content is the TITLE, TABS, and FILTER CHIPS only.
     matching rec…", "Required param missing, need to supply the required value
     for the A…", "Invalid Reference Id : Invalid Reference Id : Klasses
     element id 45000…".
-23. **11982:8998 — Quickbooks Unexported Items (Journal Entries tab).** NOT in
-    the ZIP — out of the final export set (designer ruling 2026-07-17); the
-    tab label **Journal Entries (4)** is evidenced in frames 21–22.
+23. **11982:8998 — Quickbooks Unexported Items (Journal Entries tab).**
+    CAPTURED-FROM-PDF-EXPORT 2026-07-17 (not in the ZIP; 150dpi render from the
+    user's Reports PDF; PNG `reports21_QB-Unexported-Journal-Entries_11982-8998.png`).
+    **Journal Entries (4)** tab active (tabs **Customers (63) | Vendors (19) |
+    Journal Entries (4)**); sidebar highlights **QB Unexported**; toolbar =
+    Search + funnel + column icons. Filter chips: **User ⌄ | Date ⌄ | Type ⌄**
+    (person, calendar, layers icons) — this tab introduces the **User** chip
+    (vs Customer/Vendor on the other two tabs). Columns: **Date | Type | No. |
+    User | Error | Export Manually | Mark As Exported** — per row a solid blue
+    **Export** button and an outline **Mark As Exported** button. 4 rows, all
+    dated **2 days ago**; Types **Work Order Reverse / Manual Adjustment /
+    Manual Adjustment / Work Order Reverse**; No. **SV-44293 / SV-44289 /
+    SV-44287 / SV-44285**; Users **Ayesha Khan** (row 1) and **Viktoria
+    Videnovic** (rows 2–4); every row's error reads **"Authentication issue -
+    Could not set the OAuth 2 Access Token Object."**
 
 ### B.7 Page-level frames (outside any section)
 
@@ -671,16 +690,24 @@ counted as missing.
   pair was compared: **content identical in all 14** (only export scale
   differs), so the 2x originals were kept and the 1x zip copies not
   re-committed. Zip-file→node→committed-path map in §Z.
-- **Total committed design-screens PNGs: 58** = 49 final-set frames (35 zip-new
-  + 14 API-2x equivalents of zip files) + 9 SUPERSEDED-but-retained API renders
-  (7 desktop dropdown popovers + 2 label strips, reference only).
+- **2026-07-17 gap closure — final-set capture now 50/50:** the QB Unexported
+  **Journal Entries tab** frame (11982:8998), absent from the ZIP and the one
+  known capture gap, was **CAPTURED-FROM-PDF-EXPORT** the same day (150dpi
+  `pdftoppm` crop of the user's `1c9fbf5e-Reports_Exploarations_21.4.2026.pdf`)
+  → committed as `reports21_QB-Unexported-Journal-Entries_11982-8998.png`;
+  fully readable, described in §B.6 #23. Final-set frames = 50 (49 ZIP + 1
+  PDF-sourced JE tab).
+- **Total committed design-screens PNGs: 59** = 50 final-set frames (35 zip-new
+  + 14 API-2x equivalents of zip files + 1 PDF-sourced JE tab) + 9
+  SUPERSEDED-but-retained API renders (7 desktop dropdown popovers + 2 label
+  strips, reference only).
 - **Superseded (NOT missing — designer ruled out of the final set):** the
   entire WO-14.4 section (16 frames + 3 strips), Sorting steps (4), Components
-  (3 sets), the QB Journal-Entries tab frame (11982:8998; its tab label is
-  evidenced in the 2 captured QB frames), 7 Reports label strips, the 4
+  (3 sets), 7 Reports label strips, the 4
   page-level frames, the 7 desktop dropdown popovers + 2 A.1 label strips
   (these 9 have API renders retained). The earlier user-pasted screenshots are
-  ignored per the same ruling.
+  ignored per the same ruling. (Whether the 2026-07-17 PDF re-share of
+  superseded content revises this list is an OPEN QUESTION — §E c.)
 - **Fit for test authoring: YES — design capture is COMPLETE** for the final
   design set. Note for authoring: the desktop filter-chip dropdown popovers are
   superseded as separate frames, but their option lists are fully evidenced in
@@ -688,7 +715,7 @@ counted as missing.
   the retained API renders; per Standing Rule 9 the build's actual dropdowns
   get captured live at VIU anyway.
 
-## Z. FINAL SET — zip-file → Figma node → committed PNG map (49/49)
+## Z. FINAL SET — zip-file → Figma node → committed PNG map (50/50: 49 ZIP + 1 PDF-sourced)
 
 | # | Zip file | Node | Frame | Committed PNG (design-screens/) |
 |---|----------|------|-------|--------------------------------|
@@ -741,6 +768,39 @@ counted as missing.
 | 47 | IBS Batch Transactions.png | 11974:33068 | Reports › IBS Batches (Ready To Send) | reports21_IBS-Batch-Transactions_11974-33068.png (ZIP — new) |
 | 48 | Quickbooks Unexported Items.png | 11981:8749 | Reports › QB Unexported, Customers tab | reports21_QB-Unexported-Customers_11981-8749.png (ZIP — new) |
 | 49 | Quickbooks Unexported Items-1.png | 11982:8879 | Reports › QB Unexported, Vendors tab | reports21_QB-Unexported-Vendors_11982-8879.png (ZIP — new) |
+| 50 | *(not in ZIP — from the user's PDF export `1c9fbf5e-Reports_Exploarations_21.4.2026.pdf`, 150dpi crop 2026-07-17)* | 11982:8998 | Reports › QB Unexported, Journal Entries tab | reports21_QB-Unexported-Journal-Entries_11982-8998.png (PDF — new; closes the one known gap) |
 
 *(Zip filename quirk: Figma dropped the leading "A/" when exporting the
 "A/R …"/"A/P …" frames — content verified to be the A/R / A/P screens.)*
+
+---
+
+## E. 2026-07-17 additional inputs (design-system zip + 9 PDFs)
+
+Full inventory + per-item reconciliation verdicts:
+`build/filters/new-inputs-inventory-2026-07-17.md`.
+
+- **(a) `Shopview_Design_System.zip`** = a **Claude-Code Agent-Skill package**
+  (SKILL.md "Shopview Design System") wrapping the full ShopView design system
+  PLUS a **coded interactive prototype of the Filters feature itself**
+  (Filters.html, filter-bar.jsx, filter-chip.jsx, filter-dropdown.jsx,
+  mobile-filters.jsx, variation-a/b.jsx). It is a **REFERENCE AID, not
+  authoritative frames** (not a Figma export; no new Figma frames). **Anomaly
+  flagged:** the prototype's hardcoded status list ends in **"Reported"**
+  whereas the design's/spec's 9-status list ends in **"Imported"** — a
+  prototype transcription slip to flag to Branko/the designer, NOT to codify.
+- **(b) The 9 PDFs** = the user's full-page Figma export. Verdicts (detail in
+  the inventory doc): **2 duplicates** of already-captured content (the WO-20.4
+  and Parts section canvases), **1 with new content** (the Reports canvas →
+  the QB Unexported **Journal Entries tab** frame 11982:8998, **now captured**
+  — §B.6 #23, §D, §Z row 50), and **6 re-shares of superseded content** (the
+  WO-14.4 exploration section, the Sorting WIP steps, the older/alternate
+  page-level Mobile frames, and the "Customer v1"/"Customer v1 selected"
+  checkbox-variant dropdowns that conflict with the final right-side-✓
+  selected-row pattern).
+- **(c) ⚠️ OPEN QUESTION (user to confirm):** does the deliberate re-share of
+  superseded content revise the "ZIP = final" ruling (§ header / §D) —
+  specifically: is **Sorting** now in scope, and which **mobile** and
+  **Customer-dropdown** variants win — or was the batch just a
+  completeness/convenience export? **The design baseline stands UNCHANGED
+  until the user rules.**
