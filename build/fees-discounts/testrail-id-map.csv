@@ -53,14 +53,14 @@ ID,fd_id,title,section
 28467,FD-FIN-004,"Verify the sidebar 'WO Fees & Discounts' card lists whole-work-order fees/discounts with name, signed rate and grey amount",Work Order — Sidebar 'Work Order Fee / Discount' card
 28468,FD-FIN-005,Verify the sidebar 'WO Fees & Discounts' card is hidden with no whole-work-order fees/discounts and has no Add button,Work Order — Sidebar 'Work Order Fee / Discount' card
 28596,FD-FLAG-001,"Verify that with the Fees & Discounts feature turned off, all fee/discount screens are hidden everywhere",Feature-flag gating
-28597,FD-FLAG-002,Verify the work-order history still shows fee/discount entries even when the Fees & Discounts feature is off,Feature-flag gating
+28597,FD-FLAG-002,Verify the work-order audit log still shows fee/discount entries even when the Fees & Discounts feature is off,Feature-flag gating
 28598,FD-FLAG-003,"Verify that even with the feature on, the matching permission is still needed to use fees/discounts",Feature-flag gating
-28560,FD-HIST-001,Verify one history entry per add/edit/remove with the correct bold event labels,History log
-28561,FD-HIST-002,"Verify the history Details show Name, Amount (the set rate) and what it was applied to",History log
-28562,FD-HIST-003,Verify the Line column and saved-state icon on a fee/discount history entry,History log
-28563,FD-HIST-004,Verify fee/discount history stays visible when the fee/discount screens are hidden by the feature being off,History log — visibility
-28564,FD-HIST-005,Verify fee/discount history stays visible when amounts are hidden by See Financial Data being off,History log — visibility
-28565,FD-HIST-006,Verify fee/discount history entries are gated by Work Orders: Create and Edit (line history by Work Order Lines: Create and Edit),History log — permission
+28560,FD-HIST-001,Verify one audit-log entry per add/edit/remove with the correct bold event labels,History log
+28561,FD-HIST-002,"Verify the audit-log Details show Name, Amount (the set rate) and what it was applied to",History log
+28562,FD-HIST-003,Verify the Line column and saved-state icon on a fee/discount audit-log entry,History log
+28563,FD-HIST-004,Verify fee/discount audit-log entries stay visible when the fee/discount screens are hidden by the feature being off,History log — visibility
+28564,FD-HIST-005,Verify fee/discount audit-log entries stay visible when amounts are hidden by See Financial Data being off,History log — visibility
+28565,FD-HIST-006,Verify fee/discount audit-log entries are gated by Work Orders: Create and Edit (line audit log by Work Order Lines: Create and Edit),History log — permission
 28566,FD-HIST-007,"Verify a Processing Fee is logged as a fee applied to the full invoice, with no 'updated' entry",History log — Processing Fee
 28567,FD-HIST-008,Verify an edit that changes the rate records the new set rate (not the resolved total),History log — edit entry
 28454,FD-INLINE-001,"Verify a labor-line fee/discount shows inline under its line with a ↳ arrow, name, signed rate and grey amount",Work Order — Inline display (Lines tab)
@@ -98,7 +98,7 @@ ID,fd_id,title,section
 28590,FD-PERM-006,"Verify removing a fee/discount uses Create and Edit, not the separate Delete permission",Permissions (Story 13)
 28591,FD-PERM-007,Verify create/edit/delete of a fee/discount template needs Settings → Finance,Permissions (Story 13)
 28592,FD-PERM-008,Verify viewing/changing a customer's default fees & discounts needs BOTH Customer Management: Create and Edit AND Manage Accounts Payable and Receivable,Permissions (Story 13)
-28593,FD-PERM-009,Verify seeing fee/discount entries in the work-order history needs Work Orders: Create and Edit (line history needs Work Order Lines: Create and Edit),Permissions (Story 13)
+28593,FD-PERM-009,Verify seeing fee/discount entries in the work-order audit log needs Work Orders: Create and Edit (line audit log needs Work Order Lines: Create and Edit),Permissions (Story 13)
 28594,FD-PERM-010,Verify both are required — the Fees & Discounts feature on AND the matching permission,Permissions (Story 13)
 28595,FD-PERM-011,Verify add/edit/remove is blocked when the work order is Invoiced/Paid or you are viewing history,Permissions (Story 13)
 28519,FD-PROC-001,Verify 'Processing Fee' is a third Type in the template builder,Processing Fee — template builder

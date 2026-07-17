@@ -145,46 +145,49 @@ fee and its tax were included in the calculation.
 
 ## TICKET 3 — Priority: Medium
 
-**Title:** Fees and discounts that are added automatically don't show up in the work order's history
+**Title:** Fees and discounts that are added automatically don't show up in the work order's audit log
 
 **Description:**
 
 *What the user does:* A shop sets certain fee/discount templates to be applied
 automatically (for the location, or as a customer's defaults). When a new work
 order is created, those fees/discounts are added to it automatically. The user
-then opens the work order's history to see what happened.
+then opens the work order's audit log (the "Work Order Log") to see what
+happened.
 
-*What happens now:* The history shows nothing about the automatically-added
+*What happens now:* The audit log shows nothing about the automatically-added
 fees/discounts. Only fees/discounts that a person adds, edits, or removes by
 hand get recorded. So the paper trail is incomplete — a fee can appear on a
 work order with no record of when or how it got there.
 
 *What should happen:* Every fee or discount added to a work order — whether by
-hand or automatically — should get its own line in the work order's history.
+hand or automatically — should get its own line in the work order's audit log.
 
 *Steps to replicate:*
 1. Set one or more fee/discount templates to apply automatically (and/or set
    them as a customer's defaults).
 2. Create a new work order for that customer, so the fees/discounts are added
    automatically.
-3. Open the work order's history.
+3. Open the work order's audit log ("Audit Log" in the work order's ⋮ menu — it
+   opens the "Work Order Log" page).
 
-*Expected:* One history entry for each automatically-added fee/discount, the
+*Expected:* One audit-log entry for each automatically-added fee/discount, the
 same as when someone adds one by hand.
 
-*Actual:* No history entries at all for the automatic ones — only entries like
+*Actual:* No audit-log entries at all for the automatic ones — only entries like
 "Created" appear.
 
 *Epic link:* SV-7387
 
 **Technical notes (QA internal):**
 - Internal ref FDBUG-3; affected case FD-HIST-001 (also blocks the positive
-  verification of FD-HIST-007); spec §1 / S10-R2 (history logs adjustment
-  lifecycle).
+  verification of FD-HIST-007); spec §1 / S10-R2 (the audit log records the
+  adjustment lifecycle). Reworded 2026-07-17 per spec V1_3 Δ2 ("history log" →
+  "audit log"; terminology only, defect unchanged).
 - Repro: a new WO that received 3 automatic adjustments (location auto-apply ×2
   + a customer-default processing fee) logged only "Created"/"Line created".
-  Reconfirmed batch 3: an auto-applied Processing Fee produced NO history entry.
-  History read: `GET /api/work-orders/{id}/history`.
+  Reconfirmed batch 3: an auto-applied Processing Fee produced NO audit-log entry.
+  Audit-log read: `GET /api/work-orders/{id}/history`.
 
 ---
 

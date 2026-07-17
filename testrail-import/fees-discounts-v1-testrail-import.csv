@@ -101,7 +101,8 @@ Verify the Add/Edit fee-or-discount dialog shows the tax-jurisdiction note below
 2. Look directly below the 'Taxable' Yes/No toggle for a note.
 3. Open an existing fee/discount's Edit dialog and check the same place below the Taxable toggle.","1. Directly below the Taxable toggle this note is shown: 'Tax treatment varies by jurisdiction — confirm your local requirements before saving.'
 2. The same note shows in both the Add and the Edit dialog.
-3. The note is plain advice to the shop, not a system instruction and not a legal statement.","S2-R26, S2-R26a, §5-R15",,
+3. The note is plain advice to the shop, not a system instruction and not a legal statement.
+4. The note is shown only to users with See Financial Data — a user without See Financial Data does not see the note. (A user without See Financial Data cannot open this work-order Add/Edit dialog at all, so check the no-note side in the admin Processing Fee dialog once it is built.)","S2-R26, S2-R26a, §5-R15",,
 Verify a labor line's ⋮ menu opens the Add Fee/Discount dialog locked to that labor line,Work Order — Labor-line Fee/Discount,Functional,Critical,"1. Logged in with Work Order Lines: Create & Edit and See Financial Data.
 2. An open work order with a labor line, e.g. Line 1 'Service - Perform LOF and inspection', is open on the Lines tab.","1. Hover the labor line row to show its ⋮ (more) button.
 2. Click the ⋮ button and click 'Add Fee/Discount'.
@@ -511,7 +512,8 @@ Verify the Max Amount field is hidden for a Processing Fee (both methods),Proces
 Verify the Processing Fee Taxable defaults to Yes and shows the tax-jurisdiction note,Processing Fee — taxable + jurisdiction note,Functional,High,1. On the admin create dialog with Type = Processing Fee.,"1. Look at the Taxable control's default value.
 2. Read any note shown below the Taxable setting.","1. Taxable defaults to 'Yes'.
 2. Directly below Taxable this note shows: 'Tax treatment varies by jurisdiction — confirm your local requirements before saving.'
-3. The note is plain advice to the shop, not a system instruction or a legal statement.","S8-R11, S8-R12, S8-R13, §5-R15",,
+3. The note is plain advice to the shop, not a system instruction or a legal statement.
+4. The note is shown only to users with See Financial Data — a user without See Financial Data does not see the note.","S8-R11, S8-R12, S8-R13, §5-R15",,
 Verify a Processing Fee cannot be added to a work order by hand,Processing Fee — no manual add,Functional,High,"1. A Processing Fee template exists.
 2. An open work order is available.","1. On the work order ⋯ menu click 'Add Fee/Discount' and open the Type dropdown.
 2. Open the 'Apply From Template' dropdown here and from a labor line and a part dialog.","1. The work order Add dialog Type dropdown does not list 'Processing Fee' (only Fee and Discount).
@@ -633,33 +635,33 @@ Verify the excess is recorded as a customer credit and posts to QuickBooks as a 
 3. It is NOT a QuickBooks payment (no cash received).","S6-R11, S6-R13",,
 Verify a synced line's tax follows the fee/discount's Taxable setting,QuickBooks sync — tax,Functional,Medium,1. QuickBooks connected; a WO has one taxable fee and one non-taxable fee; the WO is invoiced.,1. Inspect the synced QuickBooks lines for both fees.,"1. The taxable fee's line carries the invoice's active tax.
 2. The non-taxable fee's line carries zero tax.","S6-R2, §5-R11",,
-Verify one history entry per add/edit/remove with the correct bold event labels,History log,Functional,High,1. You can view the work-order history log (Work Orders: Create and Edit) and can add/edit/remove adjustments on an open WO.,"1. Add, edit and remove a fee/discount on the work order.
+Verify one audit-log entry per add/edit/remove with the correct bold event labels,History log,Functional,High,1. You can view the work-order audit log (Work Orders: Create and Edit) and can add/edit/remove adjustments on an open WO.,"1. Add, edit and remove a fee/discount on the work order.
 2. Open the work order ⋮ menu and click 'Audit Log' to open the 'Work Order Log'.
 3. Read the Event column.","1. Each add, each edit and each remove records exactly one entry.
 2. Fee events read 'Fee added', 'Fee updated', 'Fee removed'.
 3. Discount events read 'Discount added', 'Discount updated', 'Discount removed'.","S10-R2, S10-R4a, S10-R4b, S10-R4c",,
-"Verify the history Details show Name, Amount (the set rate) and what it was applied to",History log,Functional,High,"1. A WO has (a) a whole-WO 10% fee named ""Env Fee"", (b) a labor-line $5.00 flat fee, (c) a part-line discount.","1. Open the 'Work Order Log' (⋮ menu → Audit Log).
+"Verify the audit-log Details show Name, Amount (the set rate) and what it was applied to",History log,Functional,High,"1. A WO has (a) a whole-WO 10% fee named ""Env Fee"", (b) a labor-line $5.00 flat fee, (c) a part-line discount.","1. Open the 'Work Order Log' (⋮ menu → Audit Log).
 2. Read the Details for a fee/discount entry.","1. Details show the fee/discount Name.
 2. Details show the Amount as the SET rate (a dollar amount like '$5.00' for a flat amount, or a percentage like '10.00%'), not the resolved total.
 3. Details show what it was applied to (the whole invoice, a labor line or a part).
 4. The Fee/Discount type is shown by the event label ('Fee added' / 'Discount added').","S10-R6a, S10-R6b, S10-R6c, S10-R6d",,
-Verify the Line column and saved-state icon on a fee/discount history entry,History log,Functional,Medium,1. A WO has at least one whole-WO adjustment and one line-level adjustment logged.,"1. Open the 'Work Order Log'.
+Verify the Line column and saved-state icon on a fee/discount audit-log entry,History log,Functional,Medium,1. A WO has at least one whole-WO adjustment and one line-level adjustment logged.,"1. Open the 'Work Order Log'.
 2. Read the Line column and the saved-state icon for fee/discount entries.","1. The saved-state icon is empty for fee/discount entries.
 2. The Line column shows the target line for a line-level fee/discount and a dash for a whole-work-order one.","S10-R3, S10-R5",,
-Verify fee/discount history stays visible when the fee/discount screens are hidden by the feature being off,History log — visibility,Functional,High,"1. A WO already has fee/discount history entries.
+Verify fee/discount audit-log entries stay visible when the fee/discount screens are hidden by the feature being off,History log — visibility,Functional,High,"1. A WO already has fee/discount audit-log entries.
 2. The Fees & Discounts feature is then turned OFF for the org.","1. Turn the Fees & Discounts feature off.
 2. Open the 'Work Order Log' and look for the fee/discount entries recorded earlier.","1. All fee/discount controls are hidden.
-2. The fee/discount history entries still show in the Work Order Log.",S10-R1,,
-Verify fee/discount history stays visible when amounts are hidden by See Financial Data being off,History log — visibility,Functional,Medium,"1. A WO has fee/discount history entries.
+2. The fee/discount audit-log entries still show in the Work Order Log.",S10-R1,,
+Verify fee/discount audit-log entries stay visible when amounts are hidden by See Financial Data being off,History log — visibility,Functional,Medium,"1. A WO has fee/discount audit-log entries.
 2. A ZZAUTOTEST role is assigned to Tech with Work Orders: Create and Edit ON but See Financial Data OFF (exact-user-match).","1. As a role without See Financial Data, open the work order and the 'Work Order Log'.
 2. Look for the fee/discount entries.","1. Fee/discount dollar amounts are hidden on the normal screens (See Financial Data off).
-2. The fee/discount history entries still show in the Work Order Log (the log shows the set rate, not a resolved total, so See Financial Data does not gate it).","S10-R1, S10-R6c, S13-R10",,
-Verify fee/discount history entries are gated by Work Orders: Create and Edit (line history by Work Order Lines: Create and Edit),History log — permission,Functional,High,"1. A WO has fee/discount history.
-2. A ZZAUTOTEST role is assigned to Tech WITHOUT Work Orders: Create and Edit (exact-user-match); for line history, a role WITHOUT Work Order Lines: Create and Edit.","1. As a role with Work Orders: Create and Edit, open the 'Work Order Log' and confirm fee/discount entries show.
-2. As a role without it, confirm the work-order history is not shown.
-3. For an individual labor/part line history, confirm Work Order Lines: Create and Edit is required.","1. With Work Orders: Create and Edit, fee/discount entries show in the Work Order Log.
-2. Without it, the work-order history (including fee/discount entries) is not shown.
-3. An individual labor-line or part-line history needs Work Order Lines: Create and Edit.",S13-R10,,
+2. The fee/discount audit-log entries still show in the Work Order Log (the log shows the set rate, not a resolved total, so See Financial Data does not gate it).","S10-R1, S10-R6c, S13-R10",,
+Verify fee/discount audit-log entries are gated by Work Orders: Create and Edit (line audit log by Work Order Lines: Create and Edit),History log — permission,Functional,High,"1. A WO has fee/discount audit-log entries.
+2. A ZZAUTOTEST role is assigned to Tech WITHOUT Work Orders: Create and Edit (exact-user-match); for the line audit log, a role WITHOUT Work Order Lines: Create and Edit.","1. As a role with Work Orders: Create and Edit, open the 'Work Order Log' and confirm fee/discount entries show.
+2. As a role without it, confirm the work-order audit log is not shown.
+3. For an individual labor/part line audit log, confirm Work Order Lines: Create and Edit is required.","1. With Work Orders: Create and Edit, fee/discount entries show in the Work Order Log.
+2. Without it, the work-order audit log (including fee/discount entries) is not shown.
+3. An individual labor-line or part-line audit log needs Work Order Lines: Create and Edit.",S13-R10,,
 "Verify a Processing Fee is logged as a fee applied to the full invoice, with no 'updated' entry",History log — Processing Fee,Functional,Medium,1. A WO carries a Processing Fee (via auto-apply or customer default).,"1. Add and later remove a Processing Fee (via auto-apply / customer default).
 2. Open the 'Work Order Log' and read its entries.","1. The add logs 'Fee added' and the remove logs 'Fee removed' (type shown as Fee).
 2. Applied to shows the full invoice.
@@ -819,20 +821,20 @@ Verify viewing/changing a customer's default fees & discounts needs BOTH Custome
 3. Without Customer Management: Create and Edit, try to view/change the defaults.","1. With both permissions, the 'Fees & Discounts' tab and its Add/Remove controls work.
 2. Without Manage Accounts Payable and Receivable, the tab and controls are hidden.
 3. Without Customer Management: Create and Edit, the defaults cannot be viewed or changed.","S13-R9, S13-N3",,
-Verify seeing fee/discount entries in the work-order history needs Work Orders: Create and Edit (line history needs Work Order Lines: Create and Edit),Permissions (Story 13),Functional,Medium,"1. A work order already has fee/discount history (add/edit/remove entries).
-2. Two ZZAUTOTEST roles: Role A WITH Work Orders: Create and Edit; Role B WITHOUT it. For line-level history, add a role WITH / WITHOUT Work Order Lines: Create and Edit. Assign by exact-user-match to Tech.","1. With Work Orders: Create and Edit, open the 'Work Order Log' and confirm fee/discount entries show.
-2. Without it, confirm the work-order history is not shown.
+Verify seeing fee/discount entries in the work-order audit log needs Work Orders: Create and Edit (line audit log needs Work Order Lines: Create and Edit),Permissions (Story 13),Functional,Medium,"1. A work order already has fee/discount audit-log entries (add/edit/remove).
+2. Two ZZAUTOTEST roles: Role A WITH Work Orders: Create and Edit; Role B WITHOUT it. For the line-level audit log, add a role WITH / WITHOUT Work Order Lines: Create and Edit. Assign by exact-user-match to Tech.","1. With Work Orders: Create and Edit, open the 'Work Order Log' and confirm fee/discount entries show.
+2. Without it, confirm the work-order audit log is not shown.
 3. Confirm the entries stay visible even when the fee/discount screens are hidden by the feature being off or by See Financial Data.
 4. Confirm the log shows the set rate, not a resolved total.","1. With Work Orders: Create and Edit, fee/discount entries show in the Work Order Log.
-2. Viewing an individual labor-line or part-line history needs Work Order Lines: Create and Edit.
+2. Viewing an individual labor-line or part-line audit log needs Work Order Lines: Create and Edit.
 3. The entries stay visible even when the fee/discount screens are hidden by the feature being off or by See Financial Data.
 4. The log shows the set rate (like '10.00%' or '$5.00'), not a resolved total, so See Financial Data does not gate it.
-5. Without Work Orders: Create and Edit, the work-order history is not shown.",S13-R10,,
+5. Without Work Orders: Create and Edit, the work-order audit log is not shown.",S13-R10,,
 Verify both are required — the Fees & Discounts feature on AND the matching permission,Permissions (Story 13),Functional,High,"1. Ability to toggle the Fees & Discounts feature for the org.
 2. A ZZAUTOTEST role with See Financial Data and Work Orders: Create and Edit ON.
 3. An open work order.","1. With the feature off (any permission), look for fee/discount controls.
 2. With the feature on but the permission off, look again.
-3. With the feature on and the permission on, use the control.","1. Feature off: no fee/discount controls anywhere (except the history log).
+3. With the feature on and the permission on, use the control.","1. Feature off: no fee/discount controls anywhere (except the audit log).
 2. Feature on but permission off: controls hidden / action refused.
 3. Feature on and permission on: controls appear and the action works.
 4. A user needs both the feature and the permission.","S13-R1, Fees & Discounts feature + permission (both gates)",,
@@ -850,11 +852,11 @@ Verify add/edit/remove is blocked when the work order is Invoiced/Paid or you ar
 3. Turn the feature back on afterwards.","1. With the feature off, no fee/discount controls appear anywhere.
 2. No work-order card, no Stats section, no Financial Info row, no Parts column, no customer tab, no admin templates page.
 3. This holds even for a fully-permissioned user — the feature is the outer switch.","§1 Fees & Discounts feature, S13-R1",,
-Verify the work-order history still shows fee/discount entries even when the Fees & Discounts feature is off,Feature-flag gating,Functional,Medium,"1. A work order already has fee/discount history entries.
-2. The user has Work Orders: Create and Edit (to view the work-order history log).
+Verify the work-order audit log still shows fee/discount entries even when the Fees & Discounts feature is off,Feature-flag gating,Functional,Medium,"1. A work order already has fee/discount audit-log entries.
+2. The user has Work Orders: Create and Edit (to view the work-order audit log).
 3. Ability to set the Fees & Discounts feature OFF.","1. In Administration, turn the Fees & Discounts feature off.
-2. Open a work order's history and look for the fee/discount entries recorded earlier.
-3. Turn the feature back on afterwards.","1. Fee/discount history entries stay visible in the work-order history even with the feature off (the one exception to 'feature off hides everything').
+2. Open the work order ⋮ menu, click 'Audit Log' to open the 'Work Order Log', and look for the fee/discount entries recorded earlier.
+3. Turn the feature back on afterwards.","1. Fee/discount audit-log entries stay visible in the Work Order Log even with the feature off (the one exception to 'feature off hides everything').
 2. All other fee/discount screens are still hidden.",S10-R1 (flag-off exception),,
 "Verify that even with the feature on, the matching permission is still needed to use fees/discounts",Feature-flag gating,Functional,Medium,"1. Two ZZAUTOTEST roles: one with the F&D-relevant permissions, one without.
 2. An open work order.","1. With the feature on and the user lacking See Financial Data / the matching Create and Edit permission, open a work order and look for fee/discount controls and amounts.

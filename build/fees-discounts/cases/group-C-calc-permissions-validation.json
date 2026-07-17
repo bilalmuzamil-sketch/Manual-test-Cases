@@ -706,30 +706,30 @@
   "id": "FD-PERM-009",
   "area": "Permissions (Story 13)",
   "story_ref": "S13-R10",
-  "title": "Verify seeing fee/discount entries in the work-order history needs Work Orders: Create and Edit (line history needs Work Order Lines: Create and Edit)",
+  "title": "Verify seeing fee/discount entries in the work-order audit log needs Work Orders: Create and Edit (line audit log needs Work Order Lines: Create and Edit)",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "Work Orders: Create and Edit (WO history log) / Work Order Lines: Create and Edit (line history) — the gates under test",
   "preconditions": [
-   "1. A work order already has fee/discount history (add/edit/remove entries).",
-   "2. Two ZZAUTOTEST roles: Role A WITH Work Orders: Create and Edit; Role B WITHOUT it. For line-level history, add a role WITH / WITHOUT Work Order Lines: Create and Edit. Assign by exact-user-match to Tech."
+   "1. A work order already has fee/discount audit-log entries (add/edit/remove).",
+   "2. Two ZZAUTOTEST roles: Role A WITH Work Orders: Create and Edit; Role B WITHOUT it. For the line-level audit log, add a role WITH / WITHOUT Work Order Lines: Create and Edit. Assign by exact-user-match to Tech."
   ],
   "steps": [
    "1. With Work Orders: Create and Edit, open the 'Work Order Log' and confirm fee/discount entries show.",
-   "2. Without it, confirm the work-order history is not shown.",
+   "2. Without it, confirm the work-order audit log is not shown.",
    "3. Confirm the entries stay visible even when the fee/discount screens are hidden by the feature being off or by See Financial Data.",
    "4. Confirm the log shows the set rate, not a resolved total."
   ],
   "expected": [
    "1. With Work Orders: Create and Edit, fee/discount entries show in the Work Order Log.",
-   "2. Viewing an individual labor-line or part-line history needs Work Order Lines: Create and Edit.",
+   "2. Viewing an individual labor-line or part-line audit log needs Work Order Lines: Create and Edit.",
    "3. The entries stay visible even when the fee/discount screens are hidden by the feature being off or by See Financial Data.",
    "4. The log shows the set rate (like '10.00%' or '$5.00'), not a resolved total, so See Financial Data does not gate it.",
-   "5. Without Work Orders: Create and Edit, the work-order history is not shown."
+   "5. Without Work Orders: Create and Edit, the work-order audit log is not shown."
   ],
   "design_ref": "design-notes §10 (no history-log view mocked)",
   "viu_status": "VIU-Verified",
-  "notes": "Current-build difference (requirements §14 item 6): history \"Applied to:\" reportedly shows raw \"processing_fee\" instead of \"Full invoice\" for a Processing Fee. Verify labels on staging. | VIU qb batch-1 (2026-07-08): Blocked — no restricted session. | FRESH VIU 2026-07-10: history entries: BE serves them regardless (tech 200) — FE display gate per enforcement model; entries carry set rate | V1_2 (2026-07-13): history-log gate updated per S13-R10 — WO-level history requires Work Orders: Create and Edit; line-level history requires Work Order Lines: Create and Edit (was View History Logs). Expected/preconditions updated; needs live re-VIU. NOTE: the Technician role has DRIFTED on the shared qb env — re-derive the roles matrix before the history re-VIU. | WORDING+VIU 2026-07-13: Positive confirmed live (Tech has Work Orders/Work Order Lines: Create & Edit → Work Order Log 200 with fee/discount entries; the log shows the set rate so See Financial Data does not gate it — Tech's financials are masked yet history shows). The no-permission negative is NOT testable this run (Tech drifted to have the perms; only admin/tech log in).",
+  "notes": "Current-build difference (requirements §14 item 6): history \"Applied to:\" reportedly shows raw \"processing_fee\" instead of \"Full invoice\" for a Processing Fee. Verify labels on staging. | VIU qb batch-1 (2026-07-08): Blocked — no restricted session. | FRESH VIU 2026-07-10: history entries: BE serves them regardless (tech 200) — FE display gate per enforcement model; entries carry set rate | V1_2 (2026-07-13): history-log gate updated per S13-R10 — WO-level history requires Work Orders: Create and Edit; line-level history requires Work Order Lines: Create and Edit (was View History Logs). Expected/preconditions updated; needs live re-VIU. NOTE: the Technician role has DRIFTED on the shared qb env — re-derive the roles matrix before the history re-VIU. | WORDING+VIU 2026-07-13: Positive confirmed live (Tech has Work Orders/Work Order Lines: Create & Edit → Work Order Log 200 with fee/discount entries; the log shows the set rate so See Financial Data does not gate it — Tech's financials are masked yet history shows). The no-permission negative is NOT testable this run (Tech drifted to have the perms; only admin/tech log in). | V1_3 (2026-07-17): Δ2 terminology sweep — Story 10 renamed 'history log' -> 'audit log' throughout (terminology only; gates/behavior/status unchanged). Generic 'history log / history entry / work-order history' prose replaced with 'audit log / audit-log entry'; the exact build labels 'Audit Log' (⋮ menu) and 'Work Order Log' (page) kept per Standing Rule 9. TestRail section name left as-is (rename not authorized).",
   "api_related": false,
   "fresh_run": "2026-07-13"
  },
@@ -752,14 +752,14 @@
    "3. With the feature on and the permission on, use the control."
   ],
   "expected": [
-   "1. Feature off: no fee/discount controls anywhere (except the history log).",
+   "1. Feature off: no fee/discount controls anywhere (except the audit log).",
    "2. Feature on but permission off: controls hidden / action refused.",
    "3. Feature on and permission on: controls appear and the action works.",
    "4. A user needs both the feature and the permission."
   ],
   "design_ref": "design-notes §10 (no feature-flag-off empty state mocked)",
   "viu_status": "VIU-Verified",
-  "notes": "The two gates are independent: the flag decides the feature exists (per org); the permission decides what a user may do. Fees & Discounts adds no permission of its own (S13-R1). | VIU qb batch-1 (2026-07-08): Flag half untestable this batch (shared env — no flag toggling); permission half blocked (no restricted session). | FRESH VIU 2026-07-10: flag ON + permission still required (tech 403 on templates/defaults with flag ON) | WORDING+VIU 2026-07-13: Permission gating confirmed live (templates/customer-defaults 403; SFD masking). Feature is ON. Both-gates model holds.",
+  "notes": "The two gates are independent: the flag decides the feature exists (per org); the permission decides what a user may do. Fees & Discounts adds no permission of its own (S13-R1). | VIU qb batch-1 (2026-07-08): Flag half untestable this batch (shared env — no flag toggling); permission half blocked (no restricted session). | FRESH VIU 2026-07-10: flag ON + permission still required (tech 403 on templates/defaults with flag ON) | WORDING+VIU 2026-07-13: Permission gating confirmed live (templates/customer-defaults 403; SFD masking). Feature is ON. Both-gates model holds. | V1_3 (2026-07-17): Δ2 terminology sweep — Story 10 renamed 'history log' -> 'audit log' throughout (terminology only; gates/behavior/status unchanged). Generic 'history log / history entry / work-order history' prose replaced with 'audit log / audit-log entry'; the exact build labels 'Audit Log' (⋮ menu) and 'Work Order Log' (page) kept per Standing Rule 9. TestRail section name left as-is (rename not authorized).",
   "api_related": false,
   "fresh_run": "2026-07-13"
  },
@@ -817,7 +817,7 @@
   ],
   "design_ref": "design-notes §10 (no feature-flag-off empty state is mocked)",
   "viu_status": "VIU-Blocked-Env",
-  "notes": "The one exception is the WO history log (covered by FD-FLAG-002). On the current staging build the flag is ON but the feature is not yet deployed (viu-findings.md) — re-verify deploy state before running. | VIU qb batch-1 (2026-07-08): Flag-off pass SKIPPED deliberately: qb is shared and under active concurrent use (another user edited templates mid-run) — toggling the org flag would disrupt others. Needs an agreed window. | FRESH VIU 2026-07-10: org flag toggling deliberately NOT done: shared env, manual tester active today | WORDING+VIU 2026-07-13: BLOCKED-ENV: cannot take a feature-off window on the shared qb env while a manual tester is active. Wording made layman.",
+  "notes": "The one exception is the WO history log (covered by FD-FLAG-002). On the current staging build the flag is ON but the feature is not yet deployed (viu-findings.md) — re-verify deploy state before running. | VIU qb batch-1 (2026-07-08): Flag-off pass SKIPPED deliberately: qb is shared and under active concurrent use (another user edited templates mid-run) — toggling the org flag would disrupt others. Needs an agreed window. | FRESH VIU 2026-07-10: org flag toggling deliberately NOT done: shared env, manual tester active today | WORDING+VIU 2026-07-13: BLOCKED-ENV: cannot take a feature-off window on the shared qb env while a manual tester is active. Wording made layman. | V1_3 (2026-07-17): Δ2 — Story 10 renamed 'history log' -> 'audit log' (terminology only; gates/behavior/status unchanged). Notes-only touch: the reader-facing text of this case already uses the exact build labels ('Audit Log' ⋮ menu / 'Work Order Log' page) and carries no generic history-log prose. The internal `area`/section name is left as-is (TestRail section rename not authorized).",
   "api_related": false,
   "fresh_run": "2026-07-13"
  },
@@ -825,27 +825,27 @@
   "id": "FD-FLAG-002",
   "area": "Feature-flag gating",
   "story_ref": "S10-R1 (flag-off exception)",
-  "title": "Verify the work-order history still shows fee/discount entries even when the Fees & Discounts feature is off",
+  "title": "Verify the work-order audit log still shows fee/discount entries even when the Fees & Discounts feature is off",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "Work Orders: Create and Edit (to view the work-order history log)",
   "preconditions": [
-   "1. A work order already has fee/discount history entries.",
-   "2. The user has Work Orders: Create and Edit (to view the work-order history log).",
+   "1. A work order already has fee/discount audit-log entries.",
+   "2. The user has Work Orders: Create and Edit (to view the work-order audit log).",
    "3. Ability to set the FeesAndDiscounts flag OFF."
   ],
   "steps": [
    "1. In Administration, turn the Fees & Discounts feature off.",
-   "2. Open a work order's history and look for the fee/discount entries recorded earlier.",
+   "2. Open the work order ⋮ menu, click 'Audit Log' to open the 'Work Order Log', and look for the fee/discount entries recorded earlier.",
    "3. Turn the feature back on afterwards."
   ],
   "expected": [
-   "1. Fee/discount history entries stay visible in the work-order history even with the feature off (the one exception to 'feature off hides everything').",
+   "1. Fee/discount audit-log entries stay visible in the Work Order Log even with the feature off (the one exception to 'feature off hides everything').",
    "2. All other fee/discount screens are still hidden."
   ],
   "design_ref": "design-notes §10 (no history-log view mocked)",
   "viu_status": "VIU-Blocked-Env",
-  "notes": "History entries show the set rate, not a resolved dollar total, so they are not gated by See Financial Data either (S10-R6c). | VIU qb batch-1 (2026-07-08): Skipped with FD-FLAG-001 (requires flag OFF). | FRESH VIU 2026-07-10: as FD-FLAG-001 | V1_2 (2026-07-13): history-log gate updated per S13-R10 — WO-level history requires Work Orders: Create and Edit; line-level history requires Work Order Lines: Create and Edit (was View History Logs). Expected/preconditions updated; needs live re-VIU. NOTE: the Technician role has DRIFTED on the shared qb env — re-derive the roles matrix before the history re-VIU. | WORDING+VIU 2026-07-13: BLOCKED-ENV + V1_2 re-VIU pending: needs a feature-off window (not takeable on the shared env) to confirm history entries stay visible. Wording made layman.",
+  "notes": "History entries show the set rate, not a resolved dollar total, so they are not gated by See Financial Data either (S10-R6c). | VIU qb batch-1 (2026-07-08): Skipped with FD-FLAG-001 (requires flag OFF). | FRESH VIU 2026-07-10: as FD-FLAG-001 | V1_2 (2026-07-13): history-log gate updated per S13-R10 — WO-level history requires Work Orders: Create and Edit; line-level history requires Work Order Lines: Create and Edit (was View History Logs). Expected/preconditions updated; needs live re-VIU. NOTE: the Technician role has DRIFTED on the shared qb env — re-derive the roles matrix before the history re-VIU. | WORDING+VIU 2026-07-13: BLOCKED-ENV + V1_2 re-VIU pending: needs a feature-off window (not takeable on the shared env) to confirm history entries stay visible. Wording made layman. | V1_3 (2026-07-17): Δ2 terminology sweep — Story 10 renamed 'history log' -> 'audit log' throughout (terminology only; gates/behavior/status unchanged). Generic 'history log / history entry / work-order history' prose replaced with 'audit log / audit-log entry'; the exact build labels 'Audit Log' (⋮ menu) and 'Work Order Log' (page) kept per Standing Rule 9. TestRail section name left as-is (rename not authorized).",
   "api_related": false,
   "fresh_run": "2026-07-13"
  },

@@ -1115,3 +1115,74 @@ The V1_2 doc inlines the exact Custom Roles (SV-7388) names in every story and
 - Chris Ward's Round-2 answers remain BLANK — no §0.1 action taken.
 - All history + FD-PERM cases need a **live re-VIU** once a clean qb roles matrix is
   re-derived (Technician role drifted on the shared env).
+
+## 17. V1_3 update (2026-07-17) — spec delta applied to cases
+
+> Ingested from `spec-v3-2026-07-17/requirements-v3.md` (successor
+> `730081de-FeesDiscountsV1_3.doc`, new Change-Log row dated 2026-07-14) and
+> reconciled in `spec-v3-2026-07-17/spec-diff-v3-2026-07-17.md`. This section
+> records the deltas as a dated addendum for traceability; the §1–§16 body above
+> is the V1_2 baseline and is superseded by this section wherever they disagree
+> (last-update-wins: §17 governs). The V1_3 delta is **exactly ONE new Change-Log
+> row carrying TWO changes**; everything else in the document is byte-identical
+> (all §5 rules R1–R14, all Stories 1–14 except Story 10's wording, §2/§7/§9/§10).
+
+**New Change-Log row (verbatim, the ONLY new entry):**
+
+> | 2026-07-14 | @chris / @claude | Story 10: renamed the "history log" to the
+> "audit log" throughout the story — heading, prerequisites, S10-R1, S10-R2, and
+> the context notes. Gated the §5-R15 taxable jurisdiction note to users with See
+> Financial Data, in both places it appears (the work-order Add / Edit dialog and
+> the template dialog). | Terminology alignment — the log the story describes is
+> the Audit Log. The See Financial Data gate keeps QA from flagging the hidden
+> note as a missing-note bug when testing restricted roles. |
+
+### 17.1 Δ1 — §5-R15 gated to See Financial Data (one appended sentence)
+
+§5-R15 gains one appended sentence (spec verbatim):
+
+> **"The note is shown only to users with See Financial Data."**
+
+The note's exact string, its two enumerated locations (S2-R26 / S8-R11), S2-R26a
+and S8-R13 are all UNCHANGED. The gate does **NOT** legitimize the FD-WO-016
+deviation — the 2026-07-13 VIU was performed as admin (HAS See Financial Data)
+and the note was absent, so the note is still not built.
+- Cases: **FD-WO-016** (expected gains the gate qualifier + the SFD-negative
+  check FOLDED IN — no new case authored; stays VIU-Deviation); **FD-PROC-004**
+  (gate qualifier on its §5-R15 expected; stays Blocked-NotBuilt).
+- **Ambiguities flagged for Chris (unresolved — spec-diff §H):** (a) the
+  change-log says the gate's second location is "the template dialog" while the
+  §5-R15 body says the Processing Fee dialog (S8-R11), and the plain template
+  dialog's own Taxable control (S7-R12f) carries no §5-R15 reference despite
+  §5-R15 opening with "Below every Taxable control"; (b) the gate is
+  unobservable at the WO Add/Edit dialog (Stories 1/2 already require See
+  Financial Data to open it) — it is only independently testable at the admin
+  template/Processing-Fee dialog.
+
+### 17.2 Δ2 — Story 10 "history log" → "audit log" (terminology only)
+
+Story 10's heading, summary, prerequisites, S10-R1, S10-R2 and both context
+notes now say **"audit log"** (was "history log"). **Zero behavior change** —
+the permission gates (Work Orders: Create and Edit / Work Order Lines: Create
+and Edit, per §16.2 / S13-R10) are untouched. The live build ALREADY labels the
+⋮ menu item **'Audit Log'** (opening the page titled **'Work Order Log'**,
+captured 2026-07-13) — the spec is catching up to the build.
+- Cases: cosmetic prose sweep ("history log / history entry / work-order
+  history" → "audit log / audit-log entry") in **FD-HIST-001..006, FD-PERM-009,
+  FD-PERM-010, FD-FLAG-002** (+ internal-notes-only touches FD-HIST-007/008,
+  FD-EDIT-002, FD-FLAG-001). Exact build labels 'Audit Log' / 'Work Order Log'
+  kept verbatim. **Zero status flips.**
+- TICKET 3's bug draft (`jira-bug-drafts.md`) reworded to "audit log (Work Order
+  Log)" terminology.
+- The 4 TestRail sections still named "History log*" were NOT renamed
+  (not authorized); noted as an optional alignment candidate.
+
+### 17.3 Unchanged / no impact
+- Zero conflicts with Chris Ward's Round-2 answers (Q1=A/Q2=A/Q3=A/Q4=B).
+- No impact on the FDBUG register, the 12 Blocked-NotBuilt cases (Stories 8/11
+  unchanged), or the FD-CUST-016/FD-VAL-007 duplicate pair.
+- Design zips Work_Order_4/5/6 (2026-07-17) are byte-identical re-uploads of the
+  already-ingested design bundle — zero design deltas
+  (`spec-v3-2026-07-17/design-new-notes.md`).
+- Tally unchanged: 135 VIU-Verified / 15 VIU-Deviation / 12 Blocked-NotBuilt /
+  20 Blocked-Env / 1 VIU-Pending = 183.

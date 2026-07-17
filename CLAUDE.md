@@ -112,7 +112,14 @@ process(es) to run before proceeding.
    **STATUS: 2026-07-14 — CHRIS WARD'S ROUND-2 ANSWERS (Q1=A/Q2=A/Q3=A/Q4=B)
    APPLIED + the 6 Round-2 cases PUSHED TO TESTRAIL (6/6, 200/200); FD-QB-014
    (C28557) VIU-Verified (commit-time over-discount warn/confirm "Discount exceeds
-   subtotal" dialog confirmed BUILT at Create-Invoice + Mark-Reviewed/Complete).**
+   subtotal" dialog confirmed BUILT at Create-Invoice + Mark-Reviewed/Complete).
+   V1_3 applied 2026-07-17 (2 deltas: §5-R15 SFD-gate [FD-WO-016 gate qualifier +
+   folded SFD-negative, FD-PROC-004], history→audit-log sweep [9 cases + 4
+   notes-only]; 11 update_case pushed 11/11 200 + re-GET MATCH, audit-logged in
+   spec-v3-2026-07-17/testrail-update-log.md; requirements.md §17 = V1_3 baseline;
+   TICKET 3 reworded to audit-log; tally unchanged; 2 new Chris ambiguities in
+   PROJECT-STATE §0.0e; 4 "History log*" TestRail sections NOT renamed — optional
+   candidate).**
    Final tally: **135 VIU-Verified / 15 VIU-Deviation / 12 Blocked-NotBuilt / 20
    Blocked-Env / 1 VIU-Pending (FD-PART-005) = 183.** No longer PO-blocked; **WAITING
    ON: the FD-CUST-016/FD-VAL-007 DUPLICATE-PAIR QA-lead keep/retire ruling + filing

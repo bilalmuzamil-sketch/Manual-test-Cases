@@ -5,9 +5,12 @@
 > re-discovery.
 > **Canonical spec (Confluence):** https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/622297094/Fees+Discounts+V1
 > (Atlassian-SSO login-walled — reference pointer only; content must be exported/pasted to ingest, do NOT fetch the URL.)
-> **Last updated:** 2026-07-17 (§0.0d: Epic **SV-7387** user-confirmed; spec **V1_3**
-> + design zips ingested ANALYSIS-ONLY → `spec-v3-2026-07-17/`; no case/TestRail
-> changes — the standing snapshot below remains the 2026-07-14 post-Round-2 state)
+> **Last updated:** 2026-07-17 (§0.0e: **spec V1_3 APPLIED** — Δ1 §5-R15 SFD-gate +
+> Δ2 history→audit-log; 11 update_case pushed to TestRail 11/11 200 + re-GET MATCH,
+> audit `spec-v3-2026-07-17/testrail-update-log.md`; requirements.md now carries §17
+> = the V1_3 baseline; tally UNCHANGED 135/15/12/20/1 = 183)
+> — prior same-day update (§0.0d: Epic **SV-7387** user-confirmed; spec **V1_3**
+> + design zips ingested ANALYSIS-ONLY → `spec-v3-2026-07-17/`)
 > — prior update 2026-07-14 (post-Round-2 snapshot — after **V1_2 spec applied** [43 case
 > updates + new FD-WO-016=C29441, all pushed] AND a **FRESH FULL build-accurate WORDING +
 > VIU PASS over ALL 183 cases** [live-captured build labels; every case re-adjudicated;
@@ -69,7 +72,60 @@ This section is the complete snapshot: current tally, the applied Round-2 action
 everything else open, and the ordered resume checklist. The rest of this doc holds the
 standing detail. **NO TestRail catch-up is outstanding** — all authored wording is live.
 
-### 0.0d SPEC V1_3 + DESIGN ZIPS INGESTED (ANALYSIS ONLY) + EPIC CONFIRMED — 2026-07-17 (NEWEST event)
+### 0.0e SPEC V1_3 APPLIED + PUSHED TO TESTRAIL — 2026-07-17 (NEWEST event)
+
+**The V1_3 apply pass was run (user-instructed 2026-07-17: "check if any test cases
+need to be updated, if yes then please do that" — that instruction authorized this
+one-day update_case pass).** Per the delta doc
+`spec-v3-2026-07-17/spec-diff-v3-2026-07-17.md` §E/§G:
+
+- **Δ1 — §5-R15 SFD gate (2 substantive edits, 0 status flips):** FD-WO-016 (C29441)
+  expected gains the gate qualifier (spec verbatim: *"The note is shown only to users
+  with See Financial Data."*) **+ the SFD-negative check FOLDED IN as expected 4 — NO
+  new case authored** (the fold option from the delta doc; the gate is only
+  independently observable at the admin template/Processing-Fee dialog, §H.b).
+  FD-PROC-004 (C28522) expected gains the same qualifier. **Statuses unchanged**
+  (VIU-Deviation / Blocked-NotBuilt — the note is still not built; the 2026-07-13 VIU
+  was as admin WITH See Financial Data and the note was absent).
+- **Δ2 — history→audit-log terminology sweep (9 reader-facing cosmetic edits, 0
+  status flips):** FD-HIST-001..006 (C28560–C28565), FD-PERM-009 (C28593), FD-PERM-010
+  (C28594), FD-FLAG-002 (C28597) — generic "history log / history entry / work-order
+  history" prose → "audit log / audit-log entry"; the exact build labels **'Audit Log'**
+  (⋮ menu) / **'Work Order Log'** (page) kept verbatim (Standing Rule 9). Plus 4
+  internal-notes-only touches (FD-HIST-007/008, FD-EDIT-002, FD-FLAG-001 — local
+  `notes` field only, NOT pushed).
+- **TestRail: 11/11 update_case, all 200 + re-GET diff-confirm MATCH** (fields
+  title/custom_preconds/custom_steps/custom_expected built per gen_import.py rules;
+  before/after snapshots `spec-v3-2026-07-17/testrail-snapshots-2026-07-17/`; audit
+  log `spec-v3-2026-07-17/testrail-update-log.md`). **NO section renames** — the 4
+  sections still named "History log*" ("History log", "History log — visibility",
+  "History log — permission", "History log — Processing Fee") are an OPTIONAL
+  "Audit log…" rename candidate needing separate authorization.
+- **requirements.md: §17 "V1_3 update (2026-07-17)" appended** (mirrors the §16 V1_2
+  pattern; carries the new change-log row verbatim + Δ1/Δ2 + the 2 Chris ambiguities;
+  requirements.md is now the V1_3 baseline, last-update-wins). The
+  `spec-v3-2026-07-17/` folder stays as the delta record (`requirements-v3.md` = full
+  decoded V1_3).
+- **TICKET 3 bug draft reworded** to "audit log (Work Order Log)" terminology
+  (`jira-bug-drafts.md`; defect unchanged, still ready to file).
+- **Deliverables regenerated:** `gen_blockers.py` + `gen_import.py` +
+  `gen_fresh_viu_workbook.py` (diffs confirmed limited to exactly the affected rows:
+  import 11 rows, FreshVIU 15 rows incl. the 4 notes-only, Tracker 8 title rows);
+  `testrail-id-map.csv` titles/sections refreshed from the case source (all 183 C-ids
+  preserved — no ID blanking). Import still VIU-word-free + feature-flag-free (0/0).
+- **Tally UNCHANGED: 135 VIU-Verified / 15 VIU-Deviation / 12 Blocked-NotBuilt /
+  20 Blocked-Env / 1 VIU-Pending = 183.** Zero conflicts with Chris's Round-2 answers;
+  no FDBUG/dup-pair impact.
+- **NEW OPEN QUESTIONS for Chris (send with the next PO round — spec-diff §H,
+  layman-phrase per Rule 7):** (a) which "second place" gets the note+gate — the
+  change-log says "the template dialog" but the §5-R15 body says the Processing Fee
+  dialog (S8-R11), and the plain template dialog's own Taxable control (S7-R12f)
+  carries no §5-R15 reference despite "Below every Taxable control"; (b) the gate is
+  unobservable at the WO Add/Edit dialog (Stories 1/2 already require See Financial
+  Data to open it) — confirm the admin template/Processing-Fee dialog is the intended
+  place a restricted user would otherwise see the Taxable control without the note.
+
+### 0.0d SPEC V1_3 + DESIGN ZIPS INGESTED (ANALYSIS ONLY) + EPIC CONFIRMED — 2026-07-17 (prior same-day event)
 
 - **Epic = SV-7387 — USER-CONFIRMED 2026-07-17** (was previously known only as the
   env/API naming; now an explicitly confirmed project fact). Canonical Confluence
