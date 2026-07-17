@@ -1276,3 +1276,19 @@ Full content as landed (re-GET verified MATCH against the authored case JSONs in
 </ol>
 ```
 
+
+---
+
+## Adversarial audit — 2026-07-17 (independent re-verification)
+
+Full-population re-audit of the V2.6 apply pass:
+- **Live-vs-local:** all **31 touched cases** (13 update_case + 18 add_case C29892–C29909) re-GET from TestRail and field-diffed against `cases/*.json` (title/preconditions/steps/expected) — **0/31 mismatches**. No TestRail re-push needed.
+- **Sections:** 4252 "Core parts — Pre-Resolve (Story 18)" + 4253 "API — Core Pre-Resolve (Story 18)" confirmed live, parent 4058, suite 1 (API cases in the API-titled section per Standing Rule 4).
+- **Retire candidates untouched:** C29317 / C29318 / C29321 confirmed live with pre-2026-07-17 `updated_on` and the OLD invoice-gate wording; RETIRE-PROPOSED notes present locally on SF-CORE-05/06/09; nothing deleted anywhere.
+- **Run 325 untouched:** get_results_for_case on C29315 / C29360 / C29343 — zero results created 2026-07-17.
+- **Tally recount (independent, from cases JSON):** 187 total / 187 unique IDs — VIU-Verified 130 · VIU-Pending 22 · Blocked-Env 27 · awaiting-Milos 5 · Deviation 3 · Open-Question 0. Matches PROJECT-STATE, Blockers Tracker (126+0+49+10+2=187), import CSV (187 rows, canonical header, 0 VIU/flag words), TestCases + Results workbooks (187 rows), id-map (187/187, new block C29892–C29909 titles verified live 18/18).
+- **Coverage:** every Story-18 requirement covered — C-R1 (SF-CORE-11/03), C-R2 (SF-CORE-18/08), C-R3 (SF-CORE-12), C-R4 (SF-CORE-13/04/03/08), C-R5 (SF-CORE-14 + SF-BULK-10), C-R6 (SF-CORE-07 reword — no separate case, recorded), C-R7 (existing SF-CORE-01, no edit needed per delta doc), C-R8 (SF-CORE-15), C-R9 (SF-CORE-16), C-R10 (SF-CORE-19), immutability AC (SF-CORE-17); Δ9→SF-RCV-11, Δ10→SF-RCV-12/13, Δ11→SF-VEND-07/08, Δ12→SF-VMIS-06, Δ13→SF-INV-01/02/03, Δ14→SF-BULK-06, Δ15→SF-POSEL-07/SF-BULK-11/SF-WOP-04/SF-QB-09(C29909), Δ16 metadata (no case needed). **No C-R coverage gaps.**
+- **Status honesty:** SF-INV-01/02/03 + SF-BULK-06 correctly flipped Verified→VIU-Pending; SF-VMIS-06 Deviation→Blocked-Env (QB-export leg); SF-COMP-11/14 stay Verified with explicit notes separating the verified base behavior from the Blocked-Env spec-sourced core leg. No dishonest statuses found.
+- **One defect found & fixed (deliverable text only, not TestRail):** `gen_blockers.py` hardcoded "(all 159 cases)" in the Blockers Tracker header — made dynamic (now "all 187 cases") and the Tracker md/xlsx regenerated. Commit: "Simple Flow V2.6 apply: audit corrections".
+
+**Verdict: CLEAN** (after the one deliverable-header fix).

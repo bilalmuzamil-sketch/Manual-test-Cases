@@ -535,8 +535,8 @@ def main():
     lines.append("> Source of truth for what every authored Simple Flow case is waiting on "
                  "and who unblocks it. Regenerate with `python3 build/simple-flow/gen_blockers.py`.")
     lines.append("> Companion upload file: `testrail-import/simple-flow-v1-testrail-import.csv` "
-                 "(all 159 cases). Update loop: `build/simple-flow/gen_update.py` "
-                 "(+ `UPDATE-LOOP-README.md`).")
+                 "(all {} cases). Update loop: `build/simple-flow/gen_update.py` "
+                 "(+ `UPDATE-LOOP-README.md`).".format(len(rows)))
     lines.append("")
     lines.append("**Total authored cases: {}**".format(len(rows)))
     lines.append("")
