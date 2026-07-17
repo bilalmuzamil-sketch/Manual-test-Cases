@@ -355,8 +355,8 @@
  {
   "id": "SF-REV-14",
   "area": "Review ON (Story 16)",
-  "story_ref": "R Core parts / invoicing block",
-  "title": "Verify cores are resolved per rules before sign-off and invoicing is blocked until both Reviewed and all cores resolved",
+  "story_ref": "S18 / Story 16 core paragraph",
+  "title": "Verify cores are decided before receiving ahead of Send to Review, and invoicing stays blocked until Reviewed and every core is decided",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "Work Order edit access + Finance access.",
@@ -366,20 +366,19 @@
   ],
   "steps": [
    "1. Resolve inventory cores in the completion modal (after Pick) before Send to Review.",
-   "2. For required-invoice, resolve special-order cores after the Receive round-trip before Send to Review; for optional-invoice, resolve at the Create Invoice gate after sign-off.",
-   "3. Attempt to invoice before both Reviewed and cores are resolved."
+   "2. Decide the special-order cores OK / Not OK on the resolve screen BEFORE receiving, before Send to Review (same in required- and optional-invoice flows).",
+   "3. Attempt to invoice before the work order is Reviewed and before every core is decided."
   ],
   "expected": [
    "1. Inventory cores are resolved before Send to Review.",
-   "2. Special-order cores follow the vendor-invoice rules.",
-   "3. Invoicing is blocked until the WO is Reviewed AND all cores are resolved.",
-   "4. In the review flow too, a waiting special-order core cannot be skipped: Send to Review / completion is blocked until the core is received and resolved, and invoicing stays blocked until both Reviewed and all cores resolved."
+   "2. Special-order cores are pre-resolved before receiving on the resolve screen before Send to Review — no longer deferred to the Create Invoice gate.",
+   "3. Invoicing is blocked until the work order is Reviewed AND every core is decided; only an undecided core blocks — a decided (un-received) core does not."
   ],
-  "design_ref": "requirements R Core parts",
+  "design_ref": "requirements-v4 Story 16 core paragraph + S18",
   "viu_status": "Blocked-Env",
-  "notes": "Aligned 2026-07-14 to design #4 un-skippable core (review flow). Blocked-Env (reconfirmed live 2026-07-14): a SPECIAL-ORDER (vendor-sourced) core cannot be created in this build — the genuine cored catalog part P550848 (core_charge=1) is stored is_core=0 and a vendor-sourced part request for it drops the core attribute, so a core that must be ORDERED and RECEIVED is not seedable. Needs a hand-seeded (dev/data) special-order core to drive the un-skippable-core completion behavior. Wording updated to the design #4 core-block behavior. design4 tooltip \"Receive the core part first — its core charge must be settled before you can complete.\"; waiting-card \"N parts waiting to receive — includes a core charge.\" + \"Receive it to settle the core (OK / Not OK) before completing this work order.\" (WO Review Flow.html). Copy is per design #4 — not yet live-confirmed because a special-order (vendor-sourced) core is not seedable in this build.",
+  "notes": "REWORDED 2026-07-17 to spec `_4` (V2.6): the Story-16 core paragraph now reads 'Special-order cores (both required and optional) are pre-resolved before receiving on the resolve screen before Send to Review (no longer deferred to the invoice gate)' — the invoice-gate leg was dropped and the un-skippable/receive-first reading is replaced by gate-on-undecided (C-R4). Blocked-Env: a special-order (vendor-sourced) core is still not seedable in this build (P550848 is_core=0; a vendor-sourced part request drops the core attribute) — needs a dev-seeded special-order core. ALSO: Story 18 / SV-8353 is a new dev plan, so the pre-resolve build is likely NOT deployed on sv7301 yet — probe the completion wizard for the resolve step + the pre-resolve endpoint before any re-VIU.",
   "api_related": false,
-  "fresh_run": "2026-07-14"
+  "fresh_run": "2026-07-17"
  },
  {
   "id": "SF-REV-15",
@@ -1302,25 +1301,30 @@
  {
   "id": "SF-QB-09",
   "area": "QuickBooks / Inventory Integrity",
-  "story_ref": "§8 open question (Part Sales impact — BE investigation)",
-  "title": "Investigate: Part Sales unaffected by the shared order/status logic (requested -> orderable/waiting-to-receive)",
+  "story_ref": "§8 Part Sales — confirmed (Jul 14) + S7/S8 part-sale AC",
+  "title": "Verify part-sale order status transitions are not regressed by the shared order/status logic (requested to waiting-to-receive to received)",
   "priority": "Low",
   "type": "Functional",
   "permissions_required": "Inventory / Part Sales visibility.",
   "preconditions": [
-   "1. PLACEHOLDER for a new V2.4 §8 open question (needs BE investigation)."
+   "1. Signed in as Admin.",
+   "2. A Part Sale exists (or can be created) to which a vendor part can be added."
   ],
   "steps": [
-   "1. Investigation pending — steps to be defined once dev confirms whether the shared order/status logic touches Part Sales."
+   "1. Add a vendor part to the Part Sale so a purchase order is created.",
+   "2. Follow the order's status as it is ordered and then received (same PO/receive pipeline as work orders).",
+   "3. Confirm the part sale itself progresses normally after receiving."
   ],
   "expected": [
-   "1. OPEN / NEEDS INVESTIGATION — expected result to be defined after dev confirmation. Keep Part Sales unchanged unless the shared logic forces a change (V2.4 §8)."
+   "1. The part-sale purchase order moves through the normal statuses (requested, then waiting to receive, then received) with no errors.",
+   "2. Receiving the part-sale PO behaves like receiving a work-order PO (same pipeline).",
+   "3. The part sale is not broken by the shared order/status logic."
   ],
-  "design_ref": "requirements §8 (Part Sales impact investigation)",
-  "viu_status": "Open-Question",
-  "notes": "NEW V2.4 §8 open question (D9). Placeholder only — do NOT fabricate expected. The shared order/status logic (requested -> orderable/waiting-to-receive; PO-on-order without vendor/cost) may touch Part Sales; confirm with dev and report. Excluded from the TestRail XML update batch until scoped. | 2026-07-13: NOT in testrail-id-map.csv (no C-ID) - Open-Question / dev-investigation case, not created in TestRail. Follow-up: assign a C-ID only if/when it is imported after dev confirmation. | 2026-07-14 grind: remains an Open-Question / dev BE-investigation. The claim (Part Sales unaffected by the shared requested->orderable/waiting-to-receive order-status logic) is a back-end code-path question that is NOT meaningfully UI-observable from the app; confirming it requires dev to trace whether the shared order/status logic touches the Part Sales flow. Still unmapped in testrail-id-map.csv (no C-ID) — assign a C-ID only if imported after dev confirmation. Kept Open-Question.",
+  "design_ref": "requirements-v4 §8 'Part Sales — confirmed (Jul 14)'",
+  "viu_status": "VIU-Pending",
+  "notes": "RESCOPED 2026-07-17 per spec `_4` (V2.6) Δ15 — the §8 'Part Sales impact (investigation — BE)' open question is now CONFIRMED in-spec ('Part Sales — confirmed (Jul 14)': adding a part on a Part Sale already creates a PO received via the same PO/receive pipeline; part-sale POs in scope for PO multi-select + Bulk Receive + Accept Delivery). This case now covers the spec's residual check ('the new order/status logic does not regress part-sale status transitions'); the in-scope part-sale PO behaviors are covered by the new cases SF-POSEL-07 (PO list / multi-select), SF-BULK-11 (Bulk Receive) and SF-WOP-04 (Waiting on Parts). Open-Question RESOLVED → VIU-Pending (seedable per Rule 14: create a Part Sale with a vendor part). ADDED TO TESTRAIL 2026-07-17 (was deliberately unmapped while an open question).",
   "api_related": false,
-  "fresh_run": "2026-07-14"
+  "fresh_run": "2026-07-17"
  },
  {
   "id": "SF-AUTO-01",

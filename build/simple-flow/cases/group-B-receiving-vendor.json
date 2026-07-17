@@ -333,27 +333,30 @@
   "id": "SF-VMIS-06",
   "area": "Vendor Missing on WO PO (Story 6)",
   "story_ref": "S6-R6",
-  "title": "Verify reports mark Vendor Missing POs as 'needs vendor'",
+  "title": "Verify a Vendor Missing PO's spend is excluded from the QuickBooks Vendor Bill export and the Vendors Expenses report until a vendor is assigned",
   "priority": "Low",
   "type": "Functional",
   "permissions_required": "Reports access.",
   "preconditions": [
    "1. Signed in as Admin.",
-   "2. A Vendor Missing PO exists.",
-   "3. A relevant PO report is available."
+   "2. A Vendor Missing PO with a non-zero cost exists."
   ],
   "steps": [
-   "1. Open the PO report that lists POs.",
-   "2. Find the Vendor Missing PO."
+   "1. Open the Vendors Expenses report and look for the vendor-missing PO's spend.",
+   "2. Inspect the QuickBooks Vendor Bill export for that PO.",
+   "3. Assign a vendor to the PO and check both again."
   ],
   "expected": [
-   "1. The report marks the Vendor Missing PO as 'needs vendor'."
+   "1. While the PO has no vendor, its spend is NOT counted in the Vendors Expenses report.",
+   "2. Its spend is excluded from the QuickBooks Vendor Bill export.",
+   "3. There is no dedicated purchase-order report and no 'needs vendor' marker — nothing 'marks' these POs.",
+   "4. Once a vendor is assigned, the spend flows into both normally."
   ],
-  "design_ref": "requirements S6-R6",
-  "viu_status": "Deviation",
-  "notes": "Deviation (observed 2026-07-14): the Reports area has NO dedicated Vendor-Missing / 'needs vendor' PO report. Current reports = Timesheet Activities, Sales, Technician Efficiency, Advisor Analysis, Shop Efficiency, Sales Tax Collected, A/R Aging (Summary/Detail/Collection), A/P Aging (Summary/Detail), A/P Unpaid Invoices, IBS Batches, QB Unexported, Notes, Reminders — none flag vendor-missing POs as 'needs vendor'. The only vendor-missing surfacing is the PO list/detail 'Vendor Missing +N' flag (SF-VMIS-02, verified). Spec S6-R6's report requirement is not implemented as a report. Flag for PO/dev.",
+  "design_ref": "requirements-v4 S6-R6 (rewritten 2026-07-16)",
+  "viu_status": "Blocked-Env",
+  "notes": "RESCOPED 2026-07-17 to spec `_4` (V2.6) Δ12 — S6-R6 was REWRITTEN to match code (change-log 2026-07-16, verified in VendorBillExportQueryHandler / VendorsExpensesQueryHandler): no dedicated PO report and no 'needs vendor' marker exist; a vendor-missing PO's spend is simply excluded from the QuickBooks Vendor Bill export and the Vendors Expenses report until a vendor is assigned. Our 2026-07-14 Deviation finding ('the Reports area has NO needs-vendor report') is now the spec itself → Deviation RESOLVED by rescope; the dev-route item drops. Blocked-Env: the QB Vendor Bill export leg needs a QuickBooks-connected company (not connected on sv7301). The Vendors Expenses report leg is self-serviceable (seed a costed vendor-missing PO) — re-VIU at the next live pass; NOTE the 2026-07-14 Reports-area inventory did not list a 'Vendors Expenses' report, so its surface/location must be confirmed live (may live outside the Reports menu) — flagged, not invented.",
   "api_related": false,
-  "fresh_run": "2026-07-14"
+  "fresh_run": "2026-07-17"
  },
  {
   "id": "SF-VMIS-07",
@@ -678,31 +681,32 @@
  {
   "id": "SF-BULK-06",
   "area": "PO Bulk Receive Page (Story 8)",
-  "story_ref": "S8-R7 / S10-R2",
-  "title": "Verify field editability and locking on Bulk Receive (qty and cost editable; sell locks after WO invoiced/paid)",
+  "story_ref": "S8-R7 / S10-R3",
+  "title": "Verify Bulk Receive field editability: quantity editable (partial receive), cost editable ONLY when it is $0, sell locks after the WO is invoiced/paid",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "receive access.",
   "preconditions": [
    "1. Signed in as Admin.",
-   "2. The Bulk Receive page has a PO whose WO is NOT yet invoiced/paid, and another whose WO IS invoiced/paid."
+   "2. The Bulk Receive page has a part whose cost is $0, a part whose cost is not $0, and a PO whose work order IS invoiced/paid."
   ],
   "steps": [
-   "1. On the not-yet-invoiced PO, edit quantity, cost and sell.",
-   "2. On the invoiced/paid PO, try to edit sell.",
-   "3. Hover the locked sell field."
+   "1. Edit the quantity on a part (partial receive).",
+   "2. Try to edit the cost on the part whose cost is $0.",
+   "3. Try to edit the cost on the part whose cost is not $0.",
+   "4. On the invoiced/paid PO, try to edit the sell price and hover the locked field."
   ],
   "expected": [
-   "1. Quantity and cost are editable; sell is editable while the work order is not invoiced/paid.",
-   "2. After the work order is invoiced/paid, sell is locked with a lock icon and tooltip 'Locked — this part is already invoiced or paid'.",
-   "3. After locking, only cost remains editable.",
-   "4. The field rules have parity with the Accept-Delivery receive screen; cost is editable when $0 or missing on either surface."
+   "1. Quantity is editable (partial receive supported).",
+   "2. Cost is editable when it is $0 (pulled from the work order / PO when available).",
+   "3. Cost is NOT editable when it is not $0.",
+   "4. Sell price is editable until the work order is invoiced/paid, then locked with a lock icon and tooltip 'Locked — this part is already invoiced or paid'."
   ],
-  "design_ref": "Receive Vendor Parts - v2.html",
-  "viu_status": "VIU-Verified",
-  "notes": "Wording+VIU 2026-07-13: receive surfaces re-confirmed live (RCV-po-list.png / RCV-bulk-receive.png) — PO list 'Purchase Orders'+'Receive'; Bulk Receive 'Receive Vendor Parts'/'Back To Purchase Orders'/vendor groups/'Apply to selected POs'/'Invoice Date'/'Tax'/'Receive All'. Behavior per prior VIU (BATCH 7 / 2026-07-10, FV screenshots). (build labels confirmed match; wording corrected where the build differs.)",
+  "design_ref": "requirements-v4 S8-R7",
+  "viu_status": "VIU-Pending",
+  "notes": "REWORDED 2026-07-17 to spec `_4` (V2.6) Δ14 (S8-R7: 'Cost is editable (if the cost is 0, if cost is not 0 cost filed should not be editable)'). The previous VIU-Verified was against the OLD 'qty and cost editable' build behavior (2026-07-13 labels). The $0-only rule has NOT been observed → re-VIU needed; if the build allows editing a non-zero cost on Bulk Receive it is a deviation until dev ships. SPEC INCONSISTENCY flagged for Milos (Rule 15.5): the surviving S8-R7 tail 'after it locks, only cost remains editable' contradicts the new only-if-$0 rule for a non-zero-cost part — cited, not silently resolved (this case asserts the $0-only rule per latest-wins; S10-R3/S12-R5 '$0/missing' parity aligns with it).",
   "api_related": false,
-  "fresh_run": "2026-07-13"
+  "fresh_run": "2026-07-17"
  },
  {
   "id": "SF-BULK-07",
@@ -791,35 +795,36 @@
  {
   "id": "SF-BULK-10",
   "area": "PO Bulk Receive Page (Story 8)",
-  "story_ref": "S8-C1 / S8-C2",
-  "title": "Verify a cored part's Ok/Not OK resolution becomes available once received, and core-only partial receive is supported",
+  "story_ref": "S18 C-R5",
+  "title": "Verify a pre-resolved core's decision is applied automatically at receive with no re-prompt, and core-only partial receive is supported",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "receive access.",
   "preconditions": [
    "1. Signed in as Admin.",
-   "2. A PO on the Bulk Receive page holds a cored part."
+   "2. A PO on the Bulk Receive page holds a cored part whose core was already decided (OK or Not OK) on the work order."
   ],
   "steps": [
    "1. Receive only the cored line (core-only partial receive).",
-   "2. Confirm an Ok/Not OK resolution becomes available for the core."
+   "2. Watch for any core prompt during the receive.",
+   "3. Check the core's state on the work order lines and the customer invoice afterwards."
   ],
   "expected": [
-   "1. EXPECTED PER SPEC: core-only partial receive is supported.",
-   "2. Once the cored part is received, its Ok/Not OK resolution becomes available (for Story 3/4 resolution).",
-   "3. Consistent with the completion rule that a waiting core cannot be skipped: the core must be received (core-only partial receive supported) before its Ok / Not OK can be resolved."
+   "1. Core-only partial receive is supported.",
+   "2. The saved OK / Not OK decision is applied automatically at receive — the user is NOT asked again (no duplicate prompt).",
+   "3. The received core shows its resolved state with no OK / Not OK buttons, and the customer invoice does not change at receive."
   ],
-  "design_ref": "requirements S8-C1/C2",
+  "design_ref": "requirements-v4 S18 C-R5/C-R9",
   "viu_status": "Blocked-Env",
-  "notes": "Aligned 2026-07-14 to design #4 un-skippable core. Blocked-Env (reconfirmed live 2026-07-14): a SPECIAL-ORDER (vendor-sourced) core cannot be created in this build — the genuine cored catalog part P550848 (core_charge=1) is stored is_core=0 and a vendor-sourced part request for it drops the core attribute, so a core that must be ORDERED and RECEIVED is not seedable. Needs a hand-seeded (dev/data) special-order core to drive the un-skippable-core completion behavior. Wording updated to the design #4 core-block behavior. design4 tooltip \"Receive the core part first — its core charge must be settled before you can complete.\"; waiting-card \"N parts waiting to receive — includes a core charge.\" + \"Receive it to settle the core (OK / Not OK) before completing this work order.\" (WO Review Flow.html). Copy is per design #4 — not yet live-confirmed because a special-order (vendor-sourced) core is not seedable in this build.",
+  "notes": "REWORDED 2026-07-17 to spec `_4` (V2.6) Story 18 C-R5: receive no longer 'makes resolution available' (old S8-C1) — a pre-resolved decision AUTO-APPLIES at receive (OK → vendor core return created automatically; Not OK → core created already resolved, no return). Core-only partial receive (old S8-C2) retained. Blocked-Env: a special-order (vendor-sourced) core is still not seedable in this build (P550848 is_core=0; a vendor-sourced part request drops the core attribute) — needs a dev-seeded special-order core. ALSO: Story 18 / SV-8353 is a new dev plan, so the pre-resolve build is likely NOT deployed on sv7301 yet — probe the completion wizard for the resolve step + the pre-resolve endpoint before any re-VIU.",
   "api_related": false,
-  "fresh_run": "2026-07-14"
+  "fresh_run": "2026-07-17"
  },
  {
   "id": "SF-INV-01",
   "area": "Apply Invoice to Selected POs (Story 9)",
   "story_ref": "S9-R1",
-  "title": "Verify each vendor group has an 'Apply to selected POs' control enabled only with an invoice # and ≥1 PO selected",
+  "title": "Verify each vendor group has an invoice number field under the vendor name, available only when at least one PO of that vendor is selected (no Apply button)",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "receive access.",
@@ -828,25 +833,26 @@
    "2. The Bulk Receive page has a vendor group with multiple POs."
   ],
   "steps": [
-   "1. Locate the 'Apply to selected POs' control under the vendor name.",
-   "2. With no invoice # and no PO selected, confirm it is disabled.",
-   "3. Enter an invoice # and select at least one PO under that vendor."
+   "1. Look under the vendor name for the field to enter one invoice number.",
+   "2. With no PO of that vendor selected, confirm the field is not available.",
+   "3. Select at least one PO under that vendor and type an invoice number."
   ],
   "expected": [
-   "1. EXPECTED PER SPEC: the control appears under the vendor name.",
-   "2. It is enabled only when an invoice number is entered and at least one PO under that vendor is selected."
+   "1. A field to enter one invoice number for that vendor's POs sits under the vendor name.",
+   "2. It is available only when at least one PO under that vendor is selected.",
+   "3. There is no 'Apply' button — the number is remembered as typed."
   ],
-  "design_ref": "Receive Vendor Parts - v2.html; requirements S9-R1",
-  "viu_status": "VIU-Verified",
-  "notes": "Wording+VIU 2026-07-13: receive surfaces re-confirmed live (RCV-po-list.png / RCV-bulk-receive.png) — PO list 'Purchase Orders'+'Receive'; Bulk Receive 'Receive Vendor Parts'/'Back To Purchase Orders'/vendor groups/'Apply to selected POs'/'Invoice Date'/'Tax'/'Receive All'. Behavior per prior VIU (BATCH 7 / 2026-07-10, FV screenshots). (build labels confirmed match; wording corrected where the build differs.)",
+  "design_ref": "requirements-v4 S9-R1 (2026-07-16 change-log: Apply button removed)",
+  "viu_status": "VIU-Pending",
+  "notes": "REWORDED 2026-07-17 to spec `_4` (V2.6) Δ13 (change-log 2026-07-16: 'Apply button removed from Bulk Invoice — invoice number is typed & remembered, no button'). The previous VIU-Verified was against the OLD build behavior — the live label 'Apply to selected POs' was confirmed present 2026-07-13 (RCV-bulk-receive.png). The new no-button behavior has NOT been observed → re-VIU needed; the current build likely DEVIATES (button still present) until dev ships the removal.",
   "api_related": false,
-  "fresh_run": "2026-07-13"
+  "fresh_run": "2026-07-17"
  },
  {
   "id": "SF-INV-02",
   "area": "Apply Invoice to Selected POs (Story 9)",
   "story_ref": "S9-R2",
-  "title": "Verify Apply pre-fills one invoice number into only the selected POs of that vendor, still editable per PO",
+  "title": "Verify a typed invoice number fills only the selected POs of that vendor with no Apply click, still editable per PO",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "receive access.",
@@ -855,27 +861,27 @@
    "2. A vendor group has several POs; some are selected."
   ],
   "steps": [
-   "1. Enter one invoice number.",
-   "2. Click Apply.",
+   "1. Select some POs under a vendor (leave others unselected).",
+   "2. Type one invoice number in that vendor's invoice number field.",
    "3. Inspect the selected and unselected POs' invoice fields.",
    "4. Edit one PO's invoice number."
   ],
   "expected": [
-   "1. EXPECTED PER SPEC: the invoice number is pre-filled into only the selected POs of that vendor.",
+   "1. The typed number is filled into only the selected POs of that vendor — no Apply click needed (the number is remembered as typed).",
    "2. Unselected POs are not changed.",
-   "3. Each PO's invoice number remains editable after Apply."
+   "3. Each PO's invoice number remains editable afterwards; then Receive all works for that vendor."
   ],
-  "design_ref": "requirements S9-R2",
-  "viu_status": "VIU-Verified",
-  "notes": "Wording+VIU 2026-07-13: receive surfaces re-confirmed live (RCV-po-list.png / RCV-bulk-receive.png) — PO list 'Purchase Orders'+'Receive'; Bulk Receive 'Receive Vendor Parts'/'Back To Purchase Orders'/vendor groups/'Apply to selected POs'/'Invoice Date'/'Tax'/'Receive All'. Behavior per prior VIU (BATCH 7 / 2026-07-10, FV screenshots). (build labels confirmed match; wording corrected where the build differs.)",
+  "design_ref": "requirements-v4 S9-R2",
+  "viu_status": "VIU-Pending",
+  "notes": "REWORDED 2026-07-17 to spec `_4` (V2.6) Δ13: the fill happens as the number is typed — no Apply click. Previous VIU-Verified was against the OLD Apply-button build (2026-07-13). New behavior NOT observed → re-VIU needed; likely a build deviation until dev removes the button.",
   "api_related": false,
-  "fresh_run": "2026-07-13"
+  "fresh_run": "2026-07-17"
  },
  {
   "id": "SF-INV-03",
   "area": "Apply Invoice to Selected POs (Story 9)",
   "story_ref": "S9-R3",
-  "title": "Verify Apply Invoice is scoped per vendor, not offered for the vendorless group, and allows a reused invoice number",
+  "title": "Verify the vendor invoice number field is scoped per vendor, absent for the vendorless group, and allows a reused invoice number",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "receive access.",
@@ -884,20 +890,20 @@
    "2. The Bulk Receive page has multiple vendor groups plus a vendorless group."
   ],
   "steps": [
-   "1. Confirm Apply Invoice is available per vendor group.",
-   "2. Confirm the vendorless group has no Apply Invoice control.",
-   "3. Apply the same invoice number to POs where uniqueness is relaxed."
+   "1. Confirm each vendor group has its own invoice number field.",
+   "2. Confirm the vendorless group shows no invoice number field.",
+   "3. Type the same invoice number for POs of another vendor."
   ],
   "expected": [
-   "1. EXPECTED PER SPEC: Apply Invoice is scoped to each vendor group.",
-   "2. The vendorless group has no Apply Invoice control.",
+   "1. The invoice number field is scoped to each vendor group — other vendors' POs and unselected POs are unaffected.",
+   "2. The vendorless group shows no invoice-number field (assign a vendor first).",
    "3. The same invoice number can be reused (uniqueness relaxed)."
   ],
-  "design_ref": "requirements S9-R3",
-  "viu_status": "VIU-Verified",
-  "notes": "Wording+VIU 2026-07-13: receive surfaces re-confirmed live (RCV-po-list.png / RCV-bulk-receive.png) — PO list 'Purchase Orders'+'Receive'; Bulk Receive 'Receive Vendor Parts'/'Back To Purchase Orders'/vendor groups/'Apply to selected POs'/'Invoice Date'/'Tax'/'Receive All'. Behavior per prior VIU (BATCH 7 / 2026-07-10, FV screenshots). (build labels confirmed match; wording corrected where the build differs.)",
+  "design_ref": "requirements-v4 S9-R3",
+  "viu_status": "VIU-Pending",
+  "notes": "REWORDED 2026-07-17 to spec `_4` (V2.6) Δ13: per-vendor scoping retained; the vendorless group now explicitly shows NO invoice-number field (new AC). Previous VIU-Verified was against the OLD Apply-button build (2026-07-13). New behavior NOT observed → re-VIU needed; likely a build deviation until dev ships.",
   "api_related": false,
-  "fresh_run": "2026-07-13"
+  "fresh_run": "2026-07-17"
  },
  {
   "id": "SF-PNFIX-01",
