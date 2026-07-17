@@ -1,0 +1,568 @@
+[
+ {
+  "id": "FLT-CHIP-01",
+  "area": "Active Filter Chips and Clear Filters",
+  "title": "A chip with a selected value turns into the active blue state and shows the value",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Any signed-in user with access to the Work Orders page (the spec defines no role-based differences - OQ-4).",
+  "preconditions": [
+   "1. You are signed in to the ShopView App on a desktop browser.",
+   "2. You are on the Work Orders page with no filters selected (all chips in their default grey state)."
+  ],
+  "steps": [
+   "1. Open the Status filter and tick one status (for example Estimate).",
+   "2. Click outside to close the dropdown and look at the Status chip."
+  ],
+  "expected": [
+   "1. The Status chip changes to an active/highlighted look (blue pill).",
+   "2. The chip displays the selected value (for example 'Status: Estimate').",
+   "3. The other chips stay in their default state."
+  ],
+  "design_ref": "design-notes.md B.1 #4 (11854:26246)",
+  "spec_ref": "requirements.md Story 7 S7-R1",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "FLT-CHIP-02",
+  "area": "Active Filter Chips and Clear Filters",
+  "title": "A chip with several values shows the first values and shortens the rest with an ellipsis",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Any signed-in user with access to the Work Orders page (the spec defines no role-based differences - OQ-4).",
+  "preconditions": [
+   "1. You are signed in to the ShopView App on a desktop browser.",
+   "2. You are on the Work Orders page on the All tab."
+  ],
+  "steps": [
+   "1. Open the Status filter and tick three or more statuses (for example Estimate, In progress and Approved).",
+   "2. Close the dropdown and read the Status chip label."
+  ],
+  "expected": [
+   "1. The chip lists the selected values starting with the first one and shortens the label when it gets too long (the design shows 'Status: Estimate, In progress, Approved...').",
+   "2. The chip stays a single compact pill - it does not grow to show every value in full."
+  ],
+  "design_ref": "design-notes.md B.1 #4 (11854:26246)",
+  "spec_ref": "requirements.md Story 7 S7-R2",
+  "viu_status": "VIU-Pending",
+  "notes": "The spec text says 'the first value followed by a COUNT of additional selections' while the spec's own example and the design show a comma-separated list truncated with an ellipsis - VIU-confirm the exact composition the build uses (list+ellipsis vs '+N' count).",
+  "api_related": false
+ },
+ {
+  "id": "FLT-CHIP-03",
+  "area": "Active Filter Chips and Clear Filters",
+  "title": "'Clear filters' appears to the right of the chips only when at least one filter is active",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Any signed-in user with access to the Work Orders page (the spec defines no role-based differences - OQ-4).",
+  "preconditions": [
+   "1. You are signed in to the ShopView App on a desktop browser.",
+   "2. You are on the Work Orders page with no filters selected."
+  ],
+  "steps": [
+   "1. Look at the right end of the filter chip row with no filters active.",
+   "2. Select any filter value (for example one status).",
+   "3. Look at the right end of the chip row again.",
+   "4. Remove the selection (Clear selection in the dropdown) and look once more."
+  ],
+  "expected": [
+   "1. With no filters active, no 'Clear filters' button/link is shown (there is nothing to click).",
+   "2. As soon as one filter is active, a blue 'Clear filters' link appears at the right end of the chip row.",
+   "3. When the last active filter is removed, 'Clear filters' disappears again."
+  ],
+  "design_ref": "design-notes.md B.1 #1 vs #4 (11854:24657, 11854:26246)",
+  "spec_ref": "requirements.md Story 7 S7-R3; S7-N1; Story 8 S8-N1",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "FLT-CHIP-04",
+  "area": "Active Filter Chips and Clear Filters",
+  "title": "'Clear filters' removes every active filter at once and all chips return to default",
+  "priority": "Critical",
+  "type": "Functional",
+  "permissions_required": "Any signed-in user with access to the Work Orders page (the spec defines no role-based differences - OQ-4).",
+  "preconditions": [
+   "1. You are signed in to the ShopView App on a desktop browser.",
+   "2. You are on the Work Orders page on the All tab.",
+   "3. Values are selected in at least three different filters (for example a status, a customer and Asset on site Yes)."
+  ],
+  "steps": [
+   "1. Click the 'Clear filters' link at the right end of the chip row.",
+   "2. Look at all the chips and the table."
+  ],
+  "expected": [
+   "1. Every active filter is cleared in one click.",
+   "2. All chips return to their default (inactive) look with no values shown.",
+   "3. The table shows the full unfiltered list again.",
+   "4. The 'Clear filters' link disappears."
+  ],
+  "design_ref": "design-notes.md B.1 #4 (11854:26246)",
+  "spec_ref": "requirements.md Story 8 S8-R1; §4 Key Decisions",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "FLT-CHIP-05",
+  "area": "Active Filter Chips and Clear Filters",
+  "title": "'Clear selection' inside one dropdown clears only that filter and leaves the others active",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Any signed-in user with access to the Work Orders page (the spec defines no role-based differences - OQ-4).",
+  "preconditions": [
+   "1. You are signed in to the ShopView App on a desktop browser.",
+   "2. You are on the Work Orders page on the All tab.",
+   "3. Values are selected in at least two different filters (for example a status and a customer)."
+  ],
+  "steps": [
+   "1. Open the Status dropdown and click 'Clear selection'.",
+   "2. Look at the Status chip, the Customer chip and the table."
+  ],
+  "expected": [
+   "1. Only the Status filter is cleared - its chip returns to default.",
+   "2. The Customer filter stays selected and active (blue) and keeps filtering the table.",
+   "3. 'Clear filters' remains visible because a filter is still active."
+  ],
+  "design_ref": "design-notes.md B.1 #4/#6 (11854:26246, 11854:24280)",
+  "spec_ref": "requirements.md Story 8 S8-R2; §4 Key Decisions",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "FLT-CHIP-06",
+  "area": "Active Filter Chips and Clear Filters",
+  "title": "Several different filters combine: only work orders matching every active filter remain",
+  "priority": "Critical",
+  "type": "Functional",
+  "permissions_required": "Any signed-in user with access to the Work Orders page (the spec defines no role-based differences - OQ-4).",
+  "preconditions": [
+   "1. You are signed in to the ShopView App on a desktop browser.",
+   "2. You are on the Work Orders page on the All tab.",
+   "3. Seed ZZAUTOTEST work orders so that: customer A has an Estimate work order and an Approved work order, and customer B has an Estimate work order."
+  ],
+  "steps": [
+   "1. Open the Status filter and tick Estimate.",
+   "2. Open the Customer filter and select customer A.",
+   "3. Look at the table."
+  ],
+  "expected": [
+   "1. Only customer A's Estimate work order is shown.",
+   "2. Customer A's Approved work order is hidden (wrong status) and customer B's Estimate work order is hidden (wrong customer) - each additional filter narrows the result further.",
+   "3. Both chips are in the active state and 'Clear filters' is visible."
+  ],
+  "design_ref": "design-notes.md B.1 #4 (11854:26246)",
+  "spec_ref": "requirements.md §2 Feature Overview (multi-criteria); Story 8 S8-R3 ('combination of active filters')",
+  "viu_status": "VIU-Pending",
+  "notes": "The spec never states the across-filter combination rule explicitly, but S8-R3's 'combination of active filters produces no matching work orders' implies each filter narrows (AND across filters, ANY within one filter) - VIU-confirm.",
+  "api_related": false
+ },
+ {
+  "id": "FLT-EMPTY-01",
+  "area": "Empty State",
+  "title": "A filter combination with no matching work orders shows a no-results empty state instead of a blank table",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Any signed-in user with access to the Work Orders page (the spec defines no role-based differences - OQ-4).",
+  "preconditions": [
+   "1. You are signed in to the ShopView App on a desktop browser.",
+   "2. You are on the Work Orders page on the All tab.",
+   "3. Work orders exist, but you can pick a filter combination that matches none of them (for example a customer plus a status that customer never has)."
+  ],
+  "steps": [
+   "1. Apply the filter combination that matches no work orders.",
+   "2. Look at the table area."
+  ],
+  "expected": [
+   "1. The table body is replaced by an empty state (not just a bare empty grid).",
+   "2. The empty state shows a message indicating no results were found for the current filters.",
+   "3. No error message or broken layout appears."
+  ],
+  "design_ref": "design-notes.md B.1 (empty state not drawn in the final WO frames - message text to be captured from the build)",
+  "spec_ref": "requirements.md Story 8 S8-R3",
+  "viu_status": "VIU-Pending",
+  "notes": "Exact empty-state message text is not in the final design set - VIU-confirm the real on-screen wording.",
+  "api_related": false
+ },
+ {
+  "id": "FLT-EMPTY-02",
+  "area": "Empty State",
+  "title": "The filtered empty state offers a way to clear the filters, and using it brings the list back",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Any signed-in user with access to the Work Orders page (the spec defines no role-based differences - OQ-4).",
+  "preconditions": [
+   "1. You are signed in to the ShopView App on a desktop browser.",
+   "2. You are on the Work Orders page showing the filtered empty state (a filter combination matching no work orders is applied)."
+  ],
+  "steps": [
+   "1. Read the empty state content.",
+   "2. Click the clear-filters prompt/link inside the empty state.",
+   "3. Look at the table and the chips."
+  ],
+  "expected": [
+   "1. The empty state includes a prompt or link to clear the filters.",
+   "2. Clicking it removes the active filters and the full work order list is shown again.",
+   "3. The chips return to their default state."
+  ],
+  "design_ref": "design-notes.md B.1 (empty state not drawn in the final WO frames)",
+  "spec_ref": "requirements.md Story 8 S8-R4",
+  "viu_status": "VIU-Pending",
+  "notes": "The exact prompt wording and whether it clears ALL filters in one click are not in the design set - VIU-confirm.",
+  "api_related": false
+ },
+ {
+  "id": "FLT-TAB-01",
+  "area": "Tab Behaviour",
+  "title": "The All tab shows all five filter chips, all working",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Any signed-in user with access to the Work Orders page (the spec defines no role-based differences - OQ-4).",
+  "preconditions": [
+   "1. You are signed in to the ShopView App on a desktop browser.",
+   "2. You are on the Work Orders page."
+  ],
+  "steps": [
+   "1. Click the All tab.",
+   "2. Count the filter chips and click each one briefly."
+  ],
+  "expected": [
+   "1. All five chips are shown: Status, Customer, Lead Technician, Service Advisor, Asset on site.",
+   "2. Each chip opens its dropdown and can be used."
+  ],
+  "design_ref": "design-notes.md B.1 #1 (11854:24657)",
+  "spec_ref": "requirements.md Story 9 S9-R1",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "FLT-TAB-02",
+  "area": "Tab Behaviour",
+  "title": "On the Estimates tab the Status filter is not offered; the other four filters work on top of the Estimates pre-filter",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Any signed-in user with access to the Work Orders page (the spec defines no role-based differences - OQ-4).",
+  "preconditions": [
+   "1. You are signed in to the ShopView App on a desktop browser.",
+   "2. Estimate work orders exist for at least two different customers.",
+   "3. You are on the Work Orders page."
+  ],
+  "steps": [
+   "1. Click the Estimates tab.",
+   "2. Look at the filter bar.",
+   "3. Open the Customer filter and select one customer.",
+   "4. Look at the table."
+  ],
+  "expected": [
+   "1. The Status filter is not offered as a usable filter on this tab (per the spec the chip is hidden; the tab already pre-filters to Estimate).",
+   "2. Customer, Lead Technician, Service Advisor and Asset on site chips are shown and usable.",
+   "3. After step 3 the table shows only that customer's ESTIMATE work orders - the customer filter narrows the pre-filtered Estimates list."
+  ],
+  "design_ref": "design-notes.md B.1 #2 (11972:32318)",
+  "spec_ref": "requirements.md Story 9 S9-R2; Story 2 S2-N1; §4 Key Decisions",
+  "viu_status": "VIU-Pending",
+  "notes": "SPEC-vs-DESIGN CONFLICT: the spec says the Status chip is HIDDEN on Estimates, but the final design frame 11972:32318 shows a pale/disabled chip reading 'Status: Estimate'. Authored to the spec's intent (no usable Status filter); a PO question asks which presentation ships - VIU-confirm and adjust expected wording to the build.",
+  "api_related": false
+ },
+ {
+  "id": "FLT-TAB-03",
+  "area": "Tab Behaviour",
+  "title": "On the Completed tab the Status filter is not offered; the other four filters work on top of the Completed pre-filter",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Any signed-in user with access to the Work Orders page (the spec defines no role-based differences - OQ-4).",
+  "preconditions": [
+   "1. You are signed in to the ShopView App on a desktop browser.",
+   "2. Complete work orders exist for at least two different customers.",
+   "3. You are on the Work Orders page."
+  ],
+  "steps": [
+   "1. Click the Completed tab.",
+   "2. Look at the filter bar.",
+   "3. Open the Customer filter and select one customer.",
+   "4. Look at the table."
+  ],
+  "expected": [
+   "1. The Status filter is not offered as a usable filter on this tab (the tab already pre-filters to Complete).",
+   "2. Customer, Lead Technician, Service Advisor and Asset on site chips are shown and usable.",
+   "3. After step 3 the table shows only that customer's COMPLETE work orders."
+  ],
+  "design_ref": "design-notes.md B.1 #2 (11972:32318 - Estimates equivalent; Completed not drawn separately)",
+  "spec_ref": "requirements.md Story 9 S9-R3; Story 2 S2-N2; §4 Key Decisions",
+  "viu_status": "VIU-Pending",
+  "notes": "No dedicated Completed-tab frame exists in the final design set - behavior mirrors the Estimates frame; VIU-confirm (same spec-vs-design chip question as the Estimates tab).",
+  "api_related": false
+ },
+ {
+  "id": "FLT-TAB-04",
+  "area": "Tab Behaviour",
+  "title": "On the My Work Orders tab all five filters are shown and narrow the already user-scoped list",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "A signed-in user who has work orders assigned to them (the spec defines no role-based differences - OQ-4).",
+  "preconditions": [
+   "1. You are signed in to the ShopView App on a desktop browser.",
+   "2. Work orders assigned to you exist in at least two statuses, and other users' work orders also exist.",
+   "3. You are on the Work Orders page."
+  ],
+  "steps": [
+   "1. Click the My Work Orders tab and count the chips.",
+   "2. Open the Status filter and tick one status your work orders have.",
+   "3. Look at the table."
+  ],
+  "expected": [
+   "1. All five filter chips are shown on the My Work Orders tab.",
+   "2. The table only ever shows work orders assigned to you (the tab's own scope stays).",
+   "3. After step 2 it shows only YOUR work orders in the ticked status - the filters narrow the user-scoped list, they do not widen it to other users' work orders."
+  ],
+  "design_ref": "design-notes.md B.1 #1 (11854:24657 - tab row)",
+  "spec_ref": "requirements.md Story 9 S9-R4; §4 Key Decisions (My Work Orders tab does not remove filters)",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "FLT-TAB-05",
+  "area": "Tab Behaviour",
+  "title": "Filter selections survive tab switching; a Status selection hidden on Estimates/Completed comes back on the All tab",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Any signed-in user with access to the Work Orders page (the spec defines no role-based differences - OQ-4).",
+  "preconditions": [
+   "1. You are signed in to the ShopView App on a desktop browser.",
+   "2. You are on the Work Orders page on the All tab.",
+   "3. A Status selection (for example Approved) and a Customer selection are active."
+  ],
+  "steps": [
+   "1. Click the Estimates tab and look at the filter bar and the table.",
+   "2. Click back to the All tab and look again."
+  ],
+  "expected": [
+   "1. On the Estimates tab the Status selection is not applied and not shown as an editable filter (incompatible with the tab), but the Customer selection is still shown and still filters the list.",
+   "2. Back on the All tab the Status chip reappears with the SAME selection (Approved) still applied - the selection was retained in memory, not lost.",
+   "3. The Customer selection is unchanged throughout."
+  ],
+  "design_ref": "design-notes.md B.1 #2/#4 (11972:32318, 11854:26246)",
+  "spec_ref": "requirements.md Story 9 S9-R5; S9-N1",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "FLT-PERS-01",
+  "area": "Persistence",
+  "title": "Leaving the Work Orders page and coming back restores the filters and the bar state exactly",
+  "priority": "Critical",
+  "type": "Functional",
+  "permissions_required": "Any signed-in user with access to the Work Orders page (the spec defines no role-based differences - OQ-4).",
+  "preconditions": [
+   "1. You are signed in to the ShopView App on a desktop browser.",
+   "2. You are on the Work Orders page with a Status and a Customer selection active and the filter bar expanded."
+  ],
+  "steps": [
+   "1. Open one work order from the list (go to its detail page).",
+   "2. Go back to the Work Orders page.",
+   "3. Look at the chips, the table and the filter bar state.",
+   "4. Repeat the round-trip once more with the filter bar collapsed before leaving."
+  ],
+  "expected": [
+   "1. After step 2 the same Status and Customer selections are still applied - chips active with the same values, table filtered the same way.",
+   "2. The filter bar is still expanded (as you left it).",
+   "3. After step 4 the filter bar comes back collapsed - the collapsed/expanded state is restored too."
+  ],
+  "design_ref": "design-notes.md B.1 #4/#5 (11854:26246, 11854:26564)",
+  "spec_ref": "requirements.md Story 10 S10-R1; Story 1 S1-R7",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "FLT-PERS-02",
+  "area": "Persistence",
+  "title": "Filter selections persist while the browser session lasts, wherever you go in the app",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Any signed-in user with access to the Work Orders page (the spec defines no role-based differences - OQ-4).",
+  "preconditions": [
+   "1. You are signed in to the ShopView App on a desktop browser.",
+   "2. Filters are applied on the Work Orders page (for example a status and a customer)."
+  ],
+  "steps": [
+   "1. Visit several other areas of the app (Customers, Parts, Reports) and use them briefly.",
+   "2. Return to the Work Orders page.",
+   "3. Look at the chips and the table."
+  ],
+  "expected": [
+   "1. The filter selections are still applied after moving around the app - you do not have to re-apply them within the same browser session."
+  ],
+  "design_ref": "design-notes.md B.1 #4 (11854:26246)",
+  "spec_ref": "requirements.md Story 10 S10-R2; §2/§4 (persist across navigation, saved per user)",
+  "viu_status": "VIU-Pending",
+  "notes": "OPEN QUESTION (OQ-5): S10-R2 says persistence lasts 'for the duration of the browser session' while §2/§4 say the state is 'saved per user and reloaded when they return' (which reads as surviving a browser restart). This case tests the common ground both readings agree on (same-session persistence). Whether filters must ALSO survive closing the browser / logging out is a PO question - do not fail the build on that until answered.",
+  "api_related": false
+ },
+ {
+  "id": "FLT-PERS-03",
+  "area": "Persistence",
+  "title": "Saved filters are per user: one user's filters do not appear for another user",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Two different user accounts with access to the Work Orders page.",
+  "preconditions": [
+   "1. Two test users (A and B) can sign in to the same shop.",
+   "2. User A has applied filters on the Work Orders page (for example Status: Approved)."
+  ],
+  "steps": [
+   "1. As user B (separate login/browser profile), open the Work Orders page.",
+   "2. Look at the filter chips and the table.",
+   "3. As user B, apply a DIFFERENT filter (for example a customer), then re-check user A's view."
+  ],
+  "expected": [
+   "1. User B does not see user A's filters - user B's page opens with user B's own (or no) filters.",
+   "2. User B's new filter does not change what user A sees; each user keeps their own saved filter state."
+  ],
+  "design_ref": "design-notes.md B.1 #4 (11854:26246)",
+  "spec_ref": "requirements.md Story 10 S10-R3; §4 Key Decisions (saved per user)",
+  "viu_status": "VIU-Pending",
+  "notes": "Use two fresh ZZAUTOTEST staff logins if needed (Standing Rule 5/14).",
+  "api_related": false
+ },
+ {
+  "id": "FLT-PERS-04",
+  "area": "Persistence",
+  "title": "A remembered filter value that no longer exists is silently dropped when you return",
+  "priority": "Medium",
+  "type": "Negative",
+  "permissions_required": "Any signed-in user with access to the Work Orders page; rights to delete/deactivate the seeded test value.",
+  "preconditions": [
+   "1. You are signed in to the ShopView App on a desktop browser.",
+   "2. A throwaway ZZAUTOTEST customer exists and is selected in the Customer filter together with one real customer.",
+   "3. You then navigate away and the ZZAUTOTEST customer is deleted (or otherwise removed) while you are off the page."
+  ],
+  "steps": [
+   "1. Return to the Work Orders page.",
+   "2. Look at the Customer chip, the dropdown and the table."
+  ],
+  "expected": [
+   "1. The deleted customer is silently ignored - no error or warning appears.",
+   "2. The Customer filter now reflects only the still-valid selection (the real customer).",
+   "3. The table is filtered by the remaining valid selection only."
+  ],
+  "design_ref": "design-notes.md B.1 #11 (11854:19595)",
+  "spec_ref": "requirements.md Story 10 S10-N1",
+  "viu_status": "VIU-Pending",
+  "notes": "If customers cannot be hard-deleted in the build, use a deactivated staff member on the Lead Technician filter as the vanished value - VIU-confirm the closest achievable data state (Standing Rule 14).",
+  "api_related": false
+ },
+ {
+  "id": "FLT-URL-01",
+  "area": "URL State and Shareable Links",
+  "title": "Applying filters updates the page URL to reflect the active filter state",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Any signed-in user with access to the Work Orders page (the spec defines no role-based differences - OQ-4).",
+  "preconditions": [
+   "1. You are signed in to the ShopView App on a desktop browser.",
+   "2. You are on the Work Orders page with no filters applied; note the current URL."
+  ],
+  "steps": [
+   "1. Apply a Status selection and a Customer selection.",
+   "2. Look at the browser address bar.",
+   "3. Clear all filters and look at the address bar again."
+  ],
+  "expected": [
+   "1. After step 1 the URL changes to include the active filter state.",
+   "2. After step 3 the filter part of the URL is removed again."
+  ],
+  "design_ref": "requirements.md Story 11 (no design frame - behavior requirement)",
+  "spec_ref": "requirements.md Story 11 S11-R1",
+  "viu_status": "VIU-Pending",
+  "notes": "The URL parameter format is not specified anywhere - capture the real format at VIU.",
+  "api_related": false
+ },
+ {
+  "id": "FLT-URL-02",
+  "area": "URL State and Shareable Links",
+  "title": "Opening a shared or bookmarked URL loads the Work Orders page with those filters already applied",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Any signed-in user with access to the Work Orders page (the spec defines no role-based differences - OQ-4).",
+  "preconditions": [
+   "1. You are signed in to the ShopView App on a desktop browser.",
+   "2. You have copied a Work Orders URL that was produced with filters applied (for example Status: Approved + one customer)."
+  ],
+  "steps": [
+   "1. Open the copied URL in a new browser tab (same signed-in user).",
+   "2. Look at the chips and the table as the page loads."
+  ],
+  "expected": [
+   "1. The page opens with the same filters already applied - chips active with the same values.",
+   "2. The table is already filtered accordingly on load (no need to re-apply anything).",
+   "3. The same works from a saved bookmark."
+  ],
+  "design_ref": "requirements.md Story 11 (no design frame - behavior requirement)",
+  "spec_ref": "requirements.md Story 11 S11-R2; §2 Feature Overview (share or bookmark)",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "FLT-URL-03",
+  "area": "URL State and Shareable Links",
+  "title": "A URL containing a filter value that no longer exists loads without that value",
+  "priority": "Medium",
+  "type": "Negative",
+  "permissions_required": "Any signed-in user with access to the Work Orders page; rights to delete/deactivate the seeded test value.",
+  "preconditions": [
+   "1. You are signed in to the ShopView App on a desktop browser.",
+   "2. You saved a filtered Work Orders URL that includes a throwaway ZZAUTOTEST customer plus one real filter value.",
+   "3. The ZZAUTOTEST customer has since been deleted."
+  ],
+  "steps": [
+   "1. Open the saved URL.",
+   "2. Look at the chips and the table."
+  ],
+  "expected": [
+   "1. The page loads normally - no error.",
+   "2. The deleted value is ignored; only the still-valid filter value is applied and shown on the chips.",
+   "3. The table reflects only the valid filter."
+  ],
+  "design_ref": "requirements.md Story 11 (no design frame - behavior requirement)",
+  "spec_ref": "requirements.md Story 11 S11-R3",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "FLT-URL-04",
+  "area": "URL State and Shareable Links",
+  "title": "A malformed filter URL loads the page unfiltered without showing an error",
+  "priority": "Medium",
+  "type": "Negative",
+  "permissions_required": "Any signed-in user with access to the Work Orders page (the spec defines no role-based differences - OQ-4).",
+  "preconditions": [
+   "1. You are signed in to the ShopView App on a desktop browser.",
+   "2. You have a valid filtered Work Orders URL to start from."
+  ],
+  "steps": [
+   "1. Manually break the filter part of the URL (for example scramble the parameter values or insert nonsense text).",
+   "2. Open the broken URL.",
+   "3. Look at the page, the chips and the table."
+  ],
+  "expected": [
+   "1. The Work Orders page loads normally.",
+   "2. No filters are applied (chips in default state, full list shown) - the unrecognizable state is discarded.",
+   "3. No error message or broken page appears."
+  ],
+  "design_ref": "requirements.md Story 11 (no design frame - behavior requirement)",
+  "spec_ref": "requirements.md Story 11 S11-N1",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ }
+]

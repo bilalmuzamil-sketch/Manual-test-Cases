@@ -1,42 +1,53 @@
 # Filters (Work Order List Filtering) — PROJECT STATE
 **Canonical cold-resume doc. Read this first to resume the Filters project.**
-Last updated: 2026-07-17 (onboarding).
+Last updated: 2026-07-17 (cases authored).
 
-## §0 STATUS — ONBOARDING
+## §0 STATUS — CASES AUTHORED (79); IMPORT READY; TESTRAIL PUSH PENDING PERMISSION
 
-- **Spec INGESTED 2026-07-17 and ✅ CONFIRMED CURRENT (designer, via the user,
-  2026-07-17)** → `build/filters/requirements.md` (COMPLETE spec,
-  verbatim-structured: Business Case, Feature Overview, JTBD/Goals, Key Decisions,
-  Stories 1–12 with every S#-R#/N#/E# requirement). Source = user-provided
-  Confluence "Export to Word" .doc (`18e07e91-Filters_1.doc`), MHTML decoded via
-  python email/quopri + BeautifulSoup. Spec Version 1.0, Status "Complete" —
-  confirmed the LATEST version. The 4→7 section-numbering jump is a
-  document-numbering ARTIFACT, not missing content (OQ-1 downgraded to a note).
-  No dev plan / permissions / open-questions sections in the spec.
-- **Design capture ✅ COMPLETE 2026-07-17 per the designer's FINAL-SET ruling** →
-  `build/filters/design-notes.md` + `build/filters/design-screens/` (58 PNGs).
-  **The user's Figma export zip `50219798-Filters.zip` (49 PNGs) IS the final
-  design set**: 49/49 extracted, viewed, described (exact on-screen labels),
-  committed (35 new + 14 already-committed API-2x equivalents, all pairs
-  compared = MATCH); 0 unreadable. Canvas nodes NOT in the zip (WO-14.4
-  exploration, Sorting, Components, page-level frames, desktop dropdown
-  popovers, label strips, QB Journal-Entries tab) = SUPERSEDED, not missing —
-  do not chase. Earlier user-pasted screenshots are IGNORED per the same
-  ruling. Full zip→node→PNG map: design-notes.md §Z; completeness statement §D.
-  Scope note: the final set INCLUDES the Parts (9) and Reports (22) filter-bar
-  screens — they ARE in scope because they are in the zip. "Tehnician" design
-  typo recurs in the final set (WO-list frames; Parts/Reports clean) —
-  design-notes §C.
-- **Case authoring NOT STARTED — now UNBLOCKED** (spec confirmed current +
-  design set final/complete). `cases/` is empty (`.gitkeep` + README).
-- **TestRail: NOTHING pushed; NO writes without explicit user permission**
-  (Standing Rule 6 / standing user rule). `testrail-id-map.csv` = header only.
-- **Deliverable format rule (Standing Rule 16):** the TestRail import MUST be pure
-  1:1 with the established `testrail-import/*-testrail-import.csv` format (8 named
-  columns + 2 trailing blank columns, header byte-identical to the
-  fees-discounts / simple-flow / global-search imports, NO ID columns;
-  traceability via `testrail-id-map.csv` per Rule 8; VIU-word-free +
-  feature-flag-free; API cases in an "API — <leaf>" section per Rule 4).
+- **Cases AUTHORED 2026-07-17: 79 cases / 14 sections (13 functional + 1 API)** →
+  `build/filters/cases/cases-A..D-*.json` (schema mirrors global-search; all
+  `viu_status: VIU-Pending`; 24 cases carry explicit VIU-confirm notes for
+  labels/behaviors unconfirmable from the design). Section breakdown: Filter Bar
+  Layout and Visibility 3, Status 6, Customer 9, Lead Technician 7, Service
+  Advisor 7, Asset on Site 6, Active Chips & Clear Filters 6, Collapse and
+  Expand 5, Empty State 2, Tab Behaviour 5, Persistence 4, URL State 4, Mobile
+  10, API — Work Orders List Filtering 5 (Standing Rule 4).
+- **SCOPE RULING (recorded 2026-07-17):** cases cover the WORK ORDERS PAGE
+  feature only — all 12 spec stories × the 18 final WO design frames (desktop +
+  mobile). The **9 Parts + 22 Reports screens in the final ZIP design set are
+  NOT covered by any spec story → NO cases authored for them** (no invention,
+  Standing Rules 1/9); they are excluded-with-reason in `coverage-matrix.md` §C
+  and raised as **PO Question 1 to Branko**. (This supersedes the onboarding
+  note that the zip screens "ARE in scope because they are in the zip" — in the
+  final design set yes, but case-authoring scope = spec coverage.)
+- **Coverage: 100%** — every spec requirement line (81 S#-R#/N#/E# across
+  Stories 1–12) and every final WO design frame (18) maps to ≥1 FLT- case:
+  `build/filters/coverage-matrix.md` (§A spec, §B frames, §C exclusions).
+- **Typo rule applied:** design's recurring "Lead Tehnician" is NOT codified —
+  all cases say "Lead Technician" and carry typo-flag notes; PO Question 3
+  confirms the ship spelling (design-notes §C.1).
+- **Import READY (Rule 16, canonical):**
+  `testrail-import/filters-v1-testrail-import.csv` + `.xlsx` via
+  `build/filters/gen_import.py` — 79 rows, header BYTE-IDENTICAL to the
+  fees-discounts / simple-flow / global-search imports (verified), 8 named
+  columns + 2 trailing blanks, CRLF rows/LF cells, VIU-word-free +
+  feature-flag-free (0 occurrences), API cases only in the em-dash
+  "API — Work Orders List Filtering" section, deterministic ordering.
+- **ID map (Rule 8):** `build/filters/testrail-id-map.csv` — all 79 internal
+  ids, TestRail C-id column BLANK until a permitted push (regenerated by
+  gen_import.py).
+- **PO questions PENDING BRANKO:**
+  `build/filters/PO-Questions-Filters_2026-07-17.xlsx` + `.md` (generator
+  `gen_po_questions.py`; layman-only reader sheet + QA-internal mapping sheet,
+  Standing Rule 7): Q1 Parts/Reports filter screens in the design vs WO-only
+  spec (test now? write-up?), Q2 persistence duration (session-only vs
+  remembered across sessions — OQ-5), Q3 "Lead Tehnician" spelling confirm,
+  Q4 Estimates/Completed tab Status chip: spec says HIDDEN vs design shows a
+  disabled pre-filled "Status: Estimate" chip (design-notes §C.7).
+- **TestRail: NOTHING pushed; NO writes without explicit user permission.**
+- **VIU: PENDING** — needs the QA env/flag/API facts (OQ-7) + the Epic/Jira key
+  (OQ-3, ASK THE USER at VIU) + canonical Confluence URL (OQ-2). Per Standing
+  Rule 11 ASK which process(es) to run before starting.
 
 ## §1 Project identity
 
@@ -49,36 +60,43 @@ Last updated: 2026-07-17 (onboarding).
   Fees&Discounts=Chris Ward, Simple Flow=Milos).
 - **Canonical spec URL (Confluence): TO CONFIRM — user provided the exported .doc
   2026-07-16** (when obtained: reference pointer only, do NOT fetch —
-  Atlassian-SSO login-walled).
+  Atlassian-SSO login-walled). Spec V1.0 confirmed CURRENT (designer via user,
+  2026-07-17).
 - **Epic / Jira key: ⚠️ NOT AVAILABLE — ASK THE USER when VIU begins** (all story
   Jira fields "TBD"; do NOT invent).
 - **Figma source:** file `DR4gEODShYgJqkozs3mF5q` node **11854-23562** "Work Order
-  Explorations 20.4.2026" (spec header also links node 11817-27678; per-story
-  design node links recorded in requirements.md).
+  Explorations 20.4.2026"; the user's export zip `50219798-Filters.zip` (49 PNGs)
+  = the FINAL design set (designer ruling 2026-07-17; design-notes §D/§Z).
 
 ## §2 Deliverables index
 
 | Artifact | Path | State |
 |---|---|---|
-| Complete spec | `build/filters/requirements.md` | DONE 2026-07-17 |
+| Complete spec | `build/filters/requirements.md` | DONE 2026-07-17 (V1.0 confirmed current) |
 | Design notes | `build/filters/design-notes.md` | DONE 2026-07-17 — ZIP-authoritative; §Z map + §D completeness |
-| Design screenshots | `build/filters/design-screens/` | DONE 2026-07-17 — 58 PNGs (49-file final ZIP set fully covered; 9 superseded API renders retained as reference) |
-| Case source | `build/filters/cases/` | EMPTY (authoring pending design confirmation) |
-| ID map | `build/filters/testrail-id-map.csv` | header only |
-| TestRail import | `testrail-import/filters-testrail-import.csv`/`.xlsx` | NOT CREATED (after authoring; Rule 16 format) |
+| Design screenshots | `build/filters/design-screens/` | DONE — 58 PNGs (49-file final ZIP set + 9 retained superseded API renders) |
+| Case source (79) | `build/filters/cases/cases-A..D-*.json` + `README.md` | DONE 2026-07-17 — all VIU-Pending |
+| Coverage matrix | `build/filters/coverage-matrix.md` | DONE — 81/81 spec lines + 18/18 WO frames mapped; exclusions in §C |
+| ID map | `build/filters/testrail-id-map.csv` | DONE — 79 ids, C-ids blank (pending push) |
+| TestRail import | `testrail-import/filters-v1-testrail-import.csv`/`.xlsx` | READY (Rule 16 verified; push pending permission) |
+| Import generator | `build/filters/gen_import.py` | DONE (also regenerates the ID map) |
+| PO questions | `build/filters/PO-Questions-Filters_2026-07-17.xlsx`/`.md` (+ `gen_po_questions.py`) | READY — pending Branko |
 | This state doc | `build/filters/PROJECT-STATE.md` | current |
 
 ## §3 Open questions
 
-Full list in `requirements.md` §"Open Questions" (QA-derived; the spec itself has
-no OQ section): **OQ-1 RESOLVED 2026-07-17** (5–6 numbering gap = document
-artifact, not missing content — designer confirmed spec current), **OQ-2**
-canonical Confluence URL TBC, **OQ-3** Epic/Jira key TBD (ask at VIU), **OQ-4**
-permissions/role behaviour unspecified, **OQ-5** persistence scope
-(session-only vs durable per-user) — spec §2/§4 vs S10-R2 wording tension,
-**OQ-6** "Asset on Site" data source in the build, **OQ-7** QA env / feature-flag
-/ API surface unknown, **OQ-8** spec↔Figma reconciliation pending design-notes
-completion.
+Reader-facing product questions → the PO sheet (Q1 Parts/Reports scope, Q2
+persistence duration, Q3 spelling, Q4 Estimates/Completed Status chip). QA-side
+OQs live in `requirements.md` §"Open Questions": OQ-1 RESOLVED (numbering
+artifact), **OQ-2** canonical Confluence URL TBC, **OQ-3** Epic/Jira key TBD (ask
+at VIU), **OQ-4** permissions/role behaviour unspecified (no permission cases
+authored — flagged, not invented), **OQ-5** persistence scope (= PO Q2), **OQ-6**
+"Asset on Site" data source in the build (FLT-ASSET-02 note), **OQ-7** QA env /
+feature-flag / API surface unknown (FLT-API-01..05 worded generically,
+VIU-confirm), **OQ-8** spec↔Figma reconciliation — DONE via authoring: deltas
+found = the Estimates-tab Status chip conflict (PO Q4), the chip truncation
+composition (list+ellipsis vs count, FLT-CHIP-02 note), and the Parts/Reports
+screens with no spec (PO Q1).
 
 ## §4 Env / access
 
@@ -89,18 +107,18 @@ completion.
 
 ## §5 HOW TO RESUME (ordered)
 
-1. Read this doc, then `build/filters/requirements.md`.
-2. Design set is FINAL & COMPLETE (designer ruling 2026-07-17; the export zip =
-   the final set, fully captured — design-notes.md §D/§Z). Spec V1.0 confirmed
-   current. **Authoring is unblocked.**
-3. On go-ahead: author cases (`FLT-<AREA>-NN` JSONs in `cases/`, API cases in an
-   "API — <leaf>" section per Rule 4), build `coverage-matrix.md`, adversarial
-   self-review (Rule 15), then generate the import via a `gen_import.py`
-   mirroring `build/global-search/gen_import.py` — output
-   `testrail-import/filters-testrail-import.csv`/`.xlsx`, PURE 1:1 with the
-   established format (Rule 16), VIU-word-free + flag-free, ID map per Rule 8.
-4. **TestRail push only with explicit user permission.**
-5. Before any VIU: ASK the user which process(es) to run (Standing Rule 11 —
+1. Read this doc, then `build/filters/coverage-matrix.md` (scope + exclusions),
+   then `requirements.md` / `design-notes.md` as needed.
+2. **Deliver the PO questions to Branko** (`PO-Questions-Filters_2026-07-17.xlsx`)
+   and apply his answers: Q1 may extend scope (Parts/Reports cases), Q2/Q4 may
+   rewrite FLT-PERS-02 / FLT-TAB-02/03 expecteds (see the QA Internal Mapping
+   sheet for exact resolutions).
+3. **TestRail push only with explicit user permission** — import file is ready;
+   after a permitted push, fill the C-id column in `testrail-id-map.csv`.
+4. Before any VIU: ASK the user which process(es) to run (Standing Rule 11 —
    BUILD-ACCURATE-WORDING-VIU-PROCESS and/or SPEC-RELEVANCE-RECONCILIATION), and
    ASK for the Epic/Jira key (OQ-3) + canonical Confluence URL (OQ-2) + QA
-   env/flag facts (OQ-7). VIU = live-observed with evidence only (Rules 10/12/13/14).
+   env/flag facts (OQ-7). VIU = live-observed with evidence only (Rules
+   10/12/13/14); 24 cases carry explicit VIU-confirm notes to resolve first.
+5. Regeneration: `python3 build/filters/gen_import.py` (import + ID map),
+   `python3 build/filters/gen_po_questions.py` (PO sheet).

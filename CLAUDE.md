@@ -283,23 +283,29 @@ process(es) to run before proceeding.
    **CANONICAL STATE DOC (read first for resume):** `build/filters/PROJECT-STATE.md`
    — single authoritative snapshot (status, deliverables index, open questions,
    env/access TBD, how-to-resume).
-   **STATUS: ONBOARDING 2026-07-17 — spec V1.0 fully ingested →
-   `build/filters/requirements.md` (Stories 1–12, all S#-R#/N#/E#; doc gap: spec
-   sections 5–6 missing from the export, numbering jumps 4→7 = OQ-1); design capture
-   (design-notes.md + design-screens/) by a parallel worker; CASE AUTHORING NOT
-   STARTED — waiting for the user to confirm the complete Figma design set; TestRail
-   NOTHING pushed (no writes without explicit user permission); env/flag/API + Epic
-   key + canonical URL still TBD (OQ-2/3/7). Canonical resume doc:
+   **STATUS: CASES AUTHORED 2026-07-17 — 79 cases / 14 sections (13 functional +
+   1 "API — Work Orders List Filtering" per Rule 4) in
+   `build/filters/cases/cases-A..D-*.json` (all VIU-Pending; 24 VIU-confirm
+   notes; design "Lead Tehnician" typo NOT codified — cases say "Lead
+   Technician" + typo flag); SCOPE RULING: Work Orders page only (12 stories ×
+   18 final WO frames; the final ZIP's 9 Parts + 22 Reports screens have NO
+   spec story → NO cases, excluded-with-reason in coverage-matrix.md §C + PO
+   Question 1); coverage 100% (81/81 spec lines + 18/18 WO frames →
+   `build/filters/coverage-matrix.md`); import READY per Rule 16
+   (`testrail-import/filters-v1-testrail-import.csv`/`.xlsx` via
+   `build/filters/gen_import.py`, header byte-identical to FD/SF/GS, VIU-word-
+   free + flag-free, ID map `testrail-id-map.csv` per Rule 8 with blank C-ids);
+   PO questions READY pending Branko
+   (`build/filters/PO-Questions-Filters_2026-07-17.xlsx`/`.md`: Q1
+   Parts/Reports scope, Q2 persistence duration OQ-5, Q3 spelling, Q4
+   Estimates/Completed disabled-Status-chip spec-vs-design conflict); TestRail
+   push PENDING permission (NOTHING pushed); VIU PENDING env (OQ-7) + Epic key
+   ask-at-VIU (OQ-3) + canonical URL (OQ-2). Canonical resume doc:
    build/filters/PROJECT-STATE.md.** Same rules as all projects: reuse shared infra
    (BUILD-ACCURATE-WORDING-VIU-PROCESS, SPEC-RELEVANCE-RECONCILIATION,
    TESTING-RUNBOOK, harness/TestRail patterns); per Standing Rule 11 ASK which
-   process(es) to run before any VIU pass; import deliverable MUST be pure 1:1 with
-   the established `testrail-import/*-testrail-import.csv` format per Rule 16
-   (VIU-word-free + flag-free, ID map per Rule 8, API cases in an "API — <leaf>"
-   section per Rule 4). Open questions live in requirements.md (OQ-1..OQ-8: doc-gap
-   §5–6, spec URL, Epic key, permissions unspecified, persistence scope
-   session-vs-per-user tension, Asset-on-Site data source, env/flag, spec↔Figma
-   reconciliation after design capture).
+   process(es) to run before any VIU pass. Open questions live in
+   requirements.md (OQ-2/3/6/7 QA-side) + the PO sheet (product decisions).
 
 **STANDING RULES (apply to all projects):**
 1. **Never proceed without the complete set of information needed.** If

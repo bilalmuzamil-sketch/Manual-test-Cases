@@ -1,1 +1,80 @@
 internal_id,testrail_case_id,title,section
+FLT-BAR-01,,Filter bar is shown below the tab row on the Work Orders page,Filter Bar Layout and Visibility
+FLT-BAR-02,,"Five filter chips appear in a fixed order, each with an icon, its name and a down arrow",Filter Bar Layout and Visibility
+FLT-BAR-03,,The filter bar still shows the remaining chips on a tab where the Status filter is hidden,Filter Bar Layout and Visibility
+FLT-STAT-01,,Status chip opens a checkbox list of all nine work order statuses with a Clear selection action,Status Filter
+FLT-STAT-02,,"Ticking one status filters the table immediately, with no apply button",Status Filter
+FLT-STAT-03,,Ticking several statuses shows work orders matching any of them,Status Filter
+FLT-STAT-04,,Clear selection in the Status dropdown unticks every status and removes the filter,Status Filter
+FLT-STAT-05,,Clicking outside the Status dropdown closes it and keeps the selections applied,Status Filter
+FLT-STAT-06,,Selecting statuses that no work order has shows the empty state,Status Filter
+FLT-CUST-01,,Customer chip opens a dropdown with a 'Search customer' field and a scrollable customer list,Customer Filter
+FLT-CUST-02,,Typing in the customer search narrows the list to matching names,Customer Filter
+FLT-CUST-03,,Selecting customers adds removable tags in the dropdown input area and checkmarks in the list,Customer Filter
+FLT-CUST-04,,Clicking the x on a customer tag removes just that customer from the selection,Customer Filter
+FLT-CUST-05,,The table shows only work orders belonging to any of the selected customers,Customer Filter
+FLT-CUST-06,,Clear selection in the Customer dropdown removes all selected customers,Customer Filter
+FLT-CUST-07,,Clicking outside the Customer dropdown closes it and the selections remain,Customer Filter
+FLT-CUST-08,,Customer search with no matching name shows a no-results message in the list,Customer Filter
+FLT-CUST-09,,A customer with no open work orders is still listed; filtering by them returns an empty result,Customer Filter
+FLT-TECH-01,,Lead Technician chip opens a dropdown with a 'Search technician' field and a technician list,Lead Technician Filter
+FLT-TECH-02,,Typing in the technician search narrows the list to matching names,Lead Technician Filter
+FLT-TECH-03,,Selecting technicians shows only work orders where they are the lead technician,Lead Technician Filter
+FLT-TECH-04,,Clear selection in the Lead Technician dropdown removes all selected technicians,Lead Technician Filter
+FLT-TECH-05,,Clicking outside the Lead Technician dropdown closes it,Lead Technician Filter
+FLT-TECH-06,,Selecting a technician who leads no work orders shows the empty state,Lead Technician Filter
+FLT-TECH-07,,A deactivated technician does not appear in the Lead Technician filter list,Lead Technician Filter
+FLT-ADV-01,,Service Advisor chip opens a dropdown with a 'Search advisor' field and an advisor list,Service Advisor Filter
+FLT-ADV-02,,Typing in the advisor search narrows the list to matching names,Service Advisor Filter
+FLT-ADV-03,,Selecting advisors shows only work orders assigned to those advisors,Service Advisor Filter
+FLT-ADV-04,,Clear selection in the Service Advisor dropdown removes all selected advisors,Service Advisor Filter
+FLT-ADV-05,,Clicking outside the Service Advisor dropdown closes it,Service Advisor Filter
+FLT-ADV-06,,Selecting an advisor with no assigned work orders shows the empty state,Service Advisor Filter
+FLT-ADV-07,,A deactivated advisor does not appear in the Service Advisor filter list,Service Advisor Filter
+FLT-ASSET-01,,"Asset on site chip opens a dropdown with exactly two options, Yes and No, plus Clear selection",Asset on Site Filter
+FLT-ASSET-02,,Choosing Yes shows only work orders whose asset is on site,Asset on Site Filter
+FLT-ASSET-03,,Asset on site is single-select: choosing the other option replaces the first,Asset on Site Filter
+FLT-ASSET-04,,Clear selection in the Asset on site dropdown removes the filter,Asset on Site Filter
+FLT-ASSET-05,,Clicking outside the Asset on site dropdown closes it,Asset on Site Filter
+FLT-ASSET-06,,An Asset on site choice that matches no work orders shows the empty state,Asset on Site Filter
+FLT-CHIP-01,,A chip with a selected value turns into the active blue state and shows the value,Active Filter Chips and Clear Filters
+FLT-CHIP-02,,A chip with several values shows the first values and shortens the rest with an ellipsis,Active Filter Chips and Clear Filters
+FLT-CHIP-03,,'Clear filters' appears to the right of the chips only when at least one filter is active,Active Filter Chips and Clear Filters
+FLT-CHIP-04,,'Clear filters' removes every active filter at once and all chips return to default,Active Filter Chips and Clear Filters
+FLT-CHIP-05,,'Clear selection' inside one dropdown clears only that filter and leaves the others active,Active Filter Chips and Clear Filters
+FLT-CHIP-06,,Several different filters combine: only work orders matching every active filter remain,Active Filter Chips and Clear Filters
+FLT-COLL-01,,The toolbar funnel button collapses the filter bar and the table reclaims the space,Collapse and Expand
+FLT-COLL-02,,"Expanding the filter bar brings it back exactly as it was, with active filters still shown",Collapse and Expand
+FLT-COLL-03,,The collapsed or expanded state of the filter bar is remembered after leaving and returning,Collapse and Expand
+FLT-COLL-04,,"The funnel button shows a blue indicator when filters are active while the bar is collapsed, and none when no filters are active",Collapse and Expand
+FLT-COLL-05,,Active filters keep filtering the table while the filter bar is collapsed,Collapse and Expand
+FLT-EMPTY-01,,A filter combination with no matching work orders shows a no-results empty state instead of a blank table,Empty State
+FLT-EMPTY-02,,"The filtered empty state offers a way to clear the filters, and using it brings the list back",Empty State
+FLT-TAB-01,,"The All tab shows all five filter chips, all working",Tab Behaviour
+FLT-TAB-02,,On the Estimates tab the Status filter is not offered; the other four filters work on top of the Estimates pre-filter,Tab Behaviour
+FLT-TAB-03,,On the Completed tab the Status filter is not offered; the other four filters work on top of the Completed pre-filter,Tab Behaviour
+FLT-TAB-04,,On the My Work Orders tab all five filters are shown and narrow the already user-scoped list,Tab Behaviour
+FLT-TAB-05,,Filter selections survive tab switching; a Status selection hidden on Estimates/Completed comes back on the All tab,Tab Behaviour
+FLT-PERS-01,,Leaving the Work Orders page and coming back restores the filters and the bar state exactly,Persistence
+FLT-PERS-02,,"Filter selections persist while the browser session lasts, wherever you go in the app",Persistence
+FLT-PERS-03,,Saved filters are per user: one user's filters do not appear for another user,Persistence
+FLT-PERS-04,,A remembered filter value that no longer exists is silently dropped when you return,Persistence
+FLT-URL-01,,Applying filters updates the page URL to reflect the active filter state,URL State and Shareable Links
+FLT-URL-02,,Opening a shared or bookmarked URL loads the Work Orders page with those filters already applied,URL State and Shareable Links
+FLT-URL-03,,A URL containing a filter value that no longer exists loads without that value,URL State and Shareable Links
+FLT-URL-04,,A malformed filter URL loads the page unfiltered without showing an error,URL State and Shareable Links
+FLT-MOB-01,,"On mobile the filter chips sit in a horizontally scrollable row below the tabs, starting with All Filters",Mobile Filters
+FLT-MOB-02,,Tapping All Filters opens a bottom sheet listing every filter as an expandable row with an Apply filters button,Mobile Filters
+FLT-MOB-03,,Selecting statuses in the mobile sheet and tapping Apply filters filters the list and counts on the sheet title,Mobile Filters
+FLT-MOB-04,,Tapping an individual filter chip on mobile opens that filter's own sheet with an 'Apply filter' button,Mobile Filters
+FLT-MOB-05,,"The mobile Customer filter has search, multi-select and removable tags, matching desktop",Mobile Filters
+FLT-MOB-06,,The mobile Lead Technician and Service Advisor filters offer their search lists in the sheet,Mobile Filters
+FLT-MOB-07,,The mobile Asset on site filter offers Yes/No with Clear selection in the sheet,Mobile Filters
+FLT-MOB-08,,Active chips and Clear filters behave on mobile the same way as on desktop,Mobile Filters
+FLT-MOB-09,,Mobile has no collapse toggle: the filter chip row is always visible,Mobile Filters
+FLT-MOB-10,,Filters matching no work orders on mobile show the same empty state as desktop,Mobile Filters
+FLT-API-01,,The work order list request carries the active filter selections,API — Work Orders List Filtering
+FLT-API-02,,"A combined multi-filter request returns only work orders matching all filters, any value within each filter",API — Work Orders List Filtering
+FLT-API-03,,A list request with a deleted or unknown filter value is handled without a server error,API — Work Orders List Filtering
+FLT-API-04,,A list request with malformed filter parameters does not produce a server error,API — Work Orders List Filtering
+FLT-API-05,,"A filter combination matching nothing returns a successful empty list, not an error",API — Work Orders List Filtering
