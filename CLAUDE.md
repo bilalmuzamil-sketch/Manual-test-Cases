@@ -455,6 +455,26 @@ process(es) to run before proceeding.
     matching the existing testrail-import/ CSV format used by Fees & Discounts and
     Simple Flow; deliverables must always mirror the format already in use so they
     drop into the user's existing process unchanged.
+17. **COMPLETE data in, COMPLETE data out, COMPLETE work — always (all projects).**
+    Never work from, or deliver, a partial subset unless the user EXPLICITLY asks
+    to trim. (1) INPUTS: before authoring/analyzing/verifying anything, enumerate
+    the FULL input set (every Figma frame in the section, every spec section +
+    change-log, every ticket + its comments, every case in the suite, every role,
+    every row) and state the exact total found; if any part of the input set
+    cannot be obtained, STOP and tell the user exactly what is missing and how to
+    supply it (per Standing Rule 1) rather than silently proceeding on a subset.
+    (2) OUTPUTS: deliverables cover the WHOLE population, not a sample — no silent
+    caps, no "top N", no representative-subset substitutions; if something is
+    intentionally excluded (e.g. design states marked out-of-scope), list the
+    exclusion explicitly with the reason. (3) WORK: multi-item jobs (VIU passes,
+    comparisons, audits, pushes) run to 100% of the item list or report the
+    precise per-item remainder with reasons — never declare done at a partial
+    count. (4) Every completion report states the counts: total in scope /
+    processed / excluded-with-reason, so completeness is verifiable at a glance.
+    Rationale: 2026-07-16 — the first Figma capture for the Filters project
+    rendered only 8 of the section's ~26 frames and the user had to catch it
+    ("you need to have them ALL"); completeness must be the default, trimming
+    only ever user-requested.
 
 ## Project purpose (Custom Roles project)
 Manual test-case authoring + live staging (Verify-in-UI) verification + TestRail
