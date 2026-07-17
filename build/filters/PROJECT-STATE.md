@@ -34,7 +34,14 @@ on resume):**
    **Branko's 4 PO answers INGESTED 2026-07-17**
    (`branko-answers-2026-07-17/answers-ingested.md` = source of record) ·
    new design inputs (design-system zip + 9 PDFs) inventoried + reconciled
-   (`new-inputs-inventory-2026-07-17.md`; design-notes §E).
+   (`new-inputs-inventory-2026-07-17.md`; design-notes §E) ·
+   **ROUND-2 PO QUESTIONS READY FOR BRANKO 2026-07-17**
+   (`PO-Questions-Filters-Round2_2026-07-17.xlsx` + `.md`, generator
+   `gen_po_questions_round2.py`; same two-sheet layman format as round 1):
+   Q1 = spec-cleanup reminder for his PRD update (stale S2-N1/N2, S9-R2/R3,
+   S10-R2 sentences vs his Q4=B/Q2=B rulings), Q2 = the zip-prototype
+   "Reported"-vs-"Imported" status anomaly (item 4), Q3 = role-based filter
+   lists (OQ-4). Awaiting his answers.
 2. **Apply Branko's answers (consequences, per the ingestion doc):**
    **Q1=A — Parts/Reports filter screens ARE IN SCOPE** (9 Parts + 22 Reports
    screens) but authoring is **GATED ON Branko's PRD update** (no spec text
@@ -62,10 +69,12 @@ on resume):**
    UNCHANGED**; Sorting stays OUT of scope (separate WIP feature); the older
    mobile variants and the Customer-v1 leading-checkbox dropdown variant
    remain SUPERSEDED (final right-side-✓ pattern wins). No scope revision.
-4. **Design-system zip anomaly (ask Branko/the designer):** the zip is a
-   Claude-Code skill package + coded Filters prototype = REFERENCE AID only,
-   not authoritative frames; its prototype's status list ends **"Reported"**
-   vs the design's/spec's **"Imported"** — transcription slip to confirm/fix.
+4. **Design-system zip anomaly — NOW CARRIED BY THE ROUND-2 SHEET (Q2):** the
+   zip is a Claude-Code skill package + coded Filters prototype = REFERENCE
+   AID only, not authoritative frames; its prototype's status list ends
+   **"Reported"** vs the design's/spec's **"Imported"** — asked of Branko as
+   Round-2 PO Question 2 (`PO-Questions-Filters-Round2_2026-07-17.xlsx`/`.md`);
+   awaiting his answer.
 5. **VIU when the feature reaches a QA env (OQ-7):** ⚠️ ASK the user for the
    Epic/Jira key (OQ-3) AND which process(es) to run per Standing Rule 11
    (BUILD-ACCURATE-WORDING-VIU and/or SPEC-RELEVANCE-RECONCILIATION); resolve
@@ -78,8 +87,8 @@ on resume):**
    (Rule 8 — now possible via the populated id-map); bug drafts in layman form
    for any deviations (Rule 7); update the import to final (VIU-word-free stays).
 7. **Housekeeping:** canonical Confluence spec URL still TO CONFIRM (OQ-2);
-   permissions/role behavior unspecified in spec (OQ-4) — ask Branko whether
-   role-based filter visibility matters; env/access facts to record at VIU
+   permissions/role behavior unspecified in spec (OQ-4) — **now carried by
+   the Round-2 sheet as PO Question 3** (awaiting Branko); env/access facts to record at VIU
    (OQ-7); WAIT on Branko's updated PRD (Parts/Reports sections + the Q2/Q4
    text corrections).
 

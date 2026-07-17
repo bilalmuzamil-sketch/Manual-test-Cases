@@ -299,7 +299,8 @@ process(es) to run before proceeding.
    2026-07-17 (3/3, audit-logged) — FLT-PERS-02/C29614 permanent persistence,
    FLT-TAB-02/03 C29609/C29610 disabled pre-filled Status chip; import +
    id-map regenerated (id-map re-merged 79/79); audit log =
-   build/filters/branko-answers-2026-07-17/testrail-update-log.md.** Same rules as all projects: reuse shared infra
+   build/filters/branko-answers-2026-07-17/testrail-update-log.md; Round-2 PO
+   questions ready.** Same rules as all projects: reuse shared infra
    (BUILD-ACCURATE-WORDING-VIU-PROCESS, SPEC-RELEVANCE-RECONCILIATION,
    TESTING-RUNBOOK, harness/TestRail patterns); per Standing Rule 11 ASK which
    process(es) to run before any VIU pass. Open questions live in
