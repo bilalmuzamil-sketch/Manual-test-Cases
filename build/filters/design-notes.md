@@ -3,9 +3,17 @@
 **Project:** ShopView Work Order list filtering redesign ("Filters")
 **Figma file:** `DR4gEODShYgJqkozs3mF5q` (Working - ShopView App)
 **Figma page:** `11817:27678` — **"Filters"**
-**Capture date:** 2026-07-17 (Figma REST API, PNG `scale=2` for every render)
+**Capture date:** 2026-07-17 (two sources: Figma REST API PNG `scale=2`, prefix
+`wo20_`; + the user's Figma export zip `50219798-Filters.zip` ingested later the
+same day, PNG scale=1, prefixes `wo20_`/`parts20_`/`reports21_`).
 **Evidence:** all rendered PNGs committed under `build/filters/design-screens/`
 (filename pattern `<group>_<frame-name>_<node-id>.png`; node id has `:` → `-`).
+**Zip reconciliation (2026-07-17):** the zip contained **49 PNGs** — 14 were 1x
+re-exports of frames already captured at 2x (kept the 2x originals; zip copies
+not committed), **35 were NEW coverage** (4 mobile Customer frames + all 9 Parts
+frames + 22 of 23 Reports frames). All 35 were viewed and verified legible; none
+unreadable. Per-node capture source is in the "Rendered" columns below; the
+exact still-missing list is in §D.
 
 > Scope note: the task originally pointed at section `11854:23562`
 > ("Work Order Explorations 20.4.2026", 27 direct children). Per the user's
@@ -27,6 +35,12 @@ the distinct visual designs are the section children listed here.
 
 ### A.1 Section 11854:23562 — "Work Order Explorations 20.4.2026" (27 children)
 
+**Rendered-column legend (all tables):** `yes` = captured via Figma API at 2x;
+`yes (ZIP 1x)` = captured from the user's export zip at 1x; `MISSING` = no PNG
+exists — not captured. **Bookkeeping fix 2026-07-17:** rows 17–20 (the 4 mobile
+Customer frames) were previously marked "yes" although NO PNG had been committed
+— corrected; their PNGs now exist, sourced from the zip.
+
 | # | Node id | Name | Type | Size | Rendered |
 |---|---------|------|------|------|----------|
 | 1 | 11854:24194 | Status dropdown selected | FRAME | 260x432 | yes |
@@ -45,10 +59,10 @@ the distinct visual designs are the section children listed here.
 | 14 | 11884:21065 | Status only | FRAME | 402x800 | yes |
 | 15 | 11884:16160 | Status (selected, "All Filters (1)") | FRAME | 402x800 | yes |
 | 16 | 11884:15582 | Asset on site | FRAME | 402x800 | yes |
-| 17 | 11884:13940 | Customer | FRAME | 402x800 | yes |
-| 18 | 11884:21271 | Customer only | FRAME | 402x800 | yes |
-| 19 | 11884:16695 | Customer selected 1 | FRAME | 402x800 | yes |
-| 20 | 11884:16383 | Customer Selected 2 | FRAME | 402x800 | yes |
+| 17 | 11884:13940 | Customer | FRAME | 402x800 | yes (ZIP 1x) |
+| 18 | 11884:21271 | Customer only | FRAME | 402x800 | yes (ZIP 1x) |
+| 19 | 11884:16695 | Customer selected 1 | FRAME | 402x800 | yes (ZIP 1x) |
+| 20 | 11884:16383 | Customer Selected 2 | FRAME | 402x800 | yes (ZIP 1x) |
 | 21 | 11884:14296 | Technician | FRAME | 402x800 | yes |
 | 22 | 11884:14811 | Advisor | FRAME | 402x800 | yes |
 | 23 | 11854:19595 | Customer dropdown selected | FRAME | 260x556 | yes |
@@ -61,100 +75,100 @@ the distinct visual designs are the section children listed here.
 
 | # | Node id | Name | Type | Size | Rendered |
 |---|---------|------|------|------|----------|
-| 1 | 11823:8024 | Step 1 | FRAME | 1728x1046 | RENDER-STATUS |
-| 2 | 11829:2235 | WO - Separate Cards | FRAME | 1728x1046 | RENDER-STATUS |
-| 3 | 11824:2812 | Menu selected | FRAME | 260x432 | RENDER-STATUS |
-| 4 | 11824:3067 | Menu default | FRAME | 260x432 | RENDER-STATUS |
-| 5 | 11842:13915 | Menu default (2nd copy) | FRAME | 260x432 | RENDER-STATUS |
-| 6 | 11839:12739 | Tehnician *(typo)* | FRAME | 260x490 | RENDER-STATUS |
-| 7 | 11839:12909 | Advisor | FRAME | 260x490 | RENDER-STATUS |
-| 8 | 11842:2983 | V1 without title | SECTION (label strip, empty) | 2395x120 | RENDER-STATUS |
-| 9 | 11842:2984 | V2 with title | SECTION (label strip, empty) | 3584x120 | RENDER-STATUS |
-| 10 | 11842:18586 | V3 Optional | SECTION (label strip, empty) | 3584x120 | RENDER-STATUS |
-| 11 | 11842:2985 | Step 2 | FRAME | 1728x1046 | RENDER-STATUS |
-| 12 | 11842:17150 | Step 5 | FRAME | 1728x1046 | RENDER-STATUS |
-| 13 | 11842:18756 | Step 6 | FRAME | 1728x1046 | RENDER-STATUS |
-| 14 | 11842:17878 | Step 4 | FRAME | 1728x1046 | RENDER-STATUS |
-| 15 | 11842:12321 | Step 3 | FRAME | 1728x1046 | RENDER-STATUS |
-| 16 | 11842:3301 | WO - Separate Cards (2nd) | FRAME | 1728x1046 | RENDER-STATUS |
-| 17 | 11842:13036 | WO - Separate Cards (3rd) | FRAME | 1728x1046 | RENDER-STATUS |
-| 18 | 11842:18588 | Filter menu | FRAME | 260x92 | RENDER-STATUS |
-| 19 | 11842:19476 | Filter menu (1-item) | FRAME | 260x50 | RENDER-STATUS |
+| 1 | 11823:8024 | Step 1 | FRAME | 1728x1046 | MISSING |
+| 2 | 11829:2235 | WO - Separate Cards | FRAME | 1728x1046 | MISSING |
+| 3 | 11824:2812 | Menu selected | FRAME | 260x432 | MISSING |
+| 4 | 11824:3067 | Menu default | FRAME | 260x432 | MISSING |
+| 5 | 11842:13915 | Menu default (2nd copy) | FRAME | 260x432 | MISSING |
+| 6 | 11839:12739 | Tehnician *(typo)* | FRAME | 260x490 | MISSING |
+| 7 | 11839:12909 | Advisor | FRAME | 260x490 | MISSING |
+| 8 | 11842:2983 | V1 without title | SECTION (label strip, empty) | 2395x120 | MISSING (label strip — optional, no UI content) |
+| 9 | 11842:2984 | V2 with title | SECTION (label strip, empty) | 3584x120 | MISSING (label strip — optional, no UI content) |
+| 10 | 11842:18586 | V3 Optional | SECTION (label strip, empty) | 3584x120 | MISSING (label strip — optional, no UI content) |
+| 11 | 11842:2985 | Step 2 | FRAME | 1728x1046 | MISSING |
+| 12 | 11842:17150 | Step 5 | FRAME | 1728x1046 | MISSING |
+| 13 | 11842:18756 | Step 6 | FRAME | 1728x1046 | MISSING |
+| 14 | 11842:17878 | Step 4 | FRAME | 1728x1046 | MISSING |
+| 15 | 11842:12321 | Step 3 | FRAME | 1728x1046 | MISSING |
+| 16 | 11842:3301 | WO - Separate Cards (2nd) | FRAME | 1728x1046 | MISSING |
+| 17 | 11842:13036 | WO - Separate Cards (3rd) | FRAME | 1728x1046 | MISSING |
+| 18 | 11842:18588 | Filter menu | FRAME | 260x92 | MISSING |
+| 19 | 11842:19476 | Filter menu (1-item) | FRAME | 260x50 | MISSING |
 
 ### A.3 Section 11985:9685 — "Sorting (Work In Progress)" (4 children)
 
 | # | Node id | Name | Type | Size | Rendered |
 |---|---------|------|------|------|----------|
-| 1 | 11985:9686 | Step 1 | FRAME | 1728x1046 | RENDER-STATUS |
-| 2 | 11985:10428 | Step 2 | FRAME | 1728x1046 | RENDER-STATUS |
-| 3 | 11985:11259 | Step 3 | FRAME | 1728x1046 | RENDER-STATUS |
-| 4 | 11985:13334 | Step 4 | FRAME | 1728x1046 | RENDER-STATUS |
+| 1 | 11985:9686 | Step 1 | FRAME | 1728x1046 | MISSING |
+| 2 | 11985:10428 | Step 2 | FRAME | 1728x1046 | MISSING |
+| 3 | 11985:11259 | Step 3 | FRAME | 1728x1046 | MISSING |
+| 4 | 11985:13334 | Step 4 | FRAME | 1728x1046 | MISSING |
 
 ### A.4 Section 11829:2920 — "Components" (3 children, 10 variants)
 
 | # | Node id | Name | Type | Variants | Rendered |
 |---|---------|------|------|----------|----------|
-| 1 | 11829:2935 | Filters | COMPONENT_SET | Property 1 = Default / Hover / Selected / Disabled (11829:2934, 11829:2936, 11829:2942, 11972:33057) | RENDER-STATUS |
-| 2 | 11829:8908 | Button | COMPONENT_SET | Property 1 = Default / Hover / Selected / Filled (11829:8907, 11829:8909, 11829:8912, 11829:8947) | RENDER-STATUS |
-| 3 | 11829:8920 | Line 3 | COMPONENT_SET | Property 1 = Default / Variant2 (11829:8919, 11829:8921) — zero-width divider strokes | RENDER-STATUS |
+| 1 | 11829:2935 | Filters | COMPONENT_SET | Property 1 = Default / Hover / Selected / Disabled (11829:2934, 11829:2936, 11829:2942, 11972:33057) | MISSING |
+| 2 | 11829:8908 | Button | COMPONENT_SET | Property 1 = Default / Hover / Selected / Filled (11829:8907, 11829:8909, 11829:8912, 11829:8947) | MISSING |
+| 3 | 11829:8920 | Line 3 | COMPONENT_SET | Property 1 = Default / Variant2 (11829:8919, 11829:8921) — zero-width divider strokes | MISSING |
 
 ### A.5 Section 11884:16885 — "Parts Exploarations 20.4.2026" *(section-name typo)* (9 children)
 
 | # | Node id | Name | Type | Size | Rendered |
 |---|---------|------|------|------|----------|
-| 1 | 11894:21846 | Inventory | FRAME | 1512x982 | RENDER-STATUS |
-| 2 | 11902:8517 | Part Sales | FRAME | 1512x982 | RENDER-STATUS |
-| 3 | 11902:9736 | Catalog | FRAME | 1512x982 | RENDER-STATUS |
-| 4 | 11902:9852 | Returns | FRAME | 1512x982 | RENDER-STATUS |
-| 5 | 11903:10067 | Credits | FRAME | 1512x982 | RENDER-STATUS |
-| 6 | 11903:10188 | Purchase Orders | FRAME | 1512x982 | RENDER-STATUS |
-| 7 | 11903:10312 | Vendor Invoices | FRAME | 1512x982 | RENDER-STATUS |
-| 8 | 11903:10461 | Vendor Invoices (actually Vendors list) | FRAME | 1512x982 | RENDER-STATUS |
-| 9 | 11902:9973 | Part type (dropdown) | FRAME | 260x138 | RENDER-STATUS |
+| 1 | 11894:21846 | Inventory | FRAME | 1512x982 | yes (ZIP 1x) |
+| 2 | 11902:8517 | Part Sales | FRAME | 1512x982 | yes (ZIP 1x) |
+| 3 | 11902:9736 | Catalog | FRAME | 1512x982 | yes (ZIP 1x) |
+| 4 | 11902:9852 | Returns | FRAME | 1512x982 | yes (ZIP 1x) |
+| 5 | 11903:10067 | Credits | FRAME | 1512x982 | yes (ZIP 1x) |
+| 6 | 11903:10188 | Purchase Orders | FRAME | 1512x982 | yes (ZIP 1x) |
+| 7 | 11903:10312 | Vendor Invoices | FRAME | 1512x982 | yes (ZIP 1x) |
+| 8 | 11903:10461 | Vendor Invoices (actually Vendors list) | FRAME | 1512x982 | yes (ZIP 1x) |
+| 9 | 11902:9973 | Part type (dropdown) | FRAME | 260x138 | yes (ZIP 1x) |
 
 ### A.6 Section 11903:10573 — "Reports Exploarations 21.4.2026" *(section-name typo)* (30 children)
 
 | # | Node id | Name | Type | Size | Rendered |
 |---|---------|------|------|------|----------|
-| 1 | 11906:12519 | Timesheet Activities | FRAME | 1512x982 | RENDER-STATUS |
-| 2 | 11984:9560 | Timesheets (Payroll Timesheet) | FRAME | 1512x982 | RENDER-STATUS |
-| 3 | 11955:31691 | A/R Aging Summary | FRAME | 1512x982 | RENDER-STATUS |
-| 4 | 11955:32006 | A/P Aging Summary | FRAME | 1512x982 | RENDER-STATUS |
-| 5 | 11955:31802 | A/R Aging Detail | FRAME | 1512x982 | RENDER-STATUS |
-| 6 | 11955:32097 | A/P Aging Detail | FRAME | 1512x982 | RENDER-STATUS |
-| 7 | 11955:31901 | A/R Aging Collection | FRAME | 1512x982 | RENDER-STATUS |
-| 8 | 11982:9225 | Notes | FRAME | 1512x982 | RENDER-STATUS |
-| 9 | 11982:9338 | Reminders | FRAME | 1512x982 | RENDER-STATUS |
-| 10 | 11955:32215 | A/P Unpaid Invoices | FRAME | 1512x982 | RENDER-STATUS |
-| 11 | 11955:30951 | Shop Efficiency | FRAME | 1512x982 | RENDER-STATUS |
-| 12 | 11955:31355 | Work In Progress | FRAME | 1512x982 | RENDER-STATUS |
-| 13 | 11984:9457 | Sales Follow Up | FRAME | 1512x982 | RENDER-STATUS |
-| 14 | 11955:31458 | Sales Tax (Collected) | FRAME | 1512x982 | RENDER-STATUS |
-| 15 | 11955:31573 | Sales Tax (All Tax Rates) | FRAME | 1512x982 | RENDER-STATUS |
-| 16 | 11955:30786 | Advisor Analysis | FRAME | 1512x982 | RENDER-STATUS |
-| 17 | 11955:30653 | Technician Efficiency (Invoiced) | FRAME | 1512x982 | RENDER-STATUS |
-| 18 | 11974:33068 | IBS Batch Transactions | FRAME | 1512x982 | RENDER-STATUS |
-| 19 | 11981:8749 | Quickbooks Unexported Items (Customers tab) | FRAME | 1512x982 | RENDER-STATUS |
-| 20 | 11982:8879 | Quickbooks Unexported Items (Vendors tab) | FRAME | 1512x982 | RENDER-STATUS |
-| 21 | 11982:8998 | Quickbooks Unexported Items (Journal Entries tab) | FRAME | 1512x982 | RENDER-STATUS |
-| 22 | 11955:31069 | Technician Efficiency (Completed) | FRAME | 1512x982 | RENDER-STATUS |
-| 23 | 11951:30535 | Sales | FRAME | 1512x982 | RENDER-STATUS |
-| 24 | 11984:9454 | Labour | SECTION (label strip, empty) | 3172x104 | RENDER-STATUS |
-| 25 | 11984:9672 | Accounts Receivable | SECTION (label strip, empty) | 1512x104 | RENDER-STATUS |
-| 26 | 11984:9674 | Accounting | SECTION (label strip, empty) | 4748x104 | RENDER-STATUS |
-| 27 | 11984:9673 | Accounts Payable | SECTION (label strip, empty) | 1512x104 | RENDER-STATUS |
-| 28 | 11984:9675 | Communications | SECTION (label strip, empty) | 1512x104 | RENDER-STATUS |
-| 29 | 11984:9455 | Performance | SECTION (label strip, empty) | 3172x104 | RENDER-STATUS |
-| 30 | 11984:9456 | Finance | SECTION (label strip, empty) | 3172x104 | RENDER-STATUS |
+| 1 | 11906:12519 | Timesheet Activities | FRAME | 1512x982 | yes (ZIP 1x) |
+| 2 | 11984:9560 | Timesheets (Payroll Timesheet) | FRAME | 1512x982 | yes (ZIP 1x) |
+| 3 | 11955:31691 | A/R Aging Summary | FRAME | 1512x982 | yes (ZIP 1x) |
+| 4 | 11955:32006 | A/P Aging Summary | FRAME | 1512x982 | yes (ZIP 1x) |
+| 5 | 11955:31802 | A/R Aging Detail | FRAME | 1512x982 | yes (ZIP 1x) |
+| 6 | 11955:32097 | A/P Aging Detail | FRAME | 1512x982 | yes (ZIP 1x) |
+| 7 | 11955:31901 | A/R Aging Collection | FRAME | 1512x982 | yes (ZIP 1x) |
+| 8 | 11982:9225 | Notes | FRAME | 1512x982 | yes (ZIP 1x) |
+| 9 | 11982:9338 | Reminders | FRAME | 1512x982 | yes (ZIP 1x) |
+| 10 | 11955:32215 | A/P Unpaid Invoices | FRAME | 1512x982 | yes (ZIP 1x) |
+| 11 | 11955:30951 | Shop Efficiency | FRAME | 1512x982 | yes (ZIP 1x) |
+| 12 | 11955:31355 | Work In Progress | FRAME | 1512x982 | yes (ZIP 1x) |
+| 13 | 11984:9457 | Sales Follow Up | FRAME | 1512x982 | yes (ZIP 1x) |
+| 14 | 11955:31458 | Sales Tax (Collected) | FRAME | 1512x982 | yes (ZIP 1x) |
+| 15 | 11955:31573 | Sales Tax (All Tax Rates) | FRAME | 1512x982 | yes (ZIP 1x) |
+| 16 | 11955:30786 | Advisor Analysis | FRAME | 1512x982 | yes (ZIP 1x) |
+| 17 | 11955:30653 | Technician Efficiency (Invoiced) | FRAME | 1512x982 | yes (ZIP 1x) |
+| 18 | 11974:33068 | IBS Batch Transactions | FRAME | 1512x982 | yes (ZIP 1x) |
+| 19 | 11981:8749 | Quickbooks Unexported Items (Customers tab) | FRAME | 1512x982 | yes (ZIP 1x) |
+| 20 | 11982:8879 | Quickbooks Unexported Items (Vendors tab) | FRAME | 1512x982 | yes (ZIP 1x) |
+| 21 | 11982:8998 | Quickbooks Unexported Items (Journal Entries tab) | FRAME | 1512x982 | MISSING (not in zip) |
+| 22 | 11955:31069 | Technician Efficiency (Completed) | FRAME | 1512x982 | yes (ZIP 1x) |
+| 23 | 11951:30535 | Sales | FRAME | 1512x982 | yes (ZIP 1x) |
+| 24 | 11984:9454 | Labour | SECTION (label strip, empty) | 3172x104 | MISSING (label strip — optional, no UI content) |
+| 25 | 11984:9672 | Accounts Receivable | SECTION (label strip, empty) | 1512x104 | MISSING (label strip — optional, no UI content) |
+| 26 | 11984:9674 | Accounting | SECTION (label strip, empty) | 4748x104 | MISSING (label strip — optional, no UI content) |
+| 27 | 11984:9673 | Accounts Payable | SECTION (label strip, empty) | 1512x104 | MISSING (label strip — optional, no UI content) |
+| 28 | 11984:9675 | Communications | SECTION (label strip, empty) | 1512x104 | MISSING (label strip — optional, no UI content) |
+| 29 | 11984:9455 | Performance | SECTION (label strip, empty) | 3172x104 | MISSING (label strip — optional, no UI content) |
+| 30 | 11984:9456 | Finance | SECTION (label strip, empty) | 3172x104 | MISSING (label strip — optional, no UI content) |
 
 ### A.7 Page-level frames (4, directly on the "Filters" page)
 
 | # | Node id | Name | Type | Size | Rendered |
 |---|---------|------|------|------|----------|
-| 1 | 12141:19858 | Mobile (older iteration — "By Status" / "Asset here?" chips) | FRAME | 402x874 | RENDER-STATUS |
-| 2 | 11884:15901 | Mobile | FRAME | 402x874 | RENDER-STATUS |
-| 3 | 11842:14069 | Customer v1 | FRAME | 260x490 | RENDER-STATUS |
-| 4 | 11842:16879 | Customer v1 selected | FRAME | 260x556 | RENDER-STATUS |
+| 1 | 12141:19858 | Mobile (older iteration — "By Status" / "Asset here?" chips) | FRAME | 402x874 | MISSING |
+| 2 | 11884:15901 | Mobile | FRAME | 402x874 | MISSING |
+| 3 | 11842:14069 | Customer v1 | FRAME | 260x490 | MISSING |
+| 4 | 11842:16879 | Customer v1 selected | FRAME | 260x556 | MISSING |
 
 ---
 
@@ -310,33 +324,250 @@ as TOGGLE-styled chips; the 20.4 set replaced them with the tab row + an
 "Asset on site" dropdown chip. Label sub-sections "V1 without title" /
 "V2 with title" / "V3 Optional" mark three chip-bar layout options.
 
-PLACEHOLDER-B2-FRAMES
+**NOT CAPTURED** — none of this section's 16 frames were in the user's export
+zip and no API renders exist (see A.2: all MISSING). Historical/superseded
+iteration; per-frame descriptions pending capture if ever needed.
 
 ### B.3 Sorting (Work In Progress) — 4 steps
 
 Desktop WO-list frames exploring column sorting on the same shell.
 
-PLACEHOLDER-B3-FRAMES
+**NOT CAPTURED** — the 4 "Step" frames were not in the export zip and no API
+renders exist (see A.3: all MISSING). Section is explicitly titled "Work In
+Progress" in Figma.
 
 ### B.4 Components (filter chip / button / divider component sets)
 
-PLACEHOLDER-B4-FRAMES
+**NOT CAPTURED** — the 3 component sets (Filters chip, Button, Line 3 divider;
+10 variants) were not in the export zip and no API renders exist (see A.4).
+Their variant structure (Default / Hover / Selected / Disabled etc.) is
+inventoried in A.4 from the Figma node tree; the Selected/Disabled chip styles
+are visible in-context in the captured B.1 frames (#2, #4).
 
 ### B.5 Parts Exploarations 20.4.2026 (filter bar applied to Parts screens)
 
 The same chip-based filter bar pattern propagated to the Parts module list
-screens (1512x982 frames, same top nav shell).
+screens (1512x982 frames, same top nav shell). All 9 frames captured from the
+export zip (viewed 2026-07-17; labels below are the exact on-screen strings).
 
-PLACEHOLDER-B5-FRAMES
+**Shared Parts shell:** top nav **Work Orders | Schedule | Customers | Parts |
+Reports**, global **Search** field with **⌘ K** hint, org **"Heavy Duty"** +
+avatar. Left sidebar: **SALES & SERVICE** → **Part Sales**; **PARTS** →
+**Inventory, Catalog, Requests**; **SUPPLY CHAIN** → **Returns, Purchase
+Orders, Vendor Invoices, Vendors**. Toolbar right side: **Search** (magnifier),
+a filter (funnel) icon, a column/layout toggle icon, and a primary blue button.
+(Nav-state artifact: most frames highlight the **Schedule** nav item even
+though a Parts screen is shown; the Part Sales frame instead shows a variant
+top bar with **Clock In**, a notification bell, and org **"Staging Heavy Duty -
+9919" AS** — sample-data/shell inconsistencies, not behavior.)
+
+1. **11894:21846 — Inventory.** Title **Inventory**; extra toolbar "⋮" menu;
+   blue **New Inventory Part** button. Filter chips: **Bin Location ⌄ |
+   Category ⌄ | Supply ⌄ | Vendor ⌄** (icons: pin, list, box, person). Columns:
+   **Description | Part number | Tags | Category | Manufacturer | Vendor | Bin
+   Location / Quantity | Action** (pencil icon per row). Sample rows repeat
+   "Description", part numbers 9420989 / DDHD668DRM / TP-20005 /
+   ABP-N83-319015 / 257002-448P / 550042083, category "AUTO-Accessories
+   (Ga…)", vendor "Jepson Petroleum (Alb…)", tag pills **HG8009**, **Test**,
+   bin/qty pills (e.g. **Storage 4**, **Shelf A3 12**, **C4 16**, **F5 5**,
+   **+ 4**, **Upper shelf C2 16**, **Long bin nam… 16**).
+2. **11902:8517 — Part Sales.** Title **Part Sales**; blue **New Part Sale**
+   button. Filter chips: **Status ⌄ | Customer ⌄ | Created by ⌄ | Date ⌄**
+   (icons: spinner, person, person-plus, calendar). Columns: **Number | Status
+   | Customer | Asset | VIN/Serial # | Created By | Total Price | Created On |
+   Parts | Returns**. Status pills all **Paid** (green outline). Sample rows
+   P2-267 / P2-16 / P2-269 …; VIN cells show copy icons; one VIN cell reads
+   **DO NOT HAVE**; Created On values "Yesterday" / "Mar 19, 2026" etc.
+3. **11902:9736 — Catalog.** Title **Catalog**; blue **New Catalog Part**
+   button. Filter chips: **Manufacturer ⌄ | Category ⌄** (person, list icons).
+   Columns: **(checkbox) | Description | Part Number | Tags | Category** plus a
+   "⋮" column-header icon next to the checkbox. Sample rows: "Slack Adjuster"
+   F40010212 (tags **M807013, 40010212, E6942**) HD-Air Brakes & Air
+   Suspension; "drivers seatbelt buckle"; "PUSH PULL VALVE, 4 WAY"; "Engine Oil
+   Filter, Cummins 6BT" LF3349 (tags **P558615, 51607, UPGRADE TO LF3552,
+   ...**) HD-Filters; categories incl. **Uncategorized**, HD-Wheel Comp,
+   HD-Hose & Fittings, HD-Cooling & HVAC, HD-Engine Comp, HD-Body Interior.
+4. **11902:9852 — Returns.** View tabs **Returns | Credits** (Returns active);
+   blue **Create Return** button. Filter chips: **Vendor ⌄ | Category ⌄ | Part
+   Type ⌄** (person, list, layers icons). Columns: **(checkbox) | Work Order |
+   Vendor Invoice | Vendor | Part Number | Description | Quantity | Cost |
+   Total Cost | Return Reason | Status | Requested | Pack…(cut)**. Work
+   Order/Vendor Invoice cells are blue links (S2-14986, spl-break-1-inv…);
+   Status pills all **Returned** (blue outline); Return Reason values: **Core
+   ok, Part Sale Credit, INCORRECT, wrong, OVER ORDERED, Not required, Wrong
+   for applicatio…, Wrong part for repai…**.
+5. **11903:10067 — Credits.** Tabs **Returns | Credits** (Credits active);
+   blue **Create Credit** button. Filter chips: **Vendor ⌄ | Date ⌄ | Processed
+   by ⌄**. Columns: **Credit Memo Number | Vendor | Work Order | Vendor Invoice
+   | Date | Processed By | Total Cost | Notes**. Sample rows GCR130686 /
+   CN000020677 / P81614 …; Work Order & Vendor Invoice cells sometimes
+   **multiple** or **-**; one Notes value "Shop Supplies order for bin
+   dividers, these are the wrong size for a di…".
+6. **11903:10188 — Purchase Orders.** Title **Purchase Orders**; blue **New
+   Purchase Order** button. Filter chips: **Vendor ⌄ | Status ⌄ | Date ⌄ |
+   Ordered by ⌄**. Columns: **Work Order | Purchase Order Number | Vendor |
+   Order Status | Created On | Ordered By | Total Price | Note**; rows without
+   a work order show **-** and carry a blue **Receive** button at the row end.
+   Order Status pills: **Ordered** (blue outline), **Partial Delivery** (red
+   outline).
+7. **11903:10312 — Vendor Invoices.** Title **Vendor Invoices**; NO "New"
+   button (toolbar = Search + funnel + column icons only). Filter chips:
+   **Vendor ⌄ | Invoice date ⌄ | Date received ⌄ | Received by ⌄**. Columns:
+   **Work Order | Invoice Number | Order Number | Received By | Vendor Name |
+   Date Received | Invoice Date | Due Date | Total Cost | Note**. Received By
+   shows round initial avatars (PF, DC, AK, NG, OB).
+8. **11903:10461 — "Vendor Invoices" (actually the Vendors list).** Title
+   **Vendors**; blue **New Vendor** button (frame-name slip — see §C.4).
+   Filter chips: **Vendor ⌄ | State/Province ⌄** (person, pin icons). Columns:
+   **Name | Telephone | Email | Address 1 | Address 2 | City | State/Province
+   | Zip/Postal Code**. Sample vendors Craland Design, Miboro Management,
+   Uuriver Supply…; emails `*@staging.shopview.local`.
+9. **11902:9973 — Part type (dropdown).** Minimal popover: options **Core**,
+   **Non Core**, footer **Clear selection** (the Part Type chip's menu for the
+   Returns screen).
 
 ### B.6 Reports Exploarations 21.4.2026 (filter bar applied to Reports screens)
 
 The chip-based filter bar propagated to every Reports list screen (23 report
-screens, grouped in the Figma section by label strips: Labour, Accounts
+screens in the Figma section, grouped by label strips: Labour, Accounts
 Receivable, Accounts Payable, Accounting, Communications, Performance,
-Finance).
+Finance). **22 of the 23 frames are in the final ZIP set** (viewed 2026-07-17;
+labels below are the exact on-screen strings). The QB Unexported **Journal
+Entries tab** frame (11982:8998) was not exported — its tab LABEL ("Journal
+Entries (4)") is visible in the two captured QB frames; only that tab's own
+body is uncaptured (out of the final set per the designer ruling).
 
-PLACEHOLDER-B6-FRAMES
+**Shared Reports shell:** top nav **Work Orders | Schedule | Customers | Parts
+| Reports** (Reports active), **Search** + **⌘ K**, org **"Heavy Duty"** +
+avatar. Left sidebar nav: **LABOR** → **Timesheets, Timesheet Activities**;
+**PERFORMANCE** → **Sales, Technician Efficiency, Advisor Analysis, Shop
+Efficiency, Work In Progress, Follow Up**; **FINANCE** → **Sales Tax
+Collected**; **ACCOUNTS RECEIVABLE** → **A/R Aging Summary, A/R Aging Detail,
+A/R Aging Collection**; **ACCOUNTS PAYABLE** → **A/P Aging Summary, A/P Aging
+Detail, A/P Unpaid Invoices**; **ACCOUNTING** → **IBS Batches, QB Unexported,
+Export Reports**; **COMMUNICATIONS** → **Notes, Reminders**. ("Technician" is
+spelled CORRECTLY throughout the Reports sidebar/screens.) Toolbar right:
+**Search** + funnel icon (+ per-screen extras noted below). Empty-state string
+(where shown): **"Empty bays, endless possibilities. Get Going!"**.
+
+**Placeholder-body design artifact:** the six Aging screens and both Sales Tax
+screens reuse the Timesheet Activities TABLE (columns Date, Employee, Work
+Order, Clock In Activity, Clock In, Clock Out, Total Hours, WO Hours, Internal
+Hours, Modified By, Modified Date/Time + Totals 1146.60/908.79/237.81) as
+sample body content — a Figma fill-in, NOT the real report columns. On those
+frames the design-relevant content is the TITLE, TABS, and FILTER CHIPS only.
+
+1. **11906:12519 — Timesheet Activities.** Title **Timesheet Activities**;
+   toolbar adds column-toggle + export (up-arrow) icons + blue **New
+   Timesheet** button. Filter chips: **Staff ⌄ | Date ⌄ | Status ⌄ | Modified
+   by ⌄**. Columns: **Date | Employee | Work Order | Clock In Activity | Clock
+   In | Clock Out | Total Hours | WO Hours | Internal Hours | Modified By |
+   Modified Date/Time**; **Totals** row **1146.60 / 908.79 / 237.81**. Work
+   Order cells are blue links (S2-14996 …) or **N/A**; activities e.g.
+   "Replace - Brake Pot", "Administration", "Foreman Duties (Calgary HD)".
+2. **11984:9560 — Timesheets (Payroll Timesheet).** Title **Payroll
+   Timesheet**; toolbar = Search + funnel only. Filter chips: **Employee ⌄ |
+   Date ⌄**. Columns: **Employee Name | Date | Clock In Time | Lunch | Clock
+   Out Time | Hours**. Empty state "Empty bays, endless possibilities. Get
+   Going!".
+3. **11951:30535 — Sales.** Title **Sales**; toolbar adds column-toggle icon.
+   Filter chips: **Customer ⌄ | Date ⌄**. Columns: **Invoice Date | Invoice |
+   Customer | Inv. Hrs | Billing Efficiency | Labor Invoiced | Labor Margin |
+   Parts Invoiced | Parts Cost | Parts Margin | Profi…(t) | Subtotal**;
+   **Totals** row (1,144.40 | 107.76% | $156,842.04 | 66.18% | $126,403.36 |
+   $81,368.97 | 35.63% | $148,826.3… | $292,140.81). Invoice cells blue links.
+4. **11955:30653 — Technician Efficiency (Invoiced).** View tabs **Invoiced |
+   Completed** (Invoiced active); toolbar adds column-toggle + download icons +
+   blue **New Timesheet** button. Filter chips: **Customer ⌄ | Technician ⌄ |
+   Date ⌄**. Columns: **Date | Invoice | Customer | WO Line | Clocked Hrs |
+   Invoiced Tech Hrs | Hrs Profit | Efficiency**; rows are collapsible
+   per-technician groups (Allison Perez, Viktoria Tech 2 …); **Totals**
+   1,062.19 / 1,048.58 / -13.61 / 98.72%.
+5. **11955:31069 — Technician Efficiency (Completed).** Same screen,
+   **Completed** tab active. Columns: **Completed Date | Work Order | Customer
+   | WO Line | Clocked Hrs | Completed Tech Hrs | Hrs Profit | Efficiency**;
+   **Totals** 1,077.86 / 1,091.81 / 13.95 / 101.29%.
+6. **11955:30786 — Advisor Analysis.** Title **Advisor Analysis**; toolbar
+   adds column-toggle icon. Filter chips: **Customer ⌄ | Date ⌄ | Advisor ⌄**
+   (Advisor chip uses the spinner icon). Columns: **Date | Invoice | Customer
+   | Advisor | Days Open | Lines | Hrs Worked | Hrs Invoiced | Hrs Profit |
+   Billing Efficiency | ELR | Parts Cost | Parts Invoiced | Par…(ts Margin) |
+   Subtotal**; **Totals** row (1163 | 591 | 1062.03 | 1,142.90 | 80.87 |
+   107.61% | $147.47/hr | $79,596.99 | $120,293.69 | $4( … | $285,782.60).
+7. **11955:30951 — Shop Efficiency.** Title **Shop Efficiency**; toolbar adds
+   column-toggle icon. Filter chip: **Date ⌄** ONLY. Columns: **Total Clocked
+   Hours | Total Invoiced Hours | Difference | Efficiency**; single **Totals**
+   row **1,093.56 | 1,142.80 | 49.24 | 104.50%**.
+8. **11955:31355 — Work In Progress.** Title **Work in Progress** (lower-case
+   "in" on screen). Filter chips: **Status ⌄ | Date ⌄ | Customer ⌄**. Columns:
+   **Sales | Cost | Profit $ | Profit %**; collapsible status groups **Pending
+   Authorization / In Progress / Ready To Invoice**, each with rows **Labour,
+   Parts, Sublet, Misc**.
+9. **11984:9457 — Sales Follow Up.** Title **Sales Follow Up**; toolbar =
+   Search + funnel. Filter chips: **Customer ⌄ | Date ⌄ | Contact ⌄**.
+   Columns: **Customer | Sales Representative | Number Of Work Orders | Total
+   Spend | Last Visit**. Empty state "Empty bays, endless possibilities. Get
+   Going!".
+10. **11955:31458 — Sales Tax (Collected).** View tabs **Collected | All Tax
+    Rates** (Collected active); toolbar adds column-toggle + export icons.
+    Filter chips: **Date ⌄ | Invoice Status ⌄ | Customer ⌄**. Body =
+    placeholder table (see artifact note above).
+11. **11955:31573 — Sales Tax (All Tax Rates).** **All Tax Rates** tab active;
+    toolbar = Search + funnel. Filter chip: **Invoice Status ⌄** ONLY. Body =
+    placeholder table.
+12. **11955:31691 — A/R Aging Summary.** Title **A/R Aging Summary**; toolbar
+    adds a print icon. Filter chips: **Customer ⌄ | Date ⌄**. Body =
+    placeholder table.
+13. **11955:31802 — A/R Aging Detail.** Title **A/R Aging Detail**; print
+    icon. Filter chips: **Customer ⌄ | Date ⌄ | Location ⌄ | Transaction Type
+    ⌄** (pin + arrows icons on the last two). Body = placeholder table.
+14. **11955:31901 — A/R Aging Collection.** Title **A/R Aging Collection**;
+    print icon. Filter chips: **Customer ⌄ | Date ⌄ | Location ⌄ | Transaction
+    Type ⌄**. Body = placeholder table.
+15. **11955:32006 — A/P Aging Summary.** Title **A/P Aging Summary**; print
+    icon. Filter chips: **Vendor ⌄ | Date ⌄**. Body = placeholder table.
+16. **11955:32097 — A/P Aging Detail.** Title **A/P Aging Detail**; print
+    icon. Filter chips: **Vendor ⌄ | Date ⌄ | Location ⌄ | Transaction Type
+    ⌄**. Body = placeholder table.
+17. **11955:32215 — A/P Unpaid Invoices.** Title **A/P Unpaid Invoices**;
+    print icon. Filter chips: **Vendor ⌄ | Date ⌄ | Location ⌄ | Transaction
+    Type ⌄**. Body = placeholder table.
+18. **11982:9225 — Notes.** Title **Notes**; toolbar = Search + funnel + a
+    sort (↑↓) icon. Filter chips: **Author ⌄ | Date ⌄ | Mention ⌄** (the
+    Mention chip icon is **@**). Body = a note card: round initials avatar
+    **NM**, author **Nebojsa Miskovic**, badge **Work Order: S-15020**,
+    timestamp **06:54 AM, Yesterday**, note text "ds", an attachment tile
+    (**Screenshot 2026-04.. / 165.79 kB**) with a **For Customer** checkbox,
+    and at top right a red bell icon + red date **Apr 18, 2026** + "…" menu.
+19. **11982:9338 — Reminders.** Title **Reminders**; toolbar = Search + funnel
+    + sort icon. Filter chip: **Date ⌄** ONLY. Empty state **"There are no
+    reminders for selected date range"**.
+20. **11974:33068 — IBS Batch Transactions.** View tabs **Ready To Send | Sent
+    | Payments** (Ready To Send active); toolbar adds column-toggle icon;
+    sidebar highlights **IBS Batches**. Filter chips: **Customer ⌄ | Date ⌄ |
+    Status ⌄**. Columns: **(checkbox + ⋮) | Date | Type ▴ | No. | Customer |
+    Total | Balance | Status**. Empty state "Empty bays, endless
+    possibilities. Get Going!".
+21. **11981:8749 — Quickbooks Unexported Items (Customers tab).** View tabs
+    **Customers (63) | Vendors (19) | Journal Entries (4)** (Customers
+    active); sidebar highlights **QB Unexported**. Filter chips: **Customer ⌄
+    | Date ⌄ | Type ⌄**. Columns: **Date | Type | No. | Customer | Error |
+    Export Manually | Mark As Exported** — per row a solid blue **Export**
+    button and an outline **Mark As Exported** button. Sample errors: "Invalid
+    Line TaxCode in the request : Valid line TaxCodes for US should be TAX or
+    …", "Authentication issue - Could not set the OAuth 2 Access Token
+    Object."; Types **Invoice Create / Payment Create**.
+22. **11982:8879 — Quickbooks Unexported Items (Vendors tab).** **Vendors
+    (19)** tab active. Filter chips: **Vendor ⌄ | Date ⌄ | Type ⌄**. Columns:
+    **Date | Type | No. | Vendor | Error | Export Manually | Mark As
+    Exported**. Types **Payment Reverse / Payment / Parts Receive**; extra
+    error strings "The vendor payment could not be reversed because the
+    matching rec…", "Required param missing, need to supply the required value
+    for the A…", "Invalid Reference Id : Invalid Reference Id : Klasses
+    element id 45000…".
+23. **11982:8998 — Quickbooks Unexported Items (Journal Entries tab).** NOT in
+    the ZIP — out of the final export set (designer ruling 2026-07-17); the
+    tab label **Journal Entries (4)** is evidenced in frames 21–22.
 
 ### B.7 Page-level frames (outside any section)
 
