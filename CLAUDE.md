@@ -261,6 +261,45 @@ process(es) to run before proceeding.
    TESTING-RUNBOOK, harness/TestRail patterns). Per Standing Rule 11, ASK which
    process(es) to run before the VIU pass. Still open: OQ-3 (AI scope), OQ-4 (Epic key
    — ask at VIU), OQ-5 (QA env/flag status).
+5. **Filters project** — Filters / Work Order list filtering (ShopView App): a
+   persistent multi-criteria filter bar on the Work Orders page (Status / Customer /
+   Lead Technician / Service Advisor / Asset on Site chips; multi-select + search;
+   Clear filters / Clear selection; collapse/expand toggle; per-user persistence;
+   URL shareable state; tab behaviour incl. Status hidden on Estimates/Completed;
+   mobile horizontally-scrollable chips + bottom-sheet dropdowns).
+   **Canonical spec URL (Confluence): TO CONFIRM — user provided the exported .doc
+   2026-07-16; ask for the page URL** (when obtained: Atlassian-SSO login-walled —
+   reference pointer only, do NOT fetch; spec content already ingested from the
+   exported .doc).
+   **Figma (canonical design pointer):**
+   https://www.figma.com/design/DR4gEODShYgJqkozs3mF5q/Working---ShopView-App?node-id=11854-23562
+   ("Work Order Explorations 20.4.2026"; spec header also links node 11817-27678;
+   per-story node links in requirements.md).
+   **PO: Branko** (full name TBC — same PO as Global Search; never mix PO
+   attributions: Filters=Branko, Global Search=Branko, Fees&Discounts=Chris Ward,
+   Simple Flow=Milos).
+   **⚠️ Epic/Jira key: NOT AVAILABLE YET — ASK THE USER for it when VIU begins**
+   (every story's Jira field reads "TBD"; do NOT invent).
+   **CANONICAL STATE DOC (read first for resume):** `build/filters/PROJECT-STATE.md`
+   — single authoritative snapshot (status, deliverables index, open questions,
+   env/access TBD, how-to-resume).
+   **STATUS: ONBOARDING 2026-07-17 — spec V1.0 fully ingested →
+   `build/filters/requirements.md` (Stories 1–12, all S#-R#/N#/E#; doc gap: spec
+   sections 5–6 missing from the export, numbering jumps 4→7 = OQ-1); design capture
+   (design-notes.md + design-screens/) by a parallel worker; CASE AUTHORING NOT
+   STARTED — waiting for the user to confirm the complete Figma design set; TestRail
+   NOTHING pushed (no writes without explicit user permission); env/flag/API + Epic
+   key + canonical URL still TBD (OQ-2/3/7). Canonical resume doc:
+   build/filters/PROJECT-STATE.md.** Same rules as all projects: reuse shared infra
+   (BUILD-ACCURATE-WORDING-VIU-PROCESS, SPEC-RELEVANCE-RECONCILIATION,
+   TESTING-RUNBOOK, harness/TestRail patterns); per Standing Rule 11 ASK which
+   process(es) to run before any VIU pass; import deliverable MUST be pure 1:1 with
+   the established `testrail-import/*-testrail-import.csv` format per Rule 16
+   (VIU-word-free + flag-free, ID map per Rule 8, API cases in an "API — <leaf>"
+   section per Rule 4). Open questions live in requirements.md (OQ-1..OQ-8: doc-gap
+   §5–6, spec URL, Epic key, permissions unspecified, persistence scope
+   session-vs-per-user tension, Asset-on-Site data source, env/flag, spec↔Figma
+   reconciliation after design capture).
 
 **STANDING RULES (apply to all projects):**
 1. **Never proceed without the complete set of information needed.** If
