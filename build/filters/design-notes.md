@@ -17,9 +17,10 @@ the final design — they are NOT counted as missing and are NOT to be chased.
 **2026-07-17 update:** the QB Unexported **Journal Entries tab** frame
 (11982:8998) — the one known gap in the ZIP — was CAPTURED the same day from
 the user's full-page Reports PDF export (§B.6 #23, §D, §E); final-set capture
-is now **50/50**. Whether the same-day re-share of superseded content (6 of
-the 9 PDFs) revises this ZIP=final ruling is an OPEN QUESTION for the user
-(§E c) — the baseline stands UNCHANGED until the user rules. The earlier user-pasted screenshots (sort
+is now **50/50**. **RESOLVED 2026-07-17 (user ruling A, §E c):** the same-day
+re-share of superseded content (6 of the 9 PDFs) was a COMPLETENESS EXPORT
+only — the ZIP=final baseline is CONFIRMED UNCHANGED (Sorting stays out of
+scope; older mobile + checkbox-Customer variants stay SUPERSEDED). The earlier user-pasted screenshots (sort
 dropdown, 2 mobile lists, zoomed-out canvas) are to be IGNORED. Completeness =
 100% of the zip extracted, viewed, described, committed — achieved; see §Z
 (zip→node map) and §D (completeness statement). The 96-node inventory in §A is
@@ -706,8 +707,9 @@ counted as missing.
   (3 sets), 7 Reports label strips, the 4
   page-level frames, the 7 desktop dropdown popovers + 2 A.1 label strips
   (these 9 have API renders retained). The earlier user-pasted screenshots are
-  ignored per the same ruling. (Whether the 2026-07-17 PDF re-share of
-  superseded content revises this list is an OPEN QUESTION — §E c.)
+  ignored per the same ruling. (The 2026-07-17 PDF re-share of superseded
+  content does NOT revise this list — RESOLVED, user ruling A, §E c: it was a
+  completeness export only; the baseline is confirmed unchanged.)
 - **Fit for test authoring: YES — design capture is COMPLETE** for the final
   design set. Note for authoring: the desktop filter-chip dropdown popovers are
   superseded as separate frames, but their option lists are fully evidenced in
@@ -798,9 +800,11 @@ Full inventory + per-item reconciliation verdicts:
   page-level Mobile frames, and the "Customer v1"/"Customer v1 selected"
   checkbox-variant dropdowns that conflict with the final right-side-✓
   selected-row pattern).
-- **(c) ⚠️ OPEN QUESTION (user to confirm):** does the deliberate re-share of
-  superseded content revise the "ZIP = final" ruling (§ header / §D) —
-  specifically: is **Sorting** now in scope, and which **mobile** and
-  **Customer-dropdown** variants win — or was the batch just a
-  completeness/convenience export? **The design baseline stands UNCHANGED
-  until the user rules.**
+- **(c) ✅ RESOLVED (2026-07-17, user ruling A):** the 9 PDFs were a
+  **COMPLETENESS EXPORT only** — the deliberate re-share of superseded content
+  does NOT revise the "ZIP = final" ruling (§ header / §D). **The design
+  baseline is CONFIRMED UNCHANGED.** Specifically: **Sorting stays OUT of
+  scope** (separate WIP feature); the **older mobile variants** and the
+  **leading-checkbox "Customer v1"/"Customer v1 selected" dropdown variant
+  remain SUPERSEDED** (the final right-side-✓ selected-row pattern wins). No
+  scope revision.

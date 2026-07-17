@@ -1,8 +1,10 @@
 # Filters (Work Order List Filtering) — PROJECT STATE
 **Canonical cold-resume doc. Read this first to resume the Filters project.**
-Last updated: 2026-07-17 (Branko's 4 answers ingested + new design inputs
-[design-system zip + 9 PDFs] reconciled; JE-tab frame captured → final set
-50/50; earlier same day: IMPORTED TO TESTRAIL by the user, id-map 79/79).
+Last updated: 2026-07-17 (superseded-reshare question RESOLVED — user ruling
+A, ZIP=final baseline confirmed unchanged; earlier same day: Branko's 4
+answers ingested + new design inputs [design-system zip + 9 PDFs] reconciled;
+JE-tab frame captured → final set 50/50; IMPORTED TO TESTRAIL by the user,
+id-map 79/79).
 
 ## §0 STATUS / WHAT'S LEFT TO DO — read first
 
@@ -44,12 +46,12 @@ on resume):**
    tab's string; update_case = fresh authorization). **⚠️ Spec-stale flags for
    Branko's PRD update: S2-N1/S2-N2, S9-R2/S9-R3 (chip hidden → superseded by
    Q4=B) and S10-R2 ("browser session" → superseded by Q2=B).**
-3. **⚠️ NEW OPEN QUESTION (user to confirm — design-notes §E c):** does the
-   2026-07-17 re-share of superseded content (6 of the 9 PDFs: WO-14.4 section,
-   Sorting WIP, older/alternate Mobiles, Customer-v1 checkbox dropdowns) REVISE
-   the "ZIP = final" ruling — specifically Sorting scope and which
-   mobile/dropdown variants win — or was it just a completeness export?
-   **Baseline UNCHANGED until the user rules.**
+3. ✅ **RESOLVED (2026-07-17, user ruling A — design-notes §E c):** the
+   superseded-reshare question is CLOSED. The 9 PDFs were a **completeness
+   export only** — the **"ZIP = final" design baseline is CONFIRMED
+   UNCHANGED**; Sorting stays OUT of scope (separate WIP feature); the older
+   mobile variants and the Customer-v1 leading-checkbox dropdown variant
+   remain SUPERSEDED (final right-side-✓ pattern wins). No scope revision.
 4. **Design-system zip anomaly (ask Branko/the designer):** the zip is a
    Claude-Code skill package + coded Filters prototype = REFERENCE AID only,
    not authoritative frames; its prototype's status list ends **"Reported"**

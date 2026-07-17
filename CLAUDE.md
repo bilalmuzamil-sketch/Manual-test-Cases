@@ -294,8 +294,8 @@ process(es) to run before proceeding.
    resume doc: build/filters/PROJECT-STATE.md. Branko answers ingested
    2026-07-17 (Parts/Reports IN SCOPE pending PRD; persistence permanent;
    disabled-chip ruling); JE-tab frame captured (final set 50/50);
-   design-system zip = reference prototype; superseded-reshare scope question
-   OPEN.** Same rules as all projects: reuse shared infra
+   design-system zip = reference prototype; baseline confirmed ZIP=final
+   (user ruling A 2026-07-17).** Same rules as all projects: reuse shared infra
    (BUILD-ACCURATE-WORDING-VIU-PROCESS, SPEC-RELEVANCE-RECONCILIATION,
    TESTING-RUNBOOK, harness/TestRail patterns); per Standing Rule 11 ASK which
    process(es) to run before any VIU pass. Open questions live in
