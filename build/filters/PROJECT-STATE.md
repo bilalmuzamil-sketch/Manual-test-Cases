@@ -1,8 +1,30 @@
 # Filters (Work Order List Filtering) — PROJECT STATE
 **Canonical cold-resume doc. Read this first to resume the Filters project.**
-Last updated: 2026-07-17 (cases authored).
+Last updated: 2026-07-17 (cases authored + adversarial review CLEAN).
 
-## §0 STATUS — CASES AUTHORED (79); IMPORT READY; TESTRAIL PUSH PENDING PERMISSION
+## §0 STATUS / WHAT'S LEFT TO DO — read first
+
+**STATUS: CASES AUTHORED & ADVERSARIALLY REVIEWED CLEAN (2026-07-17)** — 79
+cases / 14 sections (13 functional + 1 "API — Work Orders List Filtering");
+81/81 spec requirement lines + 18/18 final WO design frames covered; 24
+VIU-confirm notes; import at
+`testrail-import/filters-v1-testrail-import.csv`/`.xlsx` (pure 1:1 Rule-16
+format, header byte-identical FD==SF==GS==FLT, 79 rows, VIU-word-free /
+flag-free); traceability via `testrail-id-map.csv` (blank C-ids); PO questions
+ready: `PO-Questions-Filters_2026-07-17.xlsx`/`.md` (4 questions for Branko:
+Q1 Parts/Reports scope [9+22 screens excluded-with-reason], Q2 persistence
+duration OQ-5, Q3 "Tehnician" spelling, Q4 Estimates-tab disabled-Status-chip
+spec-vs-design conflict). **Audit verdict: CLEAN 7/7 checks, zero defects.**
+
+**NOT DONE / NEXT:**
+1. **TestRail push PENDING explicit user permission** (NOTHING pushed).
+2. **VIU PENDING feature on QA env (OQ-7)** — at VIU start ASK the user for
+   the Epic/Jira key (OQ-3) AND which process(es) to run per Standing Rule 11.
+3. **Branko's answers to the 4 PO questions** (esp. Q1 — may add Parts/Reports
+   cases later).
+4. **Canonical Confluence spec URL still TO CONFIRM (OQ-2).**
+
+Last updated 2026-07-17. Detail bullets below.
 
 - **Cases AUTHORED 2026-07-17: 79 cases / 14 sections (13 functional + 1 API)** →
   `build/filters/cases/cases-A..D-*.json` (schema mirrors global-search; all

@@ -283,24 +283,11 @@ process(es) to run before proceeding.
    **CANONICAL STATE DOC (read first for resume):** `build/filters/PROJECT-STATE.md`
    — single authoritative snapshot (status, deliverables index, open questions,
    env/access TBD, how-to-resume).
-   **STATUS: CASES AUTHORED 2026-07-17 — 79 cases / 14 sections (13 functional +
-   1 "API — Work Orders List Filtering" per Rule 4) in
-   `build/filters/cases/cases-A..D-*.json` (all VIU-Pending; 24 VIU-confirm
-   notes; design "Lead Tehnician" typo NOT codified — cases say "Lead
-   Technician" + typo flag); SCOPE RULING: Work Orders page only (12 stories ×
-   18 final WO frames; the final ZIP's 9 Parts + 22 Reports screens have NO
-   spec story → NO cases, excluded-with-reason in coverage-matrix.md §C + PO
-   Question 1); coverage 100% (81/81 spec lines + 18/18 WO frames →
-   `build/filters/coverage-matrix.md`); import READY per Rule 16
-   (`testrail-import/filters-v1-testrail-import.csv`/`.xlsx` via
-   `build/filters/gen_import.py`, header byte-identical to FD/SF/GS, VIU-word-
-   free + flag-free, ID map `testrail-id-map.csv` per Rule 8 with blank C-ids);
-   PO questions READY pending Branko
-   (`build/filters/PO-Questions-Filters_2026-07-17.xlsx`/`.md`: Q1
-   Parts/Reports scope, Q2 persistence duration OQ-5, Q3 spelling, Q4
-   Estimates/Completed disabled-Status-chip spec-vs-design conflict); TestRail
-   push PENDING permission (NOTHING pushed); VIU PENDING env (OQ-7) + Epic key
-   ask-at-VIU (OQ-3) + canonical URL (OQ-2). Canonical resume doc:
+   **STATUS: CASES AUTHORED 2026-07-17 — 79 cases/14 sections,
+   adversarial-reviewed CLEAN (7/7); import ready (pure 1:1,
+   testrail-import/filters-v1-testrail-import.csv/.xlsx); PO questions ready
+   for Branko (Parts/Reports scope + 3 more); TestRail push PENDING permission;
+   VIU pending env + Epic key ask-at-VIU. Canonical resume doc:
    build/filters/PROJECT-STATE.md.** Same rules as all projects: reuse shared infra
    (BUILD-ACCURATE-WORDING-VIU-PROCESS, SPEC-RELEVANCE-RECONCILIATION,
    TESTING-RUNBOOK, harness/TestRail patterns); per Standing Rule 11 ASK which
