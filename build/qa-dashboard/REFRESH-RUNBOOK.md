@@ -20,6 +20,9 @@ on success; on Jira/MCP failure, skip silently — the next run retries.
    ```
    fields: `["summary","status","labels","customfield_10385","parent","priority",
    "issuetype","created","updated","resolutiondate","statuscategorychangedate","reporter","assignee"]`
+   **Every `searchJiraIssuesUsingJql` call now REQUIRES `searchResultMode: "issues"`** (added
+   2026-07-17; the tool rejects calls without it) — include it on the ticket pull, the
+   comment window, and every rejected/reassigned probe.
    (customfield_10385 = QA Assignee; `assignee` = the normal/developer assignee —
    REQUIRED for the two follow-up tables below.) Results exceed the token cap and are
    saved to files — extract each page with a compact extractor into `tickets.jsonl`
