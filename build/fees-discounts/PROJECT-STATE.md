@@ -5,7 +5,10 @@
 > re-discovery.
 > **Canonical spec (Confluence):** https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/622297094/Fees+Discounts+V1
 > (Atlassian-SSO login-walled — reference pointer only; content must be exported/pasted to ingest, do NOT fetch the URL.)
-> **Last updated:** 2026-07-14 (post-Round-2 snapshot — after **V1_2 spec applied** [43 case
+> **Last updated:** 2026-07-17 (§0.0d: Epic **SV-7387** user-confirmed; spec **V1_3**
+> + design zips ingested ANALYSIS-ONLY → `spec-v3-2026-07-17/`; no case/TestRail
+> changes — the standing snapshot below remains the 2026-07-14 post-Round-2 state)
+> — prior update 2026-07-14 (post-Round-2 snapshot — after **V1_2 spec applied** [43 case
 > updates + new FD-WO-016=C29441, all pushed] AND a **FRESH FULL build-accurate WORDING +
 > VIU PASS over ALL 183 cases** [live-captured build labels; every case re-adjudicated;
 > **ALL 183 pushed to TestRail via update_case, 200/200, 0 errors**] AND **Chris Ward's
@@ -65,6 +68,30 @@
 This section is the complete snapshot: current tally, the applied Round-2 action map,
 everything else open, and the ordered resume checklist. The rest of this doc holds the
 standing detail. **NO TestRail catch-up is outstanding** — all authored wording is live.
+
+### 0.0d SPEC V1_3 + DESIGN ZIPS INGESTED (ANALYSIS ONLY) + EPIC CONFIRMED — 2026-07-17 (NEWEST event)
+
+- **Epic = SV-7387 — USER-CONFIRMED 2026-07-17** (was previously known only as the
+  env/API naming; now an explicitly confirmed project fact). Canonical Confluence
+  spec URL unchanged. PO = Chris Ward.
+- **Spec V1_3 ingested** (`730081de-FeesDiscountsV1_3.doc`) → complete decoded spec
+  saved to `build/fees-discounts/spec-v3-2026-07-17/requirements-v3.md`
+  (`requirements.md` NOT yet updated — apply pass pending user authorization).
+  **Delta vs V1_2 = ONE change-log row (2026-07-14) with TWO changes:**
+  Δ1 §5-R15 jurisdiction note gated to See Financial Data (does NOT legitimize the
+  FD-WO-016 deviation — note still not built for an SFD admin); Δ2 Story 10
+  "history log" → "audit log" rename (terminology only; gates unchanged; build
+  already labels the menu 'Audit Log' / page 'Work Order Log'). **Zero conflicts
+  with Chris's Round-2 answers; no impact on FDBUGs, the 12 Not-Built, or the
+  FD-CUST-016/FD-VAL-007 dup pair.** Full delta + per-case map + scope estimate:
+  `build/fees-discounts/spec-v3-2026-07-17/spec-diff-v3-2026-07-17.md`
+  (~11 case edits [2 substantive + 9 cosmetic] + 1 new-case candidate + 0 retires +
+  0 status flips; 2 spec ambiguities flagged for Chris in its §H).
+- **Design zips Work_Order_4/5/6 (2026-07-17) = byte-identical re-uploads** of the
+  already-ingested Work_Order design bundle (all 7 zips share one per-file CRC
+  set) — ZERO new design content. Evidence:
+  `build/fees-discounts/spec-v3-2026-07-17/design-new-notes.md`.
+- **NO case edits, NO TestRail writes this pass** (analysis + ingestion only).
 
 ### 0.0c CHRIS WARD ROUND-2 ANSWERS RETURNED + APPLIED — 2026-07-14 (NEWEST event)
 
