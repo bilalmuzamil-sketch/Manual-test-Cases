@@ -4,11 +4,11 @@ ID,sf_id,title,section
 29352,SF-BULK-03,"Verify each PO row shows the PO number, related work order (or inventory/no-WO indicator) and parts count",PO Bulk Receive Page (Story 8)
 29353,SF-BULK-04,Verify selection behavior: nothing selected by default; selecting a PO selects all its parts; individual parts selectable; actions locked until checked,PO Bulk Receive Page (Story 8)
 29354,SF-BULK-05,Verify the per-PO 'Receive parts (N)' button is disabled until a vendor invoice number is entered,PO Bulk Receive Page (Story 8)
-29355,SF-BULK-06,Verify field editability and locking on Bulk Receive (qty and cost editable; sell locks after WO invoiced/paid),PO Bulk Receive Page (Story 8)
+29355,SF-BULK-06,"Verify Bulk Receive field editability: quantity editable (partial receive), cost editable ONLY when it is $0, sell locks after the WO is invoiced/paid",PO Bulk Receive Page (Story 8)
 29356,SF-BULK-07,Verify assigning a vendor to a Vendor Missing PO moves it into that vendor's group and entering the missing PN enables receiving,PO Bulk Receive Page (Story 8)
 29357,SF-BULK-08,Verify Receive All receives everything selected at once and supports partial receive,PO Bulk Receive Page (Story 8)
 29358,SF-BULK-09,Verify Bulk Receive uses the same pipeline as single-PO receive (Delivery → Vendor Bill → QuickBooks),PO Bulk Receive Page (Story 8)
-29359,SF-BULK-10,"Verify a cored part's Ok/Not OK resolution becomes available once received, and core-only partial receive is supported",PO Bulk Receive Page (Story 8)
+29359,SF-BULK-10,"Verify a pre-resolved core's decision is applied automatically at receive with no re-prompt, and core-only partial receive is supported",PO Bulk Receive Page (Story 8)
 29290,SF-COMP-01,Verify a Complete Work Order button appears next to New Line on the work order,Completion — No-PO / Skip (Story 2)
 29291,SF-COMP-02,Verify a work order with no parts completes in one confirm and reaches the Success screen,Completion — No-PO / Skip (Story 2)
 29292,SF-COMP-03,Verify the Success screen shows the work order number and total with Done and Go to Invoice actions,Completion — No-PO / Skip (Story 2)
@@ -34,17 +34,17 @@ ID,sf_id,title,section
 29312,SF-COMP-23,Verify re-running completion after a prior attempt does not create duplicate POs,Completion — Idempotency
 29313,SF-CORE-01,Verify inventory cores are resolved via a line-level Ok/Not-OK control (no distinct Resolve-Cores wizard step),Core parts — Completion modal (Stories 3/4/16)
 29314,SF-CORE-02,Verify a work order with no cores completes with no core sub-lines and no Resolve-Cores wizard step,Core parts — Completion modal
-29315,SF-CORE-03,Verify special-order cores leave the optional-invoice completion unchanged and Complete Without Receiving stays available,Core parts — Completion modal
-29316,SF-CORE-04,Verify the invoice shows a 'Cores pending' flag when unresolved special-order cores exist,Core parts — Invoice gate
+29315,SF-CORE-03,Verify a Resolve cores screen appears before the Receive parts / Complete without receiving choice and only an undecided core blocks completing,Core parts — Completion modal
+29316,SF-CORE-04,Verify the 'Cores pending' indication reflects only undecided special-order cores (a decided core clears it),Core parts — Invoice gate
 29317,SF-CORE-05,Verify resolving cores at the Create Invoice gate routes to receive the cored line then lets invoicing proceed,Core parts — Invoice gate
 29318,SF-CORE-06,"Verify cancelling the invoice-gate core resolution leaves the WO completed, un-invoiced and cores-pending",Core parts — Invoice gate
-29319,SF-CORE-07,Verify special-order cores are resolved after the required-invoice Receive round-trip before Complete,Core parts — Required invoice (Story 4)
-29320,SF-CORE-08,Verify the invoice gate detects an unresolved special-order core that exists only as a PartRequest,Core parts — Guardrail
+29319,SF-CORE-07,Verify the required-invoice flow asks to resolve special-order cores FIRST and then to receive them,Core parts — Required invoice (Story 4)
+29320,SF-CORE-08,Verify the completion and invoice gates detect an undecided special-order core that exists only as a requested part,Core parts — Guardrail
 29321,SF-CORE-09,Verify part-sale work orders auto-resolve cores at receive while service work orders require manual Ok/Not OK,Core parts — Guardrail
 29322,SF-CORE-10,Verify the core '+$ to invoice' amount is shown at the line level as a core is marked Not-OK (no Resolve-Cores wizard total),Core parts — Resolve step UI
-29360,SF-INV-01,Verify each vendor group has an 'Apply to selected POs' control enabled only with an invoice # and ≥1 PO selected,Apply Invoice to Selected POs (Story 9)
-29361,SF-INV-02,"Verify Apply pre-fills one invoice number into only the selected POs of that vendor, still editable per PO",Apply Invoice to Selected POs (Story 9)
-29362,SF-INV-03,"Verify Apply Invoice is scoped per vendor, not offered for the vendorless group, and allows a reused invoice number",Apply Invoice to Selected POs (Story 9)
+29360,SF-INV-01,"Verify each vendor group has an invoice number field under the vendor name, available only when at least one PO of that vendor is selected (no Apply button)",Apply Invoice to Selected POs (Story 9)
+29361,SF-INV-02,"Verify a typed invoice number fills only the selected POs of that vendor with no Apply click, still editable per PO",Apply Invoice to Selected POs (Story 9)
+29362,SF-INV-03,"Verify the vendor invoice number field is scoped per vendor, absent for the vendorless group, and allows a reused invoice number",Apply Invoice to Selected POs (Story 9)
 29405,SF-PERM-01,Verify only owner/admin can view and modify Work Order settings (non-admin blocked),API — Permissions
 29406,SF-PERM-02,Verify which roles can complete a work order (Simple completion),Permissions
 29407,SF-PERM-03,Verify which roles can perform Bulk Receive,Permissions
@@ -97,7 +97,7 @@ ID,sf_id,title,section
 29396,SF-REV-11,Verify sign-off completes the work order directly (no separate final Complete) and invoicing is blocked until reviewed,Review ON (Story 16)
 29397,SF-REV-12,Verify a 'Ready for Review' list filter/column surfaces the reviewer queue,Review ON (Story 16)
 29398,SF-REV-13,Verify all lines must be approved before Send To Review (the 'Send To Review' action is disabled until every line is approved),Review ON (Story 16)
-29399,SF-REV-14,Verify cores are resolved per rules before sign-off and invoicing is blocked until both Reviewed and all cores resolved,Review ON (Story 16)
+29399,SF-REV-14,"Verify cores are decided before receiving ahead of Send to Review, and invoicing stays blocked until Reviewed and every core is decided",Review ON (Story 16)
 29400,SF-REV-15,"Verify Require Review Before Completion starts ON for a brand-new organization, and existing organizations keep today's behavior",Review ON (Story 16)
 29275,SF-SET-01,Verify the Work Orders settings tab lists all Work Order setting toggles in order,Work Order Settings
 29276,SF-SET-02,Verify there is no operating-mode selector and no VIN-required setting on the Work Order settings page,Work Order Settings
@@ -147,7 +147,7 @@ ID,sf_id,title,section
 29340,SF-VMIS-03,Verify a Vendor Missing PO is flagged and excluded from QuickBooks sync,Vendor Missing on WO PO (Story 6)
 29341,SF-VMIS-04,Verify a Vendor Missing PO offers options to select a vendor and enter/edit the part number,Vendor Missing on WO PO (Story 6)
 29342,SF-VMIS-05,Verify the Vendor Missing flag clears once both a vendor and a part number are provided,Vendor Missing on WO PO (Story 6)
-29343,SF-VMIS-06,Verify reports mark Vendor Missing POs as 'needs vendor',Vendor Missing on WO PO (Story 6)
+29343,SF-VMIS-06,Verify a Vendor Missing PO's spend is excluded from the QuickBooks Vendor Bill export and the Vendors Expenses report until a vendor is assigned,Vendor Missing on WO PO (Story 6)
 29331,SF-VPART-01,"Verify a vendorless part can be requested with description, quantity and category (part number, cost, vendor and sell price left empty)",Vendorless / No-PN Part (Story 5)
 29332,SF-VPART-02,"Verify adding a part is blocked when description, quantity or category is missing (sell price not enforced)",Vendorless / No-PN Part (Story 5)
 29333,SF-VPART-03,Verify a vendorless part's type uses the existing source field (vendor or found) and never inventory,Vendorless / No-PN Part (Story 5)
@@ -168,3 +168,21 @@ ID,sf_id,title,section
 29465,SF-AUTO-05,"Verify that with Require Review on, resolving the last open line routes the work order to Ready for Review instead of auto-completing",Auto-Complete Trigger (Story 16 R12/R13)
 29466,SF-AUTO-06,Verify a clock-out that finishes the last line routes the work order to Ready for Review even when Require Review is off,Auto-Complete Trigger (Story 16 R12/R13)
 29467,SF-AUTO-07,"Verify the work order status transitions on the backend when the last open line is resolved (auto-Complete when review off, Ready for Review when review on)",API — Auto-Complete Trigger (Story 16)
+29892,SF-CORE-11,"Verify the Resolve cores screen lists every un-received vendor core with part info, core charge and OK / Not OK, plus an invoice-accuracy message",Core parts — Pre-Resolve (Story 18)
+29893,SF-CORE-12,"Verify marking a core Not OK immediately adds the core charge to the work order total and customer invoice, while OK adds no charge",Core parts — Pre-Resolve (Story 18)
+29894,SF-CORE-13,Verify completion and invoice creation are blocked only while a core is undecided — a decided core does not block,Core parts — Pre-Resolve (Story 18)
+29895,SF-CORE-14,"Verify receiving a pre-resolved core auto-applies the saved decision: OK creates exactly one vendor return, Not OK creates none, the invoice never changes, retries create no duplicates",Core parts — Pre-Resolve (Story 18)
+29896,SF-CORE-15,"Verify the receive dialog locks quantity to the full remaining amount once the work order is invoiced/paid, with the core auto-selected and an explanatory tooltip",Core parts — Pre-Resolve (Story 18)
+29897,SF-CORE-16,"Verify the Lines tab shows the core decision state before and after receive: 'Core decision pending', 'Core OK — return to vendor, no charge', 'Core Not OK — customer charged'",Core parts — Pre-Resolve (Story 18)
+29898,SF-CORE-17,Verify a core decision cannot be changed once the work order has an active invoice,Core parts — Pre-Resolve (Story 18)
+29899,SF-CORE-18,API: Verify POST /api/work-orders/{id}/pre-resolve-cores persists the core decision on the part request with no side-effect records,API — Core Pre-Resolve (Story 18)
+29900,SF-CORE-19,API: Verify resolving a received core via the existing handle-core endpoints also writes the decision back to the linked core part request,API — Core Pre-Resolve (Story 18)
+29901,SF-RCV-11,"Verify returning from receiving lands on the exact work order line the receive started from, not the top of the work order",Receive Button on WO POs (Story 11)
+29902,SF-RCV-12,Verify clicking Receive on a single work order part opens Accept Delivery showing all of that vendor's to-receive parts plus the vendorless group,Accept Delivery (Story 12)
+29903,SF-RCV-13,"Verify a vendorless part can be assigned a vendor / merged into the single-part receive on the spot, reusing the same invoice number",Accept Delivery (Story 12)
+29904,SF-VEND-07,Verify an assigned vendor stays changeable via the same dropdown until the part is received or the work order is invoiced/paid,Assign Vendor + Merge (Story 13)
+29905,SF-VEND-08,Verify the part number stays editable via the edit icon after entry until the part is received or the work order is invoiced/paid,Assign Vendor + Merge (Story 13)
+29906,SF-POSEL-07,Verify part-sale-originated POs appear in the PO list and are selectable like work-order POs,PO Multi-Select (Story 7)
+29907,SF-BULK-11,Verify a part-sale-originated PO can be received on the Bulk Receive page like a work-order PO,PO Bulk Receive Page (Story 8)
+29908,SF-WOP-04,Verify part-sale orders behave with the Waiting on Parts column — unreceived count and receive shortcut work without errors,Waiting on Parts Column (Story 14)
+29909,SF-QB-09,Verify part-sale order status transitions are not regressed by the shared order/status logic (requested to waiting-to-receive to received),QuickBooks / Inventory Integrity
