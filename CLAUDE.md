@@ -286,9 +286,12 @@ process(es) to run before proceeding.
    **STATUS: CASES AUTHORED 2026-07-17 — 79 cases/14 sections,
    adversarial-reviewed CLEAN (7/7); import ready (pure 1:1,
    testrail-import/filters-v1-testrail-import.csv/.xlsx); PO questions ready
-   for Branko (Parts/Reports scope + 3 more); TestRail push PENDING permission;
-   VIU pending env + Epic key ask-at-VIU. Canonical resume doc:
-   build/filters/PROJECT-STATE.md.** Same rules as all projects: reuse shared infra
+   for Branko (Parts/Reports scope + 3 more); VIU pending env + Epic key
+   ask-at-VIU. IMPORTED TO TESTRAIL 2026-07-17 (suite 1, group 4110; id-map
+   79/79 populated, C29557–C29635; API cases in section 4124 "API — Work Orders
+   List Filtering"; ⚠️ gen_import.py blanks the C-id column — re-merge after any
+   rerun); NEXT = Branko answers → VIU at QA (ask Epic key + process). Canonical
+   resume doc: build/filters/PROJECT-STATE.md.** Same rules as all projects: reuse shared infra
    (BUILD-ACCURATE-WORDING-VIU-PROCESS, SPEC-RELEVANCE-RECONCILIATION,
    TESTING-RUNBOOK, harness/TestRail patterns); per Standing Rule 11 ASK which
    process(es) to run before any VIU pass. Open questions live in

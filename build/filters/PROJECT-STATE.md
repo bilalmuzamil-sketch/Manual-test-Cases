@@ -1,30 +1,50 @@
 # Filters (Work Order List Filtering) — PROJECT STATE
 **Canonical cold-resume doc. Read this first to resume the Filters project.**
-Last updated: 2026-07-17 (cases authored + adversarial review CLEAN).
+Last updated: 2026-07-17 (IMPORTED TO TESTRAIL by the user; id-map populated 79/79).
 
 ## §0 STATUS / WHAT'S LEFT TO DO — read first
 
-**STATUS: CASES AUTHORED & ADVERSARIALLY REVIEWED CLEAN (2026-07-17)** — 79
-cases / 14 sections (13 functional + 1 "API — Work Orders List Filtering");
-81/81 spec requirement lines + 18/18 final WO design frames covered; 24
-VIU-confirm notes; import at
-`testrail-import/filters-v1-testrail-import.csv`/`.xlsx` (pure 1:1 Rule-16
-format, header byte-identical FD==SF==GS==FLT, 79 rows, VIU-word-free /
-flag-free); traceability via `testrail-id-map.csv` (blank C-ids); PO questions
-ready: `PO-Questions-Filters_2026-07-17.xlsx`/`.md` (4 questions for Branko:
-Q1 Parts/Reports scope [9+22 screens excluded-with-reason], Q2 persistence
-duration OQ-5, Q3 "Tehnician" spelling, Q4 Estimates-tab disabled-Status-chip
-spec-vs-design conflict). **Audit verdict: CLEAN 7/7 checks, zero defects.**
+**STATUS: IMPORTED TO TESTRAIL 2026-07-17 (BY THE USER)** — the 79 cases are
+live in TestRail **suite 1, section group_id 4110 "Filters - (VIU Pending)"**,
+with the 14 sections nested under it (4111–4124; API cases in section 4124
+"API — Work Orders List Filtering"). Canonical TestRail URL:
+https://shopview.testrail.io/index.php?/suites/view/1&group_by=cases:section_id&group_order=asc&display=compact&display_deleted_cases=0&group_id=4110
+**id-map POPULATED 79/79** (`build/filters/testrail-id-map.csv`, C29557–C29635;
+matched by exact title, 0 unmatched; read-only API fetch — no TestRail writes).
+Authoring recap: 79 cases / 14 sections, 81/81 spec lines + 18/18 final WO
+design frames covered, 24 VIU-confirm notes, adversarial audit CLEAN 7/7,
+Rule-16 import delivered at `testrail-import/filters-v1-testrail-import.csv`/`.xlsx`.
 
-**NOT DONE / NEXT:**
-1. **TestRail push PENDING explicit user permission** (NOTHING pushed).
-2. **VIU PENDING feature on QA env (OQ-7)** — at VIU start ASK the user for
-   the Epic/Jira key (OQ-3) AND which process(es) to run per Standing Rule 11.
-3. **Branko's answers to the 4 PO questions** (esp. Q1 — may add Parts/Reports
-   cases later).
-4. **Canonical Confluence spec URL still TO CONFIRM (OQ-2).**
+**WHAT'S LEFT TO DO (definitive post-import list — recite on resume):**
+1. ✅ **DONE:** spec ingested (V1.0 confirmed current) · design 49/49 final set ·
+   79 cases authored + adversarial-reviewed CLEAN · Rule-16 import delivered ·
+   **imported to TestRail by the user 2026-07-17 (suite 1, group 4110)** ·
+   **id-map populated 79/79 by title-match (read-only)**.
+2. **Branko's 4 PO answers** (`PO-Questions-Filters_2026-07-17.xlsx`):
+   **Q1** Parts/Reports scope — if IN scope → author the additional
+   Parts/Reports case set from the 31 captured screens + push with permission;
+   **Q2** persistence duration → possible update_case tightening of FLT-PERS
+   cases; **Q3** "Tehnician" spelling confirm (flag to designer); **Q4**
+   Estimates-tab chip ruling (cases hold either way — informational). Any
+   resulting TestRail edits need FRESH user authorization + a per-case audit log.
+3. **VIU when the feature reaches a QA env (OQ-7):** ⚠️ ASK the user for the
+   Epic/Jira key (OQ-3) AND which process(es) to run per Standing Rule 11
+   (BUILD-ACCURATE-WORDING-VIU and/or SPEC-RELEVANCE-RECONCILIATION); resolve
+   the 24 VIU-confirm placeholders live with evidence; live-observe everything
+   per Rules 10/12/13/14 (seed data yourself, never NOT-VERIFIED).
+4. **Post-VIU deliverables per house conventions:** Blockers Tracker + results
+   workbook (tab per status + Summary) with TestRail C-ID + link columns
+   (Rule 8 — now possible via the populated id-map); bug drafts in layman form
+   for any deviations (Rule 7); update the import to final (VIU-word-free stays).
+5. **Housekeeping:** canonical Confluence spec URL still TO CONFIRM (OQ-2);
+   permissions/role behavior unspecified in spec (OQ-4) — ask Branko whether
+   role-based filter visibility matters; env/access facts to record at VIU (OQ-7).
 
-Last updated 2026-07-17. Detail bullets below.
+⚠️ **id-map protection:** `gen_import.py` REGENERATES `testrail-id-map.csv`
+with BLANK C-ids — the map is now populated, so do NOT rerun gen_import.py
+without preserving/re-merging the C-id column.
+
+Last updated 2026-07-17 (post-import). Detail bullets below.
 
 - **Cases AUTHORED 2026-07-17: 79 cases / 14 sections (13 functional + 1 API)** →
   `build/filters/cases/cases-A..D-*.json` (schema mirrors global-search; all
@@ -55,9 +75,12 @@ Last updated 2026-07-17. Detail bullets below.
   columns + 2 trailing blanks, CRLF rows/LF cells, VIU-word-free +
   feature-flag-free (0 occurrences), API cases only in the em-dash
   "API — Work Orders List Filtering" section, deterministic ordering.
-- **ID map (Rule 8):** `build/filters/testrail-id-map.csv` — all 79 internal
-  ids, TestRail C-id column BLANK until a permitted push (regenerated by
-  gen_import.py).
+- **ID map (Rule 8):** `build/filters/testrail-id-map.csv` — **POPULATED
+  79/79 (2026-07-17)** with the real TestRail C-ids (C29557–C29635) after the
+  user's import; matched by exact title against `cases/*.json`, 0 unmatched;
+  the 5 FLT-API cases confirmed in section 4124 "API — Work Orders List
+  Filtering". ⚠️ gen_import.py regenerates this file with BLANK C-ids — don't
+  rerun it without re-merging the C-id column.
 - **PO questions PENDING BRANKO:**
   `build/filters/PO-Questions-Filters_2026-07-17.xlsx` + `.md` (generator
   `gen_po_questions.py`; layman-only reader sheet + QA-internal mapping sheet,
@@ -66,7 +89,10 @@ Last updated 2026-07-17. Detail bullets below.
   remembered across sessions — OQ-5), Q3 "Lead Tehnician" spelling confirm,
   Q4 Estimates/Completed tab Status chip: spec says HIDDEN vs design shows a
   disabled pre-filled "Status: Estimate" chip (design-notes §C.7).
-- **TestRail: NOTHING pushed; NO writes without explicit user permission.**
+- **TestRail: cases IMPORTED BY THE USER 2026-07-17** (suite 1, group 4110,
+  sections 4111–4124). We made NO writes (id-map fetch was read-only GETs).
+  **NO TestRail writes without explicit user permission** — any future edit
+  (PO-answer tightening, wording pass) needs fresh authorization + audit log.
 - **VIU: PENDING** — needs the QA env/flag/API facts (OQ-7) + the Epic/Jira key
   (OQ-3, ASK THE USER at VIU) + canonical Confluence URL (OQ-2). Per Standing
   Rule 11 ASK which process(es) to run before starting.
@@ -99,8 +125,8 @@ Last updated 2026-07-17. Detail bullets below.
 | Design screenshots | `build/filters/design-screens/` | DONE — 58 PNGs (49-file final ZIP set + 9 retained superseded API renders) |
 | Case source (79) | `build/filters/cases/cases-A..D-*.json` + `README.md` | DONE 2026-07-17 — all VIU-Pending |
 | Coverage matrix | `build/filters/coverage-matrix.md` | DONE — 81/81 spec lines + 18/18 WO frames mapped; exclusions in §C |
-| ID map | `build/filters/testrail-id-map.csv` | DONE — 79 ids, C-ids blank (pending push) |
-| TestRail import | `testrail-import/filters-v1-testrail-import.csv`/`.xlsx` | READY (Rule 16 verified; push pending permission) |
+| ID map | `build/filters/testrail-id-map.csv` | POPULATED 79/79 (2026-07-17, C29557–C29635) |
+| TestRail import | `testrail-import/filters-v1-testrail-import.csv`/`.xlsx` | DELIVERED — IMPORTED BY THE USER 2026-07-17 (suite 1, group 4110) |
 | Import generator | `build/filters/gen_import.py` | DONE (also regenerates the ID map) |
 | PO questions | `build/filters/PO-Questions-Filters_2026-07-17.xlsx`/`.md` (+ `gen_po_questions.py`) | READY — pending Branko |
 | This state doc | `build/filters/PROJECT-STATE.md` | current |
@@ -135,12 +161,15 @@ screens with no spec (PO Q1).
    and apply his answers: Q1 may extend scope (Parts/Reports cases), Q2/Q4 may
    rewrite FLT-PERS-02 / FLT-TAB-02/03 expecteds (see the QA Internal Mapping
    sheet for exact resolutions).
-3. **TestRail push only with explicit user permission** — import file is ready;
-   after a permitted push, fill the C-id column in `testrail-id-map.csv`.
+3. **TestRail: import DONE (user, 2026-07-17) + id-map populated** — cases live
+   under suite 1 / group 4110; use `testrail-id-map.csv` for C-ids/links in all
+   deliverables (Rule 8). Any TestRail EDIT still needs explicit user
+   permission + a per-case audit log.
 4. Before any VIU: ASK the user which process(es) to run (Standing Rule 11 —
    BUILD-ACCURATE-WORDING-VIU-PROCESS and/or SPEC-RELEVANCE-RECONCILIATION), and
    ASK for the Epic/Jira key (OQ-3) + canonical Confluence URL (OQ-2) + QA
    env/flag facts (OQ-7). VIU = live-observed with evidence only (Rules
    10/12/13/14); 24 cases carry explicit VIU-confirm notes to resolve first.
-5. Regeneration: `python3 build/filters/gen_import.py` (import + ID map),
+5. Regeneration: `python3 build/filters/gen_import.py` (import + ID map —
+   ⚠️ blanks the C-id column; re-merge the populated C-ids afterwards),
    `python3 build/filters/gen_po_questions.py` (PO sheet).
