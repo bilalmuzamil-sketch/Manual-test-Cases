@@ -12,16 +12,33 @@
 > **Canonical spec (Confluence):** https://shopview.atlassian.net/wiki/spaces/PM/pages/646021121/Simple+Mode+Streamlined+Work+Order+Completion+Bulk+Receiving
 > (Atlassian-SSO login-walled — reference pointer only; content must be exported/pasted to ingest, do NOT fetch the URL.)
 >
-> **Last updated:** 2026-07-16 (Milos Round-3 applied — see §0-AA + the WHAT'S LEFT section below).
+> **Last updated:** 2026-07-17 (spec `_4` / V2.6 APPLIED + pushed to TestRail — see §0-BB + the WHAT'S LEFT section below).
 
 ---
 
-## ⏭️ WHAT'S LEFT TO DO — read this first (as of 2026-07-16)
+## ⏭️ WHAT'S LEFT TO DO — read this first (as of 2026-07-17)
 
-**Current tally (post Milos Round-3): VIU-Verified 134 / VIU-observed-awaiting-Milos 5 /
-Blocked-Env 26 / Deviation 4 / Open-Question 1 = 170.** (Consistent with §0's at-a-glance
-table and §0-AA.) The full VIU process is complete and everything mapped is current in
-TestRail; what remains is external/environment/PO-dependent work:
+**Current tally (post spec `_4` / V2.6 apply, §0-BB — authoritative, counted from
+`cases/*.json` viu_status, 187 case bodies): VIU-Verified 130 / VIU-Pending 22 /
+Blocked-Env 27 / VIU-observed-awaiting-Milos 5 / Deviation 3 = 187. Open-Question = 0.**
+All 187 cases are now in TestRail (SF-QB-09 = C29909 — the last unmapped case is mapped).
+What remains:
+
+0. **⚠️ RETIRE RULING NEEDED (user/QA-lead):** spec `_4` Δ8 removed the invoice-gate core
+   model — **SF-CORE-05 (C29317) + SF-CORE-06 (C29318)** test a module that no longer
+   exists in the spec, and **SF-CORE-09 (C29321)**'s guardrail sentence was deleted (spec
+   silent). All 3 are marked RETIRE-PROPOSED in the local case notes and left UNTOUCHED
+   in TestRail — get the explicit keep-vs-retire ruling before any TestRail action.
+0.5. **Story-18 / Δ9-Δ15 re-VIU backlog (22 VIU-Pending):** the 9 new SF-CORE-11..19 +
+   the reworded SF-CORE-03/04/07/08 + SF-BULK-10 + SF-REV-14 need the **SV-8353
+   pre-resolve build** (probe sv7301 for the resolve step + the pre-resolve endpoint) **+
+   a dev-seeded special-order core**; SF-INV-01/02/03 (Δ13 no-Apply-button) + SF-BULK-06
+   (Δ14 $0-only cost) were VIU-Verified against the OLD build → re-VIU, likely build
+   DEVIATIONS until dev ships; SF-RCV-11/12/13, SF-VEND-07/08, SF-POSEL-07, SF-BULK-11,
+   SF-WOP-04, SF-QB-09 are seedable per Rule 14 (part sale with vendor part etc.) but the
+   requirements are new — may not be built yet. Spec-inconsistency flags for Milos: S8-R7
+   tail ("after lock only cost editable") vs the $0-only rule; the Resolve Cores Flow
+   design still codes required-flow resolve-AFTER-receive (vs C-R6).
 
 1. **Milos still owes answers on 5 questions.** His 2026-07-16 sheet answered ONLY the 2
    Round-3 questions (Q1 vendor-missing placement, Q2 new-org Require-Review default). Still
@@ -56,6 +73,64 @@ TestRail; what remains is external/environment/PO-dependent work:
    unscoped (needs the per-surface qualifiers Milos's Q1 ruling implies).
 7. **SF-QB-09 — unmapped in TestRail** (no C-ID, Open-Question) — follow-up to author/map or
    formally close.
+
+---
+
+## 0-BB. SPEC `_4` (V2.6) PASS — Δ8–Δ16 APPLIED + PUSHED (2026-07-17, LATEST)
+
+Applied the 2026-07-17 spec `_4` (self-labeled **V2.6**) per the delta doc
+`spec-v4-2026-07-17/spec-diff-v4-2026-07-17.md` (D1 per-case table + D2 new-case plan
+followed exactly; the same-day design zip re-share was CONTENT-IDENTICAL to design `_4` —
+no design-driven changes). **TestRail authorized this pass** (user: "check if any test
+cases need updating, if yes do that").
+
+**TestRail push (all 200 + re-GET MATCH; audit = `spec-v4-2026-07-17/testrail-update-log.md`):**
+- **2 add_section:** 4252 "Core parts — Pre-Resolve (Story 18)" + 4253 "API — Core
+  Pre-Resolve (Story 18)" (under the Simple Flow group 4058).
+- **13 update_case:** SF-CORE-03 (C29315), SF-CORE-04 (C29316), SF-CORE-07 (C29319),
+  SF-CORE-08 (C29320), SF-BULK-10 (C29359), SF-REV-14 (C29399), SF-COMP-11 (C29300),
+  SF-COMP-14 (C29303), SF-INV-01 (C29360), SF-INV-02 (C29361), SF-INV-03 (C29362),
+  SF-BULK-06 (C29355), SF-VMIS-06 (C29343).
+- **18 add_case (C29892–C29909):** SF-CORE-11..17 = C29892–C29898 (UI, 4252);
+  SF-CORE-18/19 = C29899/C29900 (API, 4253); SF-RCV-11 = C29901 (4078); SF-RCV-12/13 =
+  C29902/C29903 (4079); SF-VEND-07/08 = C29904/C29905 (4080); SF-POSEL-07 = C29906
+  (4074); SF-BULK-11 = C29907 (4075); SF-WOP-04 = C29908 (4081); **SF-QB-09 = C29909**
+  (4086 — the formerly-unmapped Open-Question case, now rescoped + in TestRail).
+- **NO writes to run 325; NO deletions.**
+
+**Δ-by-Δ:** Δ8 Story 18 (SV-8353) pre-resolve-before-receive core model — 8 cases
+reworded to C-R1..C-R6 (gate = UNDECIDED cores only; supersedes the 2026-07-14 design-#4
+un-skippable-core flip of SF-CORE-03) + 9 new cases authored (C-R1/C-R3/C-R4/C-R5/C-R8/
+C-R9/invoice-immutability UI + pre-resolve-cores & C-R10 sync-back API); **retire
+candidates flagged (NOT deleted): SF-CORE-05/06 (invoice-gate module gone) + SF-CORE-09
+(guardrail deleted, spec silent) — awaiting the user's ruling.** Δ9 S11-R4 → new
+SF-RCV-11. Δ10 S12-R6 → new SF-RCV-12/13 (does NOT resolve the SF-RCV-05/07 position
+deviation — Milos Round-3 ruling stands). Δ11 S13-R8 → new SF-VEND-07/08. Δ12 S6-R6
+rewritten-to-match-code → **SF-VMIS-06 rescoped, Deviation RESOLVED (4→3), dev-route item
+dropped** (now Blocked-Env: QB export leg; Vendors-Expenses leg seedable — its surface
+was not in the 2026-07-14 Reports inventory, confirm live). Δ13 Apply button REMOVED →
+SF-INV-01/02/03 reworded, **honestly flipped Verified→VIU-Pending** (old 'Apply to
+selected POs' label was live-confirmed 2026-07-13 → expect build deviation until dev
+ships). Δ14 S8-R7 cost-editable-only-when-$0 → SF-BULK-06 reworded, Verified→VIU-Pending
+(+ S8-R7 tail inconsistency flagged for Milos per Rule 15.5). Δ15 part-sale POs confirmed
+in scope → SF-QB-09 rescoped (Open-Question RESOLVED) + new SF-POSEL-07/SF-BULK-11/
+SF-WOP-04. Δ16 header V2.4→V2.6 (metadata).
+
+**NEW TALLY (authoritative, from `cases/*.json` viu_status) — 187 cases:**
+**VIU-Verified 130 · VIU-Pending 22 · Blocked-Env 27 · VIU-observed-awaiting-Milos 5 ·
+Deviation 3 (SF-SET-03, SF-RCV-05, SF-RCV-07) · Open-Question 0.** (Prior: 170 =
+134/0/26/5/4/1. Movements: −4 Verified [SF-INV-01/02/03 + SF-BULK-06 → VIU-Pending],
+SF-VMIS-06 Deviation→Blocked-Env, SF-QB-09 Open-Question→VIU-Pending, +17 new
+VIU-Pending.)
+
+**requirements.md promoted to V2.6** (same style as the `_3` promotion): header pointer,
+S3/S4/S8 core sections struck as SUPERSEDED-by-Story-18 (dated), S6-R6/S8-R7/S8-R9/
+Story-9 rewritten inline, S11-R4/S12-R6/S13-R8 added, Story-16 core paragraph updated,
+full Δ8–Δ16 appendix incl. Story 18 C-R1..C-R10; `spec-v4-2026-07-17/` kept as the delta
+record. **Deliverables regenerated** (import CSV/XLSX 187 rows 0-VIU/0-flag-words,
+Blockers Tracker, TestCases + Results workbooks — id-map 187/187, 0 blanks; generators:
+SV map +18=SV-8353, C-R# tokens excluded from the bare-R#→Story-16 refs heuristic,
+assertions 170→187, Story-18 bucket added).
 
 ---
 
@@ -314,27 +389,28 @@ superseded wording.
 
 ## 0. CURRENT STATE AT A GLANCE (read this first)
 
-**Current tally (2026-07-16 — Milos Round-3 applied on top of the 2026-07-14 spec `_3`
-(de-facto V2.5) + design `_4` pass that added the 7 SF-AUTO cases and applied the Δ7
-rescope; see §0-AA; authoritative — counted directly from `cases/*.json` `viu_status`,
-170 case bodies):**
+**Current tally (2026-07-17 — spec `_4` / V2.6 applied on top of the Milos Round-3
+state; see §0-BB; authoritative — counted directly from `cases/*.json` `viu_status`,
+187 case bodies):**
 
 | VIU status field (`cases/*.json`) | Count |
 |---|---:|
-| VIU-Verified | **134** |
+| VIU-Verified | **130** |
+| VIU-Pending (Story-18 set + Δ13/Δ14 re-VIU flips + Δ9-Δ11/Δ15 new) | **22** |
+| Blocked-Env | **27** |
 | VIU-observed-awaiting-Milos | **5** |
-| Blocked-Env | **26** |
-| Deviation (SF-SET-03, SF-VMIS-06, SF-RCV-05, SF-RCV-07) | **4** |
-| Open-Question (SF-QB-09) | **1** |
-| **TOTAL** | **170** |
+| Deviation (SF-SET-03, SF-RCV-05, SF-RCV-07) | **3** |
+| Open-Question | **0** |
+| **TOTAL** | **187** |
 
-(Milos Round-3 2026-07-16 moved SF-RCV-05/07 awaiting-Milos→Deviation and SF-REV-15
-awaiting-Milos→Blocked-Env; prior 2026-07-14 tally was 134/8/25/2/1.)
+(Spec `_4` movements vs the 2026-07-16 tally 134/5/26/4/1: SF-INV-01/02/03 + SF-BULK-06
+Verified→VIU-Pending; SF-VMIS-06 Deviation→Blocked-Env; SF-QB-09
+Open-Question→VIU-Pending; +17 new VIU-Pending cases.)
 
-**VIU-Pending = 0** (every case now carries a definitive disposition). Total is 170:
-163 (162 authored + SF-VEND-06 = C29442) + the 7 new SF-AUTO cases (C29461–C29467).
-**All 169 mapped cases are current in TestRail; SF-QB-09 (Open-Question, no C-ID) is
-deliberately not in TestRail.** (Prior 2026-07-14 grind tally was 163 = 125/8/27/2/1;
+Total is 187: the prior 170 + 17 new spec-`_4` cases (SF-CORE-11..19, SF-RCV-11..13,
+SF-VEND-07/08, SF-POSEL-07, SF-BULK-11, SF-WOP-04). **ALL 187 cases are current in
+TestRail** — SF-QB-09 is now C29909 (the "deliberately not in TestRail" note is
+resolved). (Prior 2026-07-14 grind tally was 163 = 125/8/27/2/1;
 the spec `_3`/design `_4` pass then added +7 SF-AUTO [5 Verified, 2 Blocked-Env] and
 flipped +4 from Blocked-Env→Verified via the Δ7 rescope of SF-PNFIX-02/03/06 +
 SF-QB-08 → 134 Verified / 25 Blocked-Env; see §0-AA.)

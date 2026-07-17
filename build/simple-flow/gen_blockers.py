@@ -118,17 +118,17 @@ SUBBUCKET = {
     "SF-COMP-19":  ("needs-data", "BATCH 6: deliverable WO PO achieved, but the receive round-trip is blocked by BUG-11 (POST /api/inventory/orders/accept returns 500 for a WO PO)."),
     "SF-CORE-01":  ("needs-data", "an inventory/catalog part flagged is_core (genuine core) + a received cored line; the manual sub-form only sets core_charge (is_core stays false) and resolve-cores needs receiving."),
     "SF-CORE-02":  ("needs-data", "a genuine core part to prove the Resolve-Cores step appears, plus a no-core WO to prove it is skipped (is_core not seedable via canned/sub-form)."),
-    "SF-CORE-03":  ("needs-data", "a special-order core part + optional-invoice completion (needs is_core part)."),
-    "SF-CORE-04":  ("needs-data", "an unresolved special-order core at the invoice gate ('Cores pending' flag) — needs is_core part + receiving."),
-    "SF-CORE-05":  ("needs-data", "resolve cores at the Create-Invoice gate -> receive the cored line (needs is_core part + receiving)."),
-    "SF-CORE-06":  ("needs-data", "cancel the invoice-gate core resolution (needs is_core part + invoice gate)."),
-    "SF-CORE-07":  ("needs-data", "special-order cores in the required-invoice receive round-trip (needs is_core part + receiving)."),
-    "SF-CORE-08":  ("needs-data", "an unresolved special-order core that exists only as a PartRequest (needs is_core part)."),
-    "SF-CORE-09":  ("needs-data", "a part-sale WO vs service WO with cores (needs is_core part + receiving)."),
+    "SF-CORE-03":  ("needs-data", "spec `_4` Story 18 C-R1/C-R4 (resolve screen + gate-on-undecided) — needs the SV-8353 build + a dev-seeded special-order core."),
+    "SF-CORE-04":  ("needs-data", "spec `_4` Story 18 C-R4 ('Cores pending' = undecided-only) — needs the SV-8353 build + a dev-seeded core."),
+    "SF-CORE-05":  ("needs-data", "RETIRE-PROPOSED (spec `_4` Δ8: the invoice-gate resolve module no longer exists in the spec) — awaiting the user's keep/retire ruling."),
+    "SF-CORE-06":  ("needs-data", "RETIRE-PROPOSED (spec `_4` Δ8: the invoice-gate resolve module no longer exists in the spec) — awaiting the user's keep/retire ruling."),
+    "SF-CORE-07":  ("needs-data", "spec `_4` Story 18 C-R6 (required flow: resolve FIRST then receive) — needs the SV-8353 build + a dev-seeded core."),
+    "SF-CORE-08":  ("needs-data", "spec `_4` Story 18 C-R2/C-R4 (gate detects an undecided request-only core) — needs the SV-8353 build + a dev-seeded core."),
+    "SF-CORE-09":  ("needs-data", "RETIRE-PROPOSED (spec `_4` Δ8: the part-sale-vs-service auto-resolve guardrail sentence was deleted; Story 18 silent) — awaiting the user's ruling."),
     "SF-CORE-10":  ("needs-data", "the Resolve-Cores step live '+$ to invoice' total (needs is_core part + receiving)."),
     "SF-VPART-07": ("needs-data", "BATCH 6: deliverable WO PO achievable, but receiving it is blocked by BUG-11 (500), so the cannot-receive-until-PN+vendor proof cannot complete."),
     "SF-VMIS-03":  ("needs-data", "QuickBooks sync inspection (vendor-missing PO excluded from QB)."),
-    "SF-VMIS-06":  ("needs-data", "reports data (Vendor Missing POs flagged 'needs vendor')."),
+    "SF-VMIS-06":  ("needs-data", "spec `_4` Δ12 rescope: QB Vendor Bill export leg needs a QuickBooks-connected company; the Vendors Expenses report leg is seedable (costed vendor-missing PO) — re-VIU next pass."),
     "SF-REV-15":   ("needs-data", "Milos Round-3 2026-07-16: Require Review Before Completion starts ON for new orgs. Characterized env blocker (Rule 14 self-serve attempted): a brand-new org cannot be provisioned in shared QA (POST /api/organizations 405, /organizations/create 404, /register 405); shared org's requireReview reflects prior toggling. Needs a freshly-provisioned org from backend/admin onboarding to observe the ON default."),
     "SF-PNFIX-02": ("needs-data", "receiving + inventory/catalog inspection (new PN creates inventory part + stock + Part History on receive)."),
     "SF-PNFIX-03": ("needs-data", "receiving + inventory inspection (existing PN links to item, updates stock/cost/history)."),
@@ -140,7 +140,7 @@ SUBBUCKET = {
     "SF-RCV-08":   ("needs-data", "QuickBooks inspection (per-vendor vendor bill + separate AP entry) — and WO-PO receive additionally blocked by BUG-11 (500)."),
     "SF-RCV-09":   ("needs-data", "a receive with received qty > ordered qty (received-more-than-ordered warning)."),
     "SF-REV-04":   ("needs-data", "BATCH 6: deliverable WO PO achievable in the review flow, but receiving it is blocked by BUG-11 (500)."),
-    "SF-REV-14":   ("needs-data", "cores + receiving in the review flow — blocked by BUG-10 (no wizard resolve step) + BUG-11 (WO-PO receive 500) + special-order cores not seedable."),
+    "SF-REV-14":   ("needs-data", "spec `_4` Story 18 (cores pre-resolved before receiving before Send To Review) — needs the SV-8353 build + a dev-seeded core."),
     "SF-VEND-02":  ("needs-data", "a PO where the assigned vendor already exists on the PO (Add-to-vendor merge vs keep-separate prompt)."),
     "SF-VEND-03":  ("needs-data", "two POs for the same WO with the same vendor (merge-POs prompt)."),
     "SF-VEND-04":  ("needs-data", "a vendor-missing PO + receive-enable + QB-flag-clear check after auto-assign."),
@@ -154,11 +154,39 @@ SUBBUCKET = {
     "SF-QB-06":    ("needs-data", "QuickBooks inspection (cost-at-completion to avoid $0-cost margins) — likely needs dev/QB access."),
     "SF-QB-07":    ("needs-data", "QuickBooks inspection (Journal Entry / Inventory sync fires on invoice creation) — likely needs dev/QB access."),
     "SF-QB-08":    ("needs-data", "Inventory Part History inspection for any part that becomes inventory-tracked — likely needs dev/QB access."),
+    # ---- spec `_4` (V2.6) 2026-07-17 — Story-18 pre-resolve set + reworded core cases ----
+    # (Story 18 / SV-8353 is a NEW dev plan: pre-resolve build likely not on sv7301 yet —
+    #  probe the completion wizard for the resolve step + the pre-resolve endpoint first;
+    #  special-order vendor-sourced cores additionally need a dev-seeded core.)
+    "SF-CORE-11":  ("needs-data", "Story 18 C-R1 resolve screen — needs the SV-8353 build + a dev-seeded special-order core."),
+    "SF-CORE-12":  ("needs-data", "Story 18 C-R3 charge-follows-decision — needs the SV-8353 build + a dev-seeded special-order core."),
+    "SF-CORE-13":  ("needs-data", "Story 18 C-R4 gate-on-undecided — needs the SV-8353 build + a dev-seeded special-order core."),
+    "SF-CORE-14":  ("needs-data", "Story 18 C-R5 auto-apply/idempotency — needs the SV-8353 build + a dev-seeded core + receive."),
+    "SF-CORE-15":  ("needs-data", "Story 18 C-R8 qty lock — needs the SV-8353 build + an invoiced/paid WO with an un-received core."),
+    "SF-CORE-16":  ("needs-data", "Story 18 C-R9 Lines-tab states — needs the SV-8353 build + a dev-seeded core."),
+    "SF-CORE-17":  ("needs-data", "Story 18 resolution-immutable-with-active-invoice — needs the SV-8353 build + a dev-seeded core + invoice."),
+    "SF-CORE-18":  ("needs-data", "API POST /api/work-orders/{id}/pre-resolve-cores — endpoint from the SV-8353 tech plan; probe for existence first."),
+    "SF-CORE-19":  ("needs-data", "API handle-core sync-back to the linked PartRequest — needs the SV-8353 build + a received core."),
+    # ---- spec `_4` Δ9-Δ11/Δ15 new cases (self-seedable per Rule 14; may not be built yet) ----
+    "SF-RCV-11":   ("reachable-now", "S11-R4 return-to-originating-line — seed a multi-line WO + receive round-trip; new requirement, may not be built yet."),
+    "SF-RCV-12":   ("reachable-now", "S12-R6 single-part receive shows vendor's parts + vendorless group — seedable; may not be built yet."),
+    "SF-RCV-13":   ("reachable-now", "S12-R6 assign/merge vendorless into the receive reusing the invoice # — seedable; may not be built yet."),
+    "SF-VEND-07":  ("reachable-now", "S13-R8 vendor re-changeable until received/invoiced-paid — seedable (invoiced/paid leg may stay env-blocked)."),
+    "SF-VEND-08":  ("reachable-now", "S13-R8 part-number re-editable (edit icon) until received/invoiced-paid — seedable."),
+    "SF-POSEL-07": ("reachable-now", "Δ15 part-sale PO on the PO list + multi-select — seed a Part Sale with a vendor part (Rule 14)."),
+    "SF-BULK-11":  ("reachable-now", "Δ15 part-sale PO receivable on Bulk Receive — seed a Part Sale with a vendor part."),
+    "SF-WOP-04":   ("reachable-now", "Δ15 part-sale orders vs the Waiting on Parts column — surface to confirm live (counted or cleanly excluded)."),
+    "SF-QB-09":    ("reachable-now", "Δ15 residual check: part-sale status transitions not regressed — seed a Part Sale with a vendor part (now C29909)."),
+    # ---- spec `_4` Δ13/Δ14 re-VIU flips (old build behavior was Verified; new spec not yet observed) ----
+    "SF-INV-01":   ("reachable-now", "Δ13 re-VIU: is the 'Apply to selected POs' button still present? (2026-07-13 it WAS — likely build deviation until dev removes it)."),
+    "SF-INV-02":   ("reachable-now", "Δ13 re-VIU: typed invoice # fills selected POs with no Apply click (old Apply-button behavior was live 2026-07-13)."),
+    "SF-INV-03":   ("reachable-now", "Δ13 re-VIU: per-vendor scoping + vendorless group shows NO invoice-number field."),
+    "SF-BULK-06":  ("reachable-now", "Δ14 re-VIU: can a NON-ZERO cost be edited on Bulk Receive? ($0-only rule; if editable → deviation until dev ships)."),
     # ---- needs-account (1) ----
     "SF-PERM-10":  ("needs-account", "role accounts Office / Service Manager / Foreman (ideally also Senior SA / Parts Manager / Sales Rep / Time Clock) to run the per-role completion matrix (only admin+ and Technician- available)."),
     # ---- Stories 7/8/9/14 now BUILT — the few still-unverified re-VIU cases ----
     "SF-WOP-02":   ("reachable-now", "RE-VIU 2026-07-09: 'Waiting On Parts' column + unreceived count BUILT & verified (SF-WOP-01); only the click-count->Accept-Delivery navigation is undriven (harness column-persistence flakiness + no non-zero cell surfaced). Just needs a stable WO row with a non-zero count."),
-    "SF-BULK-10":  ("needs-data", "RE-VIU 2026-07-09: Bulk Receive page BUILT; this case needs a genuine cored part received on the bulk page to expose Ok/Not-OK resolution (is_core part not seedable via canned/sub-form)."),
+    "SF-BULK-10":  ("needs-data", "spec `_4` Story 18 C-R5 (pre-resolved decision auto-applies at receive, no re-prompt) — needs the SV-8353 build + a dev-seeded core received on the bulk page."),
     "SF-VAL-09":   ("needs-data", "RE-VIU 2026-07-09: Bulk Receive field-locking BUILT (qty/cost/sell editable verified); the sell-lock-after-invoiced/paid clause needs an invoiced/paid WO to drive."),
     "SF-VAL-10":   ("reachable-now", "RE-VIU 2026-07-09: Apply-invoice BUILT & verified (SF-INV-01/02/03); the reused-invoice-number (uniqueness relaxed) clause just needs a targeted drive applying the same invoice # to multiple POs."),
 }
@@ -567,7 +595,7 @@ def main():
 
     print("\nState counts:", dict(state_counts))
     print("Category counts:", dict(disp_counts))
-    assert sum(disp_counts.values()) == len(rows) == 170
+    assert sum(disp_counts.values()) == len(rows) == 187
 
 
 if __name__ == "__main__":

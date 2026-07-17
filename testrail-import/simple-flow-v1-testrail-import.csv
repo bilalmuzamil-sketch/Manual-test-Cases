@@ -160,7 +160,7 @@ Verify individual-line Complete and per-part receive actions still work alongsid
 3. An open work order with an approved part-bearing line exists.","1. Click Complete Work Order.
 2. Observe the wizard actions.","1. The wizard shows a Receive step (e.g. 'N parts waiting to receive').
 2. The actions are Cancel, Complete Without Receiving, and Receive Parts.
-3. If one of the waiting parts is a special-order core, Complete Without Receiving is disabled (with a tooltip) until that core is received; for non-core parts it stays available.",SV-7698 (S3-R4),,
+3. If one of the waiting parts is a special-order core, a Resolve cores screen appears before this choice; once every core is decided (OK / Not OK), Complete Without Receiving stays available — only an undecided core blocks completing.",SV-7698 (S3-R4),,
 Verify the optional-invoice modal creates POs in the background and shows the count of parts to receive,Completion — PO + Optional Invoice (Story 3),Functional,High,"1. Signed in as Admin.
 2. Require Vendor Invoice Number is OFF (Optional).
 3. An open work order with two approved vendor-part lines exists.","1. Click Complete Work Order.
@@ -181,7 +181,7 @@ Verify Receive Parts opens the shared Accept Delivery page to receive all vendor
 3. Reopen the work order and check the unreceived part lines.","1. The work order completes and the Success screen appears.
 2. Unreceived parts remain in a waiting-to-receive state (would show in the Waiting on Parts column).
 3. The line still shows a Receive button.
-4. Note: Complete Without Receiving is only available when no special-order core is waiting; if a core is waiting it is disabled and the core must be received first.",SV-7698 (S3-R6),,
+4. Note: a special-order core no longer has to be received first — it is decided (OK / Not OK) on the Resolve cores screen before this choice; only an undecided core blocks Complete Without Receiving.",SV-7698 (S3-R6),,
 Verify Cancel closes the completion modal with no change and no duplicate POs on re-open,Completion — PO + Optional Invoice (Story 3),Functional,Medium,"1. Signed in as Admin.
 2. You are in the optional-invoice completion wizard (POs already created in the background).","1. Click Cancel.
 2. Reopen the completion wizard by clicking Complete Work Order again.
@@ -257,17 +257,18 @@ Verify a work order with no cores completes with no core sub-lines and no Resolv
 2. Step through the completion wizard.
 3. Watch for a Resolve Cores step.","1. No core sub-lines appear (the work order has no cores).
 2. There is no distinct Resolve Cores wizard step; completion proceeds directly Details -> Success.",SV-7698 (S3-C1 (skipped if none)),,
-Verify a waiting special-order core disables Complete Without Receiving (with a tooltip) and offers Receive Parts,Core parts — Completion modal,Functional,Medium,"1. Signed in as Admin.
+Verify a Resolve cores screen appears before the Receive parts / Complete without receiving choice and only an undecided core blocks completing,Core parts — Completion modal,Functional,Medium,"1. Signed in as Admin.
 2. Require Vendor Invoice Number is OFF (Optional).
 3. A work order has a special-order (vendor) cored part that has not been received yet.","1. Click Complete Work Order.
-2. In the completion wizard receive step, look at the actions while the core part is still not received.
-3. Hover the Complete Without Receiving action and try to use it.","1. The receive step shows the parts still to receive and indicates that a core charge is among them.
-2. Complete Without Receiving is disabled (greyed out); hovering it shows a tooltip saying the core part must be received first before you can complete.
-3. A Receive Parts button is offered so the core can be received.
-4. Complete Without Receiving only becomes available once the waiting core has been received.",SV-7698 (S3-C2 (updated per design #4 core-block)),,
-Verify the invoice shows a 'Cores pending' flag when unresolved special-order cores exist,Core parts — Invoice gate,Functional,Medium,"1. Signed in as Admin.
-2. A completed (optional-invoice) work order has an unresolved special-order core.","1. Open the work order's invoice / Finance view.
-2. Look for a cores indicator.",1. The invoice shows a 'Cores pending' flag while special-order cores are unresolved.,SV-7698 (S3-C3),,
+2. Observe the screen shown right before the Receive parts / Complete without receiving choice.
+3. Leave the core undecided and try Complete Without Receiving.
+4. Mark the core OK or Not OK on the resolve screen and try again.","1. A separate Resolve cores screen lists the un-received vendor core with its part info, core charge and an OK / Not OK choice, and explains that resolving now keeps the invoice accurate.
+2. While the core is still undecided, completing is blocked.
+3. Once every core is decided (OK or Not OK), Complete Without Receiving works — a decided core no longer blocks completing without receiving (no receive needed first).",SV-8353 (S18 C-R1/C-R4),,
+Verify the 'Cores pending' indication reflects only undecided special-order cores (a decided core clears it),Core parts — Invoice gate,Functional,Medium,"1. Signed in as Admin.
+2. A completed (optional-invoice) work order has an un-received special-order core.","1. With the core still undecided (no OK / Not OK yet), open the work order's invoice / Finance view and look for a cores indication.
+2. Decide the core (OK or Not OK) and check again.","1. While the core is undecided, a 'Cores pending' indication shows and invoice creation is blocked.
+2. Once every core is decided (OK or Not OK), the 'Cores pending' indication clears and invoicing is no longer blocked — even though the core part has not been received yet.",SV-8353 (S18 C-R4),,
 Verify resolving cores at the Create Invoice gate routes to receive the cored line then lets invoicing proceed,Core parts — Invoice gate,Functional,High,"1. Signed in as Admin.
 2. A completed (optional-invoice) work order has an unresolved special-order core.","1. Click Create Invoice.
 2. In the resolve module, route to receive the cored line (core-only partial receive).
@@ -282,18 +283,17 @@ Verify resolving cores at the Create Invoice gate routes to receive the cored li
 2. It remains un-invoiced.
 3. Cores remain pending.
 4. Note: because the core cannot be skipped at completion, this cancel path applies after completion at the Create Invoice gate; the core stays pending and the work order stays un-invoiced until it is received and resolved.",SV-7698 (S3-C4 (cancel path)),,
-Verify special-order cores are resolved after the required-invoice Receive round-trip before Complete,Core parts — Required invoice (Story 4),Functional,High,"1. Signed in as Admin.
+Verify the required-invoice flow asks to resolve special-order cores FIRST and then to receive them,Core parts — Required invoice (Story 4),Functional,High,"1. Signed in as Admin.
 2. Require Vendor Invoice Number is ON (Required).
-3. A work order has a special-order cored part.","1. Complete Work Order → Receive Parts and receive the cored part.
-2. On return, observe the Resolve-cores modal.
-3. Resolve each core Ok / Not OK, then Complete.","1. After the receive round-trip a gated Resolve-cores modal appears.
-2. Cores can be resolved (part is always received, so always resolvable).
-3. After resolving, Complete succeeds to the Success screen.
-4. Consistent with the un-skippable-core rule: the required-invoice flow already forces the Receive round-trip, so the core is always received before Complete.",SV-7699 (S4-C2),,
-Verify the invoice gate detects an unresolved special-order core that exists only as a PartRequest,Core parts — Guardrail,Functional,Medium,"1. Signed in as Admin.
-2. A completed work order has a special-order cored part that exists only as a PartRequest (no WorkOrderPart yet).","1. Click Create Invoice.
-2. Observe whether the unresolved core is detected.","1. The invoice gate detects the unresolved core even though it is only a PartRequest.
-2. The user is required to resolve it before invoicing.",SV-7698 (S3 Guardrail (PartRequest-only core)),,
+3. A work order has a special-order cored part.","1. Click Complete Work Order.
+2. Observe the order of the core steps in the wizard.
+3. Decide the core OK / Not OK on the resolve screen, then Receive Parts and receive it, then Complete.","1. The wizard asks to resolve the core FIRST (same resolve screen as the optional flow) and then to receive — not resolve-after-receive.
+2. At receive the saved decision is applied automatically; the user is not asked OK / Not OK again.
+3. After all parts are received, Complete succeeds to the Success screen.","SV-7699, SV-8353 (S18 C-R6)",,
+Verify the completion and invoice gates detect an undecided special-order core that exists only as a requested part,Core parts — Guardrail,Functional,Medium,"1. Signed in as Admin.
+2. A work order has a special-order cored part that exists only as a part request (not received, no work-order part yet) and is still undecided.","1. Try to complete the work order and to create the invoice.
+2. Decide the core OK / Not OK and try again.","1. The undecided core is detected even though it exists only as a requested (un-received) part — completing and invoicing are blocked.
+2. Once the core is decided, the gates clear (no receive needed first).",SV-8353 (S18 C-R2/C-R4 (guardrail)),,
 Verify part-sale work orders auto-resolve cores at receive while service work orders require manual Ok/Not OK,Core parts — Guardrail,Functional,Medium,"1. Signed in as Admin.
 2. A part-sale work order and a service work order, each with a cored part, exist.","1. Receive the cored part on the part-sale work order and check core status.
 2. Receive the cored part on the service work order and check core status.","1. On the part-sale WO the core auto-resolves at receive.
@@ -304,6 +304,50 @@ Verify the core '+$ to invoice' amount is shown at the line level as a core is m
 3. Mark the core Ok and observe the $ amount again.","1. The Core sub-line shows a $ amount on the line's Parts view ($0 until it is marked Not-OK).
 2. Marking the core Not-OK sets the +$ to invoice on that line.
 3. There is no distinct Resolve Cores wizard step with a running total; the core $ is a line-level control.",Resolve Cores handoff (live +$ total),,
+"Verify the Resolve cores screen lists every un-received vendor core with part info, core charge and OK / Not OK, plus an invoice-accuracy message",Core parts — Pre-Resolve (Story 18),Functional,High,"1. Signed in as Admin.
+2. Require Vendor Invoice Number is OFF (Optional).
+3. A work order has two special-order (vendor) cored parts that have not been received yet.","1. Click Complete Work Order.
+2. Observe the screen shown right before the Receive parts / Complete without receiving choice.
+3. Read the message on the screen.","1. A separate, consolidated Resolve cores screen appears, listing EVERY un-received vendor core (both parts).
+2. Each core shows its part info, its core charge and an OK / Not OK choice.
+3. A message explains that resolving now is for invoice accuracy.",SV-8353 (S18 C-R1),,
+"Verify marking a core Not OK immediately adds the core charge to the work order total and customer invoice, while OK adds no charge",Core parts — Pre-Resolve (Story 18),Functional,High,"1. Signed in as Admin.
+2. A work order has two un-received vendor cores shown on the Resolve cores screen.","1. Mark one core Not OK and note the work order total.
+2. Mark the other core OK and note the total again.
+3. Create the customer invoice and check its amounts.","1. Not OK: the core charge is priced into the work order total right away and flows to the customer invoice.
+2. OK: no charge is added (the vendor core return is created automatically later, at receive).
+3. The invoice matches the decisions even though no core part has been received.",SV-8353 (S18 C-R3),,
+Verify completion and invoice creation are blocked only while a core is undecided — a decided core does not block,Core parts — Pre-Resolve (Story 18),Functional,High,"1. Signed in as Admin.
+2. A work order has two un-received vendor cores.","1. Decide one core (OK or Not OK), leave the other undecided; try to complete the work order and to create the invoice.
+2. Decide the remaining core and try again.","1. With any core still undecided, completing and invoice creation are blocked and a cores-pending indication shows.
+2. Once every core is decided, completion and invoice creation proceed — no receive is required first.",SV-8353 (S18 C-R4),,
+"Verify receiving a pre-resolved core auto-applies the saved decision: OK creates exactly one vendor return, Not OK creates none, the invoice never changes, retries create no duplicates",Core parts — Pre-Resolve (Story 18),Functional,High,"1. Signed in as Admin.
+2. A work order has one core pre-resolved OK and another pre-resolved Not OK, both not yet received; the customer invoice is created.","1. Receive the OK core; check vendor returns and the customer invoice.
+2. Receive the Not OK core; check again.
+3. Retry / re-submit the receive and re-check for duplicates.","1. The OK core is received already resolved, with exactly ONE vendor core return created automatically.
+2. The Not OK core is received already resolved, with NO return created.
+3. The user is never asked OK / Not OK again, the customer invoice does not change at receive, and retries create no duplicate cores or returns.",SV-8353 (S18 C-R5),,
+"Verify the receive dialog locks quantity to the full remaining amount once the work order is invoiced/paid, with the core auto-selected and an explanatory tooltip",Core parts — Pre-Resolve (Story 18),Functional,Medium,"1. Signed in as Admin.
+2. An invoiced/paid work order has an un-received cored part; another (not yet invoiced) work order also has one.","1. Open the receive dialog for the invoiced/paid work order's part, try to change the quantity, and hover the field.
+2. Open the receive dialog for the not-yet-invoiced work order's part and change the quantity.","1. On the invoiced/paid work order the quantity is locked to the full remaining amount, the core is auto-selected, and the tooltip reads 'This part is on a customer invoice and should be received in full'.
+2. Before invoicing, the quantity stays editable (partial receive allowed).
+3. The lock is on the screen only — the customer invoice itself never changes at receive.",SV-8353 (S18 C-R8),,
+"Verify the Lines tab shows the core decision state before and after receive: 'Core decision pending', 'Core OK — return to vendor, no charge', 'Core Not OK — customer charged'",Core parts — Pre-Resolve (Story 18),Functional,Medium,"1. Signed in as Admin.
+2. A work order has three vendor cores: one undecided, one decided OK, one decided Not OK.","1. Open the work order's Lines tab before receiving and read each core's state.
+2. Receive the two decided cores and re-check the Lines tab.","1. Before receive: the undecided core shows 'Core decision pending'; the OK core shows 'Core OK — return to vendor, no charge'; the Not OK core shows 'Core Not OK — customer charged'.
+2. After receive, a pre-resolved core shows its resolved state with NO OK / Not OK buttons.
+3. No duplicate core prompts appear anywhere.",SV-8353 (S18 C-R9),,
+Verify a core decision cannot be changed once the work order has an active invoice,Core parts — Pre-Resolve (Story 18),Functional,Medium,"1. Signed in as Admin.
+2. A work order has a decided core and an active customer invoice.",1. Try to change the core's OK / Not OK decision (on the resolve screen or the Lines tab).,1. The decision cannot be changed while the work order has an active invoice.,SV-8353 (S18 AC (resolution immutable with an active invoice)),,
+API: Verify POST /api/work-orders/{id}/pre-resolve-cores persists the core decision on the part request with no side-effect records,API — Core Pre-Resolve (Story 18),Functional,High,"1. A valid Admin session (API).
+2. A work order with an un-received special-order cored part request exists.","1. POST /api/work-orders/{id}/pre-resolve-cores with the core decision (ok / not_ok).
+2. Re-read the work order's lines / receive-view read models.
+3. Inspect for side-effect records (work-order part, statement item, vendor return).","1. The request succeeds (2xx) and core_resolution is persisted on the core work_order_part_request (ok | not_ok; NULL = undecided).
+2. NO WorkOrderPart, statement item, or vendor return is created at this point.
+3. cores_pending reflects only undecided (NULL) cores after the call.",SV-8353 (S18 C-R2 / technical plan),,
+API: Verify resolving a received core via the existing handle-core endpoints also writes the decision back to the linked core part request,API — Core Pre-Resolve (Story 18),Functional,Medium,"1. A valid Admin session (API).
+2. A received cored part exists that can be resolved via the existing handle-core(s) endpoints.","1. Resolve the received core Ok / Not OK via the existing handle-core(s) endpoint.
+2. Read the linked core part request and its core_resolution value.","1. The call succeeds and the decision is ALSO written to the linked core PartRequest (core_resolution matches the handle-core decision), keeping core_resolution the single source of history.",SV-8353 (S18 C-R10),,
 Verify each work order line shows a Story sub-row with an 'Add tech story for this line' link when empty,Tech Story Flow (Story 17),Functional,High,"1. Signed in as Admin.
 2. Require Tech Story is ON.
 3. A work order has a line with no tech story yet.","1. Open the work order Lines tab.
@@ -417,10 +461,13 @@ Verify the Vendor Missing flag clears once both a vendor and a part number are p
 2. Enter the missing part number.
 3. Observe the Vendor Missing flag.","1. Once both a vendor and a part number are provided the Vendor Missing flag is removed.
 2. The part becomes eligible for QuickBooks.",SV-7701 (S6-R5),,
-Verify reports mark Vendor Missing POs as 'needs vendor',Vendor Missing on WO PO (Story 6),Functional,Low,"1. Signed in as Admin.
-2. A Vendor Missing PO exists.
-3. A relevant PO report is available.","1. Open the PO report that lists POs.
-2. Find the Vendor Missing PO.",1. The report marks the Vendor Missing PO as 'needs vendor'.,SV-7701 (S6-R6),,
+Verify a Vendor Missing PO's spend is excluded from the QuickBooks Vendor Bill export and the Vendors Expenses report until a vendor is assigned,Vendor Missing on WO PO (Story 6),Functional,Low,"1. Signed in as Admin.
+2. A Vendor Missing PO with a non-zero cost exists.","1. Open the Vendors Expenses report and look for the vendor-missing PO's spend.
+2. Inspect the QuickBooks Vendor Bill export for that PO.
+3. Assign a vendor to the PO and check both again.","1. While the PO has no vendor, its spend is NOT counted in the Vendors Expenses report.
+2. Its spend is excluded from the QuickBooks Vendor Bill export.
+3. There is no dedicated purchase-order report and no 'needs vendor' marker — nothing 'marks' these POs.
+4. Once a vendor is assigned, the spend flows into both normally.",SV-7701 (S6-R6),,
 "Verify a sell-price-only part is orderable from the line's Order action, joins the Vendor-Missing PO and moves to waiting-to-receive",Vendor Missing on WO PO (Story 6),Functional,High,"1. Signed in as Admin at https://sv7301.qa.shopview.com.
 2. An open work order has a sell-price-only line part (sell price set; vendor and/or cost missing; part number empty).","1. On the line, use the Order action for the sell-price-only part.
 2. Open the PO list at /parts/orders and find the work order's PO.
@@ -450,6 +497,10 @@ Verify select-all only toggles POs on the current page/filter,PO Multi-Select (S
 2. The PO list has more POs than fit on one page (or a filter is applied).","1. Apply a filter or page the list.
 2. Click select-all.
 3. Check which POs are selected.","1. Select-all only selects POs in the current page/filter, not the whole dataset.",SV-7702 (S7 (select-all scope)),,
+Verify part-sale-originated POs appear in the PO list and are selectable like work-order POs,PO Multi-Select (Story 7),Functional,Medium,"1. Signed in as Admin.
+2. A Part Sale with a vendor part exists, so a part-sale purchase order was created.","1. Open the Purchase Orders list and find the part-sale PO.
+2. Select it (checkbox) together with work-order POs and use Receive Selected.","1. The part-sale-originated PO appears in the PO list.
+2. It is selectable and joins the Receive Selected flow like a work-order PO.",SV-7702 (S7 AC (part-sale POs) + §8 Part Sales — confirmed),,
 Verify the Bulk Receive page has a 'Back To Purchase Orders' link that returns to the PO list,PO Bulk Receive Page (Story 8),Functional,Medium,"1. Signed in as Admin.
 2. You reached the Bulk Receive page via Receive Selected.","1. Locate the top-left 'Back To Purchase Orders' link.
 2. Click it.","1. A 'Back To Purchase Orders' link is present top-left.
@@ -477,13 +528,14 @@ Verify the per-PO 'Receive parts (N)' button is disabled until a vendor invoice 
 3. Confirm the button state again.","1. The Receive button is disabled without a vendor invoice number.
 2. For a vendor-missing PO it also requires a vendor assigned and the missing part number entered.
 3. Once satisfied, the Receive button enables.",SV-7703 (S8-R6),,
-Verify field editability and locking on Bulk Receive (qty and cost editable; sell locks after WO invoiced/paid),PO Bulk Receive Page (Story 8),Functional,High,"1. Signed in as Admin.
-2. The Bulk Receive page has a PO whose WO is NOT yet invoiced/paid, and another whose WO IS invoiced/paid.","1. On the not-yet-invoiced PO, edit quantity, cost and sell.
-2. On the invoiced/paid PO, try to edit sell.
-3. Hover the locked sell field.","1. Quantity and cost are editable; sell is editable while the work order is not invoiced/paid.
-2. After the work order is invoiced/paid, sell is locked with a lock icon and tooltip 'Locked — this part is already invoiced or paid'.
-3. After locking, only cost remains editable.
-4. The field rules have parity with the Accept-Delivery receive screen; cost is editable when $0 or missing on either surface.","SV-7703, SV-7705 (S8-R7 / S10-R2)",,
+"Verify Bulk Receive field editability: quantity editable (partial receive), cost editable ONLY when it is $0, sell locks after the WO is invoiced/paid",PO Bulk Receive Page (Story 8),Functional,High,"1. Signed in as Admin.
+2. The Bulk Receive page has a part whose cost is $0, a part whose cost is not $0, and a PO whose work order IS invoiced/paid.","1. Edit the quantity on a part (partial receive).
+2. Try to edit the cost on the part whose cost is $0.
+3. Try to edit the cost on the part whose cost is not $0.
+4. On the invoiced/paid PO, try to edit the sell price and hover the locked field.","1. Quantity is editable (partial receive supported).
+2. Cost is editable when it is $0 (pulled from the work order / PO when available).
+3. Cost is NOT editable when it is not $0.
+4. Sell price is editable until the work order is invoiced/paid, then locked with a lock icon and tooltip 'Locked — this part is already invoiced or paid'.","SV-7703, SV-7705 (S8-R7 / S10-R3)",,
 Verify assigning a vendor to a Vendor Missing PO moves it into that vendor's group and entering the missing PN enables receiving,PO Bulk Receive Page (Story 8),Functional,High,"1. Signed in as Admin.
 2. The Bulk Receive page has a Vendor Missing PO.","1. Assign a vendor to the Vendor Missing PO.
 2. Confirm it moves into that vendor's group.
@@ -502,28 +554,36 @@ Verify Bulk Receive uses the same pipeline as single-PO receive (Delivery → Ve
 3. Check that the vendor bill synced to QuickBooks.","1. A Delivery is created.
 2. A Vendor Bill is created.
 3. The vendor bill syncs to QuickBooks (same pipeline as single-PO receive).",SV-7703 (S8-R11),,
-"Verify a cored part's Ok/Not OK resolution becomes available once received, and core-only partial receive is supported",PO Bulk Receive Page (Story 8),Functional,Medium,"1. Signed in as Admin.
-2. A PO on the Bulk Receive page holds a cored part.","1. Receive only the cored line (core-only partial receive).
-2. Confirm an Ok/Not OK resolution becomes available for the core.","1. Core-only partial receive is supported.
-2. Once the cored part is received, its Ok/Not OK resolution becomes available (for Story 3/4 resolution).
-3. Consistent with the completion rule that a waiting core cannot be skipped: the core must be received (core-only partial receive supported) before its Ok / Not OK can be resolved.",SV-7703 (S8-C1 / S8-C2),,
-Verify each vendor group has an 'Apply to selected POs' control enabled only with an invoice # and ≥1 PO selected,Apply Invoice to Selected POs (Story 9),Functional,High,"1. Signed in as Admin.
-2. The Bulk Receive page has a vendor group with multiple POs.","1. Locate the 'Apply to selected POs' control under the vendor name.
-2. With no invoice # and no PO selected, confirm it is disabled.
-3. Enter an invoice # and select at least one PO under that vendor.","1. The control appears under the vendor name.
-2. It is enabled only when an invoice number is entered and at least one PO under that vendor is selected.",SV-7704 (S9-R1),,
-"Verify Apply pre-fills one invoice number into only the selected POs of that vendor, still editable per PO",Apply Invoice to Selected POs (Story 9),Functional,High,"1. Signed in as Admin.
-2. A vendor group has several POs; some are selected.","1. Enter one invoice number.
-2. Click Apply.
+"Verify a pre-resolved core's decision is applied automatically at receive with no re-prompt, and core-only partial receive is supported",PO Bulk Receive Page (Story 8),Functional,Medium,"1. Signed in as Admin.
+2. A PO on the Bulk Receive page holds a cored part whose core was already decided (OK or Not OK) on the work order.","1. Receive only the cored line (core-only partial receive).
+2. Watch for any core prompt during the receive.
+3. Check the core's state on the work order lines and the customer invoice afterwards.","1. Core-only partial receive is supported.
+2. The saved OK / Not OK decision is applied automatically at receive — the user is NOT asked again (no duplicate prompt).
+3. The received core shows its resolved state with no OK / Not OK buttons, and the customer invoice does not change at receive.","SV-7703, SV-8353 (S18 C-R5)",,
+Verify a part-sale-originated PO can be received on the Bulk Receive page like a work-order PO,PO Bulk Receive Page (Story 8),Functional,Medium,"1. Signed in as Admin.
+2. A part-sale purchase order is waiting to receive and is on the Bulk Receive page.","1. Find the part-sale PO under its vendor group on the Bulk Receive page.
+2. Select it, enter the vendor invoice number and receive it.
+3. Check the part sale afterwards.","1. The part-sale PO appears under its vendor group like a work-order PO.
+2. It can be received on this page via the same receive pipeline.
+3. The part sale progresses normally after receiving (no errors).",SV-7703 (S8 AC (part-sale POs) + §8 Part Sales — confirmed),,
+"Verify each vendor group has an invoice number field under the vendor name, available only when at least one PO of that vendor is selected (no Apply button)",Apply Invoice to Selected POs (Story 9),Functional,High,"1. Signed in as Admin.
+2. The Bulk Receive page has a vendor group with multiple POs.","1. Look under the vendor name for the field to enter one invoice number.
+2. With no PO of that vendor selected, confirm the field is not available.
+3. Select at least one PO under that vendor and type an invoice number.","1. A field to enter one invoice number for that vendor's POs sits under the vendor name.
+2. It is available only when at least one PO under that vendor is selected.
+3. There is no 'Apply' button — the number is remembered as typed.",SV-7704 (S9-R1),,
+"Verify a typed invoice number fills only the selected POs of that vendor with no Apply click, still editable per PO",Apply Invoice to Selected POs (Story 9),Functional,High,"1. Signed in as Admin.
+2. A vendor group has several POs; some are selected.","1. Select some POs under a vendor (leave others unselected).
+2. Type one invoice number in that vendor's invoice number field.
 3. Inspect the selected and unselected POs' invoice fields.
-4. Edit one PO's invoice number.","1. The invoice number is pre-filled into only the selected POs of that vendor.
+4. Edit one PO's invoice number.","1. The typed number is filled into only the selected POs of that vendor — no Apply click needed (the number is remembered as typed).
 2. Unselected POs are not changed.
-3. Each PO's invoice number remains editable after Apply.",SV-7704 (S9-R2),,
-"Verify Apply Invoice is scoped per vendor, not offered for the vendorless group, and allows a reused invoice number",Apply Invoice to Selected POs (Story 9),Functional,Medium,"1. Signed in as Admin.
-2. The Bulk Receive page has multiple vendor groups plus a vendorless group.","1. Confirm Apply Invoice is available per vendor group.
-2. Confirm the vendorless group has no Apply Invoice control.
-3. Apply the same invoice number to POs where uniqueness is relaxed.","1. Apply Invoice is scoped to each vendor group.
-2. The vendorless group has no Apply Invoice control.
+3. Each PO's invoice number remains editable afterwards; then Receive all works for that vendor.",SV-7704 (S9-R2),,
+"Verify the vendor invoice number field is scoped per vendor, absent for the vendorless group, and allows a reused invoice number",Apply Invoice to Selected POs (Story 9),Functional,Medium,"1. Signed in as Admin.
+2. The Bulk Receive page has multiple vendor groups plus a vendorless group.","1. Confirm each vendor group has its own invoice number field.
+2. Confirm the vendorless group shows no invoice number field.
+3. Type the same invoice number for POs of another vendor.","1. The invoice number field is scoped to each vendor group — other vendors' POs and unselected POs are unaffected.
+2. The vendorless group shows no invoice-number field (assign a vendor first).
 3. The same invoice number can be reused (uniqueness relaxed).",SV-7704 (S9-R3),,
 Verify a no-number part shows 'Missing part number' with Edit → enter → save that persists immediately,Inline Part-Number Fix (Story 10),Functional,High,"1. Signed in as Admin.
 2. A part with no part number is on a PO or receive surface.","1. Locate the 'Missing part number' indicator on the part.
@@ -582,12 +642,13 @@ Verify the Receive action is hidden for office/readonly users and for fulfilled 
 3. Confirm each vendor group has its own invoice #, date, tax, note and Receive.","1. The screen groups items by vendor.
 2. Each vendor group has its own invoice number, date, tax, note and Receive action.
 3. Multiple vendors on one PO are supported (existing behavior).",SV-7707 (S12 (existing multi-vendor)),,
-"Verify new vendorless/no-PN WO parts and WO-originated POs appear and are receivable on Accept Delivery, with the vendor-missing group at the top",Accept Delivery (Story 12),Functional,High,"1. Signed in as Admin.
-2. A WO has a vendorless/no-PN part and a WO-originated PO reached via the Receive button.","1. Open Accept Delivery for the WO.
-2. Confirm the vendorless/no-PN parts appear.
-3. Confirm the vendor-missing group is at the top (leading).","1. New vendorless/no-PN WO parts appear and are receivable here.
-2. WO-originated POs reached via the Receive button appear.
-3. Vendor-missing parts sit in their own group that LEADS (appears at the top), because they need action (assign a vendor) before receiving.",SV-7707 (S12-R1),,
+"Verify vendorless / no-part-number Work Order parts appear and can be received on the Receive (Accept Delivery) screen, and the Vendor Missing group sits per the agreed rule (top on Bulk Receive, bottom on the Receive screen)",Accept Delivery (Story 12),Functional,High,"1. Signed in as Admin (or a role with receiving access).
+2. A Work Order has a part with no vendor and no part number, plus a WO-created Purchase Order that is opened using the Receive button on the Work Order.","1. On the Work Order, click the Receive button to open the Receive (Accept Delivery) screen (headed Purchase Order Details).
+2. Confirm the vendorless / no-part-number parts are listed and can be received here.
+3. Note where the Vendor Missing group sits on this Receive (Accept Delivery) screen.
+4. Open the Bulk Receive page (headed Receive Vendor Parts) for the same Purchase Orders and note where the Vendor Missing group sits there.","1. The vendorless / no-part-number Work Order parts appear in the Vendor Missing group and can be received once a vendor is chosen (Select Vendor) and a Part Number is entered.
+2. WO-created Purchase Orders opened with the Receive button appear on the Receive (Accept Delivery) screen and are receivable.
+3. The Vendor Missing group is positioned per the agreed rule (Milos, 2026-07-16): on the Bulk Receive page (Receive Vendor Parts) it leads at the TOP; on the Receive (Accept Delivery) screen it sits at the BOTTOM.",SV-7707 (S12-R1 (+ Milos Round-3 2026-07-16)),,
 "Verify Accept Delivery receive gates: vendor set, part number entered, cost / sell price entered, vendor invoice # captured",Accept Delivery (Story 12),Functional,High,"1. Signed in as Admin.
 2. A vendor-missing / no-PN part is in an Accept Delivery group.","1. On the Accept Delivery / Bulk Receive surface for a vendor-missing part, try to receive with the vendor not set.
 2. Set the vendor but leave the part number empty and try to receive.
@@ -596,11 +657,11 @@ Verify the Receive action is hidden for office/readonly users and for fulfilled 
 2. Receiving is blocked until a part number is entered.
 3. Receiving is blocked until a cost / sell price is entered.
 4. Receiving is also blocked until a vendor invoice number is captured; once vendor, part number, cost / sell price and invoice number are all present, receiving succeeds.","SV-7707, SV-7708 (S12-R2 / S13-R6 / S13-R7)",,
-Verify Accept Delivery shows a '+N' vendor indicator and leads with the vendor-missing group,Accept Delivery (Story 12),Functional,Low,"1. Signed in as Admin.
-2. A multi-vendor delivery with a vendor-missing group exists.","1. Open Accept Delivery.
-2. Confirm the '+N' vendor indicator.
-3. Confirm the ordering of the vendor-missing group.","1. A '+N' indicator summarizes multiple vendors.
-2. The vendor-missing group leads (appears first).",SV-7707 (S12-R3),,
+Verify the multi-vendor '+N' indicator and the Vendor Missing group position on the receiving screens,Accept Delivery (Story 12),Functional,Low,"1. Signed in as Admin (or a role with receiving access).
+2. A multi-vendor Purchase Order that also includes parts with no vendor (a Vendor Missing group) exists.","1. Open the Purchase Orders list (Parts > Purchase Orders) and look at the vendor indicator on a multi-vendor Purchase Order.
+2. Open the Receive (Accept Delivery) screen from the Work Order Receive button and note where the Vendor Missing group sits.
+3. Open the Bulk Receive page (Receive Vendor Parts) and note where the Vendor Missing group sits.","1. A multi-vendor Purchase Order shows a '+N' indicator (for example '+1' or '+4') on the Purchase Orders list summarizing the extra vendors. (On the Receive / Accept Delivery screen the vendor names are listed in full instead of a '+N' badge.)
+2. The Vendor Missing group is positioned per the agreed rule (Milos, 2026-07-16): on the Bulk Receive page (Receive Vendor Parts) it leads at the TOP; on the Receive (Accept Delivery) screen it sits at the BOTTOM.",SV-7707 (S12-R3 (+ Milos Round-3 2026-07-16)),,
 Verify each vendor group produces its own vendor bill and separate AP entry in QuickBooks,Accept Delivery (Story 12),Functional,High,"1. Signed in as Admin.
 2. A multi-vendor delivery is received.","1. Receive each vendor group with its own invoice number.
 2. Check QuickBooks / AP for the resulting bills.","1. Each vendor group creates its own vendor bill.
@@ -614,6 +675,19 @@ Verify cost is editable on the Accept Delivery screen when $0 or missing (parity
 3. Confirm the quantity remains editable and the sell-price lock rule is unchanged.","1. Cost is editable on Accept Delivery when $0 or missing (matching Bulk Receive / Story 8 / Story 10).
 2. Quantity stays editable.
 3. The sell-price lock rule is unchanged (sell locks only after the work order is invoiced/paid).",SV-7707 (S12-R5),,
+"Verify returning from receiving lands on the exact work order line the receive started from, not the top of the work order",Receive Button on WO POs (Story 11),Functional,Medium,"1. Signed in as Admin.
+2. A work order has several lines and a line far down the page has an un-received part.","1. From that line, click Receive (Receive opens Accept Delivery).
+2. Receive the part and go back to the work order.
+3. Observe where the page lands.","1. The user is returned to the exact work order line they received from — the page scrolls/focuses to the originating line, not the top of the work order — giving instant visual confirmation of the received part.","SV-7698, SV-7706 (S11-R4 (+ S3-R5 amendment))",,
+Verify clicking Receive on a single work order part opens Accept Delivery showing all of that vendor's to-receive parts plus the vendorless group,Accept Delivery (Story 12),Functional,Medium,"1. Signed in as Admin.
+2. A work order part has a vendor that also has other parts waiting to receive, and a vendorless part is waiting to receive too.","1. Click Receive on the single work order part.
+2. Observe which parts the Accept Delivery screen shows.","1. Accept Delivery shows all to-receive parts for that part's vendor (other vendors' parts are not shown).
+2. The vendorless group is also shown alongside them.",SV-7707 (S12-R6),,
+"Verify a vendorless part can be assigned a vendor / merged into the single-part receive on the spot, reusing the same invoice number",Accept Delivery (Story 12),Functional,Medium,"1. Signed in as Admin.
+2. You are on the Accept Delivery screen opened from a single work order part, and the vendorless group is showing a part.","1. Assign a vendor to the vendorless part (or merge it into this receive).
+2. Receive both parts using the same invoice number.","1. The vendorless part can be assigned a vendor / merged into this receive right there — no need to go back.
+2. The same invoice number is reused for the merged part.
+3. Both parts are received successfully.",SV-7707 (S12-R6),,
 Verify the vendor-missing group provides a vendor dropdown that assigns a vendor at PO level and saves it,Assign Vendor + Merge (Story 13),Functional,High,"1. Signed in as Admin.
 2. A vendor-missing group is shown on the receive surface.","1. Open the vendor-missing group's vendor dropdown.
 2. Choose a vendor.
@@ -646,6 +720,14 @@ Verify a part cannot be received until a missing cost / sell price is entered,As
 2. Leave the cost / sell price empty and check the Receive action.
 3. Enter a cost / sell price and check the Receive action again.","1. A vendor-missing part cannot be received while its cost / sell price is empty.
 2. Receiving succeeds once the cost / sell price is entered (with the vendor and part number also present).",SV-7708 (S13-R7),,
+Verify an assigned vendor stays changeable via the same dropdown until the part is received or the work order is invoiced/paid,Assign Vendor + Merge (Story 13),Functional,High,"1. Signed in as Admin.
+2. A PO part has a vendor assigned but is not yet received; another part is already received (or its work order is invoiced/paid).","1. On the un-received part, open the vendor dropdown and pick a different vendor.
+2. On the received (or invoiced/paid) part, try to change the vendor.","1. The vendor is NOT locked on selection — it can be changed via the same dropdown, so a wrong pick can be corrected before receiving.
+2. Once the part is received or the work order is invoiced/paid, the vendor can no longer be changed.",SV-7708 (S13-R8 (SV-8343)),,
+Verify the part number stays editable via the edit icon after entry until the part is received or the work order is invoiced/paid,Assign Vendor + Merge (Story 13),Functional,Medium,"1. Signed in as Admin.
+2. A PO part has a part number entered but is not yet received; another part is already received (or its work order is invoiced/paid).","1. On the un-received part, use the edit icon to change the part number.
+2. On the received (or invoiced/paid) part, try to edit the part number.","1. The part number remains editable (edit icon) after entry, under the same condition as the vendor — until the part is received or the work order is invoiced/paid.
+2. Once the part is received or the work order is invoiced/paid, the part number can no longer be edited.",SV-7708 (S13-R8 (SV-8343)),,
 Verify an optional 'Waiting on Parts' column can be enabled from the column selector and shows the unreceived-parts count per WO,Waiting on Parts Column (Story 14),Functional,High,"1. Signed in as Admin.
 2. The Work Orders list is open with WOs that have unreceived parts.","1. Open the Work Orders list column selector.
 2. Enable 'Waiting on Parts'.
@@ -658,6 +740,12 @@ Verify clicking the Waiting on Parts count opens Accept Delivery for the WO's fi
 Verify a work order with nothing to receive shows '—' with no link in the Waiting on Parts column,Waiting on Parts Column (Story 14),Functional,Low,"1. Signed in as Admin.
 2. A WO with nothing to receive (or POs off) is in the list with the column enabled.","1. Find a WO with nothing waiting to receive.
 2. Read its Waiting on Parts cell.","1. A work order with nothing to receive shows an em dash ('—') in the Waiting on Parts column, with no clickable link.",SV-7709 (S14-R3),,
+Verify part-sale orders behave with the Waiting on Parts column — unreceived count and receive shortcut work without errors,Waiting on Parts Column (Story 14),Functional,Low,"1. Signed in as Admin.
+2. The Waiting on Parts column is enabled and a Part Sale has an unreceived vendor part.","1. Locate the part-sale order on the list where the Waiting on Parts column shows.
+2. Check its unreceived-parts count and click it.
+3. Receive via the shortcut and re-check the count.","1. The part-sale order's unreceived parts are counted consistently in the Waiting on Parts column (or the order is cleanly excluded — no error, no broken link).
+2. The receive shortcut behaves like it does for work orders.
+3. After receiving, the count updates correctly.",SV-7709 (§8 Part Sales — confirmed (remaining check)),,
 Verify the Require Review setting drives the review flow when turned on,Review ON (Story 16),Functional,High,"1. Signed in as Admin at https://sv7301.qa.shopview.com.
 2. Require Review Before Completion is ON and saved.","1. Open a work order with approved lines.
 2. Start completion.
@@ -725,17 +813,16 @@ Verify a 'Ready for Review' list filter/column surfaces the reviewer queue,Revie
 Verify all lines must be approved before Send To Review (the 'Send To Review' action is disabled until every line is approved),Review ON (Story 16),Functional,Medium,"1. Signed in as Admin.
 2. Require Review is ON and a work order has one unapproved line.","1. Open the work order and locate the 'Send To Review' action while a line is still unapproved.
 2. Attempt to use Send To Review with the unapproved line.",1. The 'Send To Review' action cannot be used while any line is unapproved - the 'Send To Review' button is disabled until every line has been approved.,SV-7870 (R11),,
-Verify cores are resolved per rules before sign-off and invoicing is blocked until both Reviewed and all cores resolved,Review ON (Story 16),Functional,Medium,"1. Signed in as Admin.
+"Verify cores are decided before receiving ahead of Send to Review, and invoicing stays blocked until Reviewed and every core is decided",Review ON (Story 16),Functional,Medium,"1. Signed in as Admin.
 2. Require Review is ON and a work order has inventory and special-order cores.","1. Resolve inventory cores in the completion modal (after Pick) before Send to Review.
-2. For required-invoice, resolve special-order cores after the Receive round-trip before Send to Review; for optional-invoice, resolve at the Create Invoice gate after sign-off.
-3. Attempt to invoice before both Reviewed and cores are resolved.","1. Inventory cores are resolved before Send to Review.
-2. Special-order cores follow the vendor-invoice rules.
-3. Invoicing is blocked until the WO is Reviewed AND all cores are resolved.
-4. In the review flow too, a waiting special-order core cannot be skipped: Send to Review / completion is blocked until the core is received and resolved, and invoicing stays blocked until both Reviewed and all cores resolved.",SV-7870 (R Core parts / invoicing block),,
-Verify the Require Review default for new vs existing orgs matches the agreed cohort rule,Review ON (Story 16),Functional,Low,"1. A newly-created org and an existing org are available.
-2. Signed in as Admin for each.","1. Check the Require Review default on a brand-new org.
-2. Check that existing orgs keep today's behavior (backfilled).","1. On a brand-new org the Require Review Before Completion setting shows its default state.
-2. Existing orgs keep their current completion behavior (the setting is backfilled so their behavior does not change).",SV-7870 (R Open (default)),,
+2. Decide the special-order cores OK / Not OK on the resolve screen BEFORE receiving, before Send to Review (same in required- and optional-invoice flows).
+3. Attempt to invoice before the work order is Reviewed and before every core is decided.","1. Inventory cores are resolved before Send to Review.
+2. Special-order cores are pre-resolved before receiving on the resolve screen before Send to Review — no longer deferred to the Create Invoice gate.
+3. Invoicing is blocked until the work order is Reviewed AND every core is decided; only an undecided core blocks — a decided (un-received) core does not.","SV-7870, SV-8353 (S18 / Story 16 core paragraph)",,
+"Verify Require Review Before Completion starts ON for a brand-new organization, and existing organizations keep today's behavior",Review ON (Story 16),Functional,Low,"1. A brand-new organization / account (no settings changed yet) and an existing organization are available.
+2. Signed in as Admin for each.","1. On a brand-new organization, open Settings > Work Orders and check the Require Review Before Completion setting.
+2. On an existing organization, confirm its completion behavior is unchanged (the setting is backfilled).","1. On a brand-new organization / account, Require Review Before Completion defaults to ON (Milos decision, 2026-07-16: it stays ON for every new organization).
+2. Existing organizations keep their current completion behavior (the setting is backfilled so their behavior does not change).",SV-7870 (R Open (default) - Milos Round-3 2026-07-16: ON for new orgs),,
 Verify the work order primary button reads 'Create Work Order',UX Refinements (Story 15),Functional,Medium,"1. Signed in as Admin.
 2. You are on the Create Work Order form (/workorders → Create).","1. Open the Create Work Order form.
 2. Read the primary button label.",1. The primary button reads 'Create Work Order'.,SV-7710 (S15-R1),,
@@ -902,7 +989,12 @@ Verify Part History is preserved for a part that is genuinely inventory-tracked,
 2. A genuinely inventory-tracked part exists (an inventory item with stock).","1. Use / receive a genuinely inventory-tracked part on a work order and complete it.
 2. Open that part's Part History (Parts > Inventory, the clock icon on the part row).","1. For a part that is genuinely inventory-tracked, its Part History is preserved / written.
 2. Simply entering a part number on a previously untracked part is not required to turn it into an inventory-tracked part in v1, so no Part History needs to be created from that entry alone.",SV-7705 (§5 invariant 3 (rescoped after S10-R2 strike)),,
-Investigate: Part Sales unaffected by the shared order/status logic (requested -> orderable/waiting-to-receive),QuickBooks / Inventory Integrity,Functional,Low,1. PLACEHOLDER for a new V2.4 §8 open question (needs BE investigation).,1. Investigation pending — steps to be defined once dev confirms whether the shared order/status logic touches Part Sales.,1. OPEN / NEEDS INVESTIGATION — expected result to be defined after dev confirmation. Keep Part Sales unchanged unless the shared logic forces a change (V2.4 §8).,§8 open question (Part Sales impact — BE investigation),,
+Verify part-sale order status transitions are not regressed by the shared order/status logic (requested to waiting-to-receive to received),QuickBooks / Inventory Integrity,Functional,Low,"1. Signed in as Admin.
+2. A Part Sale exists (or can be created) to which a vendor part can be added.","1. Add a vendor part to the Part Sale so a purchase order is created.
+2. Follow the order's status as it is ordered and then received (same PO/receive pipeline as work orders).
+3. Confirm the part sale itself progresses normally after receiving.","1. The part-sale purchase order moves through the normal statuses (requested, then waiting to receive, then received) with no errors.
+2. Receiving the part-sale PO behaves like receiving a work-order PO (same pipeline).
+3. The part sale is not broken by the shared order/status logic.","SV-7702, SV-7703 (§8 Part Sales — confirmed (Jul 14) + S7/S8 part-sale AC)",,
 Verify resolving the last open line by completing a single line auto-completes the work order when Require Review is off,Auto-Complete Trigger (Story 16 R12/R13),Functional,Critical,"1. Signed in as Admin at https://sv7301.qa.shopview.com.
 2. Require Review Before Completion is OFF (in the Work Orders settings tab).
 3. A work order is in Approved status with two or more open (not-yet-completed) lines.","1. Open the work order and complete one line at a time using the per-line Complete action.

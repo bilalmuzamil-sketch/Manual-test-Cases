@@ -154,15 +154,16 @@ process(es) to run before proceeding.
    (Atlassian-SSO login-walled — reference pointer only; export/paste content to
    ingest, do NOT fetch). **CANONICAL STATE DOC (read first for
    resume):** `build/simple-flow/PROJECT-STATE.md` — the single authoritative
-   snapshot (case inventory 170 + VIU breakdown, TestRail state, deliverables
+   snapshot (case inventory 187 + VIU breakdown, TestRail state, deliverables
    index, open threads, env/access facts, how-to-resume). Memory:
    `build/simple-flow/*`
    (`requirements.md` = COMPLETE spec, 17 stories SV-7696..SV-7710 + SV-7870
    [incl. R12/R13 auto-complete = SV-8303] + SV-7876 + §9/§10 SV-8183 permissions;
    `design-notes.md`; `viu-findings.md`;
-   `cases/*.json` = 170 authored cases with `SF-` IDs; `SimpleFlow_V1_TestCases.xlsx/.csv`;
-   `build_workbook.py` + `gen_cases.py`). 169/170 cases in TestRail EXCEPT SF-QB-09
-   (no C-ID, Open-Question). **A QA execution run EXISTS — run 325 "Simple Flow -
+   `cases/*.json` = 187 authored cases with `SF-` IDs (post spec `_4`/V2.6 2026-07-17);
+   `SimpleFlow_V1_TestCases.xlsx/.csv`;
+   `build_workbook.py` + `gen_cases.py`). ALL 187 cases in TestRail (SF-QB-09 = C29909
+   since 2026-07-17). **A QA execution run EXISTS — run 325 "Simple Flow -
    Ayesha Khan -> Specs 7/7/2026"** (project 1/suite 1; snapshot 48 Passed / 6 Failed
    / 13 Blocked / 89 Untested; results logged by Ayesha 2026-07-13). It was **NOT
    created by us** — it is Ayesha's/QA's run; **never write results to it without
@@ -173,14 +174,25 @@ process(es) to run before proceeding.
    unexplained → need live re-VIU; SF-VPART-01/02 likely stale-7/7-baseline tied to
    known BUG-9) + ingest Jira **SV-8303** (Ayesha's SF-SET-10 note flags a coming
    spec change).
-   **RESUME 2026-07-16: read build/simple-flow/PROJECT-STATE.md §'WHAT'S LEFT TO DO' first**
-   — Milos Round-3 applied (SF-RCV-05/07 Deviation, SF-REV-15 Blocked-Env; pushed to TestRail;
-   bug draft #5 filed). Tally 134/5/26/4/1. Outstanding: 5 unanswered Milos Qs, file
-   Receive-screen bug in Jira, run-325 reconcile.
-   **STATUS: VIU-PROCESS COMPLETE + spec `_3` (de-facto V2.5) / design `_4` APPLIED +
-   IN TESTRAIL; ALL VIU-PENDING = 0. 170 cases (post Milos Round-3 2026-07-16): VIU-Verified 134 /
-   VIU-observed-awaiting-Milos 5 / Blocked-Env 26 / Deviation 4 / Open-Question 1.
-   Waiting on Milos's remaining 5 answers + QB-connected env + a dev-seeded special-order core.
+   **RESUME 2026-07-17: read build/simple-flow/PROJECT-STATE.md §'WHAT'S LEFT TO DO' + §0-BB first**
+   — spec `_4`/V2.6 APPLIED 2026-07-17: Story-18 pre-resolve-cores (SV-8353) authored
+   (+17 new cases: SF-CORE-11..19 [2 API] + SF-RCV-11..13 + SF-VEND-07/08 + SF-POSEL-07
+   + SF-BULK-11 + SF-WOP-04 = C29892–C29908), Δ9-Δ15 applied (14 case edits),
+   SF-VMIS-06 rescoped (S6-R6 rewritten-to-code — Deviation RESOLVED), SF-QB-09
+   rescoped + FINALLY IN TESTRAIL (=C29909; Open-Question resolved; all 187 mapped),
+   SF-INV-01/02/03 + SF-BULK-06 re-VIU pending (old-build-Verified; Δ13 Apply-button
+   removed / Δ14 $0-only cost — expect build deviations until dev ships);
+   **3 RETIRE-PROPOSALS AWAITING USER RULING: SF-CORE-05/06/09 (C29317/18/21) —
+   flagged locally, TestRail untouched.** TestRail push 2 add_section (4252/4253) +
+   13 update_case + 18 add_case, all 200+re-GET-MATCH, audit =
+   build/simple-flow/spec-v4-2026-07-17/testrail-update-log.md; requirements.md
+   promoted to V2.6; deliverables regenerated (import 187 rows VIU/flag-word-free).
+   **Tally 187: Verified 130 / VIU-Pending 22 / Blocked-Env 27 / awaiting-Milos 5 /
+   Deviation 3 / Open-Q 0.** Outstanding: retire ruling, Story-18 re-VIU backlog
+   (needs SV-8353 build + dev-seeded core), 5 unanswered Milos Qs (+ new S8-R7-tail
+   + design-C-R6 spec flags), file Receive-screen bug in Jira, run-325 reconcile.
+   **STATUS: SPEC `_4` (V2.6) APPLIED + IN TESTRAIL 2026-07-17 (on top of the complete
+   VIU process + spec `_3`/design `_4` + Milos Round-3).
    PROJECT-STATE.md = canonical resume doc (read first).** Detail: full build-accurate
    wording+VIU pass (all 163, 200/200) + V2.4 Δ1-Δ4 (+ SF-VEND-06=C29442) +
    reviewer≠completer DESCOPED (self-review allowed when role holds Mark Reviewed; BUG-5
@@ -195,9 +207,11 @@ process(es) to run before proceeding.
    dev-seeded vendor-sourced core). **TestRail push: 18 update_case + 7 add_case + 2
    add_section, all 200/200, no writes to run 325.** Roles matrix re-derived —
    **Technician NOT drifted on sv7301.** Stories 7/8/9/14/16-auto CONFIRMED BUILT;
-   DEV-NOT-BUILT = 0. **169/170 current in TestRail** (SF-QB-09 unmapped, no C-ID).
-   **Deviations (2):** SF-SET-03 (no Create Purchase Orders toggle) + SF-VMIS-06 (no
-   Vendor-Missing "needs vendor" report). Build findings OBS-6 (Part-History 500) +
+   DEV-NOT-BUILT = 0. **ALL 187 current in TestRail** (SF-QB-09 = C29909, 2026-07-17).
+   **Deviations (3):** SF-SET-03 (no Create Purchase Orders toggle) + SF-RCV-05/07
+   (Vendor-Missing group at TOP on the Receive screen, should be BOTTOM). SF-VMIS-06's
+   old "needs vendor report" deviation was RESOLVED 2026-07-17 by the spec `_4` S6-R6
+   rewrite (rescoped → Blocked-Env). Build findings OBS-6 (Part-History 500) +
    OBS-7 (universal disabled-Complete gate on unapproved line, expected). **WAITING
    ON:** Milos Round-3 (8 awaiting-Milos: SF-SET-08/COMP-06/RCV-05/RCV-07/REV-11/
    REV-15/UX-04/QB-02 + earlier MILOS set; deliverables ready: PO-Questions-Round3.xlsx,
@@ -209,8 +223,9 @@ process(es) to run before proceeding.
    cross-referenced in `run325-status-map-2026-07-14.md`. **Doc self-contradiction to
    flag for Milos:** spec `_3` strikes S10-R2 but Story-10 AC bullets + technical
    guardrails still describe first-class-part creation. Bug drafts (TICKET 2-5) unfiled
-   (no Atlassian in this env); OBS-6 + SF-VMIS-06 + SF-AUTO-04 API-500 for dev. SF-QB-09
-   unmapped in testrail-id-map.csv (Open-Question, not in TestRail) — follow-up.
+   (no Atlassian in this env); OBS-6 + SF-AUTO-04 API-500 for dev (SF-VMIS-06 dev-route
+   dropped 2026-07-17 — spec rewritten to match code). SF-QB-09 mapped 2026-07-17
+   (= C29909) — the old unmapped-follow-up is CLOSED.
    Pre-existing residue: 3 QA WOs left Complete (reversible in-app only).
    **qb/sv7301 env is SHARED — re-read settings before runs, restore byte-identical
    after** (node-fetch-ignores-proxy gotcha → use undici ProxyAgent). All detail

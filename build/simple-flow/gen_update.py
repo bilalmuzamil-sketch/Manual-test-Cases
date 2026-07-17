@@ -53,7 +53,7 @@ FILES = [
 SV = {1: "SV-7696", 2: "SV-7697", 3: "SV-7698", 4: "SV-7699", 5: "SV-7700",
       6: "SV-7701", 7: "SV-7702", 8: "SV-7703", 9: "SV-7704", 10: "SV-7705",
       11: "SV-7706", 12: "SV-7707", 13: "SV-7708", 14: "SV-7709", 15: "SV-7710",
-      16: "SV-7870", 17: "SV-7876"}
+      16: "SV-7870", 17: "SV-7876", 18: "SV-8353"}
 
 
 # --- shared content helpers (kept in sync with gen_import.py) ----------------
@@ -89,7 +89,7 @@ def story_numbers(c):
             nums.add(int(n))
     if re.search(r"\bTS-?R?\d*", sr):
         nums.add(17)
-    tmp = re.sub(r"\bTS-R\d+", "", sr)
+    tmp = re.sub(r"\b(?:TS|C)-R\d+", "", sr)  # TS-R# = Story 17; C-R# = Story 18 core rules
     if not re.search(r"\bS\d+-", tmp) and re.search(r"\bR\d+\b", tmp):
         nums.add(16)
     return sorted(n for n in nums if n in SV)
