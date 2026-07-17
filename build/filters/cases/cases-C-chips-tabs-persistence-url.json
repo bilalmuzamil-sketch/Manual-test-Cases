@@ -243,7 +243,7 @@
  {
   "id": "FLT-TAB-02",
   "area": "Tab Behaviour",
-  "title": "On the Estimates tab the Status filter is not offered; the other four filters work on top of the Estimates pre-filter",
+  "title": "On the Estimates tab the Status chip is shown greyed out, pre-filled with 'Status: Estimate', and cannot be changed; the other four filters work on top of the Estimates pre-filter",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "Any signed-in user with access to the Work Orders page (the spec defines no role-based differences - OQ-4).",
@@ -255,24 +255,25 @@
   "steps": [
    "1. Click the Estimates tab.",
    "2. Look at the filter bar.",
-   "3. Open the Customer filter and select one customer.",
-   "4. Look at the table."
+   "3. Try to click the Status chip.",
+   "4. Open the Customer filter and select one customer.",
+   "5. Look at the table."
   ],
   "expected": [
-   "1. The Status filter is not offered as a usable filter on this tab (per the spec the chip is hidden; the tab already pre-filters to Estimate).",
+   "1. The Status chip is shown but greyed out, already filled in as 'Status: Estimate', and cannot be clicked or changed - the tab already pre-filters the list to Estimate.",
    "2. Customer, Lead Technician, Service Advisor and Asset on site chips are shown and usable.",
-   "3. After step 3 the table shows only that customer's ESTIMATE work orders - the customer filter narrows the pre-filtered Estimates list."
+   "3. After step 4 the table shows only that customer's ESTIMATE work orders - the customer filter narrows the pre-filtered Estimates list."
   ],
   "design_ref": "design-notes.md B.1 #2 (11972:32318)",
-  "spec_ref": "requirements.md Story 9 S9-R2; Story 2 S2-N1; §4 Key Decisions",
+  "spec_ref": "requirements.md Story 9 S9-R2; Story 2 S2-N1 (chip-hidden wording superseded by PO ruling 2026-07-17: chip shown disabled); §4 Key Decisions",
   "viu_status": "VIU-Pending",
-  "notes": "SPEC-vs-DESIGN CONFLICT: the spec says the Status chip is HIDDEN on Estimates, but the final design frame 11972:32318 shows a pale/disabled chip reading 'Status: Estimate'. Authored to the spec's intent (no usable Status filter); a PO question asks which presentation ships - VIU-confirm and adjust expected wording to the build.",
+  "notes": "SPEC-vs-DESIGN CONFLICT RESOLVED by Branko 2026-07-17 (answer B - the design wins): the Status chip is SHOWN but greyed out (disabled), pre-filled 'Status: Estimate', and not clickable, exactly as final design frame 11972:32318 shows. Spec passages S2-N1/S2-N2 and S9-R2/S9-R3 (chip hidden) are STALE - flag for Branko's PRD update. Exact on-screen label and disabled appearance still VIU-confirm.",
   "api_related": false
  },
  {
   "id": "FLT-TAB-03",
   "area": "Tab Behaviour",
-  "title": "On the Completed tab the Status filter is not offered; the other four filters work on top of the Completed pre-filter",
+  "title": "On the Completed tab the Status chip is shown greyed out, pre-filled with the tab's status, and cannot be changed; the other four filters work on top of the Completed pre-filter",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "Any signed-in user with access to the Work Orders page (the spec defines no role-based differences - OQ-4).",
@@ -284,18 +285,19 @@
   "steps": [
    "1. Click the Completed tab.",
    "2. Look at the filter bar.",
-   "3. Open the Customer filter and select one customer.",
-   "4. Look at the table."
+   "3. Try to click the Status chip.",
+   "4. Open the Customer filter and select one customer.",
+   "5. Look at the table."
   ],
   "expected": [
-   "1. The Status filter is not offered as a usable filter on this tab (the tab already pre-filters to Complete).",
+   "1. The Status chip is shown but greyed out, already filled in with this tab's status, and cannot be clicked or changed - the tab already pre-filters the list to Complete.",
    "2. Customer, Lead Technician, Service Advisor and Asset on site chips are shown and usable.",
-   "3. After step 3 the table shows only that customer's COMPLETE work orders."
+   "3. After step 4 the table shows only that customer's COMPLETE work orders."
   ],
   "design_ref": "design-notes.md B.1 #2 (11972:32318 - Estimates equivalent; Completed not drawn separately)",
-  "spec_ref": "requirements.md Story 9 S9-R3; Story 2 S2-N2; §4 Key Decisions",
+  "spec_ref": "requirements.md Story 9 S9-R3; Story 2 S2-N2 (chip-hidden wording superseded by PO ruling 2026-07-17: chip shown disabled); §4 Key Decisions",
   "viu_status": "VIU-Pending",
-  "notes": "No dedicated Completed-tab frame exists in the final design set - behavior mirrors the Estimates frame; VIU-confirm (same spec-vs-design chip question as the Estimates tab).",
+  "notes": "SPEC-vs-DESIGN CONFLICT RESOLVED by Branko 2026-07-17 (answer B - the design wins): the Status chip is SHOWN but greyed out (disabled), pre-filled with the Completed tab's status, and not clickable. Spec passages S2-N2/S9-R3 (chip hidden) are STALE - flag for Branko's PRD update. No dedicated Completed-tab design frame exists (behavior mirrors the Estimates frame 11972:32318), so the EXACT pre-filled string on this tab (e.g. 'Status: Complete') has no design evidence - capture it live at VIU before hardening it into the expected text.",
   "api_related": false
  },
  {
@@ -384,7 +386,7 @@
  {
   "id": "FLT-PERS-02",
   "area": "Persistence",
-  "title": "Filter selections persist while the browser session lasts, wherever you go in the app",
+  "title": "Filter selections are remembered for you permanently - still applied after moving around the app and even after closing the browser and signing back in",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "Any signed-in user with access to the Work Orders page (the spec defines no role-based differences - OQ-4).",
@@ -394,16 +396,19 @@
   ],
   "steps": [
    "1. Visit several other areas of the app (Customers, Parts, Reports) and use them briefly.",
-   "2. Return to the Work Orders page.",
-   "3. Look at the chips and the table."
+   "2. Return to the Work Orders page and look at the chips and the table.",
+   "3. Close the browser completely (all windows).",
+   "4. Open the browser again, sign in as the same person, and go to the Work Orders page.",
+   "5. Look at the chips and the table."
   ],
   "expected": [
-   "1. The filter selections are still applied after moving around the app - you do not have to re-apply them within the same browser session."
+   "1. After moving around the app (step 2) the filter selections are still applied - you do not have to re-apply them.",
+   "2. After closing the browser completely and signing back in (step 5) the same filter selections are still applied - the app remembers your filters for you permanently, not just for one browser session."
   ],
   "design_ref": "design-notes.md B.1 #4 (11854:26246)",
-  "spec_ref": "requirements.md Story 10 S10-R2; §2/§4 (persist across navigation, saved per user)",
+  "spec_ref": "requirements.md Story 10 S10-R2 (session-only wording superseded by PO ruling 2026-07-17: permanent per-user persistence); §2/§4 (persist across navigation, saved per user)",
   "viu_status": "VIU-Pending",
-  "notes": "OPEN QUESTION (OQ-5): S10-R2 says persistence lasts 'for the duration of the browser session' while §2/§4 say the state is 'saved per user and reloaded when they return' (which reads as surviving a browser restart). This case tests the common ground both readings agree on (same-session persistence). Whether filters must ALSO survive closing the browser / logging out is a PO question - do not fail the build on that until answered.",
+  "notes": "RESOLVED (was OQ-5): Branko ruled 2026-07-17 (answer B) that filter selections are remembered PERMANENTLY per user - still there after closing the browser entirely and signing back in (and after logging out). The S10-R2 'for the duration of the browser session' sentence is superseded by the §2/§4 'saved per user' reading (last-update-wins); flag the stale S10-R2 text for Branko's PRD update. Exact on-screen labels still VIU-confirm.",
   "api_related": false
  },
  {

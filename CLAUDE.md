@@ -295,7 +295,11 @@ process(es) to run before proceeding.
    2026-07-17 (Parts/Reports IN SCOPE pending PRD; persistence permanent;
    disabled-chip ruling); JE-tab frame captured (final set 50/50);
    design-system zip = reference prototype; baseline confirmed ZIP=final
-   (user ruling A 2026-07-17).** Same rules as all projects: reuse shared infra
+   (user ruling A 2026-07-17). Q2/Q4 case updates PUSHED to TestRail
+   2026-07-17 (3/3, audit-logged) — FLT-PERS-02/C29614 permanent persistence,
+   FLT-TAB-02/03 C29609/C29610 disabled pre-filled Status chip; import +
+   id-map regenerated (id-map re-merged 79/79); audit log =
+   build/filters/branko-answers-2026-07-17/testrail-update-log.md.** Same rules as all projects: reuse shared infra
    (BUILD-ACCURATE-WORDING-VIU-PROCESS, SPEC-RELEVANCE-RECONCILIATION,
    TESTING-RUNBOOK, harness/TestRail patterns); per Standing Rule 11 ASK which
    process(es) to run before any VIU pass. Open questions live in

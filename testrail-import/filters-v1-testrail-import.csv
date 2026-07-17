@@ -305,22 +305,24 @@ A filter combination with no matching work orders shows a no-results empty state
 2. You are on the Work Orders page.","1. Click the All tab.
 2. Count the filter chips and click each one briefly.","1. All five chips are shown: Status, Customer, Lead Technician, Service Advisor, Asset on site.
 2. Each chip opens its dropdown and can be used.",requirements.md Story 9 S9-R1,,
-On the Estimates tab the Status filter is not offered; the other four filters work on top of the Estimates pre-filter,Tab Behaviour,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
+"On the Estimates tab the Status chip is shown greyed out, pre-filled with 'Status: Estimate', and cannot be changed; the other four filters work on top of the Estimates pre-filter",Tab Behaviour,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. Estimate work orders exist for at least two different customers.
 3. You are on the Work Orders page.","1. Click the Estimates tab.
 2. Look at the filter bar.
-3. Open the Customer filter and select one customer.
-4. Look at the table.","1. The Status filter is not offered as a usable filter on this tab (per the spec the chip is hidden; the tab already pre-filters to Estimate).
+3. Try to click the Status chip.
+4. Open the Customer filter and select one customer.
+5. Look at the table.","1. The Status chip is shown but greyed out, already filled in as 'Status: Estimate', and cannot be clicked or changed - the tab already pre-filters the list to Estimate.
 2. Customer, Lead Technician, Service Advisor and Asset on site chips are shown and usable.
-3. After step 3 the table shows only that customer's ESTIMATE work orders - the customer filter narrows the pre-filtered Estimates list.",requirements.md Story 9 S9-R2; Story 2 S2-N1; §4 Key Decisions,,
-On the Completed tab the Status filter is not offered; the other four filters work on top of the Completed pre-filter,Tab Behaviour,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
+3. After step 4 the table shows only that customer's ESTIMATE work orders - the customer filter narrows the pre-filtered Estimates list.",requirements.md Story 9 S9-R2; Story 2 S2-N1 (chip-hidden wording superseded by PO ruling 2026-07-17: chip shown disabled); §4 Key Decisions,,
+"On the Completed tab the Status chip is shown greyed out, pre-filled with the tab's status, and cannot be changed; the other four filters work on top of the Completed pre-filter",Tab Behaviour,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. Complete work orders exist for at least two different customers.
 3. You are on the Work Orders page.","1. Click the Completed tab.
 2. Look at the filter bar.
-3. Open the Customer filter and select one customer.
-4. Look at the table.","1. The Status filter is not offered as a usable filter on this tab (the tab already pre-filters to Complete).
+3. Try to click the Status chip.
+4. Open the Customer filter and select one customer.
+5. Look at the table.","1. The Status chip is shown but greyed out, already filled in with this tab's status, and cannot be clicked or changed - the tab already pre-filters the list to Complete.
 2. Customer, Lead Technician, Service Advisor and Asset on site chips are shown and usable.
-3. After step 3 the table shows only that customer's COMPLETE work orders.",requirements.md Story 9 S9-R3; Story 2 S2-N2; §4 Key Decisions,,
+3. After step 4 the table shows only that customer's COMPLETE work orders.",requirements.md Story 9 S9-R3; Story 2 S2-N2 (chip-hidden wording superseded by PO ruling 2026-07-17: chip shown disabled); §4 Key Decisions,,
 On the My Work Orders tab all five filters are shown and narrow the already user-scoped list,Tab Behaviour,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. Work orders assigned to you exist in at least two statuses, and other users' work orders also exist.
 3. You are on the Work Orders page.","1. Click the My Work Orders tab and count the chips.
@@ -341,10 +343,13 @@ Leaving the Work Orders page and coming back restores the filters and the bar st
 4. Repeat the round-trip once more with the filter bar collapsed before leaving.","1. After step 2 the same Status and Customer selections are still applied - chips active with the same values, table filtered the same way.
 2. The filter bar is still expanded (as you left it).
 3. After step 4 the filter bar comes back collapsed - the collapsed/expanded state is restored too.",requirements.md Story 10 S10-R1; Story 1 S1-R7,,
-"Filter selections persist while the browser session lasts, wherever you go in the app",Persistence,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
+Filter selections are remembered for you permanently - still applied after moving around the app and even after closing the browser and signing back in,Persistence,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. Filters are applied on the Work Orders page (for example a status and a customer).","1. Visit several other areas of the app (Customers, Parts, Reports) and use them briefly.
-2. Return to the Work Orders page.
-3. Look at the chips and the table.",1. The filter selections are still applied after moving around the app - you do not have to re-apply them within the same browser session.,"requirements.md Story 10 S10-R2; §2/§4 (persist across navigation, saved per user)",,
+2. Return to the Work Orders page and look at the chips and the table.
+3. Close the browser completely (all windows).
+4. Open the browser again, sign in as the same person, and go to the Work Orders page.
+5. Look at the chips and the table.","1. After moving around the app (step 2) the filter selections are still applied - you do not have to re-apply them.
+2. After closing the browser completely and signing back in (step 5) the same filter selections are still applied - the app remembers your filters for you permanently, not just for one browser session.","requirements.md Story 10 S10-R2 (session-only wording superseded by PO ruling 2026-07-17: permanent per-user persistence); §2/§4 (persist across navigation, saved per user)",,
 Saved filters are per user: one user's filters do not appear for another user,Persistence,Functional,High,"1. Two test users (A and B) can sign in to the same shop.
 2. User A has applied filters on the Work Orders page (for example Status: Approved).","1. As user B (separate login/browser profile), open the Work Orders page.
 2. Look at the filter chips and the table.
