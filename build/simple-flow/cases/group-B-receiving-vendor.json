@@ -542,6 +542,32 @@
   "fresh_run": "2026-07-13"
  },
  {
+  "id": "SF-POSEL-07",
+  "area": "PO Multi-Select (Story 7)",
+  "story_ref": "S7 AC (part-sale POs) + §8 Part Sales — confirmed",
+  "title": "Verify part-sale-originated POs appear in the PO list and are selectable like work-order POs",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Vendor & Order Mgmt access (PO list).",
+  "preconditions": [
+   "1. Signed in as Admin.",
+   "2. A Part Sale with a vendor part exists, so a part-sale purchase order was created."
+  ],
+  "steps": [
+   "1. Open the Purchase Orders list and find the part-sale PO.",
+   "2. Select it (checkbox) together with work-order POs and use Receive Selected."
+  ],
+  "expected": [
+   "1. The part-sale-originated PO appears in the PO list.",
+   "2. It is selectable and joins the Receive Selected flow like a work-order PO."
+  ],
+  "design_ref": "requirements-v4 Story 7 AC",
+  "viu_status": "VIU-Pending",
+  "api_related": false,
+  "fresh_run": "2026-07-17",
+  "notes": "NEW 2026-07-17 per spec `_4` (V2.6) Δ15 — part-sale POs CONFIRMED in scope for Stories 7/8 (§8 'Part Sales — confirmed (Jul 14)'; new S7 AC bullet). Seeding self-serviceable per Rule 14 (create a Part Sale with a vendor part). Not yet observed — re-VIU at the next live pass."
+ },
+ {
   "id": "SF-BULK-01",
   "area": "PO Bulk Receive Page (Story 8)",
   "story_ref": "S8-R1",
@@ -819,6 +845,34 @@
   "notes": "REWORDED 2026-07-17 to spec `_4` (V2.6) Story 18 C-R5: receive no longer 'makes resolution available' (old S8-C1) — a pre-resolved decision AUTO-APPLIES at receive (OK → vendor core return created automatically; Not OK → core created already resolved, no return). Core-only partial receive (old S8-C2) retained. Blocked-Env: a special-order (vendor-sourced) core is still not seedable in this build (P550848 is_core=0; a vendor-sourced part request drops the core attribute) — needs a dev-seeded special-order core. ALSO: Story 18 / SV-8353 is a new dev plan, so the pre-resolve build is likely NOT deployed on sv7301 yet — probe the completion wizard for the resolve step + the pre-resolve endpoint before any re-VIU.",
   "api_related": false,
   "fresh_run": "2026-07-17"
+ },
+ {
+  "id": "SF-BULK-11",
+  "area": "PO Bulk Receive Page (Story 8)",
+  "story_ref": "S8 AC (part-sale POs) + §8 Part Sales — confirmed",
+  "title": "Verify a part-sale-originated PO can be received on the Bulk Receive page like a work-order PO",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "receive access (Vendor & Order Mgmt: Create & Edit + See Financial Data).",
+  "preconditions": [
+   "1. Signed in as Admin.",
+   "2. A part-sale purchase order is waiting to receive and is on the Bulk Receive page."
+  ],
+  "steps": [
+   "1. Find the part-sale PO under its vendor group on the Bulk Receive page.",
+   "2. Select it, enter the vendor invoice number and receive it.",
+   "3. Check the part sale afterwards."
+  ],
+  "expected": [
+   "1. The part-sale PO appears under its vendor group like a work-order PO.",
+   "2. It can be received on this page via the same receive pipeline.",
+   "3. The part sale progresses normally after receiving (no errors)."
+  ],
+  "design_ref": "requirements-v4 Story 8 AC",
+  "viu_status": "VIU-Pending",
+  "api_related": false,
+  "fresh_run": "2026-07-17",
+  "notes": "NEW 2026-07-17 per spec `_4` (V2.6) Δ15 — part-sale POs receivable on Bulk Receive (new S8 AC bullet). Seeding self-serviceable per Rule 14. Not yet observed — re-VIU at the next live pass."
  },
  {
   "id": "SF-INV-01",
@@ -1348,6 +1402,85 @@
   "fresh_run": "2026-07-13"
  },
  {
+  "id": "SF-RCV-11",
+  "area": "Receive Button on WO POs (Story 11)",
+  "story_ref": "S11-R4 (+ S3-R5 amendment)",
+  "title": "Verify returning from receiving lands on the exact work order line the receive started from, not the top of the work order",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "receive access.",
+  "preconditions": [
+   "1. Signed in as Admin.",
+   "2. A work order has several lines and a line far down the page has an un-received part."
+  ],
+  "steps": [
+   "1. From that line, click Receive (Receive opens Accept Delivery).",
+   "2. Receive the part and go back to the work order.",
+   "3. Observe where the page lands."
+  ],
+  "expected": [
+   "1. The user is returned to the exact work order line they received from — the page scrolls/focuses to the originating line, not the top of the work order — giving instant visual confirmation of the received part."
+  ],
+  "design_ref": "requirements-v4 S11-R4",
+  "viu_status": "VIU-Pending",
+  "api_related": false,
+  "fresh_run": "2026-07-17",
+  "notes": "NEW 2026-07-17 per spec `_4` (V2.6) Δ9 — S11-R4 return-to-originating-line (change-log 2026-07-15 'Jul 14 SU follow-ups'). Self-serviceable per Rule 14 (seed a multi-line WO with an orderable part). Not yet observed — re-VIU at the next live pass; new requirement, may not be built on sv7301 yet."
+ },
+ {
+  "id": "SF-RCV-12",
+  "area": "Accept Delivery (Story 12)",
+  "story_ref": "S12-R6",
+  "title": "Verify clicking Receive on a single work order part opens Accept Delivery showing all of that vendor's to-receive parts plus the vendorless group",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "receive access.",
+  "preconditions": [
+   "1. Signed in as Admin.",
+   "2. A work order part has a vendor that also has other parts waiting to receive, and a vendorless part is waiting to receive too."
+  ],
+  "steps": [
+   "1. Click Receive on the single work order part.",
+   "2. Observe which parts the Accept Delivery screen shows."
+  ],
+  "expected": [
+   "1. Accept Delivery shows all to-receive parts for that part's vendor (other vendors' parts are not shown).",
+   "2. The vendorless group is also shown alongside them."
+  ],
+  "design_ref": "requirements-v4 S12-R6",
+  "viu_status": "VIU-Pending",
+  "api_related": false,
+  "fresh_run": "2026-07-17",
+  "notes": "NEW 2026-07-17 per spec `_4` (V2.6) Δ10 — S12-R6 vendorless group surfaced on single-part receive (change-log 2026-07-15). Covers the CONTENT of the single-part receive view; the vendor-missing group POSITION deviation stays with SF-RCV-05/07 (Milos Round-3 ruling — unaffected by S12-R6). Self-serviceable per Rule 14. Not yet observed — re-VIU; may not be built on sv7301 yet."
+ },
+ {
+  "id": "SF-RCV-13",
+  "area": "Accept Delivery (Story 12)",
+  "story_ref": "S12-R6",
+  "title": "Verify a vendorless part can be assigned a vendor / merged into the single-part receive on the spot, reusing the same invoice number",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "receive access + Vendor & Order Mgmt: Create & Edit (assign vendor).",
+  "preconditions": [
+   "1. Signed in as Admin.",
+   "2. You are on the Accept Delivery screen opened from a single work order part, and the vendorless group is showing a part."
+  ],
+  "steps": [
+   "1. Assign a vendor to the vendorless part (or merge it into this receive).",
+   "2. Receive both parts using the same invoice number."
+  ],
+  "expected": [
+   "1. The vendorless part can be assigned a vendor / merged into this receive right there — no need to go back.",
+   "2. The same invoice number is reused for the merged part.",
+   "3. Both parts are received successfully."
+  ],
+  "design_ref": "requirements-v4 S12-R6",
+  "viu_status": "VIU-Pending",
+  "api_related": false,
+  "fresh_run": "2026-07-17",
+  "notes": "NEW 2026-07-17 per spec `_4` (V2.6) Δ10 — the assign/merge-on-the-spot leg of S12-R6 ('reusing the same invoice number... rather than going back'). Self-serviceable per Rule 14. Not yet observed — re-VIU; may not be built on sv7301 yet."
+ },
+ {
   "id": "SF-VEND-01",
   "area": "Assign Vendor + Merge (Story 13)",
   "story_ref": "S13-R1",
@@ -1513,6 +1646,58 @@
   "api_related": false
  },
  {
+  "id": "SF-VEND-07",
+  "area": "Assign Vendor + Merge (Story 13)",
+  "story_ref": "S13-R8 (SV-8343)",
+  "title": "Verify an assigned vendor stays changeable via the same dropdown until the part is received or the work order is invoiced/paid",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Vendor & Order Mgmt: Create & Edit.",
+  "preconditions": [
+   "1. Signed in as Admin.",
+   "2. A PO part has a vendor assigned but is not yet received; another part is already received (or its work order is invoiced/paid)."
+  ],
+  "steps": [
+   "1. On the un-received part, open the vendor dropdown and pick a different vendor.",
+   "2. On the received (or invoiced/paid) part, try to change the vendor."
+  ],
+  "expected": [
+   "1. The vendor is NOT locked on selection — it can be changed via the same dropdown, so a wrong pick can be corrected before receiving.",
+   "2. Once the part is received or the work order is invoiced/paid, the vendor can no longer be changed."
+  ],
+  "design_ref": "requirements-v4 S13-R8",
+  "viu_status": "VIU-Pending",
+  "api_related": false,
+  "fresh_run": "2026-07-17",
+  "notes": "NEW 2026-07-17 per spec `_4` (V2.6) Δ11 — S13-R8 (from SV-8343, change-log 2026-07-16: 'Vendor + part number stay changeable until receive'). Prevents receiving against the wrong vendor. Self-serviceable per Rule 14 (the invoiced/paid leg may stay Blocked-Env — invoiced/paid WO not drivable in this env, see §0-ZZ). Not yet observed — re-VIU; may not be built yet."
+ },
+ {
+  "id": "SF-VEND-08",
+  "area": "Assign Vendor + Merge (Story 13)",
+  "story_ref": "S13-R8 (SV-8343)",
+  "title": "Verify the part number stays editable via the edit icon after entry until the part is received or the work order is invoiced/paid",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Vendor & Order Mgmt: Create & Edit.",
+  "preconditions": [
+   "1. Signed in as Admin.",
+   "2. A PO part has a part number entered but is not yet received; another part is already received (or its work order is invoiced/paid)."
+  ],
+  "steps": [
+   "1. On the un-received part, use the edit icon to change the part number.",
+   "2. On the received (or invoiced/paid) part, try to edit the part number."
+  ],
+  "expected": [
+   "1. The part number remains editable (edit icon) after entry, under the same condition as the vendor — until the part is received or the work order is invoiced/paid.",
+   "2. Once the part is received or the work order is invoiced/paid, the part number can no longer be edited."
+  ],
+  "design_ref": "requirements-v4 S13-R8",
+  "viu_status": "VIU-Pending",
+  "api_related": false,
+  "fresh_run": "2026-07-17",
+  "notes": "NEW 2026-07-17 per spec `_4` (V2.6) Δ11 — the part-number leg of S13-R8 ('likewise editable (edit icon) after entry, under the same condition'). Self-serviceable per Rule 14 (invoiced/paid leg may stay Blocked-Env). Not yet observed — re-VIU; may not be built yet."
+ },
+ {
   "id": "SF-WOP-01",
   "area": "Waiting on Parts Column (Story 14)",
   "story_ref": "S14-R1",
@@ -1589,5 +1774,33 @@
   "notes": "Wording+VIU 2026-07-13: WO with nothing to receive shows '—' (no link) - verified prior (BATCH 7). Stripped 'EXPECTED PER SPEC' jargon.",
   "api_related": false,
   "fresh_run": "2026-07-13"
+ },
+ {
+  "id": "SF-WOP-04",
+  "area": "Waiting on Parts Column (Story 14)",
+  "story_ref": "§8 Part Sales — confirmed (remaining check)",
+  "title": "Verify part-sale orders behave with the Waiting on Parts column — unreceived count and receive shortcut work without errors",
+  "priority": "Low",
+  "type": "Functional",
+  "permissions_required": "Work Orders: View (column) + receive gate for click-through.",
+  "preconditions": [
+   "1. Signed in as Admin.",
+   "2. The Waiting on Parts column is enabled and a Part Sale has an unreceived vendor part."
+  ],
+  "steps": [
+   "1. Locate the part-sale order on the list where the Waiting on Parts column shows.",
+   "2. Check its unreceived-parts count and click it.",
+   "3. Receive via the shortcut and re-check the count."
+  ],
+  "expected": [
+   "1. The part-sale order's unreceived parts are counted consistently in the Waiting on Parts column (or the order is cleanly excluded — no error, no broken link).",
+   "2. The receive shortcut behaves like it does for work orders.",
+   "3. After receiving, the count updates correctly."
+  ],
+  "design_ref": "requirements-v4 §8 Part Sales — confirmed",
+  "viu_status": "VIU-Pending",
+  "api_related": false,
+  "fresh_run": "2026-07-17",
+  "notes": "NEW 2026-07-17 per spec `_4` (V2.6) Δ15 — the spec's remaining check: 'verify part-sale POs behave in Bulk Receive + Waiting-on-Parts'. Whether part sales surface on the list carrying the Waiting on Parts column is NOT specified — VIU-confirm the surface live (expected #1 allows either counted-consistently or cleanly-excluded; only errors/broken links fail). Seeding self-serviceable per Rule 14."
  }
 ]

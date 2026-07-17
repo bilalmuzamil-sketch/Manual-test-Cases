@@ -7,6 +7,17 @@
 > **Spec status (per doc header):** *Draft for build — V2.3* (line approval → all
 > lines must be approved to complete; core-parts resolution in Stories 3/4/8/10/16;
 > in sync with Jira SV-7696…SV-7710 + SV-7870 + SV-7876).
+> **CURRENT VERSION: V2.6 (spec `_4`, 2026-07-17)** — the V2.3 body below is kept
+> for traceability with the V2.4 / `_3` / **`_4` (V2.6)** delta sections appended
+> at the end (latest-wins). Complete V2.6 text:
+> `spec-v4-2026-07-17/requirements-v4.md`; delta record:
+> `spec-v4-2026-07-17/spec-diff-v4-2026-07-17.md`. Headline V2.6 changes: **NEW
+> Story 18 — Core Parts (SV-8353, pre-resolve-BEFORE-receive in BOTH flows,
+> C-R1..C-R10)** superseding the S3-C1..C4 / S4-C1..C2 / S8-C1..C2 invoice-gate
+> core model below; Story 9 Apply button REMOVED; S8-R7 cost editable ONLY when
+> $0; S6-R6 rewritten (QB Vendor-Bill-export + Vendors-Expenses exclusion — no
+> "needs vendor" report); new S11-R4 / S12-R6 / S13-R8; part-sale POs confirmed
+> in scope for Stories 7/8.
 
 ---
 
@@ -360,19 +371,27 @@ finish and receive later.
 required fields; receive-all-vendors; complete-without-receiving keeps Receive
 button; Cancel idempotent; unapproved-line error; approve-all → proceeds.
 
-**Core parts**
-- **S3-C1** Inventory cores gated in completion modal after Pick (list core lines;
-  Ok / Not OK; can't continue until all resolved; skipped if none).
-- **S3-C2** Special-order cores: completion unchanged (nothing to resolve yet;
-  Complete without receiving stays available).
-- **S3-C3** Invoice shows "Cores pending" flag when unresolved special-order
-  cores exist.
-- **S3-C4** Resolve at Create Invoice gate → resolve module routes to receive the
+**Core parts — ⚠️ SUPERSEDED by Story 18 (SV-8353) per spec `_4` V2.6, 2026-07-17**
+*(S3-C1..C4 + the guardrail below are the OLD invoice-gate model, kept for
+traceability only. V2.6: special-order cores are PRE-RESOLVED before receiving on
+a dedicated resolve screen right before the Receive parts / Complete without
+receiving choice; decision persisted on the part request; charge follows the
+decision immediately; gates block only UNDECIDED cores; auto-applied at receive.
+The "part-sale auto-resolve vs service manual" guardrail sentence was DELETED —
+Story 18 is silent on it. See the V2.6 delta section at the end + Story 18 in
+`spec-v4-2026-07-17/requirements-v4.md`.)*
+- ~~**S3-C1** Inventory cores gated in completion modal after Pick~~ (unchanged in
+  substance — now Story 18 C-R7).
+- ~~**S3-C2** Special-order cores: completion unchanged (nothing to resolve yet;
+  Complete without receiving stays available).~~
+- ~~**S3-C3** Invoice shows "Cores pending" flag when unresolved special-order
+  cores exist.~~ (V2.6 C-R4: cores_pending reflects UNDECIDED cores only.)
+- ~~**S3-C4** Resolve at Create Invoice gate → resolve module routes to receive the
   cored line(s) (core-only partial receive) → resolve Ok/Not OK → invoice
-  proceeds. Cancelling leaves WO completed, un-invoiced, cores-pending.
-- **Guardrail:** invoice gate must detect an unresolved special-order core even
+  proceeds. Cancelling leaves WO completed, un-invoiced, cores-pending.~~
+- ~~**Guardrail:** invoice gate must detect an unresolved special-order core even
   when it exists only as a PartRequest (no WorkOrderPart yet). Part-sale WOs
-  auto-resolve at receive; service WOs need manual Ok/Not OK.
+  auto-resolve at receive; service WOs need manual Ok/Not OK.~~
 
 ### Story 4: Simple Completion — PO On + Required Vendor Invoice — SV-7699
 **Summary.** Same one-place completion as Story 3, but WO cannot complete until
@@ -396,11 +415,15 @@ all parts received (invoice # captured).
 - **S4-R8** All lines must be approved to complete (existing error; separate from
   the required-invoice receive gate).
 
-**Core parts**
-- **S4-C1** Inventory cores gated in completion modal after Pick.
-- **S4-C2** Special-order cores resolved after the Receive round-trip (gated
+**Core parts — ⚠️ SUPERSEDED by Story 18 (SV-8353) per spec `_4` V2.6, 2026-07-17**
+*(V2.6 C-R6, change-log 2026-07-16: the required-invoice flow now resolves cores
+FIRST and then receives — unified with the optional flow. Old resolve-after-the-
+receive-round-trip model kept for traceability only.)*
+- ~~**S4-C1** Inventory cores gated in completion modal after Pick.~~ (unchanged in
+  substance — now Story 18 C-R7.)
+- ~~**S4-C2** Special-order cores resolved after the Receive round-trip (gated
   Resolve-cores modal) → Complete → success. (Invoice required, so part is always
-  received and core always resolvable.)
+  received and core always resolvable.)~~
 
 ### Story 5: Add a Vendorless / No-Part-Number Part — SV-7700
 **Summary.** Add a part with only description, quantity, sell price.
@@ -428,7 +451,17 @@ number are provided. No separate dummy PO.
 - **S6-R4** Options to resolve: select a vendor (Story 13) + enter/edit part
   number (Story 10).
 - **S6-R5** Unflag once both vendor + part number provided → eligible for QB.
-- **S6-R6** Reports mark vendor-missing POs as "needs vendor."
+- **S6-R6 (REWRITTEN per spec `_4` V2.6, change-log 2026-07-16 — corrected to
+  match code):** *Reporting impact (no PO report exists).* There is **no dedicated
+  purchase-order report and no "needs vendor" marker** — nothing "marks" these
+  POs. A vendor-missing PO's spend is **excluded from the QuickBooks Vendor Bill
+  export** (inner-join on vendor) and **not counted in the Vendors Expenses
+  report** (grouped by vendor) until a vendor is assigned — then it flows in
+  normally. (Separate note: a $0-cost vendor-missing part can skew the Inventory
+  report's average cost.) ~~Old V2.3 text: "Reports mark vendor-missing POs as
+  'needs vendor'."~~
+- **S6-R7** *(V2.4, 2026-07-08)* Orderable from the line (sell-price-only parts) —
+  see the V2.4 delta section item 5.
 
 ### Story 7: PO Multi-Select + "Receive Selected" — SV-7702
 - **S7-R1** Select-all checkbox + per-PO checkboxes on PO list.
@@ -452,30 +485,45 @@ via Receive Selected (Story 7). New page (POC prototype exists).
   its parts; individual parts selectable; actions locked until checked.
 - **S8-R6** Receive parts (N) per-PO button; disabled until vendor invoice number
   entered (and for vendor-missing: vendor assigned + missing PN entered).
-- **S8-R7** Editable + locking: quantity editable; cost editable (from WO/PO);
+- **S8-R7 (UPDATED per spec `_4` V2.6):** Editable + locking: quantity editable
+  (supports partial receive); **cost editable ONLY if the cost is $0** ("if cost is
+  not 0 cost filed should not be editable"), pulled from WO/PO when available;
   sell editable until WO invoiced/paid, then locked (lock icon + tooltip "Locked —
-  this part is already invoiced or paid"); after lock only cost editable.
+  this part is already invoiced or paid"); after lock only cost editable. *(⚠️ SPEC
+  INCONSISTENCY flagged for Milos: the surviving "after lock only cost editable"
+  tail contradicts the new only-if-$0 rule for a non-zero-cost part — Rule 15.5,
+  cited not silently resolved.)*
 - **S8-R8** Vendor-missing POs: assign a vendor → PO moves into that vendor's
   group; enter missing PN → unflag → receiving enabled.
-- **S8-R9** Apply invoice to selected POs under a vendor (Story 9).
+- **S8-R9 (UPDATED per spec `_4` V2.6):** Set one invoice number across a vendor's
+  selected POs (Story 9) — the number is **typed and remembered per PO; no separate
+  Apply button**.
 - **S8-R10** Receive all — everything selected at once; partial receive supported.
 - **S8-R11** Same receive pipeline as single-PO → Delivery → Vendor Bill →
   QuickBooks.
 - **Out of scope:** merge/keep-separate (Story 13) — this page only assigns a
   vendor.
 
-**Core parts**
-- **S8-C1** Once a cored part is received, its Ok/Not OK resolution becomes
-  available (consumed by Story 4 round-trip or Story 3 resolve module).
-- **S8-C2** Support core-only partial receive.
+**Core parts — ⚠️ SUPERSEDED by Story 18 (SV-8353) per spec `_4` V2.6, 2026-07-17**
+*(V2.6 C-R5: a pre-resolved decision AUTO-APPLIES at receive — the user is not
+asked again; receive no longer "makes resolution available". Core-only partial
+receive retained.)*
+- ~~**S8-C1** Once a cored part is received, its Ok/Not OK resolution becomes
+  available (consumed by Story 4 round-trip or Story 3 resolve module).~~
+- **S8-C2** Support core-only partial receive. *(retained in V2.6)*
 
-### Story 9: Per-Vendor "Apply Invoice to Selected POs" — SV-7704
-- **S9-R1** Under vendor name, "Apply invoice to selected POs" control; enabled
-  when an invoice # entered + ≥1 PO under that vendor selected.
-- **S9-R2** Select PO(s), enter one invoice #, Apply → pre-filled into only the
-  selected POs of that vendor (still editable per PO); then Receive all.
-- **S9-R3** Scoped per vendor; not for the vendorless group. Same invoice # may be
-  reused (uniqueness relaxed).
+### Story 9: Per-Vendor Invoice Number for Selected POs — SV-7704
+*(⚠️ UPDATED per spec `_4` V2.6, change-log 2026-07-16: "Apply button removed from
+Bulk Invoice — invoice number is typed & remembered, no button." Also S8-R9.)*
+- **S9-R1 (V2.6)** Under the vendor name, a field to enter ONE invoice number for
+  that vendor's POs, available when ≥1 PO under that vendor is selected. There is
+  **no "Apply" button** — the number is remembered as typed.
+- **S9-R2 (V2.6)** Select PO(s) and type one invoice number → it is filled into
+  only the selected POs of that vendor (still editable per PO). Then Receive all
+  for that vendor.
+- **S9-R3** Scoped per vendor; does not affect other vendors' / unselected POs.
+  Not for the vendorless group (assign a vendor first — the vendorless group shows
+  no invoice-number field). Same invoice # may be reused (uniqueness relaxed).
 
 ### Story 10: Inline Part-Number Fix → First-Class Inventory Part — SV-7705
 - **S10-R1** No-number part shows "Missing part number" + Edit → enter → save
@@ -498,6 +546,11 @@ via Receive Selected (Story 7). New page (POC prototype exists).
   directly.
 - **S11-R2** Opens the shared Accept Delivery surface (Stories 12–13).
 - **S11-R3** Hidden for office/readonly users and fulfilled POs.
+- **S11-R4 (NEW per spec `_4` V2.6, change-log 2026-07-15):** *Return to the
+  originating line.* After receiving (Receive → Accept Delivery → back to the
+  work order), the user is returned to the **exact WO line they received from**
+  (scroll/focus preserved), not the top of the WO — for instant visual
+  confirmation of the received part. (S3-R5 amended to match.)
 
 ### Story 12: Accept Delivery — multi-vendor (existing) + Simple-Flow parts — SV-7707
 **Already existing (reuse, do NOT rebuild):** grouped by vendor, multiple vendors
@@ -512,6 +565,15 @@ multiple vendors summarized with an indicator.
 - **S12-R3** "+N" vendor indicator; vendor-missing group leads.
 - **S12-R4** Each vendor group → own vendor bill → QuickBooks (separate AP
   entries). Partial delivery + post-receipt unchanged.
+- **S12-R5** *(V2.4, 2026-07-08)* Editable cost on Accept Delivery (parity with
+  Bulk Receive) — cost editable when $0/missing; see the V2.4 delta section item 7.
+- **S12-R6 (NEW per spec `_4` V2.6, change-log 2026-07-15):** *Vendorless group
+  surfaced when receiving from a WO part.* Clicking Receive on a single WO part
+  opens Accept Delivery showing all to-receive parts **for that part's vendor**
+  (FE sends the vendor ID; BE returns only that vendor's parts) **plus the
+  vendorless group** — so the user can assign a vendor / merge a vendorless part
+  into this receive on the spot (reusing the same invoice number) rather than
+  going back.
 
 ### Story 13: Assign Vendor + Merge / Keep-Separate — SV-7708
 - **S13-R1** Vendor-missing group provides a vendor dropdown to assign a vendor at
@@ -528,6 +590,12 @@ multiple vendors summarized with an indicator.
 - **S13-R7** *(V2.4 Δ3, added 2026-07-13)* Cost / sell price required. If cost / sell
   price is missing, the user gets an indication to enter one; receiving is blocked
   until it's filled.
+- **S13-R8 (NEW per spec `_4` V2.6, change-log 2026-07-16, from SV-8343):**
+  *Vendor & part number stay changeable until receive.* An assigned vendor is
+  **not locked on selection** — it stays changeable (same dropdown) **until a part
+  is received or the WO is invoiced/paid**, so a wrong pick can be corrected. The
+  part number is likewise **editable (edit icon)** after entry, under the same
+  condition. Prevents receiving against the wrong vendor.
 - **Technical guardrails:** match vendors by ID not name; targeted backend lookup
   for cross-PO match; surface errors; merge scope = same work order. Receiving
   blocked when WO invoiced/paid.
@@ -575,10 +643,13 @@ person (manager/foreman) signs off before invoicing. PO/invoice combos unchanged
 - **R10** Test ids: `button_mark_reviewed`, `input_review_vin`,
   `input_review_note`, `button_confirm_review`.
 - **R11** All lines must be approved to Send to Review (existing error).
-- **Core parts:** inventory cores resolved in completion modal (after Pick) before
-  Send to Review; special-order cores per vendor-invoice rules (required → after
-  Receive round-trip before Send to Review; optional → at Create Invoice gate
-  after sign-off). Invoicing blocked until both Reviewed and all cores resolved.
+- **Core parts (UPDATED per spec `_4` V2.6 — Story 18):** inventory cores resolved
+  in completion modal (after Pick) before Send to Review; **special-order cores
+  (both required and optional) are pre-resolved before receiving on the resolve
+  screen before Send to Review (no longer deferred to the invoice gate).**
+  Invoicing blocked until both Reviewed and all cores resolved (gate = undecided
+  cores only, C-R4). ~~Old: required → after Receive round-trip; optional → at
+  Create Invoice gate after sign-off.~~
 - **Open:** setting default (on for bigger/existing shops?); role-gating tied to
   custom roles vs open for v1. ⚠️ Design pending.
 
@@ -943,3 +1014,99 @@ spec body and to `cases/*.json`, and pushed to TestRail:
 Every case whose expected behaviour changed carries
 `viu_status: "Pending / Retest — expected changed by V2.4 Δ (2026-07-13), needs
 live re-VIU"` + `fresh_run: 2026-07-13`; the wording + VIU pass is the next task.
+
+---
+
+## Spec update `_4` (2026-07-17 upload, V2.6) — Δ8–Δ16 APPLIED
+
+> Source: `652f5198-SimpleMode_StreamlinedWorkOrderCompletionBulkReceiving_4.doc`
+> (2026-07-17). Complete decoded V2.6 text: `spec-v4-2026-07-17/requirements-v4.md`;
+> full delta analysis + case-impact plan: `spec-v4-2026-07-17/spec-diff-v4-2026-07-17.md`.
+> The design bundle re-shared the same day is CONTENT-IDENTICAL to design `_4`
+> (135/135 files md5-match — `spec-v4-2026-07-17/design-new-notes.md`). Δ1–Δ7
+> (V2.4 + `_3`) all remain in force. Change-log rows: 2026-07-15 ×2 + 2026-07-16 ×2,
+> all @Milos Vasic. Applied to `cases/*.json` + TestRail 2026-07-17.
+
+### Δ8 — NEW Story 18: Core Parts — Resolution Across Simple Completion (pre-receive + receive-time) — SV-8353
+
+**Canonical core spec; Stories 3/4/8/10/16 point here.** No change to the core
+engine's OK/Not-OK outcomes — only when/where the decision is captured, plus a
+persisted decision on the un-received request. Supersedes the S3-C1..C4 /
+S4-C1..C2 / S8-C1..C2 invoice-gate model (marked inline above, 2026-07-17).
+
+*Optional vendor invoice — resolve cores BEFORE receiving (NEW):*
+- **C-R1 — Dedicated resolve screen.** Right before the **Complete without
+  receiving / Receive parts** choice, a separate consolidated screen lists every
+  un-received vendor core (part info + core charge + **OK / Not OK**), with a
+  message that resolving now is for **invoice accuracy**.
+- **C-R2 — Decision persisted on the request.** Saved on the core
+  `work_order_part_request` (`core_resolution = ok | not_ok | NULL`) — no
+  WorkOrderPart, statement item, or vendor return created at this point.
+- **C-R3 — Charge follows the decision immediately.** Not OK → core charge priced
+  into the WO total → customer invoice; OK → no charge (vendor core return created
+  automatically at receive).
+- **C-R4 — Gates use the decision.** Completion and invoice creation are blocked
+  **only for undecided (NULL) cores**; `cores_pending` reflects this.
+- **C-R5 — Auto-apply at receive.** The saved decision is applied automatically at
+  receive — the user is **not asked again** (Not OK → core created already
+  resolved, no return; OK → existing Core-OK: resolve + vendor PartReturnRequest).
+
+*Mandatory vendor invoice:*
+- **C-R6 (2026-07-16)** — resolve-before-receive in BOTH flows: the mandatory flow
+  now asks the user to **resolve, and then to receive**, consistent with the
+  optional flow.
+
+*Inventory cores (both flows, unchanged):*
+- **C-R7** — resolved as soon as parts are auto-picked (or picked manually), on
+  the same step. Identical in both flows.
+
+*Receive-time quantity rule (invoice accuracy):*
+- **C-R8** — When the WO is **invoiced/paid**, the receive dialog **locks quantity
+  to the full remaining amount** (core auto-selected; tooltip "This part is on a
+  customer invoice and should be received in full"). Before invoice, quantity
+  stays editable. **FE-only lock** (invoice is a frozen snapshot; accepted
+  WO-total-vs-invoice drift).
+
+*Read models / status:*
+- **C-R9** — Lines tab shows the decision before and after receive: NULL → "Core
+  decision pending"; ok → "Core OK — return to vendor, no charge"; not_ok → "Core
+  Not OK — customer charged". No duplicate prompts; received pre-resolved cores
+  show the resolved state with no OK/Not-OK buttons.
+- **C-R10 — Sync-back.** Resolving a received core via the existing handle-core(s)
+  endpoints also writes the value to the linked core PartRequest.
+
+*AC extras:* pre-resolve via `POST /api/work-orders/{id}/pre-resolve-cores`
+(mirrors handle-cores); at receive OK → exactly one vendor return, retries create
+no duplicates, invoice never changes at receive; **resolution cannot change after
+the WO has an active invoice.** *Out of scope:* BE mutation-locking of invoiced
+parts; BE full-quantity receive enforcement (FE-only by decision); any core-engine
+change.
+
+**Cases:** reworded SF-CORE-03/04/07/08, SF-BULK-10, SF-REV-14, SF-COMP-11/14;
+NEW SF-CORE-11..17 (UI, section "Core parts — Pre-Resolve (Story 18)") +
+SF-CORE-18/19 (API, section "API — Core Pre-Resolve (Story 18)");
+RETIRE-PROPOSED (awaiting user ruling, TestRail untouched): SF-CORE-05/06
+(invoice-gate module gone) + SF-CORE-09 (guardrail sentence deleted; spec silent).
+
+### Δ9 — S11-R4 return to the originating WO line after receive (merged inline above; + S3-R5 amendment). NEW case SF-RCV-11.
+
+### Δ10 — S12-R6 vendorless group surfaced when receiving a single WO part (merged inline above). NEW cases SF-RCV-12/13. Does NOT resolve the SF-RCV-05/07 group-position deviation (Milos Round-3 ruling stands).
+
+### Δ11 — S13-R8 vendor & part number changeable until receive / invoiced-paid (SV-8343; merged inline above). NEW cases SF-VEND-07/08.
+
+### Δ12 — S6-R6 REWRITTEN (merged inline above): no PO report / no "needs vendor" marker exists; vendor-missing spend excluded from the QB Vendor Bill export + Vendors Expenses report until a vendor is assigned (verified in VendorBillExportQueryHandler / VendorsExpensesQueryHandler; SV-7701 updated). **Legitimizes the SF-VMIS-06 deviation → rescoped, Deviation resolved; dev-route item dropped.**
+
+### Δ13 — Story 9 / S8-R9: the Apply button is REMOVED (merged inline above) — the invoice number is typed & remembered; vendorless group shows no invoice-number field. Cases SF-INV-01/02/03 reworded → VIU-Pending (old-build 'Apply to selected POs' label was live-confirmed 2026-07-13; expect a build deviation until dev ships).
+
+### Δ14 — S8-R7: cost editable ONLY when $0 (merged inline above; ⚠️ tail inconsistency flagged for Milos). Case SF-BULK-06 reworded → VIU-Pending.
+
+### Δ15 — Part-sale POs CONFIRMED in scope for Stories 7/8 (§8 "Part Sales — confirmed (Jul 14)"; new S7/S8 AC bullets). Resolves the §8 investigation open question → SF-QB-09 rescoped to the residual status-transition regression check (now in TestRail); NEW cases SF-POSEL-07, SF-BULK-11, SF-WOP-04.
+
+### Δ16 — Header V2.4 → V2.6 (finally matches content; never trust the version string regardless).
+
+**NOT changed by `_4` (checked, byte-identical to `_3`):** §9/SV-8183 permissions,
+Story 1 settings, Stories 2/5/14/15/17, S12-R1..R4, S13-R1..R7, Story 16 R1–R13,
+the S12-R1(bottom)-vs-S12-R3(leads) self-contradiction (Milos Round-3 split ruling
+STANDS; SF-RCV-05/07 stay Deviation), the Story-10 Δ7 residue, and the 5
+awaiting-Milos questions (SF-SET-08 / SF-COMP-06 / SF-REV-11 / SF-UX-04 / SF-QB-02
+— none answered).

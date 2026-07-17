@@ -1361,6 +1361,248 @@
   "fresh_run": "2026-07-13"
  },
  {
+  "id": "SF-CORE-11",
+  "area": "Core parts — Pre-Resolve (Story 18)",
+  "permissions_required": "Work Order edit access (WO Lines: Create & Edit resolves cores per SV-8183).",
+  "type": "Functional",
+  "viu_status": "VIU-Pending",
+  "api_related": false,
+  "fresh_run": "2026-07-17",
+  "story_ref": "S18 C-R1",
+  "title": "Verify the Resolve cores screen lists every un-received vendor core with part info, core charge and OK / Not OK, plus an invoice-accuracy message",
+  "priority": "High",
+  "preconditions": [
+   "1. Signed in as Admin.",
+   "2. Require Vendor Invoice Number is OFF (Optional).",
+   "3. A work order has two special-order (vendor) cored parts that have not been received yet."
+  ],
+  "steps": [
+   "1. Click Complete Work Order.",
+   "2. Observe the screen shown right before the Receive parts / Complete without receiving choice.",
+   "3. Read the message on the screen."
+  ],
+  "expected": [
+   "1. A separate, consolidated Resolve cores screen appears, listing EVERY un-received vendor core (both parts).",
+   "2. Each core shows its part info, its core charge and an OK / Not OK choice.",
+   "3. A message explains that resolving now is for invoice accuracy."
+  ],
+  "design_ref": "Resolve Cores Flow.html + Handoff; requirements-v4 S18 C-R1",
+  "notes": "NEW 2026-07-17 per spec `_4` (V2.6) Δ8 — Story 18 Core Parts (SV-8353), pre-resolve-before-receive model. Not yet observed — expected Blocked-Env at re-VIU until (a) a special-order vendor-sourced core is seedable (P550848 is_core=0; a vendor-sourced part request drops the core attribute — needs a dev-seeded core) and (b) the SV-8353 pre-resolve build is deployed on sv7301 (probe the completion wizard for the resolve step + the pre-resolve endpoint first). Screen labels from the Resolve Cores Flow design (wizard step 'Resolve cores'; Inventory / Special order groups; OK / Not OK) are design-sourced pending live confirm; the C-R9 state texts are spec-quoted — confirm exact on-screen wording live, never invent."
+ },
+ {
+  "id": "SF-CORE-12",
+  "area": "Core parts — Pre-Resolve (Story 18)",
+  "permissions_required": "Work Order edit access + Finance access.",
+  "type": "Functional",
+  "viu_status": "VIU-Pending",
+  "api_related": false,
+  "fresh_run": "2026-07-17",
+  "story_ref": "S18 C-R3",
+  "title": "Verify marking a core Not OK immediately adds the core charge to the work order total and customer invoice, while OK adds no charge",
+  "priority": "High",
+  "preconditions": [
+   "1. Signed in as Admin.",
+   "2. A work order has two un-received vendor cores shown on the Resolve cores screen."
+  ],
+  "steps": [
+   "1. Mark one core Not OK and note the work order total.",
+   "2. Mark the other core OK and note the total again.",
+   "3. Create the customer invoice and check its amounts."
+  ],
+  "expected": [
+   "1. Not OK: the core charge is priced into the work order total right away and flows to the customer invoice.",
+   "2. OK: no charge is added (the vendor core return is created automatically later, at receive).",
+   "3. The invoice matches the decisions even though no core part has been received."
+  ],
+  "design_ref": "requirements-v4 S18 C-R3",
+  "notes": "NEW 2026-07-17 per spec `_4` (V2.6) Δ8 — Story 18 Core Parts (SV-8353), pre-resolve-before-receive model. Not yet observed — expected Blocked-Env at re-VIU until (a) a special-order vendor-sourced core is seedable (P550848 is_core=0; a vendor-sourced part request drops the core attribute — needs a dev-seeded core) and (b) the SV-8353 pre-resolve build is deployed on sv7301 (probe the completion wizard for the resolve step + the pre-resolve endpoint first)."
+ },
+ {
+  "id": "SF-CORE-13",
+  "area": "Core parts — Pre-Resolve (Story 18)",
+  "permissions_required": "Work Order edit access + Finance access.",
+  "type": "Functional",
+  "viu_status": "VIU-Pending",
+  "api_related": false,
+  "fresh_run": "2026-07-17",
+  "story_ref": "S18 C-R4",
+  "title": "Verify completion and invoice creation are blocked only while a core is undecided — a decided core does not block",
+  "priority": "High",
+  "preconditions": [
+   "1. Signed in as Admin.",
+   "2. A work order has two un-received vendor cores."
+  ],
+  "steps": [
+   "1. Decide one core (OK or Not OK), leave the other undecided; try to complete the work order and to create the invoice.",
+   "2. Decide the remaining core and try again."
+  ],
+  "expected": [
+   "1. With any core still undecided, completing and invoice creation are blocked and a cores-pending indication shows.",
+   "2. Once every core is decided, completion and invoice creation proceed — no receive is required first."
+  ],
+  "design_ref": "requirements-v4 S18 C-R4",
+  "notes": "NEW 2026-07-17 per spec `_4` (V2.6) Δ8 — Story 18 Core Parts (SV-8353), pre-resolve-before-receive model. Not yet observed — expected Blocked-Env at re-VIU until (a) a special-order vendor-sourced core is seedable (P550848 is_core=0; a vendor-sourced part request drops the core attribute — needs a dev-seeded core) and (b) the SV-8353 pre-resolve build is deployed on sv7301 (probe the completion wizard for the resolve step + the pre-resolve endpoint first)."
+ },
+ {
+  "id": "SF-CORE-14",
+  "area": "Core parts — Pre-Resolve (Story 18)",
+  "permissions_required": "Work Order edit access + receive access.",
+  "type": "Functional",
+  "viu_status": "VIU-Pending",
+  "api_related": false,
+  "fresh_run": "2026-07-17",
+  "story_ref": "S18 C-R5",
+  "title": "Verify receiving a pre-resolved core auto-applies the saved decision: OK creates exactly one vendor return, Not OK creates none, the invoice never changes, retries create no duplicates",
+  "priority": "High",
+  "preconditions": [
+   "1. Signed in as Admin.",
+   "2. A work order has one core pre-resolved OK and another pre-resolved Not OK, both not yet received; the customer invoice is created."
+  ],
+  "steps": [
+   "1. Receive the OK core; check vendor returns and the customer invoice.",
+   "2. Receive the Not OK core; check again.",
+   "3. Retry / re-submit the receive and re-check for duplicates."
+  ],
+  "expected": [
+   "1. The OK core is received already resolved, with exactly ONE vendor core return created automatically.",
+   "2. The Not OK core is received already resolved, with NO return created.",
+   "3. The user is never asked OK / Not OK again, the customer invoice does not change at receive, and retries create no duplicate cores or returns."
+  ],
+  "design_ref": "requirements-v4 S18 C-R5 + AC (idempotency)",
+  "notes": "NEW 2026-07-17 per spec `_4` (V2.6) Δ8 — Story 18 Core Parts (SV-8353), pre-resolve-before-receive model. Not yet observed — expected Blocked-Env at re-VIU until (a) a special-order vendor-sourced core is seedable (P550848 is_core=0; a vendor-sourced part request drops the core attribute — needs a dev-seeded core) and (b) the SV-8353 pre-resolve build is deployed on sv7301 (probe the completion wizard for the resolve step + the pre-resolve endpoint first)."
+ },
+ {
+  "id": "SF-CORE-15",
+  "area": "Core parts — Pre-Resolve (Story 18)",
+  "permissions_required": "receive access.",
+  "type": "Functional",
+  "viu_status": "VIU-Pending",
+  "api_related": false,
+  "fresh_run": "2026-07-17",
+  "story_ref": "S18 C-R8",
+  "title": "Verify the receive dialog locks quantity to the full remaining amount once the work order is invoiced/paid, with the core auto-selected and an explanatory tooltip",
+  "priority": "Medium",
+  "preconditions": [
+   "1. Signed in as Admin.",
+   "2. An invoiced/paid work order has an un-received cored part; another (not yet invoiced) work order also has one."
+  ],
+  "steps": [
+   "1. Open the receive dialog for the invoiced/paid work order's part, try to change the quantity, and hover the field.",
+   "2. Open the receive dialog for the not-yet-invoiced work order's part and change the quantity."
+  ],
+  "expected": [
+   "1. On the invoiced/paid work order the quantity is locked to the full remaining amount, the core is auto-selected, and the tooltip reads 'This part is on a customer invoice and should be received in full'.",
+   "2. Before invoicing, the quantity stays editable (partial receive allowed).",
+   "3. The lock is on the screen only — the customer invoice itself never changes at receive."
+  ],
+  "design_ref": "requirements-v4 S18 C-R8 (FE-only lock)",
+  "notes": "NEW 2026-07-17 per spec `_4` (V2.6) Δ8 — Story 18 Core Parts (SV-8353), pre-resolve-before-receive model. Not yet observed — expected Blocked-Env at re-VIU until (a) a special-order vendor-sourced core is seedable (P550848 is_core=0; a vendor-sourced part request drops the core attribute — needs a dev-seeded core) and (b) the SV-8353 pre-resolve build is deployed on sv7301 (probe the completion wizard for the resolve step + the pre-resolve endpoint first). Tooltip text is spec-quoted (C-R8) — confirm exact on-screen wording live."
+ },
+ {
+  "id": "SF-CORE-16",
+  "area": "Core parts — Pre-Resolve (Story 18)",
+  "permissions_required": "Work Order view access.",
+  "type": "Functional",
+  "viu_status": "VIU-Pending",
+  "api_related": false,
+  "fresh_run": "2026-07-17",
+  "story_ref": "S18 C-R9",
+  "title": "Verify the Lines tab shows the core decision state before and after receive: 'Core decision pending', 'Core OK — return to vendor, no charge', 'Core Not OK — customer charged'",
+  "priority": "Medium",
+  "preconditions": [
+   "1. Signed in as Admin.",
+   "2. A work order has three vendor cores: one undecided, one decided OK, one decided Not OK."
+  ],
+  "steps": [
+   "1. Open the work order's Lines tab before receiving and read each core's state.",
+   "2. Receive the two decided cores and re-check the Lines tab."
+  ],
+  "expected": [
+   "1. Before receive: the undecided core shows 'Core decision pending'; the OK core shows 'Core OK — return to vendor, no charge'; the Not OK core shows 'Core Not OK — customer charged'.",
+   "2. After receive, a pre-resolved core shows its resolved state with NO OK / Not OK buttons.",
+   "3. No duplicate core prompts appear anywhere."
+  ],
+  "design_ref": "requirements-v4 S18 C-R9",
+  "notes": "NEW 2026-07-17 per spec `_4` (V2.6) Δ8 — Story 18 Core Parts (SV-8353), pre-resolve-before-receive model. Not yet observed — expected Blocked-Env at re-VIU until (a) a special-order vendor-sourced core is seedable (P550848 is_core=0; a vendor-sourced part request drops the core attribute — needs a dev-seeded core) and (b) the SV-8353 pre-resolve build is deployed on sv7301 (probe the completion wizard for the resolve step + the pre-resolve endpoint first). The three state texts are spec-quoted (C-R9) — confirm exact on-screen wording live."
+ },
+ {
+  "id": "SF-CORE-17",
+  "area": "Core parts — Pre-Resolve (Story 18)",
+  "permissions_required": "Work Order edit access + Finance access.",
+  "type": "Negative",
+  "viu_status": "VIU-Pending",
+  "api_related": false,
+  "fresh_run": "2026-07-17",
+  "story_ref": "S18 AC (resolution immutable with an active invoice)",
+  "title": "Verify a core decision cannot be changed once the work order has an active invoice",
+  "priority": "Medium",
+  "preconditions": [
+   "1. Signed in as Admin.",
+   "2. A work order has a decided core and an active customer invoice."
+  ],
+  "steps": [
+   "1. Try to change the core's OK / Not OK decision (on the resolve screen or the Lines tab)."
+  ],
+  "expected": [
+   "1. The decision cannot be changed while the work order has an active invoice."
+  ],
+  "design_ref": "requirements-v4 S18 AC",
+  "notes": "NEW 2026-07-17 per spec `_4` (V2.6) Δ8 — Story 18 Core Parts (SV-8353), pre-resolve-before-receive model. Not yet observed — expected Blocked-Env at re-VIU until (a) a special-order vendor-sourced core is seedable (P550848 is_core=0; a vendor-sourced part request drops the core attribute — needs a dev-seeded core) and (b) the SV-8353 pre-resolve build is deployed on sv7301 (probe the completion wizard for the resolve step + the pre-resolve endpoint first)."
+ },
+ {
+  "id": "SF-CORE-18",
+  "area": "Core Pre-Resolve (Story 18)",
+  "permissions_required": "Valid Admin API session (WO Lines: Create & Edit).",
+  "type": "Functional",
+  "viu_status": "VIU-Pending",
+  "api_related": true,
+  "fresh_run": "2026-07-17",
+  "story_ref": "S18 C-R2 / technical plan",
+  "title": "API: Verify POST /api/work-orders/{id}/pre-resolve-cores persists the core decision on the part request with no side-effect records",
+  "priority": "High",
+  "preconditions": [
+   "1. A valid Admin session (API).",
+   "2. A work order with an un-received special-order cored part request exists."
+  ],
+  "steps": [
+   "1. POST /api/work-orders/{id}/pre-resolve-cores with the core decision (ok / not_ok).",
+   "2. Re-read the work order's lines / receive-view read models.",
+   "3. Inspect for side-effect records (work-order part, statement item, vendor return)."
+  ],
+  "expected": [
+   "1. The request succeeds (2xx) and core_resolution is persisted on the core work_order_part_request (ok | not_ok; NULL = undecided).",
+   "2. NO WorkOrderPart, statement item, or vendor return is created at this point.",
+   "3. cores_pending reflects only undecided (NULL) cores after the call."
+  ],
+  "design_ref": "requirements-v4 S18 C-R2 + technical plan (mirrors handle-cores)",
+  "notes": "NEW 2026-07-17 per spec `_4` (V2.6) Δ8 — Story 18 Core Parts (SV-8353), pre-resolve-before-receive model. Not yet observed — expected Blocked-Env at re-VIU until (a) a special-order vendor-sourced core is seedable (P550848 is_core=0; a vendor-sourced part request drops the core attribute — needs a dev-seeded core) and (b) the SV-8353 pre-resolve build is deployed on sv7301 (probe the completion wizard for the resolve step + the pre-resolve endpoint first). Endpoint from the SV-8353 technical plan — existence on sv7301 unconfirmed; probe before re-VIU."
+ },
+ {
+  "id": "SF-CORE-19",
+  "area": "Core Pre-Resolve (Story 18)",
+  "permissions_required": "Valid Admin API session (WO Lines: Create & Edit).",
+  "type": "Functional",
+  "viu_status": "VIU-Pending",
+  "api_related": true,
+  "fresh_run": "2026-07-17",
+  "story_ref": "S18 C-R10",
+  "title": "API: Verify resolving a received core via the existing handle-core endpoints also writes the decision back to the linked core part request",
+  "priority": "Medium",
+  "preconditions": [
+   "1. A valid Admin session (API).",
+   "2. A received cored part exists that can be resolved via the existing handle-core(s) endpoints."
+  ],
+  "steps": [
+   "1. Resolve the received core Ok / Not OK via the existing handle-core(s) endpoint.",
+   "2. Read the linked core part request and its core_resolution value."
+  ],
+  "expected": [
+   "1. The call succeeds and the decision is ALSO written to the linked core PartRequest (core_resolution matches the handle-core decision), keeping core_resolution the single source of history."
+  ],
+  "design_ref": "requirements-v4 S18 C-R10 (sync-back)",
+  "notes": "NEW 2026-07-17 per spec `_4` (V2.6) Δ8 — Story 18 Core Parts (SV-8353), pre-resolve-before-receive model. Not yet observed — expected Blocked-Env at re-VIU until (a) a special-order vendor-sourced core is seedable (P550848 is_core=0; a vendor-sourced part request drops the core attribute — needs a dev-seeded core) and (b) the SV-8353 pre-resolve build is deployed on sv7301 (probe the completion wizard for the resolve step + the pre-resolve endpoint first)."
+ },
+ {
   "id": "SF-TECH-01",
   "area": "Tech Story Flow (Story 17)",
   "story_ref": "TS-R1",
