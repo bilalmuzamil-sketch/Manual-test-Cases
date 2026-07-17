@@ -300,7 +300,9 @@ process(es) to run before proceeding.
    FLT-TAB-02/03 C29609/C29610 disabled pre-filled Status chip; import +
    id-map regenerated (id-map re-merged 79/79); audit log =
    build/filters/branko-answers-2026-07-17/testrail-update-log.md; Round-2 PO
-   questions ready.** Same rules as all projects: reuse shared infra
+   questions ready; Round-2 Qs + PRD request SENT to Branko 2026-07-17 —
+   awaiting answers/PRD; next = Parts/Reports authoring on PRD arrival, VIU on
+   QA arrival.** Same rules as all projects: reuse shared infra
    (BUILD-ACCURATE-WORDING-VIU-PROCESS, SPEC-RELEVANCE-RECONCILIATION,
    TESTING-RUNBOOK, harness/TestRail patterns); per Standing Rule 11 ASK which
    process(es) to run before any VIU pass. Open questions live in

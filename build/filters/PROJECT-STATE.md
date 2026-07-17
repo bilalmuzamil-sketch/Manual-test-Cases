@@ -1,6 +1,8 @@
 # Filters (Work Order List Filtering) — PROJECT STATE
 **Canonical cold-resume doc. Read this first to resume the Filters project.**
-Last updated: 2026-07-17 (Q2/Q4 case edits APPLIED + PUSHED TO TESTRAIL —
+Last updated: 2026-07-17 (LATEST: Round-2 question sheet + the PRD-update
+request SENT to Branko by the user — AWAITING BOTH; see WHAT'S LEFT. Earlier
+same day: Q2/Q4 case edits APPLIED + PUSHED TO TESTRAIL —
 FLT-PERS-02/C29614, FLT-TAB-02/C29609, FLT-TAB-03/C29610, 3/3 update_case
 200 + re-GET confirmed, user-authorized pass, audit log at
 `branko-answers-2026-07-17/testrail-update-log.md`; import + id-map
@@ -23,8 +25,33 @@ Authoring recap: 79 cases / 14 sections, 81/81 spec lines + 18/18 final WO
 design frames covered, 24 VIU-confirm notes, adversarial audit CLEAN 7/7,
 Rule-16 import delivered at `testrail-import/filters-v1-testrail-import.csv`/`.xlsx`.
 
-**WHAT'S LEFT TO DO (definitive post-import + post-Branko-answers list — recite
-on resume):**
+**NEW 2026-07-17: the user has SENT Branko (a) the Round-2 question sheet
+(3 questions: stale-spec cleanup confirm, "Reported vs Imported" status,
+role-based filter visibility) and (b) the explicit request to deliver the
+promised PRD update covering the Parts + Reports pages (which filter chips per
+page + option lists incl. new filter types Location / Transaction Type /
+Invoice Status / Type / User / Date / Mention; whether all WO-page behaviors
+[persistence/URL/clear/collapse/real-time] apply identically; page-specific
+specials). AWAITING BOTH.**
+
+**WHAT'S LEFT TO DO — the definitive waiting list (recite on resume):**
+1. **Branko's Round-2 answers** (sheet SENT 2026-07-17 — see NEW above).
+2. **Branko's updated PRD** (request SENT 2026-07-17) → unlocks authoring the
+   Parts/Reports case set (~30–50 cases from the 31 captured screens; run the
+   standard pipeline: ask which process per Rule 11 → author → adversarial
+   review → canonical Rule-16 import → user imports or authorized push).
+3. **Feature on QA env → VIU** (ask the user for the Epic/Jira key + which
+   process(es) per Rule 11; resolve the 24 VIU-confirm placeholders + confirm
+   the exact on-screen strings for the 3 Branko-updated cases
+   C29609/C29610/C29614).
+4. **Housekeeping:** OQ-2 — canonical Confluence spec URL still to confirm.
+
+Everything else is DONE as recorded below (79 cases in TestRail C29557–C29635;
+3 cases updated per the Q2/Q4 rulings, audit-logged; import + id-map
+regenerated intact; design baseline ZIP=final 50/50; Round-1 + Round-2 sheets
+delivered).
+
+**Detail (prior definitive list — all still accurate, kept for context):**
 1. ✅ **DONE:** spec ingested (V1.0 confirmed current) · design final set
    **50/50 captured** (49 ZIP + the QB Journal-Entries tab 11982:8998
    captured-from-PDF-export 2026-07-17 — the one known gap, closed) ·
@@ -41,7 +68,8 @@ on resume):**
    Q1 = spec-cleanup reminder for his PRD update (stale S2-N1/N2, S9-R2/R3,
    S10-R2 sentences vs his Q4=B/Q2=B rulings), Q2 = the zip-prototype
    "Reported"-vs-"Imported" status anomaly (item 4), Q3 = role-based filter
-   lists (OQ-4). Awaiting his answers.
+   lists (OQ-4). **SENT to Branko by the user 2026-07-17 (together with the
+   PRD-update request) — awaiting his answers.**
 2. **Apply Branko's answers (consequences, per the ingestion doc):**
    **Q1=A — Parts/Reports filter screens ARE IN SCOPE** (9 Parts + 22 Reports
    screens) but authoring is **GATED ON Branko's PRD update** (no spec text
