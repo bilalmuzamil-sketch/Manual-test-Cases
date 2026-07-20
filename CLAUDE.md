@@ -235,12 +235,22 @@ process(es) to run before proceeding.
    (C29892) / SF-CORE-18 (C29899)** — Resolve-cores wizard step ("Missing Details →
    Resolve cores → Receive parts & invoice"; buttons "OK · Returned"/"Not OK · Keep +
    Charge"; Continue gated 0/1→1/1) + `POST /api/work-orders/{id}/pre-resolve-cores`
-   `{cores:[{partRequestId,isCoreOk}]}`→201 `{resolvedCount}` no side-effects. TestRail: 3
-   update_case 200 + re-GET MATCH (SF-CORE-04 no-op), run 325 untouched. Evidence:
-   `build/simple-flow/viu-staging-2026-07-20/`. Seeding now works on staging (recipe +
-   add-part API `POST /api/work-orders/part/make-request` in PROJECT-STATE §0-DD).
-   **Tally 184 ACTIVE (187 authored − 3 retired): Verified 134 / VIU-Pending 20 /
-   Blocked-Env 22 / awaiting-Milos 5 / Deviation 3 / Open-Q 0.** Outstanding: SEND the
+   `{cores:[{partRequestId,isCoreOk}]}`→201 `{resolvedCount}` no side-effects. **Two-session
+   pass verified 18 cases:** SF-CORE-03/04/07/08/11/12/13/14/16/18, SF-BULK-06/10,
+   SF-INV-01/02/03, SF-RCV-13, SF-VEND-08, SF-REV-14 (Story-18 resolve wizard incl.
+   required-invoice "Complete & Send to Review" pill order Details→Resolve cores→Receive;
+   grouped Bulk Receive at `/bulk-receive?ids=...` via "Receive Selected" — per-vendor
+   invoice field no-Apply-button; cost editable only when $0; receive auto-applies core
+   decision via `badge_core_resolution` no re-prompt; Not-OK bills a "Core for <part>" line,
+   OK doesn't — line-items authoritative, WO totalPrice aggregate lags/inverts). TestRail:
+   SF-CORE-03/11/18 update_case 200 + re-GET MATCH, all others no-op (wording already accurate);
+   run 325 untouched. Evidence: `build/simple-flow/viu-staging-2026-07-20/`. Seeding works
+   (recipe + add-part API `POST /api/work-orders/part/make-request` in PROJECT-STATE §0-DD).
+   **Tally 184 ACTIVE (187 authored − 3 retired): Verified 148 / VIU-Pending 10 /
+   Blocked-Env 18 / awaiting-Milos 5 / Deviation 3 / Open-Q 0.** Still pending: SF-CORE-15/17
+   (need invoiced core), SF-VEND-07, SF-RCV-11/12, part-sale set SF-POSEL-07/BULK-11/WOP-04
+   (seedable next run) + SF-QB-09 (QB not connected). Deviations SF-RCV-05/07 (Accept-Delivery
+   BOTTOM position not re-observed → unchanged) + SF-SET-03 unchanged. Outstanding: SEND the
    Milos spec-V2.6 sheet (READY), Story-18 re-VIU backlog (needs SV-8353 build +
    dev-seeded core), 5 unanswered Milos Qs, file Receive-screen bug in Jira, run-325
    reconcile.

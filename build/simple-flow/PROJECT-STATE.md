@@ -22,16 +22,18 @@
 
 **⭐ STAGING VIU 2026-07-20 (§0-DD, LATEST): Simple Flow is now DEPLOYED on
 `app.staging.shopview.com` (NOT just sv7301.qa) — the Story-18 pre-resolve-cores build is
-LIVE there.** A live VIU pass verified 4 Story-18 cases (SF-CORE-03/04/11/18) that were
-blocked on sv7301; TestRail updated (3 update_case 200 + re-GET MATCH, SF-CORE-04 no-op),
+LIVE there.** A live VIU pass (2 sessions) verified **18 previously blocked/pending cases**;
+TestRail up to date (status/notes flipped locally; only SF-CORE-03/11/18 needed a wording
+update_case — 200 + re-GET MATCH; all others no-op = wording already build-accurate),
 run 325 untouched. Evidence: `viu-staging-2026-07-20/`. See §0-DD.
 
 **Current tally (post staging VIU 2026-07-20, §0-DD — authoritative, counted from
-`cases/*.json` viu_status): ACTIVE 184 (187 authored − 3 retired) = VIU-Verified 134 /
-VIU-Pending 20 / Blocked-Env 22 / VIU-observed-awaiting-Milos 5 / Deviation 3.
+`cases/*.json` viu_status): ACTIVE 184 (187 authored − 3 retired) = VIU-Verified 148 /
+VIU-Pending 10 / Blocked-Env 18 / VIU-observed-awaiting-Milos 5 / Deviation 3.
 Open-Question = 0.** All 184 active cases are in TestRail (id-map 184/184, 0 blanks).
-(Movement vs the 2026-07-20 retire tally 130/22/24/5/3: SF-CORE-03/04 Blocked-Env→Verified,
-SF-CORE-11/18 VIU-Pending→Verified.)
+(Movement vs the 2026-07-20 retire tally 130/22/24/5/3: +18 VIU-Verified from the staging
+pass — SF-CORE-03/04/07/08/11/12/13/14/16/18, SF-BULK-06/10, SF-INV-01/02/03, SF-RCV-13,
+SF-VEND-08, SF-REV-14.)
 **RETIRE EXECUTED 2026-07-20 (user ruling 2026-07-17 "Retire"):** SF-CORE-05 (C29317) +
 SF-CORE-06 (C29318) + SF-CORE-09 (C29321) deleted from TestRail via delete_case (3/3
 HTTP 200, re-GET 400 = verified gone; before-snapshots + audit in
@@ -169,7 +171,34 @@ title → `button_save_add_part` opens New Part Request (Source defaults **Vendo
 delete WO = `POST /api/work-orders/delete {work_order_id}`. Cookies/harness: `/tmp/sf-viu/` (swolib.mjs
 = staging boot2, lib.mjs = API; bridge.mjs from `/tmp/simple-flow/tools`).
 
-**Cleanup:** seeded WOs ec255d5b + 1e2012ec DELETED (verified gone); the one existing cored WO
+**BATCH 2-4 (2026-07-20 resume) — +14 more VIU-Verified (full detail in `viu-staging-2026-07-20/RESULTS-running.md` + `testrail-log.md`):**
+- **Grouped Bulk Receive page** reached at `/bulk-receive?ids=<po,...>` via **"Receive Selected"**
+  (`button_receive_selected` on `/parts/orders`; direct `/bulk-receive` w/o ids redirects to the PO list).
+- **SF-INV-01/02/03 (C29360-62)** — per-vendor "Apply to selected POs" invoice field (`input_apply_invoice_{vendorId}`),
+  NO Apply button, vendorless group has no invoice field; typing fills selected POs' `input_invoice` with no click (remembered).
+- **SF-BULK-06 (C29355)** — cost editable ONLY when $0 ($0→`input_cost`, non-$0→read-only `currency_text_cost`); `icon_sell_locked` on invoiced POs.
+- **SF-RCV-13 (C29903)** — vendorless part `select_assign_vendor` on the receive screen. **SF-VEND-08 (C29905)** — PN editable via `input_part_number` before received.
+- **SF-CORE-12 (C29893)** — Not-OK creates a separate "Core for <part>" charge line (sell = core charge); OK creates none (line-item authoritative; the WO totalPrice aggregate lags/inverts — do NOT trust it).
+- **SF-CORE-16 (C29897)** — Lines tab shows the decision: "Core for <part>" line PRESENT on Not-OK, ABSENT on OK.
+- **SF-CORE-13 (C29894)** — completion blocked only while undecided (Continue disabled 0/1, enabled 1/1).
+- **SF-CORE-14 (C29895) / SF-BULK-10 (C29359)** — receiving a pre-resolved core auto-applies the decision (read-only `badge_core_resolution` "Not OK · Charged $25.00", no re-prompt); core is a separate selectable line w/ editable qty (core-only partial receive).
+- **SF-CORE-07 (C29319) / SF-CORE-08 (C29320) / SF-REV-14 (C29399)** — required-invoice + review wizard ("Complete & Send to Review") pill order **Missing Details → Resolve cores → Receive parts & invoice**; resolve precedes receive; gate detects an undecided core existing only as a requested part.
+- **'+N' indicator** on the PO list confirmed (SF-RCV-07 clause 1).
+
+**Still VIU-Pending (10) after this pass — precise blockers:**
+- SF-CORE-15/17 (C29896/C29898) — need an INVOICED/paid WO with an un-received core (invoice not API-creatable; completion→invoice UI not driven) → effectively Blocked-Env.
+- SF-VEND-07 (C29904) — assigned-vendor CHANGE affordance not located on the receive view.
+- SF-RCV-11 (C29901) — return-to-originating-line scroll/focus not driven (needs a many-line WO receive round-trip).
+- SF-RCV-12 (C29902) — receive-shows-vendor-parts+vendorless only partially seen.
+- Part-sale set SF-POSEL-07/SF-BULK-11/SF-WOP-04 (C29906/07/08) — need a seeded Part Sale with a vendor part (PartSales flag ON — seedable next run); SF-QB-09 (C29909) Blocked-Env (QB not connected, `/api/quickbooks/status` 404).
+
+**Deviations (3) — re-checked, UNCHANGED:** SF-RCV-05/07 — Vendor Missing leads at TOP on the Bulk Receive page (matches Milos ruling = correct) + '+N' confirmed; the Accept-Delivery BOTTOM position was NOT re-observed (needs a multi-vendor+vendorless single-part receive) → deviation stands pending that screen; bug draft #5 NOT yet closable. SF-SET-03 — no `createPurchaseOrders` setting at data level; stands.
+
+**Awaiting-Milos (5) — build did NOT answer them this run** (SF-SET-08/COMP-06/REV-11/UX-04/QB-02 are policy/QB questions).
+
+**Env note:** shared-env settings DRIFTED during the session (requireVendorInvoiceNumber + requireReview were false at STEP 0, true by batch 4 — changed by another process); I made no net settings change (verified restored to the as-found baseline). An orphan ZZAUTOTEST PO (e4975eaa) may remain from the SF-CORE-14 order test (disposable).
+
+**Cleanup:** seeded WOs ec255d5b + 1e2012ec + 247d637e + b1b77a3a DELETED (verified gone); the one existing cored WO
 316441e5 (junk pn 21231312312) had its core_resolution set during the SF-CORE-18 API test and was
 restored to `ok` (no charge — can't reset to null via the decision-only endpoint); settings never
 written; Tech never role-swapped (admin-only run); run 325 untouched.

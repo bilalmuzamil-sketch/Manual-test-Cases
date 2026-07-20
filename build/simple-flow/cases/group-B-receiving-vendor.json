@@ -729,10 +729,10 @@
    "4. Sell price is editable until the work order is invoiced/paid, then locked with a lock icon and tooltip 'Locked — this part is already invoiced or paid'."
   ],
   "design_ref": "requirements-v4 S8-R7",
-  "viu_status": "VIU-Pending",
-  "notes": "REWORDED 2026-07-17 to spec `_4` (V2.6) Δ14 (S8-R7: 'Cost is editable (if the cost is 0, if cost is not 0 cost filed should not be editable)'). The previous VIU-Verified was against the OLD 'qty and cost editable' build behavior (2026-07-13 labels). The $0-only rule has NOT been observed → re-VIU needed; if the build allows editing a non-zero cost on Bulk Receive it is a deviation until dev ships. SPEC INCONSISTENCY flagged for Milos (Rule 15.5): the surviving S8-R7 tail 'after it locks, only cost remains editable' contradicts the new only-if-$0 rule for a non-zero-cost part — cited, not silently resolved (this case asserts the $0-only rule per latest-wins; S10-R3/S12-R5 '$0/missing' parity aligns with it).",
+  "viu_status": "VIU-Verified",
+  "notes": "REWORDED 2026-07-17 to spec `_4` (V2.6) Δ14 (S8-R7: 'Cost is editable (if the cost is 0, if cost is not 0 cost filed should not be editable)'). The previous VIU-Verified was against the OLD 'qty and cost editable' build behavior (2026-07-13 labels). The $0-only rule has NOT been observed → re-VIU needed; if the build allows editing a non-zero cost on Bulk Receive it is a deviation until dev ships. SPEC INCONSISTENCY flagged for Milos (Rule 15.5): the surviving S8-R7 tail 'after it locks, only cost remains editable' contradicts the new only-if-$0 rule for a non-zero-cost part — cited, not silently resolved (this case asserts the $0-only rule per latest-wins; S10-R3/S12-R5 '$0/missing' parity aligns with it). || STAGING VIU 2026-07-20: cost editable ONLY when $0 ($0 -> input_cost_{id}; non-$0 -> read-only currency_text_cost_{id}); sell shows icon_sell_locked on invoiced/paid POs; qty editable (partial) pre-invoice. Evidence: GRP-02-surface.png / BULK-02-receive-surface.png / INVOICED-*.png.",
   "api_related": false,
-  "fresh_run": "2026-07-17"
+  "fresh_run": "2026-07-20"
  },
  {
   "id": "SF-BULK-07",
@@ -841,10 +841,10 @@
    "3. The received core shows its resolved state with no OK / Not OK buttons, and the customer invoice does not change at receive."
   ],
   "design_ref": "requirements-v4 S18 C-R5/C-R9",
-  "viu_status": "Blocked-Env",
-  "notes": "REWORDED 2026-07-17 to spec `_4` (V2.6) Story 18 C-R5: receive no longer 'makes resolution available' (old S8-C1) — a pre-resolved decision AUTO-APPLIES at receive (OK → vendor core return created automatically; Not OK → core created already resolved, no return). Core-only partial receive (old S8-C2) retained. Blocked-Env: a special-order (vendor-sourced) core is still not seedable in this build (P550848 is_core=0; a vendor-sourced part request drops the core attribute) — needs a dev-seeded special-order core. ALSO: Story 18 / SV-8353 is a new dev plan, so the pre-resolve build is likely NOT deployed on sv7301 yet — probe the completion wizard for the resolve step + the pre-resolve endpoint before any re-VIU.",
+  "viu_status": "VIU-Verified",
+  "notes": "REWORDED 2026-07-17 to spec `_4` (V2.6) Story 18 C-R5: receive no longer 'makes resolution available' (old S8-C1) — a pre-resolved decision AUTO-APPLIES at receive (OK → vendor core return created automatically; Not OK → core created already resolved, no return). Core-only partial receive (old S8-C2) retained. Blocked-Env: a special-order (vendor-sourced) core is still not seedable in this build (P550848 is_core=0; a vendor-sourced part request drops the core attribute) — needs a dev-seeded special-order core. ALSO: Story 18 / SV-8353 is a new dev plan, so the pre-resolve build is likely NOT deployed on sv7301 yet — probe the completion wizard for the resolve step + the pre-resolve endpoint before any re-VIU. || STAGING VIU 2026-07-20: a pre-resolved core's decision is applied automatically at receive (badge_core_resolution shown, no re-prompt); the core is a separate selectable line (checkbox_item + editable input_qty) so core-only partial receive is supported. Evidence: CORE14-receive.png.",
   "api_related": false,
-  "fresh_run": "2026-07-17"
+  "fresh_run": "2026-07-20"
  },
  {
   "id": "SF-BULK-11",
@@ -897,10 +897,10 @@
    "3. There is no 'Apply' button — the number is remembered as typed."
   ],
   "design_ref": "requirements-v4 S9-R1 (2026-07-16 change-log: Apply button removed)",
-  "viu_status": "VIU-Pending",
-  "notes": "REWORDED 2026-07-17 to spec `_4` (V2.6) Δ13 (change-log 2026-07-16: 'Apply button removed from Bulk Invoice — invoice number is typed & remembered, no button'). The previous VIU-Verified was against the OLD build behavior — the live label 'Apply to selected POs' was confirmed present 2026-07-13 (RCV-bulk-receive.png). The new no-button behavior has NOT been observed → re-VIU needed; the current build likely DEVIATES (button still present) until dev ships the removal.",
+  "viu_status": "VIU-Verified",
+  "notes": "REWORDED 2026-07-17 to spec `_4` (V2.6) Δ13 (change-log 2026-07-16: 'Apply button removed from Bulk Invoice — invoice number is typed & remembered, no button'). The previous VIU-Verified was against the OLD build behavior — the live label 'Apply to selected POs' was confirmed present 2026-07-13 (RCV-bulk-receive.png). The new no-button behavior has NOT been observed → re-VIU needed; the current build likely DEVIATES (button still present) until dev ships the removal. || STAGING VIU 2026-07-20: grouped Bulk Receive page (/bulk-receive?ids=..., via 'Receive Selected'): per-vendor 'Apply to selected POs' invoice field (input_apply_invoice_{vendorId}), NO Apply button, Vendor Missing group has no invoice field, per-PO checkboxes + 'N of N selected'. Evidence: INV-grouped-detail.png.",
   "api_related": false,
-  "fresh_run": "2026-07-17"
+  "fresh_run": "2026-07-20"
  },
  {
   "id": "SF-INV-02",
@@ -926,10 +926,10 @@
    "3. Each PO's invoice number remains editable afterwards; then Receive all works for that vendor."
   ],
   "design_ref": "requirements-v4 S9-R2",
-  "viu_status": "VIU-Pending",
-  "notes": "REWORDED 2026-07-17 to spec `_4` (V2.6) Δ13: the fill happens as the number is typed — no Apply click. Previous VIU-Verified was against the OLD Apply-button build (2026-07-13). New behavior NOT observed → re-VIU needed; likely a build deviation until dev removes the button.",
+  "viu_status": "VIU-Verified",
+  "notes": "REWORDED 2026-07-17 to spec `_4` (V2.6) Δ13: the fill happens as the number is typed — no Apply click. Previous VIU-Verified was against the OLD Apply-button build (2026-07-13). New behavior NOT observed → re-VIU needed; likely a build deviation until dev removes the button. || STAGING VIU 2026-07-20: selected a PO then typed the vendor invoice field -> per-PO input_invoice filled with NO Apply click; value remembered. Evidence: INV02-typed.png.",
   "api_related": false,
-  "fresh_run": "2026-07-17"
+  "fresh_run": "2026-07-20"
  },
  {
   "id": "SF-INV-03",
@@ -954,10 +954,10 @@
    "3. The same invoice number can be reused (uniqueness relaxed)."
   ],
   "design_ref": "requirements-v4 S9-R3",
-  "viu_status": "VIU-Pending",
-  "notes": "REWORDED 2026-07-17 to spec `_4` (V2.6) Δ13: per-vendor scoping retained; the vendorless group now explicitly shows NO invoice-number field (new AC). Previous VIU-Verified was against the OLD Apply-button build (2026-07-13). New behavior NOT observed → re-VIU needed; likely a build deviation until dev ships.",
+  "viu_status": "VIU-Verified",
+  "notes": "REWORDED 2026-07-17 to spec `_4` (V2.6) Δ13: per-vendor scoping retained; the vendorless group now explicitly shows NO invoice-number field (new AC). Previous VIU-Verified was against the OLD Apply-button build (2026-07-13). New behavior NOT observed → re-VIU needed; likely a build deviation until dev ships. || STAGING VIU 2026-07-20: invoice field scoped per vendor group; vendorless (Vendor Missing) group has no invoice field; reused/custom invoice string accepted. Evidence: RS-01-grouped.png.",
   "api_related": false,
-  "fresh_run": "2026-07-17"
+  "fresh_run": "2026-07-20"
  },
  {
   "id": "SF-PNFIX-01",
@@ -1261,9 +1261,9 @@
   ],
   "design_ref": "Receive Vendor Parts - v2.html; requirements S12-R1",
   "viu_status": "Deviation",
-  "notes": "Reworded per Milos Round-3 split ruling (2026-07-16): Bulk Receive = top, Receive/Accept-Delivery = bottom. LIVE VIU 2026-07-16 (Admin, sv7301): (a) Bulk Receive page (Receive Vendor Parts) shows the Vendor Missing group at the TOP (leads), above Aabridge Beverages and Aeland Design - MATCHES the ruling (evidence BULK-groups-full.png). (b) Vendorless/no-PN parts (Cab shock, Miscellaneous hardware) appear in the Vendor Missing group and are receivable after Select Vendor + Part Number - VERIFIED. (c) WO-created PO reached via the WO Receive button opens the grouped Receive (Accept Delivery) surface at /order/{id}?receive=1 - VERIFIED. DEVIATION: on that Receive (Accept Delivery) screen the Vendor Missing group is currently at the TOP (leads), NOT the bottom as ruled - observed on two orders (S-15884 above Aeland Design; S-15878 above Aeboro Motors); evidence ORDER-RECV-S15884-allgroups-full.png, ORDER-RECV-S15878-full.png. Dev bug: move the Vendor Missing group to the BOTTOM on the Receive/Accept-Delivery screen. Note: the legacy single-PO /accept-delivery/{orderId} route renders a flat one-table PO with a PO-level 'Vendor Missing' badge and no vendor groups (evidence AD-*.png).",
+  "notes": "Reworded per Milos Round-3 split ruling (2026-07-16): Bulk Receive = top, Receive/Accept-Delivery = bottom. LIVE VIU 2026-07-16 (Admin, sv7301): (a) Bulk Receive page (Receive Vendor Parts) shows the Vendor Missing group at the TOP (leads), above Aabridge Beverages and Aeland Design - MATCHES the ruling (evidence BULK-groups-full.png). (b) Vendorless/no-PN parts (Cab shock, Miscellaneous hardware) appear in the Vendor Missing group and are receivable after Select Vendor + Part Number - VERIFIED. (c) WO-created PO reached via the WO Receive button opens the grouped Receive (Accept Delivery) surface at /order/{id}?receive=1 - VERIFIED. DEVIATION: on that Receive (Accept Delivery) screen the Vendor Missing group is currently at the TOP (leads), NOT the bottom as ruled - observed on two orders (S-15884 above Aeland Design; S-15878 above Aeboro Motors); evidence ORDER-RECV-S15884-allgroups-full.png, ORDER-RECV-S15878-full.png. Dev bug: move the Vendor Missing group to the BOTTOM on the Receive/Accept-Delivery screen. Note: the legacy single-PO /accept-delivery/{orderId} route renders a flat one-table PO with a PO-level 'Vendor Missing' badge and no vendor groups (evidence AD-*.png). || STAGING VIU 2026-07-20: Vendor Missing group + Select Vendor + Part Number entry confirmed; Bulk-Receive TOP position confirmed (matches Milos ruling). Accept-Delivery BOTTOM position not re-observed -> Deviation UNCHANGED.",
   "api_related": false,
-  "fresh_run": "2026-07-16"
+  "fresh_run": "2026-07-20"
  },
  {
   "id": "SF-RCV-06",
@@ -1318,9 +1318,9 @@
   ],
   "design_ref": "requirements S12-R3",
   "viu_status": "Deviation",
-  "notes": "Reworded per Milos Round-3 split ruling (2026-07-16). LIVE VIU 2026-07-16 (Admin, sv7301): '+N' indicator VERIFIED on the Purchase Orders list (/parts/orders shows '+1', '+4'); on the Receive/Accept-Delivery surface the header lists vendor names in full ('Vendor(s) Aeland Design Vendor Missing') rather than a '+N' badge (evidence PO-LIST.png, ORDER-RECV-5vendor.png). Group ordering: Bulk Receive shows Vendor Missing at the TOP (matches ruling). DEVIATION: the Receive (Accept Delivery) screen also shows the Vendor Missing group at the TOP (leads), NOT the bottom as ruled - evidence ORDER-RECV-S15884-allgroups-full.png, ORDER-RECV-S15878-full.png. Same dev bug as SF-RCV-05.",
+  "notes": "Reworded per Milos Round-3 split ruling (2026-07-16). LIVE VIU 2026-07-16 (Admin, sv7301): '+N' indicator VERIFIED on the Purchase Orders list (/parts/orders shows '+1', '+4'); on the Receive/Accept-Delivery surface the header lists vendor names in full ('Vendor(s) Aeland Design Vendor Missing') rather than a '+N' badge (evidence PO-LIST.png, ORDER-RECV-5vendor.png). Group ordering: Bulk Receive shows Vendor Missing at the TOP (matches ruling). DEVIATION: the Receive (Accept Delivery) screen also shows the Vendor Missing group at the TOP (leads), NOT the bottom as ruled - evidence ORDER-RECV-S15884-allgroups-full.png, ORDER-RECV-S15878-full.png. Same dev bug as SF-RCV-05. || STAGING VIU 2026-07-20: '+N' indicator on PO list confirmed ('+1'); Vendor Missing leads at TOP on Bulk Receive (correct per Milos). Accept-Delivery BOTTOM not re-observed -> Deviation UNCHANGED.",
   "api_related": false,
-  "fresh_run": "2026-07-16"
+  "fresh_run": "2026-07-20"
  },
  {
   "id": "SF-RCV-08",
@@ -1475,10 +1475,10 @@
    "3. Both parts are received successfully."
   ],
   "design_ref": "requirements-v4 S12-R6",
-  "viu_status": "VIU-Pending",
+  "viu_status": "VIU-Verified",
   "api_related": false,
-  "fresh_run": "2026-07-17",
-  "notes": "NEW 2026-07-17 per spec `_4` (V2.6) Δ10 — the assign/merge-on-the-spot leg of S12-R6 ('reusing the same invoice number... rather than going back'). Self-serviceable per Rule 14. Not yet observed — re-VIU; may not be built on sv7301 yet."
+  "fresh_run": "2026-07-20",
+  "notes": "NEW 2026-07-17 per spec `_4` (V2.6) Δ10 — the assign/merge-on-the-spot leg of S12-R6 ('reusing the same invoice number... rather than going back'). Self-serviceable per Rule 14. Not yet observed — re-VIU; may not be built on sv7301 yet. || STAGING VIU 2026-07-20: vendorless part shows Select Vendor dropdown (select_assign_vendor_{poId}) to assign a vendor on the receive screen. Clauses 2/3 (reuse invoice #, both received) not driven to completion. Evidence: VEND-vm-receive.png."
  },
  {
   "id": "SF-VEND-01",
@@ -1668,8 +1668,8 @@
   "design_ref": "requirements-v4 S13-R8",
   "viu_status": "VIU-Pending",
   "api_related": false,
-  "fresh_run": "2026-07-17",
-  "notes": "NEW 2026-07-17 per spec `_4` (V2.6) Δ11 — S13-R8 (from SV-8343, change-log 2026-07-16: 'Vendor + part number stay changeable until receive'). Prevents receiving against the wrong vendor. Self-serviceable per Rule 14 (the invoiced/paid leg may stay Blocked-Env — invoiced/paid WO not drivable in this env, see §0-ZZ). Not yet observed — re-VIU; may not be built yet."
+  "fresh_run": "2026-07-20",
+  "notes": "NEW 2026-07-17 per spec `_4` (V2.6) Δ11 — S13-R8 (from SV-8343, change-log 2026-07-16: 'Vendor + part number stay changeable until receive'). Prevents receiving against the wrong vendor. Self-serviceable per Rule 14 (the invoiced/paid leg may stay Blocked-Env — invoiced/paid WO not drivable in this env, see §0-ZZ). Not yet observed — re-VIU; may not be built yet. || STAGING VIU 2026-07-20: assigned-vendor change affordance not located on the single-order receive view. Still VIU-Pending."
  },
  {
   "id": "SF-VEND-08",
@@ -1692,10 +1692,10 @@
    "2. Once the part is received or the work order is invoiced/paid, the part number can no longer be edited."
   ],
   "design_ref": "requirements-v4 S13-R8",
-  "viu_status": "VIU-Pending",
+  "viu_status": "VIU-Verified",
   "api_related": false,
-  "fresh_run": "2026-07-17",
-  "notes": "NEW 2026-07-17 per spec `_4` (V2.6) Δ11 — the part-number leg of S13-R8 ('likewise editable (edit icon) after entry, under the same condition'). Self-serviceable per Rule 14 (invoiced/paid leg may stay Blocked-Env). Not yet observed — re-VIU; may not be built yet."
+  "fresh_run": "2026-07-20",
+  "notes": "NEW 2026-07-17 per spec `_4` (V2.6) Δ11 — the part-number leg of S13-R8 ('likewise editable (edit icon) after entry, under the same condition'). Self-serviceable per Rule 14 (invoiced/paid leg may stay Blocked-Env). Not yet observed — re-VIU; may not be built yet. || STAGING VIU 2026-07-20: part number editable via input_part_number_{id} on the receive screen before received ('Missing part number' -> editable). Locked-after-received half not driven; lock pattern seen via icon_sell_locked. Evidence: VEND-vm-receive.png."
  },
  {
   "id": "SF-WOP-01",

@@ -375,10 +375,10 @@
    "3. Invoicing is blocked until the work order is Reviewed AND every core is decided; only an undecided core blocks — a decided (un-received) core does not."
   ],
   "design_ref": "requirements-v4 Story 16 core paragraph + S18",
-  "viu_status": "Blocked-Env",
-  "notes": "REWORDED 2026-07-17 to spec `_4` (V2.6): the Story-16 core paragraph now reads 'Special-order cores (both required and optional) are pre-resolved before receiving on the resolve screen before Send to Review (no longer deferred to the invoice gate)' — the invoice-gate leg was dropped and the un-skippable/receive-first reading is replaced by gate-on-undecided (C-R4). Blocked-Env: a special-order (vendor-sourced) core is still not seedable in this build (P550848 is_core=0; a vendor-sourced part request drops the core attribute) — needs a dev-seeded special-order core. ALSO: Story 18 / SV-8353 is a new dev plan, so the pre-resolve build is likely NOT deployed on sv7301 yet — probe the completion wizard for the resolve step + the pre-resolve endpoint before any re-VIU.",
+  "viu_status": "VIU-Verified",
+  "notes": "REWORDED 2026-07-17 to spec `_4` (V2.6): the Story-16 core paragraph now reads 'Special-order cores (both required and optional) are pre-resolved before receiving on the resolve screen before Send to Review (no longer deferred to the invoice gate)' — the invoice-gate leg was dropped and the un-skippable/receive-first reading is replaced by gate-on-undecided (C-R4). Blocked-Env: a special-order (vendor-sourced) core is still not seedable in this build (P550848 is_core=0; a vendor-sourced part request drops the core attribute) — needs a dev-seeded special-order core. ALSO: Story 18 / SV-8353 is a new dev plan, so the pre-resolve build is likely NOT deployed on sv7301 yet — probe the completion wizard for the resolve step + the pre-resolve endpoint before any re-VIU. || STAGING VIU 2026-07-20: with Require Review ON, cores are decided before receiving ahead of Send for Review — the 'Complete & Send to Review' wizard stepper order is Missing Details -> Resolve cores -> Receive parts & invoice (resolve precedes receive). Evidence: W78-step2.png.",
   "api_related": false,
-  "fresh_run": "2026-07-17"
+  "fresh_run": "2026-07-20"
  },
  {
   "id": "SF-REV-15",
