@@ -66,12 +66,14 @@ for f in sorted(glob.glob(os.path.join(FDIR, 'findings-G*.json'))):
             'verdict': r['verdict'], 'fields': ", ".join(r.get('fields_affected', []) or []),
             'current': cur, 'proposed': proposed_text(r.get('proposed_text')),
             'reason': r.get('reason',''), 'citation': r.get('citation',''),
-            'confidence': r.get('confidence',''), 'note': r.get('note','')})
+            'confidence': r.get('confidence',''), 'note': r.get('note',''),
+            'live': r.get('live_check',''), 'final': r.get('final_verdict', r['verdict'])})
 rows.sort(key=lambda r:(r['section_id'], r['case_id']))
-changed = [r for r in rows if r['verdict'] != 'OK']
-updates = [r for r in rows if r['verdict'] == 'UPDATE']
-openq = [r for r in rows if r['verdict'] == 'OPEN-QUESTION']
-oks = [r for r in rows if r['verdict'] == 'OK']
+# route tabs by FINAL verdict (post 2026-07-20 live-build label check)
+changed = [r for r in rows if r['final'] != 'OK']
+updates = [r for r in rows if r['final'] == 'UPDATE']
+openq = [r for r in rows if r['final'] == 'OPEN-QUESTION']
+oks = [r for r in rows if r['final'] == 'OK']
 
 # ---- CSV (all rows) ----
 COLS = ['case_id','link','section_id','area','title','verdict','fields','current','proposed','reason','citation','confidence','note']
@@ -86,8 +88,8 @@ wb = openpyxl.Workbook()
 hdr_fill = PatternFill('solid', fgColor='1F4E78'); hdr_font = Font(bold=True, color='FFFFFF')
 wrap = Alignment(wrap_text=True, vertical='top')
 thin = Border(*[Side(style='thin', color='D0D0D0')]*4)
-HEADERS = ['Case ID','TestRail Link','Section','Area','Title','Verdict','Field(s)',
-           'Current (what is wrong)','Proposed correction','Reason','Spec / ticket citation','Confidence']
+HEADERS = ['Case ID','TestRail Link','Section','Area','Title','Final verdict','Spec-relative verdict','Field(s)',
+           'Current (what is wrong)','Proposed correction','Reason','Spec / ticket citation','Live-build check (2026-07-20)','Confidence']
 
 def fill_sheet(ws, data, include_note=True):
     ws.append(HEADERS)
@@ -98,8 +100,8 @@ def fill_sheet(ws, data, include_note=True):
         if include_note and r['note'] and not prop:
             prop = "(no wording change) " + r['note']
         ws.append([f"C{r['case_id']}", r['link'], r['section_id'], r['area'], r['title'],
-                   r['verdict'], r['fields'], r['current'], prop, r['reason'], r['citation'], r['confidence']])
-    widths = [10,42,9,26,40,15,16,50,60,44,40,12]
+                   r['final'], r['verdict'], r['fields'], r['current'], prop, r['reason'], r['citation'], r['live'], r['confidence']])
+    widths = [10,42,9,24,38,14,15,15,46,55,40,36,44,11]
     for i, wd in enumerate(widths, 1):
         ws.column_dimensions[openpyxl.utils.get_column_letter(i)].width = wd
     for row in ws.iter_rows(min_row=2):
@@ -111,14 +113,15 @@ ws = wb.active; ws.title = 'Summary'
 ws.append(['Custom Roles (SV-7388) — Spec-Recheck Proposed Corrections'])
 ws['A1'].font = Font(bold=True, size=14)
 ws.append([f'Generated {DATE} for Vlad\'s spec-recheck. Ground truth: Confluence 565116952 (live export) + all DONE SV-7388 tickets (Sasha rulings, last-update-wins).'])
-ws.append(['PROPOSAL ONLY — nothing pushed to TestRail. Bilal & Vlad to confirm each row (label rows need a live-build label check) before any update_case.'])
+ws.append(['PROPOSAL ONLY — nothing pushed to TestRail. Counts below are the FINAL verdict AFTER the 2026-07-20 live-build label check.'])
+ws.append(['Live check done 2026-07-20 (staging, as Admin): AP/AR toggle = "View and Manage AP/AR Data" (OLD label still in build) -> the 32 AP/AR rename proposals WITHDRAWN (cases are build-accurate). No "View History Logs"/"View Part History" toggle exists in the role editor. See LIVE-LABEL-CHECK-RESULT.md.'])
 ws.append([])
-ws.append(['Verdict','Count','Meaning'])
-for c in ws[5]: c.fill = hdr_fill; c.font = hdr_font
-ws.append(['OK', len(oks), 'Case already matches the current spec + ticket rulings; no change.'])
-ws.append(['UPDATE', len(updates), 'Case wording/expected drifted from the current spec or a Sasha ruling; proposed correction given.'])
+ws.append(['Final verdict','Count','Meaning'])
+for c in ws[6]: c.fill = hdr_fill; c.font = hdr_font
+ws.append(['OK', len(oks), 'Case matches the current spec + ticket rulings + live build; no change. (Includes 32 AP/AR-label cases confirmed build-accurate on 2026-07-20.)'])
+ws.append(['UPDATE', len(updates), 'Real drift from the current spec or a Sasha ruling; proposed correction given. Label-only renames were WITHDRAWN by the live check.'])
 ws.append(['OPEN-QUESTION', len(openq), 'Spec is silent/self-contradictory or a PO decision is unresolved; needs Bilal/Vlad/PO agreement, not a silent rewrite.'])
-ws.append(['TOTAL', len(rows), f'{len(cases)} local case bodies reconciled (core 3528-3553 + API 4091).'])
+ws.append(['TOTAL', len(rows), f'{len(cases)} local case bodies reconciled (core 3528-3553 + API 4091). Spec-relative was 220/44/5; live check moved 23 label rows OK.'])
 ws.append([])
 ws.append(['Headline drifts (highest priority):'])
 for line in [
@@ -128,7 +131,7 @@ for line in [
   'C26488/C26489 View History Logs — repurposed to "View Part History" (inventory only); WO/line audit log now = WO C&E, story history = WOL View (spec 7/7).',
   'C29457-C29460 Time Clock API — the 4 "BUG" 403-guards assert a contract the PO DECLINED (SV-7958, 2026-07-14): backend leaves these open by design. Flip to accepted behaviour (likely Vlad nightly fails).',
   'C26387/C26388 New WO flow Add Customer/Add Asset — buttons ARE shown & work without Customers C&E (SV-8002). Old expected = hidden (inverted).',
-  '41 cases carry renamed labels: "View and Manage AP/AR Data"->"Manage Accounts Payable and Receivable" (32) and "View History Logs"->"View Part History" (9). See LABEL-BATCH.md; confirm live label first.',
+  'LABEL LIVE-CHECK 2026-07-20: build still shows "View and Manage AP/AR Data" (spec 6/10 rename NOT deployed) -> 32 AP/AR rename proposals WITHDRAWN, cases kept as-is (build-accurate); build-vs-spec label gap flagged to dev. The role editor has NO "View History Logs"/"View Part History" toggle (cross-cutting card = 2 toggles) -> C26355/C26359/C27736/C26495/C26502/C26504 corrected to drop the non-existent History toggle; C26488/C26489 = inventory Part History behaviour.',
   'Open questions: C26339 name-uniqueness (spec vs build soft-warn); C26419 restock gate (Catalog vs Vendor Edit); C26459/C26464 Tech-View labor rate (spec sec4 vs SV-8107); C29435 qty edit (SV-8136 vs SV-8055).',
 ]:
     ws.append([line])
@@ -143,19 +146,21 @@ wb.save(os.path.join(BASE, f'CustomRoles_SpecRecheck_Proposed-Corrections_{DATE}
 def mdrow(r):
     cur = (r['current'] or '').replace('\n',' / ').replace('|','\\|')
     prop = (r['proposed'] or (('(no change) '+r['note']) if r['note'] else '')).replace('\n',' / ').replace('|','\\|')
-    return f"| [C{r['case_id']}]({r['link']}) | {r['area']} | {r['verdict']} | {r['fields']} | {cur} | {prop} | {r['citation']} | {r['confidence']} |"
+    live = (r['live'] or '').replace('\n',' / ').replace('|','\\|')
+    return f"| [C{r['case_id']}]({r['link']}) | {r['area']} | {r['final']} | {r['fields']} | {cur} | {prop} | {r['citation']} | {live} | {r['confidence']} |"
 with open(os.path.join(BASE, f'CustomRoles_SpecRecheck_Proposed-Corrections_{DATE}.md'),'w') as fh:
     fh.write(f"# Custom Roles (SV-7388) — Spec-Recheck Proposed Corrections ({DATE})\n\n")
     fh.write("> Vlad's spec-recheck. Ground truth = live Confluence 565116952 + all DONE SV-7388 tickets (Sasha rulings, last-update-wins).\n")
-    fh.write("> **PROPOSAL ONLY — nothing pushed to TestRail.** Bilal & Vlad confirm each row (label rows need a live-build label check) before any `update_case`.\n\n")
-    fh.write(f"**Totals:** {len(rows)} cases reconciled — {len(oks)} OK, {len(updates)} UPDATE, {len(openq)} OPEN-QUESTION.\n\n")
-    fh.write("## UPDATE — proposed edits\n\n")
-    fh.write("| Case | Area | Verdict | Field(s) | Current (wrong) | Proposed correction | Citation | Conf |\n|---|---|---|---|---|---|---|---|\n")
+    fh.write("> **PROPOSAL ONLY — nothing pushed to TestRail.** Verdicts below are FINAL, after the 2026-07-20 live-build label check.\n")
+    fh.write("> **Live check (2026-07-20, staging as Admin):** AP/AR toggle still shows the OLD label \"View and Manage AP/AR Data\" (spec 6/10 rename not deployed) — 32 AP/AR rename proposals WITHDRAWN (cases are build-accurate). The role editor has NO \"View History Logs\"/\"View Part History\" toggle (cross-cutting card = 2 toggles only). See LIVE-LABEL-CHECK-RESULT.md.\n\n")
+    fh.write(f"**Totals (final):** {len(rows)} cases reconciled — {len(oks)} OK, {len(updates)} UPDATE, {len(openq)} OPEN-QUESTION. (Spec-relative before live check: 220 OK / 44 UPDATE / 5 OPEN-QUESTION.)\n\n")
+    fh.write("## UPDATE — proposed edits (real drift)\n\n")
+    fh.write("| Case | Area | Final | Field(s) | Current (wrong) | Proposed correction | Citation | Live-build check | Conf |\n|---|---|---|---|---|---|---|---|---|\n")
     for r in updates: fh.write(mdrow(r)+"\n")
     fh.write("\n## OPEN-QUESTION — needs Bilal/Vlad/PO agreement\n\n")
-    fh.write("| Case | Area | Verdict | Field(s) | Current | Proposed / question | Citation | Conf |\n|---|---|---|---|---|---|---|---|\n")
+    fh.write("| Case | Area | Final | Field(s) | Current | Proposed / question | Citation | Live-build check | Conf |\n|---|---|---|---|---|---|---|---|---|\n")
     for r in openq: fh.write(mdrow(r)+"\n")
-    fh.write(f"\n## OK — no change ({len(oks)})\n\n")
+    fh.write(f"\n## OK — no change ({len(oks)}) — includes 32 AP/AR-label cases confirmed build-accurate 2026-07-20\n\n")
     fh.write(", ".join(f"C{r['case_id']}" for r in oks) + "\n")
 
 print(f"Reconciled {len(rows)} | OK {len(oks)} | UPDATE {len(updates)} | OPEN-QUESTION {len(openq)}")

@@ -15,7 +15,17 @@
    authoritative rulings cheat-sheet, last-update-wins). Open (not-Done) tickets →
    `sv7388-open-tickets-2026-07-15.md` (57).
 4. **Reconciled all 269 local case bodies** (core 3528-3553 + API 4091) vs spec + ticket rulings →
-   `findings-G1..G6.json`. **220 OK / 44 UPDATE / 5 OPEN-QUESTION.**
+   `findings-G1..G6.json`. Spec-relative: **220 OK / 44 UPDATE / 5 OPEN-QUESTION**.
+4b. **LIVE-BUILD LABEL CHECK done 2026-07-20** (staging, driven as Admin via boot2, read-only;
+   evidence in `live-label-evidence-2026-07-20/`, writeup `LIVE-LABEL-CHECK-RESULT.md`):
+   - AP/AR toggle = **"View and Manage AP/AR Data"** (OLD label; 5 observations). Spec 6/10 rename
+     NOT deployed → **32 AP/AR rename proposals WITHDRAWN** (cases build-accurate); build-vs-spec
+     gap flagged to dev.
+   - **No "View History Logs"/"View Part History" toggle in the role editor** (cross-cutting card
+     = See Financial Data + View and Manage AP/AR Data only; Parts group = 3 children). History
+     cases corrected to drop the non-existent toggle.
+   - **Final verdicts after live check: 243 OK / 21 UPDATE / 5 OPEN-QUESTION** (findings carry
+     `live_check` + `final_verdict`).
 5. **Produced the proposed-corrections deliverable** (`build/custom-roles-run/`):
    `CustomRoles_SpecRecheck_Proposed-Corrections_2026-07-15.xlsx` (+ .md + .csv) — tabs Summary /
    UPDATE / OPEN-QUESTION / OK; columns Case ID + TestRail Link + Section + Area + Title + Verdict

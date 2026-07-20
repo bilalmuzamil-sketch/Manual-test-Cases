@@ -1,5 +1,14 @@
 # Label-reconciliation batch — two spec renames vs the case wording
 
+> **✅ RESOLVED 2026-07-20 by a live-build check — see `LIVE-LABEL-CHECK-RESULT.md`.**
+> Outcome: the build still shows the OLD label **"View and Manage AP/AR Data"** (the 6/10 spec
+> rename is NOT deployed), so the **32 AP/AR rename proposals are WITHDRAWN** — those cases are
+> build-accurate and stay as-is (final verdict OK); the build-vs-spec label gap is flagged to dev.
+> The role editor has **no "View History Logs"/"View Part History" toggle at all** (cross-cutting
+> card = 2 toggles only), so the History cases are corrected to drop the non-existent toggle
+> rather than renamed. The rest of this file is the pre-check analysis, kept for the record.
+
+
 > Part of the 2026-07-15 spec-recheck. These are **wording** corrections (Standing Rule 9),
 > handled as a batch because they are mechanical find-replace and because they need a
 > **live-build label confirmation** before pushing (Rule 12 — do not infer a label; observe it).

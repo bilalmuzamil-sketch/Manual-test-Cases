@@ -1,103 +1,431 @@
 [
-  {"case_id":26307,"section_id":3528,"title":"The Roles & Permissions list page loads with its columns and a create button","verdict":"OK"},
-  {"case_id":26308,"section_id":3528,"title":"All 11 system roles appear in the list with a system badge","verdict":"OK"},
-  {"case_id":26309,"section_id":3528,"title":"Creating a custom role opens the template picker","verdict":"OK"},
-  {"case_id":26310,"section_id":3528,"title":"A custom role row has a pencil (edit) icon and a three-dot menu; View Permissions is in the menu","verdict":"OK"},
-  {"case_id":26311,"section_id":3528,"title":"The eye (View Permissions) icon shows in the Actions column only for Office User and Time Clock User","verdict":"OK"},
-  {"case_id":26313,"section_id":3528,"title":"The Office User system role is non-editable (lock icon, eye only)","verdict":"OK"},
-  {"case_id":26314,"section_id":3528,"title":"The Time Clock User system role is non-editable (lock icon, eye only)","verdict":"OK"},
-  {"case_id":26315,"section_id":3528,"title":"The Users column shows a clickable count that links to the filtered Staff page","verdict":"OK"},
-  {"case_id":26316,"section_id":3528,"title":"The search field filters the roles list as you type","verdict":"OK"},
-  {"case_id":26317,"section_id":3528,"title":"Roles & Permissions is hidden for users without the App Settings sub-toggle","verdict":"OK"},
-  {"case_id":26318,"section_id":3528,"title":"Locations appears under the Settings area","verdict":"OK"},
-  {"case_id":26319,"section_id":3528,"title":"The roles list has a Template column","verdict":"OK"},
-  {"case_id":26320,"section_id":3528,"title":"Each of the 11 system roles shows its description","verdict":"OK"},
-  {"case_id":26321,"section_id":3528,"title":"A custom role with no description shows a dash","verdict":"OK"},
-  {"case_id":26322,"section_id":3528,"title":"An editable system role's three-dot menu shows View Permissions and no Delete","verdict":"OK"},
-  {"case_id":26323,"section_id":3528,"title":"The three-dot menu is hidden on the non-editable system roles (Office User, Time Clock User)","verdict":"OK"},
-  {"case_id":26324,"section_id":3528,"title":"A custom role's three-dot menu shows View Permissions and Delete","verdict":"OK"},
-  {"case_id":26325,"section_id":3528,"title":"Deletion and duplication behavior on the roles list","verdict":"OK"},
-
-  {"case_id":26326,"section_id":3529,"title":"The template picker lists all 11 system role templates with descriptions","verdict":"OK"},
-  {"case_id":26327,"section_id":3529,"title":"Selecting a template highlights that row with a checkmark","verdict":"OK"},
-  {"case_id":26328,"section_id":3529,"title":"Applying a template opens the Create Role page pre-filled with that template's settings","verdict":"OK"},
-  {"case_id":26329,"section_id":3529,"title":"Skipping the template starts a blank role with all permissions off","verdict":"OK"},
-  {"case_id":26330,"section_id":3529,"title":"The Create Role page shows Basic Details with a required Role name and optional Description","verdict":"OK"},
-  {"case_id":26331,"section_id":3529,"title":"The permissions section shows the resource cards with their columns","verdict":"OK"},
-  {"case_id":26332,"section_id":3529,"title":"The permission search box filters the cards","verdict":"OK"},
-  {"case_id":26333,"section_id":3529,"title":"A blank Role name blocks Create with an inline message","verdict":"OK"},
-  {"case_id":26334,"section_id":3529,"title":"You can change any setting from the template defaults before saving","verdict":"OK"},
-  {"case_id":26335,"section_id":3529,"title":"Create is blocked with zero permissions (button disabled, no message)","verdict":"OK"},
-  {"case_id":26336,"section_id":3529,"title":"A successful Create shows a success message and returns to the list","verdict":"OK"},
-  {"case_id":26337,"section_id":3529,"title":"Same name and permissions as an existing role shows a 'Similar role already exists' confirmation","verdict":"OK"},
-  {"case_id":26338,"section_id":3529,"title":"Turning on every permission shows the 'Full administrative access' warning banner","verdict":"OK"},
-
-  {"case_id":26339,"section_id":3529,
-   "title":"A role name must be unique",
-   "verdict":"OPEN-QUESTION",
-   "fields_affected":["expected"],
-   "current_excerpt":"Saving is blocked because the name is already used.",
-   "proposed_text":"OPEN QUESTION for Bilal/Vlad + PO: does the build enforce UNIQUE role names? The spec (Create/Edit Custom Role) says 'Name (required, unique)', but the build shipped a soft 'Similar role already exists' confirmation that only triggers when BOTH the name AND the permission set are identical (C26337, verified) — it does NOT hard-block a duplicate name with a different permission set (C26339 marked Deviation). Decide the intended rule: (a) hard-block any duplicate name (update the build; keep this case asserting the block), or (b) the soft same-name+same-perms confirm is the intended behaviour (retire/rewrite this case, since C26337 already covers it). Do not push until resolved.",
-   "reason":"Spec says role names are unique; build does not hard-enforce it (only a soft confirm on identical name+permissions). No ticket resolves the conflict — genuine product question, and a likely nightly false-fail.",
-   "citation":"Spec 'Create / Edit Custom Role' ('Name (required, unique)') vs build soft-confirm (C26337 verified); no PO ruling on record.",
-   "confidence":"medium"},
-
-  {"case_id":26340,"section_id":3529,"title":"The template picker may use shorter role names than the Roles list","verdict":"OK"},
-  {"case_id":26341,"section_id":3529,"title":"The template picker descriptions differ from the Roles list descriptions","verdict":"OK"},
-
-  {"case_id":26342,"section_id":3530,"title":"Edit opens the role editor pre-filled with the role's current settings","verdict":"OK"},
-  {"case_id":26343,"section_id":3530,"title":"Saving an edited role shows 'Role updated successfully.' after a confirmation dialog","verdict":"OK"},
-  {"case_id":26344,"section_id":3530,"title":"Reset to template restores template defaults; Save is only enabled if something changed","verdict":"OK"},
-  {"case_id":26345,"section_id":3530,"title":"Changing a role logs an active user out; new permissions apply at next login","verdict":"OK"},
-  {"case_id":26346,"section_id":3530,"title":"The Office User system role cannot be edited (lock icon, eye only)","verdict":"OK"},
-  {"case_id":26347,"section_id":3530,"title":"The Time Clock User system role cannot be edited (lock icon, eye only)","verdict":"OK"},
-  {"case_id":26348,"section_id":3530,"title":"The role name cannot be left empty when editing","verdict":"OK"},
-  {"case_id":26349,"section_id":3530,"title":"Editing: at least one permission must be turned on to save","verdict":"OK"},
-
-  {"case_id":26350,"section_id":3531,"title":"A custom role with 0 users can be deleted from the three-dot menu","verdict":"OK"},
-  {"case_id":26351,"section_id":3531,"title":"A custom role with 1 or more users cannot be deleted","verdict":"OK","note":"Build implements the delete-block as a hidden menu item + disabled button + tooltip, NOT the 'Cannot Delete' MODAL the spec (Delete Role section) still describes. Case is build-accurate and VIU-Verified; the spec DOC wording is stale here — flag to PO to update the spec text, no case change needed."},
-  {"case_id":26352,"section_id":3531,"title":"After moving the assigned users to another role, the role can be deleted","verdict":"OK"},
-  {"case_id":26353,"section_id":3531,"title":"System roles have no Delete option anywhere","verdict":"OK"},
-  {"case_id":26354,"section_id":3531,"title":"The assigned-user count is correct when a delete is blocked","verdict":"OK"},
-
-  {"case_id":26355,"section_id":3532,
-   "title":"The eye icon on the Roles list opens the read-only Permission Summary","verdict":"UPDATE",
-   "fields_affected":["expected"],
-   "current_excerpt":"...the Cross-Cutting Toggles (See Financial Data, View and Manage AP/AR Data, View History Logs) for Senior Service Advisor.",
-   "proposed_text":{
-     "custom_expected":"<p>A window opens. It shows the add/edit/delete areas, the Page Access toggles, the Settings sub-settings, the Work orders sub-settings (View mode, Review work orders, Pick parts, Order parts), and the Cross-Cutting Toggles (See Financial Data, Manage Accounts Payable and Receivable) for Senior Service Advisor. (Part History visibility now appears under the Parts group as 'View Part History', not as a cross-cutting toggle.) Everything in the window is read-only; clicking does nothing. The window closes when you close it.</p>\n<p>NOTE (confirm live): the spec renamed the AP/AR toggle to 'Manage Accounts Payable and Receivable' (6/10) and relabelled 'View History Logs' to 'View Part History' under Parts (7/7); the build may still show the legacy labels until SV-8202 ships — see LABEL-BATCH.md.</p>"
-   },
-   "reason":"Cross-cutting toggle list uses two renamed labels: 'View and Manage AP/AR Data' → 'Manage Accounts Payable and Receivable' (spec 6/10) and 'View History Logs' → 'View Part History' relocated under Parts (spec 7/7; build fix SV-8202 open).",
-   "citation":"Spec change log 6/10 + 7/7; §5b; §1h; SV-8202 (open). See LABEL-BATCH.md.",
-   "confidence":"medium"},
-
-  {"case_id":26356,"section_id":3532,"title":"You can view a role's Permission Summary from Edit Staff Member using the eye icon next to the Role dropdown","verdict":"OK"},
-  {"case_id":26357,"section_id":3532,"title":"The eye icon on the Office row opens the Permission Summary","verdict":"OK"},
-  {"case_id":26358,"section_id":3532,"title":"The eye icon on the Time Clock User row opens the Permission Summary","verdict":"OK"},
-
-  {"case_id":26359,"section_id":3532,
-   "title":"The Permission Summary is grouped and shows each setting's on/off state","verdict":"UPDATE",
-   "fields_affected":["expected"],
-   "current_excerpt":"...the Cross-Cutting Toggles (See Financial Data, View and Manage AP/AR Data, View History Logs).",
-   "proposed_text":{
-     "custom_expected":"<p>Every setting is clearly labelled with its on/off state. The content is grouped into the add/edit/delete areas, the Page Access toggles, the Settings sub-settings, the Work orders sub-settings (View mode, Review work orders, Pick parts, Order parts), and the Cross-Cutting Toggles (See Financial Data, Manage Accounts Payable and Receivable). Part History visibility appears under the Parts group as 'View Part History'.</p>\n<p>NOTE (confirm live): the build may still show the legacy labels 'View and Manage AP/AR Data' / 'View History Logs' until SV-8202 ships — see LABEL-BATCH.md.</p>"
-   },
-   "reason":"Same two label renames as C26355 (AP/AR 6/10; View History Logs → View Part History 7/7, relocated under Parts).",
-   "citation":"Spec change log 6/10 + 7/7; §5b; §1h; SV-8202 (open). See LABEL-BATCH.md.",
-   "confidence":"medium"},
-
-  {"case_id":26360,"section_id":3533,"title":"Ticking Create & Edit on Work orders also ticks View","verdict":"OK"},
-  {"case_id":26361,"section_id":3533,"title":"Ticking Delete on Work orders also ticks Create & Edit and View","verdict":"OK"},
-  {"case_id":26362,"section_id":3533,"title":"Unticking View on Work orders also unticks Create & Edit and Delete","verdict":"OK"},
-  {"case_id":26363,"section_id":3533,"title":"Unticking Create & Edit on Work orders also unticks Delete but keeps View","verdict":"OK"},
-  {"case_id":26364,"section_id":3533,"title":"The same tick-cascade works on the Schedule card","verdict":"OK"},
-  {"case_id":26365,"section_id":3533,"title":"The same untick-cascade works on the Customers card","verdict":"OK"},
-  {"case_id":26366,"section_id":3533,"title":"Cascade works on Part sales with no See-Financial dialog when See Financial Data is already ON","verdict":"OK"},
-  {"case_id":26367,"section_id":3533,"title":"Cascade works on the Catalog and Inventory card","verdict":"OK"},
-  {"case_id":26368,"section_id":3533,"title":"Cascade works on the Vendor and order management card","verdict":"OK"},
-  {"case_id":26369,"section_id":3533,"title":"Cascade works on the Invoicing & payments card when See Financial Data is ON","verdict":"OK"},
-  {"case_id":26370,"section_id":3533,"title":"The Work order lines card has no View column (View comes from Work orders)","verdict":"OK"},
-  {"case_id":26371,"section_id":3533,"title":"The Timesheets card has no Delete box","verdict":"OK"},
-  {"case_id":26372,"section_id":3533,"title":"Ticking Create & Edit on Work order lines also ticks Work orders View","verdict":"OK"},
-  {"case_id":26373,"section_id":3533,"title":"Unticking Work orders View clears Work order lines Create & Edit and Delete","verdict":"OK"}
+ {
+  "case_id": 26307,
+  "section_id": 3528,
+  "title": "The Roles & Permissions list page loads with its columns and a create button",
+  "verdict": "OK"
+ },
+ {
+  "case_id": 26308,
+  "section_id": 3528,
+  "title": "All 11 system roles appear in the list with a system badge",
+  "verdict": "OK"
+ },
+ {
+  "case_id": 26309,
+  "section_id": 3528,
+  "title": "Creating a custom role opens the template picker",
+  "verdict": "OK"
+ },
+ {
+  "case_id": 26310,
+  "section_id": 3528,
+  "title": "A custom role row has a pencil (edit) icon and a three-dot menu; View Permissions is in the menu",
+  "verdict": "OK"
+ },
+ {
+  "case_id": 26311,
+  "section_id": 3528,
+  "title": "The eye (View Permissions) icon shows in the Actions column only for Office User and Time Clock User",
+  "verdict": "OK"
+ },
+ {
+  "case_id": 26313,
+  "section_id": 3528,
+  "title": "The Office User system role is non-editable (lock icon, eye only)",
+  "verdict": "OK"
+ },
+ {
+  "case_id": 26314,
+  "section_id": 3528,
+  "title": "The Time Clock User system role is non-editable (lock icon, eye only)",
+  "verdict": "OK"
+ },
+ {
+  "case_id": 26315,
+  "section_id": 3528,
+  "title": "The Users column shows a clickable count that links to the filtered Staff page",
+  "verdict": "OK"
+ },
+ {
+  "case_id": 26316,
+  "section_id": 3528,
+  "title": "The search field filters the roles list as you type",
+  "verdict": "OK"
+ },
+ {
+  "case_id": 26317,
+  "section_id": 3528,
+  "title": "Roles & Permissions is hidden for users without the App Settings sub-toggle",
+  "verdict": "OK"
+ },
+ {
+  "case_id": 26318,
+  "section_id": 3528,
+  "title": "Locations appears under the Settings area",
+  "verdict": "OK"
+ },
+ {
+  "case_id": 26319,
+  "section_id": 3528,
+  "title": "The roles list has a Template column",
+  "verdict": "OK"
+ },
+ {
+  "case_id": 26320,
+  "section_id": 3528,
+  "title": "Each of the 11 system roles shows its description",
+  "verdict": "OK"
+ },
+ {
+  "case_id": 26321,
+  "section_id": 3528,
+  "title": "A custom role with no description shows a dash",
+  "verdict": "OK"
+ },
+ {
+  "case_id": 26322,
+  "section_id": 3528,
+  "title": "An editable system role's three-dot menu shows View Permissions and no Delete",
+  "verdict": "OK"
+ },
+ {
+  "case_id": 26323,
+  "section_id": 3528,
+  "title": "The three-dot menu is hidden on the non-editable system roles (Office User, Time Clock User)",
+  "verdict": "OK"
+ },
+ {
+  "case_id": 26324,
+  "section_id": 3528,
+  "title": "A custom role's three-dot menu shows View Permissions and Delete",
+  "verdict": "OK"
+ },
+ {
+  "case_id": 26325,
+  "section_id": 3528,
+  "title": "Deletion and duplication behavior on the roles list",
+  "verdict": "OK"
+ },
+ {
+  "case_id": 26326,
+  "section_id": 3529,
+  "title": "The template picker lists all 11 system role templates with descriptions",
+  "verdict": "OK"
+ },
+ {
+  "case_id": 26327,
+  "section_id": 3529,
+  "title": "Selecting a template highlights that row with a checkmark",
+  "verdict": "OK"
+ },
+ {
+  "case_id": 26328,
+  "section_id": 3529,
+  "title": "Applying a template opens the Create Role page pre-filled with that template's settings",
+  "verdict": "OK"
+ },
+ {
+  "case_id": 26329,
+  "section_id": 3529,
+  "title": "Skipping the template starts a blank role with all permissions off",
+  "verdict": "OK"
+ },
+ {
+  "case_id": 26330,
+  "section_id": 3529,
+  "title": "The Create Role page shows Basic Details with a required Role name and optional Description",
+  "verdict": "OK"
+ },
+ {
+  "case_id": 26331,
+  "section_id": 3529,
+  "title": "The permissions section shows the resource cards with their columns",
+  "verdict": "OK"
+ },
+ {
+  "case_id": 26332,
+  "section_id": 3529,
+  "title": "The permission search box filters the cards",
+  "verdict": "OK"
+ },
+ {
+  "case_id": 26333,
+  "section_id": 3529,
+  "title": "A blank Role name blocks Create with an inline message",
+  "verdict": "OK"
+ },
+ {
+  "case_id": 26334,
+  "section_id": 3529,
+  "title": "You can change any setting from the template defaults before saving",
+  "verdict": "OK"
+ },
+ {
+  "case_id": 26335,
+  "section_id": 3529,
+  "title": "Create is blocked with zero permissions (button disabled, no message)",
+  "verdict": "OK"
+ },
+ {
+  "case_id": 26336,
+  "section_id": 3529,
+  "title": "A successful Create shows a success message and returns to the list",
+  "verdict": "OK"
+ },
+ {
+  "case_id": 26337,
+  "section_id": 3529,
+  "title": "Same name and permissions as an existing role shows a 'Similar role already exists' confirmation",
+  "verdict": "OK"
+ },
+ {
+  "case_id": 26338,
+  "section_id": 3529,
+  "title": "Turning on every permission shows the 'Full administrative access' warning banner",
+  "verdict": "OK"
+ },
+ {
+  "case_id": 26339,
+  "section_id": 3529,
+  "title": "A role name must be unique",
+  "verdict": "OPEN-QUESTION",
+  "fields_affected": [
+   "expected"
+  ],
+  "current_excerpt": "Saving is blocked because the name is already used.",
+  "proposed_text": "OPEN QUESTION for Bilal/Vlad + PO: does the build enforce UNIQUE role names? The spec (Create/Edit Custom Role) says 'Name (required, unique)', but the build shipped a soft 'Similar role already exists' confirmation that only triggers when BOTH the name AND the permission set are identical (C26337, verified) \u2014 it does NOT hard-block a duplicate name with a different permission set (C26339 marked Deviation). Decide the intended rule: (a) hard-block any duplicate name (update the build; keep this case asserting the block), or (b) the soft same-name+same-perms confirm is the intended behaviour (retire/rewrite this case, since C26337 already covers it). Do not push until resolved.",
+  "reason": "Spec says role names are unique; build does not hard-enforce it (only a soft confirm on identical name+permissions). No ticket resolves the conflict \u2014 genuine product question, and a likely nightly false-fail.",
+  "citation": "Spec 'Create / Edit Custom Role' ('Name (required, unique)') vs build soft-confirm (C26337 verified); no PO ruling on record.",
+  "confidence": "medium"
+ },
+ {
+  "case_id": 26340,
+  "section_id": 3529,
+  "title": "The template picker may use shorter role names than the Roles list",
+  "verdict": "OK"
+ },
+ {
+  "case_id": 26341,
+  "section_id": 3529,
+  "title": "The template picker descriptions differ from the Roles list descriptions",
+  "verdict": "OK"
+ },
+ {
+  "case_id": 26342,
+  "section_id": 3530,
+  "title": "Edit opens the role editor pre-filled with the role's current settings",
+  "verdict": "OK"
+ },
+ {
+  "case_id": 26343,
+  "section_id": 3530,
+  "title": "Saving an edited role shows 'Role updated successfully.' after a confirmation dialog",
+  "verdict": "OK"
+ },
+ {
+  "case_id": 26344,
+  "section_id": 3530,
+  "title": "Reset to template restores template defaults; Save is only enabled if something changed",
+  "verdict": "OK"
+ },
+ {
+  "case_id": 26345,
+  "section_id": 3530,
+  "title": "Changing a role logs an active user out; new permissions apply at next login",
+  "verdict": "OK"
+ },
+ {
+  "case_id": 26346,
+  "section_id": 3530,
+  "title": "The Office User system role cannot be edited (lock icon, eye only)",
+  "verdict": "OK"
+ },
+ {
+  "case_id": 26347,
+  "section_id": 3530,
+  "title": "The Time Clock User system role cannot be edited (lock icon, eye only)",
+  "verdict": "OK"
+ },
+ {
+  "case_id": 26348,
+  "section_id": 3530,
+  "title": "The role name cannot be left empty when editing",
+  "verdict": "OK"
+ },
+ {
+  "case_id": 26349,
+  "section_id": 3530,
+  "title": "Editing: at least one permission must be turned on to save",
+  "verdict": "OK"
+ },
+ {
+  "case_id": 26350,
+  "section_id": 3531,
+  "title": "A custom role with 0 users can be deleted from the three-dot menu",
+  "verdict": "OK"
+ },
+ {
+  "case_id": 26351,
+  "section_id": 3531,
+  "title": "A custom role with 1 or more users cannot be deleted",
+  "verdict": "OK",
+  "note": "Build implements the delete-block as a hidden menu item + disabled button + tooltip, NOT the 'Cannot Delete' MODAL the spec (Delete Role section) still describes. Case is build-accurate and VIU-Verified; the spec DOC wording is stale here \u2014 flag to PO to update the spec text, no case change needed."
+ },
+ {
+  "case_id": 26352,
+  "section_id": 3531,
+  "title": "After moving the assigned users to another role, the role can be deleted",
+  "verdict": "OK"
+ },
+ {
+  "case_id": 26353,
+  "section_id": 3531,
+  "title": "System roles have no Delete option anywhere",
+  "verdict": "OK"
+ },
+ {
+  "case_id": 26354,
+  "section_id": 3531,
+  "title": "The assigned-user count is correct when a delete is blocked",
+  "verdict": "OK"
+ },
+ {
+  "case_id": 26355,
+  "section_id": 3532,
+  "title": "The eye icon on the Roles list opens the read-only Permission Summary",
+  "verdict": "UPDATE",
+  "fields_affected": [
+   "expected"
+  ],
+  "current_excerpt": "...the Cross-Cutting Toggles (See Financial Data, View and Manage AP/AR Data, View History Logs) for Senior Service Advisor.",
+  "proposed_text": {
+   "custom_expected": "<p>A window opens. It shows the add/edit/delete areas, the Page Access toggles, the Settings sub-settings, the Work orders sub-settings (View mode, Review work orders, Pick parts, Order parts), and the Cross-Cutting Toggles (See Financial Data, Manage Accounts Payable and Receivable) for Senior Service Advisor. (Part History visibility now appears under the Parts group as 'View Part History', not as a cross-cutting toggle.) Everything in the window is read-only; clicking does nothing. The window closes when you close it.</p>\n<p>NOTE (confirm live): the spec renamed the AP/AR toggle to 'Manage Accounts Payable and Receivable' (6/10) and relabelled 'View History Logs' to 'View Part History' under Parts (7/7); the build may still show the legacy labels until SV-8202 ships \u2014 see LABEL-BATCH.md.</p>"
+  },
+  "reason": "Cross-cutting toggle list uses two renamed labels: 'View and Manage AP/AR Data' \u2192 'Manage Accounts Payable and Receivable' (spec 6/10) and 'View History Logs' \u2192 'View Part History' relocated under Parts (spec 7/7; build fix SV-8202 open).",
+  "citation": "Spec change log 6/10 + 7/7; \u00a75b; \u00a71h; SV-8202 (open). See LABEL-BATCH.md.",
+  "confidence": "medium",
+  "live_check": "History toggle NOT in the role editor: LIVE 2026-07-20 the Cross-Cutting Toggles card has exactly TWO toggles (See Financial Data + View and Manage AP/AR Data) and the Parts group has only 3 children. No 'View History Logs' / 'View Part History' editor toggle exists. The viewHistoryLogs capability persists in the backend and gates the inventory 'Part History' view only. See LIVE-LABEL-CHECK-RESULT.md.",
+  "final_verdict": "UPDATE"
+ },
+ {
+  "case_id": 26356,
+  "section_id": 3532,
+  "title": "You can view a role's Permission Summary from Edit Staff Member using the eye icon next to the Role dropdown",
+  "verdict": "OK"
+ },
+ {
+  "case_id": 26357,
+  "section_id": 3532,
+  "title": "The eye icon on the Office row opens the Permission Summary",
+  "verdict": "OK"
+ },
+ {
+  "case_id": 26358,
+  "section_id": 3532,
+  "title": "The eye icon on the Time Clock User row opens the Permission Summary",
+  "verdict": "OK"
+ },
+ {
+  "case_id": 26359,
+  "section_id": 3532,
+  "title": "The Permission Summary is grouped and shows each setting's on/off state",
+  "verdict": "UPDATE",
+  "fields_affected": [
+   "expected"
+  ],
+  "current_excerpt": "...the Cross-Cutting Toggles (See Financial Data, View and Manage AP/AR Data, View History Logs).",
+  "proposed_text": {
+   "custom_expected": "<p>Every setting is clearly labelled with its on/off state. The content is grouped into the add/edit/delete areas, the Page Access toggles, the Settings sub-settings, the Work orders sub-settings (View mode, Review work orders, Pick parts, Order parts), and the Cross-Cutting Toggles (See Financial Data, Manage Accounts Payable and Receivable). Part History visibility appears under the Parts group as 'View Part History'.</p>\n<p>NOTE (confirm live): the build may still show the legacy labels 'View and Manage AP/AR Data' / 'View History Logs' until SV-8202 ships \u2014 see LABEL-BATCH.md.</p>"
+  },
+  "reason": "Same two label renames as C26355 (AP/AR 6/10; View History Logs \u2192 View Part History 7/7, relocated under Parts).",
+  "citation": "Spec change log 6/10 + 7/7; \u00a75b; \u00a71h; SV-8202 (open). See LABEL-BATCH.md.",
+  "confidence": "medium",
+  "live_check": "History toggle NOT in the role editor: LIVE 2026-07-20 the Cross-Cutting Toggles card has exactly TWO toggles (See Financial Data + View and Manage AP/AR Data) and the Parts group has only 3 children. No 'View History Logs' / 'View Part History' editor toggle exists. The viewHistoryLogs capability persists in the backend and gates the inventory 'Part History' view only. See LIVE-LABEL-CHECK-RESULT.md.",
+  "final_verdict": "UPDATE"
+ },
+ {
+  "case_id": 26360,
+  "section_id": 3533,
+  "title": "Ticking Create & Edit on Work orders also ticks View",
+  "verdict": "OK"
+ },
+ {
+  "case_id": 26361,
+  "section_id": 3533,
+  "title": "Ticking Delete on Work orders also ticks Create & Edit and View",
+  "verdict": "OK"
+ },
+ {
+  "case_id": 26362,
+  "section_id": 3533,
+  "title": "Unticking View on Work orders also unticks Create & Edit and Delete",
+  "verdict": "OK"
+ },
+ {
+  "case_id": 26363,
+  "section_id": 3533,
+  "title": "Unticking Create & Edit on Work orders also unticks Delete but keeps View",
+  "verdict": "OK"
+ },
+ {
+  "case_id": 26364,
+  "section_id": 3533,
+  "title": "The same tick-cascade works on the Schedule card",
+  "verdict": "OK"
+ },
+ {
+  "case_id": 26365,
+  "section_id": 3533,
+  "title": "The same untick-cascade works on the Customers card",
+  "verdict": "OK"
+ },
+ {
+  "case_id": 26366,
+  "section_id": 3533,
+  "title": "Cascade works on Part sales with no See-Financial dialog when See Financial Data is already ON",
+  "verdict": "OK"
+ },
+ {
+  "case_id": 26367,
+  "section_id": 3533,
+  "title": "Cascade works on the Catalog and Inventory card",
+  "verdict": "OK"
+ },
+ {
+  "case_id": 26368,
+  "section_id": 3533,
+  "title": "Cascade works on the Vendor and order management card",
+  "verdict": "OK"
+ },
+ {
+  "case_id": 26369,
+  "section_id": 3533,
+  "title": "Cascade works on the Invoicing & payments card when See Financial Data is ON",
+  "verdict": "OK"
+ },
+ {
+  "case_id": 26370,
+  "section_id": 3533,
+  "title": "The Work order lines card has no View column (View comes from Work orders)",
+  "verdict": "OK"
+ },
+ {
+  "case_id": 26371,
+  "section_id": 3533,
+  "title": "The Timesheets card has no Delete box",
+  "verdict": "OK"
+ },
+ {
+  "case_id": 26372,
+  "section_id": 3533,
+  "title": "Ticking Create & Edit on Work order lines also ticks Work orders View",
+  "verdict": "OK"
+ },
+ {
+  "case_id": 26373,
+  "section_id": 3533,
+  "title": "Unticking Work orders View clears Work order lines Create & Edit and Delete",
+  "verdict": "OK"
+ }
 ]

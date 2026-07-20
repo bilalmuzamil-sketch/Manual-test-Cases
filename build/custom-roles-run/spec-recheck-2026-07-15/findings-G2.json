@@ -1,95 +1,252 @@
 [
-  {"case_id":26374,"section_id":3534,"title":"Work orders View gives access to the work order list and detail","verdict":"OK"},
-  {"case_id":26375,"section_id":3534,"title":"Work orders Create & Edit lets the user create and change work orders","verdict":"OK"},
-  {"case_id":26376,"section_id":3534,"title":"Work orders Delete lets the user delete work orders","verdict":"OK"},
-  {"case_id":26377,"section_id":3534,"title":"Work orders View OFF hides Work Orders from the top navigation","verdict":"OK"},
-  {"case_id":26378,"section_id":3534,"title":"The Work orders sub-toggles are shown but disabled when Work orders View is OFF","verdict":"OK"},
-  {"case_id":26379,"section_id":3534,"title":"The Review work orders sub-toggle controls the Review action on work orders","verdict":"OK"},
-  {"case_id":26380,"section_id":3534,"title":"Pick parts needs only Work orders View, not Create & Edit","verdict":"OK"},
-  {"case_id":26381,"section_id":3534,"title":"Order parts needs Work orders View and See Financial Data (not Create & Edit)","verdict":"OK"},
-  {"case_id":26382,"section_id":3534,"title":"Pick parts and Order parts are independent toggles","verdict":"OK"},
-  {"case_id":26383,"section_id":3534,"title":"Without Create & Edit, create/edit options are hidden on work orders","verdict":"OK"},
-  {"case_id":26384,"section_id":3534,"title":"Without Delete, no delete option is shown on a work order","verdict":"OK"},
-  {"case_id":26385,"section_id":3534,"title":"Creating a work order still works when Customers View is OFF","verdict":"OK"},
-  {"case_id":26386,"section_id":3534,"title":"The customer name shows on the work order header even when Customers View is OFF","verdict":"OK"},
-
-  {"case_id":26387,"section_id":3534,
-   "title":"The 'Add Customer' button in the New Work Order flow when Customers Create & Edit is OFF",
-   "verdict":"UPDATE",
-   "fields_affected":["expected"],
-   "current_excerpt":"The Add Customer button is not shown in the customer picker; the user can still pick an existing customer but cannot create a new one. (Known deviation: a prior run found this button still appearing when Customers Create & Edit is off — recommend a live re-check.)",
-   "proposed_text":{
-     "custom_expected":"<p>The Add Customer button IS shown in the customer picker, and creating a new customer from the New Work Order flow works.</p>\n<p>This is the expected behaviour: inside the New Work Order flow, adding a customer is part of creating a work order and is available to anyone who can create a work order (Work Orders: Create & Edit). It does NOT require Customers: Create & Edit — and in fact works even if Customers: View is OFF. The Customers permission only controls the Customers area in the top navigation.</p>"
-   },
-   "reason":"SV-8002 (Sasha 2026-06-30, fix verified 2026-07-07) reversed the original expectation: the Add Customer button must be VISIBLE and creating a customer in the New WO flow works without any Customers CRUD. The old 'button hidden' expectation is inverted — a clear nightly false-fail source.",
-   "citation":"SV-8002 Sasha Grosman 2026-06-30 + QA Passed 2026-07-07; spec Key Decision 'Data Access not addressed' / Open Question 10.",
-   "confidence":"high"},
-
-  {"case_id":26388,"section_id":3534,
-   "title":"The 'Add Asset' button is hidden in the New Work Order flow when Customers Create & Edit is OFF",
-   "verdict":"UPDATE",
-   "fields_affected":["title","expected"],
-   "current_excerpt":"The Add Asset button is not shown; the user can pick an existing asset but cannot create a new one. (Known deviation: a prior run found this button still appearing when Customers Create & Edit is off — recommend a live re-check.)",
-   "proposed_text":{
-     "title":"The 'Add Asset' button in the New Work Order flow when Customers Create & Edit is OFF",
-     "custom_expected":"<p>The Add Asset button IS shown, and adding a new asset for the customer from the New Work Order flow works.</p>\n<p>This is the expected behaviour: inside the New Work Order flow, adding an asset is part of creating a work order and is available to anyone who can create a work order (Work Orders: Create & Edit). It does NOT require Customers: Create & Edit.</p>"
-   },
-   "reason":"SV-8002 explicitly covers creating both customers AND assets in the New WO flow ('create customers and assets in the create WO flow'; QA verified 'add asset for that customer from New Work Order Flow'). The 'button hidden' expectation is inverted.",
-   "citation":"SV-8002 Sasha Grosman 2026-06-30 + QA Passed 2026-07-07.",
-   "confidence":"high"},
-
-  {"case_id":27868,"section_id":3534,"title":"Order parts controls the work order Parts tab (on shows it, off hides it)","verdict":"OK"},
-
-  {"case_id":27873,"section_id":3534,
-   "title":"Edit/delete options on another user's customer note are hidden without the right permission",
-   "verdict":"UPDATE",
-   "fields_affected":["title","preconds","steps","expected"],
-   "current_excerpt":"PRE: role A with Customers View and Work orders View but no Work orders Delete. (steps/expected empty stub; premise gates a CUSTOMER note on Work orders Delete)",
-   "proposed_text":{
-     "title":"Customer notes: editing anyone's note needs Customers View; deleting another user's note needs Customers Delete",
-     "custom_preconds":"<ol>\n<li>A customer has a note on its Notes tab that was written by a DIFFERENT user (e.g. an admin).</li>\n<li>Role A has Customer Management: View only (no Delete). Role B has Customer Management: View + Create & Edit + Delete.</li>\n<li>You can sign in as a user on Role A and as a user on Role B.</li>\n</ol>",
-     "custom_steps":"<ol>\n<li>Sign in as the Role A user (Customers: View only) and open the customer's Notes tab.</li>\n<li>Try to edit the note written by the other user.</li>\n<li>Try to delete the note written by the other user.</li>\n<li>Sign in as the Role B user (Customers: Delete) and open the same Notes tab.</li>\n<li>Try to delete the note written by the other user.</li>\n</ol>",
-     "custom_expected":"<p>Role A (Customers: View) CAN edit the other user's note (Work Orders/Customers View allows editing anyone's note so people can collaborate in one note), and can delete its OWN notes, but the Delete option on ANOTHER user's note is not available.</p>\n<p>Role B (Customers: Delete) CAN delete the other user's note.</p>\n<p>Customer and Asset notes are gated by the Customer Management permission (View = create + edit anyone's + delete own; Delete = delete others'). Work Orders: Delete does NOT control customer notes.</p>"
-   },
-   "reason":"Final Notes model (SV-8003, Sasha 2026-07-08, verified 07-14): customer notes follow Customer Management CRUD, not Work Orders. Editing anyone's note is allowed with View; only deleting OTHERS' notes needs Delete. The stub premise gated a customer note on Work Orders Delete and implied edit is hidden — both wrong.",
-   "citation":"SV-8003 Sasha Grosman 2026-07-08 (final Notes model); spec §1d Customers View/Delete.",
-   "confidence":"medium"},
-
-  {"case_id":29435,"section_id":3534,
-   "title":"A Pick/Order Parts role can edit the Quantity on the Part Requests tab",
-   "verdict":"OPEN-QUESTION",
-   "fields_affected":["expected"],
-   "current_excerpt":"PRE: Work order lines View only, and Pick parts ON. Title asserts a Pick/Order Parts (WOL View-only) role CAN edit part quantity.",
-   "proposed_text":"OPEN QUESTION for Bilal/Vlad: two PO inputs conflict on which permission gates changing a part's quantity on a WO line. SV-8136 (Sasha 2026-07-06, QA Passed 07-14): 'They should only need WOL: Create & Edit to manage the quantity of a part' — i.e. a WOL View-only role (even with Pick/Order Parts) should NOT be able to change quantity. SV-8055 (referenced in SV-8136): 'On a work order's Parts tab, the user can edit part information even if their role has no WO Lines: Create and Edit permission.' Case C29435 asserts a Pick-Parts + WOL-View-only role CAN edit quantity, matching SV-8055 but contradicting SV-8136's WOL-C&E ruling. Case is Blocked-UI (never verified live). Decide: keep as WOL-C&E-gated (retire/rewrite this Pick-Parts-only case) or confirm the Parts-tab exception. Do not push until resolved.",
-   "reason":"SV-8136 (newer explicit PM ruling) says quantity management needs WOL Create & Edit; SV-8055 suggests a Parts-tab exception. Genuine spec tension on a never-verified case — needs a human decision, not a silent rewrite.",
-   "citation":"SV-8136 Sasha Grosman 2026-07-06 (WOL C&E) vs SV-8055 (Parts-tab edit without WOL C&E).",
-   "confidence":"medium"},
-
-  {"case_id":26389,"section_id":3535,"title":"Work order lines are visible whenever Work orders View is ON","verdict":"OK"},
-  {"case_id":26390,"section_id":3535,"title":"Work order lines Create & Edit allows adding, editing, moving parts, authorizing and managing part requests","verdict":"OK"},
-  {"case_id":26391,"section_id":3535,"title":"Work order lines Delete allows removing lines","verdict":"OK"},
-  {"case_id":26392,"section_id":3535,"title":"Work orders View OFF makes work order lines unreachable","verdict":"OK"},
-  {"case_id":26393,"section_id":3535,"title":"Work order lines are read-only when Create & Edit is OFF","verdict":"OK"},
-  {"case_id":27271,"section_id":3535,"title":"The Build Lines entry point is hidden for a Work Orders View-only role","verdict":"OK"},
-  {"case_id":27272,"section_id":3535,"title":"The Build Lines entry point is shown for a role with Work order lines Create & Edit","verdict":"OK"},
-  {"case_id":27866,"section_id":3535,"title":"A default Technician (with Work order lines Create & Edit) can bulk-complete another tech's line via Set Line Status","verdict":"OK"},
-
-  {"case_id":27870,"section_id":3535,
-   "title":"Work order lines Create & Edit lets the user mark a core OK/Not-OK and add line history",
-   "verdict":"UPDATE",
-   "fields_affected":["title","expected"],
-   "current_excerpt":"The core OK / Not OK control is available to this role and saves ... Both marking the core and adding line history are controlled by Work order lines Create & Edit.",
-   "proposed_text":{
-     "title":"Marking a core OK/Not-OK is available with Work orders View; a line's story history is available with Work order lines View",
-     "custom_expected":"<p>The core OK / Not OK control is available and saves. A line's story history can be opened.</p>\n<p>Marking a core OK/Not-OK is gated by Work Orders: View (everyone who can view a work order can do it — agreed as a shared capability), and a line's story history is gated by Work Order Lines: View (which is inherited from Work Orders: View). A Work Order Lines: Create & Edit role therefore has both, but they are NOT exclusive to Create & Edit. (Line-level audit log, by contrast, requires Work Orders: Create & Edit.)</p>"
-   },
-   "reason":"Cores OK/Not-OK moved to Work Orders: View (SV-8130 + spec 7/7 Key Decision 'agreed with Cody everyone should have access'); story history moved to WOL View (SV-7989, spec 7/7). The case's claim that both are 'controlled by WOL Create & Edit' contradicts the current spec even though a WOL C&E role still has both.",
-   "citation":"Spec 7/7 changelog + Key Decision (cores = WO View); SV-7989 Sasha 2026-07-07 (story history = WOL View, audit log = WO C&E); SV-8130 verified 07-13.",
-   "confidence":"medium"},
-
-  {"case_id":26394,"section_id":3536,"title":"Schedule View shows the calendar with all technicians","verdict":"OK"},
-  {"case_id":26395,"section_id":3536,"title":"Schedule Create & Edit allows creating, changing and dragging appointments","verdict":"OK"},
-  {"case_id":26396,"section_id":3536,"title":"Schedule Delete allows removing appointments","verdict":"OK"},
-  {"case_id":26397,"section_id":3536,"title":"Schedule View OFF hides Schedule from the top navigation","verdict":"OK"},
-  {"case_id":27867,"section_id":3536,"title":"A Schedule Create & Edit only role can open 'Assign existing work order' and the unscheduled work order list loads","verdict":"OK"}
+ {
+  "case_id": 26374,
+  "section_id": 3534,
+  "title": "Work orders View gives access to the work order list and detail",
+  "verdict": "OK"
+ },
+ {
+  "case_id": 26375,
+  "section_id": 3534,
+  "title": "Work orders Create & Edit lets the user create and change work orders",
+  "verdict": "OK"
+ },
+ {
+  "case_id": 26376,
+  "section_id": 3534,
+  "title": "Work orders Delete lets the user delete work orders",
+  "verdict": "OK"
+ },
+ {
+  "case_id": 26377,
+  "section_id": 3534,
+  "title": "Work orders View OFF hides Work Orders from the top navigation",
+  "verdict": "OK"
+ },
+ {
+  "case_id": 26378,
+  "section_id": 3534,
+  "title": "The Work orders sub-toggles are shown but disabled when Work orders View is OFF",
+  "verdict": "OK"
+ },
+ {
+  "case_id": 26379,
+  "section_id": 3534,
+  "title": "The Review work orders sub-toggle controls the Review action on work orders",
+  "verdict": "OK"
+ },
+ {
+  "case_id": 26380,
+  "section_id": 3534,
+  "title": "Pick parts needs only Work orders View, not Create & Edit",
+  "verdict": "OK"
+ },
+ {
+  "case_id": 26381,
+  "section_id": 3534,
+  "title": "Order parts needs Work orders View and See Financial Data (not Create & Edit)",
+  "verdict": "OK"
+ },
+ {
+  "case_id": 26382,
+  "section_id": 3534,
+  "title": "Pick parts and Order parts are independent toggles",
+  "verdict": "OK"
+ },
+ {
+  "case_id": 26383,
+  "section_id": 3534,
+  "title": "Without Create & Edit, create/edit options are hidden on work orders",
+  "verdict": "OK"
+ },
+ {
+  "case_id": 26384,
+  "section_id": 3534,
+  "title": "Without Delete, no delete option is shown on a work order",
+  "verdict": "OK"
+ },
+ {
+  "case_id": 26385,
+  "section_id": 3534,
+  "title": "Creating a work order still works when Customers View is OFF",
+  "verdict": "OK"
+ },
+ {
+  "case_id": 26386,
+  "section_id": 3534,
+  "title": "The customer name shows on the work order header even when Customers View is OFF",
+  "verdict": "OK"
+ },
+ {
+  "case_id": 26387,
+  "section_id": 3534,
+  "title": "The 'Add Customer' button in the New Work Order flow when Customers Create & Edit is OFF",
+  "verdict": "UPDATE",
+  "fields_affected": [
+   "expected"
+  ],
+  "current_excerpt": "The Add Customer button is not shown in the customer picker; the user can still pick an existing customer but cannot create a new one. (Known deviation: a prior run found this button still appearing when Customers Create & Edit is off \u2014 recommend a live re-check.)",
+  "proposed_text": {
+   "custom_expected": "<p>The Add Customer button IS shown in the customer picker, and creating a new customer from the New Work Order flow works.</p>\n<p>This is the expected behaviour: inside the New Work Order flow, adding a customer is part of creating a work order and is available to anyone who can create a work order (Work Orders: Create & Edit). It does NOT require Customers: Create & Edit \u2014 and in fact works even if Customers: View is OFF. The Customers permission only controls the Customers area in the top navigation.</p>"
+  },
+  "reason": "SV-8002 (Sasha 2026-06-30, fix verified 2026-07-07) reversed the original expectation: the Add Customer button must be VISIBLE and creating a customer in the New WO flow works without any Customers CRUD. The old 'button hidden' expectation is inverted \u2014 a clear nightly false-fail source.",
+  "citation": "SV-8002 Sasha Grosman 2026-06-30 + QA Passed 2026-07-07; spec Key Decision 'Data Access not addressed' / Open Question 10.",
+  "confidence": "high"
+ },
+ {
+  "case_id": 26388,
+  "section_id": 3534,
+  "title": "The 'Add Asset' button is hidden in the New Work Order flow when Customers Create & Edit is OFF",
+  "verdict": "UPDATE",
+  "fields_affected": [
+   "title",
+   "expected"
+  ],
+  "current_excerpt": "The Add Asset button is not shown; the user can pick an existing asset but cannot create a new one. (Known deviation: a prior run found this button still appearing when Customers Create & Edit is off \u2014 recommend a live re-check.)",
+  "proposed_text": {
+   "title": "The 'Add Asset' button in the New Work Order flow when Customers Create & Edit is OFF",
+   "custom_expected": "<p>The Add Asset button IS shown, and adding a new asset for the customer from the New Work Order flow works.</p>\n<p>This is the expected behaviour: inside the New Work Order flow, adding an asset is part of creating a work order and is available to anyone who can create a work order (Work Orders: Create & Edit). It does NOT require Customers: Create & Edit.</p>"
+  },
+  "reason": "SV-8002 explicitly covers creating both customers AND assets in the New WO flow ('create customers and assets in the create WO flow'; QA verified 'add asset for that customer from New Work Order Flow'). The 'button hidden' expectation is inverted.",
+  "citation": "SV-8002 Sasha Grosman 2026-06-30 + QA Passed 2026-07-07.",
+  "confidence": "high"
+ },
+ {
+  "case_id": 27868,
+  "section_id": 3534,
+  "title": "Order parts controls the work order Parts tab (on shows it, off hides it)",
+  "verdict": "OK"
+ },
+ {
+  "case_id": 27873,
+  "section_id": 3534,
+  "title": "Edit/delete options on another user's customer note are hidden without the right permission",
+  "verdict": "UPDATE",
+  "fields_affected": [
+   "title",
+   "preconds",
+   "steps",
+   "expected"
+  ],
+  "current_excerpt": "PRE: role A with Customers View and Work orders View but no Work orders Delete. (steps/expected empty stub; premise gates a CUSTOMER note on Work orders Delete)",
+  "proposed_text": {
+   "title": "Customer notes: editing anyone's note needs Customers View; deleting another user's note needs Customers Delete",
+   "custom_preconds": "<ol>\n<li>A customer has a note on its Notes tab that was written by a DIFFERENT user (e.g. an admin).</li>\n<li>Role A has Customer Management: View only (no Delete). Role B has Customer Management: View + Create & Edit + Delete.</li>\n<li>You can sign in as a user on Role A and as a user on Role B.</li>\n</ol>",
+   "custom_steps": "<ol>\n<li>Sign in as the Role A user (Customers: View only) and open the customer's Notes tab.</li>\n<li>Try to edit the note written by the other user.</li>\n<li>Try to delete the note written by the other user.</li>\n<li>Sign in as the Role B user (Customers: Delete) and open the same Notes tab.</li>\n<li>Try to delete the note written by the other user.</li>\n</ol>",
+   "custom_expected": "<p>Role A (Customers: View) CAN edit the other user's note (Work Orders/Customers View allows editing anyone's note so people can collaborate in one note), and can delete its OWN notes, but the Delete option on ANOTHER user's note is not available.</p>\n<p>Role B (Customers: Delete) CAN delete the other user's note.</p>\n<p>Customer and Asset notes are gated by the Customer Management permission (View = create + edit anyone's + delete own; Delete = delete others'). Work Orders: Delete does NOT control customer notes.</p>"
+  },
+  "reason": "Final Notes model (SV-8003, Sasha 2026-07-08, verified 07-14): customer notes follow Customer Management CRUD, not Work Orders. Editing anyone's note is allowed with View; only deleting OTHERS' notes needs Delete. The stub premise gated a customer note on Work Orders Delete and implied edit is hidden \u2014 both wrong.",
+  "citation": "SV-8003 Sasha Grosman 2026-07-08 (final Notes model); spec \u00a71d Customers View/Delete.",
+  "confidence": "medium"
+ },
+ {
+  "case_id": 29435,
+  "section_id": 3534,
+  "title": "A Pick/Order Parts role can edit the Quantity on the Part Requests tab",
+  "verdict": "OPEN-QUESTION",
+  "fields_affected": [
+   "expected"
+  ],
+  "current_excerpt": "PRE: Work order lines View only, and Pick parts ON. Title asserts a Pick/Order Parts (WOL View-only) role CAN edit part quantity.",
+  "proposed_text": "OPEN QUESTION for Bilal/Vlad: two PO inputs conflict on which permission gates changing a part's quantity on a WO line. SV-8136 (Sasha 2026-07-06, QA Passed 07-14): 'They should only need WOL: Create & Edit to manage the quantity of a part' \u2014 i.e. a WOL View-only role (even with Pick/Order Parts) should NOT be able to change quantity. SV-8055 (referenced in SV-8136): 'On a work order's Parts tab, the user can edit part information even if their role has no WO Lines: Create and Edit permission.' Case C29435 asserts a Pick-Parts + WOL-View-only role CAN edit quantity, matching SV-8055 but contradicting SV-8136's WOL-C&E ruling. Case is Blocked-UI (never verified live). Decide: keep as WOL-C&E-gated (retire/rewrite this Pick-Parts-only case) or confirm the Parts-tab exception. Do not push until resolved.",
+  "reason": "SV-8136 (newer explicit PM ruling) says quantity management needs WOL Create & Edit; SV-8055 suggests a Parts-tab exception. Genuine spec tension on a never-verified case \u2014 needs a human decision, not a silent rewrite.",
+  "citation": "SV-8136 Sasha Grosman 2026-07-06 (WOL C&E) vs SV-8055 (Parts-tab edit without WOL C&E).",
+  "confidence": "medium"
+ },
+ {
+  "case_id": 26389,
+  "section_id": 3535,
+  "title": "Work order lines are visible whenever Work orders View is ON",
+  "verdict": "OK"
+ },
+ {
+  "case_id": 26390,
+  "section_id": 3535,
+  "title": "Work order lines Create & Edit allows adding, editing, moving parts, authorizing and managing part requests",
+  "verdict": "OK"
+ },
+ {
+  "case_id": 26391,
+  "section_id": 3535,
+  "title": "Work order lines Delete allows removing lines",
+  "verdict": "OK"
+ },
+ {
+  "case_id": 26392,
+  "section_id": 3535,
+  "title": "Work orders View OFF makes work order lines unreachable",
+  "verdict": "OK"
+ },
+ {
+  "case_id": 26393,
+  "section_id": 3535,
+  "title": "Work order lines are read-only when Create & Edit is OFF",
+  "verdict": "OK"
+ },
+ {
+  "case_id": 27271,
+  "section_id": 3535,
+  "title": "The Build Lines entry point is hidden for a Work Orders View-only role",
+  "verdict": "OK"
+ },
+ {
+  "case_id": 27272,
+  "section_id": 3535,
+  "title": "The Build Lines entry point is shown for a role with Work order lines Create & Edit",
+  "verdict": "OK"
+ },
+ {
+  "case_id": 27866,
+  "section_id": 3535,
+  "title": "A default Technician (with Work order lines Create & Edit) can bulk-complete another tech's line via Set Line Status",
+  "verdict": "OK"
+ },
+ {
+  "case_id": 27870,
+  "section_id": 3535,
+  "title": "Work order lines Create & Edit lets the user mark a core OK/Not-OK and add line history",
+  "verdict": "UPDATE",
+  "fields_affected": [
+   "title",
+   "expected"
+  ],
+  "current_excerpt": "The core OK / Not OK control is available to this role and saves ... Both marking the core and adding line history are controlled by Work order lines Create & Edit.",
+  "proposed_text": {
+   "title": "Marking a core OK/Not-OK is available with Work orders View; a line's story history is available with Work order lines View",
+   "custom_expected": "<p>The core OK / Not OK control is available and saves. A line's story history can be opened.</p>\n<p>Marking a core OK/Not-OK is gated by Work Orders: View (everyone who can view a work order can do it \u2014 agreed as a shared capability), and a line's story history is gated by Work Order Lines: View (which is inherited from Work Orders: View). A Work Order Lines: Create & Edit role therefore has both, but they are NOT exclusive to Create & Edit. (Line-level audit log, by contrast, requires Work Orders: Create & Edit.)</p>"
+  },
+  "reason": "Cores OK/Not-OK moved to Work Orders: View (SV-8130 + spec 7/7 Key Decision 'agreed with Cody everyone should have access'); story history moved to WOL View (SV-7989, spec 7/7). The case's claim that both are 'controlled by WOL Create & Edit' contradicts the current spec even though a WOL C&E role still has both.",
+  "citation": "Spec 7/7 changelog + Key Decision (cores = WO View); SV-7989 Sasha 2026-07-07 (story history = WOL View, audit log = WO C&E); SV-8130 verified 07-13.",
+  "confidence": "medium"
+ },
+ {
+  "case_id": 26394,
+  "section_id": 3536,
+  "title": "Schedule View shows the calendar with all technicians",
+  "verdict": "OK"
+ },
+ {
+  "case_id": 26395,
+  "section_id": 3536,
+  "title": "Schedule Create & Edit allows creating, changing and dragging appointments",
+  "verdict": "OK"
+ },
+ {
+  "case_id": 26396,
+  "section_id": 3536,
+  "title": "Schedule Delete allows removing appointments",
+  "verdict": "OK"
+ },
+ {
+  "case_id": 26397,
+  "section_id": 3536,
+  "title": "Schedule View OFF hides Schedule from the top navigation",
+  "verdict": "OK"
+ },
+ {
+  "case_id": 27867,
+  "section_id": 3536,
+  "title": "A Schedule Create & Edit only role can open 'Assign existing work order' and the unscheduled work order list loads",
+  "verdict": "OK"
+ }
 ]
