@@ -20,3 +20,23 @@
 | [C28593](https://shopview.testrail.io/index.php?/cases/view/28593) | FD-PERM-009 | Δ2 history→audit-log sweep | updated: custom_expected, custom_preconds, custom_steps, title | update 200 | verify 200 MATCH | 2026-07-17 17:35:30Z |
 | [C28594](https://shopview.testrail.io/index.php?/cases/view/28594) | FD-PERM-010 | Δ2 history→audit-log sweep | updated: custom_expected, custom_preconds, custom_steps | update 200 | verify 200 MATCH | 2026-07-17 17:35:32Z |
 | [C28597](https://shopview.testrail.io/index.php?/cases/view/28597) | FD-FLAG-002 | Δ2 history→audit-log sweep | updated: custom_expected, custom_preconds, custom_steps, title | update 200 | verify 200 MATCH | 2026-07-17 17:35:34Z |
+
+---
+
+## Section renames — "History log*" → "Audit log*" (2026-07-20)
+
+- **Run:** 2026-07-20 08:16:16Z (LIVE)
+- **Authorization:** explicit user authorization 2026-07-17 ("Rename") for the 4 optional "History log*" section renames flagged in the V1_3 apply pass (spec-diff §E note / PROJECT-STATE open thread).
+- **Scope:** `update_section` (name field only) on EXACTLY the 4 F&D sections named in the V1_3 report, project 1 / suite 1, parent 3894 "Fees & Discounts (VIU-PENDING)". GET before-snapshot → update_section → re-GET diff-confirm. No cases, runs, results, or other sections touched.
+- **Note:** a 5th live section "History log — edit entry" (3961) exists under the same parent but was NOT in the authorized set — left untouched (follow-up candidate).
+
+**Summary:** 4 sections — 4 renamed, 0 failed.
+
+| Section ID | Before | After | Update HTTP | Verify | Timestamp (UTC) |
+|---|---|---|---|---|---|
+| 3957 | History log | Audit log | 200 | re-GET 200 MATCH | 2026-07-20 08:16:16Z |
+| 3958 | History log — visibility | Audit log — visibility | 200 | re-GET 200 MATCH | 2026-07-20 08:16:17Z |
+| 3959 | History log — permission | Audit log — permission | 200 | re-GET 200 MATCH | 2026-07-20 08:16:19Z |
+| 3960 | History log — Processing Fee | Audit log — Processing Fee | 200 | re-GET 200 MATCH | 2026-07-20 08:16:20Z |
+
+**Local mirrors updated same run:** `testrail-id-map.csv` section names (7 rows: FD-HIST-001..007); `cases/group-B-customer-admin-finance.json` `area` fields (7 cases, 1:1 with live sections); deliverables regenerated (`gen_import.py` → testrail-import CSV/XLSX; `gen_blockers.py` → Blockers Tracker). FD-HIST-008's section/area ("History log — edit entry") intentionally unchanged.

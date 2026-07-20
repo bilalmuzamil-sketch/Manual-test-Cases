@@ -635,34 +635,34 @@ Verify the excess is recorded as a customer credit and posts to QuickBooks as a 
 3. It is NOT a QuickBooks payment (no cash received).","S6-R11, S6-R13",,
 Verify a synced line's tax follows the fee/discount's Taxable setting,QuickBooks sync — tax,Functional,Medium,1. QuickBooks connected; a WO has one taxable fee and one non-taxable fee; the WO is invoiced.,1. Inspect the synced QuickBooks lines for both fees.,"1. The taxable fee's line carries the invoice's active tax.
 2. The non-taxable fee's line carries zero tax.","S6-R2, §5-R11",,
-Verify one audit-log entry per add/edit/remove with the correct bold event labels,History log,Functional,High,1. You can view the work-order audit log (Work Orders: Create and Edit) and can add/edit/remove adjustments on an open WO.,"1. Add, edit and remove a fee/discount on the work order.
+Verify one audit-log entry per add/edit/remove with the correct bold event labels,Audit log,Functional,High,1. You can view the work-order audit log (Work Orders: Create and Edit) and can add/edit/remove adjustments on an open WO.,"1. Add, edit and remove a fee/discount on the work order.
 2. Open the work order ⋮ menu and click 'Audit Log' to open the 'Work Order Log'.
 3. Read the Event column.","1. Each add, each edit and each remove records exactly one entry.
 2. Fee events read 'Fee added', 'Fee updated', 'Fee removed'.
 3. Discount events read 'Discount added', 'Discount updated', 'Discount removed'.","S10-R2, S10-R4a, S10-R4b, S10-R4c",,
-"Verify the audit-log Details show Name, Amount (the set rate) and what it was applied to",History log,Functional,High,"1. A WO has (a) a whole-WO 10% fee named ""Env Fee"", (b) a labor-line $5.00 flat fee, (c) a part-line discount.","1. Open the 'Work Order Log' (⋮ menu → Audit Log).
+"Verify the audit-log Details show Name, Amount (the set rate) and what it was applied to",Audit log,Functional,High,"1. A WO has (a) a whole-WO 10% fee named ""Env Fee"", (b) a labor-line $5.00 flat fee, (c) a part-line discount.","1. Open the 'Work Order Log' (⋮ menu → Audit Log).
 2. Read the Details for a fee/discount entry.","1. Details show the fee/discount Name.
 2. Details show the Amount as the SET rate (a dollar amount like '$5.00' for a flat amount, or a percentage like '10.00%'), not the resolved total.
 3. Details show what it was applied to (the whole invoice, a labor line or a part).
 4. The Fee/Discount type is shown by the event label ('Fee added' / 'Discount added').","S10-R6a, S10-R6b, S10-R6c, S10-R6d",,
-Verify the Line column and saved-state icon on a fee/discount audit-log entry,History log,Functional,Medium,1. A WO has at least one whole-WO adjustment and one line-level adjustment logged.,"1. Open the 'Work Order Log'.
+Verify the Line column and saved-state icon on a fee/discount audit-log entry,Audit log,Functional,Medium,1. A WO has at least one whole-WO adjustment and one line-level adjustment logged.,"1. Open the 'Work Order Log'.
 2. Read the Line column and the saved-state icon for fee/discount entries.","1. The saved-state icon is empty for fee/discount entries.
 2. The Line column shows the target line for a line-level fee/discount and a dash for a whole-work-order one.","S10-R3, S10-R5",,
-Verify fee/discount audit-log entries stay visible when the fee/discount screens are hidden by the feature being off,History log — visibility,Functional,High,"1. A WO already has fee/discount audit-log entries.
+Verify fee/discount audit-log entries stay visible when the fee/discount screens are hidden by the feature being off,Audit log — visibility,Functional,High,"1. A WO already has fee/discount audit-log entries.
 2. The Fees & Discounts feature is then turned OFF for the org.","1. Turn the Fees & Discounts feature off.
 2. Open the 'Work Order Log' and look for the fee/discount entries recorded earlier.","1. All fee/discount controls are hidden.
 2. The fee/discount audit-log entries still show in the Work Order Log.",S10-R1,,
-Verify fee/discount audit-log entries stay visible when amounts are hidden by See Financial Data being off,History log — visibility,Functional,Medium,"1. A WO has fee/discount audit-log entries.
+Verify fee/discount audit-log entries stay visible when amounts are hidden by See Financial Data being off,Audit log — visibility,Functional,Medium,"1. A WO has fee/discount audit-log entries.
 2. A ZZAUTOTEST role is assigned to Tech with Work Orders: Create and Edit ON but See Financial Data OFF (exact-user-match).","1. As a role without See Financial Data, open the work order and the 'Work Order Log'.
 2. Look for the fee/discount entries.","1. Fee/discount dollar amounts are hidden on the normal screens (See Financial Data off).
 2. The fee/discount audit-log entries still show in the Work Order Log (the log shows the set rate, not a resolved total, so See Financial Data does not gate it).","S10-R1, S10-R6c, S13-R10",,
-Verify fee/discount audit-log entries are gated by Work Orders: Create and Edit (line audit log by Work Order Lines: Create and Edit),History log — permission,Functional,High,"1. A WO has fee/discount audit-log entries.
+Verify fee/discount audit-log entries are gated by Work Orders: Create and Edit (line audit log by Work Order Lines: Create and Edit),Audit log — permission,Functional,High,"1. A WO has fee/discount audit-log entries.
 2. A ZZAUTOTEST role is assigned to Tech WITHOUT Work Orders: Create and Edit (exact-user-match); for the line audit log, a role WITHOUT Work Order Lines: Create and Edit.","1. As a role with Work Orders: Create and Edit, open the 'Work Order Log' and confirm fee/discount entries show.
 2. As a role without it, confirm the work-order audit log is not shown.
 3. For an individual labor/part line audit log, confirm Work Order Lines: Create and Edit is required.","1. With Work Orders: Create and Edit, fee/discount entries show in the Work Order Log.
 2. Without it, the work-order audit log (including fee/discount entries) is not shown.
 3. An individual labor-line or part-line audit log needs Work Order Lines: Create and Edit.",S13-R10,,
-"Verify a Processing Fee is logged as a fee applied to the full invoice, with no 'updated' entry",History log — Processing Fee,Functional,Medium,1. A WO carries a Processing Fee (via auto-apply or customer default).,"1. Add and later remove a Processing Fee (via auto-apply / customer default).
+"Verify a Processing Fee is logged as a fee applied to the full invoice, with no 'updated' entry",Audit log — Processing Fee,Functional,Medium,1. A WO carries a Processing Fee (via auto-apply or customer default).,"1. Add and later remove a Processing Fee (via auto-apply / customer default).
 2. Open the 'Work Order Log' and read its entries.","1. The add logs 'Fee added' and the remove logs 'Fee removed' (type shown as Fee).
 2. Applied to shows the full invoice.
 3. There is no 'Fee updated' entry for a Processing Fee (it cannot be edited on the work order).","S8-R25, S8-R26, S10 (Processing Fee note)",,
