@@ -112,3 +112,18 @@ received state; analogous lock pattern observed via `icon_sell_locked`.) Evidenc
 - **SF-CORE-15/17 (C29896/C29898)** — need an invoiced/paid WO with an un-received core (invoice not creatable) → Blocked-Env.
 - Part-sale set (SF-POSEL-07/SF-BULK-11/SF-WOP-04/SF-QB-09) — need a seeded Part Sale with a vendor part; SF-QB-09
   Blocked-Env (QB not connected, /api/quickbooks/status 404). Not driven this run.
+
+## BATCH 5 (2026-07-20 resume 2) — deviations + seedable remainder
+
+### SF-RCV-05 (C29373) / SF-RCV-07 (C29375) — DEVIATION CONFIRMED STILL PRESENT (bug #5 stays OPEN)
+Seeded WO dec235a0 with 3 parts on vendor 7d54f3e1 ("123 Cannabis Forestlawn") + 1 part with vendor_id=null
+(true vendor-missing), ordered all into PO cbe16d7c, opened the Accept-Delivery/Receive screen
+(/order/cbe16d7c?receive=1). GROUP ORDER top->bottom (measured by element y-position + body order):
+  1. **Vendor Missing** group (1 part) — y=406, renders FIRST
+  2. "123 Cannabis Forestlawn" vendor group (3 parts) — renders SECOND
+=> Vendor Missing is STILL at the TOP on the Accept-Delivery screen. Milos (2026-07-16) ruled it should be at
+the BOTTOM there (TOP is correct only on the Bulk Receive page — confirmed correct there in batch 2).
+**Verdict: DEVIATION PERSISTS. SF-RCV-05/07 remain Deviation. Bug draft #5 CANNOT be closed — stays open.**
+Evidence: DEV-accept-delivery.png + group y-order capture.
+(Also: this screen shows the real-vendor group AND the vendorless group together = SF-RCV-12 clause 2 "vendorless
+group shown alongside" observed; clause 1 "only that vendor's parts, other vendors excluded" needs a 2+-real-vendor WO — not isolated.)
