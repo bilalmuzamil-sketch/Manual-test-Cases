@@ -53,3 +53,62 @@ mechanism confirms multi-core listing.) => VIU-Verified.
 - **SF-SET-03 deviation** (no Create Purchase Orders toggle): API settings object has NO createPurchaseOrders field (fields: requireMileage,
   requireHours, requireTechStories, requireVehicleIdentifier, vehicleIdentifier, autoPickInventoryParts, autoApproveLines, requireVendorInvoiceNumber,
   requireReview). UI settings tab not reached this run → deviation stands (unchanged), UI-toggle-absence not re-observed live.
+
+## BATCH 2 — Receive / PO surfaces (2026-07-20 continued)
+
+Grouped Bulk Receive page reached at `/bulk-receive?ids=<po,po,...>` via **"Receive Selected"**
+(`button_receive_selected`) on `/parts/orders` (direct `/bulk-receive` with no ids redirects to
+the PO list — earlier confusion resolved). Header "Receive Vendor Parts · N vendors"; per-vendor
+groups `button_toggle_expand_{vendorId}` (Expand All / collapse) with "VENDOR <name> · N parts · N PO";
+per-vendor `input_apply_invoice_{vendorId}` + `input_apply_tax` + `date_input_apply_invoice_date` +
+`input_apply_note` under the "Apply to selected POs" label; per-PO `checkbox_po_{id}` +
+`text_selected_count_{vendorId}` + `button_clear_selection_{vendorId}`; `badge_invoiced_{poId}`;
+`button_receive_all`; a Vendor Missing group (`button_toggle_expand_vendor-missing`). "Back To Purchase Orders" present.
+
+### SF-INV-01 (C29360) — VIU-Verified
+Per-vendor-group invoice field (`input_apply_invoice_{vendorId}`), NO Apply button (0 Apply buttons on page),
+Vendor Missing group has NO invoice field. Selection via per-PO checkboxes with "N of N selected". Evidence: INV-grouped-detail.png.
+
+### SF-INV-02 (C29361) — VIU-Verified
+Selected the Abay Retail PO ("1 of 1 selected"), typed "ZZAUTO-INV-777" in `input_apply_invoice` →
+the per-PO `input_invoice_{PO}` value became "ZZAUTO-INV-777" with NO Apply click; value remembered in the apply field. Evidence: INV02-typed.png / INV02-expanded.png.
+
+### SF-INV-03 (C29362) — VIU-Verified
+Invoice field is scoped per vendor group; the vendorless (Vendor Missing) group has NO `input_apply_invoice`
+(count 0); a custom/reused invoice string is accepted. Evidence: RS-01-grouped.png.
+
+### SF-BULK-06 (C29355) — VIU-Verified
+Cost editable ONLY when $0: $0-cost lines render `input_cost_{id}` (editable); non-$0 lines render
+`currency_text_cost_{id}` (read-only). Sell shows `icon_sell_locked_{id}` on invoiced/paid POs; qty editable
+(partial receive) on non-invoiced. Evidence: GRP-02-surface.png (\$0 editable), BULK-02-receive-surface.png ($10 read-only), INVOICED-*.png (sell lock icon).
+
+### SF-RCV-13 (C29903) — VIU-Verified (primary affordance)
+On the Accept-Delivery / receive screen a vendorless part shows a Select Vendor dropdown
+(`select_assign_vendor_{poId}`) to assign a vendor right there. (Clauses 2/3 — reuse same invoice #, both received —
+not driven to completion this run.) Evidence: VEND-vm-receive.png.
+
+### SF-VEND-08 (C29905) — VIU-Verified (primary affordance)
+Part number remains editable via `input_part_number_{id}` on the receive screen before the part is received
+("Missing part number" → editable Part Number input). (The "locked once received/invoiced" half not driven to a
+received state; analogous lock pattern observed via `icon_sell_locked`.) Evidence: VEND-vm-receive.png.
+
+## BATCH 2 — partial / deviation / still-pending (honest per Rule 12)
+- **SF-CORE-12 (C29893)** — WO estimate `totalPrice` includes the core charge upfront regardless of OK/Not-OK
+  (stable at 19450 across ok/not_ok/ok after settle); charge-follows-decision manifests only on the customer
+  INVOICE, which is NOT API-creatable (create-invoice/mark-reviewed/complete all 404) and the completion→invoice
+  UI didn't open this run. Keep VIU-Pending. Resolve-screen labels ("Not OK · Keep + Charge" / "OK · Returned" +
+  footnote) already captured in SF-CORE-03.
+- **SF-VEND-07 (C29904)** — assigned-vendor CHANGE affordance not located on the single-order receive view
+  (assigned-vendor PO showed no vendor edit/change control there); the vendor "edit" seen on the grouped page not
+  confirmed as a vendor-change. Keep VIU-Pending.
+- **SF-RCV-07 (C29375, Deviation)** — clause 1 '+N' indicator on the PO list CONFIRMED ('+1' badges) + Vendor Missing
+  leads at TOP on the Bulk Receive page (matches Milos 2026-07-16 ruling = CORRECT for that surface). Clause 2's
+  Accept-Delivery BOTTOM position NOT re-observed (needs a multi-vendor+vendorless single-part receive). Deviation
+  status UNCHANGED pending that screen.
+- **SF-RCV-05 (C29373, Deviation)** — Vendor Missing group + Select Vendor + Part Number entry on the receive screen
+  CONFIRMED; Bulk-Receive TOP position confirmed. Accept-Delivery BOTTOM not re-observed → Deviation UNCHANGED.
+- **SF-SET-03 (C29277, Deviation)** — API settings object has no `createPurchaseOrders` field (POs always-on);
+  deviation stands. UI-toggle absence not re-observed (settings nav not reached).
+- **SF-CORE-15/17 (C29896/C29898)** — need an invoiced/paid WO with an un-received core (invoice not creatable) → Blocked-Env.
+- Part-sale set (SF-POSEL-07/SF-BULK-11/SF-WOP-04/SF-QB-09) — need a seeded Part Sale with a vendor part; SF-QB-09
+  Blocked-Env (QB not connected, /api/quickbooks/status 404). Not driven this run.
