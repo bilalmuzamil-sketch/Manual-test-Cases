@@ -1,0 +1,125 @@
+[
+  {"case_id":26488,"section_id":3546,"title":"View History Logs ON: work order history and line history are visible (work orders only)","verdict":"UPDATE","fields_affected":["title","preconds","steps","expected"],
+   "current_excerpt":"With View History Logs on, the user can open the work order history and it lists change events ... History logs are for work orders only (work-order level and line level).",
+   "proposed_text":{
+     "title":"View Part History ON: the Part History icon is available on the inventory page (audit/story history now follow WO/WOL permissions)",
+     "custom_preconds":"<ol>\n<li>A user has a role with the 'View Part History' setting ON (under the Parts group) and Parts Department + Catalog and Inventory View ON.</li>\n<li>An inventory part with some history exists.</li>\n</ol>",
+     "custom_steps":"<ol>\n<li>Open Parts > Inventory and find a part.</li>\n<li>Look for the Part History icon (clock icon, tooltip 'Part History') next to the part and open it.</li>\n</ol>",
+     "custom_expected":"<p>With View Part History ON, the Part History icon is shown on the inventory page and opens the part's history.</p>\n<p>IMPORTANT — the toggle was repurposed by the 7/7 spec: 'View History Logs' was relabelled 'View Part History' and now controls ONLY inventory Part History. Work order and line AUDIT LOGS now follow Work Orders: Create & Edit; a line's STORY HISTORY follows Work Order Lines: View. So WO/line history is NO LONGER governed by this toggle. (Coverage note: the WO/line audit-log-under-WO-C&E and story-history-under-WOL-View behaviours should be covered by cases in the Work Orders / WO Lines sections, not here.)</p>\n<p>NOTE (confirm live): SV-8202 is OPEN — the build may still show the legacy 'View History Logs' toggle with the old behaviour until that fix ships.</p>"
+   },
+   "reason":"7/7 spec repurposed the setting: 'View History Logs'->'View Part History' controls only inventory Part History; WO/line audit log moved to WO Create & Edit and line story history to WOL View. The case still tests the OLD toggle-controls-WO/line-history model.",
+   "citation":"Spec change log 7/7; §1h; SV-7989 (audit=WO C&E, story=WOL View); SV-8202 (open). LABEL-BATCH.md.","confidence":"high"},
+
+  {"case_id":26489,"section_id":3546,"title":"View History Logs OFF: work order history and line history are hidden (work orders only)","verdict":"UPDATE","fields_affected":["title","preconds","steps","expected"],
+   "current_excerpt":"With View History Logs off, both the work order history and the line history are hidden.",
+   "proposed_text":{
+     "title":"View Part History OFF: the Part History icon is hidden on the inventory page",
+     "custom_preconds":"<ol>\n<li>A user has a role with the 'View Part History' setting OFF but Parts Department + Catalog and Inventory View ON.</li>\n<li>An inventory part exists.</li>\n</ol>",
+     "custom_steps":"<ol>\n<li>Open Parts > Inventory and find a part.</li>\n<li>Look for the Part History (clock) icon next to the part.</li>\n</ol>",
+     "custom_expected":"<p>With View Part History OFF, the Part History icon is hidden on the inventory page.</p>\n<p>This setting no longer controls work order or line history: WO/line audit log follows Work Orders: Create & Edit, and line story history follows Work Order Lines: View (7/7 spec). Part Sales and Purchase Orders have no history feature.</p>\n<p>NOTE (confirm live): SV-8202 is OPEN — the build may still show the legacy 'View History Logs' toggle until fixed.</p>"
+   },
+   "reason":"Same 7/7 repurpose as C26488 — the setting now governs only inventory Part History.",
+   "citation":"Spec change log 7/7; §1h; SV-7989; SV-8202 (open). LABEL-BATCH.md.","confidence":"high"},
+
+  {"case_id":26490,"section_id":3547,"title":"The Staff role dropdown groups roles into System Roles and Custom Roles","verdict":"OK"},
+  {"case_id":26491,"section_id":3547,"title":"The View Permissions button next to the role selector opens the Permission Summary","verdict":"OK"},
+  {"case_id":26492,"section_id":3547,"title":"Changing a user's role logs them out immediately","verdict":"OK"},
+  {"case_id":26493,"section_id":3547,"title":"If a role change fails, the user keeps their previous role","verdict":"OK"},
+  {"case_id":26494,"section_id":3547,"title":"A logged-in user is logged out immediately when their role changes","verdict":"OK"},
+
+  {"case_id":26495,"section_id":3548,"title":"Administrator: role permissions match the expected set","verdict":"UPDATE","fields_affected":["label"],
+   "current_excerpt":"...See Financial Data on, View and Manage AP/AR Data on, View History Logs on, View mode Full View.",
+   "proposed_text":"Label find-replace: 'View and Manage AP/AR Data' -> 'Manage Accounts Payable and Receivable'; 'View History Logs' -> 'View Part History' (confirm live per LABEL-BATCH.md). Admin permission set (all full, all toggles on, Full View) is correct.","reason":"Two stale toggle labels; permission set correct.","citation":"Spec 6/10 + 7/7; matrix Admin column. LABEL-BATCH.md.","confidence":"medium"},
+
+  {"case_id":26496,"section_id":3548,"title":"Service Manager: role permissions match the expected set","verdict":"UPDATE","fields_affected":["expected","label"],
+   "current_excerpt":"Work orders View/Create & Edit (no Delete); ... Invoicing & payments View/Create & Edit (no Delete); ... View and Manage AP/AR Data on ...",
+   "proposed_text":{
+     "custom_expected":"<p>The Service Manager permissions match the expected set: Work orders View/Create & Edit/Delete (Service Manager DOES have Work Orders Delete); Work order lines Create & Edit/Delete; Schedule full; Customers full; Part sales full; Catalog and Inventory full; Vendor and order management full; Invoicing & payments View/Create & Edit (no Delete — Service Manager cannot reverse); Reports on; Customer portal on; See Financial Data on; Manage Accounts Payable and Receivable on; Settings limited to App Settings and View/Manage Wages; View mode Full View.</p>"
+   },
+   "reason":"Current spec matrix gives Service Manager Work Orders = V/E/D, and SV-8297 (Sasha 2026-07-14) explicitly confirms the SM template + system role HAVE Work Orders Delete (reversing the obsolete SV-8093). The case wrongly says 'no Delete' on Work Orders. Plus the AP/AR label rename.",
+   "citation":"Spec matrix WO row (Svc Mgr = V/E/D); SV-8297 Sasha 2026-07-14 (supersedes SV-8093); spec 6/10 label. LABEL-BATCH.md.","confidence":"high"},
+
+  {"case_id":26497,"section_id":3548,"title":"Senior Service Advisor: role permissions match the expected set","verdict":"UPDATE","fields_affected":["label"],
+   "current_excerpt":"...See Financial Data on; View and Manage AP/AR Data on...","proposed_text":"Label find-replace 'View and Manage AP/AR Data' -> 'Manage Accounts Payable and Receivable' (confirm live). Permission set matches spec matrix (SrSA).","reason":"Stale toggle label; permission set correct.","citation":"Spec 6/10; matrix SrSA column. LABEL-BATCH.md.","confidence":"medium"},
+
+  {"case_id":26498,"section_id":3548,"title":"Service Advisor: role permissions match the expected set","verdict":"UPDATE","fields_affected":["label"],
+   "current_excerpt":"...See Financial Data on; View and Manage AP/AR Data OFF...","proposed_text":"Label find-replace (confirm live). Permission set matches spec matrix (Svc Advisor): WO V/E, WOL full, Customers V/E, Part Sales V/E, Invoicing full, Reports off, Customer Portal on, AP/AR off, Full View.","reason":"Stale toggle label; permission set correct.","citation":"Spec 6/10; matrix Svc Advisor column. LABEL-BATCH.md.","confidence":"medium"},
+
+  {"case_id":26499,"section_id":3548,"title":"Foreman: role permissions match the expected set","verdict":"UPDATE","fields_affected":["label"],
+   "current_excerpt":"...See Financial Data on; View and Manage AP/AR Data off...","proposed_text":"Label find-replace (confirm live). Permission set matches spec matrix (Foreman).","reason":"Stale toggle label; permission set correct.","citation":"Spec 6/10; matrix Foreman column. LABEL-BATCH.md.","confidence":"medium"},
+
+  {"case_id":26500,"section_id":3548,"title":"Technician: role permissions match the expected set","verdict":"OK","note":"Matches spec matrix (Tech): WO V, WOL V/E, Schedule V, Customers V, Pick Parts on, Tech View, everything else off. No stale label used."},
+
+  {"case_id":26501,"section_id":3548,"title":"Parts Manager: role permissions match the expected set","verdict":"UPDATE","fields_affected":["label"],
+   "current_excerpt":"...See Financial Data on; View and Manage AP/AR Data on; Settings limited to Parts, Finance and Data Import...","proposed_text":"Label find-replace (confirm live). Permission set matches spec matrix (Parts Mgr): WO V/E (no Delete), WOL V/E (no Delete), Customers full, Parts areas full, Invoicing full, Settings sub Parts/Finance/Data Import, Full View.","reason":"Stale toggle label; permission set correct.","citation":"Spec 6/10; matrix + sub-toggle table Parts Mgr. LABEL-BATCH.md.","confidence":"medium"},
+
+  {"case_id":26502,"section_id":3548,"title":"Parts Technician: role permissions match the expected set","verdict":"UPDATE","fields_affected":["label"],
+   "current_excerpt":"...See Financial Data on; Pick parts and Order parts on; View History Logs on; View mode Full View.","proposed_text":"Label find-replace 'View History Logs' -> 'View Part History' (confirm live). Permission set matches spec matrix (Parts Tech): WO V, WOL V (inherited), Customers V/E, Part Sales V/E, Catalog V/E, Vendor full, Invoicing V/E, Timesheets V, Pick+Order Parts on, Full View.","reason":"Stale toggle label; permission set correct.","citation":"Spec 7/7; matrix Parts Tech column. LABEL-BATCH.md.","confidence":"medium"},
+
+  {"case_id":26503,"section_id":3548,"title":"Office User: role permissions match the expected set","verdict":"UPDATE","fields_affected":["expected","label"],
+   "current_excerpt":"Work orders View only; Work order lines off; ... Part sales View only; Catalog and Inventory View only; Vendor and order management View only; Invoicing & payments View only; ... View and Manage AP/AR Data on ...",
+   "proposed_text":{
+     "custom_expected":"<p>The Office User permissions match the expected set per the 7/14 spec update: Work Orders = NONE (no Work Orders access — the Work Orders nav is hidden for Office); Part Sales = NONE; Invoicing & Payments = View/Create & Edit/Delete (BUT a hard-coded rule disables the Create Invoice button for Office on both Work Orders and Part Sales — Office can make payments/deposits/credits but cannot create invoices); Customers full (including Delete); Catalog and Inventory View only; Vendor and Order Management View only; Timesheets View/Create & Edit; Schedule View only; Reports on; Billing Portal on; See Financial Data on; Manage Accounts Payable and Receivable on; Settings on with App Settings, Integrations, Finance, Data Import and View/Manage Wages; View mode Full View. The Office User role is non-editable (lock icon, eye only).</p>\n<p>OPEN QUESTIONS to flag (do not assert a verdict): (1) the spec matrix lists Office Work Order Lines = View while Office Work Orders = none — a spec-internal contradiction (WOL View is supposed to inherit from WO View); confirm with PO. (2) HOW Office makes payments/deposits without being able to create invoices is still open with the PO (SV-7993 comment 73184 unanswered; SV-8345 closed deferring there) — verify the payment path live but treat the exact gating as PO-pending.</p>"
+   },
+   "reason":"The 7/14 spec update REDEFINED Office: Work Orders V->none, Part Sales V->none, Invoicing V->V/E/D (with the hard-coded no-Create-Invoice rule). The case still encodes the pre-7/14 Office (WO View, Part Sales View, Invoicing View). This is the single biggest behavioural drift in the recheck. Two spec-internal open items flagged, not silently resolved.",
+   "citation":"Spec change log 7/14 ('Updated Office Role definition') + matrix Office column + 'Office Users Cannot Create Invoices'; SV-7993 (open); SV-8345 (obsolete); spec 6/10 label. LABEL-BATCH.md.","confidence":"high"},
+
+  {"case_id":26504,"section_id":3548,"title":"Sales Representative: role permissions match the expected set","verdict":"UPDATE","fields_affected":["expected","label"],
+   "current_excerpt":"all add/edit/delete areas off; Reports on; See Financial Data on; View and Manage AP/AR Data on; View History Logs off; all Work orders sub-settings off; View mode Full View. Only the Reports area is reachable...",
+   "proposed_text":{
+     "custom_expected":"<p>The Sales Representative permissions match the expected set (updated 7/14, verified in SV-8061): Work Orders View; Work Order Lines View (inherited); Customers View + Create & Edit; Part Sales View; Schedule none; Catalog none; Vendor none; Invoicing none; Timesheets none; Reports on; See Financial Data on; Manage Accounts Payable and Receivable on; View Part History off; all Work Orders sub-settings off; View mode Full View. Sales Representative is NOT a Reports-only role.</p>\n<p>OPEN QUESTION to flag: the spec matrix gives Sales Rep Part Sales = View while its Parts Department page-access toggle is OFF — Part Sales is unreachable when Parts Department is OFF, so this is a spec-internal inconsistency; confirm with PO whether Sales Rep should have Parts Department ON.</p>"
+   },
+   "reason":"The 7/7-7/14 Sales Rep template update (change log '7/7 Sales Rep default template updated'; SV-8061 verified 2026-07-14) gives Sales Rep WO View, WOL View, Customers V/E, Part Sales View — NOT 'all areas off / Reports only'. The case is stale. Plus a spec-internal Part-Sales-vs-Parts-Dept inconsistency to flag.",
+   "citation":"Spec matrix Sales Rep column + change log 7/7; SV-8061 verified 2026-07-14; spec 6/10 + 7/7 labels. LABEL-BATCH.md.","confidence":"high"},
+
+  {"case_id":26505,"section_id":3548,"title":"Time Clock User: role permissions match the expected set","verdict":"UPDATE","fields_affected":["label"],
+   "current_excerpt":"...See Financial Data and View and Manage AP/AR Data all off.","proposed_text":"Label find-replace 'View and Manage AP/AR Data' -> 'Manage Accounts Payable and Receivable' (confirm live). Permission set correct: WO View, Schedule View, Timesheets View only; everything else off; non-editable; View Mode empty.","reason":"Stale toggle label; permission set correct.","citation":"Spec 6/10; matrix Time Clock column. LABEL-BATCH.md.","confidence":"medium"},
+
+  {"case_id":26506,"section_id":3548,"title":"Customer portal is on by default only for Service Advisor, Senior Service Advisor, Service Manager and Parts Manager (and Administrator)","verdict":"OK","note":"Matches spec toggle table + OQ6."},
+
+  {"case_id":26510,"section_id":3549,"title":"Legacy 'Admin / Administrator' users become 'Administrator' after migration","verdict":"OK"},
+  {"case_id":26511,"section_id":3549,"title":"Legacy 'Office' users become 'Office User' after migration","verdict":"OK"},
+  {"case_id":26512,"section_id":3549,"title":"Legacy 'Time Clock' users become 'Time Clock User' after migration","verdict":"OK"},
+  {"case_id":26513,"section_id":3549,"title":"Legacy 'Service Manager' users become 'Service Manager' after migration","verdict":"OK"},
+  {"case_id":26514,"section_id":3549,"title":"Legacy 'Senior Service Advisor' users become 'Senior Service Advisor' after migration","verdict":"OK"},
+  {"case_id":26515,"section_id":3549,"title":"Legacy 'Service Advisor' users become 'Service Advisor' after migration","verdict":"OK"},
+  {"case_id":26516,"section_id":3549,"title":"Legacy 'Foreman' users become 'Foreman' after migration","verdict":"OK"},
+  {"case_id":26517,"section_id":3549,"title":"Legacy 'Technician' users become 'Technician' after migration","verdict":"OK"},
+  {"case_id":26518,"section_id":3549,"title":"Legacy 'Parts Manager' users become 'Parts Manager' after migration","verdict":"OK"},
+  {"case_id":26519,"section_id":3549,"title":"Legacy 'Parts Tech / Parts Technician' users become 'Parts Technician' after migration","verdict":"OK"},
+  {"case_id":26520,"section_id":3549,"title":"Legacy 'Sales Representative' users become 'Sales Representative' after migration","verdict":"OK"},
+  {"case_id":26525,"section_id":3549,"title":"Changing a user's role logs that user out and forces them to log in again","verdict":"OK"},
+  {"case_id":27731,"section_id":3549,"title":"Legacy 'Owner' users become 'Administrator' after migration (Owner merged into Admin)","verdict":"OK"},
+
+  {"case_id":26526,"section_id":3550,"title":"Whether a technician can be scheduled depends on their department, not their role","verdict":"OK"},
+  {"case_id":26527,"section_id":3550,"title":"Clocking in on a work order line depends on the per-staff Time Clock setting","verdict":"OK"},
+  {"case_id":26528,"section_id":3550,"title":"The universal clock in / out is available to any active staff member, whatever their role","verdict":"OK"},
+
+  {"case_id":26529,"section_id":3551,"title":"QuickBooks settings appear under Integrations when the Integrations sub-toggle is ON","verdict":"OK","note":"Already correctly reflects ruling #17 (QB under Integrations; relocation cancelled). Section title 'QuickBooks Relocation' (3551) is itself stale — suggest renaming the section, not the case."},
+  {"case_id":26530,"section_id":3551,"title":"QuickBooks settings are hidden when the Integrations sub-toggle is OFF","verdict":"OK","note":"Correct per ruling #17."},
+  {"case_id":26531,"section_id":3551,"title":"The Integrations settings section is present and hosts QuickBooks, IBS and Open API","verdict":"OK","note":"Correct per ruling #17 (SV-8157; SV-7493 relocation obsolete)."},
+
+  {"case_id":26532,"section_id":3552,"title":"Create success message wording","verdict":"OK"},
+  {"case_id":26533,"section_id":3552,"title":"Update success message wording","verdict":"OK"},
+  {"case_id":26534,"section_id":3552,"title":"Deleting a custom role with 0 users shows a confirmation dialog","verdict":"OK"},
+  {"case_id":26535,"section_id":3552,"title":"Deleting a custom role that has users is blocked","verdict":"OK"},
+  {"case_id":26536,"section_id":3552,"title":"Turning See Financial Data on shows a confirmation dialog","verdict":"OK"},
+  {"case_id":26537,"section_id":3552,"title":"Creating a role with no name is blocked with a required-field error","verdict":"OK"},
+  {"case_id":26538,"section_id":3552,"title":"Creating a role with the same permissions as an existing role shows a 'similar role' warning","verdict":"OK","note":"Self-notes the build has no hard duplicate-NAME block — ties to the C26339 open question on name uniqueness."},
+  {"case_id":26539,"section_id":3552,"title":"Reassigning a staff member's role updates the row with no success message (billing note in the window)","verdict":"OK"},
+
+  {"case_id":26540,"section_id":3553,"title":"A role with all permissions off blocks the user from every feature","verdict":"OK"},
+  {"case_id":26541,"section_id":3553,"title":"A role with all permissions on behaves like Administrator but is still a custom role","verdict":"OK"},
+  {"case_id":26542,"section_id":3553,"title":"A system role cannot be deleted","verdict":"OK"},
+  {"case_id":26543,"section_id":3553,"title":"Only Office User and Time Clock User are non-editable; every other system role (including Administrator) is editable","verdict":"OK","note":"Matches spec Concepts (Office + Time Clock non-editable; Admin editable but cannot lose admin-page access)."},
+  {"case_id":26544,"section_id":3553,"title":"Being unable to open Customers does not stop a user from picking a customer when creating a work order","verdict":"OK","note":"Matches SV-8002 / OQ10 (data access separate from feature access)."},
+  {"case_id":26545,"section_id":3553,"title":"A Page Access toggle that is off overrides the add/edit/delete boxes inside it","verdict":"OK"},
+  {"case_id":26548,"section_id":3553,"title":"View off with Create & Edit on is prevented by the tick-cascade","verdict":"OK"},
+
+  {"case_id":26549,"section_id":3553,"title":"AP/AR OFF hides the sensitive customer fields on both the Edit Customer window and the customer overview","verdict":"UPDATE","fields_affected":["title","label"],
+   "current_excerpt":"...View and Manage AP/AR Data OFF ... hidden on the Edit Customer window. They should also be hidden on the customer overview panel — confirm this live...",
+   "proposed_text":"Label find-replace 'View and Manage AP/AR Data' -> 'Manage Accounts Payable and Receivable' throughout (confirm live). Behaviour matches spec §5b + §1d (7 fields hidden on Edit Customer + Customer Overview panel when Manage AP/AR OFF). SV-8104 (overview-panel leak) was closed OBSOLETE, so the overview-panel hiding is expected.","reason":"Stale toggle label; behaviour correct.","citation":"Spec 6/10; §5b/§1d; SV-8104 (obsolete). LABEL-BATCH.md.","confidence":"medium"},
+
+  {"case_id":26550,"section_id":3553,"title":"The last Administrator cannot be left with zero users","verdict":"OK","note":"Product-rule check; self-hedges 'raise as a finding if no such rule'. Relates to open SV-8332 ('Unable to Change Administrator to Non-Administrator Despite Another Administrator Existing') + spec OQ9 — leave as-is, verify live."},
+  {"case_id":26551,"section_id":3553,"title":"Universal clock in/out works even for a user whose role has (almost) no permissions","verdict":"OK"}
+]
