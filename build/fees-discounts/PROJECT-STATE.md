@@ -5,7 +5,16 @@
 > re-discovery.
 > **Canonical spec (Confluence):** https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/622297094/Fees+Discounts+V1
 > (Atlassian-SSO login-walled — reference pointer only; content must be exported/pasted to ingest, do NOT fetch the URL.)
-> **Last updated:** 2026-07-20 (§0.0g: the **5th section rename is DONE** —
+> **Last updated:** 2026-07-20 (§0.0h: **Chris Ward's V1_3 answers INGESTED** —
+> Q1=B [the §5-R15 note shows below EVERY Taxable control: WO + Part Sale Add/Edit +
+> the admin fee-template dialog, for every kind; no separate Processing-Fee window]
+> and Q2=A [SFD gate observable only at the admin template dialog via a Manage Finance
+> Settings-without-See-Financial-Data user]. Resolves spec-diff §H a/b (latest-wins).
+> Consequence: FD-WO-016/FD-PROC-004 scope stands; TWO new surfaces (admin template
+> dialog + Part Sale dialog) now need an authorized add/update pass + live VIU.
+> INGESTION ONLY — no case edits, no TestRail writes; tally unchanged 183. See §0.0h +
+> `chris-answers-v1_3-2026-07-20/answers-ingested.md`.)
+> — prior §0.0g: the **5th section rename is DONE** —
 > "History log — edit entry" (3961) → "Audit log — edit entry", user-authorized
 > 2026-07-20, update_section 200 + re-GET MATCH, mirrors + deliverables regenerated;
 > **the section-rename thread is now fully CLOSED 5/5**)
@@ -74,12 +83,21 @@
 **Spec V1_3 is APPLIED + PUSHED TO TESTRAIL (2026-07-17, §0.0e, commit 90e786e), on
 top of Chris Ward's Round-2 answers (applied + pushed 2026-07-14, §0.0c).** The
 project is not PO-blocked. The remaining open items are:
-1. **SEND the Chris Ward V1_3 question sheet — the sheet is PRODUCED + READY
-   (2026-07-20, §0.0f):** `PO-Questions-Chris-V1_3_2026-07-17.xlsx`/`.md` (2
-   questions from spec-diff §H: (a) note placement — Processing-Fee window vs every
-   Taxable surface incl. the plain template dialog; (b) admin dialog as the only
-   independently-observable SFD-gate surface — expected?). Rule-7 layman format,
-   Round-2 mirror; the USER sends it. Only the SEND remains.
+1. ~~SEND the Chris Ward V1_3 question sheet~~ **ANSWERED 2026-07-20 (§0.0h):**
+   Chris returned both answers (Google Sheet `1gW_Mdy...`, ingested to
+   `chris-answers-v1_3-2026-07-20/answers-ingested.md`). **Q1 = B** (the §5-R15
+   tax-jurisdiction note appears below **EVERY** Taxable control — WO Add/Edit + Part
+   Sale Add/Edit + the admin fee-template dialog, for every kind Fee/Discount/Processing
+   Fee; there is **no** separate Processing-Fee window — Processing Fee is a *kind*
+   inside the template window). **Q2 = A** (SFD gate observable only at the admin
+   fee-template dialog; the exact negative user = **Manage Finance Settings [Settings →
+   Finance] WITHOUT See Financial Data**). Resolves spec-diff §H a/b (latest-wins).
+   **Consequences (see answers-ingested.md §2-3):** FD-WO-016 (C29441) + FD-PROC-004
+   (C28522) scope stands (notes-refinement only); **two NEW surfaces now need coverage
+   — the admin Fee/Discount template dialog note (S7-R12f) + the Part Sale Add/Edit
+   dialog note** → needs an authorized `add_case`/`update_case` pass AND live VIU
+   (admin-template-dialog note + the Manage-Finance-Settings-no-SFD negative + the
+   Part Sale dialog note) before any status. Tally unchanged 135/15/12/20/1 = 183.
 2. ~~OPTIONAL TestRail section renames~~ **DONE — FULLY CLOSED 5/5 (2026-07-20,
    §0.0f + §0.0g):** the 4 "History log*" sections (3957–3960) renamed to "Audit
    log*" (user-authorized 2026-07-17 "Rename"; 4/4 update_section 200 + re-GET
@@ -103,7 +121,35 @@ This section is the complete snapshot: current tally, the applied Round-2 action
 everything else open, and the ordered resume checklist. The rest of this doc holds the
 standing detail. **NO TestRail catch-up is outstanding** — all authored wording is live.
 
-### 0.0g 5TH SECTION RENAME DONE — SECTION-RENAME THREAD CLOSED 5/5 — 2026-07-20 (NEWEST event)
+### 0.0h CHRIS V1_3 ANSWERS INGESTED — 2026-07-20 (NEWEST event)
+
+- **Source:** Google Sheet `1gW_Mdy-m9Gv75N0xbwjaWJwLlKf_kMWv` (publicly readable;
+  raw export saved `chris-answers-v1_3-2026-07-20/chris-answers-raw.xlsx`/`.csv`).
+  Single tab, byte-identical to the sent `PO-Questions-Chris-V1_3_2026-07-17` sheet
+  with the two "Your answer" boxes filled. No newer/other content.
+- **Q1 = B** — the §5-R15 tax-jurisdiction note appears below **every** Taxable
+  control: WO Add/Edit dialog + **Part Sale Add/Edit dialog** + the **admin
+  fee-template dialog**, for every kind (Fee/Discount/Processing Fee). **No separate
+  "Processing-Fee window"** — Processing Fee is a *kind* inside the template window.
+  → **resolves spec-diff §H(a)** (latest-wins: "below every Taxable control" is literal).
+- **Q2 = A** — SFD gate observable only at the admin fee-template dialog. Exact
+  negative user = **Manage Finance Settings (Settings → Finance) WITHOUT See Financial
+  Data** (sees the Taxable toggle, not the note). → **confirms + extends spec-diff §H(b)**.
+- **Consequence map (full detail in `chris-answers-v1_3-2026-07-20/answers-ingested.md`):**
+  - **FD-WO-016 (C29441)** — scope stands (Deviation); notes/expected refinement only
+    (point the SFD-negative to the admin fee-template dialog + name the
+    Manage-Finance-Settings-no-SFD user). No status change.
+  - **FD-PROC-004 (C28522)** — scope stands (Blocked-NotBuilt); notes refinement only
+    (Processing-Fee-is-a-kind clarification). No status change.
+  - **NEW coverage needed (Q1=B):** admin Fee/Discount template dialog note (S7-R12f,
+    Template-admin area) + Part Sale Add/Edit dialog note — each a new case OR a fold.
+- **Classification:** pure bookkeeping = this ingestion + state/CLAUDE.md updates;
+  **needs authorized `update_case`/`add_case` pass** = the two refinements + the two
+  new surfaces; **needs LIVE VIU (Rules 12/13)** = admin-template-dialog note +
+  Manage-Finance-Settings-no-SFD negative + Part Sale dialog note (none observed yet).
+- **NO case edits / NO TestRail writes in this task.** Tally UNCHANGED 135/15/12/20/1 = 183.
+
+### 0.0g 5TH SECTION RENAME DONE — SECTION-RENAME THREAD CLOSED 5/5 — 2026-07-20
 
 - **TestRail (user-authorized 2026-07-20):** section **3961 "History log — edit
   entry" → "Audit log — edit entry"** via `update_section` (name only; parent 3894 /

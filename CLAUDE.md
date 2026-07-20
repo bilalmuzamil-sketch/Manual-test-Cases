@@ -126,9 +126,19 @@ process(es) to run before proceeding.
    question sheet PRODUCED + READY TO SEND
    (PO-Questions-Chris-V1_3_2026-07-17.xlsx/.md, Round-2 format 1:1, Rule-7
    layman).**
+   **CHRIS V1_3 ANSWERS INGESTED 2026-07-20** (`chris-answers-v1_3-2026-07-20/answers-ingested.md`):
+   **Q1=B** — the §5-R15 tax-jurisdiction note shows below EVERY Taxable control (WO +
+   Part Sale Add/Edit + admin fee-template dialog, every kind; no separate
+   Processing-Fee window); **Q2=A** — SFD gate observable only at the admin template
+   dialog via a Manage-Finance-Settings-without-See-Financial-Data user. Resolves
+   spec-diff §H a/b (latest-wins). Consequence: FD-WO-016 (C29441)/FD-PROC-004 (C28522)
+   scope stands; TWO new surfaces (admin template dialog note S7-R12f + Part Sale dialog
+   note) now need an authorized add/update pass + live VIU. INGESTION ONLY — tally
+   unchanged.
    Final tally: **135 VIU-Verified / 15 VIU-Deviation / 12 Blocked-NotBuilt / 20
    Blocked-Env / 1 VIU-Pending (FD-PART-005) = 183.** No longer PO-blocked; **WAITING
-   ON: SENDING the produced Chris V1_3 question sheet (ready 2026-07-20) + the
+   ON: the authorized add/update pass + live VIU for the two new §5-R15 surfaces (admin
+   template dialog + Part Sale dialog, from Chris Q1=B) + the
    FD-CUST-016/FD-VAL-007 DUPLICATE-PAIR QA-lead
    keep/retire ruling + filing the ready bug drafts (TICKETS 2/3/6/7/8/9/10/11;
    TICKET 1 on hold, 4 & 5 dropped, FDBUG-15 dropped) + the env/VIU backlog.**
