@@ -40,3 +40,19 @@
 | 3960 | History log — Processing Fee | Audit log — Processing Fee | 200 | re-GET 200 MATCH | 2026-07-20 08:16:20Z |
 
 **Local mirrors updated same run:** `testrail-id-map.csv` section names (7 rows: FD-HIST-001..007); `cases/group-B-customer-admin-finance.json` `area` fields (7 cases, 1:1 with live sections); deliverables regenerated (`gen_import.py` → testrail-import CSV/XLSX; `gen_blockers.py` → Blockers Tracker). FD-HIST-008's section/area ("History log — edit entry") intentionally unchanged.
+
+---
+
+## Section rename — 5th section "History log — edit entry" → "Audit log — edit entry" (2026-07-20)
+
+- **Run:** 2026-07-20 09:19:34Z (LIVE)
+- **Authorization:** explicit user authorization 2026-07-20 for the 5th (follow-up) section rename — the one flagged "NOT in the authorized set — left untouched (follow-up candidate)" in the 2026-07-20 4-section pass above.
+- **Scope:** `update_section` (name field only) on EXACTLY section 3961, project 1 / suite 1, parent 3894 "Fees & Discounts (VIU-PENDING)". GET before-snapshot → update_section → re-GET diff-confirm. No cases, runs, results, or other sections touched. All other section fields preserved (parent_id 3894, display_order 774, description null, depth 1 — unchanged before/after).
+
+**Summary:** 1 section — 1 renamed, 0 failed. Section-rename thread now fully closed (5/5).
+
+| Section ID | Before | After | Update HTTP | Verify | Timestamp (UTC) |
+|---|---|---|---|---|---|
+| 3961 | History log — edit entry | Audit log — edit entry | 200 | re-GET 200 MATCH | 2026-07-20 09:19:34Z |
+
+**Local mirrors updated same run:** `testrail-id-map.csv` section name (1 row: FD-HIST-008); `cases/group-B-customer-admin-finance.json` `area` field (1 case: FD-HIST-008); deliverables regenerated (`gen_import.py` → testrail-import CSV/XLSX; `gen_blockers.py` → Blockers Tracker).

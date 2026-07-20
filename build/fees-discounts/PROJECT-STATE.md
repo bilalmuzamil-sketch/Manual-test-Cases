@@ -5,7 +5,11 @@
 > re-discovery.
 > **Canonical spec (Confluence):** https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/622297094/Fees+Discounts+V1
 > (Atlassian-SSO login-walled — reference pointer only; content must be exported/pasted to ingest, do NOT fetch the URL.)
-> **Last updated:** 2026-07-20 (§0.0f: the 4 **"History log*"→"Audit log*" TestRail
+> **Last updated:** 2026-07-20 (§0.0g: the **5th section rename is DONE** —
+> "History log — edit entry" (3961) → "Audit log — edit entry", user-authorized
+> 2026-07-20, update_section 200 + re-GET MATCH, mirrors + deliverables regenerated;
+> **the section-rename thread is now fully CLOSED 5/5**)
+> — same-day §0.0f: the 4 **"History log*"→"Audit log*" TestRail
 > section renames are DONE** (user-authorized 2026-07-17 "Rename"; sections 3957–3960,
 > 4/4 update_section 200 + re-GET MATCH; audit appended to
 > `spec-v3-2026-07-17/testrail-update-log.md`; local mirrors + deliverables
@@ -76,13 +80,14 @@ project is not PO-blocked. The remaining open items are:
    Taxable surface incl. the plain template dialog; (b) admin dialog as the only
    independently-observable SFD-gate surface — expected?). Rule-7 layman format,
    Round-2 mirror; the USER sends it. Only the SEND remains.
-2. ~~OPTIONAL TestRail section renames~~ **DONE 2026-07-20 (§0.0f):** the 4
-   "History log*" sections (3957–3960) renamed to "Audit log*" (user-authorized
-   2026-07-17 "Rename"; 4/4 update_section 200 + re-GET MATCH; audit in
-   `spec-v3-2026-07-17/testrail-update-log.md`; id-map/case-JSON/import/Tracker
-   refreshed). NOTE: a 5th live section "History log — edit entry" (3961) was NOT in
-   the authorized set and is left as-is — optional follow-up if the user wants it
-   aligned too.
+2. ~~OPTIONAL TestRail section renames~~ **DONE — FULLY CLOSED 5/5 (2026-07-20,
+   §0.0f + §0.0g):** the 4 "History log*" sections (3957–3960) renamed to "Audit
+   log*" (user-authorized 2026-07-17 "Rename"; 4/4 update_section 200 + re-GET
+   MATCH) AND the 5th section "History log — edit entry" (3961) → "Audit log —
+   edit entry" (user-authorized 2026-07-20; update_section 200 + re-GET MATCH).
+   Audit in `spec-v3-2026-07-17/testrail-update-log.md`;
+   id-map/case-JSON/import/Tracker refreshed both passes. Nothing left in this
+   thread.
 3. **QA-lead ruling on the FD-CUST-016 / FD-VAL-007 DUPLICATE PAIR** (keep one / retire
    one — snapshotted, NOT deleted; see §0.-1).
 4. **File the ready bug drafts** (TICKETS 2/3/6/7/8/9/10/11) via Atlassian — no Atlassian
@@ -98,7 +103,22 @@ This section is the complete snapshot: current tally, the applied Round-2 action
 everything else open, and the ordered resume checklist. The rest of this doc holds the
 standing detail. **NO TestRail catch-up is outstanding** — all authored wording is live.
 
-### 0.0f SECTION RENAMES DONE + CHRIS V1_3 QUESTION SHEET PRODUCED — 2026-07-20 (NEWEST event)
+### 0.0g 5TH SECTION RENAME DONE — SECTION-RENAME THREAD CLOSED 5/5 — 2026-07-20 (NEWEST event)
+
+- **TestRail (user-authorized 2026-07-20):** section **3961 "History log — edit
+  entry" → "Audit log — edit entry"** via `update_section` (name only; parent 3894 /
+  display_order 774 / description null preserved). **Update 200 + re-GET MATCH**
+  (2026-07-20 09:19:34Z); before-snapshot GET confirmed the prior name. ONLY this
+  section touched. Audit appended to `spec-v3-2026-07-17/testrail-update-log.md`.
+- **Local mirrors:** `testrail-id-map.csv` section column (1 row FD-HIST-008,
+  C28567 preserved) + `cases/group-B-customer-admin-finance.json` `area` (FD-HIST-008
+  → "Audit log — edit entry"). **Deliverables regenerated:** `gen_import.py` (import
+  CSV/XLSX, 183 rows, VIU/flag-word 0/0) + `gen_blockers.py` (Tracker md/xlsx).
+  **Tally UNCHANGED 135/15/12/20/1 = 183.**
+- **The "History log*"→"Audit log*" section-rename thread is now FULLY CLOSED (5/5)**
+  — all live F&D audit-log sections under parent 3894 carry the V1_3 terminology.
+
+### 0.0f SECTION RENAMES DONE + CHRIS V1_3 QUESTION SHEET PRODUCED — 2026-07-20
 
 - **TestRail section renames (user-authorized 2026-07-17 "Rename"):** the 4 F&D
   sections under parent 3894 renamed via `update_section` — 3957 "History log"→"Audit
@@ -106,12 +126,12 @@ standing detail. **NO TestRail catch-up is outstanding** — all authored wordin
   permission"→"Audit log — permission", 3960 "History log — Processing Fee"→"Audit
   log — Processing Fee". **4/4 update 200 + re-GET MATCH** (2026-07-20 08:16Z); audit
   appended to `spec-v3-2026-07-17/testrail-update-log.md`. ONLY these 4 touched. A
-  5th live section **"History log — edit entry" (3961)** exists but was NOT in the
-  authorized set → left untouched (optional follow-up).
+  5th live section **"History log — edit entry" (3961)** existed but was NOT in the
+  2026-07-17 authorized set → left untouched then. **(DONE 2026-07-20 — see §0.0g.)**
 - **Local mirrors updated:** `testrail-id-map.csv` section column (7 rows
   FD-HIST-001..007, CRLF + all C-ids preserved) +
   `cases/group-B-customer-admin-finance.json` `area` fields (7 cases, 1:1 with the
-  live sections; FD-HIST-008 stays "History log — edit entry"). **Deliverables
+  live sections; FD-HIST-008 stayed "History log — edit entry" until §0.0g). **Deliverables
   regenerated:** `gen_import.py` (import CSV/XLSX, 183 rows, VIU/flag-word-free 0/0)
   + `gen_blockers.py` (Tracker md/xlsx). **Tally UNCHANGED 135/15/12/20/1 = 183.**
 - **Chris Ward V1_3 question sheet PRODUCED (ready to send):**

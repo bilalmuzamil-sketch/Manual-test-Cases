@@ -118,10 +118,11 @@ process(es) to run before proceeding.
    notes-only]; 11 update_case pushed 11/11 200 + re-GET MATCH, audit-logged in
    spec-v3-2026-07-17/testrail-update-log.md, commit 90e786e; requirements.md §17 =
    V1_3 baseline; TICKET 3 reworded to audit-log; tally unchanged). DONE 2026-07-20
-   (§0.0f): the 4 "History log*"→"Audit log*" section renames EXECUTED
-   (user-authorized; sections 3957–3960, 4/4 update_section 200 + re-GET MATCH,
-   audit-logged; mirrors + import/Tracker regenerated; 5th section "History log —
-   edit entry" 3961 NOT in the authorized set — left as-is) + the Chris V1_3
+   (§0.0f/§0.0g): ALL 5 "History log*"→"Audit log*" section renames EXECUTED —
+   thread CLOSED 5/5 (user-authorized; sections 3957–3960 4/4 + 5th section
+   "History log — edit entry" 3961 → "Audit log — edit entry" [authorized
+   2026-07-20], all update_section 200 + re-GET MATCH, audit-logged; mirrors +
+   import/Tracker regenerated both passes) + the Chris V1_3
    question sheet PRODUCED + READY TO SEND
    (PO-Questions-Chris-V1_3_2026-07-17.xlsx/.md, Round-2 format 1:1, Rule-7
    layman).**
