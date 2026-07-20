@@ -1292,3 +1292,103 @@ Full-population re-audit of the V2.6 apply pass:
 - **One defect found & fixed (deliverable text only, not TestRail):** `gen_blockers.py` hardcoded "(all 159 cases)" in the Blockers Tracker header — made dynamic (now "all 187 cases") and the Tracker md/xlsx regenerated. Commit: "Simple Flow V2.6 apply: audit corrections".
 
 **Verdict: CLEAN** (after the one deliverable-header fix).
+
+
+---
+
+## Retirement executed — user ruling 2026-07-17, delete_case run 2026-07-20
+
+**Authorization:** the user's explicit 2026-07-17 keep-vs-retire ruling: **"Retire"** for the 3 spec-`_4` Δ8 candidates (the invoice-gate core-resolve module they tested was removed from the spec; SF-CORE-09's part-sale-vs-service guardrail sentence was deleted / Story 18 silent). Executed 2026-07-20.
+
+Method per case: final before-snapshot (GET get_case, HTTP 200, raw JSON retained in `retire-snapshots-2026-07-17/before-C<id>.json`) → `POST delete_case/<id>` → HTTP 200 → verification re-GET → **HTTP 400 "Field :case_id is not a valid test case."** = confirmed gone. NOTHING else deleted; neighbor spot-checks C29315 / C29320 / C29909 still HTTP 200; run 325 (Ayesha's) untouched by us — no results written, run still active (get_run 325 HTTP 200).
+
+| SF ID | TestRail | delete_case | Verify re-GET | Snapshot |
+|---|---|---|---|---|
+| SF-CORE-05 | C29317 | HTTP 200 | HTTP 400 (gone) | retire-snapshots-2026-07-17/before-C29317.json |
+| SF-CORE-06 | C29318 | HTTP 200 | HTTP 400 (gone) | retire-snapshots-2026-07-17/before-C29318.json |
+| SF-CORE-09 | C29321 | HTTP 200 | HTTP 400 (gone) | retire-snapshots-2026-07-17/before-C29321.json |
+
+Local bookkeeping: the 3 case bodies are KEPT in `cases/group-A-settings-completion.json` with `viu_status` = "Retired — user ruling 2026-07-17, spec _4 Δ8 removed the module" + a RETIRED note (former C-ids recorded); the 3 rows were removed from `testrail-id-map.csv` (the cases no longer exist in TestRail; mapping preserved here + in the case notes); all generators exclude Retired cases. **Active suite = 184** (187 authored − 3 retired). New tally: VIU-Verified 130 / VIU-Pending 22 / Blocked-Env 24 / awaiting-Milos 5 / Deviation 3.
+
+### Final before-snapshots (as retrieved immediately before deletion)
+
+#### SF-CORE-05 — C29317
+**Title:** Verify resolving cores at the Create Invoice gate routes to receive the cored line then lets invoicing proceed
+**Section:** 4067 | **Type:** 6 | **Priority:** 3 | **updated_on (pre-delete):** 1784047990
+**Preconditions:**
+```
+<ol>
+<li>Signed in as Admin.</li>
+<li>A completed (optional-invoice) work order has an unresolved special-order core.</li>
+</ol>
+```
+**Steps:**
+```
+<ol>
+<li>Click Create Invoice.</li>
+<li>In the resolve module, route to receive the cored line (core-only partial receive).</li>
+<li>Resolve each core Ok / Not OK.</li>
+<li>Continue to invoice.</li>
+</ol>
+```
+**Expected:**
+```
+<ol>
+<li>The Create Invoice gate opens a resolve module for the unresolved cores.</li>
+<li>It routes to receive the cored line(s) (core-only partial receive supported).</li>
+<li>After resolving Ok/Not OK the invoice proceeds.</li>
+<li>Because a waiting core cannot be skipped, the core line must be received before completion; receiving it settles the core so invoicing can proceed.</li>
+</ol>
+```
+
+#### SF-CORE-06 — C29318
+**Title:** Verify cancelling the invoice-gate core resolution leaves the WO completed, un-invoiced and cores-pending
+**Section:** 4067 | **Type:** 6 | **Priority:** 2 | **updated_on (pre-delete):** 1784047991
+**Preconditions:**
+```
+<ol>
+<li>Signed in as Admin.</li>
+<li>A completed work order has an unresolved special-order core and you are in the invoice-gate resolve module.</li>
+</ol>
+```
+**Steps:**
+```
+<ol>
+<li>Cancel the resolve module.</li>
+<li>Inspect the work order and invoice state.</li>
+</ol>
+```
+**Expected:**
+```
+<ol>
+<li>The work order remains Completed.</li>
+<li>It remains un-invoiced.</li>
+<li>Cores remain pending.</li>
+<li>Note: because the core cannot be skipped at completion, this cancel path applies after completion at the Create Invoice gate; the core stays pending and the work order stays un-invoiced until it is received and resolved.</li>
+</ol>
+```
+
+#### SF-CORE-09 — C29321
+**Title:** Verify part-sale work orders auto-resolve cores at receive while service work orders require manual Ok/Not OK
+**Section:** 4069 | **Type:** 6 | **Priority:** 2 | **updated_on (pre-delete):** 1783937751
+**Preconditions:**
+```
+<ol>
+<li>Signed in as Admin.</li>
+<li>A part-sale work order and a service work order, each with a cored part, exist.</li>
+</ol>
+```
+**Steps:**
+```
+<ol>
+<li>Receive the cored part on the part-sale work order and check core status.</li>
+<li>Receive the cored part on the service work order and check core status.</li>
+</ol>
+```
+**Expected:**
+```
+<ol>
+<li>On the part-sale WO the core auto-resolves at receive.</li>
+<li>On the service WO the core requires manual Ok / Not OK.</li>
+</ol>
+```

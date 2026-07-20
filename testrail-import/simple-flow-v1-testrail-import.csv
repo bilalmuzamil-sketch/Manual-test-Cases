@@ -269,20 +269,6 @@ Verify the 'Cores pending' indication reflects only undecided special-order core
 2. A completed (optional-invoice) work order has an un-received special-order core.","1. With the core still undecided (no OK / Not OK yet), open the work order's invoice / Finance view and look for a cores indication.
 2. Decide the core (OK or Not OK) and check again.","1. While the core is undecided, a 'Cores pending' indication shows and invoice creation is blocked.
 2. Once every core is decided (OK or Not OK), the 'Cores pending' indication clears and invoicing is no longer blocked — even though the core part has not been received yet.",SV-8353 (S18 C-R4),,
-Verify resolving cores at the Create Invoice gate routes to receive the cored line then lets invoicing proceed,Core parts — Invoice gate,Functional,High,"1. Signed in as Admin.
-2. A completed (optional-invoice) work order has an unresolved special-order core.","1. Click Create Invoice.
-2. In the resolve module, route to receive the cored line (core-only partial receive).
-3. Resolve each core Ok / Not OK.
-4. Continue to invoice.","1. The Create Invoice gate opens a resolve module for the unresolved cores.
-2. It routes to receive the cored line(s) (core-only partial receive supported).
-3. After resolving Ok/Not OK the invoice proceeds.
-4. Because a waiting core cannot be skipped, the core line must be received before completion; receiving it settles the core so invoicing can proceed.",SV-7698 (S3-C4),,
-"Verify cancelling the invoice-gate core resolution leaves the WO completed, un-invoiced and cores-pending",Core parts — Invoice gate,Functional,Medium,"1. Signed in as Admin.
-2. A completed work order has an unresolved special-order core and you are in the invoice-gate resolve module.","1. Cancel the resolve module.
-2. Inspect the work order and invoice state.","1. The work order remains Completed.
-2. It remains un-invoiced.
-3. Cores remain pending.
-4. Note: because the core cannot be skipped at completion, this cancel path applies after completion at the Create Invoice gate; the core stays pending and the work order stays un-invoiced until it is received and resolved.",SV-7698 (S3-C4 (cancel path)),,
 Verify the required-invoice flow asks to resolve special-order cores FIRST and then to receive them,Core parts — Required invoice (Story 4),Functional,High,"1. Signed in as Admin.
 2. Require Vendor Invoice Number is ON (Required).
 3. A work order has a special-order cored part.","1. Click Complete Work Order.
@@ -294,10 +280,6 @@ Verify the completion and invoice gates detect an undecided special-order core t
 2. A work order has a special-order cored part that exists only as a part request (not received, no work-order part yet) and is still undecided.","1. Try to complete the work order and to create the invoice.
 2. Decide the core OK / Not OK and try again.","1. The undecided core is detected even though it exists only as a requested (un-received) part — completing and invoicing are blocked.
 2. Once the core is decided, the gates clear (no receive needed first).",SV-8353 (S18 C-R2/C-R4 (guardrail)),,
-Verify part-sale work orders auto-resolve cores at receive while service work orders require manual Ok/Not OK,Core parts — Guardrail,Functional,Medium,"1. Signed in as Admin.
-2. A part-sale work order and a service work order, each with a cored part, exist.","1. Receive the cored part on the part-sale work order and check core status.
-2. Receive the cored part on the service work order and check core status.","1. On the part-sale WO the core auto-resolves at receive.
-2. On the service WO the core requires manual Ok / Not OK.",SV-7698 (S3 Guardrail (part-sale vs service WO)),,
 Verify the core '+$ to invoice' amount is shown at the line level as a core is marked Not-OK (no Resolve-Cores wizard total),Core parts — Resolve step UI,Functional,Low,"1. Signed in as Admin.
 2. You are in the Resolve Cores step with multiple cores.","1. On the line's Parts view, mark a Core sub-line Not-OK (keep + charge).
 2. Observe the $ amount on that Core sub-line.

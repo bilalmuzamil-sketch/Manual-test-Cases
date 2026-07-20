@@ -36,11 +36,8 @@ ID,sf_id,title,section
 29314,SF-CORE-02,Verify a work order with no cores completes with no core sub-lines and no Resolve-Cores wizard step,Core parts — Completion modal
 29315,SF-CORE-03,Verify a Resolve cores screen appears before the Receive parts / Complete without receiving choice and only an undecided core blocks completing,Core parts — Completion modal
 29316,SF-CORE-04,Verify the 'Cores pending' indication reflects only undecided special-order cores (a decided core clears it),Core parts — Invoice gate
-29317,SF-CORE-05,Verify resolving cores at the Create Invoice gate routes to receive the cored line then lets invoicing proceed,Core parts — Invoice gate
-29318,SF-CORE-06,"Verify cancelling the invoice-gate core resolution leaves the WO completed, un-invoiced and cores-pending",Core parts — Invoice gate
 29319,SF-CORE-07,Verify the required-invoice flow asks to resolve special-order cores FIRST and then to receive them,Core parts — Required invoice (Story 4)
 29320,SF-CORE-08,Verify the completion and invoice gates detect an undecided special-order core that exists only as a requested part,Core parts — Guardrail
-29321,SF-CORE-09,Verify part-sale work orders auto-resolve cores at receive while service work orders require manual Ok/Not OK,Core parts — Guardrail
 29322,SF-CORE-10,Verify the core '+$ to invoice' amount is shown at the line level as a core is marked Not-OK (no Resolve-Cores wizard total),Core parts — Resolve step UI
 29360,SF-INV-01,"Verify each vendor group has an invoice number field under the vendor name, available only when at least one PO of that vendor is selected (no Apply button)",Apply Invoice to Selected POs (Story 9)
 29361,SF-INV-02,"Verify a typed invoice number fills only the selected POs of that vendor with no Apply click, still editable per PO",Apply Invoice to Selected POs (Story 9)

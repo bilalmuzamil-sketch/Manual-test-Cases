@@ -120,11 +120,11 @@ SUBBUCKET = {
     "SF-CORE-02":  ("needs-data", "a genuine core part to prove the Resolve-Cores step appears, plus a no-core WO to prove it is skipped (is_core not seedable via canned/sub-form)."),
     "SF-CORE-03":  ("needs-data", "spec `_4` Story 18 C-R1/C-R4 (resolve screen + gate-on-undecided) — needs the SV-8353 build + a dev-seeded special-order core."),
     "SF-CORE-04":  ("needs-data", "spec `_4` Story 18 C-R4 ('Cores pending' = undecided-only) — needs the SV-8353 build + a dev-seeded core."),
-    "SF-CORE-05":  ("needs-data", "RETIRE-PROPOSED (spec `_4` Δ8: the invoice-gate resolve module no longer exists in the spec) — awaiting the user's keep/retire ruling."),
-    "SF-CORE-06":  ("needs-data", "RETIRE-PROPOSED (spec `_4` Δ8: the invoice-gate resolve module no longer exists in the spec) — awaiting the user's keep/retire ruling."),
+    # SF-CORE-05 / SF-CORE-06 / SF-CORE-09: RETIRED per the user's 2026-07-17 ruling
+    # (executed 2026-07-20; ex C29317/C29318/C29321 deleted from TestRail). Excluded
+    # from load_cases(); no sub-bucket entry needed.
     "SF-CORE-07":  ("needs-data", "spec `_4` Story 18 C-R6 (required flow: resolve FIRST then receive) — needs the SV-8353 build + a dev-seeded core."),
     "SF-CORE-08":  ("needs-data", "spec `_4` Story 18 C-R2/C-R4 (gate detects an undecided request-only core) — needs the SV-8353 build + a dev-seeded core."),
-    "SF-CORE-09":  ("needs-data", "RETIRE-PROPOSED (spec `_4` Δ8: the part-sale-vs-service auto-resolve guardrail sentence was deleted; Story 18 silent) — awaiting the user's ruling."),
     "SF-CORE-10":  ("needs-data", "the Resolve-Cores step live '+$ to invoice' total (needs is_core part + receiving)."),
     "SF-VPART-07": ("needs-data", "BATCH 6: deliverable WO PO achievable, but receiving it is blocked by BUG-11 (500), so the cannot-receive-until-PN+vendor proof cannot complete."),
     "SF-VMIS-03":  ("needs-data", "QuickBooks sync inspection (vendor-missing PO excluded from QB)."),
@@ -277,10 +277,14 @@ def classify(c):
 
 
 def load_cases():
+    """Active cases only: retired cases (viu_status 'Retired — …') are kept in the
+    JSONs for the record but EXCLUDED from every deliverable + tally.
+    Retired 2026-07-17 (user ruling, executed 2026-07-20): SF-CORE-05/06/09
+    (ex C29317/C29318/C29321, deleted from TestRail) — active suite = 184."""
     cases = []
     for fn in FILES:
         cases += json.load(open(os.path.join(CASES_DIR, fn)))
-    return cases
+    return [c for c in cases if not (c.get("viu_status") or "").startswith("Retired")]
 
 
 def section_for(c):
@@ -595,7 +599,7 @@ def main():
 
     print("\nState counts:", dict(state_counts))
     print("Category counts:", dict(disp_counts))
-    assert sum(disp_counts.values()) == len(rows) == 187
+    assert sum(disp_counts.values()) == len(rows) == 184  # 187 authored - 3 retired (SF-CORE-05/06/09)
 
 
 if __name__ == "__main__":

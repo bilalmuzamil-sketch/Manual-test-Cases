@@ -30,6 +30,10 @@ cases = []
 for gf in GROUP_FILES:
     with open(os.path.join(CASES_DIR, gf), encoding="utf-8") as fh:
         cases.extend(json.load(fh))
+# Active cases only: retired cases (viu_status 'Retired — …'; SF-CORE-05/06/09,
+# user ruling 2026-07-17, deleted from TestRail 2026-07-20) stay in the JSONs for
+# the record but are excluded from every deliverable + tally (active suite = 184).
+cases = [c for c in cases if not (c.get("viu_status") or "").startswith("Retired")]
 
 # ---- TestRail Case ID + link map (Standing Rule 8) ------------------------
 TR_MAP = {}

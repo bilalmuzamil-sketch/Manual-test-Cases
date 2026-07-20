@@ -43,7 +43,11 @@ cases = []
 for fn in FILES:
     with open(os.path.join(CASES_DIR, fn)) as f:
         cases += json.load(f)
-print("Total cases loaded:", len(cases))
+# Active cases only: retired cases (viu_status 'Retired — …'; SF-CORE-05/06/09,
+# user ruling 2026-07-17, deleted from TestRail 2026-07-20) are excluded from the
+# import (active suite = 184).
+cases = [c for c in cases if not (c.get("viu_status") or "").startswith("Retired")]
+print("Total active cases loaded:", len(cases))
 
 
 def clean(s):

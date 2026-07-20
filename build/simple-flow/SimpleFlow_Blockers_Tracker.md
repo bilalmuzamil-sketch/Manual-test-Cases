@@ -1,9 +1,9 @@
 # Simple Flow — Blockers Tracker
 
 > Source of truth for what every authored Simple Flow case is waiting on and who unblocks it. Regenerate with `python3 build/simple-flow/gen_blockers.py`.
-> Companion upload file: `testrail-import/simple-flow-v1-testrail-import.csv` (all 187 cases). Update loop: `build/simple-flow/gen_update.py` (+ `UPDATE-LOOP-README.md`).
+> Companion upload file: `testrail-import/simple-flow-v1-testrail-import.csv` (all 184 cases). Update loop: `build/simple-flow/gen_update.py` (+ `UPDATE-LOOP-README.md`).
 
-**Total authored cases: 187**
+**Total authored cases: 184**
 
 ## Summary — counts per category
 
@@ -11,10 +11,10 @@
 |---|---:|---|
 | READY (VIU-Verified) | 126 | — (ready to upload) |
 | BLOCKED — DEV NOT BUILT | 0 | Dev team |
-| BLOCKED — VIU PENDING (QA) | 49 | QA |
+| BLOCKED — VIU PENDING (QA) | 46 | QA |
 | BLOCKED — MILOS ANSWER | 10 | Milos (PO) |
 | BLOCKED — BUG/RULING | 2 | Dev / PO ruling |
-| **TOTAL** | **187** | |
+| **TOTAL** | **184** | |
 
 ### DEV NOT BUILT — by story
 
@@ -26,14 +26,14 @@
 | VIU sub-bucket | Count | Meaning |
 |---|---:|---|
 | reachable-now | 15 | admin+tech + normal data; just needs another VIU pass (no new inputs). |
-| needs-data | 34 | needs a data state not seedable via the app (see per-case detail). |
+| needs-data | 31 | needs a data state not seedable via the app (see per-case detail). |
 | needs-account | 0 | needs a role account we don't have (see per-case detail). |
-| **TOTAL VIU PENDING (QA)** | **49** | |
+| **TOTAL VIU PENDING (QA)** | **46** | |
 
 ## WHAT TO SEND ME NEXT (to unblock each batch)
 
 - **Milos's answers to the 11 Open Questions** → unblocks 10 cases (all the MILOS-ANSWER rows). Send the filled-in OpenQuestions-for-Milos sheet.
-- **Fresh QA cookies for sv7301 (admin + tech) + seeded test data** → unblocks the bulk of the 49 VIU-PENDING (QA) cases (cores, receiving, vendor, validation round-trips).
+- **Fresh QA cookies for sv7301 (admin + tech) + seeded test data** → unblocks the bulk of the 46 VIU-PENDING (QA) cases (cores, receiving, vendor, validation round-trips).
 - **A 2nd/3rd role account (Office, Service Manager, Foreman) — some WITHOUT 'See Financial Data'** → unblocks SF-PERM-09 and SF-PERM-10 (per-role completion + vendorless-add gate).
 - **A dev/PO ruling on FE-only BE enforcement + the missing reviewer!=completer rule (resolve SV-8183 'BE enforces' vs SV-7864 atom-collapse)** → finalizes the 2 BUG/RULING cases.
 
@@ -83,11 +83,8 @@
 | SF-CORE-02 | Core parts — Completion modal | Verify a work order with no cores completes with no core sub-lines and no Resolve-Cores wizard step | VIU-Verified | READY | READY (VIU-Verified) | — | None — VIU-verified; uploadable now. | S3-C1 (skipped if none) | — |  | C29314 | [C29314](https://shopview.testrail.io/index.php?/cases/view/29314) |
 | SF-CORE-03 | Core parts — Completion modal | Verify a Resolve cores screen appears before the Receive parts / Complete without receiving choice and only an undecided core blocks completing | Blocked-Env | BLOCKED | BLOCKED — VIU PENDING (QA) | QA (needs cookies+seed data) | QA VIU: seed a WO with core-charge parts, drive the completion Resolve-Cores modal + invoice-gate round-trip. | S18 C-R1/C-R4 | needs-data | spec `_4` Story 18 C-R1/C-R4 (resolve screen + gate-on-undecided) — needs the SV-8353 build + a dev-seeded special-order core. | C29315 | [C29315](https://shopview.testrail.io/index.php?/cases/view/29315) |
 | SF-CORE-04 | Core parts — Invoice gate | Verify the 'Cores pending' indication reflects only undecided special-order cores (a decided core clears it) | Blocked-Env | BLOCKED | BLOCKED — VIU PENDING (QA) | QA (needs cookies+seed data) | QA VIU: seed a WO with core-charge parts, drive the completion Resolve-Cores modal + invoice-gate round-trip. | S18 C-R4 | needs-data | spec `_4` Story 18 C-R4 ('Cores pending' = undecided-only) — needs the SV-8353 build + a dev-seeded core. | C29316 | [C29316](https://shopview.testrail.io/index.php?/cases/view/29316) |
-| SF-CORE-05 | Core parts — Invoice gate | Verify resolving cores at the Create Invoice gate routes to receive the cored line then lets invoicing proceed | Blocked-Env | BLOCKED | BLOCKED — VIU PENDING (QA) | QA (needs cookies+seed data) | QA VIU: seed a WO with core-charge parts, drive the completion Resolve-Cores modal + invoice-gate round-trip. | S3-C4 | needs-data | RETIRE-PROPOSED (spec `_4` Δ8: the invoice-gate resolve module no longer exists in the spec) — awaiting the user's keep/retire ruling. | C29317 | [C29317](https://shopview.testrail.io/index.php?/cases/view/29317) |
-| SF-CORE-06 | Core parts — Invoice gate | Verify cancelling the invoice-gate core resolution leaves the WO completed, un-invoiced and cores-pending | Blocked-Env | BLOCKED | BLOCKED — VIU PENDING (QA) | QA (needs cookies+seed data) | QA VIU: seed a WO with core-charge parts, drive the completion Resolve-Cores modal + invoice-gate round-trip. | S3-C4 (cancel path) | needs-data | RETIRE-PROPOSED (spec `_4` Δ8: the invoice-gate resolve module no longer exists in the spec) — awaiting the user's keep/retire ruling. | C29318 | [C29318](https://shopview.testrail.io/index.php?/cases/view/29318) |
 | SF-CORE-07 | Core parts — Required invoice (Story 4) | Verify the required-invoice flow asks to resolve special-order cores FIRST and then to receive them | Blocked-Env | BLOCKED | BLOCKED — VIU PENDING (QA) | QA (needs cookies+seed data) | QA VIU: seed a WO with core-charge parts, drive the completion Resolve-Cores modal + invoice-gate round-trip. | S18 C-R6 | needs-data | spec `_4` Story 18 C-R6 (required flow: resolve FIRST then receive) — needs the SV-8353 build + a dev-seeded core. | C29319 | [C29319](https://shopview.testrail.io/index.php?/cases/view/29319) |
 | SF-CORE-08 | Core parts — Guardrail | Verify the completion and invoice gates detect an undecided special-order core that exists only as a requested part | Blocked-Env | BLOCKED | BLOCKED — VIU PENDING (QA) | QA (needs cookies+seed data) | QA VIU: seed a WO with core-charge parts, drive the completion Resolve-Cores modal + invoice-gate round-trip. | S18 C-R2/C-R4 (guardrail) | needs-data | spec `_4` Story 18 C-R2/C-R4 (gate detects an undecided request-only core) — needs the SV-8353 build + a dev-seeded core. | C29320 | [C29320](https://shopview.testrail.io/index.php?/cases/view/29320) |
-| SF-CORE-09 | Core parts — Guardrail | Verify part-sale work orders auto-resolve cores at receive while service work orders require manual Ok/Not OK | Blocked-Env | BLOCKED | BLOCKED — VIU PENDING (QA) | QA (needs cookies+seed data) | QA VIU: seed a WO with core-charge parts, drive the completion Resolve-Cores modal + invoice-gate round-trip. | S3 Guardrail (part-sale vs service WO) | needs-data | RETIRE-PROPOSED (spec `_4` Δ8: the part-sale-vs-service auto-resolve guardrail sentence was deleted; Story 18 silent) — awaiting the user's ruling. | C29321 | [C29321](https://shopview.testrail.io/index.php?/cases/view/29321) |
 | SF-CORE-10 | Core parts — Resolve step UI | Verify the core '+$ to invoice' amount is shown at the line level as a core is marked Not-OK (no Resolve-Cores wizard total) | VIU-Verified | READY | READY (VIU-Verified) | — | None — VIU-verified; uploadable now. | Resolve Cores handoff (live +$ total) | — |  | C29322 | [C29322](https://shopview.testrail.io/index.php?/cases/view/29322) |
 | SF-CORE-11 | Core parts — Pre-Resolve (Story 18) | Verify the Resolve cores screen lists every un-received vendor core with part info, core charge and OK / Not OK, plus an invoice-accuracy message | VIU-Pending | BLOCKED | BLOCKED — VIU PENDING (QA) | QA (needs cookies+seed data) | QA VIU: seed a WO with core-charge parts, drive the completion Resolve-Cores modal + invoice-gate round-trip. | S18 C-R1 | needs-data | Story 18 C-R1 resolve screen — needs the SV-8353 build + a dev-seeded special-order core. | C29892 | [C29892](https://shopview.testrail.io/index.php?/cases/view/29892) |
 | SF-CORE-12 | Core parts — Pre-Resolve (Story 18) | Verify marking a core Not OK immediately adds the core charge to the work order total and customer invoice, while OK adds no charge | VIU-Pending | BLOCKED | BLOCKED — VIU PENDING (QA) | QA (needs cookies+seed data) | QA VIU: seed a WO with core-charge parts, drive the completion Resolve-Cores modal + invoice-gate round-trip. | S18 C-R3 | needs-data | Story 18 C-R3 charge-follows-decision — needs the SV-8353 build + a dev-seeded special-order core. | C29893 | [C29893](https://shopview.testrail.io/index.php?/cases/view/29893) |
