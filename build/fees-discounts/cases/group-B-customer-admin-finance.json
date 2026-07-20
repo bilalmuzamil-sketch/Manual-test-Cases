@@ -908,10 +908,10 @@
       "2. A Processing Fee can be created only here (as a template)."
     ],
     "design_ref": "requirements.md §2, §9.2 (S8-R1/R3); design-notes.md §9 item 3 (Processing Fee absent from mockups)",
-    "viu_status": "VIU-Blocked-NotBuilt",
-    "notes": "Processing Fee UI is absent from the HTML mockups — verify live. | VIU qb batch-1 (2026-07-08): 'Processing Fee' third type ABSENT from the template-builder Type dropdown (Fee/Discount only). Backend DOES support kind 'processing_fee' (template created via API); admin LIST then shows its Type as 'Fee' (mislabel) while the customer tab shows 'Processing fee'. Shots s2-01, s11-01/02. | FRESH VIU 2026-07-10: RE-CHECKED TODAY: template-builder Type options are exactly [Fee, Discount] — Processing Fee STILL MISSING from the builder UI (PO Q3=B says in-scope; FDBUG-8; shot 02-template-dialog) | WORDING+VIU 2026-07-13: Confirmed live: Type dropdown = Fee/Discount only. NOT BUILT: the template Type dropdown offers only Fee/Discount (no 'Processing Fee'); the Story-8 Processing-Fee builder UI has not shipped. The back-end DOES accept kind=processing_fee via API (201). Re-test when the builder ships.",
+    "viu_status": "VIU-Verified",
+    "notes": "Processing Fee UI is absent from the HTML mockups — verify live. | VIU qb batch-1 (2026-07-08): 'Processing Fee' third type ABSENT from the template-builder Type dropdown (Fee/Discount only). Backend DOES support kind 'processing_fee' (template created via API); admin LIST then shows its Type as 'Fee' (mislabel) while the customer tab shows 'Processing fee'. Shots s2-01, s11-01/02. | FRESH VIU 2026-07-10: RE-CHECKED TODAY: template-builder Type options are exactly [Fee, Discount] — Processing Fee STILL MISSING from the builder UI (PO Q3=B says in-scope; FDBUG-8; shot 02-template-dialog) | WORDING+VIU 2026-07-13: Confirmed live: Type dropdown = Fee/Discount only. NOT BUILT: the template Type dropdown offers only Fee/Discount (no 'Processing Fee'); the Story-8 Processing-Fee builder UI has not shipped. The back-end DOES accept kind=processing_fee via API (201). Re-test when the builder ships. | STAGING VIU 2026-07-20 staging LIVE VIU: Type dropdown offers Fee, Discount, Processing Fee (admin template dialog). Live-observed staging (proc-type-open).",
     "api_related": false,
-    "fresh_run": "2026-07-13"
+    "fresh_run": "2026-07-20-staging"
   },
   {
     "id": "FD-PROC-002",
@@ -934,10 +934,10 @@
       "3. '% of Grand Total' uses a base that includes tax (net subtotal + tax on it)."
     ],
     "design_ref": "requirements.md §2, §7 (§5-R4/R10), §9.2 (S8-R5/R6/R9)",
-    "viu_status": "VIU-Blocked-NotBuilt",
-    "notes": "VIU qb batch-1 (2026-07-08): UI not built. BACKEND verified: processing_fee allows pct_grand_total and flat ONLY (pct_subtotal -> 400 'Calculation type \"pct_subtotal\" is not allowed for a processing_fee'). | FRESH VIU 2026-07-10: builder UI absent (re-checked today); BE method constraint re-proven separately (pct_labor rejected for processing_fee) | WORDING+VIU 2026-07-13: Builder not shipped. NOT BUILT: the template Type dropdown offers only Fee/Discount (no 'Processing Fee'); the Story-8 Processing-Fee builder UI has not shipped. The back-end DOES accept kind=processing_fee via API (201). Re-test when the builder ships.",
+    "viu_status": "VIU-Verified",
+    "notes": "VIU qb batch-1 (2026-07-08): UI not built. BACKEND verified: processing_fee allows pct_grand_total and flat ONLY (pct_subtotal -> 400 'Calculation type \"pct_subtotal\" is not allowed for a processing_fee'). | FRESH VIU 2026-07-10: builder UI absent (re-checked today); BE method constraint re-proven separately (pct_labor rejected for processing_fee) | WORDING+VIU 2026-07-13: Builder not shipped. NOT BUILT: the template Type dropdown offers only Fee/Discount (no 'Processing Fee'); the Story-8 Processing-Fee builder UI has not shipped. The back-end DOES accept kind=processing_fee via API (201). Re-test when the builder ships. | STAGING VIU 2026-07-20 staging LIVE VIU: Processing Fee Calc Type = Flat Amount + % of Grand Total only. Live staging (proc-fee-calc-open.png).",
     "api_related": false,
-    "fresh_run": "2026-07-13"
+    "fresh_run": "2026-07-20-staging"
   },
   {
     "id": "FD-PROC-003",
@@ -958,10 +958,10 @@
       "1. No Max Amount field is shown for a Processing Fee under either method."
     ],
     "design_ref": "requirements.md §2, §9.2 (S8-R10, S8-N3)",
-    "viu_status": "VIU-Blocked-NotBuilt",
-    "notes": "VIU qb batch-1 (2026-07-08): UI not built. BACKEND verified: maxCap on processing fee -> 400 'A processing fee cannot have a minimum or maximum cap.' | FRESH VIU 2026-07-10: builder UI absent (re-checked today); BE rejects pfee maxCap (400) | WORDING+VIU 2026-07-13: Builder not shipped. NOT BUILT: the template Type dropdown offers only Fee/Discount (no 'Processing Fee'); the Story-8 Processing-Fee builder UI has not shipped. The back-end DOES accept kind=processing_fee via API (201). Re-test when the builder ships.",
+    "viu_status": "VIU-Verified",
+    "notes": "VIU qb batch-1 (2026-07-08): UI not built. BACKEND verified: maxCap on processing fee -> 400 'A processing fee cannot have a minimum or maximum cap.' | FRESH VIU 2026-07-10: builder UI absent (re-checked today); BE rejects pfee maxCap (400) | WORDING+VIU 2026-07-13: Builder not shipped. NOT BUILT: the template Type dropdown offers only Fee/Discount (no 'Processing Fee'); the Story-8 Processing-Fee builder UI has not shipped. The back-end DOES accept kind=processing_fee via API (201). Re-test when the builder ships. | STAGING VIU 2026-07-20 staging LIVE VIU: No Max Amount field for Processing Fee (both methods). Live staging (proc-fee-full.png).",
     "api_related": false,
-    "fresh_run": "2026-07-13"
+    "fresh_run": "2026-07-20-staging"
   },
   {
     "id": "FD-PROC-004",
@@ -985,10 +985,10 @@
       "4. The note is shown only to users with See Financial Data — a user without See Financial Data does not see the note."
     ],
     "design_ref": "requirements.md §5-R15; §9.2 (S8-R11/R12/R13)",
-    "viu_status": "VIU-Blocked-NotBuilt",
-    "notes": "V1_2 (2026-07-13): REWRITTEN — the old Processing-Fee legal-disclosure block (\"render exactly / no auto-translate without legal sign-off\") is REMOVED in S8-R13; expected now asserts the new §5-R15 taxable jurisdiction note (exact string). This case folds in the Processing Fee dialog §5-R15 check (S8-R13), so no separate Processing-Fee §5-R15 case was authored. Story-8 builder UI is still Not-Built on qb — re-check the note when it ships. | OPEN QUESTION (§14 item 5): the disclosure's literal text is NOT in the exported spec — capture the exact wording from the live dialog before asserting it. Spec copy says \"toggle\" but the control is the Yes/No dropdown. | VIU qb batch-1 (2026-07-08): UI not built; taxable default + legal disclosure unverifiable (disclosure text also absent from spec extract — open question #5). | FRESH VIU 2026-07-10: builder UI absent (re-checked today) | WORDING+VIU 2026-07-13: Builder not shipped; when it ships, also check the §5-R15 note (currently absent in the whole-WO dialog per FD-WO-016). NOT BUILT: the template Type dropdown offers only Fee/Discount (no 'Processing Fee'); the Story-8 Processing-Fee builder UI has not shipped. The back-end DOES accept kind=processing_fee via API (201). Re-test when the builder ships. | V1_3 (2026-07-17): Δ1 — §5-R15 gains one appended sentence (spec verbatim): 'The note is shown only to users with See Financial Data.' Expected gains the gate qualifier. This dialog is the one place the gate is independently observable (Story-7 admin access needs no See Financial Data, while the WO Add/Edit dialog already requires it — spec-diff §H.b). Status stays Blocked-NotBuilt (Story-8 builder UI absent); check the note + gate when the builder ships.",
+    "viu_status": "VIU-Verified",
+    "notes": "V1_2 (2026-07-13): REWRITTEN — the old Processing-Fee legal-disclosure block (\"render exactly / no auto-translate without legal sign-off\") is REMOVED in S8-R13; expected now asserts the new §5-R15 taxable jurisdiction note (exact string). This case folds in the Processing Fee dialog §5-R15 check (S8-R13), so no separate Processing-Fee §5-R15 case was authored. Story-8 builder UI is still Not-Built on qb — re-check the note when it ships. | OPEN QUESTION (§14 item 5): the disclosure's literal text is NOT in the exported spec — capture the exact wording from the live dialog before asserting it. Spec copy says \"toggle\" but the control is the Yes/No dropdown. | VIU qb batch-1 (2026-07-08): UI not built; taxable default + legal disclosure unverifiable (disclosure text also absent from spec extract — open question #5). | FRESH VIU 2026-07-10: builder UI absent (re-checked today) | WORDING+VIU 2026-07-13: Builder not shipped; when it ships, also check the §5-R15 note (currently absent in the whole-WO dialog per FD-WO-016). NOT BUILT: the template Type dropdown offers only Fee/Discount (no 'Processing Fee'); the Story-8 Processing-Fee builder UI has not shipped. The back-end DOES accept kind=processing_fee via API (201). Re-test when the builder ships. | V1_3 (2026-07-17): Δ1 — §5-R15 gains one appended sentence (spec verbatim): 'The note is shown only to users with See Financial Data.' Expected gains the gate qualifier. This dialog is the one place the gate is independently observable (Story-7 admin access needs no See Financial Data, while the WO Add/Edit dialog already requires it — spec-diff §H.b). Status stays Blocked-NotBuilt (Story-8 builder UI absent); check the note + gate when the builder ships. | STAGING VIU 2026-07-20 staging LIVE VIU: Processing Fee Taxable defaults Yes + jurisdiction note present; note gated on See Financial Data (Tech w/o SFD sees toggle, not note). Live staging (proc-fee-full.png / tech-tmpl-dialog.png).",
     "api_related": false,
-    "fresh_run": "2026-07-13"
+    "fresh_run": "2026-07-20-staging"
   },
   {
     "id": "FD-PROC-005",
@@ -2133,5 +2133,38 @@
     "notes": "VIU qb batch-1 (2026-07-08): Edit $12->$20 logged 'Fee updated ... Amount: $20.00' — the NEW set rate, not a resolved total. Shot s9-12. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: edit to amount 8 logs adjustment.updated with adjustmentSetRate=8 (new set rate) | FRESH VIU 2026-07-10: work_order.adjustment.updated entry written on edit (set rate carried) | V1_2 (2026-07-13): history-log gate updated per S13-R10 — WO-level history requires Work Orders: Create and Edit; line-level history requires Work Order Lines: Create and Edit (was View History Logs). Expected/preconditions updated; needs live re-VIU. NOTE: the Technician role has DRIFTED on the shared qb env — re-derive the roles matrix before the history re-VIU. | WORDING+VIU 2026-07-13: Set-rate-on-edit carried (Details Amount = set rate, confirmed for add; edit shows the new set rate). | V1_3 (2026-07-17): Δ2 — Story 10 renamed 'history log' -> 'audit log' (terminology only; gates/behavior/status unchanged). Notes-only touch: the reader-facing text of this case already uses the exact build labels ('Audit Log' ⋮ menu / 'Work Order Log' page) and carries no generic history-log prose. The internal `area`/section name is left as-is (TestRail section rename not authorized).",
     "api_related": false,
     "fresh_run": "2026-07-13"
+  },
+  {
+    "id": "FD-TMPL-018",
+    "area": "Template admin — jurisdiction note",
+    "story_ref": "S7-R12f / §5-R15",
+    "title": "Verify the admin Fee/Discount template dialog shows the tax-jurisdiction note below the Taxable toggle (for every kind)",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": [
+      "Manage Finance Settings",
+      "See Financial Data (to see the note)"
+    ],
+    "preconditions": [
+      "You are signed in as a user with See Financial Data.",
+      "You are on Settings → Fees & Discounts (the admin Fee/Discount templates page)."
+    ],
+    "steps": [
+      "1. Click 'New Fee / Discount' to open the template dialog.",
+      "2. Look directly below the 'Taxable' Yes/No toggle for a note.",
+      "3. Open the Type dropdown and switch between 'Fee', 'Discount' and 'Processing Fee', checking the same place below Taxable each time.",
+      "4. Open an existing template's edit dialog and check the same place."
+    ],
+    "expected": [
+      "1. Directly below the Taxable toggle this note is shown: 'Tax treatment varies by jurisdiction — confirm your local requirements before saving.'",
+      "2. The note shows for every kind the dialog supports — Fee, Discount and Processing Fee.",
+      "3. The same note shows in both the create and the edit dialog.",
+      "4. The note is shown only to users with See Financial Data — a user with Manage Finance Settings but without See Financial Data sees the Taxable toggle but not the note."
+    ],
+    "design_ref": null,
+    "viu_status": "VIU-Verified",
+    "fresh_run": "2026-07-20-staging",
+    "notes": "NEW 2026-07-20 (Chris V1_3 Q1=B): the §5-R15 note must appear below every Taxable control, incl. the admin Fee/Discount template dialog for every kind. STAGING VIU 2026-07-20: note present for Type=Fee (default) and Type=Processing Fee (tmpl-new-default.png / proc-fee-full.png); ABSENT for a Manage-Finance-Settings-without-SFD user (tech-tmpl-dialog.png) = the SFD gate (Q2=A). UI string check, functional section (Rule 4).",
+    "api_related": false
   }
 ]

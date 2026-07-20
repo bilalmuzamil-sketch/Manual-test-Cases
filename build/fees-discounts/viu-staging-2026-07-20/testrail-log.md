@@ -112,3 +112,37 @@ The Tech user on staging ALREADY carries the exact Q2 negative profile:
 FD-PROC-001/002/003/004, FD-PCOL-001/002/003/004/005/006/007, FD-PERM-004.
 Cause: staging has PartSales flag ON + the Processing-Fee builder shipped (both were
 absent on qb.qa). Cleanup: ZZAUTOTEST seed fee removed; no residual test data.
+
+## DEVIATIONS re-VIU on staging (15) — results
+- **FD-WO-005 (C28430?)** VIU-Deviation → **VIU-Verified**: BUG-FD-4 FIXED — "Add Fee"
+  button is DISABLED on an empty form (dev-wo-emptyform, disabled=true).
+- **FD-VAL-001 (C28599?)** VIU-Deviation → **VIU-Verified**: same fix — confirm button
+  disabled until Name/Type/Calc/Amount>0 (WO + part-sale dialogs).
+- **FD-WO-016 (C29441)** VIU-Deviation → **VIU-Verified** (note now built; see Priority 1).
+- **FD-STATS-001/002/004** — UNCHANGED (Deviation persists): Stats "Fees & Discounts (N)"
+  section lists rows (name / value% / signed amount) but has NO column headers and NO
+  per-row target hyperlink; identical to qb. Observed live (dev-stats.png). Not flipped.
+- **FD-PROC-008/009, FD-CALC-013, FD-INLINE-003, FD-CUST-005/006, FD-TMPL-010,
+  FD-WO-013, FD-PERM-002** — NOT re-driven to a clean verdict this run (pfee calc
+  representation opaque via API; line-collapse/customer-picker/line-template-picker
+  needed further seeding; enforcement-depth cases need isolated role negatives). Left
+  at VIU-Deviation (no observed change). FD-PART-005 stays VIU-Pending (part
+  requested→received transition not driven this run).
+
+## NEW CASES authored (Chris Q1=B) — pushed via add_case
+- **FD-TMPL-018 = C29917** (section 3916): admin Fee/Discount template dialog note
+  (every kind). VIU-Verified. add_case 200/MATCH.
+- **FD-PSALE-001 = C29918** (section 3902): Part Sale Add/Edit dialog note. VIU-Verified.
+  add_case 200/MATCH.
+
+## TESTRAIL PUSH (authorized 2026-07-20) — 3/3 OK, no results logged to any run
+- update_case **FD-WO-016 (C29441)** — expected/preconds/steps refined (Q1=B/Q2 gate
+  wording) → 200 + re-GET MATCH.
+- add_case **FD-TMPL-018 → C29917** (section 3916) → 200 + re-GET MATCH.
+- add_case **FD-PSALE-001 → C29918** (section 3902) → 200 + re-GET MATCH.
+Status flips for the other 14 cases are LOCAL only (TestRail case CONTENT already
+build-accurate; viu_status is not a TestRail field). id-map updated (185 rows, 0 blank).
+
+## NEW TALLY (185 = 183 + 2 new)
+**152 VIU-Verified / 12 VIU-Deviation / 0 Blocked-NotBuilt / 20 Blocked-Env / 1 VIU-Pending.**
+(was 135/15/12/20/1 = 183.)

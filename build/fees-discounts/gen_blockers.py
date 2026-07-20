@@ -507,7 +507,7 @@ def main():
     print("Deviation sub:", dict(dev_sub))
     print("NotBuilt sub:", dict(notbuilt_sub))
     print("Env sub:", dict(env_sub))
-    assert sum(disp_counts.values()) == len(rows) == 183, "count mismatch"
+    assert sum(disp_counts.values()) == len(rows) == 185, "count mismatch"
 
 
 if __name__ == "__main__":
