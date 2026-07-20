@@ -117,14 +117,18 @@ process(es) to run before proceeding.
    folded SFD-negative, FD-PROC-004], history→audit-log sweep [9 cases + 4
    notes-only]; 11 update_case pushed 11/11 200 + re-GET MATCH, audit-logged in
    spec-v3-2026-07-17/testrail-update-log.md, commit 90e786e; requirements.md §17 =
-   V1_3 baseline; TICKET 3 reworded to audit-log; tally unchanged; PENDING: 2 new
-   Chris ambiguities to send [question sheet NOT yet produced — PROJECT-STATE §0
-   item 1 / §0.0e] + the optional "History log*"→"Audit log*" renames of 4 TestRail
-   sections [awaiting user authorization]).**
+   V1_3 baseline; TICKET 3 reworded to audit-log; tally unchanged). DONE 2026-07-20
+   (§0.0f): the 4 "History log*"→"Audit log*" section renames EXECUTED
+   (user-authorized; sections 3957–3960, 4/4 update_section 200 + re-GET MATCH,
+   audit-logged; mirrors + import/Tracker regenerated; 5th section "History log —
+   edit entry" 3961 NOT in the authorized set — left as-is) + the Chris V1_3
+   question sheet PRODUCED + READY TO SEND
+   (PO-Questions-Chris-V1_3_2026-07-17.xlsx/.md, Round-2 format 1:1, Rule-7
+   layman).**
    Final tally: **135 VIU-Verified / 15 VIU-Deviation / 12 Blocked-NotBuilt / 20
    Blocked-Env / 1 VIU-Pending (FD-PART-005) = 183.** No longer PO-blocked; **WAITING
-   ON: producing+sending the 2 new Chris V1_3 ambiguity questions + the optional
-   section-rename authorization + the FD-CUST-016/FD-VAL-007 DUPLICATE-PAIR QA-lead
+   ON: SENDING the produced Chris V1_3 question sheet (ready 2026-07-20) + the
+   FD-CUST-016/FD-VAL-007 DUPLICATE-PAIR QA-lead
    keep/retire ruling + filing the ready bug drafts (TICKETS 2/3/6/7/8/9/10/11;
    TICKET 1 on hold, 4 & 5 dropped, FDBUG-15 dropped) + the env/VIU backlog.**
    **Resume = PROJECT-STATE.md §0/§0.5**

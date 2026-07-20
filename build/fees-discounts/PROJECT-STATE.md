@@ -5,7 +5,15 @@
 > re-discovery.
 > **Canonical spec (Confluence):** https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/622297094/Fees+Discounts+V1
 > (Atlassian-SSO login-walled — reference pointer only; content must be exported/pasted to ingest, do NOT fetch the URL.)
-> **Last updated:** 2026-07-17 (§0.0e: **spec V1_3 APPLIED** — Δ1 §5-R15 SFD-gate +
+> **Last updated:** 2026-07-20 (§0.0f: the 4 **"History log*"→"Audit log*" TestRail
+> section renames are DONE** (user-authorized 2026-07-17 "Rename"; sections 3957–3960,
+> 4/4 update_section 200 + re-GET MATCH; audit appended to
+> `spec-v3-2026-07-17/testrail-update-log.md`; local mirrors + deliverables
+> regenerated) AND the **Chris Ward V1_3 question sheet is PRODUCED + READY TO SEND**
+> (`PO-Questions-Chris-V1_3_2026-07-17.xlsx`/`.md`, generator
+> `gen_po_questions_v1_3.py`, Round-2 format 1:1, reader tabs jargon/ID-free per Rule
+> 7). Both items REMOVED from §0 waiting-on.)
+> — prior update 2026-07-17 (§0.0e: **spec V1_3 APPLIED** — Δ1 §5-R15 SFD-gate +
 > Δ2 history→audit-log; 11 update_case pushed to TestRail 11/11 200 + re-GET MATCH,
 > audit `spec-v3-2026-07-17/testrail-update-log.md`; **commit 90e786e**;
 > requirements.md now carries §17 = the V1_3 baseline; tally UNCHANGED
@@ -62,18 +70,19 @@
 **Spec V1_3 is APPLIED + PUSHED TO TESTRAIL (2026-07-17, §0.0e, commit 90e786e), on
 top of Chris Ward's Round-2 answers (applied + pushed 2026-07-14, §0.0c).** The
 project is not PO-blocked. The remaining open items are:
-1. **Send the 2 NEW Chris Ward ambiguities from the V1_3 diff** (spec-diff §H;
-   detailed at the end of §0.0e: (a) which "second place" gets the §5-R15 note+gate —
-   the plain template dialog or the Processing-Fee dialog; (b) confirm the admin
-   template/Processing-Fee dialog is the intended surface, since the SFD gate is only
-   independently observable there, not at the WO Add/Edit dialog). **The layman
-   question sheet is NOT yet produced** — build it per Rule 7 and send with the next
-   PO round.
-2. **OPTIONAL TestRail section renames — awaiting explicit user authorization:** the
-   4 sections still named "History log*" ("History log", "History log — visibility",
-   "History log — permission", "History log — Processing Fee") → "Audit log*" per the
-   V1_3 Δ2 terminology. Candidate only; NO TestRail write without a fresh explicit
-   go-ahead.
+1. **SEND the Chris Ward V1_3 question sheet — the sheet is PRODUCED + READY
+   (2026-07-20, §0.0f):** `PO-Questions-Chris-V1_3_2026-07-17.xlsx`/`.md` (2
+   questions from spec-diff §H: (a) note placement — Processing-Fee window vs every
+   Taxable surface incl. the plain template dialog; (b) admin dialog as the only
+   independently-observable SFD-gate surface — expected?). Rule-7 layman format,
+   Round-2 mirror; the USER sends it. Only the SEND remains.
+2. ~~OPTIONAL TestRail section renames~~ **DONE 2026-07-20 (§0.0f):** the 4
+   "History log*" sections (3957–3960) renamed to "Audit log*" (user-authorized
+   2026-07-17 "Rename"; 4/4 update_section 200 + re-GET MATCH; audit in
+   `spec-v3-2026-07-17/testrail-update-log.md`; id-map/case-JSON/import/Tracker
+   refreshed). NOTE: a 5th live section "History log — edit entry" (3961) was NOT in
+   the authorized set and is left as-is — optional follow-up if the user wants it
+   aligned too.
 3. **QA-lead ruling on the FD-CUST-016 / FD-VAL-007 DUPLICATE PAIR** (keep one / retire
    one — snapshotted, NOT deleted; see §0.-1).
 4. **File the ready bug drafts** (TICKETS 2/3/6/7/8/9/10/11) via Atlassian — no Atlassian
@@ -89,7 +98,32 @@ This section is the complete snapshot: current tally, the applied Round-2 action
 everything else open, and the ordered resume checklist. The rest of this doc holds the
 standing detail. **NO TestRail catch-up is outstanding** — all authored wording is live.
 
-### 0.0e SPEC V1_3 APPLIED + PUSHED TO TESTRAIL — 2026-07-17 (NEWEST event; commit 90e786e)
+### 0.0f SECTION RENAMES DONE + CHRIS V1_3 QUESTION SHEET PRODUCED — 2026-07-20 (NEWEST event)
+
+- **TestRail section renames (user-authorized 2026-07-17 "Rename"):** the 4 F&D
+  sections under parent 3894 renamed via `update_section` — 3957 "History log"→"Audit
+  log", 3958 "History log — visibility"→"Audit log — visibility", 3959 "History log —
+  permission"→"Audit log — permission", 3960 "History log — Processing Fee"→"Audit
+  log — Processing Fee". **4/4 update 200 + re-GET MATCH** (2026-07-20 08:16Z); audit
+  appended to `spec-v3-2026-07-17/testrail-update-log.md`. ONLY these 4 touched. A
+  5th live section **"History log — edit entry" (3961)** exists but was NOT in the
+  authorized set → left untouched (optional follow-up).
+- **Local mirrors updated:** `testrail-id-map.csv` section column (7 rows
+  FD-HIST-001..007, CRLF + all C-ids preserved) +
+  `cases/group-B-customer-admin-finance.json` `area` fields (7 cases, 1:1 with the
+  live sections; FD-HIST-008 stays "History log — edit entry"). **Deliverables
+  regenerated:** `gen_import.py` (import CSV/XLSX, 183 rows, VIU/flag-word-free 0/0)
+  + `gen_blockers.py` (Tracker md/xlsx). **Tally UNCHANGED 135/15/12/20/1 = 183.**
+- **Chris Ward V1_3 question sheet PRODUCED (ready to send):**
+  `PO-Questions-Chris-V1_3_2026-07-17.xlsx`/`.md` via `gen_po_questions_v1_3.py` —
+  format mirrors PO-Questions-Round2 1:1 ("Questions for PO" layman tab + "QA
+  Internal Mapping" tab with C29441/C28522 links per Rule 8). Q1 = where the §5-R15
+  tax-jurisdiction note appears (Processing-Fee window / every Taxable surface incl.
+  the plain template dialog / other); Q2 = admin dialog as the only
+  independently-observable SFD-gate surface — expected? Reader-facing tabs
+  grep-verified jargon/ID-free (Rule 7). Answers blank — awaiting Chris.
+
+### 0.0e SPEC V1_3 APPLIED + PUSHED TO TESTRAIL — 2026-07-17 (commit 90e786e)
 
 **The V1_3 apply pass was run (user-instructed 2026-07-17: "check if any test cases
 need to be updated, if yes then please do that" — that instruction authorized this
@@ -117,7 +151,8 @@ one-day update_case pass).** Per the delta doc
   log `spec-v3-2026-07-17/testrail-update-log.md`). **NO section renames** — the 4
   sections still named "History log*" ("History log", "History log — visibility",
   "History log — permission", "History log — Processing Fee") are an OPTIONAL
-  "Audit log…" rename candidate needing separate authorization.
+  "Audit log…" rename candidate needing separate authorization. **(DONE 2026-07-20 —
+  see §0.0f / §0 item 2.)**
 - **requirements.md: §17 "V1_3 update (2026-07-17)" appended** (mirrors the §16 V1_2
   pattern; carries the new change-log row verbatim + Δ1/Δ2 + the 2 Chris ambiguities;
   requirements.md is now the V1_3 baseline, last-update-wins). The
