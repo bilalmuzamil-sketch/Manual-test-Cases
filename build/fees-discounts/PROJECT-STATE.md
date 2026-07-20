@@ -5,7 +5,12 @@
 > re-discovery.
 > **Canonical spec (Confluence):** https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/622297094/Fees+Discounts+V1
 > (Atlassian-SSO login-walled — reference pointer only; content must be exported/pasted to ingest, do NOT fetch the URL.)
-> **Last updated:** 2026-07-20 (§0.0i: **LIVE VIU PASS ON STAGING** — F&D is now
+> **Last updated:** 2026-07-20 (§0.0j: **STAGING LIVE-VIU PASS ADVERSARIALLY AUDITED
+> CLEAN** — every VIU-Verified flip is evidence-backed, the tally
+> **152 VIU-Verified / 12 VIU-Deviation / 0 Blocked-NotBuilt / 20 Blocked-Env /
+> 1 VIU-Pending = 185** reconciles across all deliverables, live TestRail matches the
+> local case source, run 325 untouched, no secrets. See §0.0j.
+> — prior §0.0i: **LIVE VIU PASS ON STAGING** — F&D is now
 > deployed to `app.staging.shopview.com` (FeesAndDiscounts + PartSales + QuickBooks
 > flags ON). Chris Q1=B §5-R15 note VERIFIED LIVE in all surfaces (admin template
 > dialog + WO Add/Edit + Part Sale Add/Edit); Q2=A SFD-gate negative CONFIRMED (Tech =
@@ -133,7 +138,38 @@ This section is the complete snapshot: current tally, the applied Round-2 action
 everything else open, and the ordered resume checklist. The rest of this doc holds the
 standing detail. **NO TestRail catch-up is outstanding** — all authored wording is live.
 
-### 0.0i LIVE VIU PASS ON STAGING — 2026-07-20 (NEWEST event)
+### 0.0j STAGING LIVE-VIU PASS — ADVERSARIALLY AUDITED CLEAN — 2026-07-20 (NEWEST event)
+
+Final bookkeeping over the §0.0i staging LIVE-VIU pass. An adversarial self-audit
+(Standing Rule 15) independently re-checked the pass and the deliverables — **verdict:
+CLEAN.**
+
+- **Every VIU-Verified flip is evidence-backed** (live UI/API observed that run, captured
+  in `viu-staging-2026-07-20/`) — no status derived by inference (Rules 12/13). The 12
+  Blocked-NotBuilt→Verified flips, the 3 Deviation fixes (FD-WO-016/FD-WO-005/FD-VAL-001),
+  and the 2 new cases (FD-TMPL-018=C29917, FD-PSALE-001=C29918) all trace to captured
+  evidence.
+- **Tally reconciles across ALL deliverables: 152 VIU-Verified / 12 VIU-Deviation /
+  0 Blocked-NotBuilt / 20 Blocked-Env / 1 VIU-Pending (FD-PART-005) = 185** — consistent
+  in `cases/*.json` (viu_status), the Blockers Tracker (md/xlsx), the import CSV/XLSX
+  (185 rows, VIU-word/flag-word 0/0), and `testrail-id-map.csv` (185 rows, 0 blank C-ids).
+- **Live TestRail matches the local case source** for the 3 pushed cases (1 update_case
+  C29441 + 2 add_case C29917/C29918, all 200 + re-GET MATCH); **run 325 untouched** (no
+  results written to any run); **no secrets** committed (evidence/cookies stay in `/tmp`).
+- **Chris Ward's V1_3 answers are FULLY APPLIED + VERIFIED** — Q1=B (§5-R15 note below
+  every Taxable control) verified live in all surfaces incl. the two new ones; Q2=A
+  (SFD-gate at the admin template dialog) confirmed live via the Manage-Finance-Settings-
+  without-See-Financial-Data user. Nothing left in the Chris thread.
+- **WHAT'S LEFT (non-VIU items UNCHANGED):** remaining = **12 VIU-Deviation** (dev fixes /
+  cases not re-driven to a clean verdict this run — FD-STATS-001/002/004 persist,
+  FD-PROC-008/009, FD-CALC-013, FD-INLINE-003, FD-CUST-005/006, FD-TMPL-010, FD-WO-013,
+  FD-PERM-002) + **20 Blocked-Env** (14 QuickBooks-human / unmap-500 + 6 flag-off) +
+  **1 VIU-Pending (FD-PART-005)**; plus the standing non-VIU threads — the
+  **FD-CUST-016 / FD-VAL-007 DUPLICATE-PAIR QA-lead keep/retire ruling** and **filing the
+  ready bug drafts** (TICKETS 2/3/6/7/8/9/10/11; TICKET 1 on hold, 4 & 5 dropped,
+  FDBUG-15 dropped). No TestRail catch-up is outstanding.
+
+### 0.0i LIVE VIU PASS ON STAGING — 2026-07-20 (prior event)
 
 **F&D is now deployed to STAGING** (`app.staging.shopview.com` / API
 `api.staging.shopview.com`; org `d55bc308-…`; flags `FeesAndDiscounts` + `PartSales` +

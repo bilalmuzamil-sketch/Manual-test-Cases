@@ -146,7 +146,10 @@ process(es) to run before proceeding.
    FD-WO-016 (C29441) refined — TestRail 1 update_case + 2 add_case, all 200 + re-GET
    MATCH, NO run results. Evidence/log: `build/fees-discounts/viu-staging-2026-07-20/`.
    **NEW TALLY: 152 VIU-Verified / 12 VIU-Deviation / 0 Blocked-NotBuilt / 20 Blocked-Env
-   / 1 VIU-Pending (FD-PART-005) = 185.** (Prior qb tally 135/15/12/20/1 = 183.) STILL
+   / 1 VIU-Pending (FD-PART-005) = 185.** (Prior qb tally 135/15/12/20/1 = 183.)
+   **This staging LIVE-VIU pass was ADVERSARIALLY AUDITED CLEAN 2026-07-20 (§0.0j):**
+   every VIU-Verified flip is evidence-backed, the 152/12/0/20/1 = 185 tally reconciles
+   across all deliverables, live TestRail matches, run 325 untouched, no secrets. STILL
    OPEN: re-VIU the remaining 12 Deviations not cleanly re-driven on staging
    (FD-STATS-001/002/004 persist [no headers/hyperlink]; FD-PROC-008/009, FD-CALC-013,
    FD-INLINE-003, FD-CUST-005/006, FD-TMPL-010, FD-WO-013, FD-PERM-002 need
@@ -259,7 +262,10 @@ process(es) to run before proceeding.
    Milos spec-V2.6 sheet (READY), Story-18 re-VIU backlog (needs SV-8353 build +
    dev-seeded core), 5 unanswered Milos Qs, file Receive-screen bug in Jira, run-325
    reconcile.
-   **STATUS: RETIRE EXECUTED + MILOS V2.6 SHEET READY 2026-07-20 (on top of SPEC `_4`
+   **STATUS: STAGING LIVE-VIU DONE + ADVERSARIALLY AUDITED CLEAN 2026-07-20 (§0-EE;
+   tally 184: 151/4/21/5/3 reconciles across all deliverables, live TestRail matches,
+   run 325 untouched, retired SF-CORE-05/06/09 confirmed gone, no secrets) + RETIRE
+   EXECUTED + MILOS V2.6 SHEET READY 2026-07-20 (on top of SPEC `_4`
    V2.6 applied + audited clean 2026-07-17 + the complete VIU process + spec `_3`/design
    `_4` + Milos Round-3). PROJECT-STATE.md = canonical resume doc (read first).** Detail: full build-accurate
    wording+VIU pass (all 163, 200/200) + V2.4 Δ1-Δ4 (+ SF-VEND-06=C29442) +

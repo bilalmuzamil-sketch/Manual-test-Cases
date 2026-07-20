@@ -12,9 +12,12 @@
 > **Canonical spec (Confluence):** https://shopview.atlassian.net/wiki/spaces/PM/pages/646021121/Simple+Mode+Streamlined+Work+Order+Completion+Bulk+Receiving
 > (Atlassian-SSO login-walled — reference pointer only; content must be exported/pasted to ingest, do NOT fetch the URL.)
 >
-> **Last updated:** 2026-07-20 (STAGING LIVE VIU — Story-18 deployment unblock: 4 cases
-> verified [SF-CORE-03/04/11/18], TestRail 3 update_case 200, tally 134/20/22/5/3; see §0-DD.
-> Prior: spec `_4` / V2.6 APPLIED + audited clean 2026-07-17, §0-BB.)
+> **Last updated:** 2026-07-20 (§0-EE: **STAGING LIVE-VIU PASS ADVERSARIALLY AUDITED
+> CLEAN** — tally **151 VIU-Verified / 4 VIU-Pending / 21 Blocked-Env / 5
+> awaiting-Milos / 3 Deviation = 184** reconciles across all deliverables, live TestRail
+> matches, run 325 untouched, retired SF-CORE-05/06/09 confirmed gone, no secrets; see
+> §0-EE. Prior §0-DD: staging LIVE VIU drove +21 to VIU-Verified across 5 batches;
+> spec `_4` / V2.6 APPLIED + audited clean 2026-07-17, §0-BB.)
 
 ---
 
@@ -115,7 +118,48 @@ What remains:
 
 ---
 
-## 0-DD. STAGING LIVE VIU — Story-18 deployment unblock (2026-07-20, LATEST)
+## 0-EE. STAGING LIVE-VIU PASS — ADVERSARIALLY AUDITED CLEAN (2026-07-20, LATEST)
+
+Final bookkeeping over the §0-DD staging LIVE-VIU pass (5 batches). An adversarial
+self-audit (Standing Rule 15) independently re-checked the pass and every deliverable —
+**verdict: CLEAN.**
+
+- **Tally reconciles everywhere: ACTIVE 184 (187 authored − 3 retired) = VIU-Verified 151
+  / VIU-Pending 4 / Blocked-Env 21 / VIU-observed-awaiting-Milos 5 / Deviation 3;
+  Open-Question 0** — consistent in `cases/*.json` (viu_status), `SimpleFlow_Blockers_Tracker.md`/`.xlsx`,
+  the import CSV/XLSX (184 rows, VIU-word/flag-word-free), and `testrail-id-map.csv`
+  (184/184, 0 blanks).
+- **Live TestRail matches the local case source** for the pushed cases (SF-CORE-03/11/18
+  update_case, 200 + re-GET MATCH; all other flips no-op = wording already build-accurate);
+  **run 325 (Ayesha) untouched** (no results written); **retired SF-CORE-05/06/09 (ex
+  C29317/C29318/C29321) confirmed GONE** (re-GET 400); **no secrets** (cookies/harness stay
+  in `/tmp`).
+- **Every VIU-Verified flip is evidence-backed** (live UI/API observed that run, in
+  `viu-staging-2026-07-20/`) — no status inferred (Rules 12/13).
+- **WHAT'S LEFT — exact remainder:**
+  - **VIU-Pending (4):** SF-CORE-19 (received-core handle-core writeback — received-core
+    state not reachable), SF-RCV-11 (return-to-originating-line scroll/focus — needs a
+    many-line WO round-trip), SF-RCV-12 (other-vendor-exclusion not isolated), SF-WOP-04
+    (Waiting-on-Parts column consistency not observed).
+  - **Blocked-Env (21)** incl. **SF-CORE-15/17** (an INVOICED/paid WO with an
+    ordered-but-unreceived core is not producible on this build — complete ≠ invoiced/paid
+    + can't order parts on a completed WO) + **SF-QB-09** (QuickBooks not connected;
+    `/api/quickbooks/status` 404) + the standing QB/invoiced/merge/VIN-less residue.
+  - **Deviations (3):** **SF-RCV-05/07** — Accept-Delivery **Vendor Missing group STILL AT
+    TOP** (should be BOTTOM per Milos); the Milos Round-3 loop is **definitively CLOSED as
+    NOT FIXED** — **bug draft #5 STAYS OPEN to file in Jira**; plus **SF-SET-03** (no Create
+    Purchase Orders toggle).
+  - **5 awaiting-Milos** (policy Qs: SF-SET-08/COMP-06/REV-11/UX-04/QB-02) — the **Milos
+    spec-V2.6 question sheet is READY to send** (`PO-Questions-Milos-SpecV26_2026-07-17.xlsx`/`.md`).
+- **Env note (disposable residue, reversible in-app):** ZZAUTOTEST WO **095497aa
+  (S3-25720) left COMPLETE** (can't API-delete a completed WO — Uncomplete via the
+  three-dot menu) + an **orphan ZZAUTOTEST PO e4975eaa**; both disposable per Standing
+  Rule 6. Shared-env settings were restored to as-found (requireVendorInvoiceNumber /
+  requireReview true/true); Tech never role-swapped (admin-only run).
+
+---
+
+## 0-DD. STAGING LIVE VIU — Story-18 deployment unblock (2026-07-20, prior event)
 
 **Simple Flow is now deployed on `app.staging.shopview.com` / `api.staging.shopview.com`
 (the shared d55bc308 org, same host as Custom Roles).** Prior VIU ran on
