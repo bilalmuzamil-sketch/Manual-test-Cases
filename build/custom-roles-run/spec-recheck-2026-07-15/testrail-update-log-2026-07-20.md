@@ -1,0 +1,13 @@
+# TestRail update audit — Custom Roles spec-recheck (2026-07-20)
+
+> Explicit user authorization 2026-07-20 (change all cases NOT on the frozen list). Project 1 / suite 1.
+> Method per case: get_case -> update_case -> re-get verify -> logged below. 5 cases; all HTTP 200 + re-read MATCH.
+> Frozen (NOT touched) per user: 26335,26339,26359,26418,26419,26424,26427,26459,26464,26488,26489,26495,26496,26497,26498,26500,26502,26503,26504,27736,27870,27873,29435,29458,29459.
+
+| Case | HTTP | Verified | Field(s) changed | Before → After | Basis |
+|---|---|---|---|---|---|
+| C26355 | 200 | True | expected | EXPECTED: 'A window opens. It shows the add/edit/delete areas, the Page Access toggles, the Settings sub-toggles, the Wor...' -> 'A window opens. It shows the add/edit/delete areas, the Page Access toggles, the Settings sub-toggles, the Wor...' | LIVE 2026-07-20 (self-observed): role-editor Cross-Cutting card has exactly 2 toggles; 'View History Logs' is not one of them. |
+| C26387 | 200 | True | expected | EXPECTED: 'The Add Customer button is not shown in the customer picker; the user can still pick an existing customer but ...' -> 'The Add Customer button IS shown in the customer picker, and creating a new customer from the New Work Order f...' | SV-8002 (Done; QA-passed by Bilal 2026-07-07): Add Customer in New WO flow works without Customers Create&Edit. |
+| C26388 | 200 | True | title, expected | TITLE: 'The 'Add Asset' button is hidden in the New Work Order flow when Customers Create & Edit is OFF' -> 'The 'Add Asset' button in the New Work Order flow when Customers Create & Edit is OFF' ; EXPECTED: 'The Add Asset button is not shown; the user can pick an existing asset but cannot create a new one. (Known dev...' -> 'The Add Asset button IS shown, and adding a new asset for the customer from the New Work Order flow works. Add...' | SV-8002 (Done; QA-passed 2026-07-07): Add Asset in New WO flow works without Customers Create&Edit. |
+| C29457 | 200 | True | title | TITLE: 'BUG: Time Clock user CAN read organization Settings via API' -> 'Time Clock user reading organization Settings via API returns 200 (backend does not enforce — expected)' | SV-7958 (Done 2026-07-14): backend leaks accepted by PO. Title corrected to accepted behaviour (expected already updated by Bilal). |
+| C29460 | 200 | True | title | TITLE: 'BUG: Time Clock user's Work Order create is not blocked with 403' -> 'Time Clock user Work Order create via API is not gated with 403 (backend does not enforce — accepted by PO)' | SV-7958 (Done 2026-07-14): backend gate intentionally absent, accepted. Title corrected (expected already updated by Bilal). |
