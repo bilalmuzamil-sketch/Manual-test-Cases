@@ -1,0 +1,87 @@
+[
+  {"case_id":26435,"section_id":3541,"title":"Reports ON gives access to the Reports page with all reports (no per-report on/off)","verdict":"OK"},
+  {"case_id":26436,"section_id":3541,"title":"Reports OFF removes Reports from the top navigation","verdict":"OK"},
+  {"case_id":26437,"section_id":3541,"title":"Customer portal ON lets the user manage the customer portal","verdict":"OK"},
+  {"case_id":26438,"section_id":3541,"title":"Customer portal OFF hides the customer portal from navigation","verdict":"OK"},
+  {"case_id":26439,"section_id":3541,"title":"Billing Portal ON lets the user manage the billing portal","verdict":"OK"},
+  {"case_id":26440,"section_id":3541,"title":"Billing Portal OFF hides the Billing Portal item in the Settings area","verdict":"OK"},
+
+  {"case_id":26441,"section_id":3542,"title":"Turning Settings ON reveals its sub-toggles","verdict":"OK","note":"7 sub-toggles incl. Integrations match spec §3 (SV-8157)."},
+  {"case_id":26442,"section_id":3542,"title":"Turning Settings OFF hides its sub-toggles","verdict":"OK"},
+  {"case_id":26443,"section_id":3542,"title":"A saved role with Settings OFF has no Settings area in the sidebar","verdict":"OK"},
+  {"case_id":26444,"section_id":3542,"title":"Turning Settings OFF then ON keeps the sub-toggle choices","verdict":"OK"},
+  {"case_id":26445,"section_id":3542,"title":"App Settings ON gives access to the admin pages","verdict":"OK","note":"App Settings covers Roles/Staff/Departments per spec §3 + SV-7781."},
+  {"case_id":26446,"section_id":3542,"title":"Service ON gives access to the Service configuration pages","verdict":"OK"},
+  {"case_id":26447,"section_id":3542,"title":"Parts ON gives access to the Parts configuration pages","verdict":"OK"},
+  {"case_id":26448,"section_id":3542,"title":"Finance ON shows the Finance pages, and Integrations ON shows QuickBooks, IBS and Open API","verdict":"OK","note":"Matches ruling #17: QB/IBS/Open API under Integrations (relocation to Finance cancelled, SV-7493 obsolete; SV-8157 verified)."},
+  {"case_id":26449,"section_id":3542,"title":"Data Import ON gives access to the Imports pages","verdict":"OK"},
+  {"case_id":26450,"section_id":3542,"title":"View/Manage Wages ON lets the user manage wages","verdict":"OK"},
+  {"case_id":26451,"section_id":3542,"title":"The Settings sub-toggles work independently (Service on, Finance off)","verdict":"OK"},
+  {"case_id":27395,"section_id":3542,"title":"Turning off the last Settings sub-toggle collapses the Settings section","verdict":"OK"},
+  {"case_id":29273,"section_id":3542,"title":"The Integrations admin pages depend on the Integrations sub-toggle, not on Finance","verdict":"OK","note":"Matches ruling #17."},
+  {"case_id":29274,"section_id":3542,"title":"The QuickBooks connection check does not run for roles without Integrations","verdict":"OK"},
+
+  {"case_id":26452,"section_id":3543,"title":"The Work orders card has 'Full View' and 'Tech view' options","verdict":"OK"},
+  {"case_id":26453,"section_id":3543,"title":"The Full View description","verdict":"OK"},
+  {"case_id":26454,"section_id":3543,"title":"The Tech view description, and Tech view stays disabled until a Work orders permission is on","verdict":"OK"},
+  {"case_id":26455,"section_id":3543,"title":"Tech view: the Estimate column shows the Tech Time value","verdict":"OK"},
+  {"case_id":26456,"section_id":3543,"title":"Tech view: the tech time input field is hidden on work order lines","verdict":"OK"},
+  {"case_id":26457,"section_id":3543,"title":"Tech view: the user cannot approve work orders (no Approve button)","verdict":"OK"},
+  {"case_id":26458,"section_id":3543,"title":"Tech view: the user cannot approve work order lines","verdict":"OK"},
+
+  {"case_id":26459,"section_id":3543,"title":"Tech view: labor rate columns and fields are hidden on work order lines","verdict":"OPEN-QUESTION","fields_affected":["expected"],
+   "current_excerpt":"Labor rate columns and fields are hidden, even though See Financial Data is on — the hiding comes from Tech view, not from See Financial Data. (viu=Deviation)",
+   "proposed_text":"OPEN QUESTION for Bilal/Vlad + PO: does Tech View hide labor rates when See Financial Data is ON? Spec §4 Tech View restrictions table says 'Cannot view labor rates — Labor rate columns and fields are hidden on work order lines.' But SV-8107 ('Tech view exposes WO-line labor rate when See Financial is ON') was closed OBSOLETE / not-a-bug (2026-07-13) with NO explicit PO statement — implying labor rate IS visible in Tech View when SFD is ON. This case (viu=Deviation) observed labor rate NOT hidden, matching SV-8107 and contradicting spec §4. Confirm with the PO whether spec §4 governs (rate hidden) or SV-8107 governs (rate visible with SFD ON), then rewrite or keep accordingly. Do not push until resolved.",
+   "reason":"Direct spec §4 vs SV-8107 contradiction with no explicit PO ruling; recorded Deviation. Standing Rule 15 — flag, don't pick a side.",
+   "citation":"Spec §4 Tech View restrictions ('Cannot view labor rates') vs SV-8107 (OBSOLETE, not-a-bug, 2026-07-13, no PO reply).","confidence":"high"},
+
+  {"case_id":26460,"section_id":3543,"title":"Tech view: the parts request form shows fewer fields","verdict":"OK"},
+  {"case_id":26461,"section_id":3543,"title":"Tech view: the user can add new work order lines but cannot edit existing ones","verdict":"OK"},
+  {"case_id":26462,"section_id":3543,"title":"Tech view: a line becomes read-only once its authorization is approved","verdict":"OK"},
+  {"case_id":26463,"section_id":3543,"title":"View mode only changes the look, not what the user is allowed to do","verdict":"OK"},
+
+  {"case_id":26464,"section_id":3543,"title":"Money columns are controlled by See Financial Data, not by View mode","verdict":"OPEN-QUESTION","fields_affected":["expected"],
+   "current_excerpt":"User B sees parts pricing and totals (See Financial Data is on), but labor rate columns and fields are still hidden because Tech view hides them separately. (viu=Deviation)",
+   "proposed_text":"OPEN QUESTION (same as C26459): the second half of this expected — 'labor rate columns and fields are still hidden because Tech view hides them' with SFD ON — conflicts with SV-8107 (closed not-a-bug, labor rate visible in Tech View when SFD ON). The first half (pricing/totals controlled by SFD) is correct. Resolve the labor-rate-in-Tech-View question with the PO, then adjust the labor-rate sentence. The rest of the case is fine.",
+   "reason":"Same spec §4 vs SV-8107 labor-rate contradiction; recorded Deviation.",
+   "citation":"Spec §4 Tech View restrictions vs SV-8107 (OBSOLETE not-a-bug 2026-07-13).","confidence":"high"},
+
+  {"case_id":26465,"section_id":3543,"title":"Tech view: the 'Send to Portal' button is hidden","verdict":"OK","note":"Matches ruling #10 (Send to Portal = Full View; hidden in Tech View)."},
+  {"case_id":26466,"section_id":3543,"title":"Full View: a user who can approve lines sees the 'Send to Portal' button","verdict":"OK","note":"Matches ruling #10 + spec OQ6 (Send to Portal = Full View + can approve a WOL)."},
+
+  {"case_id":26467,"section_id":3544,"title":"See Financial Data toggle appears in the Cross-Cutting Toggles card","verdict":"OK","note":"Self-flags the leftover subtitle placeholder — a build cosmetic bug to report, not a case error."},
+  {"case_id":26468,"section_id":3544,"title":"See Financial Data ON: prices, costs, margins and labor rates are shown","verdict":"OK"},
+  {"case_id":26469,"section_id":3544,"title":"See Financial Data OFF: money amounts, rates, costs and margins are hidden","verdict":"OK"},
+  {"case_id":26470,"section_id":3544,"title":"With See Financial Data OFF, Part sales and Invoicing & payments stay inaccessible even with View, Create & Edit and Delete on","verdict":"OK"},
+  {"case_id":26471,"section_id":3544,"title":"Ticking Part sales while See Financial Data is OFF asks you to turn See Financial Data on","verdict":"OK"},
+  {"case_id":26472,"section_id":3544,"title":"'Enable See Financial Data?' dialog — Enable: turns See Financial Data on and keeps the box ticked","verdict":"OK"},
+  {"case_id":26473,"section_id":3544,"title":"'Enable See Financial Data?' dialog — Cancel: undoes the tick","verdict":"OK"},
+  {"case_id":26474,"section_id":3544,"title":"The same 'Enable See Financial Data?' dialog appears for Invoicing & payments when See Financial Data is OFF","verdict":"OK"},
+
+  {"case_id":26475,"section_id":3544,"title":"Turning See Financial Data OFF asks you to also turn off the settings that depend on it","verdict":"UPDATE","fields_affected":["label"],
+   "current_excerpt":"It names the dependent settings that are currently on: Invoicing & payments, Part sales, Order parts, and View and Manage AP/AR Data.",
+   "proposed_text":"Label find-replace only: 'View and Manage AP/AR Data' -> 'Manage Accounts Payable and Receivable' (confirm live). The dependents list (Invoicing, Part Sales, Order Parts, Manage AP/AR) matches spec §5a.","reason":"Stale toggle label; dependents list is correct.","citation":"Spec change log 6/10; §5a dependents list. LABEL-BATCH.md.","confidence":"medium"},
+
+  {"case_id":27869,"section_id":3544,"title":"Turning on Order parts while See Financial Data is OFF asks you to also turn on See Financial Data","verdict":"OK","note":"Matches SV-8176 (Order Parts/SFD prompt built + verified)."},
+
+  {"case_id":26476,"section_id":3545,"title":"View and Manage AP/AR Data ON shows the Unpaid Invoices, Payments and Credits tabs on a customer","verdict":"UPDATE","fields_affected":["title","label"],"current_excerpt":"View and Manage AP/AR Data ON ...","proposed_text":"Label find-replace 'View and Manage AP/AR Data' -> 'Manage Accounts Payable and Receivable' throughout title + body (confirm live). Behaviour matches spec §5b.","reason":"Stale toggle label (appears in title too).","citation":"Spec change log 6/10; §5b. LABEL-BATCH.md.","confidence":"medium"},
+  {"case_id":26477,"section_id":3545,"title":"View and Manage AP/AR Data ON shows the same three tabs on a vendor","verdict":"UPDATE","fields_affected":["title","label"],"current_excerpt":"View and Manage AP/AR Data ON ...","proposed_text":"Label find-replace throughout (confirm live). Behaviour matches spec §5b (vendor tabs).","reason":"Stale toggle label.","citation":"Spec 6/10; §5b. LABEL-BATCH.md.","confidence":"medium"},
+  {"case_id":26478,"section_id":3545,"title":"With Reports ON, all 6 AP/AR aging reports are listed (whether or not AP/AR is on)","verdict":"UPDATE","fields_affected":["label"],"current_excerpt":"View and Manage AP/AR Data ON ...","proposed_text":"Label find-replace (confirm live). Behaviour matches ruling #12 (aging reports follow Reports, not AP/AR).","reason":"Stale toggle label; behaviour correct.","citation":"Spec 6/10; ruling #12 (SV-8177). LABEL-BATCH.md.","confidence":"medium"},
+  {"case_id":26479,"section_id":3545,"title":"View and Manage AP/AR Data ON allows paying several invoices at once from the Unpaid Invoices tab","verdict":"UPDATE","fields_affected":["title","label"],"current_excerpt":"View and Manage AP/AR Data ON ...","proposed_text":"Label find-replace (confirm live). Behaviour matches spec §5b (bulk pay from Unpaid Invoices).","reason":"Stale toggle label.","citation":"Spec 6/10; §5b. LABEL-BATCH.md.","confidence":"medium"},
+  {"case_id":26480,"section_id":3545,"title":"View and Manage AP/AR Data OFF hides the three tabs on a customer","verdict":"UPDATE","fields_affected":["title","label"],"current_excerpt":"View and Manage AP/AR Data OFF ...","proposed_text":"Label find-replace (confirm live).","reason":"Stale toggle label.","citation":"Spec 6/10; §5b. LABEL-BATCH.md.","confidence":"medium"},
+  {"case_id":26481,"section_id":3545,"title":"View and Manage AP/AR Data OFF hides the three tabs on a vendor","verdict":"UPDATE","fields_affected":["title","label"],"current_excerpt":"View and Manage AP/AR Data OFF ...","proposed_text":"Label find-replace (confirm live).","reason":"Stale toggle label.","citation":"Spec 6/10; §5b. LABEL-BATCH.md.","confidence":"medium"},
+  {"case_id":26482,"section_id":3545,"title":"With AP/AR OFF but Reports ON, all 6 AP/AR aging reports are still listed","verdict":"UPDATE","fields_affected":["label"],"current_excerpt":"View and Manage AP/AR Data OFF ...","proposed_text":"Label find-replace (confirm live). Behaviour matches ruling #12.","reason":"Stale toggle label; behaviour correct.","citation":"Spec 6/10; ruling #12. LABEL-BATCH.md.","confidence":"medium"},
+  {"case_id":26483,"section_id":3545,"title":"View and Manage AP/AR Data OFF hides the sensitive money fields on Edit Customer","verdict":"UPDATE","fields_affected":["title","label"],"current_excerpt":"View and Manage AP/AR Data OFF ...","proposed_text":"Label find-replace (confirm live). 7 fields match spec §1d/§5b.","reason":"Stale toggle label.","citation":"Spec 6/10; §1d/§5b. LABEL-BATCH.md.","confidence":"medium"},
+  {"case_id":26484,"section_id":3545,"title":"View and Manage AP/AR Data OFF still lets a user create invoices and take payments if Invoicing & payments allows it","verdict":"UPDATE","fields_affected":["title","label"],"current_excerpt":"View and Manage AP/AR Data OFF ...","proposed_text":"Label find-replace (confirm live). Behaviour matches spec §5b.","reason":"Stale toggle label.","citation":"Spec 6/10; §5b. LABEL-BATCH.md.","confidence":"medium"},
+  {"case_id":26485,"section_id":3545,"title":"View and Manage AP/AR Data works independently of See Financial Data","verdict":"UPDATE","fields_affected":["title","label"],"current_excerpt":"View and Manage AP/AR Data ... (also references 'View History Logs' elsewhere in the body)","proposed_text":"Label find-replace 'View and Manage AP/AR Data' -> 'Manage Accounts Payable and Receivable' AND 'View History Logs' -> 'View Part History' (confirm live per LABEL-BATCH.md). Behaviour (two toggles independent) matches spec §5b Key Decision.","reason":"Two stale toggle labels.","citation":"Spec 6/10 + 7/7; §5b. LABEL-BATCH.md.","confidence":"medium"},
+  {"case_id":26486,"section_id":3545,"title":"View and Manage AP/AR Data OFF does not block any add/edit/delete area","verdict":"UPDATE","fields_affected":["title","label"],"current_excerpt":"View and Manage AP/AR Data OFF ...","proposed_text":"Label find-replace (confirm live). Behaviour matches spec §5b ('Does NOT gate CRUD areas').","reason":"Stale toggle label.","citation":"Spec 6/10; §5b. LABEL-BATCH.md.","confidence":"medium"},
+
+  {"case_id":27736,"section_id":3545,"title":"The AP/AR cross-cutting toggle is labeled 'View and Manage AP/AR Data'","verdict":"UPDATE","fields_affected":["title","expected"],
+   "current_excerpt":"The Cross-Cutting Toggles card shows a toggle labeled 'View and Manage AP/AR Data'. It sits alongside the 'See Financial Data' and 'View History Logs' toggles in the same card.",
+   "proposed_text":{
+     "title":"The AP/AR cross-cutting toggle is labeled 'Manage Accounts Payable and Receivable'",
+     "custom_expected":"<p>The Cross-Cutting Toggles card shows a toggle labeled 'Manage Accounts Payable and Receivable'. It sits alongside the 'See Financial Data' toggle in the same card. (Part History visibility is now the 'View Part History' setting under the Parts group, no longer a cross-cutting toggle.) When ON, it controls the Unpaid Invoices, Payments and Credits tabs on customers and vendors, and the sensitive money fields on Edit Customer.</p>\n<p>NOTE (confirm live): the build may still show the legacy labels 'View and Manage AP/AR Data' / 'View History Logs' until SV-8202 ships — see LABEL-BATCH.md.</p>"
+   },
+   "reason":"This case's whole purpose is to assert the toggle LABEL, and it asserts the two stale labels: AP/AR renamed to 'Manage Accounts Payable and Receivable' (6/10) and 'View History Logs' relabelled to 'View Part History' and moved out of the cross-cutting card into the Parts group (7/7). Highest-priority label case.",
+   "citation":"Spec change log 6/10 + 7/7; §5b; §1h; SV-8202 (open). LABEL-BATCH.md.","confidence":"medium"}
+]
