@@ -24,8 +24,19 @@
    - **No "View History Logs"/"View Part History" toggle in the role editor** (cross-cutting card
      = See Financial Data + View and Manage AP/AR Data only; Parts group = 3 children). History
      cases corrected to drop the non-existent toggle.
-   - **Final verdicts after live check: 243 OK / 21 UPDATE / 5 OPEN-QUESTION** (findings carry
-     `live_check` + `final_verdict`).
+4c. **LIVE ROLE-MATRIX VERIFICATION done 2026-07-20** (all 11 system roles read live from
+   `/api/roles/{id}`; writeup `LIVE-ROLE-VERIFICATION-2026-07-20.md`, matrix
+   `live-roles-matrix-2026-07-20.csv`, diff `live-vs-spec-role-diffs-2026-07-20.json`):
+   - **C26496 SM (WO Delete), C26504 Sales Rep (not Reports-only), C26505 Time Clock** —
+     corrections LIVE-CONFIRMED.
+   - **C26503 Office REVISED:** build (non-editable role = true default) still grants Office WO
+     View + Part Sales View — the 7/14 spec removal is NOT deployed; only real change is
+     Invoicing View→V/E/D. Earlier spec-derived "WO none/PS none" correction was wrong; fixed.
+   - **C26497 SrSA / C26498 Svc Advisor / C26500 Technician** → OPEN-QUESTION: build differs from
+     spec (SrSA Reports OFF; SvcAdv Invoicing no-Delete; Tech WO C&E + SFD ON) but these are
+     EDITABLE roles on a SHARED org (Tech known-drifted) — confirm on clean defaults, don't assert.
+   - **Final verdicts: 240 OK / 21 UPDATE / 8 OPEN-QUESTION** (findings carry `live_check` +
+     `final_verdict`).
 5. **Produced the proposed-corrections deliverable** (`build/custom-roles-run/`):
    `CustomRoles_SpecRecheck_Proposed-Corrections_2026-07-15.xlsx` (+ .md + .csv) — tabs Summary /
    UPDATE / OPEN-QUESTION / OK; columns Case ID + TestRail Link + Section + Area + Title + Verdict

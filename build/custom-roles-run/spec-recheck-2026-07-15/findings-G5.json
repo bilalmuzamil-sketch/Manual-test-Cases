@@ -109,7 +109,7 @@
   "reason": "Current spec matrix gives Service Manager Work Orders = V/E/D, and SV-8297 (Sasha 2026-07-14) explicitly confirms the SM template + system role HAVE Work Orders Delete (reversing the obsolete SV-8093). The case wrongly says 'no Delete' on Work Orders. Plus the AP/AR label rename.",
   "citation": "Spec matrix WO row (Svc Mgr = V/E/D); SV-8297 Sasha 2026-07-14 (supersedes SV-8093); spec 6/10 label. LABEL-BATCH.md.",
   "confidence": "high",
-  "live_check": "Label-rename portion WITHDRAWN (build still shows 'View and Manage AP/AR Data', LIVE 2026-07-20); the BEHAVIOURAL correction on this case still stands. See LIVE-LABEL-CHECK-RESULT.md.",
+  "live_check": "LIVE-VERIFIED 2026-07-20: Service Manager = WO V/E/D (Delete present), Invoicing V/E (no Delete), Customers full, Full View. Confirms the correction. (AP/AR label build-accurate: 'View and Manage AP/AR Data'.)",
   "final_verdict": "UPDATE"
  },
  {
@@ -125,8 +125,8 @@
   "reason": "Stale toggle label; permission set correct.",
   "citation": "Spec 6/10; matrix SrSA column. LABEL-BATCH.md.",
   "confidence": "medium",
-  "live_check": "AP/AR label build-accurate: LIVE 2026-07-20 the build shows 'View and Manage AP/AR Data' (5 observations). Spec 6/10 rename to 'Manage Accounts Payable and Receivable' is NOT deployed \u2014 proposed rename WITHDRAWN; keep the case label as-is. Build-vs-spec label gap flagged to dev (see LIVE-LABEL-CHECK-RESULT.md).",
-  "final_verdict": "OK"
+  "live_check": "LIVE 2026-07-20: Senior Service Advisor has Reports OFF in the build, but spec matrix says Reports ON. SrSA is editable on a SHARED org so this may be tester drift, or a real build gap. CONFIRM on clean defaults before treating the case's 'Reports on' as wrong. Otherwise the SrSA set matches. (AP/AR label build-accurate.)",
+  "final_verdict": "OPEN-QUESTION"
  },
  {
   "case_id": 26498,
@@ -141,8 +141,8 @@
   "reason": "Stale toggle label; permission set correct.",
   "citation": "Spec 6/10; matrix Svc Advisor column. LABEL-BATCH.md.",
   "confidence": "medium",
-  "live_check": "AP/AR label build-accurate: LIVE 2026-07-20 the build shows 'View and Manage AP/AR Data' (5 observations). Spec 6/10 rename to 'Manage Accounts Payable and Receivable' is NOT deployed \u2014 proposed rename WITHDRAWN; keep the case label as-is. Build-vs-spec label gap flagged to dev (see LIVE-LABEL-CHECK-RESULT.md).",
-  "final_verdict": "OK"
+  "live_check": "LIVE 2026-07-20: Service Advisor Invoicing is V/E in the build (no Delete), but spec + case say V/E/D. Editable role on a shared org -> possible drift. CONFIRM on clean defaults. (AP/AR label build-accurate.)",
+  "final_verdict": "OPEN-QUESTION"
  },
  {
   "case_id": 26499,
@@ -165,7 +165,9 @@
   "section_id": 3548,
   "title": "Technician: role permissions match the expected set",
   "verdict": "OK",
-  "note": "Matches spec matrix (Tech): WO V, WOL V/E, Schedule V, Customers V, Pick Parts on, Tech View, everything else off. No stale label used."
+  "note": "Matches spec matrix (Tech): WO V, WOL V/E, Schedule V, Customers V, Pick Parts on, Tech View, everything else off. No stale label used.",
+  "final_verdict": "OPEN-QUESTION",
+  "live_check": "LIVE 2026-07-20: Technician shows WO Create&Edit, Customers Create&Edit and See Financial Data ON in the build, vs spec WO View / Customers View / SFD off. CLAUDE.md warns the Technician role is DRIFTED on this shared org; WO C&E + SFD ON is a classic drift signature. RE-DERIVE on clean/reset Technician defaults before treating the case as wrong."
  },
  {
   "case_id": 26501,
@@ -205,17 +207,16 @@
   "title": "Office User: role permissions match the expected set",
   "verdict": "UPDATE",
   "fields_affected": [
-   "expected",
-   "label"
+   "expected"
   ],
   "current_excerpt": "Work orders View only; Work order lines off; ... Part sales View only; Catalog and Inventory View only; Vendor and order management View only; Invoicing & payments View only; ... View and Manage AP/AR Data on ...",
   "proposed_text": {
-   "custom_expected": "<p>The Office User permissions match the expected set per the 7/14 spec update: Work Orders = NONE (no Work Orders access \u2014 the Work Orders nav is hidden for Office); Part Sales = NONE; Invoicing & Payments = View/Create & Edit/Delete (BUT a hard-coded rule disables the Create Invoice button for Office on both Work Orders and Part Sales \u2014 Office can make payments/deposits/credits but cannot create invoices); Customers full (including Delete); Catalog and Inventory View only; Vendor and Order Management View only; Timesheets View/Create & Edit; Schedule View only; Reports on; Billing Portal on; See Financial Data on; Manage Accounts Payable and Receivable on; Settings on with App Settings, Integrations, Finance, Data Import and View/Manage Wages; View mode Full View. The Office User role is non-editable (lock icon, eye only).</p>\n<p>OPEN QUESTIONS to flag (do not assert a verdict): (1) the spec matrix lists Office Work Order Lines = View while Office Work Orders = none \u2014 a spec-internal contradiction (WOL View is supposed to inherit from WO View); confirm with PO. (2) HOW Office makes payments/deposits without being able to create invoices is still open with the PO (SV-7993 comment 73184 unanswered; SV-8345 closed deferring there) \u2014 verify the payment path live but treat the exact gating as PO-pending.</p>"
+   "custom_expected": "<p>The Office User permissions match the expected set (LIVE-observed on the build 2026-07-20; Office is non-editable): Work Orders View; Work Order Lines View (inherited); Part Sales View; Catalog and Inventory View; Vendor and Order Management View; Customers View/Create & Edit/Delete; Invoicing & Payments View/Create & Edit/Delete; Timesheets View/Create & Edit; Schedule View; Reports on; Billing Portal on; See Financial Data on; Manage Accounts Payable and Receivable on; View Part History on; Settings on with App Settings, Service, Integrations, Finance, Data Import and View/Manage Wages; View mode Full View; role is non-editable.</p><p>The ONLY change vs the old case is Invoicing &amp; Payments: View -> View/Create &amp; Edit/Delete (Office gained invoicing Create &amp; Edit + Delete). NOTE: the 7/14 spec update that REMOVES Office's Work Orders and Part Sales access is NOT yet deployed - the build still grants Office Work Orders View and Part Sales View; flag this build-vs-spec gap to dev/PO. The hard-coded 'Office cannot create invoices (but can take payments)' rule is still an open PO item (SV-7993).</p>"
   },
-  "reason": "The 7/14 spec update REDEFINED Office: Work Orders V->none, Part Sales V->none, Invoicing V->V/E/D (with the hard-coded no-Create-Invoice rule). The case still encodes the pre-7/14 Office (WO View, Part Sales View, Invoicing View). This is the single biggest behavioural drift in the recheck. Two spec-internal open items flagged, not silently resolved.",
-  "citation": "Spec change log 7/14 ('Updated Office Role definition') + matrix Office column + 'Office Users Cannot Create Invoices'; SV-7993 (open); SV-8345 (obsolete); spec 6/10 label. LABEL-BATCH.md.",
+  "reason": "LIVE 2026-07-20 (non-editable role = true default): build gives Office WO View + Part Sales View + Invoicing V/E/D. The 7/14 spec removal of Office WO/Part Sales is NOT deployed, so the earlier spec-derived correction (WO none / PS none) was wrong. Only real change from the old case is Invoicing View -> V/E/D.",
+  "citation": "LIVE /api/roles Office (2026-07-20); spec 7/14 Office redefinition (NOT deployed); SV-7993 (open). See LIVE-ROLE-VERIFICATION-2026-07-20.md.",
   "confidence": "high",
-  "live_check": "Label-rename portion WITHDRAWN (build still shows 'View and Manage AP/AR Data', LIVE 2026-07-20); the BEHAVIOURAL correction on this case still stands. See LIVE-LABEL-CHECK-RESULT.md.",
+  "live_check": "LIVE-VERIFIED 2026-07-20: Office (non-editable) = WO View, WOL View, PS View, Cat View, Ven View, Cust V/E/D, Invoicing V/E/D, TS V/E, Schedule View, Reports/BillingPortal/SFD/AP-AR/ViewHistory ON, Full, non-editable. 7/14 WO/PS removal NOT deployed.",
   "final_verdict": "UPDATE"
  },
  {
@@ -234,7 +235,7 @@
   "reason": "The 7/7-7/14 Sales Rep template update (change log '7/7 Sales Rep default template updated'; SV-8061 verified 2026-07-14) gives Sales Rep WO View, WOL View, Customers V/E, Part Sales View \u2014 NOT 'all areas off / Reports only'. The case is stale. Plus a spec-internal Part-Sales-vs-Parts-Dept inconsistency to flag.",
   "citation": "Spec matrix Sales Rep column + change log 7/7; SV-8061 verified 2026-07-14; spec 6/10 + 7/7 labels. LABEL-BATCH.md.",
   "confidence": "high",
-  "live_check": "Label-rename portion WITHDRAWN (build still shows 'View and Manage AP/AR Data', LIVE 2026-07-20); the BEHAVIOURAL correction on this case still stands. See LIVE-LABEL-CHECK-RESULT.md. History toggle NOT in the role editor: LIVE 2026-07-20 the Cross-Cutting Toggles card has exactly TWO toggles (See Financial Data + View and Manage AP/AR Data) and the Parts group has only 3 children. No 'View History Logs' / 'View Part History' editor toggle exists. The viewHistoryLogs capability persists in the backend and gates the inventory 'Part History' view only. See LIVE-LABEL-CHECK-RESULT.md.",
+  "live_check": "LIVE-VERIFIED 2026-07-20: Sales Representative = WO View, WOL View, Customers View+Create&Edit, Part Sales View, Reports ON, SFD ON, AP/AR ON, Full View, everything else off. Confirms NOT Reports-only. (Build AP/AR label 'View and Manage AP/AR Data'; History toggle absent.)",
   "final_verdict": "UPDATE"
  },
  {
@@ -249,8 +250,8 @@
   "proposed_text": "Label find-replace 'View and Manage AP/AR Data' -> 'Manage Accounts Payable and Receivable' (confirm live). Permission set correct: WO View, Schedule View, Timesheets View only; everything else off; non-editable; View Mode empty.",
   "reason": "Stale toggle label; permission set correct.",
   "citation": "Spec 6/10; matrix Time Clock column. LABEL-BATCH.md.",
-  "confidence": "medium",
-  "live_check": "AP/AR label build-accurate: LIVE 2026-07-20 the build shows 'View and Manage AP/AR Data' (5 observations). Spec 6/10 rename to 'Manage Accounts Payable and Receivable' is NOT deployed \u2014 proposed rename WITHDRAWN; keep the case label as-is. Build-vs-spec label gap flagged to dev (see LIVE-LABEL-CHECK-RESULT.md).",
+  "confidence": "high",
+  "live_check": "LIVE-VERIFIED 2026-07-20: Time Clock User = WO View, Schedule View, Timesheets View only; view_mode none; all cross-toggles off; non-editable. Matches the case. (AP/AR label build-accurate.)",
   "final_verdict": "OK"
  },
  {
