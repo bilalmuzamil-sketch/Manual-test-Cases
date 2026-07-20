@@ -18,13 +18,24 @@
 
 ---
 
-## ⏭️ WHAT'S LEFT TO DO — read this first (as of 2026-07-17)
+## ⏭️ WHAT'S LEFT TO DO — read this first (as of 2026-07-20)
 
-**Current tally (post spec `_4` / V2.6 apply, §0-BB — authoritative, counted from
-`cases/*.json` viu_status, 187 case bodies): VIU-Verified 130 / VIU-Pending 22 /
-Blocked-Env 27 / VIU-observed-awaiting-Milos 5 / Deviation 3 = 187. Open-Question = 0.**
-All 187 cases are now in TestRail (SF-QB-09 = C29909 — the last unmapped case is mapped;
-id-map 187/187). **The V2.6 apply pass was ADVERSARIALLY AUDITED 2026-07-17 = CLEAN:**
+**Current tally (post retire execution 2026-07-20, §0-CC — authoritative, counted from
+`cases/*.json` viu_status): ACTIVE 184 (187 authored − 3 retired) = VIU-Verified 130 /
+VIU-Pending 22 / Blocked-Env 24 / VIU-observed-awaiting-Milos 5 / Deviation 3.
+Open-Question = 0.** All 184 active cases are in TestRail (id-map 184/184, 0 blanks).
+**RETIRE EXECUTED 2026-07-20 (user ruling 2026-07-17 "Retire"):** SF-CORE-05 (C29317) +
+SF-CORE-06 (C29318) + SF-CORE-09 (C29321) deleted from TestRail via delete_case (3/3
+HTTP 200, re-GET 400 = verified gone; before-snapshots + audit in
+`spec-v4-2026-07-17/testrail-update-log.md` + `retire-snapshots-2026-07-17/`; run 325 +
+all other cases untouched). Bodies kept in `cases/*.json` marked Retired; the 3 rows
+removed from the id-map; all generators exclude Retired cases (assertions 187→184).
+**The Milos spec-V2.6 question sheet is READY to send:**
+`PO-Questions-Milos-SpecV26_2026-07-17.xlsx/.md` (gen: `gen_po_questions_specv26.py`) —
+Q1 S8-R7 leftover cost sentence vs Δ14 $0-only rule, Q2 Vendors-Expenses exclusion
+surface confirm (Δ12), Q3 S10-R2 residue (struck rule vs surviving AC bullets +
+guardrails); layman reader tab + QA-only mapping tab (rules 7/8).
+**The V2.6 apply pass was ADVERSARIALLY AUDITED 2026-07-17 = CLEAN:**
 all 31 touched TestRail cases (13 update + 18 add) re-GET live-vs-local MATCH, run 325 +
 the 3 retire candidates untouched, full C-R1..C-R10 + Δ8–Δ16 coverage, tally confirmed
 across every deliverable; one defect found+fixed (stale hardcoded "(all 159 cases)"
@@ -32,11 +43,10 @@ Blockers-Tracker header → dynamic 187). Audit record appended to
 `spec-v4-2026-07-17/testrail-update-log.md`; commits df95b70→a578ef9 + audit fix 4398091.
 What remains:
 
-0. **⚠️ RETIRE RULING NEEDED (user/QA-lead):** spec `_4` Δ8 removed the invoice-gate core
-   model — **SF-CORE-05 (C29317) + SF-CORE-06 (C29318)** test a module that no longer
-   exists in the spec, and **SF-CORE-09 (C29321)**'s guardrail sentence was deleted (spec
-   silent). All 3 are marked RETIRE-PROPOSED in the local case notes and left UNTOUCHED
-   in TestRail — get the explicit keep-vs-retire ruling before any TestRail action.
+0. ~~RETIRE RULING NEEDED~~ — **CLOSED 2026-07-20: the user ruled "Retire" (2026-07-17)
+   and it was EXECUTED 2026-07-20** — SF-CORE-05/06/09 (ex C29317/C29318/C29321) deleted
+   from TestRail (delete_case 3/3 HTTP 200, verified gone via re-GET 400), audit-logged,
+   local bodies kept marked Retired, active suite = 184, deliverables regenerated. See §0-CC.
 0.5. **Story-18 / Δ9-Δ15 re-VIU backlog (22 VIU-Pending):** the 9 new SF-CORE-11..19 +
    the reworded SF-CORE-03/04/07/08 + SF-BULK-10 + SF-REV-14 need the **SV-8353
    pre-resolve build** (probe sv7301 for the resolve step + the pre-resolve endpoint) **+
@@ -73,17 +83,16 @@ What remains:
    seedable (needs a dev-seeded core); invoiced/paid WO not drivable; merge auto-consolidates;
    VIN-less asset; etc. Includes **SF-AUTO-04** (delete-lines API 500) and **SF-AUTO-06** (UI
    clock-out).
-6. **Spec/design flags to SEND to Milos — the flag sheet is NOT yet produced** (build per
-   Rule 7 and send). NEW from the `_4` pass (spec-diff §D5): (a) **S8-R7 leftover-sentence
-   contradiction** — the tail "after it locks, only cost remains editable" vs the new
-   "cost editable only when $0" rule; (b) **Vendors-Expenses exclusion — confirm the
-   surface** (Δ12 S6-R6: the vendor-missing cost's Vendors-Expenses exclusion leg — that
-   report surface was NOT in the 2026-07-14 Reports inventory; confirm where it lives).
-   PRE-EXISTING (still open): (c) the S10-R2 residue — `_3` strikes S10-R2 but the
-   Story-10 AC bullets + Technical-guardrails paragraph still describe first-class-part
-   creation; (d) the Receive-screen spec text **S12-R1 (bottom) vs S12-R3 (leads)** still
-   unscoped (needs the per-surface qualifiers Milos's Q1 ruling implies); (e) the Resolve
-   Cores design still codes resolve-AFTER-receive vs C-R6 (needs a design rev).
+6. **Spec/design flags for Milos — the question sheet IS PRODUCED (2026-07-20), SEND IT:**
+   `PO-Questions-Milos-SpecV26_2026-07-17.xlsx/.md` covers (a) the **S8-R7
+   leftover-sentence contradiction** (tail "after it locks, only cost remains editable"
+   vs the new "cost editable only when $0" rule) = Q1; (b) the **Vendors-Expenses
+   exclusion surface confirm** (Δ12 S6-R6) = Q2; (c) the **S10-R2 residue** (struck rule
+   vs the surviving Story-10 AC bullets + Technical-guardrails paragraph) = Q3.
+   NOT on the sheet (recorded on its QA tab): (d) the Receive-screen **S12-R1 (bottom) vs
+   S12-R3 (leads)** text — already answered by Milos Round-3 Q1 (split ruling; residual =
+   dev deviation ticket, not a re-ask); (e) the Resolve Cores design still codes
+   resolve-AFTER-receive vs C-R6 — a design-rev/dev item, not a PO decision (rule 7).
 6.5. **Dev-side observations to route:** **OBS-6** (Part-History HTTP 500 + part-detail
    crash) + **SF-AUTO-04** API-500. (The old SF-VMIS-06 "needs vendor report" dev-route
    item was DROPPED 2026-07-17 — spec `_4` S6-R6 was rewritten to match the code.)
@@ -92,7 +101,54 @@ What remains:
 
 ---
 
-## 0-BB. SPEC `_4` (V2.6) PASS — Δ8–Δ16 APPLIED + PUSHED + AUDITED CLEAN (2026-07-17, LATEST)
+## 0-CC. RETIRE EXECUTED + MILOS SPEC-V2.6 SHEET PRODUCED (2026-07-20, LATEST)
+
+**Retirement (user ruling 2026-07-17 "Retire", explicit authorization; executed 2026-07-20):**
+spec `_4` Δ8 removed the invoice-gate core-resolve module, so the 3 RETIRE-PROPOSED cases
+were retired:
+
+| SF ID | ex-TestRail | delete_case | verify | title (for the record) |
+|---|---|---|---|---|
+| SF-CORE-05 | C29317 | HTTP 200 | re-GET 400 (gone) | invoice-gate resolve module routes to receive the cored line |
+| SF-CORE-06 | C29318 | HTTP 200 | re-GET 400 (gone) | cancelling the invoice-gate core resolution |
+| SF-CORE-09 | C29321 | HTTP 200 | re-GET 400 (gone) | part-sale auto-resolve vs service manual Ok/Not OK guardrail |
+
+- Before-snapshots + verification evidence: `spec-v4-2026-07-17/retire-snapshots-2026-07-17/`;
+  full audit appended to `spec-v4-2026-07-17/testrail-update-log.md`. NOTHING else deleted
+  (neighbor spot-checks C29315/C29320/C29909 alive); **run 325 untouched by us** (no results
+  written; note TestRail removes a deleted case's tests from active runs by design).
+- Local: bodies KEPT in `cases/group-A-settings-completion.json` with
+  `viu_status = "Retired — user ruling 2026-07-17, spec _4 Δ8 removed the module"` + a
+  RETIRED note carrying the ex-C-ids; the 3 rows removed from `testrail-id-map.csv`
+  (mapping preserved here + in the audit log + case notes); ALL generators
+  (`gen_blockers.py` / `build_workbook.py` / `build_results_workbook.py` /
+  `gen_import.py`) exclude Retired cases; count assertions 187→184.
+- **Deliverables regenerated over the 184 active cases:** Blockers Tracker (md/xlsx),
+  SimpleFlow_V1_TestCases (xlsx/csv), SimpleFlow_Results (xlsx/csv),
+  `testrail-import/simple-flow-v1-testrail-import.csv/.xlsx` (184 rows, VIU/flag-word-free);
+  id-map 184/184, 0 blanks.
+- **AUTHORITATIVE TALLY (184 active):** VIU-Verified **130** / VIU-Pending **22** /
+  Blocked-Env **24** (was 27 — the 3 retired were Blocked-Env) /
+  VIU-observed-awaiting-Milos **5** / Deviation **3**. Blockers-Tracker categories:
+  READY 126 / MILOS 10 / VIU-PENDING-QA 46 / BUG-RULING 2.
+
+**Milos spec-V2.6 question sheet PRODUCED (ready to send):**
+`PO-Questions-Milos-SpecV26_2026-07-17.xlsx` + `.md`
+(generator `gen_po_questions_specv26.py`; format mirrors
+`SimpleFlow_PO-Decisions-for-Milos_2026-07-14` 1:1 — layman reader tab, no IDs/jargon
+per rule 7, + QA-only "Evidence & mapping" tab with TestRail IDs/links per rule 8):
+- **Q1** S8-R7 leftover sentence ("after it locks, only cost remains editable") vs the
+  Δ14 $0-only cost rule → QA map: SF-BULK-06 / C29355.
+- **Q2** Vendors-Expenses exclusion surface confirm (Δ12 / S6-R6 rewrite) → QA map:
+  SF-VMIS-06 / C29343.
+- **Q3** S10-R2 residue (struck first-class-part rule vs surviving Story-10 AC bullets +
+  technical guardrails) → QA map: SF-PNFIX-02/03/06 + SF-QB-08 (C29364/C29365/C29368/C29433).
+- Not sent (recorded on the QA tab): S12-R1-vs-R3 placement (already answered Round-3 Q1)
+  and the Resolve-Cores design-flow mismatch (design/dev item, rule 7).
+
+---
+
+## 0-BB. SPEC `_4` (V2.6) PASS — Δ8–Δ16 APPLIED + PUSHED + AUDITED CLEAN (2026-07-17)
 
 Applied the 2026-07-17 spec `_4` (self-labeled **V2.6**) per the delta doc
 `spec-v4-2026-07-17/spec-diff-v4-2026-07-17.md` (D1 per-case table + D2 new-case plan
@@ -421,19 +477,20 @@ superseded wording.
 
 ## 0. CURRENT STATE AT A GLANCE (read this first)
 
-**Current tally (2026-07-17 — spec `_4` / V2.6 applied on top of the Milos Round-3
-state; see §0-BB; authoritative — counted directly from `cases/*.json` `viu_status`,
-187 case bodies):**
+**Current tally (2026-07-20 — retire executed on top of the spec `_4` / V2.6 state;
+see §0-CC; authoritative — counted directly from `cases/*.json` `viu_status`,
+187 authored bodies of which 3 are Retired → 184 ACTIVE):**
 
 | VIU status field (`cases/*.json`) | Count |
 |---|---:|
 | VIU-Verified | **130** |
 | VIU-Pending (Story-18 set + Δ13/Δ14 re-VIU flips + Δ9-Δ11/Δ15 new) | **22** |
-| Blocked-Env | **27** |
+| Blocked-Env | **24** |
 | VIU-observed-awaiting-Milos | **5** |
 | Deviation (SF-SET-03, SF-RCV-05, SF-RCV-07) | **3** |
 | Open-Question | **0** |
-| **TOTAL** | **187** |
+| **TOTAL ACTIVE** | **184** |
+| (Retired — excluded from deliverables: SF-CORE-05/06/09, ex C29317/18/21) | (3) |
 
 (Spec `_4` movements vs the 2026-07-16 tally 134/5/26/4/1: SF-INV-01/02/03 + SF-BULK-06
 Verified→VIU-Pending; SF-VMIS-06 Deviation→Blocked-Env; SF-QB-09

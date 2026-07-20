@@ -161,16 +161,18 @@ process(es) to run before proceeding.
    (Atlassian-SSO login-walled — reference pointer only; export/paste content to
    ingest, do NOT fetch). **CANONICAL STATE DOC (read first for
    resume):** `build/simple-flow/PROJECT-STATE.md` — the single authoritative
-   snapshot (case inventory 187 + VIU breakdown, TestRail state, deliverables
+   snapshot (case inventory 184 active [187 authored − 3 retired] + VIU breakdown,
+   TestRail state, deliverables
    index, open threads, env/access facts, how-to-resume). Memory:
    `build/simple-flow/*`
    (`requirements.md` = COMPLETE spec, 17 stories SV-7696..SV-7710 + SV-7870
    [incl. R12/R13 auto-complete = SV-8303] + SV-7876 + §9/§10 SV-8183 permissions;
    `design-notes.md`; `viu-findings.md`;
-   `cases/*.json` = 187 authored cases with `SF-` IDs (post spec `_4`/V2.6 2026-07-17);
-   `SimpleFlow_V1_TestCases.xlsx/.csv`;
-   `build_workbook.py` + `gen_cases.py`). ALL 187 cases in TestRail (SF-QB-09 = C29909
-   since 2026-07-17). **A QA execution run EXISTS — run 325 "Simple Flow -
+   `cases/*.json` = 187 authored cases with `SF-` IDs (post spec `_4`/V2.6 2026-07-17;
+   **3 Retired 2026-07-20 → 184 ACTIVE**); `SimpleFlow_V1_TestCases.xlsx/.csv`;
+   `build_workbook.py` + `gen_cases.py`). ALL 184 active cases in TestRail (SF-QB-09 =
+   C29909 since 2026-07-17; SF-CORE-05/06/09 = ex C29317/18/21 DELETED 2026-07-20 per
+   user ruling). **A QA execution run EXISTS — run 325 "Simple Flow -
    Ayesha Khan -> Specs 7/7/2026"** (project 1/suite 1; snapshot 48 Passed / 6 Failed
    / 13 Blocked / 89 Untested; results logged by Ayesha 2026-07-13). It was **NOT
    created by us** — it is Ayesha's/QA's run; **never write results to it without
@@ -181,7 +183,13 @@ process(es) to run before proceeding.
    unexplained → need live re-VIU; SF-VPART-01/02 likely stale-7/7-baseline tied to
    known BUG-9) + ingest Jira **SV-8303** (Ayesha's SF-SET-10 note flags a coming
    spec change).
-   **RESUME 2026-07-17: read build/simple-flow/PROJECT-STATE.md §'WHAT'S LEFT TO DO' + §0-BB first**
+   **RESUME 2026-07-20: read build/simple-flow/PROJECT-STATE.md §'WHAT'S LEFT TO DO' + §0-CC first**
+   — RETIRE EXECUTED 2026-07-20 (user ruling 2026-07-17): SF-CORE-05/06/09 deleted from
+   TestRail (delete_case 3/3, verified gone, audit-logged, run 325 untouched), bodies
+   kept locally marked Retired, id-map −3, generators exclude Retired (187→184), all
+   deliverables regenerated over 184; **Milos spec-V2.6 question sheet READY to send:
+   PO-Questions-Milos-SpecV26_2026-07-17.xlsx/.md** (Q1 S8-R7 leftover cost sentence,
+   Q2 Vendors-Expenses surface, Q3 S10-R2 residue; layman + QA-map tabs). Prior pass:
    — spec `_4`/V2.6 APPLIED 2026-07-17: Story-18 pre-resolve-cores (SV-8353) authored
    (+17 new cases: SF-CORE-11..19 [2 API] + SF-RCV-11..13 + SF-VEND-07/08 + SF-POSEL-07
    + SF-BULK-11 + SF-WOP-04 = C29892–C29908), Δ9-Δ15 applied (14 case edits),
@@ -189,8 +197,8 @@ process(es) to run before proceeding.
    rescoped + FINALLY IN TESTRAIL (=C29909; Open-Question resolved; all 187 mapped),
    SF-INV-01/02/03 + SF-BULK-06 re-VIU pending (old-build-Verified; Δ13 Apply-button
    removed / Δ14 $0-only cost — expect build deviations until dev ships);
-   **3 RETIRE-PROPOSALS AWAITING USER RULING: SF-CORE-05/06/09 (C29317/18/21) —
-   flagged locally, TestRail untouched.** TestRail push 2 add_section (4252/4253) +
+   3 retire-proposals SF-CORE-05/06/09 (RESOLVED: retired + deleted 2026-07-20).
+   TestRail push 2 add_section (4252/4253) +
    13 update_case + 18 add_case, all 200+re-GET-MATCH, audit =
    build/simple-flow/spec-v4-2026-07-17/testrail-update-log.md; **ADVERSARIALLY
    AUDITED CLEAN 2026-07-17** (31/31 live-vs-local MATCH, run 325 + retire
@@ -198,15 +206,14 @@ process(es) to run before proceeding.
    Tracker-header count defect fixed; commits df95b70→a578ef9 + audit fix 4398091);
    requirements.md promoted to V2.6; deliverables regenerated (import 187 rows
    VIU/flag-word-free).
-   **Tally 187: Verified 130 / VIU-Pending 22 / Blocked-Env 27 / awaiting-Milos 5 /
-   Deviation 3 / Open-Q 0.** Outstanding: retire ruling SF-CORE-05/06/09, Story-18
-   re-VIU backlog (needs SV-8353 build + dev-seeded core), NEW Milos flags to send
-   [sheet NOT yet produced]: S8-R7 leftover-sentence + Vendors-Expenses exclusion
-   surface confirm (+ pre-existing S10-R2 AC contradiction + design-C-R6 flag),
-   5 unanswered Milos Qs, file Receive-screen bug in Jira, run-325 reconcile.
-   **STATUS: SPEC `_4` (V2.6) APPLIED + IN TESTRAIL + ADVERSARIALLY AUDITED CLEAN
-   2026-07-17 (on top of the complete VIU process + spec `_3`/design `_4` + Milos
-   Round-3). PROJECT-STATE.md = canonical resume doc (read first).** Detail: full build-accurate
+   **Tally 184 ACTIVE (187 authored − 3 retired): Verified 130 / VIU-Pending 22 /
+   Blocked-Env 24 / awaiting-Milos 5 / Deviation 3 / Open-Q 0.** Outstanding: SEND the
+   Milos spec-V2.6 sheet (READY), Story-18 re-VIU backlog (needs SV-8353 build +
+   dev-seeded core), 5 unanswered Milos Qs, file Receive-screen bug in Jira, run-325
+   reconcile.
+   **STATUS: RETIRE EXECUTED + MILOS V2.6 SHEET READY 2026-07-20 (on top of SPEC `_4`
+   V2.6 applied + audited clean 2026-07-17 + the complete VIU process + spec `_3`/design
+   `_4` + Milos Round-3). PROJECT-STATE.md = canonical resume doc (read first).** Detail: full build-accurate
    wording+VIU pass (all 163, 200/200) + V2.4 Δ1-Δ4 (+ SF-VEND-06=C29442) +
    reviewer≠completer DESCOPED (self-review allowed when role holds Mark Reviewed; BUG-5
    dropped) + spec-relevance reconciliation + run-325 (Ayesha) reconciled + the
@@ -220,7 +227,8 @@ process(es) to run before proceeding.
    dev-seeded vendor-sourced core). **TestRail push: 18 update_case + 7 add_case + 2
    add_section, all 200/200, no writes to run 325.** Roles matrix re-derived —
    **Technician NOT drifted on sv7301.** Stories 7/8/9/14/16-auto CONFIRMED BUILT;
-   DEV-NOT-BUILT = 0. **ALL 187 current in TestRail** (SF-QB-09 = C29909, 2026-07-17).
+   DEV-NOT-BUILT = 0. **ALL 184 active current in TestRail** (SF-QB-09 = C29909,
+   2026-07-17; SF-CORE-05/06/09 retired/deleted 2026-07-20).
    **Deviations (3):** SF-SET-03 (no Create Purchase Orders toggle) + SF-RCV-05/07
    (Vendor-Missing group at TOP on the Receive screen, should be BOTTOM). SF-VMIS-06's
    old "needs vendor report" deviation was RESOLVED 2026-07-17 by the spec `_4` S6-R6
