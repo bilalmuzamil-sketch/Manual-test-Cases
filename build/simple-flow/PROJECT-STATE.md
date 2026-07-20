@@ -12,7 +12,9 @@
 > **Canonical spec (Confluence):** https://shopview.atlassian.net/wiki/spaces/PM/pages/646021121/Simple+Mode+Streamlined+Work+Order+Completion+Bulk+Receiving
 > (Atlassian-SSO login-walled — reference pointer only; content must be exported/pasted to ingest, do NOT fetch the URL.)
 >
-> **Last updated:** 2026-07-17 (spec `_4` / V2.6 APPLIED + pushed to TestRail — see §0-BB + the WHAT'S LEFT section below).
+> **Last updated:** 2026-07-17 (spec `_4` / V2.6 APPLIED + pushed to TestRail +
+> **ADVERSARIALLY AUDITED CLEAN** — commits df95b70→a578ef9 + audit fix 4398091;
+> see §0-BB + the WHAT'S LEFT section below).
 
 ---
 
@@ -21,7 +23,13 @@
 **Current tally (post spec `_4` / V2.6 apply, §0-BB — authoritative, counted from
 `cases/*.json` viu_status, 187 case bodies): VIU-Verified 130 / VIU-Pending 22 /
 Blocked-Env 27 / VIU-observed-awaiting-Milos 5 / Deviation 3 = 187. Open-Question = 0.**
-All 187 cases are now in TestRail (SF-QB-09 = C29909 — the last unmapped case is mapped).
+All 187 cases are now in TestRail (SF-QB-09 = C29909 — the last unmapped case is mapped;
+id-map 187/187). **The V2.6 apply pass was ADVERSARIALLY AUDITED 2026-07-17 = CLEAN:**
+all 31 touched TestRail cases (13 update + 18 add) re-GET live-vs-local MATCH, run 325 +
+the 3 retire candidates untouched, full C-R1..C-R10 + Δ8–Δ16 coverage, tally confirmed
+across every deliverable; one defect found+fixed (stale hardcoded "(all 159 cases)"
+Blockers-Tracker header → dynamic 187). Audit record appended to
+`spec-v4-2026-07-17/testrail-update-log.md`; commits df95b70→a578ef9 + audit fix 4398091.
 What remains:
 
 0. **⚠️ RETIRE RULING NEEDED (user/QA-lead):** spec `_4` Δ8 removed the invoice-gate core
@@ -65,18 +73,26 @@ What remains:
    seedable (needs a dev-seeded core); invoiced/paid WO not drivable; merge auto-consolidates;
    VIN-less asset; etc. Includes **SF-AUTO-04** (delete-lines API 500) and **SF-AUTO-06** (UI
    clock-out).
-6. **Dev-side observations to route:** **OBS-6** (Part-History HTTP 500 + part-detail crash),
-   **SF-VMIS-06** (no Vendor-Missing "needs vendor" report), **SF-AUTO-04** API-500. Plus two
-   spec-cleanup flags for Milos: (a) the spec self-contradiction — `_3` strikes S10-R2 but the
+6. **Spec/design flags to SEND to Milos — the flag sheet is NOT yet produced** (build per
+   Rule 7 and send). NEW from the `_4` pass (spec-diff §D5): (a) **S8-R7 leftover-sentence
+   contradiction** — the tail "after it locks, only cost remains editable" vs the new
+   "cost editable only when $0" rule; (b) **Vendors-Expenses exclusion — confirm the
+   surface** (Δ12 S6-R6: the vendor-missing cost's Vendors-Expenses exclusion leg — that
+   report surface was NOT in the 2026-07-14 Reports inventory; confirm where it lives).
+   PRE-EXISTING (still open): (c) the S10-R2 residue — `_3` strikes S10-R2 but the
    Story-10 AC bullets + Technical-guardrails paragraph still describe first-class-part
-   creation; (b) the Receive-screen spec text **S12-R1 (bottom) vs S12-R3 (leads)** is still
-   unscoped (needs the per-surface qualifiers Milos's Q1 ruling implies).
-7. **SF-QB-09 — unmapped in TestRail** (no C-ID, Open-Question) — follow-up to author/map or
-   formally close.
+   creation; (d) the Receive-screen spec text **S12-R1 (bottom) vs S12-R3 (leads)** still
+   unscoped (needs the per-surface qualifiers Milos's Q1 ruling implies); (e) the Resolve
+   Cores design still codes resolve-AFTER-receive vs C-R6 (needs a design rev).
+6.5. **Dev-side observations to route:** **OBS-6** (Part-History HTTP 500 + part-detail
+   crash) + **SF-AUTO-04** API-500. (The old SF-VMIS-06 "needs vendor report" dev-route
+   item was DROPPED 2026-07-17 — spec `_4` S6-R6 was rewritten to match the code.)
+7. ~~SF-QB-09 unmapped in TestRail~~ — **CLOSED 2026-07-17:** SF-QB-09 was rescoped (Δ15
+   part-sale order statuses) and added to TestRail = **C29909**; all 187 cases mapped.
 
 ---
 
-## 0-BB. SPEC `_4` (V2.6) PASS — Δ8–Δ16 APPLIED + PUSHED (2026-07-17, LATEST)
+## 0-BB. SPEC `_4` (V2.6) PASS — Δ8–Δ16 APPLIED + PUSHED + AUDITED CLEAN (2026-07-17, LATEST)
 
 Applied the 2026-07-17 spec `_4` (self-labeled **V2.6**) per the delta doc
 `spec-v4-2026-07-17/spec-diff-v4-2026-07-17.md` (D1 per-case table + D2 new-case plan
@@ -131,6 +147,22 @@ record. **Deliverables regenerated** (import CSV/XLSX 187 rows 0-VIU/0-flag-word
 Blockers Tracker, TestCases + Results workbooks — id-map 187/187, 0 blanks; generators:
 SV map +18=SV-8353, C-R# tokens excluded from the bare-R#→Story-16 refs heuristic,
 assertions 170→187, Story-18 bucket added).
+
+**ADVERSARIAL AUDIT (2026-07-17, same day) — verdict CLEAN.** Independent
+full-population re-verification of the apply pass: 31/31 touched TestRail cases
+(13 update_case + 18 add_case C29892–C29909) re-GET and field-diffed live-vs-local —
+0 mismatches; sections 4252/4253 confirmed live under 4058 (API cases in the
+API-titled section per Rule 4); retire candidates C29317/C29318/C29321 confirmed
+untouched (old wording, pre-07-17 `updated_on`); run 325 spot-checked — zero results
+written; independent tally recount = 130/22/27/5/3/0 = 187, matching PROJECT-STATE,
+Blockers Tracker, import CSV (187 rows, 0 VIU/flag words), both workbooks, and the
+id-map (187/187); full C-R1..C-R10 + Δ8–Δ16 coverage — no gaps; status honesty
+confirmed (the Verified→VIU-Pending flips are correct). ONE defect found + fixed
+(deliverable text only, no TestRail): `gen_blockers.py`'s hardcoded "(all 159 cases)"
+Tracker-header count made dynamic (187) + Tracker md/xlsx regenerated. Audit record:
+end of `spec-v4-2026-07-17/testrail-update-log.md`. Commits: df95b70 (D1 edits) →
+d671f8c (17 new cases + V2.6 promote) → 30f6f19 (TestRail push) → a578ef9
+(deliverables regen + state docs) + audit fix 4398091.
 
 ---
 

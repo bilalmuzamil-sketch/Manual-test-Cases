@@ -116,15 +116,18 @@ process(es) to run before proceeding.
    V1_3 applied 2026-07-17 (2 deltas: §5-R15 SFD-gate [FD-WO-016 gate qualifier +
    folded SFD-negative, FD-PROC-004], history→audit-log sweep [9 cases + 4
    notes-only]; 11 update_case pushed 11/11 200 + re-GET MATCH, audit-logged in
-   spec-v3-2026-07-17/testrail-update-log.md; requirements.md §17 = V1_3 baseline;
-   TICKET 3 reworded to audit-log; tally unchanged; 2 new Chris ambiguities in
-   PROJECT-STATE §0.0e; 4 "History log*" TestRail sections NOT renamed — optional
-   candidate).**
+   spec-v3-2026-07-17/testrail-update-log.md, commit 90e786e; requirements.md §17 =
+   V1_3 baseline; TICKET 3 reworded to audit-log; tally unchanged; PENDING: 2 new
+   Chris ambiguities to send [question sheet NOT yet produced — PROJECT-STATE §0
+   item 1 / §0.0e] + the optional "History log*"→"Audit log*" renames of 4 TestRail
+   sections [awaiting user authorization]).**
    Final tally: **135 VIU-Verified / 15 VIU-Deviation / 12 Blocked-NotBuilt / 20
    Blocked-Env / 1 VIU-Pending (FD-PART-005) = 183.** No longer PO-blocked; **WAITING
-   ON: the FD-CUST-016/FD-VAL-007 DUPLICATE-PAIR QA-lead keep/retire ruling + filing
-   the ready bug drafts (TICKETS 2/3/6/7/8/9/10/11; TICKET 1 on hold, 4 & 5 dropped,
-   FDBUG-15 dropped) + the env/VIU backlog.** **Resume = PROJECT-STATE.md §0/§0.5**
+   ON: producing+sending the 2 new Chris V1_3 ambiguity questions + the optional
+   section-rename authorization + the FD-CUST-016/FD-VAL-007 DUPLICATE-PAIR QA-lead
+   keep/retire ruling + filing the ready bug drafts (TICKETS 2/3/6/7/8/9/10/11;
+   TICKET 1 on hold, 4 & 5 dropped, FDBUG-15 dropped) + the env/VIU backlog.**
+   **Resume = PROJECT-STATE.md §0/§0.5**
    (TestRail edits need fresh one-day authorization). FEATURE LIVE on
    `qb.qa.shopview.com` / API `sv7387api.qa.shopview.com` (flag ON). **DONE 2026-07-13:
    V1_2 spec applied (43 case updates + new FD-WO-016=C29441) AND a FRESH FULL
@@ -185,15 +188,21 @@ process(es) to run before proceeding.
    **3 RETIRE-PROPOSALS AWAITING USER RULING: SF-CORE-05/06/09 (C29317/18/21) —
    flagged locally, TestRail untouched.** TestRail push 2 add_section (4252/4253) +
    13 update_case + 18 add_case, all 200+re-GET-MATCH, audit =
-   build/simple-flow/spec-v4-2026-07-17/testrail-update-log.md; requirements.md
-   promoted to V2.6; deliverables regenerated (import 187 rows VIU/flag-word-free).
+   build/simple-flow/spec-v4-2026-07-17/testrail-update-log.md; **ADVERSARIALLY
+   AUDITED CLEAN 2026-07-17** (31/31 live-vs-local MATCH, run 325 + retire
+   candidates untouched, tally confirmed across all deliverables; one
+   Tracker-header count defect fixed; commits df95b70→a578ef9 + audit fix 4398091);
+   requirements.md promoted to V2.6; deliverables regenerated (import 187 rows
+   VIU/flag-word-free).
    **Tally 187: Verified 130 / VIU-Pending 22 / Blocked-Env 27 / awaiting-Milos 5 /
-   Deviation 3 / Open-Q 0.** Outstanding: retire ruling, Story-18 re-VIU backlog
-   (needs SV-8353 build + dev-seeded core), 5 unanswered Milos Qs (+ new S8-R7-tail
-   + design-C-R6 spec flags), file Receive-screen bug in Jira, run-325 reconcile.
-   **STATUS: SPEC `_4` (V2.6) APPLIED + IN TESTRAIL 2026-07-17 (on top of the complete
-   VIU process + spec `_3`/design `_4` + Milos Round-3).
-   PROJECT-STATE.md = canonical resume doc (read first).** Detail: full build-accurate
+   Deviation 3 / Open-Q 0.** Outstanding: retire ruling SF-CORE-05/06/09, Story-18
+   re-VIU backlog (needs SV-8353 build + dev-seeded core), NEW Milos flags to send
+   [sheet NOT yet produced]: S8-R7 leftover-sentence + Vendors-Expenses exclusion
+   surface confirm (+ pre-existing S10-R2 AC contradiction + design-C-R6 flag),
+   5 unanswered Milos Qs, file Receive-screen bug in Jira, run-325 reconcile.
+   **STATUS: SPEC `_4` (V2.6) APPLIED + IN TESTRAIL + ADVERSARIALLY AUDITED CLEAN
+   2026-07-17 (on top of the complete VIU process + spec `_3`/design `_4` + Milos
+   Round-3). PROJECT-STATE.md = canonical resume doc (read first).** Detail: full build-accurate
    wording+VIU pass (all 163, 200/200) + V2.4 Δ1-Δ4 (+ SF-VEND-06=C29442) +
    reviewer≠completer DESCOPED (self-review allowed when role holds Mark Reviewed; BUG-5
    dropped) + spec-relevance reconciliation + run-325 (Ayesha) reconciled + the

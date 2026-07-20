@@ -7,8 +7,11 @@
 > (Atlassian-SSO login-walled — reference pointer only; content must be exported/pasted to ingest, do NOT fetch the URL.)
 > **Last updated:** 2026-07-17 (§0.0e: **spec V1_3 APPLIED** — Δ1 §5-R15 SFD-gate +
 > Δ2 history→audit-log; 11 update_case pushed to TestRail 11/11 200 + re-GET MATCH,
-> audit `spec-v3-2026-07-17/testrail-update-log.md`; requirements.md now carries §17
-> = the V1_3 baseline; tally UNCHANGED 135/15/12/20/1 = 183)
+> audit `spec-v3-2026-07-17/testrail-update-log.md`; **commit 90e786e**;
+> requirements.md now carries §17 = the V1_3 baseline; tally UNCHANGED
+> 135/15/12/20/1 = 183. NEW waiting items: the 2 Chris V1_3 ambiguities to send —
+> **question sheet NOT yet produced** — plus the OPTIONAL "History log*"→"Audit
+> log*" section renames awaiting user authorization; see §0.)
 > — prior same-day update (§0.0d: Epic **SV-7387** user-confirmed; spec **V1_3**
 > + design zips ingested ANALYSIS-ONLY → `spec-v3-2026-07-17/`)
 > — prior update 2026-07-14 (post-Round-2 snapshot — after **V1_2 spec applied** [43 case
@@ -54,16 +57,30 @@
 
 ---
 
-## 0. WAITING ON (read this first) — snapshot 2026-07-14
+## 0. WAITING ON (read this first) — snapshot 2026-07-17
 
-**Chris Ward's Round-2 answers are IN — applied and pushed to TestRail 2026-07-14
-(§0.0c).** The project is no longer blocked on the PO. The remaining open items are:
-1. **QA-lead ruling on the FD-CUST-016 / FD-VAL-007 DUPLICATE PAIR** (keep one / retire
+**Spec V1_3 is APPLIED + PUSHED TO TESTRAIL (2026-07-17, §0.0e, commit 90e786e), on
+top of Chris Ward's Round-2 answers (applied + pushed 2026-07-14, §0.0c).** The
+project is not PO-blocked. The remaining open items are:
+1. **Send the 2 NEW Chris Ward ambiguities from the V1_3 diff** (spec-diff §H;
+   detailed at the end of §0.0e: (a) which "second place" gets the §5-R15 note+gate —
+   the plain template dialog or the Processing-Fee dialog; (b) confirm the admin
+   template/Processing-Fee dialog is the intended surface, since the SFD gate is only
+   independently observable there, not at the WO Add/Edit dialog). **The layman
+   question sheet is NOT yet produced** — build it per Rule 7 and send with the next
+   PO round.
+2. **OPTIONAL TestRail section renames — awaiting explicit user authorization:** the
+   4 sections still named "History log*" ("History log", "History log — visibility",
+   "History log — permission", "History log — Processing Fee") → "Audit log*" per the
+   V1_3 Δ2 terminology. Candidate only; NO TestRail write without a fresh explicit
+   go-ahead.
+3. **QA-lead ruling on the FD-CUST-016 / FD-VAL-007 DUPLICATE PAIR** (keep one / retire
    one — snapshotted, NOT deleted; see §0.-1).
-2. **File the ready bug drafts** (TICKETS 2/3/6/7/8/9/10/11) via Atlassian — no Atlassian
+4. **File the ready bug drafts** (TICKETS 2/3/6/7/8/9/10/11) via Atlassian — no Atlassian
    from this env, so the USER files them (§0.3). TICKET 1 stays ON HOLD (US-tax re-repro);
-   TICKETS 4 & 5 DROPPED; FDBUG-15 dropped (not-a-defect).
-3. **Env / VIU backlog:** FD-PART-005 (blocked by the env-wide WO line-create 500) + the
+   TICKETS 4 & 5 DROPPED; FDBUG-15 dropped (not-a-defect). TICKET 3 now worded in
+   audit-log terms (V1_3 Δ2).
+5. **Env / VIU backlog:** FD-PART-005 (blocked by the env-wide WO line-create 500) + the
    20 Blocked-Env cases (14 QuickBooks need a human in QB / the unmap-500 fix; 6 need a
    flag-off window); §5-R15 taxable disclaimer not implemented (FD-WO-016 deviation);
    Story-8 pfee builder + Story-11 Part Sales Not-Built (retest when dev ships).
@@ -72,7 +89,7 @@ This section is the complete snapshot: current tally, the applied Round-2 action
 everything else open, and the ordered resume checklist. The rest of this doc holds the
 standing detail. **NO TestRail catch-up is outstanding** — all authored wording is live.
 
-### 0.0e SPEC V1_3 APPLIED + PUSHED TO TESTRAIL — 2026-07-17 (NEWEST event)
+### 0.0e SPEC V1_3 APPLIED + PUSHED TO TESTRAIL — 2026-07-17 (NEWEST event; commit 90e786e)
 
 **The V1_3 apply pass was run (user-instructed 2026-07-17: "check if any test cases
 need to be updated, if yes then please do that" — that instruction authorized this
@@ -117,7 +134,8 @@ one-day update_case pass).** Per the delta doc
   20 Blocked-Env / 1 VIU-Pending = 183.** Zero conflicts with Chris's Round-2 answers;
   no FDBUG/dup-pair impact.
 - **NEW OPEN QUESTIONS for Chris (send with the next PO round — spec-diff §H,
-  layman-phrase per Rule 7):** (a) which "second place" gets the note+gate — the
+  layman-phrase per Rule 7; the question sheet is NOT yet produced — see §0 item
+  1):** (a) which "second place" gets the note+gate — the
   change-log says "the template dialog" but the §5-R15 body says the Processing Fee
   dialog (S8-R11), and the plain template dialog's own Taxable control (S7-R12f)
   carries no §5-R15 reference despite "Below every Taxable control"; (b) the gate is
