@@ -5,7 +5,19 @@
 > re-discovery.
 > **Canonical spec (Confluence):** https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/622297094/Fees+Discounts+V1
 > (Atlassian-SSO login-walled — reference pointer only; content must be exported/pasted to ingest, do NOT fetch the URL.)
-> **Last updated:** 2026-07-20 (§0.0h: **Chris Ward's V1_3 answers INGESTED** —
+> **Last updated:** 2026-07-20 (§0.0i: **LIVE VIU PASS ON STAGING** — F&D is now
+> deployed to `app.staging.shopview.com` (FeesAndDiscounts + PartSales + QuickBooks
+> flags ON). Chris Q1=B §5-R15 note VERIFIED LIVE in all surfaces (admin template
+> dialog + WO Add/Edit + Part Sale Add/Edit); Q2=A SFD-gate negative CONFIRMED (Tech =
+> Manage Finance Settings without See Financial Data sees the Taxable toggle but not the
+> note). ALL 12 Blocked-NotBuilt FLIPPED to VIU-Verified (Processing-Fee builder +
+> Part Sales "Fees & Discounts" column both shipped on staging) + FD-WO-016/FD-WO-005/
+> FD-VAL-001 Deviations FIXED. 2 NEW cases authored + pushed (FD-TMPL-018=C29917,
+> FD-PSALE-001=C29918); FD-WO-016 (C29441) refined. TestRail 1 update_case + 2 add_case,
+> all 200 + re-GET MATCH, no run results. **NEW TALLY: 152 VIU-Verified / 12
+> VIU-Deviation / 0 Blocked-NotBuilt / 20 Blocked-Env / 1 VIU-Pending = 185.** Evidence +
+> per-case log: `viu-staging-2026-07-20/`. See §0.0i.)
+> — prior §0.0h: **Chris Ward's V1_3 answers INGESTED** —
 > Q1=B [the §5-R15 note shows below EVERY Taxable control: WO + Part Sale Add/Edit +
 > the admin fee-template dialog, for every kind; no separate Processing-Fee window]
 > and Q2=A [SFD gate observable only at the admin template dialog via a Manage Finance
@@ -121,7 +133,56 @@ This section is the complete snapshot: current tally, the applied Round-2 action
 everything else open, and the ordered resume checklist. The rest of this doc holds the
 standing detail. **NO TestRail catch-up is outstanding** — all authored wording is live.
 
-### 0.0h CHRIS V1_3 ANSWERS INGESTED — 2026-07-20 (NEWEST event)
+### 0.0i LIVE VIU PASS ON STAGING — 2026-07-20 (NEWEST event)
+
+**F&D is now deployed to STAGING** (`app.staging.shopview.com` / API
+`api.staging.shopview.com`; org `d55bc308-…`; flags `FeesAndDiscounts` + `PartSales` +
+`QuickBooks` ON — confirmed via `GET /api/feature-flags`). Ran a live VIU pass
+(quick-login admin + tech, boot2 Chromium direct-proxy; evidence in
+`viu-staging-2026-07-20/`, per-case log `testrail-log.md`).
+
+- **Chris Q1=B (§5-R15 note below EVERY Taxable control) — VERIFIED LIVE in all surfaces:**
+  admin Fee/Discount template dialog (Type=Fee/Discount/Processing Fee), WO Add ("Add new
+  fee/discount") + Edit ("Edit Fee / Discount"), Part Sale whole-sale ("Add Parts Sale Fee /
+  Discount") + per-part ("Add Fee / Discount", subtitle "Applying to: Part — …"). Exact
+  string present below the Taxable toggle in every one.
+- **Chris Q2=A (SFD gate observable only at the admin template dialog) — CONFIRMED LIVE:**
+  the Tech user already carries the exact negative profile (fe_permissions has
+  **settingsFinance** [Manage Finance Settings] but not `seeFinancialData`;
+  cross_toggles.seeFinancialData=false). As Tech the admin template dialog shows the
+  Taxable toggle but the note is **ABSENT**; as Admin (has SFD) it shows. → the FD-WO-016 /
+  FD-PROC-004 "note shown only to users with See Financial Data" gate (V1_3 Δ1) is verified.
+- **ALL 12 Blocked-NotBuilt → VIU-Verified** (staging shipped what qb lacked): Processing-Fee
+  builder — **FD-PROC-001** (Type = Fee/Discount/Processing Fee), **FD-PROC-002** (Proc-Fee
+  calc = Flat Amount + % of Grand Total only), **FD-PROC-003** (no Max Amount), **FD-PROC-004**
+  (Taxable=Yes default + note); Part Sales "Fees & Discounts" column — **FD-PCOL-001..007**
+  (name+rate, +N badge, +Add [disabled on non-editable], viewer with Name/Type/Calculation/
+  Amount/Max Amount + Net adjustment, per-row Remove-confirm); **FD-PERM-004** (admin with
+  Part Sales C&E+SFD can add/edit/remove; Tech w/o Part Sales perms has the Parts nav hidden).
+- **3 Deviations FIXED → VIU-Verified:** **FD-WO-016** (note now built), **FD-WO-005** +
+  **FD-VAL-001** (BUG-FD-4 fixed — Add Fee button DISABLED on an empty form).
+- **Deviations UNCHANGED (persist):** FD-STATS-001/002/004 (Stats F&D section still has no
+  column headers / no per-row target hyperlink — observed live, identical to qb).
+- **NOT re-driven to a clean verdict this run (left as-is):** FD-PROC-008/009, FD-CALC-013,
+  FD-INLINE-003, FD-CUST-005/006, FD-TMPL-010, FD-WO-013, FD-PERM-002 (need further seeding /
+  isolated role negatives / pfee-calc introspection), and FD-PART-005 (VIU-Pending —
+  requested→received transition not driven).
+- **2 NEW cases (Chris Q1=B new surfaces):** **FD-TMPL-018 = C29917** (admin template dialog
+  note, section 3916) + **FD-PSALE-001 = C29918** (Part Sale dialog note, section 3902), both
+  VIU-Verified.
+- **TestRail (authorized 2026-07-20): 1 update_case (FD-WO-016/C29441) + 2 add_case
+  (C29917, C29918), all 200 + re-GET MATCH; NO results written to any run.** Audit +
+  evidence: `viu-staging-2026-07-20/testrail-log.md`. id-map now 185 rows (0 blank C-ids);
+  import + Blockers Tracker regenerated (185; VIU-word/flag-word 0/0).
+- **NEW TALLY: 152 VIU-Verified / 12 VIU-Deviation / 0 Blocked-NotBuilt / 20 Blocked-Env /
+  1 VIU-Pending = 185** (was 135/15/12/20/1 = 183).
+- **Env facts:** staging admin location DRIFTS between "Staging Lethbridge - 4310" (P3
+  sales) and "Staging Heavy Duty - 9919" (P9 sales) per boot — pick data dynamically. Part
+  Sale detail route = `/parts/part-sale/{id}/part-requests`; admin templates =
+  `/administration/adjustment-templates` (in-SPA nav required; deep links 404). Cleanup:
+  seeded ZZAUTOTEST part-sale fee removed; WO S3-25095 ZZAUTOTEST adjustments removed.
+
+### 0.0h CHRIS V1_3 ANSWERS INGESTED — 2026-07-20 (prior event)
 
 - **Source:** Google Sheet `1gW_Mdy-m9Gv75N0xbwjaWJwLlKf_kMWv` (publicly readable;
   raw export saved `chris-answers-v1_3-2026-07-20/chris-answers-raw.xlsx`/`.csv`).

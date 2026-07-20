@@ -135,13 +135,24 @@ process(es) to run before proceeding.
    scope stands; TWO new surfaces (admin template dialog note S7-R12f + Part Sale dialog
    note) now need an authorized add/update pass + live VIU. INGESTION ONLY — tally
    unchanged.
-   Final tally: **135 VIU-Verified / 15 VIU-Deviation / 12 Blocked-NotBuilt / 20
-   Blocked-Env / 1 VIU-Pending (FD-PART-005) = 183.** No longer PO-blocked; **WAITING
-   ON: the authorized add/update pass + live VIU for the two new §5-R15 surfaces (admin
-   template dialog + Part Sale dialog, from Chris Q1=B) + the
-   FD-CUST-016/FD-VAL-007 DUPLICATE-PAIR QA-lead
-   keep/retire ruling + filing the ready bug drafts (TICKETS 2/3/6/7/8/9/10/11;
-   TICKET 1 on hold, 4 & 5 dropped, FDBUG-15 dropped) + the env/VIU backlog.**
+   **STAGING LIVE VIU DONE 2026-07-20 (§0.0i — F&D now deployed to
+   `app.staging.shopview.com`, flags FeesAndDiscounts+PartSales+QuickBooks ON):**
+   Chris Q1=B §5-R15 note VERIFIED LIVE in all surfaces (admin template dialog + WO
+   Add/Edit + Part Sale Add/Edit); Q2=A SFD-gate negative CONFIRMED (Tech = Manage
+   Finance Settings without See Financial Data → sees Taxable toggle, not the note).
+   ALL 12 Blocked-NotBuilt FLIPPED to VIU-Verified (Processing-Fee builder + Part Sales
+   "Fees & Discounts" column both shipped on staging) + FD-WO-016/FD-WO-005/FD-VAL-001
+   Deviations FIXED. 2 NEW cases pushed (FD-TMPL-018=C29917, FD-PSALE-001=C29918) +
+   FD-WO-016 (C29441) refined — TestRail 1 update_case + 2 add_case, all 200 + re-GET
+   MATCH, NO run results. Evidence/log: `build/fees-discounts/viu-staging-2026-07-20/`.
+   **NEW TALLY: 152 VIU-Verified / 12 VIU-Deviation / 0 Blocked-NotBuilt / 20 Blocked-Env
+   / 1 VIU-Pending (FD-PART-005) = 185.** (Prior qb tally 135/15/12/20/1 = 183.) STILL
+   OPEN: re-VIU the remaining 12 Deviations not cleanly re-driven on staging
+   (FD-STATS-001/002/004 persist [no headers/hyperlink]; FD-PROC-008/009, FD-CALC-013,
+   FD-INLINE-003, FD-CUST-005/006, FD-TMPL-010, FD-WO-013, FD-PERM-002 need
+   seeding/role-negatives) + FD-PART-005 + the FD-CUST-016/FD-VAL-007 DUPLICATE-PAIR
+   QA-lead keep/retire ruling + filing the ready bug drafts (TICKETS 2/3/6/7/8/9/10/11;
+   TICKET 1 on hold, 4 & 5 dropped, FDBUG-15 dropped) + the env/VIU backlog.
    **Resume = PROJECT-STATE.md §0/§0.5**
    (TestRail edits need fresh one-day authorization). FEATURE LIVE on
    `qb.qa.shopview.com` / API `sv7387api.qa.shopview.com` (flag ON). **DONE 2026-07-13:
