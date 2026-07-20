@@ -1,0 +1,83 @@
+[
+  {"case_id":26398,"section_id":3537,"title":"Customers View gives access to customer records, contacts, vehicles and history","verdict":"OK"},
+
+  {"case_id":26399,"section_id":3537,"title":"Customers Create & Edit allows creating customers, contacts and vehicles","verdict":"UPDATE","fields_affected":["label"],
+   "current_excerpt":"...View and Manage AP/AR Data ON.","proposed_text":"Label find-replace only: 'View and Manage AP/AR Data' -> 'Manage Accounts Payable and Receivable' (confirm live build label first — see LABEL-BATCH.md). Behaviour unchanged.","reason":"Stale toggle label (spec 6/10 rename).","citation":"Spec change log 6/10; §5b. LABEL-BATCH.md.","confidence":"medium"},
+
+  {"case_id":26400,"section_id":3537,"title":"Customers Delete removes the customer record","verdict":"OK"},
+
+  {"case_id":26401,"section_id":3537,"title":"Customers Delete does NOT let the user delete customer payments (that needs Invoicing & payments Delete)","verdict":"UPDATE","fields_affected":["label"],
+   "current_excerpt":"...View and Manage AP/AR Data ON.","proposed_text":"Label find-replace only: 'View and Manage AP/AR Data' -> 'Manage Accounts Payable and Receivable' (confirm live). Behaviour (Customers Delete != payment delete) is correct per spec Key Decision.","reason":"Stale toggle label only; behaviour matches spec.","citation":"Spec change log 6/10; Key Decision 'Customer delete is not payment delete'. LABEL-BATCH.md.","confidence":"medium"},
+
+  {"case_id":26402,"section_id":3537,"title":"AP/AR OFF hides the 7 sensitive customer fields on Edit Customer","verdict":"UPDATE","fields_affected":["label"],
+   "current_excerpt":"...View and Manage AP/AR Data OFF.","proposed_text":"Label find-replace only: 'View and Manage AP/AR Data' -> 'Manage Accounts Payable and Receivable' (confirm live). The 7 fields match spec §5b / §1d.","reason":"Stale toggle label only.","citation":"Spec change log 6/10; §1d/§5b. LABEL-BATCH.md.","confidence":"medium"},
+
+  {"case_id":26403,"section_id":3537,"title":"AP/AR ON shows the 7 sensitive customer fields on Edit Customer","verdict":"UPDATE","fields_affected":["label"],
+   "current_excerpt":"...View and Manage AP/AR Data ON.","proposed_text":"Label find-replace only: 'View and Manage AP/AR Data' -> 'Manage Accounts Payable and Receivable' (confirm live).","reason":"Stale toggle label only.","citation":"Spec change log 6/10; §1d/§5b. LABEL-BATCH.md.","confidence":"medium"},
+
+  {"case_id":26404,"section_id":3537,"title":"Customers View OFF hides Customers from the top navigation","verdict":"OK"},
+  {"case_id":26405,"section_id":3537,"title":"Customer names still show on work orders and invoices even when Customers is hidden","verdict":"OK"},
+
+  {"case_id":26406,"section_id":3538,"title":"Turning Parts Department ON shows exactly 3 child cards","verdict":"OK"},
+  {"case_id":26407,"section_id":3538,"title":"Turning Parts Department OFF hides the 3 child cards","verdict":"OK"},
+  {"case_id":26408,"section_id":3538,"title":"A saved role with Parts Department OFF hides the Parts navigation and its pages","verdict":"OK"},
+  {"case_id":26409,"section_id":3538,"title":"Turning Parts Department OFF then ON keeps the 3 child card choices","verdict":"OK"},
+  {"case_id":26410,"section_id":3538,"title":"Part sales View gives read access to part sales records","verdict":"OK"},
+  {"case_id":26411,"section_id":3538,"title":"Part sales Create & Edit lets the user create part sales, returns and transactions","verdict":"OK"},
+  {"case_id":26412,"section_id":3538,"title":"Part sales Delete lets the user delete part sales and reverse part sales invoices","verdict":"OK","note":"Correctly encodes ruling #5: part-sale invoice reversal = Part Sales Delete (not Invoicing Delete). No change."},
+  {"case_id":26413,"section_id":3538,"title":"Catalog and Inventory View gives read access to the catalog and inventory","verdict":"OK"},
+  {"case_id":26414,"section_id":3538,"title":"Catalog and Inventory Create & Edit lets the user create/edit items and make adjustments (cost/price shown only with See Financial Data)","verdict":"OK"},
+  {"case_id":26415,"section_id":3538,"title":"Catalog and Inventory Delete removes catalog parts","verdict":"OK"},
+  {"case_id":26416,"section_id":3538,"title":"Vendor and order management View gives visibility of vendors, purchase orders and deliveries","verdict":"OK"},
+  {"case_id":26417,"section_id":3538,"title":"Vendor and order management Create & Edit lets the user manage vendors, purchase orders, receiving and returns","verdict":"OK"},
+
+  {"case_id":26418,"section_id":3538,"title":"Vendor and order management Delete lets the user delete vendors and purchase orders and reverse vendor transactions","verdict":"UPDATE","fields_affected":["label","expected"],
+   "current_excerpt":"...the reverse action lives inside the vendor Payments tab, which also needs View and Manage AP/AR Data on to reach it.",
+   "proposed_text":"Label find-replace 'View and Manage AP/AR Data' -> 'Manage Accounts Payable and Receivable' (confirm live). BEHAVIOUR NOTE for Bilal/Vlad: the gating of REVERSING a vendor transaction is unsettled — SV-7871 and SV-7912 (both OBSOLETE) went back and forth on whether it needs Manage AP/AR. Per ruling #5, deleting a payment = Invoicing & Payments Delete; the vendor-txn reverse entry point sits inside the AP/AR-gated Payments tab. Confirm the exact gate live before pushing; the vendor/PO delete portion is spec-correct (§1g Delete).",
+   "reason":"Stale label + unsettled vendor-transaction-reverse gating (obsolete tickets, no clean final ruling).","citation":"Spec change log 6/10; §1g Delete; SV-7871/SV-7912 (OBSOLETE). LABEL-BATCH.md.","confidence":"medium"},
+
+  {"case_id":26419,"section_id":3538,"title":"Returning a part to inventory (restocking) is controlled by Vendor and order management","verdict":"OPEN-QUESTION","fields_affected":["title","expected"],
+   "current_excerpt":"With Vendor and order management Create & Edit, the Return to Inventory action works and stock goes up. With Vendor and order management View only, the return is not possible.",
+   "proposed_text":"OPEN QUESTION for Bilal/Vlad + PO: which permission gates 'Return to Inventory' (restocking)? The spec is internally ambiguous: Open Question 3 (answered) says Catalog and Inventory: Edit includes 'return to inventory'; §1f Catalog Edit says 'make inventory adjustments including returning items to inventory'; but §1g Vendor Edit also says 'Includes returning parts to vendors or inventory.' This case gates restocking solely on Vendor and order management. Confirm whether Return-to-Inventory is gated by Catalog & Inventory: Edit (per OQ3/§1f) or Vendor & Order Management: Edit (per §1g) — likely both surfaces exist for different flows. Case is Blocked-UI (never verified).",
+   "reason":"Spec is self-contradictory on the restocking gate (OQ3/§1f = Catalog Edit; §1g = Vendor Edit). Needs PO clarification, not a silent rewrite.","citation":"Spec Open Question 3; §1f Catalog Edit; §1g Vendor Edit.","confidence":"medium"},
+
+  {"case_id":27876,"section_id":3538,"title":"A Vendor and order management View-only role can open the Purchase Orders list and a purchase order","verdict":"OK","note":"Matches SV-8075 fix (PO viewable for Vendor View). Sub-action Download/Email/Print still blocked per open SV-8209 (Ready to Fix) — does not change this case's PO-opens assertion."},
+
+  {"case_id":26420,"section_id":3539,"title":"Invoicing & payments View shows the Finance tab and lets the user see invoices","verdict":"OK"},
+  {"case_id":26421,"section_id":3539,"title":"Invoicing & payments Create & Edit lets the user create invoices and take payments","verdict":"OK"},
+
+  {"case_id":26422,"section_id":3539,"title":"Invoicing & payments Delete lets the user delete payments and void transactions (but not reverse invoices)","verdict":"UPDATE","fields_affected":["label"],
+   "current_excerpt":"See Financial Data ON and View and Manage AP/AR Data ON.","proposed_text":"Label find-replace only: 'View and Manage AP/AR Data' -> 'Manage Accounts Payable and Receivable' (confirm live). Behaviour is correct (ruling #5: WO invoice reversal = WO Delete; part-sale invoice reversal = Part Sales Delete; payment delete/void = Invoicing Delete).","reason":"Stale toggle label only; behaviour matches current rulings.","citation":"Spec change log 6/10; ruling #5. LABEL-BATCH.md.","confidence":"medium"},
+
+  {"case_id":26423,"section_id":3539,"title":"Deleting a customer payment needs Invoicing & payments Delete, not Customers Delete","verdict":"OK"},
+
+  {"case_id":26424,"section_id":3539,"title":"Ticking Invoicing & payments Delete while View and Manage AP/AR Data is OFF prompts to turn it on","verdict":"UPDATE","fields_affected":["label"],
+   "current_excerpt":"View and Manage AP/AR Data OFF ... The system prompts you to turn on View and Manage AP/AR Data. (viu=Deviation)",
+   "proposed_text":"Label find-replace only: 'View and Manage AP/AR Data' -> 'Manage Accounts Payable and Receivable' (confirm live). BEHAVIOUR NOTE: the case's expected (prompt fires) is CORRECT per spec §1i gate 2 and is now BUILT — the old 'Deviation' (no prompt) was resolved by SV-8170 (verified 2026-07-13). Re-VIU: this should now Pass; flip viu_status from Deviation to Verified on the next live run.",
+   "reason":"Stale label; and the recorded Deviation is stale — SV-8170 shipped the Invoicing-Delete -> enable-Manage-AP/AR prompt.","citation":"Spec §1i gate 2; SV-8170 verified 2026-07-13; spec change log 6/10. LABEL-BATCH.md.","confidence":"high"},
+
+  {"case_id":26425,"section_id":3539,"title":"See Financial Data OFF makes Invoicing & payments inaccessible even with View, Create & Edit and Delete","verdict":"OK"},
+  {"case_id":26426,"section_id":3539,"title":"Invoicing & payments View OFF with See Financial Data ON: prices show but invoices are not reachable","verdict":"OK"},
+
+  {"case_id":26427,"section_id":3539,"title":"The Send to Terminal action needs Invoicing & payments Create & Edit","verdict":"UPDATE","fields_affected":["title","preconds","expected"],
+   "current_excerpt":"Send to Terminal is not shown for User A (View only). Send to Terminal is shown for User B and starts the terminal payment flow. (User B = Invoicing C&E only)",
+   "proposed_text":{
+     "custom_expected":"<p>Send to Terminal is not shown for User A (Invoicing View only). Send to Terminal is shown for User B ONLY IF User B also has Customer Portal ON — Send to Terminal requires BOTH Invoicing & Payments: Create & Edit AND Customer Portal: ON. If User B has Invoicing Create & Edit but Customer Portal OFF, Send to Terminal is still hidden.</p>\n<p>(Set User B = Invoicing Create & Edit + Customer Portal ON for the positive check. This overlaps with C29434, which tests both gates directly; keep whichever the team prefers.)</p>"
+   },
+   "reason":"Send to Terminal now requires Invoicing C&E AND Customer Portal ON (spec 7/6, SV-8087). The case's expected implies Invoicing C&E alone is sufficient, which would false-pass a Customer-Portal-OFF role.",
+   "citation":"Spec change log 7/6; SV-8087 verified 2026-07-08; ruling #10.","confidence":"high"},
+
+  {"case_id":26428,"section_id":3539,"title":"Taking Deposits on a work order needs Invoicing & payments Create & Edit","verdict":"OK"},
+  {"case_id":27740,"section_id":3539,"title":"The Invoicing & payments delete column is labelled 'Delete / Reverse'","verdict":"OK"},
+  {"case_id":27871,"section_id":3539,"title":"Deleting or cancelling a return is controlled by Invoicing & payments Delete","verdict":"OK","note":"Matches spec §1i Delete ('deleting a Part Sale return')."},
+  {"case_id":29434,"section_id":3539,"title":"Send to Terminal needs Invoicing & payments Create & Edit AND Customer portal ON","verdict":"OK","note":"Matches ruling #10 / SV-8087. Blocked-UI is an environment gate (needs terminal reader), not a spec mismatch."},
+  {"case_id":29438,"section_id":3539,"title":"Invoicing & payments Create & Edit gives the edit control on the work order Financial Info card","verdict":"OK","note":"Matches spec §1i Edit ('manage invoice fields') / SV-8086."},
+
+  {"case_id":26429,"section_id":3540,"title":"The Timesheets card shows View and Create & Edit only (no Delete)","verdict":"OK"},
+  {"case_id":26430,"section_id":3540,"title":"Timesheets View only: timesheet entries are read-only","verdict":"OK"},
+  {"case_id":26431,"section_id":3540,"title":"Timesheets Create & Edit lets the user edit entries","verdict":"OK"},
+  {"case_id":26432,"section_id":3540,"title":"Clock in / clock out is always available, whatever the Timesheets permission","verdict":"OK"},
+  {"case_id":26433,"section_id":3540,"title":"Timesheets View OFF with Reports ON: the timesheet activities report is still available","verdict":"OK"},
+  {"case_id":26434,"section_id":3540,"title":"All Timesheets permissions OFF and Reports OFF: no timesheet navigation anywhere","verdict":"OK"},
+  {"case_id":27394,"section_id":3540,"title":"A clock-capable role without Timesheets View can still see and open My Timesheets","verdict":"OK","note":"Matches ruling #14 (My Timesheets follows staff clockable flag, SV-8097/SV-8060)."}
+]
