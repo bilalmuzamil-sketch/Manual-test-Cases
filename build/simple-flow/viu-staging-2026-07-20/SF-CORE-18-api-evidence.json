@@ -1,0 +1,53 @@
+[
+  {
+    "tag": "BEFORE",
+    "core_resolution": "(missing)",
+    "pr_status": "authorized_to_order",
+    "order_id": null,
+    "quantity_remaining": 12,
+    "total_core_charge": 276,
+    "cores_pending_derived": 1
+  },
+  {
+    "tag": "POST isCoreOk=true",
+    "status": 201,
+    "body": "{\"data\":{\"resolvedCount\":1}}"
+  },
+  {
+    "tag": "AFTER-OK",
+    "core_resolution": "ok",
+    "pr_status": "authorized_to_order",
+    "order_id": null,
+    "quantity_remaining": 12,
+    "total_core_charge": 276,
+    "cores_pending_derived": 0
+  },
+  {
+    "tag": "POST isCoreOk=false",
+    "status": 201,
+    "body": "{\"data\":{\"resolvedCount\":1}}"
+  },
+  {
+    "tag": "AFTER-NOTOK",
+    "core_resolution": "not_ok",
+    "pr_status": "authorized_to_order",
+    "order_id": null,
+    "quantity_remaining": 12,
+    "total_core_charge": 276,
+    "cores_pending_derived": 0
+  },
+  {
+    "tag": "POST isCoreOk=null (restore attempt)",
+    "status": 400,
+    "body": "{\"errors\":[{\"[0][isCoreOk]\":\"This value should not be null.\"}]}"
+  },
+  {
+    "tag": "AFTER-RESTORE",
+    "core_resolution": "not_ok",
+    "pr_status": "authorized_to_order",
+    "order_id": null,
+    "quantity_remaining": 12,
+    "total_core_charge": 276,
+    "cores_pending_derived": 0
+  }
+]
