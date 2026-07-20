@@ -1,0 +1,65 @@
+[
+  {"case_id":29446,"section_id":4091,"title":"Time Clock user CAN read Work Orders via API","verdict":"OK"},
+  {"case_id":29447,"section_id":4091,"title":"Time Clock user CAN read the Schedule via API","verdict":"OK"},
+  {"case_id":29448,"section_id":4091,"title":"Time Clock user is blocked from the Parts / Inventory API","verdict":"OK"},
+  {"case_id":29449,"section_id":4091,"title":"Time Clock user is blocked from the Purchase Orders API","verdict":"OK"},
+  {"case_id":29450,"section_id":4091,"title":"Time Clock user is blocked from the Customers list API","verdict":"OK"},
+  {"case_id":29451,"section_id":4091,"title":"Time Clock user is blocked from the Reports (AP Aging) API","verdict":"OK"},
+  {"case_id":29452,"section_id":4091,"title":"Time Clock user is blocked from the Staff and Roles API","verdict":"OK"},
+  {"case_id":29453,"section_id":4091,"title":"Time Clock user is blocked from the Integrations API","verdict":"OK"},
+  {"case_id":29454,"section_id":4091,"title":"Time Clock user is blocked from the Departments API","verdict":"OK"},
+  {"case_id":29455,"section_id":4091,"title":"Time Clock user cannot change organization Settings via API","verdict":"OK"},
+  {"case_id":29456,"section_id":4091,"title":"Time Clock user cannot delete a Customer via API","verdict":"OK"},
+
+  {"case_id":29457,"section_id":4091,
+   "title":"BUG: Time Clock user CAN read organization Settings via API (should be blocked)",
+   "verdict":"UPDATE",
+   "fields_affected":["title","expected"],
+   "current_excerpt":"EXPECTED: the request should return 403 Forbidden because the Time Clock role has no Settings access. ACTUAL (2026-07-13, staging): the request returns 200 OK ... a permission LEAK. Linked to the Jira bug: \"BE — Time Clock Role Permissions Not Properly Enforced\".",
+   "proposed_text":{
+     "title":"Time Clock user reading organization Settings via API returns 200 (backend does not enforce — expected)",
+     "custom_expected":"<p>The request returns 200 OK with the organization's work-order settings.</p>\n<p>This is the expected, accepted behaviour: the Product Owner confirmed (SV-7958, 2026-07-14) that the backend only enforces permissions on some endpoints and intentionally leaves others open by design. This read endpoint is not gated on the backend; the Settings area is instead hidden from the Time Clock user in the app (front-end), which is considered sufficient.</p>"
+   },
+   "reason":"SV-7958 closed Done with the PO ruling that this observed behaviour is expected (backend enforcement not required; front-end hides the surface) — the case asserted a 403 the build will never return, a prime nightly-automation false failure.",
+   "citation":"SV-7958 Sasha Grosman 2026-07-14 (\"What was reported observed ... is expected. We only block BE permission when appropriate\"); ticket closed Done.",
+   "confidence":"high"},
+
+  {"case_id":29458,"section_id":4091,
+   "title":"BUG: Time Clock user CAN read Taxes / Finance data via API (should be blocked)",
+   "verdict":"UPDATE",
+   "fields_affected":["title","expected"],
+   "current_excerpt":"EXPECTED: the request should return 403 Forbidden because the Time Clock role has no Finance / See Financial Data access. ACTUAL (2026-07-13, staging): the request returns 200 OK with the tax list — a permission LEAK.",
+   "proposed_text":{
+     "title":"Time Clock user reading Taxes via API returns 200 (backend does not enforce — expected)",
+     "custom_expected":"<p>The request returns 200 OK with the tax list.</p>\n<p>This is the expected, accepted behaviour: the Product Owner confirmed (SV-7958, 2026-07-14) that the backend intentionally leaves some read endpoints open by design and relies on the front end to hide the surface from the Time Clock user. This endpoint is not gated on the backend.</p>"
+   },
+   "reason":"Same SV-7958 PO ruling: the 200 is accepted; the case asserted a 403 the build will never return.",
+   "citation":"SV-7958 Sasha Grosman 2026-07-14; ticket closed Done.",
+   "confidence":"high"},
+
+  {"case_id":29459,"section_id":4091,
+   "title":"BUG: Time Clock user CAN create a Customer via API (should be blocked)",
+   "verdict":"UPDATE",
+   "fields_affected":["title","expected"],
+   "current_excerpt":"EXPECTED: the request should return 403 Forbidden ... ACTUAL (2026-07-13, staging): the request returns 201 Created and a real customer is created — a serious permission LEAK (the create endpoint is missing the gate that the view and delete endpoints have).",
+   "proposed_text":{
+     "title":"Time Clock user creating a Customer via API returns 201 (backend does not enforce — accepted by PO)",
+     "custom_expected":"<p>The request returns 201 Created and a customer record is created.</p>\n<p>Per the Product Owner (SV-7958, 2026-07-14) the backend permission gaps observed on this role are expected/accepted for now — the backend does not gate this create endpoint and the front end does not expose customer creation to the Time Clock user. NOTE for QA: this is a WRITE/create leak (not merely a read); it was explicitly reported as \"Critical\" and the PO still accepted it and closed SV-7958 Done. Flag to the PO if a backend gate is later desired, but the current expected result is 201.</p>"
+   },
+   "reason":"SV-7958 was closed Done after Bilal explicitly reported the POST /api/customers/create 201 leak as Critical; the PO ruled the observed behaviour expected. Case must assert the accepted 201, with a QA note that this is a write-leak the PO knowingly accepted.",
+   "citation":"SV-7958 Sasha Grosman 2026-07-14 (closed Done over the reported customers/create 201 leak).",
+   "confidence":"medium"},
+
+  {"case_id":29460,"section_id":4091,
+   "title":"BUG: Time Clock user's Work Order create is not blocked with 403 (should be blocked)",
+   "verdict":"UPDATE",
+   "fields_affected":["title","expected"],
+   "current_excerpt":"EXPECTED: the request should return 403 Forbidden ... ACTUAL: it never returns 403 — it returns 400 (\"company_id Missing required parameter\") ... and 500 with a valid company_id ... the create endpoint is missing the permission gate.",
+   "proposed_text":{
+     "title":"Time Clock user Work Order create via API is not gated with 403 (backend does not enforce — accepted by PO)",
+     "custom_expected":"<p>The request does not return 403. It returns 400 (\"company_id Missing required parameter\") without a company_id, and 500 with a valid company_id — i.e. the request is processed past the permission layer. No work order is persisted by this probe.</p>\n<p>Per the Product Owner (SV-7958, 2026-07-14) the missing backend gate on this endpoint is accepted for now; the front end does not expose work-order creation to the Time Clock user. NOTE for QA: assert only that the endpoint is reachable past the gate (not 403); do not assert a 500 as the contract since it is an unhandled-input error, not a designed response.</p>"
+   },
+   "reason":"SV-7958 PO ruling accepts the missing gate; the case asserted a 403 the build will never return. Rewritten to the accepted 'not gated' contract without pinning the incidental 500.",
+   "citation":"SV-7958 Sasha Grosman 2026-07-14; ticket closed Done.",
+   "confidence":"medium"}
+]
