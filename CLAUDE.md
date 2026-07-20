@@ -246,11 +246,16 @@ process(es) to run before proceeding.
    SF-CORE-03/11/18 update_case 200 + re-GET MATCH, all others no-op (wording already accurate);
    run 325 untouched. Evidence: `build/simple-flow/viu-staging-2026-07-20/`. Seeding works
    (recipe + add-part API `POST /api/work-orders/part/make-request` in PROJECT-STATE §0-DD).
-   **Tally 184 ACTIVE (187 authored − 3 retired): Verified 148 / VIU-Pending 10 /
-   Blocked-Env 18 / awaiting-Milos 5 / Deviation 3 / Open-Q 0.** Still pending: SF-CORE-15/17
-   (need invoiced core), SF-VEND-07, SF-RCV-11/12, part-sale set SF-POSEL-07/BULK-11/WOP-04
-   (seedable next run) + SF-QB-09 (QB not connected). Deviations SF-RCV-05/07 (Accept-Delivery
-   BOTTOM position not re-observed → unchanged) + SF-SET-03 unchanged. Outstanding: SEND the
+   **3-session pass verified 21 cases total** (added resume-2: SF-VEND-07, SF-POSEL-07, SF-BULK-11
+   — vendor changeable via parts-tab select_vendor before receive; part-sale PO type 2 "P-1110"
+   appears in PO list + on grouped Bulk Receive). **Tally 184 ACTIVE (187 authored − 3 retired):
+   Verified 151 / VIU-Pending 4 / Blocked-Env 21 / awaiting-Milos 5 / Deviation 3 / Open-Q 0.**
+   **SF-RCV-05/07 DEVIATION DEFINITIVELY CONFIRMED** (Accept-Delivery Vendor Missing group still at
+   TOP, should be BOTTOM per Milos — bug draft #5 STAYS OPEN). SF-CORE-15/17 + SF-QB-09 → Blocked-Env
+   (invoiced+unreceived-core state not producible: complete≠invoiced/paid + can't order on completed WO;
+   QB not connected). Remaining 4 VIU-Pending: SF-CORE-19 (received-core handle-core), SF-RCV-11
+   (return-to-line scroll), SF-RCV-12 (other-vendor exclusion), SF-WOP-04 (Waiting-on-Parts column).
+   Outstanding: SEND the
    Milos spec-V2.6 sheet (READY), Story-18 re-VIU backlog (needs SV-8353 build +
    dev-seeded core), 5 unanswered Milos Qs, file Receive-screen bug in Jira, run-325
    reconcile.

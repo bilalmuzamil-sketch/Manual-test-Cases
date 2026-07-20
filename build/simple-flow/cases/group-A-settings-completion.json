@@ -1476,9 +1476,9 @@
   "area": "Core parts — Pre-Resolve (Story 18)",
   "permissions_required": "receive access.",
   "type": "Functional",
-  "viu_status": "VIU-Pending",
+  "viu_status": "Blocked-Env",
   "api_related": false,
-  "fresh_run": "2026-07-17",
+  "fresh_run": "2026-07-20",
   "story_ref": "S18 C-R8",
   "title": "Verify the receive dialog locks quantity to the full remaining amount once the work order is invoiced/paid, with the core auto-selected and an explanatory tooltip",
   "priority": "Medium",
@@ -1496,7 +1496,7 @@
    "3. The lock is on the screen only — the customer invoice itself never changes at receive."
   ],
   "design_ref": "requirements-v4 S18 C-R8 (FE-only lock)",
-  "notes": "NEW 2026-07-17 per spec `_4` (V2.6) Δ8 — Story 18 Core Parts (SV-8353), pre-resolve-before-receive model. Not yet observed — expected Blocked-Env at re-VIU until (a) a special-order vendor-sourced core is seedable (P550848 is_core=0; a vendor-sourced part request drops the core attribute — needs a dev-seeded core) and (b) the SV-8353 pre-resolve build is deployed on sv7301 (probe the completion wizard for the resolve step + the pre-resolve endpoint first). Tooltip text is spec-quoted (C-R8) — confirm exact on-screen wording live."
+  "notes": "NEW 2026-07-17 per spec `_4` (V2.6) Δ8 — Story 18 Core Parts (SV-8353), pre-resolve-before-receive model. Not yet observed — expected Blocked-Env at re-VIU until (a) a special-order vendor-sourced core is seedable (P550848 is_core=0; a vendor-sourced part request drops the core attribute — needs a dev-seeded core) and (b) the SV-8353 pre-resolve build is deployed on sv7301 (probe the completion wizard for the resolve step + the pre-resolve endpoint first). Tooltip text is spec-quoted (C-R8) — confirm exact on-screen wording live. || STAGING VIU 2026-07-20: needs an INVOICED/paid WO with an un-received core; invoice is not API-creatable and completion->invoice UI not driven to an invoiced+un-received-core state. Blocked-Env."
  },
  {
   "id": "SF-CORE-16",
@@ -1530,9 +1530,9 @@
   "area": "Core parts — Pre-Resolve (Story 18)",
   "permissions_required": "Work Order edit access + Finance access.",
   "type": "Negative",
-  "viu_status": "VIU-Pending",
+  "viu_status": "Blocked-Env",
   "api_related": false,
-  "fresh_run": "2026-07-17",
+  "fresh_run": "2026-07-20",
   "story_ref": "S18 AC (resolution immutable with an active invoice)",
   "title": "Verify a core decision cannot be changed once the work order has an active invoice",
   "priority": "Medium",
@@ -1547,7 +1547,7 @@
    "1. The decision cannot be changed while the work order has an active invoice."
   ],
   "design_ref": "requirements-v4 S18 AC",
-  "notes": "NEW 2026-07-17 per spec `_4` (V2.6) Δ8 — Story 18 Core Parts (SV-8353), pre-resolve-before-receive model. Not yet observed — expected Blocked-Env at re-VIU until (a) a special-order vendor-sourced core is seedable (P550848 is_core=0; a vendor-sourced part request drops the core attribute — needs a dev-seeded core) and (b) the SV-8353 pre-resolve build is deployed on sv7301 (probe the completion wizard for the resolve step + the pre-resolve endpoint first)."
+  "notes": "NEW 2026-07-17 per spec `_4` (V2.6) Δ8 — Story 18 Core Parts (SV-8353), pre-resolve-before-receive model. Not yet observed — expected Blocked-Env at re-VIU until (a) a special-order vendor-sourced core is seedable (P550848 is_core=0; a vendor-sourced part request drops the core attribute — needs a dev-seeded core) and (b) the SV-8353 pre-resolve build is deployed on sv7301 (probe the completion wizard for the resolve step + the pre-resolve endpoint first). || STAGING VIU 2026-07-20: needs an INVOICED/paid WO to test decision-immutability after invoicing; same invoiced-state blocker as SF-CORE-15. Blocked-Env."
  },
  {
   "id": "SF-CORE-18",
@@ -1600,7 +1600,7 @@
    "1. The call succeeds and the decision is ALSO written to the linked core PartRequest (core_resolution matches the handle-core decision), keeping core_resolution the single source of history."
   ],
   "design_ref": "requirements-v4 S18 C-R10 (sync-back)",
-  "notes": "NEW 2026-07-17 per spec `_4` (V2.6) Δ8 — Story 18 Core Parts (SV-8353), pre-resolve-before-receive model. Not yet observed — expected Blocked-Env at re-VIU until (a) a special-order vendor-sourced core is seedable (P550848 is_core=0; a vendor-sourced part request drops the core attribute — needs a dev-seeded core) and (b) the SV-8353 pre-resolve build is deployed on sv7301 (probe the completion wizard for the resolve step + the pre-resolve endpoint first)."
+  "notes": "NEW 2026-07-17 per spec `_4` (V2.6) Δ8 — Story 18 Core Parts (SV-8353), pre-resolve-before-receive model. Not yet observed — expected Blocked-Env at re-VIU until (a) a special-order vendor-sourced core is seedable (P550848 is_core=0; a vendor-sourced part request drops the core attribute — needs a dev-seeded core) and (b) the SV-8353 pre-resolve build is deployed on sv7301 (probe the completion wizard for the resolve step + the pre-resolve endpoint first). || STAGING VIU 2026-07-20: needs a RECEIVED core resolved via the existing handle-core(s) endpoint; a received-core state was not reachable this run (completing without receiving leaves the core un-ordered; cannot order on a completed WO). Still VIU-Pending."
  },
  {
   "id": "SF-TECH-01",

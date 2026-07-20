@@ -28,12 +28,16 @@ update_case — 200 + re-GET MATCH; all others no-op = wording already build-acc
 run 325 untouched. Evidence: `viu-staging-2026-07-20/`. See §0-DD.
 
 **Current tally (post staging VIU 2026-07-20, §0-DD — authoritative, counted from
-`cases/*.json` viu_status): ACTIVE 184 (187 authored − 3 retired) = VIU-Verified 148 /
-VIU-Pending 10 / Blocked-Env 18 / VIU-observed-awaiting-Milos 5 / Deviation 3.
+`cases/*.json` viu_status): ACTIVE 184 (187 authored − 3 retired) = VIU-Verified 151 /
+VIU-Pending 4 / Blocked-Env 21 / VIU-observed-awaiting-Milos 5 / Deviation 3.
 Open-Question = 0.** All 184 active cases are in TestRail (id-map 184/184, 0 blanks).
-(Movement vs the 2026-07-20 retire tally 130/22/24/5/3: +18 VIU-Verified from the staging
-pass — SF-CORE-03/04/07/08/11/12/13/14/16/18, SF-BULK-06/10, SF-INV-01/02/03, SF-RCV-13,
-SF-VEND-08, SF-REV-14.)
+(Movement vs the 2026-07-20 retire tally 130/22/24/5/3: **+21 VIU-Verified** from the 3-session
+staging pass — SF-CORE-03/04/07/08/11/12/13/14/16/18, SF-BULK-06/10/11, SF-INV-01/02/03,
+SF-RCV-13, SF-VEND-07/08, SF-REV-14, SF-POSEL-07.)
+**Remaining 4 VIU-Pending:** SF-CORE-19 (needs a received-core resolved via handle-core),
+SF-RCV-11 (return-to-line scroll), SF-RCV-12 (other-vendor-exclusion isolation), SF-WOP-04
+(Waiting-on-Parts column). **Deviations (3) UNCHANGED** incl. SF-RCV-05/07 (Accept-Delivery
+vendor-missing STILL at TOP — definitively re-confirmed 2026-07-20; bug #5 stays OPEN).
 **RETIRE EXECUTED 2026-07-20 (user ruling 2026-07-17 "Retire"):** SF-CORE-05 (C29317) +
 SF-CORE-06 (C29318) + SF-CORE-09 (C29321) deleted from TestRail via delete_case (3/3
 HTTP 200, re-GET 400 = verified gone; before-snapshots + audit in
@@ -196,7 +200,31 @@ delete WO = `POST /api/work-orders/delete {work_order_id}`. Cookies/harness: `/t
 
 **Awaiting-Milos (5) — build did NOT answer them this run** (SF-SET-08/COMP-06/REV-11/UX-04/QB-02 are policy/QB questions).
 
-**Env note:** shared-env settings DRIFTED during the session (requireVendorInvoiceNumber + requireReview were false at STEP 0, true by batch 4 — changed by another process); I made no net settings change (verified restored to the as-found baseline). An orphan ZZAUTOTEST PO (e4975eaa) may remain from the SF-CORE-14 order test (disposable).
+**BATCH 5 (2026-07-20 resume 2) — deviation verdict + part-sale + vendor-change (+3 Verified):**
+- **SF-RCV-05/07 DEVIATION DEFINITIVELY CONFIRMED (priority done):** seeded a WO with a vendor group
+  (7d54f3e1 "123 Cannabis Forestlawn", 3 parts) + a true `vendor_id=null` part, ordered into one PO,
+  opened Accept-Delivery — **Vendor Missing group renders at the TOP** (y=406, before the vendor group).
+  Milos ruled BOTTOM for that screen → **deviation PERSISTS; SF-RCV-05/07 stay Deviation; bug draft #5
+  CANNOT be closed — stays OPEN.** Evidence: DEV-accept-delivery.png.
+- **SF-VEND-07 (C29904) VERIFIED** — WO Parts tab has an editable `select_vendor_{partId}` per waiting-to-receive
+  part; changed a part's vendor 7d54f3e1→5f3a23dd and it persisted (not locked before receive).
+- **SF-POSEL-07 (C29906) VERIFIED** — created a Part Sale (7dc7db6f) + vendor part, authorized + ordered →
+  part-sale PO **type 2, number "P-1110"**; appears in the PO list with a selectable checkbox, joins Receive Selected.
+- **SF-BULK-11 (C29907) VERIFIED** — the part-sale PO (P-1110) is included on the grouped `/bulk-receive` page
+  under its vendor group like a work-order PO.
+- **SF-CORE-15/17 → Blocked-Env (fully characterized):** need an INVOICED/PAID WO with an ordered-but-unreceived
+  core. Blockers: (a) completion reaches status "complete / invoice-ready" but NOT "invoiced/paid" (no reachable
+  invoice-finalization + payment step; invoice-create APIs 404); (b) "Cannot order parts for a completed work order"
+  — the core must be ordered before completion, and complete-without-receiving leaves it un-ordered.
+- **SF-QB-09 → Blocked-Env** — QuickBooks not connected on staging (`/api/quickbooks/status` 404).
+- **Still VIU-Pending (4):** SF-CORE-19 (received-core handle-core writeback — received-core state not reachable),
+  SF-RCV-11 (return-to-line scroll/focus — needs a many-line WO round-trip), SF-RCV-12 (other-vendor-exclusion not
+  isolated — test WO had a single real vendor), SF-WOP-04 (Waiting-on-Parts column consistency not observed).
+- **Recipes learned:** part-sale PO = create sale (`button_new_part_sale`) → Add Part (vendor) → authorize line
+  (`change-status`) → `order-vendor-parts` (part-sale PO gets type 2 / "P-" number); vendorless part via
+  make-request with `vendor_id:null`; part-sale delete via `POST /api/work-orders/delete {work_order_id:<saleId>}`.
+
+**Env note:** shared-env settings DRIFTED during the session (requireVendorInvoiceNumber + requireReview were false at STEP 0, true by resume-2 — changed by another process); I flipped them OFF for the SF-CORE-15 completion test then **restored to the as-found true/true** (verified). An orphan ZZAUTOTEST PO (e4975eaa) may remain from the SF-CORE-14 order test; ZZAUTOTEST WO **095497aa (S3-25720) is left COMPLETE** (can't API-delete a completed WO — reversible in-app via three-dot Uncomplete; disposable). All other seeded WOs/part-sale deleted (verified gone).
 
 **Cleanup:** seeded WOs ec255d5b + 1e2012ec + 247d637e + b1b77a3a DELETED (verified gone); the one existing cored WO
 316441e5 (junk pn 21231312312) had its core_resolution set during the SF-CORE-18 API test and was

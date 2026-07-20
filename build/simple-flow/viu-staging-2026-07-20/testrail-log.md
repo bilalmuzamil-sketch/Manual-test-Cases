@@ -28,3 +28,8 @@ SF-CORE-14 C29895: no-op (status/note local)
 SF-BULK-10 C29359: no-op (status/note local)
 SF-REV-14 C29399: no-op (status/note local)
 SUMMARY batch4: updated 0 / no-op 5 / failed 0; run 325 untouched
+## Batch 5 push (2026-07-20 resume 2) — deviations + part-sale + vendor-change
+SF-VEND-07 C29904: no-op (status/note local)
+SF-POSEL-07 C29906: no-op (status/note local)
+SF-BULK-11 C29907: no-op (status/note local)
+SUMMARY batch5: verified-pushed 0 / no-op 3 / failed 0; SF-CORE-15/17 -> Blocked-Env; deviation SF-RCV-05/07 CONFIRMED (bug#5 open); run 325 untouched

@@ -1321,10 +1321,10 @@
    "3. The part sale is not broken by the shared order/status logic."
   ],
   "design_ref": "requirements-v4 §8 'Part Sales — confirmed (Jul 14)'",
-  "viu_status": "VIU-Pending",
-  "notes": "RESCOPED 2026-07-17 per spec `_4` (V2.6) Δ15 — the §8 'Part Sales impact (investigation — BE)' open question is now CONFIRMED in-spec ('Part Sales — confirmed (Jul 14)': adding a part on a Part Sale already creates a PO received via the same PO/receive pipeline; part-sale POs in scope for PO multi-select + Bulk Receive + Accept Delivery). This case now covers the spec's residual check ('the new order/status logic does not regress part-sale status transitions'); the in-scope part-sale PO behaviors are covered by the new cases SF-POSEL-07 (PO list / multi-select), SF-BULK-11 (Bulk Receive) and SF-WOP-04 (Waiting on Parts). Open-Question RESOLVED → VIU-Pending (seedable per Rule 14: create a Part Sale with a vendor part). ADDED TO TESTRAIL 2026-07-17 (was deliberately unmapped while an open question).",
+  "viu_status": "Blocked-Env",
+  "notes": "RESCOPED 2026-07-17 per spec `_4` (V2.6) Δ15 — the §8 'Part Sales impact (investigation — BE)' open question is now CONFIRMED in-spec ('Part Sales — confirmed (Jul 14)': adding a part on a Part Sale already creates a PO received via the same PO/receive pipeline; part-sale POs in scope for PO multi-select + Bulk Receive + Accept Delivery). This case now covers the spec's residual check ('the new order/status logic does not regress part-sale status transitions'); the in-scope part-sale PO behaviors are covered by the new cases SF-POSEL-07 (PO list / multi-select), SF-BULK-11 (Bulk Receive) and SF-WOP-04 (Waiting on Parts). Open-Question RESOLVED → VIU-Pending (seedable per Rule 14: create a Part Sale with a vendor part). ADDED TO TESTRAIL 2026-07-17 (was deliberately unmapped while an open question). || STAGING VIU 2026-07-20: QuickBooks NOT connected on staging (/api/quickbooks/status 404, no QB in Admin) — part-sale QB status transitions cannot be observed. External dependency -> Blocked-Env.",
   "api_related": false,
-  "fresh_run": "2026-07-17"
+  "fresh_run": "2026-07-20"
  },
  {
   "id": "SF-AUTO-01",

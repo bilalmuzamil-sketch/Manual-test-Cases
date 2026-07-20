@@ -562,10 +562,10 @@
    "2. It is selectable and joins the Receive Selected flow like a work-order PO."
   ],
   "design_ref": "requirements-v4 Story 7 AC",
-  "viu_status": "VIU-Pending",
+  "viu_status": "VIU-Verified",
   "api_related": false,
-  "fresh_run": "2026-07-17",
-  "notes": "NEW 2026-07-17 per spec `_4` (V2.6) Δ15 — part-sale POs CONFIRMED in scope for Stories 7/8 (§8 'Part Sales — confirmed (Jul 14)'; new S7 AC bullet). Seeding self-serviceable per Rule 14 (create a Part Sale with a vendor part). Not yet observed — re-VIU at the next live pass."
+  "fresh_run": "2026-07-20",
+  "notes": "NEW 2026-07-17 per spec `_4` (V2.6) Δ15 — part-sale POs CONFIRMED in scope for Stories 7/8 (§8 'Part Sales — confirmed (Jul 14)'; new S7 AC bullet). Seeding self-serviceable per Rule 14 (create a Part Sale with a vendor part). Not yet observed — re-VIU at the next live pass. || STAGING VIU 2026-07-20: created a Part Sale (7dc7db6f) with a vendor part, authorized + ordered -> part-sale PO 60e64e95 (type 2, number 'P-1110'). It appears in the PO list with a selectable checkbox_select_order and joins the Receive Selected flow like a work-order PO. Evidence: PS-verify / PS-bulk11.png."
  },
  {
   "id": "SF-BULK-01",
@@ -869,10 +869,10 @@
    "3. The part sale progresses normally after receiving (no errors)."
   ],
   "design_ref": "requirements-v4 Story 8 AC",
-  "viu_status": "VIU-Pending",
+  "viu_status": "VIU-Verified",
   "api_related": false,
-  "fresh_run": "2026-07-17",
-  "notes": "NEW 2026-07-17 per spec `_4` (V2.6) Δ15 — part-sale POs receivable on Bulk Receive (new S8 AC bullet). Seeding self-serviceable per Rule 14. Not yet observed — re-VIU at the next live pass."
+  "fresh_run": "2026-07-20",
+  "notes": "NEW 2026-07-17 per spec `_4` (V2.6) Δ15 — part-sale POs receivable on Bulk Receive (new S8 AC bullet). Seeding self-serviceable per Rule 14. Not yet observed — re-VIU at the next live pass. || STAGING VIU 2026-07-20: the part-sale PO (P-1110) is included on the grouped Bulk Receive page (/bulk-receive?ids=...,60e64e95) under its vendor group like a work-order PO. Actual receive not executed to keep data clean; same pipeline. Evidence: PS-bulk11.png."
  },
  {
   "id": "SF-INV-01",
@@ -1261,7 +1261,7 @@
   ],
   "design_ref": "Receive Vendor Parts - v2.html; requirements S12-R1",
   "viu_status": "Deviation",
-  "notes": "Reworded per Milos Round-3 split ruling (2026-07-16): Bulk Receive = top, Receive/Accept-Delivery = bottom. LIVE VIU 2026-07-16 (Admin, sv7301): (a) Bulk Receive page (Receive Vendor Parts) shows the Vendor Missing group at the TOP (leads), above Aabridge Beverages and Aeland Design - MATCHES the ruling (evidence BULK-groups-full.png). (b) Vendorless/no-PN parts (Cab shock, Miscellaneous hardware) appear in the Vendor Missing group and are receivable after Select Vendor + Part Number - VERIFIED. (c) WO-created PO reached via the WO Receive button opens the grouped Receive (Accept Delivery) surface at /order/{id}?receive=1 - VERIFIED. DEVIATION: on that Receive (Accept Delivery) screen the Vendor Missing group is currently at the TOP (leads), NOT the bottom as ruled - observed on two orders (S-15884 above Aeland Design; S-15878 above Aeboro Motors); evidence ORDER-RECV-S15884-allgroups-full.png, ORDER-RECV-S15878-full.png. Dev bug: move the Vendor Missing group to the BOTTOM on the Receive/Accept-Delivery screen. Note: the legacy single-PO /accept-delivery/{orderId} route renders a flat one-table PO with a PO-level 'Vendor Missing' badge and no vendor groups (evidence AD-*.png). || STAGING VIU 2026-07-20: Vendor Missing group + Select Vendor + Part Number entry confirmed; Bulk-Receive TOP position confirmed (matches Milos ruling). Accept-Delivery BOTTOM position not re-observed -> Deviation UNCHANGED.",
+  "notes": "Reworded per Milos Round-3 split ruling (2026-07-16): Bulk Receive = top, Receive/Accept-Delivery = bottom. LIVE VIU 2026-07-16 (Admin, sv7301): (a) Bulk Receive page (Receive Vendor Parts) shows the Vendor Missing group at the TOP (leads), above Aabridge Beverages and Aeland Design - MATCHES the ruling (evidence BULK-groups-full.png). (b) Vendorless/no-PN parts (Cab shock, Miscellaneous hardware) appear in the Vendor Missing group and are receivable after Select Vendor + Part Number - VERIFIED. (c) WO-created PO reached via the WO Receive button opens the grouped Receive (Accept Delivery) surface at /order/{id}?receive=1 - VERIFIED. DEVIATION: on that Receive (Accept Delivery) screen the Vendor Missing group is currently at the TOP (leads), NOT the bottom as ruled - observed on two orders (S-15884 above Aeland Design; S-15878 above Aeboro Motors); evidence ORDER-RECV-S15884-allgroups-full.png, ORDER-RECV-S15878-full.png. Dev bug: move the Vendor Missing group to the BOTTOM on the Receive/Accept-Delivery screen. Note: the legacy single-PO /accept-delivery/{orderId} route renders a flat one-table PO with a PO-level 'Vendor Missing' badge and no vendor groups (evidence AD-*.png). || STAGING VIU 2026-07-20: Vendor Missing group + Select Vendor + Part Number entry confirmed; Bulk-Receive TOP position confirmed (matches Milos ruling). Accept-Delivery BOTTOM position not re-observed -> Deviation UNCHANGED. || STAGING VIU 2026-07-20 (definitive): seeded a WO with a real-vendor group + a true vendor_id=null part, ordered into one PO, opened Accept-Delivery — Vendor Missing group renders at the TOP (y=406, before the vendor group). Milos ruled BOTTOM for that screen -> DEVIATION PERSISTS. Bug draft #5 stays OPEN. Evidence: DEV-accept-delivery.png.",
   "api_related": false,
   "fresh_run": "2026-07-20"
  },
@@ -1318,7 +1318,7 @@
   ],
   "design_ref": "requirements S12-R3",
   "viu_status": "Deviation",
-  "notes": "Reworded per Milos Round-3 split ruling (2026-07-16). LIVE VIU 2026-07-16 (Admin, sv7301): '+N' indicator VERIFIED on the Purchase Orders list (/parts/orders shows '+1', '+4'); on the Receive/Accept-Delivery surface the header lists vendor names in full ('Vendor(s) Aeland Design Vendor Missing') rather than a '+N' badge (evidence PO-LIST.png, ORDER-RECV-5vendor.png). Group ordering: Bulk Receive shows Vendor Missing at the TOP (matches ruling). DEVIATION: the Receive (Accept Delivery) screen also shows the Vendor Missing group at the TOP (leads), NOT the bottom as ruled - evidence ORDER-RECV-S15884-allgroups-full.png, ORDER-RECV-S15878-full.png. Same dev bug as SF-RCV-05. || STAGING VIU 2026-07-20: '+N' indicator on PO list confirmed ('+1'); Vendor Missing leads at TOP on Bulk Receive (correct per Milos). Accept-Delivery BOTTOM not re-observed -> Deviation UNCHANGED.",
+  "notes": "Reworded per Milos Round-3 split ruling (2026-07-16). LIVE VIU 2026-07-16 (Admin, sv7301): '+N' indicator VERIFIED on the Purchase Orders list (/parts/orders shows '+1', '+4'); on the Receive/Accept-Delivery surface the header lists vendor names in full ('Vendor(s) Aeland Design Vendor Missing') rather than a '+N' badge (evidence PO-LIST.png, ORDER-RECV-5vendor.png). Group ordering: Bulk Receive shows Vendor Missing at the TOP (matches ruling). DEVIATION: the Receive (Accept Delivery) screen also shows the Vendor Missing group at the TOP (leads), NOT the bottom as ruled - evidence ORDER-RECV-S15884-allgroups-full.png, ORDER-RECV-S15878-full.png. Same dev bug as SF-RCV-05. || STAGING VIU 2026-07-20: '+N' indicator on PO list confirmed ('+1'); Vendor Missing leads at TOP on Bulk Receive (correct per Milos). Accept-Delivery BOTTOM not re-observed -> Deviation UNCHANGED. || STAGING VIU 2026-07-20 (definitive): '+N' PO-list indicator confirmed; on Accept-Delivery the Vendor Missing group is still at the TOP (should be BOTTOM per Milos) -> DEVIATION PERSISTS, bug #5 stays open. Evidence: DEV-accept-delivery.png.",
   "api_related": false,
   "fresh_run": "2026-07-20"
  },
@@ -1424,8 +1424,8 @@
   "design_ref": "requirements-v4 S11-R4",
   "viu_status": "VIU-Pending",
   "api_related": false,
-  "fresh_run": "2026-07-17",
-  "notes": "NEW 2026-07-17 per spec `_4` (V2.6) Δ9 — S11-R4 return-to-originating-line (change-log 2026-07-15 'Jul 14 SU follow-ups'). Self-serviceable per Rule 14 (seed a multi-line WO with an orderable part). Not yet observed — re-VIU at the next live pass; new requirement, may not be built on sv7301 yet."
+  "fresh_run": "2026-07-20",
+  "notes": "NEW 2026-07-17 per spec `_4` (V2.6) Δ9 — S11-R4 return-to-originating-line (change-log 2026-07-15 'Jul 14 SU follow-ups'). Self-serviceable per Rule 14 (seed a multi-line WO with an orderable part). Not yet observed — re-VIU at the next live pass; new requirement, may not be built on sv7301 yet. || STAGING VIU 2026-07-20: return-to-originating-line scroll/focus not driven (needs a many-line WO receive round-trip with reliable scroll observation). Still VIU-Pending."
  },
  {
   "id": "SF-RCV-12",
@@ -1450,8 +1450,8 @@
   "design_ref": "requirements-v4 S12-R6",
   "viu_status": "VIU-Pending",
   "api_related": false,
-  "fresh_run": "2026-07-17",
-  "notes": "NEW 2026-07-17 per spec `_4` (V2.6) Δ10 — S12-R6 vendorless group surfaced on single-part receive (change-log 2026-07-15). Covers the CONTENT of the single-part receive view; the vendor-missing group POSITION deviation stays with SF-RCV-05/07 (Milos Round-3 ruling — unaffected by S12-R6). Self-serviceable per Rule 14. Not yet observed — re-VIU; may not be built on sv7301 yet."
+  "fresh_run": "2026-07-20",
+  "notes": "NEW 2026-07-17 per spec `_4` (V2.6) Δ10 — S12-R6 vendorless group surfaced on single-part receive (change-log 2026-07-15). Covers the CONTENT of the single-part receive view; the vendor-missing group POSITION deviation stays with SF-RCV-05/07 (Milos Round-3 ruling — unaffected by S12-R6). Self-serviceable per Rule 14. Not yet observed — re-VIU; may not be built on sv7301 yet. || STAGING VIU 2026-07-20: the Accept-Delivery/Receive screen shows the vendor group AND the vendorless group together (clause 2 observed). Clause 1 'only that vendor's parts, other vendors excluded' not isolated (test WO had a single real vendor). Still VIU-Pending."
  },
  {
   "id": "SF-RCV-13",
@@ -1666,10 +1666,10 @@
    "2. Once the part is received or the work order is invoiced/paid, the vendor can no longer be changed."
   ],
   "design_ref": "requirements-v4 S13-R8",
-  "viu_status": "VIU-Pending",
+  "viu_status": "VIU-Verified",
   "api_related": false,
   "fresh_run": "2026-07-20",
-  "notes": "NEW 2026-07-17 per spec `_4` (V2.6) Δ11 — S13-R8 (from SV-8343, change-log 2026-07-16: 'Vendor + part number stay changeable until receive'). Prevents receiving against the wrong vendor. Self-serviceable per Rule 14 (the invoiced/paid leg may stay Blocked-Env — invoiced/paid WO not drivable in this env, see §0-ZZ). Not yet observed — re-VIU; may not be built yet. || STAGING VIU 2026-07-20: assigned-vendor change affordance not located on the single-order receive view. Still VIU-Pending."
+  "notes": "NEW 2026-07-17 per spec `_4` (V2.6) Δ11 — S13-R8 (from SV-8343, change-log 2026-07-16: 'Vendor + part number stay changeable until receive'). Prevents receiving against the wrong vendor. Self-serviceable per Rule 14 (the invoiced/paid leg may stay Blocked-Env — invoiced/paid WO not drivable in this env, see §0-ZZ). Not yet observed — re-VIU; may not be built yet. || STAGING VIU 2026-07-20: assigned-vendor change affordance not located on the single-order receive view. Still VIU-Pending. || STAGING VIU 2026-07-20: assigned vendor is changeable before receive — on the WO Parts tab each waiting-to-receive part has an editable select_vendor_{id}; changed a part's vendor 7d54f3e1->5f3a23dd and it persisted (CHANGED:true). Clause 2 (locked once received/invoiced) not driven to a received state. Evidence: VEND07-changed.png."
  },
  {
   "id": "SF-VEND-08",
@@ -1800,7 +1800,7 @@
   "design_ref": "requirements-v4 §8 Part Sales — confirmed",
   "viu_status": "VIU-Pending",
   "api_related": false,
-  "fresh_run": "2026-07-17",
-  "notes": "NEW 2026-07-17 per spec `_4` (V2.6) Δ15 — the spec's remaining check: 'verify part-sale POs behave in Bulk Receive + Waiting-on-Parts'. Whether part sales surface on the list carrying the Waiting on Parts column is NOT specified — VIU-confirm the surface live (expected #1 allows either counted-consistently or cleanly-excluded; only errors/broken links fail). Seeding self-serviceable per Rule 14."
+  "fresh_run": "2026-07-20",
+  "notes": "NEW 2026-07-17 per spec `_4` (V2.6) Δ15 — the spec's remaining check: 'verify part-sale POs behave in Bulk Receive + Waiting-on-Parts'. Whether part sales surface on the list carrying the Waiting on Parts column is NOT specified — VIU-confirm the surface live (expected #1 allows either counted-consistently or cleanly-excluded; only errors/broken links fail). Seeding self-serviceable per Rule 14. || STAGING VIU 2026-07-20: a Part Sale with an unreceived vendor part was created; the Waiting-on-Parts column consistency/clean-exclusion was not specifically observed (needs the WOP column enabled + WO-list observation). Still VIU-Pending."
  }
 ]
