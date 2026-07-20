@@ -12,18 +12,26 @@
 > **Canonical spec (Confluence):** https://shopview.atlassian.net/wiki/spaces/PM/pages/646021121/Simple+Mode+Streamlined+Work+Order+Completion+Bulk+Receiving
 > (Atlassian-SSO login-walled — reference pointer only; content must be exported/pasted to ingest, do NOT fetch the URL.)
 >
-> **Last updated:** 2026-07-17 (spec `_4` / V2.6 APPLIED + pushed to TestRail +
-> **ADVERSARIALLY AUDITED CLEAN** — commits df95b70→a578ef9 + audit fix 4398091;
-> see §0-BB + the WHAT'S LEFT section below).
+> **Last updated:** 2026-07-20 (STAGING LIVE VIU — Story-18 deployment unblock: 4 cases
+> verified [SF-CORE-03/04/11/18], TestRail 3 update_case 200, tally 134/20/22/5/3; see §0-DD.
+> Prior: spec `_4` / V2.6 APPLIED + audited clean 2026-07-17, §0-BB.)
 
 ---
 
 ## ⏭️ WHAT'S LEFT TO DO — read this first (as of 2026-07-20)
 
-**Current tally (post retire execution 2026-07-20, §0-CC — authoritative, counted from
-`cases/*.json` viu_status): ACTIVE 184 (187 authored − 3 retired) = VIU-Verified 130 /
-VIU-Pending 22 / Blocked-Env 24 / VIU-observed-awaiting-Milos 5 / Deviation 3.
+**⭐ STAGING VIU 2026-07-20 (§0-DD, LATEST): Simple Flow is now DEPLOYED on
+`app.staging.shopview.com` (NOT just sv7301.qa) — the Story-18 pre-resolve-cores build is
+LIVE there.** A live VIU pass verified 4 Story-18 cases (SF-CORE-03/04/11/18) that were
+blocked on sv7301; TestRail updated (3 update_case 200 + re-GET MATCH, SF-CORE-04 no-op),
+run 325 untouched. Evidence: `viu-staging-2026-07-20/`. See §0-DD.
+
+**Current tally (post staging VIU 2026-07-20, §0-DD — authoritative, counted from
+`cases/*.json` viu_status): ACTIVE 184 (187 authored − 3 retired) = VIU-Verified 134 /
+VIU-Pending 20 / Blocked-Env 22 / VIU-observed-awaiting-Milos 5 / Deviation 3.
 Open-Question = 0.** All 184 active cases are in TestRail (id-map 184/184, 0 blanks).
+(Movement vs the 2026-07-20 retire tally 130/22/24/5/3: SF-CORE-03/04 Blocked-Env→Verified,
+SF-CORE-11/18 VIU-Pending→Verified.)
 **RETIRE EXECUTED 2026-07-20 (user ruling 2026-07-17 "Retire"):** SF-CORE-05 (C29317) +
 SF-CORE-06 (C29318) + SF-CORE-09 (C29321) deleted from TestRail via delete_case (3/3
 HTTP 200, re-GET 400 = verified gone; before-snapshots + audit in
@@ -101,7 +109,74 @@ What remains:
 
 ---
 
-## 0-CC. RETIRE EXECUTED + MILOS SPEC-V2.6 SHEET PRODUCED (2026-07-20, LATEST)
+## 0-DD. STAGING LIVE VIU — Story-18 deployment unblock (2026-07-20, LATEST)
+
+**Simple Flow is now deployed on `app.staging.shopview.com` / `api.staging.shopview.com`
+(the shared d55bc308 org, same host as Custom Roles).** Prior VIU ran on
+`sv7301.qa.shopview.com`, where the Story-18 special-order-core flow was NOT seedable/built.
+On STAGING the Story-18 build IS live. Full detail + evidence: `viu-staging-2026-07-20/`
+(STEP0-validation.md, RESULTS-running.md, testrail-log.md, screenshots, SF-CORE-18-api-evidence.json).
+
+**STEP 0 (live):** admin quick-login 200 + fe-permissions 200; WO settings object present
+(requireVendorInvoiceNumber/requireReview/autoPick/autoApprove…, NO createPurchaseOrders field →
+SF-SET-03 deviation stands at data level); `POST /api/work-orders/{id}/pre-resolve-cores` route
+BUILT (400 "At least one core is required" on empty body). QuickBooks flag exists but
+`/api/quickbooks/status` 404 → QB not connected (QB cases remain Blocked-Env).
+
+**VERIFIED live this run (4 cases, +4 VIU-Verified):**
+- **SF-CORE-18 (C29899)** — `POST /api/work-orders/{id}/pre-resolve-cores` schema
+  `{cores:[{partRequestId,isCoreOk}]}` → 201 `{resolvedCount:N}`; core_resolution persisted
+  ok/not_ok; NO side-effect records (pr stays authorized_to_order, order_id null, qty/total_core_charge
+  unchanged); cores_pending 1→0; isCoreOk=null→400. (Also found add-part API `POST /api/work-orders/part/make-request`.)
+- **SF-CORE-03 (C29315)** — completion wizard stepper "Missing Details → Resolve cores →
+  Receive parts & invoice"; Resolve-cores step lists the un-received vendor core under
+  "SPECIAL ORDER CORES · N" with description/line/"Core $X.XX" and buttons "OK · Returned" /
+  "Not OK · Keep + Charge" + invoice-accuracy intro + footnote "Completion stays blocked until
+  every core is set". Gate: Continue DISABLED at "0 / 1 resolved", ENABLED at "1 / 1".
+- **SF-CORE-04 (C29316)** — cores-pending reflects only undecided: "0/1 resolved" count gates
+  Continue + the following Receive/invoice step until resolved; API cores_pending 1→0.
+- **SF-CORE-11 (C29892)** — consolidated Resolve-cores list ("SPECIAL ORDER CORES · N",
+  per-core info+charge+OK/Not-OK, invoice-accuracy message).
+
+**TestRail:** update_case for SF-CORE-03/11/18 (build-accurate steps/expected) — 3/3 HTTP 200
++ re-GET MATCH; SF-CORE-04 no-op (status/note local only). NO writes to run 325. Audit:
+`viu-staging-2026-07-20/testrail-log.md`.
+
+**Partial / still VIU-Pending (evidence captured, honest per Rule 12):**
+- **SF-CORE-12 (C29893)** — charge-follows-decision: resolve buttons update client state only
+  (pre-resolve POST fires on Continue/completion); per-WO total not cleanly readable via the
+  list aggregate → charge amount NOT observed. Needs drive-through to invoice.
+- **SF-INV-01/02/03 (C29360-62)** — the single-order Receive/Accept-Delivery view (`/order/{id}?receive=1`)
+  has a per-PO invoice input and NO "Apply" button (Δ13 consistent), but the per-VENDOR-GROUP
+  grouped Bulk Receive page wasn't reached (`/bulk-receive` REDIRECTS to `/parts/orders`, a flat
+  PO list whose top Receive button opens the single-order view). Needs the grouped-surface entry point.
+- **SF-BULK-06 (C29355)** — Δ14: a $10 cost line renders cost read-only (`currency_text_cost`) with
+  editable sell+qty → "cost locked when not $0" consistent; the $0-cost→editable half NOT confirmed.
+- Remaining Story-18 UI (SF-CORE-05..08/13..17, SF-BULK-10/11, SF-REV-14, SF-RCV-11..13,
+  SF-VEND-07/08, SF-POSEL-07, SF-WOP-04, SF-QB-09) not driven this run — reachable on staging now
+  that seeding works (recipe below).
+
+**Deviations (3) NOT re-verdicted this run:** SF-RCV-05/07 (vendor-missing group position) needs a
+vendor-missing PO on the receive surface (not reached; single-order view showed no vendor-missing
+group); SF-SET-03 stands (no createPurchaseOrders setting at data level; UI toggle-absence not re-observed).
+
+**Staging seeding recipe (proven this run):** create WO via UI (`button_new_work_order` → pick
+customer/asset → Save → confirm credit-limit "Create"); add line via New Line dialog free-text
+title → `button_save_add_part` opens New Part Request (Source defaults **Vendor**, has
+`input_workorder_part_core_charge`) → fill cost/core charge/sell + pick category+vendor →
+`button_workorder_part_save`; authorize lines via `POST /api/work-orders/lines/change-status
+{line_id,work_order_id,status:'authorized'}`; add-part API = `POST /api/work-orders/part/make-request`;
+delete WO = `POST /api/work-orders/delete {work_order_id}`. Cookies/harness: `/tmp/sf-viu/` (swolib.mjs
+= staging boot2, lib.mjs = API; bridge.mjs from `/tmp/simple-flow/tools`).
+
+**Cleanup:** seeded WOs ec255d5b + 1e2012ec DELETED (verified gone); the one existing cored WO
+316441e5 (junk pn 21231312312) had its core_resolution set during the SF-CORE-18 API test and was
+restored to `ok` (no charge — can't reset to null via the decision-only endpoint); settings never
+written; Tech never role-swapped (admin-only run); run 325 untouched.
+
+---
+
+## 0-CC. RETIRE EXECUTED + MILOS SPEC-V2.6 SHEET PRODUCED (2026-07-20)
 
 **Retirement (user ruling 2026-07-17 "Retire", explicit authorization; executed 2026-07-20):**
 spec `_4` Δ8 removed the invoice-gate core-resolve module, so the 3 RETIRE-PROPOSED cases

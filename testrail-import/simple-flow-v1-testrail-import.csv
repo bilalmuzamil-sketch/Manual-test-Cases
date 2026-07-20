@@ -259,12 +259,12 @@ Verify a work order with no cores completes with no core sub-lines and no Resolv
 2. There is no distinct Resolve Cores wizard step; completion proceeds directly Details -> Success.",SV-7698 (S3-C1 (skipped if none)),,
 Verify a Resolve cores screen appears before the Receive parts / Complete without receiving choice and only an undecided core blocks completing,Core parts — Completion modal,Functional,Medium,"1. Signed in as Admin.
 2. Require Vendor Invoice Number is OFF (Optional).
-3. A work order has a special-order (vendor) cored part that has not been received yet.","1. Click Complete Work Order.
-2. Observe the screen shown right before the Receive parts / Complete without receiving choice.
-3. Leave the core undecided and try Complete Without Receiving.
-4. Mark the core OK or Not OK on the resolve screen and try again.","1. A separate Resolve cores screen lists the un-received vendor core with its part info, core charge and an OK / Not OK choice, and explains that resolving now keeps the invoice accurate.
-2. While the core is still undecided, completing is blocked.
-3. Once every core is decided (OK or Not OK), Complete Without Receiving works — a decided core no longer blocks completing without receiving (no receive needed first).",SV-8353 (S18 C-R1/C-R4),,
+3. A work order has a special-order (vendor) cored part that has not been received yet.","1. On a work order that has an un-received special-order (vendor) cored part, click Complete Work Order.
+2. Observe the completion wizard steps (Missing Details, Resolve cores, Receive parts & invoice) and open the Resolve cores step.
+3. Leave the core undecided and try to move on with Continue.
+4. Set the core using OK · Returned or Not OK · Keep + Charge, then try Continue again.","1. The completion wizard shows a Resolve cores step (before Receive parts & invoice) that lists the un-received vendor core under 'SPECIAL ORDER CORES' with its description, line and core charge, plus OK · Returned / Not OK · Keep + Charge buttons, and the message that resolving now decides whether the core charge is billed (invoice accuracy).
+2. While the core is undecided (shows '0 / 1 resolved'), the Continue button is disabled — completion is blocked.
+3. Once every core is set (shows '1 / 1 resolved'), Continue is enabled and the wizard proceeds — a decided core no longer blocks moving on (no receive needed first).",SV-8353 (S18 C-R1/C-R4),,
 Verify the 'Cores pending' indication reflects only undecided special-order cores (a decided core clears it),Core parts — Invoice gate,Functional,Medium,"1. Signed in as Admin.
 2. A completed (optional-invoice) work order has an un-received special-order core.","1. With the core still undecided (no OK / Not OK yet), open the work order's invoice / Finance view and look for a cores indication.
 2. Decide the core (OK or Not OK) and check again.","1. While the core is undecided, a 'Cores pending' indication shows and invoice creation is blocked.
@@ -290,9 +290,9 @@ Verify the core '+$ to invoice' amount is shown at the line level as a core is m
 2. Require Vendor Invoice Number is OFF (Optional).
 3. A work order has two special-order (vendor) cored parts that have not been received yet.","1. Click Complete Work Order.
 2. Observe the screen shown right before the Receive parts / Complete without receiving choice.
-3. Read the message on the screen.","1. A separate, consolidated Resolve cores screen appears, listing EVERY un-received vendor core (both parts).
-2. Each core shows its part info, its core charge and an OK / Not OK choice.
-3. A message explains that resolving now is for invoice accuracy.",SV-8353 (S18 C-R1),,
+3. Read the message on the screen.","1. A consolidated Resolve cores step appears under a 'SPECIAL ORDER CORES · N' group, listing every un-received vendor core.
+2. Each core shows its description, line and core charge with OK · Returned / Not OK · Keep + Charge buttons.
+3. The message 'core part can now be resolved — mark whether each old unit was returned. This decides whether the core charge is billed.' explains the resolution is for invoice accuracy.",SV-8353 (S18 C-R1),,
 "Verify marking a core Not OK immediately adds the core charge to the work order total and customer invoice, while OK adds no charge",Core parts — Pre-Resolve (Story 18),Functional,High,"1. Signed in as Admin.
 2. A work order has two un-received vendor cores shown on the Resolve cores screen.","1. Mark one core Not OK and note the work order total.
 2. Mark the other core OK and note the total again.
@@ -322,11 +322,11 @@ Verify completion and invoice creation are blocked only while a core is undecide
 Verify a core decision cannot be changed once the work order has an active invoice,Core parts — Pre-Resolve (Story 18),Functional,Medium,"1. Signed in as Admin.
 2. A work order has a decided core and an active customer invoice.",1. Try to change the core's OK / Not OK decision (on the resolve screen or the Lines tab).,1. The decision cannot be changed while the work order has an active invoice.,SV-8353 (S18 AC (resolution immutable with an active invoice)),,
 API: Verify POST /api/work-orders/{id}/pre-resolve-cores persists the core decision on the part request with no side-effect records,API — Core Pre-Resolve (Story 18),Functional,High,"1. A valid Admin session (API).
-2. A work order with an un-received special-order cored part request exists.","1. POST /api/work-orders/{id}/pre-resolve-cores with the core decision (ok / not_ok).
-2. Re-read the work order's lines / receive-view read models.
-3. Inspect for side-effect records (work-order part, statement item, vendor return).","1. The request succeeds (2xx) and core_resolution is persisted on the core work_order_part_request (ok | not_ok; NULL = undecided).
-2. NO WorkOrderPart, statement item, or vendor return is created at this point.
-3. cores_pending reflects only undecided (NULL) cores after the call.",SV-8353 (S18 C-R2 / technical plan),,
+2. A work order with an un-received special-order cored part request exists.","1. POST /api/work-orders/{id}/pre-resolve-cores with body {cores:[{partRequestId, isCoreOk}]} (isCoreOk true = OK/Returned, false = Not OK).
+2. Re-read the work order lines read model and check the core part request's core_resolution and the pending-core count.
+3. Inspect for side-effect records (work-order part, statement item, vendor return, order).","1. The request succeeds (201) returning {data:{resolvedCount:N}} and core_resolution is persisted on the core part request (ok | not_ok; NULL = undecided; isCoreOk cannot be null).
+2. NO WorkOrderPart, statement item, vendor return or order is created — part request stays authorized_to_order with quantity_remaining and total_core_charge unchanged.
+3. cores_pending reflects only undecided (NULL) cores after the call (decided cores drop out).",SV-8353 (S18 C-R2 / technical plan),,
 API: Verify resolving a received core via the existing handle-core endpoints also writes the decision back to the linked core part request,API — Core Pre-Resolve (Story 18),Functional,Medium,"1. A valid Admin session (API).
 2. A received cored part exists that can be resolved via the existing handle-core(s) endpoints.","1. Resolve the received core Ok / Not OK via the existing handle-core(s) endpoint.
 2. Read the linked core part request and its core_resolution value.","1. The call succeeds and the decision is ALSO written to the linked core PartRequest (core_resolution matches the handle-core decision), keeping core_resolution the single source of history.",SV-8353 (S18 C-R10),,

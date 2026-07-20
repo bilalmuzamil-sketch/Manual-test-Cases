@@ -228,8 +228,19 @@ process(es) to run before proceeding.
    Tracker-header count defect fixed; commits df95b70→a578ef9 + audit fix 4398091);
    requirements.md promoted to V2.6; deliverables regenerated (import 187 rows
    VIU/flag-word-free).
-   **Tally 184 ACTIVE (187 authored − 3 retired): Verified 130 / VIU-Pending 22 /
-   Blocked-Env 24 / awaiting-Milos 5 / Deviation 3 / Open-Q 0.** Outstanding: SEND the
+   **STAGING LIVE VIU 2026-07-20 (§0-DD, LATEST):** Simple Flow is now DEPLOYED on
+   `app.staging.shopview.com`/`api.staging.shopview.com` (shared d55bc308 org) — the
+   Story-18 pre-resolve-cores build is LIVE there (was NOT seedable/built on sv7301). A
+   live pass verified **4 cases: SF-CORE-03 (C29315) / SF-CORE-04 (C29316) / SF-CORE-11
+   (C29892) / SF-CORE-18 (C29899)** — Resolve-cores wizard step ("Missing Details →
+   Resolve cores → Receive parts & invoice"; buttons "OK · Returned"/"Not OK · Keep +
+   Charge"; Continue gated 0/1→1/1) + `POST /api/work-orders/{id}/pre-resolve-cores`
+   `{cores:[{partRequestId,isCoreOk}]}`→201 `{resolvedCount}` no side-effects. TestRail: 3
+   update_case 200 + re-GET MATCH (SF-CORE-04 no-op), run 325 untouched. Evidence:
+   `build/simple-flow/viu-staging-2026-07-20/`. Seeding now works on staging (recipe +
+   add-part API `POST /api/work-orders/part/make-request` in PROJECT-STATE §0-DD).
+   **Tally 184 ACTIVE (187 authored − 3 retired): Verified 134 / VIU-Pending 20 /
+   Blocked-Env 22 / awaiting-Milos 5 / Deviation 3 / Open-Q 0.** Outstanding: SEND the
    Milos spec-V2.6 sheet (READY), Story-18 re-VIU backlog (needs SV-8353 build +
    dev-seeded core), 5 unanswered Milos Qs, file Receive-screen bug in Jira, run-325
    reconcile.

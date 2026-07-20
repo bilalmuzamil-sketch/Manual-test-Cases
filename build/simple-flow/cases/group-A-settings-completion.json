@@ -1151,21 +1151,21 @@
    "3. A work order has a special-order (vendor) cored part that has not been received yet."
   ],
   "steps": [
-   "1. Click Complete Work Order.",
-   "2. Observe the screen shown right before the Receive parts / Complete without receiving choice.",
-   "3. Leave the core undecided and try Complete Without Receiving.",
-   "4. Mark the core OK or Not OK on the resolve screen and try again."
+   "1. On a work order that has an un-received special-order (vendor) cored part, click Complete Work Order.",
+   "2. Observe the completion wizard steps (Missing Details, Resolve cores, Receive parts & invoice) and open the Resolve cores step.",
+   "3. Leave the core undecided and try to move on with Continue.",
+   "4. Set the core using OK · Returned or Not OK · Keep + Charge, then try Continue again."
   ],
   "expected": [
-   "1. A separate Resolve cores screen lists the un-received vendor core with its part info, core charge and an OK / Not OK choice, and explains that resolving now keeps the invoice accurate.",
-   "2. While the core is still undecided, completing is blocked.",
-   "3. Once every core is decided (OK or Not OK), Complete Without Receiving works — a decided core no longer blocks completing without receiving (no receive needed first)."
+   "1. The completion wizard shows a Resolve cores step (before Receive parts & invoice) that lists the un-received vendor core under 'SPECIAL ORDER CORES' with its description, line and core charge, plus OK · Returned / Not OK · Keep + Charge buttons, and the message that resolving now decides whether the core charge is billed (invoice accuracy).",
+   "2. While the core is undecided (shows '0 / 1 resolved'), the Continue button is disabled — completion is blocked.",
+   "3. Once every core is set (shows '1 / 1 resolved'), Continue is enabled and the wizard proceeds — a decided core no longer blocks moving on (no receive needed first)."
   ],
   "design_ref": "Resolve Cores Flow.html + Handoff; requirements-v4 S18 C-R1/C-R4",
-  "viu_status": "Blocked-Env",
-  "notes": "REWORDED 2026-07-17 to spec `_4` (V2.6) Story 18 C-R1/C-R4 (SV-8353, pre-resolve-before-receive): replaces the 2026-07-14 design-#4 'Complete Without Receiving DISABLED while a core waits' model — completion is now gated ONLY on undecided (NULL) cores; a DECIDED core does not block Complete Without Receiving. Screen labels from the Resolve Cores Flow design (wizard step 'Resolve cores'; Inventory / Special order groups; 'OK / Not OK'; 'N / M resolved' progress; '+$X to invoice' running total) — design-sourced, pending live confirm; state labels 'Core decision pending' / 'Core OK — return to vendor, no charge' / 'Core Not OK — customer charged' are spec-quoted (C-R9) — confirm exact on-screen text live. Blocked-Env: a special-order (vendor-sourced) core is still not seedable in this build (P550848 is_core=0; a vendor-sourced part request drops the core attribute) — needs a dev-seeded special-order core. ALSO: Story 18 / SV-8353 is a new dev plan, so the pre-resolve build is likely NOT deployed on sv7301 yet — probe the completion wizard for the resolve step + the pre-resolve endpoint before any re-VIU.",
+  "viu_status": "VIU-Verified",
+  "notes": "REWORDED 2026-07-17 to spec `_4` (V2.6) Story 18 C-R1/C-R4 (SV-8353, pre-resolve-before-receive): replaces the 2026-07-14 design-#4 'Complete Without Receiving DISABLED while a core waits' model — completion is now gated ONLY on undecided (NULL) cores; a DECIDED core does not block Complete Without Receiving. Screen labels from the Resolve Cores Flow design (wizard step 'Resolve cores'; Inventory / Special order groups; 'OK / Not OK'; 'N / M resolved' progress; '+$X to invoice' running total) — design-sourced, pending live confirm; state labels 'Core decision pending' / 'Core OK — return to vendor, no charge' / 'Core Not OK — customer charged' are spec-quoted (C-R9) — confirm exact on-screen text live. Blocked-Env: a special-order (vendor-sourced) core is still not seedable in this build (P550848 is_core=0; a vendor-sourced part request drops the core attribute) — needs a dev-seeded special-order core. ALSO: Story 18 / SV-8353 is a new dev plan, so the pre-resolve build is likely NOT deployed on sv7301 yet — probe the completion wizard for the resolve step + the pre-resolve endpoint before any re-VIU. || STAGING VIU 2026-07-20: Story-18 Resolve-cores wizard step OBSERVED LIVE (WO S3-25714, seeded undecided vendor core). Build labels: steps 'Missing Details -> Resolve cores -> Receive parts & invoice'; buttons 'OK · Returned' / 'Not OK · Keep + Charge'; footnote 'Completion stays blocked until every core is set'. Gate: Continue disabled at 0/1, enabled at 1/1. Evidence: viu-staging-2026-07-20/CORE-step-resolve.png. Complete-to-Success not driven through.",
   "api_related": false,
-  "fresh_run": "2026-07-17"
+  "fresh_run": "2026-07-20"
  },
  {
   "id": "SF-CORE-04",
@@ -1188,10 +1188,10 @@
    "2. Once every core is decided (OK or Not OK), the 'Cores pending' indication clears and invoicing is no longer blocked — even though the core part has not been received yet."
   ],
   "design_ref": "requirements-v4 S18 C-R4",
-  "viu_status": "Blocked-Env",
-  "notes": "REWORDED 2026-07-17 to spec `_4` (V2.6) Story 18 C-R4: 'Cores pending' now reflects UNDECIDED (NULL) cores only — the old invoice-gate model (flag while cores unresolved until received) is replaced by the pre-resolve model; a decided-but-unreceived core no longer flags. Blocked-Env: a special-order (vendor-sourced) core is still not seedable in this build (P550848 is_core=0; a vendor-sourced part request drops the core attribute) — needs a dev-seeded special-order core. ALSO: Story 18 / SV-8353 is a new dev plan, so the pre-resolve build is likely NOT deployed on sv7301 yet — probe the completion wizard for the resolve step + the pre-resolve endpoint before any re-VIU.",
+  "viu_status": "VIU-Verified",
+  "notes": "REWORDED 2026-07-17 to spec `_4` (V2.6) Story 18 C-R4: 'Cores pending' now reflects UNDECIDED (NULL) cores only — the old invoice-gate model (flag while cores unresolved until received) is replaced by the pre-resolve model; a decided-but-unreceived core no longer flags. Blocked-Env: a special-order (vendor-sourced) core is still not seedable in this build (P550848 is_core=0; a vendor-sourced part request drops the core attribute) — needs a dev-seeded special-order core. ALSO: Story 18 / SV-8353 is a new dev plan, so the pre-resolve build is likely NOT deployed on sv7301 yet — probe the completion wizard for the resolve step + the pre-resolve endpoint before any re-VIU. || STAGING VIU 2026-07-20: 'cores pending' reflects only undecided cores — completion wizard Resolve-cores step shows '0 / 1 resolved' while undecided and gates Continue (and the following Receive parts & invoice step) until resolved; API cores_pending went 1->0 after pre-resolve. Evidence: CORE-step-resolve.png + SF-CORE-18-api-evidence.json. Observed via the completion wizard gate (not a separate Finance-view indicator).",
   "api_related": false,
-  "fresh_run": "2026-07-17"
+  "fresh_run": "2026-07-20"
  },
  {
   "id": "SF-CORE-05",
@@ -1365,9 +1365,9 @@
   "area": "Core parts — Pre-Resolve (Story 18)",
   "permissions_required": "Work Order edit access (WO Lines: Create & Edit resolves cores per SV-8183).",
   "type": "Functional",
-  "viu_status": "VIU-Pending",
+  "viu_status": "VIU-Verified",
   "api_related": false,
-  "fresh_run": "2026-07-17",
+  "fresh_run": "2026-07-20",
   "story_ref": "S18 C-R1",
   "title": "Verify the Resolve cores screen lists every un-received vendor core with part info, core charge and OK / Not OK, plus an invoice-accuracy message",
   "priority": "High",
@@ -1382,12 +1382,12 @@
    "3. Read the message on the screen."
   ],
   "expected": [
-   "1. A separate, consolidated Resolve cores screen appears, listing EVERY un-received vendor core (both parts).",
-   "2. Each core shows its part info, its core charge and an OK / Not OK choice.",
-   "3. A message explains that resolving now is for invoice accuracy."
+   "1. A consolidated Resolve cores step appears under a 'SPECIAL ORDER CORES · N' group, listing every un-received vendor core.",
+   "2. Each core shows its description, line and core charge with OK · Returned / Not OK · Keep + Charge buttons.",
+   "3. The message 'core part can now be resolved — mark whether each old unit was returned. This decides whether the core charge is billed.' explains the resolution is for invoice accuracy."
   ],
   "design_ref": "Resolve Cores Flow.html + Handoff; requirements-v4 S18 C-R1",
-  "notes": "NEW 2026-07-17 per spec `_4` (V2.6) Δ8 — Story 18 Core Parts (SV-8353), pre-resolve-before-receive model. Not yet observed — expected Blocked-Env at re-VIU until (a) a special-order vendor-sourced core is seedable (P550848 is_core=0; a vendor-sourced part request drops the core attribute — needs a dev-seeded core) and (b) the SV-8353 pre-resolve build is deployed on sv7301 (probe the completion wizard for the resolve step + the pre-resolve endpoint first). Screen labels from the Resolve Cores Flow design (wizard step 'Resolve cores'; Inventory / Special order groups; OK / Not OK) are design-sourced pending live confirm; the C-R9 state texts are spec-quoted — confirm exact on-screen wording live, never invent."
+  "notes": "NEW 2026-07-17 per spec `_4` (V2.6) Δ8 — Story 18 Core Parts (SV-8353), pre-resolve-before-receive model. Not yet observed — expected Blocked-Env at re-VIU until (a) a special-order vendor-sourced core is seedable (P550848 is_core=0; a vendor-sourced part request drops the core attribute — needs a dev-seeded core) and (b) the SV-8353 pre-resolve build is deployed on sv7301 (probe the completion wizard for the resolve step + the pre-resolve endpoint first). Screen labels from the Resolve Cores Flow design (wizard step 'Resolve cores'; Inventory / Special order groups; OK / Not OK) are design-sourced pending live confirm; the C-R9 state texts are spec-quoted — confirm exact on-screen wording live, never invent. || STAGING VIU 2026-07-20: Resolve-cores consolidated list OBSERVED LIVE (group 'SPECIAL ORDER CORES · N', count 'N / N resolved', per-core OK/Not-OK, intro + footnote messages). Evidence: CORE-step-resolve.png. One core seeded; consolidated-group + count mechanism confirms multi-core listing."
  },
  {
   "id": "SF-CORE-12",
@@ -1554,9 +1554,9 @@
   "area": "Core Pre-Resolve (Story 18)",
   "permissions_required": "Valid Admin API session (WO Lines: Create & Edit).",
   "type": "Functional",
-  "viu_status": "VIU-Pending",
+  "viu_status": "VIU-Verified",
   "api_related": true,
-  "fresh_run": "2026-07-17",
+  "fresh_run": "2026-07-20",
   "story_ref": "S18 C-R2 / technical plan",
   "title": "API: Verify POST /api/work-orders/{id}/pre-resolve-cores persists the core decision on the part request with no side-effect records",
   "priority": "High",
@@ -1565,17 +1565,17 @@
    "2. A work order with an un-received special-order cored part request exists."
   ],
   "steps": [
-   "1. POST /api/work-orders/{id}/pre-resolve-cores with the core decision (ok / not_ok).",
-   "2. Re-read the work order's lines / receive-view read models.",
-   "3. Inspect for side-effect records (work-order part, statement item, vendor return)."
+   "1. POST /api/work-orders/{id}/pre-resolve-cores with body {cores:[{partRequestId, isCoreOk}]} (isCoreOk true = OK/Returned, false = Not OK).",
+   "2. Re-read the work order lines read model and check the core part request's core_resolution and the pending-core count.",
+   "3. Inspect for side-effect records (work-order part, statement item, vendor return, order)."
   ],
   "expected": [
-   "1. The request succeeds (2xx) and core_resolution is persisted on the core work_order_part_request (ok | not_ok; NULL = undecided).",
-   "2. NO WorkOrderPart, statement item, or vendor return is created at this point.",
-   "3. cores_pending reflects only undecided (NULL) cores after the call."
+   "1. The request succeeds (201) returning {data:{resolvedCount:N}} and core_resolution is persisted on the core part request (ok | not_ok; NULL = undecided; isCoreOk cannot be null).",
+   "2. NO WorkOrderPart, statement item, vendor return or order is created — part request stays authorized_to_order with quantity_remaining and total_core_charge unchanged.",
+   "3. cores_pending reflects only undecided (NULL) cores after the call (decided cores drop out)."
   ],
   "design_ref": "requirements-v4 S18 C-R2 + technical plan (mirrors handle-cores)",
-  "notes": "NEW 2026-07-17 per spec `_4` (V2.6) Δ8 — Story 18 Core Parts (SV-8353), pre-resolve-before-receive model. Not yet observed — expected Blocked-Env at re-VIU until (a) a special-order vendor-sourced core is seedable (P550848 is_core=0; a vendor-sourced part request drops the core attribute — needs a dev-seeded core) and (b) the SV-8353 pre-resolve build is deployed on sv7301 (probe the completion wizard for the resolve step + the pre-resolve endpoint first). Endpoint from the SV-8353 technical plan — existence on sv7301 unconfirmed; probe before re-VIU."
+  "notes": "NEW 2026-07-17 per spec `_4` (V2.6) Δ8 — Story 18 Core Parts (SV-8353), pre-resolve-before-receive model. Not yet observed — expected Blocked-Env at re-VIU until (a) a special-order vendor-sourced core is seedable (P550848 is_core=0; a vendor-sourced part request drops the core attribute — needs a dev-seeded core) and (b) the SV-8353 pre-resolve build is deployed on sv7301 (probe the completion wizard for the resolve step + the pre-resolve endpoint first). Endpoint from the SV-8353 technical plan — existence on sv7301 unconfirmed; probe before re-VIU. || STAGING VIU 2026-07-20: pre-resolve-cores API OBSERVED LIVE (WO 316441e5, PR dcc299b8). Schema {cores:[{partRequestId,isCoreOk}]}; POST true->201 {resolvedCount:1} core_resolution 'ok', false->'not_ok'; pr_status/order_id/qty/total_core_charge unchanged; cores_pending 1->0; isCoreOk=null->400. Evidence: SF-CORE-18-api-evidence.json. Also discovered add-part endpoint POST /api/work-orders/part/make-request."
  },
  {
   "id": "SF-CORE-19",
