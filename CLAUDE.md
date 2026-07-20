@@ -342,10 +342,16 @@ process(es) to run before proceeding.
    2026-07-17 (3/3, audit-logged) — FLT-PERS-02/C29614 permanent persistence,
    FLT-TAB-02/03 C29609/C29610 disabled pre-filled Status chip; import +
    id-map regenerated (id-map re-merged 79/79); audit log =
-   build/filters/branko-answers-2026-07-17/testrail-update-log.md; Round-2 PO
-   questions ready; Round-2 Qs + PRD request SENT to Branko 2026-07-17 —
-   awaiting answers/PRD; next = Parts/Reports authoring on PRD arrival, VIU on
-   QA arrival.** Same rules as all projects: reuse shared infra
+   build/filters/branko-answers-2026-07-17/testrail-update-log.md; Round-2 Qs +
+   PRD request SENT to Branko 2026-07-17. **ROUND-2 ANSWERS INGESTED 2026-07-20
+   (Q1=A/Q2=A/Q3=A — all confirmatory, ZERO case edits / ZERO TestRail writes
+   required; OQ-4 RESOLVED: filter lists role-independent; prototype
+   "Reported" anomaly CLOSED — "Imported" correct; optional Q3 notes-only
+   annotation on C29566/C29575/C29582 to bundle with the next authorized push;
+   source of record
+   build/filters/branko-answers-round2-2026-07-20/answers-ingested.md).**
+   Still awaited: Branko's updated PRD (incl. the two Q1 text fixes) → then
+   Parts/Reports authoring; VIU on QA arrival.** Same rules as all projects: reuse shared infra
    (BUILD-ACCURATE-WORDING-VIU-PROCESS, SPEC-RELEVANCE-RECONCILIATION,
    TESTING-RUNBOOK, harness/TestRail patterns); per Standing Rule 11 ASK which
    process(es) to run before any VIU pass. Open questions live in

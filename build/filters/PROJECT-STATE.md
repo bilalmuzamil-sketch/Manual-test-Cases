@@ -1,7 +1,17 @@
 # Filters (Work Order List Filtering) — PROJECT STATE
 **Canonical cold-resume doc. Read this first to resume the Filters project.**
-Last updated: 2026-07-17 (LATEST: Round-2 question sheet + the PRD-update
-request SENT to Branko by the user — AWAITING BOTH; see WHAT'S LEFT. Earlier
+Last updated: 2026-07-20 (LATEST: **Branko's ROUND-2 ANSWERS INGESTED 2026-07-20
+— Q1=A / Q2=A / Q3=A, all three CONFIRM the suite as-is; ZERO case edits and
+ZERO TestRail writes required.** Source of record:
+`branko-answers-round2-2026-07-20/answers-ingested.md` (+ raw xlsx). Q1=A he'll
+fix both stale write-up sentences in the PRD update (PRD itself STILL AWAITED —
+not attached); Q2=A "Imported" correct, demo "Reported" = typo → design-system
+prototype anomaly CLOSED (FLT-STAT-01/06 + FLT-MOB-03 already correct); Q3=A
+filter lists role-independent → **OQ-4 RESOLVED**, no role-based cases needed
+(optional notes-only annotation on FLT-CUST-01/TECH-01/ADV-01 C29566/C29575/
+C29582 — bundle with the next authorized push, not standalone). Earlier
+2026-07-17: Round-2 question sheet + the PRD-update
+request SENT to Branko by the user. Earlier
 same day: Q2/Q4 case edits APPLIED + PUSHED TO TESTRAIL —
 FLT-PERS-02/C29614, FLT-TAB-02/C29609, FLT-TAB-03/C29610, 3/3 update_case
 200 + re-GET confirmed, user-authorized pass, audit log at
@@ -32,11 +42,20 @@ promised PRD update covering the Parts + Reports pages (which filter chips per
 page + option lists incl. new filter types Location / Transaction Type /
 Invoice Status / Type / User / Date / Mention; whether all WO-page behaviors
 [persistence/URL/clear/collapse/real-time] apply identically; page-specific
-specials). AWAITING BOTH.**
+specials). **UPDATE 2026-07-20: (a) ANSWERED + INGESTED (Q1=A/Q2=A/Q3=A, see
+LATEST above); (b) the PRD update is STILL AWAITED.**
 
 **WHAT'S LEFT TO DO — the definitive waiting list (recite on resume):**
-1. **Branko's Round-2 answers** (sheet SENT 2026-07-17 — see NEW above).
-2. **Branko's updated PRD** (request SENT 2026-07-17) → unlocks authoring the
+1. ✅ **DONE 2026-07-20: Branko's Round-2 answers INGESTED** (Q1=A/Q2=A/Q3=A —
+   all confirmatory, zero case edits / zero TestRail writes required; OQ-4
+   resolved [lists role-independent], prototype "Reported" anomaly closed
+   [Imported correct]; source of record
+   `branko-answers-round2-2026-07-20/answers-ingested.md`; optional Q3
+   notes-only annotation on C29566/C29575/C29582 to bundle with the next
+   authorized push).
+2. **Branko's updated PRD** (request SENT 2026-07-17; NOT attached to his
+   Round-2 answers — still awaited, incl. the two Q1 text fixes) → unlocks
+   authoring the
    Parts/Reports case set (~30–50 cases from the 31 captured screens; run the
    standard pipeline: ask which process per Rule 11 → author → adversarial
    review → canonical Rule-16 import → user imports or authorized push).
@@ -97,12 +116,12 @@ delivered).
    UNCHANGED**; Sorting stays OUT of scope (separate WIP feature); the older
    mobile variants and the Customer-v1 leading-checkbox dropdown variant
    remain SUPERSEDED (final right-side-✓ pattern wins). No scope revision.
-4. **Design-system zip anomaly — NOW CARRIED BY THE ROUND-2 SHEET (Q2):** the
-   zip is a Claude-Code skill package + coded Filters prototype = REFERENCE
-   AID only, not authoritative frames; its prototype's status list ends
-   **"Reported"** vs the design's/spec's **"Imported"** — asked of Branko as
-   Round-2 PO Question 2 (`PO-Questions-Filters-Round2_2026-07-17.xlsx`/`.md`);
-   awaiting his answer.
+4. ✅ **RESOLVED (2026-07-20, Round-2 Q2=A): design-system zip anomaly CLOSED** —
+   "Imported" is correct; the prototype's "Reported" is a demo typo. The zip
+   stays a REFERENCE AID only (Claude-Code skill package + coded prototype, not
+   authoritative frames), now with a known-wrong status list on this point.
+   FLT-STAT-01/06 (C29560/C29565) + FLT-MOB-03 (C29623) already use the correct
+   9-status list incl. Imported — no changes.
 5. **VIU when the feature reaches a QA env (OQ-7):** ⚠️ ASK the user for the
    Epic/Jira key (OQ-3) AND which process(es) to run per Standing Rule 11
    (BUILD-ACCURATE-WORDING-VIU and/or SPEC-RELEVANCE-RECONCILIATION); resolve
@@ -208,7 +227,8 @@ Last updated 2026-07-17 (post-import). Detail bullets below.
 | Design notes | `build/filters/design-notes.md` | DONE 2026-07-17 — ZIP-authoritative; §Z map (50/50) + §D completeness + §E new-inputs section |
 | Design screenshots | `build/filters/design-screens/` | DONE — 59 PNGs (49 ZIP final set + 1 PDF-sourced JE tab + 9 retained superseded API renders) |
 | New-inputs inventory | `build/filters/new-inputs-inventory-2026-07-17.md` | DONE 2026-07-17 — design-system zip + 9-PDF reconciliation verdicts + open questions |
-| Branko answers ingestion | `build/filters/branko-answers-2026-07-17/answers-ingested.md` (+ raw xlsx) | DONE 2026-07-17 — source of record for Q1–Q4 rulings |
+| Branko answers ingestion (Round 1) | `build/filters/branko-answers-2026-07-17/answers-ingested.md` (+ raw xlsx) | DONE 2026-07-17 — source of record for Q1–Q4 rulings |
+| Branko answers ingestion (Round 2) | `build/filters/branko-answers-round2-2026-07-20/answers-ingested.md` (+ raw xlsx) | DONE 2026-07-20 — Q1=A/Q2=A/Q3=A, all confirmatory; zero case edits/TestRail writes required |
 | TestRail update audit log | `build/filters/branko-answers-2026-07-17/testrail-update-log.md` | DONE 2026-07-17 — Q2/Q4 push, per-case before/after, 3/3 200 |
 | Case source (79) | `build/filters/cases/cases-A..D-*.json` + `README.md` | DONE 2026-07-17 — all VIU-Pending; Q2/Q4 rulings applied to FLT-PERS-02 / FLT-TAB-02/03 |
 | Coverage matrix | `build/filters/coverage-matrix.md` | DONE — 81/81 spec lines + 18/18 WO frames mapped; exclusions in §C |
@@ -224,8 +244,9 @@ Reader-facing product questions → the PO sheet (Q1 Parts/Reports scope, Q2
 persistence duration, Q3 spelling, Q4 Estimates/Completed Status chip). QA-side
 OQs live in `requirements.md` §"Open Questions": OQ-1 RESOLVED (numbering
 artifact), **OQ-2** canonical Confluence URL TBC, **OQ-3** Epic/Jira key TBD (ask
-at VIU), **OQ-4** permissions/role behaviour unspecified (no permission cases
-authored — flagged, not invented), **OQ-5 RESOLVED 2026-07-17 (Branko Q2=B:
+at VIU), **OQ-4 RESOLVED 2026-07-20 (Branko Round-2 Q3=A: filter lists are
+role-independent — same options for every role; no role-based cases needed;
+glance-check across roles at VIU)**, **OQ-5 RESOLVED 2026-07-17 (Branko Q2=B:
 permanent per-user persistence)**, **OQ-6**
 "Asset on Site" data source in the build (FLT-ASSET-02 note), **OQ-7** QA env /
 feature-flag / API surface unknown (FLT-API-01..05 worded generically,
