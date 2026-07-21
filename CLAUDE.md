@@ -632,6 +632,35 @@ process(es) to run before proceeding.
     rendered only 8 of the section's ~26 frames and the user had to catch it
     ("you need to have them ALL"); completeness must be the default, trimming
     only ever user-requested.
+18. **Reconstruct the FULL originating instruction history when turning work
+    into a process or reproducing a deliverable (all projects).** Whenever the
+    user asks to (a) create/save a process, recipe, template, or "method" FROM
+    their instructions, or (b) reproduce/replicate/"do the same as" a
+    deliverable previously produced (including when they hand back a file you
+    generated), you MUST go back to the COMPLETE set of instructions that
+    produced that artifact — from the very first ask through EVERY correction,
+    refinement, and iteration that led to the final ACCEPTED version — and fold
+    all of it in. Do NOT merely reverse-engineer the finished artifact's
+    structure/format: the originating intent, the standards demanded, and
+    especially the corrections the user made ("this is wrong, fix it", "you
+    can't make this mistake", "it has to be X", "you also had to learn from my
+    instructions") are part of the spec and must be captured too. This applies
+    to EVERYTHING — files/workbooks, TestRail test cases, imports, question
+    sheets, exec/QA reports, comparisons, VIU passes, and any other work.
+    METHOD: mine (1) the session transcript for the user's own turns on that
+    work, (2) the project's memory/state/method docs, and (3) the relevant
+    Standing Rules' rationale clauses, to recover the full A-to-Z including the
+    path to the final acceptable format; then reproduce/encode BOTH the final
+    structure AND the requirements/corrections behind it. When reproducing,
+    apply those captured requirements by default unless the user overrides for
+    that specific request. Rationale: on 2026-07-20, asked to save a reusable
+    recipe for the prod-vs-staging comparison workbook, the first pass only
+    reverse-engineered the file's cell structure and omitted the user's
+    originating instructions and hard-won corrections (the trust incident,
+    zero-NOT-VERIFIED, truth-table + adversarial audit, exec/QA companions,
+    role merge-map); the user required both the format AND the full instruction
+    history. Ties to Standing Rules 9/10/11/15/16/17 and the recipe docs (e.g.
+    build/COMPARISON-WORKBOOK-RECIPE.md).
 
 ## Project purpose (Custom Roles project)
 Manual test-case authoring + live staging (Verify-in-UI) verification + TestRail
