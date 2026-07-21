@@ -1,0 +1,622 @@
+[
+ {
+  "id": "SCH-EVT-01",
+  "area": "Events",
+  "title": "Create an event via right-click 'New Event' on a grid cell",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Schedule: Edit (event creation requires Edit; spec §14.1).",
+  "preconditions": [
+   "1. You are signed in on a desktop browser with Schedule: Edit.",
+   "2. You are on the Schedule page in week view."
+  ],
+  "steps": [
+   "1. Right-click a technician's cell on a working day.",
+   "2. Choose 'New Event' from the context menu.",
+   "3. Fill in a name (for example 'ZZAUTOTEST stand-up'), keep the date/times offered, and save."
+  ],
+  "expected": [
+   "1. The right-click context menu contains 'New Event'.",
+   "2. The event modal opens with the clicked cell's technician and date pre-set.",
+   "3. Saving creates an event block on that technician's day.",
+   "4. A toast with Undo appears."
+  ],
+  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "spec_ref": "requirements.md §4.10, §7 (right-click menu)",
+  "viu_status": "VIU-Pending",
+  "notes": "'New Event' is the spec's wording - confirm the exact menu label live. Pre-fill behavior is derived (anchored creation) - confirm live.",
+  "api_related": false
+ },
+ {
+  "id": "SCH-EVT-02",
+  "area": "Events",
+  "title": "Create an event by clicking empty grid space in day view, with a live preview block and drag-to-resize",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Schedule: Edit (spec §14.1).",
+  "preconditions": [
+   "1. You are signed in on a desktop browser with Schedule: Edit.",
+   "2. You are on the Schedule page in DAY view."
+  ],
+  "steps": [
+   "1. Click (or click-drag) an empty spot on a technician's timeline.",
+   "2. While creating, watch the block and try dragging to size it.",
+   "3. Complete the event creation."
+  ],
+  "expected": [
+   "1. Clicking empty day-view space starts event creation at that time.",
+   "2. A live preview block is shown while creating, and dragging resizes it.",
+   "3. Completing creates the event at the previewed time/duration."
+  ],
+  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "spec_ref": "requirements.md §4.10 (day-view click-to-create, live preview)",
+  "viu_status": "VIU-Pending",
+  "notes": "Exact create gesture (single click vs click-drag) unpinned - capture live.",
+  "api_related": false
+ },
+ {
+  "id": "SCH-EVT-03",
+  "area": "Events",
+  "title": "Event modal offers name, date, start/end time, an all-day toggle, and a color category",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Schedule: Edit (spec §14.1).",
+  "preconditions": [
+   "1. You are signed in on a desktop browser with Schedule: Edit.",
+   "2. You are on the Schedule page with the event modal open (via right-click 'New Event')."
+  ],
+  "steps": [
+   "1. Read the fields the modal offers.",
+   "2. Fill each: name, date, start and end time, and pick a color category.",
+   "3. Save."
+  ],
+  "expected": [
+   "1. The modal contains: name, date, start/end time, an all-day toggle, and a color category.",
+   "2. The event saves with the entered values.",
+   "3. Re-opening the event shows the saved values."
+  ],
+  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "spec_ref": "requirements.md §4.10 (Event modal)",
+  "viu_status": "VIU-Pending",
+  "notes": "Field labels unpinned - confirm the exact on-screen labels live.",
+  "api_related": false
+ },
+ {
+  "id": "SCH-EVT-04",
+  "area": "Events",
+  "title": "The all-day toggle creates an all-day event",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Schedule: Edit (spec §14.1).",
+  "preconditions": [
+   "1. You are signed in on a desktop browser with Schedule: Edit.",
+   "2. You are on the Schedule page with the event modal open."
+  ],
+  "steps": [
+   "1. Turn the all-day toggle ON.",
+   "2. Save the event.",
+   "3. Look at how it renders in day and week views."
+  ],
+  "expected": [
+   "1. With all-day on, specific start/end times are not required (the time fields are disabled or hidden).",
+   "2. The event is created as an all-day block for that technician and day."
+  ],
+  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "spec_ref": "requirements.md §4.10, §8.1 (Event allDay field)",
+  "viu_status": "VIU-Pending",
+  "notes": "All-day rendering (where the block sits on the timeline) unpinned - capture live.",
+  "api_related": false
+ },
+ {
+  "id": "SCH-EVT-05",
+  "area": "Events",
+  "title": "Events can be dragged to another technician or another day",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Schedule: Edit (spec §14.1).",
+  "preconditions": [
+   "1. You are signed in on a desktop browser with Schedule: Edit.",
+   "2. An event exists on a technician's day.",
+   "3. You are on the Schedule page in week view."
+  ],
+  "steps": [
+   "1. Drag the event block to a different technician's row.",
+   "2. Drag it to a different day.",
+   "3. Undo/move back to restore."
+  ],
+  "expected": [
+   "1. Dropping on another technician reassigns the event to them.",
+   "2. Dropping on another day moves it to that day.",
+   "3. Each move produces a toast with Undo."
+  ],
+  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "spec_ref": "requirements.md §4.10 (Drag-and-drop to reassign/move), §7 (toast)",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "SCH-EVT-06",
+  "area": "Events",
+  "title": "Event cards are structurally distinct from shift cards - white outlined card with a grey icon chip, no colored left rail",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Schedule: View (spec §14.1).",
+  "preconditions": [
+   "1. You are signed in on a desktop browser.",
+   "2. An event and a shift sit near each other on the grid.",
+   "3. You are on the Schedule page in week view."
+  ],
+  "steps": [
+   "1. Compare the event card with the shift block side by side."
+  ],
+  "expected": [
+   "1. The event card is a white/neutral card with a thin, even border on all four sides and NO colored left rail (the left rail is the shift's cue).",
+   "2. It has a small grey-filled rounded chip on the left containing a calendar icon, and two lines of text beside it: the event name, then the time range in secondary text.",
+   "3. The shift reads as a tinted color-filled block with a colored left rail - the two types are separable at a glance, not by color alone."
+  ],
+  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "spec_ref": "requirements.md §4.10 (Event card anatomy)",
+  "viu_status": "VIU-Pending",
+  "notes": "Visual anatomy is spec-prose only (no designs) - confirm every visual detail live.",
+  "api_related": false
+ },
+ {
+  "id": "SCH-EVT-07",
+  "area": "Events",
+  "title": "Events default to neutral/grey; choosing a color tints the card and its icon chip",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Schedule: Edit to change color; View to observe (spec §14.1).",
+  "preconditions": [
+   "1. You are signed in on a desktop browser with Schedule: Edit.",
+   "2. A newly created event exists with no color chosen.",
+   "3. You are on the Schedule page."
+  ],
+  "steps": [
+   "1. Look at the new event's default color.",
+   "2. Open the event and choose a color from the color picker.",
+   "3. Look at the card again."
+  ],
+  "expected": [
+   "1. The default event color is neutral/grey.",
+   "2. The color picker offers the same custom color palette as shifts (shared picker with editable labels).",
+   "3. Choosing a color tints the card and the icon chip in matching tones, the same way a colored shift is tinted."
+  ],
+  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "spec_ref": "requirements.md §4.10 (Event color), §10",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "SCH-CONF-01",
+  "area": "Conflict Detection",
+  "title": "Double-booked: two work orders overlapping on the same technician at the same time are flagged",
+  "priority": "Critical",
+  "type": "Functional",
+  "permissions_required": "Schedule: Edit to set up; View to observe (spec §14.1).",
+  "preconditions": [
+   "1. You are signed in on a desktop browser with Schedule: Edit.",
+   "2. Two different work orders have schedulable lines.",
+   "3. You are on the Schedule page; note the toolbar conflict pill's current count."
+  ],
+  "steps": [
+   "1. Schedule work order 1 on a technician for a given time.",
+   "2. Schedule work order 2 on the SAME technician overlapping the same time.",
+   "3. Look at the two blocks and the toolbar conflict pill."
+  ],
+  "expected": [
+   "1. The overlap is detected as a Double-booked conflict.",
+   "2. A warning icon appears on the affected block(s).",
+   "3. The toolbar conflict pill's count increases.",
+   "4. The conflict is listed in the pill's dropdown."
+  ],
+  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "spec_ref": "requirements.md §4.11 (Double-booked)",
+  "viu_status": "VIU-Pending",
+  "notes": "Conflict-type display names ('Double-booked' etc.) are the spec's words - confirm on-screen wording live. Whether one or both blocks get the icon is unpinned - observe.",
+  "api_related": false
+ },
+ {
+  "id": "SCH-CONF-02",
+  "area": "Conflict Detection",
+  "title": "Weekend shift: a shift on Saturday or Sunday is flagged as a conflict",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Schedule: Edit to set up; View to observe (spec §14.1).",
+  "preconditions": [
+   "1. You are signed in on a desktop browser with Schedule: Edit.",
+   "2. Saturday/Sunday columns are visible (View Options - Saturday and Sunday on).",
+   "3. A schedulable work order line exists."
+  ],
+  "steps": [
+   "1. Drop the line onto a technician's SATURDAY cell.",
+   "2. Look at the block and the conflict pill."
+  ],
+  "expected": [
+   "1. The shift is created but flagged as a Weekend shift conflict (outside working days).",
+   "2. The warning icon appears on the block and the conflict is listed in the toolbar dropdown."
+  ],
+  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "spec_ref": "requirements.md §4.11 (Weekend shift)",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "SCH-CONF-03",
+  "area": "Conflict Detection",
+  "title": "Before hours: a shift starting before the working-day start is flagged",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Schedule: Edit to set up; View to observe (spec §14.1).",
+  "preconditions": [
+   "1. You are signed in on a desktop browser with Schedule: Edit.",
+   "2. A technician has a known working-day start (for example 8:00 AM).",
+   "3. A shift exists for that technician."
+  ],
+  "steps": [
+   "1. In day view, drag the shift so it starts BEFORE the technician's working-day start (for example 6:00 AM).",
+   "2. Look at the block and the conflict pill."
+  ],
+  "expected": [
+   "1. The shift is flagged as a Before hours conflict.",
+   "2. Warning icon on the block; the conflict appears in the toolbar dropdown."
+  ],
+  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "spec_ref": "requirements.md §4.11 (Before hours)",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "SCH-CONF-04",
+  "area": "Conflict Detection",
+  "title": "After hours: a shift extending past the working-day end is flagged",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Schedule: Edit to set up; View to observe (spec §14.1).",
+  "preconditions": [
+   "1. You are signed in on a desktop browser with Schedule: Edit.",
+   "2. A technician has a known working-day end (for example 5:00 PM).",
+   "3. A shift exists for that technician ending before 5:00 PM."
+  ],
+  "steps": [
+   "1. In day view, drag the shift's right edge so it extends PAST the working-day end (for example to 7:00 PM).",
+   "2. Look at the block and the conflict pill."
+  ],
+  "expected": [
+   "1. The shift is flagged as an After hours conflict.",
+   "2. Warning icon on the block; the conflict appears in the toolbar dropdown."
+  ],
+  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "spec_ref": "requirements.md §4.11 (After hours)",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "SCH-CONF-05",
+  "area": "Conflict Detection",
+  "title": "The toolbar conflict pill shows the issue count and opens a dropdown listing the conflicts",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Schedule: View (spec §14.1).",
+  "preconditions": [
+   "1. You are signed in on a desktop browser.",
+   "2. At least two conflicts of different types exist (set up via SCH-CONF-01/02).",
+   "3. You are on the Schedule page."
+  ],
+  "steps": [
+   "1. Read the conflict pill in the grid toolbar.",
+   "2. Click it.",
+   "3. Read the dropdown."
+  ],
+  "expected": [
+   "1. The pill shows the current number of scheduling issues.",
+   "2. Clicking opens a dropdown listing each conflict.",
+   "3. The list covers all current conflicts (count matches the pill).",
+   "4. Resolving a conflict (for example moving the shift) reduces the count - detection is continuous."
+  ],
+  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "spec_ref": "requirements.md §4.11, §6 (Conflict pill)",
+  "viu_status": "VIU-Pending",
+  "notes": "Pill copy/format unpinned - capture live.",
+  "api_related": false
+ },
+ {
+  "id": "SCH-CONF-06",
+  "area": "Conflict Detection",
+  "title": "Clicking a conflict in the dropdown navigates to the relevant technician and day",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Schedule: View (spec §14.1).",
+  "preconditions": [
+   "1. You are signed in on a desktop browser.",
+   "2. A conflict exists on a technician/day that is NOT currently in view (navigate the grid away first).",
+   "3. You are on the Schedule page."
+  ],
+  "steps": [
+   "1. Open the conflict pill's dropdown.",
+   "2. Click the conflict entry."
+  ],
+  "expected": [
+   "1. The grid navigates to the relevant technician and day.",
+   "2. The conflicted shift is brought into view."
+  ],
+  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "spec_ref": "requirements.md §4.11 (Clicking a conflict navigates)",
+  "viu_status": "VIU-Pending",
+  "notes": "Whether it switches view (day/week) or highlights the block is unpinned - observe and record.",
+  "api_related": false
+ },
+ {
+  "id": "SCH-CONF-07",
+  "area": "Conflict Detection",
+  "title": "Red/alarming styling is reserved for conflicts and genuine errors - never used for overtime",
+  "priority": "Medium",
+  "type": "Negative",
+  "permissions_required": "Schedule: Edit to set up; View to observe (spec §14.1).",
+  "preconditions": [
+   "1. You are signed in on a desktop browser with Schedule: Edit.",
+   "2. One technician is booked into OVERTIME on a day WITHOUT any conflict (more hours than their day, sequential non-overlapping shifts within working hours - use the technician's working window carefully, or observe the OT tag day).",
+   "3. Capacity Bars are on."
+  ],
+  "steps": [
+   "1. Look at the overtime signals for that day ('OT' tag, amber highlights).",
+   "2. Look at a conflicted shift for comparison."
+  ],
+  "expected": [
+   "1. Overtime is signaled with the 'OT' text tag and amber tones - NOT red or alarming styling.",
+   "2. Red/alarming styling appears only for conflicts and genuine errors."
+  ],
+  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "spec_ref": "requirements.md §4.11 (styling rule), §4.12",
+  "viu_status": "VIU-Pending",
+  "notes": "Note: overtime that spills past working-day end would itself be an After-hours conflict - the pure-OT setup needs hours summed within the working window via overlapping-free stacking; capture the achievable state live.",
+  "api_related": false
+ },
+ {
+  "id": "SCH-CAP-01",
+  "area": "Capacity Bars",
+  "title": "Day-column headers show a capacity bar - blue fill = aggregate booked vs total available, clamped at 100%, equal track widths",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Schedule: View (spec §14.1).",
+  "preconditions": [
+   "1. You are signed in on a desktop browser.",
+   "2. Capacity Bars are ON in View Options (default).",
+   "3. Technicians' working hours are known; shifts exist on at least two days with different total booked hours.",
+   "4. You are on the Schedule page in week view."
+  ],
+  "steps": [
+   "1. Look at each day column's header bar.",
+   "2. Compare a lightly-booked day with a heavily-booked day.",
+   "3. Compare the bars' track widths across days."
+  ],
+  "expected": [
+   "1. Each day header shows a capacity bar; the blue fill represents total technician-hours booked divided by total available (sum of all techs' working hours).",
+   "2. A more heavily booked day shows a longer blue fill; the fill never exceeds the track (clamped at 100%).",
+   "3. The track width is identical across all days (capacity is not rescaled per day), so bars are comparable at a glance."
+  ],
+  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "spec_ref": "requirements.md §4.12 (Blue fill)",
+  "viu_status": "VIU-Pending",
+  "notes": "Exact bar visuals unpinned (no designs) - confirm live.",
+  "api_related": false
+ },
+ {
+  "id": "SCH-CAP-02",
+  "area": "Capacity Bars",
+  "title": "When aggregate hours exceed capacity, an amber spill extends past the track's right edge with a tick at the 100% line",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Schedule: Edit to set up; View to observe (spec §14.1).",
+  "preconditions": [
+   "1. You are signed in on a desktop browser with Schedule: Edit.",
+   "2. Capacity Bars are ON.",
+   "3. One day is booked BEYOND the team's total available hours (seed extra shifts)."
+  ],
+  "steps": [
+   "1. Look at that day's capacity bar."
+  ],
+  "expected": [
+   "1. An amber segment extends past the right edge of the track, showing the excess.",
+   "2. A tick marks the 100% line where the track ends."
+  ],
+  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "spec_ref": "requirements.md §4.12 (Amber spill)",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "SCH-CAP-03",
+  "area": "Capacity Bars",
+  "title": "The 'OT' text tag appears whenever any single technician exceeds their own daily hours - even when the day's aggregate is under capacity",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Schedule: Edit to set up; View to observe (spec §14.1).",
+  "preconditions": [
+   "1. You are signed in on a desktop browser with Schedule: Edit.",
+   "2. Capacity Bars are ON.",
+   "3. On one day, a single technician is booked beyond THEIR daily hours while the team's aggregate for that day remains UNDER total capacity (other techs lightly booked)."
+  ],
+  "steps": [
+   "1. Look at that day's capacity bar and header."
+  ],
+  "expected": [
+   "1. An 'OT' tag appears for the day even though the aggregate bar is under 100%.",
+   "2. The tag is text, not a color-only signal.",
+   "3. Overtime (per-technician) and capacity (aggregate) are independent signals."
+  ],
+  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "spec_ref": "requirements.md §4.12 (OT tag), §11 (not color-only)",
+  "viu_status": "VIU-Pending",
+  "notes": "'OT' is the spec's tag text - confirm the exact on-screen tag live.",
+  "api_related": false
+ },
+ {
+  "id": "SCH-CAP-04",
+  "area": "Capacity Bars",
+  "title": "Hovering a capacity bar shows a per-technician breakdown, with overtime technicians highlighted in amber",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Schedule: View (spec §14.1).",
+  "preconditions": [
+   "1. You are signed in on a desktop browser.",
+   "2. Capacity Bars are ON; a day exists where one technician is in overtime and others are not.",
+   "3. You are on the Schedule page in week view."
+  ],
+  "steps": [
+   "1. Hover over that day's capacity bar.",
+   "2. Read the tooltip."
+  ],
+  "expected": [
+   "1. A tooltip shows a per-technician breakdown: assigned hours vs that technician's capacity.",
+   "2. The overtime technician's entry is highlighted in amber.",
+   "3. The numbers agree with the shifts actually on the grid."
+  ],
+  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "spec_ref": "requirements.md §4.12 (Hover tooltip)",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "SCH-TIP-01",
+  "area": "Hover Tooltips",
+  "title": "Shift hover tooltip shows customer, unit/vehicle/VIN, date and time, technician, scope, up to 3 line names, and a progress bar",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Schedule: View (spec §14.1).",
+  "preconditions": [
+   "1. You are signed in on a desktop browser.",
+   "2. A multi-line shift exists covering 5 lines, with some time logged.",
+   "3. You are on the Schedule page in week view."
+  ],
+  "steps": [
+   "1. Hover over the shift block and wait briefly for the tooltip.",
+   "2. Read the tooltip from top to bottom."
+  ],
+  "expected": [
+   "1. The tooltip shows: the customer name; unit, vehicle, and VIN; the date and time range; the technician; and a scope summary ('N lines · Xh' style).",
+   "2. The individual line names appear as a short list capped at 3, with a '+N more lines' row for the rest (here '+2 more lines'); line statuses are NOT shown.",
+   "3. A time-logged progress bar shows logged vs estimated hours ('X / Yh' style)."
+  ],
+  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "spec_ref": "requirements.md §4.13 (Shift tooltip)",
+  "viu_status": "VIU-Pending",
+  "notes": "The 'N lines · Xh', '+N more lines', and 'X / Yh' formats are the spec's wording - confirm the exact copy live. VIN in the tooltip may depend on the VIN toggle (§9) - verify both toggle states live.",
+  "api_related": false
+ },
+ {
+  "id": "SCH-TIP-02",
+  "area": "Hover Tooltips",
+  "title": "A conflicted shift's tooltip shows the conflict icon and the conflict reason in amber",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Schedule: View (spec §14.1).",
+  "preconditions": [
+   "1. You are signed in on a desktop browser.",
+   "2. A conflicted shift exists (for example double-booked).",
+   "3. You are on the Schedule page."
+  ],
+  "steps": [
+   "1. Hover the conflicted shift and read the tooltip."
+  ],
+  "expected": [
+   "1. The customer name line includes the conflict icon.",
+   "2. The conflict reason is shown in amber."
+  ],
+  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "spec_ref": "requirements.md §4.13 (Shift tooltip - conflict)",
+  "viu_status": "VIU-Pending",
+  "notes": "Conflict-reason copy unpinned - capture live.",
+  "api_related": false
+ },
+ {
+  "id": "SCH-TIP-03",
+  "area": "Hover Tooltips",
+  "title": "Event hover tooltip shows the event name with its grey category dot, date and time range, and technician",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Schedule: View (spec §14.1).",
+  "preconditions": [
+   "1. You are signed in on a desktop browser.",
+   "2. An event exists on a technician's day.",
+   "3. You are on the Schedule page."
+  ],
+  "steps": [
+   "1. Hover the event card and read the tooltip."
+  ],
+  "expected": [
+   "1. The tooltip shows the event name with its category dot (grey for a default event).",
+   "2. The date and time range are shown.",
+   "3. The technician is shown."
+  ],
+  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "spec_ref": "requirements.md §4.13 (Event tooltip)",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "SCH-TIP-04",
+  "area": "Hover Tooltips",
+  "title": "Tooltips open after a short hover delay, dismiss on mouse-leave, and are read-only - clicking still opens the modal",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Schedule: View (spec §14.1).",
+  "preconditions": [
+   "1. You are signed in on a desktop browser.",
+   "2. A shift exists on the grid.",
+   "3. You are on the Schedule page."
+  ],
+  "steps": [
+   "1. Move the mouse quickly across the block without stopping - watch for tooltips.",
+   "2. Rest the pointer on the block and wait briefly.",
+   "3. Move the mouse off the block.",
+   "4. Click the block."
+  ],
+  "expected": [
+   "1. A quick pass does not flash tooltips - the tooltip opens only after a short hover delay (spec: roughly 300 to 500ms).",
+   "2. It dismisses when the mouse leaves the block.",
+   "3. The tooltip is read-only (no buttons/actions inside it).",
+   "4. Clicking the block opens the full detail modal as normal."
+  ],
+  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "spec_ref": "requirements.md §4.13 (Behavior)",
+  "viu_status": "VIU-Pending",
+  "notes": "The 300-500ms delay is spec-approximate - confirm the actual delay behavior live.",
+  "api_related": false
+ },
+ {
+  "id": "SCH-TIP-05",
+  "area": "Hover Tooltips",
+  "title": "The tooltip flips above the block or shifts horizontally to stay within the viewport - it is never clipped",
+  "priority": "Low",
+  "type": "Functional",
+  "permissions_required": "Schedule: View (spec §14.1).",
+  "preconditions": [
+   "1. You are signed in on a desktop browser.",
+   "2. A multi-line shift (tall tooltip) exists near the BOTTOM edge of the viewport, and another near a horizontal edge (scroll to arrange).",
+   "3. You are on the Schedule page."
+  ],
+  "steps": [
+   "1. Hover the shift near the bottom edge and look at where its tooltip opens.",
+   "2. Hover the shift near the side edge."
+  ],
+  "expected": [
+   "1. When there is not enough room below, the tooltip opens ABOVE the block instead.",
+   "2. Near a side edge, the tooltip shifts horizontally to stay fully within the viewport.",
+   "3. No part of the tooltip is clipped off-screen."
+  ],
+  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "spec_ref": "requirements.md §4.13 (flip/shift to stay in viewport)",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ }
+]
