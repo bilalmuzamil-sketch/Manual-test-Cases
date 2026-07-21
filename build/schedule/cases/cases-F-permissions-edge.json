@@ -191,7 +191,7 @@
   "expected": [
    "1. Edit cannot be granted without View (the admin UI enforces or auto-selects the dependency).",
    "2. Delete cannot be granted without Edit.",
-   "3. The three tiers can be enabled in dependency order, giving View ⊂ Edit ⊂ Delete."
+   "3. The three tiers can be enabled in dependency order, so each higher level always includes the ones beneath it (Delete includes Edit, and Edit includes View)."
   ],
   "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
   "spec_ref": "requirements.md §14 (Delete requires Edit and Edit requires View)",

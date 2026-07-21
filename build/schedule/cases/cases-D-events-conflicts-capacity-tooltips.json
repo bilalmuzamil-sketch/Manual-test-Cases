@@ -305,7 +305,7 @@
   "permissions_required": "Schedule: View (spec §14.1).",
   "preconditions": [
    "1. You are signed in on a desktop browser.",
-   "2. At least two conflicts of different types exist (set up via SCH-CONF-01/02).",
+   "2. At least two conflicts of different types exist (for example one double-booked overlap and one Saturday shift - create them first).",
    "3. You are on the Schedule page."
   ],
   "steps": [
@@ -494,7 +494,8 @@
   "preconditions": [
    "1. You are signed in on a desktop browser.",
    "2. A multi-line shift exists covering 5 lines, with some time logged.",
-   "3. You are on the Schedule page in week view."
+   "3. The VIN toggle in 'Filter and Display' is ON (the tooltip shows the VIN only when this toggle is on).",
+   "4. You are on the Schedule page in week view."
   ],
   "steps": [
    "1. Hover over the shift block and wait briefly for the tooltip.",
@@ -508,7 +509,7 @@
   "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
   "spec_ref": "requirements.md §4.13 (Shift tooltip)",
   "viu_status": "VIU-Pending",
-  "notes": "The 'N lines · Xh', '+N more lines', and 'X / Yh' formats are the spec's wording - confirm the exact copy live. VIN in the tooltip may depend on the VIN toggle (§9) - verify both toggle states live.",
+  "notes": "The 'N lines · Xh', '+N more lines', and 'X / Yh' formats are the spec's wording - confirm the exact copy live. Spec inconsistency (flagged): §4.13 lists the VIN in the tooltip unconditionally, while §9 ties tooltip VIN to the VIN toggle (default OFF) - authored with the toggle ON so the assertion holds either way; the VIN-off tooltip behavior is asserted by SCH-VIEW-04. Verify both toggle states live.",
   "api_related": false
  },
  {

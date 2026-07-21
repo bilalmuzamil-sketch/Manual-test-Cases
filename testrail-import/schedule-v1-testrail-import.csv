@@ -294,8 +294,7 @@ Unassigned shift start time skips the technician-hours rule and uses business ho
 2. The shop has business hours set (note the start time).
 3. A schedulable work order line exists.
 4. You are on the Schedule page in week view.","1. Drop the line onto the Unassigned row.
-2. Read the created shift's start time.","1. The unassigned shift starts at the shop's business-hours start (there is no technician whose hours could apply).
-2. If the shop had no business hours, it would start at the 7:00 AM default.",requirements.md §4.2,,
+2. Read the created shift's start time.",1. The unassigned shift starts at the shop's business-hours start (there is no technician whose hours could apply).,requirements.md §4.2,,
 "Dragging an unassigned shift onto a technician row assigns it, and that technician's hours then apply",Shift Start Times and Unassigned Shifts,Functional,High,"1. You are signed in on a desktop browser with Schedule: Edit.
 2. An unassigned shift exists in the Unassigned row.
 3. The target technician has configured working hours that differ from the shop's business hours.
@@ -622,7 +621,7 @@ After hours: a shift extending past the working-day end is flagged,Conflict Dete
 2. Look at the block and the conflict pill.","1. The shift is flagged as an After hours conflict.
 2. Warning icon on the block; the conflict appears in the toolbar dropdown.",requirements.md §4.11 (After hours),,
 The toolbar conflict pill shows the issue count and opens a dropdown listing the conflicts,Conflict Detection,Functional,High,"1. You are signed in on a desktop browser.
-2. At least two conflicts of different types exist (set up via/02).
+2. At least two conflicts of different types exist (for example one double-booked overlap and one Saturday shift - create them first).
 3. You are on the Schedule page.","1. Read the conflict pill in the grid toolbar.
 2. Click it.
 3. Read the dropdown.","1. The pill shows the current number of scheduling issues.
@@ -664,7 +663,8 @@ The 'OT' text tag appears whenever any single technician exceeds their own daily
 3. The numbers agree with the shifts actually on the grid.",requirements.md §4.12 (Hover tooltip),,
 "Shift hover tooltip shows customer, unit/vehicle/VIN, date and time, technician, scope, up to 3 line names, and a progress bar",Hover Tooltips,Functional,High,"1. You are signed in on a desktop browser.
 2. A multi-line shift exists covering 5 lines, with some time logged.
-3. You are on the Schedule page in week view.","1. Hover over the shift block and wait briefly for the tooltip.
+3. The VIN toggle in 'Filter and Display' is ON (the tooltip shows the VIN only when this toggle is on).
+4. You are on the Schedule page in week view.","1. Hover over the shift block and wait briefly for the tooltip.
 2. Read the tooltip from top to bottom.","1. The tooltip shows: the customer name; unit, vehicle, and VIN; the date and time range; the technician; and a scope summary ('N lines · Xh' style).
 2. The individual line names appear as a short list capped at 3, with a '+N more lines' row for the rest (here '+2 more lines'); line statuses are NOT shown.
 3. A time-logged progress bar shows logged vs estimated hours ('X / Yh' style).",requirements.md §4.13 (Shift tooltip),,
@@ -960,7 +960,7 @@ Edit without Delete: the user can create and modify but cannot remove - delete a
 2. Try to enable Delete while Edit is off.
 3. Enable View, then Edit, then Delete in order.","1. Edit cannot be granted without View (the admin UI enforces or auto-selects the dependency).
 2. Delete cannot be granted without Edit.
-3. The three tiers can be enabled in dependency order, giving View ⊂ Edit ⊂ Delete.",requirements.md §14 (Delete requires Edit and Edit requires View),,
+3. The three tiers can be enabled in dependency order, so each higher level always includes the ones beneath it (Delete includes Edit, and Edit includes View).",requirements.md §14 (Delete requires Edit and Edit requires View),,
 Schedule access without Work Orders: View - sidebar hides the WO list and drill-down; mini calendar stays; grid shifts remain usable,Permissions,Negative,High,"1. A test user's role has Schedule access but Work Orders: View OFF.
 2. Shifts already exist on the grid.
 3. You are signed in AS that user, on the Schedule page.","1. Look at the left sidebar.

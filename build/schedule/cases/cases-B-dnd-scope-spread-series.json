@@ -529,13 +529,12 @@
    "2. Read the created shift's start time."
   ],
   "expected": [
-   "1. The unassigned shift starts at the shop's business-hours start (there is no technician whose hours could apply).",
-   "2. If the shop had no business hours, it would start at the 7:00 AM default."
+   "1. The unassigned shift starts at the shop's business-hours start (there is no technician whose hours could apply)."
   ],
   "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
   "spec_ref": "requirements.md §4.2",
   "viu_status": "VIU-Pending",
-  "notes": "",
+  "notes": "The no-business-hours fallback to the 7:00 AM default is covered by SCH-START-03 - it is not observable under this case's business-hours-set setup, so it is not asserted here.",
   "api_related": false
  },
  {
