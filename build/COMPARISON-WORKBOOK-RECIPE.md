@@ -33,6 +33,146 @@ Before starting, per **Standing Rule 11**, confirm which project/spec governs an
 which process(es) to run; per **Standing Rule 1**, confirm you have the complete
 parameter set (§6) before authoring.
 
+> **Invoking this recipe pulls in BOTH deliverables of intent, automatically:** (1) the
+> fixed **STRUCTURE** (§2–§4, §7) AND (2) the **USER REQUIREMENTS & INSTRUCTIONS**
+> (§1A below) — the standards, corrections, and hard-won trust rules from the
+> originating engagement. A "make a comparison file" request reproduces the layout
+> **and** the intent; do not treat §1A as optional background.
+
+---
+
+## 1A. USER REQUIREMENTS & INSTRUCTIONS (authoritative — from the originating engagement)
+
+> These are the user's OWN requirements, preferences, and corrections captured across
+> the Custom Roles **prod-vs-staging LIVE-VERIFIED comparison** engagement (2026-07-14
+> → 2026-07-16). They are the **DEFAULT requirements for ANY comparison-file request**
+> going forward, unless the user explicitly overrides them for a specific request
+> ("with random changes if needed" — §1 trigger). Do not reverse-engineer intent from
+> the file layout alone; honor these. Short verbatim phrases are quoted where the exact
+> wording carries the intent. (Sourced from the session transcript + Standing Rules
+> 12–17 rationale clauses; secrets paraphrased, never copied.)
+
+### A. Scope & content
+1. **Core ask — bi-directional role/permission comparison, PROD vs STAGING.** *"We
+   actually need to compare the roles and their permissions in production vs the same
+   roles and their permissions on staging."* Surface **BOTH directions**: where **prod
+   grants MORE than staging** (a migration loss) AND where **staging grants MORE than
+   prod** (a grant). *"I need excel file which tells me that staging grant less and
+   that is as per the specs but on production we have more powers for the similar role.
+   In another case we need to say Staging grant MORE and that is as per the specs and
+   production has less powers for this role."* Release-critical: *"it is a very
+   critical task so we need to be very careful."*
+2. **Special attention to Send-to-Terminal and Send-to-Portal specifically.** The
+   user's stated worry that these are lost in migration: *"I have a doubt that few
+   roles in production has more access than the same role has in staging. Like but not
+   limited to the following: send to terminal, send to portal etc."* (So the list is a
+   floor, not a ceiling — compare EVERY capability, but never omit these two.)
+3. **Merged roles → a role merge-map is REQUIRED, and never mis-map by name.** *"There
+   are a few roles in productions which now have been merged into a single role on
+   Staging … when comparing such roles from production with staging you need to compare
+   them with the appropriate role in staging."* The user personally corrected the
+   naming trap: **Prod "Service Advisor (Limited View)" = Staging "Service Advisor"**;
+   **Prod "Senior Service Advisor" maps differently** (legacy "Service Advisor" +
+   merges → Staging "Senior Service Advisor"). Never map roles by same-name assumption
+   — use the merge-map (§8 of the METHOD doc).
+4. **A separate GRANULAR Work Orders tab.** *"I need the similar report for the whole
+   app but for WOrkorder, I need every minute permission/function/powers differences in
+   a separate tab."* → the dedicated WO-granular tab (every WO sub-permission/control,
+   bi-directional, per role).
+5. **TWO conformance columns, both required, per tab.** A per-spec column — *"if the
+   prod has more permission than in staging then you need to tell in a separate column
+   that as per the specs its accurate"* — AND a second per-standing-instructions
+   column: *"I need one more column in each tab of those files to tell if the STAGING
+   LESS and STAGING GRANTED are as per the Specs and as per the standing
+   instructions."* Each delta must show **expected-per-spec vs deviation** (with the
+   spec citation), never be silently filtered out.
+
+### B. Trust & verification standard (the DOMINANT requirement)
+6. **100% LIVE-OBSERVED on BOTH environments, with evidence — NEVER inferred.** This
+   is the governing rule, born of a trust incident: the first deliverable inferred the
+   FE-gated capabilities (Send to Portal/Terminal) from role definitions/source instead
+   of observing them, and the session had expired mid-run. The user's verbatim
+   feedback: *"THis is such an unreal fraud which you have done with me. I asked to you
+   go and check in real what is the difference between the prod and STaging and you have
+   mostly given wrong answers — I wanted to do the live check on both the environments.
+   This way I wont be able to rely on your work."* and *"Never let this trust issue
+   happen again."* Every cell MUST be observed live in the real UI/API on **both** envs
+   with a screenshot / captured response THAT run — never derived from spec, source,
+   role definitions, `fe_permissions`, or atoms. Generalized by the user to all testing:
+   *"Always remember when I say something that you need to test something … exactly the
+   way you are doing the comparison between the two environments — by going through each
+   feature in real and not assuming anything."* (Standing Rules 12/13.)
+7. **ZERO cells "NOT VERIFIED" — seed the state, don't block.** When the user saw cells
+   left "NOT VERIFIED" for a missing data-state (e.g. "line already approved — needs a
+   pending-line WO"): *"This is nonsense. You were supposed to add the data the way it
+   is needed to test/verify/compare something instead of marking it as NOT VERIFIED due
+   to this very LAME reason. UNBLOCK yourself … and save this as a rule too."* Both
+   envs are disposable TEST accounts — *"the production and staging both are our test
+   accounts so there is no problem with data being written or deleted in both the
+   environments; do everything that is needed to do to get great results."* So: **seed
+   any missing data-state**; **create a fresh staff member per holderless role + clean
+   self-login** (avoids the role-swap `/no-location` location-store bounce — a TECHNIQUE
+   ARTIFACT, not a verdict); **classify live API error bodies as evidence**, never
+   treat a crash-to-`/no-location` as a result. The ONLY permissible non-plain-observed
+   cell is a **fully-characterized external/org-device gate** (e.g. org has no card
+   terminal) — labeled, never the bare text "NOT VERIFIED." (Standing Rule 14.)
+
+### C. Correctness gates (fool-proof, self-audited)
+8. **Fool-proof correctness — verbatim truth table + independent adversarial audit
+   BEFORE delivery.** After the user caught wrong per-spec cells — *"Listen some of the
+   Per Spec (v2) are wrong, come one you cant do this mistake. Check again"* (64/297
+   cells were wrong, from deriving off a stale prose extract) — the standard became:
+   derive every spec-conformance call from a **VERBATIM, cited spec truth table** (built
+   straight from the canonical spec doc, all change-log applied, latest-wins), then run
+   an **independent adversarial re-derivation + diff** that must come back **empty**
+   before shipping (full-population re-audit for release-critical work). Cross-check
+   completeness: *"confirm — have you really gone through staging and Production and
+   cross checked every single permission vs what is there in the specs?"* General
+   standing expectation: *"I want YOU to be correct everytime and not to make silly
+   mistakes — save in your memory the approach you applied now so that you dont make
+   similar mistakes again"* / *"make sure nothing is being invented … the whole process
+   … is fool proof"* / *"unblock yourself."* (Standing Rule 15.)
+
+### D. Deliverable form & companions
+9. **Must be an Excel file, in the ALREADY-ESTABLISHED format, with COMPLETE data.**
+   *"I need the result in the form of excel sheet."* Mirror the established comparison
+   workbook 1:1 — do NOT invent a new layout (Standing Rule 16). Cover the **whole
+   population** — all roles, all capabilities — no sampling / top-N / representative
+   subset (Standing Rule 17).
+10. **Companion deliverables on request:**
+    - An **EXECUTIVE one-pager for leadership** — *"I need the file to share with my
+      boss and I can really get fired if that file goes wrong. Make that file a little
+      high level friendly so that I rather get promoted than being fired."* → plain,
+      high-level, accuracy-gated (an exec file may only ship after an adversarial audit
+      of every count/claim against the LIVE-VERIFIED workbook).
+    - A **DETAILED QA-team file** — *"I also needed a detailed analysis for the QA team
+      to see if something needs to be checked before the release, with that Spec
+      compliance column."* → carries the spec-compliance column + TestRail Case
+      IDs/links + priorities + check steps.
+    - Any PO/dev-facing text in **simple, layman, non-technical language** (Standing
+      Rule 7).
+
+### E. Env & access (learned live this engagement)
+11. **Prod has NO SSO / NO 2FA** — a renewable `POST /api/login` PHPSESSID session (the
+    dev `quick-login` **500s on prod**; a 409 "Session has expired" means the prod
+    `sv_sso_session` is stale — re-supply). **Staging** = cookies + `quick-login`
+    (~24h cookie life). **Staging org is volatile / reseeds** → role IDs change; **pin
+    the admin and the impersonated user to the SAME location**; use **TECH** as the
+    staging staff to assign/restore roles. **Node's `fetch` ignores the proxy** → run
+    with `NODE_USE_ENV_PROXY=1` (or undici ProxyAgent); **Chromium needs a fresh MITM
+    bridge per run** (port rotates — read `$HTTPS_PROXY` live). Full detail in
+    `build/PROD-VS-STAGING-COMPARE-METHOD.md` §1–§2.
+
+### F. Ways of working
+12. **Run unattended when asked; save a resume/state doc; protect secrets & TestRail.**
+    *"I want you to do this unattended as I wont be able to see you or respond to you
+    for next few hours"* and *"if the usage limit runs out you have to save the state
+    and start exactly from where you left."* **Never commit secrets** (cookies/tokens/
+    passwords live in `/tmp` only). **NEVER write to TestRail** (cases/runs/results)
+    without explicit user permission — TestRail is the only real/production system.
+    Clean up disposable-env residue (exit impersonations, delete seeded data, restore
+    roles/settings/location).
+
 ---
 
 ## 2. NAMING CONVENTION

@@ -770,6 +770,13 @@ regression / bug-fix re-testing.
 - **Comparison/environment-diff workbooks: `build/COMPARISON-WORKBOOK-RECIPE.md`** —
   the reusable template + method for any "make a comparison file" request (file name
   starts with "Comparison"); parameters = the envs/population/capabilities/spec.
+  **§1A "USER REQUIREMENTS & INSTRUCTIONS" now captures the originating engagement's
+  own asks/standards/corrections** (bi-directional; Send-to-Terminal/Portal focus;
+  role merge-map + naming trap; granular WO tab; the two per-spec/per-standing
+  conformance columns; the trust rule = 100% live-observed both envs / zero
+  NOT-VERIFIED / seed-don't-block; verbatim-truth-table + adversarial audit; Excel in
+  the established format; exec + QA companions; env/access + ways-of-working) — these
+  are the DEFAULT requirements for any comparison file unless the user overrides.
 
 ## Deliverable conventions the user likes
 - Plain, layman English.
