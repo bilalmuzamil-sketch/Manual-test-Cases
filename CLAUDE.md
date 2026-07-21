@@ -79,7 +79,7 @@ process(es) to run before proceeding.
    (headless OR headful; seed data as needed since both prod & staging are disposable
    TEST accounts; create a FRESH staff per holderless role + CLEAN self-login to avoid
    the role-swap `/no-location` location-store bounce; classify live API error bodies
-   as evidence, not crash-to-/no-location as a verdict). Local case source now exists (first time for Custom Roles):
+   as evidence, not crash-to-/no-location as a verdict). **Comparison/environment-diff workbooks: `build/COMPARISON-WORKBOOK-RECIPE.md`** — the reusable template + method for any "make a comparison file" request (file name starts with "Comparison"); parameters = the envs/population/capabilities/spec. Local case source now exists (first time for Custom Roles):
    `build/custom-roles-run/cases-2026-07-13/*.json` (254 bodies, carry
    `viu_status`/`section_id`; NO testrail-id-map.csv — filename = C<id>). Env note:
    staging org is SHARED and **Tech is currently DRIFTED on Technician — reset to Time
@@ -767,6 +767,9 @@ regression / bug-fix re-testing.
   registered) — ignore it.
 - **Prod-vs-staging (and any two-env) permission comparisons: 100% LIVE-OBSERVED,
   ZERO NOT-VERIFIED — see `build/PROD-VS-STAGING-COMPARE-METHOD.md`.**
+- **Comparison/environment-diff workbooks: `build/COMPARISON-WORKBOOK-RECIPE.md`** —
+  the reusable template + method for any "make a comparison file" request (file name
+  starts with "Comparison"); parameters = the envs/population/capabilities/spec.
 
 ## Deliverable conventions the user likes
 - Plain, layman English.
