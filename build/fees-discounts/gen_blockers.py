@@ -163,7 +163,7 @@ def load_cases():
     # JSON for the record but excluded from every deliverable.
     # Retired 2026-07-20 (user ruling): FD-CUST-016 (duplicate of FD-VAL-007/C28605,
     # ex-C28500 deleted from TestRail). Active suite = 184 (185 authored - 1 retired).
-    return [c for c in cases if not (c.get("viu_status") or "").startswith("Retired")]
+    return [c for c in cases if not (c.get("viu_status") or "").startswith("Retired") and not c.get("dev_authored")]
 
 
 def section_for(c):

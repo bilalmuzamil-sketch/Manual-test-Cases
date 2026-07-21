@@ -243,7 +243,7 @@
     ],
     "steps": [
       "1. Add a 15% fee (or any fee/discount) against the $0.00 base line.",
-      "2. Look at the result on the 'WO Fees & Discounts' card, the line, the Stats tab and the Financial Info card.",
+      "2. Look at the result on the 'Work Order Fees & Discounts' card, the line, the Stats tab and the Financial Info card.",
       "3. Invoice the work order (with QuickBooks connected) and see what is sent."
     ],
     "expected": [
@@ -253,9 +253,9 @@
     ],
     "design_ref": "design-notes §1b/§3 (grey resolved amounts)",
     "viu_status": "VIU-Verified",
-    "notes": "QuickBooks sync (Story 6) is backend and not in the design mocks. Verify the skip at invoice/export time. | VIU qb batch-1 (2026-07-08): $0 base -> $0.00 resolve verified (% of Parts Total on a parts-less WO -> +$0.00, still displayed). QB-skip half untestable (no QB). | FRESH VIU 2026-07-10: 10% of $0 parts -> $0.00 | WORDING+VIU 2026-07-13: QB-skip half needs a human in QuickBooks (Blocked-Env); the on-screen $0.00 half is observable. Build labels applied.",
+    "notes": "QuickBooks sync (Story 6) is backend and not in the design mocks. Verify the skip at invoice/export time. | VIU qb batch-1 (2026-07-08): $0 base -> $0.00 resolve verified (% of Parts Total on a parts-less WO -> +$0.00, still displayed). QB-skip half untestable (no QB). | FRESH VIU 2026-07-10: 10% of $0 parts -> $0.00 | WORDING+VIU 2026-07-13: QB-skip half needs a human in QuickBooks (Blocked-Env); the on-screen $0.00 half is observable. Build labels applied. | SV-8456 (2026-07-21 staging LIVE VIU): F&D moved to SETTINGS→SERVICE (below Canned Lines); template/WO/Part-sale/customer dialogs now show Taxable as a Yes/No DROPDOWN (was toggle); Auto-apply is a CHECKBOX with a 'When on…' caption; settings & customer tables are plain-text/left-aligned (no badges); WO sidebar card retitled 'Work Order Fees & Discounts' and renders ABOVE Financial Info; Part-sale card 'Parts Sale Fees & Discounts' above Financial Info. Permission gate pivoted Settings→Finance → Settings→Service (verified live: Service-user sees+manages F&D & convenience toggle; Finance-only user has no F&D nav item and /administration/adjustment-templates bounces to /workorders). Frontend-only; functionality + calc INTACT.",
     "api_related": false,
-    "fresh_run": "2026-07-13"
+    "fresh_run": "2026-07-21"
   },
   {
     "id": "FD-CALC-010",
@@ -298,7 +298,7 @@
     ],
     "steps": [
       "1. Note the work order's current taxable amount and tax.",
-      "2. Add a whole-work-order fee with the Taxable toggle set to Yes; save and note the new taxable amount and tax.",
+      "2. Add a whole-work-order fee with the Taxable Yes/No dropdown set to Yes; save and note the new taxable amount and tax.",
       "3. Remove it, then add a whole-work-order discount with Taxable Yes; save and note the taxable amount and tax.",
       "4. Remove it, then add a whole-work-order fee with Taxable No; save and note the taxable amount and tax."
     ],
@@ -309,9 +309,9 @@
     ],
     "design_ref": "design-notes §9 item 2 (no Taxable control in the Add/Edit modal mock; Taxable shown only on customer tab)",
     "viu_status": "VIU-Verified",
-    "notes": "Design open question: the mock Add/Edit dialog collects NO Taxable field (design §9 item 2); spec §1/S2-R26 require a Taxable Yes/No dropdown (default Yes). Verify staging has a Taxable control in the dialog. Preview footer should read \"Tax is recalculated on save.\" (S2-R35). | VIU qb batch-1 (2026-07-08): Taxable fee RAISES tax, taxable discount LOWERS it — GST matched 5% x (subtotal + fees - discounts) to the cent in every state (14.44, 15.44, 17.75, 26.04 checks). Non-taxable variant not isolated numerically this batch. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: taxable $100 fee raised GST $60.75→$65.75 (+$5); non-taxable $100 fee left GST unchanged | FRESH VIU 2026-07-10: taxable $20 fee: GST 9.14->10.14 (+5% of 20); non-taxable leaves tax unchanged. GST->US-tax re-word caveat stands | WORDING+VIU 2026-07-13: Tax effect carried; build labels ('Taxable' toggle Yes/No).",
+    "notes": "Design open question: the mock Add/Edit dialog collects NO Taxable field (design §9 item 2); spec §1/S2-R26 require a Taxable Yes/No dropdown (default Yes). Verify staging has a Taxable control in the dialog. Preview footer should read \"Tax is recalculated on save.\" (S2-R35). | VIU qb batch-1 (2026-07-08): Taxable fee RAISES tax, taxable discount LOWERS it — GST matched 5% x (subtotal + fees - discounts) to the cent in every state (14.44, 15.44, 17.75, 26.04 checks). Non-taxable variant not isolated numerically this batch. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: taxable $100 fee raised GST $60.75→$65.75 (+$5); non-taxable $100 fee left GST unchanged | FRESH VIU 2026-07-10: taxable $20 fee: GST 9.14->10.14 (+5% of 20); non-taxable leaves tax unchanged. GST->US-tax re-word caveat stands | WORDING+VIU 2026-07-13: Tax effect carried; build labels ('Taxable' toggle Yes/No). | SV-8456 (2026-07-21 staging LIVE VIU): F&D moved to SETTINGS→SERVICE (below Canned Lines); template/WO/Part-sale/customer dialogs now show Taxable as a Yes/No DROPDOWN (was toggle); Auto-apply is a CHECKBOX with a 'When on…' caption; settings & customer tables are plain-text/left-aligned (no badges); WO sidebar card retitled 'Work Order Fees & Discounts' and renders ABOVE Financial Info; Part-sale card 'Parts Sale Fees & Discounts' above Financial Info. Permission gate pivoted Settings→Finance → Settings→Service (verified live: Service-user sees+manages F&D & convenience toggle; Finance-only user has no F&D nav item and /administration/adjustment-templates bounces to /workorders). Frontend-only; functionality + calc INTACT.",
     "api_related": false,
-    "fresh_run": "2026-07-13"
+    "fresh_run": "2026-07-21"
   },
   {
     "id": "FD-CALC-012",
@@ -351,13 +351,13 @@
     "type": "Functional",
     "permissions_required": "Settings → Finance (template creation); See Financial Data (to view $ on the WO)",
     "preconditions": [
-      "1. You are signed in with Settings → Finance (to create the template) and See Financial Data (to see amounts).",
+      "1. You are signed in with Settings → Service (to create the template) and See Financial Data (to see amounts).",
       "2. A Processing Fee template exists (Type Processing Fee, '% of Grand Total', 3%) set to auto-apply or as a customer default (a Processing Fee cannot be added to a work order by hand).",
       "3. An open work order whose net subtotal after line discounts is $300.00 with pre-fee tax $24.00 (so the grand-total base is $324.00)."
     ],
     "steps": [
       "1. Create the work order so the auto-apply / customer-default Processing Fee is added.",
-      "2. Confirm the Processing Fee is present on the 'WO Fees & Discounts' card.",
+      "2. Confirm the Processing Fee is present on the 'Work Order Fees & Discounts' card.",
       "3. Read its amount and confirm it works out after all other fees/discounts."
     ],
     "expected": [
@@ -367,9 +367,9 @@
     ],
     "design_ref": "design-notes §9 item 3 (no Processing Fee in the mocks; % of Grand Total appears nowhere in the design)",
     "viu_status": "VIU-Deviation",
-    "notes": "Design does not mock Processing Fee at all (design §9 item 3); it is template/admin-only. On a WO a Processing Fee is remove-only, no Edit (S8-R17); current build reportedly still shows a failing Edit control (requirements §14 item 6). | VIU qb batch-1 (2026-07-08): Processing fee resolves last and dynamically, BUT its Grand-Total base wrongly INCLUDES whole-WO fees/discounts and their tax (FDBUG-2): observed 3% x 530.07 = 15.90; spec-expected 3% x 307.47 = 9.22. | RECON 2026-07-09 (spec-v1-reconciliation.md + PO answer sheet): FDBUG-2 structural defect stands (tax-independent); GST-rated number needs US-tax re-verify. | FRESH VIU 2026-07-10: FDBUG-2 CONFIRMED AGAIN (clean discriminator): pfee base INCLUDES whole-WO adjustments + their tax (3% -> 0.63 where spec expects 0.00). Structural defect is tax-model independent | WORDING+VIU 2026-07-13: DEVIATION carried (FDBUG-2): the Processing Fee base wrongly includes whole-work-order fees/discounts (should exclude them). Build labels applied.",
+    "notes": "Design does not mock Processing Fee at all (design §9 item 3); it is template/admin-only. On a WO a Processing Fee is remove-only, no Edit (S8-R17); current build reportedly still shows a failing Edit control (requirements §14 item 6). | VIU qb batch-1 (2026-07-08): Processing fee resolves last and dynamically, BUT its Grand-Total base wrongly INCLUDES whole-WO fees/discounts and their tax (FDBUG-2): observed 3% x 530.07 = 15.90; spec-expected 3% x 307.47 = 9.22. | RECON 2026-07-09 (spec-v1-reconciliation.md + PO answer sheet): FDBUG-2 structural defect stands (tax-independent); GST-rated number needs US-tax re-verify. | FRESH VIU 2026-07-10: FDBUG-2 CONFIRMED AGAIN (clean discriminator): pfee base INCLUDES whole-WO adjustments + their tax (3% -> 0.63 where spec expects 0.00). Structural defect is tax-model independent | WORDING+VIU 2026-07-13: DEVIATION carried (FDBUG-2): the Processing Fee base wrongly includes whole-work-order fees/discounts (should exclude them). Build labels applied. | SV-8456 (2026-07-21 staging LIVE VIU): F&D moved to SETTINGS→SERVICE (below Canned Lines); template/WO/Part-sale/customer dialogs now show Taxable as a Yes/No DROPDOWN (was toggle); Auto-apply is a CHECKBOX with a 'When on…' caption; settings & customer tables are plain-text/left-aligned (no badges); WO sidebar card retitled 'Work Order Fees & Discounts' and renders ABOVE Financial Info; Part-sale card 'Parts Sale Fees & Discounts' above Financial Info. Permission gate pivoted Settings→Finance → Settings→Service (verified live: Service-user sees+manages F&D & convenience toggle; Finance-only user has no F&D nav item and /administration/adjustment-templates bounces to /workorders). Frontend-only; functionality + calc INTACT.",
     "api_related": false,
-    "fresh_run": "2026-07-13"
+    "fresh_run": "2026-07-21"
   },
   {
     "id": "FD-CALC-014",
@@ -380,7 +380,7 @@
     "type": "Functional",
     "permissions_required": "Settings → Finance; See Financial Data",
     "preconditions": [
-      "1. You are signed in with Settings → Finance and See Financial Data.",
+      "1. You are signed in with Settings → Service and See Financial Data.",
       "2. On the template admin page, open the Processing Fee template dialog."
     ],
     "steps": [
@@ -397,9 +397,9 @@
     ],
     "design_ref": "design-notes §9 item 3/4 (no Processing Fee UI; Max cap shown for others)",
     "viu_status": "VIU-Verified",
-    "notes": "% of Grand Total is offered only for a Processing Fee (S8-R9). With multiple Processing Fees, each uses the same base excluding every Processing Fee's amount and tax (§5-R4). | VIU qb batch-1 (2026-07-08): Base IS tax-inclusive on purpose (includes 5% GST layer) and maxCap is rejected for processing fees ('cannot have a minimum or maximum cap'). Note the base composition bug tracked under FD-CALC-013. | FRESH VIU 2026-07-10: pfee base tax-inclusive on purpose (0.63 = 3% of 21.00 incl GST, not 0.60); maxCap rejected for pfee (400) | WORDING+VIU 2026-07-13: Processing-Fee base + no Max Amount carried; build labels.",
+    "notes": "% of Grand Total is offered only for a Processing Fee (S8-R9). With multiple Processing Fees, each uses the same base excluding every Processing Fee's amount and tax (§5-R4). | VIU qb batch-1 (2026-07-08): Base IS tax-inclusive on purpose (includes 5% GST layer) and maxCap is rejected for processing fees ('cannot have a minimum or maximum cap'). Note the base composition bug tracked under FD-CALC-013. | FRESH VIU 2026-07-10: pfee base tax-inclusive on purpose (0.63 = 3% of 21.00 incl GST, not 0.60); maxCap rejected for pfee (400) | WORDING+VIU 2026-07-13: Processing-Fee base + no Max Amount carried; build labels. | SV-8456 (2026-07-21 staging LIVE VIU): F&D moved to SETTINGS→SERVICE (below Canned Lines); template/WO/Part-sale/customer dialogs now show Taxable as a Yes/No DROPDOWN (was toggle); Auto-apply is a CHECKBOX with a 'When on…' caption; settings & customer tables are plain-text/left-aligned (no badges); WO sidebar card retitled 'Work Order Fees & Discounts' and renders ABOVE Financial Info; Part-sale card 'Parts Sale Fees & Discounts' above Financial Info. Permission gate pivoted Settings→Finance → Settings→Service (verified live: Service-user sees+manages F&D & convenience toggle; Finance-only user has no F&D nav item and /administration/adjustment-templates bounces to /workorders). Frontend-only; functionality + calc INTACT.",
     "api_related": false,
-    "fresh_run": "2026-07-13"
+    "fresh_run": "2026-07-21"
   },
   {
     "id": "FD-CALC-015",
@@ -415,7 +415,7 @@
       "3. QuickBooks is connected (to confirm the credit)."
     ],
     "steps": [
-      "1. Add a whole-work-order discount of $150.00 with the Taxable toggle set to No.",
+      "1. Add a whole-work-order discount of $150.00 with the Taxable Yes/No dropdown set to No.",
       "2. Try to save and read the warning.",
       "3. Confirm, then look at the work order totals.",
       "4. Invoice the work order and check the QuickBooks postings and the customer's account credit."
@@ -429,9 +429,9 @@
     ],
     "design_ref": "design-notes §10 (no negative-total / warning UI mocked)",
     "viu_status": "VIU-Verified",
-    "notes": "Over-discounting flow is backend/QuickBooks (Story 6) and not in the design mocks. Capture the exact warning text and confirm the credit memo is marked tax-exempt. | VIU qb batch-1 (2026-07-08): Floor-at-$0 shows in the dialog preview; full non-taxable-vs-taxable worked example + credit carry needs the invoice-time walk (no warn observed on plain save). Batch-2. | [pass A same-day parallel verdict] VIU-Pending — negative-total floor / QuickBooks credit memo require QB connection (not connected) | VIU batch-6 qb 2026-07-09 (overnight run, evidence 21:10-21:30Z): floor + tax-still-owed + total=tax + excessCreditAmount all proven; UI dialog preview also shows the floor (shot b6-warn2-filled). | FRESH VIU 2026-07-10: non-taxable over-discount: sub floors 0.00, GST unchanged 9.14, total=tax, excessCredit 117.24 exact | WORDING+VIU 2026-07-13: In-app floor + credit half VIU'd 2026-07-10; the QuickBooks credit-memo half needs a human in QuickBooks. Build labels.",
+    "notes": "Over-discounting flow is backend/QuickBooks (Story 6) and not in the design mocks. Capture the exact warning text and confirm the credit memo is marked tax-exempt. | VIU qb batch-1 (2026-07-08): Floor-at-$0 shows in the dialog preview; full non-taxable-vs-taxable worked example + credit carry needs the invoice-time walk (no warn observed on plain save). Batch-2. | [pass A same-day parallel verdict] VIU-Pending — negative-total floor / QuickBooks credit memo require QB connection (not connected) | VIU batch-6 qb 2026-07-09 (overnight run, evidence 21:10-21:30Z): floor + tax-still-owed + total=tax + excessCreditAmount all proven; UI dialog preview also shows the floor (shot b6-warn2-filled). | FRESH VIU 2026-07-10: non-taxable over-discount: sub floors 0.00, GST unchanged 9.14, total=tax, excessCredit 117.24 exact | WORDING+VIU 2026-07-13: In-app floor + credit half VIU'd 2026-07-10; the QuickBooks credit-memo half needs a human in QuickBooks. Build labels. | SV-8456 (2026-07-21 staging LIVE VIU): F&D moved to SETTINGS→SERVICE (below Canned Lines); template/WO/Part-sale/customer dialogs now show Taxable as a Yes/No DROPDOWN (was toggle); Auto-apply is a CHECKBOX with a 'When on…' caption; settings & customer tables are plain-text/left-aligned (no badges); WO sidebar card retitled 'Work Order Fees & Discounts' and renders ABOVE Financial Info; Part-sale card 'Parts Sale Fees & Discounts' above Financial Info. Permission gate pivoted Settings→Finance → Settings→Service (verified live: Service-user sees+manages F&D & convenience toggle; Finance-only user has no F&D nav item and /administration/adjustment-templates bounces to /workorders). Frontend-only; functionality + calc INTACT.",
     "api_related": false,
-    "fresh_run": "2026-07-13"
+    "fresh_run": "2026-07-21"
   },
   {
     "id": "FD-CALC-016",
@@ -446,7 +446,7 @@
       "2. An open work order with $100.00 taxable parts and $10.00 tax."
     ],
     "steps": [
-      "1. Add a whole-work-order discount of $150.00 with the Taxable toggle set to Yes.",
+      "1. Add a whole-work-order discount of $150.00 with the Taxable Yes/No dropdown set to Yes.",
       "2. Confirm the warning and save.",
       "3. Look at the work order totals."
     ],
@@ -458,9 +458,9 @@
     ],
     "design_ref": "design-notes §9 item 2 (no Taxable control in Add modal mock)",
     "viu_status": "VIU-Verified",
-    "notes": "Reaching a $0.00 total with no tax requires the discount to be taxable and large enough to zero the taxable amount (S6-R10c). | VIU qb batch-1 (2026-07-08): Taxable over-discount example pending with FD-CALC-015. | [pass A same-day parallel verdict] VIU-Pending — negative-total floor / QuickBooks credit memo require QB connection (not connected) | VIU batch-6 qb 2026-07-09 (overnight run, evidence 21:10-21:30Z): taxable over-discount zeroes tax and total; non-taxable contrast proven. | FRESH VIU 2026-07-10: taxable over-discount: sub 0.00, GST 0, total 0.00, excess captured | WORDING+VIU 2026-07-13: Taxable-discount-to-$0 carried; build labels.",
+    "notes": "Reaching a $0.00 total with no tax requires the discount to be taxable and large enough to zero the taxable amount (S6-R10c). | VIU qb batch-1 (2026-07-08): Taxable over-discount example pending with FD-CALC-015. | [pass A same-day parallel verdict] VIU-Pending — negative-total floor / QuickBooks credit memo require QB connection (not connected) | VIU batch-6 qb 2026-07-09 (overnight run, evidence 21:10-21:30Z): taxable over-discount zeroes tax and total; non-taxable contrast proven. | FRESH VIU 2026-07-10: taxable over-discount: sub 0.00, GST 0, total 0.00, excess captured | WORDING+VIU 2026-07-13: Taxable-discount-to-$0 carried; build labels. | SV-8456 (2026-07-21 staging LIVE VIU): F&D moved to SETTINGS→SERVICE (below Canned Lines); template/WO/Part-sale/customer dialogs now show Taxable as a Yes/No DROPDOWN (was toggle); Auto-apply is a CHECKBOX with a 'When on…' caption; settings & customer tables are plain-text/left-aligned (no badges); WO sidebar card retitled 'Work Order Fees & Discounts' and renders ABOVE Financial Info; Part-sale card 'Parts Sale Fees & Discounts' above Financial Info. Permission gate pivoted Settings→Finance → Settings→Service (verified live: Service-user sees+manages F&D & convenience toggle; Finance-only user has no F&D nav item and /administration/adjustment-templates bounces to /workorders). Frontend-only; functionality + calc INTACT.",
     "api_related": false,
-    "fresh_run": "2026-07-13"
+    "fresh_run": "2026-07-21"
   },
   {
     "id": "FD-CALC-017",
@@ -653,26 +653,26 @@
     "id": "FD-PERM-007",
     "area": "Permissions (Story 13)",
     "story_ref": "S13-R8",
-    "title": "Verify create/edit/delete of a fee/discount template needs Settings → Finance",
+    "title": "Verify create/edit/delete of a fee/discount template needs Settings → Service",
     "priority": "High",
     "type": "Functional",
     "permissions_required": "Settings → Finance (the gate under test)",
     "preconditions": [
-      "1. Two ZZAUTOTEST roles: Role A WITH Settings → Finance; Role B WITHOUT it. Assign by exact-user-match to Tech."
+      "1. Two ZZAUTOTEST roles: Role A WITH Settings → Service; Role B WITHOUT it. Assign by exact-user-match to Tech."
     ],
     "steps": [
-      "1. As a role WITH Settings → Finance, open Administration → Finance → Fees & Discounts and create/edit/delete a template.",
+      "1. As a role WITH Settings → Service, open Administration → Service → Fees & Discounts and create/edit/delete a template.",
       "2. As a role WITHOUT it, try to reach the page."
     ],
     "expected": [
-      "1. With Settings → Finance, the admin Fees & Discounts page works.",
-      "2. Without it, the page and its controls are not available."
+      "With Settings → Service, the admin Fees & Discounts page (Administration → Service → Fees & Discounts, below Canned Lines) opens and templates can be created, edited and deleted, and the 'Pass convenience fee to customer' toggle can be changed.",
+      "Without Settings → Service, the 'Fees & Discounts' nav item is not shown and navigating directly to the admin Fees & Discounts page is blocked (it bounces away to the Work Orders page); templates cannot be created/edited/deleted. Having Settings → Finance alone does NOT grant access."
     ],
     "design_ref": "design-notes §0/§10 (no Template Builder / Administration page in the mocks)",
     "viu_status": "VIU-Verified",
-    "notes": "Current-build difference (requirements §10.4 / S7-R7b): the admin page is shown today to any user with a location; S13-R8 tightens it to Settings → Finance. Record which staging enforces. | VIU qb batch-1 (2026-07-08): Blocked — no restricted session. Bundle evidence: /administration/adjustment-templates route meta requiredPermissions=['settingsFinance'] (S13-R8 wiring present in FE). | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: Tech (no Settings→Finance) → template create 403 & list 403 (BE-enforced) | MERGED VERDICT: BE-enforced — pass A Technician (no settingsFinance) got 403 on template list AND create. | FRESH VIU 2026-07-10: templates admin BE-enforced: tech GET/POST 403 | WORDING+VIU 2026-07-13: CONFIRMED live: Tech (no Settings → Finance) → GET templates 403 'Access denied.'",
+    "notes": "Current-build difference (requirements §10.4 / S7-R7b): the admin page is shown today to any user with a location; S13-R8 tightens it to Settings → Finance. Record which staging enforces. | VIU qb batch-1 (2026-07-08): Blocked — no restricted session. Bundle evidence: /administration/adjustment-templates route meta requiredPermissions=['settingsFinance'] (S13-R8 wiring present in FE). | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: Tech (no Settings→Finance) → template create 403 & list 403 (BE-enforced) | MERGED VERDICT: BE-enforced — pass A Technician (no settingsFinance) got 403 on template list AND create. | FRESH VIU 2026-07-10: templates admin BE-enforced: tech GET/POST 403 | WORDING+VIU 2026-07-13: CONFIRMED live: Tech (no Settings → Finance) → GET templates 403 'Access denied.' | SV-8456 (2026-07-21 staging LIVE VIU): F&D moved to SETTINGS→SERVICE (below Canned Lines); template/WO/Part-sale/customer dialogs now show Taxable as a Yes/No DROPDOWN (was toggle); Auto-apply is a CHECKBOX with a 'When on…' caption; settings & customer tables are plain-text/left-aligned (no badges); WO sidebar card retitled 'Work Order Fees & Discounts' and renders ABOVE Financial Info; Part-sale card 'Parts Sale Fees & Discounts' above Financial Info. Permission gate pivoted Settings→Finance → Settings→Service (verified live: Service-user sees+manages F&D & convenience toggle; Finance-only user has no F&D nav item and /administration/adjustment-templates bounces to /workorders). Frontend-only; functionality + calc INTACT.",
     "api_related": false,
-    "fresh_run": "2026-07-13"
+    "fresh_run": "2026-07-21"
   },
   {
     "id": "FD-PERM-008",
@@ -1060,7 +1060,7 @@
     ],
     "steps": [
       "1. Create a new work order for that customer.",
-      "2. Look at the work order's whole-work-order fees/discounts (the 'WO Fees & Discounts' card and the Financial Info count).",
+      "2. Look at the work order's whole-work-order fees/discounts (the 'Work Order Fees & Discounts' card and the Financial Info count).",
       "3. Count how many times the shared template's fee/discount was added."
     ],
     "expected": [
@@ -1069,8 +1069,58 @@
     ],
     "design_ref": "design-notes §4 (customer defaults tab with Auto-Apply column)",
     "viu_status": "VIU-Verified",
-    "notes": "OPEN QUESTION / KNOWN BUG (requirements §14 item 4, S9 note): treat a double-add as a KNOWN DEFECT, not a spec requirement; log it in the VIU tab rather than marking the case Failed against spec. Related: a user may deliberately apply the same template to one WO more than once by hand (that is allowed, §1). | VIU qb batch-1 (2026-07-08): Template both auto-apply AND customer default -> exactly ONE adjustment on the new WO (dedup works; known S9 gap not reproduced). | [pass A same-day parallel verdict] VIU-Pending — double-add (same as FD-CUST-016); see bugs-log BUG-FD-1 | CONFLICT NOTE: see FD-CUST-016 - pass B controlled repro got ONE adjustment per template (no double-add). | PO CLARIFY 2026-07-09 (Chris Ward answer sheet Q2=A): adding only once is confirmed as the settled intended behavior; EXPECTED re-scoped from 'known bug may add twice — record actual count' to exactly ONE. BUG-FD-1 closed as settled. | FRESH VIU 2026-07-10: auto+default template -> exactly ONE adjustment on the new WO | WORDING+VIU 2026-07-13: Double-add does not stack (one adjustment); carry prior VIU.",
+    "notes": "OPEN QUESTION / KNOWN BUG (requirements §14 item 4, S9 note): treat a double-add as a KNOWN DEFECT, not a spec requirement; log it in the VIU tab rather than marking the case Failed against spec. Related: a user may deliberately apply the same template to one WO more than once by hand (that is allowed, §1). | VIU qb batch-1 (2026-07-08): Template both auto-apply AND customer default -> exactly ONE adjustment on the new WO (dedup works; known S9 gap not reproduced). | [pass A same-day parallel verdict] VIU-Pending — double-add (same as FD-CUST-016); see bugs-log BUG-FD-1 | CONFLICT NOTE: see FD-CUST-016 - pass B controlled repro got ONE adjustment per template (no double-add). | PO CLARIFY 2026-07-09 (Chris Ward answer sheet Q2=A): adding only once is confirmed as the settled intended behavior; EXPECTED re-scoped from 'known bug may add twice — record actual count' to exactly ONE. BUG-FD-1 closed as settled. | FRESH VIU 2026-07-10: auto+default template -> exactly ONE adjustment on the new WO | WORDING+VIU 2026-07-13: Double-add does not stack (one adjustment); carry prior VIU. | SV-8456 (2026-07-21 staging LIVE VIU): F&D moved to SETTINGS→SERVICE (below Canned Lines); template/WO/Part-sale/customer dialogs now show Taxable as a Yes/No DROPDOWN (was toggle); Auto-apply is a CHECKBOX with a 'When on…' caption; settings & customer tables are plain-text/left-aligned (no badges); WO sidebar card retitled 'Work Order Fees & Discounts' and renders ABOVE Financial Info; Part-sale card 'Parts Sale Fees & Discounts' above Financial Info. Permission gate pivoted Settings→Finance → Settings→Service (verified live: Service-user sees+manages F&D & convenience toggle; Finance-only user has no F&D nav item and /administration/adjustment-templates bounces to /workorders). Frontend-only; functionality + calc INTACT.",
     "api_related": false,
-    "fresh_run": "2026-07-13"
+    "fresh_run": "2026-07-21"
+  },
+  {
+    "id": "FD-PERM-012",
+    "area": "Permissions (Story 13)",
+    "story_ref": "SV-8456 Story 13",
+    "title": "Fees & Discounts settings page gated by settingsService (not settingsFinance)",
+    "priority": "High",
+    "type": "Functional",
+    "permissions_required": "settingsService",
+    "preconditions": [
+      "1. Fees & Discounts feature enabled on the org.",
+      "2. Two confirmed custom-role users provisioned: (A) Settings → Service only; (B) Settings → Finance only. Both also hold Work Orders: View so they authenticate and render the admin nav."
+    ],
+    "steps": [
+      "1. As user A (Settings → Service), open the admin Fees & Discounts settings page.",
+      "2. As user B (Settings → Finance only), attempt to reach the same page."
+    ],
+    "expected": [
+      "1. User A (Settings → Service) can open the Fees & Discounts settings page.",
+      "2. User B (Settings → Finance only) is blocked — the page is gated by settingsService, not settingsFinance."
+    ],
+    "viu_status": "VIU-Verified",
+    "dev_authored": true,
+    "api_related": false,
+    "notes": "DEV-AUTHORED AUTOMATED case reconciled into the local suite 2026-07-21 (SV-8456). Lives in TestRail section 3963 'Permissions (Story 13)' as C29922; created by dev/Stefan, NOT authored by QA here. Mirrored locally (id-map + this body, dev_authored) so it is tracked and not duplicated. Live-confirmed equivalent behaviour this pass: Service-only user sees+manages F&D; Finance-only user has no F&D nav item and the route bounces to /workorders. Steps/expected mirror the automated stub (TestRail stored empty steps/expected); wording here is our reconstruction — do NOT re-push to TestRail."
+  },
+  {
+    "id": "FD-PERM-013",
+    "area": "Permissions (Story 13)",
+    "story_ref": "SV-8456 Story 13",
+    "title": "Service admin can complete the Fees & Discounts template delete flow",
+    "priority": "High",
+    "type": "Functional",
+    "permissions_required": "settingsService",
+    "preconditions": [
+      "1. Fees & Discounts feature enabled.",
+      "2. A confirmed custom-role user with Settings → Service (+ Work Orders: View).",
+      "3. At least one adjustment template seeded."
+    ],
+    "steps": [
+      "1. As the Settings → Service user, open the Fees & Discounts settings page.",
+      "2. Delete an existing template and confirm the delete dialog."
+    ],
+    "expected": [
+      "1. The Settings → Service user can complete the template delete flow (delete + confirm) end to end."
+    ],
+    "viu_status": "VIU-Verified",
+    "dev_authored": true,
+    "api_related": false,
+    "notes": "DEV-AUTHORED AUTOMATED case reconciled into the local suite 2026-07-21 (SV-8456). Lives in TestRail section 3963 'Permissions (Story 13)' as C29923; created by dev/Stefan, NOT authored by QA here. Mirrored locally (id-map + this body, dev_authored) so it is tracked and not duplicated. Live-confirmed equivalent this pass: a Service-only user created and DELETED a template (confirm dialog 'Delete Template / Are you sure…'). Steps/expected mirror the automated stub; do NOT re-push to TestRail."
   }
 ]

@@ -15,7 +15,7 @@ Verify adding a whole-work-order flat-amount fee saves and shows a success messa
 6. Click the 'Add Fee' button.","1. While 'Flat Amount' is selected, the amount field is labelled '$ Amount' (a dollar amount).
 2. The 'Add Fee' button can be used once Name, Type, Calculation Type and an amount above 0 are all filled in.
 3. The dialog closes and a success message confirms the fee was added.
-4. 'ZZAUTOTEST Handling Fee' now appears in the 'WO Fees & Discounts' card on the left, showing +$100.00.
+4. 'ZZAUTOTEST Handling Fee' now appears in the 'Work Order Fees & Discounts' card on the left, showing +$100.00.
 5. The work order Subtotal and Total go up by $100.00 (tax is recalculated when you save).",S2-R19..R27 / S2-R29 / §7 toast,,
 Verify the live preview shows a whole-work-order percentage discount before you save,Work Order — Whole-WO Fee/Discount,Functional,High,"1. You are logged in with Work Orders: Create & Edit and See Financial Data.
 2. An open work order with a Subtotal of $10,715.39 is open.","1. Open 'Add Fee/Discount' from the ⋯ menu on the Lines tab.
@@ -96,10 +96,10 @@ Verify the preview amount is signed for a fee (+) vs a discount (−),Work Order
 2. The 'Add new fee/discount' dialog is open.","1. Set 'Type' to 'Fee', 'Calculation Type' to 'Flat Amount', '$ Amount' to 50, and look at the preview amount.
 2. Change 'Type' to 'Discount' and look at the preview amount again.","1. A fee shows as a positive amount with a '+' sign.
 2. A discount shows as a negative amount with a '−' sign; the preview updates as you change the Type.",S2-R33 / S12-R2,,
-Verify the Add/Edit fee-or-discount dialog shows the tax-jurisdiction note below the Taxable toggle,Work Order — Whole-WO Fee/Discount,Functional,Medium,"1. An open work order (not Invoiced/Paid, not in history view). Mark any throwaway data ZZAUTOTEST.
+Verify the Add/Edit fee-or-discount dialog shows the tax-jurisdiction note below the Taxable Yes/No dropdown,Work Order — Whole-WO Fee/Discount,Functional,Medium,"1. An open work order (not Invoiced/Paid, not in history view). Mark any throwaway data ZZAUTOTEST.
 2. You can add a fee/discount (Work Orders: Create & Edit and See Financial Data).","1. Open 'Add Fee/Discount' from the work order ⋯ menu.
-2. Look directly below the 'Taxable' Yes/No toggle for a note.
-3. Open an existing fee/discount's Edit dialog and check the same place below the Taxable toggle.","1. Directly below the Taxable toggle this note is shown: 'Tax treatment varies by jurisdiction — confirm your local requirements before saving.'
+2. Look directly below the 'Taxable' Yes/No dropdown for a note.
+3. Open an existing fee/discount's Edit dialog and check the same place below the Taxable Yes/No dropdown.","1. Directly below the Taxable Yes/No dropdown this note is shown: 'Tax treatment varies by jurisdiction — confirm your local requirements before saving.'
 2. The same note shows in both the Add and the Edit dialog.
 3. The note is plain advice to the shop, not a system instruction and not a legal statement.
 4. The note is shown only to users with See Financial Data — a user without See Financial Data does not see the note. (A user without See Financial Data cannot open this work-order Add/Edit dialog at all; the no-note side is observable in the admin Fee/Discount template dialog, opened by a user with Manage Finance Settings but without See Financial Data.)","S2-R26, S2-R26a, §5-R15",,
@@ -134,7 +134,7 @@ Verify a labor-line fee/discount works out to $0.00 when its line is not billabl
 2. Once the line is billable again, it works out to its non-zero amount.",§5-R12,,
 Verify deleting a labor line removes any fee/discount pointing to it,Work Order — Labor-line Fee/Discount,Functional,Medium,"1. Logged in with Work Order Lines: Create & Edit + See Financial Data.
 2. An open work order with a labor line that carries at least one fee/discount adjustment.","1. Delete the labor line (via its ⋮ / delete action).
-2. Check the 'WO Fees & Discounts' card, the Financial Info 'Fees & Discounts (N)' count, and the Stats breakdown.","1. The labor line is removed.
+2. Check the 'Work Order Fees & Discounts' card, the Financial Info 'Fees & Discounts (N)' count, and the Stats breakdown.","1. The labor line is removed.
 2. Any fee/discount that pointed to that line is also removed.
 3. The Financial Info count and the Stats/Financial totals drop by the removed amount(s).",S3-R2,,
 Verify the labor-line 'Add Fee/Discount' is hidden without Work Order Lines: Create & Edit,Work Order — Labor-line Fee/Discount,Functional,Medium,"1. Logged in as a role with See Financial Data but WITHOUT Work Order Lines: Create & Edit.
@@ -254,15 +254,16 @@ Verify the Financial Info 'Fees & Discounts' row lists each fee/discount and is 
 2. Case (b): logged in as a role WITHOUT See Financial Data, an open work order that has fees/discounts.","1. Case (a): open the work order and check the Financial Info card for a 'Fees & Discounts (N)' row.
 2. Case (b): open the work order and look at the Financial Info money section.","1. Case (a): with no fees/discounts of any scope, there is no 'Fees & Discounts (N)' row.
 2. Case (b): without See Financial Data, the Financial Info money section (and all fee/discount amounts) is hidden.",S3-N2 / S3-N4,,
-"Verify the sidebar 'WO Fees & Discounts' card lists whole-work-order fees/discounts with name, signed rate and grey amount",Work Order — Sidebar 'Work Order Fee / Discount' card,Functional,High,"1. You are logged in with See Financial Data and Work Orders: Create & Edit.
-2. An open work order with a whole-work-order discount plus some line-level fees/discounts.","1. Look at the 'WO Fees & Discounts' card on the left.
+"Verify the sidebar 'Work Order Fees & Discounts' card lists whole-work-order fees/discounts with name, signed rate and grey amount",Work Order — Sidebar 'Work Order Fee / Discount' card,Functional,High,"1. You are logged in with See Financial Data and Work Orders: Create & Edit.
+2. An open work order with a whole-work-order discount plus some line-level fees/discounts.","1. Look at the 'Work Order Fees & Discounts' card on the left.
 2. Read the listed entries and check which scopes appear.
-3. Open an entry's ⋮ (more) menu.","1. The card is titled 'WO Fees & Discounts' and lists ONLY whole-work-order fees/discounts — line-level ones do not appear here.
+3. Open an entry's ⋮ (more) menu.","1. The card is titled 'Work Order Fees & Discounts' and lists ONLY whole-work-order fees/discounts — line-level ones do not appear here.
 2. Each entry shows its name, a signed rate badge (for example '−8%' or a dollar amount) and the resolved amount in grey, signed.
-3. The entry's ⋮ menu offers 'Edit' and 'Remove'.",S3-R3 / S3-R5 / S3-R8 / S3-R9,,
-Verify the sidebar 'WO Fees & Discounts' card is hidden with no whole-work-order fees/discounts and has no Add button,Work Order — Sidebar 'Work Order Fee / Discount' card,Functional,Medium,"1. You are logged in with See Financial Data and Work Orders: Create & Edit.
+3. The entry's ⋮ menu offers 'Edit' and 'Remove'.
+The 'Work Order Fees & Discounts' card renders above the Financial Info card in the sidebar.",S3-R3 / S3-R5 / S3-R8 / S3-R9,,
+Verify the sidebar 'Work Order Fees & Discounts' card is hidden with no whole-work-order fees/discounts and has no Add button,Work Order — Sidebar 'Work Order Fee / Discount' card,Functional,Medium,"1. You are logged in with See Financial Data and Work Orders: Create & Edit.
 2. Case (a): an open work order with only line-level fees/discounts and no whole-work-order ones.
-3. Case (b): an open work order with at least one whole-work-order fee/discount.","1. Case (a): open the work order and look for the 'WO Fees & Discounts' card.
+3. Case (b): an open work order with at least one whole-work-order fee/discount.","1. Case (a): open the work order and look for the 'Work Order Fees & Discounts' card.
 2. Case (b): open the work order, view the card, and look for any 'Add' button inside it.","1. Case (a): the card is hidden when there are no whole-work-order fees/discounts.
 2. Case (b): the card has no 'Add' button — you add fees/discounts only from the work order ⋯ menu and the line/part menus.",S3-R4 / S3-R10 / S3-N1,,
 Verify the Parts page 'Fees & Discounts' column shows a single fee/discount's name and rate,Parts page — 'FEES & DISCOUNTS' column,Functional,High,"1. Logged in with See Financial Data.
@@ -297,10 +298,10 @@ Verify the '+ Add' button is disabled when the sale/work order cannot be edited,
 2. Look at its '+ Add' button.","1. The '+ Add' button is disabled because the sale/work order cannot be edited.
 2. Filled cells still open a read-only breakdown, but the per-row remove controls are not shown.",S11-R9 / S3-R1b,,
 "Verify editing a fee/discount allows Name, amount, Max Amount and Taxable but locks Type, Calculation Type and Scope",Work Order — Edit an adjustment,Functional,High,"1. You are logged in with the matching Create and Edit permission and See Financial Data.
-2. An open work order with an existing whole-work-order percentage discount.","1. On the 'WO Fees & Discounts' card, open the entry's ⋮ menu and click 'Edit'.
+2. An open work order with an existing whole-work-order percentage discount.","1. On the 'Work Order Fees & Discounts' card, open the entry's ⋮ menu and click 'Edit'.
 2. Check which fields you can change and which are greyed out.
 3. Change the Name and the Percent value, then click 'Save'.","1. The dialog title reads 'Edit Fee / Discount'.
-2. Name, the amount (or Percent), Max Amount and the Taxable toggle can be changed.
+2. Name, the amount (or Percent), Max Amount and the Taxable Yes/No dropdown can be changed.
 3. Type and Calculation Type are shown but greyed out and cannot be changed.
 4. The scope (whole work order) cannot be changed.
 5. The change saves and a success message confirms it.",S2-R4 / S2-R5 / S2-R8,,
@@ -318,14 +319,14 @@ Verify a failed save keeps the Edit dialog open and shows the error,Work Order �
 3. Look at the dialog and any error message.","1. The dialog stays open.
 2. An error message tells you the save did not work.",S2-R30,,
 Verify removing a whole-work-order fee/discount shows the 'Remove Fee / Discount' confirm and a success message,Work Order — Remove an adjustment,Functional,High,"1. You are logged in with Work Orders: Create & Edit and See Financial Data.
-2. An open work order with a whole-work-order fee/discount.","1. On the 'WO Fees & Discounts' card, open the entry's ⋮ menu.
+2. An open work order with a whole-work-order fee/discount.","1. On the 'Work Order Fees & Discounts' card, open the entry's ⋮ menu.
 2. Click 'Remove'.
 3. Read the confirm dialog.
 4. Click the 'Remove' button in the dialog.","1. A confirm dialog opens titled 'Remove Fee / Discount' with the message 'Are you sure you want to remove this fee?' and a 'Remove' button (and a 'Cancel' button).
 2. After you confirm, the fee/discount is removed.
 3. A success message confirms it, and the entry disappears from the card while the count and totals update.",S3-R11a / S3-R11b / §7,,
 "Verify removing a fee/discount uses Create and Edit, not a separate Delete permission",Work Order — Remove an adjustment,Functional,High,"1. You are logged in as a role that HAS Work Orders: Create & Edit and See Financial Data but does NOT have a separate 'Delete' permission.
-2. An open work order with a whole-work-order fee/discount.","1. Open the entry's ⋮ menu on the 'WO Fees & Discounts' card.
+2. An open work order with a whole-work-order fee/discount.","1. Open the entry's ⋮ menu on the 'Work Order Fees & Discounts' card.
 2. Check that a 'Remove' option is present and works.
 3. Remove the fee/discount.","1. The 'Remove' option is available and works even though you do not have a separate Delete permission.
 2. The fee/discount is removed.
@@ -357,12 +358,12 @@ Verify two whole-work-order percentage fees/discounts use the same totals and do
 Verify the same template can be applied to one work order more than once by hand,Work Order — Multiple adjustments (stacking / netting),Functional,Medium,"1. Logged in with Work Orders: Create & Edit + See Financial Data.
 2. An open work order; the location library has a 'Parts Handling Fee' template.","1. Open 'Add Fee/Discount' from the ⋯ menu, pick a template in 'Apply From Template', and Save.
 2. Repeat: open the dialog again, pick the same template, and Save.
-3. Look at the 'WO Fees & Discounts' card and the Financial Info 'Fees & Discounts (N)' count.","1. Both are added; the same template appears twice as two independent fees/discounts.
+3. Look at the 'Work Order Fees & Discounts' card and the Financial Info 'Fees & Discounts (N)' count.","1. Both are added; the same template appears twice as two independent fees/discounts.
 2. The count and totals reflect both.",Overview 'apply same template more than once' / §3 key decisions,,
-Verify the Part Sale Add/Edit fee-or-discount dialog shows the tax-jurisdiction note below the Taxable toggle,Part Sale — Fee/Discount dialog,Functional,Medium,"You are signed in as a user with Part Sales: Create and Edit plus See Financial Data.
+Verify the Part Sale Add/Edit fee-or-discount dialog shows the tax-jurisdiction note below the Taxable Yes/No dropdown,Part Sale — Fee/Discount dialog,Functional,Medium,"You are signed in as a user with Part Sales: Create and Edit plus See Financial Data.
 You are on an editable Part Sale (for example an Approved part sale).","1. From the Part Sale toolbar ⋮ menu choose 'Add Parts Sale Fee / Discount' (whole sale), or from a part row's ⋮ menu choose 'Add Fee / Discount' (part line).
-2. In the 'Add new fee/discount' dialog look directly below the 'Taxable' Yes/No toggle for a note.
-3. Open an existing part-sale fee/discount's Edit dialog and check the same place.","1. Directly below the Taxable toggle this note is shown: 'Tax treatment varies by jurisdiction — confirm your local requirements before saving.'
+2. In the 'Add new fee/discount' dialog look directly below the 'Taxable' Yes/No dropdown for a note.
+3. Open an existing part-sale fee/discount's Edit dialog and check the same place.","1. Directly below the Taxable Yes/No dropdown this note is shown: 'Tax treatment varies by jurisdiction — confirm your local requirements before saving.'
 2. The same note shows for both the whole-sale dialog and the per-part dialog (the per-part dialog also shows an 'Applying to: Part — (part number) name' subtitle).
 3. The same note shows in both the Add and the Edit dialog.
 4. The note is shown only to users with See Financial Data.",S11-R3 / S11-R4a / S11-R4b / §5-R15,,
@@ -409,7 +410,7 @@ Verify the empty-state text on the Default Fees & Discounts card,Customer Fees &
 2. Read the card body.","1. The card shows ""No fees or discounts yet. Use 'Add Fee/Discount' to add one.""
 2. The tab reads 'Fees & Discounts (0)'.",S9-R17,,
 Verify a customer default is added as its own fee/discount on every new work order,Customer defaults → new work order,Functional,High,"1. The customer has a default ""ZZAUTOTEST Fleet Discount"" (Discount, % of Subtotal, 10%, non-taxable).","1. Create a new work order for this customer with at least one labor line and one part so the subtotal is not zero.
-2. Open the work order's 'WO Fees & Discounts' card and the Financial Info 'Fees & Discounts (N)' row.
+2. Open the work order's 'Work Order Fees & Discounts' card and the Financial Info 'Fees & Discounts (N)' row.
 3. Edit the fee/discount on the work order (change its name), then re-open the customer's Fees & Discounts tab.","1. The new work order automatically carries a whole-work-order fee/discount copied from the default (name, type, method, amount, taxable, Max Amount as they were at creation).
 2. It works out against the work order's net subtotal.
 3. Editing it on the work order does not change the customer's default.","S9-R2, S9-R3, S9-R4",,
@@ -419,16 +420,16 @@ Verify a customer default is added as its own fee/discount on every new work ord
 3. The default stores the 10% rate, not a fixed dollar amount, so the dollar value differs per work order.","S9-R6, S9-R7",,
 Verify removing a customer default does not change fees/discounts already on existing work orders,Customer defaults lifecycle,Functional,High,"1. The customer has a default ""ZZAUTOTEST Fleet Discount"".
 2. An OPEN work order for that customer already carries the auto-added adjustment from this default.","1. Open the customer's Fees & Discounts tab and remove a default.
-2. Open a work order that already has that fee/discount and check its 'WO Fees & Discounts' card and Financial Info row.","1. The default is removed from the customer.
+2. Open a work order that already has that fee/discount and check its 'Work Order Fees & Discounts' card and Financial Info row.","1. The default is removed from the customer.
 2. The existing work order still shows its fee/discount unchanged.
 3. Only new work orders created after the removal will lack it.",S9-R8,,
-Verify deleting a template that is a customer default drops the default link but keeps existing work-order fees/discounts,Customer defaults lifecycle,Functional,High,"1. A template ""ZZAUTOTEST Fleet Discount"" is a default on the customer AND has been auto-added to an existing OPEN work order.","1. Go to Administration → Finance → Fees & Discounts and delete a template that is a customer default (confirm).
+Verify deleting a template that is a customer default drops the default link but keeps existing work-order fees/discounts,Customer defaults lifecycle,Functional,High,"1. A template ""ZZAUTOTEST Fleet Discount"" is a default on the customer AND has been auto-added to an existing OPEN work order.","1. Go to Administration → Service → Fees & Discounts and delete a template that is a customer default (confirm).
 2. Open the customer's Fees & Discounts tab.
 3. Open a work order that already has a fee/discount made from that template.","1. The template is deleted from the library.
 2. The customer's default link to it is removed (the tab count goes down).
 3. The existing work order's fee/discount stays unchanged.","S9-R9, S7-R4, S7-N1",,
 Verify deleting a customer removes that customer's default links,Customer defaults lifecycle,Functional,Low,1. A disposable ZZAUTOTEST customer has at least 1 default fee/discount linked.,"1. Delete a ZZAUTOTEST customer.
-2. Confirm the templates that were its defaults still exist in Administration → Finance → Fees & Discounts.","1. The customer and its default links are removed.
+2. Confirm the templates that were its defaults still exist in Administration → Service → Fees & Discounts.","1. The customer and its default links are removed.
 2. The location templates are not deleted (only the customer's links go away).",S9-R10,,
 Verify a brand-new customer inherits every auto-apply location template as a default,Customer defaults seeding,Functional,Medium,1. The location has exactly 2 templates marked auto-apply and 1 template not auto-apply.,"1. Create a brand-new customer at this location.
 2. Open the new customer's Fees & Discounts tab.","1. Every auto-apply template is already present as a default (the tab count matches the number of auto-apply templates).
@@ -440,27 +441,28 @@ Verify the customer Fees & Discounts tab and its controls are hidden without the
 Verify an add/remove/load failure on customer defaults shows the standard error notification,API — Customer Fees & Discounts tab — negative,Functional,Low,"1. A way to force a server error (e.g., simulate a network/API failure) on the add or remove call.","1. On the customer Fees & Discounts tab, trigger an add or remove while the back-end call fails.
 2. Look at the feedback.","1. The system shows its standard error notification (no custom per-action wording).
 2. The default list is not left half-changed (the failed action is not partly applied).",S9-N1,,
-Verify the fee/discount template library is at Administration → Finance → Fees & Discounts (below Payment Methods),Template admin — location,Functional,High,1. You have Settings → Finance access.,"1. Open Administration (the gear/admin area).
-2. In the left menu, look under the 'FINANCE' heading.
+Verify the fee/discount template library is at Administration → Service → Fees & Discounts (below Canned Lines),Template admin — location,Functional,High,1. You have Settings → Service access.,"1. Open Administration (the gear/admin area).
+2. In the left menu, look under the 'SERVICE' heading.
 3. Click 'Fees & Discounts'.","1. A 'Fees & Discounts' page opens.
-2. In the left menu it sits under 'FINANCE', directly below 'Payment Methods'.","S7-R7a, S7-R7c",,
-Verify the template list columns and the edit/delete actions,Template admin — list,Functional,High,1. The location has at least 1 template.,"1. Open Administration → Finance → Fees & Discounts.
+2. In the left menu it sits under 'SERVICE', directly below 'Canned Lines'.","S7-R7a, S7-R7c",,
+Verify the template list columns and the edit/delete actions,Template admin — list,Functional,High,1. The location has at least 1 template.,"1. Open Administration → Service → Fees & Discounts.
 2. Read the table column headers and the row buttons.","1. The columns, left to right, are: Name, Type, Calculation Type, Amount, Max Amount, Taxable, Auto-Apply To Work Orders.
-2. Each row has an edit (pencil) button and a delete (red trash) button.","S7-R8, S12-R8",,
+2. Each row has an edit (pencil) button and a delete (red trash) button.
+All columns are plain text with no coloured badges (Type and Auto-Apply To Work Orders are plain text), and every column is left-aligned and evenly distributed.","S7-R8, S12-R8",,
 Verify creating a Fee template (dialog fields and the Create button),Template admin — create,Functional,High,1. You are on Administration → Service → Fees & Discounts.,"1. Click 'New Fee / Discount'.
 2. Check the dialog title reads 'New Fee / Discount'.
-3. Set Type to 'Fee'; Calculation Type to '% of Labor Total'; Name 'ZZAUTOTEST Shop Fee'; Percent 5; leave Max Amount blank; leave the Taxable toggle on; optionally add a Description; leave 'Auto-apply to new work orders' off.
-4. Click 'Create'.","1. The dialog has: Name, Type (Fee or Discount), Calculation Type, '$ Default Amount' (or Percent for a percentage method), 'Max Amount (Optional)' (percentage methods only), a Taxable toggle (on by default), an 'Auto-apply to new work orders' toggle, and a 'Description (Optional)' field.
+3. Set Type to 'Fee'; Calculation Type to '% of Labor Total'; Name 'ZZAUTOTEST Shop Fee'; Percent 5; leave Max Amount blank; leave the Taxable Yes/No dropdown set to Yes; optionally add a Description; leave 'Auto-apply to all new work orders at this location' off.
+4. Click 'Create'.","The dialog is titled 'New Fee / Discount' and its fields, in order, are: Type (Fee / Discount / Processing Fee), Calculation Type, Name, '$ Default Amount' (or Percent for a percentage method), 'Max Amount (Optional)' (percentage methods only), a Taxable Yes/No dropdown (Yes by default) with the tax-jurisdiction note below it, an 'Auto-apply to all new work orders at this location' checkbox with a 'When on…' caption, and a 'Description (Optional)' field. The primary button reads 'Create'.
 2. There is no scope field (every template is whole-work-order).
 3. The confirm button reads 'Create'.
 4. On save a success message appears and the new template appears in the list.","S7-R10, S7-R12a-g, S7-R16, S7-R17, S7-R18a",,
 Verify creating a Discount template,Template admin — create,Functional,Medium,1. On the admin Fees & Discounts page.,"1. Click 'New Fee / Discount'.
-2. Set Type 'Discount'; Calculation Type '% of Subtotal'; Name 'ZZAUTOTEST Loyalty'; Percent 8; turn the Taxable toggle off.
+2. Set Type 'Discount'; Calculation Type '% of Subtotal'; Name 'ZZAUTOTEST Loyalty'; Percent 8; set the Taxable Yes/No dropdown to No.
 3. Click 'Create'.","1. The save succeeds and a success message appears (a generic message, not a per-type 'Discount added').
 2. The list shows 'ZZAUTOTEST Loyalty', Type Discount, Calculation Type % of Subtotal, Amount −8%, Taxable No.","S7-R12a, S7-R18a",,
-Verify the 'Auto-apply to new work orders' toggle adds the template to every new work order at that location,Template admin — auto-apply,Functional,High,1. You can create a template and then a new work order at the same location.,"1. Create a template 'ZZAUTOTEST Auto Fee' (Fee, Flat Amount, $10.00, taxable) with the 'Auto-apply to new work orders' toggle turned on.
+Verify the 'Auto-apply to all new work orders at this location' checkbox adds the template to every new work order at that location,Template admin — auto-apply,Functional,High,1. You can create a template and then a new work order at the same location.,"1. Create a template 'ZZAUTOTEST Auto Fee' (Fee, Flat Amount, $10.00, taxable) with the 'Auto-apply to all new work orders at this location' checkbox turned on.
 2. Create a new work order at that location.
-3. Open the 'WO Fees & Discounts' card on the work order.","1. The toggle in the template dialog is labelled 'Auto-apply to new work orders'.
+3. Open the 'Work Order Fees & Discounts' card on the work order.","1. The checkbox in the template dialog is labelled 'Auto-apply to all new work orders at this location', shown as a checkbox with the caption 'When on, this fee / discount is added automatically to every new work order created at this location. It can still be edited or removed on individual work orders.'.
 2. The new work order automatically has a whole-work-order fee 'ZZAUTOTEST Auto Fee' = +$10.00.
 3. The added fee copies the template's name, type, method, amount, taxable and Max Amount as they were when the work order was created.","S7-R12g, S7-R5, S7-R6a, S7-R6b",,
 "Verify editing a template (Edit Fee / Discount dialog, 'Save' button)",Template admin — edit,Functional,Medium,"1. A Fee template ""ZZAUTOTEST Shop Fee"" exists.","1. On the Fees & Discounts admin page, click the pencil (edit) button on the 'ZZAUTOTEST Shop Fee' row.
@@ -475,8 +477,8 @@ Verify the template delete confirm dialog and buttons,Template admin — delete,
 Verify the delete confirm adds a warning when the template is a customer default,Template admin — delete,Functional,Medium,1. A template is set as a default for exactly 2 customers.,"1. On the Fees & Discounts admin page, click the delete (trash) button on a template that is set as a default for one or more customers.
 2. Read the confirm dialog.","1. The 'Delete Template' confirm dialog opens.
 2. It shows the warning 'This template is set as a default for N customer(s). Deleting it will remove it from them.' — N is how many customers currently have it as a default.",S7-R21,,
-Verify deleting a template leaves work-order fees/discounts made from it unchanged,Template admin — delete,Functional,High,1. A template has been applied to an OPEN work order as an adjustment.,"1. Delete the template from Administration → Finance → Fees & Discounts (confirm).
-2. Open a work order that already has a fee/discount made from that template and check the 'WO Fees & Discounts' card.","1. The template is removed from the library.
+Verify deleting a template leaves work-order fees/discounts made from it unchanged,Template admin — delete,Functional,High,1. A template has been applied to an OPEN work order as an adjustment.,"1. Delete the template from Administration → Service → Fees & Discounts (confirm).
+2. Open a work order that already has a fee/discount made from that template and check the 'Work Order Fees & Discounts' card.","1. The template is removed from the library.
 2. The work order's fee/discount made from it stays unchanged (same name, amount, taxable).","S7-N1, S7-R4",,
 "Verify template scoping — labour-method templates only show in labour pickers, parts-method only in parts pickers",Template admin — scoping,Functional,High,"1. The location has: a ""% of Labor Total"" template, a ""% of Parts Total"" template, and a Flat Amount template.
 2. A work order with at least one labor line and one part exists.","1. On a labor line's ⋮ menu, click 'Add Fee/Discount' and open the 'Apply From Template' picker.
@@ -490,7 +492,7 @@ Verify Max Amount shows only for percentage methods and how 0 behaves,Template a
 3. Enter 0 into Max Amount and save.","1. For 'Flat Amount' there is no Max Amount field.
 2. For a percentage method the 'Max Amount (Optional)' field shows.
 3. A Max Amount of 0 is treated exactly the same as leaving it empty = no cap (working as designed per S2-R25).","S7-R12e, S7-R14, §5-R6",,
-Verify the template list empty-state message,Template admin — list,Functional,Low,1. The location has zero templates.,"1. Open Administration → Finance → Fees & Discounts on a location that has no templates.
+Verify the template list empty-state message,Template admin — list,Functional,Low,1. The location has zero templates.,"1. Open Administration → Service → Fees & Discounts on a location that has no templates.
 2. Read the empty-state message.",1. The page shows an empty-state message inviting you to create your first fee/discount.,S7-R11,,
 Verify a percentage-discount template cannot go over 100% while a percentage-fee template has no cap,Template admin — validation,Functional,Medium,1. On the admin Fees & Discounts create dialog.,"1. Set Type 'Discount', Calculation Type '% of Subtotal', Percent 150, and try to save.
 2. Change Type to 'Fee', Percent 150, and try to save.","1. The 150% discount is rejected (a percentage discount cannot be more than 100%).
@@ -500,8 +502,8 @@ Verify a Fee/Discount template offers the four whole-work-order methods and no s
 2. There is no Labor Line or Part Line method and no scope field (every template is whole-work-order).","S7-R2, S7-R13, S7-R15",,
 Verify the template save-failure message,Template admin — negative,Functional,Low,1. A way to force a save failure on the template create/edit call.,"1. Fill in a valid template and save while the save fails (for example a server error).
 2. Look at the message.",1. An error message tells you the fee/discount could not be saved and to try again.,S7-R19,,
-Verify the admin Fees & Discounts page needs the Settings → Finance permission,Template admin — permissions,Functional,High,1. A ZZAUTOTEST role is assigned to Tech (exact-user-match) WITHOUT Settings → Finance.,"1. Log in as a role without Settings → Finance (for example Tech) and try to reach Administration → Finance → Fees & Discounts.
-2. Restore the role afterward.","1. Without Settings → Finance, the admin Fees & Discounts page cannot be opened and templates cannot be created/edited/deleted.","S13-R8, S7-R7b",,
+Verify the admin Fees & Discounts page needs the Settings → Service permission,Template admin — permissions,Functional,High,1. A ZZAUTOTEST role is assigned to Tech (exact-user-match) WITHOUT Settings → Service.,"1. Log in as a role without Settings → Service (for example Tech) and try to reach Administration → Service → Fees & Discounts.
+2. Restore the role afterward.","Without Settings → Service, the 'Fees & Discounts' nav item is not shown under the SERVICE section and navigating directly to the admin Fees & Discounts page is blocked (it bounces to the Work Orders page); templates cannot be created/edited/deleted. Settings → Finance alone does not grant access.","S13-R8, S7-R7b",,
 Verify the template Name is limited to 100 characters,Template admin — dialog fields,Functional,Low,1. On the admin Fees & Discounts create dialog.,"1. Type a 100-character name and confirm it is accepted.
 2. Try to type a 101st character.","1. Up to 100 characters are accepted.
 2. The 101st character is not accepted.",S7-R12c,,
@@ -523,12 +525,12 @@ Verify a Processing Fee cannot be added to a work order by hand,Processing Fee �
 2. Open the 'Apply From Template' dropdown here and from a labor line and a part dialog.","1. The work order Add dialog Type dropdown does not list 'Processing Fee' (only Fee and Discount).
 2. The 'Apply From Template' dropdown does not list any Processing Fee template from any starting place.","S8-R16, S8-N1, S8-N2",,
 Verify a Processing Fee reaches a new work order via location auto-apply,Processing Fee — auto-apply,Functional,High,"1. A Processing Fee template ""ZZAUTOTEST Proc Fee"" (Flat Amount $5.00, taxable Yes) is marked auto-apply.","1. Create a new work order at that location.
-2. Open the 'WO Fees & Discounts' card.","1. The new work order carries a whole-work-order Processing Fee.
+2. Open the 'Work Order Fees & Discounts' card.","1. The new work order carries a whole-work-order Processing Fee.
 2. In its ⋮ menu, 'Remove' works but 'Edit' does nothing for a Processing Fee.","S8-R14, S7-R5",,
 Verify a Processing Fee reaches a new work order via a customer default,Processing Fee — customer default,Functional,Medium,1. A Processing Fee template is set as a default on the test customer.,"1. Create a new work order for that customer.
-2. Open the 'WO Fees & Discounts' card.","1. The new work order carries the Processing Fee as its own whole-work-order fee (an independent copy).
+2. Open the 'Work Order Fees & Discounts' card.","1. The new work order carries the Processing Fee as its own whole-work-order fee (an independent copy).
 2. In its ⋮ menu, 'Remove' works but 'Edit' does nothing for a Processing Fee.","S8-R15, S9-R2",,
-Verify a Processing Fee on a work order can be removed but not edited,Processing Fee — WO behavior,Functional,High,1. An open WO carries a Processing Fee (via auto-apply or customer default).,"1. Open the Processing Fee entry's ⋮ menu in the 'WO Fees & Discounts' card.
+Verify a Processing Fee on a work order can be removed but not edited,Processing Fee — WO behavior,Functional,High,1. An open WO carries a Processing Fee (via auto-apply or customer default).,"1. Open the Processing Fee entry's ⋮ menu in the 'Work Order Fees & Discounts' card.
 2. Note the options, then remove it.","1. The menu shows 'Edit' and 'Remove'; 'Edit' does nothing for a Processing Fee (it cannot be edited on the work order).
 2. 'Remove' opens the 'Remove Fee / Discount' confirm and removes it on confirm.
 3. To change the amount/method/taxable you edit the template, not the work-order copy.","S8-R17, S8-N5, S3-R9",,
@@ -672,14 +674,14 @@ Verify fee/discount audit-log entries are gated by Work Orders: Create and Edit 
 3. There is no 'Fee updated' entry for a Processing Fee (it cannot be edited on the work order).","S8-R25, S8-R26, S10 (Processing Fee note)",,
 Verify an edit that changes the rate records the new set rate (not the resolved total),Audit log — edit entry,Functional,Low,1. A WO has a whole-WO 10% fee.,"1. Edit a percentage fee/discount to a new percent and save.
 2. Open the 'Work Order Log' and read the 'Fee updated' / 'Discount updated' entry's Amount.","1. The entry's Amount shows the new set rate (for example '15.00%'), not the resolved dollar total.","S10-R6c, S2-R6",,
-Verify the admin Fee/Discount template dialog shows the tax-jurisdiction note below the Taxable toggle (for every kind),Template admin — jurisdiction note,Functional,Medium,"You are signed in as a user with See Financial Data.
+Verify the admin Fee/Discount template dialog shows the tax-jurisdiction note below the Taxable Yes/No dropdown (for every kind),Template admin — jurisdiction note,Functional,Medium,"You are signed in as a user with See Financial Data.
 You are on Settings → Fees & Discounts (the admin Fee/Discount templates page).","1. Click 'New Fee / Discount' to open the template dialog.
-2. Look directly below the 'Taxable' Yes/No toggle for a note.
+2. Look directly below the 'Taxable' Yes/No dropdown for a note.
 3. Open the Type dropdown and switch between 'Fee', 'Discount' and 'Processing Fee', checking the same place below Taxable each time.
-4. Open an existing template's edit dialog and check the same place.","1. Directly below the Taxable toggle this note is shown: 'Tax treatment varies by jurisdiction — confirm your local requirements before saving.'
+4. Open an existing template's edit dialog and check the same place.","1. Directly below the Taxable Yes/No dropdown this note is shown: 'Tax treatment varies by jurisdiction — confirm your local requirements before saving.'
 2. The note shows for every kind the dialog supports — Fee, Discount and Processing Fee.
 3. The same note shows in both the create and the edit dialog.
-4. The note is shown only to users with See Financial Data — a user with Manage Finance Settings but without See Financial Data sees the Taxable toggle but not the note.",S7-R12f / §5-R15,,
+4. The note is shown only to users with See Financial Data — a user with Manage Finance Settings but without See Financial Data sees the Taxable Yes/No dropdown but not the note.",S7-R12f / §5-R15,,
 Verify a percentage fee/discount works out as base x percent (10% fee on $150.00 → +$15.00),Calculation contract,Functional,High,"1. You are signed in with See Financial Data and Work Orders: Create and Edit.
 2. An open work order (not Invoiced/Paid, not in history view) whose relevant base is $150.00 (for example net labor $150.00). Mark any throwaway data ZZAUTOTEST.","1. Open the work order and, from the ⋯ menu, click 'Add Fee/Discount'.
 2. Set Type to 'Fee'.
@@ -736,7 +738,7 @@ Verify how Max Amount behaves at 0 vs empty (empty means no cap),Calculation con
 2. A Max Amount of 0 is treated exactly the same as leaving it empty = no cap (working as designed per S2-R25); it does NOT force the result to $0.00. A true $0 cap can only come from legacy data, never from the UI.",§5-R6,,
 "Verify a $0.00 base works out to $0.00 (shown on screen, skipped in QuickBooks)",Calculation contract,Functional,Medium,"1. You are signed in with See Financial Data and the matching Create and Edit permission.
 2. An open work order with a target line whose base is $0.00 (for example a declined/not-billable labor line).","1. Add a 15% fee (or any fee/discount) against the $0.00 base line.
-2. Look at the result on the 'WO Fees & Discounts' card, the line, the Stats tab and the Financial Info card.
+2. Look at the result on the 'Work Order Fees & Discounts' card, the line, the Stats tab and the Financial Info card.
 3. Invoice the work order (with QuickBooks connected) and see what is sent.","1. Against a $0.00 base the result is $0.00 (for example 15% of $0.00 = $0.00).
 2. The $0.00 fee/discount is shown as $0.00 on every work-order screen.
 3. In QuickBooks the $0.00 line is skipped (not sent as an invoice line). [QuickBooks side needs a human logged into QuickBooks to confirm.]",§5-R8,,
@@ -747,7 +749,7 @@ Verify a negative base is treated as $0 (the result is $0.00; the base never goe
 3. The base is never allowed to go negative for the calculation.","§5-R3, §5-R4",,
 "Verify a taxable fee raises the taxable amount, a taxable discount lowers it, and a non-taxable one does not change tax",Calculation contract,Functional,High,"1. You are signed in with See Financial Data and the matching Create and Edit permission.
 2. An open work order for a taxable customer with a known tax rate and a taxable base.","1. Note the work order's current taxable amount and tax.
-2. Add a whole-work-order fee with the Taxable toggle set to Yes; save and note the new taxable amount and tax.
+2. Add a whole-work-order fee with the Taxable Yes/No dropdown set to Yes; save and note the new taxable amount and tax.
 3. Remove it, then add a whole-work-order discount with Taxable Yes; save and note the taxable amount and tax.
 4. Remove it, then add a whole-work-order fee with Taxable No; save and note the taxable amount and tax.","1. A taxable fee increases the taxable amount, so tax goes up.
 2. A taxable discount decreases the taxable amount, so tax goes down.
@@ -759,14 +761,14 @@ Verify a negative base is treated as $0 (the result is $0.00; the base never goe
 2. Whole-work-order next, on the new totals: 5% fee x $180 = +$9.00; 10% discount x $100 = −$10.00.
 3. The two whole-work-order ones do not change each other's base.
 4. Line-level always works out before whole-work-order.",§5-R5,,
-Verify a Processing Fee works out last on the tax-included grand total (3% of $324 → +$9.72),Calculation contract,Functional,High,"1. You are signed in with Settings → Finance (to create the template) and See Financial Data (to see amounts).
+Verify a Processing Fee works out last on the tax-included grand total (3% of $324 → +$9.72),Calculation contract,Functional,High,"1. You are signed in with Settings → Service (to create the template) and See Financial Data (to see amounts).
 2. A Processing Fee template exists (Type Processing Fee, '% of Grand Total', 3%) set to auto-apply or as a customer default (a Processing Fee cannot be added to a work order by hand).
 3. An open work order whose net subtotal after line discounts is $300.00 with pre-fee tax $24.00 (so the grand-total base is $324.00).","1. Create the work order so the auto-apply / customer-default Processing Fee is added.
-2. Confirm the Processing Fee is present on the 'WO Fees & Discounts' card.
+2. Confirm the Processing Fee is present on the 'Work Order Fees & Discounts' card.
 3. Read its amount and confirm it works out after all other fees/discounts.","1. The grand-total base is net subtotal $300.00 + tax on that $24.00 = $324.00.
 2. The Processing Fee is 3% x $324.00 = +$9.72.
 3. It works out last, is left out of its own base, and does not change any other fee/discount's base.","§5-R4, §5-R5",,
-Verify the Processing Fee base includes tax on purpose and never uses a Max Amount,Calculation contract,Functional,Medium,"1. You are signed in with Settings → Finance and See Financial Data.
+Verify the Processing Fee base includes tax on purpose and never uses a Max Amount,Calculation contract,Functional,Medium,"1. You are signed in with Settings → Service and See Financial Data.
 2. On the template admin page, open the Processing Fee template dialog.","1. Create a Processing Fee template with '% of Grand Total'.
 2. Confirm there is no Max Amount field for a Processing Fee.
 3. Apply it (auto-apply / customer default) to a work order with a taxable grand total and check the base used.
@@ -776,7 +778,7 @@ Verify the Processing Fee base includes tax on purpose and never uses a Max Amou
 4. The tax in the base leaves out tax from any taxable whole-work-order fee/discount and the Processing Fee's own tax.","§5-R4, S8-R10",,
 "Verify the subtotal floors at $0.00 — a non-taxable $150 discount on $100 parts + $10 tax: customer pays $10, the $50 excess becomes a customer credit",Calculation contract,Functional,High,"1. You are signed in with See Financial Data and the matching Create and Edit permission.
 2. An open work order with $100.00 taxable parts and $10.00 tax.
-3. QuickBooks is connected (to confirm the credit).","1. Add a whole-work-order discount of $150.00 with the Taxable toggle set to No.
+3. QuickBooks is connected (to confirm the credit).","1. Add a whole-work-order discount of $150.00 with the Taxable Yes/No dropdown set to No.
 2. Try to save and read the warning.
 3. Confirm, then look at the work order totals.
 4. Invoice the work order and check the QuickBooks postings and the customer's account credit.","1. Net subtotal $100.00 − $150.00 = −$50.00, floored to $0.00 (the floor is on the pre-tax net subtotal only).
@@ -785,7 +787,7 @@ Verify the Processing Fee base includes tax on purpose and never uses a Max Amou
 4. Before saving, a warning says the subtotal floors at $0.00, tax is still owed, and the $50.00 excess becomes a customer credit — you must confirm.
 5. The $50.00 excess is recorded as a customer credit and posts to QuickBooks as a tax-exempt goodwill credit. [QuickBooks side needs a human logged into QuickBooks to confirm.]","S6-R10, S6-R11, S6-R12, S6-R13",,
 "Verify a taxable $150 discount on $100 parts drives the taxable amount to $0 → tax $0.00, customer pays $0.00",Calculation contract,Functional,Medium,"1. You are signed in with See Financial Data and the matching Create and Edit permission.
-2. An open work order with $100.00 taxable parts and $10.00 tax.","1. Add a whole-work-order discount of $150.00 with the Taxable toggle set to Yes.
+2. An open work order with $100.00 taxable parts and $10.00 tax.","1. Add a whole-work-order discount of $150.00 with the Taxable Yes/No dropdown set to Yes.
 2. Confirm the warning and save.
 3. Look at the work order totals.","1. A taxable $150.00 discount lowers the taxable amount to $0.00.
 2. Tax is $0.00.
@@ -824,9 +826,9 @@ Verify any add/edit/remove of a fee/discount also needs See Financial Data on,Pe
 "Verify removing a fee/discount uses Create and Edit, not the separate Delete permission",Permissions (Story 13),Functional,High,"1. An open work order with an existing whole-WO adjustment.
 2. A ZZAUTOTEST role with See Financial Data ON and Work Orders: Create and Edit ON, but with the Work Orders ""Delete"" permission OFF. Assign by exact-user-match to Tech.","1. As a role WITH Create and Edit but WITHOUT the separate Delete permission, remove a fee/discount.","1. The remove works on Create and Edit alone — the separate Delete permission is not required.
 2. Delete is for whole records (work order, labor line, part), not for fees/discounts.",S13-R7,,
-Verify create/edit/delete of a fee/discount template needs Settings → Finance,Permissions (Story 13),Functional,High,1. Two ZZAUTOTEST roles: Role A WITH Settings → Finance; Role B WITHOUT it. Assign by exact-user-match to Tech.,"1. As a role WITH Settings → Finance, open Administration → Finance → Fees & Discounts and create/edit/delete a template.
-2. As a role WITHOUT it, try to reach the page.","1. With Settings → Finance, the admin Fees & Discounts page works.
-2. Without it, the page and its controls are not available.",S13-R8,,
+Verify create/edit/delete of a fee/discount template needs Settings → Service,Permissions (Story 13),Functional,High,1. Two ZZAUTOTEST roles: Role A WITH Settings → Service; Role B WITHOUT it. Assign by exact-user-match to Tech.,"1. As a role WITH Settings → Service, open Administration → Service → Fees & Discounts and create/edit/delete a template.
+2. As a role WITHOUT it, try to reach the page.","With Settings → Service, the admin Fees & Discounts page (Administration → Service → Fees & Discounts, below Canned Lines) opens and templates can be created, edited and deleted, and the 'Pass convenience fee to customer' toggle can be changed.
+Without Settings → Service, the 'Fees & Discounts' nav item is not shown and navigating directly to the admin Fees & Discounts page is blocked (it bounces away to the Work Orders page); templates cannot be created/edited/deleted. Having Settings → Finance alone does NOT grant access.",S13-R8,,
 Verify viewing/changing a customer's default fees & discounts needs BOTH Customer Management: Create and Edit AND Manage Accounts Payable and Receivable,Permissions (Story 13),Functional,High,"1. A customer exists.
 2. Three ZZAUTOTEST roles: (A) both permissions ON; (B) Customer Management ON but Manage AP/AR OFF; (C) Manage AP/AR ON but Customer Management OFF. Assign by exact-user-match to Tech.","1. With BOTH permissions on, open the customer 'Fees & Discounts' tab and add/remove a default.
 2. Without Manage Accounts Payable and Receivable, look for the tab.
@@ -915,6 +917,6 @@ Verify the Max Amount field shows only for percentage methods and how 0 or empty
 3. For 'Flat Amount' there is no Max Amount field (a flat amount never uses one).","§5-R6, S2-R24, S2-R25",,
 Verify a template that is both auto-apply at the location and a customer default is added only ONCE to a new work order,Validation / Edge,Functional,Medium,"1. A template at the location is set to auto-apply.
 2. The same template is also set as a default for a customer.","1. Create a new work order for that customer.
-2. Look at the work order's whole-work-order fees/discounts (the 'WO Fees & Discounts' card and the Financial Info count).
+2. Look at the work order's whole-work-order fees/discounts (the 'Work Order Fees & Discounts' card and the Financial Info count).
 3. Count how many times the shared template's fee/discount was added.","1. The shared template's fee/discount appears exactly once on the new work order.
 2. No duplicate copy is added.","S9 known gap (auto-apply + customer-default duplication); S7-R5, S9-R2",,

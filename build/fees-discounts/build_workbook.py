@@ -36,7 +36,7 @@ for gf in GROUP_FILES:
 # for the record but excluded from every deliverable. Retired 2026-07-20 (user
 # ruling): FD-CUST-016 (duplicate of FD-VAL-007/C28605, ex-C28500 deleted from
 # TestRail). Active suite = 184 (185 authored - 1 retired).
-cases = [c for c in cases if not (c.get("viu_status") or "").startswith("Retired")]
+cases = [c for c in cases if not (c.get("viu_status") or "").startswith("Retired") and not c.get("dev_authored")]
 
 # ---------------------------------------------------------------- TestRail id map
 # fd_id -> TestRail numeric case id (from testrail-id-map.csv). Every deliverable

@@ -53,14 +53,14 @@
       "1. While 'Flat Amount' is selected, the amount field is labelled '$ Amount' (a dollar amount).",
       "2. The 'Add Fee' button can be used once Name, Type, Calculation Type and an amount above 0 are all filled in.",
       "3. The dialog closes and a success message confirms the fee was added.",
-      "4. 'ZZAUTOTEST Handling Fee' now appears in the 'WO Fees & Discounts' card on the left, showing +$100.00.",
+      "4. 'ZZAUTOTEST Handling Fee' now appears in the 'Work Order Fees & Discounts' card on the left, showing +$100.00.",
       "5. The work order Subtotal and Total go up by $100.00 (tax is recalculated when you save)."
     ],
     "design_ref": "Add new fee/discount modal footer Add button (§6); WO Fee/Discount sidebar card (§1a)",
     "viu_status": "VIU-Verified",
-    "notes": "Whole-WO Flat Amount base = the set amount, no quantity (open question #2 in requirements §14: no explicit Whole-WO Flat base row). Confirm button label per spec is 'Add Fee'; design mockup uses fixed 'Add' — flag. | VIU qb batch-1 (2026-07-08): Flat $12 fee added via dialog; confirm button 'Add Fee'; success toast 'Fee added' (exact, auto-fades); entry appears on the WO F&D card; API POST work-orders/adjustments/add 201. Shots s9-01/02. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — UI+API: whole-WO flat $11 fee saved (POST 201), card shows entry; toast \"Fee added\" (§7, recon) | FRESH VIU 2026-07-10: whole-WO flat fee add 201 + visible in WO view (flat 7.77 resolved exactly) | WORDING+VIU 2026-07-13: rewritten to exact build labels (⋮ menu item 'Add Fee/Discount'; dialog 'Add new fee/discount'; fields 'Apply From Template'/'Name'/'Type'/'Calculation Type'/'$ Amount' or 'Percent %'/'$ Max Amount (Optional)'/'Taxable' toggle; whole-WO Calculation Type options = Flat Amount, % of Labor Total, % of Parts Total, % of Subtotal; buttons 'Add Fee'/'Add Discount'; sidebar card 'WO Fees & Discounts'; preview empty prompt 'Enter an amount to see the impact.'). Captured live on WO S3-15960 (shots wo-01..wo-05). Sidebar card is 'WO Fees & Discounts' (was 'Work Order Fee / Discount'). Exact success-toast text not re-captured this pass (worded as 'a success message').",
+    "notes": "Whole-WO Flat Amount base = the set amount, no quantity (open question #2 in requirements §14: no explicit Whole-WO Flat base row). Confirm button label per spec is 'Add Fee'; design mockup uses fixed 'Add' — flag. | VIU qb batch-1 (2026-07-08): Flat $12 fee added via dialog; confirm button 'Add Fee'; success toast 'Fee added' (exact, auto-fades); entry appears on the WO F&D card; API POST work-orders/adjustments/add 201. Shots s9-01/02. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — UI+API: whole-WO flat $11 fee saved (POST 201), card shows entry; toast \"Fee added\" (§7, recon) | FRESH VIU 2026-07-10: whole-WO flat fee add 201 + visible in WO view (flat 7.77 resolved exactly) | WORDING+VIU 2026-07-13: rewritten to exact build labels (⋮ menu item 'Add Fee/Discount'; dialog 'Add new fee/discount'; fields 'Apply From Template'/'Name'/'Type'/'Calculation Type'/'$ Amount' or 'Percent %'/'$ Max Amount (Optional)'/'Taxable' toggle; whole-WO Calculation Type options = Flat Amount, % of Labor Total, % of Parts Total, % of Subtotal; buttons 'Add Fee'/'Add Discount'; sidebar card 'WO Fees & Discounts'; preview empty prompt 'Enter an amount to see the impact.'). Captured live on WO S3-15960 (shots wo-01..wo-05). Sidebar card is 'WO Fees & Discounts' (was 'Work Order Fee / Discount'). Exact success-toast text not re-captured this pass (worded as 'a success message'). | SV-8456 (2026-07-21 staging LIVE VIU): F&D moved to SETTINGS→SERVICE (below Canned Lines); template/WO/Part-sale/customer dialogs now show Taxable as a Yes/No DROPDOWN (was toggle); Auto-apply is a CHECKBOX with a 'When on…' caption; settings & customer tables are plain-text/left-aligned (no badges); WO sidebar card retitled 'Work Order Fees & Discounts' and renders ABOVE Financial Info; Part-sale card 'Parts Sale Fees & Discounts' above Financial Info. Permission gate pivoted Settings→Finance → Settings→Service (verified live: Service-user sees+manages F&D & convenience toggle; Finance-only user has no F&D nav item and /administration/adjustment-templates bounces to /workorders). Frontend-only; functionality + calc INTACT.",
     "api_related": false,
-    "fresh_run": "2026-07-13",
+    "fresh_run": "2026-07-21",
     "_note": " | WORDING+VIU 2026-07-13: rewritten to exact build labels (⋮ menu item 'Add Fee/Discount'; dialog 'Add new fee/discount'; fields 'Apply From Template'/'Name'/'Type'/'Calculation Type'/'$ Amount' or 'Percent %'/'$ Max Amount (Optional)'/'Taxable' toggle; whole-WO Calculation Type options = Flat Amount, % of Labor Total, % of Parts Total, % of Subtotal; buttons 'Add Fee'/'Add Discount'; sidebar card 'WO Fees & Discounts'; preview empty prompt 'Enter an amount to see the impact.'). Captured live on WO S3-15960 (shots wo-01..wo-05). Sidebar card is 'WO Fees & Discounts' (was 'Work Order Fee / Discount'). Exact success-toast text not re-captured this pass (worded as 'a success message')."
   },
   {
@@ -445,7 +445,7 @@
     "id": "FD-WO-016",
     "area": "Work Order — Whole-WO Fee/Discount",
     "story_ref": "S2-R26, S2-R26a, §5-R15",
-    "title": "Verify the Add/Edit fee-or-discount dialog shows the tax-jurisdiction note below the Taxable toggle",
+    "title": "Verify the Add/Edit fee-or-discount dialog shows the tax-jurisdiction note below the Taxable Yes/No dropdown",
     "priority": "Medium",
     "type": "Functional",
     "permissions_required": "Work Orders: Create & Edit + See Financial Data",
@@ -455,22 +455,22 @@
     ],
     "steps": [
       "1. Open 'Add Fee/Discount' from the work order ⋯ menu.",
-      "2. Look directly below the 'Taxable' Yes/No toggle for a note.",
-      "3. Open an existing fee/discount's Edit dialog and check the same place below the Taxable toggle."
+      "2. Look directly below the 'Taxable' Yes/No dropdown for a note.",
+      "3. Open an existing fee/discount's Edit dialog and check the same place below the Taxable Yes/No dropdown."
     ],
     "expected": [
-      "1. Directly below the Taxable toggle this note is shown: 'Tax treatment varies by jurisdiction — confirm your local requirements before saving.'",
+      "1. Directly below the Taxable Yes/No dropdown this note is shown: 'Tax treatment varies by jurisdiction — confirm your local requirements before saving.'",
       "2. The same note shows in both the Add and the Edit dialog.",
       "3. The note is plain advice to the shop, not a system instruction and not a legal statement.",
       "4. The note is shown only to users with See Financial Data — a user without See Financial Data does not see the note. (A user without See Financial Data cannot open this work-order Add/Edit dialog at all; the no-note side is observable in the admin Fee/Discount template dialog, opened by a user with Manage Finance Settings but without See Financial Data.)"
     ],
     "design_ref": "requirements.md §5-R15 (S2-R26a)",
     "viu_status": "VIU-Verified",
-    "notes": "NEW 2026-07-13 for V1_2 §5-R15 / S2-R26a. UI string check (advisory) — belongs in a FUNCTIONAL section, NOT an API section (standing rule 4). Assert the exact string verbatim. | WORDING+VIU 2026-07-13: 'Taxable' is a Yes/No TOGGLE (not a dropdown) — corrected. DEVIATION: the §5-R15 jurisdiction note is NOT shown below the Taxable toggle in this build (checked the whole-WO Add dialog with both Flat Amount and % of Subtotal; no note present — shots wo-03/wo-05). Expected kept as the spec requirement; currently a gap. | V1_3 (2026-07-17): Δ1 — §5-R15 gains one appended sentence (spec verbatim): 'The note is shown only to users with See Financial Data.' Expected gains the gate qualifier and the SFD-negative check is FOLDED IN here as expected 4 (no new case authored). The gate does NOT legitimize the deviation — the 2026-07-13 VIU was as admin (HAS See Financial Data) and the note was absent, so the note is still not built. Status stays VIU-Deviation. Observability caveat (spec-diff §H.b): a user without See Financial Data cannot open the WO Add/Edit dialog at all (Stories 1/2 require SFD), so the negative is only independently observable at the admin template/Processing-Fee dialog. Spec ambiguity flagged for Chris (§H.a): the change-log names 'the template dialog' as the second gated location while the §5-R15 body names the Processing Fee dialog (S8-R11). | STAGING VIU 2026-07-20 staging LIVE VIU: §5-R15 note now BUILT: present below Taxable in WO Add (\"Add new fee/discount\") + Edit (\"Edit Fee / Discount\") dialogs, exact string; gated on See Financial Data (Tech w/o SFD: no note). Live staging (wo-add-dialog-final.png / wo-fee-edit-dialog.png / tech-tmpl-dialog.png). WAS Deviation on qb (note absent).",
+    "notes": "NEW 2026-07-13 for V1_2 §5-R15 / S2-R26a. UI string check (advisory) — belongs in a FUNCTIONAL section, NOT an API section (standing rule 4). Assert the exact string verbatim. | WORDING+VIU 2026-07-13: 'Taxable' is a Yes/No TOGGLE (not a dropdown) — corrected. DEVIATION: the §5-R15 jurisdiction note is NOT shown below the Taxable toggle in this build (checked the whole-WO Add dialog with both Flat Amount and % of Subtotal; no note present — shots wo-03/wo-05). Expected kept as the spec requirement; currently a gap. | V1_3 (2026-07-17): Δ1 — §5-R15 gains one appended sentence (spec verbatim): 'The note is shown only to users with See Financial Data.' Expected gains the gate qualifier and the SFD-negative check is FOLDED IN here as expected 4 (no new case authored). The gate does NOT legitimize the deviation — the 2026-07-13 VIU was as admin (HAS See Financial Data) and the note was absent, so the note is still not built. Status stays VIU-Deviation. Observability caveat (spec-diff §H.b): a user without See Financial Data cannot open the WO Add/Edit dialog at all (Stories 1/2 require SFD), so the negative is only independently observable at the admin template/Processing-Fee dialog. Spec ambiguity flagged for Chris (§H.a): the change-log names 'the template dialog' as the second gated location while the §5-R15 body names the Processing Fee dialog (S8-R11). | STAGING VIU 2026-07-20 staging LIVE VIU: §5-R15 note now BUILT: present below Taxable in WO Add (\"Add new fee/discount\") + Edit (\"Edit Fee / Discount\") dialogs, exact string; gated on See Financial Data (Tech w/o SFD: no note). Live staging (wo-add-dialog-final.png / wo-fee-edit-dialog.png / tech-tmpl-dialog.png). WAS Deviation on qb (note absent). | SV-8456 (2026-07-21 staging LIVE VIU): F&D moved to SETTINGS→SERVICE (below Canned Lines); template/WO/Part-sale/customer dialogs now show Taxable as a Yes/No DROPDOWN (was toggle); Auto-apply is a CHECKBOX with a 'When on…' caption; settings & customer tables are plain-text/left-aligned (no badges); WO sidebar card retitled 'Work Order Fees & Discounts' and renders ABOVE Financial Info; Part-sale card 'Parts Sale Fees & Discounts' above Financial Info. Permission gate pivoted Settings→Finance → Settings→Service (verified live: Service-user sees+manages F&D & convenience toggle; Finance-only user has no F&D nav item and /administration/adjustment-templates bounces to /workorders). Frontend-only; functionality + calc INTACT.",
     "api_related": false,
     "testrail_id": 29441,
     "_note": " | WORDING+VIU 2026-07-13: 'Taxable' is a Yes/No TOGGLE (not a dropdown) — corrected. DEVIATION: the §5-R15 jurisdiction note is NOT shown below the Taxable toggle in this build (checked the whole-WO Add dialog with both Flat Amount and % of Subtotal; no note present — shots wo-03/wo-05). Expected kept as the spec requirement; currently a gap.",
-    "fresh_run": "2026-07-20-staging"
+    "fresh_run": "2026-07-21"
   },
   {
     "id": "FD-LABOR-001",
@@ -625,7 +625,7 @@
     ],
     "steps": [
       "1. Delete the labor line (via its ⋮ / delete action).",
-      "2. Check the 'WO Fees & Discounts' card, the Financial Info 'Fees & Discounts (N)' count, and the Stats breakdown."
+      "2. Check the 'Work Order Fees & Discounts' card, the Financial Info 'Fees & Discounts (N)' count, and the Stats breakdown."
     ],
     "expected": [
       "1. The labor line is removed.",
@@ -634,9 +634,9 @@
     ],
     "design_ref": "line table (§2)",
     "viu_status": "VIU-Verified",
-    "notes": "Deleting a line/part removes its adjustments even though removal normally uses the Create & Edit permission (this is a whole-record delete). | VIU qb batch-1 (2026-07-08): work-orders/lines/delete removed the line AND both adjustments pointing to it; WO summary recomputed (S3-R2). | FRESH VIU 2026-07-10: prior (line delete removes its adjustment); not re-seedable today (line-create 500 env-wide) | WORDING+VIU 2026-07-13: Delete-line cascades; carried; build labels.",
+    "notes": "Deleting a line/part removes its adjustments even though removal normally uses the Create & Edit permission (this is a whole-record delete). | VIU qb batch-1 (2026-07-08): work-orders/lines/delete removed the line AND both adjustments pointing to it; WO summary recomputed (S3-R2). | FRESH VIU 2026-07-10: prior (line delete removes its adjustment); not re-seedable today (line-create 500 env-wide) | WORDING+VIU 2026-07-13: Delete-line cascades; carried; build labels. | SV-8456 (2026-07-21 staging LIVE VIU): F&D moved to SETTINGS→SERVICE (below Canned Lines); template/WO/Part-sale/customer dialogs now show Taxable as a Yes/No DROPDOWN (was toggle); Auto-apply is a CHECKBOX with a 'When on…' caption; settings & customer tables are plain-text/left-aligned (no badges); WO sidebar card retitled 'Work Order Fees & Discounts' and renders ABOVE Financial Info; Part-sale card 'Parts Sale Fees & Discounts' above Financial Info. Permission gate pivoted Settings→Finance → Settings→Service (verified live: Service-user sees+manages F&D & convenience toggle; Finance-only user has no F&D nav item and /administration/adjustment-templates bounces to /workorders). Frontend-only; functionality + calc INTACT.",
     "api_related": false,
-    "fresh_run": "2026-07-13"
+    "fresh_run": "2026-07-21"
   },
   {
     "id": "FD-LABOR-007",
@@ -1243,7 +1243,7 @@
     "id": "FD-FIN-004",
     "area": "Work Order — Sidebar 'Work Order Fee / Discount' card",
     "story_ref": "S3-R3 / S3-R5 / S3-R8 / S3-R9",
-    "title": "Verify the sidebar 'WO Fees & Discounts' card lists whole-work-order fees/discounts with name, signed rate and grey amount",
+    "title": "Verify the sidebar 'Work Order Fees & Discounts' card lists whole-work-order fees/discounts with name, signed rate and grey amount",
     "priority": "High",
     "type": "Functional",
     "permissions_required": "See Financial Data + Fees & Discounts flag ON (Work Orders: Create & Edit to see Edit/Delete)",
@@ -1252,26 +1252,27 @@
       "2. An open work order with a whole-work-order discount plus some line-level fees/discounts."
     ],
     "steps": [
-      "1. Look at the 'WO Fees & Discounts' card on the left.",
+      "1. Look at the 'Work Order Fees & Discounts' card on the left.",
       "2. Read the listed entries and check which scopes appear.",
       "3. Open an entry's ⋮ (more) menu."
     ],
     "expected": [
-      "1. The card is titled 'WO Fees & Discounts' and lists ONLY whole-work-order fees/discounts — line-level ones do not appear here.",
+      "1. The card is titled 'Work Order Fees & Discounts' and lists ONLY whole-work-order fees/discounts — line-level ones do not appear here.",
       "2. Each entry shows its name, a signed rate badge (for example '−8%' or a dollar amount) and the resolved amount in grey, signed.",
-      "3. The entry's ⋮ menu offers 'Edit' and 'Remove'."
+      "3. The entry's ⋮ menu offers 'Edit' and 'Remove'.",
+      "The 'Work Order Fees & Discounts' card renders above the Financial Info card in the sidebar."
     ],
     "design_ref": "'Work Order Fee / Discount' card .wo-fd-card, entry 'Early Payment Discount −8% −$857.23', ⋯ Edit/Delete (§1a)",
     "viu_status": "VIU-Verified",
-    "notes": "Design↔spec color note: the design renders the discount amount in green (--sv-success-text); spec S12-R1 says sidebar amounts are plain grey. Authored to spec (plain grey); flag the color. Card title is 'Work Order Fee / Discount' in the final mockup vs 'WO Fees & Discounts' in v1 mockup / spec S3-R3. | VIU qb batch-1 (2026-07-08): Sidebar card title is 'WO Fees & Discounts' (matches S3-R3; the case title used the older 'Work Order Fee / Discount' name — update case). Entries: name + signed badge ('-10%', '$11.00') + grey signed resolved ('+$11.00', '-$15.00' with true minus) + hover ⋮ menu = 'Edit | Remove' (spec S3-R9 says Edit/'Delete' — wording deviation). Shots s9-04/05, s11b-01. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — UI: sidebar \"WO Fees & Discounts\" card lists whole-WO entry: name + \"$11.00\" badge + \"+$11.00\" resolved grey (wo-card-after-add.png) | FRESH VIU 2026-07-10: card renders 'WO Fees & Discounts / Flat fee $12.00 +$12.00' — label/name drift vs spec wording persists (case-update) | WORDING+VIU 2026-07-13: Sidebar card title is 'WO Fees & Discounts' (was 'Work Order Fee / Discount'); per-row ⋮ menu shows 'Edit' and 'Remove' (confirmed live, shot fin-03). Now build-accurate.",
+    "notes": "Design↔spec color note: the design renders the discount amount in green (--sv-success-text); spec S12-R1 says sidebar amounts are plain grey. Authored to spec (plain grey); flag the color. Card title is 'Work Order Fee / Discount' in the final mockup vs 'WO Fees & Discounts' in v1 mockup / spec S3-R3. | VIU qb batch-1 (2026-07-08): Sidebar card title is 'WO Fees & Discounts' (matches S3-R3; the case title used the older 'Work Order Fee / Discount' name — update case). Entries: name + signed badge ('-10%', '$11.00') + grey signed resolved ('+$11.00', '-$15.00' with true minus) + hover ⋮ menu = 'Edit | Remove' (spec S3-R9 says Edit/'Delete' — wording deviation). Shots s9-04/05, s11b-01. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — UI: sidebar \"WO Fees & Discounts\" card lists whole-WO entry: name + \"$11.00\" badge + \"+$11.00\" resolved grey (wo-card-after-add.png) | FRESH VIU 2026-07-10: card renders 'WO Fees & Discounts / Flat fee $12.00 +$12.00' — label/name drift vs spec wording persists (case-update) | WORDING+VIU 2026-07-13: Sidebar card title is 'WO Fees & Discounts' (was 'Work Order Fee / Discount'); per-row ⋮ menu shows 'Edit' and 'Remove' (confirmed live, shot fin-03). Now build-accurate. | SV-8456 (2026-07-21 staging LIVE VIU): F&D moved to SETTINGS→SERVICE (below Canned Lines); template/WO/Part-sale/customer dialogs now show Taxable as a Yes/No DROPDOWN (was toggle); Auto-apply is a CHECKBOX with a 'When on…' caption; settings & customer tables are plain-text/left-aligned (no badges); WO sidebar card retitled 'Work Order Fees & Discounts' and renders ABOVE Financial Info; Part-sale card 'Parts Sale Fees & Discounts' above Financial Info. Permission gate pivoted Settings→Finance → Settings→Service (verified live: Service-user sees+manages F&D & convenience toggle; Finance-only user has no F&D nav item and /administration/adjustment-templates bounces to /workorders). Frontend-only; functionality + calc INTACT.",
     "api_related": false,
-    "fresh_run": "2026-07-13"
+    "fresh_run": "2026-07-21"
   },
   {
     "id": "FD-FIN-005",
     "area": "Work Order — Sidebar 'Work Order Fee / Discount' card",
     "story_ref": "S3-R4 / S3-R10 / S3-N1",
-    "title": "Verify the sidebar 'WO Fees & Discounts' card is hidden with no whole-work-order fees/discounts and has no Add button",
+    "title": "Verify the sidebar 'Work Order Fees & Discounts' card is hidden with no whole-work-order fees/discounts and has no Add button",
     "priority": "Medium",
     "type": "Functional",
     "permissions_required": "See Financial Data + Work Orders: Create & Edit + Fees & Discounts flag ON",
@@ -1281,7 +1282,7 @@
       "3. Case (b): an open work order with at least one whole-work-order fee/discount."
     ],
     "steps": [
-      "1. Case (a): open the work order and look for the 'WO Fees & Discounts' card.",
+      "1. Case (a): open the work order and look for the 'Work Order Fees & Discounts' card.",
       "2. Case (b): open the work order, view the card, and look for any 'Add' button inside it."
     ],
     "expected": [
@@ -1290,9 +1291,9 @@
     ],
     "design_ref": "'Work Order Fee / Discount' card (§1a); v1 mockup adds an 'Add Fee / Discount' button",
     "viu_status": "VIU-Verified",
-    "notes": "Design↔spec: the v1 mockup card includes an 'Add Fee / Discount' secondary button, which contradicts spec S3-R10 (no Add control on the card). Authored to spec (no Add control); flag if staging shows an in-card Add button. | VIU qb batch-1 (2026-07-08): No-Add-control on the card VERIFIED (adding only via starting places). Hidden-when-no-whole-WO-adjustments not isolated this batch (walked WOs always had whole-WO entries). | FRESH VIU 2026-07-10: sidebar card present with entries + no Add control (re-observed); hidden-when-none per batch-3 | WORDING+VIU 2026-07-13: Card title corrected to 'WO Fees & Discounts'.",
+    "notes": "Design↔spec: the v1 mockup card includes an 'Add Fee / Discount' secondary button, which contradicts spec S3-R10 (no Add control on the card). Authored to spec (no Add control); flag if staging shows an in-card Add button. | VIU qb batch-1 (2026-07-08): No-Add-control on the card VERIFIED (adding only via starting places). Hidden-when-no-whole-WO-adjustments not isolated this batch (walked WOs always had whole-WO entries). | FRESH VIU 2026-07-10: sidebar card present with entries + no Add control (re-observed); hidden-when-none per batch-3 | WORDING+VIU 2026-07-13: Card title corrected to 'WO Fees & Discounts'. | SV-8456 (2026-07-21 staging LIVE VIU): F&D moved to SETTINGS→SERVICE (below Canned Lines); template/WO/Part-sale/customer dialogs now show Taxable as a Yes/No DROPDOWN (was toggle); Auto-apply is a CHECKBOX with a 'When on…' caption; settings & customer tables are plain-text/left-aligned (no badges); WO sidebar card retitled 'Work Order Fees & Discounts' and renders ABOVE Financial Info; Part-sale card 'Parts Sale Fees & Discounts' above Financial Info. Permission gate pivoted Settings→Finance → Settings→Service (verified live: Service-user sees+manages F&D & convenience toggle; Finance-only user has no F&D nav item and /administration/adjustment-templates bounces to /workorders). Frontend-only; functionality + calc INTACT.",
     "api_related": false,
-    "fresh_run": "2026-07-13"
+    "fresh_run": "2026-07-21"
   },
   {
     "id": "FD-PCOL-001",
@@ -1492,22 +1493,22 @@
       "2. An open work order with an existing whole-work-order percentage discount."
     ],
     "steps": [
-      "1. On the 'WO Fees & Discounts' card, open the entry's ⋮ menu and click 'Edit'.",
+      "1. On the 'Work Order Fees & Discounts' card, open the entry's ⋮ menu and click 'Edit'.",
       "2. Check which fields you can change and which are greyed out.",
       "3. Change the Name and the Percent value, then click 'Save'."
     ],
     "expected": [
       "1. The dialog title reads 'Edit Fee / Discount'.",
-      "2. Name, the amount (or Percent), Max Amount and the Taxable toggle can be changed.",
+      "2. Name, the amount (or Percent), Max Amount and the Taxable Yes/No dropdown can be changed.",
       "3. Type and Calculation Type are shown but greyed out and cannot be changed.",
       "4. The scope (whole work order) cannot be changed.",
       "5. The change saves and a success message confirms it."
     ],
     "design_ref": "No standalone Edit modal in mockups — 'Edit' is a menu item only (design §10); Add modal presumably reused",
     "viu_status": "VIU-Verified",
-    "notes": "Design open item #10: the mockups contain NO Edit-dialog markup and do not show which fields are locked. Authored strictly to spec S2-R4/R5/R8; verify locked-field behavior on staging. Confirm button label on edit = 'Save' (S2-R28). | VIU qb batch-1 (2026-07-08): Edit dialog: Name/Amount/Max/Taxable editable; Type + Calculation Type rendered DISABLED (locked). Backend contract matches: change endpoint takes only {adjustmentId,name,amount,maxCap,taxable} and ignores kind/calculationType fields. Shot s9-06. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: change edits name/amount/taxable & re-resolves; Type/Calc lock is FE per S2-R5 | FRESH VIU 2026-07-10: change accepts name/amount/maxCap/taxable only; kind/calc unchanged after edit (200) | WORDING+VIU 2026-07-13: Edit dialog confirmed live (shot edit-01): title 'Edit Fee / Discount'; Type + Calculation Type greyed/locked; Name/Amount/Taxable editable; opened from sidebar 'WO Fees & Discounts' ⋮ > Edit.",
+    "notes": "Design open item #10: the mockups contain NO Edit-dialog markup and do not show which fields are locked. Authored strictly to spec S2-R4/R5/R8; verify locked-field behavior on staging. Confirm button label on edit = 'Save' (S2-R28). | VIU qb batch-1 (2026-07-08): Edit dialog: Name/Amount/Max/Taxable editable; Type + Calculation Type rendered DISABLED (locked). Backend contract matches: change endpoint takes only {adjustmentId,name,amount,maxCap,taxable} and ignores kind/calculationType fields. Shot s9-06. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: change edits name/amount/taxable & re-resolves; Type/Calc lock is FE per S2-R5 | FRESH VIU 2026-07-10: change accepts name/amount/maxCap/taxable only; kind/calc unchanged after edit (200) | WORDING+VIU 2026-07-13: Edit dialog confirmed live (shot edit-01): title 'Edit Fee / Discount'; Type + Calculation Type greyed/locked; Name/Amount/Taxable editable; opened from sidebar 'WO Fees & Discounts' ⋮ > Edit. | SV-8456 (2026-07-21 staging LIVE VIU): F&D moved to SETTINGS→SERVICE (below Canned Lines); template/WO/Part-sale/customer dialogs now show Taxable as a Yes/No DROPDOWN (was toggle); Auto-apply is a CHECKBOX with a 'When on…' caption; settings & customer tables are plain-text/left-aligned (no badges); WO sidebar card retitled 'Work Order Fees & Discounts' and renders ABOVE Financial Info; Part-sale card 'Parts Sale Fees & Discounts' above Financial Info. Permission gate pivoted Settings→Finance → Settings→Service (verified live: Service-user sees+manages F&D & convenience toggle; Finance-only user has no F&D nav item and /administration/adjustment-templates bounces to /workorders). Frontend-only; functionality + calc INTACT.",
     "api_related": false,
-    "fresh_run": "2026-07-13"
+    "fresh_run": "2026-07-21"
   },
   {
     "id": "FD-EDIT-002",
@@ -1579,7 +1580,7 @@
       "2. An open work order with a whole-work-order fee/discount."
     ],
     "steps": [
-      "1. On the 'WO Fees & Discounts' card, open the entry's ⋮ menu.",
+      "1. On the 'Work Order Fees & Discounts' card, open the entry's ⋮ menu.",
       "2. Click 'Remove'.",
       "3. Read the confirm dialog.",
       "4. Click the 'Remove' button in the dialog."
@@ -1591,9 +1592,9 @@
     ],
     "design_ref": "sidebar ⋯ 'Delete' (§1a); no confirm dialog modeled in mockups (§10)",
     "viu_status": "VIU-Verified",
-    "notes": "Design uses the label 'Delete' on the sidebar/inline ⋯ menus but the spec confirm dialog is titled 'Remove Fee / Discount' with a 'Remove' button; the design mockups do NOT model the confirm dialog (§10). Authored to spec — flag the label mismatch and confirm the dialog exists on staging. | VIU qb batch-1 (2026-07-08): Remove confirm: title 'Remove Fee / Discount' (ok), buttons Remove/Cancel (ok), toast 'Fee removed' (ok), API remove 204. DEVIATION: message reads 'Are you sure you want to remove this fee?' — spec S3-R11a wants 'Remove \"{name}\" from this work order?'. Shot s9-08. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — Recon+API: remove opens \"Remove Fee / Discount\" confirm; POST remove → 204; toast \"Fee removed\" | FRESH VIU 2026-07-10: remove-confirm wording drift per batch-1 (case-update); not re-driven today | WORDING+VIU 2026-07-13: Confirm dialog matched EXACTLY live: title 'Remove Fee / Discount', message 'Are you sure you want to remove this fee?', buttons 'Remove'/'Cancel' (shot inline-02; cancelled — no shared data deleted). Toast not re-observed this run.",
+    "notes": "Design uses the label 'Delete' on the sidebar/inline ⋯ menus but the spec confirm dialog is titled 'Remove Fee / Discount' with a 'Remove' button; the design mockups do NOT model the confirm dialog (§10). Authored to spec — flag the label mismatch and confirm the dialog exists on staging. | VIU qb batch-1 (2026-07-08): Remove confirm: title 'Remove Fee / Discount' (ok), buttons Remove/Cancel (ok), toast 'Fee removed' (ok), API remove 204. DEVIATION: message reads 'Are you sure you want to remove this fee?' — spec S3-R11a wants 'Remove \"{name}\" from this work order?'. Shot s9-08. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — Recon+API: remove opens \"Remove Fee / Discount\" confirm; POST remove → 204; toast \"Fee removed\" | FRESH VIU 2026-07-10: remove-confirm wording drift per batch-1 (case-update); not re-driven today | WORDING+VIU 2026-07-13: Confirm dialog matched EXACTLY live: title 'Remove Fee / Discount', message 'Are you sure you want to remove this fee?', buttons 'Remove'/'Cancel' (shot inline-02; cancelled — no shared data deleted). Toast not re-observed this run. | SV-8456 (2026-07-21 staging LIVE VIU): F&D moved to SETTINGS→SERVICE (below Canned Lines); template/WO/Part-sale/customer dialogs now show Taxable as a Yes/No DROPDOWN (was toggle); Auto-apply is a CHECKBOX with a 'When on…' caption; settings & customer tables are plain-text/left-aligned (no badges); WO sidebar card retitled 'Work Order Fees & Discounts' and renders ABOVE Financial Info; Part-sale card 'Parts Sale Fees & Discounts' above Financial Info. Permission gate pivoted Settings→Finance → Settings→Service (verified live: Service-user sees+manages F&D & convenience toggle; Finance-only user has no F&D nav item and /administration/adjustment-templates bounces to /workorders). Frontend-only; functionality + calc INTACT.",
     "api_related": false,
-    "fresh_run": "2026-07-13"
+    "fresh_run": "2026-07-21"
   },
   {
     "id": "FD-REMOVE-002",
@@ -1608,7 +1609,7 @@
       "2. An open work order with a whole-work-order fee/discount."
     ],
     "steps": [
-      "1. Open the entry's ⋮ menu on the 'WO Fees & Discounts' card.",
+      "1. Open the entry's ⋮ menu on the 'Work Order Fees & Discounts' card.",
       "2. Check that a 'Remove' option is present and works.",
       "3. Remove the fee/discount."
     ],
@@ -1619,9 +1620,9 @@
     ],
     "design_ref": "sidebar ⋯ Delete (§1a)",
     "viu_status": "VIU-Verified",
-    "notes": "Key permission nuance: 'Delete' permission is for whole records (WO, labor line, part); removing an adjustment is part of 'Create and Edit' (S13-R7). For a line/part adjustment the required permission is Work Order Lines: Create & Edit (S13-R4). | VIU qb batch-1 (2026-07-08): Needs a role with Delete-but-not-Create&Edit (and vice versa); no second-user login on qb env this batch. | FRESH VIU 2026-07-10: removal governed by Create&Edit (tech WITH lines-C&E removed line-level 204; no Delete-perm dependency) | WORDING+VIU 2026-07-13: Remove uses Create & Edit not a separate Delete permission; carry prior VIU.",
+    "notes": "Key permission nuance: 'Delete' permission is for whole records (WO, labor line, part); removing an adjustment is part of 'Create and Edit' (S13-R7). For a line/part adjustment the required permission is Work Order Lines: Create & Edit (S13-R4). | VIU qb batch-1 (2026-07-08): Needs a role with Delete-but-not-Create&Edit (and vice versa); no second-user login on qb env this batch. | FRESH VIU 2026-07-10: removal governed by Create&Edit (tech WITH lines-C&E removed line-level 204; no Delete-perm dependency) | WORDING+VIU 2026-07-13: Remove uses Create & Edit not a separate Delete permission; carry prior VIU. | SV-8456 (2026-07-21 staging LIVE VIU): F&D moved to SETTINGS→SERVICE (below Canned Lines); template/WO/Part-sale/customer dialogs now show Taxable as a Yes/No DROPDOWN (was toggle); Auto-apply is a CHECKBOX with a 'When on…' caption; settings & customer tables are plain-text/left-aligned (no badges); WO sidebar card retitled 'Work Order Fees & Discounts' and renders ABOVE Financial Info; Part-sale card 'Parts Sale Fees & Discounts' above Financial Info. Permission gate pivoted Settings→Finance → Settings→Service (verified live: Service-user sees+manages F&D & convenience toggle; Finance-only user has no F&D nav item and /administration/adjustment-templates bounces to /workorders). Frontend-only; functionality + calc INTACT.",
     "api_related": false,
-    "fresh_run": "2026-07-13"
+    "fresh_run": "2026-07-21"
   },
   {
     "id": "FD-REMOVE-003",
@@ -1728,7 +1729,7 @@
     "steps": [
       "1. Open 'Add Fee/Discount' from the ⋯ menu, pick a template in 'Apply From Template', and Save.",
       "2. Repeat: open the dialog again, pick the same template, and Save.",
-      "3. Look at the 'WO Fees & Discounts' card and the Financial Info 'Fees & Discounts (N)' count."
+      "3. Look at the 'Work Order Fees & Discounts' card and the Financial Info 'Fees & Discounts (N)' count."
     ],
     "expected": [
       "1. Both are added; the same template appears twice as two independent fees/discounts.",
@@ -1736,15 +1737,15 @@
     ],
     "design_ref": "'Apply from template' dropdown (§6); sidebar card (§1a)",
     "viu_status": "VIU-Verified",
-    "notes": "This is intentional manual re-application, distinct from the auto-apply + customer-default DOUBLE-ADD bug (requirements open question #4), which is a known defect, not a spec requirement. | VIU qb batch-1 (2026-07-08): Same template applied twice by hand: two 'Flat fee' template adds -> both 201, two adjustments on WO; the WO dialog's template picker still lists an already-applied template. | FRESH VIU 2026-07-10: 'Flat fee' template applied twice by hand -> 201/201, two distinct adjustments | WORDING+VIU 2026-07-13: Same-template-twice carried; build labels ('Add Fee/Discount', 'Apply From Template', 'WO Fees & Discounts').",
+    "notes": "This is intentional manual re-application, distinct from the auto-apply + customer-default DOUBLE-ADD bug (requirements open question #4), which is a known defect, not a spec requirement. | VIU qb batch-1 (2026-07-08): Same template applied twice by hand: two 'Flat fee' template adds -> both 201, two adjustments on WO; the WO dialog's template picker still lists an already-applied template. | FRESH VIU 2026-07-10: 'Flat fee' template applied twice by hand -> 201/201, two distinct adjustments | WORDING+VIU 2026-07-13: Same-template-twice carried; build labels ('Add Fee/Discount', 'Apply From Template', 'WO Fees & Discounts'). | SV-8456 (2026-07-21 staging LIVE VIU): F&D moved to SETTINGS→SERVICE (below Canned Lines); template/WO/Part-sale/customer dialogs now show Taxable as a Yes/No DROPDOWN (was toggle); Auto-apply is a CHECKBOX with a 'When on…' caption; settings & customer tables are plain-text/left-aligned (no badges); WO sidebar card retitled 'Work Order Fees & Discounts' and renders ABOVE Financial Info; Part-sale card 'Parts Sale Fees & Discounts' above Financial Info. Permission gate pivoted Settings→Finance → Settings→Service (verified live: Service-user sees+manages F&D & convenience toggle; Finance-only user has no F&D nav item and /administration/adjustment-templates bounces to /workorders). Frontend-only; functionality + calc INTACT.",
     "api_related": false,
-    "fresh_run": "2026-07-13"
+    "fresh_run": "2026-07-21"
   },
   {
     "id": "FD-PSALE-001",
     "area": "Part Sale — Fee/Discount dialog",
     "story_ref": "S11-R3 / S11-R4a / S11-R4b / §5-R15",
-    "title": "Verify the Part Sale Add/Edit fee-or-discount dialog shows the tax-jurisdiction note below the Taxable toggle",
+    "title": "Verify the Part Sale Add/Edit fee-or-discount dialog shows the tax-jurisdiction note below the Taxable Yes/No dropdown",
     "priority": "Medium",
     "type": "Functional",
     "permissions_required": [
@@ -1757,19 +1758,19 @@
     ],
     "steps": [
       "1. From the Part Sale toolbar ⋮ menu choose 'Add Parts Sale Fee / Discount' (whole sale), or from a part row's ⋮ menu choose 'Add Fee / Discount' (part line).",
-      "2. In the 'Add new fee/discount' dialog look directly below the 'Taxable' Yes/No toggle for a note.",
+      "2. In the 'Add new fee/discount' dialog look directly below the 'Taxable' Yes/No dropdown for a note.",
       "3. Open an existing part-sale fee/discount's Edit dialog and check the same place."
     ],
     "expected": [
-      "1. Directly below the Taxable toggle this note is shown: 'Tax treatment varies by jurisdiction — confirm your local requirements before saving.'",
+      "1. Directly below the Taxable Yes/No dropdown this note is shown: 'Tax treatment varies by jurisdiction — confirm your local requirements before saving.'",
       "2. The same note shows for both the whole-sale dialog and the per-part dialog (the per-part dialog also shows an 'Applying to: Part — (part number) name' subtitle).",
       "3. The same note shows in both the Add and the Edit dialog.",
       "4. The note is shown only to users with See Financial Data."
     ],
     "design_ref": null,
     "viu_status": "VIU-Verified",
-    "fresh_run": "2026-07-20-staging",
-    "notes": "NEW 2026-07-20 (Chris V1_3 Q1=B): the §5-R15 note must appear below every Taxable control, incl. the Part Sale Add/Edit Fee & Discount dialog. STAGING VIU 2026-07-20: note present in the whole-sale 'Add Parts Sale Fee / Discount' dialog (ps-wholesale-dialog.png) and the per-part 'Add Fee / Discount' dialog with 'Applying to: Part —' subtitle (psB4-filled.png). UI string check, functional section (Rule 4).",
+    "fresh_run": "2026-07-21",
+    "notes": "NEW 2026-07-20 (Chris V1_3 Q1=B): the §5-R15 note must appear below every Taxable control, incl. the Part Sale Add/Edit Fee & Discount dialog. STAGING VIU 2026-07-20: note present in the whole-sale 'Add Parts Sale Fee / Discount' dialog (ps-wholesale-dialog.png) and the per-part 'Add Fee / Discount' dialog with 'Applying to: Part —' subtitle (psB4-filled.png). UI string check, functional section (Rule 4). | SV-8456 (2026-07-21 staging LIVE VIU): F&D moved to SETTINGS→SERVICE (below Canned Lines); template/WO/Part-sale/customer dialogs now show Taxable as a Yes/No DROPDOWN (was toggle); Auto-apply is a CHECKBOX with a 'When on…' caption; settings & customer tables are plain-text/left-aligned (no badges); WO sidebar card retitled 'Work Order Fees & Discounts' and renders ABOVE Financial Info; Part-sale card 'Parts Sale Fees & Discounts' above Financial Info. Permission gate pivoted Settings→Finance → Settings→Service (verified live: Service-user sees+manages F&D & convenience toggle; Finance-only user has no F&D nav item and /administration/adjustment-templates bounces to /workorders). Frontend-only; functionality + calc INTACT.",
     "api_related": false
   }
 ]

@@ -1,0 +1,37 @@
+
+## SV-8456 update_case push — 2026-07-21
+
+- FD-CALC-009 / C28576: update 200, re-GET MATCH=True
+- FD-CALC-011 / C28578: update 200, re-GET MATCH=True
+- FD-CALC-013 / C28580: update 200, re-GET MATCH=True
+- FD-CALC-014 / C28581: update 200, re-GET MATCH=True
+- FD-CALC-015 / C28582: update 200, re-GET MATCH=True
+- FD-CALC-016 / C28583: update 200, re-GET MATCH=True
+- FD-CUST-009 / C28493: update 200, re-GET MATCH=True
+- FD-CUST-011 / C28495: update 200, re-GET MATCH=True
+- FD-CUST-012 / C28496: update 200, re-GET MATCH=True
+- FD-CUST-013 / C28497: update 200, re-GET MATCH=True
+- FD-EDIT-001 / C28476: update 200, re-GET MATCH=True
+- FD-FIN-004 / C28467: update 200, re-GET MATCH=True
+- FD-FIN-005 / C28468: update 200, re-GET MATCH=True
+- FD-LABOR-006 / C28444: update 200, re-GET MATCH=True
+- FD-PERM-007 / C28591: update 200, re-GET MATCH=True
+- FD-PROC-006 / C28524: update 200, re-GET MATCH=True
+- FD-PROC-007 / C28525: update 200, re-GET MATCH=True
+- FD-PROC-008 / C28526: update 200, re-GET MATCH=True
+- FD-PSALE-001 / C29918: update 200, re-GET MATCH=True
+- FD-REMOVE-001 / C28479: update 200, re-GET MATCH=True
+- FD-REMOVE-002 / C28480: update 200, re-GET MATCH=True
+- FD-STACK-003 / C28484: update 200, re-GET MATCH=True
+- FD-TMPL-001 / C28502: update 200, re-GET MATCH=True
+- FD-TMPL-002 / C28503: update 200, re-GET MATCH=True
+- FD-TMPL-003 / C28504: update 200, re-GET MATCH=True
+- FD-TMPL-004 / C28505: update 200, re-GET MATCH=True
+- FD-TMPL-005 / C28506: update 200, re-GET MATCH=True
+- FD-TMPL-009 / C28510: update 200, re-GET MATCH=True
+- FD-TMPL-012 / C28513: update 200, re-GET MATCH=True
+- FD-TMPL-016 / C28517: update 200, re-GET MATCH=True
+- FD-TMPL-018 / C29917: update 200, re-GET MATCH=True
+- FD-VAL-007 / C28605: update 200, re-GET MATCH=True
+- FD-WO-002 / C28425: update 200, re-GET MATCH=True
+- FD-WO-016 / C29441: update 200, re-GET MATCH=True
