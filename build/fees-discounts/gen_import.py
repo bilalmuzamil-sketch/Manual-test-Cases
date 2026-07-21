@@ -40,7 +40,12 @@ cases = []
 for fn in FILES:
     with open(os.path.join(CASES_DIR, fn)) as f:
         cases += json.load(f)
-print("Total cases loaded:", len(cases))
+print("Total cases loaded (incl. retired):", len(cases))
+# Active cases only: retired cases (viu_status 'Retired — …'; FD-CUST-016 retired
+# 2026-07-20, duplicate of FD-VAL-007/C28605, ex-C28500 deleted from TestRail) are
+# kept in the JSON for the record but excluded from every deliverable.
+cases = [c for c in cases if not (c.get("viu_status") or "").startswith("Retired")]
+print("Active cases (retired excluded):", len(cases))
 
 
 def clean(s):

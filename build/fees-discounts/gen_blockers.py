@@ -159,7 +159,11 @@ def load_cases():
         for c in json.load(open(os.path.join(CASES_DIR, fn))):
             c["_group"] = group_label(fn)
             cases.append(c)
-    return cases
+    # Active cases only: retired cases (viu_status 'Retired — …') are kept in the
+    # JSON for the record but excluded from every deliverable.
+    # Retired 2026-07-20 (user ruling): FD-CUST-016 (duplicate of FD-VAL-007/C28605,
+    # ex-C28500 deleted from TestRail). Active suite = 184 (185 authored - 1 retired).
+    return [c for c in cases if not (c.get("viu_status") or "").startswith("Retired")]
 
 
 def section_for(c):
@@ -316,7 +320,7 @@ def main():
          "unblocks the {} flag-off/shared-env cases (FD-FLAG-001/002/003, FD-HIST-004, FD-TMPL-012).".format(n_env_flag)),
         ("PO/dev rulings on the deviations + double-add + NOTE-FD-4",
          "finalizes the {} PO-question deviations (Stats layout, whole-WO FE-vs-BE enforcement), the "
-         "double-add confirmation (FD-CUST-016/FD-VAL-007), and NOTE-FD-4 (BE accepts processing_fee). "
+         "double-add confirmation (FD-VAL-007; the duplicate FD-CUST-016/C28500 was retired 2026-07-20), and NOTE-FD-4 (BE accepts processing_fee). "
          "Dev fixes finalize the {} code-bug deviations; QA updates the {} copy/UX-drift deviations once "
          "the build is confirmed intended.".format(n_dev_po, n_dev_bug, n_dev_cu)),
         ("Restricted-role accounts (or confirmation the self-service staff role-switch is usable on qb)",
@@ -507,7 +511,7 @@ def main():
     print("Deviation sub:", dict(dev_sub))
     print("NotBuilt sub:", dict(notbuilt_sub))
     print("Env sub:", dict(env_sub))
-    assert sum(disp_counts.values()) == len(rows) == 185, "count mismatch"
+    assert sum(disp_counts.values()) == len(rows) == 184, "count mismatch"  # 185 authored - 1 retired (FD-CUST-016)
 
 
 if __name__ == "__main__":

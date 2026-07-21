@@ -1,28 +1,28 @@
 # Fees & Discounts V1 — Blockers Tracker
 
 > Source of truth for what every authored F&D case is waiting on and who unblocks it. Regenerate with `python3 build/fees-discounts/gen_blockers.py`.
-> Canonical resume snapshot: `build/fees-discounts/PROJECT-STATE.md`. Interim upload file: `testrail-import/fees-discounts-v1-testrail-import.csv` (all 185).
+> Canonical resume snapshot: `build/fees-discounts/PROJECT-STATE.md`. Interim upload file: `testrail-import/fees-discounts-v1-testrail-import.csv` (all 184).
 
-**Total authored cases: 185**
+**Total authored cases: 184**
 
 ## Summary — counts per category
 
 | Blocker category | Count | Owner |
 |---|---:|---|
-| READY (VIU-Verified) | 152 | — (ready to upload) |
+| READY (VIU-Verified) | 151 | — (ready to upload) |
 | BLOCKED — DEVIATION | 12 | Dev fix / PO ruling / QA case-update |
 | BLOCKED — DEV NOT BUILT | 0 | Dev team (Stories 8 & 11) |
 | BLOCKED — ENV | 20 | Dev / QA env (QuickBooks, flag-off) |
 | BLOCKED — NEEDS-ACCOUNT | 0 | QA (restricted-role session) |
 | BLOCKED — VIU PENDING (QA) | 1 | QA (fresh cookies + seed data) |
-| **TOTAL** | **185** | |
+| **TOTAL** | **184** | |
 
 ### By authoring group
 
 | Group | Count |
 |---|---:|
 | A (WO/Parts) | 63 |
-| B (Customer/Admin/Finance) | 84 |
+| B (Customer/Admin/Finance) | 83 |
 | C (Calc/Perms/Validation) | 38 |
 
 ### DEVIATION — by sub-bucket
@@ -51,7 +51,7 @@
 - **Dev deploys Story 8 (Processing-Fee builder UI) + Story 11 (Part Sales fees/discounts)** → unblocks the 0 DEV-NOT-BUILT cases (Story 8 = 0, Story 11 = 0); then QA re-runs VIU.
 - **A QuickBooks-connected env (or dev/QB-side inspection) for Story 6** → unblocks the 14 QuickBooks ENV cases (mapping guard, sync, negative-total credit memo).
 - **A flag-off maintenance window on a non-shared env** → unblocks the 6 flag-off/shared-env cases (FD-FLAG-001/002/003, FD-HIST-004, FD-TMPL-012).
-- **PO/dev rulings on the deviations + double-add + NOTE-FD-4** → finalizes the 3 PO-question deviations (Stats layout, whole-WO FE-vs-BE enforcement), the double-add confirmation (FD-CUST-016/FD-VAL-007), and NOTE-FD-4 (BE accepts processing_fee). Dev fixes finalize the 2 code-bug deviations; QA updates the 7 copy/UX-drift deviations once the build is confirmed intended.
+- **PO/dev rulings on the deviations + double-add + NOTE-FD-4** → finalizes the 3 PO-question deviations (Stats layout, whole-WO FE-vs-BE enforcement), the double-add confirmation (FD-VAL-007; the duplicate FD-CUST-016/C28500 was retired 2026-07-20), and NOTE-FD-4 (BE accepts processing_fee). Dev fixes finalize the 2 code-bug deviations; QA updates the 7 copy/UX-drift deviations once the build is confirmed intended.
 - **Restricted-role accounts (or confirmation the self-service staff role-switch is usable on qb)** → unblocks the 0 NEEDS-ACCOUNT Story-13 per-role negatives (restore Tech afterward).
 
 ## Full per-case tracker
@@ -136,7 +136,6 @@
 | FD-CUST-013 | B (Customer/Admin/Finance) | Customer defaults lifecycle | Verify deleting a customer removes that customer's default links | VIU-Verified | READY | READY (VIU-Verified) | — | None — VIU-verified; uploadable now. | S9-R10 | verified | 28497 | [C28497](https://shopview.testrail.io/index.php?/cases/view/28497) |
 | FD-CUST-014 | B (Customer/Admin/Finance) | Customer defaults seeding | Verify a brand-new customer inherits every auto-apply location template as a default | VIU-Verified | READY | READY (VIU-Verified) | — | None — VIU-verified; uploadable now. | S9-R1 | verified | 28498 | [C28498](https://shopview.testrail.io/index.php?/cases/view/28498) |
 | FD-CUST-015 | B (Customer/Admin/Finance) | Customer Fees & Discounts tab — permissions | Verify the customer Fees & Discounts tab and its controls are hidden without the required permissions | VIU-Verified | READY | READY (VIU-Verified) | — | None — VIU-verified; uploadable now. | S13-R9, S13-N3 | verified | 28499 | [C28499](https://shopview.testrail.io/index.php?/cases/view/28499) |
-| FD-CUST-016 | B (Customer/Admin/Finance) | Customer defaults — known bug | Verify a template that is both location auto-apply AND a customer default is added only once to a new work order | VIU-Verified | READY | READY (VIU-Verified) | — | Verified, but Double-add (BUG-FD-1) did NOT reproduce on batch-2 (backend dedupes) — PO to confirm the S9 fix shipped; re-scope to single adjustment. | S9 known gap (§14 item 4) | verified (PO-confirm) | 28500 | [C28500](https://shopview.testrail.io/index.php?/cases/view/28500) |
 | FD-CUST-017 | B (Customer/Admin/Finance) | API — Customer Fees & Discounts tab — negative | Verify an add/remove/load failure on customer defaults shows the standard error notification | VIU-Verified | READY | READY (VIU-Verified) | — | None — VIU-verified; uploadable now. | S9-N1 | verified | 28501 | [C28501](https://shopview.testrail.io/index.php?/cases/view/28501) |
 | FD-TMPL-001 | B (Customer/Admin/Finance) | Template admin — location | Verify the fee/discount template library is at Administration → Finance → Fees & Discounts (below Payment Methods) | VIU-Verified | READY | READY (VIU-Verified) | — | None — VIU-verified; uploadable now. | S7-R7a, S7-R7c | verified | 28502 | [C28502](https://shopview.testrail.io/index.php?/cases/view/28502) |
 | FD-TMPL-002 | B (Customer/Admin/Finance) | Template admin — list | Verify the template list columns and the edit/delete actions | VIU-Verified | READY | READY (VIU-Verified) | — | None — VIU-verified; uploadable now. | S7-R8, S12-R8 | verified | 28503 | [C28503](https://shopview.testrail.io/index.php?/cases/view/28503) |

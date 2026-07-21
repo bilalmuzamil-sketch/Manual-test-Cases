@@ -5,7 +5,17 @@
 > re-discovery.
 > **Canonical spec (Confluence):** https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/622297094/Fees+Discounts+V1
 > (Atlassian-SSO login-walled — reference pointer only; content must be exported/pasted to ingest, do NOT fetch the URL.)
-> **Last updated:** 2026-07-20 (§0.0j: **STAGING LIVE-VIU PASS ADVERSARIALLY AUDITED
+> **Last updated:** 2026-07-20 (§0.0k: **DUPLICATE-PAIR RETIREMENT EXECUTED** — user
+> ruling keep FD-VAL-007 (C28605) / retire FD-CUST-016 (C28500). `delete_case/28500`
+> HTTP 200 → verify re-GET HTTP 400 "not a valid test case" = gone; C28605 spot-checked
+> HTTP 200 (intact); NOTHING else deleted, no run writes. Case body kept locally marked
+> Retired (ex-C28500 recorded); id-map −1 row; generators exclude Retired; all current
+> deliverables regenerated over **184 active**. Followed the SF SF-CORE-05/06/09 retire
+> precedent. Audit: `retire-2026-07-20/testrail-log.md` (+ before-C28500.json /
+> verify-gone-C28500.json). **NEW TALLY: 151 VIU-Verified / 12 VIU-Deviation / 20
+> Blocked-Env / 1 VIU-Pending = 184** (FD-CUST-016 was VIU-Verified → Verified 152→151).
+> The FD-CUST-016/FD-VAL-007 duplicate-pair open thread is now CLOSED. See §0.0k.
+> — prior §0.0j: **STAGING LIVE-VIU PASS ADVERSARIALLY AUDITED
 > CLEAN** — every VIU-Verified flip is evidence-backed, the tally
 > **152 VIU-Verified / 12 VIU-Deviation / 0 Blocked-NotBuilt / 20 Blocked-Env /
 > 1 VIU-Pending = 185** reconciles across all deliverables, live TestRail matches the
@@ -80,8 +90,9 @@
 > 20 Blocked-Env / 1 VIU-Pending = 183** (source: `FeesDiscounts_Blockers_Tracker`).
 > **⏸️ STATUS 2026-07-14: Chris Ward's Round-2 answers are APPLIED + IN TESTRAIL and
 > FD-QB-014 is VIU-Verified. The wording+VIU pass, V1_2 batch, and Round-2 batch are all
-> DONE and pushed. Remaining open items (see §0): (1) the FD-CUST-016 / FD-VAL-007
-> DUPLICATE PAIR needs a QA-lead keep/retire ruling; (2) the ready bug drafts (TICKETS
+> DONE and pushed. Remaining open items (see §0): (1) ~~the FD-CUST-016 / FD-VAL-007
+> DUPLICATE PAIR needs a QA-lead keep/retire ruling~~ **CLOSED 2026-07-20 — kept
+> FD-VAL-007 (C28605), retired FD-CUST-016 (C28500, deleted); see §0.0k**; (2) the ready bug drafts (TICKETS
 > 2/3/6/7/8/9/10/11) need filing via Atlassian; (3) FD-PART-005 + the 20 Blocked-Env
 > cases need the env fixes / a QB-UI human / a flag-off window. NO TestRail catch-up is
 > outstanding.**
@@ -123,8 +134,11 @@ project is not PO-blocked. The remaining open items are:
    Audit in `spec-v3-2026-07-17/testrail-update-log.md`;
    id-map/case-JSON/import/Tracker refreshed both passes. Nothing left in this
    thread.
-3. **QA-lead ruling on the FD-CUST-016 / FD-VAL-007 DUPLICATE PAIR** (keep one / retire
-   one — snapshotted, NOT deleted; see §0.-1).
+3. ~~**QA-lead ruling on the FD-CUST-016 / FD-VAL-007 DUPLICATE PAIR** (keep one / retire
+   one — snapshotted, NOT deleted; see §0.-1).~~ **CLOSED 2026-07-20 (§0.0k):** user
+   ruled keep FD-VAL-007 (C28605), retire FD-CUST-016 (C28500). C28500 delete_case'd
+   (HTTP 200, verify re-GET HTTP 400 gone); C28605 intact. Body kept locally marked
+   Retired; deliverables regenerated over 184 active. Audit: `retire-2026-07-20/testrail-log.md`.
 4. **File the ready bug drafts** (TICKETS 2/3/6/7/8/9/10/11) via Atlassian — no Atlassian
    from this env, so the USER files them (§0.3). TICKET 1 stays ON HOLD (US-tax re-repro);
    TICKETS 4 & 5 DROPPED; FDBUG-15 dropped (not-a-defect). TICKET 3 now worded in
@@ -138,7 +152,37 @@ This section is the complete snapshot: current tally, the applied Round-2 action
 everything else open, and the ordered resume checklist. The rest of this doc holds the
 standing detail. **NO TestRail catch-up is outstanding** — all authored wording is live.
 
-### 0.0j STAGING LIVE-VIU PASS — ADVERSARIALLY AUDITED CLEAN — 2026-07-20 (NEWEST event)
+### 0.0k DUPLICATE-PAIR RETIREMENT EXECUTED — 2026-07-20 (NEWEST event)
+
+User ruled on the FD-CUST-016 / FD-VAL-007 duplicate pair: **keep FD-VAL-007 (C28605),
+retire/delete FD-CUST-016 (C28500).** Executed per the house retirement precedent used
+for Simple Flow SF-CORE-05/06/09.
+
+- **TestRail:** final before-snapshot `GET get_case/28500` HTTP 200 (retained
+  `retire-2026-07-20/before-C28500.json`) → `POST delete_case/28500` HTTP 200 → verify
+  `GET get_case/28500` **HTTP 400 "Field :case_id is not a valid test case." = gone**
+  (`retire-2026-07-20/verify-gone-C28500.json`). Kept-twin spot-check `GET get_case/28605`
+  **HTTP 200 (intact)** both before and after. **NOTHING else deleted; no run writes.**
+- **Local:** FD-CUST-016 body KEPT in `cases/group-B-customer-admin-finance.json` with
+  `viu_status` = "Retired — user ruling 2026-07-20 (duplicate of FD-VAL-007/C28605);
+  C28500 deleted from TestRail" + a RETIRED note carrying ex-C28500. `testrail-id-map.csv`
+  −1 row (C28500 removed; mapping preserved in the note + here). Generators
+  (`gen_import.py`, `gen_blockers.py` assert 185→184, `build_workbook.py`) now exclude
+  Retired cases.
+- **Deliverables regenerated over 184 active:** import CSV/XLSX (184 rows, 0 VIU/flag
+  words, canonical header, C28500 absent / C28605 present) + FeesDiscounts_Blockers_Tracker
+  .md/.xlsx (151/12/1/20 = 184). (Dated historical workbooks FeesDiscounts_V1_TestCases.*
+  [2026-07-09, 182] and FeesDiscounts_FreshVIU_2026-07-10.* are point-in-time snapshots
+  that already predate this change and are not in the maintained current set; the Retired
+  filter is now in build_workbook.py for any future run.)
+- **NEW TALLY: 151 VIU-Verified / 12 VIU-Deviation / 20 Blocked-Env / 1 VIU-Pending
+  (FD-PART-005) = 184** (was 152/12/0/20/1 = 185; FD-CUST-016 was VIU-Verified →
+  Verified 152→151). Reconciles across cases JSON, id-map (184, 0 blank C-ids), import
+  (184 rows), Blockers Tracker.
+- **Audit:** `retire-2026-07-20/testrail-log.md`. The FD-CUST-016/FD-VAL-007 duplicate-pair
+  open thread is now **CLOSED**.
+
+### 0.0j STAGING LIVE-VIU PASS — ADVERSARIALLY AUDITED CLEAN — 2026-07-20 (prior event)
 
 Final bookkeeping over the §0.0i staging LIVE-VIU pass. An adversarial self-audit
 (Standing Rule 15) independently re-checked the pass and the deliverables — **verdict:
@@ -164,10 +208,13 @@ CLEAN.**
   cases not re-driven to a clean verdict this run — FD-STATS-001/002/004 persist,
   FD-PROC-008/009, FD-CALC-013, FD-INLINE-003, FD-CUST-005/006, FD-TMPL-010, FD-WO-013,
   FD-PERM-002) + **20 Blocked-Env** (14 QuickBooks-human / unmap-500 + 6 flag-off) +
-  **1 VIU-Pending (FD-PART-005)**; plus the standing non-VIU threads — the
-  **FD-CUST-016 / FD-VAL-007 DUPLICATE-PAIR QA-lead keep/retire ruling** and **filing the
+  **1 VIU-Pending (FD-PART-005)**; plus the standing non-VIU threads —
+  ~~the FD-CUST-016 / FD-VAL-007 DUPLICATE-PAIR QA-lead keep/retire ruling~~ **CLOSED
+  2026-07-20 (§0.0k): kept C28605, retired C28500** — and **filing the
   ready bug drafts** (TICKETS 2/3/6/7/8/9/10/11; TICKET 1 on hold, 4 & 5 dropped,
-  FDBUG-15 dropped). No TestRail catch-up is outstanding.
+  FDBUG-15 dropped). No TestRail catch-up is outstanding. NOTE: the §0.0j tally
+  (152/12/0/20/1 = 185) was the state BEFORE the §0.0k retirement; current tally is
+  **151/12/20/1 = 184** (FD-CUST-016 retired).
 
 ### 0.0i LIVE VIU PASS ON STAGING — 2026-07-20 (prior event)
 
@@ -695,10 +742,12 @@ language, VIU-verify behavior, push corrected wording to TestRail (update_case o
 Verified — §0.0c). No PO catch-up and no TestRail catch-up is outstanding.** The remaining
 work, in order:
 
-1. **Get a QA-lead ruling on the FD-CUST-016 (C28500) / FD-VAL-007 (C28605) DUPLICATE PAIR**
-   (keep one / retire one). Snapshotted to `testrail-snapshots-relevance-2026-07-13/`; NOT
-   deleted. If retire is approved, ask for fresh one-day TestRail authorization, then
-   `delete_case` / mark-obsolete the loser and regenerate deliverables.
+1. ~~**Get a QA-lead ruling on the FD-CUST-016 (C28500) / FD-VAL-007 (C28605) DUPLICATE
+   PAIR**~~ **DONE 2026-07-20 (§0.0k):** user ruled keep FD-VAL-007 (C28605), retire
+   FD-CUST-016 (C28500). C28500 delete_case'd (HTTP 200; verify re-GET HTTP 400 gone),
+   C28605 spot-checked intact (HTTP 200); body kept locally marked Retired; id-map −1;
+   generators exclude Retired; all current deliverables regenerated over 184 active.
+   Audit: `retire-2026-07-20/testrail-log.md`.
 2. **Hand the user the ready-to-file bug drafts** (`jira-bug-drafts.md`): TICKETS
    2/3/6/7/8/9/10/11 are cleared to file via Atlassian (unreachable from this env → the
    user files them). TICKET 1 (FDBUG-1) stays ON HOLD pending a US-tax re-repro; TICKETS 4
@@ -804,6 +853,12 @@ via `update_case` — **200/200, 0 errors** (audits: `testrail-v1_2-push-log.md`
 
 ## 2. Case inventory
 
+> **CURRENT (2026-07-20 §0.0k):** **185 authored − 1 retired (FD-CUST-016) = 184 ACTIVE.**
+> Current tally **151 VIU-Verified / 12 VIU-Deviation / 20 Blocked-Env / 1 VIU-Pending
+> (FD-PART-005) = 184.** The 183-based table below is the 2026-07-14 FINAL historical
+> snapshot (predates the +2 staging cases FD-TMPL-018/FD-PSALE-001 in §0.0i and the §0.0k
+> retirement); see §0.0k / §0.0j for the current figures.
+
 **Total authored cases: 183** (source: the three `cases/*.json` files; tallied by the
 Blockers Tracker). +1 vs the 2026-07-10 pass = new **FD-WO-016** (§5-R15 tax-jurisdiction
 note, added in the V1_2 batch; C29441).
@@ -898,8 +953,15 @@ line-create 500 + the completed-line part-request lock).
 
 **TestRail import artifacts:**
 - `testrail-import/fees-discounts-v1-testrail-import.csv` / `.xlsx` — full-suite
-  import (all 183; VIU-word-free, feature-flag-free; leaf sections; API-titled
-  sections for the 2 API cases), built by `build/fees-discounts/gen_import.py`.
+  import (**184 active** as of §0.0k; VIU-word-free, feature-flag-free; leaf sections;
+  API-titled sections for the 2 API cases), built by `build/fees-discounts/gen_import.py`
+  (excludes Retired cases).
+
+**Retirement (2026-07-20, §0.0k):**
+- `build/fees-discounts/retire-2026-07-20/testrail-log.md` — audit log (user
+  authorization + before-snapshot ref + delete confirmation + C28605-still-exists check).
+- `build/fees-discounts/retire-2026-07-20/before-C28500.json` — final before-snapshot.
+- `build/fees-discounts/retire-2026-07-20/verify-gone-C28500.json` — HTTP 400 gone proof.
 
 **Tracking / status:**
 - `build/fees-discounts/FeesDiscounts_Blockers_Tracker.md` / `.xlsx` — **source of

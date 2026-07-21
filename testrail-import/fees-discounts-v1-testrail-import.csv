@@ -437,9 +437,6 @@ Verify the customer Fees & Discounts tab and its controls are hidden without the
 2. Look for the Fees & Discounts tab and the 'Add Fee/Discount' button.
 3. Restore the role afterward.","1. Without Manage AP/AR, the customer 'Fees & Discounts' tab and its controls are hidden.
 2. Both Customer Management: Create & Edit AND Manage AP/AR are needed to view/change customer defaults; missing either hides the tab and controls.","S13-R9, S13-N3",,
-Verify a template that is both location auto-apply AND a customer default is added only once to a new work order,Customer defaults — known bug,Functional,Medium,"1. A template ""ZZAUTOTEST Env Fee"" is marked auto-apply at the location AND is a default on the test customer.","1. Create a new work order for the customer.
-2. Open the 'WO Fees & Discounts' card and count how many copies of the shared template's fee/discount appear.","1. Exactly one copy appears on the new work order.
-2. No second copy of the same template is added.",S9 known gap (§14 item 4),,
 Verify an add/remove/load failure on customer defaults shows the standard error notification,API — Customer Fees & Discounts tab — negative,Functional,Low,"1. A way to force a server error (e.g., simulate a network/API failure) on the add or remove call.","1. On the customer Fees & Discounts tab, trigger an add or remove while the back-end call fails.
 2. Look at the feedback.","1. The system shows its standard error notification (no custom per-action wording).
 2. The default list is not left half-changed (the failed action is not partly applied).",S9-N1,,
