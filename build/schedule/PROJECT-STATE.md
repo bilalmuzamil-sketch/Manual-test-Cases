@@ -7,20 +7,30 @@
 
 ## 0. STATUS / WHAT'S LEFT TO DO — read first (Last updated 2026-07-21)
 
-**STATUS: CASES AUTHORED 2026-07-21 (SPEC-ONLY) — 166 cases / 26 sections authored
-from the v1.0 spec (`cases/cases-A..F-*.json`, IDs `SCH-<AREA>-NN`). Import READY:
+**STATUS: CASES AUTHORED & ADVERSARIALLY REVIEWED CLEAN 2026-07-21 (SPEC-ONLY — no
+designs exist) — 166 cases / 26 sections authored from the v1.0 spec
+(`cases/cases-A..F-*.json`, IDs `SCH-<AREA>-NN`; authoring commits 2e524ad→51af802).
+The adversarial review found + FIXED 4 defects (commit 64b1813): (1) SCH-CONF-05 —
+internal cross-ref mangled by the import cleaner into "(set up via/02)", reworded
+id-free; (2) SCH-PERM-07 — math ⊇-notation in a reader-facing expected replaced with
+layman wording; (3) SCH-TIP-01 — VIN-toggle case contradiction vs SCH-VIEW-04 fixed
+by adding a "VIN toggle ON" precondition (**underlying spec §4.13-vs-§9 VIN-tooltip
+inconsistency FLAGGED FOR BRANKO** — §4.13 lists tooltip VIN unconditionally, §9 ties
+it to the toggle, default OFF); (4) SCH-START-06 — unobservable conditional expected
+(7:00 AM fallback) removed, moved to notes. Coverage: **147 spec §1–§14 requirement
+lines → case IDs, 0 gaps** (bidirectional check: 0 unmapped requirements, 0
+unreferenced cases) + a **62-entry VIU-confirm register** (`coverage-matrix.md` §D:
+all deferred labels/thresholds/enumerations/visuals/open behaviors). Explicit
+exclusions: §15 future items + **NO API cases authored — spec has NO API contract,
+ask Branko/dev if API coverage is wanted**. Import READY:
 `testrail-import/schedule-v1-testrail-import.csv`/`.xlsx` via `gen_import.py` — pure
 1:1 with the established format (8 named columns + 2 trailing blanks, header
 byte-identical to the fees-discounts / simple-flow / global-search / filters imports —
-equality check PASSED), VIU-word-free + feature-flag-free, deterministic.
-`coverage-matrix.md` maps EVERY spec §1–§14 requirement line → case IDs
-(bidirectional check: 0 unmapped requirements, 0 unreferenced cases) + explicit
-exclusions (§15 future items; **API NOT AUTHORED — spec has NO API contract, ask
-Branko/dev if API cases are wanted**) + the full VIU-confirm register (all deferred
-labels/thresholds/visuals/open behaviors). `testrail-id-map.csv` populated 166/166,
-blank C-ids. TestRail push PENDING explicit user permission (Standing Rule 6). VIU
-pending the QA branch/env (OQ-3) + Epic key (OQ-2, ask at VIU). Design reconciliation
-pending IF Figma ever arrives (OQ-4 — none exists today).**
+equality check PASSED), 166 rows, VIU-word-free + feature-flag-free, deterministic.
+`testrail-id-map.csv` populated 166/166, blank C-ids. TestRail push PENDING explicit
+user permission (Standing Rule 6). VIU pending the QA branch/env (OQ-3) + Epic key
+(OQ-2, ask at VIU). Design reconciliation pending IF Figma ever arrives (OQ-4 — none
+exists today).**
 
 **PO = Branko** (confirmed 2026-07-21; same PO as Global Search & Filters; full name
 TBC). **Epic/Jira key = ⚠️ NOT AVAILABLE — ask the user at VIU.** **QA branch/env +
@@ -30,30 +40,46 @@ feature-flag/settings status = ⚠️ NOT AVAILABLE — ask the user at VIU.**
 **NOT DONE / NEXT:**
 1. **TestRail push PENDING explicit user permission** — `testrail-id-map.csv` has all
    166 internal ids with blank C-ids. No TestRail writes without explicit user
-   permission. After a permitted push: re-merge C-ids into the id-map.
-2. **⚠️ ASK THE USER for the Epic / Jira key** when VIU begins (OQ-2). Do NOT invent.
-3. **⚠️ ASK THE USER for the QA branch / environment + feature-flag/settings status**
-   (OQ-3) — VIU + TestRail push both wait on this.
-4. **VIU pass once a QA env exists** — resolve the VIU-confirm register
-   (`coverage-matrix.md` §D: all spec-quoted labels, ~9 numeric/timing thresholds,
-   the app-deferred enumerations [Status-filter list, department names, palette],
-   all prose-only visuals, and the §D.5 open behaviors). Per Standing Rule 11, ASK
-   which process(es) to run first.
-5. **API cases** — NOT authored (spec v1.0 has no API contract). Ask Branko/dev for
-   the backend contract if API coverage is wanted; `gen_import.py` already routes
-   `api_related` cases to an "API — <leaf>" section per Standing Rule 4.
-6. **If Figma arrives later** (OQ-4) — capture into `design-notes.md` FIRST, then run
-   a design-reconciliation pass over the suite (add design_refs, reconcile conflicts,
-   as done for Filters).
+   permission. Alternative: the user imports the CSV themselves — then populate the
+   id-map C-ids READ-ONLY from TestRail (get_cases, no writes), like Filters. After
+   any permitted push: re-merge C-ids into the id-map.
+2. **VIU PENDING the QA branch** — ⚠️ when VIU begins, ASK THE USER for: the
+   **Epic / Jira key** (OQ-2, do NOT invent), the **QA branch/env +
+   feature-flag/settings status** (OQ-3 — VIU + TestRail push both wait on this),
+   and **which process(es) to run per Standing Rule 11**
+   (BUILD-ACCURATE-WORDING-VIU and/or SPEC-RELEVANCE-RECONCILIATION). Then resolve
+   the 62-entry VIU-confirm register (`coverage-matrix.md` §D: all spec-quoted
+   labels, ~9 numeric/timing thresholds, the app-deferred enumerations
+   [Status-filter list, department names, palette], all prose-only visuals, and the
+   §D.5 open behaviors).
+3. **If Figma/designs arrive** (OQ-4 — user says possible) — capture into
+   `design-notes.md` FIRST, then run a design-reconciliation pass over the suite to
+   tighten the 62 VIU-confirm items + Rule-9 wording (add design_refs, reconcile
+   conflicts, as done for Filters).
+4. **Flag to Branko:** (a) the **spec §4.13-vs-§9 VIN-tooltip inconsistency** (§4.13
+   lists tooltip VIN unconditionally; §9 ties it to the VIN toggle, default OFF —
+   cases currently authored to the toggle-gated reading, SCH-TIP-01/SCH-VIEW-04);
+   (b) the **no-API-contract question** — spec v1.0 has zero endpoints; ask
+   Branko/dev for the backend contract if API coverage is wanted (`gen_import.py`
+   already routes `api_related` cases to an "API — <leaf>" section per Standing
+   Rule 4).
+5. **Expect spec revisions from the PO** — on each spec update, run
+   SPEC-RELEVANCE-RECONCILIATION per Standing Rule 11 (ask first, as always).
 
 ## 0.1 Status detail
 
 - Authoring: **DONE 2026-07-21** (SPEC-ONLY per §0.6's assessment — user launched
-  authoring). Verified before commit: 166/166 cases carry all schema fields; 0
-  duplicate ids/titles; import rows == case count (166); header equality vs all four
-  prior imports PASSED; 0 VIU/flag words in import cells; no invented labels (spec
-  labels verbatim, unpinned items generic + VIU-confirm notes); coverage matrix
-  bidirectional check clean.
+  authoring; commits 2e524ad→51af802). Verified before commit: 166/166 cases carry
+  all schema fields; 0 duplicate ids/titles; import rows == case count (166); header
+  equality vs all four prior imports PASSED; 0 VIU/flag words in import cells; no
+  invented labels (spec labels verbatim, unpinned items generic + VIU-confirm notes);
+  coverage matrix bidirectional check clean (147 requirement lines, 0 gaps).
+- Adversarial review: **DONE 2026-07-21, CLEAN after fixes** (commit 64b1813) — found
+  + fixed 4 defects: SCH-CONF-05 import-cleaner cross-ref mangle; SCH-PERM-07 math
+  notation in reader-facing expected; SCH-TIP-01 VIN-toggle contradiction vs
+  SCH-VIEW-04 (spec §4.13-vs-§9 inconsistency flagged for Branko); SCH-START-06
+  unobservable expected removed. Import CSV/XLSX + id-map regenerated post-fix (166
+  rows, header byte-identical, 0 VIU/flag words, 0 internal-id leaks).
 - Spec: **INGESTED (complete)** → `requirements.md`. Source doc
   (`/root/.claude/uploads/.../beb1e7e0-Schedule.doc`) was a Confluence "Export to
   Word" MHTML / quoted-printable file (`Subject: Exported From Confluence`,
@@ -305,3 +331,8 @@ role-based. No API endpoints appear in the spec.
 - **OQ-5 Spec-internal ambiguities** (see `requirements.md` open-questions): exact
   on-screen label wording (VIU-confirm), Status-filter enumeration + department names
   (source from app), NO API contract, NO dev/phasing plan.
+- **OQ-6 FLAG TO BRANKO (from the 2026-07-21 adversarial review):** (a) spec
+  §4.13-vs-§9 VIN-tooltip inconsistency (§4.13 lists tooltip VIN unconditionally, §9
+  ties it to the VIN toggle, default OFF — cases authored to the toggle-gated
+  reading); (b) the no-API-contract question (does Branko/dev want API cases? supply
+  the backend contract if so).

@@ -464,20 +464,12 @@ process(es) to run before proceeding.
    **CANONICAL STATE DOC (read first for resume):** `build/schedule/PROJECT-STATE.md`
    — single authoritative snapshot (status, spec-ingest facts, authoring-readiness
    assessment §0.6, deliverables index, open questions, env/access TBD, how-to-resume).
-   **STATUS: CASES AUTHORED 2026-07-21 (SPEC-ONLY) — 166 cases/26 sections
-   (cases/cases-A..F-*.json, IDs SCH-<AREA>-NN, all VIU-Pending); import READY
-   (pure 1:1, testrail-import/schedule-v1-testrail-import.csv/.xlsx via
-   gen_import.py — header byte-identical to the other four project imports,
-   equality check PASSED; VIU-word-free + flag-free); coverage-matrix.md maps every
-   spec §1–§14 requirement → cases (bidirectional check clean) + explicit exclusions
-   (§15 future items; **API NOT AUTHORED — spec v1.0 has NO API contract, ask
-   Branko/dev if API cases are wanted**) + the full VIU-confirm register (§D: all
-   spec-quoted labels, thresholds [15-min snap, 3-lane cap, ~300–500ms tooltip,
-   4–7s toast, 960px], app-deferred enumerations, prose-only visuals, open
-   behaviors); testrail-id-map.csv populated 166/166 with blank C-ids. TestRail
-   push PENDING explicit permission; VIU pending QA branch/env (OQ-3) + Epic key
-   (OQ-2, ask at VIU); design reconciliation pending IF Figma arrives (none today).
-   Canonical resume doc: build/schedule/PROJECT-STATE.md.** Same rules as all projects:
+   **STATUS: CASES AUTHORED 2026-07-21 — 166 cases/26 sections SPEC-ONLY,
+   adversarial-reviewed CLEAN (4 defects fixed); import ready (pure 1:1,
+   testrail-import/schedule-v1-testrail-import.csv/.xlsx); TestRail push PENDING
+   permission; VIU pending QA branch (ask Epic key + env + process);
+   design-reconciliation if Figma arrives; VIN-tooltip spec inconsistency flagged
+   for Branko. Canonical resume doc: build/schedule/PROJECT-STATE.md.** Same rules as all projects:
    reuse shared infra (BUILD-ACCURATE-WORDING-VIU-PROCESS,
    SPEC-RELEVANCE-RECONCILIATION-PROCESS, TESTING-RUNBOOK, harness/TestRail patterns);
    deliverable/import format pure 1:1 with testrail-import/*-testrail-import.csv
