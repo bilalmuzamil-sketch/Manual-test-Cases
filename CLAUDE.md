@@ -433,6 +433,52 @@ process(es) to run before proceeding.
    TESTING-RUNBOOK, harness/TestRail patterns); per Standing Rule 11 ASK which
    process(es) to run before any VIU pass. Open questions live in
    requirements.md (OQ-2/3/6/7 QA-side) + the PO sheet (product decisions).
+6. **Schedule project** — Schedule / Technician Scheduling Module (ShopView App): a
+   visual drag-and-drop technician scheduling calendar (top-level nav area) with a
+   left work-order sidebar (mini calendar + searchable/filterable WO cards +
+   approved-only per-line drill-down) and a main schedule grid (Day/Week/Month,
+   department-grouped technician rows + in-grid Unassigned lane); drag a WO/line onto
+   a technician × day/time cell to create shifts, with a scope picker (multi-line
+   orders) and a multi-day spread step producing a linked series (connected banner);
+   plus events, conflict detection (double-booked/weekend/before-hours/after-hours),
+   capacity bars, hover tooltips, overlap lane-stacking (3-lane cap + "+N more"),
+   series-aware deletion, undo toasts, keyboard support; WO labor-roster kept in
+   sync; access gated by a Schedule View/Edit/Delete custom-role tier
+   (Delete⊇Edit⊇View) + a Work Orders: View sidebar dependency; grid rows are
+   department-based, not role-based.
+   **Canonical spec URL (Confluence):**
+   https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/713031682/Schedule
+   (Atlassian-SSO login-walled — reference pointer only, do NOT fetch; content
+   ingested from the exported .doc — a Confluence "Export to Word" MHTML/
+   quoted-printable file, decoded with Python email/quopri + BeautifulSoup).
+   **PO: Branko** (confirmed 2026-07-21; same PO as Global Search & Filters; full name
+   TBC — never mix PO attributions: Schedule=Branko, Global Search=Branko,
+   Filters=Branko, Fees&Discounts=Chris Ward, Simple Flow=Milos).
+   **⚠️ Epic/Jira key: NOT AVAILABLE YET — ASK THE USER when VIU begins** (do NOT
+   invent). **⚠️ QA branch/env + feature-flag/settings status: NOT AVAILABLE YET —
+   ASK THE USER when VIU begins.** **Figma/design: NONE at the moment (user confirmed
+   2026-07-21) — SPEC-ONLY project;** author build-accurate wording (Rule 9) from the
+   spec text where present and mark anything the spec doesn't pin down (exact
+   on-screen labels/states) as "VIU-confirm" to confirm LIVE once the QA branch exists
+   (same pattern as Global Search/Filters); do NOT invent labels.
+   **CANONICAL STATE DOC (read first for resume):** `build/schedule/PROJECT-STATE.md`
+   — single authoritative snapshot (status, spec-ingest facts, authoring-readiness
+   assessment §0.6, deliverables index, open questions, env/access TBD, how-to-resume).
+   **STATUS: ONBOARDING 2026-07-21 — spec INGESTED (requirements.md, complete §1–§15)
+   + project SCAFFOLDED (build/schedule/ with requirements.md, empty cases/ +
+   .gitkeep/README, testrail-id-map.csv header-only, PROJECT-STATE.md). Case authoring
+   PENDING (NOT started — this step = scaffold + spec ingest + completeness assessment
+   only); VIU pending QA branch; TestRail push requires explicit permission.
+   AUTHORING-READINESS: spec is LARGELY SELF-SUFFICIENT to author SPEC-ONLY (unusually
+   label-rich + behavior-complete; NOT a half-spec) — no part is un-authorable for lack
+   of designs; gaps are the normal "confirm exact label/visual LIVE" (VIU-confirm) plus
+   NO API contract + NO dev/phasing plan in the spec. Planned IDs SCH-<AREA>-NN.
+   Canonical resume doc: build/schedule/PROJECT-STATE.md.** Same rules as all projects:
+   reuse shared infra (BUILD-ACCURATE-WORDING-VIU-PROCESS,
+   SPEC-RELEVANCE-RECONCILIATION-PROCESS, TESTING-RUNBOOK, harness/TestRail patterns);
+   deliverable/import format pure 1:1 with testrail-import/*-testrail-import.csv
+   (Standing Rule 16); no TestRail writes without explicit permission (Standing Rule
+   6); per Standing Rule 11 ASK which process(es) to run before any VIU pass.
 
 **STANDING RULES (apply to all projects):**
 1. **Never proceed without the complete set of information needed.** If
