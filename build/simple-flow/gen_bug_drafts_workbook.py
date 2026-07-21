@@ -21,8 +21,11 @@ Sheets:
 Source of truth: build/simple-flow/jira-bug-drafts.md (4 active tickets TICKET 2-5,
 post-Milos-Round-2, updated 2026-07-10 after BUG-5/TICKET 1 was dropped as expected
 behavior) PLUS bug 5, a Round-3 deviation (Milos 2026-07-16 decision; live-observed
-2026-07-16, evidence in viu-round3-2026-07-16/). These are DEFECTS (dev tickets),
-kept OUT of any PO-facing deliverable (standing rule 7).
+2026-07-16, evidence in viu-round3-2026-07-16/) — bug 5 was DROPPED / WON'T FILE on
+2026-07-20 (user decision: vendor-missing-group position is cosmetic only, no
+functional impact; kept in the list for the record, flipped to dropped status).
+These are DEFECTS (dev tickets), kept OUT of any PO-facing deliverable (standing
+rule 7).
 """
 from openpyxl import Workbook
 from openpyxl.styles import Font, Alignment, PatternFill, Border, Side
@@ -166,7 +169,8 @@ bugs = [
                   "5. For comparison, open the \"Bulk Receive\" / \"Receive Vendor "
                   "Parts\" page and confirm the \"Vendor Missing\" group is at the "
                   "top there - that one is correct."),
-        "severity": "Low",
+        "severity": ("DROPPED — WON'T FILE (cosmetic only, no functional impact; "
+                     "user decision 2026-07-20)"),
     },
 ]
 
@@ -235,8 +239,14 @@ internal_map = [
      "Bulk Receive (correct). Evidence viu-round3-2026-07-16/ORDER-RECV-S15878-full.png, "
      "ORDER-RECV-S15878-Aeboro-miss.png (WO Receive) vs BULK-groups-full.png (Bulk "
      "Receive); observations.json.",
-     "OPEN — CONFIRMED deviation. Low (minor UI ordering per PO decision). SF-RCV-05 + "
-     "SF-RCV-07 now marked Deviation. Bulk Receive surface is correct — no change there."),
+     "DROPPED — WON'T FILE (cosmetic only, no functional impact; user decision "
+     "2026-07-20). The Vendor Missing group still appears and functions; only its "
+     "position differs (TOP vs Milos's ruled BOTTOM on the Accept-Delivery / Purchase "
+     "Order Details screen) — purely visual, no functional/data/workflow impact, so "
+     "not filed as a bug. SF-RCV-05 + SF-RCV-07 KEEP Deviation status (the build "
+     "genuinely deviates from the ruling) but are annotated ACCEPTED COSMETIC / "
+     "won't-file, not an open actionable bug. Bulk Receive surface is correct — no "
+     "change there."),
 ]
 
 # ---------------------------------------------------------------------------
@@ -332,8 +342,11 @@ wi.cell(row=note_row, column=1, value=(
     "testrail-id-map.csv (standing rule 8). These are DEFECTS for the dev team (Jira "
     "TICKET 2-5 + the Round-3 deviation under epic SV-7301, Product Area Work Orders) - "
     "NOT filed yet (no Atlassian MCP here; file from the chat app). Kept OUT of any "
-    "PO-facing deliverable (standing rule 7). DROPPED as expected: BUG-5/TICKET 1 "
-    "(reviewer != completer descoped v1, Milos 2026-07-10). CLOSED / not filed: BUG-3 "
+    "PO-facing deliverable (standing rule 7). DROPPED / WON'T FILE: bug 5 "
+    "(vendor-missing-group position — cosmetic only, no functional impact; user "
+    "decision 2026-07-20; SF-RCV-05/07 stay Deviation, annotated accepted-cosmetic) "
+    "and the earlier BUG-5/TICKET 1 (reviewer != completer descoped v1, Milos "
+    "2026-07-10). CLOSED / not filed: BUG-3 "
     "(review-note descoped, Milos R2 Q1), BUG-9/GAP-A (vendorless category-req/"
     "sell-optional intended, Milos R2 Q4), BUG-1/2/4/10.")
     ).alignment = WRAP
@@ -395,8 +408,11 @@ md.append("sourced from `testrail-id-map.csv` (standing rule 8). These are DEFEC
 md.append("dev team (Jira TICKET 2–5 + the Round-3 deviation under epic SV-7301, Product")
 md.append("Area Work Orders) — NOT filed yet (no Atlassian MCP here; file from the chat")
 md.append("app). Kept OUT of any")
-md.append("PO-facing deliverable (standing rule 7). DROPPED as expected: BUG-5/TICKET 1")
-md.append("(reviewer != completer descoped v1, Milos 2026-07-10). CLOSED / not filed:")
+md.append("PO-facing deliverable (standing rule 7). DROPPED / WON'T FILE: bug 5")
+md.append("(vendor-missing-group position — cosmetic only, no functional impact; user")
+md.append("decision 2026-07-20; SF-RCV-05/07 stay Deviation, annotated accepted-cosmetic)")
+md.append("and the earlier BUG-5/TICKET 1 (reviewer != completer descoped v1, Milos")
+md.append("2026-07-10). CLOSED / not filed:")
 md.append("BUG-3 (review-note descoped, Milos R2 Q1), BUG-9/GAP-A (vendorless")
 md.append("category-req/sell-optional intended, Milos R2 Q4), BUG-1/2/4/10.")
 md.append("")

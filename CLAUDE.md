@@ -260,14 +260,16 @@ process(es) to run before proceeding.
    appears in PO list + on grouped Bulk Receive). **Tally 184 ACTIVE (187 authored − 3 retired):
    Verified 151 / VIU-Pending 4 / Blocked-Env 21 / awaiting-Milos 5 / Deviation 3 / Open-Q 0.**
    **SF-RCV-05/07 DEVIATION DEFINITIVELY CONFIRMED** (Accept-Delivery Vendor Missing group still at
-   TOP, should be BOTTOM per Milos — bug draft #5 STAYS OPEN). SF-CORE-15/17 + SF-QB-09 → Blocked-Env
+   TOP, should be BOTTOM per Milos — they KEEP Deviation status; but **bug draft #5 DROPPED — WON'T FILE**
+   as cosmetic-only / no functional impact per user 2026-07-20; the vendor-missing-position thread is
+   CLOSED, accepted-cosmetic, not filed). SF-CORE-15/17 + SF-QB-09 → Blocked-Env
    (invoiced+unreceived-core state not producible: complete≠invoiced/paid + can't order on completed WO;
    QB not connected). Remaining 4 VIU-Pending: SF-CORE-19 (received-core handle-core), SF-RCV-11
    (return-to-line scroll), SF-RCV-12 (other-vendor exclusion), SF-WOP-04 (Waiting-on-Parts column).
    Outstanding: SEND the
    Milos spec-V2.6 sheet (READY), Story-18 re-VIU backlog (needs SV-8353 build +
-   dev-seeded core), 5 unanswered Milos Qs, file Receive-screen bug in Jira, run-325
-   reconcile.
+   dev-seeded core), 5 unanswered Milos Qs, run-325 reconcile. (Receive-screen
+   vendor-missing-position bug draft #5 DROPPED — won't-file, cosmetic, user 2026-07-20.)
    **STATUS: STAGING LIVE-VIU DONE + ADVERSARIALLY AUDITED CLEAN 2026-07-20 (§0-EE;
    tally 184: 151/4/21/5/3 reconciles across all deliverables, live TestRail matches,
    run 325 untouched, retired SF-CORE-05/06/09 confirmed gone, no secrets) + RETIRE

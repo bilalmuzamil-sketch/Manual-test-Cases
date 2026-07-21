@@ -12,12 +12,17 @@
 > **Canonical spec (Confluence):** https://shopview.atlassian.net/wiki/spaces/PM/pages/646021121/Simple+Mode+Streamlined+Work+Order+Completion+Bulk+Receiving
 > (Atlassian-SSO login-walled — reference pointer only; content must be exported/pasted to ingest, do NOT fetch the URL.)
 >
-> **Last updated:** 2026-07-20 (§0-EE: **STAGING LIVE-VIU PASS ADVERSARIALLY AUDITED
-> CLEAN** — tally **151 VIU-Verified / 4 VIU-Pending / 21 Blocked-Env / 5
-> awaiting-Milos / 3 Deviation = 184** reconciles across all deliverables, live TestRail
-> matches, run 325 untouched, retired SF-CORE-05/06/09 confirmed gone, no secrets; see
-> §0-EE. Prior §0-DD: staging LIVE VIU drove +21 to VIU-Verified across 5 batches;
-> spec `_4` / V2.6 APPLIED + audited clean 2026-07-17, §0-BB.)
+> **Last updated:** 2026-07-21 (**BUG DRAFT #5 DROPPED — WON'T FILE** [cosmetic only,
+> no functional impact; user decision 2026-07-20]: the vendor-missing-group POSITION
+> issue on the Accept-Delivery / "Purchase Order Details" screen is purely visual, so
+> the Milos Round-3 vendor-missing-position thread is now **CLOSED as accepted-cosmetic,
+> not filed**; SF-RCV-05/07 KEEP Deviation status [build genuinely deviates] but are
+> annotated accepted-cosmetic. **Tally UNCHANGED = 151 VIU-Verified / 4 VIU-Pending /
+> 21 Blocked-Env / 5 awaiting-Milos / 3 Deviation = 184.** Prior §0-EE 2026-07-20:
+> STAGING LIVE-VIU PASS ADVERSARIALLY AUDITED CLEAN — tally reconciles across all
+> deliverables, live TestRail matches, run 325 untouched, retired SF-CORE-05/06/09
+> confirmed gone, no secrets. §0-DD: staging LIVE VIU drove +21 to VIU-Verified across
+> 5 batches; spec `_4` / V2.6 APPLIED + audited clean 2026-07-17, §0-BB.)
 
 ---
 
@@ -40,7 +45,10 @@ SF-RCV-13, SF-VEND-07/08, SF-REV-14, SF-POSEL-07.)
 **Remaining 4 VIU-Pending:** SF-CORE-19 (needs a received-core resolved via handle-core),
 SF-RCV-11 (return-to-line scroll), SF-RCV-12 (other-vendor-exclusion isolation), SF-WOP-04
 (Waiting-on-Parts column). **Deviations (3) UNCHANGED** incl. SF-RCV-05/07 (Accept-Delivery
-vendor-missing STILL at TOP — definitively re-confirmed 2026-07-20; bug #5 stays OPEN).
+vendor-missing STILL at TOP — build genuinely deviates from Milos's bottom-placement
+ruling, so they KEEP Deviation status; but **bug #5 DROPPED — WON'T FILE**, accepted as
+cosmetic-only / no functional impact per user 2026-07-20; the Milos Round-3
+vendor-missing-position thread is now CLOSED).
 **RETIRE EXECUTED 2026-07-20 (user ruling 2026-07-17 "Retire"):** SF-CORE-05 (C29317) +
 SF-CORE-06 (C29318) + SF-CORE-09 (C29321) deleted from TestRail via delete_case (3/3
 HTTP 200, re-GET 400 = verified gone; before-snapshots + audit in
@@ -82,11 +90,17 @@ What remains:
    → **Action when resuming:** decide whether to re-send just these 5 to Milos (they were
    deliberately dropped from the Round-3 sheet and routed to dev/self-resolution — confirm
    that routing or re-ask).
-2. **File the Round-3 dev bug in Jira (SV-7301).** LIVE VIU shows the Receive/Accept-Delivery
-   screen renders the "Vendor Missing" group at the **TOP**; per Milos's ruling it should be
-   at the **BOTTOM** (Bulk Receive at TOP is correct). Draft is ready in
-   `SimpleFlow_Bug-Drafts.xlsx` (bug #5); affects **SF-RCV-05 / C29373** and
-   **SF-RCV-07 / C29375**. Needs Atlassian access (fresh session — no Atlassian in this env).
+2. ~~File the Round-3 dev bug in Jira (SV-7301).~~ **CLOSED 2026-07-20 — bug #5 DROPPED /
+   WON'T FILE (user decision).** LIVE VIU shows the Receive/Accept-Delivery screen renders
+   the "Vendor Missing" group at the **TOP** whereas Milos's ruling was **BOTTOM** (Bulk
+   Receive at TOP is correct). User ruled this is **PURELY VISUAL** — the group still
+   appears and functions; only its position differs, so there is no functional/data/workflow
+   impact → **not filed as a bug; bug draft #5 dropped** (kept in
+   `SimpleFlow_Bug-Drafts.xlsx`/`.md` for the record, flipped to DROPPED status). The Milos
+   Round-3 vendor-missing-position thread is now **CLOSED (accepted-cosmetic)**. Affected
+   **SF-RCV-05 / C29373** and **SF-RCV-07 / C29375** KEEP Deviation status (build genuinely
+   deviates from the ruling) but are annotated accepted-cosmetic/won't-file in their case
+   JSON. No TestRail change needed — case wording already reflects the intended behavior.
 3. **Run 325 (Ayesha Khan) has drifted.** It now reads roughly **96 Passed / 15 Failed /
    17 Blocked / 28 Untested** (was 48/6/13/89); user ID 5 logged Passed results on 07-14/07-15.
    → **Action:** reconcile our findings against the new run-325 status if the user wants it —
@@ -146,9 +160,11 @@ self-audit (Standing Rule 15) independently re-checked the pass and every delive
     + can't order parts on a completed WO) + **SF-QB-09** (QuickBooks not connected;
     `/api/quickbooks/status` 404) + the standing QB/invoiced/merge/VIN-less residue.
   - **Deviations (3):** **SF-RCV-05/07** — Accept-Delivery **Vendor Missing group STILL AT
-    TOP** (should be BOTTOM per Milos); the Milos Round-3 loop is **definitively CLOSED as
-    NOT FIXED** — **bug draft #5 STAYS OPEN to file in Jira**; plus **SF-SET-03** (no Create
-    Purchase Orders toggle).
+    TOP** (should be BOTTOM per Milos); the build genuinely deviates so they KEEP Deviation
+    status, but the Milos Round-3 vendor-missing-position loop is **CLOSED as
+    accepted-cosmetic (user decision 2026-07-20)** — **bug draft #5 DROPPED / WON'T FILE**
+    (purely visual, no functional impact); plus **SF-SET-03** (no Create Purchase Orders
+    toggle).
   - **5 awaiting-Milos** (policy Qs: SF-SET-08/COMP-06/REV-11/UX-04/QB-02) — the **Milos
     spec-V2.6 question sheet is READY to send** (`PO-Questions-Milos-SpecV26_2026-07-17.xlsx`/`.md`).
 - **Env note (disposable residue, reversible in-app):** ZZAUTOTEST WO **095497aa
