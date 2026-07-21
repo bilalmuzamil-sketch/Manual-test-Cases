@@ -464,15 +464,19 @@ process(es) to run before proceeding.
    **CANONICAL STATE DOC (read first for resume):** `build/schedule/PROJECT-STATE.md`
    — single authoritative snapshot (status, spec-ingest facts, authoring-readiness
    assessment §0.6, deliverables index, open questions, env/access TBD, how-to-resume).
-   **STATUS: ONBOARDING 2026-07-21 — spec INGESTED (requirements.md, complete §1–§15)
-   + project SCAFFOLDED (build/schedule/ with requirements.md, empty cases/ +
-   .gitkeep/README, testrail-id-map.csv header-only, PROJECT-STATE.md). Case authoring
-   PENDING (NOT started — this step = scaffold + spec ingest + completeness assessment
-   only); VIU pending QA branch; TestRail push requires explicit permission.
-   AUTHORING-READINESS: spec is LARGELY SELF-SUFFICIENT to author SPEC-ONLY (unusually
-   label-rich + behavior-complete; NOT a half-spec) — no part is un-authorable for lack
-   of designs; gaps are the normal "confirm exact label/visual LIVE" (VIU-confirm) plus
-   NO API contract + NO dev/phasing plan in the spec. Planned IDs SCH-<AREA>-NN.
+   **STATUS: CASES AUTHORED 2026-07-21 (SPEC-ONLY) — 166 cases/26 sections
+   (cases/cases-A..F-*.json, IDs SCH-<AREA>-NN, all VIU-Pending); import READY
+   (pure 1:1, testrail-import/schedule-v1-testrail-import.csv/.xlsx via
+   gen_import.py — header byte-identical to the other four project imports,
+   equality check PASSED; VIU-word-free + flag-free); coverage-matrix.md maps every
+   spec §1–§14 requirement → cases (bidirectional check clean) + explicit exclusions
+   (§15 future items; **API NOT AUTHORED — spec v1.0 has NO API contract, ask
+   Branko/dev if API cases are wanted**) + the full VIU-confirm register (§D: all
+   spec-quoted labels, thresholds [15-min snap, 3-lane cap, ~300–500ms tooltip,
+   4–7s toast, 960px], app-deferred enumerations, prose-only visuals, open
+   behaviors); testrail-id-map.csv populated 166/166 with blank C-ids. TestRail
+   push PENDING explicit permission; VIU pending QA branch/env (OQ-3) + Epic key
+   (OQ-2, ask at VIU); design reconciliation pending IF Figma arrives (none today).
    Canonical resume doc: build/schedule/PROJECT-STATE.md.** Same rules as all projects:
    reuse shared infra (BUILD-ACCURATE-WORDING-VIU-PROCESS,
    SPEC-RELEVANCE-RECONCILIATION-PROCESS, TESTING-RUNBOOK, harness/TestRail patterns);

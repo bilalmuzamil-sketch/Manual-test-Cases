@@ -1,26 +1,31 @@
-# Schedule — cases/ (authoring PENDING)
+# Schedule — cases/ (AUTHORED 2026-07-21 — 166 cases, SPEC-ONLY)
 
-This folder will hold the authored test-case source for the **Schedule** project
-(ShopView App · Technician Scheduling Module), one JSON file per area group, with
-internal IDs of the form `SCH-<AREA>-NN` (mirroring the `GS-`/`FLT-`/`SF-`/`FD-`
-conventions of the other projects).
+The authored test-case source for the **Schedule** project (ShopView App ·
+Technician Scheduling Module): **166 cases across 26 sections**, one JSON file per
+area group, internal IDs `SCH-<AREA>-NN` (mirroring the `GS-`/`FLT-`/`SF-`/`FD-`
+conventions). Schema is identical to `build/filters/cases/*.json`.
 
-**STATUS: EMPTY — authoring has NOT started yet.**
+| File | Areas | Cases |
+|---|---|---|
+| `cases-A-navigation-sidebar.json` | Navigation & Layout · Mini Calendar · WO List & Search · WO Filters · Line Drill-Down | 30 |
+| `cases-B-dnd-scope-spread-series.json` | Drag-and-Drop · Scope Picker · Start Times & Unassigned · Multi-Day Spread · Series & Banners | 36 |
+| `cases-C-blocks-lanes-dayview-modal.json` | Shift Block Anatomy · Lane Stacking · Day View Timeline · Shift Detail Modal | 25 |
+| `cases-D-events-conflicts-capacity-tooltips.json` | Events · Conflict Detection · Capacity Bars · Hover Tooltips | 23 |
+| `cases-E-toolbar-views-interactions.json` | Grid Toolbar · Filter and Display / View Options · Reassignment & Context Menu · Deletion/Series/Undo · Keyboard · Color System | 35 |
+| `cases-F-permissions-edge.json` | Permissions (§14) · Edge Cases & Responsiveness | 17 |
 
-- This onboarding step was **SCAFFOLD + SPEC INGEST + COMPLETENESS ASSESSMENT ONLY**.
-  Test cases are authored **after** the user reviews the ingested spec
-  (`../requirements.md`) and confirms the authoring plan.
-- **VIU (live build-accurate verification) comes later**, once a QA branch /
-  environment exists for Schedule (currently unknown — ask the user at VIU).
-- When authored: follow Standing Rule 9 (build-accurate, layman wording), Standing
-  Rule 4 (any API-touching case → an "API"-titled section — note: the spec currently
-  contains NO API endpoints/methods/status codes, so API-section cases may not apply
-  unless a backend contract is provided), Standing Rule 16 (import format pure 1:1
-  with `testrail-import/*-testrail-import.csv`), and Standing Rule 8 (TestRail Case ID
-  + link columns in every deliverable, sourced from `../testrail-id-map.csv`).
-- **This is a SPEC-ONLY project right now** — no Figma/designs were provided. Any exact
-  on-screen label/state the spec does not pin down must be authored as **"VIU-confirm"**
-  and confirmed LIVE at VIU. Do NOT invent labels.
+Rules applied:
+- **SPEC-ONLY** (no Figma/designs exist — OQ-4): wording uses the spec's own labels
+  verbatim; anything the spec does not pin is written generically with a
+  **VIU-confirm** note (see `../coverage-matrix.md` §D for the full register). No
+  labels invented (Standing Rules 1/9). Every case is `viu_status: VIU-Pending`.
+- **NO API cases** (Standing Rule 4): the spec v1.0 contains no API contract —
+  explicit exclusion recorded in `../coverage-matrix.md` §C. All cases are
+  `api_related: false`.
+- Import: `python3 ../gen_import.py` →
+  `testrail-import/schedule-v1-testrail-import.csv`/`.xlsx` (pure 1:1 format,
+  Standing Rule 16) + `../testrail-id-map.csv` (Standing Rule 8; C-ids blank until a
+  permitted TestRail push — re-merge C-ids after any rerun).
+- **No TestRail writes without explicit user permission** (Standing Rule 6).
 
-See `../PROJECT-STATE.md` (canonical resume doc) for status, the plan, and
-how-to-resume.
+See `../PROJECT-STATE.md` (canonical resume doc) for status and how-to-resume.

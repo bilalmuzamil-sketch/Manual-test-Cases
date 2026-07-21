@@ -7,12 +7,20 @@
 
 ## 0. STATUS / WHAT'S LEFT TO DO — read first (Last updated 2026-07-21)
 
-**STATUS: ONBOARDING — spec INGESTED, project SCAFFOLDED. Case authoring PENDING (has
-NOT started — this step was scaffold + spec ingest + completeness assessment only).
-No cases authored yet; `cases/` is empty. TestRail push requires explicit user
-permission (Standing Rule 6). VIU pending a QA branch/environment (unknown). All
-deliverables/imports MUST be produced pure 1:1 with the established
-`testrail-import/*-testrail-import.csv` format (Standing Rule 16).**
+**STATUS: CASES AUTHORED 2026-07-21 (SPEC-ONLY) — 166 cases / 26 sections authored
+from the v1.0 spec (`cases/cases-A..F-*.json`, IDs `SCH-<AREA>-NN`). Import READY:
+`testrail-import/schedule-v1-testrail-import.csv`/`.xlsx` via `gen_import.py` — pure
+1:1 with the established format (8 named columns + 2 trailing blanks, header
+byte-identical to the fees-discounts / simple-flow / global-search / filters imports —
+equality check PASSED), VIU-word-free + feature-flag-free, deterministic.
+`coverage-matrix.md` maps EVERY spec §1–§14 requirement line → case IDs
+(bidirectional check: 0 unmapped requirements, 0 unreferenced cases) + explicit
+exclusions (§15 future items; **API NOT AUTHORED — spec has NO API contract, ask
+Branko/dev if API cases are wanted**) + the full VIU-confirm register (all deferred
+labels/thresholds/visuals/open behaviors). `testrail-id-map.csv` populated 166/166,
+blank C-ids. TestRail push PENDING explicit user permission (Standing Rule 6). VIU
+pending the QA branch/env (OQ-3) + Epic key (OQ-2, ask at VIU). Design reconciliation
+pending IF Figma ever arrives (OQ-4 — none exists today).**
 
 **PO = Branko** (confirmed 2026-07-21; same PO as Global Search & Filters; full name
 TBC). **Epic/Jira key = ⚠️ NOT AVAILABLE — ask the user at VIU.** **QA branch/env +
@@ -20,24 +28,32 @@ feature-flag/settings status = ⚠️ NOT AVAILABLE — ask the user at VIU.**
 **Figma/design = NONE at the moment (user confirmed 2026-07-21) — SPEC-ONLY project.**
 
 **NOT DONE / NEXT:**
-1. **Authoring PENDING** — do NOT author until the user reviews the spec
-   (`requirements.md`) and launches authoring. See §0.6 for the authoring-readiness
-   assessment (spec is largely self-sufficient at PRD level; specifics below).
-2. **⚠️ ASK THE USER for the Epic / Jira key** when authoring/VIU begins (OQ-2). Do NOT
-   invent.
+1. **TestRail push PENDING explicit user permission** — `testrail-id-map.csv` has all
+   166 internal ids with blank C-ids. No TestRail writes without explicit user
+   permission. After a permitted push: re-merge C-ids into the id-map.
+2. **⚠️ ASK THE USER for the Epic / Jira key** when VIU begins (OQ-2). Do NOT invent.
 3. **⚠️ ASK THE USER for the QA branch / environment + feature-flag/settings status**
    (OQ-3) — VIU + TestRail push both wait on this.
-4. **No Figma/designs** (OQ-4, user-confirmed) — SPEC-ONLY. Author from the spec;
-   mark every unpinned on-screen label/state as **"VIU-confirm"** and confirm LIVE at
-   VIU (same pattern as Global Search / Filters VIU-confirm items). Do NOT invent
-   labels. If the user later provides Figma, capture it into a `design-notes.md` first.
-5. **Per Standing Rule 11, ASK which process(es) to run** (BUILD-ACCURATE-WORDING-VIU
-   and/or SPEC-RELEVANCE-RECONCILIATION) before any VIU pass.
-6. **TestRail push PENDING explicit user permission** — `testrail-id-map.csv` has the
-   header only (no C-ids). No TestRail writes without explicit user permission.
+4. **VIU pass once a QA env exists** — resolve the VIU-confirm register
+   (`coverage-matrix.md` §D: all spec-quoted labels, ~9 numeric/timing thresholds,
+   the app-deferred enumerations [Status-filter list, department names, palette],
+   all prose-only visuals, and the §D.5 open behaviors). Per Standing Rule 11, ASK
+   which process(es) to run first.
+5. **API cases** — NOT authored (spec v1.0 has no API contract). Ask Branko/dev for
+   the backend contract if API coverage is wanted; `gen_import.py` already routes
+   `api_related` cases to an "API — <leaf>" section per Standing Rule 4.
+6. **If Figma arrives later** (OQ-4) — capture into `design-notes.md` FIRST, then run
+   a design-reconciliation pass over the suite (add design_refs, reconcile conflicts,
+   as done for Filters).
 
 ## 0.1 Status detail
 
+- Authoring: **DONE 2026-07-21** (SPEC-ONLY per §0.6's assessment — user launched
+  authoring). Verified before commit: 166/166 cases carry all schema fields; 0
+  duplicate ids/titles; import rows == case count (166); header equality vs all four
+  prior imports PASSED; 0 VIU/flag words in import cells; no invented labels (spec
+  labels verbatim, unpinned items generic + VIU-confirm notes); coverage matrix
+  bidirectional check clean.
 - Spec: **INGESTED (complete)** → `requirements.md`. Source doc
   (`/root/.claude/uploads/.../beb1e7e0-Schedule.doc`) was a Confluence "Export to
   Word" MHTML / quoted-printable file (`Subject: Exported From Confluence`,
@@ -51,11 +67,19 @@ feature-flag/settings status = ⚠️ NOT AVAILABLE — ask the user at VIU.**
   same family as every prior ShopView spec.
 - Design: **NONE (user confirmed 2026-07-21).** SPEC-ONLY. No `design-notes.md` (no
   Figma to capture). The spec has no images/Figma links/screenshot refs.
-- Cases: **NOT AUTHORED.** `cases/` holds only `.gitkeep` + `README.md`. Planned
-  internal IDs `SCH-<AREA>-NN`.
-- Deliverables: only the scaffold exists (see §3). No import/coverage-matrix yet
-  (built at authoring time).
-- TestRail: **NOT pushed** — `testrail-id-map.csv` = header row only. **No TestRail
+- Cases: **AUTHORED 2026-07-21 — 166 cases / 26 sections**, SPEC-ONLY, in
+  `cases/cases-A..F-*.json` (internal IDs `SCH-<AREA>-NN`; schema identical to the
+  Filters/Global-Search case JSON; every case `viu_status: VIU-Pending`,
+  `api_related: false`, `design_ref: none - SPEC-ONLY`). Per-file split:
+  A navigation+sidebar 30 · B dnd/scope/start/spread/series 36 · C
+  blocks/lanes/day-view/modal 25 · D events/conflicts/capacity/tooltips 23 · E
+  toolbar/views/reassign/delete/keyboard/color 35 · F permissions/edge 17.
+- Deliverables: `coverage-matrix.md` (every §1–§14 requirement → cases; §15 + API +
+  metrics exclusions; VIU-confirm register §D), `gen_import.py`, canonical import
+  `testrail-import/schedule-v1-testrail-import.csv`/`.xlsx` (166 rows; header
+  byte-identical to the other four project imports — verified), `testrail-id-map.csv`
+  (166 rows, blank C-ids).
+- TestRail: **NOT pushed** — `testrail-id-map.csv` C-id column blank. **No TestRail
   writes without explicit user permission** (Standing Rule 6).
 - Env/VIU: **NOT available yet** — QA branch/env + flag/settings status unknown. VIU
   deferred until it ships to a testable environment.
@@ -63,10 +87,8 @@ feature-flag/settings status = ⚠️ NOT AVAILABLE — ask the user at VIU.**
 
 ## 0.5 What is blocking / awaiting
 
-Onboarding is done; remaining items:
-- **User review of the spec + launch of authoring** (this step deliberately did NOT
-  author — Standing Rule 1, no authoring on a half-spec; see §0.6).
-- **⚠️ Epic / Jira key (OQ-2)** — ASK THE USER when authoring/VIU begins.
+Onboarding + authoring are done; remaining items:
+- **⚠️ Epic / Jira key (OQ-2)** — ASK THE USER when VIU begins.
 - **⚠️ QA branch / env + feature-flag/settings status (OQ-3)** — ASK THE USER; VIU +
   TestRail push wait on this.
 - **Figma/designs (OQ-4)** — NONE at the moment (user-confirmed). If tighter
@@ -178,16 +200,19 @@ role-based. No API endpoints appear in the spec.
 
 - `requirements.md` — COMPLETE structured spec (§1–§15) + onboarding metadata + open
   questions (PO resolved = Branko; Epic key + QA branch = ask at VIU; no designs).
-- `cases/` — **EMPTY** (`.gitkeep` + `README.md`). Authoring pending; planned IDs
-  `SCH-<AREA>-NN`.
-- `testrail-id-map.csv` — header only (`internal_id,testrail_case_id,title,section`);
+- `cases/cases-A..F-*.json` — **166 authored cases / 26 sections** (SPEC-ONLY,
+  2026-07-21), IDs `SCH-<AREA>-NN`, all `VIU-Pending`.
+- `coverage-matrix.md` — every spec §1–§14 requirement → case IDs; §C explicit
+  exclusions (§15 items, **API NOT AUTHORED — no contract in spec**, §13 metrics,
+  no mobile spec); §D VIU-confirm register (labels/thresholds/enumerations/visuals/
+  open behaviors).
+- `gen_import.py` — canonical import generator (Standing Rules 4/16 baked in).
+- `testrail-import/schedule-v1-testrail-import.csv`/`.xlsx` — 166 rows, pure 1:1
+  format (header byte-identical to the other four project imports — verified),
+  VIU-word-free + feature-flag-free.
+- `testrail-id-map.csv` — 166 rows (`internal_id,testrail_case_id,title,section`);
   the sole traceability source per Standing Rule 8; C-ids blank (not pushed).
 - `PROJECT-STATE.md` — this file (canonical resume doc).
-- *(To be built at authoring time, mirroring Global Search / Filters:)* a
-  `coverage-matrix.md`, `cases/*.json`, a `gen_import.py`, and
-  `testrail-import/schedule-v1-testrail-import.csv`/`.xlsx` produced **pure 1:1** with
-  the established import format (8 named columns + 2 trailing blank columns, header
-  byte-identical, no ID columns, VIU-word-free + feature-flag-free) — Standing Rule 16.
 
 ## 4. Shared infrastructure to reuse (do NOT re-invent)
 
@@ -233,25 +258,27 @@ role-based. No API endpoints appear in the spec.
 
 ## 6. How to resume (ordered)
 
-1. Read this file, then `requirements.md` (full spec). No `design-notes.md` (no
-   designs) and no `coverage-matrix.md` yet (built at authoring time).
-2. Confirm the user wants to **start authoring** (this step deliberately did not).
-   Per §0.6 the spec is self-sufficient to author SPEC-ONLY with VIU-confirm tags.
-3. When authoring: create `cases/*.json` (`SCH-<AREA>-NN`), a `coverage-matrix.md`
-   (every in-scope spec req → case IDs; list out-of-scope §15 items + VIU-confirm
-   placeholders), a `gen_import.py`, and the import CSV/XLSX **pure 1:1** with the
-   established `testrail-import/*` format (Standing Rule 16). Populate
-   `testrail-id-map.csv` (blank C-ids until pushed).
-4. **⚠️ ASK THE USER for the Epic/Jira key (OQ-2)** and the **QA branch/env +
+1. Read this file (§0 first), then `coverage-matrix.md` (coverage + exclusions +
+   VIU-confirm register), then `requirements.md` for spec detail. No
+   `design-notes.md` (no designs exist).
+2. Cases live in `cases/cases-A..F-*.json`; regenerate the import + id-map any time
+   with `python3 build/schedule/gen_import.py` (deterministic; runs its own sanity
+   checks — dupes, VIU/flag words, empty fields).
+3. **⚠️ ASK THE USER for the Epic/Jira key (OQ-2)** and the **QA branch/env +
    flag/settings status (OQ-3)** before/at VIU. If the user later provides Figma,
-   capture it into `design-notes.md` first.
-5. Per **Standing Rule 11**, ASK which process(es) to run (BUILD-ACCURATE-WORDING-VIU
+   capture it into `design-notes.md` first and run a design-reconciliation pass.
+4. Per **Standing Rule 11**, ASK which process(es) to run (BUILD-ACCURATE-WORDING-VIU
    and/or SPEC-RELEVANCE-RECONCILIATION) before the VIU pass.
-6. VIU pass once on a QA env: verify LIVE with evidence (Standing Rules 10–14), resolve
-   the VIU-confirm placeholders, correct wording to the real build, then regenerate the
-   import + populate `testrail-id-map.csv`.
-7. **TestRail push only after** the feature is on a QA env AND the user grants explicit
-   TestRail permission (Standing Rule 6).
+5. VIU pass once on a QA env: verify LIVE with evidence (Standing Rules 10–14),
+   resolve the VIU-confirm register (`coverage-matrix.md` §D), correct wording to the
+   real build, then regenerate the import.
+6. **TestRail push only after** the feature is on a QA env AND the user grants
+   explicit TestRail permission (Standing Rule 6). After the push, re-merge the
+   assigned C-ids into `testrail-id-map.csv` (gen_import.py blanks the C-id column
+   on rerun — same gotcha as Filters).
+7. If API cases become in-scope (Branko/dev supplies the contract): author them with
+   `api_related: true` — the generator already routes them to an "API — <leaf>"
+   section (Standing Rule 4).
 
 ## 7. Env / access facts
 
