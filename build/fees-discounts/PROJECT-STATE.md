@@ -5,7 +5,28 @@
 > re-discovery.
 > **Canonical spec (Confluence):** https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/622297094/Fees+Discounts+V1
 > (Atlassian-SSO login-walled — reference pointer only; content must be exported/pasted to ingest, do NOT fetch the URL.)
-> **Last updated:** 2026-07-20 (§0.0k: **DUPLICATE-PAIR RETIREMENT EXECUTED** — user
+> **Last updated:** 2026-07-21 (§0.0l: **SV-8456 UI-CORRECTION STAGING LIVE VIU** —
+> frontend-only F&D UI corrections verified live on staging. **FUNCTIONALITY INTACT**
+> (template create/edit/delete, apply-to-WO + apply-to-Part-Sale, calc correct) and the
+> **PERMISSION PIVOT CONFIRMED**: F&D settings now gated by **Settings → Service** (was
+> Finance). Seeded 2 throwaway custom roles (Service-only / Finance-only) on Tech, live-
+> observed: Service user sees "Fees & Discounts" under SERVICE + creates/edits/deletes +
+> convenience toggle; Finance-only user has NO F&D nav item (FINANCE now shows only
+> Payment Methods) and /administration/adjustment-templates bounces to /workorders. All 8
+> UI corrections observed matching the ticket (Taxable Yes/No dropdown; Auto-apply
+> checkbox+caption; plain-text left-aligned tables; WO card "Work Order Fees & Discounts"
+> above Financial Info; Part-sale card above Financial Info; customer tab styling; jur.
+> note + convenience banner preserved) — **0 deviations**. **34 cases reworded to the
+> SV-8456 design + pushed via update_case 34/34, all 200 + re-GET MATCH** (statuses
+> unchanged — build matches ticket). **C29922/C29923** (dev-authored automated, TestRail
+> section 3963 "Permissions (Story 13)") reconciled into id-map (FD-PERM-012/013) +
+> mirrored locally as dev_authored (excluded from import/tracker; NOT re-pushed) — no
+> duplicates. **TALLY UNCHANGED: 151 VIU-Verified / 12 VIU-Deviation / 20 Blocked-Env /
+> 1 VIU-Pending = 184 active** (+2 dev-authored reconciled). Tech restored to Technician;
+> all 4 ZZAUTOTEST roles deleted (204); ZZAUTOTEST templates/WO/part-sale fees removed.
+> Evidence + audit: `viu-sv8456-2026-07-21/` (findings.md + testrail-log.md + 27 PNG +
+> tr-snapshots/). See §0.0l.)
+> — prior §0.0k: 2026-07-20 (§0.0k: **DUPLICATE-PAIR RETIREMENT EXECUTED** — user
 > ruling keep FD-VAL-007 (C28605) / retire FD-CUST-016 (C28500). `delete_case/28500`
 > HTTP 200 → verify re-GET HTTP 400 "not a valid test case" = gone; C28605 spot-checked
 > HTTP 200 (intact); NOTHING else deleted, no run writes. Case body kept locally marked
@@ -152,7 +173,63 @@ This section is the complete snapshot: current tally, the applied Round-2 action
 everything else open, and the ordered resume checklist. The rest of this doc holds the
 standing detail. **NO TestRail catch-up is outstanding** — all authored wording is live.
 
-### 0.0k DUPLICATE-PAIR RETIREMENT EXECUTED — 2026-07-20 (NEWEST event)
+### 0.0l SV-8456 UI-CORRECTION — STAGING LIVE VIU — 2026-07-21 (NEWEST event)
+
+Frontend-only F&D UI corrections (ticket SV-8456) verified LIVE on staging
+(`app.staging.shopview.com`, org d55bc308, flags FeesAndDiscounts+PartSales+QuickBooks
+ON). Method: boot2 Chromium as admin + two seeded custom roles; evidence captured this
+run in `viu-sv8456-2026-07-21/`.
+
+- **FUNCTIONALITY INTACT (Task 1):** admin template **create → edit → delete** via UI
+  (Taxable Yes/No dropdown + Auto-apply checkbox persisted correctly); **apply-to-WO**
+  (S3-25095, +$50 whole-WO fee → subtotal $3,045.31→$3,095.31, GST +$2.50, total +$52.50
+  — calc correct); **apply-to-Part-Sale** (P3-1081, +$20 whole-sale fee persists). No
+  regression.
+- **PERMISSION PIVOT CONFIRMED (Task 2, release-critical):** seeded ServiceFull
+  (settingsService, no settingsFinance) + FinanceFull (settingsFinance, no
+  settingsService) roles (else = full Admin atom set) and assigned to Tech (quick-login)
+  in turn. **Service user:** F&D under SERVICE (below Canned Lines), other Service items
+  present, created+deleted a template live, convenience toggle present, FINANCE nav
+  absent. **Finance-only user:** no F&D nav item anywhere (FINANCE shows only Payment
+  Methods), /administration/adjustment-templates bounces to /workorders (blocked). Atom =
+  `settingsService` (19dc6140), was `settingsFinance` (294c543c). Tech restored to
+  Technician (50bf6a0d); all 4 ZZAUTOTEST roles deleted (204).
+- **UI CORRECTIONS (Task 3):** all 8 observed matching the ticket, **0 deviations** —
+  nav Service/below-Canned-Lines; Taxable Yes/No dropdown; Auto-apply checkbox + "When
+  on…" caption ("Auto-apply to all new work orders at this location"); settings +
+  customer tables plain-text/left-aligned (no badges); WO card retitled **"Work Order
+  Fees & Discounts"** ABOVE Financial Info; Part-sale card **"Parts Sale Fees &
+  Discounts"** ABOVE Financial Info; customer tab link-existing + Remove, no convenience
+  toggle; jurisdiction note (admin+WO+Part-sale dialogs) + convenience-fee banner
+  preserved.
+- **CASE UPDATES (Task 4):** **34 cases** reworded to the SV-8456 design and pushed via
+  `update_case` — **34/34, all 200 + re-GET MATCH** (snapshots in
+  `viu-sv8456-2026-07-21/tr-snapshots/`; log `testrail-log.md`). Changed: FD-WO-002/016,
+  FD-FIN-004/005, FD-EDIT-001, FD-REMOVE-001/002, FD-STACK-003, FD-LABOR-006,
+  FD-CUST-009/011/012/013, FD-TMPL-001/002/003/004/005/009/012/016/018, FD-PSALE-001,
+  FD-PERM-007, FD-PROC-006/007/008, FD-CALC-009/011/013/014/015/016, FD-VAL-007.
+  Key pivots: **FD-PERM-007 (C28591)** + **FD-TMPL-016 (C28517)** titles/expected
+  Settings→Finance → **Settings→Service** (+ observed nav-absent/route-bounce behaviour);
+  **FD-TMPL-001 (C28502)** nav Administration→Finance/below-Payment-Methods →
+  Administration→Service/below-Canned-Lines. **No status flips** — every changed case was
+  already VIU-Verified (or its Deviation is unrelated to SV-8456, e.g. FD-CALC-013/
+  FD-PROC-008 Processing-Fee tax) and the build MATCHES the ticket.
+- **C29922 / C29923 RECONCILED (not duplicated):** dev-authored automated cases in
+  TestRail section **3963 "Permissions (Story 13)"** (C29922 = settingsService gating;
+  C29923 = Service-admin delete flow; empty steps/expected stubs). Added to
+  `testrail-id-map.csv` as **FD-PERM-012 = C29922 / FD-PERM-013 = C29923** and mirrored
+  locally in `group-C` as `dev_authored:true` bodies (gen_import/gen_blockers/
+  build_workbook now exclude `dev_authored`, so the **184 authored tally is unchanged**;
+  they are NOT re-pushed to TestRail). Our FD-PERM-007/FD-TMPL-016 (manual) are distinct
+  and were updated, not duplicated.
+- **TALLY UNCHANGED: 151 VIU-Verified / 12 VIU-Deviation / 20 Blocked-Env / 1 VIU-Pending
+  = 184 active** (+2 dev-authored reconciled = 186 in-suite). Import 184 rows
+  (VIU/flag-word 0/0); Blockers Tracker 151/12/1/20 = 184. id-map 186 rows.
+- **Cleanup:** all ZZAUTOTEST templates/WO fee/part-sale fee removed (verified gone); WO
+  S3-25095 + part-sale P3-1081 restored to baseline; Tech restored; roles deleted.
+  Secrets stayed in /tmp; no run writes.
+
+### 0.0k DUPLICATE-PAIR RETIREMENT EXECUTED — 2026-07-20 (prior event)
 
 User ruled on the FD-CUST-016 / FD-VAL-007 duplicate pair: **keep FD-VAL-007 (C28605),
 retire/delete FD-CUST-016 (C28500).** Executed per the house retirement precedent used

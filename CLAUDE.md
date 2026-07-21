@@ -151,8 +151,23 @@ process(es) to run before proceeding.
    Retired; deliverables regenerated over 184. Dup-pair thread CLOSED. Audit:
    `build/fees-discounts/retire-2026-07-20/testrail-log.md`.
    **CURRENT TALLY: 151 VIU-Verified / 12 VIU-Deviation / 20 Blocked-Env / 1 VIU-Pending
-   (FD-PART-005) = 184 ACTIVE** (185 authored − 1 retired; was 152/12/0/20/1 = 185 pre-retire;
-   prior qb tally 135/15/12/20/1 = 183).
+   (FD-PART-005) = 184 ACTIVE** (185 authored − 1 retired; +2 dev-authored reconciled =
+   186 in-suite; was 152/12/0/20/1 = 185 pre-retire; prior qb tally 135/15/12/20/1 = 183).
+   **SV-8456 UI-CORRECTION STAGING LIVE VIU DONE 2026-07-21 (§0.0l):** frontend-only F&D
+   UI corrections verified live — **FUNCTIONALITY INTACT** (template CRUD + apply-to-WO/
+   Part-Sale + calc correct) and the **PERMISSION PIVOT CONFIRMED** (F&D settings now
+   gated by **Settings → Service** [atom settingsService], was Finance: Service-user
+   sees+manages+convenience toggle; Finance-only user has no F&D nav item, FINANCE shows
+   only Payment Methods, /administration/adjustment-templates bounces to /workorders). All
+   8 UI corrections match the ticket, 0 deviations (Taxable Yes/No dropdown; Auto-apply
+   checkbox+caption; plain-text left-aligned tables; WO card "Work Order Fees & Discounts"
+   above Financial Info; Part-sale card above Financial Info; customer tab; jur.note +
+   convenience banner preserved). **34 cases reworded + pushed update_case 34/34, 200 +
+   re-GET MATCH** (statuses unchanged). **C29922/C29923** (dev-authored automated, TestRail
+   section 3963 Permissions Story 13) reconciled into id-map (FD-PERM-012/013) + mirrored
+   locally (dev_authored, excluded from import/tracker) — no duplicates. Tech restored to
+   Technician; 4 ZZAUTOTEST roles deleted; test data removed. Evidence:
+   `build/fees-discounts/viu-sv8456-2026-07-21/`.
    **This staging LIVE-VIU pass was ADVERSARIALLY AUDITED CLEAN 2026-07-20 (§0.0j):**
    every VIU-Verified flip is evidence-backed, the 152/12/0/20/1 = 185 tally reconciles
    across all deliverables, live TestRail matches, run 325 untouched, no secrets. STILL
