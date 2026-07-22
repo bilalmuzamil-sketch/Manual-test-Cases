@@ -64,10 +64,13 @@ failing because cases don't match the build", "reconcile <feature> test cases".
 
 ## Guardrails (the ones that mattered)
 - **Traceability = authenticity (Standing Rule 20).** Every case must trace to (a) its Jira
-  ticket(s) and (b) its spec section — kept in the metadata layer (TestRail `refs` field +
-  id-map + findings `citation`/audit log), NOT in the tester-facing wording. Every change in
-  the change-list cites the driving ticket (with Done/Not-Done status) + spec section. A case
-  with no ticket AND no spec anchor is flagged missing-traceability, never left unsourced.
+  ticket(s) and (b) its spec section — kept in the metadata layer, NOT the tester-facing
+  wording. The TestRail **`refs`** field carries **BOTH together** as
+  **`<TICKET(S)> (<spec-anchor>)`** (per-story precision always; ticket-only is never
+  acceptable — the spec reference must never be dropped), mirrored into the id-map +
+  findings/coverage matrix. Every change in the change-list cites the driving ticket (with
+  Done/Not-Done status) + spec section. A case with no ticket AND no spec anchor is flagged
+  missing-traceability, never left unsourced.
 - **Never touch TestRail without explicit per-run permission**; honor the freeze list literally.
 - **Observe, don't infer** — a proposed change that the live build contradicts gets withdrawn
   (e.g. a spec label rename the build hasn't shipped → keep the case build-accurate, flag the gap).

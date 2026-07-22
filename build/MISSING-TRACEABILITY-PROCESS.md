@@ -10,13 +10,19 @@
 > VIU pass. Ties to build/SPEC-RECHECK-PROCESS.md + build/BUILD-ACCURATE-WORDING-VIU-PROCESS.md.
 
 ## What "traceable" means (the bar)
-A case is **Traceable** only if BOTH are present and correct:
-- **Ticket link** — the Jira key(s) the case belongs to, in the TestRail case **References
-  (`refs`)** field (and mirrored in the per-project `testrail-id-map.csv` / findings).
-- **Spec anchor** — the exact spec section/requirement the case derives from, in the QA-side
-  records (findings `citation`, coverage matrix, audit log).
-Both live in the **metadata layer, NEVER the tester-facing Title/Preconditions/Steps/Expected**
-(Rules 7 & 9 keep those jargon-free).
+A case is **Traceable** only if BOTH are present and correct, **together in the TestRail
+References (`refs`) field**:
+- **Ticket link** — the Jira key(s) the case belongs to (per-story precision ALWAYS —
+  never epic-level unless it is a genuinely cross-cutting case with no single-story owner,
+  stated as such).
+- **Spec anchor** — the exact spec section/requirement the case derives from.
+
+**Format: `<TICKET(S)> (<spec-anchor>)`** — e.g. `SV-7696 (S1-R3 (Vendor invoice Optional/
+Required))`, `SV-7865 (§5-R3)`, `SV-7301 (§5 invariant 1)`. **Ticket-only is NOT enough —
+the spec reference must never be dropped** (Rule 20; corrected 2026-07-22). Mirror the same
+combined `refs` into the per-project `testrail-id-map.csv` + findings/coverage matrix.
+All of it lives in the **metadata layer, NEVER the tester-facing Title/Preconditions/Steps/
+Expected** (Rules 7 & 9 keep those jargon-free).
 
 ## When to run
 - On demand ("check missing traceability for [project]").
@@ -44,10 +50,14 @@ Both live in the **metadata layer, NEVER the tester-facing Title/Preconditions/S
    Proposed ticket key(s) (+ Done/Not-Done) | Proposed spec section | Confidence | Action
    (Backfill / Decision needed for Orphans). Omit already-Traceable cases (report the count).
 5. **Backfill only after explicit go-ahead** (Standing Rule 6). For each approved case:
-   set the TestRail **`refs`** field via `update_case` (get → add/merge the key(s) → re-read to
-   verify), and record the spec anchor in the QA records (id-map / findings / coverage matrix).
-   **Do not touch the tester-facing fields.** Per-case **audit log** (before→after refs +
-   the ticket + spec cited). Honor any freeze list.
+   set the TestRail **`refs`** field via `update_case` to the combined
+   **`<TICKET(S)> (<spec-anchor>)`** value (get → diff on a whitespace-insensitive
+   compare → update only if different → re-read to verify), and mirror the same combined
+   value into the id-map / findings / coverage matrix. **Never reduce `refs` to the
+   ticket alone — keep the spec anchor.** **Do not touch the tester-facing fields.**
+   Per-case **audit log** (before→after refs + the ticket + spec cited). Honor any freeze
+   list. (TestRail strips the space after commas in multi-key refs — compare
+   whitespace-insensitively so you don't rewrite an already-correct case.)
 6. **Report the counts** (Standing Rule 17): total in scope / Traceable / backfilled /
    Orphans-flagged — so completeness is verifiable at a glance.
 

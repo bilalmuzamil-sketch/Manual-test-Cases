@@ -1,187 +1,187 @@
-ID,fd_id,title,section,refs
-28568,FD-CALC-001,Verify a percentage fee/discount works out as base x percent (10% fee on $150.00 → +$15.00),Calculation contract,SV-7865
-28569,FD-CALC-002,Verify percentage rounding — half a cent or more rounds up (5% discount on $33.33 → −$1.67),Calculation contract,SV-7865
-28570,FD-CALC-003,Verify a flat amount on a whole work order or a labor line is the exact amount (no quantity multiplier),Calculation contract,SV-7865
-28571,FD-CALC-004,Verify a flat amount on a part line is charged per item (amount x quantity: $5.00 x 3 → −$15.00; x1 → −$5.00),Calculation contract,SV-7865
-28572,FD-CALC-005,Verify a percentage discount cannot go over 100% (percentage fees have no upper limit),Calculation contract,SV-7865
-28573,FD-CALC-006,"Verify the smallest allowed values — flat amount $0.01, percentage 0.01%",Calculation contract,SV-7865
-28574,FD-CALC-007,Verify Max Amount caps a percentage result (20% fee on $100 → $20 → Max Amount $15 → +$15.00),Calculation contract,SV-7865
-28575,FD-CALC-008,Verify how Max Amount behaves at 0 vs empty (empty means no cap),Calculation contract,SV-7865
-28576,FD-CALC-009,"Verify a $0.00 base works out to $0.00 (shown on screen, skipped in QuickBooks)",Calculation contract,SV-7865
-28577,FD-CALC-010,Verify a negative base is treated as $0 (the result is $0.00; the base never goes below zero),Calculation contract,SV-7865
-28578,FD-CALC-011,"Verify a taxable fee raises the taxable amount, a taxable discount lowers it, and a non-taxable one does not change tax",Calculation contract,SV-7865
-28579,FD-CALC-012,"Verify the order fees/discounts are worked out — line-level first (on the line total), then whole-work-order (on the new totals), with no stacking within a step",Calculation contract,SV-7865
-28580,FD-CALC-013,Verify a Processing Fee works out last on the tax-included grand total (3% of $324 → +$9.72),Calculation contract,SV-7865
-28581,FD-CALC-014,Verify the Processing Fee base includes tax on purpose and never uses a Max Amount,Calculation contract,SV-8284
-28582,FD-CALC-015,"Verify the subtotal floors at $0.00 — a non-taxable $150 discount on $100 parts + $10 tax: customer pays $10, the $50 excess becomes a customer credit",Calculation contract,SV-8282
-28583,FD-CALC-016,"Verify a taxable $150 discount on $100 parts drives the taxable amount to $0 → tax $0.00, customer pays $0.00",Calculation contract,SV-8282
-28584,FD-CALC-017,"Verify multiple discount lines are penny-capped so the capped discounts add up exactly to the floored net subtotal (whole cents, never negative)",Calculation contract,SV-8282
-28485,FD-CUST-001,Verify the customer 'Fees & Discounts (N)' tab shows the correct default count,Customer Fees & Discounts tab,SV-8285
-28486,FD-CUST-002,"Verify the 'Default Fees & Discounts' card header, caption and table columns",Customer Fees & Discounts tab,"SV-8285, SV-8288"
-28487,FD-CUST-003,Verify adding a single template as a customer default via the picker,Customer Fees & Discounts tab,SV-8285
-28488,FD-CUST-004,Verify several templates are added as customer defaults one at a time (no multi-select),Customer Fees & Discounts tab,SV-8285
-28489,FD-CUST-005,Verify the picker lists only not-yet-added templates and shows a Processing Fee template as type 'Fee',Customer Fees & Discounts tab,"SV-8284, SV-8285"
-28490,FD-CUST-006,Verify the picker message when there are no templates left to add,Customer Fees & Discounts tab,SV-8285
-28491,FD-CUST-007,Verify removing a customer default from the row needs no confirmation,Customer Fees & Discounts tab,SV-8285
-28492,FD-CUST-008,Verify the empty-state text on the Default Fees & Discounts card,Customer Fees & Discounts tab,SV-8285
-28493,FD-CUST-009,Verify a customer default is added as its own fee/discount on every new work order,Customer defaults → new work order,SV-8285
-28494,FD-CUST-010,"Verify a percentage customer default re-works per work order (keeps the percent, not a fixed dollar)",Customer defaults → new work order,SV-8285
-28495,FD-CUST-011,Verify removing a customer default does not change fees/discounts already on existing work orders,Customer defaults lifecycle,SV-8285
-28496,FD-CUST-012,Verify deleting a template that is a customer default drops the default link but keeps existing work-order fees/discounts,Customer defaults lifecycle,"SV-8283, SV-8285"
-28497,FD-CUST-013,Verify deleting a customer removes that customer's default links,Customer defaults lifecycle,SV-8285
-28498,FD-CUST-014,Verify a brand-new customer inherits every auto-apply location template as a default,Customer defaults seeding,SV-8285
-28499,FD-CUST-015,Verify the customer Fees & Discounts tab and its controls are hidden without the required permissions,Customer Fees & Discounts tab — permissions,SV-8289
-28501,FD-CUST-017,Verify an add/remove/load failure on customer defaults shows the standard error notification,API — Customer Fees & Discounts tab — negative,SV-8285
-28533,FD-DOC-001,Verify one layout renders adjustments on both the estimate and the invoice,Customer document (estimate/invoice),SV-8281
-28534,FD-DOC-002,"Verify a labor-line percentage adjustment renders indented with ↳, the ""(% of labor)"" phrase, and correct amount sign",Customer document — per-line adjustments,"SV-8281, SV-8288"
-28535,FD-DOC-003,"Verify a part-line adjustment renders with ""(% of parts)"" (percentage) and no phrase for Flat Amount",Customer document — per-line adjustments,SV-8281
-28536,FD-DOC-004,"Verify fee vs discount amount formatting (fee ""$X.XX"", discount ""($X.XX)"")",Customer document — amount format,"SV-8281, SV-8288"
-28537,FD-DOC-005,"Verify the bottom ""Adjustments"" block lists whole-WO adjustments one by one in creation order",Customer document — Adjustments block,SV-8281
-28538,FD-DOC-006,"Verify line-level adjustments are grouped by name+type in the bottom block with a ""(×N)"" count",Customer document — Adjustments block,SV-8281
-28539,FD-DOC-007,"Verify a % of Grand Total Processing Fee shows the ""% of grand total"" phrase on the document",Customer document — Processing Fee phrase,"SV-8281, SV-8284"
-28540,FD-DOC-008,Verify Shop Supplies is hidden on the estimate/invoice/financial tab when the total is $0.00,Customer document — Shop Supplies (S14),SV-8290
-28541,FD-DOC-009,Verify Shop Supplies reappears on the customer views when its total becomes greater than $0.00,Customer document — Shop Supplies (S14),SV-8290
-28542,FD-DOC-010,Verify a line-level adjustment on a not-billable (declined) line resolves to $0.00 but still shows,Customer document — line-level $0 target,SV-8281
-28543,FD-DOC-011,Verify the Adjustments block sits after Labor/Parts/Shop Supplies and before Subtotal → Tax → Total,Customer document — layout,SV-8281
-28476,FD-EDIT-001,"Verify editing a fee/discount allows Name, amount, Max Amount and Taxable but locks Type, Calculation Type and Scope",Work Order — Edit an adjustment,SV-8278
-28477,FD-EDIT-002,"Verify editing re-works the amount against the current totals, hides the template picker, and uses a 'Save' button",Work Order — Edit an adjustment,SV-8278
-28478,FD-EDIT-003,Verify a failed save keeps the Edit dialog open and shows the error,Work Order — Edit an adjustment,SV-8278
-28464,FD-FIN-001,Verify the Financial Info card shows a 'Fees & Discounts (N)' row with the net total in grey,Work Order — Financial Info card,SV-8279
-28465,FD-FIN-002,Verify the Financial Info 'Fees & Discounts' row lists each fee/discount and is read-only,Work Order — Financial Info card,SV-8279
-28466,FD-FIN-003,"Verify the 'Fees & Discounts' row is hidden with no fees/discounts, and the money section is hidden without See Financial Data",Work Order — Financial Info card,SV-8279
-28467,FD-FIN-004,"Verify the sidebar 'Work Order Fees & Discounts' card lists whole-work-order fees/discounts with name, signed rate and grey amount",Work Order — Sidebar 'Work Order Fee / Discount' card,SV-8279
-28468,FD-FIN-005,Verify the sidebar 'Work Order Fees & Discounts' card is hidden with no whole-work-order fees/discounts and has no Add button,Work Order — Sidebar 'Work Order Fee / Discount' card,SV-8279
-28596,FD-FLAG-001,"Verify that with the Fees & Discounts feature turned off, all fee/discount screens are hidden everywhere",Feature-flag gating,SV-8289
-28597,FD-FLAG-002,Verify the work-order audit log still shows fee/discount entries even when the Fees & Discounts feature is off,Feature-flag gating,SV-8286
-28598,FD-FLAG-003,"Verify that even with the feature on, the matching permission is still needed to use fees/discounts",Feature-flag gating,SV-8289
-28560,FD-HIST-001,Verify one audit-log entry per add/edit/remove with the correct bold event labels,Audit log,SV-8286
-28561,FD-HIST-002,"Verify the audit-log Details show Name, Amount (the set rate) and what it was applied to",Audit log,SV-8286
-28562,FD-HIST-003,Verify the Line column and saved-state icon on a fee/discount audit-log entry,Audit log,SV-8286
-28563,FD-HIST-004,Verify fee/discount audit-log entries stay visible when the fee/discount screens are hidden by the feature being off,Audit log — visibility,SV-8286
-28564,FD-HIST-005,Verify fee/discount audit-log entries stay visible when amounts are hidden by See Financial Data being off,Audit log — visibility,"SV-8286, SV-8289"
-28565,FD-HIST-006,Verify fee/discount audit-log entries are gated by Work Orders: Create and Edit (line audit log by Work Order Lines: Create and Edit),Audit log — permission,SV-8289
-28566,FD-HIST-007,"Verify a Processing Fee is logged as a fee applied to the full invoice, with no 'updated' entry",Audit log — Processing Fee,"SV-8284, SV-8286"
-28567,FD-HIST-008,Verify an edit that changes the rate records the new set rate (not the resolved total),Audit log — edit entry,"SV-8278, SV-8286"
-28454,FD-INLINE-001,"Verify a labor-line fee/discount shows inline under its line with a ↳ arrow, name, signed rate and grey amount",Work Order — Inline display (Lines tab),"SV-8279, SV-8288"
-28455,FD-INLINE-002,"Verify a part-line fee/discount shows inline under its part with a ↳ arrow, name, signed rate and grey amount",Work Order — Inline display (Lines tab),SV-8279
-28456,FD-INLINE-003,Verify a line/part with 2 or more fees/discounts shows only the first plus a 'Show N more' toggle,Work Order — Inline display (Lines tab),"SV-8279, SV-8288"
-28457,FD-INLINE-004,Verify the per-line Total column shows the line's own total plus its fee/discount amounts (display only),Work Order — Inline display (Lines tab),SV-8279
-28458,FD-INLINE-005,Verify each inline fee/discount row has a ⋮ menu with Edit and Remove (when the work order is open and you have the matching Create and Edit permission),Work Order — Inline display (Lines tab),"SV-8279, SV-8288"
-28439,FD-LABOR-001,Verify a labor line's ⋮ menu opens the Add Fee/Discount dialog locked to that labor line,Work Order — Labor-line Fee/Discount,"SV-8277, SV-8278"
-28440,FD-LABOR-002,Verify a labor-line '% of Labor Total' fee works out against the line's labor price (10% of $150.00 → +$15.00),Work Order — Labor-line Fee/Discount,SV-8278
-28441,FD-LABOR-003,Verify each labor line row shows its own ⋮ menu on hover,Work Order — Labor-line Fee/Discount,SV-8277
-28442,FD-LABOR-004,Verify a labor-line flat amount is the exact amount with no quantity multiplier,Work Order — Labor-line Fee/Discount,SV-8278
-28443,FD-LABOR-005,Verify a labor-line fee/discount works out to $0.00 when its line is not billable (declined),Work Order — Labor-line Fee/Discount,SV-7865
-28444,FD-LABOR-006,Verify deleting a labor line removes any fee/discount pointing to it,Work Order — Labor-line Fee/Discount,SV-8279
-28445,FD-LABOR-007,Verify the labor-line 'Add Fee/Discount' is hidden without Work Order Lines: Create & Edit,Work Order — Labor-line Fee/Discount,SV-8289
-28446,FD-PART-001,Verify a part's ⋮ menu opens the Add Fee/Discount dialog locked to that part,Work Order / Parts — Part-line Fee/Discount,"SV-8277, SV-8278"
-28447,FD-PART-002,Verify a part-line flat amount is charged per item (amount x quantity): $5.00 x 3 → −$15.00,Work Order / Parts — Part-line Fee/Discount,SV-7865
-28448,FD-PART-003,Verify a fee/discount can be added to a requested (not-yet-received) part and shows before it is picked,Work Order / Parts — Part-line Fee/Discount,SV-8277
-28449,FD-PART-004,Verify a part-line '% of Parts Total' works out against quantity x sell price,Work Order / Parts — Part-line Fee/Discount,SV-7865
-28450,FD-PART-005,Verify a part-line fee/discount stays attached when the part changes from requested to received,Work Order / Parts — Part-line Fee/Discount,SV-8279
-28451,FD-PART-006,Verify a part-line fee/discount works out to $0.00 when the part is declined or returned with no quantity left,Work Order / Parts — Part-line Fee/Discount,SV-7865
-28452,FD-PART-007,Verify deleting a part removes any fee/discount pointing to it,Work Order / Parts — Part-line Fee/Discount,SV-8279
-28453,FD-PART-008,Verify the per-item flat amount edge: quantity 1 is the base amount (−$5.00),Work Order / Parts — Part-line Fee/Discount,SV-7865
-28469,FD-PCOL-001,Verify the Parts page 'Fees & Discounts' column shows a single fee/discount's name and rate,Parts page — 'FEES & DISCOUNTS' column,SV-8287
-28470,FD-PCOL-002,Verify the 'Fees & Discounts' column shows a '+N' badge when a part has several fees/discounts,Parts page — 'FEES & DISCOUNTS' column,SV-8287
-28471,FD-PCOL-003,Verify the 'Fees & Discounts' column shows a '+ Add' button on a part with no fees/discounts,Parts page — 'FEES & DISCOUNTS' column,SV-8287
-28472,FD-PCOL-004,Verify clicking a filled 'Fees & Discounts' cell opens the per-part breakdown with the right columns,Parts page — breakdown modal,SV-8287
-28473,FD-PCOL-005,Verify the breakdown 'Net adjustment' row equals the signed sum of the part's fees/discounts,Parts page — breakdown modal,SV-8287
-28474,FD-PCOL-006,Verify a per-row Remove on the breakdown removes the fee/discount and closes when the last one is removed,Parts page — breakdown modal,SV-8287
-28475,FD-PCOL-007,Verify the '+ Add' button is disabled when the sale/work order cannot be edited,Parts page — 'FEES & DISCOUNTS' column,"SV-8279, SV-8287"
-28585,FD-PERM-001,"Verify See Financial Data controls all fee/discount dollar amounts (without it, amounts are hidden)",Permissions (Story 13),SV-8289
-28586,FD-PERM-002,Verify whole-work-order add/edit/remove requires Work Orders: Create and Edit,Permissions (Story 13),SV-8289
-28587,FD-PERM-003,Verify labor-line and part-line add/edit/remove requires Work Order Lines: Create and Edit,Permissions (Story 13),SV-8289
-28588,FD-PERM-004,Verify part-sale add/edit/remove requires Part Sales: Create and Edit plus See Financial Data,Permissions (Story 13),SV-8289
-28589,FD-PERM-005,Verify any add/edit/remove of a fee/discount also needs See Financial Data on,Permissions (Story 13),SV-8289
-28590,FD-PERM-006,"Verify removing a fee/discount uses Create and Edit, not the separate Delete permission",Permissions (Story 13),SV-8289
-28591,FD-PERM-007,Verify create/edit/delete of a fee/discount template needs Settings → Service,Permissions (Story 13),SV-8289
-28592,FD-PERM-008,Verify viewing/changing a customer's default fees & discounts needs BOTH Customer Management: Create and Edit AND Manage Accounts Payable and Receivable,Permissions (Story 13),SV-8289
-28593,FD-PERM-009,Verify seeing fee/discount entries in the work-order audit log needs Work Orders: Create and Edit (line audit log needs Work Order Lines: Create and Edit),Permissions (Story 13),SV-8289
-28594,FD-PERM-010,Verify both are required — the Fees & Discounts feature on AND the matching permission,Permissions (Story 13),SV-8289
-28595,FD-PERM-011,Verify add/edit/remove is blocked when the work order is Invoiced/Paid or you are viewing history,Permissions (Story 13),"SV-8277, SV-8279"
-28519,FD-PROC-001,Verify 'Processing Fee' is a third Type in the template builder,Processing Fee — template builder,"SV-8283, SV-8284"
-28520,FD-PROC-002,Verify a Processing Fee offers only Flat Amount and % of Grand Total,Processing Fee — methods,SV-8284
-28521,FD-PROC-003,Verify the Max Amount field is hidden for a Processing Fee (both methods),Processing Fee — no Max Amount,"SV-8283, SV-8284"
-28522,FD-PROC-004,Verify the Processing Fee Taxable defaults to Yes and shows the tax-jurisdiction note,Processing Fee — taxable + jurisdiction note,SV-8284
-28523,FD-PROC-005,Verify a Processing Fee cannot be added to a work order by hand,Processing Fee — no manual add,SV-8284
-28524,FD-PROC-006,Verify a Processing Fee reaches a new work order via location auto-apply,Processing Fee — auto-apply,"SV-8283, SV-8284"
-28525,FD-PROC-007,Verify a Processing Fee reaches a new work order via a customer default,Processing Fee — customer default,"SV-8284, SV-8285"
-28526,FD-PROC-008,Verify a Processing Fee on a work order can be removed but not edited,Processing Fee — WO behavior,"SV-8279, SV-8284"
-28527,FD-PROC-009,Verify a % of Grand Total Processing Fee works out last on the tax-included grand total (3% of $324 → +$9.72),Processing Fee — calculation,SV-8284
-28528,FD-PROC-010,Verify a Processing Fee with a Max Amount or a disallowed method is rejected,API — Processing Fee — negative,SV-8284
-28529,FD-PROC-011,Verify a Processing Fee always adds to the total (never a discount),Processing Fee — sign,SV-8284
-28530,FD-PROC-012,Verify editing a Processing Fee template does not change Processing Fees already on existing work orders,Processing Fee — template edit independence,SV-8284
-28531,FD-PROC-013,Verify multiple Processing Fees each leave out all Processing Fees' amounts and tax from the shared base,Processing Fee — calculation edge,SV-8284
-28532,FD-PROC-014,Verify the system rejects a Processing Fee that carries a minimum amount,Processing Fee — negative,SV-8284
-28544,FD-QB-001,"Verify each fee/discount exports to QuickBooks as its own invoice line item (fee adds, discount subtracts)",QuickBooks sync,SV-8282
-28545,FD-QB-002,Verify the QuickBooks line description equals the fee/discount name and uses the mapped Fee/Discount item,QuickBooks sync,SV-8282
-28546,FD-QB-003,Verify a $0.00 fee/discount is skipped when sent to QuickBooks,QuickBooks sync — edge,SV-8282
-28547,FD-QB-004,Verify adding a fee is blocked when the Fee item is not mapped to QuickBooks,QuickBooks — mapping guard,SV-8282
-28548,FD-QB-005,Verify adding a discount is blocked when the Discount item is not mapped to QuickBooks,QuickBooks — mapping guard,SV-8282
-28549,FD-QB-006,"Verify the mapping block applies on every add place (work order, labor line, part, part sale, apply-from-template)",QuickBooks — mapping guard scope,SV-8282
-28550,FD-QB-007,Verify an auto-apply template cannot be saved while the matching QuickBooks item is not mapped,QuickBooks — mapping guard (auto-apply),SV-8282
-28551,FD-QB-008,"Verify creating/editing a non-auto-apply template is always allowed, with no block when QuickBooks is not connected",QuickBooks — mapping guard exceptions,SV-8282
-28552,FD-QB-009,"Verify unmapping an in-use item sends affected invoices to Unexported Items (recoverable, no data lost)",QuickBooks — unmap recovery,SV-8282
-28553,FD-QB-010,"Verify a single QuickBooks Class applies to every synced line, including fee/discount lines",QuickBooks — Class,SV-8282
-28554,FD-QB-011,Verify a deleted/deactivated QuickBooks Class stops the whole invoice sync (no substitution),QuickBooks — Class validation,SV-8282
-28555,FD-QB-012,"Verify the net subtotal floors at $0.00 ($100 parts + $10 tax, $150 discount: non-taxable vs taxable)",QuickBooks — negative totals,SV-8282
-28556,FD-QB-013,Verify discount lines to QuickBooks are capped in whole cents (largest-remainder) so they sum exactly to the floored subtotal,QuickBooks — negative totals,SV-8282
-28557,FD-QB-014,Verify a mandatory warning/confirmation before saving when discounts are bigger than the net subtotal,QuickBooks — negative totals,SV-8282
-28558,FD-QB-015,Verify the excess is recorded as a customer credit and posts to QuickBooks as a tax-exempt goodwill credit,QuickBooks — negative totals,SV-8282
-28559,FD-QB-016,Verify a synced line's tax follows the fee/discount's Taxable setting,QuickBooks sync — tax,SV-8282
-28479,FD-REMOVE-001,Verify removing a whole-work-order fee/discount shows the 'Remove Fee / Discount' confirm and a success message,Work Order — Remove an adjustment,SV-8279
-28480,FD-REMOVE-002,"Verify removing a fee/discount uses Create and Edit, not a separate Delete permission",Work Order — Remove an adjustment,SV-8289
-28481,FD-REMOVE-003,Verify removing a line-level fee/discount from its inline ⋮ menu,Work Order — Remove an adjustment,SV-8279
-28482,FD-STACK-001,Verify multiple fees/discounts on one part each work out on the part's own total (they do not compound),Work Order — Multiple adjustments (stacking / netting),"SV-8279, SV-8287"
-28483,FD-STACK-002,Verify two whole-work-order percentage fees/discounts use the same totals and do not change each other's base,Work Order — Multiple adjustments (stacking / netting),SV-7865
-28484,FD-STACK-003,Verify the same template can be applied to one work order more than once by hand,Work Order — Multiple adjustments (stacking / netting),SV-8283
-28459,FD-STATS-001,Verify the Stats tab shows a 'Fees & Discounts (N)' breakdown with a value/% and an amount for each row,Work Order — Statistics tab,SV-8280
-28460,FD-STATS-002,Verify each Stats fee/discount row names its target,Work Order — Statistics tab,SV-8280
-28461,FD-STATS-003,Verify the Stats 'Fees & Discounts' total equals the signed sum of all the amounts,Work Order — Statistics tab,SV-8280
-28462,FD-STATS-004,Verify the Stats fees/discounts are listed in the order they were created (oldest first),Work Order — Statistics tab,SV-8280
-28463,FD-STATS-005,Verify the Stats 'Fees & Discounts' section is hidden when the work order has no fees/discounts,Work Order — Statistics tab,SV-8280
-28502,FD-TMPL-001,Verify the fee/discount template library is at Administration → Service → Fees & Discounts (below Canned Lines),Template admin — location,SV-8283
-28503,FD-TMPL-002,Verify the template list columns and the edit/delete actions,Template admin — list,"SV-8283, SV-8288"
-28504,FD-TMPL-003,Verify creating a Fee template (dialog fields and the Create button),Template admin — create,SV-8283
-28505,FD-TMPL-004,Verify creating a Discount template,Template admin — create,SV-8283
-28506,FD-TMPL-005,Verify the 'Auto-apply to all new work orders at this location' checkbox adds the template to every new work order at that location,Template admin — auto-apply,SV-8283
-28507,FD-TMPL-006,"Verify editing a template (Edit Fee / Discount dialog, 'Save' button)",Template admin — edit,SV-8283
-28508,FD-TMPL-007,Verify the template delete confirm dialog and buttons,Template admin — delete,SV-8283
-28509,FD-TMPL-008,Verify the delete confirm adds a warning when the template is a customer default,Template admin — delete,SV-8283
-28510,FD-TMPL-009,Verify deleting a template leaves work-order fees/discounts made from it unchanged,Template admin — delete,SV-8283
-28511,FD-TMPL-010,"Verify template scoping — labour-method templates only show in labour pickers, parts-method only in parts pickers",Template admin — scoping,"SV-8278, SV-8281"
-28512,FD-TMPL-011,Verify Max Amount shows only for percentage methods and how 0 behaves,Template admin — dialog fields,SV-8283
-28513,FD-TMPL-012,Verify the template list empty-state message,Template admin — list,SV-8283
-28514,FD-TMPL-013,Verify a percentage-discount template cannot go over 100% while a percentage-fee template has no cap,Template admin — validation,SV-8283
-28515,FD-TMPL-014,Verify a Fee/Discount template offers the four whole-work-order methods and no scope field,Template admin — dialog fields,SV-8283
-28516,FD-TMPL-015,Verify the template save-failure message,Template admin — negative,SV-8283
-28517,FD-TMPL-016,Verify the admin Fees & Discounts page needs the Settings → Service permission,Template admin — permissions,"SV-8283, SV-8289"
-28518,FD-TMPL-017,Verify the template Name is limited to 100 characters,Template admin — dialog fields,SV-8283
-28599,FD-VAL-001,"Verify the Add button stays disabled until Name, Type, Calculation Type and an Amount above 0 are all set",Validation / Edge,SV-8278
-28600,FD-VAL-002,"Verify a blank or 0 amount blocks saving, with an error",Validation / Edge,SV-8278
-28601,FD-VAL-003,"Verify an empty Name blocks saving, with an error (Name required, up to 100 characters)",Validation / Edge,SV-8278
-28602,FD-VAL-004,Verify a percentage discount over 100% is invalid while a percentage fee has no upper cap,Validation / Edge,SV-8278
-28603,FD-VAL-005,Verify negative amounts are rejected (values must be above 0),Validation / Edge,SV-8278
-28604,FD-VAL-006,Verify the Max Amount field shows only for percentage methods and how 0 or empty behaves,Validation / Edge,SV-8278
-28605,FD-VAL-007,Verify a template that is both auto-apply at the location and a customer default is added only ONCE to a new work order,Validation / Edge,"SV-8283, SV-8285"
-28424,FD-WO-001,Verify the whole-work-order Add Fee/Discount dialog opens from the work order more (⋯) menu,Work Order — Whole-WO Fee/Discount,"SV-8277, SV-8278"
-28425,FD-WO-002,Verify adding a whole-work-order flat-amount fee saves and shows a success message,Work Order — Whole-WO Fee/Discount,SV-8278
-28426,FD-WO-003,Verify the live preview shows a whole-work-order percentage discount before you save,Work Order — Whole-WO Fee/Discount,SV-8278
-28427,FD-WO-004,Verify 'Apply From Template' fills the dialog with a template's values,Work Order — Whole-WO Fee/Discount,SV-8278
-28428,FD-WO-005,"Verify the Add button stays disabled until Name, Type, Calculation Type and an Amount above 0 are all filled in",Work Order — Whole-WO Fee/Discount,SV-8278
-28429,FD-WO-006,Verify Max Amount caps a percentage fee (20% on a $100 base with Max Amount $15 → +$15.00),Work Order — Whole-WO Fee/Discount,SV-8278
-28430,FD-WO-007,Verify the confirm button label follows the Type (Add Fee vs Add Discount),Work Order — Whole-WO Fee/Discount,SV-8278
-28431,FD-WO-008,Verify an empty Name blocks saving a whole-work-order fee/discount,Work Order — Whole-WO Fee/Discount,SV-8278
-28432,FD-WO-009,Verify an empty or zero amount blocks saving a whole-work-order fee/discount,Work Order — Whole-WO Fee/Discount,SV-8278
-28433,FD-WO-010,Verify a percentage discount over 100% is rejected while a percentage fee has no upper limit,Work Order — Whole-WO Fee/Discount,SV-8279
-28434,FD-WO-011,Verify a whole-work-order percentage method uses the correct base (% of Subtotal example),Work Order — Whole-WO Fee/Discount,SV-8278
-28435,FD-WO-012,Verify Add Fee/Discount is hidden and blocked on an Invoiced or Paid work order,Work Order — Whole-WO Fee/Discount,"SV-8277, SV-8279"
-28436,FD-WO-013,Verify the whole-work-order Add Fee/Discount option is hidden without Work Orders: Create & Edit,Work Order — Whole-WO Fee/Discount,"SV-8277, SV-8289"
-28437,FD-WO-014,Verify the preview shows the empty-amount prompt before an amount is entered,Work Order — Whole-WO Fee/Discount,SV-8278
-28438,FD-WO-015,Verify the preview amount is signed for a fee (+) vs a discount (−),Work Order — Whole-WO Fee/Discount,"SV-8278, SV-8288"
-29441,FD-WO-016,Verify the Add/Edit fee-or-discount dialog shows the tax-jurisdiction note below the Taxable Yes/No dropdown,Work Order — Whole-WO Fee/Discount,SV-8278
-29917,FD-TMPL-018,Verify the admin Fee/Discount template dialog shows the tax-jurisdiction note below the Taxable Yes/No dropdown (for every kind),Template admin — jurisdiction note,SV-8283
-29918,FD-PSALE-001,Verify the Part Sale Add/Edit fee-or-discount dialog shows the tax-jurisdiction note below the Taxable Yes/No dropdown,Part Sale — Fee/Discount dialog,SV-8287
-29922,FD-PERM-012,Fees & Discounts settings page gated by settingsService (not settingsFinance),Permissions (Story 13),SV-8289
-29923,FD-PERM-013,Service admin can complete the Fees & Discounts template delete flow,Permissions (Story 13),SV-8289
+ID,fd_id,title,section,refs,trace_note
+28568,FD-CALC-001,Verify a percentage fee/discount works out as base x percent (10% fee on $150.00 → +$15.00),Calculation contract,SV-7865 (§5-R3),
+28569,FD-CALC-002,Verify percentage rounding — half a cent or more rounds up (5% discount on $33.33 → −$1.67),Calculation contract,SV-7865 (§5-R3),
+28570,FD-CALC-003,Verify a flat amount on a whole work order or a labor line is the exact amount (no quantity multiplier),Calculation contract,SV-7865 (§5-R14),
+28571,FD-CALC-004,Verify a flat amount on a part line is charged per item (amount x quantity: $5.00 x 3 → −$15.00; x1 → −$5.00),Calculation contract,SV-7865 (§5-R14),
+28572,FD-CALC-005,Verify a percentage discount cannot go over 100% (percentage fees have no upper limit),Calculation contract,SV-7865 (§5-R2),
+28573,FD-CALC-006,"Verify the smallest allowed values — flat amount $0.01, percentage 0.01%",Calculation contract,SV-7865 (§5-R1),
+28574,FD-CALC-007,Verify Max Amount caps a percentage result (20% fee on $100 → $20 → Max Amount $15 → +$15.00),Calculation contract,SV-7865 (§5-R6),
+28575,FD-CALC-008,Verify how Max Amount behaves at 0 vs empty (empty means no cap),Calculation contract,SV-7865 (§5-R6),
+28576,FD-CALC-009,"Verify a $0.00 base works out to $0.00 (shown on screen, skipped in QuickBooks)",Calculation contract,SV-7865 (§5-R8),
+28577,FD-CALC-010,Verify a negative base is treated as $0 (the result is $0.00; the base never goes below zero),Calculation contract,"SV-7865 (§5-R3, §5-R4)",
+28578,FD-CALC-011,"Verify a taxable fee raises the taxable amount, a taxable discount lowers it, and a non-taxable one does not change tax",Calculation contract,SV-7865 (§5-R11),
+28579,FD-CALC-012,"Verify the order fees/discounts are worked out — line-level first (on the line total), then whole-work-order (on the new totals), with no stacking within a step",Calculation contract,SV-7865 (§5-R5),
+28580,FD-CALC-013,Verify a Processing Fee works out last on the tax-included grand total (3% of $324 → +$9.72),Calculation contract,"SV-7865 (§5-R4, §5-R5)",
+28581,FD-CALC-014,Verify the Processing Fee base includes tax on purpose and never uses a Max Amount,Calculation contract,"SV-8284 (§5-R4, S8-R10)",
+28582,FD-CALC-015,"Verify the subtotal floors at $0.00 — a non-taxable $150 discount on $100 parts + $10 tax: customer pays $10, the $50 excess becomes a customer credit",Calculation contract,"SV-8282 (S6-R10, S6-R11, S6-R12, S6-R13)",
+28583,FD-CALC-016,"Verify a taxable $150 discount on $100 parts drives the taxable amount to $0 → tax $0.00, customer pays $0.00",Calculation contract,SV-8282 (S6-R10c),
+28584,FD-CALC-017,"Verify multiple discount lines are penny-capped so the capped discounts add up exactly to the floored net subtotal (whole cents, never negative)",Calculation contract,SV-8282 (S6-R10d),
+28485,FD-CUST-001,Verify the customer 'Fees & Discounts (N)' tab shows the correct default count,Customer Fees & Discounts tab,SV-8285 (S9-R11),
+28486,FD-CUST-002,"Verify the 'Default Fees & Discounts' card header, caption and table columns",Customer Fees & Discounts tab,"SV-8285,SV-8288 (S9-R12, S9-R13, S9-R14, S9-R15, S12-R8)",
+28487,FD-CUST-003,Verify adding a single template as a customer default via the picker,Customer Fees & Discounts tab,"SV-8285 (S9-R18, S9-R19, S9-R20, S9-R21, S9-R23a)",
+28488,FD-CUST-004,Verify several templates are added as customer defaults one at a time (no multi-select),Customer Fees & Discounts tab,"SV-8285 (S9-R20, S9-R21, S9-R23a)",
+28489,FD-CUST-005,Verify the picker lists only not-yet-added templates and shows a Processing Fee template as type 'Fee',Customer Fees & Discounts tab,"SV-8284,SV-8285 (S9-R19, S8-R15, S9-R... (Processing Fee shows as ""Fee""))",
+28490,FD-CUST-006,Verify the picker message when there are no templates left to add,Customer Fees & Discounts tab,SV-8285 (S9-R22),
+28491,FD-CUST-007,Verify removing a customer default from the row needs no confirmation,Customer Fees & Discounts tab,"SV-8285 (S9-R16, S9-R24)",
+28492,FD-CUST-008,Verify the empty-state text on the Default Fees & Discounts card,Customer Fees & Discounts tab,SV-8285 (S9-R17),
+28493,FD-CUST-009,Verify a customer default is added as its own fee/discount on every new work order,Customer defaults → new work order,"SV-8285 (S9-R2, S9-R3, S9-R4)",
+28494,FD-CUST-010,"Verify a percentage customer default re-works per work order (keeps the percent, not a fixed dollar)",Customer defaults → new work order,"SV-8285 (S9-R6, S9-R7)",
+28495,FD-CUST-011,Verify removing a customer default does not change fees/discounts already on existing work orders,Customer defaults lifecycle,SV-8285 (S9-R8),
+28496,FD-CUST-012,Verify deleting a template that is a customer default drops the default link but keeps existing work-order fees/discounts,Customer defaults lifecycle,"SV-8283,SV-8285 (S9-R9, S7-R4, S7-N1)",
+28497,FD-CUST-013,Verify deleting a customer removes that customer's default links,Customer defaults lifecycle,SV-8285 (S9-R10),
+28498,FD-CUST-014,Verify a brand-new customer inherits every auto-apply location template as a default,Customer defaults seeding,SV-8285 (S9-R1),
+28499,FD-CUST-015,Verify the customer Fees & Discounts tab and its controls are hidden without the required permissions,Customer Fees & Discounts tab — permissions,"SV-8289 (S13-R9, S13-N3)",
+28501,FD-CUST-017,Verify an add/remove/load failure on customer defaults shows the standard error notification,API — Customer Fees & Discounts tab — negative,SV-8285 (S9-N1),
+28533,FD-DOC-001,Verify one layout renders adjustments on both the estimate and the invoice,Customer document (estimate/invoice),SV-8281 (S5-R1),
+28534,FD-DOC-002,"Verify a labor-line percentage adjustment renders indented with ↳, the ""(% of labor)"" phrase, and correct amount sign",Customer document — per-line adjustments,"SV-8281,SV-8288 (S5-R2, S5-R3, S5-R4, S12-R3)",
+28535,FD-DOC-003,"Verify a part-line adjustment renders with ""(% of parts)"" (percentage) and no phrase for Flat Amount",Customer document — per-line adjustments,"SV-8281 (S5-R2, S5-R3)",
+28536,FD-DOC-004,"Verify fee vs discount amount formatting (fee ""$X.XX"", discount ""($X.XX)"")",Customer document — amount format,"SV-8281,SV-8288 (S5-R4, S5-R9, S12-R7)",
+28537,FD-DOC-005,"Verify the bottom ""Adjustments"" block lists whole-WO adjustments one by one in creation order",Customer document — Adjustments block,"SV-8281 (S5-R5, S5-R6)",
+28538,FD-DOC-006,"Verify line-level adjustments are grouped by name+type in the bottom block with a ""(×N)"" count",Customer document — Adjustments block,"SV-8281 (S5-R7, S5-R8)",
+28539,FD-DOC-007,"Verify a % of Grand Total Processing Fee shows the ""% of grand total"" phrase on the document",Customer document — Processing Fee phrase,"SV-8281,SV-8284 (S5-R6, S8-R22)",
+28540,FD-DOC-008,Verify Shop Supplies is hidden on the estimate/invoice/financial tab when the total is $0.00,Customer document — Shop Supplies (S14),SV-8290 (S14-R1),
+28541,FD-DOC-009,Verify Shop Supplies reappears on the customer views when its total becomes greater than $0.00,Customer document — Shop Supplies (S14),SV-8290 (S14-R2),
+28542,FD-DOC-010,Verify a line-level adjustment on a not-billable (declined) line resolves to $0.00 but still shows,Customer document — line-level $0 target,SV-8281 (§5-R12),
+28543,FD-DOC-011,Verify the Adjustments block sits after Labor/Parts/Shop Supplies and before Subtotal → Tax → Total,Customer document — layout,SV-8281 (S5-R5),
+28476,FD-EDIT-001,"Verify editing a fee/discount allows Name, amount, Max Amount and Taxable but locks Type, Calculation Type and Scope",Work Order — Edit an adjustment,SV-8278 (S2-R4 / S2-R5 / S2-R8),
+28477,FD-EDIT-002,"Verify editing re-works the amount against the current totals, hides the template picker, and uses a 'Save' button",Work Order — Edit an adjustment,SV-8278 (S2-R6 / S2-R7 / S2-R18 / S2-R28),
+28478,FD-EDIT-003,Verify a failed save keeps the Edit dialog open and shows the error,Work Order — Edit an adjustment,SV-8278 (S2-R30),
+28464,FD-FIN-001,Verify the Financial Info card shows a 'Fees & Discounts (N)' row with the net total in grey,Work Order — Financial Info card,SV-8279 (S3-R20 / S3-R21 / S3-R22),
+28465,FD-FIN-002,Verify the Financial Info 'Fees & Discounts' row lists each fee/discount and is read-only,Work Order — Financial Info card,SV-8279 (S3-R23 / S3-R24 / §5-R9),
+28466,FD-FIN-003,"Verify the 'Fees & Discounts' row is hidden with no fees/discounts, and the money section is hidden without See Financial Data",Work Order — Financial Info card,SV-8279 (S3-N2 / S3-N4),
+28467,FD-FIN-004,"Verify the sidebar 'Work Order Fees & Discounts' card lists whole-work-order fees/discounts with name, signed rate and grey amount",Work Order — Sidebar 'Work Order Fee / Discount' card,SV-8279 (S3-R3 / S3-R5 / S3-R8 / S3-R9),
+28468,FD-FIN-005,Verify the sidebar 'Work Order Fees & Discounts' card is hidden with no whole-work-order fees/discounts and has no Add button,Work Order — Sidebar 'Work Order Fee / Discount' card,SV-8279 (S3-R4 / S3-R10 / S3-N1),
+28596,FD-FLAG-001,"Verify that with the Fees & Discounts feature turned off, all fee/discount screens are hidden everywhere",Feature-flag gating,"SV-8289 (§1 feature flag, S13-R1)",
+28597,FD-FLAG-002,Verify the work-order audit log still shows fee/discount entries even when the Fees & Discounts feature is off,Feature-flag gating,SV-8286 (S10-R1 (flag-off exception)),
+28598,FD-FLAG-003,"Verify that even with the feature on, the matching permission is still needed to use fees/discounts",Feature-flag gating,SV-8289 (§1 feature flag + S13-R1),
+28560,FD-HIST-001,Verify one audit-log entry per add/edit/remove with the correct bold event labels,Audit log,"SV-8286 (S10-R2, S10-R4a, S10-R4b, S10-R4c)",
+28561,FD-HIST-002,"Verify the audit-log Details show Name, Amount (the set rate) and what it was applied to",Audit log,"SV-8286 (S10-R6a, S10-R6b, S10-R6c, S10-R6d)",
+28562,FD-HIST-003,Verify the Line column and saved-state icon on a fee/discount audit-log entry,Audit log,"SV-8286 (S10-R3, S10-R5)",
+28563,FD-HIST-004,Verify fee/discount audit-log entries stay visible when the fee/discount screens are hidden by the feature being off,Audit log — visibility,SV-8286 (S10-R1),
+28564,FD-HIST-005,Verify fee/discount audit-log entries stay visible when amounts are hidden by See Financial Data being off,Audit log — visibility,"SV-8286,SV-8289 (S10-R1, S10-R6c, S13-R10)",
+28565,FD-HIST-006,Verify fee/discount audit-log entries are gated by Work Orders: Create and Edit (line audit log by Work Order Lines: Create and Edit),Audit log — permission,SV-8289 (S13-R10),
+28566,FD-HIST-007,"Verify a Processing Fee is logged as a fee applied to the full invoice, with no 'updated' entry",Audit log — Processing Fee,"SV-8284,SV-8286 (S8-R25, S8-R26, S10 (Processing Fee note))",
+28567,FD-HIST-008,Verify an edit that changes the rate records the new set rate (not the resolved total),Audit log — edit entry,"SV-8278,SV-8286 (S10-R6c, S2-R6)",
+28454,FD-INLINE-001,"Verify a labor-line fee/discount shows inline under its line with a ↳ arrow, name, signed rate and grey amount",Work Order — Inline display (Lines tab),"SV-8279,SV-8288 (S3-R12 / S3-R14 / S12-R3)",
+28455,FD-INLINE-002,"Verify a part-line fee/discount shows inline under its part with a ↳ arrow, name, signed rate and grey amount",Work Order — Inline display (Lines tab),SV-8279 (S3-R13 / S3-R14),
+28456,FD-INLINE-003,Verify a line/part with 2 or more fees/discounts shows only the first plus a 'Show N more' toggle,Work Order — Inline display (Lines tab),"SV-8279,SV-8288 (S3-R15 / S3-R16 / S12-R6)",
+28457,FD-INLINE-004,Verify the per-line Total column shows the line's own total plus its fee/discount amounts (display only),Work Order — Inline display (Lines tab),SV-8279 (S3-R18 / S3-R19),
+28458,FD-INLINE-005,Verify each inline fee/discount row has a ⋮ menu with Edit and Remove (when the work order is open and you have the matching Create and Edit permission),Work Order — Inline display (Lines tab),"SV-8279,SV-8288 (S3-R17 / S12-R5)",
+28439,FD-LABOR-001,Verify a labor line's ⋮ menu opens the Add Fee/Discount dialog locked to that labor line,Work Order — Labor-line Fee/Discount,"SV-8277,SV-8278 (S1-R3 / S2-R10)",
+28440,FD-LABOR-002,Verify a labor-line '% of Labor Total' fee works out against the line's labor price (10% of $150.00 → +$15.00),Work Order — Labor-line Fee/Discount,SV-8278 (§5-R4 / §5-R3 / S2-R22),
+28441,FD-LABOR-003,Verify each labor line row shows its own ⋮ menu on hover,Work Order — Labor-line Fee/Discount,SV-8277 (S1-R2),
+28442,FD-LABOR-004,Verify a labor-line flat amount is the exact amount with no quantity multiplier,Work Order — Labor-line Fee/Discount,SV-8278 (§5-R14 / S2-R23),
+28443,FD-LABOR-005,Verify a labor-line fee/discount works out to $0.00 when its line is not billable (declined),Work Order — Labor-line Fee/Discount,SV-7865 (§5-R12),
+28444,FD-LABOR-006,Verify deleting a labor line removes any fee/discount pointing to it,Work Order — Labor-line Fee/Discount,SV-8279 (S3-R2),
+28445,FD-LABOR-007,Verify the labor-line 'Add Fee/Discount' is hidden without Work Order Lines: Create & Edit,Work Order — Labor-line Fee/Discount,SV-8289 (S13-R4 / S13-N2),
+28446,FD-PART-001,Verify a part's ⋮ menu opens the Add Fee/Discount dialog locked to that part,Work Order / Parts — Part-line Fee/Discount,"SV-8277,SV-8278 (S1-R4 / S1-R5 / S2-R11)",
+28447,FD-PART-002,Verify a part-line flat amount is charged per item (amount x quantity): $5.00 x 3 → −$15.00,Work Order / Parts — Part-line Fee/Discount,SV-7865 (§5-R14),
+28448,FD-PART-003,Verify a fee/discount can be added to a requested (not-yet-received) part and shows before it is picked,Work Order / Parts — Part-line Fee/Discount,SV-8277 (S1-R4 / §5-R13),
+28449,FD-PART-004,Verify a part-line '% of Parts Total' works out against quantity x sell price,Work Order / Parts — Part-line Fee/Discount,SV-7865 (§5-R4 / §5-R10 / §5-R3),
+28450,FD-PART-005,Verify a part-line fee/discount stays attached when the part changes from requested to received,Work Order / Parts — Part-line Fee/Discount,SV-8279 (§5-R13),
+28451,FD-PART-006,Verify a part-line fee/discount works out to $0.00 when the part is declined or returned with no quantity left,Work Order / Parts — Part-line Fee/Discount,SV-7865 (§5-R12),
+28452,FD-PART-007,Verify deleting a part removes any fee/discount pointing to it,Work Order / Parts — Part-line Fee/Discount,SV-8279 (S3-R2),
+28453,FD-PART-008,Verify the per-item flat amount edge: quantity 1 is the base amount (−$5.00),Work Order / Parts — Part-line Fee/Discount,SV-7865 (§5-R14),
+28469,FD-PCOL-001,Verify the Parts page 'Fees & Discounts' column shows a single fee/discount's name and rate,Parts page — 'FEES & DISCOUNTS' column,SV-8287 (S11-R10a / design §5),
+28470,FD-PCOL-002,Verify the 'Fees & Discounts' column shows a '+N' badge when a part has several fees/discounts,Parts page — 'FEES & DISCOUNTS' column,SV-8287 (S11-R10b / design §5),
+28471,FD-PCOL-003,Verify the 'Fees & Discounts' column shows a '+ Add' button on a part with no fees/discounts,Parts page — 'FEES & DISCOUNTS' column,SV-8287 (S11-R9 / design §5),
+28472,FD-PCOL-004,Verify clicking a filled 'Fees & Discounts' cell opens the per-part breakdown with the right columns,Parts page — breakdown modal,SV-8287 (S11-R11 / S11-R12 / S11-R13 / S11-R16),
+28473,FD-PCOL-005,Verify the breakdown 'Net adjustment' row equals the signed sum of the part's fees/discounts,Parts page — breakdown modal,SV-8287 (S11-R15),
+28474,FD-PCOL-006,Verify a per-row Remove on the breakdown removes the fee/discount and closes when the last one is removed,Parts page — breakdown modal,SV-8287 (S11-R14 / S11-R17),
+28475,FD-PCOL-007,Verify the '+ Add' button is disabled when the sale/work order cannot be edited,Parts page — 'FEES & DISCOUNTS' column,"SV-8279,SV-8287 (S11-R9 / S3-R1b)",
+28585,FD-PERM-001,"Verify See Financial Data controls all fee/discount dollar amounts (without it, amounts are hidden)",Permissions (Story 13),"SV-8289 (S13-R2, S13-N1)",
+28586,FD-PERM-002,Verify whole-work-order add/edit/remove requires Work Orders: Create and Edit,Permissions (Story 13),SV-8289 (S13-R3),
+28587,FD-PERM-003,Verify labor-line and part-line add/edit/remove requires Work Order Lines: Create and Edit,Permissions (Story 13),SV-8289 (S13-R4),
+28588,FD-PERM-004,Verify part-sale add/edit/remove requires Part Sales: Create and Edit plus See Financial Data,Permissions (Story 13),SV-8289 (S13-R5),
+28589,FD-PERM-005,Verify any add/edit/remove of a fee/discount also needs See Financial Data on,Permissions (Story 13),SV-8289 (S13-R6),
+28590,FD-PERM-006,"Verify removing a fee/discount uses Create and Edit, not the separate Delete permission",Permissions (Story 13),SV-8289 (S13-R7),
+28591,FD-PERM-007,Verify create/edit/delete of a fee/discount template needs Settings → Service,Permissions (Story 13),SV-8289 (S13-R8),
+28592,FD-PERM-008,Verify viewing/changing a customer's default fees & discounts needs BOTH Customer Management: Create and Edit AND Manage Accounts Payable and Receivable,Permissions (Story 13),"SV-8289 (S13-R9, S13-N3)",
+28593,FD-PERM-009,Verify seeing fee/discount entries in the work-order audit log needs Work Orders: Create and Edit (line audit log needs Work Order Lines: Create and Edit),Permissions (Story 13),SV-8289 (S13-R10),
+28594,FD-PERM-010,Verify both are required — the Fees & Discounts feature on AND the matching permission,Permissions (Story 13),"SV-8289 (S13-R1, feature flag + permission (both gates))",
+28595,FD-PERM-011,Verify add/edit/remove is blocked when the work order is Invoiced/Paid or you are viewing history,Permissions (Story 13),"SV-8277,SV-8279 (S1-N1, S3-R1b, S3-R1a)",
+28519,FD-PROC-001,Verify 'Processing Fee' is a third Type in the template builder,Processing Fee — template builder,"SV-8283,SV-8284 (S8-R1, S8-R3, S7-R12a)",
+28520,FD-PROC-002,Verify a Processing Fee offers only Flat Amount and % of Grand Total,Processing Fee — methods,"SV-8284 (S8-R5, S8-R6, S8-R9, §5-R4, §5-R10)",
+28521,FD-PROC-003,Verify the Max Amount field is hidden for a Processing Fee (both methods),Processing Fee — no Max Amount,"SV-8283,SV-8284 (S8-R10, S8-N3, S7-R12e)",
+28522,FD-PROC-004,Verify the Processing Fee Taxable defaults to Yes and shows the tax-jurisdiction note,Processing Fee — taxable + jurisdiction note,"SV-8284 (S8-R11, S8-R12, S8-R13, §5-R15)",
+28523,FD-PROC-005,Verify a Processing Fee cannot be added to a work order by hand,Processing Fee — no manual add,"SV-8284 (S8-R16, S8-N1, S8-N2)",
+28524,FD-PROC-006,Verify a Processing Fee reaches a new work order via location auto-apply,Processing Fee — auto-apply,"SV-8283,SV-8284 (S8-R14, S7-R5)",
+28525,FD-PROC-007,Verify a Processing Fee reaches a new work order via a customer default,Processing Fee — customer default,"SV-8284,SV-8285 (S8-R15, S9-R2)",
+28526,FD-PROC-008,Verify a Processing Fee on a work order can be removed but not edited,Processing Fee — WO behavior,"SV-8279,SV-8284 (S8-R17, S8-N5, S3-R9)",
+28527,FD-PROC-009,Verify a % of Grand Total Processing Fee works out last on the tax-included grand total (3% of $324 → +$9.72),Processing Fee — calculation,"SV-8284 (S8-R5, §5-R4, §5-R5 (Step 3))",
+28528,FD-PROC-010,Verify a Processing Fee with a Max Amount or a disallowed method is rejected,API — Processing Fee — negative,SV-8284 (S8-N4),
+28529,FD-PROC-011,Verify a Processing Fee always adds to the total (never a discount),Processing Fee — sign,SV-8284 (S8-R2),
+28530,FD-PROC-012,Verify editing a Processing Fee template does not change Processing Fees already on existing work orders,Processing Fee — template edit independence,"SV-8284 (S8-R18, S8-R19)",
+28531,FD-PROC-013,Verify multiple Processing Fees each leave out all Processing Fees' amounts and tax from the shared base,Processing Fee — calculation edge,SV-8284 (§5-R4 (multiple Processing Fees)),
+28532,FD-PROC-014,Verify the system rejects a Processing Fee that carries a minimum amount,Processing Fee — negative,SV-8284 (S8-N6),
+28544,FD-QB-001,"Verify each fee/discount exports to QuickBooks as its own invoice line item (fee adds, discount subtracts)",QuickBooks sync,SV-8282 (S6-R1),
+28545,FD-QB-002,Verify the QuickBooks line description equals the fee/discount name and uses the mapped Fee/Discount item,QuickBooks sync,"SV-8282 (S6-R3, S6-R5)",
+28546,FD-QB-003,Verify a $0.00 fee/discount is skipped when sent to QuickBooks,QuickBooks sync — edge,"SV-8282 (S6-R1, §5-R8)",
+28547,FD-QB-004,Verify adding a fee is blocked when the Fee item is not mapped to QuickBooks,QuickBooks — mapping guard,"SV-8282 (S6-R6, S6-R6a, S6-R6d)",
+28548,FD-QB-005,Verify adding a discount is blocked when the Discount item is not mapped to QuickBooks,QuickBooks — mapping guard,"SV-8282 (S6-R6, S6-R6d)",
+28549,FD-QB-006,"Verify the mapping block applies on every add place (work order, labor line, part, part sale, apply-from-template)",QuickBooks — mapping guard scope,SV-8282 (S6-R6a),
+28550,FD-QB-007,Verify an auto-apply template cannot be saved while the matching QuickBooks item is not mapped,QuickBooks — mapping guard (auto-apply),SV-8282 (S6-R6b),
+28551,FD-QB-008,"Verify creating/editing a non-auto-apply template is always allowed, with no block when QuickBooks is not connected",QuickBooks — mapping guard exceptions,SV-8282 (S6-R6c),
+28552,FD-QB-009,"Verify unmapping an in-use item sends affected invoices to Unexported Items (recoverable, no data lost)",QuickBooks — unmap recovery,"SV-8282 (S6-R7, S6-R7a)",
+28553,FD-QB-010,"Verify a single QuickBooks Class applies to every synced line, including fee/discount lines",QuickBooks — Class,SV-8282 (S6-R8),
+28554,FD-QB-011,Verify a deleted/deactivated QuickBooks Class stops the whole invoice sync (no substitution),QuickBooks — Class validation,SV-8282 (S6-R9),
+28555,FD-QB-012,"Verify the net subtotal floors at $0.00 ($100 parts + $10 tax, $150 discount: non-taxable vs taxable)",QuickBooks — negative totals,"SV-8282 (S6-R10, S6-R10a, S6-R10b, S6-R10c)",
+28556,FD-QB-013,Verify discount lines to QuickBooks are capped in whole cents (largest-remainder) so they sum exactly to the floored subtotal,QuickBooks — negative totals,SV-8282 (S6-R10d),
+28557,FD-QB-014,Verify a mandatory warning/confirmation before saving when discounts are bigger than the net subtotal,QuickBooks — negative totals,SV-8282 (S6-R12),
+28558,FD-QB-015,Verify the excess is recorded as a customer credit and posts to QuickBooks as a tax-exempt goodwill credit,QuickBooks — negative totals,"SV-8282 (S6-R11, S6-R13)",
+28559,FD-QB-016,Verify a synced line's tax follows the fee/discount's Taxable setting,QuickBooks sync — tax,"SV-8282 (S6-R2, §5-R11)",
+28479,FD-REMOVE-001,Verify removing a whole-work-order fee/discount shows the 'Remove Fee / Discount' confirm and a success message,Work Order — Remove an adjustment,SV-8279 (S3-R11a / S3-R11b / §7),
+28480,FD-REMOVE-002,"Verify removing a fee/discount uses Create and Edit, not a separate Delete permission",Work Order — Remove an adjustment,SV-8289 (S13-R7 / S13-N2),
+28481,FD-REMOVE-003,Verify removing a line-level fee/discount from its inline ⋮ menu,Work Order — Remove an adjustment,SV-8279 (S3-R17 / S3-R11a),
+28482,FD-STACK-001,Verify multiple fees/discounts on one part each work out on the part's own total (they do not compound),Work Order — Multiple adjustments (stacking / netting),"SV-8279,SV-8287 (§5-R5 (Step 1) / S3-R15 / S11-R15)",
+28483,FD-STACK-002,Verify two whole-work-order percentage fees/discounts use the same totals and do not change each other's base,Work Order — Multiple adjustments (stacking / netting),SV-7865 (§5-R5 (Step 2) / spec §5 worked example),
+28484,FD-STACK-003,Verify the same template can be applied to one work order more than once by hand,Work Order — Multiple adjustments (stacking / netting),SV-8283 (Overview 'apply same template more than once' / §3 key decisions),
+28459,FD-STATS-001,Verify the Stats tab shows a 'Fees & Discounts (N)' breakdown with a value/% and an amount for each row,Work Order — Statistics tab,SV-8280 (S4-R1 / S4-R2 / S4-R3),
+28460,FD-STATS-002,Verify each Stats fee/discount row names its target,Work Order — Statistics tab,SV-8280 (S4-R3 / design §3),
+28461,FD-STATS-003,Verify the Stats 'Fees & Discounts' total equals the signed sum of all the amounts,Work Order — Statistics tab,SV-8280 (S4-R4 / S4-R6),
+28462,FD-STATS-004,Verify the Stats fees/discounts are listed in the order they were created (oldest first),Work Order — Statistics tab,SV-8280 (§5-R9),
+28463,FD-STATS-005,Verify the Stats 'Fees & Discounts' section is hidden when the work order has no fees/discounts,Work Order — Statistics tab,SV-8280 (S4-N1),
+28502,FD-TMPL-001,Verify the fee/discount template library is at Administration → Service → Fees & Discounts (below Canned Lines),Template admin — location,"SV-8283 (S7-R7a, S7-R7c)",
+28503,FD-TMPL-002,Verify the template list columns and the edit/delete actions,Template admin — list,"SV-8283,SV-8288 (S7-R8, S12-R8)",
+28504,FD-TMPL-003,Verify creating a Fee template (dialog fields and the Create button),Template admin — create,"SV-8283 (S7-R10, S7-R12a-g, S7-R16, S7-R17, S7-R18a)",
+28505,FD-TMPL-004,Verify creating a Discount template,Template admin — create,"SV-8283 (S7-R12a, S7-R18a)",
+28506,FD-TMPL-005,Verify the 'Auto-apply to all new work orders at this location' checkbox adds the template to every new work order at that location,Template admin — auto-apply,"SV-8283 (S7-R12g, S7-R5, S7-R6a, S7-R6b)",
+28507,FD-TMPL-006,"Verify editing a template (Edit Fee / Discount dialog, 'Save' button)",Template admin — edit,"SV-8283 (S7-R9, S7-R16, S7-R17, S7-R18b)",
+28508,FD-TMPL-007,Verify the template delete confirm dialog and buttons,Template admin — delete,SV-8283 (S7-R20),
+28509,FD-TMPL-008,Verify the delete confirm adds a warning when the template is a customer default,Template admin — delete,SV-8283 (S7-R21),
+28510,FD-TMPL-009,Verify deleting a template leaves work-order fees/discounts made from it unchanged,Template admin — delete,"SV-8283 (S7-N1, S7-R4)",
+28511,FD-TMPL-010,"Verify template scoping — labour-method templates only show in labour pickers, parts-method only in parts pickers",Template admin — scoping,"SV-8278,SV-8281 (S2-R14, S2-R15, S2-R16, S5-R10)",
+28512,FD-TMPL-011,Verify Max Amount shows only for percentage methods and how 0 behaves,Template admin — dialog fields,"SV-8283 (S7-R12e, S7-R14, §5-R6)",
+28513,FD-TMPL-012,Verify the template list empty-state message,Template admin — list,SV-8283 (S7-R11),
+28514,FD-TMPL-013,Verify a percentage-discount template cannot go over 100% while a percentage-fee template has no cap,Template admin — validation,"SV-8283 (S7-R3, §5-R2)",
+28515,FD-TMPL-014,Verify a Fee/Discount template offers the four whole-work-order methods and no scope field,Template admin — dialog fields,"SV-8283 (S7-R2, S7-R13, S7-R15)",
+28516,FD-TMPL-015,Verify the template save-failure message,Template admin — negative,SV-8283 (S7-R19),
+28517,FD-TMPL-016,Verify the admin Fees & Discounts page needs the Settings → Service permission,Template admin — permissions,"SV-8283,SV-8289 (S13-R8, S7-R7b)",
+28518,FD-TMPL-017,Verify the template Name is limited to 100 characters,Template admin — dialog fields,SV-8283 (S7-R12c),
+28599,FD-VAL-001,"Verify the Add button stays disabled until Name, Type, Calculation Type and an Amount above 0 are all set",Validation / Edge,"SV-8278 (design §6 (Add-button enable rule); S2-N1, S2-N2)",
+28600,FD-VAL-002,"Verify a blank or 0 amount blocks saving, with an error",Validation / Edge,"SV-8278 (S2-N2, §5-R1)",
+28601,FD-VAL-003,"Verify an empty Name blocks saving, with an error (Name required, up to 100 characters)",Validation / Edge,"SV-8278 (S2-N1, S2-R19)",
+28602,FD-VAL-004,Verify a percentage discount over 100% is invalid while a percentage fee has no upper cap,Validation / Edge,SV-8278 (§5-R2),
+28603,FD-VAL-005,Verify negative amounts are rejected (values must be above 0),Validation / Edge,SV-8278 (§5-R1),
+28604,FD-VAL-006,Verify the Max Amount field shows only for percentage methods and how 0 or empty behaves,Validation / Edge,"SV-8278 (§5-R6, S2-R24, S2-R25)",
+28605,FD-VAL-007,Verify a template that is both auto-apply at the location and a customer default is added only ONCE to a new work order,Validation / Edge,"SV-8283,SV-8285 (S9 known gap (auto-apply + customer-default duplication); S7-R5, S9-R2)",
+28424,FD-WO-001,Verify the whole-work-order Add Fee/Discount dialog opens from the work order more (⋯) menu,Work Order — Whole-WO Fee/Discount,"SV-8277,SV-8278 (S1-R1 / S2-R9 / S2-R12)",
+28425,FD-WO-002,Verify adding a whole-work-order flat-amount fee saves and shows a success message,Work Order — Whole-WO Fee/Discount,SV-8278 (S2-R19..R27 / S2-R29 / §7 toast),
+28426,FD-WO-003,Verify the live preview shows a whole-work-order percentage discount before you save,Work Order — Whole-WO Fee/Discount,SV-8278 (S2-R31..R35 / §5-R3),
+28427,FD-WO-004,Verify 'Apply From Template' fills the dialog with a template's values,Work Order — Whole-WO Fee/Discount,SV-8278 (S2-R13 / S2-R14),
+28428,FD-WO-005,"Verify the Add button stays disabled until Name, Type, Calculation Type and an Amount above 0 are all filled in",Work Order — Whole-WO Fee/Discount,SV-8278 (Design §6 validateForm() / S2-N1 / S2-N2),
+28429,FD-WO-006,Verify Max Amount caps a percentage fee (20% on a $100 base with Max Amount $15 → +$15.00),Work Order — Whole-WO Fee/Discount,SV-8278 (S2-R24 / §5-R6),
+28430,FD-WO-007,Verify the confirm button label follows the Type (Add Fee vs Add Discount),Work Order — Whole-WO Fee/Discount,SV-8278 (S2-R27),
+28431,FD-WO-008,Verify an empty Name blocks saving a whole-work-order fee/discount,Work Order — Whole-WO Fee/Discount,SV-8278 (S2-N1),
+28432,FD-WO-009,Verify an empty or zero amount blocks saving a whole-work-order fee/discount,Work Order — Whole-WO Fee/Discount,SV-8278 (S2-N2 / §5-R1),
+28433,FD-WO-010,Verify a percentage discount over 100% is rejected while a percentage fee has no upper limit,Work Order — Whole-WO Fee/Discount,SV-8279 (§5-R2 / S3 §3 discounts),
+28434,FD-WO-011,Verify a whole-work-order percentage method uses the correct base (% of Subtotal example),Work Order — Whole-WO Fee/Discount,SV-8278 (§5-R4 / §5-R10 / S2-R3),
+28435,FD-WO-012,Verify Add Fee/Discount is hidden and blocked on an Invoiced or Paid work order,Work Order — Whole-WO Fee/Discount,"SV-8277,SV-8279 (S1-N1 / S3-R1b)",
+28436,FD-WO-013,Verify the whole-work-order Add Fee/Discount option is hidden without Work Orders: Create & Edit,Work Order — Whole-WO Fee/Discount,"SV-8277,SV-8289 (S1-N2 / S13-R3 / S13-N2)",
+28437,FD-WO-014,Verify the preview shows the empty-amount prompt before an amount is entered,Work Order — Whole-WO Fee/Discount,SV-8278 (S2-R41),
+28438,FD-WO-015,Verify the preview amount is signed for a fee (+) vs a discount (−),Work Order — Whole-WO Fee/Discount,"SV-8278,SV-8288 (S2-R33 / S12-R2)",
+29441,FD-WO-016,Verify the Add/Edit fee-or-discount dialog shows the tax-jurisdiction note below the Taxable Yes/No dropdown,Work Order — Whole-WO Fee/Discount,"SV-8278 (S2-R26, S2-R26a, §5-R15)",
+29917,FD-TMPL-018,Verify the admin Fee/Discount template dialog shows the tax-jurisdiction note below the Taxable Yes/No dropdown (for every kind),Template admin — jurisdiction note,SV-8283 (S7-R12f / §5-R15),
+29918,FD-PSALE-001,Verify the Part Sale Add/Edit fee-or-discount dialog shows the tax-jurisdiction note below the Taxable Yes/No dropdown,Part Sale — Fee/Discount dialog,SV-8287 (S11-R3 / S11-R4a / S11-R4b / §5-R15),
+29922,FD-PERM-012,Fees & Discounts settings page gated by settingsService (not settingsFinance),Permissions (Story 13),SV-8289 (SV-8456 Story 13),
+29923,FD-PERM-013,Service admin can complete the Fees & Discounts template delete flow,Permissions (Story 13),SV-8289 (SV-8456 Story 13),

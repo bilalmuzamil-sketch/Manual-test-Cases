@@ -105,12 +105,15 @@ pushed.
 
 Every case created / VIU'd / updated must be provably linked to (a) its Jira ticket(s) and
 (b) its spec section, so its existence and its expected result are always justifiable. Keep
-these in the **metadata/traceability layer, never the tester-facing fields**: ticket key(s)
-in the TestRail case **References (`refs`)** field + the per-project `testrail-id-map.csv` +
-the coverage matrix; spec section in the QA-side records (case `citation`/evidence, audit
-log). Tester-facing Title/Preconditions/Steps/Expected stay jargon-free (Rules 7 & 9). Every
-change cites its driving ticket (Done/Not-Done) + spec section in the audit log. A case with
-neither a ticket nor a spec anchor is flagged missing-traceability, not left unsourced.
+these in the **metadata/traceability layer, never the tester-facing fields**. The TestRail
+case **References (`refs`)** field carries **BOTH together** in the format
+**`<TICKET(S)> (<spec-anchor>)`** (e.g. `SV-7696 (S1-R3 (Vendor invoice Optional/Required))`,
+`SV-7865 (§5-R3)`) — **per-story precision ALWAYS, and ticket-only is never acceptable (the
+spec reference must never be dropped)**. Mirror the same combined value into the per-project
+`testrail-id-map.csv` + coverage matrix; the audit log also records it. Tester-facing
+Title/Preconditions/Steps/Expected stay jargon-free (Rules 7 & 9). Every change cites its
+driving ticket (Done/Not-Done) + spec section in the audit log. A case with neither a ticket
+nor a spec anchor is flagged missing-traceability, not left unsourced.
 
 ## Honesty rules
 

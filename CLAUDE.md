@@ -804,19 +804,32 @@ process(es) to run before proceeding.
     case MUST carry a provable link back to (a) the Jira ticket(s) it belongs to AND
     (b) the exact spec section/requirement it derives from — so anyone can show WHY the
     case exists and WHY its expected result is what it is. Capture these references in
-    the TRACEABILITY / METADATA layer, NOT the tester-facing fields: the ticket key(s)
-    go in the TestRail case **References (`refs`) field** (plus the per-project
-    testrail-id-map.csv and the findings/coverage-matrix), and the spec section citation
-    goes in the QA-side records (findings `citation`, the audit log, coverage matrix).
-    This does NOT contradict Rules 7 & 9 — the tester-facing Title/Preconditions/Steps/
-    Expected stay plain and jargon-free (NO ticket IDs, story refs, §-numbers, enum
-    names, or bug codes in the words the manual tester reads); the references live only
-    in the metadata layer. Every CHANGE to a case must cite its driving ticket (with
-    Done/Not-Done status) + spec section in the audit log and the change-list deliverable
-    (last-update-wins on conflicts). A case with no ticket AND no spec anchor is NOT
-    authentic — flag it (missing-traceability) rather than leave it unsourced. **The repeatable
-    method to find + backfill unsourced cases is build/MISSING-TRACEABILITY-PROCESS.md** (run it
-    on demand or as a sub-step of any spec-recheck/VIU pass). Ties to Standing Rules
+    the TRACEABILITY / METADATA layer, NOT the tester-facing fields. **The TestRail
+    case References (`refs`) field MUST carry BOTH references together — the Jira
+    ticket key(s) AND the spec section/requirement anchor — in the format
+    `<TICKET(S)> (<spec-anchor>)`** (e.g. `SV-7696 (S1-R3 (Vendor invoice Optional/
+    Required))`, `SV-7865 (§5-R3)`, `SV-7301 (§5 invariant 1)` for a cross-cutting
+    integrity case with no single-story owner). **Ticket-only is NOT acceptable — the
+    spec reference must never be dropped** (corrected 2026-07-22: an earlier pass wrongly
+    reduced `refs` to the ticket key alone; the user requires ticket + spec both, always).
+    Mirror the same combined `refs` into the per-project `testrail-id-map.csv` and the
+    findings/coverage-matrix. **Per-story precision ALWAYS** — the exact story ticket +
+    exact spec requirement, never epic-level or guesswork (the only time the epic key is
+    used is a genuinely cross-cutting case with no single-story owner, and that is stated
+    explicitly). This does NOT contradict Rules 7 & 9 — the tester-facing Title/
+    Preconditions/Steps/Expected stay plain and jargon-free (NO ticket IDs, story refs,
+    §-numbers, enum names, or bug codes in the words the manual tester reads); the
+    references live only in the metadata layer. Every CHANGE to a case must cite its
+    driving ticket (with Done/Not-Done status) + spec section in the audit log and the
+    change-list deliverable (last-update-wins on conflicts). A case with no ticket AND no
+    spec anchor is NOT authentic — flag it (missing-traceability) rather than leave it
+    unsourced. **The repeatable method to find + backfill unsourced cases is
+    build/MISSING-TRACEABILITY-PROCESS.md** (run it on demand or as a sub-step of any
+    spec-recheck/VIU pass). **TWO-SESSION KNOWLEDGE SHARING:** this workspace is worked
+    by more than one Claude session in parallel; there is no live message bus between
+    them, so **this CLAUDE.md + the build/*-PROCESS.md docs ARE the shared brain** — any
+    session that learns/changes a durable rule MUST write it here so the other session
+    picks it up, and MUST read here before acting. Ties to Standing Rules
     6/8/9/10/11/12/13/14/15 and build/SPEC-RECHECK-PROCESS.md +
     build/BUILD-ACCURATE-WORDING-VIU-PROCESS.md.
 
