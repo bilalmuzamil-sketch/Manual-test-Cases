@@ -1060,6 +1060,18 @@ self-review IS allowed when the role holds the Mark Reviewed permission
 SF-PERM-08 RE-PURPOSED into the positive self-review case (VIU-Verified). **BUG-5 /
 TICKET 1 DROPPED** as expected. 4 cases pushed to TestRail (QA-lead authorized).
 
+> **OQ-1 (reviewer ≠ completer) RE-CONFIRMED RESOLVED 2026-07-22 (user):** self-review
+> IS allowed in v1 — a user MAY review their own completed work when their role holds
+> Mark Reviewed. SV8183_1's acceptance-criterion re-assertion of a hard "reviewer ≠
+> completer" rule is **SUPERSEDED** by the earlier self-review descope (last-update-wins,
+> user-confirmed). **SF-PERM-04/07/08 + SF-REV-09 stand UNCHANGED** (they already state
+> self-review is allowed) — **NO case-wording edits, NO TestRail writes, NO import
+> regeneration.** Enforcement is FE-only (corroborated by the SV8183_1 Dipesh dev comment
+> 10/Jul/26 — already covered by SF-PERM-06). **SV8183_1 ingested** (commit f52b70c) =
+> byte-identical re-export of the existing SV-8183 permissions story, **0 forced case
+> changes**; scope analysis = `build/simple-flow/sv8183/scope-analysis-2026-07-22.md`
+> (OQ-1 there marked RESOLVED). Decision-record only.
+
 **C. 4 active Jira bug drafts (`jira-bug-drafts.md`) — NOT filed** (no Atlassian MCP
 in this env; file from the chat app). All under epic SV-7301, Product Area = Work
 Orders (`customfield_10153` id 10120):

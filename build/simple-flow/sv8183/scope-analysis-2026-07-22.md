@@ -242,7 +242,8 @@ the backend today: a direct API call still succeeds HTTP 200"). The comment is
 
 ## 7. Open questions (for a later Milos question sheet — layman, Rule 7)
 
-- **OQ-1 (the decision that matters):** SV-8183 says a person who **finished** a
+- **OQ-1 — RESOLVED 2026-07-22 (user): self-review allowed; SV8183_1 reviewer≠completer AC superseded by descope (last-update-wins). No case edits required.**
+  Original question (kept for the record): SV-8183 says a person who **finished** a
   work order should **not** be allowed to be the one who **signs it off** as
   reviewed (two different people required). Our current tests say the same person
   **can** sign off their own work order as long as they have the review
