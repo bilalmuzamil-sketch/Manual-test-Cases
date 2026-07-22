@@ -782,6 +782,18 @@ process(es) to run before proceeding.
     role merge-map); the user required both the format AND the full instruction
     history. Ties to Standing Rules 9/10/11/15/16/17 and the recipe docs (e.g.
     build/COMPARISON-WORKBOOK-RECIPE.md).
+19. **Deliverable filenames must be HUMAN-READABLE (all projects).** Every file
+    delivered to the user (imports, workbooks, question sheets, reports,
+    evidence bundles) carries a filename readable at a glance — spell out
+    project/report/feature names in full; NEVER cryptic abbreviations
+    (sbc/pv/tu), internal codes, or opaque slugs; include the deliverable type
+    and (where dated) the date. Established cross-project patterns (e.g.
+    `<project>-v1-testrail-import.csv`) remain valid where they already exist;
+    new files default to readable full names. Rationale: 2026-07-22 — the six
+    per-report Report Suite split imports were first emitted as
+    report-suite-v1-{sbc,pv,...}-… and the user required full report names
+    ("make them human readable to avoid confusion - remember this rule
+    always").
 
 ## Project purpose (Custom Roles project)
 Manual test-case authoring + live staging (Verify-in-UI) verification + TestRail
