@@ -511,7 +511,7 @@ def main():
     print("Deviation sub:", dict(dev_sub))
     print("NotBuilt sub:", dict(notbuilt_sub))
     print("Env sub:", dict(env_sub))
-    assert sum(disp_counts.values()) == len(rows) == 184, "count mismatch"  # 185 authored - 1 retired (FD-CUST-016)
+    assert sum(disp_counts.values()) == len(rows) == 202, "count mismatch"  # 185 authored + 18 SV-8479/8480 net-new - 1 retired (FD-CUST-016)
 
 
 if __name__ == "__main__":

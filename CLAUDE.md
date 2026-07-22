@@ -171,9 +171,17 @@ process(es) to run before proceeding.
    gone), C28605 intact; body kept locally marked Retired; id-map −1; generators exclude
    Retired; deliverables regenerated over 184. Dup-pair thread CLOSED. Audit:
    `build/fees-discounts/retire-2026-07-20/testrail-log.md`.
-   **CURRENT TALLY: 151 VIU-Verified / 12 VIU-Deviation / 20 Blocked-Env / 1 VIU-Pending
-   (FD-PART-005) = 184 ACTIVE** (185 authored − 1 retired; +2 dev-authored reconciled =
-   186 in-suite; was 152/12/0/20/1 = 185 pre-retire; prior qb tally 135/15/12/20/1 = 183).
+   **SV-8479/8480 AUTHORING CONSOLIDATED & COMMITTED 2026-07-22 (§0.0m — NO TestRail
+   writes):** 18 net-new cases authored (SV-8479 ×11 + SV-8480 ×7, all VIU-Pending, in
+   id-map with BLANK C-ids pending `add_case`; FD-CALC-024 = API) + 54 existing edited
+   (pending `update_case`) + 9 SV-8479 dups dropped + 3 retire-candidates flagged awaiting
+   user ruling (FD-LABOR-003/FD-PCOL-003/FD-PCOL-007) + SV-8456 no-delta. **NEW TALLY: 202
+   ACTIVE authored** (184 prior + 18 net-new; +2 dev-authored = 204 in id-map/204-row map),
+   of which **18 are NOT-YET-IN-TESTRAIL**. Deliverables regenerated over 202 (import 202
+   rows, hygiene clean). Sources: `sv8479-8456-8480/deconfliction-decision-table-2026-07-22.md`.
+   **Prior CURRENT TALLY (pre-8479/8480): 151 VIU-Verified / 12 VIU-Deviation / 20 Blocked-Env
+   / 1 VIU-Pending (FD-PART-005) = 184 ACTIVE** (185 authored − 1 retired; +2 dev-authored
+   reconciled = 186 in-suite; was 152/12/0/20/1 = 185 pre-retire; prior qb 135/15/12/20/1 = 183).
    **SV-8456 UI-CORRECTION STAGING LIVE VIU DONE 2026-07-21 (§0.0l):** frontend-only F&D
    UI corrections verified live — **FUNCTIONALITY INTACT** (template CRUD + apply-to-WO/
    Part-Sale + calc correct) and the **PERMISSION PIVOT CONFIRMED** (F&D settings now

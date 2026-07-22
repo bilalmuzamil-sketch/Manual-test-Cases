@@ -2,7 +2,7 @@
   {
     "id": "FD-CALC-001",
     "area": "Calculation contract",
-    "story_ref": "§5-R3",
+    "story_ref": "§5-R3 | SV-8479 (SV-8288 Story 12 — item 4)",
     "title": "Verify a percentage fee/discount works out as base x percent (10% fee on $150.00 → +$15.00)",
     "priority": "High",
     "type": "Functional",
@@ -12,7 +12,7 @@
       "2. An open work order (not Invoiced/Paid, not in history view) whose relevant base is $150.00 (for example net labor $150.00). Mark any throwaway data ZZAUTOTEST."
     ],
     "steps": [
-      "1. Open the work order and, from the ⋯ menu, click 'Add Fee/Discount'.",
+      "1. Open the work order and, from the ⋯ menu, click 'Add Work Order Fee / Discount'.",
       "2. Set Type to 'Fee'.",
       "3. Set Calculation Type to a percentage method whose base is $150.00 (for example '% of Labor Total').",
       "4. In 'Percent %' enter 10.",
@@ -21,18 +21,18 @@
     "expected": [
       "1. Base $150.00, rate 10% fee.",
       "2. The fee works out to $150.00 x 10% = +$15.00 exactly.",
-      "3. It shows a '+10%' rate badge and +$15.00 in grey."
+      "3. It shows '+10%' as plain text and +$15.00 (no colored badge)."
     ],
     "design_ref": "design-notes §6 (Add modal), §3 (Stats), §1a (sidebar card sign convention fee +)",
     "viu_status": "VIU-Verified",
-    "notes": "Design open question: the mock Add modal has NO calculation-base selector and computes % against a single flat WO total (design §9.1). Spec §5-R4 requires the base to depend on scope/method. Verify staging actually offers % of Labor Total / Parts Total / Subtotal and resolves against the correct base. | VIU qb batch-1 (2026-07-08): base x percent verified repeatedly: 10% x 265 = 26.50; 25% x 265 = 66.25; 3% x 530.07 = 15.90; 10% x 292.83 = 29.28 (pre-cap). | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: base×pct exact — pct_subtotal 10% of $1214.81=$121.48; pct_labor of $749.75=$74.98; pct_parts of $386.34=$38.63 (calc-results.json) | FRESH VIU 2026-07-10: 10% pct_subtotal -> 17.08 = exactly 10% of the 170.76 base; sub delta matches | WORDING+VIU 2026-07-13: Build labels; carry arithmetic VIU. Resolution engine re-confirmed live 2026-07-13 via API (flat $25→+$25.00; 20% capped at $15→+$15.00; 150% discount rejected 'A percentage discount cannot exceed 100%').",
+    "notes": "Design open question: the mock Add modal has NO calculation-base selector and computes % against a single flat WO total (design §9.1). Spec §5-R4 requires the base to depend on scope/method. Verify staging actually offers % of Labor Total / Parts Total / Subtotal and resolves against the correct base. | VIU qb batch-1 (2026-07-08): base x percent verified repeatedly: 10% x 265 = 26.50; 25% x 265 = 66.25; 3% x 530.07 = 15.90; 10% x 292.83 = 29.28 (pre-cap). | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: base×pct exact — pct_subtotal 10% of $1214.81=$121.48; pct_labor of $749.75=$74.98; pct_parts of $386.34=$38.63 (calc-results.json) | FRESH VIU 2026-07-10: 10% pct_subtotal -> 17.08 = exactly 10% of the 170.76 base; sub delta matches | WORDING+VIU 2026-07-13: Build labels; carry arithmetic VIU. Resolution engine re-confirmed live 2026-07-13 via API (flat $25→+$25.00; 20% capped at $15→+$15.00; 150% discount rejected 'A percentage discount cannot exceed 100%'). | SV-8479/8480 deconfliction 2026-07-22: rate rendering reworded from 'rate badge' to plain text (item 4); calc math unchanged.",
     "api_related": false,
     "fresh_run": "2026-07-13"
   },
   {
     "id": "FD-CALC-002",
     "area": "Calculation contract",
-    "story_ref": "§5-R3",
+    "story_ref": "§5-R3 | SV-8479 (SV-8288 Story 12 — items 10/11 label sweep)",
     "title": "Verify percentage rounding — half a cent or more rounds up (5% discount on $33.33 → −$1.67)",
     "priority": "High",
     "type": "Functional",
@@ -42,7 +42,7 @@
       "2. An open work order whose target base is $33.33."
     ],
     "steps": [
-      "1. Open 'Add Fee/Discount' against the $33.33 base.",
+      "1. Open 'Add Work Order Fee / Discount' against the $33.33 base.",
       "2. Set Type to 'Discount' and a percentage Calculation Type on that base.",
       "3. In 'Percent %' enter 5.",
       "4. Save."
@@ -55,14 +55,14 @@
     ],
     "design_ref": "design-notes §6 (preview math floors negatives to 0 but does not model half-cent rounding)",
     "viu_status": "VIU-Verified",
-    "notes": "Rounding is a §5 enforced rule not modeled in the design mock. Confirm the server, not just the preview, rounds half-cent up. | VIU qb batch-1 (2026-07-08): Half-cent rounds UP: 0.1% x $265 = $0.265 -> resolved $0.27 (API). Also 25% x 292.83 = 73.2075 -> 73.21. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: half-cent rounds UP — $749.75×.10=$74.975→$74.98; rounds down — $386.34×.10=$38.634→$38.63 | FRESH VIU 2026-07-10: 0.25% of 170.76 = 0.4269 -> 0.43 (rounds up); half-cent-up rule from batch-1 (0.1%x265->0.27) stands | WORDING+VIU 2026-07-13: Build labels; carry rounding VIU.",
+    "notes": "Rounding is a §5 enforced rule not modeled in the design mock. Confirm the server, not just the preview, rounds half-cent up. | VIU qb batch-1 (2026-07-08): Half-cent rounds UP: 0.1% x $265 = $0.265 -> resolved $0.27 (API). Also 25% x 292.83 = 73.2075 -> 73.21. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: half-cent rounds UP — $749.75×.10=$74.975→$74.98; rounds down — $386.34×.10=$38.634→$38.63 | FRESH VIU 2026-07-10: 0.25% of 170.76 = 0.4269 -> 0.43 (rounds up); half-cent-up rule from batch-1 (0.1%x265->0.27) stands | WORDING+VIU 2026-07-13: Build labels; carry rounding VIU. | SV-8479/8480 deconfliction 2026-07-22: label sweep: navigation labels -> 'Add Work Order Fee / Discount' / 'New Work Order Fee / Discount' (behavior/expected unchanged).",
     "api_related": false,
     "fresh_run": "2026-07-13"
   },
   {
     "id": "FD-CALC-003",
     "area": "Calculation contract",
-    "story_ref": "§5-R14",
+    "story_ref": "§5-R14 | SV-8479 (SV-8288 Story 12 — items 10 & 1 label sweep)",
     "title": "Verify a flat amount on a whole work order or a labor line is the exact amount (no quantity multiplier)",
     "priority": "Medium",
     "type": "Functional",
@@ -72,8 +72,8 @@
       "2. An open work order with at least one labor line."
     ],
     "steps": [
-      "1. Add a whole-work-order fee: ⋯ menu > 'Add Fee/Discount', Type 'Fee', Calculation Type 'Flat Amount', '$ Amount' 25.00, save.",
-      "2. Add a labor-line discount: on the labor line's ⋮ menu > 'Add Fee/Discount', Type 'Discount', Calculation Type 'Flat Amount', '$ Amount' 10.00, save."
+      "1. Add a whole-work-order fee: ⋯ menu > 'Add Work Order Fee / Discount', Type 'Fee', Calculation Type 'Flat Amount', '$ Amount' 25.00, save.",
+      "2. Add a labor-line discount: on the labor line's ⋮ menu > 'Add Labor Fee / Discount', Type 'Discount', Calculation Type 'Flat Amount', '$ Amount' 10.00, save."
     ],
     "expected": [
       "1. The whole-work-order flat fee is exactly +$25.00.",
@@ -82,14 +82,14 @@
     ],
     "design_ref": "design-notes §6 (Flat amount → $ prefix)",
     "viu_status": "VIU-Verified",
-    "notes": "Open question (requirements §14 item 2): §5-R4's base table lists explicit bases only for the three percentage methods; Whole-WO Flat Amount base = \"the set amount\" by inference. Confirm no explicit Whole-WO Flat base row is expected. | VIU qb batch-1 (2026-07-08): Whole-WO flat $11 -> 11.00; labor-line flat $5 -> 5.00 exactly (no quantity part). | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: WO flat $5 fee→+$5.00; labor flat $10→+$10.00 (exact, no qty) | FRESH VIU 2026-07-10: flat 7.77 -> resolved 7.77 exactly (whole-WO); labor-line flat 9.99 exact | WORDING+VIU 2026-07-13: Build labels; flat resolve confirmed live 2026-07-13 ($25→+$25.00). Resolution engine re-confirmed live 2026-07-13 via API (flat $25→+$25.00; 20% capped at $15→+$15.00; 150% discount rejected 'A percentage discount cannot exceed 100%').",
+    "notes": "Open question (requirements §14 item 2): §5-R4's base table lists explicit bases only for the three percentage methods; Whole-WO Flat Amount base = \"the set amount\" by inference. Confirm no explicit Whole-WO Flat base row is expected. | VIU qb batch-1 (2026-07-08): Whole-WO flat $11 -> 11.00; labor-line flat $5 -> 5.00 exactly (no quantity part). | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: WO flat $5 fee→+$5.00; labor flat $10→+$10.00 (exact, no qty) | FRESH VIU 2026-07-10: flat 7.77 -> resolved 7.77 exactly (whole-WO); labor-line flat 9.99 exact | WORDING+VIU 2026-07-13: Build labels; flat resolve confirmed live 2026-07-13 ($25→+$25.00). Resolution engine re-confirmed live 2026-07-13 via API (flat $25→+$25.00; 20% capped at $15→+$15.00; 150% discount rejected 'A percentage discount cannot exceed 100%'). | SV-8479/8480 deconfliction 2026-07-22: mixed label sweep: step 1 whole-WO -> 'Add Work Order Fee / Discount', step 2 labor line -> 'Add Labor Fee / Discount' (behavior unchanged).",
     "api_related": false,
     "fresh_run": "2026-07-13"
   },
   {
     "id": "FD-CALC-004",
     "area": "Calculation contract",
-    "story_ref": "§5-R14",
+    "story_ref": "§5-R14 | SV-8479 (SV-8288 Story 12 — items 2/9 label sweep)",
     "title": "Verify a flat amount on a part line is charged per item (amount x quantity: $5.00 x 3 → −$15.00; x1 → −$5.00)",
     "priority": "High",
     "type": "Functional",
@@ -99,7 +99,7 @@
       "2. An open work order with a part whose quantity is 3."
     ],
     "steps": [
-      "1. On the part's ⋮ menu, click 'Add Fee/Discount' (this locks the scope to that part).",
+      "1. On the part's ⋮ menu, click 'Add Part Fee / Discount' (this locks the scope to that part).",
       "2. Set Type 'Discount', Calculation Type 'Flat Amount', '$ Amount' 5.00, save.",
       "3. Change the part quantity from 3 to 1 and watch the fee/discount re-work."
     ],
@@ -110,14 +110,14 @@
     ],
     "design_ref": "design-notes §5 (Parts F&D column), §8 (per-part breakdown viewer)",
     "viu_status": "VIU-Verified",
-    "notes": "Part Line Flat is the only Flat method that multiplies by quantity (§5-R14). Whole-WO and Labor Line Flat do not. | VIU qb batch-1 (2026-07-08): Part-line per-item multiplication pending (no part target). | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: part-line flat $5 × qty 2 = $10.00 (per-item §5-R14) | FRESH VIU 2026-07-10: per-item: $2.00 x qty4 -> $8.00 (part line) | WORDING+VIU 2026-07-13: Build labels; per-item VIU carried.",
+    "notes": "Part Line Flat is the only Flat method that multiplies by quantity (§5-R14). Whole-WO and Labor Line Flat do not. | VIU qb batch-1 (2026-07-08): Part-line per-item multiplication pending (no part target). | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: part-line flat $5 × qty 2 = $10.00 (per-item §5-R14) | FRESH VIU 2026-07-10: per-item: $2.00 x qty4 -> $8.00 (part line) | WORDING+VIU 2026-07-13: Build labels; per-item VIU carried. | SV-8479/8480 deconfliction 2026-07-22: label sweep: navigation labels -> 'Add Part Fee / Discount' / 'New Part Fee / Discount' (behavior/expected unchanged).",
     "api_related": false,
     "fresh_run": "2026-07-13"
   },
   {
     "id": "FD-CALC-005",
     "area": "Calculation contract",
-    "story_ref": "§5-R2",
+    "story_ref": "§5-R2 | SV-8479 (SV-8288 Story 12 — items 10/11 label sweep)",
     "title": "Verify a percentage discount cannot go over 100% (percentage fees have no upper limit)",
     "priority": "High",
     "type": "Functional",
@@ -127,7 +127,7 @@
       "2. An open work order."
     ],
     "steps": [
-      "1. Open 'Add Fee/Discount' at any scope.",
+      "1. Open 'Add Work Order Fee / Discount' from the ⋯ menu (this validation applies at any scope).",
       "2. Set Type 'Discount' and a percentage Calculation Type.",
       "3. Enter 'Percent %' 101 and try to save.",
       "4. Change to 100 and save.",
@@ -140,14 +140,14 @@
     ],
     "design_ref": "design-notes §9 item 4/§10 (no validation/error visual states mocked beyond disabled Add)",
     "viu_status": "VIU-Verified",
-    "notes": "Design mock shows no inline error copy for over-100% discounts (design §10). Capture the actual error message/behavior on staging. | VIU qb batch-1 (2026-07-08): Discount: 100% accepted, 100.01% -> 400 'A percentage discount cannot exceed 100%.'; fee 150% accepted. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: 150% discount REJECTED \"A percentage discount cannot exceed 100%\"; 150% fee allowed →$1822.22 | FRESH VIU 2026-07-10: discount pct >100 -> 400; fee pct uncapped (150% -> 201) | WORDING+VIU 2026-07-13: Exact back-end message confirmed live 2026-07-13: 'A percentage discount cannot exceed 100%.' Resolution engine re-confirmed live 2026-07-13 via API (flat $25→+$25.00; 20% capped at $15→+$15.00; 150% discount rejected 'A percentage discount cannot exceed 100%').",
+    "notes": "Design mock shows no inline error copy for over-100% discounts (design §10). Capture the actual error message/behavior on staging. | VIU qb batch-1 (2026-07-08): Discount: 100% accepted, 100.01% -> 400 'A percentage discount cannot exceed 100%.'; fee 150% accepted. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: 150% discount REJECTED \"A percentage discount cannot exceed 100%\"; 150% fee allowed →$1822.22 | FRESH VIU 2026-07-10: discount pct >100 -> 400; fee pct uncapped (150% -> 201) | WORDING+VIU 2026-07-13: Exact back-end message confirmed live 2026-07-13: 'A percentage discount cannot exceed 100%.' Resolution engine re-confirmed live 2026-07-13 via API (flat $25→+$25.00; 20% capped at $15→+$15.00; 150% discount rejected 'A percentage discount cannot exceed 100%'). | SV-8479/8480 deconfliction 2026-07-22: label sweep: navigation labels -> 'Add Work Order Fee / Discount' / 'New Work Order Fee / Discount' (behavior/expected unchanged). | SV-8479/8480 deconfliction 2026-07-22: 'at any scope' step reworded to the whole-WO entry label 'Add Work Order Fee / Discount' (validation is scope-independent).",
     "api_related": false,
     "fresh_run": "2026-07-13"
   },
   {
     "id": "FD-CALC-006",
     "area": "Calculation contract",
-    "story_ref": "§5-R1",
+    "story_ref": "§5-R1 | SV-8479 (SV-8288 Story 12 — items 10/11 label sweep)",
     "title": "Verify the smallest allowed values — flat amount $0.01, percentage 0.01%",
     "priority": "Medium",
     "type": "Functional",
@@ -157,7 +157,7 @@
       "2. An open work order."
     ],
     "steps": [
-      "1. Open 'Add Fee/Discount'.",
+      "1. Open 'Add Work Order Fee / Discount'.",
       "2. With Calculation Type 'Flat Amount', try '$ Amount' 0.00 (should be blocked), then 0.01 (should be allowed); save.",
       "3. With a percentage Calculation Type, try 'Percent %' 0 (should be blocked), then 0.01 (should be allowed); save."
     ],
@@ -168,14 +168,14 @@
     ],
     "design_ref": "design-notes §6 (Add button enabled only when Amount > 0)",
     "viu_status": "VIU-Verified",
-    "notes": "Design's Add button stays disabled when Amount is 0 (design §6), which enforces \"> 0\" but does not distinguish the $0.01 / 0.01% floor. Verify the exact floor on staging. | VIU qb batch-1 (2026-07-08): Flat $0.01 accepted (min ok); 0/negative rejected. DEVIATION (FDBUG-10): percent 0.005 was silently COERCED UP to 0.01 (201, amount=0.01) instead of being rejected as below-minimum. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: flat $0.01 accepted (+$0.01); flat $0 REJECTED \"must be greater than zero\" | FRESH VIU 2026-07-10: FDBUG-10 CONFIRMED AGAIN: pct 0.005% accepted (201) and silently coerced to 0.01 (resolved 0.02); flat 0.005 accepted -> stored 0.01. Spec: below-minimum must be rejected | WORDING+VIU 2026-07-13: DEVIATION carried (FDBUG-10 / PO Q3 pending): a percentage below the 0.01% minimum is silently rounded UP to 0.01% instead of being rejected. Build labels applied. | CHRIS WARD ROUND-2 ANSWER APPLIED 2026-07-14(Q3=A): PO ruled quietly rounding tiny percentages up to the 0.01% minimum is fine/expected ('fully anticipated and expected'). No longer a deviation; FDBUG-10 closed as accepted; jira draft TICKET 5 DROPPED. Expected reworded to expect the round-up-to-minimum coercion. PUSHED TO TESTRAIL 2026-07-14 via update_case (QA-lead one-day authorization; update 200 / re-verify 200 MATCH; audit: testrail-round2-push-log.md).",
+    "notes": "Design's Add button stays disabled when Amount is 0 (design §6), which enforces \"> 0\" but does not distinguish the $0.01 / 0.01% floor. Verify the exact floor on staging. | VIU qb batch-1 (2026-07-08): Flat $0.01 accepted (min ok); 0/negative rejected. DEVIATION (FDBUG-10): percent 0.005 was silently COERCED UP to 0.01 (201, amount=0.01) instead of being rejected as below-minimum. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: flat $0.01 accepted (+$0.01); flat $0 REJECTED \"must be greater than zero\" | FRESH VIU 2026-07-10: FDBUG-10 CONFIRMED AGAIN: pct 0.005% accepted (201) and silently coerced to 0.01 (resolved 0.02); flat 0.005 accepted -> stored 0.01. Spec: below-minimum must be rejected | WORDING+VIU 2026-07-13: DEVIATION carried (FDBUG-10 / PO Q3 pending): a percentage below the 0.01% minimum is silently rounded UP to 0.01% instead of being rejected. Build labels applied. | CHRIS WARD ROUND-2 ANSWER APPLIED 2026-07-14(Q3=A): PO ruled quietly rounding tiny percentages up to the 0.01% minimum is fine/expected ('fully anticipated and expected'). No longer a deviation; FDBUG-10 closed as accepted; jira draft TICKET 5 DROPPED. Expected reworded to expect the round-up-to-minimum coercion. PUSHED TO TESTRAIL 2026-07-14 via update_case (QA-lead one-day authorization; update 200 / re-verify 200 MATCH; audit: testrail-round2-push-log.md). | SV-8479/8480 deconfliction 2026-07-22: label sweep: navigation labels -> 'Add Work Order Fee / Discount' / 'New Work Order Fee / Discount' (behavior/expected unchanged).",
     "api_related": false,
     "fresh_run": "2026-07-14"
   },
   {
     "id": "FD-CALC-007",
     "area": "Calculation contract",
-    "story_ref": "§5-R6",
+    "story_ref": "§5-R6 | SV-8479 (SV-8288 Story 12 — items 10/11 label sweep)",
     "title": "Verify Max Amount caps a percentage result (20% fee on $100 → $20 → Max Amount $15 → +$15.00)",
     "priority": "High",
     "type": "Functional",
@@ -185,7 +185,7 @@
       "2. An open work order whose target base is $100.00."
     ],
     "steps": [
-      "1. Open 'Add Fee/Discount' on the $100.00 base.",
+      "1. Open 'Add Work Order Fee / Discount' on the $100.00 base.",
       "2. Set Type 'Fee' and a percentage Calculation Type.",
       "3. Enter 'Percent %' 20.",
       "4. Enter '$ Max Amount (Optional)' 15.00.",
@@ -198,14 +198,14 @@
     ],
     "design_ref": "design-notes §6 (\"Max cap\" field), §9 item 4",
     "viu_status": "VIU-Verified",
-    "notes": "Design difference: the mock labels the field \"Max cap\" (spec label is \"Max Amount (Optional)\") and shows it unconditionally, even capping Flat amounts (design §9 item 4). Spec restricts Max Amount to percentage methods only. Verify staging hides it for Flat Amount. | VIU qb batch-1 (2026-07-08): Clamp verified: 10% x 324.60 = 32.46 -> maxCap 5 -> resolved 5.00; 10%/max15 discount -> -15.00. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: pct_subtotal 10% ($121.48) with maxCap $50 → clamped to +$50.00 | FRESH VIU 2026-07-10: Max cap clamps: 20% (34.15) with cap 15 -> 15.00 | WORDING+VIU 2026-07-13: Max cap clamp confirmed live 2026-07-13 (20% → capped $15.00). Resolution engine re-confirmed live 2026-07-13 via API (flat $25→+$25.00; 20% capped at $15→+$15.00; 150% discount rejected 'A percentage discount cannot exceed 100%').",
+    "notes": "Design difference: the mock labels the field \"Max cap\" (spec label is \"Max Amount (Optional)\") and shows it unconditionally, even capping Flat amounts (design §9 item 4). Spec restricts Max Amount to percentage methods only. Verify staging hides it for Flat Amount. | VIU qb batch-1 (2026-07-08): Clamp verified: 10% x 324.60 = 32.46 -> maxCap 5 -> resolved 5.00; 10%/max15 discount -> -15.00. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: pct_subtotal 10% ($121.48) with maxCap $50 → clamped to +$50.00 | FRESH VIU 2026-07-10: Max cap clamps: 20% (34.15) with cap 15 -> 15.00 | WORDING+VIU 2026-07-13: Max cap clamp confirmed live 2026-07-13 (20% → capped $15.00). Resolution engine re-confirmed live 2026-07-13 via API (flat $25→+$25.00; 20% capped at $15→+$15.00; 150% discount rejected 'A percentage discount cannot exceed 100%'). | SV-8479/8480 deconfliction 2026-07-22: label sweep: navigation labels -> 'Add Work Order Fee / Discount' / 'New Work Order Fee / Discount' (behavior/expected unchanged).",
     "api_related": false,
     "fresh_run": "2026-07-13"
   },
   {
     "id": "FD-CALC-008",
     "area": "Calculation contract",
-    "story_ref": "§5-R6",
+    "story_ref": "§5-R6 | SV-8479 (SV-8288 Story 12 — items 10/11 label sweep)",
     "title": "Verify how Max Amount behaves at 0 vs empty (empty means no cap)",
     "priority": "Medium",
     "type": "Functional",
@@ -215,7 +215,7 @@
       "2. An open work order whose target base is $100.00."
     ],
     "steps": [
-      "1. Open 'Add Fee/Discount', Type 'Fee', a percentage method, 'Percent %' 50 on the $100.00 base.",
+      "1. Open 'Add Work Order Fee / Discount', Type 'Fee', a percentage method, 'Percent %' 50 on the $100.00 base.",
       "2. Leave Max Amount empty and save; note the result.",
       "3. Set Max Amount to 0 and save; note the result."
     ],
@@ -225,7 +225,7 @@
     ],
     "design_ref": "design-notes §6 (Max cap min=0)",
     "viu_status": "VIU-Verified",
-    "notes": "Two behaviors of \"0\" that must not be confused: typed 0 = empty/no cap (S2-R25); a stored 0 from legacy data forces $0 (§5-R6). Min Amount exists in the data model only, always sent null by both dialogs. | VIU qb batch-1 (2026-07-08): Blank maxCap = no cap (ok). DEVIATION (FDBUG-9): maxCap=0 accepted by the API and treated as NO CAP (resolved 32.46) — spec §5-R6 says Max $0 forces $0.00. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: maxCap:0 treated as no-cap (resolved full $121.48); empty maxCap = no cap. Note: spec \"Max=$0 forces $0\" is old-data-only/not triggerable from product | Pass A read maxCap-0-as-no-cap as acceptable (spec calls $0 old-data-only); keeping Deviation since observed behavior (no cap) also contradicts the \"$0 forces $0.00\" rule - PO question. | FRESH VIU 2026-07-10: FDBUG-9 CONFIRMED AGAIN: maxCap 0 -> resolved 34.15 (treated as NO cap; spec: $0 forces $0.00) | WORDING+VIU 2026-07-13: DEVIATION carried (FDBUG-9 / PO Q2 pending): a Max Amount of 0 is treated as 'no cap' rather than capping at $0.00. Build labels applied. | CHRIS WARD ROUND-2 ANSWER APPLIED 2026-07-14(Q2=A): PO ruled a typed 0 in Max Amount means 'no limit' (WAD, S2-R25: entered 0 = empty = no maximum; a true $0 cap only from legacy data per §5-R6). No longer a deviation; FDBUG-9 closed as accepted; jira draft TICKET 4 DROPPED. Expected reworded to affirm 0=no-cap. PUSHED TO TESTRAIL 2026-07-14 via update_case (QA-lead one-day authorization; update 200 / re-verify 200 MATCH; audit: testrail-round2-push-log.md).",
+    "notes": "Two behaviors of \"0\" that must not be confused: typed 0 = empty/no cap (S2-R25); a stored 0 from legacy data forces $0 (§5-R6). Min Amount exists in the data model only, always sent null by both dialogs. | VIU qb batch-1 (2026-07-08): Blank maxCap = no cap (ok). DEVIATION (FDBUG-9): maxCap=0 accepted by the API and treated as NO CAP (resolved 32.46) — spec §5-R6 says Max $0 forces $0.00. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: maxCap:0 treated as no-cap (resolved full $121.48); empty maxCap = no cap. Note: spec \"Max=$0 forces $0\" is old-data-only/not triggerable from product | Pass A read maxCap-0-as-no-cap as acceptable (spec calls $0 old-data-only); keeping Deviation since observed behavior (no cap) also contradicts the \"$0 forces $0.00\" rule - PO question. | FRESH VIU 2026-07-10: FDBUG-9 CONFIRMED AGAIN: maxCap 0 -> resolved 34.15 (treated as NO cap; spec: $0 forces $0.00) | WORDING+VIU 2026-07-13: DEVIATION carried (FDBUG-9 / PO Q2 pending): a Max Amount of 0 is treated as 'no cap' rather than capping at $0.00. Build labels applied. | CHRIS WARD ROUND-2 ANSWER APPLIED 2026-07-14(Q2=A): PO ruled a typed 0 in Max Amount means 'no limit' (WAD, S2-R25: entered 0 = empty = no maximum; a true $0 cap only from legacy data per §5-R6). No longer a deviation; FDBUG-9 closed as accepted; jira draft TICKET 4 DROPPED. Expected reworded to affirm 0=no-cap. PUSHED TO TESTRAIL 2026-07-14 via update_case (QA-lead one-day authorization; update 200 / re-verify 200 MATCH; audit: testrail-round2-push-log.md). | SV-8479/8480 deconfliction 2026-07-22: label sweep: navigation labels -> 'Add Work Order Fee / Discount' / 'New Work Order Fee / Discount' (behavior/expected unchanged).",
     "api_related": false,
     "fresh_run": "2026-07-14"
   },
@@ -491,6 +491,210 @@
     "notes": "Largest-remainder penny allocation is a backend QuickBooks-sync detail (S6-R10d). Verify line sums equal the floored subtotal to the cent. | VIU qb batch-1 (2026-07-08): Penny-cap allocation is QB-export behavior — blocked/pending with FD-QB-013. | [pass A same-day parallel verdict] VIU-Pending — negative-total floor / QuickBooks credit memo require QB connection (not connected) | VIU batch-6 qb 2026-07-09 (overnight run, evidence 21:10-21:30Z): floor+stacking proven; QB penny-cap needs QB-side line view. | FRESH VIU 2026-07-10: floor half RE-PROVEN (stacked 120+100 on 182.76 -> sub 0.00, excess 37.24 exact); QB penny-cap half needs QB-side line view | WORDING+VIU 2026-07-13: BLOCKED-ENV: the QuickBooks penny-cap (largest-remainder) allocation on discount lines is only observable inside QuickBooks (no QB read API; export currently fails on duplicate document numbers). The in-app $0.00 floor half is verified. Build labels applied.",
     "api_related": false,
     "fresh_run": "2026-07-13"
+  },
+  {
+    "id": "FD-CALC-018",
+    "area": "Calculation contract",
+    "story_ref": "SV-8480 (S3-R18)",
+    "title": "Verify a work order line total adds the line's own fees to Labor and Parts (Labor $250 + fee +$50.00 + Part $20.00 + fee +$2.20 → line total $322.20)",
+    "priority": "High",
+    "type": "Functional",
+    "permissions_required": "See Financial Data; Work Orders: Create and Edit",
+    "preconditions": [
+      "1. You are signed in with See Financial Data and Work Orders: Create and Edit.",
+      "2. The organization has the Fees & Discounts feature turned on.",
+      "3. An open work order (not Invoiced/Paid, not in history view) with one line that has Labor $250.00 and one part 'Turbocharger Oil' at $20.00. Mark any throwaway data ZZAUTOTEST."
+    ],
+    "steps": [
+      "1. Open the work order and go to the Lines tab.",
+      "2. Expand the line and, on the Labor row, add a labor fee named 'ttt' of +20% (a fee, not a discount).",
+      "3. On the Parts row for 'Turbocharger Oil', add a part fee named 'test' of +11%.",
+      "4. Read the fee amounts shown in the rows beneath the line: the labor fee 'ttt' shows +$50.00 and the part fee 'test' shows +$2.20.",
+      "5. Collapse the line and read the line total shown at the top-right of the line header row."
+    ],
+    "expected": [
+      "1. The Fees/Discounts row under Labor shows '↳ ttt' with a '+20%' badge and +$50.00.",
+      "2. The part fee row shows '↳ test' with a '+11%' badge and +$2.20.",
+      "3. The collapsed line total at the top-right equals Labor + labor fee + Parts + part fee = $250.00 + $50.00 + $20.00 + $2.20 = $322.20.",
+      "4. The line total is NOT $270.00 (it must not leave out the two fees)."
+    ],
+    "design_ref": "SV-8480 attachment image-20260722-031940.png (Lines tab collapsed line total vs expanded fee rows)",
+    "viu_status": "VIU-Pending",
+    "notes": "SV-8480 (Story Defect under SV-8279, Epic SV-7387; PO Chris Ward): the per-line total_cost previously summed Labor + Parts gross only and ignored the line's own fees/discounts (showed $270.00). Fixed backend (Stefan Vukovic, PR ShopView/shopview#2228) to add the line's signed fee/discount amounts on top per spec S3-R18. Display-only, no stored values change. QA Passed on staging 2026-07-22. Concrete worked example from the ticket ($322.20) used as expected values.",
+    "api_related": false
+  },
+  {
+    "id": "FD-CALC-019",
+    "area": "Calculation contract",
+    "story_ref": "SV-8480 (S3-R18)",
+    "title": "Verify a discount on a line subtracts from the line total while a fee adds (fees add, discounts subtract in the line total)",
+    "priority": "High",
+    "type": "Functional",
+    "permissions_required": "See Financial Data; Work Orders: Create and Edit",
+    "preconditions": [
+      "1. You are signed in with See Financial Data and Work Orders: Create and Edit.",
+      "2. The organization has the Fees & Discounts feature turned on.",
+      "3. An open work order with one line that has Labor $250.00 and one part at $20.00. Mark any throwaway data ZZAUTOTEST."
+    ],
+    "steps": [
+      "1. Open the work order and go to the Lines tab; expand the line.",
+      "2. On the Labor row, add a labor fee of +20% (a fee).",
+      "3. On the part row, add a part discount of -10%.",
+      "4. Read the fee and discount amounts shown in the rows beneath the line (the fee shows a plus amount, the discount shows a minus amount).",
+      "5. Collapse the line and read the line total at the top-right of the line header row."
+    ],
+    "expected": [
+      "1. The labor fee shows a '+20%' badge and a plus amount (+$50.00 on $250.00).",
+      "2. The part discount shows a '-10%' badge and a minus amount (-$2.00 on $20.00).",
+      "3. The collapsed line total adds the fee and subtracts the discount: Labor $250.00 + fee $50.00 + Part $20.00 - discount $2.00 = $318.00.",
+      "4. Fees increase the line total; discounts reduce it."
+    ],
+    "design_ref": "SV-8480 attachment image-20260722-031940.png (signed fee/discount amounts in line rows)",
+    "viu_status": "VIU-Pending",
+    "notes": "SV-8480 / S3-R18: the line total rolls in the line's SIGNED fee/discount amounts (fees add, discounts subtract). Complements FD-CALC-018 (all-fees case) by proving a discount subtracts.",
+    "api_related": false
+  },
+  {
+    "id": "FD-CALC-020",
+    "area": "Calculation contract",
+    "story_ref": "SV-8480 (S3-R18)",
+    "title": "Verify a line with no fees or discounts shows a line total of Labor + Parts only (unchanged by the fix)",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "See Financial Data; Work Orders: Create and Edit",
+    "preconditions": [
+      "1. You are signed in with See Financial Data and Work Orders: Create and Edit.",
+      "2. The organization has the Fees & Discounts feature turned on.",
+      "3. An open work order with one line that has Labor $250.00 and one part at $20.00 and NO fees or discounts on it. Mark any throwaway data ZZAUTOTEST."
+    ],
+    "steps": [
+      "1. Open the work order and go to the Lines tab.",
+      "2. Confirm the line has no Fees/Discounts rows under Labor or Parts.",
+      "3. Collapse the line and read the line total at the top-right of the line header row."
+    ],
+    "expected": [
+      "1. There are no Fees/Discounts rows on the line.",
+      "2. The collapsed line total equals Labor + Parts only ($250.00 + $20.00 = $270.00).",
+      "3. The line total is the same as before the fix — a line with no fees or discounts is unaffected."
+    ],
+    "design_ref": "SV-8480 QA step 2 (line with no fees/discounts → total unchanged)",
+    "viu_status": "VIU-Pending",
+    "notes": "SV-8480 QA step 2 / S3-R18: a line without any fee/discount keeps a gross Labor + Parts total (no change from the fix).",
+    "api_related": false
+  },
+  {
+    "id": "FD-CALC-021",
+    "area": "Calculation contract",
+    "story_ref": "SV-8480 (S3-R18)",
+    "title": "Verify the Estimate document is unchanged — labor prints gross, each fee prints its own row, and the grand total is not double-counted",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "See Financial Data; Work Orders: Create and Edit",
+    "preconditions": [
+      "1. You are signed in with See Financial Data and Work Orders: Create and Edit.",
+      "2. The organization has the Fees & Discounts feature turned on.",
+      "3. An open work order with a line that has Labor $250.00, a labor fee +$50.00, a part at $20.00 and a part fee +$2.20 (as in the ticket example). Mark any throwaway data ZZAUTOTEST."
+    ],
+    "steps": [
+      "1. Open the work order and generate/preview the Estimate document.",
+      "2. Read how the labor amount prints.",
+      "3. Read how each fee/discount prints.",
+      "4. Read the document grand total."
+    ],
+    "expected": [
+      "1. The labor amount still prints at its gross value ($250.00) — the fee is not folded into the labor line.",
+      "2. Each fee prints as its own separate row (the labor fee +$50.00 and the part fee +$2.20 each appear on their own line).",
+      "3. The Estimate grand total is unchanged and correct — the fees are counted once, not double-counted."
+    ],
+    "design_ref": "SV-8480 QA step 3 (estimate/invoice documents unchanged, no double-count)",
+    "viu_status": "VIU-Pending",
+    "notes": "SV-8480 QA step 3 / S3-R18: the line-total fix is display-only on the Lines tab; the Estimate document must be unaffected — labor stays gross, fees print as their own rows, grand total not double-counted.",
+    "api_related": false
+  },
+  {
+    "id": "FD-CALC-022",
+    "area": "Calculation contract",
+    "story_ref": "SV-8480 (S3-R18)",
+    "title": "Verify the Invoice document is unchanged — labor prints gross, each fee prints its own row, and the grand total is not double-counted",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "See Financial Data; Work Orders: Create and Edit",
+    "preconditions": [
+      "1. You are signed in with See Financial Data and Work Orders: Create and Edit.",
+      "2. The organization has the Fees & Discounts feature turned on.",
+      "3. A work order with a line that has Labor $250.00, a labor fee +$50.00, a part at $20.00 and a part fee +$2.20, taken through to an invoice. Mark any throwaway data ZZAUTOTEST."
+    ],
+    "steps": [
+      "1. Open the work order and generate/preview the Invoice document.",
+      "2. Read how the labor amount prints.",
+      "3. Read how each fee/discount prints.",
+      "4. Read the document grand total."
+    ],
+    "expected": [
+      "1. The labor amount still prints at its gross value ($250.00) — the fee is not folded into the labor line.",
+      "2. Each fee prints as its own separate row (the labor fee +$50.00 and the part fee +$2.20 each appear on their own line).",
+      "3. The Invoice grand total is unchanged and correct — the fees are counted once, not double-counted."
+    ],
+    "design_ref": "SV-8480 QA step 3 (estimate/invoice documents unchanged, no double-count)",
+    "viu_status": "VIU-Pending",
+    "notes": "SV-8480 QA step 3 / S3-R18: the line-total fix is display-only on the Lines tab; the Invoice document must be unaffected — labor stays gross, fees print as their own rows, grand total not double-counted.",
+    "api_related": false
+  },
+  {
+    "id": "FD-CALC-023",
+    "area": "Calculation contract",
+    "story_ref": "SV-8480 (S3-R18)",
+    "title": "Verify that when the Fees & Discounts feature is turned off, the line total is Labor + Parts only (gross), with no fee/discount rolled in",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "See Financial Data; Work Orders: Create and Edit",
+    "preconditions": [
+      "1. You are signed in with See Financial Data and Work Orders: Create and Edit.",
+      "2. The organization does NOT have the Fees & Discounts feature turned on.",
+      "3. An open work order with one line that has Labor $250.00 and one part at $20.00. Mark any throwaway data ZZAUTOTEST."
+    ],
+    "steps": [
+      "1. Open the work order and go to the Lines tab.",
+      "2. Confirm there is no way to add line fees/discounts (the feature is off).",
+      "3. Collapse the line and read the line total at the top-right of the line header row."
+    ],
+    "expected": [
+      "1. No line-level fees/discounts are available while the Fees & Discounts feature is off.",
+      "2. The collapsed line total equals Labor + Parts only ($250.00 + $20.00 = $270.00), gross with no fee/discount roll-in.",
+      "3. The new fee/discount roll-in only applies when the Fees & Discounts feature is on."
+    ],
+    "design_ref": "SV-8480 QA step 4 (feature-off org → line totals gross-only)",
+    "viu_status": "VIU-Pending",
+    "notes": "SV-8480 QA step 4 / S3-R18: for an organization without the Fees & Discounts feature, line totals stay gross-only (the roll-in is gated by the feature).",
+    "api_related": false
+  },
+  {
+    "id": "FD-CALC-024",
+    "area": "Calculation contract",
+    "story_ref": "SV-8480 (S3-R18)",
+    "title": "Verify the backend per-line total includes the line's signed fee/discount amounts (Labor $250 + $50.00 + Part $20.00 + $2.20 → total_cost 322.20)",
+    "priority": "High",
+    "type": "Functional",
+    "permissions_required": "See Financial Data; Work Orders: Create and Edit",
+    "preconditions": [
+      "1. You are signed in with See Financial Data and Work Orders: Create and Edit.",
+      "2. The organization has the Fees & Discounts feature turned on.",
+      "3. An open work order with one line that has Labor $250.00, a labor fee +20% (+$50.00), a part at $20.00 and a part fee +11% (+$2.20) — the ticket example. Mark any throwaway data ZZAUTOTEST."
+    ],
+    "steps": [
+      "1. Load the work order line detail from the backend (the work order line/total endpoint the Lines tab reads).",
+      "2. Read the per-line total value returned for the line (total_cost).",
+      "3. Confirm the stored line amounts (labor, parts, fee/discount amounts) are unchanged by the fix."
+    ],
+    "expected": [
+      "1. The backend returns a per-line total (total_cost) of 322.20 = Labor 250.00 + labor fee 50.00 + Part 20.00 + part fee 2.20.",
+      "2. The per-line total adds the line's signed fee/discount amounts on top of Labor + Parts (fees add, discounts subtract); it is not 270.00.",
+      "3. The change is display-only in the computed total — the stored labor, parts, and fee/discount values are unchanged."
+    ],
+    "design_ref": "SV-8480 dev comment (backend total_cost, PR ShopView/shopview#2228)",
+    "viu_status": "VIU-Pending",
+    "notes": "SV-8480 / S3-R18: backend fix in the per-line total_cost computation (Stefan Vukovic, PR ShopView/shopview#2228) — previously Labor + Parts gross only, now adds the line's signed fee/discount amounts. Display-only, no stored values change. API-section case per Standing Rule 4 (verifies a backend value/response).",
+    "api_related": true
   },
   {
     "id": "FD-PERM-001",
@@ -766,7 +970,7 @@
   {
     "id": "FD-PERM-011",
     "area": "Permissions (Story 13)",
-    "story_ref": "S1-N1, S3-R1b, S3-R1a",
+    "story_ref": "S1-N1, S3-R1b, S3-R1a | SV-8479 (SV-8288 Story 12 — items 10/11 label sweep)",
     "title": "Verify add/edit/remove is blocked when the work order is Invoiced/Paid or you are viewing history",
     "priority": "Medium",
     "type": "Functional",
@@ -776,19 +980,19 @@
       "2. An Invoiced or Paid work order, and separately a way to enter history mode."
     ],
     "steps": [
-      "1. On an Invoiced or Paid work order, look for 'Add Fee/Discount' and the per-entry ⋮ menus.",
+      "1. On an Invoiced or Paid work order, look for 'Add Work Order Fee / Discount' and the per-entry ⋮ menus.",
       "2. Try to add/edit/remove.",
       "3. In history view, try to add a fee/discount."
     ],
     "expected": [
-      "1. On an Invoiced or Paid work order, 'Add Fee/Discount' is hidden everywhere and the per-entry ⋮ menus are not shown.",
+      "1. On an Invoiced or Paid work order, 'Add Work Order Fee / Discount' is hidden everywhere and the per-entry ⋮ menus are not shown.",
       "2. The system refuses any add/edit/remove on an Invoiced or Paid work order.",
       "3. In history view you cannot add a fee/discount.",
       "4. Add/edit/remove is allowed only while the work order is open."
     ],
     "design_ref": "design-notes §5 (S11-R9: \"+ Add\" disabled when the sale can't be edited)",
     "viu_status": "VIU-Verified",
-    "notes": "OPEN QUESTION (requirements §14 item 3): the spec does not define what puts a user in \"history mode.\" Flag this — the history-mode portion of the step cannot be made concrete until the trigger is confirmed on staging. | VIU qb batch-1 (2026-07-08): Invoiced/Paid gating verified both layers: paid WO hides all add/edit/remove controls (toolbar menu = Audit Log/Timesheets only) and API add -> 409 'Adjustments cannot be changed on an invoiced or paid work order.' History-mode half untestable (spec never defines history mode — open question #3). | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: add on Paid WO S3-15889 → 409; on Invoiced WO S3-15887 → 409 \"Adjustments cannot be changed on an invoiced or paid work order\" | FRESH VIU 2026-07-10: Invoiced WO: add 409 + edit 409 (BE-enforced lock) | WORDING+VIU 2026-07-13: Invoiced/Paid block is back-end enforced (409) — established; carried.",
+    "notes": "OPEN QUESTION (requirements §14 item 3): the spec does not define what puts a user in \"history mode.\" Flag this — the history-mode portion of the step cannot be made concrete until the trigger is confirmed on staging. | VIU qb batch-1 (2026-07-08): Invoiced/Paid gating verified both layers: paid WO hides all add/edit/remove controls (toolbar menu = Audit Log/Timesheets only) and API add -> 409 'Adjustments cannot be changed on an invoiced or paid work order.' History-mode half untestable (spec never defines history mode — open question #3). | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: add on Paid WO S3-15889 → 409; on Invoiced WO S3-15887 → 409 \"Adjustments cannot be changed on an invoiced or paid work order\" | FRESH VIU 2026-07-10: Invoiced WO: add 409 + edit 409 (BE-enforced lock) | WORDING+VIU 2026-07-13: Invoiced/Paid block is back-end enforced (409) — established; carried. | SV-8479/8480 deconfliction 2026-07-22: label sweep: navigation labels -> 'Add Work Order Fee / Discount' / 'New Work Order Fee / Discount' (behavior/expected unchanged).",
     "api_related": false,
     "fresh_run": "2026-07-13"
   },
@@ -880,14 +1084,14 @@
   {
     "id": "FD-VAL-001",
     "area": "Validation / Edge",
-    "story_ref": "design §6 (Add-button enable rule); S2-N1, S2-N2",
+    "story_ref": "design §6 (Add-button enable rule); S2-N1, S2-N2 | SV-8479 (SV-8288 Story 12 — items 10/11 label sweep)",
     "title": "Verify the Add button stays disabled until Name, Type, Calculation Type and an Amount above 0 are all set",
     "priority": "High",
     "type": "Functional",
     "permissions_required": "See Financial Data; the matching Create and Edit permission",
     "preconditions": [
       "1. You are logged in with See Financial Data and the matching Create and Edit permission.",
-      "2. An open work order with the 'Add new fee/discount' dialog open."
+      "2. An open work order with the 'New Work Order Fee / Discount' dialog open."
     ],
     "steps": [
       "1. With the dialog freshly opened (all fields empty), look at the confirm button.",
@@ -903,21 +1107,21 @@
     ],
     "design_ref": "design-notes §6 (Add disabled by default; validateForm enables only when Name AND Type AND Calc type AND Amount > 0)",
     "viu_status": "VIU-Verified",
-    "notes": "Design difference: the mock dialog also has NO base selector and NO Taxable control (design §9 items 1–2). Spec adds Taxable (default Yes, S2-R26) and scope-dependent Calculation type options (§5-R10). Verify the real dialog's enable rule against these extra fields. | VIU qb batch-1 (2026-07-08): The Add/Create buttons are NEVER disabled (design §6 enable-rule not implemented). Build validates on submit with inline field errors + error toasts and keeps the dialog open. | RECON 2026-07-09 (spec-v1-reconciliation.md + PO answer sheet): PO Q4=B -> confirmed defect (BUG-FD-4). | FRESH VIU 2026-07-10: CONFIRMED AGAIN: Add button enabled on empty form (validates on submit) — PO Q4=B defect persists | WORDING+VIU 2026-07-13: DEVIATION re-confirmed 2026-07-13 (BUG-FD-4): the 'Add Fee' button is ENABLED on an empty form (validates on submit). Labels build-accurate (Add Fee/Add Discount, Calculation Type, Max Amount). | STAGING VIU 2026-07-20 staging LIVE VIU: BUG-FD-4 FIXED on staging: confirm button disabled until Name+Type+Calc+Amount>0 set. Live-observed (dev-wo-emptyform + part-sale Add Fee disabled-until-valid).",
+    "notes": "Design difference: the mock dialog also has NO base selector and NO Taxable control (design §9 items 1–2). Spec adds Taxable (default Yes, S2-R26) and scope-dependent Calculation type options (§5-R10). Verify the real dialog's enable rule against these extra fields. | VIU qb batch-1 (2026-07-08): The Add/Create buttons are NEVER disabled (design §6 enable-rule not implemented). Build validates on submit with inline field errors + error toasts and keeps the dialog open. | RECON 2026-07-09 (spec-v1-reconciliation.md + PO answer sheet): PO Q4=B -> confirmed defect (BUG-FD-4). | FRESH VIU 2026-07-10: CONFIRMED AGAIN: Add button enabled on empty form (validates on submit) — PO Q4=B defect persists | WORDING+VIU 2026-07-13: DEVIATION re-confirmed 2026-07-13 (BUG-FD-4): the 'Add Fee' button is ENABLED on an empty form (validates on submit). Labels build-accurate (Add Fee/Add Discount, Calculation Type, Max Amount). | STAGING VIU 2026-07-20 staging LIVE VIU: BUG-FD-4 FIXED on staging: confirm button disabled until Name+Type+Calc+Amount>0 set. Live-observed (dev-wo-emptyform + part-sale Add Fee disabled-until-valid). | SV-8479/8480 deconfliction 2026-07-22: label sweep: navigation labels -> 'Add Work Order Fee / Discount' / 'New Work Order Fee / Discount' (behavior/expected unchanged).",
     "api_related": false,
     "fresh_run": "2026-07-20-staging"
   },
   {
     "id": "FD-VAL-002",
     "area": "Validation / Edge",
-    "story_ref": "S2-N2, §5-R1",
+    "story_ref": "S2-N2, §5-R1 | SV-8479 (SV-8288 Story 12 — items 10/11 label sweep)",
     "title": "Verify a blank or 0 amount blocks saving, with an error",
     "priority": "High",
     "type": "Functional",
     "permissions_required": "See Financial Data; the matching Create and Edit permission",
     "preconditions": [
       "1. You are logged in with See Financial Data and the matching Create and Edit permission.",
-      "2. The 'Add new fee/discount' dialog is open with Name, Type and Calculation Type filled."
+      "2. The 'New Work Order Fee / Discount' dialog is open with Name, Type and Calculation Type filled."
     ],
     "steps": [
       "1. Leave the amount blank and try to save.",
@@ -931,21 +1135,21 @@
     ],
     "design_ref": "design-notes §6 (Add disabled unless Amount > 0), §10 (no inline error text mocked)",
     "viu_status": "VIU-Verified",
-    "notes": "Design mock shows no inline error copy — only the disabled Add button (design §10). Capture the actual inline error text/behavior on staging. | VIU qb batch-1 (2026-07-08): Blank/0 amount: inline 'Percent must be greater than 0'/'Amount must be greater than 0' + API 400 'The adjustment amount must be greater than zero.' | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: amount 0 → 400 \"must be greater than zero\" | FRESH VIU 2026-07-10: amount 0 -> 400 (API); UI inline error on submit | WORDING+VIU 2026-07-13: Blank/0 amount blocked; carry prior VIU. Labels cleaned.",
+    "notes": "Design mock shows no inline error copy — only the disabled Add button (design §10). Capture the actual inline error text/behavior on staging. | VIU qb batch-1 (2026-07-08): Blank/0 amount: inline 'Percent must be greater than 0'/'Amount must be greater than 0' + API 400 'The adjustment amount must be greater than zero.' | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: amount 0 → 400 \"must be greater than zero\" | FRESH VIU 2026-07-10: amount 0 -> 400 (API); UI inline error on submit | WORDING+VIU 2026-07-13: Blank/0 amount blocked; carry prior VIU. Labels cleaned. | SV-8479/8480 deconfliction 2026-07-22: label sweep: navigation labels -> 'Add Work Order Fee / Discount' / 'New Work Order Fee / Discount' (behavior/expected unchanged).",
     "api_related": false,
     "fresh_run": "2026-07-13"
   },
   {
     "id": "FD-VAL-003",
     "area": "Validation / Edge",
-    "story_ref": "S2-N1, S2-R19",
+    "story_ref": "S2-N1, S2-R19 | SV-8479 (SV-8288 Story 12 — items 10/11 label sweep)",
     "title": "Verify an empty Name blocks saving, with an error (Name required, up to 100 characters)",
     "priority": "Medium",
     "type": "Functional",
     "permissions_required": "See Financial Data; the matching Create and Edit permission",
     "preconditions": [
       "1. You are logged in with See Financial Data and the matching Create and Edit permission.",
-      "2. The 'Add new fee/discount' dialog is open with Type, Calculation Type and a valid amount filled."
+      "2. The 'New Work Order Fee / Discount' dialog is open with Type, Calculation Type and a valid amount filled."
     ],
     "steps": [
       "1. Leave the Name empty and try to save.",
@@ -959,21 +1163,21 @@
     ],
     "design_ref": "design-notes §6 (Name is a required field for Add enablement)",
     "viu_status": "VIU-Verified",
-    "notes": "Verify the exact 100-character enforcement (hard cap vs error) on staging. | VIU qb batch-1 (2026-07-08): Empty name: inline 'Name is a required field', save blocked. Template name maxlength=100 enforced; WO-dialog name input present (maxlength not read — spot-check in batch 2). | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: empty name → 400 \"The adjustment name is required\"; 101-char name → 400 \"must be 100 characters or fewer\" | FRESH VIU 2026-07-10: UI blocks empty name (inline required error). NEW FDBUG-16: raw API now ACCEPTS empty-name adds (201; regression vs batch-3 400) — FE-only guard; name 101ch -> 400, 100ch -> 201 | WORDING+VIU 2026-07-13: Empty name blocked in UI; 100-char limit. (Raw back-end accepts empty name — FDBUG-16 — but the dialog blocks it.)",
+    "notes": "Verify the exact 100-character enforcement (hard cap vs error) on staging. | VIU qb batch-1 (2026-07-08): Empty name: inline 'Name is a required field', save blocked. Template name maxlength=100 enforced; WO-dialog name input present (maxlength not read — spot-check in batch 2). | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: empty name → 400 \"The adjustment name is required\"; 101-char name → 400 \"must be 100 characters or fewer\" | FRESH VIU 2026-07-10: UI blocks empty name (inline required error). NEW FDBUG-16: raw API now ACCEPTS empty-name adds (201; regression vs batch-3 400) — FE-only guard; name 101ch -> 400, 100ch -> 201 | WORDING+VIU 2026-07-13: Empty name blocked in UI; 100-char limit. (Raw back-end accepts empty name — FDBUG-16 — but the dialog blocks it.) | SV-8479/8480 deconfliction 2026-07-22: label sweep: navigation labels -> 'Add Work Order Fee / Discount' / 'New Work Order Fee / Discount' (behavior/expected unchanged).",
     "api_related": false,
     "fresh_run": "2026-07-13"
   },
   {
     "id": "FD-VAL-004",
     "area": "Validation / Edge",
-    "story_ref": "§5-R2",
+    "story_ref": "§5-R2 | SV-8479 (SV-8288 Story 12 — items 10/11 label sweep)",
     "title": "Verify a percentage discount over 100% is invalid while a percentage fee has no upper cap",
     "priority": "High",
     "type": "Functional",
     "permissions_required": "See Financial Data; the matching Create and Edit permission",
     "preconditions": [
       "1. You are logged in with See Financial Data and the matching Create and Edit permission.",
-      "2. The 'Add new fee/discount' dialog is open."
+      "2. The 'New Work Order Fee / Discount' dialog is open."
     ],
     "steps": [
       "1. Set Type Discount, a percentage Calculation Type, Percent 100.5, and try to save.",
@@ -988,21 +1192,21 @@
     ],
     "design_ref": "design-notes §10 (no over-100% error copy mocked)",
     "viu_status": "VIU-Verified",
-    "notes": "Same rule as FD-CALC-005 but framed as dialog validation. Capture the exact rejection UX on staging. | VIU qb batch-1 (2026-07-08): Discount >100% invalid at save (toast + API 400); fee percentage uncapped (150% saved). | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: 150% discount 400 \"cannot exceed 100%\"; 150% fee accepted | FRESH VIU 2026-07-10: discount >100% invalid (400), fee uncapped (201) | WORDING+VIU 2026-07-13: %>100 discount invalid, fee uncapped; carry prior VIU. Labels cleaned.",
+    "notes": "Same rule as FD-CALC-005 but framed as dialog validation. Capture the exact rejection UX on staging. | VIU qb batch-1 (2026-07-08): Discount >100% invalid at save (toast + API 400); fee percentage uncapped (150% saved). | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: 150% discount 400 \"cannot exceed 100%\"; 150% fee accepted | FRESH VIU 2026-07-10: discount >100% invalid (400), fee uncapped (201) | WORDING+VIU 2026-07-13: %>100 discount invalid, fee uncapped; carry prior VIU. Labels cleaned. | SV-8479/8480 deconfliction 2026-07-22: label sweep: navigation labels -> 'Add Work Order Fee / Discount' / 'New Work Order Fee / Discount' (behavior/expected unchanged).",
     "api_related": false,
     "fresh_run": "2026-07-13"
   },
   {
     "id": "FD-VAL-005",
     "area": "Validation / Edge",
-    "story_ref": "§5-R1",
+    "story_ref": "§5-R1 | SV-8479 (SV-8288 Story 12 — items 10/11 label sweep)",
     "title": "Verify negative amounts are rejected (values must be above 0)",
     "priority": "Medium",
     "type": "Functional",
     "permissions_required": "See Financial Data; the matching Create and Edit permission",
     "preconditions": [
       "1. You are logged in with See Financial Data and the matching Create and Edit permission.",
-      "2. The 'Add new fee/discount' dialog is open with Name, Type and Calculation Type set."
+      "2. The 'New Work Order Fee / Discount' dialog is open with Name, Type and Calculation Type set."
     ],
     "steps": [
       "1. Enter −5 in the '$ Amount' field (flat amount) and try to save.",
@@ -1014,21 +1218,21 @@
     ],
     "design_ref": "design-notes §6/§10 (mock silently floors negative preview amounts to 0; no negative-input error copy)",
     "viu_status": "VIU-Verified",
-    "notes": "Design mock silently floors negatives to 0 in the preview (design §6) and has no negative-input error state (design §10). Confirm the real dialog rejects negatives rather than silently flooring. | VIU qb batch-1 (2026-07-08): Negative amounts rejected (API 400 'must be greater than zero'; UI numeric inputs). | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: amount -5 → 400 \"must be greater than zero\" | FRESH VIU 2026-07-10: negative amount -> 400 | WORDING+VIU 2026-07-13: Negatives rejected; carry prior VIU.",
+    "notes": "Design mock silently floors negatives to 0 in the preview (design §6) and has no negative-input error state (design §10). Confirm the real dialog rejects negatives rather than silently flooring. | VIU qb batch-1 (2026-07-08): Negative amounts rejected (API 400 'must be greater than zero'; UI numeric inputs). | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: amount -5 → 400 \"must be greater than zero\" | FRESH VIU 2026-07-10: negative amount -> 400 | WORDING+VIU 2026-07-13: Negatives rejected; carry prior VIU. | SV-8479/8480 deconfliction 2026-07-22: label sweep: navigation labels -> 'Add Work Order Fee / Discount' / 'New Work Order Fee / Discount' (behavior/expected unchanged).",
     "api_related": false,
     "fresh_run": "2026-07-13"
   },
   {
     "id": "FD-VAL-006",
     "area": "Validation / Edge",
-    "story_ref": "§5-R6, S2-R24, S2-R25",
+    "story_ref": "§5-R6, S2-R24, S2-R25 | SV-8479 (SV-8288 Story 12 — items 10/11 label sweep)",
     "title": "Verify the Max Amount field shows only for percentage methods and how 0 or empty behaves",
     "priority": "Medium",
     "type": "Functional",
     "permissions_required": "See Financial Data; the matching Create and Edit permission",
     "preconditions": [
       "1. You are logged in with See Financial Data and the matching Create and Edit permission.",
-      "2. The 'Add new fee/discount' dialog is open."
+      "2. The 'New Work Order Fee / Discount' dialog is open."
     ],
     "steps": [
       "1. Choose a percentage Calculation Type and check that the '$ Max Amount (Optional)' field appears.",
@@ -1042,7 +1246,7 @@
     ],
     "design_ref": "design-notes §6 (\"Max cap\" min=0), §9 item 4 (design shows Max cap unconditionally and caps flat amounts)",
     "viu_status": "VIU-Verified",
-    "notes": "Design difference: the mock labels the field \"Max cap\", shows it for ALL methods, and caps Flat amounts (design §9 item 4). Spec restricts Max Amount to percentage methods only. Verify staging matches the spec (hidden for Flat). | VIU qb batch-1 (2026-07-08): Max Amount shows only for percentage methods (verified in WO + template dialogs). DEVIATION: maxCap=0 via API = NO cap (not 'treated as empty'+'forces $0' per spec) — see FDBUG-9; UI 0-entry behavior still to spot-check. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: maxCap:0 = no cap; flat method sends no maxCap; maxCap only for percentage | FRESH VIU 2026-07-10: FDBUG-9: maxCap 0 behaves as NO cap (not 'no maximum' spec reading matches build for empty, but 0 disagrees w/ §5-R6 $0-forces-$0) — persists | WORDING+VIU 2026-07-13: Confirmed live: '$ Max Amount (Optional)' appears only for percentage methods (hidden for Flat Amount, shots wo-03/wo-05). DEVIATION (FDBUG-9 / PO Q2 pending): whether a Max Amount of 0 means 'no cap' or 'cap at $0.00' is a pending product decision — expected kept as current build behavior. | CHRIS WARD ROUND-2 ANSWER APPLIED 2026-07-14(Q2=A): PO ruled a typed 0 in Max Amount = 'no limit' (WAD, S2-R25). 0-handling no longer a deviation; FDBUG-9 closed as accepted; jira draft TICKET 4 DROPPED. Expected reworded to affirm 0=no-cap. PUSHED TO TESTRAIL 2026-07-14 via update_case (QA-lead one-day authorization; update 200 / re-verify 200 MATCH; audit: testrail-round2-push-log.md).",
+    "notes": "Design difference: the mock labels the field \"Max cap\", shows it for ALL methods, and caps Flat amounts (design §9 item 4). Spec restricts Max Amount to percentage methods only. Verify staging matches the spec (hidden for Flat). | VIU qb batch-1 (2026-07-08): Max Amount shows only for percentage methods (verified in WO + template dialogs). DEVIATION: maxCap=0 via API = NO cap (not 'treated as empty'+'forces $0' per spec) — see FDBUG-9; UI 0-entry behavior still to spot-check. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — API: maxCap:0 = no cap; flat method sends no maxCap; maxCap only for percentage | FRESH VIU 2026-07-10: FDBUG-9: maxCap 0 behaves as NO cap (not 'no maximum' spec reading matches build for empty, but 0 disagrees w/ §5-R6 $0-forces-$0) — persists | WORDING+VIU 2026-07-13: Confirmed live: '$ Max Amount (Optional)' appears only for percentage methods (hidden for Flat Amount, shots wo-03/wo-05). DEVIATION (FDBUG-9 / PO Q2 pending): whether a Max Amount of 0 means 'no cap' or 'cap at $0.00' is a pending product decision — expected kept as current build behavior. | CHRIS WARD ROUND-2 ANSWER APPLIED 2026-07-14(Q2=A): PO ruled a typed 0 in Max Amount = 'no limit' (WAD, S2-R25). 0-handling no longer a deviation; FDBUG-9 closed as accepted; jira draft TICKET 4 DROPPED. Expected reworded to affirm 0=no-cap. PUSHED TO TESTRAIL 2026-07-14 via update_case (QA-lead one-day authorization; update 200 / re-verify 200 MATCH; audit: testrail-round2-push-log.md). | SV-8479/8480 deconfliction 2026-07-22: label sweep: navigation labels -> 'Add Work Order Fee / Discount' / 'New Work Order Fee / Discount' (behavior/expected unchanged).",
     "api_related": false,
     "fresh_run": "2026-07-14"
   },

@@ -1,13 +1,13 @@
 Title,Section,Type,Priority,Preconditions,Steps,Expected Result,References,,
-Verify the whole-work-order Add Fee/Discount dialog opens from the work order more (⋯) menu,Work Order — Whole-WO Fee/Discount,Functional,Critical,"1. You are logged in as a role that has Work Orders: Create & Edit and See Financial Data.
+Verify the whole-work-order fee/discount dialog opens from the toolbar menu with title 'New Work Order Fee / Discount',Work Order — Whole-WO Fee/Discount,Functional,Critical,"1. You are logged in as a role that has Work Orders: Create & Edit and See Financial Data.
 2. An open (not Invoiced, not Paid) work order exists; you are viewing it and are not in history view.
 3. You are on the work order's Lines tab.","1. At the top right of the Lines area, click the ⋯ (more) button next to 'New Line'.
-2. In the menu that opens, click 'Add Fee/Discount'.
-3. Look at the dialog that opens.","1. A dialog titled 'Add new fee/discount' opens.
-2. There is no 'Applying to' line, because this fee/discount applies to the whole work order.
-3. There is no scope dropdown to change — the dialog always applies to the whole work order.",S1-R1 / S2-R9 / S2-R12,,
+2. In the menu that opens, click 'Add Work Order Fee / Discount'.
+3. Read the dialog title and the subline directly under it.","1. A dialog titled 'New Work Order Fee / Discount' opens.
+2. A subline reads 'Applying To: Entire Work Order'.
+3. There is no scope dropdown to change — the dialog always applies to the whole work order.",S1-R1 / S2-R9 / S2-R12 | SV-8479 (SV-8288 Story 12 — items 10 & 11),,
 Verify adding a whole-work-order flat-amount fee saves and shows a success message,Work Order — Whole-WO Fee/Discount,Functional,Critical,"1. You are logged in with Work Orders: Create & Edit and See Financial Data.
-2. An open work order is open on its Lines tab.","1. Open the ⋯ (more) menu at the top right of the Lines tab and click 'Add Fee/Discount'.
+2. An open work order is open on its Lines tab.","1. Open the ⋯ (more) menu at the top right of the Lines tab and click 'Add Work Order Fee / Discount'.
 2. In the 'Name' field, type 'ZZAUTOTEST Handling Fee'.
 3. Leave 'Type' set to 'Fee'.
 4. Leave 'Calculation Type' set to 'Flat Amount'.
@@ -16,18 +16,18 @@ Verify adding a whole-work-order flat-amount fee saves and shows a success messa
 2. The 'Add Fee' button can be used once Name, Type, Calculation Type and an amount above 0 are all filled in.
 3. The dialog closes and a success message confirms the fee was added.
 4. 'ZZAUTOTEST Handling Fee' now appears in the 'Work Order Fees & Discounts' card on the left, showing +$100.00.
-5. The work order Subtotal and Total go up by $100.00 (tax is recalculated when you save).",S2-R19..R27 / S2-R29 / §7 toast,,
+5. The work order Subtotal and Total go up by $100.00 (tax is recalculated when you save).",S2-R19..R27 / S2-R29 / §7 toast | SV-8479 (SV-8288 Story 12 — items 10/11 label sweep),,
 Verify the live preview shows a whole-work-order percentage discount before you save,Work Order — Whole-WO Fee/Discount,Functional,High,"1. You are logged in with Work Orders: Create & Edit and See Financial Data.
-2. An open work order with a Subtotal of $10,715.39 is open.","1. Open 'Add Fee/Discount' from the ⋯ menu on the Lines tab.
+2. An open work order with a Subtotal of $10,715.39 is open.","1. Open 'Add Work Order Fee / Discount' from the ⋯ menu on the Lines tab.
 2. Set 'Type' to 'Discount'.
 3. Set 'Calculation Type' to '% of Subtotal'.
 4. In the 'Percent %' field, enter 8.
 5. Read the preview box near the bottom of the dialog.","1. The preview works the discount out from the current Subtotal: 8% of $10,715.39 = −$857.23.
 2. The preview shows the new work-order total after the discount ($9,858.16).
 3. The preview reminds you that tax is recalculated when you save.
-4. The discount is shown as a negative amount.",S2-R31..R35 / §5-R3,,
+4. The discount is shown as a negative amount.",S2-R31..R35 / §5-R3 | SV-8479 (SV-8288 Story 12 — items 10/11 label sweep),,
 Verify 'Apply From Template' fills the dialog with a template's values,Work Order — Whole-WO Fee/Discount,Functional,High,"1. You are logged in with Work Orders: Create & Edit and See Financial Data.
-2. An open work order is open; the location has at least one fee/discount template (for example a 'Fleet Standard Discount').","1. Open 'Add Fee/Discount' from the ⋯ menu.
+2. An open work order is open; the location has at least one fee/discount template (for example a 'Fleet Standard Discount').","1. Open 'Add Work Order Fee / Discount' from the ⋯ menu.
 2. Open the 'Apply From Template' dropdown at the top of the dialog.
 3. Choose a template.
 4. Look at the Name, Type, Calculation Type and amount fields.","1. Name is filled with the template's name.
@@ -35,9 +35,9 @@ Verify 'Apply From Template' fills the dialog with a template's values,Work Orde
 3. Calculation Type is set to match the template.
 4. The amount (and Max Amount, if the template has one) are filled from the template.
 5. The fee/discount still applies to the whole work order (a template does not carry a scope).
-6. The confirm button ('Add Fee' or 'Add Discount') can now be used.",S2-R13 / S2-R14,,
+6. The confirm button ('Add Fee' or 'Add Discount') can now be used.",S2-R13 / S2-R14 | SV-8479 (SV-8288 Story 12 — items 10/11 label sweep),,
 "Verify the Add button stays disabled until Name, Type, Calculation Type and an Amount above 0 are all filled in",Work Order — Whole-WO Fee/Discount,Functional,Critical,"1. You are logged in with Work Orders: Create & Edit and See Financial Data.
-2. The 'Add new fee/discount' dialog is freshly open with all fields blank.","1. With every field blank, look at the 'Add Fee' button.
+2. The 'New Work Order Fee / Discount' dialog is freshly open with all fields blank.","1. With every field blank, look at the 'Add Fee' button.
 2. Type a Name only, then look at the button.
 3. Set Type to 'Fee', then look at the button.
 4. Set Calculation Type to 'Flat Amount' (no amount yet), then look at the button.
@@ -47,85 +47,86 @@ Verify 'Apply From Template' fills the dialog with a template's values,Work Orde
 3. With Name and Type, the button is still greyed out.
 4. With Name, Type and Calculation Type but no amount, the button is still greyed out.
 5. With the amount set to 0, the button is still greyed out (the amount must be more than 0).
-6. With the amount at 25 and everything else filled in, the button becomes usable. Max Amount is not required.",Design §6 validateForm() / S2-N1 / S2-N2,,
+6. With the amount at 25 and everything else filled in, the button becomes usable. Max Amount is not required.",Design §6 validateForm() / S2-N1 / S2-N2 | SV-8479 (SV-8288 Story 12 — items 10/11 label sweep),,
 Verify Max Amount caps a percentage fee (20% on a $100 base with Max Amount $15 → +$15.00),Work Order — Whole-WO Fee/Discount,Functional,Medium,"1. You are logged in with Work Orders: Create & Edit and See Financial Data.
-2. An open work order whose base for the fee is $100.00 is open.","1. Open 'Add Fee/Discount'.
+2. An open work order whose base for the fee is $100.00 is open.","1. Open 'Add Work Order Fee / Discount'.
 2. Set 'Type' to 'Fee' and 'Calculation Type' to a percentage method (for example '% of Subtotal').
 3. In the 'Percent %' field, enter 20.
 4. In the '$ Max Amount (Optional)' field, enter 15.
 5. Read the preview, then click 'Add Fee'.","1. Without a cap the fee would be $20.00 (20% of $100).
 2. Because Max Amount is $15.00, the fee is limited to +$15.00.
-3. The saved fee shows +$15.00.",S2-R24 / §5-R6,,
+3. The saved fee shows +$15.00.",S2-R24 / §5-R6 | SV-8479 (SV-8288 Story 12 — items 10/11 label sweep),,
 Verify the confirm button label follows the Type (Add Fee vs Add Discount),Work Order — Whole-WO Fee/Discount,Functional,Medium,"1. You are logged in with Work Orders: Create & Edit and See Financial Data.
-2. The 'Add new fee/discount' dialog is open.","1. Set 'Type' to 'Fee' and read the confirm button.
+2. The 'New Work Order Fee / Discount' dialog is open.","1. Set 'Type' to 'Fee' and read the confirm button.
 2. Change 'Type' to 'Discount' and read the confirm button again.","1. With Type set to 'Fee', the confirm button reads 'Add Fee'.
-2. With Type set to 'Discount', the confirm button reads 'Add Discount' — the label changes as you change Type.",S2-R27,,
+2. With Type set to 'Discount', the confirm button reads 'Add Discount' — the label changes as you change Type.",S2-R27 | SV-8479 (SV-8288 Story 12 — items 10/11 label sweep),,
 Verify an empty Name blocks saving a whole-work-order fee/discount,Work Order — Whole-WO Fee/Discount,Functional,Medium,"1. You are logged in with Work Orders: Create & Edit and See Financial Data.
-2. The 'Add new fee/discount' dialog is open.","1. Leave the 'Name' field blank.
+2. The 'New Work Order Fee / Discount' dialog is open.","1. Leave the 'Name' field blank.
 2. Set 'Type' to 'Fee', 'Calculation Type' to 'Flat Amount', and '$ Amount' to 10.
 3. Try to save with 'Add Fee'.","1. The fee cannot be saved while the Name is blank.
-2. A message tells you a Name is required.",S2-N1,,
+2. A message tells you a Name is required.",S2-N1 | SV-8479 (SV-8288 Story 12 — items 10/11 label sweep),,
 Verify an empty or zero amount blocks saving a whole-work-order fee/discount,Work Order — Whole-WO Fee/Discount,Functional,Medium,"1. You are logged in with Work Orders: Create & Edit and See Financial Data.
-2. The 'Add new fee/discount' dialog is open with a Name, Type 'Fee' and Calculation Type 'Flat Amount' set.","1. Leave '$ Amount' empty and try to save with 'Add Fee'.
+2. The 'New Work Order Fee / Discount' dialog is open with a Name, Type 'Fee' and Calculation Type 'Flat Amount' set.","1. Leave '$ Amount' empty and try to save with 'Add Fee'.
 2. Enter 0 in '$ Amount' and try to save again.","1. With the amount empty, the fee cannot be saved.
-2. With the amount at 0, the fee cannot be saved — the amount must be more than 0 (the smallest flat amount is $0.01 and the smallest percentage is 0.01%).",S2-N2 / §5-R1,,
+2. With the amount at 0, the fee cannot be saved — the amount must be more than 0 (the smallest flat amount is $0.01 and the smallest percentage is 0.01%).",S2-N2 / §5-R1 | SV-8479 (SV-8288 Story 12 — items 10/11 label sweep),,
 Verify a percentage discount over 100% is rejected while a percentage fee has no upper limit,Work Order — Whole-WO Fee/Discount,Functional,Medium,"1. You are logged in with Work Orders: Create & Edit and See Financial Data.
-2. The 'Add new fee/discount' dialog is open.","1. Set 'Type' to 'Discount', 'Calculation Type' to '% of Subtotal', 'Percent %' to 150, and try to save with 'Add Discount'.
+2. The 'New Work Order Fee / Discount' dialog is open.","1. Set 'Type' to 'Discount', 'Calculation Type' to '% of Subtotal', 'Percent %' to 150, and try to save with 'Add Discount'.
 2. Change 'Type' to 'Fee', keep the percentage method, set 'Percent %' to 150, and try to save with 'Add Fee'.","1. A 150% discount is rejected — a percentage discount cannot be more than 100%.
-2. A 150% fee is accepted — percentage fees have no upper limit.",§5-R2 / S3 §3 discounts,,
+2. A 150% fee is accepted — percentage fees have no upper limit.",§5-R2 / S3 §3 discounts | SV-8479 (SV-8288 Story 12 — items 10/11 label sweep),,
 Verify a whole-work-order percentage method uses the correct base (% of Subtotal example),Work Order — Whole-WO Fee/Discount,Functional,High,"1. You are logged in with Work Orders: Create & Edit and See Financial Data.
-2. An open work order with Labor $200.00, Parts $100.00, Shop Supplies $0.00 (so Subtotal = $300.00) and no other fees/discounts.","1. Open 'Add Fee/Discount'.
+2. An open work order with Labor $200.00, Parts $100.00, Shop Supplies $0.00 (so Subtotal = $300.00) and no other fees/discounts.","1. Open 'Add Work Order Fee / Discount'.
 2. Open the 'Calculation Type' dropdown and read the options.
 3. Set 'Type' to 'Fee', 'Calculation Type' to '% of Subtotal', 'Percent %' to 10.
 4. Read the preview, then save with 'Add Fee'.","1. The Calculation Type dropdown offers exactly: 'Flat Amount', '% of Labor Total', '% of Parts Total', '% of Subtotal'.
 2. '% of Subtotal' is worked out from Labor + Parts + Shop Supplies = $300.00.
 3. 10% of $300.00 = +$30.00; the saved fee shows +$30.00.
-4. There is no '% of Grand Total' option (that is only for Processing Fees).",§5-R4 / §5-R10 / S2-R3,,
-Verify Add Fee/Discount is hidden and blocked on an Invoiced or Paid work order,Work Order — Whole-WO Fee/Discount,Functional,High,"1. You are logged in with Work Orders: Create & Edit and See Financial Data.
-2. A work order in Invoiced (or Paid) status is open.","1. Open the work order ⋯ menu and look for 'Add Fee/Discount'.
-2. Hover a labor line and a part row and look for their add fee/discount option.","1. 'Add Fee/Discount' is not shown in the ⋯ menu.
+4. There is no '% of Grand Total' option (that is only for Processing Fees).",§5-R4 / §5-R10 / S2-R3 | SV-8479 (SV-8288 Story 12 — items 10/11 label sweep),,
+Verify Add Work Order Fee / Discount is hidden and blocked on an Invoiced or Paid work order,Work Order — Whole-WO Fee/Discount,Functional,High,"1. You are logged in with Work Orders: Create & Edit and See Financial Data.
+2. A work order in Invoiced (or Paid) status is open.","1. Open the work order ⋯ menu and look for 'Add Work Order Fee / Discount'.
+2. Hover a labor line and a part row and look for their add fee/discount option.","1. 'Add Work Order Fee / Discount' is not shown in the ⋯ menu.
 2. The labor-line and part-row add fee/discount options are not shown either.
-3. A fee/discount cannot be added to an invoiced or paid work order by any route.",S1-N1 / S3-R1b,,
+3. A fee/discount cannot be added to an invoiced or paid work order by any route.",S1-N1 / S3-R1b | SV-8479 (SV-8288 Story 12 — items 10/11 label sweep),,
 Verify the whole-work-order Add Fee/Discount option is hidden without Work Orders: Create & Edit,Work Order — Whole-WO Fee/Discount,Functional,Medium,"1. You are logged in as a role that HAS See Financial Data but does NOT have Work Orders: Create & Edit.
-2. An open work order is open.",1. Open the work order ⋯ menu and look for 'Add Fee/Discount'.,"1. 'Add Fee/Discount' is not shown.
-2. Existing whole-work-order fee/discount amounts are still visible (See Financial Data is on) but have no edit or delete controls.",S1-N2 / S13-R3 / S13-N2,,
+2. An open work order is open.",1. Open the work order ⋯ menu and look for 'Add Work Order Fee / Discount'.,"1. 'Add Work Order Fee / Discount' is not shown.
+2. Existing whole-work-order fee/discount amounts are still visible (See Financial Data is on) but have no edit or delete controls.",S1-N2 / S13-R3 / S13-N2 | SV-8479 (SV-8288 Story 12 — item 10),,
 Verify the preview shows the empty-amount prompt before an amount is entered,Work Order — Whole-WO Fee/Discount,Functional,Medium,"1. You are logged in with Work Orders: Create & Edit and See Financial Data.
-2. The 'Add new fee/discount' dialog is freshly open.","1. Set 'Type' and 'Calculation Type' but leave the amount empty.
-2. Read the preview box.",1. The preview box reads exactly: 'Enter an amount to see the impact.',S2-R41,,
+2. The 'New Work Order Fee / Discount' dialog is freshly open.","1. Set 'Type' and 'Calculation Type' but leave the amount empty.
+2. Read the preview box.",1. The preview box reads exactly: 'Enter an amount to see the impact.',S2-R41 | SV-8479 (SV-8288 Story 12 — items 10/11 label sweep),,
 Verify the preview amount is signed for a fee (+) vs a discount (−),Work Order — Whole-WO Fee/Discount,Functional,Medium,"1. You are logged in with Work Orders: Create & Edit and See Financial Data.
-2. The 'Add new fee/discount' dialog is open.","1. Set 'Type' to 'Fee', 'Calculation Type' to 'Flat Amount', '$ Amount' to 50, and look at the preview amount.
+2. The 'New Work Order Fee / Discount' dialog is open.","1. Set 'Type' to 'Fee', 'Calculation Type' to 'Flat Amount', '$ Amount' to 50, and look at the preview amount.
 2. Change 'Type' to 'Discount' and look at the preview amount again.","1. A fee shows as a positive amount with a '+' sign.
-2. A discount shows as a negative amount with a '−' sign; the preview updates as you change the Type.",S2-R33 / S12-R2,,
+2. A discount shows as a negative amount with a '−' sign; the preview updates as you change the Type.",S2-R33 / S12-R2 | SV-8479 (SV-8288 Story 12 — items 10/11 label sweep),,
 Verify the Add/Edit fee-or-discount dialog shows the tax-jurisdiction note below the Taxable Yes/No dropdown,Work Order — Whole-WO Fee/Discount,Functional,Medium,"1. An open work order (not Invoiced/Paid, not in history view). Mark any throwaway data ZZAUTOTEST.
-2. You can add a fee/discount (Work Orders: Create & Edit and See Financial Data).","1. Open 'Add Fee/Discount' from the work order ⋯ menu.
+2. You can add a fee/discount (Work Orders: Create & Edit and See Financial Data).","1. Open 'Add Work Order Fee / Discount' from the work order ⋯ menu.
 2. Look directly below the 'Taxable' Yes/No dropdown for a note.
 3. Open an existing fee/discount's Edit dialog and check the same place below the Taxable Yes/No dropdown.","1. Directly below the Taxable Yes/No dropdown this note is shown: 'Tax treatment varies by jurisdiction — confirm your local requirements before saving.'
 2. The same note shows in both the Add and the Edit dialog.
 3. The note is plain advice to the shop, not a system instruction and not a legal statement.
-4. The note is shown only to users with See Financial Data — a user without See Financial Data does not see the note. (A user without See Financial Data cannot open this work-order Add/Edit dialog at all; the no-note side is observable in the admin Fee/Discount template dialog, opened by a user with Manage Finance Settings but without See Financial Data.)","S2-R26, S2-R26a, §5-R15",,
-Verify a labor line's ⋮ menu opens the Add Fee/Discount dialog locked to that labor line,Work Order — Labor-line Fee/Discount,Functional,Critical,"1. Logged in with Work Order Lines: Create & Edit and See Financial Data.
-2. An open work order with a labor line, e.g. Line 1 'Service - Perform LOF and inspection', is open on the Lines tab.","1. Hover the labor line row to show its ⋮ (more) button.
-2. Click the ⋮ button and click 'Add Fee/Discount'.
-3. Read the dialog title and subtitle.","1. The dialog 'Add new fee/discount' opens, locked to that labor line.
-2. A grey subtitle reads 'Applying to: <line name>' (just the line name, no 'Line N Labor' prefix).
-3. The scope cannot be changed inside the dialog.",S1-R3 / S2-R10,,
+4. The note is shown only to users with See Financial Data — a user without See Financial Data does not see the note. (A user without See Financial Data cannot open this work-order Add/Edit dialog at all; the no-note side is observable in the admin Fee/Discount template dialog, opened by a user with Manage Finance Settings but without See Financial Data.)","S2-R26, S2-R26a, §5-R15 | SV-8479 (SV-8288 Story 12 — items 10/11 label sweep)",,
+Verify a labor line's fee/discount dialog opens locked to that line with title 'New Labor Fee / Discount',Work Order — Labor-line Fee/Discount,Functional,Critical,"1. Logged in with Work Order Lines: Create & Edit and See Financial Data.
+2. An open work order with a labor line, e.g. Line 1 'Service - Perform LOF and inspection', is open on the Lines tab.","1. On the labor line, open the three-dot (⋮) menu to the left of the first technician (or 'Unassigned' when none is assigned).
+2. Click 'Add Labor Fee / Discount'.
+3. Read the dialog title and the subline directly under it.","1. The dialog opens locked to that labor line.
+2. The dialog title reads 'New Labor Fee / Discount'.
+3. The subline reads 'Applying To: Line {N} Labor — {line name}' (for example 'Applying To: Line 1 Labor — Replace Brake Pots'), where {N} is the line's position on the work order.
+4. The scope cannot be changed inside the dialog.",S1-R3 / S2-R10 | SV-8479 (SV-8288 Story 12 — items 1 & 8),,
 Verify a labor-line '% of Labor Total' fee works out against the line's labor price (10% of $150.00 → +$15.00),Work Order — Labor-line Fee/Discount,Functional,High,"1. Logged in with Work Order Lines: Create & Edit + See Financial Data.
-2. An open work order with a labor line whose gross labor price is exactly $150.00, no existing adjustments on that line.","1. Open the labor line's ⋮ menu and click 'Add Fee/Discount'.
+2. An open work order with a labor line whose gross labor price is exactly $150.00, no existing adjustments on that line.","1. Open the labor line's ⋮ menu and click 'Add Labor Fee / Discount'.
 2. Confirm the Calculation Type defaults to '% of Labor Total'.
 3. Set Type 'Fee', 'Percent %' 10.
 4. Read the preview, then save with 'Add Fee'.","1. The only methods offered are 'Flat Amount' and '% of Labor Total'.
 2. The base is the labor line price = $150.00.
 3. 10% of $150.00 = +$15.00.
-4. The preview shows the line's labor total and the new line labor total.",§5-R4 / §5-R3 / S2-R22,,
-Verify each labor line row shows its own ⋮ menu on hover,Work Order — Labor-line Fee/Discount,Functional,Medium,"1. Logged in with Work Order Lines: Create & Edit + See Financial Data.
-2. An open work order with two or more labor lines is open on the Lines tab.","1. Hover the first labor line row.
-2. Hover the second labor line row.","1. Each labor line row shows its own ⋮ (more) button on hover.
-2. Each menu has an 'Add Fee/Discount' item for that specific line.",S1-R2,,
+4. The preview shows the line's labor total and the new line labor total.",§5-R4 / §5-R3 / S2-R22 | SV-8479 (SV-8288 Story 12 — items 1/8 label sweep),,
+Verify the labor fee/discount add entry point is a three-dot menu to the left of the first technician (or 'Unassigned'),Work Order — Labor-line Fee/Discount,Functional,Medium,"1. Logged in with Work Order Lines: Create & Edit + See Financial Data.
+2. An open work order with two or more labor lines is open on the Lines tab.","1. On the Lines tab, look to the left of the first assigned technician's name on a labor row (or to the left of 'Unassigned' when no technician is set).
+2. Open the three-dot (⋮) menu shown there and read its items.","1. The three-dot (⋮) menu sits to the left of the first technician (or 'Unassigned'), not on the line row itself.
+2. The menu offers 'Add Labor Fee / Discount' for that line.",S1-R2 | SV-8479 (SV-8288 Story 12 — item 1),,
 Verify a labor-line flat amount is the exact amount with no quantity multiplier,Work Order — Labor-line Fee/Discount,Functional,Medium,"1. Logged in with Work Order Lines: Create & Edit + See Financial Data.
-2. An open work order with a labor line (any quantity/hours) is open.","1. Open the labor line's ⋮ menu and click 'Add Fee/Discount'.
+2. An open work order with a labor line (any quantity/hours) is open.","1. Open the labor line's ⋮ menu and click 'Add Labor Fee / Discount'.
 2. Set Type 'Fee', Calculation Type 'Flat Amount', '$ Amount' 50.
 3. Save.","1. The result is exactly +$50.00 regardless of hours/quantity.
-2. There is no Max Amount field for a flat amount.",§5-R14 / S2-R23,,
+2. There is no Max Amount field for a flat amount.",§5-R14 / S2-R23 | SV-8479 (SV-8288 Story 12 — items 1/8 label sweep),,
 Verify a labor-line fee/discount works out to $0.00 when its line is not billable (declined),Work Order — Labor-line Fee/Discount,Functional,Medium,"1. Logged in with Work Order Lines: Create & Edit + See Financial Data.
 2. An open work order with a labor line that carries a 10% fee adjustment resolving to a non-zero amount.","1. Set the labor line to Declined (not billable).
 2. Look at the labor-line fee/discount's amount.
@@ -137,36 +138,37 @@ Verify deleting a labor line removes any fee/discount pointing to it,Work Order 
 2. Check the 'Work Order Fees & Discounts' card, the Financial Info 'Fees & Discounts (N)' count, and the Stats breakdown.","1. The labor line is removed.
 2. Any fee/discount that pointed to that line is also removed.
 3. The Financial Info count and the Stats/Financial totals drop by the removed amount(s).",S3-R2,,
-Verify the labor-line 'Add Fee/Discount' is hidden without Work Order Lines: Create & Edit,Work Order — Labor-line Fee/Discount,Functional,Medium,"1. Logged in as a role with See Financial Data but WITHOUT Work Order Lines: Create & Edit.
-2. An open work order with a labor line is open.","1. As a role without Work Order Lines: Create & Edit, hover the labor line and open its ⋮ menu.
-2. Look for 'Add Fee/Discount' and for Edit/Remove on any existing line fee/discount.","1. 'Add Fee/Discount' is not shown for the labor line.
-2. Existing line fee/discount amounts are still visible (See Financial Data on) but have no Edit/Remove controls.",S13-R4 / S13-N2,,
-Verify a part's ⋮ menu opens the Add Fee/Discount dialog locked to that part,Work Order / Parts — Part-line Fee/Discount,Functional,Critical,"1. Logged in with Work Order Lines: Create & Edit + See Financial Data.
-2. An open work order with a part, e.g. '(LF3620) Engine Oil Filter', is open on the Lines or Parts tab.","1. Hover the part row to show its ⋮ menu.
-2. Click 'Add Fee/Discount'.
-3. Read the dialog subtitle and the Calculation Type options.","1. The dialog 'Add new fee/discount' opens, locked to that part.
-2. A grey subtitle reads 'Applying to: <part name>' (just the part name).
-3. The Calculation Type options are 'Flat Amount' and '% of Parts Total' only.",S1-R4 / S1-R5 / S2-R11,,
+Verify the labor-line 'Add Labor Fee / Discount' is hidden without Work Order Lines: Create & Edit,Work Order — Labor-line Fee/Discount,Functional,Medium,"1. Logged in as a role with See Financial Data but WITHOUT Work Order Lines: Create & Edit.
+2. An open work order with a labor line is open.","1. As a role without Work Order Lines: Create & Edit, open the three-dot (⋮) menu to the left of the technician (or 'Unassigned') on the labor line.
+2. Look for 'Add Labor Fee / Discount' and for Edit/Remove on any existing line fee/discount.","1. 'Add Labor Fee / Discount' is not shown for the labor line.
+2. Existing line fee/discount amounts are still visible (See Financial Data on) but have no Edit/Remove controls.",S13-R4 / S13-N2 | SV-8479 (SV-8288 Story 12 — item 1),,
+Verify a part's fee/discount dialog opens locked to that part with title 'New Part Fee / Discount',Work Order / Parts — Part-line Fee/Discount,Functional,Critical,"1. Logged in with Work Order Lines: Create & Edit + See Financial Data.
+2. An open work order with a part, e.g. '(LF3620) Engine Oil Filter', is open on the Lines or Parts tab.","1. Open the part row's three-dot (⋮) menu.
+2. Click 'Add Part Fee / Discount'.
+3. Read the dialog title, the subline, and the Calculation Type options.","1. The dialog opens locked to that part.
+2. The dialog title reads 'New Part Fee / Discount'.
+3. The subline reads 'Applying To: Line {N} Part — {part name}' (for example 'Applying To: Line 1 Part — (Bolt1) Bolts (Assorted)').
+4. The Calculation Type options are 'Flat Amount' and '% of Parts Total' only.",S1-R4 / S1-R5 / S2-R11 | SV-8479 (SV-8288 Story 12 — items 2 & 9),,
 Verify a part-line flat amount is charged per item (amount x quantity): $5.00 x 3 → −$15.00,Work Order / Parts — Part-line Fee/Discount,Functional,Critical,"1. Logged in with Work Order Lines: Create & Edit + See Financial Data.
-2. An open work order with a part of quantity 3.","1. Open the part's ⋮ menu and click 'Add Fee/Discount'.
+2. An open work order with a part of quantity 3.","1. Open the part's ⋮ menu and click 'Add Part Fee / Discount'.
 2. Set Type 'Discount', Calculation Type 'Flat Amount', '$ Amount' 5.
 3. Save.
 4. Read the amount on the inline part row.","1. The discount is −$15.00 ($5.00 per item x quantity 3).
-2. The inline part row shows the name with a −$5.00 flat rate badge and a resolved amount of −$15.00.
-3. For a part-line flat amount, the amount is per item.",§5-R14,,
+2. The inline part row shows the name and a resolved amount of −$15.00 as plain text (no colored badge); a flat-amount adjustment shows its dollar figure with no percentage in brackets.
+3. For a part-line flat amount, the amount is per item.",§5-R14 | SV-8479 (SV-8288 Story 12 — item 4),,
 Verify a fee/discount can be added to a requested (not-yet-received) part and shows before it is picked,Work Order / Parts — Part-line Fee/Discount,Functional,High,"1. Logged in with Work Order Lines: Create & Edit + See Financial Data.
-2. An open work order with a requested (pending / not yet picked) part of quantity 2 at sell price $20.00 each.","1. Open the requested part's ⋮ menu and click 'Add Fee/Discount'.
+2. An open work order with a requested (pending / not yet picked) part of quantity 2 at sell price $20.00 each.","1. Open the requested part's ⋮ menu and click 'Add Part Fee / Discount'.
 2. Set Type 'Discount', Calculation Type '% of Parts Total', 'Percent %' 10.
 3. Save.
-4. Look at the fee/discount on the requested part before it is picked.","1. The requested part's menu offers 'Add Fee/Discount'.
+4. Look at the fee/discount on the requested part before it is picked.","1. The requested part's menu offers 'Add Part Fee / Discount'.
 2. The fee/discount shows on the requested part before it is picked.
-3. It works out against quantity x sell price (for example 2 x $20.00 = $40.00 → 10% = −$4.00).",S1-R4 / §5-R13,,
+3. It works out against quantity x sell price (for example 2 x $20.00 = $40.00 → 10% = −$4.00).",S1-R4 / §5-R13 | SV-8479 (SV-8288 Story 12 — items 2/9 label sweep),,
 Verify a part-line '% of Parts Total' works out against quantity x sell price,Work Order / Parts — Part-line Fee/Discount,Functional,High,"1. Logged in with Work Order Lines: Create & Edit + See Financial Data.
-2. An open work order with a part of quantity 3 at sell price $20.00 each (gross part total $60.00).","1. Open the part's ⋮ menu and click 'Add Fee/Discount'.
+2. An open work order with a part of quantity 3 at sell price $20.00 each (gross part total $60.00).","1. Open the part's ⋮ menu and click 'Add Part Fee / Discount'.
 2. Set Type 'Discount', Calculation Type '% of Parts Total', 'Percent %' 10.
 3. Read the preview, then save.","1. The base is quantity x sell price = 3 x $20.00 = $60.00.
 2. 10% of $60.00 = −$6.00.
-3. The preview shows the part total and the new part total.",§5-R4 / §5-R10 / §5-R3,,
+3. The preview shows the part total and the new part total.",§5-R4 / §5-R10 / §5-R3 | SV-8479 (SV-8288 Story 12 — items 2/9 label sweep),,
 Verify a part-line fee/discount stays attached when the part changes from requested to received,Work Order / Parts — Part-line Fee/Discount,Functional,Medium,"1. Logged in with Work Order Lines: Create & Edit + See Financial Data.
 2. An open work order with a requested part that already carries a % of Parts Total discount.","1. Pick / receive the requested part so it becomes a received part.
 2. Look at the fee/discount on the now-received part.","1. The fee/discount stays attached to the part after it goes from requested to received.
@@ -188,16 +190,21 @@ Verify the per-item flat amount edge: quantity 1 is the base amount (−$5.00),W
 2. Save and read the amount.
 3. Change the part quantity from 1 to 4 and re-check the amount.","1. At quantity 1 the discount is −$5.00 ($5.00 x 1).
 2. After the quantity changes to 4 it re-works to −$20.00 ($5.00 x 4).",§5-R14,,
-"Verify a labor-line fee/discount shows inline under its line with a ↳ arrow, name, signed rate and grey amount",Work Order — Inline display (Lines tab),Functional,High,"1. You are logged in with See Financial Data.
-2. An open work order where a labor line has a fee/discount (for example a 'Line discount' of −5%).","1. Go to the Lines tab and find the labor line.
-2. Read the 'Fees/Discounts' row shown indented under the line.","1. The fee/discount shows indented under the labor line with a '↳' arrow, on a row labelled 'Fees/Discounts'.
-2. It shows the name and a signed rate badge (for example '−5%').
-3. The resolved amount shows on the right in grey, signed (for example −$26.08).",S3-R12 / S3-R14 / S12-R3,,
-"Verify a part-line fee/discount shows inline under its part with a ↳ arrow, name, signed rate and grey amount",Work Order — Inline display (Lines tab),Functional,High,"1. You are logged in with See Financial Data.
-2. An open work order where a part has a fee/discount (for example a 'Parts Handling Fee' of +$3.75).","1. Go to the Lines tab and find the part row.
-2. Read the 'Fees/Discounts' row shown indented under the part.","1. The fee/discount shows indented under the part with a '↳' arrow.
-2. It shows the name and a signed rate badge (a dollar amount for a flat amount, or a percentage).
-3. The resolved amount shows on the right in grey, signed (for example +$3.75).",S3-R13 / S3-R14,,
+Verify a labor-line fee/discount shows inline under its line as plain text with a blank left label (no colored badge),Work Order — Inline display (Lines tab),Functional,High,"1. You are logged in with See Financial Data.
+2. An open work order where a labor line has a fee/discount (for example a 'Line discount' of −5%).","1. Go to the Lines tab and find a labor line that has a fee or discount.
+2. Read the fee/discount row shown indented under the labor line, and look at the left-column row label.
+3. Note whether the name and amount are plain text or a colored badge/pill.","1. The fee/discount shows indented under the labor line with a '↳' arrow.
+2. The left-column row label is blank (the old 'Fees/Discounts' label is gone).
+3. The name and amount show as plain text — no colored badge or pill.
+4. A percentage discount shows a minus sign (for example '−5%'); a percentage fee shows no sign (for example '10%'); a flat amount shows its dollar figure as plain text.
+5. The resolved amount shows on the right, signed (for example −$26.08).",S3-R12 / S3-R14 / S12-R3 | SV-8479 (SV-8288 Story 12 — items 3 & 4),,
+Verify a part-line fee/discount shows inline under its part as plain text (no colored badge),Work Order — Inline display (Lines tab),Functional,High,"1. You are logged in with See Financial Data.
+2. An open work order where a part has a fee/discount (for example a 'Parts Handling Fee' of +$3.75).","1. Go to the Lines tab and find a part row that has a fee or discount.
+2. Read the fee/discount row shown indented under the part.
+3. Note whether the name and amount are plain text or a colored badge/pill.","1. The fee/discount shows indented under the part with a '↳' arrow.
+2. The name and amount show as plain text — no colored badge or pill.
+3. A percentage discount shows a minus sign (for example '−11%'); a percentage fee shows no sign (for example '10%'); a flat amount shows its dollar figure as plain text.
+4. The resolved amount shows on the right, signed (for example +$3.75).",S3-R13 / S3-R14 | SV-8479 (SV-8288 Story 12 — item 4),,
 Verify a line/part with 2 or more fees/discounts shows only the first plus a 'Show N more' toggle,Work Order — Inline display (Lines tab),Functional,High,"1. You are logged in with See Financial Data.
 2. An open work order where one part has three fees/discounts.","1. Go to the Lines tab and find the part with three fees/discounts.
 2. See how many fee/discount rows show by default.
@@ -206,21 +213,25 @@ Verify a line/part with 2 or more fees/discounts shows only the first plus a 'Sh
 2. A 'Show 2 more' toggle is shown (the number is how many are hidden).
 3. Clicking it shows the other two rows.
 4. The toggle then reads 'Show less'.",S3-R15 / S3-R16 / S12-R6,,
-Verify the per-line Total column shows the line's own total plus its fee/discount amounts (display only),Work Order — Inline display (Lines tab),Functional,Medium,"1. You are logged in with See Financial Data.
-2. An open work order where a part has a base total plus a few fees/discounts.","1. Go to the Lines tab and find the part.
-2. Read the part's Total column, which stacks the base total and each fee/discount amount.
-3. Check whether any stored prices change.","1. The Total column stacks the base total and each fee/discount row, so the shown total matches the rows.
-2. This is display only and changes no stored value.",S3-R18 / S3-R19,,
+"Verify the collapsed line Total adds the line's own fees and discounts (Labor + Parts + line fee/discount amounts, signed) — display only",Work Order — Inline display (Lines tab),Functional,Medium,"1. You are logged in with See Financial Data.
+2. An open work order where a part has a base total plus a few fees/discounts.","1. Go to the Lines tab and find a line that has a labor-line fee/discount and a part-line fee/discount.
+2. Read the collapsed line Total shown at the top-right of the line row.
+3. Read the amounts in the rows beneath (Labor, each labor fee/discount, Parts, each part fee/discount).
+4. Check whether any stored prices change.","1. The collapsed line Total = Labor (gross) + Parts (gross) + every one of that line's own fee/discount amounts, signed (fees add, discounts subtract), using the amounts shown in the rows beneath.
+2. Worked example: Labor $250.00 + labor fee +$50.00 + Part $20.00 + part fee +$2.20 = $322.20 (not $270.00).
+3. A line with no fees/discounts shows an unchanged Total (gross Labor + Parts only).
+4. This is display only and changes no stored value.",S3-R18 / S3-R19 | SV-8480 (S3-R18),,
 Verify each inline fee/discount row has a ⋮ menu with Edit and Remove (when the work order is open and you have the matching Create and Edit permission),Work Order — Inline display (Lines tab),Functional,Medium,"1. You are logged in with Work Order Lines: Create & Edit and See Financial Data.
 2. An open work order with at least one inline line-level fee/discount.","1. Hover an inline fee/discount row.
 2. Open its ⋮ (more) menu.","1. A ⋮ menu appears on the row.
 2. The menu offers 'Edit' and 'Remove'.
 3. The menu shows only when the work order is open and you have the matching Create and Edit permission.",S3-R17 / S12-R5,,
-Verify the Stats tab shows a 'Fees & Discounts (N)' breakdown with a value/% and an amount for each row,Work Order — Statistics tab,Functional,High,"1. You are logged in with See Financial Data.
+Verify the Stats tab Fees & Discounts section shows the '%' and 'Amount' column headings with each row's value and amount,Work Order — Statistics tab,Functional,High,"1. You are logged in with See Financial Data.
 2. An open work order with several fees/discounts across scopes is open.","1. Open the work order's Stats tab.
 2. Find the 'Fees & Discounts (N)' section (below the Hours, Labor, Parts and Total sections).
-3. Read each row.","1. A 'Fees & Discounts (N)' section is shown, where N is the total number of fees/discounts of any scope.
-2. Each row shows the name, a value/percentage for percentage fees/discounts (for example '−50%'), and the signed resolved amount on the right.",S4-R1 / S4-R2 / S4-R3,,
+3. Look at the right-side column headings above the value columns, then read each row.","1. A 'Fees & Discounts (N)' section is shown, where N is the total number of fees/discounts of any scope.
+2. The section shows the right-side column headings '%' and 'Amount', in that order, aligned above their value columns, matching the other Stats sections.
+3. Each row shows the name, the percent under '%' (blank for a flat fee) and the signed resolved amount under 'Amount' (for example 'Fee +10% +$46.49', 'Fee +$500,000.00', 'Discount −4% −$20.89'), with a 'Total' row.",S4-R1 / S4-R2 / S4-R3 | SV-8479 (SV-8288 Story 12 — item 12),,
 Verify each Stats fee/discount row names its target,Work Order — Statistics tab,Functional,Medium,"1. You are logged in with See Financial Data.
 2. An open work order with a whole-work-order discount and line-level part/labor fees/discounts.","1. Open the Stats tab and find the 'Fees & Discounts' section.
 2. Read what each row shows to identify its target.
@@ -239,12 +250,13 @@ Verify the Stats fees/discounts are listed in the order they were created (oldes
 Verify the Stats 'Fees & Discounts' section is hidden when the work order has no fees/discounts,Work Order — Statistics tab,Functional,Medium,"1. You are logged in with See Financial Data.
 2. An open work order with no fees/discounts of any scope.","1. Open the Stats tab.
 2. Look for a 'Fees & Discounts' section.",1. There is no 'Fees & Discounts' section when the work order has no fees/discounts.,S4-N1,,
-Verify the Financial Info card shows a 'Fees & Discounts (N)' row with the net total in grey,Work Order — Financial Info card,Functional,High,"1. You are logged in with See Financial Data.
+Verify the Financial Info card shows a 'Fees & Discounts (N)' line directly above Subtotal,Work Order — Financial Info card,Functional,High,"1. You are logged in with See Financial Data.
 2. An open work order that has several fees/discounts (any scope) is open.","1. Look at the 'Financial Info' card on the left.
-2. Find the 'Fees & Discounts (N)' row.
-3. Read the count and the net total shown on that row.","1. A 'Fees & Discounts (N)' row is shown, where N is the total number of fees/discounts of any scope on the work order.
-2. The row shows the net total of all fees/discounts in grey (for example a net of −$2,055.25 across 5 fees/discounts).
-3. The row sits with the other money rows (Parts, Labor, Shop Supplies, Subtotal, GST, Total, Balance).",S3-R20 / S3-R21 / S3-R22,,
+2. Find the 'Fees & Discounts (N)' line and note where it sits relative to Subtotal.
+3. Read the count and the total shown on that line.","1. A 'Fees & Discounts (N)' line is shown, where N is the total number of fees/discounts of any scope on the work order.
+2. The line renders directly above the Subtotal line (not at the bottom below Balance).
+3. Its total (positive or negative) is aligned in the same amount column as the other lines.
+4. The order reads: Parts, Labor, Shop Supplies, Fees & Discounts (N), Subtotal, tax, Total, Balance.",S3-R20 / S3-R21 / S3-R22 | SV-8479 (SV-8288 Story 12 — item 7),,
 Verify the Financial Info 'Fees & Discounts' row lists each fee/discount and is read-only,Work Order — Financial Info card,Functional,Medium,"1. You are logged in with See Financial Data.
 2. An open work order with several fees/discounts of mixed scope is open.","1. Open (expand) the 'Fees & Discounts (N)' row in the Financial Info card.
 2. Read the fees/discounts and their amounts.
@@ -254,13 +266,15 @@ Verify the Financial Info 'Fees & Discounts' row lists each fee/discount and is 
 2. Case (b): logged in as a role WITHOUT See Financial Data, an open work order that has fees/discounts.","1. Case (a): open the work order and check the Financial Info card for a 'Fees & Discounts (N)' row.
 2. Case (b): open the work order and look at the Financial Info money section.","1. Case (a): with no fees/discounts of any scope, there is no 'Fees & Discounts (N)' row.
 2. Case (b): without See Financial Data, the Financial Info money section (and all fee/discount amounts) is hidden.",S3-N2 / S3-N4,,
-"Verify the sidebar 'Work Order Fees & Discounts' card lists whole-work-order fees/discounts with name, signed rate and grey amount",Work Order — Sidebar 'Work Order Fee / Discount' card,Functional,High,"1. You are logged in with See Financial Data and Work Orders: Create & Edit.
+"Verify the Work Order Fees & Discounts card lists whole-work-order fees/discounts as plain text (percentage in brackets, no colored badge)",Work Order — Sidebar 'Work Order Fee / Discount' card,Functional,High,"1. You are logged in with See Financial Data and Work Orders: Create & Edit.
 2. An open work order with a whole-work-order discount plus some line-level fees/discounts.","1. Look at the 'Work Order Fees & Discounts' card on the left.
 2. Read the listed entries and check which scopes appear.
 3. Open an entry's ⋮ (more) menu.","1. The card is titled 'Work Order Fees & Discounts' and lists ONLY whole-work-order fees/discounts — line-level ones do not appear here.
-2. Each entry shows its name, a signed rate badge (for example '−8%' or a dollar amount) and the resolved amount in grey, signed.
-3. The entry's ⋮ menu offers 'Edit' and 'Remove'.
-The 'Work Order Fees & Discounts' card renders above the Financial Info card in the sidebar.",S3-R3 / S3-R5 / S3-R8 / S3-R9,,
+2. Each entry is plain text: the name, then the percentage in brackets, on the same line as the amount — no colored badge or pill.
+3. A percentage discount shows the percent in brackets with a minus sign (for example 'Military Discount (−5%) −$17.25'); a percentage fee shows the percent in brackets with no sign (for example '(5%)'); a flat-amount adjustment shows the name alone with no brackets (for example 'Fee +$500,000.00').
+4. The resolved amount shows on the right, signed.
+5. The entry's ⋮ menu offers 'Edit' and 'Remove'.
+6. The 'Work Order Fees & Discounts' card renders above the Financial Info card in the sidebar.",S3-R3 / S3-R5 / S3-R8 / S3-R9 | SV-8479 (SV-8288 Story 12 — item 5),,
 Verify the sidebar 'Work Order Fees & Discounts' card is hidden with no whole-work-order fees/discounts and has no Add button,Work Order — Sidebar 'Work Order Fee / Discount' card,Functional,Medium,"1. You are logged in with See Financial Data and Work Orders: Create & Edit.
 2. Case (a): an open work order with only line-level fees/discounts and no whole-work-order ones.
 3. Case (b): an open work order with at least one whole-work-order fee/discount.","1. Case (a): open the work order and look for the 'Work Order Fees & Discounts' card.
@@ -270,14 +284,16 @@ Verify the Parts page 'Fees & Discounts' column shows a single fee/discount's na
 2. A Parts page / WO parts view is open with part '#37346 Mobil 1 5W20' carrying exactly one adjustment 'Military Discount' −10%.","1. Find a part in the parts table that has one fee/discount.
 2. Read its 'Fees & Discounts' column cell.","1. The cell shows the fee/discount's name and rate (for example 'Military Discount −10%').
 2. Clicking the cell opens the breakdown view.",S11-R10a / design §5,,
-Verify the 'Fees & Discounts' column shows a '+N' badge when a part has several fees/discounts,Parts page — 'FEES & DISCOUNTS' column,Functional,High,"1. Logged in with See Financial Data.
+Verify the parts-sale 'Fees & Discounts' column shows values as plain text with a '+N' overflow count (no colored badge),Parts page — 'FEES & DISCOUNTS' column,Functional,High,"1. Logged in with See Financial Data.
 2. Parts page open with part '#55073 Mobil 1 5W20' carrying three adjustments (first = 'Parts Handling Fee' 2%).","1. Find a part that has more than one fee/discount.
-2. Read its 'Fees & Discounts' column cell.",1. The cell shows the first fee/discount followed by a '+N' badge (N = how many more there are).,S11-R10b / design §5,,
-Verify the 'Fees & Discounts' column shows a '+ Add' button on a part with no fees/discounts,Parts page — 'FEES & DISCOUNTS' column,Functional,Medium,"1. Logged in with See Financial Data and the matching Create and Edit permission.
-2. Parts page open with part '#28439 Fleetguard FF5421' carrying no adjustments, on an editable sale/WO.","1. Find a part with no fees/discounts.
-2. Read its 'Fees & Discounts' column cell.
-3. Click the '+ Add' button.","1. The cell shows a '+ Add' button.
-2. Clicking it opens the Add fee/discount dialog locked to that part.",S11-R9 / design §5,,
+2. Read its 'Fees & Discounts' column cell.","1. The cell shows the first fee/discount as plain text followed by a '+N' overflow count as plain text (N = how many more there are) — no colored badge or pill.
+2. A percentage fee shows no sign (for example 'Fee 10%'); a percentage discount shows a minus sign (for example '−X%').",S11-R10b / design §5 | SV-8479 (SV-8288 Story 12 — item 16),,
+Verify a fee-less part row adds a fee/discount from its three-dot menu 'Add Part Fee / Discount' (no '+ Add' button),Parts page — 'FEES & DISCOUNTS' column,Functional,Medium,"1. Logged in with See Financial Data and the matching Create and Edit permission.
+2. Parts page open with part '#28439 Fleetguard FF5421' carrying no adjustments, on an editable sale/WO.","1. Find a part row with no fees/discounts in the parts table.
+2. Confirm the 'Fees & Discounts' column shows no '+ Add' button on that row.
+3. Open the part row's three-dot (⋮) menu and click 'Add Part Fee / Discount'.","1. There is no '+ Add' button in the 'Fees & Discounts' column on a fee-less row.
+2. The three-dot (⋮) menu item reads 'Add Part Fee / Discount'.
+3. Clicking it opens the per-part fee/discount dialog titled 'New Part Fee / Discount', locked to that part.","S11-R9 / design §5 | SV-8479 (SV-8288 Story 12 — items 13, 14 & 18)",,
 Verify clicking a filled 'Fees & Discounts' cell opens the per-part breakdown with the right columns,Parts page — breakdown modal,Functional,High,"1. Logged in with See Financial Data.
 2. Parts page open with part '#55073 Mobil 1 5W20' carrying three adjustments (Parts Handling Fee +$1.43, Military Discount −$3.31, Early Payment Discount −$0.99).","1. Click a part's filled 'Fees & Discounts' cell.
 2. Read the title and column headers.
@@ -287,16 +303,17 @@ Verify clicking a filled 'Fees & Discounts' cell opens the per-part breakdown wi
 4. There is a 'Close' button.",S11-R11 / S11-R12 / S11-R13 / S11-R16,,
 Verify the breakdown 'Net adjustment' row equals the signed sum of the part's fees/discounts,Parts page — breakdown modal,Functional,Medium,"1. Logged in with See Financial Data.
 2. The #55073 breakdown modal is open (Parts Handling Fee +$1.43, Military Discount −$3.31, Early Payment Discount −$0.99).",1. Read the 'Net adjustment' row at the bottom of the breakdown.,1. 'Net adjustment' shows the signed sum of all the part's fees/discounts.,S11-R15,,
-Verify a per-row Remove on the breakdown removes the fee/discount and closes when the last one is removed,Parts page — breakdown modal,Functional,High,"1. Logged in with the matching Create and Edit permission + See Financial Data.
+Verify a per-row Remove on the breakdown removes the fee/discount and the cell returns to its empty state (no '+ Add' button),Parts page — breakdown modal,Functional,High,"1. Logged in with the matching Create and Edit permission + See Financial Data.
 2. Parts page open with part #37346 carrying exactly ONE adjustment; the editable breakdown modal is open.","1. Confirm each row has a remove (trash) control.
 2. Click remove on the only fee/discount.
 3. Look at the view and the part's 'Fees & Discounts' cell afterwards.","1. The fee/discount is removed.
 2. Because it was the last one, the view closes on its own.
-3. The part's cell goes back to the '+ Add' empty state.",S11-R14 / S11-R17,,
-Verify the '+ Add' button is disabled when the sale/work order cannot be edited,Parts page — 'FEES & DISCOUNTS' column,Functional,Medium,"1. Logged in with See Financial Data.
+3. The part's cell goes back to its empty state, which no longer shows a '+ Add' button (add a new one via the per-row three-dot menu 'Add Part Fee / Discount').",S11-R14 / S11-R17 | SV-8479 (SV-8288 Story 12 — item 13),,
+Verify the per-row three-dot 'Add Part Fee / Discount' is unavailable when the sale/work order cannot be edited,Parts page — 'FEES & DISCOUNTS' column,Functional,Medium,"1. Logged in with See Financial Data.
 2. Parts page open for an Invoiced/Paid (non-editable) sale/WO with a part that has no adjustments.","1. Find a part with no fees/discounts on a sale/work order that cannot be edited.
-2. Look at its '+ Add' button.","1. The '+ Add' button is disabled because the sale/work order cannot be edited.
-2. Filled cells still open a read-only breakdown, but the per-row remove controls are not shown.",S11-R9 / S3-R1b,,
+2. Open the part row's three-dot (⋮) menu and look at the add option.","1. There is no '+ Add' button (it was removed); the add entry point is the per-row three-dot menu.
+2. On a sale/work order that cannot be edited, 'Add Part Fee / Discount' is unavailable/blocked.
+3. Filled cells still open a read-only breakdown, but the per-row remove controls are not shown.",S11-R9 / S3-R1b | SV-8479 (SV-8288 Story 12 — item 13),,
 "Verify editing a fee/discount allows Name, amount, Max Amount and Taxable but locks Type, Calculation Type and Scope",Work Order — Edit an adjustment,Functional,High,"1. You are logged in with the matching Create and Edit permission and See Financial Data.
 2. An open work order with an existing whole-work-order percentage discount.","1. On the 'Work Order Fees & Discounts' card, open the entry's ⋮ menu and click 'Edit'.
 2. Check which fields you can change and which are greyed out.
@@ -356,17 +373,84 @@ Verify two whole-work-order percentage fees/discounts use the same totals and do
 3. The whole-work-order 10% discount (% of Parts Total) = 10% x $100.00 = −$10.00.
 4. The two whole-work-order ones do not change each other's base.",§5-R5 (Step 2) / spec §5 worked example,,
 Verify the same template can be applied to one work order more than once by hand,Work Order — Multiple adjustments (stacking / netting),Functional,Medium,"1. Logged in with Work Orders: Create & Edit + See Financial Data.
-2. An open work order; the location library has a 'Parts Handling Fee' template.","1. Open 'Add Fee/Discount' from the ⋯ menu, pick a template in 'Apply From Template', and Save.
+2. An open work order; the location library has a 'Parts Handling Fee' template.","1. Open 'Add Work Order Fee / Discount' from the ⋯ menu, pick a template in 'Apply From Template', and Save.
 2. Repeat: open the dialog again, pick the same template, and Save.
 3. Look at the 'Work Order Fees & Discounts' card and the Financial Info 'Fees & Discounts (N)' count.","1. Both are added; the same template appears twice as two independent fees/discounts.
-2. The count and totals reflect both.",Overview 'apply same template more than once' / §3 key decisions,,
+2. The count and totals reflect both.",Overview 'apply same template more than once' / §3 key decisions | SV-8479 (SV-8288 Story 12 — items 10/11 label sweep),,
 Verify the Part Sale Add/Edit fee-or-discount dialog shows the tax-jurisdiction note below the Taxable Yes/No dropdown,Part Sale — Fee/Discount dialog,Functional,Medium,"You are signed in as a user with Part Sales: Create and Edit plus See Financial Data.
-You are on an editable Part Sale (for example an Approved part sale).","1. From the Part Sale toolbar ⋮ menu choose 'Add Parts Sale Fee / Discount' (whole sale), or from a part row's ⋮ menu choose 'Add Fee / Discount' (part line).
-2. In the 'Add new fee/discount' dialog look directly below the 'Taxable' Yes/No dropdown for a note.
+You are on an editable Part Sale (for example an Approved part sale).","1. From a part row's three-dot (⋮) menu choose 'Add Part Fee / Discount' (part line), or from the Part Sale top-right three-dot menu choose 'Add Parts Sale Fee / Discount' (whole sale).
+2. In the fee/discount dialog look directly below the 'Taxable' Yes/No dropdown for a note.
 3. Open an existing part-sale fee/discount's Edit dialog and check the same place.","1. Directly below the Taxable Yes/No dropdown this note is shown: 'Tax treatment varies by jurisdiction — confirm your local requirements before saving.'
-2. The same note shows for both the whole-sale dialog and the per-part dialog (the per-part dialog also shows an 'Applying to: Part — (part number) name' subtitle).
+2. The same note shows for both the whole-sale dialog (titled 'New Parts Sale Fee / Discount') and the per-part dialog (titled 'New Part Fee / Discount'); the per-part dialog also shows an 'Applying to: Part — (part number) name' subtitle.
 3. The same note shows in both the Add and the Edit dialog.
-4. The note is shown only to users with See Financial Data.",S11-R3 / S11-R4a / S11-R4b / §5-R15,,
+4. The note is shown only to users with See Financial Data.",S11-R3 / S11-R4a / S11-R4b / §5-R15 | SV-8479 (SV-8288 Story 12 — items 14 & 18),,
+Verify the labor fee/discount entry point is a three-dot menu to the LEFT of the first technician (or 'Unassigned') and reads 'Add Labor Fee / Discount',Work Order — Labor-line Fee/Discount,Functional,High,"1. You are logged in with Work Orders: Create & Edit and See Financial Data.
+2. An open (not Invoiced, not Paid) work order with at least one labor line is open on its Lines tab.
+3. The labor line has no technician assigned yet, so the technician area shows 'Unassigned'. Mark any throwaway data ZZAUTOTEST.","1. On the Lines tab, find the labor row for a line; it shows the technician name, or 'Unassigned' when no technician is set.
+2. Look to the LEFT of the first assigned technician's name (or to the left of 'Unassigned' when none is assigned) for a three-dot (⋮) menu button.
+3. Click the three-dot (⋮) menu.
+4. Read the menu items and click 'Add Labor Fee / Discount'.","1. The three-dot (⋮) menu button sits to the LEFT of the first assigned technician's name — or to the left of 'Unassigned' when no technician is assigned — not to the right.
+2. Opening the menu shows 'Edit labor' and 'Add Labor Fee / Discount'.
+3. Clicking 'Add Labor Fee / Discount' opens the labor fee/discount dialog.","SV-8479 (SV-8288 Story 12 — item 1: labor fee/discount entry-point placement, three-dot to the LEFT of Unassigned + 'Add Labor Fee / Discount' label)",,
+Verify the work-order part row three-dot menu item reads 'Add Part Fee / Discount',Work Order / Parts — Part-line Fee/Discount,Functional,Medium,"1. You are logged in with Work Orders: Create & Edit and See Financial Data.
+2. An open (not Invoiced, not Paid) work order with at least one part line is open on its Lines tab.","1. On the Lines tab, find a part row.
+2. Open the part row's three-dot (⋮) menu.
+3. Read the menu items and click 'Add Part Fee / Discount'.","1. The part row's three-dot (⋮) menu shows 'Move', 'Return' and 'Add Part Fee / Discount'.
+2. The menu item reads exactly 'Add Part Fee / Discount' (not the old 'Add Fee / Discount').
+3. Clicking it opens the part fee/discount dialog.",SV-8479 (SV-8288 Story 12 — item 2: WO part-row three-dot menu label 'Add Part Fee / Discount'),,
+"Verify the Work Order Fees & Discounts card shows the disclaimer 'Applies to the whole work order, after all other fees & discounts.'",Work Order — Sidebar 'Work Order Fee / Discount' card,Functional,Medium,"1. You are logged in with Work Orders: Create & Edit and See Financial Data.
+2. An open work order is open; the Work Order Fees & Discounts card is visible.","1. Look at the Work Order Fees & Discounts card.
+2. Read the disclaimer line shown on the card.","1. The Work Order Fees & Discounts card shows the disclaimer text: 'Applies to the whole work order, after all other fees & discounts.'
+2. The disclaimer is shown on the card (below the card's adjustment list).",SV-8479 (SV-8288 Story 12 — item 6: WO Fees & Discounts card disclaimer copy),,
+Verify the work order toolbar three-dot menu item reads 'Add Work Order Fee / Discount',Work Order — Whole-WO Fee/Discount,Functional,Medium,"1. You are logged in with Work Orders: Create & Edit and See Financial Data.
+2. An open (not Invoiced, not Paid) work order is open.","1. Open the work order toolbar three-dot (⋯) menu.
+2. Read the menu items and their order.
+3. Click 'Add Work Order Fee / Discount'.","1. The toolbar three-dot menu shows 'Add Work Order Fee / Discount' at the top, then 'Audit Log', 'Timesheets (N)', 'Delete Work Order' (menu order unchanged).
+2. The item reads exactly 'Add Work Order Fee / Discount' (not the old 'Add Fee/Discount').
+3. Clicking it opens the whole-work-order fee/discount dialog.",SV-8479 (SV-8288 Story 12 — item 10: WO toolbar three-dot menu label 'Add Work Order Fee / Discount'),,
+Verify the tax-jurisdiction note and the 'Pass convenience fee to customer' banner still appear after the fee/discount UI updates,Work Order — Whole-WO Fee/Discount,Functional,Medium,"1. You are logged in with See Financial Data plus the rights to add fees/discounts on work orders and part sales.
+2. An open work order and an editable part sale are available.","1. On the work order, open a fee/discount dialog for a labor line, for a part, and for the whole work order.
+2. In each dialog, look directly below the 'Taxable' Yes/No dropdown for the tax-jurisdiction note.
+3. Check that the 'Pass convenience fee to customer' banner still appears where it did before.
+4. Repeat on a part sale fee/discount dialog.","1. Below the Taxable Yes/No dropdown, each dialog still shows: 'Tax treatment varies by jurisdiction — confirm your local requirements before saving.'
+2. The 'Pass convenience fee to customer' banner still appears (it was not removed by these UI changes).
+3. Both are present on the work-order and part-sale fee/discount dialogs.",SV-8479 (SV-8288 Story 12 — NOTES regression preserve: tax-jurisdiction note in dialogs + 'Pass convenience fee to customer' banner),,
+"Verify the parts-sale Fees & Discounts column no longer shows the '+ Add' button, and the per-row and top-right three-dot entry points remain",Parts page — 'FEES & DISCOUNTS' column,Functional,Medium,"1. You are logged in with Part Sales: Create and Edit and See Financial Data.
+2. Open Parts → Parts Sales → an editable parts sale that has at least one part row with no fee yet.","1. View the parts table and find the Fees & Discounts column on a part row that has no fee yet.
+2. Check whether a '+ Add' button is shown in that column.
+3. Open a part row's three-dot menu and the top-right three-dot menu and note the add options.","1. The '+ Add' button is gone from the Fees & Discounts column (no redundant button on fee-less rows).
+2. The Fees & Discounts column stays and still shows existing part fees.
+3. A fee/discount can still be added from the per-row three-dot menu ('Add Part Fee / Discount') and from the top-right three-dot menu (whole parts sale).",SV-8479 (SV-8288 Story 12 — item 13: remove redundant '+ Add' button in the parts-sale Fees & Discounts column),,
+Verify the parts-sale per-part three-dot menu item reads 'Add Part Fee / Discount',Parts page — 'FEES & DISCOUNTS' column,Functional,Medium,"1. You are logged in with Part Sales: Create and Edit and See Financial Data.
+2. An editable parts sale with at least one part row is open.","1. Open a part row's three-dot (Actions) menu.
+2. Read the menu items.
+3. Click 'Add Part Fee / Discount'.","1. The per-part three-dot (Actions) menu shows 'Add Part Fee / Discount'.
+2. It reads exactly 'Add Part Fee / Discount' (not the old 'Add Fee / Discount'), matching the work-order part row.
+3. Clicking it opens the per-part fee/discount dialog.",SV-8479 (SV-8288 Story 12 — item 14: parts-sale per-part three-dot menu label 'Add Part Fee / Discount'),,
+Verify the Parts Sale Fees & Discounts card shows each adjustment as plain text with the percentage in brackets (no colored badge),Parts Sale — Fees & Discounts card,Functional,Medium,"1. You are logged in with Part Sales: Create and Edit and See Financial Data.
+2. An editable parts sale with at least one fee/discount is open; the Parts Sale Fees & Discounts card is visible.","1. Look at the Parts Sale Fees & Discounts card.
+2. For each adjustment, note whether the amount shows as plain text or as a colored badge/pill.
+3. Note the bracket and sign used for a percentage fee, a percentage discount and a flat amount.","1. Each adjustment is plain text — no colored badge or pill; the dollar amount stays in line.
+2. A percentage fee shows the percent in brackets with no sign, e.g. 'Part Fee (11%) +$2.39' and 'New Processing Fee (10%) +$2.28'.
+3. A percentage discount shows the percent in brackets with a minus sign, e.g. '(−X%)'.
+4. A flat-amount adjustment shows the name alone with no brackets, e.g. 'Fee +$500,000.00' (the old red state showed a badge, e.g. 'TEST +$50.00').","SV-8479 (SV-8288 Story 12 — item 15: Parts Sale Fees & Discounts card plain-text, no badge, item-5 bracket/sign convention)",,
+Verify the parts-sale Financial Info card shows a 'Fees & Discounts (N)' line directly above Subtotal and hides it when there are none,Parts Sale — Financial Info card,Functional,Medium,"1. You are logged in with Part Sales: Create and Edit and See Financial Data.
+2. An editable parts sale with at least one fee/discount is open; the Financial Info card is visible.","1. Look at the parts sale Financial Info card and find the 'Fees & Discounts (N)' line.
+2. Note where it sits relative to Subtotal and where its amount is aligned.
+3. Open a parts sale that has no fees/discounts and look at the same card.","1. The Financial Info card shows a 'Fees & Discounts (N)' line with its total directly above the Subtotal line, matching the work-order Financial Info card.
+2. The total is aligned in the same amount column as the other lines (a positive or negative amount).
+3. When there are zero fees/discounts the 'Fees & Discounts' line is hidden.","SV-8479 (SV-8288 Story 12 — item 17: parts-sale Financial Info 'Fees & Discounts (N)' line above Subtotal, hidden when zero)",,
+Verify the whole-parts-sale fee/discount dialog title reads 'New Parts Sale Fee / Discount' with subline 'Applying To: Entire Parts Sale',Part Sale — Fee/Discount dialog,Functional,Medium,"1. You are logged in with Part Sales: Create and Edit and See Financial Data.
+2. An editable parts sale is open.","1. On the parts sale, open the top-right three-dot menu and click 'Add Parts Sale Fee / Discount'.
+2. Read the dialog title and the subline directly under it.","1. The top-right three-dot menu item reads 'Add Parts Sale Fee / Discount'.
+2. The dialog title reads 'New Parts Sale Fee / Discount'.
+3. A subline reads 'Applying To: Entire Parts Sale' (same format as the whole-work-order dialog).",SV-8479 (SV-8288 Story 12 — item 19: whole-parts-sale fee/discount modal title 'New Parts Sale Fee / Discount' + new subline 'Applying To: Entire Parts Sale'),,
+Verify the Fees & Discounts section on the parts-sale Statistics tab shows the '%' and 'Amount' column headings,Parts Sale — Statistics tab,Functional,Medium,"1. You are logged in with Part Sales: Create and Edit and See Financial Data.
+2. An editable parts sale with at least one fee/discount (mix of percentage and flat) is open.","1. Open the parts sale and go to the Statistics tab.
+2. Scroll to the Fees & Discounts section.
+3. Look at the right-side column headings above the value columns.","1. The Fees & Discounts section shows the right-side column headings '%' and 'Amount', in that order, matching the work-order Stats section.
+2. A flat fee shows a blank '%' cell.
+3. Rows show the percent under '%' and the money under 'Amount' (for example 'Part Fee +11% +$2.65', 'Fee +$500,000.00'), with a 'Total' row.","SV-8479 (SV-8288 Story 12 — item 20: parts-sale Statistics Fees & Discounts section column headings '%' and 'Amount', mirrors item 12)",,
 Verify the customer 'Fees & Discounts (N)' tab shows the correct default count,Customer Fees & Discounts tab,Functional,High,"1. A test customer named ZZAUTOTEST Customer exists with exactly 2 default fees/discounts linked.
 2. You are logged in with Customer Management: Create & Edit and Manage AP/AR permissions.","1. Go to Customers and open a customer record.
 2. Look at the row of tabs (Work Orders, Part Sales, Contacts, Assets, Notes, Invoices, Payments, Deposits, Fees & Discounts).
@@ -481,12 +565,12 @@ Verify deleting a template leaves work-order fees/discounts made from it unchang
 2. Open a work order that already has a fee/discount made from that template and check the 'Work Order Fees & Discounts' card.","1. The template is removed from the library.
 2. The work order's fee/discount made from it stays unchanged (same name, amount, taxable).","S7-N1, S7-R4",,
 "Verify template scoping — labour-method templates only show in labour pickers, parts-method only in parts pickers",Template admin — scoping,Functional,High,"1. The location has: a ""% of Labor Total"" template, a ""% of Parts Total"" template, and a Flat Amount template.
-2. A work order with at least one labor line and one part exists.","1. On a labor line's ⋮ menu, click 'Add Fee/Discount' and open the 'Apply From Template' picker.
+2. A work order with at least one labor line and one part exists.","1. On a labor line's ⋮ menu, click 'Add Labor Fee / Discount' and open the 'Apply From Template' picker.
 2. Note which templates are offered.
-3. Cancel; on a part's ⋮ menu click 'Add Fee/Discount' and open the same picker.
+3. Cancel; on a part's ⋮ menu click 'Add Part Fee / Discount' and open the same picker.
 4. Note which templates are offered.","1. From a labor line, the picker lists only Flat Amount and '% of Labor Total' templates (not '% of Parts Total').
 2. From a part, the picker lists only Flat Amount and '% of Parts Total' templates (not '% of Labor Total').
-3. Neither picker lists a Processing Fee template.","S2-R14, S2-R15, S2-R16, S5-R10",,
+3. Neither picker lists a Processing Fee template.","S2-R14, S2-R15, S2-R16, S5-R10 | SV-8479 (SV-8288 Story 12 — items 1 & 2 label sweep)",,
 Verify Max Amount shows only for percentage methods and how 0 behaves,Template admin — dialog fields,Functional,Medium,1. On the admin Fees & Discounts create dialog.,"1. Set Calculation Type to 'Flat Amount' and check whether 'Max Amount (Optional)' shows.
 2. Switch to '% of Subtotal' and check again.
 3. Enter 0 into Max Amount and save.","1. For 'Flat Amount' there is no Max Amount field.
@@ -521,9 +605,9 @@ Verify the Processing Fee Taxable defaults to Yes and shows the tax-jurisdiction
 3. The note is plain advice to the shop, not a system instruction or a legal statement.
 4. The note is shown only to users with See Financial Data — a user without See Financial Data does not see the note.","S8-R11, S8-R12, S8-R13, §5-R15",,
 Verify a Processing Fee cannot be added to a work order by hand,Processing Fee — no manual add,Functional,High,"1. A Processing Fee template exists.
-2. An open work order is available.","1. On the work order ⋯ menu click 'Add Fee/Discount' and open the Type dropdown.
+2. An open work order is available.","1. On the work order ⋯ menu click 'Add Work Order Fee / Discount' and open the Type dropdown.
 2. Open the 'Apply From Template' dropdown here and from a labor line and a part dialog.","1. The work order Add dialog Type dropdown does not list 'Processing Fee' (only Fee and Discount).
-2. The 'Apply From Template' dropdown does not list any Processing Fee template from any starting place.","S8-R16, S8-N1, S8-N2",,
+2. The 'Apply From Template' dropdown does not list any Processing Fee template from any starting place.","S8-R16, S8-N1, S8-N2 | SV-8479 (SV-8288 Story 12 — items 10/11 label sweep)",,
 Verify a Processing Fee reaches a new work order via location auto-apply,Processing Fee — auto-apply,Functional,High,"1. A Processing Fee template ""ZZAUTOTEST Proc Fee"" (Flat Amount $5.00, taxable Yes) is marked auto-apply.","1. Create a new work order at that location.
 2. Open the 'Work Order Fees & Discounts' card.","1. The new work order carries a whole-work-order Processing Fee.
 2. In its ⋮ menu, 'Remove' works but 'Edit' does nothing for a Processing Fee.","S8-R14, S7-R5",,
@@ -683,59 +767,59 @@ You are on Settings → Fees & Discounts (the admin Fee/Discount templates page)
 3. The same note shows in both the create and the edit dialog.
 4. The note is shown only to users with See Financial Data — a user with Manage Finance Settings but without See Financial Data sees the Taxable Yes/No dropdown but not the note.",S7-R12f / §5-R15,,
 Verify a percentage fee/discount works out as base x percent (10% fee on $150.00 → +$15.00),Calculation contract,Functional,High,"1. You are signed in with See Financial Data and Work Orders: Create and Edit.
-2. An open work order (not Invoiced/Paid, not in history view) whose relevant base is $150.00 (for example net labor $150.00). Mark any throwaway data ZZAUTOTEST.","1. Open the work order and, from the ⋯ menu, click 'Add Fee/Discount'.
+2. An open work order (not Invoiced/Paid, not in history view) whose relevant base is $150.00 (for example net labor $150.00). Mark any throwaway data ZZAUTOTEST.","1. Open the work order and, from the ⋯ menu, click 'Add Work Order Fee / Discount'.
 2. Set Type to 'Fee'.
 3. Set Calculation Type to a percentage method whose base is $150.00 (for example '% of Labor Total').
 4. In 'Percent %' enter 10.
 5. Save with 'Add Fee'.","1. Base $150.00, rate 10% fee.
 2. The fee works out to $150.00 x 10% = +$15.00 exactly.
-3. It shows a '+10%' rate badge and +$15.00 in grey.",§5-R3,,
+3. It shows '+10%' as plain text and +$15.00 (no colored badge).",§5-R3 | SV-8479 (SV-8288 Story 12 — item 4),,
 Verify percentage rounding — half a cent or more rounds up (5% discount on $33.33 → −$1.67),Calculation contract,Functional,High,"1. You are signed in with See Financial Data and Work Orders: Create and Edit.
-2. An open work order whose target base is $33.33.","1. Open 'Add Fee/Discount' against the $33.33 base.
+2. An open work order whose target base is $33.33.","1. Open 'Add Work Order Fee / Discount' against the $33.33 base.
 2. Set Type to 'Discount' and a percentage Calculation Type on that base.
 3. In 'Percent %' enter 5.
 4. Save.","1. Base $33.33, rate 5% discount.
 2. The exact figure is $33.33 x 5% = $1.6665.
 3. Because the third decimal is half a cent or more, it rounds up to −$1.67 (not −$1.66).
-4. The sign is negative (a discount).",§5-R3,,
+4. The sign is negative (a discount).",§5-R3 | SV-8479 (SV-8288 Story 12 — items 10/11 label sweep),,
 Verify a flat amount on a whole work order or a labor line is the exact amount (no quantity multiplier),Calculation contract,Functional,Medium,"1. You are signed in with See Financial Data and the matching Create and Edit permission.
-2. An open work order with at least one labor line.","1. Add a whole-work-order fee: ⋯ menu > 'Add Fee/Discount', Type 'Fee', Calculation Type 'Flat Amount', '$ Amount' 25.00, save.
-2. Add a labor-line discount: on the labor line's ⋮ menu > 'Add Fee/Discount', Type 'Discount', Calculation Type 'Flat Amount', '$ Amount' 10.00, save.","1. The whole-work-order flat fee is exactly +$25.00.
+2. An open work order with at least one labor line.","1. Add a whole-work-order fee: ⋯ menu > 'Add Work Order Fee / Discount', Type 'Fee', Calculation Type 'Flat Amount', '$ Amount' 25.00, save.
+2. Add a labor-line discount: on the labor line's ⋮ menu > 'Add Labor Fee / Discount', Type 'Discount', Calculation Type 'Flat Amount', '$ Amount' 10.00, save.","1. The whole-work-order flat fee is exactly +$25.00.
 2. The labor-line flat discount is exactly −$10.00.
-3. Neither amount is multiplied by any quantity.",§5-R14,,
+3. Neither amount is multiplied by any quantity.",§5-R14 | SV-8479 (SV-8288 Story 12 — items 10 & 1 label sweep),,
 Verify a flat amount on a part line is charged per item (amount x quantity: $5.00 x 3 → −$15.00; x1 → −$5.00),Calculation contract,Functional,High,"1. You are signed in with See Financial Data and Work Order Lines: Create and Edit.
-2. An open work order with a part whose quantity is 3.","1. On the part's ⋮ menu, click 'Add Fee/Discount' (this locks the scope to that part).
+2. An open work order with a part whose quantity is 3.","1. On the part's ⋮ menu, click 'Add Part Fee / Discount' (this locks the scope to that part).
 2. Set Type 'Discount', Calculation Type 'Flat Amount', '$ Amount' 5.00, save.
 3. Change the part quantity from 3 to 1 and watch the fee/discount re-work.","1. A flat $5.00 discount on a part with quantity 3.
 2. It works out to $5.00 x 3 = −$15.00.
-3. After the quantity changes to 1, it re-works to −$5.00 ($5.00 x 1).",§5-R14,,
+3. After the quantity changes to 1, it re-works to −$5.00 ($5.00 x 1).",§5-R14 | SV-8479 (SV-8288 Story 12 — items 2/9 label sweep),,
 Verify a percentage discount cannot go over 100% (percentage fees have no upper limit),Calculation contract,Functional,High,"1. You are signed in with See Financial Data and the matching Create and Edit permission.
-2. An open work order.","1. Open 'Add Fee/Discount' at any scope.
+2. An open work order.","1. Open 'Add Work Order Fee / Discount' from the ⋯ menu (this validation applies at any scope).
 2. Set Type 'Discount' and a percentage Calculation Type.
 3. Enter 'Percent %' 101 and try to save.
 4. Change to 100 and save.
 5. Then set Type 'Fee', 'Percent %' 150, and save.","1. A 101% discount is rejected (the message reads 'A percentage discount cannot exceed 100%').
 2. A discount of exactly 100% is allowed.
-3. A 150% fee is allowed — percentage fees have no upper limit.",§5-R2,,
+3. A 150% fee is allowed — percentage fees have no upper limit.",§5-R2 | SV-8479 (SV-8288 Story 12 — items 10/11 label sweep),,
 "Verify the smallest allowed values — flat amount $0.01, percentage 0.01%",Calculation contract,Functional,Medium,"1. You are signed in with See Financial Data and the matching Create and Edit permission.
-2. An open work order.","1. Open 'Add Fee/Discount'.
+2. An open work order.","1. Open 'Add Work Order Fee / Discount'.
 2. With Calculation Type 'Flat Amount', try '$ Amount' 0.00 (should be blocked), then 0.01 (should be allowed); save.
 3. With a percentage Calculation Type, try 'Percent %' 0 (should be blocked), then 0.01 (should be allowed); save.","1. Values must be above 0 (a 0 or negative amount is rejected — 'must be greater than zero').
 2. For a flat amount, $0.01 is the smallest that saves as typed; anything below $0.01 is quietly rounded up to $0.01.
-3. For a percentage, 0.01% is the smallest that saves as typed; anything below 0.01% (for example 0.005%) is quietly rounded up to 0.01%. This rounding is expected/acceptable behavior.",§5-R1,,
+3. For a percentage, 0.01% is the smallest that saves as typed; anything below 0.01% (for example 0.005%) is quietly rounded up to 0.01%. This rounding is expected/acceptable behavior.",§5-R1 | SV-8479 (SV-8288 Story 12 — items 10/11 label sweep),,
 Verify Max Amount caps a percentage result (20% fee on $100 → $20 → Max Amount $15 → +$15.00),Calculation contract,Functional,High,"1. You are signed in with See Financial Data and the matching Create and Edit permission.
-2. An open work order whose target base is $100.00.","1. Open 'Add Fee/Discount' on the $100.00 base.
+2. An open work order whose target base is $100.00.","1. Open 'Add Work Order Fee / Discount' on the $100.00 base.
 2. Set Type 'Fee' and a percentage Calculation Type.
 3. Enter 'Percent %' 20.
 4. Enter '$ Max Amount (Optional)' 15.00.
 5. Save.","1. Without a cap the fee would be $100.00 x 20% = $20.00.
 2. Because $20.00 is over the $15.00 cap, it is lowered to +$15.00.
-3. The Max Amount field only shows for percentage methods (never for a flat amount, never for a Processing Fee).",§5-R6,,
+3. The Max Amount field only shows for percentage methods (never for a flat amount, never for a Processing Fee).",§5-R6 | SV-8479 (SV-8288 Story 12 — items 10/11 label sweep),,
 Verify how Max Amount behaves at 0 vs empty (empty means no cap),Calculation contract,Functional,Medium,"1. You are signed in with See Financial Data and the matching Create and Edit permission.
-2. An open work order whose target base is $100.00.","1. Open 'Add Fee/Discount', Type 'Fee', a percentage method, 'Percent %' 50 on the $100.00 base.
+2. An open work order whose target base is $100.00.","1. Open 'Add Work Order Fee / Discount', Type 'Fee', a percentage method, 'Percent %' 50 on the $100.00 base.
 2. Leave Max Amount empty and save; note the result.
 3. Set Max Amount to 0 and save; note the result.","1. An empty Max Amount means no cap, so the fee is +$50.00 ($100 x 50%).
-2. A Max Amount of 0 is treated exactly the same as leaving it empty = no cap (working as designed per S2-R25); it does NOT force the result to $0.00. A true $0 cap can only come from legacy data, never from the UI.",§5-R6,,
+2. A Max Amount of 0 is treated exactly the same as leaving it empty = no cap (working as designed per S2-R25); it does NOT force the result to $0.00. A true $0 cap can only come from legacy data, never from the UI.",§5-R6 | SV-8479 (SV-8288 Story 12 — items 10/11 label sweep),,
 "Verify a $0.00 base works out to $0.00 (shown on screen, skipped in QuickBooks)",Calculation contract,Functional,Medium,"1. You are signed in with See Financial Data and the matching Create and Edit permission.
 2. An open work order with a target line whose base is $0.00 (for example a declined/not-billable labor line).","1. Add a 15% fee (or any fee/discount) against the $0.00 base line.
 2. Look at the result on the 'Work Order Fees & Discounts' card, the line, the Stats tab and the Financial Info card.
@@ -801,6 +885,63 @@ Verify the Processing Fee base includes tax on purpose and never uses a Max Amou
 2. The QuickBooks discount lines are capped so they add up exactly to the floored net subtotal — never below it.
 3. With several discount lines the cap is split across them in whole cents (largest-remainder), so every line is a whole cent, they add up exactly, and there is no fractional cent or negative total.
 4. The amount removed by the cap equals the customer credit that is carried. [QuickBooks side needs a human logged into QuickBooks to confirm.]",S6-R10d,,
+Verify a work order line total adds the line's own fees to Labor and Parts (Labor $250 + fee +$50.00 + Part $20.00 + fee +$2.20 → line total $322.20),Calculation contract,Functional,High,"1. You are signed in with See Financial Data and Work Orders: Create and Edit.
+2. The organization has the Fees & Discounts feature turned on.
+3. An open work order (not Invoiced/Paid, not in history view) with one line that has Labor $250.00 and one part 'Turbocharger Oil' at $20.00. Mark any throwaway data ZZAUTOTEST.","1. Open the work order and go to the Lines tab.
+2. Expand the line and, on the Labor row, add a labor fee named 'ttt' of +20% (a fee, not a discount).
+3. On the Parts row for 'Turbocharger Oil', add a part fee named 'test' of +11%.
+4. Read the fee amounts shown in the rows beneath the line: the labor fee 'ttt' shows +$50.00 and the part fee 'test' shows +$2.20.
+5. Collapse the line and read the line total shown at the top-right of the line header row.","1. The Fees/Discounts row under Labor shows '↳ ttt' with a '+20%' badge and +$50.00.
+2. The part fee row shows '↳ test' with a '+11%' badge and +$2.20.
+3. The collapsed line total at the top-right equals Labor + labor fee + Parts + part fee = $250.00 + $50.00 + $20.00 + $2.20 = $322.20.
+4. The line total is NOT $270.00 (it must not leave out the two fees).",SV-8480 (S3-R18),,
+"Verify a discount on a line subtracts from the line total while a fee adds (fees add, discounts subtract in the line total)",Calculation contract,Functional,High,"1. You are signed in with See Financial Data and Work Orders: Create and Edit.
+2. The organization has the Fees & Discounts feature turned on.
+3. An open work order with one line that has Labor $250.00 and one part at $20.00. Mark any throwaway data ZZAUTOTEST.","1. Open the work order and go to the Lines tab; expand the line.
+2. On the Labor row, add a labor fee of +20% (a fee).
+3. On the part row, add a part discount of -10%.
+4. Read the fee and discount amounts shown in the rows beneath the line (the fee shows a plus amount, the discount shows a minus amount).
+5. Collapse the line and read the line total at the top-right of the line header row.","1. The labor fee shows a '+20%' badge and a plus amount (+$50.00 on $250.00).
+2. The part discount shows a '-10%' badge and a minus amount (-$2.00 on $20.00).
+3. The collapsed line total adds the fee and subtracts the discount: Labor $250.00 + fee $50.00 + Part $20.00 - discount $2.00 = $318.00.
+4. Fees increase the line total; discounts reduce it.",SV-8480 (S3-R18),,
+Verify a line with no fees or discounts shows a line total of Labor + Parts only (unchanged by the fix),Calculation contract,Functional,Medium,"1. You are signed in with See Financial Data and Work Orders: Create and Edit.
+2. The organization has the Fees & Discounts feature turned on.
+3. An open work order with one line that has Labor $250.00 and one part at $20.00 and NO fees or discounts on it. Mark any throwaway data ZZAUTOTEST.","1. Open the work order and go to the Lines tab.
+2. Confirm the line has no Fees/Discounts rows under Labor or Parts.
+3. Collapse the line and read the line total at the top-right of the line header row.","1. There are no Fees/Discounts rows on the line.
+2. The collapsed line total equals Labor + Parts only ($250.00 + $20.00 = $270.00).
+3. The line total is the same as before the fix — a line with no fees or discounts is unaffected.",SV-8480 (S3-R18),,
+"Verify the Estimate document is unchanged — labor prints gross, each fee prints its own row, and the grand total is not double-counted",Calculation contract,Functional,Medium,"1. You are signed in with See Financial Data and Work Orders: Create and Edit.
+2. The organization has the Fees & Discounts feature turned on.
+3. An open work order with a line that has Labor $250.00, a labor fee +$50.00, a part at $20.00 and a part fee +$2.20 (as in the ticket example). Mark any throwaway data ZZAUTOTEST.","1. Open the work order and generate/preview the Estimate document.
+2. Read how the labor amount prints.
+3. Read how each fee/discount prints.
+4. Read the document grand total.","1. The labor amount still prints at its gross value ($250.00) — the fee is not folded into the labor line.
+2. Each fee prints as its own separate row (the labor fee +$50.00 and the part fee +$2.20 each appear on their own line).
+3. The Estimate grand total is unchanged and correct — the fees are counted once, not double-counted.",SV-8480 (S3-R18),,
+"Verify the Invoice document is unchanged — labor prints gross, each fee prints its own row, and the grand total is not double-counted",Calculation contract,Functional,Medium,"1. You are signed in with See Financial Data and Work Orders: Create and Edit.
+2. The organization has the Fees & Discounts feature turned on.
+3. A work order with a line that has Labor $250.00, a labor fee +$50.00, a part at $20.00 and a part fee +$2.20, taken through to an invoice. Mark any throwaway data ZZAUTOTEST.","1. Open the work order and generate/preview the Invoice document.
+2. Read how the labor amount prints.
+3. Read how each fee/discount prints.
+4. Read the document grand total.","1. The labor amount still prints at its gross value ($250.00) — the fee is not folded into the labor line.
+2. Each fee prints as its own separate row (the labor fee +$50.00 and the part fee +$2.20 each appear on their own line).
+3. The Invoice grand total is unchanged and correct — the fees are counted once, not double-counted.",SV-8480 (S3-R18),,
+"Verify that when the Fees & Discounts feature is turned off, the line total is Labor + Parts only (gross), with no fee/discount rolled in",Calculation contract,Functional,Medium,"1. You are signed in with See Financial Data and Work Orders: Create and Edit.
+2. The organization does NOT have the Fees & Discounts feature turned on.
+3. An open work order with one line that has Labor $250.00 and one part at $20.00. Mark any throwaway data ZZAUTOTEST.","1. Open the work order and go to the Lines tab.
+2. Confirm there is no way to add line fees/discounts (the feature is off).
+3. Collapse the line and read the line total at the top-right of the line header row.","1. No line-level fees/discounts are available while the Fees & Discounts feature is off.
+2. The collapsed line total equals Labor + Parts only ($250.00 + $20.00 = $270.00), gross with no fee/discount roll-in.
+3. The new fee/discount roll-in only applies when the Fees & Discounts feature is on.",SV-8480 (S3-R18),,
+Verify the backend per-line total includes the line's signed fee/discount amounts (Labor $250 + $50.00 + Part $20.00 + $2.20 → total_cost 322.20),API — Calculation contract,Functional,High,"1. You are signed in with See Financial Data and Work Orders: Create and Edit.
+2. The organization has the Fees & Discounts feature turned on.
+3. An open work order with one line that has Labor $250.00, a labor fee +20% (+$50.00), a part at $20.00 and a part fee +11% (+$2.20) — the ticket example. Mark any throwaway data ZZAUTOTEST.","1. Load the work order line detail from the backend (the work order line/total endpoint the Lines tab reads).
+2. Read the per-line total value returned for the line (total_cost).
+3. Confirm the stored line amounts (labor, parts, fee/discount amounts) are unchanged by the fix.","1. The backend returns a per-line total (total_cost) of 322.20 = Labor 250.00 + labor fee 50.00 + Part 20.00 + part fee 2.20.
+2. The per-line total adds the line's signed fee/discount amounts on top of Labor + Parts (fees add, discounts subtract); it is not 270.00.
+3. The change is display-only in the computed total — the stored labor, parts, and fee/discount values are unchanged.",SV-8480 (S3-R18),,
 "Verify See Financial Data controls all fee/discount dollar amounts (without it, amounts are hidden)",Permissions (Story 13),Functional,High,"1. A work order (and a part sale, and a customer) already has adjustments to view.
 2. Two ZZAUTOTEST custom roles ready: Role A WITH See Financial Data; Role B WITHOUT See Financial Data (otherwise identical). Use exact-user-match when assigning to Tech (Tech /change staff_id 6fb22c1b-…).","1. As a role WITH See Financial Data, open the work order and confirm fee/discount amounts show.
 2. As a role WITHOUT See Financial Data, open the work order and look for fee/discount amounts and controls.","1. With See Financial Data on, all fee/discount amounts are visible on every screen.
@@ -853,12 +994,12 @@ Verify both are required — the Fees & Discounts feature on AND the matching pe
 3. Feature on and permission on: controls appear and the action works.
 4. A user needs both the feature and the permission.","S13-R1, Fees & Discounts feature + permission (both gates)",,
 Verify add/edit/remove is blocked when the work order is Invoiced/Paid or you are viewing history,Permissions (Story 13),Functional,Medium,"1. The user has all F&D permissions (so only the WO state should block).
-2. An Invoiced or Paid work order, and separately a way to enter history mode.","1. On an Invoiced or Paid work order, look for 'Add Fee/Discount' and the per-entry ⋮ menus.
+2. An Invoiced or Paid work order, and separately a way to enter history mode.","1. On an Invoiced or Paid work order, look for 'Add Work Order Fee / Discount' and the per-entry ⋮ menus.
 2. Try to add/edit/remove.
-3. In history view, try to add a fee/discount.","1. On an Invoiced or Paid work order, 'Add Fee/Discount' is hidden everywhere and the per-entry ⋮ menus are not shown.
+3. In history view, try to add a fee/discount.","1. On an Invoiced or Paid work order, 'Add Work Order Fee / Discount' is hidden everywhere and the per-entry ⋮ menus are not shown.
 2. The system refuses any add/edit/remove on an Invoiced or Paid work order.
 3. In history view you cannot add a fee/discount.
-4. Add/edit/remove is allowed only while the work order is open.","S1-N1, S3-R1b, S3-R1a",,
+4. Add/edit/remove is allowed only while the work order is open.","S1-N1, S3-R1b, S3-R1a | SV-8479 (SV-8288 Story 12 — items 10/11 label sweep)",,
 "Verify that with the Fees & Discounts feature turned off, all fee/discount screens are hidden everywhere",Feature-flag gating,Functional,High,"1. Ability to set the Fees & Discounts feature OFF for the org.
 2. The test user has See Financial Data and all Create and Edit permissions.
 3. Surfaces to inspect: WO (toolbar ⋯, labor-line ⋮, part menu, sidebar card, Stats tab, Financial Info row), Part Sale (F&D column), Customer (F&D tab), Administration → Service (templates).","1. In Administration, turn the Fees & Discounts feature off for the org.
@@ -879,42 +1020,42 @@ Verify the work-order audit log still shows fee/discount entries even when the F
 2. Once the permission is granted, the controls appear and the action works.
 3. The feature and the permission are two separate switches, both required.",§1 Fees & Discounts feature + S13-R1,,
 "Verify the Add button stays disabled until Name, Type, Calculation Type and an Amount above 0 are all set",Validation / Edge,Functional,High,"1. You are logged in with See Financial Data and the matching Create and Edit permission.
-2. An open work order with the 'Add new fee/discount' dialog open.","1. With the dialog freshly opened (all fields empty), look at the confirm button.
+2. An open work order with the 'New Work Order Fee / Discount' dialog open.","1. With the dialog freshly opened (all fields empty), look at the confirm button.
 2. Fill the fields one at a time — Name only; then Type; then Calculation Type; then Amount 0; then Amount above 0 — checking the button after each.
 3. Clear one required field again and check the button.","1. The confirm button is greyed out until Name, Type, Calculation Type and an Amount above 0 are all set.
 2. With the Amount at 0 the button stays greyed out (the amount must be above 0).
 3. The confirm button reads 'Add Fee' (Type Fee) or 'Add Discount' (Type Discount), changing as you change Type.
 4. Clearing any required field greys the button out again.
-5. Max Amount is not needed to enable the button.","design §6 (Add-button enable rule); S2-N1, S2-N2",,
+5. Max Amount is not needed to enable the button.","design §6 (Add-button enable rule); S2-N1, S2-N2 | SV-8479 (SV-8288 Story 12 — items 10/11 label sweep)",,
 "Verify a blank or 0 amount blocks saving, with an error",Validation / Edge,Functional,High,"1. You are logged in with See Financial Data and the matching Create and Edit permission.
-2. The 'Add new fee/discount' dialog is open with Name, Type and Calculation Type filled.","1. Leave the amount blank and try to save.
+2. The 'New Work Order Fee / Discount' dialog is open with Name, Type and Calculation Type filled.","1. Leave the amount blank and try to save.
 2. Enter 0 in the amount and try to save.
 3. Enter a value above 0 and save.","1. A blank amount blocks the save and shows an error.
 2. An amount of 0 is not allowed (the value must be above 0) — the save is blocked.
-3. A value above 0 (at least $0.01 for a flat amount, at least 0.01% for a percentage) can be saved.","S2-N2, §5-R1",,
+3. A value above 0 (at least $0.01 for a flat amount, at least 0.01% for a percentage) can be saved.","S2-N2, §5-R1 | SV-8479 (SV-8288 Story 12 — items 10/11 label sweep)",,
 "Verify an empty Name blocks saving, with an error (Name required, up to 100 characters)",Validation / Edge,Functional,Medium,"1. You are logged in with See Financial Data and the matching Create and Edit permission.
-2. The 'Add new fee/discount' dialog is open with Type, Calculation Type and a valid amount filled.","1. Leave the Name empty and try to save.
+2. The 'New Work Order Fee / Discount' dialog is open with Type, Calculation Type and a valid amount filled.","1. Leave the Name empty and try to save.
 2. Enter a Name and confirm the save is allowed.
 3. Try a Name longer than 100 characters.","1. An empty Name blocks the save and shows an error.
 2. Name is required and can be up to 100 characters.
-3. Anything beyond 100 characters is not accepted.","S2-N1, S2-R19",,
+3. Anything beyond 100 characters is not accepted.","S2-N1, S2-R19 | SV-8479 (SV-8288 Story 12 — items 10/11 label sweep)",,
 Verify a percentage discount over 100% is invalid while a percentage fee has no upper cap,Validation / Edge,Functional,High,"1. You are logged in with See Financial Data and the matching Create and Edit permission.
-2. The 'Add new fee/discount' dialog is open.","1. Set Type Discount, a percentage Calculation Type, Percent 100.5, and try to save.
+2. The 'New Work Order Fee / Discount' dialog is open.","1. Set Type Discount, a percentage Calculation Type, Percent 100.5, and try to save.
 2. Set Percent to 100 and try to save.
 3. Set Type Fee, a percentage method, Percent 500, and try to save.","1. A 100.5% discount is invalid and is blocked.
 2. A discount of exactly 100% is allowed.
 3. A 500% fee is allowed — percentage fees have no upper limit.
-4. Flat-amount fees/discounts never use a Max Amount.",§5-R2,,
+4. Flat-amount fees/discounts never use a Max Amount.",§5-R2 | SV-8479 (SV-8288 Story 12 — items 10/11 label sweep),,
 Verify negative amounts are rejected (values must be above 0),Validation / Edge,Functional,Medium,"1. You are logged in with See Financial Data and the matching Create and Edit permission.
-2. The 'Add new fee/discount' dialog is open with Name, Type and Calculation Type set.","1. Enter −5 in the '$ Amount' field (flat amount) and try to save.
+2. The 'New Work Order Fee / Discount' dialog is open with Name, Type and Calculation Type set.","1. Enter −5 in the '$ Amount' field (flat amount) and try to save.
 2. Enter −10 in the 'Percent %' field (percentage) and try to save.","1. Negative values are not accepted — the value must be above 0. Whether it counts as a fee (+) or a discount (−) comes from the Type, not from a minus sign.
-2. The save is blocked / the field rejects the negative value.",§5-R1,,
+2. The save is blocked / the field rejects the negative value.",§5-R1 | SV-8479 (SV-8288 Story 12 — items 10/11 label sweep),,
 Verify the Max Amount field shows only for percentage methods and how 0 or empty behaves,Validation / Edge,Functional,Medium,"1. You are logged in with See Financial Data and the matching Create and Edit permission.
-2. The 'Add new fee/discount' dialog is open.","1. Choose a percentage Calculation Type and check that the '$ Max Amount (Optional)' field appears.
+2. The 'New Work Order Fee / Discount' dialog is open.","1. Choose a percentage Calculation Type and check that the '$ Max Amount (Optional)' field appears.
 2. Leave Max Amount empty and save; then set Max Amount to 0 and save.
 3. Switch Calculation Type to 'Flat Amount' and check that the Max Amount field disappears.","1. The '$ Max Amount (Optional)' field appears only for percentage methods.
 2. An empty Max Amount means no cap; a Max Amount of 0 is treated exactly the same as empty = no cap (working as designed per S2-R25).
-3. For 'Flat Amount' there is no Max Amount field (a flat amount never uses one).","§5-R6, S2-R24, S2-R25",,
+3. For 'Flat Amount' there is no Max Amount field (a flat amount never uses one).","§5-R6, S2-R24, S2-R25 | SV-8479 (SV-8288 Story 12 — items 10/11 label sweep)",,
 Verify a template that is both auto-apply at the location and a customer default is added only ONCE to a new work order,Validation / Edge,Functional,Medium,"1. A template at the location is set to auto-apply.
 2. The same template is also set as a default for a customer.","1. Create a new work order for that customer.
 2. Look at the work order's whole-work-order fees/discounts (the 'Work Order Fees & Discounts' card and the Financial Info count).

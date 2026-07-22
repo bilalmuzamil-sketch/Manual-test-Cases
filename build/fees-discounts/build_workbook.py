@@ -143,6 +143,13 @@ def n_join(items):
     return "\n".join(str(x) for x in (items or []))
 
 
+def perms_str(v):
+    """permissions_required may be a plain string or a list of role/perm strings."""
+    if isinstance(v, (list, tuple)):
+        return "; ".join(str(x) for x in v)
+    return v or ""
+
+
 wb = Workbook()
 
 # ================================================================ Summary
@@ -271,7 +278,7 @@ for i, c in enumerate(cases):
     row = [
         c["id"], tr_id(c["id"]), tr_link(c["id"]),
         c["area"], c["story_ref"], c["title"], c["priority"], c["type"],
-        c["permissions_required"], n_join(c["preconditions"]), n_join(c["steps"]),
+        perms_str(c["permissions_required"]), n_join(c["preconditions"]), n_join(c["steps"]),
         n_join(c["expected"]), c["design_ref"], c["viu_status"], c.get("notes", ""),
     ]
     tc.append(row)
@@ -323,7 +330,7 @@ style_header(viu, 2, len(VIU_COLS))
 
 for i, c in enumerate(cases):
     viu.append([c["id"], tr_id(c["id"]), tr_link(c["id"]),
-                c["area"], c["title"], c["permissions_required"],
+                c["area"], c["title"], perms_str(c["permissions_required"]),
                 "", "", "", ""])
     excel_row = i + 3
     alt = (i % 2 == 1)

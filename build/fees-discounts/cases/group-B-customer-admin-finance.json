@@ -690,7 +690,7 @@
   {
     "id": "FD-TMPL-010",
     "area": "Template admin — scoping",
-    "story_ref": "S2-R14, S2-R15, S2-R16, S5-R10",
+    "story_ref": "S2-R14, S2-R15, S2-R16, S5-R10 | SV-8479 (SV-8288 Story 12 — items 1 & 2 label sweep)",
     "title": "Verify template scoping — labour-method templates only show in labour pickers, parts-method only in parts pickers",
     "priority": "High",
     "type": "Functional",
@@ -700,9 +700,9 @@
       "2. A work order with at least one labor line and one part exists."
     ],
     "steps": [
-      "1. On a labor line's ⋮ menu, click 'Add Fee/Discount' and open the 'Apply From Template' picker.",
+      "1. On a labor line's ⋮ menu, click 'Add Labor Fee / Discount' and open the 'Apply From Template' picker.",
       "2. Note which templates are offered.",
-      "3. Cancel; on a part's ⋮ menu click 'Add Fee/Discount' and open the same picker.",
+      "3. Cancel; on a part's ⋮ menu click 'Add Part Fee / Discount' and open the same picker.",
       "4. Note which templates are offered."
     ],
     "expected": [
@@ -712,7 +712,7 @@
     ],
     "design_ref": "requirements.md §4.2 (S2-R14..R17); §7 (§5-R10 allowed methods)",
     "viu_status": "VIU-Deviation",
-    "notes": "Matches the task's scoping rule (labour templates only accepted by labour modals, not parts, and vice versa). Loom transcript confirms scope filtering. | VIU qb batch-1 (2026-07-08): Line-scope dialog has NO template picker AT ALL (no 'Apply From Template' select on the labor-line dialog) — S2-R13..R17 scoping/hint untestable because the control is absent at line scope; whole-WO dialog picker lists every template. Shot s12-02. | FRESH VIU 2026-07-10: FDBUG-13 (line-scope Add dialog has no template picker) per batch-1/4; not re-driven today | WORDING+VIU 2026-07-13: DEVIATION carried: template scoping in the line 'Apply From Template' picker + the compatibility hint not re-captured this run (needs the line-level picker). Labels cleaned.",
+    "notes": "Matches the task's scoping rule (labour templates only accepted by labour modals, not parts, and vice versa). Loom transcript confirms scope filtering. | VIU qb batch-1 (2026-07-08): Line-scope dialog has NO template picker AT ALL (no 'Apply From Template' select on the labor-line dialog) — S2-R13..R17 scoping/hint untestable because the control is absent at line scope; whole-WO dialog picker lists every template. Shot s12-02. | FRESH VIU 2026-07-10: FDBUG-13 (line-scope Add dialog has no template picker) per batch-1/4; not re-driven today | WORDING+VIU 2026-07-13: DEVIATION carried: template scoping in the line 'Apply From Template' picker + the compatibility hint not re-captured this run (needs the line-level picker). Labels cleaned. | SV-8479/8480 deconfliction 2026-07-22: mixed label sweep: labor step -> 'Add Labor Fee / Discount', part step -> 'Add Part Fee / Discount' (behavior unchanged).",
     "api_related": false,
     "fresh_run": "2026-07-13"
   },
@@ -994,7 +994,7 @@
   {
     "id": "FD-PROC-005",
     "area": "Processing Fee — no manual add",
-    "story_ref": "S8-R16, S8-N1, S8-N2",
+    "story_ref": "S8-R16, S8-N1, S8-N2 | SV-8479 (SV-8288 Story 12 — items 10/11 label sweep)",
     "title": "Verify a Processing Fee cannot be added to a work order by hand",
     "priority": "High",
     "type": "Negative",
@@ -1004,7 +1004,7 @@
       "2. An open work order is available."
     ],
     "steps": [
-      "1. On the work order ⋯ menu click 'Add Fee/Discount' and open the Type dropdown.",
+      "1. On the work order ⋯ menu click 'Add Work Order Fee / Discount' and open the Type dropdown.",
       "2. Open the 'Apply From Template' dropdown here and from a labor line and a part dialog."
     ],
     "expected": [
@@ -1013,7 +1013,7 @@
     ],
     "design_ref": "requirements.md §2, §9.2 (S8-R16, S8-N1, S8-N2)",
     "viu_status": "VIU-Verified",
-    "notes": "Processing Fee reaches a WO only via auto-apply (S8-R14) or a customer default (S8-R15). | VIU qb batch-1 (2026-07-08): Cannot be added to a WO by hand: WO dialog Type offers only Fee/Discount (S8-N1) and API kind=processing_fee -> 400 'A processing fee cannot be added manually.' (S8-R16). NOTE: whole-WO template-picker exclusion of pfee templates (S8-N2) not explicitly captured. | FRESH VIU 2026-07-10: manual pfee add -> 400 'A processing fee cannot be added manually.'; manual pct_grand_total fee also rejected for scope | WORDING+VIU 2026-07-13: Confirmed: WO Add Type dropdown = Fee/Discord only (no Processing Fee); build labels ('Add Fee/Discount', 'Apply From Template').",
+    "notes": "Processing Fee reaches a WO only via auto-apply (S8-R14) or a customer default (S8-R15). | VIU qb batch-1 (2026-07-08): Cannot be added to a WO by hand: WO dialog Type offers only Fee/Discount (S8-N1) and API kind=processing_fee -> 400 'A processing fee cannot be added manually.' (S8-R16). NOTE: whole-WO template-picker exclusion of pfee templates (S8-N2) not explicitly captured. | FRESH VIU 2026-07-10: manual pfee add -> 400 'A processing fee cannot be added manually.'; manual pct_grand_total fee also rejected for scope | WORDING+VIU 2026-07-13: Confirmed: WO Add Type dropdown = Fee/Discord only (no Processing Fee); build labels ('Add Fee/Discount', 'Apply From Template'). | SV-8479/8480 deconfliction 2026-07-22: label sweep: navigation labels -> 'Add Work Order Fee / Discount' / 'New Work Order Fee / Discount' (behavior/expected unchanged).",
     "api_related": false,
     "fresh_run": "2026-07-13"
   },

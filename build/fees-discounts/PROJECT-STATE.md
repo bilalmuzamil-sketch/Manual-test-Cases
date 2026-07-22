@@ -5,7 +5,14 @@
 > re-discovery.
 > **Canonical spec (Confluence):** https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/622297094/Fees+Discounts+V1
 > (Atlassian-SSO login-walled — reference pointer only; content must be exported/pasted to ingest, do NOT fetch the URL.)
-> **Last updated:** 2026-07-21 (§0.0l: **SV-8456 UI-CORRECTION STAGING LIVE VIU** —
+> **Last updated:** 2026-07-22 (§0.0m: **SV-8479 / SV-8480 AUTHORING + RECONCILIATION
+> CONSOLIDATED & COMMITTED** — 18 net-new cases authored [VIU-Pending, added to id-map with
+> BLANK C-ids, pending `add_case`] + 54 existing cases edited [pending `update_case`] + 9
+> SV-8479 dups dropped + 3 retire-candidates flagged awaiting user ruling [FD-LABOR-003,
+> FD-PCOL-003, FD-PCOL-007] + SV-8456 no-delta. **NO TestRail writes.** New tally = **202
+> active authored** [184 prior + 18], of which 18 are NOT-YET-IN-TESTRAIL. All deliverables
+> regenerated over 202; id-map 204 rows [186 populated + 18 blank]. See §0.0m.)
+> — prior 2026-07-21 (§0.0l: **SV-8456 UI-CORRECTION STAGING LIVE VIU** —
 > frontend-only F&D UI corrections verified live on staging. **FUNCTIONALITY INTACT**
 > (template create/edit/delete, apply-to-WO + apply-to-Part-Sale, calc correct) and the
 > **PERMISSION PIVOT CONFIRMED**: F&D settings now gated by **Settings → Service** (was
@@ -173,7 +180,46 @@ This section is the complete snapshot: current tally, the applied Round-2 action
 everything else open, and the ordered resume checklist. The rest of this doc holds the
 standing detail. **NO TestRail catch-up is outstanding** — all authored wording is live.
 
-### 0.0l SV-8456 UI-CORRECTION — STAGING LIVE VIU — 2026-07-21 (NEWEST event)
+### 0.0m SV-8479 / SV-8480 AUTHORING + RECONCILIATION — CONSOLIDATED & COMMITTED — 2026-07-22 (NEWEST event)
+
+**What happened:** the SV-8479 (fee/discount UI corrections, Story 12) + SV-8480
+(per-line total S3-R18) authoring pass was consolidated into the case source and the
+deliverables regenerated. **NO TestRail writes** — the 18 net-new cases + 54 edits are
+NOT yet in TestRail (pending an authorized `add_case`/`update_case` pass at VIU).
+
+- **18 net-new cases authored** (all **VIU-Pending**, added to `testrail-id-map.csv`
+  with **BLANK C-ids** pending `add_case`):
+  - **SV-8479 (11):** FD-WO-017, FD-WO-018, FD-WO-021, FD-WO-025, FD-WO-028,
+    FD-PSALE-002, FD-PSALE-003, FD-PSALE-004, FD-PSALE-006, FD-PSALE-008, FD-PSALE-009.
+  - **SV-8480 (7):** FD-CALC-018, FD-CALC-019, FD-CALC-020, FD-CALC-021, FD-CALC-022,
+    FD-CALC-023, FD-CALC-024 (FD-CALC-024 = **API** case → routes to "API — Calculation
+    contract" section on import, Rule 4).
+- **54 existing cases edited** (pending `update_case`): 19 primary (18 SV-8479 + 1
+  SV-8480 = FD-INLINE-004) + 35 label-only sweep. Full list in the decision table.
+- **9 SV-8479 candidate cases DROPPED as duplicates** of existing coverage (group-A
+  83→74). **SV-8456: 0 edits** (verification only — whole suite already
+  Settings→Service-consistent).
+- **3 retire-candidates flagged, AWAITING USER RULING (not retired):** FD-LABOR-003
+  (C28441), FD-PCOL-003 (C28471), FD-PCOL-007 (C28475) — each overlaps a kept new case
+  after rescoping. See "FLAGGED FOR THE MORNING" in the decision table.
+- **Deliverables regenerated over 202 active:** import (`fees-discounts-v1-testrail-import.csv`/`.xlsx`,
+  202 rows, header byte-identical to filters import, 0 VIU / 0 feature-flag words, 0
+  duplicate titles, FD-CALC-024 in an API section, no C-id column), Blockers Tracker,
+  FreshVIU Results workbook, TestCases workbook. `gen_blockers.py` count-assert bumped
+  184→202; `build_workbook.py` hardened to accept list-valued `permissions_required`.
+- **id-map:** 186 data rows → **204** (186 populated C-ids UNCHANGED + 18 net-new BLANK).
+  FD-CUST-016 stays retired/excluded.
+- **NEW TALLY: 202 active authored** (184 prior active + 18 net-new; +2 dev-authored
+  reconciled = 204 in id-map). Of the 202, **18 are net-new NOT-YET-IN-TESTRAIL** and 54
+  existing carry pending edits. Blockers Tracker classification: 151 READY / 12 Deviation
+  / 19 VIU-Pending / 20 Blocked-Env.
+- **Sources:** `sv8479-8456-8480/deconfliction-decision-table-2026-07-22.md` (full
+  decision table + flagged calls) + `reconciliation-changelist-2026-07-22.md`.
+- **Next:** user ruling on the 3 retire-candidates + Chris SV-8479 label confirmations
+  (FD-PSALE-008 "Add Parts Sale Fee / Discount" is VIU-confirm, Picture 26 missing) →
+  authorized TestRail `add_case` (18) + `update_case` (54) pass → live VIU.
+
+### 0.0l SV-8456 UI-CORRECTION — STAGING LIVE VIU — 2026-07-21 (prior event)
 
 Frontend-only F&D UI corrections (ticket SV-8456) verified LIVE on staging
 (`app.staging.shopview.com`, org d55bc308, flags FeesAndDiscounts+PartSales+QuickBooks
