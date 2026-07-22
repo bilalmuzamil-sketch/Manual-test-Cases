@@ -86,7 +86,7 @@ Verify Add Work Order Fee / Discount is hidden and blocked on an Invoiced or Pai
 2. Hover a labor line and a part row and look for their add fee/discount option.","1. 'Add Work Order Fee / Discount' is not shown in the ⋯ menu.
 2. The labor-line and part-row add fee/discount options are not shown either.
 3. A fee/discount cannot be added to an invoiced or paid work order by any route.",S1-N1 / S3-R1b | SV-8479 (SV-8288 Story 12 — items 10/11 label sweep),,
-Verify the whole-work-order Add Fee/Discount option is hidden without Work Orders: Create & Edit,Work Order — Whole-WO Fee/Discount,Functional,Medium,"1. You are logged in as a role that HAS See Financial Data but does NOT have Work Orders: Create & Edit.
+Verify the whole-work-order 'Add Work Order Fee / Discount' option is hidden without Work Orders: Create & Edit,Work Order — Whole-WO Fee/Discount,Functional,Medium,"1. You are logged in as a role that HAS See Financial Data but does NOT have Work Orders: Create & Edit.
 2. An open work order is open.",1. Open the work order ⋯ menu and look for 'Add Work Order Fee / Discount'.,"1. 'Add Work Order Fee / Discount' is not shown.
 2. Existing whole-work-order fee/discount amounts are still visible (See Financial Data is on) but have no edit or delete controls.",S1-N2 / S13-R3 / S13-N2 | SV-8479 (SV-8288 Story 12 — item 10),,
 Verify the preview shows the empty-amount prompt before an amount is entered,Work Order — Whole-WO Fee/Discount,Functional,Medium,"1. You are logged in with Work Orders: Create & Edit and See Financial Data.
@@ -891,8 +891,8 @@ Verify a work order line total adds the line's own fees to Labor and Parts (Labo
 2. Expand the line and, on the Labor row, add a labor fee named 'ttt' of +20% (a fee, not a discount).
 3. On the Parts row for 'Turbocharger Oil', add a part fee named 'test' of +11%.
 4. Read the fee amounts shown in the rows beneath the line: the labor fee 'ttt' shows +$50.00 and the part fee 'test' shows +$2.20.
-5. Collapse the line and read the line total shown at the top-right of the line header row.","1. The Fees/Discounts row under Labor shows '↳ ttt' with a '+20%' badge and +$50.00.
-2. The part fee row shows '↳ test' with a '+11%' badge and +$2.20.
+5. Collapse the line and read the line total shown at the top-right of the line header row.","1. The Fees/Discounts row under Labor shows '↳ ttt  +20%' and +$50.00 as plain text — no colored badge or pill.
+2. The part fee row shows '↳ test  +11%' and +$2.20 as plain text — no colored badge or pill.
 3. The collapsed line total at the top-right equals Labor + labor fee + Parts + part fee = $250.00 + $50.00 + $20.00 + $2.20 = $322.20.
 4. The line total is NOT $270.00 (it must not leave out the two fees).",SV-8480 (S3-R18),,
 "Verify a discount on a line subtracts from the line total while a fee adds (fees add, discounts subtract in the line total)",Calculation contract,Functional,High,"1. You are signed in with See Financial Data and Work Orders: Create and Edit.
@@ -901,8 +901,8 @@ Verify a work order line total adds the line's own fees to Labor and Parts (Labo
 2. On the Labor row, add a labor fee of +20% (a fee).
 3. On the part row, add a part discount of -10%.
 4. Read the fee and discount amounts shown in the rows beneath the line (the fee shows a plus amount, the discount shows a minus amount).
-5. Collapse the line and read the line total at the top-right of the line header row.","1. The labor fee shows a '+20%' badge and a plus amount (+$50.00 on $250.00).
-2. The part discount shows a '-10%' badge and a minus amount (-$2.00 on $20.00).
+5. Collapse the line and read the line total at the top-right of the line header row.","1. The labor fee shows '↳ <name>  +20%' and a plus amount (+$50.00 on $250.00) as plain text — no colored badge or pill.
+2. The part discount shows '↳ <name>  −10%' and a minus amount (−$2.00 on $20.00) as plain text — no colored badge or pill.
 3. The collapsed line total adds the fee and subtracts the discount: Labor $250.00 + fee $50.00 + Part $20.00 - discount $2.00 = $318.00.
 4. Fees increase the line total; discounts reduce it.",SV-8480 (S3-R18),,
 Verify a line with no fees or discounts shows a line total of Labor + Parts only (unchanged by the fix),Calculation contract,Functional,Medium,"1. You are signed in with See Financial Data and Work Orders: Create and Edit.
