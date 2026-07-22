@@ -524,10 +524,14 @@ process(es) to run before proceeding.
    `testrail-import/report-suite-v1-testrail-import.csv`/`.xlsx` via
    `build/report-suite/gen_import.py`; id-map 515 rows blank C-ids (⚠️
    gen_import.py rerun blanks C-ids — re-merge, same as Filters/Schedule).
-   NEXT = user imports under the "Report Suite" main section → share group URL
-   → read-only C-id mapping; then VIU pending env/Epic (ask Chris Ward: TU S8
-   video inconsistency, IV export cap; Epic key ask-at-VIU; designs pending).
-   No TestRail writes made.** Specs will keep
+   **PER-REPORT SPLIT 2026-07-22:** user manually created TestRail group 4281
+   "Reports Suite" + six empty per-report subsections 4282–4287; six per-report
+   split imports emitted (`testrail-import/report-suite-v1-{sbc,sbr,pv,tu,wip,iv}-testrail-import.csv`/`.xlsx`,
+   99/127/70/59/83/77 = 515, rows byte-identical to the unified file, verified;
+   PROJECT-STATE §0.6). NEXT = user imports per report into its folder → share
+   group URL → read-only C-id mapping; then VIU pending env/Epic (ask Chris
+   Ward: TU S8 video inconsistency, IV export cap; Epic key ask-at-VIU; designs
+   pending). No TestRail writes made.** Specs will keep
    changing → Rule-11 reconciliation ask per update. Canonical resume doc:
    build/report-suite/PROJECT-STATE.md. Same rules as all projects: reuse shared
    infra (BUILD-ACCURATE-WORDING-VIU-PROCESS, SPEC-RELEVANCE-RECONCILIATION-PROCESS,

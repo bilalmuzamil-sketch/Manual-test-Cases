@@ -4,8 +4,12 @@
 > snapshot: status, per-report spec inventory, deliverables index, open
 > questions, env/access facts, ordered how-to-resume.
 
-Last updated: **2026-07-22** (ADVERSARIAL REVIEW DONE — both auditors CLEAN
-after fixes; import REGENERATED post-review; READY FOR USER IMPORT).
+Last updated: **2026-07-22** (PER-REPORT IMPORT SPLIT DELIVERED — six
+per-report CSV/XLSX import files emitted for the user's per-folder import into
+the manually-created TestRail group 4281 "Reports Suite" [subsections
+4282–4287]; unified import unchanged; awaiting the user's case import →
+read-only C-id mapping. Earlier same day: ADVERSARIAL REVIEW DONE — both
+auditors CLEAN after fixes; import REGENERATED post-review).
 
 ---
 
@@ -20,10 +24,20 @@ cases / 89 sections / 6 reports; import REGENERATED post-review (delta vs
 pre-review CSV = exactly the two WIP rows, nothing else; id-map byte-identical;
 full gate re-passed: 515==515==515, header 5/5 byte-identical, 0 VIU/flag
 words, 0 internal-id leaks, no empty fields, XLSX==CSV, deterministic rerun).
-STATUS = READY FOR USER IMPORT under the "Report Suite" main section → then
-share group URL → read-only C-id mapping → VIU when env/Epic arrive (ask Chris
-Ward: TU S8 video inconsistency + IV export-cap value; Epic key ask-at-VIU;
-designs pending; specs-will-change → Rule-11 reconciliation per update).**
+STATUS = READY FOR USER IMPORT — PER-FOLDER WORKFLOW (2026-07-22): the user
+MANUALLY CREATED TestRail group **4281 "Reports Suite"** with six EMPTY
+per-report subsections — **4282 "Sales By Customer Report" · 4283 "Sales By
+Representative Report" · 4284 "Parts Velocity Report" · 4285 "Technician
+Utilization — Product Specification" · 4286 "Work In Progress — Product
+Specification" · 4287 "Inventory Value — Product Specification"** — and will
+import ONE report at a time targeting each folder (the CSV Section column
+creates the "XXX — area" leaf sections inside that folder). Six per-report
+split files EMITTED for this (see §0.6); folders 4282–4287 confirmed created,
+AWAITING CASE IMPORT. The read-only C-id mapping step is staged as the next
+resume action — map C-ids into `testrail-id-map.csv` once the cases land →
+VIU when env/Epic arrive (ask Chris Ward: TU S8 video inconsistency + IV
+export-cap value; Epic key ask-at-VIU; designs pending; specs-will-change →
+Rule-11 reconciliation per update).**
 
 - **Case inventory (515 total, per report / sections):** SBC 99 (18 sections) ·
   SBR 127 (23) · PV 70 (9) · TU 59 (12) · WIP 83 (14) · IV 77 (13). Source:
@@ -84,6 +98,31 @@ section per Standing Rule 4. Import format = **pure 1:1** with the established
 named columns + 2 trailing blank columns, header byte-identical, no ID columns;
 traceability via `testrail-id-map.csv` per Rule 8; VIU-word-free +
 feature-flag-free).
+
+## 0.6 Per-report import split files (2026-07-22)
+
+For the user's per-folder import workflow (§0 STATUS: group 4281, subsections
+4282–4287), `gen_import.py` now ALSO emits **six per-report import files** —
+the unified `report-suite-v1-testrail-import.csv`/`.xlsx` is UNCHANGED
+(byte-verified against the pre-split file):
+
+| TestRail folder (manually created by the user) | CSV (`testrail-import/`) + `.xlsx` twin | Rows |
+| --- | --- | --- |
+| 4282 Sales By Customer Report | `report-suite-v1-sbc-testrail-import.csv` | 99 |
+| 4283 Sales By Representative Report | `report-suite-v1-sbr-testrail-import.csv` | 127 |
+| 4284 Parts Velocity Report | `report-suite-v1-pv-testrail-import.csv` | 70 |
+| 4285 Technician Utilization — Product Specification | `report-suite-v1-tu-testrail-import.csv` | 59 |
+| 4286 Work In Progress — Product Specification | `report-suite-v1-wip-testrail-import.csv` | 83 |
+| 4287 Inventory Value — Product Specification | `report-suite-v1-iv-testrail-import.csv` | 77 |
+
+Sum 515. VERIFIED programmatically 2026-07-22: header byte-identical to the
+canonical header in all six; every data row byte-identical to its unified-file
+counterpart in the same per-report order (byte-level concatenation of the six,
+minus repeated headers, == the unified CSV exactly); XLSX == CSV row-for-row
+in all 7 files; Section values in each file all carry that report's prefix;
+CSVs byte-identical across reruns (deterministic). Import each CSV targeting
+its folder above — the Section column creates the "XXX — area" leaf sections
+inside that folder.
 
 ## 1. Per-report spec inventory (6/6 ingested 2026-07-22)
 
@@ -244,10 +283,14 @@ sections will be needed mainly for the two nightly-snapshot backend stories
 - `coverage-sbc.md` · `coverage-sbr.md` · `coverage-pv.md` · `coverage-tu.md`
   · `coverage-wip.md` · `coverage-iv.md` — 6/6 per-report coverage docs,
   every spec bullet mapped to case IDs.
-- `gen_import.py` — unified import + id-map generator (Rule 16 pure 1:1;
-  self-checking: dupes/leaks/VIU-words/empties/API-section routing).
+- `gen_import.py` — unified + per-report import + id-map generator (Rule 16
+  pure 1:1; self-checking: dupes/leaks/VIU-words/empties/API-section routing).
 - `testrail-import/report-suite-v1-testrail-import.csv` + `.xlsx` — 515 rows,
   header byte-identical to all five prior project imports.
+- `testrail-import/report-suite-v1-{sbc,sbr,pv,tu,wip,iv}-testrail-import.csv`
+  + `.xlsx` — the six per-report split files (§0.6; SBC 99 / SBR 127 / PV 70 /
+  TU 59 / WIP 83 / IV 77; each row byte-identical to its unified counterpart)
+  for the user's per-folder import into group 4281 subsections 4282–4287.
 - `testrail-id-map.csv` — 515 internal ids, blank C-ids (⚠️ rerunning
   gen_import.py blanks C-ids — re-merge after any rerun once populated).
 - `PROJECT-STATE.md` — this file.
@@ -272,11 +315,14 @@ sections will be needed mainly for the two nightly-snapshot backend stories
    after fixes (SBC/SBR/PV 3 minor doc/note fixes b410d29; TU/IV clean; WIP 2
    fixes incl. one real coverage gap 82f1665); independent bullet counts SBC
    235/235, SBR 230/230, PV 69/69, TU ~111, WIP ~119, IV ~110 — all mapped.
-3. **Next step:** the USER imports the CSV in TestRail under the "Report Suite"
-   main section (§0.5 structure; the Section column carries the leaf names) →
-   user shares the group URL → READ-ONLY C-id mapping populates
+3. **Next step:** the USER imports PER REPORT — six split files (§0.6),
+   each targeting its manually-created folder under group 4281 "Reports
+   Suite" (4282–4287; the Section column creates the "XXX — area" leaf
+   sections inside that folder). Folders confirmed created 2026-07-22,
+   awaiting case import. Then: READ-ONLY C-id mapping populates
    `testrail-id-map.csv` (515 rows; ⚠️ re-merge C-ids after any gen_import.py
-   rerun — it blanks them). NO TestRail writes without explicit permission.
+   rerun — it blanks them) — this mapping step is the staged resume action
+   once the cases land. NO TestRail writes without explicit permission.
 4. When a spec UPDATE arrives: ask which process(es) to run (Standing Rule 11)
    — expect SPEC-RELEVANCE-RECONCILIATION per update (specs will keep
    changing).
