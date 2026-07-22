@@ -4,16 +4,33 @@
 > snapshot: status, per-report spec inventory, deliverables index, open
 > questions, env/access facts, ordered how-to-resume.
 
-Last updated: **2026-07-22** (PER-REPORT IMPORT SPLIT DELIVERED — six
-per-report CSV/XLSX import files emitted for the user's per-folder import into
-the manually-created TestRail group 4281 "Reports Suite" [subsections
-4282–4287]; unified import unchanged; awaiting the user's case import →
-read-only C-id mapping. Earlier same day: ADVERSARIAL REVIEW DONE — both
-auditors CLEAN after fixes; import REGENERATED post-review).
+Last updated: **2026-07-22** (CASES IMPORTED + C-IDs MAPPED READ-ONLY — all
+515 cases now live in TestRail under group 4281 "Reports Suite"; run **R359
+"Reports Suite - Nebojsa/Viktoria (VIU Pending)"** exists [515 tests, all
+Untested]; `testrail-id-map.csv` fully populated with real C-ids, range
+**C30096–C30610** [515/515 matched by exact section-leaf-name + exact title,
+0 unmatched / 0 ambiguous / 0 leftover TR cases]; NO TestRail writes made —
+read-only get_sections/get_cases only. Earlier same day: PER-REPORT IMPORT
+SPLIT DELIVERED; ADVERSARIAL REVIEW DONE — both auditors CLEAN after fixes;
+import REGENERATED post-review.)
 
 ---
 
 ## 0. STATUS
+
+**IMPORTED + MAPPED 2026-07-22 (READ-ONLY):** All 515 cases were imported into
+TestRail under group **4281 "Reports Suite"** (six report folders 4282–4287,
+each holding its per-area leaf subsections 4288–4376 = 89 leaves). Live read
+confirmed exactly **515 cases** under 4281. Execution run **R359 "Reports Suite
+- Nebojsa/Viktoria (VIU Pending)"** exists (515 tests, all Untested — NOT
+created by us; do not write results without permission). `testrail-id-map.csv`
+is now **fully populated**: 515/515 rows matched to real C-ids by exact
+(section-leaf-name + exact title), **0 unmatched / 0 ambiguous / 0 leftover
+TestRail cases**; observed **C-id range C30096–C30610**. Mapping done with
+read-only get_sections + get_cases only — **NO TestRail writes**. Note per
+project rule: `gen_import.py` BLANKS the id-map C-id column on rerun — re-merge
+C-ids after any regeneration; deliverables with C-id/link columns can be
+regenerated next.
 
 **ADVERSARIAL REVIEW DONE 2026-07-22 — both auditors CLEAN after fixes
 (SBC/SBR/PV: 3 minor doc/note fixes, b410d29; TU/IV clean; WIP: 2 fixes incl.

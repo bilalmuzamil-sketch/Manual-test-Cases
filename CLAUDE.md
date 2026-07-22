@@ -545,10 +545,17 @@ process(es) to run before proceeding.
    `-{sbc,sbr,pv,tu,wip,iv}-` slugs):
    `testrail-import/Report-Suite_{Sales-By-Customer-Report,Sales-By-Representative-Report,Parts-Velocity-Report,Technician-Utilization-Report,Work-In-Progress-Report,Inventory-Value-Report}_testrail-import.csv`/`.xlsx`,
    99/127/70/59/83/77 = 515, rows byte-identical to the unified file, verified;
-   PROJECT-STATE §0.6). NEXT = user imports per report into its folder → share
-   group URL → read-only C-id mapping; then VIU pending env/Epic (ask Chris
-   Ward: TU S8 video inconsistency, IV export cap; Epic key ask-at-VIU; designs
-   pending). No TestRail writes made.** Specs will keep
+   PROJECT-STATE §0.6). **IMPORTED + MAPPED READ-ONLY 2026-07-22: all 515 cases
+   now live in TestRail under group 4281 "Reports Suite" (six report folders
+   4282–4287 → 89 per-area leaf subsections 4288–4376); live read confirmed
+   exactly 515 cases under 4281; execution run R359 "Reports Suite -
+   Nebojsa/Viktoria (VIU Pending)" exists (515 tests, all Untested, NOT ours —
+   no result writes without permission). testrail-id-map.csv now FULLY POPULATED
+   — 515/515 matched by exact (section-leaf-name + title), 0 unmatched / 0
+   ambiguous / 0 leftover, observed C-id range C30096–C30610; done read-only
+   (get_sections + get_cases only), NO TestRail writes.** NEXT = VIU pending
+   env/Epic (ask Chris Ward: TU S8 video inconsistency, IV export cap; Epic key
+   ask-at-VIU; designs pending).** Specs will keep
    changing → Rule-11 reconciliation ask per update. Canonical resume doc:
    build/report-suite/PROJECT-STATE.md. Same rules as all projects: reuse shared
    infra (BUILD-ACCURATE-WORDING-VIU-PROCESS, SPEC-RELEVANCE-RECONCILIATION-PROCESS,
