@@ -533,7 +533,7 @@
       "5. Sort by WO #, Customer, and Advisor and check they order as text."
     ],
     "expected": [
-      "1. Money and numeric columns sort by their underlying numeric value (so $1,100.00 sorts above $900.00 ascending-wise, not alphabetically).",
+      "1. Money and numeric columns sort by their underlying numeric value (so $1,100.00 is treated as more than $900.00, not compared as text).",
       "2. Days Open sorts by its day count.",
       "3. Status sorts by its displayed label.",
       "4. The Asset column sorts by unit number.",

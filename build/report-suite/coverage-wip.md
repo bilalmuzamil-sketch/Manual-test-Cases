@@ -216,12 +216,20 @@
 | Total = Earned + Remaining, not grand total | WIP-CALC-06 |
 | Default "This Week"; no All Time | WIP-FLT-04 |
 | Every open job listed incl. nothing-approved | WIP-SCOPE-03, WIP-CALC-09 |
-| Four tabs replace a status filter (no on-screen status filter) | WIP-PLACE-01..04; absence of a status filter noted in WIP-FLT-04's scope (toolbar filters enumerated in Story 7 cases) |
+| Four tabs replace a status filter (no on-screen status filter) | WIP-PLACE-01..04 (tab derivation); the status-filter ABSENCE is asserted in WIP-TAB-02 (expected 3) |
 | Strip recomputes from visible jobs | WIP-SUM-06 |
 | Advisor/customer/asset on-screen; date/location reload | WIP-FLT-01..06 |
 | Per-browser memory of setup | WIP-PERS-03 |
 | Est. hours as measuring stick (Inv. Hrs) | WIP-CALC-08 |
 | Nightly snapshot in scope | WIP-API-01..06 |
+
+### §4 Terminology / §5 Assumptions
+Encoded inside the relevant cases: Earned/Remaining/Total definitions (WIP-CALC-02..06),
+approved-line definition (WIP-CALC-07), Days Open (WIP-COL-07), Inv. Hrs (WIP-CALC-08),
+Asset unit+VIN (WIP-COL-05), open-WO statuses incl. Invoiced/Paid/Declined exclusion
+(WIP-SCOPE-01/02), Snapshot (WIP-API-01..06), created-date anchor (WIP-FLT-05,
+WIP-COL-07), fees/discounts/tax not shown (WIP-CALC-06). Definitions and assumptions,
+not standalone behaviors — no separate cases needed.
 
 ### §7 User Feedback Summary (messages)
 | Message | Case(s) |
@@ -261,6 +269,7 @@
 - **§8 Change Log entries** — process history, not testable requirements; their behavioral outcomes are covered by the current-requirement cases (same-tab link WIP-COL-03, This-Week default WIP-FLT-04, Story 11 WIP-API-01..06).
 
 ## Completeness statement (Standing Rule 17)
-- In scope: every requirement/negative/edge bullet of Stories 1–11 (S1-R1..S11-R7 incl. N/E items), §2 overview + Known Limitations, §3 Key Decisions, §7 messages = ALL mapped above.
+- In scope: every requirement/negative/edge bullet of Stories 1–11 (S1-R1..S11-R7 incl. N/E items), §2 overview + Known Limitations, §3 Key Decisions, §4/§5 definitions, §7 messages = ALL mapped above.
+- Adversarial review 2026-07-22 (TU/WIP/IV auditor): independent bullet walk confirmed 0 unmapped; one coverage misstatement fixed (the §3 "no on-screen status filter" decision was cited to WIP-FLT-04 where nothing asserted it — now asserted in WIP-TAB-02 expected 3) + one WIP-SORT-03 wording clarification.
 - Processed: 83 cases authored, 14 sections; 0 requirement bullets unmapped.
 - Excluded-with-reason: 4 items (listed above).
