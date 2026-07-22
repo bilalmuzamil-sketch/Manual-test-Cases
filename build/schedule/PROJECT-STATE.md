@@ -7,6 +7,53 @@
 
 ## 0. STATUS / WHAT'S LEFT TO DO — read first (Last updated 2026-07-22)
 
+### 0.0 SPEC `_1` + CLAUDE DESIGN + BRANKO Q&A INGESTED — ANALYSIS ONLY (2026-07-22, LATEST)
+
+**Three new inputs ingested, ANALYSIS-ONLY — 166 cases, import, id-map, and TestRail
+UNTOUCHED. AWAITING USER PROCESS CHOICE (Standing Rule 11) before ANY case change;
+the live-VIU step is still BLOCKED on the QA branch (OQ-3) + Epic key (OQ-2).**
+
+- **Spec `_1`** (`66b5d64f-Schedule_1.doc`) decoded → `spec-v1-2026-07-22/requirements-v1.md`.
+  A full word-level diff vs the `_0` baseline found **ZERO substantive body changes** — the
+  ONLY genuine change is a new **`Design`** row added to the header metadata (the Claude
+  prototype link). No spec-text-driven case edits result.
+- **Claude design RECEIVED — design is NO LONGER MISSING (OQ-4 flips).** `72d051ef-Schedule.zip`
+  extracted to `/tmp/schedule-design/` (185 files: authoritative coded prototype
+  `Schedule.dc.html`, a rendered PRD, staff/hours settings screens, 44 render screenshots,
+  84 PRD screenshots, the design-system bundle). Captured → `spec-v1-2026-07-22/design-notes-claude.md`.
+  **Authoritative design = `Schedule.dc.html`** (Branko Q0). ⚠️ Some `screenshots/*.png`
+  (`modal-v2`/`dropdown`/`popover-v4`/`spread`) are **STALE** — they show removed $ totals /
+  Assigned-Unassigned tabs / Tech-Dept toggle / By-hours spread; do NOT author to them.
+- **Branko ↔ Milan Q&A INGESTED (PO rulings, authoritative, latest-wins):** Q1 events
+  EXCLUDED from capacity+conflict (design code confirms; may-change); Q2 conflict = per-tech
+  configured working weekdays+hours, hierarchy Tech>Business>Default (prototype hardcodes
+  Mon–Fri/8–17 → confirm live); Q3 NO total $ anywhere in the schedule + WO-derived data
+  masked under the pricing/Work-Orders:View permission (design modal shows line #/title/
+  hours/status only, no $/labor, no Reassign button); Minor removals (Assigned/Unassigned
+  tabs + Tech/Dept toggle already reflected in our cases; **Reassign-in-modal REMOVED** →
+  our modal-Reassign case is stale).
+- **Delta rollup (`spec-v1-2026-07-22/spec-diff-v1-2026-07-22.md`):** **~13–15 of 166 cases
+  need a change or decision** — 6 expected-result edits (SCH-MODAL-04 C30011 no $/labor;
+  SCH-MODAL-08 C30015 Delete-only; SCH-CONF-02/03/04 C30024/25/26 per-tech hours; SCH-VIEW-04
+  C30045 VIN-toggle scope), ~4–6 status-notes (Q1 events-excluded on SCH-CAP-01/04 + SCH-CONF-01
+  etc.), **1 RETIRE candidate** (SCH-REAS-02 C30053, modal-Reassign removed), **2 NEW candidates**
+  (perm-masking; event-not-counted). Tabs/toggle cases need NO edit (already spec-accurate).
+- **VIU-confirm register:** of ~62–64 items, **~45–48 now PINNED/resolvable by the authoritative
+  design** (all D.1 labels incl. exact **"VIN Number"** toggle + conflict reason sentences; all
+  D.4 visuals; ~half of D.2/D.5), **~16–18 still need LIVE build confirm** (tenant enumerations,
+  timing thresholds, permission naming, the 7-7-vs-8-17 default discrepancy). Design-pinned ≠
+  VIU-Verified (Rule 12 — live build still confirms at VIU).
+- **VIN §4.13-vs-§9 inconsistency = RESOLVED by the design** (tooltip shows VIN unconditionally;
+  the "VIN Number" toggle gates the shift-BLOCK VIN line only) → resolved in favour of §4.13;
+  still recommend flagging the §9 prose to Branko for doc hygiene.
+- **Recommended process (Rule 11 — NOT run):** SPEC-RELEVANCE-RECONCILIATION (primary — retire/
+  add/notes + regenerate deliverables) + BUILD-ACCURATE-WORDING-VIU (the 6 expected edits +
+  fold pinned design labels; live behaviour-VIU deferred until QA branch/Epic exist).
+- Artifacts: `build/schedule/spec-v1-2026-07-22/{requirements-v1.md, design-notes-claude.md,
+  spec-diff-v1-2026-07-22.md}`.
+
+### 0.1 Prior status (import + authoring)
+
 **IMPORTED TO TESTRAIL BY THE USER 2026-07-21 — id-map populated 166/166
 (2026-07-22, READ-ONLY GETs, zero TestRail writes).** The user imported
 `testrail-import/schedule-v1-testrail-import.csv` themselves (the Filters
