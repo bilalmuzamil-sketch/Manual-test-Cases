@@ -4,17 +4,44 @@
 > snapshot: status, per-report spec inventory, deliverables index, open
 > questions, env/access facts, ordered how-to-resume.
 
-Last updated: **2026-07-22** (onboarding: scaffold + 6/6 spec ingest + readiness
-assessment; NO cases authored yet).
+Last updated: **2026-07-22** (CASES AUTHORED 6/6 reports + unified import/id-map
+built; next = adversarial review).
 
 ---
 
 ## 0. STATUS
 
-**ONBOARDED 2026-07-22 — ALL 6/6 SPECS INGESTED. AUTHORING UNBLOCKED (user
-pre-authorized authoring once all 6 specs were in) but NOT YET STARTED — next
-step = author the test cases per report.**
+**CASES AUTHORED 2026-07-22 — 515 cases / 6 reports / 89 sections, coverage
+6/6 complete, unified import + id-map READY. NEXT = adversarial review (in
+progress next step) → deliver to user → user imports under the "Report Suite"
+main section → share the group URL → read-only C-id mapping into the id-map.
+Then VIU pending env/Epic.**
 
+- **Case inventory (515 total, per report / sections):** SBC 99 (18 sections) ·
+  SBR 127 (23) · PV 70 (9) · TU 59 (12) · WIP 83 (14) · IV 77 (13). Source:
+  `cases/*.json` (26 files, uniform schema; `area` = the "XXX — leaf" TestRail
+  section value; 29 API cases, all in "<Report> — API" sections per Rule 4).
+  All cases `viu_status: VIU-Pending` (spec-only authoring, no designs).
+- **Coverage 6/6 COMPLETE:** `coverage-{sbc,sbr,pv,tu,wip,iv}.md` — every
+  spec requirement/negative/edge bullet mapped to case IDs per report
+  (bullet-by-bullet maps; explicit exclusions listed where applicable).
+- **Import READY (Rule 16 pure 1:1):**
+  `testrail-import/report-suite-v1-testrail-import.csv` + `.xlsx` via
+  `gen_import.py` — header byte-identical to ALL FIVE prior imports
+  (fees-discounts / simple-flow / global-search / filters / schedule; equality
+  check run 5/5 True); 515 rows; Section = the "XXX — leaf" value (the user's
+  import nests these under the "Report Suite" main section per §0.5);
+  deterministic ordering (report order SBC, SBR, PV, TU, WIP, IV → authored
+  section order → id); VIU-word-free + feature-flag-free (0 hits); 0
+  internal-id leaks in reader-facing cells (14 "(see PV-PERM-01)"-style
+  cross-refs rewritten generically by `clean()`, same fix as Schedule); no
+  duplicate titles within a section; every row has non-empty
+  Preconditions/Steps/Expected; XLSX matches CSV row-for-row; rerun is
+  byte-identical (deterministic).
+- **id-map:** `testrail-id-map.csv` — 515 rows, blank C-ids, schema
+  `internal_id,testrail_case_id,title,section` (same as Filters/Schedule).
+  ⚠️ GOTCHA (same as Filters/Schedule): rerunning `gen_import.py` BLANKS the
+  C-id column — after C-ids are populated, RE-MERGE them after any rerun.
 - ONE project, SIX reports, each with its own spec (see §1 inventory).
 - **PO: Chris Ward** (same PO as Fees & Discounts — never mix attributions:
   Report Suite = Chris Ward; Global Search / Filters / Schedule = Branko;
@@ -28,11 +55,14 @@ step = author the test cases per report.**
   mark anything unpinned "VIU-confirm"; design-reconciliation later if designs
   arrive.
 - **QA env / branch / feature-flag status: NOT AVAILABLE — ask at VIU.**
+- **Ask Chris Ward at VIU:** TU S8 companion-video inconsistency (OQ-3), IV
+  export-cap value (OQ-4); Epic key ask-at-VIU (OQ-1); designs pending (OQ-3).
 - **Specs WILL keep changing** (user statement). On every spec update run
   `build/SPEC-RELEVANCE-RECONCILIATION-PROCESS.md`; per Standing Rule 11 ALWAYS
   ASK which process(es) to run before proceeding.
 - **TestRail: NOTHING pushed** (no writes without explicit permission —
-  Standing Rule 6). `testrail-id-map.csv` = header only.
+  Standing Rule 6). `testrail-id-map.csv` = 515 rows, C-ids blank until the
+  user's import assigns them (then read-only map from the shared group URL).
 
 ## 0.5 TestRail structure (user-prescribed)
 
@@ -201,11 +231,20 @@ sections will be needed mainly for the two nightly-snapshot backend stories
   `specs/wip-work-in-progress.md` · `specs/inventory-value.md` — the COMPLETE
   decoded specs (verbatim-structured, all tables), each with a metadata header
   (canonical URL, doc status, extraction method).
-- `cases/` — EMPTY (README + .gitkeep); authoring unblocked, not started.
-- `testrail-id-map.csv` — header only.
+- `cases/*.json` — 26 files, 515 authored cases (SBC 99 / SBR 127 / PV 70 /
+  TU 59 / WIP 83 / IV 77), uniform schema, `area` = TestRail leaf section.
+- `coverage-sbc.md` · `coverage-sbr.md` · `coverage-pv.md` · `coverage-tu.md`
+  · `coverage-wip.md` · `coverage-iv.md` — 6/6 per-report coverage docs,
+  every spec bullet mapped to case IDs.
+- `gen_import.py` — unified import + id-map generator (Rule 16 pure 1:1;
+  self-checking: dupes/leaks/VIU-words/empties/API-section routing).
+- `testrail-import/report-suite-v1-testrail-import.csv` + `.xlsx` — 515 rows,
+  header byte-identical to all five prior project imports.
+- `testrail-id-map.csv` — 515 internal ids, blank C-ids (⚠️ rerunning
+  gen_import.py blanks C-ids — re-merge after any rerun once populated).
 - `PROJECT-STATE.md` — this file.
-- (Not yet created: gen_import.py, testrail-import/report-suite CSV/XLSX,
-  coverage matrix, PO question sheet — produced at/after authoring.)
+- (Not yet created: PO question sheet — the OQ-3/OQ-4/OQ-5 Chris items get
+  sheeted per Rule 7 when the user asks / at VIU.)
 
 ## 5. Env / access facts
 
@@ -218,21 +257,22 @@ sections will be needed mainly for the two nightly-snapshot backend stories
 
 ## 6. HOW TO RESUME (ordered)
 
-1. Read this file top to bottom.
-2. **Next step = AUTHOR the test cases** (pre-authorized once 6/6 specs were in
-   — they are): per report, from `specs/*.md`; per-report ID prefixes (proposed
-   SBC-/SBR-/PV-/TU-/WIP-/IV-, finalize before starting); Rule 9 build-accurate
-   wording from the spec's verbatim labels, "VIU-confirm" anything unpinned;
-   Rule 4 API sections ("<Report> — API") for backend/snapshot cases; Rule 16
-   import format pure 1:1 with `testrail-import/*-testrail-import.csv`; Rule 8
-   id-map; adversarial self-review before delivery (Rule 15/17: complete
-   coverage, state counts).
-3. TestRail import layout: main section "Report Suite" → per-report subsections
-   (§0.5). NO TestRail writes without explicit permission.
+1. Read this file top to bottom (§0 = the definitive current state: 515 cases
+   authored, import + id-map ready).
+2. **Next step = ADVERSARIAL REVIEW** (Rule 15/17: independently re-derive a
+   coverage/wording/format sample vs the specs + coverage docs; fix any
+   defects; state counts) → then deliver to the user.
+3. After review: the USER imports the CSV in TestRail under the "Report Suite"
+   main section (§0.5 structure; the Section column carries the leaf names) →
+   user shares the group URL → READ-ONLY C-id mapping populates
+   `testrail-id-map.csv` (515 rows; ⚠️ re-merge C-ids after any gen_import.py
+   rerun — it blanks them). NO TestRail writes without explicit permission.
 4. When a spec UPDATE arrives: ask which process(es) to run (Standing Rule 11)
    — expect SPEC-RELEVANCE-RECONCILIATION per update (specs will keep
    changing).
 5. When VIU begins: ask for Epic key(s), QA env/branch, flag/settings status
-   (OQ-1/2); ask which process(es) to run (Rule 11); live-observed evidence
-   only (Rules 10/12/13/14).
+   (OQ-1/2); ask which process(es) to run (Rule 11); raise the Chris Ward
+   items (TU S8 video inconsistency OQ-3, IV export cap OQ-4, permission-model
+   OQ-5); designs still pending; live-observed evidence only (Rules
+   10/12/13/14).
 6. Keep PO attribution straight: Report Suite = **Chris Ward**.

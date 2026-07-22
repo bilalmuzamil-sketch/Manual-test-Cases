@@ -1,1 +1,516 @@
-internal_id,testrail_case_id,title
+internal_id,testrail_case_id,title,section
+SBC-NAV-01,,Sales By Customer appears in the Reports navigation and opens the report,SBC — Access & Navigation
+SBC-NAV-02,,Page title and browser tab title read Sales By Customer,SBC — Access & Navigation
+SBC-PERM-01,,A user with the dedicated Sales By Customer View permission can see and open the report,SBC — Permissions
+SBC-PERM-02,,A user without the Sales By Customer View permission cannot see or open the report,SBC — Permissions
+SBC-PERM-03,,Opening an invoice you lack permission for shows the standard access-denied state and back returns to the report,SBC — Permissions
+SBC-PERM-04,,Location access is enforced: the report never includes data from a location the user cannot access,SBC — Permissions
+SBC-DATE-01,,Date range picker offers eleven options in the specified order,SBC — Date Range Filter
+SBC-DATE-02,,Date range defaults to This Month when nothing is saved and no range is in the page link,SBC — Date Range Filter
+SBC-DATE-03,,Custom range opens a start/end date dialog and cannot exceed a 366-day span,SBC — Date Range Filter
+SBC-DATE-04,,Changing the date range writes the chosen value to the page link for sharing and bookmarking,SBC — Date Range Filter
+SBC-TYPE-01,,Product Type dropdown offers exactly three options with Parts & Service as the default,SBC — Product Type Filter
+SBC-TYPE-02,,Service only shows only invoices starting with S; Parts only shows only invoices starting with P,SBC — Product Type Filter
+SBC-TYPE-03,,Parts & Service applies no product-type filter,SBC — Product Type Filter
+SBC-LOC-01,,"Location filter is the rightmost filter, lists accessible locations, and pins All locations to the top",SBC — Location Filter
+SBC-LOC-02,,Location filter defaults to the user's active location on first load,SBC — Location Filter
+SBC-LOC-03,,Selecting locations scopes the report data; All locations includes every accessible location,SBC — Location Filter
+SBC-CUST-01,,"Customer filter sits between Product Type and Location, carries a search icon, and shows the Search customers… hint",SBC — Customer Filter
+SBC-CUST-02,,"Typing in the Customer filter lists matching customers by contains match, with checkmarks on selected ones",SBC — Customer Filter
+SBC-CUST-03,,Pinned control toggles between All customers and Clear all with the matching action,SBC — Customer Filter
+SBC-CUST-04,,First load starts in the all-customers state and the report shows every customer,SBC — Customer Filter
+SBC-CUST-05,,"Collapsed label reads None, the customer's name, or N selected, and shows the query text while typing",SBC — Customer Filter
+SBC-CUST-06,,Changing the customer selection narrows the table to the selected customers and refreshes the totals,SBC — Customer Filter
+SBC-CUST-07,,Clearing every customer shows the empty state with a zero totals row,SBC — Customer Filter
+SBC-CUST-08,,"In the all-customers state a filter change keeps every customer included, including newly-appearing ones",SBC — Customer Filter
+SBC-CUST-09,,"A subset selection reconciles on a filter change: kept if present, dropped if absent, new customers not auto-added",SBC — Customer Filter
+SBC-TREE-01,,Each customer gets one summary row with its name followed by the invoice count in parentheses,SBC — Tree & Rows
+SBC-TREE-02,,A customer with no matching invoices in the current view is not shown,SBC — Tree & Rows
+SBC-TREE-03,,"Expanding a customer reveals its asset rows with vehicle icon, label, count, rolled-up columns and indentation",SBC — Tree & Rows
+SBC-TREE-04,,"Expanding an asset reveals its invoice detail rows with number link, date and per-invoice columns",SBC — Tree & Rows
+SBC-TREE-05,,"Invoices group into one asset row per vehicle record, with a snapshot fallback for older invoices with no vehicle id",SBC — Tree & Rows
+SBC-TREE-06,,"Asset rows order A to Z case-insensitively with the Parts Sales bucket always last, regardless of column sort",SBC — Tree & Rows
+SBC-TREE-07,,Chevrons toggle closed on a second click and every customer's and asset's expansion is independent,SBC — Tree & Rows
+SBC-TREE-08,,"Header-row chevron expands or collapses every customer on the current page, with matching icon and tooltip",SBC — Tree & Rows
+SBC-TREE-09,,"Any change that reloads customer rows collapses all expansion, but typing in the Customer filter does not",SBC — Tree & Rows
+SBC-TREE-10,,"Edge: a single-invoice asset can still be expanded, and a customer with only no-vehicle work shows a single Parts Sales row",SBC — Tree & Rows
+SBC-TREE-11,,"A service (S) invoice with no vehicle also lands in the Parts Sales bucket — absence of a vehicle decides, not the prefix",SBC — Tree & Rows
+SBC-TREE-12,,"Reversed and voided invoices are excluded from every row, count and total under every Product Type",SBC — Tree & Rows
+SBC-TREE-13,,"Every row type renders the same columns in the same order, blank cells keep their position, and summary rows use the specified font weights",SBC — Tree & Rows
+SBC-LBL-01,,"Asset label = year make model plus the most specific identifier: Unit, then plate, then last 8 of VIN",SBC — Asset Labels
+SBC-LBL-02,,"An asset with no year, make or model is labeled with the VIN on its own",SBC — Asset Labels
+SBC-LBL-03,,"An asset with no year, make, model or VIN is labeled Unknown Asset",SBC — Asset Labels
+SBC-LBL-04,,Two assets producing the same label get stable (#1)/(#2) suffixes that survive reloads,SBC — Asset Labels
+SBC-LINK-01,,"Invoice number opens in the same tab: S invoices to the work order Finance tab, P invoices to the part sale Part Requests tab",SBC — Invoice Links & Navigation
+SBC-LINK-02,,"Browser back from an invoice returns to the report with filters, sort and columns restored and rows collapsed",SBC — Invoice Links & Navigation
+SBC-LINK-03,,Customer name is plain text; the invoice link keeps the primary color with no underline and never turns visited-purple,SBC — Invoice Links & Navigation
+SBC-LINK-04,,Clicking an invoice deleted or reversed after the report loaded shows the standard not-found state and back returns,SBC — Invoice Links & Navigation
+SBC-SORT-01,,Every column is sortable except the chevron column; text sorts alphabetically and numbers by value,SBC — Sorting
+SBC-SORT-02,,Default sort is Customer name ascending case-insensitive; clicking a header replaces it,SBC — Sorting
+SBC-SORT-03,,Missing values sort to the bottom ascending and to the top descending; a Margin % em dash counts as missing,SBC — Sorting
+SBC-SORT-04,,Sorting by Date orders customers by their most recent invoice date even though the Date cell is blank on customer rows,SBC — Sorting
+SBC-SORT-05,,Sorting reorders only the customer summary rows; asset and invoice ordering is untouched,SBC — Sorting
+SBC-SORT-06,,"Changing the sort shows the loading state, collapses expanded rows, and can change which customers are on the page",SBC — Sorting
+SBC-SORT-07,,With no customer rows the sort headers are still present and produce no visible change,SBC — Sorting
+SBC-CALC-01,,Financial columns appear in the specified order and Subtotal/Margin follow the spec's composition rules,SBC — Totals & Calculations
+SBC-CALC-02,,"Margin % = Margin over Subtotal to one decimal with a percent sign, em dash when Subtotal is zero or below, monochrome on all row types",SBC — Totals & Calculations
+SBC-CALC-03,,Inv. Hrs heading is verbatim and the value shows +green / -red / 0.0 default on every row type,SBC — Totals & Calculations
+SBC-CALC-04,,Inv. Hrs is never blank: no-labor rows show 0.0 and values that round to zero show 0.0 in the default color,SBC — Totals & Calculations
+SBC-CALC-05,,Invoice subtotals sum exactly to their asset row and asset subtotals sum exactly to the customer row,SBC — Totals & Calculations
+SBC-CALC-06,,"Subtotal is the rightmost column, pinned during horizontal scroll and bold everywhere, unconditionally",SBC — Totals & Calculations
+SBC-CALC-07,,"The totals row covers the full filtered set of customers, not only the customers on the current page",SBC — Totals & Calculations
+SBC-COL-01,,"Column selector is a separate toolbar button with the Column Selection tooltip and nine toggles in order, all on by default",SBC — Column Selector
+SBC-COL-02,,"A toggle hides the column's header and cells together; Customer, Subtotal and the chevron column are never in the list",SBC — Column Selector
+SBC-COL-03,,"Hiding all nine toggleable columns is allowed and the table still shows Customer, Subtotal and the totals Subtotal",SBC — Column Selector
+SBC-EXP-01,,"The overflow menu holds Download (CSV), Download (PDF) and Print in that order, with no separate export buttons",SBC — Exports
+SBC-EXP-02,,CSV download is a plain .csv file named by the active date range per the filename map,SBC — Exports
+SBC-EXP-03,,"CSV has twelve columns in exact order, is flat (customer then invoice rows), and follows the blank-cell rules",SBC — Exports
+SBC-EXP-04,,"CSV value formats: Margin % plain number, dates mm-dd-yyyy, currency plain numbers, no color",SBC — Exports
+SBC-EXP-05,,"CSV and PDF contain exactly the customers matching the active filters and sort, including the Customer filter selection",SBC — Exports
+SBC-EXP-06,,CSV action shows a loading state while exporting and a CSV export failed toast on failure,SBC — Exports
+SBC-EXP-07,,PDF download uses the same range-based filename map with a .pdf extension,SBC — Exports
+SBC-EXP-08,,PDF page is A4 landscape with 25px margins and a footer with the ShopView label and page numbers,SBC — Exports
+SBC-EXP-09,,"PDF header shows the title, organization, date range in Mon D, YYYY form and the Product Type line; location is not shown",SBC — Exports
+SBC-EXP-10,,"PDF logo is embedded, scales without distortion, and falls back from the uploaded logo to the ShopView logo to none",SBC — Exports
+SBC-EXP-11,,PDF body matches the CSV's twelve flat columns with on-screen date/dash/bold rules and exact Inv. Hrs colors,SBC — Exports
+SBC-EXP-12,,PDF action shows a loading state while exporting and a PDF export failed toast on failure,SBC — Exports
+SBC-EXP-13,,"Print fetches the report PDF and opens the native print dialog in the current tab, disabled while the table is first loading",SBC — Exports
+SBC-EXP-14,,"An export over 10,000 data rows is refused with the too-large toast — no file downloads and no print dialog opens",SBC — Exports
+SBC-EXP-15,,"Exporting with no matching customers still downloads a file with headers and a zero totals row, with no warning",SBC — Exports
+SBC-PERS-01,,"Filters, sort and visible columns are saved and restored on the next visit, shown immediately without a default flash",SBC — Saved View & Persistence
+SBC-PERS-02,,"Type-ahead search text, expansion state and scroll position are not saved; a reload clears all expansion",SBC — Saved View & Persistence
+SBC-PERS-03,,A saved value that is no longer valid is discarded and that setting falls back to its default,SBC — Saved View & Persistence
+SBC-PERS-04,,The saved view is specific to this report and does not affect any other report,SBC — Saved View & Persistence
+SBC-PERS-05,,With no saved view every setting uses its own default,SBC — Saved View & Persistence
+SBC-PERS-06,,"When both a saved view and a page-link range exist, the saved view wins and the link value is ignored",SBC — Saved View & Persistence
+SBC-PERS-07,,Customer filter restore: the all-customers state restores as all (including new customers); an id set is intersected and never forces an empty view,SBC — Saved View & Persistence
+SBC-EMPTY-01,,No matching data shows the empty-state message in the table body while the toolbar stays interactive,SBC — Empty & Edge States
+SBC-EMPTY-02,,The empty-state message never appears while the table is still loading,SBC — Empty & Edge States
+SBC-EMPTY-03,,A narrowed customer selection with no data shows the empty state but the selection is kept and the customers reappear,SBC — Empty & Edge States
+SBC-EMPTY-04,,A failed data fetch shows the fetching-error toast which auto-fades after 5 seconds,SBC — Empty & Edge States
+SBC-VIS-01,,"Page and toolbar match the suite theme: paddings, surfaces, alignment, separator, arrow size and square corners",SBC — Visual Conformance
+SBC-VIS-02,,"Row surfaces alternate by tree level: white header/customer/totals rows, blue-grey asset/invoice rows, pinned Subtotal matching its row",SBC — Visual Conformance
+SBC-VIS-03,,Dark mode swaps every surface for its dark equivalent while the PDF always renders in light-mode colors,SBC — Visual Conformance
+SBC-MOB-01,,On a phone every toolbar control works on touch and below 1024px the toolbar splits into two rows,SBC — Mobile
+SBC-MOB-02,,"On touch the table scrolls sideways with the Subtotal pinned, chevrons toggle, and invoice links open in the same tab",SBC — Mobile
+SBC-API-01,,"A customer's asset and invoice rows are fetched from the server only on first expand, and expand-all fetches at most one request per visible customer",SBC — API
+SBC-API-02,,Sorting is applied on the server: a header click re-fetches the customer rows ordered by that column as a fresh first page,SBC — API
+SBC-API-03,,The Customer filter's type-ahead fetches matching customers from the server per query instead of loading the full list up front,SBC — API
+SBC-API-04,,Customer rows are server-paginated and the totals row is server-computed over the full filtered set,SBC — API
+SBC-API-05,,"Exports are generated on the server and the 10,000-row cap is counted server-side before any file is produced",SBC — API
+SBR-NAV-01,,Sales By Representative appears at the bottom of the Performance group and opens the report,SBR — Access & Navigation
+SBR-NAV-02,,Page title and browser tab title read Sales By Representative,SBR — Access & Navigation
+SBR-NAV-03,,The navigation entry's padding fits the full Sales By Representative label without crowding or truncation,SBR — Access & Navigation
+SBR-PERM-01,,Every user who can see any other Performance report also sees Sales By Representative,SBR — Permissions
+SBR-PERM-02,,"A user without Reports access sees no Reports navigation, no export menu, and cannot reach the Export Reports dialog",SBR — Permissions
+SBR-PERM-03,,A user without staff-administration access cannot reach the sales-rep deactivation flow,SBR — Permissions
+SBR-DATE-01,,Date range picker is in the toolbar and offers the standard presets plus Custom,SBR — Date Range Filter
+SBR-DATE-02,,Custom range uses the date-picker dialog and holds the user to a 366-day maximum span,SBR — Date Range Filter
+SBR-DATE-03,,Date range defaults to This Month and changing it re-fetches the report with a loading indicator,SBR — Date Range Filter
+SBR-DATE-04,,"An invoice is placed in the range by its own invoice date with inclusive endpoints, and the range shows in both PDF headers",SBR — Date Range Filter
+SBR-TYPE-01,,Product Type dropdown offers exactly three options with Parts & Service as the default,SBR — Product Type Filter
+SBR-TYPE-02,,"Parts only includes only P invoices, Service only includes only S invoices, and Parts & Service applies no filter",SBR — Product Type Filter
+SBR-TYPE-03,,Product Type is part of the contributor gate: a rep with no matching invoice disappears and every metric narrows,SBR — Product Type Filter
+SBR-STAT-01,,Invoice Status dropdown offers exactly four options with All Statuses as the default,SBR — Invoice Status Filter
+SBR-STAT-02,,"Status filtering matches on the mapped display value: five system states collapse into Paid, Partially Paid and Unpaid",SBR — Invoice Status Filter
+SBR-STAT-03,,Invoice Status is part of the contributor gate and narrows every metric,SBR — Invoice Status Filter
+SBR-STAT-04,,Filters compose: only invoices matching ALL active filters contribute anywhere,SBR — Invoice Status Filter
+SBR-STAT-05,,"Money columns always show invoiced amounts, never the outstanding balance",SBR — Invoice Status Filter
+SBR-LOC-01,,"Location filter is the rightmost toolbar control, a multi-select with an All Locations option",SBR — Location Filter
+SBR-LOC-02,,Location filter defaults to the user's currently active location only,SBR — Location Filter
+SBR-LOC-03,,Location selection cascades through the contributor gate and never includes an inaccessible location,SBR — Location Filter
+SBR-LOC-04,,A single-location user still sees the filter with one selectable location and unchanged behavior,SBR — Location Filter
+SBR-ROW-01,,Contributors only: a rep row appears if and only if the rep has at least one non-reversed invoice matching all active filters,SBR — Rep Rows & Tree
+SBR-ROW-02,,"Row layout: 12 columns in order, chevron plus rep name in the Date cell, blank identifier cells, bold summary vs regular detail rows",SBR — Rep Rows & Tree
+SBR-ROW-03,,"A toggled-off or deleted contributor still appears with credit intact, tagged (Inactive), named from the latest invoice snapshot when deleted",SBR — Rep Rows & Tree
+SBR-ROW-04,,Column alignment is a hard invariant: every row renders exactly the report's column count with blanks in position,SBR — Rep Rows & Tree
+SBR-TREE-05,,Expanding a rep loads its invoices on demand with a brief row-level loading indicator and full detail-row contents,SBR — Rep Rows & Tree
+SBR-TREE-06,,Header chevron expands every visible rep in one action and its glyph tracks the expand/collapse state,SBR — Rep Rows & Tree
+SBR-TREE-07,,"Each invoice appears under exactly one rep or the Unassigned row, never more than one",SBR — Rep Rows & Tree
+SBR-TREE-08,,"Expansion survives filter and sort changes within the session, resets on reload, and a removed rep returns collapsed",SBR — Rep Rows & Tree
+SBR-TREE-09,,Detail rows order newest first with a numeric invoice-number tie-break where P sorts before S,SBR — Rep Rows & Tree
+SBR-BADGE-01,,Status column sits between Customer and Inv. Hrs and every detail row shows the mapped badge text,SBR — Payment Status Badge
+SBR-BADGE-02,,Badge colors use the application's canonical payment-status tokens in both light and dark mode,SBR — Payment Status Badge
+SBR-BADGE-03,,"Badges are vertically centered, blank on summary rows, and carry their text as the accessible label",SBR — Payment Status Badge
+SBR-CALC-01,,"Inv. Hrs heading is verbatim and the value is hours invoiced minus hours worked, rounded half-up to one decimal",SBR — Inv. Hrs & Calculations
+SBR-CALC-02,,"Inv. Hrs shows +green, -red, or 0.0 default on every row type, with rollups computed from unrounded deltas",SBR — Inv. Hrs & Calculations
+SBR-CALC-03,,"No-labor-no-time invoices show 0.0 but clocked-yet-unbilled work shows its negative delta, never suppressed",SBR — Inv. Hrs & Calculations
+SBR-CALC-04,,"Edge: a delta that rounds to zero shows 0.0 in the default color, and negatives always use an explicit minus with one decimal",SBR — Inv. Hrs & Calculations
+SBR-CALC-05,,"Margin % renders to one decimal with a % sign, shows an em dash when Subtotal is zero or below, and is recomputed on every rollup",SBR — Inv. Hrs & Calculations
+SBR-CALC-06,,"Money columns use the standardized labels and definitions: Subtotal is pre-tax Labor plus Parts Invoiced, Margin is the two margins combined",SBR — Inv. Hrs & Calculations
+SBR-CALC-07,,"Negative dollar values render in accounting parentheses on screen, in money columns only",SBR — Inv. Hrs & Calculations
+SBR-CALC-08,,Half-up rounding applies at each stated precision and a totals cell may differ from the eye-summed rows by one last-decimal unit — expected,SBR — Inv. Hrs & Calculations
+SBR-TOT-01,,"Subtotal is the rightmost column, pinned to the right edge, bold everywhere, on the row's own background",SBR — Subtotal & Totals
+SBR-TOT-02,,"Desktop Totals row merges the four identifier columns, aggregates every metric over the full filtered set, and sticks to the bottom",SBR — Subtotal & Totals
+SBR-TOT-03,,Mobile shows a simplified external totals bar below the table with Totals left and the grand Subtotal right,SBR — Subtotal & Totals
+SBR-TOT-04,,The column-header row is sticky to the top during vertical scroll and the Subtotal header is sticky in both axes,SBR — Subtotal & Totals
+SBR-SORT-01,,All eight financial columns are sortable; the identifier columns are not and the Date header carries the chevron instead,SBR — Sorting
+SBR-SORT-02,,"Default order is plain A to Z by display name, case-insensitive, with no active/inactive tiers",SBR — Sorting
+SBR-SORT-03,,"First click sorts ascending with an indicator, second click descending, no third cleared state, and no header path back to A to Z",SBR — Sorting
+SBR-SORT-04,,Sorting reorders rep summary rows only; detail rows stay under their rep and the Unassigned row stays pinned on top,SBR — Sorting
+SBR-SORT-05,,Equal sorted values keep the A to Z order as tie-break and an em-dash Margin % sorts as zero,SBR — Sorting
+SBR-SORT-06,,With only one rep row the sort affordances are present but produce no observable change,SBR — Sorting
+SBR-LINK-01,,Invoice number on a detail row navigates the current tab to the underlying work order or parts sale,SBR — Links & Navigation
+SBR-LINK-02,,Customer name on a detail row navigates the current tab to the customer's record,SBR — Links & Navigation
+SBR-LINK-03,,"Browser back from a drilldown restores ALL report state including expansion and scroll, without a full reload",SBR — Links & Navigation
+SBR-LINK-04,,"Link styling: theme-primary invoice links and body-colored customer links, hover/focus underline, never browser-purple, in both modes",SBR — Links & Navigation
+SBR-LINK-05,,An unavailable invoice or customer destination shows the standard not-found/access-denied state and back still returns,SBR — Links & Navigation
+SBR-DEACT-01,,Deactivating a sales rep with no customer assignments applies silently with no dialog,SBR — Staff Deactivation
+SBR-DEACT-02,,"Deactivating a rep with assignments opens the Deactivate dialog with the counted, pluralized headline and reassurance line, trapping focus",SBR — Staff Deactivation
+SBR-DEACT-03,,"Type-YES gate: auto-focused input, case-insensitive whitespace-tolerant match, disabled-button tooltip, Enter submits",SBR — Staff Deactivation
+SBR-DEACT-04,,"Cancel, X and Escape dismiss the dialog without deactivating; clicking outside does not dismiss it",SBR — Staff Deactivation
+SBR-DEACT-05,,"A valid submit shows the in-flight loading state with dismissals locked, then applies the change with assignments untouched",SBR — Staff Deactivation
+SBR-DEACT-06,,"After deactivation the sales-rep toggle is unchanged, the Assignments CSV shows Rep is active? = No, and report credit stays intact",SBR — Staff Deactivation
+SBR-DEACT-07,,"No dialog when the toggle is off, when the member is already inactive, or on reactivation — assignments resurface immediately",SBR — Staff Deactivation
+SBR-DEACT-08,,"A server-side deactivation failure shows the canonical error toast, leaves the status unchanged, and clears the input on the next open",SBR — Staff Deactivation
+SBR-DEACT-09,,"If the assignment pre-check fails, the warning dialog still opens — without the count headline — and never silently deactivates",SBR — Staff Deactivation
+SBR-UNAS-01,,"Show Unassigned sits between the column selector and the date picker, is off by default, and while off unassigned invoices contribute nothing",SBR — Show Unassigned
+SBR-UNAS-02,,Turning Show Unassigned on adds a single Unassigned row pinned to the top and recomputes the grand Totals,SBR — Show Unassigned
+SBR-UNAS-03,,"The Unassigned row behaves like a rep row — count, expandable, in the Totals — and never carries an (Inactive) tag",SBR — Show Unassigned
+SBR-UNAS-04,,"No empty Unassigned row is ever rendered, and toggling off while expanded removes the row which returns collapsed",SBR — Show Unassigned
+SBR-COL-01,,"Column selector opens a dropdown of the seven metric columns with toggle switches, all visible on first visit",SBR — Column Selector
+SBR-COL-02,,The five always-visible columns do not appear in the dropdown and cannot be hidden,SBR — Column Selector
+SBR-COL-03,,"Toggling a column applies immediately across summary rows, detail rows and the grand Totals at once",SBR — Column Selector
+SBR-COL-04,,Column visibility never affects the exports — all four downloads always include all metric columns,SBR — Column Selector
+SBR-COL-05,,Hiding the active sort column keeps the sort; showing it again reveals the sort indicator,SBR — Column Selector
+SBR-COL-06,,With all seven metric columns hidden the five always-on columns and the grand Totals still render — not an empty state,SBR — Column Selector
+SBR-PERS-01,,All filter and view settings are remembered per browser and restored before the first data fetch on the next visit,SBR — Persistence
+SBR-PERS-02,,Expansion state and scroll position are not remembered and reset on reload,SBR — Persistence
+SBR-PERS-03,,Restoration is defensive: a stale saved value falls back to its default and never causes an error or invalid request,SBR — Persistence
+SBR-PERS-04,,First visit or cleared browser storage yields the full set of defaults with no server-side profile,SBR — Persistence
+SBR-PERS-05,,"The A to Z default is its own saved value: restoring a state with no financial sort returns to A to Z, not an arbitrary column",SBR — Persistence
+SBR-EXP-01,,The ⋯ overflow menu lists exactly four download actions,SBR — Exports
+SBR-EXP-02,,All four downloads respect the active filters and the full result set — not the on-screen expansion — in the currently-active order,SBR — Exports
+SBR-EXP-03,,"Summary PDF: A4 header strip, one rolled-up row per rep, bold Subtotal, colored Inv. Hrs, and a recomputed grand totals row",SBR — Exports
+SBR-EXP-04,,"Expanded View PDF: one page-block per rep with its own header strip, per-invoice table, per-rep totals row, and no grand totals",SBR — Exports
+SBR-EXP-05,,Expanded View PDF truncates invoice numbers longer than 18 characters; on screen they are never truncated,SBR — Exports
+SBR-EXP-06,,"PDF footer on every page, default-logo fallback, and deterministic PDF filenames",SBR — Exports
+SBR-EXP-07,,"PDFs render negative dollars in accounting parentheses, keep the (Inactive) tag, and omit the on-screen (N) count",SBR — Exports
+SBR-EXP-08,,"PDF body font size adapts to the longest positive dollar value on the four-tier scale, with fixed column widths",SBR — Exports
+SBR-EXP-09,,Font tier edge rules: a longer negative shifts one tier smaller (clamped at 8px); a document with no positive dollar value stays at 11px,SBR — Exports
+SBR-EXP-10,,"Summary CSV: filename, UTF-8 BOM, verbatim headers in order, one row per rep, and the # Invoices / # Customers counts",SBR — Exports
+SBR-EXP-11,,"Expanded CSV: filename, verbatim headers including the three hours columns, one row per invoice flattened across reps",SBR — Exports
+SBR-EXP-12,,"CSV cell formatting: plain re-pivotable numbers, signed Inv. Hrs, Margin % empty when undefined, (Inactive) in the name, no (N)",SBR — Exports
+SBR-EXP-13,,"The Unassigned row appears in all four downloads when Show Unassigned is on, and in none of them when it is off",SBR — Exports
+SBR-EXP-14,,"A failed download shows the canonical error toast, and a generating download shows a non-interactive loading state",SBR — Exports
+SBR-EXP-15,,"An Expanded View PDF over the 10,000-row cap is refused with the specific too-large message — no truncated file",SBR — Exports
+SBR-EXP-16,,"An empty-data export still generates: zeroed Summary PDF totals, header-strip-only Expanded PDF, header-row-only CSVs",SBR — Exports
+SBR-ASGN-01,,"The Export Report dialog's Report Name dropdown includes ""Sales Rep Assignments"" at the bottom, hiding the date picker and showing the snapshot note",SBR — Sales Rep Assignments Export
+SBR-ASGN-02,,Exporting Sales Rep Assignments downloads sales-rep-assignments.csv with the verbatim headers and shows the success toast,SBR — Sales Rep Assignments Export
+SBR-ASGN-03,,"The Assignments CSV holds one row per customer with an assigned rep, sorted customer A→Z then rep A→Z; unassigned customers are excluded",SBR — Sales Rep Assignments Export
+SBR-ASGN-04,,"""Rep is active?"" tracks the staff-active status (Yes/No), not the sales-rep toggle",SBR — Sales Rep Assignments Export
+SBR-ASGN-05,,"Legacy robustness: a customer whose rep's staff record was deleted still exports one row from the customer-side stored name, marked No",SBR — Sales Rep Assignments Export
+SBR-ASGN-06,,Assignments export failure and nothing-to-export paths use the Export dialog's own messages,SBR — Sales Rep Assignments Export
+SBR-STATE-01,,"The empty state shows ""No sales activity matches the current filters."" with no grand Totals — including when no rep was ever credited","SBR — Loading, Empty & Error States"
+SBR-STATE-02,,The toolbar stays visible and interactive in the empty state,"SBR — Loading, Empty & Error States"
+SBR-STATE-03,,"Loading shows a centered spinner over the data area, hides the Totals, keeps the toolbar interactive, and never flashes a blank table","SBR — Loading, Empty & Error States"
+SBR-STATE-04,,"A load failure shows the inline ""Couldn't load the report. Please try again."" message with a working Retry, keeping the filters","SBR — Loading, Empty & Error States"
+SBR-MOB-01,,On a phone every toolbar control works on touch; below 1024px the controls stack vertically with the ⋯ button wrapped above,SBR — Mobile
+SBR-MOB-02,,"On a phone the table scrolls sideways with Subtotal pinned, the totals bar sits outside the scroll area, and the chevrons work on touch",SBR — Mobile
+SBR-MOB-03,,Touch targets are at least 44×44 px and touch users get no hover-only tooltips — the icons carry accessible names instead,SBR — Mobile
+SBR-VIS-01,,"Layout conformance: white toolbar with the specified padding and alignment, blue-grey page, separator line, edge-to-edge white table",SBR — Visual Conformance & Accessibility
+SBR-VIS-02,,"Dark mode: page, toolbar, table, and Totals switch to dark equivalents; badges and Inv. Hrs stay legible; PDFs stay light",SBR — Visual Conformance & Accessibility
+SBR-VIS-03,,Every icon-only control carries its specified accessible name,SBR — Visual Conformance & Accessibility
+SBR-VIS-04,,Chevrons and sortable headers are keyboard-operable and expose their expanded/sort state to assistive technology,SBR — Visual Conformance & Accessibility
+SBR-VIS-05,,"The subdued grey of the (N) count and (Inactive) tag meets WCAG AA contrast, and no information is conveyed by color alone",SBR — Visual Conformance & Accessibility
+SBR-WO-01,,"The Sales Rep selector shows in the left panel on standard Work Orders and Part Sale WOs, and is hidden on imported WOs and in History mode",SBR — Work Order Sales Rep
+SBR-WO-02,,"The Sales Rep selector offers only reps whose sales-rep toggle is currently on, and carries the accessible name ""Sales Rep""",SBR — Work Order Sales Rep
+SBR-WO-03,,"A new Work Order or Part Sale WO opens with Sales Rep unassigned, and a change saves immediately with no Save step",SBR — Work Order Sales Rep
+SBR-WO-04,,The Sales Rep selector is read-only when the Work Order status is Invoiced or Paid,SBR — Work Order Sales Rep
+SBR-WO-05,,"Invoice crediting snapshot: WO rep, else the customer's rep, else unassigned — and a later WO change never rewrites past invoices",SBR — Work Order Sales Rep
+SBR-WO-06,,"The customer record shows a single Sales Rep row (""Unassigned"" when none), and a toggled-off bound rep shows ""(Inactive)"" in the WO selector",SBR — Work Order Sales Rep
+SBR-API-01,,"A rep's invoice detail rows are fetched from the server only on the first expand, and are paginated per rep",SBR — API
+SBR-API-02,,Sorting is performed server-side: a header click re-fetches the rep summary rows in the requested order,SBR — API
+SBR-API-03,,The grand totals are server-computed over the full filtered result set and delivered with the summary payload,SBR — API
+SBR-API-04,,"All four exports are generated server-side against the active filters and sort — a genuine failure yields a toast, never a malformed file",SBR — API
+SBR-API-05,,"The Expanded View PDF's 10,000-row cap is enforced server-side BEFORE generation — a refusal, not a truncated file",SBR — API
+SBR-API-06,,Toggling a sales rep's active status off first runs a server pre-check returning the assigned-customer count and an assignments flag,SBR — API
+PV-NAV-01,,Parts Velocity appears under a new Parts section in the Reports navigation,PV — Access & Defaults
+PV-NAV-02,,First visit: date range defaults to This Year and data is fetched automatically,PV — Access & Defaults
+PV-NAV-03,,A loading indicator shows while data loads and old rows are replaced only when new data returns,PV — Access & Defaults
+PV-PERM-01,,A user with the Inventory Reports → View permission can load the report and export it,PV — Permissions
+PV-PERM-02,,A user without the Manager or Office User role does not see the Parts Velocity navigation entry,PV — Permissions
+PV-PERM-03,,A user with Reports access but without Inventory Reports → View sees the entry but is denied the data and the export,PV — Permissions
+PV-FILT-01,,"Type filter is single-select, first in the filter row, with options Both, Inventory, Catalogue (default Both)",PV — Filters
+PV-FILT-02,,Selecting a Type value immediately reloads the data limited to that type,PV — Filters
+PV-FILT-03,,Date range selector offers exactly the eleven bounded options and no All Time,PV — Filters
+PV-FILT-04,,Custom date range requires valid start and end dates and rejects a span over 366 days,PV — Filters
+PV-FILT-05,,Category and Vendor multi-select filters limit the table to matching parts,PV — Filters
+PV-FILT-06,,"Toolbar search matches part number or description, case-insensitively, and is page-specific",PV — Filters
+PV-FILT-07,,All active filters combine with AND logic,PV — Filters
+PV-FILT-08,,Bin multi-select filter limits the table to inventory parts stocked in the selected bins,PV — Filters
+PV-FILT-09,,Any Bin filter excludes all catalogue rows - Type Catalogue plus a Bin filter is empty by design,PV — Filters
+PV-FILT-10,,"Location filter is the rightmost control, defaults to the active location, and scopes to accessible locations only",PV — Filters
+PV-FILT-11,,Empty state shows the standard no-data message when no parts match the filters,PV — Filters
+PV-FILT-12,,"Parts with no category, vendor, or bin assigned are excluded when that filter is active",PV — Filters
+PV-FILT-13,,A user with access to only one location still sees the Location filter with a single selectable location,PV — Filters
+PV-ROW-01,,An inventory part stocked at two selected locations shows as two rows with per-location stock figures,PV — Row Model
+PV-ROW-02,,A catalogue part shows as one merged row with values summed across the selected locations,PV — Row Model
+PV-ROW-03,,Rows load ranked by Demand descending with the descending indicator on the Demand header,PV — Row Model
+PV-ROW-04,,"Clicking a column header sorts ascending first, toggles on re-click, and places null values first-ascending / last-descending",PV — Row Model
+PV-ROW-05,,"Sticky header, all-left alignment on screen, and plain-text Type values",PV — Row Model
+PV-ROW-06,,"Info icons on Units Sold, Demand, and Turns / Yr show the exact spec descriptions and never trigger a sort",PV — Row Model
+PV-ROW-07,,"Description, Category, and Vendor truncate with an ellipsis and show in full on hover; Part # is never truncated",PV — Row Model
+PV-ROW-08,,Null values render as an em-dash only in the nullable fields; counts and Revenue/Margin are never null,PV — Row Model
+PV-ROW-09,,"An inventory part is excluded only when it has no movement, under one unit on hand, AND no billed revenue",PV — Row Model
+PV-ROW-10,,"A sale invoiced then fully reversed in-window shows Demand 1 with Units Sold 0.00, and negative movement shows a leading minus",PV — Row Model
+PV-COL-01,,Column picker lists all 20 available columns with toggles and never offers the internal on-hand cost,PV — Columns & Remembered View
+PV-COL-02,,First visit shows exactly the 14 default columns in the specified order,PV — Columns & Remembered View
+PV-COL-03,,A re-enabled column returns to its canonical slot and toggling takes effect immediately without a reload,PV — Columns & Remembered View
+PV-COL-04,,"Filters, column selection, and sort are remembered per browser and restored before the first data fetch",PV — Columns & Remembered View
+PV-COL-05,,A saved value that is no longer valid falls back to that setting's default on restore,PV — Columns & Remembered View
+PV-COL-06,,A different user signing in on the same browser inherits the saved view,PV — Columns & Remembered View
+PV-COL-07,,A saved view with a stale schema version is ignored and the current defaults load,PV — Columns & Remembered View
+PV-COL-08,,All 20 columns can be hidden; the empty selection is not restored and an export then contains no data columns,PV — Columns & Remembered View
+PV-CALC-01,,"Units Sold for an inventory part is net stock movement: invoicing adds, reversing subtracts, returns do not affect it",PV — Columns & Calculations
+PV-CALC-02,,"Units Sold for a catalogue part is the total in-window vendor-request quantity, net of reversed sales",PV — Columns & Calculations
+PV-CALC-03,,"Units Returned counts initiated part returns and parts-sale credits, and cancelling a return removes its quantity",PV — Columns & Calculations
+PV-CALC-04,,"Units Returned is windowed by initiation date, ignores invoice status, and excludes core-charge returns",PV — Columns & Calculations
+PV-CALC-05,,"Sold via WO counts Service-type work orders and Sold via Parts Sale counts Parts-type work orders, windowed by work-order date",PV — Columns & Calculations
+PV-CALC-06,,"Demand counts each transaction once regardless of quantity, and a reversal neither adds nor subtracts",PV — Columns & Calculations
+PV-CALC-07,,"Last Sale shows whole days since the most recent sale over ALL-TIME history, scoped to the selected locations",PV — Columns & Calculations
+PV-CALC-08,,"On Hand shows the row's own location stock, and Min / Max are read-only stored thresholds with no editing from the report",PV — Columns & Calculations
+PV-CALC-09,,"Turns / Yr annualizes the in-window sales rate against On Hand, shows 0.00 at zero stock, and can be negative",PV — Columns & Calculations
+PV-CALC-10,,"Revenue, Margin, Unit Cost, Sell Price, and Margin % follow the billed-line formulas, computed unrounded and rounded once",PV — Columns & Calculations
+PV-CALC-11,,"A reversed/voided sale is excluded from every billed-line column (Revenue, Margin, Unit Cost, Sell Price, Sold via WO, Sold via Parts Sale, catalogue Units Sold)",PV — Columns & Calculations
+PV-CALC-12,,"Unit Cost / Sell Price and Margin % use independent null triggers, so mixed rows are valid",PV — Columns & Calculations
+PV-CALC-13,,"On-screen number formats match the spec for every column type, and rounding is half away from zero",PV — Columns & Calculations
+PV-CALC-14,,Core parts are excluded from both the inventory and catalogue result sets,PV — Columns & Calculations
+PV-CALC-15,,"Movement and billed bases may differ for an inventory row (expected), while Sold via WO + Sold via Parts Sale equals the billed units",PV — Columns & Calculations
+PV-CALC-16,,Window anchors: inventory movement metrics use the movement event date while billed columns use the work-order date,PV — Columns & Calculations
+PV-EXP-01,,The overflow button opens an export menu with Download (PDF) and Download (CSV) in that order,PV — Exports
+PV-EXP-02,,Both exports reflect the filters and search active at the time of export,PV — Exports
+PV-EXP-03,,"Exports include only the enabled columns, in the canonical on-screen order",PV — Exports
+PV-EXP-04,,"Exports reflect the active sort - including Min/Max sorts, the default Demand order, and identical null placement",PV — Exports
+PV-EXP-05,,"PDF: named velocity-report.pdf, A3 landscape, titled Parts Velocity, with 18-character text truncation but Part # untruncated",PV — Exports
+PV-EXP-06,,CSV: named velocity-report.csv with full untruncated text values and Last Sale as a raw integer,PV — Exports
+PV-EXP-07,,"Null values render as an em-dash in both exports, and Last Sale renders as 'N days' in the PDF",PV — Exports
+PV-EXP-08,,"Export alignment: Type centered, text columns left-aligned, numeric and money columns right-aligned",PV — Exports
+PV-EXP-09,,Successful downloads show the exact success toasts with uppercase (CSV)/(PDF),PV — Exports
+PV-EXP-10,,"A failed export shows the server message when available, otherwise the exact fallback error toast with lowercase (csv)/(pdf)",PV — Exports
+PV-VIS-01,,The report uses the standard two-tone layout: white card surfaces on a soft blue-grey backdrop with an edge-to-edge table,PV — Visual Conformance
+PV-VIS-02,,"Toolbar and table detail styling: paddings, white header with 1px top border, white body cells, 2rem edge padding",PV — Visual Conformance
+PV-VIS-03,,Dark mode is supported and the grey info icon keeps at least 3:1 contrast in both modes,PV — Visual Conformance
+PV-API-01,,The report is server-paginated - the backend returns one page of rows at a time,PV — API
+PV-API-02,,Every filter or search change re-queries the server and returns the first page of the new result set,PV — API
+PV-API-03,,Header-click sorting re-queries the server with nulls first on ascending and last on descending as a server sort semantic,PV — API
+PV-API-04,,The backend denies both the report data and the export to a user without Inventory Reports → View,PV — API
+TU-NAV-01,,Technician Utilization appears in the reports navigation under the Performance group,TU — Access & Display
+TU-NAV-02,,The report shows one row for each technician who clocked time in the range at the selected locations,TU — Access & Display
+TU-NAV-03,,First visit defaults to the This Month preset and the user's active location,TU — Access & Display
+TU-NAV-04,,"Changing the date range reloads the rows, and a Custom range is capped at 366 days",TU — Access & Display
+TU-NAV-05,,"The standard loading indicator shows on load and reload, rows swap only when data returns, and the toolbar stays interactive",TU — Access & Display
+TU-NAV-06,,"All clock records are day-grouped and windowed in one report-level time zone, with partial and cross-midnight records split correctly",TU — Access & Display
+TU-NAV-07,,A user without the timesheet-reports permission does not see the report in the navigation,TU — Access & Display
+TU-NAV-08,,The standard no-data message shows when no technician clocked time in scope,TU — Access & Display
+TU-HRS-01,,Column headers appear in the fixed order ending with Est. Lost Labor,TU — Hours & Utilization
+TU-HRS-02,,"Total, WO, and Internal Hours show the range's clocked hours in two decimals with no thousands separator",TU — Hours & Utilization
+TU-HRS-03,,"Utilization % is WO hours over total hours computed from unrounded values, shown to one decimal with round-half-up",TU — Hours & Utilization
+TU-HRS-04,,"A technician with only internal hours shows 0.0% utilization, and utilization never exceeds 100%",TU — Hours & Utilization
+TU-ELL-01,,"Est. Lost Labor values internal hours at each location's default labor rate, summed at full precision and rounded once",TU — Est. Lost Labor
+TU-ELL-02,,"Est. Lost Labor is pinned far right and bold, and only its header carries the info icon with the exact tooltip text",TU — Est. Lost Labor
+TU-ELL-03,,"Zero internal hours - or a configured $0.00 rate - shows $0.00, never an em-dash",TU — Est. Lost Labor
+TU-ELL-04,,Internal hours with no default labor rate at any contributing location show an em-dash with the correct assistive-technology label,TU — Est. Lost Labor
+TU-ELL-05,,"Internal hours split across rated and unrated locations show a partial dollar value with no indicator - expected, not a defect",TU — Est. Lost Labor
+TU-SORT-01,,On load the rows are sorted by Technician A to Z with the ascending indicator and correct aria-sort exposure,TU — Sorting
+TU-SORT-02,,"All six columns sort on screen: ascending first, toggling with no third state, and Technician's first click goes descending",TU — Sorting
+TU-SORT-03,,"A data reload resets the sort to Technician A to Z, and sort is never persisted across visits",TU — Sorting
+TU-SORT-04,,Sorting reorders only the technician rows - the Summary stays at the bottom and day rows stay under their technician in date order,TU — Sorting
+TU-SORT-05,,"Sorting by Est. Lost Labor keeps the em-dash rows at the bottom in both directions, while $0.00 sorts as zero",TU — Sorting
+TU-SUM-01,,"A pinned Summary row labeled Summary sits at the bottom, stays visible on scroll, and uses the row formats with no prefix",TU — Summary
+TU-SUM-02,,"Summary hours total the visible technicians from unrounded values - eye-summing the rows may differ by a cent, and all-selected equals shop totals",TU — Summary
+TU-SUM-03,,"Summary Utilization % is the weighted rate, not the average of the per-technician percentages",TU — Summary
+TU-SUM-04,,"Summary Est. Lost Labor sums the rated contributions only, and shows an em-dash only when every visible technician is an em-dash",TU — Summary
+TU-DAY-01,,Each technician row has an accessible expand/collapse control named for its next action,TU — Per-Day Breakdown
+TU-DAY-02,,"Expanding shows one row per clocked day in date order, loaded on demand, with days pooled across selected locations",TU — Per-Day Breakdown
+TU-DAY-03,,"Day rows use the same columns and formats as technician rows, including a per-day per-location Est. Lost Labor",TU — Per-Day Breakdown
+TU-DAY-04,,A single control in the table header expands or collapses all technician rows with the correct accessible names,TU — Per-Day Breakdown
+TU-DAY-05,,"Expansion state is view-only: it resets on any reload and fresh visit, and the technician filter does not disturb it",TU — Per-Day Breakdown
+TU-TECH-01,,The Filter by Technician multi-select starts with every technician selected on a first visit,TU — Technician Filter
+TU-TECH-02,,Deselecting a technician hides the row and recalculates the Summary on screen without reloading; re-selecting restores it,TU — Technician Filter
+TU-TECH-03,,"Select all and Clear all controls work, and the deselected-set model keeps newly-appearing technicians selected",TU — Technician Filter
+TU-TECH-04,,Previously deselected technicians stay deselected when the user returns to the report,TU — Technician Filter
+TU-TECH-05,,Clearing all technicians shows the no-data message and hides the Summary row,TU — Technician Filter
+TU-LINK-01,,"Total Hours is a real link with a non-color affordance and keyboard access, while the Summary's Total Hours is not a link",TU — Deep Links
+TU-LINK-02,,"The Total Hours link opens Timesheet Activities in the same tab, pre-filtered to that technician and date range",TU — Deep Links
+TU-LINK-03,,"For the same range and single active location with closed records, Total Hours reconciles to the Timesheet Activities total to the cent",TU — Deep Links
+TU-LINK-04,,Reconciliation exception (a): an open clock is snapshotted at each report's own load instant - a difference of the elapsed time is expected,TU — Deep Links
+TU-LINK-05,,"Reconciliation exception (b): the link passes no location, so with multiple locations selected the opened view shows only the active shop",TU — Deep Links
+TU-LINK-06,,A day row's Total Hours links to Timesheet Activities for that technician on that single day,TU — Deep Links
+TU-EXP-01,,The three-dot menu sits leftmost in the toolbar's action cluster and holds the three verbatim download options,TU — Exports
+TU-EXP-02,,"The Summary PDF holds the technician rows plus the Summary, and the Expanded PDF adds every per-day breakdown",TU — Exports
+TU-EXP-03,,"The CSV is always summary-level, quotes comma-containing values, and downloads with the lower-case filename",TU — Exports
+TU-EXP-04,,"Every download covers only the selected technicians, the selected locations, and the active date range",TU — Exports
+TU-EXP-05,,"Downloads keep the on-screen column order and number formats but always order rows Technician A to Z, ignoring the on-screen sort",TU — Exports
+TU-EXP-06,,"The shop logo shows at the top of both PDF views when set, no logo shows when unset, and the CSV never includes it",TU — Exports
+TU-EXP-07,,Choosing a download with no technician selected is a silent no-op - no file and no message,TU — Exports
+TU-EXP-08,,A starting download shows the Download started notification and a failed download shows Failed to download report,TU — Exports
+TU-LOC-01,,"The Location filter is the rightmost multi-select listing accessible locations, with All Locations acting as a select-all shortcut",TU — Location Filter
+TU-LOC-02,,"Changing the location selection reloads the report with hours pooled into one row per technician, never beyond accessible locations",TU — Location Filter
+TU-LOC-03,,The saved location selection restores defensively - inaccessible locations are dropped and an empty remainder falls back to the active location,TU — Location Filter
+TU-LOC-04,,Deselecting every location falls back to the active location instead of showing nothing,TU — Location Filter
+TU-LOC-05,,A user with access to only one location still sees the Location filter with a single selectable location,TU — Location Filter
+TU-VIS-01,,"All-white table with no alternating row shading, and the toolbar controls run in the specified left-to-right order",TU — Visual & Accessibility
+TU-VIS-02,,"Dark mode keeps every report element legible, with the info icon at 3:1 contrast and the link affordance intact in both modes",TU — Visual & Accessibility
+TU-API-01,,"The per-day breakdown is fetched from the backend on demand when a row is expanded, not shipped with the initial payload",TU — API
+TU-API-02,,"Date-range and location changes trigger a fresh server load, while the technician filter and column sorting stay on-screen only",TU — API
+WIP-TAB-01,,Work In Progress appears in the reports navigation under the Performance group,WIP — Tabs
+WIP-TAB-02,,"The report opens with four tabs in a fixed order and ""Approved - partially completed"" selected by default",WIP — Tabs
+WIP-TAB-03,,"Each tab label shows the count of work orders in that tab in parentheses, including ""(0)"" for an empty tab",WIP — Tabs
+WIP-TAB-04,,"The browser page title reads ""Work In Progress - Report | ShopView""",WIP — Tabs
+WIP-TAB-05,,"There is no Trend / over-time tab or chart — expected in this version, do not file as a defect",WIP — Tabs
+WIP-SCOPE-01,,"Every open service work order (Estimate, Approved, In Progress, Review, Complete) at a selected location appears in the report",WIP — Scope & Loading
+WIP-SCOPE-02,,"Invoiced, Paid, and Declined work orders and part-sale work orders never appear anywhere in the report",WIP — Scope & Loading
+WIP-SCOPE-03,,"Each qualifying work order appears exactly once in exactly one tab, including an open job with nothing approved yet",WIP — Scope & Loading
+WIP-SCOPE-04,,"While loading, the standard reports loading indicator shows and existing rows are replaced only when new data returns",WIP — Scope & Loading
+WIP-SCOPE-05,,"When no work order qualifies, every tab shows ""Empty bays, endless possibilities. Get Going!"" and no Totals row",WIP — Scope & Loading
+WIP-SCOPE-06,,A single empty tab shows the no-data message while the other tabs still show their rows,WIP — Scope & Loading
+WIP-PLACE-01,,An Estimate work order lands in the Estimates tab and a Complete work order lands in the Completed tab,WIP — Tab Placement
+WIP-PLACE-02,,"In Progress and Review work orders land in the ""Approved - partially completed"" tab",WIP — Tab Placement
+WIP-PLACE-03,,"An Approved work order with clocked time or a received part lands in ""Approved - partially completed""",WIP — Tab Placement
+WIP-PLACE-04,,"An Approved work order with no clocked time and no received part lands in ""Approved - not started""",WIP — Tab Placement
+WIP-COL-01,,"With every column turned on, the columns appear in the fixed left-to-right order with the specified alignment",WIP — Columns & Rows
+WIP-COL-02,,On a first visit only the default columns show; the rest are available in the column selector and off by default,WIP — Columns & Rows
+WIP-COL-03,,"The WO # is a link that opens the work order in the same browser tab, with browser back returning to the report",WIP — Columns & Rows
+WIP-COL-04,,Status shows as a color-coded badge whose label text is always present (color is never the only signal),WIP — Columns & Rows
+WIP-COL-05,,"The Asset cell is two lines (bold unit number over a muted VIN), with placeholders when either is missing, and VIN is also its own optional column",WIP — Columns & Rows
+WIP-COL-06,,"Customer shows the customer's company name, and is blank when no customer name exists",WIP — Columns & Rows
+WIP-COL-07,,"Days Open shows whole days since creation and reads ""0 days"" / ""1 days"" (not pluralized) — expected, do not file",WIP — Columns & Rows
+WIP-COL-08,,"Last Activity shows ""Today"", ""Xd ago"", or ""—"" when the work order has no recorded activity",WIP — Columns & Rows
+WIP-CALC-01,,"Money columns show US-dollar currency with two decimals, thousands separators, a leading minus for negatives, and ""$0.00"" for zero",WIP — Earned & Remaining
+WIP-CALC-02,,"Labor Earned is the clocked share of each approved line's quoted labor value, capped at the full quoted value per line",WIP — Earned & Remaining
+WIP-CALC-03,,Labor Remaining is the total quoted value of the approved labor minus Labor Earned,WIP — Earned & Remaining
+WIP-CALC-04,,Parts Earned is the sell value of approved-line parts already received,WIP — Earned & Remaining
+WIP-CALC-05,,Parts Remaining is the outstanding (not yet received) quantity valued at its sell price including any core charge,WIP — Earned & Remaining
+WIP-CALC-06,,"Earned = Labor Earned + Parts Earned, Remaining = Labor Remaining + Parts Remaining, and Total = Earned + Remaining (not the work order's grand total)",WIP — Earned & Remaining
+WIP-CALC-07,,Lines that are not yet approved contribute nothing to any money figure,WIP — Earned & Remaining
+WIP-CALC-08,,"Inv. Hrs shows quoted minus worked labor hours as a signed one-decimal number, colored green/red, with ""0.0"" unsigned in the default color",WIP — Earned & Remaining
+WIP-CALC-09,,"An open estimate with no approved work shows ""$0.00"" in every money column, including Total",WIP — Earned & Remaining
+WIP-SORT-01,,The initial sort is Days Open with the longest-open work order first,WIP — Sorting
+WIP-SORT-02,,"Clicking a header sorts ascending, clicking again toggles descending, with no third cleared state and one sort column at a time",WIP — Sorting
+WIP-SORT-03,,"Columns sort by their underlying values — money/numbers by value, Days Open by day count, Status by label, text columns as text, Asset by unit number",WIP — Sorting
+WIP-SORT-04,,Sorting reorders only the active tab's rows and the Totals row stays at the bottom,WIP — Sorting
+WIP-SUM-01,,"The summary strip shows seven figures in a fixed order, each as US-dollar currency",WIP — Summary Strip
+WIP-SUM-02,,"Total Earned is the hero figure (larger, colored underline) and equals Started — Earned plus Ready to Invoice",WIP — Summary Strip
+WIP-SUM-03,,Total Remaining equals Not Started plus Started — Remaining,WIP — Summary Strip
+WIP-SUM-04,,"The per-stage figures each equal the matching tab's money: Not Started, Started — Earned, Started — Remaining, and Ready to Invoice",WIP — Summary Strip
+WIP-SUM-05,,"The Estimates figure is the Estimates tab's total quoted value, shown muted, and excluded from Total Earned and Total Remaining",WIP — Summary Strip
+WIP-SUM-06,,"Changing the advisor, customer, or asset filter recomputes every summary figure immediately, with no reload",WIP — Summary Strip
+WIP-SUM-07,,"Each summary figure's information icon reveals its plain-language explanation, verbatim per the spec",WIP — Summary Strip
+WIP-TOT-01,,"Each tab has a Totals row pinned to the bottom, labeled ""Totals"", with a bold pinned Total cell and the same number formats as data rows",WIP — Totals Row
+WIP-TOT-02,,"The Totals row sums each visible money column, and the Inv. Hrs total keeps the signed one-decimal format and coloring",WIP — Totals Row
+WIP-TOT-03,,"The Totals row recomputes whenever the advisor, customer, or asset filter changes",WIP — Totals Row
+WIP-TOT-04,,A tab with no visible jobs shows no Totals row,WIP — Totals Row
+WIP-FLT-01,,The Advisor filter is a multi-select of the advisors present in the loaded jobs and narrows rows on screen only,WIP — Filters
+WIP-FLT-02,,"The Customer filter is a searchable type-ahead multi-select reading ""All customers"" when empty, with a ""Clear"" action once a customer is selected",WIP — Filters
+WIP-FLT-03,,"The Asset filter's type-ahead matches either the unit number or the vehicle identification number, and reads ""All assets"" when empty",WIP — Filters
+WIP-FLT-04,,"The date-range control offers the standard presets plus Custom, defaults to ""This Week"", and does not offer ""All Time""",WIP — Filters
+WIP-FLT-05,,"The date range filters by the work order's created date, reloads the report on change, and a Custom range is capped at 366 days",WIP — Filters
+WIP-FLT-06,,"The Location filter (rightmost) is a multi-select with an ""All locations"" / ""Clear all"" toggle, defaults to the active location, and reloads on change",WIP — Filters
+WIP-FLT-07,,"The location scope never includes an inaccessible location, and an empty selection falls back to the user's active location",WIP — Filters
+WIP-FLT-08,,"Advisor, customer, and asset filters combine with AND, feed the strip and Totals rows, and an empty combination shows the no-data message",WIP — Filters
+WIP-PERS-01,,"The column-selection icon button (tooltip ""Column Selection"") toggles columns, and Total is not offered and cannot be turned off",WIP — Column Selection & Persistence
+WIP-PERS-02,,"Toggling columns never reorders them (Total always last), and the column selection applies to all four tabs at once",WIP — Column Selection & Persistence
+WIP-PERS-03,,"The report remembers the date range, filter selections, location, columns, and active tab per browser and restores them on return",WIP — Column Selection & Persistence
+WIP-PERS-04,,A saved setting that is no longer valid falls back to its default instead of breaking the view,WIP — Column Selection & Persistence
+WIP-EXP-01,,"A three-dot toolbar menu holds ""Download (PDF)"" and ""Download (CSV)""",WIP — Exports
+WIP-EXP-02,,"Downloads contain only the shown columns in screen order, honor all filters, and include the tab's Totals row",WIP — Exports
+WIP-EXP-03,,"Downloaded money and Inv. Hrs values keep the on-screen formats, and CSV values containing commas are double-quoted",WIP — Exports
+WIP-EXP-04,,The Inv. Hrs green/red coloring appears on screen and in the PDF only — the CSV is monochrome,WIP — Exports
+WIP-EXP-05,,Days Open in a download is frozen at the moment the file is generated (and can be one day higher than the screen),WIP — Exports
+WIP-EXP-06,,"The downloaded files are named ""wip-2-report.pdf"" and ""wip-2-report.csv"" — expected current names, do not file",WIP — Exports
+WIP-EXP-07,,"In downloads the asset column is headed ""Unit"" and the location column ""Branch"" — documented limitation, do not file",WIP — Exports
+WIP-EXP-08,,The PDF shows the shop logo at the top when one is set; the CSV never includes a logo,WIP — Exports
+WIP-EXP-09,,"Export notifications: success caption, ""Empty export"" warning, and the failure error message",WIP — Exports
+WIP-VIS-01,,Each tab uses an all-white table with no alternating row shading,WIP — Visual & Accessibility
+WIP-VIS-02,,"The summary strip is a bold band delineated by a top and bottom rule, above the tabs — not separate cards",WIP — Visual & Accessibility
+WIP-VIS-03,,The Total column (header and cells) is bold and stays pinned to the right edge while scrolling the rows sideways,WIP — Visual & Accessibility
+WIP-VIS-04,,"The Totals row stays visible at the bottom while scrolling, the report fills the height, and only the active tab's table body scrolls",WIP — Visual & Accessibility
+WIP-VIS-05,,The WO # link is keyboard-focusable with a visible focus indicator and opens the work order on activation,WIP — Visual & Accessibility
+WIP-VIS-06,,Each summary figure's information icon is reachable by keyboard and exposes its explanation to assistive technology,WIP — Visual & Accessibility
+WIP-VIS-07,,"In dark mode the table, summary strip, WO # link, Inv. Hrs coloring, and two-line asset cell remain legible with adequate contrast",WIP — Visual & Accessibility
+WIP-PERM-01,,A user with the Work In Progress reports permission can open the report and download it — the one permission covers both,WIP — Permissions
+WIP-PERM-02,,A user without the required permission does not see Work In Progress in the reports navigation,WIP — Permissions
+WIP-API-01,,"Nightly snapshot: once per day the system records one row per then-open work order, per calendar date",WIP — API
+WIP-API-02,,"Nightly snapshot: each row captures the work order, status, Earned, Remaining, location, organization, and the snapshot's calendar date",WIP — API
+WIP-API-03,,Nightly snapshot: captured Earned and Remaining use the identical computation as the on-screen report for the capture date,WIP — API
+WIP-API-04,,"Nightly snapshot: the capture uses the report's service-type and open-status conditions and spans every location, with no user location filter",WIP — API
+WIP-API-05,,Nightly snapshot: captured dollar values are stored to the cent,WIP — API
+WIP-API-06,,"Nightly snapshot: a work order with nothing approved is captured with Earned $0.00 and Remaining $0.00, not skipped",WIP — API
+IV-NAV-01,,Inventory Value appears in the reports navigation under the Parts group,IV — Access & Display
+IV-NAV-02,,"Opening the report shows one row per in-stock part at the selected location(s), valued as of the resolved date",IV — Access & Display
+IV-NAV-03,,On a first visit the report defaults to the current calendar month and the user's currently active location,IV — Access & Display
+IV-NAV-04,,"Changing the date, location, Category, Vendor, part search, or sort reloads the rows from the server with the standard loading indicator",IV — Access & Display
+IV-NAV-05,,"The report is server-paginated: one page of rows at a time, and any filter/search/sort change returns to the first page",IV — Access & Display
+IV-NAV-06,,"When no in-stock part exists for the selected location(s) on the resolved date, the no-data message shows instead of rows",IV — Access & Display
+IV-SCOPE-01,,A part appears only when it is not a core charge AND its on-hand quantity is greater than zero,IV — Row Scope
+IV-SCOPE-02,,"A part stocked at two selected locations appears as two rows (one per location), not merged — expected, do not file",IV — Row Scope
+IV-SCOPE-03,,"A core-charge part is never shown, regardless of its quantity",IV — Row Scope
+IV-SCOPE-04,,A part with zero or negative on-hand quantity is never shown,IV — Row Scope
+IV-SCOPE-05,,There is no dead-stock exclusion — long-sitting stock still contributes to the on-hand value,IV — Row Scope
+IV-CALC-01,,Unit Sell uses the part's fixed sell price when one is set,IV — Valuation & Columns
+IV-CALC-02,,"With no fixed sell price, Unit Sell is the shop's pricing-matrix markup on cost for the part's category",IV — Valuation & Columns
+IV-CALC-03,,"With no fixed sell price and no category, Unit Sell equals Unit Cost — the stock is valued at cost with a $0.00 / 0.0% margin",IV — Valuation & Columns
+IV-CALC-04,,Total Sell is quantity × Unit Sell and Total Cost is quantity × Unit Cost,IV — Valuation & Columns
+IV-CALC-05,,"Margin is the extended figure — Total Sell minus Total Cost for the whole on-hand quantity, not a per-unit number",IV — Valuation & Columns
+IV-CALC-06,,"Margin % is Margin as a share of Total Sell to one decimal with a percent sign, showing ""—"" when Total Sell is zero or negative",IV — Valuation & Columns
+IV-COL-01,,"With every column turned on, the columns appear in the fixed left-to-right order with the specified alignment",IV — Valuation & Columns
+IV-COL-02,,"Value formats: Qty on Hand to two decimals with no currency symbol (fractional supported), money values as US-dollar currency",IV — Valuation & Columns
+IV-COL-03,,"The Total Cost column (header and cells) is bold and pinned to the far right, staying fixed while scrolling sideways",IV — Valuation & Columns
+IV-COL-04,,"On first visit the default columns show, with Margin and Total Sell hidden by default but available to turn on",IV — Valuation & Columns
+IV-COL-05,,"Category and Vendor show their names, and an em dash (""—"") when the part has none",IV — Valuation & Columns
+IV-TOT-01,,"The totals row is labeled ""Total"" in the Part # cell, leaves the per-unit and identity cells blank, and pins its bold Total Cost far right",IV — Totals Row
+IV-TOT-02,,"The totals row sums Qty on Hand, Margin, Total Sell, and Total Cost over the FULL filtered set on the server, not just the visible page",IV — Totals Row
+IV-TOT-03,,"The totals-row Margin % is recomputed from the totals (total Margin ÷ total Total Sell), not the average of the row percentages",IV — Totals Row
+IV-TOT-04,,"Applying the Category filter, the Vendor filter, or the part search recomputes the totals on the server to match the filtered set",IV — Totals Row
+IV-TOT-05,,"When no parts qualify, no totals row is shown",IV — Totals Row
+IV-DATE-01,,"The date-range control offers the standard presets plus Custom and does not offer ""All Time"" — expected, do not file",IV — As-of Date & Snapshots
+IV-DATE-02,,"The report values inventory as of the END of the selected range — the date is an as-of anchor, not a created-date filter",IV — As-of Date & Snapshots
+IV-DATE-03,,"When the selected window reaches today and today has not been recorded yet, the report values the current live stock",IV — As-of Date & Snapshots
+IV-DATE-04,,For a past date the report replays the closest recorded day on or before the end of the selected range,IV — As-of Date & Snapshots
+IV-DATE-05,,"An ""As of"" indicator names the day actually shown when it is earlier than the date asked for, and is hidden when they match",IV — As-of Date & Snapshots
+IV-DATE-06,,"A Custom range lets the user pick start and end dates, values as of the picked end date, is capped at today, and reloads on change",IV — As-of Date & Snapshots
+IV-DATE-07,,"When no recorded day exists on or before the end of the selected range, the report shows the no-data message and no totals row",IV — As-of Date & Snapshots
+IV-DATE-08,,"History accrues forward only — a date before the first nightly recording cannot be reconstructed — expected, do not file",IV — As-of Date & Snapshots
+IV-FLT-01,,The Category and Vendor filters are multi-selects that reload the report to only the matching parts,IV — Filters & Part Search
+IV-FLT-02,,"The Category filter, Vendor filter, and part search apply server-side — each change re-queries and returns the first page",IV — Filters & Part Search
+IV-FLT-03,,"With no category or vendor selected all parts show, and an empty part search applies no narrowing",IV — Filters & Part Search
+IV-FLT-04,,"The part search is a page-local toolbar field matching part number OR description, case-insensitively, on the server",IV — Filters & Part Search
+IV-FLT-05,,"Date range, Location, Category, Vendor, and the part search combine with AND",IV — Filters & Part Search
+IV-LOC-01,,"The Location filter (rightmost) is a multi-select of the user's accessible locations with an ""All locations"" / ""Clear all"" toggle, defaulting to the active location",IV — Location Filter
+IV-LOC-02,,"Selecting one, several, or all locations reloads the report scoped to that set",IV — Location Filter
+IV-LOC-03,,"Scoping never includes an inaccessible location, and a selection resolving to none falls back to the user's active location",IV — Location Filter
+IV-LOC-04,,A user with access to only one location still sees the Location filter with a single selectable location,IV — Location Filter
+IV-LOC-05,,"When the selected location(s) hold no in-stock parts on the resolved date, the no-data message shows",IV — Location Filter
+IV-PERS-01,,"The column-selection icon button (tooltip ""Column Selection"") toggles columns, and Total Cost cannot be turned off",IV — Column Selection & Persistence
+IV-PERS-02,,Toggling columns never reorders them — the fixed order is kept with Total Cost always last,IV — Column Selection & Persistence
+IV-PERS-03,,"The report remembers the date range, category, vendor, part search text, location, columns, and sort per browser and restores them on return",IV — Column Selection & Persistence
+IV-PERS-04,,"Restore is defensive: an invalid saved value falls back to its default, and a saved category or vendor no longer present is dropped",IV — Column Selection & Persistence
+IV-SORT-01,,"On first load and after any reload, rows are sorted by Total Cost, highest first, applied by the server",IV — Sorting
+IV-SORT-02,,"Header clicks sort ascending then descending with no third state, re-fetching from the server and returning the first page",IV — Sorting
+IV-SORT-03,,"Money and numeric columns sort by value; text columns sort as text, case-insensitively",IV — Sorting
+IV-SORT-04,,Sorting reorders only the data rows — the totals row stays at the bottom — and the chosen sort is remembered per browser,IV — Sorting
+IV-EXP-01,,"A three-dot toolbar menu holds ""Download (PDF)"" and ""Download (CSV)""",IV — Exports
+IV-EXP-02,,"Downloads contain the shown columns in screen order (Total Cost last), honor all filters and the sort, and include a ""Totals"" row matching the full-set totals",IV — Exports
+IV-EXP-03,,"Export number formats: two-decimal money, one-decimal Margin % (""—"" when undefined); CSV money as plain numbers, PDF with on-screen currency formatting",IV — Exports
+IV-EXP-04,,"The PDF header shows the report name, organization, selected period, and an ""as of"" line; the shop logo shows when set and the CSV never has one",IV — Exports
+IV-EXP-05,,"The downloaded files are named ""inventory-value-report.pdf"" and ""inventory-value-report.csv""",IV — Exports
+IV-EXP-06,,Exports are generated server-side over the full filtered set — rows beyond the loaded page are included,IV — Exports
+IV-EXP-07,,An over-cap filtered set produces no file and shows the too-large-to-export message (exact cap value pending owner confirmation),IV — Exports
+IV-EXP-08,,"A successful download shows the format-specific success notification, verbatim",IV — Exports
+IV-EXP-09,,"A failed download shows the format-specific error notification, verbatim",IV — Exports
+IV-VIS-01,,The report uses an all-white table with no alternating row shading on the standard soft blue-grey report backdrop,IV — Visual & Accessibility
+IV-VIS-02,,"Toolbar layout: three-dot menu leftmost in the action cluster then Column Selection; filters run date range, part search, Category, Vendor, Location",IV — Visual & Accessibility
+IV-VIS-03,,The totals row stays visible at the bottom while the user scrolls the rows,IV — Visual & Accessibility
+IV-VIS-04,,"Long Description, Category, and Vendor values truncate with an ellipsis and show the full value on hover; the Part # is never truncated",IV — Visual & Accessibility
+IV-VIS-05,,"In dark mode the page background, toolbar, cells, and the ""—"" glyph remain legible",IV — Visual & Accessibility
+IV-VIS-06,,Each sortable column header exposes its sort state to assistive technology and shows the active direction visually,IV — Visual & Accessibility
+IV-VIS-07,,The icon-only controls (three-dot download button and Column Selection button) each carry an accessible name,IV — Visual & Accessibility
+IV-PERM-01,,A user with the existing inventory-reports permission can open the report — no new permission is added,IV — Permissions
+IV-PERM-02,,A user without the required permission does not see Inventory Value in the reports navigation,IV — Permissions
+IV-API-01,,"Nightly snapshot: once per day, for every location, one row per in-stock non-core part is recorded with its identity, quantity, and values to the cent",IV — API
+IV-API-02,,"Nightly snapshot: the captured scope and valuation are identical to the live report, so a recorded day equals what the live report showed that day",IV — API
+IV-API-03,,"Nightly snapshot: re-running the capture for a date replaces that date's rows — idempotent, no duplicates",IV — API
+IV-API-04,,Nightly snapshot: history accrues forward only — a re-run records current truth under the current date and cannot reconstruct a past date,IV — API
+IV-API-05,,Snapshot retention: daily captures are kept for 0–13 months; older history is reduced to the last capture of each calendar month,IV — API
+IV-API-06,,"Thinned history is served unchanged: the closest-recorded-day rule bridges retention gaps, the ""As of"" indicator names the day shown, and a fully-pruned range shows the empty state",IV — API
