@@ -1,3 +1,15 @@
+> # ✅ RESOLVED — 2026-07-22
+> This block is **no longer blocked.** All three tickets were subsequently ingested from
+> local capture `/tmp/fd-tickets/*` (user-exported; no Jira login/network). See:
+> - `requirements-SV-8479.md` · `requirements-SV-8456.md` · `requirements-SV-8480.md`
+> - `INGEST-SUMMARY-2026-07-22.md` (consolidated summary of all three + process plan)
+>
+> The attempt log below is kept as a breadcrumb of the access methods tried and the
+> reason direct Jira fetch failed (Atlassian-SSO wall; supplied cookies authenticate
+> ShopView **staging** only, not atlassian.net).
+
+---
+
 # Fees & Discounts — Jira Ingest Attempt: SV-8479 / SV-8456 / SV-8480
 
 - **Project:** Fees & Discounts V1 (ShopView)
