@@ -11,14 +11,14 @@
 > **References (`refs`) field** with the driving ticket/spec anchor per Standing Rule 20
 > when the Epic/Jira key is known (OQ-2 — ask the user at VIU).
 >
-> **Totals: 8 update_case · 2 add_case · 1 delete_case.**
+> **Totals: 7 update_case · 2 add_case · 1 delete_case.**
 > After executing: re-GET each edited case to confirm MATCH, then re-merge the 2 new
 > C-ids into `build/schedule/testrail-id-map.csv` (the `gen_import.py` rerun blanks the
 > C-id column — always re-merge C29925–C30090 + the 2 new C-ids after any rerun).
 
 ---
 
-## A. update_case — 8 cases (wording/expected changed; statuses unchanged, all VIU-Pending)
+## A. update_case — 7 cases (tester-facing wording/expected changed; statuses unchanged, all VIU-Pending)
 
 | # | SCH- | Case ID | Field(s) changed | Before → After (summary) | Driver |
 |---|---|---|---|---|---|
@@ -29,7 +29,12 @@
 | 5 | SCH-CONF-04 | **C30026** | Title, Expected | after "a fixed working-day end" → past the **tech's CONFIGURED end** (same hierarchy) | Branko Q2 |
 | 6 | SCH-VIEW-04 | **C30045** | Title, Steps, Expected | toggle "VIN" gates block+tooltip → toggle **"VIN Number"** gates the **BLOCK line only**; **tooltip + modal ALWAYS show VIN** (resolves §4.13-vs-§9) | Design §6 + Branko Q3 |
 | 7 | SCH-TIP-01 | **C30034** | Preconditions, Expected | tooltip VIN required toggle ON → **tooltip shows VIN unconditionally when present** (toggle-independent) | Design §6 |
-| 8 | SCH-CONF-01 | **C30023** | Expected/Notes (events caveat) | add: **events do NOT participate in conflict detection** (Branko Q1, may change) | Branko Q1 + design §5 |
+
+## A.1 Notes-only — NO TestRail write required (local metadata only)
+
+| SCH- | Case ID | Change | Why NO update_case |
+|---|---|---|---|
+| SCH-CONF-01 | **C30023** | `notes` QA-metadata caveat added: **events do NOT participate in double-booked/overlap conflict detection** (Branko Q1 2026-07-22, may change) | The change lives ONLY in the `notes` (QA-side metadata) field. The tester-facing Title/Preconditions/Steps/**Expected** are UNCHANGED (verified in `cases/cases-D-events-conflicts-capacity-tooltips.json`: Expected still lists only the standard Double-booked assertions, no events caveat). Per this manifest's no-op rule and the diff's §3B (status-notes) vs §3A (expected-edits) classification, notes-only changes are NOT emitted to TestRail. The primary events-not-counted assertion ships as a NEW case, SCH-EVT-08 (item B2). |
 
 > **Notes-only / metadata (OPTIONAL — bundle if desired, not required):** the
 > events-excluded may-change caveat + design-pinned label folds also touched the
@@ -37,7 +42,8 @@
 > SCH-CAP-01/02/03/04 (C30030/31/32/33), SCH-CONF-05 (C30027) and ~44 design-pinned
 > cases. **These carry NO tester-facing (Title/Preconditions/Steps/Expected) change**,
 > so **no update_case is required** for them — the reader-facing text is unchanged.
-> The 8 rows above are the only cases whose emitted fields changed. (SCH-EVT-08 carries
+> The 7 rows in section A above are the only cases whose emitted fields changed
+> (SCH-CONF-01/C30023 is notes-only — see §A.1). (SCH-EVT-08 carries
 > the primary events-not-counted assertion as a NEW case — item B2.)
 
 ## B. add_case — 2 NEW cases (currently blank C-id in the id-map)
@@ -61,7 +67,7 @@
 ---
 
 ## D. Post-execution checklist
-1. update_case ×8 → re-GET each → confirm live == local (MATCH).
+1. update_case ×7 → re-GET each → confirm live == local (MATCH). (SCH-CONF-01/C30023 is notes-only — NO write; see §A.1.)
 2. add_case ×2 → record returned C-ids → write into `testrail-id-map.csv`
    (SCH-PERM-12, SCH-EVT-08 rows) → rerun `gen_import.py` → **re-merge ALL C-ids**
    (C29925–C30090 + the 2 new) because the rerun blanks the id-map C-id column.
