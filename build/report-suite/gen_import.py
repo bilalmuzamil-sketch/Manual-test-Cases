@@ -54,6 +54,24 @@ Outputs (canonical location + naming, matching the other projects):
   testrail-import/report-suite-v1-testrail-import.csv
   testrail-import/report-suite-v1-testrail-import.xlsx
   build/report-suite/testrail-id-map.csv
+
+PER-REPORT SPLIT FILES (2026-07-22, user's per-folder import workflow): the
+user manually created TestRail group 4281 "Reports Suite" with six EMPTY
+per-report subsections (4282 Sales By Customer Report / 4283 Sales By
+Representative Report / 4284 Parts Velocity Report / 4285 Technician
+Utilization — Product Specification / 4286 Work In Progress — Product
+Specification / 4287 Inventory Value — Product Specification) and imports ONE
+report at a time targeting each folder; the CSV Section column then creates
+the "<PREFIX> — <area>" leaf sections inside that folder. So, IN ADDITION to
+the unchanged unified files, this generator ALSO emits six per-report files:
+  testrail-import/report-suite-v1-{sbc,sbr,pv,tu,wip,iv}-testrail-import.csv
+  testrail-import/report-suite-v1-{sbc,sbr,pv,tu,wip,iv}-testrail-import.xlsx
+Each contains ONLY that report's rows in the IDENTICAL canonical format:
+same byte-identical header (8 named cols + 2 blanks), same CRLF row
+terminator, same per-report row ordering as the unified file, every data row
+byte-identical to its unified-file counterpart (verified by the sanity check:
+concatenation of the six, minus repeated headers, == the unified 515 rows).
+Row counts: SBC 99 / SBR 127 / PV 70 / TU 59 / WIP 83 / IV 77 = 515.
 """
 import csv, json, glob, os, re
 from collections import Counter
@@ -77,6 +95,16 @@ HEADER = [
 
 # Deterministic report order (user-prescribed suite order).
 REPORT_ORDER = ["SBC", "SBR", "PV", "TU", "WIP", "IV"]
+
+# Per-report split-file naming + XLSX sheet titles (report prefix -> slug).
+REPORT_SLUG = {"SBC": "sbc", "SBR": "sbr", "PV": "pv",
+               "TU": "tu", "WIP": "wip", "IV": "iv"}
+REPORT_SHEET = {"SBC": "Sales By Customer",
+                "SBR": "Sales By Representative",
+                "PV": "Parts Velocity",
+                "TU": "Technician Utilization",
+                "WIP": "Work In Progress",
+                "IV": "Inventory Value"}
 
 # Internal case-id pattern (all six report prefixes).
 IDPAT = r"(?:SBC|SBR|PV|TU|WIP|IV)-[A-Z]+-\d+"
@@ -112,6 +140,54 @@ def load_cases():
     for f in sorted(glob.glob(os.path.join(CASES_DIR, "cases-*.json"))):
         cases += json.load(open(f))
     return cases
+
+
+def write_csv(path, rows):
+    """Canonical-format CSV: byte-identical header, QUOTE_MINIMAL, CRLF."""
+    with open(path, "w", newline="") as f:
+        w = csv.writer(f, quoting=csv.QUOTE_MINIMAL, lineterminator="\r\n")
+        w.writerow(HEADER)
+        w.writerows(rows)
+
+
+def write_xlsx(path, sheet_title, rows):
+    """Canonical-format XLSX twin (same styling as the unified file).
+    Returns False if openpyxl is unavailable."""
+    try:
+        from openpyxl import Workbook
+        from openpyxl.styles import Font, Alignment, PatternFill
+        from openpyxl.utils import get_column_letter
+    except ImportError:
+        return False
+
+    wb = Workbook()
+    ws = wb.active
+    ws.title = sheet_title
+    ws.append(HEADER)
+    for r in rows:
+        ws.append(r)
+
+    hdr_font = Font(bold=True, color="FFFFFF")
+    hdr_fill = PatternFill("solid", fgColor="305496")
+    for col in range(1, len(HEADER) + 1):
+        cell = ws.cell(row=1, column=col)
+        cell.font = hdr_font
+        cell.fill = hdr_fill
+        cell.alignment = Alignment(vertical="center", horizontal="left")
+
+    widths = {"Title": 50, "Section": 40, "Type": 12, "Priority": 10,
+              "Preconditions": 60, "Steps": 60, "Expected Result": 60,
+              "References": 34}
+    for i, name in enumerate(HEADER, start=1):
+        ws.column_dimensions[get_column_letter(i)].width = widths.get(name, 12)
+
+    wrap = Alignment(wrap_text=True, vertical="top")
+    for r in range(2, len(rows) + 2):
+        for cidx in range(1, len(HEADER) + 1):
+            ws.cell(row=r, column=cidx).alignment = wrap
+    ws.freeze_panes = "A2"
+    wb.save(path)
+    return True
 
 
 def main():
@@ -156,11 +232,18 @@ def main():
             "",
         ])
 
-    with open(OUT_CSV, "w", newline="") as f:
-        w = csv.writer(f, quoting=csv.QUOTE_MINIMAL, lineterminator="\r\n")
-        w.writerow(HEADER)
-        w.writerows(rows)
+    write_csv(OUT_CSV, rows)
     print("Wrote CSV:", OUT_CSV, "rows(data):", len(rows))
+
+    # --- per-report split files (same order as the unified file) ---
+    per_report_rows = {p: [] for p in REPORT_ORDER}
+    for iid, r in zip(ids, rows):
+        per_report_rows[iid.split("-")[0]].append(r)
+    for p in REPORT_ORDER:
+        path = os.path.join(ROOT, "testrail-import",
+                            "report-suite-v1-%s-testrail-import.csv" % REPORT_SLUG[p])
+        write_csv(path, per_report_rows[p])
+        print("Wrote CSV:", path, "rows(data):", len(per_report_rows[p]))
 
     with open(OUT_IDMAP, "w", newline="") as f:
         w = csv.writer(f)
@@ -188,43 +271,16 @@ def main():
                if not (r[4].strip() and r[5].strip() and r[6].strip())]
     print("Rows missing Preconditions/Steps/Expected:", empties if empties else "NONE")
 
-    # --- xlsx review copy ---
-    try:
-        from openpyxl import Workbook
-        from openpyxl.styles import Font, Alignment, PatternFill
-        from openpyxl.utils import get_column_letter
-    except ImportError:
+    # --- xlsx review copies (unified + six per-report twins) ---
+    if not write_xlsx(OUT_XLSX, "Report Suite V1", rows):
         print("openpyxl not available - skipped XLSX.")
         return
-
-    wb = Workbook()
-    ws = wb.active
-    ws.title = "Report Suite V1"
-    ws.append(HEADER)
-    for r in rows:
-        ws.append(r)
-
-    hdr_font = Font(bold=True, color="FFFFFF")
-    hdr_fill = PatternFill("solid", fgColor="305496")
-    for col in range(1, len(HEADER) + 1):
-        cell = ws.cell(row=1, column=col)
-        cell.font = hdr_font
-        cell.fill = hdr_fill
-        cell.alignment = Alignment(vertical="center", horizontal="left")
-
-    widths = {"Title": 50, "Section": 40, "Type": 12, "Priority": 10,
-              "Preconditions": 60, "Steps": 60, "Expected Result": 60,
-              "References": 34}
-    for i, name in enumerate(HEADER, start=1):
-        ws.column_dimensions[get_column_letter(i)].width = widths.get(name, 12)
-
-    wrap = Alignment(wrap_text=True, vertical="top")
-    for r in range(2, len(rows) + 2):
-        for cidx in range(1, len(HEADER) + 1):
-            ws.cell(row=r, column=cidx).alignment = wrap
-    ws.freeze_panes = "A2"
-    wb.save(OUT_XLSX)
     print("Wrote XLSX:", OUT_XLSX)
+    for p in REPORT_ORDER:
+        path = os.path.join(ROOT, "testrail-import",
+                            "report-suite-v1-%s-testrail-import.xlsx" % REPORT_SLUG[p])
+        write_xlsx(path, REPORT_SHEET[p], per_report_rows[p])
+        print("Wrote XLSX:", path)
 
 
 if __name__ == "__main__":

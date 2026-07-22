@@ -1,0 +1,406 @@
+Title,Section,Type,Priority,Preconditions,Steps,Expected Result,References,,
+Inventory Value appears in the reports navigation under the Parts group,IV — Access & Display,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
+2. Your role has the existing inventory-reports permission.","1. Open the reports navigation.
+2. Look inside the Parts group of reports.
+3. Click the ""Inventory Value"" entry.","1. The reports navigation lists a report labeled ""Inventory Value"" under the Parts group.
+2. Clicking it opens the Inventory Value report.",specs/inventory-value.md Story 1 S1-R1,,
+"Opening the report shows one row per in-stock part at the selected location(s), valued as of the resolved date",IV — Access & Display,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
+2. Several ZZAUTOTEST parts with positive on-hand quantity exist at your active location.","1. Open the Inventory Value report.
+2. Compare the rows shown to the in-stock parts at the selected location(s).
+3. Note the date range in the toolbar and which date the values represent.","1. The report shows one row for each in-stock part at the selected location(s).
+2. The values are valued as of the resolved date (the current stock for a range reaching today, or the closest recorded nightly snapshot for an earlier date — see the IV — As-of Date & Snapshots cases).",specs/inventory-value.md Story 1 S1-R2; S1-R6,,
+On a first visit the report defaults to the current calendar month and the user's currently active location,IV — Access & Display,Functional,High,1. You are signed in to the ShopView App on a desktop browser that has never saved settings for this report (fresh browser profile or cleared site data).,"1. Open the Inventory Value report.
+2. Read the date-range control's value.
+3. Read the Location filter's selection.","1. The date range defaults to the current calendar month.
+2. The location defaults to the user's currently active location.",specs/inventory-value.md Story 1 S1-R3; Story 7 S7-R2,,
+"Changing the date, location, Category, Vendor, part search, or sort reloads the rows from the server with the standard loading indicator",IV — Access & Display,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
+2. The Inventory Value report is open with rows loaded.","1. Change the date range and watch the data area.
+2. Change the location selection, then the Category filter, then the Vendor filter.
+3. Type in the part search, then click a column header to change the sort — watching the data area each time.","1. Each change — date range, location, Category, Vendor, part search, sort — reloads the report's rows from the server.
+2. While loading, the data area shows the standard reports loading indicator.
+3. Existing rows are replaced only when the new data returns.",specs/inventory-value.md Story 1 S1-R4; S1-R5; S1-R7,,
+"The report is server-paginated: one page of rows at a time, and any filter/search/sort change returns to the first page",IV — Access & Display,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
+2. The selected location(s) hold more in-stock parts than fit on one page (seed ZZAUTOTEST parts if needed).","1. Open the Inventory Value report and find the pagination control.
+2. Move to page 2 (and further) and watch the rows.
+3. From a later page, change a server-side filter (for example select a Category), then check which page is shown.
+4. Repeat from a later page with a part search and with a sort change.","1. The server returns one page of rows at a time; the user moves through pages with the reports suite's standard pagination control.
+2. Changing any server-side filter (Date, Location, Category, Vendor), the part search, or the sort returns the FIRST page of the new result set.",specs/inventory-value.md Story 1 S1-R8; §2 Scale and data model,,
+"When no in-stock part exists for the selected location(s) on the resolved date, the no-data message shows instead of rows",IV — Access & Display,Negative,High,"1. You are signed in to the ShopView App on a desktop browser.
+2. A location you can access holds no in-stock parts (or the filters can be set so nothing qualifies).","1. Scope the report to the empty location (or filter so nothing qualifies).
+2. Read the data area.","1. The report shows the standard reports no-data message ""Empty bays, endless possibilities. Get Going!"" instead of rows.
+2. No totals row is shown.",specs/inventory-value.md Story 1 S1-N2; Story 12; §7 User Feedback Summary,,
+A part appears only when it is not a core charge AND its on-hand quantity is greater than zero,IV — Row Scope,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
+2. ZZAUTOTEST parts exist at your active location: a normal part with positive on-hand quantity, and (for the negative side) a core-charge part and a zero-quantity part.","1. Open the Inventory Value report scoped to the location.
+2. Look for the normal in-stock part.
+3. Look for the core-charge part and the zero-quantity part.","1. The normal, positive-quantity, non-core part appears as one row.
+2. Only parts meeting BOTH conditions — not a core charge, and on-hand quantity greater than zero — are listed.",specs/inventory-value.md Story 2 S2-R1; S2-R2; §3 Key Decisions,,
+"A part stocked at two selected locations appears as two rows (one per location), not merged — expected, do not file",IV — Row Scope,Functional,High,"1. You are signed in to the ShopView App on a desktop browser as a user with access to at least two locations.
+2. The same ZZAUTOTEST part is in stock (positive quantity) at two of those locations.","1. Open the Inventory Value report and select both locations in the Location filter.
+2. Search for the part and count its rows.","1. The part appears twice — one row per location, each with that location's own quantity and values.
+2. The rows are NOT merged into one combined row; this is the documented v1 behavior.",specs/inventory-value.md Story 2 S2-R3; §2 Known Limitations (v1),,
+"A core-charge part is never shown, regardless of its quantity",IV — Row Scope,Negative,High,"1. You are signed in to the ShopView App on a desktop browser.
+2. A core-charge part with a positive on-hand quantity exists at the selected location.","1. Open the Inventory Value report scoped to that location.
+2. Search for the core-charge part by its part number.
+3. Check the totals row for its value.","1. The core-charge part is not listed, even though its quantity is positive.
+2. Its value is not counted in the totals row.",specs/inventory-value.md Story 2 S2-N1,,
+A part with zero or negative on-hand quantity is never shown,IV — Row Scope,Negative,High,"1. You are signed in to the ShopView App on a desktop browser.
+2. A part with exactly zero on-hand quantity exists at the selected location, and (if producible) one with a negative on-hand quantity.","1. Open the Inventory Value report scoped to that location.
+2. Search for the zero-quantity part by its part number.
+3. Search for the negative-quantity part if one exists.","1. The zero-quantity part is not listed.
+2. The negative-quantity part is not listed either — only quantities greater than zero are valued.",specs/inventory-value.md Story 2 S2-N2,,
+There is no dead-stock exclusion — long-sitting stock still contributes to the on-hand value,IV — Row Scope,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
+2. A part with positive, non-core stock exists that has had no movement for a long time (or the oldest-stocked part at the location is known).","1. Open the Inventory Value report scoped to the location.
+2. Search for the long-sitting part.","1. The long-sitting part appears and its value is counted — every part currently holding positive, non-core stock contributes to the on-hand value, however long it has sat.",specs/inventory-value.md Story 2 context note (no dead-stock exclusion),,
+Unit Sell uses the part's fixed sell price when one is set,IV — Valuation & Columns,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
+2. A ZZAUTOTEST in-stock part exists with a known unit cost, a known FIXED sell price, and a category whose pricing-matrix markup would give a DIFFERENT figure.","1. Open the Inventory Value report and find the part's row.
+2. Read its Unit Sell value.
+3. Compare it to the part's fixed sell price and to the figure the category markup would have produced.","1. Unit Sell equals the part's fixed sell price.
+2. The pricing-matrix markup is NOT applied when a fixed sell price is set — the fixed price wins.",specs/inventory-value.md Story 3 S3-R5 (fixed-price branch); §3 Key Decisions (unit sell resolved like the parts list),,
+"With no fixed sell price, Unit Sell is the shop's pricing-matrix markup on cost for the part's category",IV — Valuation & Columns,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
+2. A ZZAUTOTEST in-stock part exists with a known unit cost, NO fixed sell price, and a category covered by the shop's pricing matrix with a known markup.","1. Open the Inventory Value report and find the part's row.
+2. Read its Unit Sell value.
+3. Compare it to the pricing-matrix markup applied to the part's cost for its category.",1. Unit Sell equals the shop's pricing-matrix markup on cost for that part's category (the same way the parts list resolves it).,specs/inventory-value.md Story 3 S3-R5 (matrix branch); §5 Assumptions,,
+"With no fixed sell price and no category, Unit Sell equals Unit Cost — the stock is valued at cost with a $0.00 / 0.0% margin",IV — Valuation & Columns,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
+2. A ZZAUTOTEST in-stock part exists with a known unit cost, NO fixed sell price, and NO category.
+3. The Margin and Total Sell columns are turned on.","1. Open the Inventory Value report and find the part's row.
+2. Read its Unit Sell and compare to its Unit Cost.
+3. Read its Margin and Margin % cells.","1. A part with no category takes no markup, so its Unit Sell equals its Unit Cost.
+2. Such a part shows a Margin of $0.00 and a Margin % of 0.0% — the stock is valued at cost.",specs/inventory-value.md Story 3 S3-R5 (no-category fallback) + context note; §5 Assumptions,,
+Total Sell is quantity × Unit Sell and Total Cost is quantity × Unit Cost,IV — Valuation & Columns,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
+2. A ZZAUTOTEST in-stock part exists with a known on-hand quantity (include a fractional quantity if possible), unit cost, and unit sell.
+3. The Total Sell column is turned on.","1. Open the Inventory Value report and find the part's row.
+2. Multiply the on-hand quantity by Unit Sell and compare to Total Sell.
+3. Multiply the on-hand quantity by Unit Cost and compare to Total Cost.","1. Total Sell equals the part's on-hand quantity × Unit Sell, shown as US-dollar currency.
+2. Total Cost equals the part's on-hand quantity × Unit Cost, shown as US-dollar currency.",specs/inventory-value.md Story 3 S3-R6; S3-R7; §4 Terminology,,
+"Margin is the extended figure — Total Sell minus Total Cost for the whole on-hand quantity, not a per-unit number",IV — Valuation & Columns,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
+2. A ZZAUTOTEST in-stock part exists with a quantity greater than 1 and different unit cost and unit sell values.
+3. The Margin and Total Sell columns are turned on.","1. Open the Inventory Value report and find the part's row.
+2. Subtract Total Cost from Total Sell and compare to the Margin cell.
+3. Also compute the per-unit difference (Unit Sell − Unit Cost) and confirm Margin is NOT that per-unit figure.","1. Margin equals Total Sell − Total Cost for the part's whole on-hand quantity, shown as US-dollar currency.
+2. Margin is the extended (total) margin, not the per-unit difference.",specs/inventory-value.md Story 3 S3-R8; §3 Key Decisions (extended margin); §4 Terminology,,
+"Margin % is Margin as a share of Total Sell to one decimal with a percent sign, showing ""—"" when Total Sell is zero or negative",IV — Valuation & Columns,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
+2. The report shows: a part with a normal positive margin, a part whose Margin % computes negative (unit sell below unit cost), and — if producible — a part whose Total Sell is zero.","1. Read the normal part's Margin % and check it against Margin ÷ Total Sell × 100.
+2. Read the negative-margin part's Margin %.
+3. Read the zero-Total-Sell part's Margin % if one exists.","1. Margin % shows Margin as a percentage of Total Sell, to one decimal place followed by a percent sign — for example ""39.7%"".
+2. A Margin % that computes to a real number, including a negative one, shows its signed value.
+3. Margin % shows ""—"" when Total Sell is zero or negative (the percentage is undefined).",specs/inventory-value.md Story 3 S3-R9; S3-E3,,
+"With every column turned on, the columns appear in the fixed left-to-right order with the specified alignment",IV — Valuation & Columns,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
+2. The Inventory Value report is open with rows loaded.
+3. Every column (including Margin and Total Sell) is turned on in the column-selection control.","1. Read the column headers from left to right.
+2. Look at how the values in each column are aligned.","1. The columns appear in this order: Part #, Description, Category, Vendor, Qty on Hand, Unit Cost, Unit Sell, Margin, Margin %, Total Sell, Total Cost.
+2. Part #, Description, Category, and Vendor are left-aligned.
+3. Every other column is right-aligned.",specs/inventory-value.md Story 3 S3-R1; S3-R2,,
+"Value formats: Qty on Hand to two decimals with no currency symbol (fractional supported), money values as US-dollar currency",IV — Valuation & Columns,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
+2. The report shows a part with a fractional on-hand quantity (for example 2.50), one with values over $1,000, and (if producible) one with a negative money value.","1. Read the Qty on Hand cell of the fractional-quantity part.
+2. Read a money value over one thousand dollars (Unit Cost, Unit Sell, Total Sell, or Total Cost).
+3. Read a genuine zero money value and a negative one if present.","1. Qty on Hand shows the on-hand quantity to two decimal places, with no currency symbol; fractional quantities display correctly.
+2. Unit Cost and Unit Sell show per-unit prices as US-dollar currency.
+3. Money values show a leading ""$"", two decimal places, and thousands separators (for example ""$1,234.56""); a negative value shows a leading minus before the ""$"" (""-$1,234.56""); a genuine zero shows ""$0.00"".",specs/inventory-value.md Story 3 S3-R3; S3-R4; S3-R5 (display); S3-R10; §4 Terminology (On-hand quantity),,
+"The Total Cost column (header and cells) is bold and pinned to the far right, staying fixed while scrolling sideways",IV — Valuation & Columns,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
+2. Enough columns are turned on that the table scrolls horizontally.","1. Look at the Total Cost column header and its cells.
+2. Scroll the rows sideways and watch the Total Cost column.","1. The Total Cost column is pinned to the far right of the row and shown in bold — it is the report's headline column.
+2. The Total Cost column header is bold and pinned, matching its cells.
+3. It stays fixed to the right edge while the other columns scroll underneath.",specs/inventory-value.md Story 3 S3-R11; Story 12 S12-R4; §3 Key Decisions,,
+"On first visit the default columns show, with Margin and Total Sell hidden by default but available to turn on",IV — Valuation & Columns,Functional,High,1. You are signed in to the ShopView App on a desktop browser that has never saved settings for this report (fresh visit).,"1. Open the Inventory Value report and read the visible column headers.
+2. Open the column-selection control and read which columns are on and off.
+3. Turn Margin and Total Sell on and check they appear.","1. On first visit, the visible columns are: Part #, Description, Category, Vendor, Qty on Hand, Unit Cost, Unit Sell, Margin %, and Total Cost.
+2. The Margin and Total Sell columns are hidden by default.
+3. Both can be turned on from the column-selection control and then appear in their fixed positions.",specs/inventory-value.md Story 3 S3-R12; S3-R13; Story 8 S8-R3,,
+"Category and Vendor show their names, and an em dash (""—"") when the part has none",IV — Valuation & Columns,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
+2. The report shows a part with a category and a vendor, a part with no category, and a part with no vendor.","1. Read the Category and Vendor cells of the fully-populated part.
+2. Read the Category cell of the part with no category.
+3. Read the Vendor cell of the part with no vendor.","1. Category shows the part's category name; Vendor shows the part's vendor name.
+2. A part with no category shows an em dash (""—"") in its Category cell.
+3. A part with no vendor shows an em dash (""—"") in its Vendor cell.",specs/inventory-value.md Story 3 S3-R14; S3-E1; S3-E2,,
+"The totals row is labeled ""Total"" in the Part # cell, leaves the per-unit and identity cells blank, and pins its bold Total Cost far right",IV — Totals Row,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
+2. The Inventory Value report is open with rows loaded and all columns turned on.","1. Look at the row at the bottom of the report.
+2. Read its Part # cell, its Description/Category/Vendor cells, and its Unit Cost/Unit Sell cells.
+3. Look at its Total Cost cell and compare the number formats to the data rows.","1. A totals row is shown at the bottom, with the literal label ""Total"" in the Part # column's cell.
+2. The Description, Category, and Vendor cells are blank; the Unit Cost and Unit Sell cells are blank (a per-unit price has no meaningful sum).
+3. The totals-row Total Cost cell is pinned far right and bold, matching the column, and the row uses the same number formats as the data rows.",specs/inventory-value.md Story 4 S4-R1; S4-R4; S4-R5; S4-R6; S4-R7,,
+"The totals row sums Qty on Hand, Margin, Total Sell, and Total Cost over the FULL filtered set on the server, not just the visible page",IV — Totals Row,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
+2. The current filtered set spans more than one page (more rows than one page shows).
+3. The Margin and Total Sell columns are turned on.","1. Note the totals row's Qty on Hand, Margin, Total Sell, and Total Cost on page 1.
+2. Move to page 2 and read the totals row again.
+3. Cross-check the Total Cost total against a known seeded subset (filter down to a handful of ZZAUTOTEST parts whose values you can sum by hand).","1. The totals row sums Qty on Hand, Margin, Total Sell, and Total Cost across the FULL filtered result set — every qualifying row for the current Date, Location, Category, Vendor, and part-search selection, not only the rows on the visible page.
+2. The totals are identical on every page (they do not change as you page).
+3. The hand-summed subset matches the server-computed totals to the cent.",specs/inventory-value.md Story 4 S4-R2; §2 Scale and data model; §4 Terminology (Filtered set),,
+"The totals-row Margin % is recomputed from the totals (total Margin ÷ total Total Sell), not the average of the row percentages",IV — Totals Row,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
+2. The filtered set contains parts with clearly different Margin % values (so a recomputed figure differs from a simple average).
+3. The Margin and Total Sell columns are turned on.","1. Read the totals row's Margin, Total Sell, and Margin %.
+2. Compute total Margin ÷ total Total Sell × 100 and compare to the shown Margin %.
+3. Also compute the plain average of the row Margin % values and confirm the shown figure is NOT that.","1. The totals-row Margin % equals total Margin ÷ total Total Sell × 100 (to one decimal place with a percent sign).
+2. It is NOT the average of the row percentages.
+3. It shows ""—"" when the total Total Sell is zero or negative.",specs/inventory-value.md Story 4 S4-R3,,
+"Applying the Category filter, the Vendor filter, or the part search recomputes the totals on the server to match the filtered set",IV — Totals Row,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
+2. The report shows parts across at least two categories and two vendors.","1. Note the totals row, then select one Category and read the totals row again.
+2. Clear it, select one Vendor, and read the totals row.
+3. Clear it, type a part search that matches a subset, and read the totals row.
+4. If the filtered set spans pages, check the totals from a later page too.","1. After each change, the totals row recomputes on the server over the full filtered set to match the filtered result.
+2. The recomputed totals are independent of which page is currently shown.",specs/inventory-value.md Story 4 S4-R8; Story 6 S6-R6,,
+"When no parts qualify, no totals row is shown",IV — Totals Row,Negative,Medium,"1. You are signed in to the ShopView App on a desktop browser.
+2. The filters can be set so that no part qualifies (for example, a part search matching nothing).","1. Apply a filter or search that leaves no qualifying part.
+2. Look at the bottom of the data area.",1. The no-data message shows instead of rows and NO totals row is shown.,specs/inventory-value.md Story 4 S4-N1; Story 1 S1-N2,,
+"The date-range control offers the standard presets plus Custom and does not offer ""All Time"" — expected, do not file",IV — As-of Date & Snapshots,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
+2. The Inventory Value report is open.","1. Open the date-range control in the toolbar.
+2. Read every option offered.","1. The control offers the standard presets: ""Today"", ""Yesterday"", ""This Week"", ""Last Week"", ""This Month"", ""Last Month"", ""This Year"", ""Last Year"", ""This Quarter"", ""Last Quarter"", and ""Custom"".
+2. ""All Time"" is NOT offered — because the report is valued as of a single date, an All-Time option would be meaningless; its absence is the documented v1 behavior.",specs/inventory-value.md Story 5 S5-R1; §2 Known Limitations (v1),,
+"The report values inventory as of the END of the selected range — the date is an as-of anchor, not a created-date filter",IV — As-of Date & Snapshots,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
+2. Nightly snapshots exist for past dates at the selected location (recording has been running).
+3. A part exists that was ALREADY in stock before the selected range started.","1. Select a past range (for example ""Last Month"").
+2. Check which date the displayed values represent.
+3. Look for the part that was stocked before the range started.","1. The report values inventory as of the END of the selected range.
+2. The date control is an ""as of"" anchor, not a created-date filter — narrowing it does not select ""parts added in that range""; it shows the whole shelf as it stood on that date, so the part stocked before the range still appears.",specs/inventory-value.md Story 5 S5-R2 (+ context note),,
+"When the selected window reaches today and today has not been recorded yet, the report values the current live stock",IV — As-of Date & Snapshots,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
+2. Today's nightly snapshot has not yet been recorded (the normal daytime state).
+3. A ZZAUTOTEST part's on-hand quantity was changed TODAY (after last night's capture).","1. Select a range that reaches today (for example ""This Month"" or ""Today"").
+2. Find the part whose quantity changed today and read its row.","1. The report values the current live stock — the values represent today.
+2. The part's row reflects today's changed quantity (not yesterday's snapshot), proving the live fallback is in use.",specs/inventory-value.md Story 5 S5-R3; §3 Key Decisions (live fallback for today),,
+For a past date the report replays the closest recorded day on or before the end of the selected range,IV — As-of Date & Snapshots,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
+2. Nightly snapshots exist for past dates, and a ZZAUTOTEST part's quantity is known to have DIFFERED on a past recorded day from its quantity today.","1. Select a Custom range ending on the past recorded day.
+2. Find the part and read its quantity and values.
+3. Compare them to what the part held on that recorded day (not today).","1. The report replays the closest recorded day on or before the end of the selected range.
+2. The part's row shows the quantity and values recorded for that day, not today's live stock.",specs/inventory-value.md Story 5 S5-R4; §2 Relationship to nightly history,,
+"An ""As of"" indicator names the day actually shown when it is earlier than the date asked for, and is hidden when they match",IV — As-of Date & Snapshots,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
+2. A past date exists that has NO snapshot of its own but has an earlier recorded day before it (for example, a gap day, or a date in the thinned monthly-retention band).","1. Select a Custom range ending on the gap date (a date with no snapshot of its own).
+2. Look for an ""As of"" indicator and read which day it names.
+3. Then select a range ending on a day that IS recorded (or today with live values) and look for the indicator again.","1. When the displayed day is an earlier recorded day than the date asked for, the report shows an ""As of"" indicator naming the day actually shown.
+2. When the displayed day matches the date asked for (the common current-view case), the ""As of"" indicator is not shown — the date control already communicates the date.",specs/inventory-value.md Story 5 S5-R5; S5-R6,,
+"A Custom range lets the user pick start and end dates, values as of the picked end date, is capped at today, and reloads on change",IV — As-of Date & Snapshots,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
+2. The Inventory Value report is open.","1. Open the date-range control and choose ""Custom"".
+2. Pick a start and an end date in the past and apply.
+3. Try to pick an end date in the future.
+4. Watch the data area when the range is applied.","1. A Custom range lets the user pick a start and end date, and the report values as of the picked end date.
+2. A future end date cannot be chosen — the end date is capped at today.
+3. Changing the date range reloads the report (the loading indicator shows and the rows re-fetch).",specs/inventory-value.md Story 5 S5-R7; S5-R8,,
+"When no recorded day exists on or before the end of the selected range, the report shows the no-data message and no totals row",IV — As-of Date & Snapshots,Negative,High,"1. You are signed in to the ShopView App on a desktop browser.
+2. The date nightly recording began is known, and a past range exists that ends entirely BEFORE it (or whose only covered dates have been pruned by retention).","1. Select a Custom range ending before nightly recording began.
+2. Read the data area and the bottom of the report.","1. The report shows the no-data message ""Empty bays, endless possibilities. Get Going!"" instead of rows.
+2. No totals row is shown.",specs/inventory-value.md Story 5 S5-N1; §7 User Feedback Summary,,
+"History accrues forward only — a date before the first nightly recording cannot be reconstructed — expected, do not file",IV — As-of Date & Snapshots,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
+2. The date nightly recording began at this organization is known.","1. Select a range ending before the first nightly recording.
+2. Read what the report shows.","1. The report shows the empty state — there is no way to reconstruct inventory value for a date before recording began, because there is no historical backfill.
+2. This forward-capture-only behavior is the documented v1 boundary, not a defect.",specs/inventory-value.md Story 5 S5-E1; §2 Known Limitations (v1); §2 Out of scope,,
+The Category and Vendor filters are multi-selects that reload the report to only the matching parts,IV — Filters & Part Search,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
+2. In-stock parts exist across at least two categories and two vendors.","1. Open the filter labeled ""Category"" and select one category; watch the data area.
+2. Add a second category to the selection.
+3. Clear the Category filter, open the filter labeled ""Vendor"", and select one vendor; then add a second.","1. The toolbar has a Category filter labeled ""Category"" and a Vendor filter labeled ""Vendor"", each allowing one or more selections.
+2. Selecting one or more categories reloads the report to show only parts in the selected categories.
+3. Selecting one or more vendors reloads the report to show only parts supplied by the selected vendors.",specs/inventory-value.md Story 6 S6-R1; S6-R2; S6-R3; S6-R4,,
+"The Category filter, Vendor filter, and part search apply server-side — each change re-queries and returns the first page",IV — Filters & Part Search,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
+2. The unfiltered result set spans multiple pages, and matching parts for a category/vendor/search exist BEYOND page 1.","1. From page 2 (or later), select a Category and check which page shows and which rows are listed.
+2. Repeat with a Vendor selection.
+3. Repeat with a part search.","1. Each change re-queries the server and returns the first page of the new result set.
+2. The filtering covers the ENTIRE data set — matching parts that were on later pages appear — not just a narrowing of the rows on the current page.",specs/inventory-value.md Story 6 S6-R5; Story 1 S1-R8,,
+"With no category or vendor selected all parts show, and an empty part search applies no narrowing",IV — Filters & Part Search,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
+2. The report has been filtered by category, vendor, and a part search.","1. Clear the Category selection and check the rows.
+2. Clear the Vendor selection and check the rows.
+3. Empty the part search and check the rows.","1. With no category selected, parts of all categories are shown.
+2. With no vendor selected, parts of all vendors are shown.
+3. With the part search empty, no search narrowing is applied.",specs/inventory-value.md Story 6 S6-R7,,
+"The part search is a page-local toolbar field matching part number OR description, case-insensitively, on the server",IV — Filters & Part Search,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
+2. In-stock parts exist whose part numbers and descriptions you know (including a description containing a distinctive word).","1. Find the part search input in the report's own toolbar (not the application's global search bar).
+2. Type part of a part number and read the results.
+3. Clear it and type part of a description, in a DIFFERENT letter case than the stored text.
+4. Type text matching nothing.","1. The search field is page-local, in the report's own toolbar — it is not the application's global search bar (the same toolbar-search pattern used elsewhere in the reports suite).
+2. The report narrows to parts whose part number OR description contains the entered text.
+3. Matching is case-insensitive.
+4. The search applies server-side (whole data set, first page returned); a no-match search shows the no-data message.",specs/inventory-value.md Story 6 S6-R8; S6-R5,,
+"Date range, Location, Category, Vendor, and the part search combine with AND",IV — Filters & Part Search,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
+2. In-stock parts exist with a known mix of categories and vendors, so a combined filter isolates a known subset.","1. Select a Category, then also a Vendor that only some of those category parts have.
+2. Add a part search matching only one of the remaining parts.
+3. Check the rows and the totals row after each step.","1. A part must satisfy EVERY active filter and the search to appear — the Date range, Location, Category, Vendor, and part search combine with AND.
+2. The totals row matches the combined filtered set after each step.",specs/inventory-value.md Story 6 S6-R9,,
+"The Location filter (rightmost) is a multi-select of the user's accessible locations with an ""All locations"" / ""Clear all"" toggle, defaulting to the active location",IV — Location Filter,Functional,High,"1. You are signed in to the ShopView App on a desktop browser as a user with access to at least two locations.
+2. This browser has never saved settings for this report (fresh visit).","1. Open the Inventory Value report and find the filter labeled ""Location"".
+2. Read its position in the toolbar and its default selection.
+3. Open it and read its options and its toggle.","1. The toolbar has a location filter labeled ""Location"" — a multi-select and the rightmost filter — listing the locations the signed-in user has access to, with an ""All locations"" / ""Clear all"" toggle.
+2. On a first visit it defaults to the user's currently active location.",specs/inventory-value.md Story 7 S7-R1; S7-R2; Story 12 S12-R3,,
+"Selecting one, several, or all locations reloads the report scoped to that set",IV — Location Filter,Functional,High,"1. You are signed in to the ShopView App on a desktop browser as a user with access to at least two locations.
+2. In-stock parts exist at both locations.","1. With one location selected, note the rows and totals.
+2. Add the second location and watch the data area.
+3. Use ""All locations"", then narrow back to one.","1. Each selection change reloads the report scoped to the selected set.
+2. With both locations selected, parts from both appear (one row per part per location) and the totals cover both.",specs/inventory-value.md Story 7 S7-R3,,
+"Scoping never includes an inaccessible location, and a selection resolving to none falls back to the user's active location",IV — Location Filter,Negative,High,"1. You are signed in to the ShopView App on a desktop browser as a user who can access some, but not all, of the organization's locations.
+2. The Inventory Value report is open.","1. Open the Location filter and read the locations offered.
+2. Use ""Clear all"" so the selection resolves to no location, and watch what the report loads.","1. Only the locations the user has access to are offered — a location the user cannot access is never included in the scope.
+2. If the requested location set resolves to none the user can access, the report falls back to the user's currently active location.",specs/inventory-value.md Story 7 S7-R4; S7-R5,,
+A user with access to only one location still sees the Location filter with a single selectable location,IV — Location Filter,Functional,Medium,"1. A test user exists with access to exactly one location (create a fresh ZZAUTOTEST staff member if needed; clean up afterward).
+2. You are signed in as that user on a desktop browser.","1. Open the Inventory Value report.
+2. Open the Location filter and read its options.","1. The Location filter is still shown.
+2. It offers the single location the user can access.",specs/inventory-value.md Story 7 S7-N1,,
+"When the selected location(s) hold no in-stock parts on the resolved date, the no-data message shows",IV — Location Filter,Negative,Medium,"1. You are signed in to the ShopView App on a desktop browser.
+2. A location you can access holds no in-stock (positive-quantity, non-core) parts.","1. Scope the Location filter to only the empty location.
+2. Read the data area.","1. The report shows the no-data message ""Empty bays, endless possibilities. Get Going!"" instead of rows, and no totals row.",specs/inventory-value.md Story 7 S7-N2; §7 User Feedback Summary,,
+"The column-selection icon button (tooltip ""Column Selection"") toggles columns, and Total Cost cannot be turned off",IV — Column Selection & Persistence,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
+2. The Inventory Value report is open with rows loaded.","1. Hover the column-selection icon button in the toolbar and read its tooltip.
+2. Open the control and toggle a column off, then on again, watching the table.
+3. Look for a way to turn the Total Cost column off.","1. The icon button's tooltip reads ""Column Selection"".
+2. Toggling a column off hides it from the table; toggling it on shows it again.
+3. The Total Cost column is always shown and cannot be turned off.",specs/inventory-value.md Story 8 S8-R1; S8-R2,,
+Toggling columns never reorders them — the fixed order is kept with Total Cost always last,IV — Column Selection & Persistence,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
+2. The Inventory Value report is open with rows loaded.","1. Turn several columns on and off in different orders (for example, turn on Total Sell, then Margin).
+2. Read the resulting column order after each change.","1. Whatever columns are shown, they appear in the fixed left-to-right order (Part #, Description, Category, Vendor, Qty on Hand, Unit Cost, Unit Sell, Margin, Margin %, Total Sell, Total Cost) — toggling visibility never reorders columns.
+2. Total Cost is always the last column.",specs/inventory-value.md Story 8 S8-R4; Story 3 S3-R1,,
+"The report remembers the date range, category, vendor, part search text, location, columns, and sort per browser and restores them on return",IV — Column Selection & Persistence,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
+2. The Inventory Value report is open.","1. Change the date range, select a category and a vendor, type a part search, change the location selection, change the column selection, and sort by a non-default column.
+2. Navigate away to another screen, then return to the report.
+3. Reload the browser page and check again.
+4. If practical, open the report in a different browser (or private window) and read its settings.","1. On return and after a reload, the report restores the saved date range, category selection, vendor selection, part search text, location selection, column selection, and sort.
+2. In a different browser the report shows the defaults instead — persistence is per browser, not tied to the user's account.",specs/inventory-value.md Story 8 S8-R5 (+ context note); Story 9 S9-R5,,
+"Restore is defensive: an invalid saved value falls back to its default, and a saved category or vendor no longer present is dropped",IV — Column Selection & Persistence,Negative,Medium,"1. You are signed in to the ShopView App on a desktop browser.
+2. The report has saved settings in this browser, including a category or vendor selection that can be made stale (for example, the last in-stock part of a saved category is consumed so the category disappears from the data).","1. Make the saved category or vendor no longer present in the data.
+2. Open the Inventory Value report.","1. The report loads normally — a saved value that is no longer valid falls back to that setting's default rather than breaking the view.
+2. The saved category or vendor no longer present in the data is dropped from the selection.
+3. All other saved settings are still restored.",specs/inventory-value.md Story 8 S8-R6,,
+"On first load and after any reload, rows are sorted by Total Cost, highest first, applied by the server",IV — Sorting,Functional,High,"1. You are signed in to the ShopView App on a desktop browser that has no saved sort for this report (fresh visit).
+2. In-stock parts with a spread of Total Cost values exist, spanning more than one page.","1. Open the Inventory Value report without clicking any header.
+2. Read the Total Cost values from the top row down, across page 1 and page 2.","1. The rows are sorted by Total Cost, highest first (descending).
+2. The order holds across pages (page 2 continues below page 1's lowest value) — the server applies the default order over the full set.",specs/inventory-value.md Story 9 S9-R1; §3 Key Decisions (Total Cost default sort),,
+"Header clicks sort ascending then descending with no third state, re-fetching from the server and returning the first page",IV — Sorting,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
+2. The result set spans more than one page.","1. From page 2, click the Part # column header and note the order and the page shown.
+2. Click the same header again and note the order.
+3. Click it a third time.
+4. Click a different column header and check whether the previous sort still applies.","1. Clicking a column that is not the active sort sorts it ascending; clicking the active sort column again toggles it to descending; there is no third ""cleared"" state.
+2. Each header click re-fetches the data from the server ordered by the chosen column and direction, returning the FIRST page of the re-sorted result set.
+3. Only one column sorts at a time.",specs/inventory-value.md Story 9 S9-R2,,
+"Money and numeric columns sort by value; text columns sort as text, case-insensitively",IV — Sorting,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
+2. In-stock parts exist with money values over and under $1,000 and with text values in mixed letter cases.","1. Sort by Total Cost and check the order of values like $900.00 vs $1,100.00.
+2. Sort by Qty on Hand and check the numeric order.
+3. Sort by Description (or Vendor) and check how differently-cased values order.","1. Money and numeric columns sort by their underlying value (so $1,100.00 is treated as more than $900.00, not compared as text).
+2. Text columns (Part #, Description, Category, Vendor) sort as text, case-insensitively (""apple"" and ""Apple"" sort together).",specs/inventory-value.md Story 9 S9-R3,,
+Sorting reorders only the data rows — the totals row stays at the bottom — and the chosen sort is remembered per browser,IV — Sorting,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
+2. The Inventory Value report is open with rows and a totals row.","1. Sort by any column and watch the totals row's position.
+2. Sort by a non-default column, leave the report, and return.","1. Sorting reorders the data rows only; the totals row stays at the bottom.
+2. On return, the report restores the chosen sort (remembered per browser, Story 8).",specs/inventory-value.md Story 9 S9-R4; S9-R5,,
+"A three-dot toolbar menu holds ""Download (PDF)"" and ""Download (CSV)""",IV — Exports,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
+2. The Inventory Value report is open with rows loaded.","1. Find and open the three-dot button in the toolbar.
+2. Read the menu options.
+3. Choose ""Download (PDF)"", then repeat with ""Download (CSV)"".","1. The menu holds an option labeled ""Download (PDF)"" and an option labeled ""Download (CSV)"".
+2. Each option downloads a file of the current view in the chosen format.",specs/inventory-value.md Story 10 S10-R1; S10-R2,,
+"Downloads contain the shown columns in screen order (Total Cost last), honor all filters and the sort, and include a ""Totals"" row matching the full-set totals",IV — Exports,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
+2. The report is open with a non-default column selection, a Category or Vendor filter, a part search, and a non-default sort applied.","1. Download the current view as a CSV and open it.
+2. Compare its columns and their order to the screen.
+3. Compare its rows to the current filters, search, and sort.
+4. Compare its totals row to the on-screen totals row.
+5. Repeat the checks in the PDF.","1. Both downloads include only the columns currently shown, in the same left-to-right order as the screen, with Total Cost last.
+2. Both downloads honor the current date, category, vendor, location, and part-search filters, and apply the current sort.
+3. Both downloads include a totals row labeled ""Totals"" matching the on-screen totals (the full-filtered-set totals).",specs/inventory-value.md Story 10 S10-R3; S10-R4; S10-R5; S10-R6,,
+"Export number formats: two-decimal money, one-decimal Margin % (""—"" when undefined); CSV money as plain numbers, PDF with on-screen currency formatting",IV — Exports,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
+2. The current view includes money values over $1,000 and, if producible, a part whose Margin % is undefined (""—"").","1. Download the CSV and open it in a plain-text editor; read the money and Margin % values.
+2. Download the PDF and read the same values.","1. Money uses two decimals and Margin % one decimal in both files; an undefined Margin % shows ""—"".
+2. In the CSV, money values are written as plain numbers with two decimals and NO thousands separators (so they parse cleanly in a spreadsheet).
+3. The PDF uses the same on-screen currency formatting with the ""$"" and thousands separators.",specs/inventory-value.md Story 10 S10-R7 (+ context note),,
+"The PDF header shows the report name, organization, selected period, and an ""as of"" line; the shop logo shows when set and the CSV never has one",IV — Exports,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
+2. The shop has a logo set in its settings.
+3. The report is open on a view whose displayed day is known (live today, or a recorded past day).","1. Download the PDF and read its header.
+2. Look at the top of the PDF for the shop logo.
+3. Download the CSV and inspect it for a logo.
+4. If reachable, repeat the PDF download on a period with no available snapshot and read the header's as-of line.","1. The PDF header shows the report name ""Inventory Value"", the organization name, the selected period, and an ""as of"" line naming the day the values represent (or a message that no snapshot is available for the period).
+2. The PDF shows the shop logo at the top when one is set.
+3. The CSV never includes a logo.",specs/inventory-value.md Story 10 S10-R8; S10-R9,,
+"The downloaded files are named ""inventory-value-report.pdf"" and ""inventory-value-report.csv""",IV — Exports,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
+2. The Inventory Value report is open with rows loaded.","1. Download the current view as a PDF and read the saved file's name.
+2. Download the current view as a CSV and read the saved file's name.","1. The PDF is named ""inventory-value-report.pdf"".
+2. The CSV is named ""inventory-value-report.csv"".",specs/inventory-value.md Story 10 S10-R10,,
+Exports are generated server-side over the full filtered set — rows beyond the loaded page are included,IV — Exports,Functional,Critical,"1. You are signed in to the ShopView App on a desktop browser.
+2. The current filtered set spans more than one page (but stays under the export row cap).","1. From page 1, without visiting the later pages, download the CSV.
+2. Count the file's data rows and look for parts you know sit on the later pages.
+3. Compare the file's totals row to the on-screen totals.","1. The export contains the FULL filtered set — every qualifying row across all pages, not only the rows loaded in the browser.
+2. Parts from the later pages are present.
+3. The export is generated server-side against the current filters, part search, and sort — it is not built from the rows currently in the browser.",specs/inventory-value.md Story 10 S10-R11,,
+An over-cap filtered set produces no file and shows the too-large-to-export message (exact cap value pending owner confirmation),IV — Exports,Negative,High,"1. You are signed in to the ShopView App on a desktop browser.
+2. A filter/location combination exists whose filtered set EXCEEDS the export row cap (seed ZZAUTOTEST parts in bulk if needed, or use the largest available data set).","1. Set the filters so the filtered set exceeds the export row cap.
+2. Request ""Download (PDF)"" and read what happens.
+3. Request ""Download (CSV)"" and read what happens.","1. Neither the PDF nor the CSV is produced.
+2. The user sees the message: ""This report is too large to export. Narrow the date range or filters, then try again."" (a blocking notification; no file).
+3. After narrowing the filters below the cap, the download works again.",specs/inventory-value.md Story 10 S10-R12; §7 User Feedback Summary,,
+"A successful download shows the format-specific success notification, verbatim",IV — Exports,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
+2. The Inventory Value report is open with rows loaded (under the export cap).","1. Download the PDF and read the notification.
+2. Download the CSV and read the notification.","1. The PDF download shows a success notification: ""Inventory Value report exported (PDF)"".
+2. The CSV download shows a success notification: ""Inventory Value report exported (CSV)"".",specs/inventory-value.md Story 10 S10-R13; §7 User Feedback Summary,,
+"A failed download shows the format-specific error notification, verbatim",IV — Exports,Negative,Medium,"1. You are signed in to the ShopView App on a desktop browser.
+2. A download failure can be simulated (for example, disconnect the network just before requesting the download).","1. Simulate a failure and request the PDF download; read the notification.
+2. Repeat for the CSV download.","1. The failed PDF download shows an error notification: ""Failed to export inventory value report (pdf)"".
+2. The failed CSV download shows an error notification: ""Failed to export inventory value report (csv)"".",specs/inventory-value.md Story 10 S10-R14; §7 User Feedback Summary,,
+The report uses an all-white table with no alternating row shading on the standard soft blue-grey report backdrop,IV — Visual & Accessibility,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
+2. The Inventory Value report is open with several rows.","1. Look at the column headers and the data cells.
+2. Compare the background of consecutive rows.
+3. Look at the page background around the table.","1. The table has white column headers and white data cells, with no alternating row shading.
+2. The table sits on the standard soft blue-grey report backdrop.",specs/inventory-value.md Story 12 S12-R1,,
+"Toolbar layout: three-dot menu leftmost in the action cluster then Column Selection; filters run date range, part search, Category, Vendor, Location",IV — Visual & Accessibility,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
+2. The Inventory Value report is open.","1. Look at the toolbar's action cluster and read the order of its controls.
+2. Read the toolbar filters from left to right.","1. In the toolbar, the three-dot download menu sits leftmost in the action cluster, followed by the Column Selection control.
+2. The toolbar filters run, left to right: the date-range control, the part search, the Category filter, the Vendor filter, and the Location filter (rightmost).",specs/inventory-value.md Story 12 S12-R2; S12-R3,,
+The totals row stays visible at the bottom while the user scrolls the rows,IV — Visual & Accessibility,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
+2. The page shows more rows than fit on the screen.","1. Scroll the rows up and down.
+2. Watch the totals row.",1. The totals row stays visible at the bottom while the rows scroll.,specs/inventory-value.md Story 12 S12-R5,,
+"Long Description, Category, and Vendor values truncate with an ellipsis and show the full value on hover; the Part # is never truncated",IV — Visual & Accessibility,Functional,Medium,"1. You are signed in to the ShopView App on a desktop browser.
+2. A ZZAUTOTEST part exists with a very long description (and, if possible, long category/vendor names) and a long part number.","1. Narrow the browser window (or turn on more columns) so the text columns overflow.
+2. Read the long Description, Category, and Vendor cells and hover each.
+3. Read the long Part # cell.","1. Long text values (Description, Category, Vendor) are truncated with an ellipsis when they overflow their column.
+2. The full value is available on hover.
+3. The Part # is never truncated.",specs/inventory-value.md Story 12 S12-R6,,
+"In dark mode the page background, toolbar, cells, and the ""—"" glyph remain legible",IV — Visual & Accessibility,Accessibility,Medium,"1. You are signed in to the ShopView App on a desktop browser.
+2. The application is switched to dark mode.
+3. The report shows rows including a part with an em-dash (""—"") Category or Vendor cell.","1. Read the page background, toolbar, and table cells in dark mode.
+2. Find a ""—"" cell and check its legibility.","1. The report supports dark mode.
+2. The page background, toolbar, cells, and the ""—"" glyph all use dark-mode-legible colors.",specs/inventory-value.md Story 12 S12-R7,,
+Each sortable column header exposes its sort state to assistive technology and shows the active direction visually,IV — Visual & Accessibility,Accessibility,Medium,"1. You are signed in to the ShopView App on a desktop browser.
+2. A screen reader or the browser's accessibility inspector is available.
+3. The Inventory Value report is open with rows loaded.","1. Sort by a column and look at its header for a visual direction indicator.
+2. With the accessibility inspector or screen reader, check what sort state the header exposes.
+3. Toggle the direction and check both again.","1. The active sort direction is indicated visually on the header.
+2. Each sortable column header exposes its sort state to assistive technology (for example, ascending/descending/none).
+3. The exposed state updates when the direction toggles.",specs/inventory-value.md Story 12 S12-R8,,
+The icon-only controls (three-dot download button and Column Selection button) each carry an accessible name,IV — Visual & Accessibility,Accessibility,Medium,"1. You are signed in to the ShopView App on a desktop browser.
+2. A screen reader or the browser's accessibility inspector is available.
+3. The Inventory Value report is open.","1. Inspect the three-dot download button's accessible name.
+2. Inspect the Column Selection button's accessible name.",1. Each icon-only control carries an accessible name exposed to assistive technology (it is not announced as an unnamed button).,specs/inventory-value.md Story 12 S12-R9,,
+A user with the existing inventory-reports permission can open the report — no new permission is added,IV — Permissions,Functional,Critical,"1. A test user exists whose role has the existing inventory-reports permission (assign the Tech user a suitable role if needed; restore the original role afterward).
+2. You are signed in as that user on a desktop browser.","1. Open the reports navigation and find ""Inventory Value"" under the Parts group.
+2. Open the report and confirm it loads rows.
+3. Download the current view as a CSV.","1. The report is listed and opens normally for a user holding the existing inventory-reports permission.
+2. No additional, report-specific permission is required — the report reuses the existing inventory-reports permission.",specs/inventory-value.md Story 1 Prerequisites,,
+A user without the required permission does not see Inventory Value in the reports navigation,IV — Permissions,Negative,Critical,"1. A test user exists whose role does NOT have the inventory-reports permission (assign the Tech user such a role; restore the original role afterward).
+2. You are signed in as that user on a desktop browser.","1. Open the reports navigation.
+2. Look for ""Inventory Value"" under the Parts group.",1. The report does not appear in the navigation for this user.,specs/inventory-value.md Story 1 S1-N1,,
+"Nightly snapshot: once per day, for every location, one row per in-stock non-core part is recorded with its identity, quantity, and values to the cent",IV — API,Functional,High,"1. In-stock, non-core parts exist at two or more locations, including a part with non-round cent values.
+2. A location with NO in-stock parts also exists.
+3. You can inspect the stored snapshot rows after the nightly capture runs (arrange the verification route with the developers).","1. After the overnight capture, inspect the stored snapshot rows for that calendar date.
+2. For a known part, read every captured field.
+3. Check the rows for each location, including the empty one.","1. Once per day, overnight, one row per then-in-stock, non-core part is recorded for every location across every organization, under that day's calendar date.
+2. Each row captures the part's identity (part, category, vendor), on-hand quantity, unit cost, unit sell, total cost, and total sell, stored to the cent.
+3. A location with no in-stock parts on the date simply has no rows for that date — this is valid, not an error.",specs/inventory-value.md Story 11 S11-R1; S11-R4,,
+"Nightly snapshot: the captured scope and valuation are identical to the live report, so a recorded day equals what the live report showed that day",IV — API,Functional,Critical,"1. ZZAUTOTEST parts with known quantities, costs, and sell resolutions (fixed price, matrix markup, and no-category fallback) are in stock and left UNCHANGED across the capture.
+2. A core-charge part and a zero-quantity part also exist.
+3. You can read the live report on the capture date and the stored rows afterward.","1. On the capture date, note the live report's rows and values for the seeded parts.
+2. After the overnight capture, read the same parts' captured rows.
+3. Look for the core-charge and zero-quantity parts among the captured rows.
+4. The next day, view the report as of the captured date and compare to the noted live values.","1. The captured parts use the same in-stock, non-core scope as the live report (Story 2) — the core-charge and zero-quantity parts are NOT captured.
+2. The captured values use the same valuation as the live report (Story 3), including the sell-price fallback chain.
+3. A recorded day equals what the live report would have shown that day — the as-of view of the captured date matches the noted live values.",specs/inventory-value.md Story 11 S11-R2; §2 Relationship to nightly history,,
+"Nightly snapshot: re-running the capture for a date replaces that date's rows — idempotent, no duplicates",IV — API,Functional,High,"1. A capture has already run for the current date.
+2. The capture can be re-run for that date (arrange with the developers).","1. Count the stored rows per location for the date.
+2. Re-run the capture for the same date.
+3. Count and inspect the rows again.","1. Re-running the capture for a date replaces that date's rows for each location — the existing rows for that location and date are removed, then re-inserted from current data.
+2. No duplicate rows exist for the same part, location, and date.
+3. The capture is idempotent and self-healing from current data.",specs/inventory-value.md Story 11 S11-R3,,
+Nightly snapshot: history accrues forward only — a re-run records current truth under the current date and cannot reconstruct a past date,IV — API,Functional,Medium,"1. The date the first capture ran is known.
+2. Stock levels have changed since a past captured date.","1. Check the stored history for any rows dated before the first capture.
+2. Re-run the capture and check which date its rows are recorded under.
+3. Compare a past date's stored rows to confirm they were not rewritten by the re-run.","1. No rows exist for dates before capture began — there is no backfill.
+2. A re-run always records current truth under the CURRENT date; it cannot reconstruct a past date.
+3. Past dates' stored rows are unchanged by a current re-run.",specs/inventory-value.md Story 11 S11-R5; Story 5 S5-E1,,
+Snapshot retention: daily captures are kept for 0–13 months; older history is reduced to the last capture of each calendar month,IV — API,Functional,High,"1. Snapshot history exists (or is seeded/simulated with dev help) spanning both the 0–13-month band and the older-than-13-months band.
+2. The nightly capture (with its pruning) has run.","1. Inspect the retained captures for dates within the last 13 months.
+2. Inspect the retained captures for dates older than 13 months.
+3. Check when pruning runs relative to the nightly capture.","1. For ages 0–13 months (measured from the current date), every daily capture is kept — full daily per-part detail, covering the report's longest date preset (366 days / This Year / Last Year) entirely at daily resolution.
+2. For ages older than 13 months, only the last capture of each calendar month is retained; the other daily captures in that band are pruned.
+3. Pruning runs as part of, or alongside, the nightly capture.",specs/inventory-value.md Story 11 S11-R6,,
+"Thinned history is served unchanged: the closest-recorded-day rule bridges retention gaps, the ""As of"" indicator names the day shown, and a fully-pruned range shows the empty state",IV — API,Functional,High,"1. Thinned history exists (dates older than 13 months where only the monthly last-capture remains — dev-seeded if needed).
+2. The retained capture dates around the requested date are known.","1. On the report, select a range ending on a pruned date between two retained monthly captures.
+2. Read which day the values represent and the ""As of"" indicator.
+3. Select a range whose covering captures have ALL been pruned and no earlier retained capture remains.","1. The as-of resolution serves the thinned history unchanged: the report resolves to the nearest earlier retained capture (""closest recorded day on or before""), even when adjacent retained captures are up to a month apart.
+2. The ""As of"" indicator names the day actually shown.
+3. A requested date whose covering captures have all been pruned resolves to the nearest earlier retained capture, or shows the empty state if none remains.",specs/inventory-value.md Story 11 S11-E1; S11-R6; Story 5 S5-R4; S5-R5; S5-N1,,
