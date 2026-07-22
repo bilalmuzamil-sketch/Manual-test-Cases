@@ -526,7 +526,10 @@ process(es) to run before proceeding.
    gen_import.py rerun blanks C-ids — re-merge, same as Filters/Schedule).
    **PER-REPORT SPLIT 2026-07-22:** user manually created TestRail group 4281
    "Reports Suite" + six empty per-report subsections 4282–4287; six per-report
-   split imports emitted (`testrail-import/report-suite-v1-{sbc,sbr,pv,tu,wip,iv}-testrail-import.csv`/`.xlsx`,
+   split imports emitted with **HUMAN-READABLE filenames** (user rule — full
+   report names, never cryptic abbreviations; renamed same day from the initial
+   `-{sbc,sbr,pv,tu,wip,iv}-` slugs):
+   `testrail-import/Report-Suite_{Sales-By-Customer-Report,Sales-By-Representative-Report,Parts-Velocity-Report,Technician-Utilization-Report,Work-In-Progress-Report,Inventory-Value-Report}_testrail-import.csv`/`.xlsx`,
    99/127/70/59/83/77 = 515, rows byte-identical to the unified file, verified;
    PROJECT-STATE §0.6). NEXT = user imports per report into its folder → share
    group URL → read-only C-id mapping; then VIU pending env/Epic (ask Chris

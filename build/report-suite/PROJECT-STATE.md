@@ -104,18 +104,23 @@ feature-flag-free).
 For the user's per-folder import workflow (§0 STATUS: group 4281, subsections
 4282–4287), `gen_import.py` now ALSO emits **six per-report import files** —
 the unified `report-suite-v1-testrail-import.csv`/`.xlsx` is UNCHANGED
-(byte-verified against the pre-split file):
+(byte-verified against the pre-split file). **RENAMED 2026-07-22 to
+HUMAN-READABLE filenames** (user rule: spell report names out in full — never
+cryptic abbreviations like sbc/pv/tu; the old
+`report-suite-v1-{sbc,sbr,pv,tu,wip,iv}-…` files were removed; CSV contents
+byte-identical to the pre-rename files):
 
 | TestRail folder (manually created by the user) | CSV (`testrail-import/`) + `.xlsx` twin | Rows |
 | --- | --- | --- |
-| 4282 Sales By Customer Report | `report-suite-v1-sbc-testrail-import.csv` | 99 |
-| 4283 Sales By Representative Report | `report-suite-v1-sbr-testrail-import.csv` | 127 |
-| 4284 Parts Velocity Report | `report-suite-v1-pv-testrail-import.csv` | 70 |
-| 4285 Technician Utilization — Product Specification | `report-suite-v1-tu-testrail-import.csv` | 59 |
-| 4286 Work In Progress — Product Specification | `report-suite-v1-wip-testrail-import.csv` | 83 |
-| 4287 Inventory Value — Product Specification | `report-suite-v1-iv-testrail-import.csv` | 77 |
+| 4282 Sales By Customer Report | `Report-Suite_Sales-By-Customer-Report_testrail-import.csv` | 99 |
+| 4283 Sales By Representative Report | `Report-Suite_Sales-By-Representative-Report_testrail-import.csv` | 127 |
+| 4284 Parts Velocity Report | `Report-Suite_Parts-Velocity-Report_testrail-import.csv` | 70 |
+| 4285 Technician Utilization — Product Specification | `Report-Suite_Technician-Utilization-Report_testrail-import.csv` | 59 |
+| 4286 Work In Progress — Product Specification | `Report-Suite_Work-In-Progress-Report_testrail-import.csv` | 83 |
+| 4287 Inventory Value — Product Specification | `Report-Suite_Inventory-Value-Report_testrail-import.csv` | 77 |
 
-Sum 515. VERIFIED programmatically 2026-07-22: header byte-identical to the
+Sum 515. VERIFIED programmatically 2026-07-22 (re-verified after the rename):
+header byte-identical to the
 canonical header in all six; every data row byte-identical to its unified-file
 counterpart in the same per-report order (byte-level concatenation of the six,
 minus repeated headers, == the unified CSV exactly); XLSX == CSV row-for-row
@@ -287,8 +292,11 @@ sections will be needed mainly for the two nightly-snapshot backend stories
   pure 1:1; self-checking: dupes/leaks/VIU-words/empties/API-section routing).
 - `testrail-import/report-suite-v1-testrail-import.csv` + `.xlsx` — 515 rows,
   header byte-identical to all five prior project imports.
-- `testrail-import/report-suite-v1-{sbc,sbr,pv,tu,wip,iv}-testrail-import.csv`
-  + `.xlsx` — the six per-report split files (§0.6; SBC 99 / SBR 127 / PV 70 /
+- `testrail-import/Report-Suite_<Full-Report-Name>_testrail-import.csv`
+  + `.xlsx` — the six per-report split files (§0.6; human-readable names
+  2026-07-22: Sales-By-Customer-Report / Sales-By-Representative-Report /
+  Parts-Velocity-Report / Technician-Utilization-Report /
+  Work-In-Progress-Report / Inventory-Value-Report; SBC 99 / SBR 127 / PV 70 /
   TU 59 / WIP 83 / IV 77; each row byte-identical to its unified counterpart)
   for the user's per-folder import into group 4281 subsections 4282–4287.
 - `testrail-id-map.csv` — 515 internal ids, blank C-ids (⚠️ rerunning

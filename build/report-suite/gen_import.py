@@ -63,9 +63,16 @@ Utilization — Product Specification / 4286 Work In Progress — Product
 Specification / 4287 Inventory Value — Product Specification) and imports ONE
 report at a time targeting each folder; the CSV Section column then creates
 the "<PREFIX> — <area>" leaf sections inside that folder. So, IN ADDITION to
-the unchanged unified files, this generator ALSO emits six per-report files:
-  testrail-import/report-suite-v1-{sbc,sbr,pv,tu,wip,iv}-testrail-import.csv
-  testrail-import/report-suite-v1-{sbc,sbr,pv,tu,wip,iv}-testrail-import.xlsx
+the unchanged unified files, this generator ALSO emits six per-report files
+with HUMAN-READABLE names (user rule 2026-07-22: spell report names out in
+full — no cryptic abbreviations like sbc/pv/tu):
+  testrail-import/Report-Suite_<Full-Report-Name>_testrail-import.csv/.xlsx
+  i.e. Report-Suite_Sales-By-Customer-Report_testrail-import.csv,
+       Report-Suite_Sales-By-Representative-Report_testrail-import.csv,
+       Report-Suite_Parts-Velocity-Report_testrail-import.csv,
+       Report-Suite_Technician-Utilization-Report_testrail-import.csv,
+       Report-Suite_Work-In-Progress-Report_testrail-import.csv,
+       Report-Suite_Inventory-Value-Report_testrail-import.csv (+ .xlsx twins).
 Each contains ONLY that report's rows in the IDENTICAL canonical format:
 same byte-identical header (8 named cols + 2 blanks), same CRLF row
 terminator, same per-report row ordering as the unified file, every data row
@@ -96,9 +103,14 @@ HEADER = [
 # Deterministic report order (user-prescribed suite order).
 REPORT_ORDER = ["SBC", "SBR", "PV", "TU", "WIP", "IV"]
 
-# Per-report split-file naming + XLSX sheet titles (report prefix -> slug).
-REPORT_SLUG = {"SBC": "sbc", "SBR": "sbr", "PV": "pv",
-               "TU": "tu", "WIP": "wip", "IV": "iv"}
+# Per-report split-file naming (HUMAN-READABLE, user rule 2026-07-22 — full
+# report names, never cryptic abbreviations) + XLSX sheet titles.
+REPORT_FILE = {"SBC": "Sales-By-Customer-Report",
+               "SBR": "Sales-By-Representative-Report",
+               "PV": "Parts-Velocity-Report",
+               "TU": "Technician-Utilization-Report",
+               "WIP": "Work-In-Progress-Report",
+               "IV": "Inventory-Value-Report"}
 REPORT_SHEET = {"SBC": "Sales By Customer",
                 "SBR": "Sales By Representative",
                 "PV": "Parts Velocity",
@@ -241,7 +253,7 @@ def main():
         per_report_rows[iid.split("-")[0]].append(r)
     for p in REPORT_ORDER:
         path = os.path.join(ROOT, "testrail-import",
-                            "report-suite-v1-%s-testrail-import.csv" % REPORT_SLUG[p])
+                            "Report-Suite_%s_testrail-import.csv" % REPORT_FILE[p])
         write_csv(path, per_report_rows[p])
         print("Wrote CSV:", path, "rows(data):", len(per_report_rows[p]))
 
@@ -278,7 +290,7 @@ def main():
     print("Wrote XLSX:", OUT_XLSX)
     for p in REPORT_ORDER:
         path = os.path.join(ROOT, "testrail-import",
-                            "report-suite-v1-%s-testrail-import.xlsx" % REPORT_SLUG[p])
+                            "Report-Suite_%s_testrail-import.xlsx" % REPORT_FILE[p])
         write_xlsx(path, REPORT_SHEET[p], per_report_rows[p])
         print("Wrote XLSX:", path)
 
