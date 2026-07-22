@@ -1,0 +1,390 @@
+[
+  {
+    "id": "WIP-TAB-01",
+    "area": "WIP — Tabs",
+    "title": "Work In Progress appears in the reports navigation under the Performance group",
+    "priority": "Critical",
+    "type": "Functional",
+    "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
+    "preconditions": [
+      "1. You are signed in to the ShopView App on a desktop browser.",
+      "2. Your role has the permission that grants access to Work In Progress reports."
+    ],
+    "steps": [
+      "1. Open the reports navigation.",
+      "2. Look inside the Performance group of reports.",
+      "3. Click the \"Work In Progress\" entry."
+    ],
+    "expected": [
+      "1. The reports navigation lists a report labeled \"Work In Progress\" under the Performance group.",
+      "2. Clicking it opens the Work In Progress report."
+    ],
+    "design_ref": "none — design not yet available (spec-only authoring)",
+    "spec_ref": "specs/wip-work-in-progress.md Story 1 S1-R1",
+    "viu_status": "VIU-Pending",
+    "notes": "VIU-confirm the exact reports-navigation structure and the Performance group's on-screen label live.",
+    "api_related": false
+  },
+  {
+    "id": "WIP-TAB-02",
+    "area": "WIP — Tabs",
+    "title": "The report opens with four tabs in a fixed order and \"Approved - partially completed\" selected by default",
+    "priority": "Critical",
+    "type": "Functional",
+    "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
+    "preconditions": [
+      "1. You are signed in to the ShopView App on a desktop browser.",
+      "2. You have not visited the report before in this browser (no saved active-tab setting)."
+    ],
+    "steps": [
+      "1. Open the Work In Progress report.",
+      "2. Read the tab labels from left to right.",
+      "3. Look at which tab is selected when the report loads."
+    ],
+    "expected": [
+      "1. Four tabs are shown, labeled in this order: \"Approved - partially completed\", \"Approved - not started\", \"Completed\", and \"Estimates\".",
+      "2. The \"Approved - partially completed\" tab is selected by default on load."
+    ],
+    "design_ref": "none — design not yet available (spec-only authoring)",
+    "spec_ref": "specs/wip-work-in-progress.md Story 1 S1-R2; S1-R3",
+    "viu_status": "VIU-Pending",
+    "notes": "Tab labels are verbatim from the spec (note the plain hyphen in \"Approved - partially completed\" / \"Approved - not started\").",
+    "api_related": false
+  },
+  {
+    "id": "WIP-TAB-03",
+    "area": "WIP — Tabs",
+    "title": "Each tab label shows the count of work orders in that tab in parentheses, including \"(0)\" for an empty tab",
+    "priority": "High",
+    "type": "Functional",
+    "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
+    "preconditions": [
+      "1. You are signed in to the ShopView App on a desktop browser.",
+      "2. Open work orders exist in at least one tab for the current date range and location (seed ZZAUTOTEST work orders if needed).",
+      "3. At least one tab currently has no work orders."
+    ],
+    "steps": [
+      "1. Open the Work In Progress report.",
+      "2. Read each tab's label.",
+      "3. Count the rows shown in each tab and compare to that tab's label."
+    ],
+    "expected": [
+      "1. Each tab's label shows the count of work orders currently in that tab, in parentheses — for example, \"Completed (22)\".",
+      "2. The count matches the number of work-order rows actually listed in that tab.",
+      "3. A tab with no work orders shows \"(0)\"."
+    ],
+    "design_ref": "none — design not yet available (spec-only authoring)",
+    "spec_ref": "specs/wip-work-in-progress.md Story 1 S1-R4; Story 2 S2-N2 (count portion)",
+    "viu_status": "VIU-Pending",
+    "notes": "",
+    "api_related": false
+  },
+  {
+    "id": "WIP-TAB-04",
+    "area": "WIP — Tabs",
+    "title": "The browser page title reads \"Work In Progress - Report | ShopView\"",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
+    "preconditions": [
+      "1. You are signed in to the ShopView App on a desktop browser."
+    ],
+    "steps": [
+      "1. Open the Work In Progress report.",
+      "2. Read the browser tab's page title."
+    ],
+    "expected": [
+      "1. The browser page title is exactly \"Work In Progress - Report | ShopView\".",
+      "2. The separator is a plain hyphen with one space on each side (not a dash of another kind)."
+    ],
+    "design_ref": "none — design not yet available (spec-only authoring)",
+    "spec_ref": "specs/wip-work-in-progress.md Story 1 S1-R5",
+    "viu_status": "VIU-Pending",
+    "notes": "",
+    "api_related": false
+  },
+  {
+    "id": "WIP-TAB-05",
+    "area": "WIP — Tabs",
+    "title": "There is no Trend / over-time tab or chart — expected in this version, do not file as a defect",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
+    "preconditions": [
+      "1. You are signed in to the ShopView App on a desktop browser.",
+      "2. The Work In Progress report is open."
+    ],
+    "steps": [
+      "1. Look through the report's tabs, toolbar, and menus for any trend, history, or over-time view.",
+      "2. Confirm the report only shows the floor as it stands right now."
+    ],
+    "expected": [
+      "1. Only the four progress tabs exist — there is no Trend tab and no chart of work-in-progress dollars over time.",
+      "2. No screen in the report reads or displays the nightly snapshot history."
+    ],
+    "design_ref": "none — design not yet available (spec-only authoring)",
+    "spec_ref": "specs/wip-work-in-progress.md §2 Out of scope; §2 Known Limitations (v1); Story 11 S11-R7",
+    "viu_status": "VIU-Pending",
+    "notes": "DOCUMENTED LIMITATION — DO NOT FILE. The missing Trend view is a deliberate v1 boundary; the nightly snapshot IS captured (Story 11, see WIP — API) but no screen reads it in this version.",
+    "api_related": false
+  },
+  {
+    "id": "WIP-SCOPE-01",
+    "area": "WIP — Scope & Loading",
+    "title": "Every open service work order (Estimate, Approved, In Progress, Review, Complete) at a selected location appears in the report",
+    "priority": "Critical",
+    "type": "Functional",
+    "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
+    "preconditions": [
+      "1. You are signed in to the ShopView App on a desktop browser.",
+      "2. Five ZZAUTOTEST service work orders exist at your active location, created within the current date range — one in each status: Estimate, Approved, In Progress, Review, and Complete."
+    ],
+    "steps": [
+      "1. Open the Work In Progress report with the seeded work orders' creation dates inside the selected date range.",
+      "2. Look through all four tabs for each of the five seeded work orders."
+    ],
+    "expected": [
+      "1. All five seeded work orders appear in the report — each one qualifies because it is a service work order, its status is one of Estimate, Approved, In Progress, Review, or Complete, and it belongs to a selected location.",
+      "2. Each appears in the tab its status places it in (see the WIP — Tab Placement cases)."
+    ],
+    "design_ref": "none — design not yet available (spec-only authoring)",
+    "spec_ref": "specs/wip-work-in-progress.md Story 2 S2-R1",
+    "viu_status": "VIU-Pending",
+    "notes": "",
+    "api_related": false
+  },
+  {
+    "id": "WIP-SCOPE-02",
+    "area": "WIP — Scope & Loading",
+    "title": "Invoiced, Paid, and Declined work orders and part-sale work orders never appear anywhere in the report",
+    "priority": "Critical",
+    "type": "Negative",
+    "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
+    "preconditions": [
+      "1. You are signed in to the ShopView App on a desktop browser.",
+      "2. ZZAUTOTEST work orders exist at your active location within the current date range: one Invoiced, one Paid, one Declined, and one part-sale work order."
+    ],
+    "steps": [
+      "1. Open the Work In Progress report.",
+      "2. Look for the Invoiced, Paid, and Declined work orders and the part-sale work order in every tab.",
+      "3. Check the summary strip and each tab's Totals row for their money.",
+      "4. Download the current tab as a CSV and search the file for them."
+    ],
+    "expected": [
+      "1. The Invoiced, Paid, and Declined work orders do not appear in any tab, any Totals row, the summary strip, or the download.",
+      "2. The part-sale work order does not appear anywhere either.",
+      "3. No excluded work order's money is counted in any figure."
+    ],
+    "design_ref": "none — design not yet available (spec-only authoring)",
+    "spec_ref": "specs/wip-work-in-progress.md Story 2 S2-R2; S2-R3",
+    "viu_status": "VIU-Pending",
+    "notes": "",
+    "api_related": false
+  },
+  {
+    "id": "WIP-SCOPE-03",
+    "area": "WIP — Scope & Loading",
+    "title": "Each qualifying work order appears exactly once in exactly one tab, including an open job with nothing approved yet",
+    "priority": "High",
+    "type": "Functional",
+    "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
+    "preconditions": [
+      "1. You are signed in to the ShopView App on a desktop browser.",
+      "2. Several open ZZAUTOTEST service work orders exist within the current date range, including one open estimate with no approved line items at all."
+    ],
+    "steps": [
+      "1. Open the Work In Progress report.",
+      "2. For each seeded work order, count how many times its work order number appears across all four tabs.",
+      "3. Find the estimate with nothing approved and read its money columns."
+    ],
+    "expected": [
+      "1. Each qualifying work order appears exactly once, in exactly one tab.",
+      "2. The work order with nothing approved yet still appears (in the Estimates tab), with its earned and remaining both showing \"$0.00\"."
+    ],
+    "design_ref": "none — design not yet available (spec-only authoring)",
+    "spec_ref": "specs/wip-work-in-progress.md Story 2 S2-R4; §3 Key Decisions (every open job is listed)",
+    "viu_status": "VIU-Pending",
+    "notes": "",
+    "api_related": false
+  },
+  {
+    "id": "WIP-SCOPE-04",
+    "area": "WIP — Scope & Loading",
+    "title": "While loading, the standard reports loading indicator shows and existing rows are replaced only when new data returns",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
+    "preconditions": [
+      "1. You are signed in to the ShopView App on a desktop browser.",
+      "2. The Work In Progress report is open with rows loaded."
+    ],
+    "steps": [
+      "1. Change the date range to a different preset and watch the data area while the report reloads.",
+      "2. Change the location selection and watch the data area again."
+    ],
+    "expected": [
+      "1. While the report is loading, the data area shows the standard reports loading indicator.",
+      "2. The existing rows are replaced only when the new data returns (the table does not go blank and stay blank mid-load).",
+      "3. Both a date-range change and a location change reload the report's rows."
+    ],
+    "design_ref": "none — design not yet available (spec-only authoring)",
+    "spec_ref": "specs/wip-work-in-progress.md Story 2 S2-R5; S2-R6",
+    "viu_status": "VIU-Pending",
+    "notes": "VIU-confirm what the \"standard reports loading indicator\" looks like in the build (spinner/skeleton) — the spec does not pin its appearance.",
+    "api_related": false
+  },
+  {
+    "id": "WIP-SCOPE-05",
+    "area": "WIP — Scope & Loading",
+    "title": "When no work order qualifies, every tab shows \"Empty bays, endless possibilities. Get Going!\" and no Totals row",
+    "priority": "High",
+    "type": "Negative",
+    "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
+    "preconditions": [
+      "1. You are signed in to the ShopView App on a desktop browser.",
+      "2. The Work In Progress report is open."
+    ],
+    "steps": [
+      "1. Set the date range and location so that no open work order qualifies (for example, a Custom range over dates with no work orders created).",
+      "2. Open each of the four tabs and read the data area."
+    ],
+    "expected": [
+      "1. Each tab shows the standard reports no-data message \"Empty bays, endless possibilities. Get Going!\" in place of rows.",
+      "2. No tab shows a Totals row.",
+      "3. Every tab label count reads \"(0)\"."
+    ],
+    "design_ref": "none — design not yet available (spec-only authoring)",
+    "spec_ref": "specs/wip-work-in-progress.md Story 2 S2-N1; §7 User Feedback Summary",
+    "viu_status": "VIU-Pending",
+    "notes": "No-data message text is verbatim from §7.",
+    "api_related": false
+  },
+  {
+    "id": "WIP-SCOPE-06",
+    "area": "WIP — Scope & Loading",
+    "title": "A single empty tab shows the no-data message while the other tabs still show their rows",
+    "priority": "Medium",
+    "type": "Negative",
+    "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
+    "preconditions": [
+      "1. You are signed in to the ShopView App on a desktop browser.",
+      "2. Open work orders exist in some tabs, but at least one tab (for example, Completed) has no work orders for the current date range and location."
+    ],
+    "steps": [
+      "1. Open the Work In Progress report.",
+      "2. Open the empty tab and read its data area.",
+      "3. Open a populated tab and confirm its rows are still shown."
+    ],
+    "expected": [
+      "1. The empty tab shows the no-data message \"Empty bays, endless possibilities. Get Going!\" and no Totals row.",
+      "2. The populated tabs still show their rows normally.",
+      "3. The empty tab's label count reads \"(0)\"."
+    ],
+    "design_ref": "none — design not yet available (spec-only authoring)",
+    "spec_ref": "specs/wip-work-in-progress.md Story 2 S2-N2",
+    "viu_status": "VIU-Pending",
+    "notes": "",
+    "api_related": false
+  },
+  {
+    "id": "WIP-PLACE-01",
+    "area": "WIP — Tab Placement",
+    "title": "An Estimate work order lands in the Estimates tab and a Complete work order lands in the Completed tab",
+    "priority": "Critical",
+    "type": "Functional",
+    "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
+    "preconditions": [
+      "1. You are signed in to the ShopView App on a desktop browser.",
+      "2. Two ZZAUTOTEST service work orders exist within the current date range and location: one in Estimate status and one in Complete status."
+    ],
+    "steps": [
+      "1. Open the Work In Progress report.",
+      "2. Look for the Estimate work order in each tab.",
+      "3. Look for the Complete work order in each tab."
+    ],
+    "expected": [
+      "1. The Estimate work order appears in the \"Estimates\" tab and nowhere else.",
+      "2. The Complete work order appears in the \"Completed\" tab and nowhere else."
+    ],
+    "design_ref": "none — design not yet available (spec-only authoring)",
+    "spec_ref": "specs/wip-work-in-progress.md Story 3 S3-R1; S3-R2",
+    "viu_status": "VIU-Pending",
+    "notes": "",
+    "api_related": false
+  },
+  {
+    "id": "WIP-PLACE-02",
+    "area": "WIP — Tab Placement",
+    "title": "In Progress and Review work orders land in the \"Approved - partially completed\" tab",
+    "priority": "Critical",
+    "type": "Functional",
+    "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
+    "preconditions": [
+      "1. You are signed in to the ShopView App on a desktop browser.",
+      "2. Two ZZAUTOTEST service work orders exist within the current date range and location: one in In Progress status and one in Review status."
+    ],
+    "steps": [
+      "1. Open the Work In Progress report.",
+      "2. Look for the In Progress work order in each tab.",
+      "3. Look for the Review work order in each tab."
+    ],
+    "expected": [
+      "1. Both work orders appear in the \"Approved - partially completed\" tab and nowhere else."
+    ],
+    "design_ref": "none — design not yet available (spec-only authoring)",
+    "spec_ref": "specs/wip-work-in-progress.md Story 3 S3-R3",
+    "viu_status": "VIU-Pending",
+    "notes": "",
+    "api_related": false
+  },
+  {
+    "id": "WIP-PLACE-03",
+    "area": "WIP — Tab Placement",
+    "title": "An Approved work order with clocked time or a received part lands in \"Approved - partially completed\"",
+    "priority": "Critical",
+    "type": "Functional",
+    "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
+    "preconditions": [
+      "1. You are signed in to the ShopView App on a desktop browser.",
+      "2. Two ZZAUTOTEST service work orders in Approved status exist within the current date range and location: one where a technician has clocked time to the job, and one where a part has been received for it (and no time clocked)."
+    ],
+    "steps": [
+      "1. Open the Work In Progress report.",
+      "2. Look for the Approved work order with clocked time in each tab.",
+      "3. Look for the Approved work order with a received part in each tab."
+    ],
+    "expected": [
+      "1. The Approved work order with clocked labor time appears in the \"Approved - partially completed\" tab.",
+      "2. The Approved work order with a received part (and no clocked time) also appears in the \"Approved - partially completed\" tab — either kind of started work counts."
+    ],
+    "design_ref": "none — design not yet available (spec-only authoring)",
+    "spec_ref": "specs/wip-work-in-progress.md Story 3 S3-R4 (started branch + context note)",
+    "viu_status": "VIU-Pending",
+    "notes": "\"Work has started\" means a technician has clocked time to the job OR a part has been received for it (Story 3 context note).",
+    "api_related": false
+  },
+  {
+    "id": "WIP-PLACE-04",
+    "area": "WIP — Tab Placement",
+    "title": "An Approved work order with no clocked time and no received part lands in \"Approved - not started\"",
+    "priority": "Critical",
+    "type": "Functional",
+    "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
+    "preconditions": [
+      "1. You are signed in to the ShopView App on a desktop browser.",
+      "2. A ZZAUTOTEST service work order in Approved status exists within the current date range and location, with no labor time clocked and no part received against it."
+    ],
+    "steps": [
+      "1. Open the Work In Progress report.",
+      "2. Look for the seeded Approved work order in each tab."
+    ],
+    "expected": [
+      "1. The work order appears in the \"Approved - not started\" tab and nowhere else."
+    ],
+    "design_ref": "none — design not yet available (spec-only authoring)",
+    "spec_ref": "specs/wip-work-in-progress.md Story 3 S3-R4 (not-started branch)",
+    "viu_status": "VIU-Pending",
+    "notes": "",
+    "api_related": false
+  }
+]

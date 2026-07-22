@@ -1,0 +1,514 @@
+[
+  {
+    "id": "WIP-SUM-01",
+    "area": "WIP — Summary Strip",
+    "title": "The summary strip shows seven figures in a fixed order, each as US-dollar currency",
+    "priority": "Critical",
+    "type": "Functional",
+    "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
+    "preconditions": [
+      "1. You are signed in to the ShopView App on a desktop browser.",
+      "2. The Work In Progress report is open with rows loaded."
+    ],
+    "steps": [
+      "1. Read the summary strip across the top of the report, left to right.",
+      "2. Read each figure's number format."
+    ],
+    "expected": [
+      "1. The strip shows seven figures, in this order: Total Earned, Total Remaining, Not Started, Started — Earned, Started — Remaining, Ready to Invoice, and Estimates.",
+      "2. Every figure shows US-dollar currency with a leading \"$\", two decimals, and thousands separators."
+    ],
+    "design_ref": "none — design not yet available (spec-only authoring)",
+    "spec_ref": "specs/wip-work-in-progress.md Story 5 S5-R1; S5-R10",
+    "viu_status": "VIU-Pending",
+    "notes": "Figure names are verbatim from the spec (note the em dash in \"Started — Earned\" / \"Started — Remaining\") — VIU-confirm the exact on-screen rendering of the dash.",
+    "api_related": false
+  },
+  {
+    "id": "WIP-SUM-02",
+    "area": "WIP — Summary Strip",
+    "title": "Total Earned is the hero figure (larger, colored underline) and equals Started — Earned plus Ready to Invoice",
+    "priority": "Critical",
+    "type": "Functional",
+    "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
+    "preconditions": [
+      "1. You are signed in to the ShopView App on a desktop browser.",
+      "2. The report shows jobs in the \"Approved - partially completed\" tab and the \"Completed\" tab with non-zero earned values."
+    ],
+    "steps": [
+      "1. Look at how the Total Earned figure is styled compared to the other six figures.",
+      "2. Add the Started — Earned figure to the Ready to Invoice figure.",
+      "3. Compare the sum to Total Earned."
+    ],
+    "expected": [
+      "1. Total Earned is shown larger than the other figures and with a colored underline — it is the strip's hero figure.",
+      "2. Total Earned equals Started — Earned plus Ready to Invoice, to the cent."
+    ],
+    "design_ref": "none — design not yet available (spec-only authoring)",
+    "spec_ref": "specs/wip-work-in-progress.md Story 5 S5-R2",
+    "viu_status": "VIU-Pending",
+    "notes": "VIU-confirm the underline color (unpinned in the spec).",
+    "api_related": false
+  },
+  {
+    "id": "WIP-SUM-03",
+    "area": "WIP — Summary Strip",
+    "title": "Total Remaining equals Not Started plus Started — Remaining",
+    "priority": "Critical",
+    "type": "Functional",
+    "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
+    "preconditions": [
+      "1. You are signed in to the ShopView App on a desktop browser.",
+      "2. The report shows jobs in the \"Approved - not started\" and \"Approved - partially completed\" tabs with non-zero remaining values."
+    ],
+    "steps": [
+      "1. Add the Not Started figure to the Started — Remaining figure.",
+      "2. Compare the sum to Total Remaining."
+    ],
+    "expected": [
+      "1. Total Remaining equals Not Started plus Started — Remaining, to the cent."
+    ],
+    "design_ref": "none — design not yet available (spec-only authoring)",
+    "spec_ref": "specs/wip-work-in-progress.md Story 5 S5-R3",
+    "viu_status": "VIU-Pending",
+    "notes": "",
+    "api_related": false
+  },
+  {
+    "id": "WIP-SUM-04",
+    "area": "WIP — Summary Strip",
+    "title": "The per-stage figures each equal the matching tab's money: Not Started, Started — Earned, Started — Remaining, and Ready to Invoice",
+    "priority": "Critical",
+    "type": "Functional",
+    "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
+    "preconditions": [
+      "1. You are signed in to the ShopView App on a desktop browser.",
+      "2. All four tabs contain at least one job with non-zero money.",
+      "3. The Earned and Remaining columns are visible."
+    ],
+    "steps": [
+      "1. In the \"Approved - not started\" tab, add up each job's Earned + Remaining (its approved value) and compare to the Not Started figure.",
+      "2. In the \"Approved - partially completed\" tab, compare the tab's total Earned to the Started — Earned figure and the tab's total Remaining to the Started — Remaining figure.",
+      "3. In the \"Completed\" tab, compare the tab's total Earned to the Ready to Invoice figure."
+    ],
+    "expected": [
+      "1. Not Started equals the total approved value (earned + remaining) of the jobs in the \"Approved - not started\" tab.",
+      "2. Started — Earned equals the total Earned of the jobs in the \"Approved - partially completed\" tab, and Started — Remaining equals that tab's total Remaining.",
+      "3. Ready to Invoice equals the total Earned of the jobs in the \"Completed\" tab."
+    ],
+    "design_ref": "none — design not yet available (spec-only authoring)",
+    "spec_ref": "specs/wip-work-in-progress.md Story 5 S5-R4; S5-R5; S5-R6; S5-R7",
+    "viu_status": "VIU-Pending",
+    "notes": "The strip counts \"visible jobs\" across all four tabs together (Story 5 context note) — apply no advisor/customer/asset filter for this check, or account for it.",
+    "api_related": false
+  },
+  {
+    "id": "WIP-SUM-05",
+    "area": "WIP — Summary Strip",
+    "title": "The Estimates figure is the Estimates tab's total quoted value, shown muted, and excluded from Total Earned and Total Remaining",
+    "priority": "High",
+    "type": "Functional",
+    "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
+    "preconditions": [
+      "1. You are signed in to the ShopView App on a desktop browser.",
+      "2. The Estimates tab contains at least one job with a non-zero quoted value."
+    ],
+    "steps": [
+      "1. Compare the Estimates figure to the total quoted value of the jobs in the Estimates tab.",
+      "2. Look at how the Estimates figure is styled compared to the others.",
+      "3. Check whether the Estimates amount is included in Total Earned or Total Remaining (their component sums should not contain it)."
+    ],
+    "expected": [
+      "1. The Estimates figure equals the total quoted value of the jobs in the Estimates tab.",
+      "2. It is shown in a muted style.",
+      "3. The Estimates figure is excluded from Total Earned and from Total Remaining."
+    ],
+    "design_ref": "none — design not yet available (spec-only authoring)",
+    "spec_ref": "specs/wip-work-in-progress.md Story 5 S5-R8; S5-R9",
+    "viu_status": "VIU-Pending",
+    "notes": "",
+    "api_related": false
+  },
+  {
+    "id": "WIP-SUM-06",
+    "area": "WIP — Summary Strip",
+    "title": "Changing the advisor, customer, or asset filter recomputes every summary figure immediately, with no reload",
+    "priority": "High",
+    "type": "Functional",
+    "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
+    "preconditions": [
+      "1. You are signed in to the ShopView App on a desktop browser.",
+      "2. The report shows jobs for at least two different advisors, customers, and assets."
+    ],
+    "steps": [
+      "1. Note all seven summary figures.",
+      "2. Select one advisor in the Advisor filter and watch the strip.",
+      "3. Clear it, then select one customer; then clear and select one asset."
+    ],
+    "expected": [
+      "1. After each filter change, every summary figure recomputes immediately from the jobs still visible, with no page reload and no loading indicator.",
+      "2. The recomputed figures reflect only the jobs that pass the filter (across all four tabs together)."
+    ],
+    "design_ref": "none — design not yet available (spec-only authoring)",
+    "spec_ref": "specs/wip-work-in-progress.md Story 5 S5-R11; §3 Key Decisions (strip recomputes from visible jobs)",
+    "viu_status": "VIU-Pending",
+    "notes": "",
+    "api_related": false
+  },
+  {
+    "id": "WIP-SUM-07",
+    "area": "WIP — Summary Strip",
+    "title": "Each summary figure's information icon reveals its plain-language explanation, verbatim per the spec",
+    "priority": "High",
+    "type": "Functional",
+    "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
+    "preconditions": [
+      "1. You are signed in to the ShopView App on a desktop browser.",
+      "2. The Work In Progress report is open with the summary strip visible."
+    ],
+    "steps": [
+      "1. Hover (or focus, or tap) the small information icon next to each of the seven summary figures, one at a time.",
+      "2. Read each revealed explanation and compare it word-for-word to the expected text."
+    ],
+    "expected": [
+      "1. Total Earned — \"Work you have already done but have not billed yet — the money waiting to be collected.\"",
+      "2. Total Remaining — \"Approved work you still have to do — the money that comes in once it is finished.\"",
+      "3. Not Started — \"Approved jobs nobody has started yet. The full amount is still ahead.\"",
+      "4. Started — Earned — \"Jobs in progress: the work already done but not billed yet.\"",
+      "5. Started — Remaining — \"Jobs in progress: the work still left to finish.\"",
+      "6. Ready to Invoice — \"Finished jobs, ready to bill the customer.\"",
+      "7. Estimates — \"Quotes the customer has not approved yet — not counted in the totals.\"",
+      "8. Each explanation appears on hover, on keyboard focus, and on tap."
+    ],
+    "design_ref": "none — design not yet available (spec-only authoring)",
+    "spec_ref": "specs/wip-work-in-progress.md Story 5 S5-R12",
+    "viu_status": "VIU-Pending",
+    "notes": "All seven tooltip texts are VERBATIM from the spec — compare word-for-word, including punctuation.",
+    "api_related": false
+  },
+  {
+    "id": "WIP-TOT-01",
+    "area": "WIP — Totals Row",
+    "title": "Each tab has a Totals row pinned to the bottom, labeled \"Totals\", with a bold pinned Total cell and the same number formats as data rows",
+    "priority": "High",
+    "type": "Functional",
+    "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
+    "preconditions": [
+      "1. You are signed in to the ShopView App on a desktop browser.",
+      "2. Each tab has at least one visible job."
+    ],
+    "steps": [
+      "1. In each tab, look at the bottom of the table.",
+      "2. Read the Totals row's leftmost cell and its Total cell.",
+      "3. Compare the Totals row's number formats to the data rows."
+    ],
+    "expected": [
+      "1. Each tab's table has a Totals row pinned to the bottom, labeled \"Totals\" in its leftmost cell.",
+      "2. The Totals row's Total cell is pinned far right and shown in bold, matching the column.",
+      "3. The Totals row uses the same number formats as the data rows."
+    ],
+    "design_ref": "none — design not yet available (spec-only authoring)",
+    "spec_ref": "specs/wip-work-in-progress.md Story 6 S6-R1; S6-R4; S6-R5",
+    "viu_status": "VIU-Pending",
+    "notes": "",
+    "api_related": false
+  },
+  {
+    "id": "WIP-TOT-02",
+    "area": "WIP — Totals Row",
+    "title": "The Totals row sums each visible money column, and the Inv. Hrs total keeps the signed one-decimal format and coloring",
+    "priority": "High",
+    "type": "Functional",
+    "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
+    "preconditions": [
+      "1. You are signed in to the ShopView App on a desktop browser.",
+      "2. A tab shows several jobs with known money values.",
+      "3. All money columns and the Inv. Hrs column are turned on."
+    ],
+    "steps": [
+      "1. Add up each money column (Labor Earned, Labor Remaining, Parts Earned, Parts Remaining, Earned, Remaining, Total) across the tab's visible jobs.",
+      "2. Compare each sum to the Totals row.",
+      "3. Add up the jobs' Inv. Hrs values and compare to the Totals row's Inv. Hrs cell, including its sign and color."
+    ],
+    "expected": [
+      "1. The Totals row sums each visible money column across the tab's visible jobs, to the cent.",
+      "2. The Totals row's Inv. Hrs shows the sum of the visible jobs' Inv. Hrs, in the same signed one-decimal format (\"+2.0\" / \"-14.0\" / \"0.0\").",
+      "3. The Inv. Hrs total uses the same green (positive) / red (negative) / default (exactly 0.0) coloring as a data row."
+    ],
+    "design_ref": "none — design not yet available (spec-only authoring)",
+    "spec_ref": "specs/wip-work-in-progress.md Story 6 S6-R2; S6-R3",
+    "viu_status": "VIU-Pending",
+    "notes": "",
+    "api_related": false
+  },
+  {
+    "id": "WIP-TOT-03",
+    "area": "WIP — Totals Row",
+    "title": "The Totals row recomputes whenever the advisor, customer, or asset filter changes",
+    "priority": "High",
+    "type": "Functional",
+    "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
+    "preconditions": [
+      "1. You are signed in to the ShopView App on a desktop browser.",
+      "2. A tab shows jobs for at least two advisors (or customers, or assets)."
+    ],
+    "steps": [
+      "1. Note the tab's Totals row values.",
+      "2. Select one advisor in the Advisor filter.",
+      "3. Read the Totals row again; repeat with a customer and an asset selection."
+    ],
+    "expected": [
+      "1. After each filter change, the Totals row recomputes to sum only the jobs still visible in the tab.",
+      "2. The recompute happens on screen with no reload."
+    ],
+    "design_ref": "none — design not yet available (spec-only authoring)",
+    "spec_ref": "specs/wip-work-in-progress.md Story 6 S6-R6; Story 7 S7-R12",
+    "viu_status": "VIU-Pending",
+    "notes": "",
+    "api_related": false
+  },
+  {
+    "id": "WIP-TOT-04",
+    "area": "WIP — Totals Row",
+    "title": "A tab with no visible jobs shows no Totals row",
+    "priority": "Medium",
+    "type": "Negative",
+    "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
+    "preconditions": [
+      "1. You are signed in to the ShopView App on a desktop browser.",
+      "2. At least one tab has no work orders (or can be emptied via the advisor/customer/asset filters)."
+    ],
+    "steps": [
+      "1. Open a tab that has no visible jobs (or filter until a tab is empty).",
+      "2. Look at the bottom of the tab's data area."
+    ],
+    "expected": [
+      "1. The empty tab shows no Totals row (only the no-data message)."
+    ],
+    "design_ref": "none — design not yet available (spec-only authoring)",
+    "spec_ref": "specs/wip-work-in-progress.md Story 6 S6-N1",
+    "viu_status": "VIU-Pending",
+    "notes": "",
+    "api_related": false
+  },
+  {
+    "id": "WIP-FLT-01",
+    "area": "WIP — Filters",
+    "title": "The Advisor filter is a multi-select of the advisors present in the loaded jobs and narrows rows on screen only",
+    "priority": "High",
+    "type": "Functional",
+    "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
+    "preconditions": [
+      "1. You are signed in to the ShopView App on a desktop browser.",
+      "2. The report shows jobs for at least two different advisors."
+    ],
+    "steps": [
+      "1. Open the Advisor filter in the toolbar and read its options.",
+      "2. Select one advisor and watch the rows.",
+      "3. Add a second advisor to the selection."
+    ],
+    "expected": [
+      "1. The Advisor filter is a multi-select listing the advisors present in the loaded jobs.",
+      "2. Selecting one or more advisors narrows the visible jobs to those advisors instantly, on screen only — no reload and no loading indicator.",
+      "3. With two advisors selected, jobs for either advisor are shown."
+    ],
+    "design_ref": "none — design not yet available (spec-only authoring)",
+    "spec_ref": "specs/wip-work-in-progress.md Story 7 S7-R1",
+    "viu_status": "VIU-Pending",
+    "notes": "",
+    "api_related": false
+  },
+  {
+    "id": "WIP-FLT-02",
+    "area": "WIP — Filters",
+    "title": "The Customer filter is a searchable type-ahead multi-select reading \"All customers\" when empty, with a \"Clear\" action once a customer is selected",
+    "priority": "High",
+    "type": "Functional",
+    "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
+    "preconditions": [
+      "1. You are signed in to the ShopView App on a desktop browser.",
+      "2. The report shows jobs for at least two different customers."
+    ],
+    "steps": [
+      "1. Read the Customer filter's label before selecting anything, and check whether a Clear action is offered.",
+      "2. Open the filter and type part of a customer's name to narrow the list.",
+      "3. Select one or more customers and watch the rows.",
+      "4. Use the \"Clear\" action."
+    ],
+    "expected": [
+      "1. With no customer selected, the filter reads \"All customers\", every job is shown, and no Clear action is offered.",
+      "2. Typing narrows the option list (type-ahead); the options are the customers present in the loaded jobs.",
+      "3. Selecting customers narrows the visible jobs on screen only (no reload); a single \"Clear\" action appears once at least one customer is selected.",
+      "4. Clear returns the filter to \"All customers\" and every job is shown again."
+    ],
+    "design_ref": "none — design not yet available (spec-only authoring)",
+    "spec_ref": "specs/wip-work-in-progress.md Story 7 S7-R2; S7-R3",
+    "viu_status": "VIU-Pending",
+    "notes": "",
+    "api_related": false
+  },
+  {
+    "id": "WIP-FLT-03",
+    "area": "WIP — Filters",
+    "title": "The Asset filter's type-ahead matches either the unit number or the vehicle identification number, and reads \"All assets\" when empty",
+    "priority": "High",
+    "type": "Functional",
+    "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
+    "preconditions": [
+      "1. You are signed in to the ShopView App on a desktop browser.",
+      "2. The report shows jobs for at least two assets whose unit numbers and vehicle identification numbers you know."
+    ],
+    "steps": [
+      "1. Read the Asset filter's label before selecting anything.",
+      "2. Open the filter and read how each option is presented.",
+      "3. Type part of a unit number and check the matching options; clear and type part of a vehicle identification number instead.",
+      "4. Select one or more assets and watch the rows; then use the \"Clear\" action."
+    ],
+    "expected": [
+      "1. With no asset selected, the filter reads \"All assets\" and every job is shown.",
+      "2. Each option shows the unit number and the vehicle identification number.",
+      "3. The typed text matches against EITHER the unit number OR the vehicle identification number.",
+      "4. Selecting assets narrows the visible jobs on screen only (no reload); a single \"Clear\" action appears once at least one asset is selected and returns the filter to \"All assets\"."
+    ],
+    "design_ref": "none — design not yet available (spec-only authoring)",
+    "spec_ref": "specs/wip-work-in-progress.md Story 7 S7-R4; S7-R5",
+    "viu_status": "VIU-Pending",
+    "notes": "",
+    "api_related": false
+  },
+  {
+    "id": "WIP-FLT-04",
+    "area": "WIP — Filters",
+    "title": "The date-range control offers the standard presets plus Custom, defaults to \"This Week\", and does not offer \"All Time\"",
+    "priority": "Critical",
+    "type": "Functional",
+    "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
+    "preconditions": [
+      "1. You are signed in to the ShopView App on a desktop browser that has never saved settings for this report (fresh visit)."
+    ],
+    "steps": [
+      "1. Open the Work In Progress report and read the date-range control's current value.",
+      "2. Open the date-range control and read every option offered."
+    ],
+    "expected": [
+      "1. On a fresh visit the date range defaults to \"This Week\".",
+      "2. The options offered are: \"Today\", \"Yesterday\", \"This Week\", \"Last Week\", \"This Month\", \"Last Month\", \"This Year\", \"Last Year\", \"This Quarter\", \"Last Quarter\", and \"Custom\".",
+      "3. \"All Time\" is NOT offered."
+    ],
+    "design_ref": "none — design not yet available (spec-only authoring)",
+    "spec_ref": "specs/wip-work-in-progress.md Story 7 S7-R6; §3 Key Decisions (date range defaults to This Week)",
+    "viu_status": "VIU-Pending",
+    "notes": "KNOWN-DELTA WATCH: \"All Time\" was removed and the default changed to \"This Week\" by the 2026-07-21 spec change (a Chris product decision). An older build may still offer \"All Time\" or default differently — record that as a build deviation from the current spec, not as passing.",
+    "api_related": false
+  },
+  {
+    "id": "WIP-FLT-05",
+    "area": "WIP — Filters",
+    "title": "The date range filters by the work order's created date, reloads the report on change, and a Custom range is capped at 366 days",
+    "priority": "High",
+    "type": "Functional",
+    "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
+    "preconditions": [
+      "1. You are signed in to the ShopView App on a desktop browser.",
+      "2. Open work orders exist with created dates both inside and outside the current week."
+    ],
+    "steps": [
+      "1. With \"This Week\" selected, check which work orders are listed.",
+      "2. Change the preset to \"This Month\" and watch the data area.",
+      "3. Open \"Custom\" and try to pick a start and end date more than 366 days apart."
+    ],
+    "expected": [
+      "1. Each preset (or Custom) filters the report to work orders whose CREATED date falls within the selected range — an open work order created outside the range is not listed.",
+      "2. Changing the range reloads the report (the loading indicator shows).",
+      "3. A Custom range is capped at a 366-day maximum span from start to end — a longer span cannot be applied."
+    ],
+    "design_ref": "none — design not yet available (spec-only authoring)",
+    "spec_ref": "specs/wip-work-in-progress.md Story 7 S7-R7; S7-R8",
+    "viu_status": "VIU-Pending",
+    "notes": "The date range narrows by created date — it is NOT a way to see what work-in-progress was on a past date (Story 7 context note). VIU-confirm how the 366-day cap is enforced on screen (disabled dates vs an error).",
+    "api_related": false
+  },
+  {
+    "id": "WIP-FLT-06",
+    "area": "WIP — Filters",
+    "title": "The Location filter (rightmost) is a multi-select with an \"All locations\" / \"Clear all\" toggle, defaults to the active location, and reloads on change",
+    "priority": "High",
+    "type": "Functional",
+    "permissions_required": "A user with access to at least two locations and the Work In Progress reports permission.",
+    "preconditions": [
+      "1. You are signed in to the ShopView App on a desktop browser as a user with access to at least two locations.",
+      "2. This browser has never saved settings for this report (fresh visit).",
+      "3. Open work orders exist at two different locations."
+    ],
+    "steps": [
+      "1. Open the Work In Progress report and read the Location filter's position and default value.",
+      "2. Open the Location filter and read its options and its toggle.",
+      "3. Select a second location and watch the data area.",
+      "4. Use \"All locations\", then \"Clear all\"."
+    ],
+    "expected": [
+      "1. The Location filter is the rightmost toolbar filter, a multi-select listing the locations the signed-in user can access, with an \"All locations\" / \"Clear all\" toggle.",
+      "2. On a first visit it defaults to the user's currently active location.",
+      "3. Selecting one, several, or all locations reloads the report scoped to that set (rows from the added location appear)."
+    ],
+    "design_ref": "none — design not yet available (spec-only authoring)",
+    "spec_ref": "specs/wip-work-in-progress.md Story 7 S7-R9; S7-R10",
+    "viu_status": "VIU-Pending",
+    "notes": "",
+    "api_related": false
+  },
+  {
+    "id": "WIP-FLT-07",
+    "area": "WIP — Filters",
+    "title": "The location scope never includes an inaccessible location, and an empty selection falls back to the user's active location",
+    "priority": "High",
+    "type": "Negative",
+    "permissions_required": "A user with access to a limited set of locations and the Work In Progress reports permission.",
+    "preconditions": [
+      "1. You are signed in to the ShopView App on a desktop browser as a user who can access some, but not all, of the organization's locations.",
+      "2. The Work In Progress report is open."
+    ],
+    "steps": [
+      "1. Open the Location filter and read the locations offered.",
+      "2. Use \"Clear all\" so the selection resolves to no location, and watch what the report loads.",
+      "3. If possible, revisit the report after your saved location selection has been made invalid (for example, access to a saved location was removed)."
+    ],
+    "expected": [
+      "1. Only the locations the user can access are offered — a location the user cannot access is never included in the scope.",
+      "2. If the selection resolves to none, the report falls back to the user's currently active location rather than showing everything or erroring.",
+      "3. A saved selection that no longer resolves also falls back to the active location."
+    ],
+    "design_ref": "none — design not yet available (spec-only authoring)",
+    "spec_ref": "specs/wip-work-in-progress.md Story 7 S7-R11; Story 8 S8-R8",
+    "viu_status": "VIU-Pending",
+    "notes": "",
+    "api_related": false
+  },
+  {
+    "id": "WIP-FLT-08",
+    "area": "WIP — Filters",
+    "title": "Advisor, customer, and asset filters combine with AND, feed the strip and Totals rows, and an empty combination shows the no-data message",
+    "priority": "High",
+    "type": "Functional",
+    "permissions_required": "A role with the permission that grants access to Work In Progress reports (the report reuses one existing reporting permission — Story 1 prerequisite).",
+    "preconditions": [
+      "1. You are signed in to the ShopView App on a desktop browser.",
+      "2. The report shows several jobs with a known mix of advisors, customers, and assets."
+    ],
+    "steps": [
+      "1. Select an advisor, then also a customer that advisor has a job for, then also an asset from one of those jobs — checking the rows after each step.",
+      "2. Read the summary strip and the active tab's Totals row after the three selections.",
+      "3. Change one selection so that NO job passes all three filters."
+    ],
+    "expected": [
+      "1. A job must pass all three filters to remain visible (the filters combine with AND).",
+      "2. The summary strip and each tab's Totals row recompute from the still-visible jobs after every change.",
+      "3. When the combination leaves no visible jobs, every tab shows the no-data message \"Empty bays, endless possibilities. Get Going!\" and no Totals row."
+    ],
+    "design_ref": "none — design not yet available (spec-only authoring)",
+    "spec_ref": "specs/wip-work-in-progress.md Story 7 S7-R12; S7-N1",
+    "viu_status": "VIU-Pending",
+    "notes": "",
+    "api_related": false
+  }
+]
