@@ -794,6 +794,24 @@ process(es) to run before proceeding.
     report-suite-v1-{sbc,pv,...}-… and the user required full report names
     ("make them human readable to avoid confusion - remember this rule
     always").
+20. **Every test case is 100% AUTHENTIC = fully TRACEABLE to its ticket(s) + spec
+    (all projects).** Whenever CREATING, VIU-verifying, or UPDATING a test case, the
+    case MUST carry a provable link back to (a) the Jira ticket(s) it belongs to AND
+    (b) the exact spec section/requirement it derives from — so anyone can show WHY the
+    case exists and WHY its expected result is what it is. Capture these references in
+    the TRACEABILITY / METADATA layer, NOT the tester-facing fields: the ticket key(s)
+    go in the TestRail case **References (`refs`) field** (plus the per-project
+    testrail-id-map.csv and the findings/coverage-matrix), and the spec section citation
+    goes in the QA-side records (findings `citation`, the audit log, coverage matrix).
+    This does NOT contradict Rules 7 & 9 — the tester-facing Title/Preconditions/Steps/
+    Expected stay plain and jargon-free (NO ticket IDs, story refs, §-numbers, enum
+    names, or bug codes in the words the manual tester reads); the references live only
+    in the metadata layer. Every CHANGE to a case must cite its driving ticket (with
+    Done/Not-Done status) + spec section in the audit log and the change-list deliverable
+    (last-update-wins on conflicts). A case with no ticket AND no spec anchor is NOT
+    authentic — flag it (missing-traceability) rather than leave it unsourced. Ties to
+    Standing Rules 6/8/9/10/11/12/13/14/15 and build/SPEC-RECHECK-PROCESS.md +
+    build/BUILD-ACCURATE-WORDING-VIU-PROCESS.md.
 
 ## Project purpose (Custom Roles project)
 Manual test-case authoring + live staging (Verify-in-UI) verification + TestRail

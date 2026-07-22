@@ -101,6 +101,17 @@ pushed.
 
 ---
 
+## Traceability = authenticity (Standing Rule 20)
+
+Every case created / VIU'd / updated must be provably linked to (a) its Jira ticket(s) and
+(b) its spec section, so its existence and its expected result are always justifiable. Keep
+these in the **metadata/traceability layer, never the tester-facing fields**: ticket key(s)
+in the TestRail case **References (`refs`)** field + the per-project `testrail-id-map.csv` +
+the coverage matrix; spec section in the QA-side records (case `citation`/evidence, audit
+log). Tester-facing Title/Preconditions/Steps/Expected stay jargon-free (Rules 7 & 9). Every
+change cites its driving ticket (Done/Not-Done) + spec section in the audit log. A case with
+neither a ticket nor a spec anchor is flagged missing-traceability, not left unsourced.
+
 ## Honesty rules
 
 - **Leave genuine blockers blocked** with a **precise reason** — never fake a pass. Examples:
