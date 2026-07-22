@@ -21,6 +21,16 @@
 >   citation — so 100% of cases are provably authentic; enforces Standing Rule 20):
 >   build/MISSING-TRACEABILITY-PROCESS.md — **apply to any project WHEN THE USER ASKS, and as a
 >   sub-step of any spec-recheck/VIU pass.**
+> - Reusable Atlassian/Jira/Confluence LIVE-LOGIN + ingest access method (shared infra):
+>   build/ATLASSIAN-JIRA-ACCESS-METHOD.md — **live browser login (headless Chromium via a
+>   fresh MITM bridge → id.atlassian.com email+password → 6-digit EMAIL OTP) is now the
+>   PRIMARY way to read shopview.atlassian.net tickets/pages; export/paste is the FALLBACK.**
+>   This SUPERSEDES the old "Jira/Confluence is SSO-walled → export/paste only" stance used
+>   in the per-project pointers above. **MFA RACE (crux):** each password submit emails a NEW
+>   code and invalidates prior ones → hold ONE detached session at the OTP prompt polling
+>   /tmp/…/otp.txt; NEVER start a fresh run to retry. ShopView/Cloudflare cookies do NOT
+>   authenticate atlassian.net (Basic auth → 401/404). Creds + cookies + OTP codes in /tmp
+>   only, never committed. The user supplies the OTP codes on request.
 > - Keep the books current: After each task, append ONLY success-proven learnings
 >   (working navigation paths, action recipes, endpoints, the specific unblock that
 >   worked) to build/APP-ACTIONS-PLAYBOOK.md; update build/TESTING-RUNBOOK.md when the
