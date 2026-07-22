@@ -1,0 +1,1242 @@
+[
+ {
+  "id": "SBR-EXP-01",
+  "area": "SBR — Exports",
+  "title": "The ⋯ overflow menu lists exactly four download actions",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "A user with Reports access who can open the Sales By Representative report.",
+  "preconditions": [
+   "1. You are signed in to the ShopView App on a desktop browser.",
+   "2. You are on the Sales By Representative report."
+  ],
+  "steps": [
+   "1. Find the ⋯ (three-dot) button in the report toolbar — it is the first control in the toolbar's action cluster.",
+   "2. Click it and read the menu entries top to bottom."
+  ],
+  "expected": [
+   "1. The menu lists exactly four actions: \"Download Summary (PDF)\", \"Download Expanded View (PDF)\", \"Download Summary (CSV)\", and \"Download Expanded View (CSV)\".",
+   "2. No other entries appear in the menu."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbr-sales-by-representative.md Story 14 S14-R1; Story 17 S17-R3 (position)",
+  "viu_status": "VIU-Pending",
+  "notes": "Menu action labels are verbatim from the spec.",
+  "api_related": false
+ },
+ {
+  "id": "SBR-EXP-02",
+  "area": "SBR — Exports",
+  "title": "All four downloads respect the active filters and the full result set — not the on-screen expansion — in the currently-active order",
+  "priority": "Critical",
+  "type": "Functional",
+  "permissions_required": "A user with Reports access who can open the Sales By Representative report.",
+  "preconditions": [
+   "1. You are on the report with several reps showing.",
+   "2. Set a specific date range, Product Type, Invoice Status, and a location selection; turn Show Unassigned on.",
+   "3. Sort by a financial column (for example, click the Subtotal header).",
+   "4. Leave at least one rep collapsed (do not expand it)."
+  ],
+  "steps": [
+   "1. Download all four files from the ⋯ menu.",
+   "2. Compare each file's rows against the on-screen result: which reps appear, which invoices are included, and the row order.",
+   "3. Check where the Unassigned row sits in each file."
+  ],
+  "expected": [
+   "1. Every file contains only the reps/invoices matching ALL the active filters (date range, product type, invoice status, location, Show Unassigned).",
+   "2. The files reflect the FULL result set for those filters — a collapsed (never-expanded) rep's invoices still appear in the Expanded View files; on-screen expansion state does not matter.",
+   "3. Rep rows appear in the report's currently-active order — the active column sort if one is set, otherwise the A→Z default.",
+   "4. The Unassigned row (Show Unassigned on) is pinned first, ahead of the sorted reps."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbr-sales-by-representative.md Story 14 S14-R2; S14-R2a; Story 21 S21-R6; Story 22 S22-R4",
+  "viu_status": "VIU-Pending",
+  "notes": "BUILD-DELTA: all four exports are server-generated against the active filters + sort (2026-07-16 change log; spec ahead of code by design) — record a deviation if the build still exports from loaded screen data.",
+  "api_related": false
+ },
+ {
+  "id": "SBR-EXP-03",
+  "area": "SBR — Exports",
+  "title": "Summary PDF: A4 header strip, one rolled-up row per rep, bold Subtotal, colored Inv. Hrs, and a recomputed grand totals row",
+  "priority": "Critical",
+  "type": "Functional",
+  "permissions_required": "A user with Reports access who can open the Sales By Representative report.",
+  "preconditions": [
+   "1. You are on the report with at least two reps showing, one of them a toggled-off (\"(Inactive)\") contributor if one can be arranged.",
+   "2. A date range is selected."
+  ],
+  "steps": [
+   "1. Choose \"Download Summary (PDF)\" from the ⋯ menu and open the file.",
+   "2. Read the top of the first page, the column headers, one rep row, and the last row.",
+   "3. Compare the totals row's Margin % against the child rows."
+  ],
+  "expected": [
+   "1. The PDF is A4 portrait, edge-to-edge, with a header strip on the first page showing the workplace name and address, the organization logo, the report title \"Sales By Representative,\" and the selected date range.",
+   "2. There is one rolled-up row per rep, in the report's currently-active order; a toggled-off contributor's name carries the \"(Inactive)\" tag.",
+   "3. The columns are: Rep / Inv. Hrs / Labor Invoiced / Labor Margin / Parts Invoiced / Parts Margin / Margin / Margin % / Subtotal.",
+   "4. Subtotal is bolded across the header, the body rows, and the grand totals row; Inv. Hrs keeps its green/red/default coloring.",
+   "5. The grand totals row reads \"Totals\" in the Rep cell and aggregates every summary row in the document (including the Unassigned row when Show Unassigned is on); its Margin % is RECOMPUTED as total Margin ÷ total Subtotal (shown \"—\" when that Subtotal is zero or below), never the sum or average of the rows' percentages."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbr-sales-by-representative.md Story 14 S14-R3; S14-R5; Story 2 S2-R5; §3 Margin % definition",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "SBR-EXP-04",
+  "area": "SBR — Exports",
+  "title": "Expanded View PDF: one page-block per rep with its own header strip, per-invoice table, per-rep totals row, and no grand totals",
+  "priority": "Critical",
+  "type": "Functional",
+  "permissions_required": "A user with Reports access who can open the Sales By Representative report.",
+  "preconditions": [
+   "1. You are on the report with at least two reps showing, each with at least one invoice."
+  ],
+  "steps": [
+   "1. Choose \"Download Expanded View (PDF)\" from the ⋯ menu and open the file.",
+   "2. Check how each rep's section starts and what its table contains.",
+   "3. Read the last row of one rep's block and the end of the document.",
+   "4. Compare the order of one rep's invoices against the on-screen expanded order."
+  ],
+  "expected": [
+   "1. There is one page-block per rep, in the report's currently-active order, with a page break before each new rep after the first.",
+   "2. Each block shows the header strip (workplace name and address, organization logo, title \"Sales By Representative,\" the selected date range), the rep's name, and a per-invoice table with columns: Date / Invoice / Customer / Status / Inv. Hrs / Labor Invoiced / Labor Margin / Parts Invoiced / Parts Margin / Margin / Margin % / Subtotal.",
+   "3. The Status column renders the same colored badge as on screen, vertically centered.",
+   "4. Invoices are ordered newest first (the same order as the on-screen expansion: invoice date descending, numeric invoice-number tie-break).",
+   "5. Each block ends with a per-rep totals row — \"Totals\" in the Date cell; Invoice/Customer/Status blank; each metric aggregated; Margin % recomputed.",
+   "6. There is NO grand-totals row across all reps at the end of the document."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbr-sales-by-representative.md Story 14 S14-R6; S14-R8; Story 6 S6-R9",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "SBR-EXP-05",
+  "area": "SBR — Exports",
+  "title": "Expanded View PDF truncates invoice numbers longer than 18 characters; on screen they are never truncated",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "A user with Reports access who can open the Sales By Representative report.",
+  "preconditions": [
+   "1. At least one invoice in the current view has an invoice number LONGER than 18 characters, and one has a number of 18 characters or fewer (seed data if needed)."
+  ],
+  "steps": [
+   "1. Expand the rep on screen and read both invoice numbers.",
+   "2. Download the Expanded View PDF and read the same two invoice numbers."
+  ],
+  "expected": [
+   "1. On screen, both invoice numbers show in full — never truncated.",
+   "2. In the PDF, the long number is cut to its first 18 characters followed by an ellipsis (the ellipsis is not counted toward the 18).",
+   "3. In the PDF, the 18-character-or-shorter number shows in full with no ellipsis."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbr-sales-by-representative.md Story 14 S14-R7",
+  "viu_status": "VIU-Pending",
+  "notes": "VIU-confirm whether an >18-character invoice number is seedable in this environment; if not, mark Blocked-Env with the reason rather than inferring.",
+  "api_related": false
+ },
+ {
+  "id": "SBR-EXP-06",
+  "area": "SBR — Exports",
+  "title": "PDF footer on every page, default-logo fallback, and deterministic PDF filenames",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "A user with Reports access who can open the Sales By Representative report.",
+  "preconditions": [
+   "1. You are on the report with data showing.",
+   "2. For the fallback check: the organization has NO configured logo (clear it in settings if permitted, and restore afterward)."
+  ],
+  "steps": [
+   "1. Download both PDFs and note each saved file's name.",
+   "2. Scroll through every page of both PDFs and read the footer.",
+   "3. With the organization logo not configured, download a PDF again and look at the header strip's logo region."
+  ],
+  "expected": [
+   "1. The files are named exactly \"sales-by-representative-summary.pdf\" and \"sales-by-representative-expanded.pdf\".",
+   "2. A footer reading \"Software Powered by ShopView\" appears on EVERY page of both PDFs.",
+   "3. With no configured logo, the logo region falls back to the default ShopView logo and the PDF still generates normally."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbr-sales-by-representative.md Story 14 S14-R4; S14-R3a; S14-R11",
+  "viu_status": "VIU-Pending",
+  "notes": "Restore the organization logo after the fallback check (shared-env rule).",
+  "api_related": false
+ },
+ {
+  "id": "SBR-EXP-07",
+  "area": "SBR — Exports",
+  "title": "PDFs render negative dollars in accounting parentheses, keep the (Inactive) tag, and omit the on-screen (N) count",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "A user with Reports access who can open the Sales By Representative report.",
+  "preconditions": [
+   "1. The current view includes at least one negative money value (for example, a net-credit/return invoice — seed one if needed) and, if arrangeable, one toggled-off \"(Inactive)\" contributor."
+  ],
+  "steps": [
+   "1. Download both PDFs.",
+   "2. Find the negative money value in each and read how it is written.",
+   "3. Read the rep names in both PDFs."
+  ],
+  "expected": [
+   "1. Negative dollar values render in accounting parentheses — for example ($1,234.56) — in both PDFs, with no extra color treatment.",
+   "2. The on-screen (N) invoice count does NOT appear next to any rep name in either PDF.",
+   "3. The \"(Inactive)\" tag DOES render on toggled-off contributors' names in both PDFs; other rep names render plainly."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbr-sales-by-representative.md Story 14 S14-R9; S14-R10",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "SBR-EXP-08",
+  "area": "SBR — Exports",
+  "title": "PDF body font size adapts to the longest positive dollar value on the four-tier scale, with fixed column widths",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "A user with Reports access who can open the Sales By Representative report.",
+  "preconditions": [
+   "1. You can produce (or seed) filtered views whose LONGEST formatted positive dollar value — checked across every value in the document, including the totals row — falls in different length brackets (for example, $1,234.56 = 9 characters vs $1,000,000.00 = 13 characters)."
+  ],
+  "steps": [
+   "1. Download the Summary PDF for a view whose longest positive dollar value is 9 characters or fewer; note the body text size.",
+   "2. Repeat for views whose longest positive value is 10, 11, and 12-or-more characters (as far as seedable).",
+   "3. In each file, check whether any value overflows or wraps its column."
+  ],
+  "expected": [
+   "1. The body font follows the tier scale by the longest formatted positive dollar value in the document (totals included): 9 characters or fewer → 11px; 10 characters → 10px; 11 characters → 9px; 12 or more → 8px. 8px is the floor and 11px the ceiling.",
+   "2. Column widths are fixed for the worst case regardless of tier — the layout never breaks and no value overflows.",
+   "3. Both PDF formats adapt the same way."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbr-sales-by-representative.md Story 14 S14-R12; S14-R13",
+  "viu_status": "VIU-Pending",
+  "notes": "Exact pixel sizes need a PDF inspector or side-by-side comparison at VIU; verify the relative step-downs and the no-overflow guarantee at minimum.",
+  "api_related": false
+ },
+ {
+  "id": "SBR-EXP-09",
+  "area": "SBR — Exports",
+  "title": "Font tier edge rules: a longer negative shifts one tier smaller (clamped at 8px); a document with no positive dollar value stays at 11px",
+  "priority": "Low",
+  "type": "Functional",
+  "permissions_required": "A user with Reports access who can open the Sales By Representative report.",
+  "preconditions": [
+   "1. You can produce a view where a negative value's parenthesized rendering is LONGER than the largest positive value, and (separately) a view with no positive dollar value at all (for example, the empty export or an all-negative result)."
+  ],
+  "steps": [
+   "1. Download a PDF for the view whose longest value is a parenthesized negative longer than any positive; note the body size against the positive value's own tier.",
+   "2. Download a PDF for a view with zero matching invoices (or all-negative values); note the body size."
+  ],
+  "expected": [
+   "1. When a negative's parenthesized rendering is longer than the largest positive, the base tier shifts ONE step smaller than the positive value's tier, clamped at the 8px floor (already-8px stays 8px).",
+   "2. With no positive dollar value in the document, the base tier is the 11px ceiling and the negative shift does not apply — the tier stays 11px.",
+   "3. In all cases the fixed column widths prevent overflow."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbr-sales-by-representative.md Story 14 S14-R14; S14-R12 (no-positive rule)",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "SBR-EXP-10",
+  "area": "SBR — Exports",
+  "title": "Summary CSV: filename, UTF-8 BOM, verbatim headers in order, one row per rep, and the # Invoices / # Customers counts",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "A user with Reports access who can open the Sales By Representative report.",
+  "preconditions": [
+   "1. You are on the report with at least two reps showing; one rep has invoices for the same customer more than once (to check de-duplication)."
+  ],
+  "steps": [
+   "1. Choose \"Download Summary (CSV)\" from the ⋯ menu and note the saved file's name.",
+   "2. Open the file in a text editor and read the header row.",
+   "3. Count the data rows against the on-screen rep rows and compare their order.",
+   "4. For one rep, compare \"# Invoices\" with the on-screen (N) count, and \"# Customers\" with the number of DISTINCT customers across that rep's matching invoices."
+  ],
+  "expected": [
+   "1. The file is named \"sales-by-representative-summary.csv\" and starts with a UTF-8 BOM.",
+   "2. The headers, in order, are exactly: Sales Rep, # Invoices, # Customers, Hrs Worked, Hrs Invoiced, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Margin, Margin %, Subtotal.",
+   "3. There is one header row plus one row per rep in the current filtered view, in the report's currently-active order.",
+   "4. \"# Invoices\" equals the on-screen (N); \"# Customers\" counts distinct customers across those invoices (de-duplicated across locations when several are selected).",
+   "5. The CSV has NO totals row."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbr-sales-by-representative.md Story 14 S14-R15; S14-R18",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "SBR-EXP-11",
+  "area": "SBR — Exports",
+  "title": "Expanded CSV: filename, verbatim headers including the three hours columns, one row per invoice flattened across reps",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "A user with Reports access who can open the Sales By Representative report.",
+  "preconditions": [
+   "1. You are on the report with at least two reps showing, each with at least one invoice."
+  ],
+  "steps": [
+   "1. Choose \"Download Expanded View (CSV)\" from the ⋯ menu and note the saved file's name.",
+   "2. Open the file in a text editor and read the header row.",
+   "3. Compare the rows against the on-screen invoices (all reps, expanded)."
+  ],
+  "expected": [
+   "1. The file is named \"sales-by-representative-expanded.csv\" and starts with a UTF-8 BOM.",
+   "2. The headers, in order, are exactly: Sales Rep, Date, Invoice #, Customer, Status, Hrs Worked, Hrs Invoiced, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Margin, Margin %, Subtotal.",
+   "3. There is one header row plus one row per invoice, flattened across all reps in the report's currently-active order, for the current filtered view."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbr-sales-by-representative.md Story 14 S14-R16",
+  "viu_status": "VIU-Pending",
+  "notes": "BUILD-DELTA (spec's own build note): the current build populates a single mislabeled hours column here; the spec target is the three hours columns (Hrs Worked / Hrs Invoiced / Inv. Hrs) matching the Summary CSV — record a deviation if the build still ships one column.",
+  "api_related": false
+ },
+ {
+  "id": "SBR-EXP-12",
+  "area": "SBR — Exports",
+  "title": "CSV cell formatting: plain re-pivotable numbers, signed Inv. Hrs, Margin % empty when undefined, (Inactive) in the name, no (N)",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "A user with Reports access who can open the Sales By Representative report.",
+  "preconditions": [
+   "1. You have downloaded both report CSVs from a view that includes a negative money value, a rep whose Margin % shows \"—\" on screen (Subtotal ≤ 0), and an \"(Inactive)\" contributor (seed what is missing)."
+  ],
+  "steps": [
+   "1. Open each CSV in a text editor (not a spreadsheet).",
+   "2. Read a money cell, the negative value's cell, an Inv. Hrs cell, the undefined Margin % cell, and the (Inactive) rep's \"Sales Rep\" cell."
+  ],
+  "expected": [
+   "1. Numeric columns are plain numbers — NO currency symbol, thousands separators, or parentheses; a negative uses a leading minus (for example, -1234.56).",
+   "2. Money values carry two decimals; Hrs Worked / Hrs Invoiced / Inv. Hrs carry their full stored precision; Inv. Hrs keeps its leading + or - sign.",
+   "3. Margin % is a plain number to one decimal (for example, 45.2) with no % sign, and the cell is EMPTY where Margin % is undefined (Subtotal ≤ 0).",
+   "4. The \"Sales Rep\" name carries the \"(Inactive)\" tag when applicable; the on-screen (N) count is NOT embedded in the name.",
+   "5. Text fields are quoted per standard CSV escaping; both CSVs are monochrome (Inv. Hrs conveys direction only by its sign)."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbr-sales-by-representative.md Story 14 S14-R17; §3 Key Decisions (CSVs monochrome / plain signed numbers)",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "SBR-EXP-13",
+  "area": "SBR — Exports",
+  "title": "The Unassigned row appears in all four downloads when Show Unassigned is on, and in none of them when it is off",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "A user with Reports access who can open the Sales By Representative report.",
+  "preconditions": [
+   "1. The current filter set includes at least one invoice with no assigned sales rep (seed one if needed)."
+  ],
+  "steps": [
+   "1. Turn Show Unassigned ON and download all four files.",
+   "2. Find the Unassigned entry in each file.",
+   "3. Turn Show Unassigned OFF and download all four files again.",
+   "4. Search each file for the unassigned invoices."
+  ],
+  "expected": [
+   "1. With the toggle ON: the Summary PDF and Summary CSV each carry one rolled-up row whose Rep / \"Sales Rep\" cell reads the literal \"Unassigned\", sorted to the top; the Expanded CSV rows for those invoices carry \"Sales Rep\" = \"Unassigned\"; the Expanded View PDF has its own TOP page-block titled \"Unassigned\".",
+   "2. The Summary PDF grand-totals row aggregates across all summary rows INCLUDING Unassigned; in the Summary CSV the Unassigned row is simply one of the data rows (no totals row exists).",
+   "3. With the toggle OFF: no Unassigned row and no unassigned invoices appear in ANY of the four files."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbr-sales-by-representative.md Story 14 S14-R19; Story 22 S22-R2; S22-R4",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "SBR-EXP-14",
+  "area": "SBR — Exports",
+  "title": "A failed download shows the canonical error toast, and a generating download shows a non-interactive loading state",
+  "priority": "Medium",
+  "type": "Negative",
+  "permissions_required": "A user with Reports access who can open the Sales By Representative report.",
+  "preconditions": [
+   "1. You are on the report with data showing.",
+   "2. You can force a download failure (for example, cut the network just after triggering the download) — if not forceable, mark this Blocked with the reason."
+  ],
+  "steps": [
+   "1. Trigger a PDF download and watch the menu action while the file is being generated.",
+   "2. Force a failure on a download (PDF or CSV) and read the toast."
+  ],
+  "expected": [
+   "1. While a PDF is generating, the action shows a loading state and is non-interactive until the file is delivered.",
+   "2. A failed download shows the error toast \"Ooooops! An error occured\" (the typo is as-shipped) — it persists 120 seconds or until dismissed.",
+   "3. A genuine failure downloads nothing — never a malformed file."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbr-sales-by-representative.md Story 14 S14-N1; S14-N2; S14-E1; §7",
+  "viu_status": "VIU-Pending",
+  "notes": "\"Ooooops! An error occured\" is the canonical ShopView fallback wording, verbatim INCLUDING the typo — do not \"correct\" it when comparing.",
+  "api_related": false
+ },
+ {
+  "id": "SBR-EXP-15",
+  "area": "SBR — Exports",
+  "title": "An Expanded View PDF over the 10,000-row cap is refused with the specific too-large message — no truncated file",
+  "priority": "Medium",
+  "type": "Negative",
+  "permissions_required": "A user with Reports access who can open the Sales By Representative report.",
+  "preconditions": [
+   "1. A filter set exists (or can be seeded) whose invoice detail rows exceed 10,000 — if this volume cannot be produced in the environment, mark Blocked-Env with the reason."
+  ],
+  "steps": [
+   "1. Apply the over-cap filter set.",
+   "2. Choose \"Download Expanded View (PDF)\" and read the toast."
+  ],
+  "expected": [
+   "1. No file is produced — the server declines rather than generating a truncated file.",
+   "2. An error toast reads exactly: \"This export is too large to generate. Narrow the date range or filters and try again.\" (persists 120 seconds or until dismissed).",
+   "3. Below the cap, a large Expanded View PDF still generates normally (many reps × many invoices is expected)."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbr-sales-by-representative.md Story 14 S14-E2; §7",
+  "viu_status": "VIU-Pending",
+  "notes": "The row-cap message is a deliberate exception to the canonical \"Ooooops!\" fallback — it is a pre-generation refusal with its own verbatim wording.",
+  "api_related": false
+ },
+ {
+  "id": "SBR-EXP-16",
+  "area": "SBR — Exports",
+  "title": "An empty-data export still generates: zeroed Summary PDF totals, header-strip-only Expanded PDF, header-row-only CSVs",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "A user with Reports access who can open the Sales By Representative report.",
+  "preconditions": [
+   "1. The current filter set matches ZERO invoices (for example, a date range with no activity) — the report shows its empty state."
+  ],
+  "steps": [
+   "1. Download all four files from the ⋯ menu.",
+   "2. Open each and inspect its contents."
+  ],
+  "expected": [
+   "1. All four downloads produce a FILE, not an error.",
+   "2. The Summary PDF renders the header strip, no data rows, and a grand-totals row showing zeros for the money and Inv. Hrs columns and \"—\" for Margin %.",
+   "3. The Expanded View PDF renders just the header strip with no per-rep blocks (it has no grand-totals row).",
+   "4. Both CSVs generate a header-row-only file, still starting with the UTF-8 BOM.",
+   "5. No special \"empty\" treatment or message appears inside the files."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbr-sales-by-representative.md Story 14 S14-E3",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "SBR-ASGN-01",
+  "area": "SBR — Sales Rep Assignments Export",
+  "title": "The Export Report dialog's Report Name dropdown includes \"Sales Rep Assignments\" at the bottom, hiding the date picker and showing the snapshot note",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "A user with Reports access.",
+  "preconditions": [
+   "1. You are signed in with Reports access.",
+   "2. Note the current order of the Report Name dropdown entries before checking."
+  ],
+  "steps": [
+   "1. In the Reports left sidebar, under the Accounting header, click the \"Export Reports\" entry — a dialog titled \"Export Report\" opens.",
+   "2. Open the Report Name dropdown and read the list top to bottom.",
+   "3. Select \"Sales Rep Assignments\" and look at the dialog body."
+  ],
+  "expected": [
+   "1. \"Sales Rep Assignments\" appears in the Report Name dropdown, appended at the BOTTOM of the list (additive — no existing entry moved or removed).",
+   "2. Selecting it HIDES the date range picker.",
+   "3. The dialog shows the note: \"Snapshot of current sales rep assignments. Both active and inactive reps with assignments are listed.\""
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbr-sales-by-representative.md Story 15 S15-R1; S15-R2",
+  "viu_status": "VIU-Pending",
+  "notes": "Note text is verbatim from the spec.",
+  "api_related": false
+ },
+ {
+  "id": "SBR-ASGN-02",
+  "area": "SBR — Sales Rep Assignments Export",
+  "title": "Exporting Sales Rep Assignments downloads sales-rep-assignments.csv with the verbatim headers and shows the success toast",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "A user with Reports access.",
+  "preconditions": [
+   "1. At least one customer in the organization has an assigned sales rep.",
+   "2. The Export Report dialog is open with \"Sales Rep Assignments\" selected."
+  ],
+  "steps": [
+   "1. Click the Export action.",
+   "2. Note the saved file's name and read the toast.",
+   "3. Open the file in a text editor and read the header row."
+  ],
+  "expected": [
+   "1. The file downloads as \"sales-rep-assignments.csv\".",
+   "2. A success toast shows \"Success\" with the caption \"Report downloaded.\" and auto-fades after 5 seconds.",
+   "3. The CSV starts with a UTF-8 BOM and its headers, in order, are exactly: Customer Name, Sales Rep, Rep is active?."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbr-sales-by-representative.md Story 15 S15-R3; S15-R4; §7",
+  "viu_status": "VIU-Pending",
+  "notes": "This export deliberately uses the shared Export Reports dialog's own toast strings (5s auto-fade), not the canonical 120s \"Ooooops!\" fallback.",
+  "api_related": false
+ },
+ {
+  "id": "SBR-ASGN-03",
+  "area": "SBR — Sales Rep Assignments Export",
+  "title": "The Assignments CSV holds one row per customer with an assigned rep, sorted customer A→Z then rep A→Z; unassigned customers are excluded",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "A user with Reports access.",
+  "preconditions": [
+   "1. The organization has several customers with assigned reps and at least one customer with NO assigned rep (seed as needed)."
+  ],
+  "steps": [
+   "1. Download the Sales Rep Assignments CSV.",
+   "2. Count the rows against the customers with assigned reps.",
+   "3. Search for the no-rep customer.",
+   "4. Read the row order."
+  ],
+  "expected": [
+   "1. Every customer with an assigned sales rep produces exactly ONE row (single-rep model: one rep per customer).",
+   "2. Customers with no assigned rep are NOT included.",
+   "3. Rows are sorted by customer name A→Z (primary), then rep name A→Z (secondary)."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbr-sales-by-representative.md Story 15 S15-R5; S15-R7; S15-R10",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "SBR-ASGN-04",
+  "area": "SBR — Sales Rep Assignments Export",
+  "title": "\"Rep is active?\" tracks the staff-active status (Yes/No), not the sales-rep toggle",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "A user with Reports access; staff-administration access to arrange the rep states.",
+  "preconditions": [
+   "1. Arrange (and afterward restore): one assigned rep whose staff record is ACTIVE but whose sales-rep toggle is OFF, and one assigned rep whose staff record is INACTIVE but whose toggle is ON."
+  ],
+  "steps": [
+   "1. Download the Sales Rep Assignments CSV.",
+   "2. Read the \"Rep is active?\" value on both reps' customer rows."
+  ],
+  "expected": [
+   "1. The staff-ACTIVE / toggle-off rep shows \"Rep is active?\" = \"Yes\" — the toggle does not drive this column.",
+   "2. The staff-INACTIVE / toggle-on rep shows \"Rep is active?\" = \"No\".",
+   "3. The value is always \"Yes\" or \"No\" (never \"Deactivated\" or another word)."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbr-sales-by-representative.md Story 15 S15-R6; Story 13 S13-R11",
+  "viu_status": "VIU-Pending",
+  "notes": "Staff-active status and the sales-rep toggle are independent flags; this column tracks staff-active status ONLY. The report's on-screen \"(Inactive)\" marker is driven by the TOGGLE instead — the two can differ. Restore both staff members afterward.",
+  "api_related": false
+ },
+ {
+  "id": "SBR-ASGN-05",
+  "area": "SBR — Sales Rep Assignments Export",
+  "title": "Legacy robustness: a customer whose rep's staff record was deleted still exports one row from the customer-side stored name, marked No",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "A user with Reports access.",
+  "preconditions": [
+   "1. A customer exists whose assigned rep's staff record has been cleared or deleted while the customer still references it (seed and delete a throwaway ZZAUTOTEST rep if needed)."
+  ],
+  "steps": [
+   "1. Download the Sales Rep Assignments CSV.",
+   "2. Find that customer's row and read its \"Sales Rep\" and \"Rep is active?\" cells.",
+   "3. If two customers carry different stored name spellings for the same underlying rep, compare their rows."
+  ],
+  "expected": [
+   "1. The customer still produces a row — the export never silently drops it.",
+   "2. The \"Sales Rep\" name comes from the customer-side stored (denormalized) rep name, and \"Rep is active?\" = \"No\".",
+   "3. When stored names differ across customers for the same rep (name drift), each customer's row uses its OWN stored name — drift never adds extra rows for a customer and never overwrites one customer's stored name with another's."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbr-sales-by-representative.md Story 15 S15-R8; S15-R9",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "SBR-ASGN-06",
+  "area": "SBR — Sales Rep Assignments Export",
+  "title": "Assignments export failure and nothing-to-export paths use the Export dialog's own messages",
+  "priority": "Medium",
+  "type": "Negative",
+  "permissions_required": "A user with Reports access.",
+  "preconditions": [
+   "1. For the empty path: no customer in the organization has an assigned rep (or use a state where the export yields zero rows).",
+   "2. For the failure path: you can force a generation failure (for example, cut the network on Export) — if not forceable, mark that step Blocked with the reason."
+  ],
+  "steps": [
+   "1. With zero assigned customers, select \"Sales Rep Assignments\" in the Export Report dialog and click Export.",
+   "2. Read the dialog warning and inspect any downloaded file.",
+   "3. Force a generation failure and read the toast."
+  ],
+  "expected": [
+   "1. With zero assigned customers, the CSV downloads with a header row and no data rows, and the dialog shows its empty-export warning: \"There is no data to export for the selected report.\"",
+   "2. On a generation failure, an error toast reads \"An error occurred while exporting the report. Please try again.\" and auto-fades after 5 seconds."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbr-sales-by-representative.md Story 15 S15-R11; S15-N2; §7",
+  "viu_status": "VIU-Pending",
+  "notes": "Both strings are the shared Export Reports dialog's own (5s auto-fade) — a deliberate exception to the canonical \"Ooooops!\" fallback.",
+  "api_related": false
+ },
+ {
+  "id": "SBR-STATE-01",
+  "area": "SBR — Loading, Empty & Error States",
+  "title": "The empty state shows \"No sales activity matches the current filters.\" with no grand Totals — including when no rep was ever credited",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "A user with Reports access who can open the Sales By Representative report.",
+  "preconditions": [
+   "1. You are on the report."
+  ],
+  "steps": [
+   "1. Apply a filter set that matches no invoices for any rep (for example, a date range with no activity), with Show Unassigned OFF or with no matching unassigned invoices either.",
+   "2. Read the data area and look for the grand Totals indicator.",
+   "3. If checkable: view an organization/location state where NO staff member has ever been credited with an invoice, and compare the message."
+  ],
+  "expected": [
+   "1. The table shows no data rows and the empty-state message \"No sales activity matches the current filters.\"",
+   "2. The grand Totals indicator is NOT shown.",
+   "3. The same message appears when no staff member has ever been credited — there is no separate \"no reps configured\" message; the report is contributor-driven.",
+   "4. Whenever at least one rep row (or the Unassigned row) IS in the result set, the rep list renders and no empty/error message shows."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbr-sales-by-representative.md Story 16 S16-R1; S16-R2; S16-N1; §7",
+  "viu_status": "VIU-Pending",
+  "notes": "Empty-state message is verbatim from §7.",
+  "api_related": false
+ },
+ {
+  "id": "SBR-STATE-02",
+  "area": "SBR — Loading, Empty & Error States",
+  "title": "The toolbar stays visible and interactive in the empty state",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "A user with Reports access who can open the Sales By Representative report.",
+  "preconditions": [
+   "1. The report is showing its empty state (no matching invoices)."
+  ],
+  "steps": [
+   "1. Look at the toolbar.",
+   "2. Change the date range to a period WITH activity."
+  ],
+  "expected": [
+   "1. In the empty state, the toolbar — the filters, the column selector, and the ⋯ exports — stays visible and interactive.",
+   "2. Widening the date range from the empty state re-fetches and renders the matching reps normally."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbr-sales-by-representative.md Story 16 S16-R3",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "SBR-STATE-03",
+  "area": "SBR — Loading, Empty & Error States",
+  "title": "Loading shows a centered spinner over the data area, hides the Totals, keeps the toolbar interactive, and never flashes a blank table",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "A user with Reports access who can open the Sales By Representative report.",
+  "preconditions": [
+   "1. You are on the report with data showing (use a slow/throttled connection if available to make the loading state observable)."
+  ],
+  "steps": [
+   "1. Reload the report and watch the data area during the initial load.",
+   "2. Change a filter and watch the data area during the re-fetch.",
+   "3. While loading, try to interact with the toolbar."
+  ],
+  "expected": [
+   "1. On the initial load and on every filter-triggered re-fetch, the table shows the standard reports loading indicator — a centered spinner over the data area.",
+   "2. The grand Totals indicator is hidden during loading.",
+   "3. The toolbar stays interactive so filters can be changed mid-load.",
+   "4. A re-fetch replaces the previous data only when the new data returns — no flash of a blank table beyond the spinner overlay."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbr-sales-by-representative.md Story 16 S16-R4",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "SBR-STATE-04",
+  "area": "SBR — Loading, Empty & Error States",
+  "title": "A load failure shows the inline \"Couldn't load the report. Please try again.\" message with a working Retry, keeping the filters",
+  "priority": "High",
+  "type": "Negative",
+  "permissions_required": "A user with Reports access who can open the Sales By Representative report.",
+  "preconditions": [
+   "1. You can force a load failure (for example, cut the network and change a filter) — if not forceable, mark Blocked with the reason."
+  ],
+  "steps": [
+   "1. Set several non-default filters.",
+   "2. Force a load/re-fetch failure and read the data area.",
+   "3. Restore the network and click \"Retry\"."
+  ],
+  "expected": [
+   "1. The data area shows the inline error message \"Couldn't load the report. Please try again.\" with a \"Retry\" action.",
+   "2. The filters and toolbar remain interactive, and the failure does NOT clear the filter selections.",
+   "3. \"Retry\" re-runs the CURRENT request — the report loads with the same filters still applied."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbr-sales-by-representative.md Story 16 S16-R5; §7",
+  "viu_status": "VIU-Pending",
+  "notes": "Inline error message is verbatim from §7 — it is an inline data-area message with a Retry action, not a toast.",
+  "api_related": false
+ },
+ {
+  "id": "SBR-MOB-01",
+  "area": "SBR — Mobile",
+  "title": "On a phone every toolbar control works on touch; below 1024px the controls stack vertically with the ⋯ button wrapped above",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "A user with Reports access who can open the Sales By Representative report.",
+  "preconditions": [
+   "1. Open the report on a phone-sized viewport (real device or browser device emulation, width under 1024px)."
+  ],
+  "steps": [
+   "1. Find and operate each toolbar control by touch: the ⋯ exports, the column selector, the Show Unassigned toggle, the date range picker, Product Type, Invoice Status, and Location.",
+   "2. Look at how the controls are laid out.",
+   "3. Widen the viewport to 1024px or more and compare."
+  ],
+  "expected": [
+   "1. Every toolbar control is visible and operable on touch.",
+   "2. Below 1024px the toolbar controls stack vertically at full width; the ⋯ exports button — the first control of the action cluster — wraps to a partial row ABOVE the stacked controls.",
+   "3. At 1024px and above the desktop layout applies."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbr-sales-by-representative.md Story 17 S17-R1; S17-R2; S17-R3",
+  "viu_status": "VIU-Pending",
+  "notes": "The dense table is deliberately NOT redesigned for small screens (§2 Out of Scope) — only control operability and stacking are in scope here.",
+  "api_related": false
+ },
+ {
+  "id": "SBR-MOB-02",
+  "area": "SBR — Mobile",
+  "title": "On a phone the table scrolls sideways with Subtotal pinned, the totals bar sits outside the scroll area, and the chevrons work on touch",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "A user with Reports access who can open the Sales By Representative report.",
+  "preconditions": [
+   "1. The report is open on a phone-sized viewport (under 1024px) with at least one rep row."
+  ],
+  "steps": [
+   "1. Swipe the data table sideways and watch the Subtotal column.",
+   "2. Look below the table for the totals bar and swipe the table again.",
+   "3. Tap a rep row's chevron."
+  ],
+  "expected": [
+   "1. The table scrolls horizontally to expose all columns; the pinned Subtotal column stays visible at the right edge throughout.",
+   "2. The mobile external totals bar (\"Totals\" left, grand Subtotal right) sits below the table, OUTSIDE the horizontal scroll container — it does not scroll horizontally and is always fully visible.",
+   "3. The chevron expands/collapses the rep on touch."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbr-sales-by-representative.md Story 17 S17-R4; S17-R5; Story 10 S10-R5 (mobile)",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "SBR-MOB-03",
+  "area": "SBR — Mobile",
+  "title": "Touch targets are at least 44×44 px and touch users get no hover-only tooltips — the icons carry accessible names instead",
+  "priority": "Medium",
+  "type": "Accessibility",
+  "permissions_required": "A user with Reports access who can open the Sales By Representative report.",
+  "preconditions": [
+   "1. The report is open on a touch device or touch emulation (under 1024px)."
+  ],
+  "steps": [
+   "1. Measure (device emulation ruler/inspector) the touch targets of a row chevron, the Show Unassigned toggle, the ⋯ button, and — via the staff deactivation dialog if opened — the dialog's X.",
+   "2. Tap-and-hold the icon controls and watch for tooltips."
+  ],
+  "expected": [
+   "1. Each of these interactive controls presents a touch target of at least 44×44 px.",
+   "2. Hover-only tooltips are not shown on touch; the icons communicate the action and each icon-only control carries an accessible name."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbr-sales-by-representative.md Story 17 S17-R6; S17-N1; Story 18 S18-R9",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "SBR-VIS-01",
+  "area": "SBR — Visual Conformance & Accessibility",
+  "title": "Layout conformance: white toolbar with the specified padding and alignment, blue-grey page, separator line, edge-to-edge white table",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "A user with Reports access who can open the Sales By Representative report.",
+  "preconditions": [
+   "1. You are on the report on a desktop browser (light mode) with data showing."
+  ],
+  "steps": [
+   "1. Look at the toolbar's surface, padding, and how the title and the rightmost control line up with the table columns.",
+   "2. Look at the page background around the data area, the line between the toolbar and the column headers, and the table's side edges.",
+   "3. Look at the header cells, the body cells, the pinned Subtotal cells, and the grand Totals indicator's surface."
+  ],
+  "expected": [
+   "1. The toolbar has a solid white background with padding 32px top / 24px bottom / 2rem left and right; the title's left edge aligns with the leftmost data column, and the rightmost toolbar control (the Location filter) aligns its right edge with the rightmost data column.",
+   "2. The data area sits on the standard blue-grey page background with ZERO horizontal page padding — the toolbar and table run edge-to-edge against the side navigation.",
+   "3. A thin horizontal separator line sits between the toolbar and the column headers.",
+   "4. Column-header cells and all body cells render on white; the pinned Subtotal column matches the row background (not a contrasting strip); the grand Totals indicator renders on the white card surface with a thin top border.",
+   "5. Row types are differentiated by font weight and color, not background color. These rules apply unconditionally whenever the report is rendered."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbr-sales-by-representative.md Story 18 S18-R1; S18-R2; S18-R3; S18-R4; S18-R5; S18-R7.1–R7.6; S18-N1",
+  "viu_status": "VIU-Pending",
+  "notes": "S18-R7 is self-contained and normative — if app-wide report styling has evolved, this spec is still the source of truth until a new spec round says otherwise (S18-R7.6).",
+  "api_related": false
+ },
+ {
+  "id": "SBR-VIS-02",
+  "area": "SBR — Visual Conformance & Accessibility",
+  "title": "Dark mode: page, toolbar, table, and Totals switch to dark equivalents; badges and Inv. Hrs stay legible; PDFs stay light",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "A user with Reports access who can open the Sales By Representative report.",
+  "preconditions": [
+   "1. You are on the report with data showing, including at least one expanded rep (badges visible) and non-zero Inv. Hrs values."
+  ],
+  "steps": [
+   "1. Switch the application to dark mode.",
+   "2. Look at the page, toolbar, header, body cells, and the grand Totals indicator.",
+   "3. Read the status badges and the green/red Inv. Hrs values.",
+   "4. Download a PDF while in dark mode and open it."
+  ],
+  "expected": [
+   "1. The page, toolbar, header, body cells, and the grand Totals indicator switch to their dark equivalents.",
+   "2. Status badges keep the same canonical payment-status color tokens and stay legible in both modes.",
+   "3. Inv. Hrs green/red use the application's positive/negative tokens, mode-appropriate.",
+   "4. PDFs always render in light-mode colors, even when downloaded from dark mode."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbr-sales-by-representative.md Story 18 S18-R8",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "SBR-VIS-03",
+  "area": "SBR — Visual Conformance & Accessibility",
+  "title": "Every icon-only control carries its specified accessible name",
+  "priority": "Medium",
+  "type": "Accessibility",
+  "permissions_required": "A user with Reports access who can open the Sales By Representative report.",
+  "preconditions": [
+   "1. You are on the report with at least one rep row; a screen reader or the browser's accessibility inspector is available."
+  ],
+  "steps": [
+   "1. Inspect the accessible name of: the ⋯ exports button, the column selector button, one rep row's chevron (collapsed, then expanded), and the header chevron.",
+   "2. Open the staff deactivation dialog (Story 13 flow) and inspect its X close icon."
+  ],
+  "expected": [
+   "1. ⋯ exports = \"Report actions\".",
+   "2. Column selector = \"Show or hide columns\".",
+   "3. Per-row chevron = \"Expand {rep name}\" when collapsed / \"Collapse {rep name}\" when expanded.",
+   "4. Header chevron = \"Expand all reps\" / \"Collapse all reps\".",
+   "5. Dialog X = \"Close\"."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbr-sales-by-representative.md Story 18 S18-R9",
+  "viu_status": "VIU-Pending",
+  "notes": "All five names are verbatim from the spec.",
+  "api_related": false
+ },
+ {
+  "id": "SBR-VIS-04",
+  "area": "SBR — Visual Conformance & Accessibility",
+  "title": "Chevrons and sortable headers are keyboard-operable and expose their expanded/sort state to assistive technology",
+  "priority": "Medium",
+  "type": "Accessibility",
+  "permissions_required": "A user with Reports access who can open the Sales By Representative report.",
+  "preconditions": [
+   "1. You are on the report with at least two rep rows; a screen reader or accessibility inspector is available."
+  ],
+  "steps": [
+   "1. Tab to a rep row's chevron; press Enter, then Space.",
+   "2. Tab to a financial column header; press Enter, then Space.",
+   "3. Inspect what state each control exposes to assistive technology."
+  ],
+  "expected": [
+   "1. The row chevrons and the sortable column headers are keyboard-focusable and activate on Enter and on Space.",
+   "2. A chevron exposes its expanded/collapsed state to assistive technology.",
+   "3. A sortable header exposes its current sort state (unsorted / ascending / descending) to assistive technology."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbr-sales-by-representative.md Story 18 S18-R10",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "SBR-VIS-05",
+  "area": "SBR — Visual Conformance & Accessibility",
+  "title": "The subdued grey of the (N) count and (Inactive) tag meets WCAG AA contrast, and no information is conveyed by color alone",
+  "priority": "Medium",
+  "type": "Accessibility",
+  "permissions_required": "A user with Reports access who can open the Sales By Representative report.",
+  "preconditions": [
+   "1. You are on the report with a rep row showing a (N) count and — if arrangeable — an \"(Inactive)\" tag; a contrast-checking tool is available."
+  ],
+  "steps": [
+   "1. Measure the contrast ratio of the subdued-grey (N) count and \"(Inactive)\" tag against the white body surface in light mode, and against the dark surface in dark mode.",
+   "2. Review how Inv. Hrs, the status badges, and the links convey their meaning."
+  ],
+  "expected": [
+   "1. The subdued grey meets at least WCAG AA contrast (4.5:1 or better) against the body surface in BOTH modes — the reduced font size does not drop it below that ratio.",
+   "2. No information is conveyed by color alone: Inv. Hrs carries its +/- sign, status badges carry their text label, and links carry a hover/focus underline."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbr-sales-by-representative.md Story 18 S18-R11; S18-R12",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "SBR-WO-01",
+  "area": "SBR — Work Order Sales Rep",
+  "title": "The Sales Rep selector shows in the left panel on standard Work Orders and Part Sale WOs, and is hidden on imported WOs and in History mode",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "A user who can open Work Orders and Part Sale WOs.",
+  "preconditions": [
+   "1. You have: an open standard Work Order, an open Part Sale WO, an imported Work Order, and a way to view a WO in History mode."
+  ],
+  "steps": [
+   "1. Open the standard Work Order and look at the left panel.",
+   "2. Open the Part Sale WO and look at the left panel.",
+   "3. Open the imported Work Order and look for the same field.",
+   "4. View a WO in History mode and look for the field."
+  ],
+  "expected": [
+   "1. The left panel includes a \"Sales Rep\" selector on the standard Work Order.",
+   "2. The left panel includes the same \"Sales Rep\" selector on the Part Sale WO.",
+   "3. The selector is NOT present on the imported Work Order.",
+   "4. The selector is NOT present in History mode."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbr-sales-by-representative.md Story 19 S19-R1; S19-N1",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "SBR-WO-02",
+  "area": "SBR — Work Order Sales Rep",
+  "title": "The Sales Rep selector offers only reps whose sales-rep toggle is currently on, and carries the accessible name \"Sales Rep\"",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "A user who can open Work Orders; staff-administration access to arrange the toggles.",
+  "preconditions": [
+   "1. At least one staff member has the sales-rep toggle ON and at least one has it OFF (arrange and restore afterward)."
+  ],
+  "steps": [
+   "1. Open a Work Order and open the \"Sales Rep\" selector.",
+   "2. Search the option list for both staff members.",
+   "3. Inspect the selector's accessible name."
+  ],
+  "expected": [
+   "1. The toggle-ON staff member is offered as a selectable rep.",
+   "2. The toggle-OFF staff member is NOT offered as a new selection.",
+   "3. The selector carries the accessible name \"Sales Rep\"."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbr-sales-by-representative.md Story 19 S19-R2; S19-R8",
+  "viu_status": "VIU-Pending",
+  "notes": "Restore any changed toggles afterward (shared-env rule).",
+  "api_related": false
+ },
+ {
+  "id": "SBR-WO-03",
+  "area": "SBR — Work Order Sales Rep",
+  "title": "A new Work Order or Part Sale WO opens with Sales Rep unassigned, and a change saves immediately with no Save step",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "A user who can create and edit Work Orders.",
+  "preconditions": [
+   "1. At least one staff member is offered as a sales rep."
+  ],
+  "steps": [
+   "1. Create a new Work Order (mark it ZZAUTOTEST) and read the Sales Rep field before touching it.",
+   "2. Select a rep in the field, then navigate away WITHOUT any explicit save and reopen the WO.",
+   "3. Repeat the unassigned-open check on a new Part Sale WO."
+  ],
+  "expected": [
+   "1. The new Work Order opens with the Sales Rep field UNASSIGNED — it is not pre-filled at creation.",
+   "2. Changing the Sales Rep persists immediately (save-on-change): the selection survives leaving and reopening the WO with no separate Save step.",
+   "3. A new Part Sale WO also opens with the field unassigned."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbr-sales-by-representative.md Story 19 S19-R3; S19-R4",
+  "viu_status": "VIU-Pending",
+  "notes": "Delete the throwaway ZZAUTOTEST WO afterward.",
+  "api_related": false
+ },
+ {
+  "id": "SBR-WO-04",
+  "area": "SBR — Work Order Sales Rep",
+  "title": "The Sales Rep selector is read-only when the Work Order status is Invoiced or Paid",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "A user who can open Work Orders.",
+  "preconditions": [
+   "1. One Work Order is in \"Invoiced\" status and one is in \"Paid\" status (drive throwaway ZZAUTOTEST WOs into these states if needed)."
+  ],
+  "steps": [
+   "1. Open the Invoiced WO and try to change the Sales Rep field.",
+   "2. Open the Paid WO and try the same."
+  ],
+  "expected": [
+   "1. On the Invoiced WO the Sales Rep selector is read-only (non-interactive) — the assignment cannot be changed.",
+   "2. On the Paid WO the selector is also read-only."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbr-sales-by-representative.md Story 19 S19-R5",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "SBR-WO-05",
+  "area": "SBR — Work Order Sales Rep",
+  "title": "Invoice crediting snapshot: WO rep, else the customer's rep, else unassigned — and a later WO change never rewrites past invoices",
+  "priority": "Critical",
+  "type": "Functional",
+  "permissions_required": "A user who can create Work Orders, invoice them, and view the report.",
+  "preconditions": [
+   "1. Three throwaway ZZAUTOTEST setups: (a) a WO WITH a Sales Rep assigned; (b) a WO with NO rep whose customer HAS an assigned rep; (c) a WO with NO rep whose customer has NO assigned rep."
+  ],
+  "steps": [
+   "1. Invoice all three WOs.",
+   "2. On the report (Show Unassigned on, filters covering the invoices), find each invoice and note which row it sits under.",
+   "3. Go back to WO (a), change its Sales Rep to a different rep, and re-check the already-created invoice on the report."
+  ],
+  "expected": [
+   "1. Invoice (a) is credited to the WO's Sales Rep.",
+   "2. Invoice (b) falls back to the CUSTOMER's assigned rep.",
+   "3. Invoice (c) is unassigned — it appears only under the \"Unassigned\" row.",
+   "4. Changing WO (a)'s Sales Rep afterward does NOT retroactively alter the invoice already created from it — the invoice stays credited to the rep snapshotted at invoice creation."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbr-sales-by-representative.md Story 19 S19-R6; S19-N2; §3 Key Decisions (single-rep snapshot); Story 22 S22-R3",
+  "viu_status": "VIU-Pending",
+  "notes": "BUILD-DELTA (§3 build note): the shipped database stores separate parts-side and service-side reps; the spec locks the single-rep model — record a deviation if the build still credits from dual fields. Clean up the ZZAUTOTEST data afterward.",
+  "api_related": false
+ },
+ {
+  "id": "SBR-WO-06",
+  "area": "SBR — Work Order Sales Rep",
+  "title": "The customer record shows a single Sales Rep row (\"Unassigned\" when none), and a toggled-off bound rep shows \"(Inactive)\" in the WO selector",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "A user who can open customer records and Work Orders; staff-administration access to arrange the toggle.",
+  "preconditions": [
+   "1. One customer HAS an assigned sales rep and one customer has NONE.",
+   "2. A Work Order exists whose bound Sales Rep can have their toggle turned off (arrange and restore afterward)."
+  ],
+  "steps": [
+   "1. Open the assigned customer's record and read the left-panel sidebar.",
+   "2. Open the unassigned customer's record and read the same row.",
+   "3. Turn the bound rep's sales-rep toggle OFF, reopen the Work Order, and read the Sales Rep selector; then open its option list."
+  ],
+  "expected": [
+   "1. The customer record's left-panel sidebar shows a single \"Sales Rep\" row with the customer's assigned rep.",
+   "2. When no rep is assigned, the row renders \"Unassigned\".",
+   "3. On the WO, the selector renders the bound rep's name with an \"(Inactive)\" indicator so the current assignment stays visible — but that rep is NOT offered as a new selection in the list."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbr-sales-by-representative.md Story 19 S19-R7; S19-E1",
+  "viu_status": "VIU-Pending",
+  "notes": "Restore the rep's toggle afterward (shared-env rule).",
+  "api_related": false
+ },
+ {
+  "id": "SBR-DEACT-09",
+  "area": "SBR — Staff Deactivation",
+  "title": "If the assignment pre-check fails, the warning dialog still opens — without the count headline — and never silently deactivates",
+  "priority": "Medium",
+  "type": "Negative",
+  "permissions_required": "Owner/Administrator/Manager profile (or a custom role with equivalent staff-administration access).",
+  "preconditions": [
+   "1. A staff member is active with the sales-rep toggle on.",
+   "2. You can force the pre-deactivation assignment check to fail (for example, cut the network exactly when toggling active off) — if not forceable, mark Blocked with the reason."
+  ],
+  "steps": [
+   "1. Toggle the staff member's active status off while forcing the check to fail.",
+   "2. Read the dialog that opens."
+  ],
+  "expected": [
+   "1. The system NEVER silently deactivates — the warning dialog still opens (fallback), so the type-to-confirm gate still applies.",
+   "2. Because the customer count is unavailable, the dialog OMITS the count headline and shows only the reassurance line \"Their customer assignments will stay where they are.\" above the \"Type YES to confirm\" gate."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbr-sales-by-representative.md Story 13 S13-N4",
+  "viu_status": "VIU-Pending",
+  "notes": "Restore the staff member (cancel the dialog / reactivate) afterward.",
+  "api_related": false
+ },
+ {
+  "id": "SBR-API-01",
+  "area": "SBR — API",
+  "title": "A rep's invoice detail rows are fetched from the server only on the first expand, and are paginated per rep",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "A user with Reports access who can open the Sales By Representative report; browser dev tools.",
+  "preconditions": [
+   "1. You are on the report with at least two rep rows, one with a large invoice count if seedable.",
+   "2. The browser's network panel is open."
+  ],
+  "steps": [
+   "1. Load the report and note which requests deliver the summary rows.",
+   "2. Expand one rep and watch the network panel; collapse and re-expand it.",
+   "3. If a rep has many invoices, scroll/page through its expanded detail rows."
+  ],
+  "expected": [
+   "1. Invoice detail rows are NOT delivered with the initial summary payload — the first expand of a rep triggers a server fetch for that rep's matching invoices, with a brief row-level loading indicator.",
+   "2. A re-expand within the session does not necessarily re-fetch (the expansion state is session-preserved); no rep's details load before its first expand.",
+   "3. When a rep's matching-invoice count is large, its detail rows are paginated per rep."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbr-sales-by-representative.md Story 6 S6-R2",
+  "viu_status": "VIU-Pending",
+  "notes": "The spec defines no REST contract — observe the browser's real requests; do NOT assume endpoint shapes. The per-rep page size and the expand-all bound are build tuning values (tech plan), not fixed by the spec. BUILD-DELTA: lazy server-side drill-down is the 2026-07-16 committed target (spec ahead of code by design).",
+  "api_related": true
+ },
+ {
+  "id": "SBR-API-02",
+  "area": "SBR — API",
+  "title": "Sorting is performed server-side: a header click re-fetches the rep summary rows in the requested order",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "A user with Reports access who can open the Sales By Representative report; browser dev tools.",
+  "preconditions": [
+   "1. You are on the report with several rep rows; the network panel is open."
+  ],
+  "steps": [
+   "1. Click a financial column header and watch the network panel.",
+   "2. Click the same header again (descending) and watch again."
+  ],
+  "expected": [
+   "1. Each sort change triggers a server re-fetch of the rep summary rows in the requested order (a loading indicator shows during the fetch).",
+   "2. The returned rows arrive already ordered by the requested column and direction — the client does not re-sort locally.",
+   "3. Invoice detail rows continue to load lazily per rep on expand, unaffected by the sort mechanism."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbr-sales-by-representative.md Story 11 S11-R5",
+  "viu_status": "VIU-Pending",
+  "notes": "Generic wording on purpose — no endpoint invented. BUILD-DELTA: server-side sort is the 2026-07-16 committed target.",
+  "api_related": true
+ },
+ {
+  "id": "SBR-API-03",
+  "area": "SBR — API",
+  "title": "The grand totals are server-computed over the full filtered result set and delivered with the summary payload",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "A user with Reports access who can open the Sales By Representative report; browser dev tools.",
+  "preconditions": [
+   "1. You are on the report with several reps, at least one large enough that not all of its detail rows are loaded; the network panel is open."
+  ],
+  "steps": [
+   "1. Load the report with everything collapsed and inspect the summary response and the grand Totals indicator.",
+   "2. Compare the grand totals against the full filtered result (for example, via the Summary CSV), not just the loaded rows."
+  ],
+  "expected": [
+   "1. The grand totals arrive WITH the summary payload — the client does not derive them by summing loaded rows.",
+   "2. The totals cover EVERY matching non-reversed invoice across every rep, independent of which reps are expanded or how many detail rows are loaded.",
+   "3. The on-screen grand Totals match the export's aggregate for the same filter set."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbr-sales-by-representative.md Story 10 S10-R5",
+  "viu_status": "VIU-Pending",
+  "notes": "BUILD-DELTA: server-computed grand totals are the 2026-07-16 committed target (spec ahead of code by design).",
+  "api_related": true
+ },
+ {
+  "id": "SBR-API-04",
+  "area": "SBR — API",
+  "title": "All four exports are generated server-side against the active filters and sort — a genuine failure yields a toast, never a malformed file",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "A user with Reports access who can open the Sales By Representative report; browser dev tools.",
+  "preconditions": [
+   "1. You are on the report with filters and a column sort applied; at least one rep is left unexpanded; the network panel is open."
+  ],
+  "steps": [
+   "1. Trigger each of the four downloads and observe the export requests and responses.",
+   "2. Compare the delivered files against the active filters and sort.",
+   "3. If forceable, fail one export server-side and check what (if anything) downloads."
+  ],
+  "expected": [
+   "1. Each export is generated by the server, receiving the active filters and sort — the file's contents and order match the screen even for reps never expanded (not built from loaded screen data).",
+   "2. A genuine server-side export failure produces NO file and shows the \"Ooooops! An error occured\" toast — never a malformed/partial file.",
+   "3. An empty-but-loaded result still produces a valid file (header-row-only CSV / no-rows PDF)."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbr-sales-by-representative.md Story 14 S14-R2a; S14-N2; S14-E3",
+  "viu_status": "VIU-Pending",
+  "notes": "No endpoint or status code is pinned by the spec — record what is actually observed. BUILD-DELTA: server-side exports are the 2026-07-16 committed target.",
+  "api_related": true
+ },
+ {
+  "id": "SBR-API-05",
+  "area": "SBR — API",
+  "title": "The Expanded View PDF's 10,000-row cap is enforced server-side BEFORE generation — a refusal, not a truncated file",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "A user with Reports access who can open the Sales By Representative report; browser dev tools.",
+  "preconditions": [
+   "1. A filter set producing more than 10,000 invoice detail rows exists or can be seeded — otherwise mark Blocked-Env with the reason.",
+   "2. The network panel is open."
+  ],
+  "steps": [
+   "1. Trigger \"Download Expanded View (PDF)\" against the over-cap filter set and observe the export request/response.",
+   "2. Check whether any file arrives."
+  ],
+  "expected": [
+   "1. The server counts the rows against the 10,000-data-row cap and DECLINES to generate — the refusal happens pre-generation, observed in the export response.",
+   "2. NO file (truncated or otherwise) is delivered; the client shows the specific too-large toast (see SBR-EXP-15).",
+   "3. A filter set just below the cap still generates a complete (possibly very large) PDF."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbr-sales-by-representative.md Story 14 S14-E2",
+  "viu_status": "VIU-Pending",
+  "notes": "Cap value 10,000 data rows is the spec's stated context note (2026-07-21 change log). No endpoint invented — observe the real request.",
+  "api_related": true
+ },
+ {
+  "id": "SBR-API-06",
+  "area": "SBR — API",
+  "title": "Toggling a sales rep's active status off first runs a server pre-check returning the assigned-customer count and an assignments flag",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Owner/Administrator/Manager profile (or equivalent staff-administration access); browser dev tools.",
+  "preconditions": [
+   "1. A staff member is active with the sales-rep toggle on and at least one customer assigned (seed a throwaway ZZAUTOTEST assignment if needed).",
+   "2. The network panel is open."
+  ],
+  "steps": [
+   "1. In staff administration, toggle that staff member's active status off and watch the network panel BEFORE the dialog appears.",
+   "2. Read the pre-check response and compare it with the dialog's \"{N} customer{s}\" headline.",
+   "3. Cancel the dialog (leave the staff member active)."
+  ],
+  "expected": [
+   "1. A precondition-check request runs FIRST, before any change is applied, returning the count of distinct customers currently assigned to that staff member as their sales rep, plus a flag indicating whether any assignments exist.",
+   "2. The dialog's \"{Staff Name} is the sales rep on {N} customer{s}.\" headline matches the returned count.",
+   "3. No deactivation is committed by the pre-check itself — cancelling leaves the staff member's active status unchanged."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbr-sales-by-representative.md Story 13 S13-R1; S13-R4",
+  "viu_status": "VIU-Pending",
+  "notes": "The spec defines the check's behavior, not its REST shape — observe the real request; no endpoint invented. Restore the staff member and remove ZZAUTOTEST data afterward.",
+  "api_related": true
+ }
+]
