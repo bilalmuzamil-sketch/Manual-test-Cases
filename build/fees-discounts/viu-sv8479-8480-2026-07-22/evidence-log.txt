@@ -1,0 +1,46 @@
+F&D SV-8479/8480 — LIVE staging VIU (SV-8480 line-total summation batch) — 2026-07-22
+Env: app.staging.shopview.com / api.staging.shopview.com, org d55bc308, admin quick-login.
+Flags FeesAndDiscounts+PartSales+QuickBooks ON. Access check POST /api/quick-login {admin} -> HTTP 200.
+Seed: ZZAUTOTEST WO ea0b39a9-a35d-4832-b4a0-a35a42a955da, line 33179580 (Bear Tracks $145/hr x 2h = Labor $290.00)
+      + part "Turbocharger Oil" (Parts $40.00). Create-line dialog auto-computes labour ($/hr x time) and part sell
+      (cost x margin), so the ticket's exact $250/$20 could not be dialed in; live base = Labor $290 + Parts $40.
+      SV-8480 behavior (per-line total = gross Labor+Parts + line's own SIGNED fee/discount amounts) verified on that
+      base; ticket $250+$20->$322.20 is the same formula. All figures LIVE-OBSERVED.
+
+SIGN CONVENTION (Rule 9), line-level inline rows (Lines tab, under Labor/Parts):
+- FEE renders BARE percent, no plus: "20%","11%" (HTML span class="text-grey-7" = PLAIN TEXT, no colored badge/pill).
+- DISCOUNT renders EN-DASH MINUS: "-10%" (not "(-10%)", not "(10%)"; plain text, no badge).
+- Resolved dollar amounts signed: fee "+$58.00", discount "-$4.00". "↳" arrow precedes name; left label blank.
+- CONTRAST: whole-WO card shows rate in PARENTHESES e.g. "Customer Fee (10%)" — different surface.
+=> FD-INLINE-001/002 ("fee no sign e.g.10%; discount minus e.g. -5%/-11%") MATCHES build - no change.
+=> FD-CALC-018/019 said "+20%"/"+11%" - DIVERGED; corrected to "20%"/"11%" (discount "-10%" already correct).
+
+PER-CASE VERDICTS:
+FD-CALC-018 VIU-Verified — Lines collapsed line Total $392.40 = Labor 290 + labor fee ttt +20% ($58.00) + Parts 40
+  + part fee test +11% ($4.40); NOT gross $330. Rows plain "20%"/"11%".
+  Ev: 018-lines-collapsed-full.png, 018-lines-expanded-full.png, api-FD-CALC-018-024-total_cost-392.40.json
+FD-CALC-019 VIU-Verified — labor fee +20% ($58.00) adds, part discount -10% (-$4.00) subtracts: line Total $384.00
+  = 290+58+40-4.00. Discount renders "-10%", resolved -$4.00.
+  Ev: 019-lines-collapsed-full.png, 019-lines-expanded-full.png, api-FD-CALC-019-total_cost-384.00.json
+FD-CALC-020 VIU-Verified — no-fee line (ZZAUTOTEST nofee line): collapsed Total $330.00 = gross Labor 290 + Parts 40.
+  Ev: 020-lines-nofee-line.png, api-baseline-nofees-total_cost-330.json
+FD-CALC-021 VIU-Verified — Estimate (Finance tab EST-S3-25836): Labor prints GROSS $290.00; line fee prints own row
+  "↳ ttt (% of labor) $58.00"; document "Line Total" = $330.00 (gross, fee NOT folded in); every fee/discount listed
+  ONCE in Fees & Discounts breakdown -> no double-count. SV-8480 fix is Lines-tab-only; estimate unchanged.
+  Ev: 021-finance-tab.png
+FD-CALC-022 VIU-Verified — Invoice (INV-S3-25836 via toggle_estimate_invoice): identical to estimate — Labor gross
+  $290, line fee own row "↳ ttt (% of labor) $58.00", Line Total $330.00, each fee once, no double-count.
+  Ev: 022-invoice-view.png
+FD-CALC-023 Blocked-Env — FeesAndDiscounts flag is ON org-wide on the SHARED staging org (d55bc308); toggling OFF
+  during an unattended run would strip F&D from all users and break concurrent/later VIU batches; no separate
+  flag-off org available. Per batch instruction marked Blocked-Env (not inferred). Needs dedicated flag-off org.
+FD-CALC-024 VIU-Verified (API) — GET /api/work-orders/lines/{wo} per-line total_cost = 392.40 (signed sum), NOT 330.
+  Stored amounts unchanged (labour_rate 145, total_labour_cost 290, part sell 40); fee/discount stored separately
+  under line.adjustments[] + part_requests[].adjustments[] (resolvedAmount 58 / 4.40). Display-only computed total.
+  Ev: api-FD-CALC-018-024-total_cost-392.40.json
+FD-INLINE-004 VIU-Verified — collapsed line Total adds line's own signed fee/discount amounts on top of gross
+  Labor+Parts (392.40 with fees; 330.00 with none); display-only. Ev: 018-lines-collapsed-full.png, 020-lines-nofee-line.png
+FD-INLINE-001/002 — sign convention re-verified live 2026-07-22 (fee bare 20%/11% no sign; discount -10% minus;
+  plain text no badge; resolved signed). Wording already accurate - no change.
+
+CLEANUP: seeded WO ea0b39a9 tagged ZZAUTOTEST, deleted after run. No settings/roles changed. Feature flag NOT touched.
