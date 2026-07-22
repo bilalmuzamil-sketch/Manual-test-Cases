@@ -112,6 +112,10 @@ def load_cases():
     cases = []
     for f in sorted(glob.glob(os.path.join(CASES_DIR, "cases-*.json"))):
         cases += json.load(open(f))
+    # Active cases only: retired cases (viu_status starts with 'Retired';
+    # SCH-REAS-02/C30053 deleted from TestRail 2026-07-22 per user ruling) are
+    # excluded from all deliverables + tally; body kept locally for the record.
+    cases = [c for c in cases if not (c.get("viu_status") or "").startswith("Retired")]
     return cases
 
 

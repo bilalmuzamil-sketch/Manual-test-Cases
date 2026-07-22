@@ -7,17 +7,32 @@
 
 ## 0. STATUS / WHAT'S LEFT TO DO — read first (Last updated 2026-07-22)
 
-### 0.0-APPLIED RECONCILIATION APPLIED LOCALLY (2026-07-22, LATEST — supersedes 0.0 analysis)
+### 0.0-SYNC-DONE TestRail SYNC EXECUTED (2026-07-22, LATEST — user-authorized writes DONE)
 
-**The spec_1 + Claude-design + Branko-Q&A reconciliation is now APPLIED to the case
-suite LOCAL ONLY. NO TestRail writes were made** (the sync is staged in
-`spec-v1-2026-07-22/testrail-sync-manifest.md` pending explicit user authorization).
+**The staged sync is EXECUTED (user-authorized, incl. the delete — Standing Rule 6):
+7 update_case + 2 add_case + 1 delete_case, ALL HTTP 200, ALL re-GET verified MATCH.**
+- **7 update_case** (all re-GET MATCH): SCH-MODAL-04 (C30011), SCH-MODAL-08 (C30015),
+  SCH-CONF-02/03/04 (C30024/25/26), SCH-VIEW-04 (C30045), SCH-TIP-01 (C30034).
+  (SCH-CONF-01/C30023 = notes-only, NOT pushed — correct per manifest §A.1.)
+- **2 add_case** (new C-ids): **SCH-PERM-12 = C30614** (Permissions §4279, type_id 5/Negative,
+  prio 3/High), **SCH-EVT-08 = C30615** (Events §4269, type_id 6/Functional, prio 2/Medium);
+  both `custom_atmstatus:3` + `custom_automation_type:0`, non-API.
+- **1 delete_case**: **SCH-REAS-02 / C30053** deleted (re-GET gone) — modal-Reassign removed;
+  drag-reassign covered by SCH-REAS-01 (C30052). Body kept locally marked Retired; id-map −1.
+- **NO execution run written** (run 325 etc. untouched); only Schedule group 4254 touched.
+- Executor: `build/schedule/exec_sync_2026-07-22.py`; per-case audit log:
+  `spec-v1-2026-07-22/testrail-execution-log-2026-07-22.md`; manifest header = EXECUTED.
+
+### 0.0-APPLIED RECONCILIATION APPLIED LOCALLY (2026-07-22 — superseded by 0.0-SYNC-DONE for TestRail state)
+
+**The spec_1 + Claude-design + Branko-Q&A reconciliation was APPLIED to the case
+suite; the staged TestRail sync is now EXECUTED (see 0.0-SYNC-DONE).**
 Design is **no longer missing** — the Claude prototype `Schedule.dc.html` is the
 authoritative design (Branko Q0); every case `design_ref` now cites it.
 
-- **Tally: 168 authored** (166 original + 2 new). **167 active** — SCH-REAS-02
-  (C30053) is **retire-proposed** (removed feature), retained in place + in TestRail +
-  in the id-map pending user delete authorization.
+- **Tally: 168 authored** (166 original + 2 new). **167 ACTIVE** — SCH-REAS-02
+  (former C30053) is now **Retired** (deleted from TestRail 2026-07-22, body kept locally
+  for the record; excluded from all deliverables + tally).
 - **6 expected-result edits applied:** SCH-MODAL-04 (C30011, no $/labor — number/title/
   hours/status pill only), SCH-MODAL-08 (C30015, Delete-only, no Reassign), SCH-CONF-02/03/04
   (C30024/25/26, per-tech configured working days+hours, hierarchy Tech>Business>Default),
@@ -29,17 +44,15 @@ authoritative design (Branko Q0); every case `design_ref` now cites it.
 - **~48 design-pinned labels/visuals FOLDED** to the design's actual wording (VIU-confirm
   hedge removed, design cited in `notes`); **~18 items STILL need a LIVE build check** —
   trimmed register in `coverage-matrix.md` §D.1.
-- **2 NEW cases** authored (VIU-Pending, blank C-id pending authorized add): **SCH-PERM-12**
-  (permission-masking, Branko Q3, Permissions section) and **SCH-EVT-08** (event-not-counted,
-  Branko Q1, Events section).
-- **Deliverables regenerated over 168:** `testrail-import/schedule-v1-testrail-import.csv`/`.xlsx`
-  (168 rows, 0 VIU/flag words, no dup titles/ids, no missing fields), `testrail-id-map.csv`
-  (168 rows; 166 C-ids re-merged C29925–C30090 incl. C30053; 2 new rows blank), coverage-matrix.md
-  (§B design-coverage, new mappings, trimmed §D), requirements.md (design-now-exists note).
-  ⚠️ `gen_import.py` blanks the id-map C-id column on rerun — ALWAYS re-merge afterwards.
-- **NEXT:** (a) **TestRail SYNC pending user authorization** — execute
-  `spec-v1-2026-07-22/testrail-sync-manifest.md` (8 update_case + 2 add_case + 1 delete_case);
-  (b) **live VIU still pending** the QA branch (OQ-3) + Epic key (OQ-2). Per Rule 12,
+- **2 NEW cases** now IN TestRail (VIU-Pending): **SCH-PERM-12 = C30614**
+  (permission-masking, Branko Q3, Permissions §4279) and **SCH-EVT-08 = C30615**
+  (event-not-counted, Branko Q1, Events §4269).
+- **Deliverables regenerated over 167 ACTIVE:** `testrail-import/schedule-v1-testrail-import.csv`/`.xlsx`
+  (167 rows, 0 VIU/flag words, no dup titles/ids, no missing fields; header byte-identical to
+  the other project imports), `testrail-id-map.csv` (167 rows; ALL C-ids populated incl. the
+  2 new C30614/C30615; SCH-REAS-02 row removed), coverage-matrix.md, requirements.md.
+  ⚠️ `gen_import.py` blanks the id-map C-id column on rerun + now EXCLUDES Retired — ALWAYS re-merge afterwards.
+- **NEXT:** live VIU still pending the QA branch (OQ-3) + Epic key (OQ-2). Per Rule 12,
   design-pinned ≠ VIU-Verified.
 - Method: `build/schedule/spec-v1-2026-07-22/apply_reconciliation.py` (re-runnable transform).
 

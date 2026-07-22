@@ -97,7 +97,7 @@ SCH-EVT-04,C30019,The all-day toggle creates an all-day event,Events
 SCH-EVT-05,C30020,Events can be dragged to another technician or another day,Events
 SCH-EVT-06,C30021,"Event cards are structurally distinct from shift cards - white outlined card with a grey icon chip, no colored left rail",Events
 SCH-EVT-07,C30022,Events default to neutral/grey; choosing a color tints the card and its icon chip,Events
-SCH-EVT-08,,An event does not count toward a technician's capacity bar and does not raise a conflict,Events
+SCH-EVT-08,C30615,An event does not count toward a technician's capacity bar and does not raise a conflict,Events
 SCH-CONF-01,C30023,Double-booked: two work orders overlapping on the same technician at the same time are flagged,Conflict Detection
 SCH-CONF-02,C30024,Working-day conflict: a shift on a day outside the technician's configured working days is flagged,Conflict Detection
 SCH-CONF-03,C30025,Before hours: a shift starting before the technician's configured working-day start is flagged,Conflict Detection
@@ -128,7 +128,6 @@ SCH-VIEW-08,C30049,Events toggle shows and hides event blocks on the grid,Filter
 SCH-VIEW-09,C30050,Tech Hours toggle displays each technician's working hours next to their name,Filter and Display and View Options
 SCH-VIEW-10,C30051,Saturday and Sunday toggles include or exclude the weekend columns,Filter and Display and View Options
 SCH-REAS-01,C30052,"Dragging a shift to another technician row reassigns it - target tech added to the line's roster, source removed, with a confirmation modal",Reassignment and Context Menu
-SCH-REAS-02,C30053,'Reassign' in the shift detail modal moves the shift to another technician,Reassignment and Context Menu
 SCH-REAS-03,C30054,"Right-click on any grid cell opens a context menu with New Shift, New Event, and View Day",Reassignment and Context Menu
 SCH-REAS-04,C30055,'View Day' in the context menu opens day view for that cell's date,Reassignment and Context Menu
 SCH-REAS-05,C30056,'New Shift' in the context menu starts shift creation for that technician and day,Reassignment and Context Menu
@@ -160,7 +159,7 @@ SCH-PERM-08,C30081,Schedule access without Work Orders: View - sidebar hides the
 SCH-PERM-09,C30082,No own-only restriction: every Schedule: View user sees ALL technicians' shifts and events,Permissions
 SCH-PERM-10,C30083,"Grid rows are department-based: any staff member in a visible department appears as a row, regardless of role",Permissions
 SCH-PERM-11,C30084,"Clocking into work order line tasks is gated by the staff record's 'Time Clock' setting, not the permission model",Permissions
-SCH-PERM-12,,"With Work Orders: View OFF, work-order-derived details on shifts (customer, lines, money fields) are hidden or masked",Permissions
+SCH-PERM-12,C30614,"With Work Orders: View OFF, work-order-derived details on shifts (customer, lines, money fields) are hidden or masked",Permissions
 SCH-EDGE-01,C30085,Planned hours across technicians may exceed the estimate - accepted without error,Edge Cases and Responsiveness
 SCH-EDGE-02,C30086,"Below 960px the grid scrolls horizontally, and the sidebar collapses on narrow viewports",Edge Cases and Responsiveness
 SCH-EDGE-03,C30087,The sidebar work order list and line drill-down stay smooth with 50+ items,Edge Cases and Responsiveness

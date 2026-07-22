@@ -1,9 +1,10 @@
 # Schedule — TestRail SYNC MANIFEST (spec_1 + Claude design + Branko Q&A, 2026-07-22)
 
-> **STATUS: NOT EXECUTED — the user has NOT authorized TestRail writes.**
-> The reconciliation was applied **LOCAL ONLY** (case JSON + import + id-map +
-> coverage-matrix). This manifest is the exact, verbatim list for a follow-up worker
-> to run **once the user grants explicit TestRail permission** (Standing Rule 6).
+> **STATUS: EXECUTED 2026-07-22 — user-authorized TestRail writes DONE (7 update_case +
+> 2 add_case + 1 delete_case, all HTTP 200, all re-GET verified).** New C-ids:
+> SCH-PERM-12 = **C30614**, SCH-EVT-08 = **C30615**; SCH-REAS-02/**C30053** deleted (verify gone).
+> Per-case audit log: `build/schedule/spec-v1-2026-07-22/testrail-execution-log-2026-07-22.md`.
+> The prior reconciliation was applied LOCAL ONLY; this manifest is the exact list that was run.
 >
 > Project **1** / suite **1 "Master"** / group **4254 "Schedule - 2026 (VIU Pending)"**
 > (child sections 4255–4280). `add_case` requires `custom_atmstatus:3` +
