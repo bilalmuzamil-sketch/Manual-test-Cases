@@ -6,14 +6,28 @@
 > TestRail Case IDs are "pending push" until the user grants explicit permission
 > (Standing Rule 6).
 >
-> Total cases authored: **166** across **26 sections** (all functional/UI — see
-> §C for the explicit API exclusion).
+> Total cases authored: **168** across **26 sections** (166 original + 2 new from
+> the 2026-07-22 reconciliation; **167 active** — SCH-REAS-02 is **retire-proposed**,
+> retained pending user delete authorization). All functional/UI — see §C for the
+> explicit API exclusion.
 >
-> **SPEC-ONLY authoring ruling (2026-07-21):** no Figma/designs exist (OQ-4,
-> user-confirmed). Wording uses the spec's own labels verbatim where the spec
-> pins them; every label/threshold the spec does NOT pin is written generically
-> in the case and carried in the **VIU-confirm register** (§D) — nothing was
-> invented (Standing Rules 1/9).
+> **RECONCILIATION APPLIED LOCALLY 2026-07-22 (spec_1 + Claude design + Branko Q&A):**
+> spec_1 added a **Design link** (body otherwise unchanged) → the **Claude prototype
+> `Schedule.dc.html` is now the authoritative design** (Branko Q0); this project is no
+> longer spec-only. 6 expected-result edits + events-excluded may-change notes
+> (Q1) + VIN §4.13-vs-§9 resolution (design §6) applied; ~48 previously-deferred
+> labels/visuals **PINNED by the design** (VIU-confirm hedge removed, design cited);
+> 2 new cases added (SCH-EVT-08 event-not-counted; SCH-PERM-12 permission-masking);
+> SCH-REAS-02 retire-proposed. Source of truth:
+> `spec-v1-2026-07-22/spec-diff-v1-2026-07-22.md` + `design-notes-claude.md`. Details
+> per case carry the driver in the case `notes` (Standing Rule 20). **No TestRail
+> writes** — the sync is staged in `spec-v1-2026-07-22/testrail-sync-manifest.md`
+> pending user authorization.
+>
+> **Authoring ruling (updated 2026-07-22):** where the design pins a label/visual it
+> is now authored to the design's actual wording (still to be VIU-Verified LIVE per
+> Rule 12); the remaining genuinely-unpinned items are carried in the trimmed
+> **VIU-confirm register** (§D). Nothing was invented (Standing Rules 1/9).
 
 ## A. Spec requirement coverage (requirements.md §1–§14, every requirement line mapped)
 
@@ -147,12 +161,12 @@
 | §4.9 | Customer, unit, VIN (always visible, below unit/asset), WO id | SCH-MODAL-01 |
 | §4.9 | Date + start/end time pickers (15-min increments) | SCH-MODAL-02 |
 | §4.9 | Technician; time logged vs estimate progress | SCH-MODAL-03 |
-| §4.9 | Scope summary + scheduled line(s) with labor/total figures | SCH-MODAL-04 |
+| §4.9 | Scope summary + scheduled line(s): number/title/hours/status pill ONLY — **NO labor, NO total $** (Branko Q3 + design §4c) | SCH-MODAL-04 |
 | §4.9 | Estimated hours inline edit | SCH-MODAL-05 |
 | §4.9 | Color picker | SCH-COLOR-02 |
 | §4.9 | Notes add/edit/delete per work order | SCH-MODAL-06 |
 | §4.9 | Conflict banner + "Adjust" when conflicted | SCH-MODAL-07 |
-| §4.9 | Actions: Delete (series-aware) + Reassign | SCH-MODAL-08 (behavior: SCH-DEL-01..06, SCH-REAS-02) |
+| §4.9 | Actions: **Delete (series-aware) ONLY** — the Reassign-in-modal action is REMOVED (Branko + design §4c); reassignment is drag-only | SCH-MODAL-08 (delete scopes: SCH-DEL-01..06; drag-reassign: SCH-REAS-01). **SCH-REAS-02 = retire-proposed** (removed feature) |
 
 ### §4.10 Events
 | Spec ref | Requirement | SCH- case(s) |
@@ -163,14 +177,15 @@
 | §4.10 | Drag to reassign between techs / move between days | SCH-EVT-05 |
 | §4.10 | Event card anatomy: white/neutral, thin even border, no left rail, grey icon chip + 2 text lines; distinct from shifts not by color alone | SCH-EVT-06 |
 | §4.10 | Default grey; shared palette; chosen color tints card + chip | SCH-EVT-07 |
+| §4.10/§4.11/§4.12 | An event does NOT count toward capacity and does NOT raise a conflict (Branko Q1, design-confirmed; may change) | **SCH-EVT-08 (NEW)** |
 
 ### §4.11 Conflict detection
 | Spec ref | Requirement | SCH- case(s) |
 |---|---|---|
-| §4.11 | Double-booked | SCH-CONF-01 |
-| §4.11 | Weekend shift | SCH-CONF-02 |
-| §4.11 | Before hours | SCH-CONF-03 |
-| §4.11 | After hours | SCH-CONF-04 |
+| §4.11 | Double-booked (events excluded from conflict — Branko Q1, may change) | SCH-CONF-01 |
+| §4.11 | Outside the tech's configured working DAYS (reframed from fixed Sat/Sun — Branko Q2; a Saturday shift is NOT a conflict if the tech has Saturday hours) | SCH-CONF-02 |
+| §4.11 | Before the tech's CONFIGURED working-day start (hierarchy Tech > Business > Default — Branko Q2) | SCH-CONF-03 |
+| §4.11 | After the tech's CONFIGURED working-day end (same hierarchy — Branko Q2) | SCH-CONF-04 |
 | §4.11 | Warning icon on block; toolbar pill count + dropdown list; continuous scanning | SCH-CONF-05 |
 | §4.11 | Clicking a conflict navigates to the tech + day | SCH-CONF-06 |
 | §4.11 | Red/alarming styling reserved for conflicts/errors, never overtime | SCH-CONF-07 |
@@ -298,17 +313,24 @@ Not testable as UI behavior (product analytics targets: conflict rate, time-to-s
 | §14.1 | Edit unlocks all creation/modification interactions | SCH-PERM-04 |
 | §14.1 | Delete unlocks removal incl. series scopes; without it delete + trash icon hidden | SCH-PERM-05, SCH-PERM-06 |
 | §14.2 | Work Orders: View dependency — sidebar hides WO list/drill-down; mini cal remains; grid still usable; no new drags | SCH-PERM-08 |
+| §14.2 | Work Orders: View OFF — WO-derived data on the shifts themselves (customer/lines/money fields) hidden or masked on block, tooltip, and modal (Branko Q3) | **SCH-PERM-12 (NEW)** |
 | §14.3 | No own-only restriction; My Shifts = convenience filter, not a boundary | SCH-PERM-09, SCH-VIEW-03 |
 | §14.4 | Grid rows department-based (staff record), not role-based | SCH-PERM-10 (also SCH-NAV-04) |
 | §14.4 | Clock-in gated by the staff "Time Clock" setting, not permissions | SCH-PERM-11 |
 
-## B. Design frame coverage
+## B. Design coverage (design NOW available — 2026-07-22)
 
-**NONE — SPEC-ONLY project.** No Figma/designs exist (OQ-4, user-confirmed
-2026-07-21). There is no design set to map. If Figma arrives later, capture it
-into a `design-notes.md` first and run a design-reconciliation pass over this
-suite (add `design_ref` values + reconcile any spec-vs-design conflicts, as was
-done for Filters).
+**Design available:** the Claude prototype `Schedule.dc.html` (spec_1 added the
+Design link; Branko Q0 confirmed it is authoritative) — captured in
+`spec-v1-2026-07-22/design-notes-claude.md`. This is a coded interactive prototype,
+not a Figma file. A **design-reconciliation pass was run 2026-07-22**: every case's
+`design_ref` now cites the Claude prototype, ~48 previously-deferred labels/visuals
+are folded to the design's actual wording (see §D), the VIN §4.13-vs-§9 conflict is
+resolved (design §6), and the removed Reassign-in-modal feature is retire-proposed.
+**Rule 12 caveat:** design-pinned ≠ VIU-Verified — the LIVE build must still confirm
+each label/behaviour once the QA branch + Epic key exist (OQ-2/OQ-3). The prototype
+simplifies the conflict hours model (hardcoded Mon–Fri/8–17); the authoritative rule
+is Branko Q2's per-tech hierarchy (design §5 notes the simplification).
 
 ## C. Excluded — explicitly NOT covered by cases (with reasons; Standing Rule 17)
 
@@ -326,94 +348,52 @@ done for Filters).
 | Feature-flag / rollout cases | The spec has no flag/rollout/phasing section (OQ-3: QA env + flag/settings status unknown — ask the user at VIU). Import is flag-free per user rule anyway. |
 | Mobile-specific cases | The spec defines desktop responsiveness only (960px minimum, horizontal scroll, sidebar collapse — covered by SCH-EDGE-02). No mobile UI is specified — nothing invented. |
 
-## D. VIU-confirm register (every deferred label / threshold / visual — confirm LIVE at VIU)
+## D. VIU-confirm register (trimmed 2026-07-22 — design now pins most items)
 
-**Blanket rule (OQ-5):** this is a SPEC-ONLY suite — even labels the spec pins in
-prose are PRD wording and MUST be confirmed against the real build during the
-VIU pass (Standing Rule 9). The register below lists every deferred item and
-where it is asserted.
+**What changed:** with the Claude prototype now authoritative, roughly **~48 of the
+~62 previously-deferred items are PINNED by the design** — their cases were folded to
+the design's actual labels/visuals and the "VIU-confirm / no designs" hedge removed
+(the driver is cited in each case's `notes`). **Rule 12 caveat:** design-pinned is
+NOT VIU-Verified — the LIVE build must still confirm every label at the VIU pass.
 
-### D.1 Spec-quoted labels used verbatim in cases (confirm exact on-screen wording)
-| Label / copy | Case(s) |
+### D.0 Now PINNED by the design (folded — no longer in the open register)
+| Block | Examples pinned |
 |---|---|
-| "Search work orders" placeholder | SCH-WOL-03..06, SCH-FILT-06 |
-| "Search lines" placeholder | SCH-LINE-06 |
-| "Needs techs" badge | SCH-LINE-05, SCH-DND-07 |
-| "All" / "Unscheduled" chips | SCH-LINE-07 |
-| "Filter" button + "Clear all" | SCH-FILT-01, SCH-FILT-05 |
-| "Schedule whole work order" | SCH-SCOPE-01, SCH-SCOPE-02, SCH-DND-02 |
-| "Select multiple" / "Select all" / "Cancel" / tally "Create shift · 2 lines · 6h" | SCH-SCOPE-05, SCH-SCOPE-06 |
-| "Change scope" back-link | SCH-SPREAD-01, SCH-SPREAD-02, SCH-DND-04 |
-| Spread options: "Full estimate" / "1 week" / "2 weeks" / "Until a date…" / "Specific hours…" | SCH-SPREAD-03..05 |
-| Preview summary format ("20 shifts · Jun 15 to Jul 13 · skips weekends + 2 days") | SCH-SPREAD-08 |
-| "+N more" (lanes) / "+N more lines" (tooltip) | SCH-LANE-03, SCH-LANE-04, SCH-TIP-01 |
-| "N Lines" block label | SCH-BLOCK-02, SCH-SCOPE-02 |
-| "continues" (month banner) / "week N of M" / "part of an M-week job" | SCH-SER-01..03 |
-| "Today" button; date-label format ("Jul 14 to 20, 2026") | SCH-TOOL-01, SCH-TOOL-02 |
-| "Filter and Display" / "My Shifts" / "VIN" | SCH-VIEW-01..04 |
-| "View Options": "Business Hours" / "Capacity Bars" / "Events" / "Tech Hours" / "Saturday" / "Sunday" | SCH-VIEW-05..10 |
-| Right-click menu: "New Shift" / "New Event" / "View Day" | SCH-REAS-03..05, SCH-EVT-01 |
-| Conflict type names: "Double-booked" / "Weekend shift" / "Before hours" / "After hours" | SCH-CONF-01..04 |
-| "Adjust" (conflict banner) / "Reassign" | SCH-MODAL-07, SCH-MODAL-08, SCH-REAS-02 |
-| Delete scopes: "This shift only" / "This and everything after" / "The whole series"; "returns Nh" consequence format | SCH-DEL-01..05 |
-| "OT" tag | SCH-CAP-03, SCH-CONF-07 |
-| Tooltip formats "N lines · Xh" / "X / Yh" | SCH-TIP-01 |
-| Schedule nav item label | SCH-NAV-01 |
-| Unassigned row's on-screen name | SCH-NAV-07, SCH-START-05 |
+| Scope picker | "Schedule whole work order", "Select multiple"/"Select all"/"Unselect all"/"Cancel", "Create shift · N lines · Xh", "Whole order · Xh" (design §4a) |
+| Spread | "STEP 2 · SPREAD", "Change scope", "Full estimate"/"1 week"/"2 weeks"/"Until a date…"/"Specific hours…", preview one-liner (design §4b) |
+| Delete scopes | "Remove from series", "This shift only"/"This and everything after"/"The whole series", "returns Nh", "Part of a 6-week job · 20 shifts" (design §4e) |
+| Blocks / series | "N Lines", conflict-icon-only, color-tied-to-WO, "↳ continues", "week N of M", "Part of an N-week job", 3-lane cap + "+N more" (design §3) |
+| Toolbar / view | "Today", date-label "Jul 12 – 18, 2026"/"July 2026", "Filter and Display", **"VIN Number"** (was "VIN"), View Options six toggles (design §1) |
+| Conflict copy | reason sentences ("Double-booked with <customer>", weekend/before/after) — replace the spec's type NAMES (design §7) |
+| Modal | line rows = number/title/hours/status pill only (NO $), "Adjust", trash-icon Delete, no Reassign (design §4c) |
+| Tooltip | "N lines · Xh", "+N more lines", "X / Yh", 3-line cap, flip/shift positioning; VIN shown unconditionally (design §4c/§6) |
+| Capacity / events | blue fill + amber spill + tick, "OT" tag, per-tech hover breakdown, event-card anatomy (design §3) |
+| Sidebar | "Search work orders", "Search lines", "Needs techs", "All"/"Unscheduled", WO card anatomy, mini-cal highlights (design §2) |
+| Reassign / keyboard | drag-reassign confirm modal (Cancel/Confirm), Escape 13-layer stacking order (design §4d/code) |
+| 15-min snap · 3-lane cap · tooltip 3-line cap · color palette + editable-label surface (design code/§3) |
 
-### D.2 Numeric / timing thresholds (spec-stated or spec-approximate — assert + confirm live)
-| Threshold | Spec basis | Case(s) |
+### D.1 STILL needs a LIVE build check (~18 items — the trimmed register)
+| Item | Why still open | Case(s) |
 |---|---|---|
-| 15-minute snap (drag + time pickers) | stated | SCH-DAY-04, SCH-DAY-05, SCH-MODAL-02 |
-| 3-lane cap | stated | SCH-LANE-03 |
-| Tooltip open delay ~300–500ms | approximate | SCH-TIP-04 |
+| "Filter" vs "Filters" sidebar button caption | design screenshot shows "Filters", template shows "Filter" | SCH-FILT-01 |
+| Right-click menu wording "New Shift" / "View Day" | design does not fully pin these two labels | SCH-REAS-03, SCH-REAS-04, SCH-REAS-05 |
+| Sidebar Status-filter option enumeration | spec defers to "all app-supported statuses" (tenant/app data) | SCH-FILT-01, SCH-FILT-03 |
+| Department names | tenant data (design examples SERVICE/ADMINISTRATION illustrative) | SCH-NAV-04 |
+| Schedule permission naming in the roles admin | tenant/app data — ask user at VIU | SCH-PERM-01..07 |
+| Tooltip open delay ~300–500ms | approximate; not pinned by prototype | SCH-TIP-04 |
 | Toast lifetime 4–7s | approximate | SCH-DEL-08 |
 | Auto-scroll buffer 30–60 min | approximate | SCH-DAY-01 |
-| 960px minimum width; sidebar collapse breakpoint (unpinned) | stated / unpinned | SCH-EDGE-02 |
-| 7:00 AM–7:00 PM default working day | stated | SCH-START-03, SCH-START-06 |
-| Virtualization at 50+ items | stated (implementation detail; observable = smoothness) | SCH-EDGE-03 |
-| Tooltip line-list cap 3 | stated | SCH-TIP-01 |
-
-### D.3 Enumerations the spec defers to the app (source live at VIU)
-| Item | Case(s) |
-|---|---|
-| Sidebar Status-filter option list ("All work order statuses currently supported in the app") | SCH-FILT-01, SCH-FILT-03 |
-| Department names (spec examples SERVICE/PARTS, ADMINISTRATION are illustrative) | SCH-NAV-04 |
-| Color palette contents + label-editing surface | SCH-COLOR-02, SCH-COLOR-03 |
-| Schedule permission naming in the roles admin | SCH-PERM-01..07 |
-
-### D.4 Visual-only renderings described in prose (no designs — confirm all visuals live)
-| Visual | Case(s) |
-|---|---|
-| WO card styling (accent color, bold, status left-border colors) | SCH-WOL-02 |
-| Block tint/left-rail; color three-tone rendering | SCH-BLOCK-01, SCH-BLOCK-04, SCH-COLOR-02 |
-| Event card anatomy (white card, thin border, grey icon chip) | SCH-EVT-06 |
-| Series banner rendering (month wrap, week chevrons, breaks) | SCH-SER-01..03 |
-| Lane-stacking growth + "+N more" popover | SCH-LANE-02..04 |
-| Capacity bar (blue fill / amber spill / tick / tooltip) | SCH-CAP-01..04 |
-| Business-hours shading; now line; drag ghost + drop highlight | SCH-VIEW-06, SCH-DAY-06, SCH-DND-06 |
-| Mini calendar highlights (selected/today/week hover) | SCH-MCAL-04 |
-| Toolbar search fade/highlight styling | SCH-TOOL-03 |
-| Focus rings | SCH-KEY-05 |
-
-### D.5 Behaviors the spec implies but does not fully pin (observe + record; flag to PO if ambiguous)
-| Open behavior | Case(s) |
-|---|---|
-| Click-to-arm mechanics (what arms / how to cancel) | SCH-DND-08 |
-| "New Shift" context-menu flow (how the WO/line is picked) | SCH-REAS-05 |
-| Unassigned-shift roster behavior before assignment; start-time re-derivation on assignment | SCH-START-05, SCH-START-07 |
-| "Until a date…" when the estimate cannot fit by the date | SCH-SPREAD-04 |
-| Direct-URL access with Schedule: View OFF (spec pins only nav hidden) | SCH-PERM-03 |
-| Standalone-shift delete confirmation (any?) | SCH-DEL-06 |
-| Whether recoloring one shift recolors all blocks of the same WO | SCH-COLOR-02 |
-| Estimated-hours inline edit scope (shift vs line estimate) | SCH-MODAL-05 |
-| Hidden-weekend-column behavior for existing weekend shifts | SCH-VIEW-10 |
-| Now line on non-today days | SCH-DAY-06 |
-| Department-less staff row handling | SCH-PERM-10 |
-| Notes per-work-order sharing across shifts | SCH-MODAL-06 |
-| 'Hidden vs disabled' choice per editing affordance for View-only | SCH-PERM-02 |
-| Assignment-filter definition (lead tech vs roster vs shift) | SCH-FILT-02 |
-| Escape stacking order — exercise all 13 listed layers | SCH-KEY-01 |
+| 960px min width + sidebar collapse breakpoint | threshold not pinned | SCH-EDGE-02 |
+| **7:00 AM–7:00 PM default working day** | **⚠ prototype hardcodes 8–17/9h — spec-vs-design discrepancy to resolve LIVE** | SCH-START-03, SCH-START-06 |
+| Virtualization at 50+ (observable = smoothness) | implementation detail | SCH-EDGE-03 |
+| Direct-URL access with Schedule: View OFF | spec pins only nav hidden | SCH-PERM-03 |
+| Department-less staff row handling | contrapositive derivation | SCH-PERM-10 |
+| Notes per-work-order sharing across shifts | scoping not pinned | SCH-MODAL-06 |
+| Hidden-weekend-column behaviour for existing weekend shifts | not pinned | SCH-VIEW-10 |
+| Now line on non-today days | not pinned | SCH-DAY-06 |
+| "Until a date…" overflow when the estimate can't fit by the date | behaviour not pinned (label IS pinned) | SCH-SPREAD-04 |
+| Standalone-shift delete confirmation (any?) | not pinned | SCH-DEL-06 |
+| 'Hidden vs disabled' per editing affordance for View-only | spec allows either; record which | SCH-PERM-02 |
 
 ## E. Open items affecting cases (tracked in requirements.md OQs)
 

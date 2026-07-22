@@ -475,17 +475,26 @@ process(es) to run before proceeding.
    **CANONICAL STATE DOC (read first for resume):** `build/schedule/PROJECT-STATE.md`
    — single authoritative snapshot (status, spec-ingest facts, authoring-readiness
    assessment §0.6, deliverables index, open questions, env/access TBD, how-to-resume).
-   **STATUS: CASES AUTHORED 2026-07-21 — 166 cases/26 sections SPEC-ONLY,
-   adversarial-reviewed CLEAN (4 defects fixed); import ready (pure 1:1,
-   testrail-import/schedule-v1-testrail-import.csv/.xlsx); TestRail push PENDING
-   permission; VIU pending QA branch (ask Epic key + env + process);
-   design-reconciliation if Figma arrives; VIN-tooltip spec inconsistency flagged
-   for Branko. Canonical resume doc: build/schedule/PROJECT-STATE.md.
-   IMPORTED TO TESTRAIL 2026-07-21 (group 4254 "Schedule - 2026 (VIU Pending)",
-   child sections 4255–4280, names match 1:1 no variance; id-map 166/166 populated
-   READ-ONLY 2026-07-22, C29925–C30090 contiguous; ⚠️ gen_import.py blanks the
-   id-map C-ids on rerun — re-merge after any rerun, same as Filters); NEXT = VIU
-   at QA branch (ask Epic key + process).** Same rules as all projects:
+   **STATUS: RECONCILIATION (spec_1 + Claude design + Branko Q&A) APPLIED LOCALLY
+   2026-07-22 — design NO LONGER MISSING (Claude prototype Schedule.dc.html is the
+   authoritative design, Branko Q0; spec_1 added a Design-link only, body unchanged).
+   Tally now 168 authored (166 original + 2 new = SCH-PERM-12 perm-masking + SCH-EVT-08
+   event-not-counted, both VIU-Pending blank C-id); 167 ACTIVE (SCH-REAS-02/C30053
+   RETIRE-PROPOSED — modal-Reassign removed, kept pending user delete auth). Applied:
+   6 expected-result edits (SCH-MODAL-04 no $/labor, SCH-MODAL-08 Delete-only,
+   SCH-CONF-02/03/04 per-tech configured hours hierarchy, SCH-VIEW-04 "VIN Number"
+   toggle=block-only) + VIN §4.13-vs-§9 RESOLVED (design §6; §9 prose flagged to Branko)
+   + Q1 events-excluded may-change notes (SCH-CAP/CONF) + ~48 design-pinned labels folded
+   (VIU-confirm hedge removed) with ~18 still needing LIVE confirm (trimmed coverage-matrix
+   §D). Deliverables regenerated over 168 (import 168 rows VIU/flag-word-free; id-map 168,
+   C29925–C30090 re-merged incl. C30053, 2 new blank; ⚠️ gen_import.py blanks id-map C-ids
+   on rerun — re-merge). NO TestRail writes — staged in
+   spec-v1-2026-07-22/testrail-sync-manifest.md (8 update_case + 2 add_case + 1 delete_case).
+   NEXT = (a) TestRail SYNC pending user authorization [manifest], (b) live VIU pending QA
+   branch (OQ-3) + Epic key (OQ-2); Rule 12 design-pinned ≠ VIU-Verified. Prior: CASES
+   AUTHORED 2026-07-21 166/26 SPEC-ONLY adversarial-reviewed CLEAN; IMPORTED TO TESTRAIL
+   2026-07-21 (group 4254 "Schedule - 2026 (VIU Pending)", child sections 4255–4280).
+   Canonical resume doc: build/schedule/PROJECT-STATE.md §0.0-APPLIED.** Same rules as all projects:
    reuse shared infra (BUILD-ACCURATE-WORDING-VIU-PROCESS,
    SPEC-RELEVANCE-RECONCILIATION-PROCESS, TESTING-RUNBOOK, harness/TestRail patterns);
    deliverable/import format pure 1:1 with testrail-import/*-testrail-import.csv

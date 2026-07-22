@@ -18,10 +18,10 @@
    "1. Schedule is listed as a top-level navigation item alongside Work Orders, Customers, Parts, and Reports.",
    "2. Clicking it opens the Schedule screen."
   ],
-  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §3",
   "viu_status": "VIU-Pending",
-  "notes": "Exact nav item label and position - confirm live (the spec names the neighbours but the build's nav order/label needs live confirmation).",
+  "notes": "Nav item 'Schedule' and its position (Work Orders · Schedule · Customers · Parts · Reports) pinned by the Claude design (§1); live-confirm deferred to VIU (Rule 12). Driver: Claude design §1.",
   "api_related": false
  },
  {
@@ -43,10 +43,10 @@
    "1. The left panel is the work order sidebar: a mini calendar at the top and a work order list beneath it.",
    "2. The main area is the schedule grid showing technician rows and a toolbar above it."
   ],
-  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §3, §3.1, §3.2",
   "viu_status": "VIU-Pending",
-  "notes": "Exact layout/visuals unpinned (no designs) - confirm the real arrangement live.",
+  "notes": "Exact layout/visuals unpinned (Claude design now available; live-render confirm at VIU) - confirm the real arrangement live.",
   "api_related": false
  },
  {
@@ -72,10 +72,10 @@
    "3. Month: the grid shows a compact calendar with per-day capacity bars and shift chips.",
    "4. The same shifts remain visible (appropriately rendered) in all three views."
   ],
-  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §3.2, §6",
   "viu_status": "VIU-Pending",
-  "notes": "Exact control labels ('Day'/'Week'/'Month') are the spec's words - confirm on-screen wording live.",
+  "notes": "'Day / Week / Month' segmented control pinned by the Claude design (§1); confirm live at VIU. Driver: Claude design §1.",
   "api_related": false
  },
  {
@@ -99,7 +99,7 @@
    "2. Each department's technicians are listed beneath that department's header.",
    "3. Every staff member assigned to a visible department appears as a row, regardless of their role."
   ],
-  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §3.2, §14.4",
   "viu_status": "VIU-Pending",
   "notes": "The spec's header examples (SERVICE/PARTS, ADMINISTRATION) are illustrative only - real department names come from the tenant's data. Header styling unpinned.",
@@ -125,10 +125,10 @@
    "2. Expanding shows the technician rows again, unchanged.",
    "3. Other department groups are unaffected."
   ],
-  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §3.2",
   "viu_status": "VIU-Pending",
-  "notes": "The spec says group headers are collapsible but does not pin the collapse control (chevron vs whole-header click) - confirm the exact affordance live.",
+  "notes": "Collapsible department group headers pinned by the Claude design (§1, 'SERVICE'/'ADMINISTRATION' collapsible groups); confirm the exact collapse affordance live. Driver: Claude design §1.",
   "api_related": false
  },
  {
@@ -149,7 +149,7 @@
    "1. No such toggle exists - the department-grouped rows are the only grid grouping.",
    "2. Department visibility is controlled only through the department toggles in the 'Filter and Display' dropdown."
   ],
-  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §3.2",
   "viu_status": "VIU-Pending",
   "notes": "Spec: 'there is no separate technician-only view or Tech/Dept toggle'.",
@@ -176,7 +176,7 @@
    "2. Shifts without a technician sit in this row.",
    "3. The unassigned shift uses the same block layout as regular shifts (customer, unit, line name / line count) - it simply has no technician."
   ],
-  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §3.2, §4.2",
   "viu_status": "VIU-Pending",
   "notes": "The exact on-screen name of the unassigned row ('Unassigned' or other wording) is not pinned by the spec - confirm live. Its position among the rows is also unpinned.",
@@ -202,7 +202,7 @@
    "2. The toolbar date label updates to the new range.",
    "3. The clicked date is highlighted as the selected date in the mini calendar."
   ],
-  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §3.1, §5.2",
   "viu_status": "VIU-Pending",
   "notes": "",
@@ -229,7 +229,7 @@
    "2. Choosing a month shows that month in the mini calendar.",
    "3. The main grid can then be navigated by clicking a date in the newly shown month."
   ],
-  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §5.2",
   "viu_status": "VIU-Pending",
   "notes": "How the picker is opened (clicking the month/year title or another control) is not pinned by the spec - confirm live.",
@@ -255,7 +255,7 @@
    "1. The calendar grid collapses (hides), leaving more room for the work order list below.",
    "2. Clicking again expands the calendar grid back."
   ],
-  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §3.1, §5.2",
   "viu_status": "VIU-Pending",
   "notes": "",
@@ -282,10 +282,10 @@
    "2. Today's date has its own distinct indicator, different from the selection.",
    "3. Hovering a week row highlights that whole week row."
   ],
-  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §5.2",
   "viu_status": "VIU-Pending",
-  "notes": "Exact highlight styling unpinned (no designs) - confirm the visuals live.",
+  "notes": "Mini-calendar selected/today/week-hover highlights pinned by the Claude design (§2 mini calendar); live-render confirm at VIU. Driver: Claude design §2.",
   "api_related": false
  },
  {
@@ -310,10 +310,10 @@
    "2. The list scrolls when there are more cards than fit.",
    "3. There are no Assigned/Unassigned tabs - assignment is available only as a filter behind the 'Filter' button."
   ],
-  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §3.1, §5.1",
   "viu_status": "VIU-Pending",
-  "notes": "",
+  "notes": "Flat WO card list with NO Assigned/Unassigned tabs (assignment is a Filter option) confirmed by the Claude design (§2). Driver: Claude design §2 + Branko Q&A 2026-07-22 (tabs removed in a previous version).",
   "api_related": false
  },
  {
@@ -339,10 +339,10 @@
    "4. A lead technician row with the technician's avatar and name.",
    "5. A colored left border whose color reflects the work order's status."
   ],
-  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §3.1 (Work order card anatomy)",
   "viu_status": "VIU-Pending",
-  "notes": "Status-to-color mapping and exact accent color unpinned (no designs) - confirm live.",
+  "notes": "WO card anatomy (WO number accent top-left, 'N lines · Xh Est.' top-right, customer bold, unit, lead-tech row, status left-border) pinned by the Claude design (§2); live-render confirm at VIU. Driver: Claude design §2.",
   "api_related": false
  },
  {
@@ -365,10 +365,10 @@
    "1. The list narrows to the card(s) whose work order number matches what you typed.",
    "2. Cards that do not match disappear from the list."
   ],
-  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §3.1 (Sidebar search)",
   "viu_status": "VIU-Pending",
-  "notes": "'Search work orders' is the spec's placeholder wording - confirm the exact on-screen placeholder live.",
+  "notes": "'Search work orders' placeholder pinned by the Claude design (§2); confirm live at VIU. Driver: Claude design §2.",
   "api_related": false
  },
  {
@@ -394,7 +394,7 @@
    "3. Technician-name search shows only cards where that technician appears on the card.",
    "4. All four searchable fields (WO number, customer, unit, technician) are fields visible on the card itself."
   ],
-  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §3.1 (Sidebar search, Work order card anatomy)",
   "viu_status": "VIU-Pending",
   "notes": "",
@@ -420,7 +420,7 @@
    "1. The list narrows live with each keystroke - no Enter press or apply button is needed.",
    "2. Deleting characters widens the results again."
   ],
-  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §3.1 (Sidebar search)",
   "viu_status": "VIU-Pending",
   "notes": "",
@@ -447,7 +447,7 @@
    "2. The app does not error; the sidebar remains usable.",
    "3. Clearing the search restores the full list."
   ],
-  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §3.1 (derived - search behavior with no matches)",
   "viu_status": "VIU-Pending",
   "notes": "The spec does not pin any empty-state message text for the sidebar - confirm live whether a message is shown and capture its exact wording.",
@@ -475,7 +475,7 @@
    "2. Applying a filter narrows the flat card list.",
    "3. The 'Filter' button shows a badge with the number of active filters."
   ],
-  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §5.1",
   "viu_status": "VIU-Pending",
   "notes": "The Status option list is deliberately NOT enumerated by the spec ('All work order statuses currently supported in the app') - capture the real list from the app live. Badge styling/count format unpinned.",
@@ -503,7 +503,7 @@
    "2. Assigned: only work orders with a technician assigned remain.",
    "3. There are no Assigned/Unassigned tabs - this filter is the only assignment split."
   ],
-  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §5.1, §3.1",
   "viu_status": "VIU-Pending",
   "notes": "Whether 'Assigned' keys off the lead technician, any line roster entry, or any shift is not pinned by the spec - confirm the exact definition live.",
@@ -531,7 +531,7 @@
    "2. Only work orders in the chosen status remain in the card list.",
    "3. The card left-border colors of the remaining cards are consistent with that status."
   ],
-  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §5.1",
   "viu_status": "VIU-Pending",
   "notes": "Status option list = from the app (spec defers) - enumerate live. Single vs multi-select within a group is not pinned - confirm live.",
@@ -558,7 +558,7 @@
    "1. The Priority group offers High, Medium, and Low.",
    "2. Only High-priority work orders remain in the list."
   ],
-  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §5.1",
   "viu_status": "VIU-Pending",
   "notes": "",
@@ -584,7 +584,7 @@
    "2. The full work order list is shown again.",
    "3. The active-count badge on the 'Filter' button disappears (or shows zero)."
   ],
-  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §5.1",
   "viu_status": "VIU-Pending",
   "notes": "'Clear all' is the spec's wording - confirm the exact on-screen label and its placement live.",
@@ -611,7 +611,7 @@
    "1. The list shows only work orders that match BOTH the text search and the structured filter.",
    "2. Removing either the search text or the filter widens the list to the remaining condition."
   ],
-  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §5.1",
   "viu_status": "VIU-Pending",
   "notes": "",
@@ -639,7 +639,7 @@
    "2. A back control is shown to return to the card list.",
    "3. Clicking back restores the work order card list."
   ],
-  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §3.1 (Line drill-down)",
   "viu_status": "VIU-Pending",
   "notes": "Back control form (arrow/label) unpinned - confirm live.",
@@ -665,7 +665,7 @@
    "1. The header shows the work order id.",
    "2. The header also shows the line count, and it matches the number of approved lines."
   ],
-  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §3.1 (Line drill-down)",
   "viu_status": "VIU-Pending",
   "notes": "Exact header composition/format unpinned - confirm live.",
@@ -692,7 +692,7 @@
    "2. The unapproved line does NOT appear anywhere in the schedule sidebar.",
    "3. The header's line count matches the approved lines only."
   ],
-  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §3.1 (Line drill-down - approved-only)",
   "viu_status": "VIU-Pending",
   "notes": "",
@@ -719,10 +719,10 @@
    "2. The current technician roster is shown as an avatar stack plus a count; there is no cap on how many technicians a line can have.",
    "3. Each line row has its own drag handle, so it can be dragged independently onto the grid."
   ],
-  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §3.1 (Line drill-down), §8.1 (Line labor roster - no cap)",
   "viu_status": "VIU-Pending",
-  "notes": "Avatar-stack rendering (how many avatars before the +count) unpinned - confirm live.",
+  "notes": "Line row (drag handle, title, hours, avatar-stack roster + count) pinned by the Claude design (§2 line drill-down); confirm live. Driver: Claude design §2.",
   "api_related": false
  },
  {
@@ -746,10 +746,10 @@
    "2. The line with a technician does not show the badge.",
    "3. After a technician is scheduled onto the badge-bearing line, the badge goes away."
   ],
-  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §3.1 (Line drill-down - Needs techs badge)",
   "viu_status": "VIU-Pending",
-  "notes": "'Needs techs' is the spec's wording - confirm the exact on-screen badge text live.",
+  "notes": "'Needs techs' badge pinned by the Claude design (§2); confirm live at VIU. Driver: Claude design §2.",
   "api_related": false
  },
  {
@@ -773,10 +773,10 @@
    "1. Typing a line title narrows the list to matching lines.",
    "2. Typing the customer name returns no results - the line search matches line titles only (the list is already scoped to one work order, so customer/unit/WO fields are not searched)."
   ],
-  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §3.1 (Line search)",
   "viu_status": "VIU-Pending",
-  "notes": "'Search lines' is the spec's placeholder wording - confirm the exact on-screen placeholder live.",
+  "notes": "'Search lines' placeholder pinned by the Claude design (§2); confirm live at VIU. Driver: Claude design §2.",
   "api_related": false
  },
  {
@@ -801,10 +801,10 @@
    "2. Unscheduled lists only the lines that have no shifts yet, and its count matches.",
    "3. All lists every approved line, and its count matches the drill-down header's line count."
   ],
-  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §3.1, §5.1 (drill-down filters)",
   "viu_status": "VIU-Pending",
-  "notes": "Chip labels 'All'/'Unscheduled' are the spec's wording - confirm the exact on-screen labels live.",
+  "notes": "'All N / Unscheduled N' chips with counts pinned by the Claude design (§2); confirm live at VIU. Driver: Claude design §2.",
   "api_related": false
  }
 ]

@@ -23,7 +23,7 @@
    "3. ALL technicians' shifts and events are visible (not just the user's own).",
    "4. Tooltips show on hover, and the shift/event detail modals open in read-only mode."
   ],
-  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §14.1 (Schedule: View), §14.3",
   "viu_status": "VIU-Pending",
   "notes": "Ask the user at VIU how the Schedule permission tier appears in the roles admin (exact permission names). Verify per role LIVE (Standing Rules 10/12/13) - never derive from role definitions.",
@@ -53,7 +53,7 @@
    "3. The right-click context menu does not appear (no New Shift / New Event / View Day creation entry points).",
    "4. In the modal, edit fields are hidden or disabled, and the reassign and delete actions are absent."
   ],
-  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §14.1 (Schedule: View - editing affordances hidden or disabled)",
   "viu_status": "VIU-Pending",
   "notes": "Spec allows 'hidden or disabled' - record which of the two the build does for each affordance.",
@@ -78,7 +78,7 @@
    "1. The Schedule top-level nav item is not shown at all.",
    "2. The rest of the app works normally for the role."
   ],
-  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §14.1 (When Schedule: View is OFF)",
   "viu_status": "VIU-Pending",
   "notes": "The spec pins only the nav being hidden. Also probe direct URL access at VIU and record the observed behavior (not spec-pinned - do not assert a specific redirect).",
@@ -109,7 +109,7 @@
    "4. Edge-resize and horizontal drag work in day view.",
    "5. Modal fields are editable and save."
   ],
-  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §14.1 (Schedule: Edit)",
   "viu_status": "VIU-Pending",
   "notes": "",
@@ -137,7 +137,7 @@
    "2. Events likewise offer no delete.",
    "3. No path exists to remove shifts or events - while creating and modifying still work (per SCH-PERM-04)."
   ],
-  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §14.1 (Schedule: Delete - without it)",
   "viu_status": "VIU-Pending",
   "notes": "",
@@ -166,7 +166,7 @@
    "3. Events can be deleted too.",
    "4. Undo toasts appear (restore the items via Undo to clean up)."
   ],
-  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §14.1 (Schedule: Delete)",
   "viu_status": "VIU-Pending",
   "notes": "",
@@ -193,7 +193,7 @@
    "2. Delete cannot be granted without Edit.",
    "3. The three tiers can be enabled in dependency order, so each higher level always includes the ones beneath it (Delete includes Edit, and Edit includes View)."
   ],
-  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §14 (Delete requires Edit and Edit requires View)",
   "viu_status": "VIU-Pending",
   "notes": "How the roles admin enforces the dependency (disabled checkbox vs auto-check) is not pinned - record the observed mechanism live.",
@@ -221,7 +221,7 @@
    "2. Shifts already on the grid can still be viewed and interacted with per the role's Schedule tier.",
    "3. New work orders cannot be dragged on - the WO list is simply not visible."
   ],
-  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §14.2",
   "viu_status": "VIU-Pending",
   "notes": "",
@@ -247,7 +247,7 @@
    "1. The user sees ALL technicians' shifts and events, not only their own - there is no role-based 'own shifts only' restriction.",
    "2. 'My Shifts' exists only as an optional personal convenience filter (off by default), not a security boundary."
   ],
-  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §14.3",
   "viu_status": "VIU-Pending",
   "notes": "",
@@ -273,7 +273,7 @@
    "1. The department-assigned staff member appears as a technician row - row presence is controlled by the department on the staff record, NOT by role permission.",
    "2. The staff member without a department does not appear as a row."
   ],
-  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §14.4",
   "viu_status": "VIU-Pending",
   "notes": "Expectation 2 is the contrapositive derivation of §14.4 - confirm live how department-less staff are handled.",
@@ -298,10 +298,38 @@
    "1. The Time-Clock-ON staff member can clock in.",
    "2. The Time-Clock-OFF staff member cannot - the ability is controlled by the staff-record setting, not by the Schedule permission tier."
   ],
-  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §14.4 (Time Clock setting)",
   "viu_status": "VIU-Pending",
   "notes": "The clock-in surface (where clock-in happens relative to the schedule) is not described in this spec - locate it live.",
+  "api_related": false
+ },
+ {
+  "id": "SCH-PERM-12",
+  "area": "Permissions",
+  "title": "With Work Orders: View OFF, work-order-derived details on shifts (customer, lines, money fields) are hidden or masked",
+  "priority": "High",
+  "type": "Negative",
+  "permissions_required": "A role with Schedule: View (or higher) but Work Orders: View OFF. Set up the test user's role at VIU per Standing Rule 5 and restore after.",
+  "preconditions": [
+   "1. A test user's role has Schedule access but Work Orders: View OFF (assign a suitable role; restore after).",
+   "2. Shifts already exist on the grid, created by a fully-permissioned user, for units that have customers, scheduled lines, and a VIN.",
+   "3. You are signed in AS that user on a desktop browser, on the Schedule page."
+  ],
+  "steps": [
+   "1. Look at a shift block on the grid and read its text lines.",
+   "2. Hover the shift for its tooltip.",
+   "3. Open the shift's detail modal and read the work-order-derived fields."
+  ],
+  "expected": [
+   "1. Work-order-derived details (customer, the scheduled line list, and any money-bearing fields) are hidden or masked wherever they would normally appear - on the block, in the tooltip, and in the modal.",
+   "2. The schedule structure itself (the shift's day, time, and technician) stays visible so the grid remains usable.",
+   "3. This extends the sidebar behavior (the work order list and drill-down are hidden) to the work-order data surfaced on the shifts themselves."
+  ],
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+  "spec_ref": "requirements.md §14.2 (Work Orders: View dependency)",
+  "viu_status": "VIU-Pending",
+  "notes": "NEW case (reconciliation 2026-07-22). Driver: Branko Q&A 2026-07-22 Q3 ('We do not show total $ anywhere in the schedule. We can hide other items that fall under that permission'). Complements the sidebar-hide permission case. Confirm the exact masking (hidden vs placeholder) live at VIU. No TestRail C-id yet - pending authorized add_case.",
   "api_related": false
  },
  {
@@ -324,7 +352,7 @@
    "1. Both series are created - 80 planned hours against a 40h estimate is accepted.",
    "2. No error or blocking warning appears - this is expected behavior because progress is driven by clocked-in time, and scheduled hours, the estimate, and actual hours are three separate quantities that are not forced to reconcile."
   ],
-  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §12, §4.5",
   "viu_status": "VIU-Pending",
   "notes": "",
@@ -352,7 +380,7 @@
    "3. On narrow viewports the sidebar collapses.",
    "4. No content becomes permanently unreachable and nothing errors."
   ],
-  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §11 (Responsiveness)",
   "viu_status": "VIU-Pending",
   "notes": "The exact collapse breakpoint for the sidebar is not pinned (only 'narrow viewports') - record the observed breakpoint live. 960px threshold itself - confirm live.",
@@ -380,7 +408,7 @@
    "2. The drill-down behaves the same with many lines.",
    "3. Search stays responsive on the long list."
   ],
-  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §11 (Performance - virtualization)",
   "viu_status": "VIU-Pending",
   "notes": "Virtualization itself is an implementation detail - the observable assertion is smoothness; treat visible jank/freeze as the failure signal.",
@@ -408,7 +436,7 @@
    "2. View switches complete without long hangs.",
    "3. Tooltips and modals stay responsive."
   ],
-  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §11 (Performance)",
   "viu_status": "VIU-Pending",
   "notes": "Perception-based smoothness check - record any measurable jank observed.",
@@ -436,7 +464,7 @@
    "2. No shift is placed on the closure day - the series flows around it.",
    "3. The series' end date extends accordingly (the skipped day's hours land on later working days)."
   ],
-  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §12 (Shop closures), §4.5",
   "viu_status": "VIU-Pending",
   "notes": "Where shop closures are configured is outside this spec - locate the setting live; if closures cannot be defined in the environment, mark blocked with reason.",
@@ -461,7 +489,7 @@
    "1. All three quantities are shown/derivable and may differ from one another.",
    "2. Nothing forces them to match - no error, no auto-correction (progress is driven by clocked-in time)."
   ],
-  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §4.5 (three separate quantities), §12",
   "viu_status": "VIU-Pending",
   "notes": "",

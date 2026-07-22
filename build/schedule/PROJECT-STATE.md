@@ -7,7 +7,43 @@
 
 ## 0. STATUS / WHAT'S LEFT TO DO — read first (Last updated 2026-07-22)
 
-### 0.0 SPEC `_1` + CLAUDE DESIGN + BRANKO Q&A INGESTED — ANALYSIS ONLY (2026-07-22, LATEST)
+### 0.0-APPLIED RECONCILIATION APPLIED LOCALLY (2026-07-22, LATEST — supersedes 0.0 analysis)
+
+**The spec_1 + Claude-design + Branko-Q&A reconciliation is now APPLIED to the case
+suite LOCAL ONLY. NO TestRail writes were made** (the sync is staged in
+`spec-v1-2026-07-22/testrail-sync-manifest.md` pending explicit user authorization).
+Design is **no longer missing** — the Claude prototype `Schedule.dc.html` is the
+authoritative design (Branko Q0); every case `design_ref` now cites it.
+
+- **Tally: 168 authored** (166 original + 2 new). **167 active** — SCH-REAS-02
+  (C30053) is **retire-proposed** (removed feature), retained in place + in TestRail +
+  in the id-map pending user delete authorization.
+- **6 expected-result edits applied:** SCH-MODAL-04 (C30011, no $/labor — number/title/
+  hours/status pill only), SCH-MODAL-08 (C30015, Delete-only, no Reassign), SCH-CONF-02/03/04
+  (C30024/25/26, per-tech configured working days+hours, hierarchy Tech>Business>Default),
+  SCH-VIEW-04 (C30045, "VIN Number" toggle gates the BLOCK only; tooltip+modal always show VIN).
+- **VIN §4.13-vs-§9 RESOLVED** in favour of §4.13 (design §6) — SCH-VIEW-04 + SCH-TIP-01
+  (C30034) + SCH-MODAL-01 updated; §9 tooltip-gating prose flagged to Branko for doc hygiene.
+- **Events-excluded may-change notes (Branko Q1)** added to SCH-CAP-01/02/03/04 +
+  SCH-CONF-01/05.
+- **~48 design-pinned labels/visuals FOLDED** to the design's actual wording (VIU-confirm
+  hedge removed, design cited in `notes`); **~18 items STILL need a LIVE build check** —
+  trimmed register in `coverage-matrix.md` §D.1.
+- **2 NEW cases** authored (VIU-Pending, blank C-id pending authorized add): **SCH-PERM-12**
+  (permission-masking, Branko Q3, Permissions section) and **SCH-EVT-08** (event-not-counted,
+  Branko Q1, Events section).
+- **Deliverables regenerated over 168:** `testrail-import/schedule-v1-testrail-import.csv`/`.xlsx`
+  (168 rows, 0 VIU/flag words, no dup titles/ids, no missing fields), `testrail-id-map.csv`
+  (168 rows; 166 C-ids re-merged C29925–C30090 incl. C30053; 2 new rows blank), coverage-matrix.md
+  (§B design-coverage, new mappings, trimmed §D), requirements.md (design-now-exists note).
+  ⚠️ `gen_import.py` blanks the id-map C-id column on rerun — ALWAYS re-merge afterwards.
+- **NEXT:** (a) **TestRail SYNC pending user authorization** — execute
+  `spec-v1-2026-07-22/testrail-sync-manifest.md` (8 update_case + 2 add_case + 1 delete_case);
+  (b) **live VIU still pending** the QA branch (OQ-3) + Epic key (OQ-2). Per Rule 12,
+  design-pinned ≠ VIU-Verified.
+- Method: `build/schedule/spec-v1-2026-07-22/apply_reconciliation.py` (re-runnable transform).
+
+### 0.0 SPEC `_1` + CLAUDE DESIGN + BRANKO Q&A INGESTED — ANALYSIS ONLY (2026-07-22, historical — now APPLIED, see 0.0-APPLIED)
 
 **Three new inputs ingested, ANALYSIS-ONLY — 166 cases, import, id-map, and TestRail
 UNTOUCHED. AWAITING USER PROCESS CHOICE (Standing Rule 11) before ANY case change;

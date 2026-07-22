@@ -17,15 +17,18 @@
 >   invent).
 > - **QA branch / environment + feature-flag status:** ⚠️ **NOT AVAILABLE — ASK THE
 >   USER when VIU begins.**
-> - **Design / Figma:** **NONE at the moment** (user confirmed 2026-07-21). This
->   project is **SPEC-ONLY** for authoring right now — there is no design set to
->   capture. The exported spec contains no images, no Figma hyperlinks, no screenshot
->   references. Build-accurate wording (Standing Rule 9) will come from the spec text
->   where present; anything the spec does NOT pin down (exact on-screen labels/states)
->   must be marked **"VIU-confirm"** at authoring time and confirmed LIVE once the QA
->   branch exists (same pattern as the VIU-confirm items in Global Search / Filters).
->   **Do NOT invent labels.** See the authoring-readiness assessment in
->   `PROJECT-STATE.md` §0.6.
+> - **Design / Figma:** **UPDATED 2026-07-22 — a design NOW EXISTS.** spec_1
+>   (`66b5d64f-Schedule_1.doc`) added a **Design link** to the doc header (the body is
+>   otherwise unchanged vs spec_0 — a word-level diff found ZERO substantive
+>   requirement changes). Per Branko (Q0) the linked **Claude prototype
+>   `Schedule.dc.html` is the AUTHORITATIVE design** — captured in
+>   `spec-v1-2026-07-22/design-notes-claude.md`. This project is therefore **no longer
+>   spec-only**; the 2026-07-22 reconciliation folded ~48 previously-"VIU-confirm"
+>   labels/visuals to the design's actual wording and resolved the VIN §4.13-vs-§9
+>   inconsistency (design §6). **Rule 12:** design-pinned ≠ VIU-Verified — confirm LIVE
+>   at the VIU pass once the QA branch + Epic key exist. The record of the pass lives
+>   in `spec-v1-2026-07-22/` (spec-diff, design-notes-claude, requirements-v1).
+>   Originally (2026-07-21) recorded as SPEC-ONLY with no design — superseded.
 > - **Extraction method:** the `.doc` was a Confluence "Export to Word"
 >   MHTML / quoted-printable file (`Content-Transfer-Encoding: quoted-printable`,
 >   `Subject: Exported From Confluence`). Decoded with Python `email` (MIME walk to the

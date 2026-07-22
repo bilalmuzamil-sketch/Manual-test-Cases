@@ -20,10 +20,10 @@
    "3. Last line: the name of the scheduled line.",
    "4. No work order number appears on the block."
   ],
-  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §4.4",
   "viu_status": "VIU-Pending",
-  "notes": "Block visual styling (tint, left rail) unpinned in detail - confirm live.",
+  "notes": "Shift block = customer / unit / line name (three text lines, no WO number, no $) pinned by the Claude design (§3); live-render confirm at VIU. Driver: Claude design §3.",
   "api_related": false
  },
  {
@@ -48,10 +48,10 @@
    "2. The subset block reads '2 Lines' - the block does not distinguish whole-order from subset beyond the count.",
    "3. Each detail modal lists exactly which lines the shift covers."
   ],
-  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §4.4, §12",
   "viu_status": "VIU-Pending",
-  "notes": "'N Lines' is the spec's format - confirm the exact on-screen wording/casing live.",
+  "notes": "Multi-line/whole-order block reads 'N Lines' pinned by the Claude design (§3, block shows lineName|'N Lines'); confirm live. Driver: Claude design §3.",
   "api_related": false
  },
  {
@@ -76,7 +76,7 @@
    "2. VIN on: a VIN line is added to the block in week view and day view.",
    "3. Month view still omits the VIN line even with the toggle on (space constraints)."
   ],
-  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §4.4, §9 (VIN option)",
   "viu_status": "VIU-Pending",
   "notes": "",
@@ -103,10 +103,10 @@
    "2. Blocks from different work orders can have different colors.",
    "3. By default blocks are blue (the default shift color) unless a custom color was chosen."
   ],
-  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §4.4, §10",
   "viu_status": "VIU-Pending",
-  "notes": "",
+  "notes": "Block color tied to the work order (same-order blocks share color) pinned by the Claude design (§3); live-render confirm at VIU. Driver: Claude design §3.",
   "api_related": false
  },
  {
@@ -130,10 +130,10 @@
    "2. The conflicted block shows the conflict (warning) icon on its first line - and that is the only icon that ever appears on a block.",
    "3. No scope icons distinguish whole-order from subset shifts."
   ],
-  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §4.4",
   "viu_status": "VIU-Pending",
-  "notes": "",
+  "notes": "Conflict warning icon is the only icon on a block (no WO number, no scope icons) pinned by the Claude design (§3); confirm live. Driver: Claude design §3.",
   "api_related": false
  },
  {
@@ -156,7 +156,7 @@
    "2. The row stays at its normal height.",
    "3. No conflict is flagged for back-to-back (non-intersecting) shifts."
   ],
-  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §4.7",
   "viu_status": "VIU-Pending",
   "notes": "",
@@ -182,7 +182,7 @@
    "2. The row grows in height to fit the lanes.",
    "3. The overlap is also flagged as a Double-booked conflict (stacking reads as 'resolve me')."
   ],
-  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §4.7, §4.11",
   "viu_status": "VIU-Pending",
   "notes": "",
@@ -210,10 +210,10 @@
    "3. Clicking it opens a popover listing the hidden shifts.",
    "4. The hidden shifts can be opened from that popover."
   ],
-  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §4.7",
   "viu_status": "VIU-Pending",
-  "notes": "The 3-lane cap and '+N more' wording are spec-stated - confirm the exact cap and on-screen label live. Popover interaction detail unpinned.",
+  "notes": "3-lane cap + '+N more' overflow popover pinned by the Claude design (§3, MAX_CHIPS / lane stacking); confirm the exact label live. Driver: Claude design §3.",
   "api_related": false
  },
  {
@@ -238,7 +238,7 @@
    "2. Week and month views reach the '+N more' overflow sooner than day view (their cells are narrower), but the same cap-and-overflow model applies.",
    "3. The overflow affordance opens the hidden-shifts popover in each view."
   ],
-  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §4.7",
   "viu_status": "VIU-Pending",
   "notes": "",
@@ -264,7 +264,7 @@
    "1. Both shifts are created and shown on the same day for the same technician - multiple same-day shifts are allowed.",
    "2. With non-overlapping times, no conflict is raised and both share one lane."
   ],
-  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §12 (edge case), §4.7",
   "viu_status": "VIU-Pending",
   "notes": "",
@@ -291,7 +291,7 @@
    "2. The start used is the earliest technician's configured start; if no tech hours are set, business hours; otherwise 7:00 AM - so no shifts sit off-screen to the left.",
    "3. The timeline is not stuck there - it remains a full 24-hour scrollable timeline."
   ],
-  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §4.8 (Auto-scroll to business hours)",
   "viu_status": "VIU-Pending",
   "notes": "The 30-60 minute buffer is spec-approximate - confirm the actual buffer live.",
@@ -318,7 +318,7 @@
    "2. Scrolling works across the entire 24-hour timeline (midnight to midnight).",
    "3. Only navigating to another day re-triggers the auto-scroll."
   ],
-  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §4.8",
   "viu_status": "VIU-Pending",
   "notes": "",
@@ -345,7 +345,7 @@
    "1. In day view, the date/time header bar stays stuck to the top while the rows scroll beneath it - you always know which time column you are looking at.",
    "2. The same sticky-header behavior applies in week view."
   ],
-  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §4.8 (Sticky header bar)",
   "viu_status": "VIU-Pending",
   "notes": "",
@@ -374,7 +374,7 @@
    "3. The duration is unchanged by a horizontal move.",
    "4. A toast with Undo appears for the move."
   ],
-  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §4.8 (Horizontal drag), §7 (toast)",
   "viu_status": "VIU-Pending",
   "notes": "15-minute snap is spec-stated - confirm the actual snap granularity live.",
@@ -403,7 +403,7 @@
    "3. The resulting times land on 15-minute increments.",
    "4. The shift's duration on the grid matches the modal's start/end."
   ],
-  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §4.8 (Edge resize)",
   "viu_status": "VIU-Pending",
   "notes": "Whether edge-resize also snaps to 15 minutes is derived from the modal's 15-minute pickers - confirm live.",
@@ -430,7 +430,7 @@
    "2. Its position matches the actual clock time.",
    "3. Hovering it shows a label (the current time)."
   ],
-  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §4.8 (Now line)",
   "viu_status": "VIU-Pending",
   "notes": "Now-line styling and hover-label content unpinned - confirm live. Whether it appears on non-today days is unspecified - observe and record.",
@@ -457,10 +457,10 @@
    "1. With VIN on, the lane height grows to accommodate the additional VIN line.",
    "2. No block text is clipped or cut off."
   ],
-  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §4.8 (Lane height with VIN)",
   "viu_status": "VIU-Pending",
-  "notes": "",
+  "notes": "VIN-on grows the day-view lane height (DAY_LANE_H schedVin 96 vs 80) pinned by the Claude design (§3); the toggle label is 'VIN Number' (design §6). Driver: Claude design §3/§6.",
   "api_related": false
  },
  {
@@ -484,10 +484,10 @@
    "2. It shows the customer name, unit number, the VIN (below unit and asset), and the work order id.",
    "3. The VIN is visible here even though the grid's VIN toggle is off - the modal always shows it."
   ],
-  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §4.9, §9 (VIN always in modal)",
   "viu_status": "VIU-Pending",
-  "notes": "",
+  "notes": "Modal identity (customer, unit · asset, VIN when present) pinned by the Claude design (§4c) - the modal always shows the VIN. WO id per spec §4.9; confirm live. Driver: Claude design §4c + §6.",
   "api_related": false
  },
  {
@@ -513,7 +513,7 @@
    "3. Changing the date moves the shift to the chosen day.",
    "4. The grid block reflects the new date/times."
   ],
-  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §4.9",
   "viu_status": "VIU-Pending",
   "notes": "Whether changes apply immediately or on an explicit save is not pinned - capture live.",
@@ -540,7 +540,7 @@
    "2. A progress indication compares time logged against the estimate (logged hours vs estimated hours).",
    "3. The numbers are consistent with the line's actual logged time and estimate."
   ],
-  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §4.9",
   "viu_status": "VIU-Pending",
   "notes": "Progress rendering (bar vs text) unpinned - confirm live.",
@@ -549,7 +549,7 @@
  {
   "id": "SCH-MODAL-04",
   "area": "Shift Detail Modal",
-  "title": "The modal shows a scope summary and the scheduled line(s) with labor/total figures",
+  "title": "The modal shows a scope summary and the scheduled line(s) with number, title, hours, and status only",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "Schedule: View (spec §14.1).",
@@ -563,14 +563,15 @@
    "2. Read the list of scheduled lines and their figures."
   ],
   "expected": [
-   "1. The scope summary states what the shift covers.",
-   "2. Exactly the 2 scheduled lines are listed (not all 4), each with its labor/total figures.",
-   "3. This is where whole-order vs subset scope is spelled out (the grid block only says 'N Lines')."
+   "1. The 'Work Order Lines' section shows the line count and a scope summary of what the shift covers.",
+   "2. Exactly the 2 scheduled lines are listed (not all 4), each showing its line number, title, hours, and a status pill only.",
+   "3. No labor figures and no total dollar amount appear anywhere in the modal.",
+   "4. This is where whole-order vs subset scope is spelled out (the grid block only says 'N Lines')."
   ],
-  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §4.9, §4.4",
   "viu_status": "VIU-Pending",
-  "notes": "",
+  "notes": "Reconciliation 2026-07-22: total-$ / labor assertion REMOVED - the authoritative modal shows line number/title/hours/status pill only, no $ anywhere. Driver: Branko Q&A 2026-07-22 Q3 + Claude design §4c. Confirm the exact section label live at VIU.",
   "api_related": false
  },
  {
@@ -594,7 +595,7 @@
    "2. The new value persists after closing and re-opening.",
    "3. Dependent displays (progress vs estimate) reflect the new value."
   ],
-  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §4.9 (Estimated hours with inline edit)",
   "viu_status": "VIU-Pending",
   "notes": "Whether this edits the line's estimate on the work order or only the shift is not pinned - observe live and flag to the PO if ambiguous.",
@@ -622,7 +623,7 @@
    "3. The delete removes the note.",
    "4. Notes are kept per work order (the same note is visible from another shift of the same work order)."
   ],
-  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §4.9 (Notes: add, edit, and delete per work order)",
   "viu_status": "VIU-Pending",
   "notes": "The per-work-order sharing expectation (point 4) is derived from 'per work order' - confirm the exact scoping live.",
@@ -651,37 +652,37 @@
    "3. 'Adjust' leads to a way to resolve the conflict (for example changing the shift's time).",
    "4. An unconflicted shift's modal shows no such banner."
   ],
-  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §4.9 (conflict banner + Adjust)",
   "viu_status": "VIU-Pending",
-  "notes": "'Adjust' is the spec's wording; what exactly Adjust opens is not pinned - capture the real flow live.",
+  "notes": "Conflict banner 'Scheduling conflict' + reason list + 'Adjust' action pinned by the Claude design (§4c); what 'Adjust' opens - capture live. Driver: Claude design §4c.",
   "api_related": false
  },
  {
   "id": "SCH-MODAL-08",
   "area": "Shift Detail Modal",
-  "title": "The modal offers Delete (series-aware) and Reassign actions",
+  "title": "The modal offers a Delete (series-aware) action only - there is no Reassign action",
   "priority": "High",
   "type": "Functional",
-  "permissions_required": "Reassign requires Schedule: Edit; Delete requires Schedule: Delete (spec §14.1).",
+  "permissions_required": "Delete requires Schedule: Delete (spec §14.1).",
   "preconditions": [
    "1. You are signed in on a desktop browser with Schedule: Delete (which includes Edit and View).",
    "2. A shift exists; its detail modal is open."
   ],
   "steps": [
    "1. Look at the modal's actions.",
-   "2. Click Reassign and read what it offers (cancel without changing).",
+   "2. Confirm there is no 'Reassign' action anywhere in the modal.",
    "3. Click Delete on a series shift and read what it asks (cancel without deleting)."
   ],
   "expected": [
-   "1. The modal offers a Delete action and a 'Reassign' (to another technician) action.",
-   "2. Reassign offers choosing another technician (the full reassignment behavior has its own case, SCH-REAS-02).",
-   "3. Delete on a series member asks for a deletion scope (the full scope behavior has its own cases, SCH-DEL-01..06)."
+   "1. The modal offers a Delete action (a trash icon in the header) and a close (x) icon - and no other actions.",
+   "2. There is no 'Reassign' action in the modal; reassignment is done by dragging a shift to another technician row (covered by its own case).",
+   "3. Delete on a series member asks for a deletion scope (the full scope behavior has its own cases)."
   ],
-  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §4.9 (Actions), §7",
   "viu_status": "VIU-Pending",
-  "notes": "'Reassign' is the spec's wording; the Delete control's exact label/icon is unpinned (a trash icon is implied by §14.1) - confirm live.",
+  "notes": "Reconciliation 2026-07-22: 'Reassign' action REMOVED from the modal (reassignment is drag-only). Driver: Branko Q&A 2026-07-22 + Claude design §4c/§4d. The Delete control's exact label/icon (trash icon) pinned by design; confirm live at VIU.",
   "api_related": false
  }
 ]

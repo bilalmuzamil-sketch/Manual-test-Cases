@@ -21,7 +21,7 @@
    "3. The technician is added to that line's labor roster on the work order.",
    "4. A toast with an Undo option appears."
   ],
-  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §4.1 (Single-line work order), §1.2 (roster sync), §7 (toast)",
   "viu_status": "VIU-Pending",
   "notes": "",
@@ -48,7 +48,7 @@
    "2. It offers 'Schedule whole work order' at the top, the individual line rows beneath, and a 'Select multiple' control.",
    "3. No shift is created until a scope is chosen."
   ],
-  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §4.1 (Multi-line work order), §4.3",
   "viu_status": "VIU-Pending",
   "notes": "",
@@ -76,7 +76,7 @@
    "2. The block's last text line shows that line's name.",
    "3. The technician is added to that line's roster only (not to the order's other lines)."
   ],
-  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §4.1 (Specific line drag)",
   "viu_status": "VIU-Pending",
   "notes": "",
@@ -104,7 +104,7 @@
    "2. Its header shows the chosen scope and a 'Change scope' back-link.",
    "3. No shifts exist yet until the spread is confirmed."
   ],
-  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §4.1 (Large job), §4.5",
   "viu_status": "VIU-Pending",
   "notes": "",
@@ -130,7 +130,7 @@
    "1. The shift is created straight away - the spread step does NOT appear.",
    "2. The shift sits on the dropped day only."
   ],
-  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §4.1 (spread step is conditional)",
   "viu_status": "VIU-Pending",
   "notes": "",
@@ -157,10 +157,10 @@
    "2. A ghost block follows the drag showing the line name and its hours.",
    "3. Releasing outside any valid cell creates nothing."
   ],
-  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §7 (Drag feedback)",
   "viu_status": "VIU-Pending",
-  "notes": "Highlight and ghost styling unpinned (no designs) - confirm the visuals live. The cancel-outside-cell behavior is a reasonable derivation, not spec-stated - confirm live.",
+  "notes": "Drop-target highlight + ghost block (line name + hours) pinned by the Claude design (line-drag sub-prototype, §0/§3); live-render confirm at VIU. Driver: Claude design.",
   "api_related": false
  },
  {
@@ -184,7 +184,7 @@
    "2. The sidebar line row's avatar stack/count updates to include the technician.",
    "3. If the line previously showed 'Needs techs', the badge is gone."
   ],
-  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §1.2 (Goals - roster sync), §4.3 (roster add), §7",
   "viu_status": "VIU-Pending",
   "notes": "",
@@ -210,7 +210,7 @@
    "1. The item can be placed onto a cell without holding a drag - clicking arms it, and clicking a cell places it.",
    "2. The result is the same as the equivalent drag-and-drop (scope picker / spread step rules apply the same way)."
   ],
-  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §7 (Keyboard support - click-to-arm), §11 (Accessibility)",
   "viu_status": "VIU-Pending",
   "notes": "The spec requires a click-to-arm alternative but does not pin the exact interaction (what arms, how disarm/cancel works) - capture the real mechanics live.",
@@ -237,10 +237,10 @@
    "2. It is labeled with the order's line count and total hours (matching the sum of the approved lines).",
    "3. The picker is anchored to the cell that was dropped on."
   ],
-  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §4.3",
   "viu_status": "VIU-Pending",
-  "notes": "'Schedule whole work order' is the spec's wording - confirm the exact on-screen label and the count/hours format live.",
+  "notes": "'Schedule whole work order' pinned row (accent, line count + total hours) pinned by the Claude design (§4a); confirm live. Driver: Claude design §4a.",
   "api_related": false
  },
  {
@@ -265,7 +265,7 @@
    "2. The block's last text line reads 'N Lines' (with N = the line count).",
    "3. The technician is added to the roster of every one of those lines."
   ],
-  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §4.3, §4.4",
   "viu_status": "VIU-Pending",
   "notes": "",
@@ -292,7 +292,7 @@
    "2. The picker closes.",
    "3. The block's last text line shows the line's name."
   ],
-  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §4.3 (Individual line rows - fast path)",
   "viu_status": "VIU-Pending",
   "notes": "",
@@ -318,7 +318,7 @@
    "1. Each row shows the line title and its estimated hours.",
    "2. Rows for lines that already have technicians show the current roster as an avatar stack plus count."
   ],
-  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §4.3",
   "viu_status": "VIU-Pending",
   "notes": "",
@@ -347,10 +347,10 @@
    "2. A confirm bar appears with a running tally of the selection - the count of lines and their combined hours (in the spec's example format, 'Create shift · 2 lines · 6h').",
    "3. Confirming creates ONE shift covering the ticked lines, and the technician is added to those lines' rosters only."
   ],
-  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §4.3 (Select multiple)",
   "viu_status": "VIU-Pending",
-  "notes": "'Select multiple' and the tally format 'Create shift · 2 lines · 6h' are the spec's wording - confirm the exact on-screen labels/format live.",
+  "notes": "'Select multiple' checkbox mode + confirm bar 'Create shift · N lines · Xh' + 'Select all'/'Unselect all' pinned by the Claude design (§4a); confirm live. Driver: Claude design §4a.",
   "api_related": false
  },
  {
@@ -374,10 +374,10 @@
    "1. 'Select all' ticks every line - the tally equals the whole order (same line count and hours as 'Schedule whole work order').",
    "2. Cancel leaves checkbox mode and returns to the normal single-tap line list without creating anything."
   ],
-  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §4.3 (Select all shortcut, Cancel)",
   "viu_status": "VIU-Pending",
-  "notes": "'Select all' / 'Cancel' are the spec's words - confirm the exact on-screen labels live.",
+  "notes": "'Select all'/'Unselect all'/'Cancel' and the whole-order label 'Whole order · Xh' pinned by the Claude design (§4a); confirm live. Driver: Claude design §4a.",
   "api_related": false
  },
  {
@@ -400,7 +400,7 @@
   "expected": [
    "1. The shift starts at the technician's own configured start time (6:00 AM in the example), not the shop's business-hours start."
   ],
-  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §4.2",
   "viu_status": "VIU-Pending",
   "notes": "",
@@ -426,7 +426,7 @@
   "expected": [
    "1. The shift starts at the shop's business-hours start time."
   ],
-  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §4.2",
   "viu_status": "VIU-Pending",
   "notes": "",
@@ -452,7 +452,7 @@
   "expected": [
    "1. The shift starts at 7:00 AM - the general default working day (7:00 AM to 7:00 PM) applies."
   ],
-  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §4.2",
   "viu_status": "VIU-Pending",
   "notes": "7:00 AM to 7:00 PM default is spec-stated - confirm the actual default live. If business hours cannot be unset in the environment, mark blocked with reason rather than skipping silently.",
@@ -478,7 +478,7 @@
    "1. The shift starts at the time position where it was dropped (not at the technician-hours/business-hours default).",
    "2. The start time aligns to the timeline position (see the 15-minute snapping case SCH-DAY-04)."
   ],
-  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §4.2 (day view drop position)",
   "viu_status": "VIU-Pending",
   "notes": "",
@@ -505,7 +505,7 @@
    "2. It has no technician (and no technician is added to the line's roster by this drop).",
    "3. The block uses the same anatomy as a regular shift (customer, unit, line name / 'N Lines')."
   ],
-  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §4.2 (Unassigned shifts), §3.2",
   "viu_status": "VIU-Pending",
   "notes": "The spec does not explicitly state whether the roster stays untouched until assignment - derived from 'they simply have no technician yet'; confirm the roster behavior live.",
@@ -531,7 +531,7 @@
   "expected": [
    "1. The unassigned shift starts at the shop's business-hours start (there is no technician whose hours could apply)."
   ],
-  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §4.2",
   "viu_status": "VIU-Pending",
   "notes": "The no-business-hours fallback to the 7:00 AM default is covered by SCH-START-03 - it is not observable under this case's business-hours-set setup, so it is not asserted here.",
@@ -559,7 +559,7 @@
    "2. The technician is added to the affected line's roster.",
    "3. The technician's own working hours now apply to the shift's timing."
   ],
-  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §3.2 (Unassigned placeholder), §4.2",
   "viu_status": "VIU-Pending",
   "notes": "Whether the start time re-derives on assignment or keeps its original time is not fully pinned ('that technician's hours apply') - capture the exact behavior live.",
@@ -585,7 +585,7 @@
    "1. Every created shift has a concrete start time - resolved from the hierarchy (technician hours, then business hours, then 7:00 AM default) or from the day-view drop position.",
    "2. No shift appears on the grid without a time."
   ],
-  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §4.2, §12",
   "viu_status": "VIU-Pending",
   "notes": "",
@@ -612,10 +612,10 @@
    "2. Its header shows the chosen scope (which lines / how many hours).",
    "3. A 'Change scope' back-link is present."
   ],
-  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §4.5",
   "viu_status": "VIU-Pending",
-  "notes": "'Change scope' is the spec's wording - confirm the exact on-screen label live.",
+  "notes": "Spread header 'STEP 2 · SPREAD' + scope + 'Change scope' back-link pinned by the Claude design (§4b); confirm live. Driver: Claude design §4b.",
   "api_related": false
  },
  {
@@ -637,7 +637,7 @@
    "1. The modal goes back to the scope picker (step 1) without creating anything.",
    "2. Choosing a new scope updates the spread step's header and hours accordingly."
   ],
-  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §4.5",
   "viu_status": "VIU-Pending",
   "notes": "",
@@ -665,10 +665,10 @@
    "3. 'Full estimate', '1 week', and '2 weeks' apply on selection with no extra fields - the modal stays to one line for these.",
    "4. The preview summary updates to match each selection."
   ],
-  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §4.5 (How much to schedule)",
   "viu_status": "VIU-Pending",
-  "notes": "Option labels ('Full estimate', '1 week', '2 weeks', 'Until a date…', 'Specific hours…') are the spec's wording - confirm the exact on-screen labels live.",
+  "notes": "How-much options 'Full estimate' (default) / '1 week' / '2 weeks' / 'Until a date…' / 'Specific hours…' pinned by the Claude design (§4b); confirm live. Driver: Claude design §4b.",
   "api_related": false
  },
  {
@@ -691,10 +691,10 @@
    "1. Choosing 'Until a date…' reveals a single 'finish by' date field (this is the only custom control shown).",
    "2. Picking a date updates the preview so the series ends by that date."
   ],
-  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §4.5 (progressive disclosure)",
   "viu_status": "VIU-Pending",
-  "notes": "What happens when the full estimate cannot fit by the chosen date is not specified - observe and record the actual behavior live; raise a PO question if ambiguous.",
+  "notes": "'Until a date…' label pinned by the Claude design (§4b) - it reveals a finish-by date field. What happens when the estimate cannot fit by the chosen date is NOT pinned - observe live and raise a PO question if ambiguous. Driver: Claude design §4b.",
   "api_related": false
  },
  {
@@ -716,10 +716,10 @@
    "1. Choosing 'Specific hours…' reveals an hours stepper control.",
    "2. The preview updates to spread exactly the entered hours across working days."
   ],
-  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §4.5 (progressive disclosure)",
   "viu_status": "VIU-Pending",
-  "notes": "Stepper bounds/increments not specified - capture live.",
+  "notes": "'Specific hours…' label pinned by the Claude design (§4b) - it reveals an hours stepper. Stepper bounds/increments not pinned - capture live. Driver: Claude design §4b.",
   "api_related": false
  },
  {
@@ -744,7 +744,7 @@
    "2. It can be changed; technician B's series then starts after A's series ends (sequential, not parallel).",
    "3. B's series is created from the adjusted start date onward."
   ],
-  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §4.5 (Start date)",
   "viu_status": "VIU-Pending",
   "notes": "",
@@ -772,7 +772,7 @@
    "2. No shifts are placed on Saturday, Sunday, or the shop closure day.",
    "3. The end date is a result of the daily distribution (for 40h at 8h/day starting Monday with one closure, the series extends one extra working day)."
   ],
-  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §4.5, §12 (shop closures)",
   "viu_status": "VIU-Pending",
   "notes": "How shop closures are configured in the app is not described in this spec - locate the closure setting live; if closures cannot be configured, mark that expectation blocked with reason.",
@@ -799,10 +799,10 @@
    "2. Expanded: a week-by-week breakdown of the planned shifts.",
    "3. Skipped days are struck through and show the reason they are skipped (weekend / closure)."
   ],
-  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §4.5 (Preview)",
   "viu_status": "VIU-Pending",
-  "notes": "The one-line summary format is the spec's example - confirm the real copy format live.",
+  "notes": "Preview one-liner ('N shifts · <start> → <end> · skips weekends + N closures', expandable week-by-week) pinned by the Claude design (§4b); confirm the exact copy live. Driver: Claude design §4b.",
   "api_related": false
  },
  {
@@ -827,7 +827,7 @@
    "3. Each daily shift keeps its own day and hours.",
    "4. A toast with Undo appears."
   ],
-  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §4.5 (Confirming), §4.6, §8.2",
   "viu_status": "VIU-Pending",
   "notes": "",
@@ -854,7 +854,7 @@
    "2. There is no shared 'remaining hours' counter across technicians and no splitting of a shift.",
    "3. Planned hours across technicians may now exceed the estimate - this is expected and produces no error (progress is driven by clocked-in time)."
   ],
-  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §4.5 (independent per-tech spread), §12",
   "viu_status": "VIU-Pending",
   "notes": "",
@@ -883,10 +883,10 @@
    "3. Weekend columns inside the series are empty (no bar).",
    "4. Visible breaks appear around skipped days and days the technician is otherwise booked."
   ],
-  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §4.6 (Month view)",
   "viu_status": "VIU-Pending",
-  "notes": "Exact banner styling and the 'continues' label wording unpinned (no designs) - confirm the visuals/copy live.",
+  "notes": "Month series banner (continuous wrap, labeled once, faded '↳ continues' on later weeks) pinned by the Claude design (§3); live-render confirm at VIU. Driver: Claude design §3.",
   "api_related": false
  },
  {
@@ -912,10 +912,10 @@
    "3. A 'week N of M' cue shows the position within the series.",
    "4. The banner breaks around the day the technician is otherwise booked."
   ],
-  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §4.6 (Week view)",
   "viu_status": "VIU-Pending",
-  "notes": "'week N of M' is the spec's format - confirm the exact on-screen cue wording live.",
+  "notes": "Week series banner + edge chevrons + 'week N of M' cue pinned by the Claude design (§3); confirm live. Driver: Claude design §3.",
   "api_related": false
  },
  {
@@ -938,10 +938,10 @@
    "1. The day shows a single time-positioned block (no spanning bar - only one day is visible).",
    "2. The block carries a cue in the spirit of 'part of an M-week job' indicating it belongs to a longer series."
   ],
-  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §4.6 (Day view)",
   "viu_status": "VIU-Pending",
-  "notes": "'part of an M-week job' is the spec's phrasing - confirm the exact cue wording live.",
+  "notes": "Day series cue 'Part of an N-week job' pinned by the Claude design (§3/§4e 'Part of a 6-week job'); confirm live. Driver: Claude design §3.",
   "api_related": false
  },
  {
@@ -966,7 +966,7 @@
    "2. The overlapping day is flagged as a Double-booked conflict, exactly as it would be for standalone shifts.",
    "3. The detail modal shows that single day's shift (its own day and hours) while indicating it belongs to the series."
   ],
-  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §4.6, §8.2",
   "viu_status": "VIU-Pending",
   "notes": "",

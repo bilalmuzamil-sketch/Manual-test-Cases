@@ -85,11 +85,11 @@ SCH-DAY-07,C30007,"With the VIN toggle on, day-view lane heights grow so block t
 SCH-MODAL-01,C30008,"Clicking a shift opens its detail modal showing customer, unit, VIN (always visible), and the work order id",Shift Detail Modal
 SCH-MODAL-02,C30009,Scheduled date and start/end time pickers work in 15-minute increments,Shift Detail Modal
 SCH-MODAL-03,C30010,The modal shows the technician and time logged vs estimate progress,Shift Detail Modal
-SCH-MODAL-04,C30011,The modal shows a scope summary and the scheduled line(s) with labor/total figures,Shift Detail Modal
+SCH-MODAL-04,C30011,"The modal shows a scope summary and the scheduled line(s) with number, title, hours, and status only",Shift Detail Modal
 SCH-MODAL-05,C30012,Estimated hours can be edited inline in the modal,Shift Detail Modal
 SCH-MODAL-06,C30013,"Notes can be added, edited, and deleted per work order from the modal",Shift Detail Modal
 SCH-MODAL-07,C30014,A conflicted shift's modal shows a conflict banner with an 'Adjust' action,Shift Detail Modal
-SCH-MODAL-08,C30015,The modal offers Delete (series-aware) and Reassign actions,Shift Detail Modal
+SCH-MODAL-08,C30015,The modal offers a Delete (series-aware) action only - there is no Reassign action,Shift Detail Modal
 SCH-EVT-01,C30016,Create an event via right-click 'New Event' on a grid cell,Events
 SCH-EVT-02,C30017,"Create an event by clicking empty grid space in day view, with a live preview block and drag-to-resize",Events
 SCH-EVT-03,C30018,"Event modal offers name, date, start/end time, an all-day toggle, and a color category",Events
@@ -97,10 +97,11 @@ SCH-EVT-04,C30019,The all-day toggle creates an all-day event,Events
 SCH-EVT-05,C30020,Events can be dragged to another technician or another day,Events
 SCH-EVT-06,C30021,"Event cards are structurally distinct from shift cards - white outlined card with a grey icon chip, no colored left rail",Events
 SCH-EVT-07,C30022,Events default to neutral/grey; choosing a color tints the card and its icon chip,Events
+SCH-EVT-08,,An event does not count toward a technician's capacity bar and does not raise a conflict,Events
 SCH-CONF-01,C30023,Double-booked: two work orders overlapping on the same technician at the same time are flagged,Conflict Detection
-SCH-CONF-02,C30024,Weekend shift: a shift on Saturday or Sunday is flagged as a conflict,Conflict Detection
-SCH-CONF-03,C30025,Before hours: a shift starting before the working-day start is flagged,Conflict Detection
-SCH-CONF-04,C30026,After hours: a shift extending past the working-day end is flagged,Conflict Detection
+SCH-CONF-02,C30024,Working-day conflict: a shift on a day outside the technician's configured working days is flagged,Conflict Detection
+SCH-CONF-03,C30025,Before hours: a shift starting before the technician's configured working-day start is flagged,Conflict Detection
+SCH-CONF-04,C30026,After hours: a shift extending past the technician's configured working-day end is flagged,Conflict Detection
 SCH-CONF-05,C30027,The toolbar conflict pill shows the issue count and opens a dropdown listing the conflicts,Conflict Detection
 SCH-CONF-06,C30028,Clicking a conflict in the dropdown navigates to the relevant technician and day,Conflict Detection
 SCH-CONF-07,C30029,Red/alarming styling is reserved for conflicts and genuine errors - never used for overtime,Conflict Detection
@@ -119,7 +120,7 @@ SCH-TOOL-03,C30041,"Toolbar search fades non-matching blocks and highlights matc
 SCH-VIEW-01,C30042,"'Filter and Display' is a checkbox-style dropdown combining department toggles, My Shifts, and VIN",Filter and Display and View Options
 SCH-VIEW-02,C30043,Department toggles show or hide individual department groups in the grid,Filter and Display and View Options
 SCH-VIEW-03,C30044,"'My Shifts' filters the grid to only the current user's shifts, hiding all other technician rows",Filter and Display and View Options
-SCH-VIEW-04,C30045,The VIN toggle adds the VIN to shift blocks (day/week) and hover tooltips; the detail modal shows VIN regardless,Filter and Display and View Options
+SCH-VIEW-04,C30045,The 'VIN Number' toggle adds the VIN to shift blocks (day/week) only; the hover tooltip and the detail modal always show the VIN,Filter and Display and View Options
 SCH-VIEW-05,C30046,"'View Options' popover offers Business Hours, Capacity Bars, Events, Tech Hours, Saturday, Sunday with the spec defaults",Filter and Display and View Options
 SCH-VIEW-06,C30047,Business Hours toggle shades non-working hours in day view,Filter and Display and View Options
 SCH-VIEW-07,C30048,Capacity Bars toggle shows and hides the per-day capacity bars,Filter and Display and View Options
@@ -159,6 +160,7 @@ SCH-PERM-08,C30081,Schedule access without Work Orders: View - sidebar hides the
 SCH-PERM-09,C30082,No own-only restriction: every Schedule: View user sees ALL technicians' shifts and events,Permissions
 SCH-PERM-10,C30083,"Grid rows are department-based: any staff member in a visible department appears as a row, regardless of role",Permissions
 SCH-PERM-11,C30084,"Clocking into work order line tasks is gated by the staff record's 'Time Clock' setting, not the permission model",Permissions
+SCH-PERM-12,,"With Work Orders: View OFF, work-order-derived details on shifts (customer, lines, money fields) are hidden or masked",Permissions
 SCH-EDGE-01,C30085,Planned hours across technicians may exceed the estimate - accepted without error,Edge Cases and Responsiveness
 SCH-EDGE-02,C30086,"Below 960px the grid scrolls horizontally, and the sidebar collapses on narrow viewports",Edge Cases and Responsiveness
 SCH-EDGE-03,C30087,The sidebar work order list and line drill-down stay smooth with 50+ items,Edge Cases and Responsiveness

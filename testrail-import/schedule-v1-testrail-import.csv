@@ -521,12 +521,13 @@ The modal shows the technician and time logged vs estimate progress,Shift Detail
 2. Read the time-logged vs estimate progress.","1. The assigned technician is shown.
 2. A progress indication compares time logged against the estimate (logged hours vs estimated hours).
 3. The numbers are consistent with the line's actual logged time and estimate.",requirements.md §4.9,,
-The modal shows a scope summary and the scheduled line(s) with labor/total figures,Shift Detail Modal,Functional,High,"1. You are signed in on a desktop browser.
+"The modal shows a scope summary and the scheduled line(s) with number, title, hours, and status only",Shift Detail Modal,Functional,High,"1. You are signed in on a desktop browser.
 2. A multi-line (subset) shift exists covering 2 of a work order's 4 lines.
 3. The shift's detail modal is open.","1. Read the scope summary.
-2. Read the list of scheduled lines and their figures.","1. The scope summary states what the shift covers.
-2. Exactly the 2 scheduled lines are listed (not all 4), each with its labor/total figures.
-3. This is where whole-order vs subset scope is spelled out (the grid block only says 'N Lines').","requirements.md §4.9, §4.4",,
+2. Read the list of scheduled lines and their figures.","1. The 'Work Order Lines' section shows the line count and a scope summary of what the shift covers.
+2. Exactly the 2 scheduled lines are listed (not all 4), each showing its line number, title, hours, and a status pill only.
+3. No labor figures and no total dollar amount appear anywhere in the modal.
+4. This is where whole-order vs subset scope is spelled out (the grid block only says 'N Lines').","requirements.md §4.9, §4.4",,
 Estimated hours can be edited inline in the modal,Shift Detail Modal,Functional,Medium,"1. You are signed in on a desktop browser with Schedule: Edit.
 2. A shift exists; its detail modal is open; note the current estimated hours.","1. Edit the estimated hours inline (change the value).
 2. Confirm/apply the edit.
@@ -548,11 +549,11 @@ A conflicted shift's modal shows a conflict banner with an 'Adjust' action,Shift
 2. It offers an 'Adjust' action.
 3. 'Adjust' leads to a way to resolve the conflict (for example changing the shift's time).
 4. An unconflicted shift's modal shows no such banner.",requirements.md §4.9 (conflict banner + Adjust),,
-The modal offers Delete (series-aware) and Reassign actions,Shift Detail Modal,Functional,High,"1. You are signed in on a desktop browser with Schedule: Delete (which includes Edit and View).
+The modal offers a Delete (series-aware) action only - there is no Reassign action,Shift Detail Modal,Functional,High,"1. You are signed in on a desktop browser with Schedule: Delete (which includes Edit and View).
 2. A shift exists; its detail modal is open.","1. Look at the modal's actions.
-2. Click Reassign and read what it offers (cancel without changing).
-3. Click Delete on a series shift and read what it asks (cancel without deleting).","1. The modal offers a Delete action and a 'Reassign' (to another technician) action.
-2. Reassign offers choosing another technician (the full reassignment behavior has its own case).
+2. Confirm there is no 'Reassign' action anywhere in the modal.
+3. Click Delete on a series shift and read what it asks (cancel without deleting).","1. The modal offers a Delete action (a trash icon in the header) and a close (x) icon - and no other actions.
+2. There is no 'Reassign' action in the modal; reassignment is done by dragging a shift to another technician row (covered by its own case).
 3. Delete on a series member asks for a deletion scope (the full scope behavior has its own cases).","requirements.md §4.9 (Actions), §7",,
 Create an event via right-click 'New Event' on a grid cell,Events,Functional,High,"1. You are signed in on a desktop browser with Schedule: Edit.
 2. You are on the Schedule page in week view.","1. Right-click a technician's cell on a working day.
@@ -597,6 +598,13 @@ Events default to neutral/grey; choosing a color tints the card and its icon chi
 3. Look at the card again.","1. The default event color is neutral/grey.
 2. The color picker offers the same custom color palette as shifts (shared picker with editable labels).
 3. Choosing a color tints the card and the icon chip in matching tones, the same way a colored shift is tinted.","requirements.md §4.10 (Event color), §10",,
+An event does not count toward a technician's capacity bar and does not raise a conflict,Events,Functional,Medium,"1. You are signed in on a desktop browser with Schedule: Edit.
+2. Capacity Bars and Events are ON in View Options.
+3. A technician has a shift and, on the same day/time, an event (create both, ZZAUTOTEST).","1. Note the day's capacity bar fill with only the shift present.
+2. Add an all-day (or long) event on the same technician and day.
+3. Look at the capacity bar again and check for any conflict on the block and in the toolbar conflict pill.","1. Adding the event does NOT change the capacity bar fill - events are not counted toward booked/available hours.
+2. The event does NOT create a double-booked or overlap conflict with the shift, and the toolbar conflict count does not increase because of it.
+3. Only shifts drive capacity and conflicts.","requirements.md §4.10 (Events), §4.11, §4.12",,
 Double-booked: two work orders overlapping on the same technician at the same time are flagged,Conflict Detection,Functional,Critical,"1. You are signed in on a desktop browser with Schedule: Edit.
 2. Two different work orders have schedulable lines.
 3. You are on the Schedule page; note the toolbar conflict pill's current count.","1. Schedule work order 1 on a technician for a given time.
@@ -605,21 +613,24 @@ Double-booked: two work orders overlapping on the same technician at the same ti
 2. A warning icon appears on the affected block(s).
 3. The toolbar conflict pill's count increases.
 4. The conflict is listed in the pill's dropdown.",requirements.md §4.11 (Double-booked),,
-Weekend shift: a shift on Saturday or Sunday is flagged as a conflict,Conflict Detection,Functional,High,"1. You are signed in on a desktop browser with Schedule: Edit.
-2. Saturday/Sunday columns are visible (View Options - Saturday and Sunday on).
-3. A schedulable work order line exists.","1. Drop the line onto a technician's SATURDAY cell.
-2. Look at the block and the conflict pill.","1. The shift is created but flagged as a Weekend shift conflict (outside working days).
-2. The warning icon appears on the block and the conflict is listed in the toolbar dropdown.",requirements.md §4.11 (Weekend shift),,
-Before hours: a shift starting before the working-day start is flagged,Conflict Detection,Functional,High,"1. You are signed in on a desktop browser with Schedule: Edit.
+Working-day conflict: a shift on a day outside the technician's configured working days is flagged,Conflict Detection,Functional,High,"1. You are signed in on a desktop browser with Schedule: Edit.
+2. A technician's configured working days are known (for example Monday to Friday); Saturday/Sunday columns are visible (View Options - Saturday and Sunday on).
+3. A schedulable work order line exists.","1. Drop the line onto that technician's cell on a day OUTSIDE their working days (for example a Saturday when the technician works Monday to Friday).
+2. Look at the block and the conflict pill.","1. The shift is created but flagged as a conflict because the day is outside the technician's configured working days (the design's reason sentence reads in the spirit of 'Scheduled on a weekend (outside Mon-Fri)').
+2. If the technician's working days DO include that day (for example Saturday hours are configured), a shift on that day is NOT flagged.
+3. The warning icon appears on the block and the conflict is listed in the toolbar dropdown.",requirements.md §4.11 (Weekend shift),,
+Before hours: a shift starting before the technician's configured working-day start is flagged,Conflict Detection,Functional,High,"1. You are signed in on a desktop browser with Schedule: Edit.
 2. A technician has a known working-day start (for example 8:00 AM).
 3. A shift exists for that technician.","1. In day view, drag the shift so it starts BEFORE the technician's working-day start (for example 6:00 AM).
-2. Look at the block and the conflict pill.","1. The shift is flagged as a Before hours conflict.
-2. Warning icon on the block; the conflict appears in the toolbar dropdown.",requirements.md §4.11 (Before hours),,
-After hours: a shift extending past the working-day end is flagged,Conflict Detection,Functional,High,"1. You are signed in on a desktop browser with Schedule: Edit.
+2. Look at the block and the conflict pill.","1. The shift is flagged as a before-hours conflict (the design's reason sentence reads in the spirit of 'Starts before working hours (8:00 AM)'), measured against the technician's configured working-day start.
+2. The working-day start follows the hierarchy technician hours, then business hours, then the default.
+3. Warning icon on the block; the conflict appears in the toolbar dropdown.",requirements.md §4.11 (Before hours),,
+After hours: a shift extending past the technician's configured working-day end is flagged,Conflict Detection,Functional,High,"1. You are signed in on a desktop browser with Schedule: Edit.
 2. A technician has a known working-day end (for example 5:00 PM).
 3. A shift exists for that technician ending before 5:00 PM.","1. In day view, drag the shift's right edge so it extends PAST the working-day end (for example to 7:00 PM).
-2. Look at the block and the conflict pill.","1. The shift is flagged as an After hours conflict.
-2. Warning icon on the block; the conflict appears in the toolbar dropdown.",requirements.md §4.11 (After hours),,
+2. Look at the block and the conflict pill.","1. The shift is flagged as an after-hours conflict (the design's reason sentence reads in the spirit of 'Extends past working hours (5:00 PM)'), measured against the technician's configured working-day end.
+2. The working-day end follows the hierarchy technician hours, then business hours, then the default.
+3. Warning icon on the block; the conflict appears in the toolbar dropdown.",requirements.md §4.11 (After hours),,
 The toolbar conflict pill shows the issue count and opens a dropdown listing the conflicts,Conflict Detection,Functional,High,"1. You are signed in on a desktop browser.
 2. At least two conflicts of different types exist (for example one double-booked overlap and one Saturday shift - create them first).
 3. You are on the Schedule page.","1. Read the conflict pill in the grid toolbar.
@@ -662,10 +673,9 @@ The 'OT' text tag appears whenever any single technician exceeds their own daily
 2. The overtime technician's entry is highlighted in amber.
 3. The numbers agree with the shifts actually on the grid.",requirements.md §4.12 (Hover tooltip),,
 "Shift hover tooltip shows customer, unit/vehicle/VIN, date and time, technician, scope, up to 3 line names, and a progress bar",Hover Tooltips,Functional,High,"1. You are signed in on a desktop browser.
-2. A multi-line shift exists covering 5 lines, with some time logged.
-3. The VIN toggle in 'Filter and Display' is ON (the tooltip shows the VIN only when this toggle is on).
-4. You are on the Schedule page in week view.","1. Hover over the shift block and wait briefly for the tooltip.
-2. Read the tooltip from top to bottom.","1. The tooltip shows: the customer name; unit, vehicle, and VIN; the date and time range; the technician; and a scope summary ('N lines · Xh' style).
+2. A multi-line shift exists covering 5 lines, with some time logged, for a unit that has a VIN.
+3. You are on the Schedule page in week view.","1. Hover over the shift block and wait briefly for the tooltip.
+2. Read the tooltip from top to bottom.","1. The tooltip shows: the customer name; unit, vehicle, and VIN (the tooltip shows the VIN whenever the unit has one, regardless of the 'VIN Number' toggle); the date and time range; the technician; and a scope summary ('N lines · Xh' style).
 2. The individual line names appear as a short list capped at 3, with a '+N more lines' row for the rest (here '+2 more lines'); line statuses are NOT shown.
 3. A time-logged progress bar shows logged vs estimated hours ('X / Yh' style).",requirements.md §4.13 (Shift tooltip),,
 A conflicted shift's tooltip shows the conflict icon and the conflict reason in amber,Hover Tooltips,Functional,Medium,"1. You are signed in on a desktop browser.
@@ -730,12 +740,13 @@ Department toggles show or hide individual department groups in the grid,Filter 
 3. Turn it OFF again.","1. Only shifts assigned to you remain visible; all other technician rows and their shifts are hidden.
 2. Turning it off restores the full grid.
 3. This is a personal convenience filter only - it does not change what you are permitted to see (default is OFF, everyone's shifts visible).","requirements.md §9 (My Shifts), §14.3",,
-The VIN toggle adds the VIN to shift blocks (day/week) and hover tooltips; the detail modal shows VIN regardless,Filter and Display and View Options,Functional,Medium,"1. You are signed in on a desktop browser.
+The 'VIN Number' toggle adds the VIN to shift blocks (day/week) only; the hover tooltip and the detail modal always show the VIN,Filter and Display and View Options,Functional,Medium,"1. You are signed in on a desktop browser.
 2. A shift exists for a unit with a VIN; the VIN toggle is OFF.
-3. You are on the Schedule page in week view.","1. With VIN off: read the block, hover for the tooltip, then open the detail modal.
-2. Turn VIN ON in 'Filter and Display' and repeat.","1. VIN off: no VIN on the block or tooltip - but the detail modal still shows the VIN.
-2. VIN on: the VIN appears as an additional line on blocks in day and week views and in the hover tooltip.
-3. Month view blocks never show the VIN.","requirements.md §9 (VIN), §4.4",,
+3. You are on the Schedule page in week view.","1. With 'VIN Number' off: read the block, hover for the tooltip, then open the detail modal.
+2. Turn 'VIN Number' ON in 'Filter and Display' and repeat.","1. 'VIN Number' off: no VIN line on the block - but the hover tooltip still shows the VIN, and the detail modal still shows the VIN.
+2. 'VIN Number' on: the VIN appears as an additional line on blocks in day and week views (and the day-view lane grows taller to fit it).
+3. The 'VIN Number' toggle affects the block only - the tooltip and the modal always show the VIN when the unit has one.
+4. Month view blocks never show the VIN.","requirements.md §9 (VIN), §4.4",,
 "'View Options' popover offers Business Hours, Capacity Bars, Events, Tech Hours, Saturday, Sunday with the spec defaults",Filter and Display and View Options,Functional,High,"1. You are signed in on a desktop browser.
 2. You are on the Schedule page with no view options changed yet (fresh state).","1. Open 'View Options' in the grid toolbar.
 2. Read each toggle and its state.","1. Six toggles are offered: Business Hours, Capacity Bars, Events, Tech Hours, Saturday, Sunday.
@@ -982,6 +993,13 @@ No own-only restriction: every Schedule: View user sees ALL technicians' shifts 
 2. Both appear as schedule rows and have shifts on work order lines.","1. As (or with) the Time-Clock-ON staff member, attempt to clock into their work order line task.
 2. As (or with) the Time-Clock-OFF staff member, attempt the same.","1. The Time-Clock-ON staff member can clock in.
 2. The Time-Clock-OFF staff member cannot - the ability is controlled by the staff-record setting, not by the Schedule permission tier.",requirements.md §14.4 (Time Clock setting),,
+"With Work Orders: View OFF, work-order-derived details on shifts (customer, lines, money fields) are hidden or masked",Permissions,Negative,High,"1. A test user's role has Schedule access but Work Orders: View OFF (assign a suitable role; restore after).
+2. Shifts already exist on the grid, created by a fully-permissioned user, for units that have customers, scheduled lines, and a VIN.
+3. You are signed in AS that user on a desktop browser, on the Schedule page.","1. Look at a shift block on the grid and read its text lines.
+2. Hover the shift for its tooltip.
+3. Open the shift's detail modal and read the work-order-derived fields.","1. Work-order-derived details (customer, the scheduled line list, and any money-bearing fields) are hidden or masked wherever they would normally appear - on the block, in the tooltip, and in the modal.
+2. The schedule structure itself (the shift's day, time, and technician) stays visible so the grid remains usable.
+3. This extends the sidebar behavior (the work order list and drill-down are hidden) to the work-order data surfaced on the shifts themselves.",requirements.md §14.2 (Work Orders: View dependency),,
 Planned hours across technicians may exceed the estimate - accepted without error,Edge Cases and Responsiveness,Functional,Medium,"1. You are signed in on a desktop browser with Schedule: Edit.
 2. A work order line with a 40h estimate exists.","1. Spread the full estimate onto technician A.
 2. Spread the full estimate of the SAME work order onto technician B.

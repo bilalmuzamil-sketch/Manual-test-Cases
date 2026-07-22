@@ -21,10 +21,10 @@
    "3. Saving creates an event block on that technician's day.",
    "4. A toast with Undo appears."
   ],
-  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §4.10, §7 (right-click menu)",
   "viu_status": "VIU-Pending",
-  "notes": "'New Event' is the spec's wording - confirm the exact menu label live. Pre-fill behavior is derived (anchored creation) - confirm live.",
+  "notes": "'New Event' right-click menu item pinned by the Claude design (§4c/context menu); pre-fill (clicked cell's tech + date) confirmed by design; confirm live. Driver: Claude design.",
   "api_related": false
  },
  {
@@ -48,7 +48,7 @@
    "2. A live preview block is shown while creating, and dragging resizes it.",
    "3. Completing creates the event at the previewed time/duration."
   ],
-  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §4.10 (day-view click-to-create, live preview)",
   "viu_status": "VIU-Pending",
   "notes": "Exact create gesture (single click vs click-drag) unpinned - capture live.",
@@ -75,7 +75,7 @@
    "2. The event saves with the entered values.",
    "3. Re-opening the event shows the saved values."
   ],
-  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §4.10 (Event modal)",
   "viu_status": "VIU-Pending",
   "notes": "Field labels unpinned - confirm the exact on-screen labels live.",
@@ -101,7 +101,7 @@
    "1. With all-day on, specific start/end times are not required (the time fields are disabled or hidden).",
    "2. The event is created as an all-day block for that technician and day."
   ],
-  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §4.10, §8.1 (Event allDay field)",
   "viu_status": "VIU-Pending",
   "notes": "All-day rendering (where the block sits on the timeline) unpinned - capture live.",
@@ -129,7 +129,7 @@
    "2. Dropping on another day moves it to that day.",
    "3. Each move produces a toast with Undo."
   ],
-  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §4.10 (Drag-and-drop to reassign/move), §7 (toast)",
   "viu_status": "VIU-Pending",
   "notes": "",
@@ -155,10 +155,10 @@
    "2. It has a small grey-filled rounded chip on the left containing a calendar icon, and two lines of text beside it: the event name, then the time range in secondary text.",
    "3. The shift reads as a tinted color-filled block with a colored left rail - the two types are separable at a glance, not by color alone."
   ],
-  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §4.10 (Event card anatomy)",
   "viu_status": "VIU-Pending",
-  "notes": "Visual anatomy is spec-prose only (no designs) - confirm every visual detail live.",
+  "notes": "Event card anatomy (white/neutral outlined card, calendar icon chip, name + time range, no colored left rail) pinned by the Claude design (§3); live-render confirm at VIU. Driver: Claude design §3.",
   "api_related": false
  },
  {
@@ -183,10 +183,38 @@
    "2. The color picker offers the same custom color palette as shifts (shared picker with editable labels).",
    "3. Choosing a color tints the card and the icon chip in matching tones, the same way a colored shift is tinted."
   ],
-  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §4.10 (Event color), §10",
   "viu_status": "VIU-Pending",
-  "notes": "",
+  "notes": "Event default neutral/grey + shared color palette pinned by the Claude design (§3/§4c color picker); confirm live. Driver: Claude design.",
+  "api_related": false
+ },
+ {
+  "id": "SCH-EVT-08",
+  "area": "Events",
+  "title": "An event does not count toward a technician's capacity bar and does not raise a conflict",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Schedule: Edit to set up; View to observe (spec §14.1).",
+  "preconditions": [
+   "1. You are signed in on a desktop browser with Schedule: Edit.",
+   "2. Capacity Bars and Events are ON in View Options.",
+   "3. A technician has a shift and, on the same day/time, an event (create both, ZZAUTOTEST)."
+  ],
+  "steps": [
+   "1. Note the day's capacity bar fill with only the shift present.",
+   "2. Add an all-day (or long) event on the same technician and day.",
+   "3. Look at the capacity bar again and check for any conflict on the block and in the toolbar conflict pill."
+  ],
+  "expected": [
+   "1. Adding the event does NOT change the capacity bar fill - events are not counted toward booked/available hours.",
+   "2. The event does NOT create a double-booked or overlap conflict with the shift, and the toolbar conflict count does not increase because of it.",
+   "3. Only shifts drive capacity and conflicts."
+  ],
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
+  "spec_ref": "requirements.md §4.10 (Events), §4.11, §4.12",
+  "viu_status": "VIU-Pending",
+  "notes": "NEW case (reconciliation 2026-07-22). Driver: Branko Q&A 2026-07-22 Q1 (events currently excluded from capacity + conflict) - design-confirmed (prototype _capForDate / _conflictReasons iterate shifts only). MAY CHANGE if the PO decides to support events later. No TestRail C-id yet - pending authorized add_case.",
   "api_related": false
  },
  {
@@ -212,42 +240,43 @@
    "3. The toolbar conflict pill's count increases.",
    "4. The conflict is listed in the pill's dropdown."
   ],
-  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §4.11 (Double-booked)",
   "viu_status": "VIU-Pending",
-  "notes": "Conflict-type display names ('Double-booked' etc.) are the spec's words - confirm on-screen wording live. Whether one or both blocks get the icon is unpinned - observe.",
+  "notes": "Conflict-type display names ('Double-booked' etc.) are the spec's words - confirm on-screen wording live. Whether one or both blocks get the icon is unpinned - observe. Events do NOT participate in double-booked/overlap conflict detection (Branko 2026-07-22 Q1 - may change; design-confirmed: _conflictReasons iterates shifts only).",
   "api_related": false
  },
  {
   "id": "SCH-CONF-02",
   "area": "Conflict Detection",
-  "title": "Weekend shift: a shift on Saturday or Sunday is flagged as a conflict",
+  "title": "Working-day conflict: a shift on a day outside the technician's configured working days is flagged",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "Schedule: Edit to set up; View to observe (spec §14.1).",
   "preconditions": [
    "1. You are signed in on a desktop browser with Schedule: Edit.",
-   "2. Saturday/Sunday columns are visible (View Options - Saturday and Sunday on).",
+   "2. A technician's configured working days are known (for example Monday to Friday); Saturday/Sunday columns are visible (View Options - Saturday and Sunday on).",
    "3. A schedulable work order line exists."
   ],
   "steps": [
-   "1. Drop the line onto a technician's SATURDAY cell.",
+   "1. Drop the line onto that technician's cell on a day OUTSIDE their working days (for example a Saturday when the technician works Monday to Friday).",
    "2. Look at the block and the conflict pill."
   ],
   "expected": [
-   "1. The shift is created but flagged as a Weekend shift conflict (outside working days).",
-   "2. The warning icon appears on the block and the conflict is listed in the toolbar dropdown."
+   "1. The shift is created but flagged as a conflict because the day is outside the technician's configured working days (the design's reason sentence reads in the spirit of 'Scheduled on a weekend (outside Mon-Fri)').",
+   "2. If the technician's working days DO include that day (for example Saturday hours are configured), a shift on that day is NOT flagged.",
+   "3. The warning icon appears on the block and the conflict is listed in the toolbar dropdown."
   ],
-  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §4.11 (Weekend shift)",
   "viu_status": "VIU-Pending",
-  "notes": "",
+  "notes": "Reconciliation 2026-07-22: reframed from a fixed Saturday/Sunday rule to the technician's own configured working days. Driver: Branko Q&A 2026-07-22 Q2 (hierarchy Tech hours > Business hours > Default; Saturday hours => no conflict). The prototype hardcodes Mon-Fri/8-17 (design §5) - confirm the real per-tech hierarchy LIVE at VIU.",
   "api_related": false
  },
  {
   "id": "SCH-CONF-03",
   "area": "Conflict Detection",
-  "title": "Before hours: a shift starting before the working-day start is flagged",
+  "title": "Before hours: a shift starting before the technician's configured working-day start is flagged",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "Schedule: Edit to set up; View to observe (spec §14.1).",
@@ -261,19 +290,20 @@
    "2. Look at the block and the conflict pill."
   ],
   "expected": [
-   "1. The shift is flagged as a Before hours conflict.",
-   "2. Warning icon on the block; the conflict appears in the toolbar dropdown."
+   "1. The shift is flagged as a before-hours conflict (the design's reason sentence reads in the spirit of 'Starts before working hours (8:00 AM)'), measured against the technician's configured working-day start.",
+   "2. The working-day start follows the hierarchy technician hours, then business hours, then the default.",
+   "3. Warning icon on the block; the conflict appears in the toolbar dropdown."
   ],
-  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §4.11 (Before hours)",
   "viu_status": "VIU-Pending",
-  "notes": "",
+  "notes": "Reconciliation 2026-07-22: 'working-day start' now = the technician's CONFIGURED start (hierarchy Tech > Business > Default). Driver: Branko Q&A 2026-07-22 Q2. Prototype hardcodes 8:00 AM (design §5) - confirm the real hierarchy LIVE at VIU.",
   "api_related": false
  },
  {
   "id": "SCH-CONF-04",
   "area": "Conflict Detection",
-  "title": "After hours: a shift extending past the working-day end is flagged",
+  "title": "After hours: a shift extending past the technician's configured working-day end is flagged",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "Schedule: Edit to set up; View to observe (spec §14.1).",
@@ -287,13 +317,14 @@
    "2. Look at the block and the conflict pill."
   ],
   "expected": [
-   "1. The shift is flagged as an After hours conflict.",
-   "2. Warning icon on the block; the conflict appears in the toolbar dropdown."
+   "1. The shift is flagged as an after-hours conflict (the design's reason sentence reads in the spirit of 'Extends past working hours (5:00 PM)'), measured against the technician's configured working-day end.",
+   "2. The working-day end follows the hierarchy technician hours, then business hours, then the default.",
+   "3. Warning icon on the block; the conflict appears in the toolbar dropdown."
   ],
-  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §4.11 (After hours)",
   "viu_status": "VIU-Pending",
-  "notes": "",
+  "notes": "Reconciliation 2026-07-22: 'working-day end' now = the technician's CONFIGURED end (hierarchy Tech > Business > Default). Driver: Branko Q&A 2026-07-22 Q2. Prototype hardcodes 5:00 PM (design §5) - confirm the real hierarchy LIVE at VIU.",
   "api_related": false
  },
  {
@@ -319,10 +350,10 @@
    "3. The list covers all current conflicts (count matches the pill).",
    "4. Resolving a conflict (for example moving the shift) reduces the count - detection is continuous."
   ],
-  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §4.11, §6 (Conflict pill)",
   "viu_status": "VIU-Pending",
-  "notes": "Pill copy/format unpinned - capture live.",
+  "notes": "Pill copy/format unpinned - capture live. Events are excluded from the conflict count/list (Branko 2026-07-22 Q1 - may change).",
   "api_related": false
  },
  {
@@ -345,7 +376,7 @@
    "1. The grid navigates to the relevant technician and day.",
    "2. The conflicted shift is brought into view."
   ],
-  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §4.11 (Clicking a conflict navigates)",
   "viu_status": "VIU-Pending",
   "notes": "Whether it switches view (day/week) or highlights the block is unpinned - observe and record.",
@@ -371,7 +402,7 @@
    "1. Overtime is signaled with the 'OT' text tag and amber tones - NOT red or alarming styling.",
    "2. Red/alarming styling appears only for conflicts and genuine errors."
   ],
-  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §4.11 (styling rule), §4.12",
   "viu_status": "VIU-Pending",
   "notes": "Note: overtime that spills past working-day end would itself be an After-hours conflict - the pure-OT setup needs hours summed within the working window via overlapping-free stacking; capture the achievable state live.",
@@ -400,10 +431,10 @@
    "2. A more heavily booked day shows a longer blue fill; the fill never exceeds the track (clamped at 100%).",
    "3. The track width is identical across all days (capacity is not rescaled per day), so bars are comparable at a glance."
   ],
-  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §4.12 (Blue fill)",
   "viu_status": "VIU-Pending",
-  "notes": "Exact bar visuals unpinned (no designs) - confirm live.",
+  "notes": "Day-column capacity bar (blue fill, clamped, equal track widths) pinned by the Claude design (§3 week/month cap bars); live-render confirm at VIU. Driver: Claude design §3. Capacity bar aggregates SHIFT hours only; events do NOT count toward capacity (Branko 2026-07-22 Q1 - may change if the PO decides to support events later; design-confirmed: _capForDate iterates shifts only).",
   "api_related": false
  },
  {
@@ -425,10 +456,10 @@
    "1. An amber segment extends past the right edge of the track, showing the excess.",
    "2. A tick marks the 100% line where the track ends."
   ],
-  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §4.12 (Amber spill)",
   "viu_status": "VIU-Pending",
-  "notes": "",
+  "notes": "Amber spill past the track + tick at 100% pinned by the Claude design (§3 capacity visualization); confirm live. Driver: Claude design §3. Events are excluded from the capacity aggregate (Branko 2026-07-22 Q1 - may change).",
   "api_related": false
  },
  {
@@ -451,10 +482,10 @@
    "2. The tag is text, not a color-only signal.",
    "3. Overtime (per-technician) and capacity (aggregate) are independent signals."
   ],
-  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §4.12 (OT tag), §11 (not color-only)",
   "viu_status": "VIU-Pending",
-  "notes": "'OT' is the spec's tag text - confirm the exact on-screen tag live.",
+  "notes": "'OT' text tag pinned by the Claude design (§3 week headers show 'OT' tags); confirm live. Driver: Claude design §3. The OT calculation is over SHIFT hours only; events do not count (Branko 2026-07-22 Q1 - may change).",
   "api_related": false
  },
  {
@@ -478,10 +509,10 @@
    "2. The overtime technician's entry is highlighted in amber.",
    "3. The numbers agree with the shifts actually on the grid."
   ],
-  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §4.12 (Hover tooltip)",
   "viu_status": "VIU-Pending",
-  "notes": "",
+  "notes": "Capacity hover tooltip (per-tech breakdown, OT techs in amber) pinned by the Claude design (§3 cap-tooltip render); confirm live. Driver: Claude design §3. Per-tech capacity breakdown excludes events (Branko 2026-07-22 Q1 - may change).",
   "api_related": false
  },
  {
@@ -493,23 +524,22 @@
   "permissions_required": "Schedule: View (spec §14.1).",
   "preconditions": [
    "1. You are signed in on a desktop browser.",
-   "2. A multi-line shift exists covering 5 lines, with some time logged.",
-   "3. The VIN toggle in 'Filter and Display' is ON (the tooltip shows the VIN only when this toggle is on).",
-   "4. You are on the Schedule page in week view."
+   "2. A multi-line shift exists covering 5 lines, with some time logged, for a unit that has a VIN.",
+   "3. You are on the Schedule page in week view."
   ],
   "steps": [
    "1. Hover over the shift block and wait briefly for the tooltip.",
    "2. Read the tooltip from top to bottom."
   ],
   "expected": [
-   "1. The tooltip shows: the customer name; unit, vehicle, and VIN; the date and time range; the technician; and a scope summary ('N lines · Xh' style).",
+   "1. The tooltip shows: the customer name; unit, vehicle, and VIN (the tooltip shows the VIN whenever the unit has one, regardless of the 'VIN Number' toggle); the date and time range; the technician; and a scope summary ('N lines · Xh' style).",
    "2. The individual line names appear as a short list capped at 3, with a '+N more lines' row for the rest (here '+2 more lines'); line statuses are NOT shown.",
    "3. A time-logged progress bar shows logged vs estimated hours ('X / Yh' style)."
   ],
-  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §4.13 (Shift tooltip)",
   "viu_status": "VIU-Pending",
-  "notes": "The 'N lines · Xh', '+N more lines', and 'X / Yh' formats are the spec's wording - confirm the exact copy live. Spec inconsistency (flagged): §4.13 lists the VIN in the tooltip unconditionally, while §9 ties tooltip VIN to the VIN toggle (default OFF) - authored with the toggle ON so the assertion holds either way; the VIN-off tooltip behavior is asserted by SCH-VIEW-04. Verify both toggle states live.",
+  "notes": "Reconciliation 2026-07-22: the hover tooltip always shows the VIN when present (NOT gated by the 'VIN Number' toggle) - the old §4.13-vs-§9 caveat is resolved by the design in favour of §4.13. The 'N lines · Xh', '+N more lines' and 'X / Yh' formats + the 3-line cap are pinned by the Claude design (§4c/tooltip). Driver: Claude design §6/§7 + Branko Q&A 2026-07-22.",
   "api_related": false
  },
  {
@@ -531,7 +561,7 @@
    "1. The customer name line includes the conflict icon.",
    "2. The conflict reason is shown in amber."
   ],
-  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §4.13 (Shift tooltip - conflict)",
   "viu_status": "VIU-Pending",
   "notes": "Conflict-reason copy unpinned - capture live.",
@@ -557,7 +587,7 @@
    "2. The date and time range are shown.",
    "3. The technician is shown."
   ],
-  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §4.13 (Event tooltip)",
   "viu_status": "VIU-Pending",
   "notes": "",
@@ -587,7 +617,7 @@
    "3. The tooltip is read-only (no buttons/actions inside it).",
    "4. Clicking the block opens the full detail modal as normal."
   ],
-  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §4.13 (Behavior)",
   "viu_status": "VIU-Pending",
   "notes": "The 300-500ms delay is spec-approximate - confirm the actual delay behavior live.",
@@ -614,10 +644,10 @@
    "2. Near a side edge, the tooltip shifts horizontally to stay fully within the viewport.",
    "3. No part of the tooltip is clipped off-screen."
   ],
-  "design_ref": "none - SPEC-ONLY project (no designs, OQ-4)",
+  "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §4.13 (flip/shift to stay in viewport)",
   "viu_status": "VIU-Pending",
-  "notes": "",
+  "notes": "Tooltip flip-above / horizontal-shift to stay in the viewport pinned by the Claude design (tooltip positioning); confirm live. Driver: Claude design §4.",
   "api_related": false
  }
 ]
