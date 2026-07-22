@@ -16,6 +16,11 @@
 >   then edit only user-approved cases in TestRail): build/SPEC-RECHECK-PROCESS.md — **apply to any
 >   project WHEN THE USER ASKS.** Proven on Custom Roles SV-7388 2026-07-20 ("Vlad's spec-recheck";
 >   deliverable build/custom-roles-run/CustomRoles_SpecRecheck_ChangeList_2026-07-20.xlsx).
+> - Reusable **missing-traceability** method (find every test case lacking a Jira ticket ref
+>   and/or a spec anchor, then backfill the metadata layer — TestRail `refs` field + spec
+>   citation — so 100% of cases are provably authentic; enforces Standing Rule 20):
+>   build/MISSING-TRACEABILITY-PROCESS.md — **apply to any project WHEN THE USER ASKS, and as a
+>   sub-step of any spec-recheck/VIU pass.**
 > - Keep the books current: After each task, append ONLY success-proven learnings
 >   (working navigation paths, action recipes, endpoints, the specific unblock that
 >   worked) to build/APP-ACTIONS-PLAYBOOK.md; update build/TESTING-RUNBOOK.md when the
@@ -809,8 +814,10 @@ process(es) to run before proceeding.
     in the metadata layer. Every CHANGE to a case must cite its driving ticket (with
     Done/Not-Done status) + spec section in the audit log and the change-list deliverable
     (last-update-wins on conflicts). A case with no ticket AND no spec anchor is NOT
-    authentic — flag it (missing-traceability) rather than leave it unsourced. Ties to
-    Standing Rules 6/8/9/10/11/12/13/14/15 and build/SPEC-RECHECK-PROCESS.md +
+    authentic — flag it (missing-traceability) rather than leave it unsourced. **The repeatable
+    method to find + backfill unsourced cases is build/MISSING-TRACEABILITY-PROCESS.md** (run it
+    on demand or as a sub-step of any spec-recheck/VIU pass). Ties to Standing Rules
+    6/8/9/10/11/12/13/14/15 and build/SPEC-RECHECK-PROCESS.md +
     build/BUILD-ACCURATE-WORDING-VIU-PROCESS.md.
 
 ## Project purpose (Custom Roles project)
