@@ -1,0 +1,43 @@
+F&D SV-8479 — LIVE staging VIU (Batch 2: Work Order UI-correction cases) — 2026-07-22
+Env: app.staging.shopview.com / api.staging.shopview.com, org d55bc308, admin quick-login.
+Flags FeesAndDiscounts+PartSales+QuickBooks ON. Access check POST /api/quick-login {admin} -> HTTP 200 (session healthy).
+Seed: ZZAUTOTEST WO f90c0d83-d828-4a1a-9b10-e835d022bbb8 (#S3-25840), created via POST /api/work-orders/create.
+  Labor line c408fd08 (NO technician -> 'Unassigned'; labour computed $509.90) + part c983c402 'Turbocharger Oil' ($40).
+  Fees/discounts added via POST /api/work-orders/adjustments/add:
+    labor fee 'Labor Fee' +20% pct_labor (+$101.98); labor discount 'Labor Disc' -10% pct_labor (-$50.99);
+    part fee 'Part Fee' +11% pct_parts (+$4.40); whole-WO fee 'Customer Fee' 10% pct_subtotal (+$65.88);
+    whole-WO discount 'WO Disc' 5% pct_subtotal (-$32.94). Company auto-applied 4 template fees too (10 F&D total).
+All figures/labels LIVE-OBSERVED.
+
+PER-CASE VERDICTS (WO surface):
+FD-WO-017  VIU-DEVIATION — item-#1 re-open NOT fixed. Labor ⋮ menu renders RIGHT of 'Unassigned' (Unassigned
+  right-edge x=497; ⋮ x=502, same row y=282); spec requires LEFT. Label 'Add Labor Fee / Discount' correct; opens
+  dialog. Menu had only 'Add Labor Fee / Discount' (no 'Edit labor'). Ev: FD-WO-017-labor-row-menu-RIGHT.png,
+  FD-WO-017-labor-menu-open.png.
+FD-WO-018  VIU-Verified — part ⋮ menu = 'Move','Add Part Fee / Discount' (label correct). 'Return' state-gated
+  (part was Auth-To-Order, not received). Ev: FD-WO-018-part-menu.png.
+FD-WO-021  VIU-Verified — card disclaimer exact 'Applies to the whole work order, after all other fees & discounts.'
+FD-WO-025  VIU-Verified (+wording fix) — label 'Add Work Order Fee / Discount' correct; observed order
+  Audit Log -> Timesheets(N) -> Add Work Order Fee / Discount -> Delete Work Order (NOT at top). Ev: FD-WO-025-toolbar-menu.png.
+FD-WO-028  VIU-Verified — jurisdiction note below Taxable Yes/No in labor+part+WO dialogs; 'Pass convenience fee to
+  customer' banner present on Fees & Discounts Settings page (NOT in WO dialogs). Ev: *-dialog-text.txt,
+  FD-WO-028-settings-convenience-banner.png.
+FD-LABOR-001 VIU-Verified — dialog title 'New Labor Fee / Discount' + subline 'Applying To: Line 1 Labor — ...'.
+FD-LABOR-003 VIU-DEVIATION (flipped) — ⋮ RIGHT of 'Unassigned' (same defect as FD-WO-017); label correct.
+FD-LABOR-007 VIU-Verified — label present; permission-negative unchanged (not re-driven this batch).
+FD-PART-001  VIU-Verified — menu 'Add Part Fee / Discount' + title 'New Part Fee / Discount' + subline
+  'Applying To: Line 1 Part — Turbocharger Oil'.
+FD-PART-002  VIU-Verified — inline plain text 'Part Fee 11% +$4.40'; per-item flat calc unchanged.
+FD-INLINE-001 VIU-Verified — '↳ Labor Fee 20% +$101.98' (bare %, blank label) + '↳ Labor Disc −10% −$50.99'.
+FD-INLINE-002 VIU-Verified — '↳ Part Fee 11% +$4.40' plain text, no badge.
+FD-CALC-001  VIU-Verified (+wording fix '+10%'->'10%') — base×percent confirmed (20% of $509.90 = +$101.98).
+FD-FIN-001   VIU-Verified — F&D (10) line directly above Subtotal; order Parts/Labor/Shop Supplies/F&D/Subtotal.
+FD-FIN-004   VIU-Verified — card 'Work Order Fees & Discounts', whole-WO only, plain text bracketed percent + sign.
+FD-WO-001    VIU-Verified — toolbar dialog title 'New Work Order Fee / Discount', subline 'Applying To: Entire Work Order'.
+FD-WO-013    VIU-Deviation (unchanged) — label present; permission-negative not re-driven this batch.
+FD-STATS-001 VIU-Verified (flipped from Deviation) — Stats tab F&D (10) now shows '% Amount' headings; blank-% for flat;
+  signed amounts; 'Total +$273.31'. Prior 'no headers' deviation RESOLVED. Ev: FD-STATS-001-stats-tab.png, stats-bodytext.txt.
+LABEL-SWEEP (35): all three SV-8479 nav labels confirmed live (Add Work Order/Labor/Part Fee / Discount); statuses
+  unchanged, confirmation note appended per case.
+
+CLEANUP: WO f90c0d83 (ZZAUTOTEST) deleted after run. No settings/roles changed. Feature flags NOT touched.
