@@ -1,0 +1,66 @@
+F&D SV-8479 — LIVE staging VIU (Batch 3: PART SALE UI-correction cases) — 2026-07-22
+Env: app.staging.shopview.com / api.staging.shopview.com, org d55bc308, admin quick-login.
+Flags FeesAndDiscounts+PartSales+QuickBooks ON. Access check POST /api/quick-login {admin} -> HTTP 200 (session healthy).
+
+SEED (ZZAUTOTEST, deleted after run): fresh Part Sale created POST /api/part-sales {company_id:eb304603...}
+  => 02926fcd-6a95-4a26-926e-2d6e5cba07ed (#P3-1118, Estimate, editable). Title set "ZZAUTOTEST F&D VIU".
+  3 parts added via Add Part dialog (button_add_part -> select_part -> Save & Add Part / Save & Close):
+    - NEXUS SAE100R5 (2b720c60, pn NL245-04, sell 774.68)  -> Part Fee +11% (+$85.21) + Part Disc -5% (-$38.73)  [2 adj => +N]
+    - Mobil 1 5W20 (49b9d808, pn 55073, sell 0)            -> FEE-LESS
+    - FLEETGUARD COOLANT TEST STRIP (5234f3f7, pn CC2602B)  -> FEE-LESS
+  Adjustments via POST /api/work-orders/adjustments/add (part sales are WOs):
+    part_line scope + calc pct_parts (NEXUS fee/disc, 201).
+    whole_wo scope: pct_subtotal (Customer Fee +10% +$82.12, Sale Disc -5% -$41.06); flat (Flat Fee +$50.00).
+    NOTE: whole-sale percent uses calc pct_subtotal (pct_total => 400 "Invalid calculation type" on part sales).
+    Company auto-applied a template "Processing Fee" (pct_grand_total 6%, +$51.73). adjustmentsSummary feesCount4/discountsCount2.
+Part sale detail route = /parts/part-sale/{id}/part-requests ; Statistics tab shows F&D section further down same view.
+All figures/labels LIVE-OBSERVED (admin, has Part Sales C&E + See Financial Data).
+
+PER-CASE VERDICTS (PART SALE surface):
+FD-PSALE-001 VIU-Verified — jurisdiction note "Tax treatment varies by jurisdiction — confirm your local requirements
+  before saving." shown directly below the Taxable Yes/No dropdown in BOTH the per-part dialog (title "New Part Fee /
+  Discount", subline "Applying To: Line 1 Part — Part — (55073) Mobil 1 5W20 ...") and the whole-sale dialog (title
+  "New Parts Sale Fee / Discount", subline "Applying To: Entire Parts Sale"). Refined expected #2 subline to the exact
+  build string. Ev: partline-dialog.png/-text.txt, wholesale-dialog.png/-text.txt.
+FD-PSALE-002 VIU-Verified — F&D column has NO "+ Add" button on fee-less rows (grep "+Add"=0 across page); column stays
+  and shows existing part fees ("Part Fee 11% +1" on NEXUS); add still available from per-row ⋮ "Add Part Fee / Discount"
+  and the top-right ⋮ "Add Parts Sale Fee / Discount". Ev: parts-page-full.png, parts-table-text.txt, partrow-menu-feeless.png, topright-menu.png.
+FD-PSALE-003 VIU-Verified — per-part ⋮ (Actions) menu on a fee-less row reads exactly "Add Part Fee / Discount"
+  (menu text = "Add Part Fee / Discount"); clicking opens the per-part dialog "New Part Fee / Discount". Ev: partrow-menu-feeless.png, partline-dialog.png.
+FD-PSALE-004 VIU-Verified — "Parts Sale Fees & Discounts" card renders each (whole-sale) adjustment as PLAIN TEXT, no
+  badge: "Processing Fee (6%) +$51.73", "Flat Fee +$50.00" (flat = name only, no brackets), "Customer Fee (10%) +$82.12"
+  (percent fee in brackets, NO sign), "Sale Disc (−5%) −$41.06" (percent discount in brackets WITH minus). Disclaimer
+  "Applies to the whole parts sale, after all part-line fees & discounts." Convention identical to WO card item 5. Ev: parts-page-full.png, parts-page-bodytext.txt.
+FD-PSALE-006 VIU-Verified — Financial Info card shows "Fees & Discounts (6) $189.27" directly ABOVE Subtotal
+  ($963.95), amount in the same right column (order Parts / Fees & Discounts (N) / Subtotal / GST / Total / Balance).
+  Ev: parts-page-full.png, parts-page-bodytext.txt.
+FD-PSALE-008 VIU-Verified — VIU-CONFIRM RESOLVED: the whole-parts-sale entry label (Picture 26 was missing) is LIVE
+  CONFIRMED = "Add Parts Sale Fee / Discount" in the top-right ⋮ menu (items: Delete / Add Parts Sale Fee / Discount /
+  Set status). Dialog title "New Parts Sale Fee / Discount"; subline "Applying To: Entire Parts Sale" (same format as
+  whole-WO). Ev: topright-menu.png, wholesale-dialog.png/-text.txt.
+FD-PSALE-009 VIU-Verified — Statistics tab Fees & Discounts (6) section shows right-side headings "% Amount" (in that
+  order); flat fee has a BLANK "%" cell; rows "Processing Fee +6% +$51.73 / Part Fee +11% +$85.21 / Part Disc −5%
+  −$38.73 / Flat Fee (blank%) +$50.00 / Customer Fee +10% +$82.12 / Sale Disc −5% −$41.06" + "Total +$189.27".
+  Mirrors WO Stats item 12. Ev: statistics-tab.png, statistics-bodytext.txt.
+FD-PCOL-002 VIU-Verified — parts-sale F&D column value = plain text "Part Fee 11% +1" (first fee plain text, no sign on
+  the % fee; "+1" overflow = 1 more adjustment beyond the first; NO colored badge/pill). Ev: parts-table-text.txt, parts-page-full.png.
+FD-PCOL-003 VIU-Verified — fee-less part row shows NO "+ Add" button in the F&D column; per-row ⋮ menu item reads
+  "Add Part Fee / Discount"; clicking opens the per-part dialog titled "New Part Fee / Discount", locked to that part
+  (subline names the part). Ev: partrow-menu-feeless.png, partline-dialog.png/-text.txt.
+FD-PCOL-006 VIU-Verified — filled cell opens breakdown viewer "Fees & Discounts" (subtitle = part label, cols Name/Type/
+  Calculation/Amount/Max Amount + "Net adjustment"); each row has a delete (trash) control. Removed both NEXUS
+  adjustments -> confirm dialog "Remove Fee / Discount — Are you sure you want to remove this fee?/discount?" -> Remove
+  -> "Fee removed"/"Discount removed"; NEXUS cell returned to EMPTY state with NO "+ Add" button. Ev: partcell-breakdown-viewer.png, breakdown-viewer-text.txt, after-removal-emptystate.png.
+FD-PCOL-007 VIU-Verified — on the non-editable Paid sale P3-1088 (editable=false): NO "+ Add" button AND NO per-row ⋮
+  menu button rendered at all (button_part_request_menu_* count=0) -> the "Add Part Fee / Discount" add entry point is
+  unavailable/blocked on a sale that cannot be edited. (Read-only-filled-cell breakdown sub-check: no non-editable sale
+  with part-line fees currently exists to observe without driving an invoice; the read-only viewer itself is confirmed
+  to open on filled cells [FD-PCOL-006] and the no-remove-on-non-editable was live-observed 2026-07-20. The primary
+  item-13 subject — add blocked when non-editable — is freshly verified.) Ev: paid-sale-parts.png, paid-row-menu.png (menu absent).
+
+WORDING CORRECTIONS: FD-PSALE-001 expected #2 subline refined to build-accurate "Applying To: Line 1 Part — Part —
+  (part number) name". FD-PSALE-008 item-19 VIU-confirm resolved (label confirmed "Add Parts Sale Fee / Discount") —
+  case wording already matched; note updated. No other divergences (all other observed labels matched the case wording).
+
+CLEANUP: seeded part sale 02926fcd (#P3-1118, ZZAUTOTEST) DELETED via POST /api/work-orders/delete (201); re-GET view
+  => HTTP 400 (gone), absent from part-sales list. No settings/roles/flags changed. Only the seeded sale mutated.

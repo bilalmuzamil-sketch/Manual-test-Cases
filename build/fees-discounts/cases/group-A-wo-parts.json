@@ -1357,7 +1357,7 @@
     ],
     "design_ref": "#55073 'Parts Handling Fee 2% +2' badge (§5)",
     "viu_status": "VIU-Verified",
-    "notes": "Badge count N is the number of adjustments AFTER the first (so 3 total → '+2'). | VIU qb batch-1 (2026-07-08): Not built (see FD-PCOL-001). | FRESH VIU 2026-07-10: Story 11 surface absent (re-checked today) | WORDING+VIU 2026-07-13:  NOT BUILT: Story 11 (Part Sales fees/discounts) has not shipped — the Parts page has no 'Fees & Discounts' column and there is no part-sale F&D surface. Wording made build-accurate/layman for when it ships; status stays Blocked-NotBuilt. | STAGING VIU 2026-07-20 staging LIVE VIU: +N badge on multi-fee part (Fee $6.00 +1). Live staging (psB4-badge.png). | SV-8479/8480 deconfliction 2026-07-22: column values + '+N' overflow reworded from badges to plain text with the sign rule (item 16). Absorbs dropped new case FD-PSALE-005. (FD-PCOL-001 already plain text — no change.)",
+    "notes": "Badge count N is the number of adjustments AFTER the first (so 3 total → '+2'). | VIU qb batch-1 (2026-07-08): Not built (see FD-PCOL-001). | FRESH VIU 2026-07-10: Story 11 surface absent (re-checked today) | WORDING+VIU 2026-07-13:  NOT BUILT: Story 11 (Part Sales fees/discounts) has not shipped — the Parts page has no 'Fees & Discounts' column and there is no part-sale F&D surface. Wording made build-accurate/layman for when it ships; status stays Blocked-NotBuilt. | STAGING VIU 2026-07-20 staging LIVE VIU: +N badge on multi-fee part (Fee $6.00 +1). Live staging (psB4-badge.png). | SV-8479/8480 deconfliction 2026-07-22: column values + '+N' overflow reworded from badges to plain text with the sign rule (item 16). Absorbs dropped new case FD-PSALE-005. (FD-PCOL-001 already plain text — no change.) | SV-8479 Batch-3 STAGING LIVE VIU 2026-07-22 (part-sale surface): seeded ZZAUTOTEST part sale P3-1118 (2 fee-less rows + NEXUS 2-adj) + whole-sale percent/flat/discount; observed live as admin (Part Sales C&E + SFD). Evidence build/fees-discounts/viu-sv8479-8480-2026-07-22/psale/. Live: NEXUS cell = 'Part Fee 11% +1' plain text, no badge, fee no sign.",
     "api_related": false,
     "fresh_run": "2026-07-20-staging"
   },
@@ -1385,7 +1385,7 @@
     ],
     "design_ref": "#28439 empty state .pt-fd-add-btn (§5)",
     "viu_status": "VIU-Verified",
-    "notes": "The '+ Add' button is disabled when the sale/WO cannot be edited (see FD-PCOL-008). | VIU qb batch-1 (2026-07-08): Not built (see FD-PCOL-001). | FRESH VIU 2026-07-10: Story 11 surface absent (re-checked today) | WORDING+VIU 2026-07-13:  NOT BUILT: Story 11 (Part Sales fees/discounts) has not shipped — the Parts page has no 'Fees & Discounts' column and there is no part-sale F&D surface. Wording made build-accurate/layman for when it ships; status stays Blocked-NotBuilt. | STAGING VIU 2026-07-20 staging LIVE VIU: + Add button shown on a no-fee part. Live staging (psH2-invoiced.png); add works on editable sale via row menu. | SV-8479/8480 deconfliction 2026-07-22: rescoped off the removed '+ Add' button to the per-row ⋮ 'Add Part Fee / Discount' + 'New Part Fee / Discount' title (items 13/14/18). RETIRE-CANDIDATE (F2): overlaps kept new cases FD-PSALE-002/003 — flag for user ruling.",
+    "notes": "The '+ Add' button is disabled when the sale/WO cannot be edited (see FD-PCOL-008). | VIU qb batch-1 (2026-07-08): Not built (see FD-PCOL-001). | FRESH VIU 2026-07-10: Story 11 surface absent (re-checked today) | WORDING+VIU 2026-07-13:  NOT BUILT: Story 11 (Part Sales fees/discounts) has not shipped — the Parts page has no 'Fees & Discounts' column and there is no part-sale F&D surface. Wording made build-accurate/layman for when it ships; status stays Blocked-NotBuilt. | STAGING VIU 2026-07-20 staging LIVE VIU: + Add button shown on a no-fee part. Live staging (psH2-invoiced.png); add works on editable sale via row menu. | SV-8479/8480 deconfliction 2026-07-22: rescoped off the removed '+ Add' button to the per-row ⋮ 'Add Part Fee / Discount' + 'New Part Fee / Discount' title (items 13/14/18). RETIRE-CANDIDATE (F2): overlaps kept new cases FD-PSALE-002/003 — flag for user ruling. | SV-8479 Batch-3 STAGING LIVE VIU 2026-07-22 (part-sale surface): seeded ZZAUTOTEST part sale P3-1118 (2 fee-less rows + NEXUS 2-adj) + whole-sale percent/flat/discount; observed live as admin (Part Sales C&E + SFD). Evidence build/fees-discounts/viu-sv8479-8480-2026-07-22/psale/. Live: fee-less row no '+ Add'; ⋮ 'Add Part Fee / Discount' -> dialog 'New Part Fee / Discount'.",
     "api_related": false,
     "fresh_run": "2026-07-20-staging"
   },
@@ -1466,7 +1466,7 @@
     ],
     "design_ref": "breakdown modal per-row .pfd-trash-btn 'Remove' (§8)",
     "viu_status": "VIU-Verified",
-    "notes": "Removal uses the Create & Edit permission, NOT the Delete permission (S13-R7). Per-row remove is shown only when the sale/WO can be edited (S11-R14). | VIU qb batch-1 (2026-07-08): Not built (see FD-PCOL-001). | FRESH VIU 2026-07-10: Story 11 surface absent (re-checked today) | WORDING+VIU 2026-07-13:  NOT BUILT: Story 11 (Part Sales fees/discounts) has not shipped — the Parts page has no 'Fees & Discounts' column and there is no part-sale F&D surface. Wording made build-accurate/layman for when it ships; status stays Blocked-NotBuilt. | STAGING VIU 2026-07-20 staging LIVE VIU: Per-row Remove -> confirm Remove Fee / Discount -> row removed. Live staging (psE-confirm/afterremove). | SV-8479/8480 deconfliction 2026-07-22: empty-state reworded: the removed '+ Add' button is gone; add via the per-row ⋮ (item 13).",
+    "notes": "Removal uses the Create & Edit permission, NOT the Delete permission (S13-R7). Per-row remove is shown only when the sale/WO can be edited (S11-R14). | VIU qb batch-1 (2026-07-08): Not built (see FD-PCOL-001). | FRESH VIU 2026-07-10: Story 11 surface absent (re-checked today) | WORDING+VIU 2026-07-13:  NOT BUILT: Story 11 (Part Sales fees/discounts) has not shipped — the Parts page has no 'Fees & Discounts' column and there is no part-sale F&D surface. Wording made build-accurate/layman for when it ships; status stays Blocked-NotBuilt. | STAGING VIU 2026-07-20 staging LIVE VIU: Per-row Remove -> confirm Remove Fee / Discount -> row removed. Live staging (psE-confirm/afterremove). | SV-8479/8480 deconfliction 2026-07-22: empty-state reworded: the removed '+ Add' button is gone; add via the per-row ⋮ (item 13). | SV-8479 Batch-3 STAGING LIVE VIU 2026-07-22 (part-sale surface): seeded ZZAUTOTEST part sale P3-1118 (2 fee-less rows + NEXUS 2-adj) + whole-sale percent/flat/discount; observed live as admin (Part Sales C&E + SFD). Evidence build/fees-discounts/viu-sv8479-8480-2026-07-22/psale/. Live: breakdown viewer per-row delete -> confirm 'Remove Fee / Discount' -> removed -> empty state, no '+ Add'.",
     "api_related": false,
     "fresh_run": "2026-07-20-staging"
   },
@@ -1493,7 +1493,7 @@
     ],
     "design_ref": "empty-state '+ Add' button disabled behavior (§5)",
     "viu_status": "VIU-Verified",
-    "notes": "Ties to the Invoiced/Paid lifecycle gate (S1-N1, S3-R1b). | VIU qb batch-1 (2026-07-08): Not built (see FD-PCOL-001). | FRESH VIU 2026-07-10: Story 11 surface absent (re-checked today) | WORDING+VIU 2026-07-13:  NOT BUILT: Story 11 (Part Sales fees/discounts) has not shipped — the Parts page has no 'Fees & Discounts' column and there is no part-sale F&D surface. Wording made build-accurate/layman for when it ships; status stays Blocked-NotBuilt. | STAGING VIU 2026-07-20 staging LIVE VIU: + Add disabled on non-editable (Paid) sale. Live staging (psH2-invoiced.png, btnDisabled=true). | SV-8479/8480 deconfliction 2026-07-22: rescoped off the removed '+ Add' button to the per-row ⋮ blocked-when-uneditable (item 13). RETIRE-CANDIDATE (F2): overlaps kept new case FD-PSALE-002 — flag for user ruling.",
+    "notes": "Ties to the Invoiced/Paid lifecycle gate (S1-N1, S3-R1b). | VIU qb batch-1 (2026-07-08): Not built (see FD-PCOL-001). | FRESH VIU 2026-07-10: Story 11 surface absent (re-checked today) | WORDING+VIU 2026-07-13:  NOT BUILT: Story 11 (Part Sales fees/discounts) has not shipped — the Parts page has no 'Fees & Discounts' column and there is no part-sale F&D surface. Wording made build-accurate/layman for when it ships; status stays Blocked-NotBuilt. | STAGING VIU 2026-07-20 staging LIVE VIU: + Add disabled on non-editable (Paid) sale. Live staging (psH2-invoiced.png, btnDisabled=true). | SV-8479/8480 deconfliction 2026-07-22: rescoped off the removed '+ Add' button to the per-row ⋮ blocked-when-uneditable (item 13). RETIRE-CANDIDATE (F2): overlaps kept new case FD-PSALE-002 — flag for user ruling. | SV-8479 Batch-3 STAGING LIVE VIU 2026-07-22 (part-sale surface): seeded ZZAUTOTEST part sale P3-1118 (2 fee-less rows + NEXUS 2-adj) + whole-sale percent/flat/discount; observed live as admin (Part Sales C&E + SFD). Evidence build/fees-discounts/viu-sv8479-8480-2026-07-22/psale/. Live: Paid sale P3-1088 (editable=false) has NO '+ Add' and NO per-row ⋮ menu (button_part_request_menu_* count 0) -> add unavailable/blocked when non-editable.",
     "api_related": false,
     "fresh_run": "2026-07-20-staging"
   },
@@ -1780,14 +1780,14 @@
     ],
     "expected": [
       "1. Directly below the Taxable Yes/No dropdown this note is shown: 'Tax treatment varies by jurisdiction — confirm your local requirements before saving.'",
-      "2. The same note shows for both the whole-sale dialog (titled 'New Parts Sale Fee / Discount') and the per-part dialog (titled 'New Part Fee / Discount'); the per-part dialog also shows an 'Applying to: Part — (part number) name' subtitle.",
+      "2. The same note shows for both the whole-sale dialog (titled 'New Parts Sale Fee / Discount') and the per-part dialog (titled 'New Part Fee / Discount'); the per-part dialog also shows an 'Applying To: Line N Part — Part — (part number) name' subtitle.",
       "3. The same note shows in both the Add and the Edit dialog.",
       "4. The note is shown only to users with See Financial Data."
     ],
     "design_ref": null,
     "viu_status": "VIU-Verified",
     "fresh_run": "2026-07-21",
-    "notes": "NEW 2026-07-20 (Chris V1_3 Q1=B): the §5-R15 note must appear below every Taxable control, incl. the Part Sale Add/Edit Fee & Discount dialog. STAGING VIU 2026-07-20: note present in the whole-sale 'Add Parts Sale Fee / Discount' dialog (ps-wholesale-dialog.png) and the per-part 'Add Fee / Discount' dialog with 'Applying to: Part —' subtitle (psB4-filled.png). UI string check, functional section (Rule 4). | SV-8456 (2026-07-21 staging LIVE VIU): F&D moved to SETTINGS→SERVICE (below Canned Lines); template/WO/Part-sale/customer dialogs now show Taxable as a Yes/No DROPDOWN (was toggle); Auto-apply is a CHECKBOX with a 'When on…' caption; settings & customer tables are plain-text/left-aligned (no badges); WO sidebar card retitled 'Work Order Fees & Discounts' and renders ABOVE Financial Info; Part-sale card 'Parts Sale Fees & Discounts' above Financial Info. Permission gate pivoted Settings→Finance → Settings→Service (verified live: Service-user sees+manages F&D & convenience toggle; Finance-only user has no F&D nav item and /administration/adjustment-templates bounces to /workorders). Frontend-only; functionality + calc INTACT. | SV-8479/8480 deconfliction 2026-07-22: navigation label 'Add Fee / Discount' -> 'Add Part Fee / Discount' (item 14) and dialog titles named ('New Part Fee / Discount' item 18; 'New Parts Sale Fee / Discount' item 19) for context; jurisdiction-note assertion unchanged. Whole-sale title/subline detail owned by kept new case FD-PSALE-008 (item 19).",
+    "notes": "NEW 2026-07-20 (Chris V1_3 Q1=B): the §5-R15 note must appear below every Taxable control, incl. the Part Sale Add/Edit Fee & Discount dialog. STAGING VIU 2026-07-20: note present in the whole-sale 'Add Parts Sale Fee / Discount' dialog (ps-wholesale-dialog.png) and the per-part 'Add Fee / Discount' dialog with 'Applying to: Part —' subtitle (psB4-filled.png). UI string check, functional section (Rule 4). | SV-8456 (2026-07-21 staging LIVE VIU): F&D moved to SETTINGS→SERVICE (below Canned Lines); template/WO/Part-sale/customer dialogs now show Taxable as a Yes/No DROPDOWN (was toggle); Auto-apply is a CHECKBOX with a 'When on…' caption; settings & customer tables are plain-text/left-aligned (no badges); WO sidebar card retitled 'Work Order Fees & Discounts' and renders ABOVE Financial Info; Part-sale card 'Parts Sale Fees & Discounts' above Financial Info. Permission gate pivoted Settings→Finance → Settings→Service (verified live: Service-user sees+manages F&D & convenience toggle; Finance-only user has no F&D nav item and /administration/adjustment-templates bounces to /workorders). Frontend-only; functionality + calc INTACT. | SV-8479/8480 deconfliction 2026-07-22: navigation label 'Add Fee / Discount' -> 'Add Part Fee / Discount' (item 14) and dialog titles named ('New Part Fee / Discount' item 18; 'New Parts Sale Fee / Discount' item 19) for context; jurisdiction-note assertion unchanged. Whole-sale title/subline detail owned by kept new case FD-PSALE-008 (item 19). | SV-8479 Batch-3 STAGING LIVE VIU 2026-07-22 (part-sale surface): seeded ZZAUTOTEST part sale P3-1118 (2 fee-less rows + NEXUS 2-adj) + whole-sale percent/flat/discount; observed live as admin (Part Sales C&E + SFD). Evidence build/fees-discounts/viu-sv8479-8480-2026-07-22/psale/. Batch-3 live: per-part subline exact build string 'Applying To: Line 1 Part — Part — (55073) Mobil 1 5W20 Synthetic Engine Oil, 1L'; whole-sale subline 'Applying To: Entire Parts Sale'; note present below Taxable in both dialogs.",
     "api_related": false
   },
   {
@@ -1949,8 +1949,8 @@
       "3. A fee/discount can still be added from the per-row three-dot menu ('Add Part Fee / Discount') and from the top-right three-dot menu (whole parts sale)."
     ],
     "design_ref": "SV-8479 Picture 20 red (58822); QA staging item13 (58873)",
-    "viu_status": "VIU-Pending",
-    "notes": "QA passed on staging 2026-07-22 (✅).",
+    "viu_status": "VIU-Verified",
+    "notes": "QA passed on staging 2026-07-22 (✅). | SV-8479 Batch-3 STAGING LIVE VIU 2026-07-22 (part-sale surface): seeded ZZAUTOTEST part sale P3-1118 (2 fee-less rows + NEXUS 2-adj) + whole-sale percent/flat/discount; observed live as admin (Part Sales C&E + SFD). Evidence build/fees-discounts/viu-sv8479-8480-2026-07-22/psale/. F&D column has no '+ Add' (grep '+Add'=0); per-row ⋮ 'Add Part Fee / Discount' + top-right ⋮ 'Add Parts Sale Fee / Discount' both present.",
     "api_related": false
   },
   {
@@ -1976,8 +1976,8 @@
       "3. Clicking it opens the per-part fee/discount dialog."
     ],
     "design_ref": "SV-8479 Picture 21 red (58802); QA staging item14 (58874)",
-    "viu_status": "VIU-Pending",
-    "notes": "QA passed on staging 2026-07-22 (✅).",
+    "viu_status": "VIU-Verified",
+    "notes": "QA passed on staging 2026-07-22 (✅). | SV-8479 Batch-3 STAGING LIVE VIU 2026-07-22 (part-sale surface): seeded ZZAUTOTEST part sale P3-1118 (2 fee-less rows + NEXUS 2-adj) + whole-sale percent/flat/discount; observed live as admin (Part Sales C&E + SFD). Evidence build/fees-discounts/viu-sv8479-8480-2026-07-22/psale/. Per-part ⋮ menu text = 'Add Part Fee / Discount' exactly; opens 'New Part Fee / Discount' dialog.",
     "api_related": false
   },
   {
@@ -2004,8 +2004,8 @@
       "4. A flat-amount adjustment shows the name alone with no brackets, e.g. 'Fee +$500,000.00' (the old red state showed a badge, e.g. 'TEST +$50.00')."
     ],
     "design_ref": "SV-8479 Picture 22 red (58813); QA staging item15 (58871)",
-    "viu_status": "VIU-Pending",
-    "notes": "Same convention as work-order card item 5. QA passed on staging 2026-07-22 (✅).",
+    "viu_status": "VIU-Verified",
+    "notes": "Same convention as work-order card item 5. QA passed on staging 2026-07-22 (✅). | SV-8479 Batch-3 STAGING LIVE VIU 2026-07-22 (part-sale surface): seeded ZZAUTOTEST part sale P3-1118 (2 fee-less rows + NEXUS 2-adj) + whole-sale percent/flat/discount; observed live as admin (Part Sales C&E + SFD). Evidence build/fees-discounts/viu-sv8479-8480-2026-07-22/psale/. Whole-sale card 'Parts Sale Fees & Discounts' live: 'Customer Fee (10%) +$82.12', 'Sale Disc (−5%) −$41.06', 'Flat Fee +$50.00' (flat name-only), 'Processing Fee (6%) +$51.73' — plain text, no badge, bracket %/sign convention matches WO card item 5.",
     "api_related": false
   },
   {
@@ -2031,8 +2031,8 @@
       "3. When there are zero fees/discounts the 'Fees & Discounts' line is hidden."
     ],
     "design_ref": "SV-8479 Picture 24 green (58827); QA staging item17 (58865) 'Fees & Discounts (5) $500,007.57' above Subtotal",
-    "viu_status": "VIU-Pending",
-    "notes": "Matches work-order Financial Info card (item 7). Green mockup omits the amount; the amount is existing behavior. QA passed on staging 2026-07-22 (✅).",
+    "viu_status": "VIU-Verified",
+    "notes": "Matches work-order Financial Info card (item 7). Green mockup omits the amount; the amount is existing behavior. QA passed on staging 2026-07-22 (✅). | SV-8479 Batch-3 STAGING LIVE VIU 2026-07-22 (part-sale surface): seeded ZZAUTOTEST part sale P3-1118 (2 fee-less rows + NEXUS 2-adj) + whole-sale percent/flat/discount; observed live as admin (Part Sales C&E + SFD). Evidence build/fees-discounts/viu-sv8479-8480-2026-07-22/psale/. Live: 'Fees & Discounts (6) $189.27' directly above Subtotal $963.95 in Financial Info.",
     "api_related": false
   },
   {
@@ -2057,8 +2057,8 @@
       "3. A subline reads 'Applying To: Entire Parts Sale' (same format as the whole-work-order dialog)."
     ],
     "design_ref": "SV-8479 Picture 27 red (58824); QA staging item19 (58872 = dup of 58866)",
-    "viu_status": "VIU-Pending",
-    "notes": "PICTURE 26 MISSING — the description references 'Picture 26 shows the three-dot context' for the whole-parts-sale entry point, but no Picture 26 was attached to the ticket (only Picture 27 red exists, and the QA item-19 image 58872 is a duplicate of the item-18 shot 58866). The top-right three-dot entry label 'Add Parts Sale Fee / Discount' is taken from the item-19 description text; VIU-confirm the exact menu label, its placement in the top-right three-dot menu, and the dialog title/subline LIVE. QA marked item 19 passed on staging 2026-07-22 (✅) but on a duplicate image.",
+    "viu_status": "VIU-Verified",
+    "notes": "PICTURE 26 MISSING — the description references 'Picture 26 shows the three-dot context' for the whole-parts-sale entry point, but no Picture 26 was attached to the ticket (only Picture 27 red exists, and the QA item-19 image 58872 is a duplicate of the item-18 shot 58866). The top-right three-dot entry label 'Add Parts Sale Fee / Discount' is taken from the item-19 description text; VIU-confirm the exact menu label, its placement in the top-right three-dot menu, and the dialog title/subline LIVE. QA marked item 19 passed on staging 2026-07-22 (✅) but on a duplicate image. | SV-8479 Batch-3 STAGING LIVE VIU 2026-07-22 (part-sale surface): seeded ZZAUTOTEST part sale P3-1118 (2 fee-less rows + NEXUS 2-adj) + whole-sale percent/flat/discount; observed live as admin (Part Sales C&E + SFD). Evidence build/fees-discounts/viu-sv8479-8480-2026-07-22/psale/. VIU-CONFIRM RESOLVED (Picture 26 was missing): top-right ⋮ label CONFIRMED LIVE = 'Add Parts Sale Fee / Discount'; dialog title 'New Parts Sale Fee / Discount'; subline 'Applying To: Entire Parts Sale'. Case wording already matched.",
     "api_related": false
   },
   {
@@ -2084,8 +2084,8 @@
       "3. Rows show the percent under '%' and the money under 'Amount' (for example 'Part Fee +11% +$2.65', 'Fee +$500,000.00'), with a 'Total' row."
     ],
     "design_ref": "SV-8479 item 20 (no PO before/after picture — mirrors item 12); QA staging item20 (58876)",
-    "viu_status": "VIU-Pending",
-    "notes": "No PO before/after picture for item 20 — it mirrors work-order item 12. QA passed on staging 2026-07-22 (✅, image 58876). VIU-confirm the exact Statistics-tab heading labels live.",
+    "viu_status": "VIU-Verified",
+    "notes": "No PO before/after picture for item 20 — it mirrors work-order item 12. QA passed on staging 2026-07-22 (✅, image 58876). VIU-confirm the exact Statistics-tab heading labels live. | SV-8479 Batch-3 STAGING LIVE VIU 2026-07-22 (part-sale surface): seeded ZZAUTOTEST part sale P3-1118 (2 fee-less rows + NEXUS 2-adj) + whole-sale percent/flat/discount; observed live as admin (Part Sales C&E + SFD). Evidence build/fees-discounts/viu-sv8479-8480-2026-07-22/psale/. Statistics F&D (6) section live headings '% Amount'; flat fee blank %; rows +11%/+6%/+10% fees + −5% discounts; 'Total +$189.27'.",
     "api_related": false
   }
 ]
