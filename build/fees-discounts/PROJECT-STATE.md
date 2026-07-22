@@ -5,7 +5,17 @@
 > re-discovery.
 > **Canonical spec (Confluence):** https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/622297094/Fees+Discounts+V1
 > (Atlassian-SSO login-walled — reference pointer only; content must be exported/pasted to ingest, do NOT fetch the URL.)
-> **Last updated:** 2026-07-22 (§0.0m: **SV-8479 / SV-8480 AUTHORING + RECONCILIATION
+> **Last updated:** 2026-07-22 (§0.0n: **SV-8479 / SV-8480 / SV-8456 LIVE STAGING VIU
+> DONE + ADVERSARIALLY AUDITED CLEAN** — the 18 net-new + 54 edited cases were verified
+> LIVE on staging across 4 batches [WO UI, Part-Sale UI, calc S3-R18, SV-8456 re-VIU];
+> statuses finalized. **NEW TALLY = 202 active authored: 167 VIU-Verified / 13
+> VIU-Deviation / 21 VIU-Blocked-Env / 1 VIU-Pending** [+2 dev-authored Verified;
+> FD-CUST-016 retired/excluded]. All deliverables regenerated over 202; id-map 204 rows
+> [186 populated + 18 blank]. TestRail push **STAGED, NOT executed** [manifest:
+> `sv8479-8456-8480/testrail-sync-manifest.md` = 18 add_case + 54 update_case + 3
+> retire-candidates pending ruling]. **NO TestRail writes.** Supersedes the pre-VIU
+> §0.0m narrative. See §0.0n.)
+> — prior 2026-07-22 (§0.0m: **SV-8479 / SV-8480 AUTHORING + RECONCILIATION
 > CONSOLIDATED & COMMITTED** — 18 net-new cases authored [VIU-Pending, added to id-map with
 > BLANK C-ids, pending `add_case`] + 54 existing cases edited [pending `update_case`] + 9
 > SV-8479 dups dropped + 3 retire-candidates flagged awaiting user ruling [FD-LABOR-003,
@@ -180,7 +190,53 @@ This section is the complete snapshot: current tally, the applied Round-2 action
 everything else open, and the ordered resume checklist. The rest of this doc holds the
 standing detail. **NO TestRail catch-up is outstanding** — all authored wording is live.
 
-### 0.0m SV-8479 / SV-8480 AUTHORING + RECONCILIATION — CONSOLIDATED & COMMITTED — 2026-07-22 (NEWEST event)
+### 0.0n SV-8479 / SV-8480 / SV-8456 — LIVE STAGING VIU DONE + ADVERSARIALLY AUDITED CLEAN — 2026-07-22 (NEWEST event; supersedes the pre-VIU §0.0m narrative)
+
+**What happened:** the SV-8479 (fee/discount UI corrections, Story 12) + SV-8480
+(per-line total, S3-R18) + SV-8456 (UI-correction re-VIU) pass was **VERIFIED LIVE on
+`app.staging.shopview.com`** (flags FeesAndDiscounts + PartSales ON) across **4 batches**,
+with per-case evidence captured that run. Statuses are now final. **NO TestRail writes —
+the push is STAGED (see manifest).**
+
+- **Evidence (this run):** `viu-sv8479-8480-2026-07-22/` (wo/ + psale/ batches + calc
+  S3-R18 API JSON: total_cost 392.40 / 384.00 / baseline 330; per-batch `evidence-log.txt`)
+  and `viu-sv8456-2026-07-22/` (SV-8456 re-VIU, evidence refreshed).
+- **Adversarially audited CLEAN (trust-critical, Rule 12/15):** every VIU-Verified flip is
+  evidence-backed and live-observed; the tally reconciles across id-map / import / Blockers
+  Tracker / this doc; no inference passed off as observed.
+- **NEW TALLY — 202 active authored:** **167 VIU-Verified / 13 VIU-Deviation / 21
+  VIU-Blocked-Env / 1 VIU-Pending** (pre-existing FD-PART-005). **+2 dev-authored
+  (FD-PERM-012/013) VIU-Verified** (excluded from import/tracker; in id-map → 204 rows).
+  **FD-CUST-016 retired/excluded.** Of the 18 net-new: 16 VIU-Verified + FD-WO-017
+  (Deviation) + FD-CALC-023 (VIU-Blocked-Env).
+- **Deviations (13) — the two NEW from this pass:**
+  - **FD-WO-017** (item #1 entry point) — the ⋮ "Add Labor/Fee/Discount" entry renders
+    to the **RIGHT** of the technician / "Unassigned" label; spec + Figma want it **LEFT**.
+    Matches the ticket's own **Rejected-from-testing** note. **Deviation.**
+  - **FD-LABOR-003** — same item-#1 entry-point placement; carries the deviation (and is a
+    **retire-candidate** — overlaps FD-WO-017).
+  - Retained pre-existing Deviations **FD-CALC-013 + FD-PROC-008** and Blocked **FD-TMPL-012**
+    were **NOT re-driven** this pass (need dedicated seeding / role-negatives) — statuses stand.
+- **FD-CALC-023 = VIU-Blocked-Env** (status string normalized from "Blocked-Env" →
+  "VIU-Blocked-Env" so generators group it). Needs a dedicated **flag-off org** — toggling
+  the shared staging org off would break concurrent VIU; not inferred.
+- **Sign convention RESOLVED (observed live):** line-level **fee** renders as a bare percent
+  ("20%"); line-level **discount** as "−10%"; on the WO/Part-Sale **card** the percent is
+  **parenthesized** ("(20%)" / "(−10%)").
+- **3 retire-candidates AWAITING USER RULING (not retired, not deleted):** FD-LABOR-003
+  (C28441), FD-PCOL-003 (C28471), FD-PCOL-007 (C28475) — each overlaps a kept new case after
+  rescoping. See the decision table "FLAGGED FOR THE MORNING" + the sync manifest.
+- **SV-8456:** re-VIU'd (evidence refreshed) — **wording unchanged → 0 new update_case**.
+- **Deliverables regenerated over 202:** import (202 rows, header byte-identical to
+  filters-v1, 0 VIU / 0 feature-flag words, 0 dup titles, FD-CALC-024 in "API — Calculation
+  contract", no C-id column), Blockers Tracker (167 READY / 13 Deviation / 1 VIU-Pending /
+  21 Env — the 18 net-new no longer appear as VIU-Pending), FreshVIU Results workbook,
+  TestCases workbook. id-map unchanged (204 rows, 186 populated + 18 blank).
+- **TestRail push STAGED, awaiting authorization:** `sv8479-8456-8480/testrail-sync-manifest.md`
+  (STATUS: NOT EXECUTED) = **18 add_case + 54 update_case + 3 retire-candidates (pending
+  separate ruling)**. The 18 add_case will get new C-ids → then re-merge into id-map.
+
+### 0.0m SV-8479 / SV-8480 AUTHORING + RECONCILIATION — CONSOLIDATED & COMMITTED — 2026-07-22 (pre-VIU authoring event; superseded by §0.0n)
 
 **What happened:** the SV-8479 (fee/discount UI corrections, Story 12) + SV-8480
 (per-line total S3-R18) authoring pass was consolidated into the case source and the

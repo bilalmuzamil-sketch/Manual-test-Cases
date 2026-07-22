@@ -179,6 +179,17 @@ process(es) to run before proceeding.
    ACTIVE authored** (184 prior + 18 net-new; +2 dev-authored = 204 in id-map/204-row map),
    of which **18 are NOT-YET-IN-TESTRAIL**. Deliverables regenerated over 202 (import 202
    rows, hygiene clean). Sources: `sv8479-8456-8480/deconfliction-decision-table-2026-07-22.md`.
+   **SV-8479/8480/8456 LIVE STAGING VIU DONE + ADVERSARIALLY AUDITED CLEAN 2026-07-22 (§0.0n —
+   supersedes §0.0m; NO TestRail writes):** 18 net-new + 54 edited verified LIVE on
+   `app.staging.shopview.com` (4 batches; evidence `viu-sv8479-8480-2026-07-22/` +
+   `viu-sv8456-2026-07-22/`). **FINAL TALLY: 202 active authored = 167 VIU-Verified / 13
+   VIU-Deviation / 21 VIU-Blocked-Env / 1 VIU-Pending (FD-PART-005)** (+2 dev-authored
+   FD-PERM-012/013 Verified; FD-CUST-016 retired; 204 in id-map). New Deviations = FD-WO-017 +
+   FD-LABOR-003 (item-#1 ⋮ entry renders RIGHT of "Unassigned", spec wants LEFT — matches ticket
+   Rejected-from-testing); FD-CALC-023 Blocked-Env (needs flag-off org). Sign convention resolved
+   (line fee "20%" / discount "−10%"; card parenthesized). TestRail push **STAGED, NOT executed**
+   (`sv8479-8456-8480/testrail-sync-manifest.md` = 18 add_case + 54 update_case + 3
+   retire-candidates pending ruling). Canonical resume = PROJECT-STATE.md §0.0n.
    **Prior CURRENT TALLY (pre-8479/8480): 151 VIU-Verified / 12 VIU-Deviation / 20 Blocked-Env
    / 1 VIU-Pending (FD-PART-005) = 184 ACTIVE** (185 authored − 1 retired; +2 dev-authored
    reconciled = 186 in-suite; was 152/12/0/20/1 = 185 pre-retire; prior qb 135/15/12/20/1 = 183).

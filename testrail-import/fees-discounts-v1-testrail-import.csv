@@ -381,7 +381,7 @@ Verify the Part Sale Add/Edit fee-or-discount dialog shows the tax-jurisdiction 
 You are on an editable Part Sale (for example an Approved part sale).","1. From a part row's three-dot (⋮) menu choose 'Add Part Fee / Discount' (part line), or from the Part Sale top-right three-dot menu choose 'Add Parts Sale Fee / Discount' (whole sale).
 2. In the fee/discount dialog look directly below the 'Taxable' Yes/No dropdown for a note.
 3. Open an existing part-sale fee/discount's Edit dialog and check the same place.","1. Directly below the Taxable Yes/No dropdown this note is shown: 'Tax treatment varies by jurisdiction — confirm your local requirements before saving.'
-2. The same note shows for both the whole-sale dialog (titled 'New Parts Sale Fee / Discount') and the per-part dialog (titled 'New Part Fee / Discount'); the per-part dialog also shows an 'Applying to: Part — (part number) name' subtitle.
+2. The same note shows for both the whole-sale dialog (titled 'New Parts Sale Fee / Discount') and the per-part dialog (titled 'New Part Fee / Discount'); the per-part dialog also shows an 'Applying To: Line N Part — Part — (part number) name' subtitle.
 3. The same note shows in both the Add and the Edit dialog.
 4. The note is shown only to users with See Financial Data.",S11-R3 / S11-R4a / S11-R4b / §5-R15 | SV-8479 (SV-8288 Story 12 — items 14 & 18),,
 Verify the labor fee/discount entry point is a three-dot menu to the LEFT of the first technician (or 'Unassigned') and reads 'Add Labor Fee / Discount',Work Order — Labor-line Fee/Discount,Functional,High,"1. You are logged in with Work Orders: Create & Edit and See Financial Data.
@@ -405,15 +405,15 @@ Verify the work-order part row three-dot menu item reads 'Add Part Fee / Discoun
 Verify the work order toolbar three-dot menu item reads 'Add Work Order Fee / Discount',Work Order — Whole-WO Fee/Discount,Functional,Medium,"1. You are logged in with Work Orders: Create & Edit and See Financial Data.
 2. An open (not Invoiced, not Paid) work order is open.","1. Open the work order toolbar three-dot (⋯) menu.
 2. Read the menu items and their order.
-3. Click 'Add Work Order Fee / Discount'.","1. The toolbar three-dot menu shows 'Add Work Order Fee / Discount' at the top, then 'Audit Log', 'Timesheets (N)', 'Delete Work Order' (menu order unchanged).
+3. Click 'Add Work Order Fee / Discount'.","1. The toolbar three-dot menu shows the items in order: 'Audit Log', 'Timesheets (N)', 'Add Work Order Fee / Discount', 'Delete Work Order'.
 2. The item reads exactly 'Add Work Order Fee / Discount' (not the old 'Add Fee/Discount').
 3. Clicking it opens the whole-work-order fee/discount dialog.",SV-8479 (SV-8288 Story 12 — item 10: WO toolbar three-dot menu label 'Add Work Order Fee / Discount'),,
 Verify the tax-jurisdiction note and the 'Pass convenience fee to customer' banner still appear after the fee/discount UI updates,Work Order — Whole-WO Fee/Discount,Functional,Medium,"1. You are logged in with See Financial Data plus the rights to add fees/discounts on work orders and part sales.
 2. An open work order and an editable part sale are available.","1. On the work order, open a fee/discount dialog for a labor line, for a part, and for the whole work order.
 2. In each dialog, look directly below the 'Taxable' Yes/No dropdown for the tax-jurisdiction note.
-3. Check that the 'Pass convenience fee to customer' banner still appears where it did before.
+3. Go to the Fees & Discounts Settings page (Settings -> Service -> Fees & Discounts) and check the 'Pass convenience fee to customer' banner still appears.
 4. Repeat on a part sale fee/discount dialog.","1. Below the Taxable Yes/No dropdown, each dialog still shows: 'Tax treatment varies by jurisdiction — confirm your local requirements before saving.'
-2. The 'Pass convenience fee to customer' banner still appears (it was not removed by these UI changes).
+2. The 'Pass convenience fee to customer' banner still appears on the Fees & Discounts Settings page (it was not removed by these UI changes).
 3. Both are present on the work-order and part-sale fee/discount dialogs.",SV-8479 (SV-8288 Story 12 — NOTES regression preserve: tax-jurisdiction note in dialogs + 'Pass convenience fee to customer' banner),,
 "Verify the parts-sale Fees & Discounts column no longer shows the '+ Add' button, and the per-row and top-right three-dot entry points remain",Parts page — 'FEES & DISCOUNTS' column,Functional,Medium,"1. You are logged in with Part Sales: Create and Edit and See Financial Data.
 2. Open Parts → Parts Sales → an editable parts sale that has at least one part row with no fee yet.","1. View the parts table and find the Fees & Discounts column on a part row that has no fee yet.
@@ -773,7 +773,7 @@ Verify a percentage fee/discount works out as base x percent (10% fee on $150.00
 4. In 'Percent %' enter 10.
 5. Save with 'Add Fee'.","1. Base $150.00, rate 10% fee.
 2. The fee works out to $150.00 x 10% = +$15.00 exactly.
-3. It shows '+10%' as plain text and +$15.00 (no colored badge).",§5-R3 | SV-8479 (SV-8288 Story 12 — item 4),,
+3. It shows '10%' as plain text and +$15.00 (no colored badge).",§5-R3 | SV-8479 (SV-8288 Story 12 — item 4),,
 Verify percentage rounding — half a cent or more rounds up (5% discount on $33.33 → −$1.67),Calculation contract,Functional,High,"1. You are signed in with See Financial Data and Work Orders: Create and Edit.
 2. An open work order whose target base is $33.33.","1. Open 'Add Work Order Fee / Discount' against the $33.33 base.
 2. Set Type to 'Discount' and a percentage Calculation Type on that base.
@@ -891,8 +891,8 @@ Verify a work order line total adds the line's own fees to Labor and Parts (Labo
 2. Expand the line and, on the Labor row, add a labor fee named 'ttt' of +20% (a fee, not a discount).
 3. On the Parts row for 'Turbocharger Oil', add a part fee named 'test' of +11%.
 4. Read the fee amounts shown in the rows beneath the line: the labor fee 'ttt' shows +$50.00 and the part fee 'test' shows +$2.20.
-5. Collapse the line and read the line total shown at the top-right of the line header row.","1. The Fees/Discounts row under Labor shows '↳ ttt  +20%' and +$50.00 as plain text — no colored badge or pill.
-2. The part fee row shows '↳ test  +11%' and +$2.20 as plain text — no colored badge or pill.
+5. Collapse the line and read the line total shown at the top-right of the line header row.","1. The Fees/Discounts row under Labor shows '↳ ttt  20%' (a percentage fee shows no sign) and +$50.00 as plain text — no colored badge or pill.
+2. The part fee row shows '↳ test  11%' (a percentage fee shows no sign) and +$2.20 as plain text — no colored badge or pill.
 3. The collapsed line total at the top-right equals Labor + labor fee + Parts + part fee = $250.00 + $50.00 + $20.00 + $2.20 = $322.20.
 4. The line total is NOT $270.00 (it must not leave out the two fees).",SV-8480 (S3-R18),,
 "Verify a discount on a line subtracts from the line total while a fee adds (fees add, discounts subtract in the line total)",Calculation contract,Functional,High,"1. You are signed in with See Financial Data and Work Orders: Create and Edit.
@@ -901,7 +901,7 @@ Verify a work order line total adds the line's own fees to Labor and Parts (Labo
 2. On the Labor row, add a labor fee of +20% (a fee).
 3. On the part row, add a part discount of -10%.
 4. Read the fee and discount amounts shown in the rows beneath the line (the fee shows a plus amount, the discount shows a minus amount).
-5. Collapse the line and read the line total at the top-right of the line header row.","1. The labor fee shows '↳ <name>  +20%' and a plus amount (+$50.00 on $250.00) as plain text — no colored badge or pill.
+5. Collapse the line and read the line total at the top-right of the line header row.","1. The labor fee shows '↳ <name>  20%' (a percentage fee shows no sign) and a plus amount (+$50.00 on $250.00) as plain text — no colored badge or pill.
 2. The part discount shows '↳ <name>  −10%' and a minus amount (−$2.00 on $20.00) as plain text — no colored badge or pill.
 3. The collapsed line total adds the fee and subtracts the discount: Labor $250.00 + fee $50.00 + Part $20.00 - discount $2.00 = $318.00.
 4. Fees increase the line total; discounts reduce it.",SV-8480 (S3-R18),,

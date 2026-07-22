@@ -664,7 +664,7 @@
       "3. The new fee/discount roll-in only applies when the Fees & Discounts feature is on."
     ],
     "design_ref": "SV-8480 QA step 4 (feature-off org → line totals gross-only)",
-    "viu_status": "Blocked-Env",
+    "viu_status": "VIU-Blocked-Env",
     "notes": "SV-8480 QA step 4 / S3-R18: for an organization without the Fees & Discounts feature, line totals stay gross-only (the roll-in is gated by the feature). | LIVE STAGING VIU 2026-07-22: BLOCKED-ENV. The FeesAndDiscounts feature flag is ON at the org level on the SHARED staging org (d55bc308); toggling it OFF org-wide during an unattended run would strip F&D from all users and break concurrent/later VIU batches, and no separate flag-off org is available. Not inferred — needs a dedicated flag-off org/state to verify live.",
     "api_related": false
   },
