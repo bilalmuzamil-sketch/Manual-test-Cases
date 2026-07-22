@@ -469,7 +469,12 @@ process(es) to run before proceeding.
    testrail-import/schedule-v1-testrail-import.csv/.xlsx); TestRail push PENDING
    permission; VIU pending QA branch (ask Epic key + env + process);
    design-reconciliation if Figma arrives; VIN-tooltip spec inconsistency flagged
-   for Branko. Canonical resume doc: build/schedule/PROJECT-STATE.md.** Same rules as all projects:
+   for Branko. Canonical resume doc: build/schedule/PROJECT-STATE.md.
+   IMPORTED TO TESTRAIL 2026-07-21 (group 4254 "Schedule - 2026 (VIU Pending)",
+   child sections 4255–4280, names match 1:1 no variance; id-map 166/166 populated
+   READ-ONLY 2026-07-22, C29925–C30090 contiguous; ⚠️ gen_import.py blanks the
+   id-map C-ids on rerun — re-merge after any rerun, same as Filters); NEXT = VIU
+   at QA branch (ask Epic key + process).** Same rules as all projects:
    reuse shared infra (BUILD-ACCURATE-WORDING-VIU-PROCESS,
    SPEC-RELEVANCE-RECONCILIATION-PROCESS, TESTING-RUNBOOK, harness/TestRail patterns);
    deliverable/import format pure 1:1 with testrail-import/*-testrail-import.csv

@@ -5,7 +5,26 @@
 > (staging/QA access method, harness scripts, TestRail API patterns, the two process
 > docs) across all projects.
 
-## 0. STATUS / WHAT'S LEFT TO DO — read first (Last updated 2026-07-21)
+## 0. STATUS / WHAT'S LEFT TO DO — read first (Last updated 2026-07-22)
+
+**IMPORTED TO TESTRAIL BY THE USER 2026-07-21 — id-map populated 166/166
+(2026-07-22, READ-ONLY GETs, zero TestRail writes).** The user imported
+`testrail-import/schedule-v1-testrail-import.csv` themselves (the Filters
+precedent). Live location: project 1 / suite 1 ("Master"), **group section 4254
+"Schedule - 2026 (VIU Pending)"** (parent 35), containing our **26 child sections
+= ids 4255–4280 in our exact order** (4255 Navigation and Layout … 4280 Edge
+Cases and Responsiveness). **Section names match ours 1:1, byte-identical — NO
+name variance** (no em-dash/hyphen mangling this time; TestRail kept our
+"and"-form titles as authored). Canonical TestRail URL (user-shared 2026-07-22):
+https://shopview.testrail.io/index.php?/suites/view/1&group_by=cases:section_id&group_order=asc&display=compact&display_deleted_cases=0&group_id=4254
+Mapping: fetched 166 cases from sections 4255–4280 (get_sections + get_cases,
+paginated), matched **166/166 by EXACT title+section** against `cases/*.json` —
+0 unmatched, 0 extras; **C-id range C29925–C30090, contiguous**.
+`testrail-id-map.csv` now carries all 166 C-ids.
+**⚠️ id-map-regen GOTCHA (same as Filters):** `gen_import.py` REWRITES
+`testrail-id-map.csv` with BLANK C-ids on every run — after ANY rerun, RE-MERGE
+the C-ids (re-match by exact title+section from TestRail or from a saved copy)
+before committing.
 
 **STATUS: CASES AUTHORED & ADVERSARIALLY REVIEWED CLEAN 2026-07-21 (SPEC-ONLY — no
 designs exist) — 166 cases / 26 sections authored from the v1.0 spec
@@ -27,8 +46,9 @@ ask Branko/dev if API coverage is wanted**. Import READY:
 1:1 with the established format (8 named columns + 2 trailing blanks, header
 byte-identical to the fees-discounts / simple-flow / global-search / filters imports —
 equality check PASSED), 166 rows, VIU-word-free + feature-flag-free, deterministic.
-`testrail-id-map.csv` populated 166/166, blank C-ids. TestRail push PENDING explicit
-user permission (Standing Rule 6). VIU pending the QA branch/env (OQ-3) + Epic key
+`testrail-id-map.csv` populated 166/166 (~~blank C-ids~~ → C-ids filled 2026-07-22,
+see the IMPORTED block above; the push-pending note is SUPERSEDED by the user's own
+import 2026-07-21). VIU pending the QA branch/env (OQ-3) + Epic key
 (OQ-2, ask at VIU). Design reconciliation pending IF Figma ever arrives (OQ-4 — none
 exists today).**
 
@@ -38,11 +58,9 @@ feature-flag/settings status = ⚠️ NOT AVAILABLE — ask the user at VIU.**
 **Figma/design = NONE at the moment (user confirmed 2026-07-21) — SPEC-ONLY project.**
 
 **NOT DONE / NEXT:**
-1. **TestRail push PENDING explicit user permission** — `testrail-id-map.csv` has all
-   166 internal ids with blank C-ids. No TestRail writes without explicit user
-   permission. Alternative: the user imports the CSV themselves — then populate the
-   id-map C-ids READ-ONLY from TestRail (get_cases, no writes), like Filters. After
-   any permitted push: re-merge C-ids into the id-map.
+1. ~~TestRail push/import~~ — **DONE 2026-07-21 via USER IMPORT** (group 4254,
+   sections 4255–4280); id-map populated 166/166 READ-ONLY 2026-07-22
+   (C29925–C30090). Remember the gen_import.py id-map-blanking gotcha above.
 2. **VIU PENDING the QA branch** — ⚠️ when VIU begins, ASK THE USER for: the
    **Epic / Jira key** (OQ-2, do NOT invent), the **QA branch/env +
    feature-flag/settings status** (OQ-3 — VIU + TestRail push both wait on this),
