@@ -308,7 +308,13 @@ The rescued A–C set (80 cases) fully covered Stories 1–6, 8–13 (except S13
 | S18-R5 | SBR-VIS-01 |
 | S18-R6 | SBR-BADGE-03 |
 | S18-R6a | SBR-ROW-04 |
-| S18-R7 (container) + S18-R7.1..R7.6 | SBR-VIS-01 (R7.2 toolbar order also SBR-LOC-01, SBR-UNAS-01; R7.5 also SBR-TOT-01) |
+| S18-R7 (container) | SBR-VIS-01 |
+| S18-R7.1 | SBR-VIS-01 |
+| S18-R7.2 (toolbar control order) | SBR-VIS-01, SBR-LOC-01, SBR-UNAS-01 |
+| S18-R7.3 | SBR-VIS-01 |
+| S18-R7.4 | SBR-VIS-01 |
+| S18-R7.5 | SBR-VIS-01, SBR-TOT-01 |
+| S18-R7.6 | SBR-VIS-01 |
 | S18-R8 (dark mode) | SBR-VIS-02, SBR-BADGE-02 |
 | S18-R9 (accessible names) | SBR-VIS-03 (also SBR-MOB-03) |
 | S18-R10 (keyboard + state exposure) | SBR-VIS-04 |
@@ -415,9 +421,9 @@ The rescued A–C set (80 cases) fully covered Stories 1–6, 8–13 (except S13
 | Deactivation fails (server error) | "Ooooops! An error occured" + request-id caption (120s) | SBR-DEACT-08 |
 
 ## Coverage stats (Standing Rule 17)
-- **Numbered requirement/negative/edge bullets in the spec:** 228 (Stories 1–23; there
+- **Numbered requirement/negative/edge bullets in the spec:** 230 (Stories 1–23; there
   is deliberately no Story 7 — retired numbering, per the spec's §6 numbering note).
-- **Covered:** 228/228 mapped above (100%); all 11 §7 message rows mapped; the §3/§4
+- **Covered:** 230/230 mapped above (100%); all 11 §7 message rows mapped; the §3/§4
   calculation contract mapped; §5 assumptions exercised implicitly (P/S prefixes by
   SBR-TYPE-02; independent staff-active vs toggle flags by SBR-ASGN-04).
 - **Processed:** 127 cases across 23 sections; 0 bullets unmapped.
@@ -426,8 +432,8 @@ The rescued A–C set (80 cases) fully covered Stories 1–6, 8–13 (except S13
 ## Exclusions (with reasons)
 - **Story 7** — does not exist (retired number; the spec's numbering note says gaps are
   deliberate, not dropped content). No case authored.
-- **S5-R5 / S5-R7 / S11-R3 / S13-R5 / S13-E2 / S13-N3a etc. (unused numbers within
-  stories)** — the spec skips these numbers (stable-numbering rule); nothing to cover.
+- **S5-R5 / S5-R7 / S11-R3 / S13-R5 / S13-E2 (unused numbers within stories)** — the
+  spec skips these numbers (stable-numbering rule; gaps deliberate); nothing to cover.
 - **"No on-screen search bar" (§3)** — a pure-absence assertion with no specified UI to
   observe; not authored as its own case (absence of an unspecified control cannot be
   asserted without inventing labels). The chevron-drilldown model it mandates is covered.
@@ -494,7 +500,7 @@ The rescued A–C set (80 cases) fully covered Stories 1–6, 8–13 (except S13
 - **A large (but under-cap) Expanded View PDF is expected, not a defect** — SBR-EXP-15.
 
 ## Completeness statement (Standing Rule 17)
-- In scope: every numbered requirement/negative/edge bullet of Stories 1–23 (228), the
+- In scope: every numbered requirement/negative/edge bullet of Stories 1–23 (230), the
   §3 definitions/key decisions, §4 terminology contract, §5 assumptions, and all 11 §7
   message rows = ALL mapped above.
 - Processed: 127 cases (80 rescued A–C + 47 gap-closing D), 23 sections; 0 bullets unmapped.
