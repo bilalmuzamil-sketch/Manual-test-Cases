@@ -4,18 +4,26 @@
 > snapshot: status, per-report spec inventory, deliverables index, open
 > questions, env/access facts, ordered how-to-resume.
 
-Last updated: **2026-07-22** (CASES AUTHORED 6/6 reports + unified import/id-map
-built; next = adversarial review).
+Last updated: **2026-07-22** (ADVERSARIAL REVIEW DONE — both auditors CLEAN
+after fixes; import REGENERATED post-review; READY FOR USER IMPORT).
 
 ---
 
 ## 0. STATUS
 
-**CASES AUTHORED 2026-07-22 — 515 cases / 6 reports / 89 sections, coverage
-6/6 complete, unified import + id-map READY. NEXT = adversarial review (in
-progress next step) → deliver to user → user imports under the "Report Suite"
-main section → share the group URL → read-only C-id mapping into the id-map.
-Then VIU pending env/Epic.**
+**ADVERSARIAL REVIEW DONE 2026-07-22 — both auditors CLEAN after fixes
+(SBC/SBR/PV: 3 minor doc/note fixes, b410d29; TU/IV clean; WIP: 2 fixes incl.
+one real coverage gap [WIP-TAB-02 no-status-filter expected item + WIP-SORT-03
+reword], 82f1665). Independent bullet counts recorded: SBC 235/235 · SBR
+230/230 · PV 69/69 · TU ~111 · WIP ~119 · IV ~110 — ALL MAPPED. Suite = 515
+cases / 89 sections / 6 reports; import REGENERATED post-review (delta vs
+pre-review CSV = exactly the two WIP rows, nothing else; id-map byte-identical;
+full gate re-passed: 515==515==515, header 5/5 byte-identical, 0 VIU/flag
+words, 0 internal-id leaks, no empty fields, XLSX==CSV, deterministic rerun).
+STATUS = READY FOR USER IMPORT under the "Report Suite" main section → then
+share group URL → read-only C-id mapping → VIU when env/Epic arrive (ask Chris
+Ward: TU S8 video inconsistency + IV export-cap value; Epic key ask-at-VIU;
+designs pending; specs-will-change → Rule-11 reconciliation per update).**
 
 - **Case inventory (515 total, per report / sections):** SBC 99 (18 sections) ·
   SBR 127 (23) · PV 70 (9) · TU 59 (12) · WIP 83 (14) · IV 77 (13). Source:
@@ -258,11 +266,13 @@ sections will be needed mainly for the two nightly-snapshot backend stories
 ## 6. HOW TO RESUME (ordered)
 
 1. Read this file top to bottom (§0 = the definitive current state: 515 cases
-   authored, import + id-map ready).
-2. **Next step = ADVERSARIAL REVIEW** (Rule 15/17: independently re-derive a
-   coverage/wording/format sample vs the specs + coverage docs; fix any
-   defects; state counts) → then deliver to the user.
-3. After review: the USER imports the CSV in TestRail under the "Report Suite"
+   authored + ADVERSARIALLY REVIEWED CLEAN 2026-07-22, import regenerated
+   post-review, ready for user import).
+2. ADVERSARIAL REVIEW: **DONE 2026-07-22** (Rule 15/17) — both auditors CLEAN
+   after fixes (SBC/SBR/PV 3 minor doc/note fixes b410d29; TU/IV clean; WIP 2
+   fixes incl. one real coverage gap 82f1665); independent bullet counts SBC
+   235/235, SBR 230/230, PV 69/69, TU ~111, WIP ~119, IV ~110 — all mapped.
+3. **Next step:** the USER imports the CSV in TestRail under the "Report Suite"
    main section (§0.5 structure; the Section column carries the leaf names) →
    user shares the group URL → READ-ONLY C-id mapping populates
    `testrail-id-map.csv` (515 rows; ⚠️ re-merge C-ids after any gen_import.py

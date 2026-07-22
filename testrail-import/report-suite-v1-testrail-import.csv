@@ -1758,7 +1758,8 @@ Work In Progress appears in the reports navigation under the Performance group,W
 2. You have not visited the report before in this browser (no saved active-tab setting).","1. Open the Work In Progress report.
 2. Read the tab labels from left to right.
 3. Look at which tab is selected when the report loads.","1. Four tabs are shown, labeled in this order: ""Approved - partially completed"", ""Approved - not started"", ""Completed"", and ""Estimates"".
-2. The ""Approved - partially completed"" tab is selected by default on load.",specs/wip-work-in-progress.md Story 1 S1-R2; S1-R3,,
+2. The ""Approved - partially completed"" tab is selected by default on load.
+3. There is NO on-screen status filter — the four tabs take the place of a status filter (the tab a job lands in is derived from its status and whether any work has started).",specs/wip-work-in-progress.md Story 1 S1-R2; S1-R3; §3 Key Decisions (no on-screen status filter),,
 "Each tab label shows the count of work orders in that tab in parentheses, including ""(0)"" for an empty tab",WIP — Tabs,Functional,High,"1. You are signed in to the ShopView App on a desktop browser.
 2. Open work orders exist in at least one tab for the current date range and location (seed ZZAUTOTEST work orders if needed).
 3. At least one tab currently has no work orders.","1. Open the Work In Progress report.
@@ -1943,7 +1944,7 @@ The initial sort is Days Open with the longest-open work order first,WIP — Sor
 2. Sort by Days Open and check the order of the day counts.
 3. Sort by Status and check the order against the displayed labels.
 4. Sort by Asset and check the order against the unit numbers.
-5. Sort by WO #, Customer, and Advisor and check they order as text.","1. Money and numeric columns sort by their underlying numeric value (so $1,100.00 sorts above $900.00 ascending-wise, not alphabetically).
+5. Sort by WO #, Customer, and Advisor and check they order as text.","1. Money and numeric columns sort by their underlying numeric value (so $1,100.00 is treated as more than $900.00, not compared as text).
 2. Days Open sorts by its day count.
 3. Status sorts by its displayed label.
 4. The Asset column sorts by unit number.

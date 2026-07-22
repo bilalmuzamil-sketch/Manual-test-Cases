@@ -514,18 +514,20 @@ process(es) to run before proceeding.
    **CANONICAL STATE DOC (read first for resume):** `build/report-suite/PROJECT-STATE.md`
    — single authoritative snapshot (per-report spec inventory + readiness snapshot,
    TestRail structure, open questions OQ-1..7, how-to-resume).
-   **STATUS: CASES AUTHORED 2026-07-22 — 515 cases / 6 reports / 89 sections**
-   (SBC 99 / SBR 127 / PV 70 / TU 59 / WIP 83 / IV 77; spec-only, all
-   VIU-Pending; coverage 6/6 complete, every bullet mapped in
-   `build/report-suite/coverage-*.md`). **Unified import READY (pure 1:1,
-   header byte-identical 5/5 vs prior imports):
+   **STATUS: CASES AUTHORED + ADVERSARIALLY REVIEWED CLEAN 2026-07-22 — 515
+   cases / 89 sections / 6 reports; import ready; NEXT = user import → C-id
+   map → VIU.** (SBC 99 / SBR 127 / PV 70 / TU 59 / WIP 83 / IV 77; spec-only,
+   all VIU-Pending; coverage 6/6 complete, every bullet mapped in
+   `build/report-suite/coverage-*.md`; review fixes b410d29 + 82f1665, import
+   REGENERATED post-review, full gate re-passed). **Unified import READY (pure
+   1:1, header byte-identical 5/5 vs prior imports):
    `testrail-import/report-suite-v1-testrail-import.csv`/`.xlsx` via
    `build/report-suite/gen_import.py`; id-map 515 rows blank C-ids (⚠️
    gen_import.py rerun blanks C-ids — re-merge, same as Filters/Schedule).
-   NEXT = adversarial review → deliver → user imports under the "Report Suite"
-   main section → share group URL → read-only C-id mapping; then VIU pending
-   env/Epic (ask Chris Ward: TU S8 video inconsistency, IV export cap; Epic key
-   ask-at-VIU; designs pending). No TestRail writes made.** Specs will keep
+   NEXT = user imports under the "Report Suite" main section → share group URL
+   → read-only C-id mapping; then VIU pending env/Epic (ask Chris Ward: TU S8
+   video inconsistency, IV export cap; Epic key ask-at-VIU; designs pending).
+   No TestRail writes made.** Specs will keep
    changing → Rule-11 reconciliation ask per update. Canonical resume doc:
    build/report-suite/PROJECT-STATE.md. Same rules as all projects: reuse shared
    infra (BUILD-ACCURATE-WORDING-VIU-PROCESS, SPEC-RELEVANCE-RECONCILIATION-PROCESS,
