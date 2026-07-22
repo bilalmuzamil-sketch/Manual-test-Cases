@@ -1,0 +1,25 @@
+SV-8456 STAGING LIVE RE-VIU (Batch 4) — 2026-07-22 — raw evidence log
+env: app.staging.shopview.com / api.staging.shopview.com, org d55bc308, flags FeesAndDiscounts+PartSales+QuickBooks ON
+
+ACCESS CHECK: POST /api/quick-login {admin} -> HTTP 200 (session healthy)
+
+UI CORRECTIONS (admin):
+- 01-settings-landing.png: SERVICE nav = Labor Rates, Canned Lines, Fees & Discounts, Asset Types, Inspection Templates; FINANCE nav = Payment Methods only; table cols Name/Type/Calculation Type/Amount/Max Amount/Taxable/Auto-Apply To Work Orders plain-text left-aligned (Yes/No plain, no badges); convenience-fee toggle + info banner present
+- 02-new-dialog.png: New Fee / Discount modal: Type(dropdown)+Calculation Type(dropdown) row > Name > Default Amount > Taxable(Yes/No dropdown) + jur.note "Tax treatment varies by jurisdiction — confirm your local requirements before saving." > Auto-apply checkbox (empty square, q-checkbox not q-toggle) + caption > Description(Optional) > Cancel/Create. structural: q-select=true q-toggle=false q-checkbox=true
+- 03-customer-fd-tab.png: customer 2736f168 tab "Fees & Discounts (3)"; heading "Default Fees & Discounts" + caption; "Add Fee/Discount" btn; table Name/Type/Calculation Type/Amount/Max Amount/Taxable plain-text; NO convenience toggle, NO Auto-Apply column
+- WO card "Work Order Fees & Discounts" above Financial Info: verified Batch 2/3 viu-sv8479-8480-2026-07-22/wo/
+- Part-Sale card above Financial Info: verified Batch 3 viu-sv8479-8480-2026-07-22/psale/
+
+PERMISSION PIVOT (seeded roles, assigned to Tech staff 6fb22c1b tech@shopview.com):
+atoms: settingsService=19dc6140-e9b7-4598-b1b5-77dba8044e3b  settingsFinance=294c543c-17f3-452a-b5e2-f613bd554ef3
+ServiceRole 4c8cd708-668c-479e-941b-4e5edc44b245 = admin42 minus settingsFinance
+FinanceRole e0cb78e9-2df7-4798-84e8-21fa91990d82 = admin42 minus settingsService
+- SVC (change 201, role verified): SVC-settings-nav.png nav has "Fees & Discounts"=true, SERVICE=true FINANCE=false; SVC-fd-route.png /administration/adjustment-templates LOADS, "New Fee / Discount"=true convenience toggle=true
+- FIN (change 201, role verified): FIN-settings-nav.png "Fees & Discounts"=false, SERVICE=false FINANCE=true Payment Methods=true; FIN-fd-route.png /administration/adjustment-templates BOUNCES to /workorders, "New Fee / Discount"=false
+
+RESTORE + CLEANUP:
+- Tech change -> Technician 50bf6a0d = 201; re-login tech role id = 50bf6a0d roleLabel "Technician" MATCH=true
+- DELETE ServiceRole 204; DELETE FinanceRole 204; re-GET org roles -> 0 leftover ZZAUTOTEST SV8456
+- no templates/data saved (modal opened+cancelled); no TestRail writes; no secrets
+
+RESULT: 36/36 SV-8456 cases re-checked. 33 VIU-Verified re-confirmed. 3 retain prior status for own non-SV-8456 reason (not re-driven this pass): FD-CALC-013 VIU-Deviation, FD-PROC-008 VIU-Deviation, FD-TMPL-012 VIU-Blocked-Env. 0 SV-8456 deviations, 0 wording changes.
