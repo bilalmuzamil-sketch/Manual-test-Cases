@@ -112,7 +112,7 @@ Excluded: retired placeholder story — the global-search narrowing moved into S
 | S7-R3 | SBC-TREE-01 |
 | S7-R4 | SBC-TREE-01 |
 | S7-R5 | SBC-TREE-01 |
-| S7-R6 | SBC-CALC-01 (column set/rollup), SBC-TREE-01 |
+| S7-R6 | SBC-CALC-01 (column set/composition), SBC-CALC-05 (summary-row roll-up sums exactly, every financial column), SBC-TREE-01 |
 | S7-R7 | SBC-TREE-12 |
 | S7-R8 | SBC-TREE-13 |
 | S7-R9 | SBC-TREE-13 |
@@ -347,9 +347,14 @@ dedicated report (§2 Out of Scope + §3 Key Decision). No case authored.
 | CSV/PDF/Print starts (no toast, loading state) | — | SBC-EXP-06 / SBC-EXP-12 / SBC-EXP-13 |
 
 ## Coverage stats
-- **Requirement/negative/edge bullets in spec:** 178 numbered bullets (Stories 1–21
-  excl. the two retired placeholder stories) + 9 §7 message rows + §4/§3 calc contract.
-- **Covered:** 178/178 numbered bullets mapped above (100%); all §7 messages mapped;
+- **Requirement/negative/edge bullets in spec:** 235 numbered bullets (Stories 1–21
+  excl. the two retired placeholder stories; independently recounted 2026-07-22 —
+  every `S#-R/N/E` line incl. lettered sub-bullets like S8-R5a/S10-R8c) + 9 §7
+  message rows + §4/§3 calc contract.
+- **Covered:** 235/235 numbered bullets accounted for above (100%): 234 mapped to
+  cases (S11-N1 encoded as the unconditional expectation inside SBC-CALC-06);
+  S20-N1 is the sole encoded-exclusion (spec-declared "no applicable negative",
+  asserted unconditionally in SBC-VIS-01..03). All §7 messages mapped;
   §4 Subtotal/Shop Supplies/Margin/Margin %/Labor Delta contract covered by
   SBC-CALC-01..04; §5 assumptions exercised implicitly by SBC-TYPE-02 (prefixes).
 - **Exclusions (with reasons):** Story 5 (retired placeholder — behavior re-homed to
