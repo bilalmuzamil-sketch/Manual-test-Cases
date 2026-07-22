@@ -1,0 +1,705 @@
+[
+ {
+  "id": "SBC-TREE-01",
+  "area": "SBC — Tree & Rows",
+  "title": "Each customer gets one summary row with its name followed by the invoice count in parentheses",
+  "priority": "Critical",
+  "type": "Functional",
+  "permissions_required": "Sales By Customer report View permission.",
+  "preconditions": [
+   "1. You are on the Sales By Customer report.",
+   "2. A customer has a known number of matching invoices in the current date range (seed ZZAUTOTEST data so the count is predictable)."
+  ],
+  "steps": [
+   "1. Find that customer's row at the top level of the table.",
+   "2. Read the text at the start of the row.",
+   "3. Narrow the date range so fewer of that customer's invoices match, and re-read the count."
+  ],
+  "expected": [
+   "1. The customer occupies exactly one summary row at the top level of the table.",
+   "2. The customer's name is shown at the start of the row, followed by the number of contributing invoices in parentheses — for example, Acme Corp (5).",
+   "3. The count is rendered in color #616161 at font-weight 600, the same font size as the name.",
+   "4. The count reflects the active date range, Product Type, and location — it drops when the range is narrowed; it is not a lifetime count."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbc-sales-by-customer.md Story 7 S7-R1; S7-R2; S7-R3; S7-R4; S7-R5",
+  "viu_status": "VIU-Pending",
+  "notes": "Verify the exact color/weight with browser dev tools at VIU.",
+  "api_related": false
+ },
+ {
+  "id": "SBC-TREE-02",
+  "area": "SBC — Tree & Rows",
+  "title": "A customer with no matching invoices in the current view is not shown",
+  "priority": "High",
+  "type": "Negative",
+  "permissions_required": "Sales By Customer report View permission.",
+  "preconditions": [
+   "1. A customer exists whose invoices all fall OUTSIDE the current date range (seed if needed).",
+   "2. You are on the Sales By Customer report."
+  ],
+  "steps": [
+   "1. Set a date range that contains none of that customer's invoices.",
+   "2. Look for the customer in the table."
+  ],
+  "expected": [
+   "1. The customer is not shown — there are no zero-value placeholder rows."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbc-sales-by-customer.md Story 7 S7-N1",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "SBC-TREE-03",
+  "area": "SBC — Tree & Rows",
+  "title": "Expanding a customer reveals its asset rows with vehicle icon, label, count, rolled-up columns and indentation",
+  "priority": "Critical",
+  "type": "Functional",
+  "permissions_required": "Sales By Customer report View permission.",
+  "preconditions": [
+   "1. A customer in the current view has invoices on at least two different vehicles (seed ZZAUTOTEST work orders on two assets if needed)."
+  ],
+  "steps": [
+   "1. Click the chevron control on that customer's summary row.",
+   "2. Read the rows that appear beneath the summary row."
+  ],
+  "expected": [
+   "1. The customer's asset rows appear beneath the summary row — one row per vehicle the customer's invoices were done on.",
+   "2. Each asset row shows a vehicle icon, the asset label, and the asset's invoice count in parentheses.",
+   "3. Each asset row shows the same financial columns as the customer row, rolled up for that asset.",
+   "4. The Date cell is blank on asset rows.",
+   "5. Asset rows are indented one level under the customer."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbc-sales-by-customer.md Story 8 S8-R1; S8-R2; S8-R5; S8-R5a; S8-R5b; S8-R5c",
+  "viu_status": "VIU-Pending",
+  "notes": "Exact vehicle icon appearance is VIU-confirm (spec pins an icon exists, not its glyph).",
+  "api_related": false
+ },
+ {
+  "id": "SBC-TREE-04",
+  "area": "SBC — Tree & Rows",
+  "title": "Expanding an asset reveals its invoice detail rows with number link, date and per-invoice columns",
+  "priority": "Critical",
+  "type": "Functional",
+  "permissions_required": "Sales By Customer report View permission.",
+  "preconditions": [
+   "1. You have expanded a customer and can see its asset rows."
+  ],
+  "steps": [
+   "1. Click the chevron on an asset row.",
+   "2. Read the invoice detail rows that appear."
+  ],
+  "expected": [
+   "1. The invoice detail rows for that asset appear, indented one level deeper than the asset row.",
+   "2. Each detail row shows the invoice number (as a link), the invoice date, and the per-invoice Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Shop Supplies, Margin, Margin %, and Subtotal.",
+   "3. The invoice date shows in the format \"Mon DD YYYY\" — for example, May 14 2026."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbc-sales-by-customer.md Story 8 S8-R4; S8-R12; S8-R12a; Story 20 S20-R14",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "SBC-TREE-05",
+  "area": "SBC — Tree & Rows",
+  "title": "Invoices group into one asset row per vehicle record, with a snapshot fallback for older invoices with no vehicle id",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Sales By Customer report View permission.",
+  "preconditions": [
+   "1. A customer has two or more invoices on the SAME vehicle record and at least one invoice on a different vehicle (seed ZZAUTOTEST data)."
+  ],
+  "steps": [
+   "1. Expand the customer.",
+   "2. Count the asset rows and compare each asset's invoice count with the invoices you created.",
+   "3. If the environment has an older invoice with no vehicle record linked (only a stored vehicle snapshot), check which asset row it lands under."
+  ],
+  "expected": [
+   "1. Invoices referencing the same vehicle record (same vehicle id) group into ONE asset row — no duplicate rows for the same vehicle.",
+   "2. An older invoice with no vehicle id on file groups by the invoice's own stored vehicle snapshot instead."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbc-sales-by-customer.md Story 8 S8-R3",
+  "viu_status": "VIU-Pending",
+  "notes": "The no-vehicle-id legacy path may need dev-seeded data — mark Blocked-Env with reason if such an invoice cannot be produced (Standing Rule 14 applies first: try to seed).",
+  "api_related": false
+ },
+ {
+  "id": "SBC-TREE-06",
+  "area": "SBC — Tree & Rows",
+  "title": "Asset rows order A to Z case-insensitively with the Parts Sales bucket always last, regardless of column sort",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Sales By Customer report View permission.",
+  "preconditions": [
+   "1. A customer has invoices on at least two vehicles AND at least one no-vehicle invoice (counter/parts sale) in the current view (seed ZZAUTOTEST data)."
+  ],
+  "steps": [
+   "1. Expand the customer and read the asset rows top to bottom.",
+   "2. Click a financial column header to change the table sort, and re-read the asset rows."
+  ],
+  "expected": [
+   "1. The customer's real asset rows are ordered A→Z by their label, case-insensitive.",
+   "2. The no-vehicle work collects under a single row labeled \"Parts Sales,\" always sorted last among that customer's assets.",
+   "3. Changing the column sort does not change the asset order — assets stay A→Z with \"Parts Sales\" last."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbc-sales-by-customer.md Story 8 S8-R6; S8-R6a; Story 10 S10-R6",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "SBC-TREE-07",
+  "area": "SBC — Tree & Rows",
+  "title": "Chevrons toggle closed on a second click and every customer's and asset's expansion is independent",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Sales By Customer report View permission.",
+  "preconditions": [
+   "1. At least two customers with assets are in the current view."
+  ],
+  "steps": [
+   "1. Expand customer A, then expand one of its assets.",
+   "2. Expand customer B.",
+   "3. Click customer A's chevron again.",
+   "4. Check customer B."
+  ],
+  "expected": [
+   "1. Each chevron toggles back to collapsed on a second activation.",
+   "2. Collapsing customer A does not affect customer B's expansion.",
+   "3. Each asset's expansion state is likewise independent."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbc-sales-by-customer.md Story 8 S8-R15",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "SBC-TREE-08",
+  "area": "SBC — Tree & Rows",
+  "title": "Header-row chevron expands or collapses every customer on the current page, with matching icon and tooltip",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Sales By Customer report View permission.",
+  "preconditions": [
+   "1. Several customers are visible on the current page."
+  ],
+  "steps": [
+   "1. Hover the chevron in the table header row and read the tooltip.",
+   "2. Click it and watch the customer rows.",
+   "3. Hover it again and read the tooltip, then click it again."
+  ],
+  "expected": [
+   "1. With at least one visible customer collapsed, the header chevron shows the \"expand\" icon and its tooltip reads \"Expand all.\"",
+   "2. Clicking it expands every customer on the current page in one action — it acts on the currently visible customers only, not the whole result set.",
+   "3. With all visible customers expanded, the icon switches to \"collapse\" and the tooltip reads \"Collapse all\"; clicking collapses them all."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbc-sales-by-customer.md Story 8 S8-R16; S8-R17; S8-R18; S8-R19",
+  "viu_status": "VIU-Pending",
+  "notes": "The bounded lazy-fetch behavior behind expand-all is covered by SBC-API-01.",
+  "api_related": false
+ },
+ {
+  "id": "SBC-TREE-09",
+  "area": "SBC — Tree & Rows",
+  "title": "Any change that reloads customer rows collapses all expansion, but typing in the Customer filter does not",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Sales By Customer report View permission.",
+  "preconditions": [
+   "1. You are on the report with at least one customer expanded down to invoice rows."
+  ],
+  "steps": [
+   "1. With rows expanded, open the Customer filter and TYPE a search query (do not change the selection); watch the expanded rows.",
+   "2. Now change the date range (or Product Type, location, Customer selection, or sort).",
+   "3. Look at the previously expanded rows."
+  ],
+  "expected": [
+   "1. Typing in the Customer filter's type-ahead only narrows the dropdown list — the expanded table rows stay expanded.",
+   "2. A change that re-fetches customer rows (date range, Product Type, location, Customer selection, or sort) collapses all expanded rows."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbc-sales-by-customer.md Story 8 S8-R20; S8-R21",
+  "viu_status": "VIU-Pending",
+  "notes": "Reload clearing expansion (S8-R22) is covered by SBC-PERS-02.",
+  "api_related": false
+ },
+ {
+  "id": "SBC-TREE-10",
+  "area": "SBC — Tree & Rows",
+  "title": "Edge: a single-invoice asset can still be expanded, and a customer with only no-vehicle work shows a single Parts Sales row",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Sales By Customer report View permission.",
+  "preconditions": [
+   "1. Customer A has an asset with exactly one invoice; customer B has ONLY no-vehicle (counter/parts sale) invoices in the current view (seed ZZAUTOTEST data)."
+  ],
+  "steps": [
+   "1. Expand customer A and click the chevron of the single-invoice asset.",
+   "2. Expand customer B and read its asset rows."
+  ],
+  "expected": [
+   "1. The single-invoice asset expands and shows exactly one invoice detail row.",
+   "2. Customer B shows a single \"Parts Sales\" row and no vehicle rows."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbc-sales-by-customer.md Story 8 S8-E1; S8-E2",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "SBC-TREE-11",
+  "area": "SBC — Tree & Rows",
+  "title": "A service (S) invoice with no vehicle also lands in the Parts Sales bucket — absence of a vehicle decides, not the prefix",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Sales By Customer report View permission.",
+  "preconditions": [
+   "1. A customer has an invoice whose number starts with S but whose work order has NO vehicle (seed a ZZAUTOTEST no-vehicle service work order and invoice it, if the app allows)."
+  ],
+  "steps": [
+   "1. Expand that customer.",
+   "2. Find which asset row the S invoice sits under."
+  ],
+  "expected": [
+   "1. The no-vehicle S invoice appears under that customer's \"Parts Sales\" row — the bucket collects work by the ABSENCE of a vehicle, not by the invoice-number prefix."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbc-sales-by-customer.md Story 8 S8-E3",
+  "viu_status": "VIU-Pending",
+  "notes": "If the app cannot produce a no-vehicle service invoice, record the seeding path tried and mark Blocked-Env with reason (Standing Rule 14: attempt seeding first).",
+  "api_related": false
+ },
+ {
+  "id": "SBC-TREE-12",
+  "area": "SBC — Tree & Rows",
+  "title": "Reversed and voided invoices are excluded from every row, count and total under every Product Type",
+  "priority": "Critical",
+  "type": "Negative",
+  "permissions_required": "Sales By Customer report View permission; permission to reverse/void an invoice for seeding.",
+  "preconditions": [
+   "1. A customer has a known set of invoices in the current range, one of which you then reverse (or void) — seed ZZAUTOTEST data and note the totals before and after."
+  ],
+  "steps": [
+   "1. Note the customer's invoice count \"(N)\" and totals with all invoices normal.",
+   "2. Reverse (or void) one of the invoices in the application.",
+   "3. Re-open/refresh the report under \"Parts & Service\" and re-read the count, rows, and totals.",
+   "4. Expand down to invoice rows and look for the reversed invoice."
+  ],
+  "expected": [
+   "1. The reversed/voided invoice never appears as an invoice row.",
+   "2. It is excluded from the customer's \"(N)\" count and from every row total, regardless of the Product Type filter.",
+   "3. The customer/asset totals drop by exactly that invoice's amounts."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbc-sales-by-customer.md Story 7 S7-R7; S7-N2; §3 Key Decisions",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "SBC-TREE-13",
+  "area": "SBC — Tree & Rows",
+  "title": "Every row type renders the same columns in the same order, blank cells keep their position, and summary rows use the specified font weights",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Sales By Customer report View permission.",
+  "preconditions": [
+   "1. You are on the report with a customer expanded down to invoice rows and the totals row visible."
+  ],
+  "steps": [
+   "1. Compare the columns of a customer row, an asset row, an invoice row, and the totals row left to right.",
+   "2. Look at the Date cell on the customer and asset rows.",
+   "3. Inspect the font weights on a customer summary row (dev tools)."
+  ],
+  "expected": [
+   "1. Every row type — customer, asset, invoice, totals — renders the same columns in the same left-to-right order.",
+   "2. A cell with no value for its row (for example the Date cell on a customer or asset row) is left blank and keeps its column position; no value moves into another column.",
+   "3. The Date cell on the customer summary row is blank.",
+   "4. Every cell on a customer summary row uses font-weight 600, except the Subtotal cell which uses font-weight 700."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbc-sales-by-customer.md Story 7 S7-R8; S7-R9; S7-R10; S7-R15; S7-R16",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "SBC-LBL-01",
+  "area": "SBC — Asset Labels",
+  "title": "Asset label = year make model plus the most specific identifier: Unit, then plate, then last 8 of VIN",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Sales By Customer report View permission; ability to edit assets for seeding.",
+  "preconditions": [
+   "1. One customer has four ZZAUTOTEST assets with invoices in range: (a) one with a unit number, (b) one with a plate but no unit, (c) one with only a VIN of 8+ characters, (d) one with only a VIN shorter than 8 characters."
+  ],
+  "steps": [
+   "1. Expand the customer and read each asset row's label."
+  ],
+  "expected": [
+   "1. Every label starts with the vehicle's year, make, and model.",
+   "2. Asset (a) adds \" · Unit {unit}\".",
+   "3. Asset (b) adds \" · {plate}\".",
+   "4. Asset (c) adds \" · VIN …\" followed by the last 8 characters of the VIN.",
+   "5. Asset (d) shows the whole VIN after \" · VIN …\" (shorter than 8).",
+   "6. An asset with none of unit/plate/VIN gets no suffix at all."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbc-sales-by-customer.md Story 8 S8-R7; S8-R8",
+  "viu_status": "VIU-Pending",
+  "notes": "The \" · \" separator and \"VIN …\" prefix are quoted from the spec — VIU-confirm the exact rendered punctuation.",
+  "api_related": false
+ },
+ {
+  "id": "SBC-LBL-02",
+  "area": "SBC — Asset Labels",
+  "title": "An asset with no year, make or model is labeled with the VIN on its own",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Sales By Customer report View permission; ability to edit assets for seeding.",
+  "preconditions": [
+   "1. A ZZAUTOTEST asset exists with a VIN but no year, make, or model, and has an invoice in range."
+  ],
+  "steps": [
+   "1. Expand the owning customer and read that asset row's label."
+  ],
+  "expected": [
+   "1. The label is the VIN on its own (no year/make/model base, no \"VIN …\" suffix form)."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbc-sales-by-customer.md Story 8 S8-R9",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "SBC-LBL-03",
+  "area": "SBC — Asset Labels",
+  "title": "An asset with no year, make, model or VIN is labeled Unknown Asset",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Sales By Customer report View permission; ability to edit assets for seeding.",
+  "preconditions": [
+   "1. A ZZAUTOTEST asset exists with no year, make, model, or VIN, and has an invoice in range (if the app's asset form forces a value, blank the fields as far as it allows)."
+  ],
+  "steps": [
+   "1. Expand the owning customer and read that asset row's label."
+  ],
+  "expected": [
+   "1. The label reads \"Unknown Asset.\""
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbc-sales-by-customer.md Story 8 S8-R10",
+  "viu_status": "VIU-Pending",
+  "notes": "If the asset form will not allow a fully-blank vehicle, record what minimum the form enforces and mark Blocked-Env with reason (after attempting all seeding routes per Standing Rule 14).",
+  "api_related": false
+ },
+ {
+  "id": "SBC-LBL-04",
+  "area": "SBC — Asset Labels",
+  "title": "Two assets producing the same label get stable (#1)/(#2) suffixes that survive reloads",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Sales By Customer report View permission; ability to edit assets for seeding.",
+  "preconditions": [
+   "1. One customer has TWO ZZAUTOTEST assets whose labels come out identical (same year/make/model and same identifier situation), each with an invoice in range."
+  ],
+  "steps": [
+   "1. Expand the customer and read the two asset labels.",
+   "2. Note which asset carries \" (#1)\" and which \" (#2)\".",
+   "3. Reload the page and expand again."
+  ],
+  "expected": [
+   "1. The duplicate labels are suffixed \" (#1)\" and \" (#2)\" (and so on for more duplicates).",
+   "2. The numbering is fixed and repeatable — after a reload the same vehicle keeps the same number."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbc-sales-by-customer.md Story 8 S8-R11",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "SBC-LINK-01",
+  "area": "SBC — Invoice Links & Navigation",
+  "title": "Invoice number opens in the same tab: S invoices to the work order Finance tab, P invoices to the part sale Part Requests tab",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Sales By Customer report View permission plus permission to open the destination invoice.",
+  "preconditions": [
+   "1. You have expanded an asset and can see at least one S invoice and (under another customer/asset if needed) one P invoice."
+  ],
+  "steps": [
+   "1. Click a service (S) invoice number link and note where it opens.",
+   "2. Go back, then click a parts (P) invoice number link and note where it opens."
+  ],
+  "expected": [
+   "1. Each invoice number on a detail row is a clickable link that opens in the SAME browser tab (no new tab).",
+   "2. A service invoice opens the associated work order's Finance tab.",
+   "3. A parts invoice opens the associated part sale's Part Requests tab."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbc-sales-by-customer.md Story 9 S9-R1; S9-R2; S9-R2a; S9-R2b",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "SBC-LINK-02",
+  "area": "SBC — Invoice Links & Navigation",
+  "title": "Browser back from an invoice returns to the report with filters, sort and columns restored and rows collapsed",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Sales By Customer report View permission plus permission to open the destination invoice.",
+  "preconditions": [
+   "1. You are on the report with non-default filters set (for example Last Month + Service only), a non-default sort, and one column hidden.",
+   "2. You have expanded down to an invoice detail row."
+  ],
+  "steps": [
+   "1. Watch the browser address bar, then click an invoice number link.",
+   "2. From the invoice page, press the browser back button.",
+   "3. Check the report's filters, sort, visible columns, and row expansion."
+  ],
+  "expected": [
+   "1. Before navigating, the active date range and Product Type are written to the page link.",
+   "2. Pressing back returns to the report with its filters, sort, and columns restored exactly as set.",
+   "3. Expanded rows are shown collapsed again — expansion is not restored (this is the specified behavior, not a defect)."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbc-sales-by-customer.md Story 9 S9-R3; S9-R4",
+  "viu_status": "VIU-Pending",
+  "notes": "KNOWN-LIMITATION ENCODING: collapsed-on-return is per spec (S9-R4) — do not file expansion loss as a defect.",
+  "api_related": false
+ },
+ {
+  "id": "SBC-LINK-03",
+  "area": "SBC — Invoice Links & Navigation",
+  "title": "Customer name is plain text; the invoice link keeps the primary color with no underline and never turns visited-purple",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Sales By Customer report View permission.",
+  "preconditions": [
+   "1. You have expanded down to invoice detail rows and have already clicked at least one invoice link earlier in the session."
+  ],
+  "steps": [
+   "1. Try clicking the customer NAME on a summary row.",
+   "2. Look at an invoice number link at rest, on hover, and one you have already visited."
+  ],
+  "expected": [
+   "1. The customer name on the summary row is plain text, not a link.",
+   "2. The invoice number link is shown in the application's primary color at rest, on hover, and after it has been clicked.",
+   "3. The link has no underline at rest, on hover, or after it has been clicked.",
+   "4. The link never recolors to the browser's visited-link (purple) color."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbc-sales-by-customer.md Story 9 S9-R5; S9-R6; S9-R7; S9-R8",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "SBC-LINK-04",
+  "area": "SBC — Invoice Links & Navigation",
+  "title": "Clicking an invoice deleted or reversed after the report loaded shows the standard not-found state and back returns",
+  "priority": "Medium",
+  "type": "Negative",
+  "permissions_required": "Sales By Customer report View permission plus permission to reverse/delete an invoice for seeding.",
+  "preconditions": [
+   "1. The report is open with an invoice detail row visible.",
+   "2. In another tab/session, that invoice is deleted or reversed AFTER the report loaded (do not refresh the report)."
+  ],
+  "steps": [
+   "1. Back in the report (unrefreshed), click that invoice's number link.",
+   "2. Read the destination page, then press the browser back button."
+  ],
+  "expected": [
+   "1. The destination page shows the application's standard \"not found\" state.",
+   "2. Pressing back returns you to the report."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbc-sales-by-customer.md Story 9 S9-N1",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "SBC-SORT-01",
+  "area": "SBC — Sorting",
+  "title": "Every column is sortable except the chevron column; text sorts alphabetically and numbers by value",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Sales By Customer report View permission.",
+  "preconditions": [
+   "1. Several customers with differing values are in the current view."
+  ],
+  "steps": [
+   "1. Click each column header in turn (Customer, Date, Inv. Hrs, Labor Invoiced, Labor Margin, Parts Invoiced, Parts Margin, Shop Supplies, Margin, Margin %, Subtotal) and watch the order change.",
+   "2. Try clicking the chevron column's header position.",
+   "3. Compare a text sort (Customer) and a numeric sort (Subtotal) against the values."
+  ],
+  "expected": [
+   "1. Every column is sortable except the chevron column.",
+   "2. Text columns sort alphabetically; numeric columns sort by value (not as text)."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbc-sales-by-customer.md Story 10 S10-R1; S10-R2",
+  "viu_status": "VIU-Pending",
+  "notes": "The header chevron cell carries the expand-all control (S8-R16), not a sort.",
+  "api_related": false
+ },
+ {
+  "id": "SBC-SORT-02",
+  "area": "SBC — Sorting",
+  "title": "Default sort is Customer name ascending case-insensitive; clicking a header replaces it",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Sales By Customer report View permission.",
+  "preconditions": [
+   "1. No saved view exists (first visit or cleared storage).",
+   "2. Customer names with mixed upper/lower-case first letters exist in the view (seed ZZAUTOTEST names like \"acme test\" and \"Best Test\")."
+  ],
+  "steps": [
+   "1. Open the report and read the customer order.",
+   "2. Click the Subtotal header and read the order again."
+  ],
+  "expected": [
+   "1. On first load, rows are ordered by Customer name, ascending, case-insensitive (a lower-case \"acme\" sorts by letter, not after all capitals).",
+   "2. Clicking a column header replaces the default with that column's sort."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbc-sales-by-customer.md Story 10 S10-R4; S10-R7",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "SBC-SORT-03",
+  "area": "SBC — Sorting",
+  "title": "Missing values sort to the bottom ascending and to the top descending; a Margin % em dash counts as missing",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Sales By Customer report View permission.",
+  "preconditions": [
+   "1. At least one customer row shows an em dash (—) in Margin % (Subtotal zero or below — seed a zero-subtotal case if possible) alongside rows with real Margin % values."
+  ],
+  "steps": [
+   "1. Sort by Margin % ascending and note where the em-dash row lands.",
+   "2. Sort by Margin % descending and note it again."
+  ],
+  "expected": [
+   "1. Ascending: the em-dash (missing) row sorts to the bottom.",
+   "2. Descending: the em-dash row sorts to the top."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbc-sales-by-customer.md Story 10 S10-R3",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "SBC-SORT-04",
+  "area": "SBC — Sorting",
+  "title": "Sorting by Date orders customers by their most recent invoice date even though the Date cell is blank on customer rows",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Sales By Customer report View permission.",
+  "preconditions": [
+   "1. Two customers exist whose most recent invoice dates differ clearly (seed ZZAUTOTEST invoices on different dates)."
+  ],
+  "steps": [
+   "1. Click the Date column header.",
+   "2. Compare the customer order with each customer's most recent invoice date (expand to check the invoice dates)."
+  ],
+  "expected": [
+   "1. Customer rows order by each customer's most recent invoice date in the current view.",
+   "2. The Date cells on customer rows stay blank — the sort still works."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbc-sales-by-customer.md Story 10 S10-R5",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "SBC-SORT-05",
+  "area": "SBC — Sorting",
+  "title": "Sorting reorders only the customer summary rows; asset and invoice ordering is untouched",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Sales By Customer report View permission.",
+  "preconditions": [
+   "1. A customer with multiple assets and invoices is in the view."
+  ],
+  "steps": [
+   "1. Sort by Subtotal descending.",
+   "2. Expand a customer and an asset; read the asset order and the invoice order."
+  ],
+  "expected": [
+   "1. Only the customer summary rows are reordered by the sort.",
+   "2. Asset rows keep their own order (A→Z with \"Parts Sales\" last) and invoice rows keep their order under their asset."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbc-sales-by-customer.md Story 10 S10-R6",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "SBC-SORT-06",
+  "area": "SBC — Sorting",
+  "title": "Changing the sort shows the loading state, collapses expanded rows, and can change which customers are on the page",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Sales By Customer report View permission.",
+  "preconditions": [
+   "1. Enough customers exist to fill more than one page of results (seed ZZAUTOTEST customers if needed).",
+   "2. At least one customer is expanded."
+  ],
+  "steps": [
+   "1. Click a column header to change the sort and watch the table.",
+   "2. When the new order arrives, check the previously expanded rows and the set of customers on the page."
+  ],
+  "expected": [
+   "1. While the re-fetch is in flight the table shows the standard loading state; it clears when the re-ordered page arrives.",
+   "2. All previously expanded customer rows are collapsed (assets/invoices re-fetch lazily on the next expand).",
+   "3. The page shows the first page of the newly ordered full set — the customers on the page can change."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbc-sales-by-customer.md Story 10 S10-R8a; S10-R8b; S10-R8c",
+  "viu_status": "VIU-Pending",
+  "notes": "Server-side sorting itself is covered by SBC-API-02. BUILD-DELTA: server-side sort/pagination is the 2026-07-16 committed target (spec ahead of code by design).",
+  "api_related": false
+ },
+ {
+  "id": "SBC-SORT-07",
+  "area": "SBC — Sorting",
+  "title": "With no customer rows the sort headers are still present and produce no visible change",
+  "priority": "Low",
+  "type": "Negative",
+  "permissions_required": "Sales By Customer report View permission.",
+  "preconditions": [
+   "1. The current filters produce no matching customers (the empty state is showing)."
+  ],
+  "steps": [
+   "1. Click several column headers."
+  ],
+  "expected": [
+   "1. The sort controls on the headers are still present.",
+   "2. Clicking them produces no visible change (the empty state remains)."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbc-sales-by-customer.md Story 10 S10-N1",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ }
+]
