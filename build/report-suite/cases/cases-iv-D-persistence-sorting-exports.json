@@ -1,0 +1,450 @@
+[
+  {
+    "id": "IV-PERS-01",
+    "area": "IV — Column Selection & Persistence",
+    "title": "The column-selection icon button (tooltip \"Column Selection\") toggles columns, and Total Cost cannot be turned off",
+    "priority": "High",
+    "type": "Functional",
+    "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
+    "preconditions": [
+      "1. You are signed in to the ShopView App on a desktop browser.",
+      "2. The Inventory Value report is open with rows loaded."
+    ],
+    "steps": [
+      "1. Hover the column-selection icon button in the toolbar and read its tooltip.",
+      "2. Open the control and toggle a column off, then on again, watching the table.",
+      "3. Look for a way to turn the Total Cost column off."
+    ],
+    "expected": [
+      "1. The icon button's tooltip reads \"Column Selection\".",
+      "2. Toggling a column off hides it from the table; toggling it on shows it again.",
+      "3. The Total Cost column is always shown and cannot be turned off."
+    ],
+    "design_ref": "none — design not yet available (spec-only authoring)",
+    "spec_ref": "specs/inventory-value.md Story 8 S8-R1; S8-R2",
+    "viu_status": "VIU-Pending",
+    "notes": "Tooltip text \"Column Selection\" is verbatim from the spec. Column selection is the report's ONLY purely client-side view choice (§3).",
+    "api_related": false
+  },
+  {
+    "id": "IV-PERS-02",
+    "area": "IV — Column Selection & Persistence",
+    "title": "Toggling columns never reorders them — the fixed order is kept with Total Cost always last",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
+    "preconditions": [
+      "1. You are signed in to the ShopView App on a desktop browser.",
+      "2. The Inventory Value report is open with rows loaded."
+    ],
+    "steps": [
+      "1. Turn several columns on and off in different orders (for example, turn on Total Sell, then Margin).",
+      "2. Read the resulting column order after each change."
+    ],
+    "expected": [
+      "1. Whatever columns are shown, they appear in the fixed left-to-right order (Part #, Description, Category, Vendor, Qty on Hand, Unit Cost, Unit Sell, Margin, Margin %, Total Sell, Total Cost) — toggling visibility never reorders columns.",
+      "2. Total Cost is always the last column."
+    ],
+    "design_ref": "none — design not yet available (spec-only authoring)",
+    "spec_ref": "specs/inventory-value.md Story 8 S8-R4; Story 3 S3-R1",
+    "viu_status": "VIU-Pending",
+    "notes": "The default on/off split (Margin and Total Sell off, the rest on — S8-R3) is covered by IV-COL-04.",
+    "api_related": false
+  },
+  {
+    "id": "IV-PERS-03",
+    "area": "IV — Column Selection & Persistence",
+    "title": "The report remembers the date range, category, vendor, part search text, location, columns, and sort per browser and restores them on return",
+    "priority": "High",
+    "type": "Functional",
+    "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
+    "preconditions": [
+      "1. You are signed in to the ShopView App on a desktop browser.",
+      "2. The Inventory Value report is open."
+    ],
+    "steps": [
+      "1. Change the date range, select a category and a vendor, type a part search, change the location selection, change the column selection, and sort by a non-default column.",
+      "2. Navigate away to another screen, then return to the report.",
+      "3. Reload the browser page and check again.",
+      "4. If practical, open the report in a different browser (or private window) and read its settings."
+    ],
+    "expected": [
+      "1. On return and after a reload, the report restores the saved date range, category selection, vendor selection, part search text, location selection, column selection, and sort.",
+      "2. In a different browser the report shows the defaults instead — persistence is per browser, not tied to the user's account."
+    ],
+    "design_ref": "none — design not yet available (spec-only authoring)",
+    "spec_ref": "specs/inventory-value.md Story 8 S8-R5 (+ context note); Story 9 S9-R5",
+    "viu_status": "VIU-Pending",
+    "notes": "Unlike the reports whose sort resets each visit, this report remembers the user's sort along with the rest of its setup (Story 9 context note).",
+    "api_related": false
+  },
+  {
+    "id": "IV-PERS-04",
+    "area": "IV — Column Selection & Persistence",
+    "title": "Restore is defensive: an invalid saved value falls back to its default, and a saved category or vendor no longer present is dropped",
+    "priority": "Medium",
+    "type": "Negative",
+    "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
+    "preconditions": [
+      "1. You are signed in to the ShopView App on a desktop browser.",
+      "2. The report has saved settings in this browser, including a category or vendor selection that can be made stale (for example, the last in-stock part of a saved category is consumed so the category disappears from the data)."
+    ],
+    "steps": [
+      "1. Make the saved category or vendor no longer present in the data.",
+      "2. Open the Inventory Value report."
+    ],
+    "expected": [
+      "1. The report loads normally — a saved value that is no longer valid falls back to that setting's default rather than breaking the view.",
+      "2. The saved category or vendor no longer present in the data is dropped from the selection.",
+      "3. All other saved settings are still restored."
+    ],
+    "design_ref": "none — design not yet available (spec-only authoring)",
+    "spec_ref": "specs/inventory-value.md Story 8 S8-R6",
+    "viu_status": "VIU-Pending",
+    "notes": "",
+    "api_related": false
+  },
+  {
+    "id": "IV-SORT-01",
+    "area": "IV — Sorting",
+    "title": "On first load and after any reload, rows are sorted by Total Cost, highest first, applied by the server",
+    "priority": "High",
+    "type": "Functional",
+    "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
+    "preconditions": [
+      "1. You are signed in to the ShopView App on a desktop browser that has no saved sort for this report (fresh visit).",
+      "2. In-stock parts with a spread of Total Cost values exist, spanning more than one page."
+    ],
+    "steps": [
+      "1. Open the Inventory Value report without clicking any header.",
+      "2. Read the Total Cost values from the top row down, across page 1 and page 2."
+    ],
+    "expected": [
+      "1. The rows are sorted by Total Cost, highest first (descending).",
+      "2. The order holds across pages (page 2 continues below page 1's lowest value) — the server applies the default order over the full set."
+    ],
+    "design_ref": "none — design not yet available (spec-only authoring)",
+    "spec_ref": "specs/inventory-value.md Story 9 S9-R1; §3 Key Decisions (Total Cost default sort)",
+    "viu_status": "VIU-Pending",
+    "notes": "",
+    "api_related": false
+  },
+  {
+    "id": "IV-SORT-02",
+    "area": "IV — Sorting",
+    "title": "Header clicks sort ascending then descending with no third state, re-fetching from the server and returning the first page",
+    "priority": "High",
+    "type": "Functional",
+    "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
+    "preconditions": [
+      "1. You are signed in to the ShopView App on a desktop browser.",
+      "2. The result set spans more than one page."
+    ],
+    "steps": [
+      "1. From page 2, click the Part # column header and note the order and the page shown.",
+      "2. Click the same header again and note the order.",
+      "3. Click it a third time.",
+      "4. Click a different column header and check whether the previous sort still applies."
+    ],
+    "expected": [
+      "1. Clicking a column that is not the active sort sorts it ascending; clicking the active sort column again toggles it to descending; there is no third \"cleared\" state.",
+      "2. Each header click re-fetches the data from the server ordered by the chosen column and direction, returning the FIRST page of the re-sorted result set.",
+      "3. Only one column sorts at a time."
+    ],
+    "design_ref": "none — design not yet available (spec-only authoring)",
+    "spec_ref": "specs/inventory-value.md Story 9 S9-R2",
+    "viu_status": "VIU-Pending",
+    "notes": "KNOWN-DELTA WATCH: server-side sorting is the 2026-07-21 spec change (per Milan's review). If the build sorts only the loaded page client-side, record it as a build deviation from the current spec.",
+    "api_related": false
+  },
+  {
+    "id": "IV-SORT-03",
+    "area": "IV — Sorting",
+    "title": "Money and numeric columns sort by value; text columns sort as text, case-insensitively",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
+    "preconditions": [
+      "1. You are signed in to the ShopView App on a desktop browser.",
+      "2. In-stock parts exist with money values over and under $1,000 and with text values in mixed letter cases."
+    ],
+    "steps": [
+      "1. Sort by Total Cost and check the order of values like $900.00 vs $1,100.00.",
+      "2. Sort by Qty on Hand and check the numeric order.",
+      "3. Sort by Description (or Vendor) and check how differently-cased values order."
+    ],
+    "expected": [
+      "1. Money and numeric columns sort by their underlying value (so $1,100.00 is treated as more than $900.00, not compared as text).",
+      "2. Text columns (Part #, Description, Category, Vendor) sort as text, case-insensitively (\"apple\" and \"Apple\" sort together)."
+    ],
+    "design_ref": "none — design not yet available (spec-only authoring)",
+    "spec_ref": "specs/inventory-value.md Story 9 S9-R3",
+    "viu_status": "VIU-Pending",
+    "notes": "",
+    "api_related": false
+  },
+  {
+    "id": "IV-SORT-04",
+    "area": "IV — Sorting",
+    "title": "Sorting reorders only the data rows — the totals row stays at the bottom — and the chosen sort is remembered per browser",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
+    "preconditions": [
+      "1. You are signed in to the ShopView App on a desktop browser.",
+      "2. The Inventory Value report is open with rows and a totals row."
+    ],
+    "steps": [
+      "1. Sort by any column and watch the totals row's position.",
+      "2. Sort by a non-default column, leave the report, and return."
+    ],
+    "expected": [
+      "1. Sorting reorders the data rows only; the totals row stays at the bottom.",
+      "2. On return, the report restores the chosen sort (remembered per browser, Story 8)."
+    ],
+    "design_ref": "none — design not yet available (spec-only authoring)",
+    "spec_ref": "specs/inventory-value.md Story 9 S9-R4; S9-R5",
+    "viu_status": "VIU-Pending",
+    "notes": "",
+    "api_related": false
+  },
+  {
+    "id": "IV-EXP-01",
+    "area": "IV — Exports",
+    "title": "A three-dot toolbar menu holds \"Download (PDF)\" and \"Download (CSV)\"",
+    "priority": "High",
+    "type": "Functional",
+    "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
+    "preconditions": [
+      "1. You are signed in to the ShopView App on a desktop browser.",
+      "2. The Inventory Value report is open with rows loaded."
+    ],
+    "steps": [
+      "1. Find and open the three-dot button in the toolbar.",
+      "2. Read the menu options.",
+      "3. Choose \"Download (PDF)\", then repeat with \"Download (CSV)\"."
+    ],
+    "expected": [
+      "1. The menu holds an option labeled \"Download (PDF)\" and an option labeled \"Download (CSV)\".",
+      "2. Each option downloads a file of the current view in the chosen format."
+    ],
+    "design_ref": "none — design not yet available (spec-only authoring)",
+    "spec_ref": "specs/inventory-value.md Story 10 S10-R1; S10-R2",
+    "viu_status": "VIU-Pending",
+    "notes": "Menu option labels are verbatim from the spec.",
+    "api_related": false
+  },
+  {
+    "id": "IV-EXP-02",
+    "area": "IV — Exports",
+    "title": "Downloads contain the shown columns in screen order (Total Cost last), honor all filters and the sort, and include a \"Totals\" row matching the full-set totals",
+    "priority": "Critical",
+    "type": "Functional",
+    "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
+    "preconditions": [
+      "1. You are signed in to the ShopView App on a desktop browser.",
+      "2. The report is open with a non-default column selection, a Category or Vendor filter, a part search, and a non-default sort applied."
+    ],
+    "steps": [
+      "1. Download the current view as a CSV and open it.",
+      "2. Compare its columns and their order to the screen.",
+      "3. Compare its rows to the current filters, search, and sort.",
+      "4. Compare its totals row to the on-screen totals row.",
+      "5. Repeat the checks in the PDF."
+    ],
+    "expected": [
+      "1. Both downloads include only the columns currently shown, in the same left-to-right order as the screen, with Total Cost last.",
+      "2. Both downloads honor the current date, category, vendor, location, and part-search filters, and apply the current sort.",
+      "3. Both downloads include a totals row labeled \"Totals\" matching the on-screen totals (the full-filtered-set totals)."
+    ],
+    "design_ref": "none — design not yet available (spec-only authoring)",
+    "spec_ref": "specs/inventory-value.md Story 10 S10-R3; S10-R4; S10-R5; S10-R6",
+    "viu_status": "VIU-Pending",
+    "notes": "Note the on-screen totals row is labeled \"Total\" (S4-R1) while the export totals row is labeled \"Totals\" (S10-R6) — both verbatim in the spec; VIU-confirm.",
+    "api_related": false
+  },
+  {
+    "id": "IV-EXP-03",
+    "area": "IV — Exports",
+    "title": "Export number formats: two-decimal money, one-decimal Margin % (\"—\" when undefined); CSV money as plain numbers, PDF with on-screen currency formatting",
+    "priority": "High",
+    "type": "Functional",
+    "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
+    "preconditions": [
+      "1. You are signed in to the ShopView App on a desktop browser.",
+      "2. The current view includes money values over $1,000 and, if producible, a part whose Margin % is undefined (\"—\")."
+    ],
+    "steps": [
+      "1. Download the CSV and open it in a plain-text editor; read the money and Margin % values.",
+      "2. Download the PDF and read the same values."
+    ],
+    "expected": [
+      "1. Money uses two decimals and Margin % one decimal in both files; an undefined Margin % shows \"—\".",
+      "2. In the CSV, money values are written as plain numbers with two decimals and NO thousands separators (so they parse cleanly in a spreadsheet).",
+      "3. The PDF uses the same on-screen currency formatting with the \"$\" and thousands separators."
+    ],
+    "design_ref": "none — design not yet available (spec-only authoring)",
+    "spec_ref": "specs/inventory-value.md Story 10 S10-R7 (+ context note)",
+    "viu_status": "VIU-Pending",
+    "notes": "",
+    "api_related": false
+  },
+  {
+    "id": "IV-EXP-04",
+    "area": "IV — Exports",
+    "title": "The PDF header shows the report name, organization, selected period, and an \"as of\" line; the shop logo shows when set and the CSV never has one",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
+    "preconditions": [
+      "1. You are signed in to the ShopView App on a desktop browser.",
+      "2. The shop has a logo set in its settings.",
+      "3. The report is open on a view whose displayed day is known (live today, or a recorded past day)."
+    ],
+    "steps": [
+      "1. Download the PDF and read its header.",
+      "2. Look at the top of the PDF for the shop logo.",
+      "3. Download the CSV and inspect it for a logo.",
+      "4. If reachable, repeat the PDF download on a period with no available snapshot and read the header's as-of line."
+    ],
+    "expected": [
+      "1. The PDF header shows the report name \"Inventory Value\", the organization name, the selected period, and an \"as of\" line naming the day the values represent (or a message that no snapshot is available for the period).",
+      "2. The PDF shows the shop logo at the top when one is set.",
+      "3. The CSV never includes a logo."
+    ],
+    "design_ref": "none — design not yet available (spec-only authoring)",
+    "spec_ref": "specs/inventory-value.md Story 10 S10-R8; S10-R9",
+    "viu_status": "VIU-Pending",
+    "notes": "VIU-confirm the exact wording of the header's as-of line and the no-snapshot message (unpinned).",
+    "api_related": false
+  },
+  {
+    "id": "IV-EXP-05",
+    "area": "IV — Exports",
+    "title": "The downloaded files are named \"inventory-value-report.pdf\" and \"inventory-value-report.csv\"",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
+    "preconditions": [
+      "1. You are signed in to the ShopView App on a desktop browser.",
+      "2. The Inventory Value report is open with rows loaded."
+    ],
+    "steps": [
+      "1. Download the current view as a PDF and read the saved file's name.",
+      "2. Download the current view as a CSV and read the saved file's name."
+    ],
+    "expected": [
+      "1. The PDF is named \"inventory-value-report.pdf\".",
+      "2. The CSV is named \"inventory-value-report.csv\"."
+    ],
+    "design_ref": "none — design not yet available (spec-only authoring)",
+    "spec_ref": "specs/inventory-value.md Story 10 S10-R10",
+    "viu_status": "VIU-Pending",
+    "notes": "",
+    "api_related": false
+  },
+  {
+    "id": "IV-EXP-06",
+    "area": "IV — Exports",
+    "title": "Exports are generated server-side over the full filtered set — rows beyond the loaded page are included",
+    "priority": "Critical",
+    "type": "Functional",
+    "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
+    "preconditions": [
+      "1. You are signed in to the ShopView App on a desktop browser.",
+      "2. The current filtered set spans more than one page (but stays under the export row cap)."
+    ],
+    "steps": [
+      "1. From page 1, without visiting the later pages, download the CSV.",
+      "2. Count the file's data rows and look for parts you know sit on the later pages.",
+      "3. Compare the file's totals row to the on-screen totals."
+    ],
+    "expected": [
+      "1. The export contains the FULL filtered set — every qualifying row across all pages, not only the rows loaded in the browser.",
+      "2. Parts from the later pages are present.",
+      "3. The export is generated server-side against the current filters, part search, and sort — it is not built from the rows currently in the browser."
+    ],
+    "design_ref": "none — design not yet available (spec-only authoring)",
+    "spec_ref": "specs/inventory-value.md Story 10 S10-R11",
+    "viu_status": "VIU-Pending",
+    "notes": "",
+    "api_related": false
+  },
+  {
+    "id": "IV-EXP-07",
+    "area": "IV — Exports",
+    "title": "An over-cap filtered set produces no file and shows the too-large-to-export message (exact cap value pending owner confirmation)",
+    "priority": "High",
+    "type": "Negative",
+    "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
+    "preconditions": [
+      "1. You are signed in to the ShopView App on a desktop browser.",
+      "2. A filter/location combination exists whose filtered set EXCEEDS the export row cap (seed ZZAUTOTEST parts in bulk if needed, or use the largest available data set)."
+    ],
+    "steps": [
+      "1. Set the filters so the filtered set exceeds the export row cap.",
+      "2. Request \"Download (PDF)\" and read what happens.",
+      "3. Request \"Download (CSV)\" and read what happens."
+    ],
+    "expected": [
+      "1. Neither the PDF nor the CSV is produced.",
+      "2. The user sees the message: \"This report is too large to export. Narrow the date range or filters, then try again.\" (a blocking notification; no file).",
+      "3. After narrowing the filters below the cap, the download works again."
+    ],
+    "design_ref": "none — design not yet available (spec-only authoring)",
+    "spec_ref": "specs/inventory-value.md Story 10 S10-R12; §7 User Feedback Summary",
+    "viu_status": "VIU-Pending",
+    "notes": "OPEN QUESTION / VIU-CONFIRM: the spec's 10,000-row cap is a PROPOSED default — the spec itself says to confirm the exact suite-standard value with the owner before dev. Do NOT assert a specific number when executing; verify the capped BEHAVIOR and the verbatim message, and record the actual cap value observed for the owner.",
+    "api_related": false
+  },
+  {
+    "id": "IV-EXP-08",
+    "area": "IV — Exports",
+    "title": "A successful download shows the format-specific success notification, verbatim",
+    "priority": "Medium",
+    "type": "Functional",
+    "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
+    "preconditions": [
+      "1. You are signed in to the ShopView App on a desktop browser.",
+      "2. The Inventory Value report is open with rows loaded (under the export cap)."
+    ],
+    "steps": [
+      "1. Download the PDF and read the notification.",
+      "2. Download the CSV and read the notification."
+    ],
+    "expected": [
+      "1. The PDF download shows a success notification: \"Inventory Value report exported (PDF)\".",
+      "2. The CSV download shows a success notification: \"Inventory Value report exported (CSV)\"."
+    ],
+    "design_ref": "none — design not yet available (spec-only authoring)",
+    "spec_ref": "specs/inventory-value.md Story 10 S10-R13; §7 User Feedback Summary",
+    "viu_status": "VIU-Pending",
+    "notes": "Notification texts are verbatim from the spec.",
+    "api_related": false
+  },
+  {
+    "id": "IV-EXP-09",
+    "area": "IV — Exports",
+    "title": "A failed download shows the format-specific error notification, verbatim",
+    "priority": "Medium",
+    "type": "Negative",
+    "permissions_required": "A role with the existing inventory-reports permission (Story 1 prerequisite).",
+    "preconditions": [
+      "1. You are signed in to the ShopView App on a desktop browser.",
+      "2. A download failure can be simulated (for example, disconnect the network just before requesting the download)."
+    ],
+    "steps": [
+      "1. Simulate a failure and request the PDF download; read the notification.",
+      "2. Repeat for the CSV download."
+    ],
+    "expected": [
+      "1. The failed PDF download shows an error notification: \"Failed to export inventory value report (pdf)\".",
+      "2. The failed CSV download shows an error notification: \"Failed to export inventory value report (csv)\"."
+    ],
+    "design_ref": "none — design not yet available (spec-only authoring)",
+    "spec_ref": "specs/inventory-value.md Story 10 S10-R14; §7 User Feedback Summary",
+    "viu_status": "VIU-Pending",
+    "notes": "Notification texts are verbatim from the spec (note the lower-case \"(pdf)\"/\"(csv)\" in the failure messages vs the upper-case success ones).",
+    "api_related": false
+  }
+]

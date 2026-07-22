@@ -1,0 +1,549 @@
+[
+ {
+  "id": "SBR-NAV-01",
+  "area": "SBR — Access & Navigation",
+  "title": "Sales By Representative appears at the bottom of the Performance group and opens the report",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "A user who can see the reports in the Performance group of the Reports navigation.",
+  "preconditions": [
+   "1. You are signed in to the ShopView App on a desktop browser.",
+   "2. You can see the other reports in the Performance group.",
+   "3. You know (or note down) the current order of the Reports navigation entries before checking."
+  ],
+  "steps": [
+   "1. Open the Reports area and read the Performance group of the left-side navigation top to bottom.",
+   "2. Compare the rest of the navigation entries with their order before this report was added.",
+   "3. Click the \"Sales By Representative\" entry."
+  ],
+  "expected": [
+   "1. \"Sales By Representative\" appears in the Performance group, at the BOTTOM of the group — the label is the full word \"Representative,\" not a \"Rep\" shorthand.",
+   "2. The addition is additive: no existing entry is moved, replaced, or reordered, and the relative order of every other navigation entry is unchanged.",
+   "3. Selecting the entry opens the report in the main content area."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbr-sales-by-representative.md Story 1 S1-R1; S1-R2; S1-R3; S1-R4",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "SBR-NAV-02",
+  "area": "SBR — Access & Navigation",
+  "title": "Page title and browser tab title read Sales By Representative",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Reports/Performance access.",
+  "preconditions": [
+   "1. You have opened the Sales By Representative report."
+  ],
+  "steps": [
+   "1. Read the page title at the top of the report.",
+   "2. Read the browser tab's title."
+  ],
+  "expected": [
+   "1. The page title reads \"Sales By Representative\".",
+   "2. The browser tab title reads \"Sales By Representative - Report | ShopView\"."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbr-sales-by-representative.md Story 1 S1-R5; S1-R6",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "SBR-NAV-03",
+  "area": "SBR — Access & Navigation",
+  "title": "The navigation entry's padding fits the full Sales By Representative label without crowding or truncation",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Reports/Performance access.",
+  "preconditions": [
+   "1. You are on the Reports navigation with the entry visible."
+  ],
+  "steps": [
+   "1. Look closely at the \"Sales By Representative\" entry's label against the entry's left and right edges.",
+   "2. Compare its padding with the neighbouring entries."
+  ],
+  "expected": [
+   "1. The full \"Sales By Representative\" label renders without crowding against the entry's edges and without truncation.",
+   "2. The label is not shortened to fit — the fix is the entry's horizontal padding, not the name."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbr-sales-by-representative.md Story 1 S1-R7; §1 naming note",
+  "viu_status": "VIU-Pending",
+  "notes": "The spec's §1 naming note says the longer label currently renders with tight padding — this case verifies the required layout adjustment shipped.",
+  "api_related": false
+ },
+ {
+  "id": "SBR-PERM-01",
+  "area": "SBR — Permissions",
+  "title": "Every user who can see any other Performance report also sees Sales By Representative",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "A role that can see at least one other report in the Performance group.",
+  "preconditions": [
+   "1. A test user exists whose role can see another Performance-group report (create/assign a ZZAUTOTEST role if needed; restore afterwards).",
+   "2. You are signed in as that user."
+  ],
+  "steps": [
+   "1. Open the Reports navigation and read the Performance group."
+  ],
+  "expected": [
+   "1. \"Sales By Representative\" appears in the Performance group for this user — the entry is visible to every user who can see any other report in the same group."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbr-sales-by-representative.md Story 1 S1-R1",
+  "viu_status": "VIU-Pending",
+  "notes": "Unlike SBC (dedicated per-report permission), SBR is gated at the Performance-group level per the spec — the exact permission mechanics are VIU-confirm.",
+  "api_related": false
+ },
+ {
+  "id": "SBR-PERM-02",
+  "area": "SBR — Permissions",
+  "title": "A user without Reports access sees no Reports navigation, no export menu, and cannot reach the Export Reports dialog",
+  "priority": "High",
+  "type": "Negative",
+  "permissions_required": "A role WITHOUT permission to access Reports.",
+  "preconditions": [
+   "1. A test user exists whose role has no Reports access (use/create a ZZAUTOTEST role; restore afterwards).",
+   "2. You are signed in as that user."
+  ],
+  "steps": [
+   "1. Look for the Reports navigation.",
+   "2. Try to open the report by direct link (address copied from a permitted session).",
+   "3. Try to reach the Export Reports dialog."
+  ],
+  "expected": [
+   "1. The entire Reports navigation — including the \"Sales By Representative\" entry — is not shown.",
+   "2. The report (and its ⋯ export menu) is not reachable.",
+   "3. The Export Reports dialog and the Sales Rep Assignments download are not reachable."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbr-sales-by-representative.md Story 1 S1-N1; Story 14 S14-N3; Story 15 S15-N1",
+  "viu_status": "VIU-Pending",
+  "notes": "The direct-link blocked behavior is not pinned by the spec — VIU-confirm and record it.",
+  "api_related": false
+ },
+ {
+  "id": "SBR-PERM-03",
+  "area": "SBR — Permissions",
+  "title": "A user without staff-administration access cannot reach the sales-rep deactivation flow",
+  "priority": "Medium",
+  "type": "Negative",
+  "permissions_required": "A role WITHOUT staff-administration access.",
+  "preconditions": [
+   "1. You are signed in as a user without staff-administration access."
+  ],
+  "steps": [
+   "1. Try to reach staff administration and open a staff member for editing."
+  ],
+  "expected": [
+   "1. The staff-editing surface is not reachable, so the deactivation flow (and its warning dialog) cannot be reached."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbr-sales-by-representative.md Story 13 S13-N1",
+  "viu_status": "VIU-Pending",
+  "notes": "The deactivation flow itself requires the Owner/Administrator/Manager profile (or equivalent custom role) per Story 13 prerequisites.",
+  "api_related": false
+ },
+ {
+  "id": "SBR-DATE-01",
+  "area": "SBR — Date Range Filter",
+  "title": "Date range picker is in the toolbar and offers the standard presets plus Custom",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Reports/Performance access.",
+  "preconditions": [
+   "1. You are on the Sales By Representative report."
+  ],
+  "steps": [
+   "1. Find the date range picker in the report toolbar.",
+   "2. Open it and read the options."
+  ],
+  "expected": [
+   "1. A date range picker is visible in the report toolbar.",
+   "2. The standard presets are offered: Today, Yesterday, This Week, This Month, Last Month, This Year, Last Year, This Quarter, Last Quarter, Custom.",
+   "3. There is no \"All Time\" option (removed by the 2026-07-16 spec round)."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbr-sales-by-representative.md Story 2 S2-R1; S2-R2",
+  "viu_status": "VIU-Pending",
+  "notes": "S2-R2's preset list does not include \"Last Week\" (unlike SBC) — VIU-confirm whether the build shows it; the spec's list is the authored contract.",
+  "api_related": false
+ },
+ {
+  "id": "SBR-DATE-02",
+  "area": "SBR — Date Range Filter",
+  "title": "Custom range uses the date-picker dialog and holds the user to a 366-day maximum span",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Reports/Performance access.",
+  "preconditions": [
+   "1. You are on the Sales By Representative report."
+  ],
+  "steps": [
+   "1. Pick \"Custom\" and select a start and end date within 366 days; apply.",
+   "2. Pick \"Custom\" again and try to select a start-to-end span of more than 366 days (start and end dates inclusive)."
+  ],
+  "expected": [
+   "1. A custom range within the cap applies normally via the date-picker dialog.",
+   "2. A custom selection whose span exceeds 366 days is not accepted — the picker holds you to a range of 366 days or fewer."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbr-sales-by-representative.md Story 2 S2-R3; S2-R6",
+  "viu_status": "VIU-Pending",
+  "notes": "The exact prevention mechanism/wording is not pinned — VIU-confirm.",
+  "api_related": false
+ },
+ {
+  "id": "SBR-DATE-03",
+  "area": "SBR — Date Range Filter",
+  "title": "Date range defaults to This Month and changing it re-fetches the report with a loading indicator",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Reports/Performance access.",
+  "preconditions": [
+   "1. Your browser has no remembered settings for this report (first visit or cleared storage)."
+  ],
+  "steps": [
+   "1. Open the report and read the date range picker.",
+   "2. Change the range to Last Month and watch the table."
+  ],
+  "expected": [
+   "1. On first load the date range defaults to \"This Month.\"",
+   "2. Changing the range re-fetches and re-renders the report; the standard loading indicator (centered spinner over the data area) shows during the fetch."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbr-sales-by-representative.md Story 2 S2-R4; S2-R7; Story 16 S16-R4",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "SBR-DATE-04",
+  "area": "SBR — Date Range Filter",
+  "title": "An invoice is placed in the range by its own invoice date with inclusive endpoints, and the range shows in both PDF headers",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Reports/Performance access.",
+  "preconditions": [
+   "1. ZZAUTOTEST invoices exist dated exactly ON the start date and exactly ON the end date of a custom range, plus one dated just outside it."
+  ],
+  "steps": [
+   "1. Set a custom range whose start and end dates equal those two invoice dates.",
+   "2. Check which invoices appear (expand the owning rep).",
+   "3. Download both PDFs (Summary and Expanded View) and read their header strips."
+  ],
+  "expected": [
+   "1. The invoices dated on the start and end dates are INCLUDED (inclusive endpoints); the invoice outside the range is excluded.",
+   "2. The date used is the invoice's own date — the value shown in the Date column.",
+   "3. The chosen date range is reflected in both PDF exports' header strips."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbr-sales-by-representative.md Story 2 S2-R5; S2-R8; §3",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "SBR-TYPE-01",
+  "area": "SBR — Product Type Filter",
+  "title": "Product Type dropdown offers exactly three options with Parts & Service as the default",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Reports/Performance access.",
+  "preconditions": [
+   "1. You are on the report with no remembered settings."
+  ],
+  "steps": [
+   "1. Find the \"Product Type\" dropdown in the toolbar and read its default value.",
+   "2. Open it and read the options."
+  ],
+  "expected": [
+   "1. A \"Product Type\" dropdown is visible in the toolbar.",
+   "2. It offers exactly three options: \"Parts & Service,\" \"Parts only,\" \"Service only.\"",
+   "3. \"Parts & Service\" is the default on first load."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbr-sales-by-representative.md Story 3 S3-R1; S3-R2; S3-R3",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "SBR-TYPE-02",
+  "area": "SBR — Product Type Filter",
+  "title": "Parts only includes only P invoices, Service only includes only S invoices, and Parts & Service applies no filter",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Reports/Performance access.",
+  "preconditions": [
+   "1. A rep has both a P (parts) and an S (service) invoice in the range (seed ZZAUTOTEST data via the WO Sales Rep field)."
+  ],
+  "steps": [
+   "1. Select \"Parts only,\" expand the rep, and read the invoice numbers.",
+   "2. Select \"Service only\" and read them again.",
+   "3. Select \"Parts & Service.\""
+  ],
+  "expected": [
+   "1. \"Parts only\" includes only invoices whose number starts with P.",
+   "2. \"Service only\" includes only invoices whose number starts with S.",
+   "3. \"Parts & Service\" applies no product-type filter — both appear again.",
+   "4. Each change re-fetches and re-renders the report."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbr-sales-by-representative.md Story 3 S3-R4; S3-R5; S3-R6; S3-R7",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "SBR-TYPE-03",
+  "area": "SBR — Product Type Filter",
+  "title": "Product Type is part of the contributor gate: a rep with no matching invoice disappears and every metric narrows",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Reports/Performance access.",
+  "preconditions": [
+   "1. Rep A has ONLY service invoices in range; rep B has both types (seed ZZAUTOTEST data)."
+  ],
+  "steps": [
+   "1. Select \"Parts only.\"",
+   "2. Look for rep A's row.",
+   "3. Read rep B's (N) count, summary totals, detail rows, and the grand Totals indicator."
+  ],
+  "expected": [
+   "1. Rep A disappears — a rep appears only with at least one matching invoice after this filter.",
+   "2. Rep B's summary totals, invoice detail rows, the grand Totals indicator, and the (N) count all reflect only the matching (P) invoices."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbr-sales-by-representative.md Story 3 S3-R8; S3-N1",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "SBR-STAT-01",
+  "area": "SBR — Invoice Status Filter",
+  "title": "Invoice Status dropdown offers exactly four options with All Statuses as the default",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Reports/Performance access.",
+  "preconditions": [
+   "1. You are on the report with no remembered settings."
+  ],
+  "steps": [
+   "1. Find the \"Invoice Status\" dropdown in the toolbar and read its default value.",
+   "2. Open it and read the options.",
+   "3. Change the selection and watch the table."
+  ],
+  "expected": [
+   "1. An \"Invoice Status\" dropdown is visible in the toolbar.",
+   "2. It offers exactly four options: \"All Statuses,\" \"Unpaid,\" \"Partially Paid,\" \"Paid.\"",
+   "3. \"All Statuses\" is the default on first load.",
+   "4. Changing the selection re-fetches and re-renders the report."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbr-sales-by-representative.md Story 4 S4-R1; S4-R2; S4-R3; S4-R5",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "SBR-STAT-02",
+  "area": "SBR — Invoice Status Filter",
+  "title": "Status filtering matches on the mapped display value: five system states collapse into Paid, Partially Paid and Unpaid",
+  "priority": "Critical",
+  "type": "Functional",
+  "permissions_required": "Reports/Performance access plus ability to take payments for seeding.",
+  "preconditions": [
+   "1. ZZAUTOTEST invoices exist under one rep covering the payment situations: fully paid; overpaid; prepaid with zero balance owed; prepaid with a balance still owed; partially paid; unpaid."
+  ],
+  "steps": [
+   "1. Filter to \"Paid\" and read which invoices appear.",
+   "2. Filter to \"Partially Paid\" and read again.",
+   "3. Filter to \"Unpaid\" and read again."
+  ],
+  "expected": [
+   "1. \"Paid\" includes the paid, the overpaid, AND the prepaid-with-zero-balance invoices.",
+   "2. \"Partially Paid\" includes the partially-paid AND the prepaid-with-a-balance-owed invoices.",
+   "3. \"Unpaid\" includes only the unpaid invoice.",
+   "4. The filter matches on the mapped display value, the same mapping the status badge uses — prepaid is the only state whose display value depends on the balance owed."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbr-sales-by-representative.md Story 4 S4-R4; §3 payment-status mapping",
+  "viu_status": "VIU-Pending",
+  "notes": "The 5→3 mapping is the 2026-07-21 spec round's single source of truth for both the filter and the badge. A zero-total invoice with no payment maps to Unpaid; a negative-total invoice with no balance owed maps to Paid (§3) — seed if producible.",
+  "api_related": false
+ },
+ {
+  "id": "SBR-STAT-03",
+  "area": "SBR — Invoice Status Filter",
+  "title": "Invoice Status is part of the contributor gate and narrows every metric",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Reports/Performance access.",
+  "preconditions": [
+   "1. Rep A has only Paid invoices in range; rep B has a mix (seed ZZAUTOTEST data)."
+  ],
+  "steps": [
+   "1. Filter to \"Unpaid.\"",
+   "2. Look for rep A; read rep B's count, totals, detail rows, and the grand Totals indicator."
+  ],
+  "expected": [
+   "1. Rep A disappears (no matching invoice).",
+   "2. Rep B's summary totals, detail rows, grand Totals, and (N) count reflect only the Unpaid invoices."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbr-sales-by-representative.md Story 4 S4-R6; S4-N1",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "SBR-STAT-04",
+  "area": "SBR — Invoice Status Filter",
+  "title": "Filters compose: only invoices matching ALL active filters contribute anywhere",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Reports/Performance access.",
+  "preconditions": [
+   "1. ZZAUTOTEST invoices exist that each fail exactly one of: date range, product type, invoice status, location — plus one invoice matching all four."
+  ],
+  "steps": [
+   "1. Set all four filters (a range, \"Parts only,\" \"Paid,\" one location).",
+   "2. Read the rep rows, counts, detail rows, and the grand Totals indicator."
+  ],
+  "expected": [
+   "1. Only the invoice matching ALL active filters contributes — every metric reflects the intersection.",
+   "2. A rep appears only if at least one invoice matches all of them.",
+   "3. Each invoice failing any single filter contributes nothing anywhere."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbr-sales-by-representative.md Story 4 S4-R7",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "SBR-STAT-05",
+  "area": "SBR — Invoice Status Filter",
+  "title": "Money columns always show invoiced amounts, never the outstanding balance",
+  "priority": "Medium",
+  "type": "Functional",
+  "permissions_required": "Reports/Performance access.",
+  "preconditions": [
+   "1. A partially-paid ZZAUTOTEST invoice exists with a known full Subtotal and a known partial payment."
+  ],
+  "steps": [
+   "1. Filter to \"Partially Paid,\" expand the owning rep, and read that invoice's money columns."
+  ],
+  "expected": [
+   "1. The invoice shows its FULL invoiced amounts (its full Subtotal) — payments are not netted out.",
+   "2. Filtering to \"Unpaid\" or \"Partially Paid\" changes which invoices are included, never the amounts shown."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbr-sales-by-representative.md Story 4 S4-R8",
+  "viu_status": "VIU-Pending",
+  "notes": "KNOWN-LIMITATION ENCODING: full-invoiced-amount display under a payment filter is by design — do not file 'wrong balance' defects.",
+  "api_related": false
+ },
+ {
+  "id": "SBR-LOC-01",
+  "area": "SBR — Location Filter",
+  "title": "Location filter is the rightmost toolbar control, a multi-select with an All Locations option",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Reports/Performance access; user with access to at least two locations.",
+  "preconditions": [
+   "1. You are on the report as a user with access to two or more locations."
+  ],
+  "steps": [
+   "1. Look at the toolbar controls left to right.",
+   "2. Open the location filter and read its options."
+  ],
+  "expected": [
+   "1. The location filter is the rightmost control in the toolbar.",
+   "2. It is a multi-select listing the locations the user has access to, plus an \"All Locations\" option."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbr-sales-by-representative.md Story 21 S21-R1; Story 18 S18-R7.2",
+  "viu_status": "VIU-Pending",
+  "notes": "Exact capitalisation of \"All Locations\" is VIU-confirm.",
+  "api_related": false
+ },
+ {
+  "id": "SBR-LOC-02",
+  "area": "SBR — Location Filter",
+  "title": "Location filter defaults to the user's currently active location only",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Reports/Performance access; user with access to at least two locations.",
+  "preconditions": [
+   "1. Your browser has no remembered settings for this report.",
+   "2. You are working in a known active location (the application's location switcher)."
+  ],
+  "steps": [
+   "1. Open the report and read the location filter's selection."
+  ],
+  "expected": [
+   "1. The filter defaults to the currently active location only — the default view is scoped to the one location you are working in."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbr-sales-by-representative.md Story 21 S21-R2",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "SBR-LOC-03",
+  "area": "SBR — Location Filter",
+  "title": "Location selection cascades through the contributor gate and never includes an inaccessible location",
+  "priority": "High",
+  "type": "Functional",
+  "permissions_required": "Reports/Performance access; a non-administrator with access to only some locations.",
+  "preconditions": [
+   "1. Rep A has invoices only at location X; rep B at locations X and Y (seed ZZAUTOTEST data).",
+   "2. The signed-in user has access to X and Y but not to a third location Z which also has data."
+  ],
+  "steps": [
+   "1. Select only location Y.",
+   "2. Look for rep A; read rep B's count, totals, and detail rows.",
+   "3. Select \"All Locations\" and check whether any location-Z data appears."
+  ],
+  "expected": [
+   "1. With only Y selected, rep A disappears (no matching invoice at Y); rep B's metrics reflect only Y invoices — an invoice's location is that of its originating work order / parts sale.",
+   "2. Changing the selection re-fetches and re-renders scoped to the chosen set.",
+   "3. \"All Locations\" means all locations the user can access — location Z's data is never included."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbr-sales-by-representative.md Story 21 S21-R3; S21-R4; S21-R5; §3",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ },
+ {
+  "id": "SBR-LOC-04",
+  "area": "SBR — Location Filter",
+  "title": "A single-location user still sees the filter with one selectable location and unchanged behavior",
+  "priority": "Low",
+  "type": "Negative",
+  "permissions_required": "Reports/Performance access; a user with access to exactly one location.",
+  "preconditions": [
+   "1. You are signed in as a user assigned to exactly one location."
+  ],
+  "steps": [
+   "1. Open the report and open the location filter."
+  ],
+  "expected": [
+   "1. The filter is still shown, with one selectable location.",
+   "2. Report behavior is unchanged from single-location use."
+  ],
+  "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
+  "spec_ref": "specs/sbr-sales-by-representative.md Story 21 S21-N1",
+  "viu_status": "VIU-Pending",
+  "notes": "",
+  "api_related": false
+ }
+]
