@@ -480,6 +480,43 @@ process(es) to run before proceeding.
    deliverable/import format pure 1:1 with testrail-import/*-testrail-import.csv
    (Standing Rule 16); no TestRail writes without explicit permission (Standing Rule
    6); per Standing Rule 11 ASK which process(es) to run before any VIU pass.
+7. **Report Suite project** — Reporting suite (ShopView App): ONE project, SIX
+   reports, each with its own spec — (1) SBC Sales By Customer, (2) SBR Sales By
+   Representative, (3) Parts Velocity, (4) Technician Utilization, (5) WIP Work In
+   Progress, (6) Inventory Value.
+   **PO: Chris Ward** (same PO as Fees & Discounts — never mix attributions: Report
+   Suite = Chris Ward; Global Search/Filters/Schedule = Branko; Simple Flow = Milos).
+   **⚠️ Epic/Jira key: NOT AVAILABLE — ASK THE USER when VIU begins** (do NOT invent).
+   **⚠️ Designs: NOT YET AVAILABLE** — spec-only authoring (Rule 9 wording from the
+   spec's verbatim labels, "VIU-confirm" anything unpinned; design-reconciliation
+   later if designs arrive). **Specs WILL keep changing** — run
+   SPEC-RELEVANCE-RECONCILIATION per update (ALWAYS ASK first, Standing Rule 11).
+   **Canonical spec URLs (Confluence, Atlassian-SSO login-walled — reference pointers
+   only, do NOT fetch; content ingested from the exported .doc MHTML files):** all six
+   under https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/
+   — SBC `577634305/SBC+Sales+By+Customer+Report` · SBR
+   `585629698/SBR+Sales+By+Representative+Report` · Parts Velocity
+   `620888066/Parts+Velocity+Report` · Technician Utilization
+   `641400833/Technician+Utilization+Report` · WIP
+   `703660034/WIP+Work+In+Progress+Report` · Inventory Value
+   `720142338/Inventory+Value+Report` (full URLs in each spec file's header +
+   PROJECT-STATE §1).
+   **TestRail structure (user-prescribed):** ONE main section "Report Suite" → a
+   SUBSECTION per report (named after the report) → that report's cases inside;
+   API-content cases in "<Report> — API" sections per Rule 4; import pure 1:1 per
+   Rule 16 (Section column = report name; the user's import creates the parent group).
+   **CANONICAL STATE DOC (read first for resume):** `build/report-suite/PROJECT-STATE.md`
+   — single authoritative snapshot (per-report spec inventory + readiness snapshot,
+   TestRail structure, open questions OQ-1..7, how-to-resume).
+   **STATUS: ONBOARDED 2026-07-22 — ALL 6/6 SPECS INGESTED** (MHTML-decoded, complete
+   verbatim-structured with all tables → `build/report-suite/specs/*.md`; ~863
+   requirement bullets across 83 stories; SBC export = revision `_2`). **AUTHORING
+   UNBLOCKED (user pre-authorized once 6/6 in) but NOT YET STARTED — NEXT = author
+   cases per report** (proposed prefixes SBC-/SBR-/PV-/TU-/WIP-/IV-). No TestRail
+   writes made (id-map header-only). Canonical resume doc:
+   build/report-suite/PROJECT-STATE.md. Same rules as all projects: reuse shared
+   infra (BUILD-ACCURATE-WORDING-VIU-PROCESS, SPEC-RELEVANCE-RECONCILIATION-PROCESS,
+   TESTING-RUNBOOK, harness/TestRail patterns); Standing Rules 6/11/16 apply.
 
 **STANDING RULES (apply to all projects):**
 1. **Never proceed without the complete set of information needed.** If
