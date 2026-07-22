@@ -10,6 +10,12 @@
 >   suite + all deliverables honest to a NEW/UPDATED spec, not just named deltas;
 >   complements the VIU wording process — Standing Rules 9/10/11):
 >   build/SPEC-RELEVANCE-RECONCILIATION-PROCESS.md — **apply to any project WHEN THE USER ASKS.**
+> - Reusable **spec-recheck** method (re-check a feature's TestRail cases against the CURRENT
+>   spec + all Done Jira tickets [newest-wins], live-verify on the build, deliver a SIMPLE
+>   change-list of only the cases needing a change/decision with the driving ticket + Done-status,
+>   then edit only user-approved cases in TestRail): build/SPEC-RECHECK-PROCESS.md — **apply to any
+>   project WHEN THE USER ASKS.** Proven on Custom Roles SV-7388 2026-07-20 ("Vlad's spec-recheck";
+>   deliverable build/custom-roles-run/CustomRoles_SpecRecheck_ChangeList_2026-07-20.xlsx).
 > - Keep the books current: After each task, append ONLY success-proven learnings
 >   (working navigation paths, action recipes, endpoints, the specific unblock that
 >   worked) to build/APP-ACTIONS-PLAYBOOK.md; update build/TESTING-RUNBOOK.md when the
