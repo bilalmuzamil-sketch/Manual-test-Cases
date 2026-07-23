@@ -72,11 +72,7 @@ FEES_DISCOUNTS = {
    "were created); an internal note said newest-first. The case was written to the spec (oldest-first) "
    "— confirm the actual order on staging.",
    "SV-8280","NOT DONE (Open)","DECISION"),
-  ("C30618","Labor-line Fee/Discount",
-   "The 'Add Labor Fee / Discount' label is correct, but the three-dot menu shows to the RIGHT of "
-   "'Unassigned' and should be on the LEFT. A fix is expected (this is why the ticket re-opened) — "
-   "re-check the LEFT position on staging, then update the case.",
-   "SV-8479","DONE","Apply update"),
+  # FD-WO-017 (C30618) IGNORED per user 2026-07-23 — dropped from the change list.
   ("C28489","Customer Fees & Discounts tab",
    "On the customer Fees & Discounts tab the 'add template' dropdown lists the template NAME only "
    "(no Type/Calc/Amount columns), and a Processing Fee shows as 'Fee'. Confirm the accepted display "
@@ -132,11 +128,6 @@ LIVE = {
                   "(clicking expands then reads 'Show less'). The collapse control the spec asks for "
                   "EXISTS — the earlier 'no Show more/less toggle' finding is resolved. Update the "
                   "case to Verified."),
-             "action": "Apply update", "state": "verified"},
- "C30618": {"d": ("LIVE 2026-07-23: on the labor line, 'Unassigned' renders at x≈428 and the "
-                  "'Add labor fee or discount' three-dot menu at x≈502 — i.e. the menu is to "
-                  "the RIGHT of 'Unassigned'; per SV-8479 item-1 it must be on the LEFT. Label is "
-                  "correct; position is still wrong — deviation stands, track the fix."),
              "action": "Apply update", "state": "verified"},
  "C28460": {"d": ("LIVE 2026-07-23: the Statistics tab now shows a 'Fees & Discounts (6)' section "
                   "with PER-ADJUSTMENT rows (columns % and Amount: 'Fee +10% +$46.49', 'Discount', "
