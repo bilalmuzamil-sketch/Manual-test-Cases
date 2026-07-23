@@ -120,3 +120,29 @@ CALC-013(FIXED), TMPL-010, SV-8521(fixed), SV-8520(confirmed defect).
 Still pending (UI menu/dropdown isolation, now reproducible via the workplace unblock next run):
 FD-PROC-008 (processing-fee ⋮ Edit|Remove), FD-WO-013/PERM-002 (permission role-negative),
 FD-CUST-005 dropdown + CUST-006 empty state; SF RCV-05/07, REV-11, UX-04.
+
+## Update — batch 7 (role-testing via switch-user + FD complete)
+- **FD-WO-013 (C28436) + FD-PERM-002 (C28586) — CONFIRMED (FE-only gate).** Via POST /api/switch-user
+  {user_id} impersonated the Sales Representative role (workOrdersCreateAndEdit=FALSE); adding a
+  whole-WO fee returned HTTP 201 → backend does NOT enforce WO Create&Edit for whole-WO adjustment
+  add. Method learned from the Test-Case/Automated-Test-Run session (switch-user impersonation of an
+  existing role holder; never role-swap Tech). Recorded in CLAUDE.md Rule-14 playbook.
+- **FD-CUST-006 (C28490) — CONFIRMED.** All-templates-linked customer's Add-picker shows "No results"
+  (spec wanted "No templates available to add"; PO accepted "No results"). Case is correct.
+- **FD change-list = 13 of 13 rows LIVE-VERIFIED (green).**
+
+## Simple Flow (4 cases) — all are PO-DECISION rows, not build pass/fails
+- SF-RCV-05/07 (C29373/C29375): accepted-cosmetic (vendor-missing group position on the
+  Accept-Delivery surface; won't-fix per prior ruling). WO C bulk-receive shows the two real-vendor
+  groups (123 Cannabis Forestlawn, 4Refuel); vendor-missing group is an Accept-Delivery-surface item.
+  DECISION = confirm keep-as-is.
+- SF-REV-11 (C29396) + SF-UX-04 (C29404): awaiting-Milos PRODUCT DECISIONS (separate 'Reviewed'
+  state; Close/Cancel modal not finalised in design). Build behaviour already documented; the
+  resolution is Milos's ruling, not a build pass/fail — correctly flagged DECISION / waiting on
+  SV-7870 & SV-7710 (both Blocked/not-done).
+
+## FINAL SESSION TALLY
+FD: 13/13 change-list rows live-verified (incl. PROC-009/CALC-013 FIXED, PROC-008 backend 409,
+WO-013/PERM-002 FE-only, SV-8520 confirmed, SV-8521 fixed, TMPL-010/INLINE-003/STATS-002/004 resolved,
+CUST-005/006). SF: 4 rows are PO decisions (2 accepted-cosmetic, 2 awaiting-Milos) — build behaviour
+documented, resolution needs Milos. All env/workplace/role/endpoint unblocks captured permanently.
