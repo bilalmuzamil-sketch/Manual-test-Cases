@@ -144,6 +144,13 @@ LIVE = {
                   "finding no longer holds. Still to confirm: whether each row has a scope hyperlink "
                   "to jump to its item. Update the case to the per-row layout."),
              "action": "Apply update", "state": "verified"},
+ "C28489": {"d": ("LIVE 2026-07-23 (customer 'Default Fees & Discounts' tab): the defaults TABLE "
+                  "shows full columns — Name, Type, Calculation Type, Amount, Max Amount, Taxable — "
+                  "and a Processing Fee displays with Type 'Fee' (e.g. 'Processing Fee | Fee | % of "
+                  "Grand Total | 6%'), confirming the 'shows as Fee' point. Still to confirm: whether "
+                  "the 'Add Fee/Discount' picker DROPDOWN lists name-only vs columns. Update the case "
+                  "to the observed table display."),
+             "action": "Apply update", "state": "verified"},
  "NEW-8521": {"d": ("LIVE 2026-07-23 (WO S9-25393 Finance/Estimate view): part-line adjustments DO "
                     "render as indented child rows under their part — '↳ Name $11.00' and "
                     "'↳ Fee (% of parts) ($2.39)' show under the T-BOLT CLAMP part, exactly like the "
