@@ -141,6 +141,9 @@ def build(proj):
     ws = wb.active; ws.title=f'Change list ({n})'
     ws.append([f"{proj['name']} spec-recheck — cases that need a change or a decision ({n} of {total})."])
     ws['A1'].font=Font(bold=True,size=13)
+    ws.append(["PROVISIONAL — column D 'What needs to change' is pending a fresh LIVE staging check "
+               "(needs current cookies); it will be rewritten to observed build behaviour before sign-off."])
+    ws['A2'].font=Font(bold=True, color='C00000')
     ws.append([proj['omit_note'] + "  Orange rows = waiting on a ticket that is NOT yet done."])
     ws.append([])
     sheet(ws, rows)
@@ -154,6 +157,9 @@ def build(proj):
     wb.save(out + '.xlsx')
     with open(out + '.md','w') as fh:
         fh.write(f"# {proj['name']} spec-recheck — change list ({DATE})\n\n")
+        fh.write("> **PROVISIONAL** — column *What needs to change* is pending a fresh LIVE staging "
+                 "check (needs current cookies); it will be rewritten to observed build behaviour "
+                 "before sign-off.\n\n")
         fh.write(f"{n} of {total} cases need a change or a decision. {proj['omit_note']}\n\n")
         fh.write("**Legend:** Action = *Apply update* (wording/expected fix) or *Decision* (needs you/PO/dev to choose). "
                  "Ticket status shows whether the driving Jira ticket is Done (live status 2026-07-23).\n\n")

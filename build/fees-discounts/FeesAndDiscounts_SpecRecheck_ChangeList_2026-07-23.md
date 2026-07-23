@@ -1,5 +1,7 @@
 # Fees and Discounts spec-recheck — change list (2026-07-23)
 
+> **PROVISIONAL** — column *What needs to change* is pending a fresh LIVE staging check (needs current cookies); it will be rewritten to observed build behaviour before sign-off.
+
 12 of 186 cases need a change or a decision. The other 174 cases need no change (167 Verified, 21 Blocked-on-environment, 1 to re-verify live, 4 retired). Note: the Fees & Discounts V1 stories are still Open in Jira even though the feature is live, so most rows below wait on an open ticket. Nothing pushed to TestRail yet.
 
 **Legend:** Action = *Apply update* (wording/expected fix) or *Decision* (needs you/PO/dev to choose). Ticket status shows whether the driving Jira ticket is Done (live status 2026-07-23).

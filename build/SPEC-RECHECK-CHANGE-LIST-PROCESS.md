@@ -76,11 +76,22 @@ must carry over to every project's change list:
 8c. **Some Decision rows are resolved by the user/PO offline** (*"these 8 test cases I have asked
     you to not touch because I have managed them internally"*). A `Decision` row may come back as
     "handled internally → freeze it"; do not re-touch those.
-9. **Live-verify before proposing (Rules 12/13).** A proposed change the live build contradicts
-   is **withdrawn** — e.g. a spec label-rename the build has not shipped stays build-accurate and
-   is instead flagged as a gap. (On Custom Roles the user said *"41 of the changes are label
-   renames that need a live-build check first — do it then"*; the live check moved several rows
-   from "Apply update" to "Decision"/withdrawn.)
+9. **Live-verify on the build is MANDATORY — column D describes what the build ACTUALLY does, not
+   what a document says (Rules 12/13; NON-SKIPPABLE).** Every "What needs to change" cell must be
+   written from a LIVE observation on staging captured THAT run (screenshot / captured response),
+   in the same voice as the Custom Roles file: *"Permission Summary lists a 3rd cross-cutting
+   toggle 'View History Logs' — the build has only TWO (See Financial Data + View and Manage AP/AR
+   Data). Drop the History toggle."* — i.e. state the current build behaviour, the spec/expected,
+   and the resulting action. A proposed change the live build contradicts is **withdrawn** (a spec
+   label-rename the build hasn't shipped stays build-accurate + is flagged). **This step is NOT
+   optional and must NOT be replaced by documented prior findings, `viu_status`, memory, or
+   inference.** If live access is unavailable (no fresh cookies, env down), **STOP and request
+   what's needed (fresh staging cookies + env/branch + feature-flag state) — do NOT deliver the
+   change list off documented/inferred behaviour and call it done.** (Rationale, 2026-07-23: the
+   first Simple Flow + Fees & Discounts change lists were built from documented findings + Jira
+   status WITHOUT a fresh live build check, and the user rightly rejected them — "checking in the
+   build is part of the process, why did you skip that? Never skip anything." The live build check
+   is a hard gate on this deliverable.)
 10. **Contradiction rule = last-update-wins.** Spec-vs-spec, comment-vs-spec, or
     Sasha-vs-Sasha: the newest statement wins, and the change reflects it.
 11. **Read ALL the Done tickets AND their comments — Stories, Story-defects, AND Bugs — not just
@@ -108,6 +119,9 @@ must carry over to every project's change list:
   - Row 3: blank.
   - Row 4: **header** — `Case ID | TestRail link | Area | What needs to change | Driving ticket | Ticket status | Action`.
   - Rows 5…: one row per action case, sorted by Case ID; **orange fill** on any row whose Ticket status starts with "NOT DONE".
+  - **Column D "What needs to change" is a LIVE-OBSERVED field** — it states how the build is
+    behaving on staging *right now* (observed that run), the spec/expected, and the action; never a
+    paraphrase of a findings doc. This is the column the user pointed to as the standard.
 - **Tab 2 — `Waiting on open tickets`**: same 7-column layout; only the rows whose driving ticket is NOT DONE; header note that they must not be finalised until the ticket ships.
 - Styling: dark-blue header fill + white bold text, wrapped cells, thin borders, frozen header row, column widths ≈ `[9, 40, 20, 72, 20, 22, 14]`.
 - `.md` mirror: a Markdown table of the same columns + a "Highlight — cases waiting on a ticket that is NOT yet done" section.
@@ -169,7 +183,10 @@ action cases (with tickets + Done status from the recheck).
 - **Never write TestRail to build the file** (Rule 6); nothing is finalised on a NOT-DONE ticket.
 - **Cite the driving ticket + Done status on every ticket-driven row**; per-story precision.
 - **Plain layman wording** in the reader-facing cell (Rule 7); C-ID + link on every row (Rule 8).
-- **Live-verify → withdraw** any proposal the build contradicts (Rules 12/13).
+- **Live-build check is a HARD GATE (Rules 12/13):** column D is written from a live staging
+  observation captured that run; withdraw any proposal the build contradicts. If access is missing,
+  STOP and request fresh cookies + env/branch + flags — never substitute documented/inferred
+  behaviour to appear complete.
 - **Honour the do-not-change/freeze list literally** when the edits are later applied.
 - **Human-readable filename** `<Project>_SpecRecheck_ChangeList_<date>.xlsx` (+ `.md`) (Rule 19).
 - **No secrets in git** — cookies/TestRail creds live only under `/tmp`.

@@ -1,5 +1,7 @@
 # Simple Flow spec-recheck — change list (2026-07-23)
 
+> **PROVISIONAL** — column *What needs to change* is pending a fresh LIVE staging check (needs current cookies); it will be rewritten to observed build behaviour before sign-off.
+
 4 of 184 cases need a change or a decision. The other 180 cases need no change (151 Verified, 21 Blocked-on-environment, 4 to re-verify live, 3 retired, plus 4 Create-Purchase-Orders cases deleted from TestRail and ignored per your ruling). Nothing pushed to TestRail yet.
 
 **Legend:** Action = *Apply update* (wording/expected fix) or *Decision* (needs you/PO/dev to choose). Ticket status shows whether the driving Jira ticket is Done (live status 2026-07-23).
