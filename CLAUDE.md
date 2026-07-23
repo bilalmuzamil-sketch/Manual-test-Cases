@@ -116,7 +116,12 @@ process(es) to run before proceeding.
    `viu_status`/`section_id`; NO testrail-id-map.csv — filename = C<id>). Env note:
    staging org is SHARED and **Tech is currently DRIFTED on Technician — reset to Time
    Clock User `a0359055-3dfb-4e9c-9e11-2fbea21585c2` before any negative retest**
-   (old `77b069d1-...` is wrong). **CANONICAL RUN-331 RESUME DOC (for the earlier
+   (old `77b069d1-...` is wrong). **⚠️ TWO-SESSION BASELINE CONFLICT (shared staging org
+   d55bc308, flagged 2026-07-22):** the Fees & Discounts session restored Tech to
+   **Technician** (its expected baseline), while Custom Roles expects Tech reset to **Time
+   Clock User (a0359055)**. Neither session should ASSUME the other's baseline — always
+   re-read Tech's current role before a role-negative run and restore to YOUR project's
+   baseline after. The user was asked to confirm the intended default (PENDING). **CANONICAL RUN-331 RESUME DOC (for the earlier
    run-331 re-test):** `build/custom-roles-run/RUN331-STATE.md` (final tally
    96P/4F/10B/50R/0U). Existing memory: this CLAUDE.md's detail sections,
    `build/TESTING-RUNBOOK.md`, `build/APP-ACTIONS-PLAYBOOK.md`,
@@ -198,7 +203,12 @@ process(es) to run before proceeding.
    FD-PERM-012/013 Verified; FD-CUST-016 retired; 204 in id-map). New Deviations = FD-WO-017 +
    FD-LABOR-003 (item-#1 ⋮ entry renders RIGHT of "Unassigned", spec wants LEFT — matches ticket
    Rejected-from-testing); FD-CALC-023 Blocked-Env (needs flag-off org). Sign convention resolved
-   (line fee "20%" / discount "−10%"; card parenthesized).
+   (line-level fee bare "20%" / discount "−10%" en-dash, plain grey no badge, both Lines-tab
+   inline + Parts F&D column; whole-container CARD parenthesized "(10%)"/"(−5%)"; resolved $
+   signed). SV-8480 S3-R18: WO line Total = Labor(gross)+Parts(gross)+line's own SIGNED
+   fee/discount amounts (display-only; docs print fees/discounts as own rows, no double-count).
+   Durable build facts consolidated in PROJECT-STATE.md "Durable build facts (VIU-confirmed
+   2026-07-22)".
    **AUTHORIZED TESTRAIL SYNC EXECUTED 2026-07-22 (§0.0o — supersedes §0.0n):** user authorized
    the push + retiring the 3. Executed 5 add_section (4377–4381) + 18 add_case (C30618–C30635) +
    3 delete_case (FD-LABOR-003/C28441, FD-PCOL-003/C28471, FD-PCOL-007/C28475 — verified gone) +

@@ -51,6 +51,13 @@ Steps the automated session drives:
 If any step throws (bridge fails, Chromium won't start, the login page markup changed),
 capture a screenshot + the exact error and report — do NOT spin/retry blindly.
 
+**SUCCESS-PROVEN (2026-07-22):** this exact flow LOGGED IN LIVE and ingested the
+SV-8479 / SV-8480 / SV-8456 tickets — headless Chromium via a fresh MITM bridge →
+`id.atlassian.com` two-step (email → **Continue** → password → **Log in**) → 6-digit
+**EMAIL OTP** relayed by the user → authenticated Atlassian session captured →
+`GET /rest/api/3/myself` **200** → REST v3 ingest per §5. Live login is confirmed
+working, not theoretical.
+
 ---
 
 ## 2. Secret handling
@@ -79,9 +86,17 @@ code from the **NEWEST** email works. The winning pattern:
   the classic race that never converges.
 - Codes **expire in a few minutes** — relay and submit fast.
 - The detached poller **survives across orchestrator/worker turns** (it is a background OS
-  process), but it does **NOT** survive a **container restart** — a restart wipes `/tmp`
-  and kills the session, forcing a brand-new login and thus a brand-new code. After a
-  restart, re-establish `/tmp` secrets and start the login fresh (this is expected).
+  process), but the **held browser session + the MITM bridge do NOT survive a container
+  restart** — a restart kills both, so an in-flight OTP challenge cannot be resumed and must
+  be re-driven.
+- **NUANCE (observed 2026-07-22, corrects the older "restart wipes /tmp" note):** `/tmp`
+  FILES can PERSIST across a container restart — this session's authenticated Atlassian
+  session cookies **and** the already-downloaded ticket bundles were still present after a
+  restart, so **re-login was NOT needed** (re-verify with `GET /rest/api/3/myself` → 200 to
+  confirm the cookie is still live). **Do NOT rely on it:** the held session + bridge are
+  gone regardless. So always **RE-CHECK `/tmp` (cookies + bundles) BEFORE re-triggering an
+  OTP** — only start a fresh login (which emails a new code) if the cookie is actually
+  stale/absent. This avoids needlessly burning the user's OTP.
 
 Detach pattern: launch the login script with `run_in_background` (or `nohup … &` inside a
 single bash command) so it outlives the turn; have it write status/screenshots to `/tmp`

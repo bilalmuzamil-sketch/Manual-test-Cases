@@ -155,3 +155,14 @@ or VIU pass:**
 Applying only the named deltas is **not** "reconciled to the new spec." A pass is
 done only when the audit is clean and the deliverables grep-verify with zero stale
 hits.
+
+**DECONFLICTION step (when authoring NEW cases for a ticket IN PARALLEL with a
+reconciliation sweep of the existing suite):** authoring-new and editing-existing
+run against the same behaviors, so they WILL collide. After both are drafted, run
+an explicit per-item **deconfliction**: for each candidate new case, **DROP it** if
+an existing (now-edited) case already asserts the same behavior; **KEEP-new only**
+for a genuine coverage gap or a distinct check. Record every keep/drop in a
+**deconfliction decision table** so the call is auditable. Proven on **F&D SV-8479
+(2026-07-22): 20 candidate new cases → 11 kept / 9 dropped** as duplicates of edited
+cases (`build/fees-discounts/sv8479-8456-8480/deconfliction-decision-table-2026-07-22.md`).
+Skipping this step ships duplicate cases.

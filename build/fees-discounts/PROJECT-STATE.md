@@ -238,6 +238,38 @@ excluded.) Deviation 13→12 (FD-LABOR-003 retired); Verified 167→165 (FD-PCOL
 Deliverables regenerated over 199 (import header byte-identical to filters-v1, 0 VIU/flag words,
 no dup titles, FD-CALC-024 in API section, no C-id column; id-map 201 rows all C-ids populated).
 
+### Durable build facts (VIU-confirmed 2026-07-22) — consolidated from the SV-8479/8480/8456 staging pass
+
+These are directly observed live on `app.staging.shopview.com` and are durable (do not
+re-derive each pass unless a build changes them):
+
+- **Fee/discount SIGN CONVENTION (build fact):**
+  - **LINE level** (Lines-tab inline rows **and** the Parts "Fees & Discounts" column): a
+    percentage **fee** renders as a **bare "20%"** (no plus sign); a **discount** as
+    **"−10%"** (en-dash minus). Plain **grey text, NO badge/pill**.
+  - **WHOLE-container CARD** (Work Order "Work Order Fees & Discounts" card / Part Sale
+    "Parts Sale Fees & Discounts" card): the percent is **PARENTHESIZED**, e.g. **"(10%)"** /
+    **"(−5%)"** (flat = name only, no %).
+  - **Resolved dollar amounts are SIGNED** (+$ for a fee, −$ for a discount) at both levels.
+- **SV-8480 S3-R18 line-total rule (VIU-confirmed):** a WO **line Total** = Labor(gross) +
+  Parts(gross) + **that line's own SIGNED fee/discount amounts** (display-only). Backend
+  per-line `total_cost` carries the signed sum (observed 392.40 / 384.00 vs baseline 330).
+  **Estimate/Invoice documents print fees/discounts as their OWN rows and do NOT fold them
+  into the document line total** → no double-count.
+- **SV-8456 permission pivot (VIU-confirmed, release-critical):** F&D settings are gated by
+  **Settings → Service** (atom `settingsService` 19dc6140), **NOT Finance** (was
+  `settingsFinance` 294c543c). A Service user sees/manages F&D incl. the convenience toggle;
+  a Finance-only user has **no F&D nav item** and `/administration/adjustment-templates`
+  bounces to `/workorders`.
+- **SV-8479 item #1 OPEN DEVIATION (FD-WO-017 = C30618):** the labor Fee/Discount **⋮
+  entry-point renders to the RIGHT of "Unassigned"; spec + Figma require it LEFT.** Matches
+  the ticket's own **Rejected-from-testing** note; the refix was **not shipped as of
+  2026-07-22.** (FD-LABOR-003, now retired/deleted, previously also carried this.)
+- **FD-CALC-023 = VIU-Blocked-Env (not a bug):** flag-off line total = gross-only needs a
+  dedicated **FeesAndDiscounts-flag-OFF org**; the shared staging org d55bc308 has the flag
+  ON org-wide and cannot be toggled off without breaking concurrent VIU. Seed-or-block does
+  not apply — this is a genuine environment (flag-scope) constraint, not inference.
+
 ### 0.0n SV-8479 / SV-8480 / SV-8456 — LIVE STAGING VIU DONE + ADVERSARIALLY AUDITED CLEAN — 2026-07-22 (superseded by §0.0o; the staged manifest is now executed)
 
 **What happened:** the SV-8479 (fee/discount UI corrections, Story 12) + SV-8480
