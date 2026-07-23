@@ -112,6 +112,22 @@ FEES_DISCOUNTS = {
  ],
 }
 
+# Live-build check 2026-07-23 (admin, app.staging.shopview.com, WO S9-25393; evidence in
+# build/fees-discounts/viu-changelist-2026-07-23/). Per-case overrides for column D + action +
+# live state. Cases NOT in this dict were NOT re-verified this run and are flagged pending.
+LIVE = {
+ "C28456": {"d": ("LIVE 2026-07-23: a labor line with 2+ fees/discounts now shows an inline "
+                  "'Fee 10% +$46.49' row PLUS a 'Show 1 more' / 'Show less' collapse-expand toggle "
+                  "(clicking expands then reads 'Show less'). The collapse control the spec asks for "
+                  "EXISTS — the earlier 'no Show more/less toggle' finding is resolved. Update the "
+                  "case to Verified."),
+             "action": "Apply update", "state": "verified"},
+ "C30618": {"d": ("LIVE 2026-07-23: on the labor line, 'Unassigned' renders at x≈428 and the "
+                  "'Add labor fee or discount' three-dot menu at x≈502 — i.e. the menu is to "
+                  "the RIGHT of 'Unassigned'; per SV-8479 item-1 it must be on the LEFT. Label is "
+                  "correct; position is still wrong — deviation stands, track the fix."),
+             "action": "Apply update", "state": "verified"},
+}
 import openpyxl
 from openpyxl.styles import Font, PatternFill, Alignment, Border, Side
 hf = PatternFill('solid', fgColor='1F4E78'); hfont = Font(bold=True, color='FFFFFF')
@@ -120,13 +136,22 @@ warnfill = PatternFill('solid', fgColor='FCE4D6')      # orange = NOT DONE ticke
 thin = Border(*[Side(style='thin', color='D9D9D9')]*4)
 HDR = ['Case ID','TestRail link','Area','What needs to change','Driving ticket','Ticket status','Action']
 
+verifill = PatternFill('solid', fgColor='E2EFDA')      # green = live-verified this run
+
+def dcell(cid, change):
+    if cid in LIVE: return LIVE[cid]["d"]
+    return "⏳ LIVE CHECK PENDING (2026-07-23 run: not yet observed) — prior finding: " + change
+
+def act(cid, action):
+    return LIVE[cid]["action"] if cid in LIVE else action
+
 def sheet(ws, rows):
     ws.append(HDR)
     for c in ws[ws.max_row]: c.fill=hf; c.font=hfont; c.alignment=wrap
     for cid,area,change,tix,status,action in rows:
-        ws.append([cid, LINK.format(cid[1:]), area, change, tix, status, action])
+        ws.append([cid, LINK.format(cid[1:]), area, dcell(cid,change), tix, status, act(cid,action)])
         r = ws[ws.max_row]
-        fill = warnfill if status.startswith('NOT DONE') else None
+        fill = verifill if cid in LIVE else (warnfill if status.startswith('NOT DONE') else None)
         for c in r:
             c.alignment=wrap; c.border=thin
             if fill: c.fill=fill
@@ -141,8 +166,9 @@ def build(proj):
     ws = wb.active; ws.title=f'Change list ({n})'
     ws.append([f"{proj['name']} spec-recheck — cases that need a change or a decision ({n} of {total})."])
     ws['A1'].font=Font(bold=True,size=13)
-    ws.append(["PROVISIONAL — column D 'What needs to change' is pending a fresh LIVE staging check "
-               "(needs current cookies); it will be rewritten to observed build behaviour before sign-off."])
+    nlive = sum(1 for r in rows if r[0] in LIVE)
+    ws.append([f"LIVE-BUILD CHECK 2026-07-23: {nlive} of {n} rows re-verified live on staging (green); "
+               "the rest are flagged '⏳ LIVE CHECK PENDING' in column D and still need live observation."])
     ws['A2'].font=Font(bold=True, color='C00000')
     ws.append([proj['omit_note'] + "  Orange rows = waiting on a ticket that is NOT yet done."])
     ws.append([])
@@ -157,15 +183,16 @@ def build(proj):
     wb.save(out + '.xlsx')
     with open(out + '.md','w') as fh:
         fh.write(f"# {proj['name']} spec-recheck — change list ({DATE})\n\n")
-        fh.write("> **PROVISIONAL** — column *What needs to change* is pending a fresh LIVE staging "
-                 "check (needs current cookies); it will be rewritten to observed build behaviour "
-                 "before sign-off.\n\n")
+        nlive=sum(1 for r in rows if r[0] in LIVE)
+        fh.write(f"> **LIVE-BUILD CHECK 2026-07-23:** {nlive} of {n} rows re-verified live on staging; "
+                 "the rest are flagged **⏳ LIVE CHECK PENDING** in the change column and still need "
+                 "live observation.\n\n")
         fh.write(f"{n} of {total} cases need a change or a decision. {proj['omit_note']}\n\n")
         fh.write("**Legend:** Action = *Apply update* (wording/expected fix) or *Decision* (needs you/PO/dev to choose). "
                  "Ticket status shows whether the driving Jira ticket is Done (live status 2026-07-23).\n\n")
         fh.write("| Case | Area | What needs to change | Ticket | Ticket status | Action |\n|---|---|---|---|---|---|\n")
         for cid,area,change,tix,status,action in rows:
-            fh.write(f"| [{cid}]({LINK.format(cid[1:])}) | {area} | {change} | {tix} | {status} | {action} |\n")
+            fh.write(f"| [{cid}]({LINK.format(cid[1:])}) | {area} | {dcell(cid,change).replace('|','/')} | {tix} | {status} | {act(cid,action)} |\n")
         fh.write(f"\n## Highlight — cases waiting on a ticket that is NOT yet done ({len(nd)})\n\n")
         fh.write("| Case | Ticket | Ticket status | Why it's blocked |\n|---|---|---|---|\n")
         for cid,area,change,tix,status,action in nd:
