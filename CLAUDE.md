@@ -117,11 +117,18 @@ process(es) to run before proceeding.
    staging org is SHARED and **Tech is currently DRIFTED on Technician — reset to Time
    Clock User `a0359055-3dfb-4e9c-9e11-2fbea21585c2` before any negative retest**
    (old `77b069d1-...` is wrong). **⚠️ TWO-SESSION BASELINE CONFLICT (shared staging org
-   d55bc308, flagged 2026-07-22):** the Fees & Discounts session restored Tech to
-   **Technician** (its expected baseline), while Custom Roles expects Tech reset to **Time
-   Clock User (a0359055)**. Neither session should ASSUME the other's baseline — always
-   re-read Tech's current role before a role-negative run and restore to YOUR project's
-   baseline after. The user was asked to confirm the intended default (PENDING). **CANONICAL RUN-331 RESUME DOC (for the earlier
+   d55bc308, flagged 2026-07-22) — RESOLVED 2026-07-23:** the intended Tech default is
+   **role "Technician" (50bf6a0d)** — the user reset `tech@shopview.com` (user a7fd0a88) via
+   "Reset To Template" 2026-07-23 → canonical 6 perms (customersView, scheduleView,
+   woPickParts, woTechViewMode, workOrderLinesCreateAndEdit, workOrdersView). **Tech baseline
+   = Technician, NOT Time Clock User** (this supersedes the earlier Custom-Roles "reset to Time
+   Clock User" expectation on the SHARED d55bc308 org; Custom Roles' own separate note above is
+   staging-org-context — on the shared d55bc308 org the confirmed default is Technician).
+   **⚠️ LIVE-OBSERVED CAUTION (2026-07-23):** the Technician ROLE (50bf6a0d) is being actively
+   RE-DRIFTED by a concurrent session (observed added `workOrdersCreateAndEdit` +
+   `seeFinancialData`, up to 14 atoms). Sessions MUST re-read Tech's current role AND re-assert
+   "Reset To Template" on Technician immediately before any role-negative test, and not assume a
+   clean baseline — a concurrent actor may re-drift it mid-run (Standing Rule 26). **CANONICAL RUN-331 RESUME DOC (for the earlier
    run-331 re-test):** `build/custom-roles-run/RUN331-STATE.md` (final tally
    96P/4F/10B/50R/0U). Existing memory: this CLAUDE.md's detail sections,
    `build/TESTING-RUNBOOK.md`, `build/APP-ACTIONS-PLAYBOOK.md`,
@@ -297,7 +304,20 @@ process(es) to run before proceeding.
    unexplained → need live re-VIU; SF-VPART-01/02 likely stale-7/7-baseline tied to
    known BUG-9) + ingest Jira **SV-8303** (Ayesha's SF-SET-10 note flags a coming
    spec change).
-   **RESUME 2026-07-20: read build/simple-flow/PROJECT-STATE.md §'WHAT'S LEFT TO DO' + §0-CC first**
+   **RESUME 2026-07-23 (LATEST — SV-8183 permission VIU): read build/simple-flow/PROJECT-STATE.md §0-FF first.**
+   SV-8183 permission VIU done LIVE on staging 2026-07-23 + adversarially audited (2 issues
+   found + closed): all 11 SF-PERM/SF-REV = VIU-Verified; composition 11/11 == §9.2 (0 drift at
+   capture); **BE atom-FAMILY finding** — `POST /api/organizations/settings/change` gates on the
+   settings atom-family not `settingsApp` (a clean Parts Manager gets 200; no-settings roles 403)
+   → **SF-PERM-01 wording REFINED locally, 1 `update_case` STAGED (NOT pushed)**,
+   `build/simple-flow/sv8183/testrail-sync-manifest.md`; FE route-guards live per role; element
+   gates 6/7 re-observed this run. **SF-PERM-09 + the Technician CELL of the completion matrix
+   (SF-PERM-02/10) drift-blocked** by a concurrent actor re-drifting the shared Technician role —
+   need a clean Technician-baseline window to finish (env task, not TestRail). **Tech baseline
+   RESOLVED = role "Technician" (50bf6a0d), NOT Time Clock User** (Standing Rule 26). **NO
+   TestRail writes; run 325 untouched.** Tally UNCHANGED = 151/4/21/5/3 = 184.
+   Evidence: `build/simple-flow/viu-sv8183-2026-07-23/`.
+   **Prior RESUME 2026-07-20: read build/simple-flow/PROJECT-STATE.md §'WHAT'S LEFT TO DO' + §0-CC**
    — RETIRE EXECUTED 2026-07-20 (user ruling 2026-07-17): SF-CORE-05/06/09 deleted from
    TestRail (delete_case 3/3, verified gone, audit-logged, run 325 untouched), bodies
    kept locally marked Retired, id-map −3, generators exclude Retired (187→184), all

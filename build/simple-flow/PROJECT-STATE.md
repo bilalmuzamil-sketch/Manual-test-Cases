@@ -12,7 +12,14 @@
 > **Canonical spec (Confluence):** https://shopview.atlassian.net/wiki/spaces/PM/pages/646021121/Simple+Mode+Streamlined+Work+Order+Completion+Bulk+Receiving
 > (Atlassian-SSO login-walled — reference pointer only; content must be exported/pasted to ingest, do NOT fetch the URL.)
 >
-> **Last updated:** 2026-07-21 (**BUG DRAFT #5 DROPPED — WON'T FILE** [cosmetic only,
+> **Last updated:** 2026-07-23 (**SV-8183 PERMISSION VIU — LIVE STAGING + ADVERSARIALLY
+> AUDITED, see §0-FF:** all 11 SF-PERM/SF-REV = VIU-Verified; composition 11/11 == §9.2;
+> BE atom-family finding [Parts Manager 200] → SF-PERM-01 refined [1 update_case STAGED, not
+> pushed]; FE route-guards live; element gates 6/7 this run; SF-PERM-09 + Technician
+> completion-cell drift-blocked by a concurrent actor [need a clean Technician-baseline
+> window]; **Tech baseline RESOLVED = Technician (50bf6a0d), NOT Time Clock User**; NO TestRail
+> writes, run 325 untouched. Tally UNCHANGED = 151/4/21/5/3 = 184. Prior 2026-07-21:
+> **BUG DRAFT #5 DROPPED — WON'T FILE** [cosmetic only,
 > no functional impact; user decision 2026-07-20]: the vendor-missing-group POSITION
 > issue on the Accept-Delivery / "Purchase Order Details" screen is purely visual, so
 > the Milos Round-3 vendor-missing-position thread is now **CLOSED as accepted-cosmetic,
@@ -129,6 +136,82 @@ What remains:
    item was DROPPED 2026-07-17 — spec `_4` S6-R6 was rewritten to match the code.)
 7. ~~SF-QB-09 unmapped in TestRail~~ — **CLOSED 2026-07-17:** SF-QB-09 was rescoped (Δ15
    part-sale order statuses) and added to TestRail = **C29909**; all 187 cases mapped.
+
+---
+
+## 0-FF. SV-8183 PERMISSION VIU — LIVE STAGING + ADVERSARIALLY AUDITED (2026-07-23, LATEST)
+
+Live-staging Verify-in-UI pass over the 11 SV-8183 permission cases (SF-PERM-01..10 +
+SF-REV-09), Story SV-8183 (Permission mapping) under Epic SV-7301. Env
+`app.staging.shopview.com` / `api.staging.shopview.com`, org d55bc308 (SHARED). Method =
+Standing Rules 10/12/13/14 (observed live with evidence, never inferred). **NO TestRail
+writes** (run 325 untouched); ONE `update_case` STAGED pending authorization (SF-PERM-01).
+
+**Jira re-pull:** fresh SV-8183 live read — **no spec delta** (only ticket status → "Blocked"
+plus a Sasha comment). Requirements §9.2 matrix unchanged.
+
+**Composition (Requirement A):** all **11 role templates == §9.2 spec EXACTLY, 0 drift at
+capture** (GET /api/roles/{id} vs /api/role-templates/{tid}/fe-permissions; truth-table diff
+per Rule 15, 0 deviations). No reset writes needed (Technician was already user-reset to
+template). Data: `viu-sv8183-2026-07-23/role-current-vs-template.json`,
+`template-vs-spec92.json`.
+
+**BE settings-enforcement (LIVE, switch-user impersonation of real holders):** Admin 200 /
+Parts Manager **200** / Senior SA, Service Advisor, Technician, Sales Rep **403**. →
+**FINDING: the WO-settings BE endpoint (`POST /api/organizations/settings/change`) gates on
+the settings atom-FAMILY, NOT `settingsApp` specifically** — a clean Parts Manager
+(settingsParts/settingsFinance, no settingsApp) gets 200, while no-settings roles correctly
+get 403 (BE DOES enforce). The FE settings *route* is still settingsApp-gated (Parts Manager
+cannot open the WO Settings page — confirmed live), so the user-facing gate is correct. →
+**SF-PERM-01 wording REFINED locally** (tester-facing expected reworded to page-reachability
+truth; BE driver moved to viu_note metadata). Already applied to case source (commit db6f58f);
+**1 `update_case` STAGED, NOT pushed.** Evidence: `be-settings-probe.json`.
+
+**FE route-guards (LIVE, boot2 + TLS-terminating MITM):** per-role final-URL after nav to
+/administration/settings, /parts/orders, /reports — all consistent with §9.2 (redirects deny
+correctly per role). Evidence: `fe-route-probe.jsonl`, `screenshots/`.
+
+**Element gates re-observed LIVE this run (2026-07-23):** 6 of 7 element cases fully
+VIU-Verified this run — SF-PERM-02/04/07/08/10 + SF-REV-09. Complete-WO CTA cluster observed
+per role (10/11 match §9.2); Mark-Reviewed button ENABLED for SrSA/SA/PM, DISABLED for Sales
+Rep + Technician (gate = woReviewWorkOrders, live-confirmed). Evidence:
+`element-reobserve/element-matrix.json` + `complete-*.png` / `markrev-*.png`.
+
+**⚠️ Drift-blocked (concurrency, honestly labeled — NOT claimed verified this run):** a
+concurrent actor RE-DRIFTED the shared Technician role (50bf6a0d) to 14 atoms (incl.
+workOrdersCreateAndEdit + seeFinancialData) mid-session. This contaminates only the
+Technician-specific negatives:
+- **SF-PERM-09** (add-vendorless negative) — element NOT cleanly re-observed; kept as the
+  2026-07-13 carried element + composition (Technician template lacks seeFinancialData). Status
+  VIU-Verified with an explicit this-run drift-block note (honest partial).
+- **Technician CELL of the completion matrix (SF-PERM-02/SF-PERM-10)** — drift-blocked this run;
+  the 10/11 non-Technician roles were observed live; Technician cell carried 2026-07-13.
+These 2–3 cells need a **clean Technician-baseline window** to finish (this is a data-state /
+env need, NOT a TestRail action). Evidence: `technician-redrift-2026-07-23.json`.
+
+**Tech baseline RESOLVED (answers the pending cross-project question):**
+`tech@shopview.com` (user a7fd0a88) holds role **"Technician" (50bf6a0d)** — canonical 6 perms
+via the user's "Reset To Template". **The authoritative Tech baseline is Technician, NOT Time
+Clock User.** (Standing Rule 26 — reset roles to template before role-negative tests on shared
+envs.)
+
+**Adversarial self-audit (Rule 15): 2 issues found + closed by re-observe** — (1) an element
+provenance line wrongly cited 2026-07-20 → corrected to 2026-07-13/-10; (2) a
+/parts/bulk-receive direct-URL timing false-positive "ALLOWED" for Technician/Sales-Rep →
+disregarded (their /parts/orders + /bulk-receive correctly deny). Verdict after fixes: CLEAN.
+
+**Tally UNCHANGED = 151 VIU-Verified / 4 VIU-Pending / 21 Blocked-Env / 5 awaiting-Milos /
+3 Deviation = 184 active.** All 11 SF-PERM/SF-REV = VIU-Verified (SF-PERM-09 with the
+partial-caveat; SF-PERM-01 refined). Deliverables regenerated over 184 (import 184 rows,
+0 VIU/flag words, header byte-identical, no dup titles, API cases in API sections, id-map
+184/184 populated). **TestRail sync STAGED (NOT executed):**
+`sv8183/testrail-sync-manifest.md` = 1 `update_case` (SF-PERM-01 / C29405), 0 run writes.
+Evidence: `viu-sv8183-2026-07-23/` (+ `element-reobserve/`). See `VIU-SUMMARY.md` for the full
+per-case verdicts.
+
+**STILL OPEN for the user:** (a) authorize the 1 SF-PERM-01 `update_case`; (b) provide a clean
+Technician-baseline window (re-assert "Reset To Template" on Technician, ensure no concurrent
+session drifts it) to finish the SF-PERM-09 + Technician-completion-cell element negatives.
 
 ---
 

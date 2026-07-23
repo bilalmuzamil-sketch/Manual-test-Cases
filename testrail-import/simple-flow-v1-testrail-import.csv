@@ -827,9 +827,9 @@ Verify the close-confirmation modal behavior (Close = closes modal only; Cancel 
 Verify only owner/admin can view and modify Work Order settings (non-admin blocked),API — Permissions,Functional,High,"1. A role with the App Settings permission (e.g. Admin) and a role without it (e.g. Service Advisor or Technician) both exist.
 2. You can sign in as each.","1. Sign in as a role with App Settings and open and modify /administration/settings → Work Orders.
 2. Sign in as a role without App Settings and attempt to open and modify the same page.
-3. As the role without App Settings, attempt to save a Work Order settings change directly (API), and note the response.","1. Only a role with the App Settings permission (system defaults Admin, Service Manager and Office) can view and modify the Work Order settings page.
-2. A role without App Settings cannot open or change the Work Order settings.
-3. The backend rejects a Work Order settings save attempted by a role that lacks App Settings.",SV-7696 (S1 AC / §8 Permissions),,
+3. As the role without App Settings, attempt to save a Work Order settings change directly (API), and note the response.","1. Only a role with the App Settings permission (system defaults Admin, Service Manager and Office) can open and change the Work Order settings page.
+2. A role without App Settings cannot reach the Work Order settings page (it is redirected away) and so cannot change those settings from the screen.
+3. A role that cannot open the Work Order settings page cannot save changes to it.",SV-7696 (S1 AC / §8 Permissions),,
 Verify which roles can complete a work order (Simple completion),Permissions,Functional,Medium,"1. Credentials for several roles exist.
 2. A work order ready to complete exists.","1. For each role, attempt to complete a work order.
 2. Record which roles can and cannot.","1. Roles with Work Orders: Create & Edit plus WO Lines: Create & Edit and Full View (needed to approve all lines) can complete a work order: Admin, Service Manager, Senior SA, Service Advisor, Foreman and Parts Manager.
