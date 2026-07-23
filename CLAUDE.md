@@ -3,6 +3,10 @@
 > **Before any staging or TestRail testing, read `build/TESTING-RUNBOOK.md`.**
 > That runbook holds the full, proven method; this file is a concise index +
 > durable memory. **No secrets in this repo — ever** (secrets live in `/tmp`).
+> - **PROCESS CATALOG (the table of every reusable process + how to call it for any project):
+>   build/PROCESS-CATALOG.md — READ THIS to pick/name a process; it lists all of them with
+>   trigger phrases and the deliverable each produces. Keep it updated when a process is
+>   added/changed (shared brain for both sessions).**
 > - App action recipes (how to do each thing in ShopView): build/APP-ACTIONS-PLAYBOOK.md
 > - Reusable build-accurate wording + VIU + TestRail-sync method (Standing Rule 9):
 >   build/BUILD-ACCURATE-WORDING-VIU-PROCESS.md — **apply to any project WHEN THE USER ASKS.**
@@ -16,6 +20,13 @@
 >   then edit only user-approved cases in TestRail): build/SPEC-RECHECK-PROCESS.md — **apply to any
 >   project WHEN THE USER ASKS.** Proven on Custom Roles SV-7388 2026-07-20 ("Vlad's spec-recheck";
 >   deliverable build/custom-roles-run/CustomRoles_SpecRecheck_ChangeList_2026-07-20.xlsx).
+> - Reusable **spec-recheck change-list workbook** method (the SIMPLE sign-off FILE half of the
+>   spec-recheck: only the cases needing a change/decision, each with driving ticket + Done-status
+>   + Action, 2nd tab for cases blocked on a not-done ticket, fine cases omitted; nothing pushed
+>   until approved; captures the full originating instructions + corrections per Rule 18):
+>   build/SPEC-RECHECK-CHANGE-LIST-PROCESS.md — **apply to any project WHEN THE USER ASKS.** This is
+>   the process behind build/custom-roles-run/CustomRoles_SpecRecheck_ChangeList_2026-07-20.xlsx
+>   (generator gen_simple_changelist.py).
 > - Reusable **missing-traceability** method (find every test case lacking a Jira ticket ref
 >   and/or a spec anchor, then backfill the metadata layer — TestRail `refs` field + spec
 >   citation — so 100% of cases are provably authentic; enforces Standing Rule 20):
