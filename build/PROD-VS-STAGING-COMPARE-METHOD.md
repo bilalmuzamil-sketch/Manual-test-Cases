@@ -62,6 +62,14 @@ never a guess.
 
 ## 3. PER-ROLE OBSERVATION TECHNIQUES (in order of reliability)
 
+**SETUP PRECONDITION — reset in-scope roles to template first (Standing Rule 26).**
+Before observing any role in EITHER env, **reset every in-scope role to its template/default**
+('Reset To Template'), recording each role's pre-reset and post-reset permission set — the
+before→after drift diff is itself a comparison finding (which roles were over-/under-granted by
+prior or parallel-session testing on the shared org). Verify each template-default against the
+canonical spec permission matrix and FLAG any role whose template differs from spec. Only then
+observe live per role, so the comparison reflects spec-default permissions, not drift.
+
 **(a) GENUINE switch-user impersonation into a REAL role-holder account = MOST
 reliable.** No location-store artifact. Find real holders via the staff list.
 

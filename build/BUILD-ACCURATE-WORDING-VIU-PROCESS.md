@@ -67,7 +67,11 @@ Update Title / Preconditions / Steps / Expected of every case in the area:
 
 **(3) VIU the behavior — LIVE UI-OBSERVED, with evidence, never inferred.**
 Exercise the case **live in the UI** and capture evidence **that run** (a screenshot
-and/or the captured API response). For **permission/role** cases this means actually
+and/or the captured API response). For **permission/role** cases, FIRST **reset every
+in-scope role to its template/default** ('Reset To Template') and record the before→after
+drift diff (per **Standing Rule 26**) so live observation is against spec-default
+permissions, not drift/over-grants left by prior or parallel-session testing on a shared org;
+then actually
 logging in / driving the UI **AS the actual role** and **OBSERVING the control**, PER
 role, PER environment — **never** inferred from role definitions, `fe_permissions`,
 atoms, prior data, or source code. Set `viu_status` on the case JSON (Verified /

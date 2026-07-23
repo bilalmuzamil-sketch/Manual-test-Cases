@@ -1017,6 +1017,25 @@ process(es) to run before proceeding.
     was design-only, not in the spec, so the build was spec-compliant and the case was matched
     to the build. User: "whenever you discuss a deviation, give specs/tickets/stories reference
     with the wordings from which the test case is deviating." Ties to Standing Rules 12/15/20/23.
+26. **Reset roles to template/default BEFORE any permission/role verification on a shared/
+    disposable environment (all projects).** Whenever verifying permission- or role-gated
+    behavior — a permission/role VIU (e.g. role-matrix cases), a prod-vs-staging (or any
+    two-env) permission comparison, or ANY test whose expected result depends on what a role
+    can/can't do — FIRST reset every in-scope role to its TEMPLATE/DEFAULT (the app's 'Reset
+    To Template' action) so the test runs against the CORRECT spec-default permissions, NOT
+    drift/over-grants left by prior or parallel-session testing on the shared org. Method: for
+    each role, (1) record the current (pre-reset) permission set, (2) reset to template, (3)
+    record the post-reset set — the before→after diff is itself a finding (which roles were
+    drifted/over- or under-granted); (4) verify each template-default against the canonical
+    spec permission matrix and FLAG any role whose template differs from spec (never silently
+    accept); (5) then observe live per role (Rule 10/12/13). Leave roles at template afterward
+    (that corrected state is the canonical baseline, and it benefits every session sharing the
+    org — see the two-session shared-env caution). This EXTENDS Standing Rules 5 (self-service
+    data/roles), 12 (observed-not-inferred), 13 (live feature-by-feature), 14 (seed-don't-block),
+    and 15 (verbatim spec truth-table). Rationale: 2026-07-23 — during the Simple Flow SV-8183
+    permission VIU on shared staging org d55bc308, the Tech user (and likely other roles) were
+    over-granted from prior testing; the user directed resetting each role to template first so
+    the VIU verifies against correct permissions rather than drift.
 
 ## Project purpose (Custom Roles project)
 Manual test-case authoring + live staging (Verify-in-UI) verification + TestRail
