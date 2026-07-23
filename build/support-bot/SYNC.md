@@ -10,8 +10,17 @@ keeps the derived files current automatically.
 1. A **daily scheduled Routine** (Claude Code Remote trigger) wakes this
    Claude session every morning.
 2. Claude re-fetches the Confluence page via the Atlassian connector and
-   compares its content hash against `spec-sync-state.json`.
-3. **No change** → nothing happens (no commit, no noise).
+   compares its **canonical** content hash against `spec-sync-state.json`.
+   Compute it with `python3 build/support-bot/spec_hash.py <body-file>` and
+   compare to `canonical_sha256`. **Use the canonical hash, not the raw body
+   hash** — the Atlassian API serializes the same page differently between
+   calls (link style, bullets, list numbering, whitespace, change-log date
+   nodes), so the raw `body_sha256` flip-flops and raises false alarms. The
+   canonical hash drops the change-log/history section and formatting so it
+   only changes on real content edits. If the canonical hash differs, still do
+   a semantic diff to confirm before rewriting anything.
+3. **No change** (canonical hash matches) → nothing happens (no commit, no
+   noise), even if the raw body hash differs.
 4. **Change detected** → Claude:
    - reads the spec's Change Log to identify what changed since the last sync,
    - updates `knowledge-base.md` (and `faq.md` where the change affects an
