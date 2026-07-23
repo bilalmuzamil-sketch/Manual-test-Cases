@@ -1,6 +1,6 @@
 # Simple Flow spec-recheck — change list (2026-07-23)
 
-> **LIVE-BUILD CHECK 2026-07-23:** 0 of 4 rows re-verified live on staging; the rest are flagged **⏳ LIVE CHECK PENDING** in the change column and still need live observation.
+> **LIVE-BUILD CHECK 2026-07-23:** 0 of 4 rows re-verified live on staging; 0 characterised-blocked on an env defect; the rest flagged **⏳ LIVE CHECK PENDING**.
 
 4 of 184 cases need a change or a decision. The other 180 cases need no change (151 Verified, 21 Blocked-on-environment, 4 to re-verify live, 3 retired, plus 4 Create-Purchase-Orders cases deleted from TestRail and ignored per your ruling). Nothing pushed to TestRail yet.
 

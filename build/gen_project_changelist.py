@@ -151,6 +151,19 @@ LIVE = {
                   "the 'Add Fee/Discount' picker DROPDOWN lists name-only vs columns. Update the case "
                   "to the observed table display."),
              "action": "Apply update", "state": "verified"},
+ "C28527": {"d": ("LIVE 2026-07-23: created a WO for a customer carrying default processing fees — the "
+                  "5% and 6% processing_fee (calculationType pct_grand_total) AUTO-APPLIED alongside a "
+                  "whole-WO Flat Fee $11 (confirmed via API, appliedBy=customer_default). The definitive "
+                  "base-inclusion check (does the processing-fee base wrongly include the whole-WO fee?) "
+                  "needs a priced line so the fees resolve above $0 — but adding a line returns HTTP 500 "
+                  "(WO line-create env defect, requestId e1069cd9…) and the UI line-add hits the async "
+                  "ShopCoach builder. CHARACTERISED-BLOCKED on the line-create 500; retest when fixed."),
+             "action": "DECISION", "state": "blocked"},
+ "C28580": {"d": ("LIVE 2026-07-23: same as C28527 — customer-default processing fees (5%/6% of Grand "
+                  "Total) auto-apply with a whole-WO Flat Fee (confirmed via API); the base-inclusion "
+                  "calc can't be resolved because adding a priced line returns HTTP 500 (WO line-create "
+                  "env defect, requestId e1069cd9…). CHARACTERISED-BLOCKED; retest when the 500 is fixed."),
+             "action": "DECISION", "state": "blocked"},
  "NEW-8521": {"d": ("LIVE 2026-07-23 (WO S9-25393 Finance/Estimate view): part-line adjustments DO "
                     "render as indented child rows under their part — '↳ Name $11.00' and "
                     "'↳ Fee (% of parts) ($2.39)' show under the T-BOLT CLAMP part, exactly like the "
@@ -186,7 +199,8 @@ def sheet(ws, rows):
         label = cid if cid.startswith('C') else cid.replace('NEW-','new (SV-')+')'
         ws.append([label, linkfor(cid), area, dcell(cid,change), tix, status, act(cid,action)])
         r = ws[ws.max_row]
-        fill = verifill if cid in LIVE else (warnfill if status.startswith('NOT DONE') else None)
+        st = LIVE.get(cid,{}).get('state')
+        fill = verifill if st=='verified' else (warnfill if (st=='blocked' or status.startswith('NOT DONE')) else None)
         for c in r:
             c.alignment=wrap; c.border=thin
             if fill: c.fill=fill
@@ -201,9 +215,11 @@ def build(proj):
     ws = wb.active; ws.title=f'Change list ({n})'
     ws.append([f"{proj['name']} spec-recheck — cases that need a change or a decision ({n} of {total})."])
     ws['A1'].font=Font(bold=True,size=13)
-    nlive = sum(1 for r in rows if r[0] in LIVE)
+    nlive = sum(1 for r in rows if LIVE.get(r[0],{}).get('state')=='verified')
+    nblk = sum(1 for r in rows if LIVE.get(r[0],{}).get('state')=='blocked')
     ws.append([f"LIVE-BUILD CHECK 2026-07-23: {nlive} of {n} rows re-verified live on staging (green); "
-               "the rest are flagged '⏳ LIVE CHECK PENDING' in column D and still need live observation."])
+               f"{nblk} characterised-blocked on an env defect (orange, see column D); the rest flagged "
+               "'⏳ LIVE CHECK PENDING'."])
     ws['A2'].font=Font(bold=True, color='C00000')
     ws.append([proj['omit_note'] + "  Orange rows = waiting on a ticket that is NOT yet done."])
     ws.append([])
@@ -218,10 +234,10 @@ def build(proj):
     wb.save(out + '.xlsx')
     with open(out + '.md','w') as fh:
         fh.write(f"# {proj['name']} spec-recheck — change list ({DATE})\n\n")
-        nlive=sum(1 for r in rows if r[0] in LIVE)
+        nlive=sum(1 for r in rows if LIVE.get(r[0],{}).get('state')=='verified')
+        nblk=sum(1 for r in rows if LIVE.get(r[0],{}).get('state')=='blocked')
         fh.write(f"> **LIVE-BUILD CHECK 2026-07-23:** {nlive} of {n} rows re-verified live on staging; "
-                 "the rest are flagged **⏳ LIVE CHECK PENDING** in the change column and still need "
-                 "live observation.\n\n")
+                 f"{nblk} characterised-blocked on an env defect; the rest flagged **⏳ LIVE CHECK PENDING**.\n\n")
         fh.write(f"{n} of {total} cases need a change or a decision. {proj['omit_note']}\n\n")
         fh.write("**Legend:** Action = *Apply update* (wording/expected fix) or *Decision* (needs you/PO/dev to choose). "
                  "Ticket status shows whether the driving Jira ticket is Done (live status 2026-07-23).\n\n")

@@ -39,3 +39,25 @@ not completed this run. Not filled from memory (Rule 12).
 STATS-004 (creation-order needs timestamps), CUST-005 dropdown + CUST-006 empty state, TMPL-010 (labor
 fee dialog), PROC-008/009 + CALC-013 (need a processing fee seeded on a WO), WO-013/PERM-002 (role-negative),
 SV-8520 (part fee after receive/pick), SF RCV-05/07/REV-11/UX-04 (separate screens/seeding).
+
+## Update — batch 3 (self-seeded; API WO creation unblocked)
+- **Customer-default processing-fee AUTO-APPLY — CONFIRMED.** Created a WO via API
+  (POST /api/work-orders/create {company_id, vehicle_id, workplace_id, start_date, is_vehicle_here:true}
+  → 201) for a customer carrying default fees. The WO auto-applied: Discount (flat $2), Flat Fee
+  ($11, whole-WO, appliedBy=customer_default), WO Processing fee (5% pct_grand_total, customer_default),
+  Processing Fee (6% pct_grand_total, customer_default). Verified via GET /api/work-orders/view/{id}.
+- **PROC-009 / CALC-013 (processing-fee base) — CHARACTERISED-BLOCKED.** To check whether the
+  processing-fee base wrongly includes the whole-WO Flat Fee, the fees must resolve above $0, which
+  needs a priced labour/part line. Adding a line returns **HTTP 500** (WO line-create env defect,
+  requestId e1069cd9-3974-4785-a364-696d04f68443) — matches the known "WO line-create 500" env bug;
+  parts hang off a line (POST /api/work-orders/part/make-request requires a line id); the UI line-add
+  uses an async ShopCoach builder that didn't complete. Blocked on the env 500 — retest when fixed.
+- Cleanup: the ZZAUTOTEST WO was deleted (POST /api/work-orders/delete → 201; re-GET 400 = gone).
+  No test data left; Tech role untouched (no role-negative run performed this session).
+
+## Live-verified tally this session: 5 confirmed + 2 characterised-blocked (of 14 FD rows)
+Confirmed: FD-INLINE-003 (resolved), FD-WO-017 (deviation stands), FD-STATS-002 (per-row now shown),
+SV-8521 (fixed on WO Finance), FD-CUST-005 (table columns + Processing Fee typed 'Fee').
+Blocked-env: FD-PROC-009, FD-CALC-013 (WO line-create 500).
+Still pending: FD-WO-013, FD-STATS-004, FD-CUST-005 dropdown/FD-CUST-006 empty state, FD-TMPL-010,
+FD-PROC-008, FD-PERM-002, SV-8520; SF RCV-05/07, REV-11, UX-04.
