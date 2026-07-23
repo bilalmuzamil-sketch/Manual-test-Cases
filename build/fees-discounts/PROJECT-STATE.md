@@ -5,7 +5,23 @@
 > re-discovery.
 > **Canonical spec (Confluence):** https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/622297094/Fees+Discounts+V1
 > (Atlassian-SSO login-walled — reference pointer only; content must be exported/pasted to ingest, do NOT fetch the URL.)
-> **Last updated:** 2026-07-22 (§0.0n: **SV-8479 / SV-8480 / SV-8456 LIVE STAGING VIU
+> **Last updated:** 2026-07-22 (§0.0o: **AUTHORIZED TESTRAIL SYNC EXECUTED** — the staged
+> §0.0n manifest is now LIVE in TestRail: **5 add_section (4377–4381) + 18 add_case
+> (C30618–C30635) + 3 delete_case (FD-LABOR-003/C28441, FD-PCOL-003/C28471, FD-PCOL-007/C28475)
+> + 51 update_case** [the 54-item update list MINUS the 3 deleted], ALL HTTP 200, ALL re-GET
+> verified MATCH; **run 325 untouched, only group 3894 touched, no secrets committed.** The 3
+> retire-candidates were user-ruled RETIRE + deleted (verified gone HTTP 400); marked Retired
+> locally, id-map −3. **NEW TALLY = 199 active authored: 165 VIU-Verified / 12 VIU-Deviation /
+> 21 VIU-Blocked-Env / 1 VIU-Pending** [+2 dev-authored Verified = 201 in id-map; FD-CUST-016 +
+> the 3 new retirements kept in JSON marked Retired, excluded from generators]. Deliverables
+> regenerated over 199 (import 199 rows VIU/flag-word-free, header byte-identical to filters-v1,
+> FD-CALC-024 in "API — Calculation contract" §4381, no dup titles, no C-id column; id-map 201
+> rows ALL C-ids populated). Executor `exec_sync_2026-07-22.py`; per-case audit log
+> `sv8479-8456-8480/testrail-execution-log-2026-07-22.md`; manifest header = EXECUTED. New
+> section IDs: Parts Sale — Fees & Discounts card 4377, Financial Info card 4378, Part Sale —
+> Fee/Discount dialog 4379, Parts Sale — Statistics tab 4380, API — Calculation contract 4381.
+> Supersedes §0.0n.)
+> — prior 2026-07-22 (§0.0n: **SV-8479 / SV-8480 / SV-8456 LIVE STAGING VIU
 > DONE + ADVERSARIALLY AUDITED CLEAN** — the 18 net-new + 54 edited cases were verified
 > LIVE on staging across 4 batches [WO UI, Part-Sale UI, calc S3-R18, SV-8456 re-VIU];
 > statuses finalized. **NEW TALLY = 202 active authored: 167 VIU-Verified / 13
@@ -190,7 +206,39 @@ This section is the complete snapshot: current tally, the applied Round-2 action
 everything else open, and the ordered resume checklist. The rest of this doc holds the
 standing detail. **NO TestRail catch-up is outstanding** — all authored wording is live.
 
-### 0.0n SV-8479 / SV-8480 / SV-8456 — LIVE STAGING VIU DONE + ADVERSARIALLY AUDITED CLEAN — 2026-07-22 (NEWEST event; supersedes the pre-VIU §0.0m narrative)
+### 0.0o AUTHORIZED TESTRAIL SYNC EXECUTED — 2026-07-22 (NEWEST event; supersedes §0.0n staged-not-executed status)
+
+User explicitly authorized (2026-07-22): (1) the SV-8479/SV-8480 push, (2) retiring the 3
+retire-candidates. The §0.0n staged manifest was executed end-to-end.
+
+**What ran (project 1 / suite 1 / group 3894 only; run 325 untouched):**
+- **5 `add_section`** (prerequisite — the parts-sale + API-calc new cases needed sections that
+  did not yet exist under 3894 'Fees & Discounts'): 4377 Parts Sale — Fees & Discounts card,
+  4378 Parts Sale — Financial Info card, 4379 Part Sale — Fee/Discount dialog, 4380 Parts Sale
+  — Statistics tab, 4381 API — Calculation contract.
+- **18 `add_case`** → C30618–C30635 (custom_atmstatus:3 + custom_automation_type:0), each re-GET
+  MATCH: FD-WO-017 C30618, FD-WO-018 C30619, FD-WO-021 C30620, FD-WO-025 C30621, FD-WO-028
+  C30622, FD-PSALE-002 C30623, FD-PSALE-003 C30624, FD-PSALE-004 C30625, FD-PSALE-006 C30626,
+  FD-PSALE-008 C30627, FD-PSALE-009 C30628, FD-CALC-018 C30629, FD-CALC-019 C30630, FD-CALC-020
+  C30631, FD-CALC-021 C30632, FD-CALC-022 C30633, FD-CALC-023 C30634, FD-CALC-024 C30635
+  (FD-CALC-024 = API case → §4381).
+- **3 `delete_case`** (retire-candidates, user-ruled RETIRE): FD-LABOR-003/C28441,
+  FD-PCOL-003/C28471, FD-PCOL-007/C28475 — each verified gone (re-GET HTTP 400). Bodies kept in
+  JSON marked Retired; excluded from generators; id-map rows removed.
+- **51 `update_case`** (the §B 54-item edit list MINUS the 3 deleted), all re-GET MATCH.
+- **ALL HTTP 200.** Field mapping mirrored the established push (title, custom_preconds,
+  custom_steps, custom_expected, refs). Executor: `exec_sync_2026-07-22.py`. Per-case audit
+  log: `sv8479-8456-8480/testrail-execution-log-2026-07-22.md`. Manifest header flipped to
+  EXECUTED.
+
+**New tally = 199 ACTIVE authored** (202 pre-retire − 3 retired):
+**165 VIU-Verified / 12 VIU-Deviation / 21 VIU-Blocked-Env / 1 VIU-Pending (FD-PART-005).**
+(+2 dev-authored FD-PERM-012/013 Verified = 201 in id-map; FD-CUST-016 + the 3 new retirements
+excluded.) Deviation 13→12 (FD-LABOR-003 retired); Verified 167→165 (FD-PCOL-003/007 retired).
+Deliverables regenerated over 199 (import header byte-identical to filters-v1, 0 VIU/flag words,
+no dup titles, FD-CALC-024 in API section, no C-id column; id-map 201 rows all C-ids populated).
+
+### 0.0n SV-8479 / SV-8480 / SV-8456 — LIVE STAGING VIU DONE + ADVERSARIALLY AUDITED CLEAN — 2026-07-22 (superseded by §0.0o; the staged manifest is now executed)
 
 **What happened:** the SV-8479 (fee/discount UI corrections, Story 12) + SV-8480
 (per-line total, S3-R18) + SV-8456 (UI-correction re-VIU) pass was **VERIFIED LIVE on

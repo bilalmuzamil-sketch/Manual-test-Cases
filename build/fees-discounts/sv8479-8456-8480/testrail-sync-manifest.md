@@ -1,6 +1,8 @@
 # Fees & Discounts — SV-8479 / SV-8480 / SV-8456 — TestRail Sync Manifest
 
-**STATUS: NOT EXECUTED — awaiting user TestRail authorization**
+**STATUS: EXECUTED 2026-07-22 — user-authorized (SV-8479/8480 push + retire 3).**
+See `testrail-execution-log-2026-07-22.md` for the per-case audit log.
+Result: **5 add_section (4377–4381) + 18 add_case (C30618–C30635) + 3 delete_case (C28441/C28471/C28475) + 51 update_case** — ALL HTTP 200, ALL re-GET verified MATCH; run 325 untouched. The 3 retire-candidates in §C were user-ruled RETIRE and deleted. New tally: **199 active** (165 Verified / 12 Deviation / 21 Blocked-Env / 1 Pending).
 
 > **Date:** 2026-07-22 · **Project:** Fees & Discounts V1 (ShopView) · **Epic:** SV-7387 · **PO:** Chris Ward.
 > **Scope:** the staged TestRail writes for the SV-8479/SV-8480/SV-8456 live-staging-VIU pass (§0.0n).

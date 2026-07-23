@@ -187,9 +187,16 @@ process(es) to run before proceeding.
    FD-PERM-012/013 Verified; FD-CUST-016 retired; 204 in id-map). New Deviations = FD-WO-017 +
    FD-LABOR-003 (item-#1 ⋮ entry renders RIGHT of "Unassigned", spec wants LEFT — matches ticket
    Rejected-from-testing); FD-CALC-023 Blocked-Env (needs flag-off org). Sign convention resolved
-   (line fee "20%" / discount "−10%"; card parenthesized). TestRail push **STAGED, NOT executed**
-   (`sv8479-8456-8480/testrail-sync-manifest.md` = 18 add_case + 54 update_case + 3
-   retire-candidates pending ruling). Canonical resume = PROJECT-STATE.md §0.0n.
+   (line fee "20%" / discount "−10%"; card parenthesized).
+   **AUTHORIZED TESTRAIL SYNC EXECUTED 2026-07-22 (§0.0o — supersedes §0.0n):** user authorized
+   the push + retiring the 3. Executed 5 add_section (4377–4381) + 18 add_case (C30618–C30635) +
+   3 delete_case (FD-LABOR-003/C28441, FD-PCOL-003/C28471, FD-PCOL-007/C28475 — verified gone) +
+   51 update_case (54-item list minus the 3 deleted), ALL HTTP 200 + re-GET MATCH; run 325
+   untouched, only group 3894 touched, no secrets. **NEW TALLY: 199 ACTIVE authored = 165
+   VIU-Verified / 12 VIU-Deviation / 21 VIU-Blocked-Env / 1 VIU-Pending (FD-PART-005)** (+2
+   dev-authored = 201 in id-map). Deliverables regenerated over 199. Executor
+   `exec_sync_2026-07-22.py`; audit `sv8479-8456-8480/testrail-execution-log-2026-07-22.md`;
+   manifest header = EXECUTED. Canonical resume = PROJECT-STATE.md §0.0o.
    **Prior CURRENT TALLY (pre-8479/8480): 151 VIU-Verified / 12 VIU-Deviation / 20 Blocked-Env
    / 1 VIU-Pending (FD-PART-005) = 184 ACTIVE** (185 authored − 1 retired; +2 dev-authored
    reconciled = 186 in-suite; was 152/12/0/20/1 = 185 pre-retire; prior qb 135/15/12/20/1 = 183).

@@ -118,10 +118,6 @@ Verify a labor-line '% of Labor Total' fee works out against the line's labor pr
 2. The base is the labor line price = $150.00.
 3. 10% of $150.00 = +$15.00.
 4. The preview shows the line's labor total and the new line labor total.",§5-R4 / §5-R3 / S2-R22 | SV-8479 (SV-8288 Story 12 — items 1/8 label sweep),,
-Verify the labor fee/discount add entry point is a three-dot menu to the left of the first technician (or 'Unassigned'),Work Order — Labor-line Fee/Discount,Functional,Medium,"1. Logged in with Work Order Lines: Create & Edit + See Financial Data.
-2. An open work order with two or more labor lines is open on the Lines tab.","1. On the Lines tab, look to the left of the first assigned technician's name on a labor row (or to the left of 'Unassigned' when no technician is set).
-2. Open the three-dot (⋮) menu shown there and read its items.","1. The three-dot (⋮) menu sits to the left of the first technician (or 'Unassigned'), not on the line row itself.
-2. The menu offers 'Add Labor Fee / Discount' for that line.",S1-R2 | SV-8479 (SV-8288 Story 12 — item 1),,
 Verify a labor-line flat amount is the exact amount with no quantity multiplier,Work Order — Labor-line Fee/Discount,Functional,Medium,"1. Logged in with Work Order Lines: Create & Edit + See Financial Data.
 2. An open work order with a labor line (any quantity/hours) is open.","1. Open the labor line's ⋮ menu and click 'Add Labor Fee / Discount'.
 2. Set Type 'Fee', Calculation Type 'Flat Amount', '$ Amount' 50.
@@ -288,12 +284,6 @@ Verify the parts-sale 'Fees & Discounts' column shows values as plain text with 
 2. Parts page open with part '#55073 Mobil 1 5W20' carrying three adjustments (first = 'Parts Handling Fee' 2%).","1. Find a part that has more than one fee/discount.
 2. Read its 'Fees & Discounts' column cell.","1. The cell shows the first fee/discount as plain text followed by a '+N' overflow count as plain text (N = how many more there are) — no colored badge or pill.
 2. A percentage fee shows no sign (for example 'Fee 10%'); a percentage discount shows a minus sign (for example '−X%').",S11-R10b / design §5 | SV-8479 (SV-8288 Story 12 — item 16),,
-Verify a fee-less part row adds a fee/discount from its three-dot menu 'Add Part Fee / Discount' (no '+ Add' button),Parts page — 'FEES & DISCOUNTS' column,Functional,Medium,"1. Logged in with See Financial Data and the matching Create and Edit permission.
-2. Parts page open with part '#28439 Fleetguard FF5421' carrying no adjustments, on an editable sale/WO.","1. Find a part row with no fees/discounts in the parts table.
-2. Confirm the 'Fees & Discounts' column shows no '+ Add' button on that row.
-3. Open the part row's three-dot (⋮) menu and click 'Add Part Fee / Discount'.","1. There is no '+ Add' button in the 'Fees & Discounts' column on a fee-less row.
-2. The three-dot (⋮) menu item reads 'Add Part Fee / Discount'.
-3. Clicking it opens the per-part fee/discount dialog titled 'New Part Fee / Discount', locked to that part.","S11-R9 / design §5 | SV-8479 (SV-8288 Story 12 — items 13, 14 & 18)",,
 Verify clicking a filled 'Fees & Discounts' cell opens the per-part breakdown with the right columns,Parts page — breakdown modal,Functional,High,"1. Logged in with See Financial Data.
 2. Parts page open with part '#55073 Mobil 1 5W20' carrying three adjustments (Parts Handling Fee +$1.43, Military Discount −$3.31, Early Payment Discount −$0.99).","1. Click a part's filled 'Fees & Discounts' cell.
 2. Read the title and column headers.
@@ -309,11 +299,6 @@ Verify a per-row Remove on the breakdown removes the fee/discount and the cell r
 3. Look at the view and the part's 'Fees & Discounts' cell afterwards.","1. The fee/discount is removed.
 2. Because it was the last one, the view closes on its own.
 3. The part's cell goes back to its empty state, which no longer shows a '+ Add' button (add a new one via the per-row three-dot menu 'Add Part Fee / Discount').",S11-R14 / S11-R17 | SV-8479 (SV-8288 Story 12 — item 13),,
-Verify the per-row three-dot 'Add Part Fee / Discount' is unavailable when the sale/work order cannot be edited,Parts page — 'FEES & DISCOUNTS' column,Functional,Medium,"1. Logged in with See Financial Data.
-2. Parts page open for an Invoiced/Paid (non-editable) sale/WO with a part that has no adjustments.","1. Find a part with no fees/discounts on a sale/work order that cannot be edited.
-2. Open the part row's three-dot (⋮) menu and look at the add option.","1. There is no '+ Add' button (it was removed); the add entry point is the per-row three-dot menu.
-2. On a sale/work order that cannot be edited, 'Add Part Fee / Discount' is unavailable/blocked.
-3. Filled cells still open a read-only breakdown, but the per-row remove controls are not shown.",S11-R9 / S3-R1b | SV-8479 (SV-8288 Story 12 — item 13),,
 "Verify editing a fee/discount allows Name, amount, Max Amount and Taxable but locks Type, Calculation Type and Scope",Work Order — Edit an adjustment,Functional,High,"1. You are logged in with the matching Create and Edit permission and See Financial Data.
 2. An open work order with an existing whole-work-order percentage discount.","1. On the 'Work Order Fees & Discounts' card, open the entry's ⋮ menu and click 'Edit'.
 2. Check which fields you can change and which are greyed out.

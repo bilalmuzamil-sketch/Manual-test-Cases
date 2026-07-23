@@ -552,7 +552,7 @@
       "2. The menu offers 'Add Labor Fee / Discount' for that line."
     ],
     "design_ref": "line ⋯ dropdown: Uncomplete/Add line note/Save line/Story history/Audit log/Add fee / discount (§2)",
-    "viu_status": "VIU-Deviation",
+    "viu_status": "Retired — 2026-07-22 (SV-8479/8480 consolidation; C28441 deleted from TestRail; prev status VIU-Deviation)",
     "notes": "'Add fee / discount' is NOT on the work-order line's right-click menu — it is the row 3-dot menu (S1 context note). | VIU qb batch-1 (2026-07-08): Line row exposes its own menu (revealed on row hover, opens with Request part | Add line note | Add Fee/Discount | Save as canned line | Story history | Audit log | Add inspection | Edit labor). Single-line WO verified. Shot s12-01. | [pass A same-day parallel verdict] VIU-Verified qb env 2026-07-08 — Recon: each labor line row exposes its own 3-dot menu with Add Fee/Discount | FRESH VIU 2026-07-10: not re-driven (cosmetic hover menu); line-level add path re-proven via API | WORDING+VIU 2026-07-13: Per-line ⋮ on hover; carried. Labor-line ⋮ menu not re-captured this run; confirmed by symmetry with the part-line flow (⋮ = 'Move' / 'Add Fee/Discount', dialog 'Applying to: <name>') + prior 2026-07-10 VIU. | SV-8479/8480 deconfliction 2026-07-22: rescoped from the old per-line-row ⋮ model to the new ⋮-left-of-technician entry point + 'Add Labor Fee / Discount' (item 1). RETIRE-CANDIDATE: now overlaps kept new case FD-WO-017 (item-1 placement acceptance) — flag for user ruling. | VIU 2026-07-22 LIVE: DEVIATION — three-dot (⋮) renders to the RIGHT of 'Unassigned' (⋮ x=502 vs Unassigned right-edge x=497), but EXP/spec requires LEFT (same defect as FD-WO-017 item-#1 re-open). Label 'Add Labor Fee / Discount' correct. Ev: wo/FD-WO-017-labor-row-menu-RIGHT.png.",
     "api_related": false,
     "fresh_run": "2026-07-13"
@@ -1384,7 +1384,7 @@
       "3. Clicking it opens the per-part fee/discount dialog titled 'New Part Fee / Discount', locked to that part."
     ],
     "design_ref": "#28439 empty state .pt-fd-add-btn (§5)",
-    "viu_status": "VIU-Verified",
+    "viu_status": "Retired — 2026-07-22 (SV-8479/8480 consolidation; C28471 deleted from TestRail; prev status VIU-Verified)",
     "notes": "The '+ Add' button is disabled when the sale/WO cannot be edited (see FD-PCOL-008). | VIU qb batch-1 (2026-07-08): Not built (see FD-PCOL-001). | FRESH VIU 2026-07-10: Story 11 surface absent (re-checked today) | WORDING+VIU 2026-07-13:  NOT BUILT: Story 11 (Part Sales fees/discounts) has not shipped — the Parts page has no 'Fees & Discounts' column and there is no part-sale F&D surface. Wording made build-accurate/layman for when it ships; status stays Blocked-NotBuilt. | STAGING VIU 2026-07-20 staging LIVE VIU: + Add button shown on a no-fee part. Live staging (psH2-invoiced.png); add works on editable sale via row menu. | SV-8479/8480 deconfliction 2026-07-22: rescoped off the removed '+ Add' button to the per-row ⋮ 'Add Part Fee / Discount' + 'New Part Fee / Discount' title (items 13/14/18). RETIRE-CANDIDATE (F2): overlaps kept new cases FD-PSALE-002/003 — flag for user ruling. | SV-8479 Batch-3 STAGING LIVE VIU 2026-07-22 (part-sale surface): seeded ZZAUTOTEST part sale P3-1118 (2 fee-less rows + NEXUS 2-adj) + whole-sale percent/flat/discount; observed live as admin (Part Sales C&E + SFD). Evidence build/fees-discounts/viu-sv8479-8480-2026-07-22/psale/. Live: fee-less row no '+ Add'; ⋮ 'Add Part Fee / Discount' -> dialog 'New Part Fee / Discount'.",
     "api_related": false,
     "fresh_run": "2026-07-20-staging"
@@ -1492,7 +1492,7 @@
       "3. Filled cells still open a read-only breakdown, but the per-row remove controls are not shown."
     ],
     "design_ref": "empty-state '+ Add' button disabled behavior (§5)",
-    "viu_status": "VIU-Verified",
+    "viu_status": "Retired — 2026-07-22 (SV-8479/8480 consolidation; C28475 deleted from TestRail; prev status VIU-Verified)",
     "notes": "Ties to the Invoiced/Paid lifecycle gate (S1-N1, S3-R1b). | VIU qb batch-1 (2026-07-08): Not built (see FD-PCOL-001). | FRESH VIU 2026-07-10: Story 11 surface absent (re-checked today) | WORDING+VIU 2026-07-13:  NOT BUILT: Story 11 (Part Sales fees/discounts) has not shipped — the Parts page has no 'Fees & Discounts' column and there is no part-sale F&D surface. Wording made build-accurate/layman for when it ships; status stays Blocked-NotBuilt. | STAGING VIU 2026-07-20 staging LIVE VIU: + Add disabled on non-editable (Paid) sale. Live staging (psH2-invoiced.png, btnDisabled=true). | SV-8479/8480 deconfliction 2026-07-22: rescoped off the removed '+ Add' button to the per-row ⋮ blocked-when-uneditable (item 13). RETIRE-CANDIDATE (F2): overlaps kept new case FD-PSALE-002 — flag for user ruling. | SV-8479 Batch-3 STAGING LIVE VIU 2026-07-22 (part-sale surface): seeded ZZAUTOTEST part sale P3-1118 (2 fee-less rows + NEXUS 2-adj) + whole-sale percent/flat/discount; observed live as admin (Part Sales C&E + SFD). Evidence build/fees-discounts/viu-sv8479-8480-2026-07-22/psale/. Live: Paid sale P3-1088 (editable=false) has NO '+ Add' and NO per-row ⋮ menu (button_part_request_menu_* count 0) -> add unavailable/blocked when non-editable.",
     "api_related": false,
     "fresh_run": "2026-07-20-staging"
