@@ -1,0 +1,45 @@
+{
+  "run": "2026-07-23 element-level re-observation",
+  "method": "Live UI render via TLS-terminating MITM + boot2. GENUINE switch-user impersonation of REAL role-holders where a holder exists (Rule 12); fe-permission-set render (admin backend session + role's live template fe_permissions injected, no location bounce) for the 5 roles with NO live holder in the org (labeled *_swap; staff-provisioning is email-invite-gated = unavailable unattended). WOs used are pre-existing, observed READ-ONLY (no mutation).",
+  "active_location_note": "WO-detail is location-scoped; each session opened a WO in its OWN scope to avoid the /workorders bounce. Admin/Tech scope = Lethbridge (S3 WOs); SrSA/SA/PM/SalesRep scope = Heavy Duty (S9 WOs).",
+  "concurrency_contamination": "Technician role (50bf6a0d) is DRIFTED by a concurrent actor at observation time: live atoms = 14 incl. workOrdersCreateAndEdit + seeFinancialData + settingsApp/Finance/Parts + invoicingPaymentsCreateAndEdit + seeApArData (baseline Technician = 6, no workOrdersCreateAndEdit / no seeFinancialData). NOT reset (would break the concurrent session per the CLAUDE.md two-session hazard). Consequence: the Technician baseline-NEGATIVE for Complete (SF-PERM-02/10) and add-vendorless (SF-PERM-09) cannot be cleanly shown this run.",
+  "controls": {
+    "complete_wo_cta_cluster": {
+      "definition": "WO-edit / completion action cluster on the WO-detail (/lines) page: top-right 'New Line' + 'Send To Review' + line-level 'Complete' (Action column). Present when the role holds workOrdersCreateAndEdit/line-edit; absent (read-only WO-detail) otherwise. Gate per SF-PERM-02/10 = workOrdersCreateAndEdit (+ full/tech view).",
+      "wo_used": {"Lethbridge":"f114be8a S3-25842 approved","HeavyDuty":"3996683a S9-25393 approved"},
+      "observations": {
+        "Admin (genuine holder)": "CTA cluster PRESENT (New Line, Send To Review, line Complete enabled) = CAN — matches §9.2 Y",
+        "Senior Service Advisor (genuine holder)": "CTA cluster PRESENT = CAN — §9.2 Y",
+        "Service Advisor (genuine holder)": "CTA cluster PRESENT = CAN — §9.2 Y",
+        "Parts Manager (genuine holder)": "CTA cluster PRESENT = CAN — §9.2 Y",
+        "Sales Representative (genuine holder)": "read-only, NO CTA cluster = CANNOT — §9.2 No",
+        "Service Manager (fe-swap, no holder)": "CTA cluster PRESENT = CAN — §9.2 Y",
+        "Foreman (fe-swap, no holder)": "CTA cluster PRESENT = CAN — §9.2 Y",
+        "Parts Technician (fe-swap, no holder)": "read-only, NO CTA = CANNOT — §9.2 No",
+        "Office (fe-swap, no holder)": "read-only, NO CTA = CANNOT — §9.2 No",
+        "Time Clock (fe-swap, no holder)": "read-only, NO CTA = CANNOT — §9.2 No",
+        "Technician (genuine holder, ROLE DRIFTED)": "CTA cluster PRESENT because role currently holds workOrdersCreateAndEdit (drift). Positively confirms the gate direction (atom present -> control shown) but the baseline No-negative is NOT cleanly observable this run; carried."
+      }
+    },
+    "mark_reviewed_button": {
+      "definition": "Top-right 'Mark Reviewed' button, appears on a WO in 'ready_for_review' state. Enabled iff role holds woReviewWorkOrders; disabled otherwise (button still rendered but greyed). Gate per SF-PERM-04/07/08 + SF-REV-09.",
+      "markable_wo": "3076df7e S9-25963 ready_for_review (Heavy Duty scope)",
+      "observations_same_markable_wo_3076df7e": {
+        "Senior Service Advisor (genuine)": "Mark Reviewed ENABLED — has woReviewWorkOrders — §9.2 Y",
+        "Service Advisor (genuine)": "Mark Reviewed ENABLED — §9.2 Y",
+        "Parts Manager (genuine)": "Mark Reviewed ENABLED — §9.2 Y",
+        "Sales Representative (genuine)": "Mark Reviewed DISABLED (greyed) — lacks woReviewWorkOrders — §9.2 No"
+      },
+      "additional": {
+        "Technician (genuine, drifted but lacks woReviewWorkOrders)": "Mark Reviewed DISABLED on S3-25700 4b398106 — lacks woReviewWorkOrders (drift did NOT add review) — §9.2 No",
+        "Admin (genuine)": "on S3-25700 the button was DISABLED due to a blocking unapproved-line WO-state (universal gate, OBS-7), not a permission signal; admin bounces on S9 markable WOs (location). Admin's review-perm positive is corroborated by SM/SrSA composition; not isolated on a markable WO this run.",
+        "SM/Foreman (fe-swap)": "hold woReviewWorkOrders (composition); Mark-Reviewed button-state not isolated on a markable WO (admin cookie bounces on the S9 markable WO; the S3 markable WO has a blocking-line state).",
+        "PartsTech/Office/TimeClock (fe-swap)": "lack woReviewWorkOrders; read-only WO-detail confirmed."
+      }
+    },
+    "add_vendorless_sell_price_field": {
+      "definition": "New Part Request dialog sell-price input (data-test-id input_workorder_part_sell_price). Gate per SF-PERM-09 = workOrderLinesCreateAndEdit + seeFinancialData. The clean discriminator is a role WITH line-edit but WITHOUT seeFinancialData = baseline Technician.",
+      "status": "NOT cleanly re-observed this run. All available holders (Admin/SrSA/SA/PM/SalesRep) hold seeFinancialData; the only qualifying negative role (Technician) is drifted to currently hold seeFinancialData; staff-provisioning to seed a clean baseline-Technician holder is email-invite-gated (unavailable unattended). Positive field-exists is a documented build fact. Tech-negative element carried from 2026-07-13."
+    }
+  }
+}

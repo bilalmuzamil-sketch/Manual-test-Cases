@@ -90,31 +90,57 @@ All consistent with §9.2. (`/parts/bulk-receive` direct-URL gave a timing false
 "ALLOWED" for Technician/Sales-Rep — disregarded; `/parts/orders` and `/bulk-receive` correctly
 deny them.) Evidence: fe-route-probe.jsonl, screenshots/technician-settings-REDIRECTED-to-workorders.png.
 
+## Element-level re-observation (2026-07-23, LATEST — closes the element gap)
+The WO-detail location-desync was UNBLOCKED (each session opens a WO in its OWN location scope →
+no bounce). Element-level controls were then re-observed LIVE this run: see
+`element-reobserve/element-matrix.json` + screenshots `complete-<role>.png` / `markrev-<role>.png`.
+Method: GENUINE switch-user impersonation of REAL role-holders (Admin/SrSA/SA/PM/SalesRep/Technician);
+fe-permission-set render (admin backend session + role's live template fe_permissions, no location
+bounce) for the 5 roles with NO live holder (Service Manager/Foreman/Parts Tech/Office/Time Clock;
+staff-provisioning is email-invite-gated = unavailable unattended). All observed WOs read-only.
+- **Complete-WO CTA cluster (SF-PERM-02/10):** CAN (cluster present) = Admin/SrSA/SA/PM (genuine) +
+  SM/Foreman (render); CANNOT (read-only) = Sales Rep (genuine) + Parts Tech/Office/Time Clock
+  (render). 10/11 match §9.2. Technician cell only: role concurrently DRIFTED (holds
+  workOrdersCreateAndEdit now) → shows cluster; baseline No-negative not cleanly observable this run.
+- **Mark Reviewed button (SF-PERM-04/07/08/REV-09):** on the SAME markable WO S9-25963 — ENABLED for
+  SrSA/SA/PM (genuine, hold Review Work Orders); DISABLED for Sales Rep (genuine) and Technician
+  (genuine, lacks Review even while drifted). Gate = woReviewWorkOrders, live-confirmed.
+- **Add-vendorless sell field (SF-PERM-09):** NOT cleanly re-observed — the only qualifying negative
+  role (baseline Technician, line-edit without See Financial Data) is drifted to hold seeFinancialData
+  and cannot be re-seeded unattended; Technician-negative element CARRIED (2026-07-13), not claimed
+  verified this run.
+
+## ⚠️ Concurrency: Technician ROLE drift at observation time
+The Technician role (50bf6a0d) live atoms this run = 14 incl. workOrdersCreateAndEdit + seeFinancialData
++ settingsApp/Finance/Parts + invoicingPaymentsCreateAndEdit + seeApArData (baseline = 6). NOT reset
+(a concurrent session is using it). This contaminates only the Technician-specific negatives for
+SF-PERM-02/10 (complete) and SF-PERM-09 (add-vendorless); the Technician Mark-Reviewed negative is
+unaffected (drift did not add woReviewWorkOrders) and was observed DISABLED live.
+
 ## Per-case verdicts
-Legend: **VIU-Verified** = live-observed this run; where an element-level control (button on a WO
-detail page) could not be re-rendered this run due to the multi-location WO-detail redirect
-(boot2 location-desync, an ENV limitation of this shared 10-location org), it is called out — the
-composition (template==§9.2) + BE + route-guard evidence still holds, and these controls were
-live-observed in the prior 2026-07-20 staging pass.
+Legend: **VIU-Verified** = live-observed. Element-level controls were re-observed live 2026-07-23
+(above); any residual carried element evidence is from the **2026-07-13 / 2026-07-10** passes
+(NOT 2026-07-20 — provenance corrected). Where a specific role's element is drift-blocked this run
+it is called out explicitly.
 
 - **SF-PERM-01** (only App-Settings roles view/modify WO settings; non-admin blocked; BE rejects)
   — **VIU-Verified (FE)** live: Technician + Sr SA + SA + Parts Manager + Sales Rep all REDIRECTED
   from the settings route; admin allowed. **BE nuance/DEVIATION**: BE `settings/change` = settings-
   family gate, so Parts Manager gets 200 (see finding). → **needs a wording refinement** to
   expected #3. Statuses of roles with NO settings perm correctly 403.
-- **SF-PERM-02** (which roles can complete) — **VIU-Verified (composition + nav)**. Completion
-  atoms per role == §9.2 (Admin/SM/SrSA/SA/Foreman/PM can; Technician/PartsTech/Office/SalesRep/
-  TimeClock cannot). Complete-button element re-render Blocked-Env this run (location-desync);
-  no contradicting evidence.
+- **SF-PERM-02** (which roles can complete) — **VIU-Verified (element re-observed 2026-07-23)**.
+  Complete-WO CTA cluster observed live per role for 10/11 (Admin/SrSA/SA/PM genuine + SM/Foreman
+  render = CAN; SalesRep genuine + PartsTech/Office/TimeClock render = CANNOT) == §9.2. Technician
+  cell drift-blocked (see Concurrency); baseline No-negative carried 2026-07-13.
 - **SF-PERM-03** (which roles Bulk Receive) — **VIU-Verified (composition + partial FE route)**.
   Parts nav + /parts/orders allowed for Sr SA/SA/PM; denied for Technician/Sales Rep — matches.
   Office view-only (no holder to observe element).
 - **SF-PERM-04 / SF-PERM-07 / SF-PERM-08 / SF-REV-09** (Mark Reviewed gated by Review Work Orders;
-  self-review allowed) — **VIU-Verified (composition)**. woReviewWorkOrders held by Admin/SM/SrSA/
-  SA/Foreman/PM, absent for Technician/PartsTech/Office/SalesRep/TimeClock == §9.2. Self-review =
-  allowed (SV-8183 NET-NEW reviewer≠completer is NOT enforced; matches Milos ruling / OQ-1 resolved
-  — cases already reflect this). Mark-Reviewed-button element (needs a WO in Review state + detail
-  render) Blocked-Env this run.
+  self-review allowed) — **VIU-Verified (element re-observed 2026-07-23)**. On the SAME markable
+  ready_for_review WO S9-25963: 'Mark Reviewed' ENABLED for SrSA/SA/PM (genuine holders, hold
+  woReviewWorkOrders) and DISABLED for SalesRep (genuine) + Technician (genuine, lacks Review even
+  while drifted) — gate live-confirmed. Self-review = allowed (reviewer≠completer NOT enforced;
+  Milos/OQ-1 resolved). SM/Foreman hold the perm (composition); PartsTech/Office/TimeClock read-only.
 - **SF-PERM-05** (PO Receive hidden for office/readonly = Order Parts) — **VIU-Verified
   (composition + FE route)**. Technician + Sales Rep denied /parts/orders live; Order-Parts atom
   absent for Office/Sales Rep/Time Clock == §9.2. Office-specific button element not observed (no
@@ -125,11 +151,15 @@ live-observed in the prior 2026-07-20 staging pass.
   the documented atom collapse). The completion/review BE-200-gap was NOT re-driven this run (would
   complete a real WO — side-effect; carried from spec + prior). Parts Manager settings 200 = the
   new BE-scope nuance above.
-- **SF-PERM-09** (Technician cannot add vendorless part = lacks See Financial Data) — **VIU-Verified
-  (composition)**: Technician template lacks seeFinancialData (6 perms, live-confirmed). Add-part
-  sell-price element not re-driven this run (carried from prior).
-- **SF-PERM-10** (per-role completion matrix) — **VIU-Verified (composition == §9.2)**; see the
-  11-role table above. Complete-button element re-render Blocked-Env this run.
+- **SF-PERM-09** (Technician cannot add vendorless part = lacks See Financial Data) — **element
+  NOT cleanly re-observed 2026-07-23 (drift-blocked)**: the Technician role is concurrently drifted
+  to HOLD seeFinancialData, and no other available holder has line-edit-without-seeFinancialData;
+  a clean baseline-Technician holder cannot be seeded unattended (staff provisioning email-gated).
+  Sell-price field (input_workorder_part_sell_price) exists in the New Part Request dialog (build
+  fact). Technician element-negative CARRIED from 2026-07-13; NOT claimed element-verified this run.
+- **SF-PERM-10** (per-role completion matrix) — **VIU-Verified (element re-observed 2026-07-23)**;
+  Complete-WO CTA cluster observed live for 10/11 roles matching the §9.2 table above (Technician
+  cell drift-blocked, carried 2026-07-13). See element-reobserve/element-matrix.json + screenshots.
 
 ## SV-8183 status note
 SV-8183's own Jira status is "Blocked", but the permission BEHAVIOR is functionally present on
@@ -138,12 +168,13 @@ correctly per role. No broken/erroring permission behavior observed. The one sub
 the BE settings-family scope (Parts Manager) noted above.
 
 ## Wording corrections / TestRail follow-up (NONE pushed — hold for authorization)
-- **SF-PERM-01** expected #3: refine "backend rejects a Work Order settings save by a role that
-  lacks App Settings" → the BE `settings/change` endpoint is gated by the broader settings
-  permission family (a role with settingsParts/settingsFinance e.g. Parts Manager is accepted);
-  the App-Settings gate applies to the FE settings *route/page*. This is the only case needing a
-  potential `update_case` (wording), subject to user + Milos confirmation. All other cases'
-  wording remains accurate to the live build.
+- **SF-PERM-01** expected: **REFINED locally 2026-07-23** in the case source. Tester-facing expected
+  reworded (Rule 9, plain) to the page-reachability truth — only App-Settings roles can open/change
+  the WO settings page; a role that cannot open the page cannot save changes. The BE driver moved to
+  metadata (viu_note): POST /api/organizations/settings/change is gated by the SETTINGS ATOM-FAMILY
+  (a clean Parts Manager with settingsParts/settingsFinance gets HTTP 200; no-settings roles get 403),
+  while settingsApp gates the FE settings PAGE/route. This needs an `update_case` — **PENDING user
+  authorization (not pushed).** All other cases' wording remains accurate to the live build.
 
 ## Env cleanup
 - Tech user NOT modified by this session (verified). No ZZAUTOTEST staff or roles were created
