@@ -128,12 +128,14 @@ LIVE = {
                   "EXISTS — the earlier 'no Show more/less toggle' finding is resolved. Update the "
                   "case to Verified."),
              "action": "Apply update", "state": "verified"},
- "C28460": {"d": ("LIVE 2026-07-23: the Statistics tab now shows a 'Fees & Discounts (6)' section "
-                  "with PER-ADJUSTMENT rows (columns % and Amount: 'Fee +10% +$46.49', 'Discount', "
-                  "'Fee −11% −$2.39', etc.) plus a Total — the earlier 'aggregate only, no per-row' "
-                  "finding no longer holds. Still to confirm: whether each row has a scope hyperlink "
-                  "to jump to its item. Update the case to the per-row layout."),
-             "action": "Apply update", "state": "verified"},
+ "C28460": {"d": ("LIVE 2026-07-23 (WO S-25991 Statistics tab, has a line-level part fee 'pp'): the "
+                  "'Fees & Discounts' section shows PER-ADJUSTMENT rows with the fee NAME + % + Amount "
+                  "('Part Fee +11% +$16.34', 'pp +50% +$49.50', Total), BUT the row does NOT name its "
+                  "target line/part and there is NO per-row clickable link to jump to the item (the "
+                  "only links on the page are the Lines/Parts tabs). The case expects each row to name "
+                  "its target AND be a clickable link → DEVIATION: build shows the fee name only. "
+                  "Decide: keep the case as design-intent + log a fix, or accept the shipped display."),
+             "action": "DECISION", "state": "deviation"},
  "C28511": {"d": ("LIVE 2026-07-23: the LINE-SCOPE fee dialog now HAS a template picker — the 'New Part "
                   "Fee / Discount' dialog (and the labour-line one) shows 'Apply From Template' with "
                   "'Showing templates compatible with this line', and the whole-WO dialog has it too. The "
@@ -249,8 +251,9 @@ def build(proj):
     ws['A1'].font=Font(bold=True,size=13)
     nlive = sum(1 for r in rows if LIVE.get(r[0],{}).get('state')=='verified')
     nblk = sum(1 for r in rows if LIVE.get(r[0],{}).get('state')=='blocked')
-    ws.append([f"LIVE-BUILD CHECK 2026-07-23: {nlive} of {n} rows re-verified live on staging (green); "
-               f"{nblk} characterised-blocked on an env defect (orange, see column D); the rest flagged "
+    ndev = sum(1 for r in rows if LIVE.get(r[0],{}).get('state')=='deviation')
+    ws.append([f"LIVE-BUILD CHECK 2026-07-23: {nlive} of {n} rows re-verified live (green); "
+               f"{ndev} confirmed DEVIATION needing a decision; {nblk} env-blocked; the rest flagged "
                "'⏳ LIVE CHECK PENDING'."])
     ws['A2'].font=Font(bold=True, color='C00000')
     ws.append([proj['omit_note'] + "  Orange rows = waiting on a ticket that is NOT yet done."])
@@ -268,8 +271,9 @@ def build(proj):
         fh.write(f"# {proj['name']} spec-recheck — change list ({DATE})\n\n")
         nlive=sum(1 for r in rows if LIVE.get(r[0],{}).get('state')=='verified')
         nblk=sum(1 for r in rows if LIVE.get(r[0],{}).get('state')=='blocked')
-        fh.write(f"> **LIVE-BUILD CHECK 2026-07-23:** {nlive} of {n} rows re-verified live on staging; "
-                 f"{nblk} characterised-blocked on an env defect; the rest flagged **⏳ LIVE CHECK PENDING**.\n\n")
+        ndev=sum(1 for r in rows if LIVE.get(r[0],{}).get('state')=='deviation')
+        fh.write(f"> **LIVE-BUILD CHECK 2026-07-23:** {nlive} of {n} rows re-verified live; "
+                 f"{ndev} confirmed deviation (decision needed); {nblk} env-blocked; rest **⏳ PENDING**.\n\n")
         fh.write(f"{n} of {total} cases need a change or a decision. {proj['omit_note']}\n\n")
         fh.write("**Legend:** Action = *Apply update* (wording/expected fix) or *Decision* (needs you/PO/dev to choose). "
                  "Ticket status shows whether the driving Jira ticket is Done (live status 2026-07-23).\n\n")
