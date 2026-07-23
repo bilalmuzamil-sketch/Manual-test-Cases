@@ -35,6 +35,13 @@
    dry-run it.
 8. **Reuse, don't reinvent**: if a process already covers the ask, extend/point to it rather than
    duplicating; cross-reference sibling processes so the user can pick the right one.
+9. **Build in the live-build-check touchpoints + the always-ask rule (Standing Rule 22).** Every
+   process doc MUST call out which of its steps/deliverables need observing the LIVE build
+   (labels, controls, behaviour, permissions, calculations, states, "what needs to change",
+   VIU, spec-vs-build conformance, comparisons), and MUST instruct: **at the start, ASK the user
+   whether to run the live-build check for those items and request the access needed (fresh
+   cookies + env/branch + flags) BEFORE proceeding** — never skip it or substitute documented/
+   inferred data (Rule 12). If the user declines, LABEL those items "not live-verified this run".
 
 ## The one-page checklist (tick every box)
 - [ ] Read the raw transcript; listed every relevant user turn + correction.

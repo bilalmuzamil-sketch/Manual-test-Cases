@@ -924,6 +924,25 @@ process(es) to run before proceeding.
     offering a dry-run. **The full checklist is build/PROCESS-AUTHORING-STANDARD.md.** The
     canonical index of all callable processes is **build/PROCESS-CATALOG.md** (read it to
     pick/name a process for any project). Ties to Standing Rules 16/17/18/19.
+22. **ALWAYS ASK about a live-build check up front — for EVERY process/task — whenever
+    anything appears to require it (all projects).** A live-build check (observing the real
+    staging/QA build with evidence) is a mandatory step of most of these processes, and access
+    needs the user to supply fresh cookies. Therefore, at the START of any process or task,
+    identify every step/deliverable/cell that APPEARS to need observing the live build — on-screen
+    labels/wording, a control's presence/absence, a behaviour, a permission/role gate, a
+    calculation, a state/flow, "what needs to change" descriptions, VIU/verification, spec-vs-build
+    conformance, comparisons — and **ASK the user whether to run the live-build check for those
+    items, and request the access needed (fresh cookies + env/branch + feature-flag state), BEFORE
+    proceeding.** Never silently skip it, and never substitute documented prior findings,
+    `viu_status`, memory, spec text, source code, or inference for a fresh live observation to
+    appear complete (Rule 12). If the user declines the live check, proceed but clearly LABEL every
+    such item as "not live-verified this run" in the deliverable. When live access is required but
+    missing, STOP and request it rather than guessing. Rationale, 2026-07-23: the first Simple Flow
+    + Fees & Discounts change lists were delivered off documented findings without a fresh live
+    build check and the user rejected them — "checking in the build is part of the process, why did
+    you skip that? … you should always ask me for every process if something needs to be live build
+    checked … Remember that forever." Ties to Standing Rules 10/11/12/13/14/21 and
+    build/PROCESS-AUTHORING-STANDARD.md.
 
 ## Project purpose (Custom Roles project)
 Manual test-case authoring + live staging (Verify-in-UI) verification + TestRail

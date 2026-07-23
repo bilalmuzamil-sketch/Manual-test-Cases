@@ -11,6 +11,13 @@
 > for Fees & Discounts."* Add any specifics (epic key, spec page, env) if Claude doesn't have
 > them yet.
 >
+> **Always-ask live-build-check rule (Standing Rule 22):** for EVERY process below, at the start
+> Claude identifies anything that appears to need observing the LIVE build (labels, controls,
+> behaviour, permissions, calculations, states, "what needs to change", VIU, spec-vs-build,
+> comparisons) and **ASKS you whether to run the live-build check + requests fresh access
+> (cookies + env/branch + flags) before proceeding** — it never skips it or substitutes
+> documented/inferred data. Decline and those items are labelled "not live-verified this run".
+>
 > **Two-session note:** this workspace is worked by more than one Claude session in parallel.
 > This catalog + `CLAUDE.md` + the `build/*-PROCESS.md`/`*-METHOD.md`/`*-RECIPE.md` docs are the
 > **shared brain** — both sessions read and update them, so any process is callable from either.
