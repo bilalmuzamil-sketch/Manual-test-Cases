@@ -1056,6 +1056,16 @@ process(es) to run before proceeding.
     permission VIU on shared staging org d55bc308, the Tech user (and likely other roles) were
     over-granted from prior testing; the user directed resetting each role to template first so
     the VIU verifies against correct permissions rather than drift.
+    **26a — Re-reset on mid-test drift, persistently.** If a role RE-DRIFTS during the test (a
+    concurrent session/actor re-adds permissions on the shared org), RESET it to template AGAIN
+    and CONTINUE the testing — re-assert the template baseline every time drift is detected mid-run,
+    then immediately re-observe. Do NOT abandon the observation to a "drift-blocked" partial while
+    re-reset is still working, and do NOT cap the retries at a small number. Only record a genuine
+    blocker if the reset itself fails, or drift recurs so fast that no observation can complete even
+    with immediate re-reset+observe after sustained persistence — and then document it precisely
+    (Rule 12, never infer a pass). Leave the role at template when done. Rationale: 2026-07-23 —
+    during the SV-8183 Technician-role VIU a concurrent session kept re-drifting the shared
+    Technician role mid-run.
 
 ## Project purpose (Custom Roles project)
 Manual test-case authoring + live staging (Verify-in-UI) verification + TestRail
