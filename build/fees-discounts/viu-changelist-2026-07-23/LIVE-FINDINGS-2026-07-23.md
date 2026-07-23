@@ -82,3 +82,24 @@ Verified/updated: INLINE-003 (resolved), WO-017 (deviation stands), STATS-002 (p
 (table part), PROC-009+CALC-013 (FIXED), TMPL-010 (resolved), SV-8521 (fixed on WO Finance),
 SV-8520 (confirmed defect). Still pending: WO-013/PERM-002 (permission), STATS-004 (ordering),
 CUST-005 dropdown/CUST-006 empty, PROC-008 (⋮ Edit|Remove), SF RCV-05/07 (C), SF REV-11, SF UX-04.
+
+## Update — batch 5 (remaining cases; honest stopping point)
+- **FD-STATS-004 (ordering) — data confirms oldest-first; on-screen display not captured.** Via API
+  (retry-login), WO A adjustments are stored in creation order oldest-first: Part Fee @14:17:53,
+  WO Processing Fee @14:17:53, bil @14:44:25. The spec wants WO screens oldest-first; the data backs
+  it. The exact Statistics-tab DISPLAY order could not be captured this run (see blocker below).
+- **BLOCKER for the last few UI cases:** the QA-seeded WOs live in the "Staging Heavy Duty - 9919"
+  workplace; the headless boot2 harness hydrates a different (random) workplace, so those WO pages
+  404/redirect in the UI, and the in-app location switcher resisted reliable coordinate-clicking.
+  API reads work via retry-login (loop until the WO resolves), but UI-only observations
+  (Statistics display order, the processing-fee ⋮ menu, the customer add-fee picker dropdown, the
+  Simple-Flow receive screen, the review/close-cancel flows) need the harness to hydrate the target
+  workplace. That's a harness change (set the current-workplace localStorage key before navigating),
+  not a data problem — noted for the next run.
+
+## STILL PENDING after this session (honest)
+FD: STATS-004 display order (data supports oldest-first), PROC-008 (processing-fee ⋮ Edit|Remove),
+WO-013/PERM-002 (permission role-negative — manual adjustment-add endpoint not yet found),
+CUST-005 dropdown + CUST-006 empty state (picker didn't render headless).
+SF: RCV-05/07 (WO C receive screen), REV-11, UX-04.
+All need the boot2 workplace-hydration fix or a human glance; none are data-seeding blockers.
