@@ -986,6 +986,21 @@ process(es) to run before proceeding.
     process and almost all processes you are supposed to check the specs from that confluence link
     as well; ask me for every process if I want you to go through that confluence specs or not when
     you are not sure." Ties to Standing Rules 10/11/12/13/15/21/22 and build/PROCESS-CATALOG.md.
+24. **Front-end restriction but API-possible is NOT a bug (for now) — just FLAG it (all
+    projects).** When a control/action is restricted in the UI (hidden/disabled by a
+    front-end permission or FE gate) BUT the same action still succeeds through the API
+    (e.g. a direct `POST` returns 201/200 for a user who lacks the permission in the UI),
+    do NOT classify it as a bug/defect. Treat the UI behaviour as the tester-facing
+    result, and add a plain flag note: **"It can be done through the API though."** This
+    matches the ShopView enforcement model (granular permissions are largely front-end
+    display gates the backend does not independently enforce). Record it as a flagged
+    observation in the QA/findings layer (not the tester-facing steps), never as a
+    Deviation/bug, unless/until the user or PO rules that backend enforcement is required.
+    Rationale, 2026-07-23: FD-WO-013 (C28436)/FD-PERM-002 (C28586) — a Sales-Rep-role user
+    (no Work Orders: Create & Edit in the UI) still added a whole-WO fee via the API (201);
+    per this rule that is FLAGGED ("doable via API"), not a bug. Ties to Standing Rules
+    12/13 and the Custom Roles enforcement-model finding (BE enforces resource View/Edit;
+    granular perms are FE gates).
 
 ## Project purpose (Custom Roles project)
 Manual test-case authoring + live staging (Verify-in-UI) verification + TestRail

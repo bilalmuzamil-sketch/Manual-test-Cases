@@ -106,16 +106,15 @@ FEES_DISCOUNTS = {
    "work-order edit rights (the block is front-end only). Confirm the intended enforcement.",
    "SV-8289","NOT DONE (Open)","DECISION"),
   # --- New FD defects the user flagged 2026-07-23 (SV-8521, SV-8520): not previously in scope ---
-  ("NEW-8521","Finance/Invoice — part-line display",
+  ("C30639","Finance/Invoice — part-line display",
    "A fee/discount on a PART should show as an indented row under that part on the Finance/invoice "
-   "view (work order AND parts sale), the same way a labour-line one does. Reported missing on "
-   "Finance (value only in the bottom summary). Needs a new case covering this on both surfaces.",
-   "SV-8521","NOT DONE (Ready for QA)","New case + verify"),
-  ("NEW-8520","Part line — display after receive/pick",
+   "view (work order AND parts sale), the same way a labour-line one does. NEW case authored 2026-07-23.",
+   "SV-8521","NOT DONE (Ready for QA)","Authored (C30639)"),
+  ("C30640","Part line — display after receive/pick",
    "A fee on a PART line should stay visible on the line row after the part is received or picked; "
-   "it currently disappears from the line (still correct in totals and on the invoice). Needs a new "
-   "case covering line display staying in sync after receive/pick.",
-   "SV-8520","NOT DONE (Testing Stage)","New case + verify"),
+   "it currently disappears from the line (still correct in totals and on the invoice). NEW case "
+   "authored 2026-07-23.",
+   "SV-8520","NOT DONE (Testing Stage)","Authored (C30640)"),
  ],
 }
 
@@ -141,24 +140,25 @@ LIVE = {
                   "earlier 'no template picker at line scope' deviation is resolved; the scope-filtering "
                   "hint is present. Update the case to the picker-present, scope-filtered behaviour."),
              "action": "Apply update", "state": "verified"},
- "NEW-8520": {"d": ("LIVE 2026-07-23 (WO S-25991, QA-seeded): CONFIRMED — a 50% part fee was added to a "
+ "C30640": {"d": ("LIVE 2026-07-23 (WO S-25991, QA-seeded): CONFIRMED — a 50% part fee was added to a "
                     "part then the part was picked; the part line row now shows $99.00 with NO indented "
                     "fee child row, yet the line TOTAL is $392.50 (labour $244 + part $99 + the $49.50 "
                     "fee). So the fee is still billed but hidden from the line after pick — matches "
                     "SV-8520. Author the case as a confirmed defect (Testing Stage)."),
                "action": "New case + verify", "state": "verified"},
- "C28436": {"d": ("LIVE 2026-07-23 (WO S-25989, switch-user impersonation of the Sales Representative "
-                  "role which has workOrdersCreateAndEdit=FALSE): adding a whole-work-order fee "
-                  "returned HTTP 201 — the backend does NOT enforce 'Work Orders: Create & Edit' for "
-                  "adding a whole-WO fee/discount; it is a front-end-only gate. Confirms the deviation "
-                  "(Story 13 maps the action to WO Create&Edit + See Financial Data, but the backend "
-                  "doesn't enforce it). Test data cleaned up; no roles changed."),
-             "action": "DECISION", "state": "verified"},
- "C28586": {"d": ("LIVE 2026-07-23 (switch-user as Sales Representative, workOrdersCreateAndEdit=FALSE): "
-                  "POST add whole-WO fee → HTTP 201 (not blocked). Whole-WO adjustment add is NOT "
-                  "backend-enforced — front-end-only gate, same finding as C28436. Confirms the "
-                  "permission deviation."),
-             "action": "DECISION", "state": "verified"},
+ "C28436": {"d": ("LIVE 2026-07-23: the UI hides 'Add Work Order Fee / Discount' for a role without "
+                  "'Work Orders: Create & Edit' (front-end gate). The same add STILL succeeds through "
+                  "the API — a Sales-Representative-role user (WO Create&Edit = FALSE) POSTed a whole-WO "
+                  "fee and got HTTP 201. Per the rule, this is NOT a bug: the UI behaviour is the "
+                  "tester-facing result; FLAG = 'It can be done through the API though.' Case wording "
+                  "(UI option hidden) stays as-is; no edit needed."),
+             "action": "FLAG (API-possible)", "state": "verified"},
+ "C28586": {"d": ("LIVE 2026-07-23 (switch-user as Sales Representative, WO Create&Edit=FALSE): the UI "
+                  "gate hides add/edit/remove, but a direct API add returned HTTP 201 — front-end-only "
+                  "gate. Not a bug (Rule 24): FLAG 'can be done through the API'. The case's tester-facing "
+                  "'action is refused' should read as the UI control being hidden; the backend "
+                  "non-enforcement is a flagged note, not a Deviation."),
+             "action": "FLAG (API-possible)", "state": "verified"},
  "C28526": {"d": ("LIVE 2026-07-23 (WO S-25989): a processing fee is REMOVE-ONLY on the backend — "
                   "POST /api/work-orders/adjustments/change on the processing fee returns HTTP 409 "
                   "'A processing fee cannot be edited through this endpoint', while the same edit on a "
@@ -196,7 +196,7 @@ LIVE = {
                   "= $27.72, observed $27.72; buggy would be $30.28). Calculation-contract deviation "
                   "resolved. Update the case to Verified."),
              "action": "Apply update", "state": "verified"},
- "NEW-8521": {"d": ("LIVE 2026-07-23 (WO S9-25393 Finance/Estimate view): part-line adjustments DO "
+ "C30639": {"d": ("LIVE 2026-07-23 (WO S9-25393 Finance/Estimate view): part-line adjustments DO "
                     "render as indented child rows under their part — '↳ Name $11.00' and "
                     "'↳ Fee (% of parts) ($2.39)' show under the T-BOLT CLAMP part, exactly like the "
                     "labour-line '↳ Fee (% of labor)' / '↳ Discount'. So on the work-order invoice "

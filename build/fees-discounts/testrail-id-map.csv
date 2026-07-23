@@ -200,3 +200,5 @@ ID,fd_id,title,section,refs,trace_note
 30633,FD-CALC-022,"Verify the Invoice document is unchanged — labor prints gross, each fee prints its own row, and the grand total is not double-counted",Calculation contract,SV-8480 (S3-R18),
 30634,FD-CALC-023,"Verify that when the Fees & Discounts feature is turned off, the line total is Labor + Parts only (gross), with no fee/discount rolled in",Calculation contract,SV-8480 (S3-R18),
 30635,FD-CALC-024,Verify the backend per-line total includes the line's signed fee/discount amounts (Labor $250 + $50.00 + Part $20.00 + $2.20 → total_cost 322.20),API — Calculation contract,SV-8480 (S3-R18),
+30639,FD-PSALE-INV-01,Verify a part-line fee/discount shows as a row under its part on the Finance (Estimate/Invoice) view — on both a work order and a parts sale,Customer document — per-line adjustments,"SV-8521,SV-8281 (§5-R12 — a line-level adjustment shows wherever its target shows)",
+30640,FD-PART-DISP-01,Verify a part-line fee stays shown on the part row after the part is received or picked,Work Order / Parts — Part-line Fee/Discount,"SV-8520,SV-8287 (§5-R12 — a line-level adjustment shows wherever its target shows)",
