@@ -775,6 +775,25 @@ process(es) to run before proceeding.
     (live feature-by-feature testing): observed-not-inferred means you must first
     CREATE the conditions needed to observe, not fall back to NOT-VERIFIED. Applies
     to every deliverable and every project going forward.
+    **SELF-SEED PLAYBOOK (learned 2026-07-23 — always try these BEFORE ever saying
+    "blocked"): (a) DON'T rely on the user to unblock env/data/workplace issues — find
+    the fix yourself (e.g. the location/workplace switcher, a different WO in your own
+    workplace). (b) When the UI is flaky (Quasar dialogs/selects intercepting clicks),
+    switch to the API; when the API is scoped/awkward, switch to the UI — use whichever
+    works. (c) DISCOVER endpoints by probing: POST with an empty/partial body and read
+    the validation error to learn required fields (this found `POST /api/work-orders/create`
+    needs company_id+vehicle_id+workplace_id+start_date+`is_vehicle_here:true`). (d) SEED
+    the state yourself: create WOs/lines/parts/adjustments, assign a customer default so
+    fees auto-apply, create a fresh staff per role, etc. (e) For Quasar UI, click by
+    element-center COORDINATE (page.mouse.click) rather than Playwright actionability
+    clicks that time out on backdrops; reach in-page tabs the same way. (f) CLEAN UP
+    after (delete ZZAUTOTEST data, restore roles). Only after all of this genuinely
+    fails is it a real blocker — and then it must be a FULLY-CHARACTERIZED, evidence-backed
+    label (e.g. "WO line-create returns HTTP 500, requestId X — env defect for dev"),
+    never bare "NOT VERIFIED", and you may hand the user a step-by-step data-setup sheet
+    (layman, per Rule 7) for the one thing only a human/dev can provide.** The user's
+    standing instruction: "there is nothing like 'require seeding data' — you can make
+    everything in the build; do not find an excuse to keep yourself blocked."
 15. **Spec-conformance calls derive from a VERBATIM TRUTH TABLE + adversarial
     self-audit before delivery (all projects).** Whenever annotating/judging
     ANYTHING against a spec (per-spec columns, case-vs-spec reconciliation,

@@ -166,3 +166,19 @@ for a genuine coverage gap or a distinct check. Record every keep/drop in a
 (2026-07-22): 20 candidate new cases → 11 kept / 9 dropped** as duplicates of edited
 cases (`build/fees-discounts/sv8479-8456-8480/deconfliction-decision-table-2026-07-22.md`).
 Skipping this step ships duplicate cases.
+
+## Self-seed to unblock — never stay blocked on data (Standing Rule 14)
+This process MUST self-seed any missing data state rather than declare "blocked" or ask the user to
+provide data. Playbook (learned 2026-07-23): (a) don't rely on the user to fix env/data/workplace
+issues — find the switcher or another usable record yourself; (b) if the UI is flaky (Quasar
+dialogs/selects intercepting clicks) switch to the API, and if the API is scoped/awkward switch to
+the UI; (c) discover endpoints by probing — POST an empty/partial body and read the validation error
+for required fields (e.g. `POST /api/work-orders/create` needs company_id+vehicle_id+workplace_id+
+start_date+`is_vehicle_here:true`); (d) create the WOs/lines/parts/adjustments/roles/customer-defaults
+needed (a customer default makes fees auto-apply); (e) for Quasar UI click by element-center
+coordinate (`page.mouse.click`) not Playwright actionability clicks; (f) clean up ZZAUTOTEST data and
+restore roles afterwards. Only a genuinely un-provisionable dependency (a server 500 on create, an
+external device) is a real blocker — characterise it with evidence (endpoint + requestId), never bare
+"NOT VERIFIED", and hand the user a layman step-by-step data-setup sheet for the one thing only a
+human/dev can supply. User rule: "there is nothing like 'require seeding data' — make everything in
+the build; do not find an excuse to keep yourself blocked."

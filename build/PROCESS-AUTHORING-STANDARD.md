@@ -48,6 +48,14 @@
     whether to read the Confluence spec** (Atlassian MCP `getConfluencePage`; each project's
     canonical pageId) before proceeding — never assume the local copy is current, never silently
     skip it.
+11. **Include the "Self-seed to unblock" section (Standing Rule 14).** Every process that touches
+    the build MUST carry a "Self-seed to unblock" section: it self-seeds any missing data state
+    (create WOs/lines/parts/adjustments/roles/customer-defaults; discover endpoints by probing
+    validation errors; switch UI↔API and use coordinate-clicks for Quasar; clean up after) rather
+    than declare "blocked" or ask the user for data. Only a genuinely un-provisionable dependency
+    (server 500 on create, external device) is a real blocker — characterised with evidence
+    (endpoint + requestId), never bare "NOT VERIFIED"; and only then hand the user a layman
+    step-by-step data-setup sheet for the one thing a human/dev must supply.
 
 ## The one-page checklist (tick every box)
 - [ ] Read the raw transcript; listed every relevant user turn + correction.
