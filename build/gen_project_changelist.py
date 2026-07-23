@@ -144,6 +144,18 @@ LIVE = {
                   "finding no longer holds. Still to confirm: whether each row has a scope hyperlink "
                   "to jump to its item. Update the case to the per-row layout."),
              "action": "Apply update", "state": "verified"},
+ "C28511": {"d": ("LIVE 2026-07-23: the LINE-SCOPE fee dialog now HAS a template picker — the 'New Part "
+                  "Fee / Discount' dialog (and the labour-line one) shows 'Apply From Template' with "
+                  "'Showing templates compatible with this line', and the whole-WO dialog has it too. The "
+                  "earlier 'no template picker at line scope' deviation is resolved; the scope-filtering "
+                  "hint is present. Update the case to the picker-present, scope-filtered behaviour."),
+             "action": "Apply update", "state": "verified"},
+ "NEW-8520": {"d": ("LIVE 2026-07-23 (WO S-25991, QA-seeded): CONFIRMED — a 50% part fee was added to a "
+                    "part then the part was picked; the part line row now shows $99.00 with NO indented "
+                    "fee child row, yet the line TOTAL is $392.50 (labour $244 + part $99 + the $49.50 "
+                    "fee). So the fee is still billed but hidden from the line after pick — matches "
+                    "SV-8520. Author the case as a confirmed defect (Testing Stage)."),
+               "action": "New case + verify", "state": "verified"},
  "C28489": {"d": ("LIVE 2026-07-23 (customer 'Default Fees & Discounts' tab): the defaults TABLE "
                   "shows full columns — Name, Type, Calculation Type, Amount, Max Amount, Taxable — "
                   "and a Processing Fee displays with Type 'Fee' (e.g. 'Processing Fee | Fee | % of "
@@ -151,19 +163,18 @@ LIVE = {
                   "the 'Add Fee/Discount' picker DROPDOWN lists name-only vs columns. Update the case "
                   "to the observed table display."),
              "action": "Apply update", "state": "verified"},
- "C28527": {"d": ("LIVE 2026-07-23: created a WO for a customer carrying default processing fees — the "
-                  "5% and 6% processing_fee (calculationType pct_grand_total) AUTO-APPLIED alongside a "
-                  "whole-WO Flat Fee $11 (confirmed via API, appliedBy=customer_default). The definitive "
-                  "base-inclusion check (does the processing-fee base wrongly include the whole-WO fee?) "
-                  "needs a priced line so the fees resolve above $0 — but adding a line returns HTTP 500 "
-                  "(WO line-create env defect, requestId e1069cd9…) and the UI line-add hits the async "
-                  "ShopCoach builder. CHARACTERISED-BLOCKED on the line-create 500; retest when fixed."),
-             "action": "DECISION", "state": "blocked"},
- "C28580": {"d": ("LIVE 2026-07-23: same as C28527 — customer-default processing fees (5%/6% of Grand "
-                  "Total) auto-apply with a whole-WO Flat Fee (confirmed via API); the base-inclusion "
-                  "calc can't be resolved because adding a priced line returns HTTP 500 (WO line-create "
-                  "env defect, requestId e1069cd9…). CHARACTERISED-BLOCKED; retest when the 500 is fixed."),
-             "action": "DECISION", "state": "blocked"},
+ "C28527": {"d": ("LIVE 2026-07-23 (WO S-25989, seeded by QA): processing-fee base now EXCLUDES whole-WO "
+                  "fees — FIXED. Numbers: labour $244 + shop supplies $20 = net subtotal $264; ×1.05 GST "
+                  "= Grand Total $277.20; Processing Fee 10% = $27.72 (matches the observed $27.72 to the "
+                  "cent). The whole-WO 'bil' fee ($24.40) is NOT in the base (the old bug would give "
+                  "$30.28). Spec §5-R4 satisfied — the earlier 'base includes whole-WO fees' deviation is "
+                  "resolved. Update the case to Verified."),
+             "action": "Apply update", "state": "verified"},
+ "C28580": {"d": ("LIVE 2026-07-23 (WO S-25989): same result as C28527 — the Grand-Total base for the "
+                  "Processing Fee correctly excludes whole-WO fees and their tax (10% × ($264 net ×1.05) "
+                  "= $27.72, observed $27.72; buggy would be $30.28). Calculation-contract deviation "
+                  "resolved. Update the case to Verified."),
+             "action": "Apply update", "state": "verified"},
  "NEW-8521": {"d": ("LIVE 2026-07-23 (WO S9-25393 Finance/Estimate view): part-line adjustments DO "
                     "render as indented child rows under their part — '↳ Name $11.00' and "
                     "'↳ Fee (% of parts) ($2.39)' show under the T-BOLT CLAMP part, exactly like the "

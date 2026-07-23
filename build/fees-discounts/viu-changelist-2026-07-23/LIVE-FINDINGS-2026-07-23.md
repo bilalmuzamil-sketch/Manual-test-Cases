@@ -61,3 +61,24 @@ SV-8521 (fixed on WO Finance), FD-CUST-005 (table columns + Processing Fee typed
 Blocked-env: FD-PROC-009, FD-CALC-013 (WO line-create 500).
 Still pending: FD-WO-013, FD-STATS-004, FD-CUST-005 dropdown/FD-CUST-006 empty state, FD-TMPL-010,
 FD-PROC-008, FD-PERM-002, SV-8520; SF RCV-05/07, REV-11, UX-04.
+
+## Update — batch 4 (QA-seeded WOs A/B/C + customers D)
+- **FD-PROC-009 (C28527) + FD-CALC-013 (C28580) — FIXED (was a deviation).** WO S-25989: labour $244
+  + shop $20 = net subtotal $264; ×1.05 GST = Grand Total $277.20; Processing Fee 10% = $27.72
+  (observed $27.72 exactly). The whole-WO 'bil' fee $24.40 is NOT in the base (buggy would give
+  $30.28). §5-R4 satisfied — base correctly excludes whole-WO fees.
+- **FD-TMPL-010 (C28511) — RESOLVED.** Line-scope fee dialogs (part + labour) now show 'Apply From
+  Template' with 'Showing templates compatible with this line'; whole-WO dialog too. Scope-filtered
+  picker present (evidence: user-provided dialog screenshots).
+- **SV-8520 (new) — CONFIRMED defect.** WO S-25991: 50% part fee added then part picked → line row
+  shows $99.00 with no fee child row, but line total is $392.50 (=244+99+49.50) — fee billed, hidden
+  from the line after pick. Evidence: SV-8520-part-fee-hidden-after-pick.png.
+- **FD-CUST-005 (C28489) — table confirmed** (full columns + Processing Fee typed 'Fee'); the Add
+  picker DROPDOWN (CUST-005) and all-linked EMPTY STATE (CUST-006) still pending (picker dropdown
+  didn't render in headless capture; customers ready: Aadale Motors 1-linked, Aaborough Works all-linked).
+
+## Session tally: ~9 of 16 live-resolved/confirmed
+Verified/updated: INLINE-003 (resolved), WO-017 (deviation stands), STATS-002 (per-row now), CUST-005
+(table part), PROC-009+CALC-013 (FIXED), TMPL-010 (resolved), SV-8521 (fixed on WO Finance),
+SV-8520 (confirmed defect). Still pending: WO-013/PERM-002 (permission), STATS-004 (ordering),
+CUST-005 dropdown/CUST-006 empty, PROC-008 (⋮ Edit|Remove), SF RCV-05/07 (C), SF REV-11, SF UX-04.
