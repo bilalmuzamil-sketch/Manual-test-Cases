@@ -676,6 +676,14 @@ process(es) to run before proceeding.
    can locate each case in TestRail. Show it alongside any internal (SF-/FD-/etc.)
    ID. Source it from the per-project testrail-id-map.csv. Bake this into every
    workbook generator going forward.
+   **EXTENDED 2026-07-23 — applies to CHAT/REPORTS too, not just files:** whenever I
+   name a case by its internal ID (FD-/SF-/SCH-/etc.) ANYWHERE — a chat reply, a status
+   update, a summary table, a findings list — I MUST pair it with the TestRail Case ID
+   (C#####) + the /cases/view/<id> link so the user can look it up in TestRail. Never
+   give a bare internal ID with no C-ID. (A case not yet in TestRail — e.g. a new
+   to-be-authored case — is stated as "new, no C-ID yet".) User rule: "instead of just
+   such numbers also give me the TestRail test case IDs so I can look for those in
+   TestRail … save it for all the processes where you give me these numbers."
 9. **Build-accurate, layman-friendly wording (all projects):** Every test case's
    Title, Preconditions, Steps, and Expected Results MUST use the EXACT words,
    button/label/feature/function/screen names as they actually appear in the
