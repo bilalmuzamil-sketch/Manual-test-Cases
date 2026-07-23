@@ -147,6 +147,14 @@ LIVE = {
                     "fee). So the fee is still billed but hidden from the line after pick — matches "
                     "SV-8520. Author the case as a confirmed defect (Testing Stage)."),
                "action": "New case + verify", "state": "verified"},
+ "C28526": {"d": ("LIVE 2026-07-23 (WO S-25989): a processing fee is REMOVE-ONLY on the backend — "
+                  "POST /api/work-orders/adjustments/change on the processing fee returns HTTP 409 "
+                  "'A processing fee cannot be edited through this endpoint', while the same edit on a "
+                  "normal whole-WO fee returns 200. Backend behaviour matches spec S8-N5/S8-R17. The "
+                  "residual deviation is UI-only (the ⋮ menu still OFFERS 'Edit') — the per-fee ⋮ menu "
+                  "could not be isolated headless this run; re-confirm the menu label. Update the "
+                  "backend-enforcement part to Verified."),
+             "action": "Apply update", "state": "verified"},
  "C28462": {"d": ("LIVE 2026-07-23 (WO S-25989 Statistics tab): fees/discounts are listed OLDEST-FIRST "
                   "— display order Part Fee, WO Processing Fee, bil matches their creation order "
                   "(createdAt 14:17:53, 14:17:53, 14:44:25). Matches spec §5-R9; the case (authored to "
