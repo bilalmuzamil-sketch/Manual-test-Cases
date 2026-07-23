@@ -147,6 +147,18 @@ LIVE = {
                     "fee). So the fee is still billed but hidden from the line after pick — matches "
                     "SV-8520. Author the case as a confirmed defect (Testing Stage)."),
                "action": "New case + verify", "state": "verified"},
+ "C28436": {"d": ("LIVE 2026-07-23 (WO S-25989, switch-user impersonation of the Sales Representative "
+                  "role which has workOrdersCreateAndEdit=FALSE): adding a whole-work-order fee "
+                  "returned HTTP 201 — the backend does NOT enforce 'Work Orders: Create & Edit' for "
+                  "adding a whole-WO fee/discount; it is a front-end-only gate. Confirms the deviation "
+                  "(Story 13 maps the action to WO Create&Edit + See Financial Data, but the backend "
+                  "doesn't enforce it). Test data cleaned up; no roles changed."),
+             "action": "DECISION", "state": "verified"},
+ "C28586": {"d": ("LIVE 2026-07-23 (switch-user as Sales Representative, workOrdersCreateAndEdit=FALSE): "
+                  "POST add whole-WO fee → HTTP 201 (not blocked). Whole-WO adjustment add is NOT "
+                  "backend-enforced — front-end-only gate, same finding as C28436. Confirms the "
+                  "permission deviation."),
+             "action": "DECISION", "state": "verified"},
  "C28526": {"d": ("LIVE 2026-07-23 (WO S-25989): a processing fee is REMOVE-ONLY on the backend — "
                   "POST /api/work-orders/adjustments/change on the processing fee returns HTTP 409 "
                   "'A processing fee cannot be edited through this endpoint', while the same edit on a "

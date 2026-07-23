@@ -784,7 +784,7 @@ process(es) to run before proceeding.
     the validation error to learn required fields (this found `POST /api/work-orders/create`
     needs company_id+vehicle_id+workplace_id+start_date+`is_vehicle_here:true`). (d) SEED
     the state yourself: create WOs/lines/parts/adjustments, assign a customer default so
-    fees auto-apply, create a fresh staff per role, etc. (e) For Quasar UI, click by
+    fees auto-apply, create a fresh staff per role, etc. **ROLE-TESTING ON STAGING (learned from the Test-Case/Automated-Test-Run session 2026-07-23): to test an arbitrary role's permission LIVE, either (i) `POST /api/switch-user {user_id}` to IMPERSONATE an existing holder of that role (get user_id = staff `id` from `GET /api/staff?limit=200` which lists role_label per staff; end with a fresh admin `login()`), or (ii) create a fresh staff `POST /api/iam/create {email, firstName, lastName, roleId, departments:[...], workplaceId}` then self-login — but on staging a fresh staff needs invite-confirmation, so PREFER switch-user impersonation of an existing role holder. NEVER role-swap Tech mid-session (causes the /no-location SPA bounce = technique artifact, not a permission result). Proven: impersonated Sales Representative (workOrdersCreateAndEdit=FALSE) → whole-WO fee add returned 201 = FE-only gate, confirming FD-WO-013/PERM-002.** (e) For Quasar UI, click by
     element-center COORDINATE (page.mouse.click) rather than Playwright actionability
     clicks that time out on backdrops; reach in-page tabs the same way. (f) CLEAN UP
     after (delete ZZAUTOTEST data, restore roles). Only after all of this genuinely
