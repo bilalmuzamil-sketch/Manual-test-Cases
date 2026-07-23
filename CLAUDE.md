@@ -943,6 +943,22 @@ process(es) to run before proceeding.
     you skip that? … you should always ask me for every process if something needs to be live build
     checked … Remember that forever." Ties to Standing Rules 10/11/12/13/14/21 and
     build/PROCESS-AUTHORING-STANDARD.md.
+23. **ALWAYS check the CURRENT Confluence spec — and ASK per process when unsure (all
+    projects).** For the Spec-Recheck Change-List and almost every reconciliation/verification/
+    authoring process, the CANONICAL current spec on Confluence is a source of truth to check
+    against (not just the ingested `requirements.md`, which can lag). Therefore, at the start of
+    any such process, if there is ANY doubt whether the local spec is current, **ASK the user
+    whether to go through the Confluence spec** (each project's canonical page — e.g. Fees &
+    Discounts pageId 622297094, Simple Flow pageId 646021121, Custom Roles pageId 565116952) —
+    do NOT assume the local copy is up to date and do NOT silently skip the Confluence read.
+    **When the Atlassian MCP is live, read Confluence directly via `getConfluencePage`** (this
+    supersedes the older "Confluence is login-walled → user must export/paste" note, which applied
+    only when no MCP was available); if the MCP is NOT available, ask the user to export/paste.
+    Reconcile the cases + the change-list against the current spec (last-update-wins with the
+    tickets, Rule 15 verbatim-truth-table). Rationale, 2026-07-23: the user requires "for this
+    process and almost all processes you are supposed to check the specs from that confluence link
+    as well; ask me for every process if I want you to go through that confluence specs or not when
+    you are not sure." Ties to Standing Rules 10/11/12/13/15/21/22 and build/PROCESS-CATALOG.md.
 
 ## Project purpose (Custom Roles project)
 Manual test-case authoring + live staging (Verify-in-UI) verification + TestRail

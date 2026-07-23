@@ -133,12 +133,19 @@ and its generator `build/custom-roles-run/gen_simple_changelist.py`.
 
 ## The 6 steps
 
+0. **ASK two gating questions up front (Standing Rules 22 + 23):** (a) **Confluence spec** — unless
+   you are certain the local `requirements.md` is current, ASK the user whether to read the CURRENT
+   Confluence spec (via Atlassian MCP `getConfluencePage`; each project's canonical pageId) and
+   reconcile against it; (b) **Live-build check** — confirm you'll run the live build check for
+   column D and request fresh cookies + env/branch + flags. Do not proceed past this step by
+   assuming either.
 1. **Run (or reuse) the spec-recheck analysis** — `build/SPEC-RECHECK-PROCESS.md` steps 1–4:
-   ingest the current spec + **every Done ticket of every type — Stories, Story-defects, AND Bugs
-   — WITH their comment threads (esp. the reviewer's)**, reconcile 100% of the cases to one
-   verdict each (OK / UPDATE / OPEN-QUESTION), and **live-verify** labels/behaviour on the build.
-   A Done bug/defect or a reviewer comment can override the spec (last-update-wins). The change
-   list is built from the UPDATE + OPEN-QUESTION verdicts only.
+   ingest the current spec (the CURRENT Confluence page when the user says to — Rule 23) + **every
+   Done ticket of every type — Stories, Story-defects, AND Bugs — WITH their comment threads (esp.
+   the reviewer's)**, reconcile 100% of the cases to one verdict each (OK / UPDATE / OPEN-QUESTION),
+   and **live-verify** labels/behaviour on the build (Rule 22). A Done bug/defect or a reviewer
+   comment can override the spec (last-update-wins). The change list is built from the UPDATE +
+   OPEN-QUESTION verdicts only.
 2. **Assemble one row per action case** with: Case ID (+ link from `testrail-id-map.csv`), Area
    (the TestRail leaf section / functional area), plain "What needs to change", Driving ticket(s),
    Ticket status (from Jira: DONE / NOT DONE(state) / OBSOLETE / no ticket), Action (Apply update

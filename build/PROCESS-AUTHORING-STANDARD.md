@@ -42,6 +42,12 @@
    whether to run the live-build check for those items and request the access needed (fresh
    cookies + env/branch + flags) BEFORE proceeding** — never skip it or substitute documented/
    inferred data (Rule 12). If the user declines, LABEL those items "not live-verified this run".
+10. **Build in the Confluence-spec check + ask-when-unsure rule (Standing Rule 23).** Every
+    reconciliation/verification/authoring process MUST treat the CURRENT Confluence spec as a
+    source of truth and, when unsure the local `requirements.md` is current, **ASK the user
+    whether to read the Confluence spec** (Atlassian MCP `getConfluencePage`; each project's
+    canonical pageId) before proceeding — never assume the local copy is current, never silently
+    skip it.
 
 ## The one-page checklist (tick every box)
 - [ ] Read the raw transcript; listed every relevant user turn + correction.

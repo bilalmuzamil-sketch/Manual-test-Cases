@@ -18,6 +18,12 @@
 > (cookies + env/branch + flags) before proceeding** — it never skips it or substitutes
 > documented/inferred data. Decline and those items are labelled "not live-verified this run".
 >
+> **Always-check the Confluence spec rule (Standing Rule 23):** for the Spec-Recheck Change-List
+> and almost every reconciliation/verification/authoring process, the CURRENT Confluence spec is a
+> source of truth. When unsure the local `requirements.md` is current, Claude **ASKS you whether to
+> read the Confluence spec** (via Atlassian MCP) and reconcile against it — it never assumes the
+> local copy is current or silently skips it.
+>
 > **Two-session note:** this workspace is worked by more than one Claude session in parallel.
 > This catalog + `CLAUDE.md` + the `build/*-PROCESS.md`/`*-METHOD.md`/`*-RECIPE.md` docs are the
 > **shared brain** — both sessions read and update them, so any process is callable from either.
