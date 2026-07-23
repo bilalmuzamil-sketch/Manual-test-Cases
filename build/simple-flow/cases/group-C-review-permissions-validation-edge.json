@@ -18,11 +18,11 @@
   ],
   "expected": [
    "1. With Require Review ON, completing routes into the review flow rather than completing directly.",
-   "2. When the last open line is resolved (by any path) while Require Review is on, the work order routes to Ready for Review — it never auto-completes."
+   "2. When the last open line is resolved (by any path) while Require Review is on, the work order routes to Ready for Review \u2014 it never auto-completes."
   ],
   "design_ref": "Workflow Settings.html; WO Review Flow.html",
   "viu_status": "VIU-Verified",
-  "notes": "Wording+VIU 2026-07-13 (S2-15823 live, Require Review ON): with Require Review ON, completing routes into the review flow (Send To Review), not a direct complete. | Δ5/R12 sanity clause added 2026-07-14 (review-ON last-line-resolve -> Ready for Review; auto-complete trigger verified in SF-AUTO-05).",
+  "notes": "Wording+VIU 2026-07-13 (S2-15823 live, Require Review ON): with Require Review ON, completing routes into the review flow (Send To Review), not a direct complete. | \u03945/R12 sanity clause added 2026-07-14 (review-ON last-line-resolve -> Ready for Review; auto-complete trigger verified in SF-AUTO-05).",
   "api_related": false,
   "fresh_run": "2026-07-14"
  },
@@ -101,7 +101,7 @@
   ],
   "design_ref": "WO Review Flow.html; Receive Vendor Parts - v2.html",
   "viu_status": "VIU-Verified",
-  "notes": "Wording+VIU 2026-07-13: 'Receive Parts' opens the shared receive page (not an inline modal) in the review flow — verified prior drive (FV-rev04-receivestep/afterreceive.png, 2026-07-10); review flow re-confirmed live this run.",
+  "notes": "Wording+VIU 2026-07-13: 'Receive Parts' opens the shared receive page (not an inline modal) in the review flow \u2014 verified prior drive (FV-rev04-receivestep/afterreceive.png, 2026-07-10); review flow re-confirmed live this run.",
   "api_related": false,
   "fresh_run": "2026-07-13"
  },
@@ -130,7 +130,7 @@
   ],
   "design_ref": "WO Review Flow.html",
   "viu_status": "VIU-Verified",
-  "notes": "Wording+VIU 2026-07-13 + relevance-fix re-VIU 2026-07-13 (S2-15823/S2-15827 live, Require Review ON): the confirm button is 'Send To Review' (NOT 'Complete & Send to Review' - that is the dialog HEADER for a part-bearing WO). Send To Review -> status 'Review' + 'Ready for Review' indicator; lines lock to Complete. (amber colour per design; status text 'Review' confirmed.) Step 1 label corrected. Evidence: screenshots/relevance-fix-2026-07-13/. | Δ5/R12 sanity clause added 2026-07-14 (review-ON last-line-resolve -> Ready for Review; auto-complete trigger verified in SF-AUTO-05).",
+  "notes": "Wording+VIU 2026-07-13 + relevance-fix re-VIU 2026-07-13 (S2-15823/S2-15827 live, Require Review ON): the confirm button is 'Send To Review' (NOT 'Complete & Send to Review' - that is the dialog HEADER for a part-bearing WO). Send To Review -> status 'Review' + 'Ready for Review' indicator; lines lock to Complete. (amber colour per design; status text 'Review' confirmed.) Step 1 label corrected. Evidence: screenshots/relevance-fix-2026-07-13/. | \u03945/R12 sanity clause added 2026-07-14 (review-ON last-line-resolve -> Ready for Review; auto-complete trigger verified in SF-AUTO-05).",
   "api_related": false,
   "fresh_run": "2026-07-14"
  },
@@ -141,7 +141,7 @@
   "title": "Verify the Mark Reviewed dialog captures VIN (required) and disables Confirm until VIN is entered",
   "priority": "Critical",
   "type": "Functional",
-  "permissions_required": "Reviewer role (manager/foreman) — matrix TBD. Verified here as admin.",
+  "permissions_required": "Reviewer role (manager/foreman) \u2014 matrix TBD. Verified here as admin.",
   "preconditions": [
    "1. Signed in as Admin.",
    "2. A work order is in Review state."
@@ -213,7 +213,7 @@
   ],
   "design_ref": "WO Review Flow.html; requirements R5/R8",
   "viu_status": "VIU-Verified",
-  "notes": "Wording+VIU 2026-07-13 (S2-15823 live, Require Review ON): Mark Reviewed (VIN present) signs off and moves the WO directly Review -> Complete; no distinct 'Reviewed' holding state and no separate final Complete click (S2-15823 went Review->Complete). | Δ5/R12 sanity clause added 2026-07-14 (review-ON last-line-resolve -> Ready for Review; auto-complete trigger verified in SF-AUTO-05).",
+  "notes": "Wording+VIU 2026-07-13 (S2-15823 live, Require Review ON): Mark Reviewed (VIN present) signs off and moves the WO directly Review -> Complete; no distinct 'Reviewed' holding state and no separate final Complete click (S2-15823 went Review->Complete). | \u03945/R12 sanity clause added 2026-07-14 (review-ON last-line-resolve -> Ready for Review; auto-complete trigger verified in SF-AUTO-05).",
   "api_related": false,
   "fresh_run": "2026-07-14"
  },
@@ -237,13 +237,15 @@
   "expected": [
    "1. A role without the Review Work Orders permission sees Mark Reviewed disabled with an 'Awaiting review' indicator.",
    "2. A role with the Review Work Orders permission can Mark Reviewed and sign off.",
-   "3. A user who holds the Review Work Orders permission may Mark Reviewed a work order they completed themselves — self-review is allowed in v1 with NO reviewer != completer identity restriction (the gate is purely the permission)."
+   "3. A user who holds the Review Work Orders permission may Mark Reviewed a work order they completed themselves \u2014 self-review is allowed in v1 with NO reviewer != completer identity restriction (the gate is purely the permission)."
   ],
-  "design_ref": "requirements R7 / §9 (Review Work Orders permission gate)",
+  "design_ref": "requirements R7 / \u00a79 (Review Work Orders permission gate)",
   "viu_status": "VIU-Verified",
   "fresh_run": "2026-07-13",
   "notes": "Wording+VIU 2026-07-13: Mark Reviewed gated by Review Work Orders (woReviewWorkOrders) per fresh roles matrix (roles-matrix-2026-07-13.md); role without it sees Mark Reviewed disabled + 'Awaiting review'; self-review allowed when the role holds the permission (Milos ruling). Review flow re-confirmed live.",
-  "api_related": false
+  "api_related": false,
+  "viu_note_2026_07_23": "VIU 2026-07-23 (staging live): Mark Reviewed gated by woReviewWorkOrders; role-without-it composition confirmed; self-review allowed. Awaiting-review/disabled element blocked-env this run.",
+  "refs": "SV-8183 (\u00a79.2 MarkReviewed=woReviewWorkOrders; self-review)"
  },
  {
   "id": "SF-REV-10",
@@ -269,7 +271,7 @@
   ],
   "design_ref": "WO Review Flow - Handoff.md (test IDs)",
   "viu_status": "VIU-Verified",
-  "notes": "Wording+VIU 2026-07-13: Mark Reviewed uses VIN / Serial # only, no review note field (V2.4 Δ4 confirmed; SF-REV-06/10 were already note-free). Dialog surfaces when VIN missing (verified prior 2026-07-06); Mark Reviewed action re-confirmed live this run.",
+  "notes": "Wording+VIU 2026-07-13: Mark Reviewed uses VIN / Serial # only, no review note field (V2.4 \u03944 confirmed; SF-REV-06/10 were already note-free). Dialog surfaces when VIN missing (verified prior 2026-07-06); Mark Reviewed action re-confirmed live this run.",
   "api_related": false,
   "fresh_run": "2026-07-13"
  },
@@ -297,7 +299,7 @@
   ],
   "design_ref": "requirements R8",
   "viu_status": "VIU-observed-awaiting-Milos",
-  "notes": "VIU-observed 2026-07-14 (awaiting Milos Q8). The direct-sign-off behavior is observed: Confirm Review signs off and completes the WO directly with no distinct 'Reviewed' holding state (see SF-REV-08). The 'invoicing blocked until reviewed' leg depends on the Q8 ruling about whether a separate Reviewed state should exist. No pass/fail asserted on the undecided policy. | Δ5/R12 sanity clause added 2026-07-14 (review-ON last-line-resolve -> Ready for Review; auto-complete trigger verified in SF-AUTO-05).",
+  "notes": "VIU-observed 2026-07-14 (awaiting Milos Q8). The direct-sign-off behavior is observed: Confirm Review signs off and completes the WO directly with no distinct 'Reviewed' holding state (see SF-REV-08). The 'invoicing blocked until reviewed' leg depends on the Q8 ruling about whether a separate Reviewed state should exist. No pass/fail asserted on the undecided policy. | \u03945/R12 sanity clause added 2026-07-14 (review-ON last-line-resolve -> Ready for Review; auto-complete trigger verified in SF-AUTO-05).",
   "api_related": false,
   "fresh_run": "2026-07-14"
  },
@@ -371,12 +373,12 @@
   ],
   "expected": [
    "1. Inventory cores are resolved before Send to Review.",
-   "2. Special-order cores are pre-resolved before receiving on the resolve screen before Send to Review — no longer deferred to the Create Invoice gate.",
-   "3. Invoicing is blocked until the work order is Reviewed AND every core is decided; only an undecided core blocks — a decided (un-received) core does not."
+   "2. Special-order cores are pre-resolved before receiving on the resolve screen before Send to Review \u2014 no longer deferred to the Create Invoice gate.",
+   "3. Invoicing is blocked until the work order is Reviewed AND every core is decided; only an undecided core blocks \u2014 a decided (un-received) core does not."
   ],
   "design_ref": "requirements-v4 Story 16 core paragraph + S18",
   "viu_status": "VIU-Verified",
-  "notes": "REWORDED 2026-07-17 to spec `_4` (V2.6): the Story-16 core paragraph now reads 'Special-order cores (both required and optional) are pre-resolved before receiving on the resolve screen before Send to Review (no longer deferred to the invoice gate)' — the invoice-gate leg was dropped and the un-skippable/receive-first reading is replaced by gate-on-undecided (C-R4). Blocked-Env: a special-order (vendor-sourced) core is still not seedable in this build (P550848 is_core=0; a vendor-sourced part request drops the core attribute) — needs a dev-seeded special-order core. ALSO: Story 18 / SV-8353 is a new dev plan, so the pre-resolve build is likely NOT deployed on sv7301 yet — probe the completion wizard for the resolve step + the pre-resolve endpoint before any re-VIU. || STAGING VIU 2026-07-20: with Require Review ON, cores are decided before receiving ahead of Send for Review — the 'Complete & Send to Review' wizard stepper order is Missing Details -> Resolve cores -> Receive parts & invoice (resolve precedes receive). Evidence: W78-step2.png.",
+  "notes": "REWORDED 2026-07-17 to spec `_4` (V2.6): the Story-16 core paragraph now reads 'Special-order cores (both required and optional) are pre-resolved before receiving on the resolve screen before Send to Review (no longer deferred to the invoice gate)' \u2014 the invoice-gate leg was dropped and the un-skippable/receive-first reading is replaced by gate-on-undecided (C-R4). Blocked-Env: a special-order (vendor-sourced) core is still not seedable in this build (P550848 is_core=0; a vendor-sourced part request drops the core attribute) \u2014 needs a dev-seeded special-order core. ALSO: Story 18 / SV-8353 is a new dev plan, so the pre-resolve build is likely NOT deployed on sv7301 yet \u2014 probe the completion wizard for the resolve step + the pre-resolve endpoint before any re-VIU. || STAGING VIU 2026-07-20: with Require Review ON, cores are decided before receiving ahead of Send for Review \u2014 the 'Complete & Send to Review' wizard stepper order is Missing Details -> Resolve cores -> Receive parts & invoice (resolve precedes receive). Evidence: W78-step2.png.",
   "api_related": false,
   "fresh_run": "2026-07-20"
  },
@@ -400,7 +402,7 @@
    "1. On a brand-new organization / account, Require Review Before Completion defaults to ON (Milos decision, 2026-07-16: it stays ON for every new organization).",
    "2. Existing organizations keep their current completion behavior (the setting is backfilled so their behavior does not change)."
   ],
-  "design_ref": "requirements §8 open questions / R Open",
+  "design_ref": "requirements \u00a78 open questions / R Open",
   "viu_status": "Blocked-Env",
   "notes": "Reworded per Milos Round-3 (2026-07-16): the new-org default for Require Review Before Completion is ON (option A, 'Stays ON'; no cohort split). Build-accurate label confirmed live: 'Require Review Before Completion' - 'Work orders must be reviewed and signed off before they can be completed' (Settings > Work Orders; API key requireReview). CHARACTERIZED BLOCKER (Standing Rule 14 self-serve attempted): the new-org ON default cannot be observed on the long-lived shared sv7301 org (its requireReview currently reads false from prior test toggling), and a brand-new organization cannot be provisioned in this shared QA env - org-creation is not exposed to us (POST /api/organizations -> 405, POST /api/organizations/create -> 404, GET /api/register -> 405; GET /api/organizations lists only the existing org). Needs a freshly-provisioned org from backend/admin onboarding to observe the ON default. Evidence SETTINGS-workorders.png + observations.json.",
   "api_related": false,
@@ -416,7 +418,7 @@
   "permissions_required": "Work Order create access.",
   "preconditions": [
    "1. Signed in as Admin.",
-   "2. You are on the Create Work Order form (/workorders → Create)."
+   "2. You are on the Create Work Order form (/workorders \u2192 Create)."
   ],
   "steps": [
    "1. Open the Create Work Order form.",
@@ -516,7 +518,7 @@
  {
   "id": "SF-PERM-01",
   "area": "Permissions",
-  "story_ref": "S1 AC / §8 Permissions",
+  "story_ref": "S1 AC / \u00a78 Permissions",
   "title": "Verify only owner/admin can view and modify Work Order settings (non-admin blocked)",
   "priority": "High",
   "type": "Permissions",
@@ -526,7 +528,7 @@
    "2. You can sign in as each."
   ],
   "steps": [
-   "1. Sign in as a role with App Settings and open and modify /administration/settings → Work Orders.",
+   "1. Sign in as a role with App Settings and open and modify /administration/settings \u2192 Work Orders.",
    "2. Sign in as a role without App Settings and attempt to open and modify the same page.",
    "3. As the role without App Settings, attempt to save a Work Order settings change directly (API), and note the response."
   ],
@@ -535,16 +537,18 @@
    "2. A role without App Settings cannot open or change the Work Order settings.",
    "3. The backend rejects a Work Order settings save attempted by a role that lacks App Settings."
   ],
-  "design_ref": "requirements S1 AC / §9 (App Settings gate)",
+  "design_ref": "requirements S1 AC / \u00a79 (App Settings gate)",
   "viu_status": "VIU-Verified",
   "notes": "Wording+VIU 2026-07-13: role expectation re-verified against the fresh live roles matrix (roles-matrix-2026-07-13.md; GET /api/roles/{id} + /api/auth/me/fe-permissions, no system-role drift). Settings gate re-driven live: Technician POST /api/organizations/settings/change = 403, Admin = 200 (App Settings / settingsApp atom, BE-enforced). FE redirects non-admin from the settings route.",
   "api_related": true,
-  "fresh_run": "2026-07-13"
+  "fresh_run": "2026-07-13",
+  "viu_note_2026_07_23": "VIU 2026-07-23 (staging live): FE settings-route gate confirmed live \u2014 Technician/SrSA/SA/PartsMgr/SalesRep all REDIRECTED from /administration/settings; admin allowed. BE settings/change: admin 200, SrSA/SA/Tech/SalesRep 403 (BE enforces). NUANCE/DEVIATION: Parts Manager (has settingsParts/Finance, not settingsApp) gets 200 \u2014 the BE endpoint is gated by the settings FAMILY, not App Settings specifically; expected #3 wording should be refined (candidate update_case, NOT pushed).",
+  "refs": "SV-8183 (\u00a79 / \u00a79.2 EditSet=settingsApp)"
  },
  {
   "id": "SF-PERM-02",
   "area": "Permissions",
-  "story_ref": "§8 Permissions",
+  "story_ref": "\u00a78 Permissions",
   "title": "Verify which roles can complete a work order (Simple completion)",
   "priority": "Medium",
   "type": "Permissions",
@@ -562,16 +566,18 @@
    "2. Technician and Parts Tech cannot complete (Technician cannot approve lines in Tech View and/or lacks Work Orders: Create & Edit; Parts Tech is a receiver, not a completer).",
    "3. Office, Sales Rep and Time Clock cannot complete a work order."
   ],
-  "design_ref": "requirements §9 (Complete WO gate + per-role matrix)",
+  "design_ref": "requirements \u00a79 (Complete WO gate + per-role matrix)",
   "viu_status": "VIU-Verified",
   "notes": "Wording+VIU 2026-07-13: role expectation re-verified against the fresh live roles matrix (roles-matrix-2026-07-13.md; GET /api/roles/{id} + /api/auth/me/fe-permissions, no system-role drift). Complete-WO gate = workOrdersCreateAndEdit; roles that can complete (Admin, Service Manager, Senior SA, Service Advisor, Foreman, Parts Manager) vs cannot (Technician, Parts Tech, Office, Sales Rep, Time Clock) match the matrix. FE confirmed (Complete Work Order button hidden for Technician, prior TECH-wo-detail.png); BE does not enforce WO completion (documented gap, see SF-PERM-06).",
   "api_related": false,
-  "fresh_run": "2026-07-13"
+  "fresh_run": "2026-07-13",
+  "viu_note_2026_07_23": "VIU 2026-07-23 (staging live): completion atoms per role == spec \u00a79.2 (template==spec, 0 drift, live). Complete-button element re-render blocked by multi-location WO-detail redirect this run; carried from 2026-07-20 pass.",
+  "refs": "SV-8183 (\u00a79.2 Complete=workOrdersCreateAndEdit)"
  },
  {
   "id": "SF-PERM-03",
   "area": "Permissions",
-  "story_ref": "§8 Permissions",
+  "story_ref": "\u00a78 Permissions",
   "title": "Verify which roles can perform Bulk Receive",
   "priority": "Medium",
   "type": "Permissions",
@@ -589,16 +595,18 @@
    "2. Office (Vendor & Order Mgmt: View only) can open the Bulk Receive page but cannot receive.",
    "3. Sales Rep and Time Clock cannot reach Bulk Receive."
   ],
-  "design_ref": "requirements §9 (Bulk Receive gate + per-role matrix)",
+  "design_ref": "requirements \u00a79 (Bulk Receive gate + per-role matrix)",
   "viu_status": "VIU-Verified",
   "notes": "Wording+VIU 2026-07-13: role expectation re-verified against the fresh live roles matrix (roles-matrix-2026-07-13.md; GET /api/roles/{id} + /api/auth/me/fe-permissions, no system-role drift). Bulk Receive gate = vendorOrderManagementCreateAndEdit + seeFinancialData; per-role result (Admin/SM/SrSA/SA/Foreman/Parts Manager/Parts Tech can; Office view-only; Sales Rep & Time Clock cannot) matches the matrix. Stories 7/8 confirmed BUILT.",
   "api_related": false,
-  "fresh_run": "2026-07-13"
+  "fresh_run": "2026-07-13",
+  "viu_note_2026_07_23": "VIU 2026-07-23 (staging live): Parts nav + /parts/orders allowed SrSA/SA/PM, denied Technician/SalesRep (live route guards). Bulk atoms == \u00a79.2. Office view-only (no holder to element-observe).",
+  "refs": "SV-8183 (\u00a79.2 Bulk=vendorOrderManagementCreateAndEdit+seeFinancialData)"
  },
  {
   "id": "SF-PERM-04",
   "area": "Permissions",
-  "story_ref": "R7 / §8 role-gating review",
+  "story_ref": "R7 / \u00a78 role-gating review",
   "title": "Verify which roles can Mark Reviewed (sign off)",
   "priority": "Medium",
   "type": "Permissions",
@@ -614,13 +622,15 @@
   "expected": [
    "1. Mark Reviewed (review sign-off) requires the Review Work Orders permission; system defaults grant it broadly, and it can be narrowed to manager/foreman via custom roles.",
    "2. A role without Review Work Orders sees Mark Reviewed disabled with an 'Awaiting review' indicator.",
-   "3. A user who holds the Review Work Orders / Mark Reviewed permission may Mark Reviewed a work order they completed themselves — self-review is allowed in v1. There is NO reviewer != completer identity restriction; the gate is purely the permission."
+   "3. A user who holds the Review Work Orders / Mark Reviewed permission may Mark Reviewed a work order they completed themselves \u2014 self-review is allowed in v1. There is NO reviewer != completer identity restriction; the gate is purely the permission."
   ],
-  "design_ref": "requirements R7 / §9 (Review Work Orders permission gate)",
+  "design_ref": "requirements R7 / \u00a79 (Review Work Orders permission gate)",
   "viu_status": "VIU-Verified",
   "fresh_run": "2026-07-13",
   "notes": "Wording+VIU 2026-07-13: role expectation re-verified against the fresh live roles matrix (roles-matrix-2026-07-13.md; GET /api/roles/{id} + /api/auth/me/fe-permissions, no system-role drift). Mark Reviewed gate = woReviewWorkOrders (not open-to-all). Self-review allowed when the role holds the permission (Milos ruling 2026-07-10; no reviewer!=completer identity block). Per-role has/lacks matches the matrix.",
-  "api_related": false
+  "api_related": false,
+  "viu_note_2026_07_23": "VIU 2026-07-23 (staging live): woReviewWorkOrders composition == \u00a79.2 (held by Admin/SM/SrSA/SA/Foreman/PM; absent Tech/PartsTech/Office/SalesRep/TimeClock). Self-review allowed (reviewer!=completer NOT enforced; matches Milos ruling). Mark-Reviewed button element blocked-env this run.",
+  "refs": "SV-8183 (\u00a79.2 MarkReviewed=woReviewWorkOrders)"
  },
  {
   "id": "SF-PERM-05",
@@ -643,16 +653,18 @@
    "1. The Receive action requires the Order Parts permission; Office and read-only users (no Order Parts) do not see Receive on the PO list or PO detail.",
    "2. Receive is also hidden for fulfilled (already-received) POs."
   ],
-  "design_ref": "requirements S11-R3 / §9 (Order Parts gate)",
+  "design_ref": "requirements S11-R3 / \u00a79 (Order Parts gate)",
   "viu_status": "VIU-Verified",
   "notes": "Wording+VIU 2026-07-13: role expectation re-verified against the fresh live roles matrix (roles-matrix-2026-07-13.md; GET /api/roles/{id} + /api/auth/me/fe-permissions, no system-role drift). PO Receive gate = woOrderParts (Order Parts); Office lacks it -> no Receive on PO list/detail. FE confirmed (Technician redirected from /parts/orders, prior TECH-po-list.png).",
   "api_related": false,
-  "fresh_run": "2026-07-13"
+  "fresh_run": "2026-07-13",
+  "viu_note_2026_07_23": "VIU 2026-07-23 (staging live): Order Parts absent for Office/SalesRep/TimeClock == \u00a79.2; Technician+SalesRep denied /parts/orders live. Office-specific Receive button not element-observed (no Office holder).",
+  "refs": "SV-8183 (\u00a79.2 Receive=woOrderParts)"
  },
  {
   "id": "SF-PERM-06",
   "area": "Permissions",
-  "story_ref": "§8 BE enforcement",
+  "story_ref": "\u00a78 BE enforcement",
   "title": "Verify permission gating of Simple-Flow settings and work-order actions (UI gating is the v1 pass criterion)",
   "priority": "Medium",
   "type": "Permissions",
@@ -670,19 +682,21 @@
   "expected": [
    "1. In the app, a role without the mapped permission does not see or cannot use the gated setting or action (this is the v1 pass criterion).",
    "2. The Work Order settings save is also blocked at the backend: the unauthorized API request is rejected with HTTP 403.",
-   "3. Work order completion and review sign-off are NOT blocked at the backend today: a direct API call from a role lacking the permission still succeeds (HTTP 200). This still passes v1 on the app-level restriction, but the backend gap is a known issue to fix later — note it as 'app blocks / backend allows'.",
+   "3. Work order completion and review sign-off are NOT blocked at the backend today: a direct API call from a role lacking the permission still succeeds (HTTP 200). This still passes v1 on the app-level restriction, but the backend gap is a known issue to fix later \u2014 note it as 'app blocks / backend allows'.",
    "4. Because several work-order permissions share the same backend check, any role with Work Orders: Create & Edit can receive parts onto a work order through the API."
   ],
-  "design_ref": "requirements §9.4 (BE enforcement + atom collapse)",
+  "design_ref": "requirements \u00a79.4 (BE enforcement + atom collapse)",
   "viu_status": "VIU-Verified",
   "notes": "Wording+VIU 2026-07-13: role expectation re-verified against the fresh live roles matrix (roles-matrix-2026-07-13.md; GET /api/roles/{id} + /api/auth/me/fe-permissions, no system-role drift). Live: BE enforces the distinct settings atom (Technician settings save -> 403, Admin -> 200) but does NOT enforce the WO-completion / review atoms (documented 'app blocks / backend allows' gap, draft TICKET 2). v1 pass = app-level restriction (Milos Round-2 ruling). Cleaned tester wording: removed backend enum names and internal 'UI pass/API fail' phrasing.",
   "api_related": true,
-  "fresh_run": "2026-07-13"
+  "fresh_run": "2026-07-13",
+  "viu_note_2026_07_23": "VIU 2026-07-23 (staging live): BE ENFORCES settings atom-family (403 for no-settings roles) \u2014 confirmed live. Parts Manager 200 = settings-family scope (see SF-PERM-01). Completion/review BE-200-gap not re-driven this run (side-effect); carried from Dipesh 10/Jul comment + prior.",
+  "refs": "SV-8183 (\u00a79 BE enforcement + atom-collapse note)"
  },
  {
   "id": "SF-PERM-07",
   "area": "Permissions",
-  "story_ref": "§8 role-gating review",
+  "story_ref": "\u00a78 role-gating review",
   "title": "Verify review sign-off is governed by the Review Work Orders custom-role permission (not open to all)",
   "priority": "Low",
   "type": "Permissions",
@@ -697,18 +711,20 @@
   "expected": [
    "1. Review sign-off is governed by the Review Work Orders custom-role permission (it is NOT open to all users for v1).",
    "2. The permission gates the Mark Reviewed action (a role without Review Work Orders cannot sign off; a role with it can).",
-   "3. A user who holds the Review Work Orders permission may sign off a work order they completed themselves — self-review is allowed in v1 with NO reviewer != completer identity restriction (the gate is purely the permission)."
+   "3. A user who holds the Review Work Orders permission may sign off a work order they completed themselves \u2014 self-review is allowed in v1 with NO reviewer != completer identity restriction (the gate is purely the permission)."
   ],
-  "design_ref": "requirements R7 / §9 (Review Work Orders permission gate)",
+  "design_ref": "requirements R7 / \u00a79 (Review Work Orders permission gate)",
   "viu_status": "VIU-Verified",
   "fresh_run": "2026-07-13",
   "notes": "Wording+VIU 2026-07-13: role expectation re-verified against the fresh live roles matrix (roles-matrix-2026-07-13.md; GET /api/roles/{id} + /api/auth/me/fe-permissions, no system-role drift). Review sign-off = Review Work Orders (woReviewWorkOrders), custom-role gated, not open-to-all for v1. Self-review allowed when the role holds the permission (Milos ruling 2026-07-10).",
-  "api_related": false
+  "api_related": false,
+  "viu_note_2026_07_23": "VIU 2026-07-23 (staging live): review sign-off = woReviewWorkOrders, composition == \u00a79.2, not open-to-all. Self-review allowed. Element re-render blocked-env this run.",
+  "refs": "SV-8183 (\u00a79.2 review sign-off=woReviewWorkOrders)"
  },
  {
   "id": "SF-PERM-08",
   "area": "Permissions",
-  "story_ref": "R7 (review sign-off) — self-review permission-gated (identity rule NOT in v1)",
+  "story_ref": "R7 (review sign-off) \u2014 self-review permission-gated (identity rule NOT in v1)",
   "title": "Verify a user who holds the Mark Reviewed permission can Mark Reviewed a work order they completed",
   "priority": "High",
   "type": "Permissions",
@@ -723,20 +739,22 @@
    "3. As a user whose role does NOT hold the Mark Reviewed permission, open a work order in Review and check the Mark Reviewed control."
   ],
   "expected": [
-   "1. A user who holds the Review Work Orders / Mark Reviewed permission CAN Mark Reviewed a work order they completed themselves — self-review is allowed in v1 (there is NO reviewer != completer identity restriction).",
-   "2. A user whose role does NOT hold the Mark Reviewed permission cannot sign off — the Mark Reviewed control is disabled with an 'Awaiting review' indicator.",
+   "1. A user who holds the Review Work Orders / Mark Reviewed permission CAN Mark Reviewed a work order they completed themselves \u2014 self-review is allowed in v1 (there is NO reviewer != completer identity restriction).",
+   "2. A user whose role does NOT hold the Mark Reviewed permission cannot sign off \u2014 the Mark Reviewed control is disabled with an 'Awaiting review' indicator.",
    "3. The only gate on Mark Reviewed is the Review Work Orders permission; who completed the work order is irrelevant."
   ],
-  "design_ref": "requirements R7 / §9 (Review Work Orders permission gate; reviewer != completer identity rule NOT in v1 per Milos 2026-07-10)",
+  "design_ref": "requirements R7 / \u00a79 (Review Work Orders permission gate; reviewer != completer identity rule NOT in v1 per Milos 2026-07-10)",
   "viu_status": "VIU-Verified",
   "fresh_run": "2026-07-13",
   "notes": "Wording+VIU 2026-07-13: role expectation re-verified against the fresh live roles matrix (roles-matrix-2026-07-13.md; GET /api/roles/{id} + /api/auth/me/fe-permissions, no system-role drift). Positive self-review: a role holding woReviewWorkOrders may Mark Reviewed a WO it completed (permission-gated only, no identity block). A role lacking it cannot. Matches matrix + Milos ruling.",
-  "api_related": false
+  "api_related": false,
+  "viu_note_2026_07_23": "VIU 2026-07-23 (staging live): self-review positive path = permission-gated only (woReviewWorkOrders); composition confirms. Element re-render blocked-env this run.",
+  "refs": "SV-8183 (\u00a79.2 self-review, Decision 3 / Milos ruling)"
  },
  {
   "id": "SF-PERM-09",
   "area": "Permissions",
-  "story_ref": "S5 / §9 (See Financial Data gate)",
+  "story_ref": "S5 / \u00a79 (See Financial Data gate)",
   "title": "Verify a Technician cannot add a vendorless / no-part-number part (lacks See Financial Data)",
   "priority": "High",
   "type": "Permissions",
@@ -753,16 +771,18 @@
    "1. The Technician cannot add a vendorless / no-part-number part.",
    "2. The mandatory sell price cannot be entered without See Financial Data, so the add is prevented."
   ],
-  "design_ref": "requirements S5 / §9 (Decision 4)",
+  "design_ref": "requirements S5 / \u00a79 (Decision 4)",
   "viu_status": "VIU-Verified",
   "notes": "Wording+VIU 2026-07-13: role expectation re-verified against the fresh live roles matrix (roles-matrix-2026-07-13.md; GET /api/roles/{id} + /api/auth/me/fe-permissions, no system-role drift). Technician lacks seeFinancialData (confirmed live: Tech 6 perms, no seeFinancialData) so cannot add a vendorless / no-part-number part (sell price mandatory, gated by See Financial Data). FE gate holds; BE financial-gate on part-add not re-driven this session.",
   "api_related": false,
-  "fresh_run": "2026-07-13"
+  "fresh_run": "2026-07-13",
+  "viu_note_2026_07_23": "VIU 2026-07-23 (staging live): Technician template lacks seeFinancialData (6 canonical perms, live-confirmed) -> cannot add vendorless part. Add-part sell-price element carried from prior.",
+  "refs": "SV-8183 (\u00a79.2 AddVendorless=workOrderLinesCreateAndEdit+seeFinancialData, Decision 4)"
  },
  {
   "id": "SF-PERM-10",
   "area": "Permissions",
-  "story_ref": "§9 per-role completion matrix",
+  "story_ref": "\u00a79 per-role completion matrix",
   "title": "Verify the Complete Work Order action follows the per-role completion permission matrix",
   "priority": "High",
   "type": "Permissions",
@@ -782,11 +802,13 @@
    "2. Complete Work Order is NOT available for Technician, Parts Tech, Office, Sales Rep or Time Clock.",
    "3. Technician and Parts Tech are blocked because they cannot approve lines and/or lack Work Orders: Create & Edit; Office is view-only; Sales Rep and Time Clock have no work-order edit access."
   ],
-  "design_ref": "requirements §9 (per-role matrix)",
+  "design_ref": "requirements \u00a79 (per-role matrix)",
   "viu_status": "VIU-Verified",
   "notes": "Wording+VIU 2026-07-13: role expectation re-verified against the fresh live roles matrix (roles-matrix-2026-07-13.md; GET /api/roles/{id} + /api/auth/me/fe-permissions, no system-role drift). Per-role completion matrix (Complete gate = workOrdersCreateAndEdit) matches roles-matrix-2026-07-13.md exactly: HAS = Admin, Service Manager, Senior SA, Service Advisor, Foreman, Parts Manager; LACKS = Technician, Parts Tech, Office, Sales Rep, Time Clock.",
   "api_related": false,
-  "fresh_run": "2026-07-13"
+  "fresh_run": "2026-07-13",
+  "viu_note_2026_07_23": "VIU 2026-07-23 (staging live): per-role completion matrix == spec \u00a79.2 EXACTLY (template defaults verified live, 0 drift, 0 spec deviation). Complete-button element re-render blocked-env this run.",
+  "refs": "SV-8183 (\u00a79.2 per-role completion matrix)"
  },
  {
   "id": "SF-VAL-01",
@@ -832,14 +854,14 @@
    "2. Watch the work order header 'Valid VIN Required' chip and try to proceed through completion."
   ],
   "expected": [
-   "1. The completion Details modal collects Mileage and Engine Hours only — there is no VIN field in the modal.",
+   "1. The completion Details modal collects Mileage and Engine Hours only \u2014 there is no VIN field in the modal.",
    "2. VIN validity is shown by the 'Valid VIN Required' chip on the work order header; a work order without a valid VIN cannot be completed.",
    "3. For a review-on work order the VIN is captured later by the reviewer in the Mark Reviewed dialog, not at completion."
   ],
   "design_ref": "requirements S15-R2 / S3-R3",
   "viu_status": "Blocked-Env",
   "fresh_run": "2026-07-14",
-  "notes": "Blocked-Env (precise, investigated live 2026-07-14): a VIN-less asset cannot be seeded. Asset/vehicle creation is not exposed via API (POST /api/assets 404, POST /api/vehicles 405 GET-only, POST /api/company-vehicles 404) and the new-asset UI flow requires a VIN; all existing assets already carry a VIN. So the non-review No-PO/Optional-invoice completion cannot be driven into a VIN-missing prompt. (Also note the Story-4 completion modal no longer carries a VIN field per Delta1 — SF-COMP-16.) Needs a VIN-less asset seeded by dev/data.",
+  "notes": "Blocked-Env (precise, investigated live 2026-07-14): a VIN-less asset cannot be seeded. Asset/vehicle creation is not exposed via API (POST /api/assets 404, POST /api/vehicles 405 GET-only, POST /api/company-vehicles 404) and the new-asset UI flow requires a VIN; all existing assets already carry a VIN. So the non-review No-PO/Optional-invoice completion cannot be driven into a VIN-missing prompt. (Also note the Story-4 completion modal no longer carries a VIN field per Delta1 \u2014 SF-COMP-16.) Needs a VIN-less asset seeded by dev/data.",
   "api_related": false
  },
  {
@@ -897,7 +919,7 @@
  {
   "id": "SF-VAL-05",
   "area": "Validation / Edge",
-  "story_ref": "S3-R3 / S4-R5 / §4",
+  "story_ref": "S3-R3 / S4-R5 / \u00a74",
   "title": "Verify a required-invoice receive is blocked without a vendor invoice number",
   "priority": "High",
   "type": "Negative",
@@ -914,7 +936,7 @@
    "1. Receiving is blocked without a vendor invoice number.",
    "2. Once an invoice number is entered, receiving is allowed."
   ],
-  "design_ref": "requirements §4 / S4-R5",
+  "design_ref": "requirements \u00a74 / S4-R5",
   "viu_status": "VIU-Verified",
   "notes": "Wording+VIU 2026-07-13: required-invoice receive blocked without a vendor invoice number - verified prior drive (FV-val05-noinvoice/withinvoice.png, 2026-07-10). Require Vendor Invoice Number gate.",
   "api_related": false,
@@ -1006,7 +1028,7 @@
  {
   "id": "SF-VAL-09",
   "area": "Validation / Edge",
-  "story_ref": "S8-R7 / §4 field locking",
+  "story_ref": "S8-R7 / \u00a74 field locking",
   "title": "Verify the sell field is locked after the work order is invoiced/paid with a lock icon and tooltip",
   "priority": "Medium",
   "type": "Functional",
@@ -1022,19 +1044,19 @@
   ],
   "expected": [
    "1. The sell field is locked (not editable).",
-   "2. A lock icon and tooltip 'Locked — this part is already invoiced or paid' are shown.",
+   "2. A lock icon and tooltip 'Locked \u2014 this part is already invoiced or paid' are shown.",
    "3. Only cost remains editable."
   ],
-  "design_ref": "requirements S8-R7 / §4",
+  "design_ref": "requirements S8-R7 / \u00a74",
   "viu_status": "Blocked-Env",
-  "notes": "Blocked-Env (precise, investigated live 2026-07-14): a true invoiced/paid WO state is not drivable in this harness. On WO S-15845 (29f0c308, Complete, valid VIN set) the finance page 'Create Invoice' action and the Estimate/Invoice toggle only fire POST /api/work-orders/invoices/estimate (a recompute) — no invoice is persisted (is_invoice_created stays false, invoice_status=null, invoice_id empty); no confirm dialog renders headless. Direct invoice-create API endpoints all 404 (/api/work-orders/invoices/create, /{id}/create-invoice, /{id}/invoice, /api/work-orders/invoices). Marking the WO PAID would additionally require a payment step. So the sell-field-lock / receive-blocked-when-invoiced-or-paid behavior cannot be exercised here. Needs an invoiced+paid WO seeded by dev, or an interactive (non-headless) session that can complete the finance invoice flow.",
+  "notes": "Blocked-Env (precise, investigated live 2026-07-14): a true invoiced/paid WO state is not drivable in this harness. On WO S-15845 (29f0c308, Complete, valid VIN set) the finance page 'Create Invoice' action and the Estimate/Invoice toggle only fire POST /api/work-orders/invoices/estimate (a recompute) \u2014 no invoice is persisted (is_invoice_created stays false, invoice_status=null, invoice_id empty); no confirm dialog renders headless. Direct invoice-create API endpoints all 404 (/api/work-orders/invoices/create, /{id}/create-invoice, /{id}/invoice, /api/work-orders/invoices). Marking the WO PAID would additionally require a payment step. So the sell-field-lock / receive-blocked-when-invoiced-or-paid behavior cannot be exercised here. Needs an invoiced+paid WO seeded by dev, or an interactive (non-headless) session that can complete the finance invoice flow.",
   "api_related": false,
   "fresh_run": "2026-07-14"
  },
  {
   "id": "SF-VAL-10",
   "area": "Validation / Edge",
-  "story_ref": "S9-R3 / §4 (uniqueness relaxed)",
+  "story_ref": "S9-R3 / \u00a74 (uniqueness relaxed)",
   "title": "Verify the same vendor invoice number can be reused across POs (uniqueness relaxed)",
   "priority": "Low",
   "type": "Functional",
@@ -1051,7 +1073,7 @@
    "1. The reused invoice number is accepted (uniqueness is relaxed).",
    "2. Both POs receive successfully."
   ],
-  "design_ref": "requirements S9-R3 / §4",
+  "design_ref": "requirements S9-R3 / \u00a74",
   "viu_status": "VIU-Verified",
   "notes": "Wording+VIU 2026-07-13: the same vendor invoice number can be reused across POs (uniqueness relaxed) - verified prior (2026-07-10, Story 9 apply-invoice).",
   "api_related": false,
@@ -1077,19 +1099,19 @@
   ],
   "expected": [
    "1. With Require Vendor Invoice Number ON, the Complete Work Order button is disabled; hovering it shows the tooltip 'Every line must be approved or declined in order to complete the work order.' (the tooltip is generic and does not name the specific line).",
-   "2. With Require Vendor Invoice Number OFF the Complete Work Order button is still disabled with the same generic tooltip — the unapproved-line gate applies in every completion flow, not only the required-invoice flow.",
+   "2. With Require Vendor Invoice Number OFF the Complete Work Order button is still disabled with the same generic tooltip \u2014 the unapproved-line gate applies in every completion flow, not only the required-invoice flow.",
    "3. Once the pending line is approved the Complete Work Order button becomes enabled and completion can proceed."
   ],
-  "design_ref": "requirements S4-R8 / S3-R9 / §4 Key Decision",
+  "design_ref": "requirements S4-R8 / S3-R9 / \u00a74 Key Decision",
   "viu_status": "VIU-Verified",
   "fresh_run": "2026-07-14",
-  "notes": "VIU-Verified live 2026-07-14 (WO 4448308d). Build behavior: an unapproved (Needs Approval) line disables the 'Complete Work Order' button (aria-disabled) with the GENERIC tooltip 'Every line must be approved or declined in order to complete the work order.' — confirmed identical with Require Vendor Invoice Number ON and OFF. Approving the line (status->authorized) re-enables the button. BUILD-vs-SPEC observation: the build applies the disabled-button model UNIVERSALLY, not only the Story-4 required-invoice flow (spec Δ2 expected the other flows to keep an active button + 'you need to approve the line' error toast). Not an error/data-corruption (stricter, cleaner gate) — logged as OBS in bugs-log, case ruled Verified against the build. Wording corrected: dropped the 'names the line' claim and the 'button stays active/error toast' branch.",
+  "notes": "VIU-Verified live 2026-07-14 (WO 4448308d). Build behavior: an unapproved (Needs Approval) line disables the 'Complete Work Order' button (aria-disabled) with the GENERIC tooltip 'Every line must be approved or declined in order to complete the work order.' \u2014 confirmed identical with Require Vendor Invoice Number ON and OFF. Approving the line (status->authorized) re-enables the button. BUILD-vs-SPEC observation: the build applies the disabled-button model UNIVERSALLY, not only the Story-4 required-invoice flow (spec \u03942 expected the other flows to keep an active button + 'you need to approve the line' error toast). Not an error/data-corruption (stricter, cleaner gate) \u2014 logged as OBS in bugs-log, case ruled Verified against the build. Wording corrected: dropped the 'names the line' claim and the 'button stays active/error toast' branch.",
   "api_related": false
  },
  {
   "id": "SF-QB-01",
   "area": "QuickBooks / Inventory Integrity",
-  "story_ref": "§5 invariant 1",
+  "story_ref": "\u00a75 invariant 1",
   "title": "Verify in-stock parts decrement inventory and write Part History on simple completion (skip path still runs lifecycle)",
   "priority": "High",
   "type": "Functional",
@@ -1107,16 +1129,16 @@
    "2. A Part History entry is written.",
    "3. The skip path's status setter does not bypass inventory movement / Part History / catalog / delivery."
   ],
-  "design_ref": "requirements §5 invariant 1",
+  "design_ref": "requirements \u00a75 invariant 1",
   "viu_status": "Blocked-Env",
-  "notes": "Blocked-Env (partial): the inventory-DECREMENT half is PROVEN (P550848 on-hand 6->5 on pick, persisted through simple-complete 201 — prior run). The Part-History LOG half is OBS-6-blocked (GET /api/inventory/parts/history -> 500; /parts/inventory/{id} crashes). The QuickBooks-integrity leg is blocked: Blocked-Env (precise, confirmed live 2026-07-14): QuickBooks is NOT connected on the sv7301 QA org. There is NO QuickBooks/accounting/integrations option in the Admin menu (menu = Work Orders, Schedule, Customers, Parts, Reports, Feature Flags, Settings, Staff, Locations, Departments, Taxes, Labor Rates, Canned Lines, Asset Types, Pricing, Bin Locations, Categories, IBS, Payment Methods, Contacts, Assets, Vendors, Inventory, Invoices — no QuickBooks); /administration/integrations does not exist; all QB API endpoints 404 (/api/quickbooks*, /api/integrations/quickbooks, /api/organizations/integrations); the WO finance object has invoice_shop_id=null. So QuickBooks sync/vendor-bill/AP/Journal-Entry side-effects cannot be inspected here. Needs a QB-connected company + a human in QuickBooks.",
+  "notes": "Blocked-Env (partial): the inventory-DECREMENT half is PROVEN (P550848 on-hand 6->5 on pick, persisted through simple-complete 201 \u2014 prior run). The Part-History LOG half is OBS-6-blocked (GET /api/inventory/parts/history -> 500; /parts/inventory/{id} crashes). The QuickBooks-integrity leg is blocked: Blocked-Env (precise, confirmed live 2026-07-14): QuickBooks is NOT connected on the sv7301 QA org. There is NO QuickBooks/accounting/integrations option in the Admin menu (menu = Work Orders, Schedule, Customers, Parts, Reports, Feature Flags, Settings, Staff, Locations, Departments, Taxes, Labor Rates, Canned Lines, Asset Types, Pricing, Bin Locations, Categories, IBS, Payment Methods, Contacts, Assets, Vendors, Inventory, Invoices \u2014 no QuickBooks); /administration/integrations does not exist; all QB API endpoints 404 (/api/quickbooks*, /api/integrations/quickbooks, /api/organizations/integrations); the WO finance object has invoice_shop_id=null. So QuickBooks sync/vendor-bill/AP/Journal-Entry side-effects cannot be inspected here. Needs a QB-connected company + a human in QuickBooks.",
   "api_related": false,
   "fresh_run": "2026-07-14"
  },
  {
   "id": "SF-QB-02",
   "area": "QuickBooks / Inventory Integrity",
-  "story_ref": "§5 / §4 (Create POs OFF)",
+  "story_ref": "\u00a75 / \u00a74 (Create POs OFF)",
   "title": "Verify Create POs OFF produces no PO, vendor bill or AP sync and no catalog/inventory sync",
   "priority": "High",
   "type": "Functional",
@@ -1135,17 +1157,17 @@
    "1. No purchase order, vendor bill or accounts-payable sync is produced.",
    "2. No catalog or inventory sync happens (the part is received at request time only)."
   ],
-  "design_ref": "requirements §4 / §5",
+  "design_ref": "requirements \u00a74 / \u00a75",
   "viu_status": "VIU-observed-awaiting-Milos",
-  "notes": "VIU-observed 2026-07-14 (awaiting Milos Q5) AND QB-blocked. The 'Create Purchase Orders' toggle is absent (POs always-on, SF-SET-03 Deviation) so the Create-POs-OFF scenario cannot be configured; and QuickBooks is not connected on sv7301 (no QB admin/API — see bugs-log) so QB integrity cannot be inspected regardless. Milos Q5 governs whether POs-always-on is intended. No pass/fail asserted.",
+  "notes": "VIU-observed 2026-07-14 (awaiting Milos Q5) AND QB-blocked. The 'Create Purchase Orders' toggle is absent (POs always-on, SF-SET-03 Deviation) so the Create-POs-OFF scenario cannot be configured; and QuickBooks is not connected on sv7301 (no QB admin/API \u2014 see bugs-log) so QB integrity cannot be inspected regardless. Milos Q5 governs whether POs-always-on is intended. No pass/fail asserted.",
   "api_related": false,
   "fresh_run": "2026-07-14"
  },
  {
   "id": "SF-QB-03",
   "area": "QuickBooks / Inventory Integrity",
-  "story_ref": "§5 invariant 2",
-  "title": "Verify POs ON plus receiving runs the full pipeline: receive → Delivery → Vendor Bill → QuickBooks (both surfaces sync)",
+  "story_ref": "\u00a75 invariant 2",
+  "title": "Verify POs ON plus receiving runs the full pipeline: receive \u2192 Delivery \u2192 Vendor Bill \u2192 QuickBooks (both surfaces sync)",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "receive access + QuickBooks visibility.",
@@ -1162,16 +1184,16 @@
    "1. Receiving creates a Delivery, then a Vendor Bill, then syncs to QuickBooks.",
    "2. Both receive surfaces sync the vendor bill (only complete-simple bypasses this)."
   ],
-  "design_ref": "requirements §5 invariant 2",
+  "design_ref": "requirements \u00a75 invariant 2",
   "viu_status": "Blocked-Env",
-  "notes": "Blocked-Env (precise, confirmed live 2026-07-14): QuickBooks is NOT connected on the sv7301 QA org. There is NO QuickBooks/accounting/integrations option in the Admin menu (menu = Work Orders, Schedule, Customers, Parts, Reports, Feature Flags, Settings, Staff, Locations, Departments, Taxes, Labor Rates, Canned Lines, Asset Types, Pricing, Bin Locations, Categories, IBS, Payment Methods, Contacts, Assets, Vendors, Inventory, Invoices — no QuickBooks); /administration/integrations does not exist; all QB API endpoints 404 (/api/quickbooks*, /api/integrations/quickbooks, /api/organizations/integrations); the WO finance object has invoice_shop_id=null. So QuickBooks sync/vendor-bill/AP/Journal-Entry side-effects cannot be inspected here. Needs a QB-connected company + a human in QuickBooks.",
+  "notes": "Blocked-Env (precise, confirmed live 2026-07-14): QuickBooks is NOT connected on the sv7301 QA org. There is NO QuickBooks/accounting/integrations option in the Admin menu (menu = Work Orders, Schedule, Customers, Parts, Reports, Feature Flags, Settings, Staff, Locations, Departments, Taxes, Labor Rates, Canned Lines, Asset Types, Pricing, Bin Locations, Categories, IBS, Payment Methods, Contacts, Assets, Vendors, Inventory, Invoices \u2014 no QuickBooks); /administration/integrations does not exist; all QB API endpoints 404 (/api/quickbooks*, /api/integrations/quickbooks, /api/organizations/integrations); the WO finance object has invoice_shop_id=null. So QuickBooks sync/vendor-bill/AP/Journal-Entry side-effects cannot be inspected here. Needs a QB-connected company + a human in QuickBooks.",
   "api_related": false,
   "fresh_run": "2026-07-14"
  },
  {
   "id": "SF-QB-04",
   "area": "QuickBooks / Inventory Integrity",
-  "story_ref": "§5 (vendorless/no-PN)",
+  "story_ref": "\u00a75 (vendorless/no-PN)",
   "title": "Verify a vendorless / no-PN part has zero inventory interaction until a vendor and/or part number is added",
   "priority": "Medium",
   "type": "Functional",
@@ -1188,16 +1210,16 @@
    "1. Before a vendor/PN, there is zero inventory interaction (no item, no history).",
    "2. After a vendor and PN are added, normal inventory handling applies."
   ],
-  "design_ref": "requirements §5",
+  "design_ref": "requirements \u00a75",
   "viu_status": "Blocked-Env",
-  "notes": "Blocked-Env (precise, confirmed live 2026-07-14): QuickBooks is NOT connected on the sv7301 QA org. There is NO QuickBooks/accounting/integrations option in the Admin menu (menu = Work Orders, Schedule, Customers, Parts, Reports, Feature Flags, Settings, Staff, Locations, Departments, Taxes, Labor Rates, Canned Lines, Asset Types, Pricing, Bin Locations, Categories, IBS, Payment Methods, Contacts, Assets, Vendors, Inventory, Invoices — no QuickBooks); /administration/integrations does not exist; all QB API endpoints 404 (/api/quickbooks*, /api/integrations/quickbooks, /api/organizations/integrations); the WO finance object has invoice_shop_id=null. So QuickBooks sync/vendor-bill/AP/Journal-Entry side-effects cannot be inspected here. Needs a QB-connected company + a human in QuickBooks.",
+  "notes": "Blocked-Env (precise, confirmed live 2026-07-14): QuickBooks is NOT connected on the sv7301 QA org. There is NO QuickBooks/accounting/integrations option in the Admin menu (menu = Work Orders, Schedule, Customers, Parts, Reports, Feature Flags, Settings, Staff, Locations, Departments, Taxes, Labor Rates, Canned Lines, Asset Types, Pricing, Bin Locations, Categories, IBS, Payment Methods, Contacts, Assets, Vendors, Inventory, Invoices \u2014 no QuickBooks); /administration/integrations does not exist; all QB API endpoints 404 (/api/quickbooks*, /api/integrations/quickbooks, /api/organizations/integrations); the WO finance object has invoice_shop_id=null. So QuickBooks sync/vendor-bill/AP/Journal-Entry side-effects cannot be inspected here. Needs a QB-connected company + a human in QuickBooks.",
   "api_related": false,
   "fresh_run": "2026-07-14"
  },
  {
   "id": "SF-QB-05",
   "area": "QuickBooks / Inventory Integrity",
-  "story_ref": "§5 / S6-R3",
+  "story_ref": "\u00a75 / S6-R3",
   "title": "Verify Vendor Missing POs are excluded from QuickBooks until a vendor and part number are provided",
   "priority": "Medium",
   "type": "Functional",
@@ -1214,16 +1236,16 @@
    "1. While vendor/PN are missing, the PO is excluded from QuickBooks.",
    "2. Once both are provided, it becomes eligible for QuickBooks."
   ],
-  "design_ref": "requirements §5 / S6-R3",
+  "design_ref": "requirements \u00a75 / S6-R3",
   "viu_status": "Blocked-Env",
-  "notes": "Blocked-Env (precise, confirmed live 2026-07-14): QuickBooks is NOT connected on the sv7301 QA org. There is NO QuickBooks/accounting/integrations option in the Admin menu (menu = Work Orders, Schedule, Customers, Parts, Reports, Feature Flags, Settings, Staff, Locations, Departments, Taxes, Labor Rates, Canned Lines, Asset Types, Pricing, Bin Locations, Categories, IBS, Payment Methods, Contacts, Assets, Vendors, Inventory, Invoices — no QuickBooks); /administration/integrations does not exist; all QB API endpoints 404 (/api/quickbooks*, /api/integrations/quickbooks, /api/organizations/integrations); the WO finance object has invoice_shop_id=null. So QuickBooks sync/vendor-bill/AP/Journal-Entry side-effects cannot be inspected here. Needs a QB-connected company + a human in QuickBooks.",
+  "notes": "Blocked-Env (precise, confirmed live 2026-07-14): QuickBooks is NOT connected on the sv7301 QA org. There is NO QuickBooks/accounting/integrations option in the Admin menu (menu = Work Orders, Schedule, Customers, Parts, Reports, Feature Flags, Settings, Staff, Locations, Departments, Taxes, Labor Rates, Canned Lines, Asset Types, Pricing, Bin Locations, Categories, IBS, Payment Methods, Contacts, Assets, Vendors, Inventory, Invoices \u2014 no QuickBooks); /administration/integrations does not exist; all QB API endpoints 404 (/api/quickbooks*, /api/integrations/quickbooks, /api/organizations/integrations); the WO finance object has invoice_shop_id=null. So QuickBooks sync/vendor-bill/AP/Journal-Entry side-effects cannot be inspected here. Needs a QB-connected company + a human in QuickBooks.",
   "api_related": false,
   "fresh_run": "2026-07-14"
  },
  {
   "id": "SF-QB-06",
   "area": "QuickBooks / Inventory Integrity",
-  "story_ref": "§8 (cost at completion)",
+  "story_ref": "\u00a78 (cost at completion)",
   "title": "Verify cost at completion behavior to avoid $0-cost margins in QuickBooks",
   "priority": "Medium",
   "type": "Functional",
@@ -1240,16 +1262,16 @@
    "1. The cost and margin values sent to QuickBooks at completion are recorded and checked for any $0-cost margins.",
    "2. For vendorless / no-part-number parts the mandatory sell price is captured at add time behind the See Financial Data gate, so a completing user has a sell figure and $0-cost margins are avoided."
   ],
-  "design_ref": "requirements §9 (See Financial Data gate on vendorless sell)",
+  "design_ref": "requirements \u00a79 (See Financial Data gate on vendorless sell)",
   "viu_status": "Blocked-Env",
-  "notes": "Blocked-Env (precise, confirmed live 2026-07-14): QuickBooks is NOT connected on the sv7301 QA org. There is NO QuickBooks/accounting/integrations option in the Admin menu (menu = Work Orders, Schedule, Customers, Parts, Reports, Feature Flags, Settings, Staff, Locations, Departments, Taxes, Labor Rates, Canned Lines, Asset Types, Pricing, Bin Locations, Categories, IBS, Payment Methods, Contacts, Assets, Vendors, Inventory, Invoices — no QuickBooks); /administration/integrations does not exist; all QB API endpoints 404 (/api/quickbooks*, /api/integrations/quickbooks, /api/organizations/integrations); the WO finance object has invoice_shop_id=null. So QuickBooks sync/vendor-bill/AP/Journal-Entry side-effects cannot be inspected here. Needs a QB-connected company + a human in QuickBooks.",
+  "notes": "Blocked-Env (precise, confirmed live 2026-07-14): QuickBooks is NOT connected on the sv7301 QA org. There is NO QuickBooks/accounting/integrations option in the Admin menu (menu = Work Orders, Schedule, Customers, Parts, Reports, Feature Flags, Settings, Staff, Locations, Departments, Taxes, Labor Rates, Canned Lines, Asset Types, Pricing, Bin Locations, Categories, IBS, Payment Methods, Contacts, Assets, Vendors, Inventory, Invoices \u2014 no QuickBooks); /administration/integrations does not exist; all QB API endpoints 404 (/api/quickbooks*, /api/integrations/quickbooks, /api/organizations/integrations); the WO finance object has invoice_shop_id=null. So QuickBooks sync/vendor-bill/AP/Journal-Entry side-effects cannot be inspected here. Needs a QB-connected company + a human in QuickBooks.",
   "api_related": false,
   "fresh_run": "2026-07-14"
  },
  {
   "id": "SF-QB-07",
   "area": "QuickBooks / Inventory Integrity",
-  "story_ref": "§5 (Journal Entry / Inventory → QBO)",
+  "story_ref": "\u00a75 (Journal Entry / Inventory \u2192 QBO)",
   "title": "Verify the Journal Entry / Inventory sync to QuickBooks fires on invoice creation (not PO-dependent)",
   "priority": "Medium",
   "type": "Functional",
@@ -1266,16 +1288,16 @@
    "1. The Journal Entry / Inventory sync to QuickBooks fires on invoice creation.",
    "2. This sync is not dependent on a PO existing."
   ],
-  "design_ref": "requirements §5",
+  "design_ref": "requirements \u00a75",
   "viu_status": "Blocked-Env",
-  "notes": "Blocked-Env (precise, confirmed live 2026-07-14): QuickBooks is NOT connected on the sv7301 QA org. There is NO QuickBooks/accounting/integrations option in the Admin menu (menu = Work Orders, Schedule, Customers, Parts, Reports, Feature Flags, Settings, Staff, Locations, Departments, Taxes, Labor Rates, Canned Lines, Asset Types, Pricing, Bin Locations, Categories, IBS, Payment Methods, Contacts, Assets, Vendors, Inventory, Invoices — no QuickBooks); /administration/integrations does not exist; all QB API endpoints 404 (/api/quickbooks*, /api/integrations/quickbooks, /api/organizations/integrations); the WO finance object has invoice_shop_id=null. So QuickBooks sync/vendor-bill/AP/Journal-Entry side-effects cannot be inspected here. Needs a QB-connected company + a human in QuickBooks.",
+  "notes": "Blocked-Env (precise, confirmed live 2026-07-14): QuickBooks is NOT connected on the sv7301 QA org. There is NO QuickBooks/accounting/integrations option in the Admin menu (menu = Work Orders, Schedule, Customers, Parts, Reports, Feature Flags, Settings, Staff, Locations, Departments, Taxes, Labor Rates, Canned Lines, Asset Types, Pricing, Bin Locations, Categories, IBS, Payment Methods, Contacts, Assets, Vendors, Inventory, Invoices \u2014 no QuickBooks); /administration/integrations does not exist; all QB API endpoints 404 (/api/quickbooks*, /api/integrations/quickbooks, /api/organizations/integrations); the WO finance object has invoice_shop_id=null. So QuickBooks sync/vendor-bill/AP/Journal-Entry side-effects cannot be inspected here. Needs a QB-connected company + a human in QuickBooks.",
   "api_related": false,
   "fresh_run": "2026-07-14"
  },
  {
   "id": "SF-QB-08",
   "area": "QuickBooks / Inventory Integrity",
-  "story_ref": "§5 invariant 3 (rescoped after S10-R2 strike)",
+  "story_ref": "\u00a75 invariant 3 (rescoped after S10-R2 strike)",
   "title": "Verify Part History is preserved for a part that is genuinely inventory-tracked",
   "priority": "Medium",
   "type": "Functional",
@@ -1292,16 +1314,16 @@
    "1. For a part that is genuinely inventory-tracked, its Part History is preserved / written.",
    "2. Simply entering a part number on a previously untracked part is not required to turn it into an inventory-tracked part in v1, so no Part History needs to be created from that entry alone."
   ],
-  "design_ref": "requirements §5 invariant 3",
+  "design_ref": "requirements \u00a75 invariant 3",
   "viu_status": "VIU-Verified",
-  "notes": "Rescoped 2026-07-14 for the S10-R2 deprecation (spec _3, last-update-wins). Previously Blocked-Env on QuickBooks; the QB dependency is not needed for this assertion. Part History for a genuinely inventory-tracked part is a native in-app feature (Parts > Inventory clock icon) and inventory decrement + Part History on simple completion is verified elsewhere (SF-COMP-07 Passed). Since a plain part-number add no longer makes a part inventory-tracked (S10-R2 struck), the invariant now only claims Part History for parts that ARE inventory-tracked — which holds.",
+  "notes": "Rescoped 2026-07-14 for the S10-R2 deprecation (spec _3, last-update-wins). Previously Blocked-Env on QuickBooks; the QB dependency is not needed for this assertion. Part History for a genuinely inventory-tracked part is a native in-app feature (Parts > Inventory clock icon) and inventory decrement + Part History on simple completion is verified elsewhere (SF-COMP-07 Passed). Since a plain part-number add no longer makes a part inventory-tracked (S10-R2 struck), the invariant now only claims Part History for parts that ARE inventory-tracked \u2014 which holds.",
   "api_related": false,
   "fresh_run": "2026-07-14"
  },
  {
   "id": "SF-QB-09",
   "area": "QuickBooks / Inventory Integrity",
-  "story_ref": "§8 Part Sales — confirmed (Jul 14) + S7/S8 part-sale AC",
+  "story_ref": "\u00a78 Part Sales \u2014 confirmed (Jul 14) + S7/S8 part-sale AC",
   "title": "Verify part-sale order status transitions are not regressed by the shared order/status logic (requested to waiting-to-receive to received)",
   "priority": "Low",
   "type": "Functional",
@@ -1320,9 +1342,9 @@
    "2. Receiving the part-sale PO behaves like receiving a work-order PO (same pipeline).",
    "3. The part sale is not broken by the shared order/status logic."
   ],
-  "design_ref": "requirements-v4 §8 'Part Sales — confirmed (Jul 14)'",
+  "design_ref": "requirements-v4 \u00a78 'Part Sales \u2014 confirmed (Jul 14)'",
   "viu_status": "Blocked-Env",
-  "notes": "RESCOPED 2026-07-17 per spec `_4` (V2.6) Δ15 — the §8 'Part Sales impact (investigation — BE)' open question is now CONFIRMED in-spec ('Part Sales — confirmed (Jul 14)': adding a part on a Part Sale already creates a PO received via the same PO/receive pipeline; part-sale POs in scope for PO multi-select + Bulk Receive + Accept Delivery). This case now covers the spec's residual check ('the new order/status logic does not regress part-sale status transitions'); the in-scope part-sale PO behaviors are covered by the new cases SF-POSEL-07 (PO list / multi-select), SF-BULK-11 (Bulk Receive) and SF-WOP-04 (Waiting on Parts). Open-Question RESOLVED → VIU-Pending (seedable per Rule 14: create a Part Sale with a vendor part). ADDED TO TESTRAIL 2026-07-17 (was deliberately unmapped while an open question). || STAGING VIU 2026-07-20: QuickBooks NOT connected on staging (/api/quickbooks/status 404, no QB in Admin) — part-sale QB status transitions cannot be observed. External dependency -> Blocked-Env.",
+  "notes": "RESCOPED 2026-07-17 per spec `_4` (V2.6) \u039415 \u2014 the \u00a78 'Part Sales impact (investigation \u2014 BE)' open question is now CONFIRMED in-spec ('Part Sales \u2014 confirmed (Jul 14)': adding a part on a Part Sale already creates a PO received via the same PO/receive pipeline; part-sale POs in scope for PO multi-select + Bulk Receive + Accept Delivery). This case now covers the spec's residual check ('the new order/status logic does not regress part-sale status transitions'); the in-scope part-sale PO behaviors are covered by the new cases SF-POSEL-07 (PO list / multi-select), SF-BULK-11 (Bulk Receive) and SF-WOP-04 (Waiting on Parts). Open-Question RESOLVED \u2192 VIU-Pending (seedable per Rule 14: create a Part Sale with a vendor part). ADDED TO TESTRAIL 2026-07-17 (was deliberately unmapped while an open question). || STAGING VIU 2026-07-20: QuickBooks NOT connected on staging (/api/quickbooks/status 404, no QB in Admin) \u2014 part-sale QB status transitions cannot be observed. External dependency -> Blocked-Env.",
   "api_related": false,
   "fresh_run": "2026-07-20"
  },
@@ -1350,7 +1372,7 @@
    "2. The moment the last open line is completed, the work order moves to Complete on its own (invoice-ready).",
    "3. You do not have to click Complete Work Order separately for the work order to reach Complete."
   ],
-  "design_ref": "WO Review Flow.html; Simple Mode spec §16 R12/R13",
+  "design_ref": "WO Review Flow.html; Simple Mode spec \u00a716 R12/R13",
   "viu_status": "VIU-Verified",
   "api_related": false,
   "fresh_run": "2026-07-14",
@@ -1379,7 +1401,7 @@
    "2. Because that resolves the last open lines, the work order moves to Complete on its own (invoice-ready).",
    "3. No separate Complete Work Order step is needed."
   ],
-  "design_ref": "WO Review Flow.html; Simple Mode spec §16 R12/R13",
+  "design_ref": "WO Review Flow.html; Simple Mode spec \u00a716 R12/R13",
   "viu_status": "VIU-Verified",
   "api_related": false,
   "fresh_run": "2026-07-14",
@@ -1408,7 +1430,7 @@
    "2. The original work order is now fully resolved (all its remaining lines are complete), so it moves to Complete on its own.",
    "3. No separate Complete Work Order step is needed on the original work order."
   ],
-  "design_ref": "WO Review Flow.html; Simple Mode spec §16 R12/R13",
+  "design_ref": "WO Review Flow.html; Simple Mode spec \u00a716 R12/R13",
   "viu_status": "VIU-Verified",
   "api_related": false,
   "fresh_run": "2026-07-14",
@@ -1437,11 +1459,11 @@
    "2. Because the remaining lines are all complete, the work order moves to Complete on its own.",
    "3. No separate Complete Work Order step is needed."
   ],
-  "design_ref": "WO Review Flow.html; Simple Mode spec §16 R12/R13",
+  "design_ref": "WO Review Flow.html; Simple Mode spec \u00a716 R12/R13",
   "viu_status": "Blocked-Env",
   "api_related": false,
   "fresh_run": "2026-07-14",
-  "notes": "Wording per spec §16 R12(d)+design. VIU Blocked-Env 2026-07-14: the delete-a-line action could not be driven in this environment — POST /api/work-orders/lines/delete-lines returns HTTP 500 even for a delete that leaves the work order still open (requestId 768518b...), so it is a generic delete-lines failure in this env, not the auto-complete leg; and no browser (Chromium/Playwright) harness is available here to drive the UI 'Delete lines' bulk action. The auto-complete-on-last-line-resolve mechanism itself IS verified on the single, bulk and split paths (SF-AUTO-01/02/03) — the same backend recompute applies. Needs the delete-lines endpoint healthy (or a UI session) to confirm the delete-line trigger directly."
+  "notes": "Wording per spec \u00a716 R12(d)+design. VIU Blocked-Env 2026-07-14: the delete-a-line action could not be driven in this environment \u2014 POST /api/work-orders/lines/delete-lines returns HTTP 500 even for a delete that leaves the work order still open (requestId 768518b...), so it is a generic delete-lines failure in this env, not the auto-complete leg; and no browser (Chromium/Playwright) harness is available here to drive the UI 'Delete lines' bulk action. The auto-complete-on-last-line-resolve mechanism itself IS verified on the single, bulk and split paths (SF-AUTO-01/02/03) \u2014 the same backend recompute applies. Needs the delete-lines endpoint healthy (or a UI session) to confirm the delete-line trigger directly."
  },
  {
   "id": "SF-AUTO-05",
@@ -1462,10 +1484,10 @@
    "3. Confirm whether the work order went straight to Complete or to review."
   ],
   "expected": [
-   "1. When the last open line is resolved, the work order moves to Ready for Review (Review) — it does NOT auto-complete.",
+   "1. When the last open line is resolved, the work order moves to Ready for Review (Review) \u2014 it does NOT auto-complete.",
    "2. The work order must be signed off in the review step before it can reach Complete."
   ],
-  "design_ref": "WO Review Flow.html; Simple Mode spec §16 R12/R13",
+  "design_ref": "WO Review Flow.html; Simple Mode spec \u00a716 R12/R13",
   "viu_status": "VIU-Verified",
   "api_related": false,
   "fresh_run": "2026-07-14",
@@ -1492,11 +1514,11 @@
    "1. Even though Require Review is off, the work order routes to Ready for Review (not straight to Complete).",
    "2. This is the one path that does not auto-complete when review is off (a technician may not be allowed to complete a work order)."
   ],
-  "design_ref": "WO Review Flow.html; Simple Mode spec §16 R12/R13",
+  "design_ref": "WO Review Flow.html; Simple Mode spec \u00a716 R12/R13",
   "viu_status": "Blocked-Env",
   "api_related": false,
   "fresh_run": "2026-07-14",
-  "notes": "Wording per spec §16 R13 (intentional clock-out exception). VIU Blocked-Env 2026-07-14: the per-line technician clock-out that finishes a line is not drivable through the available API (GET /api/technician-tasks returns 404; /api/technician-tasks/department-clock-* is a shop-time punch clock, not the per-line 'finish the line' timer), and no browser (Chromium/Playwright) harness is available here to drive the timer/clock-out UI. The auto-complete-vs-review routing is otherwise verified (SF-AUTO-01/05). Needs a technician time-clock UI session (or the per-line clock-out endpoint) to confirm the R13 exception directly."
+  "notes": "Wording per spec \u00a716 R13 (intentional clock-out exception). VIU Blocked-Env 2026-07-14: the per-line technician clock-out that finishes a line is not drivable through the available API (GET /api/technician-tasks returns 404; /api/technician-tasks/department-clock-* is a shop-time punch clock, not the per-line 'finish the line' timer), and no browser (Chromium/Playwright) harness is available here to drive the timer/clock-out UI. The auto-complete-vs-review routing is otherwise verified (SF-AUTO-01/05). Needs a technician time-clock UI session (or the per-line clock-out endpoint) to confirm the R13 exception directly."
  },
  {
   "id": "SF-AUTO-07",
@@ -1518,7 +1540,7 @@
    "1. With Require Review off, after the last open line resolves the work order record status becomes Complete (the resolve action returns success).",
    "2. With Require Review on, after the last open line resolves the work order record status becomes Ready for Review (Review), not Complete."
   ],
-  "design_ref": "WO Review Flow.html; Simple Mode spec §16 R12/R13",
+  "design_ref": "WO Review Flow.html; Simple Mode spec \u00a716 R12/R13",
   "viu_status": "VIU-Verified",
   "api_related": true,
   "fresh_run": "2026-07-14",
