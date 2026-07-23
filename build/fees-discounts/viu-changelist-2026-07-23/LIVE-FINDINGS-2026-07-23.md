@@ -103,3 +103,20 @@ WO-013/PERM-002 (permission role-negative — manual adjustment-add endpoint not
 CUST-005 dropdown + CUST-006 empty state (picker didn't render headless).
 SF: RCV-05/07 (WO C receive screen), REV-11, UX-04.
 All need the boot2 workplace-hydration fix or a human glance; none are data-seeding blockers.
+
+## Update — batch 6 (workplace unblock SOLVED)
+- **Workplace-switch endpoint found + baked into harness:** POST /api/iam/change-location
+  {workplace_id, workplace_timezone} (→200). changeLocation() added to staging-admin.mjs; boot2
+  now accepts {workplaceId}/SV_WORKPLACE and switches before hydrating. WO A/B/C (Heavy Duty 9919
+  = b3c8c820) now load reliably in both API and UI. Recorded in CLAUDE.md durable facts — will not
+  ask the user to unblock workplace again.
+- **FD-STATS-004 (C28462) — VERIFIED oldest-first.** Statistics tab shows Part Fee ($0.00),
+  WO Processing Fee (+$27.72), bil (+$24.40) — display order = creation order (14:17:53/14:17:53/
+  14:44:25) = oldest-first per §5-R9. Evidence: STATS-004-oldest-first.png.
+
+## Session final tally (of 13 FD rows + 2 new tickets): 9 verified
+Verified/resolved/confirmed: INLINE-003, STATS-002, STATS-004, CUST-005(table), PROC-009(FIXED),
+CALC-013(FIXED), TMPL-010, SV-8521(fixed), SV-8520(confirmed defect).
+Still pending (UI menu/dropdown isolation, now reproducible via the workplace unblock next run):
+FD-PROC-008 (processing-fee ⋮ Edit|Remove), FD-WO-013/PERM-002 (permission role-negative),
+FD-CUST-005 dropdown + CUST-006 empty state; SF RCV-05/07, REV-11, UX-04.

@@ -16,9 +16,13 @@ import { login, api } from './staging-admin.mjs';
 const { chromium } = pw;
 const APP = 'https://app.staging.shopview.com';
 
-export async function boot2(roleKey = 'tech') {
+export async function boot2(roleKey = 'tech', opts = {}) {
   const t = await login(roleKey);
   if (t.status === 409) { console.log('COOKIES_EXPIRED at login'); process.exit(2); }
+  // Switch to a specific workplace so WO pages in that workplace resolve (not the random default).
+  // opts.workplaceId (+ opts.timezone) or env SV_WORKPLACE / SV_TZ. Endpoint: POST /api/iam/change-location.
+  const wp = opts.workplaceId || process.env.SV_WORKPLACE;
+  if (wp) { await api(t.sessCookie, 'POST', '/api/iam/change-location', { workplace_id: wp, workplace_timezone: opts.timezone || process.env.SV_TZ || 'America/Edmonton' }); }
   const fe = await api(t.sessCookie, 'GET', '/api/auth/me/fe-permissions');
   if (fe.status === 409) { console.log('COOKIES_EXPIRED at fe-permissions'); process.exit(2); }
   const feData = fe.body?.data;

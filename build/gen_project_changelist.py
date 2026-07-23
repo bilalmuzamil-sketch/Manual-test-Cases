@@ -147,6 +147,11 @@ LIVE = {
                     "fee). So the fee is still billed but hidden from the line after pick — matches "
                     "SV-8520. Author the case as a confirmed defect (Testing Stage)."),
                "action": "New case + verify", "state": "verified"},
+ "C28462": {"d": ("LIVE 2026-07-23 (WO S-25989 Statistics tab): fees/discounts are listed OLDEST-FIRST "
+                  "— display order Part Fee, WO Processing Fee, bil matches their creation order "
+                  "(createdAt 14:17:53, 14:17:53, 14:44:25). Matches spec §5-R9; the case (authored to "
+                  "spec) is correct. Part Fee correctly shows $0.00. Mark Verified."),
+             "action": "Apply update", "state": "verified"},
  "C28489": {"d": ("LIVE 2026-07-23 (customer 'Default Fees & Discounts' tab): the defaults TABLE "
                   "shows full columns — Name, Type, Calculation Type, Amount, Max Amount, Taxable — "
                   "and a Processing Fee displays with Type 'Fee' (e.g. 'Processing Fee | Fee | % of "

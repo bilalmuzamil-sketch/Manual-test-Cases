@@ -1006,6 +1006,18 @@ regression / bug-fix re-testing.
     `77b069d1-...` does **NOT** exist on staging — do not use it.
     org `d55bc308-...`.
   - Tech email `tech@shopview.com`.
+- **SWITCH WORKPLACE/LOCATION (self-unblock — learned 2026-07-23, never ask the user again):**
+  a session is scoped to ONE workplace; reading/writing a WO in another workplace returns
+  400/no-data. Switch with **`POST /api/iam/change-location {workplace_id, workplace_timezone}`**
+  (→200). Helper: `changeLocation()` in `build/testing-tools/staging-admin.mjs`; boot2 accepts
+  `{workplaceId}` / env `SV_WORKPLACE`+`SV_TZ` and switches before hydrating. Workplaces (GET
+  `/api/staff/my-workplaces`): Heavy Duty 9919 = `b3c8c820-f815-4cf1-8938-10956c5ee71a`
+  (America/Edmonton); Lethbridge 4310 = `f8a8b802-7780-4b16-bf10-343caeb616b2`; QB Location =
+  `d5366a95-582d-4a06-96e2-20f8cb937866`. **CREATE A WO:** `POST /api/work-orders/create
+  {company_id, vehicle_id, workplace_id, start_date, is_vehicle_here:true}` (→201, needs
+  is_vehicle_here). Vehicles: `GET /api/vehicles?company_id={id}`. Customer defaults auto-apply
+  fees on new WOs. **DELETE WO:** `POST /api/work-orders/delete {work_order_id}`. **KNOWN ENV BUG:**
+  `POST /api/work-orders/lines/create` returns HTTP 500 (add lines via the UI instead).
 - **TestRail:** project **1** / single suite **1 "Master"**; API v2, Basic auth.
   - Custom Roles - (Revised) = section **3527**; Combo+Breakage **3641–3645**;
     Digital Inspections **3646**; execution **run = 312**.

@@ -34,6 +34,16 @@ export async function login(key = 'admin') {
   return { sessCookie, data: j.data, status: r.status };
 }
 
+// Switch the session's active workplace/location. REQUIRED before reading/writing WOs that live
+// in a non-default workplace — otherwise /api/work-orders/view/{id} returns 400/no-data because the
+// session is scoped to a different workplace. Endpoint discovered 2026-07-23 from the app's location
+// switcher: POST /api/iam/change-location {workplace_id, workplace_timezone}. Known workplaces:
+// Heavy Duty 9919 = b3c8c820-f815-4cf1-8938-10956c5ee71a (America/Edmonton);
+// Lethbridge 4310 = f8a8b802-7780-4b16-bf10-343caeb616b2. Full list via GET /api/staff/my-workplaces.
+export async function changeLocation(sessCookie, workplaceId, timezone = 'America/Edmonton') {
+  return api(sessCookie, 'POST', '/api/iam/change-location', { workplace_id: workplaceId, workplace_timezone: timezone });
+}
+
 export async function api(sessCookie, method, path, body) {
   const url = path.startsWith('http') ? path : BASE + path;
   const opts = { method, redirect: 'manual', headers: hdrs(sessCookie) };
