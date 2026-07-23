@@ -908,6 +908,22 @@ process(es) to run before proceeding.
     picks it up, and MUST read here before acting. Ties to Standing Rules
     6/8/9/10/11/12/13/14/15 and build/SPEC-RECHECK-PROCESS.md +
     build/BUILD-ACCURATE-WORDING-VIU-PROCESS.md.
+21. **When CREATING a process, follow the Process-Authoring Standard — do NOT skip
+    anything (all projects).** The user has a fixed preference for how a reusable
+    process/recipe/method is written (stated 2026-07-23: "whenever you are creating the
+    process keep in mind my preference for making a process and do not skip anything").
+    Every process doc MUST: (1) be built from the FULL originating instruction history read
+    from the RAW TRANSCRIPT (not a summary or memory — Rule 18), verified line by line, with
+    every correction folded in; (2) capture BOTH the final accepted FORMAT and the
+    REQUIREMENTS/CORRECTIONS behind it; (3) contain ALL sections — plain-English purpose,
+    trigger phrases, kickoff prompt, originating-instructions+corrections, exact deliverable
+    format (mirror 1:1, canonical example path), numbered steps, reusable generator/tooling,
+    guardrails, honesty notes; (4) carry a human-readable filename (Rule 19); (5) get a row
+    added to build/PROCESS-CATALOG.md in the SAME turn; (6) be indexed in this CLAUDE.md and
+    shared with the other session; (7) end by telling the user the name + how to call it and
+    offering a dry-run. **The full checklist is build/PROCESS-AUTHORING-STANDARD.md.** The
+    canonical index of all callable processes is **build/PROCESS-CATALOG.md** (read it to
+    pick/name a process for any project). Ties to Standing Rules 16/17/18/19.
 
 ## Project purpose (Custom Roles project)
 Manual test-case authoring + live staging (Verify-in-UI) verification + TestRail
