@@ -1001,6 +1001,22 @@ process(es) to run before proceeding.
     per this rule that is FLAGGED ("doable via API"), not a bug. Ties to Standing Rules
     12/13 and the Custom Roles enforcement-model finding (BE enforces resource View/Edit;
     granular perms are FE gates).
+25. **Every DEVIATION call must cite the spec/ticket/story reference + the VERBATIM wording
+    it deviates from (all projects).** Whenever I say something is a deviation (or a
+    build-vs-case mismatch, or "the case expects X but the build does Y"), I MUST quote the
+    exact source wording the case's expectation comes from — the spec section/requirement,
+    the Jira ticket/story, and/or the design — with the reference AND the verbatim text, so
+    the user can see the basis and judge it. If the expectation turns out NOT to be in the
+    spec/ticket (e.g. it came from a design mock only, or was over-specified), SAY SO
+    explicitly — that often means the build is actually spec-compliant and the case should be
+    matched to the build, not flagged as a bug. Never assert a deviation from memory or a
+    prose summary; pull the wording from the canonical spec/ticket (Rule 15 verbatim
+    truth-table; Rule 23 read Confluence when unsure). Rationale, 2026-07-23: FD-STATS-002
+    (C28460) "expected a per-row target + clickable link" — but the FD spec only says
+    adjustments "appear on the Statistics tab" (§3) "oldest first" (§5-R9); the target/link
+    was design-only, not in the spec, so the build was spec-compliant and the case was matched
+    to the build. User: "whenever you discuss a deviation, give specs/tickets/stories reference
+    with the wordings from which the test case is deviating." Ties to Standing Rules 12/15/20/23.
 
 ## Project purpose (Custom Roles project)
 Manual test-case authoring + live staging (Verify-in-UI) verification + TestRail

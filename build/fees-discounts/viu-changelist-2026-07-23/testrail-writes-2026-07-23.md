@@ -20,3 +20,11 @@ already build-accurate (from the prior VIU pass); pushing edits would be no-ops 
 
 ## Frozen (user 2026-07-23)
 C29373 / C29375 (SF-RCV-05/07) — keep as-is, no change.
+
+## update_case (1) — 2026-07-23, user-authorized ("C28460 match to how it appears on Build")
+- **C28460 (FD-STATS-002)** → HTTP 200, re-GET verified. Title/steps/expected reworded to the shipped
+  Statistics display (row = adjustment name + % + amount + Total; $0.00 for zero; NO per-row target/link).
+  Basis: the FD spec (§3 "adjustments appear on the Statistics tab"; §5-R9 "oldest first") does NOT
+  require a target-naming or clickable link — that was DESIGN-ONLY (design §3). So the build is
+  spec-compliant; the case was over-specified from the design and is now matched to the build (not a bug).
+  refs updated to "SV-8280 (§3 adjustments appear on the Statistics tab; §5-R9 oldest-first)".

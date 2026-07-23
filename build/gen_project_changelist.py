@@ -128,14 +128,14 @@ LIVE = {
                   "EXISTS — the earlier 'no Show more/less toggle' finding is resolved. Update the "
                   "case to Verified."),
              "action": "Apply update", "state": "verified"},
- "C28460": {"d": ("LIVE 2026-07-23 (WO S-25991 Statistics tab, has a line-level part fee 'pp'): the "
-                  "'Fees & Discounts' section shows PER-ADJUSTMENT rows with the fee NAME + % + Amount "
-                  "('Part Fee +11% +$16.34', 'pp +50% +$49.50', Total), BUT the row does NOT name its "
-                  "target line/part and there is NO per-row clickable link to jump to the item (the "
-                  "only links on the page are the Lines/Parts tabs). The case expects each row to name "
-                  "its target AND be a clickable link → DEVIATION: build shows the fee name only. "
-                  "Decide: keep the case as design-intent + log a fix, or accept the shipped display."),
-             "action": "DECISION", "state": "deviation"},
+ "C28460": {"d": ("UPDATED 2026-07-23 (update_case 200) — matched to the build per user. The Statistics "
+                  "'Fees & Discounts' section shows each adjustment as a row with NAME + % + Amount + "
+                  "Total ('Part Fee +11% +$16.34', 'pp +50% +$49.50'), $0.00 for zero-value; it does NOT "
+                  "show a per-row target line/part or clickable link. The target/link was DESIGN-ONLY "
+                  "(design §3) — the FD spec only requires adjustments to 'appear on the Statistics tab' "
+                  "(§3) 'oldest first' (§5-R9), so the build is spec-compliant. Case reworded to the "
+                  "shipped display; not a bug."),
+             "action": "Applied (matched to build)", "state": "verified"},
  "C28511": {"d": ("LIVE 2026-07-23: the LINE-SCOPE fee dialog now HAS a template picker — the 'New Part "
                   "Fee / Discount' dialog (and the labour-line one) shows 'Apply From Template' with "
                   "'Showing templates compatible with this line', and the whole-WO dialog has it too. The "
