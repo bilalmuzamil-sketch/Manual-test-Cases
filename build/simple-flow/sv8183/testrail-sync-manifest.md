@@ -1,6 +1,6 @@
 # SV-8183 Permission VIU — TestRail Sync Manifest
 
-**STATUS: NOT EXECUTED — awaiting user TestRail authorization**
+**STATUS: EXECUTED 2026-07-23** (user-authorized; 1 × update_case SF-PERM-01/C29405, HTTP 200 + re-GET MATCH; run 325 untouched). Audit: `testrail-execution-log-2026-07-23.md`.
 
 Project: Simple Flow (Epic SV-7301) · Story SV-8183 (Permission mapping) · PO Milos.
 Source pass: `build/simple-flow/viu-sv8183-2026-07-23/` (live staging VIU 2026-07-23).

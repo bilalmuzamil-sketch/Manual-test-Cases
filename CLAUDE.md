@@ -304,19 +304,23 @@ process(es) to run before proceeding.
    unexplained → need live re-VIU; SF-VPART-01/02 likely stale-7/7-baseline tied to
    known BUG-9) + ingest Jira **SV-8303** (Ayesha's SF-SET-10 note flags a coming
    spec change).
-   **RESUME 2026-07-23 (LATEST — SV-8183 permission VIU): read build/simple-flow/PROJECT-STATE.md §0-FF first.**
-   SV-8183 permission VIU done LIVE on staging 2026-07-23 + adversarially audited (2 issues
-   found + closed): all 11 SF-PERM/SF-REV = VIU-Verified; composition 11/11 == §9.2 (0 drift at
-   capture); **BE atom-FAMILY finding** — `POST /api/organizations/settings/change` gates on the
-   settings atom-family not `settingsApp` (a clean Parts Manager gets 200; no-settings roles 403)
-   → **SF-PERM-01 wording REFINED locally, 1 `update_case` STAGED (NOT pushed)**,
-   `build/simple-flow/sv8183/testrail-sync-manifest.md`; FE route-guards live per role; element
-   gates 6/7 re-observed this run. **SF-PERM-09 + the Technician CELL of the completion matrix
-   (SF-PERM-02/10) drift-blocked** by a concurrent actor re-drifting the shared Technician role —
-   need a clean Technician-baseline window to finish (env task, not TestRail). **Tech baseline
-   RESOLVED = role "Technician" (50bf6a0d), NOT Time Clock User** (Standing Rule 26). **NO
-   TestRail writes; run 325 untouched.** Tally UNCHANGED = 151/4/21/5/3 = 184.
-   Evidence: `build/simple-flow/viu-sv8183-2026-07-23/`.
+   **RESUME 2026-07-23 (LATEST — SV-8183 drift-cells FINISHED + SF-PERM-01 PUSHED): read build/simple-flow/PROJECT-STATE.md §0-FF-CLOSE first.**
+   Follow-up (authorized): the 3 drift-blocked Technician cells are now CLEANLY OBSERVED LIVE
+   against a verified-clean Technician baseline (role 50bf6a0d re-read = canonical 6 atoms,
+   before==after, no drift this window; Rule 26 satisfied). **SF-PERM-02 (C29406)/SF-PERM-10
+   (C29414) Technician cell** — WO "Send To Review"/completion cluster ABSENT for Technician
+   (only line-level New Line/Complete show = line-edit). **SF-PERM-09 (C29413)** — New Part
+   Request dialog for Technician shows only Part Number/Description/Quantity, **sell-price field
+   ABSENT** (seeFinancialData gate; corroborated by Admin Parts-tab Sell Price column). Element
+   gates now 9/9 clean this run. Evidence: `viu-sv8183-2026-07-23/element-reobserve/`
+   (complete-Tech-reset-2026-07-23.png, tech-newpartrequest-dialog-2026-07-23.png, element-matrix.json).
+   **SF-PERM-01 (C29405) `update_case` EXECUTED** (page-reachability Expected; BE atom-family
+   driver in metadata) — HTTP 200 + re-GET MATCH, title/refs unchanged; manifest = EXECUTED;
+   audit `sv8183/testrail-execution-log-2026-07-23.md`. **ONLY TestRail write; run 325 untouched;
+   no add/delete/section.** Tally UNCHANGED = 151/4/21/5/3 = 184 (no status changes, metadata-only).
+   Prior 0-FF pass (same day): all 11 SF-PERM/SF-REV VIU-Verified; composition 11/11 == §9.2;
+   BE atom-FAMILY finding for `POST /api/organizations/settings/change` (clean Parts Manager 200,
+   no-settings 403). **Tech baseline = role "Technician" (50bf6a0d), NOT Time Clock User** (Rule 26).
    **Prior RESUME 2026-07-20: read build/simple-flow/PROJECT-STATE.md §'WHAT'S LEFT TO DO' + §0-CC**
    — RETIRE EXECUTED 2026-07-20 (user ruling 2026-07-17): SF-CORE-05/06/09 deleted from
    TestRail (delete_case 3/3, verified gone, audit-logged, run 325 untouched), bodies

@@ -139,6 +139,48 @@ What remains:
 
 ---
 
+## 0-FF-CLOSE. SV-8183 — DRIFT-BLOCKED CELLS FINISHED + SF-PERM-01 update_case EXECUTED (2026-07-23, LATEST)
+
+Follow-up pass (authorized, unattended) closing the two open threads left by §0-FF below.
+
+**(1) Drift-blocked Technician cells — NOW CLEANLY OBSERVED LIVE (RESOLVED).** Re-read role
+Technician (50bf6a0d) via `GET /api/roles/{id}` at reset-time = exactly the canonical 6 atoms
+(customersView, scheduleView, woPickParts, woTechViewMode, workOrderLinesCreateAndEdit,
+workOrdersView), view_mode=tech, NO workOrdersCreateAndEdit / NO seeFinancialData / NO
+woFullViewMode. Re-read AGAIN immediately after the observations = identical 6 (**before==after,
+no drift this window**, so no reset write was needed — role already at template; Rule 26
+satisfied). Observed live as the GENUINE Technician holder (boot2 quick-login tech, Lethbridge
+location) on WO S3-25842 (f114be8a):
+- **SF-PERM-02 (C29406) / SF-PERM-10 (C29414) — Technician cell: VIU-Verified clean this run.**
+  WO-level **"Send To Review" completion control ABSENT** (no Parts/Finance tabs, no
+  Rate/Margin/Total); only line-level New Line / line-Complete show (line-edit, not WO
+  completion). Technician cannot complete/send-to-review the WO. Carried-caveat REMOVED.
+  Evidence: `element-reobserve/complete-Tech-reset-2026-07-23.png`.
+- **SF-PERM-09 (C29413) — VIU-Verified clean this run.** Opened the **New Part Request** dialog
+  live (New Line → Save & Add Part → "New Part Request"); it shows only Part Number /
+  Description / Quantity — the **sell-price field (`input_workorder_part_sell_price`) is ABSENT**
+  (no Cost/Margin), so a vendorless add is prevented. seeFinancialData gate corroborated live for
+  Admin (Parts tab Cost/Sell Price/Margin columns). Carried-caveat REMOVED. Evidence:
+  `element-reobserve/tech-newpartrequest-dialog-2026-07-23.png`. (Created ZZAUTOTEST line as the
+  vehicle to open the dialog; deleted it via UI bulk-action afterward — `delete-lines` API 500s,
+  known env defect. WO restored; Technician role left AT TEMPLATE.)
+  All 3 elements re-observed against a verified-clean baseline → **element gates now 9/9 clean
+  live this run** (was 6/7). Details in `element-reobserve/element-matrix.json`
+  ("DRIFT_BLOCKED_CELLS_RESOLVED_2026-07-23" block) + case notes.
+
+**(2) SF-PERM-01 (C29405) `update_case` — EXECUTED (authorized).** Pushed the refined Expected
+(page-reachability wording; BE atom-family driver kept in local metadata per Rules 7/20) →
+**HTTP 200 + re-GET MATCH**; title/steps/`refs` unchanged; status stays VIU-Verified.
+Manifest flipped to EXECUTED. Audit: `sv8183/testrail-execution-log-2026-07-23.md`. **This is
+the ONLY TestRail write; run 325 untouched; no add/delete/section.**
+
+**Tally UNCHANGED = 151 VIU-Verified / 4 VIU-Pending / 21 Blocked-Env / 5 awaiting-Milos /
+3 Deviation = 184 active** (no status changes — the 3 cells were already VIU-Verified; only
+metadata notes + evidence pointers updated, so no deliverable regeneration needed). Both §0-FF
+open threads are now CLOSED.
+
+---
+
 ## 0-FF. SV-8183 PERMISSION VIU — LIVE STAGING + ADVERSARIALLY AUDITED (2026-07-23, LATEST)
 
 Live-staging Verify-in-UI pass over the 11 SV-8183 permission cases (SF-PERM-01..10 +
