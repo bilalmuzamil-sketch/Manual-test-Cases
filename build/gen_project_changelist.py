@@ -109,6 +109,17 @@ FEES_DISCOUNTS = {
    "Adding a whole-work-order fee/discount is not blocked by the backend for a user without "
    "work-order edit rights (the block is front-end only). Confirm the intended enforcement.",
    "SV-8289","NOT DONE (Open)","DECISION"),
+  # --- New FD defects the user flagged 2026-07-23 (SV-8521, SV-8520): not previously in scope ---
+  ("NEW-8521","Finance/Invoice — part-line display",
+   "A fee/discount on a PART should show as an indented row under that part on the Finance/invoice "
+   "view (work order AND parts sale), the same way a labour-line one does. Reported missing on "
+   "Finance (value only in the bottom summary). Needs a new case covering this on both surfaces.",
+   "SV-8521","NOT DONE (Ready for QA)","New case + verify"),
+  ("NEW-8520","Part line — display after receive/pick",
+   "A fee on a PART line should stay visible on the line row after the part is received or picked; "
+   "it currently disappears from the line (still correct in totals and on the invoice). Needs a new "
+   "case covering line display staying in sync after receive/pick.",
+   "SV-8520","NOT DONE (Testing Stage)","New case + verify"),
  ],
 }
 
@@ -127,6 +138,19 @@ LIVE = {
                   "the RIGHT of 'Unassigned'; per SV-8479 item-1 it must be on the LEFT. Label is "
                   "correct; position is still wrong — deviation stands, track the fix."),
              "action": "Apply update", "state": "verified"},
+ "C28460": {"d": ("LIVE 2026-07-23: the Statistics tab now shows a 'Fees & Discounts (6)' section "
+                  "with PER-ADJUSTMENT rows (columns % and Amount: 'Fee +10% +$46.49', 'Discount', "
+                  "'Fee −11% −$2.39', etc.) plus a Total — the earlier 'aggregate only, no per-row' "
+                  "finding no longer holds. Still to confirm: whether each row has a scope hyperlink "
+                  "to jump to its item. Update the case to the per-row layout."),
+             "action": "Apply update", "state": "verified"},
+ "NEW-8521": {"d": ("LIVE 2026-07-23 (WO S9-25393 Finance/Estimate view): part-line adjustments DO "
+                    "render as indented child rows under their part — '↳ Name $11.00' and "
+                    "'↳ Fee (% of parts) ($2.39)' show under the T-BOLT CLAMP part, exactly like the "
+                    "labour-line '↳ Fee (% of labor)' / '↳ Discount'. So on the work-order invoice "
+                    "this appears FIXED (matches SV-8521 'Ready for QA'). Still to confirm: the Parts "
+                    "Sale invoice view. Author a case for both surfaces."),
+               "action": "New case + verify", "state": "verified"},
 }
 import openpyxl
 from openpyxl.styles import Font, PatternFill, Alignment, Border, Side
@@ -145,11 +169,15 @@ def dcell(cid, change):
 def act(cid, action):
     return LIVE[cid]["action"] if cid in LIVE else action
 
+def linkfor(cid):
+    return LINK.format(cid[1:]) if (cid.startswith('C') and cid[1:].isdigit()) else "(no TestRail case yet — to author)"
+
 def sheet(ws, rows):
     ws.append(HDR)
     for c in ws[ws.max_row]: c.fill=hf; c.font=hfont; c.alignment=wrap
     for cid,area,change,tix,status,action in rows:
-        ws.append([cid, LINK.format(cid[1:]), area, dcell(cid,change), tix, status, act(cid,action)])
+        label = cid if cid.startswith('C') else cid.replace('NEW-','new (SV-')+')'
+        ws.append([label, linkfor(cid), area, dcell(cid,change), tix, status, act(cid,action)])
         r = ws[ws.max_row]
         fill = verifill if cid in LIVE else (warnfill if status.startswith('NOT DONE') else None)
         for c in r:
@@ -192,11 +220,11 @@ def build(proj):
                  "Ticket status shows whether the driving Jira ticket is Done (live status 2026-07-23).\n\n")
         fh.write("| Case | Area | What needs to change | Ticket | Ticket status | Action |\n|---|---|---|---|---|---|\n")
         for cid,area,change,tix,status,action in rows:
-            fh.write(f"| [{cid}]({LINK.format(cid[1:])}) | {area} | {dcell(cid,change).replace('|','/')} | {tix} | {status} | {act(cid,action)} |\n")
+            fh.write(f"| [{cid if cid.startswith(chr(67)) else cid} ]({linkfor(cid)}) | {area} | {dcell(cid,change).replace(chr(124),chr(47))} | {tix} | {status} | {act(cid,action)} |\n")
         fh.write(f"\n## Highlight — cases waiting on a ticket that is NOT yet done ({len(nd)})\n\n")
         fh.write("| Case | Ticket | Ticket status | Why it's blocked |\n|---|---|---|---|\n")
         for cid,area,change,tix,status,action in nd:
-            fh.write(f"| [{cid}]({LINK.format(cid[1:])}) | {tix} | {status} | {change} |\n")
+            fh.write(f"| [{cid}]({linkfor(cid)}) | {tix} | {status} | {dcell(cid,change).replace(chr(124),chr(47))} |\n")
     print(f"{proj['name']}: {n} rows ({len(nd)} waiting on NOT-DONE tickets) -> {proj['file']}.xlsx/.md")
 
 build(SIMPLE_FLOW)
