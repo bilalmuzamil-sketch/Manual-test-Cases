@@ -62,6 +62,20 @@ must carry over to every project's change list:
 8. **Nothing is pushed to TestRail to make this file** (Rule 6). The change list is a *proposal*;
    the header says "Nothing pushed to TestRail yet." TestRail edits happen only later, after the
    user approves specific cases, honouring the **do-not-change / freeze list literally**.
+8a. **The file is ALSO the user's own manual-edit worksheet — make every row self-sufficient to
+    apply by hand.** On Custom Roles the user applied several rows **himself, directly from this
+    file**, then told me *"I have manually Updated the below given testrail test case manually
+    from the file which you have provided… do not change them and the rest you can change"* — that
+    is exactly how the **freeze/do-not-change list arises** (the cases the user already actioned).
+    So each row must carry everything needed to make the edit without opening anything else:
+    the C-ID + link, the plain "what needs to change" (enough to act on), and the driving ticket.
+    Expect the user to hand back a do-not-change list afterward and honour it literally.
+8b. **Each row states ONE concrete action.** The user asked, of a single row, *"what will you do
+    with this test case in TestRail if I give you a go-ahead?"* — so a row's Action + change text
+    must map to one unambiguous edit (or one decision), never a vague cluster.
+8c. **Some Decision rows are resolved by the user/PO offline** (*"these 8 test cases I have asked
+    you to not touch because I have managed them internally"*). A `Decision` row may come back as
+    "handled internally → freeze it"; do not re-touch those.
 9. **Live-verify before proposing (Rules 12/13).** A proposed change the live build contradicts
    is **withdrawn** — e.g. a spec label-rename the build has not shipped stays build-accurate and
    is instead flagged as a gap. (On Custom Roles the user said *"41 of the changes are label
@@ -69,8 +83,16 @@ must carry over to every project's change list:
    from "Apply update" to "Decision"/withdrawn.)
 10. **Contradiction rule = last-update-wins.** Spec-vs-spec, comment-vs-spec, or
     Sasha-vs-Sasha: the newest statement wins, and the change reflects it.
-11. **Read the Done tickets AND their comments** (bugs/story-defects included), not just the
-    spec — the driving-ticket column and Done/Not-Done status come from there.
+11. **Read ALL the Done tickets AND their comments — Stories, Story-defects, AND Bugs — not just
+    the spec.** The user's explicit instruction: *"read all the tickets having the status DONE
+    which are Bugs/Story defects besides the other tickets you are reading, also read the comments
+    of [the reviewer, e.g. Sasha] in those bugs and story defects; if there is a contradiction in
+    any of the reviewer's statements, or within the specs, or between a comment and the spec,
+    consider the latest version as the correct one."* So the ingest MUST cover: (a) every Done
+    Story, (b) every Done Story-defect, (c) every Done Bug, and (d) the reviewer's comment threads
+    on the defects/bugs — because a Done bug or a reviewer comment often overrides the spec text
+    (last-update-wins). The driving-ticket column, its Done/Not-Done state, and many "what needs
+    to change" rows come from these defect/bug tickets and their comments, not the spec alone.
 12. **Human-readable filename (Rule 19):** `<Project>_SpecRecheck_ChangeList_<YYYY-MM-DD>.xlsx`
     (+ `.md` twin). Deliver `.xlsx` **and** a `.md` mirror.
 
@@ -98,9 +120,11 @@ and its generator `build/custom-roles-run/gen_simple_changelist.py`.
 ## The 6 steps
 
 1. **Run (or reuse) the spec-recheck analysis** — `build/SPEC-RECHECK-PROCESS.md` steps 1–4:
-   ingest the current spec + every Done/Obsolete ticket (with comments), reconcile 100% of the
-   cases to one verdict each (OK / UPDATE / OPEN-QUESTION), and **live-verify** labels/behaviour
-   on the build. The change list is built from the UPDATE + OPEN-QUESTION verdicts only.
+   ingest the current spec + **every Done ticket of every type — Stories, Story-defects, AND Bugs
+   — WITH their comment threads (esp. the reviewer's)**, reconcile 100% of the cases to one
+   verdict each (OK / UPDATE / OPEN-QUESTION), and **live-verify** labels/behaviour on the build.
+   A Done bug/defect or a reviewer comment can override the spec (last-update-wins). The change
+   list is built from the UPDATE + OPEN-QUESTION verdicts only.
 2. **Assemble one row per action case** with: Case ID (+ link from `testrail-id-map.csv`), Area
    (the TestRail leaf section / functional area), plain "What needs to change", Driving ticket(s),
    Ticket status (from Jira: DONE / NOT DONE(state) / OBSOLETE / no ticket), Action (Apply update
