@@ -164,6 +164,26 @@
 >   SF-PERM-12 = C30647 (VIU-Verified, Rule-24 PASS); SF-PERM-03 = C29407 (updated). **Tally UNCHANGED =
 >   186 ACTIVE (152/4/21/5/3/1).**
 
+> **✅ §0-LL — SV-8183 OPTIONAL REGRESSION EDITS EXECUTED 2026-07-24 (user-authorized; 2 update_case).**
+> The two optional low-priority edits from `sv8183/case-update-recommendation-2026-07-24.md` (Findings 5,
+> 1 & 2) are now LIVE in TestRail — **2 `update_case`, both HTTP 200 + re-GET MATCH; run 325 untouched;
+> 0 add/delete/section.**
+> - **SF-PERM-06 = C29410** ([view](https://shopview.testrail.io/index.php?/cases/view/29410)) — in
+>   section 4090 **"API — Permissions"** (API-titled → HTTP codes allowed, Rule 4). Added step 5 + expected 5:
+>   the per-role Bulk Receive `accept` (POST /api/inventory/orders/accept) **BE-enforcement matrix** — 403
+>   for the 4 No roles (Office, Sales Rep, Technician, Time Clock), allowed for the 7 Yes roles
+>   (Admin/SvcMgr/SrSA/SvcAdv/Foreman/PartsMgr/PartsTech), matching §9.2 exactly (the one feature endpoint
+>   that genuinely BE-enforces per role). refs → `SV-8183 (§9.1 Bulk Receive gate / §9.2 accept enforcement)`.
+> - **SF-PERM-12 = C30647** ([view](https://shopview.testrail.io/index.php?/cases/view/30647)) — in section
+>   4084 **"Permissions"** (UI → plain/observable, no HTTP codes, Rule 4/7). Appended a plain **Rule-24 QA
+>   note** to expected: for a no-access role, editing/changing a part's vendor is FE-hidden but doable via the
+>   API (accepted PASS per the 2026-07-24 product ruling; same for part add/delete) — captures NEW-1 + NEW-2.
+>   refs extended with the change-vendor/part-add context (metadata only).
+> - **viu_status unchanged on both; tally UNCHANGED = 186 ACTIVE (152/4/21/5/3/1).** id-map refs mirrored
+>   (Rule 20); deliverables regenerated (import 186 rows, header byte-identical, 0 flag words, no dup titles,
+>   no C-id column; id-map 186/186). Audit: `sv8183/testrail-execution-log-optional-edits-2026-07-24.md`;
+>   executor `sv8183/exec_optional_edits_2026-07-24.py`.
+
 ---
 
 ## ⏭️ WHAT'S LEFT TO DO — read this first (as of 2026-07-20)

@@ -855,10 +855,12 @@ Verify permission gating of Simple-Flow settings and work-order actions (UI gati
 2. A relevant Simple-Flow setting (e.g. Require Vendor Invoice Number) is ON.","1. As a role that lacks the mapped permission, confirm the gated setting or action is hidden or unavailable in the app.
 2. As that same role, try the same setting change directly through the API (bypassing the app) and note the response.
 3. As a role that lacks the completion or review sign-off permission, try to complete a work order and to sign off a review directly through the API and note the responses.
-4. As a role that only has Work Orders: Create & Edit, try to receive parts onto a work order through the API and note the response.","1. In the app, a role without the mapped permission does not see or cannot use the gated setting or action (this is the v1 pass criterion).
+4. As a role that only has Work Orders: Create & Edit, try to receive parts onto a work order through the API and note the response.
+5. For each of the eleven roles in turn, call the Bulk Receive 'accept' action directly through the API (the 'Receive Selected' / Bulk Receive submit) and note the response for each role.","1. In the app, a role without the mapped permission does not see or cannot use the gated setting or action (this is the v1 pass criterion).
 2. The Work Order settings save is also blocked at the backend: the unauthorized API request is rejected with HTTP 403.
 3. Work order completion and review sign-off are NOT blocked at the backend today: a direct API call from a role lacking the permission still succeeds (HTTP 200). This still passes v1 on the app-level restriction, but the backend gap is a known issue to fix later — note it as 'app blocks / backend allows'.
-4. Because several work-order permissions share the same backend check, any role with Work Orders: Create & Edit can receive parts onto a work order through the API.",§8 BE enforcement,,
+4. Because several work-order permissions share the same backend check, any role with Work Orders: Create & Edit can receive parts onto a work order through the API.
+5. Unlike work order completion and review sign-off, the Bulk Receive 'accept' action IS enforced at the backend per role: the direct API call is rejected with HTTP 403 for the four roles that should not have it — Office, Sales Representative, Technician, Time Clock — and is allowed for the seven roles that should (Admin, Service Manager, Senior Service Advisor, Service Advisor, Foreman, Parts Manager, Parts Technician). This matches the permission matrix exactly, so Bulk Receive is genuinely backend-enforced.",§8 BE enforcement,,
 Verify review sign-off is governed by the Review Work Orders custom-role permission (not open to all),Permissions,Functional,Low,"1. Credentials for roles with and without Review Work Orders exist.
 2. A work order in Review state exists, sent to review by a known user.","1. Confirm that only roles holding Review Work Orders can sign off, and roles without it cannot.","1. Review sign-off is governed by the Review Work Orders custom-role permission (it is NOT open to all users for v1).
 2. The permission gates the Mark Reviewed action (a role without Review Work Orders cannot sign off; a role with it can).
@@ -890,7 +892,8 @@ Verify a Vendor & Order Management View-only user cannot receive purchase orders
 2. A work order with at least one part on a line exists.","1. Sign in as the no-access (Time Clock) user and open the work order's parts.
 2. On a part row, open the three-dot (⋮) menu.
 3. Review the actions offered in the menu.","1. The part menu must not offer Edit, Cancel or Change Vendor for a no-access user (only Return may appear).
-2. The actions being hidden in the interface is the pass condition.",§9.2 Time Clock part-actions,,
+2. The actions being hidden in the interface is the pass condition.
+3. QA note: for a no-access role, editing a part or changing its vendor is hidden on screen but can still be done through the API. Per the product ruling (2026-07-24), this front-end-only gating is accepted — it counts as a PASS, not a defect. (The same applies to adding or deleting a work-order part, which the backend also does not block for any role.)",§9.2 Time Clock part-actions,,
 Verify completion is blocked when required mileage is missing,Validation / Edge,Functional,High,"1. Signed in as Admin.
 2. Require Mileage is ON and the work order has no mileage.","1. Start completion.
 2. Leave mileage empty and try to proceed.",1. Completion is blocked until mileage is entered.,"SV-7697, SV-7698, SV-7699 (S2-R2 / S3-R3 / S4-R3)",,
