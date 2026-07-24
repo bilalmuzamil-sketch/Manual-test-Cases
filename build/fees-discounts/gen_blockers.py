@@ -66,6 +66,9 @@ def norm_status(s):
 OUT_XLSX = os.path.join(BASE, "FeesDiscounts_Blockers_Tracker.xlsx")
 OUT_MD = os.path.join(BASE, "FeesDiscounts_Blockers_Tracker.md")
 
+# Freshness stamp — bump when the deliverables are regenerated from the live source.
+DATA_AS_OF = "2026-07-24"
+
 FILES = [
     "group-A-wo-parts.json",
     "group-B-customer-admin-finance.json",
@@ -382,6 +385,9 @@ def main():
     ss = wb.create_sheet("Summary")
     ss.append(["Fees & Discounts V1 — Blockers Tracker · Summary"])
     ss["A1"].font = Font(bold=True, size=14)
+    ss.append(["Data as of:", DATA_AS_OF])
+    ss.cell(row=ss.max_row, column=1).font = Font(bold=True)
+    ss.cell(row=ss.max_row, column=2).font = Font(bold=True)
     ss.append([])
     ss.append(["Total authored cases", len(rows)])
     ss.append([])
@@ -456,6 +462,8 @@ def main():
              "unblocks it. Regenerate with `python3 build/fees-discounts/gen_blockers.py`.")
     L.append("> Canonical resume snapshot: `build/fees-discounts/PROJECT-STATE.md`. "
              "Interim upload file: `testrail-import/fees-discounts-v1-testrail-import.csv` (all {}).".format(len(rows)))
+    L.append("")
+    L.append("**Data as of: {}**".format(DATA_AS_OF))
     L.append("")
     L.append("**Total authored cases: {}**".format(len(rows)))
     L.append("")

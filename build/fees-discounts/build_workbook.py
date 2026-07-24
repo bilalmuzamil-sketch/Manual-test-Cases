@@ -158,27 +158,42 @@ wb = Workbook()
 ws = wb.active
 ws.title = "Summary"
 
+# --- current VIU status breakdown (live from the source JSONs) ---
+def _norm(s):
+    s = (s or "").strip()
+    for e in ("VIU-Verified", "VIU-Deviation", "VIU-Blocked-NotBuilt",
+              "VIU-Blocked-Env", "VIU-Pending"):
+        if s.startswith(e):
+            return e
+    if s.startswith("Pending"):
+        return "VIU-Pending"
+    return s
+from collections import Counter as _Counter
+_st = _Counter(_norm(c.get("viu_status")) for c in cases)
+_n = len(cases)
+_verified = _st.get("VIU-Verified", 0)
+_dev = _st.get("VIU-Deviation", 0)
+_env = _st.get("VIU-Blocked-Env", 0)
+_pend = _st.get("VIU-Pending", 0)
+
 intro = (
     "Fees & Discounts V1 - Manual Test Cases\n\n"
-    "This workbook contains 182 manual test cases covering the ShopView "
+    "Data as of: 2026-07-24\n\n"
+    f"This workbook contains {_n} active manual test cases covering the ShopView "
     "\"Fees & Discounts\" V1 feature: whole-work-order, labor-line and part-line "
     "fees/discounts; inline and statistics display; the Financial Info and sidebar "
     "cards; the Parts page column and breakdown modal; edit/remove/stacking flows; "
     "customer-level defaults; template administration; the Processing Fee; "
-    "estimate/invoice (finance) rendering; QuickBooks sync; the history log; the "
+    "estimate/invoice (finance) rendering; QuickBooks sync; the audit log; the "
     "calculation contract; permissions (Story 13); feature-flag gating; and "
-    "validation/edge cases.\n\n"
+    "validation/edge cases. (Includes the SV-8479 / SV-8480 cases.)\n\n"
     "The cases were authored from the complete written spec plus the design "
     "mockups (see build/fees-discounts/requirements.md and design-notes.md).\n\n"
-    "VIU (Verify-in-UI): a deep VIU pass ran 2026-07-08 on the qb QA env "
-    "(qb.qa.shopview.com / sv7387api). 62 of 182 cases are VIU-Verified (built "
-    "surfaces: the full §5 calculation contract - math matches EXACTLY - plus "
-    "whole-WO / labor / part adjustments, validation, history log, template CRUD, "
-    "customer-default endpoints, and partial permissions). 120 stay VIU-Pending: "
-    "not-built surfaces (Processing Fee/Story 8, Part Sales/Story 11, "
-    "QuickBooks/Story 6, customer documents/Story 5-14) and cases needing per-role "
-    "logins or a flag-off org. See build/fees-discounts/viu-findings.md and "
-    "bugs-log.md; per-case verdicts are in the VIU Status column here.\n\n"
+    "VIU (Verify-in-UI) — current status (verified live on staging, latest pass "
+    f"2026-07-22): {_verified} VIU-Verified, {_dev} VIU-Deviation, {_env} "
+    f"VIU-Blocked-Env, {_pend} VIU-Pending. Per-case verdicts are in the VIU Status "
+    "column here; see build/fees-discounts/PROJECT-STATE.md and the Blockers Tracker "
+    "for the full breakdown.\n\n"
     "Where the design mockups and the written spec disagree, or where the current "
     "build is known to differ, the case Notes flag it and the item is consolidated "
     "on the \"Open Questions\" tab - review that tab before execution."
@@ -188,6 +203,9 @@ ws["A1"].alignment = Alignment(wrap_text=True, vertical="top")
 ws["A1"].font = Font(size=11)
 ws.merge_cells("A1:E1")
 ws.row_dimensions[1].height = 300
+
+# freshness stamp
+ws.cell(row=2, column=1, value="Data as of: 2026-07-24").font = BOLD
 
 # area table
 r = 3

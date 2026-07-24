@@ -3,6 +3,8 @@
 > Source of truth for what every authored F&D case is waiting on and who unblocks it. Regenerate with `python3 build/fees-discounts/gen_blockers.py`.
 > Canonical resume snapshot: `build/fees-discounts/PROJECT-STATE.md`. Interim upload file: `testrail-import/fees-discounts-v1-testrail-import.csv` (all 199).
 
+**Data as of: 2026-07-24**
+
 **Total authored cases: 199**
 
 ## Summary — counts per category

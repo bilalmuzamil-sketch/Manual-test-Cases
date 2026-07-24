@@ -17,9 +17,12 @@ from openpyxl.utils import get_column_letter
 from whats_needed import whats_needed
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-FRESH = '2026-07-10'
-OUT_X = os.path.join(HERE, f'FeesDiscounts_FreshVIU_{FRESH}.xlsx')
-OUT_C = os.path.join(HERE, f'FeesDiscounts_FreshVIU_{FRESH}.csv')
+FRESH = '2026-07-10'          # the note-tag left by the original fresh VIU pass
+DATA_AS_OF = '2026-07-24'     # current data-refresh date (drives filename + as-of stamp)
+# The old FeesDiscounts_FreshVIU_2026-07-10.xlsx/.csv are kept as a HISTORICAL
+# snapshot; this generator now emits the CURRENT-dated file.
+OUT_X = os.path.join(HERE, f'FeesDiscounts_FreshVIU_{DATA_AS_OF}.xlsx')
+OUT_C = os.path.join(HERE, f'FeesDiscounts_FreshVIU_{DATA_AS_OF}.csv')
 TR_URL = 'https://shopview.testrail.io/index.php?/cases/view/{}'
 
 # ---- load id map ----
@@ -34,6 +37,11 @@ for fn in ['group-A-wo-parts.json', 'group-B-customer-admin-finance.json',
            'group-C-calc-permissions-validation.json']:
     d = json.load(open(os.path.join(HERE, 'cases', fn), encoding='utf-8'))
     cases += d['cases'] if isinstance(d, dict) else d
+# Active authored suite only: drop Retired cases and dev-authored automated cases
+# (kept in the JSON for the record) so the tally matches the Blockers Tracker / import.
+cases = [c for c in cases
+         if not (c.get('viu_status') or '').startswith('Retired')
+         and not c.get('dev_authored')]
 
 def fresh_note(c):
     n = c.get('notes', '')
@@ -160,11 +168,13 @@ fill = PatternFill('solid', fgColor='DDDDDD')
 
 # Summary tab
 ws = wb.active; ws.title = 'Summary'
-ws.append([f'Fees & Discounts V1 — FRESH full VIU pass, {FRESH} (all {len(cases)} cases; V1_2 spec overlay applied 2026-07-13)'])
+ws.append([f'Fees & Discounts V1 — full VIU pass results ({len(cases)} active authored cases)'])
 ws['A1'].font = Font(bold=True, size=13)
+ws.append(['Data as of:', DATA_AS_OF])
+ws['A2'].font = bold; ws['B2'].font = bold
 ws.append([])
 ws.append(['Status', 'Count', 'Meaning'])
-for cell in ws[3]: cell.font = bold; cell.fill = fill
+for cell in ws[ws.max_row]: cell.font = bold; cell.fill = fill
 MEAN = {
     'VIU-Verified': 'Exercised on the live build today (or evidence re-validated) and matches the spec',
     'VIU-Deviation': 'Built but differs from the spec — see the Known Deviations tab',
