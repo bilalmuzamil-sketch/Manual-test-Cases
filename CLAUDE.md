@@ -1337,6 +1337,21 @@ regression / bug-fix re-testing.
 - Excel workbooks: a **separate tab per result status** + a **Summary** tab.
 - Provide **GitHub raw download links** for deliverables.
 - **Per-case audit logs** for any TestRail edits.
+- **Simple-format status updates (all chat updates + reports):** Give updates/status
+  in EXTREMELY SIMPLE, plain, layman words a manual QA can read and follow — short
+  statements/steps, grouped under clear plain headings (e.g. "What I did / What needs
+  to be done / Other actions"), no jargon, nothing important omitted. This is the
+  default format for every progress update and summary going forward. (User
+  instruction 2026-07-24: "Always give updates in this format.")
+- **Every DEVIATION cell must carry a plain "What needs to be done" (all
+  deliverables):** In ANY deliverable (workbooks, reports, trackers, CSVs) that marks
+  a cell/row as DEVIATION — or Failed / Blocked / any not-passed status — that cell
+  MUST be paired with a plain-English "What needs to be done" explanation (a dedicated
+  "What needs to be done (plain)" column or an adjacent note), in simple words a
+  non-technical manual QA can act on. Never leave a bare "DEVIATION"/"Failed"/"Blocked"
+  without the plain next-step. Bake this into every generator/workbook going forward.
+  (User instruction 2026-07-24: "in such cases you always need to use simple words to
+  tell me what needs to be done.") Ties to Standing Rules 7 and 8.
 
 ## Persistence note
 Secrets are **ephemeral** (`/tmp`, re-supply per environment). Everything else
