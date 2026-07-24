@@ -836,9 +836,10 @@ Verify which roles can complete a work order (Simple completion),Permissions,Fun
 2. Technician and Parts Tech cannot complete (Technician cannot approve lines in Tech View and/or lacks Work Orders: Create & Edit; Parts Tech is a receiver, not a completer).
 3. Office, Sales Rep and Time Clock cannot complete a work order.",§8 Permissions,,
 Verify which roles can perform Bulk Receive,Permissions,Functional,Medium,"1. Credentials for several roles exist.
-2. The Bulk Receive flow is available (Story 7/8 built).","1. For each role, attempt to reach and use Bulk Receive.
-2. Record the outcomes.","1. Roles with Vendor & Order Mgmt: Create & Edit plus See Financial Data can reach and use Bulk Receive: Admin, Service Manager, Senior SA, Service Advisor, Foreman, Parts Manager and Parts Tech.
-2. Office (Vendor & Order Mgmt: View only) can open the Bulk Receive page but cannot receive.
+2. The Bulk Receive flow is available (Story 7/8 built).","1. For each role, attempt to reach and use Bulk Receive by BOTH entry points: (a) the per-purchase-order Receive button on the Purchase Orders list, and (b) multi-selecting purchase orders with the checkboxes and using 'Receive Selected'.
+2. Where a receive screen opens, attempt to actually complete the receive (enter invoice details and submit).
+3. Record the outcomes for each role and each entry point.","1. Roles with Vendor & Order Mgmt: Create & Edit plus See Financial Data can reach and use Bulk Receive by both entry points: Admin, Service Manager, Senior SA, Service Advisor, Foreman, Parts Manager and Parts Tech.
+2. Office (Vendor & Order Mgmt: View only) can open the Bulk Receive page but cannot complete a receive by any path — neither the per-purchase-order Receive button nor the multi-select 'Receive Selected' route may lead to a usable receive.
 3. Sales Rep and Time Clock cannot reach Bulk Receive.",§8 Permissions,,
 Verify which roles can Mark Reviewed (sign off),Permissions,Functional,Medium,"1. Credentials for roles with and without Review Work Orders exist.
 2. A work order in Review state exists, sent to review by a known user.","1. For each role, attempt to Mark Reviewed.
@@ -879,6 +880,17 @@ Verify the Complete Work Order action follows the per-role completion permission
 4. Roles expected NOT to be able to complete: Technician, Parts Tech, Office, Sales Rep, Time Clock.","1. Complete Work Order is available for Admin, Service Manager, Senior SA, Service Advisor, Foreman and Parts Manager.
 2. Complete Work Order is NOT available for Technician, Parts Tech, Office, Sales Rep or Time Clock.
 3. Technician and Parts Tech are blocked because they cannot approve lines and/or lack Work Orders: Create & Edit; Office is view-only; Sales Rep and Time Clock have no work-order edit access.",§9 per-role completion matrix,,
+Verify a Vendor & Order Management View-only user cannot receive purchase orders by any path on the Bulk Receive screen,Permissions,Functional,High,"1. A user whose role has Vendor & Order Management set to View only exists (for example, Office).
+2. At least one purchase order that can be received exists on the Purchase Orders list.","1. Sign in as the View-only user and open the Purchase Orders list.
+2. Confirm no per-purchase-order Receive button is shown on the list.
+3. Tick the checkboxes to multi-select one or more purchase orders, then use 'Receive Selected'.
+4. If a receive screen opens, try to complete the receive (enter the invoice number, date and cost and use Receive All / Receive Parts).","1. The View-only user must not be able to reach an editable receive screen or complete a receive by any path — neither the per-purchase-order Receive button nor the multi-select 'Receive Selected' route may lead to a usable receive.
+2. No purchase order is received and no inventory is changed.",§9.1 Bulk Receive gate / §9.2 Office footnote-4,,
+"Verify a no-access role (Time Clock) cannot edit, cancel or change the vendor of a work order part from the part menu",Permissions,Functional,High,"1. A user with a no-access role exists (for example, Time Clock).
+2. A work order with at least one part on a line exists.","1. Sign in as the no-access (Time Clock) user and open the work order's parts.
+2. On a part row, open the three-dot (⋮) menu.
+3. Review the actions offered in the menu.","1. The part menu must not offer Edit, Cancel or Change Vendor for a no-access user (only Return may appear).
+2. The actions being hidden in the interface is the pass condition.",§9.2 Time Clock part-actions,,
 Verify completion is blocked when required mileage is missing,Validation / Edge,Functional,High,"1. Signed in as Admin.
 2. Require Mileage is ON and the work order has no mileage.","1. Start completion.
 2. Leave mileage empty and try to proceed.",1. Completion is blocked until mileage is entered.,"SV-7697, SV-7698, SV-7699 (S2-R2 / S3-R3 / S4-R3)",,

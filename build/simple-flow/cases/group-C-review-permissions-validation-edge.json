@@ -587,17 +587,18 @@
       "2. The Bulk Receive flow is available (Story 7/8 built)."
     ],
     "steps": [
-      "1. For each role, attempt to reach and use Bulk Receive.",
-      "2. Record the outcomes."
+      "1. For each role, attempt to reach and use Bulk Receive by BOTH entry points: (a) the per-purchase-order Receive button on the Purchase Orders list, and (b) multi-selecting purchase orders with the checkboxes and using 'Receive Selected'.",
+      "2. Where a receive screen opens, attempt to actually complete the receive (enter invoice details and submit).",
+      "3. Record the outcomes for each role and each entry point."
     ],
     "expected": [
-      "1. Roles with Vendor & Order Mgmt: Create & Edit plus See Financial Data can reach and use Bulk Receive: Admin, Service Manager, Senior SA, Service Advisor, Foreman, Parts Manager and Parts Tech.",
-      "2. Office (Vendor & Order Mgmt: View only) can open the Bulk Receive page but cannot receive.",
+      "1. Roles with Vendor & Order Mgmt: Create & Edit plus See Financial Data can reach and use Bulk Receive by both entry points: Admin, Service Manager, Senior SA, Service Advisor, Foreman, Parts Manager and Parts Tech.",
+      "2. Office (Vendor & Order Mgmt: View only) can open the Bulk Receive page but cannot complete a receive by any path — neither the per-purchase-order Receive button nor the multi-select 'Receive Selected' route may lead to a usable receive.",
       "3. Sales Rep and Time Clock cannot reach Bulk Receive."
     ],
     "design_ref": "requirements §9 (Bulk Receive gate + per-role matrix)",
     "viu_status": "VIU-Verified",
-    "notes": "Wording+VIU 2026-07-13: role expectation re-verified against the fresh live roles matrix (roles-matrix-2026-07-13.md; GET /api/roles/{id} + /api/auth/me/fe-permissions, no system-role drift). Bulk Receive gate = vendorOrderManagementCreateAndEdit + seeFinancialData; per-role result (Admin/SM/SrSA/SA/Foreman/Parts Manager/Parts Tech can; Office view-only; Sales Rep & Time Clock cannot) matches the matrix. Stories 7/8 confirmed BUILT.",
+    "notes": "Wording+VIU 2026-07-13: role expectation re-verified against the fresh live roles matrix (roles-matrix-2026-07-13.md; GET /api/roles/{id} + /api/auth/me/fe-permissions, no system-role drift). Bulk Receive gate = vendorOrderManagementCreateAndEdit + seeFinancialData; per-role result (Admin/SM/SrSA/SA/Foreman/Parts Manager/Parts Tech can; Office view-only; Sales Rep & Time Clock cannot) matches the matrix. Stories 7/8 confirmed BUILT. TIGHTENED 2026-07-24: steps + expected now explicitly drive BOTH Bulk-Receive entry points — the per-PO Receive button AND the multi-select 'Receive Selected' path — so the SV-8515 coverage gap cannot recur. See the dedicated View-only negative SF-PERM-11 (driver SV-8515): live re-verify 2026-07-24 showed the per-PO Receive button is correctly hidden for a Vendor & Order Mgmt View-only (Office) user, but the multi-select 'Receive Selected' route currently EXPOSES the editable /bulk-receive screen (FE-exposure defect, SV-8515 dev Ready-to-Fix) while the backend still blocks the actual receive (POST /api/inventory/orders/accept -> 403).",
     "api_related": false,
     "fresh_run": "2026-07-13",
     "viu_note_2026_07_23": "VIU 2026-07-23 (staging live): Parts nav + /parts/orders allowed SrSA/SA/PM, denied Technician/SalesRep (live route guards). Bulk atoms == §9.2. Office view-only (no holder to element-observe).",
@@ -809,6 +810,63 @@
     "fresh_run": "2026-07-13",
     "viu_note_2026_07_23": "VIU 2026-07-23 (staging live, ELEMENT re-observed this run): per-role Complete-WO CTA cluster observed on WO-detail /lines for 10/11 roles matching the §9.2 matrix — CAN (cluster present): Admin/SrSA/SA/PM (genuine holders) + Service Manager/Foreman (fe-permission-set render); CANNOT (read-only, no cluster): Sales Rep (genuine) + Parts Tech/Office/Time Clock (render). Technician cell only: role concurrently DRIFTED (has workOrdersCreateAndEdit) so shows cluster — baseline No-negative not cleanly observable this run; carried 2026-07-13. Evidence: element-reobserve/ (screenshots complete-<role>.png, markrev-<role>.png, element-matrix.json)",
     "refs": "SV-8183 (§9.2 per-role completion matrix)"
+  },
+  {
+    "id": "SF-PERM-11",
+    "area": "Permissions",
+    "story_ref": "§9.1 Bulk Receive gate / §9.2 Office footnote-4",
+    "title": "Verify a Vendor & Order Management View-only user cannot receive purchase orders by any path on the Bulk Receive screen",
+    "priority": "High",
+    "type": "Permissions",
+    "permissions_required": "Vendor & Order Management: Create & Edit plus See Financial Data are required to receive. A View-only user (for example, Office) has Vendor & Order Management: View only and cannot receive.",
+    "preconditions": [
+      "1. A user whose role has Vendor & Order Management set to View only exists (for example, Office).",
+      "2. At least one purchase order that can be received exists on the Purchase Orders list."
+    ],
+    "steps": [
+      "1. Sign in as the View-only user and open the Purchase Orders list.",
+      "2. Confirm no per-purchase-order Receive button is shown on the list.",
+      "3. Tick the checkboxes to multi-select one or more purchase orders, then use 'Receive Selected'.",
+      "4. If a receive screen opens, try to complete the receive (enter the invoice number, date and cost and use Receive All / Receive Parts)."
+    ],
+    "expected": [
+      "1. The View-only user must not be able to reach an editable receive screen or complete a receive by any path — neither the per-purchase-order Receive button nor the multi-select 'Receive Selected' route may lead to a usable receive.",
+      "2. No purchase order is received and no inventory is changed."
+    ],
+    "design_ref": "requirements §9.1 (Bulk Receive gate = Vendor & Order Mgmt: Create & Edit) / §9.2 Office row = 'No (4)', footnote 4 ('Office has Vendor & Order Mgmt: View only — can open Bulk Receive but cannot receive')",
+    "viu_status": "VIU-Deviation",
+    "notes": "Authored 2026-07-24 as a corrective case for the SV-8515 coverage gap (our SV-8183 report missed the multi-select entry point). LIVE re-verify 2026-07-24 on a CLEAN template Office role (drift ruled out, Rule 26; role d704c465 = 25/25 == template; impersonated via switch-user on henry.hess, restored after): (1) the per-PO Receive button IS correctly hidden for Office on /parts/orders; (2) BUILD DEVIATION — after multi-select, the 'Receive Selected' button IS shown and opens the full editable /bulk-receive 'Receive Vendor Parts' screen (invoice #, date, cost, tax inputs + Receive All/Receive Parts), none FE-gated for a View-only user; (3) the backend blocks the actual receive — POST /api/inventory/orders/accept -> HTTP 403 {\"errors\":[{\"error\":\"Access denied.\"}]}, so no PO is received and no inventory mutates (receive-view read = 200, which is why the editable screen loads). Net: a REAL front-end exposure defect (misleading dead-end), NOT a data-layer bypass. SV-8515 = dev Ready-to-Fix (FE route guard should require Vendor & Order Mgmt: Create & Edit / hasPartsPermissions to reach Bulk Receive). Deviation from spec wording: requirements §9.1 'Bulk Receive page ... Vendor & Order Mgmt: Create & Edit (route gate hasPartsPermissions)' and §9.2 Office footnote 4 'can open Bulk Receive but cannot receive' — BE matches spec, the FE deviates by exposing the Receive Selected entry point. Evidence: build/simple-flow/sv8183/ayesha-issues/reverify-2026-07-24/ (sv8515-office-parts-orders.png, sv8515-office-after-select.png, sv8515-bulk-receive-screen.png, sv8515-recv5-after.png, sv8515-recv5-net.json, LOG-SV-8515.md).",
+    "api_related": false,
+    "fresh_run": "2026-07-24",
+    "refs": "SV-8515 (§9.1 Bulk Receive gate / §9.2 Office footnote-4)"
+  },
+  {
+    "id": "SF-PERM-12",
+    "area": "Permissions",
+    "story_ref": "§9.2 Time Clock part-actions",
+    "title": "Verify a no-access role (Time Clock) cannot edit, cancel or change the vendor of a work order part from the part menu",
+    "priority": "High",
+    "type": "Permissions",
+    "permissions_required": "Managing a part request (edit / cancel / change vendor) requires WO Lines: Create & Edit. A no-access role such as Time Clock does not have it.",
+    "preconditions": [
+      "1. A user with a no-access role exists (for example, Time Clock).",
+      "2. A work order with at least one part on a line exists."
+    ],
+    "steps": [
+      "1. Sign in as the no-access (Time Clock) user and open the work order's parts.",
+      "2. On a part row, open the three-dot (⋮) menu.",
+      "3. Review the actions offered in the menu."
+    ],
+    "expected": [
+      "1. The part menu must not offer Edit, Cancel or Change Vendor for a no-access user (only Return may appear).",
+      "2. The actions being hidden in the interface is the pass condition."
+    ],
+    "design_ref": "requirements §9.2 (Time Clock = 'No' across every column) / §9.1 (part-request management maps to WO Lines: Create & Edit)",
+    "viu_status": "VIU-Verified",
+    "notes": "Authored 2026-07-24 as a corrective case for the SV-8516 coverage gap (no per-role part edit/cancel/return negative existed). LIVE re-verify 2026-07-24 on a CLEAN Time Clock template role (drift ruled out, Rule 26; role e35b0211 = 3/3 == template scheduleView/timesheetsView/workOrdersView, before & after; impersonated via switch-user on henry.hess, restored to Technician after): the Time Clock part-row ⋮ menu shows ONLY 'Return' — no Edit / Cancel / Change Vendor items (sv8516-tc-menus.json: MENU=['Return']; Cancel/Change Vendor keywords = false). The original over-grant's Edit/Cancel/Change-Vendor controls have been removed from the Time Clock UI, so the front-end gating holds and this case PASSES. FLAG (Standing Rule 24): the same edit can still succeed through the API (POST /api/work-orders/part/change-request {id,line,work_order,description,quantity,part_source_type,part_category_id,cost} -> HTTP 200 and the change persisted, confirmed live on Time Clock at 3 perms); per the product ruling 2026-07-24 this front-end-only gating is ACCEPTED for now and is NOT a defect. Editing an already-received part is blocked by state ('Part requests can't be modified once received') for Admin and Time Clock alike, not by permission. Deviation from spec wording noted only as a flag (not a bug): requirements §9.2 'Time Clock = No across every column' and §9.4 atom-collapse (the FE gate is a convenience, not a BE-enforceable boundary — so the residual API-possibility is spec-anticipated). Evidence: build/simple-flow/sv8183/ayesha-issues/reverify-2026-07-24/ (sv8516-tc-wo-lines.png, sv8516-tc-menus.json, LOG-SV-8516.md).",
+    "api_related": false,
+    "fresh_run": "2026-07-24",
+    "refs": "SV-8516 (§9.2 Time Clock part-actions)"
   },
   {
     "id": "SF-VAL-01",

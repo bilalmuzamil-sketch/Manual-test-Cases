@@ -1,20 +1,20 @@
 # Simple Flow — Blockers Tracker
 
 > Source of truth for what every authored Simple Flow case is waiting on and who unblocks it. Regenerate with `python3 build/simple-flow/gen_blockers.py`.
-> Companion upload file: `testrail-import/simple-flow-v1-testrail-import.csv` (all 184 cases). Update loop: `build/simple-flow/gen_update.py` (+ `UPDATE-LOOP-README.md`).
+> Companion upload file: `testrail-import/simple-flow-v1-testrail-import.csv` (all 186 cases). Update loop: `build/simple-flow/gen_update.py` (+ `UPDATE-LOOP-README.md`).
 
-**Total authored cases: 184**
+**Total authored cases: 186**
 
 ## Summary — counts per category
 
 | Blocker category | Count | Owner |
 |---|---:|---|
-| READY (VIU-Verified) | 147 | — (ready to upload) |
+| READY (VIU-Verified) | 148 | — (ready to upload) |
 | BLOCKED — DEV NOT BUILT | 0 | Dev team |
 | BLOCKED — VIU PENDING (QA) | 25 | QA |
 | BLOCKED — MILOS ANSWER | 10 | Milos (PO) |
-| BLOCKED — BUG/RULING | 2 | Dev / PO ruling |
-| **TOTAL** | **184** | |
+| BLOCKED — BUG/RULING | 3 | Dev / PO ruling |
+| **TOTAL** | **186** | |
 
 ### DEV NOT BUILT — by story
 
@@ -35,7 +35,7 @@
 - **Milos's answers to the 11 Open Questions** → unblocks 10 cases (all the MILOS-ANSWER rows). Send the filled-in OpenQuestions-for-Milos sheet.
 - **Fresh QA cookies for sv7301 (admin + tech) + seeded test data** → unblocks the bulk of the 25 VIU-PENDING (QA) cases (cores, receiving, vendor, validation round-trips).
 - **A 2nd/3rd role account (Office, Service Manager, Foreman) — some WITHOUT 'See Financial Data'** → unblocks SF-PERM-09 and SF-PERM-10 (per-role completion + vendorless-add gate).
-- **A dev/PO ruling on FE-only BE enforcement + the missing reviewer!=completer rule (resolve SV-8183 'BE enforces' vs SV-7864 atom-collapse)** → finalizes the 2 BUG/RULING cases.
+- **A dev/PO ruling on FE-only BE enforcement + the missing reviewer!=completer rule (resolve SV-8183 'BE enforces' vs SV-7864 atom-collapse)** → finalizes the 3 BUG/RULING cases.
 
 ## Full per-case tracker
 
@@ -198,6 +198,8 @@
 | SF-PERM-08 | Permissions | Verify a user who holds the Mark Reviewed permission can Mark Reviewed a work order they completed | VIU-Verified | READY | READY (VIU-Verified) | — | None — VIU-verified; uploadable now. | R7 (review sign-off) — self-review permission-gated (identity rule NOT in v1) | — |  | C29412 | [C29412](https://shopview.testrail.io/index.php?/cases/view/29412) |
 | SF-PERM-09 | Permissions | Verify a Technician cannot add a vendorless / no-part-number part (lacks See Financial Data) | VIU-Verified | READY | READY (VIU-Verified) | — | None — VIU-verified; uploadable now. | S5 / §9 (See Financial Data gate) | — |  | C29413 | [C29413](https://shopview.testrail.io/index.php?/cases/view/29413) |
 | SF-PERM-10 | Permissions | Verify the Complete Work Order action follows the per-role completion permission matrix | VIU-Verified | READY | READY (VIU-Verified) | — | None — VIU-verified; uploadable now. | §9 per-role completion matrix | — |  | C29414 | [C29414](https://shopview.testrail.io/index.php?/cases/view/29414) |
+| SF-PERM-11 | Permissions | Verify a Vendor & Order Management View-only user cannot receive purchase orders by any path on the Bulk Receive screen | VIU-Deviation | BLOCKED | BLOCKED — BUG/RULING | Dev / PO ruling | Dev fix (SV-8515, Ready-to-Fix): a Vendor & Order Mgmt View-only (Office) user has the per-PO Receive button correctly hidden, but the multi-select 'Receive Selected' route currently EXPOSES the editable /bulk-receive screen (FE-exposure defect). Backend blocks the actual receive (accept -> 403), so no data bypass. FE route guard should require Vendor & Order Mgmt: Create & Edit to reach Bulk Receive. | §9.1 Bulk Receive gate / §9.2 Office footnote-4 | — |  |  |  |
+| SF-PERM-12 | Permissions | Verify a no-access role (Time Clock) cannot edit, cancel or change the vendor of a work order part from the part menu | VIU-Verified | READY | READY (VIU-Verified) | — | None — VIU-verified; uploadable now. | §9.2 Time Clock part-actions | — |  |  |  |
 | SF-VAL-01 | Validation / Edge | Verify completion is blocked when required mileage is missing | VIU-Verified | READY | READY (VIU-Verified) | — | None — VIU-verified; uploadable now. | S2-R2 / S3-R3 / S4-R3 | — |  | C29415 | [C29415](https://shopview.testrail.io/index.php?/cases/view/29415) |
 | SF-VAL-02 | Validation / Edge | Verify completion is blocked when a required VIN is missing (non-review No-PO / Optional-invoice flow) | Blocked-Env | BLOCKED | BLOCKED — VIU PENDING (QA) | QA (needs cookies+seed data) | QA VIU: drive the specific validation/edge scenario with seeded data. | S15-R2 / S3-R3 / S4-R3 | needs-data | an asset/vehicle with NO VIN so the non-review wizard prompts for VIN. BATCH 6: VIN prefills from the asset; the asset-creation flow (VIN likely required) was not reliably drivable in-harness. Needs a VIN-less asset seeded. | C29416 | [C29416](https://shopview.testrail.io/index.php?/cases/view/29416) |
 | SF-VAL-03 | Validation / Edge | Verify completion is blocked when required engine hours are missing | VIU-Verified | READY | READY (VIU-Verified) | — | None — VIU-verified; uploadable now. | S3-R3 / S4-R3 | — |  | C29417 | [C29417](https://shopview.testrail.io/index.php?/cases/view/29417) |

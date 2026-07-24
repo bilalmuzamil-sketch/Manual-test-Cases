@@ -56,6 +56,31 @@
 > "all pass" as feature-wide completeness). Evidence: `sv8183/ayesha-issues/reverify-2026-07-24/`;
 > commits b59e8a8 / 7ccb91e / 6dccb54. **NO TestRail writes; tally UNCHANGED = 151/4/21/5/3 = 184.**
 
+> **✅ CORRECTIVE CASES AUTHORED 2026-07-24 (§0-HH — user-approved; NO TestRail writes, staged only).**
+> The 2 user-approved corrective cases are now authored locally + in all deliverables (SV-8541 **HELD**,
+> not authored per user ruling):
+> - **SF-PERM-11** (new, no C-ID yet — driver **SV-8515**): Vendor & Order Mgmt **View-only** (Office)
+>   user cannot receive by ANY path on Bulk Receive — drives BOTH the per-PO Receive button (hidden ✓)
+>   AND the multi-select **"Receive Selected"** path (currently EXPOSES the editable /bulk-receive screen
+>   = FE-exposure defect, SV-8515 dev **Ready-to-Fix**; BE blocks the actual receive `accept`→403, no
+>   data bypass). **viu_status = VIU-Deviation.** refs `SV-8515 (§9.1 Bulk Receive gate / §9.2 Office
+>   footnote-4)`.
+> - **SF-PERM-12** (new, no C-ID yet — driver **SV-8516**): no-access role (Time Clock) part ⋮ menu must
+>   NOT offer Edit/Cancel/Change Vendor (only Return may show) — FE-hidden is the pass criterion (holds ✓).
+>   **Rule-24 flag:** the same edit still succeeds via API (`part/change-request`→200 persisted); per the
+>   product ruling 2026-07-24 this **FE-only gating is ACCEPTED for now, NOT a defect.** **viu_status =
+>   VIU-Verified.** refs `SV-8516 (§9.2 Time Clock part-actions)`.
+> - **SF-PERM-03 (C29407) TIGHTENED:** steps + expected now explicitly drive BOTH Bulk-Receive entry
+>   points (per-PO Receive + multi-select "Receive Selected") so the SV-8515 gap can't recur; status
+>   unchanged (VIU-Verified).
+> **NEW TALLY = 186 ACTIVE** (184 + 2 corrective): **152 VIU-Verified / 4 VIU-Pending / 21 Blocked-Env /
+> 5 awaiting-Milos / 3 Deviation / 1 VIU-Deviation.** id-map has SF-PERM-11/12 with BLANK C-ids (need
+> `add_case`). Deliverables regenerated over 186 (import 186 rows, header byte-identical, 0 VIU/flag
+> words in tester content, no dup titles, no C-id column). **TestRail sync STAGED, NOT executed:**
+> `sv8183/testrail-sync-manifest-corrective-2026-07-24.md` = 2 add_case (SF-PERM-11/12, section
+> Permissions, `custom_atmstatus:3`+`custom_automation_type:0`) + 1 update_case (SF-PERM-03/C29407);
+> **run 325 never touched.** Evidence: `sv8183/ayesha-issues/reverify-2026-07-24/`.
+
 ---
 
 ## ⏭️ WHAT'S LEFT TO DO — read this first (as of 2026-07-20)

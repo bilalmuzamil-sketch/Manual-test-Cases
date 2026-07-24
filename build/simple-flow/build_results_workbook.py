@@ -146,7 +146,7 @@ def blocker_for(c):
 
 def main():
     cases = load_cases()
-    assert len(cases) == 184, "expected 184 active cases (187 authored - 3 retired), got %d" % len(cases)
+    assert len(cases) == 186, "expected 186 active cases (189 authored - 3 retired; +2 corrective SF-PERM-11/12), got %d" % len(cases)
 
     tr_map = load_testrail_map()
     tr_blanks = [c["id"] for c in cases if c["id"] not in tr_map]
@@ -619,8 +619,8 @@ def main():
         print("  BLANK (no TestRail ID):", ", ".join(tr_blanks))
     print("  spot-check SF-VMIS-07 ->", tr_map.get("SF-VMIS-07"),
           "| SF-RCV-10 ->", tr_map.get("SF-RCV-10"))
-    assert sum(viu_counts.values()) == 184
-    assert sum(cat_counts.values()) == 184
+    assert sum(viu_counts.values()) == 186
+    assert sum(cat_counts.values()) == 186
 
 
 if __name__ == "__main__":

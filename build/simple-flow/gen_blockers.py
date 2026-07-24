@@ -56,6 +56,12 @@ BUG_RULING = {
     "SF-RCV-07": "Dev fix: same Vendor-Missing-group placement deviation as SF-RCV-05 — the "
                  "Receive (Accept Delivery) screen shows the group at the TOP, should be BOTTOM "
                  "(Milos Round-3 2026-07-16). '+N' indicator verified on the PO list.",
+    # 2026-07-24 corrective case for the SV-8515 coverage gap. viu_status = VIU-Deviation.
+    "SF-PERM-11": "Dev fix (SV-8515, Ready-to-Fix): a Vendor & Order Mgmt View-only (Office) user "
+                  "has the per-PO Receive button correctly hidden, but the multi-select 'Receive "
+                  "Selected' route currently EXPOSES the editable /bulk-receive screen (FE-exposure "
+                  "defect). Backend blocks the actual receive (accept -> 403), so no data bypass. "
+                  "FE route guard should require Vendor & Order Mgmt: Create & Edit to reach Bulk Receive.",
 }
 
 # Open-Question / Milos-owned cases -> the specific Open Question number(s).
@@ -599,7 +605,7 @@ def main():
 
     print("\nState counts:", dict(state_counts))
     print("Category counts:", dict(disp_counts))
-    assert sum(disp_counts.values()) == len(rows) == 184  # 187 authored - 3 retired (SF-CORE-05/06/09)
+    assert sum(disp_counts.values()) == len(rows) == 186  # 189 authored - 3 retired (SF-CORE-05/06/09); +2 corrective SF-PERM-11/12 (2026-07-24)
 
 
 if __name__ == "__main__":
