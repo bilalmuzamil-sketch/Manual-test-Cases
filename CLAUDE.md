@@ -244,6 +244,15 @@ deliver the 7-tab management report.
    dev-authored = 201 in id-map). Deliverables regenerated over 199. Executor
    `exec_sync_2026-07-22.py`; audit `sv8479-8456-8480/testrail-execution-log-2026-07-22.md`;
    manifest header = EXECUTED. Canonical resume = PROJECT-STATE.md §0.0o.
+   **FE-BLOCK/BE-ALLOW PASS FLIP 2026-07-24 (§0.0p — supersedes §0.0o for the tally):** per
+   Standing Rule 24 (FE blocks + BE/API allows = PASS), user-authorized, **FD-WO-013 (C28436) +
+   FD-PERM-002 (C28586) flipped VIU-Deviation → VIU-Verified (PASS)** + a plain tester line added
+   to each Expected ("only hidden on screen; if still doable via back-end/API that's expected —
+   mark PASSED, don't raise a bug"). 2 update_case, both HTTP 200 + re-GET MATCH, refs intact, NO
+   run writes / no add/delete/section. whats_needed.py: both now "No action needed — passed".
+   **NEW TALLY: 199 ACTIVE authored = 167 VIU-Verified / 10 VIU-Deviation / 21 VIU-Blocked-Env /
+   1 VIU-Pending (FD-PART-005)** (+2 dev-authored = 201 in id-map). Deliverables regenerated over
+   199. Audit `testrail-execution-log-fe-be-pass-2026-07-24.md`.
    **Prior CURRENT TALLY (pre-8479/8480): 151 VIU-Verified / 12 VIU-Deviation / 20 Blocked-Env
    / 1 VIU-Pending (FD-PART-005) = 184 ACTIVE** (185 authored − 1 retired; +2 dev-authored
    reconciled = 186 in-suite; was 152/12/0/20/1 = 185 pre-retire; prior qb 135/15/12/20/1 = 183).

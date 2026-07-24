@@ -5,7 +5,23 @@
 > re-discovery.
 > **Canonical spec (Confluence):** https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/622297094/Fees+Discounts+V1
 > (Atlassian-SSO login-walled — reference pointer only; content must be exported/pasted to ingest, do NOT fetch the URL.)
-> **Last updated:** 2026-07-22 (§0.0o: **AUTHORIZED TESTRAIL SYNC EXECUTED** — the staged
+> **Last updated:** 2026-07-24 (§0.0p: **FD-WO-013 (C28436) + FD-PERM-002 (C28586) flipped
+> VIU-Deviation → VIU-Verified (PASS) per Standing Rule 24** — front-end blocks + back-end/API
+> allows = a PASSED test case; user-authorized 2026-07-24. Both cases test that the whole-WO
+> "Add Work Order Fee / Discount" control is HIDDEN for a role lacking Work Orders: Create &
+> Edit — that FE hide IS the tester-facing pass criterion; the back-end/API not independently
+> enforcing it (POST /api/work-orders/adjustments/add returns 201 for such a role) is ACCEPTED
+> by product policy, NOT a bug. A plain tester line was added to each case's Expected (Rule 7):
+> "this action is only hidden/blocked on the screen for this role; if it can still be done via
+> the back-end/API that is expected — mark PASSED, do NOT raise a bug." **2 update_case
+> (C28436, C28586), both HTTP 200 + re-GET MATCH, refs intact; NO run writes, no add/delete/
+> section.** whats_needed.py: both now fall through to "No action needed — passed." **NEW TALLY
+> = 199 active authored: 167 VIU-Verified / 10 VIU-Deviation / 21 VIU-Blocked-Env / 1
+> VIU-Pending** [+2 dev-authored Verified = 201 in id-map]. All deliverables regenerated over
+> 199 (import 199 rows, header byte-identical, 0 VIU/flag words, no dup titles, no C-id column;
+> id-map C-ids preserved). Audit log `testrail-execution-log-fe-be-pass-2026-07-24.md`.
+> Supersedes §0.0o for the tally. )
+> — prior 2026-07-22 (§0.0o: **AUTHORIZED TESTRAIL SYNC EXECUTED** — the staged
 > §0.0n manifest is now LIVE in TestRail: **5 add_section (4377–4381) + 18 add_case
 > (C30618–C30635) + 3 delete_case (FD-LABOR-003/C28441, FD-PCOL-003/C28471, FD-PCOL-007/C28475)
 > + 51 update_case** [the 54-item update list MINUS the 3 deleted], ALL HTTP 200, ALL re-GET
@@ -232,7 +248,9 @@ retire-candidates. The §0.0n staged manifest was executed end-to-end.
   EXECUTED.
 
 **New tally = 199 ACTIVE authored** (202 pre-retire − 3 retired):
-**165 VIU-Verified / 12 VIU-Deviation / 21 VIU-Blocked-Env / 1 VIU-Pending (FD-PART-005).**
+**167 VIU-Verified / 10 VIU-Deviation / 21 VIU-Blocked-Env / 1 VIU-Pending (FD-PART-005)**
+(2026-07-24 §0.0p: FD-WO-013/C28436 + FD-PERM-002/C28586 flipped Deviation→PASS per Rule 24,
+so 165→167 Verified and 12→10 Deviation; was 165/12/21/1 after §0.0o).
 (+2 dev-authored FD-PERM-012/013 Verified = 201 in id-map; FD-CUST-016 + the 3 new retirements
 excluded.) Deviation 13→12 (FD-LABOR-003 retired); Verified 167→165 (FD-PCOL-003/007 retired).
 Deliverables regenerated over 199 (import header byte-identical to filters-v1, 0 VIU/flag words,

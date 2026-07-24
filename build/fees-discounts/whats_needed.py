@@ -19,11 +19,11 @@ build/fees-discounts/PROJECT-STATE.md (§0 sections + FDBUG register).
 # --- Per-case plain "what needs to be done" (DEVIATION / Blocked / Pending) ---
 # Keyed by internal FD- id. Verified cases fall through to the default.
 WHATS_NEEDED = {
-    # ---------------- 12 VIU-Deviation cases ----------------
-    "FD-WO-013":
-        "The option is only hidden on the screen — the system still lets the change "
-        "go through behind the scenes. Ask the team whether the system should also "
-        "block it in the background, not just hide the button, then re-test.",
+    # ---------------- 10 VIU-Deviation cases ----------------
+    # NOTE: FD-WO-013 + FD-PERM-002 were flipped Deviation->PASS on 2026-07-24
+    # (Standing Rule 24: front-end blocks + back-end/API allows = a PASSED case);
+    # they are intentionally NOT listed here so they fall through to the
+    # VIU-Verified default "No action needed — passed."
     "FD-INLINE-003":
         "A developer needs to add the 'Show N more' collapse so a line with two or "
         "more fees/discounts no longer shows them all at once. Re-test once fixed.",
@@ -62,10 +62,6 @@ WHATS_NEEDED = {
         "Same Processing Fee amount problem — the base wrongly includes the "
         "whole-work-order fees/discounts. A developer needs to fix it; re-test the "
         "amount once fixed.",
-    "FD-PERM-002":
-        "The system only hides the option on the screen — it still allows the "
-        "change in the background. Ask the team whether the system should also "
-        "block it in the background, then re-test.",
 
     # ---------------- VIU-Pending (1) ----------------
     "FD-PART-005":

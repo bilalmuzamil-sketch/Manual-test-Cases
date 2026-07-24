@@ -88,7 +88,8 @@ Verify Add Work Order Fee / Discount is hidden and blocked on an Invoiced or Pai
 3. A fee/discount cannot be added to an invoiced or paid work order by any route.",S1-N1 / S3-R1b | SV-8479 (SV-8288 Story 12 — items 10/11 label sweep),,
 Verify the whole-work-order 'Add Work Order Fee / Discount' option is hidden without Work Orders: Create & Edit,Work Order — Whole-WO Fee/Discount,Functional,Medium,"1. You are logged in as a role that HAS See Financial Data but does NOT have Work Orders: Create & Edit.
 2. An open work order is open.",1. Open the work order ⋯ menu and look for 'Add Work Order Fee / Discount'.,"1. 'Add Work Order Fee / Discount' is not shown.
-2. Existing whole-work-order fee/discount amounts are still visible (See Financial Data is on) but have no edit or delete controls.",S1-N2 / S13-R3 / S13-N2 | SV-8479 (SV-8288 Story 12 — item 10),,
+2. Existing whole-work-order fee/discount amounts are still visible (See Financial Data is on) but have no edit or delete controls.
+3. Note for the tester: this action is only hidden/blocked on the screen for this role. If you find it can still be done another way (for example through the system's back-end/API), that is expected — mark this test as PASSED and do NOT raise it as a bug.",S1-N2 / S13-R3 / S13-N2 | SV-8479 (SV-8288 Story 12 — item 10),,
 Verify the preview shows the empty-amount prompt before an amount is entered,Work Order — Whole-WO Fee/Discount,Functional,Medium,"1. You are logged in with Work Orders: Create & Edit and See Financial Data.
 2. The 'New Work Order Fee / Discount' dialog is freshly open.","1. Set 'Type' and 'Calculation Type' but leave the amount empty.
 2. Read the preview box.",1. The preview box reads exactly: 'Enter an amount to see the impact.',S2-R41 | SV-8479 (SV-8288 Story 12 — items 10/11 label sweep),,
@@ -935,7 +936,8 @@ Verify whole-work-order add/edit/remove requires Work Orders: Create and Edit,Pe
 2. Two ZZAUTOTEST roles, both with See Financial Data ON: Role A WITH Work Orders: Create and Edit; Role B WITHOUT it. Assign by exact-user-match to Tech.","1. As a role WITH Work Orders: Create and Edit, add/edit/remove a whole-work-order fee/discount.
 2. As a role WITHOUT it, confirm the controls are hidden and the action is refused.","1. With Work Orders: Create and Edit, whole-work-order add/edit/remove works.
 2. Without it, the controls are hidden and the action is refused.
-3. Editing/removing uses this same permission, not a separate Delete permission.",S13-R3,,
+3. Editing/removing uses this same permission, not a separate Delete permission.
+4. Note for the tester: this action is only hidden/blocked on the screen for this role. If you find it can still be done another way (for example through the system's back-end/API), that is expected — mark this test as PASSED and do NOT raise it as a bug.",S13-R3,,
 Verify labor-line and part-line add/edit/remove requires Work Order Lines: Create and Edit,Permissions (Story 13),Functional,High,"1. An open work order with a labor line and a part.
 2. Two ZZAUTOTEST roles, both with See Financial Data ON: Role A WITH Work Order Lines: Create and Edit; Role B WITHOUT it. Assign by exact-user-match to Tech.","1. As a role WITH Work Order Lines: Create and Edit, add/edit/remove a labor-line and a part-line fee/discount.
 2. As a role WITHOUT it, confirm the line ⋮ menus do not offer the option and the action is refused.","1. With Work Order Lines: Create and Edit, labor-line and part-line add/edit/remove work.
