@@ -1,0 +1,67 @@
+{
+ "role": "SalesRepresentative",
+ "perms": 8,
+ "pages": {
+  "bulk-receive": {
+   "reached": "/workorders",
+   "bounced": true,
+   "denied": 0,
+   "actions": [
+    "timer Clock In",
+    "Staging Heavy Duty - 9919 MQ",
+    "width_normal",
+    "location_on",
+    "content_copy"
+   ]
+  },
+  "deliveries": {
+   "reached": "/deliveries",
+   "bounced": false,
+   "denied": 0,
+   "actions": [
+    "timer Clock In",
+    "Staging Heavy Duty - 9919 MQ",
+    "home Back To Work Orders"
+   ]
+  },
+  "part-sales": {
+   "reached": "/part-sales",
+   "bounced": false,
+   "denied": 0,
+   "actions": [
+    "timer Clock In",
+    "Staging Heavy Duty - 9919 MQ",
+    "home Back To Work Orders"
+   ]
+  },
+  "vendors": {
+   "reached": "/vendors",
+   "bounced": false,
+   "denied": 0,
+   "actions": [
+    "timer Clock In",
+    "Staging Heavy Duty - 9919 MQ",
+    "home Back To Work Orders"
+   ]
+  },
+  "parts": {
+   "reached": "/parts/part-sales",
+   "bounced": false,
+   "denied": 0,
+   "actions": [
+    "timer Clock In",
+    "Staging Heavy Duty - 9919 MQ"
+   ]
+  },
+  "inventory": {
+   "reached": "/inventory",
+   "bounced": false,
+   "denied": 0,
+   "actions": [
+    "timer Clock In",
+    "Staging Heavy Duty - 9919 MQ",
+    "home Back To Work Orders"
+   ]
+  }
+ }
+}
