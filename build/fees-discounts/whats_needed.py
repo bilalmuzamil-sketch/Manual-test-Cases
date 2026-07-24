@@ -19,55 +19,16 @@ build/fees-discounts/PROJECT-STATE.md (§0 sections + FDBUG register).
 # --- Per-case plain "what needs to be done" (DEVIATION / Blocked / Pending) ---
 # Keyed by internal FD- id. Verified cases fall through to the default.
 WHATS_NEEDED = {
-    # ---------------- 10 VIU-Deviation cases ----------------
-    # NOTE: FD-WO-013 + FD-PERM-002 were flipped Deviation->PASS on 2026-07-24
-    # (Standing Rule 24: front-end blocks + back-end/API allows = a PASSED case);
-    # they are intentionally NOT listed here so they fall through to the
-    # VIU-Verified default "No action needed — passed."
-    "FD-INLINE-003":
-        "A developer needs to add the 'Show N more' collapse so a line with two or "
-        "more fees/discounts no longer shows them all at once. Re-test once fixed.",
-    "FD-STATS-002":
-        "A developer needs to change the Statistics tab to show one row per "
-        "fee/discount that names its target. Re-test once that per-row layout is built.",
-    "FD-STATS-004":
-        "Once the Statistics tab shows one row per fee/discount, check they are "
-        "listed oldest first. Re-test after the per-row layout is built by the developer.",
-    "FD-WO-017":
-        "A developer needs to move the three-dot menu to the LEFT of 'Unassigned' "
-        "(it currently sits on the right); the label is already correct. Re-test the "
-        "left placement once the fix is in.",
-    "FD-CUST-005":
-        "Re-check on staging how a Processing Fee template's type is shown in the "
-        "customer picker, and confirm with the team whether showing it as 'Fee' is "
-        "acceptable or needs fixing.",
-    "FD-CUST-006":
-        "Accepted as-is by the team — the picker shows 'No results' when there is "
-        "nothing left to add. Update the test case wording to expect 'No results'; "
-        "no developer fix needed.",
-    "FD-TMPL-010":
-        "The line-level dialog currently has no 'Apply From Template' picker, so "
-        "template scoping can't be checked there. Re-check on staging whether that "
-        "picker now exists; if it is still missing, confirm with the team whether "
-        "that is intended.",
-    "FD-PROC-008":
-        "The menu still offers an 'Edit' option for a Processing Fee even though "
-        "editing does nothing (only 'Remove' works). A developer needs to make it "
-        "remove-only. Re-test once fixed.",
-    "FD-PROC-009":
-        "A developer needs to fix the Processing Fee amount — its base should NOT "
-        "include the whole-work-order fees/discounts (or their tax). Re-test the "
-        "amount once fixed.",
-    "FD-CALC-013":
-        "Same Processing Fee amount problem — the base wrongly includes the "
-        "whole-work-order fees/discounts. A developer needs to fix it; re-test the "
-        "amount once fixed.",
-
-    # ---------------- VIU-Pending (1) ----------------
-    "FD-PART-005":
-        "Re-test on staging once a part can be moved from requested to received "
-        "(this was blocked by an environment error before). Check the fee/discount "
-        "stays attached after the part is received.",
+    # ---------------- ALL DEVIATIONS + THE PENDING CLOSED 2026-07-24 ----------------
+    # The 10 former VIU-Deviation cases and the 1 former VIU-Pending case were
+    # closed on 2026-07-24 (Ahtasham QA live review + our SV-8421 spot-check —
+    # "no bug"); they are now VIU-Verified and are intentionally NOT listed here so
+    # they fall through to the VIU-Verified default "No action needed — passed."
+    #   Closed here: FD-INLINE-003, FD-STATS-002, FD-STATS-004, FD-WO-017,
+    #   FD-CUST-005, FD-CUST-006, FD-TMPL-010, FD-PROC-008, FD-PROC-009,
+    #   FD-CALC-013 (deviations) + FD-PART-005 (pending).
+    # (FD-WO-013 + FD-PERM-002 were flipped Deviation->PASS earlier on 2026-07-24
+    # under Standing Rule 24; also intentionally not listed.)
 
     # ---------------- VIU-Blocked-Env (21) ----------------
     "FD-TMPL-012":

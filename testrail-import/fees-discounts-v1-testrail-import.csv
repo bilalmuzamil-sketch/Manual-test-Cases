@@ -229,12 +229,9 @@ Verify the Stats tab Fees & Discounts section shows the '%' and 'Amount' column 
 3. Look at the right-side column headings above the value columns, then read each row.","1. A 'Fees & Discounts (N)' section is shown, where N is the total number of fees/discounts of any scope.
 2. The section shows the right-side column headings '%' and 'Amount', in that order, aligned above their value columns, matching the other Stats sections.
 3. Each row shows the name, the percent under '%' (blank for a flat fee) and the signed resolved amount under 'Amount' (for example 'Fee +10% +$46.49', 'Fee +$500,000.00', 'Discount −4% −$20.89'), with a 'Total' row.",S4-R1 / S4-R2 / S4-R3 | SV-8479 (SV-8288 Story 12 — item 12),,
-Verify each Stats fee/discount row names its target,Work Order — Statistics tab,Functional,Medium,"1. You are logged in with See Financial Data.
-2. An open work order with a whole-work-order discount and line-level part/labor fees/discounts.","1. Open the Stats tab and find the 'Fees & Discounts' section.
-2. Read what each row shows to identify its target.
-3. Try clicking a line-level row's target.","1. A whole-work-order fee/discount shows the work order it belongs to.
-2. A line-level fee/discount names the line/part it belongs to.
-3. The target is a link you can click to jump to that line/part.",S4-R3 / design §3,,
+"Verify the Statistics tab lists each fee/discount as its own row with name, percent and amount",Work Order — Statistics tab,Functional,Medium,1. A work order that has at least one whole-work-order fee/discount and at least one line-level (labour or part) fee/discount.,"1. Open the work order and go to the Statistics tab.
+2. Look at the 'Fees & Discounts' section.","1. The 'Fees & Discounts' section lists each adjustment on its own row showing the adjustment's name, its percent (for a percentage adjustment) and its amount, with a Total at the bottom.
+2. The rows show the adjustment's name and amount only — they do not display the target line/part or a clickable link to jump to it (the current build shows the adjustment name, not a per-row target link).",SV-8280 (§3 adjustments appear on the Statistics tab; §5-R9 oldest-first),,
 Verify the Stats 'Fees & Discounts' total equals the signed sum of all the amounts,Work Order — Statistics tab,Functional,High,"1. You are logged in with See Financial Data.
 2. An open work order with a mix of fees and discounts.","1. Open the Stats tab 'Fees & Discounts' section.
 2. Check the sign shown for a fee vs a discount vs a flat amount.
@@ -370,14 +367,14 @@ You are on an editable Part Sale (for example an Approved part sale).","1. From 
 2. The same note shows for both the whole-sale dialog (titled 'New Parts Sale Fee / Discount') and the per-part dialog (titled 'New Part Fee / Discount'); the per-part dialog also shows an 'Applying To: Line N Part — Part — (part number) name' subtitle.
 3. The same note shows in both the Add and the Edit dialog.
 4. The note is shown only to users with See Financial Data.",S11-R3 / S11-R4a / S11-R4b / §5-R15 | SV-8479 (SV-8288 Story 12 — items 14 & 18),,
-Verify the labor fee/discount entry point is a three-dot menu to the LEFT of the first technician (or 'Unassigned') and reads 'Add Labor Fee / Discount',Work Order — Labor-line Fee/Discount,Functional,High,"1. You are logged in with Work Orders: Create & Edit and See Financial Data.
+Verify the labor fee/discount entry point is a three-dot menu to the RIGHT of the first technician (or 'Unassigned') and reads 'Add Labor Fee / Discount',Work Order — Labor-line Fee/Discount,Functional,High,"1. You are logged in with Work Orders: Create & Edit and See Financial Data.
 2. An open (not Invoiced, not Paid) work order with at least one labor line is open on its Lines tab.
 3. The labor line has no technician assigned yet, so the technician area shows 'Unassigned'. Mark any throwaway data ZZAUTOTEST.","1. On the Lines tab, find the labor row for a line; it shows the technician name, or 'Unassigned' when no technician is set.
-2. Look to the LEFT of the first assigned technician's name (or to the left of 'Unassigned' when none is assigned) for a three-dot (⋮) menu button.
+2. Look to the RIGHT of the first assigned technician's name (or to the left of 'Unassigned' when none is assigned) for a three-dot (⋮) menu button.
 3. Click the three-dot (⋮) menu.
-4. Read the menu items and click 'Add Labor Fee / Discount'.","1. The three-dot (⋮) menu button sits to the LEFT of the first assigned technician's name — or to the left of 'Unassigned' when no technician is assigned — not to the right.
+4. Read the menu items and click 'Add Labor Fee / Discount'.","1. The three-dot (⋮) menu button sits to the RIGHT of the first assigned technician's name — or to the left of 'Unassigned' when no technician is assigned — not to the right.
 2. Opening the menu shows 'Edit labor' and 'Add Labor Fee / Discount'.
-3. Clicking 'Add Labor Fee / Discount' opens the labor fee/discount dialog.","SV-8479 (SV-8288 Story 12 — item 1: labor fee/discount entry-point placement, three-dot to the LEFT of Unassigned + 'Add Labor Fee / Discount' label)",,
+3. Clicking 'Add Labor Fee / Discount' opens the labor fee/discount dialog.","SV-8479 (SV-8288 Story 12 — item 1: labor fee/discount entry-point placement,three-dot to the LEFT of Unassigned + 'Add Labor Fee / Discount' label)",,
 Verify the work-order part row three-dot menu item reads 'Add Part Fee / Discount',Work Order / Parts — Part-line Fee/Discount,Functional,Medium,"1. You are logged in with Work Orders: Create & Edit and See Financial Data.
 2. An open (not Invoiced, not Paid) work order with at least one part line is open on its Lines tab.","1. On the Lines tab, find a part row.
 2. Open the part row's three-dot (⋮) menu.
@@ -463,10 +460,10 @@ Verify several templates are added as customer defaults one at a time (no multi-
 3. After the three adds, all 3 templates appear in the table and the tab count goes up by 3.","S9-R20, S9-R21, S9-R23a",,
 Verify the picker lists only not-yet-added templates and shows a Processing Fee template as type 'Fee',Customer Fees & Discounts tab,Functional,Medium,"1. The location has: (a) a template already linked to this customer, (b) an unlinked Fee/Discount template, and (c) an unlinked Processing Fee template.
 2. You have Customer Management: Create & Edit + Manage AP/AR.","1. Open the customer, Fees & Discounts tab, click 'Add Fee/Discount'.
-2. Open the 'Fee / Discount Templates' dropdown and review the templates offered.","1. The picker is a single-select dropdown.
+2. Open the 'Fee / Discount Templates' dropdown and review the templates offered.","1. The picker is multi-select — each template row has a checkbox (or chip) and the user may select more than one at once (SV-8280 / spec S9-R20)
 2. A template already added as a default does not appear in the picker.
 3. A not-yet-added Fee/Discount template appears.
-4. A Processing Fee template also appears (it can be a customer default), and in the current build its Type shows as 'Fee'.","S9-R19, S8-R15, S9-R... (Processing Fee shows as ""Fee"")",,
+4. A Processing Fee template also appears (it can be a customer default), and in the current build its Type shows as 'Fee'.","SV-8284,SV-8285 (S9-R19,S8-R15,S9-R... (Processing Fee shows as ""Fee""))",,
 Verify the picker message when there are no templates left to add,Customer Fees & Discounts tab,Functional,Low,1. Every location template is already linked to the test customer (or the location has no templates).,"1. Add every template as a default so none are left.
 2. Open the customer, Fees & Discounts tab, click 'Add Fee/Discount'.
 3. Open the 'Fee / Discount Templates' dropdown.",1. The dropdown shows a 'No results' empty state and offers no templates to add.,S9-R22,,
@@ -601,9 +598,9 @@ Verify a Processing Fee reaches a new work order via a customer default,Processi
 2. Open the 'Work Order Fees & Discounts' card.","1. The new work order carries the Processing Fee as its own whole-work-order fee (an independent copy).
 2. In its ⋮ menu, 'Remove' works but 'Edit' does nothing for a Processing Fee.","S8-R15, S9-R2",,
 Verify a Processing Fee on a work order can be removed but not edited,Processing Fee — WO behavior,Functional,High,1. An open WO carries a Processing Fee (via auto-apply or customer default).,"1. Open the Processing Fee entry's ⋮ menu in the 'Work Order Fees & Discounts' card.
-2. Note the options, then remove it.","1. The menu shows 'Edit' and 'Remove'; 'Edit' does nothing for a Processing Fee (it cannot be edited on the work order).
+2. Note the options, then remove it.","1. The menu shows 'Remove' only — there is no 'Edit' option for a Processing Fee (it cannot be edited on the work order).
 2. 'Remove' opens the 'Remove Fee / Discount' confirm and removes it on confirm.
-3. To change the amount/method/taxable you edit the template, not the work-order copy.","S8-R17, S8-N5, S3-R9",,
+3. To change the amount/method/taxable you edit the template, not the work-order copy.","SV-8279,SV-8284 (S8-R17,S8-N5,S3-R9)",,
 Verify a % of Grand Total Processing Fee works out last on the tax-included grand total (3% of $324 → +$9.72),Processing Fee — calculation,Functional,High,"1. A Processing Fee template ""ZZAUTOTEST 3% Proc"" (% of Grand Total, 3%, taxable Yes) auto-applies.
 2. A work order exists whose net subtotal (after line-level adjustments) = $300.00 and pre-fee tax = $24.00 (so Grand Total base = $324.00).","1. Open the work order and read the Processing Fee amount.
 2. Check it works out after all other fees/discounts.","1. The Processing Fee is +$9.72 (3% of $324.00).

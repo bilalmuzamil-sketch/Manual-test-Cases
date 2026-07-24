@@ -244,7 +244,25 @@ deliver the 7-tab management report.
    dev-authored = 201 in id-map). Deliverables regenerated over 199. Executor
    `exec_sync_2026-07-22.py`; audit `sv8479-8456-8480/testrail-execution-log-2026-07-22.md`;
    manifest header = EXECUTED. Canonical resume = PROJECT-STATE.md §0.0o.
-   **FE-BLOCK/BE-ALLOW PASS FLIP 2026-07-24 (§0.0p — supersedes §0.0o for the tally):** per
+   **ALL DEVIATIONS + THE PENDING CLOSED 2026-07-24 (§0.0q — supersedes §0.0p for the tally):**
+   user-authorized, per Ahtasham's QA live review + our own live SV-8421 spot-check, all 8
+   remaining VIU-Deviations + the 1 VIU-Pending closed to VIU-Verified = "no bug". **ZERO TestRail
+   writes this pass:** Ahtasham reworded 3 directly in TestRail (C28460 FD-STATS-002 per-row
+   name/percent/amount; C28489 FD-CUST-005 single→multi-select S9-R20; C28526 FD-PROC-008
+   Remove-only) — pulled READ-ONLY + mirrored local; **FD-WO-017/C30618 was edited MANUALLY by the
+   USER** in TestRail (kebab LEFT→RIGHT, Chris Ward accepted, SV-8479 DONE) — re-GET read-only,
+   synced local; 5 pass-as-written flips LOCAL-only (FD-INLINE-003/C28456, FD-STATS-004/C28462,
+   FD-CUST-006/C28490, FD-TMPL-010/C28511, FD-PART-005/C28450); FD-PROC-009/C28527 +
+   FD-CALC-013/C28580 confirmed ALREADY Verified from our live spot-check (not re-flipped). HONESTY
+   (Rule 12/22): only C28527/C28580 re-observed live by us; every other flip accepted on Ahtasham's
+   review / the user's manual edit (noted per case). **NEW TALLY: 199 ACTIVE = 178 VIU-Verified / 0
+   VIU-Deviation / 21 VIU-Blocked-Env / 0 VIU-Pending** (+2 dev-authored = 201 managed; id-map 203
+   rows incl. 2 from a concurrent SV-8520/8521 session, untouched). Deliverables regenerated over
+   199 (import header byte-identical, 0 VIU/flag words, no dup titles, no C-id column; id-map C-ids
+   preserved). whats_needed.py: all 11 now-Verified fall through to "No action needed — passed"; 21
+   Blocked-Env keep next-steps. Run 325 untouched. Audit
+   `testrail-execution-log-deviation-closeout-2026-07-24.md`.
+   **FE-BLOCK/BE-ALLOW PASS FLIP 2026-07-24 (§0.0p — superseded by §0.0q for the tally):** per
    Standing Rule 24 (FE blocks + BE/API allows = PASS), user-authorized, **FD-WO-013 (C28436) +
    FD-PERM-002 (C28586) flipped VIU-Deviation → VIU-Verified (PASS)** + a plain tester line added
    to each Expected ("only hidden on screen; if still doable via back-end/API that's expected —

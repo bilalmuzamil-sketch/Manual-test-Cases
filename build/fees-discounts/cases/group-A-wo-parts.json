@@ -803,8 +803,8 @@
       "3. A received part cannot be pointed back to a request."
     ],
     "design_ref": "part row / Fees & Discounts column (§5)",
-    "viu_status": "VIU-Pending",
-    "notes": "Companion to FD-PART-003 (adding to a requested part). | VIU qb batch-1 (2026-07-08): Requested->received attachment not driven. Batch-2. | FRESH VIU 2026-07-10: STILL PENDING: requested->received transition unreachable — line-create 500s env-wide, make-request rejected on completed lines, receiving subsystem needs a fresh order | WORDING+VIU 2026-07-13: BLOCKED/PENDING: requested→received transition blocked by the env-wide WO line-create 500 + completed-line part-request lock — cannot drive the transition. Build labels applied.",
+    "viu_status": "VIU-Verified",
+    "notes": "Companion to FD-PART-003 (adding to a requested part). | VIU qb batch-1 (2026-07-08): Requested->received attachment not driven. Batch-2. | FRESH VIU 2026-07-10: STILL PENDING: requested->received transition unreachable — line-create 500s env-wide, make-request rejected on completed lines, receiving subsystem needs a fresh order | WORDING+VIU 2026-07-13: BLOCKED/PENDING: requested→received transition blocked by the env-wide WO line-create 500 + completed-line part-request lock — cannot drive the transition. Build labels applied. | CLOSE-OUT 2026-07-24: accepted per Ahtasham QA live review 2026-07-24 (no bug). Status -> VIU-Verified, wording unchanged. HONESTY (Rule 12/22): accepted on Ahtasham's live QA review — NOT re-observed by us this pass.",
     "api_related": false,
     "fresh_run": "2026-07-13"
   },
@@ -974,8 +974,8 @@
       "4. The toggle then reads 'Show less'."
     ],
     "design_ref": "'Show 2 more' toggle .wo-show-more; screenshots 01-show-more/-state (§2b)",
-    "viu_status": "VIU-Deviation",
-    "notes": "Same collapse/expand behavior applies to a labor line with 2+ adjustments. | VIU qb batch-1 (2026-07-08): With 2 adjustments on the line BOTH rows show; NO 'Show N more'/'Show less' toggle exists (S3-R15/R16 not implemented). Shot s13-01. | RECON 2026-07-09 (spec-v1-reconciliation.md + PO answer sheet): PO Q5=B -> confirmed defect (BUG-FD-5). | FRESH VIU 2026-07-10: CONFIRMED AGAIN: 2 adjustments on one part render with NO 'Show N more' collapse — PO Q5=B defect persists | WORDING+VIU 2026-07-13: DEVIATION carried (BUG-FD-5): no 'Show N more' collapse — a line/part with 2+ fees/discounts shows all of them. Not re-driven with a 3-adjustment line this run.",
+    "viu_status": "VIU-Verified",
+    "notes": "Same collapse/expand behavior applies to a labor line with 2+ adjustments. | VIU qb batch-1 (2026-07-08): With 2 adjustments on the line BOTH rows show; NO 'Show N more'/'Show less' toggle exists (S3-R15/R16 not implemented). Shot s13-01. | RECON 2026-07-09 (spec-v1-reconciliation.md + PO answer sheet): PO Q5=B -> confirmed defect (BUG-FD-5). | FRESH VIU 2026-07-10: CONFIRMED AGAIN: 2 adjustments on one part render with NO 'Show N more' collapse — PO Q5=B defect persists | WORDING+VIU 2026-07-13: DEVIATION carried (BUG-FD-5): no 'Show N more' collapse — a line/part with 2+ fees/discounts shows all of them. Not re-driven with a 3-adjustment line this run. | CLOSE-OUT 2026-07-24: accepted per Ahtasham QA live review 2026-07-24 (no bug). Status -> VIU-Verified, wording unchanged. HONESTY (Rule 12/22): accepted on Ahtasham's live QA review — NOT re-observed by us this pass.",
     "api_related": false,
     "fresh_run": "2026-07-13"
   },
@@ -1067,28 +1067,25 @@
   {
     "id": "FD-STATS-002",
     "area": "Work Order — Statistics tab",
-    "story_ref": "S4-R3 / design §3",
-    "title": "Verify each Stats fee/discount row names its target",
+    "story_ref": "SV-8280 (§3 adjustments appear on the Statistics tab; §5-R9 oldest-first)",
+    "title": "Verify the Statistics tab lists each fee/discount as its own row with name, percent and amount",
     "priority": "Medium",
     "type": "Functional",
     "permissions_required": "See Financial Data + Fees & Discounts flag ON",
     "preconditions": [
-      "1. You are logged in with See Financial Data.",
-      "2. An open work order with a whole-work-order discount and line-level part/labor fees/discounts."
+      "1. A work order that has at least one whole-work-order fee/discount and at least one line-level (labour or part) fee/discount."
     ],
     "steps": [
-      "1. Open the Stats tab and find the 'Fees & Discounts' section.",
-      "2. Read what each row shows to identify its target.",
-      "3. Try clicking a line-level row's target."
+      "1. Open the work order and go to the Statistics tab.",
+      "2. Look at the 'Fees & Discounts' section."
     ],
     "expected": [
-      "1. A whole-work-order fee/discount shows the work order it belongs to.",
-      "2. A line-level fee/discount names the line/part it belongs to.",
-      "3. The target is a link you can click to jump to that line/part."
+      "1. The 'Fees & Discounts' section lists each adjustment on its own row showing the adjustment's name, its percent (for a percentage adjustment) and its amount, with a Total at the bottom.",
+      "2. The rows show the adjustment's name and amount only — they do not display the target line/part or a clickable link to jump to it (the current build shows the adjustment name, not a per-row target link)."
     ],
     "design_ref": "Stats scope links .stats-sub-link (§3)",
-    "viu_status": "VIU-Deviation",
-    "notes": "Scope hyperlink is a design affordance; confirm the exact jump/breakdown behavior on staging. | VIU qb batch-1 (2026-07-08): No per-adjustment rows exist in the aggregate layout, so no scope hyperlink per row (design §3 not built). | RECON 2026-07-09 (spec-v1-reconciliation.md + PO answer sheet): PO Q1=B -> confirmed defect (BUG-FD-2), per-row layout is correct. | FRESH VIU 2026-07-10: per-row scope hyperlink impossible while the layout is aggregate (dep. FD-STATS-001) | WORDING+VIU 2026-07-13: DEVIATION carried: Stats F&D rows show the name only — no scope hyperlink to the target. Confirmed live (rows read plain names, shot fin-01).",
+    "viu_status": "VIU-Verified",
+    "notes": "Scope hyperlink is a design affordance; confirm the exact jump/breakdown behavior on staging. | VIU qb batch-1 (2026-07-08): No per-adjustment rows exist in the aggregate layout, so no scope hyperlink per row (design §3 not built). | RECON 2026-07-09 (spec-v1-reconciliation.md + PO answer sheet): PO Q1=B -> confirmed defect (BUG-FD-2), per-row layout is correct. | FRESH VIU 2026-07-10: per-row scope hyperlink impossible while the layout is aggregate (dep. FD-STATS-001) | WORDING+VIU 2026-07-13: DEVIATION carried: Stats F&D rows show the name only — no scope hyperlink to the target. Confirmed live (rows read plain names, shot fin-01). | CLOSE-OUT 2026-07-24: matched-to-build per Ahtasham QA review 2026-07-24; synced from his TestRail edit (C28460). VIU-Deviation -> VIU-Verified. HONESTY (Rule 12/22): accepted on Ahtasham's live QA review — NOT re-observed by us this pass.",
     "api_related": false,
     "fresh_run": "2026-07-13"
   },
@@ -1140,8 +1137,8 @@
       "1. The rows are listed oldest first: A, then B, then C."
     ],
     "design_ref": "Stats table row order (§3)",
-    "viu_status": "VIU-Deviation",
-    "notes": "The Group-A task brief mentions 'descending build order', but spec §5-R9 is explicit that WO screens (sidebar card, Financial Info, line table, Statistics tab) list adjustments in creation order OLDEST first. Authored to spec — flag the wording difference and confirm the actual order on staging. | VIU qb batch-1 (2026-07-08): No per-adjustment rows -> creation-order rule not applicable in current build. | RECON 2026-07-09 (spec-v1-reconciliation.md + PO answer sheet): PO Q1=B -> confirmed defect (BUG-FD-2); creation-order verifiable once per-row layout ships. | FRESH VIU 2026-07-10: creation-order rows blocked by aggregate layout (dep. FD-STATS-001) | WORDING+VIU 2026-07-13: DEVIATION carried: creation-order ruling pending (BUG-FD-2 group). Labels cleaned.",
+    "viu_status": "VIU-Verified",
+    "notes": "The Group-A task brief mentions 'descending build order', but spec §5-R9 is explicit that WO screens (sidebar card, Financial Info, line table, Statistics tab) list adjustments in creation order OLDEST first. Authored to spec — flag the wording difference and confirm the actual order on staging. | VIU qb batch-1 (2026-07-08): No per-adjustment rows -> creation-order rule not applicable in current build. | RECON 2026-07-09 (spec-v1-reconciliation.md + PO answer sheet): PO Q1=B -> confirmed defect (BUG-FD-2); creation-order verifiable once per-row layout ships. | FRESH VIU 2026-07-10: creation-order rows blocked by aggregate layout (dep. FD-STATS-001) | WORDING+VIU 2026-07-13: DEVIATION carried: creation-order ruling pending (BUG-FD-2 group). Labels cleaned. | CLOSE-OUT 2026-07-24: accepted per Ahtasham QA live review 2026-07-24 (no bug). Status -> VIU-Verified, wording unchanged. HONESTY (Rule 12/22): accepted on Ahtasham's live QA review — NOT re-observed by us this pass.",
     "api_related": false,
     "fresh_run": "2026-07-13"
   },
@@ -1794,8 +1791,8 @@
   {
     "id": "FD-WO-017",
     "area": "Work Order — Labor-line Fee/Discount",
-    "story_ref": "SV-8479 (SV-8288 Story 12 — item 1: labor fee/discount entry-point placement, three-dot to the LEFT of Unassigned + 'Add Labor Fee / Discount' label)",
-    "title": "Verify the labor fee/discount entry point is a three-dot menu to the LEFT of the first technician (or 'Unassigned') and reads 'Add Labor Fee / Discount'",
+    "story_ref": "SV-8479 (SV-8288 Story 12 — item 1: labor fee/discount entry-point placement,three-dot to the LEFT of Unassigned + 'Add Labor Fee / Discount' label)",
+    "title": "Verify the labor fee/discount entry point is a three-dot menu to the RIGHT of the first technician (or 'Unassigned') and reads 'Add Labor Fee / Discount'",
     "priority": "High",
     "type": "Functional",
     "permissions_required": "Work Orders: Create & Edit + See Financial Data",
@@ -1806,18 +1803,18 @@
     ],
     "steps": [
       "1. On the Lines tab, find the labor row for a line; it shows the technician name, or 'Unassigned' when no technician is set.",
-      "2. Look to the LEFT of the first assigned technician's name (or to the left of 'Unassigned' when none is assigned) for a three-dot (⋮) menu button.",
+      "2. Look to the RIGHT of the first assigned technician's name (or to the left of 'Unassigned' when none is assigned) for a three-dot (⋮) menu button.",
       "3. Click the three-dot (⋮) menu.",
       "4. Read the menu items and click 'Add Labor Fee / Discount'."
     ],
     "expected": [
-      "1. The three-dot (⋮) menu button sits to the LEFT of the first assigned technician's name — or to the left of 'Unassigned' when no technician is assigned — not to the right.",
+      "1. The three-dot (⋮) menu button sits to the RIGHT of the first assigned technician's name — or to the left of 'Unassigned' when no technician is assigned — not to the right.",
       "2. Opening the menu shows 'Edit labor' and 'Add Labor Fee / Discount'.",
       "3. Clicking 'Add Labor Fee / Discount' opens the labor fee/discount dialog."
     ],
     "design_ref": "SV-8479 Picture 1 green (58831); QA staging item01 (58861)",
-    "viu_status": "VIU-Deviation",
-    "notes": "KNOWN RE-OPEN — this is the SOLE reason SV-8479 was re-opened. QA on staging 2026-07-22 confirmed the label 'Add Labor Fee / Discount' is correct (✅) but found the three-dot menu rendered to the RIGHT of 'Unassigned'; the fix must move it to the LEFT of 'Unassigned' (image 58861 red annotation 'Move it to left of unassigned'). Green target = Picture 1 (58831). VIU-Pending: verify the LEFT placement live once the fix lands. | VIU 2026-07-22 LIVE staging (WO f90c0d83, labor line no technician): DEVIATION — item-#1 re-open NOT fixed. Labor three-dot (⋮) renders to the RIGHT of 'Unassigned' (Unassigned text right-edge x=497; ⋮ at x=502, same row y=282); spec requires LEFT. Label 'Add Labor Fee / Discount' is correct and opens the labor fee/discount dialog. Menu contained only 'Add Labor Fee / Discount' (no separate 'Edit labor' item observed). Ev: wo/FD-WO-017-labor-row-menu-RIGHT.png, wo/FD-WO-017-labor-menu-open.png, obs2 geometry.",
+    "viu_status": "VIU-Verified",
+    "notes": "KNOWN RE-OPEN — this is the SOLE reason SV-8479 was re-opened. QA on staging 2026-07-22 confirmed the label 'Add Labor Fee / Discount' is correct (✅) but found the three-dot menu rendered to the RIGHT of 'Unassigned'; the fix must move it to the LEFT of 'Unassigned' (image 58861 red annotation 'Move it to left of unassigned'). Green target = Picture 1 (58831). VIU-Pending: verify the LEFT placement live once the fix lands. | VIU 2026-07-22 LIVE staging (WO f90c0d83, labor line no technician): DEVIATION — item-#1 re-open NOT fixed. Labor three-dot (⋮) renders to the RIGHT of 'Unassigned' (Unassigned text right-edge x=497; ⋮ at x=502, same row y=282); spec requires LEFT. Label 'Add Labor Fee / Discount' is correct and opens the labor fee/discount dialog. Menu contained only 'Add Labor Fee / Discount' (no separate 'Edit labor' item observed). Ev: wo/FD-WO-017-labor-row-menu-RIGHT.png, wo/FD-WO-017-labor-menu-open.png, obs2 geometry. | CLOSE-OUT 2026-07-24: match-to-build (kebab RIGHT), PO Chris Ward accepted, SV-8479 DONE; TestRail updated manually by the user 2026-07-24; local synced to match. NO write from us. VIU-Deviation -> VIU-Verified. (Note: the TestRail refs + some descriptive text still reference 'LEFT' from the prior authoring; local mirrors TestRail verbatim.) HONESTY (Rule 12/22): accepted on the user's manual edit + PO acceptance — not independently re-observed by us this pass.",
     "api_related": false
   },
   {

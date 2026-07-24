@@ -5,7 +5,29 @@
 > re-discovery.
 > **Canonical spec (Confluence):** https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/622297094/Fees+Discounts+V1
 > (Atlassian-SSO login-walled — reference pointer only; content must be exported/pasted to ingest, do NOT fetch the URL.)
-> **Last updated:** 2026-07-24 (§0.0p: **FD-WO-013 (C28436) + FD-PERM-002 (C28586) flipped
+> **Last updated:** 2026-07-24 (§0.0q: **ALL DEVIATIONS + THE PENDING CLOSED — "no bug"**
+> per Ahtasham's QA live review + our own live SV-8421 spot-check; user-authorized 2026-07-24.
+> The 8 remaining VIU-Deviations + the 1 VIU-Pending were closed to VIU-Verified.
+> **TestRail writes by this pass = ZERO.** Ahtasham reworded 3 cases directly in TestRail
+> (C28460 FD-STATS-002 = per-row name/percent/amount, no per-row target link; C28489 FD-CUST-005
+> = single-select → multi-select S9-R20; C28526 FD-PROC-008 = Edit+Remove → Remove-only) — we
+> pulled each READ-ONLY and MIRRORED them into local + flipped to Verified. **FD-WO-017 (C30618)
+> was updated MANUALLY by the USER in TestRail** (kebab LEFT → RIGHT, PO Chris Ward accepted,
+> SV-8479 DONE) — we re-GET it read-only and synced local to match (no write from us). 5
+> pass-as-written flips LOCAL-only (viu_status is not a TestRail field): FD-INLINE-003/C28456,
+> FD-STATS-004/C28462, FD-CUST-006/C28490, FD-TMPL-010/C28511, FD-PART-005/C28450. FD-PROC-009/
+> C28527 + FD-CALC-013/C28580 confirmed ALREADY Verified from our live spot-check (commit 7020713,
+> not re-flipped). **HONESTY (Rule 12/22): only C28527/C28580 were re-observed LIVE by us; every
+> other flip is accepted on Ahtasham's live QA review / the user's manual edit (noted per case).**
+> **NEW TALLY = 199 active authored: 178 VIU-Verified / 0 VIU-Deviation / 21 VIU-Blocked-Env / 0
+> VIU-Pending** [+2 dev-authored Verified = 201 that we manage; id-map has 203 rows incl. 2 from a
+> concurrent session's SV-8520/8521 authoring, left untouched]. Deliverables regenerated over 199
+> (import 199 rows, header byte-identical, 0 VIU/flag words, no dup titles, no C-id column; id-map
+> C-ids preserved). whats_needed.py: all 11 now-Verified cases fall through to "No action needed —
+> passed."; the 21 Blocked-Env keep their plain next-steps. Audit log
+> `testrail-execution-log-deviation-closeout-2026-07-24.md`. Run 325 untouched. Supersedes §0.0p
+> for the tally.)
+> — prior 2026-07-24 (§0.0p: **FD-WO-013 (C28436) + FD-PERM-002 (C28586) flipped
 > VIU-Deviation → VIU-Verified (PASS) per Standing Rule 24** — front-end blocks + back-end/API
 > allows = a PASSED test case; user-authorized 2026-07-24. Both cases test that the whole-WO
 > "Add Work Order Fee / Discount" control is HIDDEN for a role lacking Work Orders: Create &
@@ -247,9 +269,17 @@ retire-candidates. The §0.0n staged manifest was executed end-to-end.
   log: `sv8479-8456-8480/testrail-execution-log-2026-07-22.md`. Manifest header flipped to
   EXECUTED.
 
-**New tally = 199 ACTIVE authored** (202 pre-retire − 3 retired):
-**167 VIU-Verified / 10 VIU-Deviation / 21 VIU-Blocked-Env / 1 VIU-Pending (FD-PART-005)**
-(2026-07-24 §0.0p: FD-WO-013/C28436 + FD-PERM-002/C28586 flipped Deviation→PASS per Rule 24,
+**CURRENT tally = 199 ACTIVE authored** (2026-07-24 §0.0q — ALL DEVIATIONS + THE PENDING CLOSED):
+**178 VIU-Verified / 0 VIU-Deviation / 21 VIU-Blocked-Env / 0 VIU-Pending**
+(2026-07-24 §0.0q: the 8 remaining Deviations [FD-INLINE-003, FD-STATS-002, FD-STATS-004,
+FD-WO-017, FD-CUST-005, FD-CUST-006, FD-TMPL-010, FD-PROC-008] + the 1 Pending [FD-PART-005]
+closed to Verified per Ahtasham's QA review + our live SV-8421 spot-check; ZERO TestRail writes
+this pass — Ahtasham reworded 3 in TestRail [C28460/28489/28526] + the user manually edited
+FD-WO-017/C30618, all mirrored to local read-only; the rest local status flips. FD-PROC-009/
+C28527 + FD-CALC-013/C28580 already Verified from our live spot-check. See §0.0q at top +
+`testrail-execution-log-deviation-closeout-2026-07-24.md`.)
+(Prior 2026-07-24 §0.0p: 167 Verified / 10 Deviation / 21 Env / 1 Pending —
+FD-WO-013/C28436 + FD-PERM-002/C28586 flipped Deviation→PASS per Rule 24,
 so 165→167 Verified and 12→10 Deviation; was 165/12/21/1 after §0.0o).
 (+2 dev-authored FD-PERM-012/013 Verified = 201 in id-map; FD-CUST-016 + the 3 new retirements
 excluded.) Deviation 13→12 (FD-LABOR-003 retired); Verified 167→165 (FD-PCOL-003/007 retired).
