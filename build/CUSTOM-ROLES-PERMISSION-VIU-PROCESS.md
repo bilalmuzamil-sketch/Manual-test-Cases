@@ -293,6 +293,49 @@ apply these by default:
 12. **Commit by explicit pathspec**; report counts (total in scope / verified / blocked-with-reason)
     + the deliverable paths + the TestRail status explicitly.
 
+## 13a. LESSONS LEARNED — mandatory coverage breadth (added 2026-07-24, SV-8515/8516/8541 case study)
+
+> **Trigger:** our 2026-07-23 SV-8183 pass reported **11/11 PASS / "controls behave exactly as
+> specified" / 110 combinations, 0 mismatches** as if the whole feature were clean. QA (Ayesha)
+> then found **three real coverage gaps** (SV-8515 / SV-8516 / SV-8541), confirmed by live
+> re-verify on clean template roles. The 11 cells we tested were right; the **suite and the
+> claim** were not. Fold these into every permission VIU going forward.
+
+1. **Drive EVERY action path + alternate entry points per role — not just the primary one.** A
+   control hidden on one path does NOT mean the action is unreachable. For each gated action,
+   exercise **all** ways to reach it per role: primary button, **multi-select / bulk / "Select…
+   → Do Selected"**, kebab (⋮) / row menus, keyboard, deep-link/URL, and any secondary screen.
+   *SV-8515:* the per-PO Receive button was correctly hidden for a View-only user, but the
+   **multi-select "Receive Selected"** path still opened the editable Bulk-Receive screen — a
+   front-end-exposure defect the pass missed because it stopped at route-nav + the per-PO button.
+2. **PROBE THE BACK END per GRANULAR ACTION — not just one endpoint family, and not just the
+   documented gate.** Send the **specific** action (part edit, core resolve, cancel, return,
+   status-action) to the back end **as each no-access role** and record the real status. Probing
+   only one family (e.g. settings save 403/200) and generalising "BE enforces" hides the holes.
+   This is the ONLY way to surface (a) **front-end-exposure gaps** (FE shows it, BE blocks — e.g.
+   SV-8515 accept → 403) and (b) **Rule-24 API-possible flags** (FE hides it, BE still accepts —
+   e.g. SV-8516 change-request → 200; SV-8541 pre-resolve-cores → 201 even for Time Clock).
+   Classify each: BE-blocks-403 = enforced; FE-exposes-but-BE-blocks = **FE defect**;
+   FE-hides-but-BE-allows = **Rule-24 flag** (not a bug unless PO requires BE enforcement).
+3. **A passing matrix cell ≠ a fully-enforced action; composition ≠ observed action.** Rows marked
+   "PASS (composition-verified)" (role's atom list matches spec + an *inherited* gate) are **NOT**
+   live-observed action results (Rule 12). Every gated **action** must be driven live per role by
+   every path, or be labelled explicitly as composition-inferred, never counted as feature-wide
+   pass.
+4. **NEVER report "all pass" as feature-wide completeness — SCOPE the claim.** State exactly what
+   was tested: "the documented §-matrix cells pass; action-path + per-action back-end coverage is
+   [complete / not exhaustive]." List the action paths and negatives **not** covered as explicit
+   gaps (Rule 17 completeness). A clean matrix is a *configuration* result, not an *enforcement*
+   guarantee.
+5. **Author the per-role NEGATIVES the matrix implies.** For every "No" cell of a sensitive action
+   (part edit/cancel/return, core resolution, bulk receive, vendor assign), there should be a
+   per-role permission-negative case that asserts UI-hidden **and** records the BE status (403 vs
+   200/201 + Rule-24 flag). Missing negatives = the suite can't catch these gaps.
+
+**Case-study cross-ref:** `build/simple-flow/sv8183/SimpleFlow_SV-8183_vs-QA-Issues_Analysis_2026-07-24.md/.xlsx`
+(full honest reconciliation: verdicts, "was QA right" scorecard, root cause, 3 proposed corrective
+cases). Prior report carries a dated CORRECTION addendum.
+
 ## 14. One-page checklist
 
 1. Ask-first: which process(es) · Confluence-spec check · live-build + fresh cookies + env/flags ·
@@ -302,6 +345,9 @@ apply these by default:
 3. Reset all in-scope roles to template; record before→after; re-reset on drift. (Rules 26/26a)
 4. Observe LIVE all 4 layers per role — composition / backend 403-200 / FE route / element control —
    with evidence that run; seed/impersonate/render to unblock; never infer. (Rules 10/12/13/14)
+   **Drive EVERY action path + alternate entry points (multi-select/bulk/⋮ menu/deep-link) per role,
+   and probe the BE per GRANULAR action (not just one endpoint family) to catch FE-exposure gaps +
+   Rule-24 API flags; author the per-role negatives the matrix implies. (§13a)**
 5. Verdicts: VIU-Verified only if observed live, else Blocked-with-reason (characterised). refs =
    ticket + spec (Rule 20).
 6. Adversarial self-audit vs the truth table; ship only when the diff is empty. (Rule 15)

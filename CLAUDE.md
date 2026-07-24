@@ -323,7 +323,22 @@ deliver the 7-tab management report.
    unexplained → need live re-VIU; SF-VPART-01/02 likely stale-7/7-baseline tied to
    known BUG-9) + ingest Jira **SV-8303** (Ayesha's SF-SET-10 note flags a coming
    spec change).
-   **RESUME 2026-07-23 (LATEST — SV-8183 drift-cells FINISHED + SF-PERM-01 PUSHED): read build/simple-flow/PROJECT-STATE.md §0-FF-CLOSE first.**
+   **RESUME 2026-07-24 (LATEST — SV-8183 report CORRECTED; our 11/11 PASS OVER-CLAIMED):**
+   QA (Ayesha) found 3 real coverage gaps our pass missed; live re-verify on clean template roles
+   (drift ruled out, Rule 26) confirmed all 3 — **SV-8515** = real FE-exposure defect (View-only user
+   reaches editable Bulk-Receive via multi-select "Receive Selected"; BE blocks the actual receive
+   `accept`→403; dev Ready-to-Fix; Ayesha overstated the bypass); **SV-8516** = real over-grant now
+   FE-fixed (Time Clock ⋮ = only Return) but BE still accepts part edit (`change-request`→200) =
+   Rule-24 flag; **SV-8541** = real, pre-existing/spec-interp (`pre-resolve-cores`→201 even for Time
+   Clock, §9.4-anticipated, Open for Sasha). 3 corrective cases PROPOSED (not authored): (i) V&O
+   View-only "Receive Selected" negative +update SF-PERM-03/C29407; (ii) Time Clock part
+   edit/cancel/return negative (Rule-24); (iii) WOL-C&E core-resolve/return negative (pending Sasha).
+   Deliverables: `sv8183/SimpleFlow_SV-8183_vs-QA-Issues_Analysis_2026-07-24.md`/`.xlsx`; prior report
+   carries a CORRECTION addendum; **lesson folded into build/CUSTOM-ROLES-PERMISSION-VIU-PROCESS.md §13a**
+   (drive every action path + alternate entry points per role; probe BE per granular action; never
+   report "all pass" as feature-wide completeness). NO TestRail writes; tally UNCHANGED 151/4/21/5/3=184.
+   Read build/simple-flow/PROJECT-STATE.md §0-GG / the CORRECTION block first.
+   **RESUME 2026-07-23 (SV-8183 drift-cells FINISHED + SF-PERM-01 PUSHED): read build/simple-flow/PROJECT-STATE.md §0-FF-CLOSE first.**
    Follow-up (authorized): the 3 drift-blocked Technician cells are now CLEANLY OBSERVED LIVE
    against a verified-clean Technician baseline (role 50bf6a0d re-read = canonical 6 atoms,
    before==after, no drift this window; Rule 26 satisfied). **SF-PERM-02 (C29406)/SF-PERM-10

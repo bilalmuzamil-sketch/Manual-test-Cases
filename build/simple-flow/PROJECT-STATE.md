@@ -31,6 +31,31 @@
 > confirmed gone, no secrets. §0-DD: staging LIVE VIU drove +21 to VIU-Verified across
 > 5 batches; spec `_4` / V2.6 APPLIED + audited clean 2026-07-17, §0-BB.)
 
+> **⚠️ CORRECTION 2026-07-24 — SV-8183 permission report OVER-CLAIMED; 3 QA-found coverage gaps
+> (§0-GG).** Our 2026-07-23 SV-8183 report concluded **11/11 PASS / feature-wide clean**. QA (Ayesha)
+> raised **SV-8515 / SV-8516 / SV-8541**; a **live re-verify on clean template roles (2026-07-24,
+> drift ruled out, Rule 26)** confirmed **all 3 are real coverage gaps**:
+> - **SV-8515** = real **FE-exposure** defect (dev **Ready-to-Fix**): Vendor & Order Mgmt **View-only**
+>   user can multi-select **"Receive Selected"** → editable Bulk-Receive screen; actual receive
+>   **blocked at BE (`accept` → 403)** = misleading dead-end, NOT a data bypass (Ayesha overstated the
+>   bypass). Miss: SF-PERM-03/C29407 (+SF-PERM-05/C29409) never drove the multi-select path.
+> - **SV-8516** = real over-grant, **FE-FIXED** (Time Clock ⋮ = only "Return"), **BE still accepts a
+>   part edit** (`part/change-request` → 200 persisted) = **Rule-24 API flag**. Miss: no per-role part
+>   edit/cancel/return negative existed.
+> - **SV-8541** = real; role without WO Lines: C&E can **resolve cores** (`pre-resolve-cores` → 201,
+>   even Time Clock which holds none of the §9.4 collapsing atoms); **pre-existing** (matches
+>   Production), §9.4-anticipated, correctly **Open for Sasha**. Miss: SF-REV-14/C29399 touches cores
+>   but no per-role permission-negative.
+> **3 corrective cases PROPOSED (not yet authored — need user OK + TestRail auth):** (i) V&O View-only
+> Bulk-Receive "Receive Selected" negative (+update SF-PERM-03/C29407); (ii) Time Clock part
+> edit/cancel/return negative (UI-hidden + Rule-24 API flag); (iii) WOL-C&E-gated core-resolve/return
+> negative (pending Sasha SV-8541). **Deliverables:**
+> `sv8183/SimpleFlow_SV-8183_vs-QA-Issues_Analysis_2026-07-24.md`/`.xlsx`; prior report carries a dated
+> CORRECTION addendum; **lesson folded into `build/CUSTOM-ROLES-PERMISSION-VIU-PROCESS.md` §13a** (drive
+> every action path + alternate entry points per role; probe BE per granular action; never report
+> "all pass" as feature-wide completeness). Evidence: `sv8183/ayesha-issues/reverify-2026-07-24/`;
+> commits b59e8a8 / 7ccb91e / 6dccb54. **NO TestRail writes; tally UNCHANGED = 151/4/21/5/3 = 184.**
+
 ---
 
 ## ⏭️ WHAT'S LEFT TO DO — read this first (as of 2026-07-20)

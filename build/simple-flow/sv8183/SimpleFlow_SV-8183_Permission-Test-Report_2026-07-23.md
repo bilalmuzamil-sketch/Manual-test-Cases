@@ -1,3 +1,11 @@
+> ## ⚠️ CORRECTION 2026-07-24 — this report OVER-CLAIMED completeness (read this first)
+> This report concluded **"11/11 PASS, zero mismatches, controls behave exactly as specified — PASS."** That was **over-claimed**. After publication, QA (Ayesha) raised three issues — **SV-8515, SV-8516, SV-8541** — and a **live re-verification on clean template roles (2026-07-24)** confirmed **all three are real coverage gaps**:
+> - **SV-8515** — real **front-end-exposure** defect (dev Ready-to-Fix): a Vendor & Order Mgmt **View-only** user can multi-select → **"Receive Selected"** and reach the editable Bulk-Receive screen; the actual receive is **blocked at the back end (accept → 403)**, so it is a misleading dead-end screen, **not** a data bypass. Our miss: SF-PERM-03/C29407 (+SF-PERM-05/C29409) never drove the multi-select path.
+> - **SV-8516** — real over-grant, **front-end now FIXED** (Time Clock ⋮ = only "Return"), but the **back end still accepts a part edit** (change-request → 200) = **Rule-24 API-possible flag**. Our miss: no per-role part edit/cancel/return negative existed.
+> - **SV-8541** — real; a role without **WO Lines: Create & Edit** can **resolve cores** (pre-resolve-cores → 201, even Time Clock); **pre-existing** (matches Production), spec-anticipated (§9.4), correctly **Open for Sasha**. Our miss: SF-REV-14/C29399 touches cores but no per-role permission-negative.
+>
+> **The 11 cases still pass for what they tested (the documented §9.2 matrix cells), but the feature-wide "PASS" claim below is CORRECTED to a SCOPED pass** — action-path and back-end-per-action coverage was not exhaustive. Full honest analysis + the 3 proposed corrective cases: **`SimpleFlow_SV-8183_vs-QA-Issues_Analysis_2026-07-24.md`/`.xlsx`** (same folder). — QA, 2026-07-24
+
 # Simple Flow — SV-8183 Permission Test: Management Report
 **Feature:** Simple Flow (Epic SV-7301) — permission / role controls (Story **SV-8183**)  
 **Date tested:** 2026-07-23  ·  **Environment:** app.staging.shopview.com  /  api.staging.shopview.com  (org d55bc308, shared, 10 locations)  ·  **Product Owner:** Milos  
