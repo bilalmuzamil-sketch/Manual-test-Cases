@@ -135,6 +135,35 @@
 >   **TestRail push EXECUTED 2026-07-24 (§0-JJ): SF-PERM-11 = C30646, SF-PERM-12 = C30647,
 >   SF-PERM-03 = C29407 update — all 200 + re-GET MATCH.** Tally UNCHANGED = 152/4/21/5/3/1 = 186.
 
+> **🔁 §0-KK — SV-8183 UNCOVERED-AREAS RE-RUN (rerun2) 2026-07-24 (NO TestRail writes). Commit
+> 7a0cc39; source of truth `sv8183/rerun2-2026-07-24/FINDINGS.md`.** Closed the 5 §0-II open
+> follow-ups so SV-8183 coverage is now genuinely broad: part-item kebab actions; SV-8541
+> return/resolve-core endpoints LOCATED; `/bulk-receive`; Returns / Part Sales / Vendors /
+> Deliveries / Inventory pages; Yes-heavy roles. **BE-enforcement matrix extended to 11 roles ×
+> 7 endpoints** (from rerun1's 6×4).
+> - **RESULT: NO NEW permission issue** — no FE-exposure defect, no true FE-allows+BE-allows gap.
+>   Every negative role is route-blocked from the Parts/PO/bulk-receive/returns surfaces, or (Office)
+>   reaches them read-only with all action controls FE-hidden.
+> - **`accept` / receive is BE-enforced and matches §9.2 EXACTLY** — 400 (allowed) for the 7 "Yes"
+>   roles (Admin/SvcMgr/SrSA/SvcAdv/Foreman/PartsMgr/PartsTech), **403** (blocked) for the 4 "No"
+>   roles (Office/SalesRep/Tech/TimeClock). `inventory/returns/create` also BE-enforced (403 for
+>   SalesRep/Tech/TimeClock).
+> - The 2 API-behaviors are **PASS per the strengthened Rule 24** — rerun2 added the missing FE-blocked
+>   half of the proof: **NEW-1** (`change-item` SFD-gate → Sales Rep/Office) — Office `edit_note`/Receive
+>   FE-HIDDEN, SalesRep route-blocked; **NEW-2** (part add/delete/edit + `pre-resolve-cores` not
+>   BE-enforced) — FE-hidden for negatives. Not bugs.
+> - **Known-3 unchanged:** SV-8515 not reproducible (bulk-receive redirects to PO list; receive BE 403);
+>   SV-8516 part-edit angle persists as a Rule-24 API-flag PASS; SV-8541 `pre-resolve-cores` 400-for-all
+>   recurs (held per user).
+> - **0 role drift** — all 11 == §9.2 before AND after.
+> - **HONESTY / still not driven end-to-end (do NOT claim 100% exhaustive) — 2 residuals only:**
+>   (1) **Service Manager / Senior SA / Foreman** not individually UI-driven (no confirmed real holder;
+>   BE-positive confirmed via matrix superset); (2) the **resolve-cores wizard + return-received-part
+>   flows** not driven end-to-end (per-role BE enforcement IS captured, FE entry points route/modal-gated).
+> - **Corrective cases now IN TestRail (§0-JJ):** SF-PERM-11 = C30646 (VIU-Deviation, SV-8515 FE-exposure);
+>   SF-PERM-12 = C30647 (VIU-Verified, Rule-24 PASS); SF-PERM-03 = C29407 (updated). **Tally UNCHANGED =
+>   186 ACTIVE (152/4/21/5/3/1).**
+
 ---
 
 ## ⏭️ WHAT'S LEFT TO DO — read this first (as of 2026-07-20)
