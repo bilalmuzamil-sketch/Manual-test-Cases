@@ -32,6 +32,15 @@
 >   citation — so 100% of cases are provably authentic; enforces Standing Rule 20):
 >   build/MISSING-TRACEABILITY-PROCESS.md — **apply to any project WHEN THE USER ASKS, and as a
 >   sub-step of any spec-recheck/VIU pass.**
+> - Reusable **Custom-Roles / Permission-VIU** method (run a COMPLETE Custom Roles & Permissions
+>   test for a feature/epic — LIVE, against the CURRENT spec + all Done tickets [newest-wins] — in
+>   4 layers [composition / backend 403-200 / front-end route guards / element controls],
+>   reset-to-template first [persistent re-reset on drift], every verdict observed live with
+>   evidence, then deliver a plain-English 7-tab management report [.md + .xlsx]; composes the
+>   wording-VIU + prod-vs-staging + Atlassian methods; Standing Rules 6/7/8/9/10/11/12/13/14/15/20/
+>   22/23/26): build/CUSTOM-ROLES-PERMISSION-VIU-PROCESS.md — **apply to any project WHEN THE USER
+>   ASKS.** Proven on Simple Flow SV-8183 2026-07-23 (deliverable
+>   build/simple-flow/sv8183/SimpleFlow_SV-8183_Permission-Test-Report_2026-07-23.md/.xlsx).
 > - Reusable Atlassian/Jira/Confluence LIVE-LOGIN + ingest access method (shared infra):
 >   build/ATLASSIAN-JIRA-ACCESS-METHOD.md — **live browser login (headless Chromium via a
 >   fresh MITM bridge → id.atlassian.com email+password → 6-digit EMAIL OTP) is now the
@@ -78,11 +87,21 @@ that project's `PROJECT-STATE.md` as the canonical resume doc. Per **Standing Ru
 11**, whenever a new/updated spec arrives OR a VIU is requested, ALWAYS ASK which
 process(es) to run before proceeding.
 
+**PERMISSION TESTING ROUTES THROUGH THIS SESSION (all projects):** each NEW project
+ships its own Custom-Roles permission ticket (defining what each permission does for that
+feature); that permission testing routes through this session — apply the Custom-Roles /
+Permission-VIU process (build/CUSTOM-ROLES-PERMISSION-VIU-PROCESS.md, proven on Simple
+Flow SV-8183 2026-07-23) to test it LIVE against the current spec + Done tickets and
+deliver the 7-tab management report.
+
 1. **Custom Roles project** — Custom Roles & Permissions (ShopView), Epic
    **SV-7388**, STAGING. **Canonical spec (Confluence):**
    https://shopview.atlassian.net/wiki/spaces/PM/pages/565116952/Custom+Roles+and+Permissions
    (Atlassian-SSO login-walled — reference pointer only; export/paste content to
-   ingest, do NOT fetch). **CANONICAL WORDING+VIU RESUME DOC (read first to resume the
+   ingest, do NOT fetch). **RECURRING: run the complete Custom Roles & Permissions test
+   against the CURRENT spec + ALL Done tickets in epic SV-7388 on a cadence — use
+   build/CUSTOM-ROLES-PERMISSION-VIU-PROCESS.md** (4-layer live method + 7-tab management
+   report; proven on Simple Flow SV-8183 2026-07-23). **CANONICAL WORDING+VIU RESUME DOC (read first to resume the
    wording/VIU effort):** `build/custom-roles-run/WORDING-VIU-STATE-2026-07-13.md` —
    the single authoritative snapshot of the 2026-07-13 build-accurate wording + VIU
    pass (final tally, 38–39 manual/2nd-user residue, 11 dev deviations, deliverables
