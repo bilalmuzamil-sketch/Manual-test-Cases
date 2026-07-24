@@ -10,6 +10,24 @@ from openpyxl.styles import Font, Alignment, PatternFill, Border, Side
 OUT = "/home/user/Manual-test-Cases/build/simple-flow/sv8183/SimpleFlow_SV-8183_Permission-Test-FINAL-Report_2026-07-24.xlsx"
 TL = "https://shopview.testrail.io/index.php?/cases/view/"
 
+# --- Plain "What needs to be done" text (Standing Rule 7: layman, no jargon / no atoms / no HTTP codes / no §-refs) ---
+WND_COL = "What needs to be done (plain)"
+WND_PASS = "No action needed — passed."
+WND_DEV = ("A view-only user can wrongly OPEN the Bulk Receive screen by ticking several orders and clicking "
+           "'Receive Selected' — they should not see that screen at all. The system still blocks the actual "
+           "receiving, so no data is changed. The developer is already fixing this (ticket SV-8515, marked "
+           "'Ready to Fix'). QA action: no fix needed from us now — once the developer marks it fixed, re-test it: "
+           "log in as a view-only user (Office role), open Bulk Receive, tick a few orders, click 'Receive Selected', "
+           "and confirm that screen no longer opens for them.")
+WND_FIXED = ("No action needed — the developer has already fixed the front-end (the extra part-menu options are now "
+             "hidden for this role). The only leftover is that the same change can still be made through the back-end "
+             "interface, which company policy accepts. If you want, re-test after the next release to confirm the part "
+             "menu still shows only 'Return'.")
+WND_HELD = ("No fix needed from QA now — this behaves the same on the live Production site, so it is not a new Simple "
+            "Flow break. It is waiting for the product team (Sasha) to decide the intended rule; once they do, re-test "
+            "whether a user without the parts-editing permission can return a received special part and resolve cores, "
+            "as ruled.")
+
 wb = openpyxl.Workbook()
 
 HDR = PatternFill("solid", fgColor="1F4E78")
@@ -133,7 +151,10 @@ P = [
  (17, "Go to Invoice / Create Invoice at the end", "Route to invoicing", "invoicingPaymentsCreateAndEdit + seeFinancialData", "§9.1 r17", "Invoicing & Payments C&E holders", "Composition-verified vs §9.2.", "PASS", "§9.2 composition", f"SF-PERM-10 = C29414 · {TL}29414"),
  (18, "Part-menu actions — edit / cancel / change vendor of a WO part", "Manage an existing WO part from the kebab menu", "workOrderLinesCreateAndEdit", "§9.2 Time Clock = No (all)", "Not: Time Clock (no-access role)", "FE: Time Clock part kebab shows only Return — Edit/Cancel/Change Vendor hidden (SV-8516 FE fix). BE part/change-request & parts/delete=400 all roles (atom-collapse) -> same edit possible via API. FE-block + BE-allow = PASS with Rule-24 flag.", "PASS (Rule 24; = SV-8516 FE-fixed)", "sv8516-tc-menus.json; sv8516-tc-wo-lines.png", f"SF-PERM-12 = C30647 · {TL}30647"),
 ]
-end = put_table(ws, 3, headers, P, widths=[4, 30, 30, 34, 22, 30, 45, 22, 30, 46], verdict_col=8)
+# Insert the plain "What needs to be done" column immediately right of the Result column (index 7 = Result)
+headers = headers[:8] + [WND_COL] + headers[8:]
+P = [row[:8] + ((WND_DEV if "DEVIATION" in str(row[7]).upper() else WND_PASS),) + row[8:] for row in P]
+end = put_table(ws, 3, headers, P, widths=[4, 30, 30, 34, 22, 30, 45, 22, 55, 30, 46], verdict_col=8)
 ws.cell(row=end+1, column=2, value="Tally: 17 of 18 rows PASS; 1 DEVIATION (row 11, SV-8515 / SF-PERM-11).").font = Font(bold=True)
 
 # ---------------- Tab 4: Role x Permission Matrix ----------------
@@ -188,7 +209,10 @@ T = [
  ("SF-PERM-12","C30647",f"{TL}30647","A no-access role (Time Clock) cannot edit/cancel/change-vendor a WO part from the part menu (FE-fixed; same via API = Rule-24 PASS)","VIU-Verified","sv8516-tc-menus.json; sv8516-tc-wo-lines.png"),
  ("SF-REV-09","C29394",f"{TL}29394","Mark Reviewed gated by Review Work Orders and disabled for a role without it","VIU-Verified","markrev-*.png"),
 ]
-end = put_table(ws, 3, headers, T, widths=[13,10,52,52,16,40], verdict_col=5)
+# Insert the plain "What needs to be done" column immediately right of the Verdict column (index 4 = Verdict)
+headers = headers[:5] + [WND_COL] + headers[5:]
+T = [row[:5] + ((WND_DEV if "Deviation" in str(row[4]) else WND_PASS),) + row[5:] for row in T]
+end = put_table(ws, 3, headers, T, widths=[13,10,52,52,16,55,40], verdict_col=5)
 ws.cell(row=end+1, column=4, value="Case tally: 13 cases — 12 VIU-Verified, 1 VIU-Deviation (SF-PERM-11).").font = Font(bold=True)
 
 # ---------------- Tab 6: QA Issues Reconciliation ----------------
@@ -200,7 +224,11 @@ Q = [
  ("SV-8516 — Time Clock could edit/cancel/return parts + change vendor","Done / Staging_Verified","Time Clock user could edit part details, cancel a part, cancel an order, return a part, change vendor — should be no-access.","Current build: Time Clock part kebab shows ONLY Return — Edit/Cancel/Change Vendor hidden (over-grant FE-fixed). BE part/change-request & parts/delete=400 all roles (atom-collapse) -> same edit possible via direct API.","FRONT-END FIXED. Residual 'same action via API' = PASS per Standing Rule 24 (FE blocks + BE/API allows = PASS; accepted ShopView model).","§9.2 Time Clock='No' every column; Sasha: 'Users require WOL -> Create & Edit to manage part requests (make/edit/cancel)'. FE now enforces; BE atom-collapse (§9.4) spec-anticipated.","SF-PERM-12 = C30647 (VIU-Verified, 'doable via API' flag in metadata)","YES — real over-grant (now fixed)"),
  ("SV-8541 — user without WO Line: C&E can return a received special part + resolve cores","Open (Sasha Grosman)","A user lacking WO Line: Create & Edit can return an already-received special-order part and resolve cores — identical on Staging and Production.","Resolve-cores wizard FE-gated to completion-capable roles (Foreman operates it; Time Clock has no Complete button -> unreachable). BE pre-resolve-cores=400 all roles (business-state, not 403) — not BE-permission-enforced. Return: inventory/returns/create=403 for SalesRep/Tech/TimeClock, reached-400 for Yes roles+Office; Returns page Parts-route-gated for negatives.","PRE-EXISTING, SPEC-ANTICIPATED (§9.4 atom-collapse SV-7864), NOT a Simple-Flow regression — same on Production. Under Rule 24 the FE-gated-but-BE-permissive resolve-core is a PASS. HELD pending Sasha's product ruling; not re-filed, not a new bug.","§9.1 'Resolve cores -> WO Lines: Create & Edit'; §9.4 'woOrderParts/workOrderLinesCreateAndEdit/woFullViewMode/woTechViewMode/workOrdersCreateAndEdit all resolve to ROLE_WORK_ORDER::VIEW+CREATE_AND_EDIT ... FE distinctions are conveniences, not BE-enforceable (SV-7864)'.","Held (SF-REV-14/C29399 & SF-PERM-09/C29413 adjacent); no new case authored pending ruling","YES — real, correctly flagged as clarification"),
 ]
-end = put_table(ws, 3, headers, Q, widths=[30,16,42,48,44,44,30,26])
+# Insert the plain "What needs to be done" column immediately right of the status/verdict column (index 4)
+Q_WND = [WND_DEV, WND_FIXED, WND_HELD]  # SV-8515 (deviation), SV-8516 (FE-fixed), SV-8541 (held)
+headers = headers[:5] + [WND_COL] + headers[5:]
+Q = [row[:5] + (Q_WND[i],) + row[5:] for i, row in enumerate(Q)]
+end = put_table(ws, 3, headers, Q, widths=[30,16,42,48,44,55,44,30,26], verdict_col=5)
 ws.cell(row=end+1, column=3, value="Was QA right overall? YES. All three were real gaps our first (2026-07-23) pass missed — it over-claimed '11/11 pass' as feature-wide completeness without driving every entry point, probing the backend per granular action, or reconciling against these tickets. This FINAL report corrects that.").font = Font(bold=True, color="C00000")
 ws.cell(row=end+1, column=3).alignment = WRAP
 ws.merge_cells(start_row=end+1, start_column=3, end_row=end+1, end_column=8)
