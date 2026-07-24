@@ -14,6 +14,8 @@ from openpyxl import Workbook
 from openpyxl.styles import Font, Alignment, PatternFill
 from openpyxl.utils import get_column_letter
 
+from whats_needed import whats_needed
+
 HERE = os.path.dirname(os.path.abspath(__file__))
 FRESH = '2026-07-10'
 OUT_X = os.path.join(HERE, f'FeesDiscounts_FreshVIU_{FRESH}.xlsx')
@@ -142,14 +144,15 @@ DEVIATIONS_PLAIN = [
 ]
 
 HEAD = ['FD ID', 'TestRail Case ID', 'TestRail Link', 'Area', 'Title', 'Priority',
-        'Fresh Status (2026-07-10)', 'Fresh Evidence / Note']
+        'Fresh Status (2026-07-10)', 'What needs to be done (plain)', 'Fresh Evidence / Note']
 
 def row_for(c):
     tid = idmap.get(c['id'], '')
     mapped = tid.isdigit()
     return [c['id'], f'C{tid}' if mapped else '(pending-create)',
             TR_URL.format(tid) if mapped else '', c.get('area', ''), c['title'],
-            c.get('priority', ''), c['viu_status'], fresh_note(c)]
+            c.get('priority', ''), c['viu_status'],
+            whats_needed(c['id'], c.get('viu_status', '')), fresh_note(c)]
 
 wb = Workbook()
 bold = Font(bold=True); wrap = Alignment(wrap_text=True, vertical='top')
@@ -189,7 +192,7 @@ for s, label in STATUSES:
         t.append(row_for(c))
         link = t.cell(row=t.max_row, column=3)
         if link.value: link.hyperlink = link.value; link.font = Font(color='0563C1', underline='single')
-    widths = [14, 14, 44, 30, 60, 10, 22, 90]
+    widths = [14, 14, 44, 30, 60, 10, 22, 60, 90]
     for col, w in enumerate(widths, 1): t.column_dimensions[get_column_letter(col)].width = w
     for r in t.iter_rows(min_row=2):
         for c in r: c.alignment = wrap

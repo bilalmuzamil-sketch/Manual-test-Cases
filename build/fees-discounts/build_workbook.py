@@ -14,6 +14,8 @@ from openpyxl import Workbook
 from openpyxl.styles import Alignment, Font, PatternFill, Border, Side
 from openpyxl.utils import get_column_letter
 
+from whats_needed import whats_needed
+
 BASE = os.path.dirname(os.path.abspath(__file__))
 CASES_DIR = os.path.join(BASE, "cases")
 XLSX = os.path.join(BASE, "FeesDiscounts_V1_TestCases.xlsx")
@@ -266,7 +268,8 @@ COLS = [
     ("Area", 26), ("Story Ref", 16), ("Title", 50),
     ("Priority", 12), ("Type", 12), ("Permissions Required", 34),
     ("Preconditions", 52), ("Steps To Reproduce", 56), ("Expected Result", 56),
-    ("Design Ref", 30), ("VIU Status", 20), ("Notes", 46),
+    ("Design Ref", 30), ("VIU Status", 20),
+    ("What needs to be done (plain)", 60), ("Notes", 46),
 ]
 headers = [c[0] for c in COLS]
 PRIORITY_COL = headers.index("Priority") + 1  # 1-based col of the Priority cell
@@ -279,7 +282,8 @@ for i, c in enumerate(cases):
         c["id"], tr_id(c["id"]), tr_link(c["id"]),
         c["area"], c["story_ref"], c["title"], c["priority"], c["type"],
         perms_str(c["permissions_required"]), n_join(c["preconditions"]), n_join(c["steps"]),
-        n_join(c["expected"]), c["design_ref"], c["viu_status"], c.get("notes", ""),
+        n_join(c["expected"]), c["design_ref"], c["viu_status"],
+        whats_needed(c["id"], c.get("viu_status", "")), c.get("notes", ""),
     ]
     tc.append(row)
     csv_rows.append(row)

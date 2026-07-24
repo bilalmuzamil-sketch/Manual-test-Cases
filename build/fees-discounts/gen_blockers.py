@@ -24,6 +24,7 @@ and bugs-log.md):
 """
 import json, os, re, csv
 from collections import Counter
+from whats_needed import whats_needed
 
 BASE = os.path.dirname(os.path.abspath(__file__))          # build/fees-discounts
 CASES_DIR = os.path.join(BASE, "cases")
@@ -284,17 +285,22 @@ def main():
         cls = classify(c)
         rows.append([
             c["id"], c["_group"], section_for(c), c["title"].strip(),
-            norm_status(c.get("viu_status", "")), cls["state"], CAT_DISPLAY[cls["category"]],
+            norm_status(c.get("viu_status", "")),
+            whats_needed(c["id"], c.get("viu_status", "")),
+            cls["state"], CAT_DISPLAY[cls["category"]],
             cls["owner"], cls["needs"], cls["related"], cls["sub"],
             tr_id(c["id"]) or "pending-create", tr_link(c["id"]),
         ])
 
-    disp_counts = Counter(r[6] for r in rows)
+    # Column indices after inserting "What needs to be done (plain)" at index 5:
+    # 0 id, 1 group, 2 area, 3 title, 4 status, 5 plain-what-to-do, 6 state,
+    # 7 category, 8 owner, 9 needs, 10 related, 11 sub, 12 TR id, 13 TR link.
+    disp_counts = Counter(r[7] for r in rows)
     group_counts = Counter(r[1] for r in rows)
     # Deviation sub-buckets.
-    dev_sub = Counter(r[10] for r in rows if r[6] == "BLOCKED — DEVIATION")
-    notbuilt_sub = Counter(r[10] for r in rows if r[6] == "BLOCKED — DEV NOT BUILT")
-    env_sub = Counter(r[10] for r in rows if r[6] == "BLOCKED — ENV")
+    dev_sub = Counter(r[11] for r in rows if r[7] == "BLOCKED — DEVIATION")
+    notbuilt_sub = Counter(r[11] for r in rows if r[7] == "BLOCKED — DEV NOT BUILT")
+    env_sub = Counter(r[11] for r in rows if r[7] == "BLOCKED — ENV")
 
     # ---- What to send next ----
     n_pend = disp_counts["BLOCKED — VIU PENDING (QA)"]
@@ -328,6 +334,7 @@ def main():
     ]
 
     HEADER = ["Case ID", "Group", "Area (TestRail section)", "Title", "Current VIU status",
+              "What needs to be done (plain)",
               "State", "Blocker category", "Who unblocks", "What's needed to unblock",
               "Related story/req", "Sub-bucket", "TestRail Case ID", "TestRail Link"]
 
@@ -352,7 +359,8 @@ def main():
         cell.alignment = Alignment(vertical="center", horizontal="left")
 
     widths = {"Case ID": 14, "Group": 12, "Area (TestRail section)": 34, "Title": 55,
-              "Current VIU status": 16, "State": 10, "Blocker category": 24,
+              "Current VIU status": 16, "What needs to be done (plain)": 60,
+              "State": 10, "Blocker category": 24,
               "Who unblocks": 28, "What's needed to unblock": 62,
               "Related story/req": 30, "Sub-bucket": 18,
               "TestRail Case ID": 16, "TestRail Link": 52}
@@ -361,7 +369,7 @@ def main():
 
     wrap = Alignment(wrap_text=True, vertical="top")
     for ridx in range(2, len(rows) + 2):
-        cat = ws.cell(row=ridx, column=7).value
+        cat = ws.cell(row=ridx, column=8).value  # "Blocker category" is now column 8
         fill = CAT_FILL.get(cat)
         for cidx in range(1, len(HEADER) + 1):
             cell = ws.cell(row=ridx, column=cidx)
@@ -495,14 +503,15 @@ def main():
     L.append("")
     L.append("## Full per-case tracker")
     L.append("")
-    L.append("| Case ID | Group | Area | Title | VIU status | State | Blocker category | "
+    L.append("| Case ID | Group | Area | Title | VIU status | What needs to be done (plain) | "
+             "State | Blocker category | "
              "Who unblocks | What's needed | Related | Sub-bucket | TestRail Case ID | TestRail Link |")
-    L.append("|---|---|---|---|---|---|---|---|---|---|---|---|---|")
+    L.append("|---|---|---|---|---|---|---|---|---|---|---|---|---|---|")
     for r in rows:
-        trlink = "[C{0}]({1})".format(r[11], r[12]) if r[12] else r[11]
-        L.append("| {} | {} | {} | {} | {} | {} | {} | {} | {} | {} | {} | {} | {} |".format(
-            r[0], md(r[1]), md(r[2]), md(r[3]), md(r[4]), r[5], r[6],
-            md(r[7]), md(r[8]), md(r[9]), md(r[10]), r[11], trlink))
+        trlink = "[C{0}]({1})".format(r[12], r[13]) if r[13] else r[12]
+        L.append("| {} | {} | {} | {} | {} | {} | {} | {} | {} | {} | {} | {} | {} | {} |".format(
+            r[0], md(r[1]), md(r[2]), md(r[3]), md(r[4]), md(r[5]), r[6], r[7],
+            md(r[8]), md(r[9]), md(r[10]), md(r[11]), r[12], trlink))
     L.append("")
     open(OUT_MD, "w").write("\n".join(L))
     print("Wrote", OUT_MD)
