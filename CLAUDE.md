@@ -323,7 +323,16 @@ deliver the 7-tab management report.
    unexplained → need live re-VIU; SF-VPART-01/02 likely stale-7/7-baseline tied to
    known BUG-9) + ingest Jira **SV-8303** (Ayesha's SF-SET-10 note flags a coming
    spec change).
-   **RESUME 2026-07-24 (LATEST — SV-8183 EXHAUSTIVE LIVE RE-RUN, §13a method; NO TestRail writes;
+   **RESUME 2026-07-24 (LATEST — CORRECTIVE PUSH EXECUTED + RULE 24 STRENGTHENED; read
+   build/simple-flow/PROJECT-STATE.md §0-JJ):** the staged SV-8183 corrective push is now LIVE —
+   **SF-PERM-11 = C30646 (VIU-Deviation, SV-8515 FE-exposure) + SF-PERM-12 = C30647 (VIU-Verified,
+   PASS per Rule 24) add_case + SF-PERM-03 = C29407 update_case, all HTTP 200 + re-GET MATCH; run
+   325 untouched.** id-map 186/186 (0 blanks); deliverables regenerated over 186. **Standing Rule 24
+   STRENGTHENED (user ruling 2026-07-24): FE-blocks + BE/API-allows = a PASSED test case (anywhere,
+   always); INVERSE (FE exposes what BE blocks) = FE-exposure DEFECT.** §0-II NEW-1/NEW-2 → PASS per
+   Rule 24 (no dev ticket); existing 3 Deviations scanned — none match FE-block/BE-allow, none
+   flipped. Tally UNCHANGED 152/4/21/5/3/1 = 186.
+   **PRIOR RESUME 2026-07-24 (SV-8183 EXHAUSTIVE LIVE RE-RUN, §13a method; NO TestRail writes;
    read build/simple-flow/PROJECT-STATE.md §0-II + source `sv8183/rerun-2026-07-24/FINDINGS.md`
    commit 1a263c8):** all 11 roles reset-verified == §9.2, 0 drift; **NO new permission BUG beyond
    the known 3.** Two NEW Rule-24 flags (FE-hidden but API-possible; accepted-for-now per user
@@ -1072,21 +1081,27 @@ deliver the 7-tab management report.
     process and almost all processes you are supposed to check the specs from that confluence link
     as well; ask me for every process if I want you to go through that confluence specs or not when
     you are not sure." Ties to Standing Rules 10/11/12/13/15/21/22 and build/PROCESS-CATALOG.md.
-24. **Front-end restriction but API-possible is NOT a bug (for now) — just FLAG it (all
-    projects).** When a control/action is restricted in the UI (hidden/disabled by a
-    front-end permission or FE gate) BUT the same action still succeeds through the API
-    (e.g. a direct `POST` returns 201/200 for a user who lacks the permission in the UI),
-    do NOT classify it as a bug/defect. Treat the UI behaviour as the tester-facing
-    result, and add a plain flag note: **"It can be done through the API though."** This
-    matches the ShopView enforcement model (granular permissions are largely front-end
-    display gates the backend does not independently enforce). Record it as a flagged
-    observation in the QA/findings layer (not the tester-facing steps), never as a
-    Deviation/bug, unless/until the user or PO rules that backend enforcement is required.
-    Rationale, 2026-07-23: FD-WO-013 (C28436)/FD-PERM-002 (C28586) — a Sales-Rep-role user
-    (no Work Orders: Create & Edit in the UI) still added a whole-WO fee via the API (201);
-    per this rule that is FLAGGED ("doable via API"), not a bug. Ties to Standing Rules
-    12/13 and the Custom Roles enforcement-model finding (BE enforces resource View/Edit;
-    granular perms are FE gates).
+24. **Front-end blocks + backend/API allows = a PASSED test case (all projects).** When a
+    control/action is restricted in the UI (hidden/disabled by a front-end permission or FE
+    gate) for a role BUT the same action still succeeds through the API (e.g. a direct `POST`
+    returns 201/200 for a user who lacks the permission in the UI), the test case is a **PASS**
+    — do NOT classify it as a bug/defect. **User ruling 2026-07-24 (anywhere, always): "if an
+    action is blocked from the front-end and allowed from the backend/API, consider that a
+    PASSED test case."** The front-end gate IS the tester-facing behaviour and is the pass
+    criterion; the front-end-only enforcement (backend does not independently enforce) is
+    ACCEPTED by product policy. Treat the UI behaviour as the tester-facing result (viu_status
+    = Verified / PASS), and add a plain flag note in the QA/findings metadata layer (not the
+    tester-facing steps): **"It can be done through the API though."** This matches the ShopView
+    enforcement model (granular permissions are largely front-end display gates the backend does
+    not independently enforce). **INVERSE IS NOT A PASS:** if the front-end EXPOSES/ALLOWS
+    something it should NOT for a role while the backend blocks it (FE-exposure), that is an
+    FE-exposure DEFECT, not covered by this ruling (e.g. SV-8515 / SF-PERM-11 — a View-only user
+    reaches an editable Bulk-Receive screen the FE should hide, even though the BE `accept`→403
+    blocks the actual write; keep it a Deviation). Rationale, 2026-07-23: FD-WO-013 (C28436)/
+    FD-PERM-002 (C28586) — a Sales-Rep-role user (no Work Orders: Create & Edit in the UI) still
+    added a whole-WO fee via the API (201); per this rule that is a PASS with the "doable via
+    API" flag, not a bug. Ties to Standing Rules 12/13 and the Custom Roles enforcement-model
+    finding (BE enforces resource View/Edit; granular perms are FE gates).
 25. **Every DEVIATION call must cite the spec/ticket/story reference + the VERBATIM wording
     it deviates from (all projects).** Whenever I say something is a deviation (or a
     build-vs-case mismatch, or "the case expects X but the build does Y"), I MUST quote the

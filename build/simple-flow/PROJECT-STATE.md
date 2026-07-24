@@ -56,6 +56,25 @@
 > "all pass" as feature-wide completeness). Evidence: `sv8183/ayesha-issues/reverify-2026-07-24/`;
 > commits b59e8a8 / 7ccb91e / 6dccb54. **NO TestRail writes; tally UNCHANGED = 151/4/21/5/3 = 184.**
 
+> **✅ §0-JJ — CORRECTIVE TESTRAIL PUSH EXECUTED + RULE 24 STRENGTHENED 2026-07-24 (user-authorized).**
+> The staged corrective push (§0-HH manifest) is now LIVE in TestRail: **2 add_case + 1 update_case,
+> all HTTP 200 + re-GET MATCH; run 325 untouched; 0 add_section / 0 delete_case.**
+> - **SF-PERM-11 = C30646** ([view](https://shopview.testrail.io/index.php?/cases/view/30646)) — add into section 4084 "Permissions"; viu_status **VIU-Deviation** (FE-exposure defect, SV-8515 — INVERSE of Rule 24, stays a Deviation).
+> - **SF-PERM-12 = C30647** ([view](https://shopview.testrail.io/index.php?/cases/view/30647)) — add into "Permissions"; viu_status **VIU-Verified — PASS per Rule 24** (FE gating is the pass criterion; API-possible accepted, not a defect).
+> - **SF-PERM-03 = C29407** ([view](https://shopview.testrail.io/index.php?/cases/view/29407)) — update_case (steps + expected only; both Bulk-Receive entry points now driven; refs/title/status unchanged).
+> id-map SF-PERM-11/12 populated (30646/30647, 0 blanks). Deliverables regenerated over **186**
+> (import 186 rows, header byte-identical, 0 VIU/flag words, no dup titles, no C-id column;
+> id-map C-ids preserved). Executor `sv8183/exec_corrective_2026-07-24.py`; audit
+> `sv8183/testrail-execution-log-corrective-2026-07-24.md`; manifest flipped EXECUTED.
+> **STANDING RULE 24 STRENGTHENED (CLAUDE.md, user ruling 2026-07-24):** FE-blocks + BE/API-allows
+> = a **PASSED** test case (anywhere, always); the INVERSE (FE exposes/allows what BE blocks) is an
+> FE-exposure DEFECT (e.g. SV-8515/SF-PERM-11). §0-II NEW-1/NEW-2 reclassified from "Rule-24 flag /
+> awaiting dev-raise" to **PASS per Rule 24** (no dev ticket; NEW-1 wrong-atom spec note kept
+> informational only). Existing 3 Simple Flow Deviations scanned — **none** match the FE-block/
+> BE-allow pattern (SF-SET-03 = missing UI toggle; SF-RCV-05/07 = vendor-missing group position),
+> so none flipped. **Tally UNCHANGED = 186 ACTIVE: 152 VIU-Verified / 4 VIU-Pending / 21 Blocked-Env /
+> 5 VIU-observed-awaiting-Milos / 3 Deviation / 1 VIU-Deviation.**
+
 > **✅ CORRECTIVE CASES AUTHORED 2026-07-24 (§0-HH — user-approved; NO TestRail writes, staged only).**
 > The 2 user-approved corrective cases are now authored locally + in all deliverables (SV-8541 **HELD**,
 > not authored per user ruling):
@@ -88,16 +107,18 @@
 > real endpoints with an empty body → **403 = enforced, 400 (missing-param) = permission PASSED /
 > NOT enforced**, no data mutated). **All 11 system roles read live = §9.2 matrix exactly, 0 drift
 > (before==after).**
-> - **RESULT: NO new permission BUG beyond the known 3.** Two **NEW Rule-24 flags** (FE-hidden but
->   API-possible; **accepted-for-now per user ruling 2026-07-24, NOT bugs**):
->   - **NEW-1** — the edit-part / change-vendor BE action (`change-item`) is gated by
+> - **RESULT: NO new permission BUG beyond the known 3.** Two **NEW Rule-24 PASSES** (FE-hidden but
+>   API-possible; **per the strengthened Standing Rule 24, user ruling 2026-07-24: FE-blocks +
+>   BE/API-allows = a PASSED test case, NOT bugs, no dev ticket**):
+>   - **NEW-1 — PASS (Rule 24)** — the edit-part / change-vendor BE action (`change-item`) is gated by
 >     **`seeFinancialData`, NOT `vendorOrderManagementCreateAndEdit`** as §9.2 requires → **Sales
 >     Representative + Office User** (both hold SFD, lack VOM Create&Edit) can change vendor via API
->     (400 = permission passed); a **spec-conformance deviation (wrong atom)**, not tied to any known
->     ticket, **AWAITING user decision** whether to raise to dev.
->   - **NEW-2** — part add/delete (`part/make-request`, `parts/delete`) **not BE-enforced for ANY
->     role** (documented **SV-7864** atom-collapse); underlies the still-reproducible "cancel a part"
->     angle of SV-8516.
+>     (400 = permission passed). The FE gate is the tester-facing pass criterion, so this is a PASS.
+>     The **spec-conformance note (wrong atom vs §9.2)** is retained as INFORMATIONAL only (not a
+>     defect now, no dev-raise required per the 2026-07-24 ruling).
+>   - **NEW-2 — PASS (Rule 24)** — part add/delete (`part/make-request`, `parts/delete`) **not
+>     BE-enforced for ANY role** (documented **SV-7864** atom-collapse); the FE gating is the pass
+>     criterion. This is the "cancel a part" API angle behind SV-8516 — accepted, PASS, not a bug.
 > - **Known-3 current-build status:** **SV-8515 NOT reproducible now** (Receive-Selected FE path gone
 >   + `accept` BE → 403); **SV-8516 mostly fixed** (`change-item` → 403 for Time Clock) with the part
 >   add/cancel angle persisting as an API flag; **SV-8541 not re-driven** (return/resolve-core
@@ -111,7 +132,8 @@
 >   Foreman, Parts Manager) covered only by atom-derivation + Admin baseline, not individually
 >   UI-driven. Do NOT claim exhaustive.
 > - Corrective cases **SF-PERM-11 / SF-PERM-12 + SF-PERM-03 tighten** are authored (commit 53d89a5);
->   **TestRail push STAGED, NOT executed.** Tally UNCHANGED = 152/4/21/5/3/1 = 186.
+>   **TestRail push EXECUTED 2026-07-24 (§0-JJ): SF-PERM-11 = C30646, SF-PERM-12 = C30647,
+>   SF-PERM-03 = C29407 update — all 200 + re-GET MATCH.** Tally UNCHANGED = 152/4/21/5/3/1 = 186.
 
 ---
 

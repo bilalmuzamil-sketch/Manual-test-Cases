@@ -1,6 +1,9 @@
 # SV-8183 Corrective Cases — TestRail Sync Manifest (2026-07-24)
 
-**STATUS: NOT EXECUTED — awaiting user authorization.**
+**STATUS: EXECUTED 2026-07-24 — user-authorized.** SF-PERM-11 = **C30646**, SF-PERM-12 =
+**C30647** (both add_case into section 4084 "Permissions"), SF-PERM-03 = **C29407** update_case;
+all HTTP 200 + re-GET MATCH; run 325 untouched. Per-case audit:
+`testrail-execution-log-corrective-2026-07-24.md`.
 
 Project: Simple Flow (Epic SV-7301) · PO Milos · TestRail project 1 / suite 1 "Master".
 Purpose: push the 2 corrective permission cases (SV-8515 / SV-8516) and the tightened
