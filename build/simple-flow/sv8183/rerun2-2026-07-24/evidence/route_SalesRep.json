@@ -1,0 +1,78 @@
+{
+ "role": "SalesRep",
+ "perms": 8,
+ "routes": {
+  "/bulk-receive": {
+   "url": "/workorders",
+   "redir": true,
+   "is404": false,
+   "verdict": "BLOCKED",
+   "actions": [
+    "Work Orders"
+   ]
+  },
+  "/parts/orders": {
+   "url": "/workorders",
+   "redir": true,
+   "is404": false,
+   "verdict": "BLOCKED",
+   "actions": [
+    "Work Orders"
+   ]
+  },
+  "/parts/part-sales": {
+   "url": "/parts/part-sales",
+   "redir": false,
+   "is404": false,
+   "verdict": "REACHED",
+   "actions": [
+    "Work Orders"
+   ]
+  },
+  "/parts/inventory": {
+   "url": "/workorders",
+   "redir": true,
+   "is404": false,
+   "verdict": "BLOCKED",
+   "actions": [
+    "Work Orders"
+   ]
+  },
+  "/parts/parts-catalogue": {
+   "url": "/workorders",
+   "redir": true,
+   "is404": false,
+   "verdict": "BLOCKED",
+   "actions": [
+    "Work Orders"
+   ]
+  },
+  "/parts/returns": {
+   "url": "/workorders",
+   "redir": true,
+   "is404": false,
+   "verdict": "BLOCKED",
+   "actions": [
+    "Work Orders"
+   ]
+  },
+  "/parts/deliveries": {
+   "url": "/workorders",
+   "redir": true,
+   "is404": false,
+   "verdict": "BLOCKED",
+   "actions": [
+    "Work Orders"
+   ]
+  },
+  "/parts/vendors": {
+   "url": "/workorders",
+   "redir": true,
+   "is404": false,
+   "verdict": "BLOCKED",
+   "actions": [
+    "Work Orders"
+   ]
+  }
+ }
+}

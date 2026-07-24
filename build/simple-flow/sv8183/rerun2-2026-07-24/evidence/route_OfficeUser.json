@@ -1,0 +1,78 @@
+{
+ "role": "OfficeUser",
+ "perms": 25,
+ "routes": {
+  "/bulk-receive": {
+   "url": "/parts/orders",
+   "redir": true,
+   "is404": false,
+   "verdict": "BLOCKED",
+   "actions": [
+    "Work Orders"
+   ]
+  },
+  "/parts/orders": {
+   "url": "/parts/orders",
+   "redir": false,
+   "is404": false,
+   "verdict": "REACHED",
+   "actions": [
+    "Work Orders"
+   ]
+  },
+  "/parts/part-sales": {
+   "url": "/parts/part-sales",
+   "redir": false,
+   "is404": false,
+   "verdict": "REACHED",
+   "actions": [
+    "Work Orders"
+   ]
+  },
+  "/parts/inventory": {
+   "url": "/parts/inventory",
+   "redir": false,
+   "is404": false,
+   "verdict": "REACHED",
+   "actions": [
+    "Work Orders"
+   ]
+  },
+  "/parts/parts-catalogue": {
+   "url": "/parts/parts-catalogue",
+   "redir": false,
+   "is404": false,
+   "verdict": "REACHED",
+   "actions": [
+    "Work Orders"
+   ]
+  },
+  "/parts/returns": {
+   "url": "/parts/returns",
+   "redir": false,
+   "is404": false,
+   "verdict": "REACHED",
+   "actions": [
+    "Work Orders"
+   ]
+  },
+  "/parts/deliveries": {
+   "url": "/parts/deliveries",
+   "redir": false,
+   "is404": false,
+   "verdict": "REACHED",
+   "actions": [
+    "Work Orders"
+   ]
+  },
+  "/parts/vendors": {
+   "url": "/parts/vendors",
+   "redir": false,
+   "is404": false,
+   "verdict": "REACHED",
+   "actions": [
+    "Work Orders"
+   ]
+  }
+ }
+}

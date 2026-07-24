@@ -1,0 +1,86 @@
+{
+ "role": "PartsManager",
+ "perms": 31,
+ "routes": {
+  "/bulk-receive": {
+   "url": "/parts/orders",
+   "redir": true,
+   "is404": false,
+   "verdict": "BLOCKED",
+   "actions": [
+    "Work Orders",
+    "New PO",
+    "Receive"
+   ]
+  },
+  "/parts/orders": {
+   "url": "/parts/orders",
+   "redir": false,
+   "is404": false,
+   "verdict": "REACHED",
+   "actions": [
+    "Work Orders",
+    "New PO",
+    "Receive"
+   ]
+  },
+  "/parts/part-sales": {
+   "url": "/parts/part-sales",
+   "redir": false,
+   "is404": false,
+   "verdict": "REACHED",
+   "actions": [
+    "Work Orders",
+    "New Part Sale"
+   ]
+  },
+  "/parts/inventory": {
+   "url": "/parts/inventory",
+   "redir": false,
+   "is404": false,
+   "verdict": "REACHED",
+   "actions": [
+    "Work Orders",
+    "New Inventory Part"
+   ]
+  },
+  "/parts/parts-catalogue": {
+   "url": "/parts/parts-catalogue",
+   "redir": false,
+   "is404": false,
+   "verdict": "REACHED",
+   "actions": [
+    "Work Orders"
+   ]
+  },
+  "/parts/returns": {
+   "url": "/parts/returns",
+   "redir": false,
+   "is404": false,
+   "verdict": "REACHED",
+   "actions": [
+    "Work Orders",
+    "Create Return"
+   ]
+  },
+  "/parts/deliveries": {
+   "url": "/parts/deliveries",
+   "redir": false,
+   "is404": false,
+   "verdict": "REACHED",
+   "actions": [
+    "Work Orders"
+   ]
+  },
+  "/parts/vendors": {
+   "url": "/parts/vendors",
+   "redir": false,
+   "is404": false,
+   "verdict": "REACHED",
+   "actions": [
+    "Work Orders",
+    "New Vendor"
+   ]
+  }
+ }
+}
