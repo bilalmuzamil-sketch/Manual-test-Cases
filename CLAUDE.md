@@ -1114,10 +1114,18 @@ deliver the 7-tab management report.
     PASSED test case."** The front-end gate IS the tester-facing behaviour and is the pass
     criterion; the front-end-only enforcement (backend does not independently enforce) is
     ACCEPTED by product policy. Treat the UI behaviour as the tester-facing result (viu_status
-    = Verified / PASS), and add a plain flag note in the QA/findings metadata layer (not the
-    tester-facing steps): **"It can be done through the API though."** This matches the ShopView
-    enforcement model (granular permissions are largely front-end display gates the backend does
-    not independently enforce). **INVERSE IS NOT A PASS:** if the front-end EXPOSES/ALLOWS
+    = Verified / PASS). **Tester-facing line required (going forward + retroactively where such
+    cases exist):** Any test case where an action is blocked/hidden in the UI for a role but still
+    succeeds via the back-end/API MUST carry a PLAIN, tester-facing note line so the manual tester
+    knows it is expected and passes — worded simply (Rule 7), e.g.: "Note for the tester: this
+    action is only hidden on the screen. If you find it can still be done another way (through the
+    back-end/API), that is expected — mark this test PASSED and do not raise it as a bug." This
+    applies to all projects and all future authoring; existing FE-block/BE-allow cases should get
+    this line added when next touched. (User ruling 2026-07-24.) This SUPERSEDES the earlier
+    "metadata-layer only" phrasing: the plain tester-facing line is now REQUIRED in the case; the
+    technical detail (which exact API/endpoint) may still ALSO live in the QA/findings metadata
+    layer. This matches the ShopView enforcement model (granular permissions are largely front-end
+    display gates the backend does not independently enforce). **INVERSE IS NOT A PASS:** if the front-end EXPOSES/ALLOWS
     something it should NOT for a role while the backend blocks it (FE-exposure), that is an
     FE-exposure DEFECT, not covered by this ruling (e.g. SV-8515 / SF-PERM-11 — a View-only user
     reaches an editable Bulk-Receive screen the FE should hide, even though the BE `accept`→403
@@ -1337,6 +1345,8 @@ regression / bug-fix re-testing.
 - Excel workbooks: a **separate tab per result status** + a **Summary** tab.
 - Provide **GitHub raw download links** for deliverables.
 - **Per-case audit logs** for any TestRail edits.
+- Test cases with FE-block/BE-allow behavior carry a plain tester-facing "Note for the
+  tester: …expected, mark PASSED, don't raise a bug" line (per Standing Rule 24).
 - **Simple-format status updates (all chat updates + reports):** Give updates/status
   in EXTREMELY SIMPLE, plain, layman words a manual QA can read and follow — short
   statements/steps, grouped under clear plain headings (e.g. "What I did / What needs
