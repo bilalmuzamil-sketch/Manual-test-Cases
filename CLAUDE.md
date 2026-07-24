@@ -323,7 +323,23 @@ deliver the 7-tab management report.
    unexplained → need live re-VIU; SF-VPART-01/02 likely stale-7/7-baseline tied to
    known BUG-9) + ingest Jira **SV-8303** (Ayesha's SF-SET-10 note flags a coming
    spec change).
-   **RESUME 2026-07-24 (LATEST — SV-8183 report CORRECTED; our 11/11 PASS OVER-CLAIMED):**
+   **RESUME 2026-07-24 (LATEST — SV-8183 EXHAUSTIVE LIVE RE-RUN, §13a method; NO TestRail writes;
+   read build/simple-flow/PROJECT-STATE.md §0-II + source `sv8183/rerun-2026-07-24/FINDINGS.md`
+   commit 1a263c8):** all 11 roles reset-verified == §9.2, 0 drift; **NO new permission BUG beyond
+   the known 3.** Two NEW Rule-24 flags (FE-hidden but API-possible; accepted-for-now per user
+   2026-07-24, NOT bugs): **NEW-1** = `change-item` (edit-part/change-vendor) BE-gated by
+   `seeFinancialData` not `vendorOrderManagementCreateAndEdit` per §9.2 → Sales Rep + Office can
+   change vendor via API (spec-conformance wrong-atom deviation, no known ticket, AWAITING user
+   dev-raise decision); **NEW-2** = part add/delete not BE-enforced for any role (SV-7864
+   atom-collapse). Known-3: SV-8515 NOT reproducible now (Receive-Selected path gone + accept 403);
+   SV-8516 mostly fixed (change-item 403 for Time Clock; part add/cancel angle persists as API flag);
+   SV-8541 not re-driven (endpoints not located; held). **Broad but NOT exhaustive — OPEN
+   follow-ups:** part-row kebab on a seeded received special-order part+core; SV-8541
+   return/resolve-core endpoints; the /bulk-receive page; Returns/Part-Sales/Vendor pages; the
+   Yes-heavy roles (SM/SrSA/Foreman/PM) individually UI-driven. Corrective cases SF-PERM-11/12 +
+   SF-PERM-03 tighten authored (commit 53d89a5), TestRail push STAGED not executed. Tally UNCHANGED
+   152/4/21/5/3/1 = 186.
+   **RESUME 2026-07-24 (SV-8183 report CORRECTED; our 11/11 PASS OVER-CLAIMED):**
    QA (Ayesha) found 3 real coverage gaps our pass missed; live re-verify on clean template roles
    (drift ruled out, Rule 26) confirmed all 3 — **SV-8515** = real FE-exposure defect (View-only user
    reaches editable Bulk-Receive via multi-select "Receive Selected"; BE blocks the actual receive

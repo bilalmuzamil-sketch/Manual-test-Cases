@@ -81,6 +81,38 @@
 > Permissions, `custom_atmstatus:3`+`custom_automation_type:0`) + 1 update_case (SF-PERM-03/C29407);
 > **run 325 never touched.** Evidence: `sv8183/ayesha-issues/reverify-2026-07-24/`.
 
+> **🔁 §0-II — SV-8183 EXHAUSTIVE LIVE PERMISSION RE-RUN 2026-07-24 (§13a method; NO TestRail
+> writes). Commit 1a263c8; source of truth `sv8183/rerun-2026-07-24/FINDINGS.md`.** Applied the new
+> `build/CUSTOM-ROLES-PERMISSION-VIU-PROCESS.md` §13a exhaustive-action-path + per-action BE-probe
+> guardrails (role impersonation via `POST /api/switch-user`; BE enforced-vs-not measured by hitting
+> real endpoints with an empty body → **403 = enforced, 400 (missing-param) = permission PASSED /
+> NOT enforced**, no data mutated). **All 11 system roles read live = §9.2 matrix exactly, 0 drift
+> (before==after).**
+> - **RESULT: NO new permission BUG beyond the known 3.** Two **NEW Rule-24 flags** (FE-hidden but
+>   API-possible; **accepted-for-now per user ruling 2026-07-24, NOT bugs**):
+>   - **NEW-1** — the edit-part / change-vendor BE action (`change-item`) is gated by
+>     **`seeFinancialData`, NOT `vendorOrderManagementCreateAndEdit`** as §9.2 requires → **Sales
+>     Representative + Office User** (both hold SFD, lack VOM Create&Edit) can change vendor via API
+>     (400 = permission passed); a **spec-conformance deviation (wrong atom)**, not tied to any known
+>     ticket, **AWAITING user decision** whether to raise to dev.
+>   - **NEW-2** — part add/delete (`part/make-request`, `parts/delete`) **not BE-enforced for ANY
+>     role** (documented **SV-7864** atom-collapse); underlies the still-reproducible "cancel a part"
+>     angle of SV-8516.
+> - **Known-3 current-build status:** **SV-8515 NOT reproducible now** (Receive-Selected FE path gone
+>   + `accept` BE → 403); **SV-8516 mostly fixed** (`change-item` → 403 for Time Clock) with the part
+>   add/cancel angle persisting as an API flag; **SV-8541 not re-driven** (return/resolve-core
+>   endpoints not located — 405'd; held per user "ignore for now").
+> - **HONESTY / coverage — broad but NOT fully exhaustive.** OPEN follow-ups (uncovered, verbatim
+>   FINDINGS §7): (1) part-row kebab actions on a WO seeded with a **received special-order part + a
+>   pending core**; (2) **SV-8541 endpoints** (return-received-special-order-part, resolve-core
+>   OK/NotOK) — not located; (3) dedicated **Bulk Receive page** (`/bulk-receive?ids=…`) FE + accept
+>   BE per negative role; (4) **Returns / Part Sales / Vendor Invoices-Vendors** pages per role (only
+>   Office Returns *reachability* checked); (5) **Yes-heavy roles** (Service Manager, Senior SA,
+>   Foreman, Parts Manager) covered only by atom-derivation + Admin baseline, not individually
+>   UI-driven. Do NOT claim exhaustive.
+> - Corrective cases **SF-PERM-11 / SF-PERM-12 + SF-PERM-03 tighten** are authored (commit 53d89a5);
+>   **TestRail push STAGED, NOT executed.** Tally UNCHANGED = 152/4/21/5/3/1 = 186.
+
 ---
 
 ## ⏭️ WHAT'S LEFT TO DO — read this first (as of 2026-07-20)
