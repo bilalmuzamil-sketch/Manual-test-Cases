@@ -1,0 +1,44 @@
+{
+ "Admin": {
+  "perms": 42,
+  "orders/accept": 400,
+  "orders/change-item": 400,
+  "part/make-request": 400,
+  "parts/delete": 400
+ },
+ "Technician": {
+  "perms": 6,
+  "orders/accept": 403,
+  "orders/change-item": 403,
+  "part/make-request": 400,
+  "parts/delete": 400
+ },
+ "Sales Representative": {
+  "perms": 8,
+  "orders/accept": 403,
+  "orders/change-item": 400,
+  "part/make-request": 400,
+  "parts/delete": 400
+ },
+ "Office User(qa_reassign)": {
+  "perms": 25,
+  "orders/accept": 403,
+  "orders/change-item": 400,
+  "part/make-request": 400,
+  "parts/delete": 400
+ },
+ "Time Clock User": {
+  "perms": 3,
+  "orders/accept": 403,
+  "orders/change-item": 403,
+  "part/make-request": 400,
+  "parts/delete": 400
+ },
+ "Parts Technician": {
+  "perms": 19,
+  "orders/accept": 400,
+  "orders/change-item": 400,
+  "part/make-request": 400,
+  "parts/delete": 400
+ }
+}
