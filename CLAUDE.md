@@ -1395,6 +1395,11 @@ regression / bug-fix re-testing.
   without the plain next-step. Bake this into every generator/workbook going forward.
   (User instruction 2026-07-24: "in such cases you always need to use simple words to
   tell me what needs to be done.") Ties to Standing Rules 7 and 8.
+- **Concise TestRail case TITLES (all projects):** TestRail case titles MUST be concise
+  enough to display fully on the TestRail case page (no truncation) — keep to ≤ ~80
+  characters; put the full detail in Steps/Expected/Preconditions, never rely on a long
+  title. Applies to all future authoring and to any long title when a case is next
+  touched. (User instruction 2026-07-27.)
 
 ## Persistence note
 Secrets are **ephemeral** (`/tmp`, re-supply per environment). Everything else

@@ -42,3 +42,20 @@ Custom-Roles subsections (children of 3527 "Custom Roles - (Revised)"), none in 
 ## Local convention
 Gap-case JSON files annotated with `testrail_case_id` / section / link / `pushed` flag.
 Small id-map written: `gap-cases/testrail-id-map.csv`.
+
+## Title-shorten pass (2026-07-27, user-authorized) — 3 `update_case`, title field ONLY
+
+TestRail truncated the long titles on the case page ("..."). Shortened to concise,
+build-accurate, meaning-preserving titles (≤80 chars); full detail stays in
+Steps/Expected/Preconditions. Read-only pre-check `GET /api/v2/get_case/38843` = HTTP 200.
+Only the `title` field changed; `custom_steps` / `custom_expected` / `custom_preconds` /
+`refs` re-GET byte-identical (verified). No run touched, no add/delete/section.
+
+| Case | Ticket | Before (chars) → After (chars) | HTTP | re-GET MATCH (title + others untouched) |
+|---|---|---|---|---|
+| C38843 | SV-8682 | "Vendors page opens for a Vendor & Order Management (View) + See Financial Data role even when Reports is turned OFF" (114) → "Vendors page opens without the Reports permission" (49) | 200 | YES |
+| C38844 | SV-8701 | "Customer detail page opens (no Access restricted) for a Customer Create & Edit + See Financial Data + Manage AP/AR role when Fees & Discounts is ON" (144) → "Customer detail page loads for AP/AR role (Fees & Discounts on)" (63) | 200 | YES |
+| C38845 | SV-8541 | "Returning a received special-order part and resolving cores (OK/Not OK) is allowed with Work Orders → View, without Work Order Line: Create & Edit" (144) → "Return part & resolve cores allowed with Work Orders: View" (58) | 200 | YES |
+
+Local gap-case JSON titles updated to match TestRail. `testrail-id-map.csv` has no title
+column (internal_id/testrail_case_id/section/refs/link only) → no change needed there.
