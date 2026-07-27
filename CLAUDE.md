@@ -107,7 +107,20 @@ deliver the 7-tab management report.
    post-release breakage — ingest + coverage in
    build/custom-roles-run/release-regression-2026-07-27/.)** — use
    build/CUSTOM-ROLES-PERMISSION-VIU-PROCESS.md (4-layer live method + 7-tab management
-   report; proven on Simple Flow SV-8183 2026-07-23). **CANONICAL WORDING+VIU RESUME DOC (read first to resume the
+   report; proven on Simple Flow SV-8183 2026-07-23). **POST-v0.68/v0.69 REGRESSION DONE +
+   ADVERSARIALLY VERIFIED CLEAN 2026-07-27 (canonical resume:
+   `build/custom-roles-run/release-regression-2026-07-27/RELEASE-REGRESSION-STATE-2026-07-27.md`):**
+   3 tickets triaged — **SV-8682 NOT REPRODUCED** (Vendors loads with Reports OFF, no dependency),
+   **SV-8701 FIXED-VERIFIED** (customer default-adjustments 200 entitled / 403 unentitled, FE guards
+   the tab, no whole-page lockout), **SV-8541 SPEC-INTENDED / pending PM** (core-resolve + part-return
+   gated by WO→View, 400 not 403). 3 guard cases pushed to TestRail (user-authorized, titles shortened,
+   run 312 untouched): **CR-REG-01=C38843** (sec 3538), **CR-REG-02=C38844** (sec 3537),
+   **CR-REG-03=C38845** (sec 3535), all HTTP 200 + re-GET MATCH. **Full 11-role live sweep = 110
+   role×page cells** (independently re-derived matrix = exact match, 0 mismatches) — **NO new broken
+   permissions** (no lockout, no broken dependency, no FE-exposure; only benign 404 = a doubled-path
+   SSO housekeeping call, page loaded). All 11 roles left AT template. Honest limits: page-reachability
+   + per-page BE (not every in-page action), Vendor Invoices dropped, genuine tech-login drive method
+   (switch-user was concurrent-locked). **After-each-release regression rule ACTIVE.** **CANONICAL WORDING+VIU RESUME DOC (read first to resume the
    wording/VIU effort):** `build/custom-roles-run/WORDING-VIU-STATE-2026-07-13.md` —
    the single authoritative snapshot of the 2026-07-13 build-accurate wording + VIU
    pass (final tally, 38–39 manual/2nd-user residue, 11 dev deviations, deliverables
