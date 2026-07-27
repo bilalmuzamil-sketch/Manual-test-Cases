@@ -1,6 +1,6 @@
 # TestRail sync manifest — Custom Roles release regression (2026-07-27)
 
-**STATUS: NOT EXECUTED — NO TestRail writes were made. Awaiting explicit user authorization.**
+**STATUS: EXECUTED 2026-07-27 — 3 add_case pushed (user-authorized). New C-ids: CR-REG-01 = C38843 (sec 3538), CR-REG-02 = C38844 (sec 3537), CR-REG-03 = C38845 (sec 3535). All HTTP 200 + re-GET MATCH (C38844 refs cosmetically trimmed by TestRail — space after comma removed; ticket SV-8701 + anchor S13-R9 both preserved). Run 312 untouched; no update/delete/section changes. Audit: testrail-execution-log-2026-07-27.md.**
 Project 1 / suite 1 "Master". `add_case` requires custom_atmstatus:3 + custom_automation_type:0.
 NEVER touch any run. TestRail link pattern: https://shopview.testrail.io/index.php?/cases/view/<id>
 

@@ -11,5 +11,10 @@
   "refs": "SV-8682 (Custom Roles & Permissions §Vendor & Order Management — View grants Vendors/Purchase Orders/Deliveries visibility)",
   "evidence": "LIVE 2026-07-27, staging: impersonated a role with atoms {vendorOrderManagementView, seeFinancialData} (Reports OFF, atoms confirmed via GET /api/auth/me/fe-permissions). Loaded /parts/vendors in Chromium → FINAL URL stayed /parts/vendors, Vendors table rendered, ZERO 4xx (GET /api/parts-catalogue/vendors = 200). Also /parts/orders, /parts/deliveries, /parts/vendor-invoices, /parts/returns all loaded with no 4xx. SV-8682 NOT reproduced on current staging build. Screenshot: evidence/SV8682-vendors-reportsoff-LOADS.png",
   "fresh_run": "2026-07-27",
-  "note": "Regression guard. Currently PASSES on staging (bug not reproducible); the ticket is still Code Review, so keep this case to catch any re-introduction of the Reports dependency."
+  "note": "Regression guard. Currently PASSES on staging (bug not reproducible); the ticket is still Code Review, so keep this case to catch any re-introduction of the Reports dependency.",
+  "testrail_case_id": "C38843",
+  "testrail_section_id": 3538,
+  "testrail_section_name": "Parts Department Permissions",
+  "testrail_link": "https://shopview.testrail.io/index.php?/cases/view/38843",
+  "pushed": "EXECUTED 2026-07-27"
 }

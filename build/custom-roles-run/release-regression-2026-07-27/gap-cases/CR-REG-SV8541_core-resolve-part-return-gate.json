@@ -12,5 +12,10 @@
   "refs": "SV-8541 (Custom Roles & Permissions \"Marking Cores OK/Not Ok is gated by WO→View\"; parent SV-8183 §9 WO/Parts enforcement mapping)",
   "evidence": "LIVE 2026-07-27, staging: impersonated a role with atoms {workOrdersView} only (NO workOrderLinesCreateAndEdit, confirmed via GET /api/auth/me/fe-permissions), location switched to the WO's workplace. POST /api/work-orders/{id}/pre-resolve-cores {cores:[]} = 400 'At least one core is required' (PERMISSION PASSED, not 403). POST /api/work-orders/part/make-return-request {} = 400 'part_id/quantity/return_reason missing' (PERMISSION PASSED, not 403). A control role with NO WO permissions reached the same 400 validation. Conclusion: these endpoints are NOT blocked by a Work Order Line: Create & Edit 403 — matches ticket (same as Prod) + current spec. Full action-completion with a seeded received part+core not driven to 201 this run (impersonation contention).",
   "fresh_run": "2026-07-27",
-  "note": "Rule 25: the case expectation is the CURRENT Confluence spec wording 'Marking Cores OK/Not Ok is gated by WO→View'. Not a FE-exposure defect (the action is intended to be reachable). Do NOT re-file; PM to confirm."
+  "note": "Rule 25: the case expectation is the CURRENT Confluence spec wording 'Marking Cores OK/Not Ok is gated by WO→View'. Not a FE-exposure defect (the action is intended to be reachable). Do NOT re-file; PM to confirm.",
+  "testrail_case_id": "C38845",
+  "testrail_section_id": 3535,
+  "testrail_section_name": "Work Order Lines Permissions",
+  "testrail_link": "https://shopview.testrail.io/index.php?/cases/view/38845",
+  "pushed": "EXECUTED 2026-07-27"
 }
