@@ -99,8 +99,14 @@ deliver the 7-tab management report.
    https://shopview.atlassian.net/wiki/spaces/PM/pages/565116952/Custom+Roles+and+Permissions
    (Atlassian-SSO login-walled — reference pointer only; export/paste content to
    ingest, do NOT fetch). **RECURRING: run the complete Custom Roles & Permissions test
-   against the CURRENT spec + ALL Done tickets in epic SV-7388 on a cadence — use
-   build/CUSTOM-ROLES-PERMISSION-VIU-PROCESS.md** (4-layer live method + 7-tab management
+   against the CURRENT spec + ALL Done tickets in epic SV-7388 on a cadence AND
+   AFTER EVERY FEATURE RELEASE (not just on a cadence) — the Custom Roles feature is
+   VOLATILE and regresses when OTHER features ship (Fees & Discounts, Vendor mgmt, etc.);
+   run build/CUSTOM-ROLES-PERMISSION-VIU-PROCESS.md after each release to catch regressions
+   before they reach customers. (User ruling 2026-07-27, prompted by the SV-8682/8541/8701
+   post-release breakage — ingest + coverage in
+   build/custom-roles-run/release-regression-2026-07-27/.)** — use
+   build/CUSTOM-ROLES-PERMISSION-VIU-PROCESS.md (4-layer live method + 7-tab management
    report; proven on Simple Flow SV-8183 2026-07-23). **CANONICAL WORDING+VIU RESUME DOC (read first to resume the
    wording/VIU effort):** `build/custom-roles-run/WORDING-VIU-STATE-2026-07-13.md` —
    the single authoritative snapshot of the 2026-07-13 build-accurate wording + VIU
