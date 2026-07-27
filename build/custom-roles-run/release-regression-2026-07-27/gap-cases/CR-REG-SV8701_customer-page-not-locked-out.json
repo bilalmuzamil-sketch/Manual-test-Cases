@@ -1,0 +1,15 @@
+{
+  "internal_id": "CR-REG-02",
+  "title": "Customer detail page opens (no Access restricted) for a Customer Create & Edit + See Financial Data + Manage AP/AR role when Fees & Discounts is ON",
+  "section": "Custom Roles - (Revised) / Customers",
+  "section_id_hint": null,
+  "custom_preconds": "<ol>\n<li>The organization has the Fees & Discounts feature turned ON.</li>\n<li>You have a role with these permissions turned ON: Customer Management → Create & Edit, See Financial Data, and Manage AP/AR.</li>\n<li>That role has NO Settings / organization permissions.</li>\n<li>A user is signed in with that role.</li>\n</ol>",
+  "custom_steps": "<ol>\n<li>Open any customer.</li>\n<li>Look at the customer detail page (Work Orders / Payments / Invoices tabs).</li>\n<li>Open the customer's Fees & Discounts tab.</li>\n</ol>",
+  "custom_expected": "<p>The customer detail page opens normally. All tabs (Work Orders, Payments, Invoices) are reachable.</p>\n<p>You are NOT sent to a full-page \"Access restricted\" screen.</p>\n<p>The customer Fees & Discounts tab loads for this role.</p>\n<p>If the same role does NOT have Manage AP/AR, the customer page still opens normally (the Fees & Discounts area is simply hidden) — a background permission check must never lock the whole page.</p>\n",
+  "viu_status": "VIU-Verified",
+  "driving_ticket": "SV-8701 (Status: Done — PR #2363; Staging_Verified)",
+  "refs": "SV-8701 (Fees & Discounts customer default-adjustments gate, S13-R9: Customers Create & Edit + Manage AP/AR)",
+  "evidence": "LIVE 2026-07-27, staging (FeesAndDiscounts flag confirmed ON for org d55bc308). POSITIVE role atoms {customersCreateAndEdit, customersView, seeApArData, seeFinancialData} (no org grants): GET /api/customers/{id}/default-adjustments = 200; /customers/{id} loaded in Chromium (FINAL URL /customers/{id}/work-orders, real customer detail, ZERO 4xx); /customers/{id}/fees-and-discounts loaded, ZERO 4xx. NEGATIVE role (no seeApArData): default-adjustments = 403 but customer page STILL loaded (ZERO 4xx in UI; FE skips the fetch). SV-8701 = FIXED. Screenshots: evidence/cust_pos.png, evidence/cust_neg.png.",
+  "fresh_run": "2026-07-27",
+  "note": "Regression guard for the FE-allows/BE-blocks whole-page lockout class (same family as SV-7958). Currently PASSES."
+}

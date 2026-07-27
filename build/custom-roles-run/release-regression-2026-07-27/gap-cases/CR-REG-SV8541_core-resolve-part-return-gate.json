@@ -1,0 +1,16 @@
+{
+  "internal_id": "CR-REG-03",
+  "title": "Returning a received special-order part and resolving cores (OK/Not OK) is allowed with Work Orders → View, without Work Order Line: Create & Edit",
+  "section": "Custom Roles - (Revised) / Work Order Lines",
+  "section_id_hint": null,
+  "custom_preconds": "<ol>\n<li>You have a role with Work Orders → View turned ON but Work Order Line: Create & Edit turned OFF.</li>\n<li>A user is signed in with that role.</li>\n<li>A work order has a special-order part that has already been received, and a part with a core to resolve.</li>\n</ol>",
+  "custom_steps": "<ol>\n<li>Open the work order.</li>\n<li>From the part's three-dot menu, return the received special-order part.</li>\n<li>Resolve a core (choose OK or Not OK) for an inventory part and a special-order part.</li>\n</ol>",
+  "custom_expected": "<p>The user IS able to return the received special-order part and resolve the cores.</p>\n<p>These actions are gated by Work Orders → View (not by Work Order Line: Create & Edit) — this matches the current spec (\"Marking Cores OK/Not Ok is gated by WO→View\") and behaves the same on Production.</p>\n",
+  "viu_status": "VIU-Verified",
+  "pending": "PM confirmation of intended rule (ticket Open, fast-follow). If PM rules these must require Work Order Line: Create & Edit, this becomes a Deviation.",
+  "driving_ticket": "SV-8541 (Status: Open, fast-follow — awaiting PM decision)",
+  "refs": "SV-8541 (Custom Roles & Permissions \"Marking Cores OK/Not Ok is gated by WO→View\"; parent SV-8183 §9 WO/Parts enforcement mapping)",
+  "evidence": "LIVE 2026-07-27, staging: impersonated a role with atoms {workOrdersView} only (NO workOrderLinesCreateAndEdit, confirmed via GET /api/auth/me/fe-permissions), location switched to the WO's workplace. POST /api/work-orders/{id}/pre-resolve-cores {cores:[]} = 400 'At least one core is required' (PERMISSION PASSED, not 403). POST /api/work-orders/part/make-return-request {} = 400 'part_id/quantity/return_reason missing' (PERMISSION PASSED, not 403). A control role with NO WO permissions reached the same 400 validation. Conclusion: these endpoints are NOT blocked by a Work Order Line: Create & Edit 403 — matches ticket (same as Prod) + current spec. Full action-completion with a seeded received part+core not driven to 201 this run (impersonation contention).",
+  "fresh_run": "2026-07-27",
+  "note": "Rule 25: the case expectation is the CURRENT Confluence spec wording 'Marking Cores OK/Not Ok is gated by WO→View'. Not a FE-exposure defect (the action is intended to be reachable). Do NOT re-file; PM to confirm."
+}
