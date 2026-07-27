@@ -1394,3 +1394,8 @@ regression / bug-fix re-testing.
 Secrets are **ephemeral** (`/tmp`, re-supply per environment). Everything else
 here is **durable memory** — update it when facts genuinely change (a spec change
 gets implemented, ids change, scope changes).
+- **NO-WORK-LOSS STRATEGY (read on any near-limit / restart / dead-worker event):**
+  `build/NO-WORK-LOSS-STRATEGY.md` — golden rule (all durable work lives in GIT,
+  committed+pushed after every step; container + /tmp are ephemeral), checkpoint
+  granularity, resume anchors (this CLAUDE.md + each PROJECT-STATE.md), in-flight
+  kill recovery, secrets re-supply, pre-limit checklist, post-reset resume steps.
