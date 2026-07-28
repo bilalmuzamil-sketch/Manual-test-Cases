@@ -1,9 +1,12 @@
 # Schedule — TestRail SYNC MANIFEST (epic SV-8685 backfill + design/Jira deltas + new-scope, 2026-07-27)
 
-> **STATUS: NOT EXECUTED — STAGED ONLY. No TestRail writes.** This is the exact list a
-> later user-authorized `update_case` / `add_case` pass would run. Everything below was
-> applied LOCAL ONLY (case JSONs + deliverables regenerated). Per Standing Rule 6, nothing
-> is pushed to TestRail without explicit user permission.
+> **STATUS: EXECUTED 2026-07-27 (user-authorized, Standing Rule 6).** All items below were
+> pushed to TestRail: 2 add_section (5405 Working Hours Settings / 5406 Week Export and Printing)
+> + 10 add_case (SCH-HRS-01..07 = C38846–C38852, SCH-EXP-01/02 = C38853/C38854, SCH-REAS-06 =
+> C38855) + 167 update_case (10 tester-facing + 157 refs-only). ALL HTTP 200, ALL re-GET MATCH,
+> 0 delete. Run 325 / all execution runs untouched. Audit:
+> `testrail-execution-log-epic-2026-07-27.md`. D1 + D4 remain HELD (not written). New tally =
+> 177 active, all C-id'd.
 >
 > Project **1** / suite **1 "Master"** / group **4254 "Schedule - 2026 (VIU Pending)"**
 > (child sections 4255–4280). `add_case` requires `custom_atmstatus:3` +

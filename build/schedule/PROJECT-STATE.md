@@ -7,7 +7,30 @@
 
 ## 0. STATUS / WHAT'S LEFT TO DO — read first (Last updated 2026-07-27)
 
-### 0.0-EPIC EPIC SV-8685 BACKFILL + DESIGN/JIRA DELTAS + NEW-SCOPE APPLIED LOCALLY (2026-07-27, LATEST — NO TestRail writes)
+### 0.0-EPIC-EXECUTED EPIC SV-8685 SYNC EXECUTED (2026-07-27, LATEST — user-authorized TestRail writes DONE)
+
+**The staged epic sync (§0.0-EPIC manifest) is now EXECUTED (user-authorized, Standing Rule 6):
+2 add_section + 10 add_case + 167 update_case, ALL HTTP 200, ALL re-GET verified MATCH, 0 delete.**
+- **2 add_section** under group 4254: **Working Hours Settings = 5405**, **Week Export and Printing = 5406**.
+- **10 add_case** (new-scope, new C-ids, `custom_atmstatus:3`+`custom_automation_type:0`, non-API):
+  SCH-HRS-01=**C38846**, HRS-02=**C38847**, HRS-03=**C38848**, HRS-04=**C38849**, HRS-05=**C38850**,
+  HRS-06=**C38851**, HRS-07=**C38852** (all → 5405); SCH-EXP-01=**C38853**, EXP-02=**C38854** (→ 5406);
+  SCH-REAS-06=**C38855** (→ existing Reassignment and Context Menu 4275).
+- **167 update_case** = 157 metadata-only (refs field only) + 10 tester-facing (refs + title/preconds/
+  steps/expected): SCH-FILT-01/C29942, SCH-VIEW-01/C30042, SCH-EVT-01/C30016, SCH-REAS-03/C30054,
+  SCH-REAS-04/C30055, SCH-REAS-05/C30056, SCH-DEL-08/C30064, SCH-SPREAD-07/C29983, SCH-EDGE-05/C30089,
+  SCH-BLOCK-04/C29994. All re-GET MATCH.
+- **D1 (events→capacity) + D4 (modal Reassign) remain HELD — NOT written.**
+- **NEW TALLY: 177 ACTIVE, ALL in TestRail with a C-id.** id-map re-merged 177/177 (0 blanks); import
+  regenerated over 177 (header byte-identical, 0 VIU/flag words, no dup titles, no C-id column).
+- Executor `build/schedule/exec_sync_epic_2026-07-27.py` (+ `exec_sync_epic_resume.py` for a 16-case
+  tail after a transient HTTP 000 network drop — idempotent resume, no data loss). Audit:
+  `spec-v1-2026-07-22/testrail-execution-log-epic-2026-07-27.md`; manifest header = EXECUTED.
+  **Run 325 / all execution runs untouched; no secrets committed.**
+- **NEXT:** Branko rulings on D1 + D4 + Week Export V1 scope; then live VIU (QA branch OQ-3). Per
+  Rule 12, design-pinned ≠ VIU-Verified.
+
+### 0.0-EPIC EPIC SV-8685 BACKFILL + DESIGN/JIRA DELTAS + NEW-SCOPE APPLIED LOCALLY (2026-07-27 — since EXECUTED, see 0.0-EPIC-EXECUTED)
 
 **Applied LOCAL ONLY (plan item 1); TestRail push STAGED not executed.** Sources:
 `build/schedule/epic-sv8685/RECONCILIATION.md` (§3 backfill map, deltas D1–D5, gap G1) +
@@ -38,13 +61,13 @@
   178 authored incl. retired). All VIU-Pending. **Deliverables regenerated over 177:**
   `testrail-import/schedule-v1-testrail-import.csv`/`.xlsx` (177 rows, References now = Rule-20
   refs, header byte-identical to the other project imports; 0 VIU/flag words, no dup titles/ids,
-  no missing fields, no C-id column), `testrail-id-map.csv` (177 rows, NEW `refs` column; 167
-  C-ids re-merged, 10 new = blank C-id). ⚠️ `gen_import.py` blanks id-map C-ids on rerun + excludes
+  no missing fields, no C-id column), `testrail-id-map.csv` (177 rows, NEW `refs` column; ALL 177
+  C-ids populated after the 2026-07-27 push — the 10 new-scope got C38846–C38855). ⚠️ `gen_import.py` blanks id-map C-ids on rerun + excludes
   Retired — ALWAYS re-merge from the prior id-map afterwards.
-- **STAGED (NOT executed) TestRail sync manifest:**
+- **TestRail sync manifest (now EXECUTED 2026-07-27 — see §0.0-EPIC-EXECUTED):**
   `build/schedule/spec-v1-2026-07-22/testrail-sync-manifest-epic-2026-07-27.md` — **167 update_case**
   (refs backfill; 10 of them also change tester-facing fields) + **10 add_case** (new-scope) +
-  **0 delete_case**; D1/D4 listed as HELD. NOT EXECUTED; no run writes.
+  **0 delete_case**; D1/D4 HELD.
 - **NEXT:** Branko rulings on D1 (events→capacity) + D4 (modal Reassign) + Week Export V1 scope;
   then live VIU (QA branch OQ-3) + authorized TestRail push. Per Rule 12, design-pinned ≠ VIU-Verified.
 

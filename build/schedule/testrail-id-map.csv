@@ -131,7 +131,7 @@ SCH-REAS-01,C30052,"Dragging a shift to another technician row reassigns it - ta
 SCH-REAS-03,C30054,Right-click a grid cell opens a menu with Create Event and New Work Order,Reassignment and Context Menu,SV-8700 (§7 (Right-click context menu))
 SCH-REAS-04,C30055,'View Day' is no longer offered in the grid cell context menu,Reassignment and Context Menu,SV-8700 (§7 (Right-click context menu - View Day))
 SCH-REAS-05,C30056,'New Shift' is no longer offered in the grid cell context menu,Reassignment and Context Menu,"SV-8700 (§7 (Right-click context menu - New Shift), §14.1 (creation via context menu))"
-SCH-REAS-06,,'New Work Order' in the cell menu points the user to the Work Orders tab,Reassignment and Context Menu,SV-8700 (§7 / §4.10 New Work Order cell-menu shortcut)
+SCH-REAS-06,C38855,'New Work Order' in the cell menu points the user to the Work Orders tab,Reassignment and Context Menu,SV-8700 (§7 / §4.10 New Work Order cell-menu shortcut)
 SCH-DEL-01,C30057,"Deleting a middle shift of a series asks for scope with all three options, each stating the hours returned","Deletion, Series Scopes and Undo",SV-8692 (§7 (Series-aware deletion))
 SCH-DEL-02,C30058,"'This shift only' removes that day, the series keeps the gap, and the hours return to the estimate's remaining","Deletion, Series Scopes and Undo",SV-8692 (§7 (This shift only))
 SCH-DEL-03,C30059,"'This and everything after' removes from the clicked shift onward, keeping earlier shifts","Deletion, Series Scopes and Undo",SV-8692 (§7 (This and everything after))
@@ -149,15 +149,15 @@ SCH-KEY-05,C30070,Modals trap focus and all interactive elements are keyboard-re
 SCH-COLOR-01,C30071,"Blue is the default color for all shifts, including long and multi-week jobs",Color System,SV-8700 (§10)
 SCH-COLOR-02,C30072,"Choosing a color from the shift modal's picker recolors the shift with matching background, text, and accent tones",Color System,"SV-8700 (§10, §4.9 (Color picker))"
 SCH-COLOR-03,C30073,Color labels are editable per shop,Color System,"SV-8700 (§10 (Color labels are editable per shop), §4.10 (shared picker))"
-SCH-HRS-01,,"Edit Location has a 'Set business hours for this shop' toggle, off by default",Working Hours Settings,SV-8699 (§4.2 Working Hours - business hours toggle)
-SCH-HRS-02,,Edit Location shows a per-day (Mon-Sun) From-To business-hours editor,Working Hours Settings,SV-8699 (§4.2 Working Hours - per-day From/To editor)
-SCH-HRS-03,,"Edit Staff has a 'Set custom hours for this technician' toggle, off by default",Working Hours Settings,SV-8699 (§4.2 Working Hours - technician custom-hours toggle)
-SCH-HRS-04,,A technician with no custom hours inherits the shop business hours,Working Hours Settings,SV-8699 (§4.2 Working Hours - inherit shop hours when no custom hours)
-SCH-HRS-05,,"'Add hours' appends a removable second range for split shifts, starting empty",Working Hours Settings,SV-8699 (§4.2 Working Hours - Add hours split shifts)
-SCH-HRS-06,,Overlapping hour ranges flag red with a message and disable Save,Working Hours Settings,SV-8699 (§4.2 Working Hours - overlap validation)
-SCH-HRS-07,,Incomplete hour rows (empty From or To) are ignored by the overlap check,Working Hours Settings,SV-8699 (§4.2 Working Hours - incomplete rows ignored by overlap check)
-SCH-EXP-01,,Week Export opens a printable Department-by-Technician week grid,Week Export and Printing,SV-8685 (design Week Export - V1 scope pending Branko)
-SCH-EXP-02,,Exported week view lists each department with its technicians and shifts,Week Export and Printing,SV-8685 (design Week Export - V1 scope pending Branko)
+SCH-HRS-01,C38846,"Edit Location has a 'Set business hours for this shop' toggle, off by default",Working Hours Settings,SV-8699 (§4.2 Working Hours - business hours toggle)
+SCH-HRS-02,C38847,Edit Location shows a per-day (Mon-Sun) From-To business-hours editor,Working Hours Settings,SV-8699 (§4.2 Working Hours - per-day From/To editor)
+SCH-HRS-03,C38848,"Edit Staff has a 'Set custom hours for this technician' toggle, off by default",Working Hours Settings,SV-8699 (§4.2 Working Hours - technician custom-hours toggle)
+SCH-HRS-04,C38849,A technician with no custom hours inherits the shop business hours,Working Hours Settings,SV-8699 (§4.2 Working Hours - inherit shop hours when no custom hours)
+SCH-HRS-05,C38850,"'Add hours' appends a removable second range for split shifts, starting empty",Working Hours Settings,SV-8699 (§4.2 Working Hours - Add hours split shifts)
+SCH-HRS-06,C38851,Overlapping hour ranges flag red with a message and disable Save,Working Hours Settings,SV-8699 (§4.2 Working Hours - overlap validation)
+SCH-HRS-07,C38852,Incomplete hour rows (empty From or To) are ignored by the overlap check,Working Hours Settings,SV-8699 (§4.2 Working Hours - incomplete rows ignored by overlap check)
+SCH-EXP-01,C38853,Week Export opens a printable Department-by-Technician week grid,Week Export and Printing,SV-8685 (design Week Export - V1 scope pending Branko)
+SCH-EXP-02,C38854,Exported week view lists each department with its technicians and shifts,Week Export and Printing,SV-8685 (design Week Export - V1 scope pending Branko)
 SCH-PERM-01,C30074,"Schedule: View grants the full read experience - page, all three views, mini calendar, search, filter, tooltips, read-only modals",Permissions,"SV-8685 (§14.1 (Schedule: View), §14.3)"
 SCH-PERM-02,C30075,View-only: every editing affordance is hidden or disabled,Permissions,SV-8685 (§14.1 (Schedule: View - editing affordances hidden or disabled))
 SCH-PERM-03,C30076,"With Schedule: View OFF, the Schedule top-level nav item is hidden entirely",Permissions,SV-8685 (§14.1 (When Schedule: View is OFF))

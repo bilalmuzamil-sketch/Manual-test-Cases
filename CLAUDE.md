@@ -740,10 +740,18 @@ deliver the 7-tab management report.
    (SCH-EVT-08/C30615 + SCH-CAP-01..04) + D4 modal "Reassign" (SCH-MODAL-08/C30015). **NEW TALLY:
    177 ACTIVE authored** (all VIU-Pending); deliverables regenerated over 177 (id-map now has a
    `refs` column, References column = Rule-20 refs, header byte-identical, hygiene clean); id-map
-   167 C-ids re-merged + 10 new blank. STAGED (NOT executed): `spec-v1-2026-07-22/testrail-sync-manifest-epic-2026-07-27.md`
-   = 167 update_case + 10 add_case + 0 delete_case. Scripts: `epic-sv8685/backfill_refs.py`,
-   `epic-sv8685/patch_edits.py`. Design-pinned ≠ VIU-Verified (Rule 12); live VIU still pending QA
-   branch (OQ-3).
+   167 C-ids re-merged + 10 new blank. **EPIC SYNC EXECUTED 2026-07-27 (user-authorized, Rule 6):
+   the manifest `spec-v1-2026-07-22/testrail-sync-manifest-epic-2026-07-27.md` is now LIVE —
+   2 add_section (Working Hours Settings = 5405, Week Export and Printing = 5406) + 10 add_case
+   (SCH-HRS-01..07 = C38846–C38852, SCH-EXP-01/02 = C38853/C38854, SCH-REAS-06 = C38855;
+   custom_atmstatus:3+custom_automation_type:0, non-API) + 167 update_case (157 refs-only + 10
+   tester-facing), ALL HTTP 200, ALL re-GET MATCH, 0 delete. D1 (events→capacity) + D4 (modal
+   Reassign) HELD, not written. Run 325/all runs untouched. NEW TALLY: 177 ACTIVE, all C-id'd
+   (id-map re-merged 177/177; import regenerated header byte-identical, 0 VIU/flag words).
+   Executor `exec_sync_epic_2026-07-27.py` (+ `exec_sync_epic_resume.py` for a 16-case tail after a
+   transient HTTP 000). Audit `testrail-execution-log-epic-2026-07-27.md`; manifest header = EXECUTED.**
+   Scripts: `epic-sv8685/backfill_refs.py`, `epic-sv8685/patch_edits.py`. Design-pinned ≠
+   VIU-Verified (Rule 12); live VIU still pending QA branch (OQ-3).
    **PRIOR STATUS: TestRail SYNC EXECUTED 2026-07-22 (user-authorized, incl. delete) — the staged
    spec_1+design+Branko reconciliation is now LIVE in TestRail: 7 update_case + 2 add_case +
    1 delete_case, ALL HTTP 200, ALL re-GET verified MATCH; run 325 untouched, only group 4254
