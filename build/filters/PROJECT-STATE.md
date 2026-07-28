@@ -58,6 +58,58 @@ resolve page-search scope with the Global Search project; then an authorized
 
 ---
 
+## 2026-07-28 — Cross-squad note from Report Suite kickoff (persistence)
+
+**Documentation only — NO case edits, NO TestRail writes.** Mirrored here so the
+Filters and Report Suite projects stay aligned (the CLAUDE.md + PROJECT-STATE docs
+are the shared brain across parallel sessions — Standing Rule 20).
+
+**The clash (flagged in Chris Ward's Report Suite kickoff video, 2026-07-28):**
+engineer **Stefan Mitrovic** flagged a cross-squad overlap between the two persistence
+models:
+- **Report Suite** saves each user's filters / columns / sort **PER-USER-PER-COMPUTER
+  (local only)** — it does NOT follow the user across devices.
+- **The Filters squad (Branko + Miloš)** is building **account-level saved views +
+  shareable links** that persist **ACROSS devices** (cloud-backed, tied to the user
+  account, not the browser/machine).
+
+**Decision from the call:** leave the **Report Suite persistence LOCAL for now**;
+**sync and delegate the cross-device saved-view work to the Filters squad once the
+Filters feature is on staging**, then Report Suite reuses / merges into it rather than
+building its own cross-device layer. **Chris Ward will sync with Branko and report back
+in Slack.**
+
+**Who's involved:** Filters squad = **Branko (PO) + Miloš** (account-level +
+shareable-link cross-device persistence, i.e. the owning squad). Report Suite = **Chris
+Ward (PO) + Parth**. **Stefan Mitrovic** flagged the clash in the kickoff.
+
+**ACTION for the Filters project:** when Filters' **account-level saved-views +
+shareable-link** feature is built, it is **expected to be reused by the Report Suite**
+(cross-device persistence for reports delegates to it). **Coordinate with the Report
+Suite squad so the work is not duplicated** — Filters owns the shared cross-device
+persistence layer; Report Suite consumes it. Track this when the feature reaches
+staging / VIU.
+
+**Impact on existing Filters persistence cases (FLAG ONLY — do NOT edit any case now):**
+this relates to the existing **FLT-PERS-\*** cases. Those may need a **scope note** once
+the cross-device / shareable-link behaviour is finalized WITH the Report Suite (e.g. to
+clarify whether "remembered permanently" is per-account/cross-device vs per-device, and
+how shareable links interact). **Flag only — no case changes this pass.** The cases:
+- **FLT-PERS-01 = C29613** — page round-trip restore of filters + bar state.
+- **FLT-PERS-02 = C29614** — filter selections remembered permanently (across app
+  navigation + browser close + sign-back-in). ← most directly touched by the
+  cross-device/account-level question.
+- **FLT-PERS-03 = C29615** — saved filters are per-user (one user's filters don't
+  appear for another).
+- **FLT-PERS-04 = C29616** — a remembered value that no longer exists is silently
+  dropped on return.
+
+**Source docs (Report Suite project — cross-reference):**
+- `build/report-suite/chris-answers-2026-07-28/video-deltas-2026-07-28.md` (item **P19**).
+- `build/report-suite/chris-answers-2026-07-28/loom-kickoff-transcript.md` (~22:00–25:30).
+
+---
+
 Prior update: 2026-07-20 (**Branko's ROUND-2 ANSWERS INGESTED 2026-07-20
 — Q1=A / Q2=A / Q3=A, all three CONFIRM the suite as-is; ZERO case edits and
 ZERO TestRail writes required.** Source of record:
