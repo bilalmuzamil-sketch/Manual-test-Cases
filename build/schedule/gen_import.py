@@ -85,6 +85,8 @@ SECTION_ORDER = [
     "Deletion, Series Scopes and Undo",
     "Keyboard Interactions",
     "Color System",
+    "Working Hours Settings",
+    "Week Export and Printing",
     "Permissions",
     "Edge Cases and Responsiveness",
 ]
@@ -149,7 +151,10 @@ def main():
         if c.get("api_related"):
             api_sections.add(section)
             api_moved += 1
-        idmap_rows.append([c["id"], "", title, section])
+        # References = Rule-20 refs (Jira ticket + spec anchor); fall back to the
+        # bare spec_ref for any case not yet backfilled.
+        refs = clean((c.get("refs") or c.get("spec_ref") or "").strip())
+        idmap_rows.append([c["id"], "", title, section, refs])
         rows.append([
             title,
             section,
@@ -158,7 +163,7 @@ def main():
             joinlines(c.get("preconditions")),
             joinlines(c.get("steps")),
             joinlines(c.get("expected")),
-            clean((c.get("spec_ref") or "").strip()),
+            refs,
             "",
             "",
         ])
@@ -171,7 +176,7 @@ def main():
 
     with open(OUT_IDMAP, "w", newline="") as f:
         w = csv.writer(f)
-        w.writerow(["internal_id", "testrail_case_id", "title", "section"])
+        w.writerow(["internal_id", "testrail_case_id", "title", "section", "refs"])
         w.writerows(idmap_rows)
     print("Wrote ID map:", OUT_IDMAP, "rows:", len(idmap_rows))
 
