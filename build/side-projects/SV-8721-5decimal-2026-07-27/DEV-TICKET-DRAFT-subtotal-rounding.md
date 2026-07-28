@@ -2,6 +2,8 @@
 
 > **DRAFT ONLY — not filed to Jira.** Ready for the user to file (or ask me to). Found during SV-8721 QA on staging, verified live this session.
 
+> **How to file (so the inline images render):** Create the ticket via the **Jira v2 REST API** with the **description in wiki markup**, AND upload **all three PNGs as attachments to the same issue**. In Jira, an attached image referenced as `!filename.png!` renders inline in the description — the `!filename!` refs resolve against the issue's own attachments, so the images must be attached to that exact issue. The GitHub raw links in the Evidence section are kept as a backup in case the inline attachments are not present.
+
 ---
 
 ## Title
@@ -43,10 +45,19 @@ The two screens should show the **same** PO aggregate total. One consistent roun
 - **Receive Parts** screen — **"Subtotal:"** and **"Total:"** both show **$2,288.64**.
   Method: sum the full 5-decimal costs, THEN round once.
   124.96545 + 122.99656 + 40.99885 + 0.12346 + 999.00001 + 1000.55555 = 2288.63988 → **$2,288.64**
+
+!ANNOT-a-receive-subtotal.png!
+
 - **Purchase Orders list** — **"Total Price"** column shows **$2,288.65**.
   Method: round each line to 2 dp FIRST, then add.
   124.97 + 123.00 + 41.00 + 0.12 + 999.00 + 1000.56 = **$2,288.65**
+
+!ANNOT-b-po-list-total-price.png!
+
 - **PO Details** screen — shows **no** aggregate total at all (only per-line "Cost" at 5 dp and "Total Cost" at 2 dp; no Subtotal/Total row).
+
+!ANNOT-c-po-details-no-total.png!
+
 - The stored order total (`total_price_decimal`) = **2288.65** (matches the Purchase Orders list).
 
 The 1-cent gap is not visible on any single screen; it only appears if a user flips between the Receive Parts screen and the Purchase Orders list and compares them.
@@ -70,13 +81,18 @@ Pick ONE canonical rounding method for the PO aggregate and use it on every surf
 
 ## Evidence
 
-Three annotated screenshots (attached):
+Three annotated screenshots (attach all three to the issue so the `!filename!` refs above and below render inline):
 
-- `ANNOT-a-receive-subtotal.png` — Receive Parts screen "Subtotal: $2,288.64".
-- `ANNOT-b-po-list-total-price.png` — Purchase Orders list "Total Price $2,288.65".
-- `ANNOT-c-po-details-no-total.png` — PO Details screen, no aggregate total.
+Receive Parts screen "Subtotal: $2,288.64":
+!ANNOT-a-receive-subtotal.png!
 
-GitHub raw links:
+Purchase Orders list "Total Price $2,288.65":
+!ANNOT-b-po-list-total-price.png!
+
+PO Details screen, no aggregate total:
+!ANNOT-c-po-details-no-total.png!
+
+GitHub raw links (backup, in case the inline attachments are not present):
 
 - https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/side-projects/SV-8721-5decimal-2026-07-27/evidence/discrepancy-locate/ANNOT-a-receive-subtotal.png
 - https://raw.githubusercontent.com/bilalmuzamil-sketch/Manual-test-Cases/claude/slack-session-0sxnd9/build/side-projects/SV-8721-5decimal-2026-07-27/evidence/discrepancy-locate/ANNOT-b-po-list-total-price.png
