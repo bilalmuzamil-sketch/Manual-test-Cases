@@ -18,6 +18,10 @@ import REGENERATED post-review.)
 
 ## 0. STATUS
 
+**Session wrap-up 2026-07-28 (Report Suite reconciliation, unattended) — all phases done, tree clean, HEAD pushed.**
+Phase 1 specs captured + diffed (`b22d2af`), Phase 2 reconciliation + change-list (`16485ca`), Phase 3 Filters
+cross-squad mirror (`173addd`), Phase 4 adversarial audit = CLEAN (`75d615e`). No TestRail writes, no secrets.
+
 **UPDATE 2026-07-28 (PHASE 2) — VIDEO-DRIVEN SPEC-RELEVANCE RECONCILIATION DONE + CHANGE-LIST
 DELIVERED (2 local case edits only; NO TestRail writes — Rule 6 needs explicit permission later).**
 All **515** cases reconciled against the combined source of truth: the RATIFIED current Confluence
