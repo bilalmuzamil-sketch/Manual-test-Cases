@@ -1,6 +1,64 @@
 # Filters (Work Order List Filtering) — PROJECT STATE
 **Canonical cold-resume doc. Read this first to resume the Filters project.**
-Last updated: 2026-07-20 (LATEST: **Branko's ROUND-2 ANSWERS INGESTED 2026-07-20
+
+Last updated: 2026-07-27 (**LATEST — OPTION A: DESIGN-LEVEL Parts + Reports +
+page-search cases AUTHORED, VIU-Pending, NO TestRail writes**). The user chose
+Option A (author now from the captured designs rather than wait for the PRD).
+**43 new cases authored** (all `viu_status` = VIU-Pending, design-only, not
+live-verified — Rules 12/22), assigned next-free FLT- ids, added to
+`testrail-id-map.csv` with **BLANK C-ids (need `add_case` later)**:
+- **Parts filters — 12** (`cases/cases-E-parts-filters.json`, FLT-PARTS-01..12):
+  one chip+column case per Parts page (Inventory / Part Sales / Catalog / Returns /
+  Credits / Purchase Orders / Vendor Invoices / Vendors), the Part Type dropdown
+  (Core / Non Core / Clear selection), the shared toolbar icons, + 2 behaviour
+  cases flagged pending-PRD.
+- **Reports filters — 22** (`cases/cases-F-reports-filters.json`, FLT-RPTS-01..22):
+  one title+tabs+chips case per report screen (23 screens, tabbed ones folded:
+  Technician Efficiency Invoiced+Completed = 1; QB Unexported 3 tabs = 1), + 2
+  behaviour cases pending-PRD. New filter types noted: Location, Transaction Type,
+  Invoice Status, Type, User, Mention.
+- **Page search (⌘K) — 9** (`cases/cases-G-page-search.json`, FLT-SRCH-01..09):
+  spotlight palette states (placeholder "Search or ask a question", entity tabs,
+  grouped results + highlighting, recent searches, persisting search, hover
+  quick-actions, keyboard footer, Refresh) + FLT-SRCH-09 scope-decision case.
+  **Every page-search case carries an OVERLAP note: this component is also the
+  Global Search project (86 cases already authored there, postponed) — reconcile /
+  de-duplicate before any push.**
+
+Behaviours the designs don't pin (which chips actually apply, option lists, new
+filter-type logic, results behaviour, WO-parity) are written to the visible design
+and carry a plain flag in the case ("Behaviour to confirm — pending Branko's
+product write-up; to be checked live once the feature is available"). Titles all
+≤ 80 chars. Refs = "Filters (Epic key TBD); Figma <node>; design-notes anchor"
+(Epic key still unavailable — not invented, Rule 20).
+
+**NEW TOTAL: 122 Filters cases** (79 existing WO cases C29557–C29635 + 43 new
+design-level). Import + id-map regenerated over 122 (`gen_import.py`; SECTION_ORDER
+extended with the 3 new sections). **Import hygiene RE-VERIFIED: header
+byte-identical to the other project imports, 0 VIU/flag words in tester content,
+no dup titles, no C-id column; id-map re-merged 79 existing C-ids preserved + 43
+new blank.** ⚠️ `gen_import.py` blanks id-map C-ids on rerun — re-merge after any
+regenerate.
+
+**Branko PO-questions doc READY** (Option A deliverable) —
+`PO-Questions-Branko-PartsReports-2026-07-27.md`/`.xlsx` (generator
+`gen_po_questions_partsreports.py`; mirrors the prior PO sheets 1:1, layman/Rule 7,
+QA-only mapping on a separate tab). 7 product questions: (1) the PRD/behaviour
+write-up for Parts + Reports; (2) which shown filter buttons actually filter each
+page; (3) full option lists per filter; (4) how the new filter types work;
+(5) do Parts/Reports filters behave like Work Orders (multi-pick/clear/collapse/
+remember/shareable/mobile); (6) page-search scope = Filters vs Global Search
+(+ AI "ask a question"); (7) do filter choices differ by role on Parts/Reports.
+**NOTHING pushed to TestRail; no secrets.**
+
+**NEXT:** Branko's PRD/answers → then run SPEC-RELEVANCE-RECONCILIATION +
+build-accurate wording + live VIU on the new cases (they are DESIGN-ONLY today);
+resolve page-search scope with the Global Search project; then an authorized
+`add_case` push for the 43 new cases (assign C-ids, re-merge id-map).
+
+---
+
+Prior update: 2026-07-20 (**Branko's ROUND-2 ANSWERS INGESTED 2026-07-20
 — Q1=A / Q2=A / Q3=A, all three CONFIRM the suite as-is; ZERO case edits and
 ZERO TestRail writes required.** Source of record:
 `branko-answers-round2-2026-07-20/answers-ingested.md` (+ raw xlsx). Q1=A he'll

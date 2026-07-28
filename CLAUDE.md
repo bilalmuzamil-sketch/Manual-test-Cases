@@ -648,7 +648,23 @@ deliver the 7-tab management report.
    **CANONICAL STATE DOC (read first for resume):** `build/filters/PROJECT-STATE.md`
    — single authoritative snapshot (status, deliverables index, open questions,
    env/access TBD, how-to-resume).
-   **STATUS: CASES AUTHORED 2026-07-17 — 79 cases/14 sections,
+   **STATUS 2026-07-27 (LATEST — OPTION A design-level authoring): 43 NEW
+   Parts/Reports/page-search cases AUTHORED, VIU-Pending, NO TestRail writes** —
+   Parts 12 (FLT-PARTS-01..12), Reports 22 (FLT-RPTS-01..22), page-search 9
+   (FLT-SRCH-01..09; every one carries an OVERLAP note = also the Global Search
+   project, reconcile before push). Written to the captured designs (chips +
+   columns + on-screen labels); all behaviour flagged "pending Branko's product
+   write-up" (design-only, not live-verified). **New total 122** (79 existing
+   C29557–C29635 + 43 new blank C-ids → need add_case). Import + id-map regenerated
+   over 122, hygiene re-verified (header byte-identical, 0 VIU/flag words, 79 C-ids
+   re-merged). **Branko PO-questions doc READY:
+   build/filters/PO-Questions-Branko-PartsReports-2026-07-27.md/.xlsx** (7 product
+   Qs: PRD request, which chips apply, option lists, new filter-type behaviour,
+   WO-parity, page-search scope vs Global Search + AI, per-role filters). NEXT =
+   Branko PRD/answers → SPEC-RELEVANCE-RECONCILIATION + build-accurate wording + live
+   VIU on the 43 new cases → authorized add_case push. Canonical resume doc:
+   build/filters/PROJECT-STATE.md (2026-07-27 header).
+   **Prior STATUS: CASES AUTHORED 2026-07-17 — 79 cases/14 sections,
    adversarial-reviewed CLEAN (7/7); import ready (pure 1:1,
    testrail-import/filters-v1-testrail-import.csv/.xlsx); PO questions ready
    for Branko (Parts/Reports scope + 3 more); VIU pending env + Epic key
