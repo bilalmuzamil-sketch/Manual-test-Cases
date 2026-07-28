@@ -5,9 +5,50 @@
 > (staging/QA access method, harness scripts, TestRail API patterns, the two process
 > docs) across all projects.
 
-## 0. STATUS / WHAT'S LEFT TO DO — read first (Last updated 2026-07-22)
+## 0. STATUS / WHAT'S LEFT TO DO — read first (Last updated 2026-07-27)
 
-### 0.0-SYNC-DONE TestRail SYNC EXECUTED (2026-07-22, LATEST — user-authorized writes DONE)
+### 0.0-EPIC EPIC SV-8685 BACKFILL + DESIGN/JIRA DELTAS + NEW-SCOPE APPLIED LOCALLY (2026-07-27, LATEST — NO TestRail writes)
+
+**Applied LOCAL ONLY (plan item 1); TestRail push STAGED not executed.** Sources:
+`build/schedule/epic-sv8685/RECONCILIATION.md` (§3 backfill map, deltas D1–D5, gap G1) +
+`build/schedule/design-2026-07-27/DESIGN-RECONCILIATION-2026-07-27.md` (label/menu/timing).
+
+- **EPIC-KEY BACKFILL — all 167 active cases** now carry a Rule-20 `refs` = `<TICKET> (<spec-anchor>)`
+  (existing spec anchor kept), per the RECONCILIATION §3 section→story map. Resolves OQ-2.
+  Script: `build/schedule/epic-sv8685/backfill_refs.py`. Cross-cutting permission tiers → epic
+  **SV-8685**; everything else → its owning story (SV-8686..SV-8700).
+- **10 tester-facing edits** (design + Jira agree / Jira deltas), script
+  `build/schedule/epic-sv8685/patch_edits.py`: SCH-FILT-01/C29942 ("Filters"), SCH-VIEW-01/C30042
+  ("Filter & Display"), SCH-EVT-01/C30016 ("Create Event"), SCH-REAS-03/C30054 (menu = Create
+  Event + New Work Order), SCH-REAS-04/C30055 (View Day removed) + SCH-REAS-05/C30056 (New Shift
+  removed) — **reworked, NOT retired**, C-ids kept; SCH-DEL-08/C30064 (toast 7s-with-Undo /
+  4s-without); **D2** SCH-SPREAD-07/C29983 + SCH-EDGE-05/C30089 (shop closures NOT skipped in V1);
+  **D3** SCH-BLOCK-04/C29994 (blocks default blue, custom colour optional per shift, not WO-tied).
+- **10 NEW-SCOPE cases authored** (VIU-Pending, behaviours flagged confirm-at-VIU),
+  `cases/cases-G-new-scope.json`: **Working Hours Settings ×7** (SCH-HRS-01..07 — SV-8699 gap G1:
+  Edit-Location "Set business hours…" toggle, per-day Mon-Sun From→To, Edit-Staff "Set custom
+  hours…" toggle + inherit-shop-hours, "Add hours" split shifts removable/empty, overlap red flag
+  + "These hours overlap…" + Save disabled, incomplete rows ignored), **Week Export ×2**
+  (SCH-EXP-01/02 — printable Dept×Tech week grid; V1 scope PENDING BRANKO), **New Work Order
+  shortcut ×1** (SCH-REAS-06). Two new sections: "Working Hours Settings", "Week Export and Printing".
+- **HELD (pending Branko — NOT changed):** **D1** events-count-toward-capacity (SCH-EVT-08/C30615
+  + SCH-CAP-01..04 / C30030–C30033) — new design reverses Branko's earlier Q1; **D4** modal
+  "Reassign" (SCH-MODAL-08/C30015 + the retired SCH-REAS-02/C30053) — Jira-vs-design conflict.
+- **NEW TALLY: 177 authored ACTIVE** (167 + 10 new; SCH-REAS-02 still retired/deleted =
+  178 authored incl. retired). All VIU-Pending. **Deliverables regenerated over 177:**
+  `testrail-import/schedule-v1-testrail-import.csv`/`.xlsx` (177 rows, References now = Rule-20
+  refs, header byte-identical to the other project imports; 0 VIU/flag words, no dup titles/ids,
+  no missing fields, no C-id column), `testrail-id-map.csv` (177 rows, NEW `refs` column; 167
+  C-ids re-merged, 10 new = blank C-id). ⚠️ `gen_import.py` blanks id-map C-ids on rerun + excludes
+  Retired — ALWAYS re-merge from the prior id-map afterwards.
+- **STAGED (NOT executed) TestRail sync manifest:**
+  `build/schedule/spec-v1-2026-07-22/testrail-sync-manifest-epic-2026-07-27.md` — **167 update_case**
+  (refs backfill; 10 of them also change tester-facing fields) + **10 add_case** (new-scope) +
+  **0 delete_case**; D1/D4 listed as HELD. NOT EXECUTED; no run writes.
+- **NEXT:** Branko rulings on D1 (events→capacity) + D4 (modal Reassign) + Week Export V1 scope;
+  then live VIU (QA branch OQ-3) + authorized TestRail push. Per Rule 12, design-pinned ≠ VIU-Verified.
+
+### 0.0-SYNC-DONE TestRail SYNC EXECUTED (2026-07-22 — user-authorized writes DONE)
 
 **The staged sync is EXECUTED (user-authorized, incl. the delete — Standing Rule 6):
 7 update_case + 2 add_case + 1 delete_case, ALL HTTP 200, ALL re-GET verified MATCH.**

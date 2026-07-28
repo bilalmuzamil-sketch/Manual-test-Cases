@@ -725,7 +725,26 @@ deliver the 7-tab management report.
    **CANONICAL STATE DOC (read first for resume):** `build/schedule/PROJECT-STATE.md`
    — single authoritative snapshot (status, spec-ingest facts, authoring-readiness
    assessment §0.6, deliverables index, open questions, env/access TBD, how-to-resume).
-   **STATUS: TestRail SYNC EXECUTED 2026-07-22 (user-authorized, incl. delete) — the staged
+   **STATUS 2026-07-27 (LATEST — EPIC SV-8685 BACKFILL + DESIGN/JIRA DELTAS + NEW-SCOPE, LOCAL
+   ONLY, NO TestRail writes; resume `build/schedule/PROJECT-STATE.md` §0.0-EPIC):** epic = **SV-8685**
+   / 15 stories SV-8686..SV-8700. Applied locally (plan item 1): (1) Rule-20 refs backfilled on ALL
+   **167** active cases (`<TICKET> (<spec-anchor>)`, cross-cutting perms → epic SV-8685; resolves
+   OQ-2); (2) 10 tester-facing edits — SCH-FILT-01/C29942 "Filters", SCH-VIEW-01/C30042 "Filter &
+   Display", SCH-EVT-01/C30016 "Create Event", SCH-REAS-03/C30054 menu=Create Event+New Work Order,
+   SCH-REAS-04/C30055 (View Day removed) + SCH-REAS-05/C30056 (New Shift removed, both REWORKED not
+   retired), SCH-DEL-08/C30064 toast 7s-Undo/4s, D2 SCH-SPREAD-07/C29983 + SCH-EDGE-05/C30089 (shop
+   closures NOT skipped V1), D3 SCH-BLOCK-04/C29994 (blocks default blue, custom per-shift); (3) **10
+   NEW-SCOPE cases** (`cases/cases-G-new-scope.json`, VIU-Pending): Working Hours Settings ×7
+   (SCH-HRS-01..07, SV-8699), Week Export ×2 (SCH-EXP-01/02, scope pending Branko), New Work Order
+   shortcut ×1 (SCH-REAS-06). **HELD pending Branko:** D1 events-count-toward-capacity
+   (SCH-EVT-08/C30615 + SCH-CAP-01..04) + D4 modal "Reassign" (SCH-MODAL-08/C30015). **NEW TALLY:
+   177 ACTIVE authored** (all VIU-Pending); deliverables regenerated over 177 (id-map now has a
+   `refs` column, References column = Rule-20 refs, header byte-identical, hygiene clean); id-map
+   167 C-ids re-merged + 10 new blank. STAGED (NOT executed): `spec-v1-2026-07-22/testrail-sync-manifest-epic-2026-07-27.md`
+   = 167 update_case + 10 add_case + 0 delete_case. Scripts: `epic-sv8685/backfill_refs.py`,
+   `epic-sv8685/patch_edits.py`. Design-pinned ≠ VIU-Verified (Rule 12); live VIU still pending QA
+   branch (OQ-3).
+   **PRIOR STATUS: TestRail SYNC EXECUTED 2026-07-22 (user-authorized, incl. delete) — the staged
    spec_1+design+Branko reconciliation is now LIVE in TestRail: 7 update_case + 2 add_case +
    1 delete_case, ALL HTTP 200, ALL re-GET verified MATCH; run 325 untouched, only group 4254
    touched, no secrets committed. 7 updates: SCH-MODAL-04 (C30011)/MODAL-08 (C30015)/CONF-02/03/04
