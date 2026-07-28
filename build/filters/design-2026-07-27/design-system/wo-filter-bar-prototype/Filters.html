@@ -1,0 +1,232 @@
+<!doctype html>
+<!-- @dsCard group="Brand" name="Filters" -->
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8" />
+<title>Filters</title>
+<link rel="stylesheet" href="colors_and_type.css">
+<style>
+  html, body { margin: 0; padding: 0; background: var(--sv-surface-canvas); }
+  *, *::before, *::after { box-sizing: border-box; }
+  button { font-family: inherit; }
+  a { color: var(--sv-accent); }
+  a:hover { color: var(--sv-accent-hover); }
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+<script type="text/babel" src="design-canvas.jsx"></script>
+<script type="text/babel" src="filter-chip.jsx"></script>
+<script type="text/babel" src="filter-dropdown.jsx"></script>
+<script type="text/babel" src="mobile-filters.jsx"></script>
+<script type="text/babel" src="filter-bar.jsx"></script>
+
+<script type="text/babel">
+
+const { DesignCanvas, DCSection, DCArtboard } = window;
+
+// ── Mini scenes that just show component states (no table) ──────────────
+
+function ChipRow({ label, children, bg = "var(--sv-surface)" }) {
+  return (
+    <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+      <span style={{ fontSize: 12, fontWeight: 500, color: "var(--sv-grey-500)", textTransform: "uppercase", letterSpacing: "0.04em" }}>{label}</span>
+      <div style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "8px 12px", background: bg, borderRadius: 8, border: "1px solid var(--sv-grey-200)" }}>{children}</div>
+    </div>);
+
+}
+
+function StatesArtboard() {
+  return (
+    <div style={{ padding: 32, background: "var(--sv-surface)", display: "flex", flexDirection: "column", gap: 24, width: "766px" }}>
+      <ChipRow label="Default">
+        <FilterChip icon={SVIcons.ICON_LOAD} label="Status" />
+        <FilterChip icon={SVIcons.ICON_USER} label="Customer" />
+        <FilterChip icon={SVIcons.ICON_WRENCH} label="Lead Technician" />
+        <FilterChip icon={SVIcons.ICON_CALENDAR} label="Date Range" />
+      </ChipRow>
+      <ChipRow label="Hover">
+        <FilterChip icon={SVIcons.ICON_LOAD} label="Status" state="hover" />
+        <FilterChip icon={SVIcons.ICON_HEADSET} label="Service Advisor" state="hover" />
+      </ChipRow>
+      <ChipRow label="Open">
+        <FilterChip icon={SVIcons.ICON_LOAD} label="Status" state="open" />
+        <FilterChip icon={SVIcons.ICON_USER} label="Customer" state="open" />
+      </ChipRow>
+      <ChipRow label="Selected — single value">
+        <FilterChip icon={SVIcons.ICON_LOAD} label="Status" hasValue valueText="In progress" onClear={() => {}} />
+        <FilterChip icon={SVIcons.ICON_USER} label="Customer" hasValue valueText="RF Heavy" onClear={() => {}} />
+      </ChipRow>
+      <ChipRow label="Selected — multi value">
+        <FilterChip icon={SVIcons.ICON_LOAD} label="Status" hasValue valueText="Estimate, +2" onClear={() => {}} />
+        <FilterChip icon={SVIcons.ICON_USER} label="Customer" hasValue valueText="Texas Truck And…, +2" onClear={() => {}} />
+      </ChipRow>
+      <div style={{ height: 1, background: "var(--sv-grey-100)" }} />
+      <ChipRow label="In bar — applied set with Clear filters">
+        <FilterChip icon={SVIcons.ICON_LOAD} label="Status" hasValue valueText="In progress" onClear={() => {}} />
+        <FilterChip icon={SVIcons.ICON_USER} label="Customer" hasValue valueText="RF Heavy, +2" onClear={() => {}} />
+        <FilterChip icon={SVIcons.ICON_WRENCH} label="Lead Technician" />
+        <FilterChip icon={SVIcons.ICON_HEADSET} label="Service Advisor" />
+        <FilterChip icon={SVIcons.ICON_TRUCK} label="Asset on site" />
+        <FilterChip icon={SVIcons.ICON_CALENDAR} label="Date Range" hasValue valueText="This month" onClear={() => {}} />
+        <span style={{ color: "var(--sv-primary-500)", fontWeight: 500, fontSize: 14, paddingLeft: 8, cursor: "pointer" }}>Clear filters</span>
+      </ChipRow>
+    </div>);
+
+}
+
+function DropdownArtboard({ title, children }) {
+  return (
+    <div style={{ width: 380, padding: 32, background: "var(--sv-grey-50)", display: "flex", flexDirection: "column", gap: 16, alignItems: "flex-start" }}>
+      {children}
+    </div>);
+
+}
+
+function CustomerEmpty() {
+  const [v, setV] = React.useState([]);
+  return (
+    <DropdownArtboard>
+      <FilterChip icon={SVIcons.ICON_USER} label="Customer" state="open" />
+      <FilterDropdown title="Customer" options={window.CUSTOMERS} value={v} onChange={setV} onClear={() => setV([])} width={316} />
+    </DropdownArtboard>);
+
+}
+
+function CustomerWithSelections() {
+  const [v, setV] = React.useState(["RF Heavy", "Dodson Autospares", "Texas Truck And Auto Parts"]);
+  return (
+    <DropdownArtboard>
+      <FilterChip icon={SVIcons.ICON_USER} label="Customer" hasValue valueText={v[0] + (v.length > 1 ? `, +${v.length - 1}` : "")} onClear={() => setV([])} />
+      <FilterDropdownWithPills title="Customer" options={window.CUSTOMERS} value={v} onChange={setV} onClear={() => setV([])} width={316} />
+    </DropdownArtboard>);
+
+}
+
+function DateRangeEmpty() {
+  const [v, setV] = React.useState(null);
+  return (
+    <DropdownArtboard>
+      <FilterChip icon={SVIcons.ICON_CALENDAR} label="Date Range" state="open" />
+      <DateRangeDropdown value={v} onChange={setV} onClear={() => setV(null)} width={260} />
+    </DropdownArtboard>);
+}
+
+function DateRangeSelected() {
+  const [v, setV] = React.useState("This month");
+  return (
+    <DropdownArtboard>
+      <FilterChip icon={SVIcons.ICON_CALENDAR} label="Date Range" hasValue valueText={v} onClear={() => setV(null)} />
+      <DateRangeDropdown value={v} onChange={setV} onClear={() => setV(null)} width={260} />
+    </DropdownArtboard>);
+}
+
+function DateRangeCustom() {
+  const [v, setV] = React.useState("Custom");
+  return (
+    <DropdownArtboard>
+      <FilterChip icon={SVIcons.ICON_CALENDAR} label="Date Range" hasValue valueText={v} onClear={() => setV(null)} />
+      <DateRangeDropdown value={v} onChange={setV} onClear={() => setV(null)} width={260} />
+    </DropdownArtboard>);
+}
+
+function StatusEmpty() {
+  const [v, setV] = React.useState([]);
+  return (
+    <DropdownArtboard>
+      <FilterChip icon={SVIcons.ICON_LOAD} label="Status" state="open" />
+      <StatusDropdown options={window.STATUSES} value={v} onChange={setV} onClear={() => setV([])} width={240} />
+    </DropdownArtboard>);
+
+}
+
+function StatusSelected() {
+  const [v, setV] = React.useState(["Estimate", "In progress", "Approved"]);
+  return (
+    <DropdownArtboard>
+      <FilterChip icon={SVIcons.ICON_LOAD} label="Status" hasValue valueText={`${v[0]}, +${v.length - 1}`} onClear={() => setV([])} />
+      <StatusDropdown options={window.STATUSES} value={v} onChange={setV} onClear={() => setV([])} width={240} />
+    </DropdownArtboard>);
+
+}
+
+function MobileArtboard() {
+  return (
+    <div style={{ width: 440, padding: 16, background: "var(--sv-grey-100)" }}>
+      <MobileFilters onClose={() => {}} />
+    </div>);
+
+}
+
+function App() {
+  return (
+    <DesignCanvas>
+      <DCSection id="overview" title="Filter Bar — full context">
+        <DCArtboard id="wo-default" label="Default" width={1440} height={900}>
+          <WorkOrdersPage />
+        </DCArtboard>
+        <DCArtboard id="wo-applied" label="With filters applied" width={1440} height={900}>
+          <WorkOrdersPage initial={{
+            status: ["In progress"],
+            cust: ["RF Heavy", "Hard Rock Industries LLC"],
+            adv: ["Kathryn Murphy"]
+          }} />
+        </DCArtboard>
+        <DCArtboard id="wo-shared-url" label="Shared URL" width={1440} height={900}>
+          <WorkOrdersPage sharedLink initial={{
+            status: ["Approved", "Review"],
+            cust: ["Truck Zone"],
+            tech: ["Floyd Miles", "Leslie Alexander"],
+            asset: ["Yes"]
+          }} />
+        </DCArtboard>
+      </DCSection>
+
+      <DCSection id="chip" title="Filter chip — states">
+        <DCArtboard id="states" label="Chip states" width={860} height={760}>
+          <StatesArtboard />
+        </DCArtboard>
+      </DCSection>
+
+      <DCSection id="dropdowns" title="Dropdowns">
+        <DCArtboard id="status-empty" label="Status — empty" width={380} height={560}>
+          <StatusEmpty />
+        </DCArtboard>
+        <DCArtboard id="status-selected" label="Status — multi-select" width={380} height={560}>
+          <StatusSelected />
+        </DCArtboard>
+        <DCArtboard id="cust-empty" label="Customer — search" width={380} height={620}>
+          <CustomerEmpty />
+        </DCArtboard>
+        <DCArtboard id="cust-selected" label="Customer — with chips" width={380} height={680}>
+          <CustomerWithSelections />
+        </DCArtboard>
+        <DCArtboard id="date-empty" label="Date Range — empty" width={380} height={600}>
+          <DateRangeEmpty />
+        </DCArtboard>
+        <DCArtboard id="date-selected" label="Date Range — selected" width={380} height={600}>
+          <DateRangeSelected />
+        </DCArtboard>
+        <DCArtboard id="date-custom" label="Date Range — custom" width={380} height={660}>
+          <DateRangeCustom />
+        </DCArtboard>
+      </DCSection>
+
+      <DCSection id="mobile" title="Mobile">
+        <DCArtboard id="mobile-all" label="All Filters drawer" width={440} height={760}>
+          <MobileArtboard />
+        </DCArtboard>
+      </DCSection>
+    </DesignCanvas>);
+
+}
+
+ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+</script>
+</body>
+</html>
