@@ -87,6 +87,12 @@ that project's `PROJECT-STATE.md` as the canonical resume doc. Per **Standing Ru
 11**, whenever a new/updated spec arrives OR a VIU is requested, ALWAYS ASK which
 process(es) to run before proceeding.
 
+**PROJECT STATUS SNAPSHOT (2026-07-27, user ruling):** the **3 ACTIVE projects** are
+**Report Suite, Schedule, Filters** — all three VIU-pending their QA branches. **Global
+Search = POSTPONED**; **Simple Flow + Fees & Discounts = COMPLETED** (detail/resume docs
+retained). The exact "what we need from the user/PO before VIU" list per active project is
+in **build/PROJECTS-NEEDS-2026-07-27.md**.
+
 **PERMISSION TESTING ROUTES THROUGH THIS SESSION (all projects):** each NEW project
 ships its own Custom-Roles permission ticket (defining what each permission does for that
 feature); that permission testing routes through this session — apply the Custom-Roles /
@@ -174,7 +180,9 @@ deliver the 7-tab management report.
    workbook / section-3658-resolution / testrail-wording-viu-log),
    `build/custom-roles-spec-update/*`, TestRail section **3527** / runs **312** & **331**.
    **SESSION RESUME 2026-07-16 (exec+QA deliverables): read build/custom-roles-run/SESSION-STATE-2026-07-16-EXEC-QA.md first** — exec file DELIVERED (audited CLEAN); QA pre-release checklist DELIVERED (audited CLEAN, aad5864). Task COMPLETE; open threads in the state doc.
-2. **Fees and Discount project** — Fees & Discounts V1 (ShopView). **Canonical
+2. **Fees and Discount project** — Fees & Discounts V1 (ShopView).
+   **✅ STATUS: COMPLETED 2026-07-27 (user ruling).** Detail/resume docs below are
+   kept for the record. **Canonical
    spec (Confluence):**
    https://shopview.atlassian.net/wiki/spaces/~712020aa00b8d6a71f4259891982a304227c20/pages/622297094/Fees+Discounts+V1
    (Atlassian-SSO login-walled — reference pointer only; export/paste content to
@@ -342,7 +350,9 @@ deliver the 7-tab management report.
    **PO for Fees & Discounts = Chris Ward; PO for Simple Flow = Milos — never mix
    attributions.**
 3. **Simple flow project** — Simple Mode / Streamlined Work Order Completion &
-   Receiving (ShopView), Epic **SV-7301**. **Canonical spec (Confluence):**
+   Receiving (ShopView), Epic **SV-7301**.
+   **✅ STATUS: COMPLETED 2026-07-27 (user ruling).** Detail/resume docs below are
+   kept for the record. **Canonical spec (Confluence):**
    https://shopview.atlassian.net/wiki/spaces/PM/pages/646021121/Simple+Mode+Streamlined+Work+Order+Completion+Bulk+Receiving
    (Atlassian-SSO login-walled — reference pointer only; export/paste content to
    ingest, do NOT fetch). **CANONICAL STATE DOC (read first for
@@ -572,7 +582,9 @@ deliver the 7-tab management report.
    spec `_3` (de-facto V2.5) doc + 2026-07-14 design `_4` bundle are the latest and
    override the earlier V2.4 doc / round-1 answer sheet where they disagree (e.g. the
    V2.4 note #6 first-class-part requirement was REVERSED by spec `_3` Δ7).
-4. **Global Search project** — Global Search v2 (ShopView App). **Canonical spec
+4. **Global Search project** — Global Search v2 (ShopView App).
+   **⏸️ STATUS: POSTPONED 2026-07-27 (user ruling).** Detail/resume docs below are
+   kept for the record; not active work. **Canonical spec
    (Confluence, confirmed 2026-07-16):**
    https://shopview.atlassian.net/wiki/spaces/shopviewapp/pages/576978945/Global+Search+-+Product+Requirements+Development+Plan
    (Atlassian-SSO login-walled — reference pointer only; do NOT fetch; spec content
