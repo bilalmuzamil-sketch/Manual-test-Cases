@@ -73,3 +73,12 @@ display quirk noted by Ayesha (dev: out of scope for this ticket).
 - evidence/order-detail.json — backend order detail: legacy vs *_decimal fields
 - evidence/V1-wo-with-line.png — WO with seeded parts
 - requirements-SV-8721.md / requirements-SV-4543.md — ingested tickets + rule
+
+## Additional confirmation — Purchase Orders list total (added post-checkpoint)
+On the Purchase Orders list (`/parts/orders`), the seeded PO **S9-26205** shows **Total Price $152.36**
+= 15.32 (3 customer parts) + 137.04 (the 45.6789 part) — i.e. computed on FULL precision. The buggy
+rounded math would have shown 152.64. So the full-precision fix flows through to the PO list total too.
+Evidence: `evidence/B0-po-list.png`.
+The dedicated multi-PO **Bulk Receive** page was NOT driven (a single vendorless PO exposes only a
+per-row "Receive" that reuses the /order/{id}?receive=1 screen already verified; the grouped
+"Receive Selected" multi-select flow needs multiple same-vendor POs). Honest limit per Rule 12/17.
