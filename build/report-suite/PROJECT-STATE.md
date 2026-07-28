@@ -45,6 +45,19 @@ recorded 2026-07-28:**
 (b) the condensed click-through Chris will film, (c) the Report Suite QA branch. **No case
 edits / no TestRail writes until then.** Tally unchanged: 515 cases in TestRail.
 
+**KICKOFF-VIDEO TRANSCRIPT INGESTED 2026-07-28 (documentation only — NO TestRail writes, NO
+case edits):** the Loom kickoff video transcript is saved verbatim at
+`chris-answers-2026-07-28/loom-kickoff-transcript.md` and a structured deltas/clarifications
+doc extracted to `chris-answers-2026-07-28/video-deltas-2026-07-28.md` (40 points: 7 FIRM
+DELTA · 3 PENDING-SPEC · 6 OPEN DECISION · 1 CROSS-SQUAD · 2 VISUAL-REFERENCE · 21
+CONFIRMATION; per-report roll-up + the Filters-squad persistence CROSS-SQUAD clash inside).
+**Ingested + on-hold pending the process decision (RULING 2 reconciliation pass);** feeds the
+eventual SPEC-RELEVANCE-RECONCILIATION → build-accurate wording → live VIU. FIRM headlines:
+new "Parts" nav subsection (PV+IV); TU nav must move down (additive-not-interruptive);
+"Sales by Representative" label (not "Associate"); "All locations" + a location identifier on
+EVERY report; ADD a compressed download view to Sales By Customer; asset identifier UNIT
+NUMBER→SERIAL/BIN; REMOVE the Print button from Sales By Customer.
+
 **UPDATE 2026-07-27 — EPIC SV-8582 INGESTED + RECONCILED (NO TestRail writes, NO
 authoring):** the Jira epic is now known = **SV-8582** (ingested via Atlassian MCP;
 epic Open, 97 child stories SV-8583→SV-8679 contiguous, branch
