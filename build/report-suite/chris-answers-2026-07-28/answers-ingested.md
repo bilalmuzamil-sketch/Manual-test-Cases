@@ -67,3 +67,15 @@ Below are the three question rows, VERBATIM.
 - **All 3 of our questions were answered** (none left unanswered).
 - **Chris added no extra questions.**
 - The sheet is a verbatim copy of our PO-Questions doc (same #, Topic, What-happens-now, Question, Options) with the "Your answer" column filled in.
+
+---
+
+## User rulings 2026-07-28
+
+Two rulings from the user (bilal.muzamil@shopview.com) on 2026-07-28, recorded here and in `build/report-suite/PROJECT-STATE.md` §0. **No TestRail writes, no case edits — documentation + a draft note only.**
+
+- **RULING 1 (Q2 permission model):** KEEP the Report Suite test cases matching the SHIPPED build's MIXED permission model (Sales By Customer = dedicated permission; Parts Velocity + Inventory Value = inventory-reports access; Sales By Rep = performance group; etc. — as authored). Do NOT reword them to Chris's "normal reports access" answer. Instead, RAISE the discrepancy (PO wants a single normal-reports access vs the build shipped a mixed model) back to Chris/dev for a decision. **Cases stay as-is until they rule.** Reader-facing draft note = `Q2-permission-discrepancy-for-Chris-dev.md` (draft, NOT sent).
+
+- **RULING 2 (process choice):** the "best approach" is delegated to us. Recorded plan: when we proceed (AFTER the Loom video is accessible AND the QA branch exists), run **SPEC-RELEVANCE-RECONCILIATION first** (fold Chris's Q1/Q2/Q3 answers + the kickoff video + the forthcoming condensed click-through across all 515 cases to decide which need a change), THEN **BUILD-ACCURATE-WORDING + live VIU on the QA branch**. The Q1 SBR-deactivate-dialog edit (SBR-DEACT-04 = C30255: pressing Escape must NOT close the confirm dialog — Golden Rule wins) is **QUEUED for that reconciliation pass, VIU-confirmed live, NOT edited now.**
+
+- **STATUS: ON HOLD** pending (a) Loom kickoff video access (user is making it public), (b) the condensed click-through Chris will film, (c) the Report Suite QA branch. No case edits / no TestRail writes until then.

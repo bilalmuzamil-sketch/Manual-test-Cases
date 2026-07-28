@@ -18,6 +18,33 @@ import REGENERATED post-review.)
 
 ## 0. STATUS
 
+**UPDATE 2026-07-28 — CHRIS ANSWERS INGESTED + USER RULINGS (NO TestRail writes, NO
+case edits — documentation + a draft note only). ON HOLD.** Chris Ward answered all 3
+PO questions (source `chris-answers-2026-07-28/answers-ingested.md`): Q1 = **B** (Esc must
+NOT close the SBR deactivate confirm dialog — Golden Rule wins), Q2 = **B** ("these should
+be gated by normal reports access"), Q3 = **B** (a kickoff video exists — pinned in chat,
+has visual issues — plus a condensed click-through Chris will film). **Two user rulings
+recorded 2026-07-28:**
+- **RULING 1 (Q2 permission model) — KEEP cases as authored to the SHIPPED build's MIXED
+  model** (Sales By Customer = its own dedicated permission; Parts Velocity + Inventory
+  Value = inventory-reports access; Sales By Rep = performance group; etc.). Do NOT reword
+  them to Chris's "normal reports access" answer. Instead **RAISE the discrepancy** (PO
+  wants one single normal-reports permission vs the build shipped a mixed model) back to
+  Chris/dev for a decision. **Cases stay as-is until they rule.** Reader-facing draft note
+  = `chris-answers-2026-07-28/Q2-permission-discrepancy-for-Chris-dev.md` (draft, NOT sent).
+- **RULING 2 (process choice) — best approach delegated to us; recorded plan:** when we
+  proceed (AFTER the Loom video is accessible AND the QA branch exists), run
+  **SPEC-RELEVANCE-RECONCILIATION first** — fold Chris's Q1/Q2/Q3 answers + the kickoff
+  video + the forthcoming condensed click-through across all 515 cases to decide which need
+  a change — **THEN BUILD-ACCURATE-WORDING + live VIU on the QA branch.** The **Q1
+  SBR-deactivate-dialog edit** (SBR-DEACT-04 = C30255: pressing Escape must NOT close the
+  confirm dialog — Golden Rule wins) is **QUEUED for that reconciliation pass, to be
+  VIU-confirmed live, NOT edited now.**
+
+**STATUS: ON HOLD** pending (a) Loom kickoff video access (user is making it public),
+(b) the condensed click-through Chris will film, (c) the Report Suite QA branch. **No case
+edits / no TestRail writes until then.** Tally unchanged: 515 cases in TestRail.
+
 **UPDATE 2026-07-27 — EPIC SV-8582 INGESTED + RECONCILED (NO TestRail writes, NO
 authoring):** the Jira epic is now known = **SV-8582** (ingested via Atlassian MCP;
 epic Open, 97 child stories SV-8583→SV-8679 contiguous, branch
