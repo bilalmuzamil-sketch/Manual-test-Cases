@@ -1,3 +1,5 @@
+> **FILED as SV-8736 on 2026-07-28, linked to SV-8721 (Relates), 3 screenshots attached inline.**
+
 # Dev follow-up ticket draft — PO subtotal rounding-method 1-cent gap
 
 > **DRAFT ONLY — not filed to Jira.** Ready for the user to file (or ask me to). Found during SV-8721 QA on staging, verified live this session.
