@@ -2,7 +2,7 @@
  {
   "id": "SCH-EVT-01",
   "area": "Events",
-  "title": "Create an event via right-click 'New Event' on a grid cell",
+  "title": "Create an event via right-click 'Create Event' on a grid cell",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "Schedule: Edit (event creation requires Edit; spec §14.1).",
@@ -12,11 +12,11 @@
   ],
   "steps": [
    "1. Right-click a technician's cell on a working day.",
-   "2. Choose 'New Event' from the context menu.",
+   "2. Choose 'Create Event' from the context menu.",
    "3. Fill in a name (for example 'ZZAUTOTEST stand-up'), keep the date/times offered, and save."
   ],
   "expected": [
-   "1. The right-click context menu contains 'New Event'.",
+   "1. The right-click context menu contains 'Create Event'.",
    "2. The event modal opens with the clicked cell's technician and date pre-set.",
    "3. Saving creates an event block on that technician's day.",
    "4. A toast with Undo appears."
@@ -25,7 +25,7 @@
   "spec_ref": "requirements.md §4.10, §7 (right-click menu)",
   "refs": "SV-8696 (§4.10, §7 (right-click menu))",
   "viu_status": "VIU-Pending",
-  "notes": "'New Event' right-click menu item pinned by the Claude design (§4c/context menu); pre-fill (clicked cell's tech + date) confirmed by design; confirm live. Driver: Claude design.",
+  "notes": "Menu item label is 'Create Event' (was 'New Event') - design + Jira SV-8696 agree (DESIGN-RECONCILIATION #7). Pre-fill (clicked cell's tech + date) confirmed by design. Driver: SV-8696 §4.10 + Claude design. Confirm live at VIU.",
   "api_related": false
  },
  {

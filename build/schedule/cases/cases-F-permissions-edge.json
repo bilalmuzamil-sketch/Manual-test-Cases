@@ -461,7 +461,7 @@
  {
   "id": "SCH-EDGE-05",
   "area": "Edge Cases and Responsiveness",
-  "title": "Shop closures block the spread step from placing shifts on those days",
+  "title": "Shop closures do NOT block spread in V1 - shifts can land on closure days",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "Schedule: Edit + admin access to define a shop closure.",
@@ -471,20 +471,20 @@
    "3. A large job (multi-day scope) is ready to spread."
   ],
   "steps": [
-   "1. Open the spread step across the window containing the closure.",
+   "1. Open the spread step across a window that contains a shop closure day.",
    "2. Expand the preview and find the closure day.",
    "3. Confirm the spread and check the grid."
   ],
   "expected": [
-   "1. The preview shows the closure day struck through with its reason.",
-   "2. No shift is placed on the closure day - the series flows around it.",
-   "3. The series' end date extends accordingly (the skipped day's hours land on later working days)."
+   "1. The closure day is NOT struck through or skipped by the spread in V1.",
+   "2. A shift CAN be placed on the shop closure day (only weekend days with no business hours are skipped).",
+   "3. The end date follows the normal daily distribution - no extra day is added for the closure."
   ],
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §12 (Shop closures), §4.5",
   "refs": "SV-8691 (§12 (Shop closures), §4.5)",
   "viu_status": "VIU-Pending",
-  "notes": "Where shop closures are configured is outside this spec - locate the setting live; if closures cannot be defined in the environment, mark blocked with reason.",
+  "notes": "V1 rule (Jira SV-8691 Key Decision, latest-wins over the older requirements.md §12): shop closures / public holidays are NOT skipped by spread in V1. This reverses the earlier 'closures block spread' expectation. Driver: SV-8691 §4.5, §12. Verify live at VIU.",
   "api_related": false
  },
  {

@@ -88,7 +88,7 @@
  {
   "id": "SCH-BLOCK-04",
   "area": "Shift Block Anatomy",
-  "title": "Block color is tied to the work order - blocks from the same order share a color",
+  "title": "Shift blocks default to blue; a custom colour can be set per shift",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "Schedule: View to observe; Schedule: Edit to set up (spec §14.1).",
@@ -98,19 +98,20 @@
    "3. You are on the Schedule page in week view."
   ],
   "steps": [
-   "1. Compare the colors of the two blocks from the same work order.",
-   "2. Compare them with the other order's block."
+   "1. Look at a newly created shift block's colour.",
+   "2. Open the shift detail modal and set a custom colour via the colour picker.",
+   "3. Compare that shift with another shift from the same work order."
   ],
   "expected": [
-   "1. The two blocks from the same work order share the same color.",
-   "2. Blocks from different work orders can have different colors.",
-   "3. By default blocks are blue (the default shift color) unless a custom color was chosen."
+   "1. By default every shift block is blue (the default shift colour).",
+   "2. A custom colour can be assigned per shift via the colour picker in the detail modal.",
+   "3. Colour is per shift - it is NOT tied to the work order, so two shifts from the same order do not automatically share a colour."
   ],
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §4.4, §10",
   "refs": "SV-8690 (§4.4, §10)",
   "viu_status": "VIU-Pending",
-  "notes": "Block color tied to the work order (same-order blocks share color) pinned by the Claude design (§3); live-render confirm at VIU. Driver: Claude design §3.",
+  "notes": "V1 rule (Jira SV-8690, latest-wins over the older requirements.md §10): all shift blocks default to blue; custom colours are optional per shift (NOT tied to the work order). SCH-COLOR-01 already agrees. Driver: SV-8690 §4.4, §10. Verify live at VIU.",
   "api_related": false
  },
  {

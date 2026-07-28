@@ -87,7 +87,7 @@
  {
   "id": "SCH-VIEW-01",
   "area": "Filter and Display and View Options",
-  "title": "'Filter and Display' is a checkbox-style dropdown combining department toggles, My Shifts, and VIN",
+  "title": "'Filter & Display' dropdown combines department toggles, My Shifts, and VIN",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "Schedule: View (spec §14.1).",
@@ -96,7 +96,7 @@
    "2. You are on the Schedule page."
   ],
   "steps": [
-   "1. Open the 'Filter and Display' dropdown in the grid toolbar.",
+   "1. Open the 'Filter & Display' dropdown in the grid toolbar.",
    "2. Read its contents and default states."
   ],
   "expected": [
@@ -108,7 +108,7 @@
   "spec_ref": "requirements.md §6, §9 (Filter and Display dropdown)",
   "refs": "SV-8700 (§6, §9 (Filter and Display dropdown))",
   "viu_status": "VIU-Pending",
-  "notes": "'Filter and Display' checkbox dropdown (department toggles, 'My Shifts', VIN) pinned by the Claude design (§1); NOTE the VIN toggle label is 'VIN Number' (design §6). Driver: Claude design §1/§6.",
+  "notes": "Control label is 'Filter & Display' (ampersand) - design + Jira SV-8700 agree (DESIGN-RECONCILIATION #12). The VIN toggle label is 'VIN Number' (design §6). Driver: SV-8700 §9 + Claude design §1/§6. Confirm live at VIU.",
   "api_related": false
  },
  {
@@ -425,7 +425,7 @@
  {
   "id": "SCH-REAS-03",
   "area": "Reassignment and Context Menu",
-  "title": "Right-click on any grid cell opens a context menu with New Shift, New Event, and View Day",
+  "title": "Right-click a grid cell opens a menu with Create Event and New Work Order",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "Schedule: Edit (the context menu is an editing affordance hidden for View-only users; spec §14.1).",
@@ -439,20 +439,20 @@
   ],
   "expected": [
    "1. A context menu opens at the cell.",
-   "2. It contains: 'New Shift', 'New Event', and 'View Day'.",
+   "2. It contains: 'Create Event' and 'New Work Order'.",
    "3. The browser's own right-click menu does not appear instead."
   ],
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §7 (Right-click context menu)",
   "refs": "SV-8700 (§7 (Right-click context menu))",
   "viu_status": "VIU-Pending",
-  "notes": "'New Shift' / 'New Event' / 'View Day' are the spec's words - confirm the exact on-screen labels live.",
+  "notes": "The cell context menu is now 'Create Event' + 'New Work Order' - the old 'New Shift' / 'New Event' / 'View Day' items were removed. Design + Jira SV-8696/SV-8700 agree (DESIGN-RECONCILIATION #8). Driver: SV-8700 §7/§4.10. Confirm the exact on-screen labels live at VIU.",
   "api_related": false
  },
  {
   "id": "SCH-REAS-04",
   "area": "Reassignment and Context Menu",
-  "title": "'View Day' in the context menu opens day view for that cell's date",
+  "title": "'View Day' is no longer offered in the grid cell context menu",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "Schedule: Edit to open the menu (spec §14.1).",
@@ -461,24 +461,24 @@
    "2. You are on the Schedule page in week or month view."
   ],
   "steps": [
-   "1. Right-click a cell on a specific day.",
-   "2. Choose 'View Day'."
+   "1. Right-click a technician's grid cell.",
+   "2. Read the menu items."
   ],
   "expected": [
-   "1. The grid switches to day view showing that cell's date.",
-   "2. The toolbar date label and the Day/Week/Month control reflect the switch."
+   "1. The context menu shows only 'Create Event' and 'New Work Order'.",
+   "2. There is no 'View Day' item - it was removed from the menu."
   ],
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §7 (Right-click context menu - View Day)",
   "refs": "SV-8700 (§7 (Right-click context menu - View Day))",
   "viu_status": "VIU-Pending",
-  "notes": "Whether it also scrolls to the clicked technician is unspecified - observe and record.",
+  "notes": "'View Day' was removed from the cell context menu (menu redesigned to 'Create Event' + 'New Work Order'). Design + Jira SV-8700 agree (DESIGN-RECONCILIATION #9). Driver: SV-8700 §7. Confirm live at VIU.",
   "api_related": false
  },
  {
   "id": "SCH-REAS-05",
   "area": "Reassignment and Context Menu",
-  "title": "'New Shift' in the context menu starts shift creation for that technician and day",
+  "title": "'New Shift' is no longer offered in the grid cell context menu",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "Schedule: Edit (spec §14.1).",
@@ -488,18 +488,18 @@
    "3. You are on the Schedule page in week view."
   ],
   "steps": [
-   "1. Right-click a technician's cell and choose 'New Shift'.",
-   "2. Complete the creation flow that opens."
+   "1. Right-click a technician's grid cell.",
+   "2. Read the menu items."
   ],
   "expected": [
-   "1. A shift-creation flow opens targeted at that technician and day.",
-   "2. Completing it creates a shift in that cell, following the same scope/spread rules as drag-and-drop."
+   "1. The context menu shows only 'Create Event' and 'New Work Order'.",
+   "2. There is no 'New Shift' item - it was removed from the menu."
   ],
   "design_ref": "Claude design (authoritative, Branko Q0): build/schedule/spec-v1-2026-07-22/design-notes-claude.md (prototype Schedule.dc.html). spec_1 added the Design link to the doc.",
   "spec_ref": "requirements.md §7 (Right-click context menu - New Shift), §14.1 (creation via context menu)",
   "refs": "SV-8700 (§7 (Right-click context menu - New Shift), §14.1 (creation via context menu))",
   "viu_status": "VIU-Pending",
-  "notes": "The spec names the menu item but not the flow it opens (how the work order/line is picked) - capture the real flow live; do not assume.",
+  "notes": "'New Shift' was removed from the cell context menu (menu redesigned to 'Create Event' + 'New Work Order'). Design + Jira SV-8700 agree (DESIGN-RECONCILIATION #10). Driver: SV-8700 §7. Confirm live at VIU.",
   "api_related": false
  },
  {
@@ -705,7 +705,7 @@
  {
   "id": "SCH-DEL-08",
   "area": "Deletion, Series Scopes and Undo",
-  "title": "The toast persists 4 to 7 seconds, stays while the cursor is over it, and dismisses on mouse-leave",
+  "title": "Toast lasts ~7s with Undo (about 4s without); stays on hover, goes on leave",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "Schedule: Edit (spec §14.1).",
@@ -719,7 +719,7 @@
    "3. Move the cursor off the toast."
   ],
   "expected": [
-   "1. Untouched, the toast persists for roughly 4 to 7 seconds before dismissing.",
+   "1. Untouched, a toast that has an Undo action persists about 7 seconds; a toast without Undo persists about 4 seconds, before dismissing.",
    "2. While the cursor is over it, the toast stays (does not auto-dismiss).",
    "3. After the cursor leaves, it dismisses."
   ],
@@ -727,7 +727,7 @@
   "spec_ref": "requirements.md §7 (Toast notifications), §11 (Undo)",
   "refs": "SV-8688 (§7 (Toast notifications), §11 (Undo))",
   "viu_status": "VIU-Pending",
-  "notes": "The 4-7s window is spec-approximate - confirm the actual timing live.",
+  "notes": "Toast lifetime is 7 seconds with Undo / 4 seconds without (design code sets undo?7000:4000, DESIGN-RECONCILIATION #7, inside the spec's 4-7s window). Driver: SV-8688 §7. Confirm live at VIU.",
   "api_related": false
  },
  {
