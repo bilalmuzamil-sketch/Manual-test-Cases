@@ -69,6 +69,9 @@ SECTION_ORDER = [
     "Persistence",
     "URL State and Shareable Links",
     "Mobile Filters",
+    "Parts Page Filters",
+    "Reports Page Filters",
+    "Page Search (Command-K)",
     "API — Work Orders List Filtering",
 ]
 
