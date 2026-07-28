@@ -1,5 +1,21 @@
 # ShopView App Actions Playbook — Proven Per-Action Recipes (NON-SECRET)
 
+> ## 🟥 READ-FIRST — NEVER RE-DISCOVER
+> **Every test / VIU / staging worker MUST read this playbook (the "STAGING ACTION
+> RECIPES" index directly below) AND `CLAUDE.md` "Durable key facts" BEFORE doing ANY
+> staging/QA action** — create a WO, add a part, add a fee/discount, switch a role,
+> change location, hit an endpoint, drive a UI flow, log into Jira, push to TestRail.
+> **REUSE the recorded recipe — do NOT re-derive an endpoint / ID / payload / UI path /
+> gotcha-fix that this session (or another) already proved.** Re-discovering known
+> actions from scratch wastes testing time; that is exactly what this file exists to
+> prevent (user directive 2026-07-27).
+>
+> **The MOMENT you discover a NEW working recipe** (a new endpoint, payload field, ID,
+> UI click-path, or the concrete gotcha-fix that unblocked success) — **append it here
+> immediately, in the same session.** Success-proven knowledge ONLY (never failed
+> attempts / dead-ends), per "Keeping this current" at the bottom. This is Standing
+> Rule 27 in `CLAUDE.md`. **NO SECRETS EVER** — cookie NAMES only, never values.
+
 **How to use this.** This is the durable "how to do X in ShopView" reference, mined
 from ~2.5 weeks of committed test artifacts (VIU runs, the by-role regression run,
 custom-roles run 312, and the bug-fix re-test). Each recipe gives the concrete
@@ -22,6 +38,224 @@ evidenced in the committed artifacts — confirm before relying on it.
 
 **Base URLs:** SPA `https://app.staging.shopview.com` · API
 `https://api.staging.shopview.com` (all `/api/...` paths below are on the API host).
+
+---
+
+# STAGING ACTION RECIPES (quick-reference index)
+
+Consolidated, copy-paste-ready staging/QA recipes so no worker re-discovers a proven
+action. Each is terse: **what · method+endpoint (minimal payload) · the gotcha · helper
+location · source**. Fuller per-action detail (UI click-paths, confidence grades) is in
+the sections further down (Navigation Map, WORK ORDERS, PARTS, etc.) and in the dated
+"proven" appendices. **Helpers live in `build/testing-tools/`** (`staging-admin.mjs` =
+`login()`/`api()`/`changeLocation()`; `staging-boot2.mjs` = `boot2()` SPA hydration;
+`staging-bridge.mjs` = fresh MITM bridge; `testrail-api.mjs` = TestRail). **Do NOT invent
+any endpoint/ID not recorded here or in `CLAUDE.md`** — if only partly known, it is marked
+"(verify)".
+
+**Index:**
+[A. Auth & session](#a-auth--session) ·
+[B. Environment / location](#b-environment--location) ·
+[C. Work Orders](#c-work-orders) ·
+[D. WO Lines](#d-wo-lines) ·
+[E. Parts](#e-parts) ·
+[F. Adjustments / Fees & Discounts](#f-adjustments--fees--discounts) ·
+[G. Roles & permissions testing](#g-roles--permissions-testing) ·
+[H. Settings](#h-settings) ·
+[I. UI automation (Quasar)](#i-ui-automation-quasar) ·
+[J. TestRail API](#j-testrail-api) ·
+[Jira/Confluence access](#jiraconfluence-access)
+
+---
+
+## A. Auth & session
+- **Quick-login (admin/tech):** `POST /api/quick-login {key:'admin'|'tech'}` → 200 + a fresh
+  `PHPSESSID`. Gated by valid session cookies. Prefer quick-login SSO over raw-cookie API (raw
+  can 409). Both `{key:'admin'}` and `{key:'tech'}` return 200 on staging (tech-403 is fixed;
+  on qb, tech quick-login is FLAKY — retest each run). Helper: `login(key)` in `staging-admin.mjs`
+  (returns `{sessCookie, data, status}`; rebuilds cookie with the fresh PHPSESSID, keeps
+  `cf_clearance` + `sv_sso_session`). *Source: CLAUDE.md Durable key facts.*
+- **Cookie names / domain (values are SECRETS — `/tmp` only, NEVER in repo):** `sv_sso_session`,
+  `PHPSESSID`, `cf_clearance`; staging domain `.staging.shopview.com`, qb domain `.qa.shopview.com`.
+  Helpers read them from `/tmp/cln/cookies.json`.
+- **Cookie lifetime ~24 HOURS** — expire only after ~24h OR a new deployment; they do NOT expire
+  after ~1h (plan long VIU runs in one window). A 401 `sso_required` / 409 before 24h ⇒ suspect a
+  deployment or stale set → re-request cookies. *Source: CLAUDE.md.*
+- **Diagnostic ladder:** no cookies → 401; `sso_required`/only sso+cf → 409; **poisoned shared
+  PHPSESSID → 500 on everything** (API root still 200). Fix a poisoned session: re-run quick-login
+  `{key:'admin'}` WITHOUT sending the old PHPSESSID → fresh PHPSESSID → all 200 again.
+- **Chromium UI automation (boot2 hydration):** Chromium can't TLS through the egress proxy directly.
+  `boot2(roleKey, opts)` in `staging-boot2.mjs` does quick-login → optionally `change-location` →
+  reads `GET /api/auth/me/fe-permissions` → seeds cookies + localStorage (`user`,
+  `fe_permissions_wrapper`, `token`) THEN navigates (the DEV login BUTTONS don't reliably work).
+  It points Playwright at `$HTTPS_PROXY` (read LIVE — port rotates). Exits code 2 with
+  `COOKIES_EXPIRED` on a 409. *Source: CLAUDE.md, TESTING-RUNBOOK.md.*
+- **Fresh MITM bridge (fallback when the direct proxy path fails):** `staging-bridge.mjs` — a small
+  local proxy that accepts Chromium's CONNECT and relays via Node fetch (honours
+  `NODE_USE_ENV_PROXY=1` + `NODE_EXTRA_CA_CERTS=/root/.ccr/ca-bundle.crt`). Reads `$HTTPS_PROXY`
+  live; **rebuild every run, never hard-code the port.** Prints `BRIDGE_LISTENING 127.0.0.1:<port>`;
+  launch Chromium with `--proxy-server=http://127.0.0.1:<port> --ignore-certificate-errors
+  --no-sandbox --ssl-version-max=tls1.2`.
+- **node-fetch / undici proxy gotcha:** node-fetch IGNORES the proxy → use **undici `ProxyAgent`**
+  (or Node global `fetch` with `NODE_USE_ENV_PROXY=1`). *Source: CLAUDE.md Simple Flow env note.*
+- **fe-permissions read:** `GET /api/auth/me/fe-permissions` → `{data:{fe_permissions:[<codes>],
+  view_mode, cross_toggles}}` (array of code STRINGS, not a bool map). quick-login is stateful on the
+  shared PHPSESSID → probe roles strictly SEQUENTIALLY.
+
+## B. Environment / location
+- **Org ID (staging, shared):** `d55bc308-...` (shared across Custom Roles + Simple Flow + F&D staging).
+- **Change active workplace/location (self-unblock — required before reading/writing a WO in a
+  non-default workplace, else `work-orders/view/{id}` returns 400/no-data):**
+  `POST /api/iam/change-location {workplace_id, workplace_timezone}` → 200. Helper:
+  `changeLocation(sessCookie, workplaceId, timezone)` in `staging-admin.mjs`; boot2 accepts
+  `{workplaceId}` / env `SV_WORKPLACE`+`SV_TZ`. **On qb, AVOID `change-location`** (suspected
+  500-incident trigger; admin default is already Lethbridge = the QB location). *Source: CLAUDE.md.*
+- **Workplaces (`GET /api/staff/my-workplaces`):** Heavy Duty 9919 =
+  `b3c8c820-f815-4cf1-8938-10956c5ee71a` (America/Edmonton); Lethbridge 4310 =
+  `f8a8b802-7780-4b16-bf10-343caeb616b2`; QB Location = `d5366a95-582d-4a06-96e2-20f8cb937866`.
+- **qb (SV-7387) env sleep/wake:** env auto-sleeps. Wake:
+  `POST https://fz4hhptxi8.execute-api.ca-central-1.amazonaws.com/default/toggleQaEnv
+  {"action":"wake","env":"sv7387"}`, then poll API ROOT `https://sv7387api.qa.shopview.com/` until
+  200 (~60s; 503 while booting). *Source: FEES & DISCOUNTS appendix below.*
+
+## C. Work Orders
+- **Create WO (API):** `POST /api/work-orders/create {company_id, vehicle_id, workplace_id,
+  start_date, is_vehicle_here:true}` → 201. **`is_vehicle_here:true` is REQUIRED.** Customer defaults
+  auto-apply fees on new WOs (`appliedBy=customer_default`). **Gotcha:** create can 500 in some staging
+  sessions → create via the UI instead (UI recipe: `/workorders` → New → pick Customer + Asset →
+  Save → Confirmation "over credit limit" → Create). *Source: CLAUDE.md, UI-seeding appendix 2026-07-15.*
+- **Delete WO:** `POST /api/work-orders/delete {work_order_id}`. **Move the WO to Uncomplete first**
+  (a Complete WO → 400 "Completed work order cannot be deleted"). On staging, WO delete can be
+  UI-only (top ⋮ → Delete Work Order) if the API 404s.
+- **List / read:** list `GET /api/work-orders` / `GET /api/work-orders/simple-list`; detail
+  `GET /api/work-orders/view/{id}` (carries `adjustments[]`, `adjustmentsSummary`, `editable`,
+  `deletable`); lines `GET /api/work-orders/lines/{woId}`.
+- **Vehicles:** `GET /api/vehicles?company_id={id}`; create `POST /api/vehicles/create
+  {company_id, customer_id:<CONTACT id>, unit}`; VIN edit `POST /api/vehicles/change` → 201.
+- **Existing-WO detail bounces to `/workorders` on mount (all roles incl. admin)** — create a FRESH
+  WO to reliably land on `/workorders/{id}/lines`, or in-SPA `history.pushState` + dispatch
+  `popstate` (see UI automation). *Source: CLAUDE.md, Navigation Map below.*
+
+## D. WO Lines
+- **⚠️ `POST /api/work-orders/lines/create` returns HTTP 500 on staging (and 500s on ALL payloads on
+  qb, incl. `create-from-canned-line`)** — **add lines via the UI** New Line dialog instead
+  (WO detail → Lines tab → New Line → pick a canned line → Save & Close). *Source: CLAUDE.md.*
+- **Change line status:** `POST /api/work-orders/lines/change-status {line_id, status:'authorized',
+  workOrderId}` → 200 (enum `authorization_required|authorization_declined|authorized|complete`).
+  Bulk: `POST /api/work-orders/lines/change-lines` → 201. Delete: `POST
+  /api/work-orders/lines/delete-lines` → 200 (deletable in any status except Complete).
+
+## E. Parts
+- **ADD PART to a WO/line (API — the recorded recipe; do NOT re-discover):**
+  `POST /api/work-orders/part/make-request {line, work_order, description, quantity,
+  part_source_type:'inventory'|'vendor', part_number, sell_price, cost, part_category_id}` → 201.
+  **`part_category_id` is REQUIRED** (categories: `GET /api/inventory/categories` → {value,label}).
+  Edit: `POST /api/work-orders/part/change-request {id, description|quantity|part_number|
+  part_source_type}` → 200 (recalcs sellPrice/margin; vendor→inventory locks cost). *Source: CLAUDE.md
+  Simple Flow facts + Custom Roles Phase-2b appendix.*
+- **Add part via UI (reliable when API awkward):** WO detail → New Part Request dialog. Fields:
+  Part Number / Description / Quantity (+ Sell Price when `seeFinancialData` ON — sell-price field is
+  ABSENT for roles without SFD). For inventory source: `select_part` a catalogue PN (forces
+  Source=Inventory) → qty via `input_bin_quantity_{binId}`.
+- **Remove a WO part:** `POST /api/work-orders/parts/delete {part_id, work_order_id}` (returns picked
+  inventory + enables WO delete).
+- **Cored part (seed data):** genuine cored inventory part **P550848** (core_charge=1, has
+  core_part_id). Core OK/Not-OK is a LINE-level control governed by WO Lines Create & Edit; needs a
+  received core-bearing part to appear.
+- **Inventory / orders / deliveries:** parts `GET /api/inventory/parts?...&search=`; create
+  `POST /api/inventory/parts/create` → 201, delete `POST /api/inventory/parts/delete` → 201; PO list
+  `GET /api/inventory/orders`, order detail `GET /api/inventory/orders/{id}`; deliveries
+  `GET /api/inventory/deliveries`. Edit a PO item pre-receive: `POST /api/inventory/orders/change-item
+  {order_id,item_id,part_number,quantity_ordered,price,category,description}` → 200.
+- **Receive parts:** `POST /api/inventory/orders/accept` (driven from `/accept-delivery/{orderId}`:
+  fields `invoice-number`, Invoice Date, per-line `delivered` qty, Tax, note; over-qty → "Received
+  More Than Ordered" warning). *Source: CLAUDE.md Simple Flow facts.*
+- **Returns:** create `POST /api/work-orders/part/make-return-request` → 200; delete
+  `POST /api/work-orders/part/remove-return-request {part_return_request_id}` → 200; list
+  `GET /api/work-orders/part/list-return-requests`. A return can't be deleted on a Complete WO —
+  uncomplete first.
+
+## F. Adjustments / Fees & Discounts
+- **Add a WO adjustment:** `POST /api/work-orders/adjustments/add {workOrderId, kind:'fee'|'discount'|
+  'processing_fee', name, calculationType:'flat'|'pct_labor'|'pct_parts'|'pct_subtotal'|
+  'pct_grand_total', amount, maxCap, scope:'whole_wo'|'labor_line'|'part_line', targetId, taxable,
+  templateId, description}`. **Part-sales percent uses `pct_subtotal`** (`pct_total` → 400 "Invalid
+  calculation type"). *Source: CLAUDE.md + F&D appendices.*
+- **Remove:** `POST /api/work-orders/adjustments/remove {adjustmentId, workOrderId}` → 204.
+- **Change:** `POST /api/work-orders/adjustments/change {adjustmentId, workOrderId, name, amount,
+  maxCap, taxable}` (kind/calc immutable). **A `processing_fee` → HTTP 409 "cannot be edited through
+  this endpoint" = REMOVE-ONLY (spec-correct);** manual add of a processing_fee → 400.
+- **Base calc note:** processing-fee base = net subtotal (labour+parts+shop)×(1+tax) EXCLUDING
+  whole-WO fees (§5-R4, VIU-confirmed 2026-07-23). Customer default fees auto-apply on WO create.
+- **Templates:** `GET/POST /api/adjustment-templates`; `POST /api/adjustment-templates/{id}/change`;
+  `DELETE .../{id}`. Customer defaults: `GET/POST /api/customers/{companyId}/default-adjustments`
+  (POST `{templateIds:[…]}`). Fuller F&D contract + Quasar dialog driving in the F&D appendices below.
+
+## G. Roles & permissions testing
+- **RESET TO TEMPLATE FIRST (Standing Rule 26/26a):** before ANY permission/role verification on the
+  shared org, reset every in-scope role to its template/default so you test spec-defaults, not drift.
+  Record pre-reset → reset → post-reset (the diff IS a finding). Path: Settings → Roles & Permissions →
+  pencil → Reset to Template → Save. If a role RE-DRIFTS mid-run (concurrent session), reset AGAIN and
+  continue (persistently, Rule 26a). Leave roles at template when done. Custom-role reset API:
+  `POST /api/roles/{id}` (re-PUT template perms).
+- **Impersonate a role holder (PREFERRED live-role test):** `POST /api/switch-user {user_id}` (user_id =
+  staff `id` from `GET /api/staff?limit=200`, which lists `role_label` per staff). End impersonation with
+  a fresh admin `login()`. *Source: CLAUDE.md Rule 14 self-seed playbook.*
+- **Create a fresh staff per role (alt):** `POST /api/iam/create {email, firstName, lastName, roleId,
+  departments:[...], workplaceId}` → 201 `{user_id}`. On staging a fresh staff needs invite-confirmation
+  → PREFER switch-user impersonation.
+- **Assign a role to the Tech user (self-service):** `POST /api/staff/{staff_id}/change {first_name,
+  last_name, email, workplace_id, role_id}` → 201. **Use Tech `/change` staff_id `6fb22c1b-...`** — the
+  staff-LIST id `a7fd0a88-...` **404s on `/change`.** EXACT-match `email==='tech@shopview.com'` before
+  changing (never substring). Invalid `role_id` → 500 (does not persist). **NEVER role-swap Tech
+  mid-session** → causes the `/no-location` SPA bounce (technique artifact, not a permission result).
+  Restore Tech afterward (Technician role `131b5274-...`; safety-net `staging-restore-tech.mjs`).
+- **Roles list:** `GET /api/organizations/{org}/roles` (authoritative; `/api/roles` 405s);
+  `GET /api/roles/{id}`. 11 system roles, all `default=true`; Office + Time Clock non-editable.
+- **Role change forces re-auth:** changing a user's role invalidates the held session → next request
+  409 "Session has expired." → re-login; poll fe-permissions until the new set applies (409 is expected).
+- **Enforcement model:** backend enforces only resource-level View/Edit; granular perms (Delete, WO
+  sub-perms, cross-toggles) are FE-only display gates → **FE-block + BE/API-allow = PASS (Rule 24)**;
+  verify denials in the UI (endpoint often returns 400 validation, not 403).
+
+## H. Settings
+- **Read:** `GET /api/organizations/settings`. **Write:** `POST /api/organizations/settings/change`
+  (send the FULL settings object). Simple Flow behavior is settings-driven (no feature flag).
+- **Feature flags:** route `/administration/feature-flags`; org flags
+  `GET /api/organization/feature-flags?organization_id={org}`.
+
+## I. UI automation (Quasar)
+- **Escalation ladder when a click won't take:** (1) selector click → (2) fire the element's own
+  handler / `dispatchEvent` → (3) **bounding-box / element-center COORDINATE click**
+  (`page.mouse.click`) → (4) JS set value + dispatch `input`/`change` → (5) keyboard → (6) call the
+  EXACT endpoint the button calls, ONLY after confirming the FE gate/dialog was reachable (disclose it;
+  never PASS on gate presence alone). *Source: HEADLESS-AUTOMATION section below.*
+- **Reach an in-page tab / WO detail (bounce fix):** land on `/workorders` then `page.evaluate(()=>{
+  history.pushState({},'','/workorders/{id}/lines'); dispatchEvent(new PopStateEvent('popstate'))})`.
+  Close the auto New-Line dialog via `.q-dialog i:text("close")` (Escape does NOT close Quasar
+  persistent dialogs). JS-click a tab: `document.querySelector('[data-test-id=link_finance_tab]').click()`.
+- **Quasar selects:** click `.q-dialog .q-select` by INDEX (labels wrap the whole dialog — never
+  `label:has-text()`); options in `.q-menu .q-item`. Inputs: `input.q-field__native` by index.
+
+## J. TestRail API
+- **⚠️ TestRail is the ONLY real/production system — NEVER create/update/delete cases, runs, or
+  results without EXPLICIT user permission (Standing Rule 6).** Log ONLY Passed cases to a run; keep
+  Failed/Retest/Blocked local.
+- **Project 1 / single suite 1 "Master"**; API v2, Basic auth. Helper `testrail-api.mjs` reads creds
+  from `/tmp/testrail/creds.json` (email + password-OR-key + host) — **never hard-code creds.** Calls
+  hit `{host}/index.php?/api/v2/{path}`.
+- **`add_case` REQUIRES `custom_atmstatus:3` + `custom_automation_type:0`** (non-API cases). Place any
+  case with API content in a section whose title includes "API" (Rule 4).
+- **Result statuses:** 1 Passed · 2 Blocked · 3 Untested · 4 Retest · 5 Failed.
+- **Known runs — do NOT write without permission:** Custom Roles run **312**, section **3527**;
+  Simple Flow / F&D / Schedule / Report Suite run **325** (and R359 Reports). Section IDs per project
+  in CLAUDE.md.
+
+## Jira/Confluence access
+- Live browser login (headless Chromium via a fresh MITM bridge → id.atlassian.com email+password →
+  6-digit EMAIL OTP) is the PRIMARY way to read `shopview.atlassian.net`. When the Atlassian MCP is
+  live, read Confluence via `getConfluencePage` instead. **Full recipe + MFA-race crux:
+  `build/ATLASSIAN-JIRA-ACCESS-METHOD.md`** (do not duplicate it here). Creds/cookies/OTP in `/tmp` only.
 
 ---
 

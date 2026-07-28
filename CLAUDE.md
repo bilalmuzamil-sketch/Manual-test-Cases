@@ -7,7 +7,12 @@
 >   build/PROCESS-CATALOG.md — READ THIS to pick/name a process; it lists all of them with
 >   trigger phrases and the deliverable each produces. Keep it updated when a process is
 >   added/changed (shared brain for both sessions).**
-> - App action recipes (how to do each thing in ShopView): build/APP-ACTIONS-PLAYBOOK.md
+> - **READ-FIRST STAGING ACTION RECIPES (how to do each thing in ShopView — reuse, never
+>   re-discover): build/APP-ACTIONS-PLAYBOOK.md — the indexed "STAGING ACTION RECIPES"
+>   section at the top is the canonical quick-reference for every staging/QA action (auth,
+>   create WO, add part, adjustments, switch role, change location, endpoints, UI flows,
+>   TestRail). READ IT + "Durable key facts" below BEFORE any staging action; append any NEW
+>   proven recipe immediately (Standing Rule 27).**
 > - Reusable build-accurate wording + VIU + TestRail-sync method (Standing Rule 9):
 >   build/BUILD-ACCURATE-WORDING-VIU-PROCESS.md — **apply to any project WHEN THE USER ASKS.**
 > - Reusable spec-relevance/obsolescence reconciliation method (keep the WHOLE case
@@ -1287,6 +1292,24 @@ deliver the 7-tab management report.
     (Rule 12, never infer a pass). Leave the role at template when done. Rationale: 2026-07-23 —
     during the SV-8183 Technician-role VIU a concurrent session kept re-drifting the shared
     Technician role mid-run.
+27. **Reuse recorded action recipes; never re-discover from scratch (all projects).** Before
+    performing ANY staging/QA/env action — create a WO, add a part to a work order, add a fee/
+    discount, switch/impersonate a role, reset a role to template, change location/workplace, hit
+    an endpoint, drive a UI flow, log into Jira/Confluence, push to TestRail — FIRST read
+    build/APP-ACTIONS-PLAYBOOK.md "STAGING ACTION RECIPES" (the indexed quick-reference at the top)
+    + CLAUDE.md "Durable key facts" and REUSE the recorded recipe. Do NOT re-derive endpoints, IDs,
+    payloads, UI click-paths, or gotcha-fixes that you (or another session) already proved. The
+    INSTANT you discover a NEW working recipe (a new endpoint, payload field, ID, UI path, or the
+    concrete gotcha-fix that unblocked success), append it to build/APP-ACTIONS-PLAYBOOK.md
+    immediately in the same session — success-proven knowledge ONLY (never failed attempts/dead-ends),
+    per the "Keeping this current" append-only convention. This is the shared brain across the
+    parallel sessions (there is no live message bus — the books ARE the channel, Rule 20), so a
+    recipe recorded once must never be re-discovered. Rationale, 2026-07-27: the user flagged that
+    re-discovering known actions (e.g. how to add a part to a work order) from scratch extends
+    testing time — "you should have these things in your memory as mentioned to you before so that
+    you can retrieve them from memory instead of finding your ways from scratch again and again."
+    Ties to Standing Rules 5 (self-service data/roles), 6 (disposable env), 14 (self-seed playbook)
+    and the "keep the books current" convention.
 
 ## Project purpose (Custom Roles project)
 Manual test-case authoring + live staging (Verify-in-UI) verification + TestRail
