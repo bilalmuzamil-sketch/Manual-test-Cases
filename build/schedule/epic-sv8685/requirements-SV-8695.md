@@ -1,0 +1,61 @@
+# SV-8695 — Shift Detail Modal & Hover Tooltips
+
+- **Key:** SV-8695
+- **Type:** Story
+- **Status:** Open
+- **Labels:** (none)
+- **Parent/Epic:** SV-8685
+- **Priority:** Medium
+- **Canonical Jira URL:** https://shopview.atlassian.net/browse/SV-8695
+
+## Description
+
+## Summary
+
+Clicking a shift opens a detail panel for viewing and editing all shift properties — date, time, technician, progress, scope, notes, and color — while hovering provides a quick read-only peek without opening the modal.
+
+## Context
+
+Shifts exist from the scheduling stories. The modal is the primary editing surface for individual shifts. Hover tooltips are the quick-peek alternative.
+
+## Requirements
+
+- Shift detail modal shows: customer name, unit number, VIN (always visible), WO id, date and start/end time pickers (15-min increments), technician, time logged vs estimate (progress), scope summary with scheduled line(s) and labor/total, estimated hours with inline edit, color picker, notes (add/edit/delete per WO), conflict banner with "Adjust" when conflicted. — ( PRD: §4.9 )
+
+- Actions: Delete (series-aware) and Reassign to another technician. — ( PRD: §4.9 )
+
+- Reassignment: dragging a shift block between technician rows reassigns it — target tech added to roster, source tech removed. Confirmation modal for cross-tech moves. — ( PRD: §7 )
+
+- Shift hover tooltip: customer name (+ conflict icon), unit/vehicle/VIN, date and time range, technician, scope summary ("N lines · Xh"), individual line names capped at 3 (+ "+N more lines"), time-logged progress bar ("X / Yh"), conflict reason in amber. — ( PRD: §4.13 )
+
+- Tooltip opens after 300–500ms hover delay, dismisses on mouse-leave, read-only. Clicking block still opens modal. Tooltip flips above when no room below, shifts horizontally to stay in viewport. — ( PRD: §4.13 )
+
+- Schedule: View users see modals in read-only mode — all editing affordances hidden/disabled. — ( PRD: §14.1 )
+
+## Acceptance Criteria
+
+- Given the user clicks a shift block, when the modal opens, then all fields (customer, unit, VIN, WO id, date, time, tech, progress, scope, notes) are visible.
+
+- Given the user changes the start time to 9:15 AM, when saving, then the shift updates to the new time.
+
+- Given the user clicks Reassign, when selecting a different technician, then a confirmation modal appears and upon confirming, the shift moves and rosters update.
+
+- Given the user hovers a shift for 400ms, when the tooltip appears, then it shows customer, unit, VIN, time range, tech, line names, and progress bar.
+
+- Given a shift tooltip for a 6-line shift, when rendered, then 3 lines are shown with "+3 more lines" row.
+
+- Given a conflicted shift, when the modal opens, then a conflict banner with "Adjust" action is visible.
+
+- Given a View-only user, when clicking a shift, then the modal opens read-only (no edit fields, no delete, no reassign).
+
+## UI/UX
+
+Schedule Design
+
+## Comments (0)
+
+(none)
+
+## Attachments (0)
+
+(none)
