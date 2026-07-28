@@ -201,7 +201,7 @@
  {
   "id": "SBR-DEACT-04",
   "area": "SBR — Staff Deactivation",
-  "title": "Cancel, X and Escape dismiss the dialog without deactivating; clicking outside does not dismiss it",
+  "title": "Cancel and X dismiss the Deactivate dialog; Escape and clicking outside do not",
   "priority": "Medium",
   "type": "Functional",
   "permissions_required": "Owner/Administrator/Manager profile with staff administration.",
@@ -209,25 +209,29 @@
    "1. The Deactivate dialog is open for a rep with assignments."
   ],
   "steps": [
-   "1. Click the \"Cancel\" button; re-open and click the \"X\" close icon; re-open and press Escape.",
-   "2. After each dismissal, check the staff member's active status.",
-   "3. Re-open and click outside the dialog."
+   "1. Click the \"Cancel\" button and watch the dialog; then re-open it.",
+   "2. Click the \"X\" close icon and watch the dialog; then re-open it.",
+   "3. Press the \"Esc\" key on the keyboard and watch the dialog.",
+   "4. Re-open the dialog and click outside it (on the greyed-out background).",
+   "5. After each action, check the staff member's active status."
   ],
   "expected": [
-   "1. The dialog has a \"Cancel\" button (red outline) and an \"X\" close icon; it dismisses on Cancel, X, or Escape.",
-   "2. Any dismissal leaves the staff member's active status unchanged.",
-   "3. Clicking outside the dialog does NOT dismiss it."
+   "1. The dialog has a \"Cancel\" button (red outline) and an \"X\" close icon.",
+   "2. Clicking \"Cancel\" closes the dialog; clicking the \"X\" icon closes the dialog.",
+   "3. Pressing the \"Esc\" key does NOT close the dialog - it stays open (the app's general rule is that pop-ups do not close with the Esc key).",
+   "4. Clicking outside the dialog does NOT close it.",
+   "5. When the dialog closes via Cancel or X, the staff member's active status is unchanged - no deactivation happens."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbr-sales-by-representative.md Story 13 S13-R8",
+  "spec_ref": "SV-8630 (specs/sbr-sales-by-representative.md Story 13 S13-R8)",
   "viu_status": "VIU-Pending",
-  "notes": "",
+  "notes": "Reworded per PO Chris Ward's answer (2026-07-28, Q1 = B): the 'deactivate a sales rep' confirm dialog follows the app's general house rule (pop-ups do not close with Esc); dismissal is via Cancel and X only. This overrides the spec's S13-R8 'Esc dismisses' line (a spec issue Chris will correct). VIU-confirm the shipped behaviour on the QA branch before finalizing.",
   "api_related": false
  },
  {
   "id": "SBR-DEACT-05",
   "area": "SBR — Staff Deactivation",
-  "title": "A valid submit shows the in-flight loading state with dismissals locked, then applies the change with assignments untouched",
+  "title": "Valid submit locks the dialog, then deactivates keeping assignments",
   "priority": "High",
   "type": "Functional",
   "permissions_required": "Owner/Administrator/Manager profile with staff administration.",
@@ -239,15 +243,15 @@
    "2. After success, check the staff member's status and each previously assigned customer's Sales Rep."
   ],
   "expected": [
-   "1. The \"Deactivate\" button enters the standard in-flight loading state (non-interactive, in-progress indicator); the dialog stays open and Cancel/X/Escape are all non-interactive during the request.",
+   "1. The \"Deactivate\" button enters the standard in-flight loading state (non-interactive, in-progress indicator); the dialog stays open and the Cancel and X controls are non-interactive during the request (pressing the \"Esc\" key never closes the dialog at any time).",
    "2. On success the dialog closes and the change applies.",
    "3. Customer assignments are NOT modified — every customer stays assigned to this rep; denormalized rep names and past invoice snapshots are preserved.",
    "4. Deactivation never forces reassignment, blocks on assignments, or auto-reassigns."
   ],
   "design_ref": "none - SPEC-ONLY (Report Suite has no designs yet)",
-  "spec_ref": "specs/sbr-sales-by-representative.md Story 13 S13-R9; S13-R10; S13-E1",
+  "spec_ref": "SV-8630 (specs/sbr-sales-by-representative.md Story 13 S13-R9; S13-R10; S13-E1)",
   "viu_status": "VIU-Pending",
-  "notes": "Restore the rep afterwards (reactivate).",
+  "notes": "Restore the rep afterwards (reactivate). Consistency edit 2026-07-28 (PO Q1 = B): clarified that the Esc key never closes the deactivate dialog (aligns with SBR-DEACT-04).",
   "api_related": false
  },
  {

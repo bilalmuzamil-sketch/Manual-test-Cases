@@ -18,6 +18,46 @@ import REGENERATED post-review.)
 
 ## 0. STATUS
 
+**UPDATE 2026-07-28 (PHASE 2) — VIDEO-DRIVEN SPEC-RELEVANCE RECONCILIATION DONE + CHANGE-LIST
+DELIVERED (2 local case edits only; NO TestRail writes — Rule 6 needs explicit permission later).**
+All **515** cases reconciled against the combined source of truth: the RATIFIED current Confluence
+spec (primary; Phase-1 diff = unchanged since 2026-07-22 ingest,
+`spec-current-2026-07-28/SPEC-DIFF-SUMMARY.md`), Chris's Q1/Q2/Q3 answers, and the 40 kickoff-video
+deltas. **Deliverable:** `reconciliation-2026-07-28/Report-Suite_Spec-Reconciliation_ChangeList_2026-07-28.md`
++ `.xlsx` (generator `gen_changelist.py`); 19 change-list rows, Tab 2 = items blocked on Chris's spec update.
+
+- **APPLIED-NOW (2 local edits, firmly confirmed by Chris Q1 = B):** **SBR-DEACT-04 (C30255)** reworded so
+  pressing Esc does NOT close the "deactivate a sales rep" confirm dialog (Cancel + X only; app house rule
+  wins over spec S13-R8); refs set to `SV-8630 (S13-R8)` per Rule 20; title 78 chars. **SBR-DEACT-05 (C30256)**
+  consistency edit (Esc never closes at any time) + overlong title shortened to ≤80. Both still VIU-Pending
+  (live-confirm on QA branch later).
+- **PENDING-CHRIS (11 rows — NOT edited, spec still contradicts the video, Rule 23):** serial-number asset
+  identifier (P24 → SBC-LBL-01 C30134 + WIP-COL-05 C30470 families); remove SBC Print (P25 → SBC-EXP-01 C30159,
+  SBC-EXP-13 C30171); add SBC compressed download (P21 → new case to author); per-row location label on the 5
+  non-WIP reports (P10 → SBC-LOC-03 C30111 family); Catalogue rename (P31 → PV-FILT-01 C30328 family);
+  location-filter hide-when-≤1-location (P33 → SBR-LOC-04 C30216, TU-LOC-05 C30446, IV-LOC-04 C30577, PV-FILT-13
+  C30340 — currently assert the OPPOSITE straight from spec).
+- **OPEN-DECISION (4):** asset-dropdown stays-open vs native+toggle (P12, WIP-FLT-03 C30500); IV column-selector
+  scope (P18/P36, IV-PERS-01 C30579); PV pagination vs infinite-scroll (P30, PV-API-01 C30388); TU column
+  selector (P18 — none authored, correct).
+- **LIVE-VIU-PENDING (2):** WIP labor-delta basis — spec S4-R23 uses QUOTED−worked (case matches spec, NOT
+  edited), video P14 says invoiced−worked; confirm live (WIP-CALC-08 C30481). TU nav "move down" (P3, TU-NAV-01
+  C30392) — spec is order-agnostic, confirm placement live.
+- **Confirmed already-matching (no edit):** All-Time removal (P9, ~365-day backend cap = data caveat); "Sales
+  By Representative" naming (P5); "Parts" nav group PV+IV (P2 → PV-NAV-01 C30322/IV-NAV-01 C30534); no "snapshot
+  taken X days ago" label (P32; IV "As of" kept); labor-delta green/black/red colors (P14).
+- **Q2 permissions:** all permission cases KEPT as the shipped MIXED model (user ruling 2026-07-28); discrepancy
+  captured for Chris/dev in `chris-answers-2026-07-28/Q2-permission-discrepancy-for-Chris-dev.md`; not edited.
+
+**Counts: 515 total / 2 edited-now / ~30 cases flagged across 19 change-list rows (11 pending-Chris + 4
+open-decision + 2 live-VIU) / remainder clean no-op.** Deliverables regenerated: import CSV/XLSX + 6 per-report
+splits (515 rows, header byte-identical, VIU/flag-word-free, no dup titles, API cases in "— API" sections);
+`testrail-id-map.csv` C-ids re-merged 515/515 (0 blank). Run R359 untouched; NO TestRail API calls this pass.
+**NEXT:** live VIU on the QA branch (Rule 22 — no QA branch yet) + Chris's spec update to unblock the 11
+PENDING-CHRIS items, then an authorized TestRail push.
+
+---
+
 **UPDATE 2026-07-28 — CHRIS ANSWERS INGESTED + USER RULINGS (NO TestRail writes, NO
 case edits — documentation + a draft note only). ON HOLD.** Chris Ward answered all 3
 PO questions (source `chris-answers-2026-07-28/answers-ingested.md`): Q1 = **B** (Esc must
