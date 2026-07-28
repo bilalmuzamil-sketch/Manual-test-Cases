@@ -47,14 +47,16 @@ existing cases instead of becoming new ones.
 
 **What we need from you:**
 
-- **Epic / Jira key** (OQ-2) — none available yet; do not have it.
 - **QA test branch / environment + feature-flag/settings state** (OQ-3) — none available yet.
   Live VIU (and any TestRail changes from it) is blocked until this exists.
-- **Two PO decisions from Branko (may change our cases):**
-  1. **Do calendar Events count toward a technician's capacity and conflict checks?** The design
-     code currently says NO (events excluded), but Branko flagged this "may change." Please
-     confirm final.
-  2. **Spec wording clean-up — VIN tooltip:** the spec contradicts itself (§4.13 says the VIN
+- **PO decisions from Branko (may change our cases) — the two design deltas are HELD/staged,
+  NOT written, pending his answer:**
+  1. **D1 — Do calendar Events count toward a technician's capacity and conflict checks?** The
+     design code currently says NO (events excluded), but Branko flagged this "may change."
+     **HELD, not written:** SCH-EVT-08 / C30615 + SCH-CAP-01..04. Please confirm final.
+  2. **D4 — modal "Reassign" wording.** SCH-MODAL-08 / C30015 is **HELD, not written**, pending
+     Branko's confirm.
+  3. **Spec wording clean-up — VIN tooltip:** the spec contradicts itself (§4.13 says the VIN
      always shows in the hover tooltip; §9 ties the VIN to a toggle). We authored to the design
      ("VIN Number" toggle gates only the shift-block VIN line; tooltip always shows VIN) — please
      confirm Branko is OK with that reading so the spec can be tidied.
@@ -67,10 +69,15 @@ existing cases instead of becoming new ones.
 
 **Already resolved — do NOT ask for these:**
 - PO = Branko; canonical spec URL recorded. ✅
+- **Epic / Jira key = SV-8685** (15 stories SV-8686..SV-8700), ingested 2026-07-27 — OQ-2
+  RESOLVED, no longer needed from you. ✅
 - Design is NO LONGER missing — the Claude prototype (`Schedule.dc.html`) is the authoritative
   design (Branko Q0); ~48 labels already folded in. ✅
-- 167 active cases authored, imported, and C-id mapped in TestRail (group 4254). The spec_1 +
-  design + Branko Q&A reconciliation is applied and synced. ✅
+- **177 active cases** authored, imported, and C-id mapped in TestRail (group 4254). The
+  spec_1 + design + Branko Q&A **+ epic SV-8685 backfill/deltas/new-scope reconciliation is
+  applied and SYNCED to TestRail** (user-authorized 2026-07-27: 167 update_case refs-backfill +
+  edits + 10 add_case new-scope C38846–C38855; run 325 untouched). Branko PO-questions doc
+  READY: `PO-Questions-Branko-Schedule-2026-07-27.md/.xlsx`. ✅
 
 ---
 
@@ -78,10 +85,15 @@ existing cases instead of becoming new ones.
 
 **What we need from you:**
 
-- **Branko's updated PRD** — this is the MAIN blocker. It was requested 2026-07-17 and is STILL
-  awaited. It unlocks authoring the **Parts + Reports filter pages** (~30–50 new cases from the
-  31 captured screens), and it must include the **two text fixes** Branko promised (the stale
-  write-up sentences he agreed to correct in Round-1 Q1).
+- **Branko's updated PRD** — still awaited (requested 2026-07-17). **UPDATE 2026-07-27: we no
+  longer WAIT on it to author** — per Option A we authored the **43 Parts/Reports/page-search
+  cases design-level** (see "already resolved" below). The PRD is now needed to (a) CONFIRM the
+  behaviours those 43 cases flag as "pending Branko's product write-up", and (b) deliver the
+  **two text fixes** Branko promised (the stale write-up sentences from Round-1 Q1). It also
+  gates the authorized `add_case` push of the 43 (they sit staged with blank C-ids).
+- **Answers to the Branko PO-questions doc** (`PO-Questions-Branko-PartsReports-2026-07-27.md/.xlsx`,
+  7 product Qs: PRD request, which chips apply, option lists, new filter-type behaviour, WO-parity,
+  page-search scope vs Global Search + AI, per-role filters).
 - **Epic / Jira key** (OQ-3) — none available yet; do not have it.
 - **QA test branch / environment + feature-flag/API state** (OQ-7) — none available yet. Live VIU
   is blocked until this exists.
@@ -99,6 +111,11 @@ existing cases instead of becoming new ones.
 - Design baseline confirmed final (ZIP = final, 50/50 frames captured). ✅
 - 79 Work-Orders-page cases authored, imported, and C-id mapped in TestRail (group 4110,
   C29557–C29635). ✅
+- **43 NEW Parts/Reports/page-search cases AUTHORED design-level** (Option A, 2026-07-27):
+  Parts 12 (FLT-PARTS-01..12), Reports 22 (FLT-RPTS-01..22), page-search 9 (FLT-SRCH-01..09).
+  All VIU-Pending, blank C-ids — **STAGED for an authorized `add_case` push** (held pending the
+  PRD/answers). **New total = 122 cases.** ⚠️ Every page-search case OVERLAPS the postponed
+  Global Search project (86 cases there) — reconcile/de-dupe before any push. ✅ (authored)
 
 ---
 
@@ -106,9 +123,13 @@ existing cases instead of becoming new ones.
 
 | Project | #1 blocker | Also needed |
 | --- | --- | --- |
-| **Report Suite** | QA branch/env + flag state (`reports-suite-bravo`) | Chris: SBR Esc vs Golden-Rule, permission-model confirm; designs/video if any |
-| **Schedule** | Epic key + QA branch/env + flag state | Branko: events-count-toward-capacity + VIN-tooltip spec fix; API contract decision |
-| **Filters** | Branko's updated PRD (unlocks Parts/Reports authoring) | Epic key + QA branch/env; canonical spec URL |
+| **Report Suite** | QA branch/env + flag state (`reports-suite-bravo`) | Chris: SBR Esc vs Golden-Rule, permission-model confirm; confirm no designs/video. Epic SV-8582 known + reconciled ✅ |
+| **Schedule** | QA branch/env + flag state (epic SV-8685 known ✅) | Branko: events-count-toward-capacity (D1) + Reassign (D4) + VIN-tooltip spec fix; API contract decision |
+| **Filters** | Branko's PRD/answers (confirm the 43 authored cases' behaviours + text fixes) | Epic key + QA branch/env; canonical spec URL |
+
+> **All three are VIU-parked pending their QA branches** (live-only agreement): PO
+> questions are DELIVERED/ready (Chris + Branko×2) — answers pending; when a QA branch
+> arrives the user supplies fresh staging cookies, then we run the live VIU.
 
 All three projects are **VIU-pending their QA branches** — no live verification can happen until
 each feature is on a testable QA environment (and, for Filters, until the PRD arrives to author

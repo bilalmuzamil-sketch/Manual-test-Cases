@@ -786,7 +786,14 @@ deliver the 7-tab management report.
    Progress, (6) Inventory Value.
    **PO: Chris Ward** (same PO as Fees & Discounts — never mix attributions: Report
    Suite = Chris Ward; Global Search/Filters/Schedule = Branko; Simple Flow = Milos).
-   **⚠️ Epic/Jira key: NOT AVAILABLE — ASK THE USER when VIU begins** (do NOT invent).
+   **Epic/Jira key = SV-8582** (ingested 2026-07-27 via Atlassian MCP — epic Open, 97
+   child stories SV-8583→SV-8679, branch `project/reports-suite-bravo`, QA Nebojsa +
+   Viktoria; **reconciled: the 97 stories MATCH our 515 cases 1:1, no new user-facing
+   cases needed** — sources build/report-suite/epic-sv8582/INGEST-SUMMARY.md +
+   RECONCILIATION.md; **Chris PO-questions doc READY:
+   build/report-suite/PO-Questions-Chris-ReportSuite-2026-07-27.md/.xlsx** — SBR Esc
+   vs Golden-Rule, permission-model confirm, confirm-no-designs; ~3–6 backend/regression
+   cases deferred to the QA branch). OPEN = QA branch/env + flag state + Chris's answers.
    **⚠️ Designs: NOT YET AVAILABLE** — spec-only authoring (Rule 9 wording from the
    spec's verbatim labels, "VIU-confirm" anything unpinned; design-reconciliation
    later if designs arrive). **Specs WILL keep changing** — run

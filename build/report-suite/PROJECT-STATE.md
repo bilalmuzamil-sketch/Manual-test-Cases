@@ -18,6 +18,21 @@ import REGENERATED post-review.)
 
 ## 0. STATUS
 
+**UPDATE 2026-07-27 — EPIC SV-8582 INGESTED + RECONCILED (NO TestRail writes, NO
+authoring):** the Jira epic is now known = **SV-8582** (ingested via Atlassian MCP;
+epic Open, 97 child stories SV-8583→SV-8679 contiguous, branch
+`project/reports-suite-bravo`, QA Nebojsa + Viktoria). **Reconciliation: the 97
+stories MATCH our 515 authored cases 1:1** — the 80 per-report stories are thin
+wrappers pointing at the same Confluence specs we already ingested (0 comments/0
+attachments across all 97 → no designs/video), the 9 engineering stories (PR-1/A2–A5
+Open, B1–B6 OBSOLETE) change no cases. Inventory Value (added to the epic 2026-07-26)
+already authored. Sources: `epic-sv8582/INGEST-SUMMARY.md` + `epic-sv8582/RECONCILIATION.md`.
+**Chris PO-questions doc READY (not sent by us): `PO-Questions-Chris-ReportSuite-2026-07-27.md/.xlsx`**
+(SBR Esc vs Golden-Rule #9; per-report permission-model confirm; confirm no designs/video).
+**~3–6 backend/regression cases deferred to the QA branch** (PV×QB fractional-qty precision
+from PR-1 INT→DECIMAL, IV nightly-snapshot retention/prune, exact permission names/themes).
+OPEN = QA branch/env + flag state + Chris's answers. Tally unchanged: 515 cases in TestRail.
+
 **IMPORTED + MAPPED 2026-07-22 (READ-ONLY):** All 515 cases were imported into
 TestRail under group **4281 "Reports Suite"** (six report folders 4282–4287,
 each holding its per-area leaf subsections 4288–4376 = 89 leaves). Live read
