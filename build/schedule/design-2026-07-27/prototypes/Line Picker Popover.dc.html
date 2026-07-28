@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/shopview-design-system-fac6efcf-a972-4c02-96a5-def12ed8b037/colors_and_type.css">
+  <style>
+    html,body{margin:0;height:100%;}
+    *{box-sizing:border-box;}
+    @keyframes lp-pop{from{opacity:0;transform:translateY(6px) scale(.98);}to{opacity:1;transform:translateY(0) scale(1);}}
+    @keyframes lp-toast{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+    [data-line-row]:hover{background:#F8FAFC !important;border-color:#CDD5DF !important;}
+    [data-tech-row]:hover{background:#F8FAFC !important;}
+    [data-tech-row][data-sel="1"]:hover{background:#E9F5FF !important;}
+    [data-restart]:hover{color:#175CD3 !important;}
+    [data-iconbtn]:hover{background:#EEF2F6 !important;color:#364152 !important;}
+  </style>
+</helmet>
+<div style="min-height:100vh;background:#EEF2F6;font-family:var(--sv-font-ui, 'Inter', sans-serif);color:#364152;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:48px 24px;gap:0;">
+
+  <!-- Faint schedule context the popover is anchored to -->
+  <sc-if value="{{ showContext }}" hint-placeholder-val="{{ true }}">
+    <div style="width:560px;max-width:100%;opacity:.6;pointer-events:none;user-select:none;">
+      <div style="display:grid;grid-template-columns:120px 1fr 1fr 1fr;border:1px solid #E3E8EF;border-radius:10px 10px 0 0;overflow:hidden;background:#fff;">
+        <div style="padding:8px 12px;font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:#9AA4B2;border-right:1px solid #E3E8EF;background:#FCFCFD;">Tech</div>
+        <div style="padding:8px 12px;font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:#9AA4B2;border-right:1px solid #E3E8EF;">Mon 8</div>
+        <div style="padding:8px 12px;font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:#257CFF;border-right:1px solid #E3E8EF;background:#F4FAFF;">Tue 9</div>
+        <div style="padding:8px 12px;font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:#9AA4B2;">Wed 10</div>
+      </div>
+      <div style="display:grid;grid-template-columns:120px 1fr 1fr 1fr;border:1px solid #E3E8EF;border-top:0;border-radius:0 0 10px 10px;overflow:hidden;background:#fff;">
+        <div style="padding:14px 12px;font-size:13px;font-weight:600;color:#202939;border-right:1px solid #E3E8EF;display:flex;align-items:center;gap:8px;">
+          <span style="width:24px;height:24px;border-radius:50%;background:#CFFAFE;color:#0E7490;font-size:10px;font-weight:600;display:inline-flex;align-items:center;justify-content:center;">ML</span>
+          Mia Lopez
+        </div>
+        <div style="border-right:1px solid #E3E8EF;height:52px;"></div>
+        <div style="border-right:1px solid #E3E8EF;height:52px;background:#E9F5FF;border:2px dashed #82C1FB;"></div>
+        <div style="height:52px;"></div>
+      </div>
+    </div>
+  </sc-if>
+
+  <!-- Popover -->
+  <div style="position:relative;width:380px;max-width:100%;margin-top:10px;animation:lp-pop 160ms ease-out;">
+    <!-- caret -->
+    <sc-if value="{{ showContext }}" hint-placeholder-val="{{ true }}">
+      <div style="position:absolute;top:-7px;left:60%;width:13px;height:13px;background:#fff;border-left:1px solid #E3E8EF;border-top:1px solid #E3E8EF;transform:rotate(45deg);z-index:1;"></div>
+    </sc-if>
+
+    <div style="position:relative;background:#fff;border:1px solid #E3E8EF;border-radius:12px;box-shadow:0 12px 24px rgba(11,23,51,.10),0 4px 8px rgba(11,23,51,.05);overflow:hidden;">
+
+      <!-- HEADER (always) -->
+      <div style="display:flex;align-items:flex-start;gap:8px;padding:16px 16px 14px;border-bottom:1px solid #EEF2F6;">
+        <div style="flex:1;min-width:0;">
+          <div style="font-size:12px;font-weight:500;color:#697586;line-height:16px;margin-bottom:3px;">{{ droppedLine }}</div>
+          <div style="font-size:16px;font-weight:600;color:#121926;line-height:22px;">{{ woTitle }}</div>
+        </div>
+        <button type="button" data-iconbtn="1" onClick="{{ onClose }}" aria-label="Close" style="flex:none;width:28px;height:28px;border:0;background:transparent;border-radius:6px;color:#9AA4B2;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;transition:background 120ms,color 120ms;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+
+      <!-- STEP 1 — PICK A LINE -->
+      <sc-if value="{{ isLine }}" hint-placeholder-val="{{ true }}">
+        <div style="padding:14px 16px 16px;">
+          <div style="font-size:13px;font-weight:600;color:#364152;margin-bottom:10px;">Which line is this shift for?</div>
+          <div style="display:flex;flex-direction:column;gap:8px;">
+
+            <!-- Row 1 — has room -->
+            <button type="button" data-line-row="1" onClick="{{ pickRoom }}" style="display:flex;align-items:center;gap:12px;width:100%;text-align:left;padding:11px 12px;background:#fff;border:1px solid #E3E8EF;border-radius:8px;cursor:pointer;font-family:inherit;transition:background 120ms,border-color 120ms;">
+              <div style="flex:1;min-width:0;">
+                <div style="font-size:14px;font-weight:600;color:#202939;line-height:18px;">Brake system R&amp;R</div>
+                <div style="font-size:12px;font-weight:500;color:#697586;margin-top:2px;">Est. 4h</div>
+              </div>
+              <div style="display:flex;align-items:center;gap:8px;flex:none;">
+                <div style="display:flex;align-items:center;">
+                  <span style="width:24px;height:24px;border-radius:50%;background:#D9E4F2;color:#0F446B;font-size:10px;font-weight:600;display:inline-flex;align-items:center;justify-content:center;border:2px solid #fff;">AK</span>
+                  <span style="width:24px;height:24px;border-radius:50%;background:#CCFBF1;color:#0F766E;font-size:10px;font-weight:600;display:inline-flex;align-items:center;justify-content:center;border:2px solid #fff;margin-left:-8px;">JM</span>
+                </div>
+                <span style="font-size:12px;font-weight:600;color:#697586;">2/5</span>
+              </div>
+            </button>
+
+            <!-- Row 2 — already assigned -->
+            <button type="button" data-line-row="1" onClick="{{ pickAlready }}" style="display:flex;align-items:center;gap:12px;width:100%;text-align:left;padding:11px 12px;background:#fff;border:1px solid #E3E8EF;border-radius:8px;cursor:pointer;font-family:inherit;transition:background 120ms,border-color 120ms;">
+              <div style="flex:1;min-width:0;">
+                <div style="font-size:14px;font-weight:600;color:#202939;line-height:18px;">DPF cleaning</div>
+                <div style="font-size:12px;font-weight:500;color:#697586;margin-top:2px;">Est. 2.5h</div>
+              </div>
+              <span style="display:inline-flex;align-items:center;gap:5px;flex:none;padding:3px 9px 3px 7px;border-radius:999px;background:#D3F8DF;color:#087443;font-size:12px;font-weight:600;line-height:16px;">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                Mia's on this
+              </span>
+            </button>
+
+            <!-- Row 3 — full -->
+            <button type="button" data-line-row="1" onClick="{{ pickFull }}" style="display:flex;align-items:center;gap:12px;width:100%;text-align:left;padding:11px 12px;background:#fff;border:1px solid #E3E8EF;border-radius:8px;cursor:pointer;font-family:inherit;transition:background 120ms,border-color 120ms;">
+              <div style="flex:1;min-width:0;">
+                <div style="font-size:14px;font-weight:600;color:#202939;line-height:18px;">Coolant flush</div>
+                <div style="font-size:12px;font-weight:500;color:#697586;margin-top:2px;">Est. 1.5h</div>
+              </div>
+              <span style="display:inline-flex;align-items:center;gap:5px;flex:none;padding:3px 10px;border-radius:999px;background:#FEF0C7;color:#B54708;font-size:12px;font-weight:600;line-height:16px;">5/5 full</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#9AA4B2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none;margin-left:-2px;"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            </button>
+
+          </div>
+        </div>
+      </sc-if>
+
+      <!-- STEP 2 — SWAP SOMEONE OUT -->
+      <sc-if value="{{ isSwap }}" hint-placeholder-val="{{ false }}">
+        <div style="padding:14px 16px 16px;">
+          <div style="font-size:13px;font-weight:500;color:#4B5565;line-height:18px;margin-bottom:12px;">
+            <span style="font-weight:600;color:#364152;">Coolant flush</span> is full (5/5). Pick someone to swap out for {{ assignee }}.
+          </div>
+
+          <div style="display:flex;flex-direction:column;gap:4px;margin-bottom:4px;">
+            <sc-for list="{{ techRows }}" as="t" hint-placeholder-count="5">
+              <button type="button" data-tech-row="1" data-sel="{{ t.selAttr }}" onClick="{{ t.onClick }}" style="{{ t.rowStyle }}">
+                <span style="{{ t.avStyle }}">{{ t.initials }}</span>
+                <span style="flex:1;min-width:0;text-align:left;">
+                  <span style="display:block;font-size:14px;font-weight:600;color:#202939;line-height:18px;">{{ t.name }}</span>
+                  <span style="display:block;font-size:12px;font-weight:500;color:#697586;margin-top:1px;">{{ t.note }}</span>
+                </span>
+                <span style="{{ t.radioStyle }}"><span style="{{ t.radioInner }}"></span></span>
+              </button>
+            </sc-for>
+          </div>
+
+          <!-- Destructive consequence (only when a tech WITH shifts is selected) -->
+          <sc-if value="{{ hasConsequence }}" hint-placeholder-val="{{ false }}">
+            <div style="display:flex;align-items:flex-start;gap:8px;margin-top:10px;padding:10px 12px;background:#FEF3F2;border:1px solid #FECDCA;border-radius:8px;">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#D92D20" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none;margin-top:1px;"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+              <span style="font-size:12.5px;font-weight:500;color:#B42318;line-height:17px;">{{ consequenceText }}</span>
+            </div>
+          </sc-if>
+
+          <!-- Footer -->
+          <div style="display:flex;align-items:center;gap:8px;margin-top:16px;">
+            <button type="button" onClick="{{ back }}" style="flex:none;height:40px;padding:0 16px;border:1px solid #CDD5DF;background:#fff;border-radius:8px;font-family:inherit;font-size:14px;font-weight:600;color:#364152;cursor:pointer;box-shadow:0 1px 2px rgba(16,24,40,.05);">Back</button>
+            <span style="flex:1;"></span>
+            <button type="button" onClick="{{ confirmSwap }}" disabled="{{ confirmDisabled }}" style="{{ confirmStyle }}">{{ confirmLabel }}</button>
+          </div>
+        </div>
+      </sc-if>
+
+      <!-- SUCCESS -->
+      <sc-if value="{{ isSuccess }}" hint-placeholder-val="{{ false }}">
+        <div style="padding:20px 16px 16px;">
+          <div style="display:flex;align-items:flex-start;gap:12px;">
+            <span style="flex:none;width:36px;height:36px;border-radius:50%;background:#D3F8DF;color:#099250;display:inline-flex;align-items:center;justify-content:center;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            </span>
+            <div style="flex:1;padding-top:2px;">
+              <div style="font-size:14px;font-weight:600;color:#202939;line-height:20px;">{{ successMsg }}</div>
+            </div>
+          </div>
+
+          <!-- Undo toast -->
+          <sc-if value="{{ hasToast }}" hint-placeholder-val="{{ false }}">
+            <div style="display:flex;align-items:center;gap:10px;margin-top:14px;padding:10px 10px 10px 14px;background:#202939;border-radius:8px;animation:lp-toast 200ms ease-out;">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FDA29B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none;"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+              <span style="flex:1;font-size:13px;font-weight:500;color:#F8FAFC;line-height:18px;">{{ toastText }}</span>
+              <button type="button" onClick="{{ undo }}" style="flex:none;height:28px;padding:0 12px;border:0;background:transparent;border-radius:6px;font-family:inherit;font-size:13px;font-weight:700;color:#82C1FB;cursor:pointer;">Undo</button>
+            </div>
+          </sc-if>
+
+          <div style="display:flex;justify-content:flex-end;margin-top:16px;">
+            <button type="button" data-restart="1" onClick="{{ restart }}" style="display:inline-flex;align-items:center;gap:6px;background:none;border:0;font-family:inherit;font-size:13px;font-weight:600;color:#257CFF;cursor:pointer;transition:color 120ms;">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"></polyline><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path></svg>
+              Replay demo
+            </button>
+          </div>
+        </div>
+      </sc-if>
+
+    </div>
+  </div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:620,&quot;height&quot;:560},&quot;assignee&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Mia Lopez&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;showContext&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;}}">
+class Component extends DCLogic {
+  constructor(p){
+    super(p);
+    this.state = { step:'line', selKey:null, result:null };
+    this.techs = [
+      { key:'t1', name:'Aaron Keating', initials:'AK', av:['#D9E4F2','#0F446B'], shifts:['Jun 12 \u00b7 4h','Jun 13 \u00b7 4h'] },
+      { key:'t2', name:'Jackie Moore',  initials:'JM', av:['#CCFBF1','#0F766E'], shifts:['Jun 11 \u00b7 2.5h'] },
+      { key:'t3', name:'D. Martinez',   initials:'DM', av:['#EDE9FE','#6D28D9'], shifts:[] },
+      { key:'t4', name:'Sam Okafor',    initials:'SO', av:['#FEF0C7','#B54708'], shifts:['Jun 10 \u00b7 1.5h'] },
+      { key:'t5', name:'Tina Ruiz',     initials:'TR', av:['#FCE7F3','#BE185D'], shifts:[] }
+    ];
+  }
+
+  _first(name){ return (name||'').trim().split(' ')[0] || name; }
+
+  renderVals(){
+    const S = this.state;
+    const assignee = this.props.assignee ?? 'Mia Lopez';
+    const aFirst = this._first(assignee);
+    const sel = this.techs.find(t => t.key === S.selKey) || null;
+    const selN = sel ? sel.shifts.length : 0;
+    const hasShifts = selN > 0;
+
+    const techRows = this.techs.map(t => {
+      const isSel = t.key === S.selKey;
+      const n = t.shifts.length;
+      const note = n > 0 ? (n + ' shift' + (n>1?'s':'') + ' on this line') : 'no shifts yet';
+      return {
+        onClick: () => this.setState({ selKey: t.key }),
+        initials: t.initials,
+        name: t.name,
+        note,
+        selAttr: isSel ? '1' : '0',
+        avStyle: 'flex:none;width:30px;height:30px;border-radius:50%;background:'+t.av[0]+';color:'+t.av[1]+';font-size:11px;font-weight:600;display:inline-flex;align-items:center;justify-content:center;',
+        rowStyle: 'display:flex;align-items:center;gap:11px;width:100%;padding:9px 11px;border-radius:8px;cursor:pointer;font-family:inherit;transition:background 120ms;border:1px solid '+(isSel?'#82C1FB':'transparent')+';background:'+(isSel?'#E9F5FF':'#fff')+';',
+        radioStyle: 'flex:none;width:18px;height:18px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;border:2px solid '+(isSel?'#257CFF':'#CDD5DF')+';background:#fff;transition:border-color 120ms;',
+        radioInner: 'width:8px;height:8px;border-radius:50%;background:'+(isSel?'#257CFF':'transparent')+';transition:background 120ms;'
+      };
+    });
+
+    // Confirm button
+    let confirmLabel, confirmStyle, confirmDisabled = !sel;
+    const baseBtn = 'flex:none;height:40px;padding:0 16px;border:0;border-radius:8px;font-family:inherit;font-size:14px;font-weight:600;color:#fff;box-shadow:0 1px 2px rgba(16,24,40,.05);';
+    if(!sel){
+      confirmLabel = 'Swap & create shift';
+      confirmStyle = baseBtn + 'background:#BEDFFF;cursor:not-allowed;';
+    } else if(hasShifts){
+      confirmLabel = 'Delete ' + selN + ' shift' + (selN>1?'s':'') + ' & swap in ' + aFirst;
+      confirmStyle = baseBtn + 'background:#D92D20;cursor:pointer;';
+    } else {
+      confirmLabel = 'Swap & create shift';
+      confirmStyle = baseBtn + 'background:#257CFF;cursor:pointer;';
+    }
+
+    const consequenceText = sel && hasShifts
+      ? ('Confirming deletes ' + this._first(sel.name) + '\u2019s ' + selN + ' shift' + (selN>1?'s':'') + ' on this line: ' + sel.shifts.join(', ') + '.')
+      : '';
+
+    const r = S.result || {};
+
+    return {
+      assignee,
+      showContext: this.props.showContext ?? true,
+      droppedLine: 'dropped on ' + assignee + ' \u00b7 Tue, Jun 9',
+      woTitle: 'S-487 \u00b7 Northwind Logistics',
+
+      isLine: S.step === 'line',
+      isSwap: S.step === 'swap',
+      isSuccess: S.step === 'success',
+
+      // step 1
+      pickRoom:    () => this.setState({ step:'success', result:{ msg:'Shift created. ' + assignee + ' added to the line (now 3/5).' } }),
+      pickAlready: () => this.setState({ step:'success', result:{ msg:'Shift created. ' + assignee + ' was already on this line \u2014 no roster change.' } }),
+      pickFull:    () => this.setState({ step:'swap', selKey:null }),
+
+      // step 2
+      techRows,
+      hasConsequence: !!(sel && hasShifts),
+      consequenceText,
+      confirmLabel, confirmStyle, confirmDisabled,
+      back: () => this.setState({ step:'line', selKey:null }),
+      confirmSwap: () => {
+        if(!sel) return;
+        if(hasShifts){
+          this.setState({ step:'success', result:{
+            msg: 'Shift created. ' + assignee + ' swapped in for ' + this._first(sel.name) + ' (still 5/5).',
+            toast: this._first(sel.name) + '\u2019s ' + selN + ' shift' + (selN>1?'s':'') + ' deleted.'
+          }});
+        } else {
+          this.setState({ step:'success', result:{
+            msg: 'Shift created. ' + assignee + ' swapped in for ' + this._first(sel.name) + ' (still 5/5).'
+          }});
+        }
+      },
+
+      // success
+      successMsg: r.msg || '',
+      hasToast: !!r.toast,
+      toastText: r.toast || '',
+      undo: () => this.setState({ step:'swap', selKey:null, result:null }),
+
+      // global
+      restart: () => this.setState({ step:'line', selKey:null, result:null }),
+      onClose: () => this.setState({ step:'line', selKey:null, result:null })
+    };
+  }
+}
+</script>
+</body>
+</html>

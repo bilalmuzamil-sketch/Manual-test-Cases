@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/shopview-design-system-fac6efcf-a972-4c02-96a5-def12ed8b037/colors_and_type.css">
+  <script src="_ds/shopview-design-system-fac6efcf-a972-4c02-96a5-def12ed8b037/_ds_bundle.js"></script>
+  <style>
+    html,body{margin:0;height:100%;background:#F8FAFC;}
+    *{box-sizing:border-box;}
+    ::-webkit-scrollbar{width:10px;height:10px;}
+    ::-webkit-scrollbar-thumb{background:#CDD5DF;border-radius:8px;border:3px solid transparent;background-clip:content-box;}
+    ::-webkit-scrollbar-thumb:hover{background:#9AA4B2;background-clip:content-box;}
+    [data-line]:hover{background:#F8FAFC !important;}
+    [data-wo]:hover{background:#F8FAFC !important;border-color:#CDD5DF !important;}
+    [data-swaprow]:hover{border-color:#9AA4B2 !important;}
+    [data-chip]:focus-visible,[data-btn]:focus-visible,[data-swaprow]:focus-visible{outline:none;box-shadow:0 0 0 4px rgba(37,124,255,.24);}
+    input::placeholder{color:#9AA4B2;}
+  </style>
+</helmet>
+<div style="display:flex;height:100vh;width:100%;font-family:var(--sv-font-ui);color:#364152;background:#F8FAFC;">
+
+  <!-- ░░ LEFT PANEL ░░ -->
+  <div style="width:300px;flex:none;height:100%;background:#fff;border-right:1px solid #E3E8EF;display:flex;flex-direction:column;overflow:hidden;">
+
+    <sc-if value="{{ isList }}" hint-placeholder-val="{{ true }}">
+      <div style="padding:18px 16px 13px;border-bottom:1px solid #E3E8EF;">
+        <div style="font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#9AA4B2;">Work Orders</div>
+        <div style="font-size:17px;font-weight:600;color:#202939;margin-top:4px;">Open Work Orders</div>
+      </div>
+      <div style="flex:1;overflow:auto;padding:10px;display:flex;flex-direction:column;gap:8px;">
+        <sc-for list="{{ woCards }}" as="w" hint-placeholder-count="4">
+          <button type="button" data-wo="1" onClick="{{ w.onOpen }}" style="text-align:left;display:flex;flex-direction:column;gap:6px;padding:13px 14px;border:1px solid #E3E8EF;border-radius:8px;background:#fff;cursor:pointer;font-family:inherit;transition:background 140ms,border-color 140ms;box-shadow:0 1px 2px rgba(16,24,40,.05);">
+            <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;">
+              <span style="font-size:14px;font-weight:600;color:#202939;">{{ w.id }}</span>
+              <span style="{{ w.statusStyle }}">{{ w.status }}</span>
+            </div>
+            <span style="font-size:13px;font-weight:500;color:#4B5565;">{{ w.cust }}</span>
+            <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;">
+              <span style="font-size:12px;color:#9AA4B2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">{{ w.vehicle }}</span>
+              <span style="font-size:12px;font-weight:500;color:#697586;flex:none;">{{ w.lineLabel }}</span>
+            </div>
+          </button>
+        </sc-for>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ isLines }}" hint-placeholder-val="{{ false }}">
+      <div style="padding:12px 14px 11px;border-bottom:1px solid #E3E8EF;flex:none;">
+        <button type="button" data-btn="1" onClick="{{ onBack }}" style="display:inline-flex;align-items:center;gap:4px;border:0;background:transparent;color:#175CD3;font-family:inherit;font-size:13px;font-weight:600;cursor:pointer;padding:0;margin-bottom:9px;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+          Work orders
+        </button>
+        <div style="font-size:15px;font-weight:600;color:#202939;">{{ woTitle }}</div>
+        <div style="font-size:12px;color:#697586;margin-top:2px;">{{ lineCountLabel }}</div>
+      </div>
+
+      <div style="padding:10px 12px 8px;flex:none;">
+        <div style="position:relative;">
+          <span style="position:absolute;left:10px;top:50%;transform:translateY(-50%);color:#9AA4B2;display:inline-flex;pointer-events:none;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></span>
+          <input value="{{ search }}" onInput="{{ onSearch }}" placeholder="Search lines" style="width:100%;height:36px;padding:0 12px 0 32px;border:1px solid #CDD5DF;border-radius:8px;font-family:inherit;font-size:13px;color:#364152;outline:none;background:#fff;" />
+        </div>
+      </div>
+
+      <div style="display:flex;gap:6px;padding:2px 12px 11px;border-bottom:1px solid #E3E8EF;flex:none;">
+        <button type="button" data-chip="1" onClick="{{ setChipAll }}" style="{{ chipAllStyle }}">{{ chipAll }}</button>
+        <button type="button" data-chip="1" onClick="{{ setChipUn }}" style="{{ chipUnStyle }}">{{ chipUn }}</button>
+        <button type="button" data-chip="1" onClick="{{ setChipRoom }}" style="{{ chipRoomStyle }}">{{ chipRoom }}</button>
+      </div>
+
+      <sc-if value="{{ arming }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex;align-items:center;gap:8px;padding:9px 12px;background:#E5EDFF;border-bottom:1px solid #BEDFFF;flex:none;">
+          <span style="font-size:12px;color:#175CD3;line-height:16px;flex:1;">Click a technician's cell to drop <b style="font-weight:700;">{{ armName }}</b></span>
+          <button type="button" onClick="{{ onCancelArm }}" style="border:0;background:transparent;color:#175CD3;font-weight:600;font-size:12px;cursor:pointer;font-family:inherit;flex:none;">Cancel</button>
+        </div>
+      </sc-if>
+
+      <div ref="{{ listRef }}" onScroll="{{ onListScroll }}" style="flex:1;overflow:auto;position:relative;">
+        <div style="height:{{ spacerTop }}px;"></div>
+        <sc-for list="{{ slice }}" as="row" hint-placeholder-count="11">
+          <div data-line="1" draggable="true" onDragStart="{{ row.onDragStart }}" onDragEnd="{{ row.onDragEnd }}" onClick="{{ row.onClick }}" style="{{ row.rowStyle }}">
+            <span style="flex:none;color:#9AA4B2;display:inline-flex;cursor:grab;">
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><circle cx="5" cy="3" r="1.4"></circle><circle cx="11" cy="3" r="1.4"></circle><circle cx="5" cy="8" r="1.4"></circle><circle cx="11" cy="8" r="1.4"></circle><circle cx="5" cy="13" r="1.4"></circle><circle cx="11" cy="13" r="1.4"></circle></svg>
+            </span>
+            <div style="flex:1;min-width:0;">
+              <div style="font-size:13px;font-weight:500;color:#202939;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">{{ row.name }}</div>
+              <div style="font-size:11px;color:#9AA4B2;margin-top:1px;">Est. {{ row.hrsLabel }}</div>
+            </div>
+            <span style="{{ row.badgeStyle }}">{{ row.badge }}</span>
+          </div>
+        </sc-for>
+        <div style="height:{{ spacerBottom }}px;"></div>
+        <sc-if value="{{ noResults }}" hint-placeholder-val="{{ false }}">
+          <div style="padding:30px 16px;text-align:center;color:#9AA4B2;font-size:13px;">No lines match your search.</div>
+        </sc-if>
+      </div>
+    </sc-if>
+  </div>
+
+  <!-- ░░ RIGHT — SCHEDULE GRID ░░ -->
+  <div style="flex:1;min-width:0;display:flex;flex-direction:column;height:100%;">
+    <div style="height:60px;flex:none;display:flex;align-items:center;justify-content:space-between;padding:0 22px;background:#fff;border-bottom:1px solid #E3E8EF;">
+      <div>
+        <div style="font-size:16px;font-weight:600;color:#202939;">Schedule</div>
+        <div style="font-size:12px;color:#697586;margin-top:1px;">{{ weekLabel }}</div>
+      </div>
+      <div style="display:flex;border:1px solid #CDD5DF;border-radius:8px;overflow:hidden;">
+        <div style="padding:7px 14px;font-size:12px;font-weight:600;color:#fff;background:#257CFF;">Week</div>
+        <div style="padding:7px 14px;font-size:12px;font-weight:600;color:#697586;background:#fff;border-left:1px solid #CDD5DF;">Day</div>
+      </div>
+    </div>
+
+    <div style="flex:1;overflow:auto;padding:18px 22px;">
+      <div style="min-width:700px;border:1px solid #E3E8EF;border-radius:10px;overflow:hidden;background:#fff;box-shadow:0 1px 2px rgba(16,24,40,.04);">
+        <div style="display:grid;grid-template-columns:150px repeat(5,1fr);background:#F8FAFC;border-bottom:1px solid #E3E8EF;">
+          <div style="padding:11px 14px;font-size:11px;font-weight:600;color:#9AA4B2;text-transform:uppercase;letter-spacing:.05em;">Technician</div>
+          <sc-for list="{{ days }}" as="d" hint-placeholder-count="5">
+            <div style="padding:11px 8px;text-align:center;font-size:12px;font-weight:600;color:#4B5565;border-left:1px solid #E3E8EF;">{{ d.label }}</div>
+          </sc-for>
+        </div>
+        <sc-for list="{{ gridRows }}" as="r" hint-placeholder-count="6">
+          <div style="{{ r.rowStyle }}">
+            <div style="display:flex;align-items:center;gap:9px;padding:8px 14px;border-right:1px solid #E3E8EF;min-width:0;">
+              <span style="width:30px;height:30px;flex:none;border-radius:50%;background:#E5EDFF;color:#175CD3;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;">{{ r.initials }}</span>
+              <div style="min-width:0;">
+                <div style="font-size:13px;font-weight:600;color:#202939;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">{{ r.tech }}</div>
+                <div style="font-size:11px;color:#9AA4B2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">{{ r.role }}</div>
+              </div>
+            </div>
+            <sc-for list="{{ r.cells }}" as="c" hint-placeholder-count="5">
+              <div onDragOver="{{ c.onDragOver }}" onDrop="{{ c.onDrop }}" onMouseEnter="{{ c.onMouseEnter }}" onClick="{{ c.onClick }}" style="{{ c.cellStyle }}">
+                <sc-for list="{{ c.blocks }}" as="b" hint-placeholder-count="0">
+                  <div style="{{ b.style }}">
+                    <div style="font-size:11px;font-weight:600;color:#0B254D;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:14px;">{{ b.name }}</div>
+                    <div style="font-size:10px;color:#175CD3;font-weight:600;margin-top:1px;">{{ b.hrsLabel }}</div>
+                  </div>
+                </sc-for>
+                <sc-if value="{{ c.showGhost }}" hint-placeholder-val="{{ false }}">
+                  <div style="{{ c.ghostStyle }}">{{ ghostLabel }}</div>
+                </sc-if>
+              </div>
+            </sc-for>
+          </div>
+        </sc-for>
+      </div>
+      <div style="margin-top:13px;font-size:12px;color:#9AA4B2;display:flex;align-items:center;gap:7px;">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+        Drag a line from the work order onto a technician — or click a line, then click a cell — to schedule a shift.
+      </div>
+    </div>
+  </div>
+
+  <!-- ░░ SWAP DIALOG ░░ -->
+  <sc-if value="{{ swapOpen }}" hint-placeholder-val="{{ false }}">
+    <div onClick="{{ swap.onBack }}" style="position:fixed;inset:0;z-index:1000;background:rgba(15,17,26,.28);display:flex;align-items:center;justify-content:center;padding:24px;">
+      <div onClick="{{ swap.stop }}" ref="{{ swap.dialogRef }}" role="dialog" aria-modal="true" aria-label="Swap technician" tabindex="-1" style="width:432px;max-width:100%;background:#fff;border-radius:12px;box-shadow:0 12px 24px rgba(11,23,51,.18),0 4px 8px rgba(11,23,51,.08);outline:none;display:flex;flex-direction:column;max-height:calc(100vh - 48px);">
+        <div style="padding:18px 18px 13px;flex:none;">
+          <div style="display:flex;align-items:center;gap:11px;">
+            <span style="width:34px;height:34px;flex:none;border-radius:8px;background:#FEF0C7;color:#B54708;display:flex;align-items:center;justify-content:center;">
+              <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4"></path><path d="M12 17h.01"></path><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path></svg>
+            </span>
+            <div style="font-size:16px;font-weight:600;color:#202939;">This line is full</div>
+          </div>
+          <div style="font-size:13px;color:#4B5565;margin-top:11px;line-height:19px;text-wrap:pretty;">{{ swap.subText }}</div>
+        </div>
+
+        <div style="overflow:auto;padding:0 14px;display:flex;flex-direction:column;gap:6px;flex:1;min-height:0;">
+          <sc-for list="{{ swap.rows }}" as="srow" hint-placeholder-count="5">
+            <button type="button" data-swaprow="1" onClick="{{ srow.onSelect }}" style="{{ srow.style }}">
+              <span style="width:28px;height:28px;flex:none;border-radius:50%;background:#EEF2F6;color:#4B5565;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;">{{ srow.initials }}</span>
+              <span style="flex:1;text-align:left;font-size:13px;font-weight:600;color:#202939;">{{ srow.name }}</span>
+              <span style="{{ srow.fpStyle }}">{{ srow.footprint }}</span>
+              <span style="{{ srow.radioStyle }}">
+                <sc-if value="{{ srow.isSelected }}" hint-placeholder-val="{{ false }}">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                </sc-if>
+              </span>
+            </button>
+          </sc-for>
+        </div>
+
+        <sc-if value="{{ swap.showConsequence }}" hint-placeholder-val="{{ false }}">
+          <div style="margin:13px 16px 0;padding:11px 12px;background:#FEF3F2;border:1px solid #FECDCA;border-radius:8px;display:flex;gap:9px;flex:none;">
+            <span style="color:#D92D20;flex:none;margin-top:1px;display:inline-flex;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg></span>
+            <span style="font-size:12px;color:#B42318;line-height:17px;font-weight:500;text-wrap:pretty;">{{ swap.consequenceText }}</span>
+          </div>
+        </sc-if>
+
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;padding:16px;flex:none;">
+          <button type="button" data-btn="1" onClick="{{ swap.onBack }}" style="height:38px;padding:0 16px;border:1px solid #CDD5DF;border-radius:8px;background:#fff;color:#364152;font-family:inherit;font-size:13px;font-weight:600;cursor:pointer;box-shadow:0 1px 2px rgba(16,24,40,.05);">Back</button>
+          <button type="button" data-btn="1" onClick="{{ swap.onConfirm }}" disabled="{{ swap.confirmDisabled }}" style="{{ swap.confirmStyle }}">{{ swap.confirmLabel }}</button>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+
+  <!-- ░░ TOAST ░░ -->
+  <sc-if value="{{ toastOpen }}" hint-placeholder-val="{{ false }}">
+    <div style="position:fixed;left:50%;bottom:26px;z-index:1100;transform:translateX(-50%);">
+      <div style="display:flex;align-items:center;gap:12px;background:#202939;color:#fff;border-radius:10px;padding:12px 12px 12px 15px;box-shadow:0 12px 24px rgba(11,23,51,.22);min-width:290px;max-width:440px;">
+        <span style="flex:none;display:inline-flex;color:#73E2A3;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
+        <span style="flex:1;font-size:13px;font-weight:500;line-height:18px;">{{ toast.msg }}</span>
+        <sc-if value="{{ toast.hasUndo }}" hint-placeholder-val="{{ false }}">
+          <button type="button" onClick="{{ toast.onUndo }}" style="border:0;background:transparent;color:#82C1FB;font-weight:700;font-size:13px;cursor:pointer;font-family:inherit;flex:none;padding:0 4px;">Undo</button>
+        </sc-if>
+        <button type="button" onClick="{{ toast.onClose }}" aria-label="Dismiss" style="border:0;background:transparent;color:#9AA4B2;cursor:pointer;display:inline-flex;padding:2px;flex:none;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button>
+      </div>
+    </div>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;density&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;comfortable&quot;,&quot;compact&quot;],&quot;default&quot;:&quot;comfortable&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;showGhost&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;}}">
+class Component extends DCLogic {
+  constructor(p){
+    super(p);
+    this._listRef = React.createRef();
+    this._dialogRef = React.createRef();
+    this._needRestore = false;
+    this._toastTimer = null;
+    this._seq = 100;
+
+    this.techs = [
+      {name:'Mia Lopez', role:'Diesel Tech'},
+      {name:'Aaron Keating', role:'Lead Technician'},
+      {name:'Jackie Moore', role:'Brake Specialist'},
+      {name:'D. Martinez', role:'Diesel Tech'},
+      {name:'Sam Okafor', role:'Trailer Tech'},
+      {name:'Tina Ruiz', role:'Apprentice'},
+    ];
+    this.days = [
+      {idx:0, dow:'Wed', d:'Jun 10', num:'10'},
+      {idx:1, dow:'Thu', d:'Jun 11', num:'11'},
+      {idx:2, dow:'Fri', d:'Jun 12', num:'12'},
+      {idx:3, dow:'Sat', d:'Jun 13', num:'13'},
+      {idx:4, dow:'Sun', d:'Jun 14', num:'14'},
+    ];
+    this.workOrders = [
+      {id:'S-512', cust:'Acme Fleet Services', lineCount:50, status:'Authorized', vehicle:'2021 Freightliner Cascadia'},
+      {id:'S-509', cust:'PepsiCo Foods Canada', lineCount:32, status:'In Progress', vehicle:'2019 Kenworth T680'},
+      {id:'S-514', cust:'Ryder Truck Rental', lineCount:18, status:'Authorized', vehicle:'2020 Volvo VNL 760'},
+      {id:'S-501', cust:'Old Dominion Freight', lineCount:27, status:'Awaiting', vehicle:'2018 Peterbilt 579'},
+    ];
+
+    const pool = ['Mia Lopez','Aaron Keating','Jackie Moore','D. Martinez','Sam Okafor','Tina Ruiz','Wes Carter','Priya Shah','Luis Romero','Hank Doyle'];
+    const lines = [];
+    const rosters = {};
+    const hero = [
+      {id:'dot', name:'DOT annual inspection', hrs:2, roster:[]},
+      {id:'brake', name:'Brake chambers — front', hrs:3, roster:['Sam Okafor','Tina Ruiz']},
+      {id:'coolant', name:'Coolant system flush', hrs:1.5, roster:['Aaron Keating','Jackie Moore','D. Martinez','Sam Okafor','Tina Ruiz']},
+      {id:'engine', name:'Engine oil & filter', hrs:1.5, roster:['Aaron Keating','Jackie Moore','D. Martinez']},
+      {id:'airdryer', name:'Air dryer rebuild', hrs:2.5, roster:[]},
+      {id:'wheelseal', name:'Wheel seal — left front', hrs:2, roster:[]},
+    ];
+    hero.forEach(h=>{ lines.push({id:h.id, name:h.name, hrs:h.hrs}); rosters[h.id]=h.roster.slice(); });
+
+    const fillerNames = ['Replace fuel filter','Replace cabin air filter','Inspect fifth wheel','Grease chassis','Replace wiper blades','Adjust slack adjusters','Replace headlight assembly','Replace marker lights','Trailer brake inspection','Replace air bag — rear','Replace shock absorbers','Wheel bearing repack','Replace U-joint','Driveshaft inspection','Replace clutch','Transmission service','Differential oil change','Replace turbocharger','Replace EGR valve','DPF cleaning','Replace water pump','Replace serpentine belt','Replace alternator','Replace starter motor','Battery replacement','Replace glow plugs','Coolant hose replacement','Radiator flush','Replace thermostat','Replace air compressor','Brake drum replacement — rear','Brake shoe replacement','Replace ABS sensor','Replace king pins','Tie rod end replacement','Alignment check','Tire rotation','Replace steer tires','Replace drive tires','Mud flap replacement','Replace door seal','Windshield replacement','Replace mirror — driver side','DEF system service','Replace fuel injectors','Valve lash adjustment'];
+    const hrsCycle = [2,1.5,3,2.5,4,1,3.5];
+    let fi = 0;
+    const addFiller = (assigned)=>{
+      const id = 'L'+fi;
+      const name = fillerNames[fi];
+      const hrs = hrsCycle[fi % hrsCycle.length];
+      let roster = [];
+      if(assigned > 0){
+        let k = 0;
+        while(roster.length < assigned && k < 40){
+          const cand = pool[(fi*2 + k) % pool.length];
+          if(!roster.includes(cand)) roster.push(cand);
+          k++;
+        }
+      }
+      lines.push({id, name, hrs});
+      rosters[id] = roster;
+      fi++;
+    };
+    for(let i=0;i<28;i++) addFiller(0);
+    for(let i=0;i<5;i++) addFiller(5);
+    for(let i=0;i<11;i++) addFiller(1 + (i % 4));
+
+    this.lines = lines;
+    this.linesById = {};
+    lines.forEach(l=>{ this.linesById[l.id]=l; });
+
+    const seedShifts = [
+      {id:'s1', tech:'Aaron Keating', day:2, lineId:'coolant', name:'Coolant system flush', hrs:4},
+      {id:'s2', tech:'Aaron Keating', day:3, lineId:'coolant', name:'Coolant system flush', hrs:4},
+      {id:'s3', tech:'Jackie Moore', day:4, lineId:'coolant', name:'Coolant system flush', hrs:1.5},
+      {id:'s4', tech:'Sam Okafor', day:1, lineId:'coolant', name:'Coolant system flush', hrs:1.5},
+    ];
+
+    this.state = {
+      view:'list', activeWo:null,
+      search:'', chip:'all',
+      lineTechs: rosters,
+      shifts: seedShifts,
+      activeLineId:null, dragging:false, hoverCell:null,
+      scrollTop:0, listH:600,
+      swap:null, toast:null,
+    };
+  }
+
+  componentDidMount(){
+    this._measure();
+    this._onKey = (e)=>{
+      if(e.key === 'Escape'){
+        if(this.state.swap) this.setState({swap:null});
+        else if(this.state.activeLineId) this.setState({activeLineId:null, hoverCell:null});
+      }
+    };
+    document.addEventListener('keydown', this._onKey);
+    this._onResize = ()=>this._measure();
+    window.addEventListener('resize', this._onResize);
+  }
+  componentWillUnmount(){
+    document.removeEventListener('keydown', this._onKey);
+    window.removeEventListener('resize', this._onResize);
+    if(this._toastTimer) clearTimeout(this._toastTimer);
+  }
+  componentDidUpdate(){
+    if(this.state.view === 'lines'){
+      if(this._needRestore && this._listRef.current){
+        this._listRef.current.scrollTop = this.state.scrollTop;
+        this._needRestore = false;
+      }
+      this._measure();
+    }
+    if(this.state.swap && this._dialogRef.current && document.activeElement !== this._dialogRef.current){
+      if(!this._dialogRef.current.contains(document.activeElement)) this._dialogRef.current.focus();
+    }
+  }
+  _measure(){
+    const el = this._listRef.current;
+    if(el){ const h = el.clientHeight; if(h && h !== this.state.listH) this.setState({listH:h}); }
+  }
+
+  openWo(wo){
+    const same = this.state.activeWo && this.state.activeWo.id === wo.id;
+    this._needRestore = same;
+    this.setState({ view:'lines', activeWo:wo, scrollTop: same?this.state.scrollTop:0, search:'', chip:'all', activeLineId:null, hoverCell:null });
+  }
+  back(){ this.setState({ view:'list', activeLineId:null, hoverCell:null }); }
+  onListScroll(e){ this.setState({ scrollTop: e.target.scrollTop }); }
+  setSearch(v){ this.setState({ search:v, scrollTop:0 }); if(this._listRef.current) this._listRef.current.scrollTop = 0; }
+  setChip(c){ this.setState({ chip:c, scrollTop:0 }); if(this._listRef.current) this._listRef.current.scrollTop = 0; }
+  armLine(id){ this.setState(st=>({ activeLineId: (st.activeLineId===id && !st.dragging)?null:id, dragging:false, hoverCell:null })); }
+
+  _drop(lineId, tech, dayIdx){
+    const line = this.linesById[lineId]; if(!line) return;
+    const roster = this.state.lineTechs[lineId] || [];
+    if(roster.includes(tech)){
+      this._createShift(lineId, tech, dayIdx);
+      this.setState({ activeLineId:null, hoverCell:null, dragging:false });
+    } else if(roster.length < 5){
+      const ns = roster.concat(tech);
+      this.setState(st=>({ lineTechs:{...st.lineTechs, [lineId]:ns}, activeLineId:null, hoverCell:null, dragging:false }));
+      this._createShift(lineId, tech, dayIdx);
+      this._toast({ msg: this._first(tech) + ' added to this line.' });
+    } else {
+      this.setState({ swap:{ lineId, lineName:line.name, target:tech, cellDay:dayIdx, selectedIdx:null }, activeLineId:null, hoverCell:null, dragging:false });
+    }
+  }
+  _createShift(lineId, tech, dayIdx){
+    const line = this.linesById[lineId];
+    const sh = { id:'sh'+(this._seq++), tech, day:dayIdx, lineId, name:line.name, hrs:line.hrs };
+    this.setState(st=>({ shifts: st.shifts.concat(sh) }));
+  }
+  _confirmSwap(){
+    const sw = this.state.swap;
+    if(!sw || sw.selectedIdx == null) return;
+    const roster = this.state.lineTechs[sw.lineId] || [];
+    const sel = roster[sw.selectedIdx];
+    const deleted = this.state.shifts.filter(s=> s.lineId===sw.lineId && s.tech===sel);
+    const snap = { lineId:sw.lineId, prevRoster:roster.slice(), prevShifts:this.state.shifts.slice() };
+    const line = this.linesById[sw.lineId];
+    const newShift = { id:'sh'+(this._seq++), tech:sw.target, day:sw.cellDay, lineId:sw.lineId, name:line.name, hrs:line.hrs };
+    const newRoster = roster.filter((_,i)=> i!==sw.selectedIdx).concat(sw.target);
+    const newShifts = this.state.shifts.filter(s=> !(s.lineId===sw.lineId && s.tech===sel)).concat(newShift);
+    this.setState(st=>({ lineTechs:{...st.lineTechs, [sw.lineId]:newRoster}, shifts:newShifts, swap:null }));
+    if(deleted.length > 0){
+      this._toast({ msg: this._first(sel) + '\u2019s ' + deleted.length + ' shift' + (deleted.length>1?'s':'') + ' deleted.', undo:snap });
+    }
+  }
+  _undo(snap){
+    if(!snap) return;
+    if(this._toastTimer) clearTimeout(this._toastTimer);
+    this.setState(st=>({ lineTechs:{...st.lineTechs, [snap.lineId]:snap.prevRoster}, shifts:snap.prevShifts, toast:null }));
+  }
+  _toast(t){
+    if(this._toastTimer) clearTimeout(this._toastTimer);
+    this.setState({ toast:t });
+    this._toastTimer = setTimeout(()=> this.setState({ toast:null }), t.undo?6500:3200);
+  }
+  _first(n){ return (n||'').split(' ')[0]; }
+  _initials(n){ const p=(n||'').split(' '); return ((p[0]?p[0][0]:'') + (p[1]?p[1][0]:'')).toUpperCase(); }
+  _h(h){ return h + 'h'; }
+  _blockH(h){ return Math.round(28 + h*11); }
+  _chipStyle(active){
+    const base = 'height:30px;padding:0 13px;border-radius:999px;font-family:inherit;font-size:12px;font-weight:600;cursor:pointer;white-space:nowrap;transition:background 140ms,border-color 140ms,color 140ms;';
+    return base + (active ? 'background:#257CFF;border:1px solid #257CFF;color:#fff;' : 'background:#fff;border:1px solid #CDD5DF;color:#4B5565;');
+  }
+
+  renderVals(){
+    const S = this.state;
+    const density = this.props.density ?? 'comfortable';
+    const showGhost = this.props.showGhost ?? true;
+    const compact = density === 'compact';
+    const rowH = compact ? 46 : 56;
+    const cellMinH = compact ? 92 : 112;
+
+    const statusStyleFor = (s)=>{
+      const base = 'font-size:11px;font-weight:600;padding:2px 8px;border-radius:999px;flex:none;white-space:nowrap;';
+      if(s==='Authorized') return base + 'background:#D3F8DF;color:#087443;';
+      if(s==='In Progress') return base + 'background:#E5EDFF;color:#0868A7;';
+      if(s==='Awaiting') return base + 'background:#FEF0C7;color:#B54708;';
+      return base + 'background:#EEF2F6;color:#697586;';
+    };
+    const woCards = this.workOrders.map(w=>({
+      id:w.id, cust:w.cust, status:w.status, statusStyle:statusStyleFor(w.status),
+      vehicle:w.vehicle, lineLabel:w.lineCount + ' lines',
+      onOpen:()=>this.openWo(w)
+    }));
+
+    const wo = S.activeWo;
+    const fullSet = wo ? this.lines.slice(0, wo.lineCount) : [];
+    const staffOf = (l)=> (S.lineTechs[l.id]||[]).length;
+    const isUnscheduled = (l)=> staffOf(l) === 0;
+    const allCount = fullSet.length;
+    const unschedCount = fullSet.filter(isUnscheduled).length;
+    const roomCount = fullSet.filter(l=> staffOf(l) < 5).length;
+
+    const q = S.search.trim().toLowerCase();
+    const filtered = fullSet.filter(l=>{
+      if(q && l.name.toLowerCase().indexOf(q) === -1) return false;
+      if(S.chip==='unscheduled' && !isUnscheduled(l)) return false;
+      if(S.chip==='room' && staffOf(l) >= 5) return false;
+      return true;
+    });
+
+    const total = filtered.length;
+    const start = Math.max(0, Math.floor(S.scrollTop/rowH) - 5);
+    const visCount = Math.ceil((S.listH||600)/rowH) + 10;
+    const end = Math.min(total, start + visCount);
+    const spacerTop = start * rowH;
+    const spacerBottom = Math.max(0, (total - end) * rowH);
+    const slice = filtered.slice(start, end).map(l=>{
+      const n = staffOf(l);
+      let bg='#EEF2F6', col='#697586';
+      if(n===0){ bg='#FEF0C7'; col='#B54708'; }
+      else if(n>=5){ bg='#D3F8DF'; col='#087443'; }
+      const armed = S.activeLineId === l.id;
+      return {
+        id:l.id, name:l.name, hrsLabel:this._h(l.hrs), badge:n + '/5',
+        badgeStyle: 'font-size:11px;font-weight:700;padding:3px 8px;border-radius:999px;flex:none;background:'+bg+';color:'+col+';',
+        rowStyle: 'display:flex;align-items:center;gap:9px;height:'+rowH+'px;padding:0 12px;border-bottom:1px solid #F1F4F8;cursor:grab;user-select:none;transition:background 120ms;' + (armed?'background:#E5EDFF;box-shadow:inset 3px 0 0 #257CFF;':'background:#fff;'),
+        onDragStart:(e)=>{ try{ e.dataTransfer.setData('text/plain', l.id); e.dataTransfer.effectAllowed='copy'; }catch(_){}; this.setState({ activeLineId:l.id, dragging:true, hoverCell:null }); },
+        onDragEnd:()=> this.setState({ dragging:false, hoverCell:null, activeLineId:null }),
+        onClick:()=> this.armLine(l.id),
+      };
+    });
+
+    const activeLine = S.activeLineId ? this.linesById[S.activeLineId] : null;
+    const picking = !!S.activeLineId;
+    const ghostH = activeLine ? this._blockH(activeLine.hrs) : 0;
+
+    const gridRows = this.techs.map(t=>{
+      const isTargetRow = !!(S.hoverCell && S.hoverCell.tech === t.name);
+      const cells = this.days.map(d=>{
+        const blocks = S.shifts.filter(s=> s.tech===t.name && s.day===d.idx).map(s=>({
+          id:s.id, name:s.name, hrsLabel:this._h(s.hrs),
+          style: 'background:#E5EDFF;border-left:3px solid #257CFF;border-radius:6px;padding:5px 7px;height:'+this._blockH(s.hrs)+'px;overflow:hidden;'
+        }));
+        const isTarget = !!(S.hoverCell && S.hoverCell.tech===t.name && S.hoverCell.dayIdx===d.idx);
+        return {
+          blocks,
+          showGhost: showGhost && isTarget && picking,
+          ghostStyle: 'height:'+ghostH+'px;border:2px dashed #257CFF;border-radius:6px;background:rgba(37,124,255,.08);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:#175CD3;',
+          cellStyle: 'position:relative;min-height:'+cellMinH+'px;padding:6px;border-left:1px solid #E3E8EF;display:flex;flex-direction:column;gap:5px;transition:background 120ms,box-shadow 120ms;'
+            + (picking?'cursor:copy;':'')
+            + (isTarget?'background:#E5EDFF;box-shadow:inset 0 0 0 2px #257CFF;':''),
+          onDragOver:(e)=>{ if(this.state.dragging){ e.preventDefault(); const hc=this.state.hoverCell; if(!hc || hc.tech!==t.name || hc.dayIdx!==d.idx) this.setState({ hoverCell:{tech:t.name, dayIdx:d.idx} }); } },
+          onDrop:(e)=>{ e.preventDefault(); const id=this.state.activeLineId; if(id) this._drop(id, t.name, d.idx); },
+          onMouseEnter:()=>{ if(this.state.activeLineId) this.setState({ hoverCell:{tech:t.name, dayIdx:d.idx} }); },
+          onClick:()=>{ const id=this.state.activeLineId; if(id && !this.state.dragging) this._drop(id, t.name, d.idx); },
+        };
+      });
+      return {
+        tech:t.name, role:t.role, initials:this._initials(t.name),
+        rowStyle: 'display:grid;grid-template-columns:150px repeat(5,1fr);border-bottom:1px solid #E3E8EF;transition:background 120ms;' + (isTargetRow?'background:#F4FAFF;':'background:#fff;'),
+        cells
+      };
+    });
+
+    let swap = null;
+    if(S.swap){
+      const sw = S.swap;
+      const roster = S.lineTechs[sw.lineId] || [];
+      const targetFirst = this._first(sw.target);
+      const rows = roster.map((name,i)=>{
+        const fps = S.shifts.filter(s=> s.lineId===sw.lineId && s.tech===name);
+        const c = fps.length;
+        const selected = sw.selectedIdx === i;
+        return {
+          name, initials:this._initials(name),
+          footprint: c>0 ? (c + ' shift' + (c>1?'s':'') + ' on this line') : 'no shifts yet',
+          fpStyle: 'font-size:11px;font-weight:600;flex:none;white-space:nowrap;color:' + (c>0?'#B54708':'#9AA4B2') + ';',
+          isSelected: selected,
+          style: 'display:flex;align-items:center;gap:10px;padding:9px 10px;border-radius:8px;width:100%;font-family:inherit;cursor:pointer;transition:background 120ms,border-color 120ms;border:1px solid ' + (selected?'#257CFF':'#E3E8EF') + ';background:' + (selected?'#F4FAFF':'#fff') + ';',
+          radioStyle: 'width:18px;height:18px;flex:none;border-radius:50%;display:flex;align-items:center;justify-content:center;border:2px solid ' + (selected?'#257CFF':'#CDD5DF') + ';background:' + (selected?'#257CFF':'#fff') + ';',
+          onSelect:()=> this.setState(st=>({ swap:{...st.swap, selectedIdx:i} })),
+        };
+      });
+      const sel = sw.selectedIdx != null ? roster[sw.selectedIdx] : null;
+      const selFps = sel ? S.shifts.filter(s=> s.lineId===sw.lineId && s.tech===sel) : [];
+      const selCount = selFps.length;
+      const destructive = selCount > 0;
+      const disabled = sw.selectedIdx == null;
+      const btnBase = 'height:38px;padding:0 16px;border:0;border-radius:8px;font-family:inherit;font-size:13px;font-weight:600;box-shadow:0 1px 2px rgba(16,24,40,.05);';
+      let confirmStyle;
+      if(disabled) confirmStyle = btnBase + 'background:#B7D5FF;color:#fff;cursor:not-allowed;';
+      else if(destructive) confirmStyle = btnBase + 'background:#D92D20;color:#fff;cursor:pointer;';
+      else confirmStyle = btnBase + 'background:#257CFF;color:#fff;cursor:pointer;';
+      swap = {
+        subText: sw.lineName + ' is full (5/5). Pick someone to swap out for ' + targetFirst + '.',
+        rows,
+        showConsequence: destructive,
+        consequenceText: destructive ? ('Confirming deletes ' + this._first(sel) + '\u2019s ' + selCount + ' shift' + (selCount>1?'s':'') + ' on this line: ' + selFps.map(f=> this.days[f.day].d + ' \u00b7 ' + this._h(f.hrs)).join(', ')) : '',
+        confirmLabel: destructive ? ('Delete ' + selCount + ' shift' + (selCount>1?'s':'') + ' & swap in ' + targetFirst) : 'Swap & create shift',
+        confirmStyle, confirmDisabled: disabled,
+        onConfirm:()=> this._confirmSwap(),
+        onBack:()=> this.setState({ swap:null }),
+        stop:(e)=>{ e.stopPropagation(); },
+        dialogRef: this._dialogRef,
+      };
+    }
+
+    const toast = S.toast ? {
+      msg: S.toast.msg, hasUndo: !!S.toast.undo,
+      onUndo:()=> this._undo(S.toast.undo),
+      onClose:()=>{ if(this._toastTimer) clearTimeout(this._toastTimer); this.setState({ toast:null }); },
+    } : null;
+
+    return {
+      isList: S.view==='list', isLines: S.view==='lines',
+      woCards,
+      woTitle: wo ? (wo.id + ' \u00b7 ' + wo.cust) : '',
+      lineCountLabel: allCount + ' lines',
+      search: S.search, onSearch:(e)=> this.setSearch(e.target.value),
+      chipAll: 'All ' + allCount, chipUn: 'Unscheduled ' + unschedCount, chipRoom: 'Has room ' + roomCount,
+      chipAllStyle: this._chipStyle(S.chip==='all'),
+      chipUnStyle: this._chipStyle(S.chip==='unscheduled'),
+      chipRoomStyle: this._chipStyle(S.chip==='room'),
+      setChipAll:()=> this.setChip('all'), setChipUn:()=> this.setChip('unscheduled'), setChipRoom:()=> this.setChip('room'),
+      onBack:()=> this.back(),
+      listRef: this._listRef, onListScroll:(e)=> this.onListScroll(e),
+      spacerTop, spacerBottom, slice, noResults: total===0,
+      arming: picking && !S.dragging,
+      armName: activeLine ? activeLine.name : '',
+      onCancelArm:()=> this.setState({ activeLineId:null, hoverCell:null }),
+      days: this.days.map(d=>({ label: d.dow + ' ' + d.num })),
+      gridRows,
+      ghostLabel: activeLine ? (activeLine.name + ' \u00b7 ' + this._h(activeLine.hrs)) : '',
+      swap, swapOpen: !!swap,
+      toast, toastOpen: !!toast,
+      weekLabel: 'Week of Jun 10 – 14, 2026',
+    };
+  }
+}
+</script>
+</body>
+</html>

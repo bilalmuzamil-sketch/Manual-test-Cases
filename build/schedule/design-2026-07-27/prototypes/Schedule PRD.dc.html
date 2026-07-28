@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+
+<helmet>
+  <link rel="stylesheet" href="_ds/shopview-design-system-fac6efcf-a972-4c02-96a5-def12ed8b037/colors_and_type.css">
+  <script src="_ds/shopview-design-system-fac6efcf-a972-4c02-96a5-def12ed8b037/_ds_bundle.js"></script>
+  <style>
+    html { lang: en; }
+    body { margin: 0; background: #F1F4F8; }
+    h1 { font-family: var(--sv-font-display); font-size: 28px; font-weight: 700; color: #121926; margin: 0 0 6px; line-height: 1.25; }
+    h2 { font-family: var(--sv-font-display); font-size: 20px; font-weight: 700; color: #202939; margin: 32px 0 10px; line-height: 1.3; border-bottom: 2px solid #E3E8EF; padding-bottom: 6px; }
+    h3 { font-family: var(--sv-font-ui); font-size: 16px; font-weight: 700; color: #364152; margin: 22px 0 8px; line-height: 1.35; }
+    h4 { font-family: var(--sv-font-ui); font-size: 14px; font-weight: 700; color: #4B5565; margin: 16px 0 6px; line-height: 1.4; }
+    p, li { font-family: var(--sv-font-ui); font-size: 14px; line-height: 1.65; color: #364152; margin: 0 0 10px; }
+    ul, ol { padding-left: 22px; margin: 0 0 12px; }
+    li { margin-bottom: 5px; }
+    table { width: 100%; border-collapse: collapse; font-family: var(--sv-font-ui); font-size: 13px; margin: 12px 0 16px; }
+    th { text-align: left; font-weight: 700; font-size: 11px; letter-spacing: 0.04em; text-transform: uppercase; color: #697586; padding: 8px 10px; border-bottom: 2px solid #CDD5DF; background: #F8FAFC; }
+    td { padding: 8px 10px; border-bottom: 1px solid #E3E8EF; color: #364152; vertical-align: top; }
+    code { font-size: 13px; background: #EEF2F6; padding: 1px 5px; border-radius: 4px; color: #202939; }
+    .badge { display: inline-block; font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 999px; white-space: nowrap; }
+    .badge-blue { background: #E5EDFF; color: #175CD3; }
+    .badge-green { background: #D3F8DF; color: #087443; }
+    .badge-amber { background: #FEF0C7; color: #B54708; }
+    .badge-grey { background: #EEF2F6; color: #4B5565; }
+    .meta-table td:first-child { font-weight: 600; color: #697586; white-space: nowrap; width: 140px; }
+    a { color: #257CFF; text-decoration: none; }
+    a:hover { color: #1752C0; text-decoration: underline; }
+    .callout { background: #FFFCF5; border: 1px solid #FEDF89; border-radius: 8px; padding: 12px 14px; margin: 14px 0; font-size: 13px; line-height: 1.6; color: #4B5565; }
+    .callout-blue { background: #E9F5FF; border-color: #82C1FB; }
+  </style>
+</helmet>
+<x-import component-from-global-scope="doc-page" from="./doc-page.js" size="letter" margin="0.75in" hint-size="100%,100%">
+
+  <div style="display:flex;align-items:center;gap:14px;margin-bottom:4px;">
+    <svg viewBox="0 0 100 100" fill="none" style="width:36px;height:36px;flex:none;">
+      <path d="M73.0787 60.9336L63.6353 51.4902C66.7831 54.7748 69.9309 57.9226 73.0787 60.9336Z" fill="#257CFF"></path>
+      <path d="M84.5575 12.489H31.729C20.6432 12.489 16.1268 17.2792 13.937 27.6806L3.94616 74.8978C3.53557 77.2244 3.125 79.1405 3.125 80.9197C3.125 82.562 3.39871 84.0675 3.94616 85.1624C12.5684 77.635 20.2327 68.8759 28.9918 61.4854C32.687 64.2226 35.698 67.6441 38.1615 71.4763C31.4553 77.635 24.4754 83.6569 18.0429 90.2262H68.1341C79.3568 90.2262 83.7363 85.4361 86.063 75.0347L96.0538 27.8175C96.4644 25.4909 96.875 23.5748 96.875 21.7956C96.7381 15.3631 93.4535 12.489 84.5575 12.489ZM51.8476 82.2883C50.8896 83.1095 50.0684 84.0675 49.1104 84.8886C46.6469 81.8777 43.0885 79.4142 42.6779 75.3084C41.4462 66.5492 34.4662 58.7481 25.844 57.1058C21.6013 56.5584 19.0009 53 16.1268 50.1259L38.9826 27.27L39.2564 26.9963L39.3932 27.1332L63.7545 51.4945C66.9024 54.6423 69.9133 57.7901 73.198 60.9379L51.8476 82.2883ZM74.9772 59.1587L41.0356 25.2171L44.3203 21.9324L78.2618 55.8741L74.9772 59.1587ZM80.041 54.0948L46.0994 20.1533L49.3841 16.8686L83.3257 50.8102L80.041 54.0948Z" fill="#257CFF"></path>
+      <path d="M46.0917 59.9816C48.8884 59.9816 51.1556 57.7144 51.1556 54.9177C51.1556 52.121 48.8884 49.8538 46.0917 49.8538C43.295 49.8538 41.0278 52.121 41.0278 54.9177C41.0278 57.7144 43.295 59.9816 46.0917 59.9816Z" fill="#257CFF"></path>
+    </svg>
+    <div>
+      <h1>Schedule — Product Requirements Document</h1>
+      <p style="font-size:13px;color:#697586;margin:0;">ShopView · Technician Scheduling Module</p>
+    </div>
+  </div>
+
+  <table class="meta-table" style="margin-top:16px;">
+    <tbody>
+      <tr><td>Status</td><td><span class="badge badge-blue">Draft</span></td></tr>
+      <tr><td>Author</td><td>Product Team</td></tr>
+      <tr><td>Last Updated</td><td>July 14, 2026</td></tr>
+      <tr><td>Version</td><td>1.0</td></tr>
+      <tr><td>Stakeholders</td><td>Engineering, Design, Shop Operations</td></tr>
+    </tbody>
+  </table>
+
+  <h2>1. Overview</h2>
+  <p>The Schedule module gives shop managers a visual calendar to assign technicians to work order lines across days and weeks. It replaces manual whiteboards and spreadsheets with a drag-and-drop interface that respects technician capacity, surfaces conflicts, and keeps the work order system of record in sync.</p>
+
+  <h3>1.1 Problem Statement</h3>
+  <p>Heavy-duty shops manage dozens of open work orders simultaneously, each with multiple repair lines requiring different technicians and hours. Without a dedicated scheduling tool, managers rely on memory, whiteboards, or ad-hoc spreadsheets — leading to double-bookings, overtime surprises, and unbalanced workloads across the team.</p>
+
+  <h3>1.2 Goals</h3>
+  <ul>
+    <li>Reduce scheduling errors (double-bookings, weekend assignments, after-hours shifts) to near zero with automatic conflict detection.</li>
+    <li>Give managers a single screen to see the full week's technician allocation at a glance.</li>
+    <li>Support multi-day "spread" scheduling for large jobs (engine rebuilds, frame work) that span 40–160+ hours.</li>
+    <li>Keep the work order roster in sync — assigning a technician on the schedule automatically adds them to the line's labor roster.</li>
+  </ul>
+
+  <h2>2. User Personas</h2>
+  <table>
+    <thead><tr><th>Persona</th><th>Role</th><th>Key Needs</th></tr></thead>
+    <tbody>
+      <tr><td>Service Manager</td><td>Owns the daily schedule for 5–15 techs</td><td>Drag-and-drop scheduling, capacity visibility, conflict alerts</td></tr>
+      <tr><td>Service Advisor</td><td>Creates work orders, communicates ETAs to customers</td><td>See when their work orders are scheduled, which techs are assigned</td></tr>
+      <tr><td>Shop Foreman</td><td>Oversees floor execution</td><td>Day view of who's doing what, department filtering</td></tr>
+    </tbody>
+  </table>
+
+  <h2>3. Information Architecture</h2>
+  <p>The Schedule lives as a top-level nav item alongside Work Orders, Customers, Parts, and Reports. The screen is split into two regions:</p>
+
+  <h3>3.1 Left Panel — Work Order Sidebar</h3>
+  <ul>
+    <li><strong>Mini Calendar</strong> — month picker with week-highlight and collapsible grid. Clicking a date navigates the main grid.</li>
+    <li><strong>Work Order List</strong> — cards showing WO ID, customer, unit, status, line/hour count, and lead technician. Searchable and filterable by assignment status, WO status, and priority.</li>
+    <li><strong>Line Detail View</strong> — drilling into a WO shows its individual lines (e.g. "Brake system R&R — Est. 4h") with drag handles and technician badges. Lines are filterable by "All" vs "Unscheduled."</li>
+  </ul>
+
+  <h3>3.2 Main Area — Schedule Grid</h3>
+  <ul>
+    <li><strong>Day View</strong> — 24-hour timeline per technician row with time-positioned blocks.</li>
+    <li><strong>Week View</strong> — 7-column grid (Mon–Sun, configurable) with stacked shift chips per cell.</li>
+    <li><strong>Month View</strong> — compact calendar with per-day capacity bars and shift chips.</li>
+  </ul>
+
+  <h2>4. Core Features</h2>
+
+  <h3>4.1 Drag-and-Drop Scheduling</h3>
+  <p>The primary interaction model. Users drag a work order card (or individual line) from the sidebar and drop it onto a technician × day cell in the grid.</p>
+  <table>
+    <thead><tr><th>Scenario</th><th>Behavior</th></tr></thead>
+    <tbody>
+      <tr><td>Single-line WO</td><td>Creates a shift immediately, skipping the line picker.</td></tr>
+      <tr><td>Multi-line WO</td><td>Opens the <strong>Line Picker Popover</strong> to select which lines to schedule in this shift.</td></tr>
+      <tr><td>Specific line drag</td><td>Dragging a line from the detail view creates a single-line shift directly.</td></tr>
+      <tr><td>Large job (&gt; 1 day)</td><td>Opens the <strong>Spread Modal</strong> to distribute hours across consecutive working days.</td></tr>
+    </tbody>
+  </table>
+
+  <h3>4.2 Line Picker Popover</h3>
+  <p>When a multi-line work order is dropped onto the grid, a popover anchored to the drop cell lets the manager choose scope:</p>
+  <ul>
+    <li>Select individual lines with checkboxes, or select all.</li>
+    <li>Each line shows its title, estimated hours, and current technician roster (avatar stack + count like "2/5").</li>
+    <li>Lines where the tech is already assigned show a green "on this" badge.</li>
+    <li>Full lines (5/5 techs) trigger a <strong>swap flow</strong> — pick someone to remove before adding the new tech.</li>
+  </ul>
+
+  <h3>4.3 Technician Roster & Swap</h3>
+  <p>Each work order line has a roster of up to 5 assigned technicians. When a line is full:</p>
+  <ul>
+    <li>A modal presents the current roster with each tech's shift count on that line.</li>
+    <li>The manager selects who to swap out. If the swapped-out tech has existing shifts, a destructive-action warning shows exactly which shifts will be deleted.</li>
+    <li>Confirm button changes to red "Delete N shifts & swap in [Name]" when the action is destructive.</li>
+    <li>All swap actions support <strong>Undo</strong> via a toast notification (6.5s window).</li>
+  </ul>
+
+  <h3>4.4 Multi-Day Spread Scheduling</h3>
+  <p>For jobs exceeding a technician's daily capacity (8h default), the Spread Modal distributes work across consecutive working days:</p>
+  <ul>
+    <li><strong>Date mode</strong> — pick an end date; the system calculates how many hours fit.</li>
+    <li><strong>Hours mode</strong> — specify hours to place; the system calculates the end date.</li>
+    <li>Automatically skips weekends, shop closures, and days the technician already has shifts.</li>
+    <li>Shows a week-by-week preview with per-day hour allocations and skip reasons.</li>
+    <li>Creates a <strong>series</strong> of linked shifts that can be deleted individually, from a point forward, or as a whole series.</li>
+  </ul>
+
+  <div class="callout">
+    <strong>Example:</strong> A 160-hour engine rebuild dropped on Aaron Keating, starting Monday. The system generates 20 shifts × 8h across 4 weeks, skipping weekends and a shop closure on day 10. The manager can trim by adjusting the end date or capping hours.
+  </div>
+
+  <h3>4.5 Day View — Timeline Interactions</h3>
+  <p>In Day view, shift blocks are positioned on a 24-hour timeline per technician row. Blocks support:</p>
+  <ul>
+    <li><strong>Horizontal drag</strong> to move a shift's start time (snaps to 15-min intervals).</li>
+    <li><strong>Edge resize</strong> — drag left or right edge to adjust duration.</li>
+    <li><strong>Lane stacking</strong> — overlapping shifts automatically split into parallel lanes.</li>
+    <li><strong>Now line</strong> — a red vertical indicator showing the current time, with a label on hover.</li>
+    <li><strong>Business hours shading</strong> — optional grey overlay outside 8 AM–5 PM.</li>
+  </ul>
+
+  <h3>4.6 Shift Detail Modal</h3>
+  <p>Clicking a shift block opens a detail panel showing:</p>
+  <ul>
+    <li>Work order ID, customer, and unit number.</li>
+    <li>Color-coded category tag (editable, with custom label rename).</li>
+    <li>Scheduled lines with status badges (In Progress, Authorized, etc.) and labor/total figures.</li>
+    <li>Estimated hours with inline edit.</li>
+    <li>Start/end time pickers (scrollable time list, 15-min increments).</li>
+    <li>Notes section — add, edit, and delete per-WO notes.</li>
+    <li>Actions: Delete shift (with series-aware scoping), Reassign to another technician.</li>
+  </ul>
+
+  <h3>4.7 Events</h3>
+  <p>Non-work-order time blocks (meetings, training, stand-ups) that occupy technician time:</p>
+  <ul>
+    <li>Create via right-click context menu on any cell, or by clicking empty grid space in Day view.</li>
+    <li>Event modal: name, date, start/end time, all-day toggle, color category.</li>
+    <li>Drag-and-drop to reassign between technicians or move between days.</li>
+    <li>Day view: live preview block while creating, with drag-to-resize.</li>
+  </ul>
+
+  <h3>4.8 Conflict Detection</h3>
+  <p>The system continuously scans for scheduling issues and surfaces them in a toolbar pill:</p>
+  <table>
+    <thead><tr><th>Conflict Type</th><th>Description</th></tr></thead>
+    <tbody>
+      <tr><td>Double-booked</td><td>Two different work orders overlap on the same technician at the same time.</td></tr>
+      <tr><td>Weekend shift</td><td>Shift scheduled on Saturday or Sunday (outside Mon–Fri).</td></tr>
+      <tr><td>Before hours</td><td>Shift starts before 8:00 AM.</td></tr>
+      <tr><td>After hours</td><td>Shift extends past 5:00 PM.</td></tr>
+    </tbody>
+  </table>
+  <p>Conflicts appear as a warning badge on the affected block and are listed in a dropdown panel accessible from the toolbar. Clicking a conflict navigates to the relevant technician and day.</p>
+
+  <h3>4.9 Capacity Visualization</h3>
+  <p>When enabled in View Options, each day column header shows a capacity bar:</p>
+  <ul>
+    <li><strong>Blue fill</strong> — percentage of total technician-hours booked vs. available (sum of all techs' working hours).</li>
+    <li><strong>Amber spill</strong> — extends past the bar when aggregate hours exceed capacity.</li>
+    <li><strong>OT tag</strong> — appears when one or more individual technicians exceed their daily hours, even if aggregate capacity isn't breached.</li>
+    <li><strong>Hover tooltip</strong> — per-technician breakdown (assigned vs. capacity), with overtime technicians highlighted in amber.</li>
+  </ul>
+
+  <h2>5. Sidebar Features</h2>
+
+  <h3>5.1 Work Order Filters</h3>
+  <table>
+    <thead><tr><th>Filter Group</th><th>Options</th></tr></thead>
+    <tbody>
+      <tr><td>Assignment</td><td>Assigned to me, Unassigned</td></tr>
+      <tr><td>Status</td><td>Approved, Estimate, In Progress, Review, Complete</td></tr>
+      <tr><td>Priority</td><td>High, Medium, Low</td></tr>
+    </tbody>
+  </table>
+  <p>Active filters show a count badge on the Filters button. "Clear all" resets in one click.</p>
+
+  <h3>5.2 Mini Calendar</h3>
+  <ul>
+    <li>Month/year picker (grid of month buttons, year nav arrows).</li>
+    <li>Collapsible — chevron toggle hides the calendar grid to maximize work order list space.</li>
+    <li>Selected date highlighted in blue; today dot-indicated; week row highlighted on hover.</li>
+  </ul>
+
+  <h2>6. Grid Toolbar</h2>
+  <table>
+    <thead><tr><th>Control</th><th>Function</th></tr></thead>
+    <tbody>
+      <tr><td>Today button</td><td>Jumps the grid to the current date.</td></tr>
+      <tr><td>← → arrows</td><td>Navigate by day, week, or month depending on active range.</td></tr>
+      <tr><td>Date label</td><td>Shows the current range (e.g. "Jul 14 – 20, 2026").</td></tr>
+      <tr><td>Conflict pill</td><td>Shows issue count; click opens conflict detail dropdown.</td></tr>
+      <tr><td>Search</td><td>Filters grid blocks by work order / customer name match.</td></tr>
+      <tr><td>Departments</td><td>Toggle visibility of department groups (checkboxes).</td></tr>
+      <tr><td>View Options</td><td>Toggles: Business hours, Capacity bars, Events, Tech hours, Saturday, Sunday.</td></tr>
+      <tr><td>Day / Week / Month</td><td>Segmented control to switch grid range.</td></tr>
+    </tbody>
+  </table>
+
+  <h2>7. Interactions & Micro-interactions</h2>
+  <ul>
+    <li><strong>Drag feedback</strong> — drop target cells highlight with blue inset shadow; ghost block shows the line name and hours.</li>
+    <li><strong>Shift reassignment</strong> — drag a shift block from one technician row to another to reassign. Confirmation modal for cross-tech moves.</li>
+    <li><strong>Right-click context menu</strong> — on any grid cell: "New Shift," "New Event," "View Day."</li>
+    <li><strong>Toast notifications</strong> — all create, delete, move, and swap actions produce a toast with an Undo option (4–7s).</li>
+    <li><strong>Keyboard support</strong> — Escape closes modals, popovers, and cancels armed line selection.</li>
+    <li><strong>Series-aware deletion</strong> — deleting a shift that belongs to a multi-day series offers three scopes: this shift only, this and all following, entire series.</li>
+  </ul>
+
+  <h2>8. Data Model</h2>
+  <h3>8.1 Key Entities</h3>
+  <table>
+    <thead><tr><th>Entity</th><th>Key Fields</th><th>Relationships</th></tr></thead>
+    <tbody>
+      <tr><td>Shift</td><td>sid, woId, rowKey (tech), date, startHour, blockDuration, lines[], series</td><td>Belongs to Work Order; assigned to Technician; optionally part of a Series</td></tr>
+      <tr><td>Event</td><td>eid, name, rowKey (tech), date, startHour, endHour, allDay</td><td>Assigned to Technician</td></tr>
+      <tr><td>Work Order</td><td>id, customer, unit, asset, status, priority, hrs, lead, color</td><td>Has many Lines</td></tr>
+      <tr><td>Line</td><td>num, title, status, est, actual, total, labor[]</td><td>Belongs to Work Order; has many Technicians via labor roster</td></tr>
+      <tr><td>Technician</td><td>key, name, role, dept, hours (start/end)</td><td>Belongs to Department; has many Shifts and Events</td></tr>
+      <tr><td>Department</td><td>key, name</td><td>Has many Technicians</td></tr>
+    </tbody>
+  </table>
+
+  <h3>8.2 Series</h3>
+  <p>A series is a group of shifts created by the spread scheduler. All shifts in a series share a <code>series</code> key and <code>seriesLines</code> array. Series support grouped deletion (one / this-and-after / all) and render as connected banners in month view.</p>
+
+  <h2>9. View Options & Customization</h2>
+  <table>
+    <thead><tr><th>Option</th><th>Default</th><th>Effect</th></tr></thead>
+    <tbody>
+      <tr><td>Business Hours</td><td>Off</td><td>Shades non-working hours (before 8 AM, after 5 PM) in Day view.</td></tr>
+      <tr><td>Capacity Bars</td><td>On</td><td>Shows per-day capacity utilization bars in column headers.</td></tr>
+      <tr><td>Events</td><td>On</td><td>Shows non-WO event blocks on the grid.</td></tr>
+      <tr><td>Tech Hours</td><td>Off</td><td>Displays each technician's working hours next to their name.</td></tr>
+      <tr><td>Saturday</td><td>On</td><td>Includes Saturday column in the grid.</td></tr>
+      <tr><td>Sunday</td><td>On</td><td>Includes Sunday column in the grid.</td></tr>
+    </tbody>
+  </table>
+
+  <h2>10. Color System</h2>
+  <p>Work orders and events are color-coded using 7 categories. Each color has three tones: background fill, text color, and accent (left border).</p>
+  <table>
+    <thead><tr><th>Key</th><th>Default Label</th><th>Use Case</th></tr></thead>
+    <tbody>
+      <tr><td style="color:#257CFF;">●</td><td>Blue</td><td>Default for work orders</td></tr>
+      <tr><td style="color:#14B8A6;">●</td><td>Teal</td><td>Large/long-running jobs</td></tr>
+      <tr><td style="color:#8B5CF6;">●</td><td>Violet</td><td>Priority overhauls</td></tr>
+      <tr><td style="color:#DB2777;">●</td><td>Pink</td><td>Warranty / comebacks</td></tr>
+      <tr><td style="color:#06B6D4;">●</td><td>Cyan</td><td>Fleet maintenance</td></tr>
+      <tr><td style="color:#F79009;">●</td><td>Amber</td><td>Urgent / time-sensitive</td></tr>
+      <tr><td style="color:#4B5565;">●</td><td>Grey</td><td>Events (default)</td></tr>
+    </tbody>
+  </table>
+  <p>Labels are editable per-shop. Colors are set per work order from the shift detail modal's color picker.</p>
+
+  <h2>11. Non-functional Requirements</h2>
+  <ul>
+    <li><strong>Performance</strong> — grid must render smoothly with up to 15 technicians × 7 days × 6 shifts per cell. Sidebar work order list virtualizes at 50+ items.</li>
+    <li><strong>Responsiveness</strong> — minimum supported width: 960px (grid scrolls horizontally below that). Sidebar collapses on narrow viewports.</li>
+    <li><strong>Accessibility</strong> — all interactive elements keyboard-reachable. Focus rings follow the design system (4px blue glow). Modals trap focus and close on Escape. Drag-and-drop has an alternative click-to-arm flow.</li>
+    <li><strong>Undo</strong> — every destructive action (delete, swap, reassign) is undoable for 4–7 seconds via toast.</li>
+  </ul>
+
+  <h2>12. Edge Cases & Constraints</h2>
+  <ul>
+    <li>A technician can have multiple shifts on the same day (different work orders). Overlapping times in Day view render in parallel lanes.</li>
+    <li>Shop closures (holidays, inventory days) are defined at the shop level and block spread scheduling from placing shifts on those days.</li>
+    <li>Maximum 5 technicians per line — enforced by the swap flow, not a hard block.</li>
+    <li>Shifts with no <code>startHour</code> contribute to capacity calculations but don't appear as time-positioned blocks in Day view.</li>
+    <li>Dragging a shift between technicians triggers labor roster updates on both the source and target tech.</li>
+  </ul>
+
+  <h2>13. Success Metrics</h2>
+  <table>
+    <thead><tr><th>Metric</th><th>Target</th><th>Measurement</th></tr></thead>
+    <tbody>
+      <tr><td>Scheduling conflicts</td><td>&lt; 5% of shifts</td><td>Ratio of flagged shifts to total shifts per week</td></tr>
+      <tr><td>Time to schedule</td><td>&lt; 30s per shift</td><td>Median time from drag start to shift creation</td></tr>
+      <tr><td>Adoption</td><td>80% of active shops</td><td>Shops with ≥1 shift created per week, 90 days post-launch</td></tr>
+      <tr><td>Undo usage</td><td>&lt; 10% of actions</td><td>Undo clicks / total scheduling actions (lower = fewer mistakes)</td></tr>
+    </tbody>
+  </table>
+
+  <h2>14. Future Considerations</h2>
+  <ul>
+    <li><strong>Technician availability / PTO</strong> — block out vacation days, sick time, and training that aren't Events.</li>
+    <li><strong>Auto-scheduling</strong> — suggest optimal technician assignments based on skills, availability, and workload balance.</li>
+    <li><strong>Customer-facing ETA</strong> — derive estimated completion dates from the schedule and surface them on estimates/invoices.</li>
+    <li><strong>Mobile view</strong> — simplified day view for foremen on the shop floor (tablet/phone).</li>
+    <li><strong>Recurring events</strong> — weekly stand-ups, monthly safety meetings as repeating calendar blocks.</li>
+    <li><strong>Skill matching</strong> — warn when a technician is assigned to a line requiring certifications they don't hold.</li>
+  </ul>
+
+</x-import>
+
+</x-dc>
+</body>
+</html>

@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/shopview-design-system-fac6efcf-a972-4c02-96a5-def12ed8b037/colors_and_type.css">
+  <link rel="stylesheet" href="_ds/shopview-design-system-fac6efcf-a972-4c02-96a5-def12ed8b037/design-md/colors_and_type.css">
+  <script src="_ds/shopview-design-system-fac6efcf-a972-4c02-96a5-def12ed8b037/_ds_bundle.js"></script>
+  <meta name="design_doc_mode" content="canvas">
+  <style>
+    [data-theme="light"]{
+      color-scheme:light;
+      --sv-surface-canvas:var(--sv-grey-50);--sv-surface:#FFFFFF;--sv-surface-raised:#FFFFFF;--sv-surface-overlay:#FFFFFF;
+      --sv-surface-sunken:var(--sv-grey-100);--sv-surface-hover:var(--sv-grey-50);--sv-surface-selected:var(--sv-primary-50);--sv-surface-inverse:var(--sv-grey-900);
+      --sv-text-primary:var(--sv-grey-700);--sv-text-secondary:var(--sv-grey-500);--sv-text-muted:#828A98;--sv-text-disabled:var(--sv-grey-300);--sv-text-inverse:#FFFFFF;--sv-text-on-accent:#FFFFFF;--sv-text-on-inverse:#FFFFFF;
+      --sv-border-subtle:var(--sv-grey-100);--sv-border-default:var(--sv-grey-200);--sv-border-strong:var(--sv-grey-300);--sv-border-focus:var(--sv-primary-500);
+      --sv-accent:var(--sv-primary-500);--sv-accent-hover:var(--sv-primary-700);--sv-accent-active:var(--sv-primary-800);--sv-accent-text:var(--sv-primary-700);--sv-accent-subtle:var(--sv-primary-50);--sv-accent-subtle-text:var(--sv-primary-700);--sv-accent-on-solid:#FFFFFF;
+      --sv-success:var(--sv-success-500);--sv-success-fill:var(--sv-success-50);--sv-success-text:var(--sv-success-700);--sv-success-border:var(--sv-success-200);
+      --sv-warning:var(--sv-warning-500);--sv-warning-fill:var(--sv-warning-50);--sv-warning-text:var(--sv-warning-700);--sv-warning-border:var(--sv-warning-200);
+      --sv-danger:var(--sv-error-500);--sv-danger-fill:var(--sv-error-50);--sv-danger-text:var(--sv-error-700);--sv-danger-border:var(--sv-error-200);
+      --sv-info:var(--sv-primary-500);--sv-info-fill:var(--sv-primary-50);--sv-info-text:var(--sv-primary-700);--sv-info-border:var(--sv-primary-200);
+    }
+    html,body{margin:0;height:100%;background:var(--sv-grey-100);}
+    a{color:var(--sv-accent);} a:hover{color:var(--sv-accent);}
+    .sv-field{position:relative;height:40px;}
+    .sv-field>input{width:100%;height:40px;box-sizing:border-box;border:1px solid #CDD5DF;border-radius:8px;padding:0 12px;font-size:14px;font-family:inherit;color:#202939;background:#fff;outline:none;transition:border-color 120ms ease,box-shadow 120ms ease;}
+    .sv-field>input:hover:not(:focus){border-color:#9AA4B2;}
+    .sv-field>input:focus{border:2px solid #257CFF;box-shadow:0 0 0 4px rgba(37,124,255,0.24);}
+    .sv-field>label{position:absolute;left:10px;top:0;transform:translateY(-50%);padding:0 4px;font-size:12px;line-height:1;font-weight:500;color:#697586;background:#fff;pointer-events:none;}
+    .sv-field.sv-select>input{padding-right:32px;cursor:pointer;}
+    .sv-field .sv-chevron{position:absolute;right:10px;top:50%;transform:translateY(-50%);pointer-events:none;color:var(--sv-text-secondary);display:flex;}
+    .sv-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:40px;padding:0 16px;border-radius:8px;font-family:var(--sv-font-ui);font-size:14px;font-weight:600;cursor:pointer;border:0;box-sizing:border-box;transition:background 120ms ease,border-color 120ms ease,box-shadow 120ms ease;}
+    .sv-btn-primary{background:var(--sv-accent);color:var(--sv-accent-on-solid,#fff);}
+    .sv-btn-primary:hover{background:var(--sv-accent-hover);}
+    .sv-btn-secondary{background:var(--sv-surface);color:var(--sv-text-primary);border:1px solid var(--sv-border-strong);box-shadow:0 1px 2px rgba(16,24,40,0.05);}
+    .sv-btn-secondary:hover{background:var(--sv-surface-hover);border-color:var(--sv-text-muted);}
+    .sv-btn-link{background:transparent;color:var(--sv-accent);border:0;padding:0 6px;height:32px;}
+    .sv-btn-link:hover{background:var(--sv-surface-hover);}
+    .sv-iconbtn{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border:0;background:transparent;border-radius:8px;cursor:pointer;color:var(--sv-text-muted);transition:background 120ms ease;}
+    .sv-iconbtn:hover{background:var(--sv-grey-100);}
+    .sv-iconbtn-sec{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border:1px solid var(--sv-border-strong);background:var(--sv-surface);border-radius:8px;cursor:pointer;color:var(--sv-danger);box-shadow:0 1px 2px rgba(16,24,40,0.05);transition:background 120ms ease,border-color 120ms ease;}
+    .sv-iconbtn-sec:hover{background:var(--sv-surface-hover);border-color:var(--sv-text-muted);}
+    .sv-split{display:inline-flex;align-items:stretch;height:40px;position:relative;}
+    .sv-split>.sc-host-x{display:inline-flex;flex:0 0 auto;}
+    .sv-split{display:inline-flex;align-items:center;height:40px;border-radius:8px;cursor:pointer;position:relative;background:var(--sv-accent);color:var(--sv-accent-on-solid);font-family:var(--sv-font-ui);font-size:14px;font-weight:600;}
+    .sv-split .s-label{padding:0 16px;height:100%;display:flex;align-items:center;justify-content:center;transition:background 120ms ease;border-radius:8px 0 0 8px;}
+    .sv-split .s-label:hover{background:var(--sv-accent-hover);}
+    .sv-split .s-divider{width:1px;align-self:stretch;flex-shrink:0;background:rgba(10,27,51,0.22);}
+    .sv-split .s-caret{width:32px;height:100%;display:flex;align-items:center;justify-content:center;transition:background 120ms ease;border-radius:0 8px 8px 0;}
+    .sv-split .s-caret:hover{background:var(--sv-accent-hover);}
+    .sv-del button{width:40px !important;height:40px !important;padding:0 !important;display:flex !important;align-items:center !important;justify-content:center !important;}
+    .sv-alert{border-radius:8px;border:1px solid var(--sv-warning-border);background:var(--sv-warning-fill);color:var(--sv-warning-text);padding:12px 14px;display:flex;align-items:flex-start;gap:12px;}
+    .sv-alert .alert-icon{width:20px;height:20px;flex-shrink:0;display:inline-flex;align-items:center;justify-content:center;color:inherit;}
+    .sv-alert .alert-body{flex:1;min-width:0;}
+    .sv-alert .alert-title{font-family:var(--sv-font-ui);font-size:14px;font-weight:700;line-height:20px;color:inherit;}
+    .sv-alert .alert-support{font-size:14px;line-height:20px;color:inherit;opacity:0.85;margin-top:2px;}
+    .sv-menu{position:absolute;bottom:calc(100% + 6px);right:0;min-width:200px;background:var(--sv-surface);border:1px solid var(--sv-border-default);border-radius:8px;box-shadow:0 12px 24px rgba(11,23,51,0.10),0 4px 8px rgba(11,23,51,0.05);padding:6px;z-index:20;}
+    .sv-menu button{display:flex;width:100%;align-items:center;gap:8px;height:36px;padding:0 10px;border:0;background:transparent;border-radius:6px;font-family:var(--sv-font-ui);font-size:14px;font-weight:500;color:var(--sv-text-primary);cursor:pointer;text-align:left;}
+    .sv-menu button:hover{background:var(--sv-surface-hover);}
+    .sv-modal{width:640px;max-width:100%;background:var(--sv-surface);border-radius:12px;box-shadow:0 12px 24px rgba(11,23,51,0.10),0 4px 8px rgba(11,23,51,0.05);flex:none;}
+    .sv-modal-head{display:flex;align-items:center;justify-content:space-between;padding:20px 24px 16px;}
+    .sv-modal-title{margin:0;font-family:var(--sv-font-display);font-size:20px;line-height:28px;font-weight:700;color:var(--sv-text-primary);}
+    .sv-modal-body{padding:8px 24px 4px;max-height:70vh;overflow:auto;}
+    .sv-modal-foot{display:flex;align-items:center;gap:10px;padding:16px 24px 20px;}
+    .sv-sec-label{margin:0 0 8px;font-size:11px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:var(--sv-text-secondary);}
+    .sv-timeinput{width:112px;height:40px;box-sizing:border-box;border:1px solid var(--sv-border-strong);border-radius:8px;padding:0 10px;font-size:14px;font-family:inherit;color:var(--sv-text-primary);background:var(--sv-surface);outline:none;}
+  </style>
+</helmet>
+<div data-theme="light" style="min-height:100vh;padding:40px;box-sizing:border-box;font-family:var(--sv-font-ui);color:var(--sv-text-primary);">
+  <div style="display:flex;gap:40px;align-items:flex-start;flex-wrap:nowrap;">
+
+    <!-- ============ 1a: EDIT STAFF MEMBER ============ -->
+    <div id="1a" style="position:relative;">
+      <span style="position:absolute;top:-26px;left:0;font-size:12px;font-weight:600;color:var(--sv-text-muted);">1a · Edit Staff Member</span>
+      <div role="dialog" aria-label="Edit Staff Member" class="sv-modal">
+        <div class="sv-modal-head">
+          <h2 class="sv-modal-title">Edit Staff Member</h2>
+          <button type="button" aria-label="Close" class="sv-iconbtn">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+          </button>
+        </div>
+        <div class="sv-modal-body">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
+            <div class="sv-field"><input type="text" value="Alicia" placeholder=" "><label>First Name</label></div>
+            <div class="sv-field"><input type="text" value="Campbell" placeholder=" "><label>Last Name</label></div>
+          </div>
+          <div class="sv-field" style="margin-top:20px;"><input type="text" value="alicia.campbell@staging.shopview.local" placeholder=" "><label>Email</label></div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:20px;">
+            <div class="sv-field sv-select"><input type="text" value="Salary" placeholder=" " readonly><label>Salary Type</label><span class="sv-chevron"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6l4 4 4-4"/></svg></span></div>
+            <div class="sv-field"><input type="text" value="$ 50,000.00" placeholder=" "><label>Salary</label></div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:20px;">
+            <div class="sv-field"><input type="text" value="Parts Technician" placeholder=" "><label>Job Title</label></div>
+            <div style="display:flex;align-items:center;gap:10px;">
+              <div class="sv-field sv-select" style="flex:1;"><input type="text" value="Admin" placeholder=" " readonly><label>Role</label><span class="sv-chevron"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6l4 4 4-4"/></svg></span></div>
+              <button type="button" aria-label="View role permissions" class="sv-iconbtn" style="color:var(--sv-accent);">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+              </button>
+            </div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:20px;">
+            <div class="sv-field sv-select"><input type="text" value="Staging Heavy Duty - 9919" placeholder=" " readonly><label>Location</label><span class="sv-chevron"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6l4 4 4-4"/></svg></span></div>
+            <div class="sv-field sv-select"><input type="text" value="No" placeholder=" " readonly><label>Billable</label><span class="sv-chevron"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6l4 4 4-4"/></svg></span></div>
+          </div>
+          <div class="sv-alert" style="margin-top:20px;">
+            <span class="alert-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></span>
+            <div class="alert-body">
+              <div class="alert-title">Role changes may impact billing</div>
+              <div class="alert-support">Changing this technician's role can affect how their labor is billed on open Work Orders.</div>
+            </div>
+          </div>
+          <div style="margin-top:24px;">
+            <h3 class="sv-sec-label" style="margin-bottom:12px;">Technician Hours</h3>
+            <div style="display:flex;align-items:center;gap:10px;width:fit-content;">
+              <x-import component-from-global-scope="Toggle" on="{{ techHoursOn }}" on-change="{{ toggleTechHours }}" hint-size="36px,20px"></x-import>
+              <span style="font-size:14px;font-weight:500;color:var(--sv-text-primary);cursor:pointer;" onClick="{{ toggleTechHours }}">Set custom hours for this technician</span>
+            </div>
+            <sc-if value="{{ techHoursOn }}" hint-placeholder-val="{{ true }}">
+            <div style="display:flex;flex-direction:column;margin-top:12px;">
+              <sc-for list="{{ techDays }}" as="day" hint-placeholder-count="7">
+                <div style="display:grid;grid-template-columns:110px 1fr;gap:16px;align-items:start;padding:10px 0;border-bottom:1px solid var(--sv-border-subtle);">
+                  <span style="font-size:14px;font-weight:600;color:var(--sv-text-primary);height:40px;display:flex;align-items:center;">{{ day.name }}</span>
+                  <div style="display:flex;flex-direction:column;gap:8px;">
+                    <sc-for list="{{ day.shifts }}" as="shift" hint-placeholder-count="1">
+                      <div style="display:flex;align-items:center;gap:8px;">
+                        <input type="time" value="{{ shift.from }}" onChange="{{ shift.setFrom }}" class="sv-timeinput">
+                        <span style="color:var(--sv-text-muted);font-size:14px;">to</span>
+                        <input type="time" value="{{ shift.to }}" onChange="{{ shift.setTo }}" class="sv-timeinput">
+                        <button type="button" aria-label="Remove hours" onClick="{{ shift.remove }}" class="sv-iconbtn">
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                        </button>
+                      </div>
+                    </sc-for>
+                    <sc-if value="{{ day.overlap }}" hint-placeholder-val="{{ false }}">
+                      <div style="display:flex;align-items:center;gap:6px;color:var(--sv-warning-text);font-size:12px;font-weight:500;">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none;"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                        <span>These hours overlap. Adjust the times so they don't conflict.</span>
+                      </div>
+                    </sc-if>
+                    <div style="align-self:flex-start;margin-left:-13px;">
+                      <x-import component-from-global-scope="Button" variant="tertiary" size="sm" icon="plus" onClick="{{ day.addShift }}" hint-size="120px,32px">Add Hours</x-import>
+                    </div>
+                  </div>
+                </div>
+              </sc-for>
+            </div>
+            </sc-if>
+          </div>
+        </div>
+        <div class="sv-modal-foot" style="justify-content:space-between;">
+          <div class="sv-del" style="width:40px;height:40px;flex:0 0 auto;"><x-import component-from-global-scope="Button" variant="secondary" aria-label="Delete staff member" onClick="{{ noop }}" hint-size="40px,40px" style="width:40px;height:40px;padding:0;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></x-import></div>
+          <div style="display:flex;align-items:center;gap:10px;">
+            <x-import component-from-global-scope="Button" variant="secondary" onClick="{{ noop }}" hint-size="90px,40px">Cancel</x-import>
+            <div class="sv-split" role="group" aria-label="Save actions" style="opacity:{{ techSaveOpacity }};pointer-events:{{ techSavePointer }};">
+              <span class="s-label" onClick="{{ noop }}">Save</span>
+              <span class="s-divider"></span>
+              <span class="s-caret" role="button" aria-label="More actions" onClick="{{ toggleStaffMenu }}"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 5.25L7 8.75l3.5-3.5"/></svg></span>
+              <sc-if value="{{ staffMenuOpen }}" hint-placeholder-val="{{ false }}">
+                <div class="sv-menu">
+                  <button type="button">Deactivate Account</button>
+                  <button type="button">Resend Invitation</button>
+                </div>
+              </sc-if>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ 1b: EDIT LOCATION ============ -->
+    <div id="1b" style="position:relative;">
+      <span style="position:absolute;top:-26px;left:0;font-size:12px;font-weight:600;color:var(--sv-text-muted);">1b · Edit Location</span>
+      <div role="dialog" aria-label="Edit Location" class="sv-modal">
+        <div class="sv-modal-head">
+          <h2 class="sv-modal-title">Edit Location</h2>
+          <button type="button" aria-label="Close" class="sv-iconbtn">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+          </button>
+        </div>
+        <div class="sv-modal-body">
+          <div style="display:grid;grid-template-columns:2fr 1fr;gap:20px;">
+            <div class="sv-field"><input type="text" value="Staging Heavy Duty" placeholder=" "><label>Name</label></div>
+            <div class="sv-field"><input type="text" value="9919" placeholder=" "><label>Shop Id</label></div>
+          </div>
+          <div class="sv-field" style="margin-top:20px;"><input type="text" value="4400 Industrial Pkwy" placeholder=" "><label>Address</label></div>
+          <div class="sv-field" style="margin-top:20px;"><input type="text" value="Suite 120" placeholder=" "><label>Address 2</label></div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:20px;">
+            <div class="sv-field"><input type="text" value="Columbus" placeholder=" "><label>City</label></div>
+            <div class="sv-field sv-select"><input type="text" value="Ohio" placeholder=" " readonly><label>State</label><span class="sv-chevron"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6l4 4 4-4"/></svg></span></div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:20px;">
+            <div class="sv-field sv-select"><input type="text" value="United States" placeholder=" " readonly><label>Country</label><span class="sv-chevron"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6l4 4 4-4"/></svg></span></div>
+            <div class="sv-field"><input type="text" value="43229" placeholder=" "><label>Zip</label></div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:20px;">
+            <div class="sv-field sv-select"><input type="text" value="America/New_York (EST)" placeholder=" " readonly><label>Timezone</label><span class="sv-chevron"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6l4 4 4-4"/></svg></span></div>
+            <div class="sv-field"><input type="text" value="(614) 555-0148" placeholder=" "><label>Telephone</label></div>
+          </div>
+
+          <div style="margin-top:24px;padding-top:16px;border-top:1px solid var(--sv-border-subtle);">
+            <div class="sv-field"><input type="text" value="Staging Heavy Duty LLC" placeholder=" "><label>Remit To</label></div>
+            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px;margin-top:20px;">
+              <div class="sv-field"><input type="text" value="7%" placeholder=" "><label>Shop Supplies</label></div>
+              <div class="sv-field"><input type="text" value="$ 5.00" placeholder=" "><label>Min</label></div>
+              <div class="sv-field"><input type="text" value="$ 45.00" placeholder=" "><label>Max</label></div>
+            </div>
+            <div style="display:flex;align-items:center;gap:10px;margin-top:16px;cursor:pointer;" onClick="{{ toggleShowPct }}">
+              <span style="width:16px;height:16px;border-radius:4px;flex:none;display:inline-flex;align-items:center;justify-content:center;border:1px solid {{ showPctBorder }};background:{{ showPctBg }};transition:all 120ms;">
+                <sc-if value="{{ showPct }}" hint-placeholder-val="{{ false }}"><svg width="11" height="11" viewBox="0 0 16 16" fill="none" stroke="var(--sv-accent)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 8.5l3 3 6-7"/></svg></sc-if>
+              </span>
+              <span style="font-size:14px;font-weight:500;color:var(--sv-text-primary);">Show % on Estimates and Invoices</span>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:20px;">
+              <div class="sv-field sv-select"><input type="text" value="OH Sales Tax (7.5%)" placeholder=" " readonly><label>Taxes</label><span class="sv-chevron"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6l4 4 4-4"/></svg></span></div>
+              <div class="sv-field" style="cursor:pointer;">
+                <div style="width:100%;height:40px;box-sizing:border-box;border:1px solid var(--sv-border-strong);border-radius:8px;padding:0 12px;display:flex;align-items:center;gap:10px;background:var(--sv-surface);">
+                  <span style="width:20px;height:20px;border-radius:4px;background:#f57b00;flex:none;border:1px solid rgba(0,0,0,0.08);"></span>
+                  <span style="font-size:14px;color:var(--sv-text-primary);">#F57B00</span>
+                </div>
+                <label>Default Color</label>
+              </div>
+            </div>
+          </div>
+
+          <div style="margin-top:24px;">
+            <h3 class="sv-sec-label" style="margin-bottom:12px;">Business Hours</h3>
+            <div style="display:flex;align-items:center;gap:10px;width:fit-content;">
+              <x-import component-from-global-scope="Toggle" on="{{ bizHoursOn }}" on-change="{{ toggleBizHours }}" hint-size="36px,20px"></x-import>
+              <span style="font-size:14px;font-weight:500;color:var(--sv-text-primary);cursor:pointer;" onClick="{{ toggleBizHours }}">Set business hours for this shop</span>
+            </div>
+            <sc-if value="{{ bizHoursOn }}" hint-placeholder-val="{{ true }}">
+            <div style="display:flex;flex-direction:column;margin-top:12px;">
+              <sc-for list="{{ bizDays }}" as="day" hint-placeholder-count="7">
+                <div style="display:grid;grid-template-columns:110px 1fr;gap:16px;align-items:start;padding:10px 0;border-bottom:1px solid var(--sv-border-subtle);">
+                  <span style="font-size:14px;font-weight:600;color:var(--sv-text-primary);height:40px;display:flex;align-items:center;">{{ day.name }}</span>
+                  <div style="display:flex;flex-direction:column;gap:8px;">
+                    <sc-for list="{{ day.shifts }}" as="shift" hint-placeholder-count="1">
+                      <div style="display:flex;align-items:center;gap:8px;">
+                        <input type="time" value="{{ shift.from }}" onChange="{{ shift.setFrom }}" class="sv-timeinput">
+                        <span style="color:var(--sv-text-muted);font-size:14px;">to</span>
+                        <input type="time" value="{{ shift.to }}" onChange="{{ shift.setTo }}" class="sv-timeinput">
+                        <button type="button" aria-label="Remove hours" onClick="{{ shift.remove }}" class="sv-iconbtn">
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                        </button>
+                      </div>
+                    </sc-for>
+                    <sc-if value="{{ day.overlap }}" hint-placeholder-val="{{ false }}">
+                      <div style="display:flex;align-items:center;gap:6px;color:var(--sv-warning-text);font-size:12px;font-weight:500;">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none;"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                        <span>These hours overlap. Adjust the times so they don't conflict.</span>
+                      </div>
+                    </sc-if>
+                    <div style="align-self:flex-start;margin-left:-13px;">
+                      <x-import component-from-global-scope="Button" variant="tertiary" size="sm" icon="plus" onClick="{{ day.addShift }}" hint-size="120px,32px">Add Hours</x-import>
+                    </div>
+                  </div>
+                </div>
+              </sc-for>
+            </div>
+            </sc-if>
+          </div>
+        </div>
+        <div class="sv-modal-foot" style="justify-content:space-between;">
+          <div class="sv-del" style="width:40px;height:40px;flex:0 0 auto;"><x-import component-from-global-scope="Button" variant="secondary" aria-label="Delete location" onClick="{{ noop }}" hint-size="40px,40px" style="width:40px;height:40px;padding:0;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></x-import></div>
+          <div style="display:flex;align-items:center;gap:10px;">
+            <x-import component-from-global-scope="Button" variant="secondary" onClick="{{ noop }}" hint-size="90px,40px">Cancel</x-import>
+            <div style="opacity:{{ bizSaveOpacity }};pointer-events:{{ bizSavePointer }};">
+              <x-import component-from-global-scope="Button" variant="primary" onClick="{{ noop }}" hint-size="90px,40px">Save</x-import>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1400,&quot;height&quot;:1000}}">
+class Component extends DCLogic {
+  state = {
+    staffMenuOpen: false,
+    techHoursOn: false,
+    bizHoursOn: false,
+    showPct: true,
+    techDays: [
+      { name: 'Monday',    open: true,  shifts: [{ from: '08:00', to: '16:00' }] },
+      { name: 'Tuesday',   open: true,  shifts: [{ from: '08:00', to: '16:00' }] },
+      { name: 'Wednesday', open: true,  shifts: [{ from: '08:00', to: '16:00' }] },
+      { name: 'Thursday',  open: true,  shifts: [{ from: '08:00', to: '16:00' }] },
+      { name: 'Friday',    open: true,  shifts: [{ from: '08:00', to: '15:00' }] },
+      { name: 'Saturday',  open: false, shifts: [] },
+      { name: 'Sunday',    open: false, shifts: [] },
+    ],
+    bizDays: [
+      { name: 'Monday',    open: true,  shifts: [{ from: '07:00', to: '18:00' }] },
+      { name: 'Tuesday',   open: true,  shifts: [{ from: '07:00', to: '18:00' }] },
+      { name: 'Wednesday', open: true,  shifts: [{ from: '07:00', to: '18:00' }] },
+      { name: 'Thursday',  open: true,  shifts: [{ from: '07:00', to: '18:00' }] },
+      { name: 'Friday',    open: true,  shifts: [{ from: '07:00', to: '17:00' }] },
+      { name: 'Saturday',  open: true,  shifts: [{ from: '08:00', to: '12:00' }] },
+      { name: 'Sunday',    open: false, shifts: [] },
+    ],
+  };
+
+  componentDidMount() {
+    document.documentElement.setAttribute('data-theme', 'light');
+  }
+  addShift(key, i) {
+    this.setState(s => ({ [key]: s[key].map((d, di) => di === i ? { ...d, shifts: [...d.shifts, { from: '', to: '' }] } : d) }));
+  }
+  removeShift(key, i, j) {
+    this.setState(s => ({ [key]: s[key].map((d, di) => di === i ? { ...d, shifts: d.shifts.filter((_, sj) => sj !== j) } : d) }));
+  }
+  setShift(key, i, j, k, val) {
+    this.setState(s => ({ [key]: s[key].map((d, di) => di === i ? { ...d, shifts: d.shifts.map((sh, sj) => sj === j ? { ...sh, [k]: val } : sh) } : d) }));
+  }
+
+  mapDays(key) {
+    const toMin = t => { const [h, m] = t.split(':').map(Number); return h * 60 + m; };
+    const hasOverlap = shifts => {
+      const iv = shifts.filter(s => s.from && s.to).map(s => [toMin(s.from), toMin(s.to)]).sort((a, b) => a[0] - b[0]);
+      let maxEnd = -1;
+      for (const [s, e] of iv) { if (s < maxEnd) return true; maxEnd = Math.max(maxEnd, e); }
+      return false;
+    };
+    return this.state[key].map((d, i) => ({
+      name: d.name,
+      empty: d.shifts.length === 0,
+      overlap: hasOverlap(d.shifts),
+      addShift: () => this.addShift(key, i),
+      shifts: d.shifts.map((sh, j) => ({
+        from: sh.from,
+        to: sh.to,
+        setFrom: (e) => this.setShift(key, i, j, 'from', e.target.value),
+        setTo: (e) => this.setShift(key, i, j, 'to', e.target.value),
+        remove: () => this.removeShift(key, i, j),
+      })),
+    }));
+  }
+
+  renderVals() {
+    const sp = this.state.showPct;
+    const techDays = this.mapDays('techDays');
+    const bizDays = this.mapDays('bizDays');
+    const techOverlap = this.state.techHoursOn && techDays.some(d => d.overlap);
+    const bizOverlap = this.state.bizHoursOn && bizDays.some(d => d.overlap);
+    return {
+      techSaveOpacity: techOverlap ? '0.4' : '1',
+      techSavePointer: techOverlap ? 'none' : 'auto',
+      bizSaveOpacity: bizOverlap ? '0.4' : '1',
+      bizSavePointer: bizOverlap ? 'none' : 'auto',
+      noop: () => {},
+      staffMenuOpen: this.state.staffMenuOpen,
+      toggleStaffMenu: () => this.setState(s => ({ staffMenuOpen: !s.staffMenuOpen })),
+      showPct: sp,
+      showPctBg: sp ? 'var(--sv-accent-subtle)' : 'var(--sv-surface)',
+      showPctBorder: sp ? 'var(--sv-accent)' : 'var(--sv-border-strong)',
+      toggleShowPct: () => this.setState(s => ({ showPct: !s.showPct })),
+      techHoursOn: this.state.techHoursOn,
+      toggleTechHours: () => this.setState(s => ({ techHoursOn: !s.techHoursOn })),
+      bizHoursOn: this.state.bizHoursOn,
+      toggleBizHours: () => this.setState(s => ({ bizHoursOn: !s.bizHoursOn })),
+      techDays,
+      bizDays,
+    };
+  }
+}
+</script>
+</body>
+</html>

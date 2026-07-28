@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style data-omelette-print-defaults>
+@media print {
+  @page { margin: 0.5in; }
+  h1, h2, h3, h4, h5, h6 { break-after: avoid; }
+  figure, table, pre, blockquote, img, svg, tr, [class~="card" i] { break-inside: avoid; }
+  img, svg { max-width: 100%; }
+  p { orphans: 3; widows: 3; }
+}
+</style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+
+<helmet>
+  <link rel="stylesheet" href="_ds/shopview-design-system-fac6efcf-a972-4c02-96a5-def12ed8b037/colors_and_type.css">
+  <script src="_ds/shopview-design-system-fac6efcf-a972-4c02-96a5-def12ed8b037/_ds_bundle.js"></script>
+  <style>
+    html { lang: en; }
+    body { margin: 0; background: #F1F4F8; }
+    h1 { font-family: var(--sv-font-display); font-size: 28px; font-weight: 700; color: #121926; margin: 0 0 6px; line-height: 1.25; }
+    h2 { font-family: var(--sv-font-display); font-size: 20px; font-weight: 700; color: #202939; margin: 32px 0 10px; line-height: 1.3; border-bottom: 2px solid #E3E8EF; padding-bottom: 6px; }
+    h3 { font-family: var(--sv-font-ui); font-size: 16px; font-weight: 700; color: #364152; margin: 22px 0 8px; line-height: 1.35; }
+    h4 { font-family: var(--sv-font-ui); font-size: 14px; font-weight: 700; color: #4B5565; margin: 16px 0 6px; line-height: 1.4; }
+    p, li { font-family: var(--sv-font-ui); font-size: 14px; line-height: 1.65; color: #364152; margin: 0 0 10px; }
+    ul, ol { padding-left: 22px; margin: 0 0 12px; }
+    li { margin-bottom: 5px; }
+    table { width: 100%; border-collapse: collapse; font-family: var(--sv-font-ui); font-size: 13px; margin: 12px 0 16px; }
+    th { text-align: left; font-weight: 700; font-size: 11px; letter-spacing: 0.04em; text-transform: uppercase; color: #697586; padding: 8px 10px; border-bottom: 2px solid #CDD5DF; background: #F8FAFC; }
+    td { padding: 8px 10px; border-bottom: 1px solid #E3E8EF; color: #364152; vertical-align: top; }
+    code { font-size: 13px; background: #EEF2F6; padding: 1px 5px; border-radius: 4px; color: #202939; }
+    .badge { display: inline-block; font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 999px; white-space: nowrap; }
+    .badge-blue { background: #E5EDFF; color: #175CD3; }
+    .badge-green { background: #D3F8DF; color: #087443; }
+    .badge-amber { background: #FEF0C7; color: #B54708; }
+    .badge-grey { background: #EEF2F6; color: #4B5565; }
+    .meta-table td:first-child { font-weight: 600; color: #697586; white-space: nowrap; width: 140px; }
+    a { color: #257CFF; text-decoration: none; }
+    a:hover { color: #1752C0; text-decoration: underline; }
+    .callout { background: #FFFCF5; border: 1px solid #FEDF89; border-radius: 8px; padding: 12px 14px; margin: 14px 0; font-size: 13px; line-height: 1.6; color: #4B5565; }
+    .callout-blue { background: #E9F5FF; border-color: #82C1FB; }
+  </style>
+</helmet>
+<x-import component-from-global-scope="doc-page" from="./doc-page.js" size="letter" margin="0.75in" hint-size="100%,100%">
+
+  <div style="display:flex;align-items:center;gap:14px;margin-bottom:4px;">
+    <svg viewBox="0 0 100 100" fill="none" style="width:36px;height:36px;flex:none;">
+      <path d="M73.0787 60.9336L63.6353 51.4902C66.7831 54.7748 69.9309 57.9226 73.0787 60.9336Z" fill="#257CFF"></path>
+      <path d="M84.5575 12.489H31.729C20.6432 12.489 16.1268 17.2792 13.937 27.6806L3.94616 74.8978C3.53557 77.2244 3.125 79.1405 3.125 80.9197C3.125 82.562 3.39871 84.0675 3.94616 85.1624C12.5684 77.635 20.2327 68.8759 28.9918 61.4854C32.687 64.2226 35.698 67.6441 38.1615 71.4763C31.4553 77.635 24.4754 83.6569 18.0429 90.2262H68.1341C79.3568 90.2262 83.7363 85.4361 86.063 75.0347L96.0538 27.8175C96.4644 25.4909 96.875 23.5748 96.875 21.7956C96.7381 15.3631 93.4535 12.489 84.5575 12.489ZM51.8476 82.2883C50.8896 83.1095 50.0684 84.0675 49.1104 84.8886C46.6469 81.8777 43.0885 79.4142 42.6779 75.3084C41.4462 66.5492 34.4662 58.7481 25.844 57.1058C21.6013 56.5584 19.0009 53 16.1268 50.1259L38.9826 27.27L39.2564 26.9963L39.3932 27.1332L63.7545 51.4945C66.9024 54.6423 69.9133 57.7901 73.198 60.9379L51.8476 82.2883ZM74.9772 59.1587L41.0356 25.2171L44.3203 21.9324L78.2618 55.8741L74.9772 59.1587ZM80.041 54.0948L46.0994 20.1533L49.3841 16.8686L83.3257 50.8102L80.041 54.0948Z" fill="#257CFF"></path>
+      <path d="M46.0917 59.9816C48.8884 59.9816 51.1556 57.7144 51.1556 54.9177C51.1556 52.121 48.8884 49.8538 46.0917 49.8538C43.295 49.8538 41.0278 52.121 41.0278 54.9177C41.0278 57.7144 43.295 59.9816 46.0917 59.9816Z" fill="#257CFF"></path>
+    </svg>
+    <div>
+      <h1>Schedule — Product Requirements Document</h1>
+      <p style="font-size:13px;color:#697586;margin:0;">ShopView · Technician Scheduling Module</p>
+    </div>
+  </div>
+
+  <table class="meta-table" style="margin-top:16px;">
+    <tbody>
+      <tr><td>Status</td><td><span class="badge badge-blue">Draft</span></td></tr>
+      <tr><td>Author</td><td>Product Team</td></tr>
+      <tr><td>Last Updated</td><td>July 14, 2026</td></tr>
+      <tr><td>Version</td><td>1.0</td></tr>
+      <tr><td>Stakeholders</td><td>Engineering, Design, Shop Operations</td></tr>
+    </tbody>
+  </table>
+
+  <h2>1. Overview</h2>
+  <p>The Schedule module gives shop managers a visual calendar to assign technicians to work order lines across days and weeks. It replaces manual whiteboards and spreadsheets with a drag-and-drop interface that respects technician capacity, surfaces conflicts, and keeps the work order system of record in sync.</p>
+
+  <h3>1.1 Problem Statement</h3>
+  <p>Heavy-duty shops manage dozens of open work orders simultaneously, each with multiple repair lines requiring different technicians and hours. Without a dedicated scheduling tool, managers rely on memory, whiteboards, or ad-hoc spreadsheets — leading to double-bookings, overtime surprises, and unbalanced workloads across the team.</p>
+
+  <h3>1.2 Goals</h3>
+  <ul>
+    <li>Reduce scheduling errors (double-bookings, weekend assignments, after-hours shifts) to near zero with automatic conflict detection.</li>
+    <li>Give managers a single screen to see the full week's technician allocation at a glance.</li>
+    <li>Support multi-day "spread" scheduling for large jobs (engine rebuilds, frame work) that span 40–160+ hours.</li>
+    <li>Keep the work order roster in sync — assigning a technician on the schedule automatically adds them to the line's labor roster.</li>
+  </ul>
+
+  <h2>2. User Personas</h2>
+  <table>
+    <thead><tr><th>Persona</th><th>Role</th><th>Key Needs</th></tr></thead>
+    <tbody>
+      <tr><td>Service Manager</td><td>Owns the daily schedule for 5–15 techs</td><td>Drag-and-drop scheduling, capacity visibility, conflict alerts</td></tr>
+      <tr><td>Service Advisor</td><td>Creates work orders, communicates ETAs to customers</td><td>See when their work orders are scheduled, which techs are assigned</td></tr>
+      <tr><td>Shop Foreman</td><td>Oversees floor execution</td><td>Day view of who's doing what, department filtering</td></tr>
+    </tbody>
+  </table>
+
+  <h2>3. Information Architecture</h2>
+  <p>The Schedule lives as a top-level nav item alongside Work Orders, Customers, Parts, and Reports. The screen is split into two regions:</p>
+
+  <h3>3.1 Left Panel — Work Order Sidebar</h3>
+  <ul>
+    <li><strong>Mini Calendar</strong> — month picker with week-highlight and collapsible grid. Clicking a date navigates the main grid.</li>
+    <li><strong>Work Order List</strong> — cards showing WO ID, customer, unit, status, line/hour count, and lead technician. Searchable and filterable by assignment status, WO status, and priority.</li>
+    <li><strong>Line Detail View</strong> — drilling into a WO shows its individual lines (e.g. "Brake system R&R — Est. 4h") with drag handles and technician badges. Lines are filterable by "All" vs "Unscheduled."</li>
+  </ul>
+
+  <h3>3.2 Main Area — Schedule Grid</h3>
+  <ul>
+    <li><strong>Day View</strong> — 24-hour timeline per technician row with time-positioned blocks.</li>
+    <li><strong>Week View</strong> — 7-column grid (Mon–Sun, configurable) with stacked shift chips per cell.</li>
+    <li><strong>Month View</strong> — compact calendar with per-day capacity bars and shift chips.</li>
+  </ul>
+
+  <h2>4. Core Features</h2>
+
+  <h3>4.1 Drag-and-Drop Scheduling</h3>
+  <p>The primary interaction model. Users drag a work order card (or individual line) from the sidebar and drop it onto a technician × day cell in the grid.</p>
+  <table>
+    <thead><tr><th>Scenario</th><th>Behavior</th></tr></thead>
+    <tbody>
+      <tr><td>Single-line WO</td><td>Creates a shift immediately, skipping the line picker.</td></tr>
+      <tr><td>Multi-line WO</td><td>Opens the <strong>Line Picker Popover</strong> to select which lines to schedule in this shift.</td></tr>
+      <tr><td>Specific line drag</td><td>Dragging a line from the detail view creates a single-line shift directly.</td></tr>
+      <tr><td>Large job (&gt; 1 day)</td><td>Opens the <strong>Spread Modal</strong> to distribute hours across consecutive working days.</td></tr>
+    </tbody>
+  </table>
+
+  <h3>4.2 Line Picker Popover</h3>
+  <p>When a multi-line work order is dropped onto the grid, a popover anchored to the drop cell lets the manager choose scope:</p>
+  <ul>
+    <li>Select individual lines with checkboxes, or select all.</li>
+    <li>Each line shows its title, estimated hours, and current technician roster (avatar stack + count like "2/5").</li>
+    <li>Lines where the tech is already assigned show a green "on this" badge.</li>
+    <li>Full lines (5/5 techs) trigger a <strong>swap flow</strong> — pick someone to remove before adding the new tech.</li>
+  </ul>
+
+  <h3>4.3 Technician Roster & Swap</h3>
+  <p>Each work order line has a roster of up to 5 assigned technicians. When a line is full:</p>
+  <ul>
+    <li>A modal presents the current roster with each tech's shift count on that line.</li>
+    <li>The manager selects who to swap out. If the swapped-out tech has existing shifts, a destructive-action warning shows exactly which shifts will be deleted.</li>
+    <li>Confirm button changes to red "Delete N shifts & swap in [Name]" when the action is destructive.</li>
+    <li>All swap actions support <strong>Undo</strong> via a toast notification (6.5s window).</li>
+  </ul>
+
+  <h3>4.4 Multi-Day Spread Scheduling</h3>
+  <p>For jobs exceeding a technician's daily capacity (8h default), the Spread Modal distributes work across consecutive working days:</p>
+  <ul>
+    <li><strong>Date mode</strong> — pick an end date; the system calculates how many hours fit.</li>
+    <li><strong>Hours mode</strong> — specify hours to place; the system calculates the end date.</li>
+    <li>Automatically skips weekends, shop closures, and days the technician already has shifts.</li>
+    <li>Shows a week-by-week preview with per-day hour allocations and skip reasons.</li>
+    <li>Creates a <strong>series</strong> of linked shifts that can be deleted individually, from a point forward, or as a whole series.</li>
+  </ul>
+
+  <div class="callout">
+    <strong>Example:</strong> A 160-hour engine rebuild dropped on Aaron Keating, starting Monday. The system generates 20 shifts × 8h across 4 weeks, skipping weekends and a shop closure on day 10. The manager can trim by adjusting the end date or capping hours.
+  </div>
+
+  <h3>4.5 Day View — Timeline Interactions</h3>
+  <p>In Day view, shift blocks are positioned on a 24-hour timeline per technician row. Blocks support:</p>
+  <ul>
+    <li><strong>Horizontal drag</strong> to move a shift's start time (snaps to 15-min intervals).</li>
+    <li><strong>Edge resize</strong> — drag left or right edge to adjust duration.</li>
+    <li><strong>Lane stacking</strong> — overlapping shifts automatically split into parallel lanes.</li>
+    <li><strong>Now line</strong> — a red vertical indicator showing the current time, with a label on hover.</li>
+    <li><strong>Business hours shading</strong> — optional grey overlay outside 8 AM–5 PM.</li>
+  </ul>
+
+  <h3>4.6 Shift Detail Modal</h3>
+  <p>Clicking a shift block opens a detail panel showing:</p>
+  <ul>
+    <li>Work order ID, customer, and unit number.</li>
+    <li>Color-coded category tag (editable, with custom label rename).</li>
+    <li>Scheduled lines with status badges (In Progress, Authorized, etc.) and labor/total figures.</li>
+    <li>Estimated hours with inline edit.</li>
+    <li>Start/end time pickers (scrollable time list, 15-min increments).</li>
+    <li>Notes section — add, edit, and delete per-WO notes.</li>
+    <li>Actions: Delete shift (with series-aware scoping), Reassign to another technician.</li>
+  </ul>
+
+  <h3>4.7 Events</h3>
+  <p>Non-work-order time blocks (meetings, training, stand-ups) that occupy technician time:</p>
+  <ul>
+    <li>Create via right-click context menu on any cell, or by clicking empty grid space in Day view.</li>
+    <li>Event modal: name, date, start/end time, all-day toggle, color category.</li>
+    <li>Drag-and-drop to reassign between technicians or move between days.</li>
+    <li>Day view: live preview block while creating, with drag-to-resize.</li>
+  </ul>
+
+  <h3>4.8 Conflict Detection</h3>
+  <p>The system continuously scans for scheduling issues and surfaces them in a toolbar pill:</p>
+  <table>
+    <thead><tr><th>Conflict Type</th><th>Description</th></tr></thead>
+    <tbody>
+      <tr><td>Double-booked</td><td>Two different work orders overlap on the same technician at the same time.</td></tr>
+      <tr><td>Weekend shift</td><td>Shift scheduled on Saturday or Sunday (outside Mon–Fri).</td></tr>
+      <tr><td>Before hours</td><td>Shift starts before 8:00 AM.</td></tr>
+      <tr><td>After hours</td><td>Shift extends past 5:00 PM.</td></tr>
+    </tbody>
+  </table>
+  <p>Conflicts appear as a warning badge on the affected block and are listed in a dropdown panel accessible from the toolbar. Clicking a conflict navigates to the relevant technician and day.</p>
+
+  <h3>4.9 Capacity Visualization</h3>
+  <p>When enabled in View Options, each day column header shows a capacity bar:</p>
+  <ul>
+    <li><strong>Blue fill</strong> — percentage of total technician-hours booked vs. available (sum of all techs' working hours).</li>
+    <li><strong>Amber spill</strong> — extends past the bar when aggregate hours exceed capacity.</li>
+    <li><strong>OT tag</strong> — appears when one or more individual technicians exceed their daily hours, even if aggregate capacity isn't breached.</li>
+    <li><strong>Hover tooltip</strong> — per-technician breakdown (assigned vs. capacity), with overtime technicians highlighted in amber.</li>
+  </ul>
+
+  <h2>5. Sidebar Features</h2>
+
+  <h3>5.1 Work Order Filters</h3>
+  <table>
+    <thead><tr><th>Filter Group</th><th>Options</th></tr></thead>
+    <tbody>
+      <tr><td>Assignment</td><td>Assigned to me, Unassigned</td></tr>
+      <tr><td>Status</td><td>Approved, Estimate, In Progress, Review, Complete</td></tr>
+      <tr><td>Priority</td><td>High, Medium, Low</td></tr>
+    </tbody>
+  </table>
+  <p>Active filters show a count badge on the Filters button. "Clear all" resets in one click.</p>
+
+  <h3>5.2 Mini Calendar</h3>
+  <ul>
+    <li>Month/year picker (grid of month buttons, year nav arrows).</li>
+    <li>Collapsible — chevron toggle hides the calendar grid to maximize work order list space.</li>
+    <li>Selected date highlighted in blue; today dot-indicated; week row highlighted on hover.</li>
+  </ul>
+
+  <h2>6. Grid Toolbar</h2>
+  <table>
+    <thead><tr><th>Control</th><th>Function</th></tr></thead>
+    <tbody>
+      <tr><td>Today button</td><td>Jumps the grid to the current date.</td></tr>
+      <tr><td>← → arrows</td><td>Navigate by day, week, or month depending on active range.</td></tr>
+      <tr><td>Date label</td><td>Shows the current range (e.g. "Jul 14 – 20, 2026").</td></tr>
+      <tr><td>Conflict pill</td><td>Shows issue count; click opens conflict detail dropdown.</td></tr>
+      <tr><td>Search</td><td>Filters grid blocks by work order / customer name match.</td></tr>
+      <tr><td>Departments</td><td>Toggle visibility of department groups (checkboxes).</td></tr>
+      <tr><td>View Options</td><td>Toggles: Business hours, Capacity bars, Events, Tech hours, Saturday, Sunday.</td></tr>
+      <tr><td>Day / Week / Month</td><td>Segmented control to switch grid range.</td></tr>
+    </tbody>
+  </table>
+
+  <h2>7. Interactions & Micro-interactions</h2>
+  <ul>
+    <li><strong>Drag feedback</strong> — drop target cells highlight with blue inset shadow; ghost block shows the line name and hours.</li>
+    <li><strong>Shift reassignment</strong> — drag a shift block from one technician row to another to reassign. Confirmation modal for cross-tech moves.</li>
+    <li><strong>Right-click context menu</strong> — on any grid cell: "New Shift," "New Event," "View Day."</li>
+    <li><strong>Toast notifications</strong> — all create, delete, move, and swap actions produce a toast with an Undo option (4–7s).</li>
+    <li><strong>Keyboard support</strong> — Escape closes modals, popovers, and cancels armed line selection.</li>
+    <li><strong>Series-aware deletion</strong> — deleting a shift that belongs to a multi-day series offers three scopes: this shift only, this and all following, entire series.</li>
+  </ul>
+
+  <h2>8. Data Model</h2>
+  <h3>8.1 Key Entities</h3>
+  <table>
+    <thead><tr><th>Entity</th><th>Key Fields</th><th>Relationships</th></tr></thead>
+    <tbody>
+      <tr><td>Shift</td><td>sid, woId, rowKey (tech), date, startHour, blockDuration, lines[], series</td><td>Belongs to Work Order; assigned to Technician; optionally part of a Series</td></tr>
+      <tr><td>Event</td><td>eid, name, rowKey (tech), date, startHour, endHour, allDay</td><td>Assigned to Technician</td></tr>
+      <tr><td>Work Order</td><td>id, customer, unit, asset, status, priority, hrs, lead, color</td><td>Has many Lines</td></tr>
+      <tr><td>Line</td><td>num, title, status, est, actual, total, labor[]</td><td>Belongs to Work Order; has many Technicians via labor roster</td></tr>
+      <tr><td>Technician</td><td>key, name, role, dept, hours (start/end)</td><td>Belongs to Department; has many Shifts and Events</td></tr>
+      <tr><td>Department</td><td>key, name</td><td>Has many Technicians</td></tr>
+    </tbody>
+  </table>
+
+  <h3>8.2 Series</h3>
+  <p>A series is a group of shifts created by the spread scheduler. All shifts in a series share a <code>series</code> key and <code>seriesLines</code> array. Series support grouped deletion (one / this-and-after / all) and render as connected banners in month view.</p>
+
+  <h2>9. View Options & Customization</h2>
+  <table>
+    <thead><tr><th>Option</th><th>Default</th><th>Effect</th></tr></thead>
+    <tbody>
+      <tr><td>Business Hours</td><td>Off</td><td>Shades non-working hours (before 8 AM, after 5 PM) in Day view.</td></tr>
+      <tr><td>Capacity Bars</td><td>On</td><td>Shows per-day capacity utilization bars in column headers.</td></tr>
+      <tr><td>Events</td><td>On</td><td>Shows non-WO event blocks on the grid.</td></tr>
+      <tr><td>Tech Hours</td><td>Off</td><td>Displays each technician's working hours next to their name.</td></tr>
+      <tr><td>Saturday</td><td>On</td><td>Includes Saturday column in the grid.</td></tr>
+      <tr><td>Sunday</td><td>On</td><td>Includes Sunday column in the grid.</td></tr>
+    </tbody>
+  </table>
+
+  <h2>10. Color System</h2>
+  <p>Work orders and events are color-coded using 7 categories. Each color has three tones: background fill, text color, and accent (left border).</p>
+  <table>
+    <thead><tr><th>Key</th><th>Default Label</th><th>Use Case</th></tr></thead>
+    <tbody>
+      <tr><td style="color:#257CFF;">●</td><td>Blue</td><td>Default for work orders</td></tr>
+      <tr><td style="color:#14B8A6;">●</td><td>Teal</td><td>Large/long-running jobs</td></tr>
+      <tr><td style="color:#8B5CF6;">●</td><td>Violet</td><td>Priority overhauls</td></tr>
+      <tr><td style="color:#DB2777;">●</td><td>Pink</td><td>Warranty / comebacks</td></tr>
+      <tr><td style="color:#06B6D4;">●</td><td>Cyan</td><td>Fleet maintenance</td></tr>
+      <tr><td style="color:#F79009;">●</td><td>Amber</td><td>Urgent / time-sensitive</td></tr>
+      <tr><td style="color:#4B5565;">●</td><td>Grey</td><td>Events (default)</td></tr>
+    </tbody>
+  </table>
+  <p>Labels are editable per-shop. Colors are set per work order from the shift detail modal's color picker.</p>
+
+  <h2>11. Non-functional Requirements</h2>
+  <ul>
+    <li><strong>Performance</strong> — grid must render smoothly with up to 15 technicians × 7 days × 6 shifts per cell. Sidebar work order list virtualizes at 50+ items.</li>
+    <li><strong>Responsiveness</strong> — minimum supported width: 960px (grid scrolls horizontally below that). Sidebar collapses on narrow viewports.</li>
+    <li><strong>Accessibility</strong> — all interactive elements keyboard-reachable. Focus rings follow the design system (4px blue glow). Modals trap focus and close on Escape. Drag-and-drop has an alternative click-to-arm flow.</li>
+    <li><strong>Undo</strong> — every destructive action (delete, swap, reassign) is undoable for 4–7 seconds via toast.</li>
+  </ul>
+
+  <h2>12. Edge Cases & Constraints</h2>
+  <ul>
+    <li>A technician can have multiple shifts on the same day (different work orders). Overlapping times in Day view render in parallel lanes.</li>
+    <li>Shop closures (holidays, inventory days) are defined at the shop level and block spread scheduling from placing shifts on those days.</li>
+    <li>Maximum 5 technicians per line — enforced by the swap flow, not a hard block.</li>
+    <li>Shifts with no <code>startHour</code> contribute to capacity calculations but don't appear as time-positioned blocks in Day view.</li>
+    <li>Dragging a shift between technicians triggers labor roster updates on both the source and target tech.</li>
+  </ul>
+
+  <h2>13. Success Metrics</h2>
+  <table>
+    <thead><tr><th>Metric</th><th>Target</th><th>Measurement</th></tr></thead>
+    <tbody>
+      <tr><td>Scheduling conflicts</td><td>&lt; 5% of shifts</td><td>Ratio of flagged shifts to total shifts per week</td></tr>
+      <tr><td>Time to schedule</td><td>&lt; 30s per shift</td><td>Median time from drag start to shift creation</td></tr>
+      <tr><td>Adoption</td><td>80% of active shops</td><td>Shops with ≥1 shift created per week, 90 days post-launch</td></tr>
+      <tr><td>Undo usage</td><td>&lt; 10% of actions</td><td>Undo clicks / total scheduling actions (lower = fewer mistakes)</td></tr>
+    </tbody>
+  </table>
+
+  <h2>14. Future Considerations</h2>
+  <ul>
+    <li><strong>Technician availability / PTO</strong> — block out vacation days, sick time, and training that aren't Events.</li>
+    <li><strong>Auto-scheduling</strong> — suggest optimal technician assignments based on skills, availability, and workload balance.</li>
+    <li><strong>Customer-facing ETA</strong> — derive estimated completion dates from the schedule and surface them on estimates/invoices.</li>
+    <li><strong>Mobile view</strong> — simplified day view for foremen on the shop floor (tablet/phone).</li>
+    <li><strong>Recurring events</strong> — weekly stand-ups, monthly safety meetings as repeating calendar blocks.</li>
+    <li><strong>Skill matching</strong> — warn when a technician is assigned to a line requiring certifications they don't hold.</li>
+  </ul>
+
+</x-import>
+
+</x-dc>
+<script>
+(async () => {
+  if (!document.title || !document.title.trim()) document.title = "Schedule PRD";
+  // rAF raced with a short timeout: inside a cross-origin iframe (PrintMode),
+  // rAF can be throttled or paused even while the tab is focused, which would
+  // hang the scroll loop and never reach print(). Same pattern as
+  // buildExportSettleScript (export/shared.ts).
+  var raf = function () {
+    return Promise.race([
+      new Promise(function (r) { requestAnimationFrame(r); }),
+      new Promise(function (r) { setTimeout(r, 50); }),
+    ]);
+  };
+  var t0 = performance.now();
+  var mark = function (phase) {
+    var ms = Math.round(performance.now() - t0);
+    console.info('[autoprint]', phase, ms + 'ms');
+    try { parent.postMessage({ __omelette_autoprint: { phase: phase, ms: ms } }, '*'); } catch (e) {}
+  };
+  mark('start');
+  // Prepend so page-supplied @page / break rules (deck-stage's margin:0,
+  // author CSS) keep source-order precedence over the baseline.
+  const baseCss = document.createElement('style');
+  baseCss.textContent = "@media print {\n  figure, table { break-inside: avoid; }\n  *, *::before, *::after {\n    print-color-adjust: exact; -webkit-print-color-adjust: exact;\n    backdrop-filter: none !important; -webkit-backdrop-filter: none !important;\n    animation-delay: -99s !important; animation-duration: .001s !important;\n    animation-iteration-count: 1 !important; animation-fill-mode: both !important;\n    animation-play-state: running !important; transition-duration: 0s !important;\n  }\n}";
+  document.head.prepend(baseCss);
+  if (document.readyState === 'loading') {
+    await new Promise((r) => document.addEventListener('DOMContentLoaded', r, { once: true }));
+  }
+  let ds = document.querySelector('deck-stage');
+  // whenDefined never resolves when nothing registers the element, so only
+  // await it when a <deck-stage> tag exists (and race a timeout regardless).
+  if (ds && !customElements.get('deck-stage')) {
+    try {
+      await Promise.race([
+        customElements.whenDefined('deck-stage'),
+        new Promise((r) => setTimeout(r, 3000)),
+      ]);
+    } catch (e) {}
+    ds = document.querySelector('deck-stage');
+  }
+  // dc-runtime assigns window.DCLogic at init and mounts into #dc-root on
+  // DOMContentLoaded; settle on that subtree so React has rendered before
+  // print(). Non-DC pages fall through to weighing body.
+  const isDc = !ds && 'DCLogic' in window;
+  const settleRoot = ds || (isDc ? document.getElementById('dc-root') : null) || document.body;
+  if (settleRoot) {
+    // Weigh only content children — skip script/style/template so inline
+    // Babel/CSS doesn't register as stable "content" before the framework
+    // has mounted anything.
+    const MEDIA = 'img,svg,canvas,video,picture,iframe,embed,object';
+    const weigh = () => {
+      let text = 0, media = 0;
+      for (const c of settleRoot.children) {
+        const t = c.tagName;
+        if (t === 'SCRIPT' || t === 'STYLE' || t === 'TEMPLATE') continue;
+        text += (c.textContent || '').trim().length;
+        media += c.querySelectorAll(MEDIA).length + (c.matches(MEDIA) ? 1 : 0);
+      }
+      return text + media * 100;
+    };
+    // "Non-zero and stable" alone is not sufficient to mean rendered: generic
+    // body can carry a static shell while async main content is pending, and
+    // #dc-root can carry the root DC's static text while child refs are still
+    // .sc-placeholder boxes. Gate generic on readyState 'complete', and never
+    // accept stability while a dc-runtime placeholder is present.
+    const isGeneric = settleRoot === document.body;
+    // A placeholder whose fetch failed (.sc-placeholder-error inside) keeps
+    // .sc-placeholder forever — don't wait on it. JS loop, not :has(), so an
+    // engine without :has() support can't throw out of the while and skip
+    // print() entirely.
+    var pendingPlaceholders = function () {
+      var all = settleRoot.querySelectorAll('.sc-placeholder'), n = 0;
+      for (var i = 0; i < all.length; i++)
+        if (!all[i].querySelector('.sc-placeholder-error')) n++;
+      return n;
+    };
+    const deadline = Date.now() + 15000;
+    let last = -1, stable = 0;
+    while (Date.now() < deadline) {
+      const n = weigh();
+      const ready =
+        (!isGeneric || document.readyState === 'complete') &&
+        pendingPlaceholders() === 0;
+      if (n > 0 && n === last && ready) { if (++stable >= 2) break; } else { stable = 0; }
+      last = n;
+      await new Promise((r) => setTimeout(r, 250));
+    }
+  }
+  mark('settle-done' + (settleRoot ? ' (errs=' + settleRoot.querySelectorAll('.sc-placeholder-error').length + ' pending=' + pendingPlaceholders() + ')' : ''));
+  // Project support.js may predate runtime default-seeding; push via bridge.
+  if (isDc && window.__dcSetProps && window.__dcRootName) {
+    try {
+      const dpEl = document.querySelector('script[data-dc-script]');
+      const meta = JSON.parse((dpEl && dpEl.getAttribute('data-props')) || '{}');
+      const bag = {};
+      for (const k in meta)
+        if (k[0] !== '$' && meta[k] && meta[k].default !== undefined)
+          bag[k] = meta[k].default;
+      if (Object.keys(bag).length) {
+        window.__dcSetProps(window.__dcRootName(), bag);
+        await new Promise((r) => setTimeout(r, 50));
+      }
+    } catch (e) {}
+  }
+  // Reveal content gated on scroll or visibility before printing. Lazy <img>,
+  // IntersectionObserver fade-ins, and collapsed <details> don't render while
+  // off-screen, so a long page would print with them blank or closed. Open
+  // every <details>, force native-lazy images eager, and scroll the document
+  // through its full height to trip lazy-load + IO; then wait (bounded) for the
+  // newly-triggered images. Inert for deck-stage (slides aren't scroll-gated).
+  try {
+    for (const d of document.querySelectorAll('details')) d.open = true;
+    for (const img of document.querySelectorAll('img[loading="lazy"]'))
+      img.loading = 'eager';
+    const scroller = document.scrollingElement || document.documentElement;
+    const full = Math.max(scroller.scrollHeight, document.body.scrollHeight);
+    const step = window.innerHeight || 800;
+    var scrollDeadline = Date.now() + 4000;
+    for (let y = 0; y <= full && Date.now() < scrollDeadline; y += step) {
+      window.scrollTo(0, y);
+      await raf();
+    }
+    window.scrollTo(0, 0);
+    await Promise.race([
+      Promise.all(
+        [...document.images].map((img) =>
+          img.complete
+            ? null
+            : new Promise((res) => {
+                img.addEventListener('load', res, { once: true });
+                img.addEventListener('error', res, { once: true });
+              })
+        )
+      ),
+      new Promise((r) => setTimeout(r, 4000)),
+    ]);
+  } catch (e) {}
+  mark('scroll-done');
+  try { await Promise.race([document.fonts.ready, new Promise((r) => setTimeout(r, 3000))]); } catch (e) {}
+  mark('fonts-done');
+  // Jump every animation to its end state so print() never captures a slide
+  // mid-entrance. Ordering matters: the 0s-transition style must be live
+  // BEFORE data-deck-active is set so attribute-keyed transitions don't
+  // start a (now-0s) run from the pre-active base.
+  const st = document.createElement('style');
+  st.textContent = '*,*::before,*::after{animation-delay:-99s !important;animation-duration:.001s !important;animation-iteration-count:1 !important;animation-fill-mode:both !important;animation-play-state:running !important;transition-duration:0s !important}';
+  document.head.appendChild(st);
+  for (const d of document.querySelectorAll('deck-stage')) {
+    for (const c of d.children) {
+      const t = c.tagName;
+      if (t === 'SCRIPT' || t === 'STYLE' || t === 'TEMPLATE') continue;
+      c.setAttribute('data-deck-active', '');
+    }
+  }
+  // Re-append deck-stage's @page last so no author @page can add a margin and
+  // spill each full-bleed slide onto two sheets. Backstop for old copies.
+  if (ds) {
+    let pg = document.getElementById('deck-stage-print-page');
+    if (!pg) {
+      pg = document.createElement('style');
+      pg.textContent = '@page{size:' + (+ds.getAttribute('width') || 1920) +
+        'px ' + (+ds.getAttribute('height') || 1080) + 'px;margin:0}';
+    }
+    document.body.appendChild(pg);
+  }
+  try {
+    const sweep = () => {
+      for (const a of document.getAnimations()) {
+        try { a.finish(); } catch (e) {
+          try { a.currentTime = (a.effect && a.effect.getComputedTiming().duration) || 0; a.pause(); } catch (e2) {}
+        }
+      }
+    };
+    sweep();
+    await raf();
+    sweep();
+    await raf();
+  } catch (e) {}
+  // A document that owns its print CSS (the doc-page starter injects the
+  // meta at runtime; hand-rolled print designs author it) gets no automatic
+  // page geometry and keeps its forced breaks: strip the injected default
+  // @page — write time cannot see a runtime-injected meta — skip the frame
+  // override below, and skip the fakepage-flattening further down. What
+  // still applies: the print baseline and break-hygiene defaults (no @page
+  // in either; low specificity, so the document's own print CSS wins) and
+  // the break-inside relaxation on >page elements (avoid on those cannot
+  // be honored whoever authored it).
+  var ownsPrint = !!document.querySelector('meta[name="omelette-owns-print" i]');
+  if (ownsPrint) {
+    var dst = document.querySelector('style[data-omelette-print-defaults]');
+    if (dst && dst.textContent) {
+      dst.textContent = dst.textContent.replace(/@page\b[^{}]*\{[^}]*\}/, '');
+    }
+  }
+  // Size the PDF page to the rendered design unless the file opted into
+  // standard paper via @page{size:letter|A4|…} or declared print ownership
+  // via the meta above. Decks own their own @page.
+  // Wrappers (body, …) lose padding+margin so the frame sits at (0,0); the
+  // frame itself loses only margin — its padding is INSIDE the measured
+  // rect and must stay, or content shifts and leaves a gap at bottom/right.
+  var __m = null;
+  try { __m = (() => {
+  var STAMP = true;
+  var docEl = document.documentElement;
+  var doc = { width: docEl.scrollWidth, height: docEl.scrollHeight };
+  // Name-presence check, case-insensitive — the same contract as the
+  // instant-PDF path's runtime check in deck-stage-export.ts. The name is
+  // a string literal here because that file interpolates this script into
+  // its print script, so importing a shared constant from it would be a
+  // cycle; measure.test.ts pins the literal so the two cannot drift apart
+  // silently.
+  var ownsPrint = !!document.querySelector('meta[name="omelette-owns-print" i]');
+
+  var ds = document.querySelector('deck-stage');
+  if (ds) {
+    var dw = Number(ds.getAttribute('width')) || 1920;
+    var dh = Number(ds.getAttribute('height')) || 1080;
+    var n = typeof ds.length === 'number' ? ds.length : ds.children.length;
+    var idx = typeof ds.index === 'number' ? ds.index : 0;
+    var frames = [];
+    for (var i = 0; i < n; i++) frames.push({ left: 0, top: 0, width: dw, height: dh });
+    return { kind: 'deck', source: 'declared', doc: doc, frames: frames,
+      authored: frames.map(function(){return{width:true,height:true}}),
+      deck: { width: dw, height: dh, slideCount: n, index: idx },
+      signals: { paperPage: false, pxPage: false, ownsPrint: ownsPrint } };
+  }
+
+  // Declared kind: a doc-page tag names the kind outright, so no signal
+  // heuristics run (like the deck branch above, signals report false —
+  // they describe inferred classifications only). The tag alone is not
+  // trusted: the element must have upgraded (shadowRoot present), so a
+  // leftover tag whose script was deleted falls through to the heuristics
+  // that handle plain markup.
+  var stageSx = window.scrollX || 0, stageSy = window.scrollY || 0;
+  var dp = document.querySelector('doc-page');
+  if (dp && dp.shadowRoot) {
+    // Crop to the sheet, not the host — the desk around it is screen-only
+    // chrome that must not land in PNG exports.
+    var sheet = dp.shadowRoot.querySelector('.sheet');
+    var sr = (sheet || dp).getBoundingClientRect();
+    return { kind: 'paper-doc', source: 'declared', doc: doc,
+      frames: [{ left: sr.left + stageSx, top: sr.top + stageSy,
+        width: sr.width, height: sr.height }],
+      authored: [{ width: false, height: false }],
+      signals: { paperPage: false, pxPage: false, ownsPrint: ownsPrint } };
+  }
+  var paperPage = false, pxPage = false;
+  var eachRule = function (fn) {
+    for (var s = 0; s < document.styleSheets.length; s++) {
+      var rs; try { rs = document.styleSheets[s].cssRules; } catch (e) { continue; }
+      for (var r = 0; r < rs.length; r++) {
+        fn(rs[r]);
+        if (rs[r].cssRules) for (var n = 0; n < rs[r].cssRules.length; n++) fn(rs[r].cssRules[n]);
+      }
+    }
+  };
+  eachRule(function (r) {
+    if (r.type !== 6) return;
+    var m = /\bsize\s*:\s*([^;}]+)/i.exec(r.cssText || '');
+    if (!m) return;
+    if (/\b(letter|a[3-5]|legal|ledger)\b/i.test(m[1])) paperPage = true;
+    if (/\d+(?:\.\d+)?px\b/i.test(m[1])) pxPage = true;
+  });
+  var signals = { paperPage: paperPage, pxPage: pxPage, ownsPrint: ownsPrint };
+
+  var pxVal = function (v) {
+    var m = /^(\d+(?:\.\d+)?)px$/.exec(v || ''); return m ? +m[1] : 0;
+  };
+  var authoredPx = function (el, prop) {
+    if (pxVal(el.style[prop])) return true;
+    var attr = el.getAttribute(prop);
+    if (attr && /^\d+$/.test(attr)) return true;
+    var hit = false;
+    eachRule(function (r) {
+      if (hit || r.type !== 1 || !r.style) return;
+      try { if (el.matches(r.selectorText) && pxVal(r.style[prop])) hit = true; } catch (e) {}
+    });
+    return hit;
+  };
+
+  var el = document.body, rootPxW = false;
+  for (;;) {
+    var kids = [];
+    for (var c = 0; c < el.children.length; c++) {
+      var t = el.children[c].tagName;
+      if (t !== 'SCRIPT' && t !== 'STYLE' && t !== 'TEMPLATE') kids.push(el.children[c]);
+    }
+    if (kids.length !== 1 || !(kids[0] instanceof HTMLElement)) break;
+    if (STAMP) el.setAttribute('data-om-frame-wrap', '');
+    el = kids[0];
+    rootPxW = authoredPx(el, 'width');
+    if (rootPxW) break;
+  }
+  if (!rootPxW) rootPxW = authoredPx(el, 'width');
+
+  // @page{size:letter} alone is a flowing doc; with a px-width root it's a
+  // fixed sheet pretending to be paper — fall through and size to render.
+  if (paperPage && !rootPxW) {
+    return { kind: 'paper-doc', source: 'inferred', doc: doc, signals: signals,
+      frames: [{ left: 0, top: 0, width: doc.width, height: doc.height }],
+      authored: [{ width: false, height: false }] };
+  }
+
+  var sx = window.scrollX || 0, sy = window.scrollY || 0;
+  var rectOf = function (e) {
+    var r = e.getBoundingClientRect();
+    var oy; try { oy = getComputedStyle(e).overflowY; } catch (err) {}
+    var h = oy === 'visible' ? Math.max(r.height, e.scrollHeight || 0) : r.height;
+    return { left: r.left + sx, top: r.top + sy, width: r.width, height: h };
+  };
+
+  // Multi-frame: off unless the page opts in via data-om-multi-frame on the
+  // stop element — the explicit opt-in is what guards against card grids
+  // and pricing tables that match the geometry but aren't separate
+  // canvases. Two ways to name the frames, explicit first:
+  // 1. Descendants marked data-om-frame-export (the social-frames starter
+  //    marks each asset frame; shells/panels around them are presentation,
+  //    so nesting is expected). Document order.
+  // 2. Fallback, no marked descendants: direct children with an authored px
+  //    width AND height (the original geometry heuristic).
+  // Frames may be different sizes (a gallery mixes 1080×1920 stories with
+  // 728×90 banners); data-om-frame-label rides along for export filenames.
+  if (el.hasAttribute('data-om-multi-frame')) {
+    var visOk = function (e) {
+      var cs; try { cs = getComputedStyle(e); } catch (err) { return false; }
+      return cs.display !== 'none' && cs.visibility !== 'hidden' && cs.position !== 'fixed';
+    };
+    // A frame's crop is its VISUAL box — never the scrollHeight-inflated
+    // rect that rectOf computes for page roots. Shadow-DOM hover controls
+    // (image-slot's Replace bar parks 29px below its host) and similar
+    // escaping UI contribute scrollable overflow to the frame, and the
+    // inflated height both squashes the nominal-size resize and drags
+    // content below the frame into the crop. Zoom-independent; bit every
+    // slot-bearing frame.
+    var frameRectOf = function (e) {
+      var r = e.getBoundingClientRect();
+      return { left: r.left + sx, top: r.top + sy, width: r.width, height: r.height };
+    };
+    var pushCand = function (list, e) {
+      if (!visOk(e)) return;
+      var rc = frameRectOf(e);
+      if (rc.width < 2 || rc.height < 2) return;
+      var lbl = e.getAttribute('data-om-frame-label');
+      if (lbl) rc.label = lbl;
+      list.push(rc);
+    };
+    var cands = [];
+    var marked = el.querySelectorAll('[data-om-frame-export]');
+    if (marked.length) {
+      for (var mk = 0; mk < marked.length; mk++) pushCand(cands, marked[mk]);
+    } else {
+      for (var k = 0; k < el.children.length; k++) {
+        var ch = el.children[k];
+        if (!authoredPx(ch, 'width') || !authoredPx(ch, 'height')) continue;
+        pushCand(cands, ch);
+      }
+    }
+    if (cands.length >= 2) {
+      return { kind: 'multi-frame', source: 'inferred', doc: doc, signals: signals,
+        frames: cands, authored: cands.map(function(){return{width:true,height:true}}) };
+    }
+  }
+
+  if (STAMP) el.setAttribute('data-om-frame', '');
+  return { kind: 'single-canvas', source: 'inferred', doc: doc, signals: signals,
+    frames: [rectOf(el)],
+    authored: [{ width: rootPxW, height: authoredPx(el, 'height') }] };
+})(); } catch (e) {}
+  var frame = null;
+  if (!ownsPrint && __m && __m.kind === 'single-canvas') {
+    var f = __m.frames && __m.frames[0];
+    if (f && f.width >= 200 && f.height >= 200) {
+      frame = f;
+      var fst = document.createElement('style');
+      fst.textContent = '@media print{@page{size:' + Math.ceil(f.width) + 'px ' +
+        Math.ceil(f.height) + 'px;margin:0}' +
+        'html,body,[data-om-frame-wrap]{padding:0!important;margin:0!important;background:none!important}' +
+        '[data-om-frame]{margin:0!important}}';
+      document.body.appendChild(fst);
+    }
+  }
+  // Relax break-inside on oversized elements. An element taller than a
+  // printable page can't honor break-inside: avoid — browsers either overflow
+  // it or push it whole to the next page, leaving a blank gap, then break it
+  // anyway at an arbitrary point. After the final layout (content revealed,
+  // animations jumped), find elements taller than a page that still compute
+  // break-inside: avoid and reset them to auto, so the browser breaks them at
+  // their children's boundaries instead (children keep their own avoid). PAGE_PX
+  // is a conservative portrait estimate at 96 CSS px/in — Letter/A4 usable
+  // height minus our 0.5in margins — so only clearly-oversized elements are
+  // touched and under-page elements still stay whole. Skipped for decks (slides
+  // are sized to the page) and for fixed-size canvases (frame set, or an author
+  // px-based @page) — runs as before for flowing docs on letter/A4.
+  try {
+    if (!ds && !frame && !(__m && __m.signals && __m.signals.pxPage)) {
+      const PAGE_PX = 1024;
+      // Our print defaults add a real @page margin only when the source has
+      // no @page of its own; computed style can't tell us (it reports screen
+      // media), so read the injected rule directly.
+      const defaults = document.querySelector('style[data-omelette-print-defaults]');
+      const pageInset = /@page\s*\{[^}]*margin/.test(defaults ? defaults.textContent || '' : '');
+      const SEL = 'section,article,figure,table,pre,blockquote,[class~="card" i],[class~="page" i],[class~="sheet" i]';
+      for (const el of document.body.querySelectorAll(SEL)) {
+        if (el instanceof HTMLElement && el.offsetHeight > PAGE_PX) {
+          el.setAttribute('data-om-oversized', '');
+          // Fake-paged docs simulate sheets with over-tall break-after:page
+          // boxes; honoring the break spills half-blank pages and ends a
+          // colored box mid-sheet. Flow them, and (only when we own the page
+          // inset) drop the redundant padding/background via the rule below.
+          const cs = getComputedStyle(el);
+          // An owns-print doc's forced breaks are intentional sheet
+          // boundaries, never fake-paged simulation — don't strip them.
+          // The break-inside relaxation above still applies: avoid on a
+          // >page element is impossible to honor whoever authored it.
+          if (
+            !ownsPrint &&
+            (cs.breakAfter === 'page' || cs.pageBreakAfter === 'always')
+          ) {
+            el.setAttribute('data-om-fakepage', '');
+          }
+        }
+      }
+      const ost = document.createElement('style');
+      ost.textContent = '@media print{' +
+        '[data-om-oversized]{break-inside:auto !important;page-break-inside:auto !important}' +
+        '[data-om-fakepage]{break-after:auto !important;page-break-after:auto !important}' +
+        (pageInset ? '[data-om-fakepage]{padding:0 !important;background:none !important}' : '') +
+        '}';
+      document.head.appendChild(ost);
+    }
+  } catch (e) {}
+  // macOS Preview renders Skia-PDF Luminosity soft-masks as opaque grey boxes;
+  // swap the CSS that triggers them for Preview-safe forms.
+  try {
+    for (const el of document.body.querySelectorAll('*')) {
+      const cs = getComputedStyle(el);
+
+      if (cs.boxShadow !== 'none' && cs.filter === 'none') {
+        const outs = [], kept = [];
+        for (const s of cs.boxShadow.split(/,(?![^(]*[)])/)) {
+          const t = s.trim();
+          const m = t.match(/^(rgba?[(][^)]+[)]) (-?[0-9.]+px) (-?[0-9.]+px) ([0-9.]+px) -?[0-9.]+px$/);
+          if (m && parseFloat(m[4]) > 0) outs.push('drop-shadow(' + m[2] + ' ' + m[3] + ' ' + m[4] + ' ' + m[1] + ')');
+          else kept.push(t);
+        }
+        if (outs.length) {
+          el.style.setProperty('filter', outs.join(' '), 'important');
+          el.style.setProperty('box-shadow', kept.join(', ') || 'none', 'important');
+        }
+      }
+
+      const mask = cs.maskImage && cs.maskImage !== 'none' ? cs.maskImage : cs.webkitMaskImage;
+      if (mask && mask !== 'none' && cs.filter === 'none') el.style.setProperty('filter', 'opacity(1)', 'important');
+    }
+  } catch (e) {}
+  mark('print-calling');
+  setTimeout(() => { try { window.print(); } catch (e) {} }, 200);
+})();
+</script>
+</body>
+</html>
