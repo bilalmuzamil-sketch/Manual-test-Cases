@@ -1348,8 +1348,10 @@ regression / bug-fix re-testing.
   `d5366a95-582d-4a06-96e2-20f8cb937866`. **CREATE A WO:** `POST /api/work-orders/create
   {company_id, vehicle_id, workplace_id, start_date, is_vehicle_here:true}` (→201, needs
   is_vehicle_here). Vehicles: `GET /api/vehicles?company_id={id}`. Customer defaults auto-apply
-  fees on new WOs. **DELETE WO:** `POST /api/work-orders/delete {work_order_id}`. **KNOWN ENV BUG:**
-  `POST /api/work-orders/lines/create` returns HTTP 500 (add lines via the UI instead).
+  fees on new WOs. **DELETE WO:** `POST /api/work-orders/delete {work_order_id}`. **WO LINE CREATE:**
+  `POST /api/work-orders/lines/create` SUCCEEDS with a canned line — body `{canned_line_id,
+  work_order_id, status:'authorized'}`; it 500s only when called without a canned line/labor — use the
+  UI New Line dialog for those (confirmed live 2026-07-27, SV-8721 side project).
   **ADJUSTMENTS API (FD, learned 2026-07-23):** add a WO fee/discount = `POST /api/work-orders/adjustments/add`
   `{workOrderId, kind:'fee'|'discount'|'processing_fee', name, calculationType:'flat'|'pct_labor'|'pct_parts'|'pct_subtotal'|'pct_grand_total', amount, scope:'whole_wo'|line, targetId, taxable, templateId}`; remove = `POST /api/work-orders/adjustments/remove {adjustmentId, workOrderId}` (→204); edit = `POST /api/work-orders/adjustments/change {adjustmentId, workOrderId, name, ...}` (a **processing_fee** returns HTTP 409 'A processing fee cannot be edited through this endpoint' = remove-only, spec-correct). Customer default fees auto-apply on WO create (appliedBy=customer_default); processing-fee base = net subtotal (labour+parts+shop)×(1+tax) EXCLUDING whole-WO fees (§5-R4, VIU-confirmed FIXED 2026-07-23).
 - **TestRail:** project **1** / single suite **1 "Master"**; API v2, Basic auth.

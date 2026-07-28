@@ -137,9 +137,13 @@ any endpoint/ID not recorded here or in `CLAUDE.md`** — if only partly known, 
   `popstate` (see UI automation). *Source: CLAUDE.md, Navigation Map below.*
 
 ## D. WO Lines
-- **⚠️ `POST /api/work-orders/lines/create` returns HTTP 500 on staging (and 500s on ALL payloads on
-  qb, incl. `create-from-canned-line`)** — **add lines via the UI** New Line dialog instead
-  (WO detail → Lines tab → New Line → pick a canned line → Save & Close). *Source: CLAUDE.md.*
+- **`POST /api/work-orders/lines/create` SUCCEEDS with a canned line** — body `{canned_line_id,
+  work_order_id, status:'authorized'}` (get a `canned_line_id` from the canned-lines list). It only
+  returns **HTTP 500 when called WITHOUT a canned line / labor** (bare or empty body). So: to add a WO
+  line via API, ALWAYS supply a `canned_line_id`; for a line that needs labor / has no canned line, use
+  the **UI New Line dialog** (WO detail → Lines tab → New Line → pick a canned line → Save & Close) as
+  the fallback. *(confirmed live 2026-07-27, SV-8721 side project; supersedes the earlier "always 500s
+  → use UI" note. On qb, lines/create still 500s on ALL payloads incl. `create-from-canned-line`.)*
 - **Change line status:** `POST /api/work-orders/lines/change-status {line_id, status:'authorized',
   workOrderId}` → 200 (enum `authorization_required|authorization_declined|authorized|complete`).
   Bulk: `POST /api/work-orders/lines/change-lines` → 201. Delete: `POST
@@ -167,9 +171,16 @@ any endpoint/ID not recorded here or in `CLAUDE.md`** — if only partly known, 
   `GET /api/inventory/orders`, order detail `GET /api/inventory/orders/{id}`; deliveries
   `GET /api/inventory/deliveries`. Edit a PO item pre-receive: `POST /api/inventory/orders/change-item
   {order_id,item_id,part_number,quantity_ordered,price,category,description}` → 200.
+- **`GET /api/inventory/orders/{id}` now ALSO returns full-precision fields `price_decimal`,
+  `total_cost_decimal`, `total_price_decimal`** (the SV-8721 5-decimal fix fields) alongside the legacy
+  rounded `price` / `total_price`. Use the `*_decimal` fields to verify 5-decimal cost precision on
+  Receive. *(confirmed live 2026-07-27, SV-8721 side project.)*
 - **Receive parts:** `POST /api/inventory/orders/accept` (driven from `/accept-delivery/{orderId}`:
   fields `invoice-number`, Invoice Date, per-line `delivered` qty, Tax, note; over-qty → "Received
   More Than Ordered" warning). *Source: CLAUDE.md Simple Flow facts.*
+- **WO Receive Parts screen (UI route):** `/order/{orderId}?receive=1&returnTo=WorkOrder&returnId={workOrderId}`
+  — this is the Receive Parts screen reached from a work order (the PO Receive screen with the WO as the
+  return target). *(confirmed live 2026-07-27, SV-8721 side project.)*
 - **Returns:** create `POST /api/work-orders/part/make-return-request` → 200; delete
   `POST /api/work-orders/part/remove-return-request {part_return_request_id}` → 200; list
   `GET /api/work-orders/part/list-return-requests`. A return can't be deleted on a Complete WO —
