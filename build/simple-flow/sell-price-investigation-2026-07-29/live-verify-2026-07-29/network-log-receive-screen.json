@@ -1,0 +1,42 @@
+[
+ {
+  "t": "2026-07-29T18:24:50.989Z",
+  "url": "https://o1220818.ingest.sentry.io/api/6364962/envelope/?sentry_version=7&sentry_key=43e86c02badd4630957b07da4aebf15a&sentry_client=sentry.javascript.vue%2F8.55.2",
+  "status": 200,
+  "method": "POST",
+  "request": "{\"sent_at\":\"2026-07-29T18:24:50.324Z\",\"sdk\":{\"name\":\"sentry.javascript.vue\",\"version\":\"8.55.2\"}}\n{\"type\":\"session\"}\n{\"sid\":\"11ecba1a2d044ed6a5cb94a45673e5f9\",\"init\":true,\"started\":\"2026-07-29T18:24:50.324Z\",\"timestamp\":\"2026-07-29T18:24:50.324Z\",\"status\":\"ok\",\"errors\":0,\"attrs\":{\"release\":\"shopview-app@v3.3\",\"environment\":\"staging\",\"user_agent\":\"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/141.0.0.0 Safari/537.36\"}}",
+  "body": "{}"
+ },
+ {
+  "t": "2026-07-29T18:24:52.532Z",
+  "url": "/api/inventory/orders/receive-view",
+  "status": 200,
+  "method": "POST",
+  "request": "{\"orderIds\":[\"31f751bb-a580-495c-a081-169f4cf8aaf9\"],\"vendorIds\":[]}",
+  "body": "{\"data\":{\"vendors\":[{\"vendorId\":null,\"vendorName\":null,\"vendorMissing\":true,\"purchaseOrders\":[{\"id\":\"31f751bb-a580-495c-a081-169f4cf8aaf9\",\"orderNumber\":\"S-26244\",\"type\":0,\"workOrderId\":\"449bcc1b-c2c2-484c-8a18-25c195ff6ede\",\"workOrderStatus\":\"approved\",\"workOrderType\":\"service\",\"items\":[{\"orderItemId\":\"0b20e3ce-cf6f-42a4-8213-a8faef06b488\",\"partNumber\":\"\",\"description\":\"ZZAUTOTEST sell-price check\",\"isCore\":false,\"coreItemId\":null,\"quantityOrdered\":\"1.00\",\"quantityReceived\":\"0.00\",\"quantityRemaining\":1,\"cost\":null,\"sellPrice\":0,\"coreCharge\":null,\"coreResolution\":null,\"price\":0,\"priceDisplay\":\"0.00\",\"priceDecimal\":\"0.00000\",\"partRequestId\":\"a3e73264-ac59-440a-8dc7-613431111b5a\",\"lineId\":\"fc686011-9473-43b2-b26c-e079f55a1265\",\"manufacturerId\":null,\"itemOrder\":1,\"partCategoryId\":\"b25c5c04-fe8d-4c21-a15c-a02c69f1ee5d\",\"parentPartNumber\":null,\"environmentalCharge\":\"0.00\",\"isEnvironmentalPart\":false}]}]}]}}"
+ },
+ {
+  "t": "2026-07-29T18:25:00.902Z",
+  "url": "/api/orders/31f751bb-a580-495c-a081-169f4cf8aaf9/assign-vendor",
+  "status": 200,
+  "method": "POST",
+  "request": "{\"vendorId\":\"7d54f3e1-f6a9-426a-8203-4e5a68612e4e\",\"orderItemIds\":[]}",
+  "body": "{\"data\":[]}"
+ },
+ {
+  "t": "2026-07-29T18:25:01.095Z",
+  "url": "/api/inventory/orders/receive-view",
+  "status": 200,
+  "method": "POST",
+  "request": "{\"orderIds\":[\"31f751bb-a580-495c-a081-169f4cf8aaf9\"],\"vendorIds\":[\"7d54f3e1-f6a9-426a-8203-4e5a68612e4e\"]}",
+  "body": "{\"data\":{\"vendors\":[{\"vendorId\":\"7d54f3e1-f6a9-426a-8203-4e5a68612e4e\",\"vendorName\":\"123 Cannabis Forestlawn\",\"vendorMissing\":false,\"purchaseOrders\":[{\"id\":\"31f751bb-a580-495c-a081-169f4cf8aaf9\",\"orderNumber\":\"S-26244\",\"type\":0,\"workOrderId\":\"449bcc1b-c2c2-484c-8a18-25c195ff6ede\",\"workOrderStatus\":\"approved\",\"workOrderType\":\"service\",\"items\":[{\"orderItemId\":\"0b20e3ce-cf6f-42a4-8213-a8faef06b488\",\"partNumber\":\"\",\"description\":\"ZZAUTOTEST sell-price check\",\"isCore\":false,\"coreItemId\":null,\"quantityOrdered\":\"1.00\",\"quantityReceived\":\"0.00\",\"quantityRemaining\":1,\"cost\":0,\"sellPrice\":0,\"coreCharge\":null,\"coreResolution\":null,\"price\":0,\"priceDisplay\":\"0.00\",\"priceDecimal\":\"0.00000\",\"partRequestId\":\"a3e73264-ac59-440a-8dc7-613431111b5a\",\"lineId\":\"fc686011-9473-43b2-b26c-e079f55a1265\",\"manufacturerId\":null,\"itemOrder\":1,\"partCategoryId\":\"b25c5c04-fe8d-4c21-a15c-a02c69f1ee5d\",\"parentPartNumber\":null,\"environmentalCharge\":\"0.00\",\"isEnvironmentalPart\":false}]}]}]}}"
+ },
+ {
+  "t": "2026-07-29T18:25:07.142Z",
+  "url": "/api/orders/items/0b20e3ce-cf6f-42a4-8213-a8faef06b488/part-number",
+  "status": 200,
+  "method": "POST",
+  "request": "{\"partNumber\":\"ZZAUTO-PN-1\"}",
+  "body": "{\"data\":[]}"
+ }
+]

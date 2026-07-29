@@ -170,6 +170,12 @@ any endpoint/ID not recorded here or in `CLAUDE.md`** — if only partly known, 
   the **UI New Line dialog** (WO detail → Lines tab → New Line → pick a canned line → Save & Close) as
   the fallback. *(confirmed live 2026-07-27, SV-8721 side project; supersedes the earlier "always 500s
   → use UI" note. On qb, lines/create still 500s on ALL payloads incl. `create-from-canned-line`.)*
+  **UPDATE 2026-07-29 (staging):** `lines/create` with a canned_line_id now returns **400 "Labor or
+  fixed prices must be set"** on staging too (same as prod) — use
+  **`POST /api/work-orders/{id}/lines/create-from-canned-line {canned_line_id, status:'authorized'}`
+  → 201** on staging as well (proven live 2026-07-29). Note: a line created from a canned line can
+  AUTO-CREATE a part request (with the canned line's part category) — remove it via
+  `part/remove-request/{id}` if the test needs a clean line.
 - **Change line status:** `POST /api/work-orders/lines/change-status {line_id, status:'authorized',
   workOrderId}` → 200 (enum `authorization_required|authorization_declined|authorized|complete`).
   Bulk: `POST /api/work-orders/lines/change-lines` → 201. Delete: `POST
@@ -207,6 +213,32 @@ any endpoint/ID not recorded here or in `CLAUDE.md`** — if only partly known, 
 - **WO Receive Parts screen (UI route):** `/order/{orderId}?receive=1&returnTo=WorkOrder&returnId={workOrderId}`
   — this is the Receive Parts screen reached from a work order (the PO Receive screen with the WO as the
   return target). *(confirmed live 2026-07-27, SV-8721 side project.)*
+- **Delete an UNPICKED part REQUEST:** `POST /api/work-orders/part/remove-request/{requestId}` → 200
+  (the id in the URL, empty body). **`parts/delete` returns 400 "part_id Not found" for a request that
+  was never picked** — `parts/delete` is for picked inventory parts; requests use `remove-request`.
+  Useful to clear the part a canned line auto-creates. *(proven live 2026-07-29, sell-price verify.)*
+- **New Part Request modal (UI recipe):** WO lines page → the LINE's ⋮ kebab (inside
+  `[data-test-id=table_work_order_lines]`, the menu containing "Request part | Add line note | Save as
+  canned line | …") → **"Request part"**. Dialog test-ids: `input_workorder_part_description`,
+  `input_workorder_part_quantity`, `select_part` (PN catalogue), `select_workorder_part_source`,
+  `select_part_category`, `select_part_vendor`, `input_part_cost`, `input_workorder_part_core_charge`,
+  `input_workorder_part_sell_price`, `input_workorder_part_margin`; save buttons
+  `button_workorder_part_save` (= Save & Close) / `…_save_add_part` / `…_save_add_line`.
+  **Category DEFAULTS to "Uncategorized"** when nothing is picked. *(proven live 2026-07-29.)*
+- **Receive Parts screen driving (test-ids + endpoints):** vendor top-left =
+  `select_assign_vendor_{orderId}` (Quasar select → `.q-menu .q-item`; fires
+  `POST /api/orders/{orderId}/assign-vendor {vendorId, orderItemIds:[]}`); invoice # =
+  `input_invoice_{orderId}`; per-item `input_part_number_{itemId}` (fires
+  `POST /api/orders/items/{itemId}/part-number {partNumber}`), `input_cost_{itemId}`,
+  `input_sell_{itemId}`, `input_qty_{itemId}`; submit = `button_receive_po_{orderId}` (disabled until
+  vendor + invoice + PN + cost/sell present — sell>0 is part of the gate). Screen data =
+  `POST /api/inventory/orders/receive-view {orderIds:[…], vendorIds:[…]}`. **GOTCHAS (proven
+  2026-07-29):** (1) Cost/invoice edits fire NO API call on blur and do NOT persist across reload —
+  they submit only with the final Receive; (2) after a vendor is assigned, re-opening the URL that
+  still has `&vendorless=1` renders "All parts on this purchase order have been received." even though
+  nothing was received (artifact — drop `vendorless=1` and reload); (3) the Sell field does NOT
+  auto-calc from Cost on this screen in the current build (staging AND prod — the 2026-07-29
+  sell-price bug, see build/simple-flow/sell-price-investigation-2026-07-29/live-verify-2026-07-29/).
 - **Returns:** create `POST /api/work-orders/part/make-return-request` → 200; delete
   `POST /api/work-orders/part/remove-return-request {part_return_request_id}` → 200; list
   `GET /api/work-orders/part/list-return-requests`. A return can't be deleted on a Complete WO —
@@ -260,6 +292,18 @@ any endpoint/ID not recorded here or in `CLAUDE.md`** — if only partly known, 
   (send the FULL settings object). Simple Flow behavior is settings-driven (no feature flag).
 - **Feature flags:** route `/administration/feature-flags`; org flags
   `GET /api/organization/feature-flags?organization_id={org}`.
+- **PRICING MATRIX (parts sell-price rules) — route + API (proven live 2026-07-29):** UI =
+  Settings → PARTS → **Pricing** = route `/administration/pricing` (permission `settingsParts`);
+  tabs "Pricing Matrices(N)" + "Fixed Rules(N)"; click a matrix row → "Edit Price Matrix" dialog
+  (Name, Category multi-select, rule rows Min Cost / Max Cost / Markup % / Margin %). API: list
+  `GET /api/pricing-rules/list?limit=200&page=1` → `{data:{collection:[{id,name,categories:[catIds],
+  rules:[{rule_id,type:'markup_for_interval',min_cost,max_cost,markup,margin}],is_default}]}}`;
+  create `POST /api/pricing-rules/matrix`; edit `POST /api/pricing-rules/change-matrix`; delete
+  `POST /api/pricing-rules/remove-matrix`. Fixed sell prices: `GET /api/parts/list-fixed-price`.
+  Map category ids via `GET /api/inventory/categories`. **Known state 2026-07-29:** staging org
+  d55bc308 has "Default matrix 07/12/2023" covering **Uncategorized** (cat id `b25c5c04-…`, 21 rules,
+  e.g. $24.01–55 → markup 150%); prod test org 72b2cc90 has "Default matrix" covering Uncategorized
+  (cat id `00e200b1-…`, 1 rule $1–2500 → markup 800%).
 
 ## I. UI automation (Quasar)
 - **Escalation ladder when a click won't take:** (1) selector click → (2) fire the element's own
