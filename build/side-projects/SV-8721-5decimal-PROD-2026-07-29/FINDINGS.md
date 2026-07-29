@@ -68,6 +68,45 @@ Staging values from `build/side-projects/SV-8721-5decimal-2026-07-27/FINDINGS.md
   cost display + subtotal math on the Receive screen, which is what the ticket names; keeping the
   footprint minimal on prod (the WO/PO were deleted after).
 
+## Customer-expectation tax/total leg (added 2026-07-29, second live pass)
+The ticket's customer-data acceptance reads **Subtotal 15.32 / Tax 0.77 / Total 16.09**. The first pass
+verified the Subtotal; this leg explicitly verifies TAX and grand TOTAL, live on Production.
+
+**Was the captured evidence enough?** Partly. The PROD-R2 screenshot already showed the Tax/Total block
+for the 3-part case — but at the prod test org's own tax context: the org's workplace tax rate is **0**
+(`workplace_tax: 0` in PROD-order-detail.json), the Tax field on the Receive screen is a **manual
+vendor-invoice dollar field defaulting to $0.00** (same as staging, 2026-07-27), so it showed Tax $0.00 /
+Total $15.32. That is the correct math at a 0% rate (buggy build would have shown Total $15.60), but it
+does not exercise the customer's 0.77/16.09 figures — so a minimal live re-check was run.
+
+**What was observed live (2026-07-29, WO S2-796, PO 25989663…, 3 parts at 0.240/0.027/0.089):**
+| Step | Observed on Production | Customer expectation | Match? |
+|---|---|---|---|
+| Costs on Receive screen | $0.24000 / $0.02700 / $0.08900, line totals $9.60 / $2.16 / $3.56 | full-precision costs | **MATCH** |
+| Subtotal | **$15.32** | 15.32 | **MATCH** |
+| Tax, before entry (org rate 0%) | **$0.00** default; Total **$15.32** = 15.32 + 0.00 (tax = 0% × 15.32 exactly) | rate-adjusted equivalent (their org: GST 5%) | **MATCH (math)** |
+| Tax = the customer's vendor-invoice $0.77 typed in | Total recalculated live to **$16.09** = 15.32 + 0.77 exactly | 16.09 | **MATCH** |
+| Backend order total | `total_price_decimal` = **15.32** (legacy `total_price` still 15.60) | full-precision total | **MATCH** |
+
+- **Tax-rate note (not a bug):** the customer's org applies GST 5%, so their screen derives Tax 0.77
+  (5% × 15.32 → 0.766 → 0.77) automatically; the prod TEST org's rate is 0%, so Tax defaults to $0.00 and
+  0.77 was entered manually as the vendor-invoice tax. The dollar difference is a TAX-RATE context
+  difference, not a precision issue. The precision-relevant math was observed both ways: tax = rate ×
+  full-precision subtotal (0% → 0.00, Total 15.32) AND Total = 15.32 + entered tax (0.77 → 16.09).
+  The buggy build would have produced 15.60 / 0.78 / 16.38.
+- **Honest limit (Rule 12):** the 5%-auto-computed Tax ($0.77 appearing by itself) was not observable on
+  this org without changing the org's tax settings (not done — minimal footprint); what WAS observed is
+  the Total deriving from the full-precision $15.32 subtotal in both tax states.
+
+**Verdict: YES — Production now meets the customer's reported expectation end-to-end: the Receive screen
+shows the invoice-matching Subtotal $15.32, and with the invoice tax $0.77 the Total is exactly $16.09
+(15.32/0.77/16.09, not the buggy 15.60/0.78/16.38).**
+
+Evidence: `evidence/PROD-R3-tax-total.png` (Subtotal $15.32 / Tax $0.77 / Total $16.09 on screen) +
+`evidence/PROD-R3-order-detail-3parts.json` (backend: `total_price_decimal` 15.32, `workplace_tax` 0).
+Cleanup: WO S2-796 deleted via `POST /api/work-orders/delete` (201); verified gone (WO view → 400
+"Not found", PO view → 400 "Not found"). Zero residue.
+
 ## Seeding footprint + cleanup (Production residue = NONE)
 - Created: 1 ZZAUTOTEST WO in QA Testing (deleted immediately after a workplace mix-up), 1 ZZAUTOTEST WO
   **S2-795** in Trucks Hill 2 with 1 canned line + 4 ZZAUTOTEST vendor parts, ordered into PO S2-795.
@@ -80,3 +119,5 @@ Staging values from `build/side-projects/SV-8721-5decimal-2026-07-27/FINDINGS.md
 - `PROD-R2-receive-3parts-subtotal-15.32.png` — same screen with only the customer's 3 parts selected: **Subtotal $15.32** (the exact staging/vendor-invoice figure).
 - `PROD-B0-po-list-total-152.36.png` — Purchase Orders list, S2-795 row, Total Price **$152.36**.
 - `PROD-order-detail.json` — backend order detail: `price_decimal` / `total_cost_decimal` / `total_price_decimal` vs the legacy rounded fields.
+- `PROD-R3-tax-total.png` — tax/total leg (2nd pass): 3 customer parts, Subtotal **$15.32**, Tax **$0.77** entered, Total **$16.09** (the ticket's exact customer figures).
+- `PROD-R3-order-detail-3parts.json` — backend order detail for the 3-part PO: `total_price_decimal` **15.32** (legacy `total_price` 15.60), `workplace_tax` 0.

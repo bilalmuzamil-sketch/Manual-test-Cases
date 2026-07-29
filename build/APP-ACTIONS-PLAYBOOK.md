@@ -118,7 +118,14 @@ any endpoint/ID not recorded here or in `CLAUDE.md`** — if only partly known, 
   → 201** instead. Chromium boot2-style hydration works on prod: PHPSESSID cookie on `.shopview.com` +
   localStorage `user` = `{data:<login-response data>}` (has `token`/`role`/`details`) +
   `fe_permissions_wrapper` = fe-permissions `data`; Playwright pointed straight at `$HTTPS_PROXY`
-  worked (no bridge needed). Credentials/cookies in `/tmp` only.
+  worked (no bridge needed). Credentials/cookies in `/tmp` only. **Node-fetch proxy fix (proven
+  2026-07-29):** in sandboxes where plain node `fetch` bypasses the egress proxy (403 "Host not in
+  allowlist" while `curl` gets through), run node with **`NODE_USE_ENV_PROXY=1`** (Node 22.22+,
+  undici EnvHttpProxyAgent) — fetch then honors `$HTTPS_PROXY` and prod login/API work; no code
+  change needed. **Receive-screen Tax field (prod + staging):** a manual vendor-invoice dollar
+  input defaulting to $0.00 when the org's workplace tax rate is 0 (`workplace_tax` in the order
+  JSON); typing a dollar amount live-recalculates Total = Subtotal + Tax (verified: 15.32 + 0.77
+  → 16.09, SV-8721).
 
 ## B. Environment / location
 - **Org ID (staging, shared):** `d55bc308-...` (shared across Custom Roles + Simple Flow + F&D staging).
